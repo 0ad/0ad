@@ -115,7 +115,7 @@ void* CMapGeneratorWorker::RunThread(CMapGeneratorWorker* self)
 
 bool CMapGeneratorWorker::Run()
 {
-	ScriptInterface::Request rq(m_ScriptInterface);
+	ScriptRequest rq(m_ScriptInterface);
 
 	// Parse settings
 	JS::RootedValue settingsVal(rq.cx);
@@ -325,7 +325,7 @@ JS::Value CMapGeneratorWorker::LoadHeightmap(ScriptInterface::CmptPrivate* pCmpt
 	}
 
 	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCmptPrivate->pCBData);
-	ScriptInterface::Request rq(self->m_ScriptInterface);
+	ScriptRequest rq(self->m_ScriptInterface);
 	JS::RootedValue returnValue(rq.cx);
 	ToJSVal_vector(rq, &returnValue, heightmap);
 	return returnValue;
@@ -335,13 +335,11 @@ JS::Value CMapGeneratorWorker::LoadHeightmap(ScriptInterface::CmptPrivate* pCmpt
 JS::Value CMapGeneratorWorker::LoadMapTerrain(ScriptInterface::CmptPrivate* pCmptPrivate, const VfsPath& filename)
 {
 	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCmptPrivate->pCBData);
-	ScriptInterface::Request rq(self->m_ScriptInterface);
+	ScriptRequest rq(self->m_ScriptInterface);
 
 	if (!VfsFileExists(filename))
 	{
-		self->m_ScriptInterface->ReportError(
-			("Terrain file \"" +  filename.string8() +  "\" does not exist!").c_str());
-
+		ScriptException::Raise(rq, "Terrain file \"%s\" does not exist!", filename.string8().c_str());
 		return JS::UndefinedValue();
 	}
 
@@ -350,9 +348,7 @@ JS::Value CMapGeneratorWorker::LoadMapTerrain(ScriptInterface::CmptPrivate* pCmp
 
 	if (unpacker.GetVersion() < CMapIO::FILE_READ_VERSION)
 	{
-		self->m_ScriptInterface->ReportError(
-			("Could not load terrain file \"" +  filename.string8() +  "\" too old version!").c_str());
-
+		ScriptException::Raise(rq, "Could not load terrain file \"%s\" too old version!", filename.string8().c_str());
 		return JS::UndefinedValue();
 	}
 

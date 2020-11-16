@@ -37,6 +37,7 @@
 #include "ps/Pyrogenesis.h"
 #include "ps/XML/Xeromyces.h"
 #include "renderer/Renderer.h"
+#include "scriptinterface/ScriptContext.h"
 #include "scriptinterface/ScriptInterface.h"
 
 #include <string>
@@ -97,10 +98,11 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 		{
 			ret = IN_HANDLED;
 
-			ScriptInterface::Request rq(m_ScriptInterface);
+			ScriptRequest rq(m_ScriptInterface);
 			JS::RootedObject globalObj(rq.cx, rq.glob);
 			JS::RootedValue result(rq.cx);
-			JS_CallFunctionValue(rq.cx, globalObj, m_GlobalHotkeys[hotkey][eventName], JS::HandleValueArray::empty(), &result);
+			if (!JS_CallFunctionValue(rq.cx, globalObj, m_GlobalHotkeys[hotkey][eventName], JS::HandleValueArray::empty(), &result))
+				ScriptException::CatchPending(rq);
 		}
 
 		std::map<CStr, std::vector<IGUIObject*> >::iterator it = m_HotkeyObjects.find(hotkey);
@@ -418,24 +420,24 @@ void CGUI::UnsetObjectHotkey(IGUIObject* pObject, const CStr& hotkeyTag)
 
 void CGUI::SetGlobalHotkey(const CStr& hotkeyTag, const CStr& eventName, JS::HandleValue function)
 {
-	ScriptInterface::Request rq(*m_ScriptInterface);
+	ScriptRequest rq(*m_ScriptInterface);
 
 	if (hotkeyTag.empty())
 	{
-		JS_ReportError(rq.cx, "Cannot assign a function to an empty hotkey identifier!");
+		ScriptException::Raise(rq, "Cannot assign a function to an empty hotkey identifier!");
 		return;
 	}
 
 	// Only support "Press", "Keydown" and "Release" events.
 	if (eventName != EventNamePress && eventName != EventNameKeyDown && eventName != EventNameRelease)
 	{
-		JS_ReportError(rq.cx, "Cannot assign a function to an unsupported event!");
+		ScriptException::Raise(rq, "Cannot assign a function to an unsupported event!");
 		return;
 	}
 
 	if (!function.isObject() || !JS_ObjectIsFunction(rq.cx, &function.toObject()))
 	{
-		JS_ReportError(rq.cx, "Cannot assign non-function value to global hotkey '%s'", hotkeyTag.c_str());
+		ScriptException::Raise(rq, "Cannot assign non-function value to global hotkey '%s'", hotkeyTag.c_str());
 		return;
 	}
 

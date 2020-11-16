@@ -35,7 +35,7 @@ public:
 	void test_basic()
 	{
 		ComponentTestHelper test(g_ScriptContext);
-		ScriptInterface::Request rq(test.GetScriptInterface());
+		ScriptRequest rq(test.GetScriptInterface());
 
 		std::vector<SimulationCommand> empty;
 

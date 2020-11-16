@@ -57,14 +57,14 @@ static u8 GetArrayType(js::Scalar::Type arrayType)
 CBinarySerializerScriptImpl::CBinarySerializerScriptImpl(const ScriptInterface& scriptInterface, ISerializer& serializer) :
 	m_ScriptInterface(scriptInterface), m_Serializer(serializer), m_ScriptBackrefsNext(0)
 {
-	ScriptInterface::Request rq(m_ScriptInterface);
+	ScriptRequest rq(m_ScriptInterface);
 
 	m_ScriptBackrefSymbol.init(rq.cx, JS::NewSymbol(rq.cx, nullptr));
 }
 
 void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 {
-	ScriptInterface::Request rq(m_ScriptInterface);
+	ScriptRequest rq(m_ScriptInterface);
 
 	switch (JS_TypeOfValue(rq.cx, val))
 	{
@@ -375,7 +375,7 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 
 void CBinarySerializerScriptImpl::ScriptString(const char* name, JS::HandleString string)
 {
-	ScriptInterface::Request rq(m_ScriptInterface);
+	ScriptRequest rq(m_ScriptInterface);
 
 #if BYTE_ORDER != LITTLE_ENDIAN
 #error TODO: probably need to convert JS strings to little-endian
@@ -415,7 +415,7 @@ i32 CBinarySerializerScriptImpl::GetScriptBackrefTag(JS::HandleObject obj)
 	// Tags are stored on the object. To avoid overwriting any existing property,
 	// they are saved as a uniquely-named, non-enumerable property (the serializer's unique symbol).
 
-	ScriptInterface::Request rq(m_ScriptInterface);
+	ScriptRequest rq(m_ScriptInterface);
 
 	JS::RootedValue symbolValue(rq.cx, JS::SymbolValue(m_ScriptBackrefSymbol));
 	JS::RootedId symbolId(rq.cx);

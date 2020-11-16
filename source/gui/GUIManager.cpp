@@ -133,7 +133,7 @@ void CGUIManager::SGUIPage::LoadPage(shared_ptr<ScriptContext> scriptContext)
 	if (gui)
 	{
 		shared_ptr<ScriptInterface> scriptInterface = gui->GetScriptInterface();
-		ScriptInterface::Request rq(scriptInterface);
+		ScriptRequest rq(scriptInterface);
 
 		JS::RootedValue global(rq.cx, rq.globalValue());
 		JS::RootedValue hotloadDataVal(rq.cx);
@@ -199,7 +199,7 @@ void CGUIManager::SGUIPage::LoadPage(shared_ptr<ScriptContext> scriptContext)
 	gui->LoadedXmlFiles();
 
 	shared_ptr<ScriptInterface> scriptInterface = gui->GetScriptInterface();
-	ScriptInterface::Request rq(scriptInterface);
+	ScriptRequest rq(scriptInterface);
 
 	JS::RootedValue initDataVal(rq.cx);
 	JS::RootedValue hotloadDataVal(rq.cx);
@@ -224,7 +224,7 @@ void CGUIManager::SGUIPage::SetCallbackFunction(ScriptInterface& scriptInterface
 		return;
 	}
 
-	ScriptInterface::Request rq(scriptInterface);
+	ScriptRequest rq(scriptInterface);
 
 	if (!JS_ObjectIsFunction(rq.cx, &callbackFunc.toObject()))
 	{
@@ -241,7 +241,7 @@ void CGUIManager::SGUIPage::PerformCallbackFunction(shared_ptr<ScriptInterface::
 		return;
 
 	shared_ptr<ScriptInterface> scriptInterface = gui->GetScriptInterface();
-	ScriptInterface::Request rq(scriptInterface);
+	ScriptRequest rq(scriptInterface);
 
 	JS::RootedObject globalObj(rq.cx, rq.glob);
 
@@ -259,7 +259,8 @@ void CGUIManager::SGUIPage::PerformCallbackFunction(shared_ptr<ScriptInterface::
 
 	JS::RootedValue result(rq.cx);
 
-	JS_CallFunctionValue(rq.cx, globalObj, funcVal, paramData, &result);
+	if(!JS_CallFunctionValue(rq.cx, globalObj, funcVal, paramData, &result))
+		ScriptException::CatchPending(rq);
 }
 
 Status CGUIManager::ReloadChangedFile(const VfsPath& path)
@@ -297,7 +298,7 @@ InReaction CGUIManager::HandleEvent(const SDL_Event_* ev)
 
 	{
 		PROFILE("handleInputBeforeGui");
-		ScriptInterface::Request rq(*top()->GetScriptInterface());
+		ScriptRequest rq(*top()->GetScriptInterface());
 
 		JS::RootedValue global(rq.cx, rq.globalValue());
 		if (top()->GetScriptInterface()->CallFunction(global, "handleInputBeforeGui", handled, *ev, top()->FindObjectUnderMouse()))
@@ -314,7 +315,7 @@ InReaction CGUIManager::HandleEvent(const SDL_Event_* ev)
 
 	{
 		// We can't take the following lines out of this scope because top() may be another gui page than it was when calling handleInputBeforeGui!
-		ScriptInterface::Request rq(*top()->GetScriptInterface());
+		ScriptRequest rq(*top()->GetScriptInterface());
 		JS::RootedValue global(rq.cx, rq.globalValue());
 
 		PROFILE("handleInputAfterGui");

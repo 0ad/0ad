@@ -390,7 +390,7 @@ JS::Value StunClient::FindStunEndpointHost(const ScriptInterface& scriptInterfac
 	addr.host = ntohl(m_IP);
 	enet_address_get_host_ip(&addr, ipStr, ARRAY_SIZE(ipStr));
 
-	ScriptInterface::Request rq(scriptInterface);
+	ScriptRequest rq(scriptInterface);
 
 	JS::RootedValue stunEndpoint(rq.cx);
 	ScriptInterface::CreateObject(rq, &stunEndpoint, "ip", ipStr, "port", m_Port);

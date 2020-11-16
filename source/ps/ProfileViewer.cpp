@@ -502,7 +502,7 @@ namespace
 
 		void operator() (AbstractProfileTable* table)
 		{
-			ScriptInterface::Request rq(m_ScriptInterface);
+			ScriptRequest rq(m_ScriptInterface);
 
 			JS::RootedValue t(rq.cx);
 			ScriptInterface::CreateObject(
@@ -528,7 +528,7 @@ namespace
 
 		JS::Value DumpRows(AbstractProfileTable* table)
 		{
-			ScriptInterface::Request rq(m_ScriptInterface);
+			ScriptRequest rq(m_ScriptInterface);
 
 			JS::RootedValue data(rq.cx);
 			ScriptInterface::CreateObject(rq, &data);

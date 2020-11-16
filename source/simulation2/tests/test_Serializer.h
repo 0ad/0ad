@@ -292,7 +292,7 @@ public:
 	void helper_script_roundtrip(const char* msg, const char* input, const char* expected, size_t expstreamlen = 0, const char* expstream = NULL, const char* debug = NULL)
 	{
 		ScriptInterface script("Test", "Test", g_ScriptContext);
-		ScriptInterface::Request rq(script);
+		ScriptRequest rq(script);
 
 		JS::RootedValue obj(rq.cx);
 		TSM_ASSERT(msg, script.Eval(input, &obj));
@@ -754,7 +754,7 @@ public:
 	void test_script_exceptions()
 	{
 		ScriptInterface script("Test", "Test", g_ScriptContext);
-		ScriptInterface::Request rq(script);
+		ScriptRequest rq(script);
 
 		JS::RootedValue obj(rq.cx);
 
@@ -765,6 +765,7 @@ public:
 
 		TS_ASSERT(script.Eval("([1, 2, function () { }])", &obj));
 		TS_ASSERT_THROWS(serialize.ScriptVal("script", &obj), const PSERROR_Serialize_InvalidScriptValue&);
+		TS_ASSERT_STR_CONTAINS(logger.GetOutput(), "ERROR: Cannot serialise JS objects of type 'function': (unnamed)");
 	}
 
 	void test_script_splice()
@@ -788,7 +789,7 @@ public:
 		const char* input = "var x = {}; for (var i=0;i<256;++i) x[i]=Math.pow(i, 2); x";
 
 		ScriptInterface script("Test", "Test", g_ScriptContext);
-		ScriptInterface::Request rq(script);
+		ScriptRequest rq(script);
 
 		JS::RootedValue obj(rq.cx);
 		TS_ASSERT(script.Eval(input, &obj));

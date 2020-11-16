@@ -40,7 +40,7 @@ public:
 		ScriptInterface script("Test", "Test", g_ScriptContext);
 		TestLogger logger;
 		TS_ASSERT(!script.LoadScript(L"test.js", "1+"));
-		TS_ASSERT_STR_CONTAINS(logger.GetOutput(), "JavaScript error: test.js line 1\nSyntaxError: expected expression, got end of script");
+		TS_ASSERT_STR_CONTAINS(logger.GetOutput(), "ERROR: JavaScript error: test.js line 1\nSyntaxError: expected expression, got end of script");
 	}
 
 	void test_loadscript_strict_warning()
@@ -57,7 +57,7 @@ public:
 		ScriptInterface script("Test", "Test", g_ScriptContext);
 		TestLogger logger;
 		TS_ASSERT(!script.LoadScript(L"test.js", "with(1){}"));
-		TS_ASSERT_STR_CONTAINS(logger.GetOutput(), "JavaScript error: test.js line 1\nSyntaxError: strict mode code may not contain \'with\' statements");
+		TS_ASSERT_STR_CONTAINS(logger.GetOutput(), "ERROR: JavaScript error: test.js line 1\nSyntaxError: strict mode code may not contain \'with\' statements");
 	}
 
 	void test_clone_basic()
@@ -65,12 +65,12 @@ public:
 		ScriptInterface script1("Test", "Test", g_ScriptContext);
 		ScriptInterface script2("Test", "Test", g_ScriptContext);
 
-		ScriptInterface::Request rq1(script1);
+		ScriptRequest rq1(script1);
 		JS::RootedValue obj1(rq1.cx);
 		TS_ASSERT(script1.Eval("({'x': 123, 'y': [1, 1.5, '2', 'test', undefined, null, true, false]})", &obj1));
 
 		{
-			ScriptInterface::Request rq2(script2);
+			ScriptRequest rq2(script2);
 
 			JS::RootedValue obj2(rq2.cx, script2.CloneValueFromOtherCompartment(script1, obj1));
 
@@ -86,13 +86,13 @@ public:
 		ScriptInterface script1("Test", "Test", g_ScriptContext);
 		ScriptInterface script2("Test", "Test", g_ScriptContext);
 
-		ScriptInterface::Request rq1(script1);
+		ScriptRequest rq1(script1);
 
 		JS::RootedValue obj1(rq1.cx);
 		TS_ASSERT(script1.Eval("var s = '?'; var v = ({get x() { return 123 }, 'y': {'w':{get z() { delete v.y; delete v.n; v = null; s += s; return 4 }}}, 'n': 100}); v", &obj1));
 
 		{
-			ScriptInterface::Request rq2(script2);
+			ScriptRequest rq2(script2);
 
 			JS::RootedValue obj2(rq2.cx, script2.CloneValueFromOtherCompartment(script1, obj1));
 
@@ -107,13 +107,13 @@ public:
 		ScriptInterface script1("Test", "Test", g_ScriptContext);
 		ScriptInterface script2("Test", "Test", g_ScriptContext);
 
-		ScriptInterface::Request rq1(script1);
+		ScriptRequest rq1(script1);
 
 		JS::RootedValue obj1(rq1.cx);
 		TS_ASSERT(script1.Eval("var x = []; x[0] = x; ({'a': x, 'b': x})", &obj1));
 
 		{
-			ScriptInterface::Request rq2(script2);
+			ScriptRequest rq2(script2);
 			JS::RootedValue obj2(rq2.cx, script2.CloneValueFromOtherCompartment(script1, obj1));
 
 			// Use JSAPI function to check if the values of the properties "a", "b" are equals a.x[0]
@@ -138,7 +138,7 @@ public:
 	{
 		ScriptInterface script("Test", "Test", g_ScriptContext);
 
-		ScriptInterface::Request rq(script);
+		ScriptRequest rq(script);
 
 		JS::RootedValue val(rq.cx);
 		JS::RootedValue out(rq.cx);
@@ -183,7 +183,7 @@ public:
 
 	void handle_templates_test(const ScriptInterface& script, JS::HandleValue val, JS::MutableHandleValue out, JS::HandleValue nbrVal)
 	{
-		ScriptInterface::Request rq(script);
+		ScriptRequest rq(script);
 
 		int nbr = 0;
 
@@ -236,7 +236,7 @@ public:
 	void test_json()
 	{
 		ScriptInterface script("Test", "Test", g_ScriptContext);
-		ScriptInterface::Request rq(script);
+		ScriptRequest rq(script);
 
 		std::string input = "({'x':1,'z':[2,'3\\u263A\\ud800'],\"y\":true})";
 		JS::RootedValue val(rq.cx);
@@ -254,7 +254,7 @@ public:
 	void test_function_override()
 	{
 		ScriptInterface script("Test", "Test", g_ScriptContext);
-		ScriptInterface::Request rq(script);
+		ScriptRequest rq(script);
 
 		TS_ASSERT(script.Eval(
 			"function f() { return 1; }"

@@ -86,7 +86,7 @@ JS::Value JSI_ModIo::GetMods(ScriptInterface::CmptPrivate* pCmptPrivate)
 	}
 
 	ScriptInterface* scriptInterface = pCmptPrivate->pScriptInterface;
-	ScriptInterface::Request rq(scriptInterface);
+	ScriptRequest rq(scriptInterface);
 
 	const std::vector<ModIoModData>& availableMods = g_ModIo->GetMods();
 
@@ -132,7 +132,7 @@ JS::Value JSI_ModIo::GetDownloadProgress(ScriptInterface::CmptPrivate* pCmptPriv
 	}
 
 	ScriptInterface* scriptInterface = pCmptPrivate->pScriptInterface;
-	ScriptInterface::Request rq(scriptInterface);
+	ScriptRequest rq(scriptInterface);
 
 	const DownloadProgressData& progress = g_ModIo->GetDownloadProgress();
 

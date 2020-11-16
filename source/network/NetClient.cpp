@@ -251,7 +251,7 @@ void CNetClient::GuiPoll(JS::MutableHandleValue ret)
 
 std::string CNetClient::TestReadGuiMessages()
 {
-	ScriptInterface::Request rq(GetScriptInterface());
+	ScriptRequest rq(GetScriptInterface());
 
 	std::string r;
 	JS::RootedValue msg(rq.cx);
@@ -272,7 +272,7 @@ const ScriptInterface& CNetClient::GetScriptInterface()
 
 void CNetClient::PostPlayerAssignmentsToScript()
 {
-	ScriptInterface::Request rq(GetScriptInterface());
+	ScriptRequest rq(GetScriptInterface());
 
 	JS::RootedValue newAssignments(rq.cx);
 	ScriptInterface::CreateObject(rq, &newAssignments);

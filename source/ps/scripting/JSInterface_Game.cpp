@@ -48,7 +48,7 @@ void JSI_Game::StartGame(ScriptInterface::CmptPrivate* pCmptPrivate, JS::HandleV
 
 	// Convert from GUI script context to sim script context
 	CSimulation2* sim = g_Game->GetSimulation2();
-	ScriptInterface::Request rqSim(sim->GetScriptInterface());
+	ScriptRequest rqSim(sim->GetScriptInterface());
 
 	JS::RootedValue gameAttribs(rqSim.cx,
 		sim->GetScriptInterface().CloneValueFromOtherCompartment(*(pCmptPrivate->pScriptInterface), attribs));
@@ -100,8 +100,8 @@ bool JSI_Game::IsPaused(ScriptInterface::CmptPrivate* pCmptPrivate)
 {
 	if (!g_Game)
 	{
-		ScriptInterface::Request rq(pCmptPrivate);
-		JS_ReportError(rq.cx, "Game is not started");
+		ScriptRequest rq(pCmptPrivate->pScriptInterface);
+		ScriptException::Raise(rq, "Game is not started");
 		return false;
 	}
 
@@ -112,8 +112,8 @@ void JSI_Game::SetPaused(ScriptInterface::CmptPrivate* pCmptPrivate, bool pause,
 {
 	if (!g_Game)
 	{
-		ScriptInterface::Request rq(pCmptPrivate);
-		JS_ReportError(rq.cx, "Game is not started");
+		ScriptRequest rq(pCmptPrivate->pScriptInterface);
+		ScriptException::Raise(rq, "Game is not started");
 		return;
 	}
 

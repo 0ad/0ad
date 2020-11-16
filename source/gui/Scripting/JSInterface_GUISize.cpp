@@ -45,7 +45,7 @@ bool JSI_GUISize::construct(JSContext* cx, uint argc, JS::Value* vp)
 {
 	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
 	ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
-	ScriptInterface::Request rq(*pScriptInterface);
+	ScriptRequest rq(*pScriptInterface);
 
 	JS::RootedObject obj(rq.cx, pScriptInterface->CreateCustomObject("GUISize"));
 
@@ -104,7 +104,7 @@ bool JSI_GUISize::toString(JSContext* cx, uint argc, JS::Value* vp)
 	CStr buffer;
 
 	ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
-	ScriptInterface::Request rq(*pScriptInterface);
+	ScriptRequest rq(*pScriptInterface);
 	double val, valr;
 
 #define SIDE(side) \

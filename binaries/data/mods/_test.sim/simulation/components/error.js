@@ -1,11 +1,6 @@
 function TestScript1A() {}
 
-try {
-	Engine.RegisterComponentType(12345, "TestScript1A", TestScript1A);
-	Engine.TS_FAIL("Missed exception");
-} catch (e) {
-//	print("Caught exception: " + e + "\n");
-}
+TS_ASSERT_EXCEPTION(() => { Engine.RegisterComponentType(12345, "TestScript1A", TestScript1A); });
 
 var n = Engine.QueryInterface(12345, IID_Test1);
 if (n !== null)

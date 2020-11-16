@@ -28,11 +28,6 @@
 
 class ScriptInterface;
 
-namespace JS
-{
-	class Value;
-}
-
 /**
  * Struct ProfileColumn: Describes one column of an AbstractProfileTable.
  */

@@ -144,6 +144,11 @@ typedef GLuint GLhandleARB;
 
 #else
 
+// We might not have multisample on macOS.
+#ifndef GL_TEXTURE_2D_MULTISAMPLE
+#define GL_TEXTURE_2D_MULTISAMPLE 0x9100
+#endif
+
 // were these defined as real functions in gl.h already?
 
 // GL_EXT_draw_range_elements / GL1.2:
@@ -384,6 +389,9 @@ FUNC2(void, glGetQueryObjectui64v, glGetQueryObjectui64v, "3.3", (GLuint id, GLe
 // GL_ARB_map_buffer_range / GL3.0:
 FUNC2(void*, glMapBufferRange, glMapBufferRange, "3.0", (GLenum target, GLintptr offset, GLsizeiptr length, GLbitfield access))
 FUNC2(void, glFlushMappedBufferRange, glFlushMappedBufferRange, "3.0", (GLenum target, GLintptr offset, GLsizeiptr length))
+
+// GL_ARB_texture_multisample  / GL3.3:
+FUNC2(void, glTexImage2DMultisample, glTexImage2DMultisample, "3.3", (GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLboolean fixedsamplelocations))
 
 // GL_GREMEDY_string_marker (from gDEBugger)
 FUNC(int, glStringMarkerGREMEDY, (GLsizei len, const GLvoid *string))

@@ -70,7 +70,7 @@ void JSI_GameView::RegisterScriptFunctions_Settings(const ScriptInterface& scrip
 
 JS::Value JSI_GameView::GetCameraPivot(ScriptInterface::CmptPrivate* pCmptPrivate)
 {
-	ScriptInterface::Request rq(pCmptPrivate);
+	ScriptRequest rq(pCmptPrivate->pScriptInterface);
 	CVector3D pivot(-1, -1, -1);
 	if (g_Game && g_Game->GetView())
 		pivot = g_Game->GetView()->GetCameraPivot();

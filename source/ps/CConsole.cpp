@@ -555,7 +555,7 @@ void CConsole::ProcessBuffer(const wchar_t* szLine)
 
 	// Process it as JavaScript
 	shared_ptr<ScriptInterface> pScriptInterface = g_GUI->GetActiveGUI()->GetScriptInterface();
-	ScriptInterface::Request rq(*pScriptInterface);
+	ScriptRequest rq(*pScriptInterface);
 
 	JS::RootedValue rval(rq.cx);
 	pScriptInterface->Eval(szLine, &rval);

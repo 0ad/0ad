@@ -238,7 +238,7 @@ float CMiniMap::GetAngle() const
 
 bool CMiniMap::FireWorldClickEvent(int button, int UNUSED(clicks))
 {
-	ScriptInterface::Request rq(g_GUI->GetActiveGUI()->GetScriptInterface());
+	ScriptRequest rq(g_GUI->GetActiveGUI()->GetScriptInterface());
 
 	float x, z;
 	GetMouseWorldCoordinates(x, z);

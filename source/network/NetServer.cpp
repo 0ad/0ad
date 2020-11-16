@@ -418,7 +418,7 @@ bool CNetServerWorker::RunStep()
 
 	m_ScriptInterface->GetContext()->MaybeIncrementalGC(0.5f);
 
-	ScriptInterface::Request rq(m_ScriptInterface);
+	ScriptRequest rq(m_ScriptInterface);
 
 	std::vector<bool> newStartGame;
 	std::vector<std::string> newGameAttributes;
@@ -1136,7 +1136,7 @@ bool CNetServerWorker::OnSimulationCommand(void* context, CFsmEvent* event)
 	// unless cheating is enabled
 	bool cheatsEnabled = false;
 	const ScriptInterface& scriptInterface = server.GetScriptInterface();
-	ScriptInterface::Request rq(scriptInterface);
+	ScriptRequest rq(scriptInterface);
 	JS::RootedValue settings(rq.cx);
 	scriptInterface.GetProperty(server.m_GameAttributes, "settings", &settings);
 	if (scriptInterface.HasProperty(settings, "CheatsEnabled"))

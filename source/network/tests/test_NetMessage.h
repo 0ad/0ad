@@ -27,7 +27,7 @@ public:
 	void test_sim()
 	{
 		ScriptInterface script("Test", "Test", g_ScriptContext);
-		ScriptInterface::Request rq(script);
+		ScriptRequest rq(script);
 
 		JS::RootedValue val(rq.cx);
 		ScriptInterface::CreateArray(rq, &val);

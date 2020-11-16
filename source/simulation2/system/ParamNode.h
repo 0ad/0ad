@@ -22,13 +22,14 @@
 #include "maths/Fixed.h"
 #include "ps/CStrIntern.h"
 #include "ps/Errors.h"
-#include "scriptinterface/ScriptInterface.h"
-
+#include "scriptinterface/ScriptTypes.h"
 #include <map>
 #include <set>
 
 class XMBFile;
 class XMBElement;
+
+class ScriptRequest;
 
 /**
  * An entity initialisation parameter node.
@@ -248,7 +249,7 @@ public:
 	 * The cache will be reset if *this* node is modified (e.g. by LoadXML),
 	 * but *not* if any child nodes are modified (so don't do that).
 	 */
-	void ToJSVal(const ScriptInterface::Request& rq, bool cacheValue, JS::MutableHandleValue ret) const;
+	void ToJSVal(const ScriptRequest& rq, bool cacheValue, JS::MutableHandleValue ret) const;
 
 	/**
 	 * Returns the names/nodes of the children of this node, ordered by name
@@ -275,7 +276,7 @@ private:
 
 	void ResetScriptVal();
 
-	void ConstructJSVal(const ScriptInterface::Request& rq, JS::MutableHandleValue ret) const;
+	void ConstructJSVal(const ScriptRequest& rq, JS::MutableHandleValue ret) const;
 
 	std::wstring m_Value;
 	ChildrenMap m_Childs;

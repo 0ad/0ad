@@ -367,14 +367,12 @@ public:
 		ScriptTestSetup(man.m_ScriptInterface);
 		man.LoadComponentTypes();
 
-		{
-			TestLogger log;
-			TS_ASSERT(man.LoadScript(L"simulation/components/error.js"));
-			// In SpiderMonkey 1.6, JS_ReportError calls the error reporter even if it's inside
-			// a try{} in the script; in recent versions (not sure when it changed) it doesn't
-			// so the error here won't get reported.
-			TS_ASSERT_STR_NOT_CONTAINS(log.GetOutput(), "ERROR: JavaScript error: simulation/components/error.js line 4\nInvalid interface id");
-		}
+		TestLogger log;
+		TS_ASSERT(man.LoadScript(L"simulation/components/error.js"));
+		// The following exception is caught and dropped by the JS script, and should not appear in the logs.
+		TS_ASSERT_STR_NOT_CONTAINS(log.GetOutput(), "ERROR: JavaScript error: simulation/components/error.js line 4\nInvalid interface id");
+		// The following exception is not caught by the JS script.
+		TS_ASSERT_STR_CONTAINS(log.GetOutput(), "ERROR: No script wrapper found for interface id 12345");
 	}
 
 	void test_script_entityID()

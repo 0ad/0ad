@@ -358,7 +358,7 @@ void CParamNode::ToXML(std::wostream& strm) const
 	}
 }
 
-void CParamNode::ToJSVal(const ScriptInterface::Request& rq, bool cacheValue, JS::MutableHandleValue ret) const
+void CParamNode::ToJSVal(const ScriptRequest& rq, bool cacheValue, JS::MutableHandleValue ret) const
 {
 	if (cacheValue && m_ScriptVal != NULL)
 	{
@@ -372,7 +372,7 @@ void CParamNode::ToJSVal(const ScriptInterface::Request& rq, bool cacheValue, JS
 		m_ScriptVal.reset(new JS::PersistentRootedValue(rq.cx, ret));
 }
 
-void CParamNode::ConstructJSVal(const ScriptInterface::Request& rq, JS::MutableHandleValue ret) const
+void CParamNode::ConstructJSVal(const ScriptRequest& rq, JS::MutableHandleValue ret) const
 {
 	if (m_Childs.empty())
 	{

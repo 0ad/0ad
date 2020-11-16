@@ -371,7 +371,7 @@ PSRETURN CMapSummaryReader::LoadMap(const VfsPath& pathname)
 
 void CMapSummaryReader::GetMapSettings(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret)
 {
-	ScriptInterface::Request rq(scriptInterface);
+	ScriptRequest rq(scriptInterface);
 
 	ScriptInterface::CreateObject(rq, ret);
 
@@ -1266,7 +1266,7 @@ int CMapReader::LoadRMSettings()
 
 int CMapReader::GenerateMap()
 {
-	ScriptInterface::Request rq(pSimulation2->GetScriptInterface());
+	ScriptRequest rq(pSimulation2->GetScriptInterface());
 
 	if (!m_MapGen)
 	{
@@ -1328,7 +1328,7 @@ int CMapReader::GenerateMap()
 int CMapReader::ParseTerrain()
 {
 	TIMER(L"ParseTerrain");
-	ScriptInterface::Request rq(pSimulation2->GetScriptInterface());
+	ScriptRequest rq(pSimulation2->GetScriptInterface());
 
 	// parse terrain from map data
 	//	an error here should stop the loading process
@@ -1403,7 +1403,7 @@ int CMapReader::ParseTerrain()
 int CMapReader::ParseEntities()
 {
 	TIMER(L"ParseEntities");
-	ScriptInterface::Request rq(pSimulation2->GetScriptInterface());
+	ScriptRequest rq(pSimulation2->GetScriptInterface());
 
 	// parse entities from map data
 	std::vector<Entity> entities;
@@ -1467,7 +1467,7 @@ int CMapReader::ParseEntities()
 int CMapReader::ParseEnvironment()
 {
 	// parse environment settings from map data
-	ScriptInterface::Request rq(pSimulation2->GetScriptInterface());
+	ScriptRequest rq(pSimulation2->GetScriptInterface());
 
 #define GET_ENVIRONMENT_PROPERTY(val, prop, out)\
 	if (!pSimulation2->GetScriptInterface().GetProperty(val, #prop, out))\
@@ -1566,7 +1566,7 @@ int CMapReader::ParseEnvironment()
 
 int CMapReader::ParseCamera()
 {
-	ScriptInterface::Request rq(pSimulation2->GetScriptInterface());
+	ScriptRequest rq(pSimulation2->GetScriptInterface());
 
 	// parse camera settings from map data
 	// defaults if we don't find player starting camera

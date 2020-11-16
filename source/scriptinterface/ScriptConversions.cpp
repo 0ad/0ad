@@ -24,7 +24,7 @@
 #include "ps/utf16string.h"
 #include "ps/CStr.h"
 
-#define FAIL(msg) STMT(JS_ReportError(rq.cx, msg); return false)
+#define FAIL(msg) STMT(LOGERROR(msg); return false)
 
 // Implicit type conversions often hide bugs, so warn about them
 #define WARN_IF_NOT(c, v) STMT(if (!(c)) { JS_ReportWarning(rq.cx, "Script value conversion check failed: %s (got type %s)", #c, InformalValueTypeName(v)); })
@@ -50,14 +50,14 @@ static const char* InformalValueTypeName(const JS::Value& v)
 	return "value";
 }
 
-template<> bool ScriptInterface::FromJSVal<bool>(const Request& rq, JS::HandleValue v, bool& out)
+template<> bool ScriptInterface::FromJSVal<bool>(const ScriptRequest& rq, JS::HandleValue v, bool& out)
 {
 	WARN_IF_NOT(v.isBoolean(), v);
 	out = JS::ToBoolean(v);
 	return true;
 }
 
-template<> bool ScriptInterface::FromJSVal<float>(const Request& rq, JS::HandleValue v, float& out)
+template<> bool ScriptInterface::FromJSVal<float>(const ScriptRequest& rq, JS::HandleValue v, float& out)
 {
 	double tmp;
 	WARN_IF_NOT(v.isNumber(), v);
@@ -67,7 +67,7 @@ template<> bool ScriptInterface::FromJSVal<float>(const Request& rq, JS::HandleV
 	return true;
 }
 
-template<> bool ScriptInterface::FromJSVal<double>(const Request& rq,  JS::HandleValue v, double& out)
+template<> bool ScriptInterface::FromJSVal<double>(const ScriptRequest& rq,  JS::HandleValue v, double& out)
 {
 	WARN_IF_NOT(v.isNumber(), v);
 	if (!JS::ToNumber(rq.cx, v, &out))
@@ -75,7 +75,7 @@ template<> bool ScriptInterface::FromJSVal<double>(const Request& rq,  JS::Handl
 	return true;
 }
 
-template<> bool ScriptInterface::FromJSVal<i32>(const Request& rq,  JS::HandleValue v, i32& out)
+template<> bool ScriptInterface::FromJSVal<i32>(const ScriptRequest& rq,  JS::HandleValue v, i32& out)
 {
 	WARN_IF_NOT(v.isNumber(), v);
 	if (!JS::ToInt32(rq.cx, v, &out))
@@ -83,7 +83,7 @@ template<> bool ScriptInterface::FromJSVal<i32>(const Request& rq,  JS::HandleVa
 	return true;
 }
 
-template<> bool ScriptInterface::FromJSVal<u32>(const Request& rq,  JS::HandleValue v, u32& out)
+template<> bool ScriptInterface::FromJSVal<u32>(const ScriptRequest& rq,  JS::HandleValue v, u32& out)
 {
 	WARN_IF_NOT(v.isNumber(), v);
 	if (!JS::ToUint32(rq.cx, v, &out))
@@ -91,7 +91,7 @@ template<> bool ScriptInterface::FromJSVal<u32>(const Request& rq,  JS::HandleVa
 	return true;
 }
 
-template<> bool ScriptInterface::FromJSVal<u16>(const Request& rq,  JS::HandleValue v, u16& out)
+template<> bool ScriptInterface::FromJSVal<u16>(const ScriptRequest& rq,  JS::HandleValue v, u16& out)
 {
 	WARN_IF_NOT(v.isNumber(), v);
 	if (!JS::ToUint16(rq.cx, v, &out))
@@ -99,7 +99,7 @@ template<> bool ScriptInterface::FromJSVal<u16>(const Request& rq,  JS::HandleVa
 	return true;
 }
 
-template<> bool ScriptInterface::FromJSVal<u8>(const Request& rq,  JS::HandleValue v, u8& out)
+template<> bool ScriptInterface::FromJSVal<u8>(const ScriptRequest& rq,  JS::HandleValue v, u8& out)
 {
 	u16 tmp;
 	WARN_IF_NOT(v.isNumber(), v);
@@ -109,7 +109,7 @@ template<> bool ScriptInterface::FromJSVal<u8>(const Request& rq,  JS::HandleVal
 	return true;
 }
 
-template<> bool ScriptInterface::FromJSVal<std::wstring>(const Request& rq,  JS::HandleValue v, std::wstring& out)
+template<> bool ScriptInterface::FromJSVal<std::wstring>(const ScriptRequest& rq,  JS::HandleValue v, std::wstring& out)
 {
 	WARN_IF_NOT(v.isString() || v.isNumber(), v); // allow implicit number conversions
 	JS::RootedString str(rq.cx, JS::ToString(rq.cx, v));
@@ -139,7 +139,7 @@ template<> bool ScriptInterface::FromJSVal<std::wstring>(const Request& rq,  JS:
 	return true;
 }
 
-template<> bool ScriptInterface::FromJSVal<Path>(const Request& rq,  JS::HandleValue v, Path& out)
+template<> bool ScriptInterface::FromJSVal<Path>(const ScriptRequest& rq,  JS::HandleValue v, Path& out)
 {
 	std::wstring string;
 	if (!FromJSVal(rq, v, string))
@@ -148,7 +148,7 @@ template<> bool ScriptInterface::FromJSVal<Path>(const Request& rq,  JS::HandleV
 	return true;
 }
 
-template<> bool ScriptInterface::FromJSVal<std::string>(const Request& rq,  JS::HandleValue v, std::string& out)
+template<> bool ScriptInterface::FromJSVal<std::string>(const ScriptRequest& rq,  JS::HandleValue v, std::string& out)
 {
 	std::wstring wideout;
 	if (!FromJSVal(rq, v, wideout))
@@ -157,17 +157,17 @@ template<> bool ScriptInterface::FromJSVal<std::string>(const Request& rq,  JS::
 	return true;
 }
 
-template<> bool ScriptInterface::FromJSVal<CStr8>(const Request& rq,  JS::HandleValue v, CStr8& out)
+template<> bool ScriptInterface::FromJSVal<CStr8>(const ScriptRequest& rq,  JS::HandleValue v, CStr8& out)
 {
 	return ScriptInterface::FromJSVal(rq, v, static_cast<std::string&>(out));
 }
 
-template<> bool ScriptInterface::FromJSVal<CStrW>(const Request& rq,  JS::HandleValue v, CStrW& out)
+template<> bool ScriptInterface::FromJSVal<CStrW>(const ScriptRequest& rq,  JS::HandleValue v, CStrW& out)
 {
 	return ScriptInterface::FromJSVal(rq, v, static_cast<std::wstring&>(out));
 }
 
-template<> bool ScriptInterface::FromJSVal<Entity>(const Request& rq,  JS::HandleValue v, Entity& out)
+template<> bool ScriptInterface::FromJSVal<Entity>(const ScriptRequest& rq,  JS::HandleValue v, Entity& out)
 {
 	if (!v.isObject())
 		FAIL("Argument must be an object");
@@ -197,42 +197,42 @@ template<> bool ScriptInterface::FromJSVal<Entity>(const Request& rq,  JS::Handl
 ////////////////////////////////////////////////////////////////
 // Primitive types:
 
-template<> void ScriptInterface::ToJSVal<bool>(const Request& UNUSED(rq), JS::MutableHandleValue ret, const bool& val)
+template<> void ScriptInterface::ToJSVal<bool>(const ScriptRequest& UNUSED(rq), JS::MutableHandleValue ret, const bool& val)
 {
 	ret.setBoolean(val);
 }
 
-template<> void ScriptInterface::ToJSVal<float>(const Request& UNUSED(rq), JS::MutableHandleValue ret, const float& val)
+template<> void ScriptInterface::ToJSVal<float>(const ScriptRequest& UNUSED(rq), JS::MutableHandleValue ret, const float& val)
 {
 	ret.set(JS::NumberValue(val));
 }
 
-template<> void ScriptInterface::ToJSVal<double>(const Request& UNUSED(rq), JS::MutableHandleValue ret, const double& val)
+template<> void ScriptInterface::ToJSVal<double>(const ScriptRequest& UNUSED(rq), JS::MutableHandleValue ret, const double& val)
 {
 	ret.set(JS::NumberValue(val));
 }
 
-template<> void ScriptInterface::ToJSVal<i32>(const Request& UNUSED(rq), JS::MutableHandleValue ret, const i32& val)
+template<> void ScriptInterface::ToJSVal<i32>(const ScriptRequest& UNUSED(rq), JS::MutableHandleValue ret, const i32& val)
 {
 	ret.set(JS::NumberValue(val));
 }
 
-template<> void ScriptInterface::ToJSVal<u16>(const Request& UNUSED(rq), JS::MutableHandleValue ret, const u16& val)
+template<> void ScriptInterface::ToJSVal<u16>(const ScriptRequest& UNUSED(rq), JS::MutableHandleValue ret, const u16& val)
 {
 	ret.set(JS::NumberValue(val));
 }
 
-template<> void ScriptInterface::ToJSVal<u8>(const Request& UNUSED(rq), JS::MutableHandleValue ret, const u8& val)
+template<> void ScriptInterface::ToJSVal<u8>(const ScriptRequest& UNUSED(rq), JS::MutableHandleValue ret, const u8& val)
 {
 	ret.set(JS::NumberValue(val));
 }
 
-template<> void ScriptInterface::ToJSVal<u32>(const Request& UNUSED(rq), JS::MutableHandleValue ret, const u32& val)
+template<> void ScriptInterface::ToJSVal<u32>(const ScriptRequest& UNUSED(rq), JS::MutableHandleValue ret, const u32& val)
 {
 	ret.set(JS::NumberValue(val));
 }
 
-template<> void ScriptInterface::ToJSVal<std::wstring>(const Request& rq,  JS::MutableHandleValue ret, const std::wstring& val)
+template<> void ScriptInterface::ToJSVal<std::wstring>(const ScriptRequest& rq,  JS::MutableHandleValue ret, const std::wstring& val)
 {
 	utf16string utf16(val.begin(), val.end());
 	JS::RootedString str(rq.cx, JS_NewUCStringCopyN(rq.cx, reinterpret_cast<const char16_t*> (utf16.c_str()), utf16.length()));
@@ -242,22 +242,22 @@ template<> void ScriptInterface::ToJSVal<std::wstring>(const Request& rq,  JS::M
 		ret.setUndefined();
 }
 
-template<> void ScriptInterface::ToJSVal<Path>(const Request& rq,  JS::MutableHandleValue ret, const Path& val)
+template<> void ScriptInterface::ToJSVal<Path>(const ScriptRequest& rq,  JS::MutableHandleValue ret, const Path& val)
 {
 	ToJSVal(rq, ret, val.string());
 }
 
-template<> void ScriptInterface::ToJSVal<std::string>(const Request& rq,  JS::MutableHandleValue ret, const std::string& val)
+template<> void ScriptInterface::ToJSVal<std::string>(const ScriptRequest& rq,  JS::MutableHandleValue ret, const std::string& val)
 {
 	ToJSVal(rq, ret, static_cast<const std::wstring>(CStr(val).FromUTF8()));
 }
 
-template<> void ScriptInterface::ToJSVal<const wchar_t*>(const Request& rq,  JS::MutableHandleValue ret, const wchar_t* const& val)
+template<> void ScriptInterface::ToJSVal<const wchar_t*>(const ScriptRequest& rq,  JS::MutableHandleValue ret, const wchar_t* const& val)
 {
 	ToJSVal(rq, ret, std::wstring(val));
 }
 
-template<> void ScriptInterface::ToJSVal<const char*>(const Request& rq,  JS::MutableHandleValue ret, const char* const& val)
+template<> void ScriptInterface::ToJSVal<const char*>(const ScriptRequest& rq,  JS::MutableHandleValue ret, const char* const& val)
 {
 	JS::RootedString str(rq.cx, JS_NewStringCopyZ(rq.cx, val));
 	if (str)
@@ -267,11 +267,11 @@ template<> void ScriptInterface::ToJSVal<const char*>(const Request& rq,  JS::Mu
 }
 
 #define TOJSVAL_CHAR(N) \
-template<> void ScriptInterface::ToJSVal<wchar_t[N]>(const Request& rq,  JS::MutableHandleValue ret, const wchar_t (&val)[N]) \
+template<> void ScriptInterface::ToJSVal<wchar_t[N]>(const ScriptRequest& rq,  JS::MutableHandleValue ret, const wchar_t (&val)[N]) \
 { \
 	ToJSVal(rq, ret, static_cast<const wchar_t*>(val)); \
 } \
-template<> void ScriptInterface::ToJSVal<char[N]>(const Request& rq,  JS::MutableHandleValue ret, const char (&val)[N]) \
+template<> void ScriptInterface::ToJSVal<char[N]>(const ScriptRequest& rq,  JS::MutableHandleValue ret, const char (&val)[N]) \
 { \
 	ToJSVal(rq, ret, static_cast<const char*>(val)); \
 }
@@ -300,12 +300,12 @@ TOJSVAL_CHAR(35)
 TOJSVAL_CHAR(256)
 #undef TOJSVAL_CHAR
 
-template<> void ScriptInterface::ToJSVal<CStrW>(const Request& rq,  JS::MutableHandleValue ret, const CStrW& val)
+template<> void ScriptInterface::ToJSVal<CStrW>(const ScriptRequest& rq,  JS::MutableHandleValue ret, const CStrW& val)
 {
 	ToJSVal(rq, ret, static_cast<const std::wstring&>(val));
 }
 
-template<> void ScriptInterface::ToJSVal<CStr8>(const Request& rq,  JS::MutableHandleValue ret, const CStr8& val)
+template<> void ScriptInterface::ToJSVal<CStr8>(const ScriptRequest& rq,  JS::MutableHandleValue ret, const CStr8& val)
 {
 	ToJSVal(rq, ret, static_cast<const std::string&>(val));
 }
@@ -326,23 +326,23 @@ JSVAL_VECTOR(std::vector<std::string>)
 
 
 class IComponent;
-template<> void ScriptInterface::ToJSVal<std::vector<IComponent*> >(const Request& rq,  JS::MutableHandleValue ret, const std::vector<IComponent*>& val)
+template<> void ScriptInterface::ToJSVal<std::vector<IComponent*> >(const ScriptRequest& rq,  JS::MutableHandleValue ret, const std::vector<IComponent*>& val)
 {
 	ToJSVal_vector(rq, ret, val);
 }
 
-template<> bool ScriptInterface::FromJSVal<std::vector<Entity> >(const Request& rq,  JS::HandleValue v, std::vector<Entity>& out)
+template<> bool ScriptInterface::FromJSVal<std::vector<Entity> >(const ScriptRequest& rq,  JS::HandleValue v, std::vector<Entity>& out)
 {
 	return FromJSVal_vector(rq, v, out);
 }
 
-template<> void ScriptInterface::ToJSVal<CVector2D>(const Request& rq,  JS::MutableHandleValue ret, const CVector2D& val)
+template<> void ScriptInterface::ToJSVal<CVector2D>(const ScriptRequest& rq,  JS::MutableHandleValue ret, const CVector2D& val)
 {
 	std::vector<float> vec = {val.X, val.Y};
 	ToJSVal_vector(rq, ret, vec);
 }
 
-template<> bool ScriptInterface::FromJSVal<CVector2D>(const Request& rq,  JS::HandleValue v, CVector2D& out)
+template<> bool ScriptInterface::FromJSVal<CVector2D>(const ScriptRequest& rq,  JS::HandleValue v, CVector2D& out)
 {
 	std::vector<float> vec;
 

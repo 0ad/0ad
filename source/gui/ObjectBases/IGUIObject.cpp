@@ -25,6 +25,7 @@
 #include "ps/CLogger.h"
 #include "ps/GameSetup/Config.h"
 #include "ps/Profile.h"
+#include "scriptinterface/ScriptContext.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "soundmanager/ISoundManager.h"
 
@@ -299,7 +300,7 @@ float IGUIObject::GetBufferedZ() const
 
 void IGUIObject::RegisterScriptHandler(const CStr& eventName, const CStr& Code, CGUI& pGUI)
 {
-	ScriptInterface::Request rq(pGUI.GetScriptInterface());
+	ScriptRequest rq(pGUI.GetScriptInterface());
 
 	const int paramCount = 1;
 	const char* paramNames[paramCount] = { "mouse" };
@@ -387,7 +388,7 @@ InReaction IGUIObject::SendMouseEvent(EGUIMessageType type, const CStr& eventNam
 	SGUIMessage msg(type);
 	HandleMessage(msg);
 
-	ScriptInterface::Request rq(m_pGUI.GetScriptInterface());
+	ScriptRequest rq(m_pGUI.GetScriptInterface());
 
 	// Set up the 'mouse' parameter
 	JS::RootedValue mouse(rq.cx);
@@ -417,7 +418,7 @@ bool IGUIObject::ScriptEventWithReturn(const CStr& eventName)
 	if (m_ScriptHandlers.find(eventName) == m_ScriptHandlers.end())
 		return false;
 
-	ScriptInterface::Request rq(m_pGUI.GetScriptInterface());
+	ScriptRequest rq(m_pGUI.GetScriptInterface());
 	JS::AutoValueVector paramData(rq.cx);
 	return ScriptEventWithReturn(eventName, paramData);
 }
@@ -433,7 +434,7 @@ bool IGUIObject::ScriptEventWithReturn(const CStr& eventName, const JS::HandleVa
 	if (it == m_ScriptHandlers.end())
 		return false;
 
-	ScriptInterface::Request rq(m_pGUI.GetScriptInterface());
+	ScriptRequest rq(m_pGUI.GetScriptInterface());
 	JS::RootedObject obj(rq.cx, GetJSObject());
 	JS::RootedValue handlerVal(rq.cx, JS::ObjectValue(*it->second));
 	JS::RootedValue result(rq.cx);
@@ -441,6 +442,7 @@ bool IGUIObject::ScriptEventWithReturn(const CStr& eventName, const JS::HandleVa
 	if (!JS_CallFunctionValue(rq.cx, obj, handlerVal, paramData, &result))
 	{
 		LOGERROR("Errors executing script event \"%s\"", eventName.c_str());
+		ScriptException::CatchPending(rq);
 		return false;
 	}
 	return JS::ToBoolean(result);
@@ -448,7 +450,7 @@ bool IGUIObject::ScriptEventWithReturn(const CStr& eventName, const JS::HandleVa
 
 void IGUIObject::CreateJSObject()
 {
-	ScriptInterface::Request rq(m_pGUI.GetScriptInterface());
+	ScriptRequest rq(m_pGUI.GetScriptInterface());
 
 	m_JSObject.init(rq.cx, m_pGUI.GetScriptInterface()->CreateCustomObject("GUIObject"));
 	JS_SetPrivate(m_JSObject.get(), this);

@@ -64,7 +64,7 @@ CModInstaller::ModInstallationResult CModInstaller::Install(
 	CStr modName;
 	{
 		ScriptInterface scriptInterface("Engine", "ModInstaller", scriptContext);
-		ScriptInterface::Request rq(scriptInterface);
+		ScriptRequest rq(scriptInterface);
 
 		JS::RootedValue json_val(rq.cx);
 		if (!scriptInterface.ParseJSON(modinfo.GetAsString(), &json_val))

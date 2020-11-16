@@ -254,7 +254,7 @@ bool CText::MouseOverIcon()
 
 void CText::RegisterScriptFunctions()
 {
-	ScriptInterface::Request rq(m_pGUI.GetScriptInterface());
+	ScriptRequest rq(m_pGUI.GetScriptInterface());
 	JS_DefineFunctions(rq.cx, m_JSObject, CText::JSI_methods);
 }
 
@@ -268,11 +268,11 @@ bool CText::GetTextSize(JSContext* cx, uint argc, JS::Value* vp)
 {
 	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
 
-	ScriptInterface::Request rq(*ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface);
+	ScriptRequest rq(*ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface);
 	CText* thisObj = ScriptInterface::GetPrivate<CText>(rq, args, &JSI_IGUIObject::JSI_class);
 	if (!thisObj)
 	{
-		JS_ReportError(cx, "This is not a CText object!");
+		ScriptException::Raise(rq, "This is not a CText object!");
 		return false;
 	}
 
