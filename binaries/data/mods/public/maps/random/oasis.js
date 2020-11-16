@@ -308,7 +308,7 @@ setWaterTint(0, 0.545, 0.859);
 setWaterWaviness(1.0);
 setWaterType("clap");
 setWaterMurkiness(0.5);
-setTerrainAmbientColor(0.45, 0.5, 0.6);
+setTerrainAmbientColor(0.501961, 0.501961, 0.501961);
 setUnitsAmbientColor(0.501961, 0.501961, 0.501961);
 
 g_Map.ExportMap();

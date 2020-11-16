@@ -560,7 +560,7 @@ g_Environment = {
 		"b": 0.352941,
 		"a": 0
 	},
-	"UnitsAmbientColor": { "r": 0.721569, "g": 0.529412, "b": 0.4, "a": 0 },
+	"UnitsAmbientColor": { "r": 0.54902, "g": 0.419608, "b": 0.352941, "a": 0 },
 	"Fog": {
 		"FogFactor": 0.00195313,
 		"FogThickness": 0,

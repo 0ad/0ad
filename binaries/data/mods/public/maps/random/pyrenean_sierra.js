@@ -452,7 +452,7 @@ setSunRotation(randomAngle());
 setSkySet("cumulus");
 setSunColor(0.73,0.73,0.65);
 setTerrainAmbientColor(0.45,0.45,0.50);
-setUnitsAmbientColor(0.4,0.4,0.4);
+setUnitsAmbientColor(0.45,0.45,0.50);
 setWaterColor(0.263, 0.353, 0.616);
 setWaterTint(0.104, 0.172, 0.563);
 setWaterWaviness(5.0);
