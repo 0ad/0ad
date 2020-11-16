@@ -24,7 +24,7 @@ function loadWallsetsFromCivData()
 		for (let path of civInfo.WallSets)
 		{
 			// File naming conventions:
-			// - other/wallset_{style}
+			// - structures/wallset_{style}
 			// - structures/{civ}_wallset_{style}
 			let style = basename(path).split("_");
 			style = style[0] == "wallset" ? style[1] : style[0] + "_" + style[2];

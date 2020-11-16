@@ -279,9 +279,9 @@ var farmEntities = {
 
 g_WallStyles.other = {
 	"overlap": 0,
-	"fence": readyWallElement("other/fence_long", "gaia"),
-	"fence_short": readyWallElement("other/fence_short", "gaia"),
-	"bench":     { "angle": Math.PI / 2, "length": 1.5,  "indent": 0,    "bend": 0, "templateName": "other/bench" },
+	"fence": readyWallElement("structures/fence_long", "gaia"),
+	"fence_short": readyWallElement("structures/fence_short", "gaia"),
+	"bench":     { "angle": Math.PI / 2, "length": 1.5,  "indent": 0,    "bend": 0, "templateName": "structures/bench" },
 	"foodBin":   { "angle": Math.PI / 2, "length": 1.5,  "indent": 0,    "bend": 0, "templateName": "gaia/treasure/food_bin" },
 	"animal":    { "angle": 0,           "length": 0,    "indent": 0.75, "bend": 0, "templateName": farmEntities[currentBiome()].animal },
 	"farmstead": { "angle": Math.PI,     "length": 0,    "indent": -3,   "bend": 0, "templateName": farmEntities[currentBiome()].building }

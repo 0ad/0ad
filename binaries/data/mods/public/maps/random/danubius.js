@@ -65,8 +65,8 @@ const oOutpost = "structures/gaul_outpost";
 const oTemple = "uncapturable|structures/gaul_temple";
 const oTavern = "uncapturable|structures/gaul_tavern";
 const oHouse = "uncapturable|structures/gaul_house";
-const oLongHouse = "uncapturable|other/celt_longhouse";
-const oHut = "uncapturable|other/celt_hut";
+const oLongHouse = "uncapturable|structures/celt_longhouse";
+const oHut = "uncapturable|structures/celt_hut";
 const oSentryTower = "uncapturable|structures/gaul_sentry_tower";
 const oWatchTower = "uncapturable|structures/palisades_watchtower";
 

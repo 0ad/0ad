@@ -35,7 +35,7 @@ const oMetalLarge = g_Gaia.metalLarge;
 const oWhale = "gaia/fauna_whale_humpback";
 const oShipwreck = "gaia/treasure/shipwreck";
 const oShipDebris = "gaia/treasure/shipwreck_debris";
-const oObelisk = "other/obelisk";
+const oObelisk = "structures/obelisk";
 
 const aGrass = g_Decoratives.grass;
 const aGrassShort = g_Decoratives.grassShort;
