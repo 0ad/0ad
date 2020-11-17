@@ -5,7 +5,7 @@
     <variant frequency="1" name="Sheath-Gladius">
       <mesh>props/weapons/sheath_gladius_01.dae</mesh>
       <props>
-        <prop actor="props/units/weapons/gladus.xml" attachpoint="sword"/>
+        <prop actor="props/units/weapons/gladius.xml" attachpoint="sword"/>
       </props>
       <textures>
         <texture file="props/sheaths/gladius_norm.png" name="normTex"/>

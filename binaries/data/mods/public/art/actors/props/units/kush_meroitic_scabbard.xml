@@ -2,10 +2,10 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Bamboo quiver 1">
+    <variant frequency="1" name="kushite meroitic scabbard">
       <mesh>props/kush_scabbard.dae</mesh>
       <props>
-        <prop actor="props/units/weapons/kush_gladius.xml" attachpoint="sword"/>
+        <prop actor="props/units/weapons/spatha.xml" attachpoint="sword"/>
       </props>
       <textures>
         <texture file="props/weapon/kush_scabbard.png" name="baseTex"/>
@@ -34,5 +34,5 @@
     <variant name="gather_ruins"/>
     <variant name="gather_treasure"/>
   </group>
-  <material>basic_trans.xml</material>
+  <material>default.xml</material>
 </actor>

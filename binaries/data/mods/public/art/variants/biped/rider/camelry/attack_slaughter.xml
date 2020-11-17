@@ -5,7 +5,7 @@
     <animation file="biped/rider/camelry/generic/attack_melee_shield_02.dae" name="attack_slaughter" event="0.5" id="attack2" speed="60"/>
   </animations>
   <props>
-    <prop actor="props/units/weapons/knife.xml" attachpoint="weapon_R"/>
+    <prop actor="props/units/weapons/dagger.xml" attachpoint="weapon_R"/>
     <prop attachpoint="weapon_L"/>
     <prop attachpoint="shield"/>
     <prop attachpoint="shield_arm"/>
