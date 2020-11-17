@@ -25,7 +25,7 @@
 # Максим Дронь <dronmax@gmail.com>, 2014-2015
 # Eugene Kostrika <testiculi@yandex.ru>, 2013
 # Григорий Световидов <grin.sv@gmail.com>, 2015
-# Igor <ggg2134@mail.ru>, 2013
+# 4435baa6199ac215530476fd5704813e_135056b <9849f67473aff5558ade9bb65f4c4942_118217>, 2013
 # Ilya Andreev, 2018
 # Mike Manturov, 2014
 # Ivan Korovin <i.d.korovin@gmail.com>, 2017
@@ -66,8 +66,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-10-05 07:19+0000\n"
-"PO-Revision-Date: 2020-10-05 13:17+0000\n"
+"POT-Creation-Date: 2020-11-13 08:08+0000\n"
+"PO-Revision-Date: 2020-11-13 10:23+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -202,7 +202,7 @@ msgstr[1] "Средняя бонусная дальность: %(range)s м."
 msgstr[2] "Средняя бонусная дальность: %(range)s м."
 msgstr[3] "Средняя бонусная дальность: %(range)s м."
 
-#: gui/session/input.js:697
+#: gui/session/input.js:700
 msgid "Cannot build wall here!"
 msgstr "Здесь невозможно построить стену!"
 
@@ -587,91 +587,99 @@ msgstr "Щелкните правой кнопкой мыши, чтобы уст
 msgid "Expected gain: %(gain)s"
 msgstr "Ожидаемый прирост: %(gain)s"
 
-#: gui/session/unit_actions.js:1139 gui/session/unit_actions.js:1467
+#: gui/session/unit_actions.js:1129
+msgid "This entity cannot be controlled."
+msgid_plural "These entities cannot be controlled."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+
+#: gui/session/unit_actions.js:1166 gui/session/unit_actions.js:1494
 msgid "Unload All."
 msgstr "Вывести всех. "
 
-#: gui/session/unit_actions.js:1157
+#: gui/session/unit_actions.js:1184
 msgid "Destroy the selected units or structures."
 msgstr "Уничтожить выделенные юниты или здания."
 
-#: gui/session/unit_actions.js:1159
+#: gui/session/unit_actions.js:1186
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr "Используйте %(hotkey)s, чтобы избежать диалога подтверждения."
 
-#: gui/session/unit_actions.js:1206
+#: gui/session/unit_actions.js:1233
 msgid "Abort the current order."
 msgstr "Отменить текущий приказ."
 
-#: gui/session/unit_actions.js:1225
+#: gui/session/unit_actions.js:1252
 msgid "Order the selected units to garrison in a structure or unit."
 msgstr "Приказать выбранным юнитам или юниту расположиться гарнизоном в здании."
 
-#: gui/session/unit_actions.js:1248
+#: gui/session/unit_actions.js:1275
 msgid "Unload"
 msgstr "Вывести"
 
-#: gui/session/unit_actions.js:1266
+#: gui/session/unit_actions.js:1293
 msgid "Order the selected units to repair a structure, ship, or siege engine."
 msgstr "Приказать выбранным юнитам ремонтировать здание, корабль или осадное орудие."
 
-#: gui/session/unit_actions.js:1285
+#: gui/session/unit_actions.js:1312
 msgid "Focus on Rally Point."
 msgstr "Установить точку сбора."
 
-#: gui/session/unit_actions.js:1320
+#: gui/session/unit_actions.js:1347
 msgid "Back to Work"
 msgstr "Вернуть к работе"
 
-#: gui/session/unit_actions.js:1339
+#: gui/session/unit_actions.js:1366
 msgid "Order the selected units to guard a structure or unit."
 msgstr "Приказать выбранным юнитам охранять здание или юнита."
 
-#: gui/session/unit_actions.js:1357
+#: gui/session/unit_actions.js:1384
 msgid "Remove guard"
 msgstr "Перестать охранять"
 
-#: gui/session/unit_actions.js:1374
+#: gui/session/unit_actions.js:1401
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
 #: gui/session/trade/TradeDialog.xml:(caption):9
 msgid "Barter & Trade"
 msgstr "Обмен и торговля"
 
-#: gui/session/unit_actions.js:1392
+#: gui/session/unit_actions.js:1419
 msgid "Patrol"
 msgstr "Патруль"
 
-#: gui/session/unit_actions.js:1393
+#: gui/session/unit_actions.js:1420
 msgid "Attack all encountered enemy units while avoiding structures."
 msgstr "Атакуйте всех встречных вражеских юнитов, избегая при этом строений."
 
-#: gui/session/unit_actions.js:1419
+#: gui/session/unit_actions.js:1446
 msgid "Press to allow allies to use this dropsite"
 msgstr "Нажмите, чтобы разрешить использование этой точки сбора ресурсов союзниками"
 
-#: gui/session/unit_actions.js:1423
+#: gui/session/unit_actions.js:1450
 msgid "Press to prevent allies from using this dropsite"
 msgstr "Нажмите, чтобы не допустить использование этой точки сбора ресурсов союзниками"
 
-#: gui/session/unit_actions.js:1488
+#: gui/session/unit_actions.js:1515
 msgid "You are allowed to use this dropsite"
 msgstr "Вам разрешено использовать эту точку сбора ресурсов"
 
-#: gui/session/unit_actions.js:1493
+#: gui/session/unit_actions.js:1520
 msgid "The use of this dropsite is prohibited"
 msgstr "Использование этой точки сбора ресурсов запрещено"
 
-#: gui/session/unit_actions.js:1567
+#: gui/session/unit_actions.js:1594
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "Чтобы получить возможность добычи ресурсов из этого объекта, его следует убить"
 
-#: gui/session/unit_actions.js:1570
+#: gui/session/unit_actions.js:1597
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "Вы не можете уничтожить этого врага, поскольку владеете меньше, чем половиной точек захвата."
 
-#: gui/session/unit_actions.js:1573
+#: gui/session/unit_actions.js:1600
 msgid "This entity is undeletable"
 msgstr "Этот объект невозможно удалить"
 

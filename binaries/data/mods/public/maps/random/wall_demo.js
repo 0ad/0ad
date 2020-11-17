@@ -107,7 +107,7 @@ for (let styleIndex in wallStyleList)
 		new Vector2D(styleIndex * buildableMapSize / wallStyleList.length, 0)
 	]);
 
-	g_Map.placeEntityPassable("other/obelisk", playerID, pos, orientation);
+	g_Map.placeEntityPassable("structures/obelisk", playerID, pos, orientation);
 	placeFortress(pos, type, style, playerID, orientation);
 }
 
@@ -135,7 +135,7 @@ for (let styleIndex in wallStyleList)
 		new Vector2D(styleIndex * buildableMapSize / wallStyleList.length, 0)
 	]);
 
-	g_Map.placeEntityPassable("other/obelisk", playerID, pos, 0);
+	g_Map.placeEntityPassable("structures/obelisk", playerID, pos, 0);
 	placeGenericFortress(pos, radius, playerID, style);
 }
 
@@ -176,7 +176,7 @@ for (let styleIndex in wallStyleList)
 	// If less than Pi * 2, then the wall will be an arc.
 	let maxAngle = Math.PI / 2 * (styleIndex % 3 + 2);
 
-	g_Map.placeEntityPassable("other/obelisk", playerID, center, orientation);
+	g_Map.placeEntityPassable("structures/obelisk", playerID, center, orientation);
 	placeCircularWall(center, radius, wallPart, style, playerID, orientation, maxAngle);
 }
 
@@ -225,7 +225,7 @@ for (let styleIndex in wallStyleList)
 	// If true, the first side will not be drawn, leaving the wall open.
 	let skipFirstWall = true;
 
-	g_Map.placeEntityPassable("other/obelisk", playerID, centerPosition, orientation);
+	g_Map.placeEntityPassable("structures/obelisk", playerID, centerPosition, orientation);
 	placePolygonalWall(centerPosition, radius, wallParts, cornerWallElement, style, playerID, orientation, numCorners, skipFirstWall);
 }
 
@@ -283,7 +283,7 @@ for (let styleIndex in wallStyleList)
 	// If true, the first side will not be drawn, leaving the wall open.
 	let skipFirstWall = true;
 
-	g_Map.placeEntityPassable("other/obelisk", playerID, centerPosition, orientation);
+	g_Map.placeEntityPassable("structures/obelisk", playerID, centerPosition, orientation);
 	placeIrregularPolygonalWall(centerPosition, radius, cornerWallElement, style, playerID, orientation, numCorners, irregularity, skipFirstWall);
 }
 

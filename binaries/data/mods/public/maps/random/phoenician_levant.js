@@ -313,7 +313,7 @@ setWaterWaviness(2.0);
 setWaterType("ocean");
 setWaterMurkiness(0.8);
 
-setTerrainAmbientColor(0.57, 0.58, 0.55);
+setTerrainAmbientColor(0.447059, 0.509804, 0.54902);
 setUnitsAmbientColor(0.447059, 0.509804, 0.54902);
 
 setSunElevation(0.671884);

@@ -25,6 +25,11 @@ UnitAI.prototype.Schema =
 		"<data type='boolean'/>" +
 	"</element>" +
 	"<optional>" +
+		"<element name='CheeringTime'>" +
+			"<data type='nonNegativeInteger'/>" +
+		"</element>" +
+	"</optional>" +
+	"<optional>" +
 		"<interleave>" +
 			"<element name='NaturalBehaviour' a:help='Behaviour of the unit in the absence of player commands (intended for animals)'>" +
 				"<choice>" +
@@ -1433,7 +1438,12 @@ UnitAI.prototype.UnitFsmSpec = {
 
 		"IDLE": {
 			"Order.Cheer": function() {
+				// Do not cheer if there is no cheering time.
+				if (!this.cheeringTime)
+					return { "discardOrder": true };
+
 				this.SetNextState("CHEERING");
+				return false;
 			},
 
 			"enter": function() {
@@ -1930,7 +1940,9 @@ UnitAI.prototype.UnitFsmSpec = {
 					}
 
 					let cmpUnitAI = Engine.QueryInterface(this.order.data.target, IID_UnitAI);
-					this.shouldCheer = cmpUnitAI && (!cmpUnitAI.IsAnimal() || cmpUnitAI.IsDangerousAnimal());
+
+					// Units with no cheering time do not cheer.
+					this.shouldCheer = cmpUnitAI && (!cmpUnitAI.IsAnimal() || cmpUnitAI.IsDangerousAnimal()) && this.cheeringTime > 0;
 
 					return false;
 				},
@@ -2013,7 +2025,11 @@ UnitAI.prototype.UnitFsmSpec = {
 
 			"FINDINGNEWTARGET": {
 				"Order.Cheer": function() {
+					if (!this.cheeringTime)
+						return { "discardOrder": true };
+
 					this.SetNextState("CHEERING");
+					return false;
 				},
 
 				"enter": function() {
@@ -3043,7 +3059,7 @@ UnitAI.prototype.UnitFsmSpec = {
 		"CHEERING": {
 			"enter": function() {
 				this.SelectAnimation("promotion");
-				this.StartTimer(2800);
+				this.StartTimer(this.cheeringTime);
 				return false;
 			},
 
@@ -3086,6 +3102,8 @@ UnitAI.prototype.UnitFsmSpec = {
 			},
 
 			"leave": function() {
+				let cmpPack = Engine.QueryInterface(this.entity, IID_Pack);
+				cmpPack.CancelPack();
 			},
 
 			"Attacked": function(msg) {
@@ -3107,6 +3125,8 @@ UnitAI.prototype.UnitFsmSpec = {
 			},
 
 			"leave": function() {
+				let cmpPack = Engine.QueryInterface(this.entity, IID_Pack);
+				cmpPack.CancelPack();
 			},
 
 			"Attacked": function(msg) {
@@ -3275,7 +3295,7 @@ UnitAI.prototype.UnitFsmSpec = {
 		"CHEERING": {
 			"enter": function() {
 				this.SelectAnimation("promotion");
-				this.StartTimer(2800);
+				this.StartTimer(this.cheeringTime);
 				return false;
 			},
 
@@ -3324,7 +3344,7 @@ UnitAI.prototype.Init = function()
 	this.lastHealed = undefined;
 
 	this.formationAnimationVariant = undefined;
-
+	this.cheeringTime = +(this.template.CheeringTime || 0);
 	this.SetStance(this.template.DefaultStance);
 };
 
@@ -3906,7 +3926,7 @@ UnitAI.prototype.ReplaceOrder = function(type, data)
 
 	// Do not replace packing/unpacking unless it is cancel order.
 	// TODO: maybe a better way of doing this would be to use priority levels
-	if (this.IsPacking() && type != "CancelPack" && type != "CancelUnpack")
+	if (this.IsPacking() && type != "CancelPack" && type != "CancelUnpack" && type != "Stop")
 	{
 		var order = { "type": type, "data": data };
 		var packingOrder = this.orderQueue.shift();

@@ -246,7 +246,7 @@ if (g_MapSettings.Daytime !== undefined ? g_MapSettings.Daytime == "dawn" : rand
 	setSkySet("sunset 1");
 	setSunColor(0.8, 0.7, 0.6);
 	setTerrainAmbientColor(0.7, 0.6, 0.7);
-	setUnitsAmbientColor(0.6, 0.5, 0.6);
+	setUnitsAmbientColor(0.7, 0.6, 0.7);
 	setSunElevation(Math.PI * randFloat(1/24, 1/7));
 }
 else

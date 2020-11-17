@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-10-05 07:19+0000\n"
-"PO-Revision-Date: 2020-10-05 13:17+0000\n"
+"POT-Creation-Date: 2020-11-13 08:08+0000\n"
+"PO-Revision-Date: 2020-11-13 10:23+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
@@ -149,7 +149,7 @@ msgid_plural "Average bonus range: %(range)s meters"
 msgstr[0] "میانگین امتیاز شعاع حمله : %(range)s متر"
 msgstr[1] "میانگین شعاع حمله : %(range)s متر"
 
-#: gui/session/input.js:697
+#: gui/session/input.js:700
 msgid "Cannot build wall here!"
 msgstr "ساخت دیوار در اینجا امکان پذیر نیست!"
 
@@ -530,91 +530,97 @@ msgstr "کلیک راست کنید تا یک مسیر پیش فرض برای ت�
 msgid "Expected gain: %(gain)s"
 msgstr "سود مورد انتظار: %(gain)s"
 
-#: gui/session/unit_actions.js:1139 gui/session/unit_actions.js:1467
+#: gui/session/unit_actions.js:1129
+msgid "This entity cannot be controlled."
+msgid_plural "These entities cannot be controlled."
+msgstr[0] ""
+msgstr[1] ""
+
+#: gui/session/unit_actions.js:1166 gui/session/unit_actions.js:1494
 msgid "Unload All."
 msgstr "خالی کردن همه"
 
-#: gui/session/unit_actions.js:1157
+#: gui/session/unit_actions.js:1184
 msgid "Destroy the selected units or structures."
 msgstr "نیروها یا سازه های انتخاب شده را نابود کنید"
 
-#: gui/session/unit_actions.js:1159
+#: gui/session/unit_actions.js:1186
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr "بکارگیری %(hotkey)s برای اجتناب از دیالوگ تایید."
 
-#: gui/session/unit_actions.js:1206
+#: gui/session/unit_actions.js:1233
 msgid "Abort the current order."
 msgstr "لغو دستور فعلی"
 
-#: gui/session/unit_actions.js:1225
+#: gui/session/unit_actions.js:1252
 msgid "Order the selected units to garrison in a structure or unit."
 msgstr "به نیروهای انتخاب شده فرمان دهید تا در یک نیرو یا ساختمان مستقر شوند"
 
-#: gui/session/unit_actions.js:1248
+#: gui/session/unit_actions.js:1275
 msgid "Unload"
 msgstr "خالی کردن"
 
-#: gui/session/unit_actions.js:1266
+#: gui/session/unit_actions.js:1293
 msgid "Order the selected units to repair a structure, ship, or siege engine."
 msgstr "به نیروهای انتخاب شده فرمان دهید تا یک ساختمان،کشتی یا ابزار محاصره را تعمیر کنند"
 
-#: gui/session/unit_actions.js:1285
+#: gui/session/unit_actions.js:1312
 msgid "Focus on Rally Point."
 msgstr "تمرکز بر نقطه تجمع"
 
-#: gui/session/unit_actions.js:1320
+#: gui/session/unit_actions.js:1347
 msgid "Back to Work"
 msgstr "بازگشت به کار"
 
-#: gui/session/unit_actions.js:1339
+#: gui/session/unit_actions.js:1366
 msgid "Order the selected units to guard a structure or unit."
 msgstr " به نیروهای انتخاب شده فرمان دهید تا از یک ساختمان یا نیرو محافظت کنند."
 
-#: gui/session/unit_actions.js:1357
+#: gui/session/unit_actions.js:1384
 msgid "Remove guard"
 msgstr "برداشتن محافظ"
 
-#: gui/session/unit_actions.js:1374
+#: gui/session/unit_actions.js:1401
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
 #: gui/session/trade/TradeDialog.xml:(caption):9
 msgid "Barter & Trade"
 msgstr "تهاتر & معامله"
 
-#: gui/session/unit_actions.js:1392
+#: gui/session/unit_actions.js:1419
 msgid "Patrol"
 msgstr "گشت"
 
-#: gui/session/unit_actions.js:1393
+#: gui/session/unit_actions.js:1420
 msgid "Attack all encountered enemy units while avoiding structures."
 msgstr " به تمام نیروهای دشمن که با آنها مواجه میشوید حمله کنید ولی از  ساختمان ها صرف نظر کنید"
 
-#: gui/session/unit_actions.js:1419
+#: gui/session/unit_actions.js:1446
 msgid "Press to allow allies to use this dropsite"
 msgstr "فشار دادن برای اجازه دادن به هم پیمان ها که از این محل تخلیه منابع استفاده کنند"
 
-#: gui/session/unit_actions.js:1423
+#: gui/session/unit_actions.js:1450
 msgid "Press to prevent allies from using this dropsite"
 msgstr "فشار دادن برای جلوگیری از هم پیمان ها برای استفاده از این محل تخلیه منابع"
 
-#: gui/session/unit_actions.js:1488
+#: gui/session/unit_actions.js:1515
 msgid "You are allowed to use this dropsite"
 msgstr "شما اجازه پیدا کردید تا از این محل تخلیه منابع استفاده کنید"
 
-#: gui/session/unit_actions.js:1493
+#: gui/session/unit_actions.js:1520
 msgid "The use of this dropsite is prohibited"
 msgstr "شما اجازه استفاده از این محل تخلیه منابع را ندارید"
 
-#: gui/session/unit_actions.js:1567
+#: gui/session/unit_actions.js:1594
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "این موجود باید نخست کشته شود تا بتوانید منابع آنرا جمع آوری کنید"
 
-#: gui/session/unit_actions.js:1570
+#: gui/session/unit_actions.js:1597
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "شما نمی توانید این واحد را تخریب کنید چرا که شما مالکیت کمتر از نصف از امتیاز تسخیر آنرا در اختیار دارید."
 
-#: gui/session/unit_actions.js:1573
+#: gui/session/unit_actions.js:1600
 msgid "This entity is undeletable"
 msgstr "این واحد غیر قابل حذف است."
 

@@ -228,7 +228,7 @@ setWaterWaviness(2.0);
 setWaterType("clap");
 setWaterMurkiness(0.835938);
 
-setUnitsAmbientColor(0.57, 0.58, 0.55);
+setUnitsAmbientColor(0.447059, 0.509804, 0.54902);
 setTerrainAmbientColor(0.447059, 0.509804, 0.54902);
 
 setFogFactor(0.25);
