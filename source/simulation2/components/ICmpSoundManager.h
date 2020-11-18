@@ -20,7 +20,9 @@
 
 #include "simulation2/system/Interface.h"
 
+#include "lib/file/vfs/vfs_path.h"
 #include "maths/FixedVector3D.h"
+#include "simulation2/helpers/Player.h"
 
 /**
  * Interface to the engine's sound system.

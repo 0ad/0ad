@@ -53,7 +53,6 @@ class ScriptInterface;
 struct ScriptInterface_impl;
 
 class ScriptContext;
-
 // Using a global object for the context is a workaround until Simulation, AI, etc,
 // use their own threads and also their own contexts.
 extern thread_local shared_ptr<ScriptContext> g_ScriptContext;

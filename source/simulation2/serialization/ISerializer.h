@@ -20,6 +20,7 @@
 
 #include "maths/Fixed.h"
 #include "ps/Errors.h"
+#include "scriptinterface/ScriptTypes.h"
 
 ERROR_GROUP(Serialize);
 ERROR_TYPE(Serialize, OutOfBounds);

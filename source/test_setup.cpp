@@ -38,6 +38,7 @@
 #include "ps/Profiler2.h"
 #include "scriptinterface/ScriptEngine.h"
 #include "scriptinterface/ScriptContext.h"
+#include "scriptinterface/ScriptInterface.h"
 
 class LeakReporter : public CxxTest::GlobalFixture
 {

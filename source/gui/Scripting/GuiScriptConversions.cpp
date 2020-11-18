@@ -25,6 +25,7 @@
 #include "lib/external_libraries/libsdl.h"
 #include "maths/Vector2D.h"
 #include "ps/Hotkey.h"
+#include "ps/CLogger.h"
 #include "scriptinterface/ScriptConversions.h"
 
 #include <string>

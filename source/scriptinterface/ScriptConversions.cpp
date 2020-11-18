@@ -22,6 +22,7 @@
 #include "graphics/Entity.h"
 #include "maths/Vector2D.h"
 #include "ps/utf16string.h"
+#include "ps/CLogger.h"
 #include "ps/CStr.h"
 
 #define FAIL(msg) STMT(LOGERROR(msg); return false)

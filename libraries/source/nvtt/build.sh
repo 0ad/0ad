@@ -5,6 +5,8 @@ set -e
 JOBS=${JOBS:="-j2"}
 MAKE=${MAKE:="make"}
 
+exit
+
 echo "Building NVTT..."
 echo
 
