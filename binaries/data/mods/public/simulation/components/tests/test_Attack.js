@@ -197,9 +197,6 @@ attackComponentTest(undefined, true, (attacker, cmpAttack, defender) => {
 	TS_ASSERT_UNEVAL_EQUALS(cmpAttack.GetAttackEffectsData("StatusEffect"), {
 		"ApplyStatus": {
 			"StatusInternalName": {
-				"StatusName": "StatusShownName",
-				"ApplierTooltip": "ApplierTooltip",
-				"ReceiverTooltip": "ReceiverTooltip",
 				"Duration": 5000,
 				"Interval": 0,
 				"Stackability": "Stacks",
