@@ -933,4 +933,15 @@ Player.prototype.SetStartingTechnologies = function(techs)
 	this.startingTechnologies = techs;
 };
 
+Player.prototype.OnGlobalPlayerDefeated = function(msg)
+{
+	let cmpSound = Engine.QueryInterface(this.entity, IID_Sound);
+	if (!cmpSound)
+		return;
+
+	let soundGroup = cmpSound.GetSoundGroup(this.playerID === msg.playerId ? "defeated" : this.IsAlly(msg.playerId) ? "defeated_ally" : this.state === "won" ? "won" : "defeated_enemy");
+	if (soundGroup)
+		Engine.QueryInterface(SYSTEM_ENTITY, IID_SoundManager).PlaySoundGroupForPlayer(soundGroup, this.playerID);
+};
+
 Engine.RegisterComponentType(IID_Player, "Player", Player);

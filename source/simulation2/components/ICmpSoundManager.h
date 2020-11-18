@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -30,17 +30,24 @@ class ICmpSoundManager : public IComponent
 public:
 	/**
 	 * Start playing audio defined by a sound group file.
-	 * @param name VFS path of sound group .xml, relative to audio/
-	 * @param source entity emitting the sound (used for positioning)
+	 * @param name VFS path of sound group .xml, relative to audio/.
+	 * @param source entity emitting the sound (used for positioning).
 	 */
 	virtual void PlaySoundGroup(const std::wstring& name, entity_id_t source) = 0;
 
 	/**
 	 * Start playing audio defined by a sound group file.
-	 * @param name VFS path of sound group .xml, relative to audio/
-	 * @param sourcePos 3d position of the sound emitter
+	 * @param name VFS path of sound group .xml, relative to audio/.
+	 * @param sourcePos 3d position of the sound emitter.
 	 */
 	virtual void PlaySoundGroupAtPosition(const std::wstring& name, const CFixedVector3D& sourcePos) = 0;
+
+	/**
+	 * Start playing audio defined by a sound group file for a player.
+	 * @param name VFS path of sound group .xml, relative to audio/.
+	 * @param player the player entity.
+	 */
+	virtual void PlaySoundGroupForPlayer(const VfsPath& groupPath, const player_id_t playerId) const = 0;
 
 	virtual void StopMusic() = 0;
 
