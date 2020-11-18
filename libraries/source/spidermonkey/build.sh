@@ -127,12 +127,19 @@ then
   INCLUDE_DIR_DEBUG=include-win32-debug
   INCLUDE_DIR_RELEASE=include-win32-release
   LIB_PREFIX=
-  LIB_SUFFIX=.lib
+  LIB_SUFFIX=.dll
 else
   INCLUDE_DIR_DEBUG=include-unix-debug
   INCLUDE_DIR_RELEASE=include-unix-release
   LIB_PREFIX=lib
-  LIB_SUFFIX=.a
+  LIB_SUFFIX=.so
+  if [ "`uname -s`" = "OpenBSD" ];
+  then
+    LIB_SUFFIX=.so.1.0
+  elif [ "`uname -s`" = "Darwin" ];
+  then
+    LIB_SUFFIX=.so
+  fi
 fi
 
 if [ "${OS}" = "Windows_NT" ]
@@ -157,8 +164,8 @@ cp -R -L "${FOLDER}"/build-release/dist/include/* "${INCLUDE_DIR_RELEASE}/"
 cp -R -L "${FOLDER}"/build-debug/dist/include/* "${INCLUDE_DIR_DEBUG}/"
 
 mkdir -p lib/
-cp -L "${FOLDER}/build-debug/js/src/${LIB_PREFIX}js_static${LIB_SUFFIX}" "lib/${LIB_PREFIX}${LIB_NAME}-debug${LIB_SUFFIX}"
-cp -L "${FOLDER}/build-release/js/src/${LIB_PREFIX}js_static${LIB_SUFFIX}" "lib/${LIB_PREFIX}${LIB_NAME}-release${LIB_SUFFIX}"
+cp -L "${FOLDER}/build-debug/js/src/${LIB_PREFIX}${LIB_NAME}-debug${LIB_SUFFIX}" "lib/${LIB_PREFIX}${LIB_NAME}-debug${LIB_SUFFIX}"
+cp -L "${FOLDER}/build-release/js/src/${LIB_PREFIX}${LIB_NAME}-release${LIB_SUFFIX}" "lib/${LIB_PREFIX}${LIB_NAME}-release${LIB_SUFFIX}"  
 
 # On Windows, also copy nspr .DLL and .pdb debug symbols.
 if [ "${OS}" = "Windows_NT" ]
@@ -166,10 +173,15 @@ then
   cp -L "${FOLDER}/build-debug/js/src/${LIB_PREFIX}nspr4.dll" "../../../binaries/system/${LIB_PREFIX}nspr4.dll"
   cp -L "${FOLDER}/build-debug/js/src/${LIB_PREFIX}plc4.dll" "../../../binaries/system/${LIB_PREFIX}plc4.dll"
   cp -L "${FOLDER}/build-debug/js/src/${LIB_PREFIX}plds4.dll" "../../../binaries/system/${LIB_PREFIX}plds4.dll"
-  cp -L "${FOLDER}/build-debug/js/src/${LIB_PREFIX}mozjs-52-debug.dll" "lib/${LIB_PREFIX}${LIB_NAME}-debug.dll"
-  cp -L "${FOLDER}/build-debug/js/src/${LIB_PREFIX}mozjs-52-debug.pdb" "lib/${LIB_PREFIX}${LIB_NAME}-debug.pdb"
-  cp -L "${FOLDER}/build-release/js/src/${LIB_PREFIX}mozjs-52-release.dll" "lib/${LIB_PREFIX}${LIB_NAME}-release.dll"
-  cp -L "${FOLDER}/build-release/js/src/${LIB_PREFIX}mozjs-52-release.pdb" "lib/${LIB_PREFIX}${LIB_NAME}-release.pdb"
+  cp -L "${FOLDER}/build-debug/js/src/${LIB_PREFIX}mozjs-52-debug.dll" "../../../binaries/system/${LIB_PREFIX}${LIB_NAME}-debug.dll"
+  cp -L "${FOLDER}/build-debug/js/src/${LIB_PREFIX}mozjs-52-debug.pdb" "../../../binaries/system/${LIB_PREFIX}${LIB_NAME}-debug.pdb"
+  cp -L "${FOLDER}/build-release/js/src/${LIB_PREFIX}mozjs-52-release.dll" "../../../binaries/system/${LIB_PREFIX}${LIB_NAME}-release.dll"
+  cp -L "${FOLDER}/build-release/js/src/${LIB_PREFIX}mozjs-52-release.pdb" "../../../binaries/system/${LIB_PREFIX}${LIB_NAME}-release.pdb"
+# And on Linux, copy the shared library to the binaries too (MacOS uses static linking so does not need this step.)
+elif [ "`uname -s`" != "Darwin" ]
+then
+  cp -L "${FOLDER}/build-debug/js/src/${LIB_PREFIX}${LIB_NAME}-debug${LIB_SUFFIX}" "../../../binaries/system/${LIB_PREFIX}${LIB_NAME}-debug${LIB_SUFFIX}"
+  cp -L "${FOLDER}/build-release/js/src/${LIB_PREFIX}${LIB_NAME}-release${LIB_SUFFIX}" "../../../binaries/system/${LIB_PREFIX}${LIB_NAME}-release${LIB_SUFFIX}"
 fi
 
 # Flag that it's already been built successfully so we can skip it next time
