@@ -2,16 +2,19 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Base">
-      <textures><texture file="props/prop_weap.dds" name="baseTex"/></textures>
+    <variant frequency="1" name="sagaris battle axe">
+      <textures>
+        <texture file="props/prop_weap.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>
     <variant frequency="1" name="sagaris battle axe - Bloody">
-      <mesh>props/ax_sagaris_b.dae</mesh>
+      <mesh>props/weapons/sagaris_01.dae</mesh>
     </variant>
     <variant frequency="1" name="sagaris battle axe - Clean">
-      <mesh>props/ax_sagaris_a.dae</mesh>
+      <mesh>props/weapons/sagaris_02.dae</mesh>
     </variant>
   </group>
+  <material>basic_spec.xml</material>
 </actor>

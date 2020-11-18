@@ -3,27 +3,29 @@
   <castshadow/>
   <group>
     <variant frequency="1" name="Base">
-      <textures><texture file="props/prop_weap.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/prop_weap.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>
     <variant frequency="1" name="gladius-plain">
-      <mesh>props/weap_gladus_c.dae</mesh>
+      <mesh>props/weapons/gladius_03.dae</mesh>
     </variant>
     <variant frequency="1" name="gladius-bloody">
-      <mesh>props/weap_gladus_d.dae</mesh>
+      <mesh>props/weapons/gladius_04.dae</mesh>
     </variant>
     <variant frequency="1" name="gladius-curve">
-      <mesh>props/weap_gladus_e.dae</mesh>
+      <mesh>props/weapons/gladius_05.dae</mesh>
     </variant>
     <variant frequency="1" name="gladius-curveblood">
-      <mesh>props/weap_gladus_f.dae</mesh>
+      <mesh>props/weapons/gladius_06.dae</mesh>
     </variant>
     <variant frequency="1" name="gladius-pommelblood">
-      <mesh>props/weap_gladus_g.dae</mesh>
+      <mesh>props/weapons/gladius_07.dae</mesh>
     </variant>
     <variant frequency="1" name="gladius-pommel">
-      <mesh>props/weap_gladus_h.dae</mesh>
+      <mesh>props/weapons/gladius_08.dae</mesh>
     </variant>
   </group>
   <material>basic_spec.xml</material>

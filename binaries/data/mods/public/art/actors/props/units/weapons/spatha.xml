@@ -1,21 +1,20 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
-    <variant frequency="100" name="Base">
-      <textures><texture file="props/prop_weap.dds" name="baseTex"/></textures>
+    <variant frequency="1" name="Base">
+      <textures>
+        <texture file="props/prop_weap.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
-
   <group>
-    <variant name="blood">
-      <mesh>props/weap_gladus_a.dae</mesh>
+    <variant frequency="1" name="long-gladius-bloody">
+      <mesh>props/weapons/gladius_01.dae</mesh>
     </variant>
-    <variant name="plain">
-      <mesh>props/weap_gladus_b.dae</mesh>
+    <variant frequency="1" name="long-gladius">
+      <mesh>props/weapons/gladius_02.dae</mesh>
     </variant>
   </group>
-
+  <material>basic_spec.xml</material>
 </actor>
