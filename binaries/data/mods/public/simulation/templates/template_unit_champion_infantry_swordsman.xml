@@ -2,6 +2,7 @@
 <Entity parent="template_unit_champion_infantry">
   <Attack>
     <Melee>
+      <AttackName context="Name of an attack using a double-edged sword.">Sword</AttackName>
       <Damage>
         <Hack>11.0</Hack>
         <Pierce>0</Pierce>

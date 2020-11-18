@@ -2,6 +2,7 @@
 <Entity parent="template_unit_siege">
   <Attack>
     <Ranged>
+      <AttackName>Bolt</AttackName>
       <Damage>
         <Hack>0.0</Hack>
         <Pierce>150.0</Pierce>

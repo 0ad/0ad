@@ -2,12 +2,14 @@
 <Entity parent="template_unit">
   <Attack>
     <Capture>
+      <AttackName>Capture</AttackName>
       <Capture>2.5</Capture>
       <MaxRange>4</MaxRange>
       <RepeatTime>1000</RepeatTime>
       <RestrictedClasses datatype="tokens">Field Palisade Wall</RestrictedClasses>
     </Capture>
     <Slaughter>
+      <AttackName>Slaughter</AttackName>
       <Damage>
         <Hack>50.0</Hack>
         <Pierce>0.0</Pierce>

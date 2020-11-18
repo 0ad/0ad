@@ -2,6 +2,7 @@
 <Entity parent="template_unit_ship">
   <Attack>
     <Melee>
+      <AttackName>Fire</AttackName>
       <Damage>
         <Hack>10.0</Hack>
         <Pierce>10.0</Pierce>

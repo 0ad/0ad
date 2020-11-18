@@ -400,6 +400,9 @@
                 ],
                 "options": {
                     "keywords": {
+                        "AttackName": {
+                            "customContext": "Name of an attack, usually the weapon."
+                        },
                         "StatusName": {
                             "customContext": "status effect"
                         },
@@ -441,6 +444,9 @@
                 ],
                 "options": {
                     "keywords": {
+                        "AttackName": {
+                            "customContext": "Name of an attack, usually the weapon."
+                        },
                         "StatusName": {
                             "customContext": "status effect"
                         },
@@ -489,6 +495,9 @@
                 },
                 "options": {
                     "keywords": {
+                        "AttackName": {
+                            "customContext": "Name of an attack, usually the weapon."
+                        },
                         "GenericName": {},
                         "SpecificName": {},
                         "History": {},

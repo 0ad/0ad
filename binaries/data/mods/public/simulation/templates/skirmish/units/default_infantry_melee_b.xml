@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_infantry_melee">
+  <Attack>
+    <Melee>
+      <AttackName>Melee</AttackName>
+    </Melee>
+  </Attack>
   <Identity>
     <Civ>skirm</Civ>
   </Identity>

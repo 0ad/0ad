@@ -2,6 +2,7 @@
 <Entity parent="template_unit_support">
   <Attack>
     <Melee>
+      <AttackName>Dagger</AttackName>
       <Damage>
         <Hack>2.0</Hack>
         <Pierce>0</Pierce>
@@ -12,6 +13,7 @@
       <RepeatTime>1000</RepeatTime>
     </Melee>
     <Slaughter>
+      <AttackName>Slaughter</AttackName>
       <Damage>
         <Hack>25.0</Hack>
         <Pierce>0.0</Pierce>

@@ -2,6 +2,7 @@
 <Entity parent="template_unit_hero_cavalry_swordsman">
   <Attack>
     <Melee>
+      <AttackName context="Name of an attack using a single-edged sword.">Sword</AttackName>
       <Bonuses>
         <Herocide>
           <Classes>Hero</Classes>
