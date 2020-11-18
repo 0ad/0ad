@@ -10,11 +10,11 @@
   </Attack>
   <Builder>
     <Entities datatype="tokens">
-      structures/{civ}_pyramid_small
-      structures/{civ}_pyramid_large
-      structures/{civ}_temple_amun
-      structures/{civ}_blemmye_camp
-      structures/{civ}_nuba_village
+      structures/kush_pyramid_small
+      structures/kush_pyramid_large
+      structures/kush_temple_amun
+      structures/kush_camp_blemmye
+      structures/kush_camp_noba
     </Entities>
   </Builder>
   <Cost>
@@ -26,15 +26,15 @@
   <Identity>
     <Civ>kush</Civ>
     <Lang>napatan</Lang>
-    <VisibleClasses datatype="tokens">-Swordsman Clubman Mercenary</VisibleClasses>
-    <SelectionGroupName>units/kush_infantry_clubman_b</SelectionGroupName>
-    <GenericName>Nuba Clubman</GenericName>
+    <VisibleClasses datatype="tokens">-Swordsman Macemen Mercenary</VisibleClasses>
+    <SelectionGroupName>units/kush_infantry_maceman_b</SelectionGroupName>
+    <GenericName>Noba Maceman</GenericName>
     <SpecificName>nhw Noba</SpecificName>
     <Icon>units/kush_infantry_clubman.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <Promotion>
-    <Entity>units/kush_infantry_clubman_a</Entity>
+    <Entity>units/kush_infantry_maceman_a</Entity>
   </Promotion>
   <Resistance>
     <Entity>

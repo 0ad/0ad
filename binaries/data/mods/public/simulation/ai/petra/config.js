@@ -75,8 +75,8 @@ PETRA.Config = function(difficulty, behavior)
 			"structures/{civ}_monument"
 		],
 		"kush": [
-			"structures/{civ}_blemmye_camp",
-			"structures/{civ}_nuba_village",
+			"structures/{civ}_camp_blemmye",
+			"structures/{civ}_camp_noba",
 			"structures/{civ}_pyramid_large",
 			"structures/{civ}_pyramid_small",
 			"structures/{civ}_temple_amun"

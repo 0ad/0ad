@@ -19,9 +19,8 @@
   </Health>
   <Identity>
     <Civ>kush</Civ>
-    <GenericName>Nuba Village</GenericName>
-    <SpecificName>Nuba Village</SpecificName>
-    <Tooltip>Train the Nuba Clubman and Nuba Hunter.</Tooltip>
+    <GenericName>Noba Village</GenericName>
+    <Tooltip>Train Noba Mercenaries.</Tooltip>
     <Icon>structures/mercenary_camp.png</Icon>
   </Identity>
   <Loot>
@@ -33,7 +32,7 @@
   </Obstruction>
   <ProductionQueue>
     <Entities datatype="tokens">
-      units/{native}_infantry_clubman_b
+      units/{native}_infantry_maceman_merc_b
       units/{native}_infantry_javelineer_merc_b
     </Entities>
   </ProductionQueue>
