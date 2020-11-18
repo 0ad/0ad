@@ -5,7 +5,7 @@ set -e
 # This should match the version in config/milestone.txt
 FOLDER="mozjs-52.9.1pre1"
 # If same-version changes are needed, increment this.
-LIB_VERSION="52.9.1pre1+1"
+LIB_VERSION="52.9.1pre1+2"
 LIB_NAME="mozjs52-ps"
 
 # Since this script is called by update-workspaces.sh, we want to quickly
@@ -164,24 +164,28 @@ cp -R -L "${FOLDER}"/build-release/dist/include/* "${INCLUDE_DIR_RELEASE}/"
 cp -R -L "${FOLDER}"/build-debug/dist/include/* "${INCLUDE_DIR_DEBUG}/"
 
 mkdir -p lib/
-cp -L "${FOLDER}/build-debug/js/src/${LIB_PREFIX}${LIB_NAME}-debug${LIB_SUFFIX}" "lib/${LIB_PREFIX}${LIB_NAME}-debug${LIB_SUFFIX}"
-cp -L "${FOLDER}/build-release/js/src/${LIB_PREFIX}${LIB_NAME}-release${LIB_SUFFIX}" "lib/${LIB_PREFIX}${LIB_NAME}-release${LIB_SUFFIX}"  
+if [ "`uname -s`" = "Darwin" ]
+then
+  # On MacOS, copy the static library.
+  cp -L "${FOLDER}/build-debug/js/src/${LIB_PREFIX}js_static${LIB_SUFFIX}" "lib/${LIB_PREFIX}${LIB_NAME}-debug${LIB_SUFFIX}"
+  cp -L "${FOLDER}/build-release/js/src/${LIB_PREFIX}js_static${LIB_SUFFIX}" "lib/${LIB_PREFIX}${LIB_NAME}-release${LIB_SUFFIX}"
+else
+  cp -L "${FOLDER}/build-debug/js/src/${LIB_PREFIX}${LIB_NAME}-debug${LIB_SUFFIX}" "lib/${LIB_PREFIX}${LIB_NAME}-debug${LIB_SUFFIX}"
+  cp -L "${FOLDER}/build-debug/js/src/${LIB_PREFIX}${LIB_NAME}-debug${LIB_SUFFIX}" "../../../binaries/system/${LIB_PREFIX}${LIB_NAME}-debug${LIB_SUFFIX}"
+  cp -L "${FOLDER}/build-release/js/src/${LIB_PREFIX}${LIB_NAME}-release${LIB_SUFFIX}" "lib/${LIB_PREFIX}${LIB_NAME}-release${LIB_SUFFIX}"
+  cp -L "${FOLDER}/build-release/js/src/${LIB_PREFIX}${LIB_NAME}-release${LIB_SUFFIX}" "../../../binaries/system/${LIB_PREFIX}${LIB_NAME}-release${LIB_SUFFIX}"
+fi
 
-# On Windows, also copy nspr .DLL and .pdb debug symbols.
 if [ "${OS}" = "Windows_NT" ]
 then
+  # On Windows, copy also auxiliary libraries.
   cp -L "${FOLDER}/build-debug/js/src/${LIB_PREFIX}nspr4.dll" "../../../binaries/system/${LIB_PREFIX}nspr4.dll"
   cp -L "${FOLDER}/build-debug/js/src/${LIB_PREFIX}plc4.dll" "../../../binaries/system/${LIB_PREFIX}plc4.dll"
   cp -L "${FOLDER}/build-debug/js/src/${LIB_PREFIX}plds4.dll" "../../../binaries/system/${LIB_PREFIX}plds4.dll"
   cp -L "${FOLDER}/build-debug/js/src/${LIB_PREFIX}mozjs-52-debug.dll" "../../../binaries/system/${LIB_PREFIX}${LIB_NAME}-debug.dll"
-  cp -L "${FOLDER}/build-debug/js/src/${LIB_PREFIX}mozjs-52-debug.pdb" "../../../binaries/system/${LIB_PREFIX}${LIB_NAME}-debug.pdb"
   cp -L "${FOLDER}/build-release/js/src/${LIB_PREFIX}mozjs-52-release.dll" "../../../binaries/system/${LIB_PREFIX}${LIB_NAME}-release.dll"
+  cp -L "${FOLDER}/build-debug/js/src/${LIB_PREFIX}mozjs-52-debug.pdb" "../../../binaries/system/${LIB_PREFIX}${LIB_NAME}-debug.pdb"
   cp -L "${FOLDER}/build-release/js/src/${LIB_PREFIX}mozjs-52-release.pdb" "../../../binaries/system/${LIB_PREFIX}${LIB_NAME}-release.pdb"
-# And on Linux, copy the shared library to the binaries too (MacOS uses static linking so does not need this step.)
-elif [ "`uname -s`" != "Darwin" ]
-then
-  cp -L "${FOLDER}/build-debug/js/src/${LIB_PREFIX}${LIB_NAME}-debug${LIB_SUFFIX}" "../../../binaries/system/${LIB_PREFIX}${LIB_NAME}-debug${LIB_SUFFIX}"
-  cp -L "${FOLDER}/build-release/js/src/${LIB_PREFIX}${LIB_NAME}-release${LIB_SUFFIX}" "../../../binaries/system/${LIB_PREFIX}${LIB_NAME}-release${LIB_SUFFIX}"
 fi
 
 # Flag that it's already been built successfully so we can skip it next time
