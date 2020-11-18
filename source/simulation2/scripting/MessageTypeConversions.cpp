@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -53,7 +53,7 @@
 JS::Value CMessage::ToJSValCached(const ScriptInterface& scriptInterface) const
 {
 	if (!m_Cached)
-		m_Cached.reset(new JS::PersistentRootedValue(scriptInterface.GetJSRuntime(), ToJSVal(scriptInterface)));
+		m_Cached.reset(new JS::PersistentRootedValue(scriptInterface.GetGeneralJSContext(), ToJSVal(scriptInterface)));
 
 	return m_Cached->get();
 }

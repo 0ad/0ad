@@ -488,7 +488,7 @@ namespace
 		const ScriptInterface& m_ScriptInterface;
 		JS::PersistentRooted<JS::Value> m_Root;
 		DumpTable(const ScriptInterface& scriptInterface, JS::HandleValue root) :
-			m_ScriptInterface(scriptInterface), m_Root(scriptInterface.GetJSRuntime(), root)
+			m_ScriptInterface(scriptInterface), m_Root(scriptInterface.GetGeneralJSContext(), root)
 		{
 		}
 
@@ -496,7 +496,7 @@ namespace
 		// automatic move constructor
 		DumpTable(DumpTable && original) :
 			m_ScriptInterface(original.m_ScriptInterface),
-			m_Root(original.m_ScriptInterface.GetJSRuntime(), original.m_Root.get())
+			m_Root(original.m_ScriptInterface.GetGeneralJSContext(), original.m_Root.get())
 		{
 		}
 

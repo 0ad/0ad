@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -84,28 +84,28 @@ CStr CScriptStatsTable::GetCellText(size_t row, size_t col)
 	{
 		if (col == 0)
 			return "max nominal heap bytes";
-		uint32_t n = JS_GetGCParameter(m_ScriptInterfaces.at(col-1).first->GetJSRuntime(), JSGC_MAX_BYTES);
+		uint32_t n = JS_GetGCParameter(m_ScriptInterfaces.at(col-1).first->GetGeneralJSContext(), JSGC_MAX_BYTES);
 		return CStr::FromUInt(n);
 	}
 	case Row_MaxMallocBytes:
 	{
 		if (col == 0)
 			return "max JS_malloc bytes";
-		uint32_t n = JS_GetGCParameter(m_ScriptInterfaces.at(col-1).first->GetJSRuntime(), JSGC_MAX_MALLOC_BYTES);
+		uint32_t n = JS_GetGCParameter(m_ScriptInterfaces.at(col-1).first->GetGeneralJSContext(), JSGC_MAX_MALLOC_BYTES);
 		return CStr::FromUInt(n);
 	}
 	case Row_Bytes:
 	{
 		if (col == 0)
 			return "allocated bytes";
-		uint32_t n = JS_GetGCParameter(m_ScriptInterfaces.at(col-1).first->GetJSRuntime(), JSGC_BYTES);
+		uint32_t n = JS_GetGCParameter(m_ScriptInterfaces.at(col-1).first->GetGeneralJSContext(), JSGC_BYTES);
 		return CStr::FromUInt(n);
 	}
 	case Row_NumberGC:
 	{
 		if (col == 0)
 			return "number of GCs";
-		uint32_t n = JS_GetGCParameter(m_ScriptInterfaces.at(col-1).first->GetJSRuntime(), JSGC_NUMBER);
+		uint32_t n = JS_GetGCParameter(m_ScriptInterfaces.at(col-1).first->GetGeneralJSContext(), JSGC_NUMBER);
 		return CStr::FromUInt(n);
 	}
 	default:

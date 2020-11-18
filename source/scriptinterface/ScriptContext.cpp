@@ -25,7 +25,7 @@
 #include "scriptinterface/ScriptInterface.h"
 
 
-void GCSliceCallbackHook(JSRuntime* UNUSED(rt), JS::GCProgress progress, const JS::GCDescription& UNUSED(desc))
+void GCSliceCallbackHook(JSContext* UNUSED(cx), JS::GCProgress progress, const JS::GCDescription& UNUSED(desc))
 {
 	/*
 	 * During non-incremental GC, the GC is bracketed by JSGC_CYCLE_BEGIN/END
@@ -69,7 +69,7 @@ void GCSliceCallbackHook(JSRuntime* UNUSED(rt), JS::GCProgress progress, const J
 	if (progress == JS::GCProgress::GC_CYCLE_BEGIN)
 		printf("starting cycle ===========================================\n");
 
-	const char16_t* str = desc.formatMessage(rt);
+	const char16_t* str = desc.formatMessage(cx);
 	int len = 0;
 
 	for(int i = 0; i < 10000; i++)
@@ -103,35 +103,32 @@ ScriptContext::ScriptContext(int contextSize, int heapGrowthBytesGCTrigger):
 {
 	ENSURE(ScriptEngine::IsInitialised() && "The ScriptEngine must be initialized before constructing any ScriptContexts!");
 
-	m_rt = JS_NewRuntime(contextSize, JS::DefaultNurseryBytes, nullptr);
-	ENSURE(m_rt); // TODO: error handling
+	m_cx = JS_NewContext(contextSize, JS::DefaultNurseryBytes, nullptr);
+	ENSURE(m_cx); // TODO: error handling
 
-	JS::SetGCSliceCallback(m_rt, GCSliceCallbackHook);
+	ENSURE(JS::InitSelfHostedCode(m_cx));
 
-	JS_SetGCParameter(m_rt, JSGC_MAX_MALLOC_BYTES, m_ContextSize);
-	JS_SetGCParameter(m_rt, JSGC_MAX_BYTES, m_ContextSize);
-	JS_SetGCParameter(m_rt, JSGC_MODE, JSGC_MODE_INCREMENTAL);
+	JS::SetGCSliceCallback(m_cx, GCSliceCallbackHook);
+
+	JS_SetGCParameter(m_cx, JSGC_MAX_MALLOC_BYTES, m_ContextSize);
+	JS_SetGCParameter(m_cx, JSGC_MAX_BYTES, m_ContextSize);
+	JS_SetGCParameter(m_cx, JSGC_MODE, JSGC_MODE_INCREMENTAL);
 
 	// The whole heap-growth mechanism seems to work only for non-incremental GCs.
 	// We disable it to make it more clear if full GCs happen triggered by this JSAPI internal mechanism.
-	JS_SetGCParameter(m_rt, JSGC_DYNAMIC_HEAP_GROWTH, false);
+	JS_SetGCParameter(m_cx, JSGC_DYNAMIC_HEAP_GROWTH, false);
 
-	JS_SetErrorReporter(m_rt, ScriptException::ErrorReporter);
-
-	m_cx = JS_NewContext(m_rt, STACK_CHUNK_SIZE);
-	ENSURE(m_cx); // TODO: error handling
-
-	JS_SetOffthreadIonCompilationEnabled(m_rt, true);
+	JS_SetOffthreadIonCompilationEnabled(m_cx, true);
 
 	// For GC debugging:
 	// JS_SetGCZeal(m_cx, 2, JS_DEFAULT_ZEAL_FREQ);
 
 	JS_SetContextPrivate(m_cx, nullptr);
 
-	JS_SetGlobalJitCompilerOption(m_rt, JSJITCOMPILER_ION_ENABLE, 1);
-	JS_SetGlobalJitCompilerOption(m_rt, JSJITCOMPILER_BASELINE_ENABLE, 1);
+	JS_SetGlobalJitCompilerOption(m_cx, JSJITCOMPILER_ION_ENABLE, 1);
+	JS_SetGlobalJitCompilerOption(m_cx, JSJITCOMPILER_BASELINE_ENABLE, 1);
 
-	JS::RuntimeOptionsRef(m_cx)
+	JS::ContextOptionsRef(m_cx)
 		.setExtraWarnings(true)
 		.setWerror(false)
 		.setStrictMode(true);
@@ -144,8 +141,6 @@ ScriptContext::~ScriptContext()
 	ENSURE(ScriptEngine::IsInitialised() && "The ScriptEngine must be active (initialized and not yet shut down) when destroying a ScriptContext!");
 
 	JS_DestroyContext(m_cx);
-	JS_DestroyRuntime(m_rt);
-
 	ScriptEngine::GetSingleton().UnRegisterContext(m_cx);
 }
 
@@ -165,7 +160,7 @@ void ScriptContext::MaybeIncrementalGC(double delay)
 {
 	PROFILE2("MaybeIncrementalGC");
 
-	if (JS::IsIncrementalGCEnabled(m_rt))
+	if (JS::IsIncrementalGCEnabled(m_cx))
 	{
 		// The idea is to get the heap size after a completed GC and trigger the next GC when the heap size has
 		// reached m_LastGCBytes + X.
@@ -184,7 +179,7 @@ void ScriptContext::MaybeIncrementalGC(double delay)
 
 		m_LastGCCheck = timer_Time();
 
-		int gcBytes = JS_GetGCParameter(m_rt, JSGC_BYTES);
+		int gcBytes = JS_GetGCParameter(m_cx, JSGC_BYTES);
 
 #if GC_DEBUG_PRINT
 			std::cout << "gcBytes: " << gcBytes / 1024 << " KB" << std::endl;
@@ -201,10 +196,10 @@ void ScriptContext::MaybeIncrementalGC(double delay)
 		// Run an additional incremental GC slice if the currently running incremental GC isn't over yet
 		// ... or
 		// start a new incremental GC if the JS heap size has grown enough for a GC to make sense
-		if (JS::IsIncrementalGCInProgress(m_rt) || (gcBytes - m_LastGCBytes > m_HeapGrowthBytesGCTrigger))
+		if (JS::IsIncrementalGCInProgress(m_cx) || (gcBytes - m_LastGCBytes > m_HeapGrowthBytesGCTrigger))
 		{
 #if GC_DEBUG_PRINT
-			if (JS::IsIncrementalGCInProgress(m_rt))
+			if (JS::IsIncrementalGCInProgress(m_cx))
 				printf("An incremental GC cycle is in progress. \n");
 			else
 				printf("GC needed because JSGC_BYTES - m_LastGCBytes > m_HeapGrowthBytesGCTrigger \n"
@@ -218,13 +213,13 @@ void ScriptContext::MaybeIncrementalGC(double delay)
 			// fast enough.
 			if (gcBytes > m_ContextSize / 2)
 			{
-				if (JS::IsIncrementalGCInProgress(m_rt))
+				if (JS::IsIncrementalGCInProgress(m_cx))
 				{
 #if GC_DEBUG_PRINT
 					printf("Finishing incremental GC because gcBytes > m_ContextSize / 2. \n");
 #endif
 					PrepareCompartmentsForIncrementalGC();
-					JS::FinishIncrementalGC(m_rt, JS::gcreason::REFRESH_FRAME);
+					JS::FinishIncrementalGC(m_cx, JS::gcreason::REFRESH_FRAME);
 				}
 				else
 				{
@@ -240,23 +235,23 @@ void ScriptContext::MaybeIncrementalGC(double delay)
 #if GC_DEBUG_PRINT
 						printf("Running full GC because gcBytes > m_ContextSize / 2. \n");
 #endif
-						JS_GC(m_rt);
+						JS_GC(m_cx);
 					}
 				}
 			}
 			else
 			{
 #if GC_DEBUG_PRINT
-				if (!JS::IsIncrementalGCInProgress(m_rt))
+				if (!JS::IsIncrementalGCInProgress(m_cx))
 					printf("Starting incremental GC \n");
 				else
 					printf("Running incremental GC slice \n");
 #endif
 				PrepareCompartmentsForIncrementalGC();
-				if (!JS::IsIncrementalGCInProgress(m_rt))
-					JS::StartIncrementalGC(m_rt, GC_NORMAL, JS::gcreason::REFRESH_FRAME, GCSliceTimeBudget);
+				if (!JS::IsIncrementalGCInProgress(m_cx))
+					JS::StartIncrementalGC(m_cx, GC_NORMAL, JS::gcreason::REFRESH_FRAME, GCSliceTimeBudget);
 				else
-					JS::IncrementalGCSlice(m_rt, JS::gcreason::REFRESH_FRAME, GCSliceTimeBudget);
+					JS::IncrementalGCSlice(m_cx, JS::gcreason::REFRESH_FRAME, GCSliceTimeBudget);
 			}
 			m_LastGCBytes = gcBytes;
 		}
@@ -265,10 +260,10 @@ void ScriptContext::MaybeIncrementalGC(double delay)
 
 void ScriptContext::ShrinkingGC()
 {
-	JS_SetGCParameter(m_rt, JSGC_MODE, JSGC_MODE_COMPARTMENT);
-	JS::PrepareForFullGC(m_rt);
-	JS::GCForReason(m_rt, GC_SHRINK, JS::gcreason::REFRESH_FRAME);
-	JS_SetGCParameter(m_rt, JSGC_MODE, JSGC_MODE_INCREMENTAL);
+	JS_SetGCParameter(m_cx, JSGC_MODE, JSGC_MODE_ZONE);
+	JS::PrepareForFullGC(m_cx);
+	JS::GCForReason(m_cx, GC_SHRINK, JS::gcreason::REFRESH_FRAME);
+	JS_SetGCParameter(m_cx, JSGC_MODE, JSGC_MODE_INCREMENTAL);
 }
 
 void ScriptContext::PrepareCompartmentsForIncrementalGC() const

@@ -76,7 +76,7 @@ IGUIObject::~IGUIObject()
 		delete p.second;
 
 	if (!m_ScriptHandlers.empty())
-		JS_RemoveExtraGCRootsTracer(m_pGUI.GetScriptInterface()->GetJSRuntime(), Trace, this);
+		JS_RemoveExtraGCRootsTracer(m_pGUI.GetScriptInterface()->GetGeneralJSContext(), Trace, this);
 
 	// m_Children is deleted along all other GUI Objects in the CGUI destructor
 }
@@ -332,7 +332,7 @@ void IGUIObject::RegisterScriptHandler(const CStr& eventName, const CStr& Code, 
 void IGUIObject::SetScriptHandler(const CStr& eventName, JS::HandleObject Function)
 {
 	if (m_ScriptHandlers.empty())
-		JS_AddExtraGCRootsTracer(m_pGUI.GetScriptInterface()->GetJSRuntime(), Trace, this);
+		JS_AddExtraGCRootsTracer(m_pGUI.GetScriptInterface()->GetGeneralJSContext(), Trace, this);
 
 	m_ScriptHandlers[eventName] = JS::Heap<JSObject*>(Function);
 
@@ -353,7 +353,7 @@ void IGUIObject::UnsetScriptHandler(const CStr& eventName)
 	m_ScriptHandlers.erase(it);
 
 	if (m_ScriptHandlers.empty())
-		JS_RemoveExtraGCRootsTracer(m_pGUI.GetScriptInterface()->GetJSRuntime(), Trace, this);
+		JS_RemoveExtraGCRootsTracer(m_pGUI.GetScriptInterface()->GetGeneralJSContext(), Trace, this);
 	{
 		auto it = m_pGUI.m_EventIGUIObjects.find(eventName);
 		if (it != m_pGUI.m_EventIGUIObjects.end())
@@ -402,7 +402,7 @@ InReaction IGUIObject::SendMouseEvent(EGUIMessageType type, const CStr& eventNam
 		"y", mousePos.y,
 		"buttons", m_pGUI.GetMouseButtons());
 	JS::AutoValueVector paramData(rq.cx);
-	paramData.append(mouse);
+	(void)paramData.append(mouse);
 	ScriptEvent(eventName, paramData);
 
 	return msg.skipped ? IN_PASS : IN_HANDLED;

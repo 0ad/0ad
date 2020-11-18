@@ -73,10 +73,9 @@ bool ScriptException::CatchPending(const ScriptRequest& rq)
 		msg << " line " << report->lineno << "\n";
 	}
 
-	// TODO SM52:
-	// msg << report->message();
+	msg << report->message().c_str();
 
-	JS::RootedObject stackObj(rq.cx, ExceptionStackOrNull(rq.cx, excnObj));
+	JS::RootedObject stackObj(rq.cx, ExceptionStackOrNull(excnObj));
 	JS::RootedValue stackVal(rq.cx, JS::ObjectOrNullValue(stackObj));
 	if (!stackVal.isNull())
 	{
@@ -97,55 +96,10 @@ bool ScriptException::CatchPending(const ScriptRequest& rq)
 	return true;
 }
 
-void ScriptException::ErrorReporter(JSContext* cx, const char* message, JSErrorReport* report)
-{
-	if (!ScriptInterface::GetScriptInterfaceAndCBData(cx))
-	{
-		LOGERROR("Javascript - Out of Memory error");
-		return;
-	}
-	ScriptRequest rq(*ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface);
-
-	std::stringstream msg;
-	bool isWarning = JSREPORT_IS_WARNING(report->flags);
-	msg << (isWarning ? "JavaScript warning: " : "JavaScript error: ");
-	if (report->filename)
-	{
-		msg << report->filename;
-		msg << " line " << report->lineno << "\n";
-	}
-
-	msg << message;
-
-	// If there is an exception, then print its stack trace
-	JS::RootedValue excn(rq.cx);
-	if (JS_GetPendingException(rq.cx, &excn) && excn.isObject())
-	{
-		JS::RootedValue stackVal(rq.cx);
-		JS::RootedObject excnObj(rq.cx, &excn.toObject());
-		JS_GetProperty(rq.cx, excnObj, "stack", &stackVal);
-
-		std::string stackText;
-		ScriptInterface::FromJSVal(rq, stackVal, stackText);
-
-		std::istringstream stream(stackText);
-		for (std::string line; std::getline(stream, line);)
-			msg << "\n  " << line;
-	}
-
-	if (isWarning)
-		LOGWARNING("%s", msg.str().c_str());
-	else
-		LOGERROR("%s", msg.str().c_str());
-
-	// When running under Valgrind, print more information in the error message
-	//	VALGRIND_PRINTF_BACKTRACE("->");
-}
-
 void ScriptException::Raise(const ScriptRequest& rq, const char* format, ...)
 {
 	va_list ap;
 	va_start(ap, format);
-	JS_ReportError(rq.cx, format, ap);
+	JS_ReportErrorUTF8(rq.cx, format, ap);
 	va_end(ap);
 }

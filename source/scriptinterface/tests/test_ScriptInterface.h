@@ -40,7 +40,7 @@ public:
 		ScriptInterface script("Test", "Test", g_ScriptContext);
 		TestLogger logger;
 		TS_ASSERT(!script.LoadScript(L"test.js", "1+"));
-		TS_ASSERT_STR_CONTAINS(logger.GetOutput(), "ERROR: JavaScript error: test.js line 1\nSyntaxError: expected expression, got end of script");
+		TS_ASSERT_STR_CONTAINS(logger.GetOutput(), "ERROR: JavaScript error: test.js line 1\nexpected expression, got end of script");
 	}
 
 	void test_loadscript_strict_warning()
@@ -57,7 +57,7 @@ public:
 		ScriptInterface script("Test", "Test", g_ScriptContext);
 		TestLogger logger;
 		TS_ASSERT(!script.LoadScript(L"test.js", "with(1){}"));
-		TS_ASSERT_STR_CONTAINS(logger.GetOutput(), "ERROR: JavaScript error: test.js line 1\nSyntaxError: strict mode code may not contain \'with\' statements");
+		TS_ASSERT_STR_CONTAINS(logger.GetOutput(), "ERROR: JavaScript error: test.js line 1\nstrict mode code may not contain \'with\' statements");
 	}
 
 	void test_clone_basic()
@@ -72,7 +72,7 @@ public:
 		{
 			ScriptRequest rq2(script2);
 
-			JS::RootedValue obj2(rq2.cx, script2.CloneValueFromOtherCompartment(script1, obj1));
+			JS::RootedValue obj2(rq2.cx, script2.CloneValueFromOtherCompartment(script1, obj1, true));
 
 			std::string source;
 			TS_ASSERT(script2.CallFunction(obj2, "toSource", source));
@@ -94,7 +94,7 @@ public:
 		{
 			ScriptRequest rq2(script2);
 
-			JS::RootedValue obj2(rq2.cx, script2.CloneValueFromOtherCompartment(script1, obj1));
+			JS::RootedValue obj2(rq2.cx, script2.CloneValueFromOtherCompartment(script1, obj1, true));
 
 			std::string source;
 			TS_ASSERT(script2.CallFunction(obj2, "toSource", source));
@@ -114,7 +114,7 @@ public:
 
 		{
 			ScriptRequest rq2(script2);
-			JS::RootedValue obj2(rq2.cx, script2.CloneValueFromOtherCompartment(script1, obj1));
+			JS::RootedValue obj2(rq2.cx, script2.CloneValueFromOtherCompartment(script1, obj1, true));
 
 			// Use JSAPI function to check if the values of the properties "a", "b" are equals a.x[0]
 			JS::RootedValue prop_a(rq2.cx);
@@ -125,8 +125,8 @@ public:
 			TS_ASSERT(prop_a.isObject());
 			TS_ASSERT(prop_b.isObject());
 			TS_ASSERT(script2.GetProperty(prop_a, "0", &prop_x1));
-			TS_ASSERT_EQUALS(prop_x1.get(), prop_a.get());
-			TS_ASSERT_EQUALS(prop_x1.get(), prop_b.get());
+			TS_ASSERT(prop_x1.get() == prop_a.get());
+			TS_ASSERT(prop_x1.get() == prop_b.get());
 		}
 	}
 

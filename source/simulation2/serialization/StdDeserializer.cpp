@@ -30,12 +30,12 @@
 CStdDeserializer::CStdDeserializer(const ScriptInterface& scriptInterface, std::istream& stream) :
 	m_ScriptInterface(scriptInterface), m_Stream(stream)
 {
-	JS_AddExtraGCRootsTracer(m_ScriptInterface.GetJSRuntime(), CStdDeserializer::Trace, this);
+	JS_AddExtraGCRootsTracer(m_ScriptInterface.GetGeneralJSContext(), CStdDeserializer::Trace, this);
 }
 
 CStdDeserializer::~CStdDeserializer()
 {
-	JS_RemoveExtraGCRootsTracer(m_ScriptInterface.GetJSRuntime(), CStdDeserializer::Trace, this);
+	JS_RemoveExtraGCRootsTracer(m_ScriptInterface.GetGeneralJSContext(), CStdDeserializer::Trace, this);
 }
 
 void CStdDeserializer::Trace(JSTracer *trc, void *data)

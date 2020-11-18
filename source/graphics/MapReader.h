@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -52,11 +52,11 @@ public:
 	~CMapReader();
 
 	// LoadMap: try to load the map from given file; reinitialise the scene to new data if successful
-	void LoadMap(const VfsPath& pathname, JSRuntime* rt, JS::HandleValue settings, CTerrain*, WaterManager*, SkyManager*, CLightEnv*, CGameView*,
+	void LoadMap(const VfsPath& pathname, const ScriptContext& cx, JS::HandleValue settings, CTerrain*, WaterManager*, SkyManager*, CLightEnv*, CGameView*,
 		CCinemaManager*, CTriggerManager*, CPostprocManager* pPostproc, CSimulation2*, const CSimContext*,
 	        int playerID, bool skipEntities);
 
-	void LoadRandomMap(const CStrW& scriptFile, JSRuntime* rt, JS::HandleValue settings, CTerrain*, WaterManager*, SkyManager*, CLightEnv*, CGameView*, CCinemaManager*, CTriggerManager*, CPostprocManager* pPostproc_, CSimulation2*, int playerID);
+	void LoadRandomMap(const CStrW& scriptFile, const ScriptContext& cx, JS::HandleValue settings, CTerrain*, WaterManager*, SkyManager*, CLightEnv*, CGameView*, CCinemaManager*, CTriggerManager*, CPostprocManager* pPostproc_, CSimulation2*, int playerID);
 
 private:
 	// Load script settings for use by scripts

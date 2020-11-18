@@ -46,7 +46,7 @@ CTurnManager::CTurnManager(CSimulation2& simulation, u32 defaultTurnLength, int 
 	: m_Simulation2(simulation), m_CurrentTurn(0), m_ReadyTurn(1), m_TurnLength(defaultTurnLength),
 	m_PlayerId(-1), m_ClientId(clientId), m_DeltaSimTime(0), m_HasSyncError(false), m_Replay(replay),
 	m_FinalTurn(std::numeric_limits<u32>::max()), m_TimeWarpNumTurns(0),
-	m_QuickSaveMetadata(m_Simulation2.GetScriptInterface().GetJSRuntime())
+	m_QuickSaveMetadata(m_Simulation2.GetScriptInterface().GetGeneralJSContext())
 {
 	// When we are on turn n, we schedule new commands for n+2.
 	// We know that all other clients have finished scheduling commands for n (else we couldn't have got here).

@@ -86,7 +86,7 @@ private:
 		CAIPlayer(CAIWorker& worker, const std::wstring& aiName, player_id_t player, u8 difficulty, const std::wstring& behavior,
 				shared_ptr<ScriptInterface> scriptInterface) :
 			m_Worker(worker), m_AIName(aiName), m_Player(player), m_Difficulty(difficulty), m_Behavior(behavior),
-			m_ScriptInterface(scriptInterface), m_Obj(scriptInterface->GetJSRuntime())
+			m_ScriptInterface(scriptInterface), m_Obj(scriptInterface->GetGeneralJSContext())
 		{
 		}
 
@@ -200,14 +200,14 @@ private:
 		shared_ptr<ScriptInterface> m_ScriptInterface;
 
 		JS::PersistentRootedValue m_Obj;
-		std::vector<shared_ptr<ScriptInterface::StructuredClone> > m_Commands;
+		std::vector<ScriptInterface::StructuredClone > m_Commands;
 	};
 
 public:
 	struct SCommandSets
 	{
 		player_id_t player;
-		std::vector<shared_ptr<ScriptInterface::StructuredClone> > commands;
+		std::vector<ScriptInterface::StructuredClone > commands;
 	};
 
 	CAIWorker() :
@@ -216,17 +216,17 @@ public:
 		m_CommandsComputed(true),
 		m_HasLoadedEntityTemplates(false),
 		m_HasSharedComponent(false),
-		m_EntityTemplates(g_ScriptContext->GetJSRuntime()),
-		m_SharedAIObj(g_ScriptContext->GetJSRuntime()),
-		m_PassabilityMapVal(g_ScriptContext->GetJSRuntime()),
-		m_TerritoryMapVal(g_ScriptContext->GetJSRuntime())
+		m_EntityTemplates(g_ScriptContext->GetGeneralJSContext()),
+		m_SharedAIObj(g_ScriptContext->GetGeneralJSContext()),
+		m_PassabilityMapVal(g_ScriptContext->GetGeneralJSContext()),
+		m_TerritoryMapVal(g_ScriptContext->GetGeneralJSContext())
 	{
 
 		m_ScriptInterface->ReplaceNondeterministicRNG(m_RNG);
 
 		m_ScriptInterface->SetCallbackData(static_cast<void*> (this));
 
-		JS_AddExtraGCRootsTracer(m_ScriptInterface->GetJSRuntime(), Trace, this);
+		JS_AddExtraGCRootsTracer(m_ScriptInterface->GetGeneralJSContext(), Trace, this);
 
 		m_ScriptInterface->RegisterFunction<void, int, JS::HandleValue, CAIWorker::PostCommand>("PostCommand");
 		m_ScriptInterface->RegisterFunction<void, std::wstring, CAIWorker::IncludeModule>("IncludeModule");
@@ -245,7 +245,7 @@ public:
 
 	~CAIWorker()
 	{
-		JS_RemoveExtraGCRootsTracer(m_ScriptInterface->GetJSRuntime(), Trace, this);
+		JS_RemoveExtraGCRootsTracer(m_ScriptInterface->GetGeneralJSContext(), Trace, this);
 	}
 
 	bool HasLoadedEntityTemplates() const { return m_HasLoadedEntityTemplates; }
@@ -299,7 +299,7 @@ public:
 		{
 			if (m_Players[i]->m_Player == playerid)
 			{
-				m_Players[i]->m_Commands.push_back(m_ScriptInterface->WriteStructuredClone(cmd));
+				m_Players[i]->m_Commands.push_back(m_ScriptInterface->WriteStructuredClone(cmd, false));
 				return;
 			}
 		}
@@ -485,7 +485,7 @@ public:
 		return true;
 	}
 
-	bool RunGamestateInit(const shared_ptr<ScriptInterface::StructuredClone>& gameState, const Grid<NavcellData>& passabilityMap, const Grid<u8>& territoryMap,
+	bool RunGamestateInit(const ScriptInterface::StructuredClone& gameState, const Grid<NavcellData>& passabilityMap, const Grid<u8>& territoryMap,
 		const std::map<std::string, pass_class_t>& nonPathfindingPassClassMasks, const std::map<std::string, pass_class_t>& pathfindingPassClassMasks)
 	{
 		// this will be run last by InitGame.js, passing the full game representation.
@@ -521,7 +521,7 @@ public:
 		return true;
 	}
 
-	void UpdateGameState(const shared_ptr<ScriptInterface::StructuredClone>& gameState)
+	void UpdateGameState(const ScriptInterface::StructuredClone& gameState)
 	{
 		ENSURE(m_CommandsComputed);
 		m_GameState = gameState;
@@ -765,7 +765,7 @@ public:
 			{
 				JS::RootedValue val(rq.cx);
 				deserializer.ScriptVal("command", &val);
-				m_Players.back()->m_Commands.push_back(m_ScriptInterface->WriteStructuredClone(val));
+				m_Players.back()->m_Commands.push_back(m_ScriptInterface->WriteStructuredClone(val, false));
 			}
 
 			bool hasCustomDeserialize = m_ScriptInterface->HasProperty(m_Players.back()->m_Obj, "Deserialize");
@@ -888,7 +888,7 @@ private:
 
 	std::set<std::wstring> m_LoadedModules;
 
-	shared_ptr<ScriptInterface::StructuredClone> m_GameState;
+	ScriptInterface::StructuredClone m_GameState;
 	Grid<NavcellData> m_PassabilityMap;
 	JS::PersistentRootedValue m_PassabilityMapVal;
 	Grid<u8> m_TerritoryMap;
@@ -1016,7 +1016,8 @@ public:
 		if (cmpPathfinder)
 			cmpPathfinder->GetPassabilityClasses(nonPathfindingPassClassMasks, pathfindingPassClassMasks);
 
-		m_Worker.RunGamestateInit(scriptInterface.WriteStructuredClone(state), *passabilityMap, *territoryMap, nonPathfindingPassClassMasks, pathfindingPassClassMasks);
+		m_Worker.RunGamestateInit(scriptInterface.WriteStructuredClone(state, false),
+			*passabilityMap, *territoryMap, nonPathfindingPassClassMasks, pathfindingPassClassMasks);
 	}
 
 	virtual void StartComputation()
@@ -1041,7 +1042,7 @@ public:
 		LoadPathfinderClasses(state); // add the pathfinding classes to it
 
 		// Update the game state
-		m_Worker.UpdateGameState(scriptInterface.WriteStructuredClone(state));
+		m_Worker.UpdateGameState(scriptInterface.WriteStructuredClone(state, false));
 
 		// Update the pathfinding data
 		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());

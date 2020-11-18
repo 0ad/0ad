@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,6 +23,7 @@
 namespace JSI_IGUIObject
 {
 	extern JSClass JSI_class;
+	extern JSClassOps JSI_classops;
 	extern JSFunctionSpec JSI_methods[];
 
 	void RegisterScriptClass(ScriptInterface& scriptInterface);

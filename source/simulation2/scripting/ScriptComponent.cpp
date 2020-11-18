@@ -23,7 +23,7 @@
 #include "simulation2/serialization/IDeserializer.h"
 
 CComponentTypeScript::CComponentTypeScript(const ScriptInterface& scriptInterface, JS::HandleValue instance) :
-	m_ScriptInterface(scriptInterface), m_Instance(scriptInterface.GetJSRuntime(), instance)
+	m_ScriptInterface(scriptInterface), m_Instance(scriptInterface.GetGeneralJSContext(), instance)
 {
 	// Cache the property detection for efficiency
 	ScriptRequest rq(m_ScriptInterface);

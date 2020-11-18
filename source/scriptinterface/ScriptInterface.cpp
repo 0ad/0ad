@@ -94,13 +94,16 @@ ScriptRequest::~ScriptRequest()
 namespace
 {
 
-JSClass global_class = {
-	"global", JSCLASS_GLOBAL_FLAGS,
+JSClassOps global_classops = {
 	nullptr, nullptr,
 	nullptr, nullptr,
 	nullptr, nullptr, nullptr,
 	nullptr, nullptr, nullptr, nullptr,
 	JS_GlobalObjectTraceHook
+};
+
+JSClass global_class = {
+	"global", JSCLASS_GLOBAL_FLAGS, &global_classops
 };
 
 // Functions in the global namespace:
@@ -319,12 +322,15 @@ bool ScriptInterface::MathRandom(double& nbr)
 }
 
 ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const shared_ptr<ScriptContext>& context) :
-	m_context(context), m_cx(context->GetGeneralJSContext()), m_glob(context->GetJSRuntime()), m_nativeScope(context->GetJSRuntime())
+	m_context(context), m_cx(context->GetGeneralJSContext()), m_glob(context->GetGeneralJSContext()), m_nativeScope(context->GetGeneralJSContext())
 {
-	JS::CompartmentOptions opt;
-	opt.setVersion(JSVERSION_LATEST);
+	JS::CompartmentCreationOptions creationOpt;
 	// Keep JIT code during non-shrinking GCs. This brings a quite big performance improvement.
-	opt.setPreserveJitCode(true);
+	creationOpt.setPreserveJitCode(true);
+	JS::CompartmentBehaviors behaviors;
+	behaviors.setVersion(JSVERSION_LATEST);
+
+	JS::CompartmentOptions opt(creationOpt, behaviors);
 
 	JSAutoRequest rq(m_cx);
 	m_glob = JS_NewGlobalObject(m_cx, &global_class, nullptr, JS::OnNewGlobalHookOption::FireOnNewGlobalHook, opt);
@@ -446,9 +452,9 @@ void ScriptInterface::Register(const char* name, JSNative fptr, size_t nargs) co
 	m->Register(name, fptr, (uint)nargs);
 }
 
-JSRuntime* ScriptInterface::GetJSRuntime() const
+JSContext* ScriptInterface::GetGeneralJSContext() const
 {
-	return m->m_context->GetJSRuntime();
+	return m->m_context->GetGeneralJSContext();
 }
 
 shared_ptr<ScriptContext> ScriptInterface::GetContext() const
@@ -560,7 +566,7 @@ bool ScriptInterface::SetGlobal_(const char* name, JS::HandleValue value, bool r
 		return false;
 	if (found)
 	{
-		JS::Rooted<JSPropertyDescriptor> desc(rq.cx);
+		JS::Rooted<JS::PropertyDescriptor> desc(rq.cx);
 		if (!JS_GetOwnPropertyDescriptor(rq.cx, global, name, &desc))
 			return false;
 
@@ -971,15 +977,7 @@ std::string ScriptInterface::ToString(JS::MutableHandleValue obj, bool pretty) c
 		Stringifier str;
 		JS::RootedValue indentVal(rq.cx, JS::Int32Value(2));
 
-		// Temporary disable the error reporter, so we don't print complaints about cyclic values
-		JSErrorReporter er = JS_SetErrorReporter(GetJSRuntime(), nullptr);
-
-		bool ok = JS_Stringify(rq.cx, obj, nullptr, indentVal, &Stringifier::callback, &str);
-
-		// Restore error reporter
-		JS_SetErrorReporter(GetJSRuntime(), er);
-
-		if (ok)
+		if (JS_Stringify(rq.cx, obj, nullptr, indentVal, &Stringifier::callback, &str))
 			return str.stream.str();
 
 		// Drop exceptions raised by cyclic values before trying something else
@@ -994,48 +992,37 @@ std::string ScriptInterface::ToString(JS::MutableHandleValue obj, bool pretty) c
 	return utf8_from_wstring(source);
 }
 
-JS::Value ScriptInterface::CloneValueFromOtherCompartment(const ScriptInterface& otherCompartment, JS::HandleValue val) const
+JS::Value ScriptInterface::CloneValueFromOtherCompartment(const ScriptInterface& otherCompartment, JS::HandleValue val, bool sameThread) const
 {
 	PROFILE("CloneValueFromOtherCompartment");
 	ScriptRequest rq(this);
 	JS::RootedValue out(rq.cx);
-	shared_ptr<StructuredClone> structuredClone = otherCompartment.WriteStructuredClone(val);
+	ScriptInterface::StructuredClone structuredClone = otherCompartment.WriteStructuredClone(val, sameThread);
 	ReadStructuredClone(structuredClone, &out);
 	return out.get();
 }
 
-ScriptInterface::StructuredClone::StructuredClone() :
-	m_Data(NULL), m_Size(0)
-{
-}
-
-ScriptInterface::StructuredClone::~StructuredClone()
-{
-	if (m_Data)
-		JS_ClearStructuredClone(m_Data, m_Size, NULL, NULL);
-}
-
-shared_ptr<ScriptInterface::StructuredClone> ScriptInterface::WriteStructuredClone(JS::HandleValue v) const
+ScriptInterface::StructuredClone ScriptInterface::WriteStructuredClone(JS::HandleValue v, bool sameThread) const
 {
 	ScriptRequest rq(this);
-	u64* data = NULL;
-	size_t nbytes = 0;
-	if (!JS_WriteStructuredClone(rq.cx, v, &data, &nbytes, NULL, NULL, JS::UndefinedHandleValue))
+
+	JS::StructuredCloneScope scope = sameThread ? JS::StructuredCloneScope::SameProcessSameThread : JS::StructuredCloneScope::SameProcessDifferentThread;
+	ScriptInterface::StructuredClone ret(new JSStructuredCloneData(scope));
+	JS::CloneDataPolicy policy;
+
+	if (!JS_WriteStructuredClone(rq.cx, v, ret.get(), scope, policy, nullptr, nullptr, JS::UndefinedHandleValue))
 	{
 		debug_warn(L"Writing a structured clone with JS_WriteStructuredClone failed!");
 		ScriptException::CatchPending(rq);
-		return shared_ptr<StructuredClone>();
+		return ScriptInterface::StructuredClone();
 	}
 
-	shared_ptr<StructuredClone> ret(new StructuredClone);
-	ret->m_Data = data;
-	ret->m_Size = nbytes;
 	return ret;
 }
 
-void ScriptInterface::ReadStructuredClone(const shared_ptr<ScriptInterface::StructuredClone>& ptr, JS::MutableHandleValue ret) const
+void ScriptInterface::ReadStructuredClone(const ScriptInterface::StructuredClone& ptr, JS::MutableHandleValue ret) const
 {
 	ScriptRequest rq(this);
-	if (!JS_ReadStructuredClone(rq.cx, ptr->m_Data, ptr->m_Size, JS_STRUCTURED_CLONE_VERSION, ret, NULL, NULL))
+	if (!JS_ReadStructuredClone(rq.cx, *ptr, JS_STRUCTURED_CLONE_VERSION, ptr->scope(), ret, nullptr, nullptr))
 		ScriptException::CatchPending(rq);
 }

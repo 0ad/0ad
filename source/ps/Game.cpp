@@ -243,7 +243,7 @@ void CGame::RegisterInit(const JS::HandleValue attribs, const std::string& saved
 		scriptInterface.GetProperty(attribs, "script", scriptFile);
 		scriptInterface.GetProperty(attribs, "settings", &settings);
 
-		m_World->RegisterInitRMS(scriptFile, scriptInterface.GetJSRuntime(), settings, m_PlayerID);
+		m_World->RegisterInitRMS(scriptFile, *scriptInterface.GetContext(), settings, m_PlayerID);
 	}
 	else
 	{
@@ -252,7 +252,7 @@ void CGame::RegisterInit(const JS::HandleValue attribs, const std::string& saved
 		scriptInterface.GetProperty(attribs, "map", mapFile);
 		scriptInterface.GetProperty(attribs, "settings", &settings);
 
-		m_World->RegisterInit(mapFile, scriptInterface.GetJSRuntime(), settings, m_PlayerID);
+		m_World->RegisterInit(mapFile, *scriptInterface.GetContext(), settings, m_PlayerID);
 	}
 	if (m_GameView)
 		RegMemFun(g_Renderer.GetSingletonPtr()->GetWaterManager(), &WaterManager::LoadWaterTextures, L"LoadWaterTextures", 80);

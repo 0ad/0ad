@@ -66,7 +66,7 @@ public:
 		JS::RootedValue val(rq.cx);
 		scriptInterface.CreateObject(rq, &val);
 
-		std::shared_ptr<ScriptInterface::StructuredClone> data = scriptInterface.WriteStructuredClone(JS::NullHandleValue);
+		ScriptInterface::StructuredClone data = scriptInterface.WriteStructuredClone(JS::NullHandleValue, true);
 		g_GUI->PushPage(L"hotkey/page_hotkey.xml", data, JS::UndefinedHandleValue);
 
 		// Press 'a'.

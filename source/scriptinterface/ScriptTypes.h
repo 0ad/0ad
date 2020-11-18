@@ -55,6 +55,8 @@
 #if MSC_VERSION
 // reduce the warning level for the SpiderMonkey headers
 # pragma warning(push, 1)
+// ignore C4291 in <mozilla/Vector.h>
+# pragma warning(disable: 4291)
 #endif
 
 #include "jspubtd.h"

@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -110,18 +110,18 @@ public:
 };
 
 CSimulationMessage::CSimulationMessage(const ScriptInterface& scriptInterface) :
-	CNetMessage(NMT_SIMULATION_COMMAND), m_ScriptInterface(scriptInterface), m_Data(scriptInterface.GetJSRuntime())
+	CNetMessage(NMT_SIMULATION_COMMAND), m_ScriptInterface(scriptInterface), m_Data(scriptInterface.GetGeneralJSContext())
 {
 }
 
 CSimulationMessage::CSimulationMessage(const ScriptInterface& scriptInterface, u32 client, i32 player, u32 turn, JS::HandleValue data) :
 	CNetMessage(NMT_SIMULATION_COMMAND), m_ScriptInterface(scriptInterface),
-	m_Client(client), m_Player(player), m_Turn(turn), m_Data(scriptInterface.GetJSRuntime(), data)
+	m_Client(client), m_Player(player), m_Turn(turn), m_Data(scriptInterface.GetGeneralJSContext(), data)
 {
 }
 
 CSimulationMessage::CSimulationMessage(const CSimulationMessage& orig) :
-	m_Data(orig.m_ScriptInterface.GetJSRuntime()),
+	m_Data(orig.m_ScriptInterface.GetGeneralJSContext()),
 	m_Client(orig.m_Client),
 	m_Player(orig.m_Player),
 	m_ScriptInterface(orig.m_ScriptInterface),
@@ -185,13 +185,13 @@ CStr CSimulationMessage::ToString() const
 
 
 CGameSetupMessage::CGameSetupMessage(const ScriptInterface& scriptInterface) :
-	CNetMessage(NMT_GAME_SETUP), m_ScriptInterface(scriptInterface), m_Data(scriptInterface.GetJSRuntime())
+	CNetMessage(NMT_GAME_SETUP), m_ScriptInterface(scriptInterface), m_Data(scriptInterface.GetGeneralJSContext())
 {
 }
 
 CGameSetupMessage::CGameSetupMessage(const ScriptInterface& scriptInterface, JS::HandleValue data) :
 	CNetMessage(NMT_GAME_SETUP), m_ScriptInterface(scriptInterface),
-	m_Data(scriptInterface.GetJSRuntime(), data)
+	m_Data(scriptInterface.GetGeneralJSContext(), data)
 {
 }
 

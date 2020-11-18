@@ -119,7 +119,14 @@ public:
 	void SetCallbackData(void* pCBData);
 	static CmptPrivate* GetScriptInterfaceAndCBData(JSContext* cx);
 
-	JSRuntime* GetJSRuntime() const;
+	/**
+	 * GetGeneralJSContext returns the context without starting a GC request and without
+	 * entering the ScriptInterface compartment. It should only be used in specific situations,
+	 * for instance when initializing a persistent rooted.
+	 * If you need the compartmented context of the ScriptInterface, you should create a
+	 * ScriptInterface::Request and use the context from that.
+	 */
+	JSContext* GetGeneralJSContext() const;
 	shared_ptr<ScriptContext> GetContext() const;
 
 	/**
@@ -290,14 +297,6 @@ public:
 	bool LoadGlobalScriptFile(const VfsPath& path) const;
 
 	/**
-	 * Construct a new value (usable in this ScriptInterface's compartment) by cloning
-	 * a value from a different compartment.
-	 * Complex values (functions, XML, etc) won't be cloned correctly, but basic
-	 * types and cyclic references should be fine.
-	 */
-	JS::Value CloneValueFromOtherCompartment(const ScriptInterface& otherCompartment, JS::HandleValue val) const;
-
-	/**
 	 * Convert a JS::Value to a C++ type. (This might trigger GC.)
 	 */
 	template<typename T> static bool FromJSVal(const ScriptRequest& rq, const JS::HandleValue val, T& ret);
@@ -331,18 +330,18 @@ public:
 	 * We wrap them in shared_ptr so memory management is automatic and
 	 * thread-safe.
 	 */
-	class StructuredClone
-	{
-		NONCOPYABLE(StructuredClone);
-	public:
-		StructuredClone();
-		~StructuredClone();
-		u64* m_Data;
-		size_t m_Size;
-	};
+	using StructuredClone = shared_ptr<JSStructuredCloneData>;
 
-	shared_ptr<StructuredClone> WriteStructuredClone(JS::HandleValue v) const;
-	void ReadStructuredClone(const shared_ptr<StructuredClone>& ptr, JS::MutableHandleValue ret) const;
+	StructuredClone WriteStructuredClone(JS::HandleValue v, bool sameThread) const;
+	void ReadStructuredClone(const StructuredClone& ptr, JS::MutableHandleValue ret) const;
+
+	/**
+	 * Construct a new value (usable in this ScriptInterface's compartment) by cloning
+	 * a value from a different compartment.
+	 * Complex values (functions, XML, etc) won't be cloned correctly, but basic
+	 * types and cyclic references should be fine.
+	 */
+	JS::Value CloneValueFromOtherCompartment(const ScriptInterface& otherCompartment, JS::HandleValue val, bool sameThread) const;
 
 	/**
 	 * Retrieve the private data field of a JSObject that is an instance of the given JSClass.
