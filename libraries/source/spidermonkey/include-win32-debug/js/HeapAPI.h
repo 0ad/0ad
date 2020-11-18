@@ -17,11 +17,6 @@
 /* These values are private to the JS engine. */
 namespace js {
 
-// Whether the current thread is permitted access to any part of the specified
-// runtime or zone.
-JS_FRIEND_API(bool)
-CurrentThreadCanAccessRuntime(JSRuntime* rt);
-
 JS_FRIEND_API(bool)
 CurrentThreadCanAccessZone(JS::Zone* zone);
 
@@ -56,7 +51,9 @@ const size_t ChunkMarkBitmapBits = 129024;
 const size_t ChunkRuntimeOffset = ChunkSize - sizeof(void*);
 const size_t ChunkTrailerSize = 2 * sizeof(uintptr_t) + sizeof(uint64_t);
 const size_t ChunkLocationOffset = ChunkSize - ChunkTrailerSize;
-const size_t ArenaZoneOffset = 0;
+const size_t ArenaZoneOffset = sizeof(size_t);
+const size_t ArenaHeaderSize = sizeof(size_t) + 2 * sizeof(uintptr_t) +
+                               sizeof(size_t) + sizeof(uintptr_t);
 
 /*
  * Live objects are marked black. How many other additional colors are available
@@ -67,19 +64,15 @@ static const uint32_t BLACK = 0;
 static const uint32_t GRAY = 1;
 
 /*
- * The "location" field in the Chunk trailer is a bit vector indicting various
- * roles of the chunk.
- *
- * The value 0 for the "location" field is invalid, at least one bit must be
- * set.
- *
- * Some bits preclude others, for example, any "nursery" bit precludes any
- * "tenured" or "middle generation" bit.
+ * The "location" field in the Chunk trailer is a enum indicating various roles
+ * of the chunk.
  */
-const uintptr_t ChunkLocationBitNursery = 1;       // Standard GGC nursery
-const uintptr_t ChunkLocationBitTenuredHeap = 2;   // Standard GGC tenured generation
-
-const uintptr_t ChunkLocationAnyNursery = ChunkLocationBitNursery;
+enum class ChunkLocation : uint32_t
+{
+    Invalid = 0,
+    Nursery = 1,
+    TenuredHeap = 2
+};
 
 #ifdef JS_DEBUG
 /* When downcasting, ensure we are actually the right type. */
@@ -113,13 +106,20 @@ struct Zone
     JSTracer* const barrierTracer_;     // A pointer to the JSRuntime's |gcMarker|.
 
   public:
+    // Stack GC roots for Rooted GC pointers.
+    js::RootedListHeads stackRoots_;
+    template <typename T> friend class JS::Rooted;
+
     bool needsIncrementalBarrier_;
 
     Zone(JSRuntime* runtime, JSTracer* barrierTracerArg)
       : runtime_(runtime),
         barrierTracer_(barrierTracerArg),
         needsIncrementalBarrier_(false)
-    {}
+    {
+        for (auto& stackRootPtr : stackRoots_)
+            stackRootPtr = nullptr;
+    }
 
     bool needsIncrementalBarrier() const {
         return needsIncrementalBarrier_;
@@ -142,7 +142,7 @@ struct Zone
         return runtime_;
     }
 
-    static JS::shadow::Zone* asShadowZone(JS::Zone* zone) {
+    static MOZ_ALWAYS_INLINE JS::shadow::Zone* asShadowZone(JS::Zone* zone) {
         return reinterpret_cast<JS::shadow::Zone*>(zone);
     }
 };
@@ -280,14 +280,6 @@ GetGCThingMarkBitmap(const uintptr_t addr)
     return reinterpret_cast<uintptr_t*>(bmap_addr);
 }
 
-static MOZ_ALWAYS_INLINE JS::shadow::Runtime*
-GetGCThingRuntime(const uintptr_t addr)
-{
-    MOZ_ASSERT(addr);
-    const uintptr_t rt_addr = (addr & ~ChunkMask) | ChunkRuntimeOffset;
-    return *reinterpret_cast<JS::shadow::Runtime**>(rt_addr);
-}
-
 static MOZ_ALWAYS_INLINE void
 GetGCThingMarkWordAndMask(const uintptr_t addr, uint32_t color,
                           uintptr_t** wordp, uintptr_t* maskp)
@@ -310,15 +302,29 @@ GetGCThingZone(const uintptr_t addr)
 
 }
 
+static MOZ_ALWAYS_INLINE JS::shadow::Runtime*
+GetCellRuntime(const Cell* cell)
+{
+    MOZ_ASSERT(cell);
+    const uintptr_t addr = uintptr_t(cell);
+    const uintptr_t rt_addr = (addr & ~ChunkMask) | ChunkRuntimeOffset;
+    return *reinterpret_cast<JS::shadow::Runtime**>(rt_addr);
+}
+
 static MOZ_ALWAYS_INLINE bool
 CellIsMarkedGray(const Cell* cell)
 {
     MOZ_ASSERT(cell);
-    MOZ_ASSERT(!js::gc::IsInsideNursery(cell));
+    if (js::gc::IsInsideNursery(cell))
+        return false;
+
     uintptr_t* word, mask;
     js::gc::detail::GetGCThingMarkWordAndMask(uintptr_t(cell), js::gc::GRAY, &word, &mask);
     return *word & mask;
 }
+
+extern JS_PUBLIC_API(bool)
+CellIsMarkedGrayIfKnown(const Cell* cell);
 
 } /* namespace detail */
 
@@ -330,9 +336,9 @@ IsInsideNursery(const js::gc::Cell* cell)
     uintptr_t addr = uintptr_t(cell);
     addr &= ~js::gc::ChunkMask;
     addr |= js::gc::ChunkLocationOffset;
-    uint32_t location = *reinterpret_cast<uint32_t*>(addr);
-    MOZ_ASSERT(location != 0);
-    return location & ChunkLocationAnyNursery;
+    auto location = *reinterpret_cast<ChunkLocation*>(addr);
+    MOZ_ASSERT(location == ChunkLocation::Nursery || location == ChunkLocation::TenuredHeap);
+    return location == ChunkLocation::Nursery;
 }
 
 } /* namespace gc */
@@ -357,39 +363,15 @@ extern JS_PUBLIC_API(Zone*)
 GetObjectZone(JSObject* obj);
 
 static MOZ_ALWAYS_INLINE bool
-ObjectIsTenured(JSObject* obj)
-{
-    return !js::gc::IsInsideNursery(reinterpret_cast<js::gc::Cell*>(obj));
-}
-
-static MOZ_ALWAYS_INLINE bool
-ObjectIsMarkedGray(JSObject* obj)
-{
-    /*
-     * GC things residing in the nursery cannot be gray: they have no mark bits.
-     * All live objects in the nursery are moved to tenured at the beginning of
-     * each GC slice, so the gray marker never sees nursery things.
-     */
-    if (js::gc::IsInsideNursery(reinterpret_cast<js::gc::Cell*>(obj)))
-        return false;
-    return js::gc::detail::CellIsMarkedGray(reinterpret_cast<js::gc::Cell*>(obj));
-}
-
-static MOZ_ALWAYS_INLINE bool
-ScriptIsMarkedGray(JSScript* script)
-{
-    return js::gc::detail::CellIsMarkedGray(reinterpret_cast<js::gc::Cell*>(script));
-}
-
-static MOZ_ALWAYS_INLINE bool
 GCThingIsMarkedGray(GCCellPtr thing)
 {
-    if (js::gc::IsInsideNursery(thing.asCell()))
-        return false;
     if (thing.mayBeOwnedByOtherRuntime())
         return false;
-    return js::gc::detail::CellIsMarkedGray(thing.asCell());
+    return js::gc::detail::CellIsMarkedGrayIfKnown(thing.asCell());
 }
+
+extern JS_PUBLIC_API(JS::TraceKind)
+GCThingTraceKind(void* thing);
 
 } /* namespace JS */
 
@@ -401,8 +383,11 @@ IsIncrementalBarrierNeededOnTenuredGCThing(JS::shadow::Runtime* rt, const JS::GC
 {
     MOZ_ASSERT(thing);
     MOZ_ASSERT(!js::gc::IsInsideNursery(thing.asCell()));
-    if (rt->isHeapBusy())
-        return false;
+
+    // TODO: I'd like to assert !isHeapBusy() here but this gets called while we
+    // are tracing the heap, e.g. during memory reporting (see bug 1313318).
+    MOZ_ASSERT(!rt->isHeapCollecting());
+
     JS::Zone* zone = JS::GetTenuredGCThingZone(thing);
     return JS::shadow::Zone::asShadowZone(zone)->needsIncrementalBarrier();
 }

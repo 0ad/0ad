@@ -30,9 +30,9 @@
 struct jsid
 {
     size_t asBits;
-    bool operator==(jsid rhs) const { return asBits == rhs.asBits; }
-    bool operator!=(jsid rhs) const { return asBits != rhs.asBits; }
-};
+    bool operator==(const jsid& rhs) const { return asBits == rhs.asBits; }
+    bool operator!=(const jsid& rhs) const { return asBits != rhs.asBits; }
+} JS_HAZ_GC_POINTER;
 #define JSID_BITS(id) (id.asBits)
 
 #define JSID_TYPE_STRING                 0x0
@@ -67,12 +67,6 @@ JSID_TO_STRING(jsid id)
  */
 JS_PUBLIC_API(jsid)
 INTERNED_STRING_TO_JSID(JSContext* cx, JSString* str);
-
-static MOZ_ALWAYS_INLINE bool
-JSID_IS_ZERO(jsid id)
-{
-    return JSID_BITS(id) == 0;
-}
 
 static MOZ_ALWAYS_INLINE bool
 JSID_IS_INT(jsid id)
@@ -166,20 +160,36 @@ extern JS_PUBLIC_DATA(const jsid) JSID_EMPTY;
 extern JS_PUBLIC_DATA(const JS::HandleId) JSID_VOIDHANDLE;
 extern JS_PUBLIC_DATA(const JS::HandleId) JSID_EMPTYHANDLE;
 
+namespace JS {
+
+template <>
+struct GCPolicy<jsid>
+{
+    static jsid initial() { return JSID_VOID; }
+    static void trace(JSTracer* trc, jsid* idp, const char* name) {
+        js::UnsafeTraceManuallyBarrieredEdge(trc, idp, name);
+    }
+};
+
+} // namespace JS
+
 namespace js {
 
 template <>
-struct GCMethods<jsid>
+struct BarrierMethods<jsid>
 {
-    static jsid initial() { return JSID_VOID; }
     static void postBarrier(jsid* idp, jsid prev, jsid next) {}
+    static void exposeToJS(jsid id) {
+        if (JSID_IS_GCTHING(id))
+            js::gc::ExposeGCThingToActiveJS(JSID_TO_GCTHING(id));
+    }
 };
 
 // If the jsid is a GC pointer type, convert to that type and call |f| with
 // the pointer. If the jsid is not a GC type, calls F::defaultValue.
 template <typename F, typename... Args>
 auto
-DispatchTyped(F f, jsid& id, Args&&... args)
+DispatchTyped(F f, const jsid& id, Args&&... args)
   -> decltype(f(static_cast<JSString*>(nullptr), mozilla::Forward<Args>(args)...))
 {
     if (JSID_IS_STRING(id))

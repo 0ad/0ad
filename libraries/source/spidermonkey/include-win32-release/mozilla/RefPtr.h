@@ -19,6 +19,28 @@ class nsCOMPtr_helper;
 
 namespace mozilla {
 template<class T> class OwningNonNull;
+template<class T> class StaticRefPtr;
+
+// Traditionally, RefPtr supports automatic refcounting of any pointer type
+// with AddRef() and Release() methods that follow the traditional semantics.
+//
+// This traits class can be specialized to operate on other pointer types. For
+// example, we specialize this trait for opaque FFI types that represent
+// refcounted objects in Rust.
+//
+// Given the use of ConstRemovingRefPtrTraits below, U should not be a const-
+// qualified type.
+template<class U>
+struct RefPtrTraits
+{
+  static void AddRef(U* aPtr) {
+    aPtr->AddRef();
+  }
+  static void Release(U* aPtr) {
+    aPtr->Release();
+  }
+};
+
 } // namespace mozilla
 
 template <class T>
@@ -29,7 +51,7 @@ private:
   assign_with_AddRef(T* aRawPtr)
   {
     if (aRawPtr) {
-      AddRefTraits<T>::AddRef(aRawPtr);
+      ConstRemovingRefPtrTraits<T>::AddRef(aRawPtr);
     }
     assign_assuming_AddRef(aRawPtr);
   }
@@ -40,7 +62,7 @@ private:
     T* oldPtr = mRawPtr;
     mRawPtr = aNewPtr;
     if (oldPtr) {
-      AddRefTraits<T>::Release(oldPtr);
+      ConstRemovingRefPtrTraits<T>::Release(oldPtr);
     }
   }
 
@@ -53,14 +75,14 @@ public:
   ~RefPtr()
   {
     if (mRawPtr) {
-      AddRefTraits<T>::Release(mRawPtr);
+      ConstRemovingRefPtrTraits<T>::Release(mRawPtr);
     }
   }
 
   // Constructors
 
   RefPtr()
-    : mRawPtr(0)
+    : mRawPtr(nullptr)
     // default constructor
   {
   }
@@ -70,7 +92,7 @@ public:
     // copy-constructor
   {
     if (mRawPtr) {
-      AddRefTraits<T>::AddRef(mRawPtr);
+      ConstRemovingRefPtrTraits<T>::AddRef(mRawPtr);
     }
   }
 
@@ -86,8 +108,13 @@ public:
     : mRawPtr(aRawPtr)
   {
     if (mRawPtr) {
-      AddRefTraits<T>::AddRef(mRawPtr);
+      ConstRemovingRefPtrTraits<T>::AddRef(mRawPtr);
     }
+  }
+
+  MOZ_IMPLICIT RefPtr(decltype(nullptr))
+    : mRawPtr(nullptr)
+  {
   }
 
   template <typename I>
@@ -110,7 +137,7 @@ public:
     // copy-construct from a smart pointer with a related pointer type
   {
     if (mRawPtr) {
-      AddRefTraits<T>::AddRef(mRawPtr);
+      ConstRemovingRefPtrTraits<T>::AddRef(mRawPtr);
     }
   }
 
@@ -127,7 +154,18 @@ public:
   template<class U>
   MOZ_IMPLICIT RefPtr(const mozilla::OwningNonNull<U>& aOther);
 
+  // Defined in StaticPtr.h
+  template<class U>
+  MOZ_IMPLICIT RefPtr(const mozilla::StaticRefPtr<U>& aOther);
+
   // Assignment operators
+
+  RefPtr<T>&
+  operator=(decltype(nullptr))
+  {
+    assign_assuming_AddRef(nullptr);
+    return *this;
+  }
 
   RefPtr<T>&
   operator=(const RefPtr<T>& aRhs)
@@ -187,6 +225,11 @@ public:
   RefPtr<T>&
   operator=(const mozilla::OwningNonNull<U>& aOther);
 
+  // Defined in StaticPtr.h
+  template<class U>
+  RefPtr<T>&
+  operator=(const mozilla::StaticRefPtr<U>& aOther);
+
   // Other pointer operators
 
   void
@@ -212,7 +255,7 @@ public:
   // return the value of mRawPtr and null out mRawPtr. Useful for
   // already_AddRefed return values.
   {
-    T* temp = 0;
+    T* temp = nullptr;
     swap(temp);
     return already_AddRefed<T>(temp);
   }
@@ -227,7 +270,7 @@ public:
   {
     MOZ_ASSERT(aRhs, "Null pointer passed to forget!");
     *aRhs = mRawPtr;
-    mRawPtr = 0;
+    mRawPtr = nullptr;
   }
 
   T*
@@ -272,7 +315,7 @@ public:
   T*
   operator->() const MOZ_NO_ADDREF_RELEASE_ON_RETURN
   {
-    MOZ_ASSERT(mRawPtr != 0,
+    MOZ_ASSERT(mRawPtr != nullptr,
                "You can't dereference a NULL RefPtr with operator->().");
     return get();
   }
@@ -299,7 +342,7 @@ public:
   template <typename R, typename... Args>
   Proxy<R, Args...> operator->*(R (T::*aFptr)(Args...)) const
   {
-    MOZ_ASSERT(mRawPtr != 0,
+    MOZ_ASSERT(mRawPtr != nullptr,
                "You can't dereference a NULL RefPtr with operator->*().");
     return Proxy<R, Args...>(get(), aFptr);
   }
@@ -324,7 +367,7 @@ public:
   T&
   operator*() const
   {
-    MOZ_ASSERT(mRawPtr != 0,
+    MOZ_ASSERT(mRawPtr != nullptr,
                "You can't dereference a NULL RefPtr with operator*().");
     return *get();
   }
@@ -332,7 +375,7 @@ public:
   T**
   StartAssignment()
   {
-    assign_assuming_AddRef(0);
+    assign_assuming_AddRef(nullptr);
     return reinterpret_cast<T**>(&mRawPtr);
   }
 private:
@@ -346,40 +389,24 @@ private:
   // This should be sound because while |RefPtr<const T>| provides a
   // const view of an object, the object itself should not be const (it
   // would have to be allocated as |new const T| or similar to be const).
-
-  // Because some classes make their AddRef/Release implementations private
-  // and then friend RefPtr to make them visible, we redirect AddRefTraits's
-  // calls to static helper functions in RefPtr so we don't have to figure
-  // out how to make AddRefTraits visible to *those* classes.
-  static MOZ_ALWAYS_INLINE void
-  AddRefTraitsAddRefHelper(typename mozilla::RemoveConst<T>::Type* aPtr)
-  {
-    aPtr->AddRef();
-  }
-  static MOZ_ALWAYS_INLINE void
-  AddRefTraitsReleaseHelper(typename mozilla::RemoveConst<T>::Type* aPtr)
-  {
-    aPtr->Release();
-  }
-
   template<class U>
-  struct AddRefTraits
+  struct ConstRemovingRefPtrTraits
   {
     static void AddRef(U* aPtr) {
-      RefPtr<T>::AddRefTraitsAddRefHelper(aPtr);
+      mozilla::RefPtrTraits<U>::AddRef(aPtr);
     }
     static void Release(U* aPtr) {
-      RefPtr<T>::AddRefTraitsReleaseHelper(aPtr);
+      mozilla::RefPtrTraits<U>::Release(aPtr);
     }
   };
   template<class U>
-  struct AddRefTraits<const U>
+  struct ConstRemovingRefPtrTraits<const U>
   {
     static void AddRef(const U* aPtr) {
-      RefPtr<T>::AddRefTraitsAddRefHelper(const_cast<U*>(aPtr));
+      mozilla::RefPtrTraits<U>::AddRef(const_cast<U*>(aPtr));
     }
     static void Release(const U* aPtr) {
-      RefPtr<T>::AddRefTraitsReleaseHelper(const_cast<U*>(aPtr));
+      mozilla::RefPtrTraits<U>::Release(const_cast<U*>(aPtr));
     }
   };
 };
@@ -591,7 +618,15 @@ operator!=(decltype(nullptr), const RefPtr<T>& aRhs)
 
 template <class T>
 inline already_AddRefed<T>
-do_AddRef(T*&& aObj)
+do_AddRef(T* aObj)
+{
+  RefPtr<T> ref(aObj);
+  return ref.forget();
+}
+
+template <class T>
+inline already_AddRefed<T>
+do_AddRef(const RefPtr<T>& aObj)
 {
   RefPtr<T> ref(aObj);
   return ref.forget();

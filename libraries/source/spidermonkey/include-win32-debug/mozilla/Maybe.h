@@ -16,6 +16,7 @@
 #include "mozilla/TypeTraits.h"
 
 #include <new>  // for placement new
+#include <type_traits>
 
 namespace mozilla {
 
@@ -101,10 +102,51 @@ public:
     }
   }
 
+  /**
+   * Maybe<T*> can be copy-constructed from a Maybe<U*> if U* and T* are
+   * compatible, or from Maybe<decltype(nullptr)>.
+   */
+  template<typename U,
+           typename =
+             typename std::enable_if<std::is_pointer<T>::value &&
+                                     (std::is_same<U, decltype(nullptr)>::value ||
+                                      (std::is_pointer<U>::value &&
+                                       std::is_base_of<typename std::remove_pointer<T>::type,
+                                                       typename std::remove_pointer<U>::type>::value))>::type>
+  MOZ_IMPLICIT
+  Maybe(const Maybe<U>& aOther)
+    : mIsSome(false)
+  {
+    if (aOther.isSome()) {
+      emplace(*aOther);
+    }
+  }
+
   Maybe(Maybe&& aOther)
     : mIsSome(false)
   {
     if (aOther.mIsSome) {
+      emplace(Move(*aOther));
+      aOther.reset();
+    }
+  }
+
+  /**
+   * Maybe<T*> can be move-constructed from a Maybe<U*> if U* and T* are
+   * compatible, or from Maybe<decltype(nullptr)>.
+   */
+  template<typename U,
+           typename =
+             typename std::enable_if<std::is_pointer<T>::value &&
+                                     (std::is_same<U, decltype(nullptr)>::value ||
+                                      (std::is_pointer<U>::value &&
+                                       std::is_base_of<typename std::remove_pointer<T>::type,
+                                                       typename std::remove_pointer<U>::type>::value))>::type>
+  MOZ_IMPLICIT
+  Maybe(Maybe<U>&& aOther)
+    : mIsSome(false)
+  {
+    if (aOther.isSome()) {
       emplace(Move(*aOther));
       aOther.reset();
     }
@@ -324,53 +366,57 @@ public:
 
   /* If |isSome()|, runs the provided function or functor on the contents of
    * this Maybe. */
-  template<typename F, typename... Args>
-  void apply(F&& aFunc, Args&&... aArgs)
+  template<typename Func>
+  Maybe& apply(Func aFunc)
   {
     if (isSome()) {
-      aFunc(ref(), Forward<Args>(aArgs)...);
+      aFunc(ref());
     }
+    return *this;
   }
 
-  template<typename F, typename... Args>
-  void apply(F&& aFunc, Args&&... aArgs) const
+  template<typename Func>
+  const Maybe& apply(Func aFunc) const
   {
     if (isSome()) {
-      aFunc(ref(), Forward<Args>(aArgs)...);
+      aFunc(ref());
     }
+    return *this;
   }
 
   /*
    * If |isSome()|, runs the provided function and returns the result wrapped
    * in a Maybe. If |isNothing()|, returns an empty Maybe value.
    */
-  template<typename R, typename... FArgs, typename... Args>
-  Maybe<R> map(R (*aFunc)(T&, FArgs...), Args&&... aArgs)
+  template<typename Func>
+  auto map(Func aFunc) -> Maybe<decltype(aFunc(DeclVal<Maybe<T>>().ref()))>
   {
+    using ReturnType = decltype(aFunc(ref()));
     if (isSome()) {
-      Maybe<R> val;
-      val.emplace(aFunc(ref(), Forward<Args>(aArgs)...));
+      Maybe<ReturnType> val;
+      val.emplace(aFunc(ref()));
       return val;
     }
-    return Maybe<R>();
+    return Maybe<ReturnType>();
   }
 
-  template<typename R, typename... FArgs, typename... Args>
-  Maybe<R> map(R (*aFunc)(const T&, FArgs...), Args&&... aArgs) const
+  template<typename Func>
+  auto map(Func aFunc) const -> Maybe<decltype(aFunc(DeclVal<Maybe<T>>().ref()))>
   {
+    using ReturnType = decltype(aFunc(ref()));
     if (isSome()) {
-      Maybe<R> val;
-      val.emplace(aFunc(ref(), Forward<Args>(aArgs)...));
+      Maybe<ReturnType> val;
+      val.emplace(aFunc(ref()));
       return val;
     }
-    return Maybe<R>();
+    return Maybe<ReturnType>();
   }
 
   /* If |isSome()|, empties this Maybe and destroys its contents. */
   void reset()
   {
     if (isSome()) {
-      ref().~T();
+      ref().T::~T();
       mIsSome = false;
     }
   }

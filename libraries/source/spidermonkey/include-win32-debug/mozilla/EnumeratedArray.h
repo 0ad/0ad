@@ -10,6 +10,7 @@
 #define mozilla_EnumeratedArray_h
 
 #include "mozilla/Array.h"
+#include "mozilla/Move.h"
 
 namespace mozilla {
 
@@ -53,10 +54,22 @@ private:
 public:
   EnumeratedArray() {}
 
+  template <typename... Args>
+  MOZ_IMPLICIT EnumeratedArray(Args&&... aArgs)
+    : mArray{mozilla::Forward<Args>(aArgs)...}
+  {}
+
   explicit EnumeratedArray(const EnumeratedArray& aOther)
   {
     for (size_t i = 0; i < kSize; i++) {
       mArray[i] = aOther.mArray[i];
+    }
+  }
+
+  EnumeratedArray(EnumeratedArray&& aOther)
+  {
+    for (size_t i = 0; i < kSize; i++) {
+      mArray[i] = Move(aOther.mArray[i]);
     }
   }
 

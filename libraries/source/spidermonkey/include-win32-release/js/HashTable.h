@@ -11,6 +11,7 @@
 #include "mozilla/Assertions.h"
 #include "mozilla/Attributes.h"
 #include "mozilla/Casting.h"
+#include "mozilla/HashFunctions.h"
 #include "mozilla/MemoryReporting.h"
 #include "mozilla/Move.h"
 #include "mozilla/Opaque.h"
@@ -34,6 +35,16 @@ namespace detail {
 
 /*****************************************************************************/
 
+// The "generation" of a hash table is an opaque value indicating the state of
+// modification of the hash table through its lifetime.  If the generation of
+// a hash table compares equal at times T1 and T2, then lookups in the hash
+// table, pointers to (or into) hash table entries, etc. at time T1 are valid
+// at time T2.  If the generation compares unequal, these computations are all
+// invalid and must be performed again to be used.
+//
+// Generations are meaningfully comparable only with respect to a single hash
+// table.  It's always nonsensical to compare the generation of distinct hash
+// tables H1 and H2.
 using Generation = mozilla::Opaque<uint64_t>;
 
 // A JS-friendly, STL-like container providing a hash-based map from keys to
@@ -61,6 +72,7 @@ class HashMap
 
     struct MapHashPolicy : HashPolicy
     {
+        using Base = HashPolicy;
         typedef Key KeyType;
         static const Key& getKey(TableEntry& e) { return e.key(); }
         static void setKey(TableEntry& e, Key& k) { HashPolicy::rekey(e.mutableKey(), k); }
@@ -76,8 +88,8 @@ class HashMap
     // HashMap construction is fallible (due to OOM); thus the user must call
     // init after constructing a HashMap and check the return value.
     explicit HashMap(AllocPolicy a = AllocPolicy()) : impl(a)  {}
-    bool init(uint32_t len = 16)                      { return impl.init(len); }
-    bool initialized() const                          { return impl.initialized(); }
+    MOZ_MUST_USE bool init(uint32_t len = 16) { return impl.init(len); }
+    bool initialized() const                  { return impl.initialized(); }
 
     // Return whether the given lookup value is present in the map. E.g.:
     //
@@ -139,19 +151,19 @@ class HashMap
     }
 
     template<typename KeyInput, typename ValueInput>
-    bool add(AddPtr& p, KeyInput&& k, ValueInput&& v) {
+    MOZ_MUST_USE bool add(AddPtr& p, KeyInput&& k, ValueInput&& v) {
         return impl.add(p,
                         mozilla::Forward<KeyInput>(k),
                         mozilla::Forward<ValueInput>(v));
     }
 
     template<typename KeyInput>
-    bool add(AddPtr& p, KeyInput&& k) {
+    MOZ_MUST_USE bool add(AddPtr& p, KeyInput&& k) {
         return impl.add(p, mozilla::Forward<KeyInput>(k), Value());
     }
 
     template<typename KeyInput, typename ValueInput>
-    bool relookupOrAdd(AddPtr& p, KeyInput&& k, ValueInput&& v) {
+    MOZ_MUST_USE bool relookupOrAdd(AddPtr& p, KeyInput&& k, ValueInput&& v) {
         return impl.relookupOrAdd(p, k,
                                   mozilla::Forward<KeyInput>(k),
                                   mozilla::Forward<ValueInput>(v));
@@ -208,8 +220,6 @@ class HashMap
         return mallocSizeOf(this) + impl.sizeOfExcludingThis(mallocSizeOf);
     }
 
-    // If |generation()| is the same before and after a HashMap operation,
-    // pointers into the table remain valid.
     Generation generation() const {
         return impl.generation();
     }
@@ -222,7 +232,7 @@ class HashMap
 
     // Overwrite existing value with v. Return false on oom.
     template<typename KeyInput, typename ValueInput>
-    bool put(KeyInput&& k, ValueInput&& v) {
+    MOZ_MUST_USE bool put(KeyInput&& k, ValueInput&& v) {
         AddPtr p = lookupForAdd(k);
         if (p) {
             p->value() = mozilla::Forward<ValueInput>(v);
@@ -233,7 +243,7 @@ class HashMap
 
     // Like put, but assert that the given key is not already present.
     template<typename KeyInput, typename ValueInput>
-    bool putNew(KeyInput&& k, ValueInput&& v) {
+    MOZ_MUST_USE bool putNew(KeyInput&& k, ValueInput&& v) {
         return impl.putNew(k, mozilla::Forward<KeyInput>(k), mozilla::Forward<ValueInput>(v));
     }
 
@@ -248,7 +258,9 @@ class HashMap
         AddPtr p = lookupForAdd(k);
         if (p)
             return p;
-        (void)add(p, k, defaultValue);  // p is left false-y on oom.
+        bool ok = add(p, k, defaultValue);
+        MOZ_ASSERT_IF(!ok, !p); // p is left false-y on oom.
+        (void)ok;
         return p;
     }
 
@@ -313,6 +325,7 @@ class HashSet
 {
     struct SetOps : HashPolicy
     {
+        using Base = HashPolicy;
         typedef T KeyType;
         static const KeyType& getKey(const T& t) { return t; }
         static void setKey(T& t, KeyType& k) { HashPolicy::rekey(t, k); }
@@ -328,8 +341,8 @@ class HashSet
     // HashSet construction is fallible (due to OOM); thus the user must call
     // init after constructing a HashSet and check the return value.
     explicit HashSet(AllocPolicy a = AllocPolicy()) : impl(a)  {}
-    bool init(uint32_t len = 16)                      { return impl.init(len); }
-    bool initialized() const                          { return impl.initialized(); }
+    MOZ_MUST_USE bool init(uint32_t len = 16) { return impl.init(len); }
+    bool initialized() const                  { return impl.initialized(); }
 
     // Return whether the given lookup value is present in the map. E.g.:
     //
@@ -386,12 +399,12 @@ class HashSet
     AddPtr lookupForAdd(const Lookup& l) const        { return impl.lookupForAdd(l); }
 
     template <typename U>
-    bool add(AddPtr& p, U&& u) {
+    MOZ_MUST_USE bool add(AddPtr& p, U&& u) {
         return impl.add(p, mozilla::Forward<U>(u));
     }
 
     template <typename U>
-    bool relookupOrAdd(AddPtr& p, const Lookup& l, U&& u) {
+    MOZ_MUST_USE bool relookupOrAdd(AddPtr& p, const Lookup& l, U&& u) {
         return impl.relookupOrAdd(p, l, mozilla::Forward<U>(u));
     }
 
@@ -446,8 +459,6 @@ class HashSet
         return mallocSizeOf(this) + impl.sizeOfExcludingThis(mallocSizeOf);
     }
 
-    // If |generation()| is the same before and after a HashSet operation,
-    // pointers into the table remain valid.
     Generation generation() const {
         return impl.generation();
     }
@@ -460,19 +471,19 @@ class HashSet
 
     // Add |u| if it is not present already. Return false on oom.
     template <typename U>
-    bool put(U&& u) {
+    MOZ_MUST_USE bool put(U&& u) {
         AddPtr p = lookupForAdd(u);
         return p ? true : add(p, mozilla::Forward<U>(u));
     }
 
     // Like put, but assert that the given key is not already present.
     template <typename U>
-    bool putNew(U&& u) {
+    MOZ_MUST_USE bool putNew(U&& u) {
         return impl.putNew(u, mozilla::Forward<U>(u));
     }
 
     template <typename U>
-    bool putNew(const Lookup& l, U&& u) {
+    MOZ_MUST_USE bool putNew(const Lookup& l, U&& u) {
         return impl.putNew(l, mozilla::Forward<U>(u));
     }
 
@@ -503,11 +514,16 @@ class HashSet
         return false;
     }
 
-    // Infallibly rekey one entry with a new key that is equivalent.
-    void rekeyInPlace(Ptr p, const T& new_value)
-    {
+    // Infallibly replace the current key at |p| with an equivalent key.
+    // Specifically, both HashPolicy::hash and HashPolicy::match must return
+    // identical results for the new and old key when applied against all
+    // possible matching values.
+    void replaceKey(Ptr p, const T& new_value) {
+        MOZ_ASSERT(p.found());
+        MOZ_ASSERT(*p != new_value);
+        MOZ_ASSERT(HashPolicy::hash(*p) == HashPolicy::hash(new_value));
         MOZ_ASSERT(HashPolicy::match(*p, new_value));
-        impl.rekeyInPlace(p, new_value);
+        const_cast<T&>(*p) = new_value;
     }
 
     // HashSet is movable
@@ -606,21 +622,21 @@ template <class T>
 struct DefaultHasher<T*> : PointerHasher<T*, mozilla::tl::FloorLog2<sizeof(void*)>::value>
 {};
 
-// Specialize hashing policy for mozilla::UniquePtr<T> to proxy the UniquePtr's
+// Specialize hashing policy for mozilla::UniquePtr to proxy the UniquePtr's
 // raw pointer to PointerHasher.
-template <class T>
-struct DefaultHasher<mozilla::UniquePtr<T>>
+template <class T, class D>
+struct DefaultHasher<mozilla::UniquePtr<T, D>>
 {
-    using Lookup = mozilla::UniquePtr<T>;
+    using Lookup = mozilla::UniquePtr<T, D>;
     using PtrHasher = PointerHasher<T*, mozilla::tl::FloorLog2<sizeof(void*)>::value>;
 
     static HashNumber hash(const Lookup& l) {
         return PtrHasher::hash(l.get());
     }
-    static bool match(const mozilla::UniquePtr<T>& k, const Lookup& l) {
+    static bool match(const mozilla::UniquePtr<T, D>& k, const Lookup& l) {
         return PtrHasher::match(k.get(), l.get());
     }
-    static void rekey(mozilla::UniquePtr<T>& k, mozilla::UniquePtr<T>&& newKey) {
+    static void rekey(mozilla::UniquePtr<T, D>& k, mozilla::UniquePtr<T, D>&& newKey) {
         k = mozilla::Move(newKey);
     }
 };
@@ -655,6 +671,50 @@ struct DefaultHasher<float>
     }
 };
 
+// A hash policy that compares C strings.
+struct CStringHasher
+{
+    typedef const char* Lookup;
+    static js::HashNumber hash(Lookup l) {
+        return mozilla::HashString(l);
+    }
+    static bool match(const char* key, Lookup lookup) {
+        return strcmp(key, lookup) == 0;
+    }
+};
+
+// Fallible hashing interface.
+//
+// Most of the time generating a hash code is infallible so this class provides
+// default methods that always succeed.  Specialize this class for your own hash
+// policy to provide fallible hashing.
+//
+// This is used by MovableCellHasher to handle the fact that generating a unique
+// ID for cell pointer may fail due to OOM.
+template <typename HashPolicy>
+struct FallibleHashMethods
+{
+    // Return true if a hashcode is already available for its argument.  Once
+    // this returns true for a specific argument it must continue to do so.
+    template <typename Lookup> static bool hasHash(Lookup&& l) { return true; }
+
+    // Fallible method to ensure a hashcode exists for its argument and create
+    // one if not.  Returns false on error, e.g. out of memory.
+    template <typename Lookup> static bool ensureHash(Lookup&& l) { return true; }
+};
+
+template <typename HashPolicy, typename Lookup>
+static bool
+HasHash(Lookup&& l) {
+    return FallibleHashMethods<typename HashPolicy::Base>::hasHash(mozilla::Forward<Lookup>(l));
+}
+
+template <typename HashPolicy, typename Lookup>
+static bool
+EnsureHash(Lookup&& l) {
+    return FallibleHashMethods<typename HashPolicy::Base>::ensureHash(mozilla::Forward<Lookup>(l));
+}
+
 /*****************************************************************************/
 
 // Both HashMap and HashSet are implemented by a single HashTable that is even
@@ -683,6 +743,11 @@ class HashMapEntry
       : key_(mozilla::Move(rhs.key_)),
         value_(mozilla::Move(rhs.value_))
     {}
+
+    void operator=(HashMapEntry&& rhs) {
+        key_ = mozilla::Move(rhs.key_);
+        value_ = mozilla::Move(rhs.value_);
+    }
 
     typedef Key KeyType;
     typedef Value ValueType;
@@ -754,8 +819,16 @@ class HashTableEntry
     }
 
     void swap(HashTableEntry* other) {
+        if (this == other)
+            return;
+        MOZ_ASSERT(isLive());
+        if (other->isLive()) {
+            mozilla::Swap(*mem.addr(), *other->mem.addr());
+        } else {
+            *other->mem.addr() = mozilla::Move(*mem.addr());
+            destroy();
+        }
         mozilla::Swap(keyHash, other->keyHash);
-        mozilla::Swap(mem, other->mem);
     }
 
     T& get() { MOZ_ASSERT(isLive()); return *mem.addr(); }
@@ -819,14 +892,21 @@ class HashTable : private AllocPolicy
         {}
 
       public:
-        // Leaves Ptr uninitialized.
-        Ptr() {
+        Ptr()
+          : entry_(nullptr)
 #ifdef JS_DEBUG
-            entry_ = (Entry*)0xbad;
+          , table_(nullptr)
+          , generation(0)
 #endif
+        {}
+
+        bool isValid() const {
+            return !entry_;
         }
 
         bool found() const {
+            if (isValid())
+                return false;
 #ifdef JS_DEBUG
             MOZ_ASSERT(generation == table_->generation());
 #endif
@@ -851,6 +931,7 @@ class HashTable : private AllocPolicy
 
         T& operator*() const {
 #ifdef JS_DEBUG
+            MOZ_ASSERT(found());
             MOZ_ASSERT(generation == table_->generation());
 #endif
             return entry_->get();
@@ -858,6 +939,7 @@ class HashTable : private AllocPolicy
 
         T* operator->() const {
 #ifdef JS_DEBUG
+            MOZ_ASSERT(found());
             MOZ_ASSERT(generation == table_->generation());
 #endif
             return &entry_->get();
@@ -882,8 +964,7 @@ class HashTable : private AllocPolicy
         {}
 
       public:
-        // Leaves AddPtr uninitialized.
-        AddPtr() {}
+        AddPtr() : keyHash(0) {}
     };
 
     // A collection of hash table entries. The collection is enumerated by
@@ -1173,7 +1254,7 @@ class HashTable : private AllocPolicy
 #endif
     {}
 
-    MOZ_WARN_UNUSED_RESULT bool init(uint32_t length)
+    MOZ_MUST_USE bool init(uint32_t length)
     {
         MOZ_ASSERT(!initialized());
 
@@ -1543,6 +1624,33 @@ class HashTable : private AllocPolicy
         // which approach is best.
     }
 
+    // Note: |l| may be a reference to a piece of |u|, so this function
+    // must take care not to use |l| after moving |u|.
+    //
+    // Prefer to use putNewInfallible; this function does not check
+    // invariants.
+    template <typename... Args>
+    void putNewInfallibleInternal(const Lookup& l, Args&&... args)
+    {
+        MOZ_ASSERT(table);
+
+        HashNumber keyHash = prepareHash(l);
+        Entry* entry = &findFreeEntry(keyHash);
+        MOZ_ASSERT(entry);
+
+        if (entry->isRemoved()) {
+            METER(stats.addOverRemoved++);
+            removedCount--;
+            keyHash |= sCollisionBit;
+        }
+
+        entry->setLive(keyHash, mozilla::Forward<Args>(args)...);
+        entryCount++;
+#ifdef JS_DEBUG
+        mutationCount++;
+#endif
+    }
+
   public:
     void clear()
     {
@@ -1622,12 +1730,16 @@ class HashTable : private AllocPolicy
     Ptr lookup(const Lookup& l) const
     {
         mozilla::ReentrancyGuard g(*this);
+        if (!HasHash<HashPolicy>(l))
+            return Ptr();
         HashNumber keyHash = prepareHash(l);
         return Ptr(lookup(l, keyHash, 0), *this);
     }
 
     Ptr readonlyThreadsafeLookup(const Lookup& l) const
     {
+        if (!HasHash<HashPolicy>(l))
+            return Ptr();
         HashNumber keyHash = prepareHash(l);
         return Ptr(lookup(l, keyHash, 0), *this);
     }
@@ -1635,6 +1747,8 @@ class HashTable : private AllocPolicy
     AddPtr lookupForAdd(const Lookup& l) const
     {
         mozilla::ReentrancyGuard g(*this);
+        if (!EnsureHash<HashPolicy>(l))
+            return AddPtr();
         HashNumber keyHash = prepareHash(l);
         Entry& entry = lookup(l, keyHash, sCollisionBit);
         AddPtr p(entry, *this, keyHash);
@@ -1642,12 +1756,16 @@ class HashTable : private AllocPolicy
     }
 
     template <typename... Args>
-    bool add(AddPtr& p, Args&&... args)
+    MOZ_MUST_USE bool add(AddPtr& p, Args&&... args)
     {
         mozilla::ReentrancyGuard g(*this);
         MOZ_ASSERT(table);
         MOZ_ASSERT(!p.found());
         MOZ_ASSERT(!(p.keyHash & sCollisionBit));
+
+        // Check for error from ensureHash() here.
+        if (p.isValid())
+            return false;
 
         // Changing an entry from removed to live does not affect whether we
         // are overloaded and can be handled separately.
@@ -1662,7 +1780,7 @@ class HashTable : private AllocPolicy
             RebuildStatus status = checkOverloaded();
             if (status == RehashFailed)
                 return false;
-            if (!this->checkSimulatedOOM())
+            if (status == NotOverloaded && !this->checkSimulatedOOM())
                 return false;
             if (status == Rehashed)
                 p.entry_ = &findFreeEntry(p.keyHash);
@@ -1683,31 +1801,20 @@ class HashTable : private AllocPolicy
     template <typename... Args>
     void putNewInfallible(const Lookup& l, Args&&... args)
     {
-        MOZ_ASSERT(table);
-
-        HashNumber keyHash = prepareHash(l);
-        Entry* entry = &findFreeEntry(keyHash);
-        MOZ_ASSERT(entry);
-
-        if (entry->isRemoved()) {
-            METER(stats.addOverRemoved++);
-            removedCount--;
-            keyHash |= sCollisionBit;
-        }
-
-        entry->setLive(keyHash, mozilla::Forward<Args>(args)...);
-        entryCount++;
-#ifdef JS_DEBUG
-        mutationCount++;
-#endif
+        MOZ_ASSERT(!lookup(l).found());
+        mozilla::ReentrancyGuard g(*this);
+        putNewInfallibleInternal(l, mozilla::Forward<Args>(args)...);
     }
 
     // Note: |l| may be alias arguments in |args|, so this function must take
     // care not to use |l| after moving |args|.
     template <typename... Args>
-    bool putNew(const Lookup& l, Args&&... args)
+    MOZ_MUST_USE bool putNew(const Lookup& l, Args&&... args)
     {
         if (!this->checkSimulatedOOM())
+            return false;
+
+        if (!EnsureHash<HashPolicy>(l))
             return false;
 
         if (checkOverloaded() == RehashFailed)
@@ -1720,8 +1827,12 @@ class HashTable : private AllocPolicy
     // Note: |l| may be a reference to a piece of |u|, so this function
     // must take care not to use |l| after moving |u|.
     template <typename... Args>
-    bool relookupOrAdd(AddPtr& p, const Lookup& l, Args&&... args)
+    MOZ_MUST_USE bool relookupOrAdd(AddPtr& p, const Lookup& l, Args&&... args)
     {
+        // Check for error from ensureHash() here.
+        if (p.isValid())
+            return false;
+
 #ifdef JS_DEBUG
         p.generation = generation();
         p.mutationCount = mutationCount;
@@ -1751,21 +1862,13 @@ class HashTable : private AllocPolicy
         typename HashTableEntry<T>::NonConstT t(mozilla::Move(*p));
         HashPolicy::setKey(t, const_cast<Key&>(k));
         remove(*p.entry_);
-        putNewInfallible(l, mozilla::Move(t));
+        putNewInfallibleInternal(l, mozilla::Move(t));
     }
 
     void rekeyAndMaybeRehash(Ptr p, const Lookup& l, const Key& k)
     {
         rekeyWithoutRehash(p, l, k);
         checkOverRemoved();
-    }
-
-    void rekeyInPlace(Ptr p, const Key& k)
-    {
-        MOZ_ASSERT(table);
-        mozilla::ReentrancyGuard g(*this);
-        MOZ_ASSERT(p.found());
-        HashPolicy::rekey(const_cast<Key&>(*p), const_cast<Key&>(k));
     }
 
 #undef METER

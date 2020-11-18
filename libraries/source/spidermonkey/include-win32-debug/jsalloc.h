@@ -51,7 +51,7 @@ class SystemAllocPolicy
 };
 
 class ExclusiveContext;
-void ReportOutOfMemory(ExclusiveContext* cxArg);
+JS_FRIEND_API(void) ReportOutOfMemory(ExclusiveContext* cxArg);
 
 /*
  * Allocation policy that calls the system memory functions and reports errors
@@ -132,7 +132,7 @@ class TempAllocPolicy
 
     bool checkSimulatedOOM() const {
         if (js::oom::ShouldFailWithOOM()) {
-            JS_ReportOutOfMemory(reinterpret_cast<JSContext*>(cx_));
+            js::ReportOutOfMemory(reinterpret_cast<ExclusiveContext*>(cx_));
             return false;
         }
 
