@@ -44,6 +44,7 @@ GarrisonHolder.prototype.Init = function()
 	this.entities = [];
 	this.timer = undefined;
 	this.allowGarrisoning = new Map();
+	this.allowedClasses = ApplyValueModificationsToEntity("GarrisonHolder/List/_string", this.template.List._string, this.entity);
 };
 
 /**
@@ -82,7 +83,7 @@ GarrisonHolder.prototype.GetEntities = function()
  */
 GarrisonHolder.prototype.GetAllowedClasses = function()
 {
-	return this.template.List._string;
+	return this.allowedClasses;
 };
 
 GarrisonHolder.prototype.GetCapacity = function()
@@ -153,7 +154,7 @@ GarrisonHolder.prototype.IsAllowedToGarrison = function(entity)
 		return false;
 
 	let entityClasses = cmpIdentity.GetClassesList();
-	return MatchesClassList(entityClasses, this.template.List._string) && !!Engine.QueryInterface(entity, IID_Garrisonable);
+	return MatchesClassList(entityClasses, this.allowedClasses) && !!Engine.QueryInterface(entity, IID_Garrisonable);
 };
 
 /**
@@ -652,7 +653,16 @@ GarrisonHolder.prototype.OnGlobalInitGame = function(msg)
 
 GarrisonHolder.prototype.OnValueModification = function(msg)
 {
-	if (msg.component != "GarrisonHolder" || msg.valueNames.indexOf("GarrisonHolder/BuffHeal") == -1)
+	if (msg.component != "GarrisonHolder")
+		return;
+
+	if (msg.valueNames.indexOf("GarrisonHolder/List/_string") !== -1)
+	{
+		this.allowedClasses = ApplyValueModificationsToEntity("GarrisonHolder/List/_string", this.template.List._string, this.entity);
+		this.EjectOrKill(this.entities.filter(entity => !this.IsAllowedToGarrison(entity)));
+	}
+
+	if (msg.valueNames.indexOf("GarrisonHolder/BuffHeal") === -1)
 		return;
 
 	if (this.timer && this.GetHealRate() == 0)
