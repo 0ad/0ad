@@ -5,7 +5,7 @@ set -e
 # This should match the version in config/milestone.txt
 FOLDER="mozjs-52.9.1pre1"
 # If same-version changes are needed, increment this.
-LIB_VERSION="52.9.1pre1+0"
+LIB_VERSION="52.9.1pre1+1"
 LIB_NAME="mozjs52-ps"
 
 # Since this script is called by update-workspaces.sh, we want to quickly
@@ -138,7 +138,7 @@ else
     LIB_SUFFIX=.so.1.0
   elif [ "`uname -s`" = "Darwin" ];
   then
-    LIB_SUFFIX=.so
+    LIB_SUFFIX=.a
   fi
 fi
 
