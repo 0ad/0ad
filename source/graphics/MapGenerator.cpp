@@ -92,7 +92,7 @@ void* CMapGeneratorWorker::RunThread(CMapGeneratorWorker* self)
 	shared_ptr<ScriptContext> mapgenContext = ScriptContext::CreateContext(RMS_CONTEXT_SIZE);
 
 	// Enable the script to be aborted
-	JS_SetInterruptCallback(mapgenContext->GetJSRuntime(), MapGeneratorInterruptCallback);
+	JS_AddInterruptCallback(mapgenContext->GetGeneralJSContext(), MapGeneratorInterruptCallback);
 
 	self->m_ScriptInterface = new ScriptInterface("Engine", "MapGenerator", mapgenContext);
 
@@ -214,7 +214,7 @@ double CMapGeneratorWorker::GetMicroseconds(ScriptInterface::CmptPrivate* UNUSED
 	return JS_Now();
 }
 
-shared_ptr<ScriptInterface::StructuredClone> CMapGeneratorWorker::GetResults()
+ScriptInterface::StructuredClone CMapGeneratorWorker::GetResults()
 {
 	std::lock_guard<std::mutex> lock(m_WorkerMutex);
 	return m_MapData;
@@ -232,7 +232,7 @@ void CMapGeneratorWorker::ExportMap(ScriptInterface::CmptPrivate* pCmptPrivate, 
 
 	// Copy results
 	std::lock_guard<std::mutex> lock(self->m_WorkerMutex);
-	self->m_MapData = self->m_ScriptInterface->WriteStructuredClone(data);
+	self->m_MapData = self->m_ScriptInterface->WriteStructuredClone(data, false);
 	self->m_Progress = 0;
 }
 
@@ -427,7 +427,7 @@ int CMapGenerator::GetProgress()
 	return m_Worker->GetProgress();
 }
 
-shared_ptr<ScriptInterface::StructuredClone> CMapGenerator::GetResults()
+ScriptInterface::StructuredClone CMapGenerator::GetResults()
 {
 	return m_Worker->GetResults();
 }

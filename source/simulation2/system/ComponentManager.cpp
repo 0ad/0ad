@@ -43,7 +43,7 @@ public:
 	virtual JS::Value ToJSVal(const ScriptInterface& UNUSED(scriptInterface)) const { return msg.get(); }
 
 	CMessageScripted(const ScriptInterface& scriptInterface, int mtid, const std::string& name, JS::HandleValue msg) :
-		mtid(mtid), handlerName("On" + name), globalHandlerName("OnGlobal" + name), msg(scriptInterface.GetJSRuntime(), msg)
+		mtid(mtid), handlerName("On" + name), globalHandlerName("OnGlobal" + name), msg(scriptInterface.GetGeneralJSContext(), msg)
 	{
 	}
 
@@ -53,9 +53,9 @@ public:
 	JS::PersistentRootedValue msg;
 };
 
-CComponentManager::CComponentManager(CSimContext& context, shared_ptr<ScriptContext> rt, bool skipScriptFunctions) :
+CComponentManager::CComponentManager(CSimContext& context, shared_ptr<ScriptContext> cx, bool skipScriptFunctions) :
 	m_NextScriptComponentTypeId(CID__LastNative),
-	m_ScriptInterface("Engine", "Simulation", rt),
+	m_ScriptInterface("Engine", "Simulation", cx),
 	m_SimContext(context), m_CurrentlyHotloading(false)
 {
 	context.SetComponentManager(this);

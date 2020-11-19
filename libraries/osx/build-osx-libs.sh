@@ -48,12 +48,11 @@ MINIUPNPC_VERSION="miniupnpc-2.0.20180222"
 SODIUM_VERSION="libsodium-1.0.18"
 # --------------------------------------------------------------
 # Bundled with the game:
-# * SpiderMonkey 45
+# * SpiderMonkey
 # * NVTT
 # * FCollada
 # --------------------------------------------------------------
 # We use suffixes here in order to force rebuilding when patching these libs
-SPIDERMONKEY_VERSION="mozjs-45.0.2+wildfiregames.2"
 NVTT_VERSION="nvtt-2.1.1+wildfiregames.1"
 FCOLLADA_VERSION="fcollada-3.05+wildfiregames.1"
 # --------------------------------------------------------------
@@ -911,88 +910,16 @@ popd > /dev/null
 # be customized, so we build and install them from bundled sources
 # --------------------------------------------------------------------
 # SpiderMonkey - bundled, no download
-echo -e "Building SpiderMonkey..."
-
-LIB_VERSION="${SPIDERMONKEY_VERSION}"
-LIB_DIRECTORY="mozjs-45.0.2"
-LIB_ARCHIVE="$LIB_DIRECTORY.tar.bz2"
-
 pushd ../source/spidermonkey/ > /dev/null
 
-if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ "$(<.already-built)" != "$LIB_VERSION" ]]
+if [[ "$force_rebuild" = "true" ]]
 then
-  INSTALL_DIR="$(pwd)"
-  INCLUDE_DIR_DEBUG=$INSTALL_DIR/include-unix-debug
-  INCLUDE_DIR_RELEASE=$INSTALL_DIR/include-unix-release
-
   rm -f .already-built
-  rm -f lib/*.a
-  rm -rf $LIB_DIRECTORY $INCLUDE_DIR_DEBUG $INCLUDE_DIR_RELEASE
-  tar -xf $LIB_ARCHIVE
-
-  # Apply patches
-  pushd $LIB_DIRECTORY
-  . ../patch.sh
-  popd
-
-  pushd $LIB_DIRECTORY/js/src
-
-  CONF_OPTS="--target=$ARCH-apple-darwin
-    --prefix=${INSTALL_DIR}
-    --enable-posix-nspr-emulation
-    --with-system-zlib=${ZLIB_DIR}
-    --disable-tests
-    --disable-shared-js
-    --disable-jemalloc
-    --without-intl-api"
-  # Change the default location where the tracelogger should store its output, which is /tmp/ on OSX.
-  TLCXXFLAGS='-DTRACE_LOG_DIR="\"../../source/tools/tracelogger/\""'
-  if [[ $MIN_OSX_VERSION && ${MIN_OSX_VERSION-_} ]]; then
-    CONF_OPTS="$CONF_OPTS --enable-macos-target=$MIN_OSX_VERSION"
-  fi
-  if [[ $SYSROOT && ${SYSROOT-_} ]]; then
-    CONF_OPTS="$CONF_OPTS --with-macosx-sdk=$SYSROOT"
-  fi
-
-  # We want separate debug/release versions of the library, so change their install name in the Makefile
-  perl -i.bak -pe 's/(^STATIC_LIBRARY_NAME\s+=).*/$1'\''mozjs45-ps-debug'\''/' moz.build
-  mkdir -p build-debug
-  pushd build-debug
-  (CC="clang" CXX="clang++" CXXFLAGS="${TLCXXFLAGS}" AR=ar CROSS_COMPILE=1 \
-    ../configure $CONF_OPTS \
-        --enable-debug \
-        --disable-optimize \
-        --enable-js-diagnostics \
-        --enable-gczeal \
-    && make ${JOBS}) || die "SpiderMonkey build failed"
-  # js-config.h is different for debug and release builds, so we need different include directories for both
-  mkdir -p $INCLUDE_DIR_DEBUG
-  cp -R -L dist/include/* $INCLUDE_DIR_DEBUG/
-  cp dist/sdk/lib/*.a $INSTALL_DIR/lib
-  cp js/src/*.a $INSTALL_DIR/lib
-  popd
-  mv moz.build.bak moz.build
-
-  perl -i.bak -pe 's/(^STATIC_LIBRARY_NAME\s+=).*/$1'\''mozjs45-ps-release'\''/' moz.build
-  mkdir -p build-release
-  pushd build-release
-  (CC="clang" CXX="clang++" CXXFLAGS="${TLCXXFLAGS}" AR=ar CROSS_COMPILE=1 \
-    ../configure $CONF_OPTS \
-        --enable-optimize \
-    && make ${JOBS}) || die "SpiderMonkey build failed"
-  # js-config.h is different for debug and release builds, so we need different include directories for both
-  mkdir -p $INCLUDE_DIR_RELEASE
-  cp -R -L dist/include/* $INCLUDE_DIR_RELEASE/
-  cp dist/sdk/lib/*.a $INSTALL_DIR/lib
-  cp js/src/*.a $INSTALL_DIR/lib
-  popd
-  mv moz.build.bak moz.build
-  
-  popd
-  echo "$LIB_VERSION" > .already-built
-else
-  already_built
 fi
+
+# Use the regular build script for SM.
+JOBS="$JOBS" ZLIB_DIR="$ZLIB_DIR" ./build.sh
+
 popd > /dev/null
 
 # --------------------------------------------------------------

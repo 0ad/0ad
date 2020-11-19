@@ -29,6 +29,9 @@
 #include "ps/ConfigDB.h"
 #include "ps/Profiler2.h"
 
+#include <deque>
+#include <stack>
+
 #if !CONFIG2_GLES
 
 class CProfiler2GPU_base

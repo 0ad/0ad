@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,7 +23,10 @@
 #include "scriptinterface/ScriptInterface.h"
 
 JSClass JSI_GUISize::JSI_class = {
-	"GUISize", 0,
+	"GUISize", 0, &JSI_GUISize::JSI_classops
+};
+
+JSClassOps JSI_GUISize::JSI_classops = {
 	nullptr, nullptr,
 	nullptr, nullptr,
 	nullptr, nullptr, nullptr, nullptr,

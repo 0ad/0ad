@@ -74,7 +74,7 @@ private:
 	};
 
 public:
-	CComponentManager(CSimContext&, shared_ptr<ScriptContext> rt, bool skipScriptFunctions = false);
+	CComponentManager(CSimContext&, shared_ptr<ScriptContext> cx, bool skipScriptFunctions = false);
 	~CComponentManager();
 
 	void LoadComponentTypes();

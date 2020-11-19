@@ -54,7 +54,7 @@ struct BuildDirEntListState
 
 	BuildDirEntListState(ScriptInterface* scriptInterface)
 		: pScriptInterface(scriptInterface),
-		filename_array(scriptInterface->GetJSRuntime()),
+		filename_array(scriptInterface->GetGeneralJSContext()),
 		cur_idx(0)
 	{
 		ScriptRequest rq(pScriptInterface);

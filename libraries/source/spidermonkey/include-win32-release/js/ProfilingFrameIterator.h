@@ -11,20 +11,24 @@
 #include "mozilla/Maybe.h"
 
 #include "jsbytecode.h"
+#include "js/GCAPI.h"
 #include "js/TypeDecls.h"
 #include "js/Utility.h"
 
+struct JSContext;
 struct JSRuntime;
 class JSScript;
 
 namespace js {
     class Activation;
-    class AsmJSProfilingFrameIterator;
     namespace jit {
         class JitActivation;
         class JitProfilingFrameIterator;
         class JitcodeGlobalEntry;
     } // namespace jit
+    namespace wasm {
+        class ProfilingFrameIterator;
+    } // namespace wasm
 } // namespace js
 
 namespace JS {
@@ -36,6 +40,10 @@ struct ForEachTrackedOptimizationTypeInfoOp;
 // arbitrary pc. To provide acurate results, profiling must have been enabled
 // (via EnableRuntimeProfilingStack) before executing the callstack being
 // unwound.
+//
+// Note that the caller must not do anything that could cause GC to happen while
+// the iterator is alive, since this could invalidate Ion code and cause its
+// contents to become out of date.
 class JS_PUBLIC_API(ProfilingFrameIterator)
 {
     JSRuntime* rt_;
@@ -47,17 +55,19 @@ class JS_PUBLIC_API(ProfilingFrameIterator)
     // activation (if any) comes around.
     void* savedPrevJitTop_;
 
+    JS::AutoCheckCannotGC nogc_;
+
     static const unsigned StorageSpace = 8 * sizeof(void*);
     mozilla::AlignedStorage<StorageSpace> storage_;
-    js::AsmJSProfilingFrameIterator& asmJSIter() {
+    js::wasm::ProfilingFrameIterator& wasmIter() {
         MOZ_ASSERT(!done());
-        MOZ_ASSERT(isAsmJS());
-        return *reinterpret_cast<js::AsmJSProfilingFrameIterator*>(storage_.addr());
+        MOZ_ASSERT(isWasm());
+        return *reinterpret_cast<js::wasm::ProfilingFrameIterator*>(storage_.addr());
     }
-    const js::AsmJSProfilingFrameIterator& asmJSIter() const {
+    const js::wasm::ProfilingFrameIterator& wasmIter() const {
         MOZ_ASSERT(!done());
-        MOZ_ASSERT(isAsmJS());
-        return *reinterpret_cast<const js::AsmJSProfilingFrameIterator*>(storage_.addr());
+        MOZ_ASSERT(isWasm());
+        return *reinterpret_cast<const js::wasm::ProfilingFrameIterator*>(storage_.addr());
     }
 
     js::jit::JitProfilingFrameIterator& jitIter() {
@@ -87,7 +97,7 @@ class JS_PUBLIC_API(ProfilingFrameIterator)
         void* lr;
     };
 
-    ProfilingFrameIterator(JSRuntime* rt, const RegisterState& state,
+    ProfilingFrameIterator(JSContext* cx, const RegisterState& state,
                            uint32_t sampleBufferGen = UINT32_MAX);
     ~ProfilingFrameIterator();
     void operator++();
@@ -104,7 +114,7 @@ class JS_PUBLIC_API(ProfilingFrameIterator)
     {
       Frame_Baseline,
       Frame_Ion,
-      Frame_AsmJS
+      Frame_Wasm
     };
 
     struct Frame
@@ -113,10 +123,10 @@ class JS_PUBLIC_API(ProfilingFrameIterator)
         void* stackAddress;
         void* returnAddress;
         void* activation;
-        const char* label;
+        UniqueChars label;
     };
 
-    bool isAsmJS() const;
+    bool isWasm() const;
     bool isJit() const;
 
     uint32_t extractStack(Frame* frames, uint32_t offset, uint32_t end) const;
@@ -133,7 +143,7 @@ class JS_PUBLIC_API(ProfilingFrameIterator)
 };
 
 JS_FRIEND_API(bool)
-IsProfilingEnabledForRuntime(JSRuntime* runtime);
+IsProfilingEnabledForContext(JSContext* cx);
 
 /**
  * After each sample run, this method should be called with the latest sample
@@ -144,7 +154,7 @@ IsProfilingEnabledForRuntime(JSRuntime* runtime);
  * JSRuntime for documentation about what these values are used for.
  */
 JS_FRIEND_API(void)
-UpdateJSRuntimeProfilerSampleBufferGen(JSRuntime* runtime, uint32_t generation,
+UpdateJSContextProfilerSampleBufferGen(JSContext* cx, uint32_t generation,
                                        uint32_t lapCount);
 
 struct ForEachProfiledFrameOp
@@ -153,7 +163,7 @@ struct ForEachProfiledFrameOp
     // lookups on JitcodeGlobalTable.
     class MOZ_STACK_CLASS FrameHandle
     {
-        friend JS_PUBLIC_API(void) ForEachProfiledFrame(JSRuntime* rt, void* addr,
+        friend JS_PUBLIC_API(void) ForEachProfiledFrame(JSContext* cx, void* addr,
                                                         ForEachProfiledFrameOp& op);
 
         JSRuntime* rt_;
@@ -175,10 +185,13 @@ struct ForEachProfiledFrameOp
         bool hasTrackedOptimizations() const { return optsIndex_.isSome(); }
         void* canonicalAddress() const { return canonicalAddr_; }
 
-        ProfilingFrameIterator::FrameKind frameKind() const;
-        void forEachOptimizationAttempt(ForEachTrackedOptimizationAttemptOp& op,
-                                        JSScript** scriptOut, jsbytecode** pcOut) const;
-        void forEachOptimizationTypeInfo(ForEachTrackedOptimizationTypeInfoOp& op) const;
+        JS_PUBLIC_API(ProfilingFrameIterator::FrameKind) frameKind() const;
+        JS_PUBLIC_API(void) forEachOptimizationAttempt(ForEachTrackedOptimizationAttemptOp& op,
+                                                       JSScript** scriptOut,
+                                                       jsbytecode** pcOut) const;
+
+        JS_PUBLIC_API(void)
+        forEachOptimizationTypeInfo(ForEachTrackedOptimizationTypeInfoOp& op) const;
     };
 
     // Called once per frame.
@@ -186,7 +199,7 @@ struct ForEachProfiledFrameOp
 };
 
 JS_PUBLIC_API(void)
-ForEachProfiledFrame(JSRuntime* rt, void* addr, ForEachProfiledFrameOp& op);
+ForEachProfiledFrame(JSContext* cx, void* addr, ForEachProfiledFrameOp& op);
 
 } // namespace JS
 

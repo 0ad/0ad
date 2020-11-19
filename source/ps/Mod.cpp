@@ -28,7 +28,6 @@
 #include "ps/GameSetup/GameSetup.h"
 #include "ps/GameSetup/Paths.h"
 #include "ps/Pyrogenesis.h"
-#include "scriptinterface/ScriptContext.h"
 #include "scriptinterface/ScriptInterface.h"
 
 std::vector<CStr> g_modsLoaded;

@@ -12,7 +12,6 @@
 #include "mozilla/Assertions.h"
 #include "mozilla/Attributes.h"
 #include "mozilla/MemoryReporting.h"
-#include "mozilla/UniquePtr.h"
 
 #include "jsapi.h"
 #include "jspubtd.h"
@@ -26,9 +25,6 @@ class Debugger;
 } // namespace js
 
 namespace JS {
-
-using mozilla::UniquePtr;
-
 namespace dbg {
 
 // Helping embedding code build objects for Debugger
@@ -154,7 +150,7 @@ class Builder {
         // A rooted reference to our value.
         PersistentRooted<T> value;
 
-        BuiltThing(JSContext* cx, Builder& owner_, T value_ = js::GCMethods<T>::initial())
+        BuiltThing(JSContext* cx, Builder& owner_, T value_ = GCPolicy<T>::initial())
           : owner(owner_), value(cx, value_)
         {
             owner.assertBuilt(value_);
@@ -261,15 +257,15 @@ class BuilderOrigin : public Builder {
 // and returns the number of bytes allocated to that block. SpiderMonkey itself
 // doesn't know which function is appropriate to use, but the embedding does.
 
-// Tell Debuggers in |runtime| to use |mallocSizeOf| to find the size of
+// Tell Debuggers in |cx| to use |mallocSizeOf| to find the size of
 // malloc'd blocks.
 JS_PUBLIC_API(void)
-SetDebuggerMallocSizeOf(JSRuntime* runtime, mozilla::MallocSizeOf mallocSizeOf);
+SetDebuggerMallocSizeOf(JSContext* cx, mozilla::MallocSizeOf mallocSizeOf);
 
-// Get the MallocSizeOf function that the given runtime is using to find the
+// Get the MallocSizeOf function that the given context is using to find the
 // size of malloc'd blocks.
 JS_PUBLIC_API(mozilla::MallocSizeOf)
-GetDebuggerMallocSizeOf(JSRuntime* runtime);
+GetDebuggerMallocSizeOf(JSContext* cx);
 
 
 
@@ -344,7 +340,7 @@ GetDebuggeeGlobals(JSContext* cx, JSObject& dbgObj, AutoObjectVector& vector);
 // call the appropriate |Entry| member function to indicate where we've begun
 // execution.
 
-class MOZ_STACK_CLASS AutoEntryMonitor {
+class MOZ_STACK_CLASS JS_PUBLIC_API(AutoEntryMonitor) {
     JSRuntime* runtime_;
     AutoEntryMonitor* savedMonitor_;
 
@@ -355,20 +351,25 @@ class MOZ_STACK_CLASS AutoEntryMonitor {
     // SpiderMonkey reports the JavaScript entry points occuring within this
     // AutoEntryMonitor's scope to the following member functions, which the
     // embedding is expected to override.
+    //
+    // It is important to note that |asyncCause| is owned by the caller and its
+    // lifetime must outlive the lifetime of the AutoEntryMonitor object. It is
+    // strongly encouraged that |asyncCause| be a string constant or similar
+    // statically allocated string.
 
     // We have begun executing |function|. Note that |function| may not be the
     // actual closure we are running, but only the canonical function object to
     // which the script refers.
     virtual void Entry(JSContext* cx, JSFunction* function,
                        HandleValue asyncStack,
-                       HandleString asyncCause) = 0;
+                       const char* asyncCause) = 0;
 
     // Execution has begun at the entry point of |script|, which is not a
     // function body. (This is probably being executed by 'eval' or some
     // JSAPI equivalent.)
     virtual void Entry(JSContext* cx, JSScript* script,
                        HandleValue asyncStack,
-                       HandleString asyncCause) = 0;
+                       const char* asyncCause) = 0;
 
     // Execution of the function or script has ended.
     virtual void Exit(JSContext* cx) { }

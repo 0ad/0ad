@@ -423,6 +423,8 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 
 			Object.assign(ret.attack[type], cmpAttack.GetAttackEffectsData(type));
 
+			ret.attack[type].attackName = cmpAttack.GetAttackName(type);
+
 			ret.attack[type].splash = cmpAttack.GetSplashData(type);
 			if (ret.attack[type].splash)
 				Object.assign(ret.attack[type].splash, cmpAttack.GetAttackEffectsData(type, true));

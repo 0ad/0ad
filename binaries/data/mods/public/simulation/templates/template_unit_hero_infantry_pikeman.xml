@@ -2,6 +2,7 @@
 <Entity parent="template_unit_hero_infantry">
   <Attack>
     <Melee>
+      <AttackName>Pike</AttackName>
       <Damage>
         <Hack>4.0</Hack>
         <Pierce>20.0</Pierce>

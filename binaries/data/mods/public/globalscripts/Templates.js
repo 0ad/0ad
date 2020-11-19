@@ -214,9 +214,13 @@ function GetTemplateDataHelper(template, player, auraTemplates, modifiers = {})
 			};
 
 			ret.attack[type] = {
+				"attackName": {
+					"name": template.Attack[type].AttackName._string || template.Attack[type].AttackName,
+					"context": template.Attack[type].AttackName["@context"]
+				},
 				"minRange": getAttackStat("MinRange"),
 				"maxRange": getAttackStat("MaxRange"),
-				"elevationBonus": getAttackStat("ElevationBonus"),
+				"elevationBonus": getAttackStat("ElevationBonus")
 			};
 
 			ret.attack[type].elevationAdaptedRange = Math.sqrt(ret.attack[type].maxRange *

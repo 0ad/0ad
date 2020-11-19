@@ -183,9 +183,11 @@ AddMock(archerId, IID_Identity, {
 	"GetClassesList": () => ["Infantry", "Ranged"]
 });
 
+let originalClassList = "Infantry+Ranged Siege Cavalry";
+
 cmpGarrisonHolder = ConstructComponent(garrisonHolderId, "GarrisonHolder", {
 	"Max": 10,
-	"List": { "_string": "Infantry+Ranged Siege Cavalry" },
+	"List": { "_string": originalClassList },
 	"EjectHealth": 0.1,
 	"EjectClassesOnDestroy": { "_string": "Infantry" },
 	"BuffHeal": 1,
@@ -193,7 +195,8 @@ cmpGarrisonHolder = ConstructComponent(garrisonHolderId, "GarrisonHolder", {
 	"Pickup": false
 });
 
-AddMock(32, IID_Identity, {
+let traderId = 32;
+AddMock(traderId, IID_Identity, {
 	"GetClassesList": () => ["Trader"]
 });
 
@@ -243,3 +246,29 @@ cmpGarrisonHolder.OnGlobalOwnershipChanged({
 	"to": enemyPlayer
 });
 TS_ASSERT_EQUALS(cmpGarrisonHolder.GetGarrisonedEntitiesCount(), 0);
+
+let oldApplyValueModificationsToEntity = ApplyValueModificationsToEntity;
+
+TS_ASSERT(cmpGarrisonHolder.Garrison(siegeEngineId));
+TS_ASSERT_UNEVAL_EQUALS(cmpGarrisonHolder.GetEntities(), [siegeEngineId]);
+
+Engine.RegisterGlobal("ApplyValueModificationsToEntity", (valueName, currentValue, entity) => {
+	if (valueName !== "GarrisonHolder/List/_string")
+		return valueName;
+
+	return HandleTokens(currentValue, "-Siege Trader");
+});
+
+cmpGarrisonHolder.OnValueModification({
+	"component": "GarrisonHolder",
+	"valueNames": ["GarrisonHolder/List/_string"],
+	"entities": [garrisonHolderId]
+});
+
+TS_ASSERT_UNEVAL_EQUALS(cmpGarrisonHolder.GetAllowedClasses().split(/\s+/), ["Infantry+Ranged", "Cavalry", "Trader"]);
+
+// The new classes are now cached so we can restore the behavior.
+Engine.RegisterGlobal("ApplyValueModificationsToEntity", oldApplyValueModificationsToEntity);
+TS_ASSERT_UNEVAL_EQUALS(cmpGarrisonHolder.GetEntities(), []);
+TS_ASSERT(!cmpGarrisonHolder.Garrison(siegeEngineId));
+TS_ASSERT(cmpGarrisonHolder.Garrison(traderId));

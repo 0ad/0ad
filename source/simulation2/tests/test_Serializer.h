@@ -21,6 +21,7 @@
 #include "simulation2/serialization/HashSerializer.h"
 #include "simulation2/serialization/StdSerializer.h"
 #include "simulation2/serialization/StdDeserializer.h"
+#include "scriptinterface/ScriptContext.h"
 #include "scriptinterface/ScriptInterface.h"
 
 #include "graphics/MapReader.h"
@@ -841,7 +842,7 @@ public:
 
 		LDR_BeginRegistering();
 		mapReader->LoadMap(L"maps/skirmishes/Greek Acropolis (2).pmp",
-			sim2.GetScriptInterface().GetJSRuntime(), JS::UndefinedHandleValue,
+			*sim2.GetScriptInterface().GetContext(), JS::UndefinedHandleValue,
 			&terrain, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 			&sim2, &sim2.GetSimContext(), -1, false);
 		LDR_EndRegistering();

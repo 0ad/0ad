@@ -71,7 +71,7 @@ CNetClient::CNetClient(CGame* game, bool isLocalClient) :
 	m_Session(NULL),
 	m_UserName(L"anonymous"),
 	m_HostID((u32)-1), m_ClientTurnManager(NULL), m_Game(game),
-	m_GameAttributes(game->GetSimulation2()->GetScriptInterface().GetJSRuntime()),
+	m_GameAttributes(game->GetSimulation2()->GetScriptInterface().GetGeneralJSContext()),
 	m_IsLocalClient(isLocalClient),
 	m_LastConnectionCheck(0),
 	m_Rejoin(false)
@@ -80,7 +80,7 @@ CNetClient::CNetClient(CGame* game, bool isLocalClient) :
 
 	void* context = this;
 
-	JS_AddExtraGCRootsTracer(GetScriptInterface().GetJSRuntime(), CNetClient::Trace, this);
+	JS_AddExtraGCRootsTracer(GetScriptInterface().GetGeneralJSContext(), CNetClient::Trace, this);
 
 	// Set up transitions for session
 	AddTransition(NCS_UNCONNECTED, (uint)NMT_CONNECT_COMPLETE, NCS_CONNECT, (void*)&OnConnect, context);
@@ -144,7 +144,7 @@ CNetClient::CNetClient(CGame* game, bool isLocalClient) :
 CNetClient::~CNetClient()
 {
 	DestroyConnection();
-	JS_RemoveExtraGCRootsTracer(GetScriptInterface().GetJSRuntime(), CNetClient::Trace, this);
+	JS_RemoveExtraGCRootsTracer(GetScriptInterface().GetGeneralJSContext(), CNetClient::Trace, this);
 }
 
 void CNetClient::TraceMember(JSTracer *trc)

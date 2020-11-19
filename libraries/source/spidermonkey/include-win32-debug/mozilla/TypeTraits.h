@@ -98,9 +98,7 @@ template<> struct IsIntegralHelper<long long>          : TrueType {};
 template<> struct IsIntegralHelper<unsigned long long> : TrueType {};
 template<> struct IsIntegralHelper<bool>               : TrueType {};
 template<> struct IsIntegralHelper<wchar_t>            : TrueType {};
-#ifdef MOZ_CHAR16_IS_NOT_WCHAR
 template<> struct IsIntegralHelper<char16_t>           : TrueType {};
-#endif
 
 } /* namespace detail */
 
@@ -112,9 +110,6 @@ template<> struct IsIntegralHelper<char16_t>           : TrueType {};
  * mozilla::IsIntegral<const long>::value is true;
  * mozilla::IsIntegral<int*>::value is false;
  * mozilla::IsIntegral<double>::value is false;
- *
- * Note that the behavior of IsIntegral on char16_t and char32_t is
- * unspecified.
  */
 template<typename T>
 struct IsIntegral : detail::IsIntegralHelper<typename RemoveCV<T>::Type>
@@ -355,6 +350,41 @@ struct IsArithmetic
   : IntegralConstant<bool, IsIntegral<T>::value || IsFloatingPoint<T>::value>
 {};
 
+namespace detail {
+
+template<typename T>
+struct IsMemberPointerHelper : FalseType {};
+
+template<typename T, typename U>
+struct IsMemberPointerHelper<T U::*> : TrueType {};
+
+} // namespace detail
+
+/**
+ * IsMemberPointer determines whether a type is pointer to non-static member
+ * object or a pointer to non-static member function.
+ *
+ * mozilla::IsMemberPointer<int(cls::*)>::value is true
+ * mozilla::IsMemberPointer<int*>::value is false
+ */
+template<typename T>
+struct IsMemberPointer
+  : detail::IsMemberPointerHelper<typename RemoveCV<T>::Type>
+{};
+
+/**
+ * IsScalar determines whether a type is a scalar type.
+ *
+ * mozilla::IsScalar<int>::value is true
+ * mozilla::IsScalar<int*>::value is true
+ * mozilla::IsScalar<cls>::value is false
+ */
+template<typename T>
+struct IsScalar
+  : IntegralConstant<bool, IsArithmetic<T>::value || IsEnum<T>::value ||
+                     IsPointer<T>::value || IsMemberPointer<T>::value>
+{};
+
 /* 20.9.4.3 Type properties [meta.unary.prop] */
 
 /**
@@ -409,9 +439,7 @@ template<> struct IsPod<bool>               : TrueType {};
 template<> struct IsPod<float>              : TrueType {};
 template<> struct IsPod<double>             : TrueType {};
 template<> struct IsPod<wchar_t>            : TrueType {};
-#ifdef MOZ_CHAR16_IS_NOT_WCHAR
 template<> struct IsPod<char16_t>           : TrueType {};
-#endif
 template<typename T> struct IsPod<T*>       : TrueType {};
 
 namespace detail {
@@ -544,6 +572,27 @@ struct IsUnsignedHelper<T, false, false, NoCV> : FalseType {};
 template<typename T>
 struct IsUnsigned : detail::IsUnsignedHelper<T> {};
 
+namespace detail {
+
+struct DoIsDestructibleImpl
+{
+  template<typename T, typename = decltype(DeclVal<T&>().~T())>
+  static TrueType test(int);
+  template<typename T>
+  static FalseType test(...);
+};
+
+template<typename T>
+struct IsDestructibleImpl : public DoIsDestructibleImpl
+{
+  typedef decltype(test<T>(0)) Type;
+};
+
+} // namespace detail
+
+template<typename T>
+struct IsDestructible : public detail::IsDestructibleImpl<T>::Type {};
+
 /* 20.9.5 Type property queries [meta.unary.prop.query] */
 
 /* 20.9.6 Relationships between types [meta.rel] */
@@ -644,18 +693,15 @@ struct IsBaseOf
 
 namespace detail {
 
-// This belongs inside ConvertibleTester, but it's pulled out to
-// work around a bug in the compiler used for hazard builds.
-template <typename To>
-static void ConvertibleTestHelper(To);
-
 template<typename From, typename To>
 struct ConvertibleTester
 {
 private:
-  template<typename From1, typename To1,
-           typename = decltype(ConvertibleTestHelper<To1>(DeclVal<From>()))>
-  static char test(int);
+  template<typename To1>
+  static char test_helper(To1);
+
+  template<typename From1, typename To1>
+  static decltype(test_helper<To1>(DeclVal<From1>())) test(int);
 
   template<typename From1, typename To1>
   static int test(...);

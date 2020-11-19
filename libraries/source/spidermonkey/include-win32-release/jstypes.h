@@ -70,18 +70,16 @@
 #if defined(STATIC_JS_API)
 #  define JS_PUBLIC_API(t)   t
 #  define JS_PUBLIC_DATA(t)  t
+#  define JS_FRIEND_API(t)   t
+#  define JS_FRIEND_DATA(t)  t
 #elif defined(EXPORT_JS_API) || defined(STATIC_EXPORTABLE_JS_API)
 #  define JS_PUBLIC_API(t)   MOZ_EXPORT t
 #  define JS_PUBLIC_DATA(t)  MOZ_EXPORT t
-#else
-#  define JS_PUBLIC_API(t)   MOZ_IMPORT_API t
-#  define JS_PUBLIC_DATA(t)  MOZ_IMPORT_DATA t
-#endif
-
-#if defined(STATIC_JS_API) || defined(EXPORT_JS_API) || defined(STATIC_EXPORTABLE_JS_API)
 #  define JS_FRIEND_API(t)    MOZ_EXPORT t
 #  define JS_FRIEND_DATA(t)   MOZ_EXPORT t
 #else
+#  define JS_PUBLIC_API(t)   MOZ_IMPORT_API t
+#  define JS_PUBLIC_DATA(t)  MOZ_IMPORT_DATA t
 #  define JS_FRIEND_API(t)   MOZ_IMPORT_API t
 #  define JS_FRIEND_DATA(t)  MOZ_IMPORT_DATA t
 #endif
@@ -93,6 +91,14 @@
 #else
 #define JS_FASTCALL
 #define JS_NO_FASTCALL
+#endif
+
+// gcc is buggy and warns on our attempts to JS_PUBLIC_API our
+// forward-declarations or explicit template instantiations.  See
+// <https://gcc.gnu.org/bugzilla/show_bug.cgi?id=50044>.  Add a way to detect
+// that so we can locally disable that warning.
+#if !defined(__clang__) && defined(__GNUC__) && (__GNUC__ < 6 || (__GNUC__ == 6 && __GNUC_MINOR__ <= 4))
+#define JS_BROKEN_GCC_ATTRIBUTE_WARNING
 #endif
 
 /***********************************************************************

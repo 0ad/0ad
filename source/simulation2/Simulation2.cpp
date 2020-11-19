@@ -49,11 +49,11 @@
 class CSimulation2Impl
 {
 public:
-	CSimulation2Impl(CUnitManager* unitManager, shared_ptr<ScriptContext> rt, CTerrain* terrain) :
-		m_SimContext(), m_ComponentManager(m_SimContext, rt),
+	CSimulation2Impl(CUnitManager* unitManager, shared_ptr<ScriptContext> cx, CTerrain* terrain) :
+		m_SimContext(), m_ComponentManager(m_SimContext, cx),
 		m_EnableOOSLog(false), m_EnableSerializationTest(false), m_RejoinTestTurn(-1), m_TestingRejoin(false),
 		m_SecondaryTerrain(nullptr), m_SecondaryContext(nullptr), m_SecondaryComponentManager(nullptr), m_SecondaryLoadedScripts(nullptr),
-		m_MapSettings(rt->GetJSRuntime()), m_InitAttributes(rt->GetJSRuntime())
+		m_MapSettings(cx->GetGeneralJSContext()), m_InitAttributes(cx->GetGeneralJSContext())
 	{
 		m_SimContext.m_UnitManager = unitManager;
 		m_SimContext.m_Terrain = terrain;
@@ -164,7 +164,7 @@ public:
 	void InitRNGSeedSimulation();
 	void InitRNGSeedAI();
 
-	static std::vector<SimulationCommand> CloneCommandsFromOtherContext(const ScriptInterface& oldScript, const ScriptInterface& newScript,
+	static std::vector<SimulationCommand> CloneCommandsFromOtherCompartment(const ScriptInterface& oldScript, const ScriptInterface& newScript,
 		const std::vector<SimulationCommand>& commands)
 	{
 		std::vector<SimulationCommand> newCommands;
@@ -173,7 +173,7 @@ public:
 		ScriptRequest rqNew(newScript);
 		for (const SimulationCommand& command : commands)
 		{
-			JS::RootedValue tmpCommand(rqNew.cx, newScript.CloneValueFromOtherCompartment(oldScript, command.data));
+			JS::RootedValue tmpCommand(rqNew.cx, newScript.CloneValueFromOtherCompartment(oldScript, command.data, true));
 			newScript.FreezeObject(tmpCommand, true);
 			SimulationCommand cmd(command.player, rqNew.cx, tmpCommand);
 			newCommands.emplace_back(std::move(cmd));
@@ -424,7 +424,7 @@ void CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 			ScriptRequest rq2(m_SecondaryComponentManager->GetScriptInterface());
 			JS::RootedValue mapSettingsCloned(rq2.cx,
 				m_SecondaryComponentManager->GetScriptInterface().CloneValueFromOtherCompartment(
-					scriptInterface, m_MapSettings));
+					scriptInterface, m_MapSettings, true));
 			ENSURE(LoadTriggerScripts(*m_SecondaryComponentManager, mapSettingsCloned, m_SecondaryLoadedScripts));
 		}
 
@@ -446,7 +446,7 @@ void CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 			scriptInterface.GetProperty(m_InitAttributes, "map", mapFile);
 
 			VfsPath mapfilename = VfsPath(mapFile).ChangeExtension(L".pmp");
-			mapReader->LoadMap(mapfilename, scriptInterface.GetJSRuntime(), JS::UndefinedHandleValue,
+			mapReader->LoadMap(mapfilename, *scriptInterface.GetContext(), JS::UndefinedHandleValue,
 				m_SecondaryTerrain, NULL, NULL, NULL, NULL, NULL, NULL,
 				NULL, NULL, m_SecondaryContext, INVALID_PLAYER, true); // throws exception on failure
 		}
@@ -477,7 +477,7 @@ void CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 			ENSURE(m_ComponentManager.ComputeStateHash(primaryStateAfter.hash, false));
 
 		UpdateComponents(*m_SecondaryContext, turnLengthFixed,
-			CloneCommandsFromOtherContext(scriptInterface, m_SecondaryComponentManager->GetScriptInterface(), commands));
+			CloneCommandsFromOtherCompartment(scriptInterface, m_SecondaryComponentManager->GetScriptInterface(), commands));
 		SerializationTestState secondaryStateAfter;
 		ENSURE(m_SecondaryComponentManager->SerializeState(secondaryStateAfter.state));
 		if (serializationTestHash)
@@ -638,8 +638,8 @@ void CSimulation2Impl::DumpState()
 
 ////////////////////////////////////////////////////////////////
 
-CSimulation2::CSimulation2(CUnitManager* unitManager, shared_ptr<ScriptContext> rt, CTerrain* terrain) :
-	m(new CSimulation2Impl(unitManager, rt, terrain))
+CSimulation2::CSimulation2(CUnitManager* unitManager, shared_ptr<ScriptContext> cx, CTerrain* terrain) :
+	m(new CSimulation2Impl(unitManager, cx, terrain))
 {
 }
 

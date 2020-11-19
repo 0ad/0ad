@@ -39,8 +39,6 @@ bool IsPending(const ScriptRequest& rq);
  */
 bool CatchPending(const ScriptRequest& rq);
 
-void ErrorReporter(JSContext* rt, const char* message, JSErrorReport* report);
-
 /**
  * Raise a JS exception from C++ code.
  * This is only really relevant in JSNative functions that don't use ObjectOpResult,

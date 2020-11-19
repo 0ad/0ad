@@ -91,6 +91,13 @@ public:
 		g_SoundManager->PlayAsGroup(name, CVector3D(sourcePos), INVALID_ENTITY, false);
 	}
 
+	virtual void PlaySoundGroupForPlayer(const VfsPath& groupPath, const player_id_t playerId) const
+	{
+		if (!g_SoundManager)
+			return;
+		g_SoundManager->PlayAsGroup(groupPath, CVector3D(0.f, 0.f, 0.f), INVALID_ENTITY, GetSimContext().GetCurrentDisplayedPlayer() == playerId);
+	}
+
 	virtual void StopMusic()
 	{
 		if (!g_SoundManager)

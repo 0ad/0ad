@@ -389,7 +389,7 @@ void CNetServerWorker::Run()
 	// We create a new ScriptContext for this network thread, with a single ScriptInterface.
 	shared_ptr<ScriptContext> netServerContext = ScriptContext::CreateContext();
 	m_ScriptInterface = new ScriptInterface("Engine", "Net server", netServerContext);
-	m_GameAttributes.init(m_ScriptInterface->GetJSRuntime(), JS::UndefinedValue());
+	m_GameAttributes.init(m_ScriptInterface->GetGeneralJSContext(), JS::UndefinedValue());
 
 	while (true)
 	{

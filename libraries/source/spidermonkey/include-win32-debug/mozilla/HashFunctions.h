@@ -10,7 +10,7 @@
  * This file exports functions for hashing data down to a 32-bit value,
  * including:
  *
- *  - HashString    Hash a char* or uint16_t/wchar_t* of known or unknown
+ *  - HashString    Hash a char* or char16_t/wchar_t* of known or unknown
  *                  length.
  *
  *  - HashBytes     Hash a byte array of known length.
@@ -50,6 +50,7 @@
 #include "mozilla/Assertions.h"
 #include "mozilla/Attributes.h"
 #include "mozilla/Char16.h"
+#include "mozilla/MathAlgorithms.h"
 #include "mozilla/Types.h"
 
 #include <stdint.h>
@@ -156,7 +157,7 @@ AddUintptrToHash<8>(uint32_t aHash, uintptr_t aValue)
  * convert to uint32_t, data pointers, and function pointers.
  */
 template<typename A>
-MOZ_WARN_UNUSED_RESULT inline uint32_t
+MOZ_MUST_USE inline uint32_t
 AddToHash(uint32_t aHash, A aA)
 {
   /*
@@ -167,7 +168,7 @@ AddToHash(uint32_t aHash, A aA)
 }
 
 template<typename A>
-MOZ_WARN_UNUSED_RESULT inline uint32_t
+MOZ_MUST_USE inline uint32_t
 AddToHash(uint32_t aHash, A* aA)
 {
   /*
@@ -181,14 +182,14 @@ AddToHash(uint32_t aHash, A* aA)
 }
 
 template<>
-MOZ_WARN_UNUSED_RESULT inline uint32_t
+MOZ_MUST_USE inline uint32_t
 AddToHash(uint32_t aHash, uintptr_t aA)
 {
   return detail::AddUintptrToHash<sizeof(uintptr_t)>(aHash, aA);
 }
 
 template<typename A, typename... Args>
-MOZ_WARN_UNUSED_RESULT uint32_t
+MOZ_MUST_USE uint32_t
 AddToHash(uint32_t aHash, A aArg, Args... aArgs)
 {
   return AddToHash(AddToHash(aHash, aArg), aArgs...);
@@ -202,7 +203,7 @@ AddToHash(uint32_t aHash, A aArg, Args... aArgs)
  * that x has already been hashed.
  */
 template<typename... Args>
-MOZ_WARN_UNUSED_RESULT inline uint32_t
+MOZ_MUST_USE inline uint32_t
 HashGeneric(Args... aArgs)
 {
   return AddToHash(0, aArgs...);
@@ -240,63 +241,49 @@ HashKnownLength(const T* aStr, size_t aLength)
  * If you have the string's length, you might as well call the overload which
  * includes the length.  It may be marginally faster.
  */
-MOZ_WARN_UNUSED_RESULT inline uint32_t
+MOZ_MUST_USE inline uint32_t
 HashString(const char* aStr)
 {
   return detail::HashUntilZero(reinterpret_cast<const unsigned char*>(aStr));
 }
 
-MOZ_WARN_UNUSED_RESULT inline uint32_t
+MOZ_MUST_USE inline uint32_t
 HashString(const char* aStr, size_t aLength)
 {
   return detail::HashKnownLength(reinterpret_cast<const unsigned char*>(aStr), aLength);
 }
 
-MOZ_WARN_UNUSED_RESULT
+MOZ_MUST_USE
 inline uint32_t
 HashString(const unsigned char* aStr, size_t aLength)
 {
   return detail::HashKnownLength(aStr, aLength);
 }
 
-MOZ_WARN_UNUSED_RESULT inline uint32_t
-HashString(const uint16_t* aStr)
-{
-  return detail::HashUntilZero(aStr);
-}
-
-MOZ_WARN_UNUSED_RESULT inline uint32_t
-HashString(const uint16_t* aStr, size_t aLength)
-{
-  return detail::HashKnownLength(aStr, aLength);
-}
-
-#ifdef MOZ_CHAR16_IS_NOT_WCHAR
-MOZ_WARN_UNUSED_RESULT inline uint32_t
+MOZ_MUST_USE inline uint32_t
 HashString(const char16_t* aStr)
 {
   return detail::HashUntilZero(aStr);
 }
 
-MOZ_WARN_UNUSED_RESULT inline uint32_t
+MOZ_MUST_USE inline uint32_t
 HashString(const char16_t* aStr, size_t aLength)
 {
   return detail::HashKnownLength(aStr, aLength);
 }
-#endif
 
 /*
- * On Windows, wchar_t (char16_t) is not the same as uint16_t, even though it's
+ * On Windows, wchar_t is not the same as char16_t, even though it's
  * the same width!
  */
 #ifdef WIN32
-MOZ_WARN_UNUSED_RESULT inline uint32_t
+MOZ_MUST_USE inline uint32_t
 HashString(const wchar_t* aStr)
 {
   return detail::HashUntilZero(aStr);
 }
 
-MOZ_WARN_UNUSED_RESULT inline uint32_t
+MOZ_MUST_USE inline uint32_t
 HashString(const wchar_t* aStr, size_t aLength)
 {
   return detail::HashKnownLength(aStr, aLength);
@@ -309,8 +296,92 @@ HashString(const wchar_t* aStr, size_t aLength)
  * This hash walks word-by-word, rather than byte-by-byte, so you won't get the
  * same result out of HashBytes as you would out of HashString.
  */
-MOZ_WARN_UNUSED_RESULT extern MFBT_API uint32_t
+MOZ_MUST_USE extern MFBT_API uint32_t
 HashBytes(const void* bytes, size_t aLength);
+
+/**
+ * A pseudorandom function mapping 32-bit integers to 32-bit integers.
+ *
+ * This is for when you're feeding private data (like pointer values or credit
+ * card numbers) to a non-crypto hash function (like HashBytes) and then using
+ * the hash code for something that untrusted parties could observe (like a JS
+ * Map). Plug in a HashCodeScrambler before that last step to avoid leaking the
+ * private data.
+ *
+ * By itself, this does not prevent hash-flooding DoS attacks, because an
+ * attacker can still generate many values with exactly equal hash codes by
+ * attacking the non-crypto hash function alone. Equal hash codes will, of
+ * course, still be equal however much you scramble them.
+ *
+ * The algorithm is SipHash-1-3. See <https://131002.net/siphash/>.
+ */
+class HashCodeScrambler
+{
+  struct SipHasher;
+
+  uint64_t mK0, mK1;
+
+public:
+  /** Creates a new scrambler with the given 128-bit key. */
+  constexpr HashCodeScrambler(uint64_t aK0, uint64_t aK1) : mK0(aK0), mK1(aK1) {}
+
+  /**
+   * Scramble a hash code. Always produces the same result for the same
+   * combination of key and hash code.
+   */
+  uint32_t scramble(uint32_t aHashCode) const
+  {
+    SipHasher hasher(mK0, mK1);
+    return uint32_t(hasher.sipHash(aHashCode));
+  }
+
+private:
+  struct SipHasher
+  {
+    SipHasher(uint64_t aK0, uint64_t aK1)
+    {
+      // 1. Initialization.
+      mV0 = aK0 ^ UINT64_C(0x736f6d6570736575);
+      mV1 = aK1 ^ UINT64_C(0x646f72616e646f6d);
+      mV2 = aK0 ^ UINT64_C(0x6c7967656e657261);
+      mV3 = aK1 ^ UINT64_C(0x7465646279746573);
+    }
+
+    uint64_t sipHash(uint64_t aM)
+    {
+      // 2. Compression.
+      mV3 ^= aM;
+      sipRound();
+      mV0 ^= aM;
+
+      // 3. Finalization.
+      mV2 ^= 0xff;
+      for (int i = 0; i < 3; i++)
+        sipRound();
+      return mV0 ^ mV1 ^ mV2 ^ mV3;
+    }
+
+    void sipRound()
+    {
+      mV0 += mV1;
+      mV1 = RotateLeft(mV1, 13);
+      mV1 ^= mV0;
+      mV0 = RotateLeft(mV0, 32);
+      mV2 += mV3;
+      mV3 = RotateLeft(mV3, 16);
+      mV3 ^= mV2;
+      mV0 += mV3;
+      mV3 = RotateLeft(mV3, 21);
+      mV3 ^= mV0;
+      mV2 += mV1;
+      mV1 = RotateLeft(mV1, 17);
+      mV1 ^= mV2;
+      mV2 = RotateLeft(mV2, 32);
+    }
+
+    uint64_t mV0, mV1, mV2, mV3;
+  };
+};
 
 } /* namespace mozilla */
 #endif /* __cplusplus */

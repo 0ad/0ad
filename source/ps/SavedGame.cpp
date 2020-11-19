@@ -35,7 +35,7 @@
 
 // TODO: we ought to check version numbers when loading files
 
-Status SavedGames::SavePrefix(const CStrW& prefix, const CStrW& description, CSimulation2& simulation, const shared_ptr<ScriptInterface::StructuredClone>& guiMetadataClone)
+Status SavedGames::SavePrefix(const CStrW& prefix, const CStrW& description, CSimulation2& simulation, const ScriptInterface::StructuredClone& guiMetadataClone)
 {
 	// Determine the filename to save under
 	const VfsPath basenameFormat(L"saves/" + prefix + L"-%04d");
@@ -50,7 +50,7 @@ Status SavedGames::SavePrefix(const CStrW& prefix, const CStrW& description, CSi
 	return Save(filename.Filename().string(), description, simulation, guiMetadataClone);
 }
 
-Status SavedGames::Save(const CStrW& name, const CStrW& description, CSimulation2& simulation, const shared_ptr<ScriptInterface::StructuredClone>& guiMetadataClone)
+Status SavedGames::Save(const CStrW& name, const CStrW& description, CSimulation2& simulation, const ScriptInterface::StructuredClone& guiMetadataClone)
 {
 	ScriptRequest rq(simulation.GetScriptInterface());
 
@@ -161,7 +161,7 @@ public:
 	 */
 	CGameLoader(const ScriptInterface& scriptInterface, std::string* savedState) :
 		m_ScriptInterface(scriptInterface),
-		m_Metadata(scriptInterface.GetJSRuntime()),
+		m_Metadata(scriptInterface.GetGeneralJSContext()),
 		m_SavedState(savedState)
 	{
 	}

@@ -2,11 +2,11 @@
 <Entity parent="template_unit_infantry_ranged_javelineer">
   <Builder>
     <Entities datatype="tokens">
-      structures/{civ}_pyramid_small
-      structures/{civ}_pyramid_large
-      structures/{civ}_temple_amun
-      structures/{civ}_blemmye_camp
-      structures/{civ}_nuba_village
+      structures/kush_pyramid_small
+      structures/kush_pyramid_large
+      structures/kush_temple_amun
+      structures/kush_camp_blemmye
+      structures/kush_camp_noba
     </Entities>
   </Builder>
   <Cost>
@@ -20,7 +20,7 @@
     <Lang>napatan</Lang>
     <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
     <SelectionGroupName>units/kush_infantry_javelineer_merc_b</SelectionGroupName>
-    <GenericName>Nuba Skirmisher</GenericName>
+    <GenericName>Noba Skirmisher</GenericName>
     <SpecificName>nhw ʿhȝw Noba</SpecificName>
     <Icon>units/kush_infantry_javelinist.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>

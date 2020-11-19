@@ -2,6 +2,7 @@
 <Entity parent="template_unit_hero_cavalry">
   <Attack>
     <Melee>
+      <AttackName context="Name of an attack using a double-edged sword.">Sword</AttackName>
       <Damage>
         <Hack>26.0</Hack>
         <Pierce>0.0</Pierce>

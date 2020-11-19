@@ -32,6 +32,7 @@
 #include "ps/Pyrogenesis.h"
 
 #include <condition_variable>
+#include <deque>
 #include <fstream>
 #include <mutex>
 #include <string>

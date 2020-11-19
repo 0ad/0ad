@@ -72,8 +72,8 @@ const oTower = g_MapSettings.Size >= 256 && getDifficulty() >= 3 ? "structures/k
 const oHouse = "structures/kush_house";
 const oMarket = "structures/kush_market";
 const oForge = "structures/kush_forge";
-const oBlemmyeCamp = "structures/kush_blemmye_camp";
-const oNubaVillage = "structures/kush_nuba_village";
+const oBlemmyeCamp = "structures/kush_camp_blemmye";
+const oNobaCamp = "structures/kush_camp_noba";
 const oCivicCenter = "structures/kush_civil_centre";
 const oBarracks = "structures/kush_barracks";
 const oStable = "structures/kush_stable";
@@ -187,7 +187,7 @@ const clElephantStables = g_Map.createTileClass();
 const clCivicCenter = g_Map.createTileClass();
 const clBarracks = g_Map.createTileClass();
 const clBlemmyeCamp = g_Map.createTileClass();
-const clNubaVillage = g_Map.createTileClass();
+const clNobaCamp = g_Map.createTileClass();
 const clMarket = g_Map.createTileClass();
 const clDecorative = g_Map.createTileClass();
 
@@ -306,10 +306,10 @@ const layoutKushCity = [
 		"painters": new TileClassPainter(clForge)
 	},
 	{
-		"templateName": oNubaVillage,
+		"templateName": oNobaCamp,
 		"difficulty": "Easy",
-		"constraints": avoidClasses(clNubaVillage, 30),
-		"painters": new TileClassPainter(clNubaVillage)
+		"constraints": avoidClasses(clNobaCamp, 30),
+		"painters": new TileClassPainter(clNobaCamp)
 	},
 	{
 		"templateName": oBlemmyeCamp,
@@ -1067,7 +1067,7 @@ var areaCityBushes =
 				clCivicCenter, 1,
 				clBarracks, 1,
 				clBlemmyeCamp, 1,
-				clNubaVillage, 1,
+				clNobaCamp, 1,
 				clMarket, 1)
 		]);
 

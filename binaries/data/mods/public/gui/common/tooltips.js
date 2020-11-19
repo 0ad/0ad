@@ -420,10 +420,12 @@ function getAttackTooltip(template)
 		if (attackType == "Slaughter")
 			continue;
 
-		let attackLabel = sprintf(headerFont(translate("%(attackType)s")), {
-			"attackType": attackType
-		});
 		let attackTypeTemplate = template.attack[attackType];
+		let attackLabel = sprintf(headerFont(translate("%(attackType)s")), {
+			"attackType": attackTypeTemplate.attackName.context ?
+				translateWithContext(attackTypeTemplate.attackName.context || "Name of an attack, usually the weapon.", attackTypeTemplate.attackName.name) :
+				translate(attackTypeTemplate.attackName.name)
+		});
 
 		let projectiles;
 		// Use either current rate from simulation or default count if the sim is not running.

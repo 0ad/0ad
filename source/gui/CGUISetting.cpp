@@ -20,6 +20,7 @@
 #include "CGUISetting.h"
 
 #include "gui/CGUI.h"
+#include "ps/CLogger.h"
 
 template<typename T>
 

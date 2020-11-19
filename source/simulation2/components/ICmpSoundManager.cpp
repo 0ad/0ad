@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,5 +24,6 @@
 BEGIN_INTERFACE_WRAPPER(SoundManager)
 DEFINE_INTERFACE_METHOD_2("PlaySoundGroup", void, ICmpSoundManager, PlaySoundGroup, std::wstring, entity_id_t)
 DEFINE_INTERFACE_METHOD_2("PlaySoundGroupAtPosition", void, ICmpSoundManager, PlaySoundGroupAtPosition, std::wstring, CFixedVector3D)
+DEFINE_INTERFACE_METHOD_CONST_2("PlaySoundGroupForPlayer", void, ICmpSoundManager, PlaySoundGroupForPlayer, VfsPath, player_id_t)
 DEFINE_INTERFACE_METHOD_0("StopMusic", void, ICmpSoundManager, StopMusic)
 END_INTERFACE_WRAPPER(SoundManager)

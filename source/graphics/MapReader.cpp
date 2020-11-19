@@ -39,6 +39,7 @@
 #include "renderer/PostprocManager.h"
 #include "renderer/SkyManager.h"
 #include "renderer/WaterManager.h"
+#include "scriptinterface/ScriptContext.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpCinemaManager.h"
 #include "simulation2/components/ICmpGarrisonHolder.h"
@@ -62,7 +63,7 @@ CMapReader::CMapReader()
 }
 
 // LoadMap: try to load the map from given file; reinitialise the scene to new data if successful
-void CMapReader::LoadMap(const VfsPath& pathname, JSRuntime* rt,  JS::HandleValue settings, CTerrain *pTerrain_,
+void CMapReader::LoadMap(const VfsPath& pathname, const ScriptContext& cx,  JS::HandleValue settings, CTerrain *pTerrain_,
 						 WaterManager* pWaterMan_, SkyManager* pSkyMan_,
 						 CLightEnv *pLightEnv_, CGameView *pGameView_, CCinemaManager* pCinema_, CTriggerManager* pTrigMan_, CPostprocManager* pPostproc_,
 						 CSimulation2 *pSimulation2_, const CSimContext* pSimContext_, int playerID_, bool skipEntities)
@@ -80,7 +81,7 @@ void CMapReader::LoadMap(const VfsPath& pathname, JSRuntime* rt,  JS::HandleValu
 	m_PlayerID = playerID_;
 	m_SkipEntities = skipEntities;
 	m_StartingCameraTarget = INVALID_ENTITY;
-	m_ScriptSettings.init(rt, settings);
+	m_ScriptSettings.init(cx.GetGeneralJSContext(), settings);
 
 	filename_xml = pathname.ChangeExtension(L".xml");
 
@@ -144,7 +145,7 @@ void CMapReader::LoadMap(const VfsPath& pathname, JSRuntime* rt,  JS::HandleValu
 }
 
 // LoadRandomMap: try to load the map data; reinitialise the scene to new data if successful
-void CMapReader::LoadRandomMap(const CStrW& scriptFile, JSRuntime* rt, JS::HandleValue settings, CTerrain *pTerrain_,
+void CMapReader::LoadRandomMap(const CStrW& scriptFile, const ScriptContext& cx, JS::HandleValue settings, CTerrain *pTerrain_,
 						 WaterManager* pWaterMan_, SkyManager* pSkyMan_,
 						 CLightEnv *pLightEnv_, CGameView *pGameView_, CCinemaManager* pCinema_, CTriggerManager* pTrigMan_, CPostprocManager* pPostproc_,
 						 CSimulation2 *pSimulation2_, int playerID_)
@@ -152,7 +153,7 @@ void CMapReader::LoadRandomMap(const CStrW& scriptFile, JSRuntime* rt, JS::Handl
 	m_ScriptFile = scriptFile;
 	pSimulation2 = pSimulation2_;
 	pSimContext = pSimulation2 ? &pSimulation2->GetSimContext() : NULL;
-	m_ScriptSettings.init(rt, settings);
+	m_ScriptSettings.init(cx.GetGeneralJSContext(), settings);
 	pTerrain = pTerrain_;
 	pLightEnv = pLightEnv_;
 	pGameView = pGameView_;
@@ -1295,7 +1296,7 @@ int CMapReader::GenerateMap()
 	else if (progress == 0)
 	{
 		// Finished, get results as StructuredClone object, which must be read to obtain the JS::Value
-		shared_ptr<ScriptInterface::StructuredClone> results = m_MapGen->GetResults();
+		ScriptInterface::StructuredClone results = m_MapGen->GetResults();
 
 		// Parse data into simulation context
 		JS::RootedValue data(rq.cx);

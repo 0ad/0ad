@@ -12,14 +12,22 @@
  * https://bugzilla.mozilla.org/show_bug.cgi?id=427099
  */
 
-#include <stdlib.h>
-#include <string.h>
 #if defined(__cplusplus)
 #  include <new>
+// Since libstdc++ 6, including the C headers (e.g. stdlib.h) instead of the
+// corresponding C++ header (e.g. cstdlib) can cause confusion in C++ code
+// using things defined there. Specifically, with stdlib.h, the use of abs()
+// in gfx/graphite2/src/inc/UtfCodec.h somehow ends up picking the wrong abs()
+#  include <cstdlib>
+#  include <cstring>
+#else
+#  include <stdlib.h>
+#  include <string.h>
 #endif
 
 #if defined(__cplusplus)
 #include "mozilla/fallible.h"
+#include "mozilla/mozalloc_abort.h"
 #include "mozilla/TemplateLib.h"
 #endif
 #include "mozilla/Attributes.h"
@@ -37,8 +45,8 @@
 
 /* Workaround build problem with Sun Studio 12 */
 #if defined(__SUNPRO_C) || defined(__SUNPRO_CC)
-#  undef MOZ_WARN_UNUSED_RESULT
-#  define MOZ_WARN_UNUSED_RESULT
+#  undef MOZ_MUST_USE
+#  define MOZ_MUST_USE
 #  undef MOZ_ALLOCATOR
 #  define MOZ_ALLOCATOR
 #endif
@@ -97,10 +105,10 @@ MFBT_API char* moz_xstrndup(const char* str, size_t strsize)
 
 
 #if defined(HAVE_POSIX_MEMALIGN)
-MFBT_API MOZ_WARN_UNUSED_RESULT
+MFBT_API MOZ_MUST_USE
 int moz_xposix_memalign(void **ptr, size_t alignment, size_t size);
 
-MFBT_API MOZ_WARN_UNUSED_RESULT
+MFBT_API MOZ_MUST_USE
 int moz_posix_memalign(void **ptr, size_t alignment, size_t size);
 #endif /* if defined(HAVE_POSIX_MEMALIGN) */
 
@@ -282,10 +290,28 @@ class InfallibleAllocPolicy
 {
 public:
     template <typename T>
+    T* maybe_pod_malloc(size_t aNumElems)
+    {
+        return pod_malloc<T>(aNumElems);
+    }
+
+    template <typename T>
+    T* maybe_pod_calloc(size_t aNumElems)
+    {
+        return pod_calloc<T>(aNumElems);
+    }
+
+    template <typename T>
+    T* maybe_pod_realloc(T* aPtr, size_t aOldSize, size_t aNewSize)
+    {
+        return pod_realloc<T>(aPtr, aOldSize, aNewSize);
+    }
+
+    template <typename T>
     T* pod_malloc(size_t aNumElems)
     {
         if (aNumElems & mozilla::tl::MulOverflowMask<sizeof(T)>::value) {
-            return nullptr;
+            reportAllocOverflow();
         }
         return static_cast<T*>(moz_xmalloc(aNumElems * sizeof(T)));
     }
@@ -300,7 +326,7 @@ public:
     T* pod_realloc(T* aPtr, size_t aOldSize, size_t aNewSize)
     {
         if (aNewSize & mozilla::tl::MulOverflowMask<sizeof(T)>::value) {
-            return nullptr;
+            reportAllocOverflow();
         }
         return static_cast<T*>(moz_xrealloc(aPtr, aNewSize * sizeof(T)));
     }
@@ -312,6 +338,12 @@ public:
 
     void reportAllocOverflow() const
     {
+        mozalloc_abort("alloc overflow");
+    }
+
+    bool checkSimulatedOOM() const
+    {
+        return true;
     }
 };
 

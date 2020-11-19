@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_cavalry_melee_swordsman">
+  <Attack>
+    <Melee>
+      <AttackName context="Name of an attack using a single-edged sword.">Sword</AttackName>
+    </Melee>
+  </Attack>
   <Cost>
     <Resources>
       <food op="add">-25</food>

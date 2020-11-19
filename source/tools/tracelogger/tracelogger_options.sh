@@ -9,13 +9,15 @@
 # The last tested version of the tool is 1c67e97e794b5039d0cae95f72ea0c76e4aa4696,
 # it can be used if more recent versions cause trouble.
 
+export TLDIR="$(dirname $(realpath $0))"
+
 # Use semicolons to separate values on Windows.
 # If that produces bogus output, you can try with commas instead.
 if [ "${OS}" = "Windows_NT" ]
 then
-  export TLLOG="Defaults;IonCompiler"
+  export TLLOG="Default;IonCompiler"
   export TLOPTIONS="EnableMainThread;EnableOffThread;EnableGraph"
 else
-  export TLLOG=Defaults,IonCompiler
+  export TLLOG=Default,IonCompiler
   export TLOPTIONS=EnableMainThread,EnableOffThread,EnableGraph
 fi

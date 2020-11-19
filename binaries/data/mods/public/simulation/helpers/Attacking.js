@@ -119,9 +119,6 @@ Attacking.prototype.GetStatusEffectsData = function(valueModifRoot, template, en
 	{
 		let statusTemplate = template[effect];
 		result[effect] = {
-			"StatusName": statusTemplate.StatusName,
-			"ApplierTooltip": statusTemplate.ApplierTooltip,
-			"ReceiverTooltip": statusTemplate.ReceiverTooltip,
 			"Duration": ApplyValueModificationsToEntity(valueModifRoot + "/ApplyStatus/" + effect + "/Duration", +(statusTemplate.Duration || 0), entity),
 			"Interval": ApplyValueModificationsToEntity(valueModifRoot + "/ApplyStatus/" + effect + "/Interval", +(statusTemplate.Interval || 0), entity),
 			"Stackability": statusTemplate.Stackability

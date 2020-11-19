@@ -26,6 +26,7 @@ Attack.prototype.Schema =
 	"<a:help>Controls the attack abilities and strengths of the unit.</a:help>" +
 	"<a:example>" +
 		"<Melee>" +
+			"<AttackName>Spear</AttackName>" +
 			"<Damage>" +
 				"<Hack>10.0</Hack>" +
 				"<Pierce>0.0</Pierce>" +
@@ -48,6 +49,7 @@ Attack.prototype.Schema =
 			"<PreferredClasses datatype=\"tokens\">Cavalry Infantry</PreferredClasses>" +
 		"</Melee>" +
 		"<Ranged>" +
+			"<AttackName>Bow</AttackName>" +
 			"<Damage>" +
 				"<Hack>0.0</Hack>" +
 				"<Pierce>10.0</Pierce>" +
@@ -97,6 +99,14 @@ Attack.prototype.Schema =
 	"<optional>" +
 		"<element name='Melee'>" +
 			"<interleave>" +
+				"<element name='AttackName' a:help='Name of the attack, to be displayed in the GUI. Optionally includes a translate context attribute.'>" +
+					"<optional>" +
+						"<attribute name='context'>" +
+							"<text/>" +
+						"</attribute>" +
+					"</optional>" +
+					"<text/>" +
+				"</element>" +
 				Attacking.BuildAttackEffectsSchema() +
 				"<element name='MaxRange' a:help='Maximum attack range (in metres)'><ref name='nonNegativeDecimal'/></element>" +
 				"<element name='PrepareTime' a:help='Time from the start of the attack command until the attack actually occurs (in milliseconds). This value relative to RepeatTime should closely match the \"event\" point in the actor&apos;s attack animation'>" +
@@ -113,6 +123,14 @@ Attack.prototype.Schema =
 	"<optional>" +
 		"<element name='Ranged'>" +
 			"<interleave>" +
+				"<element name='AttackName' a:help='Name of the attack, to be displayed in the GUI. Optionally includes a translate context attribute.'>" +
+					"<optional>" +
+						"<attribute name='context'>" +
+							"<text/>" +
+						"</attribute>" +
+					"</optional>" +
+					"<text/>" +
+				"</element>" +
 				Attacking.BuildAttackEffectsSchema() +
 				"<element name='MaxRange' a:help='Maximum attack range (in metres)'><ref name='nonNegativeDecimal'/></element>" +
 				"<element name='MinRange' a:help='Minimum attack range (in metres)'><ref name='nonNegativeDecimal'/></element>" +
@@ -185,6 +203,14 @@ Attack.prototype.Schema =
 	"<optional>" +
 		"<element name='Capture'>" +
 			"<interleave>" +
+				"<element name='AttackName' a:help='Name of the attack, to be displayed in the GUI. Optionally includes a translate context attribute.'>" +
+					"<optional>" +
+						"<attribute name='context'>" +
+							"<text/>" +
+						"</attribute>" +
+					"</optional>" +
+					"<text/>" +
+				"</element>" +
 				Attacking.BuildAttackEffectsSchema() +
 				"<element name='MaxRange' a:help='Maximum attack range (in meters)'><ref name='nonNegativeDecimal'/></element>" +
 				"<element name='RepeatTime' a:help='Time between attacks (in milliseconds). The attack animation will be stretched to match this time'>" + // TODO: it shouldn't be stretched
@@ -198,6 +224,14 @@ Attack.prototype.Schema =
 	"<optional>" +
 		"<element name='Slaughter' a:help='A special attack to kill domestic animals'>" +
 			"<interleave>" +
+				"<element name='AttackName' a:help='Name of the attack, to be displayed in the GUI. Optionally includes a translate context attribute.'>" +
+					"<optional>" +
+						"<attribute name='context'>" +
+							"<text/>" +
+						"</attribute>" +
+					"</optional>" +
+					"<text/>" +
+				"</element>" +
 				Attacking.BuildAttackEffectsSchema() +
 				"<element name='MaxRange'><ref name='nonNegativeDecimal'/></element>" + // TODO: how do these work?
 				Attack.prototype.preferredClassesSchema +
@@ -401,6 +435,14 @@ Attack.prototype.CompareEntitiesByPreference = function(a, b)
 	if (aPreference === null) return 1;
 	if (bPreference === null) return -1;
 	return aPreference - bPreference;
+};
+
+Attack.prototype.GetAttackName = function(type)
+{
+	return {
+		"name": this.template[type].AttackName._string || this.template[type].AttackName,
+		"context": this.template[type].AttackName["@context"]
+	};
 };
 
 Attack.prototype.GetRepeatTime = function(type)
