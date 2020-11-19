@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="units/pers/cavalry_axeman_b">
+  <Identity>
+    <RequiredTechnology>persians/special_equine_transports</RequiredTechnology>
+  </Identity>
+  <Promotion>
+    <Entity>units/pers/cavalry_axeman_a_trireme</Entity>
+  </Promotion>
+</Entity>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="units/sele/infantry_archer_merc_a">
+  <Identity>
+    <Rank>Elite</Rank>
+  </Identity>
+  <Promotion disable=""/>
+  <VisualActor>
+    <Actor>units/seleucids/infantry_archer_e.xml</Actor>
+  </VisualActor>
+</Entity>

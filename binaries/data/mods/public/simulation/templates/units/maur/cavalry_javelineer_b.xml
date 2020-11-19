@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_cavalry_ranged_javelineer">
+  <Identity>
+    <Civ>maur</Civ>
+    <SelectionGroupName>units/maur/cavalry_javelineer_b</SelectionGroupName>
+    <GenericName>Indian Light Cavalry</GenericName>
+    <SpecificName>Ashwarohi</SpecificName>
+    <Icon>units/maur_cavalry_javelinist.png</Icon>
+  </Identity>
+  <Promotion>
+    <Entity>units/maur/cavalry_javelineer_a</Entity>
+  </Promotion>
+  <VisualActor>
+    <Actor>units/mauryas/cavalry_javelinist_b_m.xml</Actor>
+  </VisualActor>
+</Entity>

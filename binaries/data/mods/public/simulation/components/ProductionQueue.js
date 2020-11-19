@@ -5,7 +5,7 @@ ProductionQueue.prototype.Schema =
 	"<a:example>" +
 		"<BatchTimeModifier>0.7</BatchTimeModifier>" +
 		"<Entities datatype='tokens'>" +
-			"\n    units/{civ}_support_female_citizen\n    units/{native}_support_trader\n    units/athen_infantry_spearman_b\n  " +
+			"\n    units/{civ}/support_female_citizen\n    units/{native}/support_trader\n    units/athen/infantry_spearman_b\n  " +
 		"</Entities>" +
 	"</a:example>" +
 	"<element name='BatchTimeModifier' a:help='Modifier that influences the time benefit for batch training'>" +

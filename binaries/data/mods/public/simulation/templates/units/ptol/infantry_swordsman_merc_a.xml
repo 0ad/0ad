@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="units/ptol/infantry_swordsman_merc_b">
+  <Identity>
+    <Rank>Advanced</Rank>
+  </Identity>
+  <Promotion>
+    <Entity>units/ptol/infantry_swordsman_merc_e</Entity>
+  </Promotion>
+  <VisualActor>
+    <Actor>units/ptolemies/infantry_swordsman_a.xml</Actor>
+  </VisualActor>
+</Entity>

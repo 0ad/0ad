@@ -1780,49 +1780,49 @@
 			<Orientation y="1.3362"/>
 		</Entity>
 		<Entity uid="497">
-			<Template>units/rome_champion_infantry_swordsman_03</Template>
+			<Template>units/rome/champion_infantry_swordsman_03</Template>
 			<Player>1</Player>
 			<Position x="404.92365" z="368.94748"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="498">
-			<Template>units/rome_champion_infantry_swordsman_02</Template>
+			<Template>units/rome/champion_infantry_swordsman_02</Template>
 			<Player>1</Player>
 			<Position x="400.28666" z="375.12858"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="499">
-			<Template>units/rome_champion_infantry_swordsman_04</Template>
+			<Template>units/rome/champion_infantry_swordsman_04</Template>
 			<Player>1</Player>
 			<Position x="398.77985" z="371.86976"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="502">
-			<Template>units/pers_ship_trireme</Template>
+			<Template>units/pers/ship_trireme</Template>
 			<Player>2</Player>
 			<Position x="472.93317" z="732.224"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="503">
-			<Template>units/pers_ship_trireme</Template>
+			<Template>units/pers/ship_trireme</Template>
 			<Player>2</Player>
 			<Position x="448.75525" z="697.01636"/>
 			<Orientation y="3.06269"/>
 		</Entity>
 		<Entity uid="504">
-			<Template>units/pers_champion_infantry</Template>
+			<Template>units/pers/champion_infantry</Template>
 			<Player>2</Player>
 			<Position x="610.40888" z="352.73621"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="505">
-			<Template>units/pers_champion_infantry</Template>
+			<Template>units/pers/champion_infantry</Template>
 			<Player>2</Player>
 			<Position x="614.99683" z="344.09598"/>
 			<Orientation y="-2.7891"/>
 		</Entity>
 		<Entity uid="506">
-			<Template>units/pers_champion_infantry</Template>
+			<Template>units/pers/champion_infantry</Template>
 			<Player>2</Player>
 			<Position x="609.98493" z="343.63776"/>
 			<Orientation y="0.53388"/>
@@ -2883,14 +2883,14 @@
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="847">
-			<Template>units/ptol_ship_quinquereme</Template>
+			<Template>units/ptol/ship_quinquereme</Template>
 			<Player>1</Player>
 			<Position x="743.03132" z="491.18903"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="33286"/>
 		</Entity>
 		<Entity uid="848">
-			<Template>units/ptol_ship_quinquereme</Template>
+			<Template>units/ptol/ship_quinquereme</Template>
 			<Player>1</Player>
 			<Position x="392.6182" z="276.75635"/>
 			<Orientation y="1.43128"/>

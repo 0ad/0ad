@@ -143,7 +143,7 @@ PETRA.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 			if (pos)
 				return { "x": pos[0], "z": pos[1], "angle": 3*Math.PI/4, "base": 0 };
 			// No possible location, try to build instead a dock in a not-enemy island
-			let templateName = gameState.applyCiv("structures/{civ}_dock");
+			let templateName = gameState.applyCiv("structures/{civ}/dock");
 			if (gameState.ai.HQ.canBuild(gameState, templateName) && !gameState.isTemplateDisabled(templateName))
 			{
 				template = gameState.getTemplate(templateName);
@@ -316,7 +316,7 @@ PETRA.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 
 	let radius = 0;
 	if (template.hasClass("Fortress") || template.hasClass("Arsenal") ||
-		this.type == gameState.applyCiv("structures/{civ}_elephant_stables"))
+		this.type == gameState.applyCiv("structures/{civ}/elephant_stables"))
 		radius = Math.floor((template.obstructionRadius().max + 8) / obstructions.cellSize);
 	else if (template.resourceDropsiteTypes() === undefined && !template.hasClass("House") &&
 		!template.hasClass("Field") && !template.hasClass("Market"))
@@ -891,7 +891,7 @@ PETRA.ConstructionPlan.prototype.isGo = function(gameState)
 {
 	if (this.goRequirement && this.goRequirement == "houseNeeded")
 	{
-		if (!gameState.ai.HQ.canBuild(gameState, "structures/{civ}_house"))
+		if (!gameState.ai.HQ.canBuild(gameState, "structures/{civ}/house"))
 			return false;
 		if (gameState.getPopulationMax() <= gameState.getPopulationLimit())
 			return false;

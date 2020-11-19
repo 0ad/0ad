@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_wallset">
+  <Identity>
+    <Civ>iber</Civ>
+    <SpecificName>Zabal Horma</SpecificName>
+  </Identity>
+  <WallSet>
+    <Templates>
+      <Tower>structures/iber/wall_tower</Tower>
+      <Gate>structures/iber/wall_gate</Gate>
+      <WallLong>structures/iber/wall_long</WallLong>
+      <WallMedium>structures/iber/wall_medium</WallMedium>
+      <WallShort>structures/iber/wall_short</WallShort>
+    </Templates>
+    <MaxTowerOverlap>0.80</MaxTowerOverlap>
+    <MinTowerOverlap>0.20</MinTowerOverlap>
+  </WallSet>
+</Entity>

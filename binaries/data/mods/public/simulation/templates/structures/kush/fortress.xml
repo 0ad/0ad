@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_military_fortress">
+  <Footprint>
+    <Square width="30.0" depth="30.0"/>
+    <Height>8.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>kush</Civ>
+    <SpecificName>Htm</SpecificName>
+  </Identity>
+  <Obstruction>
+    <Static width="28.0" depth="28.0"/>
+  </Obstruction>
+  <ProductionQueue>
+    <Entities datatype="tokens">
+      units/{civ}/champion_infantry
+      units/{civ}/champion_cavalry
+      units/{civ}/champion_elephant
+      units/{civ}/hero_nastasen
+      units/{civ}/hero_amanirenas
+      units/{civ}/hero_arakamani
+    </Entities>
+  </ProductionQueue>
+  <VisualActor>
+    <Actor>structures/kushites/fortress.xml</Actor>
+  </VisualActor>
+  <WallPiece>
+    <Length>28.5</Length>
+    <Indent>6.7</Indent>
+  </WallPiece>
+</Entity>

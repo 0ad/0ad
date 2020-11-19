@@ -38,9 +38,9 @@ function testEntitiesList()
 	});
 
 	let cmpProductionQueue = ConstructComponent(productionQueueId, "ProductionQueue", {
-		"Entities": { "_string": "units/{civ}_cavalry_javelineer_b " +
-		                         "units/{civ}_infantry_swordsman_b " +
-		                         "units/{native}_support_female_citizen" },
+		"Entities": { "_string": "units/{civ}/cavalry_javelineer_b " +
+		                         "units/{civ}/infantry_swordsman_b " +
+		                         "units/{native}/support_female_citizen" },
 		"Technologies": { "_string": "gather_fishing_net " +
 		                             "phase_town_{civ} " +
 		                             "phase_city_{civ}" }
@@ -79,7 +79,7 @@ function testEntitiesList()
 	cmpProductionQueue.CalculateEntitiesMap();
 	TS_ASSERT_UNEVAL_EQUALS(
 		cmpProductionQueue.GetEntitiesList(),
-		["units/iber_cavalry_javelineer_b", "units/iber_infantry_swordsman_b", "units/iber_support_female_citizen"]
+		["units/iber/cavalry_javelineer_b", "units/iber/infantry_swordsman_b", "units/iber/support_female_citizen"]
 	);
 	TS_ASSERT_UNEVAL_EQUALS(
 		cmpProductionQueue.GetTechnologiesList(),
@@ -87,12 +87,12 @@ function testEntitiesList()
 	);
 
 	AddMock(SYSTEM_ENTITY, IID_TemplateManager, {
-		"TemplateExists": name => name == "units/iber_support_female_citizen",
+		"TemplateExists": name => name == "units/iber/support_female_citizen",
 		"GetTemplate": name => ({})
 	});
 
 	cmpProductionQueue.CalculateEntitiesMap();
-	TS_ASSERT_UNEVAL_EQUALS(cmpProductionQueue.GetEntitiesList(), ["units/iber_support_female_citizen"]);
+	TS_ASSERT_UNEVAL_EQUALS(cmpProductionQueue.GetEntitiesList(), ["units/iber/support_female_citizen"]);
 
 	AddMock(SYSTEM_ENTITY, IID_TemplateManager, {
 		"TemplateExists": () => true,
@@ -102,40 +102,40 @@ function testEntitiesList()
 	AddMock(playerEntityID, IID_Player, {
 		"GetCiv": () => "iber",
 		"GetDisabledTechnologies": () => ({}),
-		"GetDisabledTemplates": () => ({ "units/athen_infantry_swordsman_b": true }),
+		"GetDisabledTemplates": () => ({ "units/athen/infantry_swordsman_b": true }),
 		"GetPlayerID": () => playerId
 	});
 
 	cmpProductionQueue.CalculateEntitiesMap();
 	TS_ASSERT_UNEVAL_EQUALS(
 		cmpProductionQueue.GetEntitiesList(),
-		["units/iber_cavalry_javelineer_b", "units/iber_infantry_swordsman_b", "units/iber_support_female_citizen"]
+		["units/iber/cavalry_javelineer_b", "units/iber/infantry_swordsman_b", "units/iber/support_female_citizen"]
 	);
 
 	AddMock(playerEntityID, IID_Player, {
 		"GetCiv": () => "iber",
 		"GetDisabledTechnologies": () => ({}),
-		"GetDisabledTemplates": () => ({ "units/iber_infantry_swordsman_b": true }),
+		"GetDisabledTemplates": () => ({ "units/iber/infantry_swordsman_b": true }),
 		"GetPlayerID": () => playerId
 	});
 
 	cmpProductionQueue.CalculateEntitiesMap();
 	TS_ASSERT_UNEVAL_EQUALS(
 		cmpProductionQueue.GetEntitiesList(),
-		["units/iber_cavalry_javelineer_b", "units/iber_support_female_citizen"]
+		["units/iber/cavalry_javelineer_b", "units/iber/support_female_citizen"]
 	);
 
 	AddMock(playerEntityID, IID_Player, {
 		"GetCiv": () => "athen",
 		"GetDisabledTechnologies": () => ({ "gather_fishing_net": true }),
-		"GetDisabledTemplates": () => ({ "units/athen_infantry_swordsman_b": true }),
+		"GetDisabledTemplates": () => ({ "units/athen/infantry_swordsman_b": true }),
 		"GetPlayerID": () => playerId
 	});
 
 	cmpProductionQueue.CalculateEntitiesMap();
 	TS_ASSERT_UNEVAL_EQUALS(
 		cmpProductionQueue.GetEntitiesList(),
-		["units/athen_cavalry_javelineer_b", "units/iber_support_female_citizen"]
+		["units/athen/cavalry_javelineer_b", "units/iber/support_female_citizen"]
 	);
 	TS_ASSERT_UNEVAL_EQUALS(cmpProductionQueue.GetTechnologiesList(), ["phase_town_athen",
 	                                                                   "phase_city_athen"]
@@ -374,8 +374,8 @@ function test_token_changes()
 {
 	const ent = 10;
 	let cmpProductionQueue = ConstructComponent(10, "ProductionQueue", {
-		"Entities": { "_string": "units/{civ}_a " +
-		                         "units/{civ}_b" },
+		"Entities": { "_string": "units/{civ}/a " +
+		                         "units/{civ}/b" },
 		"Technologies": { "_string": "a " +
 		                             "b_{civ} " +
 		                             "c_{civ}" },
@@ -408,21 +408,21 @@ function test_token_changes()
 	// Test Setup
 	cmpProductionQueue.CalculateEntitiesMap();
 	TS_ASSERT_UNEVAL_EQUALS(
-		cmpProductionQueue.GetEntitiesList(), ["units/test_a", "units/test_b"]
+		cmpProductionQueue.GetEntitiesList(), ["units/test/a", "units/test/b"]
 	);
 	TS_ASSERT_UNEVAL_EQUALS(
 		cmpProductionQueue.GetTechnologiesList(), ["a", "b_generic", "c_generic"]
 	);
 	// Add a unit of each type to our queue, validate.
-	cmpProductionQueue.AddBatch("units/test_a", "unit", 1, {});
-	cmpProductionQueue.AddBatch("units/test_b", "unit", 1, {});
-	TS_ASSERT_EQUALS(cmpProductionQueue.GetQueue()[0].unitTemplate, "units/test_a");
-	TS_ASSERT_EQUALS(cmpProductionQueue.GetQueue()[1].unitTemplate, "units/test_b");
+	cmpProductionQueue.AddBatch("units/test/a", "unit", 1, {});
+	cmpProductionQueue.AddBatch("units/test/b", "unit", 1, {});
+	TS_ASSERT_EQUALS(cmpProductionQueue.GetQueue()[0].unitTemplate, "units/test/a");
+	TS_ASSERT_EQUALS(cmpProductionQueue.GetQueue()[1].unitTemplate, "units/test/b");
 
 	// Add a modifier that replaces unit A with unit C,
 	// adds a unit D and removes unit B from the roster.
 	Engine.RegisterGlobal("ApplyValueModificationsToEntity", (_, val) => {
-		return HandleTokens(val, "units/{civ}_a>units/{civ}_c units/{civ}_d -units/{civ}_b");
+		return HandleTokens(val, "units/{civ}/a>units/{civ}/c units/{civ}/d -units/{civ}/b");
 	});
 
 	cmpProductionQueue.OnValueModification({
@@ -432,9 +432,9 @@ function test_token_changes()
 	});
 
 	TS_ASSERT_UNEVAL_EQUALS(
-		cmpProductionQueue.GetEntitiesList(), ["units/test_c", "units/test_d"]
+		cmpProductionQueue.GetEntitiesList(), ["units/test/c", "units/test/d"]
 	);
-	TS_ASSERT_EQUALS(cmpProductionQueue.GetQueue()[0].unitTemplate, "units/test_c");
+	TS_ASSERT_EQUALS(cmpProductionQueue.GetQueue()[0].unitTemplate, "units/test/c");
 	TS_ASSERT_EQUALS(cmpProductionQueue.GetQueue().length, 1);
 }
 

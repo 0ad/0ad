@@ -98,27 +98,27 @@
 		}
 	],
 	"WallSets": [
-		"structures/rome_wallset_stone",
-		"structures/rome_wallset_siege"
+		"structures/rome/wallset_stone",
+		"structures/rome/wallset_siege"
 	],
 	"StartEntities": [
 		{
-			"Template": "structures/rome_civil_centre"
+			"Template": "structures/rome/civil_centre"
 		},
 		{
-			"Template": "units/rome_support_female_citizen",
+			"Template": "units/rome/support_female_citizen",
 			"Count": 4
 		},
 		{
-			"Template": "units/rome_infantry_swordsman_b",
+			"Template": "units/rome/infantry_swordsman_b",
 			"Count": 2
 		},
 		{
-			"Template": "units/rome_infantry_javelineer_b",
+			"Template": "units/rome/infantry_javelineer_b",
 			"Count": 2
 		},
 		{
-			"Template": "units/rome_cavalry_spearman_b"
+			"Template": "units/rome/cavalry_spearman_b"
 		}
 	],
 	"Formations": [
@@ -152,9 +152,9 @@
 		"Marcus Licinius Crassus"
 	],
 	"SkirmishReplacements": {
-		"skirmish/units/default_cavalry": "units/rome_cavalry_spearman_b",
-		"skirmish/units/default_infantry_melee_b": "units/rome_infantry_swordsman_b",
-		"skirmish/structures/default_house_10": "structures/{civ}_house"
+		"skirmish/units/default_cavalry": "units/rome/cavalry_spearman_b",
+		"skirmish/units/default_infantry_melee_b": "units/rome/infantry_swordsman_b",
+		"skirmish/structures/default_house_10": "structures/{civ}/house"
 	},
 	"SelectableInGameSetup": true
 }

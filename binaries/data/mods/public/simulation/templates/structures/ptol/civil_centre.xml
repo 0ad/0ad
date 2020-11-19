@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_civic_civil_centre">
+  <Footprint>
+    <Square width="41" depth="33"/>
+    <Height>8.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>ptol</Civ>
+    <SpecificName>Agora</SpecificName>
+  </Identity>
+  <Obstruction>
+    <Static width="39" depth="31"/>
+  </Obstruction>
+  <ProductionQueue>
+    <Entities datatype="tokens">
+      units/{civ}/infantry_pikeman_b
+      units/{civ}/infantry_javelineer_b
+      units/{civ}/cavalry_archer_b
+      units/{civ}/hero_ptolemy_I
+      units/{civ}/hero_ptolemy_IV
+      units/{civ}/hero_cleopatra
+    </Entities>
+  </ProductionQueue>
+  <VisualActor>
+    <Actor>structures/ptolemies/civic_centre.xml</Actor>
+  </VisualActor>
+</Entity>

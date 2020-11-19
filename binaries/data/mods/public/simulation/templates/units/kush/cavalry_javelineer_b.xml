@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_cavalry_ranged_javelineer">
+  <Identity>
+    <Civ>kush</Civ>
+    <Lang>napatan</Lang>
+    <SelectionGroupName>units/kush/cavalry_javelineer_b</SelectionGroupName>
+    <SpecificName>iry hr ssmwtt</SpecificName>
+    <GenericName>Napatan Light Cavalry</GenericName>
+    <RequiredTechnology>phase_village</RequiredTechnology>
+    <Icon>units/kush_cavalry_javelinist.png</Icon>
+  </Identity>
+  <Promotion>
+    <Entity>units/kush/cavalry_javelineer_a</Entity>
+  </Promotion>
+  <VisualActor>
+    <Actor>units/kushites/cavalry_javelinist_b_m.xml</Actor>
+  </VisualActor>
+</Entity>

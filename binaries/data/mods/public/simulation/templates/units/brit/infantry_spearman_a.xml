@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="units/brit/infantry_spearman_b">
+  <Identity>
+    <Rank>Advanced</Rank>
+  </Identity>
+  <Promotion>
+    <Entity>units/brit/infantry_spearman_e</Entity>
+  </Promotion>
+  <VisualActor>
+    <Actor>units/britons/infantry_spearman_a.xml</Actor>
+  </VisualActor>
+</Entity>

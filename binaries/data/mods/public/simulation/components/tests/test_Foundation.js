@@ -19,7 +19,7 @@ let playerEnt = 3;
 let foundationEnt = 20;
 let previewEnt = 21;
 let newEnt = 22;
-let finalTemplate = "structures/athen_civil_centre.xml";
+let finalTemplate = "structures/athen/civil_centre.xml";
 
 function testFoundation(...mocks)
 {

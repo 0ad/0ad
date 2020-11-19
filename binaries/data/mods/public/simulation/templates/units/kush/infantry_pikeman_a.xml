@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="units/kush/infantry_pikeman_b">
+  <Identity>
+    <Rank>Advanced</Rank>
+  </Identity>
+  <Promotion>
+    <Entity>units/kush/infantry_pikeman_e</Entity>
+  </Promotion>
+  <VisualActor>
+    <Actor>units/kushites/infantry_pikeman_a.xml</Actor>
+  </VisualActor>
+</Entity>

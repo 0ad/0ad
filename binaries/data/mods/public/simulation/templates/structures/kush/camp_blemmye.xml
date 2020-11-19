@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_military_embassy">
+  <BuildRestrictions>
+    <Territory>own neutral</Territory>
+  </BuildRestrictions>
+  <Cost>
+    <Resources>
+      <wood>100</wood>
+      <metal>100</metal>
+    </Resources>
+  </Cost>
+  <Footprint>
+    <Square width="29.0" depth="29.0"/>
+    <Height>12.0</Height>
+  </Footprint>
+  <Health>
+    <Max>1000</Max>
+    <SpawnEntityOnDeath>decay|rubble/rubble_stone_5x5</SpawnEntityOnDeath>
+  </Health>
+  <Identity>
+    <Civ>kush</Civ>
+    <GenericName>Blemmye Camp</GenericName>
+    <Tooltip>Train Blemmye Mercenaries.</Tooltip>
+    <Icon>structures/mercenary_camp.png</Icon>
+  </Identity>
+  <Loot>
+    <wood>20</wood>
+    <metal>20</metal>
+  </Loot>
+  <Obstruction>
+    <Static width="29.0" depth="29.0"/>
+  </Obstruction>
+  <ProductionQueue>
+    <Entities datatype="tokens">
+      units/{native}/cavalry_javelineer_merc_b
+    </Entities>
+  </ProductionQueue>
+  <TerritoryDecay>
+    <DecayRate>1</DecayRate>
+  </TerritoryDecay>
+  <TerritoryInfluence disable=""/>
+  <VisualActor>
+    <Actor>structures/mercenaries/camp_blemmye.xml</Actor>
+    <FoundationActor>structures/fndn_8x7.xml</FoundationActor>
+  </VisualActor>
+</Entity>

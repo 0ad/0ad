@@ -29,7 +29,7 @@ Trigger.prototype.tutorialGoals = [
 		],
 		"OnTrainingQueued": function(msg)
 		{
-			if (msg.unitTemplate != "units/spart_infantry_spearman_b" || +msg.count == 1)
+			if (msg.unitTemplate != "units/spart/infantry_spearman_b" || +msg.count == 1)
 			{
 				let cmpProductionQueue = Engine.QueryInterface(msg.trainerEntity, IID_ProductionQueue);
 				cmpProductionQueue.ResetQueue();
@@ -71,7 +71,7 @@ Trigger.prototype.tutorialGoals = [
 		},
 		"OnTrainingQueued": function(msg)
 		{
-			if (msg.unitTemplate != "units/spart_infantry_javelineer_b" || +msg.count == 1)
+			if (msg.unitTemplate != "units/spart/infantry_javelineer_b" || +msg.count == 1)
 			{
 				let cmpProductionQueue = Engine.QueryInterface(msg.trainerEntity, IID_ProductionQueue);
 				cmpProductionQueue.ResetQueue();
@@ -153,7 +153,7 @@ Trigger.prototype.tutorialGoals = [
 		},
 		"OnTrainingQueued": function(msg)
 		{
-			if (msg.unitTemplate != "units/spart_infantry_spearman_b" || +msg.count == 1)
+			if (msg.unitTemplate != "units/spart/infantry_spearman_b" || +msg.count == 1)
 			{
 				let cmpProductionQueue = Engine.QueryInterface(msg.trainerEntity, IID_ProductionQueue);
 				cmpProductionQueue.ResetQueue();
@@ -229,7 +229,7 @@ Trigger.prototype.tutorialGoals = [
 		},
 		"OnTrainingQueued": function(msg)
 		{
-			if (msg.unitTemplate != "units/spart_support_female_citizen" || +msg.count == 1)
+			if (msg.unitTemplate != "units/spart/support_female_citizen" || +msg.count == 1)
 			{
 				let cmpProductionQueue = Engine.QueryInterface(msg.trainerEntity, IID_ProductionQueue);
 				cmpProductionQueue.ResetQueue();
@@ -345,7 +345,7 @@ Trigger.prototype.tutorialGoals = [
 		},
 		"OnTrainingQueued": function(msg)
 		{
-			if (msg.unitTemplate == "units/spart_siege_ram")
+			if (msg.unitTemplate == "units/spart/siege_ram")
 				++this.ramCount;
 			if (this.IsDone())
 			{

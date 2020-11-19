@@ -94,26 +94,26 @@
 	"Structures": [],
 	"WallSets": [
 		"structures/wallset_palisade",
-		"structures/gaul_wallset_stone"
+		"structures/gaul/wallset_stone"
 	],
 	"StartEntities": [
 		{
-			"Template": "structures/gaul_civil_centre"
+			"Template": "structures/gaul/civil_centre"
 		},
 		{
-			"Template": "units/gaul_support_female_citizen",
+			"Template": "units/gaul/support_female_citizen",
 			"Count": 4
 		},
 		{
-			"Template": "units/gaul_infantry_spearman_b",
+			"Template": "units/gaul/infantry_spearman_b",
 			"Count": 2
 		},
 		{
-			"Template": "units/gaul_infantry_javelineer_b",
+			"Template": "units/gaul/infantry_javelineer_b",
 			"Count": 2
 		},
 		{
-			"Template": "units/gaul_cavalry_javelineer_b"
+			"Template": "units/gaul/cavalry_javelineer_b"
 		}
 	],
 	"Formations": [
@@ -141,7 +141,7 @@
 		"Viridovix"
 	],
 	"SkirmishReplacements": {
-		"skirmish/structures/default_house_5": "structures/{civ}_house"
+		"skirmish/structures/default_house_5": "structures/{civ}/house"
 	},
 	"SelectableInGameSetup": true
 }

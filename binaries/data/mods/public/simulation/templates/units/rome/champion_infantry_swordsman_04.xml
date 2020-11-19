@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="units/rome/champion_infantry_swordsman_03">
+  <Attack>
+    <Melee>
+      <Damage>
+        <Hack>20</Hack>
+      </Damage>
+    </Melee>
+  </Attack>
+  <Health>
+    <Max>140</Max>
+  </Health>
+  <Identity>
+    <GenericName>Roman Centurion</GenericName>
+    <SpecificName>Centuriō</SpecificName>
+    <Icon>units/rome_champion_legion_centurio.png</Icon>
+  </Identity>
+  <Promotion disable=""/>
+  <VisualActor>
+    <Actor>units/romans/infantry_swordsman_c4.xml</Actor>
+  </VisualActor>
+</Entity>

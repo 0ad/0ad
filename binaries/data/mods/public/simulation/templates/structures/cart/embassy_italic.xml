@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_military_embassy">
+  <Cost>
+    <Resources>
+      <metal>200</metal>
+    </Resources>
+  </Cost>
+  <Footprint>
+    <Square width="13" depth="15.5"/>
+    <Height>12.0</Height>
+  </Footprint>
+  <Health>
+    <Max>1500</Max>
+  </Health>
+  <Identity>
+    <Civ>cart</Civ>
+    <SpecificName>Italic Embassy</SpecificName>
+    <Tooltip>Train Italic Mercenaries and research Mercenary technologies.</Tooltip>
+    <Icon>structures/embassy_italic.png</Icon>
+  </Identity>
+  <Loot>
+    <metal>40</metal>
+  </Loot>
+  <Obstruction>
+    <Static width="11.0" depth="14.0"/>
+  </Obstruction>
+  <ProductionQueue>
+    <Entities datatype="tokens">
+      units/{native}/infantry_swordsman_ital_b
+      units/{native}/cavalry_spearman_ital_b
+    </Entities>
+  </ProductionQueue>
+  <VisualActor>
+    <Actor>structures/carthaginians/embassy_italic.xml</Actor>
+  </VisualActor>
+</Entity>

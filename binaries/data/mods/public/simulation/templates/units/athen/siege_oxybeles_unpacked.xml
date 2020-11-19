@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="units/athen/siege_oxybeles_packed">
+  <Identity>
+    <Icon>units/hele_siege_oxybeles.png</Icon>
+  </Identity>
+  <Pack>
+    <Entity>units/athen/siege_oxybeles_packed</Entity>
+    <State>unpacked</State>
+  </Pack>
+  <UnitMotion>
+    <WalkSpeed>0.001</WalkSpeed>
+  </UnitMotion>
+  <VisualActor>
+    <Actor>units/hellenes/siege_oxybeles.xml</Actor>
+  </VisualActor>
+</Entity>

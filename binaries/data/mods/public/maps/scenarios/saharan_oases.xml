@@ -13058,25 +13058,25 @@
 			<Orientation y="0.79694"/>
 		</Entity>
 		<Entity uid="2590">
-			<Template>structures/iber_civil_centre</Template>
+			<Template>structures/iber/civil_centre</Template>
 			<Player>1</Player>
 			<Position x="221.96552" z="644.11438"/>
 			<Orientation y="2.3644"/>
 		</Entity>
 		<Entity uid="2591">
-			<Template>units/iber_support_female_citizen</Template>
+			<Template>units/iber/support_female_citizen</Template>
 			<Player>1</Player>
 			<Position x="229.73841" z="625.52857"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2592">
-			<Template>units/iber_support_female_citizen</Template>
+			<Template>units/iber/support_female_citizen</Template>
 			<Player>1</Player>
 			<Position x="233.58909" z="629.08417"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2593">
-			<Template>units/iber_support_female_citizen</Template>
+			<Template>units/iber/support_female_citizen</Template>
 			<Player>1</Player>
 			<Position x="237.83146" z="633.2262"/>
 			<Orientation y="2.35621"/>
@@ -13587,49 +13587,49 @@
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2699">
-			<Template>structures/cart_civil_centre</Template>
+			<Template>structures/cart/civil_centre</Template>
 			<Player>4</Player>
 			<Position x="639.89966" z="1065.65772"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2700">
-			<Template>units/cart_support_female_citizen</Template>
+			<Template>units/cart/support_female_citizen</Template>
 			<Player>4</Player>
 			<Position x="649.76374" z="1042.77112"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2701">
-			<Template>units/cart_support_female_citizen</Template>
+			<Template>units/cart/support_female_citizen</Template>
 			<Player>4</Player>
 			<Position x="653.21711" z="1047.17273"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2702">
-			<Template>units/cart_support_female_citizen</Template>
+			<Template>units/cart/support_female_citizen</Template>
 			<Player>4</Player>
 			<Position x="657.00513" z="1050.78907"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2703">
-			<Template>structures/pers_civil_centre</Template>
+			<Template>structures/pers/civil_centre</Template>
 			<Player>2</Player>
 			<Position x="636.92768" z="228.12748"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2704">
-			<Template>units/pers_support_female_citizen</Template>
+			<Template>units/pers/support_female_citizen</Template>
 			<Player>2</Player>
 			<Position x="644.37616" z="207.76775"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2705">
-			<Template>units/pers_support_female_citizen</Template>
+			<Template>units/pers/support_female_citizen</Template>
 			<Player>2</Player>
 			<Position x="647.78138" z="211.27671"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2706">
-			<Template>units/pers_support_female_citizen</Template>
+			<Template>units/pers/support_female_citizen</Template>
 			<Player>2</Player>
 			<Position x="651.38147" z="214.1368"/>
 			<Orientation y="2.35621"/>
@@ -14721,206 +14721,206 @@
 			<Orientation y="-1.03481"/>
 		</Entity>
 		<Entity uid="2904">
-			<Template>structures/iber_wall_long</Template>
+			<Template>structures/iber/wall_long</Template>
 			<Player>1</Player>
 			<Position x="290.56727" z="580.10273"/>
 			<Orientation y="1.94494"/>
 			<Obstruction group="2905" group2="2930"/>
 		</Entity>
 		<Entity uid="2905">
-			<Template>structures/iber_wall_tower</Template>
+			<Template>structures/iber/wall_tower</Template>
 			<Player>1</Player>
 			<Position x="284.21665" z="564.23212"/>
 			<Orientation y="2.29822"/>
 		</Entity>
 		<Entity uid="2906">
-			<Template>structures/iber_wall_medium</Template>
+			<Template>structures/iber/wall_medium</Template>
 			<Player>1</Player>
 			<Position x="275.45707" z="554.87116"/>
 			<Orientation y="2.35621"/>
 			<Obstruction group="2905" group2="2907"/>
 		</Entity>
 		<Entity uid="2907">
-			<Template>structures/iber_wall_tower</Template>
+			<Template>structures/iber/wall_tower</Template>
 			<Player>1</Player>
 			<Position x="267.29206" z="546.81995"/>
 			<Orientation y="2.82328"/>
 		</Entity>
 		<Entity uid="2908">
-			<Template>structures/iber_wall_long</Template>
+			<Template>structures/iber/wall_long</Template>
 			<Player>1</Player>
 			<Position x="247.68464" z="546.66157"/>
 			<Orientation y="-3.10911"/>
 			<Obstruction group="2907" group2="2909"/>
 		</Entity>
 		<Entity uid="2909">
-			<Template>structures/iber_wall_tower</Template>
+			<Template>structures/iber/wall_tower</Template>
 			<Player>1</Player>
 			<Position x="228.50509" z="548.17603"/>
 			<Orientation y="-2.73034"/>
 		</Entity>
 		<Entity uid="2910">
-			<Template>structures/iber_wall_long</Template>
+			<Template>structures/iber/wall_long</Template>
 			<Player>1</Player>
 			<Position x="184.42795" z="572.39722"/>
 			<Orientation y="-2.5117"/>
 			<Obstruction group="2911" group2="2912"/>
 		</Entity>
 		<Entity uid="2911">
-			<Template>structures/iber_wall_tower</Template>
+			<Template>structures/iber/wall_tower</Template>
 			<Player>1</Player>
 			<Position x="199.46802" z="561.6717"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2912">
-			<Template>structures/iber_wall_tower</Template>
+			<Template>structures/iber/wall_tower</Template>
 			<Player>1</Player>
 			<Position x="169.237" z="584.10718"/>
 			<Orientation y="-2.10247"/>
 		</Entity>
 		<Entity uid="2913">
-			<Template>structures/iber_wall_medium</Template>
+			<Template>structures/iber/wall_medium</Template>
 			<Player>1</Player>
 			<Position x="163.1001" z="597.15821"/>
 			<Orientation y="1.18102"/>
 			<Obstruction group="2912" group2="2914"/>
 		</Entity>
 		<Entity uid="2914">
-			<Template>structures/iber_wall_tower</Template>
+			<Template>structures/iber/wall_tower</Template>
 			<Player>1</Player>
 			<Position x="158.88817" z="609.52955"/>
 			<Orientation y="-1.69185"/>
 		</Entity>
 		<Entity uid="2915">
-			<Template>structures/iber_wall_long</Template>
+			<Template>structures/iber/wall_long</Template>
 			<Player>1</Player>
 			<Position x="160.28106" z="628.14844"/>
 			<Orientation y="1.69722"/>
 			<Obstruction group="2914" group2="2916"/>
 		</Entity>
 		<Entity uid="2916">
-			<Template>structures/iber_wall_tower</Template>
+			<Template>structures/iber/wall_tower</Template>
 			<Player>1</Player>
 			<Position x="162.79348" z="647.62885"/>
 			<Orientation y="-1.6155"/>
 		</Entity>
 		<Entity uid="2917">
-			<Template>structures/iber_wall_medium</Template>
+			<Template>structures/iber/wall_medium</Template>
 			<Player>1</Player>
 			<Position x="179.10788" z="692.42133"/>
 			<Orientation y="2.35621"/>
 			<Obstruction group="2918" group2="2931"/>
 		</Entity>
 		<Entity uid="2918">
-			<Template>structures/iber_wall_tower</Template>
+			<Template>structures/iber/wall_tower</Template>
 			<Player>1</Player>
 			<Position x="171.56135" z="684.98151"/>
 			<Orientation y="2.33123"/>
 		</Entity>
 		<Entity uid="2919">
-			<Template>structures/iber_wall_long</Template>
+			<Template>structures/iber/wall_long</Template>
 			<Player>1</Player>
 			<Position x="201.2925" z="714.70795"/>
 			<Orientation y="2.35621"/>
 			<Obstruction group="2924" group2="2931"/>
 		</Entity>
 		<Entity uid="2920">
-			<Template>structures/iber_wall_long</Template>
+			<Template>structures/iber/wall_long</Template>
 			<Player>1</Player>
 			<Position x="287.46537" z="696.95411"/>
 			<Orientation y="-2.32789"/>
 			<Obstruction group="2926"/>
 		</Entity>
 		<Entity uid="2921">
-			<Template>structures/iber_wall_long</Template>
+			<Template>structures/iber/wall_long</Template>
 			<Player>1</Player>
 			<Position x="262.90757" z="722.30146"/>
 			<Orientation y="-2.34934"/>
 			<Obstruction group="2923" group2="2926"/>
 		</Entity>
 		<Entity uid="2922">
-			<Template>structures/iber_wall_short</Template>
+			<Template>structures/iber/wall_short</Template>
 			<Player>1</Player>
 			<Position x="242.75937" z="733.20228"/>
 			<Orientation y="-0.16033"/>
 			<Obstruction group="2923" group2="2925"/>
 		</Entity>
 		<Entity uid="2923">
-			<Template>structures/iber_wall_tower</Template>
+			<Template>structures/iber/wall_tower</Template>
 			<Player>1</Player>
 			<Position x="251.3562" z="734.05787"/>
 			<Orientation y="0.32596"/>
 		</Entity>
 		<Entity uid="2924">
-			<Template>structures/iber_wall_tower</Template>
+			<Template>structures/iber/wall_tower</Template>
 			<Player>1</Player>
 			<Position x="214.91347" z="728.66144"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2925">
-			<Template>structures/iber_wall_tower</Template>
+			<Template>structures/iber/wall_tower</Template>
 			<Player>1</Player>
 			<Position x="236.48626" z="733.4535"/>
 			<Orientation y="-3.00423"/>
 		</Entity>
 		<Entity uid="2926">
-			<Template>structures/iber_wall_tower</Template>
+			<Template>structures/iber/wall_tower</Template>
 			<Player>1</Player>
 			<Position x="276.38535" z="709.24079"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2927">
-			<Template>structures/iber_defense_tower</Template>
+			<Template>structures/iber/defense_tower</Template>
 			<Player>1</Player>
 			<Position x="300.87534" z="681.69013"/>
 			<Orientation y="-1.87383"/>
 			<Obstruction group="2929"/>
 		</Entity>
 		<Entity uid="2928">
-			<Template>structures/iber_defense_tower</Template>
+			<Template>structures/iber/defense_tower</Template>
 			<Player>1</Player>
 			<Position x="297.42322" z="598.35108"/>
 			<Orientation y="-1.60357"/>
 			<Obstruction group="2930"/>
 		</Entity>
 		<Entity uid="2929">
-			<Template>structures/iber_wall_tower</Template>
+			<Template>structures/iber/wall_tower</Template>
 			<Player>1</Player>
 			<Position x="303.06177" z="676.6767"/>
 			<Orientation y="-2.85917"/>
 		</Entity>
 		<Entity uid="2930">
-			<Template>structures/iber_wall_tower</Template>
+			<Template>structures/iber/wall_tower</Template>
 			<Player>1</Player>
 			<Position x="298.20926" z="603.06623"/>
 			<Orientation y="0.7335"/>
 		</Entity>
 		<Entity uid="2931">
-			<Template>structures/iber_wall_tower</Template>
+			<Template>structures/iber/wall_tower</Template>
 			<Player>1</Player>
 			<Position x="188.31292" z="702.59705"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2932">
-			<Template>structures/brit_civil_centre</Template>
+			<Template>structures/brit/civil_centre</Template>
 			<Player>3</Player>
 			<Position x="1053.5829" z="643.36255"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2933">
-			<Template>units/brit_support_female_citizen</Template>
+			<Template>units/brit/support_female_citizen</Template>
 			<Player>3</Player>
 			<Position x="1065.93885" z="622.69062"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2934">
-			<Template>units/brit_support_female_citizen</Template>
+			<Template>units/brit/support_female_citizen</Template>
 			<Player>3</Player>
 			<Position x="1072.35743" z="627.49122"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2935">
-			<Template>units/brit_support_female_citizen</Template>
+			<Template>units/brit/support_female_citizen</Template>
 			<Player>3</Player>
 			<Position x="1069.19166" z="625.29407"/>
 			<Orientation y="2.35621"/>

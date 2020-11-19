@@ -5,7 +5,7 @@ Builder.prototype.Schema =
 	"<a:example>" +
 		"<Rate>1.0</Rate>" +
 		"<Entities datatype='tokens'>" +
-			"\n    structures/{civ}_barracks\n    structures/{native}_civil_centre\n    structures/pers_apadana\n  " +
+			"\n    structures/{civ}/barracks\n    structures/{native}/civil_centre\n    structures/pers/apadana\n  " +
 		"</Entities>" +
 	"</a:example>" +
 	"<element name='Rate' a:help='Construction speed multiplier (1.0 is normal speed, higher values are faster).'>" +

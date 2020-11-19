@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_wallset">
+  <Identity>
+    <Civ>cart</Civ>
+    <SpecificName>Low Wall</SpecificName>
+    <RequiredTechnology>phase_village</RequiredTechnology>
+    <Icon>structures/palisade_wall.png</Icon>
+  </Identity>
+  <WallSet>
+    <Templates>
+      <Tower>structures/cart/s_wall_tower</Tower>
+      <Gate>structures/cart/s_wall_gate</Gate>
+      <WallLong>structures/cart/s_wall_long</WallLong>
+      <WallMedium>structures/cart/s_wall_medium</WallMedium>
+      <WallShort>structures/cart/s_wall_short</WallShort>
+    </Templates>
+  </WallSet>
+</Entity>

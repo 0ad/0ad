@@ -40,7 +40,7 @@ let template = {
 	"Upgrade": {
 		"Tower": {
 			"Cost": { "stone": "100", "wood": "50" },
-			"Entity": "structures/{civ}_defense_tower",
+			"Entity": "structures/{civ}/defense_tower",
 			"Time": "100"
 		}
 	}
@@ -146,7 +146,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmpUpgrade.GetUpgrades()[0].cost, { "stone": 100, "wood"
  * Tell the Upgrade component to start the Upgrade,
  * then mark the technology that alters the upgrade cost as researched.
  */
-cmpUpgrade.Upgrade("structures/"+civCode+"_defense_tower");
+cmpUpgrade.Upgrade("structures/" + civCode + "/defense_tower");
 isResearched = true;
 
 // T4: Check that the player-less value hasn't increased...

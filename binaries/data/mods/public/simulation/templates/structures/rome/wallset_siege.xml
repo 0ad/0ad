@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_wallset">
+  <Identity>
+    <Civ>rome</Civ>
+    <GenericName>Siege Wall</GenericName>
+    <SpecificName>Mūrus Circummūnītiōnis</SpecificName>
+    <Tooltip>Wall off an area. Build in own, neutral, or enemy territory.</Tooltip>
+    <VisibleClasses datatype="tokens">SiegeWall</VisibleClasses>
+    <Icon>structures/siege_wall.png</Icon>
+    <RequiredTechnology>phase_city</RequiredTechnology>
+  </Identity>
+  <WallSet>
+    <Templates>
+      <Tower>structures/rome/siege_wall_tower</Tower>
+      <Gate>structures/rome/siege_wall_gate</Gate>
+      <Fort>structures/rome/army_camp</Fort>
+      <WallLong>structures/rome/siege_wall_long</WallLong>
+      <WallMedium>structures/rome/siege_wall_medium</WallMedium>
+      <WallShort>structures/rome/siege_wall_short</WallShort>
+    </Templates>
+    <MaxTowerOverlap>1.00</MaxTowerOverlap>
+    <MinTowerOverlap>0.05</MinTowerOverlap>
+  </WallSet>
+</Entity>

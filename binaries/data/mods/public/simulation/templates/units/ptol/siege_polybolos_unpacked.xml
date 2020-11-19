@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="units/ptol/siege_polybolos_packed">
+  <Identity>
+    <Icon>units/hele_siege_oxybeles.png</Icon>
+  </Identity>
+  <Pack>
+    <Entity>units/ptol/siege_polybolos_packed</Entity>
+    <State>unpacked</State>
+  </Pack>
+  <UnitMotion>
+    <WalkSpeed>0.001</WalkSpeed>
+  </UnitMotion>
+  <VisualActor>
+    <Actor>units/ptolemies/siege_polybolos.xml</Actor>
+  </VisualActor>
+</Entity>

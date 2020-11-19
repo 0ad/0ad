@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_cavalry_melee_swordsman">
+  <Identity>
+    <Civ>maur</Civ>
+    <SelectionGroupName>units/maur/cavalry_swordsman_b</SelectionGroupName>
+    <GenericName>Indian Raiding Cavalry</GenericName>
+    <SpecificName>Aśvārohagaṇaḥ</SpecificName>
+    <Icon>units/maur_cavalry_swordsman.png</Icon>
+    <RequiredTechnology>phase_town</RequiredTechnology>
+  </Identity>
+  <Promotion>
+    <Entity>units/maur/cavalry_swordsman_a</Entity>
+  </Promotion>
+  <VisualActor>
+    <Actor>units/mauryas/cavalry_swordsman_b_m.xml</Actor>
+  </VisualActor>
+</Entity>

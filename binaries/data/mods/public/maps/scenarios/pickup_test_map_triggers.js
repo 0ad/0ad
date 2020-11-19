@@ -1,6 +1,6 @@
-const UNIT_TEMPLATE = "units/athen_infantry_marine_archer_b";
-const SHIP_TEMPLATE = "units/athen_ship_trireme";
-const RAM_TEMPLATE = "units/brit_siege_ram";
+const UNIT_TEMPLATE = "units/athen/infantry_marine_archer_b";
+const SHIP_TEMPLATE = "units/athen/ship_trireme";
+const RAM_TEMPLATE = "units/brit/siege_ram";
 
 const point_plaza_nw = 14; // Center plaza #1 (NW)
 const point_plaza_ne = 15; // Center plaza #2 (NE)

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_infantry_ranged_archer">
+  <Builder>
+    <Entities datatype="tokens">
+      structures/kush/pyramid_small
+      structures/kush/pyramid_large
+      structures/kush/temple_amun
+      structures/kush/camp_blemmye
+      structures/kush/camp_noba
+    </Entities>
+  </Builder>
+  <Identity>
+    <Civ>kush</Civ>
+    <Lang>napatan</Lang>
+    <SelectionGroupName>units/kush/infantry_archer_b</SelectionGroupName>
+    <GenericName>Nubian Archer</GenericName>
+    <SpecificName>Pdty Nhsyw</SpecificName>
+    <RequiredTechnology>phase_village</RequiredTechnology>
+    <Icon>units/kush_infantry_archer.png</Icon>
+  </Identity>
+  <Promotion>
+    <Entity>units/kush/infantry_archer_a</Entity>
+  </Promotion>
+  <VisualActor>
+    <Actor>units/kushites/infantry_archer_b.xml</Actor>
+  </VisualActor>
+</Entity>

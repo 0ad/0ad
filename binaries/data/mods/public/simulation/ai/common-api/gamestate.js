@@ -27,7 +27,7 @@ m.GameState.prototype.init = function(SharedScript, state, player)
 	// get the list of possible phases for this civ:
 	// we assume all of them are researchable from the civil center
 	this.phases = [];
-	let cctemplate = this.getTemplate(this.applyCiv("structures/{civ}_civil_centre"));
+	let cctemplate = this.getTemplate(this.applyCiv("structures/{civ}/civil_centre"));
 	if (!cctemplate)
 		return;
 	let civ = this.getPlayerCiv();
@@ -918,8 +918,8 @@ m.GameState.prototype.isEntityLimitReached = function(category)
 
 m.GameState.prototype.getTraderTemplatesGains = function()
 {
-	let shipMechantTemplateName = this.applyCiv("units/{civ}_ship_merchant");
-	let supportTraderTemplateName = this.applyCiv("units/{civ}_support_trader");
+	let shipMechantTemplateName = this.applyCiv("units/{civ}/ship_merchant");
+	let supportTraderTemplateName = this.applyCiv("units/{civ}/support_trader");
 	let shipMerchantTemplate = !this.isTemplateDisabled(shipMechantTemplateName) && this.getTemplate(shipMechantTemplateName);
 	let supportTraderTemplate = !this.isTemplateDisabled(supportTraderTemplateName) && this.getTemplate(supportTraderTemplateName);
 	let norm = TradeGainNormalization(this.sharedScript.mapSize);

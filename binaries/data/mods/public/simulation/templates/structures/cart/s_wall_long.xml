@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="structures/palisades_long">
+  <Footprint>
+    <Square width="15.0" depth="3.0"/>
+    <Height>6.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>cart</Civ>
+    <SelectionGroupName>structures/cart/wallset_short</SelectionGroupName>
+    <SpecificName>Low Wall</SpecificName>
+    <GenericName>Stone Wall</GenericName>
+  </Identity>
+  <Obstruction>
+    <Static width="14.0" depth="2.0"/>
+  </Obstruction>
+  <StatusBars>
+    <HeightOffset>7.0</HeightOffset>
+  </StatusBars>
+  <Upgrade>
+    <Gate>
+      <Entity>structures/cart/s_wall_gate</Entity>
+      <Cost>
+        <stone>0</stone>
+        <wood>20</wood>
+      </Cost>
+      <Time>5</Time>
+    </Gate>
+  </Upgrade>
+  <VisualActor>
+    <Actor>structures/carthaginians/short_wall_long.xml</Actor>
+    <FoundationActor>structures/fndn_3x1.xml</FoundationActor>
+  </VisualActor>
+  <WallPiece>
+    <Length>14</Length>
+  </WallPiece>
+</Entity>

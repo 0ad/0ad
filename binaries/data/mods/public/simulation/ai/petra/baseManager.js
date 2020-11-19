@@ -252,7 +252,7 @@ PETRA.BaseManager.prototype.removeDropsite = function(gameState, ent)
 PETRA.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource)
 {
 
-	let template = gameState.getTemplate(gameState.applyCiv("structures/{civ}_storehouse"));
+	let template = gameState.getTemplate(gameState.applyCiv("structures/{civ}/storehouse"));
 	let halfSize = 0;
 	if (template.get("Footprint/Square"))
 		halfSize = Math.max(+template.get("Footprint/Square/@depth"), +template.get("Footprint/Square/@width")) / 2;
@@ -376,7 +376,7 @@ PETRA.BaseManager.prototype.checkResourceLevels = function(gameState, queues)
 	{
 		if (type == "food")
 		{
-			if (gameState.ai.HQ.canBuild(gameState, "structures/{civ}_field"))	// let's see if we need to add new farms.
+			if (gameState.ai.HQ.canBuild(gameState, "structures/{civ}/field"))	// let's see if we need to add new farms.
 			{
 				let count = this.getResourceLevel(gameState, type, gameState.currentPhase() > 1);  // animals are not accounted
 				let numFarms = gameState.getOwnStructures().filter(API3.Filters.byClass("Field")).length;  // including foundations
@@ -387,7 +387,7 @@ PETRA.BaseManager.prototype.checkResourceLevels = function(gameState, queues)
 				{
 					if (count < 600)
 					{
-						queues.field.addPlan(new PETRA.ConstructionPlan(gameState, "structures/{civ}_field", { "favoredBase": this.ID }));
+						queues.field.addPlan(new PETRA.ConstructionPlan(gameState, "structures/{civ}/field", { "favoredBase": this.ID }));
 						gameState.ai.HQ.needFarm = true;
 					}
 				}
@@ -398,20 +398,20 @@ PETRA.BaseManager.prototype.checkResourceLevels = function(gameState, queues)
 					if (gameState.ai.HQ.saveResources || gameState.ai.HQ.saveSpace || count > 300 || numFarms > 5)
 						goal = Math.max(goal-1, 1);
 					if (numFound + numQueue < goal)
-						queues.field.addPlan(new PETRA.ConstructionPlan(gameState, "structures/{civ}_field", { "favoredBase": this.ID }));
+						queues.field.addPlan(new PETRA.ConstructionPlan(gameState, "structures/{civ}/field", { "favoredBase": this.ID }));
 				}
 				else if (gameState.ai.HQ.needCorral && !gameState.getOwnEntitiesByClass("Corral", true).hasEntities() &&
-				         !queues.corral.hasQueuedUnits() && gameState.ai.HQ.canBuild(gameState, "structures/{civ}_corral"))
-					queues.corral.addPlan(new PETRA.ConstructionPlan(gameState, "structures/{civ}_corral", { "favoredBase": this.ID }));
+				         !queues.corral.hasQueuedUnits() && gameState.ai.HQ.canBuild(gameState, "structures/{civ}/corral"))
+					queues.corral.addPlan(new PETRA.ConstructionPlan(gameState, "structures/{civ}/corral", { "favoredBase": this.ID }));
 				continue;
 			}
 			if (!gameState.getOwnEntitiesByClass("Corral", true).hasEntities() &&
-			    !queues.corral.hasQueuedUnits() && gameState.ai.HQ.canBuild(gameState, "structures/{civ}_corral"))
+			    !queues.corral.hasQueuedUnits() && gameState.ai.HQ.canBuild(gameState, "structures/{civ}/corral"))
 			{
 				let count = this.getResourceLevel(gameState, type, gameState.currentPhase() > 1);  // animals are not accounted
 				if (count < 900)
 				{
-					queues.corral.addPlan(new PETRA.ConstructionPlan(gameState, "structures/{civ}_corral", { "favoredBase": this.ID }));
+					queues.corral.addPlan(new PETRA.ConstructionPlan(gameState, "structures/{civ}/corral", { "favoredBase": this.ID }));
 					gameState.ai.HQ.needCorral = true;
 				}
 			}
@@ -443,16 +443,16 @@ PETRA.BaseManager.prototype.checkResourceLevels = function(gameState, queues)
 			if (ratio > 0.15)
 			{
 				let newDP = this.findBestDropsiteLocation(gameState, type);
-				if (newDP.quality > 50 && gameState.ai.HQ.canBuild(gameState, "structures/{civ}_storehouse"))
-					queues.dropsites.addPlan(new PETRA.ConstructionPlan(gameState, "structures/{civ}_storehouse", { "base": this.ID, "type": type }, newDP.pos));
+				if (newDP.quality > 50 && gameState.ai.HQ.canBuild(gameState, "structures/{civ}/storehouse"))
+					queues.dropsites.addPlan(new PETRA.ConstructionPlan(gameState, "structures/{civ}/storehouse", { "base": this.ID, "type": type }, newDP.pos));
 				else if (!gameState.getOwnFoundations().filter(API3.Filters.byClass("CivCentre")).hasEntities() && !queues.civilCentre.hasQueuedUnits())
 				{
 					// No good dropsite, try to build a new base if no base already planned,
 					// and if not possible, be less strict on dropsite quality.
 					if ((!gameState.ai.HQ.canExpand || !gameState.ai.HQ.buildNewBase(gameState, queues, type)) &&
 					    newDP.quality > Math.min(25, 50*0.15/ratio) &&
-					    gameState.ai.HQ.canBuild(gameState, "structures/{civ}_storehouse"))
-						queues.dropsites.addPlan(new PETRA.ConstructionPlan(gameState, "structures/{civ}_storehouse", { "base": this.ID, "type": type }, newDP.pos));
+					    gameState.ai.HQ.canBuild(gameState, "structures/{civ}/storehouse"))
+						queues.dropsites.addPlan(new PETRA.ConstructionPlan(gameState, "structures/{civ}/storehouse", { "base": this.ID, "type": type }, newDP.pos));
 				}
 			}
 			this.gatherers[type].nextCheck = gameState.ai.playedTurn + 20;

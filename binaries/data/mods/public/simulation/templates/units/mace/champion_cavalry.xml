@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_champion_cavalry_spearman">
+  <Identity>
+    <Civ>mace</Civ>
+    <Lang>greek</Lang>
+    <GenericName>Companion Cavalry</GenericName>
+    <SpecificName>Hetaîros</SpecificName>
+    <Icon>units/mace_champion_cavalry.png</Icon>
+    <SelectionGroupName>units/mace/champion_cavalry</SelectionGroupName>
+  </Identity>
+  <VisualActor>
+    <Actor>units/macedonians/cavalry_spearman_c_m.xml</Actor>
+  </VisualActor>
+</Entity>

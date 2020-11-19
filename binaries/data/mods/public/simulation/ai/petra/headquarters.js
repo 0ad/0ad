@@ -557,29 +557,29 @@ PETRA.HQ.prototype.checkPhaseRequirements = function(gameState, queues)
 			    !queues.defenseBuilding.hasQueuedUnits())
 			{
 				if (!gameState.getOwnEntitiesByClass("Market", true).hasEntities() &&
-				    this.canBuild(gameState, "structures/{civ}_market"))
+				    this.canBuild(gameState, "structures/{civ}/market"))
 				{
-					plan = new PETRA.ConstructionPlan(gameState, "structures/{civ}_market", { "phaseUp": true });
+					plan = new PETRA.ConstructionPlan(gameState, "structures/{civ}/market", { "phaseUp": true });
 					queue = "economicBuilding";
 					break;
 				}
 				if (!gameState.getOwnEntitiesByClass("Temple", true).hasEntities() &&
-				    this.canBuild(gameState, "structures/{civ}_temple"))
+				    this.canBuild(gameState, "structures/{civ}/temple"))
 				{
-					plan = new PETRA.ConstructionPlan(gameState, "structures/{civ}_temple", { "phaseUp": true });
+					plan = new PETRA.ConstructionPlan(gameState, "structures/{civ}/temple", { "phaseUp": true });
 					queue = "economicBuilding";
 					break;
 				}
 				if (!gameState.getOwnEntitiesByClass("Forge", true).hasEntities() &&
-				    this.canBuild(gameState, "structures/{civ}_forge"))
+				    this.canBuild(gameState, "structures/{civ}/forge"))
 				{
-					plan = new PETRA.ConstructionPlan(gameState, "structures/{civ}_forge", { "phaseUp": true });
+					plan = new PETRA.ConstructionPlan(gameState, "structures/{civ}/forge", { "phaseUp": true });
 					queue = "militaryBuilding";
 					break;
 				}
-				if (this.canBuild(gameState, "structures/{civ}_defense_tower"))
+				if (this.canBuild(gameState, "structures/{civ}/defense_tower"))
 				{
-					plan = new PETRA.ConstructionPlan(gameState, "structures/{civ}_defense_tower", { "phaseUp": true });
+					plan = new PETRA.ConstructionPlan(gameState, "structures/{civ}/defense_tower", { "phaseUp": true });
 					queue = "defenseBuilding";
 					break;
 				}
@@ -693,7 +693,7 @@ PETRA.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 
 	let supportRatio = this.supportRatio;
 	let alpha = 0.85;
-	if (!gameState.isTemplateAvailable(gameState.applyCiv("structures/{civ}_field")))
+	if (!gameState.isTemplateAvailable(gameState.applyCiv("structures/{civ}/field")))
 		supportRatio = Math.min(this.supportRatio, 0.1);
 	if (this.attackManager.rushNumber < this.attackManager.maxRushes || this.attackManager.upcomingAttacks.Rush.length)
 		alpha = 0.7;
@@ -1544,9 +1544,9 @@ PETRA.HQ.prototype.buildTemple = function(gameState, queues)
 	if (this.currentPhase < 3 && !gameState.getVictoryConditions().has("regicide"))
 		return;
 
-	let templateName = "structures/{civ}_temple";
-	if (this.canBuild(gameState, "structures/{civ}_temple_vesta"))
-		templateName = "structures/{civ}_temple_vesta";
+	let templateName = "structures/{civ}/temple";
+	if (this.canBuild(gameState, "structures/{civ}/temple_vesta"))
+		templateName = "structures/{civ}/temple_vesta";
 	else if (!this.canBuild(gameState, templateName))
 		return;
 	queues.economicBuilding.addPlan(new PETRA.ConstructionPlan(gameState, templateName));
@@ -1555,7 +1555,7 @@ PETRA.HQ.prototype.buildTemple = function(gameState, queues)
 PETRA.HQ.prototype.buildMarket = function(gameState, queues)
 {
 	if (gameState.getOwnEntitiesByClass("Market", true).hasEntities() ||
-		!this.canBuild(gameState, "structures/{civ}_market"))
+		!this.canBuild(gameState, "structures/{civ}/market"))
 		return;
 
 	if (queues.economicBuilding.hasQueuedUnitsWithClass("Market"))
@@ -1582,7 +1582,7 @@ PETRA.HQ.prototype.buildMarket = function(gameState, queues)
 	}
 
 	gameState.ai.queueManager.changePriority("economicBuilding", 3 * this.Config.priorities.economicBuilding);
-	let plan = new PETRA.ConstructionPlan(gameState, "structures/{civ}_market");
+	let plan = new PETRA.ConstructionPlan(gameState, "structures/{civ}/market");
 	plan.queueToReset = "economicBuilding";
 	queues.economicBuilding.addPlan(plan);
 };
@@ -1600,10 +1600,10 @@ PETRA.HQ.prototype.buildFarmstead = function(gameState, queues)
 		return;
 	if (queues.economicBuilding.hasQueuedUnitsWithClass("DropsiteFood"))
 		return;
-	if (!this.canBuild(gameState, "structures/{civ}_farmstead"))
+	if (!this.canBuild(gameState, "structures/{civ}/farmstead"))
 		return;
 
-	queues.economicBuilding.addPlan(new PETRA.ConstructionPlan(gameState, "structures/{civ}_farmstead"));
+	queues.economicBuilding.addPlan(new PETRA.ConstructionPlan(gameState, "structures/{civ}/farmstead"));
 };
 
 /**
@@ -1614,12 +1614,12 @@ PETRA.HQ.prototype.buildWonder = function(gameState, queues, force = false)
 {
 	if (queues.wonder && queues.wonder.hasQueuedUnits() ||
 	    gameState.getOwnEntitiesByClass("Wonder", true).hasEntities() ||
-	    !this.canBuild(gameState, "structures/{civ}_wonder"))
+	    !this.canBuild(gameState, "structures/{civ}/wonder"))
 		return;
 
 	if (!force)
 	{
-		let template = gameState.getTemplate(gameState.applyCiv("structures/{civ}_wonder"));
+		let template = gameState.getTemplate(gameState.applyCiv("structures/{civ}/wonder"));
 		// Check that we have enough resources to start thinking to build a wonder
 		let cost = template.cost();
 		let resources = gameState.getResources();
@@ -1636,7 +1636,7 @@ PETRA.HQ.prototype.buildWonder = function(gameState, queues, force = false)
 			return;
 	}
 
-	queues.wonder.addPlan(new PETRA.ConstructionPlan(gameState, "structures/{civ}_wonder"));
+	queues.wonder.addPlan(new PETRA.ConstructionPlan(gameState, "structures/{civ}/wonder"));
 };
 
 /** Build a corral, and train animals there */
@@ -1646,12 +1646,12 @@ PETRA.HQ.prototype.manageCorral = function(gameState, queues)
 		return;
 
 	let nCorral = gameState.getOwnEntitiesByClass("Corral", true).length;
-	if (!nCorral || !gameState.isTemplateAvailable(gameState.applyCiv("structures/{civ}_field")) &&
+	if (!nCorral || !gameState.isTemplateAvailable(gameState.applyCiv("structures/{civ}/field")) &&
 	                nCorral < this.currentPhase && gameState.getPopulation() > 30 * nCorral)
 	{
-		if (this.canBuild(gameState, "structures/{civ}_corral"))
+		if (this.canBuild(gameState, "structures/{civ}/corral"))
 		{
-			queues.corral.addPlan(new PETRA.ConstructionPlan(gameState, "structures/{civ}_corral"));
+			queues.corral.addPlan(new PETRA.ConstructionPlan(gameState, "structures/{civ}/corral"));
 			return;
 		}
 		if (!nCorral)
@@ -1689,14 +1689,14 @@ PETRA.HQ.prototype.manageCorral = function(gameState, queues)
  */
 PETRA.HQ.prototype.buildMoreHouses = function(gameState, queues)
 {
-	if (!gameState.isTemplateAvailable(gameState.applyCiv("structures/{civ}_house")) ||
+	if (!gameState.isTemplateAvailable(gameState.applyCiv("structures/{civ}/house")) ||
 	    gameState.getPopulationMax() <= gameState.getPopulationLimit())
 		return;
 
 	let numPlanned = queues.house.length();
 	if (numPlanned < 3 || numPlanned < 5 && gameState.getPopulation() > 80)
 	{
-		let plan = new PETRA.ConstructionPlan(gameState, "structures/{civ}_house");
+		let plan = new PETRA.ConstructionPlan(gameState, "structures/{civ}/house");
 		// change the starting condition according to the situation.
 		plan.goRequirement = "houseNeeded";
 		queues.house.addPlan(plan);
@@ -1704,7 +1704,7 @@ PETRA.HQ.prototype.buildMoreHouses = function(gameState, queues)
 
 	if (numPlanned > 0 && this.phasing && gameState.getPhaseEntityRequirements(this.phasing).length)
 	{
-		let houseTemplateName = gameState.applyCiv("structures/{civ}_house");
+		let houseTemplateName = gameState.applyCiv("structures/{civ}/house");
 		let houseTemplate = gameState.getTemplate(houseTemplateName);
 
 		let needed = 0;
@@ -1737,7 +1737,7 @@ PETRA.HQ.prototype.buildMoreHouses = function(gameState, queues)
 
 	if (this.requireHouses)
 	{
-		let houseTemplate = gameState.getTemplate(gameState.applyCiv("structures/{civ}_house"));
+		let houseTemplate = gameState.getTemplate(gameState.applyCiv("structures/{civ}/house"));
 		if (!this.phasing || gameState.getPhaseEntityRequirements(this.phasing).every(req =>
 			!houseTemplate.hasClass(req.class) || gameState.getOwnStructures().filter(API3.Filters.byClass(req.class)).length >= req.count))
 			this.requireHouses = undefined;
@@ -1746,7 +1746,7 @@ PETRA.HQ.prototype.buildMoreHouses = function(gameState, queues)
 	// When population limit too tight
 	//    - if no room to build, try to improve with technology
 	//    - otherwise increase temporarily the priority of houses
-	let house = gameState.applyCiv("structures/{civ}_house");
+	let house = gameState.applyCiv("structures/{civ}/house");
 	let HouseNb = gameState.getOwnFoundations().filter(API3.Filters.byClass("House")).length;
 	let popBonus = gameState.getTemplate(house).getPopulationBonus();
 	let freeSlots = gameState.getPopulationLimit() + HouseNb*popBonus - this.getAccountedPopulation(gameState);
@@ -1815,17 +1815,17 @@ PETRA.HQ.prototype.buildNewBase = function(gameState, queues, resource)
 	let hasOwnCC = false;
 	for (let ent of gameState.updatingGlobalCollection("allCCs", API3.Filters.byClass("CivCentre")).values())
 	{
-		if (ent.owner() != PlayerID || ent.templateName() != gameState.applyCiv("structures/{civ}_civil_centre"))
+		if (ent.owner() != PlayerID || ent.templateName() != gameState.applyCiv("structures/{civ}/civil_centre"))
 			continue;
 		hasOwnCC = true;
 		break;
 	}
-	if (hasOwnCC && this.canBuild(gameState, "structures/{civ}_military_colony"))
-		template = "structures/{civ}_military_colony";
-	else if (this.canBuild(gameState, "structures/{civ}_civil_centre"))
-		template = "structures/{civ}_civil_centre";
-	else if (!hasOwnCC && this.canBuild(gameState, "structures/{civ}_military_colony"))
-		template = "structures/{civ}_military_colony";
+	if (hasOwnCC && this.canBuild(gameState, "structures/{civ}/military_colony"))
+		template = "structures/{civ}/military_colony";
+	else if (this.canBuild(gameState, "structures/{civ}/civil_centre"))
+		template = "structures/{civ}/civil_centre";
+	else if (!hasOwnCC && this.canBuild(gameState, "structures/{civ}/military_colony"))
+		template = "structures/{civ}/military_colony";
 	else
 		return false;
 
@@ -1845,7 +1845,7 @@ PETRA.HQ.prototype.buildDefenses = function(gameState, queues)
 	if (!this.saveResources && (this.currentPhase > 2 || gameState.isResearching(gameState.getPhaseName(3))))
 	{
 		// Try to build fortresses.
-		if (this.canBuild(gameState, "structures/{civ}_fortress"))
+		if (this.canBuild(gameState, "structures/{civ}/fortress"))
 		{
 			let numFortresses = gameState.getOwnEntitiesByClass("Fortress", true).length;
 			if ((!numFortresses || gameState.ai.elapsedTime > (1 + 0.10 * numFortresses) * this.fortressLapseTime + this.fortressStartTime) &&
@@ -1856,7 +1856,7 @@ PETRA.HQ.prototype.buildDefenses = function(gameState, queues)
 				this.fortressStartTime = gameState.ai.elapsedTime;
 				if (!numFortresses)
 					gameState.ai.queueManager.changePriority("defenseBuilding", 2 * this.Config.priorities.defenseBuilding);
-				let plan = new PETRA.ConstructionPlan(gameState, "structures/{civ}_fortress");
+				let plan = new PETRA.ConstructionPlan(gameState, "structures/{civ}/fortress");
 				plan.queueToReset = "defenseBuilding";
 				queues.defenseBuilding.addPlan(plan);
 				return;
@@ -1864,7 +1864,7 @@ PETRA.HQ.prototype.buildDefenses = function(gameState, queues)
 		}
 	}
 
-	if (this.Config.Military.numSentryTowers && this.currentPhase < 2 && this.canBuild(gameState, "structures/{civ}_sentry_tower"))
+	if (this.Config.Military.numSentryTowers && this.currentPhase < 2 && this.canBuild(gameState, "structures/{civ}/sentry_tower"))
 	{
 		// Count all towers + wall towers.
 		let numTowers = gameState.getOwnEntitiesByClass("Tower", true).length + gameState.getOwnEntitiesByClass("WallTower", true).length;
@@ -1872,12 +1872,12 @@ PETRA.HQ.prototype.buildDefenses = function(gameState, queues)
 		if (numTowers < this.Config.Military.numSentryTowers && gameState.ai.elapsedTime > towerLapseTime + this.fortStartTime)
 		{
 			this.fortStartTime = gameState.ai.elapsedTime;
-			queues.defenseBuilding.addPlan(new PETRA.ConstructionPlan(gameState, "structures/{civ}_sentry_tower"));
+			queues.defenseBuilding.addPlan(new PETRA.ConstructionPlan(gameState, "structures/{civ}/sentry_tower"));
 		}
 		return;
 	}
 
-	if (this.currentPhase < 2 || !this.canBuild(gameState, "structures/{civ}_defense_tower"))
+	if (this.currentPhase < 2 || !this.canBuild(gameState, "structures/{civ}/defense_tower"))
 		return;
 
 	let numTowers = gameState.getOwnEntitiesByClass("StoneTower", true).length;
@@ -1890,7 +1890,7 @@ PETRA.HQ.prototype.buildDefenses = function(gameState, queues)
 		this.towerStartTime = gameState.ai.elapsedTime;
 		if (numTowers > 2 * this.numActiveBases() + 3)
 			gameState.ai.queueManager.changePriority("defenseBuilding", Math.round(0.7 * this.Config.priorities.defenseBuilding));
-		let plan = new PETRA.ConstructionPlan(gameState, "structures/{civ}_defense_tower");
+		let plan = new PETRA.ConstructionPlan(gameState, "structures/{civ}/defense_tower");
 		plan.queueToReset = "defenseBuilding";
 		queues.defenseBuilding.addPlan(plan);
 	}
@@ -1905,8 +1905,8 @@ PETRA.HQ.prototype.buildForge = function(gameState, queues)
 	if (!gameState.getOwnEntitiesByClass("Market", true).hasEntities())
 		return;
 
-	if (this.canBuild(gameState, "structures/{civ}_forge"))
-		queues.militaryBuilding.addPlan(new PETRA.ConstructionPlan(gameState, "structures/{civ}_forge"));
+	if (this.canBuild(gameState, "structures/{civ}/forge"))
+		queues.militaryBuilding.addPlan(new PETRA.ConstructionPlan(gameState, "structures/{civ}/forge"));
 };
 
 /**
@@ -1922,12 +1922,12 @@ PETRA.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
 	if (this.saveResources && numBarracks != 0)
 		return;
 
-	let barracksTemplate = this.canBuild(gameState, "structures/{civ}_barracks") ? "structures/{civ}_barracks" : undefined;
+	let barracksTemplate = this.canBuild(gameState, "structures/{civ}/barracks") ? "structures/{civ}/barracks" : undefined;
 
-	let rangeTemplate = this.canBuild(gameState, "structures/{civ}_range") ? "structures/{civ}_range" : undefined;
+	let rangeTemplate = this.canBuild(gameState, "structures/{civ}/range") ? "structures/{civ}/range" : undefined;
 	let numRanges = gameState.getOwnEntitiesByClass("Range", true).length;
 
-	let stableTemplate = this.canBuild(gameState, "structures/{civ}_stable") ? "structures/{civ}_stable" : undefined;
+	let stableTemplate = this.canBuild(gameState, "structures/{civ}/stable") ? "structures/{civ}/stable" : undefined;
 	let numStables = gameState.getOwnEntitiesByClass("Stable", true).length;
 
 	if (this.getAccountedPopulation(gameState) > this.Config.Military.popForBarracks1 ||
@@ -1986,15 +1986,15 @@ PETRA.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
 	if (this.currentPhase < 3)
 		return;
 
-	if (this.canBuild(gameState, "structures/{civ}_elephant_stables") && !gameState.getOwnEntitiesByClass("ElephantStable", true).hasEntities())
+	if (this.canBuild(gameState, "structures/{civ}/elephant_stables") && !gameState.getOwnEntitiesByClass("ElephantStable", true).hasEntities())
 	{
-		queues.militaryBuilding.addPlan(new PETRA.ConstructionPlan(gameState, "structures/{civ}_elephant_stables", { "militaryBase": true }));
+		queues.militaryBuilding.addPlan(new PETRA.ConstructionPlan(gameState, "structures/{civ}/elephant_stables", { "militaryBase": true }));
 		return;
 	}
 
-	if (this.canBuild(gameState, "structures/{civ}_arsenal") && !gameState.getOwnEntitiesByClass("Arsenal", true).hasEntities())
+	if (this.canBuild(gameState, "structures/{civ}/arsenal") && !gameState.getOwnEntitiesByClass("Arsenal", true).hasEntities())
 	{
-		queues.militaryBuilding.addPlan(new PETRA.ConstructionPlan(gameState, "structures/{civ}_arsenal", { "militaryBase": true }));
+		queues.militaryBuilding.addPlan(new PETRA.ConstructionPlan(gameState, "structures/{civ}/arsenal", { "militaryBase": true }));
 		return;
 	}
 

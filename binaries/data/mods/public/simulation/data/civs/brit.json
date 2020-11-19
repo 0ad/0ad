@@ -67,30 +67,30 @@
 	"Structures": [],
 	"WallSets": [
 		"structures/wallset_palisade",
-		"structures/brit_wallset_stone"
+		"structures/brit/wallset_stone"
 	],
 	"StartEntities": [
 		{
-			"Template": "structures/brit_civil_centre"
+			"Template": "structures/brit/civil_centre"
 		},
 		{
-			"Template": "units/brit_support_female_citizen",
+			"Template": "units/brit/support_female_citizen",
 			"Count": 4
 		},
 		{
-			"Template": "units/brit_infantry_spearman_b",
+			"Template": "units/brit/infantry_spearman_b",
 			"Count": 2
 		},
 		{
-			"Template": "units/brit_infantry_slinger_b",
+			"Template": "units/brit/infantry_slinger_b",
 			"Count": 2
 		},
 		{
-			"Template": "units/brit_cavalry_javelineer_b",
+			"Template": "units/brit/cavalry_javelineer_b",
 			"Count": 1
 		},
 		{
-			"Template": "units/brit_war_dog"
+			"Template": "units/brit/war_dog"
 		}
 	],
 	"Formations": [
@@ -119,9 +119,9 @@
 		"Vosenius"
 	],
 	"SkirmishReplacements": {
-		"skirmish/units/default_infantry_ranged_b": "units/brit_infantry_slinger_b",
-		"skirmish/units/special_starting_unit": "units/brit_war_dog",
-		"skirmish/structures/default_house_5": "structures/{civ}_house"
+		"skirmish/units/default_infantry_ranged_b": "units/brit/infantry_slinger_b",
+		"skirmish/units/special_starting_unit": "units/brit/war_dog",
+		"skirmish/structures/default_house_5": "structures/{civ}/house"
 	},
 	"SelectableInGameSetup": true
 }

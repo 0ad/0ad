@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_infantry_melee_swordsman">
+  <Attack>
+    <Melee>
+      <AttackName>Mace</AttackName>
+      <Damage>
+        <Hack>3.0</Hack>
+        <Crush>2.5</Crush>
+      </Damage>
+    </Melee>
+  </Attack>
+  <Builder>
+    <Entities datatype="tokens">
+      structures/kush/pyramid_small
+      structures/kush/pyramid_large
+      structures/kush/temple_amun
+      structures/kush/camp_blemmye
+      structures/kush/camp_noba
+    </Entities>
+  </Builder>
+  <Cost>
+    <Resources>
+      <food op="add">-25</food>
+      <metal op="add">25</metal>
+    </Resources>
+  </Cost>
+  <Identity>
+    <Civ>kush</Civ>
+    <Lang>napatan</Lang>
+    <VisibleClasses datatype="tokens">-Swordsman Macemen Mercenary</VisibleClasses>
+    <SelectionGroupName>units/kush/infantry_maceman_b</SelectionGroupName>
+    <GenericName>Noba Maceman</GenericName>
+    <SpecificName>nhw Noba</SpecificName>
+    <Icon>units/kush_infantry_clubman.png</Icon>
+    <RequiredTechnology>phase_town</RequiredTechnology>
+  </Identity>
+  <Promotion>
+    <Entity>units/kush/infantry_maceman_a</Entity>
+  </Promotion>
+  <Resistance>
+    <Entity>
+      <Damage>
+        <Hack op="add">-1</Hack>
+      </Damage>
+    </Entity>
+  </Resistance>
+  <VisualActor>
+    <Actor>units/kushites/infantry_clubman_b.xml</Actor>
+  </VisualActor>
+</Entity>

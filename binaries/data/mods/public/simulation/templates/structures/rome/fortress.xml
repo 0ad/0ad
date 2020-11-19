@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_military_fortress">
+  <Identity>
+    <Civ>rome</Civ>
+    <SpecificName>Castellum</SpecificName>
+  </Identity>
+  <ProductionQueue>
+    <Entities datatype="tokens">
+      units/{civ}/champion_infantry
+      units/{civ}/champion_cavalry
+      units/{civ}/hero_marcellus
+      units/{civ}/hero_maximus
+      units/{civ}/hero_scipio
+    </Entities>
+  </ProductionQueue>
+  <VisualActor>
+    <Actor>structures/romans/fortress.xml</Actor>
+  </VisualActor>
+  <WallPiece>
+    <Length>25.0</Length>
+    <Indent>8.4</Indent>
+  </WallPiece>
+</Entity>

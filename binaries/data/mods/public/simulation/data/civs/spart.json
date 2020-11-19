@@ -104,26 +104,26 @@
 	],
 	"WallSets": [
 		"structures/wallset_palisade",
-		"structures/spart_wallset_stone"
+		"structures/spart/wallset_stone"
 	],
 	"StartEntities": [
 		{
-			"Template": "structures/spart_civil_centre"
+			"Template": "structures/spart/civil_centre"
 		},
 		{
-			"Template": "units/spart_support_female_citizen",
+			"Template": "units/spart/support_female_citizen",
 			"Count": 4
 		},
 		{
-			"Template": "units/spart_infantry_spearman_b",
+			"Template": "units/spart/infantry_spearman_b",
 			"Count": 2
 		},
 		{
-			"Template": "units/spart_infantry_javelineer_b",
+			"Template": "units/spart/infantry_javelineer_b",
 			"Count": 2
 		},
 		{
-			"Template": "units/spart_cavalry_javelineer_b"
+			"Template": "units/spart/cavalry_javelineer_b"
 		}
 	],
 	"Formations": [
@@ -154,7 +154,7 @@
 		"Agesipolis"
 	],
 	"SkirmishReplacements": {
-		"skirmish/structures/default_house_10": "structures/{civ}_house",
+		"skirmish/structures/default_house_10": "structures/{civ}/house",
 		"skirmish/structures/default_wall_tower": "",
 		"skirmish/structures/default_wall_gate": "",
 		"skirmish/structures/default_wall_short": "",

@@ -715,7 +715,7 @@ PETRA.NavalManager.prototype.buildNavalStructures = function(gameState, queues)
 	{
 		if (queues.dock.countQueuedUnitsWithClass("Dock") === 0 &&
 			!gameState.getOwnStructures().filter(API3.Filters.and(API3.Filters.byClass("Dock"), API3.Filters.isFoundation())).hasEntities() &&
-			gameState.ai.HQ.canBuild(gameState, "structures/{civ}_dock"))
+			gameState.ai.HQ.canBuild(gameState, "structures/{civ}/dock"))
 		{
 			let dockStarted = false;
 			for (let base of gameState.ai.HQ.baseManagers)
@@ -731,7 +731,7 @@ PETRA.NavalManager.prototype.buildNavalStructures = function(gameState, queues)
 						continue;
 					let wantedLand = {};
 					wantedLand[base.accessIndex] = true;
-					queues.dock.addPlan(new PETRA.ConstructionPlan(gameState, "structures/{civ}_dock", { "land": wantedLand, "sea": sea }));
+					queues.dock.addPlan(new PETRA.ConstructionPlan(gameState, "structures/{civ}/dock", { "land": wantedLand, "sea": sea }));
 					dockStarted = true;
 					break;
 				}
@@ -747,13 +747,13 @@ PETRA.NavalManager.prototype.buildNavalStructures = function(gameState, queues)
 		return;
 	// Use in priority resources to build a Market.
 	if (!gameState.getOwnEntitiesByClass("Market", true).hasEntities() &&
-	    gameState.ai.HQ.canBuild(gameState, "structures/{civ}_market"))
+	    gameState.ai.HQ.canBuild(gameState, "structures/{civ}/market"))
 		return;
 	let template;
-	if (gameState.ai.HQ.canBuild(gameState, "structures/{civ}_super_dock"))
-		template = "structures/{civ}_super_dock";
-	else if (gameState.ai.HQ.canBuild(gameState, "structures/{civ}_shipyard"))
-		template = "structures/{civ}_shipyard";
+	if (gameState.ai.HQ.canBuild(gameState, "structures/{civ}/super_dock"))
+		template = "structures/{civ}/super_dock";
+	else if (gameState.ai.HQ.canBuild(gameState, "structures/{civ}/shipyard"))
+		template = "structures/{civ}/shipyard";
 	else
 		return;
 	let wantedLand = {};

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_civic_civil_centre">
+  <Footprint>
+    <Square width="40.0" depth="34.0"/>
+    <Height>8.0</Height>
+  </Footprint>
+  <Health>
+    <SpawnEntityOnDeath>decay|rubble/rubble_maur_cc</SpawnEntityOnDeath>
+  </Health>
+  <Identity>
+    <Civ>maur</Civ>
+    <SpecificName>Rajadhanika</SpecificName>
+  </Identity>
+  <Obstruction>
+    <Static width="36.0" depth="30.0"/>
+  </Obstruction>
+  <ProductionQueue>
+    <Entities datatype="tokens">
+      units/{civ}/infantry_spearman_b
+      units/{civ}/infantry_archer_b
+      units/{civ}/cavalry_javelineer_b
+      units/{civ}/support_elephant
+    </Entities>
+  </ProductionQueue>
+  <VisualActor>
+    <Actor>structures/mauryas/civil_centre.xml</Actor>
+  </VisualActor>
+</Entity>

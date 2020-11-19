@@ -483,7 +483,7 @@ function GetTemplateDataHelper(template, player, auraTemplates, modifiers = {})
 			"templates": {
 				"tower": template.WallSet.Templates.Tower,
 				"gate": template.WallSet.Templates.Gate,
-				"fort": template.WallSet.Templates.Fort || "structures/" + template.Identity.Civ + "_fortress",
+				"fort": template.WallSet.Templates.Fort || "structures/" + template.Identity.Civ + "/fortress",
 				"long": template.WallSet.Templates.WallLong,
 				"medium": template.WallSet.Templates.WallMedium,
 				"short": template.WallSet.Templates.WallShort

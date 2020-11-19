@@ -26,9 +26,9 @@ const oTiger = "gaia/fauna_tiger";
 const oBoar = "gaia/fauna_boar";
 const oPeacock = "gaia/fauna_peacock";
 const oBush = "gaia/fruit/berry_01";
-const oSpearman = "units/maur_infantry_spearman_b";
-const oArcher = "units/maur_infantry_archer_b";
-const oArcherElephant = "units/maur_elephant_archer_b";
+const oSpearman = "units/maur/infantry_spearman_b";
+const oArcher = "units/maur/infantry_archer_b";
+const oArcherElephant = "units/maur/elephant_archer_b";
 
 const aRockLarge = "actor|geology/stone_granite_large.xml";
 const aRockMedium = "actor|geology/stone_granite_med.xml";

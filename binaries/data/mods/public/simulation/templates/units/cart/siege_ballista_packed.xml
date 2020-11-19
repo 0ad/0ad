@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_siege_stonethrower">
+  <Identity>
+    <Civ>cart</Civ>
+    <SpecificName>Ballista</SpecificName>
+    <Icon>units/cart_siege_ballista_packed.png</Icon>
+  </Identity>
+  <Pack>
+    <Entity>units/cart/siege_ballista_unpacked</Entity>
+    <State>packed</State>
+  </Pack>
+  <VisualActor>
+    <Actor>units/carthaginians/siege_rock_packed.xml</Actor>
+  </VisualActor>
+</Entity>

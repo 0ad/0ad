@@ -105,27 +105,27 @@
 	],
 	"StartEntities": [
 		{
-			"Template": "structures/kush_civil_centre"
+			"Template": "structures/kush/civil_centre"
 		},
 		{
-			"Template": "units/kush_support_female_citizen",
+			"Template": "units/kush/support_female_citizen",
 			"Count": 4
 		},
 		{
-			"Template": "units/kush_infantry_spearman_b",
+			"Template": "units/kush/infantry_spearman_b",
 			"Count": 2
 		},
 		{
-			"Template": "units/kush_infantry_archer_b",
+			"Template": "units/kush/infantry_archer_b",
 			"Count": 2
 		},
 		{
-			"Template": "units/kush_cavalry_javelineer_b"
+			"Template": "units/kush/cavalry_javelineer_b"
 		}
 	],
 	"WallSets": [
 		"structures/wallset_palisade",
-		"structures/kush_wallset_stone"
+		"structures/kush/wallset_stone"
 	],
 	"Formations": [
 		"special/formations/null",
@@ -157,8 +157,8 @@
 		"Amanishakheto"
 	],
 	"SkirmishReplacements": {
-		"skirmish/units/default_infantry_ranged_b": "units/kush_infantry_archer_b",
-		"skirmish/structures/default_house_10": "structures/{civ}_house"
+		"skirmish/units/default_infantry_ranged_b": "units/kush/infantry_archer_b",
+		"skirmish/structures/default_house_10": "structures/{civ}/house"
 	},
 	"SelectableInGameSetup": true
 }

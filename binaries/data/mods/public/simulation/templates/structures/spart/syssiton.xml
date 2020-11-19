@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_special">
+  <Cost>
+    <BuildTime>200</BuildTime>
+    <Resources>
+      <stone>200</stone>
+      <metal>200</metal>
+    </Resources>
+  </Cost>
+  <Footprint>
+    <Square width="20.0" depth="30.0"/>
+    <Height>8.0</Height>
+  </Footprint>
+  <GarrisonHolder>
+    <Max>10</Max>
+  </GarrisonHolder>
+  <Health>
+    <Max>2000</Max>
+    <SpawnEntityOnDeath>decay|rubble/rubble_stone_4x6</SpawnEntityOnDeath>
+  </Health>
+  <Identity>
+    <Civ>spart</Civ>
+    <GenericName>Military Mess Hall</GenericName>
+    <SpecificName>Syssition</SpecificName>
+    <Tooltip>Train Champions and Heroes.</Tooltip>
+    <Classes datatype="tokens">ConquestCritical</Classes>
+    <VisibleClasses datatype="tokens">Syssiton</VisibleClasses>
+    <Icon>structures/syssition.png</Icon>
+  </Identity>
+  <Loot>
+    <stone>40</stone>
+    <metal>40</metal>
+  </Loot>
+  <Obstruction>
+    <Static width="16.0" depth="26.0"/>
+  </Obstruction>
+  <ProductionQueue>
+    <BatchTimeModifier>0.7</BatchTimeModifier>
+    <Entities datatype="tokens">
+      units/{civ}/champion_infantry_spear
+      units/{civ}/hero_leonidas
+      units/{civ}/hero_brasidas
+      units/{civ}/hero_agis
+    </Entities>
+    <Technologies datatype="tokens">
+      hellenes/spartans_agoge
+    </Technologies>
+  </ProductionQueue>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_gymnasium.xml</select>
+      <constructed>interface/complete/building/complete_gymnasium.xml</constructed>
+    </SoundGroups>
+  </Sound>
+  <TerritoryInfluence>
+    <Root>false</Root>
+    <Radius>38</Radius>
+    <Weight>40000</Weight>
+  </TerritoryInfluence>
+  <Vision>
+    <Range>40</Range>
+  </Vision>
+  <VisualActor>
+    <Actor>structures/spartans/syssiton.xml</Actor>
+    <FoundationActor>structures/fndn_5x8.xml</FoundationActor>
+  </VisualActor>
+</Entity>

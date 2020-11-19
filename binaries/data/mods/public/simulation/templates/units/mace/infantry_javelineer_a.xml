@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="units/mace/infantry_javelineer_b">
+  <Identity>
+    <Rank>Advanced</Rank>
+  </Identity>
+  <Promotion>
+    <Entity>units/mace/infantry_javelineer_e</Entity>
+  </Promotion>
+  <VisualActor>
+    <Actor>units/macedonians/infantry_javelinist_a.xml</Actor>
+  </VisualActor>
+</Entity>

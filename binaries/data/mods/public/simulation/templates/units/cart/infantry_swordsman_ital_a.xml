@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="units/cart/infantry_swordsman_ital_b">
+  <Identity>
+    <Rank>Advanced</Rank>
+  </Identity>
+  <Promotion>
+    <Entity>units/cart/infantry_swordsman_ital_e</Entity>
+  </Promotion>
+  <VisualActor>
+    <Actor>units/carthaginians/infantry_swordsman_a.xml</Actor>
+  </VisualActor>
+</Entity>

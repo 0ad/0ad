@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_infantry_melee_spearman">
+  <Identity>
+    <Civ>brit</Civ>
+    <SelectionGroupName>units/brit/infantry_spearman_b</SelectionGroupName>
+    <GenericName>Celtic Spearman</GenericName>
+    <SpecificName>Catucos</SpecificName>
+    <Icon>units/brit_infantry_spearman.png</Icon>
+  </Identity>
+  <Promotion>
+    <Entity>units/brit/infantry_spearman_a</Entity>
+  </Promotion>
+  <VisualActor>
+    <Actor>units/britons/infantry_spearman_b.xml</Actor>
+  </VisualActor>
+</Entity>

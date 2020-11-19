@@ -58,27 +58,27 @@ var heroTime = () => randFloat(20, 60);
  */
 var disabledTemplates = (civ) => [
 	// Economic structures
-	"structures/" + civ + "_corral",
-	"structures/" + civ + "_farmstead",
-	"structures/" + civ + "_field",
-	"structures/" + civ + "_storehouse",
-	"structures/" + civ + "_rotarymill",
-	"units/maur_support_elephant",
+	"structures/" + civ + "/corral",
+	"structures/" + civ + "/farmstead",
+	"structures/" + civ + "/field",
+	"structures/" + civ + "/storehouse",
+	"structures/" + civ + "/rotarymill",
+	"units/maur/support_elephant",
 
 	// Expansions
-	"structures/" + civ + "_civil_centre",
-	"structures/" + civ + "_military_colony",
+	"structures/" + civ + "/civil_centre",
+	"structures/" + civ + "/military_colony",
 
 	// Walls
-	"structures/" + civ + "_wallset_stone",
-	"structures/rome_wallset_siege",
+	"structures/" + civ + "/wallset_stone",
+	"structures/rome/wallset_siege",
 	"structures/wallset_palisade",
 
 	// Shoreline
-	"structures/" + civ + "_dock",
-	"structures/brit_crannog",
-	"structures/cart_super_dock",
-	"structures/ptol_lighthouse"
+	"structures/" + civ + "/dock",
+	"structures/brit/crannog",
+	"structures/cart/super_dock",
+	"structures/ptol/lighthouse"
 ];
 
 /**

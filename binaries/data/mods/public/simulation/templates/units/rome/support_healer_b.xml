@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_support_healer">
+  <Identity>
+    <Civ>rome</Civ>
+    <Lang>latin</Lang>
+    <GenericName>Doctor</GenericName>
+    <SpecificName>Medicus</SpecificName>
+    <Icon>units/rome_support_healer.png</Icon>
+  </Identity>
+  <Promotion>
+    <Entity>units/rome/support_healer_a</Entity>
+  </Promotion>
+  <VisualActor>
+    <Actor>units/romans/healer.xml</Actor>
+  </VisualActor>
+</Entity>

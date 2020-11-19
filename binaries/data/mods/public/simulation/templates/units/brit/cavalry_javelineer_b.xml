@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_cavalry_ranged_javelineer">
+  <Identity>
+    <Civ>brit</Civ>
+    <SelectionGroupName>units/brit/cavalry_javelineer_b</SelectionGroupName>
+    <SpecificName>Marcacos</SpecificName>
+    <GenericName>Raiding Cavalry</GenericName>
+    <Icon>units/brit_cavalry_javelinist.png</Icon>
+  </Identity>
+  <Promotion>
+    <Entity>units/brit/cavalry_javelineer_a</Entity>
+  </Promotion>
+  <VisualActor>
+    <Actor>units/britons/cavalry_javelinist_b_m.xml</Actor>
+  </VisualActor>
+</Entity>

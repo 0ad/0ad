@@ -51,7 +51,7 @@ g_Gaia.stoneSmall = "gaia/rock/alpine_small";
 g_Gaia.columnsDoric = "gaia/ruins/column_doric";
 g_Gaia.romanStatue = "gaia/ruins/stone_statues_roman";
 g_Gaia.unfinishedTemple = "gaia/ruins/unfinished_greek_temple";
-g_Gaia.dock = "structures/rome_dock";
+g_Gaia.dock = "structures/rome/dock";
 g_Gaia.dockRubble = "rubble/rubble_rome_dock";
 
 g_Decoratives.smoke1 = "actor|particle/smoke_volcano.xml";

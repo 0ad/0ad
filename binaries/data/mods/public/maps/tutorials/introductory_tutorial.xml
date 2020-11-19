@@ -91,31 +91,31 @@
 ]]></ScriptSettings>
 	<Entities>
 		<Entity uid="11">
-			<Template>structures/spart_civil_centre</Template>
+			<Template>structures/spart/civil_centre</Template>
 			<Player>1</Player>
 			<Position x="273.9791" z="112.74604"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="12">
-			<Template>structures/athen_civil_centre</Template>
+			<Template>structures/athen/civil_centre</Template>
 			<Player>2</Player>
 			<Position x="206.77826" z="573.94031"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="28">
-			<Template>units/spart_support_female_citizen</Template>
+			<Template>units/spart/support_female_citizen</Template>
 			<Player>1</Player>
 			<Position x="295.27" z="117.63486"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="29">
-			<Template>units/spart_support_female_citizen</Template>
+			<Template>units/spart/support_female_citizen</Template>
 			<Player>1</Player>
 			<Position x="294.702" z="108.062"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="30">
-			<Template>units/spart_support_female_citizen</Template>
+			<Template>units/spart/support_female_citizen</Template>
 			<Player>1</Player>
 			<Position x="298.45057" z="112.34449"/>
 			<Orientation y="2.35621"/>
@@ -442,7 +442,7 @@
 			<Orientation y="-2.52764"/>
 		</Entity>
 		<Entity uid="101">
-			<Template>structures/spart_gerousia</Template>
+			<Template>structures/spart/gerousia</Template>
 			<Player>1</Player>
 			<Position x="219.715" z="155.47907"/>
 			<Orientation y="2.35621"/>
@@ -4038,31 +4038,31 @@
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="899">
-			<Template>structures/athen_temple</Template>
+			<Template>structures/athen/temple</Template>
 			<Player>2</Player>
 			<Position x="200.32447" z="645.34937"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="900">
-			<Template>structures/athen_house</Template>
+			<Template>structures/athen/house</Template>
 			<Player>2</Player>
 			<Position x="157.70838" z="531.41285"/>
 			<Orientation y="-1.18644"/>
 		</Entity>
 		<Entity uid="901">
-			<Template>structures/athen_house</Template>
+			<Template>structures/athen/house</Template>
 			<Player>2</Player>
 			<Position x="139.94852" z="540.08753"/>
 			<Orientation y="-0.74064"/>
 		</Entity>
 		<Entity uid="902">
-			<Template>structures/athen_house</Template>
+			<Template>structures/athen/house</Template>
 			<Player>2</Player>
 			<Position x="129.44422" z="556.7356"/>
 			<Orientation y="0.35138"/>
 		</Entity>
 		<Entity uid="903">
-			<Template>structures/athen_barracks</Template>
+			<Template>structures/athen/barracks</Template>
 			<Player>2</Player>
 			<Position x="285.41495" z="600.81592"/>
 			<Orientation y="3.0927"/>
@@ -4224,61 +4224,61 @@
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="930">
-			<Template>structures/athen_farmstead</Template>
+			<Template>structures/athen/farmstead</Template>
 			<Player>2</Player>
 			<Position x="235.97013" z="501.99305"/>
 			<Orientation y="0.5644"/>
 		</Entity>
 		<Entity uid="933">
-			<Template>structures/athen_field</Template>
+			<Template>structures/athen/field</Template>
 			<Player>2</Player>
 			<Position x="233.76633" z="475.63215"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="934">
-			<Template>structures/athen_field</Template>
+			<Template>structures/athen/field</Template>
 			<Player>2</Player>
 			<Position x="253.64756" z="486.32065"/>
 			<Orientation y="2.44729"/>
 		</Entity>
 		<Entity uid="935">
-			<Template>structures/athen_field</Template>
+			<Template>structures/athen/field</Template>
 			<Player>2</Player>
 			<Position x="270.99665" z="510.89509"/>
 			<Orientation y="-0.86657"/>
 		</Entity>
 		<Entity uid="936">
-			<Template>structures/athen_field</Template>
+			<Template>structures/athen/field</Template>
 			<Player>2</Player>
 			<Position x="246.96119" z="517.26301"/>
 			<Orientation y="2.21221"/>
 		</Entity>
 		<Entity uid="937">
-			<Template>structures/athen_field</Template>
+			<Template>structures/athen/field</Template>
 			<Player>2</Player>
 			<Position x="210.76322" z="493.6969"/>
 			<Orientation y="-0.88595"/>
 		</Entity>
 		<Entity uid="938">
-			<Template>structures/athen_field</Template>
+			<Template>structures/athen/field</Template>
 			<Player>2</Player>
 			<Position x="205.93451" z="512.72181"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="939">
-			<Template>structures/athen_field</Template>
+			<Template>structures/athen/field</Template>
 			<Player>2</Player>
 			<Position x="226.37327" z="532.69538"/>
 			<Orientation y="-0.7138"/>
 		</Entity>
 		<Entity uid="940">
-			<Template>structures/athen_outpost</Template>
+			<Template>structures/athen/outpost</Template>
 			<Player>2</Player>
 			<Position x="319.74756" z="555.36121"/>
 			<Orientation y="-2.8877"/>
 		</Entity>
 		<Entity uid="941">
-			<Template>structures/athen_outpost</Template>
+			<Template>structures/athen/outpost</Template>
 			<Player>2</Player>
 			<Position x="298.8573" z="480.46076"/>
 			<Orientation y="-0.35004"/>
@@ -4308,547 +4308,547 @@
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="948">
-			<Template>structures/athen_storehouse</Template>
+			<Template>structures/athen/storehouse</Template>
 			<Player>2</Player>
 			<Position x="247.051" z="640.09693"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="949">
-			<Template>units/spart_infantry_javelineer_b</Template>
+			<Template>units/spart/infantry_javelineer_b</Template>
 			<Player>1</Player>
 			<Position x="282.56431" z="130.67441"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="950">
-			<Template>units/athen_support_female_citizen</Template>
+			<Template>units/athen/support_female_citizen</Template>
 			<Player>2</Player>
 			<Position x="210.38764" z="510.01066"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="951">
-			<Template>units/athen_support_female_citizen</Template>
+			<Template>units/athen/support_female_citizen</Template>
 			<Player>2</Player>
 			<Position x="218.20554" z="522.05677"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="952">
-			<Template>units/athen_support_female_citizen</Template>
+			<Template>units/athen/support_female_citizen</Template>
 			<Player>2</Player>
 			<Position x="246.06785" z="517.8282"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="953">
-			<Template>units/athen_support_female_citizen</Template>
+			<Template>units/athen/support_female_citizen</Template>
 			<Player>2</Player>
 			<Position x="218.41211" z="511.15317"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="954">
-			<Template>units/athen_support_female_citizen</Template>
+			<Template>units/athen/support_female_citizen</Template>
 			<Player>2</Player>
 			<Position x="222.15934" z="519.7173"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="955">
-			<Template>units/athen_support_female_citizen</Template>
+			<Template>units/athen/support_female_citizen</Template>
 			<Player>2</Player>
 			<Position x="227.4314" z="524.62391"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="956">
-			<Template>units/athen_support_female_citizen</Template>
+			<Template>units/athen/support_female_citizen</Template>
 			<Player>2</Player>
 			<Position x="238.18631" z="523.7223"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="957">
-			<Template>units/athen_support_female_citizen</Template>
+			<Template>units/athen/support_female_citizen</Template>
 			<Player>2</Player>
 			<Position x="214.39643" z="498.87885"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="958">
-			<Template>units/athen_support_female_citizen</Template>
+			<Template>units/athen/support_female_citizen</Template>
 			<Player>2</Player>
 			<Position x="220.06067" z="496.09214"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="959">
-			<Template>units/athen_support_female_citizen</Template>
+			<Template>units/athen/support_female_citizen</Template>
 			<Player>2</Player>
 			<Position x="225.48761" z="489.2064"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="960">
-			<Template>units/athen_support_female_citizen</Template>
+			<Template>units/athen/support_female_citizen</Template>
 			<Player>2</Player>
 			<Position x="233.1803" z="487.62006"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="961">
-			<Template>units/athen_support_female_citizen</Template>
+			<Template>units/athen/support_female_citizen</Template>
 			<Player>2</Player>
 			<Position x="239.49201" z="487.6858"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="962">
-			<Template>units/athen_support_female_citizen</Template>
+			<Template>units/athen/support_female_citizen</Template>
 			<Player>2</Player>
 			<Position x="247.95087" z="489.18985"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="963">
-			<Template>units/athen_support_female_citizen</Template>
+			<Template>units/athen/support_female_citizen</Template>
 			<Player>2</Player>
 			<Position x="251.73856" z="492.52143"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="964">
-			<Template>units/athen_champion_infantry</Template>
+			<Template>units/athen/champion_infantry</Template>
 			<Player>2</Player>
 			<Position x="247.10514" z="466.22709"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="965">
-			<Template>units/athen_champion_infantry</Template>
+			<Template>units/athen/champion_infantry</Template>
 			<Player>2</Player>
 			<Position x="249.17966" z="467.23017"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="966">
-			<Template>units/athen_champion_infantry</Template>
+			<Template>units/athen/champion_infantry</Template>
 			<Player>2</Player>
 			<Position x="251.33555" z="468.13746"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="967">
-			<Template>units/athen_champion_infantry</Template>
+			<Template>units/athen/champion_infantry</Template>
 			<Player>2</Player>
 			<Position x="253.26767" z="468.87235"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="968">
-			<Template>units/athen_champion_infantry</Template>
+			<Template>units/athen/champion_infantry</Template>
 			<Player>2</Player>
 			<Position x="255.65592" z="469.61704"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="969">
-			<Template>units/athen_champion_infantry</Template>
+			<Template>units/athen/champion_infantry</Template>
 			<Player>2</Player>
 			<Position x="258.11625" z="470.23829"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="970">
-			<Template>units/athen_champion_infantry</Template>
+			<Template>units/athen/champion_infantry</Template>
 			<Player>2</Player>
 			<Position x="260.34263" z="470.8054"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="971">
-			<Template>units/athen_champion_infantry</Template>
+			<Template>units/athen/champion_infantry</Template>
 			<Player>2</Player>
 			<Position x="262.43174" z="471.6681"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="972">
-			<Template>units/athen_champion_infantry</Template>
+			<Template>units/athen/champion_infantry</Template>
 			<Player>2</Player>
 			<Position x="264.55527" z="472.32178"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="973">
-			<Template>units/athen_champion_infantry</Template>
+			<Template>units/athen/champion_infantry</Template>
 			<Player>2</Player>
 			<Position x="266.6071" z="472.938"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="974">
-			<Template>units/athen_champion_infantry</Template>
+			<Template>units/athen/champion_infantry</Template>
 			<Player>2</Player>
 			<Position x="268.73783" z="473.908"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="975">
-			<Template>units/athen_champion_infantry</Template>
+			<Template>units/athen/champion_infantry</Template>
 			<Player>2</Player>
 			<Position x="270.25599" z="474.62711"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="976">
-			<Template>units/athen_champion_ranged</Template>
+			<Template>units/athen/champion_ranged</Template>
 			<Player>2</Player>
 			<Position x="231.16391" z="459.69764"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="977">
-			<Template>units/athen_champion_ranged</Template>
+			<Template>units/athen/champion_ranged</Template>
 			<Player>2</Player>
 			<Position x="231.75095" z="461.39985"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="978">
-			<Template>units/athen_champion_ranged</Template>
+			<Template>units/athen/champion_ranged</Template>
 			<Player>2</Player>
 			<Position x="232.4892" z="462.99451"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="979">
-			<Template>units/athen_champion_ranged</Template>
+			<Template>units/athen/champion_ranged</Template>
 			<Player>2</Player>
 			<Position x="233.42066" z="464.78217"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="980">
-			<Template>units/athen_champion_ranged</Template>
+			<Template>units/athen/champion_ranged</Template>
 			<Player>2</Player>
 			<Position x="234.46543" z="466.39438"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="981">
-			<Template>units/athen_champion_ranged</Template>
+			<Template>units/athen/champion_ranged</Template>
 			<Player>2</Player>
 			<Position x="235.64368" z="468.02561"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="982">
-			<Template>units/athen_champion_ranged</Template>
+			<Template>units/athen/champion_ranged</Template>
 			<Player>2</Player>
 			<Position x="228.45359" z="460.72455"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="983">
-			<Template>units/athen_champion_ranged</Template>
+			<Template>units/athen/champion_ranged</Template>
 			<Player>2</Player>
 			<Position x="229.04944" z="462.20734"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="984">
-			<Template>units/athen_champion_ranged</Template>
+			<Template>units/athen/champion_ranged</Template>
 			<Player>2</Player>
 			<Position x="229.748" z="463.7097"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="985">
-			<Template>units/athen_champion_ranged</Template>
+			<Template>units/athen/champion_ranged</Template>
 			<Player>2</Player>
 			<Position x="230.53275" z="465.30567"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="986">
-			<Template>units/athen_champion_ranged</Template>
+			<Template>units/athen/champion_ranged</Template>
 			<Player>2</Player>
 			<Position x="231.22233" z="466.79044"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="987">
-			<Template>units/athen_champion_ranged</Template>
+			<Template>units/athen/champion_ranged</Template>
 			<Player>2</Player>
 			<Position x="232.2754" z="468.28495"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="988">
-			<Template>units/athen_champion_ranged</Template>
+			<Template>units/athen/champion_ranged</Template>
 			<Player>2</Player>
 			<Position x="280.24195" z="481.64167"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="989">
-			<Template>units/athen_champion_ranged</Template>
+			<Template>units/athen/champion_ranged</Template>
 			<Player>2</Player>
 			<Position x="283.26261" z="483.01041"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="990">
-			<Template>units/athen_champion_ranged</Template>
+			<Template>units/athen/champion_ranged</Template>
 			<Player>2</Player>
 			<Position x="276.80323" z="480.67914"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="991">
-			<Template>units/athen_champion_ranged</Template>
+			<Template>units/athen/champion_ranged</Template>
 			<Player>2</Player>
 			<Position x="273.3555" z="479.22007"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="992">
-			<Template>units/athen_champion_ranged</Template>
+			<Template>units/athen/champion_ranged</Template>
 			<Player>2</Player>
 			<Position x="287.23063" z="484.40928"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="993">
-			<Template>units/athen_champion_ranged</Template>
+			<Template>units/athen/champion_ranged</Template>
 			<Player>2</Player>
 			<Position x="291.29358" z="485.85676"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="994">
-			<Template>units/athen_champion_ranged</Template>
+			<Template>units/athen/champion_ranged</Template>
 			<Player>2</Player>
 			<Position x="271.46009" z="482.11615"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="995">
-			<Template>units/athen_champion_ranged</Template>
+			<Template>units/athen/champion_ranged</Template>
 			<Player>2</Player>
 			<Position x="276.06125" z="483.95112"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="996">
-			<Template>units/athen_champion_ranged</Template>
+			<Template>units/athen/champion_ranged</Template>
 			<Player>2</Player>
 			<Position x="278.65271" z="485.22562"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="997">
-			<Template>units/athen_champion_ranged</Template>
+			<Template>units/athen/champion_ranged</Template>
 			<Player>2</Player>
 			<Position x="282.1579" z="486.7295"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="998">
-			<Template>units/athen_champion_ranged</Template>
+			<Template>units/athen/champion_ranged</Template>
 			<Player>2</Player>
 			<Position x="285.46155" z="488.05292"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="999">
-			<Template>units/athen_champion_ranged</Template>
+			<Template>units/athen/champion_ranged</Template>
 			<Player>2</Player>
 			<Position x="289.39509" z="490.22852"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1000">
-			<Template>units/athen_champion_ranged</Template>
+			<Template>units/athen/champion_ranged</Template>
 			<Player>2</Player>
 			<Position x="270.40537" z="485.70453"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1001">
-			<Template>units/athen_champion_ranged</Template>
+			<Template>units/athen/champion_ranged</Template>
 			<Player>2</Player>
 			<Position x="274.48905" z="487.73105"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1002">
-			<Template>units/athen_champion_ranged</Template>
+			<Template>units/athen/champion_ranged</Template>
 			<Player>2</Player>
 			<Position x="277.71637" z="489.13431"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1003">
-			<Template>units/athen_champion_ranged</Template>
+			<Template>units/athen/champion_ranged</Template>
 			<Player>2</Player>
 			<Position x="280.72669" z="490.36393"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1004">
-			<Template>units/athen_champion_ranged</Template>
+			<Template>units/athen/champion_ranged</Template>
 			<Player>2</Player>
 			<Position x="283.80698" z="491.44751"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1005">
-			<Template>units/athen_champion_ranged</Template>
+			<Template>units/athen/champion_ranged</Template>
 			<Player>2</Player>
 			<Position x="287.52875" z="492.96641"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1006">
-			<Template>units/athen_champion_marine</Template>
+			<Template>units/athen/champion_marine</Template>
 			<Player>2</Player>
 			<Position x="249.04303" z="463.28089"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1007">
-			<Template>units/athen_champion_marine</Template>
+			<Template>units/athen/champion_marine</Template>
 			<Player>2</Player>
 			<Position x="251.71436" z="464.06897"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1008">
-			<Template>units/athen_champion_marine</Template>
+			<Template>units/athen/champion_marine</Template>
 			<Player>2</Player>
 			<Position x="253.46512" z="464.95008"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1009">
-			<Template>units/athen_champion_marine</Template>
+			<Template>units/athen/champion_marine</Template>
 			<Player>2</Player>
 			<Position x="255.4337" z="465.84092"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1010">
-			<Template>units/athen_champion_marine</Template>
+			<Template>units/athen/champion_marine</Template>
 			<Player>2</Player>
 			<Position x="257.86884" z="466.82328"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1011">
-			<Template>units/athen_champion_marine</Template>
+			<Template>units/athen/champion_marine</Template>
 			<Player>2</Player>
 			<Position x="259.70234" z="467.35169"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1012">
-			<Template>units/athen_champion_marine</Template>
+			<Template>units/athen/champion_marine</Template>
 			<Player>2</Player>
 			<Position x="261.90186" z="467.97483"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1013">
-			<Template>units/athen_champion_marine</Template>
+			<Template>units/athen/champion_marine</Template>
 			<Player>2</Player>
 			<Position x="264.34964" z="468.99256"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1014">
-			<Template>units/athen_champion_marine</Template>
+			<Template>units/athen/champion_marine</Template>
 			<Player>2</Player>
 			<Position x="266.33341" z="469.64332"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1015">
-			<Template>units/athen_champion_marine</Template>
+			<Template>units/athen/champion_marine</Template>
 			<Player>2</Player>
 			<Position x="268.07172" z="470.91993"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1016">
-			<Template>units/athen_champion_marine</Template>
+			<Template>units/athen/champion_marine</Template>
 			<Player>2</Player>
 			<Position x="270.2545" z="471.27082"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1017">
-			<Template>units/athen_champion_marine</Template>
+			<Template>units/athen/champion_marine</Template>
 			<Player>2</Player>
 			<Position x="272.42185" z="472.01844"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1018">
-			<Template>units/athen_champion_infantry</Template>
+			<Template>units/athen/champion_infantry</Template>
 			<Player>2</Player>
 			<Position x="244.64554" z="469.92106"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1019">
-			<Template>units/athen_champion_infantry</Template>
+			<Template>units/athen/champion_infantry</Template>
 			<Player>2</Player>
 			<Position x="246.6666" z="470.84971"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1020">
-			<Template>units/athen_champion_infantry</Template>
+			<Template>units/athen/champion_infantry</Template>
 			<Player>2</Player>
 			<Position x="249.13636" z="472.1128"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1021">
-			<Template>units/athen_champion_infantry</Template>
+			<Template>units/athen/champion_infantry</Template>
 			<Player>2</Player>
 			<Position x="251.80436" z="473.29603"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1022">
-			<Template>units/athen_champion_infantry</Template>
+			<Template>units/athen/champion_infantry</Template>
 			<Player>2</Player>
 			<Position x="254.7823" z="474.24033"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1023">
-			<Template>units/athen_champion_infantry</Template>
+			<Template>units/athen/champion_infantry</Template>
 			<Player>2</Player>
 			<Position x="257.11942" z="475.07392"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1024">
-			<Template>units/athen_champion_infantry</Template>
+			<Template>units/athen/champion_infantry</Template>
 			<Player>2</Player>
 			<Position x="260.75232" z="476.13276"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1025">
-			<Template>units/athen_champion_infantry</Template>
+			<Template>units/athen/champion_infantry</Template>
 			<Player>2</Player>
 			<Position x="263.87024" z="476.95173"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1026">
-			<Template>units/athen_champion_infantry</Template>
+			<Template>units/athen/champion_infantry</Template>
 			<Player>2</Player>
 			<Position x="266.32337" z="477.66181"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1027">
-			<Template>units/athen_champion_infantry</Template>
+			<Template>units/athen/champion_infantry</Template>
 			<Player>2</Player>
 			<Position x="268.45267" z="478.08783"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1028">
-			<Template>units/athen_champion_infantry</Template>
+			<Template>units/athen/champion_infantry</Template>
 			<Player>2</Player>
 			<Position x="270.12162" z="478.51548"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1029">
-			<Template>units/athen_infantry_spearman_b</Template>
+			<Template>units/athen/infantry_spearman_b</Template>
 			<Player>2</Player>
 			<Position x="259.1167" z="507.84064"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1030">
-			<Template>units/athen_infantry_spearman_b</Template>
+			<Template>units/athen/infantry_spearman_b</Template>
 			<Player>2</Player>
 			<Position x="262.12653" z="508.71125"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1031">
-			<Template>units/athen_infantry_spearman_b</Template>
+			<Template>units/athen/infantry_spearman_b</Template>
 			<Player>2</Player>
 			<Position x="265.67154" z="510.20408"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1032">
-			<Template>units/athen_infantry_spearman_b</Template>
+			<Template>units/athen/infantry_spearman_b</Template>
 			<Player>2</Player>
 			<Position x="257.65998" z="511.65943"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1033">
-			<Template>units/athen_infantry_spearman_b</Template>
+			<Template>units/athen/infantry_spearman_b</Template>
 			<Player>2</Player>
 			<Position x="260.58887" z="512.47486"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1034">
-			<Template>units/athen_infantry_spearman_b</Template>
+			<Template>units/athen/infantry_spearman_b</Template>
 			<Player>2</Player>
 			<Position x="263.7627" z="513.44556"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1035">
-			<Template>units/athen_infantry_javelineer_b</Template>
+			<Template>units/athen/infantry_javelineer_b</Template>
 			<Player>2</Player>
 			<Position x="254.379" z="516.68818"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1036">
-			<Template>units/athen_infantry_javelineer_b</Template>
+			<Template>units/athen/infantry_javelineer_b</Template>
 			<Player>2</Player>
 			<Position x="256.86942" z="517.60206"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1037">
-			<Template>units/athen_infantry_javelineer_b</Template>
+			<Template>units/athen/infantry_javelineer_b</Template>
 			<Player>2</Player>
 			<Position x="259.00943" z="518.38209"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1038">
-			<Template>units/athen_infantry_javelineer_b</Template>
+			<Template>units/athen/infantry_javelineer_b</Template>
 			<Player>2</Player>
 			<Position x="262.08844" z="519.5699"/>
 			<Orientation y="2.35621"/>

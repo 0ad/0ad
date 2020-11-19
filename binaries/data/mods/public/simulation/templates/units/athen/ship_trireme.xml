@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_ship_trireme">
+  <Footprint>
+    <Square width="10.0" depth="40.0"/>
+    <Height>8.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>athen</Civ>
+    <SpecificName>Triḗrēs Athēnaía</SpecificName>
+    <GenericName>Athenian Trireme</GenericName>
+    <Icon>units/hele_ship_trireme.png</Icon>
+  </Identity>
+  <ProductionQueue>
+    <BatchTimeModifier>0.7</BatchTimeModifier>
+    <Entities datatype="tokens">
+      units/athen/infantry_marine_archer_b
+      units/athen/champion_marine
+    </Entities>
+    <TechCostMultiplier>
+      <food>1.0</food>
+      <wood>1.0</wood>
+      <stone>1.0</stone>
+      <metal>1.0</metal>
+      <time>1.0</time>
+    </TechCostMultiplier>
+  </ProductionQueue>
+  <VisualActor>
+    <Actor>structures/athenians/trireme.xml</Actor>
+  </VisualActor>
+</Entity>

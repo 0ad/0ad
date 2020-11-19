@@ -113,27 +113,27 @@
 	],
 	"WallSets": [
 		"structures/wallset_palisade",
-		"structures/cart_wallset_short",
-		"structures/cart_wallset_stone"
+		"structures/cart/wallset_short",
+		"structures/cart/wallset_stone"
 	],
 	"StartEntities": [
 		{
-			"Template": "structures/cart_civil_centre"
+			"Template": "structures/cart/civil_centre"
 		},
 		{
-			"Template": "units/cart_support_female_citizen",
+			"Template": "units/cart/support_female_citizen",
 			"Count": 4
 		},
 		{
-			"Template": "units/cart_infantry_spearman_b",
+			"Template": "units/cart/infantry_spearman_b",
 			"Count": 2
 		},
 		{
-			"Template": "units/cart_infantry_archer_b",
+			"Template": "units/cart/infantry_archer_b",
 			"Count": 2
 		},
 		{
-			"Template": "units/cart_cavalry_javelineer_b"
+			"Template": "units/cart/cavalry_javelineer_b"
 		}
 	],
 	"Formations": [
@@ -168,8 +168,8 @@
 		"Hasdrubal the Boetharch"
 	],
 	"SkirmishReplacements": {
-		"skirmish/units/default_infantry_ranged_b": "units/cart_infantry_archer_b",
-		"skirmish/structures/default_house_10": "structures/{civ}_house"
+		"skirmish/units/default_infantry_ranged_b": "units/cart/infantry_archer_b",
+		"skirmish/structures/default_house_10": "structures/{civ}/house"
 	},
 	"SelectableInGameSetup": true
 }
