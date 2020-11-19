@@ -23,14 +23,16 @@
 
 class CStr8;
 
-extern void InitKeyNameMap();
-extern CStr8 FindKeyName(int keycode);
-extern int FindKeyCode(const CStr8& keyname);
+extern SDL_Scancode FindScancode(const CStr& keyname);
+// Map a scancode to a locale-independent scancode name.
+extern CStr8 FindScancodeName(SDL_Scancode scancode);
+// Map a scancode to a locale-dependent key name (to show the user).
+extern CStr8 FindKeyName(SDL_Scancode scancode);
 
 enum {
 	// Start sequential IDs in the right place
-	// Pick a code which is greater than any keycodes used by SDL itself
-	EXTRA_KEYS_BASE = SDL_SCANCODE_TO_KEYCODE(SDL_NUM_SCANCODES),
+	// Pick a code which is greater than any scancodes used by SDL itself
+	EXTRA_KEYS_BASE = SDL_NUM_SCANCODES,
 	// 'Keycodes' for the unified modifier keys
 	UNIFIED_SHIFT,
 	UNIFIED_CTRL,

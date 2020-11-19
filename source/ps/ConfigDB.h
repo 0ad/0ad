@@ -110,6 +110,8 @@ public:
 
 	void SetValueBool(EConfigNamespace ns, const CStr& name, const bool value);
 
+	void SetValueList(EConfigNamespace ns, const CStr& name, std::vector<CStr> values);
+
 	/**
 	 * Remove a config value in the specified namespace.
 	 */

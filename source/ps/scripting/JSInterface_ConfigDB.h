@@ -31,6 +31,7 @@ namespace JSI_ConfigDB
 	bool SetChanges(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& cfgNsString, bool value);
 	std::string GetValue(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& cfgNsString, const std::string& name);
 	bool CreateValue(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& cfgNsString, const std::string& name, const std::string& value);
+ 	bool CreateValues(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& cfgNsString, const std::string& name, const std::vector<CStr>& values);
 	bool RemoveValue(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& cfgNsString, const std::string& name);
 	bool WriteFile(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& cfgNsString, const Path& path);
 	bool WriteValueToFile(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& cfgNsString, const std::string& name, const std::string& value, const Path& path);

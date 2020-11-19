@@ -33,15 +33,45 @@
 
 #include "CStr.h"
 #include "lib/input.h"
-#include "lib/external_libraries/libsdl.h"	// see note below
 
-// note: we need the real SDL header - it defines SDL_USEREVENT, which is
-// required for our HOTKEY event type definition. this is OK since
-// hotkey.h is not included from any headers.
+#include <unordered_map>
 
-const uint SDL_HOTKEYPRESS = SDL_USEREVENT;
-const uint SDL_HOTKEYDOWN = SDL_USEREVENT + 1;
-const uint SDL_HOTKEYUP = SDL_USEREVENT + 2;
+// SDL_Scancode is an enum, we'll use an explicit int to avoid including SDL in this header.
+using SDL_Scancode_ = int;
+
+// 0x8000 is SDL_USEREVENT, this is static_asserted in Hotkey.cpp
+// We do this to avoid including SDL in this header.
+const uint SDL_USEREVENT_ = 0x8000;
+const uint SDL_HOTKEYPRESS = SDL_USEREVENT_;
+const uint SDL_HOTKEYDOWN = SDL_USEREVENT_ + 1;
+const uint SDL_HOTKEYUP = SDL_USEREVENT_ + 2;
+
+struct SKey
+{
+	SDL_Scancode_ code; // scancode or MOUSE_ or UNIFIED_ value
+	bool negated; // whether the key must be pressed (false) or unpressed (true)
+
+	bool operator<(const SKey& o) const { return code < o.code && negated < o.negated; }
+	bool operator==(const SKey& o) const { return code == o.code && negated == o.negated; }
+};
+
+// Hotkey data associated with an externally-specified 'primary' keycode
+struct SHotkeyMapping
+{
+	CStr name; // name of the hotkey
+	bool negated; // whether the primary key must be pressed (false) or unpressed (true)
+	std::vector<SKey> requires; // list of non-primary keys that must also be active
+};
+
+typedef std::vector<SHotkeyMapping> KeyMapping;
+
+// A mapping of scancodes onto the hotkeys that are associated with that key.
+// (A hotkey triggered by a combination of multiple keys will be in this map
+// multiple times.)
+extern std::unordered_map<SDL_Scancode_, KeyMapping> g_HotkeyMap;
+
+// The current pressed status of hotkeys
+extern std::unordered_map<std::string, bool> g_HotkeyStatus;
 
 extern void LoadHotkeys();
 extern void UnloadHotkeys();

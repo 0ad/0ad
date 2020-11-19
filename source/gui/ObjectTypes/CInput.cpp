@@ -114,7 +114,7 @@ void CInput::ClearComposedText()
 	m_iComposedPos = 0;
 }
 
-InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
+InReaction CInput::ManuallyHandleKeys(const SDL_Event_* ev)
 {
 	ENSURE(m_iBufferPos != -1);
 
@@ -225,6 +225,11 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 		//  in Unicode (CStrW), we'll simply retrieve the actual
 		//  pointer and edit that.
 		SDL_Keycode keyCode = ev->ev.key.keysym.sym;
+
+		// Escape is treated specially to let players close out windows even if an input is in focus.
+		// TODO: there is maybe a better way to only handle text-like keys here?
+		if (keyCode == SDLK_ESCAPE)
+			return IN_PASS;
 
 		ManuallyImmutableHandleKeyDownEvent(keyCode);
 		ManuallyMutableHandleKeyDownEvent(keyCode);
@@ -1117,7 +1122,7 @@ void CInput::HandleMessage(SGUIMessage& Message)
 			evt.ev.edit.length = 0;
 			evt.ev.edit.start = 0;
 			evt.ev.edit.text[0] = 0;
-			ManuallyHandleEvent(&evt);
+			ManuallyHandleKeys(&evt);
 		}
 		SDL_StopTextInput();
 

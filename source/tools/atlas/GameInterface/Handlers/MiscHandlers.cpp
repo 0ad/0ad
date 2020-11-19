@@ -193,6 +193,7 @@ MESSAGEHANDLER(GuiKeyEvent)
 	SDL_Event_ ev = { { 0 } };
 	ev.ev.type = msg->pressed ? SDL_KEYDOWN : SDL_KEYUP;
 	ev.ev.key.keysym.sym = (SDL_Keycode)(int)msg->sdlkey;
+	ev.ev.key.keysym.scancode = SDL_GetScancodeFromKey((SDL_Keycode)(int)msg->sdlkey);
 	in_dispatch_event(&ev);
 }
 

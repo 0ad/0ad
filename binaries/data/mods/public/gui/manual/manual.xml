@@ -14,9 +14,7 @@
 		</object>
 
 		<object type="image" sprite="ModernFade" size="20 20 100%-20 100%-58">
-			<object name="mainText" type="text" style="ModernTextPanel">
-				<action on="Load">this.caption = Engine.TranslateLines(Engine.ReadFile("gui/manual/intro.txt"));</action>
-			</object>
+			<object name="mainText" type="text" style="ModernTextPanel" />
 		</object>
 
 		<object type="button" style="ModernButtonRed" tooltip_style="snToolTip" size="100%-408 100%-52 100%-218 100%-24" hotkey="cancel">

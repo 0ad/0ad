@@ -174,6 +174,27 @@ MenuButtons.prototype.Options = class
 	}
 };
 
+MenuButtons.prototype.Hotkeys = class
+{
+	constructor(button, pauseControl)
+	{
+		this.button = button;
+		this.button.caption = translate("Hotkeys");
+		this.pauseControl = pauseControl;
+	}
+
+	onPress()
+	{
+		closeOpenDialogs();
+		this.pauseControl.implicitPause();
+
+		Engine.PushGuiPage(
+			"hotkeys/page_hotkeys.xml",
+			{},
+			() => { resumeGame(); });
+	}
+};
+
 MenuButtons.prototype.Pause = class
 {
 	constructor(button, pauseControl, playerViewControl)

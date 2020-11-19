@@ -251,7 +251,7 @@ void CList::HandleMessage(SGUIMessage& Message)
 	IGUITextOwner::HandleMessage(Message);
 }
 
-InReaction CList::ManuallyHandleEvent(const SDL_Event_* ev)
+InReaction CList::ManuallyHandleKeys(const SDL_Event_* ev)
 {
 	InReaction result = IN_PASS;
 

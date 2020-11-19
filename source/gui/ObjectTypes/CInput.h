@@ -64,20 +64,20 @@ protected:
 	/**
 	 * Handle events manually to catch keyboard inputting.
 	 */
-	virtual InReaction ManuallyHandleEvent(const SDL_Event_* ev);
+	virtual InReaction ManuallyHandleKeys(const SDL_Event_* ev);
 
 	/**
-	* Handle events manually to catch keys which change the text.
-	*/
+	 * Handle events manually to catch keys which change the text.
+	 */
 	virtual void ManuallyMutableHandleKeyDownEvent(const SDL_Keycode keyCode);
 
 	/**
-	* Handle events manually to catch keys which don't change the text.
-	*/
+	 * Handle events manually to catch keys which don't change the text.
+	 */
 	virtual void ManuallyImmutableHandleKeyDownEvent(const SDL_Keycode keyCode);
 
 	/**
-	 * Handle hotkey events (called by ManuallyHandleEvent)
+	 * Handle hotkey events (called by ManuallyHandleKeys)
 	 */
 	virtual InReaction ManuallyHandleHotkeyEvent(const SDL_Event_* ev);
 

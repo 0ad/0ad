@@ -210,6 +210,18 @@ void CConfigDB::SetValueBool(EConfigNamespace ns, const CStr& name, const bool v
 	SetValueString(ns, name, valueString);
 }
 
+void CConfigDB::SetValueList(EConfigNamespace ns, const CStr& name, std::vector<CStr> values)
+{
+	CHECK_NS(;);
+
+	std::lock_guard<std::recursive_mutex> s(cfgdb_mutex);
+	TConfigMap::iterator it = m_Map[ns].find(name);
+	if (it == m_Map[ns].end())
+		it = m_Map[ns].insert(m_Map[ns].begin(), make_pair(name, CConfigValueSet(1)));
+
+	it->second = values;
+}
+
 void CConfigDB::RemoveValue(EConfigNamespace ns, const CStr& name)
 {
 	CHECK_NS(;);
