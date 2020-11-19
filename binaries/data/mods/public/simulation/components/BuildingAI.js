@@ -339,12 +339,34 @@ BuildingAI.prototype.FireArrows = function()
 	for (let target of this.targetUnits)
 		addTarget(target);
 
+	// The obstruction manager performs approximate range checks
+	// so we need to verify them here.
+	// TODO: perhaps an optional 'precise' mode to range queries would be more performant.
+	let cmpObstructionManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ObstructionManager);
+	let range = cmpAttack.GetRange(attackType);
+
+	let thisCmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+	if (!thisCmpPosition.IsInWorld())
+		return;
+	let s = thisCmpPosition.GetPosition();
+
 	for (let i = 0; i < arrowsToFire; ++i)
 	{
 		let selectedIndex = targets.randomIndex();
 		let selectedTarget = targets.itemAt(selectedIndex);
 
-		if (selectedTarget && this.CheckTargetVisible(selectedTarget))
+		// Copied from UnitAI's MoveToTargetAttackRange.
+		let targetCmpPosition = Engine.QueryInterface(selectedTarget, IID_Position);
+		if (!targetCmpPosition.IsInWorld())
+			continue;
+
+		let t = targetCmpPosition.GetPosition();
+		// h is positive when I'm higher than the target
+		let h = s.y - t.y + range.elevationBonus;
+		let parabolicMaxRange = Math.sqrt(Math.square(range.max) + 2 * range.max * h);
+		if (selectedTarget && this.CheckTargetVisible(selectedTarget) &&
+		    h > -range.max / 2 && cmpObstructionManager.IsInTargetRange(
+		        this.entity, selectedTarget, range.min, parabolicMaxRange, false))
 		{
 			cmpAttack.PerformAttack(attackType, selectedTarget);
 			PlaySound("attack_" + attackType.toLowerCase(), this.entity);

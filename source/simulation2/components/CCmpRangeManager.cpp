@@ -142,22 +142,24 @@ static inline u16 CalcVisionSharingMask(player_id_t player)
  */
 struct Query
 {
-	bool enabled;
-	bool parabolic;
+	std::vector<entity_id_t> lastMatch;
 	CEntityHandle source; // TODO: this could crash if an entity is destroyed while a Query is still referencing it
 	entity_pos_t minRange;
 	entity_pos_t maxRange;
-	entity_pos_t elevationBonus;
+	entity_pos_t elevationBonus; // Used for parabolas only.
 	u32 ownersMask;
 	i32 interface;
-	std::vector<entity_id_t> lastMatch;
 	u8 flagsMask;
+	bool enabled;
+	bool parabolic;
 };
 
 /**
  * Checks whether v is in a parabolic range of (0,0,0)
  * The highest point of the paraboloid is (0,range/2,0)
  * and the circle of distance 'range' around (0,0,0) on height y=0 is part of the paraboloid
+ * This equates to computing f(x, z) = y = -(xx + zz)/(2*range) + range/2 > 0,
+ * or alternatively √(xx+zz) <= √(range^2 - 2range*y).
  *
  * Avoids sqrting and overflowing.
  */
@@ -1206,19 +1208,20 @@ public:
 					continue;
 				CFixedVector3D secondPosition = cmpSecondPosition->GetPosition();
 
-				// Restrict based on precise distance
-				if (!InParabolicRange(
-						CFixedVector3D(it->second.x, secondPosition.Y, it->second.z)
-							- pos3d,
-						q.maxRange))
+				// Doing an exact check for parabolas with obstruction sizes is not really possible.
+				// However, we can prove that InParabolicRange(d, range + size) > InParabolicRange(d, range)
+				// in the sense that it always returns true when the latter would, which is enough.
+				// To do so, compute the derivative with respect to distance, and notice that
+				// they have an intersection after which the former grows slower, and then use that to prove the above.
+				// Note that this is only true because we do not account for vertical size here,
+				// if we did, we would also need to artificially 'raise' the source over the target.
+				if (!InParabolicRange(CFixedVector3D(it->second.x, secondPosition.Y, it->second.z) - pos3d,
+									  q.maxRange + fixed::FromInt(it->second.size)))
 					continue;
 
 				if (!q.minRange.IsZero())
-				{
-					int distVsMin = (CFixedVector2D(it->second.x, it->second.z) - pos).CompareLength(q.minRange);
-					if (distVsMin < 0)
+					if ((CFixedVector2D(it->second.x, it->second.z) - pos).CompareLength(q.minRange) < 0)
 						continue;
-				}
 
 				r.push_back(it->first);
 			}
@@ -1239,17 +1242,13 @@ public:
 				if (!TestEntityQuery(q, it->first, it->second))
 					continue;
 
-				// Restrict based on precise distance
-				int distVsMax = (CFixedVector2D(it->second.x, it->second.z) - pos).CompareLength(q.maxRange);
-				if (distVsMax > 0)
+				// Restrict based on approximate circle-circle distance.
+				if ((CFixedVector2D(it->second.x, it->second.z) - pos).CompareLength(q.maxRange + fixed::FromInt(it->second.size)) > 0)
 					continue;
 
 				if (!q.minRange.IsZero())
-				{
-					int distVsMin = (CFixedVector2D(it->second.x, it->second.z) - pos).CompareLength(q.minRange);
-					if (distVsMin < 0)
+					if ((CFixedVector2D(it->second.x, it->second.z) - pos).CompareLength(q.minRange) < 0)
 						continue;
-				}
 
 				r.push_back(it->first);
 			}
@@ -1376,6 +1375,16 @@ public:
 		q.minRange = minRange;
 		q.maxRange = maxRange;
 		q.elevationBonus = entity_pos_t::Zero();
+
+		if (q.source.GetId() != INVALID_ENTITY && q.maxRange != entity_pos_t::FromInt(-1))
+		{
+			EntityMap<EntityData>::const_iterator it = m_EntityData.find(q.source.GetId());
+			ENSURE(it != m_EntityData.end());
+			// Adjust the range query based on the querier's obstruction radius.
+			// The smallest side of the obstruction isn't known here, so we can't safely adjust the min-range, only the max.
+			// 'size' is the diagonal size rounded up so this will cover all possible rotations of the querier.
+			q.maxRange += fixed::FromInt(it->second.size);
+		}
 
 		q.ownersMask = 0;
 		for (size_t i = 0; i < owners.size(); ++i)
