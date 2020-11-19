@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -338,5 +338,17 @@ public:
 	u8* Serialize(u8* buffer) const;
 	const u8* Deserialize(const u8* buffer, const u8* bufferend);
 };
+
+namespace std
+{
+template <>
+struct hash<CStr>
+{
+	std::size_t operator()(const CStr& str) const
+	{
+		return str.GetHashCode();
+	}
+};
+}
 
 #endif
