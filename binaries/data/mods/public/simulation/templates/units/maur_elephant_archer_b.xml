@@ -1,73 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_cavalry_ranged_archer">
-  <Attack>
-    <Capture disable=""/>
-    <Ranged>
-      <Damage>
-        <Hack op="mul">1.5</Hack>
-        <Pierce op="mul">1.5</Pierce>
-        <Crush op="mul">1.5</Crush>
-      </Damage>
-      <RepeatTime op="mul">0.75</RepeatTime>
-    </Ranged>
-  </Attack>
-  <Cost>
-    <BuildTime>20</BuildTime>
-    <Resources>
-      <food>175</food>
-      <wood>75</wood>
-    </Resources>
-  </Cost>
-  <Footprint replace="">
-    <Square width="4.5" depth="9.0"/>
-    <Height>9.0</Height>
-  </Footprint>
-  <Health>
-    <Max op="mul">2</Max>
-  </Health>
+<Entity parent="template_unit_elephant_archer">
   <Identity>
     <Civ>maur</Civ>
-    <Classes datatype="tokens">-FastMoving</Classes>
-    <VisibleClasses datatype="tokens">-Cavalry Elephant</VisibleClasses>
     <GenericName>Elephant Archer</GenericName>
-    <Icon>units/maur_cavalry_archer.png</Icon>
-    <RequiredTechnology>phase_town</RequiredTechnology>
-    <SelectionGroupName>units/maur_elephant_archer_b</SelectionGroupName>
     <SpecificName>Vachii Gaja</SpecificName>
+    <SelectionGroupName>units/maur_elephant_archer_b</SelectionGroupName>
+    <Icon>units/maur_elephant_archer.png</Icon>
+    <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
-  <Loot>
-    <xp>260</xp>
-    <food>18</food>
-    <wood>7</wood>
-  </Loot>
   <Promotion>
     <Entity>units/maur_elephant_archer_a</Entity>
   </Promotion>
-  <Resistance>
-    <Entity>
-      <Damage>
-        <Hack op="add">1</Hack>
-        <Pierce op="add">2</Pierce>
-      </Damage>
-    </Entity>
-  </Resistance>
-  <ResourceGatherer disable=""/>
-  <Sound>
-    <SoundGroups>
-      <select>actor/fauna/animal/elephant_select.xml</select>
-      <order_walk>actor/fauna/animal/elephant_order.xml</order_walk>
-      <order_attack>actor/fauna/animal/elephant_attack_order.xml</order_attack>
-      <death>actor/fauna/animal/elephant_death.xml</death>
-      <trained>actor/fauna/animal/elephant_trained.xml</trained>
-    </SoundGroups>
-  </Sound>
-  <StatusBars>
-    <HeightOffset>10.0</HeightOffset>
-  </StatusBars>
-  <UnitMotion>
-    <PassabilityClass>large</PassabilityClass>
-    <WalkSpeed op="mul">0.5</WalkSpeed>
-  </UnitMotion>
   <VisualActor>
     <Actor>units/mauryas/elephantry_archer_b_m.xml</Actor>
   </VisualActor>
