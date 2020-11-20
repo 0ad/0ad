@@ -1379,7 +1379,6 @@ public:
 		if (q.source.GetId() != INVALID_ENTITY && q.maxRange != entity_pos_t::FromInt(-1))
 		{
 			EntityMap<EntityData>::const_iterator it = m_EntityData.find(q.source.GetId());
-			ENSURE(it != m_EntityData.end());
 			// Adjust the range query based on the querier's obstruction radius.
 			// The smallest side of the obstruction isn't known here, so we can't safely adjust the min-range, only the max.
 			// 'size' is the diagonal size rounded up so this will cover all possible rotations of the querier.
