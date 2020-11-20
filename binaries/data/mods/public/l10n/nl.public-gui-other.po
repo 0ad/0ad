@@ -37,8 +37,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-13 08:08+0000\n"
-"PO-Revision-Date: 2020-11-14 21:11+0000\n"
+"POT-Creation-Date: 2020-11-16 08:12+0000\n"
+"PO-Revision-Date: 2020-11-17 14:19+0000\n"
 "Last-Translator: Bart <b.anthonisse@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -2896,6 +2896,46 @@ msgstr "Snelle maar eenvoudige anti-aliassen."
 #: gui/options/options.json[1].options[4].list[1].label
 msgid "FXAA"
 msgstr "FXAA"
+
+#: gui/options/options.json[1].options[4].list[2].tooltip
+msgid ""
+"Slow, but high-quality anti-aliasing, uses 2 samples per pixel. Supported "
+"for GL3.3+."
+msgstr "Langzaam, maar hoge kwaliteit anti-aliasing. Gebruikt 2 samples per pixel. Ondersteuning voor GL3.3+."
+
+#: gui/options/options.json[1].options[4].list[2].label
+msgid "MSAA (x2)"
+msgstr "MSAA (x2)"
+
+#: gui/options/options.json[1].options[4].list[3].tooltip
+msgid ""
+"Slow, but high-quality anti-aliasing, uses 4 samples per pixel. Supported "
+"for GL3.3+."
+msgstr "Langzaam, maar hoge kwaliteit anti-aliasing. Gebruikt 4 samples per pixel. Ondersteuning voor GL3.3+."
+
+#: gui/options/options.json[1].options[4].list[3].label
+msgid "MSAA (x4)"
+msgstr "MSAA (x4)"
+
+#: gui/options/options.json[1].options[4].list[4].tooltip
+msgid ""
+"Slow, but high-quality anti-aliasing, uses 8 samples per pixel. Supported "
+"for GL3.3+."
+msgstr "Langzaam, maar hoge kwaliteit anti-aliasing. Gebruikt 8 samples per pixel. Ondersteuning voor GL3.3+."
+
+#: gui/options/options.json[1].options[4].list[4].label
+msgid "MSAA (x8)"
+msgstr "MSAA (x8)"
+
+#: gui/options/options.json[1].options[4].list[5].tooltip
+msgid ""
+"Slow, but high-quality anti-aliasing, uses 16 samples per pixel. Supported "
+"for GL3.3+."
+msgstr "Langzaam, maar hoge kwaliteit anti-aliasing. Gebruikt 16 samples per pixel. Ondersteuning voor GL3.3+."
+
+#: gui/options/options.json[1].options[4].list[5].label
+msgid "MSAA (x16)"
+msgstr "MSAA (x16)"
 
 #: gui/options/options.json[1].options[4].tooltip
 msgid "Reduce aliasing effect on edges."
