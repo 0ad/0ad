@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_support_female_citizen">
+  <Builder>
+    <Entities datatype="tokens">
+      structures/rome/army_camp
+      structures/rome/temple_vesta
+    </Entities>
+  </Builder>
+  <Identity>
+    <Civ>rome</Civ>
+    <Lang>latin</Lang>
+    <SpecificName>Rōmāna</SpecificName>
+    <GenericName>Roman Woman</GenericName>
+    <Icon>units/rome_support_female_citizen.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>units/romans/female_citizen.xml</Actor>
+  </VisualActor>
+</Entity>

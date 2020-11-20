@@ -149,6 +149,13 @@ var g_MainMenuItems = [
 				}
 			},
 			{
+				"caption": translate("Hotkeys"),
+				"tooltip": translate("Adjust hotkeys."),
+				"onPress": () => {
+					Engine.PushGuiPage("hotkeys/page_hotkeys.xml");
+				}
+			},
+			{
 				"caption": translate("Language"),
 				"tooltip": translate("Choose the language of the game."),
 				"onPress": () => {

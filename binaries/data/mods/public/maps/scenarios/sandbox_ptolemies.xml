@@ -83,7 +83,7 @@
 ]]></ScriptSettings>
 	<Entities>
 		<Entity uid="19">
-			<Template>structures/maur_civil_centre</Template>
+			<Template>structures/maur/civil_centre</Template>
 			<Player>2</Player>
 			<Position x="448.3061" z="124.72773"/>
 			<Orientation y="2.35621"/>
@@ -1391,63 +1391,63 @@
 			<Actor seed="41438"/>
 		</Entity>
 		<Entity uid="244">
-			<Template>units/maur_support_female_citizen</Template>
+			<Template>units/maur/support_female_citizen</Template>
 			<Player>2</Player>
 			<Position x="459.4534" z="99.67846"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="36900"/>
 		</Entity>
 		<Entity uid="245">
-			<Template>units/maur_support_female_citizen</Template>
+			<Template>units/maur/support_female_citizen</Template>
 			<Player>2</Player>
 			<Position x="463.55771" z="103.37818"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="29262"/>
 		</Entity>
 		<Entity uid="246">
-			<Template>units/maur_support_female_citizen</Template>
+			<Template>units/maur/support_female_citizen</Template>
 			<Player>2</Player>
 			<Position x="468.27402" z="107.57656"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="18834"/>
 		</Entity>
 		<Entity uid="247">
-			<Template>units/maur_support_female_citizen</Template>
+			<Template>units/maur/support_female_citizen</Template>
 			<Player>2</Player>
 			<Position x="473.1908" z="112.84015"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="29796"/>
 		</Entity>
 		<Entity uid="248">
-			<Template>units/maur_support_elephant</Template>
+			<Template>units/maur/support_elephant</Template>
 			<Player>2</Player>
 			<Position x="424.41633" z="141.79191"/>
 			<Orientation y="-1.08399"/>
 			<Actor seed="15238"/>
 		</Entity>
 		<Entity uid="249">
-			<Template>units/maur_infantry_archer_b</Template>
+			<Template>units/maur/infantry_archer_b</Template>
 			<Player>2</Player>
 			<Position x="470.20933" z="136.60618"/>
 			<Orientation y="0.39997"/>
 			<Actor seed="59396"/>
 		</Entity>
 		<Entity uid="250">
-			<Template>units/maur_infantry_archer_b</Template>
+			<Template>units/maur/infantry_archer_b</Template>
 			<Player>2</Player>
 			<Position x="463.82386" z="143.80777"/>
 			<Orientation y="1.41062"/>
 			<Actor seed="20066"/>
 		</Entity>
 		<Entity uid="251">
-			<Template>units/maur_infantry_spearman_b</Template>
+			<Template>units/maur/infantry_spearman_b</Template>
 			<Player>2</Player>
 			<Position x="427.52884" z="111.08239"/>
 			<Orientation y="-2.34086"/>
 			<Actor seed="60670"/>
 		</Entity>
 		<Entity uid="252">
-			<Template>units/maur_infantry_spearman_b</Template>
+			<Template>units/maur/infantry_spearman_b</Template>
 			<Player>2</Player>
 			<Position x="431.9759" z="106.35044"/>
 			<Orientation y="-2.51125"/>
@@ -8485,70 +8485,70 @@
 			<Actor seed="28468"/>
 		</Entity>
 		<Entity uid="1407">
-			<Template>structures/ptol_civil_centre</Template>
+			<Template>structures/ptol/civil_centre</Template>
 			<Player>1</Player>
 			<Position x="487.52628" z="715.2995"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="32344"/>
 		</Entity>
 		<Entity uid="1412">
-			<Template>units/ptol_infantry_pikeman_b</Template>
+			<Template>units/ptol/infantry_pikeman_b</Template>
 			<Player>1</Player>
 			<Position x="475.53467" z="692.8136"/>
 			<Orientation y="-1.85767"/>
 			<Actor seed="3406"/>
 		</Entity>
 		<Entity uid="1413">
-			<Template>units/ptol_infantry_pikeman_b</Template>
+			<Template>units/ptol/infantry_pikeman_b</Template>
 			<Player>1</Player>
 			<Position x="470.79731" z="697.56727"/>
 			<Orientation y="-2.213"/>
 			<Actor seed="46178"/>
 		</Entity>
 		<Entity uid="1414">
-			<Template>units/ptol_infantry_archer_b</Template>
+			<Template>units/ptol/infantry_archer_b</Template>
 			<Player>1</Player>
 			<Position x="501.2168" z="738.05127"/>
 			<Orientation y="1.08265"/>
 			<Actor seed="54566"/>
 		</Entity>
 		<Entity uid="1415">
-			<Template>units/ptol_infantry_archer_b</Template>
+			<Template>units/ptol/infantry_archer_b</Template>
 			<Player>1</Player>
 			<Position x="505.9766" z="733.40186"/>
 			<Orientation y="0.78563"/>
 			<Actor seed="57908"/>
 		</Entity>
 		<Entity uid="1416">
-			<Template>units/ptol_support_female_citizen</Template>
+			<Template>units/ptol/support_female_citizen</Template>
 			<Player>1</Player>
 			<Position x="500.25532" z="692.62586"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="26088"/>
 		</Entity>
 		<Entity uid="1417">
-			<Template>units/ptol_support_female_citizen</Template>
+			<Template>units/ptol/support_female_citizen</Template>
 			<Player>1</Player>
 			<Position x="502.53" z="696.00788"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="43942"/>
 		</Entity>
 		<Entity uid="1418">
-			<Template>units/ptol_support_female_citizen</Template>
+			<Template>units/ptol/support_female_citizen</Template>
 			<Player>1</Player>
 			<Position x="505.15552" z="699.7989"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="54262"/>
 		</Entity>
 		<Entity uid="1419">
-			<Template>units/ptol_support_female_citizen</Template>
+			<Template>units/ptol/support_female_citizen</Template>
 			<Player>1</Player>
 			<Position x="509.18787" z="702.21814"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="32462"/>
 		</Entity>
 		<Entity uid="1420">
-			<Template>units/ptol_cavalry_archer_b</Template>
+			<Template>units/ptol/cavalry_archer_b</Template>
 			<Player>1</Player>
 			<Position x="461.86445" z="704.55329"/>
 			<Orientation y="-2.50872"/>
@@ -10905,119 +10905,119 @@
 			<Actor seed="23908"/>
 		</Entity>
 		<Entity uid="1853">
-			<Template>structures/ptol_barracks</Template>
+			<Template>structures/ptol/barracks</Template>
 			<Player>1</Player>
 			<Position x="513.0224" z="767.96161"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="11596"/>
 		</Entity>
 		<Entity uid="1854">
-			<Template>structures/ptol_forge</Template>
+			<Template>structures/ptol/forge</Template>
 			<Player>1</Player>
 			<Position x="489.73798" z="762.154"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="32628"/>
 		</Entity>
 		<Entity uid="1855">
-			<Template>structures/ptol_defense_tower</Template>
+			<Template>structures/ptol/defense_tower</Template>
 			<Player>1</Player>
 			<Position x="562.0033" z="718.90662"/>
 			<Orientation y="0.83617"/>
 			<Actor seed="65170"/>
 		</Entity>
 		<Entity uid="1856">
-			<Template>structures/ptol_defense_tower</Template>
+			<Template>structures/ptol/defense_tower</Template>
 			<Player>1</Player>
 			<Position x="454.51392" z="645.71338"/>
 			<Orientation y="-0.8217"/>
 			<Actor seed="12850"/>
 		</Entity>
 		<Entity uid="1857">
-			<Template>structures/ptol_defense_tower</Template>
+			<Template>structures/ptol/defense_tower</Template>
 			<Player>1</Player>
 			<Position x="375.67869" z="742.16547"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="31060"/>
 		</Entity>
 		<Entity uid="1858">
-			<Template>structures/ptol_defense_tower</Template>
+			<Template>structures/ptol/defense_tower</Template>
 			<Player>1</Player>
 			<Position x="443.29029" z="836.82355"/>
 			<Orientation y="-2.3871"/>
 			<Actor seed="58322"/>
 		</Entity>
 		<Entity uid="1859">
-			<Template>structures/ptol_dock</Template>
+			<Template>structures/ptol/dock</Template>
 			<Player>1</Player>
 			<Position x="634.08075" z="739.28834"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="11754"/>
 		</Entity>
 		<Entity uid="1860">
-			<Template>structures/ptol_farmstead</Template>
+			<Template>structures/ptol/farmstead</Template>
 			<Player>1</Player>
 			<Position x="536.13398" z="724.44996"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="9552"/>
 		</Entity>
 		<Entity uid="1861">
-			<Template>structures/ptol_fortress</Template>
+			<Template>structures/ptol/fortress</Template>
 			<Player>1</Player>
 			<Position x="411.43857" z="744.6543"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="46520"/>
 		</Entity>
 		<Entity uid="1862">
-			<Template>structures/ptol_house</Template>
+			<Template>structures/ptol/house</Template>
 			<Player>1</Player>
 			<Position x="427.00034" z="669.4422"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="6938"/>
 		</Entity>
 		<Entity uid="1863">
-			<Template>structures/ptol_house</Template>
+			<Template>structures/ptol/house</Template>
 			<Player>1</Player>
 			<Position x="418.88852" z="689.83259"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="4440"/>
 		</Entity>
 		<Entity uid="1864">
-			<Template>structures/ptol_house</Template>
+			<Template>structures/ptol/house</Template>
 			<Player>1</Player>
 			<Position x="415.71497" z="707.60163"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="14302"/>
 		</Entity>
 		<Entity uid="1865">
-			<Template>structures/ptol_house</Template>
+			<Template>structures/ptol/house</Template>
 			<Player>1</Player>
 			<Position x="530.9751" z="779.70215"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="9708"/>
 		</Entity>
 		<Entity uid="1866">
-			<Template>structures/ptol_house</Template>
+			<Template>structures/ptol/house</Template>
 			<Player>1</Player>
 			<Position x="544.1399" z="775.3089"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="16064"/>
 		</Entity>
 		<Entity uid="1867">
-			<Template>structures/ptol_house</Template>
+			<Template>structures/ptol/house</Template>
 			<Player>1</Player>
 			<Position x="544.8188" z="789.16248"/>
 			<Orientation y="-0.78904"/>
 			<Actor seed="45988"/>
 		</Entity>
 		<Entity uid="1868">
-			<Template>structures/ptol_house</Template>
+			<Template>structures/ptol/house</Template>
 			<Player>1</Player>
 			<Position x="410.15412" z="663.86933"/>
 			<Orientation y="2.76903"/>
 			<Actor seed="23980"/>
 		</Entity>
 		<Entity uid="1870">
-			<Template>structures/ptol_storehouse</Template>
+			<Template>structures/ptol/storehouse</Template>
 			<Player>1</Player>
 			<Position x="388.32441" z="704.94495"/>
 			<Orientation y="-2.98101"/>
@@ -11038,147 +11038,147 @@
 			<Actor seed="19674"/>
 		</Entity>
 		<Entity uid="1873">
-			<Template>structures/ptol_temple</Template>
+			<Template>structures/ptol/temple</Template>
 			<Player>1</Player>
 			<Position x="444.08994" z="689.40717"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="32676"/>
 		</Entity>
 		<Entity uid="1874">
-			<Template>structures/ptol_defense_tower</Template>
+			<Template>structures/ptol/defense_tower</Template>
 			<Player>1</Player>
 			<Position x="267.04636" z="776.2187"/>
 			<Orientation y="2.32033"/>
 			<Actor seed="7414"/>
 		</Entity>
 		<Entity uid="1875">
-			<Template>structures/ptol_field</Template>
+			<Template>structures/ptol/field</Template>
 			<Player>1</Player>
 			<Position x="553.5777" z="740.02741"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="2746"/>
 		</Entity>
 		<Entity uid="1876">
-			<Template>structures/ptol_field</Template>
+			<Template>structures/ptol/field</Template>
 			<Player>1</Player>
 			<Position x="449.82535" z="802.97657"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="23278"/>
 		</Entity>
 		<Entity uid="1877">
-			<Template>structures/ptol_field</Template>
+			<Template>structures/ptol/field</Template>
 			<Player>1</Player>
 			<Position x="426.34662" z="781.9604"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="54460"/>
 		</Entity>
 		<Entity uid="1878">
-			<Template>structures/ptol_field</Template>
+			<Template>structures/ptol/field</Template>
 			<Player>1</Player>
 			<Position x="427.54508" z="823.01221"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="38630"/>
 		</Entity>
 		<Entity uid="1880">
-			<Template>structures/ptol_field</Template>
+			<Template>structures/ptol/field</Template>
 			<Player>1</Player>
 			<Position x="475.99491" z="784.71412"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="48778"/>
 		</Entity>
 		<Entity uid="1883">
-			<Template>structures/ptol_farmstead</Template>
+			<Template>structures/ptol/farmstead</Template>
 			<Player>1</Player>
 			<Position x="411.06971" z="804.31055"/>
 			<Orientation y="0.7951"/>
 			<Actor seed="25480"/>
 		</Entity>
 		<Entity uid="1884">
-			<Template>structures/ptol_storehouse</Template>
+			<Template>structures/ptol/storehouse</Template>
 			<Player>1</Player>
 			<Position x="570.36518" z="773.80311"/>
 			<Orientation y="2.32547"/>
 			<Actor seed="48612"/>
 		</Entity>
 		<Entity uid="1885">
-			<Template>structures/ptol_dock</Template>
+			<Template>structures/ptol/dock</Template>
 			<Player>1</Player>
 			<Position x="558.67475" z="922.04053"/>
 			<Orientation y="0.4083"/>
 			<Actor seed="6348"/>
 		</Entity>
 		<Entity uid="1887">
-			<Template>structures/ptol_lighthouse</Template>
+			<Template>structures/ptol/lighthouse</Template>
 			<Player>1</Player>
 			<Position x="364.63697" z="602.44843"/>
 			<Orientation y="-2.7284"/>
 			<Actor seed="56196"/>
 		</Entity>
 		<Entity uid="1888">
-			<Template>structures/ptol_library</Template>
+			<Template>structures/ptol/library</Template>
 			<Player>1</Player>
 			<Position x="450.23862" z="760.5193"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="32296"/>
 		</Entity>
 		<Entity uid="1889">
-			<Template>structures/ptol_wonder</Template>
+			<Template>structures/ptol/wonder</Template>
 			<Player>1</Player>
 			<Position x="357.28061" z="838.60755"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="47374"/>
 		</Entity>
 		<Entity uid="1890">
-			<Template>units/ptol_ship_quinquereme</Template>
+			<Template>units/ptol/ship_quinquereme</Template>
 			<Player>1</Player>
 			<Position x="670.93323" z="641.65564"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="56964"/>
 		</Entity>
 		<Entity uid="1891">
-			<Template>units/ptol_ship_fishing</Template>
+			<Template>units/ptol/ship_fishing</Template>
 			<Player>1</Player>
 			<Position x="669.77057" z="725.15845"/>
 			<Orientation y="1.25536"/>
 			<Actor seed="64922"/>
 		</Entity>
 		<Entity uid="1892">
-			<Template>units/ptol_ship_fishing</Template>
+			<Template>units/ptol/ship_fishing</Template>
 			<Player>1</Player>
 			<Position x="595.72193" z="931.87061"/>
 			<Orientation y="-2.14196"/>
 			<Actor seed="24628"/>
 		</Entity>
 		<Entity uid="1893">
-			<Template>units/ptol_ship_merchant</Template>
+			<Template>units/ptol/ship_merchant</Template>
 			<Player>1</Player>
 			<Position x="591.46589" z="966.96412"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="14844"/>
 		</Entity>
 		<Entity uid="1894">
-			<Template>units/ptol_ship_bireme</Template>
+			<Template>units/ptol/ship_bireme</Template>
 			<Player>1</Player>
 			<Position x="620.68628" z="604.73102"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="62558"/>
 		</Entity>
 		<Entity uid="1895">
-			<Template>units/ptol_ship_trireme</Template>
+			<Template>units/ptol/ship_trireme</Template>
 			<Player>1</Player>
 			<Position x="642.87519" z="620.33985"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="19502"/>
 		</Entity>
 		<Entity uid="1896">
-			<Template>units/ptol_champion_juggernaut</Template>
+			<Template>units/ptol/champion_juggernaut</Template>
 			<Player>1</Player>
 			<Position x="708.85682" z="658.38196"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="52374"/>
 		</Entity>
 		<Entity uid="1897">
-			<Template>structures/ptol_market</Template>
+			<Template>structures/ptol/market</Template>
 			<Player>1</Player>
 			<Position x="522.37085" z="682.27717"/>
 			<Orientation y="2.35621"/>
@@ -11581,7 +11581,7 @@
 			<Actor seed="32680"/>
 		</Entity>
 		<Entity uid="1992">
-			<Template>structures/ptol_military_colony</Template>
+			<Template>structures/ptol/military_colony</Template>
 			<Player>1</Player>
 			<Position x="373.92215" z="961.5174"/>
 			<Orientation y="2.35621"/>

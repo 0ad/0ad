@@ -62,37 +62,37 @@ const oLioness = "gaia/fauna_lioness";
 const oCrocodile = "gaia/fauna_crocodile_nile";
 const oFish = "gaia/fish/tilapia";
 const oHawk = "birds/buzzard";
-const oTempleApedemak = "structures/kush_temple";
-const oTempleAmun = "structures/kush_temple_amun";
-const oPyramidLarge = "structures/kush_pyramid_large";
-const oPyramidSmall = "structures/kush_pyramid_small";
-const oWonderPtol = "structures/ptol_wonder";
-const oFortress = "structures/kush_fortress";
-const oTower = g_MapSettings.Size >= 256 && getDifficulty() >= 3 ? "structures/kush_defense_tower" : "structures/kush_sentry_tower";
-const oHouse = "structures/kush_house";
-const oMarket = "structures/kush_market";
-const oForge = "structures/kush_forge";
-const oBlemmyeCamp = "structures/kush_camp_blemmye";
-const oNobaCamp = "structures/kush_camp_noba";
-const oCivicCenter = "structures/kush_civil_centre";
-const oBarracks = "structures/kush_barracks";
-const oStable = "structures/kush_stable";
-const oElephantStables = "structures/kush_elephant_stables";
-const oWallMedium = "structures/kush_wall_medium";
-const oWallGate = "structures/kush_wall_gate";
-const oWallTower = "structures/kush_wall_tower";
+const oTempleApedemak = "structures/kush/temple";
+const oTempleAmun = "structures/kush/temple_amun";
+const oPyramidLarge = "structures/kush/pyramid_large";
+const oPyramidSmall = "structures/kush/pyramid_small";
+const oWonderPtol = "structures/ptol/wonder";
+const oFortress = "structures/kush/fortress";
+const oTower = g_MapSettings.Size >= 256 && getDifficulty() >= 3 ? "structures/kush/defense_tower" : "structures/kush/sentry_tower";
+const oHouse = "structures/kush/house";
+const oMarket = "structures/kush/market";
+const oForge = "structures/kush/forge";
+const oBlemmyeCamp = "structures/kush/camp_blemmye";
+const oNobaCamp = "structures/kush/camp_noba";
+const oCivicCenter = "structures/kush/civil_centre";
+const oBarracks = "structures/kush/barracks";
+const oStable = "structures/kush/stable";
+const oElephantStables = "structures/kush/elephant_stables";
+const oWallMedium = "structures/kush/wall_medium";
+const oWallGate = "structures/kush/wall_gate";
+const oWallTower = "structures/kush/wall_tower";
 const oPalisadeMedium = "structures/palisades_medium";
 const oPalisadeGate = "structures/palisades_gate";
 const oPalisadeTower = "structures/palisades_tower";
-const oKushCitizenArcher = "units/kush_infantry_archer_b";
-const oKushHealer = "units/kush_support_healer_b";
-const oKushChampionArcher = "units/kush_champion_infantry";
+const oKushCitizenArcher = "units/kush/infantry_archer_b";
+const oKushHealer = "units/kush/support_healer_b";
+const oKushChampionArcher = "units/kush/champion_infantry";
 const oKushChampions = [
 	oKushChampionArcher,
-	"units/kush_champion_infantry_amun",
-	"units/kush_champion_infantry_apedemak"
+	"units/kush/champion_infantry_amun",
+	"units/kush/champion_infantry_apedemak"
 ];
-const oPtolSiege = ["units/ptol_siege_lithobolos_unpacked", "units/ptol_siege_polybolos_unpacked"];
+const oPtolSiege = ["units/ptol/siege_lithobolos_unpacked", "units/ptol/siege_polybolos_unpacked"];
 const oTriggerPointCityPath = "trigger/trigger_point_A";
 const oTriggerPointAttackerPatrol = "trigger/trigger_point_B";
 

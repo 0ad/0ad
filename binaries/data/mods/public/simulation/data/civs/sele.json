@@ -94,26 +94,26 @@
 	],
 	"WallSets": [
 		"structures/wallset_palisade",
-		"structures/sele_wallset_stone"
+		"structures/sele/wallset_stone"
 	],
 	"StartEntities": [
 		{
-			"Template": "structures/sele_civil_centre"
+			"Template": "structures/sele/civil_centre"
 		},
 		{
-			"Template": "units/sele_support_female_citizen",
+			"Template": "units/sele/support_female_citizen",
 			"Count": 4
 		},
 		{
-			"Template": "units/sele_infantry_spearman_b",
+			"Template": "units/sele/infantry_spearman_b",
 			"Count": 2
 		},
 		{
-			"Template": "units/sele_infantry_javelineer_b",
+			"Template": "units/sele/infantry_javelineer_b",
 			"Count": 2
 		},
 		{
-			"Template": "units/sele_cavalry_javelineer_b"
+			"Template": "units/sele/cavalry_javelineer_b"
 		}
 	],
 	"Formations": [
@@ -163,7 +163,7 @@
 		"Philip II Philoromaeus"
 	],
 	"SkirmishReplacements": {
-		"skirmish/structures/default_house_10": "structures/{civ}_house"
+		"skirmish/structures/default_house_10": "structures/{civ}/house"
 	},
 	"SelectableInGameSetup": true
 }

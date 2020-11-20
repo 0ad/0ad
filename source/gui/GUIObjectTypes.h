@@ -21,6 +21,7 @@
 #include "gui/ObjectTypes/CChart.h"
 #include "gui/ObjectTypes/CCheckBox.h"
 #include "gui/ObjectTypes/CDropDown.h"
+#include "gui/ObjectTypes/CHotkeyPicker.h"
 #include "gui/ObjectTypes/CImage.h"
 #include "gui/ObjectTypes/CInput.h"
 #include "gui/ObjectTypes/CList.h"
@@ -39,6 +40,7 @@ void CGUI::AddObjectTypes()
 	AddObjectType("checkbox", &CCheckBox::ConstructObject);
 	AddObjectType("dropdown", &CDropDown::ConstructObject);
 	AddObjectType("empty", &CGUIDummyObject::ConstructObject);
+	AddObjectType("hotkeypicker", &CHotkeyPicker::ConstructObject);
 	AddObjectType("image", &CImage::ConstructObject);
 	AddObjectType("input", &CInput::ConstructObject);
 	AddObjectType("list", &CList::ConstructObject);

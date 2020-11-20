@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_cavalry_melee_spearman">
+  <Identity>
+    <Civ>mace</Civ>
+    <Lang>greek</Lang>
+    <SelectionGroupName>units/mace/cavalry_spearman_b</SelectionGroupName>
+    <GenericName>Thessalian Lancer</GenericName>
+    <SpecificName>Xystophóros Thessalikós</SpecificName>
+    <Icon>units/mace_cavalry_spearman.png</Icon>
+  </Identity>
+  <Promotion>
+    <Entity>units/mace/cavalry_spearman_a</Entity>
+  </Promotion>
+  <VisualActor>
+    <Actor>units/macedonians/cavalry_spearman_b_m.xml</Actor>
+  </VisualActor>
+</Entity>

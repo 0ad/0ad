@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_military_embassy">
+  <Cost>
+    <Resources>
+      <wood>400</wood>
+      <stone>200</stone>
+    </Resources>
+  </Cost>
+  <Footprint>
+    <Square width="28.0" depth="28.0"/>
+    <Height>15.0</Height>
+  </Footprint>
+  <Health>
+    <SpawnEntityOnDeath>decay|rubble/rubble_stone_5x5</SpawnEntityOnDeath>
+  </Health>
+  <Identity>
+    <Civ>cart</Civ>
+    <GenericName>Embassy</GenericName>
+    <Tooltip>Train Mercenaries and research Mercenary technologies.</Tooltip>
+    <Icon>structures/embassy_italic.png</Icon>
+  </Identity>
+  <Loot>
+    <wood>80</wood>
+    <stone>40</stone>
+  </Loot>
+  <Obstruction>
+    <Static width="28.0" depth="28.0"/>
+  </Obstruction>
+  <ProductionQueue>
+    <Entities datatype="tokens">
+      units/{native}/infantry_swordsman_gaul_b
+      units/{native}/cavalry_swordsman_gaul_b
+      units/{native}/infantry_javelineer_iber_b
+      units/{native}/infantry_slinger_iber_b
+      units/{native}/cavalry_swordsman_iber_b
+      units/{native}/infantry_swordsman_ital_b
+      units/{native}/cavalry_spearman_ital_b
+    </Entities>
+  </ProductionQueue>
+  <VisualActor>
+    <Actor>structures/carthaginians/embassy.xml</Actor>
+    <FoundationActor>structures/fndn_8x8.xml</FoundationActor>
+  </VisualActor>
+</Entity>

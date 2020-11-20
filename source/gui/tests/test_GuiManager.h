@@ -72,7 +72,7 @@ public:
 		// Press 'a'.
 		SDL_Event_ hotkeyNotification;
 		hotkeyNotification.ev.type = SDL_KEYDOWN;
-		hotkeyNotification.ev.key.keysym.sym = SDLK_a;
+		hotkeyNotification.ev.key.keysym.scancode = SDL_SCANCODE_A;
 		hotkeyNotification.ev.key.repeat = 0;
 
 		// Init input and poll the event.

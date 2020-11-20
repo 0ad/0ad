@@ -57,55 +57,55 @@ PETRA.Config = function(difficulty, behavior)
 	{
 		"default": [],
 		"athen": [
-			"structures/{civ}_gymnasium",
-			"structures/{civ}_prytaneion",
-			"structures/{civ}_royal_stoa",
-			"structures/{civ}_theater"
+			"structures/{civ}/gymnasium",
+			"structures/{civ}/prytaneion",
+			"structures/{civ}/royal_stoa",
+			"structures/{civ}/theater"
 		],
 		"brit": [],
 		"cart": [
-			"structures/{civ}_embassy_celtic",
-			"structures/{civ}_embassy_iberian",
-			"structures/{civ}_embassy_italic"
+			"structures/{civ}/embassy_celtic",
+			"structures/{civ}/embassy_iberian",
+			"structures/{civ}/embassy_italic"
 		],
 		"gaul": [
-			"structures/{civ}_tavern"
+			"structures/{civ}/tavern"
 		],
 		"iber": [
-			"structures/{civ}_monument"
+			"structures/{civ}/monument"
 		],
 		"kush": [
-			"structures/{civ}_camp_blemmye",
-			"structures/{civ}_camp_noba",
-			"structures/{civ}_pyramid_large",
-			"structures/{civ}_pyramid_small",
-			"structures/{civ}_temple_amun"
+			"structures/{civ}/camp_blemmye",
+			"structures/{civ}/camp_noba",
+			"structures/{civ}/pyramid_large",
+			"structures/{civ}/pyramid_small",
+			"structures/{civ}/temple_amun"
 		],
 		"mace": [
-			"structures/{civ}_library",
-			"structures/{civ}_theater"
+			"structures/{civ}/library",
+			"structures/{civ}/theater"
 		],
 		"maur": [
-			"structures/{civ}_pillar_ashoka"
+			"structures/{civ}/pillar_ashoka"
 		],
 		"pers": [
-			"structures/{civ}_apadana",
-			"structures/{civ}_hall"
+			"structures/{civ}/apadana",
+			"structures/{civ}/hall"
 		],
 		"ptol": [
-			"structures/{civ}_library"
+			"structures/{civ}/library"
 		],
 		"rome": [
-			"structures/{civ}_army_camp",
-			"structures/{civ}_temple_vesta"
+			"structures/{civ}/army_camp",
+			"structures/{civ}/temple_vesta"
 		],
 		"sele": [
-			"structures/{civ}_library"
+			"structures/{civ}/library"
 		],
 		"spart": [
-			"structures/{civ}_royal_stoa",
-			"structures/{civ}_syssiton",
-			"structures/{civ}_theater"
+			"structures/{civ}/royal_stoa",
+			"structures/{civ}/syssiton",
+			"structures/{civ}/theater"
 		]
 	};
 

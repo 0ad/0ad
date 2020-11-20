@@ -40,24 +40,24 @@
   <ProductionQueue>
     <BatchTimeModifier>0.8</BatchTimeModifier>
     <Entities datatype="tokens">
-      units/{civ}_infantry_spearman_b
-      units/{civ}_infantry_pikeman_b
-      units/{civ}_infantry_axeman_b
-      units/{civ}_infantry_swordsman_b
-      units/{civ}_infantry_javelineer_b
-      units/{civ}_infantry_slinger_b
-      units/{civ}_infantry_archer_b
-      units/{civ}_cavalry_axeman_b
-      units/{civ}_cavalry_swordsman_b
-      units/{civ}_cavalry_spearman_b
-      units/{civ}_cavalry_javelineer_b
-      units/{civ}_cavalry_archer_b
-      units/{civ}_champion_infantry_barracks
-      units/{civ}_champion_infantry_swordsman_barracks
-      units/{civ}_champion_maiden_barracks
-      units/{civ}_champion_cavalry_barracks
-      units/{civ}_champion_chariot_barracks
-      units/{civ}_war_dog
+      units/{civ}/infantry_spearman_b
+      units/{civ}/infantry_pikeman_b
+      units/{civ}/infantry_axeman_b
+      units/{civ}/infantry_swordsman_b
+      units/{civ}/infantry_javelineer_b
+      units/{civ}/infantry_slinger_b
+      units/{civ}/infantry_archer_b
+      units/{civ}/cavalry_axeman_b
+      units/{civ}/cavalry_swordsman_b
+      units/{civ}/cavalry_spearman_b
+      units/{civ}/cavalry_javelineer_b
+      units/{civ}/cavalry_archer_b
+      units/{civ}/champion_infantry_barracks
+      units/{civ}/champion_infantry_swordsman_barracks
+      units/{civ}/champion_maiden_barracks
+      units/{civ}/champion_cavalry_barracks
+      units/{civ}/champion_chariot_barracks
+      units/{civ}/war_dog
     </Entities>
     <Technologies datatype="tokens">
       heal_barracks

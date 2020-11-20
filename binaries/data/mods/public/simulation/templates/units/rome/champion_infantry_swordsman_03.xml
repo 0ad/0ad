@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="units/rome/champion_infantry_swordsman_02">
+  <Attack>
+    <Melee>
+      <Damage>
+        <Hack>18.5</Hack>
+      </Damage>
+    </Melee>
+  </Attack>
+  <Identity>
+    <GenericName>Marian Legionary</GenericName>
+    <SpecificName>Legiōnārius</SpecificName>
+    <Icon>units/rome_champion_legion_imperial.png</Icon>
+  </Identity>
+  <Promotion>
+    <Entity>units/rome/champion_infantry_swordsman_04</Entity>
+    <RequiredXp>300</RequiredXp>
+  </Promotion>
+  <VisualActor>
+    <Actor>units/romans/infantry_swordsman_c3.xml</Actor>
+  </VisualActor>
+</Entity>

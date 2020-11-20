@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<objects>
+
+	<script directory="gui/common/"/>
+	<script directory="gui/hotkeys/"/>
+
+	<object type="image" sprite="BackgroundTranslucent"/>
+
+	<!-- Hotkey List Window -->
+	<object name="hotkeys" type="image" style="ModernDialog" size="50%-350 50%-344 50%+350 50%+344">
+
+		<object style="ModernLabelText" type="text" size="50%-128 -16 50%+128 16">
+			<translatableAttribute id="caption">Hotkeys</translatableAttribute>
+		</object>
+
+		<object style="ModernLabelText" type="text" size="32 32 132 58" text_align="left">
+			<translatableAttribute id="caption">Category:</translatableAttribute>
+		</object>
+
+		<object name="hotkeyFilter" type="dropdown" style="ModernDropDown" size="132 32 300 58"/>
+
+		<object style="ModernLabelText" type="text" size="100%-300 32 100%-200 58" text_align="left">
+			<translatableAttribute id="caption">Filter:</translatableAttribute>
+		</object>
+
+		<object name="hotkeyTextFilter" type="input" style="ModernInput" size="100%-200 32 100%-32 58"/>
+
+		<object name="hotkeyList"
+				style="ModernSortedList"
+				selected_column="name"
+				selected_column_order="-1"
+				sortable="false"
+				size="32 70 100%-32 100%-70"
+				type="olist"
+				auto_scroll="true"
+			>
+			<column id="name" color="255 255 255" width="60%">
+				<translatableAttribute id="heading" context="hotkey list">Name</translatableAttribute>
+			</column>
+
+			<column id="mapping" color="255 255 255" width="40%">
+				<translatableAttribute id="heading" context="hotkey list">Mapping</translatableAttribute>
+			</column>
+		</object>
+
+		<object name="hotkeyReset" type="button" size="32 100%-52 188 100%-24" style="ModernButtonRed">
+			<translatableAttribute id="caption">Reset</translatableAttribute>
+			<translatableAttribute id="tooltip">Resets user settings to their game default</translatableAttribute>
+		</object>
+
+		<object name="hotkeySave" type="button" size="100%-352 100%-52 100%-196 100%-24" style="ModernButtonRed">
+			<translatableAttribute id="caption">Save</translatableAttribute>
+			<translatableAttribute id="tooltip">Saves changes</translatableAttribute>
+		</object>
+
+		<object name="hotkeyClose" type="button" size="100%-188 100%-52 100%-32 100%-24" style="ModernButtonRed" hotkey="cancel">
+			<translatableAttribute id="caption">Close</translatableAttribute>
+			<translatableAttribute id="tooltip">Unsaved changes will be lost</translatableAttribute>
+		</object>
+	</object>
+
+
+	<!-- Hotkey Picker popup -->
+
+	<object name="hotkeyPicker" type="image" sprite="BackgroundTranslucent" hidden="true" z="100">
+		<object type="image"
+			style="ModernDialog"
+			size="50%-300 50%-190 50%+300 50%+190"
+		>
+			<object name="hotkeyPickerTitle" style="ModernLabelText" type="text" size="50%-128 -16 50%+128 16">
+				<translatableAttribute id="caption">Hotkey</translatableAttribute>
+			</object>
+
+			<object name="hotkeyPickerDesc"  style="ModernLabelText" type="text" size="8 20 100%-8 66">
+				<translatableAttribute id="caption">Click on any mapping to modify it.\n You may have up to 4 different hotkeys.</translatableAttribute>
+			</object>
+
+			<repeat count="4" var="n">
+				<object name="combination[n]" size="8 40 100%-8 70" hidden="false">
+					<object name="combNb[n]" style="ModernLabelText" type="text" size="0 0 20 100%" text_align="left"/>
+					<object name="picker[n]" type="hotkeypicker"/>
+					<object name="combMapping[n]" style="ModernInput" type="input" readonly="true" size="30 2 60% 100%-2"/>
+					<!-- Used to detect clicks on the input. -->
+					<object name="combMappingBtn[n]" type="button" size="30 2 60% 100%-2">
+						<translatableAttribute id="tooltip">Click to set the hotkey</translatableAttribute>
+					</object>
+					<object name="deleteComb[n]" type="button" size="60%+10 5 60%+30 100%-5"
+						sprite="crossRed">
+						<translatableAttribute id="tooltip">Click to delete the hotkey</translatableAttribute>
+					</object>
+					<object name="conflicts[n]"  style="ModernLabelText" type="text" size="60%+40 2 100%-8 100%-2" clip="false" text_valign="center"/>
+				</object>
+			</repeat>
+
+			<object name="hotkeyPickerReset" type="button" size="16 100%-52 172 100%-24" style="ModernButtonRed">
+				<translatableAttribute id="caption">Reset</translatableAttribute>
+				<translatableAttribute id="tooltip">Resets user settings to their game default</translatableAttribute>
+			</object>
+
+			<object name="hotkeyPickerSave" type="button" size="100%-336 100%-52 100%-180 100%-24" style="ModernButtonRed">
+				<translatableAttribute id="caption">Accept</translatableAttribute>
+				<translatableAttribute id="tooltip">Change the hotkeys and close</translatableAttribute>
+			</object>
+
+			<object name="hotkeyPickerCancel" type="button" size="100%-172 100%-52 100%-16 100%-24" style="ModernButtonRed" hotkey="cancel">
+				<translatableAttribute id="caption">Cancel</translatableAttribute>
+				<translatableAttribute id="tooltip">The hotkeys will not be modified</translatableAttribute>
+			</object>
+		</object>
+	</object>
+</objects>

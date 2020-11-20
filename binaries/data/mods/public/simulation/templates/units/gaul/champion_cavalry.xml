@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_champion_cavalry_spearman">
+  <Identity>
+    <Civ>gaul</Civ>
+    <GenericName>Gallic Noble Cavalry</GenericName>
+    <SpecificName>Uerouicos</SpecificName>
+    <SelectionGroupName>units/gaul/champion_cavalry</SelectionGroupName>
+    <Icon>units/gaul_champion_cavalry.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>units/gauls/cavalry_spearman_c_m.xml</Actor>
+  </VisualActor>
+</Entity>

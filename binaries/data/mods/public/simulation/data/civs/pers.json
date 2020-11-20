@@ -114,26 +114,26 @@
 	],
 	"WallSets": [
 		"structures/wallset_palisade",
-		"structures/pers_wallset_stone"
+		"structures/pers/wallset_stone"
 	],
 	"StartEntities": [
 		{
-			"Template": "structures/pers_civil_centre"
+			"Template": "structures/pers/civil_centre"
 		},
 		{
-			"Template": "units/pers_support_female_citizen",
+			"Template": "units/pers/support_female_citizen",
 			"Count": 4
 		},
 		{
-			"Template": "units/pers_infantry_spearman_b",
+			"Template": "units/pers/infantry_spearman_b",
 			"Count": 2
 		},
 		{
-			"Template": "units/pers_infantry_archer_b",
+			"Template": "units/pers/infantry_archer_b",
 			"Count": 2
 		},
 		{
-			"Template": "units/pers_cavalry_javelineer_b"
+			"Template": "units/pers/cavalry_javelineer_b"
 		}
 	],
 	"Formations": [
@@ -164,8 +164,8 @@
 		"Xsayarsa II"
 	],
 	"SkirmishReplacements": {
-		"skirmish/units/default_infantry_ranged_b": "units/pers_infantry_archer_b",
-		"skirmish/structures/default_house_10": "structures/{civ}_house"
+		"skirmish/units/default_infantry_ranged_b": "units/pers/infantry_archer_b",
+		"skirmish/structures/default_house_10": "structures/{civ}/house"
 	},
 	"SelectableInGameSetup": true
 }

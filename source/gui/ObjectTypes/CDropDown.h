@@ -58,7 +58,7 @@ public:
 	/**
 	 * Handle events manually to catch keyboard inputting.
 	 */
-	virtual InReaction ManuallyHandleEvent(const SDL_Event_* ev);
+	virtual InReaction ManuallyHandleKeys(const SDL_Event_* ev);
 
 	/**
 	 * Draws the Button

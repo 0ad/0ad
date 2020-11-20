@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="units/ptol/cavalry_spearman_merc_b">
+  <Identity>
+    <Rank>Advanced</Rank>
+  </Identity>
+  <Promotion>
+    <Entity>units/ptol/cavalry_spearman_merc_e</Entity>
+  </Promotion>
+  <VisualActor>
+    <Actor>units/ptolemies/cavalry_spearman_a_m.xml</Actor>
+  </VisualActor>
+</Entity>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_wallset">
+  <Identity>
+    <Civ>athen</Civ>
+    <SpecificName>Teichos</SpecificName>
+  </Identity>
+  <WallSet>
+    <Templates>
+      <Tower>structures/athen/wall_tower</Tower>
+      <Gate>structures/athen/wall_gate</Gate>
+      <WallLong>structures/athen/wall_long</WallLong>
+      <WallMedium>structures/athen/wall_medium</WallMedium>
+      <WallShort>structures/athen/wall_short</WallShort>
+    </Templates>
+    <MaxTowerOverlap>0.90</MaxTowerOverlap>
+    <MinTowerOverlap>0.05</MinTowerOverlap>
+  </WallSet>
+</Entity>

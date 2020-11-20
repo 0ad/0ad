@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="units/pers/support_female_citizen">
+  <Cost>
+    <BuildTime>30</BuildTime>
+  </Cost>
+  <Identity>
+    <RequiredTechnology>unlock_females_house</RequiredTechnology>
+  </Identity>
+</Entity>

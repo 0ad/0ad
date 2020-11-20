@@ -1,107 +1,39 @@
 ## This file documents keynames that can be used in .cfg files for specifying hotkeys
+## Note: all are case-insensitive.
 ## Note: the keynames are not actually configured or implemented here
-## Also note: if your keyboard supports keys that do not appear here (such as the French é letter),
-## you should be able to use it directly.
+## Note: those names map to 'scancodes', i.e. positions on a classic QWERTY keyboard.
+## The in-game hotkey editor will show you what that corresponds to.
 
-Backspace, BkSp
-Tab
-Clear
-Return, Ret
-Pause
+
+MouseLeft
+MouseRight
+MouseMiddle
+MouseX1
+MouseX2
+WheelUp
+WheelDown
+WheelLeft
+WheelRight
+
+A-Z
+0-9
+Return, Enter
+Break
 Escape, Esc
-Space, Spc
-!, Exclaim
-", DoubleQuote
-#, Hash
-$, Dollar
-&, Ampersand
-', SingleQuote
-(, LeftParen
-), RightParen
-*, Asterisk
-+, Plus
-,, Comma
+Backspace
+Tab
+Space
 -, Minus
-., Period
-/, ForwardSlash
-0
-1
-2
-3
-4
-5
-6
-7
-8
-9
-:, Colon
-;, Semicolon
-<, LessThan
-=, Equals
->, GreaterThan
-?, Question
-@, At
+=, Plus, Equals
 [, LeftBracket
-\, BackSlash
 ], RightBracket
-^, Caret
-_, Underscore
+\\, Backslash   ## You do need the espacing in the first case.
+;, Semicolon
+', Quote        ## Maps to the quote/doubleQuote key on QWERTY.
 `, BackQuote
-A
-B
-C
-D
-E
-F
-G
-H
-I
-J
-K
-L
-M
-N
-O
-P
-Q
-R
-S
-T
-U
-V
-W
-X
-Y
-Z
-Delete, Del
-Numpad 0, Num0
-Numpad 1, Num1
-Numpad 2, Num2
-Numpad 3, Num3
-Numpad 4, Num4
-Numpad 5, Num5
-Numpad 6, Num6
-Numpad 7, Num7
-Numpad 8, Num8
-Numpad 9, Num9
-Numpad ., NumPoint
-Numpad /, NumDivide
-Numpad *, NumMultiply
-Numpad -, NumMinus
-Numpad +, NumPlus
-Numpad Enter, NumEnter
-Numpad =, NumEquals
-
-Arrow Up, UpArrow
-Arrow Down, DownArrow
-Arrow Right, RightArrow
-Arrow Left, LeftArrow
-Insert, Ins
-Home
-End
-Page Up, PgUp
-Page Down, PgDn
-
+,, Comma
+., Period
+/, Slash
 F1
 F2
 F3
@@ -114,41 +46,155 @@ F9
 F10
 F11
 F12
+PrintScreen
+ScrollLock
+Pause
+Insert
+Home
+PageUp
+Delete, Del
+End
+PageDown
+Right, RightArrow
+Left, LeftArrow
+Down, DownArrow
+Up, UpArrow
+Numlock
+Keypad /, NumDivide
+Keypad *, NumMultiply
+Keypad -, NumMinus
+Keypad +, NumPlus
+Keypad Enter, NumEnter
+Keypad 1, Num1
+Keypad 2, Num2
+Keypad 3, Num3
+Keypad 4, Num4
+Keypad 5, Num5
+Keypad 6, Num6
+Keypad 7, Num7
+Keypad 8, Num8
+Keypad 9, Num9
+Keypad 0, Num0
+Keypad ., NumDecimal
+Application
+Power
+Keypad =
 F13
 F14
 F15
-
-Num Lock, NumLock
-Caps Lock, CapsLock
-Scroll Lock, ScrlLock
-Right Shift, RightShift
-Left Shift, LeftShift
-Shift, AnyShift
-Right Ctrl, RightCtrl
-Left Ctrl, LeftCtrl
-Ctrl, AnyCtrl
-Right Alt, RightAlt
-Left Alt, LeftAlt
-Alt, AnyAlt
-Left Super, LeftWin
-Right Super, RightWin
-Super, AnyWindows		## Windows key, also Command/meta key on Macs
-Alt Gr, AltGr
-Compose
-
+F16
+F17
+F18
+F19
+F20
+F21
+F22
+F23
+F24
+Execute
 Help
-Print Screen, PrtSc
-SysRq
-Break
 Menu
-Power
-Euro
+Select
+Stop
+Again
 Undo
-Left Mouse Button, MouseLeft
-Right Mouse Button, MouseRight
-Middle Mouse Button, MouseMiddle
-Mouse Wheel Up, WheelUp
-Mouse Wheel Down, WheelDown
-MouseButtonX, MouseNX # where X is a number 1-255, for extra mouse buttons
-## (note that some mice start numbering their buttons at higher numbers
-##  so the first extra button on your mouse might be #8 here)
+Cut
+Copy
+Paste
+Find
+Mute
+VolumeUp
+VolumeDown
+Keypad ,
+AltErase
+SysReq
+Cancel
+Clear
+Prior
+Return
+Separator
+Out
+Oper
+Clear / Again
+CrSel
+ExSel
+Keypad 00
+Keypad 000
+ThousandsSeparator
+DecimalSeparator
+CurrencyUnit
+CurrencySubUnit
+Keypad (
+Keypad )
+Keypad {
+Keypad }
+Keypad Tab
+Keypad Backspace
+Keypad A
+Keypad B
+Keypad C
+Keypad D
+Keypad E
+Keypad F
+Keypad XOR
+Keypad ^
+Keypad %
+Keypad <
+Keypad >
+Keypad &
+Keypad &&
+Keypad |
+Keypad ||
+Keypad :
+Keypad #
+Keypad Space
+Keypad @
+Keypad !
+Keypad MemStore
+Keypad MemRecall
+Keypad MemClear
+Keypad MemAdd
+Keypad MemSubtract
+Keypad MemMultiply
+Keypad MemDivide
+Keypad +/-
+Keypad Clear
+Keypad ClearEntry
+Keypad Binary
+Keypad Octal
+Keypad Decimal
+Keypad Hexadecimal
+Left Ctrl, Ctrl
+Left Shift, Shift
+Left Alt, Alt
+Left GUI, Super
+Right Ctrl, Ctrl
+Right Shift, Shift
+Right Alt, Alt
+Right GUI, Super
+ModeSwitch
+AudioNext
+AudioPrev
+AudioStop
+AudioPlay
+AudioMute
+MediaSelect
+WWW
+Mail
+Calculator
+Computer
+AC Search
+AC Home
+AC Back
+AC Forward
+AC Stop
+AC Refresh
+AC Bookmarks
+BrightnessDown
+BrightnessUp
+DisplaySwitch
+KBDIllumToggle
+KBDIllumDown
+KBDIllumUp
+Eject
+Sleep

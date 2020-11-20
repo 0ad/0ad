@@ -24,215 +24,198 @@
 #include "lib/external_libraries/libsdl.h"
 #include "ps/CStr.h"
 
-#include <map>
+#include <unordered_map>
 
-static std::map<CStr,int> keymap;
+// Some scancodes <-> names that SDL doesn't recognise.
+// Those are tested first so they override SDL defaults (useful for UNIFIED keys).
+static const std::unordered_map<int, std::vector<CStr>> scancodemap {{
+	{ SDL_SCANCODE_DOWN, { "DownArrow" } },
+	{ SDL_SCANCODE_UP, { "UpArrow" } },
+	{ SDL_SCANCODE_LEFT, { "LeftArrow" } },
+	{ SDL_SCANCODE_RIGHT, { "RightArrow" } },
 
-struct SKeycodeMapping
+	{ SDL_SCANCODE_EQUALS, { "Plus" } },
+	{ SDL_SCANCODE_MINUS, { "Minus" } },
+
+	{ SDL_SCANCODE_KP_ENTER, { "NumEnter" } },
+	{ SDL_SCANCODE_KP_DIVIDE, { "NumDivide" } },
+	{ SDL_SCANCODE_KP_MULTIPLY, { "NumMultiply" } },
+	{ SDL_SCANCODE_KP_EQUALS, { "NumEquals" } },
+	{ SDL_SCANCODE_KP_PERIOD, { "NumDecimal" } },
+	{ SDL_SCANCODE_KP_PLUS, { "NumPlus" } },
+	{ SDL_SCANCODE_KP_MINUS, { "NumMinus" } },
+	{ SDL_SCANCODE_KP_0, { "Num0" } },
+	{ SDL_SCANCODE_KP_1, { "Num1" } },
+	{ SDL_SCANCODE_KP_2, { "Num2" } },
+	{ SDL_SCANCODE_KP_3, { "Num3" } },
+	{ SDL_SCANCODE_KP_4, { "Num4" } },
+	{ SDL_SCANCODE_KP_5, { "Num5" } },
+	{ SDL_SCANCODE_KP_6, { "Num6" } },
+	{ SDL_SCANCODE_KP_7, { "Num7" } },
+	{ SDL_SCANCODE_KP_8, { "Num8" } },
+	{ SDL_SCANCODE_KP_9, { "Num9" } },
+
+	{ SDL_SCANCODE_COMMA, { "Comma" } },
+	{ SDL_SCANCODE_PERIOD, { "Period" } },
+	{ SDL_SCANCODE_APOSTROPHE, { "Quote" } },
+	{ SDL_SCANCODE_SEMICOLON, { "Semicolon" } },
+	{ SDL_SCANCODE_GRAVE, { "Backquote" } },
+	{ SDL_SCANCODE_LEFTBRACKET, { "LeftBracket" } },
+	{ SDL_SCANCODE_RIGHTBRACKET, { "RightBracket" } },
+	{ SDL_SCANCODE_BACKSLASH, { "Backslash" } },
+	{ SDL_SCANCODE_SLASH, { "Slash" } },
+
+	{ SDL_SCANCODE_RETURN, { "Enter" } },
+	{ SDL_SCANCODE_ESCAPE, { "Esc" } },
+	{ SDL_SCANCODE_PAUSE, { "Break" } },
+	{ SDL_SCANCODE_DELETE, { "Del" } },
+
+	{ MOUSE_LEFT, { "MouseLeft" } },
+	{ MOUSE_RIGHT, { "MouseRight" } },
+	{ MOUSE_MIDDLE, { "MouseMiddle" } },
+	{ MOUSE_WHEELUP, { "WheelUp" } },
+	{ MOUSE_WHEELDOWN, { "WheelDown" } },
+	{ MOUSE_X1, { "WheelLeft", "MouseX1" } },
+	{ MOUSE_X2, { "WheelRight", "MouseX2" } },
+
+	{ UNIFIED_SHIFT, { "Shift", "Left Shift", "Right Shift" } },
+	{ UNIFIED_CTRL, { "Ctrl", "Left Ctrl", "Right Ctrl" } },
+	{ UNIFIED_ALT, { "Alt", "Left Alt", "Right Alt" } },
+	{ UNIFIED_SUPER, { "Super", "Left Gui", "Right Gui" } },
+}};
+
+SDL_Scancode FindScancode(const CStr& keyname)
 {
-	int keycode;
-	const char* keyname;
-	const char* altkeyname;
-};
+	// Find (ignoring case) a corresponding scancode, if one exists.
+	std::unordered_map<int, std::vector<CStr>>::const_iterator it =
+		std::find_if(scancodemap.begin(), scancodemap.end(), [&keyname](const std::pair<int, std::vector<CStr>>& names) {
+			return std::find_if(names.second.begin(), names.second.end(), [&keyname](const CStr& t) {
+				return t.LowerCase() == keyname.LowerCase();
+			})!= names.second.end();
+		});
 
-// You can use either key name in the config file...
+	if (it != scancodemap.end())
+		return static_cast<SDL_Scancode>(it->first);
 
-static const SKeycodeMapping keycodeMapping[] =
-{
-	/* Just a tad friendlier than SDL_GetKeyName's name */
-	{ SDLK_BACKSPACE, "Backspace", "BkSp" },
-	{ SDLK_TAB, "Tab", 0 },
-	{ SDLK_CLEAR, "Clear", 0 }, // ?
-	{ SDLK_RETURN, "Return", "Ret" },
-	{ SDLK_PAUSE, "Pause", 0 }, // ?
-	{ SDLK_ESCAPE, "Escape", "Esc" },
-	{ SDLK_SPACE, "Space", "Spc" },
-	{ SDLK_EXCLAIM, "!", "Exclaim" },
-	{ SDLK_QUOTEDBL, "\"", "DoubleQuote" },
-	{ SDLK_HASH, "#", "Hash" },
-	{ SDLK_DOLLAR, "$", "Dollar" },
-	{ SDLK_AMPERSAND, "&", "Ampersand" },
-	{ SDLK_QUOTE, "'", "SingleQuote" },
-	{ SDLK_LEFTPAREN, "(", "LeftParen" },
-	{ SDLK_RIGHTPAREN, ")", "RightParen" },
-	{ SDLK_ASTERISK, "*", "Asterisk" },
-	{ SDLK_PLUS, "+", "Plus" },
-	{ SDLK_COMMA, ",", "Comma" },
-	{ SDLK_MINUS, "-", "Minus" },
-	{ SDLK_PERIOD, ".", "Period" },
-	{ SDLK_SLASH, "/", "ForwardSlash" },
-	{ SDLK_0, "0", 0 },
-	{ SDLK_1, "1", 0 },
-	{ SDLK_2, "2", 0 },
-	{ SDLK_3, "3", 0 },
-	{ SDLK_4, "4", 0 },
-	{ SDLK_5, "5", 0 },
-	{ SDLK_6, "6", 0 },
-	{ SDLK_7, "7", 0 },
-	{ SDLK_8, "8", 0 },
-	{ SDLK_9, "9", 0 },
-	{ SDLK_COLON, ":", "Colon" },
-	{ SDLK_SEMICOLON, ";", "Semicolon" },
-	{ SDLK_LESS, "<", "LessThan" },
-	{ SDLK_EQUALS, "=", "Equals" },
-	{ SDLK_GREATER, ">", "GreaterThan" },
-	{ SDLK_QUESTION, "?", "Question" },
-	{ SDLK_AT, "@", "At" },
-	{ SDLK_LEFTBRACKET, "[", "LeftBracket" },
-	{ SDLK_BACKSLASH, "\\", "BackSlash" },
-	{ SDLK_RIGHTBRACKET, "]", "RightBracket" },
-	{ SDLK_CARET, "^", "Caret", },
-	{ SDLK_UNDERSCORE, "_", "Underscore" },
-	{ SDLK_BACKQUOTE, "`", "BackQuote" },
-	{ SDLK_a, "A", 0 },
-	{ SDLK_b, "B", 0 },
-	{ SDLK_c, "C", 0 },
-	{ SDLK_d, "D", 0 },
-	{ SDLK_e, "E", 0 },
-	{ SDLK_f, "F", 0 },
-	{ SDLK_g, "G", 0 },
-	{ SDLK_h, "H", 0 },
-	{ SDLK_i, "I", 0 },
-	{ SDLK_j, "J", 0 },
-	{ SDLK_k, "K", 0 },
-	{ SDLK_l, "L", 0 },
-	{ SDLK_m, "M", 0 },
-	{ SDLK_n, "N", 0 },
-	{ SDLK_o, "O", 0 },
-	{ SDLK_p, "P", 0 },
-	{ SDLK_q, "Q", 0 },
-	{ SDLK_r, "R", 0 },
-	{ SDLK_s, "S", 0 },
-	{ SDLK_t, "T", 0 },
-	{ SDLK_u, "U", 0 },
-	{ SDLK_v, "V", 0 },
-	{ SDLK_w, "W", 0 },
-	{ SDLK_x, "X", 0 },
-	{ SDLK_y, "Y", 0 },
-	{ SDLK_z, "Z", 0 },
-	{ SDLK_DELETE, "Delete", "Del" },
+	SDL_Scancode code = SDL_GetScancodeFromName(keyname.c_str());
+	if (code != SDL_SCANCODE_UNKNOWN)
+		return code;
 
-	{ SDLK_KP_0, "Numpad 0", "Num0" },
-	{ SDLK_KP_1, "Numpad 1", "Num1" },
-	{ SDLK_KP_2, "Numpad 2", "Num2" },
-	{ SDLK_KP_3, "Numpad 3", "Num3" },
-	{ SDLK_KP_4, "Numpad 4", "Num4" },
-	{ SDLK_KP_5, "Numpad 5", "Num5" },
-	{ SDLK_KP_6, "Numpad 6", "Num6" },
-	{ SDLK_KP_7, "Numpad 7", "Num7" },
-	{ SDLK_KP_8, "Numpad 8", "Num8" },
-	{ SDLK_KP_9, "Numpad 9", "Num9" },
+	// Parse SYM_XX codes, see below.
+	if (keyname.size() > 4 && keyname.Left(4) == "SYM_")
+		return static_cast<SDL_Scancode>(CStr(keyname.substr(4)).ToInt());
 
-	{ SDLK_KP_PERIOD, "Numpad .", "NumPoint" },
-	{ SDLK_KP_DIVIDE, "Numpad /", "NumDivide" },
-	{ SDLK_KP_MULTIPLY, "Numpad *", "NumMultiply" },
-	{ SDLK_KP_MINUS, "Numpad -", "NumMinus" },
-	{ SDLK_KP_PLUS, "Numpad +", "NumPlus" },
-	{ SDLK_KP_ENTER, "Numpad Enter", "NumEnter" },
-	{ SDLK_KP_EQUALS, "Numpad =", "NumEquals" }, //?
-
-	{ SDLK_UP, "Arrow Up", "UpArrow" },
-	{ SDLK_DOWN, "Arrow Down", "DownArrow" },
-	{ SDLK_RIGHT, "Arrow Right", "RightArrow" },
-	{ SDLK_LEFT, "Arrow Left", "LeftArrow" },
-	{ SDLK_INSERT, "Insert", "Ins" },
-	{ SDLK_HOME, "Home", 0 },
-	{ SDLK_END, "End", 0 },
-	{ SDLK_PAGEUP, "Page Up", "PgUp" },
-	{ SDLK_PAGEDOWN, "Page Down", "PgDn" },
-
-	{ SDLK_F1, "F1", 0 },
-	{ SDLK_F2, "F2", 0 },
-	{ SDLK_F3, "F3", 0 },
-	{ SDLK_F4, "F4", 0 },
-	{ SDLK_F5, "F5", 0 },
-	{ SDLK_F6, "F6", 0 },
-	{ SDLK_F7, "F7", 0 },
-	{ SDLK_F8, "F8", 0 },
-	{ SDLK_F9, "F9", 0 },
-	{ SDLK_F10, "F10", 0 },
-	{ SDLK_F11, "F11", 0 },
-	{ SDLK_F12, "F12", 0 },
-	{ SDLK_F13, "F13", 0 },
-	{ SDLK_F14, "F14", 0 },
-	{ SDLK_F15, "F15", 0 },
-
-	{ SDLK_NUMLOCKCLEAR, "Num Lock", "NumLock" },
-
-	{ SDLK_CAPSLOCK, "Caps Lock", "CapsLock" },
-
-	{ SDLK_SCROLLLOCK, "Scroll Lock", "ScrlLock" },
-
-	{ SDLK_RSHIFT, "Right Shift", "RightShift" },
-	{ SDLK_LSHIFT, "Left Shift", "LeftShift" },
-	{ SDLK_RCTRL, "Right Ctrl", "RightCtrl" },
-	{ SDLK_LCTRL, "Left Ctrl", "LeftCtrl" },
-	{ SDLK_RALT, "Right Alt", "RightAlt" },
-	{ SDLK_LALT, "Left Alt", "LeftAlt" },
-
-	{ SDLK_LGUI, "Left Super", "LeftWin" },        /* "Windows" keys */
-	{ SDLK_RGUI, "Right Super", "RightWin" },
-
-	{ SDLK_MODE, "Alt Gr", "AltGr" },
-
-	{ SDLK_HELP, "Help", 0 }, // ?
-
-	{ SDLK_PRINTSCREEN, "Print Screen", "PrtSc" },
-
-	{ SDLK_SYSREQ, "SysRq", 0 },
-
-	{ SDLK_STOP, "Break", 0 },
-
-	{ SDLK_MENU, "Menu", 0 }, // ?
-	{ SDLK_POWER, "Power", 0 }, // ?
-	{ SDLK_UNDO, "Undo", 0 }, // ?
-	{ MOUSE_LEFT, "Left Mouse Button", "MouseLeft" },
-	{ MOUSE_RIGHT, "Right Mouse Button", "MouseRight" },
-	{ MOUSE_MIDDLE, "Middle Mouse Button", "MouseMiddle" },
-	{ MOUSE_WHEELUP, "Mouse Wheel Up", "WheelUp" },
-	{ MOUSE_WHEELDOWN, "Mouse Wheel Down", "WheelDown" },
-	{ MOUSE_X1, "Mouse X1", "MouseX1" },
-	{ MOUSE_X2, "Mouse X2", "MouseX2" },
-	{ UNIFIED_SHIFT, "Shift", "AnyShift" },
-	{ UNIFIED_CTRL, "Ctrl", "AnyCtrl" },
-	{ UNIFIED_ALT, "Alt", "AnyAlt" },
-	{ UNIFIED_SUPER, "Super", "AnyWindows" },
-	{ 0, 0, 0 },
-};
-
-void InitKeyNameMap()
-{
-	for (const SKeycodeMapping* it = keycodeMapping; it->keycode != 0; ++it)
-	{
-		keymap.insert(std::pair<CStr,int>(CStr(it->keyname).LowerCase(), it->keycode));
-		if(it->altkeyname)
-			keymap.insert(std::pair<CStr,int>(CStr(it->altkeyname).LowerCase(), it->keycode));
-	}
-
-	// Extra mouse buttons.
-	for (int i = 1; i < 256; ++i) // There is no mouse 0
-	{
-		keymap.insert(std::pair<CStr,int>("mousebutton" + CStr::FromInt(i), MOUSE_BASE + i));
-		keymap.insert(std::pair<CStr,int>("mousen" + CStr::FromInt(i), MOUSE_BASE + i));
-	}
+	return SDL_SCANCODE_UNKNOWN;
 }
 
-int FindKeyCode(const CStr& keyname)
+CStr FindScancodeName(SDL_Scancode scancode)
 {
-	std::map<CStr,int>::iterator it;
-	it = keymap.find(keyname.LowerCase());
-	if (it != keymap.end())
-		return it->second;
-	return 0;
+	if (scancodemap.find(scancode) != scancodemap.end())
+		return scancodemap.at(scancode).front();
+
+	const char* name = SDL_GetScancodeName(scancode);
+	// Some scancodes have no name, but we must have something to save/load/recognize it, so parse it as SYM_XX
+	if (strlen(name) == 0)
+		return CStr("SYM_") + CStr::FromInt(scancode);
+	return name;
 }
 
-CStr FindKeyName(int keycode)
-{
-	for (const SKeycodeMapping* it = keycodeMapping; it->keycode != 0; ++it)
-		if (it->keycode == keycode)
-			return CStr(it->keyname);
+// Rename some SDL key names (!scancodes) for easier readability.
+// NB: this does not intend to be exhaustive, merely cover the usual suspects.
+static const std::unordered_map<SDL_Keycode, CStr> keyNames {{
+	{ SDLK_COMMA, "Comma" },
+	{ SDLK_SEMICOLON, "Semicolon" },
+	{ SDLK_COLON, "Colon" },
+	{ SDLK_PERIOD, "Period" },
+	{ SDLK_EQUALS, "Equals" },
+	{ SDLK_PLUS, "Plus" },
+	{ SDLK_MINUS, "Minus" },
 
-	return CStr("Unknown");
+	{ SDLK_QUOTE, "SingleQuote" },
+	{ SDLK_QUOTEDBL, "DoubleQuote" },
+	{ SDLK_BACKQUOTE, "BackQuote" },
+
+	{ SDLK_LEFTPAREN, { "LeftParen" } },
+
+	{ SDLK_LEFTBRACKET, { "LeftBracket" } },
+	{ SDLK_RIGHTBRACKET, { "RightBracket" } },
+	{ SDLK_BACKSLASH, { "Backslash" } },
+	{ SDLK_SLASH, { "Slash" } },
+
+	{ SDLK_KP_ENTER, "NumEnter" },
+	{ SDLK_KP_DIVIDE, "NumDivide" },
+	{ SDLK_KP_MULTIPLY, "NumMultiply" },
+	{ SDLK_KP_EQUALS, "NumEquals" },
+	{ SDLK_KP_PERIOD, "NumDecimal" },
+	{ SDLK_KP_PLUS, "NumPlus" },
+	{ SDLK_KP_MINUS, "NumMinus" },
+	{ SDLK_KP_0, "Num0" },
+	{ SDLK_KP_1, "Num1" },
+	{ SDLK_KP_2, "Num2" },
+	{ SDLK_KP_3, "Num3" },
+	{ SDLK_KP_4, "Num4" },
+	{ SDLK_KP_5, "Num5" },
+	{ SDLK_KP_6, "Num6" },
+	{ SDLK_KP_7, "Num7" },
+	{ SDLK_KP_8, "Num8" },
+	{ SDLK_KP_9, "Num9" },
+
+	{ SDLK_UP, "↑" },
+	{ SDLK_DOWN, "↓" },
+	{ SDLK_LEFT, "←" },
+	{ SDLK_RIGHT, "→" },
+}};
+
+CStr FindKeyName(SDL_Scancode scancode)
+{
+	// Mouse and unified modifiers are harcoded.
+	if (static_cast<int>(scancode) == UNIFIED_SHIFT)
+		return "Shift";
+	else if (static_cast<int>(scancode) == UNIFIED_ALT)
+		return "Alt";
+	else if (static_cast<int>(scancode) == UNIFIED_CTRL)
+		return "Ctrl";
+	else if (static_cast<int>(scancode) == UNIFIED_SUPER)
+		return "Super";
+	else if (static_cast<int>(scancode) == MOUSE_LEFT)
+		return "MouseLeft";
+	else if (static_cast<int>(scancode) == MOUSE_RIGHT)
+		return "MouseRight";
+	else if (static_cast<int>(scancode) == MOUSE_MIDDLE)
+		return "MouseMiddle";
+	else if (static_cast<int>(scancode) == MOUSE_WHEELUP)
+		return "WheelUp";
+	else if (static_cast<int>(scancode) == MOUSE_WHEELDOWN)
+		return "WheelDown";
+	else if (static_cast<int>(scancode) == MOUSE_X1)
+		return "WheelLeft";
+	else if (static_cast<int>(scancode) == MOUSE_X2)
+		return "WheelRight";
+
+	SDL_Keycode code = SDL_GetKeyFromScancode(scancode);
+
+	if (keyNames.find(code) != keyNames.end())
+		return keyNames.at(code);
+
+	if (code != SDLK_UNKNOWN)
+	{
+		const char* keyName = SDL_GetKeyName(code);
+		if (strlen(keyName) != 0)
+			return keyName;
+	}
+
+	// Try the scancode name.
+	const char* name = SDL_GetScancodeName(scancode);
+
+	// xxtreme hack: some SDLKeycodes map to chars, and we need to escape [ and \ .
+	if (keyNames.find(static_cast<SDL_Keycode>(*name)) != keyNames.end())
+		return keyNames.at(static_cast<SDL_Keycode>(*name));
+
+	if (strlen(name) != 0)
+		return name;
+
+	// Else, show something regardless, so the player knows it's at least recognized.
+	return CStr("SYM_") + CStr::FromInt(scancode);
 }
 
 

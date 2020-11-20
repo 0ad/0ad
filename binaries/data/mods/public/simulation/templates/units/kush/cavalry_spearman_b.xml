@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_cavalry_melee_spearman">
+  <Identity>
+    <Civ>kush</Civ>
+    <Lang>napatan</Lang>
+    <SelectionGroupName>units/kush/cavalry_spearman_b</SelectionGroupName>
+    <GenericName>Meroitic Heavy Cavalry</GenericName>
+    <SpecificName>Htr</SpecificName>
+    <Icon>units/kush_cavalry_spearman.png</Icon>
+    <RequiredTechnology>phase_town</RequiredTechnology>
+  </Identity>
+  <Promotion>
+    <Entity>units/kush/cavalry_spearman_a</Entity>
+  </Promotion>
+  <VisualActor>
+    <Actor>units/kushites/cavalry_spearman_b_m.xml</Actor>
+  </VisualActor>
+</Entity>

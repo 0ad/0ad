@@ -112,6 +112,20 @@ bool JSI_ConfigDB::CreateValue(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate
 	return true;
 }
 
+bool JSI_ConfigDB::CreateValues(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::wstring& cfgNsString, const std::string& name, const std::vector<CStr>& values)
+{
+	if (IsProtectedConfigName(name))
+		return false;
+
+	EConfigNamespace cfgNs;
+	if (!GetConfigNamespace(cfgNsString, cfgNs))
+		return false;
+
+	g_ConfigDB.SetValueList(cfgNs, name, values);
+	return true;
+}
+
+
 bool JSI_ConfigDB::RemoveValue(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::wstring& cfgNsString, const std::string& name)
 {
 	if (IsProtectedConfigName(name))
@@ -177,6 +191,7 @@ void JSI_ConfigDB::RegisterScriptFunctions(const ScriptInterface& scriptInterfac
 	scriptInterface.RegisterFunction<bool, std::wstring, bool, &JSI_ConfigDB::SetChanges>("ConfigDB_SetChanges");
 	scriptInterface.RegisterFunction<std::string, std::wstring, std::string, &JSI_ConfigDB::GetValue>("ConfigDB_GetValue");
 	scriptInterface.RegisterFunction<bool, std::wstring, std::string, std::string, &JSI_ConfigDB::CreateValue>("ConfigDB_CreateValue");
+	scriptInterface.RegisterFunction<bool, std::wstring, std::string, std::vector<CStr>, &JSI_ConfigDB::CreateValues>("ConfigDB_CreateValues");
 	scriptInterface.RegisterFunction<bool, std::wstring, std::string, &JSI_ConfigDB::RemoveValue>("ConfigDB_RemoveValue");
 	scriptInterface.RegisterFunction<bool, std::wstring, Path, &JSI_ConfigDB::WriteFile>("ConfigDB_WriteFile");
 	scriptInterface.RegisterFunction<bool, std::wstring, std::string, std::string, Path, &JSI_ConfigDB::WriteValueToFile>("ConfigDB_WriteValueToFile");

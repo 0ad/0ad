@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_civic_civil_centre_military_colony">
+  <Footprint>
+    <Square width="31" depth="31"/>
+    <Height>8</Height>
+  </Footprint>
+  <Identity>
+    <Civ>sele</Civ>
+    <SpecificName>Klērouchia</SpecificName>
+  </Identity>
+  <Obstruction>
+    <Static width="29" depth="29"/>
+  </Obstruction>
+  <ProductionQueue>
+    <Entities datatype="tokens">
+      units/{civ}/infantry_swordsman_merc_b
+      units/{civ}/infantry_archer_merc_b
+      units/{civ}/cavalry_spearman_merc_b
+    </Entities>
+  </ProductionQueue>
+  <VisualActor>
+    <Actor>structures/seleucids/military_colony.xml</Actor>
+    <FoundationActor>structures/fndn_9x9.xml</FoundationActor>
+  </VisualActor>
+</Entity>

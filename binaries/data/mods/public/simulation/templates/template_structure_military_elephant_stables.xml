@@ -38,9 +38,9 @@
   <ProductionQueue>
     <BatchTimeModifier>0.7</BatchTimeModifier>
     <Entities datatype="tokens">
-      units/{civ}_support_elephant
-      units/{civ}_elephant_archer_b
-      units/{civ}_champion_elephant
+      units/{civ}/support_elephant
+      units/{civ}/elephant_archer_b
+      units/{civ}/champion_elephant
     </Entities>
   </ProductionQueue>
   <Sound>

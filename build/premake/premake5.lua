@@ -539,9 +539,11 @@ function setup_static_lib_project (project_name, rel_source_dirs, extern_libs, e
 		table.insert(static_lib_names, project_name)
 	end
 
-	if os.istarget("windows") then
-		rtti "off"
-	elseif os.istarget("macosx") and _OPTIONS["macosx-version-min"] then
+	-- Deactivate Run Time Type Information. Performance of dynamic_cast is very poor.
+	-- The exception to this principle is Atlas UI, which is not a static library.
+	rtti "off"
+
+	if os.istarget("macosx") and _OPTIONS["macosx-version-min"] then
 		xcodebuildsettings { MACOSX_DEPLOYMENT_TARGET = _OPTIONS["macosx-version-min"] }
 	end
 end
@@ -564,7 +566,6 @@ function setup_shared_lib_project (project_name, rel_source_dirs, extern_libs, e
 	end
 
 	if os.istarget("windows") then
-		rtti "off"
 		links { "delayimp" }
 	elseif os.istarget("macosx") and _OPTIONS["macosx-version-min"] then
 		xcodebuildsettings { MACOSX_DEPLOYMENT_TARGET = _OPTIONS["macosx-version-min"] }
@@ -985,14 +986,14 @@ function setup_main_exe ()
 
 	dependson { "Collada" }
 
+	rtti "off"
+
 	-- Platform Specifics
 	if os.istarget("windows") then
 
 		files { source_root.."lib/sysdep/os/win/icon.rc" }
 		-- from "lowlevel" static lib; must be added here to be linked in
 		files { source_root.."lib/sysdep/os/win/error_dialog.rc" }
-
-		rtti "off"
 
 		linkoptions {
 			-- wraps main thread in a __try block(see wseh.cpp). replace with mainCRTStartup if that's undesired.
@@ -1387,14 +1388,14 @@ function setup_tests()
 
 	dependson { "Collada" }
 
+	rtti "off"
+
 	-- TODO: should fix the duplication between this OS-specific linking
 	-- code, and the similar version in setup_main_exe
 
 	if os.istarget("windows") then
 		-- from "lowlevel" static lib; must be added here to be linked in
 		files { source_root.."lib/sysdep/os/win/error_dialog.rc" }
-
-		rtti "off"
 
 		-- see wstartup.h
 		linkoptions { "/INCLUDE:_wstartup_InitAndRegisterShutdown" }

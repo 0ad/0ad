@@ -273,7 +273,7 @@ void CDropDown::HandleMessage(SGUIMessage& Message)
 		SetupText();
 }
 
-InReaction CDropDown::ManuallyHandleEvent(const SDL_Event_* ev)
+InReaction CDropDown::ManuallyHandleKeys(const SDL_Event_* ev)
 {
 	InReaction result = IN_PASS;
 	bool update_highlight = false;
@@ -298,7 +298,7 @@ InReaction CDropDown::ManuallyHandleEvent(const SDL_Event_* ev)
 			if (!m_Open)
 				return IN_PASS;
 			// Set current selected item to highlighted, before
-			//  then really processing these in CList::ManuallyHandleEvent()
+			//  then really processing these in CList::ManuallyHandleKeys()
 			SetSetting<i32>("selected", m_ElementHighlight, true);
 			update_highlight = true;
 			break;
@@ -356,7 +356,7 @@ InReaction CDropDown::ManuallyHandleEvent(const SDL_Event_* ev)
 		}
 	}
 
-	if (CList::ManuallyHandleEvent(ev) == IN_HANDLED)
+	if (CList::ManuallyHandleKeys(ev) == IN_HANDLED)
 		result = IN_HANDLED;
 
 	if (update_highlight)

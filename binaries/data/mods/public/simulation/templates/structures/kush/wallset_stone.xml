@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_wallset">
+  <Identity>
+    <Civ>kush</Civ>
+    <SpecificName>sbty</SpecificName>
+  </Identity>
+  <WallSet>
+    <Templates>
+      <Tower>structures/kush/wall_tower</Tower>
+      <Gate>structures/kush/wall_gate</Gate>
+      <WallLong>structures/kush/wall_long</WallLong>
+      <WallMedium>structures/kush/wall_medium</WallMedium>
+      <WallShort>structures/kush/wall_short</WallShort>
+    </Templates>
+    <MaxTowerOverlap>0.90</MaxTowerOverlap>
+    <MinTowerOverlap>0.05</MinTowerOverlap>
+  </WallSet>
+</Entity>

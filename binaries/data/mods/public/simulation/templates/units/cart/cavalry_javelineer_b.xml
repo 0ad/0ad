@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_cavalry_ranged_javelineer">
+  <Identity>
+    <Civ>cart</Civ>
+    <SelectionGroupName>units/cart/cavalry_javelineer_b</SelectionGroupName>
+    <GenericName>Numidian Cavalry</GenericName>
+    <SpecificName>Ḥayyāl Raḫūv Masili</SpecificName>
+    <Icon>units/cart_cavalry_javelinist.png</Icon>
+  </Identity>
+  <Promotion>
+    <Entity>units/cart/cavalry_javelineer_a</Entity>
+  </Promotion>
+  <VisualActor>
+    <Actor>units/carthaginians/cavalry_javelinist_b_m.xml</Actor>
+  </VisualActor>
+</Entity>

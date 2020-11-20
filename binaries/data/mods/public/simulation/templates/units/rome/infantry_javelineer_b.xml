@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_infantry_ranged_javelineer">
+  <Builder>
+    <Entities datatype="tokens">
+      structures/rome/army_camp
+      structures/rome/temple_vesta
+    </Entities>
+  </Builder>
+  <Identity>
+    <Civ>rome</Civ>
+    <Lang>latin</Lang>
+    <SelectionGroupName>units/rome/infantry_javelineer_b</SelectionGroupName>
+    <GenericName>Roman Skirmisher</GenericName>
+    <SpecificName>Vēles</SpecificName>
+    <Icon>units/rome_infantry_javelinist.png</Icon>
+  </Identity>
+  <Promotion>
+    <Entity>units/rome/infantry_javelineer_a</Entity>
+  </Promotion>
+  <VisualActor>
+    <Actor>units/romans/infantry_javelinist_b.xml</Actor>
+  </VisualActor>
+</Entity>

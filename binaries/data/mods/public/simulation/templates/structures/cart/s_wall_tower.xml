@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="structures/palisades_tower">
+  <Footprint>
+    <Height>8</Height>
+    <Square width="4" depth="4"/>
+  </Footprint>
+  <Identity>
+    <Civ>cart</Civ>
+    <SelectionGroupName>structures/cart/wallset_short</SelectionGroupName>
+    <SpecificName>Low Wall</SpecificName>
+    <GenericName>Stone Wall</GenericName>
+  </Identity>
+  <Obstruction>
+    <ControlPersist/>
+    <Static width="3" depth="3"/>
+  </Obstruction>
+  <StatusBars>
+    <HeightOffset>9</HeightOffset>
+  </StatusBars>
+  <VisualActor>
+    <Actor>structures/carthaginians/short_wall_tower.xml</Actor>
+  </VisualActor>
+  <WallPiece>
+    <Length>3</Length>
+  </WallPiece>
+</Entity>

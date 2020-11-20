@@ -35,9 +35,9 @@
   <ProductionQueue>
     <BatchTimeModifier>0.8</BatchTimeModifier>
     <Entities datatype="tokens">
-      units/{civ}_infantry_javelineer_b
-      units/{civ}_infantry_slinger_b
-      units/{civ}_infantry_archer_b
+      units/{civ}/infantry_javelineer_b
+      units/{civ}/infantry_slinger_b
+      units/{civ}/infantry_archer_b
     </Entities>
     <Technologies datatype="tokens">
       heal_barracks

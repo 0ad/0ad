@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_siege_boltshooter">
+  <Identity>
+    <Civ>mace</Civ>
+    <SpecificName>Oxybelḗs</SpecificName>
+    <Icon>units/hele_siege_oxybeles_packed.png</Icon>
+  </Identity>
+  <Pack>
+    <Entity>units/mace/siege_oxybeles_unpacked</Entity>
+    <State>packed</State>
+  </Pack>
+  <VisualActor>
+    <Actor>units/athenians/siege_spear_packed.xml</Actor>
+  </VisualActor>
+</Entity>

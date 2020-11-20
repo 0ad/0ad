@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_ship_trireme">
+  <Footprint>
+    <Square width="9.0" depth="42.0"/>
+    <Height>8.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>pers</Civ>
+    <Lang>persian</Lang>
+    <GenericName>Phoenician Trireme</GenericName>
+    <SpecificName>Hamaraniyanava Vazarka</SpecificName>
+    <Icon>units/pers_ship_trireme.png</Icon>
+  </Identity>
+  <ProductionQueue>
+    <BatchTimeModifier>0.8</BatchTimeModifier>
+    <Entities datatype="tokens">
+      units/pers/cavalry_axeman_b_trireme
+      units/pers/cavalry_javelineer_b_trireme
+    </Entities>
+    <TechCostMultiplier>
+      <food>1.0</food>
+      <wood>1.0</wood>
+      <stone>1.0</stone>
+      <metal>1.0</metal>
+      <time>1.0</time>
+    </TechCostMultiplier>
+  </ProductionQueue>
+  <VisualActor>
+    <Actor>structures/persians/trireme.xml</Actor>
+  </VisualActor>
+</Entity>

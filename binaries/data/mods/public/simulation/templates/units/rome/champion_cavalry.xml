@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_champion_cavalry_swordsman">
+  <Identity>
+    <Civ>rome</Civ>
+    <Lang>latin</Lang>
+    <SpecificName>Eques Cōnsulāris</SpecificName>
+    <GenericName>Consular Bodyguard</GenericName>
+    <Icon>units/rome_champion_cavalry.png</Icon>
+    <SelectionGroupName>units/rome/champion_cavalry</SelectionGroupName>
+  </Identity>
+  <VisualActor>
+    <Actor>units/romans/cavalry_swordsman_c_m.xml</Actor>
+  </VisualActor>
+</Entity>

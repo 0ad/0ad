@@ -97,26 +97,26 @@
 	],
 	"WallSets": [
 		"structures/wallset_palisade",
-		"structures/ptol_wallset_stone"
+		"structures/ptol/wallset_stone"
 	],
 	"StartEntities": [
 		{
-			"Template": "structures/ptol_civil_centre"
+			"Template": "structures/ptol/civil_centre"
 		},
 		{
-			"Template": "units/ptol_support_female_citizen",
+			"Template": "units/ptol/support_female_citizen",
 			"Count": 4
 		},
 		{
-			"Template": "units/ptol_infantry_pikeman_b",
+			"Template": "units/ptol/infantry_pikeman_b",
 			"Count": 2
 		},
 		{
-			"Template": "units/ptol_infantry_javelineer_b",
+			"Template": "units/ptol/infantry_javelineer_b",
 			"Count": 2
 		},
 		{
-			"Template": "units/ptol_cavalry_archer_b"
+			"Template": "units/ptol/cavalry_archer_b"
 		}
 	],
 	"Formations": [
@@ -155,9 +155,9 @@
 		"Arsinoe II"
 	],
 	"SkirmishReplacements": {
-		"skirmish/units/default_infantry_melee_b": "units/ptol_infantry_pikeman_b",
-		"skirmish/units/default_cavalry": "units/ptol_cavalry_archer_b",
-		"skirmish/structures/default_house_5": "structures/{civ}_house"
+		"skirmish/units/default_infantry_melee_b": "units/ptol/infantry_pikeman_b",
+		"skirmish/units/default_cavalry": "units/ptol/cavalry_archer_b",
+		"skirmish/structures/default_house_5": "structures/{civ}/house"
 	},
 	"SelectableInGameSetup": true
 }

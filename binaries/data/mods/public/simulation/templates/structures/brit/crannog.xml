@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_civic_civil_centre">
+  <BuildRestrictions>
+    <Territory>own ally neutral</Territory>
+    <PlacementType>shore</PlacementType>
+  </BuildRestrictions>
+  <Footprint replace="">
+    <Circle radius="17"/>
+    <Height>8.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>brit</Civ>
+    <GenericName>Island Settlement</GenericName>
+    <SpecificName>Cranogion</SpecificName>
+    <Tooltip>Build upon a shoreline in own, neutral, or allied territory. Acquire large tracts of territory. Territory root. Train Citizens, construct Ships, and research technologies. Garrison Soldiers for additional arrows.</Tooltip>
+    <VisibleClasses datatype="tokens">Naval</VisibleClasses>
+    <Icon>structures/crannog.png</Icon>
+    <RequiredTechnology>phase_town</RequiredTechnology>
+  </Identity>
+  <Obstruction>
+    <Static width="29" depth="29"/>
+  </Obstruction>
+  <Position>
+    <Floating>true</Floating>
+    <FloatDepth>0.0</FloatDepth>
+  </Position>
+  <ProductionQueue>
+    <Entities datatype="tokens">
+      units/{civ}/infantry_spearman_b
+      units/{civ}/infantry_slinger_b
+      units/{civ}/cavalry_javelineer_b
+      units/{civ}/ship_fishing
+      units/{civ}/ship_merchant
+      units/{civ}/ship_bireme
+      units/{civ}/ship_trireme
+    </Entities>
+    <Technologies datatype="tokens">
+      -phase_town_{civ}
+    </Technologies>
+  </ProductionQueue>
+  <RallyPointRenderer>
+    <LinePassabilityClass>ship</LinePassabilityClass>
+  </RallyPointRenderer>
+  <VisualActor>
+    <Actor>structures/britons/crannog.xml</Actor>
+    <FoundationActor>structures/fndn_8x8.xml</FoundationActor>
+  </VisualActor>
+</Entity>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_champion_infantry_maceman">
+  <Identity>
+    <Civ>maur</Civ>
+    <GenericName>Warrior</GenericName>
+    <SpecificName>Yōddha</SpecificName>
+    <SelectionGroupName>units/maur/champion_infantry</SelectionGroupName>
+    <Icon>units/maur_champion_maceman.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>units/mauryas/infantry_maceman_c.xml</Actor>
+  </VisualActor>
+</Entity>

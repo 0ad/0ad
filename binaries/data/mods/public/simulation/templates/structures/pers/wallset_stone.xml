@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_wallset">
+  <Identity>
+    <Civ>pers</Civ>
+    <SpecificName>Para</SpecificName>
+  </Identity>
+  <WallSet>
+    <Templates>
+      <Tower>structures/pers/wall_tower</Tower>
+      <Gate>structures/pers/wall_gate</Gate>
+      <WallLong>structures/pers/wall_long</WallLong>
+      <WallMedium>structures/pers/wall_medium</WallMedium>
+      <WallShort>structures/pers/wall_short</WallShort>
+    </Templates>
+  </WallSet>
+</Entity>

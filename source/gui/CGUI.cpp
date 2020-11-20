@@ -151,21 +151,19 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 		m_MousePos = CPos((float)ev->ev.button.x / g_GuiScale, (float)ev->ev.button.y / g_GuiScale);
 	}
 
+	// Allow the focused object to pre-empt regular GUI events.
+	if (GetFocusedObject())
+		ret = GetFocusedObject()->PreemptEvent(ev);
+
 	// Only one object can be hovered
-	IGUIObject* pNearest = nullptr;
+	// pNearest will after this point at the hovered object, possibly nullptr
+	IGUIObject* pNearest = FindObjectUnderMouse();
 
-	// TODO Gee: (2004-09-08) Big TODO, don't do the below if the SDL_Event is something like a keypress!
+	if (ret == IN_PASS)
 	{
-		PROFILE("mouse events");
-		// TODO Gee: Optimizations needed!
-		//  these two recursive function are quite overhead heavy.
-
-		// pNearest will after this point at the hovered object, possibly nullptr
-		pNearest = FindObjectUnderMouse();
-
 		// Now we'll call UpdateMouseOver on *all* objects,
-		//  we'll input the one hovered, and they will each
-		//  update their own data and send messages accordingly
+		// we'll input the one hovered, and they will each
+		// update their own data and send messages accordingly
 		m_BaseObject.RecurseObject(&IGUIObject::IsHiddenOrGhost, &IGUIObject::UpdateMouseOver, static_cast<IGUIObject* const&>(pNearest));
 
 		if (ev->ev.type == SDL_MOUSEBUTTONDOWN)
@@ -253,19 +251,13 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 	if (ev->ev.type == SDL_MOUSEBUTTONDOWN || ev->ev.type == SDL_MOUSEBUTTONUP)
 		m_MousePos = oldMousePos;
 
-	// Handle keys for input boxes
-	if (GetFocusedObject())
+	// Let GUI items handle keys after everything else, e.g. for input boxes.
+	if (ret == IN_PASS && GetFocusedObject())
 	{
-		if ((ev->ev.type == SDL_KEYDOWN &&
-		     ev->ev.key.keysym.sym != SDLK_ESCAPE &&
-		     !g_keys[SDLK_LCTRL] && !g_keys[SDLK_RCTRL] &&
-		     !g_keys[SDLK_LALT] && !g_keys[SDLK_RALT]) ||
-		    ev->ev.type == SDL_HOTKEYDOWN ||
-		    ev->ev.type == SDL_TEXTINPUT ||
-		    ev->ev.type == SDL_TEXTEDITING)
-		{
-			ret = GetFocusedObject()->ManuallyHandleEvent(ev);
-		}
+		if (ev->ev.type == SDL_KEYUP || ev->ev.type == SDL_KEYDOWN ||
+			ev->ev.type == SDL_HOTKEYUP || ev->ev.type == SDL_HOTKEYDOWN ||
+			ev->ev.type == SDL_TEXTINPUT || ev->ev.type == SDL_TEXTEDITING)
+			ret = GetFocusedObject()->ManuallyHandleKeys(ev);
 		// else will return IN_PASS because we never used the button.
 	}
 
@@ -274,6 +266,7 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 
 void CGUI::TickObjects()
 {
+	m_BaseObject.RecurseObject(&IGUIObject::IsHiddenOrGhost, &IGUIObject::Tick);
 	SendEventToAll(EventNameTick);
 	m_Tooltip.Update(FindObjectUnderMouse(), m_MousePos, *this);
 }

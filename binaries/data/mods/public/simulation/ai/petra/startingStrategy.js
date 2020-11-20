@@ -41,7 +41,7 @@ PETRA.HQ.prototype.gameAnalysis = function(gameState)
 	this.canBuildUnits = true;
 	if (!gameState.getOwnStructures().filter(API3.Filters.byClass("CivCentre")).hasEntities())
 	{
-		let template = gameState.applyCiv("structures/{civ}_civil_centre");
+		let template = gameState.applyCiv("structures/{civ}/civil_centre");
 		if (!gameState.isTemplateAvailable(template) || !gameState.getTemplate(template).available(gameState))
 		{
 			if (this.Config.debug > 1)
@@ -248,7 +248,7 @@ PETRA.HQ.prototype.buildFirstBase = function(gameState)
 {
 	if (gameState.ai.queues.civilCentre.hasQueuedUnits())
 		return;
-	let templateName = gameState.applyCiv("structures/{civ}_civil_centre");
+	let templateName = gameState.applyCiv("structures/{civ}/civil_centre");
 	if (gameState.isTemplateDisabled(templateName))
 		return;
 	let template = gameState.getTemplate(templateName);
@@ -288,7 +288,7 @@ PETRA.HQ.prototype.buildFirstBase = function(gameState)
 		{
 			if (gameState.ai.queues.dock.hasQueuedUnits())
 				return;
-			templateName = gameState.applyCiv("structures/{civ}_dock");
+			templateName = gameState.applyCiv("structures/{civ}/dock");
 			if (gameState.isTemplateDisabled(templateName))
 				return;
 			template = gameState.getTemplate(templateName);
@@ -345,10 +345,10 @@ PETRA.HQ.prototype.buildFirstBase = function(gameState)
 	if (goal == "dock")
 	{
 		let sea = startingPoint[imax].sea > 1 ? startingPoint[imax].sea : undefined;
-		gameState.ai.queues.dock.addPlan(new PETRA.ConstructionPlan(gameState, "structures/{civ}_dock", { "sea": sea, "proximity": startingPoint[imax].pos }));
+		gameState.ai.queues.dock.addPlan(new PETRA.ConstructionPlan(gameState, "structures/{civ}/dock", { "sea": sea, "proximity": startingPoint[imax].pos }));
 	}
 	else
-		gameState.ai.queues.civilCentre.addPlan(new PETRA.ConstructionPlan(gameState, "structures/{civ}_civil_centre", { "base": -1, "resource": "wood", "proximity": startingPoint[imax].pos }));
+		gameState.ai.queues.civilCentre.addPlan(new PETRA.ConstructionPlan(gameState, "structures/{civ}/civil_centre", { "base": -1, "resource": "wood", "proximity": startingPoint[imax].pos }));
 };
 
 /**
@@ -545,7 +545,7 @@ PETRA.HQ.prototype.configFirstBase = function(gameState)
 	}
 
 	// immediatly build a wood dropsite if possible.
-	let template = gameState.applyCiv("structures/{civ}_storehouse");
+	let template = gameState.applyCiv("structures/{civ}/storehouse");
 	if (!gameState.getOwnEntitiesByClass("Storehouse", true).hasEntities() && this.canBuild(gameState, template))
 	{
 		let newDP = this.baseManagers[1].findBestDropsiteLocation(gameState, "wood");
@@ -566,7 +566,7 @@ PETRA.HQ.prototype.configFirstBase = function(gameState)
 	// and build immediately a corral if needed
 	if (this.needCorral)
 	{
-		template = gameState.applyCiv("structures/{civ}_corral");
+		template = gameState.applyCiv("structures/{civ}/corral");
 		if (!gameState.getOwnEntitiesByClass("Corral", true).hasEntities() && this.canBuild(gameState, template))
 			gameState.ai.queues.corral.addPlan(new PETRA.ConstructionPlan(gameState, template, { "base": this.baseManagers[1].ID }));
 	}

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_cavalry_ranged_javelineer">
+  <Identity>
+    <Civ>sele</Civ>
+    <Lang>greek</Lang>
+    <SelectionGroupName>units/sele/cavalry_javelineer_b</SelectionGroupName>
+    <GenericName>Militia Cavalry</GenericName>
+    <SpecificName>Hippakontistès Politès</SpecificName>
+    <Icon>units/sele_cavalry_javelinist.png</Icon>
+  </Identity>
+  <Promotion>
+    <Entity>units/sele/cavalry_javelineer_a</Entity>
+  </Promotion>
+  <VisualActor>
+    <Actor>units/athenians/cavalry_javelinist_b_m.xml</Actor>
+  </VisualActor>
+</Entity>

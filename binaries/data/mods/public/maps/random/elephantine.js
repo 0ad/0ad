@@ -66,14 +66,14 @@ const oFish = "gaia/fish/tilapia";
 const oHawk = "birds/buzzard";
 
 // The main temple on elephantine was very similar looking (Greco-Roman-Egyptian):
-const oWonder = "structures/ptol_wonder";
-const oTemples = ["structures/kush_temple_amun", "structures/kush_temple"];
-const oPyramid = "structures/kush_pyramid_large";
-const oTowers = new Array(2).fill("uncapturable|structures/kush_sentry_tower").concat(["uncapturable|structures/kush_defense_tower"]);
+const oWonder = "structures/ptol/wonder";
+const oTemples = ["structures/kush/temple_amun", "structures/kush/temple"];
+const oPyramid = "structures/kush/pyramid_large";
+const oTowers = new Array(2).fill("uncapturable|structures/kush/sentry_tower").concat(["uncapturable|structures/kush/defense_tower"]);
 
-const oHeroes = Engine.FindTemplates("units/", true).filter(templateName => templateName.startsWith("units/kush_hero_"));
+const oHeroes = Engine.FindTemplates("units/", true).filter(templateName => templateName.startsWith("units/kush/hero_"));
 const oUnits = Engine.FindTemplates("units/", false).filter(templateName =>
-	templateName.startsWith("units/kush_") &&
+	templateName.startsWith("units/kush/") &&
 	oHeroes.every(heroTemplateName => heroTemplateName != templateName) &&
 	Engine.GetTemplate(templateName).Identity.VisibleClasses._string.split(" ").some(type => ["Soldier", "Healer", "Female"].indexOf(type) != -1));
 

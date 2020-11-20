@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_wallset">
+  <Identity>
+    <Civ>sele</Civ>
+    <SpecificName>Teichos</SpecificName>
+  </Identity>
+  <WallSet>
+    <Templates>
+      <Tower>structures/sele/wall_tower</Tower>
+      <Gate>structures/sele/wall_gate</Gate>
+      <WallLong>structures/sele/wall_long</WallLong>
+      <WallMedium>structures/sele/wall_medium</WallMedium>
+      <WallShort>structures/sele/wall_short</WallShort>
+    </Templates>
+    <MaxTowerOverlap>0.90</MaxTowerOverlap>
+  </WallSet>
+</Entity>

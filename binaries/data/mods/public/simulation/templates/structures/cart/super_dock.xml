@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_special">
+  <Auras datatype="tokens">
+    structures/cart_super_dock_repair
+  </Auras>
+  <BuildRestrictions>
+    <Territory>own ally neutral</Territory>
+    <PlacementType>shore</PlacementType>
+    <Category>Dock</Category>
+  </BuildRestrictions>
+  <Capturable>
+    <CapturePoints>2000</CapturePoints>
+    <GarrisonRegenRate>10</GarrisonRegenRate>
+  </Capturable>
+  <Cost>
+    <PopulationBonus>10</PopulationBonus>
+    <BuildTime>500</BuildTime>
+    <Resources>
+      <wood>300</wood>
+      <stone>200</stone>
+    </Resources>
+  </Cost>
+  <Footprint>
+    <Square width="42.0" depth="58.0"/>
+    <Height>8.0</Height>
+  </Footprint>
+  <GarrisonHolder>
+    <Max>5</Max>
+    <EjectHealth>0.1</EjectHealth>
+    <EjectClassesOnDestroy datatype="tokens">Unit</EjectClassesOnDestroy>
+    <List datatype="tokens">Support Infantry Cavalry Ship</List>
+    <BuffHeal>0</BuffHeal>
+    <LoadingRange>2</LoadingRange>
+  </GarrisonHolder>
+  <Health>
+    <Max>5000</Max>
+  </Health>
+  <Identity>
+    <Civ>cart</Civ>
+    <GenericName>Naval Shipyard</GenericName>
+    <SpecificName>Cothon</SpecificName>
+    <Tooltip>Build upon a shoreline in own, neutral, or allied territory. Acquire large tracts of territory. Territory root. Construct Warships and research technologies.</Tooltip>
+    <Classes datatype="tokens">ConquestCritical</Classes>
+    <VisibleClasses datatype="tokens">Naval -City Town Shipyard</VisibleClasses>
+    <Icon>structures/uber_dock.png</Icon>
+    <RequiredTechnology>phase_town</RequiredTechnology>
+  </Identity>
+  <Loot>
+    <wood>60</wood>
+    <stone>40</stone>
+  </Loot>
+  <Obstruction>
+    <Static width="42.0" depth="58.0"/>
+  </Obstruction>
+  <Position>
+    <Floating>true</Floating>
+    <FloatDepth>0.0</FloatDepth>
+  </Position>
+  <ProductionQueue>
+    <BatchTimeModifier>0.7</BatchTimeModifier>
+    <Entities datatype="tokens">
+      units/{civ}/ship_bireme
+      units/{civ}/ship_trireme
+      units/{civ}/ship_quinquereme
+    </Entities>
+    <Technologies datatype="tokens">
+      carthaginians/training_phoenician_naval_architects
+      carthaginians/special_exploration
+    </Technologies>
+  </ProductionQueue>
+  <RallyPointRenderer>
+    <LinePassabilityClass>ship</LinePassabilityClass>
+  </RallyPointRenderer>
+  <Resistance>
+    <Entity>
+      <Damage>
+        <Pierce>35</Pierce>
+      </Damage>
+    </Entity>
+  </Resistance>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_dock.xml</select>
+      <constructed>interface/complete/building/complete_dock.xml</constructed>
+    </SoundGroups>
+  </Sound>
+  <TerritoryDecay disable=""/>
+  <TerritoryInfluence>
+    <Root>true</Root>
+    <Radius>200</Radius>
+    <Weight>25000</Weight>
+  </TerritoryInfluence>
+  <Vision>
+    <Range>100</Range>
+  </Vision>
+  <VisualActor>
+    <Actor>structures/carthaginians/super_dock.xml</Actor>
+    <FoundationActor>structures/fndn_dock_super.xml</FoundationActor>
+  </VisualActor>
+</Entity>

@@ -99,30 +99,30 @@
 	],
 	"WallSets": [
 		"structures/wallset_palisade",
-		"structures/maur_wallset_stone"
+		"structures/maur/wallset_stone"
 	],
 	"StartEntities": [
 		{
-			"Template": "structures/maur_civil_centre"
+			"Template": "structures/maur/civil_centre"
 		},
 		{
-			"Template": "units/maur_support_female_citizen",
+			"Template": "units/maur/support_female_citizen",
 			"Count": 4
 		},
 		{
-			"Template": "units/maur_infantry_spearman_b",
+			"Template": "units/maur/infantry_spearman_b",
 			"Count": 2
 		},
 		{
-			"Template": "units/maur_infantry_archer_b",
+			"Template": "units/maur/infantry_archer_b",
 			"Count": 2
 		},
 		{
-			"Template": "units/maur_cavalry_javelineer_b",
+			"Template": "units/maur/cavalry_javelineer_b",
 			"Count": 1
 		},
 		{
-			"Template": "units/maur_support_elephant",
+			"Template": "units/maur/support_elephant",
 			"Count": 1
 		}
 	],
@@ -150,9 +150,9 @@
 		"Brihadratha Maurya"
 	],
 	"SkirmishReplacements": {
-		"skirmish/units/default_infantry_ranged_b": "units/maur_infantry_archer_b",
-		"skirmish/units/special_starting_unit": "units/maur_support_elephant",
-		"skirmish/structures/default_house_5": "structures/{civ}_house"
+		"skirmish/units/default_infantry_ranged_b": "units/maur/infantry_archer_b",
+		"skirmish/units/special_starting_unit": "units/maur/support_elephant",
+		"skirmish/structures/default_house_5": "structures/{civ}/house"
 	},
 	"SelectableInGameSetup": true
 }

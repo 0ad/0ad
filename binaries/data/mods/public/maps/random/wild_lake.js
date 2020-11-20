@@ -144,59 +144,59 @@ let wildLakeBiome = [
 var mercenaryCampGuards = {
 	"generic/temperate": [
 		{ "Template" : "structures/merc_camp_egyptian" },
-		{ "Template" : "units/mace_infantry_javelineer_b", "Count" : 4 },
-		{ "Template" : "units/mace_cavalry_spearman_e", "Count" : 3 },
-		{ "Template" : "units/mace_infantry_archer_a", "Count" : 4 },
-		{ "Template" : "units/mace_champion_infantry_a", "Count" : 3 }
+		{ "Template" : "units/mace/infantry_javelineer_b", "Count" : 4 },
+		{ "Template" : "units/mace/cavalry_spearman_e", "Count" : 3 },
+		{ "Template" : "units/mace/infantry_archer_a", "Count" : 4 },
+		{ "Template" : "units/mace/champion_infantry_a", "Count" : 3 }
 	],
 	"generic/snowy": [
-		{ "Template" : "structures/ptol_mercenary_camp" },
-		{ "Template" : "units/brit_infantry_javelineer_b", "Count" : 4 },
-		{ "Template" : "units/brit_cavalry_swordsman_e", "Count" : 3 },
-		{ "Template" : "units/brit_infantry_slinger_a", "Count" : 4 },
-		{ "Template" : "units/brit_champion_infantry", "Count" : 3 }
+		{ "Template" : "structures/ptol/mercenary_camp" },
+		{ "Template" : "units/brit/infantry_javelineer_b", "Count" : 4 },
+		{ "Template" : "units/brit/cavalry_swordsman_e", "Count" : 3 },
+		{ "Template" : "units/brit/infantry_slinger_a", "Count" : 4 },
+		{ "Template" : "units/brit/champion_infantry", "Count" : 3 }
 	],
 	"generic/desert": [
-		{ "Template" : "structures/ptol_mercenary_camp" },
-		{ "Template" : "units/pers_infantry_javelineer_b", "Count" : 4 },
-		{ "Template" : "units/pers_cavalry_axeman_e", "Count" : 3 },
-		{ "Template" : "units/pers_infantry_archer_a", "Count" : 4 },
-		{ "Template" : "units/pers_champion_infantry", "Count" : 3 }
+		{ "Template" : "structures/ptol/mercenary_camp" },
+		{ "Template" : "units/pers/infantry_javelineer_b", "Count" : 4 },
+		{ "Template" : "units/pers/cavalry_axeman_e", "Count" : 3 },
+		{ "Template" : "units/pers/infantry_archer_a", "Count" : 4 },
+		{ "Template" : "units/pers/champion_infantry", "Count" : 3 }
 	],
 	"generic/alpine": [
-		{ "Template" : "structures/ptol_mercenary_camp" },
-		{ "Template" : "units/rome_infantry_swordsman_b", "Count" : 4 },
-		{ "Template" : "units/rome_cavalry_spearman_e", "Count" : 3 },
-		{ "Template" : "units/rome_infantry_javelineer_a", "Count" : 4 },
-		{ "Template" : "units/rome_champion_infantry", "Count" : 3 }
+		{ "Template" : "structures/ptol/mercenary_camp" },
+		{ "Template" : "units/rome/infantry_swordsman_b", "Count" : 4 },
+		{ "Template" : "units/rome/cavalry_spearman_e", "Count" : 3 },
+		{ "Template" : "units/rome/infantry_javelineer_a", "Count" : 4 },
+		{ "Template" : "units/rome/champion_infantry", "Count" : 3 }
 	],
 	"generic/mediterranean": [
 		{ "Template" : "structures/merc_camp_egyptian" },
-		{ "Template" : "units/iber_infantry_javelineer_b", "Count" : 4 },
-		{ "Template" : "units/iber_cavalry_spearman_e", "Count" : 3 },
-		{ "Template" : "units/iber_infantry_slinger_a", "Count" : 4 },
-		{ "Template" : "units/iber_champion_infantry", "Count" : 3 }
+		{ "Template" : "units/iber/infantry_javelineer_b", "Count" : 4 },
+		{ "Template" : "units/iber/cavalry_spearman_e", "Count" : 3 },
+		{ "Template" : "units/iber/infantry_slinger_a", "Count" : 4 },
+		{ "Template" : "units/iber/champion_infantry", "Count" : 3 }
 	],
 	"generic/savanna": [
 		{ "Template" : "structures/merc_camp_egyptian" },
-		{ "Template" : "units/sele_infantry_javelineer_b", "Count" : 4 },
-		{ "Template" : "units/sele_cavalry_spearman_merc_e", "Count" : 3 },
-		{ "Template" : "units/sele_infantry_spearman_a", "Count" : 4 },
-		{ "Template" : "units/sele_champion_infantry_swordsman", "Count" : 3 }
+		{ "Template" : "units/sele/infantry_javelineer_b", "Count" : 4 },
+		{ "Template" : "units/sele/cavalry_spearman_merc_e", "Count" : 3 },
+		{ "Template" : "units/sele/infantry_spearman_a", "Count" : 4 },
+		{ "Template" : "units/sele/champion_infantry_swordsman", "Count" : 3 }
 	],
 	"generic/tropic": [
 		{ "Template" : "structures/merc_camp_egyptian" },
-		{ "Template" : "units/ptol_infantry_javelineer_b", "Count" : 4 },
-		{ "Template" : "units/ptol_cavalry_archer_e", "Count" : 3 },
-		{ "Template" : "units/ptol_infantry_slinger_a", "Count" : 4 },
-		{ "Template" : "units/ptol_champion_infantry_pikeman", "Count" : 3 }
+		{ "Template" : "units/ptol/infantry_javelineer_b", "Count" : 4 },
+		{ "Template" : "units/ptol/cavalry_archer_e", "Count" : 3 },
+		{ "Template" : "units/ptol/infantry_slinger_a", "Count" : 4 },
+		{ "Template" : "units/ptol/champion_infantry_pikeman", "Count" : 3 }
 	],
 	"generic/autumn": [
-		{ "Template" : "structures/ptol_mercenary_camp" },
-		{ "Template" : "units/gaul_infantry_javelineer_b", "Count" : 4 },
-		{ "Template" : "units/gaul_cavalry_swordsman_e", "Count" : 3 },
-		{ "Template" : "units/gaul_infantry_slinger_a", "Count" : 4 },
-		{ "Template" : "units/gaul_champion_infantry", "Count" : 3 }
+		{ "Template" : "structures/ptol/mercenary_camp" },
+		{ "Template" : "units/gaul/infantry_javelineer_b", "Count" : 4 },
+		{ "Template" : "units/gaul/cavalry_swordsman_e", "Count" : 3 },
+		{ "Template" : "units/gaul/infantry_slinger_a", "Count" : 4 },
+		{ "Template" : "units/gaul/champion_infantry", "Count" : 3 }
 	]
 };
 
@@ -241,7 +241,7 @@ function placeGrove(point,
 )
 {
 	let position = new Vector2D(point.x, point.y);
-	g_Map.placeEntityPassable(pickRandom(["structures/gaul_outpost", "gaia/tree/oak_new"]), 0, position, randomAngle());
+	g_Map.placeEntityPassable(pickRandom(["structures/gaul/outpost", "gaia/tree/oak_new"]), 0, position, randomAngle());
 
 	let quantity = randIntInclusive(20, 30);
 	let dAngle = 2 * Math.PI / quantity;
@@ -267,14 +267,14 @@ function placeGrove(point,
 }
 
 var farmEntities = {
-	"generic/temperate": { "building": "structures/mace_farmstead", "animal": "gaia/fauna_pig" },
-	"generic/snowy": { "building": "structures/brit_farmstead", "animal": "gaia/fauna_sheep" },
-	"generic/desert": { "building": "structures/pers_farmstead", "animal": "gaia/fauna_camel" },
-	"generic/alpine": { "building": "structures/rome_farmstead", "animal": "gaia/fauna_sheep" },
-	"generic/mediterranean": { "building": "structures/iber_farmstead", "animal": "gaia/fauna_pig" },
-	"generic/savanna": { "building": "structures/sele_farmstead", "animal": "gaia/fauna_horse" },
-	"generic/tropic": { "building": "structures/ptol_farmstead", "animal": "gaia/fauna_camel" },
-	"generic/autumn": { "building": "structures/gaul_farmstead", "animal": "gaia/fauna_horse" }
+	"generic/temperate": { "building": "structures/mace/farmstead", "animal": "gaia/fauna_pig" },
+	"generic/snowy": { "building": "structures/brit/farmstead", "animal": "gaia/fauna_sheep" },
+	"generic/desert": { "building": "structures/pers/farmstead", "animal": "gaia/fauna_camel" },
+	"generic/alpine": { "building": "structures/rome/farmstead", "animal": "gaia/fauna_sheep" },
+	"generic/mediterranean": { "building": "structures/iber/farmstead", "animal": "gaia/fauna_pig" },
+	"generic/savanna": { "building": "structures/sele/farmstead", "animal": "gaia/fauna_horse" },
+	"generic/tropic": { "building": "structures/ptol/farmstead", "animal": "gaia/fauna_camel" },
+	"generic/autumn": { "building": "structures/gaul/farmstead", "animal": "gaia/fauna_horse" }
 };
 
 g_WallStyles.other = {
@@ -327,7 +327,7 @@ for (let i = 0; i < num; ++i)
 function placeCamp(position,
 	centerEntity = "actor|props/special/eyecandy/campfire.xml",
 	otherEntities = ["gaia/treasure/metal", "gaia/treasure/standing_stone",
-		"units/brit_infantry_slinger_b", "units/brit_infantry_javelineer_b", "units/gaul_infantry_slinger_b", "units/gaul_infantry_javelineer_b", "units/gaul_champion_fanatic",
+		"units/brit/infantry_slinger_b", "units/brit/infantry_javelineer_b", "units/gaul/infantry_slinger_b", "units/gaul/infantry_javelineer_b", "units/gaul/champion_fanatic",
 		"actor|props/special/common/waypoint_flag.xml", "actor|props/special/eyecandy/barrel_a.xml", "actor|props/special/eyecandy/basket_celt_a.xml", "actor|props/special/eyecandy/crate_a.xml", "actor|props/special/eyecandy/dummy_a.xml", "actor|props/special/eyecandy/handcart_1.xml", "actor|props/special/eyecandy/handcart_1_broken.xml", "actor|props/special/eyecandy/sack_1.xml", "actor|props/special/eyecandy/sack_1_rough.xml"
 	]
 )

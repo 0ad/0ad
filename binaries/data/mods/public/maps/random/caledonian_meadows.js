@@ -6,7 +6,7 @@ Engine.LoadLibrary("heightmap");
 var tGrove = "temp_grass_plants";
 var tPath = "road_rome_a";
 
-var oGroveEntities = ["structures/gaul_outpost", "gaia/tree/oak_new"];
+var oGroveEntities = ["structures/gaul/outpost", "gaia/tree/oak_new"];
 
 var g_Map = new RandomMap(0, "whiteness");
 
@@ -44,7 +44,7 @@ g_WallStyles.other = {
 	"bench":     { "angle": Math.PI / 2, "length": 1.5,  "indent": 0,    "bend": 0, "templateName": "structures/bench" },
 	"sheep":     { "angle": 0,           "length": 0,    "indent": 0.75, "bend": 0, "templateName": "gaia/fauna_sheep" },
 	"foodBin":   { "angle": Math.PI / 2, "length": 1.5,  "indent": 0,    "bend": 0, "templateName": "gaia/treasure/food_bin" },
-	"farmstead": { "angle": Math.PI,     "length": 0,    "indent": -3,   "bend": 0, "templateName": "structures/brit_farmstead" }
+	"farmstead": { "angle": Math.PI,     "length": 0,    "indent": -3,   "bend": 0, "templateName": "structures/brit/farmstead" }
 };
 
 let fences = [
@@ -119,7 +119,7 @@ function placeGrove(point)
 function placeCamp(point,
 	centerEntity = "actor|props/special/eyecandy/campfire.xml",
 	otherEntities = ["gaia/treasure/metal", "gaia/treasure/standing_stone",
-		"units/brit_infantry_slinger_b", "units/brit_infantry_javelineer_b", "units/gaul_infantry_slinger_b", "units/gaul_infantry_javelineer_b", "units/gaul_champion_fanatic",
+		"units/brit/infantry_slinger_b", "units/brit/infantry_javelineer_b", "units/gaul/infantry_slinger_b", "units/gaul/infantry_javelineer_b", "units/gaul/champion_fanatic",
 		"actor|props/special/common/waypoint_flag.xml", "actor|props/special/eyecandy/barrel_a.xml", "actor|props/special/eyecandy/basket_celt_a.xml", "actor|props/special/eyecandy/crate_a.xml", "actor|props/special/eyecandy/dummy_a.xml", "actor|props/special/eyecandy/handcart_1.xml", "actor|props/special/eyecandy/handcart_1_broken.xml", "actor|props/special/eyecandy/sack_1.xml", "actor|props/special/eyecandy/sack_1_rough.xml"
 	]
 )

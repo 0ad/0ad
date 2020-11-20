@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_wallset">
+  <Identity>
+    <Civ>gaul</Civ>
+    <SpecificName>Rate</SpecificName>
+  </Identity>
+  <WallSet>
+    <Templates>
+      <Tower>structures/gaul/wall_tower</Tower>
+      <Gate>structures/gaul/wall_gate</Gate>
+      <WallLong>structures/gaul/wall_long</WallLong>
+      <WallMedium>structures/gaul/wall_medium</WallMedium>
+      <WallShort>structures/gaul/wall_short</WallShort>
+    </Templates>
+    <MaxTowerOverlap>0.80</MaxTowerOverlap>
+    <MinTowerOverlap>0.05</MinTowerOverlap>
+  </WallSet>
+</Entity>

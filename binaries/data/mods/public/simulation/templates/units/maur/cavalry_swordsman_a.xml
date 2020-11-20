@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="units/maur/cavalry_swordsman_b">
+  <Identity>
+    <Rank>Advanced</Rank>
+  </Identity>
+  <Promotion>
+    <Entity>units/maur/cavalry_swordsman_e</Entity>
+  </Promotion>
+  <VisualActor>
+    <Actor>units/mauryas/cavalry_swordsman_a_m.xml</Actor>
+  </VisualActor>
+</Entity>

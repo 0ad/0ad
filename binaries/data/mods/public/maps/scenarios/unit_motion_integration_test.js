@@ -1,7 +1,7 @@
-const UNIT_TEMPLATE = "units/athen_infantry_marine_archer_b";
-const FAST_UNIT_TEMPLATE = "units/athen_cavalry_swordsman_a";
-const LARGE_UNIT_TEMPLATE = "units/brit_siege_ram";
-const SMALL_STRUCTURE_TEMPLATE = "structures/athen_house";
+const UNIT_TEMPLATE = "units/athen/infantry_marine_archer_b";
+const FAST_UNIT_TEMPLATE = "units/athen/cavalry_swordsman_a";
+const LARGE_UNIT_TEMPLATE = "units/brit/siege_ram";
+const SMALL_STRUCTURE_TEMPLATE = "structures/athen/house";
 
 var QuickSpawn = function(x, z, template, owner = 1)
 {
@@ -282,7 +282,7 @@ experiments.formation_attack = {
 
 experiments.multiple_resources = {
 	"spawn": () => {
-		QuickSpawn(gx, gy + 80, "structures/athen_civil_centre");
+		QuickSpawn(gx, gy + 80, "structures/athen/civil_centre");
 
 		let chicken = QuickSpawn(gx, gy + 50, "gaia/fauna_chicken");
 		QuickSpawn(gx + 3, gy + 50, "gaia/fauna_chicken");

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_wallset">
+  <Identity>
+    <Civ>maur</Civ>
+    <SpecificName>Shilabanda</SpecificName>
+  </Identity>
+  <WallSet>
+    <Templates>
+      <Tower>structures/maur/wall_tower</Tower>
+      <Gate>structures/maur/wall_gate</Gate>
+      <WallLong>structures/maur/wall_long</WallLong>
+      <WallMedium>structures/maur/wall_medium</WallMedium>
+      <WallShort>structures/maur/wall_short</WallShort>
+    </Templates>
+  </WallSet>
+</Entity>

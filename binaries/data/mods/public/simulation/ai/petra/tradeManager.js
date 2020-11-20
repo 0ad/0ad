@@ -85,12 +85,12 @@ PETRA.TradeManager.prototype.trainMoreTraders = function(gameState, queues)
 			return;
 		}
 
-		template = gameState.applyCiv("units/{civ}_ship_merchant");
+		template = gameState.applyCiv("units/{civ}/ship_merchant");
 		metadata.sea = this.tradeRoute.sea;
 	}
 	else
 	{
-		template = gameState.applyCiv("units/{civ}_support_trader");
+		template = gameState.applyCiv("units/{civ}/support_trader");
 		if (!this.tradeRoute.source.hasClass("Naval"))
 			metadata.base = this.tradeRoute.source.getMetadata(PlayerID, "base");
 		else
@@ -401,8 +401,8 @@ PETRA.TradeManager.prototype.checkEvents = function(gameState, events)
 PETRA.TradeManager.prototype.activateProspection = function(gameState)
 {
 	this.routeProspection = true;
-	gameState.ai.HQ.buildManager.setBuildable(gameState.applyCiv("structures/{civ}_market"));
-	gameState.ai.HQ.buildManager.setBuildable(gameState.applyCiv("structures/{civ}_dock"));
+	gameState.ai.HQ.buildManager.setBuildable(gameState.applyCiv("structures/{civ}/market"));
+	gameState.ai.HQ.buildManager.setBuildable(gameState.applyCiv("structures/{civ}/dock"));
 };
 
 /**
@@ -588,12 +588,12 @@ PETRA.TradeManager.prototype.prospectForNewMarket = function(gameState, queues)
 {
 	if (queues.economicBuilding.hasQueuedUnitsWithClass("Trade") || queues.dock.hasQueuedUnitsWithClass("Trade"))
 		return;
-	if (!gameState.ai.HQ.canBuild(gameState, "structures/{civ}_market"))
+	if (!gameState.ai.HQ.canBuild(gameState, "structures/{civ}/market"))
 		return;
 	if (!gameState.updatingCollection("OwnMarkets", API3.Filters.byClass("Trade"), gameState.getOwnStructures()).hasEntities() &&
 	    !gameState.updatingCollection("diplo-ExclusiveAllyMarkets", API3.Filters.byClass("Trade"), gameState.getExclusiveAllyEntities()).hasEntities())
 		return;
-	let template = gameState.getTemplate(gameState.applyCiv("structures/{civ}_market"));
+	let template = gameState.getTemplate(gameState.applyCiv("structures/{civ}/market"));
 	if (!template)
 		return;
 	this.checkRoutes(gameState);
@@ -601,7 +601,7 @@ PETRA.TradeManager.prototype.prospectForNewMarket = function(gameState, queues)
 	if (!marketPos || marketPos[3] == 0)   // marketPos[3] is the expected gain
 	{	// no position found
 		if (gameState.getOwnEntitiesByClass("Market", true).hasEntities())
-			gameState.ai.HQ.buildManager.setUnbuildable(gameState, gameState.applyCiv("structures/{civ}_market"));
+			gameState.ai.HQ.buildManager.setUnbuildable(gameState, gameState.applyCiv("structures/{civ}/market"));
 		else
 			this.routeProspection = false;
 		return;
@@ -622,7 +622,7 @@ PETRA.TradeManager.prototype.prospectForNewMarket = function(gameState, queues)
 
 	if (!this.tradeRoute)
 		gameState.ai.queueManager.changePriority("economicBuilding", 2 * this.Config.priorities.economicBuilding);
-	let plan = new PETRA.ConstructionPlan(gameState, "structures/{civ}_market");
+	let plan = new PETRA.ConstructionPlan(gameState, "structures/{civ}/market");
 	if (!this.tradeRoute)
 		plan.queueToReset = "economicBuilding";
 	queues.economicBuilding.addPlan(plan);

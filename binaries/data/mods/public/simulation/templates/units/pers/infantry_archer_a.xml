@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="units/pers/infantry_archer_b">
+  <Identity>
+    <Rank>Advanced</Rank>
+  </Identity>
+  <Promotion>
+    <Entity>units/pers/infantry_archer_e</Entity>
+  </Promotion>
+  <VisualActor>
+    <Actor>units/persians/infantry_archer_a.xml</Actor>
+  </VisualActor>
+</Entity>

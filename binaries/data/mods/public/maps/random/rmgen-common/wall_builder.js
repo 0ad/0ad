@@ -25,9 +25,10 @@ function loadWallsetsFromCivData()
 		{
 			// File naming conventions:
 			// - structures/wallset_{style}
-			// - structures/{civ}_wallset_{style}
-			let style = basename(path).split("_");
-			style = style[0] == "wallset" ? style[1] : style[0] + "_" + style[2];
+			// - structures/{civ}/wallset_{style}
+			let style = basename(path).split("_")[1];
+			if (path.split("/").indexOf(civ) != -1)
+				style = civ + "/" + style;
 
 			if (!wallsets[style])
 				wallsets[style] = loadWallset(Engine.GetTemplate(path), civ);
@@ -132,7 +133,7 @@ function createDefaultFortressTypes()
  *   `gap_{x}` returns a non-blocking gap of length `x` meters.
  *   `turn_{x}` returns a zero-length turn of angle `x` radians.
  *
- * Any other arbitrary string passed will be attempted to be used as: `structures/{civ}_{arbitrary_string}`.
+ * Any other arbitrary string passed will be attempted to be used as: `structures/{civ}/{arbitrary_string}`.
  *
  * @param {string} element - What sort of element to fetch.
  * @param {string} [style] - The style from which this element should come from.
@@ -148,7 +149,7 @@ function getWallElement(element, style)
 	// Defaults to a wall tower piece
 	const quarterBend = Math.PI / 2;
 	let wallset = g_WallStyles[style];
-	let civ = style.split("_")[0];
+	let civ = style.split("/")[1];
 	let ret = wallset.tower ? clone(wallset.tower) : { "angle": 0, "bend": 0, "length": 0, "indent": 0 };
 
 	switch (element)
@@ -193,7 +194,7 @@ function getWallElement(element, style)
 		break;
 
 	case "entryTower":
-		ret.templateName = g_CivData[civ] ? "structures/" + civ + "_defense_tower" : "structures/palisades_watchtower";
+		ret.templateName = g_CivData[civ] ? "structures/" + civ + "/defense_tower" : "structures/palisades_watchtower";
 		ret.indent = ret.length * -3;
 		ret.length = wallset.gate.length;
 		break;
@@ -236,7 +237,7 @@ function getWallElement(element, style)
 			if (!g_CivData[civ])
 				civ = Object.keys(g_CivData)[0];
 
-			let templateName = "structures/" + civ + "_" + element;
+			let templateName = "structures/" + civ + "/" + element;
 			if (Engine.TemplateExists(templateName))
 			{
 				ret.indent = ret.length * (element == "outpost" || element.endsWith("_tower") ? -3 : 3.5);
@@ -385,7 +386,7 @@ function validateStyle(style, playerId = 0)
 		if (playerId == 0)
 			return Object.keys(g_WallStyles)[0];
 
-		style = getCivCode(playerId) + "_stone";
+		style = getCivCode(playerId) + "/stone";
 		return !g_WallStyles[style] ? Object.keys(g_WallStyles)[0] : style;
 	}
 	return style;

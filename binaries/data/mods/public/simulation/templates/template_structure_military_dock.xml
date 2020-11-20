@@ -45,10 +45,10 @@
   <ProductionQueue>
     <BatchTimeModifier>0.8</BatchTimeModifier>
     <Entities datatype="tokens">
-      units/{civ}_ship_fishing
-      units/{civ}_ship_merchant
-      units/{civ}_ship_bireme
-      units/{civ}_ship_trireme
+      units/{civ}/ship_fishing
+      units/{civ}/ship_merchant
+      units/{civ}/ship_bireme
+      units/{civ}/ship_trireme
     </Entities>
     <Technologies datatype="tokens">
       gather_capacity_fishing

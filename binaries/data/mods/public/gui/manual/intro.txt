@@ -7,13 +7,13 @@ You can switch between fullscreen and windowed mode by pressing Alt + Enter. In 
 [font="sans-bold-16"]Playing the game[font="sans-14"]
 The controls and gameplay should be familiar to players of traditional real-time strategy (RTS) games. There are currently a lot of missing features and poorly-balanced stats – you will probably have to wait until a beta release for it to work well.
 
-Basic controls:
+Basic controls (by default):
 • Left-click to select units
 • Left-click-and-drag to select groups of units
 • Right-click to order units to the target
 • Arrow keys or WASD keys to move the camera
 • Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera
-• Mouse wheel, or “=”/“+” and “-”/“−” keys, to zoom
+• Mouse wheel, or “hotkey.camera.zoom.in” and ““hotkey.camera.zoom.out” keys, to zoom
 
 [font="sans-bold-16"]Modes[font="sans-14"]
 The main menu gives access to two game modes:
@@ -37,122 +37,118 @@ Finally change the settings. For random maps this includes the number of players
 When you are ready to start, click the “Start game” button.
 
 [font="sans-bold-16"]Hotkeys[font="sans-14"]
+You may change hotkeys in [font="sans-bold-14"]Options > Hotkeys[font="sans-14"] to suit your liking.
+
 [font="sans-bold-14"]Program-wide[font="sans-14"]
-  Alt + F4 – Immediately close the game, without asking for confirmation
-  Alt + Enter (Return) – Toggle between fullscreen and windowed
-  ~ or F9 – Toggle console
-  Alt + F – Toggle frame counter (FPS)
-  F11 – Toggle real-time profiler (cycles through the displays of information)
-  Shift + F11 – Save current profiler data to “logs/profile.txt”
-  F2 – Take screenshot (in .png format, location is displayed in the top left of the GUI after the file has been saved, and can also be seen in the console/logs if you miss it there)
-  Shift + F2 – Take huge screenshot (6400×4800 pixels, in .bmp format, location is displayed in the top left of the GUI after the file has been saved, and can also be seen in the console/logs if you miss it there)
-  Tab, Alt + S – Switch to the next tab
-  Shift + Tab, Alt + W – Switch to the previous tab
+  hotkey.exit – Immediately close the game, without asking for confirmation
+  hotkey.togglefullscreen – Toggle between fullscreen and windowed
+  hotkey.console.toggle – Toggle console
+  hotkey.fps.toggle – Toggle frame counter (FPS)
+  hotkey.profile.toggle – Toggle real-time profiler (cycles through the displays of information)
+  hotkey.profile.save – Save current profiler data to “logs/profile.txt”
+  hotkey.screenshot – Take screenshot (in .png format, location is displayed in the top left of the GUI after the file has been saved, and can also be seen in the console/logs if you miss it there)
+  hotkey.bigscreenshot – Take huge screenshot (6400×4800 pixels, in .bmp format, location is displayed in the top left of the GUI after the file has been saved, and can also be seen in the console/logs if you miss it there)
+  hotkey.tab.next – Switch to the next tab
+  hotkey.tab.prev – Switch to the previous tab
 
 [font="sans-bold-14"]In Game[font="sans-14"]
   Double Left Click \[on unit] – Select all of your units of the same kind on the screen (even if they're different ranks)
   Triple Left Click \[on unit] – Select all of your units of the same kind and the same rank on the screen
   Alt + Double Left Click \[on unit] – Select all your units of the same kind on the entire map (even if they have different ranks)
   Alt + Triple Left Click \[on unit] – Select all your units of the same kind and rank on the entire map
-  Shift + F5 – Quicksave
-  Shift + F8 – Quickload
-  F10 – Toggle menu
-  F12 – Toggle time elapsed counter
-  Esc – Close all dialogs (chat, menu) or clear selected units
-  Enter (Return) – Open chat or send message
-  T – Send team chat
-  L – Chat with the previously selected private chat partner
-  Pause – Pause or resume the game
-  Delete – Delete currently selected unit(s)/structure(s), ask for confirmation
-  Shift + Delete – Immediately delete currently selected unit(s)/structure(s), without asking for confirmation
-  / (Slash) – Select idle fighter
-  Shift + / (Slash) – Add idle fighter to selection
-  Alt + / (Slash) – Select all idle fighters
-  . (Period) – Select idle worker (including citizen-soldiers)
-  Shift + . (Period) – Add idle worker to selection (including citizen-soldiers)
-  Alt + . (Period) – Select all idle workers (including citizen-soldiers)
-  \\ (Backslash) – Select idle unit
-  Shift + \\ (Backslash) – Add idle unit to selection
-  Alt + \\ (Backslash) – Select all idle units
-  H – Stop (halt) the currently selected units
-  Y – The unit will go back to work
-  U – Unload the garrisoned units of the selected structure(s)
-  Ctrl + 1 (and so on up to Ctrl + 0) – Create control group 1 (to 0) from the selected unit(s)/structure(s)
-  1 (and so on up to 0) – Select the unit(s)/structure(s) in control group 1 (to 0)
-  Shift + 1 (to 0) – Add control group 1 (to 0) to the selected unit(s)/structure(s)
-  Ctrl + F5 (and so on up to F8) – Mark the current camera position, for jumping back to later
-  F5 (and so on up to F8) – Move the camera to a marked position. Jump back to the last location if the camera is already over the marked position
-  Z, X, C, V, B, N, M – With training structure selected. Add the 1st, 2nd, … unit shown to the training queue for all the selected structures
-  PageUp with unit(s) selected – Highlight the unit(s)/structure(s) guarded by the selection
-  PageDown with unit(s)/structure(s) selected – Highlight the unit(s) guarding the selection
-  Tab – See all status bars (which would also show the building progress)
-  Ctrl + Tab – Toggle summary window
-  Alt + L – Show the multiplayer lobby in a dialog window
-  Ctrl + H – Toggle in-game diplomacy panel
-  Ctrl + B – Toggle in-game barter and trade panel
-  Ctrl + O – Toggle in-game objectives panel
-  Ctrl + P – Toggle in-game tutorial panel
-  Alt + Shift + T – Toggle structure tree panel
-  Alt + Shift + H – Toggle civilization info panel
+  hotkey.quicksave – Quicksave
+  hotkey.quickload – Quickload
+  hotkey.session.gui.menu.toggle – Toggle menu
+  hotkey.timeelapsedcounter.toggle – Toggle time elapsed counter
+  hotkey.cancel – Close all dialogs (chat, menu)
+  hotkey.confirm – Open chat or send message
+  hotkey.teamchat – Send team chat
+  hotkey.privatechat – Chat with the previously selected private chat partner
+  hotkey.pause – Pause or resume the game
+  hotkey.session.kill – Delete currently selected unit(s)/structure(s), ask for confirmation
+    • With hotkey.session.noconfirmation – Immediately delete currently selected unit(s)/structure(s), without asking for confirmation
+  hotkey.selection.add – Modifier - add to selection (works with clicking and hotkeys, e.g. the idle hotkeys)
+  hotkey.selection.remove – Modifier - remove from selection (works with clicking and hotkeys, e.g. the idle hotkeys)
+  hotkey.selection.offscreen - Modifier - add all units, including offscreen units, to selection.
+  hotkey.selection.cancel – Unselect all units, cancel building placement.
+  hotkey.selection.idlewarrior – Select idle fighter
+  hotkey.selection.idleworker – Select idle worker (including citizen-soldiers)
+  hotkey.selection.idleunit – Select idle unit
+  hotkey.session.stop – Stop (halt) the currently selected units
+  hotkey.session.backtowork – The unit will go back to work
+  hotkey.session.unload – Unload the garrisoned units of the selected structure(s)
+  hotkey.selection.group.save.1 – Create control group 1 (by default, respectively 2,3, ...) from the selected unit(s)/structure(s)
+  hotkey.selection.group.select.1 - Select the unit(s)/structure(s) in control group 1
+  hotkey.selection.group.add.1 – Add control group 1 (to 0) to the selected unit(s)/structure(s)
+  hotkey.camera.jump.set.1 – Mark the current camera position, for jumping back to later (by default, there are 4 possible positions)
+  hotkey.camera.jump.1 – Move the camera to a marked position. Jump back to the last location if the camera is already over the marked position
+  hotkey.session.queueunit.1, hotkey.session.queueunit.2, hotkey.session.queueunit.3, hotkey.session.queueunit.4, hotkey.session.queueunit.5, hotkey.session.queueunit.6, hotkey.session.queueunit.7 – With training structure selected. Add the 1st, 2nd, … unit shown to the training queue for all the selected structures
+  hotkey.session.highlightguarded with unit(s) selected – Highlight the unit(s)/structure(s) guarded by the selection
+  hotkey.session.highlightguarding with unit(s)/structure(s) selected – Highlight the unit(s) guarding the selection
+  highlightguarding.showstatusbars – See all status bars (which would also show the building progress)
+  hotkey.summary – Toggle summary window
+  hotkey.lobby – Show the multiplayer lobby in a dialog window
+  hotkey.session.gui.diplomacy.toggle – Toggle in-game diplomacy panel
+  hotkey.session.gui.barter.toggle – Toggle in-game barter and trade panel
+  hotkey.session.gui.objectives.toggle – Toggle in-game objectives panel
+  hotkey.session.gui.tutorial.toggle – Toggle in-game tutorial panel
+  hotkey.structree – Toggle structure tree panel
+  hotkey.civinfo – Toggle civilization info panel
 
 [font="sans-bold-14"]Modify mouse action[font="sans-14"]
-  Ctrl + Right Click on structure – Garrison
-  J + Right Click on structure – Repair
-  P + Right Click – Patrol
-  Shift + Right Click – Queue the move/build/gather/etc. order
-  Alt + Right Click – Order one unit from the current selection to move/build/gather/etc. and unselect it. Used to quickly dispatch units with specific tasks
-  Shift + Left Click when training units – Add units in batches (the batch size is 5 by default and can be changed in the options)
-  Shift + Left Click or Left Drag over unit on map – Add unit to selection
-  Ctrl + Left Click or Left Drag over unit on map – Remove unit from selection
-  Alt + Left Drag over units on map – Only select military units
-  Alt + Y + Left Drag over units on map – Only select non-military units
-  I + Left Drag over units on map – Only select idle units
-  O + Left Drag over units on map – Only select wounded units
-  Ctrl + Left Click on unit/group icon with multiple units selected – Deselect
+  hotkey.session.garrison + Right Click on structure – Garrison
+  hotkey.session.repair + Right Click on structure – Repair
+  hotkey.session.patrol + Right Click – Patrol
+  hotkey.session.queue + Right Click – Queue the move/build/gather/etc. order
+  hotkey.session.orderone + Right Click – Order one unit from the current selection to move/build/gather/etc. and unselect it. Used to quickly dispatch units with specific tasks
+  hotkey.session.batchtrain + Left Click when training units – Add units in batches (the batch size is 5 by default and can be changed in the options)
+  hotkey.selection.add + Left Click or Left Drag over unit on map – Add unit to selection
+  hotkey.selection.remove + Left Click or Left Drag over unit on map – Remove unit from selection
+  hotkey.selection.militaryonly + Left Drag over units on map – Only select military units
+  hotkey.selection.nonmilitaryonly + Left Drag over units on map – Only select non-military units
+  hotkey.selection.idleonly + Left Drag over units on map – Only select idle units
+  hotkey.selection.woundedonly + Left Drag over units on map – Only select wounded units
   Right Click with a structure(s) selected – Set a rally point for units created/ungarrisoned from that structure
-  Ctrl + Right Click with unit(s) selected:
-    • If the cursor is over an own or allied structure – Garrison
-    • If the cursor is over an enemy unit/structure – Attack (instead of capture or gather)
-    • Otherwise – Attack move (by default all enemy units and structures along the way are targeted)
-  Ctrl + Q + Right Click with unit(s) selected – Attack move, only units along the way are targeted
-  Ctrl + Mouse Move near structures – Align the new structure with an existing nearby structure
+  hotkey.session.garrison + Right Click with unit(s) selected - Garrison (If the cursor is over an own or allied structure)
+  hotkey.session.attack + Right Click with unit(s) selected - Attack (instead of capture or gather)
+  hotkey.session.attackmove + Right Click with unit(s) selected - Attack move (by default all enemy units and structures along the way are targeted)
+  hotkey.session.attackmoveUnit + Right Click with unit(s) selected - Attack move, only units along the way are targeted
+  hotkey.session.snaptoedges + Mouse Move near structures – Align the new structure with an existing nearby structure
 
 [font="sans-bold-14"]Overlays[font="sans-14"]
-  Alt + G – Toggle the GUI
-  Alt + D – Toggle developer overlay (with developer options)
-  Alt + Shift + W – Toggle wireframe mode (press once to get wireframes overlaid over the textured models, twice to get just the wireframes colored by the textures, thrice to get back to normal textured mode)
-  Alt + Shift + S – Toggle unit silhouettes (might give a small performance boost)
-  Alt + Z – Toggle sky
-  Alt + X – Toggle diplomacy colors
-  Alt + C – Toggle attack range visualizations of selected units and structures
-  Alt + V – Toggle aura range visualizations of selected units and structures
-  Alt + B – Toggle heal range visualizations of selected units
+  hotkey.session.gui.toggle – Toggle the GUI
+  hotkey.session.devcommands.toggle – Toggle developer overlay (with developer options)
+  hotkey.wireframe – Toggle wireframe mode (press once to get wireframes overlaid over the textured models, twice to get just the wireframes colored by the textures, thrice to get back to normal textured mode)
+  hotkey.silhouettes – Toggle unit silhouettes (might give a small performance boost)
+  hotkey.showsky – Toggle sky
+  hotkey.session.diplomacycolors – Toggle diplomacy colors
+  hotkey.session.toggleattackrange – Toggle attack range visualizations of selected units and structures
+  hotkey.session.toggleaurasrange – Toggle aura range visualizations of selected units and structures
+  hotkey.session.togglehealrange – Toggle heal range visualizations of selected units
 
 [font="sans-bold-14"]Camera manipulation[font="sans-14"]
-  W or ↑ (Up) – Pan screen up
-  S or ↓ (Down) – Pan screen down
-  A or ← (Left) – Pan screen left
-  D or → (Right) – Pan screen right
-  Ctrl + W or Ctrl + ↑ (Up) – Rotate camera to look upward
-  Ctrl + S or Ctrl + ↓ (Down) – Rotate camera to look downward
-  Ctrl + A or Ctrl + ← (Left) – Rotate camera clockwise around terrain
-  Ctrl + D or Ctrl + → (Right) – Rotate camera counter-clockwise around terrain
-  Q – Rotate camera clockwise around terrain
-  E – Rotate camera counter-clockwise around terrain
-  Shift + Mouse Wheel Rotate Up – Rotate camera clockwise around terrain
-  Shift + Mouse Wheel Rotate Down – Rotate camera counter-clockwise around terrain
-  F – Follow the selected unit (move the camera to stop following the unit)
-  R – Reset camera zoom and orientation
-  = (Equals) or + (Plus) – Zoom in (keep pressed for continuous zoom)
-  - (Hyphen) or − (Minus) – Zoom out (keep pressed for continuous zoom)
-  Middle Mouse Button – Keep pressed and move the mouse to pan
+  hotkey.camera.up – Pan screen up
+  hotkey.camera.down – Pan screen down
+  hotkey.camera.left – Pan screen left
+  hotkey.camera.right – Pan screen right
+  hotkey.camera.rotate.up – Rotate camera to look upward
+  hotkey.camera.rotate.down – Rotate camera to look downward
+  hotkey.camera.rotate.cw – Rotate camera clockwise around terrain
+  hotkey.camera.rotate.ccw – Rotate camera counter-clockwise around terrain
+  hotkey.camera.rotate.wheel.cw – Rotate camera clockwise around terrain
+  hotkey.camera.rotate.wheel.ccw – Rotate camera counter-clockwise around terrain
+  hotkey.camera.follow – Follow the selected unit (move the camera to stop following the unit)
+  hotkey.camera.reset – Reset camera zoom and orientation
+  hotkey.camera.zoom.in, hotkey.camera.zoom.wheel.in – Zoom in (keep pressed for continuous zoom)
+  hotkey.camera.zoom.out, hotkey.camera.zoom.wheel.out – Zoom out (keep pressed for continuous zoom)
+  hotkey.camera.pan – Keep pressed and move the mouse to pan
 
 [font="sans-bold-14"]During Structure Placement[font="sans-14"]
-  \[ (Left Bracket) – Rotate structure 15 degrees counter-clockwise
-  ] (Right Bracket) – Rotate structure 15 degrees clockwise
+  hotkey.session.rotate.ccw – Rotate structure 15 degrees counter-clockwise
+  hotkey.session.rotate.cw – Rotate structure 15 degrees clockwise
   Left Drag – Rotate structure using mouse (foundation will be placed on mouse release)
 
 [font="sans-bold-14"]When loading a saved game[font="sans-14"]
-  Esc – Cancel
-  Delete – Delete the selected saved game, ask for confirmation
-  Shift + Delete – Immediately delete the selected saved game, without asking for confirmation
+  hotkey.cancel – Cancel
+  hotkey.session.savedgames.delete – Delete the selected saved game, ask for confirmation
+    • With hotkey.session.savedgames.noconfirmation – Don't ask for confirmation

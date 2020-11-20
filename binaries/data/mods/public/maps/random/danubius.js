@@ -58,16 +58,16 @@ const oTreasures = [
 
 // Disable capturing on all parts of the village except the
 // civic center and buildings occurring outside of the village
-const oCivicCenter = "structures/gaul_civil_centre";
-const oTower = "structures/gaul_defense_tower";
-const oOutpost = "structures/gaul_outpost";
+const oCivicCenter = "structures/gaul/civil_centre";
+const oTower = "structures/gaul/defense_tower";
+const oOutpost = "structures/gaul/outpost";
 
-const oTemple = "uncapturable|structures/gaul_temple";
-const oTavern = "uncapturable|structures/gaul_tavern";
-const oHouse = "uncapturable|structures/gaul_house";
+const oTemple = "uncapturable|structures/gaul/temple";
+const oTavern = "uncapturable|structures/gaul/tavern";
+const oHouse = "uncapturable|structures/gaul/house";
 const oLongHouse = "uncapturable|structures/celt_longhouse";
 const oHut = "uncapturable|structures/celt_hut";
-const oSentryTower = "uncapturable|structures/gaul_sentry_tower";
+const oSentryTower = "uncapturable|structures/gaul/sentry_tower";
 const oWatchTower = "uncapturable|structures/palisades_watchtower";
 
 const oPalisadeTallSpikes = "uncapturable|structures/palisades_spikes_tall";
@@ -79,10 +79,10 @@ const oPalisadeLong = "uncapturable|structures/palisades_long";
 const oPalisadeGate = "uncapturable|structures/palisades_gate";
 const oPalisadePillar = "uncapturable|structures/palisades_tower";
 
-const oFemale = "units/gaul_support_female_citizen";
-const oHealer = "units/gaul_support_healer_b";
-const oSkirmisher = "units/gaul_infantry_javelineer_b";
-const oNakedFanatic = "units/gaul_champion_fanatic";
+const oFemale = "units/gaul/support_female_citizen";
+const oHealer = "units/gaul/support_healer_b";
+const oSkirmisher = "units/gaul/infantry_javelineer_b";
+const oNakedFanatic = "units/gaul/champion_fanatic";
 
 const aBush1 = "actor|props/flora/bush_tempe_sm.xml";
 const aBush2 = "actor|props/flora/bush_tempe_me.xml";

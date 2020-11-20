@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_infantry_melee_swordsman">
+  <Builder>
+    <Entities datatype="tokens">
+      structures/rome/army_camp
+      structures/rome/temple_vesta
+    </Entities>
+  </Builder>
+  <Cost>
+    <Resources>
+      <food op="add">-10</food>
+      <metal op="add">20</metal>
+    </Resources>
+    <BuildTime op="add">5</BuildTime>
+  </Cost>
+  <Identity>
+    <VisibleClasses datatype="tokens">Gladiator</VisibleClasses>
+    <Civ>rome</Civ>
+    <Lang>latin</Lang>
+    <GenericName>Gladiator Swordsman</GenericName>
+    <SpecificName>Murmillo</SpecificName>
+    <Rank>Elite</Rank>
+    <Icon>units/rome_champion_infantry_gladiator_sword.png</Icon>
+    <RequiredTechnology>phase_town</RequiredTechnology>
+  </Identity>
+  <Promotion disable=""/>
+  <Resistance>
+    <Entity>
+      <Damage>
+        <Hack op="add">-1</Hack>
+        <Pierce op="add">-1</Pierce>
+      </Damage>
+    </Entity>
+  </Resistance>
+  <TrainingRestrictions>
+    <Category>Gladiator</Category>
+  </TrainingRestrictions>
+  <UnitMotion>
+    <WalkSpeed op="mul">1.4</WalkSpeed>
+  </UnitMotion>
+  <Vision>
+    <Range op="mul">0.5</Range>
+  </Vision>
+  <VisualActor>
+    <Actor>units/romans/infantry_gladiator_swordsman.xml</Actor>
+  </VisualActor>
+</Entity>

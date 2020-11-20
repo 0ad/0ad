@@ -99,7 +99,7 @@ Trigger.prototype.tutorialGoals = [
 		],
 		"OnTrainingQueued": function(msg)
 		{
-			if (msg.unitTemplate != "units/athen_infantry_spearman_b" || +msg.count == 1)
+			if (msg.unitTemplate != "units/athen/infantry_spearman_b" || +msg.count == 1)
 			{
 				let entity = msg.trainerEntity;
 				let cmpProductionQueue = Engine.QueryInterface(entity, IID_ProductionQueue);
@@ -132,7 +132,7 @@ Trigger.prototype.tutorialGoals = [
 		],
 		"OnPlayerCommand": function(msg)
 		{
-			if (msg.cmd.type == "construct" && msg.cmd.template == "structures/athen_storehouse")
+			if (msg.cmd.type == "construct" && msg.cmd.template == "structures/athen/storehouse")
 				this.NextGoal();
 		}
 	},
@@ -158,7 +158,7 @@ Trigger.prototype.tutorialGoals = [
 		},
 		"OnTrainingQueued": function(msg)
 		{
-			if (msg.unitTemplate != "units/athen_support_female_citizen" || +msg.count == 1)
+			if (msg.unitTemplate != "units/athen/support_female_citizen" || +msg.count == 1)
 			{
 				let entity = msg.trainerEntity;
 				let cmpProductionQueue = Engine.QueryInterface(entity, IID_ProductionQueue);
@@ -261,7 +261,7 @@ Trigger.prototype.tutorialGoals = [
 		],
 		"OnPlayerCommand": function(msg)
 		{
-			if (msg.cmd.type == "construct" && msg.cmd.template == "structures/athen_farmstead")
+			if (msg.cmd.type == "construct" && msg.cmd.template == "structures/athen/farmstead")
 				this.NextGoal();
 		},
 		"OnOwnershipChanged": function(msg)
@@ -293,7 +293,7 @@ Trigger.prototype.tutorialGoals = [
 		],
 		"OnPlayerCommand": function(msg)
 		{
-			if (msg.cmd.type == "construct" && msg.cmd.template == "structures/athen_field")
+			if (msg.cmd.type == "construct" && msg.cmd.template == "structures/athen/field")
 				this.NextGoal();
 		}
 	},
@@ -335,7 +335,7 @@ Trigger.prototype.tutorialGoals = [
 		},
 		"OnTrainingQueued": function(msg)
 		{
-			if (msg.unitTemplate != "units/athen_support_female_citizen" || +msg.count != 1)
+			if (msg.unitTemplate != "units/athen/support_female_citizen" || +msg.count != 1)
 			{
 				let entity = msg.trainerEntity;
 				let cmpProductionQueue = Engine.QueryInterface(entity, IID_ProductionQueue);
@@ -374,7 +374,7 @@ Trigger.prototype.tutorialGoals = [
 		],
 		"OnPlayerCommand": function(msg)
 		{
-			if (msg.cmd.type == "construct" && msg.cmd.template == "structures/athen_barracks")
+			if (msg.cmd.type == "construct" && msg.cmd.template == "structures/athen/barracks")
 				this.NextGoal();
 		}
 

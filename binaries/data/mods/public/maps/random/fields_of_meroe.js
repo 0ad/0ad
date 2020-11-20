@@ -33,14 +33,14 @@ const oStoneSmall = "gaia/rock/desert_small";
 const oMetalLarge = "gaia/ore/savanna_large";
 const oMetalSmall = "gaia/ore/desert_small";
 
-const oHouse = "structures/kush_house";
-const oFarmstead = "structures/kush_farmstead";
-const oField = "structures/kush_field";
-const oPyramid = "structures/kush_pyramid_small";
-const oPyramidLarge = "structures/kush_pyramid_large";
+const oHouse = "structures/kush/house";
+const oFarmstead = "structures/kush/farmstead";
+const oField = "structures/kush/field";
+const oPyramid = "structures/kush/pyramid_small";
+const oPyramidLarge = "structures/kush/pyramid_large";
 const oKushUnits = isNomad() ?
-	"units/kush_support_female_citizen" :
-	"units/kush_infantry_javelineer_merc_e";
+	"units/kush/support_female_citizen" :
+	"units/kush/infantry_javelineer_merc_e";
 
 const aRain = g_Decoratives.rain;
 const aBushA = g_Decoratives.bushA;

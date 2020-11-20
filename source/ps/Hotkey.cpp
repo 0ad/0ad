@@ -20,6 +20,7 @@
 
 #include <boost/tokenizer.hpp>
 
+#include "lib/external_libraries/libsdl.h"
 #include "ps/CConsole.h"
 #include "ps/CLogger.h"
 #include "ps/CStr.h"
@@ -29,29 +30,11 @@
 
 static bool unified[UNIFIED_LAST - UNIFIED_SHIFT];
 
-struct SKey
-{
-	SDL_Keycode code; // keycode or MOUSE_ or UNIFIED_ value
-	bool negated; // whether the key must be pressed (false) or unpressed (true)
-};
+std::unordered_map<int, KeyMapping> g_HotkeyMap;
+std::unordered_map<std::string, bool> g_HotkeyStatus;
 
-// Hotkey data associated with an externally-specified 'primary' keycode
-struct SHotkeyMapping
-{
-	CStr name; // name of the hotkey
-	bool negated; // whether the primary key must be pressed (false) or unpressed (true)
-	std::vector<SKey> requires; // list of non-primary keys that must also be active
-};
-
-typedef std::vector<SHotkeyMapping> KeyMapping;
-
-// A mapping of keycodes onto the hotkeys that are associated with that key.
-// (A hotkey triggered by a combination of multiple keys will be in this map
-// multiple times.)
-static std::map<int, KeyMapping> g_HotkeyMap;
-
-// The current pressed status of hotkeys
-std::map<std::string, bool> g_HotkeyStatus;
+static_assert(std::is_integral<std::underlying_type<SDL_Scancode>::type>::value, "SDL_Scancode is not an integral enum.");
+static_assert(SDL_USEREVENT_ == SDL_USEREVENT, "SDL_USEREVENT_ is not the same type as the real SDL_USEREVENT");
 
 // Look up each key binding in the config file and set the mappings for
 // all key combinations that trigger it.
@@ -74,16 +57,14 @@ static void LoadConfigBindings()
 			for (tokenizer::iterator it = tok.begin(); it != tok.end(); ++it)
 			{
 				// Attempt decode as key name
-				int mapping = FindKeyCode(*it);
-				if (!mapping)
-					mapping = SDL_GetKeyFromName(it->c_str());
-				if (!mapping)
+				SDL_Scancode scancode = FindScancode(it->c_str());
+				if (!scancode)
 				{
 					LOGWARNING("Hotkey mapping used invalid key '%s'", hotkey.c_str());
 					continue;
 				}
 
-				SKey key = { (SDL_Keycode)mapping, false };
+				SKey key = { scancode, false };
 				keyCombination.push_back(key);
 			}
 
@@ -107,8 +88,6 @@ static void LoadConfigBindings()
 
 void LoadHotkeys()
 {
-	InitKeyNameMap();
-
 	LoadConfigBindings();
 
 	// Set up the state of the hotkeys given no key is down.
@@ -146,7 +125,7 @@ bool isNegated(const SKey& key)
 	else if ((int)key.code < MOUSE_LAST && (int)key.code > MOUSE_BASE && g_mouse_buttons[key.code - MOUSE_BASE] == key.negated)
 		return false;
 	// Modifier keycodes are between the normal keys and the mouse 'keys'
-	else if ((int)key.code < UNIFIED_LAST && (int)key.code > SDL_SCANCODE_TO_KEYCODE(SDL_NUM_SCANCODES) && unified[key.code - UNIFIED_SHIFT] == key.negated)
+	else if ((int)key.code < UNIFIED_LAST && (int)key.code > SDL_NUM_SCANCODES && unified[key.code - UNIFIED_SHIFT] == key.negated)
 		return false;
 	else
 		return true;
@@ -163,13 +142,13 @@ InReaction HotkeyStateChange(const SDL_Event_* ev)
 
 InReaction HotkeyInputHandler(const SDL_Event_* ev)
 {
-	int keycode = 0;
+	int scancode = SDL_SCANCODE_UNKNOWN;
 
 	switch(ev->ev.type)
 	{
 	case SDL_KEYDOWN:
 	case SDL_KEYUP:
-		keycode = (int)ev->ev.key.keysym.sym;
+		scancode = ev->ev.key.keysym.scancode;
 		break;
 
 	case SDL_MOUSEBUTTONDOWN:
@@ -177,30 +156,30 @@ InReaction HotkeyInputHandler(const SDL_Event_* ev)
 		// Mousewheel events are no longer buttons, but we want to maintain the order
 		// expected by g_mouse_buttons for compatibility
 		if (ev->ev.button.button >= SDL_BUTTON_X1)
-			keycode = MOUSE_BASE + (int)ev->ev.button.button + 2;
+			scancode = MOUSE_BASE + (int)ev->ev.button.button + 2;
 		else
-		keycode = MOUSE_BASE + (int)ev->ev.button.button;
+			scancode = MOUSE_BASE + (int)ev->ev.button.button;
 		break;
 
 	case SDL_MOUSEWHEEL:
 		if (ev->ev.wheel.y > 0)
 		{
-			keycode = MOUSE_WHEELUP;
+			scancode = MOUSE_WHEELUP;
 			break;
 		}
 		else if (ev->ev.wheel.y < 0)
 		{
-			keycode = MOUSE_WHEELDOWN;
+			scancode = MOUSE_WHEELDOWN;
 			break;
 		}
 		else if (ev->ev.wheel.x > 0)
 		{
-			keycode = MOUSE_X2;
+			scancode = MOUSE_X2;
 			break;
 		}
 		else if (ev->ev.wheel.x < 0)
 		{
-			keycode = MOUSE_X1;
+			scancode = MOUSE_X1;
 			break;
 		}
 		return IN_PASS;
@@ -219,33 +198,33 @@ InReaction HotkeyInputHandler(const SDL_Event_* ev)
 	if (phantom.ev.type == SDL_KEYDOWN)
 		phantom.ev.key.repeat = ev->ev.type == SDL_KEYDOWN ? ev->ev.key.repeat : 0;
 
-	if ((keycode == SDLK_LSHIFT) || (keycode == SDLK_RSHIFT))
+	if (scancode == SDL_SCANCODE_LSHIFT || scancode == SDL_SCANCODE_RSHIFT)
 	{
-		phantom.ev.key.keysym.sym = (SDL_Keycode)UNIFIED_SHIFT;
+		phantom.ev.key.keysym.scancode = static_cast<SDL_Scancode>(UNIFIED_SHIFT);
 		unified[0] = (phantom.ev.type == SDL_KEYDOWN);
 		HotkeyInputHandler(&phantom);
 	}
-	else if ((keycode == SDLK_LCTRL) || (keycode == SDLK_RCTRL))
+	else if (scancode == SDL_SCANCODE_LCTRL || scancode == SDL_SCANCODE_RCTRL)
 	{
-		phantom.ev.key.keysym.sym = (SDL_Keycode)UNIFIED_CTRL;
+		phantom.ev.key.keysym.scancode = static_cast<SDL_Scancode>(UNIFIED_CTRL);
 		unified[1] = (phantom.ev.type == SDL_KEYDOWN);
 		HotkeyInputHandler(&phantom);
 	}
-	else if ((keycode == SDLK_LALT) || (keycode == SDLK_RALT))
+	else if (scancode == SDL_SCANCODE_LALT || scancode == SDL_SCANCODE_RALT)
 	{
-		phantom.ev.key.keysym.sym = (SDL_Keycode)UNIFIED_ALT;
+		phantom.ev.key.keysym.scancode = static_cast<SDL_Scancode>(UNIFIED_ALT);
 		unified[2] = (phantom.ev.type == SDL_KEYDOWN);
 		HotkeyInputHandler(&phantom);
 	}
-	else if ((keycode == SDLK_LGUI) || (keycode == SDLK_RGUI))
+	else if (scancode == SDL_SCANCODE_LGUI || scancode == SDL_SCANCODE_RGUI)
 	{
-		phantom.ev.key.keysym.sym = (SDL_Keycode)UNIFIED_SUPER;
+		phantom.ev.key.keysym.scancode = static_cast<SDL_Scancode>(UNIFIED_SUPER);
 		unified[3] = (phantom.ev.type == SDL_KEYDOWN);
 		HotkeyInputHandler(&phantom);
 	}
 
 	// Check whether we have any hotkeys registered for this particular keycode
-	if (g_HotkeyMap.find(keycode) == g_HotkeyMap.end())
+	if (g_HotkeyMap.find(scancode) == g_HotkeyMap.end())
 		return (IN_PASS);
 
 	// Inhibit the dispatch of hotkey events caused by real keys (not fake mouse button
@@ -253,7 +232,7 @@ InReaction HotkeyInputHandler(const SDL_Event_* ev)
 
 	bool consoleCapture = false;
 
-	if (g_Console && g_Console->IsActive() && keycode < SDL_SCANCODE_TO_KEYCODE(SDL_NUM_SCANCODES))
+	if (g_Console && g_Console->IsActive() && scancode < SDL_NUM_SCANCODES)
 		consoleCapture = true;
 
 	// Here's an interesting bit:
@@ -273,7 +252,7 @@ InReaction HotkeyInputHandler(const SDL_Event_* ev)
 	std::vector<const char*> closestMapNames;
 	size_t closestMapMatch = 0;
 
-	for (const SHotkeyMapping& hotkey : g_HotkeyMap[keycode])
+	for (const SHotkeyMapping& hotkey : g_HotkeyMap[scancode])
 	{
 		// If a key has been pressed, and this event triggers on its release, skip it.
 		// Similarly, if the key's been released and the event triggers on a keypress, skip it.
@@ -329,7 +308,7 @@ InReaction HotkeyInputHandler(const SDL_Event_* ev)
 
 	// -- KEYUP SECTION --
 
-	for (const SHotkeyMapping& hotkey : g_HotkeyMap[keycode])
+	for (const SHotkeyMapping& hotkey : g_HotkeyMap[scancode])
 	{
 		// If it's a keydown event, won't cause HotKeyUps in anything that doesn't
 		// use this key negated => skip them

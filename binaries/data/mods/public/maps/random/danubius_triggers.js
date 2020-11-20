@@ -22,9 +22,9 @@ const danubiusAttackerTemplates = deepfreeze({
 	"citizen_soldiers": TriggerHelper.GetTemplateNamesByClasses("CitizenSoldier", "gaul", undefined, "Basic", true),
 	"heroes": [
 		// Excludes the Vercingetorix variant
-		"units/gaul_hero_viridomarus",
-		"units/gaul_hero_vercingetorix",
-		"units/gaul_hero_brennus"
+		"units/gaul/hero_viridomarus",
+		"units/gaul/hero_vercingetorix",
+		"units/gaul/hero_brennus"
 	]
 });
 

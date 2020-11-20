@@ -73,7 +73,7 @@ class CLosQuerier;
  *
  * In most cases the users are event-based and want notifications when something
  * has entered or left the range, and the query can be set up once and rarely changed.
- * These queries have to be fast. It's fine to approximate an entity as a point.
+ * These queries have to be fast. Entities are approximated as circles.
  *
  * Current design:
  *

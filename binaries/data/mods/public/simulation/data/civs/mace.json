@@ -99,26 +99,26 @@
 	],
 	"WallSets": [
 		"structures/wallset_palisade",
-		"structures/mace_wallset_stone"
+		"structures/mace/wallset_stone"
 	],
 	"StartEntities": [
 		{
-			"Template": "structures/mace_civil_centre"
+			"Template": "structures/mace/civil_centre"
 		},
 		{
-			"Template": "units/mace_support_female_citizen",
+			"Template": "units/mace/support_female_citizen",
 			"Count": 4
 		},
 		{
-			"Template": "units/mace_infantry_pikeman_b",
+			"Template": "units/mace/infantry_pikeman_b",
 			"Count": 2
 		},
 		{
-			"Template": "units/mace_infantry_javelineer_b",
+			"Template": "units/mace/infantry_javelineer_b",
 			"Count": 2
 		},
 		{
-			"Template": "units/mace_cavalry_spearman_b"
+			"Template": "units/mace/cavalry_spearman_b"
 		}
 	],
 	"Formations": [
@@ -151,9 +151,9 @@
 		"Meleager"
 	],
 	"SkirmishReplacements": {
-		"skirmish/units/default_cavalry": "units/mace_cavalry_spearman_b",
-		"skirmish/units/default_infantry_melee_b": "units/mace_infantry_pikeman_b",
-		"skirmish/structures/default_house_10": "structures/{civ}_house"
+		"skirmish/units/default_cavalry": "units/mace/cavalry_spearman_b",
+		"skirmish/units/default_infantry_melee_b": "units/mace/infantry_pikeman_b",
+		"skirmish/structures/default_house_10": "structures/{civ}/house"
 	},
 	"SelectableInGameSetup": true
 }

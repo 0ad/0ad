@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_support_healer">
+  <Identity>
+    <Civ>ptol</Civ>
+    <GenericName>Surgeon</GenericName>
+    <SpecificName>Iatros</SpecificName>
+    <Icon>units/ptol_support_healer.png</Icon>
+  </Identity>
+  <Promotion>
+    <Entity>units/ptol/support_healer_a</Entity>
+  </Promotion>
+  <VisualActor>
+    <Actor>units/ptolemies/healer.xml</Actor>
+  </VisualActor>
+</Entity>

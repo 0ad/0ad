@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_special">
+  <BuildRestrictions>
+    <Category>Palace</Category>
+  </BuildRestrictions>
+  <Cost>
+    <BuildTime>300</BuildTime>
+    <PopulationBonus>10</PopulationBonus>
+    <Resources>
+      <stone>300</stone>
+      <metal>200</metal>
+    </Resources>
+  </Cost>
+  <Footprint>
+    <Square width="32.0" depth="32.0"/>
+    <Height>8.0</Height>
+  </Footprint>
+  <GarrisonHolder>
+    <Max>10</Max>
+  </GarrisonHolder>
+  <Health>
+    <Max>3000</Max>
+    <SpawnEntityOnDeath>decay|rubble/rubble_stone_6x6</SpawnEntityOnDeath>
+  </Health>
+  <Identity>
+    <Civ>pers</Civ>
+    <GenericName>Throne Hall</GenericName>
+    <SpecificName>Apadāna</SpecificName>
+    <Tooltip>Train Champions and Heroes.</Tooltip>
+    <Classes datatype="tokens">ConquestCritical</Classes>
+    <VisibleClasses datatype="tokens">Palace</VisibleClasses>
+    <Icon>structures/palace.png</Icon>
+  </Identity>
+  <Loot>
+    <stone>60</stone>
+    <metal>40</metal>
+  </Loot>
+  <Obstruction>
+    <Static width="30.0" depth="30.0"/>
+  </Obstruction>
+  <ProductionQueue>
+    <BatchTimeModifier>0.8</BatchTimeModifier>
+    <Entities datatype="tokens">
+      units/{civ}/champion_infantry
+      units/{civ}/hero_cyrus
+      units/{civ}/hero_darius
+      units/{civ}/hero_xerxes
+    </Entities>
+    <Technologies datatype="tokens">
+      persians/immortals
+    </Technologies>
+  </ProductionQueue>
+  <ResourceTrickle>
+    <Rates>
+      <food>1.0</food>
+      <wood>1.0</wood>
+      <stone>0.75</stone>
+      <metal>0.75</metal>
+    </Rates>
+    <Interval>1000</Interval>
+  </ResourceTrickle>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_broch.xml</select>
+      <constructed>interface/complete/building/complete_broch.xml</constructed>
+    </SoundGroups>
+  </Sound>
+  <TerritoryInfluence>
+    <Root>true</Root>
+    <Radius>48</Radius>
+    <Weight>40000</Weight>
+  </TerritoryInfluence>
+  <Vision>
+    <Range>40</Range>
+  </Vision>
+  <VisualActor>
+    <Actor>structures/persians/apadana.xml</Actor>
+    <FoundationActor>structures/fndn_8x9.xml</FoundationActor>
+  </VisualActor>
+</Entity>

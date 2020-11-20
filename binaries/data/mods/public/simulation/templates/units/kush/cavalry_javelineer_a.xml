@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="units/kush/cavalry_javelineer_b">
+  <Identity>
+    <Rank>Advanced</Rank>
+  </Identity>
+  <Promotion>
+    <Entity>units/kush/cavalry_javelineer_e</Entity>
+  </Promotion>
+  <VisualActor>
+    <Actor>units/kushites/cavalry_javelinist_a_m.xml</Actor>
+  </VisualActor>
+</Entity>

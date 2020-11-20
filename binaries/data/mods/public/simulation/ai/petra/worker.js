@@ -673,8 +673,8 @@ PETRA.Worker.prototype.startGathering = function(gameState)
 	{
 		if (gameState.ai.HQ.turnCache.allowDistantFood === undefined)
 			gameState.ai.HQ.turnCache.allowDistantFood =
-				!gameState.ai.HQ.canBuild(gameState, "structures/{civ}_field") &&
-				!gameState.ai.HQ.canBuild(gameState, "structures/{civ}_corral");
+				!gameState.ai.HQ.canBuild(gameState, "structures/{civ}/field") &&
+				!gameState.ai.HQ.canBuild(gameState, "structures/{civ}/corral");
 		allowDistant = gameState.ai.HQ.turnCache.allowDistantFood;
 	}
 	if (allowDistant)

@@ -118,26 +118,26 @@
 	],
 	"WallSets": [
 		"structures/wallset_palisade",
-		"structures/athen_wallset_stone"
+		"structures/athen/wallset_stone"
 	],
 	"StartEntities": [
 		{
-			"Template": "structures/athen_civil_centre"
+			"Template": "structures/athen/civil_centre"
 		},
 		{
-			"Template": "units/athen_support_female_citizen",
+			"Template": "units/athen/support_female_citizen",
 			"Count": 4
 		},
 		{
-			"Template": "units/athen_infantry_spearman_b",
+			"Template": "units/athen/infantry_spearman_b",
 			"Count": 2
 		},
 		{
-			"Template": "units/athen_infantry_slinger_b",
+			"Template": "units/athen/infantry_slinger_b",
 			"Count": 2
 		},
 		{
-			"Template": "units/athen_cavalry_javelineer_b"
+			"Template": "units/athen/cavalry_javelineer_b"
 		}
 	],
 	"Formations": [
@@ -171,8 +171,8 @@
 		"Demosthenes"
 	],
 	"SkirmishReplacements": {
-		"skirmish/units/default_infantry_ranged_b": "units/athen_infantry_slinger_b",
-		"skirmish/structures/default_house_10": "structures/{civ}_house"
+		"skirmish/units/default_infantry_ranged_b": "units/athen/infantry_slinger_b",
+		"skirmish/structures/default_house_10": "structures/{civ}/house"
 	},
 	"SelectableInGameSetup": true
 }
