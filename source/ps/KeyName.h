@@ -23,7 +23,7 @@
 
 class CStr8;
 
-extern SDL_Scancode FindScancode(const CStr& keyname);
+extern SDL_Scancode FindScancode(const CStr8& keyname);
 // Map a scancode to a locale-independent scancode name.
 extern CStr8 FindScancodeName(SDL_Scancode scancode);
 // Map a scancode to a locale-dependent key name (to show the user).

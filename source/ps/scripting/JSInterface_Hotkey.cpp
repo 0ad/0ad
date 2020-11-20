@@ -19,13 +19,15 @@
 
 #include "JSInterface_Hotkey.h"
 
-#include <unordered_map>
-#include <vector>
-
 #include "lib/external_libraries/libsdl.h"
+#include "ps/CLogger.h"
 #include "ps/Hotkey.h"
 #include "ps/KeyName.h"
 #include "scriptinterface/ScriptConversions.h"
+
+#include <unordered_map>
+#include <vector>
+#include <set>
 
 /**
  * Convert an unordered map to a JS object, mapping keys to values.

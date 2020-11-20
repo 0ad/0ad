@@ -84,7 +84,7 @@ static const std::unordered_map<int, std::vector<CStr>> scancodemap {{
 	{ UNIFIED_SUPER, { "Super", "Left Gui", "Right Gui" } },
 }};
 
-SDL_Scancode FindScancode(const CStr& keyname)
+SDL_Scancode FindScancode(const CStr8& keyname)
 {
 	// Find (ignoring case) a corresponding scancode, if one exists.
 	std::unordered_map<int, std::vector<CStr>>::const_iterator it =

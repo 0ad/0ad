@@ -19,10 +19,13 @@
 
 #include "CHotkeyPicker.h"
 
+#include "gui/ObjectBases/IGUIObject.h"
 #include "lib/timer.h"
+#include "ps/CLogger.h"
 #include "ps/Hotkey.h"
 #include "ps/KeyName.h"
 #include "scriptinterface/ScriptConversions.h"
+
 
 const CStr CHotkeyPicker::EventNameCombination = "Combination";
 const CStr CHotkeyPicker::EventNameKeyChange = "KeyChange";

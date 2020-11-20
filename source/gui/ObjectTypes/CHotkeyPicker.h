@@ -18,8 +18,11 @@
 #ifndef INCLUDED_CHOTKEYPICKER
 #define INCLUDED_CHOTKEYPICKER
 
+#include "gui/CGUI.h"
 #include "lib/external_libraries/libsdl.h"
 #include "ps/CStr.h"
+
+#include <vector>
 
 class ScriptInterface;
 
