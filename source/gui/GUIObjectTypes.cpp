@@ -14,8 +14,8 @@
  * You should have received a copy of the GNU General Public License
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef INCLUDED_GUIOBJECTTYPES
-#define INCLUDED_GUIOBJECTTYPES
+
+#include "precompiled.h"
 
 #include "gui/ObjectTypes/CButton.h"
 #include "gui/ObjectTypes/CChart.h"
@@ -32,9 +32,13 @@
 #include "gui/ObjectTypes/CSlider.h"
 #include "gui/ObjectTypes/CText.h"
 #include "gui/ObjectTypes/CTooltip.h"
+#include "gui/Scripting/JSInterface_GUIProxy.h"
 
 void CGUI::AddObjectTypes()
 {
+	m_ProxyData.insert(JSI_GUIProxy<IGUIObject>::CreateData(*m_ScriptInterface));
+	m_ProxyData.insert(JSI_GUIProxy<CText>::CreateData(*m_ScriptInterface));
+
 	AddObjectType("button", &CButton::ConstructObject);
 	AddObjectType("chart", &CChart::ConstructObject);
 	AddObjectType("checkbox", &CCheckBox::ConstructObject);
@@ -52,5 +56,3 @@ void CGUI::AddObjectTypes()
 	AddObjectType("text", &CText::ConstructObject);
 	AddObjectType("tooltip", &CTooltip::ConstructObject);
 }
-
-#endif // INCLUDED_GUIOBJECTTYPES

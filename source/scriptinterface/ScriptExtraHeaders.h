@@ -49,6 +49,7 @@
 #include "js/Conversions.h"
 #include "js/GCAPI.h"
 #include "js/StructuredClone.h"
+#include "js/Proxy.h"
 
 #undef signbit
 

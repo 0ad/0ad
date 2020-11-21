@@ -25,11 +25,11 @@
 #ifndef INCLUDED_IGUIOBJECT
 #define INCLUDED_IGUIOBJECT
 
-#include "gui/Scripting/JSInterface_IGUIObject.h"
 #include "gui/SettingTypes/CGUISize.h"
 #include "gui/SGUIMessage.h"
 #include "lib/input.h" // just for IN_PASS
 #include "ps/XML/Xeromyces.h"
+#include "scriptinterface/ScriptTypes.h"
 
 #include <map>
 #include <string>
@@ -38,6 +38,9 @@
 class CGUI;
 class IGUIObject;
 class IGUISetting;
+
+template <typename T>
+class JSI_GUIProxy;
 
 using map_pObjects = std::map<CStr, IGUIObject*>;
 
@@ -55,10 +58,8 @@ class IGUIObject
 	friend class CGUI;
 
 	// Allow getProperty to access things like GetParent()
-	friend bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JS::MutableHandleValue vp);
-	friend bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JS::MutableHandleValue vp, JS::ObjectOpResult& result);
-	friend bool JSI_IGUIObject::deleteProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JS::ObjectOpResult& result);
-	friend bool JSI_IGUIObject::getComputedSize(JSContext* cx, uint argc, JS::Value* vp);
+	template <typename T>
+	friend class JSI_GUIProxy;
 
 public:
 	NONCOPYABLE(IGUIObject);
@@ -231,14 +232,17 @@ public:
 	void RegisterScriptHandler(const CStr& eventName, const CStr& Code, CGUI& pGUI);
 
 	/**
-	 * Inheriting classes may append JS functions to the JS object representing this class.
-	 */
-	virtual void RegisterScriptFunctions() {}
-
-	/**
 	 * Retrieves the JSObject representing this GUI object.
 	 */
 	JSObject* GetJSObject();
+
+	/**
+	 * The following functions are called from JS.
+	 */
+	void toString(ScriptInterface& scriptInterface, JS::MutableHandleValue ret);
+	void focus(ScriptInterface& scriptInterface, JS::MutableHandleValue ret);
+	void blur(ScriptInterface& scriptInterface, JS::MutableHandleValue ret);
+	void getComputedSize(ScriptInterface& scriptInterface, JS::MutableHandleValue ret);
 
 	//@}
 protected:
@@ -458,7 +462,7 @@ private:
 	/**
 	 * Creates the JS object representing this page upon first use.
 	 */
-	void CreateJSObject();
+	virtual void CreateJSObject();
 
 	/**
 	 * Updates some internal data depending on the setting changed.

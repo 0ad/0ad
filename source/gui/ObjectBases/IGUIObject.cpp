@@ -21,6 +21,7 @@
 
 #include "gui/CGUI.h"
 #include "gui/CGUISetting.h"
+#include "gui/Scripting/JSInterface_GUIProxy.h"
 #include "js/Conversions.h"
 #include "ps/CLogger.h"
 #include "ps/GameSetup/Config.h"
@@ -452,10 +453,12 @@ void IGUIObject::CreateJSObject()
 {
 	ScriptRequest rq(m_pGUI.GetScriptInterface());
 
-	m_JSObject.init(rq.cx, m_pGUI.GetScriptInterface()->CreateCustomObject("GUIObject"));
-	JS_SetPrivate(m_JSObject.get(), this);
+	js::ProxyOptions options;
+	options.setClass(&JSI_GUIProxy<IGUIObject>::ClassDefinition());
 
-	RegisterScriptFunctions();
+	JS::RootedValue cppObj(rq.cx);
+	m_JSObject.init(rq.cx, js::NewProxyObject(rq.cx, &JSI_GUIProxy<IGUIObject>::Singleton(), cppObj, nullptr, options));
+	JS_SetPrivate(m_JSObject.get(), this);
 }
 
 JSObject* IGUIObject::GetJSObject()
@@ -466,6 +469,31 @@ JSObject* IGUIObject::GetJSObject()
 		CreateJSObject();
 
 	return m_JSObject.get();
+}
+
+void IGUIObject::toString(ScriptInterface& scriptInterface, JS::MutableHandleValue ret)
+{
+	ScriptRequest rq(scriptInterface);
+	ScriptInterface::ToJSVal(rq, ret, "[GUIObject: " + GetName() + "]");
+}
+
+void IGUIObject::focus(ScriptInterface& UNUSED(scriptInterface), JS::MutableHandleValue ret)
+{
+	GetGUI().SetFocusedObject(this);
+	ret.setUndefined();
+}
+
+void IGUIObject::blur(ScriptInterface& UNUSED(scriptInterface), JS::MutableHandleValue ret)
+{
+	GetGUI().SetFocusedObject(nullptr);
+	ret.setUndefined();
+}
+
+void IGUIObject::getComputedSize(ScriptInterface& scriptInterface, JS::MutableHandleValue ret)
+{
+	UpdateCachedSize();
+	ScriptRequest rq(scriptInterface);
+	ScriptInterface::ToJSVal(rq, ret, m_CachedActualSize);
 }
 
 bool IGUIObject::IsEnabled() const

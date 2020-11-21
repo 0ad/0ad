@@ -39,11 +39,12 @@ namespace {
 		JS::PersistentRootedObject m_Focus;
 		JS::PersistentRootedObject m_Blur;
 		JS::PersistentRootedObject m_GetComputedSize;
+		JS::PersistentRootedObject m_GetTextSize;
 	};
 }
 
 template <>
-bool JSI_GUIProxy<IGUIObject>::funcGetter(IGUIObject* elem, const std::string& propName, JS::MutableHandleValue vp) const
+bool JSI_GUIProxy<CText>::funcGetter(CText* elem, const std::string& propName, JS::MutableHandleValue vp) const
 {
 	const SData& data = *static_cast<const SData*>(elem->GetGUI().GetProxyData(this));
 	if (propName == "toString")
@@ -54,21 +55,26 @@ bool JSI_GUIProxy<IGUIObject>::funcGetter(IGUIObject* elem, const std::string& p
 		return vp.setObjectOrNull(data.m_Blur), true;
 	if (propName == "getComputedSize")
 		return vp.setObjectOrNull(data.m_GetComputedSize), true;
+	if (propName == "getTextSize")
+		return vp.setObjectOrNull(data.m_GetTextSize), true;
 	return false;
 }
 
 template <>
-std::pair<const js::BaseProxyHandler*, void*> JSI_GUIProxy<IGUIObject>::CreateData(ScriptInterface& scriptInterface)
+std::pair<const js::BaseProxyHandler*, void*> JSI_GUIProxy<CText>::CreateData(ScriptInterface& scriptInterface)
 {
 	SData* data = new SData();
 	ScriptRequest rq(scriptInterface);
-#define func(class, func) &apply_to<IGUIObject, class, &class::func>
+
+#define func(class, func) &apply_to<CText, class, &class::func>
 	data->m_ToString.init(rq.cx, JS_GetFunctionObject(JS_NewFunction(rq.cx, func(IGUIObject, toString), 0, 0, "toString")));
 	data->m_Focus.init(rq.cx, JS_GetFunctionObject(JS_NewFunction(rq.cx, func(IGUIObject, focus), 0, 0, "focus")));
 	data->m_Blur.init(rq.cx, JS_GetFunctionObject(JS_NewFunction(rq.cx, func(IGUIObject, blur), 0, 0, "blur")));
 	data->m_GetComputedSize.init(rq.cx, JS_GetFunctionObject(JS_NewFunction(rq.cx, func(IGUIObject, getComputedSize), 0, 0, "getComputedSize")));
+	data->m_GetTextSize.init(rq.cx, JS_GetFunctionObject(JS_NewFunction(rq.cx, func(CText, getTextSize), 0, 0, "getTextSize")));
 #undef func
+
 	return { &Singleton(), data };
 }
 
-template class JSI_GUIProxy<IGUIObject>;
+template class JSI_GUIProxy<CText>;

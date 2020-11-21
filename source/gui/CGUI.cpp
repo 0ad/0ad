@@ -19,8 +19,8 @@
 
 #include "CGUI.h"
 
-#include "gui/GUIObjectTypes.h"
 #include "gui/IGUIScrollBar.h"
+#include "gui/ObjectTypes/CTooltip.h"
 #include "gui/Scripting/ScriptFunctions.h"
 #include "i18n/L10n.h"
 #include "lib/bits.h"

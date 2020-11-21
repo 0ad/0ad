@@ -22,7 +22,6 @@
 #include "graphics/scripting/JSInterface_GameView.h"
 #include "gui/Scripting/JSInterface_GUIManager.h"
 #include "gui/Scripting/JSInterface_GUISize.h"
-#include "gui/Scripting/JSInterface_IGUIObject.h"
 #include "i18n/scripting/JSInterface_L10n.h"
 #include "lobby/scripting/JSInterface_Lobby.h"
 #include "network/scripting/JSInterface_Network.h"
@@ -52,8 +51,6 @@
 void GuiScriptingInit(ScriptInterface& scriptInterface)
 {
 	JSI_GUISize::RegisterScriptClass(scriptInterface);
-	JSI_IGUIObject::RegisterScriptClass(scriptInterface);
-
 	JSI_ConfigDB::RegisterScriptFunctions(scriptInterface);
 	JSI_Console::RegisterScriptFunctions(scriptInterface);
 	JSI_Debug::RegisterScriptFunctions(scriptInterface);
