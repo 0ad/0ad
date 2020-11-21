@@ -23,14 +23,19 @@ build/workspaces/xcode3/
 build/workspaces/xcode4/
 build/workspaces/vc2013
 build/workspaces/vc2015
-build/premake/premake4/bin/release/premake4
-build/premake/premake4/build/gmake.macosx/obj/
-build/premake/premake4/build/gmake.unix/obj/
-build/premake/premake4/build/gmake.bsd/obj/
+build/premake/premake5/**/.gitignore
+build/premake/premake5/**/.travis.yml
+build/premake/premake5/.editorconfig
+build/premake/premake5/.github/
+build/premake/premake5/Bootstrap.*
+build/premake/premake5/CONTRIBUTING.md
+build/premake/premake5/FUNDING.yml
+build/premake/premake5/appveyor.yml
 build/premake/premake5/bin/release/premake5
 build/premake/premake5/build/gmake.macosx/obj/
 build/premake/premake5/build/gmake.unix/obj/
 build/premake/premake5/build/gmake.bsd/obj/
+build/premake/premake5/packages/
 build/premake/.gccmachine.tmp
 build/premake/.gccver.tmp
 
@@ -47,8 +52,8 @@ __pycache__/
 *.o
 *.lo
 *.la
+libraries/source/*/.already-built
 libraries/source/fcollada/src/output/
-libraries/source/spidermonkey/.already-built
 libraries/source/spidermonkey/include-unix-debug/
 libraries/source/spidermonkey/include-unix-release/
 libraries/source/spidermonkey/mozjs-60.9.1/
@@ -75,8 +80,6 @@ libraries/osx/sdl2/
 libraries/osx/vorbis/
 libraries/osx/wxwidgets/
 libraries/osx/zlib/
-libraries/source/fcollada/.already-built
-libraries/source/nvtt/.already-built
 
 # "long" translation files
 long.*.po
