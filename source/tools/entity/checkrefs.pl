@@ -435,7 +435,8 @@ sub add_gui_xml
     {
         push @files, $f;
 
-        if ($f =~ /^gui\/page_/)
+        # GUI page definitions are assumed to be named page_[something].xml and alone in that.
+        if ($f =~ /\/page_[^.\/]+\.xml$/)
         {
             push @roots, $f;
             my $xml = XMLin(vfs_to_physical($f), ForceArray => [qw(include)], KeyAttr => []) or die "Failed to parse '$f': $!";

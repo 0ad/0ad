@@ -20,8 +20,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-13 08:08+0000\n"
-"PO-Revision-Date: 2020-11-15 20:47+0000\n"
+"POT-Creation-Date: 2020-11-16 08:12+0000\n"
+"PO-Revision-Date: 2020-11-16 12:47+0000\n"
 "Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -2879,6 +2879,46 @@ msgstr "Antialiàsing ràpid però simple."
 #: gui/options/options.json[1].options[4].list[1].label
 msgid "FXAA"
 msgstr "FXAA"
+
+#: gui/options/options.json[1].options[4].list[2].tooltip
+msgid ""
+"Slow, but high-quality anti-aliasing, uses 2 samples per pixel. Supported "
+"for GL3.3+."
+msgstr "Antialiàsing lent però d'alta qualitat. Utilitza 2 mostres per píxel. Necessita GL3.3 o superior."
+
+#: gui/options/options.json[1].options[4].list[2].label
+msgid "MSAA (x2)"
+msgstr "MSAA (x2)"
+
+#: gui/options/options.json[1].options[4].list[3].tooltip
+msgid ""
+"Slow, but high-quality anti-aliasing, uses 4 samples per pixel. Supported "
+"for GL3.3+."
+msgstr "Antialiàsing lent però d'alta qualitat. Utilitza 4 mostres per píxel. Necessita GL3.3 o superior."
+
+#: gui/options/options.json[1].options[4].list[3].label
+msgid "MSAA (x4)"
+msgstr "MSAA (x4)"
+
+#: gui/options/options.json[1].options[4].list[4].tooltip
+msgid ""
+"Slow, but high-quality anti-aliasing, uses 8 samples per pixel. Supported "
+"for GL3.3+."
+msgstr "Antialiàsing lent però d'alta qualitat. Utilitza 8 mostres per píxel. Necessita GL3.3 o superior."
+
+#: gui/options/options.json[1].options[4].list[4].label
+msgid "MSAA (x8)"
+msgstr "MSAA (x8)"
+
+#: gui/options/options.json[1].options[4].list[5].tooltip
+msgid ""
+"Slow, but high-quality anti-aliasing, uses 16 samples per pixel. Supported "
+"for GL3.3+."
+msgstr "Antialiàsing lent però d'alta qualitat. Utilitza 16 mostres per píxel. Necessita GL3.3 o superior."
+
+#: gui/options/options.json[1].options[4].list[5].label
+msgid "MSAA (x16)"
+msgstr "MSAA (x16)"
 
 #: gui/options/options.json[1].options[4].tooltip
 msgid "Reduce aliasing effect on edges."
