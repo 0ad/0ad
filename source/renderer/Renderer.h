@@ -304,7 +304,7 @@ protected:
 	friend class ShaderInstancingModelRenderer;
 	friend class TerrainRenderer;
 	friend class WaterRenderer;
-	friend struct SRenderingOptions;
+	friend class CRenderingOptions;
 
 	//BEGIN: Implementation of SceneCollector
 	void Submit(CPatch* patch);

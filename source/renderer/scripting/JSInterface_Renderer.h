@@ -20,37 +20,10 @@
 
 #include "scriptinterface/ScriptInterface.h"
 
-#define DECLARE_BOOLEAN_SCRIPT_SETTING(NAME) \
-	bool Get##NAME##Enabled(ScriptInterface::CmptPrivate* pCmptPrivate); \
-	void Set##NAME##Enabled(ScriptInterface::CmptPrivate* pCmptPrivate, bool Enabled);
-
 namespace JSI_Renderer
 {
 	std::string GetRenderPath(ScriptInterface::CmptPrivate* pCmptPrivate);
-	void SetRenderPath(ScriptInterface::CmptPrivate* pCmptPrivate, const std::string& name);
-	void UpdateAntiAliasingTechnique(ScriptInterface::CmptPrivate* pCmptPrivate);
-	void UpdateSharpeningTechnique(ScriptInterface::CmptPrivate* pCmptPrivate);
-	void UpdateSharpnessFactor(ScriptInterface::CmptPrivate* pCmptPrivate);
-	void RecreateShadowMap(ScriptInterface::CmptPrivate* pCmptPrivate);
 	bool TextureExists(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& filename);
-
-	DECLARE_BOOLEAN_SCRIPT_SETTING(Shadows);
-	DECLARE_BOOLEAN_SCRIPT_SETTING(ShadowPCF);
-	DECLARE_BOOLEAN_SCRIPT_SETTING(Particles);
-	DECLARE_BOOLEAN_SCRIPT_SETTING(PreferGLSL);
-	DECLARE_BOOLEAN_SCRIPT_SETTING(WaterEffects);
-	DECLARE_BOOLEAN_SCRIPT_SETTING(WaterFancyEffects);
-	DECLARE_BOOLEAN_SCRIPT_SETTING(WaterRealDepth);
-	DECLARE_BOOLEAN_SCRIPT_SETTING(WaterReflection);
-	DECLARE_BOOLEAN_SCRIPT_SETTING(WaterRefraction);
-	DECLARE_BOOLEAN_SCRIPT_SETTING(WaterShadows);
-	DECLARE_BOOLEAN_SCRIPT_SETTING(Fog);
-	DECLARE_BOOLEAN_SCRIPT_SETTING(Silhouettes);
-	DECLARE_BOOLEAN_SCRIPT_SETTING(ShowSky);
-	DECLARE_BOOLEAN_SCRIPT_SETTING(SmoothLOS);
-	DECLARE_BOOLEAN_SCRIPT_SETTING(PostProc);
-	DECLARE_BOOLEAN_SCRIPT_SETTING(DisplayFrustum);
-	DECLARE_BOOLEAN_SCRIPT_SETTING(DisplayShadowsFrustum);
 
 	void RegisterScriptFunctions(const ScriptInterface& scriptInterface);
 }
