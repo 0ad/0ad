@@ -15,6 +15,7 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "maths/Matrix3D.h"
 #include "simulation2/system/ComponentTest.h"
 #include "simulation2/components/ICmpRangeManager.h"
 #include "simulation2/components/ICmpObstruction.h"

@@ -24,6 +24,7 @@
 #include "maths/BoundingBoxAligned.h"
 #include "maths/BoundingBoxOriented.h"
 #include "maths/MathUtil.h"
+#include "maths/Matrix3D.h"
 #include "maths/Quaternion.h"
 #include "maths/Vector2D.h"
 #include "ps/Profile.h"

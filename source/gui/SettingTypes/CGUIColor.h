@@ -19,9 +19,9 @@
 #define INCLUDED_GUICOLOR
 
 #include "graphics/Color.h"
-#include "ps/CStr.h"
 
 class CGUI;
+class CStr8;
 
 /**
  * Same as the CColor class, but this one can also parse colors predefined in the GUI page (such as "yellow").
@@ -51,11 +51,11 @@ struct CGUIColor : CColor
 	/**
 	 * Load color depending on current GUI page.
 	 */
-	bool ParseString(const CGUI& pGUI, const CStr& value, int defaultAlpha = 255);
+	bool ParseString(const CGUI& pGUI, const CStr8& value, int defaultAlpha = 255);
 
 	/**
 	 * Ensure that all users check for predefined colors.
 	 */
-	bool ParseString(const CStr& value, int defaultAlpha = 255) = delete;
+	bool ParseString(const CStr8& value, int defaultAlpha = 255) = delete;
 };
 #endif // INCLUDED_GUICOLOR

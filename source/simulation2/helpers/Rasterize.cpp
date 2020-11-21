@@ -20,6 +20,7 @@
 #include "Rasterize.h"
 
 #include "simulation2/helpers/Geometry.h"
+#include "simulation2/helpers/Pathfinding.h"
 
 void SimRasterize::RasterizeRectWithClearance(Spans& spans,
 	const ICmpObstructionManager::ObstructionSquare& shape,

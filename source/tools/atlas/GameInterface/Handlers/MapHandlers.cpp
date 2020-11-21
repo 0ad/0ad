@@ -40,6 +40,7 @@
 #include "ps/Game.h"
 #include "ps/GameSetup/GameSetup.h"
 #include "ps/Loader.h"
+#include "ps/Shapes.h"
 #include "ps/World.h"
 #include "renderer/Renderer.h"
 #include "renderer/WaterManager.h"

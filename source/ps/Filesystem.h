@@ -23,8 +23,9 @@
 #include "lib/file/io/write_buffer.h"
 #include "lib/file/vfs/vfs_util.h"
 
-#include "ps/CStr.h"
 #include "ps/Errors.h"
+
+class CStr8;
 
 extern PIVFS g_VFS;
 
@@ -92,13 +93,13 @@ public:
 	 * Returns contents of file as a string
 	 * @note file must have been successfully loaded
 	 */
-	CStr GetAsString() const;
+	CStr8 GetAsString() const;
 
 	/**
 	 * Returns contents of a UTF-8 encoded file as a string with optional BOM removed
 	 * @note file must have been successfully loaded
 	 */
-	CStr DecodeUTF8() const;
+	CStr8 DecodeUTF8() const;
 
 private:
 	shared_ptr<u8> m_Buffer;

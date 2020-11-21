@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,11 +15,12 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INCLUDED_GUID
-#define INCLUDED_GUID
+#ifndef INCLUDED_SCRIPTFORWARD
+#define INCLUDED_SCRIPTFORWARD
 
-class CStr8;
+#include "js/TypeDecls.h"
 
-CStr8 ps_generate_guid(void);
+class ScriptInterface;
+class ScriptRequest;
 
-#endif
+#endif // INCLUDED_SCRIPTFORWARD

@@ -20,11 +20,11 @@
 
 #include "graphics/Terrain.h"
 #include "maths/MathUtil.h"
-#include "ps/CLogger.h"
 
 #include "simulation2/system/Entity.h"
-#include "simulation2/system/ParamNode.h"
 #include "PathGoal.h"
+
+class CParamNode;
 
 typedef u16 pass_class_t;
 template<typename T>

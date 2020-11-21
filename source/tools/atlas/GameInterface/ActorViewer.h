@@ -18,13 +18,14 @@
 #ifndef INCLUDED_ACTORVIEWER
 #define INCLUDED_ACTORVIEWER
 
-#include "ps/CStr.h"
 #include "simulation2/helpers/Player.h"
 #include "simulation2/system/Entity.h"
 
 struct ActorViewerImpl;
 struct SColor4ub;
 class CSimulation2;
+class CStr8;
+class CStrW;
 
 class ActorViewer
 {
@@ -35,7 +36,7 @@ public:
 
 	CSimulation2* GetSimulation2();
 	entity_id_t GetEntity();
-	void SetActor(const CStrW& id, const CStr& animation, player_id_t playerID);
+	void SetActor(const CStrW& id, const CStr8& animation, player_id_t playerID);
 	void SetEnabled(bool enabled);
 	void UnloadObjects();
 	void SetBackgroundColor(const SColor4ub& color);

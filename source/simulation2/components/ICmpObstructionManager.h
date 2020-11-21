@@ -20,14 +20,16 @@
 
 #include "simulation2/system/Interface.h"
 
-#include "simulation2/helpers/Pathfinding.h"
-
 #include "maths/FixedVector2D.h"
+#include "simulation2/helpers/Position.h"
 
 class IObstructionTestFilter;
 template<typename T>
 class Grid;
 struct GridUpdateInformation;
+using NavcellData = u16;
+class PathfinderPassability;
+
 
 /**
  * Obstruction manager: provides efficient spatial queries over objects in the world.

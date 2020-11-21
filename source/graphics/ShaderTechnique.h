@@ -19,6 +19,7 @@
 #define INCLUDED_SHADERTECHNIQUE
 
 #include "graphics/ShaderProgramPtr.h"
+#include "graphics/ShaderTechniquePtr.h"
 #include "lib/ogl.h"
 
 /**
@@ -109,7 +110,5 @@ private:
 
 	bool m_SortByDistance;
 };
-
-typedef shared_ptr<CShaderTechnique> CShaderTechniquePtr;
 
 #endif // INCLUDED_SHADERTECHNIQUE

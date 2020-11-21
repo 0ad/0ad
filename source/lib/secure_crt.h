@@ -52,8 +52,8 @@ namespace ERR
 // null character. to protect against access violations, only the
 // first <max_len> characters are examined; if the null character is
 // not encountered by then, <max_len> is returned.
-// strnlen is available on OpenBSD
-#if !OS_OPENBSD
+// strnlen is available on OpenBSD and MacOS
+#if !OS_OPENBSD && !OS_MACOSX
 extern size_t strnlen(const char* str, size_t max_len);
 #endif
 extern size_t wcsnlen(const wchar_t* str, size_t max_len);

@@ -22,6 +22,7 @@
 #include "NetServer.h"
 #include "NetSession.h"
 
+#include "lib/utf8.h"
 #include "ps/CLogger.h"
 #include "simulation2/system/TurnManager.h"
 

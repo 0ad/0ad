@@ -18,9 +18,10 @@
 #ifndef INCLUDED_CGUISIZE
 #define INCLUDED_CGUISIZE
 
-#include "ps/CStr.h"
 #include "ps/Shapes.h"
-#include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/ScriptForward.h"
+
+class CStr8;
 
 /**
  * This class represents a rectangle relative to a parent rectangle
@@ -60,7 +61,7 @@ public:
 	 *
 	 * @return true if success, otherwise size will remain unchanged.
 	 */
-	bool FromString(const CStr& Value);
+	bool FromString(const CStr8& Value);
 
 	bool operator==(const CGUISize& other) const
 	{

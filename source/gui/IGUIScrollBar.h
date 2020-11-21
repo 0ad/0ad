@@ -25,7 +25,9 @@
 #define INCLUDED_IGUISCROLLBAR
 
 #include "gui/CGUISprite.h"
+#include "ps/CStr.h"
 
+class CGUI;
 class IGUIScrollBarOwner;
 struct SGUIMessage;
 

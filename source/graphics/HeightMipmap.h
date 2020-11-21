@@ -24,7 +24,8 @@
 #ifndef INCLUDED_HEIGHTMIPMAP
 #define INCLUDED_HEIGHTMIPMAP
 
-#include "lib/file/vfs/vfs_path.h"
+class Path;
+using VfsPath = Path;
 
 struct SMipmap
 {

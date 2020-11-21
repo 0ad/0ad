@@ -27,6 +27,7 @@
 #define INCLUDED_IGUIBUTTONBEHAVIOR
 
 #include "gui/ObjectBases/IGUIObject.h"
+#include "ps/CStr.h"
 
 class CGUISpriteInstance;
 

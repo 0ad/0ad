@@ -20,6 +20,7 @@
 
 #include <vector>
 
+#include "ps/CStr.h"
 #include "ps/Errors.h"
 #include "ps/Filesystem.h"
 #include "scriptinterface/ScriptTypes.h"

@@ -46,6 +46,7 @@
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpMinimap.h"
+#include "simulation2/components/ICmpRangeManager.h"
 #include "simulation2/helpers/Los.h"
 #include "simulation2/system/ParamNode.h"
 

@@ -17,6 +17,7 @@
 
 #include "simulation2/system/ComponentTest.h"
 
+#include "maths/Matrix3D.h"
 #include "simulation2/components/ICmpPosition.h"
 #include "simulation2/components/ICmpWaterManager.h"
 

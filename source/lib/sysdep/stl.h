@@ -72,10 +72,4 @@
 # endif
 #endif
 
-
-// OS X - fix some stream template instantiations that break 10.5 compatibility on newer SDKs
-#if OS_MACOSX
-# include "os/osx/osx_stl_fixes.h"
-#endif
-
 #endif	// #ifndef INCLUDED_STL

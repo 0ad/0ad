@@ -18,11 +18,11 @@
 #include "lib/ogl.h"
 
 #include "maths/Matrix3D.h"
-#include "simulation2/components/ICmpRangeManager.h"
 
 #include "graphics/ShaderManager.h"
+#include "graphics/ShaderTechniquePtr.h"
 
-
+class CLosQuerier;
 class CSimulation2;
 
 /**

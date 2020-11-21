@@ -25,6 +25,10 @@
 
 #include "gui/GUIRenderer.h"
 #include "gui/SettingTypes/CGUISize.h"
+#include "gui/SettingTypes/CGUIColor.h"
+#include "lib/ogl.h"
+#include "lib/file/vfs/vfs_path.h"
+#include "ps/CStr.h"
 
 #include <map>
 #include <memory>
