@@ -1378,11 +1378,23 @@ public:
 
 		if (q.source.GetId() != INVALID_ENTITY && q.maxRange != entity_pos_t::FromInt(-1))
 		{
-			EntityMap<EntityData>::const_iterator it = m_EntityData.find(q.source.GetId());
+			u32 size = 0;
+			if (ENTITY_IS_LOCAL(q.source.GetId()))
+			{
+				CmpPtr<ICmpObstruction> cmpObstruction(GetSimContext(), q.source.GetId());
+				if (cmpObstruction)
+					size = cmpObstruction->GetSize().ToInt_RoundToInfinity();
+			}
+			else
+			{
+				EntityMap<EntityData>::const_iterator it = m_EntityData.find(q.source.GetId());
+				if (it != m_EntityData.end())
+					size = it->second.size;
+			}
 			// Adjust the range query based on the querier's obstruction radius.
 			// The smallest side of the obstruction isn't known here, so we can't safely adjust the min-range, only the max.
 			// 'size' is the diagonal size rounded up so this will cover all possible rotations of the querier.
-			q.maxRange += fixed::FromInt(it->second.size);
+			q.maxRange += fixed::FromInt(size);
 		}
 
 		q.ownersMask = 0;
