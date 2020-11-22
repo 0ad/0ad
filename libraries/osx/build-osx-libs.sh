@@ -61,13 +61,6 @@ FCOLLADA_VERSION="fcollada-3.05+wildfiregames.1"
 # * OpenGL
 # --------------------------------------------------------------
 
-# Force build architecture, as sometimes environment is broken.
-# For a universal fat binary, the approach would be to build every
-# dependency with both archs and combine them with lipo, then do the
-# same thing with the game itself.
-# Choices are "x86_64" or  "i386" (ppc and ppc64 not supported)
-ARCH=${ARCH:="x86_64"}
-
 # Define compiler as "clang", this is all Mavericks supports.
 # gcc symlinks may still exist, but they are simply clang with
 # slightly different config, which confuses build scripts.
@@ -94,16 +87,13 @@ if [[ $MIN_OSX_VERSION && ${MIN_OSX_VERSION-_} ]]; then
   # and CRT version, and use it to set the macosx_version_min linker flag
   LDFLAGS="$LDFLAGS -mmacosx-version-min=$MIN_OSX_VERSION"
 fi
-# Force using libc++ since it has better C++11 support required by the game
-# but pre-Mavericks still use libstdc++ by default
-# Also enable c++0x for consistency with the game build
-C_FLAGS="$C_FLAGS -arch $ARCH -fvisibility=hidden"
-LDFLAGS="$LDFLAGS -arch $ARCH -stdlib=libc++"
 
-CFLAGS="$CFLAGS $C_FLAGS"
-CXXFLAGS="$CXXFLAGS $C_FLAGS -stdlib=libc++ -std=c++0x"
+CFLAGS="$CFLAGS $C_FLAGS -fvisibility=hidden"
+CXXFLAGS="$CXXFLAGS $C_FLAGS -stdlib=libc++ -std=c++14 -msse3"
 OBJCFLAGS="$OBJCFLAGS $C_FLAGS"
 OBJCXXFLAGS="$OBJCXXFLAGS $C_FLAGS"
+
+LDFLAGS="$LDFLAGS -stdlib=libc++"
 
 JOBS=${JOBS:="-j2"}
 
@@ -431,7 +421,6 @@ then
 
   CONF_OPTS="--prefix=$INSTALL_DIR
     --disable-shared
-    --enable-macosx_arch=$ARCH
     --enable-unicode
     --with-cocoa
     --with-opengl
