@@ -40,9 +40,6 @@
 class CProfileManager;
 class CProfileNodeTable;
 
-class CStr8;
-class CStrW;
-
 // To profile scripts usefully, we use a call hook that's called on every enter/exit,
 // and need to find the function name. But most functions are anonymous so we make do
 // with filename plus line number instead.

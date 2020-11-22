@@ -20,6 +20,7 @@
 
 #include "Pathfinding.h"
 
+#include "ps/CLogger.h"
 #include "renderer/TerrainOverlay.h"
 #include "Render.h"
 #include "graphics/SColor.h"

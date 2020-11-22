@@ -32,8 +32,6 @@ class ScriptInterface;
  *
  * Used to create new hotkey combinations in-game. Mostly custom.
  * This object does not draw anything.
- *
- * NB: because of how input is handled, mouse clicks
  */
 class CHotkeyPicker : public IGUIObject
 {

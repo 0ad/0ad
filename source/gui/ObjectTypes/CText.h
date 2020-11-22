@@ -30,6 +30,8 @@ class CText : public IGUIObject, public IGUIScrollBarOwner, public IGUITextOwner
 {
 	GUI_OBJECT(CText)
 
+	friend JSI_GUIProxy<CText>;
+
 public:
 	CText(CGUI& pGUI);
 	virtual ~CText();
@@ -56,8 +58,6 @@ protected:
 	 */
 	void SetupText();
 
-	virtual void RegisterScriptFunctions();
-
 	/**
 	 * @see IGUIObject#HandleMessage()
 	 */
@@ -68,12 +68,9 @@ protected:
 	 */
 	virtual void Draw();
 
-	/**
-	 * Script accessors to this GUI object.
-	 */
-	static JSFunctionSpec JSI_methods[];
+	virtual void CreateJSObject();
 
-	static bool GetTextSize(JSContext* cx, uint argc, JS::Value* vp);
+	void getTextSize(ScriptInterface& scriptInterface, JS::MutableHandleValue ret);
 
 	/**
 	 * Placement of text. Ignored when scrollbars are active.

@@ -29,11 +29,8 @@
   </Builder>
   <Cost>
     <Population>0</Population>
-    <BuildTime>20</BuildTime>
+    <BuildTime>15</BuildTime>
     <Resources>
-      <food>0</food>
-      <wood>0</wood>
-      <stone>0</stone>
       <metal>50</metal>
     </Resources>
   </Cost>
@@ -50,9 +47,6 @@
   <Loot>
     <xp>1</xp>
     <food>0</food>
-    <wood>1</wood>
-    <stone>1</stone>
-    <metal>1</metal>
   </Loot>
   <ResourceGatherer>
     <BaseSpeed>1.0</BaseSpeed>

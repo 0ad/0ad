@@ -653,7 +653,7 @@ function updateCinemaPath()
 	let isPlayingCinemaPath = GetSimState().cinemaPlaying && !g_Disconnected;
 
 	Engine.GetGUIObjectByName("session").hidden = !g_ShowGUI || isPlayingCinemaPath;
-	Engine.Renderer_SetSilhouettesEnabled(!isPlayingCinemaPath && Engine.ConfigDB_GetValue("user", "silhouettes") == "true");
+	Engine.ConfigDB_CreateValue("user", "silhouettes", !isPlayingCinemaPath && Engine.ConfigDB_GetValue("user", "silhouettes") == "true" ? "true" : "false");
 }
 
 // TODO: Use event subscription onSimulationUpdate, onEntitySelectionChange, onPlayerViewChange, ... instead

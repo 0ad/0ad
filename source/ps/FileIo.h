@@ -30,11 +30,13 @@
 #ifndef INCLUDED_FILEPACKER
 #define INCLUDED_FILEPACKER
 
-#include "CStr.h"
 #include "lib/file/vfs/vfs_path.h"
 #include "ps/Filesystem.h"	// WriteBuffer
 
 #include "ps/Errors.h"
+
+class CStr8;
+
 ERROR_GROUP(File);
 ERROR_TYPE(File, OpenFailed);
 ERROR_TYPE(File, WriteFailed);
@@ -83,7 +85,7 @@ public:
 	 * pack a string onto the end of the data stream
 	 * (encoded as a 32-bit length followed by the characters)
 	 **/
-	void PackString(const CStr& str);
+	void PackString(const CStr8& str);
 
 private:
 	/**

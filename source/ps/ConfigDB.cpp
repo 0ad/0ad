@@ -36,6 +36,13 @@ TConfigMap CConfigDB::m_Map[CFG_LAST];
 VfsPath CConfigDB::m_ConfigFile[CFG_LAST];
 bool CConfigDB::m_HasChanges[CFG_LAST];
 
+std::multimap<CStr, std::function<void()>> CConfigDB::m_Hooks;
+
+void TriggerAllHooks(const std::multimap<CStr, std::function<void()>>& hooks, const CStr& name)
+{
+	std::for_each(hooks.lower_bound(name), hooks.upper_bound(name), [](const std::pair<CStr, std::function<void()>>& hook) { hook.second(); });
+}
+
 static std::recursive_mutex cfgdb_mutex;
 
 // These entries will not be printed to logfiles, so that logfiles can be shared without leaking personal or sensitive data
@@ -202,6 +209,8 @@ void CConfigDB::SetValueString(EConfigNamespace ns, const CStr& name, const CStr
 		it = m_Map[ns].insert(m_Map[ns].begin(), make_pair(name, CConfigValueSet(1)));
 
 	it->second[0] = value;
+
+	TriggerAllHooks(m_Hooks, name);
 }
 
 void CConfigDB::SetValueBool(EConfigNamespace ns, const CStr& name, const bool value)
@@ -231,6 +240,8 @@ void CConfigDB::RemoveValue(EConfigNamespace ns, const CStr& name)
 	if (it == m_Map[ns].end())
 		return;
 	m_Map[ns].erase(it);
+
+	TriggerAllHooks(m_Hooks, name);
 }
 
 void CConfigDB::SetConfigFile(EConfigNamespace ns, const VfsPath& path)
@@ -462,6 +473,18 @@ bool CConfigDB::WriteValueToFile(EConfigNamespace ns, const CStr& name, const CS
 	bool ret = WriteFile(ns, path);
 	m_Map[ns].swap(newMap);
 	return ret;
+}
+
+CConfigDB::hook_t CConfigDB::RegisterHookAndCall(const CStr& name, std::function<void()> hook)
+{
+	hook();
+	return m_Hooks.emplace(name, hook);
+}
+
+void CConfigDB::UnregisterHook(CConfigDB::hook_t&& hook)
+{
+	if (hook.ptr != m_Hooks.end())
+		m_Hooks.erase(hook.ptr);
 }
 
 #undef CHECK_NS

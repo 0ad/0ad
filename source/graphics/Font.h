@@ -23,7 +23,6 @@
 
 #include <map>
 
-class CStrW;
 struct UnifontGlyphData;
 
 /**

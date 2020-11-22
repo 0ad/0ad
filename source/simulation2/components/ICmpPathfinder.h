@@ -21,7 +21,6 @@
 #include "simulation2/system/Interface.h"
 
 #include "simulation2/components/ICmpObstruction.h"
-#include "simulation2/helpers/PathGoal.h"
 #include "simulation2/helpers/Pathfinding.h"
 
 #include "maths/FixedVector2D.h"
@@ -30,6 +29,7 @@
 #include <vector>
 
 class IObstructionTestFilter;
+class PathGoal;
 
 template<typename T> class Grid;
 

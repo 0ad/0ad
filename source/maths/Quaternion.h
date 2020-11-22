@@ -18,8 +18,9 @@
 #ifndef INCLUDED_QUATERNION
 #define INCLUDED_QUATERNION
 
-#include "Matrix3D.h"
 #include "Vector3D.h"
+
+class CMatrix3D;
 
 class CQuaternion
 {

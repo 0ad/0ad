@@ -61,9 +61,9 @@
  *	end of XMLWriter.cpp.
  */
 
-#include "ps/CStr.h"
 #include "lib/file/vfs/vfs.h"
 
+class CStr8;
 class XMBElement;
 class XMBFile;
 class XMLWriter_Element;
@@ -80,7 +80,7 @@ public:
 	void XMB(const XMBFile& file);
 
 	bool StoreVFS(const PIVFS& vfs, const VfsPath& pathname);
-	const CStr& GetOutput();
+	const CStr8& GetOutput();
 
 private:
 
@@ -94,11 +94,11 @@ private:
 	void ElementClose();
 	void ElementEnd(const char* name, int type);
 
-	CStr Indent();
+	CStr8 Indent();
 
 	bool m_PrettyPrint;
 
-	CStr m_Data;
+	CStr8 m_Data;
 	int m_Indent;
 	XMLWriter_Element* m_LastElement;
 };
@@ -119,7 +119,7 @@ private:
 	friend class XMLWriter_File;
 
 	XMLWriter_File* m_File;
-	CStr m_Name;
+	CStr8 m_Name;
 	int m_Type;
 };
 

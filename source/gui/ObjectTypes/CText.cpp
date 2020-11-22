@@ -22,6 +22,7 @@
 #include "gui/CGUI.h"
 #include "gui/CGUIScrollBarVertical.h"
 #include "gui/CGUIText.h"
+#include "gui/Scripting/JSInterface_GUIProxy.h"
 #include "scriptinterface/ScriptInterface.h"
 
 CText::CText(CGUI& pGUI)
@@ -252,32 +253,22 @@ bool CText::MouseOverIcon()
 	return false;
 }
 
-void CText::RegisterScriptFunctions()
+
+void CText::CreateJSObject()
 {
 	ScriptRequest rq(m_pGUI.GetScriptInterface());
-	JS_DefineFunctions(rq.cx, m_JSObject, CText::JSI_methods);
+
+	js::ProxyOptions options;
+	options.setClass(&JSI_GUIProxy<IGUIObject>::ClassDefinition());
+
+	JS::RootedValue cppObj(rq.cx);
+	m_JSObject.init(rq.cx, js::NewProxyObject(rq.cx, &JSI_GUIProxy<CText>::Singleton(), cppObj, nullptr, options));
+	JS_SetPrivate(m_JSObject.get(), this);
 }
 
-JSFunctionSpec CText::JSI_methods[] =
+void CText::getTextSize(ScriptInterface& scriptInterface, JS::MutableHandleValue ret)
 {
-	JS_FN("getTextSize", CText::GetTextSize, 0, 0),
-	JS_FS_END
-};
-
-bool CText::GetTextSize(JSContext* cx, uint argc, JS::Value* vp)
-{
-	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
-
-	ScriptRequest rq(*ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface);
-	CText* thisObj = ScriptInterface::GetPrivate<CText>(rq, args, &JSI_IGUIObject::JSI_class);
-	if (!thisObj)
-	{
-		ScriptException::Raise(rq, "This is not a CText object!");
-		return false;
-	}
-
-	thisObj->UpdateText();
-
-	ScriptInterface::ToJSVal(rq, args.rval(), thisObj->m_GeneratedTexts[0].GetSize());
-	return true;
+	ScriptRequest rq(scriptInterface);
+	UpdateText();
+	ScriptInterface::ToJSVal(rq, ret, m_GeneratedTexts[0].GetSize());
 }

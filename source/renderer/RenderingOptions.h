@@ -45,13 +45,16 @@ struct RenderPathEnum
 	static CStr8 ToString(RenderPath);
 };
 
-struct SRenderingOptions
+class CRenderingOptions
 {
 	// The renderer needs access to our private variables directly because capabilities have not yet been extracted
 	// and thus sometimes it needs to change the rendering options without the side-effects.
 	friend class CRenderer;
 
-	SRenderingOptions();
+public:
+	CRenderingOptions();
+	~CRenderingOptions();
+
 	void ReadConfig();
 
 #define OPTION_DEFAULT_SETTER(NAME, TYPE) \
@@ -108,8 +111,24 @@ OPTION_CUSTOM_SETTER(NAME, TYPE); OPTION_GETTER(NAME, TYPE); OPTION_DEF(NAME, TY
 #undef OPTION_DEF
 #undef OPTION
 #undef OPTION_WITH_SIDE_EFFECT
+
+private:
+	/**
+	 * Registers a config hook for config variable @name that updates @variable.
+	 * Also immediately updates variable with the value of the config.
+	 */
+	template<typename T>
+	void SetupConfig(CStr8 name, T& variable);
+	/**
+	 * Registers a config hook for config variable @name.
+	 * Also immediately triggers the hook.
+	 */
+	void SetupConfig(CStr8 name, std::function<void()> hook);
+
+	class ConfigHooks;
+	std::unique_ptr<ConfigHooks> m_ConfigHooks; // Hide this via PImpl to avoid including ConfigDB.h here.
 };
 
-extern SRenderingOptions g_RenderingOptions;
+extern CRenderingOptions g_RenderingOptions;
 
 #endif // INCLUDED_RENDERINGOPTIONS

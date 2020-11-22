@@ -20,7 +20,6 @@
 
 #include "lib/self_test.h"
 
-#include "maths/Matrix3D.h"
 #include "maths/Vector3D.h"
 #include "ps/XML/Xeromyces.h"
 #include "simulation2/MessageTypes.h"

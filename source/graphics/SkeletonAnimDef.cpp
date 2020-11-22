@@ -23,6 +23,7 @@
 
 #include "SkeletonAnimDef.h"
 #include "maths/MathUtil.h"
+#include "maths/Matrix3D.h"
 #include "ps/FileIo.h"
 
 

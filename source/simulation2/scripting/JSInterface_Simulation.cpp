@@ -28,6 +28,7 @@
 #include "simulation2/components/ICmpAIManager.h"
 #include "simulation2/components/ICmpCommandQueue.h"
 #include "simulation2/components/ICmpGuiInterface.h"
+#include "simulation2/components/ICmpObstruction.h"
 #include "simulation2/components/ICmpPosition.h"
 #include "simulation2/components/ICmpSelectable.h"
 #include "simulation2/helpers/Geometry.h"

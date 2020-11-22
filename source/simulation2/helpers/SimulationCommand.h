@@ -18,7 +18,7 @@
 #ifndef INCLUDED_SIMULATIONCOMMAND
 #define INCLUDED_SIMULATIONCOMMAND
 
-#include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/ScriptTypes.h"
 #include "simulation2/helpers/Player.h"
 
 /**

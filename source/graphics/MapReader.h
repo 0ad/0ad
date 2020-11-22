@@ -19,9 +19,10 @@
 #define INCLUDED_MAPREADER
 
 #include "MapIO.h"
+
+#include "graphics/LightEnv.h"
 #include "lib/res/handle.h"
 #include "ps/CStr.h"
-#include "LightEnv.h"
 #include "ps/FileIo.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/system/Entity.h"

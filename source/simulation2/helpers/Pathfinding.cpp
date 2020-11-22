@@ -20,7 +20,9 @@
 #include "Pathfinding.h"
 
 #include "graphics/Terrain.h"
-#include "Grid.h"
+#include "ps/CLogger.h"
+#include "simulation2/helpers/Grid.h"
+#include "simulation2/system/ParamNode.h"
 
 namespace Pathfinding
 {

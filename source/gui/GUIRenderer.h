@@ -18,17 +18,19 @@
 #ifndef INCLUDED_GUIRENDERER
 #define INCLUDED_GUIRENDERER
 
-#include "graphics/ShaderTechnique.h"
+#include "graphics/Color.h"
+#include "graphics/ShaderTechniquePtr.h"
 #include "graphics/Texture.h"
-#include "gui/SettingTypes/CGUIColor.h"
 #include "lib/res/handle.h"
-#include "ps/CStr.h"
 #include "ps/Shapes.h"
 
 #include <map>
 #include <vector>
 
+class CGUI;
 class CGUISprite;
+class CStr8;
+struct CGUIColor;
 struct SGUIImage;
 
 namespace GUIRenderer
@@ -67,7 +69,7 @@ namespace GUIRenderer
 		DrawCalls& operator=(const DrawCalls&);
 	};
 
-	void UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const CStr& SpriteName, const CRect& Size, int CellID, std::map<CStr, const CGUISprite*>& Sprites);
+	void UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const CStr8& SpriteName, const CRect& Size, int CellID, std::map<CStr8, const CGUISprite*>& Sprites);
 
 	void Draw(DrawCalls& Calls, float Z);
 }

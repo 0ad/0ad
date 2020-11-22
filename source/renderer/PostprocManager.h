@@ -18,7 +18,8 @@
 #ifndef INCLUDED_POSTPROCMANAGER
 #define INCLUDED_POSTPROCMANAGER
 
-#include "graphics/ShaderTechnique.h"
+#include "graphics/ShaderTechniquePtr.h"
+#include "lib/ogl.h"
 #include "ps/CStr.h"
 
 #include <vector>

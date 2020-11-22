@@ -99,23 +99,20 @@
 				"type": "boolean",
 				"label": "Prefer GLSL",
 				"tooltip": "Use OpenGL 2.0 shaders (recommended).",
-				"config": "preferglsl",
-				"function": "Renderer_SetPreferGLSLEnabled"
+				"config": "preferglsl"
 			},
 			{
 				"type": "boolean",
 				"label": "Fog",
 				"tooltip": "Enable Fog.",
 				"dependencies": ["preferglsl"],
-				"config": "fog",
-				"function": "Renderer_SetFogEnabled"
+				"config": "fog"
 			},
 			{
 				"type": "boolean",
 				"label": "Post-processing",
 				"tooltip": "Use screen-space post-processing filters (HDR, Bloom, DOF, etc).",
-				"config": "postproc",
-				"function": "Renderer_SetPostProcEnabled"
+				"config": "postproc"
 			},
 			{
 				"type": "dropdown",
@@ -130,8 +127,7 @@
 					{ "value": "msaa4", "label": "MSAA (x4)", "tooltip": "Slow, but high-quality anti-aliasing, uses 4 samples per pixel. Supported for GL3.3+." },
 					{ "value": "msaa8", "label": "MSAA (x8)", "tooltip": "Slow, but high-quality anti-aliasing, uses 8 samples per pixel. Supported for GL3.3+." },
 					{ "value": "msaa16", "label": "MSAA (x16)", "tooltip": "Slow, but high-quality anti-aliasing, uses 16 samples per pixel. Supported for GL3.3+." }
-				],
-				"function": "Renderer_UpdateAntiAliasingTechnique"
+				]
 			},
 			{
 				"type": "dropdown",
@@ -142,8 +138,7 @@
 				"list": [
 					{ "value": "disabled", "label": "Disabled", "tooltip": "Do not use sharpening." },
 					{ "value": "cas", "label": "FidelityFX CAS", "tooltip": "Contrast adaptive sharpening, a fast, contrast based sharpening pass." }
-				],
-				"function": "Renderer_UpdateSharpeningTechnique"
+				]
 			},
 			{
 				"type": "slider",
@@ -152,8 +147,7 @@
 				"dependencies": ["postproc", "preferglsl"],
 				"config": "sharpness",
 				"min": 0,
-				"max": 1,
-				"function": "Renderer_UpdateSharpnessFactor"
+				"max": 1
 			},
 			{
 				"type": "slider",
@@ -167,8 +161,7 @@
 				"type": "boolean",
 				"label": "Shadows",
 				"tooltip": "Enable shadows.",
-				"config": "shadows",
-				"function": "Renderer_SetShadowsEnabled"
+				"config": "shadows"
 			},
 			{
 				"type": "dropdown",
@@ -176,7 +169,6 @@
 				"tooltip": "Shadow map resolution. High values can crash the game when using a graphics card with low memory!",
 				"dependencies": ["shadows"],
 				"config": "shadowquality",
-				"function": "Renderer_RecreateShadowMap",
 				"list": [
 					{ "value": -2, "label": "Very Low" },
 					{ "value": -1, "label": "Low" },
@@ -190,83 +182,72 @@
 				"label": "Shadow filtering",
 				"tooltip": "Smooth shadows.",
 				"dependencies": ["shadows"],
-				"config": "shadowpcf",
-				"function": "Renderer_SetShadowPCFEnabled"
+				"config": "shadowpcf"
 			},
 			{
 				"type": "boolean",
 				"label": "Unit silhouettes",
 				"tooltip": "Show outlines of units behind structures.",
-				"config": "silhouettes",
-				"function": "Renderer_SetSilhouettesEnabled"
+				"config": "silhouettes"
 			},
 			{
 				"type": "boolean",
 				"label": "Particles",
 				"tooltip": "Enable particles.",
-				"config": "particles",
-				"function": "Renderer_SetParticlesEnabled"
+				"config": "particles"
 			},
 			{
 				"type": "boolean",
 				"label": "Water effects",
 				"tooltip": "When OFF, use the lowest settings possible to render water. This makes other settings irrelevant.",
-				"config": "watereffects",
-				"function": "Renderer_SetWaterEffectsEnabled"
+				"config": "watereffects"
 			},
 			{
 				"type": "boolean",
 				"label": "High-quality water effects",
 				"tooltip": "Use higher-quality effects for water, rendering coastal waves, shore foam, and ships trails.",
 				"dependencies": ["watereffects"],
-				"config": "waterfancyeffects",
-				"function": "Renderer_SetWaterFancyEffectsEnabled"
+				"config": "waterfancyeffects"
 			},
 			{
 				"type": "boolean",
 				"label": "Water reflections",
 				"tooltip": "Allow water to reflect a mirror image.",
 				"dependencies": ["watereffects"],
-				"config": "waterreflection",
-				"function": "Renderer_SetWaterReflectionEnabled"
+				"config": "waterreflection"
 			},
 			{
 				"type": "boolean",
 				"label": "Water refraction",
 				"tooltip": "Use a real water refraction map and not transparency.",
 				"dependencies": ["watereffects"],
-				"config": "waterrefraction",
-				"function": "Renderer_SetWaterRefractionEnabled"
+				"config": "waterrefraction"
 			},
 			{
 				"type": "boolean",
 				"label": "Real water depth",
 				"tooltip": "Use actual water depth in rendering calculations.",
 				"dependencies": ["watereffects", "waterrefraction"],
-				"config": "waterrealdepth",
-				"function": "Renderer_SetWaterRealDepthEnabled"
+				"config": "waterrealdepth"
 			},
 			{
 				"type": "boolean",
 				"label": "Shadows on water",
 				"tooltip": "Cast shadows on water.",
 				"dependencies": ["watereffects"],
-				"config": "shadowsonwater",
-				"function": "Renderer_SetWaterShadowsEnabled"
+				"config": "shadowsonwater"
 			},
 			{
 				"type": "boolean",
 				"label": "Smooth vision",
 				"tooltip": "Lift darkness and fog-of-war smoothly.",
-				"config": "smoothlos",
-				"function": "Renderer_SetSmoothLOSEnabled"
+				"config": "smoothlos"
 			},
 			{
 				"type": "boolean",
 				"label": "Show sky",
 				"tooltip": "Render Sky.",
-				"config": "showsky",
-				"function": "Renderer_SetShowSkyEnabled"
+				"config": "showsky"
 			},
 			{
 				"type": "boolean",

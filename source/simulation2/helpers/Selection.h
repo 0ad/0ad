@@ -19,10 +19,10 @@
 #define INCLUDED_SELECTION
 
 #include "ps/Profiler2.h"
-#include "simulation2/components/ICmpObstruction.h"
 #include "simulation2/helpers/Player.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/system/Entity.h"
+#include "simulation2/system/IComponent.h"
 
 #include <vector>
 

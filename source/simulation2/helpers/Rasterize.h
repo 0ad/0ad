@@ -24,6 +24,7 @@
  */
 
 #include "simulation2/components/ICmpObstructionManager.h"
+#include "simulation2/helpers/Position.h"
 
 namespace SimRasterize
 {
