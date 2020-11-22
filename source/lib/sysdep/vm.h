@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -70,7 +70,7 @@ LIB_API void* ReserveAddressSpace(size_t size, size_t commitSize = g_LargePageSi
  *
  * @param p a pointer previously returned by ReserveAddressSpace.
  * @param size is required by the POSIX implementation and
- *   ignored on Windows. it also ensures compatibility with UniqueRange.
+ *   ignored on Windows.
  **/
 LIB_API void ReleaseAddressSpace(void* p, size_t size = 0);
 
@@ -126,7 +126,7 @@ LIB_API void* Allocate(size_t size, PageType pageType = kDefault, int prot = PRO
  *
  * @param p a pointer previously returned by Allocate.
  * @param size is required by the POSIX implementation and
- *   ignored on Windows. it also ensures compatibility with UniqueRange.
+ *   ignored on Windows.
  *
  * (this differs from ReleaseAddressSpace, which must account for
  * extra padding/alignment to largePageSize.)

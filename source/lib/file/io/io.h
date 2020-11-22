@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -33,10 +33,9 @@
 #include "lib/bits.h"
 #include "lib/timer.h"
 #include "lib/file/file.h"
+#include "lib/sysdep/rtl.h"
 #include "lib/sysdep/filesystem.h"	// wtruncate
 #include "lib/posix/posix_aio.h"	// LIO_READ, LIO_WRITE
-
-#include "lib/allocators/unique_range.h"
 
 namespace ERR
 {
@@ -45,16 +44,27 @@ namespace ERR
 
 namespace io {
 
+struct FreeAligned
+{
+	void operator()(void* pointer) { rtl_FreeAligned(pointer); }
+};
+
+using BufferPtr = std::unique_ptr<u8, FreeAligned>;
+
 // @return memory suitable for use as an I/O buffer (address is a
 // multiple of alignment, size is rounded up to a multiple of alignment)
-// @param alignment is automatically increased if smaller than the
-// UniqueRange requirement.
+// @param alignment is automatically increased if required.
 //
 // use this instead of the file cache for write buffers that are
 // never reused (avoids displacing other items).
-static inline UniqueRange Allocate(size_t size, size_t alignment = maxSectorSize)
+static inline io::BufferPtr Allocate(size_t size, size_t alignment = maxSectorSize)
 {
-	return AllocateAligned(size, alignment);
+	ENSURE(is_pow2(alignment));
+	alignment = std::max(alignment, allocationAlignment);
+
+	u8* p = static_cast<u8*>(rtl_AllocateAligned(round_up(size, alignment), alignment));
+
+	return {p, FreeAligned{}};
 }
 
 
@@ -209,7 +219,7 @@ public:
 	}
 
 private:
-	UniqueRange buffers;
+	io::BufferPtr buffers;
 	aiocb controlBlocks[Parameters::maxQueueDepth];
 };
 
