@@ -17,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-09-18 07:09+0000\n"
-"PO-Revision-Date: 2020-09-22 11:25+0000\n"
-"Last-Translator: Günay Yılmaz\n"
+"POT-Creation-Date: 2020-11-20 08:09+0000\n"
+"PO-Revision-Date: 2020-11-20 10:22+0000\n"
+"Last-Translator: Cem Aktas <cemwstone@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -92,7 +92,7 @@ msgstr "Ağaç"
 msgid "Chop trees for wood."
 msgstr "Odun için ağaçları kes."
 
-#: simulation/templates/template_structure.xml:51
+#: simulation/templates/template_structure.xml:47
 msgid "Structure"
 msgstr "Yapı"
 
@@ -139,29 +139,29 @@ msgstr " I. Leonidas'ın Ordusu."
 msgid "Army of Leonidas I"
 msgstr " I. Leonidas'ın Ordusu"
 
-#: simulation/templates/campaigns/campaign_city_minor_test.xml:30
-#: simulation/templates/campaigns/campaign_city_test.xml:30
+#: simulation/templates/campaigns/campaign_city_minor_test.xml:21
+#: simulation/templates/campaigns/campaign_city_test.xml:21
 msgid "Market"
 msgstr "Pazar"
 
-#: simulation/templates/campaigns/campaign_city_minor_test.xml:31
-#: simulation/templates/campaigns/campaign_city_test.xml:31
+#: simulation/templates/campaigns/campaign_city_minor_test.xml:22
+#: simulation/templates/campaigns/campaign_city_test.xml:22
 msgid "Settlement"
 msgstr "Yerleşim"
 
-#: simulation/templates/campaigns/campaign_city_minor_test.xml:32
+#: simulation/templates/campaigns/campaign_city_minor_test.xml:23
 msgid "Minor Greek Polis"
 msgstr "Küçük Yunan Şehri"
 
-#: simulation/templates/campaigns/campaign_city_minor_test.xml:33
+#: simulation/templates/campaigns/campaign_city_minor_test.xml:24
 msgid "This is a minor Greek city."
 msgstr "Bu önemli Yunan şehri."
 
-#: simulation/templates/campaigns/campaign_city_test.xml:32
+#: simulation/templates/campaigns/campaign_city_test.xml:23
 msgid "Greek Polis"
 msgstr "Yunan Şehiri"
 
-#: simulation/templates/campaigns/campaign_city_test.xml:33
+#: simulation/templates/campaigns/campaign_city_test.xml:24
 msgid "This is a major Greek city."
 msgstr "Bu büyük Yunan şehri."
 
@@ -172,15 +172,6 @@ msgstr "Tapınak"
 #: simulation/templates/campaigns/campaign_religious_test.xml:13
 msgid "Greek Religious Sanctuary"
 msgstr "Yunan Tapınağı"
-
-#: simulation/templates/gaia/fauna_arctic_wolf.xml:8
-msgid "Arctic Wolf"
-msgstr "Kutup Kurdu"
-
-#: simulation/templates/gaia/fauna_arctic_wolf.xml:9
-#: simulation/templates/gaia/fauna_wolf.xml:9
-msgid "Canis lupus"
-msgstr "Kurt"
 
 #: simulation/templates/gaia/fauna_bear_black.xml:8
 msgid "Black Bear"
@@ -206,11 +197,18 @@ msgstr "Kutup Ayısı"
 msgid "Ursus maritimus"
 msgstr "Ursus maritimus"
 
-#: simulation/templates/gaia/fauna_boar.xml:19
+#: simulation/templates/gaia/fauna_boar.xml:5
+#: simulation/templates/gaia/fauna_hippopotamus.xml:5
+#: simulation/templates/gaia/fauna_walrus.xml:5
+msgctxt "Name of an attack, usually the weapon."
+msgid "Tusks"
+msgstr ""
+
+#: simulation/templates/gaia/fauna_boar.xml:20
 msgid "Wild Boar"
 msgstr "Yaban domuzu"
 
-#: simulation/templates/gaia/fauna_boar.xml:20
+#: simulation/templates/gaia/fauna_boar.xml:21
 msgid "Sus scrofa"
 msgstr "Yaban Domuzu"
 
@@ -259,11 +257,16 @@ msgstr "Tavuk"
 msgid "Gallus gallus domesticus"
 msgstr "Tavuk"
 
-#: simulation/templates/gaia/fauna_crocodile.xml:19
+#: simulation/templates/gaia/fauna_crocodile_nile.xml:5
+msgctxt "Name of an attack, usually the weapon."
+msgid "Teeth"
+msgstr ""
+
+#: simulation/templates/gaia/fauna_crocodile_nile.xml:20
 msgid "Nile Crocodile"
 msgstr "Nil Timsahı"
 
-#: simulation/templates/gaia/fauna_crocodile.xml:20
+#: simulation/templates/gaia/fauna_crocodile_nile.xml:21
 msgid "Crocodylus niloticus"
 msgstr "Nil timsahı"
 
@@ -274,6 +277,19 @@ msgstr "Kızıl Geyik"
 #: simulation/templates/gaia/fauna_deer.xml:9
 msgid "Cervus elaphus"
 msgstr "Kızıl Geyik"
+
+#: simulation/templates/gaia/fauna_dog_mastiff.xml:8
+msgid "Mastiff"
+msgstr "İngiliz Çoban köpeği"
+
+#: simulation/templates/gaia/fauna_dog_mastiff.xml:9
+#: simulation/templates/gaia/fauna_dog_wolfhound.xml:9
+msgid "Canis lupus familiaris"
+msgstr "Köpek"
+
+#: simulation/templates/gaia/fauna_dog_wolfhound.xml:8
+msgid "Wolfhound"
+msgstr "Kurt köpeği"
 
 #: simulation/templates/gaia/fauna_donkey.xml:8
 msgid "Donkey"
@@ -362,11 +378,11 @@ msgstr "Keçi"
 msgid "Capra aegagrus hircus"
 msgstr "Keçi"
 
-#: simulation/templates/gaia/fauna_hippopotamus.xml:20
+#: simulation/templates/gaia/fauna_hippopotamus.xml:21
 msgid "Hippopotamus"
 msgstr "Hippopotamus"
 
-#: simulation/templates/gaia/fauna_hippopotamus.xml:21
+#: simulation/templates/gaia/fauna_hippopotamus.xml:22
 msgid "Hippopotamus amphibius"
 msgstr "Hippopotamus amphibius"
 
@@ -378,26 +394,27 @@ msgstr "At"
 msgid "Equus ferus caballus"
 msgstr "At"
 
-#: simulation/templates/gaia/fauna_lion.xml:19
+#: simulation/templates/gaia/fauna_horse_pony.xml:8
+msgid "Pony"
+msgstr "Midilli"
+
+#: simulation/templates/gaia/fauna_lion.xml:5
+#: simulation/templates/gaia/fauna_tiger.xml:5
+msgctxt "Name of an attack, usually the weapon."
+msgid "Paws"
+msgstr ""
+
+#: simulation/templates/gaia/fauna_lion.xml:20
 msgid "Lion"
 msgstr "Aslan"
 
-#: simulation/templates/gaia/fauna_lion.xml:20
+#: simulation/templates/gaia/fauna_lion.xml:21
 msgid "Panthera leo"
 msgstr "Aslan"
 
 #: simulation/templates/gaia/fauna_lioness.xml:4
 msgid "Lioness"
 msgstr "Dişi Aslan"
-
-#: simulation/templates/gaia/fauna_mastiff.xml:8
-msgid "Mastiff"
-msgstr "İngiliz Çoban köpeği"
-
-#: simulation/templates/gaia/fauna_mastiff.xml:9
-#: simulation/templates/gaia/fauna_wolfhound.xml:9
-msgid "Canis lupus familiaris"
-msgstr "Köpek"
 
 #: simulation/templates/gaia/fauna_muskox.xml:8
 msgid "Muskox"
@@ -431,10 +448,6 @@ msgstr "Yanan Domuz"
 msgid "Piglet"
 msgstr "Domuz"
 
-#: simulation/templates/gaia/fauna_pony.xml:8
-msgid "Pony"
-msgstr "Midilli"
-
 #: simulation/templates/gaia/fauna_rabbit.xml:11
 msgid "Rabbit"
 msgstr "Tavşan"
@@ -443,11 +456,16 @@ msgstr "Tavşan"
 msgid "Oryctolagus cuniculus"
 msgstr "Avrupa Ada Tavşanı"
 
-#: simulation/templates/gaia/fauna_rhino.xml:19
+#: simulation/templates/gaia/fauna_rhinoceros_white.xml:5
+msgctxt "Name of an attack, usually the weapon."
+msgid "Horn"
+msgstr ""
+
+#: simulation/templates/gaia/fauna_rhinoceros_white.xml:20
 msgid "White Rhinoceros"
 msgstr "Beyaz Gergedan"
 
-#: simulation/templates/gaia/fauna_rhino.xml:20
+#: simulation/templates/gaia/fauna_rhinoceros_white.xml:21
 msgid "Ceratotherium simum"
 msgstr "Gergedan"
 
@@ -467,19 +485,19 @@ msgstr "Koyun"
 msgid "Ovis aries"
 msgstr "Koyun"
 
-#: simulation/templates/gaia/fauna_tiger.xml:19
+#: simulation/templates/gaia/fauna_tiger.xml:20
 msgid "Tiger"
 msgstr "Kaplan"
 
-#: simulation/templates/gaia/fauna_tiger.xml:20
+#: simulation/templates/gaia/fauna_tiger.xml:21
 msgid "Panthera tigris"
 msgstr "Kaplan"
 
-#: simulation/templates/gaia/fauna_walrus.xml:21
+#: simulation/templates/gaia/fauna_walrus.xml:22
 msgid "Walrus"
 msgstr "Deniz Ayısı"
 
-#: simulation/templates/gaia/fauna_walrus.xml:22
+#: simulation/templates/gaia/fauna_walrus.xml:23
 msgid "Odobenus rosmarus"
 msgstr "Mors"
 
@@ -511,9 +529,13 @@ msgstr "Antilop"
 msgid "Wolf"
 msgstr "Kurt"
 
-#: simulation/templates/gaia/fauna_wolfhound.xml:8
-msgid "Wolfhound"
-msgstr "Kurt köpeği"
+#: simulation/templates/gaia/fauna_wolf.xml:9
+msgid "Canis lupus"
+msgstr "Kurt"
+
+#: simulation/templates/gaia/fauna_wolf_arctic.xml:4
+msgid "Arctic Wolf"
+msgstr "Kutup Kurdu"
 
 #: simulation/templates/gaia/fauna_zebra.xml:8
 msgid "Common Zebra"
@@ -523,248 +545,6 @@ msgstr "Zebra"
 msgid "Equus quagga"
 msgstr "Zeba"
 
-#: simulation/templates/gaia/flora_bush_badlands.xml:4
-msgid "Hardy Bush"
-msgstr "Dayanıklı Çalı"
-
-#: simulation/templates/gaia/flora_bush_berry.xml:4
-#: simulation/templates/gaia/flora_bush_berry_02.xml:4
-#: simulation/templates/gaia/flora_bush_berry_03.xml:4
-#: simulation/templates/gaia/flora_bush_berry_autumn_01.xml:4
-#: simulation/templates/gaia/flora_bush_berry_desert.xml:4
-msgid "Berries"
-msgstr "Dut"
-
-#: simulation/templates/gaia/flora_bush_grapes.xml:4
-msgid "Grapes"
-msgstr "Üzüm"
-
-#: simulation/templates/gaia/flora_bush_temperate.xml:4
-#: simulation/templates/gaia/flora_bush_temperate_winter.xml:4
-#: simulation/templates/gaia/flora_bush_tropic.xml:4
-msgid "Bush"
-msgstr "Böğürtlen"
-
-#: simulation/templates/gaia/flora_tree_acacia.xml:4
-msgid "Acacia"
-msgstr "Akasya"
-
-#: simulation/templates/gaia/flora_tree_aleppo_pine.xml:4
-msgid "Aleppo Pine"
-msgstr "Halep Çamı"
-
-#: simulation/templates/gaia/flora_tree_apple.xml:4
-msgid "Apple"
-msgstr "Elma"
-
-#: simulation/templates/gaia/flora_tree_bamboo.xml:4
-#: simulation/templates/gaia/flora_tree_bamboo_single.xml:4
-msgid "Bamboo"
-msgstr "Bambu"
-
-#: simulation/templates/gaia/flora_tree_bamboo_dragon.xml:8
-msgid "Dragon Bamboo"
-msgstr "Ejder Bambusu"
-
-#: simulation/templates/gaia/flora_tree_banana.xml:4
-msgid "Banana"
-msgstr "Muz"
-
-#: simulation/templates/gaia/flora_tree_banyan.xml:8
-msgid "Banyan"
-msgstr "Banyan"
-
-#: simulation/templates/gaia/flora_tree_baobab.xml:8
-#: simulation/templates/gaia/flora_tree_baobab_3_mature.xml:8
-#: simulation/templates/gaia/flora_tree_baobab_4_dead.xml:8
-msgid "Baobab"
-msgstr "Baobab"
-
-#: simulation/templates/gaia/flora_tree_baobab_1_sapling.xml:4
-msgid "Baobab Sapling"
-msgstr "Baobab Fidanı"
-
-#: simulation/templates/gaia/flora_tree_baobab_2_young.xml:4
-msgid "Young Baobab"
-msgstr "Genç Baobab"
-
-#: simulation/templates/gaia/flora_tree_carob.xml:4
-msgid "Carob"
-msgstr "Keçiboynuzu"
-
-#: simulation/templates/gaia/flora_tree_cedar_atlas_1_sapling.xml:4
-msgid "Atlas Cedar Sapling"
-msgstr "Atlas Sediri Fidanı"
-
-#: simulation/templates/gaia/flora_tree_cedar_atlas_2_young.xml:4
-#: simulation/templates/gaia/flora_tree_cedar_atlas_3_mature.xml:4
-#: simulation/templates/gaia/flora_tree_cedar_atlas_4_dead.xml:4
-msgid "Atlas Cedar"
-msgstr "Atlas Sediri"
-
-#: simulation/templates/gaia/flora_tree_cretan_date_palm_patch.xml:8
-#: simulation/templates/gaia/flora_tree_cretan_date_palm_short.xml:4
-#: simulation/templates/gaia/flora_tree_cretan_date_palm_tall.xml:4
-msgid "Cretan Date Palm"
-msgstr "Girit Hurma Palmiyesi"
-
-#: simulation/templates/gaia/flora_tree_cypress.xml:4
-#: simulation/templates/gaia/flora_tree_cypress_wild.xml:4
-#: simulation/templates/gaia/flora_tree_cypress_windswept.xml:4
-msgid "Cypress"
-msgstr "Selvi"
-
-#: simulation/templates/gaia/flora_tree_date_palm.xml:4
-#: simulation/templates/gaia/flora_tree_date_palm_dead.xml:4
-#: simulation/templates/gaia/flora_tree_date_palm_fruit.xml:4
-msgid "Date Palm"
-msgstr "Hurma Palmiyesi"
-
-#: simulation/templates/gaia/flora_tree_dead.xml:4
-#: simulation/templates/gaia/flora_tree_temperate.xml:4
-#: simulation/templates/gaia/flora_tree_temperate_autumn.xml:4
-#: simulation/templates/gaia/flora_tree_temperate_winter.xml:4
-msgid "Deciduous Tree"
-msgstr "Yaprak Döken Ağaç"
-
-#: simulation/templates/gaia/flora_tree_elm.xml:4
-#: simulation/templates/gaia/flora_tree_elm_dead.xml:4
-msgid "Elm"
-msgstr "Karaağaç"
-
-#: simulation/templates/gaia/flora_tree_euro_beech.xml:4
-#: simulation/templates/gaia/flora_tree_euro_beech_aut.xml:4
-msgid "European Beech"
-msgstr "Avrupa Kayını"
-
-#: simulation/templates/gaia/flora_tree_euro_birch.xml:4
-msgid "Silver Birch"
-msgstr "Gümüş Huş"
-
-#: simulation/templates/gaia/flora_tree_fig.xml:7
-msgid "Fig"
-msgstr "İncir"
-
-#: simulation/templates/gaia/flora_tree_fir.xml:4
-#: simulation/templates/gaia/flora_tree_fir_winter.xml:4
-msgid "Fir"
-msgstr "Köknar"
-
-#: simulation/templates/gaia/flora_tree_fir_sapling.xml:4
-msgid "Fir Sapling"
-msgstr "Göknar Fidanı"
-
-#: simulation/templates/gaia/flora_tree_juniper_prickly.xml:4
-msgid "Prickly Juniper"
-msgstr "Dikenli Ardıç"
-
-#: simulation/templates/gaia/flora_tree_mangrove.xml:4
-msgid "Mangrove"
-msgstr "Mangrov"
-
-#: simulation/templates/gaia/flora_tree_maple.xml:4
-msgid "Maple"
-msgstr "Akçaağaç"
-
-#: simulation/templates/gaia/flora_tree_medit_fan_palm.xml:4
-msgid "Mediterranean Fan Palm"
-msgstr "Akdeniz Yelpaze Palmiyesi"
-
-#: simulation/templates/gaia/flora_tree_oak.xml:4
-#: simulation/templates/gaia/flora_tree_oak_aut.xml:4
-#: simulation/templates/gaia/flora_tree_oak_aut_new.xml:4
-#: simulation/templates/gaia/flora_tree_oak_dead.xml:4
-#: simulation/templates/gaia/flora_tree_oak_new.xml:4
-msgid "Oak"
-msgstr "Meşe"
-
-#: simulation/templates/gaia/flora_tree_oak_holly.xml:4
-msgid "Holly Oak"
-msgstr "Kutsal Meşe"
-
-#: simulation/templates/gaia/flora_tree_oak_hungarian.xml:4
-#: simulation/templates/gaia/flora_tree_oak_hungarian_autumn.xml:4
-msgid "Hungarian Oak"
-msgstr "Macar Meşesi"
-
-#: simulation/templates/gaia/flora_tree_oak_large.xml:4
-msgid "Large Oak"
-msgstr "Büyük Meşe"
-
-#: simulation/templates/gaia/flora_tree_olive.xml:4
-msgid "Olive"
-msgstr "Zeytin"
-
-#: simulation/templates/gaia/flora_tree_palm_areca.xml:4
-msgid "Areca Palm"
-msgstr "Areka Palmiyesi"
-
-#: simulation/templates/gaia/flora_tree_palm_doum.xml:4
-msgid "Doum Palm"
-msgstr "Doum Palmiyesi"
-
-#: simulation/templates/gaia/flora_tree_palm_palmyra.xml:4
-msgid "Palmyra Palm"
-msgstr "Palmira Palmiyesi"
-
-#: simulation/templates/gaia/flora_tree_palm_tropic.xml:4
-msgid "Palm"
-msgstr "Palmiye"
-
-#: simulation/templates/gaia/flora_tree_palm_tropical.xml:4
-msgid "Tropical Palm"
-msgstr "Tropikal Palmiye"
-
-#: simulation/templates/gaia/flora_tree_pine.xml:4
-#: simulation/templates/gaia/flora_tree_pine_w.xml:4
-msgid "Pine"
-msgstr "Çam"
-
-#: simulation/templates/gaia/flora_tree_pine_black.xml:4
-#: simulation/templates/gaia/flora_tree_pine_black_dead.xml:4
-msgid "Black Pine"
-msgstr "Karaçam"
-
-#: simulation/templates/gaia/flora_tree_pine_maritime.xml:4
-#: simulation/templates/gaia/flora_tree_pine_maritime_short.xml:4
-msgid "Maritime Pine"
-msgstr "Deniz Çamı"
-
-#: simulation/templates/gaia/flora_tree_poplar.xml:4
-#: simulation/templates/gaia/flora_tree_poplar_dead.xml:4
-#: simulation/templates/gaia/flora_tree_poplar_lombardy_autumn.xml:4
-msgid "Poplar"
-msgstr "Kavak"
-
-#: simulation/templates/gaia/flora_tree_poplar_lombardy.xml:4
-#: simulation/templates/gaia/flora_tree_poplar_lombardy_dead.xml:4
-msgid "Black Poplar"
-msgstr "Siyah Kavak"
-
-#: simulation/templates/gaia/flora_tree_senegal_date_palm.xml:4
-msgid "Senegal Date Palm"
-msgstr "Senegal Hurma Palmiyesi"
-
-#: simulation/templates/gaia/flora_tree_strangler.xml:8
-msgid "Strangler Fig"
-msgstr "Boğmaca İncir"
-
-#: simulation/templates/gaia/flora_tree_tamarix.xml:4
-msgid "Tamarix"
-msgstr "Ilgın"
-
-#: simulation/templates/gaia/flora_tree_teak.xml:8
-msgid "Teak"
-msgstr "Hint Meşesi"
-
-#: simulation/templates/gaia/flora_tree_toona.xml:4
-msgid "Toona"
-msgstr "Kızıl Sedir"
-
-#: simulation/templates/gaia/flora_tree_tropic_rainforest.xml:4
-msgid "Rainforest Tree"
-msgstr "Yağmur Ormanı Ağacı"
-
 #: simulation/templates/gaia/fish/tilapia.xml:4
 msgid "Tilapia"
 msgstr "Çipura"
@@ -772,6 +552,40 @@ msgstr "Çipura"
 #: simulation/templates/gaia/fish/tuna.xml:4
 msgid "Tuna"
 msgstr "Ton Balığı"
+
+#: simulation/templates/gaia/fruit/apple.xml:4
+msgid "Apple"
+msgstr "Elma"
+
+#: simulation/templates/gaia/fruit/banana.xml:4
+msgid "Banana"
+msgstr "Muz"
+
+#: simulation/templates/gaia/fruit/berry_01.xml:4
+#: simulation/templates/gaia/fruit/berry_02.xml:4
+#: simulation/templates/gaia/fruit/berry_03.xml:4
+#: simulation/templates/gaia/fruit/berry_04.xml:4
+#: simulation/templates/gaia/fruit/berry_05.xml:4
+msgid "Berries"
+msgstr "Dut"
+
+#: simulation/templates/gaia/fruit/date.xml:4
+#: simulation/templates/gaia/tree/date_palm.xml:4
+#: simulation/templates/gaia/tree/date_palm_dead.xml:4
+msgid "Date Palm"
+msgstr "Hurma Palmiyesi"
+
+#: simulation/templates/gaia/fruit/fig.xml:7
+msgid "Fig"
+msgstr "İncir"
+
+#: simulation/templates/gaia/fruit/grapes.xml:4
+msgid "Grapes"
+msgstr "Üzüm"
+
+#: simulation/templates/gaia/fruit/olive.xml:4
+msgid "Olive"
+msgstr "Zeytin"
 
 #: simulation/templates/gaia/ruins/column_doric.xml:8
 msgid "Ancient Ruins"
@@ -864,146 +678,213 @@ msgstr "Değerli Taş Hazinesi"
 msgid "Wood Treasure"
 msgstr "Ahşap Hazine"
 
-#: simulation/templates/other/bench.xml:14
-msgid "Bench"
-msgstr "Tezgah"
+#: simulation/templates/gaia/tree/acacia.xml:4
+msgid "Acacia"
+msgstr "Akasya"
 
-#: simulation/templates/other/bench.xml:15
-msgid "Wooden Bench"
-msgstr "Ahşap Tezgah"
+#: simulation/templates/gaia/tree/aleppo_pine.xml:4
+msgid "Aleppo Pine"
+msgstr "Halep Çamı"
 
-#: simulation/templates/other/bridge_hele.xml:15
-#: simulation/templates/other/bridge_hele.xml:16
-msgid "Bridge"
-msgstr "Köprü"
+#: simulation/templates/gaia/tree/bamboo.xml:4
+#: simulation/templates/gaia/tree/bamboo_single.xml:4
+msgid "Bamboo"
+msgstr "Bambu"
 
-#: simulation/templates/other/bridge_wooden.xml:15
-#: simulation/templates/other/bridge_wooden.xml:16
-msgid "Wooden Bridge"
-msgstr "Ahşap Köprü"
+#: simulation/templates/gaia/tree/bamboo_dragon.xml:8
+msgid "Dragon Bamboo"
+msgstr "Ejder Bambusu"
 
-#: simulation/templates/other/celt_hut.xml:21
-msgid "Hut"
-msgstr "Kulübe"
+#: simulation/templates/gaia/tree/banyan.xml:8
+msgid "Banyan"
+msgstr "Banyan"
 
-#: simulation/templates/other/celt_longhouse.xml:21
-msgid "Longhouse"
-msgstr "Büyükev"
+#: simulation/templates/gaia/tree/baobab.xml:8
+#: simulation/templates/gaia/tree/baobab_3_mature.xml:8
+#: simulation/templates/gaia/tree/baobab_4_dead.xml:8
+msgid "Baobab"
+msgstr "Baobab"
 
-#: simulation/templates/other/column_doric.xml:14
-#: simulation/templates/other/column_doric_fallen.xml:14
-#: simulation/templates/other/column_doric_fallen_b.xml:14
-msgid "Column"
-msgstr "Sütun"
+#: simulation/templates/gaia/tree/baobab_1_sapling.xml:4
+msgid "Baobab Sapling"
+msgstr "Baobab Fidanı"
 
-#: simulation/templates/other/column_doric.xml:15
-msgid "Doric Column"
-msgstr "Kaba Sütun"
+#: simulation/templates/gaia/tree/baobab_2_young.xml:4
+msgid "Young Baobab"
+msgstr "Genç Baobab"
 
-#: simulation/templates/other/column_doric_fallen.xml:15
-#: simulation/templates/other/column_doric_fallen_b.xml:15
-msgid "Fallen Doric Column"
-msgstr "Zayıf Kaba Sütun"
+#: simulation/templates/gaia/tree/bush_badlands.xml:4
+msgid "Hardy Bush"
+msgstr "Dayanıklı Çalı"
 
-#: simulation/templates/other/desert_trading_post.xml:14
-msgid "Desert Trading Post"
-msgstr "Çöl Ticaret Dükkanı"
+#: simulation/templates/gaia/tree/bush_temperate.xml:4
+#: simulation/templates/gaia/tree/bush_temperate_winter.xml:4
+#: simulation/templates/gaia/tree/bush_tropic.xml:4
+msgid "Bush"
+msgstr "Böğürtlen"
 
-#: simulation/templates/other/desert_trading_post.xml:15
-msgid "Ardatašta"
-msgstr "Ardatašta"
+#: simulation/templates/gaia/tree/carob.xml:4
+msgid "Carob"
+msgstr "Keçiboynuzu"
 
-#: simulation/templates/other/fence_long.xml:15
-#: simulation/templates/other/fence_short.xml:15
-msgid "Fence"
-msgstr "Çit"
+#: simulation/templates/gaia/tree/cedar_atlas_1_sapling.xml:4
+msgid "Atlas Cedar Sapling"
+msgstr "Atlas Sediri Fidanı"
 
-#: simulation/templates/other/fence_long.xml:16
-msgid "Long Wooden Fence"
-msgstr "Uzun Tahta Çit"
+#: simulation/templates/gaia/tree/cedar_atlas_2_young.xml:4
+#: simulation/templates/gaia/tree/cedar_atlas_3_mature.xml:4
+#: simulation/templates/gaia/tree/cedar_atlas_4_dead.xml:4
+msgid "Atlas Cedar"
+msgstr "Atlas Sediri"
 
-#: simulation/templates/other/fence_short.xml:16
-msgid "Short Wooden Fence"
-msgstr "Kısa Tahta Çit"
+#: simulation/templates/gaia/tree/cretan_date_palm_patch.xml:8
+#: simulation/templates/gaia/tree/cretan_date_palm_short.xml:4
+#: simulation/templates/gaia/tree/cretan_date_palm_tall.xml:4
+msgid "Cretan Date Palm"
+msgstr "Girit Hurma Palmiyesi"
 
-#: simulation/templates/other/fence_stone.xml:15
-#: simulation/templates/other/fence_stone.xml:16
-msgid "Stone Fence"
-msgstr "Kaya Engel"
+#: simulation/templates/gaia/tree/cypress.xml:4
+#: simulation/templates/gaia/tree/cypress_wild.xml:4
+#: simulation/templates/gaia/tree/cypress_windswept.xml:4
+msgid "Cypress"
+msgstr "Selvi"
 
-#: simulation/templates/other/generic_field.xml:8
-msgid "Wheat Field"
-msgstr "Buğday Tarlası"
+#: simulation/templates/gaia/tree/dead.xml:4
+#: simulation/templates/gaia/tree/temperate.xml:4
+#: simulation/templates/gaia/tree/temperate_autumn.xml:4
+#: simulation/templates/gaia/tree/temperate_winter.xml:4
+msgid "Deciduous Tree"
+msgstr "Yaprak Döken Ağaç"
 
-#: simulation/templates/other/hellenic_epic_temple.xml:23
-msgid "Epic Temple"
-msgstr "Efsanevi Tapınak"
+#: simulation/templates/gaia/tree/elm.xml:4
+#: simulation/templates/gaia/tree/elm_dead.xml:4
+msgid "Elm"
+msgstr "Karaağaç"
 
-#: simulation/templates/other/hellenic_epic_temple.xml:24
-msgid "Naos Parthenos"
-msgstr "Naos Parthenos"
+#: simulation/templates/gaia/tree/euro_beech.xml:4
+#: simulation/templates/gaia/tree/euro_beech_aut.xml:4
+msgid "European Beech"
+msgstr "Avrupa Kayını"
 
-#: simulation/templates/other/hellenic_epic_temple.xml:25
-msgid "Garrison units to heal them at a quick rate."
-msgstr "Garnizon birliklerinin onlardan daha hızlı iyileşmesini sağlar."
+#: simulation/templates/gaia/tree/euro_birch.xml:4
+msgid "Silver Birch"
+msgstr "Gümüş Huş"
 
-#: simulation/templates/other/hellenic_propylaea.xml:24
-msgid "Portico"
-msgstr "Sütunlu giriş"
+#: simulation/templates/gaia/tree/fir.xml:4
+#: simulation/templates/gaia/tree/fir_winter.xml:4
+msgid "Fir"
+msgstr "Köknar"
 
-#: simulation/templates/other/hellenic_propylaea.xml:25
-msgid "Propylaea"
-msgstr "Propylaea"
+#: simulation/templates/gaia/tree/fir_sapling.xml:4
+msgid "Fir Sapling"
+msgstr "Göknar Fidanı"
 
-#: simulation/templates/other/hellenic_stoa.xml:24
-msgid "Stoa"
-msgstr "Stoa"
+#: simulation/templates/gaia/tree/juniper_prickly.xml:4
+msgid "Prickly Juniper"
+msgstr "Dikenli Ardıç"
 
-#: simulation/templates/other/hellenic_stoa.xml:25
-msgid "Hellenic Stoa"
-msgstr "Helen Stoası"
+#: simulation/templates/gaia/tree/mangrove.xml:4
+msgid "Mangrove"
+msgstr "Mangrov"
 
-#: simulation/templates/other/obelisk.xml:14
-msgid "Obelisk"
-msgstr "Dikili Taş"
+#: simulation/templates/gaia/tree/maple.xml:4
+msgid "Maple"
+msgstr "Akçaağaç"
 
-#: simulation/templates/other/obelisk.xml:15
-msgid "Egyptian Obelisk"
-msgstr "Mısır Dikili Taşı"
+#: simulation/templates/gaia/tree/medit_fan_palm.xml:4
+msgid "Mediterranean Fan Palm"
+msgstr "Akdeniz Yelpaze Palmiyesi"
 
-#: simulation/templates/other/sele_colonnade.xml:14
-msgid "Colonnade"
-msgstr "Kemeraltı"
+#: simulation/templates/gaia/tree/oak.xml:4
+#: simulation/templates/gaia/tree/oak_aut.xml:4
+#: simulation/templates/gaia/tree/oak_aut_new.xml:4
+#: simulation/templates/gaia/tree/oak_dead.xml:4
+#: simulation/templates/gaia/tree/oak_new.xml:4
+msgid "Oak"
+msgstr "Meşe"
 
-#: simulation/templates/other/sele_colonnade.xml:15
-msgid "Corinthian Colonnade"
-msgstr "Korint Tarzı Kemeraltı"
+#: simulation/templates/gaia/tree/oak_holly.xml:4
+msgid "Holly Oak"
+msgstr "Kutsal Meşe"
 
-#: simulation/templates/other/stall_big.xml:11
-msgid "Big stall"
-msgstr "Büyük kabin"
+#: simulation/templates/gaia/tree/oak_hungarian.xml:4
+#: simulation/templates/gaia/tree/oak_hungarian_autumn.xml:4
+msgid "Hungarian Oak"
+msgstr "Macar Meşesi"
 
-#: simulation/templates/other/stall_med.xml:11
-msgid "Medium stall"
-msgstr "Orta boy kabin"
+#: simulation/templates/gaia/tree/oak_large.xml:4
+msgid "Large Oak"
+msgstr "Büyük Meşe"
 
-#: simulation/templates/other/stall_small_a.xml:11
-#: simulation/templates/other/stall_small_b.xml:11
-msgid "Small stall"
-msgstr "Küçük kabin"
+#: simulation/templates/gaia/tree/palm_areca.xml:4
+msgid "Areca Palm"
+msgstr "Areka Palmiyesi"
 
-#: simulation/templates/other/table_rectangle.xml:14
-#: simulation/templates/other/table_square.xml:14
-msgid "Table"
-msgstr "Masa"
+#: simulation/templates/gaia/tree/palm_doum.xml:4
+msgid "Doum Palm"
+msgstr "Doum Palmiyesi"
 
-#: simulation/templates/other/table_rectangle.xml:15
-msgid "Rectangle Table"
-msgstr "Dikdörtgen Masa"
+#: simulation/templates/gaia/tree/palm_palmyra.xml:4
+msgid "Palmyra Palm"
+msgstr "Palmira Palmiyesi"
 
-#: simulation/templates/other/table_square.xml:15
-msgid "Square Table"
-msgstr "Kare Masa"
+#: simulation/templates/gaia/tree/palm_tropic.xml:4
+msgid "Palm"
+msgstr "Palmiye"
+
+#: simulation/templates/gaia/tree/palm_tropical.xml:4
+msgid "Tropical Palm"
+msgstr "Tropikal Palmiye"
+
+#: simulation/templates/gaia/tree/pine.xml:4
+#: simulation/templates/gaia/tree/pine_w.xml:4
+msgid "Pine"
+msgstr "Çam"
+
+#: simulation/templates/gaia/tree/pine_black.xml:4
+#: simulation/templates/gaia/tree/pine_black_dead.xml:4
+msgid "Black Pine"
+msgstr "Karaçam"
+
+#: simulation/templates/gaia/tree/pine_maritime.xml:4
+#: simulation/templates/gaia/tree/pine_maritime_short.xml:4
+msgid "Maritime Pine"
+msgstr "Deniz Çamı"
+
+#: simulation/templates/gaia/tree/poplar.xml:4
+#: simulation/templates/gaia/tree/poplar_dead.xml:4
+#: simulation/templates/gaia/tree/poplar_lombardy_autumn.xml:4
+msgid "Poplar"
+msgstr "Kavak"
+
+#: simulation/templates/gaia/tree/poplar_lombardy.xml:4
+#: simulation/templates/gaia/tree/poplar_lombardy_dead.xml:4
+msgid "Black Poplar"
+msgstr "Siyah Kavak"
+
+#: simulation/templates/gaia/tree/senegal_date_palm.xml:4
+msgid "Senegal Date Palm"
+msgstr "Senegal Hurma Palmiyesi"
+
+#: simulation/templates/gaia/tree/strangler.xml:8
+msgid "Strangler Fig"
+msgstr "Boğmaca İncir"
+
+#: simulation/templates/gaia/tree/tamarix.xml:4
+msgid "Tamarix"
+msgstr "Ilgın"
+
+#: simulation/templates/gaia/tree/teak.xml:8
+msgid "Teak"
+msgstr "Hint Meşesi"
+
+#: simulation/templates/gaia/tree/toona.xml:4
+msgid "Toona"
+msgstr "Kızıl Sedir"
+
+#: simulation/templates/gaia/tree/tropic_rainforest.xml:4
+msgid "Rainforest Tree"
+msgstr "Yağmur Ormanı Ağacı"
 
 #: simulation/templates/skirmish/structures/default_house_10.xml:5
 msgid ""
@@ -1016,6 +897,16 @@ msgid ""
 "Changes in a 5-pop house for civilisations with those houses, is deleted for"
 " other civs"
 msgstr "Bu evler ile medeniyetteki ev için 5 nüfusluık değişimde, diğer kişiler için silinecektir"
+
+#: simulation/templates/skirmish/units/default_infantry_melee_b.xml:5
+msgctxt "Name of an attack, usually the weapon."
+msgid "Melee"
+msgstr "Yakın Dövüş"
+
+#: simulation/templates/skirmish/units/default_infantry_ranged_b.xml:5
+msgctxt "Name of an attack, usually the weapon."
+msgid "Ranged"
+msgstr "Menzilli"
 
 #: simulation/templates/special/spy.xml:17
 msgid "Spy"

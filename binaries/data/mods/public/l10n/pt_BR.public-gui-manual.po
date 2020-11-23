@@ -24,12 +24,13 @@
 # e05a6f0c527312287ac027cf3d3a35f5_685166c <0e3f187c36e42a887ffaef9a9e407417_190443>, 2015
 # Tiago Melo <tiago.henrique.cco@gmail.com>, 2020
 # Tiago Melo <tiago.henrique.cco@gmail.com>, 2018,2020
+# Vinícius Pereira <lameiravinicius24@gmail.com>, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-06 07:17+0000\n"
-"PO-Revision-Date: 2020-08-15 00:01+0000\n"
-"Last-Translator: André Schwarz <andrschwarz@protonmail.com>\n"
+"POT-Creation-Date: 2020-11-20 08:09+0000\n"
+"PO-Revision-Date: 2020-11-21 14:25+0000\n"
+"Last-Translator: Vinícius Pereira <lameiravinicius24@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -41,11 +42,11 @@ msgstr ""
 msgid "Manual"
 msgstr "Manual"
 
-#: gui/manual/manual.xml:(caption):23
+#: gui/manual/manual.xml:(caption):21
 msgid "Close"
 msgstr "Fechar"
 
-#: gui/manual/manual.xml:(caption):28
+#: gui/manual/manual.xml:(caption):26
 msgid "View Online"
 msgstr "Visualizar na internet"
 
@@ -85,8 +86,8 @@ msgid ""
 msgstr "Quem já tem experiência com outros jogos de estratégia em tempo real pode não precisar de maiores explicações sobre os comandos e a jogabilidade do 0 A.D.. No entanto, vários recursos do jogo ainda não foram implementados e diversos atributos que precisam ser reajustados para equilibrar as civilizações. As coisas podem só ficar nos conformes em uma futura versão beta."
 
 #: gui/manual/intro.txt:10
-msgid "Basic controls:"
-msgstr "Controles básicos:"
+msgid "Basic controls (by default):"
+msgstr "Controles básicos (por padrão):"
 
 #: gui/manual/intro.txt:11
 msgid "• Left-click to select units"
@@ -109,8 +110,10 @@ msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera"
 msgstr "Para girar a câmera, aperte Ctrl e alguma tecla de seta. Girar a roda do mouse com a tecla Shift apertada surte o mesmo efeito"
 
 #: gui/manual/intro.txt:16
-msgid "• Mouse wheel, or “=”/“+” and “-”/“−” keys, to zoom"
-msgstr "Para aproximar ou distanciar a câmera, use a roda do mouse ou as teclas + e -"
+msgid ""
+"• Mouse wheel, or “hotkey.camera.zoom.in” and ““hotkey.camera.zoom.out” "
+"keys, to zoom"
+msgstr ""
 
 #: gui/manual/intro.txt:18
 msgid "[font=\"sans-bold-16\"]Modes[font=\"sans-14\"]"
@@ -199,535 +202,554 @@ msgid "[font=\"sans-bold-16\"]Hotkeys[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-16\"]Teclas de atalho[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:40
+msgid ""
+"You may change hotkeys in [font=\"sans-bold-14\"]Options > "
+"Hotkeys[font=\"sans-14\"] to suit your liking."
+msgstr ""
+
+#: gui/manual/intro.txt:42
 msgid "[font=\"sans-bold-14\"]Program-wide[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]Válidas em toda parte do programa[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:41
-msgid ""
-"  Alt + F4 – Immediately close the game, without asking for confirmation"
-msgstr "  Alt + F4: encerra imediatamente o jogo, sem pedir confirmação"
-
-#: gui/manual/intro.txt:42
-msgid "  Alt + Enter (Return) – Toggle between fullscreen and windowed"
-msgstr "  Alt + Enter: alterna entre as exibições em janela e em tela cheia"
-
 #: gui/manual/intro.txt:43
-msgid "  ~ or F9 – Toggle console"
-msgstr "  ~ or F9: abre ou fecha o terminal"
+msgid ""
+"  hotkey.exit – Immediately close the game, without asking for confirmation"
+msgstr ""
 
 #: gui/manual/intro.txt:44
-msgid "  Alt + F – Toggle frame counter (FPS)"
-msgstr "  Alt + F: mostra ou oculta o contador de quadros por segundo (FPS)"
+msgid "  hotkey.togglefullscreen – Toggle between fullscreen and windowed"
+msgstr ""
 
 #: gui/manual/intro.txt:45
-msgid ""
-"  F11 – Toggle real-time profiler (cycles through the displays of "
-"information)"
-msgstr "  F11: alterna entre os diversos monitores de tempo real"
+msgid "  hotkey.console.toggle – Toggle console"
+msgstr ""
 
 #: gui/manual/intro.txt:46
-msgid "  Shift + F11 – Save current profiler data to “logs/profile.txt”"
-msgstr "  Shift + F11: armazena, no arquivo \"logs/profile.txt\", os dados do monitor de tempo real exibido no momento"
+msgid "  hotkey.fps.toggle – Toggle frame counter (FPS)"
+msgstr ""
 
 #: gui/manual/intro.txt:47
 msgid ""
-"  F2 – Take screenshot (in .png format, location is displayed in the top "
-"left of the GUI after the file has been saved, and can also be seen in the "
-"console/logs if you miss it there)"
-msgstr "  F2: tira uma foto da tela em formato .png. O local de seu armazenamento é exibido no canto superior esquerdo da tela e também é registrado no terminal e nos logs, para futura referência"
+"  hotkey.profile.toggle – Toggle real-time profiler (cycles through the "
+"displays of information)"
+msgstr ""
 
 #: gui/manual/intro.txt:48
 msgid ""
-"  Shift + F2 – Take huge screenshot (6400×4800 pixels, in .bmp format, "
-"location is displayed in the top left of the GUI after the file has been "
-"saved, and can also be seen in the console/logs if you miss it there)"
-msgstr " Shift + F2: tira uma foto grande da tela, com resolução de 6400x4800 e formato .bmp. O local de seu armazenamento é exibido no canto superior esquerdo da tela e também é registrado no terminal e nos logs, para futura referência"
+"  hotkey.profile.save – Save current profiler data to “logs/profile.txt”"
+msgstr ""
 
 #: gui/manual/intro.txt:49
-msgid "  Tab, Alt + S – Switch to the next tab"
-msgstr "  Tab; Alt + S: alterna para a próxima aba"
+msgid ""
+"  hotkey.screenshot – Take screenshot (in .png format, location is displayed"
+" in the top left of the GUI after the file has been saved, and can also be "
+"seen in the console/logs if you miss it there)"
+msgstr ""
 
 #: gui/manual/intro.txt:50
-msgid "  Shift + Tab, Alt + W – Switch to the previous tab"
-msgstr "  Shift + Tab; Alt + W: alterna para a aba anterior"
+msgid ""
+"  hotkey.bigscreenshot – Take huge screenshot (6400×4800 pixels, in .bmp "
+"format, location is displayed in the top left of the GUI after the file has "
+"been saved, and can also be seen in the console/logs if you miss it there)"
+msgstr ""
+
+#: gui/manual/intro.txt:51
+msgid "  hotkey.tab.next – Switch to the next tab"
+msgstr ""
 
 #: gui/manual/intro.txt:52
+msgid "  hotkey.tab.prev – Switch to the previous tab"
+msgstr ""
+
+#: gui/manual/intro.txt:54
 msgid "[font=\"sans-bold-14\"]In Game[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]Comandos para jogos em andamento[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:53
+#: gui/manual/intro.txt:55
 msgid ""
 "  Double Left Click \\[on unit] – Select all of your units of the same kind "
 "on the screen (even if they're different ranks)"
 msgstr "Clique duplo sobre uma unidade: seleciona todas as unidades de mesmo tipo que estejam presentes na tela, mesmo se forem de grau hierárquico diferente"
 
-#: gui/manual/intro.txt:54
+#: gui/manual/intro.txt:56
 msgid ""
 "  Triple Left Click \\[on unit] – Select all of your units of the same kind "
 "and the same rank on the screen"
 msgstr "Clique triplo sobre uma unidade: seleciona todas as unidades de mesmo tipo e mesmo grau hierárquico que estiverem presentes na tela"
 
-#: gui/manual/intro.txt:55
+#: gui/manual/intro.txt:57
 msgid ""
 "  Alt + Double Left Click \\[on unit] – Select all your units of the same "
 "kind on the entire map (even if they have different ranks)"
 msgstr "Alt + duplo clique sobre uma unidade: seleciona todas as unidades de mesmo tipo em todo o mapa, inclusive as de grau hierárquico diferente"
 
-#: gui/manual/intro.txt:56
+#: gui/manual/intro.txt:58
 msgid ""
 "  Alt + Triple Left Click \\[on unit] – Select all your units of the same "
 "kind and rank on the entire map"
 msgstr "Alt + triplo clique sobre uma unidade: seleciona todas as unidades de mesmo tipo e mesmo grau hierárquico presentes no mapa"
 
-#: gui/manual/intro.txt:57
-msgid "  Shift + F5 – Quicksave"
-msgstr "  Shift + F5: salvamento rápido"
-
-#: gui/manual/intro.txt:58
-msgid "  Shift + F8 – Quickload"
-msgstr "Shift + F8: carregamento rápido"
-
 #: gui/manual/intro.txt:59
-msgid "  F10 – Toggle menu"
-msgstr "F10: mostra ou esconde o menu"
+msgid "  hotkey.quicksave – Quicksave"
+msgstr ""
 
 #: gui/manual/intro.txt:60
-msgid "  F12 – Toggle time elapsed counter"
-msgstr "F12: mostra ou esconde o contador de tempo de jogo"
+msgid "  hotkey.quickload – Quickload"
+msgstr ""
 
 #: gui/manual/intro.txt:61
-msgid "  Esc – Close all dialogs (chat, menu) or clear selected units"
-msgstr "Esc: desfaz a seleção de unidades, ou fecha todos os menus e janelas de chat abertos"
+msgid "  hotkey.session.gui.menu.toggle – Toggle menu"
+msgstr ""
 
 #: gui/manual/intro.txt:62
-msgid "  Enter (Return) – Open chat or send message"
-msgstr "  Enter: abre a janela de chat ou envia a mensagem"
+msgid "  hotkey.timeelapsedcounter.toggle – Toggle time elapsed counter"
+msgstr ""
 
 #: gui/manual/intro.txt:63
-msgid "  T – Send team chat"
-msgstr "T: envia mensagem de chat para toda a equipe"
+msgid "  hotkey.cancel – Close all dialogs (chat, menu)"
+msgstr ""
 
 #: gui/manual/intro.txt:64
-msgid "  L – Chat with the previously selected private chat partner"
-msgstr "L: envia mensagem de chat privada para a pessoa selecionada para conversa privativa"
+msgid "  hotkey.confirm – Open chat or send message"
+msgstr ""
 
 #: gui/manual/intro.txt:65
-msgid "  Pause – Pause or resume the game"
-msgstr "Pause: pausa o jogo ou desativa a pausa"
+msgid "  hotkey.teamchat – Send team chat"
+msgstr ""
 
 #: gui/manual/intro.txt:66
 msgid ""
-"  Delete – Delete currently selected unit(s)/structure(s), ask for "
-"confirmation"
-msgstr "Delete: remove todas as unidades ou estruturas selecionadas no momento, solicitando confirmação para tanto"
+"  hotkey.privatechat – Chat with the previously selected private chat "
+"partner"
+msgstr ""
 
 #: gui/manual/intro.txt:67
-msgid ""
-"  Shift + Delete – Immediately delete currently selected "
-"unit(s)/structure(s), without asking for confirmation"
-msgstr "Shift + Delete: remove imediatamente todas as unidades e estruturas selecionadas no momento, sem solicitar confirmação"
+msgid "  hotkey.pause – Pause or resume the game"
+msgstr ""
 
 #: gui/manual/intro.txt:68
-msgid "  / (Slash) – Select idle fighter"
-msgstr "/ (barra): seleciona guerreiro ocioso"
+msgid ""
+"  hotkey.session.kill – Delete currently selected unit(s)/structure(s), ask "
+"for confirmation"
+msgstr ""
 
 #: gui/manual/intro.txt:69
-msgid "  Shift + / (Slash) – Add idle fighter to selection"
-msgstr "Shift + / (barra): inclui o guerreiro ocioso na lista de unidades selecionadas no momento"
+msgid ""
+"    • With hotkey.session.noconfirmation – Immediately delete currently "
+"selected unit(s)/structure(s), without asking for confirmation"
+msgstr ""
 
 #: gui/manual/intro.txt:70
-msgid "  Alt + / (Slash) – Select all idle fighters"
-msgstr "Alt + / (barra): seleciona todos os guerreiros ociosos"
+msgid ""
+"  hotkey.selection.add – Modifier - add to selection (works with clicking "
+"and hotkeys, e.g. the idle hotkeys)"
+msgstr ""
 
 #: gui/manual/intro.txt:71
-msgid "  . (Period) – Select idle worker (including citizen-soldiers)"
-msgstr ". (ponto final): seleciona trabalhador ocioso, mesmo se ele também for um soldado"
+msgid ""
+"  hotkey.selection.remove – Modifier - remove from selection (works with "
+"clicking and hotkeys, e.g. the idle hotkeys)"
+msgstr ""
 
 #: gui/manual/intro.txt:72
 msgid ""
-"  Shift + . (Period) – Add idle worker to selection (including citizen-"
-"soldiers)"
-msgstr "Shift + . (ponto final): inclui o trabalhador ocioso na lista de unidades selecionadas no momento, mesmo se ele também for um soldado"
+"  hotkey.selection.offscreen - Modifier - add all units, including offscreen"
+" units, to selection."
+msgstr ""
 
 #: gui/manual/intro.txt:73
 msgid ""
-"  Alt + . (Period) – Select all idle workers (including citizen-soldiers)"
-msgstr "Alt + . (ponto final): seleciona todos os trabalhadores ociosos, inclusive os que também forem soldados"
+"  hotkey.selection.cancel – Unselect all units, cancel building placement."
+msgstr ""
 
 #: gui/manual/intro.txt:74
-msgid "  \\\\ (Backslash) – Select idle unit"
-msgstr "\\\\ (barra invertida): seleciona unidade ociosa"
+msgid "  hotkey.selection.idlewarrior – Select idle fighter"
+msgstr ""
 
 #: gui/manual/intro.txt:75
-msgid "  Shift + \\\\ (Backslash) – Add idle unit to selection"
-msgstr "Shift + \\\\ (barra invertida): inclui a unidade ociosa na lista de unidades selecionadas no momento"
+msgid ""
+"  hotkey.selection.idleworker – Select idle worker (including citizen-"
+"soldiers)"
+msgstr ""
 
 #: gui/manual/intro.txt:76
-msgid "  Alt + \\\\ (Backslash) – Select all idle units"
-msgstr "Alt + \\\\ (barra invertida): seleciona todas as unidades ociosas"
+msgid "  hotkey.selection.idleunit – Select idle unit"
+msgstr ""
 
 #: gui/manual/intro.txt:77
-msgid "  H – Stop (halt) the currently selected units"
-msgstr "H: faz as unidades selecionadas interromperem suas atividades e pararem onde estão"
+msgid "  hotkey.session.stop – Stop (halt) the currently selected units"
+msgstr ""
 
 #: gui/manual/intro.txt:78
-msgid "  Y – The unit will go back to work"
-msgstr "Y: faz a unidade voltar ao trabalho"
+msgid "  hotkey.session.backtowork – The unit will go back to work"
+msgstr ""
 
 #: gui/manual/intro.txt:79
-msgid "  U – Unload the garrisoned units of the selected structure(s)"
-msgstr "U: retira todas as unidades guarnecidas nas construções selecionadas"
+msgid ""
+"  hotkey.session.unload – Unload the garrisoned units of the selected "
+"structure(s)"
+msgstr ""
 
 #: gui/manual/intro.txt:80
 msgid ""
-"  Ctrl + 1 (and so on up to Ctrl + 0) – Create control group 1 (to 0) from "
-"the selected unit(s)/structure(s)"
-msgstr "Ctrl + [qualquer número de 0 a 9]: forma um grupo específico com as unidades ou estruturas selecionadas no momento."
+"  hotkey.selection.group.save.1 – Create control group 1 (by default, "
+"respectively 2,3, ...) from the selected unit(s)/structure(s)"
+msgstr ""
 
 #: gui/manual/intro.txt:81
 msgid ""
-"  1 (and so on up to 0) – Select the unit(s)/structure(s) in control group 1"
-" (to 0)"
-msgstr "[qualquer número de 0 a 9]: ativa o grupo específico correspondente"
+"  hotkey.selection.group.select.1 - Select the unit(s)/structure(s) in "
+"control group 1"
+msgstr ""
 
 #: gui/manual/intro.txt:82
 msgid ""
-"  Shift + 1 (to 0) – Add control group 1 (to 0) to the selected "
+"  hotkey.selection.group.add.1 – Add control group 1 (to 0) to the selected "
 "unit(s)/structure(s)"
-msgstr "Shift + [qualquer número de 0 a 9]: seleciona o grupo específico correspondente, junto com as unidades ou estruturas que já estão selecionadas no momento"
+msgstr ""
 
 #: gui/manual/intro.txt:83
 msgid ""
-"  Ctrl + F5 (and so on up to F8) – Mark the current camera position, for "
-"jumping back to later"
-msgstr "Ctrl + [qualquer tecla de F5 a F8]: salva a posição atual da câmera, para retornar depois"
+"  hotkey.camera.jump.set.1 – Mark the current camera position, for jumping "
+"back to later (by default, there are 4 possible positions)"
+msgstr ""
 
 #: gui/manual/intro.txt:84
 msgid ""
-"  F5 (and so on up to F8) – Move the camera to a marked position. Jump back "
-"to the last location if the camera is already over the marked position"
-msgstr "[qualquer tecla de F5 a F8]: retorna a câmera à posição salva anteriormente. Se a câmera já estiver na posição salva, ela retornará à posição anterior"
+"  hotkey.camera.jump.1 – Move the camera to a marked position. Jump back to "
+"the last location if the camera is already over the marked position"
+msgstr ""
 
 #: gui/manual/intro.txt:85
 msgid ""
-"  Z, X, C, V, B, N, M – With training structure selected. Add the 1st, 2nd, "
-"… unit shown to the training queue for all the selected structures"
-msgstr "  Z, X, C, V, B, N, M [quando uma construção estiver selecionada]: manda treinar uma das unidades que a construção produz. Z manda produzir a do primeiro botão, X a do segundo e assim por diante"
+"  hotkey.session.queueunit.1, hotkey.session.queueunit.2, "
+"hotkey.session.queueunit.3, hotkey.session.queueunit.4, "
+"hotkey.session.queueunit.5, hotkey.session.queueunit.6, "
+"hotkey.session.queueunit.7 – With training structure selected. Add the 1st, "
+"2nd, … unit shown to the training queue for all the selected structures"
+msgstr ""
 
 #: gui/manual/intro.txt:86
 msgid ""
-"  PageUp with unit(s) selected – Highlight the unit(s)/structure(s) guarded "
-"by the selection"
-msgstr "PageUp: destaca as construções ou unidades que as unidades ou construções selecionadas estão protegendo"
+"  hotkey.session.highlightguarded with unit(s) selected – Highlight the "
+"unit(s)/structure(s) guarded by the selection"
+msgstr ""
 
 #: gui/manual/intro.txt:87
 msgid ""
-"  PageDown with unit(s)/structure(s) selected – Highlight the unit(s) "
-"guarding the selection"
-msgstr "PageDown: destaca as unidades ou construções que as unidades ou construçẽos selecionadas estão protegendo"
+"  hotkey.session.highlightguarding with unit(s)/structure(s) selected – "
+"Highlight the unit(s) guarding the selection"
+msgstr ""
 
 #: gui/manual/intro.txt:88
 msgid ""
-"  Tab – See all status bars (which would also show the building progress)"
-msgstr "Tab: mostra todas as barras de status, inclusive o estágio atual de uma construção em andamento"
+"  highlightguarding.showstatusbars – See all status bars (which would also "
+"show the building progress)"
+msgstr ""
 
 #: gui/manual/intro.txt:89
-msgid "  Ctrl + Tab – Toggle summary window"
-msgstr "Ctrl + Tab: mostra ou esconde a janela de dados resumidos"
+msgid "  hotkey.summary – Toggle summary window"
+msgstr ""
 
 #: gui/manual/intro.txt:90
-msgid "  Alt + L – Show the multiplayer lobby in a dialog window"
-msgstr "Alt + L: abre uma janela de diálogo que mostra o saguão de jogadores do servidor"
+msgid "  hotkey.lobby – Show the multiplayer lobby in a dialog window"
+msgstr ""
 
 #: gui/manual/intro.txt:91
-msgid "  Ctrl + H – Toggle in-game diplomacy panel"
-msgstr "Ctrl + H: Mostra ou oculta o painel de diplomacia"
+msgid "  hotkey.session.gui.diplomacy.toggle – Toggle in-game diplomacy panel"
+msgstr ""
 
 #: gui/manual/intro.txt:92
-msgid "  Ctrl + B – Toggle in-game barter and trade panel"
-msgstr "Ctrl + B: Mostra ou oculta o painel de comércio entre jogadores"
+msgid ""
+"  hotkey.session.gui.barter.toggle – Toggle in-game barter and trade panel"
+msgstr ""
 
 #: gui/manual/intro.txt:93
-msgid "  Ctrl + O – Toggle in-game objectives panel"
-msgstr "Ctrl + O: mostra ou oculta o painel de objetivos do jogo"
+msgid ""
+"  hotkey.session.gui.objectives.toggle – Toggle in-game objectives panel"
+msgstr ""
 
 #: gui/manual/intro.txt:94
-msgid "  Ctrl + P – Toggle in-game tutorial panel"
-msgstr "Ctrl + P: mostra ou oculta o painel tutorial"
+msgid "  hotkey.session.gui.tutorial.toggle – Toggle in-game tutorial panel"
+msgstr ""
 
 #: gui/manual/intro.txt:95
-msgid "  Alt + Shift + T – Toggle structure tree panel"
-msgstr "  Alt + Shift + T: mostra ou oculta o painel da árvore de construções"
+msgid "  hotkey.structree – Toggle structure tree panel"
+msgstr ""
 
 #: gui/manual/intro.txt:96
-msgid "  Alt + Shift + H – Toggle civilization info panel"
-msgstr "  Alt + Shift + H: mostra ou oculta o painel de informações das tribos"
+msgid "  hotkey.civinfo – Toggle civilization info panel"
+msgstr ""
 
 #: gui/manual/intro.txt:98
 msgid "[font=\"sans-bold-14\"]Modify mouse action[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]Comandos do mouse[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:99
-msgid "  Ctrl + Right Click on structure – Garrison"
-msgstr "Ctrl + clique com o botão direito em uma construção: guarnece a estrutura"
+msgid "  hotkey.session.garrison + Right Click on structure – Garrison"
+msgstr ""
 
 #: gui/manual/intro.txt:100
-msgid "  J + Right Click on structure – Repair"
-msgstr "J + clique com o botão direito em uma construção: conserta a estrutura"
+msgid "  hotkey.session.repair + Right Click on structure – Repair"
+msgstr ""
 
 #: gui/manual/intro.txt:101
-msgid "  P + Right Click – Patrol"
-msgstr "  P + clique com o botão direito: patrulha a área"
+msgid "  hotkey.session.patrol + Right Click – Patrol"
+msgstr ""
 
 #: gui/manual/intro.txt:102
-msgid "  Shift + Right Click – Queue the move/build/gather/etc. order"
-msgstr "Shift + clique com o botão direito do mouse: serve para fazer uma lista de comandos para execução em sequência"
+msgid ""
+"  hotkey.session.queue + Right Click – Queue the move/build/gather/etc. "
+"order"
+msgstr ""
 
 #: gui/manual/intro.txt:103
 msgid ""
-"  Alt + Right Click – Order one unit from the current selection to "
-"move/build/gather/etc. and unselect it. Used to quickly dispatch units with "
-"specific tasks"
-msgstr "Alt + clique com o botão direito do mouse: manda uma das unidades selecionadas no momento ir a algum lugar ou executar uma ação, retirando-a imediatamente da lista de unidades selecionadas. Útil para mandar realizar várias ações em uma área ampla"
+"  hotkey.session.orderone + Right Click – Order one unit from the current "
+"selection to move/build/gather/etc. and unselect it. Used to quickly "
+"dispatch units with specific tasks"
+msgstr ""
 
 #: gui/manual/intro.txt:104
 msgid ""
-"  Shift + Left Click when training units – Add units in batches (the batch "
-"size is 5 by default and can be changed in the options)"
-msgstr "Shift + clique com o botão esquerdo do mouse, ao mandar produzir unidades: manda construir um grupo de uma determinada unidade. O tamanho predefinido é de cinco unidades, mas pode ser alterado nas configurações"
+"  hotkey.session.batchtrain + Left Click when training units – Add units in "
+"batches (the batch size is 5 by default and can be changed in the options)"
+msgstr ""
 
 #: gui/manual/intro.txt:105
 msgid ""
-"  Shift + Left Click or Left Drag over unit on map – Add unit to selection"
-msgstr "Shift + arraste ou clique com o botão esquerdo do mouse: inclui as unidades presentes no quadrado à lista de unidades selecionadas"
+"  hotkey.selection.add + Left Click or Left Drag over unit on map – Add unit"
+" to selection"
+msgstr ""
 
 #: gui/manual/intro.txt:106
 msgid ""
-"  Ctrl + Left Click or Left Drag over unit on map – Remove unit from "
-"selection"
-msgstr "Ctrl + arraste ou clique com o botão esquerdo do mouse: retira as unidades presentes no quadrado da lista de unidades selecionadas"
+"  hotkey.selection.remove + Left Click or Left Drag over unit on map – "
+"Remove unit from selection"
+msgstr ""
 
 #: gui/manual/intro.txt:107
-msgid "  Alt + Left Drag over units on map – Only select military units"
-msgstr "Alt + arraste com o botão esquerdo do mouse sobre unidades no mapa: faz selecionar apenas as unidades militares na área"
+msgid ""
+"  hotkey.selection.militaryonly + Left Drag over units on map – Only select "
+"military units"
+msgstr ""
 
 #: gui/manual/intro.txt:108
 msgid ""
-"  Alt + Y + Left Drag over units on map – Only select non-military units"
-msgstr "Alt + Y + arraste com o botão esquerdo do mouse sobre unidades no mapa: seleciona apenas as unidades que não são militares."
+"  hotkey.selection.nonmilitaryonly + Left Drag over units on map – Only "
+"select non-military units"
+msgstr ""
 
 #: gui/manual/intro.txt:109
-msgid "  I + Left Drag over units on map – Only select idle units"
-msgstr "I + arraste com o botão esquerdo sobre unidades no mapa: seleciona apenas as unidades ociosas"
+msgid ""
+"  hotkey.selection.idleonly + Left Drag over units on map – Only select idle"
+" units"
+msgstr ""
 
 #: gui/manual/intro.txt:110
-msgid "  O + Left Drag over units on map – Only select wounded units"
-msgstr "O + arraste com o botão esquerdo do mouse sobre unidades no mapa: seleciona apenas as unidades feridas"
+msgid ""
+"  hotkey.selection.woundedonly + Left Drag over units on map – Only select "
+"wounded units"
+msgstr ""
 
 #: gui/manual/intro.txt:111
-msgid ""
-"  Ctrl + Left Click on unit/group icon with multiple units selected – "
-"Deselect"
-msgstr "Ctrl + clique com o botão esquerdo do mouse sobre o ícone que mostra uma unidade ou grupo no painel, se houver várias unidades selecionadas: retira o grupo ou unidade da lista de unidades selecionadas"
-
-#: gui/manual/intro.txt:112
 msgid ""
 "  Right Click with a structure(s) selected – Set a rally point for units "
 "created/ungarrisoned from that structure"
 msgstr "Clique com o botão direito do mouse, quando uma construção está selecionada: estabelece um ponto de agrupamento para as unidades criadas na construção ou dela desguarnecidas"
 
+#: gui/manual/intro.txt:112
+msgid ""
+"  hotkey.session.garrison + Right Click with unit(s) selected - Garrison (If"
+" the cursor is over an own or allied structure)"
+msgstr ""
+
 #: gui/manual/intro.txt:113
-msgid "  Ctrl + Right Click with unit(s) selected:"
-msgstr "Ctrl + clique com o botão direito do mouse, se houver uma ou várias unidades selecionadas:"
+msgid ""
+"  hotkey.session.attack + Right Click with unit(s) selected - Attack "
+"(instead of capture or gather)"
+msgstr ""
 
 #: gui/manual/intro.txt:114
-msgid "    • If the cursor is over an own or allied structure – Garrison"
-msgstr "    • e se o ponteiro do mouse estiver sobre uma construção própria ou de aliado: manda as unidades guarnecerem-na"
+msgid ""
+"  hotkey.session.attackmove + Right Click with unit(s) selected - Attack "
+"move (by default all enemy units and structures along the way are targeted)"
+msgstr ""
 
 #: gui/manual/intro.txt:115
 msgid ""
-"    • If the cursor is over an enemy unit/structure – Attack (instead of "
-"capture or gather)"
-msgstr "    • e se o ponteiro estiver sobre unidade ou construção inimiga: manda atacar (e não capturar ou se reunir no ponto)"
+"  hotkey.session.attackmoveUnit + Right Click with unit(s) selected - Attack"
+" move, only units along the way are targeted"
+msgstr ""
 
 #: gui/manual/intro.txt:116
 msgid ""
-"    • Otherwise – Attack move (by default all enemy units and structures "
-"along the way are targeted)"
-msgstr "    • e se o ponteiro estiver em outro lugar: manda as unidades se deslocarem ao ponto clicado, atacando por padrão todas as unidades e construções inimigas que encontrarem no caminho"
-
-#: gui/manual/intro.txt:117
-msgid ""
-"  Ctrl + Q + Right Click with unit(s) selected – Attack move, only units "
-"along the way are targeted"
-msgstr "Ctrl + Q + clique com o botão direito do mouse, com unidades selecionadas: manda as unidades se deslocarem ao ponto clicado, atacando apenas unidades inimigas que encontrarem no caminho"
+"  hotkey.session.snaptoedges + Mouse Move near structures – Align the new "
+"structure with an existing nearby structure"
+msgstr ""
 
 #: gui/manual/intro.txt:118
-msgid ""
-"  Ctrl + Mouse Move near structures – Align the new structure with an "
-"existing nearby structure"
-msgstr "Ctrl + movimentar o mouse ao redor construções: faz uma nova construção ficar alinhada com uma outra já existente nas proximidades"
-
-#: gui/manual/intro.txt:120
 msgid "[font=\"sans-bold-14\"]Overlays[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]Paineis de sobreposição[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:121
-msgid "  Alt + G – Toggle the GUI"
-msgstr "Alt + G: exibe ou oculta a interface gráfica sobreposta"
+#: gui/manual/intro.txt:119
+msgid "  hotkey.session.gui.toggle – Toggle the GUI"
+msgstr ""
 
-#: gui/manual/intro.txt:122
-msgid "  Alt + D – Toggle developer overlay (with developer options)"
-msgstr "Alt + D: exibe ou esconde o painel sobreposto de desenvolvimento e programação"
-
-#: gui/manual/intro.txt:123
+#: gui/manual/intro.txt:120
 msgid ""
-"  Alt + Shift + W – Toggle wireframe mode (press once to get wireframes "
+"  hotkey.session.devcommands.toggle – Toggle developer overlay (with "
+"developer options)"
+msgstr ""
+
+#: gui/manual/intro.txt:121
+msgid ""
+"  hotkey.wireframe – Toggle wireframe mode (press once to get wireframes "
 "overlaid over the textured models, twice to get just the wireframes colored "
 "by the textures, thrice to get back to normal textured mode)"
-msgstr "Alt + Shift + W: ativa ou desativa a exibição de gráficos com linhas (wireframes). Quando utilizado na primeira vez, o atalho destaca as linhas sobre as texturas. Na segunda vez, ele faz apenas as linhas serem expostas, com as cores das texturas. Na terceira vez, ele restaura a exibição normal, com texturas"
+msgstr ""
+
+#: gui/manual/intro.txt:122
+msgid ""
+"  hotkey.silhouettes – Toggle unit silhouettes (might give a small "
+"performance boost)"
+msgstr ""
+
+#: gui/manual/intro.txt:123
+msgid "  hotkey.showsky – Toggle sky"
+msgstr ""
 
 #: gui/manual/intro.txt:124
-msgid ""
-"  Alt + Shift + S – Toggle unit silhouettes (might give a small performance "
-"boost)"
-msgstr "Alt + Shift + S: exibe ou oculta as sombras das unidades, o que pode gerar um pequeno ganho de desempenho"
+msgid "  hotkey.session.diplomacycolors – Toggle diplomacy colors"
+msgstr ""
 
 #: gui/manual/intro.txt:125
-msgid "  Alt + Z – Toggle sky"
-msgstr "Alt + Z: exibe ou oculta o céu"
+msgid ""
+"  hotkey.session.toggleattackrange – Toggle attack range visualizations of "
+"selected units and structures"
+msgstr ""
 
 #: gui/manual/intro.txt:126
-msgid "  Alt + X – Toggle diplomacy colors"
-msgstr "Alt + X: exibe ou oculta as cores de diplomacia"
+msgid ""
+"  hotkey.session.toggleaurasrange – Toggle aura range visualizations of "
+"selected units and structures"
+msgstr ""
 
 #: gui/manual/intro.txt:127
 msgid ""
-"  Alt + C – Toggle attack range visualizations of selected units and "
-"structures"
-msgstr "Alt + C: exibe ou oculta o alcance de ataque das unidades e construções selecionadas"
-
-#: gui/manual/intro.txt:128
-msgid ""
-"  Alt + V – Toggle aura range visualizations of selected units and "
-"structures"
-msgstr "Alt + V: mostra ou oculta o alcance espiritual das unidades e construções selecionadas"
+"  hotkey.session.togglehealrange – Toggle heal range visualizations of "
+"selected units"
+msgstr ""
 
 #: gui/manual/intro.txt:129
-msgid "  Alt + B – Toggle heal range visualizations of selected units"
-msgstr "Alt + B: exibe ou oculta o alcance de cura das unidades selecionadas"
-
-#: gui/manual/intro.txt:131
 msgid "[font=\"sans-bold-14\"]Camera manipulation[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]Controles da câmera[font=\"sans-14\"]"
 
+#: gui/manual/intro.txt:130
+msgid "  hotkey.camera.up – Pan screen up"
+msgstr ""
+
+#: gui/manual/intro.txt:131
+msgid "  hotkey.camera.down – Pan screen down"
+msgstr ""
+
 #: gui/manual/intro.txt:132
-msgid "  W or ↑ (Up) – Pan screen up"
-msgstr "  W or ↑ (seta para cima): move a tela para cima"
+msgid "  hotkey.camera.left – Pan screen left"
+msgstr ""
 
 #: gui/manual/intro.txt:133
-msgid "  S or ↓ (Down) – Pan screen down"
-msgstr "  S or ↓ (seta para baixo): move a tela para baixo"
+msgid "  hotkey.camera.right – Pan screen right"
+msgstr ""
 
 #: gui/manual/intro.txt:134
-msgid "  A or ← (Left) – Pan screen left"
-msgstr "  A or ← (seta para a esquerda): move a tela para a esquerda"
+msgid "  hotkey.camera.rotate.up – Rotate camera to look upward"
+msgstr ""
 
 #: gui/manual/intro.txt:135
-msgid "  D or → (Right) – Pan screen right"
-msgstr "  D or → (seta para a direita): move a tela para a direita"
+msgid "  hotkey.camera.rotate.down – Rotate camera to look downward"
+msgstr ""
 
 #: gui/manual/intro.txt:136
-msgid "  Ctrl + W or Ctrl + ↑ (Up) – Rotate camera to look upward"
-msgstr "  Ctrl + W ou Ctrl + ↑ (seta para cima): gira a câmera para baixo, em torno do ponto exibido no meio da tela"
+msgid "  hotkey.camera.rotate.cw – Rotate camera clockwise around terrain"
+msgstr ""
 
 #: gui/manual/intro.txt:137
-msgid "  Ctrl + S or Ctrl + ↓ (Down) – Rotate camera to look downward"
-msgstr "  Ctrl + S ou Ctrl + ↓ (seta para baixo): gira a câmera para cima, em torno do ponto exibido no meio da tela"
+msgid ""
+"  hotkey.camera.rotate.ccw – Rotate camera counter-clockwise around terrain"
+msgstr ""
 
 #: gui/manual/intro.txt:138
-msgid "  Ctrl + A or Ctrl + ← (Left) – Rotate camera clockwise around terrain"
-msgstr "  Ctrl + A ou Ctrl + ← (seta para a esquerda): gira a câmera em sentido horário em relação ao solo"
+msgid ""
+"  hotkey.camera.rotate.wheel.cw – Rotate camera clockwise around terrain"
+msgstr ""
 
 #: gui/manual/intro.txt:139
 msgid ""
-"  Ctrl + D or Ctrl + → (Right) – Rotate camera counter-clockwise around "
+"  hotkey.camera.rotate.wheel.ccw – Rotate camera counter-clockwise around "
 "terrain"
-msgstr " Ctrl + D ou Ctrl + → (seta para a direita): gira a câmera em sentido anti-horário em relação ao solo"
+msgstr ""
 
 #: gui/manual/intro.txt:140
-msgid "  Q – Rotate camera clockwise around terrain"
-msgstr "Q: gira a câmera em sentido horário em relação ao solo"
+msgid ""
+"  hotkey.camera.follow – Follow the selected unit (move the camera to stop "
+"following the unit)"
+msgstr ""
 
 #: gui/manual/intro.txt:141
-msgid "  E – Rotate camera counter-clockwise around terrain"
-msgstr "E: gira a câmera em sentido anti-horário em relação ao solo"
+msgid "  hotkey.camera.reset – Reset camera zoom and orientation"
+msgstr ""
 
 #: gui/manual/intro.txt:142
 msgid ""
-"  Shift + Mouse Wheel Rotate Up – Rotate camera clockwise around terrain"
-msgstr "Shift + roda do mouse para cima: gira a câmera em sentido horário em relação ao terreno"
+"  hotkey.camera.zoom.in, hotkey.camera.zoom.wheel.in – Zoom in (keep pressed"
+" for continuous zoom)"
+msgstr ""
 
 #: gui/manual/intro.txt:143
 msgid ""
-"  Shift + Mouse Wheel Rotate Down – Rotate camera counter-clockwise around "
-"terrain"
-msgstr "Shift + roda do mouse para baixo: gira a câmera em sentido anti-horário em relação ao terreno"
+"  hotkey.camera.zoom.out, hotkey.camera.zoom.wheel.out – Zoom out (keep "
+"pressed for continuous zoom)"
+msgstr ""
 
 #: gui/manual/intro.txt:144
-msgid ""
-"  F – Follow the selected unit (move the camera to stop following the unit)"
-msgstr "F: faz a câmera seguir a unidade selecionada. Mova a câmera para fazê-la parar de seguir"
-
-#: gui/manual/intro.txt:145
-msgid "  R – Reset camera zoom and orientation"
-msgstr "R: retorna a proximidade e a perspectiva da câmera aos valores iniciais"
+msgid "  hotkey.camera.pan – Keep pressed and move the mouse to pan"
+msgstr ""
 
 #: gui/manual/intro.txt:146
-msgid "  = (Equals) or + (Plus) – Zoom in (keep pressed for continuous zoom)"
-msgstr "+ (sinal de igual) ou + (sinal de mais): aproxima a câmera. Aperte sem soltar para aproximar continuamente"
-
-#: gui/manual/intro.txt:147
-msgid ""
-"  - (Hyphen) or − (Minus) – Zoom out (keep pressed for continuous zoom)"
-msgstr "- (hífen) ou - (sinal de menos): distancia a câmera. Aperte sem soltar para distanciar continuamente"
-
-#: gui/manual/intro.txt:148
-msgid "  Middle Mouse Button – Keep pressed and move the mouse to pan"
-msgstr "Botão central do mouse, apertado sem soltar: move a câmera, fazendo-a acompanhar o mouse"
-
-#: gui/manual/intro.txt:150
 msgid "[font=\"sans-bold-14\"]During Structure Placement[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]Comandos para fazer construções[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:151
-msgid "  \\[ (Left Bracket) – Rotate structure 15 degrees counter-clockwise"
-msgstr "\\[ (colchete esquerdo): gira a construção em 15° no sentido anti-horário"
+#: gui/manual/intro.txt:147
+msgid ""
+"  hotkey.session.rotate.ccw – Rotate structure 15 degrees counter-clockwise"
+msgstr ""
 
-#: gui/manual/intro.txt:152
-msgid "  ] (Right Bracket) – Rotate structure 15 degrees clockwise"
-msgstr "] (colchete direito): gira a construção em 15° no sentido horário"
+#: gui/manual/intro.txt:148
+msgid "  hotkey.session.rotate.cw – Rotate structure 15 degrees clockwise"
+msgstr ""
 
-#: gui/manual/intro.txt:153
+#: gui/manual/intro.txt:149
 msgid ""
 "  Left Drag – Rotate structure using mouse (foundation will be placed on "
 "mouse release)"
 msgstr "Arrastar o mouse com o botão esquerdo apertado: gira a construção, com o local da obra sendo definido quando ele é solto"
 
-#: gui/manual/intro.txt:155
+#: gui/manual/intro.txt:151
 msgid "[font=\"sans-bold-14\"]When loading a saved game[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]Ao recarregar um jogo[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:156
-msgid "  Esc – Cancel"
-msgstr "Esc: cancela o carregamento"
+#: gui/manual/intro.txt:152
+msgid "  hotkey.cancel – Cancel"
+msgstr ""
 
-#: gui/manual/intro.txt:157
-msgid "  Delete – Delete the selected saved game, ask for confirmation"
-msgstr "Delete: exclui o jogo salvo, solicitando confirmação"
-
-#: gui/manual/intro.txt:158
+#: gui/manual/intro.txt:153
 msgid ""
-"  Shift + Delete – Immediately delete the selected saved game, without "
-"asking for confirmation"
-msgstr "Shift + Delete: exclui imediatamente o jogo salvo, sem solicitar confirmação"
+"  hotkey.session.savedgames.delete – Delete the selected saved game, ask for"
+" confirmation"
+msgstr ""
+
+#: gui/manual/intro.txt:154
+msgid ""
+"    • With hotkey.session.savedgames.noconfirmation – Don't ask for "
+"confirmation"
+msgstr ""

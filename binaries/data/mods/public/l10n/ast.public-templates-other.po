@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-09-18 07:09+0000\n"
-"PO-Revision-Date: 2020-10-20 01:38+0000\n"
+"POT-Creation-Date: 2020-11-20 08:09+0000\n"
+"PO-Revision-Date: 2020-11-20 18:25+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -83,7 +83,7 @@ msgstr "Árbole"
 msgid "Chop trees for wood."
 msgstr "Valta árboles pa madera."
 
-#: simulation/templates/template_structure.xml:51
+#: simulation/templates/template_structure.xml:47
 msgid "Structure"
 msgstr "Construcción"
 
@@ -130,29 +130,29 @@ msgstr "L'exércitu de Leónides I."
 msgid "Army of Leonidas I"
 msgstr "Exércitu de Leónides I"
 
-#: simulation/templates/campaigns/campaign_city_minor_test.xml:30
-#: simulation/templates/campaigns/campaign_city_test.xml:30
+#: simulation/templates/campaigns/campaign_city_minor_test.xml:21
+#: simulation/templates/campaigns/campaign_city_test.xml:21
 msgid "Market"
 msgstr "Mercáu"
 
-#: simulation/templates/campaigns/campaign_city_minor_test.xml:31
-#: simulation/templates/campaigns/campaign_city_test.xml:31
+#: simulation/templates/campaigns/campaign_city_minor_test.xml:22
+#: simulation/templates/campaigns/campaign_city_test.xml:22
 msgid "Settlement"
 msgstr "Asitiamientu"
 
-#: simulation/templates/campaigns/campaign_city_minor_test.xml:32
+#: simulation/templates/campaigns/campaign_city_minor_test.xml:23
 msgid "Minor Greek Polis"
 msgstr "Polis griega menor"
 
-#: simulation/templates/campaigns/campaign_city_minor_test.xml:33
+#: simulation/templates/campaigns/campaign_city_minor_test.xml:24
 msgid "This is a minor Greek city."
 msgstr "Esta ye una polis menor."
 
-#: simulation/templates/campaigns/campaign_city_test.xml:32
+#: simulation/templates/campaigns/campaign_city_test.xml:23
 msgid "Greek Polis"
 msgstr "Polis griega"
 
-#: simulation/templates/campaigns/campaign_city_test.xml:33
+#: simulation/templates/campaigns/campaign_city_test.xml:24
 msgid "This is a major Greek city."
 msgstr "Esta ye una polis mayor."
 
@@ -163,15 +163,6 @@ msgstr "Santuariu relixosu"
 #: simulation/templates/campaigns/campaign_religious_test.xml:13
 msgid "Greek Religious Sanctuary"
 msgstr "Santuariu relixosu griegu"
-
-#: simulation/templates/gaia/fauna_arctic_wolf.xml:8
-msgid "Arctic Wolf"
-msgstr "Llobu árticu "
-
-#: simulation/templates/gaia/fauna_arctic_wolf.xml:9
-#: simulation/templates/gaia/fauna_wolf.xml:9
-msgid "Canis lupus"
-msgstr "Canis lupus"
 
 #: simulation/templates/gaia/fauna_bear_black.xml:8
 msgid "Black Bear"
@@ -197,11 +188,18 @@ msgstr "Osu polar"
 msgid "Ursus maritimus"
 msgstr "Ursus maritimus"
 
-#: simulation/templates/gaia/fauna_boar.xml:19
+#: simulation/templates/gaia/fauna_boar.xml:5
+#: simulation/templates/gaia/fauna_hippopotamus.xml:5
+#: simulation/templates/gaia/fauna_walrus.xml:5
+msgctxt "Name of an attack, usually the weapon."
+msgid "Tusks"
+msgstr "Canterada"
+
+#: simulation/templates/gaia/fauna_boar.xml:20
 msgid "Wild Boar"
 msgstr "Xabaril"
 
-#: simulation/templates/gaia/fauna_boar.xml:20
+#: simulation/templates/gaia/fauna_boar.xml:21
 msgid "Sus scrofa"
 msgstr "Sus scrofa"
 
@@ -250,11 +248,16 @@ msgstr "Pita"
 msgid "Gallus gallus domesticus"
 msgstr "Gallus gallus domesticus"
 
-#: simulation/templates/gaia/fauna_crocodile.xml:19
+#: simulation/templates/gaia/fauna_crocodile_nile.xml:5
+msgctxt "Name of an attack, usually the weapon."
+msgid "Teeth"
+msgstr "Mordilada"
+
+#: simulation/templates/gaia/fauna_crocodile_nile.xml:20
 msgid "Nile Crocodile"
 msgstr "Crocodilu del Nilu"
 
-#: simulation/templates/gaia/fauna_crocodile.xml:20
+#: simulation/templates/gaia/fauna_crocodile_nile.xml:21
 msgid "Crocodylus niloticus"
 msgstr "Crocodylus niloticus"
 
@@ -265,6 +268,19 @@ msgstr "Venáu"
 #: simulation/templates/gaia/fauna_deer.xml:9
 msgid "Cervus elaphus"
 msgstr "Cervus elaphus"
+
+#: simulation/templates/gaia/fauna_dog_mastiff.xml:8
+msgid "Mastiff"
+msgstr "Mastín"
+
+#: simulation/templates/gaia/fauna_dog_mastiff.xml:9
+#: simulation/templates/gaia/fauna_dog_wolfhound.xml:9
+msgid "Canis lupus familiaris"
+msgstr "Canis lupus familiaris"
+
+#: simulation/templates/gaia/fauna_dog_wolfhound.xml:8
+msgid "Wolfhound"
+msgstr "Lloberu"
 
 #: simulation/templates/gaia/fauna_donkey.xml:8
 msgid "Donkey"
@@ -353,11 +369,11 @@ msgstr "Cabra"
 msgid "Capra aegagrus hircus"
 msgstr "Capra aegagrus hircus"
 
-#: simulation/templates/gaia/fauna_hippopotamus.xml:20
+#: simulation/templates/gaia/fauna_hippopotamus.xml:21
 msgid "Hippopotamus"
 msgstr "Hipopótamu"
 
-#: simulation/templates/gaia/fauna_hippopotamus.xml:21
+#: simulation/templates/gaia/fauna_hippopotamus.xml:22
 msgid "Hippopotamus amphibius"
 msgstr "Hippopotamus amphibius"
 
@@ -369,26 +385,27 @@ msgstr "Caballu"
 msgid "Equus ferus caballus"
 msgstr "Equus ferus caballus"
 
-#: simulation/templates/gaia/fauna_lion.xml:19
+#: simulation/templates/gaia/fauna_horse_pony.xml:8
+msgid "Pony"
+msgstr "Poni"
+
+#: simulation/templates/gaia/fauna_lion.xml:5
+#: simulation/templates/gaia/fauna_tiger.xml:5
+msgctxt "Name of an attack, usually the weapon."
+msgid "Paws"
+msgstr "Garfiada"
+
+#: simulation/templates/gaia/fauna_lion.xml:20
 msgid "Lion"
 msgstr "Lleón"
 
-#: simulation/templates/gaia/fauna_lion.xml:20
+#: simulation/templates/gaia/fauna_lion.xml:21
 msgid "Panthera leo"
 msgstr "Panthera leo"
 
 #: simulation/templates/gaia/fauna_lioness.xml:4
 msgid "Lioness"
 msgstr "Lleona"
-
-#: simulation/templates/gaia/fauna_mastiff.xml:8
-msgid "Mastiff"
-msgstr "Mastín"
-
-#: simulation/templates/gaia/fauna_mastiff.xml:9
-#: simulation/templates/gaia/fauna_wolfhound.xml:9
-msgid "Canis lupus familiaris"
-msgstr "Canis lupus familiaris"
 
 #: simulation/templates/gaia/fauna_muskox.xml:8
 msgid "Muskox"
@@ -422,10 +439,6 @@ msgstr "Gochu encesu"
 msgid "Piglet"
 msgstr "Gochín"
 
-#: simulation/templates/gaia/fauna_pony.xml:8
-msgid "Pony"
-msgstr "Poni"
-
 #: simulation/templates/gaia/fauna_rabbit.xml:11
 msgid "Rabbit"
 msgstr "Coneyu bravu"
@@ -434,11 +447,16 @@ msgstr "Coneyu bravu"
 msgid "Oryctolagus cuniculus"
 msgstr "Oryctolagus cuniculus"
 
-#: simulation/templates/gaia/fauna_rhino.xml:19
+#: simulation/templates/gaia/fauna_rhinoceros_white.xml:5
+msgctxt "Name of an attack, usually the weapon."
+msgid "Horn"
+msgstr "Cornada"
+
+#: simulation/templates/gaia/fauna_rhinoceros_white.xml:20
 msgid "White Rhinoceros"
 msgstr "Rinoceronte blancu"
 
-#: simulation/templates/gaia/fauna_rhino.xml:20
+#: simulation/templates/gaia/fauna_rhinoceros_white.xml:21
 msgid "Ceratotherium simum"
 msgstr "Ceratotherium simum"
 
@@ -458,19 +476,19 @@ msgstr "Oveya"
 msgid "Ovis aries"
 msgstr "Ovis aries"
 
-#: simulation/templates/gaia/fauna_tiger.xml:19
+#: simulation/templates/gaia/fauna_tiger.xml:20
 msgid "Tiger"
 msgstr "Tigre"
 
-#: simulation/templates/gaia/fauna_tiger.xml:20
+#: simulation/templates/gaia/fauna_tiger.xml:21
 msgid "Panthera tigris"
 msgstr "Panthera tigris"
 
-#: simulation/templates/gaia/fauna_walrus.xml:21
+#: simulation/templates/gaia/fauna_walrus.xml:22
 msgid "Walrus"
 msgstr "Morsa"
 
-#: simulation/templates/gaia/fauna_walrus.xml:22
+#: simulation/templates/gaia/fauna_walrus.xml:23
 msgid "Odobenus rosmarus"
 msgstr "Odobenus rosmarus"
 
@@ -502,9 +520,13 @@ msgstr "Connochaetes taurinus"
 msgid "Wolf"
 msgstr "Llobu"
 
-#: simulation/templates/gaia/fauna_wolfhound.xml:8
-msgid "Wolfhound"
-msgstr "Lloberu"
+#: simulation/templates/gaia/fauna_wolf.xml:9
+msgid "Canis lupus"
+msgstr "Canis lupus"
+
+#: simulation/templates/gaia/fauna_wolf_arctic.xml:4
+msgid "Arctic Wolf"
+msgstr "Llobu árticu "
 
 #: simulation/templates/gaia/fauna_zebra.xml:8
 msgid "Common Zebra"
@@ -514,248 +536,6 @@ msgstr "Cebra de llanada"
 msgid "Equus quagga"
 msgstr "Equus quagga"
 
-#: simulation/templates/gaia/flora_bush_badlands.xml:4
-msgid "Hardy Bush"
-msgstr "Arbustu resistente"
-
-#: simulation/templates/gaia/flora_bush_berry.xml:4
-#: simulation/templates/gaia/flora_bush_berry_02.xml:4
-#: simulation/templates/gaia/flora_bush_berry_03.xml:4
-#: simulation/templates/gaia/flora_bush_berry_autumn_01.xml:4
-#: simulation/templates/gaia/flora_bush_berry_desert.xml:4
-msgid "Berries"
-msgstr "Bagues"
-
-#: simulation/templates/gaia/flora_bush_grapes.xml:4
-msgid "Grapes"
-msgstr "Uves"
-
-#: simulation/templates/gaia/flora_bush_temperate.xml:4
-#: simulation/templates/gaia/flora_bush_temperate_winter.xml:4
-#: simulation/templates/gaia/flora_bush_tropic.xml:4
-msgid "Bush"
-msgstr "Arbustu"
-
-#: simulation/templates/gaia/flora_tree_acacia.xml:4
-msgid "Acacia"
-msgstr "Alcacia"
-
-#: simulation/templates/gaia/flora_tree_aleppo_pine.xml:4
-msgid "Aleppo Pine"
-msgstr "Pinu d'Alepu"
-
-#: simulation/templates/gaia/flora_tree_apple.xml:4
-msgid "Apple"
-msgstr "Pumar"
-
-#: simulation/templates/gaia/flora_tree_bamboo.xml:4
-#: simulation/templates/gaia/flora_tree_bamboo_single.xml:4
-msgid "Bamboo"
-msgstr "Bambú"
-
-#: simulation/templates/gaia/flora_tree_bamboo_dragon.xml:8
-msgid "Dragon Bamboo"
-msgstr "Bambú xigante"
-
-#: simulation/templates/gaia/flora_tree_banana.xml:4
-msgid "Banana"
-msgstr "Bananera"
-
-#: simulation/templates/gaia/flora_tree_banyan.xml:8
-msgid "Banyan"
-msgstr "Figal de Bengala"
-
-#: simulation/templates/gaia/flora_tree_baobab.xml:8
-#: simulation/templates/gaia/flora_tree_baobab_3_mature.xml:8
-#: simulation/templates/gaia/flora_tree_baobab_4_dead.xml:8
-msgid "Baobab"
-msgstr "Baobab"
-
-#: simulation/templates/gaia/flora_tree_baobab_1_sapling.xml:4
-msgid "Baobab Sapling"
-msgstr "Baobab nuevu"
-
-#: simulation/templates/gaia/flora_tree_baobab_2_young.xml:4
-msgid "Young Baobab"
-msgstr "Baobabucu"
-
-#: simulation/templates/gaia/flora_tree_carob.xml:4
-msgid "Carob"
-msgstr "Algarrobu"
-
-#: simulation/templates/gaia/flora_tree_cedar_atlas_1_sapling.xml:4
-msgid "Atlas Cedar Sapling"
-msgstr "Cedru l'Atles nuevu"
-
-#: simulation/templates/gaia/flora_tree_cedar_atlas_2_young.xml:4
-#: simulation/templates/gaia/flora_tree_cedar_atlas_3_mature.xml:4
-#: simulation/templates/gaia/flora_tree_cedar_atlas_4_dead.xml:4
-msgid "Atlas Cedar"
-msgstr "Cedru l'Atles"
-
-#: simulation/templates/gaia/flora_tree_cretan_date_palm_patch.xml:8
-#: simulation/templates/gaia/flora_tree_cretan_date_palm_short.xml:4
-#: simulation/templates/gaia/flora_tree_cretan_date_palm_tall.xml:4
-msgid "Cretan Date Palm"
-msgstr "Palmera datilera de Creta"
-
-#: simulation/templates/gaia/flora_tree_cypress.xml:4
-#: simulation/templates/gaia/flora_tree_cypress_wild.xml:4
-#: simulation/templates/gaia/flora_tree_cypress_windswept.xml:4
-msgid "Cypress"
-msgstr "Ciprés"
-
-#: simulation/templates/gaia/flora_tree_date_palm.xml:4
-#: simulation/templates/gaia/flora_tree_date_palm_dead.xml:4
-#: simulation/templates/gaia/flora_tree_date_palm_fruit.xml:4
-msgid "Date Palm"
-msgstr "Palmera datilera"
-
-#: simulation/templates/gaia/flora_tree_dead.xml:4
-#: simulation/templates/gaia/flora_tree_temperate.xml:4
-#: simulation/templates/gaia/flora_tree_temperate_autumn.xml:4
-#: simulation/templates/gaia/flora_tree_temperate_winter.xml:4
-msgid "Deciduous Tree"
-msgstr "Caducifoliu"
-
-#: simulation/templates/gaia/flora_tree_elm.xml:4
-#: simulation/templates/gaia/flora_tree_elm_dead.xml:4
-msgid "Elm"
-msgstr "Llamera"
-
-#: simulation/templates/gaia/flora_tree_euro_beech.xml:4
-#: simulation/templates/gaia/flora_tree_euro_beech_aut.xml:4
-msgid "European Beech"
-msgstr "Faya"
-
-#: simulation/templates/gaia/flora_tree_euro_birch.xml:4
-msgid "Silver Birch"
-msgstr "Bidul llorosa"
-
-#: simulation/templates/gaia/flora_tree_fig.xml:7
-msgid "Fig"
-msgstr "Figal"
-
-#: simulation/templates/gaia/flora_tree_fir.xml:4
-#: simulation/templates/gaia/flora_tree_fir_winter.xml:4
-msgid "Fir"
-msgstr "Abetu"
-
-#: simulation/templates/gaia/flora_tree_fir_sapling.xml:4
-msgid "Fir Sapling"
-msgstr "Abetu común nuevu"
-
-#: simulation/templates/gaia/flora_tree_juniper_prickly.xml:4
-msgid "Prickly Juniper"
-msgstr "Xinebru castellán"
-
-#: simulation/templates/gaia/flora_tree_mangrove.xml:4
-msgid "Mangrove"
-msgstr "Mangle"
-
-#: simulation/templates/gaia/flora_tree_maple.xml:4
-msgid "Maple"
-msgstr "Pládanu"
-
-#: simulation/templates/gaia/flora_tree_medit_fan_palm.xml:4
-msgid "Mediterranean Fan Palm"
-msgstr "Palmera nana"
-
-#: simulation/templates/gaia/flora_tree_oak.xml:4
-#: simulation/templates/gaia/flora_tree_oak_aut.xml:4
-#: simulation/templates/gaia/flora_tree_oak_aut_new.xml:4
-#: simulation/templates/gaia/flora_tree_oak_dead.xml:4
-#: simulation/templates/gaia/flora_tree_oak_new.xml:4
-msgid "Oak"
-msgstr "Carbayu"
-
-#: simulation/templates/gaia/flora_tree_oak_holly.xml:4
-msgid "Holly Oak"
-msgstr "Ardina"
-
-#: simulation/templates/gaia/flora_tree_oak_hungarian.xml:4
-#: simulation/templates/gaia/flora_tree_oak_hungarian_autumn.xml:4
-msgid "Hungarian Oak"
-msgstr "Carbayu d'Hungría"
-
-#: simulation/templates/gaia/flora_tree_oak_large.xml:4
-msgid "Large Oak"
-msgstr "Carbayón"
-
-#: simulation/templates/gaia/flora_tree_olive.xml:4
-msgid "Olive"
-msgstr "Olivar"
-
-#: simulation/templates/gaia/flora_tree_palm_areca.xml:4
-msgid "Areca Palm"
-msgstr "Areca"
-
-#: simulation/templates/gaia/flora_tree_palm_doum.xml:4
-msgid "Doum Palm"
-msgstr "Palmera Dum"
-
-#: simulation/templates/gaia/flora_tree_palm_palmyra.xml:4
-msgid "Palmyra Palm"
-msgstr "Palmera de Palmira"
-
-#: simulation/templates/gaia/flora_tree_palm_tropic.xml:4
-msgid "Palm"
-msgstr "Palmera"
-
-#: simulation/templates/gaia/flora_tree_palm_tropical.xml:4
-msgid "Tropical Palm"
-msgstr "Palmera tropical"
-
-#: simulation/templates/gaia/flora_tree_pine.xml:4
-#: simulation/templates/gaia/flora_tree_pine_w.xml:4
-msgid "Pine"
-msgstr "Pinu"
-
-#: simulation/templates/gaia/flora_tree_pine_black.xml:4
-#: simulation/templates/gaia/flora_tree_pine_black_dead.xml:4
-msgid "Black Pine"
-msgstr "Pinu prietu"
-
-#: simulation/templates/gaia/flora_tree_pine_maritime.xml:4
-#: simulation/templates/gaia/flora_tree_pine_maritime_short.xml:4
-msgid "Maritime Pine"
-msgstr "Pinu bravu"
-
-#: simulation/templates/gaia/flora_tree_poplar.xml:4
-#: simulation/templates/gaia/flora_tree_poplar_dead.xml:4
-#: simulation/templates/gaia/flora_tree_poplar_lombardy_autumn.xml:4
-msgid "Poplar"
-msgstr "Chopu"
-
-#: simulation/templates/gaia/flora_tree_poplar_lombardy.xml:4
-#: simulation/templates/gaia/flora_tree_poplar_lombardy_dead.xml:4
-msgid "Black Poplar"
-msgstr "Chopu"
-
-#: simulation/templates/gaia/flora_tree_senegal_date_palm.xml:4
-msgid "Senegal Date Palm"
-msgstr "Palmera senegalesa"
-
-#: simulation/templates/gaia/flora_tree_strangler.xml:8
-msgid "Strangler Fig"
-msgstr "Matapalu"
-
-#: simulation/templates/gaia/flora_tree_tamarix.xml:4
-msgid "Tamarix"
-msgstr "Chamaricu"
-
-#: simulation/templates/gaia/flora_tree_teak.xml:8
-msgid "Teak"
-msgstr "Teca"
-
-#: simulation/templates/gaia/flora_tree_toona.xml:4
-msgid "Toona"
-msgstr "Toona"
-
-#: simulation/templates/gaia/flora_tree_tropic_rainforest.xml:4
-msgid "Rainforest Tree"
-msgstr "Árbole de viesca llenta"
-
 #: simulation/templates/gaia/fish/tilapia.xml:4
 msgid "Tilapia"
 msgstr "Tilapia"
@@ -763,6 +543,40 @@ msgstr "Tilapia"
 #: simulation/templates/gaia/fish/tuna.xml:4
 msgid "Tuna"
 msgstr "Atún"
+
+#: simulation/templates/gaia/fruit/apple.xml:4
+msgid "Apple"
+msgstr "Pumar"
+
+#: simulation/templates/gaia/fruit/banana.xml:4
+msgid "Banana"
+msgstr "Bananera"
+
+#: simulation/templates/gaia/fruit/berry_01.xml:4
+#: simulation/templates/gaia/fruit/berry_02.xml:4
+#: simulation/templates/gaia/fruit/berry_03.xml:4
+#: simulation/templates/gaia/fruit/berry_04.xml:4
+#: simulation/templates/gaia/fruit/berry_05.xml:4
+msgid "Berries"
+msgstr "Bagues"
+
+#: simulation/templates/gaia/fruit/date.xml:4
+#: simulation/templates/gaia/tree/date_palm.xml:4
+#: simulation/templates/gaia/tree/date_palm_dead.xml:4
+msgid "Date Palm"
+msgstr "Palmera datilera"
+
+#: simulation/templates/gaia/fruit/fig.xml:7
+msgid "Fig"
+msgstr "Figal"
+
+#: simulation/templates/gaia/fruit/grapes.xml:4
+msgid "Grapes"
+msgstr "Uves"
+
+#: simulation/templates/gaia/fruit/olive.xml:4
+msgid "Olive"
+msgstr "Olivar"
 
 #: simulation/templates/gaia/ruins/column_doric.xml:8
 msgid "Ancient Ruins"
@@ -855,146 +669,213 @@ msgstr "Ayalga de piedra"
 msgid "Wood Treasure"
 msgstr "Ayalga de madera"
 
-#: simulation/templates/other/bench.xml:14
-msgid "Bench"
-msgstr "Bancu"
+#: simulation/templates/gaia/tree/acacia.xml:4
+msgid "Acacia"
+msgstr "Alcacia"
 
-#: simulation/templates/other/bench.xml:15
-msgid "Wooden Bench"
-msgstr "Bancu de madera"
+#: simulation/templates/gaia/tree/aleppo_pine.xml:4
+msgid "Aleppo Pine"
+msgstr "Pinu d'Alepu"
 
-#: simulation/templates/other/bridge_hele.xml:15
-#: simulation/templates/other/bridge_hele.xml:16
-msgid "Bridge"
-msgstr "Ponte"
+#: simulation/templates/gaia/tree/bamboo.xml:4
+#: simulation/templates/gaia/tree/bamboo_single.xml:4
+msgid "Bamboo"
+msgstr "Bambú"
 
-#: simulation/templates/other/bridge_wooden.xml:15
-#: simulation/templates/other/bridge_wooden.xml:16
-msgid "Wooden Bridge"
-msgstr "Ponte de madera"
+#: simulation/templates/gaia/tree/bamboo_dragon.xml:8
+msgid "Dragon Bamboo"
+msgstr "Bambú xigante"
 
-#: simulation/templates/other/celt_hut.xml:21
-msgid "Hut"
-msgstr "Cabañu"
+#: simulation/templates/gaia/tree/banyan.xml:8
+msgid "Banyan"
+msgstr "Figal de Bengala"
 
-#: simulation/templates/other/celt_longhouse.xml:21
-msgid "Longhouse"
-msgstr "Casa llonga"
+#: simulation/templates/gaia/tree/baobab.xml:8
+#: simulation/templates/gaia/tree/baobab_3_mature.xml:8
+#: simulation/templates/gaia/tree/baobab_4_dead.xml:8
+msgid "Baobab"
+msgstr "Baobab"
 
-#: simulation/templates/other/column_doric.xml:14
-#: simulation/templates/other/column_doric_fallen.xml:14
-#: simulation/templates/other/column_doric_fallen_b.xml:14
-msgid "Column"
-msgstr "Columna"
+#: simulation/templates/gaia/tree/baobab_1_sapling.xml:4
+msgid "Baobab Sapling"
+msgstr "Baobab nuevu"
 
-#: simulation/templates/other/column_doric.xml:15
-msgid "Doric Column"
-msgstr "Columna dórica"
+#: simulation/templates/gaia/tree/baobab_2_young.xml:4
+msgid "Young Baobab"
+msgstr "Baobabucu"
 
-#: simulation/templates/other/column_doric_fallen.xml:15
-#: simulation/templates/other/column_doric_fallen_b.xml:15
-msgid "Fallen Doric Column"
-msgstr "Columna dórica cayida"
+#: simulation/templates/gaia/tree/bush_badlands.xml:4
+msgid "Hardy Bush"
+msgstr "Arbustu resistente"
 
-#: simulation/templates/other/desert_trading_post.xml:14
-msgid "Desert Trading Post"
-msgstr "Puestu comercial del ermu"
+#: simulation/templates/gaia/tree/bush_temperate.xml:4
+#: simulation/templates/gaia/tree/bush_temperate_winter.xml:4
+#: simulation/templates/gaia/tree/bush_tropic.xml:4
+msgid "Bush"
+msgstr "Arbustu"
 
-#: simulation/templates/other/desert_trading_post.xml:15
-msgid "Ardatašta"
-msgstr "Ardatašta"
+#: simulation/templates/gaia/tree/carob.xml:4
+msgid "Carob"
+msgstr "Algarrobu"
 
-#: simulation/templates/other/fence_long.xml:15
-#: simulation/templates/other/fence_short.xml:15
-msgid "Fence"
-msgstr "Zarru"
+#: simulation/templates/gaia/tree/cedar_atlas_1_sapling.xml:4
+msgid "Atlas Cedar Sapling"
+msgstr "Cedru l'Atles nuevu"
 
-#: simulation/templates/other/fence_long.xml:16
-msgid "Long Wooden Fence"
-msgstr "Barganal llargu"
+#: simulation/templates/gaia/tree/cedar_atlas_2_young.xml:4
+#: simulation/templates/gaia/tree/cedar_atlas_3_mature.xml:4
+#: simulation/templates/gaia/tree/cedar_atlas_4_dead.xml:4
+msgid "Atlas Cedar"
+msgstr "Cedru l'Atles"
 
-#: simulation/templates/other/fence_short.xml:16
-msgid "Short Wooden Fence"
-msgstr "Barganal curtiu"
+#: simulation/templates/gaia/tree/cretan_date_palm_patch.xml:8
+#: simulation/templates/gaia/tree/cretan_date_palm_short.xml:4
+#: simulation/templates/gaia/tree/cretan_date_palm_tall.xml:4
+msgid "Cretan Date Palm"
+msgstr "Palmera datilera de Creta"
 
-#: simulation/templates/other/fence_stone.xml:15
-#: simulation/templates/other/fence_stone.xml:16
-msgid "Stone Fence"
-msgstr "Zarru de piedra"
+#: simulation/templates/gaia/tree/cypress.xml:4
+#: simulation/templates/gaia/tree/cypress_wild.xml:4
+#: simulation/templates/gaia/tree/cypress_windswept.xml:4
+msgid "Cypress"
+msgstr "Ciprés"
 
-#: simulation/templates/other/generic_field.xml:8
-msgid "Wheat Field"
-msgstr "Eru de trigu"
+#: simulation/templates/gaia/tree/dead.xml:4
+#: simulation/templates/gaia/tree/temperate.xml:4
+#: simulation/templates/gaia/tree/temperate_autumn.xml:4
+#: simulation/templates/gaia/tree/temperate_winter.xml:4
+msgid "Deciduous Tree"
+msgstr "Caducifoliu"
 
-#: simulation/templates/other/hellenic_epic_temple.xml:23
-msgid "Epic Temple"
-msgstr "Templu épicu"
+#: simulation/templates/gaia/tree/elm.xml:4
+#: simulation/templates/gaia/tree/elm_dead.xml:4
+msgid "Elm"
+msgstr "Llamera"
 
-#: simulation/templates/other/hellenic_epic_temple.xml:24
-msgid "Naos Parthenos"
-msgstr "Naos Parthenos"
+#: simulation/templates/gaia/tree/euro_beech.xml:4
+#: simulation/templates/gaia/tree/euro_beech_aut.xml:4
+msgid "European Beech"
+msgstr "Faya"
 
-#: simulation/templates/other/hellenic_epic_temple.xml:25
-msgid "Garrison units to heal them at a quick rate."
-msgstr "Guarez unidaes pa curales rápido."
+#: simulation/templates/gaia/tree/euro_birch.xml:4
+msgid "Silver Birch"
+msgstr "Bidul llorosa"
 
-#: simulation/templates/other/hellenic_propylaea.xml:24
-msgid "Portico"
-msgstr "Cabidru"
+#: simulation/templates/gaia/tree/fir.xml:4
+#: simulation/templates/gaia/tree/fir_winter.xml:4
+msgid "Fir"
+msgstr "Abetu"
 
-#: simulation/templates/other/hellenic_propylaea.xml:25
-msgid "Propylaea"
-msgstr "Propylaea"
+#: simulation/templates/gaia/tree/fir_sapling.xml:4
+msgid "Fir Sapling"
+msgstr "Abetu común nuevu"
 
-#: simulation/templates/other/hellenic_stoa.xml:24
-msgid "Stoa"
-msgstr "Stoa"
+#: simulation/templates/gaia/tree/juniper_prickly.xml:4
+msgid "Prickly Juniper"
+msgstr "Xinebru castellán"
 
-#: simulation/templates/other/hellenic_stoa.xml:25
-msgid "Hellenic Stoa"
-msgstr "Estoa helénica"
+#: simulation/templates/gaia/tree/mangrove.xml:4
+msgid "Mangrove"
+msgstr "Mangle"
 
-#: simulation/templates/other/obelisk.xml:14
-msgid "Obelisk"
-msgstr "Obeliscu"
+#: simulation/templates/gaia/tree/maple.xml:4
+msgid "Maple"
+msgstr "Pládanu"
 
-#: simulation/templates/other/obelisk.xml:15
-msgid "Egyptian Obelisk"
-msgstr "Obeliscu exipciu"
+#: simulation/templates/gaia/tree/medit_fan_palm.xml:4
+msgid "Mediterranean Fan Palm"
+msgstr "Palmera nana"
 
-#: simulation/templates/other/sele_colonnade.xml:14
-msgid "Colonnade"
-msgstr "Columnata"
+#: simulation/templates/gaia/tree/oak.xml:4
+#: simulation/templates/gaia/tree/oak_aut.xml:4
+#: simulation/templates/gaia/tree/oak_aut_new.xml:4
+#: simulation/templates/gaia/tree/oak_dead.xml:4
+#: simulation/templates/gaia/tree/oak_new.xml:4
+msgid "Oak"
+msgstr "Carbayu"
 
-#: simulation/templates/other/sele_colonnade.xml:15
-msgid "Corinthian Colonnade"
-msgstr "Columnata corintia"
+#: simulation/templates/gaia/tree/oak_holly.xml:4
+msgid "Holly Oak"
+msgstr "Ardina"
 
-#: simulation/templates/other/stall_big.xml:11
-msgid "Big stall"
-msgstr "Puestu grande"
+#: simulation/templates/gaia/tree/oak_hungarian.xml:4
+#: simulation/templates/gaia/tree/oak_hungarian_autumn.xml:4
+msgid "Hungarian Oak"
+msgstr "Carbayu d'Hungría"
 
-#: simulation/templates/other/stall_med.xml:11
-msgid "Medium stall"
-msgstr "Puestu medianu"
+#: simulation/templates/gaia/tree/oak_large.xml:4
+msgid "Large Oak"
+msgstr "Carbayón"
 
-#: simulation/templates/other/stall_small_a.xml:11
-#: simulation/templates/other/stall_small_b.xml:11
-msgid "Small stall"
-msgstr "Puestu pequeñu"
+#: simulation/templates/gaia/tree/palm_areca.xml:4
+msgid "Areca Palm"
+msgstr "Areca"
 
-#: simulation/templates/other/table_rectangle.xml:14
-#: simulation/templates/other/table_square.xml:14
-msgid "Table"
-msgstr "Mesa"
+#: simulation/templates/gaia/tree/palm_doum.xml:4
+msgid "Doum Palm"
+msgstr "Palmera Dum"
 
-#: simulation/templates/other/table_rectangle.xml:15
-msgid "Rectangle Table"
-msgstr "Mesa rectangular"
+#: simulation/templates/gaia/tree/palm_palmyra.xml:4
+msgid "Palmyra Palm"
+msgstr "Palmera de Palmira"
 
-#: simulation/templates/other/table_square.xml:15
-msgid "Square Table"
-msgstr "Mesa cuadrada"
+#: simulation/templates/gaia/tree/palm_tropic.xml:4
+msgid "Palm"
+msgstr "Palmera"
+
+#: simulation/templates/gaia/tree/palm_tropical.xml:4
+msgid "Tropical Palm"
+msgstr "Palmera tropical"
+
+#: simulation/templates/gaia/tree/pine.xml:4
+#: simulation/templates/gaia/tree/pine_w.xml:4
+msgid "Pine"
+msgstr "Pinu"
+
+#: simulation/templates/gaia/tree/pine_black.xml:4
+#: simulation/templates/gaia/tree/pine_black_dead.xml:4
+msgid "Black Pine"
+msgstr "Pinu prietu"
+
+#: simulation/templates/gaia/tree/pine_maritime.xml:4
+#: simulation/templates/gaia/tree/pine_maritime_short.xml:4
+msgid "Maritime Pine"
+msgstr "Pinu bravu"
+
+#: simulation/templates/gaia/tree/poplar.xml:4
+#: simulation/templates/gaia/tree/poplar_dead.xml:4
+#: simulation/templates/gaia/tree/poplar_lombardy_autumn.xml:4
+msgid "Poplar"
+msgstr "Chopu"
+
+#: simulation/templates/gaia/tree/poplar_lombardy.xml:4
+#: simulation/templates/gaia/tree/poplar_lombardy_dead.xml:4
+msgid "Black Poplar"
+msgstr "Chopu"
+
+#: simulation/templates/gaia/tree/senegal_date_palm.xml:4
+msgid "Senegal Date Palm"
+msgstr "Palmera senegalesa"
+
+#: simulation/templates/gaia/tree/strangler.xml:8
+msgid "Strangler Fig"
+msgstr "Matapalu"
+
+#: simulation/templates/gaia/tree/tamarix.xml:4
+msgid "Tamarix"
+msgstr "Chamaricu"
+
+#: simulation/templates/gaia/tree/teak.xml:8
+msgid "Teak"
+msgstr "Teca"
+
+#: simulation/templates/gaia/tree/toona.xml:4
+msgid "Toona"
+msgstr "Toona"
+
+#: simulation/templates/gaia/tree/tropic_rainforest.xml:4
+msgid "Rainforest Tree"
+msgstr "Árbole de viesca llenta"
 
 #: simulation/templates/skirmish/structures/default_house_10.xml:5
 msgid ""
@@ -1007,6 +888,16 @@ msgid ""
 "Changes in a 5-pop house for civilisations with those houses, is deleted for"
 " other civs"
 msgstr "Escamuda nuna casa de 5-pob. pa civilizaciones con eses cases; pa otres civilizaciones desaníciase"
+
+#: simulation/templates/skirmish/units/default_infantry_melee_b.xml:5
+msgctxt "Name of an attack, usually the weapon."
+msgid "Melee"
+msgstr "Cuerpu a cuerpu"
+
+#: simulation/templates/skirmish/units/default_infantry_ranged_b.xml:5
+msgctxt "Name of an attack, usually the weapon."
+msgid "Ranged"
+msgstr "Proxectiles"
 
 #: simulation/templates/special/spy.xml:17
 msgid "Spy"

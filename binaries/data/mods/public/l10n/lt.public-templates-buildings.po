@@ -11,9 +11,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-09-18 07:09+0000\n"
-"PO-Revision-Date: 2020-09-18 10:15+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2020-11-20 08:09+0000\n"
+"PO-Revision-Date: 2020-11-20 10:25+0000\n"
+"Last-Translator: Paulius Damaška <pauldam000@gmail.com>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/wildfire-games/0ad/language/lt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,25 +29,34 @@ msgstr "Miesto pastatas"
 msgid "Civic"
 msgstr "Miesto"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:78
+#: simulation/templates/template_structure_civic_civil_centre.xml:11
+#: simulation/templates/template_structure_defensive_tower.xml:5
+#: simulation/templates/template_structure_defensive_wall_tower.xml:5
+#: simulation/templates/template_structure_military_fortress.xml:5
+#: simulation/templates/structures/rome/army_camp.xml:5
+msgctxt "Name of an attack, usually the weapon."
+msgid "Bow"
+msgstr ""
+
+#: simulation/templates/template_structure_civic_civil_centre.xml:80
 msgid "Civic Center"
 msgstr "Miesto centras"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:80
+#: simulation/templates/template_structure_civic_civil_centre.xml:82
 msgid ""
 "Build in own or neutral territory. Acquire large tracts of territory. "
 "Territory root. Train Citizens and research technologies. Garrison Soldiers "
 "for additional arrows."
 msgstr ""
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:82
+#: simulation/templates/template_structure_civic_civil_centre.xml:84
 #: simulation/templates/template_structure_defensive.xml:5
-#: simulation/templates/template_structure_military_fortress.xml:71
+#: simulation/templates/template_structure_military_fortress.xml:73
 msgid "Defensive"
 msgstr "Gynybinis"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:82
-#: simulation/templates/template_structure_civic_civil_centre.xml:44
+#: simulation/templates/template_structure_civic_civil_centre.xml:84
+#: simulation/templates/template_structure_civic_civil_centre.xml:46
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:10
 msgid "CivilCentre"
 msgstr "Miesto centras"
@@ -60,10 +69,10 @@ msgstr "Karinė kolonija"
 msgid "Colony"
 msgstr "Kolonija"
 
-#: simulation/templates/template_structure_civic_house.xml:36
+#: simulation/templates/template_structure_civic_house.xml:33
 #: simulation/templates/template_structure_defensive_tower_sentry.xml:33
-#: simulation/templates/template_structure_economic_farmstead.xml:33
-#: simulation/templates/template_structure_economic_storehouse.xml:34
+#: simulation/templates/template_structure_economic_farmstead.xml:30
+#: simulation/templates/template_structure_economic_storehouse.xml:31
 #: simulation/templates/template_structure_military_barracks.xml:29
 #: simulation/templates/template_structure_military_dock.xml:28
 #: simulation/templates/template_structure_military_range.xml:25
@@ -72,9 +81,9 @@ msgstr "Kolonija"
 msgid "Village"
 msgstr "Kaimas"
 
-#: simulation/templates/template_structure_civic_house.xml:36
-#: simulation/templates/template_structure_civic_house.xml:34
-#: simulation/templates/structures/pers_house_a.xml:12
+#: simulation/templates/template_structure_civic_house.xml:33
+#: simulation/templates/template_structure_civic_house.xml:31
+#: simulation/templates/structures/pers/house_a.xml:12
 msgid "House"
 msgstr "Namas"
 
@@ -83,33 +92,34 @@ msgid "Train Mercenary Champions."
 msgstr ""
 
 #: simulation/templates/template_structure_civic_stoa.xml:34
-#: simulation/templates/template_structure_civic_temple.xml:36
+#: simulation/templates/template_structure_civic_temple.xml:33
 #: simulation/templates/template_structure_defensive_tower_stone.xml:34
-#: simulation/templates/template_structure_economic_market.xml:31
+#: simulation/templates/template_structure_economic_market.xml:28
 #: simulation/templates/template_structure_military_embassy.xml:25
 #: simulation/templates/template_structure_military_forge.xml:26
-#: simulation/templates/structures/cart_super_dock.xml:44
-#: simulation/templates/structures/gaul_tavern.xml:24
-#: simulation/templates/structures/kush_pyramid_small.xml:29
-#: simulation/templates/structures/maur_elephant_stables.xml:7
-#: simulation/templates/structures/ptol_lighthouse.xml:27
+#: simulation/templates/structures/cart/super_dock.xml:44
+#: simulation/templates/structures/gaul/tavern.xml:24
+#: simulation/templates/structures/kush/pyramid_small.xml:29
+#: simulation/templates/structures/maur/elephant_stables.xml:7
+#: simulation/templates/structures/ptol/lighthouse.xml:28
 msgid "Town"
 msgstr "Miestas"
 
 #: simulation/templates/template_structure_civic_stoa.xml:34
 #: simulation/templates/template_structure_civic_stoa.xml:31
-#: simulation/templates/structures/athen_royal_stoa.xml:5
-#: simulation/templates/structures/mace_royal_stoa.xml:5
-#: simulation/templates/structures/spart_royal_stoa.xml:12
+#: simulation/templates/structures/hellenic_stoa.xml:24
+#: simulation/templates/structures/athen/royal_stoa.xml:5
+#: simulation/templates/structures/mace/royal_stoa.xml:5
+#: simulation/templates/structures/spart/royal_stoa.xml:12
 msgid "Stoa"
 msgstr ""
 
-#: simulation/templates/template_structure_civic_temple.xml:35
+#: simulation/templates/template_structure_civic_temple.xml:32
 msgid "Train Healers and research healing technologies."
 msgstr ""
 
-#: simulation/templates/template_structure_civic_temple.xml:36
 #: simulation/templates/template_structure_civic_temple.xml:33
+#: simulation/templates/template_structure_civic_temple.xml:30
 msgid "Temple"
 msgstr "Šventykla"
 
@@ -117,15 +127,15 @@ msgstr "Šventykla"
 msgid "Defensive Structure"
 msgstr "Gynybinis pastatas"
 
-#: simulation/templates/template_structure_defensive_outpost.xml:39
+#: simulation/templates/template_structure_defensive_outpost.xml:38
 msgid ""
 "Build in own or neutral territory. Slowly converts to Gaia while in neutral "
 "territory."
 msgstr ""
 
-#: simulation/templates/template_structure_defensive_outpost.xml:40
+#: simulation/templates/template_structure_defensive_outpost.xml:39
 #: simulation/templates/template_structure_defensive_outpost.xml:9
-#: simulation/templates/template_structure_defensive_outpost.xml:37
+#: simulation/templates/template_structure_defensive_outpost.xml:36
 #: simulation/templates/structures/palisades_outpost.xml:17
 msgid "Outpost"
 msgstr "Stebėjimo postas"
@@ -141,38 +151,48 @@ msgstr ""
 msgid "Palisade"
 msgstr ""
 
+#: simulation/templates/template_structure_defensive_tower.xml:54
+#: simulation/templates/template_structure_defensive_tower.xml:37
 #: simulation/templates/template_structure_defensive_tower.xml:53
-#: simulation/templates/template_structure_defensive_tower.xml:36
-#: simulation/templates/template_structure_defensive_tower.xml:52
 msgid "Tower"
 msgstr ""
 
-#: simulation/templates/template_structure_defensive_tower_artillery.xml:57
+#: simulation/templates/template_structure_defensive_tower_artillery.xml:5
+msgctxt "Name of an attack, usually the weapon."
+msgid "Stone"
+msgstr "Akmuo"
+
+#: simulation/templates/template_structure_defensive_tower_artillery.xml:58
 msgid "Artillery Tower"
 msgstr ""
 
-#: simulation/templates/template_structure_defensive_tower_artillery.xml:59
-#: simulation/templates/template_structure_defensive_tower_bolt.xml:58
+#: simulation/templates/template_structure_defensive_tower_artillery.xml:60
+#: simulation/templates/template_structure_defensive_tower_bolt.xml:59
 #: simulation/templates/template_structure_military_arsenal.xml:28
 #: simulation/templates/template_structure_military_elephant_stables.xml:27
-#: simulation/templates/template_structure_military_fortress.xml:71
-#: simulation/templates/template_structure_special.xml:24
+#: simulation/templates/template_structure_military_fortress.xml:73
+#: simulation/templates/template_structure_special.xml:20
 #: simulation/templates/template_structure_wonder.xml:43
-#: simulation/templates/structures/kush_pyramid_large.xml:29
-#: simulation/templates/structures/kush_temple_amun.xml:31
-#: simulation/templates/structures/rome_temple_mars.xml:14
+#: simulation/templates/structures/kush/pyramid_large.xml:29
+#: simulation/templates/structures/kush/temple_amun.xml:31
+#: simulation/templates/structures/rome/temple_mars.xml:14
 msgid "City"
 msgstr "Miestas"
 
-#: simulation/templates/template_structure_defensive_tower_artillery.xml:59
+#: simulation/templates/template_structure_defensive_tower_artillery.xml:60
 msgid "ArtilleryTower"
 msgstr ""
 
-#: simulation/templates/template_structure_defensive_tower_bolt.xml:56
+#: simulation/templates/template_structure_defensive_tower_bolt.xml:5
+msgctxt "Name of an attack, usually the weapon."
+msgid "Bolt"
+msgstr ""
+
+#: simulation/templates/template_structure_defensive_tower_bolt.xml:57
 msgid "Bolt Tower"
 msgstr ""
 
-#: simulation/templates/template_structure_defensive_tower_bolt.xml:58
+#: simulation/templates/template_structure_defensive_tower_bolt.xml:59
 msgid "BoltTower"
 msgstr ""
 
@@ -227,11 +247,11 @@ msgstr ""
 msgid "Can be converted into a Gate."
 msgstr ""
 
-#: simulation/templates/template_structure_defensive_wall_tower.xml:50
+#: simulation/templates/template_structure_defensive_wall_tower.xml:51
 msgid "Wall Turret"
 msgstr "Sienos bokštelis"
 
-#: simulation/templates/template_structure_defensive_wall_tower.xml:52
+#: simulation/templates/template_structure_defensive_wall_tower.xml:53
 msgid "Garrison Infantry for additional arrows."
 msgstr ""
 
@@ -244,45 +264,45 @@ msgstr "Ūkinis pastatas"
 msgid "Economic"
 msgstr "Ūkinis"
 
-#: simulation/templates/template_structure_economic_farmstead.xml:31
+#: simulation/templates/template_structure_economic_farmstead.xml:28
 msgid "Research food gathering technologies."
 msgstr ""
 
-#: simulation/templates/template_structure_economic_farmstead.xml:33
-#: simulation/templates/template_structure_economic_farmstead.xml:29
+#: simulation/templates/template_structure_economic_farmstead.xml:30
+#: simulation/templates/template_structure_economic_farmstead.xml:26
 msgid "Farmstead"
 msgstr "Ūkio sodyba"
 
-#: simulation/templates/template_structure_economic_market.xml:29
+#: simulation/templates/template_structure_economic_market.xml:26
 msgid ""
 "Barter resources. Establish trade routes. Train Traders and research trade "
 "and barter technologies."
 msgstr ""
 
-#: simulation/templates/template_structure_economic_market.xml:31
+#: simulation/templates/template_structure_economic_market.xml:28
 #: simulation/templates/template_structure_military_dock.xml:28
 msgid "Trade"
 msgstr "Mainyti"
 
-#: simulation/templates/template_structure_economic_market.xml:31
-#: simulation/templates/template_structure_economic_market.xml:27
+#: simulation/templates/template_structure_economic_market.xml:28
+#: simulation/templates/template_structure_economic_market.xml:24
 msgid "Market"
 msgstr "Turgus"
 
-#: simulation/templates/template_structure_economic_storehouse.xml:32
+#: simulation/templates/template_structure_economic_storehouse.xml:29
 msgid "Research gathering technologies."
 msgstr ""
 
-#: simulation/templates/template_structure_economic_storehouse.xml:34
-#: simulation/templates/template_structure_economic_storehouse.xml:30
+#: simulation/templates/template_structure_economic_storehouse.xml:31
+#: simulation/templates/template_structure_economic_storehouse.xml:27
 msgid "Storehouse"
 msgstr "Sandėlis"
 
-#: simulation/templates/template_structure_military.xml:13
+#: simulation/templates/template_structure_military.xml:10
 msgid "Military Structure"
 msgstr "Karinis pastatas"
 
-#: simulation/templates/template_structure_military.xml:15
+#: simulation/templates/template_structure_military.xml:12
 msgid "Military"
 msgstr "Karinis"
 
@@ -313,8 +333,8 @@ msgid ""
 msgstr ""
 
 #: simulation/templates/template_structure_military_dock.xml:28
-#: simulation/templates/structures/brit_crannog.xml:16
-#: simulation/templates/structures/cart_super_dock.xml:44
+#: simulation/templates/structures/brit/crannog.xml:16
+#: simulation/templates/structures/cart/super_dock.xml:44
 msgid "Naval"
 msgstr ""
 
@@ -337,7 +357,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_military_embassy.xml:25
 #: simulation/templates/template_structure_military_embassy.xml:23
-#: simulation/templates/structures/cart_embassy.xml:18
+#: simulation/templates/structures/cart/embassy.xml:18
 msgid "Embassy"
 msgstr "Ambasada"
 
@@ -350,15 +370,15 @@ msgstr ""
 msgid "Forge"
 msgstr ""
 
-#: simulation/templates/template_structure_military_fortress.xml:69
+#: simulation/templates/template_structure_military_fortress.xml:71
 msgid ""
 "Train Champions and Heroes and research technologies. Garrison Soldiers for "
 "additional arrows."
 msgstr ""
 
-#: simulation/templates/template_structure_military_fortress.xml:71
-#: simulation/templates/template_structure_military_fortress.xml:37
-#: simulation/templates/template_structure_military_fortress.xml:67
+#: simulation/templates/template_structure_military_fortress.xml:73
+#: simulation/templates/template_structure_military_fortress.xml:39
+#: simulation/templates/template_structure_military_fortress.xml:69
 msgid "Fortress"
 msgstr "Tvirtovė"
 
@@ -383,11 +403,11 @@ msgstr ""
 msgid "Stable"
 msgstr ""
 
-#: simulation/templates/template_structure_resource.xml:7
+#: simulation/templates/template_structure_resource.xml:4
 msgid "Resource Structure"
 msgstr "Išteklių pastatas"
 
-#: simulation/templates/template_structure_resource.xml:8
+#: simulation/templates/template_structure_resource.xml:5
 msgid "Resource"
 msgstr "Išteklių"
 
@@ -400,36 +420,36 @@ msgstr ""
 msgid "Corral"
 msgstr "Aptvaras"
 
-#: simulation/templates/template_structure_resource_field.xml:23
-#: simulation/templates/template_structure_resource_field.xml:21
+#: simulation/templates/template_structure_resource_field.xml:20
+#: simulation/templates/template_structure_resource_field.xml:18
 msgid "Field"
 msgstr "Laukas"
 
-#: simulation/templates/template_structure_resource_field.xml:24
+#: simulation/templates/template_structure_resource_field.xml:21
 msgid ""
 "Harvest grain for food. Each subsequent gatherer works less efficiently."
 msgstr ""
 
-#: simulation/templates/template_structure_special.xml:23
+#: simulation/templates/template_structure_special.xml:19
 msgid "Special Structure"
 msgstr ""
 
-#: simulation/templates/template_structure_special_amphitheater.xml:23
-#: simulation/templates/template_structure_special_amphitheater.xml:21
-#: simulation/templates/structures/rome_amphitheater_pompeii.xml:5
+#: simulation/templates/template_structure_special_amphitheater.xml:20
+#: simulation/templates/template_structure_special_amphitheater.xml:18
+#: simulation/templates/structures/rome/amphitheater_pompeii.xml:5
 msgid "Amphitheater"
 msgstr ""
 
-#: simulation/templates/template_structure_special_library.xml:26
-#: simulation/templates/template_structure_special_library.xml:24
+#: simulation/templates/template_structure_special_library.xml:27
+#: simulation/templates/template_structure_special_library.xml:25
 msgid "Library"
 msgstr "Biblioteka"
 
-#: simulation/templates/template_structure_special_rotarymill.xml:20
+#: simulation/templates/template_structure_special_rotarymill.xml:23
 msgid "Rotary Mill"
 msgstr "Sukamasis malūnas"
 
-#: simulation/templates/template_structure_special_rotarymill.xml:22
+#: simulation/templates/template_structure_special_rotarymill.xml:25
 msgid "RotaryMill"
 msgstr ""
 
@@ -449,951 +469,101 @@ msgstr "Suteikite savo civilizacijai šlovę ir papildykite savo imperiją didel
 msgid "Wonder"
 msgstr "Stebuklas"
 
-#: simulation/templates/structures/athen_arsenal.xml:5
-#: simulation/templates/structures/mace_arsenal.xml:5
-#: simulation/templates/structures/ptol_arsenal.xml:5
-#: simulation/templates/structures/sele_arsenal.xml:5
-#: simulation/templates/structures/spart_arsenal.xml:5
-msgid "Hoplothēkē"
+#: simulation/templates/structures/bench.xml:11
+msgid "Bench"
 msgstr ""
 
-#: simulation/templates/structures/athen_barracks.xml:12
-#: simulation/templates/structures/mace_barracks.xml:12
-#: simulation/templates/structures/ptol_barracks.xml:11
-#: simulation/templates/structures/sele_barracks.xml:12
-#: simulation/templates/structures/spart_barracks.xml:12
-msgid "Stratopedon"
+#: simulation/templates/structures/bench.xml:12
+msgid "Wooden Bench"
 msgstr ""
 
-#: simulation/templates/structures/athen_civil_centre.xml:8
-#: simulation/templates/structures/mace_civil_centre.xml:8
-#: simulation/templates/structures/ptol_civil_centre.xml:9
-#: simulation/templates/structures/sele_civil_centre.xml:5
-#: simulation/templates/structures/spart_civil_centre.xml:8
-msgid "Agora"
+#: simulation/templates/structures/bridge_hele.xml:12
+#: simulation/templates/structures/bridge_hele.xml:13
+msgid "Bridge"
 msgstr ""
 
-#: simulation/templates/structures/athen_corral.xml:5
-#: simulation/templates/structures/mace_corral.xml:5
-#: simulation/templates/structures/ptol_corral.xml:17
-#: simulation/templates/structures/sele_corral.xml:5
-#: simulation/templates/structures/spart_corral.xml:5
-msgid "Epaulos"
+#: simulation/templates/structures/bridge_wooden.xml:12
+#: simulation/templates/structures/bridge_wooden.xml:13
+msgid "Wooden Bridge"
 msgstr ""
 
-#: simulation/templates/structures/athen_defense_tower.xml:9
-#: simulation/templates/structures/mace_defense_tower.xml:9
-#: simulation/templates/structures/ptol_defense_tower.xml:9
-#: simulation/templates/structures/sele_defense_tower.xml:9
-#: simulation/templates/structures/spart_defense_tower.xml:9
-msgid "Pyrgion"
+#: simulation/templates/structures/celt_hut.xml:21
+msgid "Hut"
 msgstr ""
 
-#: simulation/templates/structures/athen_dock.xml:12
-#: simulation/templates/structures/mace_dock.xml:12
-#: simulation/templates/structures/ptol_dock.xml:9
-#: simulation/templates/structures/sele_dock.xml:9
-#: simulation/templates/structures/spart_dock.xml:12
-msgid "Limēn"
+#: simulation/templates/structures/celt_longhouse.xml:21
+msgid "Longhouse"
 msgstr ""
 
-#: simulation/templates/structures/athen_farmstead.xml:11
-#: simulation/templates/structures/mace_farmstead.xml:11
-#: simulation/templates/structures/ptol_farmstead.xml:17
-#: simulation/templates/structures/sele_farmstead.xml:8
-#: simulation/templates/structures/spart_farmstead.xml:11
-msgid "Epoikion"
+#: simulation/templates/structures/column_doric.xml:11
+#: simulation/templates/structures/column_doric_fallen.xml:11
+#: simulation/templates/structures/column_doric_fallen_b.xml:11
+msgid "Column"
 msgstr ""
 
-#: simulation/templates/structures/athen_field.xml:5
-#: simulation/templates/structures/mace_field.xml:5
-#: simulation/templates/structures/ptol_field.xml:5
-#: simulation/templates/structures/sele_field.xml:5
-#: simulation/templates/structures/spart_field.xml:5
-msgid "Agros"
+#: simulation/templates/structures/column_doric.xml:12
+msgid "Doric Column"
 msgstr ""
 
-#: simulation/templates/structures/athen_forge.xml:5
-#: simulation/templates/structures/mace_forge.xml:5
-#: simulation/templates/structures/ptol_forge.xml:5
-#: simulation/templates/structures/sele_forge.xml:5
-#: simulation/templates/structures/spart_forge.xml:5
-msgid "Chalkeōn"
+#: simulation/templates/structures/column_doric_fallen.xml:12
+#: simulation/templates/structures/column_doric_fallen_b.xml:12
+msgid "Fallen Doric Column"
 msgstr ""
 
-#: simulation/templates/structures/athen_fortress.xml:9
-#: simulation/templates/structures/mace_fortress.xml:9
-#: simulation/templates/structures/ptol_fortress.xml:9
-#: simulation/templates/structures/sele_fortress.xml:9
-#: simulation/templates/structures/spart_fortress.xml:9
-msgid "Phrourion"
+#: simulation/templates/structures/desert_trading_post.xml:14
+msgid "Desert Trading Post"
 msgstr ""
 
-#: simulation/templates/structures/athen_fortress.xml:10
-#: simulation/templates/structures/spart_fortress.xml:10
-msgid "Garrison Soldiers for additional arrows."
+#: simulation/templates/structures/desert_trading_post.xml:15
+#: simulation/templates/structures/pers/market.xml:12
+msgid "Ardatašta"
 msgstr ""
 
-#: simulation/templates/structures/athen_gymnasium.xml:23
-msgid "Gymnasion"
+#: simulation/templates/structures/fence_long.xml:12
+#: simulation/templates/structures/fence_short.xml:12
+msgid "Fence"
 msgstr ""
 
-#: simulation/templates/structures/athen_gymnasium.xml:24
-msgid "Train Champions."
+#: simulation/templates/structures/fence_long.xml:13
+msgid "Long Wooden Fence"
 msgstr ""
 
-#: simulation/templates/structures/athen_gymnasium.xml:26
-#: simulation/templates/structures/athen_gymnasium.xml:22
-msgid "Gymnasium"
-msgstr "Gimnazija"
-
-#: simulation/templates/structures/athen_house.xml:5
-#: simulation/templates/structures/mace_house.xml:5
-#: simulation/templates/structures/ptol_house.xml:18
-#: simulation/templates/structures/sele_house.xml:8
-#: simulation/templates/structures/spart_house.xml:5
-msgid "Oikos"
-msgstr ""
-
-#: simulation/templates/structures/athen_market.xml:5
-#: simulation/templates/structures/mace_market.xml:5
-#: simulation/templates/structures/ptol_market.xml:9
-#: simulation/templates/structures/sele_market.xml:5
-#: simulation/templates/structures/spart_market.xml:5
-msgid "Emporion"
-msgstr ""
-
-#: simulation/templates/structures/athen_outpost.xml:5
-#: simulation/templates/structures/mace_outpost.xml:5
-#: simulation/templates/structures/ptol_outpost.xml:5
-#: simulation/templates/structures/sele_outpost.xml:5
-#: simulation/templates/structures/spart_outpost.xml:5
-msgid "Prophylagma"
-msgstr ""
-
-#: simulation/templates/structures/athen_prytaneion.xml:22
-msgid "Council Chamber"
-msgstr "Tarybos rūmai"
-
-#: simulation/templates/structures/athen_prytaneion.xml:23
-msgid "Prytaneion"
-msgstr ""
-
-#: simulation/templates/structures/athen_prytaneion.xml:24
-msgid "Train Heroes and research technologies."
-msgstr ""
-
-#: simulation/templates/structures/athen_prytaneion.xml:26
-#: simulation/templates/structures/spart_gerousia.xml:26
-msgid "Council"
-msgstr ""
-
-#: simulation/templates/structures/athen_range.xml:8
-#: simulation/templates/structures/mace_range.xml:8
-#: simulation/templates/structures/ptol_range.xml:8
-#: simulation/templates/structures/sele_range.xml:8
-#: simulation/templates/structures/spart_range.xml:5
-msgid "Stratopedon tōn Psilōn"
-msgstr ""
-
-#: simulation/templates/structures/athen_sentry_tower.xml:5
-#: simulation/templates/structures/mace_sentry_tower.xml:5
-#: simulation/templates/structures/ptol_sentry_tower.xml:5
-#: simulation/templates/structures/sele_sentry_tower.xml:5
-#: simulation/templates/structures/spart_sentry_tower.xml:5
-msgid "Pyrgidion"
-msgstr ""
-
-#: simulation/templates/structures/athen_stable.xml:5
-#: simulation/templates/structures/mace_stable.xml:5
-#: simulation/templates/structures/ptol_stable.xml:5
-#: simulation/templates/structures/sele_stable.xml:5
-#: simulation/templates/structures/spart_stable.xml:5
-msgid "Hippōn"
-msgstr ""
-
-#: simulation/templates/structures/athen_storehouse.xml:8
-#: simulation/templates/structures/mace_storehouse.xml:8
-#: simulation/templates/structures/ptol_storehouse.xml:18
-#: simulation/templates/structures/sele_storehouse.xml:8
-#: simulation/templates/structures/spart_storehouse.xml:8
-msgid "Apothēkē"
-msgstr ""
-
-#: simulation/templates/structures/athen_temple.xml:9
-#: simulation/templates/structures/mace_temple.xml:9
-#: simulation/templates/structures/ptol_temple.xml:12
-#: simulation/templates/structures/sele_temple.xml:9
-#: simulation/templates/structures/spart_temple.xml:9
-msgid "Naos"
-msgstr ""
-
-#: simulation/templates/structures/athen_theater.xml:5
-#: simulation/templates/structures/mace_theater.xml:5
-#: simulation/templates/structures/spart_theater.xml:5
-msgid "Theatron"
-msgstr ""
-
-#: simulation/templates/structures/athen_tower_artillery.xml:9
-#: simulation/templates/structures/athen_tower_bolt.xml:9
-#: simulation/templates/structures/mace_tower_artillery.xml:9
-#: simulation/templates/structures/mace_tower_bolt.xml:9
-#: simulation/templates/structures/ptol_tower_bolt.xml:9
-#: simulation/templates/structures/sele_tower_artillery.xml:9
-#: simulation/templates/structures/spart_tower_bolt.xml:9
-msgid "Pyrgíon"
-msgstr ""
-
-#: simulation/templates/structures/athen_wall_gate.xml:12
-#: simulation/templates/structures/mace_wall_gate.xml:12
-#: simulation/templates/structures/ptol_wall_gate.xml:12
-#: simulation/templates/structures/sele_wall_gate.xml:12
-#: simulation/templates/structures/spart_wall_gate.xml:12
-msgid "Pylai"
-msgstr ""
-
-#: simulation/templates/structures/athen_wall_long.xml:9
-#: simulation/templates/structures/athen_wall_medium.xml:9
-#: simulation/templates/structures/athen_wall_short.xml:9
-#: simulation/templates/structures/athen_wallset_stone.xml:5
-#: simulation/templates/structures/mace_wall_long.xml:9
-#: simulation/templates/structures/mace_wall_medium.xml:9
-#: simulation/templates/structures/mace_wall_short.xml:9
-#: simulation/templates/structures/mace_wallset_stone.xml:5
-#: simulation/templates/structures/ptol_wall_long.xml:9
-#: simulation/templates/structures/ptol_wall_medium.xml:9
-#: simulation/templates/structures/ptol_wall_short.xml:9
-#: simulation/templates/structures/ptol_wallset_stone.xml:5
-#: simulation/templates/structures/sele_wall_long.xml:9
-#: simulation/templates/structures/sele_wall_medium.xml:9
-#: simulation/templates/structures/sele_wall_short.xml:9
-#: simulation/templates/structures/sele_wallset_stone.xml:5
-#: simulation/templates/structures/spart_wall_long.xml:9
-#: simulation/templates/structures/spart_wall_medium.xml:9
-#: simulation/templates/structures/spart_wall_short.xml:9
-#: simulation/templates/structures/spart_wallset_stone.xml:5
-msgid "Teichos"
-msgstr ""
-
-#: simulation/templates/structures/athen_wall_tower.xml:9
-#: simulation/templates/structures/mace_wall_tower.xml:9
-#: simulation/templates/structures/ptol_wall_tower.xml:9
-#: simulation/templates/structures/sele_wall_tower.xml:9
-#: simulation/templates/structures/spart_wall_tower.xml:9
-msgid "Pyrgos"
-msgstr ""
-
-#: simulation/templates/structures/athen_wonder.xml:9
-msgid "Parthenōn﻿﻿"
-msgstr ""
-
-#: simulation/templates/structures/brit_arsenal.xml:5
-#: simulation/templates/structures/gaul_arsenal.xml:5
-msgid "Miletucerdon"
-msgstr ""
-
-#: simulation/templates/structures/brit_barracks.xml:19
-msgid "Coriosessa"
-msgstr ""
-
-#: simulation/templates/structures/brit_civil_centre.xml:12
-msgid "Tigernotreba"
-msgstr ""
-
-#: simulation/templates/structures/brit_corral.xml:8
-#: simulation/templates/structures/gaul_corral.xml:8
-msgid "Cagion"
-msgstr ""
-
-#: simulation/templates/structures/brit_crannog.xml:13
-msgid "Island Settlement"
-msgstr "Salos gyvenvietė"
-
-#: simulation/templates/structures/brit_crannog.xml:14
-msgid "Cranogion"
-msgstr ""
-
-#: simulation/templates/structures/brit_crannog.xml:15
-msgid ""
-"Build upon a shoreline in own, neutral, or allied territory. Acquire large "
-"tracts of territory. Territory root. Train Citizens, construct Ships, and "
-"research technologies. Garrison Soldiers for additional arrows."
-msgstr ""
-
-#: simulation/templates/structures/brit_defense_tower.xml:9
-#: simulation/templates/structures/brit_sentry_tower.xml:5
-#: simulation/templates/structures/brit_wall_tower.xml:11
-#: simulation/templates/structures/gaul_defense_tower.xml:9
-#: simulation/templates/structures/gaul_sentry_tower.xml:5
-#: simulation/templates/structures/gaul_wall_tower.xml:11
-msgid "Uxelon"
-msgstr ""
-
-#: simulation/templates/structures/brit_dock.xml:15
-#: simulation/templates/structures/gaul_dock.xml:15
-msgid "Counos"
-msgstr ""
-
-#: simulation/templates/structures/brit_farmstead.xml:14
-#: simulation/templates/structures/gaul_farmstead.xml:11
-msgid "Buta"
-msgstr ""
-
-#: simulation/templates/structures/brit_field.xml:5
-#: simulation/templates/structures/gaul_field.xml:5
-msgid "Olca"
-msgstr ""
-
-#: simulation/templates/structures/brit_forge.xml:8
-#: simulation/templates/structures/gaul_forge.xml:8
-msgid "Gobanion"
-msgstr ""
-
-#: simulation/templates/structures/brit_fortress.xml:15
-#: simulation/templates/structures/gaul_fortress.xml:8
-msgid "Dunon"
-msgstr ""
-
-#: simulation/templates/structures/brit_house.xml:9
-#: simulation/templates/structures/gaul_house.xml:5
-msgid "Tegia"
-msgstr ""
-
-#: simulation/templates/structures/brit_market.xml:15
-#: simulation/templates/structures/gaul_market.xml:15
-msgid "Magos"
-msgstr ""
-
-#: simulation/templates/structures/brit_outpost.xml:5
-#: simulation/templates/structures/gaul_outpost.xml:5
-msgid "Antosolicon"
-msgstr ""
-
-#: simulation/templates/structures/brit_range.xml:5
-#: simulation/templates/structures/gaul_range.xml:8
-msgid "Budinadon"
-msgstr ""
-
-#: simulation/templates/structures/brit_rotarymill.xml:5
-msgid "Melonas"
-msgstr ""
-
-#: simulation/templates/structures/brit_stable.xml:11
-#: simulation/templates/structures/gaul_stable.xml:11
-msgid "Eposton"
-msgstr ""
-
-#: simulation/templates/structures/brit_storehouse.xml:11
-#: simulation/templates/structures/gaul_storehouse.xml:11
-msgid "Capanon"
-msgstr ""
-
-#: simulation/templates/structures/brit_temple.xml:18
-#: simulation/templates/structures/gaul_temple.xml:18
-msgid "Nemeton"
-msgstr ""
-
-#: simulation/templates/structures/brit_wall_gate.xml:12
-#: simulation/templates/structures/gaul_wall_gate.xml:12
-msgid "Duoricos"
-msgstr ""
-
-#: simulation/templates/structures/brit_wall_long.xml:9
-#: simulation/templates/structures/brit_wall_medium.xml:9
-#: simulation/templates/structures/brit_wall_short.xml:9
-#: simulation/templates/structures/brit_wallset_stone.xml:5
-#: simulation/templates/structures/gaul_wall_long.xml:9
-#: simulation/templates/structures/gaul_wall_medium.xml:9
-#: simulation/templates/structures/gaul_wall_short.xml:9
-#: simulation/templates/structures/gaul_wallset_stone.xml:5
-msgid "Rate"
-msgstr ""
-
-#: simulation/templates/structures/brit_wonder.xml:10
-msgid "Uffington White Horse"
-msgstr ""
-
-#: simulation/templates/structures/cart_apartment.xml:17
-msgid "Apartment Building"
-msgstr "Gyvenamasis pastatas"
-
-#: simulation/templates/structures/cart_barracks.xml:12
-msgid "Maḥanēt"
-msgstr ""
-
-#: simulation/templates/structures/cart_civil_centre.xml:8
-msgid "Merkāz"
-msgstr ""
-
-#: simulation/templates/structures/cart_corral.xml:8
-msgid "Rēfet"
-msgstr ""
-
-#: simulation/templates/structures/cart_defense_tower.xml:9
-#: simulation/templates/structures/cart_tower_artillery.xml:9
-#: simulation/templates/structures/cart_tower_bolt.xml:9
-#: simulation/templates/structures/cart_wall_tower.xml:12
-msgid "Mijdil"
-msgstr ""
-
-#: simulation/templates/structures/cart_dock.xml:17
-msgid "Commercial Port"
-msgstr "Komercinis uostas"
-
-#: simulation/templates/structures/cart_dock.xml:18
-msgid "Namel"
-msgstr ""
-
-#: simulation/templates/structures/cart_dock.xml:19
-msgid ""
-"Construct fishing boats to gather meat and merchant ships to trade with "
-"other docks."
-msgstr "Konstruokite žvejybinius ir prekybinius laivus."
-
-#: simulation/templates/structures/cart_embassy.xml:19
-msgid "Train Mercenaries and research Mercenary technologies."
-msgstr ""
-
-#: simulation/templates/structures/cart_embassy_celtic.xml:17
-msgid "Celtic Embassy"
-msgstr "Keltų ambasada"
-
-#: simulation/templates/structures/cart_embassy_celtic.xml:18
-msgid "Train Celtic Mercenaries and research Mercenary technologies."
-msgstr ""
-
-#: simulation/templates/structures/cart_embassy_iberian.xml:10
-msgid "Iberian Embassy"
-msgstr "Iberų ambasada"
-
-#: simulation/templates/structures/cart_embassy_iberian.xml:11
-msgid "Train Iberian Mercenaries and research Mercenary technologies."
-msgstr ""
-
-#: simulation/templates/structures/cart_embassy_italic.xml:17
-msgid "Italic Embassy"
-msgstr ""
-
-#: simulation/templates/structures/cart_embassy_italic.xml:18
-msgid "Train Italic Mercenaries and research Mercenary technologies."
-msgstr ""
-
-#: simulation/templates/structures/cart_farmstead.xml:8
-msgid "Aḥuzāh"
-msgstr ""
-
-#: simulation/templates/structures/cart_field.xml:5
-msgid "Šadd"
-msgstr ""
-
-#: simulation/templates/structures/cart_fortress.xml:9
-msgid "Ḥamet"
-msgstr ""
-
-#: simulation/templates/structures/cart_house.xml:8
-msgid "Bet"
-msgstr ""
-
-#: simulation/templates/structures/cart_market.xml:12
-msgid "Šūq"
-msgstr ""
-
-#: simulation/templates/structures/cart_s_wall_long.xml:10
-#: simulation/templates/structures/cart_s_wall_medium.xml:10
-#: simulation/templates/structures/cart_s_wall_short.xml:10
-#: simulation/templates/structures/cart_s_wall_tower.xml:10
-#: simulation/templates/structures/cart_wallset_short.xml:5
-msgid "Low Wall"
-msgstr "Žema siena"
-
-#: simulation/templates/structures/cart_s_wall_long.xml:11
-#: simulation/templates/structures/cart_s_wall_medium.xml:11
-#: simulation/templates/structures/cart_s_wall_short.xml:11
-#: simulation/templates/structures/cart_s_wall_tower.xml:11
-msgid "Stone Wall"
-msgstr "Akmeninė siena"
-
-#: simulation/templates/structures/cart_storehouse.xml:8
-msgid "Maḥṣabah"
-msgstr ""
-
-#: simulation/templates/structures/cart_super_dock.xml:40
-msgid "Naval Shipyard"
-msgstr "Karinių laivų statykla"
-
-#: simulation/templates/structures/cart_super_dock.xml:41
-msgid "Cothon"
-msgstr ""
-
-#: simulation/templates/structures/cart_super_dock.xml:42
-msgid ""
-"Build upon a shoreline in own, neutral, or allied territory. Acquire large "
-"tracts of territory. Territory root. Construct Warships and research "
-"technologies."
-msgstr ""
-
-#: simulation/templates/structures/cart_super_dock.xml:44
-msgid "Shipyard"
-msgstr "Laivų statykla"
-
-#: simulation/templates/structures/cart_temple.xml:14
-msgid "Maqdaš"
-msgstr ""
-
-#: simulation/templates/structures/cart_temple.xml:15
-msgid "Train Healers and Champions and research healing technologies."
-msgstr ""
-
-#: simulation/templates/structures/cart_tophet.xml:18
-msgid "Sacrificial Temple"
-msgstr "Aukojimo šventykla"
-
-#: simulation/templates/structures/cart_tophet.xml:19
-msgid "Tophet"
-msgstr ""
-
-#: simulation/templates/structures/cart_tophet.xml:20
-msgid "Train Healers and Champion Cavalry and research healing technologies."
-msgstr ""
-
-#: simulation/templates/structures/cart_wall_gate.xml:12
-msgid "Mijdil-šaʿar"
-msgstr ""
-
-#: simulation/templates/structures/cart_wall_long.xml:9
-#: simulation/templates/structures/cart_wall_medium.xml:9
-#: simulation/templates/structures/cart_wall_short.xml:9
-msgid "Homah"
-msgstr ""
-
-#: simulation/templates/structures/cart_wallset_stone.xml:5
-msgid "Jdar"
-msgstr ""
-
-#: simulation/templates/structures/cart_wonder.xml:9
-msgid "Temple of Ba'al Hammon"
-msgstr "Baal Hamono šventykla"
-
-#: simulation/templates/structures/gaul_barracks.xml:19
-msgid "Coriosedlon"
-msgstr ""
-
-#: simulation/templates/structures/gaul_civil_centre.xml:12
-msgid "Lissos"
-msgstr ""
-
-#: simulation/templates/structures/gaul_rotarymill.xml:5
-msgid "Brauon"
-msgstr ""
-
-#: simulation/templates/structures/gaul_tavern.xml:21
-msgid "Tavern"
-msgstr "Smuklė"
-
-#: simulation/templates/structures/gaul_tavern.xml:22
-msgid "Taberna"
-msgstr ""
-
-#: simulation/templates/structures/gaul_tavern.xml:23
-msgid "Recruit Naked Fanatics."
-msgstr "Samdyti nuogus fanatikus."
-
-#: simulation/templates/structures/gaul_theater.xml:10
-msgid "Assembly of Princes"
-msgstr ""
-
-#: simulation/templates/structures/gaul_theater.xml:11
-msgid "Remogantion"
-msgstr ""
-
-#: simulation/templates/structures/gaul_wonder.xml:9
-msgid "Sanctuary of Corent"
-msgstr ""
-
-#: simulation/templates/structures/gaul_wonder.xml:10
-msgid "Celicnon"
-msgstr ""
-
-#: simulation/templates/structures/iber_barracks.xml:5
-msgid "Kaserna"
-msgstr ""
-
-#: simulation/templates/structures/iber_civil_centre.xml:8
-msgid "Oppidum"
-msgstr ""
-
-#: simulation/templates/structures/iber_corral.xml:8
-msgid "Saroe"
-msgstr ""
-
-#: simulation/templates/structures/iber_defense_tower.xml:32
-#: simulation/templates/structures/iber_wall_tower.xml:9
-msgid "Dorre"
-msgstr ""
-
-#: simulation/templates/structures/iber_dock.xml:12
-msgid "Kai"
-msgstr ""
-
-#: simulation/templates/structures/iber_farmstead.xml:11
-msgid "Baserri"
-msgstr ""
-
-#: simulation/templates/structures/iber_field.xml:5
-msgid "Soro"
-msgstr ""
-
-#: simulation/templates/structures/iber_forge.xml:5
-msgid "Harotz"
-msgstr ""
-
-#: simulation/templates/structures/iber_fortress.xml:15
-msgid "Castro"
-msgstr ""
-
-#: simulation/templates/structures/iber_house.xml:5
-msgid "Etxe"
-msgstr ""
-
-#: simulation/templates/structures/iber_market.xml:12
-msgid "Arruga"
-msgstr ""
-
-#: simulation/templates/structures/iber_monument.xml:32
-msgid "Revered Monument"
-msgstr "Iškilus monumentas"
-
-#: simulation/templates/structures/iber_monument.xml:33
-msgid "Gur Oroigarri"
-msgstr ""
-
-#: simulation/templates/structures/iber_monument.xml:34
-#: simulation/templates/structures/iber_monument.xml:9
-msgid "Monument"
-msgstr "Monumentas"
-
-#: simulation/templates/structures/iber_storehouse.xml:5
-msgid "Ola"
-msgstr ""
-
-#: simulation/templates/structures/iber_temple.xml:12
-msgid "Loki"
-msgstr ""
-
-#: simulation/templates/structures/iber_wall_gate.xml:12
-msgid "Biko Sarbide"
-msgstr ""
-
-#: simulation/templates/structures/iber_wall_long.xml:9
-#: simulation/templates/structures/iber_wall_medium.xml:9
-#: simulation/templates/structures/iber_wall_short.xml:9
-#: simulation/templates/structures/iber_wallset_stone.xml:5
-msgid "Zabal Horma"
-msgstr ""
-
-#: simulation/templates/structures/iber_wonder.xml:9
-msgid "Cancho Roano"
-msgstr ""
-
-#: simulation/templates/structures/kush_arsenal.xml:5
-msgid "Pr-ỉwn n ms﻿"
-msgstr ""
-
-#: simulation/templates/structures/kush_barracks.xml:9
-msgid "pr-msʿyw"
-msgstr ""
-
-#: simulation/templates/structures/kush_blemmye_camp.xml:22
-#: simulation/templates/structures/kush_blemmye_camp.xml:23
-msgid "Blemmye Camp"
-msgstr "Blemijų stovykla"
-
-#: simulation/templates/structures/kush_blemmye_camp.xml:24
-msgid "Train Blemmye Desert Raiders."
-msgstr "Renkite blemijų dykumų plėšikus."
-
-#: simulation/templates/structures/kush_civil_centre.xml:9
-msgid "Pr-nsw"
-msgstr ""
-
-#: simulation/templates/structures/kush_corral.xml:9
-msgid "ihy"
-msgstr ""
-
-#: simulation/templates/structures/kush_defense_tower.xml:5
-msgid "tsmt ʿȝ"
-msgstr ""
-
-#: simulation/templates/structures/kush_dock.xml:9
-msgid "Mryt"
-msgstr ""
-
-#: simulation/templates/structures/kush_elephant_stables.xml:5
-msgid "Ỉ﻿ḥ Abu"
-msgstr ""
-
-#: simulation/templates/structures/kush_farmstead.xml:9
-msgid "snwt"
-msgstr ""
-
-#: simulation/templates/structures/kush_field.xml:5
-msgid "sht"
-msgstr ""
-
-#: simulation/templates/structures/kush_forge.xml:5
-msgid "hmw hʿy n rȝ-ʿ"
-msgstr ""
-
-#: simulation/templates/structures/kush_fortress.xml:9
-msgid "Htm"
-msgstr ""
-
-#: simulation/templates/structures/kush_house.xml:5
-msgid "Pr"
-msgstr ""
-
-#: simulation/templates/structures/kush_market.xml:9
-msgid "Pr-sbt"
-msgstr ""
-
-#: simulation/templates/structures/kush_nuba_village.xml:22
-#: simulation/templates/structures/kush_nuba_village.xml:23
-msgid "Nuba Village"
-msgstr "Nubų kaimas"
-
-#: simulation/templates/structures/kush_nuba_village.xml:24
-msgid "Train the Nuba Clubman and Nuba Hunter."
-msgstr "Renkite nubų kovotojus kūjais ir nubų medžiotojus."
-
-#: simulation/templates/structures/kush_outpost.xml:5
-msgid "trtr"
-msgstr ""
-
-#: simulation/templates/structures/kush_pyramid_large.xml:26
-msgid "Large Pyramid"
-msgstr "Didelė piramidė"
-
-#: simulation/templates/structures/kush_pyramid_large.xml:27
-msgid "mr ʿȝ"
-msgstr ""
-
-#: simulation/templates/structures/kush_pyramid_large.xml:29
-#: simulation/templates/structures/kush_pyramid_small.xml:29
-msgid "Pyramid"
-msgstr "Piramidė"
-
-#: simulation/templates/structures/kush_pyramid_small.xml:26
-msgid "Small Pyramid"
-msgstr "Maža piramidė"
-
-#: simulation/templates/structures/kush_pyramid_small.xml:27
-msgid "mr"
-msgstr ""
-
-#: simulation/templates/structures/kush_range.xml:8
-msgid "Pr-Pdt"
-msgstr ""
-
-#: simulation/templates/structures/kush_sentry_tower.xml:5
-msgid "tsmt"
-msgstr ""
-
-#: simulation/templates/structures/kush_shrine.xml:12
-msgid "Shrine"
-msgstr "Šventykla"
-
-#: simulation/templates/structures/kush_shrine.xml:13
-msgid "ḥwt-nṯr"
-msgstr ""
-
-#: simulation/templates/structures/kush_stable.xml:9
-msgid "Ỉḥ Ssmt"
-msgstr ""
-
-#: simulation/templates/structures/kush_storehouse.xml:5
-msgid "wdȝt"
-msgstr ""
-
-#: simulation/templates/structures/kush_temple.xml:8
-msgid "Temple of Apedemak"
-msgstr "Apedemako šventykla"
-
-#: simulation/templates/structures/kush_temple.xml:9
-msgid "Pr-ʿIprmk"
-msgstr ""
-
-#: simulation/templates/structures/kush_temple.xml:10
-msgid ""
-"Train Healers and Apedamak Champions and research healing technologies."
-msgstr ""
-
-#: simulation/templates/structures/kush_temple.xml:11
-msgid "TempleOfApedemak"
-msgstr ""
-
-#: simulation/templates/structures/kush_temple_amun.xml:28
-msgid "Grand Temple of Amun"
-msgstr "Didžioji Amono šventykla"
-
-#: simulation/templates/structures/kush_temple_amun.xml:29
-msgid "Pr-ʿImn"
-msgstr ""
-
-#: simulation/templates/structures/kush_temple_amun.xml:30
-msgid "Train Healers and Amun Champions and research healing technologies."
-msgstr ""
-
-#: simulation/templates/structures/kush_temple_amun.xml:31
-msgid "TempleOfAmun"
-msgstr ""
-
-#: simulation/templates/structures/kush_wall_gate.xml:12
-msgid "ʿryt"
-msgstr ""
-
-#: simulation/templates/structures/kush_wall_long.xml:9
-#: simulation/templates/structures/kush_wall_medium.xml:9
-#: simulation/templates/structures/kush_wall_short.xml:9
-#: simulation/templates/structures/kush_wallset_stone.xml:5
-msgid "sbty"
-msgstr ""
-
-#: simulation/templates/structures/kush_wall_tower.xml:9
-msgid "sȝwt"
-msgstr ""
-
-#: simulation/templates/structures/kush_wonder.xml:9
-msgid "Mnw nht"
+#: simulation/templates/structures/fence_short.xml:13
+msgid "Short Wooden Fence"
 msgstr ""
 
-#: simulation/templates/structures/mace_library.xml:5
-#: simulation/templates/structures/ptol_library.xml:5
-#: simulation/templates/structures/sele_library.xml:9
-msgid "Bibliothēkē"
+#: simulation/templates/structures/fence_stone.xml:12
+#: simulation/templates/structures/fence_stone.xml:13
+msgid "Stone Fence"
 msgstr ""
 
-#: simulation/templates/structures/mace_wonder.xml:9
-msgid "Hieron tou Dios tou Olympiou"
+#: simulation/templates/structures/generic_field.xml:8
+msgid "Wheat Field"
 msgstr ""
 
-#: simulation/templates/structures/maur_barracks.xml:15
-msgid "Sainyavasa"
+#: simulation/templates/structures/hellenic_epic_temple.xml:23
+msgid "Epic Temple"
 msgstr ""
 
-#: simulation/templates/structures/maur_civil_centre.xml:12
-msgid "Rajadhanika"
+#: simulation/templates/structures/hellenic_epic_temple.xml:24
+msgid "Naos Parthenos"
 msgstr ""
 
-#: simulation/templates/structures/maur_corral.xml:8
-msgid "Gotra"
+#: simulation/templates/structures/hellenic_epic_temple.xml:25
+msgid "Garrison units to heal them at a quick rate."
 msgstr ""
 
-#: simulation/templates/structures/maur_defense_tower.xml:5
-#: simulation/templates/structures/maur_tower_double.xml:24
-msgid "Udarka"
+#: simulation/templates/structures/hellenic_propylaea.xml:21
+msgid "Portico"
 msgstr ""
 
-#: simulation/templates/structures/maur_dock.xml:9
-msgid "Naukasthanaka"
+#: simulation/templates/structures/hellenic_propylaea.xml:22
+msgid "Propylaea"
 msgstr ""
 
-#: simulation/templates/structures/maur_elephant_stables.xml:5
-msgid "Vāraṇaśālā"
+#: simulation/templates/structures/hellenic_stoa.xml:25
+msgid "Hellenic Stoa"
 msgstr ""
-
-#: simulation/templates/structures/maur_farmstead.xml:11
-msgid "Kantu"
-msgstr ""
-
-#: simulation/templates/structures/maur_field.xml:5
-msgid "Kshetra"
-msgstr ""
-
-#: simulation/templates/structures/maur_forge.xml:5
-msgid "Lohakāra"
-msgstr ""
-
-#: simulation/templates/structures/maur_fortress.xml:5
-msgid "Durg"
-msgstr ""
-
-#: simulation/templates/structures/maur_house.xml:8
-msgid "Griham"
-msgstr ""
-
-#: simulation/templates/structures/maur_market.xml:12
-msgid "Vipana"
-msgstr ""
-
-#: simulation/templates/structures/maur_outpost.xml:5
-msgid "Uparaksana"
-msgstr ""
-
-#: simulation/templates/structures/maur_palace.xml:17
-msgid "Harmya"
-msgstr ""
-
-#: simulation/templates/structures/maur_palace.xml:18
-msgid "Train Female Citizens, Champions, and Heroes."
-msgstr ""
-
-#: simulation/templates/structures/maur_palace.xml:20
-#: simulation/templates/structures/pers_apadana.xml:31
-#: simulation/templates/structures/pers_tacara.xml:27
-#: simulation/templates/structures/pers_tacara.xml:24
-msgid "Palace"
-msgstr ""
-
-#: simulation/templates/structures/maur_pillar_ashoka.xml:32
-msgid "Edict Pillar of Ashoka"
-msgstr "Ašokos ediktų stulpas"
-
-#: simulation/templates/structures/maur_pillar_ashoka.xml:33
-msgid "Śāsana Stambha Aśokā"
-msgstr ""
-
-#: simulation/templates/structures/maur_pillar_ashoka.xml:34
-#: simulation/templates/structures/maur_pillar_ashoka.xml:9
-msgid "Pillar"
-msgstr "Stulpas"
-
-#: simulation/templates/structures/maur_storehouse.xml:5
-msgid "Khalla"
-msgstr ""
-
-#: simulation/templates/structures/maur_temple.xml:12
-msgid "Devalaya"
-msgstr ""
-
-#: simulation/templates/structures/maur_tower_double.xml:20
-msgid "Rampart Tower"
-msgstr ""
-
-#: simulation/templates/structures/maur_tower_double.xml:22
-msgid ""
-"Higher health tower with ramparts for up to 16 archers. Visibly garrisoned "
-"archers recieve a range and armor bonus. Only archers can garrison. Needs "
-"the murder holes tech to protect its foot."
-msgstr ""
-
-#: simulation/templates/structures/maur_wall_gate.xml:18
-msgid "Dwara"
-msgstr ""
-
-#: simulation/templates/structures/maur_wall_long.xml:15
-#: simulation/templates/structures/maur_wall_medium.xml:15
-#: simulation/templates/structures/maur_wall_short.xml:15
-#: simulation/templates/structures/maur_wallset_stone.xml:5
-msgid "Shilabanda"
-msgstr ""
-
-#: simulation/templates/structures/maur_wall_tower.xml:18
-msgid "Puratta"
-msgstr ""
-
-#: simulation/templates/structures/maur_wonder.xml:9
-msgid "Great Stupa"
-msgstr "Didžioji stūpa"
 
 #: simulation/templates/structures/mausoleum.xml:8
 msgid "Mausoleum at Halicarnassus"
@@ -1403,23 +573,31 @@ msgstr ""
 msgid "Mausōleion"
 msgstr ""
 
-#: simulation/templates/structures/merc_camp_egyptian.xml:7
-#: simulation/templates/structures/ptol_mercenary_camp.xml:7
+#: simulation/templates/structures/merc_camp_egyptian.xml:6
+#: simulation/templates/structures/ptol/mercenary_camp.xml:6
 msgid "MercenaryCamp"
 msgstr "Samdinių stovykla"
 
-#: simulation/templates/structures/merc_camp_egyptian.xml:29
+#: simulation/templates/structures/merc_camp_egyptian.xml:28
 msgid "Egyptian Mercenary Camp"
 msgstr ""
 
-#: simulation/templates/structures/merc_camp_egyptian.xml:30
-#: simulation/templates/structures/ptol_mercenary_camp.xml:29
+#: simulation/templates/structures/merc_camp_egyptian.xml:29
+#: simulation/templates/structures/ptol/mercenary_camp.xml:28
 msgid "Stratopedeia Misthophorōn"
 msgstr ""
 
-#: simulation/templates/structures/merc_camp_egyptian.xml:32
+#: simulation/templates/structures/merc_camp_egyptian.xml:31
 msgid "Capture this structure to train mercenaries from Hellenistic Egypt."
 msgstr "Užimkite šį pastatą norėdami rengti samdinius iš helenistinio Egipto."
+
+#: simulation/templates/structures/obelisk.xml:11
+msgid "Obelisk"
+msgstr ""
+
+#: simulation/templates/structures/obelisk.xml:12
+msgid "Egyptian Obelisk"
+msgstr ""
 
 #: simulation/templates/structures/palisades_fort.xml:9
 msgid "Wooden Tower"
@@ -1454,436 +632,1410 @@ msgstr ""
 msgid "Watchtower"
 msgstr ""
 
-#: simulation/templates/structures/pers_apadana.xml:27
-msgid "Throne Hall"
+#: simulation/templates/structures/sele_colonnade.xml:11
+msgid "Colonnade"
 msgstr ""
 
-#: simulation/templates/structures/pers_apadana.xml:28
-msgid "Apadāna"
+#: simulation/templates/structures/sele_colonnade.xml:12
+msgid "Corinthian Colonnade"
 msgstr ""
 
-#: simulation/templates/structures/pers_apadana.xml:29
-#: simulation/templates/structures/spart_syssiton.xml:25
-msgid "Train Champions and Heroes."
+#: simulation/templates/structures/stall_big.xml:11
+msgid "Big stall"
 msgstr ""
 
-#: simulation/templates/structures/pers_apartment_block.xml:15
-msgid "Apartment Block"
-msgstr "Daugiabutis"
-
-#: simulation/templates/structures/pers_barracks.xml:5
-msgid "Padgan"
-msgstr ""
-
-#: simulation/templates/structures/pers_barracks.xml:6
-msgid "Train Infantry."
-msgstr ""
-
-#: simulation/templates/structures/pers_civil_centre.xml:8
-msgid "Provincial Governor"
-msgstr "Provincinis gubernatorius"
-
-#: simulation/templates/structures/pers_civil_centre.xml:9
-msgid "Xšaçapāvan"
-msgstr ""
-
-#: simulation/templates/structures/pers_corral.xml:11
-msgid "Gaiāšta"
-msgstr ""
-
-#: simulation/templates/structures/pers_defense_tower.xml:5
-#: simulation/templates/structures/pers_tower_babylon.xml:5
-#: simulation/templates/structures/pers_wall_tower.xml:9
-msgid "Pāyaud"
-msgstr ""
-
-#: simulation/templates/structures/pers_dock.xml:12
-msgid "Nāvašta"
-msgstr ""
-
-#: simulation/templates/structures/pers_farmstead.xml:8
-msgid "Kaštašta"
-msgstr ""
-
-#: simulation/templates/structures/pers_field.xml:5
-msgid "Kaštrya"
-msgstr ""
-
-#: simulation/templates/structures/pers_forge.xml:5
-msgid "Arštišta"
-msgstr ""
-
-#: simulation/templates/structures/pers_fortress.xml:5
-msgid "Didā"
-msgstr ""
-
-#: simulation/templates/structures/pers_fortress.xml:6
-msgid "Research technologies. Garrison Soldiers for additional arrows."
-msgstr ""
-
-#: simulation/templates/structures/pers_hall.xml:23
-msgid "Gate of All Nations"
-msgstr ""
-
-#: simulation/templates/structures/pers_hall.xml:24
-msgid "Duvarθi Visadahyu"
-msgstr ""
-
-#: simulation/templates/structures/pers_hall.xml:25
-msgid "Hall"
-msgstr ""
-
-#: simulation/templates/structures/pers_house.xml:8
-msgid "Huvādā"
-msgstr ""
-
-#: simulation/templates/structures/pers_house_b.xml:15
-#: simulation/templates/structures/pers_inn.xml:15
-msgid "Inn"
-msgstr "Užeiga"
-
-#: simulation/templates/structures/pers_ishtar_gate.xml:29
-msgid "Ishtar Gate of Babylon"
-msgstr "Babilono Ištarės vartai"
-
-#: simulation/templates/structures/pers_ishtar_gate.xml:30
-msgid "IshtarGate"
-msgstr ""
-
-#: simulation/templates/structures/pers_market.xml:12
-msgid "Ardatašta"
-msgstr ""
-
-#: simulation/templates/structures/pers_outpost.xml:5
-msgid "Didebani"
-msgstr ""
-
-#: simulation/templates/structures/pers_stable.xml:9
-msgid "Paraspa"
-msgstr ""
-
-#: simulation/templates/structures/pers_storehouse.xml:5
-msgid "Asiyah"
-msgstr ""
-
-#: simulation/templates/structures/pers_tacara.xml:25
-msgid "Taçara"
-msgstr ""
-
-#: simulation/templates/structures/pers_temple.xml:12
-msgid "Āyadanam"
-msgstr ""
-
-#: simulation/templates/structures/pers_wall_gate.xml:12
-msgid "Duvarθiš"
-msgstr ""
-
-#: simulation/templates/structures/pers_wall_long.xml:9
-#: simulation/templates/structures/pers_wall_medium.xml:9
-#: simulation/templates/structures/pers_wall_short.xml:9
-#: simulation/templates/structures/pers_wallset_stone.xml:5
-msgid "Para"
-msgstr ""
-
-#: simulation/templates/structures/pers_warehouse.xml:12
-msgid "Warehouse"
-msgstr "Sandėlis"
-
-#: simulation/templates/structures/pers_wonder.xml:9
-msgid "Hanging Gardens of Babylon"
-msgstr "Kabantieji Babilono sodai"
-
-#: simulation/templates/structures/ptol_elephant_stables.xml:5
-#: simulation/templates/structures/sele_elephant_stables.xml:5
-msgid "Stathmos tōn Elepantōn"
-msgstr ""
-
-#: simulation/templates/structures/ptol_fortress.xml:10
-#: simulation/templates/structures/sele_fortress.xml:10
-msgid ""
-"Train Champions and research technologies. Garrison Soldiers for additional "
-"arrows."
-msgstr ""
-
-#: simulation/templates/structures/ptol_house.xml:19
-msgid ""
-"Increase the population limit. Since they are made of mud brick, Egyptian "
-"houses are free of cost, but are very weak."
-msgstr "Padidina populiacijos limitą. Kadangi yra pastatyti iš purvo plytų, egiptiečių namai nieko nekainuoja bei yra labai netvirti."
-
-#: simulation/templates/structures/ptol_lighthouse.xml:25
-msgid "Pharos"
-msgstr ""
-
-#: simulation/templates/structures/ptol_lighthouse.xml:26
-msgid ""
-"Build upon a shoreline in own, neutral, or allied territory. Reveal the "
-"shorelines over the entire map. Very large vision range."
-msgstr ""
-
-#: simulation/templates/structures/ptol_lighthouse.xml:27
-#: simulation/templates/structures/ptol_lighthouse.xml:24
-msgid "Lighthouse"
-msgstr "Švyturys"
-
-#: simulation/templates/structures/ptol_mercenary_camp.xml:28
-msgid "Mercenary Camp"
-msgstr "Samdinių stovykla"
-
-#: simulation/templates/structures/ptol_mercenary_camp.xml:31
-msgid ""
-"Cheap Barracks-like structure that is buildable in neutral territory, but "
-"casts no territory influence. Train Mercenaries."
-msgstr ""
-
-#: simulation/templates/structures/ptol_military_colony.xml:9
-#: simulation/templates/structures/sele_military_colony.xml:9
-msgid "Klērouchia"
-msgstr ""
-
-#: simulation/templates/structures/ptol_tower_artillery.xml:9
-msgid "mktr-n-ḏw"
-msgstr ""
-
-#: simulation/templates/structures/ptol_wonder.xml:9
-msgid "Hieron tou Hōrou"
-msgstr ""
-
-#: simulation/templates/structures/rome_amphitheater_pompeii.xml:6
-msgid "Amphitheātrum"
-msgstr ""
-
-#: simulation/templates/structures/rome_arch.xml:22
-msgid "Triumphal Arch"
-msgstr "Triumfo arka"
-
-#: simulation/templates/structures/rome_arch.xml:23
-msgid "Arcus Triumphālis"
-msgstr ""
-
-#: simulation/templates/structures/rome_arch.xml:24
-msgid "TriumphalArch"
-msgstr ""
-
-#: simulation/templates/structures/rome_army_camp.xml:70
-msgid "Army Camp"
-msgstr ""
-
-#: simulation/templates/structures/rome_army_camp.xml:71
-msgid "Castra"
-msgstr ""
-
-#: simulation/templates/structures/rome_army_camp.xml:72
-msgid ""
-"Build in neutral or enemy territory. Train Citizen-Soldiers and construct "
-"Siege Engines. Garrison Soldiers for additional arrows."
-msgstr ""
-
-#: simulation/templates/structures/rome_army_camp.xml:74
-#: simulation/templates/structures/rome_army_camp.xml:38
-msgid "ArmyCamp"
-msgstr "Kariuomenės stovykla"
-
-#: simulation/templates/structures/rome_arsenal.xml:5
-msgid "Ballistārium"
-msgstr ""
-
-#: simulation/templates/structures/rome_barracks.xml:12
-msgid "Castrum"
-msgstr ""
-
-#: simulation/templates/structures/rome_civil_centre.xml:12
-msgid "Forum"
-msgstr "Forumas"
-
-#: simulation/templates/structures/rome_corral.xml:8
-msgid "Saeptum"
-msgstr ""
-
-#: simulation/templates/structures/rome_defense_tower.xml:9
-#: simulation/templates/structures/rome_tower_artillery.xml:9
-#: simulation/templates/structures/rome_tower_bolt.xml:9
-msgid "Turris Laterīcia"
-msgstr ""
-
-#: simulation/templates/structures/rome_dock.xml:12
-msgid "Portus"
-msgstr ""
-
-#: simulation/templates/structures/rome_farmstead.xml:8
-msgid "Vīlla"
-msgstr ""
-
-#: simulation/templates/structures/rome_field.xml:5
-msgid "Ager"
-msgstr ""
-
-#: simulation/templates/structures/rome_forge.xml:5
-msgid "Armāmentārium"
-msgstr ""
-
-#: simulation/templates/structures/rome_fortress.xml:5
-msgid "Castellum"
-msgstr ""
-
-#: simulation/templates/structures/rome_house.xml:5
-msgid "Domus"
-msgstr ""
-
-#: simulation/templates/structures/rome_market.xml:12
-msgid "Mercātus"
-msgstr ""
-
-#: simulation/templates/structures/rome_outpost.xml:5
-msgid "Vigilārium"
-msgstr ""
-
-#: simulation/templates/structures/rome_sentry_tower.xml:5
-msgid "Turris Līgnea"
-msgstr ""
-
-#: simulation/templates/structures/rome_siege_wall_gate.xml:24
-msgid "Siege Wall Gate"
-msgstr "Apgulties sienos vartai"
-
-#: simulation/templates/structures/rome_siege_wall_gate.xml:25
-msgid "Porta Circummūnītiōnis"
-msgstr ""
-
-#: simulation/templates/structures/rome_siege_wall_gate.xml:26
-#: simulation/templates/structures/rome_siege_wall_long.xml:27
-#: simulation/templates/structures/rome_siege_wall_medium.xml:24
-#: simulation/templates/structures/rome_siege_wall_short.xml:24
-#: simulation/templates/structures/rome_siege_wall_tower.xml:23
-#: simulation/templates/structures/rome_wallset_siege.xml:8
-msgid "SiegeWall"
-msgstr ""
-
-#: simulation/templates/structures/rome_siege_wall_long.xml:25
-#: simulation/templates/structures/rome_siege_wall_medium.xml:22
-#: simulation/templates/structures/rome_siege_wall_short.xml:22
-#: simulation/templates/structures/rome_wallset_siege.xml:5
-msgid "Siege Wall"
-msgstr "Apgulties siena"
-
-#: simulation/templates/structures/rome_siege_wall_long.xml:26
-#: simulation/templates/structures/rome_siege_wall_medium.xml:23
-#: simulation/templates/structures/rome_siege_wall_short.xml:23
-#: simulation/templates/structures/rome_wallset_siege.xml:6
-msgid "Mūrus Circummūnītiōnis"
-msgstr ""
-
-#: simulation/templates/structures/rome_siege_wall_tower.xml:21
-msgid "Siege Wall Tower"
-msgstr "Apgulties sienos bokštas"
-
-#: simulation/templates/structures/rome_siege_wall_tower.xml:22
-msgid "Turris Circummūnītiōnis"
-msgstr ""
-
-#: simulation/templates/structures/rome_stable.xml:5
-msgid "Equīle"
-msgstr ""
-
-#: simulation/templates/structures/rome_storehouse.xml:8
-msgid "Receptāculum"
-msgstr ""
-
-#: simulation/templates/structures/rome_temple.xml:9
-msgid "Aedēs"
-msgstr ""
-
-#: simulation/templates/structures/rome_temple_mars.xml:12
-msgid "Temple of Mars"
-msgstr "Marso šventykla"
-
-#: simulation/templates/structures/rome_temple_mars.xml:13
-msgid "Aedēs Mārtiālis"
-msgstr ""
-
-#: simulation/templates/structures/rome_temple_mars.xml:14
-msgid "TempleOfMars"
-msgstr ""
-
-#: simulation/templates/structures/rome_temple_vesta.xml:18
-msgid "Temple of Vesta"
-msgstr "Vestos šventykla"
-
-#: simulation/templates/structures/rome_temple_vesta.xml:19
-msgid "Aedēs Vestālis"
-msgstr ""
-
-#: simulation/templates/structures/rome_temple_vesta.xml:20
-msgid "TempleOfVesta"
-msgstr ""
-
-#: simulation/templates/structures/rome_tent.xml:29
-msgid "Tent"
-msgstr "Palapinė"
-
-#: simulation/templates/structures/rome_tent.xml:30
-msgid "Tabernāculum"
-msgstr ""
-
-#: simulation/templates/structures/rome_tent.xml:32
-msgid "A temporary shelter for soldiers."
-msgstr "Laikinas prieglobstis kariams"
-
-#: simulation/templates/structures/rome_wall_gate.xml:12
-msgid "Porta"
-msgstr ""
-
-#: simulation/templates/structures/rome_wall_long.xml:9
-#: simulation/templates/structures/rome_wall_medium.xml:9
-#: simulation/templates/structures/rome_wall_short.xml:9
-#: simulation/templates/structures/rome_wallset_stone.xml:5
-msgid "Moenia"
-msgstr ""
-
-#: simulation/templates/structures/rome_wall_tower.xml:9
-msgid "Turris Lapidea"
-msgstr ""
-
-#: simulation/templates/structures/rome_wallset_siege.xml:7
-msgid "Wall off an area. Build in own, neutral, or enemy territory."
-msgstr ""
-
-#: simulation/templates/structures/rome_wonder.xml:9
-msgid "Aedēs Iovis Optimi Maximi"
-msgstr ""
-
-#: simulation/templates/structures/sele_wonder.xml:9
-msgid "Hieron tou Apollōnos Pythiou"
-msgstr ""
-
-#: simulation/templates/structures/spart_gerousia.xml:22
-msgid "Spartan Senate"
-msgstr "Spartiečių senatas"
-
-#: simulation/templates/structures/spart_gerousia.xml:23
-msgid "Gerousia"
-msgstr ""
-
-#: simulation/templates/structures/spart_gerousia.xml:24
-msgid "Train Heroes."
-msgstr ""
-
-#: simulation/templates/structures/spart_syssiton.xml:23
-msgid "Military Mess Hall"
-msgstr "Karių valgykla"
-
-#: simulation/templates/structures/spart_syssiton.xml:24
-msgid "Syssition"
-msgstr ""
-
-#: simulation/templates/structures/spart_syssiton.xml:27
-msgid "Syssiton"
+#: simulation/templates/structures/stall_med.xml:11
+msgid "Medium stall"
 msgstr ""
 
-#: simulation/templates/structures/spart_wonder.xml:9
-msgid "Hieron tēs Artemidos Orthias"
+#: simulation/templates/structures/stall_small_a.xml:11
+#: simulation/templates/structures/stall_small_b.xml:11
+msgid "Small stall"
 msgstr ""
 
 #: simulation/templates/structures/stonehenge.xml:8
 msgid "Stonehenge"
 msgstr "Stounhendžas"
+
+#: simulation/templates/structures/table_rectangle.xml:11
+#: simulation/templates/structures/table_square.xml:11
+msgid "Table"
+msgstr ""
+
+#: simulation/templates/structures/table_rectangle.xml:12
+msgid "Rectangle Table"
+msgstr ""
+
+#: simulation/templates/structures/table_square.xml:12
+msgid "Square Table"
+msgstr ""
+
+#: simulation/templates/structures/athen/arsenal.xml:5
+#: simulation/templates/structures/mace/arsenal.xml:5
+#: simulation/templates/structures/ptol/arsenal.xml:5
+#: simulation/templates/structures/sele/arsenal.xml:5
+#: simulation/templates/structures/spart/arsenal.xml:5
+msgid "Hoplothēkē"
+msgstr ""
+
+#: simulation/templates/structures/athen/barracks.xml:12
+#: simulation/templates/structures/mace/barracks.xml:12
+#: simulation/templates/structures/ptol/barracks.xml:11
+#: simulation/templates/structures/sele/barracks.xml:12
+#: simulation/templates/structures/spart/barracks.xml:12
+msgid "Stratopedon"
+msgstr ""
+
+#: simulation/templates/structures/athen/civil_centre.xml:8
+#: simulation/templates/structures/mace/civil_centre.xml:8
+#: simulation/templates/structures/ptol/civil_centre.xml:9
+#: simulation/templates/structures/sele/civil_centre.xml:5
+#: simulation/templates/structures/spart/civil_centre.xml:8
+msgid "Agora"
+msgstr ""
+
+#: simulation/templates/structures/athen/corral.xml:5
+#: simulation/templates/structures/mace/corral.xml:5
+#: simulation/templates/structures/ptol/corral.xml:17
+#: simulation/templates/structures/sele/corral.xml:5
+#: simulation/templates/structures/spart/corral.xml:5
+msgid "Epaulos"
+msgstr ""
+
+#: simulation/templates/structures/athen/defense_tower.xml:9
+#: simulation/templates/structures/mace/defense_tower.xml:9
+#: simulation/templates/structures/ptol/defense_tower.xml:9
+#: simulation/templates/structures/sele/defense_tower.xml:9
+#: simulation/templates/structures/spart/defense_tower.xml:9
+msgid "Pyrgion"
+msgstr ""
+
+#: simulation/templates/structures/athen/dock.xml:12
+#: simulation/templates/structures/mace/dock.xml:12
+#: simulation/templates/structures/ptol/dock.xml:9
+#: simulation/templates/structures/sele/dock.xml:9
+#: simulation/templates/structures/spart/dock.xml:12
+msgid "Limēn"
+msgstr ""
+
+#: simulation/templates/structures/athen/farmstead.xml:11
+#: simulation/templates/structures/mace/farmstead.xml:11
+#: simulation/templates/structures/ptol/farmstead.xml:17
+#: simulation/templates/structures/sele/farmstead.xml:8
+#: simulation/templates/structures/spart/farmstead.xml:11
+msgid "Epoikion"
+msgstr ""
+
+#: simulation/templates/structures/athen/field.xml:5
+#: simulation/templates/structures/mace/field.xml:5
+#: simulation/templates/structures/ptol/field.xml:5
+#: simulation/templates/structures/sele/field.xml:5
+#: simulation/templates/structures/spart/field.xml:5
+msgid "Agros"
+msgstr ""
+
+#: simulation/templates/structures/athen/forge.xml:5
+#: simulation/templates/structures/mace/forge.xml:5
+#: simulation/templates/structures/ptol/forge.xml:5
+#: simulation/templates/structures/sele/forge.xml:5
+#: simulation/templates/structures/spart/forge.xml:5
+msgid "Chalkeōn"
+msgstr ""
+
+#: simulation/templates/structures/athen/fortress.xml:9
+#: simulation/templates/structures/mace/fortress.xml:9
+#: simulation/templates/structures/ptol/fortress.xml:9
+#: simulation/templates/structures/sele/fortress.xml:9
+#: simulation/templates/structures/spart/fortress.xml:9
+msgid "Phrourion"
+msgstr ""
+
+#: simulation/templates/structures/athen/fortress.xml:10
+#: simulation/templates/structures/spart/fortress.xml:10
+msgid "Garrison Soldiers for additional arrows."
+msgstr ""
+
+#: simulation/templates/structures/athen/gymnasium.xml:23
+msgid "Gymnasion"
+msgstr ""
+
+#: simulation/templates/structures/athen/gymnasium.xml:24
+msgid "Train Champions."
+msgstr ""
+
+#: simulation/templates/structures/athen/gymnasium.xml:26
+#: simulation/templates/structures/athen/gymnasium.xml:22
+msgid "Gymnasium"
+msgstr "Gimnazija"
+
+#: simulation/templates/structures/athen/house.xml:5
+#: simulation/templates/structures/mace/house.xml:5
+#: simulation/templates/structures/ptol/house.xml:18
+#: simulation/templates/structures/sele/house.xml:8
+#: simulation/templates/structures/spart/house.xml:5
+msgid "Oikos"
+msgstr ""
+
+#: simulation/templates/structures/athen/market.xml:5
+#: simulation/templates/structures/mace/market.xml:5
+#: simulation/templates/structures/ptol/market.xml:9
+#: simulation/templates/structures/sele/market.xml:5
+#: simulation/templates/structures/spart/market.xml:5
+msgid "Emporion"
+msgstr ""
+
+#: simulation/templates/structures/athen/outpost.xml:5
+#: simulation/templates/structures/mace/outpost.xml:5
+#: simulation/templates/structures/ptol/outpost.xml:5
+#: simulation/templates/structures/sele/outpost.xml:5
+#: simulation/templates/structures/spart/outpost.xml:5
+msgid "Prophylagma"
+msgstr ""
+
+#: simulation/templates/structures/athen/prytaneion.xml:22
+msgid "Council Chamber"
+msgstr "Tarybos rūmai"
+
+#: simulation/templates/structures/athen/prytaneion.xml:23
+msgid "Prytaneion"
+msgstr ""
+
+#: simulation/templates/structures/athen/prytaneion.xml:24
+msgid "Train Heroes and research technologies."
+msgstr ""
+
+#: simulation/templates/structures/athen/prytaneion.xml:26
+#: simulation/templates/structures/spart/gerousia.xml:26
+msgid "Council"
+msgstr ""
+
+#: simulation/templates/structures/athen/range.xml:8
+#: simulation/templates/structures/mace/range.xml:8
+#: simulation/templates/structures/ptol/range.xml:8
+#: simulation/templates/structures/sele/range.xml:8
+#: simulation/templates/structures/spart/range.xml:5
+msgid "Stratopedon tōn Psilōn"
+msgstr ""
+
+#: simulation/templates/structures/athen/sentry_tower.xml:5
+#: simulation/templates/structures/mace/sentry_tower.xml:5
+#: simulation/templates/structures/ptol/sentry_tower.xml:5
+#: simulation/templates/structures/sele/sentry_tower.xml:5
+#: simulation/templates/structures/spart/sentry_tower.xml:5
+msgid "Pyrgidion"
+msgstr ""
+
+#: simulation/templates/structures/athen/stable.xml:5
+#: simulation/templates/structures/mace/stable.xml:5
+#: simulation/templates/structures/ptol/stable.xml:5
+#: simulation/templates/structures/sele/stable.xml:5
+#: simulation/templates/structures/spart/stable.xml:5
+msgid "Hippōn"
+msgstr ""
+
+#: simulation/templates/structures/athen/storehouse.xml:8
+#: simulation/templates/structures/mace/storehouse.xml:8
+#: simulation/templates/structures/ptol/storehouse.xml:18
+#: simulation/templates/structures/sele/storehouse.xml:8
+#: simulation/templates/structures/spart/storehouse.xml:8
+msgid "Apothēkē"
+msgstr ""
+
+#: simulation/templates/structures/athen/temple.xml:9
+#: simulation/templates/structures/mace/temple.xml:9
+#: simulation/templates/structures/ptol/temple.xml:12
+#: simulation/templates/structures/sele/temple.xml:9
+#: simulation/templates/structures/spart/temple.xml:9
+msgid "Naos"
+msgstr ""
+
+#: simulation/templates/structures/athen/theater.xml:5
+#: simulation/templates/structures/mace/theater.xml:5
+#: simulation/templates/structures/spart/theater.xml:5
+msgid "Theatron"
+msgstr ""
+
+#: simulation/templates/structures/athen/tower_artillery.xml:9
+#: simulation/templates/structures/athen/tower_bolt.xml:9
+#: simulation/templates/structures/mace/tower_artillery.xml:9
+#: simulation/templates/structures/mace/tower_bolt.xml:9
+#: simulation/templates/structures/ptol/tower_bolt.xml:9
+#: simulation/templates/structures/sele/tower_artillery.xml:9
+#: simulation/templates/structures/spart/tower_bolt.xml:9
+msgid "Pyrgíon"
+msgstr ""
+
+#: simulation/templates/structures/athen/wall_gate.xml:12
+#: simulation/templates/structures/mace/wall_gate.xml:12
+#: simulation/templates/structures/ptol/wall_gate.xml:12
+#: simulation/templates/structures/sele/wall_gate.xml:12
+#: simulation/templates/structures/spart/wall_gate.xml:12
+msgid "Pylai"
+msgstr ""
+
+#: simulation/templates/structures/athen/wall_long.xml:9
+#: simulation/templates/structures/athen/wall_medium.xml:9
+#: simulation/templates/structures/athen/wall_short.xml:9
+#: simulation/templates/structures/athen/wallset_stone.xml:5
+#: simulation/templates/structures/mace/wall_long.xml:9
+#: simulation/templates/structures/mace/wall_medium.xml:9
+#: simulation/templates/structures/mace/wall_short.xml:9
+#: simulation/templates/structures/mace/wallset_stone.xml:5
+#: simulation/templates/structures/ptol/wall_long.xml:9
+#: simulation/templates/structures/ptol/wall_medium.xml:9
+#: simulation/templates/structures/ptol/wall_short.xml:9
+#: simulation/templates/structures/ptol/wallset_stone.xml:5
+#: simulation/templates/structures/sele/wall_long.xml:9
+#: simulation/templates/structures/sele/wall_medium.xml:9
+#: simulation/templates/structures/sele/wall_short.xml:9
+#: simulation/templates/structures/sele/wallset_stone.xml:5
+#: simulation/templates/structures/spart/wall_long.xml:9
+#: simulation/templates/structures/spart/wall_medium.xml:9
+#: simulation/templates/structures/spart/wall_short.xml:9
+#: simulation/templates/structures/spart/wallset_stone.xml:5
+msgid "Teichos"
+msgstr ""
+
+#: simulation/templates/structures/athen/wall_tower.xml:9
+#: simulation/templates/structures/mace/wall_tower.xml:9
+#: simulation/templates/structures/ptol/wall_tower.xml:9
+#: simulation/templates/structures/sele/wall_tower.xml:9
+#: simulation/templates/structures/spart/wall_tower.xml:9
+msgid "Pyrgos"
+msgstr ""
+
+#: simulation/templates/structures/athen/wonder.xml:9
+msgid "Parthenōn﻿﻿"
+msgstr ""
+
+#: simulation/templates/structures/brit/arsenal.xml:5
+#: simulation/templates/structures/gaul/arsenal.xml:5
+msgid "Miletucerdon"
+msgstr ""
+
+#: simulation/templates/structures/brit/barracks.xml:19
+msgid "Coriosessa"
+msgstr ""
+
+#: simulation/templates/structures/brit/civil_centre.xml:12
+msgid "Tigernotreba"
+msgstr ""
+
+#: simulation/templates/structures/brit/corral.xml:8
+#: simulation/templates/structures/gaul/corral.xml:8
+msgid "Cagion"
+msgstr ""
+
+#: simulation/templates/structures/brit/crannog.xml:13
+msgid "Island Settlement"
+msgstr "Salos gyvenvietė"
+
+#: simulation/templates/structures/brit/crannog.xml:14
+msgid "Cranogion"
+msgstr ""
+
+#: simulation/templates/structures/brit/crannog.xml:15
+msgid ""
+"Build upon a shoreline in own, neutral, or allied territory. Acquire large "
+"tracts of territory. Territory root. Train Citizens, construct Ships, and "
+"research technologies. Garrison Soldiers for additional arrows."
+msgstr ""
+
+#: simulation/templates/structures/brit/defense_tower.xml:9
+#: simulation/templates/structures/brit/sentry_tower.xml:5
+#: simulation/templates/structures/brit/wall_tower.xml:12
+#: simulation/templates/structures/gaul/defense_tower.xml:9
+#: simulation/templates/structures/gaul/sentry_tower.xml:5
+#: simulation/templates/structures/gaul/wall_tower.xml:12
+msgid "Uxelon"
+msgstr ""
+
+#: simulation/templates/structures/brit/dock.xml:15
+#: simulation/templates/structures/gaul/dock.xml:15
+msgid "Counos"
+msgstr ""
+
+#: simulation/templates/structures/brit/farmstead.xml:14
+#: simulation/templates/structures/gaul/farmstead.xml:11
+msgid "Buta"
+msgstr ""
+
+#: simulation/templates/structures/brit/field.xml:5
+#: simulation/templates/structures/gaul/field.xml:5
+msgid "Olca"
+msgstr ""
+
+#: simulation/templates/structures/brit/forge.xml:8
+#: simulation/templates/structures/gaul/forge.xml:8
+msgid "Gobanion"
+msgstr ""
+
+#: simulation/templates/structures/brit/fortress.xml:15
+#: simulation/templates/structures/gaul/fortress.xml:8
+msgid "Dunon"
+msgstr ""
+
+#: simulation/templates/structures/brit/house.xml:9
+#: simulation/templates/structures/gaul/house.xml:5
+msgid "Tegia"
+msgstr ""
+
+#: simulation/templates/structures/brit/market.xml:15
+#: simulation/templates/structures/gaul/market.xml:15
+msgid "Magos"
+msgstr ""
+
+#: simulation/templates/structures/brit/outpost.xml:5
+#: simulation/templates/structures/gaul/outpost.xml:5
+msgid "Antosolicon"
+msgstr ""
+
+#: simulation/templates/structures/brit/range.xml:5
+#: simulation/templates/structures/gaul/range.xml:8
+msgid "Budinadon"
+msgstr ""
+
+#: simulation/templates/structures/brit/rotarymill.xml:5
+msgid "Melonas"
+msgstr ""
+
+#: simulation/templates/structures/brit/stable.xml:11
+#: simulation/templates/structures/gaul/stable.xml:11
+msgid "Eposton"
+msgstr ""
+
+#: simulation/templates/structures/brit/storehouse.xml:11
+#: simulation/templates/structures/gaul/storehouse.xml:11
+msgid "Capanon"
+msgstr ""
+
+#: simulation/templates/structures/brit/temple.xml:18
+#: simulation/templates/structures/gaul/temple.xml:18
+msgid "Nemeton"
+msgstr ""
+
+#: simulation/templates/structures/brit/wall_gate.xml:12
+#: simulation/templates/structures/gaul/wall_gate.xml:12
+msgid "Duoricos"
+msgstr ""
+
+#: simulation/templates/structures/brit/wall_long.xml:9
+#: simulation/templates/structures/brit/wall_medium.xml:9
+#: simulation/templates/structures/brit/wall_short.xml:9
+#: simulation/templates/structures/brit/wallset_stone.xml:5
+#: simulation/templates/structures/gaul/wall_long.xml:9
+#: simulation/templates/structures/gaul/wall_medium.xml:9
+#: simulation/templates/structures/gaul/wall_short.xml:9
+#: simulation/templates/structures/gaul/wallset_stone.xml:5
+msgid "Rate"
+msgstr ""
+
+#: simulation/templates/structures/brit/wonder.xml:10
+msgid "Uffington White Horse"
+msgstr ""
+
+#: simulation/templates/structures/cart/apartment.xml:17
+msgid "Apartment Building"
+msgstr "Gyvenamasis pastatas"
+
+#: simulation/templates/structures/cart/barracks.xml:12
+msgid "Maḥanēt"
+msgstr ""
+
+#: simulation/templates/structures/cart/civil_centre.xml:8
+msgid "Merkāz"
+msgstr ""
+
+#: simulation/templates/structures/cart/corral.xml:8
+msgid "Rēfet"
+msgstr ""
+
+#: simulation/templates/structures/cart/defense_tower.xml:9
+#: simulation/templates/structures/cart/tower_artillery.xml:9
+#: simulation/templates/structures/cart/tower_bolt.xml:9
+#: simulation/templates/structures/cart/wall_tower.xml:12
+msgid "Mijdil"
+msgstr ""
+
+#: simulation/templates/structures/cart/dock.xml:17
+msgid "Commercial Port"
+msgstr "Komercinis uostas"
+
+#: simulation/templates/structures/cart/dock.xml:18
+msgid "Namel"
+msgstr ""
+
+#: simulation/templates/structures/cart/dock.xml:19
+msgid ""
+"Construct fishing boats to gather meat and merchant ships to trade with "
+"other docks."
+msgstr "Konstruokite žvejybinius ir prekybinius laivus."
+
+#: simulation/templates/structures/cart/embassy.xml:19
+msgid "Train Mercenaries and research Mercenary technologies."
+msgstr ""
+
+#: simulation/templates/structures/cart/embassy_celtic.xml:17
+msgid "Celtic Embassy"
+msgstr "Keltų ambasada"
+
+#: simulation/templates/structures/cart/embassy_celtic.xml:18
+msgid "Train Celtic Mercenaries and research Mercenary technologies."
+msgstr ""
+
+#: simulation/templates/structures/cart/embassy_iberian.xml:10
+msgid "Iberian Embassy"
+msgstr "Iberų ambasada"
+
+#: simulation/templates/structures/cart/embassy_iberian.xml:11
+msgid "Train Iberian Mercenaries and research Mercenary technologies."
+msgstr ""
+
+#: simulation/templates/structures/cart/embassy_italic.xml:17
+msgid "Italic Embassy"
+msgstr ""
+
+#: simulation/templates/structures/cart/embassy_italic.xml:18
+msgid "Train Italic Mercenaries and research Mercenary technologies."
+msgstr ""
+
+#: simulation/templates/structures/cart/farmstead.xml:8
+msgid "Aḥuzāh"
+msgstr ""
+
+#: simulation/templates/structures/cart/field.xml:5
+msgid "Šadd"
+msgstr ""
+
+#: simulation/templates/structures/cart/fortress.xml:9
+msgid "Ḥamet"
+msgstr ""
+
+#: simulation/templates/structures/cart/house.xml:8
+msgid "Bet"
+msgstr ""
+
+#: simulation/templates/structures/cart/market.xml:12
+msgid "Šūq"
+msgstr ""
+
+#: simulation/templates/structures/cart/s_wall_long.xml:10
+#: simulation/templates/structures/cart/s_wall_medium.xml:10
+#: simulation/templates/structures/cart/s_wall_short.xml:10
+#: simulation/templates/structures/cart/s_wall_tower.xml:10
+#: simulation/templates/structures/cart/wallset_short.xml:5
+msgid "Low Wall"
+msgstr "Žema siena"
+
+#: simulation/templates/structures/cart/s_wall_long.xml:11
+#: simulation/templates/structures/cart/s_wall_medium.xml:11
+#: simulation/templates/structures/cart/s_wall_short.xml:11
+#: simulation/templates/structures/cart/s_wall_tower.xml:11
+msgid "Stone Wall"
+msgstr "Akmeninė siena"
+
+#: simulation/templates/structures/cart/storehouse.xml:8
+msgid "Maḥṣabah"
+msgstr ""
+
+#: simulation/templates/structures/cart/super_dock.xml:40
+msgid "Naval Shipyard"
+msgstr "Karinių laivų statykla"
+
+#: simulation/templates/structures/cart/super_dock.xml:41
+msgid "Cothon"
+msgstr ""
+
+#: simulation/templates/structures/cart/super_dock.xml:42
+msgid ""
+"Build upon a shoreline in own, neutral, or allied territory. Acquire large "
+"tracts of territory. Territory root. Construct Warships and research "
+"technologies."
+msgstr ""
+
+#: simulation/templates/structures/cart/super_dock.xml:44
+msgid "Shipyard"
+msgstr "Laivų statykla"
+
+#: simulation/templates/structures/cart/temple.xml:14
+msgid "Maqdaš"
+msgstr ""
+
+#: simulation/templates/structures/cart/temple.xml:15
+msgid "Train Healers and Champions and research healing technologies."
+msgstr ""
+
+#: simulation/templates/structures/cart/tophet.xml:18
+msgid "Sacrificial Temple"
+msgstr "Aukojimo šventykla"
+
+#: simulation/templates/structures/cart/tophet.xml:19
+msgid "Tophet"
+msgstr ""
+
+#: simulation/templates/structures/cart/tophet.xml:20
+msgid "Train Healers and Champion Cavalry and research healing technologies."
+msgstr ""
+
+#: simulation/templates/structures/cart/wall_gate.xml:12
+msgid "Mijdil-šaʿar"
+msgstr ""
+
+#: simulation/templates/structures/cart/wall_long.xml:9
+#: simulation/templates/structures/cart/wall_medium.xml:9
+#: simulation/templates/structures/cart/wall_short.xml:9
+msgid "Homah"
+msgstr ""
+
+#: simulation/templates/structures/cart/wallset_stone.xml:5
+msgid "Jdar"
+msgstr ""
+
+#: simulation/templates/structures/cart/wonder.xml:9
+msgid "Temple of Ba'al Hammon"
+msgstr "Baal Hamono šventykla"
+
+#: simulation/templates/structures/gaul/barracks.xml:19
+msgid "Coriosedlon"
+msgstr ""
+
+#: simulation/templates/structures/gaul/civil_centre.xml:12
+msgid "Lissos"
+msgstr ""
+
+#: simulation/templates/structures/gaul/rotarymill.xml:5
+msgid "Brauon"
+msgstr ""
+
+#: simulation/templates/structures/gaul/tavern.xml:21
+msgid "Tavern"
+msgstr "Smuklė"
+
+#: simulation/templates/structures/gaul/tavern.xml:22
+msgid "Taberna"
+msgstr ""
+
+#: simulation/templates/structures/gaul/tavern.xml:23
+msgid "Recruit Naked Fanatics."
+msgstr "Samdyti nuogus fanatikus."
+
+#: simulation/templates/structures/gaul/theater.xml:10
+msgid "Assembly of Princes"
+msgstr ""
+
+#: simulation/templates/structures/gaul/theater.xml:11
+msgid "Remogantion"
+msgstr ""
+
+#: simulation/templates/structures/gaul/wonder.xml:9
+msgid "Sanctuary of Corent"
+msgstr ""
+
+#: simulation/templates/structures/gaul/wonder.xml:10
+msgid "Celicnon"
+msgstr ""
+
+#: simulation/templates/structures/iber/barracks.xml:5
+msgid "Kaserna"
+msgstr ""
+
+#: simulation/templates/structures/iber/civil_centre.xml:8
+msgid "Oppidum"
+msgstr ""
+
+#: simulation/templates/structures/iber/corral.xml:8
+msgid "Saroe"
+msgstr ""
+
+#: simulation/templates/structures/iber/defense_tower.xml:32
+#: simulation/templates/structures/iber/wall_tower.xml:9
+msgid "Dorre"
+msgstr ""
+
+#: simulation/templates/structures/iber/dock.xml:12
+msgid "Kai"
+msgstr ""
+
+#: simulation/templates/structures/iber/farmstead.xml:11
+msgid "Baserri"
+msgstr ""
+
+#: simulation/templates/structures/iber/field.xml:5
+msgid "Soro"
+msgstr ""
+
+#: simulation/templates/structures/iber/forge.xml:5
+msgid "Harotz"
+msgstr ""
+
+#: simulation/templates/structures/iber/fortress.xml:15
+msgid "Castro"
+msgstr ""
+
+#: simulation/templates/structures/iber/house.xml:5
+msgid "Etxe"
+msgstr ""
+
+#: simulation/templates/structures/iber/market.xml:12
+msgid "Arruga"
+msgstr ""
+
+#: simulation/templates/structures/iber/monument.xml:32
+msgid "Revered Monument"
+msgstr "Iškilus monumentas"
+
+#: simulation/templates/structures/iber/monument.xml:33
+msgid "Gur Oroigarri"
+msgstr ""
+
+#: simulation/templates/structures/iber/monument.xml:34
+#: simulation/templates/structures/iber/monument.xml:9
+msgid "Monument"
+msgstr "Monumentas"
+
+#: simulation/templates/structures/iber/storehouse.xml:5
+msgid "Ola"
+msgstr ""
+
+#: simulation/templates/structures/iber/temple.xml:12
+msgid "Loki"
+msgstr ""
+
+#: simulation/templates/structures/iber/wall_gate.xml:12
+msgid "Biko Sarbide"
+msgstr ""
+
+#: simulation/templates/structures/iber/wall_long.xml:9
+#: simulation/templates/structures/iber/wall_medium.xml:9
+#: simulation/templates/structures/iber/wall_short.xml:9
+#: simulation/templates/structures/iber/wallset_stone.xml:5
+msgid "Zabal Horma"
+msgstr ""
+
+#: simulation/templates/structures/iber/wonder.xml:9
+msgid "Cancho Roano"
+msgstr ""
+
+#: simulation/templates/structures/kush/arsenal.xml:5
+msgid "Pr-ỉwn n ms﻿"
+msgstr ""
+
+#: simulation/templates/structures/kush/barracks.xml:9
+msgid "pr-msʿyw"
+msgstr ""
+
+#: simulation/templates/structures/kush/camp_blemmye.xml:22
+msgid "Blemmye Camp"
+msgstr "Blemijų stovykla"
+
+#: simulation/templates/structures/kush/camp_blemmye.xml:23
+msgid "Train Blemmye Mercenaries."
+msgstr ""
+
+#: simulation/templates/structures/kush/camp_noba.xml:22
+msgid "Noba Village"
+msgstr ""
+
+#: simulation/templates/structures/kush/camp_noba.xml:23
+msgid "Train Noba Mercenaries."
+msgstr ""
+
+#: simulation/templates/structures/kush/civil_centre.xml:9
+msgid "Pr-nsw"
+msgstr ""
+
+#: simulation/templates/structures/kush/corral.xml:9
+msgid "ihy"
+msgstr ""
+
+#: simulation/templates/structures/kush/defense_tower.xml:5
+msgid "tsmt ʿȝ"
+msgstr ""
+
+#: simulation/templates/structures/kush/dock.xml:9
+msgid "Mryt"
+msgstr ""
+
+#: simulation/templates/structures/kush/elephant_stables.xml:5
+msgid "Ỉ﻿ḥ Abu"
+msgstr ""
+
+#: simulation/templates/structures/kush/farmstead.xml:9
+msgid "snwt"
+msgstr ""
+
+#: simulation/templates/structures/kush/field.xml:5
+msgid "sht"
+msgstr ""
+
+#: simulation/templates/structures/kush/forge.xml:5
+msgid "hmw hʿy n rȝ-ʿ"
+msgstr ""
+
+#: simulation/templates/structures/kush/fortress.xml:9
+msgid "Htm"
+msgstr ""
+
+#: simulation/templates/structures/kush/house.xml:5
+msgid "Pr"
+msgstr ""
+
+#: simulation/templates/structures/kush/market.xml:9
+msgid "Pr-sbt"
+msgstr ""
+
+#: simulation/templates/structures/kush/outpost.xml:5
+msgid "trtr"
+msgstr ""
+
+#: simulation/templates/structures/kush/pyramid_large.xml:26
+msgid "Large Pyramid"
+msgstr "Didelė piramidė"
+
+#: simulation/templates/structures/kush/pyramid_large.xml:27
+msgid "mr ʿȝ"
+msgstr ""
+
+#: simulation/templates/structures/kush/pyramid_large.xml:29
+#: simulation/templates/structures/kush/pyramid_small.xml:29
+msgid "Pyramid"
+msgstr "Piramidė"
+
+#: simulation/templates/structures/kush/pyramid_small.xml:26
+msgid "Small Pyramid"
+msgstr "Maža piramidė"
+
+#: simulation/templates/structures/kush/pyramid_small.xml:27
+msgid "mr"
+msgstr ""
+
+#: simulation/templates/structures/kush/range.xml:8
+msgid "Pr-Pdt"
+msgstr ""
+
+#: simulation/templates/structures/kush/sentry_tower.xml:5
+msgid "tsmt"
+msgstr ""
+
+#: simulation/templates/structures/kush/shrine.xml:12
+msgid "Shrine"
+msgstr "Šventykla"
+
+#: simulation/templates/structures/kush/shrine.xml:13
+msgid "ḥwt-nṯr"
+msgstr ""
+
+#: simulation/templates/structures/kush/stable.xml:9
+msgid "Ỉḥ Ssmt"
+msgstr ""
+
+#: simulation/templates/structures/kush/storehouse.xml:5
+msgid "wdȝt"
+msgstr ""
+
+#: simulation/templates/structures/kush/temple.xml:8
+msgid "Temple of Apedemak"
+msgstr "Apedemako šventykla"
+
+#: simulation/templates/structures/kush/temple.xml:9
+msgid "Pr-ʿIprmk"
+msgstr ""
+
+#: simulation/templates/structures/kush/temple.xml:10
+msgid ""
+"Train Healers and Apedamak Champions and research healing technologies."
+msgstr ""
+
+#: simulation/templates/structures/kush/temple.xml:11
+msgid "TempleOfApedemak"
+msgstr ""
+
+#: simulation/templates/structures/kush/temple_amun.xml:28
+msgid "Grand Temple of Amun"
+msgstr "Didžioji Amono šventykla"
+
+#: simulation/templates/structures/kush/temple_amun.xml:29
+msgid "Pr-ʿImn"
+msgstr ""
+
+#: simulation/templates/structures/kush/temple_amun.xml:30
+msgid "Train Healers and Amun Champions and research healing technologies."
+msgstr ""
+
+#: simulation/templates/structures/kush/temple_amun.xml:31
+msgid "TempleOfAmun"
+msgstr ""
+
+#: simulation/templates/structures/kush/wall_gate.xml:12
+msgid "ʿryt"
+msgstr ""
+
+#: simulation/templates/structures/kush/wall_long.xml:9
+#: simulation/templates/structures/kush/wall_medium.xml:9
+#: simulation/templates/structures/kush/wall_short.xml:9
+#: simulation/templates/structures/kush/wallset_stone.xml:5
+msgid "sbty"
+msgstr ""
+
+#: simulation/templates/structures/kush/wall_tower.xml:9
+msgid "sȝwt"
+msgstr ""
+
+#: simulation/templates/structures/kush/wonder.xml:9
+msgid "Mnw nht"
+msgstr ""
+
+#: simulation/templates/structures/mace/library.xml:5
+#: simulation/templates/structures/ptol/library.xml:5
+#: simulation/templates/structures/sele/library.xml:9
+msgid "Bibliothēkē"
+msgstr ""
+
+#: simulation/templates/structures/mace/wonder.xml:9
+msgid "Hieron tou Dios tou Olympiou"
+msgstr ""
+
+#: simulation/templates/structures/maur/barracks.xml:15
+msgid "Sainyavasa"
+msgstr ""
+
+#: simulation/templates/structures/maur/civil_centre.xml:12
+msgid "Rajadhanika"
+msgstr ""
+
+#: simulation/templates/structures/maur/corral.xml:8
+msgid "Gotra"
+msgstr ""
+
+#: simulation/templates/structures/maur/defense_tower.xml:5
+#: simulation/templates/structures/maur/tower_double.xml:24
+msgid "Udarka"
+msgstr ""
+
+#: simulation/templates/structures/maur/dock.xml:9
+msgid "Naukasthanaka"
+msgstr ""
+
+#: simulation/templates/structures/maur/elephant_stables.xml:5
+msgid "Vāraṇaśālā"
+msgstr ""
+
+#: simulation/templates/structures/maur/farmstead.xml:11
+msgid "Kantu"
+msgstr ""
+
+#: simulation/templates/structures/maur/field.xml:5
+msgid "Kshetra"
+msgstr ""
+
+#: simulation/templates/structures/maur/forge.xml:5
+msgid "Lohakāra"
+msgstr ""
+
+#: simulation/templates/structures/maur/fortress.xml:5
+msgid "Durg"
+msgstr ""
+
+#: simulation/templates/structures/maur/house.xml:8
+msgid "Griham"
+msgstr ""
+
+#: simulation/templates/structures/maur/market.xml:12
+msgid "Vipana"
+msgstr ""
+
+#: simulation/templates/structures/maur/outpost.xml:5
+msgid "Uparaksana"
+msgstr ""
+
+#: simulation/templates/structures/maur/palace.xml:20
+msgid "Harmya"
+msgstr ""
+
+#: simulation/templates/structures/maur/palace.xml:21
+msgid "Train Female Citizens, Champions, and Heroes."
+msgstr ""
+
+#: simulation/templates/structures/maur/palace.xml:23
+#: simulation/templates/structures/pers/apadana.xml:31
+#: simulation/templates/structures/pers/tacara.xml:27
+#: simulation/templates/structures/pers/tacara.xml:24
+msgid "Palace"
+msgstr ""
+
+#: simulation/templates/structures/maur/pillar_ashoka.xml:32
+msgid "Edict Pillar of Ashoka"
+msgstr "Ašokos ediktų stulpas"
+
+#: simulation/templates/structures/maur/pillar_ashoka.xml:33
+msgid "Śāsana Stambha Aśokā"
+msgstr ""
+
+#: simulation/templates/structures/maur/pillar_ashoka.xml:34
+#: simulation/templates/structures/maur/pillar_ashoka.xml:9
+msgid "Pillar"
+msgstr "Stulpas"
+
+#: simulation/templates/structures/maur/storehouse.xml:5
+msgid "Khalla"
+msgstr ""
+
+#: simulation/templates/structures/maur/temple.xml:12
+msgid "Devalaya"
+msgstr ""
+
+#: simulation/templates/structures/maur/tower_double.xml:20
+msgid "Rampart Tower"
+msgstr ""
+
+#: simulation/templates/structures/maur/tower_double.xml:22
+msgid ""
+"Higher health tower with ramparts for up to 16 archers. Visibly garrisoned "
+"archers recieve a range and armor bonus. Only archers can garrison. Needs "
+"the murder holes tech to protect its foot."
+msgstr ""
+
+#: simulation/templates/structures/maur/wall_gate.xml:18
+msgid "Dwara"
+msgstr ""
+
+#: simulation/templates/structures/maur/wall_long.xml:15
+#: simulation/templates/structures/maur/wall_medium.xml:15
+#: simulation/templates/structures/maur/wall_short.xml:15
+#: simulation/templates/structures/maur/wallset_stone.xml:5
+msgid "Shilabanda"
+msgstr ""
+
+#: simulation/templates/structures/maur/wall_tower.xml:18
+msgid "Puratta"
+msgstr ""
+
+#: simulation/templates/structures/maur/wonder.xml:9
+msgid "Great Stupa"
+msgstr "Didžioji stūpa"
+
+#: simulation/templates/structures/pers/apadana.xml:27
+msgid "Throne Hall"
+msgstr ""
+
+#: simulation/templates/structures/pers/apadana.xml:28
+msgid "Apadāna"
+msgstr ""
+
+#: simulation/templates/structures/pers/apadana.xml:29
+#: simulation/templates/structures/spart/syssiton.xml:25
+msgid "Train Champions and Heroes."
+msgstr ""
+
+#: simulation/templates/structures/pers/apartment_block.xml:15
+msgid "Apartment Block"
+msgstr "Daugiabutis"
+
+#: simulation/templates/structures/pers/barracks.xml:5
+msgid "Padgan"
+msgstr ""
+
+#: simulation/templates/structures/pers/barracks.xml:6
+msgid "Train Infantry."
+msgstr ""
+
+#: simulation/templates/structures/pers/civil_centre.xml:8
+msgid "Provincial Governor"
+msgstr "Provincinis gubernatorius"
+
+#: simulation/templates/structures/pers/civil_centre.xml:9
+msgid "Xšaçapāvan"
+msgstr ""
+
+#: simulation/templates/structures/pers/corral.xml:11
+msgid "Gaiāšta"
+msgstr ""
+
+#: simulation/templates/structures/pers/defense_tower.xml:5
+#: simulation/templates/structures/pers/tower_babylon.xml:5
+#: simulation/templates/structures/pers/wall_tower.xml:9
+msgid "Pāyaud"
+msgstr ""
+
+#: simulation/templates/structures/pers/dock.xml:12
+msgid "Nāvašta"
+msgstr ""
+
+#: simulation/templates/structures/pers/farmstead.xml:8
+msgid "Kaštašta"
+msgstr ""
+
+#: simulation/templates/structures/pers/field.xml:5
+msgid "Kaštrya"
+msgstr ""
+
+#: simulation/templates/structures/pers/forge.xml:5
+msgid "Arštišta"
+msgstr ""
+
+#: simulation/templates/structures/pers/fortress.xml:5
+msgid "Didā"
+msgstr ""
+
+#: simulation/templates/structures/pers/fortress.xml:6
+msgid "Research technologies. Garrison Soldiers for additional arrows."
+msgstr ""
+
+#: simulation/templates/structures/pers/hall.xml:23
+msgid "Gate of All Nations"
+msgstr ""
+
+#: simulation/templates/structures/pers/hall.xml:24
+msgid "Duvarθi Visadahyu"
+msgstr ""
+
+#: simulation/templates/structures/pers/hall.xml:25
+msgid "Hall"
+msgstr ""
+
+#: simulation/templates/structures/pers/house.xml:8
+msgid "Huvādā"
+msgstr ""
+
+#: simulation/templates/structures/pers/house_b.xml:15
+#: simulation/templates/structures/pers/inn.xml:15
+msgid "Inn"
+msgstr "Užeiga"
+
+#: simulation/templates/structures/pers/ishtar_gate.xml:26
+msgid "Ishtar Gate of Babylon"
+msgstr "Babilono Ištarės vartai"
+
+#: simulation/templates/structures/pers/ishtar_gate.xml:27
+msgid "IshtarGate"
+msgstr ""
+
+#: simulation/templates/structures/pers/outpost.xml:5
+msgid "Didebani"
+msgstr ""
+
+#: simulation/templates/structures/pers/stable.xml:9
+msgid "Paraspa"
+msgstr ""
+
+#: simulation/templates/structures/pers/storehouse.xml:5
+msgid "Asiyah"
+msgstr ""
+
+#: simulation/templates/structures/pers/tacara.xml:25
+msgid "Taçara"
+msgstr ""
+
+#: simulation/templates/structures/pers/temple.xml:12
+msgid "Āyadanam"
+msgstr ""
+
+#: simulation/templates/structures/pers/wall_gate.xml:12
+msgid "Duvarθiš"
+msgstr ""
+
+#: simulation/templates/structures/pers/wall_long.xml:9
+#: simulation/templates/structures/pers/wall_medium.xml:9
+#: simulation/templates/structures/pers/wall_short.xml:9
+#: simulation/templates/structures/pers/wallset_stone.xml:5
+msgid "Para"
+msgstr ""
+
+#: simulation/templates/structures/pers/warehouse.xml:12
+msgid "Warehouse"
+msgstr "Sandėlis"
+
+#: simulation/templates/structures/pers/wonder.xml:9
+msgid "Hanging Gardens of Babylon"
+msgstr "Kabantieji Babilono sodai"
+
+#: simulation/templates/structures/ptol/elephant_stables.xml:5
+#: simulation/templates/structures/sele/elephant_stables.xml:5
+msgid "Stathmos tōn Elepantōn"
+msgstr ""
+
+#: simulation/templates/structures/ptol/fortress.xml:10
+#: simulation/templates/structures/sele/fortress.xml:10
+msgid ""
+"Train Champions and research technologies. Garrison Soldiers for additional "
+"arrows."
+msgstr ""
+
+#: simulation/templates/structures/ptol/house.xml:19
+msgid ""
+"Increase the population limit. Since they are made of mud brick, Egyptian "
+"houses are free of cost, but are very weak."
+msgstr "Padidina populiacijos limitą. Kadangi yra pastatyti iš purvo plytų, egiptiečių namai nieko nekainuoja bei yra labai netvirti."
+
+#: simulation/templates/structures/ptol/lighthouse.xml:26
+msgid "Pharos"
+msgstr ""
+
+#: simulation/templates/structures/ptol/lighthouse.xml:27
+msgid ""
+"Build upon a shoreline in own, neutral, or allied territory. Reveal the "
+"shorelines over the entire map. Very large vision range."
+msgstr ""
+
+#: simulation/templates/structures/ptol/lighthouse.xml:28
+#: simulation/templates/structures/ptol/lighthouse.xml:25
+msgid "Lighthouse"
+msgstr "Švyturys"
+
+#: simulation/templates/structures/ptol/mercenary_camp.xml:27
+msgid "Mercenary Camp"
+msgstr "Samdinių stovykla"
+
+#: simulation/templates/structures/ptol/mercenary_camp.xml:30
+msgid ""
+"Cheap Barracks-like structure that is buildable in neutral territory, but "
+"casts no territory influence. Train Mercenaries."
+msgstr ""
+
+#: simulation/templates/structures/ptol/military_colony.xml:9
+#: simulation/templates/structures/sele/military_colony.xml:9
+msgid "Klērouchia"
+msgstr ""
+
+#: simulation/templates/structures/ptol/tower_artillery.xml:9
+msgid "mktr-n-ḏw"
+msgstr ""
+
+#: simulation/templates/structures/ptol/wonder.xml:9
+msgid "Hieron tou Hōrou"
+msgstr ""
+
+#: simulation/templates/structures/rome/amphitheater_pompeii.xml:6
+msgid "Amphitheātrum"
+msgstr ""
+
+#: simulation/templates/structures/rome/arch.xml:22
+msgid "Triumphal Arch"
+msgstr "Triumfo arka"
+
+#: simulation/templates/structures/rome/arch.xml:23
+msgid "Arcus Triumphālis"
+msgstr ""
+
+#: simulation/templates/structures/rome/arch.xml:24
+msgid "TriumphalArch"
+msgstr ""
+
+#: simulation/templates/structures/rome/army_camp.xml:72
+msgid "Army Camp"
+msgstr ""
+
+#: simulation/templates/structures/rome/army_camp.xml:73
+msgid "Castra"
+msgstr ""
+
+#: simulation/templates/structures/rome/army_camp.xml:74
+msgid ""
+"Build in neutral or enemy territory. Train Citizen-Soldiers and construct "
+"Siege Engines. Garrison Soldiers for additional arrows."
+msgstr ""
+
+#: simulation/templates/structures/rome/army_camp.xml:76
+#: simulation/templates/structures/rome/army_camp.xml:40
+msgid "ArmyCamp"
+msgstr "Kariuomenės stovykla"
+
+#: simulation/templates/structures/rome/arsenal.xml:5
+msgid "Ballistārium"
+msgstr ""
+
+#: simulation/templates/structures/rome/barracks.xml:12
+msgid "Castrum"
+msgstr ""
+
+#: simulation/templates/structures/rome/civil_centre.xml:12
+msgid "Forum"
+msgstr "Forumas"
+
+#: simulation/templates/structures/rome/corral.xml:8
+msgid "Saeptum"
+msgstr ""
+
+#: simulation/templates/structures/rome/defense_tower.xml:9
+#: simulation/templates/structures/rome/tower_artillery.xml:9
+#: simulation/templates/structures/rome/tower_bolt.xml:9
+msgid "Turris Laterīcia"
+msgstr ""
+
+#: simulation/templates/structures/rome/dock.xml:12
+msgid "Portus"
+msgstr ""
+
+#: simulation/templates/structures/rome/farmstead.xml:8
+msgid "Vīlla"
+msgstr ""
+
+#: simulation/templates/structures/rome/field.xml:5
+msgid "Ager"
+msgstr ""
+
+#: simulation/templates/structures/rome/forge.xml:5
+msgid "Armāmentārium"
+msgstr ""
+
+#: simulation/templates/structures/rome/fortress.xml:5
+msgid "Castellum"
+msgstr ""
+
+#: simulation/templates/structures/rome/house.xml:5
+msgid "Domus"
+msgstr ""
+
+#: simulation/templates/structures/rome/market.xml:12
+msgid "Mercātus"
+msgstr ""
+
+#: simulation/templates/structures/rome/outpost.xml:5
+msgid "Vigilārium"
+msgstr ""
+
+#: simulation/templates/structures/rome/sentry_tower.xml:5
+msgid "Turris Līgnea"
+msgstr ""
+
+#: simulation/templates/structures/rome/siege_wall_gate.xml:24
+msgid "Siege Wall Gate"
+msgstr "Apgulties sienos vartai"
+
+#: simulation/templates/structures/rome/siege_wall_gate.xml:25
+msgid "Porta Circummūnītiōnis"
+msgstr ""
+
+#: simulation/templates/structures/rome/siege_wall_gate.xml:26
+#: simulation/templates/structures/rome/siege_wall_long.xml:27
+#: simulation/templates/structures/rome/siege_wall_medium.xml:24
+#: simulation/templates/structures/rome/siege_wall_short.xml:24
+#: simulation/templates/structures/rome/siege_wall_tower.xml:23
+#: simulation/templates/structures/rome/wallset_siege.xml:8
+msgid "SiegeWall"
+msgstr ""
+
+#: simulation/templates/structures/rome/siege_wall_long.xml:25
+#: simulation/templates/structures/rome/siege_wall_medium.xml:22
+#: simulation/templates/structures/rome/siege_wall_short.xml:22
+#: simulation/templates/structures/rome/wallset_siege.xml:5
+msgid "Siege Wall"
+msgstr "Apgulties siena"
+
+#: simulation/templates/structures/rome/siege_wall_long.xml:26
+#: simulation/templates/structures/rome/siege_wall_medium.xml:23
+#: simulation/templates/structures/rome/siege_wall_short.xml:23
+#: simulation/templates/structures/rome/wallset_siege.xml:6
+msgid "Mūrus Circummūnītiōnis"
+msgstr ""
+
+#: simulation/templates/structures/rome/siege_wall_tower.xml:21
+msgid "Siege Wall Tower"
+msgstr "Apgulties sienos bokštas"
+
+#: simulation/templates/structures/rome/siege_wall_tower.xml:22
+msgid "Turris Circummūnītiōnis"
+msgstr ""
+
+#: simulation/templates/structures/rome/stable.xml:5
+msgid "Equīle"
+msgstr ""
+
+#: simulation/templates/structures/rome/storehouse.xml:8
+msgid "Receptāculum"
+msgstr ""
+
+#: simulation/templates/structures/rome/temple.xml:9
+msgid "Aedēs"
+msgstr ""
+
+#: simulation/templates/structures/rome/temple_mars.xml:12
+msgid "Temple of Mars"
+msgstr "Marso šventykla"
+
+#: simulation/templates/structures/rome/temple_mars.xml:13
+msgid "Aedēs Mārtiālis"
+msgstr ""
+
+#: simulation/templates/structures/rome/temple_mars.xml:14
+msgid "TempleOfMars"
+msgstr ""
+
+#: simulation/templates/structures/rome/temple_vesta.xml:18
+msgid "Temple of Vesta"
+msgstr "Vestos šventykla"
+
+#: simulation/templates/structures/rome/temple_vesta.xml:19
+msgid "Aedēs Vestālis"
+msgstr ""
+
+#: simulation/templates/structures/rome/temple_vesta.xml:20
+msgid "TempleOfVesta"
+msgstr ""
+
+#: simulation/templates/structures/rome/tent.xml:29
+msgid "Tent"
+msgstr "Palapinė"
+
+#: simulation/templates/structures/rome/tent.xml:30
+msgid "Tabernāculum"
+msgstr ""
+
+#: simulation/templates/structures/rome/tent.xml:32
+msgid "A temporary shelter for soldiers."
+msgstr "Laikinas prieglobstis kariams"
+
+#: simulation/templates/structures/rome/wall_gate.xml:12
+msgid "Porta"
+msgstr ""
+
+#: simulation/templates/structures/rome/wall_long.xml:9
+#: simulation/templates/structures/rome/wall_medium.xml:9
+#: simulation/templates/structures/rome/wall_short.xml:9
+#: simulation/templates/structures/rome/wallset_stone.xml:5
+msgid "Moenia"
+msgstr ""
+
+#: simulation/templates/structures/rome/wall_tower.xml:9
+msgid "Turris Lapidea"
+msgstr ""
+
+#: simulation/templates/structures/rome/wallset_siege.xml:7
+msgid "Wall off an area. Build in own, neutral, or enemy territory."
+msgstr ""
+
+#: simulation/templates/structures/rome/wonder.xml:9
+msgid "Aedēs Iovis Optimi Maximi"
+msgstr ""
+
+#: simulation/templates/structures/sele/wonder.xml:9
+msgid "Hieron tou Apollōnos Pythiou"
+msgstr ""
+
+#: simulation/templates/structures/spart/gerousia.xml:22
+msgid "Spartan Senate"
+msgstr "Spartiečių senatas"
+
+#: simulation/templates/structures/spart/gerousia.xml:23
+msgid "Gerousia"
+msgstr ""
+
+#: simulation/templates/structures/spart/gerousia.xml:24
+msgid "Train Heroes."
+msgstr ""
+
+#: simulation/templates/structures/spart/syssiton.xml:23
+msgid "Military Mess Hall"
+msgstr "Karių valgykla"
+
+#: simulation/templates/structures/spart/syssiton.xml:24
+msgid "Syssition"
+msgstr ""
+
+#: simulation/templates/structures/spart/syssiton.xml:27
+msgid "Syssiton"
+msgstr ""
+
+#: simulation/templates/structures/spart/wonder.xml:9
+msgid "Hieron tēs Artemidos Orthias"
+msgstr ""

@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-16 08:12+0000\n"
-"PO-Revision-Date: 2020-11-16 18:40+0000\n"
+"POT-Creation-Date: 2020-11-20 08:09+0000\n"
+"PO-Revision-Date: 2020-11-20 15:57+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -435,9 +435,9 @@ msgstr "Trampes"
 #: gui/common/gamedescription.js:411 gui/common/tooltips.js:144
 #: gui/common/tooltips.js:198 gui/common/tooltips.js:219
 #: gui/common/tooltips.js:238 gui/common/tooltips.js:301
-#: gui/common/tooltips.js:583 gui/common/tooltips.js:605
-#: gui/common/tooltips.js:689 gui/common/tooltips.js:730
-#: gui/common/tooltips.js:1028
+#: gui/common/tooltips.js:585 gui/common/tooltips.js:607
+#: gui/common/tooltips.js:691 gui/common/tooltips.js:732
+#: gui/common/tooltips.js:1030
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -571,10 +571,10 @@ msgstr "Usuarios (%(num)s): %(users)s"
 #: gui/common/tooltips.js:211 gui/common/tooltips.js:272
 #: gui/common/tooltips.js:354 gui/common/tooltips.js:379
 #: gui/common/tooltips.js:394 gui/common/tooltips.js:408
-#: gui/common/tooltips.js:483 gui/common/tooltips.js:488
-#: gui/common/tooltips.js:545 gui/common/tooltips.js:578
-#: gui/common/tooltips.js:893 gui/common/tooltips.js:926
-#: gui/common/tooltips.js:993 gui/loadgame/SavegameDetails.js:38
+#: gui/common/tooltips.js:485 gui/common/tooltips.js:490
+#: gui/common/tooltips.js:547 gui/common/tooltips.js:580
+#: gui/common/tooltips.js:895 gui/common/tooltips.js:928
+#: gui/common/tooltips.js:995 gui/loadgame/SavegameDetails.js:38
 #: gui/reference/common/tooltips.js:13 gui/replaymenu/replay_menu.js:282
 msgid ", "
 msgstr ","
@@ -720,8 +720,8 @@ msgid_plural "%(time)s %(second)s"
 msgstr[0] "%(time)s %(second)s"
 msgstr[1] "%(time)s %(second)s"
 
-#: gui/common/tooltips.js:92 gui/common/tooltips.js:541
-#: gui/common/tooltips.js:924
+#: gui/common/tooltips.js:92 gui/common/tooltips.js:543
+#: gui/common/tooltips.js:926
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "segundu"
@@ -741,7 +741,7 @@ msgstr "%(healthLabel)s %(current)s / %(max)s"
 msgid "%(percentage)s%%"
 msgstr "%(percentage)s %%"
 
-#: gui/common/tooltips.js:187 gui/common/tooltips.js:453
+#: gui/common/tooltips.js:187 gui/common/tooltips.js:455
 #, javascript-format
 msgid ""
 "%(label)s\n"
@@ -810,7 +810,7 @@ msgstr "Paraes: %(blockPercentage)s%%, Amenorgu na duranza: %(durationReduction)
 msgid "Garrison to fire arrows"
 msgstr "Guarez pa tirar fleches"
 
-#: gui/common/tooltips.js:285 gui/common/tooltips.js:922
+#: gui/common/tooltips.js:285 gui/common/tooltips.js:924
 msgid "Interval:"
 msgstr "Intervalu:"
 
@@ -862,7 +862,7 @@ msgstr "%(rangeLabel)s %(minRange)s a %(maxRange)s %(rangeUnit)s"
 msgid "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
 msgstr "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
 
-#: gui/common/tooltips.js:333 gui/common/tooltips.js:917
+#: gui/common/tooltips.js:333 gui/common/tooltips.js:919
 msgid "Range:"
 msgstr "Algame:"
 
@@ -877,8 +877,8 @@ msgstr "+%(number)s"
 msgid "meters"
 msgstr "metros"
 
-#: gui/common/tooltips.js:341 gui/common/tooltips.js:919
-#: gui/common/tooltips.js:949
+#: gui/common/tooltips.js:341 gui/common/tooltips.js:921
+#: gui/common/tooltips.js:951
 msgid "meter"
 msgid_plural "meters"
 msgstr[0] "metru"
@@ -912,16 +912,16 @@ msgstr "Fueu amigo: %(enabled)s"
 #: gui/common/tooltips.js:380 gui/loadgame/SavegameDeleter.js:55
 #: gui/loadgame/SavegameLoader.js:61 gui/loadgame/SavegameWriter.js:48
 #: gui/options/options.js:300 gui/options/options.js:353
-#: gui/options/options.js:379 gui/pregame/MainMenuItems.js:183
-#: gui/pregame/MainMenuItems.js:207 gui/replaymenu/replay_actions.js:169
+#: gui/options/options.js:379 gui/pregame/MainMenuItems.js:190
+#: gui/pregame/MainMenuItems.js:214 gui/replaymenu/replay_actions.js:169
 msgid "Yes"
 msgstr "Sí"
 
 #: gui/common/tooltips.js:380 gui/loadgame/SavegameDeleter.js:55
 #: gui/loadgame/SavegameLoader.js:61 gui/loadgame/SavegameWriter.js:48
 #: gui/options/options.js:300 gui/options/options.js:353
-#: gui/options/options.js:379 gui/pregame/MainMenuItems.js:183
-#: gui/pregame/MainMenuItems.js:207 gui/replaymenu/replay_actions.js:169
+#: gui/options/options.js:379 gui/pregame/MainMenuItems.js:190
+#: gui/pregame/MainMenuItems.js:214 gui/replaymenu/replay_actions.js:169
 msgid "No"
 msgstr "Non"
 
@@ -930,107 +930,107 @@ msgstr "Non"
 msgid "gives %(name)s"
 msgstr "da %(name)s"
 
-#: gui/common/tooltips.js:423
+#: gui/common/tooltips.js:424
 #, javascript-format
 msgid "%(attackType)s"
 msgstr "%(attackType)s"
 
-#: gui/common/tooltips.js:443
+#: gui/common/tooltips.js:445
 #, javascript-format
 msgid ""
 "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s%(splash)s"
 msgstr "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s%(splash)s"
 
-#: gui/common/tooltips.js:454
+#: gui/common/tooltips.js:456
 msgid "Attack:"
 msgstr "Ataque:"
 
-#: gui/common/tooltips.js:481
+#: gui/common/tooltips.js:483
 #, javascript-format
 msgid "%(statusName)s: %(statusInfo)s %(stackability)s"
 msgstr "%(statusName)s: %(stackability)s %(statusInfo)s"
 
-#: gui/common/tooltips.js:486
+#: gui/common/tooltips.js:488
 #, javascript-format
 msgid "%(statusName)s: %(statusInfo)s"
 msgstr "%(statusName)s: %(statusInfo)s"
 
-#: gui/common/tooltips.js:497
+#: gui/common/tooltips.js:499
 #, javascript-format
 msgid "%(durName)s: %(duration)s"
 msgstr "%(durName)s: %(duration)s"
 
-#: gui/common/tooltips.js:498
+#: gui/common/tooltips.js:500
 msgid "Duration"
 msgstr "Duración"
 
-#: gui/common/tooltips.js:512
+#: gui/common/tooltips.js:514
 msgctxt "status effect stackability"
 msgid "(extends)"
 msgstr "(enllarga)"
 
-#: gui/common/tooltips.js:514
+#: gui/common/tooltips.js:516
 msgctxt "status effect stackability"
 msgid "(replaces)"
 msgstr "(reemplaza)"
 
-#: gui/common/tooltips.js:516
+#: gui/common/tooltips.js:518
 msgctxt "status effect stackability"
 msgid "(stacks)"
 msgstr "(embalágase)"
 
-#: gui/common/tooltips.js:518
+#: gui/common/tooltips.js:520
 #, javascript-format
 msgid "%(stackability)s"
 msgstr "%(stackability)s"
 
-#: gui/common/tooltips.js:529
+#: gui/common/tooltips.js:531
 #, javascript-format
 msgid "%(label)s: %(garrisonLimit)s"
 msgstr "%(label)s: %(garrisonLimit)s"
 
-#: gui/common/tooltips.js:530
+#: gui/common/tooltips.js:532
 msgid "Garrison Limit"
 msgstr "Llende de guarecimientu"
 
-#: gui/common/tooltips.js:537
+#: gui/common/tooltips.js:539
 #, javascript-format
 msgid "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 msgstr "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 
-#: gui/common/tooltips.js:538 gui/common/tooltips.js:912
+#: gui/common/tooltips.js:540 gui/common/tooltips.js:914
 msgid "Heal:"
 msgstr "Curar:"
 
-#: gui/common/tooltips.js:540 gui/common/tooltips.js:914
+#: gui/common/tooltips.js:542 gui/common/tooltips.js:916
 msgid "Health"
 msgstr "Salú"
 
-#: gui/common/tooltips.js:564 gui/common/tooltips.js:569
-#: gui/common/tooltips.js:574
+#: gui/common/tooltips.js:566 gui/common/tooltips.js:571
+#: gui/common/tooltips.js:576
 #, javascript-format
 msgid "%(label)s: %(value)s"
 msgstr "%(label)s: %(value)s"
 
-#: gui/common/tooltips.js:565
+#: gui/common/tooltips.js:567
 msgid "Projectile Limit"
 msgstr "Llende de proxeutiles"
 
-#: gui/common/tooltips.js:570
+#: gui/common/tooltips.js:572
 msgctxt "projectiles"
 msgid "Default"
 msgstr "Por defeutu"
 
-#: gui/common/tooltips.js:575
+#: gui/common/tooltips.js:577
 msgctxt "projectiles"
 msgid "Per Unit"
 msgstr "Per unidá"
 
-#: gui/common/tooltips.js:584
+#: gui/common/tooltips.js:586
 msgid "Number of repairers:"
 msgstr "Númberu d'iguadores:"
 
-#: gui/common/tooltips.js:590
+#: gui/common/tooltips.js:592
 #, javascript-format
 msgid "Add another worker to speed up the repairs by %(second)s second."
 msgid_plural ""
@@ -1038,18 +1038,18 @@ msgid_plural ""
 msgstr[0] "Amiesta otru obreru pa entainar les igües %(second)s segundu."
 msgstr[1] "Amiesta otru obreru pa entainar les igües %(second)s segundos."
 
-#: gui/common/tooltips.js:597
+#: gui/common/tooltips.js:599
 #, javascript-format
 msgid "Add a worker to finish the repairs in %(second)s second."
 msgid_plural "Add a worker to finish the repairs in %(second)s seconds."
 msgstr[0] "Amiesta un obreru pa finar les igües en %(second)s segundu."
 msgstr[1] "Amiesta un obreru pa finar les igües en %(second)s segundos."
 
-#: gui/common/tooltips.js:606
+#: gui/common/tooltips.js:608
 msgid "Number of builders:"
 msgstr "Númberu de constructores:"
 
-#: gui/common/tooltips.js:612
+#: gui/common/tooltips.js:614
 #, javascript-format
 msgid "Add another worker to speed up the construction by %(second)s second."
 msgid_plural ""
@@ -1057,189 +1057,189 @@ msgid_plural ""
 msgstr[0] "Amiesta otru obreru pa entainar la construcción %(second)s segundu."
 msgstr[1] "Amiesta otru obreru pa entainar la construcción %(second)s segundos."
 
-#: gui/common/tooltips.js:619
+#: gui/common/tooltips.js:621
 #, javascript-format
 msgid "Add a worker to finish the construction in %(second)s second."
 msgid_plural "Add a worker to finish the construction in %(second)s seconds."
 msgstr[0] "Amiesta un obreru pa finar la construcción en %(second)s segundu."
 msgstr[1] "Amiesta un obreru pa finar la construcción en %(second)s segundos."
 
-#: gui/common/tooltips.js:654 gui/common/tooltips.js:865
+#: gui/common/tooltips.js:656 gui/common/tooltips.js:867
 #, javascript-format
 msgid "%(component)s %(cost)s"
 msgstr "%(component)s %(cost)s"
 
-#: gui/common/tooltips.js:690
+#: gui/common/tooltips.js:692
 msgid "Gather Rates:"
 msgstr "Tases de percanciamientu:"
 
-#: gui/common/tooltips.js:693 gui/common/tooltips.js:735
+#: gui/common/tooltips.js:695 gui/common/tooltips.js:737
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
 msgstr "%(resourceIcon)s %(rate)s"
 
 #. Translation: Label in tooltip showing the resource type and quantity of a
 #. given resource supply.
-#: gui/common/tooltips.js:713
+#: gui/common/tooltips.js:715
 #, javascript-format
 msgid "%(label)s %(component)s %(amount)s"
 msgstr "%(label)s %(component)s %(amount)s"
 
-#: gui/common/tooltips.js:714
+#: gui/common/tooltips.js:716
 msgid "Resource Supply:"
 msgstr "Reserves de recursos:"
 
 #. Translation: Marks that a resource supply entity has an unending, infinite,
 #. supply of its resource.
-#: gui/common/tooltips.js:717 gui/summary/summary.js:111
+#: gui/common/tooltips.js:719 gui/summary/summary.js:111
 msgid "∞"
 msgstr "∞"
 
-#: gui/common/tooltips.js:731
+#: gui/common/tooltips.js:733
 msgid "Resource Trickle:"
 msgstr "Bisbera de recursos:"
 
-#: gui/common/tooltips.js:732
+#: gui/common/tooltips.js:734
 #, javascript-format
 msgid "%(resources)s / %(time)s"
 msgstr "%(resources)s / %(time)s"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
-#: gui/common/tooltips.js:784
+#: gui/common/tooltips.js:786
 #, javascript-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
 msgstr "%(resourceIcon)s%(minimum)s a %(resourceIcon)s %(maximum)s"
 
-#: gui/common/tooltips.js:813
+#: gui/common/tooltips.js:815
 #, javascript-format
 msgid "Walls:  %(costs)s"
 msgstr "Muralles:  %(costs)s"
 
-#: gui/common/tooltips.js:814
+#: gui/common/tooltips.js:816
 #, javascript-format
 msgid "Towers:  %(costs)s"
 msgstr "Torres:  %(costs)s"
 
 #. Translation: Label in tooltip showing cost of a unit, structure or
 #. technology.
-#: gui/common/tooltips.js:822
+#: gui/common/tooltips.js:824
 #, javascript-format
 msgid "%(label)s %(costs)s"
 msgstr "%(label)s %(costs)s"
 
-#: gui/common/tooltips.js:823
+#: gui/common/tooltips.js:825
 msgid "Cost:"
 msgstr "Costu:"
 
-#: gui/common/tooltips.js:836
+#: gui/common/tooltips.js:838
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "Rique %(technology)s"
 
-#: gui/common/tooltips.js:848
+#: gui/common/tooltips.js:850
 #, javascript-format
 msgid "%(label)s %(populationBonus)s"
 msgstr "%(label)s %(populationBonus)s"
 
-#: gui/common/tooltips.js:849
+#: gui/common/tooltips.js:851
 msgid "Population Bonus:"
 msgstr "Bonificación de población:"
 
-#: gui/common/tooltips.js:870
+#: gui/common/tooltips.js:872
 msgid "Insufficient resources:"
 msgstr "Nun hai recursos abondos:"
 
-#: gui/common/tooltips.js:886
+#: gui/common/tooltips.js:888
 #, javascript-format
 msgid "%(label)s %(speeds)s"
 msgstr "%(label)s %(speeds)s"
 
-#: gui/common/tooltips.js:887
+#: gui/common/tooltips.js:889
 msgid "Speed:"
 msgstr "Velocidá:"
 
-#: gui/common/tooltips.js:889 gui/common/tooltips.js:894
+#: gui/common/tooltips.js:891 gui/common/tooltips.js:896
 #, javascript-format
 msgid "%(speed)s %(movementType)s"
 msgstr "%(speed)s %(movementType)s"
 
-#: gui/common/tooltips.js:891
+#: gui/common/tooltips.js:893
 msgid "Walk"
 msgstr "Andar"
 
-#: gui/common/tooltips.js:896
+#: gui/common/tooltips.js:898
 msgid "Run"
 msgstr "Correr"
 
-#: gui/common/tooltips.js:911 gui/common/tooltips.js:916
-#: gui/common/tooltips.js:921 gui/common/tooltips.js:946
+#: gui/common/tooltips.js:913 gui/common/tooltips.js:918
+#: gui/common/tooltips.js:923 gui/common/tooltips.js:948
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
 msgstr[0] "%(label)s %(val)s %(unit)s"
 msgstr[1] "%(label)s %(val)s %(unit)s"
 
-#: gui/common/tooltips.js:938
+#: gui/common/tooltips.js:940
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
 msgstr "%(auralabel)s %(aurainfo)s"
 
-#: gui/common/tooltips.js:939
+#: gui/common/tooltips.js:941
 #, javascript-format
 msgid "%(auraname)s:"
 msgstr "%(auraname)s:"
 
-#: gui/common/tooltips.js:947
+#: gui/common/tooltips.js:949
 msgctxt "aura"
 msgid "Range:"
 msgstr "Algame:"
 
-#: gui/common/tooltips.js:964
+#: gui/common/tooltips.js:966
 #, javascript-format
 msgid "%(specificName)s (%(genericName)s)"
 msgstr "%(specificName)s (%(genericName)s)"
 
 #. Translation: Example: "Epibátēs Athēnaîos [font="sans-bold-16"](Athenian
 #. Marine)[/font]"
-#: gui/common/tooltips.js:977
+#: gui/common/tooltips.js:979
 #, javascript-format
 msgid "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 msgstr "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 
-#: gui/common/tooltips.js:992
+#: gui/common/tooltips.js:994
 msgid "Classes:"
 msgstr "Clases:"
 
 #. Translation: %(component) will be the icon for the loot type and %(loot)
 #. will be the value.
-#: gui/common/tooltips.js:1019
+#: gui/common/tooltips.js:1021
 #, javascript-format
 msgid "%(component)s %(loot)s"
 msgstr "%(component)s %(loot)s"
 
-#: gui/common/tooltips.js:1029
+#: gui/common/tooltips.js:1031
 msgid "Loot:"
 msgstr "Botín:"
 
-#: gui/common/tooltips.js:1039
+#: gui/common/tooltips.js:1041
 #, javascript-format
 msgid "%(label)s %(icons)s"
 msgstr "%(label)s %(icons)s"
 
-#: gui/common/tooltips.js:1040
+#: gui/common/tooltips.js:1042
 msgid "Dropsite for:"
 msgstr "Depósitu pa:"
 
 #. Translation: Appears in a tooltip to indicate that right-clicking the
 #. corresponding GUI element will open the Template Details GUI page.
-#: gui/common/tooltips.js:1048
+#: gui/common/tooltips.js:1050
 msgid "Right-click to view more information."
 msgstr "Calca col botón derechu pa ver más información."
 
 #. Translation: Appears in a tooltip to indicate that clicking the
 #. corresponding GUI element will open the Template Details GUI page.
-#: gui/common/tooltips.js:1054
+#: gui/common/tooltips.js:1056
 msgid "Click to view more information."
 msgstr "Calca pa ver más información."
 
@@ -1521,77 +1521,85 @@ msgstr "Opciones"
 
 #: gui/pregame/MainMenuItems.js:143
 msgid "Adjust game settings."
-msgstr "Camudar los axustes del xuegu."
+msgstr "Camuda los axustes del xuegu."
 
-#: gui/pregame/MainMenuItems.js:152 gui/locale/locale.xml:(caption):14
+#: gui/pregame/MainMenuItems.js:152
+msgid "Hotkeys"
+msgstr "Atayos"
+
+#: gui/pregame/MainMenuItems.js:153
+msgid "Adjust hotkeys."
+msgstr "Camuda los atayos."
+
+#: gui/pregame/MainMenuItems.js:159 gui/locale/locale.xml:(caption):14
 msgid "Language"
 msgstr "Llingua"
 
-#: gui/pregame/MainMenuItems.js:153
+#: gui/pregame/MainMenuItems.js:160
 msgid "Choose the language of the game."
 msgstr "Escoyer la llingua del xuegu."
 
-#: gui/pregame/MainMenuItems.js:159
+#: gui/pregame/MainMenuItems.js:166
 msgid "Mod Selection"
 msgstr "Esbilla de camudos"
 
-#: gui/pregame/MainMenuItems.js:160
+#: gui/pregame/MainMenuItems.js:167
 msgid "Select and download mods for the game."
 msgstr "Esbillar & baxar camudos pal xuegu."
 
-#: gui/pregame/MainMenuItems.js:166
+#: gui/pregame/MainMenuItems.js:173
 msgid "Welcome Screen"
 msgstr "Pantalla d'acoyida"
 
-#: gui/pregame/MainMenuItems.js:167
+#: gui/pregame/MainMenuItems.js:174
 msgid "Show the Welcome Screen again. Useful if you hid it by mistake."
 msgstr "Volver amosar la pantalla d'acoyida. Ye útil si la anubriesti ensin querer."
 
-#: gui/pregame/MainMenuItems.js:175
+#: gui/pregame/MainMenuItems.js:182
 msgid "Scenario Editor"
 msgstr "Editor d'escenarios"
 
-#: gui/pregame/MainMenuItems.js:176
+#: gui/pregame/MainMenuItems.js:183
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "Abrir l'editor d'escenarios Atlas nuna ventana nueva. Pues executalu con menos fallos entamando'l xuegu pela llinia de comandos col argumentu «-editor»."
 
-#: gui/pregame/MainMenuItems.js:181
+#: gui/pregame/MainMenuItems.js:188
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
 msgstr "¿De xuru que quies colar de 0 A.D. & abrir l'editor d'escenarios?"
 
-#: gui/pregame/MainMenuItems.js:182 gui/pregame/MainMenuItems.js:206
+#: gui/pregame/MainMenuItems.js:189 gui/pregame/MainMenuItems.js:213
 msgid "Confirmation"
 msgstr "Confirmanza"
 
-#: gui/pregame/MainMenuItems.js:188
+#: gui/pregame/MainMenuItems.js:195
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "L'editor d'escenarios nun ta disponible o falló al cargase. Mira los rexistros del xuegu pa más información."
 
-#: gui/pregame/MainMenuItems.js:189 gui/replaymenu/replay_actions.js:117
+#: gui/pregame/MainMenuItems.js:196 gui/replaymenu/replay_actions.js:117
 msgid "Error"
 msgstr "Fallu"
 
-#: gui/pregame/MainMenuItems.js:193
+#: gui/pregame/MainMenuItems.js:200
 msgid "Credits"
 msgstr "Creitos"
 
-#: gui/pregame/MainMenuItems.js:194
+#: gui/pregame/MainMenuItems.js:201
 msgid "Show the 0 A.D. credits."
 msgstr "Amosar los creitos de 0 A.D."
 
-#: gui/pregame/MainMenuItems.js:200
+#: gui/pregame/MainMenuItems.js:207
 msgid "Exit"
 msgstr "Colar"
 
-#: gui/pregame/MainMenuItems.js:201
+#: gui/pregame/MainMenuItems.js:208
 msgid "Exit the game."
 msgstr "Colar del xuegu."
 
-#: gui/pregame/MainMenuItems.js:205
+#: gui/pregame/MainMenuItems.js:212
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "¿De xuru que quies colar de 0 A.D.?"
 
@@ -2597,6 +2605,10 @@ msgid "Latin"
 msgstr "Llatín"
 
 #: gui/credits/texts/audio.jsonContent[3].Content[2].Subtitle
+msgid "Napatan"
+msgstr "Napatán"
+
+#: gui/credits/texts/audio.jsonContent[3].Content[3].Subtitle
 msgid "Persian"
 msgstr "Persa"
 
