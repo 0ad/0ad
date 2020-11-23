@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -21,30 +21,49 @@
  */
 
 #include "precompiled.h"
-#include "lib/sysdep/os/win/wposix/wutsname.h"
 
+#include "lib/sysdep/os/win/wposix/wutsname.h"
 #include "lib/sysdep/os/win/wutil.h"	// WinScopedPreserveLastError
 #include "lib/sysdep/os/win/wversion.h"	// wversion_Family
 
+#include <sstream>
+#include <winternl.h>
 
+/**
+ * Taken and modified from: https://stackoverflow.com/questions/32115255/c-how-to-detect-windows-10
+ */
 int uname(struct utsname* un)
 {
-	OSVERSIONINFOW vi = { sizeof(OSVERSIONINFOW) };
-	GetVersionExW(&vi);
+	WUTIL_FUNC(pRtlGetVersion, NTSTATUS, (LPOSVERSIONINFOEXW));
+	WUTIL_IMPORT_NTDLL(RtlGetVersion , pRtlGetVersion);
 
-	// OS implementation name
-	sprintf_s(un->sysname, ARRAY_SIZE(un->sysname), "%ls", wversion_Family());
+	if (!pRtlGetVersion)
+		return  -1;
 
-	// release info
-	const wchar_t* vs = vi.szCSDVersion;
+	OSVERSIONINFOEXW osInfo = { sizeof(OSVERSIONINFOEXW) };
+	pRtlGetVersion(&osInfo);
+	std::ostringstream stream;
+
+	// OS Implementation name
+	if (osInfo.dwMajorVersion >= 10)
+	{
+		stream << "Win" << osInfo.dwMajorVersion;
+	}
+	else
+		stream << wversion_Family() << "\0";
+
+	sprintf_s(un->sysname, ARRAY_SIZE(un->sysname), "%s", stream.str().c_str());
+
+
+	// OS Service Pack
 	int sp;
-	if(swscanf_s(vs, L"Service Pack %d", &sp) == 1)
+	if (swscanf_s(osInfo.szCSDVersion, L"Service Pack %d", &sp) == 1)
 		sprintf_s(un->release, ARRAY_SIZE(un->release), "SP %d", sp);
 	else
 		un->release[0] = '\0';
 
-	// version
-	sprintf_s(un->version, ARRAY_SIZE(un->version), "%ls.%lu", wversion_String(), vi.dwBuildNumber & 0xFFFF);
+	// OS Version.
+	sprintf_s(un->version, ARRAY_SIZE(un->version), "%lu.%lu.%lu", osInfo.dwMajorVersion, osInfo.dwMinorVersion, osInfo.dwBuildNumber);
 
 	// node name
 	{
@@ -55,8 +74,8 @@ int uname(struct utsname* un)
 
 	// hardware type
 	SYSTEM_INFO si;
-	GetSystemInfo(&si);
-	if(si.wProcessorArchitecture == PROCESSOR_ARCHITECTURE_AMD64)
+	GetNativeSystemInfo(&si);
+	if (si.wProcessorArchitecture == PROCESSOR_ARCHITECTURE_AMD64)
 		strcpy_s(un->machine, ARRAY_SIZE(un->machine), "x64");
 	else
 		strcpy_s(un->machine, ARRAY_SIZE(un->machine), "x86");

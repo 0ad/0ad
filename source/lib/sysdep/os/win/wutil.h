@@ -67,6 +67,10 @@ bool wutil_IsValidHandle(H h)
 #define WUTIL_IMPORT_KERNEL32(procName, varName)\
 	WUTIL_IMPORT(GetModuleHandleW(L"kernel32.dll"), procName, varName)
 
+// note: ntdll is guaranteed to be loaded, so we don't
+// need to LoadLibrary and FreeLibrary.
+#define WUTIL_IMPORT_NTDLL(procName, varName)\
+	WUTIL_IMPORT(GetModuleHandleW(L"ntdll.dll"), procName, varName)
 
 //-----------------------------------------------------------------------------
 // safe allocator
