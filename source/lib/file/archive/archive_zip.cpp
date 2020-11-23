@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -448,17 +448,17 @@ public:
 		size_t cd_numEntries = 0;
 		size_t cd_size = 0;
 		RETURN_STATUS_IF_ERR(LocateCentralDirectory(m_file, m_fileSize, cd_ofs, cd_numEntries, cd_size));
-		UniqueRange buf(io::Allocate(cd_size));
+		io::BufferPtr buf(io::Allocate(cd_size));
 
 		io::Operation op(*m_file.get(), buf.get(), cd_size, cd_ofs);
 		RETURN_STATUS_IF_ERR(io::Run(op));
 
 		// iterate over Central Directory
-		const u8* pos = (const u8*)buf.get();
+		const u8* pos = buf.get();
 		for(size_t i = 0; i < cd_numEntries; i++)
 		{
 			// scan for next CDFH
-			CDFH* cdfh = (CDFH*)FindRecord((const u8*)buf.get(), cd_size, pos, cdfh_magic, sizeof(CDFH));
+			CDFH* cdfh = (CDFH*)FindRecord(buf.get(), cd_size, pos, cdfh_magic, sizeof(CDFH));
 			if(!cdfh)
 				WARN_RETURN(ERR::CORRUPTED);
 
@@ -533,14 +533,14 @@ private:
 	static Status LocateCentralDirectory(const PFile& file, off_t fileSize, off_t& cd_ofs, size_t& cd_numEntries, size_t& cd_size)
 	{
 		const size_t maxScanSize = 66000u;	// see below
-		UniqueRange buf(io::Allocate(maxScanSize));
+		io::BufferPtr buf(io::Allocate(maxScanSize));
 
 		// expected case: ECDR at EOF; no file comment
-		Status ret = ScanForEcdr(file, fileSize, (u8*)buf.get(), sizeof(ECDR), cd_numEntries, cd_ofs, cd_size);
+		Status ret = ScanForEcdr(file, fileSize, buf.get(), sizeof(ECDR), cd_numEntries, cd_ofs, cd_size);
 		if(ret == INFO::OK)
 			return INFO::OK;
 		// worst case: ECDR precedes 64 KiB of file comment
-		ret = ScanForEcdr(file, fileSize, (u8*)buf.get(), maxScanSize, cd_numEntries, cd_ofs, cd_size);
+		ret = ScanForEcdr(file, fileSize, buf.get(), maxScanSize, cd_numEntries, cd_ofs, cd_size);
 		if(ret == INFO::OK)
 			return INFO::OK;
 
@@ -555,7 +555,7 @@ private:
 		//   because it'd be slow.
 		// - do not warn - the corrupt archive will be deleted on next
 		//   successful archive builder run anyway.
-		if(FindRecord((const u8*)buf.get(), sizeof(LFH), (const u8*)buf.get(), lfh_magic, sizeof(LFH)))
+		if(FindRecord(buf.get(), sizeof(LFH), buf.get(), lfh_magic, sizeof(LFH)))
 			return ERR::CORRUPTED;	// NOWARN
 		// totally bogus
 		else
@@ -662,12 +662,12 @@ public:
 
 		// allocate memory
 		const size_t csizeMax = codec->MaxOutputSize(size_t(usize));
-		UniqueRange buf(io::Allocate(sizeof(LFH) + pathnameLength + csizeMax));
+		io::BufferPtr buf(io::Allocate(sizeof(LFH) + pathnameLength + csizeMax));
 
 		// read and compress file contents
 		size_t csize; u32 checksum;
 		{
-			u8* cdata = (u8*)buf.get() + sizeof(LFH) + pathnameLength;
+			u8* cdata = buf.get() + sizeof(LFH) + pathnameLength;
 			Stream stream(codec);
 			stream.SetOutputBuffer(cdata, csizeMax);
 			StreamFeeder streamFeeder(stream);
@@ -687,7 +687,7 @@ public:
 
 		// build LFH
 		{
-			LFH* lfh = (LFH*)buf.get();
+			LFH* lfh = reinterpret_cast<LFH*>(buf.get());
 			lfh->Init(fileInfo, (off_t)csize, method, checksum, pathnameInArchive);
 		}
 

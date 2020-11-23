@@ -199,6 +199,13 @@ function project_set_build_flags()
 	-- being used as a DLL (which is currently not the case in 0ad)
 	defines { "LIB_STATIC_LINK" }
 
+	-- Enable C++14 standard.
+	filter "action:vs*"
+		buildoptions { "/std:c++14" }
+	filter "action:not vs*"
+		buildoptions { "-std=c++14" }
+	filter {}
+
 	-- various platform-specific build flags
 	if os.istarget("windows") then
 
@@ -291,11 +298,6 @@ function project_set_build_flags()
 				end
 			end
 
-			buildoptions {
-				-- Enable C++11 standard.
-				"-std=c++0x"
-			}
-
 			if arch == "arm" then
 				-- disable warnings about va_list ABI change and use
 				-- compile-time flags for futher configuration.
@@ -311,10 +313,10 @@ function project_set_build_flags()
 				links { "gcov" }
 			end
 
-			-- We don't want to require SSE2 everywhere yet, but OS X headers do
-			-- require it (and Intel Macs always have it) so enable it here
+			-- MacOS always provides SSE3 so enable that.
+			-- TODO: after <10.12 support is dropped, we can assume SSE4.1 is present.
 			if os.istarget("macosx") then
-				buildoptions { "-msse2" }
+				buildoptions { "-msse3" }
 			end
 
 			-- Check if SDK path should be used
@@ -336,8 +338,7 @@ function project_set_build_flags()
 				defines { "BUNDLE_IDENTIFIER=" .. _OPTIONS["macosx-bundle"] }
 			end
 
-			-- On OS X, force using libc++ since it has better C++11 support,
-			-- now required by the game
+			-- Only libc++ is supported on MacOS
 			if os.istarget("macosx") then
 				buildoptions { "-stdlib=libc++" }
 				linkoptions { "-stdlib=libc++" }

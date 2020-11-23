@@ -593,10 +593,10 @@ static void InitRenderer()
 	// create renderer
 	new CRenderer;
 
-	g_RenderingOptions.ReadConfig();
-
 	// create terrain related stuff
 	new CTerrainTextureManager;
+
+	g_RenderingOptions.ReadConfigAndSetupHooks();
 
 	g_Renderer.Open(g_xres, g_yres);
 
@@ -694,6 +694,8 @@ void Shutdown(int flags)
 		g_VBMan.Shutdown();
 		TIMER_END(L"shutdown Renderer");
 	}
+
+	g_RenderingOptions.ClearHooks();
 
 	g_Profiler2.ShutdownGPU();
 

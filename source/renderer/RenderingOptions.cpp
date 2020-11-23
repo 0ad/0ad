@@ -33,7 +33,16 @@ class CRenderingOptions::ConfigHooks
 public:
 	std::vector<CConfigDB::hook_t>::iterator begin() { return hooks.begin(); }
 	std::vector<CConfigDB::hook_t>::iterator end() { return hooks.end(); }
-	void insert(CConfigDB::hook_t&& hook) { return hooks.emplace_back(std::move(hook)); }
+	template<typename T>
+	void Setup(CStr8 name, T& variable)
+	{
+		hooks.emplace_back(g_ConfigDB.RegisterHookAndCall(name, [name, &variable]() { CFG_GET_VAL(name, variable); }));
+	}
+	void Setup(CStr8 name, std::function<void()> hook)
+	{
+		hooks.emplace_back(g_ConfigDB.RegisterHookAndCall(name, hook));
+	}
+	void clear() { hooks.clear(); }
 private:
 	std::vector<CConfigDB::hook_t> hooks;
 };
@@ -95,89 +104,78 @@ CRenderingOptions::CRenderingOptions() : m_ConfigHooks(new ConfigHooks())
 
 CRenderingOptions::~CRenderingOptions()
 {
-	// This is currently irrelevant since CConfigDB is deleted before CRenderingOptions
-	// (as only the latter is a static variable), but the check is a good idea regardless.
-	if (!CConfigDB::IsInitialised())
-		return;
-	for (CConfigDB::hook_t& hook : *m_ConfigHooks)
-		g_ConfigDB.UnregisterHook(std::move(hook));
+	ClearHooks();
 }
 
-template<typename T>
-void CRenderingOptions::SetupConfig(CStr8 name, T& variable)
+void CRenderingOptions::ReadConfigAndSetupHooks()
 {
-	m_ConfigHooks->insert(g_ConfigDB.RegisterHookAndCall(name, [name, &variable]() { CFG_GET_VAL(name, variable); }));
-}
-
-void CRenderingOptions::SetupConfig(CStr8 name, std::function<void()> hook)
-{
-	m_ConfigHooks->insert(g_ConfigDB.RegisterHookAndCall(name, hook));
-}
-
-void CRenderingOptions::ReadConfig()
-{
-	SetupConfig("preferglsl", [this]() {
-		bool enabled;
-		CFG_GET_VAL("preferglsl", enabled);
-		SetPreferGLSL(enabled);
-	});
-
-	SetupConfig("shadowquality", []() {
-		g_Renderer.GetShadowMap().RecreateTexture();
-	});
-
-	SetupConfig("shadows", [this]() {
-		bool enabled;
-		CFG_GET_VAL("shadows", enabled);
-		SetShadows(enabled);
-	});
-	SetupConfig("shadowpcf", [this]() {
-		bool enabled;
-		CFG_GET_VAL("shadowpcf", enabled);
-		SetShadowPCF(enabled);
-	});
-
-	SetupConfig("antialiasing", []() {
-		g_Renderer.GetPostprocManager().UpdateAntiAliasingTechnique();
-	});
-
-	SetupConfig("sharpness", []() {
-		g_Renderer.GetPostprocManager().UpdateSharpnessFactor();
-	});
-
-	SetupConfig("sharpening", []() {
-		g_Renderer.GetPostprocManager().UpdateSharpeningTechnique();
-	});
-
-	SetupConfig("postproc", m_PostProc);
-	SetupConfig("smoothlos", m_SmoothLOS);
-
-	SetupConfig("renderpath", [this]() {
+	m_ConfigHooks->Setup("renderpath", [this]() {
 		CStr renderPath;
 		CFG_GET_VAL("renderpath", renderPath);
 		SetRenderPath(RenderPathEnum::FromString(renderPath));
 	});
 
-	SetupConfig("watereffects", m_WaterEffects);
-	SetupConfig("waterfancyeffects", m_WaterFancyEffects);
-	SetupConfig("waterrealdepth", m_WaterRealDepth);
-	SetupConfig("waterrefraction", m_WaterRefraction);
-	SetupConfig("waterreflection", m_WaterReflection);
-	SetupConfig("watershadows", m_WaterShadows);
+	m_ConfigHooks->Setup("preferglsl", [this]() {
+		bool enabled;
+		CFG_GET_VAL("preferglsl", enabled);
+		SetPreferGLSL(enabled);
+	});
 
-	SetupConfig("particles", m_Particles);
-	SetupConfig("fog", [this]() {
+	m_ConfigHooks->Setup("shadowquality", []() {
+		if (CRenderer::IsInitialised())
+			g_Renderer.GetShadowMap().RecreateTexture();
+	});
+
+	m_ConfigHooks->Setup("shadows", [this]() {
+		bool enabled;
+		CFG_GET_VAL("shadows", enabled);
+		SetShadows(enabled);
+	});
+	m_ConfigHooks->Setup("shadowpcf", [this]() {
+		bool enabled;
+		CFG_GET_VAL("shadowpcf", enabled);
+		SetShadowPCF(enabled);
+	});
+
+	m_ConfigHooks->Setup("postproc", m_PostProc);
+
+	m_ConfigHooks->Setup("antialiasing", []() {
+		if (CRenderer::IsInitialised())
+			g_Renderer.GetPostprocManager().UpdateAntiAliasingTechnique();
+	});
+
+	m_ConfigHooks->Setup("sharpness", []() {
+		if (CRenderer::IsInitialised())
+			g_Renderer.GetPostprocManager().UpdateSharpnessFactor();
+	});
+
+	m_ConfigHooks->Setup("sharpening", []() {
+		if (CRenderer::IsInitialised())
+			g_Renderer.GetPostprocManager().UpdateSharpeningTechnique();
+	});
+
+	m_ConfigHooks->Setup("smoothlos", m_SmoothLOS);
+
+	m_ConfigHooks->Setup("watereffects", m_WaterEffects);
+	m_ConfigHooks->Setup("waterfancyeffects", m_WaterFancyEffects);
+	m_ConfigHooks->Setup("waterrealdepth", m_WaterRealDepth);
+	m_ConfigHooks->Setup("waterrefraction", m_WaterRefraction);
+	m_ConfigHooks->Setup("waterreflection", m_WaterReflection);
+	m_ConfigHooks->Setup("watershadows", m_WaterShadows);
+
+	m_ConfigHooks->Setup("particles", m_Particles);
+	m_ConfigHooks->Setup("fog", [this]() {
 		bool enabled;
 		CFG_GET_VAL("fog", enabled);
 		SetFog(enabled);
 	});
-	SetupConfig("silhouettes", m_Silhouettes);
-	SetupConfig("showsky", m_ShowSky);
+	m_ConfigHooks->Setup("silhouettes", m_Silhouettes);
+	m_ConfigHooks->Setup("showsky", m_ShowSky);
 
-	SetupConfig("novbo", m_NoVBO);
+	m_ConfigHooks->Setup("novbo", m_NoVBO);
 
-	SetupConfig("forcealphatest", m_ForceAlphaTest);
-	SetupConfig("gpuskinning", [this]() {
+	m_ConfigHooks->Setup("forcealphatest", m_ForceAlphaTest);
+	m_ConfigHooks->Setup("gpuskinning", [this]() {
 		bool enabled;
 		CFG_GET_VAL("gpuskinning", enabled);
 		if (enabled && !m_PreferGLSL)
@@ -186,25 +184,36 @@ void CRenderingOptions::ReadConfig()
 			m_GPUSkinning = true;
 	});
 
-	SetupConfig("renderactors", m_RenderActors);
+	m_ConfigHooks->Setup("renderactors", m_RenderActors);
+}
+
+void CRenderingOptions::ClearHooks()
+{
+	if (CConfigDB::IsInitialised())
+		for (CConfigDB::hook_t& hook : *m_ConfigHooks)
+			g_ConfigDB.UnregisterHook(std::move(hook));
+	m_ConfigHooks->clear();
 }
 
 void CRenderingOptions::SetShadows(bool value)
 {
 	m_Shadows = value;
-	g_Renderer.MakeShadersDirty();
+	if (CRenderer::IsInitialised())
+		g_Renderer.MakeShadersDirty();
 }
 
 void CRenderingOptions::SetShadowPCF(bool value)
 {
 	m_ShadowPCF = value;
-	g_Renderer.MakeShadersDirty();
+	if (CRenderer::IsInitialised())
+		g_Renderer.MakeShadersDirty();
 }
 
 void CRenderingOptions::SetFog(bool value)
 {
 	m_Fog = value;
-	g_Renderer.MakeShadersDirty();
+	if (CRenderer::IsInitialised())
+		g_Renderer.MakeShadersDirty();
 }
 
 void CRenderingOptions::SetPreferGLSL(bool value)
@@ -218,6 +227,8 @@ void CRenderingOptions::SetPreferGLSL(bool value)
 		CFG_GET_VAL("gpuskinning", m_GPUSkinning);
 
 	m_PreferGLSL = value;
+	if (!CRenderer::IsInitialised())
+		return;
 	g_Renderer.MakeShadersDirty();
 	g_Renderer.RecomputeSystemShaderDefines();
 }
@@ -226,5 +237,6 @@ void CRenderingOptions::SetPreferGLSL(bool value)
 void CRenderingOptions::SetRenderPath(RenderPath value)
 {
 	m_RenderPath = value;
-	g_Renderer.SetRenderPath(m_RenderPath);
+	if (CRenderer::IsInitialised())
+		g_Renderer.SetRenderPath(m_RenderPath);
 }

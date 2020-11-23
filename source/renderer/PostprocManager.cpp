@@ -591,7 +591,7 @@ void CPostprocManager::SetPostEffect(const CStrW& name)
 
 void CPostprocManager::UpdateAntiAliasingTechnique()
 {
-	if (!g_RenderingOptions.GetPreferGLSL())
+	if (!g_RenderingOptions.GetPreferGLSL() || !m_IsInitialized)
 		return;
 
 	CStr newAAName;
@@ -651,7 +651,7 @@ void CPostprocManager::UpdateAntiAliasingTechnique()
 
 void CPostprocManager::UpdateSharpeningTechnique()
 {
-	if (!g_RenderingOptions.GetPreferGLSL())
+	if (!g_RenderingOptions.GetPreferGLSL() || !m_IsInitialized)
 		return;
 
 	CStr newSharpName;

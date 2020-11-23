@@ -19,6 +19,9 @@
  * Keeps track of the settings used for rendering.
  * Ideally this header file should remain very quick to parse,
  * so avoid including other headers here unless absolutely necessary.
+ *
+ * Lifetime concerns: g_RenderingOptions always exists, but hooks are tied to the configDB's lifetime
+ * an the renderer may or may not actually exist.
  */
 
 #ifndef INCLUDED_RENDERINGOPTIONS
@@ -55,7 +58,8 @@ public:
 	CRenderingOptions();
 	~CRenderingOptions();
 
-	void ReadConfig();
+	void ReadConfigAndSetupHooks();
+	void ClearHooks();
 
 #define OPTION_DEFAULT_SETTER(NAME, TYPE) \
 public: void Set##NAME(TYPE value) { m_##NAME = value; }\
@@ -113,18 +117,6 @@ OPTION_CUSTOM_SETTER(NAME, TYPE); OPTION_GETTER(NAME, TYPE); OPTION_DEF(NAME, TY
 #undef OPTION_WITH_SIDE_EFFECT
 
 private:
-	/**
-	 * Registers a config hook for config variable @name that updates @variable.
-	 * Also immediately updates variable with the value of the config.
-	 */
-	template<typename T>
-	void SetupConfig(CStr8 name, T& variable);
-	/**
-	 * Registers a config hook for config variable @name.
-	 * Also immediately triggers the hook.
-	 */
-	void SetupConfig(CStr8 name, std::function<void()> hook);
-
 	class ConfigHooks;
 	std::unique_ptr<ConfigHooks> m_ConfigHooks; // Hide this via PImpl to avoid including ConfigDB.h here.
 };
