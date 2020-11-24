@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-13 08:08+0000\n"
-"PO-Revision-Date: 2020-11-14 09:19+0000\n"
+"POT-Creation-Date: 2020-11-20 08:08+0000\n"
+"PO-Revision-Date: 2020-11-20 19:38+0000\n"
 "Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -59,24 +59,28 @@ msgstr "Sakatu %(hotkey)s hainbat jokalarien gela irekitzeko partida utzi gabe."
 msgid "Options"
 msgstr "Aukerak"
 
-#: gui/session/MenuButtons.js:196
+#: gui/session/MenuButtons.js:182
+msgid "Hotkeys"
+msgstr "Laster teklak"
+
+#: gui/session/MenuButtons.js:217
 msgid "Resume"
 msgstr "Berrekin"
 
-#: gui/session/MenuButtons.js:196
+#: gui/session/MenuButtons.js:217
 msgid "Pause"
 msgstr "Pausatu"
 
-#: gui/session/MenuButtons.js:197
+#: gui/session/MenuButtons.js:218
 #, javascript-format
 msgid "Press %(hotkey)s to pause or resume the game."
 msgstr "Sakatu %(hotkey)s partida pausatu edo berrabiatzeko."
 
-#: gui/session/MenuButtons.js:213
+#: gui/session/MenuButtons.js:234
 msgid "Resign"
 msgstr "Errenditu"
 
-#: gui/session/MenuButtons.js:237
+#: gui/session/MenuButtons.js:258
 #: gui/session/NetworkStatusOverlay.xml:(caption):9
 msgid "Exit"
 msgstr "Irten"
@@ -125,7 +129,7 @@ msgid "Paused by %(players)s"
 msgstr "%(players)s-engatik gelditua"
 
 #: gui/session/ResearchProgress.js:108 gui/session/selection_details.js:268
-#: gui/session/selection_details.js:284 gui/session/selection_panels.js:598
+#: gui/session/selection_details.js:284 gui/session/selection_panels.js:600
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
@@ -298,93 +302,93 @@ msgstr "Jo alarma!"
 msgid "End of alert."
 msgstr "Alarmaren bukaera."
 
-#: gui/session/selection_panels.js:378
+#: gui/session/selection_panels.js:380
 #, javascript-format
 msgid "Unload %(name)s"
 msgstr "Hustu %(name)s"
 
-#: gui/session/selection_panels.js:379
+#: gui/session/selection_panels.js:381
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "Klik bakarra unitate 1 irtenarazteko. Maius-klik mota bereko denak irtenarazteko."
 
-#: gui/session/selection_panels.js:381 gui/session/selection_panels.js:888
+#: gui/session/selection_panels.js:383 gui/session/selection_panels.js:893
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr "Jokalaria: %(playername)s"
 
-#: gui/session/selection_panels.js:417
+#: gui/session/selection_panels.js:419
 msgid "Lock Gate"
 msgstr "Blokeatu atea"
 
-#: gui/session/selection_panels.js:423
+#: gui/session/selection_panels.js:425
 msgid "Unlock Gate"
 msgstr "Desblokeatu atea"
 
-#: gui/session/selection_panels.js:474
+#: gui/session/selection_panels.js:476
 msgid "Pack"
 msgstr "Multzokatu"
 
-#: gui/session/selection_panels.js:482
+#: gui/session/selection_panels.js:484
 msgid "Unpack"
 msgstr "Banandu"
 
-#: gui/session/selection_panels.js:490
+#: gui/session/selection_panels.js:492
 msgid "Cancel Packing"
 msgstr "Multzokatzea ezeztatu"
 
-#: gui/session/selection_panels.js:498
+#: gui/session/selection_panels.js:500
 msgid "Cancel Unpacking"
 msgstr "Banaketa ezeztatu"
 
-#: gui/session/selection_panels.js:585
+#: gui/session/selection_panels.js:587
 msgid "Insufficient population capacity:"
 msgstr "Biztanleria edukiera eskasa:"
 
-#: gui/session/selection_panels.js:586
+#: gui/session/selection_panels.js:588
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:756
+#: gui/session/selection_panels.js:758
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
 msgstr[0] "%(class)s klaseko entitate %(number)s"
 msgstr[1] "%(class)s klaseko %(number)s entitate"
 
-#: gui/session/selection_panels.js:762
+#: gui/session/selection_panels.js:764
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
 msgstr "Falta da: %(entityCounts)s"
 
-#: gui/session/selection_panels.js:763
+#: gui/session/selection_panels.js:765
 msgctxt "Separator for a list of entity counts"
 msgid ", "
 msgstr ","
 
-#: gui/session/selection_panels.js:812
+#: gui/session/selection_panels.js:817
 msgid "Cannot research while upgrading."
 msgstr "Ezin da ikertu eguneratu bitartean."
 
-#: gui/session/selection_panels.js:1034
+#: gui/session/selection_panels.js:1040
 msgid "Cannot train while upgrading."
 msgstr "Ezin da trebatu eguneratu bitartean."
 
-#: gui/session/selection_panels.js:1096
+#: gui/session/selection_panels.js:1102
 #, javascript-format
 msgid "Upgrade to %(name)s. %(tooltip)s"
 msgstr "Sustatu %(name)s(e)ra. %(tooltip)s"
 
-#: gui/session/selection_panels.js:1101
+#: gui/session/selection_panels.js:1107
 #, javascript-format
 msgid "Upgrade to %(name)s."
 msgstr "Sustatu %(name)s(e)ra"
 
-#: gui/session/selection_panels.js:1136
+#: gui/session/selection_panels.js:1142
 msgid "Cancel Upgrading"
 msgstr "Eguneraketa ezeztatu"
 
-#: gui/session/selection_panels.js:1151
+#: gui/session/selection_panels.js:1157
 msgid ""
 "Cannot upgrade when the entity is training, researching or already "
 "upgrading."

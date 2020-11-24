@@ -23,8 +23,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-13 08:08+0000\n"
-"PO-Revision-Date: 2020-11-13 10:23+0000\n"
+"POT-Creation-Date: 2020-11-20 08:08+0000\n"
+"PO-Revision-Date: 2020-11-20 10:27+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -70,24 +70,28 @@ msgstr "按%(hotkey)s不離開遊戲而打開多人遊戲大廳"
 msgid "Options"
 msgstr "選項"
 
-#: gui/session/MenuButtons.js:196
+#: gui/session/MenuButtons.js:182
+msgid "Hotkeys"
+msgstr ""
+
+#: gui/session/MenuButtons.js:217
 msgid "Resume"
 msgstr "繼續遊戲"
 
-#: gui/session/MenuButtons.js:196
+#: gui/session/MenuButtons.js:217
 msgid "Pause"
 msgstr "暫停"
 
-#: gui/session/MenuButtons.js:197
+#: gui/session/MenuButtons.js:218
 #, javascript-format
 msgid "Press %(hotkey)s to pause or resume the game."
 msgstr "按%(hotkey)s暫停或回到遊戲"
 
-#: gui/session/MenuButtons.js:213
+#: gui/session/MenuButtons.js:234
 msgid "Resign"
 msgstr "放棄"
 
-#: gui/session/MenuButtons.js:237
+#: gui/session/MenuButtons.js:258
 #: gui/session/NetworkStatusOverlay.xml:(caption):9
 msgid "Exit"
 msgstr "退出"
@@ -136,7 +140,7 @@ msgid "Paused by %(players)s"
 msgstr "由 %(players)s 暫停"
 
 #: gui/session/ResearchProgress.js:108 gui/session/selection_details.js:268
-#: gui/session/selection_details.js:284 gui/session/selection_panels.js:598
+#: gui/session/selection_details.js:284 gui/session/selection_panels.js:600
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
@@ -307,92 +311,92 @@ msgstr "引發警報！"
 msgid "End of alert."
 msgstr "警報結束。"
 
-#: gui/session/selection_panels.js:378
+#: gui/session/selection_panels.js:380
 #, javascript-format
 msgid "Unload %(name)s"
 msgstr "卸下 %(name)s"
 
-#: gui/session/selection_panels.js:379
+#: gui/session/selection_panels.js:381
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "單擊卸下 1. Shift 並單擊卸下所有該類型的單位。"
 
-#: gui/session/selection_panels.js:381 gui/session/selection_panels.js:888
+#: gui/session/selection_panels.js:383 gui/session/selection_panels.js:893
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr "玩家：%(playername)s"
 
-#: gui/session/selection_panels.js:417
+#: gui/session/selection_panels.js:419
 msgid "Lock Gate"
 msgstr "鎖住大門"
 
-#: gui/session/selection_panels.js:423
+#: gui/session/selection_panels.js:425
 msgid "Unlock Gate"
 msgstr "開放大門"
 
-#: gui/session/selection_panels.js:474
+#: gui/session/selection_panels.js:476
 msgid "Pack"
 msgstr "打包"
 
-#: gui/session/selection_panels.js:482
+#: gui/session/selection_panels.js:484
 msgid "Unpack"
 msgstr "解壓縮"
 
-#: gui/session/selection_panels.js:490
+#: gui/session/selection_panels.js:492
 msgid "Cancel Packing"
 msgstr "取消打包"
 
-#: gui/session/selection_panels.js:498
+#: gui/session/selection_panels.js:500
 msgid "Cancel Unpacking"
 msgstr "取消解壓縮"
 
-#: gui/session/selection_panels.js:585
+#: gui/session/selection_panels.js:587
 msgid "Insufficient population capacity:"
 msgstr "人口上限不足："
 
-#: gui/session/selection_panels.js:586
+#: gui/session/selection_panels.js:588
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:756
+#: gui/session/selection_panels.js:758
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
 msgstr[0] "%(number)s 給等級 %(class)s"
 
-#: gui/session/selection_panels.js:762
+#: gui/session/selection_panels.js:764
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
 msgstr "剩餘：%(entityCounts)s"
 
-#: gui/session/selection_panels.js:763
+#: gui/session/selection_panels.js:765
 msgctxt "Separator for a list of entity counts"
 msgid ", "
 msgstr "，"
 
-#: gui/session/selection_panels.js:812
+#: gui/session/selection_panels.js:817
 msgid "Cannot research while upgrading."
 msgstr "升級時無法研究。"
 
-#: gui/session/selection_panels.js:1034
+#: gui/session/selection_panels.js:1040
 msgid "Cannot train while upgrading."
 msgstr "升級時無法訓練。"
 
-#: gui/session/selection_panels.js:1096
+#: gui/session/selection_panels.js:1102
 #, javascript-format
 msgid "Upgrade to %(name)s. %(tooltip)s"
 msgstr "升級至 %(name)s。 %(tooltip)s"
 
-#: gui/session/selection_panels.js:1101
+#: gui/session/selection_panels.js:1107
 #, javascript-format
 msgid "Upgrade to %(name)s."
 msgstr "升級至 %(name)s。"
 
-#: gui/session/selection_panels.js:1136
+#: gui/session/selection_panels.js:1142
 msgid "Cancel Upgrading"
 msgstr "取消升級"
 
-#: gui/session/selection_panels.js:1151
+#: gui/session/selection_panels.js:1157
 msgid ""
 "Cannot upgrade when the entity is training, researching or already "
 "upgrading."

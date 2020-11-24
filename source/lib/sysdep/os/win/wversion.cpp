@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -35,29 +35,29 @@ static wchar_t windowsVersionString[20];
 static size_t windowsVersion;	// see WVERSION_*
 
 
-const wchar_t* wversion_Family()
+const char* wversion_Family()
 {
 	ENSURE(windowsVersion != 0);
 	switch(windowsVersion)
 	{
 	case WVERSION_2K:
-		return L"Win2k";
+		return "Win2k";
 	case WVERSION_XP:
-		return L"WinXP";
+		return "WinXP";
 	case WVERSION_XP64:
-		return L"WinXP64";
+		return "WinXP64";
 	case WVERSION_VISTA:
-		return L"Vista";
+		return "Vista";
 	case WVERSION_7:
-		return L"Win7";
+		return "Win7";
 	case WVERSION_8:
-		return L"Win8";
+		return "Win8";
 	case WVERSION_8_1:
-		return L"Win8.1";
+		return "Win8.1";
 	case WVERSION_10:
-		return L"Win10";
+		return "Win10";
 	default:
-		return L"Windows";
+		return "Windows";
 	}
 }
 

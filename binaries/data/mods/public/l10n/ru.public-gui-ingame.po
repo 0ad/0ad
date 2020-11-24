@@ -66,8 +66,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-13 08:08+0000\n"
-"PO-Revision-Date: 2020-11-13 10:23+0000\n"
+"POT-Creation-Date: 2020-11-20 08:08+0000\n"
+"PO-Revision-Date: 2020-11-20 10:27+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -113,24 +113,28 @@ msgstr "Нажмите %(hotkey)s для открытия страницы ло�
 msgid "Options"
 msgstr "Опции"
 
-#: gui/session/MenuButtons.js:196
+#: gui/session/MenuButtons.js:182
+msgid "Hotkeys"
+msgstr ""
+
+#: gui/session/MenuButtons.js:217
 msgid "Resume"
 msgstr "Продолжить"
 
-#: gui/session/MenuButtons.js:196
+#: gui/session/MenuButtons.js:217
 msgid "Pause"
 msgstr "Пауза"
 
-#: gui/session/MenuButtons.js:197
+#: gui/session/MenuButtons.js:218
 #, javascript-format
 msgid "Press %(hotkey)s to pause or resume the game."
 msgstr "Нажмите %(hotkey)s для приостановки или продолжения игры."
 
-#: gui/session/MenuButtons.js:213
+#: gui/session/MenuButtons.js:234
 msgid "Resign"
 msgstr "Сдаться"
 
-#: gui/session/MenuButtons.js:237
+#: gui/session/MenuButtons.js:258
 #: gui/session/NetworkStatusOverlay.xml:(caption):9
 msgid "Exit"
 msgstr "Выход"
@@ -179,7 +183,7 @@ msgid "Paused by %(players)s"
 msgstr "Приостановлено игроком %(players)s"
 
 #: gui/session/ResearchProgress.js:108 gui/session/selection_details.js:268
-#: gui/session/selection_details.js:284 gui/session/selection_panels.js:598
+#: gui/session/selection_details.js:284 gui/session/selection_panels.js:600
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
@@ -356,54 +360,54 @@ msgstr "Поднять тревогу!"
 msgid "End of alert."
 msgstr "Отменить тревогу."
 
-#: gui/session/selection_panels.js:378
+#: gui/session/selection_panels.js:380
 #, javascript-format
 msgid "Unload %(name)s"
 msgstr "Выгрузить %(name)s"
 
-#: gui/session/selection_panels.js:379
+#: gui/session/selection_panels.js:381
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "Щёлкните для выгрузки одной единицы. Зажмите Shift и щёлкните для выгрузки всех этого типа. "
 
-#: gui/session/selection_panels.js:381 gui/session/selection_panels.js:888
+#: gui/session/selection_panels.js:383 gui/session/selection_panels.js:893
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr "Игрок: %(playername)s"
 
-#: gui/session/selection_panels.js:417
+#: gui/session/selection_panels.js:419
 msgid "Lock Gate"
 msgstr "Запереть ворота"
 
-#: gui/session/selection_panels.js:423
+#: gui/session/selection_panels.js:425
 msgid "Unlock Gate"
 msgstr "Открыть ворота"
 
-#: gui/session/selection_panels.js:474
+#: gui/session/selection_panels.js:476
 msgid "Pack"
 msgstr "Свернуть"
 
-#: gui/session/selection_panels.js:482
+#: gui/session/selection_panels.js:484
 msgid "Unpack"
 msgstr "Развернуть"
 
-#: gui/session/selection_panels.js:490
+#: gui/session/selection_panels.js:492
 msgid "Cancel Packing"
 msgstr "Отменить сворачивание"
 
-#: gui/session/selection_panels.js:498
+#: gui/session/selection_panels.js:500
 msgid "Cancel Unpacking"
 msgstr "Отменить разворачивание"
 
-#: gui/session/selection_panels.js:585
+#: gui/session/selection_panels.js:587
 msgid "Insufficient population capacity:"
 msgstr "Недостаточная вместимость населения:"
 
-#: gui/session/selection_panels.js:586
+#: gui/session/selection_panels.js:588
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:756
+#: gui/session/selection_panels.js:758
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
@@ -412,39 +416,39 @@ msgstr[1] "%(number)s объектов класса %(class)s"
 msgstr[2] "%(number)s объектов класса %(class)s"
 msgstr[3] "%(number)s объекта класса %(class)s"
 
-#: gui/session/selection_panels.js:762
+#: gui/session/selection_panels.js:764
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
 msgstr "Осталось: %(entityCounts)s"
 
-#: gui/session/selection_panels.js:763
+#: gui/session/selection_panels.js:765
 msgctxt "Separator for a list of entity counts"
 msgid ", "
 msgstr ", "
 
-#: gui/session/selection_panels.js:812
+#: gui/session/selection_panels.js:817
 msgid "Cannot research while upgrading."
 msgstr ""
 
-#: gui/session/selection_panels.js:1034
+#: gui/session/selection_panels.js:1040
 msgid "Cannot train while upgrading."
 msgstr ""
 
-#: gui/session/selection_panels.js:1096
+#: gui/session/selection_panels.js:1102
 #, javascript-format
 msgid "Upgrade to %(name)s. %(tooltip)s"
 msgstr "Улучшить до %(name)s. %(tooltip)s"
 
-#: gui/session/selection_panels.js:1101
+#: gui/session/selection_panels.js:1107
 #, javascript-format
 msgid "Upgrade to %(name)s."
 msgstr "Улучшить до %(name)s."
 
-#: gui/session/selection_panels.js:1136
+#: gui/session/selection_panels.js:1142
 msgid "Cancel Upgrading"
 msgstr "Отменить Улучшение"
 
-#: gui/session/selection_panels.js:1151
+#: gui/session/selection_panels.js:1157
 msgid ""
 "Cannot upgrade when the entity is training, researching or already "
 "upgrading."
