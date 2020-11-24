@@ -16,6 +16,7 @@
 #include "mozilla/Types.h"
 
 #include <stdint.h>
+#include <string.h>
 
 MOZ_BEGIN_EXTERN_C
 
@@ -24,10 +25,7 @@ extern MFBT_DATA uintptr_t gMozillaPoisonValue;
 /**
  * @return the poison value.
  */
-inline uintptr_t mozPoisonValue()
-{
-  return gMozillaPoisonValue;
-}
+inline uintptr_t mozPoisonValue() { return gMozillaPoisonValue; }
 
 /**
  * Overwrite the memory block of aSize bytes at aPtr with the poison value.
@@ -35,15 +33,13 @@ inline uintptr_t mozPoisonValue()
  * Only an even number of sizeof(uintptr_t) bytes are overwritten, the last
  * few bytes (if any) is not overwritten.
  */
-inline void mozWritePoison(void* aPtr, size_t aSize)
-{
+inline void mozWritePoison(void* aPtr, size_t aSize) {
   const uintptr_t POISON = mozPoisonValue();
   char* p = (char*)aPtr;
-  char* limit = p + aSize;
-  MOZ_ASSERT((uintptr_t)aPtr % sizeof(uintptr_t) == 0, "bad alignment");
+  char* limit = p + (aSize & ~(sizeof(uintptr_t) - 1));
   MOZ_ASSERT(aSize >= sizeof(uintptr_t), "poisoning this object has no effect");
   for (; p < limit; p += sizeof(uintptr_t)) {
-    *((uintptr_t*)p) = POISON;
+    memcpy(p, &POISON, sizeof(POISON));
   }
 }
 
@@ -80,10 +76,8 @@ namespace mozilla {
  * various uses of the corrupted memory.
  */
 class CorruptionCanary {
-public:
-  CorruptionCanary() {
-    mValue = kCanarySet;
-  }
+ public:
+  CorruptionCanary() { mValue = kCanarySet; }
 
   ~CorruptionCanary() {
     Check();
@@ -96,12 +90,12 @@ public:
     }
   }
 
-private:
+ private:
   static const uintptr_t kCanarySet = 0x0f0b0f0b;
   uintptr_t mValue;
 };
 
-} // mozilla
+}  // namespace mozilla
 
 #endif
 

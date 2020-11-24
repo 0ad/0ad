@@ -13,6 +13,7 @@
 #define mozilla_AllocPolicy_h
 
 #include "mozilla/Attributes.h"
+#include "mozilla/Assertions.h"
 #include "mozilla/TemplateLib.h"
 
 #include <stddef.h>
@@ -68,12 +69,10 @@ namespace mozilla {
  * A policy that straightforwardly uses malloc/calloc/realloc/free and adds no
  * extra behaviors.
  */
-class MallocAllocPolicy
-{
-public:
+class MallocAllocPolicy {
+ public:
   template <typename T>
-  T* maybe_pod_malloc(size_t aNumElems)
-  {
+  T* maybe_pod_malloc(size_t aNumElems) {
     if (aNumElems & mozilla::tl::MulOverflowMask<sizeof(T)>::value) {
       return nullptr;
     }
@@ -81,14 +80,12 @@ public:
   }
 
   template <typename T>
-  T* maybe_pod_calloc(size_t aNumElems)
-  {
+  T* maybe_pod_calloc(size_t aNumElems) {
     return static_cast<T*>(calloc(aNumElems, sizeof(T)));
   }
 
   template <typename T>
-  T* maybe_pod_realloc(T* aPtr, size_t aOldSize, size_t aNewSize)
-  {
+  T* maybe_pod_realloc(T* aPtr, size_t aOldSize, size_t aNewSize) {
     if (aNewSize & mozilla::tl::MulOverflowMask<sizeof(T)>::value) {
       return nullptr;
     }
@@ -96,38 +93,73 @@ public:
   }
 
   template <typename T>
-  T* pod_malloc(size_t aNumElems)
-  {
+  T* pod_malloc(size_t aNumElems) {
     return maybe_pod_malloc<T>(aNumElems);
   }
 
   template <typename T>
-  T* pod_calloc(size_t aNumElems)
-  {
+  T* pod_calloc(size_t aNumElems) {
     return maybe_pod_calloc<T>(aNumElems);
   }
 
   template <typename T>
-  T* pod_realloc(T* aPtr, size_t aOldSize, size_t aNewSize)
-  {
+  T* pod_realloc(T* aPtr, size_t aOldSize, size_t aNewSize) {
     return maybe_pod_realloc<T>(aPtr, aOldSize, aNewSize);
   }
 
-  void free_(void* aPtr)
-  {
-    free(aPtr);
-  }
+  void free_(void* aPtr) { free(aPtr); }
 
-  void reportAllocOverflow() const
-  {
-  }
+  void reportAllocOverflow() const {}
 
-  MOZ_MUST_USE bool checkSimulatedOOM() const
-  {
-    return true;
-  }
+  MOZ_MUST_USE bool checkSimulatedOOM() const { return true; }
 };
 
-} // namespace mozilla
+/*
+ * A policy which always fails to allocate memory, returning nullptr. Methods
+ * which expect an existing allocation assert.
+ *
+ * This type should be used in situations where you want to use a MFBT type with
+ * inline storage, and don't want to allow it to allocate on the heap.
+ */
+class NeverAllocPolicy {
+ public:
+  template <typename T>
+  T* maybe_pod_malloc(size_t aNumElems) {
+    return nullptr;
+  }
+
+  template <typename T>
+  T* maybe_pod_calloc(size_t aNumElems) {
+    return nullptr;
+  }
+
+  template <typename T>
+  T* maybe_pod_realloc(T* aPtr, size_t aOldSize, size_t aNewSize) {
+    MOZ_CRASH("NeverAllocPolicy::maybe_pod_realloc");
+  }
+
+  template <typename T>
+  T* pod_malloc(size_t aNumElems) {
+    return nullptr;
+  }
+
+  template <typename T>
+  T* pod_calloc(size_t aNumElems) {
+    return nullptr;
+  }
+
+  template <typename T>
+  T* pod_realloc(T* aPtr, size_t aOldSize, size_t aNewSize) {
+    MOZ_CRASH("NeverAllocPolicy::pod_realloc");
+  }
+
+  void free_(void* aPtr) { MOZ_CRASH("NeverAllocPolicy::free_"); }
+
+  void reportAllocOverflow() const {}
+
+  MOZ_MUST_USE bool checkSimulatedOOM() const { return true; }
+};
+
+}  // namespace mozilla
 
 #endif /* mozilla_AllocPolicy_h */

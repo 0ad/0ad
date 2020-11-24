@@ -26,13 +26,11 @@
 #include "mozilla/Types.h"
 
 // jstypes.h is (or should be!) included by every file in SpiderMonkey.
-// js-config.h and jsversion.h also should be included by every file.
-// So include them here.
-// XXX: including them in js/RequiredDefines.h should be a better option, since
+// js-config.h also should be included by every file. So include it here.
+// XXX: including it in js/RequiredDefines.h should be a better option, since
 // that is by definition the header file that should be included in all
 // SpiderMonkey code.  However, Gecko doesn't do this!  See bug 909576.
 #include "js-config.h"
-#include "jsversion.h"
 
 /***********************************************************************
 ** MACROS:      JS_EXTERN_API
@@ -55,10 +53,10 @@
 **
 ***********************************************************************/
 
-#define JS_EXTERN_API(type)  extern MOZ_EXPORT type
-#define JS_EXPORT_API(type)  MOZ_EXPORT type
+#define JS_EXTERN_API(type) extern MOZ_EXPORT type
+#define JS_EXPORT_API(type) MOZ_EXPORT type
 #define JS_EXPORT_DATA(type) MOZ_EXPORT type
-#define JS_IMPORT_API(type)  MOZ_IMPORT_API type
+#define JS_IMPORT_API(type) MOZ_IMPORT_API type
 #define JS_IMPORT_DATA(type) MOZ_IMPORT_DATA type
 
 /*
@@ -68,20 +66,20 @@
  * should not. STATIC_JS_API is used to build JS as a static library.
  */
 #if defined(STATIC_JS_API)
-#  define JS_PUBLIC_API(t)   t
-#  define JS_PUBLIC_DATA(t)  t
-#  define JS_FRIEND_API(t)   t
-#  define JS_FRIEND_DATA(t)  t
+#define JS_PUBLIC_API
+#define JS_PUBLIC_DATA
+#define JS_FRIEND_API
+#define JS_FRIEND_DATA
 #elif defined(EXPORT_JS_API) || defined(STATIC_EXPORTABLE_JS_API)
-#  define JS_PUBLIC_API(t)   MOZ_EXPORT t
-#  define JS_PUBLIC_DATA(t)  MOZ_EXPORT t
-#  define JS_FRIEND_API(t)    MOZ_EXPORT t
-#  define JS_FRIEND_DATA(t)   MOZ_EXPORT t
+#define JS_PUBLIC_API MOZ_EXPORT
+#define JS_PUBLIC_DATA MOZ_EXPORT
+#define JS_FRIEND_API MOZ_EXPORT
+#define JS_FRIEND_DATA MOZ_EXPORT
 #else
-#  define JS_PUBLIC_API(t)   MOZ_IMPORT_API t
-#  define JS_PUBLIC_DATA(t)  MOZ_IMPORT_DATA t
-#  define JS_FRIEND_API(t)   MOZ_IMPORT_API t
-#  define JS_FRIEND_DATA(t)  MOZ_IMPORT_DATA t
+#define JS_PUBLIC_API MOZ_IMPORT_API
+#define JS_PUBLIC_DATA MOZ_IMPORT_DATA
+#define JS_FRIEND_API MOZ_IMPORT_API
+#define JS_FRIEND_DATA MOZ_IMPORT_DATA
 #endif
 
 #if defined(_MSC_VER) && defined(_M_IX86)
@@ -97,8 +95,10 @@
 // forward-declarations or explicit template instantiations.  See
 // <https://gcc.gnu.org/bugzilla/show_bug.cgi?id=50044>.  Add a way to detect
 // that so we can locally disable that warning.
-#if !defined(__clang__) && defined(__GNUC__) && (__GNUC__ < 6 || (__GNUC__ == 6 && __GNUC_MINOR__ <= 4))
+#if MOZ_IS_GCC
+#if MOZ_GCC_VERSION_AT_MOST(8, 0, 0)
 #define JS_BROKEN_GCC_ATTRIBUTE_WARNING
+#endif
 #endif
 
 /***********************************************************************
@@ -108,14 +108,16 @@
 **      Macro body brackets so that macros with compound statement definitions
 **      behave syntactically more like functions when called.
 ***********************************************************************/
-#define JS_BEGIN_MACRO  do {
-
+#define JS_BEGIN_MACRO do {
 #if defined(_MSC_VER)
-# define JS_END_MACRO                                                         \
-    } __pragma(warning(push)) __pragma(warning(disable:4127))                 \
-    while (0) __pragma(warning(pop))
+#define JS_END_MACRO                                                  \
+  }                                                                   \
+  __pragma(warning(push)) __pragma(warning(disable : 4127)) while (0) \
+      __pragma(warning(pop))
 #else
-# define JS_END_MACRO   } while (0)
+#define JS_END_MACRO \
+  }                  \
+  while (0)
 #endif
 
 /***********************************************************************
@@ -124,8 +126,8 @@
 ** DESCRIPTION:
 ** Bit masking macros.  XXX n must be <= 31 to be portable
 ***********************************************************************/
-#define JS_BIT(n)       ((uint32_t)1 << (n))
-#define JS_BITMASK(n)   (JS_BIT(n) - 1)
+#define JS_BIT(n) ((uint32_t)1 << (n))
+#define JS_BITMASK(n) (JS_BIT(n) - 1)
 
 /***********************************************************************
 ** MACROS:      JS_HOWMANY
@@ -133,68 +135,16 @@
 ** DESCRIPTION:
 **      Commonly used macros for operations on compatible types.
 ***********************************************************************/
-#define JS_HOWMANY(x,y) (((x)+(y)-1)/(y))
-#define JS_ROUNDUP(x,y) (JS_HOWMANY(x,y)*(y))
-
-#include "jscpucfg.h"
-
-/*
- * Define JS_64BIT iff we are building in an environment with 64-bit
- * addresses.
- */
-#ifdef _MSC_VER
-# if defined(_M_X64) || defined(_M_AMD64)
-#  define JS_64BIT
-# endif
-#elif defined(__GNUC__)
-/* Additional GCC defines are when running on Solaris, AIX, and HPUX */
-# if defined(__x86_64__) || defined(__sparcv9) || \
-        defined(__64BIT__) || defined(__LP64__)
-#  define JS_64BIT
-# endif
-#elif defined(__SUNPRO_C) || defined(__SUNPRO_CC) /* Sun Studio C/C++ */
-# if defined(__x86_64) || defined(__sparcv9)
-#  define JS_64BIT
-# endif
-#elif defined(__xlc__) || defined(__xlC__)        /* IBM XL C/C++ */
-# if defined(__64BIT__)
-#  define JS_64BIT
-# endif
-#elif defined(__HP_cc) || defined(__HP_aCC)       /* HP-UX cc/aCC */
-# if defined(__LP64__)
-#  define JS_64BIT
-# endif
-#else
-# error "Implement me"
-#endif
-
-/***********************************************************************
-** MACROS:      JS_ARRAY_LENGTH
-**              JS_ARRAY_END
-** DESCRIPTION:
-**      Macros to get the number of elements and the pointer to one past the
-**      last element of a C array. Use them like this:
-**
-**      char16_t buf[10];
-**      JSString* str;
-**      ...
-**      for (char16_t* s = buf; s != JS_ARRAY_END(buf); ++s) *s = ...;
-**      ...
-**      str = JS_NewStringCopyN(cx, buf, JS_ARRAY_LENGTH(buf));
-**      ...
-**
-***********************************************************************/
-
-#define JS_ARRAY_LENGTH(array) (sizeof (array) / sizeof (array)[0])
-#define JS_ARRAY_END(array)    ((array) + JS_ARRAY_LENGTH(array))
+#define JS_HOWMANY(x, y) (((x) + (y)-1) / (y))
+#define JS_ROUNDUP(x, y) (JS_HOWMANY(x, y) * (y))
 
 #define JS_BITS_PER_BYTE 8
 #define JS_BITS_PER_BYTE_LOG2 3
 
 #if defined(JS_64BIT)
-# define JS_BITS_PER_WORD 64
+#define JS_BITS_PER_WORD 64
 #else
-# define JS_BITS_PER_WORD 32
+#define JS_BITS_PER_WORD 32
 #endif
 
 /***********************************************************************
@@ -213,15 +163,15 @@
 **
 ***********************************************************************/
 
-#define JS_FUNC_TO_DATA_PTR(type, fun)  (mozilla::BitwiseCast<type>(fun))
-#define JS_DATA_TO_FUNC_PTR(type, ptr)  (mozilla::BitwiseCast<type>(ptr))
+#define JS_FUNC_TO_DATA_PTR(type, fun) (mozilla::BitwiseCast<type>(fun))
+#define JS_DATA_TO_FUNC_PTR(type, ptr) (mozilla::BitwiseCast<type>(ptr))
 
 #ifdef __GNUC__
-# define JS_EXTENSION __extension__
-# define JS_EXTENSION_(s) __extension__ ({ s; })
+#define JS_EXTENSION __extension__
+#define JS_EXTENSION_(s) __extension__({ s; })
 #else
-# define JS_EXTENSION
-# define JS_EXTENSION_(s) s
+#define JS_EXTENSION
+#define JS_EXTENSION_(s) s
 #endif
 
 #endif /* jstypes_h */

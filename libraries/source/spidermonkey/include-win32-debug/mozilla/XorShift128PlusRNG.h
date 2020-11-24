@@ -61,6 +61,7 @@ class XorShift128PlusRNG {
   /**
    * Return a pseudo-random 64-bit number.
    */
+  MOZ_NO_SANITIZE_UNSIGNED_OVERFLOW
   uint64_t next() {
     /*
      * The offsetOfState*() methods below are provided so that exceedingly-rare
@@ -91,7 +92,7 @@ class XorShift128PlusRNG {
      * to get the mantissa's range.
      */
     static constexpr int kMantissaBits =
-      mozilla::FloatingPoint<double>::kExponentShift + 1;
+        mozilla::FloatingPoint<double>::kExponentShift + 1;
     uint64_t mantissa = next() & ((UINT64_C(1) << kMantissaBits) - 1);
     return double(mantissa) / (UINT64_C(1) << kMantissaBits);
   }
@@ -115,7 +116,7 @@ class XorShift128PlusRNG {
   }
 };
 
-} // namespace non_crypto
-} // namespace mozilla
+}  // namespace non_crypto
+}  // namespace mozilla
 
-#endif // mozilla_XorShift128Plus_h
+#endif  // mozilla_XorShift128Plus_h

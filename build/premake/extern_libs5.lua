@@ -538,9 +538,9 @@ extern_lib_defs = {
 	},
 	spidermonkey = {
 		compile_settings = function()
-			if _OPTIONS["with-system-mozjs52"] then
+			if _OPTIONS["with-system-mozjs"] then
 				if not _OPTIONS["android"] then
-					pkgconfig.add_includes("mozjs-52")
+					pkgconfig.add_includes("mozjs-60")
 				end
 			else
 				if os.istarget("windows") then
@@ -558,21 +558,17 @@ extern_lib_defs = {
 			end
 		end,
 		link_settings = function()
-			if _OPTIONS["with-system-mozjs52"] then
+			if _OPTIONS["with-system-mozjs"] then
 				if _OPTIONS["android"] then
-					links { "mozjs-52" }
+					links { "mozjs-60" }
 				else
-					pkgconfig.add_links("mozjs-52")
+					pkgconfig.add_links("mozjs-60")
 				end
 			else
-				filter { "Debug", "action:vs*" }
-					links { "mozjs52-ps-debug-vc140" }
-				filter { "Release", "action:vs*" }
-					links { "mozjs52-ps-release-vc140" }
-				filter { "Debug", "action:not vs*" }
-					links { "mozjs52-ps-debug" }
-				filter { "Release", "action:not vs*" }
-					links { "mozjs52-ps-release" }
+				filter { "Debug" }
+					links { "mozjs60-ps-debug" }
+				filter { "Release" }
+					links { "mozjs60-ps-release" }
 				filter { }
 				add_source_lib_paths("spidermonkey")
 			end

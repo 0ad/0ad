@@ -19,20 +19,37 @@ namespace mozilla {
  * This class, and the corresponding macro MOZ_ALIGNOF, figures out how many
  * bytes of alignment a given type needs.
  */
-template<typename T>
-class AlignmentFinder
-{
-  struct Aligner
-  {
+template <typename T>
+class AlignmentFinder {
+  struct Aligner {
     char mChar;
     T mT;
   };
 
-public:
+ public:
   static const size_t alignment = sizeof(Aligner) - sizeof(T);
 };
 
 #define MOZ_ALIGNOF(T) mozilla::AlignmentFinder<T>::alignment
+
+namespace detail {
+template <typename T>
+struct AlignasHelper {
+  T mT;
+};
+}  // namespace detail
+
+/*
+ * Use this instead of alignof to align struct field as if it is inside
+ * a struct. On some platforms, there exist types which have different
+ * alignment between when it is used on its own and when it is used on
+ * a struct field.
+ *
+ * Known examples are 64bit types (uint64_t, double) on 32bit Linux,
+ * where they have 8byte alignment on their own, and 4byte alignment
+ * when in struct.
+ */
+#define MOZ_ALIGNAS_IN_STRUCT(T) alignas(mozilla::detail::AlignasHelper<T>)
 
 /*
  * Declare the MOZ_ALIGNED_DECL macro for declaring aligned types.
@@ -45,23 +62,21 @@ public:
  */
 
 #if defined(__GNUC__)
-#  define MOZ_ALIGNED_DECL(_type, _align) \
-     _type __attribute__((aligned(_align)))
+#define MOZ_ALIGNED_DECL(_type, _align) _type __attribute__((aligned(_align)))
 #elif defined(_MSC_VER)
-#  define MOZ_ALIGNED_DECL(_type, _align) \
-     __declspec(align(_align)) _type
+#define MOZ_ALIGNED_DECL(_type, _align) __declspec(align(_align)) _type
 #else
-#  warning "We don't know how to align variables on this compiler."
-#  define MOZ_ALIGNED_DECL(_type, _align) _type
+#warning "We don't know how to align variables on this compiler."
+#define MOZ_ALIGNED_DECL(_type, _align) _type
 #endif
 
 /*
  * AlignedElem<N> is a structure whose alignment is guaranteed to be at least N
  * bytes.
  *
- * We support 1, 2, 4, 8, and 16-bit alignment.
+ * We support 1, 2, 4, 8, and 16-byte alignment.
  */
-template<size_t Align>
+template <size_t Align>
 struct AlignedElem;
 
 /*
@@ -69,71 +84,34 @@ struct AlignedElem;
  * __attribute__((aligned(foo))) where foo is a template parameter.
  */
 
-template<>
-struct AlignedElem<1>
-{
+template <>
+struct AlignedElem<1> {
   MOZ_ALIGNED_DECL(uint8_t elem, 1);
 };
 
-template<>
-struct AlignedElem<2>
-{
+template <>
+struct AlignedElem<2> {
   MOZ_ALIGNED_DECL(uint8_t elem, 2);
 };
 
-template<>
-struct AlignedElem<4>
-{
+template <>
+struct AlignedElem<4> {
   MOZ_ALIGNED_DECL(uint8_t elem, 4);
 };
 
-template<>
-struct AlignedElem<8>
-{
+template <>
+struct AlignedElem<8> {
   MOZ_ALIGNED_DECL(uint8_t elem, 8);
 };
 
-template<>
-struct AlignedElem<16>
-{
+template <>
+struct AlignedElem<16> {
   MOZ_ALIGNED_DECL(uint8_t elem, 16);
 };
 
-/*
- * This utility pales in comparison to Boost's aligned_storage. The utility
- * simply assumes that uint64_t is enough alignment for anyone. This may need
- * to be extended one day...
- *
- * As an important side effect, pulling the storage into this template is
- * enough obfuscation to confuse gcc's strict-aliasing analysis into not giving
- * false negatives when we cast from the char buffer to whatever type we've
- * constructed using the bytes.
- */
-template<size_t Nbytes>
-struct AlignedStorage
-{
-  union U
-  {
-    char mBytes[Nbytes];
-    uint64_t mDummy;
-  } u;
-
-  const void* addr() const { return u.mBytes; }
-  void* addr() { return u.mBytes; }
-
-  AlignedStorage() = default;
-
-  // AlignedStorage is non-copyable: the default copy constructor violates
-  // strict aliasing rules, per bug 1269319.
-  AlignedStorage(const AlignedStorage&) = delete;
-  void operator=(const AlignedStorage&) = delete;
-};
-
-template<typename T>
-struct MOZ_INHERIT_TYPE_ANNOTATIONS_FROM_TEMPLATE_ARGS AlignedStorage2
-{
-  union U
-  {
+template <typename T>
+struct MOZ_INHERIT_TYPE_ANNOTATIONS_FROM_TEMPLATE_ARGS AlignedStorage2 {
+  union U {
     char mBytes[sizeof(T)];
     uint64_t mDummy;
   } u;

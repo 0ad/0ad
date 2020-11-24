@@ -33,11 +33,17 @@ if [ "$preserve_libs" != "true" ]; then
   (cd ../../libraries/source/fcollada/src && rm -rf ./output)
   (cd ../../libraries/source/nvtt/src && rm -rf ./build)
   (cd ../../libraries/source/spidermonkey && rm -f .already-built)
-  (cd ../../libraries/source/spidermonkey && rm -rf ./mozjs-45.0.2)
+  (cd ../../libraries/source/spidermonkey && rm -rf ./lib)
+  (cd ../../libraries/source/spidermonkey && rm -rf ./include-unix-debug)
+  (cd ../../libraries/source/spidermonkey && rm -rf ./include-unix-release)
+  (cd ../../libraries/source/spidermonkey && rm -rf ./mozjs-62.9.1)
 fi
 
 # Still delete the directory of previous SpiderMonkey versions to
 # avoid wasting disk space if people clean workspaces after updating.
+(cd ../../libraries/source/spidermonkey && rm -rf ./mozjs-52.9.1pre1)
+(cd ../../libraries/source/spidermonkey && rm -rf ./mozjs-45.0.2)
+(cd ../../libraries/source/spidermonkey && rm -rf ./mozjs-38.0.0)
 (cd ../../libraries/source/spidermonkey && rm -rf ./mozjs-38.0.0)
 (cd ../../libraries/source/spidermonkey && rm -rf ./mozjs31)
 (cd ../../libraries/source/spidermonkey && rm -rf ./mozjs24)
