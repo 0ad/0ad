@@ -240,7 +240,7 @@ public:
 	 */
 	const CGUIColor& GetPreDefinedColor(const CStr& name) const { return m_PreDefinedColors.at(name); }
 
-	const void* GetProxyData(const js::BaseProxyHandler* ptr) const { return m_ProxyData.at(ptr); }
+	void* GetProxyData(const js::BaseProxyHandler* ptr) { return m_ProxyData.at(ptr); }
 
 	shared_ptr<ScriptInterface> GetScriptInterface() { return m_ScriptInterface; };
 

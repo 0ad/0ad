@@ -64,7 +64,7 @@ protected:
 
 	// This handles returning function properties.
 	// Specialize this.
-	bool funcGetter(GUIObjectType* elem, const std::string& propName, JS::MutableHandleValue vp) const;
+	bool funcGetter(JS::HandleObject proxy, const std::string& propName, JS::MutableHandleValue vp) const;
 protected:
 	// BaseProxyHandler interface below
 
@@ -97,9 +97,9 @@ protected:
 		return true;
 	}
 	// Return nothing.
-	virtual bool enumerate(JSContext* UNUSED(cx), JS::HandleObject UNUSED(proxy), JS::MutableHandleObject UNUSED(objp)) const override
+	virtual JSObject* enumerate(JSContext* UNUSED(cx), JS::HandleObject UNUSED(proxy)) const override
 	{
-		return true;
+		return nullptr;
 	}
 	// Throw an exception is JS attempts to query the prototype.
 	virtual bool getPrototypeIfOrdinary(JSContext* UNUSED(cx), JS::HandleObject UNUSED(proxy), bool* UNUSED(isOrdinary), JS::MutableHandleObject UNUSED(protop)) const override

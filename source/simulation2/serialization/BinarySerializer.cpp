@@ -68,7 +68,7 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 
 	switch (JS_TypeOfValue(rq.cx, val))
 	{
-	case JSTYPE_VOID:
+	case JSTYPE_UNDEFINED:
 	{
 		m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_VOID);
 		break;
