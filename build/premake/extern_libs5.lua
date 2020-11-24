@@ -184,6 +184,8 @@ extern_lib_defs = {
 	boost = {
 		compile_settings = function()
 			if os.istarget("windows") then
+				-- Force the autolink to use the vc140 libs even on VS2017
+				defines { 'BOOST_LIB_TOOLSET="vc140"' }
 				add_default_include_paths("boost")
 			elseif os.istarget("macosx") then
 				-- Suppress all the Boost warnings on OS X by including it as a system directory
@@ -196,6 +198,9 @@ extern_lib_defs = {
 		end,
 		link_settings = function()
 			if os.istarget("windows") or os.istarget("macosx") then
+				if os.istarget("windows") then
+					defines { 'BOOST_LIB_TOOLSET="vc140"' }
+				end
 				add_default_lib_paths("boost")
 			end
 			add_default_links({
@@ -560,9 +565,9 @@ extern_lib_defs = {
 					pkgconfig.add_links("mozjs-52")
 				end
 			else
-				filter { "Debug", "action:vs2015" }
+				filter { "Debug", "action:vs*" }
 					links { "mozjs52-ps-debug-vc140" }
-				filter { "Release", "action:vs2015" }
+				filter { "Release", "action:vs*" }
 					links { "mozjs52-ps-release-vc140" }
 				filter { "Debug", "action:not vs*" }
 					links { "mozjs52-ps-debug" }

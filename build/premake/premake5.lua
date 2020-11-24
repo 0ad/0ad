@@ -397,6 +397,8 @@ function project_create(project_name, target_type)
 
 	filter "action:vs2015"
 		toolset "v140_xp"
+	filter "action:vs2017"
+		toolset "v141_xp"
 	filter {}
 
 	filter "action:vs*"
@@ -880,7 +882,7 @@ function setup_all_libs ()
 	end
 
 	-- runtime-library-specific
-	if _ACTION == "vs2015" then
+	if _ACTION == "vs2015" or _ACTION == "vs2017" then
 		table.insert(source_dirs, "lib/sysdep/rtl/msc");
 	else
 		table.insert(source_dirs, "lib/sysdep/rtl/gcc");
