@@ -54,7 +54,7 @@ SODIUM_VERSION="libsodium-1.0.18"
 # --------------------------------------------------------------
 # We use suffixes here in order to force rebuilding when patching these libs
 NVTT_VERSION="nvtt-2.1.1+wildfiregames.1"
-FCOLLADA_VERSION="fcollada-3.05+wildfiregames.1"
+FCOLLADA_VERSION="fcollada-3.05+wildfiregames.2"
 # --------------------------------------------------------------
 # Provided by OS X:
 # * OpenAL
