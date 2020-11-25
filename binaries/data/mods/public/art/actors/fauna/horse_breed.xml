@@ -2,7 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" file="quadraped/base_horse_breed_fauna.xml" name="fauna horse">
+    <variant>
       <mesh>skeletal/horse_breed.dae</mesh>
     </variant>
   </group>
@@ -19,9 +19,7 @@
     <variant file="quadraped/horse/breed_bay_02.xml" frequency="1" name="bay_02"/>
   </group>
   <group>
-    <variant file="quadraped/base_horse_fauna.xml" name="Horse-Fauna" frequency="1"/>
-    <variant file="quadraped/base_horse_death.xml"/>
-    <variant file="quadraped/base_horse_run.xml"/>
+    <variant file="quadraped/base_horse_breed_fauna.xml" name="Horse-Fauna" frequency="1"/>
   </group>
   <material>no_trans_parallax_spec.xml</material>
 </actor>
