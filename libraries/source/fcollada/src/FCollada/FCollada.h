@@ -22,6 +22,15 @@
 	MIT License: http://www.opensource.org/licenses/mit-license.php
 */
 
+#if _MSC_VER
+# pragma warning(disable:4458) // Hide class member
+# pragma warning(disable:4668) // Incorrect macros
+# pragma warning(disable:4710) // Function not inlined
+# pragma warning(disable:4820) // Wrong padding
+# pragma warning(disable:4365) // Conversion from 'std::size_t' to 'intptr_t', signed / unsigned mismatch
+# pragma warning(disable:4457) // Hide function parameteres
+#endif
+
 #ifndef _FCOLLADA_H_
 #define _FCOLLADA_H_
 
