@@ -43,9 +43,9 @@ namespace {
 }
 
 template <>
-bool JSI_GUIProxy<IGUIObject>::funcGetter(IGUIObject* elem, const std::string& propName, JS::MutableHandleValue vp) const
+bool JSI_GUIProxy<IGUIObject>::funcGetter(JS::HandleObject proxy, const std::string& propName, JS::MutableHandleValue vp) const
 {
-	const SData& data = *static_cast<const SData*>(elem->GetGUI().GetProxyData(this));
+	const SData& data = *static_cast<const SData*>(js::GetProxyReservedSlot(proxy, 0).toPrivate());
 	if (propName == "toString")
 		return vp.setObjectOrNull(data.m_ToString), true;
 	if (propName == "focus")

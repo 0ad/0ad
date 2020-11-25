@@ -665,6 +665,9 @@ namespace
 #  elif NV_CPU_PPC
         ucontext_t * ucp = (ucontext_t *)secret;
         return (void *) ucp->uc_mcontext.regs->nip;
+#    elif NV_CPU_ARM
+        ucontext_t * ucp = (ucontext_t *)secret;
+        return (void *) ucp->uc_mcontext.arm_pc;
 #    elif NV_CPU_AARCH64
         ucontext_t * ucp = (ucontext_t *)secret;
         return (void *) ucp->uc_mcontext.pc;
@@ -1021,7 +1024,12 @@ void debug::dumpCallstack(MessageHandler *messageHandler, int callstackLevelsToS
         writeStackTrace(trace, size, callstackLevelsToSkip + 1, lines);     // + 1 to skip the call to dumpCallstack
 
         for (uint i = 0; i < lines.count(); i++) {
+#if NV_CPU_ARM || NV_CPU_AARCH64 || NV_OS_DARWIN || NV_OS_IOS
+            va_list empty_va_list = {};
+            messageHandler->log(lines[i], empty_va_list);
+#else
             messageHandler->log(lines[i], NULL);
+#endif
             delete lines[i];
         }
     }

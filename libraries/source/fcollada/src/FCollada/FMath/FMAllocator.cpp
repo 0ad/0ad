@@ -11,9 +11,8 @@
 
 namespace fm
 {
-	// default to something: static initialization!
-	AllocateFunc af = malloc;
-	FreeFunc ff = free;
+	AllocateFunc af;
+	FreeFunc ff;
 	
 	void SetAllocationFunctions(AllocateFunc a, FreeFunc f)
 	{
@@ -25,11 +24,13 @@ namespace fm
 	// always allocating/releasing memory from the same heap.
 	void* Allocate(size_t byteCount)
 	{
+		if (!af) af = malloc;
 		return (*af)(byteCount);
 	}
 
 	void Release(void* buffer)
 	{
+		if (!ff) ff = free;
 		(*ff)(buffer);
 	}
 };

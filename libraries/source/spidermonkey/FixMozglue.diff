@@ -1,70 +1,12 @@
-From 4de4b45ff25690aabd5797928b66005555379ffa Mon Sep 17 00:00:00 2001
-From: Till Schneidereit <till@tillschneidereit.net>
-Date: Thu, 1 Oct 2015 12:59:09 +0200
-Subject: [PATCH 5/9] Disable MOZ_GLUE_IN_PROGRAM in stand-alone builds on all
- platforms
-
-Otherwise, build fails not being able to find HashBytes.
-
-Patch ported forward to mozjs52 by Philip Chimento
-<philip.chimento@gmail.com>.
-
-https://bugzilla.mozilla.org/show_bug.cgi?id=1176787
----
- js/src/old-configure.in | 23 ++++++++++++++---------
- mozglue/build/moz.build |  2 +-
- 2 files changed, 15 insertions(+), 10 deletions(-)
-
-diff --git a/js/src/old-configure.in b/js/src/old-configure.in
-index c40eb962..336e1aa7 100644
---- a/js/src/old-configure.in
-+++ b/js/src/old-configure.in
-@@ -1620,16 +1620,21 @@ dnl ========================================================
- dnl = Enable jemalloc
- dnl ========================================================
- 
--case "${OS_TARGET}" in
--Android|WINNT|Darwin)
-+dnl In stand-alone builds we always only want to link executables against mozglue.
-+if test "$JS_STANDALONE"; then
-   MOZ_GLUE_IN_PROGRAM=
--  ;;
--*)
--  dnl On !Android !Windows !OSX, we only want to link executables against mozglue
--  MOZ_GLUE_IN_PROGRAM=1
--  AC_DEFINE(MOZ_GLUE_IN_PROGRAM)
--  ;;
--esac
-+else
-+  case "${OS_TARGET}" in
-+  Android|WINNT|Darwin)
-+    MOZ_GLUE_IN_PROGRAM=
-+    ;;
-+  *)
-+    dnl On !Android !Windows !OSX, we only want to link executables against mozglue
-+    MOZ_GLUE_IN_PROGRAM=1
-+    AC_DEFINE(MOZ_GLUE_IN_PROGRAM)
-+    ;;
-+  esac
-+fi
- 
- if test "$MOZ_MEMORY"; then
-   if test "x$MOZ_DEBUG" = "x1"; then
 diff --git a/mozglue/build/moz.build b/mozglue/build/moz.build
-index d289747785a1..fd1e78a543ed 100644
+index 53758485ac3d..3b5ce063ebb4 100644
 --- a/mozglue/build/moz.build
 +++ b/mozglue/build/moz.build
-@@ -4,9 +4,12 @@
- # License, v. 2.0. If a copy of the MPL was not distributed with this
- # file, You can obtain one at http://mozilla.org/MPL/2.0/.
- 
-+if CONFIG['JS_STANDALONE']:
-+    Library('mozglue')
-+    FINAL_LIBRARY = 'js'
- # Build mozglue as a shared lib on Windows, OSX and Android.
+@@ -9,6 +9,7 @@
  # If this is ever changed, update MOZ_SHARED_MOZGLUE in browser/installer/Makefile.in
--if CONFIG['OS_TARGET'] in ('WINNT', 'Darwin', 'Android'):
-+elif CONFIG['OS_TARGET'] in ('WINNT', 'Darwin', 'Android'):
+ if CONFIG['JS_STANDALONE'] and not CONFIG['MOZ_MEMORY']:
+     Library('mozglue')
++    FINAL_LIBRARY = 'js'
+ elif CONFIG['OS_TARGET'] in ('WINNT', 'Darwin', 'Android'):
      SharedLibrary('mozglue')
  else:
-     Library('mozglue')

@@ -22,12 +22,18 @@
 
 #include "js-config.h"
 
+typedef uint8_t jsbytecode;
+
+class JSAtom;
+struct JSCompartment;
 struct JSContext;
 class JSFunction;
 class JSObject;
+struct JSRuntime;
 class JSScript;
 class JSString;
 class JSAddonId;
+struct JSFreeOp;
 
 struct jsid;
 
@@ -37,43 +43,51 @@ typedef unsigned char Latin1Char;
 
 class Symbol;
 class Value;
-template <typename T> class Handle;
-template <typename T> class MutableHandle;
-template <typename T> class Rooted;
-template <typename T> class PersistentRooted;
+class Realm;
+struct Runtime;
+struct Zone;
+
+template <typename T>
+class Handle;
+template <typename T>
+class MutableHandle;
+template <typename T>
+class Rooted;
+template <typename T>
+class PersistentRooted;
 
 typedef Handle<JSFunction*> HandleFunction;
-typedef Handle<jsid>        HandleId;
-typedef Handle<JSObject*>   HandleObject;
-typedef Handle<JSScript*>   HandleScript;
-typedef Handle<JSString*>   HandleString;
+typedef Handle<jsid> HandleId;
+typedef Handle<JSObject*> HandleObject;
+typedef Handle<JSScript*> HandleScript;
+typedef Handle<JSString*> HandleString;
 typedef Handle<JS::Symbol*> HandleSymbol;
-typedef Handle<Value>       HandleValue;
+typedef Handle<Value> HandleValue;
 
 typedef MutableHandle<JSFunction*> MutableHandleFunction;
-typedef MutableHandle<jsid>        MutableHandleId;
-typedef MutableHandle<JSObject*>   MutableHandleObject;
-typedef MutableHandle<JSScript*>   MutableHandleScript;
-typedef MutableHandle<JSString*>   MutableHandleString;
+typedef MutableHandle<jsid> MutableHandleId;
+typedef MutableHandle<JSObject*> MutableHandleObject;
+typedef MutableHandle<JSScript*> MutableHandleScript;
+typedef MutableHandle<JSString*> MutableHandleString;
 typedef MutableHandle<JS::Symbol*> MutableHandleSymbol;
-typedef MutableHandle<Value>       MutableHandleValue;
+typedef MutableHandle<Value> MutableHandleValue;
 
-typedef Rooted<JSObject*>       RootedObject;
-typedef Rooted<JSFunction*>     RootedFunction;
-typedef Rooted<JSScript*>       RootedScript;
-typedef Rooted<JSString*>       RootedString;
-typedef Rooted<JS::Symbol*>     RootedSymbol;
-typedef Rooted<jsid>            RootedId;
-typedef Rooted<JS::Value>       RootedValue;
+typedef Rooted<JSObject*> RootedObject;
+typedef Rooted<JSFunction*> RootedFunction;
+typedef Rooted<JSScript*> RootedScript;
+typedef Rooted<JSString*> RootedString;
+typedef Rooted<JS::Symbol*> RootedSymbol;
+typedef Rooted<jsid> RootedId;
+typedef Rooted<JS::Value> RootedValue;
 
 typedef PersistentRooted<JSFunction*> PersistentRootedFunction;
-typedef PersistentRooted<jsid>        PersistentRootedId;
-typedef PersistentRooted<JSObject*>   PersistentRootedObject;
-typedef PersistentRooted<JSScript*>   PersistentRootedScript;
-typedef PersistentRooted<JSString*>   PersistentRootedString;
+typedef PersistentRooted<jsid> PersistentRootedId;
+typedef PersistentRooted<JSObject*> PersistentRootedObject;
+typedef PersistentRooted<JSScript*> PersistentRootedScript;
+typedef PersistentRooted<JSString*> PersistentRootedString;
 typedef PersistentRooted<JS::Symbol*> PersistentRootedSymbol;
-typedef PersistentRooted<Value>       PersistentRootedValue;
+typedef PersistentRooted<Value> PersistentRootedValue;
 
-} // namespace JS
+}  // namespace JS
 
 #endif /* js_TypeDecls_h */

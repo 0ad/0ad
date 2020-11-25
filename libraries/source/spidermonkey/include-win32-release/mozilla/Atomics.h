@@ -21,30 +21,9 @@
 #include "mozilla/Compiler.h"
 #include "mozilla/TypeTraits.h"
 
-#include <stdint.h>
+#include <atomic>
 
-/*
- * Our minimum deployment target on clang/OS X is OS X 10.6, whose SDK
- * does not have <atomic>.  So be sure to check for <atomic> support
- * along with C++0x support.
- */
-#if defined(_MSC_VER)
-#  define MOZ_HAVE_CXX11_ATOMICS
-#elif defined(__clang__) || defined(__GNUC__)
-   /*
-    * Clang doesn't like <atomic> from libstdc++ before 4.7 due to the
-    * loose typing of the atomic builtins. GCC 4.5 and 4.6 lacks inline
-    * definitions for unspecialized std::atomic and causes linking errors.
-    * Therefore, we require at least 4.7.0 for using libstdc++.
-    *
-    * libc++ <atomic> is only functional with clang.
-    */
-#  if MOZ_USING_LIBSTDCXX && MOZ_LIBSTDCXX_VERSION_AT_LEAST(4, 7, 0)
-#    define MOZ_HAVE_CXX11_ATOMICS
-#  elif MOZ_USING_LIBCXX && defined(__clang__)
-#    define MOZ_HAVE_CXX11_ATOMICS
-#  endif
-#endif
+#include <stdint.h>
 
 namespace mozilla {
 
@@ -162,402 +141,159 @@ enum MemoryOrdering {
   SequentiallyConsistent,
 };
 
-} // namespace mozilla
-
-// Build up the underlying intrinsics.
-#ifdef MOZ_HAVE_CXX11_ATOMICS
-
-#  include <atomic>
-
-namespace mozilla {
 namespace detail {
 
 /*
  * We provide CompareExchangeFailureOrder to work around a bug in some
  * versions of GCC's <atomic> header.  See bug 898491.
  */
-template<MemoryOrdering Order> struct AtomicOrderConstraints;
+template <MemoryOrdering Order>
+struct AtomicOrderConstraints;
 
-template<>
-struct AtomicOrderConstraints<Relaxed>
-{
+template <>
+struct AtomicOrderConstraints<Relaxed> {
   static const std::memory_order AtomicRMWOrder = std::memory_order_relaxed;
   static const std::memory_order LoadOrder = std::memory_order_relaxed;
   static const std::memory_order StoreOrder = std::memory_order_relaxed;
   static const std::memory_order CompareExchangeFailureOrder =
-    std::memory_order_relaxed;
+      std::memory_order_relaxed;
 };
 
-template<>
-struct AtomicOrderConstraints<ReleaseAcquire>
-{
+template <>
+struct AtomicOrderConstraints<ReleaseAcquire> {
   static const std::memory_order AtomicRMWOrder = std::memory_order_acq_rel;
   static const std::memory_order LoadOrder = std::memory_order_acquire;
   static const std::memory_order StoreOrder = std::memory_order_release;
   static const std::memory_order CompareExchangeFailureOrder =
-    std::memory_order_acquire;
+      std::memory_order_acquire;
 };
 
-template<>
-struct AtomicOrderConstraints<SequentiallyConsistent>
-{
+template <>
+struct AtomicOrderConstraints<SequentiallyConsistent> {
   static const std::memory_order AtomicRMWOrder = std::memory_order_seq_cst;
   static const std::memory_order LoadOrder = std::memory_order_seq_cst;
   static const std::memory_order StoreOrder = std::memory_order_seq_cst;
   static const std::memory_order CompareExchangeFailureOrder =
-    std::memory_order_seq_cst;
+      std::memory_order_seq_cst;
 };
 
-template<typename T, MemoryOrdering Order>
-struct IntrinsicBase
-{
+template <typename T, MemoryOrdering Order>
+struct IntrinsicBase {
   typedef std::atomic<T> ValueType;
   typedef AtomicOrderConstraints<Order> OrderedOp;
 };
 
-template<typename T, MemoryOrdering Order>
-struct IntrinsicMemoryOps : public IntrinsicBase<T, Order>
-{
+template <typename T, MemoryOrdering Order>
+struct IntrinsicMemoryOps : public IntrinsicBase<T, Order> {
   typedef IntrinsicBase<T, Order> Base;
 
-  static T load(const typename Base::ValueType& aPtr)
-  {
+  static T load(const typename Base::ValueType& aPtr) {
     return aPtr.load(Base::OrderedOp::LoadOrder);
   }
 
-  static void store(typename Base::ValueType& aPtr, T aVal)
-  {
+  static void store(typename Base::ValueType& aPtr, T aVal) {
     aPtr.store(aVal, Base::OrderedOp::StoreOrder);
   }
 
-  static T exchange(typename Base::ValueType& aPtr, T aVal)
-  {
+  static T exchange(typename Base::ValueType& aPtr, T aVal) {
     return aPtr.exchange(aVal, Base::OrderedOp::AtomicRMWOrder);
   }
 
-  static bool compareExchange(typename Base::ValueType& aPtr,
-                              T aOldVal, T aNewVal)
-  {
-    return aPtr.compare_exchange_strong(aOldVal, aNewVal,
-                                        Base::OrderedOp::AtomicRMWOrder,
-                                        Base::OrderedOp::CompareExchangeFailureOrder);
+  static bool compareExchange(typename Base::ValueType& aPtr, T aOldVal,
+                              T aNewVal) {
+    return aPtr.compare_exchange_strong(
+        aOldVal, aNewVal, Base::OrderedOp::AtomicRMWOrder,
+        Base::OrderedOp::CompareExchangeFailureOrder);
   }
 };
 
-template<typename T, MemoryOrdering Order>
-struct IntrinsicAddSub : public IntrinsicBase<T, Order>
-{
+template <typename T, MemoryOrdering Order>
+struct IntrinsicAddSub : public IntrinsicBase<T, Order> {
   typedef IntrinsicBase<T, Order> Base;
 
-  static T add(typename Base::ValueType& aPtr, T aVal)
-  {
+  static T add(typename Base::ValueType& aPtr, T aVal) {
     return aPtr.fetch_add(aVal, Base::OrderedOp::AtomicRMWOrder);
   }
 
-  static T sub(typename Base::ValueType& aPtr, T aVal)
-  {
+  static T sub(typename Base::ValueType& aPtr, T aVal) {
     return aPtr.fetch_sub(aVal, Base::OrderedOp::AtomicRMWOrder);
   }
 };
 
-template<typename T, MemoryOrdering Order>
-struct IntrinsicAddSub<T*, Order> : public IntrinsicBase<T*, Order>
-{
+template <typename T, MemoryOrdering Order>
+struct IntrinsicAddSub<T*, Order> : public IntrinsicBase<T*, Order> {
   typedef IntrinsicBase<T*, Order> Base;
 
-  static T* add(typename Base::ValueType& aPtr, ptrdiff_t aVal)
-  {
+  static T* add(typename Base::ValueType& aPtr, ptrdiff_t aVal) {
     return aPtr.fetch_add(aVal, Base::OrderedOp::AtomicRMWOrder);
   }
 
-  static T* sub(typename Base::ValueType& aPtr, ptrdiff_t aVal)
-  {
+  static T* sub(typename Base::ValueType& aPtr, ptrdiff_t aVal) {
     return aPtr.fetch_sub(aVal, Base::OrderedOp::AtomicRMWOrder);
   }
 };
 
-template<typename T, MemoryOrdering Order>
-struct IntrinsicIncDec : public IntrinsicAddSub<T, Order>
-{
+template <typename T, MemoryOrdering Order>
+struct IntrinsicIncDec : public IntrinsicAddSub<T, Order> {
   typedef IntrinsicBase<T, Order> Base;
 
-  static T inc(typename Base::ValueType& aPtr)
-  {
+  static T inc(typename Base::ValueType& aPtr) {
     return IntrinsicAddSub<T, Order>::add(aPtr, 1);
   }
 
-  static T dec(typename Base::ValueType& aPtr)
-  {
+  static T dec(typename Base::ValueType& aPtr) {
     return IntrinsicAddSub<T, Order>::sub(aPtr, 1);
   }
 };
 
-template<typename T, MemoryOrdering Order>
+template <typename T, MemoryOrdering Order>
 struct AtomicIntrinsics : public IntrinsicMemoryOps<T, Order>,
-                          public IntrinsicIncDec<T, Order>
-{
+                          public IntrinsicIncDec<T, Order> {
   typedef IntrinsicBase<T, Order> Base;
 
-  static T or_(typename Base::ValueType& aPtr, T aVal)
-  {
+  static T or_(typename Base::ValueType& aPtr, T aVal) {
     return aPtr.fetch_or(aVal, Base::OrderedOp::AtomicRMWOrder);
   }
 
-  static T xor_(typename Base::ValueType& aPtr, T aVal)
-  {
+  static T xor_(typename Base::ValueType& aPtr, T aVal) {
     return aPtr.fetch_xor(aVal, Base::OrderedOp::AtomicRMWOrder);
   }
 
-  static T and_(typename Base::ValueType& aPtr, T aVal)
-  {
+  static T and_(typename Base::ValueType& aPtr, T aVal) {
     return aPtr.fetch_and(aVal, Base::OrderedOp::AtomicRMWOrder);
   }
 };
 
-template<typename T, MemoryOrdering Order>
-struct AtomicIntrinsics<T*, Order>
-  : public IntrinsicMemoryOps<T*, Order>, public IntrinsicIncDec<T*, Order>
-{
+template <typename T, MemoryOrdering Order>
+struct AtomicIntrinsics<T*, Order> : public IntrinsicMemoryOps<T*, Order>,
+                                     public IntrinsicIncDec<T*, Order> {};
+
+template <typename T>
+struct ToStorageTypeArgument {
+  static constexpr T convert(T aT) { return aT; }
 };
 
-template<typename T>
-struct ToStorageTypeArgument
-{
-  static constexpr T convert (T aT) { return aT; }
-};
-
-} // namespace detail
-} // namespace mozilla
-
-#elif defined(__GNUC__)
-
-namespace mozilla {
-namespace detail {
-
-/*
- * The __sync_* family of intrinsics is documented here:
- *
- * http://gcc.gnu.org/onlinedocs/gcc-4.6.4/gcc/Atomic-Builtins.html
- *
- * While these intrinsics are deprecated in favor of the newer __atomic_*
- * family of intrincs:
- *
- * http://gcc.gnu.org/onlinedocs/gcc-4.7.3/gcc/_005f_005fatomic-Builtins.html
- *
- * any GCC version that supports the __atomic_* intrinsics will also support
- * the <atomic> header and so will be handled above.  We provide a version of
- * atomics using the __sync_* intrinsics to support older versions of GCC.
- *
- * All __sync_* intrinsics that we use below act as full memory barriers, for
- * both compiler and hardware reordering, except for __sync_lock_test_and_set,
- * which is a only an acquire barrier.  When we call __sync_lock_test_and_set,
- * we add a barrier above it as appropriate.
- */
-
-template<MemoryOrdering Order> struct Barrier;
-
-/*
- * Some processors (in particular, x86) don't require quite so many calls to
- * __sync_sychronize as our specializations of Barrier produce.  If
- * performance turns out to be an issue, defining these specializations
- * on a per-processor basis would be a good first tuning step.
- */
-
-template<>
-struct Barrier<Relaxed>
-{
-  static void beforeLoad() {}
-  static void afterLoad() {}
-  static void beforeStore() {}
-  static void afterStore() {}
-};
-
-template<>
-struct Barrier<ReleaseAcquire>
-{
-  static void beforeLoad() {}
-  static void afterLoad() { __sync_synchronize(); }
-  static void beforeStore() { __sync_synchronize(); }
-  static void afterStore() {}
-};
-
-template<>
-struct Barrier<SequentiallyConsistent>
-{
-  static void beforeLoad() { __sync_synchronize(); }
-  static void afterLoad() { __sync_synchronize(); }
-  static void beforeStore() { __sync_synchronize(); }
-  static void afterStore() { __sync_synchronize(); }
-};
-
-template<typename T, bool TIsEnum = IsEnum<T>::value>
-struct AtomicStorageType
-{
-  // For non-enums, just use the type directly.
-  typedef T Type;
-};
-
-template<typename T>
-struct AtomicStorageType<T, true>
-  : Conditional<sizeof(T) == 4, uint32_t, uint64_t>
-{
-  static_assert(sizeof(T) == 4 || sizeof(T) == 8,
-                "wrong type computed in conditional above");
-};
-
-template<typename T, MemoryOrdering Order>
-struct IntrinsicMemoryOps
-{
-  typedef typename AtomicStorageType<T>::Type ValueType;
-
-  static T load(const ValueType& aPtr)
-  {
-    Barrier<Order>::beforeLoad();
-    T val = T(aPtr);
-    Barrier<Order>::afterLoad();
-    return val;
-  }
-
-  static void store(ValueType& aPtr, T aVal)
-  {
-    Barrier<Order>::beforeStore();
-    aPtr = ValueType(aVal);
-    Barrier<Order>::afterStore();
-  }
-
-  static T exchange(ValueType& aPtr, T aVal)
-  {
-    // __sync_lock_test_and_set is only an acquire barrier; loads and stores
-    // can't be moved up from after to before it, but they can be moved down
-    // from before to after it.  We may want a stricter ordering, so we need
-    // an explicit barrier.
-    Barrier<Order>::beforeStore();
-    return T(__sync_lock_test_and_set(&aPtr, ValueType(aVal)));
-  }
-
-  static bool compareExchange(ValueType& aPtr, T aOldVal, T aNewVal)
-  {
-    return __sync_bool_compare_and_swap(&aPtr, ValueType(aOldVal), ValueType(aNewVal));
-  }
-};
-
-template<typename T, MemoryOrdering Order>
-struct IntrinsicAddSub
-  : public IntrinsicMemoryOps<T, Order>
-{
-  typedef IntrinsicMemoryOps<T, Order> Base;
-  typedef typename Base::ValueType ValueType;
-
-  static T add(ValueType& aPtr, T aVal)
-  {
-    return T(__sync_fetch_and_add(&aPtr, ValueType(aVal)));
-  }
-
-  static T sub(ValueType& aPtr, T aVal)
-  {
-    return T(__sync_fetch_and_sub(&aPtr, ValueType(aVal)));
-  }
-};
-
-template<typename T, MemoryOrdering Order>
-struct IntrinsicAddSub<T*, Order>
-  : public IntrinsicMemoryOps<T*, Order>
-{
-  typedef IntrinsicMemoryOps<T*, Order> Base;
-  typedef typename Base::ValueType ValueType;
-
-  /*
-   * The reinterpret_casts are needed so that
-   * __sync_fetch_and_{add,sub} will properly type-check.
-   *
-   * Also, these functions do not provide standard semantics for
-   * pointer types, so we need to adjust the addend.
-   */
-  static ValueType add(ValueType& aPtr, ptrdiff_t aVal)
-  {
-    ValueType amount = reinterpret_cast<ValueType>(aVal * sizeof(T));
-    return __sync_fetch_and_add(&aPtr, amount);
-  }
-
-  static ValueType sub(ValueType& aPtr, ptrdiff_t aVal)
-  {
-    ValueType amount = reinterpret_cast<ValueType>(aVal * sizeof(T));
-    return __sync_fetch_and_sub(&aPtr, amount);
-  }
-};
-
-template<typename T, MemoryOrdering Order>
-struct IntrinsicIncDec : public IntrinsicAddSub<T, Order>
-{
-  typedef IntrinsicAddSub<T, Order> Base;
-  typedef typename Base::ValueType ValueType;
-
-  static T inc(ValueType& aPtr) { return Base::add(aPtr, 1); }
-  static T dec(ValueType& aPtr) { return Base::sub(aPtr, 1); }
-};
-
-template<typename T, MemoryOrdering Order>
-struct AtomicIntrinsics : public IntrinsicIncDec<T, Order>
-{
-  static T or_( T& aPtr, T aVal) { return __sync_fetch_and_or(&aPtr, aVal); }
-  static T xor_(T& aPtr, T aVal) { return __sync_fetch_and_xor(&aPtr, aVal); }
-  static T and_(T& aPtr, T aVal) { return __sync_fetch_and_and(&aPtr, aVal); }
-};
-
-template<typename T, MemoryOrdering Order>
-struct AtomicIntrinsics<T*, Order> : public IntrinsicIncDec<T*, Order>
-{
-};
-
-template<typename T, bool TIsEnum = IsEnum<T>::value>
-struct ToStorageTypeArgument
-{
-  typedef typename AtomicStorageType<T>::Type ResultType;
-
-  static constexpr ResultType convert (T aT) { return ResultType(aT); }
-};
-
-template<typename T>
-struct ToStorageTypeArgument<T, false>
-{
-  static constexpr T convert (T aT) { return aT; }
-};
-
-} // namespace detail
-} // namespace mozilla
-
-#else
-# error "Atomic compiler intrinsics are not supported on your platform"
-#endif
-
-namespace mozilla {
-
-namespace detail {
-
-template<typename T, MemoryOrdering Order>
-class AtomicBase
-{
+template <typename T, MemoryOrdering Order>
+class AtomicBase {
   static_assert(sizeof(T) == 4 || sizeof(T) == 8,
                 "mozilla/Atomics.h only supports 32-bit and 64-bit types");
 
-protected:
+ protected:
   typedef typename detail::AtomicIntrinsics<T, Order> Intrinsics;
   typedef typename Intrinsics::ValueType ValueType;
   ValueType mValue;
 
-public:
+ public:
   constexpr AtomicBase() : mValue() {}
   explicit constexpr AtomicBase(T aInit)
-    : mValue(ToStorageTypeArgument<T>::convert(aInit))
-  {}
+      : mValue(ToStorageTypeArgument<T>::convert(aInit)) {}
 
   // Note: we can't provide operator T() here because Atomic<bool> inherits
   // from AtomcBase with T=uint32_t and not T=bool. If we implemented
   // operator T() here, it would cause errors when comparing Atomic<bool> with
   // a regular bool.
 
-  T operator=(T aVal)
-  {
+  T operator=(T aVal) {
     Intrinsics::store(mValue, aVal);
     return aVal;
   }
@@ -566,10 +302,7 @@ public:
    * Performs an atomic swap operation.  aVal is stored and the previous
    * value of this variable is returned.
    */
-  T exchange(T aVal)
-  {
-    return Intrinsics::exchange(mValue, aVal);
-  }
+  T exchange(T aVal) { return Intrinsics::exchange(mValue, aVal); }
 
   /**
    * Performs an atomic compare-and-swap operation and returns true if it
@@ -582,22 +315,20 @@ public:
    *     return false;
    *   }
    */
-  bool compareExchange(T aOldValue, T aNewValue)
-  {
+  bool compareExchange(T aOldValue, T aNewValue) {
     return Intrinsics::compareExchange(mValue, aOldValue, aNewValue);
   }
 
-private:
-  template<MemoryOrdering AnyOrder>
+ private:
+  template <MemoryOrdering AnyOrder>
   AtomicBase(const AtomicBase<T, AnyOrder>& aCopy) = delete;
 };
 
-template<typename T, MemoryOrdering Order>
-class AtomicBaseIncDec : public AtomicBase<T, Order>
-{
+template <typename T, MemoryOrdering Order>
+class AtomicBaseIncDec : public AtomicBase<T, Order> {
   typedef typename detail::AtomicBase<T, Order> Base;
 
-public:
+ public:
   constexpr AtomicBaseIncDec() : Base() {}
   explicit constexpr AtomicBaseIncDec(T aInit) : Base(aInit) {}
 
@@ -609,12 +340,12 @@ public:
   T operator++() { return Base::Intrinsics::inc(Base::mValue) + 1; }
   T operator--() { return Base::Intrinsics::dec(Base::mValue) - 1; }
 
-private:
-  template<MemoryOrdering AnyOrder>
+ private:
+  template <MemoryOrdering AnyOrder>
   AtomicBaseIncDec(const AtomicBaseIncDec<T, AnyOrder>& aCopy) = delete;
 };
 
-} // namespace detail
+}  // namespace detail
 
 /**
  * A wrapper for a type that enforces that all memory accesses are atomic.
@@ -633,9 +364,8 @@ private:
  * deliberate design choice that enables static atomic variables to be declared
  * without introducing extra static constructors.
  */
-template<typename T,
-         MemoryOrdering Order = SequentiallyConsistent,
-         typename Enable = void>
+template <typename T, MemoryOrdering Order = SequentiallyConsistent,
+          typename Enable = void>
 class Atomic;
 
 /**
@@ -646,45 +376,40 @@ class Atomic;
  * corresponding read-modify-write operation atomically.  Finally, an atomic
  * swap method is provided.
  */
-template<typename T, MemoryOrdering Order>
-class Atomic<T, Order, typename EnableIf<IsIntegral<T>::value &&
-                       !IsSame<T, bool>::value>::Type>
-  : public detail::AtomicBaseIncDec<T, Order>
-{
+template <typename T, MemoryOrdering Order>
+class Atomic<
+    T, Order,
+    typename EnableIf<IsIntegral<T>::value && !IsSame<T, bool>::value>::Type>
+    : public detail::AtomicBaseIncDec<T, Order> {
   typedef typename detail::AtomicBaseIncDec<T, Order> Base;
 
-public:
+ public:
   constexpr Atomic() : Base() {}
   explicit constexpr Atomic(T aInit) : Base(aInit) {}
 
   using Base::operator=;
 
-  T operator+=(T aDelta)
-  {
+  T operator+=(T aDelta) {
     return Base::Intrinsics::add(Base::mValue, aDelta) + aDelta;
   }
 
-  T operator-=(T aDelta)
-  {
+  T operator-=(T aDelta) {
     return Base::Intrinsics::sub(Base::mValue, aDelta) - aDelta;
   }
 
-  T operator|=(T aVal)
-  {
+  T operator|=(T aVal) {
     return Base::Intrinsics::or_(Base::mValue, aVal) | aVal;
   }
 
-  T operator^=(T aVal)
-  {
+  T operator^=(T aVal) {
     return Base::Intrinsics::xor_(Base::mValue, aVal) ^ aVal;
   }
 
-  T operator&=(T aVal)
-  {
+  T operator&=(T aVal) {
     return Base::Intrinsics::and_(Base::mValue, aVal) & aVal;
   }
 
-private:
+ private:
   Atomic(Atomic<T, Order>& aOther) = delete;
 };
 
@@ -696,28 +421,25 @@ private:
  * assignment operators for addition and subtraction. Atomic swap (via
  * exchange()) is included as well.
  */
-template<typename T, MemoryOrdering Order>
-class Atomic<T*, Order> : public detail::AtomicBaseIncDec<T*, Order>
-{
+template <typename T, MemoryOrdering Order>
+class Atomic<T*, Order> : public detail::AtomicBaseIncDec<T*, Order> {
   typedef typename detail::AtomicBaseIncDec<T*, Order> Base;
 
-public:
+ public:
   constexpr Atomic() : Base() {}
   explicit constexpr Atomic(T* aInit) : Base(aInit) {}
 
   using Base::operator=;
 
-  T* operator+=(ptrdiff_t aDelta)
-  {
+  T* operator+=(ptrdiff_t aDelta) {
     return Base::Intrinsics::add(Base::mValue, aDelta) + aDelta;
   }
 
-  T* operator-=(ptrdiff_t aDelta)
-  {
+  T* operator-=(ptrdiff_t aDelta) {
     return Base::Intrinsics::sub(Base::mValue, aDelta) - aDelta;
   }
 
-private:
+ private:
   Atomic(Atomic<T*, Order>& aOther) = delete;
 };
 
@@ -726,13 +448,12 @@ private:
  *
  * The atomic store and load operations and the atomic swap method is provided.
  */
-template<typename T, MemoryOrdering Order>
+template <typename T, MemoryOrdering Order>
 class Atomic<T, Order, typename EnableIf<IsEnum<T>::value>::Type>
-  : public detail::AtomicBase<T, Order>
-{
+    : public detail::AtomicBase<T, Order> {
   typedef typename detail::AtomicBase<T, Order> Base;
 
-public:
+ public:
   constexpr Atomic() : Base() {}
   explicit constexpr Atomic(T aInit) : Base(aInit) {}
 
@@ -740,7 +461,7 @@ public:
 
   using Base::operator=;
 
-private:
+ private:
   Atomic(Atomic<T, Order>& aOther) = delete;
 };
 
@@ -760,41 +481,35 @@ private:
  *   runtime library are not available on Windows XP. This is why we implement
  *   Atomic<bool> with an underlying type of uint32_t.
  */
-template<MemoryOrdering Order>
-class Atomic<bool, Order>
-  : protected detail::AtomicBase<uint32_t, Order>
-{
+template <MemoryOrdering Order>
+class Atomic<bool, Order> : protected detail::AtomicBase<uint32_t, Order> {
   typedef typename detail::AtomicBase<uint32_t, Order> Base;
 
-public:
+ public:
   constexpr Atomic() : Base() {}
   explicit constexpr Atomic(bool aInit) : Base(aInit) {}
 
   // We provide boolean wrappers for the underlying AtomicBase methods.
-  MOZ_IMPLICIT operator bool() const
-  {
+  MOZ_IMPLICIT operator bool() const {
     return Base::Intrinsics::load(Base::mValue);
   }
 
-  bool operator=(bool aVal)
-  {
-    return Base::operator=(aVal);
-  }
+  bool operator=(bool aVal) { return Base::operator=(aVal); }
 
-  bool exchange(bool aVal)
-  {
-    return Base::exchange(aVal);
-  }
+  bool exchange(bool aVal) { return Base::exchange(aVal); }
 
-  bool compareExchange(bool aOldValue, bool aNewValue)
-  {
+  bool compareExchange(bool aOldValue, bool aNewValue) {
     return Base::compareExchange(aOldValue, aNewValue);
   }
 
-private:
+ private:
   Atomic(Atomic<bool, Order>& aOther) = delete;
 };
 
-} // namespace mozilla
+// If you want to atomically swap two atomic values, use exchange().
+template <typename T, MemoryOrdering Order>
+void Swap(Atomic<T, Order>&, Atomic<T, Order>&) = delete;
+
+}  // namespace mozilla
 
 #endif /* mozilla_Atomics_h */

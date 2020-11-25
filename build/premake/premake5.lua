@@ -6,7 +6,7 @@ newoption { trigger = "icc", description = "Use Intel C++ Compiler (Linux only; 
 newoption { trigger = "jenkins-tests", description = "Configure CxxTest to use the XmlPrinter runner which produces Jenkins-compatible output" }
 newoption { trigger = "minimal-flags", description = "Only set compiler/linker flags that are really needed. Has no effect on Windows builds" }
 newoption { trigger = "outpath", description = "Location for generated project files" }
-newoption { trigger = "with-system-mozjs52", description = "Search standard paths for libmozjs52, instead of using bundled copy" }
+newoption { trigger = "with-system-mozjs", description = "Search standard paths for libmozjs60, instead of using bundled copy" }
 newoption { trigger = "with-system-nvtt", description = "Search standard paths for nvidia-texture-tools library, instead of using bundled copy" }
 newoption { trigger = "without-audio", description = "Disable use of OpenAL/Ogg/Vorbis APIs" }
 newoption { trigger = "without-lobby", description = "Disable the use of gloox and the multiplayer lobby" }
@@ -397,6 +397,8 @@ function project_create(project_name, target_type)
 
 	filter "action:vs2015"
 		toolset "v140_xp"
+	filter "action:vs2017"
+		toolset "v141_xp"
 	filter {}
 
 	filter "action:vs*"
@@ -880,7 +882,7 @@ function setup_all_libs ()
 	end
 
 	-- runtime-library-specific
-	if _ACTION == "vs2015" then
+	if _ACTION == "vs2015" or _ACTION == "vs2017" then
 		table.insert(source_dirs, "lib/sysdep/rtl/msc");
 	else
 		table.insert(source_dirs, "lib/sysdep/rtl/gcc");

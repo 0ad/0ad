@@ -98,7 +98,7 @@ JSClassOps global_classops = {
 	nullptr, nullptr,
 	nullptr, nullptr,
 	nullptr, nullptr, nullptr,
-	nullptr, nullptr, nullptr, nullptr,
+	nullptr, nullptr, nullptr,
 	JS_GlobalObjectTraceHook
 };
 
@@ -327,10 +327,7 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const sh
 	JS::CompartmentCreationOptions creationOpt;
 	// Keep JIT code during non-shrinking GCs. This brings a quite big performance improvement.
 	creationOpt.setPreserveJitCode(true);
-	JS::CompartmentBehaviors behaviors;
-	behaviors.setVersion(JSVERSION_LATEST);
-
-	JS::CompartmentOptions opt(creationOpt, behaviors);
+	JS::CompartmentOptions opt(creationOpt, JS::CompartmentBehaviors{});
 
 	JSAutoRequest rq(m_cx);
 	m_glob = JS_NewGlobalObject(m_cx, &global_class, nullptr, JS::OnNewGlobalHookOption::FireOnNewGlobalHook, opt);
@@ -494,7 +491,7 @@ void ScriptInterface::DefineCustomObjectType(JSClass *clasp, JSNative constructo
 	                                           ps, fs,                   // Properties, methods
 	                                           static_ps, static_fs));   // Constructor properties, methods
 
-	if (obj == NULL)
+	if (obj == nullptr)
 	{
 		ScriptException::CatchPending(rq);
 		throw PSERROR_Scripting_DefineType_CreationFailed();

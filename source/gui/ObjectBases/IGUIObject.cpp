@@ -456,9 +456,11 @@ void IGUIObject::CreateJSObject()
 	js::ProxyOptions options;
 	options.setClass(&JSI_GUIProxy<IGUIObject>::ClassDefinition());
 
-	JS::RootedValue cppObj(rq.cx);
+	JS::RootedValue cppObj(rq.cx), data(rq.cx);
+	cppObj.get().setPrivate(this);
+	data.get().setPrivate(GetGUI().GetProxyData(&JSI_GUIProxy<IGUIObject>::Singleton()));
 	m_JSObject.init(rq.cx, js::NewProxyObject(rq.cx, &JSI_GUIProxy<IGUIObject>::Singleton(), cppObj, nullptr, options));
-	JS_SetPrivate(m_JSObject.get(), this);
+	js::SetProxyReservedSlot(m_JSObject, 0, data);
 }
 
 JSObject* IGUIObject::GetJSObject()

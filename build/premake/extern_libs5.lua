@@ -184,6 +184,8 @@ extern_lib_defs = {
 	boost = {
 		compile_settings = function()
 			if os.istarget("windows") then
+				-- Force the autolink to use the vc140 libs even on VS2017
+				defines { 'BOOST_LIB_TOOLSET="vc140"' }
 				add_default_include_paths("boost")
 			elseif os.istarget("macosx") then
 				-- Suppress all the Boost warnings on OS X by including it as a system directory
@@ -196,6 +198,9 @@ extern_lib_defs = {
 		end,
 		link_settings = function()
 			if os.istarget("windows") or os.istarget("macosx") then
+				if os.istarget("windows") then
+					defines { 'BOOST_LIB_TOOLSET="vc140"' }
+				end
 				add_default_lib_paths("boost")
 			end
 			add_default_links({
@@ -533,9 +538,9 @@ extern_lib_defs = {
 	},
 	spidermonkey = {
 		compile_settings = function()
-			if _OPTIONS["with-system-mozjs52"] then
+			if _OPTIONS["with-system-mozjs"] then
 				if not _OPTIONS["android"] then
-					pkgconfig.add_includes("mozjs-52")
+					pkgconfig.add_includes("mozjs-60")
 				end
 			else
 				if os.istarget("windows") then
@@ -553,21 +558,17 @@ extern_lib_defs = {
 			end
 		end,
 		link_settings = function()
-			if _OPTIONS["with-system-mozjs52"] then
+			if _OPTIONS["with-system-mozjs"] then
 				if _OPTIONS["android"] then
-					links { "mozjs-52" }
+					links { "mozjs-60" }
 				else
-					pkgconfig.add_links("mozjs-52")
+					pkgconfig.add_links("mozjs-60")
 				end
 			else
-				filter { "Debug", "action:vs2015" }
-					links { "mozjs52-ps-debug-vc140" }
-				filter { "Release", "action:vs2015" }
-					links { "mozjs52-ps-release-vc140" }
-				filter { "Debug", "action:not vs*" }
-					links { "mozjs52-ps-debug" }
-				filter { "Release", "action:not vs*" }
-					links { "mozjs52-ps-release" }
+				filter { "Debug" }
+					links { "mozjs60-ps-debug" }
+				filter { "Release" }
+					links { "mozjs60-ps-release" }
 				filter { }
 				add_source_lib_paths("spidermonkey")
 			end

@@ -20,7 +20,7 @@
 template <typename T>
 js::Class& JSI_GUIProxy<T>::ClassDefinition()
 {
-	static js::Class c = PROXY_CLASS_DEF("GUIObjectProxy", JSCLASS_HAS_PRIVATE | JSCLASS_HAS_CACHED_PROTO(JSProto_Proxy));
+	static js::Class c = PROXY_CLASS_DEF("GUIObjectProxy", JSCLASS_HAS_CACHED_PROTO(JSProto_Proxy) | JSCLASS_HAS_RESERVED_SLOTS(1));
 	return c;
 }
 
@@ -37,7 +37,7 @@ template<class OG, class R, void (R::*funcptr)(ScriptInterface&, JS::MutableHand
 inline bool apply_to(JSContext* cx, uint argc, JS::Value* vp)
 {
 	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
-	OG* e = static_cast<OG*>(JS_GetPrivate(args.thisv().toObjectOrNull()));
+	OG* e = static_cast<OG*>(js::GetProxyPrivate(args.thisv().toObjectOrNull()).toPrivate());
 	if (!e)
 		return false;
 
@@ -53,7 +53,7 @@ bool JSI_GUIProxy<T>::get(JSContext* cx, JS::HandleObject proxy, JS::HandleValue
 	ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
 	ScriptRequest rq(*pScriptInterface);
 
-	T* e = static_cast<T*>(JS_GetPrivate(proxy.get()));
+	T* e = static_cast<T*>(js::GetProxyPrivate(proxy.get()).toPrivate());
 	if (!e)
 		return false;
 
@@ -66,7 +66,7 @@ bool JSI_GUIProxy<T>::get(JSContext* cx, JS::HandleObject proxy, JS::HandleValue
 		return false;
 
 	// Return function properties. Specializable.
-	if (funcGetter(e, propName, vp))
+	if (funcGetter(proxy, propName, vp))
 		return true;
 
 	// Use onWhatever to access event handlers
@@ -121,7 +121,7 @@ template <typename T>
 bool JSI_GUIProxy<T>::set(JSContext* cx, JS::HandleObject proxy, JS::HandleId id, JS::HandleValue vp,
 							JS::HandleValue UNUSED(receiver), JS::ObjectOpResult& result) const
 {
-	T* e = static_cast<T*>(JS_GetPrivate(proxy.get()));
+	T* e = static_cast<T*>(js::GetProxyPrivate(proxy.get()).toPrivate());
 	if (!e)
 		return result.fail(JSMSG_NOT_NONNULL_OBJECT);
 
@@ -173,7 +173,7 @@ bool JSI_GUIProxy<T>::set(JSContext* cx, JS::HandleObject proxy, JS::HandleId id
 template<typename T>
 bool JSI_GUIProxy<T>::delete_(JSContext* cx, JS::HandleObject proxy, JS::HandleId id, JS::ObjectOpResult& result) const
 {
-	T* e = static_cast<T*>(JS_GetPrivate(proxy.get()));
+	T* e = static_cast<T*>(js::GetProxyPrivate(proxy.get()).toPrivate());
 	if (!e)
 		return result.fail(JSMSG_NOT_NONNULL_OBJECT);
 

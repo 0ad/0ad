@@ -27,15 +27,13 @@
 
 void GCSliceCallbackHook(JSContext* UNUSED(cx), JS::GCProgress progress, const JS::GCDescription& UNUSED(desc))
 {
-	/*
-	 * During non-incremental GC, the GC is bracketed by JSGC_CYCLE_BEGIN/END
-	 * callbacks. During an incremental GC, the sequence of callbacks is as
-	 * follows:
-	 *   JSGC_CYCLE_BEGIN, JSGC_SLICE_END  (first slice)
-	 *   JSGC_SLICE_BEGIN, JSGC_SLICE_END  (second slice)
-	 *   ...
-	 *   JSGC_SLICE_BEGIN, JSGC_CYCLE_END  (last slice)
-	*/
+	/**
+	 * From the GCAPI.h file:
+	 * > During GC, the GC is bracketed by GC_CYCLE_BEGIN/END callbacks. Each
+	 * > slice between those (whether an incremental or the sole non-incremental
+	 * > slice) is bracketed by GC_SLICE_BEGIN/GC_SLICE_END.
+	 * Thus, to safely monitor GCs, we need to profile SLICE_X calls.
+	 */
 
 
 	if (progress == JS::GC_SLICE_BEGIN)
@@ -48,19 +46,7 @@ void GCSliceCallbackHook(JSContext* UNUSED(cx), JS::GCProgress progress, const J
 	{
 		if (CProfileManager::IsInitialised() && ThreadUtil::IsMainThread())
 			g_Profiler.Stop();
-    	g_Profiler2.RecordRegionLeave();
-	}
-	else if (progress == JS::GC_CYCLE_BEGIN)
-	{
-		if (CProfileManager::IsInitialised() && ThreadUtil::IsMainThread())
-			g_Profiler.Start("GCSlice");
-		g_Profiler2.RecordRegionEnter("GCSlice");
-	}
-	else if (progress == JS::GC_CYCLE_END)
-	{
-		if (CProfileManager::IsInitialised() && ThreadUtil::IsMainThread())
-			g_Profiler.Stop();
-    	g_Profiler2.RecordRegionLeave();
+		g_Profiler2.RecordRegionLeave();
 	}
 
 	// The following code can be used to print some information aobut garbage collection
@@ -219,7 +205,7 @@ void ScriptContext::MaybeIncrementalGC(double delay)
 					printf("Finishing incremental GC because gcBytes > m_ContextSize / 2. \n");
 #endif
 					PrepareCompartmentsForIncrementalGC();
-					JS::FinishIncrementalGC(m_cx, JS::gcreason::REFRESH_FRAME);
+					JS::FinishIncrementalGC(m_cx, JS::gcreason::API);
 				}
 				else
 				{
@@ -249,9 +235,9 @@ void ScriptContext::MaybeIncrementalGC(double delay)
 #endif
 				PrepareCompartmentsForIncrementalGC();
 				if (!JS::IsIncrementalGCInProgress(m_cx))
-					JS::StartIncrementalGC(m_cx, GC_NORMAL, JS::gcreason::REFRESH_FRAME, GCSliceTimeBudget);
+					JS::StartIncrementalGC(m_cx, GC_NORMAL, JS::gcreason::API, GCSliceTimeBudget);
 				else
-					JS::IncrementalGCSlice(m_cx, JS::gcreason::REFRESH_FRAME, GCSliceTimeBudget);
+					JS::IncrementalGCSlice(m_cx, JS::gcreason::API, GCSliceTimeBudget);
 			}
 			m_LastGCBytes = gcBytes;
 		}
@@ -262,7 +248,7 @@ void ScriptContext::ShrinkingGC()
 {
 	JS_SetGCParameter(m_cx, JSGC_MODE, JSGC_MODE_ZONE);
 	JS::PrepareForFullGC(m_cx);
-	JS::GCForReason(m_cx, GC_SHRINK, JS::gcreason::REFRESH_FRAME);
+	JS::GCForReason(m_cx, GC_SHRINK, JS::gcreason::API);
 	JS_SetGCParameter(m_cx, JSGC_MODE, JSGC_MODE_INCREMENTAL);
 }
 

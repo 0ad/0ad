@@ -12,15 +12,38 @@
 #include "mozilla/Alignment.h"
 #include "mozilla/Assertions.h"
 #include "mozilla/Attributes.h"
+#include "mozilla/MemoryChecking.h"
 #include "mozilla/Move.h"
+#include "mozilla/OperatorNewExtensions.h"
+#include "mozilla/Poison.h"
 #include "mozilla/TypeTraits.h"
 
 #include <new>  // for placement new
+#include <ostream>
 #include <type_traits>
 
 namespace mozilla {
 
-struct Nothing { };
+struct Nothing {};
+
+namespace detail {
+
+template <typename T>
+struct MaybePoisoner {
+  static const size_t N = sizeof(T);
+
+  static void poison(void* aPtr) {
+#ifdef MOZ_DIAGNOSTIC_ASSERT_ENABLED
+    // Avoid MOZ_ASSERT in mozWritePoison.
+    if (N >= sizeof(uintptr_t)) {
+      mozWritePoison(aPtr, N);
+    }
+#endif
+    MOZ_MAKE_MEM_UNDEFINED(aPtr, N);
+  }
+};
+
+}  // namespace detail
 
 /*
  * Maybe is a container class which contains either zero or one elements. It
@@ -80,90 +103,75 @@ struct Nothing { };
  * extra branches/loads/stores. Use with caution on hot paths; it's not known
  * whether or not this is still a problem.
  */
-template<class T>
-class Maybe
-{
-  bool mIsSome;
-  AlignedStorage2<T> mStorage;
+template <class T>
+class MOZ_NON_PARAM MOZ_INHERIT_TYPE_ANNOTATIONS_FROM_TEMPLATE_ARGS Maybe {
+  MOZ_ALIGNAS_IN_STRUCT(T) unsigned char mStorage[sizeof(T)];
+  char mIsSome;  // not bool -- guarantees minimal space consumption
 
-public:
-  typedef T ValueType;
+  // GCC fails due to -Werror=strict-aliasing if |mStorage| is directly cast to
+  // T*.  Indirecting through these functions addresses the problem.
+  void* data() { return mStorage; }
+  const void* data() const { return mStorage; }
 
-  Maybe() : mIsSome(false) { }
+  void poisonData() { detail::MaybePoisoner<T>::poison(data()); }
+
+ public:
+  using ValueType = T;
+
+  Maybe() : mIsSome(false) { poisonData(); }
   ~Maybe() { reset(); }
 
-  MOZ_IMPLICIT Maybe(Nothing) : mIsSome(false) { }
+  MOZ_IMPLICIT Maybe(Nothing) : mIsSome(false) { poisonData(); }
 
-  Maybe(const Maybe& aOther)
-    : mIsSome(false)
-  {
+  Maybe(const Maybe& aOther) : mIsSome(false) {
     if (aOther.mIsSome) {
       emplace(*aOther);
+    } else {
+      poisonData();
     }
   }
 
   /**
-   * Maybe<T*> can be copy-constructed from a Maybe<U*> if U* and T* are
-   * compatible, or from Maybe<decltype(nullptr)>.
+   * Maybe<T> can be copy-constructed from a Maybe<U> if U is convertible to T.
    */
-  template<typename U,
-           typename =
-             typename std::enable_if<std::is_pointer<T>::value &&
-                                     (std::is_same<U, decltype(nullptr)>::value ||
-                                      (std::is_pointer<U>::value &&
-                                       std::is_base_of<typename std::remove_pointer<T>::type,
-                                                       typename std::remove_pointer<U>::type>::value))>::type>
-  MOZ_IMPLICIT
-  Maybe(const Maybe<U>& aOther)
-    : mIsSome(false)
-  {
+  template <typename U, typename = typename std::enable_if<
+                            std::is_convertible<U, T>::value>::type>
+  MOZ_IMPLICIT Maybe(const Maybe<U>& aOther) : mIsSome(false) {
     if (aOther.isSome()) {
       emplace(*aOther);
+    } else {
+      poisonData();
     }
   }
 
-  Maybe(Maybe&& aOther)
-    : mIsSome(false)
-  {
+  Maybe(Maybe&& aOther) : mIsSome(false) {
     if (aOther.mIsSome) {
       emplace(Move(*aOther));
       aOther.reset();
+    } else {
+      poisonData();
     }
   }
 
   /**
-   * Maybe<T*> can be move-constructed from a Maybe<U*> if U* and T* are
-   * compatible, or from Maybe<decltype(nullptr)>.
+   * Maybe<T> can be move-constructed from a Maybe<U> if U is convertible to T.
    */
-  template<typename U,
-           typename =
-             typename std::enable_if<std::is_pointer<T>::value &&
-                                     (std::is_same<U, decltype(nullptr)>::value ||
-                                      (std::is_pointer<U>::value &&
-                                       std::is_base_of<typename std::remove_pointer<T>::type,
-                                                       typename std::remove_pointer<U>::type>::value))>::type>
-  MOZ_IMPLICIT
-  Maybe(Maybe<U>&& aOther)
-    : mIsSome(false)
-  {
+  template <typename U, typename = typename std::enable_if<
+                            std::is_convertible<U, T>::value>::type>
+  MOZ_IMPLICIT Maybe(Maybe<U>&& aOther) : mIsSome(false) {
     if (aOther.isSome()) {
       emplace(Move(*aOther));
       aOther.reset();
+    } else {
+      poisonData();
     }
   }
 
-  Maybe& operator=(const Maybe& aOther)
-  {
+  Maybe& operator=(const Maybe& aOther) {
     if (&aOther != this) {
       if (aOther.mIsSome) {
         if (mIsSome) {
-          // XXX(seth): The correct code for this branch, below, can't be used
-          // due to a bug in Visual Studio 2010. See bug 1052940.
-          /*
           ref() = aOther.ref();
-          */
-          reset();
-          emplace(*aOther);
         } else {
           emplace(*aOther);
         }
@@ -174,11 +182,42 @@ public:
     return *this;
   }
 
-  Maybe& operator=(Maybe&& aOther)
-  {
+  template <typename U, typename = typename std::enable_if<
+                            std::is_convertible<U, T>::value>::type>
+  Maybe& operator=(const Maybe<U>& aOther) {
+    if (aOther.isSome()) {
+      if (mIsSome) {
+        ref() = aOther.ref();
+      } else {
+        emplace(*aOther);
+      }
+    } else {
+      reset();
+    }
+    return *this;
+  }
+
+  Maybe& operator=(Maybe&& aOther) {
     MOZ_ASSERT(this != &aOther, "Self-moves are prohibited");
 
     if (aOther.mIsSome) {
+      if (mIsSome) {
+        ref() = Move(aOther.ref());
+      } else {
+        emplace(Move(*aOther));
+      }
+      aOther.reset();
+    } else {
+      reset();
+    }
+
+    return *this;
+  }
+
+  template <typename U, typename = typename std::enable_if<
+                            std::is_convertible<U, T>::value>::type>
+  Maybe& operator=(Maybe<U>&& aOther) {
+    if (aOther.isSome()) {
       if (mIsSome) {
         ref() = Move(aOther.ref());
       } else {
@@ -197,9 +236,9 @@ public:
   bool isSome() const { return mIsSome; }
   bool isNothing() const { return !mIsSome; }
 
-  /* Returns the contents of this Maybe<T> by value. Unsafe unless |isSome()|. */
-  T value() const
-  {
+  /* Returns the contents of this Maybe<T> by value. Unsafe unless |isSome()|.
+   */
+  T value() const {
     MOZ_ASSERT(mIsSome);
     return ref();
   }
@@ -208,9 +247,8 @@ public:
    * Returns the contents of this Maybe<T> by value. If |isNothing()|, returns
    * the default value provided.
    */
-  template<typename V>
-  T valueOr(V&& aDefault) const
-  {
+  template <typename V>
+  T valueOr(V&& aDefault) const {
     if (isSome()) {
       return ref();
     }
@@ -221,24 +259,22 @@ public:
    * Returns the contents of this Maybe<T> by value. If |isNothing()|, returns
    * the value returned from the function or functor provided.
    */
-  template<typename F>
-  T valueOrFrom(F&& aFunc) const
-  {
+  template <typename F>
+  T valueOrFrom(F&& aFunc) const {
     if (isSome()) {
       return ref();
     }
     return aFunc();
   }
 
-  /* Returns the contents of this Maybe<T> by pointer. Unsafe unless |isSome()|. */
-  T* ptr()
-  {
+  /* Returns the contents of this Maybe<T> by pointer. Unsafe unless |isSome()|.
+   */
+  T* ptr() {
     MOZ_ASSERT(mIsSome);
     return &ref();
   }
 
-  const T* ptr() const
-  {
+  const T* ptr() const {
     MOZ_ASSERT(mIsSome);
     return &ref();
   }
@@ -247,16 +283,14 @@ public:
    * Returns the contents of this Maybe<T> by pointer. If |isNothing()|,
    * returns the default value provided.
    */
-  T* ptrOr(T* aDefault)
-  {
+  T* ptrOr(T* aDefault) {
     if (isSome()) {
       return ptr();
     }
     return aDefault;
   }
 
-  const T* ptrOr(const T* aDefault) const
-  {
+  const T* ptrOr(const T* aDefault) const {
     if (isSome()) {
       return ptr();
     }
@@ -267,63 +301,55 @@ public:
    * Returns the contents of this Maybe<T> by pointer. If |isNothing()|,
    * returns the value returned from the function or functor provided.
    */
-  template<typename F>
-  T* ptrOrFrom(F&& aFunc)
-  {
+  template <typename F>
+  T* ptrOrFrom(F&& aFunc) {
     if (isSome()) {
       return ptr();
     }
     return aFunc();
   }
 
-  template<typename F>
-  const T* ptrOrFrom(F&& aFunc) const
-  {
+  template <typename F>
+  const T* ptrOrFrom(F&& aFunc) const {
     if (isSome()) {
       return ptr();
     }
     return aFunc();
   }
 
-  T* operator->()
-  {
+  T* operator->() {
     MOZ_ASSERT(mIsSome);
     return ptr();
   }
 
-  const T* operator->() const
-  {
+  const T* operator->() const {
     MOZ_ASSERT(mIsSome);
     return ptr();
   }
 
   /* Returns the contents of this Maybe<T> by ref. Unsafe unless |isSome()|. */
-  T& ref()
-  {
+  T& ref() {
     MOZ_ASSERT(mIsSome);
-    return *mStorage.addr();
+    return *static_cast<T*>(data());
   }
 
-  const T& ref() const
-  {
+  const T& ref() const {
     MOZ_ASSERT(mIsSome);
-    return *mStorage.addr();
+    return *static_cast<const T*>(data());
   }
 
   /*
    * Returns the contents of this Maybe<T> by ref. If |isNothing()|, returns
    * the default value provided.
    */
-  T& refOr(T& aDefault)
-  {
+  T& refOr(T& aDefault) {
     if (isSome()) {
       return ref();
     }
     return aDefault;
   }
 
-  const T& refOr(const T& aDefault) const
-  {
+  const T& refOr(const T& aDefault) const {
     if (isSome()) {
       return ref();
     }
@@ -334,50 +360,44 @@ public:
    * Returns the contents of this Maybe<T> by ref. If |isNothing()|, returns the
    * value returned from the function or functor provided.
    */
-  template<typename F>
-  T& refOrFrom(F&& aFunc)
-  {
+  template <typename F>
+  T& refOrFrom(F&& aFunc) {
     if (isSome()) {
       return ref();
     }
     return aFunc();
   }
 
-  template<typename F>
-  const T& refOrFrom(F&& aFunc) const
-  {
+  template <typename F>
+  const T& refOrFrom(F&& aFunc) const {
     if (isSome()) {
       return ref();
     }
     return aFunc();
   }
 
-  T& operator*()
-  {
+  T& operator*() {
     MOZ_ASSERT(mIsSome);
     return ref();
   }
 
-  const T& operator*() const
-  {
+  const T& operator*() const {
     MOZ_ASSERT(mIsSome);
     return ref();
   }
 
   /* If |isSome()|, runs the provided function or functor on the contents of
    * this Maybe. */
-  template<typename Func>
-  Maybe& apply(Func aFunc)
-  {
+  template <typename Func>
+  Maybe& apply(Func aFunc) {
     if (isSome()) {
       aFunc(ref());
     }
     return *this;
   }
 
-  template<typename Func>
-  const Maybe& apply(Func aFunc) const
-  {
+  template <typename Func>
+  const Maybe& apply(Func aFunc) const {
     if (isSome()) {
       aFunc(ref());
     }
@@ -388,9 +408,8 @@ public:
    * If |isSome()|, runs the provided function and returns the result wrapped
    * in a Maybe. If |isNothing()|, returns an empty Maybe value.
    */
-  template<typename Func>
-  auto map(Func aFunc) -> Maybe<decltype(aFunc(DeclVal<Maybe<T>>().ref()))>
-  {
+  template <typename Func>
+  auto map(Func aFunc) -> Maybe<decltype(aFunc(DeclVal<Maybe<T>>().ref()))> {
     using ReturnType = decltype(aFunc(ref()));
     if (isSome()) {
       Maybe<ReturnType> val;
@@ -400,9 +419,9 @@ public:
     return Maybe<ReturnType>();
   }
 
-  template<typename Func>
-  auto map(Func aFunc) const -> Maybe<decltype(aFunc(DeclVal<Maybe<T>>().ref()))>
-  {
+  template <typename Func>
+  auto map(Func aFunc) const
+      -> Maybe<decltype(aFunc(DeclVal<Maybe<T>>().ref()))> {
     using ReturnType = decltype(aFunc(ref()));
     if (isSome()) {
       Maybe<ReturnType> val;
@@ -413,11 +432,11 @@ public:
   }
 
   /* If |isSome()|, empties this Maybe and destroys its contents. */
-  void reset()
-  {
+  void reset() {
     if (isSome()) {
       ref().T::~T();
       mIsSome = false;
+      poisonData();
     }
   }
 
@@ -425,12 +444,21 @@ public:
    * Constructs a T value in-place in this empty Maybe<T>'s storage. The
    * arguments to |emplace()| are the parameters to T's constructor.
    */
-  template<typename... Args>
-  void emplace(Args&&... aArgs)
-  {
+  template <typename... Args>
+  void emplace(Args&&... aArgs) {
     MOZ_ASSERT(!mIsSome);
-    ::new (mStorage.addr()) T(Forward<Args>(aArgs)...);
+    ::new (KnownNotNull, data()) T(Forward<Args>(aArgs)...);
     mIsSome = true;
+  }
+
+  friend std::ostream& operator<<(std::ostream& aStream,
+                                  const Maybe<T>& aMaybe) {
+    if (aMaybe) {
+      aStream << aMaybe.ref();
+    } else {
+      aStream << "<Nothing>";
+    }
+    return aStream;
   }
 };
 
@@ -444,20 +472,17 @@ public:
  * if you need to construct a Maybe value that holds a const, volatile, or
  * reference value, you need to use emplace() instead.
  */
-template<typename T>
-Maybe<typename RemoveCV<typename RemoveReference<T>::Type>::Type>
-Some(T&& aValue)
-{
-  typedef typename RemoveCV<typename RemoveReference<T>::Type>::Type U;
+template <typename T, typename U = typename std::remove_cv<
+                          typename std::remove_reference<T>::type>::type>
+Maybe<U> Some(T&& aValue) {
   Maybe<U> value;
   value.emplace(Forward<T>(aValue));
   return value;
 }
 
-template<typename T>
-Maybe<typename RemoveCV<typename RemoveReference<T>::Type>::Type>
-ToMaybe(T* aPtr)
-{
+template <typename T>
+Maybe<typename RemoveCV<typename RemoveReference<T>::Type>::Type> ToMaybe(
+    T* aPtr) {
   if (aPtr) {
     return Some(*aPtr);
   }
@@ -469,18 +494,16 @@ ToMaybe(T* aPtr)
  * - both are Nothing, or
  * - both are Some, and the values they contain are equal.
  */
-template<typename T> bool
-operator==(const Maybe<T>& aLHS, const Maybe<T>& aRHS)
-{
+template <typename T>
+bool operator==(const Maybe<T>& aLHS, const Maybe<T>& aRHS) {
   if (aLHS.isNothing() != aRHS.isNothing()) {
     return false;
   }
   return aLHS.isNothing() || *aLHS == *aRHS;
 }
 
-template<typename T> bool
-operator!=(const Maybe<T>& aLHS, const Maybe<T>& aRHS)
-{
+template <typename T>
+bool operator!=(const Maybe<T>& aLHS, const Maybe<T>& aRHS) {
   return !(aLHS == aRHS);
 }
 
@@ -488,27 +511,23 @@ operator!=(const Maybe<T>& aLHS, const Maybe<T>& aRHS)
  * We support comparison to Nothing to allow reasonable expressions like:
  *   if (maybeValue == Nothing()) { ... }
  */
-template<typename T> bool
-operator==(const Maybe<T>& aLHS, const Nothing& aRHS)
-{
+template <typename T>
+bool operator==(const Maybe<T>& aLHS, const Nothing& aRHS) {
   return aLHS.isNothing();
 }
 
-template<typename T> bool
-operator!=(const Maybe<T>& aLHS, const Nothing& aRHS)
-{
+template <typename T>
+bool operator!=(const Maybe<T>& aLHS, const Nothing& aRHS) {
   return !(aLHS == aRHS);
 }
 
-template<typename T> bool
-operator==(const Nothing& aLHS, const Maybe<T>& aRHS)
-{
+template <typename T>
+bool operator==(const Nothing& aLHS, const Maybe<T>& aRHS) {
   return aRHS.isNothing();
 }
 
-template<typename T> bool
-operator!=(const Nothing& aLHS, const Maybe<T>& aRHS)
-{
+template <typename T>
+bool operator!=(const Nothing& aLHS, const Maybe<T>& aRHS) {
   return !(aLHS == aRHS);
 }
 
@@ -516,9 +535,8 @@ operator!=(const Nothing& aLHS, const Maybe<T>& aRHS)
  * Maybe<T> values are ordered in the same way T values are ordered, except that
  * Nothing comes before anything else.
  */
-template<typename T> bool
-operator<(const Maybe<T>& aLHS, const Maybe<T>& aRHS)
-{
+template <typename T>
+bool operator<(const Maybe<T>& aLHS, const Maybe<T>& aRHS) {
   if (aLHS.isNothing()) {
     return aRHS.isSome();
   }
@@ -528,24 +546,21 @@ operator<(const Maybe<T>& aLHS, const Maybe<T>& aRHS)
   return *aLHS < *aRHS;
 }
 
-template<typename T> bool
-operator>(const Maybe<T>& aLHS, const Maybe<T>& aRHS)
-{
+template <typename T>
+bool operator>(const Maybe<T>& aLHS, const Maybe<T>& aRHS) {
   return !(aLHS < aRHS || aLHS == aRHS);
 }
 
-template<typename T> bool
-operator<=(const Maybe<T>& aLHS, const Maybe<T>& aRHS)
-{
+template <typename T>
+bool operator<=(const Maybe<T>& aLHS, const Maybe<T>& aRHS) {
   return aLHS < aRHS || aLHS == aRHS;
 }
 
-template<typename T> bool
-operator>=(const Maybe<T>& aLHS, const Maybe<T>& aRHS)
-{
+template <typename T>
+bool operator>=(const Maybe<T>& aLHS, const Maybe<T>& aRHS) {
   return !(aLHS < aRHS);
 }
 
-} // namespace mozilla
+}  // namespace mozilla
 
 #endif /* mozilla_Maybe_h */

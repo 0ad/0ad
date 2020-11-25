@@ -30,7 +30,7 @@ JSClassOps JSI_GUISize::JSI_classops = {
 	nullptr, nullptr,
 	nullptr, nullptr,
 	nullptr, nullptr, nullptr, nullptr,
-	nullptr, nullptr, JSI_GUISize::construct, nullptr
+	nullptr, JSI_GUISize::construct, nullptr
 };
 
 JSFunctionSpec JSI_GUISize::JSI_methods[] =

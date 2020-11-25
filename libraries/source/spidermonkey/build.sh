@@ -3,10 +3,10 @@
 set -e
 
 # This should match the version in config/milestone.txt
-FOLDER="mozjs-52.9.1pre1"
+FOLDER="mozjs-60.9.1"
 # If same-version changes are needed, increment this.
-LIB_VERSION="52.9.1pre1+2"
-LIB_NAME="mozjs52-ps"
+LIB_VERSION="60.9.1+0"
+LIB_NAME="mozjs60-ps"
 
 # Since this script is called by update-workspaces.sh, we want to quickly
 # avoid doing any work if SpiderMonkey is already built and up-to-date.
@@ -36,14 +36,14 @@ CONF_OPTS="--disable-tests
            --disable-jemalloc
            --disable-js-shell
            --without-intl-api
-           --enable-shared-js" # We're linking statically but JS has quirks with static-only compilation.
+           --enable-shared-js"
 
 # NSPR is needed on Windows for POSIX emulation.
 # If you want to build on Windows, check README.txt and edit the absolute paths
 # to match your environment.
 if [ "${OS}" = "Windows_NT" ]
 then
-  CONF_OPTS="${CONF_OPTS} --with-nspr-prefix="D:/nspr-4.21/nspr/""
+  CONF_OPTS="${CONF_OPTS} --enable-nspr-build --with-visual-studio-version=2015"
 else
   CONF_OPTS="${CONF_OPTS} --enable-posix-nspr-emulation"
 fi
@@ -86,7 +86,7 @@ then
   then
     # The tarball is committed to svn, but it's useful to let jenkins download it (when testing upgrade scripts).
     download="$(command -v wget || echo "curl -L -o "${FOLDER}.tar.bz2"")"
-    $download "https://github.com/wraitii/spidermonkey-tarballs/releases/download/v52.9.1/${FOLDER}.tar.bz2"
+    $download "https://github.com/wraitii/spidermonkey-tarballs/releases/download/v60.9.1/${FOLDER}.tar.bz2"
   fi
   tar xjf "${FOLDER}.tar.bz2"
 
@@ -148,10 +148,10 @@ then
   # SpiderMonkey uses a tweaked zlib when building, and it wrongly copies its own files to include dirs
   # afterwards, so we have to remove them to not have them conflicting with the regular zlib
   pushd "${FOLDER}/build-release/dist/include"
-  rm mozzconf.h zconf.h zlib.h
+  rm -f mozzconf.h zconf.h zlib.h
   popd
   pushd "${FOLDER}/build-debug/dist/include"
-  rm mozzconf.h zconf.h zlib.h
+  rm -f mozzconf.h zconf.h zlib.h
   popd
 fi
 
@@ -163,29 +163,36 @@ mkdir -p "${INCLUDE_DIR_RELEASE}"
 cp -R -L "${FOLDER}"/build-release/dist/include/* "${INCLUDE_DIR_RELEASE}/"
 cp -R -L "${FOLDER}"/build-debug/dist/include/* "${INCLUDE_DIR_DEBUG}/"
 
+# These align the ligns below, making it easier to check for mistakes.
+DEB="debug"
+REL="release"
+
 mkdir -p lib/
 if [ "`uname -s`" = "Darwin" ]
 then
-  # On MacOS, copy the static library.
-  cp -L "${FOLDER}/build-debug/js/src/${LIB_PREFIX}js_static${LIB_SUFFIX}" "lib/${LIB_PREFIX}${LIB_NAME}-debug${LIB_SUFFIX}"
-  cp -L "${FOLDER}/build-release/js/src/${LIB_PREFIX}js_static${LIB_SUFFIX}" "lib/${LIB_PREFIX}${LIB_NAME}-release${LIB_SUFFIX}"
-else
-  cp -L "${FOLDER}/build-debug/js/src/${LIB_PREFIX}${LIB_NAME}-debug${LIB_SUFFIX}" "lib/${LIB_PREFIX}${LIB_NAME}-debug${LIB_SUFFIX}"
-  cp -L "${FOLDER}/build-debug/js/src/${LIB_PREFIX}${LIB_NAME}-debug${LIB_SUFFIX}" "../../../binaries/system/${LIB_PREFIX}${LIB_NAME}-debug${LIB_SUFFIX}"
-  cp -L "${FOLDER}/build-release/js/src/${LIB_PREFIX}${LIB_NAME}-release${LIB_SUFFIX}" "lib/${LIB_PREFIX}${LIB_NAME}-release${LIB_SUFFIX}"
-  cp -L "${FOLDER}/build-release/js/src/${LIB_PREFIX}${LIB_NAME}-release${LIB_SUFFIX}" "../../../binaries/system/${LIB_PREFIX}${LIB_NAME}-release${LIB_SUFFIX}"
-fi
-
-if [ "${OS}" = "Windows_NT" ]
+  # On MacOS, copy the static libraries only.
+  cp -L "${FOLDER}/build-${DEB}/js/src/build/${LIB_PREFIX}js_static${LIB_SUFFIX}" "lib/${LIB_PREFIX}${LIB_NAME}-${DEB}${LIB_SUFFIX}"
+  cp -L "${FOLDER}/build-${REL}/js/src/build/${LIB_PREFIX}js_static${LIB_SUFFIX}" "lib/${LIB_PREFIX}${LIB_NAME}-${REL}${LIB_SUFFIX}"
+elif [ "${OS}" = "Windows_NT" ]
 then
-  # On Windows, copy also auxiliary libraries.
-  cp -L "${FOLDER}/build-debug/js/src/${LIB_PREFIX}nspr4.dll" "../../../binaries/system/${LIB_PREFIX}nspr4.dll"
-  cp -L "${FOLDER}/build-debug/js/src/${LIB_PREFIX}plc4.dll" "../../../binaries/system/${LIB_PREFIX}plc4.dll"
-  cp -L "${FOLDER}/build-debug/js/src/${LIB_PREFIX}plds4.dll" "../../../binaries/system/${LIB_PREFIX}plds4.dll"
-  cp -L "${FOLDER}/build-debug/js/src/${LIB_PREFIX}mozjs-52-debug.dll" "../../../binaries/system/${LIB_PREFIX}${LIB_NAME}-debug.dll"
-  cp -L "${FOLDER}/build-release/js/src/${LIB_PREFIX}mozjs-52-release.dll" "../../../binaries/system/${LIB_PREFIX}${LIB_NAME}-release.dll"
-  cp -L "${FOLDER}/build-debug/js/src/${LIB_PREFIX}mozjs-52-debug.pdb" "../../../binaries/system/${LIB_PREFIX}${LIB_NAME}-debug.pdb"
-  cp -L "${FOLDER}/build-release/js/src/${LIB_PREFIX}mozjs-52-release.pdb" "../../../binaries/system/${LIB_PREFIX}${LIB_NAME}-release.pdb"
+  # Windows needs DLLs to binaries/, static stubs to lib/ and debug symbols
+  cp -L "${FOLDER}/build-${DEB}/js/src/build/${LIB_PREFIX}${LIB_NAME}-${DEB}${LIB_SUFFIX}" "../../../binaries/system/${LIB_PREFIX}${LIB_NAME}-${DEB}${LIB_SUFFIX}"
+  cp -L "${FOLDER}/build-${REL}/js/src/build/${LIB_PREFIX}${LIB_NAME}-${REL}${LIB_SUFFIX}" "../../../binaries/system/${LIB_PREFIX}${LIB_NAME}-${REL}${LIB_SUFFIX}"
+  cp -L "${FOLDER}/build-${DEB}/js/src/build/${LIB_PREFIX}${LIB_NAME}-${DEB}.lib" "lib/${LIB_PREFIX}${LIB_NAME}-${DEB}.lib"
+  cp -L "${FOLDER}/build-${REL}/js/src/build/${LIB_PREFIX}${LIB_NAME}-${REL}.lib" "lib/${LIB_PREFIX}${LIB_NAME}-${REL}.lib"
+  # Copy debug symbols as well.
+  cp -L "${FOLDER}/build-${DEB}/js/src/build/${LIB_PREFIX}${LIB_NAME}-${DEB}.pdb" "../../../binaries/system/${LIB_PREFIX}${LIB_NAME}-${DEB}.pdb"
+  cp -L "${FOLDER}/build-${REL}/js/src/build/${LIB_PREFIX}${LIB_NAME}-${REL}.pdb" "../../../binaries/system/${LIB_PREFIX}${LIB_NAME}-${REL}.pdb"
+  # Windows need some additional libraries for posix emulation.
+  cp -L "${FOLDER}/build-release/dist/bin/${LIB_PREFIX}nspr4.dll" "../../../binaries/system/${LIB_PREFIX}nspr4.dll"
+  cp -L "${FOLDER}/build-release/dist/bin/${LIB_PREFIX}plc4.dll" "../../../binaries/system/${LIB_PREFIX}plc4.dll"
+  cp -L "${FOLDER}/build-release/dist/bin/${LIB_PREFIX}plds4.dll" "../../../binaries/system/${LIB_PREFIX}plds4.dll"
+else
+  # Copy shared libs to both lib/ and binaries/ so the compiler and executable (resp.) can find them.
+  cp -L "${FOLDER}/build-${DEB}/js/src/build/${LIB_PREFIX}${LIB_NAME}-${DEB}${LIB_SUFFIX}" "lib/${LIB_PREFIX}${LIB_NAME}-${DEB}${LIB_SUFFIX}"
+  cp -L "${FOLDER}/build-${REL}/js/src/build/${LIB_PREFIX}${LIB_NAME}-${REL}${LIB_SUFFIX}" "lib/${LIB_PREFIX}${LIB_NAME}-${REL}${LIB_SUFFIX}"
+  cp -L "${FOLDER}/build-${DEB}/js/src/build/${LIB_PREFIX}${LIB_NAME}-${DEB}${LIB_SUFFIX}" "../../../binaries/system/${LIB_PREFIX}${LIB_NAME}-${DEB}${LIB_SUFFIX}"
+  cp -L "${FOLDER}/build-${REL}/js/src/build/${LIB_PREFIX}${LIB_NAME}-${REL}${LIB_SUFFIX}" "../../../binaries/system/${LIB_PREFIX}${LIB_NAME}-${REL}${LIB_SUFFIX}"
 fi
 
 # Flag that it's already been built successfully so we can skip it next time
