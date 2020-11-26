@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -43,7 +43,7 @@ static Status ReloadChangedFileCB(void* param, const VfsPath& path)
 }
 
 L10n::L10n()
-	: dictionary(new tinygettext::Dictionary()), currentLocaleIsOriginalGameLocale(false), useLongStrings(false)
+	: m_Dictionary(new tinygettext::Dictionary()), currentLocaleIsOriginalGameLocale(false), useLongStrings(false)
 {
 	// Determine whether or not to print tinygettext messages to the standard
 	// error output, which it tinygettext’s default behavior, but not ours.
@@ -66,10 +66,6 @@ L10n::L10n()
 L10n::~L10n()
 {
 	UnregisterFileReloadFunc(ReloadChangedFileCB, this);
-
-	for (icu::Locale* const& locale : availableLocales)
-		delete locale;
-	delete dictionary;
 }
 
 icu::Locale L10n::GetCurrentLocale() const
@@ -135,7 +131,7 @@ std::wstring L10n::GetFallbackToAvailableDictLocale(const icu::Locale& locale) c
 {
 	std::wstringstream stream;
 
-	std::function<bool(const icu::Locale* const&)> checkLangAndCountry = [&locale](const icu::Locale* const& l) {
+	auto checkLangAndCountry = [&locale](const std::unique_ptr<icu::Locale>& l) {
 		return strcmp(locale.getLanguage(), l->getLanguage()) == 0
 		       && strcmp(locale.getCountry(), l->getCountry()) == 0;
 	};
@@ -147,7 +143,7 @@ std::wstring L10n::GetFallbackToAvailableDictLocale(const icu::Locale& locale) c
 		return stream.str();
 	}
 
-	std::function<bool(const icu::Locale* const&)> checkLang = [&locale](const icu::Locale* const& l) {
+	auto checkLang = [&locale](const std::unique_ptr<icu::Locale>& l) {
 		return strcmp(locale.getLanguage(), l->getLanguage()) == 0;
 	};
 
@@ -231,7 +227,7 @@ bool L10n::UseLongStrings() const
 std::vector<std::string> L10n::GetSupportedLocaleBaseNames() const
 {
 	std::vector<std::string> supportedLocaleCodes;
-	for (icu::Locale* const& locale : availableLocales)
+	for (const std::unique_ptr<icu::Locale>& locale : availableLocales)
 	{
 		if (!InDevelopmentCopy() && strcmp(locale->getBaseName(), "long") == 0)
 			continue;
@@ -243,7 +239,7 @@ std::vector<std::string> L10n::GetSupportedLocaleBaseNames() const
 std::vector<std::wstring> L10n::GetSupportedLocaleDisplayNames() const
 {
 	std::vector<std::wstring> supportedLocaleDisplayNames;
-	for (icu::Locale* const& locale : availableLocales)
+	for (const std::unique_ptr<icu::Locale>& locale : availableLocales)
 	{
 		if (strcmp(locale->getBaseName(), "long") == 0)
 		{
@@ -296,7 +292,7 @@ std::string L10n::GetLocaleScript(const std::string& locale) const
 std::string L10n::Translate(const std::string& sourceString) const
 {
 	if (!currentLocaleIsOriginalGameLocale)
-		return dictionary->translate(sourceString);
+		return m_Dictionary->translate(sourceString);
 
 	return sourceString;
 }
@@ -304,7 +300,7 @@ std::string L10n::Translate(const std::string& sourceString) const
 std::string L10n::TranslateWithContext(const std::string& context, const std::string& sourceString) const
 {
 	if (!currentLocaleIsOriginalGameLocale)
-		return dictionary->translate_ctxt(context, sourceString);
+		return m_Dictionary->translate_ctxt(context, sourceString);
 
 	return sourceString;
 }
@@ -312,7 +308,7 @@ std::string L10n::TranslateWithContext(const std::string& context, const std::st
 std::string L10n::TranslatePlural(const std::string& singularSourceString, const std::string& pluralSourceString, int number) const
 {
 	if (!currentLocaleIsOriginalGameLocale)
-		return dictionary->translate_plural(singularSourceString, pluralSourceString, number);
+		return m_Dictionary->translate_plural(singularSourceString, pluralSourceString, number);
 
 	if (number == 1)
 		return singularSourceString;
@@ -323,7 +319,7 @@ std::string L10n::TranslatePlural(const std::string& singularSourceString, const
 std::string L10n::TranslatePluralWithContext(const std::string& context, const std::string& singularSourceString, const std::string& pluralSourceString, int number) const
 {
 	if (!currentLocaleIsOriginalGameLocale)
-		return dictionary->translate_ctxt_plural(context, singularSourceString, pluralSourceString, number);
+		return m_Dictionary->translate_ctxt_plural(context, singularSourceString, pluralSourceString, number);
 
 	if (number == 1)
 		return singularSourceString;
@@ -457,7 +453,7 @@ Status L10n::ReloadChangedFile(const VfsPath& path)
 	}
 
 	std::string content = file.DecodeUTF8();
-	ReadPoIntoDictionary(content, dictionary);
+	ReadPoIntoDictionary(content, m_Dictionary.get());
 
 	if (g_GUI)
 		g_GUI->ReloadAllPages();
@@ -467,9 +463,7 @@ Status L10n::ReloadChangedFile(const VfsPath& path)
 
 void L10n::LoadDictionaryForCurrentLocale()
 {
-	delete dictionary;
-	dictionary = new tinygettext::Dictionary();
-
+	m_Dictionary.reset(new tinygettext::Dictionary());
 	VfsPaths filenames;
 
 	if (useLongStrings)
@@ -492,18 +486,16 @@ void L10n::LoadDictionaryForCurrentLocale()
 		CVFSFile file;
 		file.Load(g_VFS, path);
 		std::string content = file.DecodeUTF8();
-		ReadPoIntoDictionary(content, dictionary);
+		ReadPoIntoDictionary(content, m_Dictionary.get());
 	}
 }
 
 void L10n::LoadListOfAvailableLocales()
 {
-	for (icu::Locale* const& locale : availableLocales)
-		delete locale;
 	availableLocales.clear();
 
-	icu::Locale* defaultLocale = new icu::Locale(icu::Locale::getUS());
-	availableLocales.push_back(defaultLocale); // Always available.
+	// US is always available.
+	availableLocales.emplace_back(new icu::Locale(icu::Locale::getUS()));
 
 	VfsPaths filenames;
 	if (vfs::GetPathnames(g_VFS, L"l10n/", L"*.po", filenames) < 0)
@@ -515,18 +507,14 @@ void L10n::LoadListOfAvailableLocales()
 		std::string filename = utf8_from_wstring(path.string()).substr(strlen("l10n/"));
 		size_t lengthToFirstDot = filename.find('.');
 		std::string localeCode = filename.substr(0, lengthToFirstDot);
-		icu::Locale* locale = new icu::Locale(icu::Locale::createCanonical(localeCode.c_str()));
-
-		std::vector<icu::Locale*>::iterator it = std::find_if(availableLocales.begin(), availableLocales.end(), [&locale](icu::Locale* const& l) {
+		std::unique_ptr<icu::Locale> locale(new icu::Locale(icu::Locale::createCanonical(localeCode.c_str())));
+		auto it = std::find_if(availableLocales.begin(), availableLocales.end(), [&locale](const std::unique_ptr<icu::Locale>& l) {
 			return *locale == *l;
 		});
 		if (it != availableLocales.end())
-		{
-			delete locale;
 			continue;
-		}
 
-		availableLocales.push_back(locale);
+		availableLocales.push_back(std::move(locale));
 	}
 }
 

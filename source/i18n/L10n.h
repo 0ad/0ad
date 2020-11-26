@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -23,14 +23,15 @@
 #ifndef INCLUDED_L10N
 #define INCLUDED_L10N
 
-#include <string>
-#include <vector>
-
 #include "lib/code_annotation.h"
 #include "lib/external_libraries/icu.h"
 #include "lib/external_libraries/tinygettext.h"
 #include "lib/file/vfs/vfs_path.h"
 #include "ps/Singleton.h"
+
+#include <memory>
+#include <string>
+#include <vector>
 
 #define g_L10n L10n::GetSingleton()
 
@@ -482,7 +483,7 @@ private:
 	 *
 	 * @sa LoadDictionaryForCurrentLocale()
 	 */
-	tinygettext::Dictionary* dictionary;
+	std::unique_ptr<tinygettext::Dictionary> m_Dictionary;
 
 	/**
 	 * Locale that the game is currently using.
@@ -507,7 +508,7 @@ private:
 	 * @sa GetSupportedLocaleBaseNames()
 	 * @sa GetSupportedLocaleDisplayNames()
 	 */
-	std::vector<icu::Locale*> availableLocales;
+	std::vector<std::unique_ptr<icu::Locale>> availableLocales;
 
 	/**
 	 * Whether the game is using the default game locale (@c true), ‘en_US’, or
