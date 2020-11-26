@@ -313,10 +313,9 @@ function project_set_build_flags()
 				links { "gcov" }
 			end
 
-			-- MacOS always provides SSE3 so enable that.
-			-- TODO: after <10.12 support is dropped, we can assume SSE4.1 is present.
+			-- MacOS 10.12 only supports processors with SSE 4.1, so enable that.
 			if os.istarget("macosx") then
-				buildoptions { "-msse3" }
+				buildoptions { "-msse4.1" }
 			end
 
 			-- Check if SDK path should be used

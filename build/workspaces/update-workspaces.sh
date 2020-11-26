@@ -68,7 +68,7 @@ cd "$(dirname $0)"
 
 if [ "`uname -s`" = "Darwin" ]; then
   # Set minimal SDK version
-  export MIN_OSX_VERSION=${MIN_OSX_VERSION:="10.9"}
+  export MIN_OSX_VERSION=${MIN_OSX_VERSION:="10.12"}
 
   # Set *_CONFIG variables on OS X, to override the path to e.g. sdl2-config
   export GLOOX_CONFIG=${GLOOX_CONFIG:="$(pwd)/../../libraries/osx/gloox/bin/gloox-config"}

@@ -8,16 +8,12 @@
 # the chosen target and compatible systems.
 #
 
-# Force build architecture, as sometimes environment is broken.
-# For a universal fat binary, the approach would be to build every
-# library with both archs and combine them with lipo, then do the
-# same thing with the game itself.
-# Choices are "x86_64" or "i386" (ppc and ppc64 not supported)
+# TODO: is there anything to do for ARM support?
 export ARCH=${ARCH:="x86_64"}
 
 # Set mimimum required OS X version, SDK location and tools
 # Old SDKs can be found at https://github.com/phracker/MacOSX-SDKs
-export MIN_OSX_VERSION=${MIN_OSX_VERSION:="10.9"}
+export MIN_OSX_VERSION=${MIN_OSX_VERSION:="10.12"}
 export SYSROOT=${SYSROOT:="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX${MIN_OSX_VERSION}.sdk"}
 export CC=${CC:="clang"} CXX=${CXX:="clang++"}
 
