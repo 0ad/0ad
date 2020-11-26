@@ -403,7 +403,7 @@ InReaction IGUIObject::SendMouseEvent(EGUIMessageType type, const CStr& eventNam
 		"y", mousePos.y,
 		"buttons", m_pGUI.GetMouseButtons());
 	JS::AutoValueVector paramData(rq.cx);
-	(void)paramData.append(mouse);
+	DISCARD paramData.append(mouse);
 	ScriptEvent(eventName, paramData);
 
 	return msg.skipped ? IN_PASS : IN_HANDLED;

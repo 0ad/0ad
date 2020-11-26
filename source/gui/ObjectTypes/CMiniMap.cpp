@@ -251,8 +251,8 @@ bool CMiniMap::FireWorldClickEvent(int button, int UNUSED(clicks))
 	ScriptInterface::ToJSVal(rq, &buttonJs, button);
 
 	JS::AutoValueVector paramData(rq.cx);
-	paramData.append(coords);
-	paramData.append(buttonJs);
+	DISCARD paramData.append(coords);
+	DISCARD paramData.append(buttonJs);
 
 	return ScriptEventWithReturn(EventNameWorldClick, paramData);
 }

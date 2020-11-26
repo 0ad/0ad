@@ -56,6 +56,12 @@
 # define UNUSED2(param) ((void)(param))
 #endif
 
+/**
+ * Mark a function return value as discardable to silence [[nodiscard]] warnings.
+ * (void) would be sufficient but Spidermonkey still uses warn_unused_result,
+ * and GCC is stricter about that. See https://bugzilla.mozilla.org/show_bug.cgi?id=1571631.
+ **/
+#define DISCARD (void)!
 
 /**
  * indicate a function will not throw any synchronous exceptions,

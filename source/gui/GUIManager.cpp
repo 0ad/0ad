@@ -255,7 +255,7 @@ void CGUIManager::SGUIPage::PerformCallbackFunction(ScriptInterface::StructuredC
 		scriptInterface->ReadStructuredClone(args, &argVal);
 
 	JS::AutoValueVector paramData(rq.cx);
-	paramData.append(argVal);
+	DISCARD paramData.append(argVal);
 
 	JS::RootedValue result(rq.cx);
 

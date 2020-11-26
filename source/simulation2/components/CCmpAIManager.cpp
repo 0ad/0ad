@@ -159,7 +159,7 @@ private:
 			}
 
 			JS::AutoValueVector argv(rq.cx);
-			argv.append(settings.get());
+			DISCARD argv.append(settings.get());
 			m_ScriptInterface->CallConstructor(ctor, argv, &m_Obj);
 
 			if (m_Obj.get().isNull())
@@ -458,7 +458,7 @@ public:
 			"templates", m_EntityTemplates);
 
 		JS::AutoValueVector argv(rq.cx);
-		argv.append(settings);
+		DISCARD argv.append(settings);
 		m_ScriptInterface->CallConstructor(ctor, argv, &m_SharedAIObj);
 
 		if (m_SharedAIObj.get().isNull())
