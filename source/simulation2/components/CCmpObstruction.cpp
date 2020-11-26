@@ -771,18 +771,15 @@ public:
 				return;
 
 			// Attempt to replace colliding entities' control groups with a persistent one.
-			for (std::vector<entity_id_t>::iterator it = normalEnts.begin(); it != normalEnts.end(); ++it)
+			for (const entity_id_t normalEnt : normalEnts)
 			{
-				entity_id_t ent = *it;
-
-				CmpPtr<ICmpObstruction> cmpObstruction(GetSimContext(), ent);
-				for (std::vector<entity_id_t>::iterator it = persistentEnts.begin(); it != persistentEnts.end(); ++it)
+				CmpPtr<ICmpObstruction> cmpObstruction(GetSimContext(), normalEnt);
+				for (const entity_id_t persistent : normalEnts)
 				{
-					entity_id_t persistent = *it;
 					entity_id_t group = cmpObstruction->GetControlGroup();
 
 					// Only clobber 'default' control groups.
-					if (group == ent)
+					if (group == normalEnt)
 						cmpObstruction->SetControlGroup(persistent);
 					else if (cmpObstruction->GetControlGroup2() == INVALID_ENTITY && group != persistent)
 						cmpObstruction->SetControlGroup2(persistent);

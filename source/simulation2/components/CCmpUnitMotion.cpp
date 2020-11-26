@@ -834,7 +834,7 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 		{
 			// Get close enough - this will likely help the short path efficiency, and if we end up taking a wrong way
 			// we'll easily be able to revert it using a long path.
-			PathGoal goal = { PathGoal::CIRCLE, m_LongPath.m_Waypoints.back().x, m_LongPath.m_Waypoints.back().z, ShortPathWaypointRange(m_LongPath) };
+			goal = { PathGoal::CIRCLE, m_LongPath.m_Waypoints.back().x, m_LongPath.m_Waypoints.back().z, ShortPathWaypointRange(m_LongPath) };
 			RequestShortPath(pos, goal, true);
 			return;
 		}
@@ -1087,7 +1087,7 @@ bool CCmpUnitMotion::HandleObstructedMove()
 		{
 			// Get close enough - this will likely help the short path efficiency, and if we end up taking a wrong way
 			// we'll easily be able to revert it using a long path.
-			PathGoal goal = { PathGoal::CIRCLE, m_LongPath.m_Waypoints.back().x, m_LongPath.m_Waypoints.back().z, ShortPathWaypointRange(m_LongPath) };
+			goal = { PathGoal::CIRCLE, m_LongPath.m_Waypoints.back().x, m_LongPath.m_Waypoints.back().z, ShortPathWaypointRange(m_LongPath) };
 			RequestShortPath(pos, goal, true);
 			return true;
 		}

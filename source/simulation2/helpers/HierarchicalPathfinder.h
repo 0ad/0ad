@@ -306,11 +306,14 @@ public:
 
 	virtual void BuildTextureRGBA(u8* data, size_t w, size_t h)
 	{
+		ENSURE(h <= std::numeric_limits<u16>::max() && w <= std::numeric_limits<u16>::max());
+		u16 height = static_cast<u16>(h);
+		u16 width = static_cast<u16>(w);
 		pass_class_t passClass = m_PathfinderHier.GetPassabilityClass("default");
 
-		for (size_t j = 0; j < h; ++j)
+		for (u16 j = 0; j < height; ++j)
 		{
-			for (size_t i = 0; i < w; ++i)
+			for (u16 i = 0; i < width; ++i)
 			{
 				SColor4ub color;
 

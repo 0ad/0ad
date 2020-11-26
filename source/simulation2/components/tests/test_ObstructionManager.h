@@ -562,21 +562,21 @@ public:
 		TS_ASSERT_EQUALS(fixed::Zero(), cmp->DistanceToTarget(ent3, ent2));
 
 		// Due to rounding errors we need to use some leeway
-		TS_ASSERT_DELTA(fixed::FromFloat(std::sqrt(80)), cmp->MaxDistanceToTarget(ent2, ent3), fixed::FromFloat(0.0001));
-		TS_ASSERT_DELTA(fixed::FromFloat(std::sqrt(80)), cmp->MaxDistanceToTarget(ent3, ent2), fixed::FromFloat(0.0001));
+		TS_ASSERT_DELTA(fixed::FromFloat(std::sqrt(80)), cmp->MaxDistanceToTarget(ent2, ent3), fixed::FromFloat(0.0001f));
+		TS_ASSERT_DELTA(fixed::FromFloat(std::sqrt(80)), cmp->MaxDistanceToTarget(ent3, ent2), fixed::FromFloat(0.0001f));
 
 		TS_ASSERT_EQUALS(fixed::Zero(), cmp->DistanceToTarget(ent1, ent3));
 		TS_ASSERT_EQUALS(fixed::Zero(), cmp->DistanceToTarget(ent3, ent1));
 
 		TS_ASSERT_EQUALS(fixed::FromInt(6), cmp->DistanceToTarget(ent1, ent4));
 		TS_ASSERT_EQUALS(fixed::FromInt(6), cmp->DistanceToTarget(ent4, ent1));
-		TS_ASSERT_DELTA(fixed::FromFloat(std::sqrt(125) + 3), cmp->MaxDistanceToTarget(ent1, ent4), fixed::FromFloat(0.0001));
-		TS_ASSERT_DELTA(fixed::FromFloat(std::sqrt(125) + 3), cmp->MaxDistanceToTarget(ent4, ent1), fixed::FromFloat(0.0001));
+		TS_ASSERT_DELTA(fixed::FromFloat(std::sqrt(125) + 3), cmp->MaxDistanceToTarget(ent1, ent4), fixed::FromFloat(0.0001f));
+		TS_ASSERT_DELTA(fixed::FromFloat(std::sqrt(125) + 3), cmp->MaxDistanceToTarget(ent4, ent1), fixed::FromFloat(0.0001f));
 
 		TS_ASSERT_EQUALS(fixed::FromInt(7), cmp->DistanceToTarget(ent1, ent5));
 		TS_ASSERT_EQUALS(fixed::FromInt(7), cmp->DistanceToTarget(ent5, ent1));
-		TS_ASSERT_DELTA(fixed::FromFloat(std::sqrt(178)), cmp->MaxDistanceToTarget(ent1, ent5), fixed::FromFloat(0.0001));
-		TS_ASSERT_DELTA(fixed::FromFloat(std::sqrt(178)), cmp->MaxDistanceToTarget(ent5, ent1), fixed::FromFloat(0.0001));
+		TS_ASSERT_DELTA(fixed::FromFloat(std::sqrt(178)), cmp->MaxDistanceToTarget(ent1, ent5), fixed::FromFloat(0.0001f));
+		TS_ASSERT_DELTA(fixed::FromFloat(std::sqrt(178)), cmp->MaxDistanceToTarget(ent5, ent1), fixed::FromFloat(0.0001f));
 
 		TS_ASSERT(cmp->IsInTargetRange(ent1, ent2, fixed::Zero(), fixed::FromInt(1), true));
 		TS_ASSERT(cmp->IsInTargetRange(ent1, ent2, fixed::Zero(), fixed::FromInt(1), false));

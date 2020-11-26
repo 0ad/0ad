@@ -1079,8 +1079,8 @@ void CComponentManager::SendGlobalMessage(entity_id_t ent, const CMessage& msg)
 			// them accidentally picking up non-network-synchronised data.
 			if (ENTITY_IS_LOCAL(ent))
 			{
-				std::map<ComponentTypeId, ComponentType>::const_iterator it = m_ComponentTypesById.find(*ctit);
-				if (it != m_ComponentTypesById.end() && it->second.type == CT_Script)
+				std::map<ComponentTypeId, ComponentType>::const_iterator cit = m_ComponentTypesById.find(*ctit);
+				if (cit != m_ComponentTypesById.end() && cit->second.type == CT_Script)
 					continue;
 			}
 

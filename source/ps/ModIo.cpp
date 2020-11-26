@@ -418,12 +418,11 @@ bool ModIo::AdvanceRequest(const ScriptInterface& scriptInterface)
 		if (!message)
 			continue;
 
-		CURLcode err = message->data.result;
-		if (err == CURLE_OK)
+		if (message->data.result == CURLE_OK)
 			continue;
 
 		std::string error = fmt::sprintf(
-			g_L10n.Translate("Download failure. Server response: %s; %s."), curl_easy_strerror(err), m_ErrorBuffer);
+			g_L10n.Translate("Download failure. Server response: %s; %s."), curl_easy_strerror(message->data.result), m_ErrorBuffer);
 		TearDownRequest();
 		if (m_DownloadProgressData.status == DownloadProgressStatus::GAMEID)
 			m_DownloadProgressData.status = DownloadProgressStatus::FAILED_GAMEID;

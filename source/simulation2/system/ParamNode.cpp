@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -186,6 +186,8 @@ void CParamNode::ApplyLayer(const XMBFile& xmb, const XMBElement& element, const
 			break;
 		case MUL_ROUND:
 			node.m_Value = fixed::FromInt(oldval.Multiply(mod).ToInt_RoundToNearest()).ToString().FromUTF8();
+			break;
+		default:
 			break;
 		}
 		hasSetValue = true;
@@ -428,8 +430,8 @@ void CParamNode::ConstructJSVal(const ScriptRequest& rq, JS::MutableHandleValue 
 			return; // TODO: report error
 		}
 
-		JS::RootedValue childVal(rq.cx, JS::StringValue(str));
-		if (!JS_SetProperty(rq.cx, obj, "_string", childVal))
+		JS::RootedValue subChildVal(rq.cx, JS::StringValue(str));
+		if (!JS_SetProperty(rq.cx, obj, "_string", subChildVal))
 		{
 			ret.setUndefined();
 			return; // TODO: report error

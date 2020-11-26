@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -100,7 +100,7 @@ private:
 	bool m_UseRelativeVelocity;
 
 	float m_MaxLifetime;
-	size_t m_MaxParticles;
+	u16 m_MaxParticles;
 	CBoundingBoxAligned m_MaxBounds;
 
 	typedef shared_ptr<IParticleVar> IParticleVarPtr;

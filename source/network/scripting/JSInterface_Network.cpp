@@ -38,12 +38,12 @@ u16 JSI_Network::GetDefaultPort(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivat
 
 bool JSI_Network::HasNetServer(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
-	return g_NetServer;
+	return !!g_NetServer;
 }
 
 bool JSI_Network::HasNetClient(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
-	return g_NetClient;
+	return !!g_NetClient;
 }
 
 JS::Value JSI_Network::FindStunEndpoint(ScriptInterface::CmptPrivate* pCmptPrivate, int port)
@@ -58,7 +58,7 @@ void JSI_Network::StartNetworkHost(ScriptInterface::CmptPrivate* pCmptPrivate, c
 	ENSURE(!g_Game);
 
 	// Always use lobby authentication for lobby matches to prevent impersonation and smurfing, in particular through mods that implemented an UI for arbitrary or other players nicknames.
-	g_NetServer = new CNetServer(static_cast<bool>(g_XmppClient));
+	g_NetServer = new CNetServer(!!g_XmppClient);
 	if (!g_NetServer->SetupConnection(serverPort))
 	{
 		ScriptRequest rq(pCmptPrivate->pScriptInterface);

@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,11 +18,12 @@
 #include "AtlasObject.h"
 #include "AtlasObjectImpl.h"
 
-#include "JSONSpiritInclude.h"
-
 #if defined(_MSC_VER)
 # pragma warning(disable:4996)	// deprecated CRT
+# pragma warning(disable: 4459) // global declaration hidden
 #endif
+
+#include "JSONSpiritInclude.h"
 
 #include <sstream>
 

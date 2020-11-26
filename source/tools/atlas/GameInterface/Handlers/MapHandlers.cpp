@@ -56,6 +56,11 @@
 #include "simulation2/components/ICmpVisual.h"
 #include "simulation2/system/ParamNode.h"
 
+
+#ifdef _MSC_VER
+# pragma warning(disable: 4458) // Declaration hides class member.
+#endif
+
 namespace
 {
 	void InitGame()

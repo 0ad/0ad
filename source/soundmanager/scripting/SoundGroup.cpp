@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -99,7 +99,7 @@ float CSoundGroup::RadiansOffCenter(const CVector3D& position, bool& onScreen, f
 	const int screenHeight = g_Game->GetView()->GetCamera()->GetViewPort().m_Height;
 	const float xBufferSize = screenWidth * 0.1f;
 	const float yBufferSize = 15.f;
-	const float radianCap = M_PI / 3.f;
+	const float radianCap = static_cast<float>(M_PI / 3);
 
 	float x, y;
 	g_Game->GetView()->GetCamera()->GetScreenCoordinates(position, x, y);

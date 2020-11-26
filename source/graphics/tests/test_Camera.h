@@ -128,7 +128,7 @@ public:
 
 	void CompareQuads(const CCamera::Quad& quad, const CCamera::Quad& expected_quad)
 	{
-		const float EPS = 1e-4;
+		const float EPS = 1e-4f;
 		for (size_t index = 0; index < expected_quad.size(); ++index)
 		{
 			TS_ASSERT_DELTA(quad[index].X, expected_quad[index].X, EPS);

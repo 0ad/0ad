@@ -1359,8 +1359,8 @@ bool Autostart(const CmdLineArgs& args)
 			int playerID = civArgs[i].BeforeFirst(":").ToInt();
 
 			// Instead of overwriting existing player data, modify the array
-			JS::RootedValue player(rq.cx);
-			if (!scriptInterface.GetPropertyInt(playerData, playerID-offset, &player) || player.isUndefined())
+			JS::RootedValue currentPlayer(rq.cx);
+			if (!scriptInterface.GetPropertyInt(playerData, playerID-offset, &currentPlayer) || currentPlayer.isUndefined())
 			{
 				if (mapDirectory == L"skirmishes")
 				{
@@ -1368,12 +1368,12 @@ bool Autostart(const CmdLineArgs& args)
 					LOGWARNING("Autostart: Invalid player %d in autostart-team option", playerID);
 					continue;
 				}
-				ScriptInterface::CreateObject(rq, &player);
+				ScriptInterface::CreateObject(rq, &currentPlayer);
 			}
 
 			int teamID = civArgs[i].AfterFirst(":").ToInt() - 1;
-			scriptInterface.SetProperty(player, "Team", teamID);
-			scriptInterface.SetPropertyInt(playerData, playerID-offset, player);
+			scriptInterface.SetProperty(currentPlayer, "Team", teamID);
+			scriptInterface.SetPropertyInt(playerData, playerID-offset, currentPlayer);
 		}
 	}
 
@@ -1390,8 +1390,8 @@ bool Autostart(const CmdLineArgs& args)
 			int playerID = aiArgs[i].BeforeFirst(":").ToInt();
 
 			// Instead of overwriting existing player data, modify the array
-			JS::RootedValue player(rq.cx);
-			if (!scriptInterface.GetPropertyInt(playerData, playerID-offset, &player) || player.isUndefined())
+			JS::RootedValue currentPlayer(rq.cx);
+			if (!scriptInterface.GetPropertyInt(playerData, playerID-offset, &currentPlayer) || currentPlayer.isUndefined())
 			{
 				if (mapDirectory == L"scenarios" || mapDirectory == L"skirmishes")
 				{
@@ -1399,13 +1399,13 @@ bool Autostart(const CmdLineArgs& args)
 					LOGWARNING("Autostart: Invalid player %d in autostart-ai option", playerID);
 					continue;
 				}
-				ScriptInterface::CreateObject(rq, &player);
+				ScriptInterface::CreateObject(rq, &currentPlayer);
 			}
 
-			scriptInterface.SetProperty(player, "AI", aiArgs[i].AfterFirst(":"));
-			scriptInterface.SetProperty(player, "AIDiff", 3);
-			scriptInterface.SetProperty(player, "AIBehavior", "balanced");
-			scriptInterface.SetPropertyInt(playerData, playerID-offset, player);
+			scriptInterface.SetProperty(currentPlayer, "AI", aiArgs[i].AfterFirst(":"));
+			scriptInterface.SetProperty(currentPlayer, "AIDiff", 3);
+			scriptInterface.SetProperty(currentPlayer, "AIBehavior", "balanced");
+			scriptInterface.SetPropertyInt(playerData, playerID-offset, currentPlayer);
 		}
 	}
 	// Set AI difficulty
@@ -1417,8 +1417,8 @@ bool Autostart(const CmdLineArgs& args)
 			int playerID = civArgs[i].BeforeFirst(":").ToInt();
 
 			// Instead of overwriting existing player data, modify the array
-			JS::RootedValue player(rq.cx);
-			if (!scriptInterface.GetPropertyInt(playerData, playerID-offset, &player) || player.isUndefined())
+			JS::RootedValue currentPlayer(rq.cx);
+			if (!scriptInterface.GetPropertyInt(playerData, playerID-offset, &currentPlayer) || currentPlayer.isUndefined())
 			{
 				if (mapDirectory == L"scenarios" || mapDirectory == L"skirmishes")
 				{
@@ -1426,11 +1426,11 @@ bool Autostart(const CmdLineArgs& args)
 					LOGWARNING("Autostart: Invalid player %d in autostart-aidiff option", playerID);
 					continue;
 				}
-				ScriptInterface::CreateObject(rq, &player);
+				ScriptInterface::CreateObject(rq, &currentPlayer);
 			}
 
-			scriptInterface.SetProperty(player, "AIDiff", civArgs[i].AfterFirst(":").ToInt());
-			scriptInterface.SetPropertyInt(playerData, playerID-offset, player);
+			scriptInterface.SetProperty(currentPlayer, "AIDiff", civArgs[i].AfterFirst(":").ToInt());
+			scriptInterface.SetPropertyInt(playerData, playerID-offset, currentPlayer);
 		}
 	}
 	// Set player data for Civs
@@ -1444,8 +1444,8 @@ bool Autostart(const CmdLineArgs& args)
 				int playerID = civArgs[i].BeforeFirst(":").ToInt();
 
 				// Instead of overwriting existing player data, modify the array
-				JS::RootedValue player(rq.cx);
-				if (!scriptInterface.GetPropertyInt(playerData, playerID-offset, &player) || player.isUndefined())
+				JS::RootedValue currentPlayer(rq.cx);
+				if (!scriptInterface.GetPropertyInt(playerData, playerID-offset, &currentPlayer) || currentPlayer.isUndefined())
 				{
 					if (mapDirectory == L"skirmishes")
 					{
@@ -1453,11 +1453,11 @@ bool Autostart(const CmdLineArgs& args)
 						LOGWARNING("Autostart: Invalid player %d in autostart-civ option", playerID);
 						continue;
 					}
-					ScriptInterface::CreateObject(rq, &player);
+					ScriptInterface::CreateObject(rq, &currentPlayer);
 				}
 
-				scriptInterface.SetProperty(player, "Civ", civArgs[i].AfterFirst(":"));
-				scriptInterface.SetPropertyInt(playerData, playerID-offset, player);
+				scriptInterface.SetProperty(currentPlayer, "Civ", civArgs[i].AfterFirst(":"));
+				scriptInterface.SetPropertyInt(playerData, playerID-offset, currentPlayer);
 			}
 		}
 		else

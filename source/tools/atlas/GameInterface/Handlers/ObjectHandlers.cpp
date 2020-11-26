@@ -486,18 +486,20 @@ MESSAGEHANDLER(MoveObjectPreview)
 	CFixedVector3D fTargetPos(entity_pos_t::FromFloat(targetPos.X), entity_pos_t::FromFloat(targetPos.Y), entity_pos_t::FromFloat(targetPos.Z));
 	CFixedVector3D dir = fTargetPos - referencePos;
 
-	for (size_t i = 0; i < g_PreviewEntitiesID.size(); ++i)
+	for (const entity_id_t id : g_PreviewEntitiesID)
 	{
-		entity_id_t id = (entity_id_t)g_PreviewEntitiesID[i];
-		CFixedVector3D posFinal;
-		CmpPtr<ICmpPosition> cmpPosition(*g_Game->GetSimulation2(), id);
-		if (cmpPosition && cmpPosition->IsInWorld())
+		CmpPtr<ICmpPosition> cmpPreviewPosition(*g_Game->GetSimulation2(), id);
+		if (cmpPreviewPosition)
 		{
-			// Calculate this object's position
-			CFixedVector3D posFixed = cmpPosition->GetPosition();
-			posFinal = posFixed + dir;
+			CFixedVector3D posFinal;
+			if (cmpPreviewPosition->IsInWorld())
+			{
+				// Calculate this object's position
+				CFixedVector3D posFixed = cmpPreviewPosition->GetPosition();
+				posFinal = posFixed + dir;
+			}
+			cmpPreviewPosition->JumpTo(posFinal.X, posFinal.Z);
 		}
-		cmpPosition->JumpTo(posFinal.X, posFinal.Z);
 
 		CheckObstructionAndUpdateVisual(id);
 	}
@@ -729,11 +731,11 @@ BEGIN_COMMAND(MoveObjects)
 		CVector3D pivotPos(0, 0, 0);
 		bool pivotFloating = false;
 
-		CmpPtr<ICmpPosition> cmpPosition(*g_Game->GetSimulation2(), (entity_id_t)msg->pivot);
-		if (cmpPosition && cmpPosition->IsInWorld())
+		CmpPtr<ICmpPosition> cmpPositionPivot(*g_Game->GetSimulation2(), (entity_id_t)msg->pivot);
+		if (cmpPositionPivot && cmpPositionPivot->IsInWorld())
 		{
-			pivotFloating = cmpPosition->CanFloat();
-			CFixedVector3D pivotFixed = cmpPosition->GetPosition();
+			pivotFloating = cmpPositionPivot->CanFloat();
+			CFixedVector3D pivotFixed = cmpPositionPivot->GetPosition();
 			pivotPos = CVector3D(pivotFixed.X.ToFloat(), pivotFixed.Y.ToFloat(), pivotFixed.Z.ToFloat());
 		}
 

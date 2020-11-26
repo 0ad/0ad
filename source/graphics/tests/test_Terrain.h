@@ -451,16 +451,16 @@ public:
 					ss << "Terrain (" << terrain.GetPatchesPerSide()
 					   << "x" << terrain.GetPatchesPerSide() << "):";
 					TS_WARN(ss.str());
-					for (ssize_t jTile = 0; jTile < expectedSize; ++jTile)
+					for (ssize_t jj = 0; jj < expectedSize; ++jj)
 					{
 						ss.str(std::string());
 						ss << "[";
-						for (ssize_t iTile = 0; iTile < expectedSize; ++iTile)
+						for (ssize_t ii = 0; ii < expectedSize; ++ii)
 						{
-							if (iTile)
+							if (ii)
 								ss << ", ";
-							ss << GetVertex(terrain, iTile * PATCH_SIZE,
-							                         jTile * PATCH_SIZE);
+							ss << GetVertex(terrain, ii * PATCH_SIZE,
+							                         jj * PATCH_SIZE);
 						}
 						ss << "]";
 						TS_WARN(ss.str());

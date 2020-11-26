@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -69,7 +69,7 @@ CParticleEmitter::CParticleEmitter(const CParticleEmitterTypePtr& type) :
 	m_IndexArray.SetNumVertices(m_Type->m_MaxParticles * 6);
 	m_IndexArray.Layout();
 	VertexArrayIterator<u16> index = m_IndexArray.GetIterator();
-	for (size_t i = 0; i < m_Type->m_MaxParticles; ++i)
+	for (u16 i = 0; i < m_Type->m_MaxParticles; ++i)
 	{
 		*index++ = i*4 + 0;
 		*index++ = i*4 + 1;

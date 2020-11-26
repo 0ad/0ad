@@ -70,14 +70,8 @@ void CChart::HandleMessage(SGUIMessage& Message)
 	// IGUITextOwner::HandleMessage(Message); performed in UpdateSeries
 
 	// TODO: implement zoom
-	switch (Message.type)
-	{
-	case GUIM_SETTINGS_UPDATED:
-	{
+	if(Message.type == GUIM_SETTINGS_UPDATED)
 		UpdateSeries();
-		break;
-	}
-	}
 }
 
 void CChart::DrawLine(const CShaderProgramPtr& shader, const CGUIColor& color, const std::vector<float>& vertices) const

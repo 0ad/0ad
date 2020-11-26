@@ -122,7 +122,7 @@ void CGUIManager::PopPage(ScriptInterface::StructuredClone args)
 }
 
 CGUIManager::SGUIPage::SGUIPage(const CStrW& pageName, const ScriptInterface::StructuredClone initData)
-	: name(pageName), initData(initData), inputs(), gui(), callbackFunction()
+	: m_Name(pageName), initData(initData), inputs(), gui(), callbackFunction()
 {
 }
 
@@ -147,7 +147,7 @@ void CGUIManager::SGUIPage::LoadPage(shared_ptr<ScriptContext> scriptContext)
 
 	gui->AddObjectTypes();
 
-	VfsPath path = VfsPath("gui") / name;
+	VfsPath path = VfsPath("gui") / m_Name;
 	inputs.insert(path);
 
 	CXeromyces xero;
@@ -162,7 +162,7 @@ void CGUIManager::SGUIPage::LoadPage(shared_ptr<ScriptContext> scriptContext)
 
 	if (root.GetNodeName() != elmt_page)
 	{
-		LOGERROR("GUI page '%s' must have root element <page>", utf8_from_wstring(name));
+		LOGERROR("GUI page '%s' must have root element <page>", utf8_from_wstring(m_Name));
 		return;
 	}
 
@@ -170,12 +170,12 @@ void CGUIManager::SGUIPage::LoadPage(shared_ptr<ScriptContext> scriptContext)
 	{
 		if (node.GetNodeName() != elmt_include)
 		{
-			LOGERROR("GUI page '%s' must only have <include> elements inside <page>", utf8_from_wstring(name));
+			LOGERROR("GUI page '%s' must only have <include> elements inside <page>", utf8_from_wstring(m_Name));
 			continue;
 		}
 
-		std::string name = node.GetText();
-		CStrW nameW (node.GetText().FromUTF8());
+		CStr8 name = node.GetText();
+		CStrW nameW = node.GetText().FromUTF8();
 
 		PROFILE2("load gui xml");
 		PROFILE2_ATTR("name: %s", name.c_str());
@@ -183,16 +183,16 @@ void CGUIManager::SGUIPage::LoadPage(shared_ptr<ScriptContext> scriptContext)
 		TIMER(nameW.c_str());
 		if (name.back() == '/')
 		{
-			VfsPath directory = VfsPath("gui") / nameW;
-			VfsPaths pathnames;
-			vfs::GetPathnames(g_VFS, directory, L"*.xml", pathnames);
-			for (const VfsPath& path : pathnames)
-				gui->LoadXmlFile(path, inputs);
+			VfsPath currentDirectory = VfsPath("gui") / nameW;
+			VfsPaths directories;
+			vfs::GetPathnames(g_VFS, currentDirectory, L"*.xml", directories);
+			for (const VfsPath& directory : directories)
+				gui->LoadXmlFile(directory, inputs);
 		}
 		else
 		{
-			VfsPath path = VfsPath("gui") / nameW;
-			gui->LoadXmlFile(path, inputs);
+			VfsPath directory = VfsPath("gui") / nameW;
+			gui->LoadXmlFile(directory, inputs);
 		}
 	}
 
@@ -213,7 +213,7 @@ void CGUIManager::SGUIPage::LoadPage(shared_ptr<ScriptContext> scriptContext)
 
 	if (scriptInterface->HasProperty(global, "init") &&
 	    !scriptInterface->CallFunctionVoid(global, "init", initDataVal, hotloadDataVal))
-		LOGERROR("GUI page '%s': Failed to call init() function", utf8_from_wstring(name));
+		LOGERROR("GUI page '%s': Failed to call init() function", utf8_from_wstring(m_Name));
 }
 
 void CGUIManager::SGUIPage::SetCallbackFunction(ScriptInterface& scriptInterface, JS::HandleValue callbackFunc)
@@ -268,7 +268,7 @@ Status CGUIManager::ReloadChangedFile(const VfsPath& path)
 	for (SGUIPage& p : m_PageStack)
 		if (p.inputs.find(path) != p.inputs.end())
 		{
-			LOGMESSAGE("GUI file '%s' changed - reloading page '%s'", path.string8(), utf8_from_wstring(p.name));
+			LOGMESSAGE("GUI file '%s' changed - reloading page '%s'", path.string8(), utf8_from_wstring(p.m_Name));
 			p.LoadPage(m_ScriptContext);
 			// TODO: this can crash if LoadPage runs an init script which modifies the page stack and breaks our iterators
 		}

@@ -149,7 +149,7 @@ private:
 		 */
 		void PerformCallbackFunction(ScriptInterface::StructuredClone args);
 
-		CStrW name;
+		CStrW m_Name;
 		std::unordered_set<VfsPath> inputs; // for hotloading
 		ScriptInterface::StructuredClone initData; // data to be passed to the init() function
 		shared_ptr<CGUI> gui; // the actual GUI page

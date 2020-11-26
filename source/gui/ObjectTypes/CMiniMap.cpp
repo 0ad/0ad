@@ -592,9 +592,9 @@ void CMiniMap::Draw()
 		}
 
 		// Add the pinged vertices at the end, so they are drawn on top
-		for (size_t v = 0; v < pingingVertices.size(); ++v)
+		for (const MinimapUnitVertex& vertex : pingingVertices)
 		{
-			addVertex(pingingVertices[v], attrColor, attrPos);
+			addVertex(vertex, attrColor, attrPos);
 			++m_EntitiesDrawn;
 		}
 
