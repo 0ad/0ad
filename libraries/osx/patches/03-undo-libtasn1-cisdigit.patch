@@ -1,0 +1,142 @@
+--- a/lib/minitasn1/decoding.c
++++ b/lib/minitasn1/decoding.c
+@@ -32,7 +32,6 @@
+ #include <element.h>
+ #include <limits.h>
+ #include <intprops.h>
+-#include <c-ctype.h>
+ 
+ #ifdef DEBUG
+ # define warn() fprintf(stderr, "%s: %d\n", __func__, __LINE__)
+@@ -353,7 +352,7 @@
+       p = &der[len_len];
+       for (i=0;i<(unsigned)(str_len-1);i++)
+          {
+-           if (c_isdigit(p[i]) == 0)
++           if (isdigit(p[i]) == 0)
+              {
+                if (type == ASN1_ETYPE_GENERALIZED_TIME)
+                  {
+--- a/lib/minitasn1/element.c
++++ b/lib/minitasn1/element.c
+@@ -30,7 +30,6 @@
+ #include "parser_aux.h"
+ #include <gstr.h>
+ #include "structure.h"
+-#include "c-ctype.h"
+ #include "element.h"
+ 
+ void
+@@ -380,7 +379,7 @@
+     case ASN1_ETYPE_ENUMERATED:
+       if (len == 0)
+ 	{
+-	  if ((c_isdigit (value[0])) || (value[0] == '-'))
++	  if ((isdigit (value[0])) || (value[0] == '-'))
+ 	    {
+ 	      value_temp = malloc (SIZEOF_UNSIGNED_LONG_INT);
+ 	      if (value_temp == NULL)
+@@ -453,7 +452,7 @@
+ 	  p = node->down;
+ 	  while (type_field (p->type) != ASN1_ETYPE_DEFAULT)
+ 	    p = p->right;
+-	  if ((c_isdigit (p->value[0])) || (p->value[0] == '-'))
++	  if ((isdigit (p->value[0])) || (p->value[0] == '-'))
+ 	    {
+ 	      default_temp = malloc (SIZEOF_UNSIGNED_LONG_INT);
+ 	      if (default_temp == NULL)
+@@ -519,7 +518,7 @@
+       break;
+     case ASN1_ETYPE_OBJECT_ID:
+       for (i = 0; i < _asn1_strlen (value); i++)
+-	if ((!c_isdigit (value[i])) && (value[i] != '.') && (value[i] != '+'))
++	if ((!isdigit (value[i])) && (value[i] != '.') && (value[i] != '+'))
+ 	  return ASN1_VALUE_NOT_VALID;
+       if (node->type & CONST_DEFAULT)
+ 	{
+@@ -540,7 +539,7 @@
+ 	if (len < 11)
+ 	  return ASN1_VALUE_NOT_VALID;
+ 	for (k = 0; k < 10; k++)
+-	  if (!c_isdigit (value[k]))
++	  if (!isdigit (value[k]))
+ 	    return ASN1_VALUE_NOT_VALID;
+ 	switch (len)
+ 	  {
+@@ -549,7 +548,7 @@
+ 	      return ASN1_VALUE_NOT_VALID;
+ 	    break;
+ 	  case 13:
+-	    if ((!c_isdigit (value[10])) || (!c_isdigit (value[11])) ||
++	    if ((!isdigit (value[10])) || (!isdigit (value[11])) ||
+ 		(value[12] != 'Z'))
+ 	      return ASN1_VALUE_NOT_VALID;
+ 	    break;
+@@ -557,16 +556,16 @@
+ 	    if ((value[10] != '+') && (value[10] != '-'))
+ 	      return ASN1_VALUE_NOT_VALID;
+ 	    for (k = 11; k < 15; k++)
+-	      if (!c_isdigit (value[k]))
++	      if (!isdigit (value[k]))
+ 		return ASN1_VALUE_NOT_VALID;
+ 	    break;
+ 	  case 17:
+-	    if ((!c_isdigit (value[10])) || (!c_isdigit (value[11])))
++	    if ((!isdigit (value[10])) || (!isdigit (value[11])))
+ 	      return ASN1_VALUE_NOT_VALID;
+ 	    if ((value[12] != '+') && (value[12] != '-'))
+ 	      return ASN1_VALUE_NOT_VALID;
+ 	    for (k = 13; k < 17; k++)
+-	      if (!c_isdigit (value[k]))
++	      if (!isdigit (value[k]))
+ 		return ASN1_VALUE_NOT_VALID;
+ 	    break;
+ 	  default:
+@@ -890,7 +889,7 @@
+ 	  p = node->down;
+ 	  while (type_field (p->type) != ASN1_ETYPE_DEFAULT)
+ 	    p = p->right;
+-	  if ((c_isdigit (p->value[0])) || (p->value[0] == '-')
++	  if ((isdigit (p->value[0])) || (p->value[0] == '-')
+ 	      || (p->value[0] == '+'))
+ 	    {
+ 	      result = _asn1_convert_integer
+
+--- a/lib/minitasn1/int.h
++++ b/lib/minitasn1/int.h
+@@ -29,6 +29,7 @@
+ #include <string.h>
+ #include <stdlib.h>
+ #include <stdio.h>
++#include <ctype.h>
+ #include <stdint.h>
+ 
+ #ifdef HAVE_SYS_TYPES_H
+--- a/lib/minitasn1/parser_aux.c
++++ b/lib/minitasn1/parser_aux.c
+@@ -26,7 +26,6 @@
+ #include "gstr.h"
+ #include "structure.h"
+ #include "element.h"
+-#include "c-ctype.h"
+ 
+ char _asn1_identifierMissing[ASN1_MAX_NAME_SIZE + 1];	/* identifier name not found */
+ 
+@@ -755,7 +754,7 @@
+ 	      p2 = p->down;
+ 	      if (p2 && (type_field (p2->type) == ASN1_ETYPE_CONSTANT))
+ 		{
+-		  if (p2->value && !c_isdigit (p2->value[0]))
++		  if (p2->value && !isdigit (p2->value[0]))
+ 		    {
+ 		      _asn1_str_cpy (name2, sizeof (name2), name_root);
+ 		      _asn1_str_cat (name2, sizeof (name2), ".");
+@@ -1067,7 +1066,7 @@
+ 	  p2 = p->down;
+ 	  if (p2 && (type_field (p2->type) == ASN1_ETYPE_CONSTANT))
+ 	    {
+-	      if (p2->value && !c_isdigit (p2->value[0]))
++	      if (p2->value && !isdigit (p2->value[0]))
+ 		{
+ 		  _asn1_str_cpy (name2, sizeof (name2), node->name);
+ 		  _asn1_str_cat (name2, sizeof (name2), ".");
