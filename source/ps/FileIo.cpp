@@ -23,6 +23,7 @@
 
 #include "FileIo.h"
 #include "ps/CLogger.h"
+#include "ps/CStr.h"
 #include "ps/Filesystem.h"
 #include "lib/byte_order.h"
 

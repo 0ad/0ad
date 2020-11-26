@@ -263,6 +263,51 @@ extern_lib_defs = {
 			end
 		end,
 	},
+	fmt = {
+		compile_settings = function()
+			if os.istarget("windows") or os.istarget("macosx") then
+				add_default_include_paths("fmt")
+			end
+
+			-- With Linux & BSD, we assume that fmt is installed in a standard location.
+			--
+			-- It would be nice to not assume, and to instead use pkgconfig: however that
+			-- requires fmt 5.3.0 or greater.
+			--
+			-- Unfortunately (at the time of writing) only 69 out of 95 (~72.6%) of distros
+			-- that provide a fmt package meet this, according to
+			-- https://repology.org/badge/vertical-allrepos/fmt.svg?minversion=5.3
+			--
+			-- Whilst that might seem like a healthy majority, this does not include the 2018
+			-- Long Term Support and 2019.10 releases of Ubuntu - not only popular and widely
+			-- used as-is, but which are also used as a base for other popular distros (e.g.
+			-- Mint).
+			--
+			-- When fmt 5.3 (or better) becomes more widely used, then we can safely use the
+			-- following line:
+			-- pkgconfig.add_includes("fmt")
+		end,
+		link_settings = function()
+			if os.istarget("windows") or os.istarget("macosx") then
+				add_default_lib_paths("fmt")
+			end
+
+			if os.istarget("windows") then
+				add_default_links({
+					win_names = { "fmt" },
+					dbg_suffix = "d",
+					no_delayload = 1,
+				})
+			else
+				add_default_links({
+					unix_names = { "fmt" },
+				})
+
+				-- See comment above as to why this is commented out.
+				-- pkgconfig.add_links("fmt")
+			end
+		end
+	},
 	gloox = {
 		compile_settings = function()
 			if os.istarget("windows") then

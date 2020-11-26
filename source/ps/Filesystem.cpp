@@ -19,6 +19,7 @@
 #include "Filesystem.h"
 
 #include "ps/CLogger.h"
+#include "ps/CStr.h"
 #include "ps/Profile.h"
 
 #include "lib/res/h_mgr.h"	// h_reload

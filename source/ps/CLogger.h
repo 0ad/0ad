@@ -25,7 +25,7 @@
 #include <set>
 #include <sstream>
 
-#include "third_party/fmt/format.h"
+#include <fmt/printf.h>
 
 class CLogger;
 extern CLogger* g_Logger;

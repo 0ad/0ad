@@ -146,7 +146,7 @@ public:
 
 	static CFixed FromFloat(float n)
 	{
-		if (!isfinite(n))
+		if (!std::isfinite(n))
 			return CFixed(0);
 		float scaled = n * fract_pow2;
 		return CFixed(round_away_from_zero<T>(scaled));
@@ -154,7 +154,7 @@ public:
 
 	static CFixed FromDouble(double n)
 	{
-		if (!isfinite(n))
+		if (!std::isfinite(n))
 			return CFixed(0);
 		double scaled = n * fract_pow2;
 		return CFixed(round_away_from_zero<T>(scaled));

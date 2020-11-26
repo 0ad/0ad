@@ -22,6 +22,7 @@
 #include "lib/timer.h"
 #include "lib/utf8.h"
 #include "ps/CLogger.h"
+#include "ps/CStr.h"
 #include "ps/Filesystem.h"
 
 #include <libxml/relaxng.h>

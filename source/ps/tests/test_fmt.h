@@ -15,9 +15,9 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "lib/self_test.h"
+#include <fmt/printf.h>
 
-#include "third_party/fmt/format.h"
+#include "lib/self_test.h"
 
 class TestFmt : public CxxTest::TestSuite
 {
@@ -39,7 +39,7 @@ public:
 		TS_ASSERT_EQUALS(fmt::sprintf("%f", 0.5f), "0.500000");
 		TS_ASSERT_EQUALS(fmt::sprintf("%.1f", 0.1111f), "0.1");
 
-		TS_ASSERT_EQUALS(fmt::sprintf("%d", 0x100000001ULL), "1");
+		TS_ASSERT_EQUALS(fmt::sprintf("%d", 0x100000001ULL), "4294967297");
 		if (sizeof(long) == sizeof(int32_t))
 		{
 			TS_ASSERT_EQUALS(fmt::sprintf("%ld", 0x100000001ULL), "1");

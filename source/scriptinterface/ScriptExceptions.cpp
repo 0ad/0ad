@@ -21,6 +21,7 @@
 #include "ScriptExceptions.h"
 
 #include "ps/CLogger.h"
+#include "ps/CStr.h"
 #include "scriptinterface/ScriptInterface.h"
 
 bool ScriptException::IsPending(const ScriptRequest& rq)

@@ -46,6 +46,7 @@ ICU_VERSION="icu4c-67_1"
 ENET_VERSION="enet-1.3.17"
 MINIUPNPC_VERSION="miniupnpc-2.1"
 SODIUM_VERSION="libsodium-1.0.18"
+FMT_VERSION="7.1.3"
 # --------------------------------------------------------------
 # Bundled with the game:
 # * SpiderMonkey
@@ -887,6 +888,49 @@ then
   ) || die "libsodium build failed"
   popd
   echo "$LIB_VERSION" > .already-built
+else
+  already_built
+fi
+popd > /dev/null
+
+# --------------------------------------------------------------
+echo -e "Building fmt..."
+
+LIB_DIRECTORY="fmt-$FMT_VERSION"
+LIB_ARCHIVE="$FMT_VERSION.tar.gz"
+LIB_URL="https://github.com/fmtlib/fmt/archive/"
+
+mkdir -p fmt
+pushd fmt > /dev/null
+
+if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ "$(<.already-built)" != "$FMT_VERSION" ]]
+then
+  rm -f .already-built
+
+  download_lib $LIB_URL $LIB_ARCHIVE
+
+  rm -rf $LIB_DIRECTORY include lib
+  tar -xf $LIB_ARCHIVE
+  pushd $LIB_DIRECTORY
+
+  # It appears that older versions of Clang require constexpr statements to have a user-set constructor.
+  patch -Np1 -i ../../patches/fmt_constexpr.diff
+
+  mkdir -p build
+  pushd build
+
+  (cmake .. \
+      -DFMT_TEST=False \
+      -DFMT_DOC=False \
+    && make fmt ${JOBS}) || die "fmt build failed"
+  popd
+
+  mkdir -p ../lib
+  cp build/libfmt.a ../lib/
+  cp -r include ../include
+
+  popd
+  echo "$FMT_VERSION" > .already-built
 else
   already_built
 fi
