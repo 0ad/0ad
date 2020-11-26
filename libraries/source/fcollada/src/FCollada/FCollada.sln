@@ -1,16 +1,12 @@
-Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual C++ Express 2005
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FCollada", "FCollada.vcproj", "{FF956BB3-F377-43A8-AB31-633299BDF6C6}"
-	ProjectSection(ProjectDependencies) = postProject
-		{5A441CC6-F281-4A83-8BC4-323D4148C7C0} = {5A441CC6-F281-4A83-8BC4-323D4148C7C0}
-	EndProjectSection
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1300
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FCollada", "FCollada.vcxproj", "{FF956BB3-F377-43A8-AB31-633299BDF6C6}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FColladaTest", "FColladaTest\FColladaTest.vcproj", "{93F9B125-C28F-47E3-B087-F14B0E191B8E}"
-	ProjectSection(ProjectDependencies) = postProject
-		{FF956BB3-F377-43A8-AB31-633299BDF6C6} = {FF956BB3-F377-43A8-AB31-633299BDF6C6}
-	EndProjectSection
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FColladaTest", "FColladaTest\FColladaTest.vcxproj", "{93F9B125-C28F-47E3-B087-F14B0E191B8E}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FArchiveXML", "..\FColladaPlugins\FArchiveXML\FArchiveXML.vcproj", "{5A441CC6-F281-4A83-8BC4-323D4148C7C0}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FArchiveXML", "..\FColladaPlugins\FArchiveXML\FArchiveXML.vcxproj", "{5A441CC6-F281-4A83-8BC4-323D4148C7C0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -167,5 +163,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1764171C-8C69-4176-A262-6B26F2A68093}
 	EndGlobalSection
 EndGlobal

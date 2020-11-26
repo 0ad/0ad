@@ -527,7 +527,7 @@ struct _xmlNode {
  * xmlDocProperty
  *
  * Set of properties of the document as found by the parser
- * Some of them are linked to similary named xmlParserOption
+ * Some of them are linked to similarly named xmlParserOption
  */
 typedef enum {
     XML_DOC_WELLFORMED		= 1<<0, /* document is XML well formed */
@@ -575,7 +575,7 @@ struct _xmlDoc {
     void           *ids;        /* Hash table for ID attributes if any */
     void           *refs;       /* Hash table for IDREFs attributes if any */
     const xmlChar  *URL;	/* The URI for that document */
-    int             charset;    /* encoding of the in-memory content
+    int             charset;    /* Internal flag for charset handling,
 				   actually an xmlCharEncoding */
     struct _xmlDict *dict;      /* dict used to allocate names or NULL */
     void           *psvi;	/* for type/PSVI informations */
