@@ -687,6 +687,7 @@ then
           --disable-tests \
           --disable-guile \
           --disable-doc \
+          --disable-tools \
           --disable-nls \
     && make ${JOBS} LDFLAGS= install) || die "GnuTLS build failed"
   popd
