@@ -15,6 +15,7 @@
 #ifndef _FCD_LIBRARY_
 #include "FCDocument/FCDLibrary.h"
 #endif // _FCD_LIBRARY_
+#include "FUtils/FULogFile.h"
 
 class FCDAnimation;
 class FCDEffectProfileFX;

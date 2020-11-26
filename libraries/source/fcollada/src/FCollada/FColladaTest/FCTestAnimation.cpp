@@ -17,6 +17,7 @@
 #include "FCDocument/FCDLibrary.h"
 #include "FCDocument/FCDSceneNode.h"
 #include "FCDocument/FCDSceneNodeTools.h"
+#include "FUtils/FUTestBed.h"
 
 TESTSUITE_START(FCDAnimation)
 

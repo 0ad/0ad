@@ -10,6 +10,7 @@
 #include "FCDocument/FCDocument.h"
 #include "FCDocument/FCDSceneNode.h"
 #include "FCDocument/FCDSceneNodeIterator.h"
+#include "FUtils/FUTestBed.h"
 
 TESTSUITE_START(FCDSceneNode)
 

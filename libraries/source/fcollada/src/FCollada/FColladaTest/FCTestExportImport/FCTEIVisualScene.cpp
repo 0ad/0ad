@@ -24,6 +24,7 @@
 #include "FCDocument/FCDTransform.h"
 #include "FMath/FMRandom.h"
 #include "FCTestExportImport.h"
+#include "FUtils/FUTestBed.h"
 
 static const float sampleMatrix[16] = { 0.0f, 2.0f, 0.4f, 2.0f, 7.0f, 0.2f, 991.0f, 2.5f, 11.0f, 25.0f, 1.55f, 0.02f, 0.001f, 12.0f, 1.02e-3f };
 static fm::string transformChildId = "TMChild";

@@ -11,6 +11,7 @@
 #include "FCDocument/FCDExtra.h"
 #include "FCDocument/FCDImage.h"
 #include "FCDocument/FCDLibrary.h"
+#include "FUtils/FUTestBed.h"
 
 TESTSUITE_START(FCTAMCrossCloning)
 

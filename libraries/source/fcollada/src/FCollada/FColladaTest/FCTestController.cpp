@@ -12,6 +12,7 @@
 #include "FCDocument/FCDSkinController.h"
 #include "FCDocument/FCDController.h"
 #include "FCDocument/FCDLibrary.h"
+#include "FUtils/FUTestBed.h"
 
 TESTSUITE_START(FCDControllers)
 
