@@ -57,7 +57,7 @@ then
     CONF_OPTS="${CONF_OPTS} --enable-macos-target=$MIN_OSX_VERSION"
   fi
   if [ "${SYSROOT}" ] && [ "${SYSROOT-_}" ]; then
-    CONF_OPTS="${CONF_OPTS} --with-macosx-sdk=${SYSROOT}"
+    CONF_OPTS="${CONF_OPTS} --with-macos-sdk=${SYSROOT}"
   fi
 fi
 
