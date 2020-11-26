@@ -97,8 +97,11 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 			break;
 		}
 
-		// Arrays are special cases of Object
+		// Arrays, Maps and Sets are special cases of Objects
 		bool isArray;
+		bool isMap;
+		bool isSet;
+
 		if (JS_IsArrayObject(rq.cx, obj, &isArray) && isArray)
 		{
 			m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_ARRAY);
@@ -141,6 +144,70 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 			m_Serializer.RawBytes("buffer data", (const u8*)JS_GetArrayBufferData(obj, &sharedMemory, nogc), length);
 			break;
 		}
+
+		else if (JS::IsMapObject(rq.cx, obj, &isMap) && isMap)
+		{
+			m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_OBJECT_MAP);
+			m_Serializer.NumberU32_Unbounded("map size", JS::MapSize(rq.cx, obj));
+
+			JS::RootedValue keyValueIterator(rq.cx);
+			if (!JS::MapEntries(rq.cx, obj, &keyValueIterator))
+				throw PSERROR_Serialize_ScriptError("JS::MapEntries failed");
+
+			JS::ForOfIterator it(rq.cx);
+			if (!it.init(keyValueIterator))
+				throw PSERROR_Serialize_ScriptError("JS::ForOfIterator::init failed");
+
+			JS::RootedValue keyValuePair(rq.cx);
+			bool done;
+			while (true)
+			{
+				if (!it.next(&keyValuePair, &done))
+					throw PSERROR_Serialize_ScriptError("JS::ForOfIterator::next failed");
+
+				if (done)
+					break;
+
+				JS::RootedObject keyValuePairObj(rq.cx, &keyValuePair.toObject());
+				JS::RootedValue key(rq.cx);
+				JS::RootedValue value(rq.cx);
+				ENSURE(JS_GetElement(rq.cx, keyValuePairObj, 0, &key));
+				ENSURE(JS_GetElement(rq.cx, keyValuePairObj, 1, &value));
+
+				HandleScriptVal(key);
+				HandleScriptVal(value);
+			}
+			break;
+		}
+
+		else if (JS::IsSetObject(rq.cx, obj, &isSet) && isSet)
+		{
+			m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_OBJECT_SET);
+			m_Serializer.NumberU32_Unbounded("set size", JS::SetSize(rq.cx, obj));
+
+			JS::RootedValue valueIterator(rq.cx);
+			if (!JS::SetValues(rq.cx, obj, &valueIterator))
+				throw PSERROR_Serialize_ScriptError("JS::SetValues failed");
+
+			JS::ForOfIterator it(rq.cx);
+			if (!it.init(valueIterator))
+				throw PSERROR_Serialize_ScriptError("JS::ForOfIterator::init failed");
+
+			JS::RootedValue value(rq.cx);
+			bool done;
+			while (true)
+			{
+				if (!it.next(&value, &done))
+					throw PSERROR_Serialize_ScriptError("JS::ForOfIterator::next failed");
+
+				if (done)
+					break;
+
+				HandleScriptVal(value);
+			}
+			break;
+		}
+
 		else
 		{
 			// Find type of object
@@ -184,69 +251,6 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 				// Get primitive value
 				bool b = JS::ToBoolean(val);
 				m_Serializer.Bool("value", b);
-				break;
-			}
-			// TODO: Follow upstream progresses about a JS::IsMapObject
-			// https://bugzilla.mozilla.org/show_bug.cgi?id=1285909
-			else if (protokey == JSProto_Map)
-			{
-				m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_OBJECT_MAP);
-				m_Serializer.NumberU32_Unbounded("map size", JS::MapSize(rq.cx, obj));
-
-				JS::RootedValue keyValueIterator(rq.cx);
-				if (!JS::MapEntries(rq.cx, obj, &keyValueIterator))
-					throw PSERROR_Serialize_ScriptError("JS::MapEntries failed");
-
-				JS::ForOfIterator it(rq.cx);
-				if (!it.init(keyValueIterator))
-					throw PSERROR_Serialize_ScriptError("JS::ForOfIterator::init failed");
-
-				JS::RootedValue keyValuePair(rq.cx);
-				bool done;
-				while (true)
-				{
-					if (!it.next(&keyValuePair, &done))
-						throw PSERROR_Serialize_ScriptError("JS::ForOfIterator::next failed");
-
-					if (done)
-						break;
-
-					JS::RootedObject keyValuePairObj(rq.cx, &keyValuePair.toObject());
-					JS::RootedValue key(rq.cx);
-					JS::RootedValue value(rq.cx);
-					ENSURE(JS_GetElement(rq.cx, keyValuePairObj, 0, &key));
-					ENSURE(JS_GetElement(rq.cx, keyValuePairObj, 1, &value));
-
-					HandleScriptVal(key);
-					HandleScriptVal(value);
-				}
-				break;
-			}
-			// TODO: Follow upstream progresses about a JS::IsSetObject
-			// https://bugzilla.mozilla.org/show_bug.cgi?id=1285909
-			else if (protokey == JSProto_Set)
-			{
-				// TODO: When updating SpiderMonkey to a release after 38 use the C++ API for Sets.
-				// https://bugzilla.mozilla.org/show_bug.cgi?id=1159469
-				u32 setSize;
-				m_ScriptInterface.GetProperty(val, "size", setSize);
-
-				m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_OBJECT_SET);
-				m_Serializer.NumberU32_Unbounded("set size", setSize);
-
-				JS::RootedValue valueIterator(rq.cx);
-				m_ScriptInterface.CallFunction(val, "values", &valueIterator);
-				for (u32 i=0; i<setSize; ++i)
-				{
-					JS::RootedValue currentIterator(rq.cx);
-					JS::RootedValue value(rq.cx);
-					ENSURE(m_ScriptInterface.CallFunction(valueIterator, "next", &currentIterator));
-
-					m_ScriptInterface.GetProperty(currentIterator, "value", &value);
-
-					HandleScriptVal(value);
-				}
-
 				break;
 			}
 			else

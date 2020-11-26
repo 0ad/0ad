@@ -359,11 +359,8 @@ JS::Value CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleOb
 	}
 	case SCRIPT_TYPE_OBJECT_SET:
 	{
-		JS::RootedValue setVal(rq.cx);
-		m_ScriptInterface.Eval("(new Set())", &setVal);
-
-		JS::RootedObject setObj(rq.cx, &setVal.toObject());
-		AddScriptBackref(setObj);
+		JS::RootedObject obj(rq.cx, JS::NewSetObject(rq.cx));
+		AddScriptBackref(obj);
 
 		u32 setSize;
 		NumberU32_Unbounded("set size", setSize);
@@ -371,10 +368,10 @@ JS::Value CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleOb
 		for (u32 i=0; i<setSize; ++i)
 		{
 			JS::RootedValue value(rq.cx, ReadScriptVal("set value", nullptr));
-			m_ScriptInterface.CallFunctionVoid(setVal, "add", value);
+			JS::SetAdd(rq.cx, obj, value);
 		}
 
-		return setVal;
+		return JS::ObjectValue(*obj);
 	}
 	default:
 		throw PSERROR_Deserialize_OutOfBounds();
