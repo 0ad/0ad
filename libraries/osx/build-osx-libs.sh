@@ -471,8 +471,9 @@ then
   tar -xf $LIB_ARCHIVE
   pushd $LIB_DIRECTORY
 
-  (./configure CFLAGS="$CFLAGS" \
-      LDFLAGS="$LDFLAGS" \
+  # libpng has no flags for zlib but the 10.12 version is too old, so link our own.
+  (./configure CFLAGS="$CFLAGS" CPPFLAGS=" -I $ZLIB_DIR/include "\
+      LDFLAGS="$LDFLAGS -L$ZLIB_DIR/lib" \
       --prefix=$INSTALL_DIR \
       --enable-shared=no \
     && make ${JOBS} && make install) || die "libpng build failed"
