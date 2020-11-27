@@ -949,7 +949,7 @@ then
 fi
 
 # Use the regular build script for SM.
-JOBS="$JOBS" ZLIB_DIR="$ZLIB_DIR" ./build.sh
+JOBS="$JOBS" ZLIB_DIR="$ZLIB_DIR" ./build.sh || die "Error building spidermonkey"
 
 popd > /dev/null
 
