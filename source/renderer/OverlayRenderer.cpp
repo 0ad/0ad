@@ -178,14 +178,14 @@ void OverlayRendererInternals::Initialize()
 	// indices are always the same; we can therefore fill in all the indices once and pretty much forget about
 	// them. We then also no longer need its backing store, since we never change any indices afterwards.
 	VertexArrayIterator<u16> index = quadIndices.GetIterator();
-	for (size_t i = 0; i < MAX_QUAD_OVERLAYS; ++i)
+	for (u16 i = 0; i < static_cast<u16>(MAX_QUAD_OVERLAYS); ++i)
 	{
-		*index++ = i*4 + 0;
-		*index++ = i*4 + 1;
-		*index++ = i*4 + 2;
-		*index++ = i*4 + 2;
-		*index++ = i*4 + 3;
-		*index++ = i*4 + 0;
+		*index++ = i * 4 + 0;
+		*index++ = i * 4 + 1;
+		*index++ = i * 4 + 2;
+		*index++ = i * 4 + 2;
+		*index++ = i * 4 + 3;
+		*index++ = i * 4 + 0;
 	}
 	quadIndices.Upload();
 	quadIndices.FreeBackingStore();

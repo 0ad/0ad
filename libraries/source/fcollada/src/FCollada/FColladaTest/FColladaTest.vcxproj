@@ -43,42 +43,42 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Lib|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <PlatformToolset>v140_xp</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Lib|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <PlatformToolset>v140_xp</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <PlatformToolset>v140_xp</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <PlatformToolset>v140_xp</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Lib|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <PlatformToolset>v140_xp</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Lib|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <PlatformToolset>v140_xp</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <PlatformToolset>v140_xp</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <PlatformToolset>v140_xp</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -142,20 +142,20 @@
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Lib|Win32'">
-    <OutDir>$(ProjectDir)../Output/$(Configuration)/$(ProjectName)\</OutDir>
-    <IntDir>$(ProjectDir)../Output/$(Configuration)/$(ProjectName)/Intermediate\</IntDir>
+    <OutDir>$(ProjectDir)Output/$(Configuration) $(Platform)/$(ProjectName)\</OutDir>
+    <IntDir>$(ProjectDir)Output/$(Configuration) $(Platform)/$(ProjectName)/Intermediate\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Lib|x64'">
-    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(ProjectDir)Output/$(Configuration) $(Platform)/$(ProjectName)\</OutDir>
+    <IntDir>$(ProjectDir)Output/$(Configuration) $(Platform)/$(ProjectName)/Intermediate\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Lib|Win32'">
-    <OutDir>$(ProjectDir)../Output/$(Configuration)/$(ProjectName)\</OutDir>
-    <IntDir>$(ProjectDir)../Output/$(Configuration)/$(ProjectName)/Intermediate\</IntDir>
+    <OutDir>$(ProjectDir)Output/$(Configuration) $(Platform)/$(ProjectName)\</OutDir>
+    <IntDir>$(ProjectDir)Output/$(Configuration) $(Platform)/$(ProjectName)/Intermediate\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Lib|x64'">
-    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(ProjectDir)Output/$(Configuration) $(Platform)/$(ProjectName)\</OutDir>
+    <IntDir>$(ProjectDir)Output/$(Configuration) $(Platform)/$(ProjectName)/Intermediate\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <PreBuildEvent>
@@ -169,21 +169,26 @@
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <DisableSpecificWarnings>4458;4457;4456;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
-      <OutputFile>$(ProjectDir)../Output/$(Configuration) Unicode DLL $(Platform)/$(ProjectName).exe</OutputFile>
+      <OutputFile>$(ProjectDir)Output/$(Configuration) $(Platform)/$(ProjectName)\$(ProjectName).exe</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)FColladaTest.pdb</ProgramDatabaseFile>
       <SubSystem>Console</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
+      <AdditionalDependencies>FColladaD.lib;libiconv.lib;libxml2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)\..\..\..\..\..\win32\libxml2\lib;$(ProjectDir)\..\..\..\lib;$(ProjectDir)\..\..\..\..\..\win32\iconv\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>if not exist "$(TargetDir)Samples" mkdir "$(TargetDir)Samples"
 xcopy /D /E /C /Q /Y "$(ProjectDir)Samples" "$(TargetDir)Samples"
+xcopy /E /C /Q /Y "$(ProjectDir)\..\..\..\..\..\..\binaries\system\libxml2.dll" "$(TargetDir)"
+xcopy /E /C /Q /Y "$(ProjectDir)\..\..\..\..\..\..\binaries\system\libiconv.dll" "$(TargetDir)"
+xcopy /E /C /Q /Y "$(ProjectDir)\..\..\..\..\..\..\binaries\system\FColladaD.dll" "$(TargetDir)"
+xcopy /E /C /Q /Y "$(ProjectDir)\..\..\..\..\..\..\binaries\system\FColladaD.pdb" "$(TargetDir)"
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -196,26 +201,34 @@ xcopy /D /E /C /Q /Y "$(ProjectDir)Samples" "$(TargetDir)Samples"
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(ProjectDir)../LibXML/include;$(ProjectDir)..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\..\..\win32\iconv\include;$(ProjectDir)..\..\..\..\..\win32\libxml2\include;$(ProjectDir)..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;MEMORY_DEBUG;FCOLLADA_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
-      <TreatWarningAsError>true</TreatWarningAsError>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DisableSpecificWarnings>4458;4457;4456;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
-      <OutputFile>$(ProjectDir)../Output/$(Configuration) Unicode DLL $(Platform)/$(ProjectName).exe</OutputFile>
+      <OutputFile>$(ProjectDir)Output/$(Configuration) $(Platform)/$(ProjectName)\$(ProjectName).exe</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)FColladaTest.pdb</ProgramDatabaseFile>
       <SubSystem>Console</SubSystem>
       <TargetMachine>MachineX64</TargetMachine>
+      <AdditionalDependencies>FColladaD.lib;libiconv.lib;libxml2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)\..\..\..\..\..\win32\libxml2\lib;$(ProjectDir)\..\..\..\lib;$(ProjectDir)\..\..\..\..\..\win32\iconv\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>if not exist "$(TargetDir)Samples" mkdir "$(TargetDir)Samples"
 xcopy /D /E /C /Q /Y "$(ProjectDir)Samples" "$(TargetDir)Samples"
+xcopy /E /C /Q /Y "$(ProjectDir)\..\..\..\..\..\..\binaries\system\libxml2.dll" "$(TargetDir)"
+xcopy /E /C /Q /Y "$(ProjectDir)\..\..\..\..\..\..\binaries\system\libiconv.dll" "$(TargetDir)"
+xcopy /E /C /Q /Y "$(ProjectDir)\..\..\..\..\..\..\binaries\system\FColladaD.dll" "$(TargetDir)"
+xcopy /E /C /Q /Y "$(ProjectDir)\..\..\..\..\..\..\binaries\system\FColladaD.pdb" "$(TargetDir)"
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -236,16 +249,22 @@ xcopy /D /E /C /Q /Y "$(ProjectDir)Samples" "$(TargetDir)Samples"
       <DisableSpecificWarnings>4458;4457;4456;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
-      <OutputFile>$(ProjectDir)../Output/$(Configuration) Unicode DLL $(Platform)/$(ProjectName).exe</OutputFile>
+      <OutputFile>$(ProjectDir)Output/$(Configuration) $(Platform)/$(ProjectName)\$(ProjectName).exe</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(ProjectDir)\..\..\..\..\..\win32\libxml2\lib;$(ProjectDir)\..\..\..\lib;$(ProjectDir)\..\..\..\..\..\win32\iconv\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>FCollada.lib;libiconv.lib;libxml2.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <PostBuildEvent>
       <Command>if not exist "$(TargetDir)Samples" mkdir "$(TargetDir)Samples"
 xcopy /D /E /C /Q /Y "$(ProjectDir)Samples" "$(TargetDir)Samples"
+xcopy /E /C /Q /Y "$(ProjectDir)\..\..\..\..\..\..\binaries\system\libxml2.dll" "$(TargetDir)"
+xcopy /E /C /Q /Y "$(ProjectDir)\..\..\..\..\..\..\binaries\system\libiconv.dll" "$(TargetDir)"
+xcopy /E /C /Q /Y "$(ProjectDir)\..\..\..\..\..\..\binaries\system\FCollada.dll" "$(TargetDir)"
+xcopy /E /C /Q /Y "$(ProjectDir)\..\..\..\..\..\..\binaries\system\FCollada.pdb" "$(TargetDir)"
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -257,26 +276,33 @@ xcopy /D /E /C /Q /Y "$(ProjectDir)Samples" "$(TargetDir)Samples"
       <Optimization>Full</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <AdditionalIncludeDirectories>$(ProjectDir)../LibXML/include;$(ProjectDir)..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\..\..\win32\iconv\include;$(ProjectDir)..\..\..\..\..\win32\libxml2\include;$(ProjectDir)..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;FCOLLADA_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
-      <TreatWarningAsError>true</TreatWarningAsError>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DisableSpecificWarnings>4458;4457;4456;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
-      <OutputFile>$(ProjectDir)../Output/$(Configuration) Unicode DLL $(Platform)/$(ProjectName).exe</OutputFile>
+      <OutputFile>$(ProjectDir)Output/$(Configuration) $(Platform)/$(ProjectName)\$(ProjectName).exe</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <TargetMachine>MachineX64</TargetMachine>
+      <AdditionalLibraryDirectories>$(ProjectDir)\..\..\..\..\..\win32\libxml2\lib;$(ProjectDir)\..\..\..\lib;$(ProjectDir)\..\..\..\..\..\win32\iconv\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>FCollada.lib;libiconv.lib;libxml2.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>if not exist "$(TargetDir)Samples" mkdir "$(TargetDir)Samples"
 xcopy /D /E /C /Q /Y "$(ProjectDir)Samples" "$(TargetDir)Samples"
+xcopy /E /C /Q /Y "$(ProjectDir)\..\..\..\..\..\..\binaries\system\libxml2.dll" "$(TargetDir)"
+xcopy /E /C /Q /Y "$(ProjectDir)\..\..\..\..\..\..\binaries\system\libiconv.dll" "$(TargetDir)"
+xcopy /E /C /Q /Y "$(ProjectDir)\..\..\..\..\..\..\binaries\system\FCollada.dll" "$(TargetDir)"
+xcopy /E /C /Q /Y "$(ProjectDir)\..\..\..\..\..\..\binaries\system\FCollada.pdb" "$(TargetDir)"
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -298,6 +324,10 @@ xcopy /D /E /C /Q /Y "$(ProjectDir)Samples" "$(TargetDir)Samples"
     <PostBuildEvent>
       <Command>if not exist "$(TargetDir)Samples" mkdir "$(TargetDir)Samples"
 xcopy /D /E /C /Q /Y "$(ProjectDir)Samples" "$(TargetDir)Samples"
+xcopy /E /C /Q /Y "$(ProjectDir)\..\..\..\..\..\..\binaries\system\libxml2.dll" "$(TargetDir)"
+xcopy /E /C /Q /Y "$(ProjectDir)\..\..\..\..\..\..\binaries\system\libiconv.dll" "$(TargetDir)"
+xcopy /E /C /Q /Y "$(ProjectDir)\..\..\..\..\..\..\binaries\system\FColladaD.dll" "$(TargetDir)"
+xcopy /E /C /Q /Y "$(ProjectDir)\..\..\..\..\..\..\binaries\system\FColladaD.pdb" "$(TargetDir)"
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -307,8 +337,8 @@ xcopy /D /E /C /Q /Y "$(ProjectDir)Samples" "$(TargetDir)Samples"
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(ProjectDir)../LibXML/include;$(ProjectDir)..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_DEBUG;MEMORY_DEBUG;FCOLLADA_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\..\..\win32\iconv\include;$(ProjectDir)..\..\..\..\..\win32\libxml2\include;$(ProjectDir)..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;FCOLLADA_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -320,6 +350,10 @@ xcopy /D /E /C /Q /Y "$(ProjectDir)Samples" "$(TargetDir)Samples"
     <PostBuildEvent>
       <Command>if not exist "$(TargetDir)Samples" mkdir "$(TargetDir)Samples"
 xcopy /D /E /C /Q /Y "$(ProjectDir)Samples" "$(TargetDir)Samples"
+xcopy /E /C /Q /Y "$(ProjectDir)\..\..\..\..\..\..\binaries\system\libxml2.dll" "$(TargetDir)"
+xcopy /E /C /Q /Y "$(ProjectDir)\..\..\..\..\..\..\binaries\system\libiconv.dll" "$(TargetDir)"
+xcopy /E /C /Q /Y "$(ProjectDir)\..\..\..\..\..\..\binaries\system\FColladaD.dll" "$(TargetDir)"
+xcopy /E /C /Q /Y "$(ProjectDir)\..\..\..\..\..\..\binaries\system\FColladaD.pdb" "$(TargetDir)"
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -342,6 +376,10 @@ xcopy /D /E /C /Q /Y "$(ProjectDir)Samples" "$(TargetDir)Samples"
     <PostBuildEvent>
       <Command>if not exist "$(TargetDir)Samples" mkdir "$(TargetDir)Samples"
 xcopy /D /E /C /Q /Y "$(ProjectDir)Samples" "$(TargetDir)Samples"
+xcopy /E /C /Q /Y "$(ProjectDir)\..\..\..\..\..\..\binaries\system\libxml2.dll" "$(TargetDir)"
+xcopy /E /C /Q /Y "$(ProjectDir)\..\..\..\..\..\..\binaries\system\libiconv.dll" "$(TargetDir)"
+xcopy /E /C /Q /Y "$(ProjectDir)\..\..\..\..\..\..\binaries\system\FCollada.dll" "$(TargetDir)"
+xcopy /E /C /Q /Y "$(ProjectDir)\..\..\..\..\..\..\binaries\system\FCollada.pdb" "$(TargetDir)"
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -353,7 +391,7 @@ xcopy /D /E /C /Q /Y "$(ProjectDir)Samples" "$(TargetDir)Samples"
       <Optimization>Full</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <AdditionalIncludeDirectories>$(ProjectDir)../LibXML/include;$(ProjectDir)..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\..\..\win32\iconv\include;$(ProjectDir)..\..\..\..\..\win32\libxml2\include;$(ProjectDir)..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;FCOLLADA_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <BufferSecurityCheck>false</BufferSecurityCheck>
@@ -365,6 +403,10 @@ xcopy /D /E /C /Q /Y "$(ProjectDir)Samples" "$(TargetDir)Samples"
     <PostBuildEvent>
       <Command>if not exist "$(TargetDir)Samples" mkdir "$(TargetDir)Samples"
 xcopy /D /E /C /Q /Y "$(ProjectDir)Samples" "$(TargetDir)Samples"
+xcopy /E /C /Q /Y "$(ProjectDir)\..\..\..\..\..\..\binaries\system\libxml2.dll" "$(TargetDir)"
+xcopy /E /C /Q /Y "$(ProjectDir)\..\..\..\..\..\..\binaries\system\libiconv.dll" "$(TargetDir)"
+xcopy /E /C /Q /Y "$(ProjectDir)\..\..\..\..\..\..\binaries\system\FCollada.dll" "$(TargetDir)"
+xcopy /E /C /Q /Y "$(ProjectDir)\..\..\..\..\..\..\binaries\system\FCollada.pdb" "$(TargetDir)"
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -404,6 +446,7 @@ xcopy /D /E /C /Q /Y "$(ProjectDir)Samples" "$(TargetDir)Samples"
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\FUtils\FUTestBed.h" />
     <ClInclude Include="FCTestExportImport\FCTestExportImport.h" />
     <ClInclude Include="StdAfx.h" />
   </ItemGroup>

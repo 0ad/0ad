@@ -209,8 +209,7 @@ public:
 			if (m_TriggerEvent)
 			{
 				m_TriggerEvent = false;
-				CMessageTerritoriesChanged msg;
-				GetSimContext().GetComponentManager().BroadcastMessage(msg);
+				GetSimContext().GetComponentManager().BroadcastMessage(CMessageTerritoriesChanged());
 			}
 			break;
 		}
@@ -326,7 +325,7 @@ struct Tile
 };
 
 // Floodfill templates that expand neighbours from a certain source onwards
-// (x, z) are the coordinates of the currently expanded tile
+// (posX, posZ) are the coordinates of the currently expanded tile
 // (nx, nz) are the coordinates of the current neighbour handled
 // The user of this floodfill should use "continue" on every neighbour that
 // shouldn't be expanded on its own. (without continue, an infinite loop will happen)
@@ -339,13 +338,13 @@ struct Tile
 		openTiles.emplace(i, j);\
 		while (!openTiles.empty())\
 		{\
-			u16 x = openTiles.front().x;\
-			u16 z = openTiles.front().z;\
+			u16 posX = openTiles.front().x;\
+			u16 posZ = openTiles.front().z;\
 			openTiles.pop();\
 			for (int n = 0; n < NUM_NEIGHBOURS; ++n)\
 			{\
-				u16 nx = x + NEIGHBOURS_X[n];\
-				u16 nz = z + NEIGHBOURS_Z[n];\
+				u16 nx = posX + NEIGHBOURS_X[n];\
+				u16 nz = posZ + NEIGHBOURS_Z[n];\
 				/* Check the bounds, underflow will cause the values to be big again */\
 				if (nx >= tilesW || nz >= tilesH)\
 					continue;\
@@ -505,16 +504,16 @@ void CCmpTerritoryManager::CalculateTerritories()
 				u32 dg = falloff * m_CostGrid->get(nx, nz);
 
 				// diagonal neighbour -> multiply with approx sqrt(2)
-				if (nx != x && nz != z)
+				if (nx != posX && nz != posZ)
 					dg = (dg * 362) / 256;
 
 				// Don't expand if new cost is not better than previous value for that tile
 				// (arranged to avoid underflow if entityGrid.get(x, z) < dg)
-				if (entityGrid.get(x, z) <= entityGrid.get(nx, nz) + dg)
+				if (entityGrid.get(posX, posZ) <= entityGrid.get(nx, nz) + dg)
 					continue;
 
 				// weight of this tile = weight of predecessor - falloff from predecessor
-				u32 newWeight = entityGrid.get(x, z) - dg;
+				u32 newWeight = entityGrid.get(posX, posZ) - dg;
 				u32 totalWeight = playerGrid.get(nx, nz) - entityGrid.get(nx, nz) + newWeight;
 				playerGrid.set(nx, nz, totalWeight);
 				entityGrid.set(nx, nz, newWeight);

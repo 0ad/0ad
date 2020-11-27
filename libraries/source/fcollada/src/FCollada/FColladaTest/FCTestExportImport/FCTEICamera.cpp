@@ -9,6 +9,7 @@
 #include "StdAfx.h"
 #include "FCDocument/FCDCamera.h"
 #include "FCTestExportImport.h"
+#include "FUtils/FUTestBed.h"
 
 namespace FCTestExportImport
 {

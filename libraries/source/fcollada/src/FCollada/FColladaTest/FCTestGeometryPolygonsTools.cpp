@@ -14,6 +14,7 @@
 #include "FCDocument/FCDGeometryPolygons.h"
 #include "FCDocument/FCDGeometryPolygonsInput.h"
 #include "FCDocument/FCDGeometryPolygonsTools.h"
+#include "FUtils/FUTestBed.h"
 
 TESTSUITE_START(FCDGeometryPolygonsTools)
 

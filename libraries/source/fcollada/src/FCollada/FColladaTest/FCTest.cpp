@@ -7,6 +7,7 @@
 */
 
 #include "StdAfx.h"
+#include "FUtils/FUTestBed.h"
 
 #ifdef WIN32
 #include <direct.h>

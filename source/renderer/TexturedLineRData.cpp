@@ -167,8 +167,9 @@ void CTexturedLineRData::Update(const SOverlayTexturedLine& line)
 		vertices.push_back(vertex1);
 		vertices.push_back(vertex2);
 
-		u16 index1 = vertices.size() - 2; // index of vertex1 in this iteration (TR of this quad)
-		u16 index2 = vertices.size() - 1; // index of the vertex2 in this iteration (TL of this quad)
+		u16 vertexCount = static_cast<u16>(vertices.size());
+		u16 index1 = vertexCount - 2; // index of vertex1 in this iteration (TR of this quad)
+		u16 index2 = vertexCount - 1; // index of the vertex2 in this iteration (TL of this quad)
 
 		if (i == 0)
 		{
@@ -178,10 +179,10 @@ void CTexturedLineRData::Update(const SOverlayTexturedLine& line)
 		}
 		else
 		{
-			u16 index1Prev = vertices.size() - 4; // index of the vertex1 in the previous iteration (BR of this quad)
-			u16 index2Prev = vertices.size() - 3; // index of the vertex2 in the previous iteration (BL of this quad)
-			ENSURE(index1Prev < vertices.size());
-			ENSURE(index2Prev < vertices.size());
+			u16 index1Prev = vertexCount - 4; // index of the vertex1 in the previous iteration (BR of this quad)
+			u16 index2Prev = vertexCount - 3; // index of the vertex2 in the previous iteration (BL of this quad)
+			ENSURE(index1Prev < vertexCount);
+			ENSURE(index2Prev < vertexCount);
 			// Add two corner points from last iteration and join with one of our own corners to create triangle 1
 			// (don't need to do this if i == 1 because i == 0 are the first two ones, they don't need to be copied)
 			if (i > 1)
@@ -227,12 +228,13 @@ void CTexturedLineRData::Update(const SOverlayTexturedLine& line)
 		// close the path
 		if (n % 2 == 0)
 		{
-			indices.push_back(vertices.size()-2);
-			indices.push_back(vertices.size()-1);
+			u16 vertexCount = static_cast<u16>(vertices.size());
+			indices.push_back(vertexCount - 2);
+			indices.push_back(vertexCount - 1);
 			indices.push_back(0);
 
 			indices.push_back(0);
-			indices.push_back(vertices.size()-1);
+			indices.push_back(vertexCount - 1);
 			indices.push_back(1);
 		}
 		else
@@ -243,13 +245,14 @@ void CTexturedLineRData::Update(const SOverlayTexturedLine& line)
 			vertices.push_back(vertex1);
 			vertices.push_back(vertex2);
 
-			indices.push_back(vertices.size()-4);
-			indices.push_back(vertices.size()-3);
-			indices.push_back(vertices.size()-2);
+			u16 vertexCount = static_cast<u16>(vertices.size());
+			indices.push_back(vertexCount - 4);
+			indices.push_back(vertexCount - 3);
+			indices.push_back(vertexCount - 2);
 
-			indices.push_back(vertices.size()-2);
-			indices.push_back(vertices.size()-3);
-			indices.push_back(vertices.size()-1);
+			indices.push_back(vertexCount - 2);
+			indices.push_back(vertexCount - 3);
+			indices.push_back(vertexCount - 1);
 		}
 	}
 	else
@@ -274,7 +277,7 @@ void CTexturedLineRData::Update(const SOverlayTexturedLine& line)
 		);
 
 		for (unsigned i = 0; i < capIndices.size(); i++)
-			capIndices[i] += vertices.size();
+			capIndices[i] += static_cast<u16>(vertices.size());
 
 		vertices.insert(vertices.end(), capVertices.begin(), capVertices.end());
 		indices.insert(indices.end(), capIndices.begin(), capIndices.end());
@@ -296,7 +299,7 @@ void CTexturedLineRData::Update(const SOverlayTexturedLine& line)
 		);
 
 		for (unsigned i = 0; i < capIndices.size(); i++)
-			capIndices[i] += vertices.size();
+			capIndices[i] += static_cast<u16>(vertices.size());
 
 		vertices.insert(vertices.end(), capVertices.begin(), capVertices.end());
 		indices.insert(indices.end(), capIndices.begin(), capIndices.end());
@@ -314,7 +317,7 @@ void CTexturedLineRData::Update(const SOverlayTexturedLine& line)
 		m_VB->m_Owner->UpdateChunkVertices(m_VB, &vertices[0]); // copy data into VBO
 
 		for (size_t k = 0; k < indices.size(); ++k)
-			indices[k] += m_VB->m_Index;
+			indices[k] += static_cast<u16>(m_VB->m_Index);
 
 		m_VBIndices = g_VBMan.Allocate(sizeof(u16), indices.size(), GL_STATIC_DRAW, GL_ELEMENT_ARRAY_BUFFER);
 		if (m_VBIndices)
@@ -347,7 +350,7 @@ void CTexturedLineRData::CreateLineCap(const SOverlayTexturedLine& line, const C
 
 	CVector3D centerPoint = (corner1 + corner2) * 0.5f;
 	SVertex centerVertex(centerPoint, 0.5f, 0.5f);
-	u16 indexOffset = verticesOut.size(); // index offset in verticesOut from where we start adding our vertices
+	u16 indexOffset = static_cast<u16>(verticesOut.size()); // index offset in verticesOut from where we start adding our vertices
 
 	switch (endCapType)
 	{

@@ -18,6 +18,7 @@
 #include "FCDocument/FCDSceneNode.h"
 #include "FCDocument/FCDSkinController.h"
 #include "FCTestExportImport.h"
+#include "FUtils/FUTestBed.h"
 
 static const float positionData[12] = { 0.0f, 0.0f, 3.0f, 5.0f, 0.0f, -2.0f, -3.0f, 4.0f, -2.0f, -3.0f, -4.0f, -2.0f };
 static const float colorData[12] = { 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f };

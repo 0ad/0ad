@@ -282,19 +282,19 @@ void CProfileViewer::RenderProfile()
 			currentExpandId++;
 		}
 
-		float colX = 0.0f;
+		float rowColX = 0.0f;
 		for (size_t col = 0; col < columns.size(); ++col)
 		{
 			CStrW text = table->GetCellText(row, col).FromUTF8();
 			int w, h;
 			font.CalculateStringSize(text.c_str(), w, h);
 
-			float x = colX;
+			float x = rowColX;
 			if (col > 0) // right-align all but the first column
 				x += columns[col].width - w;
 			textRenderer.Put(x, 0.0f, text.c_str());
 
-			colX += columns[col].width;
+			rowColX += columns[col].width;
 		}
 
 		textRenderer.Translate(0.0f, lineSpacing, 0.0f);

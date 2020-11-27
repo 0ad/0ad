@@ -24,6 +24,7 @@
 #include "SkeletonAnimDef.h"
 #include "maths/MathUtil.h"
 #include "maths/Matrix3D.h"
+#include "ps/CStr.h"
 #include "ps/FileIo.h"
 
 

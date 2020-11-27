@@ -243,7 +243,7 @@ void TerrainRenderer::RenderTerrainFixed(int cullGroup)
 
 	// render blends
 	// switch on the composite alpha map texture
-	(void)ogl_tex_bind(g_Renderer.m_hCompositeAlphaMap, 1);
+	DISCARD ogl_tex_bind(g_Renderer.m_hCompositeAlphaMap, 1);
 
 	// switch on second uv set
 	pglClientActiveTextureARB(GL_TEXTURE1);

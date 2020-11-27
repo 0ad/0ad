@@ -255,5 +255,5 @@ void CHeightMipmap::DumpToDisk(const VfsPath& filename) const
 	DynArray da;
 	WARN_IF_ERR(t.encode(filename.Extension(), &da));
 	g_VFS->CreateFile(filename, DummySharedPtr(da.base), da.pos);
-	(void)da_free(&da);
+	DISCARD da_free(&da);
 }

@@ -9,6 +9,7 @@
 #include "StdAfx.h"
 #include "FCDocument/FCDExtra.h"
 #include "FCTestExportImport.h"
+#include "FUtils/FUTestBed.h"
 
 namespace FCTestExportImport
 {

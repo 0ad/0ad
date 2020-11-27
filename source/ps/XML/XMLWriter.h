@@ -62,8 +62,8 @@
  */
 
 #include "lib/file/vfs/vfs.h"
+#include "ps/CStr.h"
 
-class CStr8;
 class XMBElement;
 class XMBFile;
 class XMLWriter_Element;
@@ -98,7 +98,7 @@ private:
 
 	bool m_PrettyPrint;
 
-	CStr8 m_Data;
+	CStr m_Data;
 	int m_Indent;
 	XMLWriter_Element* m_LastElement;
 };
@@ -119,7 +119,7 @@ private:
 	friend class XMLWriter_File;
 
 	XMLWriter_File* m_File;
-	CStr8 m_Name;
+	CStr m_Name;
 	int m_Type;
 };
 

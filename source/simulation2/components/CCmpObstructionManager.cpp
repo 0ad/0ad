@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -825,8 +825,8 @@ bool CCmpObstructionManager::IsInPointRange(entity_id_t ent, entity_pos_t px, en
 	fixed dist = DistanceToPoint(ent, px, pz);
 	// Treat -1 max range as infinite
 	return dist != fixed::FromInt(-1) &&
-	      (dist <= (maxRange + fixed::FromFloat(0.0001)) || maxRange < fixed::Zero()) &&
-	      (opposite ? MaxDistanceToPoint(ent, px, pz) : dist) >= minRange - fixed::FromFloat(0.0001);
+	      (dist <= (maxRange + fixed::FromFloat(0.0001f)) || maxRange < fixed::Zero()) &&
+	      (opposite ? MaxDistanceToPoint(ent, px, pz) : dist) >= minRange - fixed::FromFloat(0.0001f);
 }
 
 bool CCmpObstructionManager::IsInTargetRange(entity_id_t ent, entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange, bool opposite) const
@@ -834,15 +834,15 @@ bool CCmpObstructionManager::IsInTargetRange(entity_id_t ent, entity_id_t target
 	fixed dist = DistanceToTarget(ent, target);
 	// Treat -1 max range as infinite
 	return dist != fixed::FromInt(-1) &&
-	      (dist <= (maxRange + fixed::FromFloat(0.0001)) || maxRange < fixed::Zero()) &&
-	      (opposite ? MaxDistanceToTarget(ent, target) : dist) >= minRange - fixed::FromFloat(0.0001);
+	      (dist <= (maxRange + fixed::FromFloat(0.0001f)) || maxRange < fixed::Zero()) &&
+	      (opposite ? MaxDistanceToTarget(ent, target) : dist) >= minRange - fixed::FromFloat(0.0001f);
 }
 bool CCmpObstructionManager::IsPointInPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t px, entity_pos_t pz, entity_pos_t minRange, entity_pos_t maxRange) const
 {
 	entity_pos_t distance = (CFixedVector2D(x, z) - CFixedVector2D(px, pz)).Length();
 	// Treat -1 max range as infinite
-	return (distance <= (maxRange + fixed::FromFloat(0.0001)) || maxRange < fixed::Zero()) &&
-	        distance >= minRange - fixed::FromFloat(0.0001);
+	return (distance <= (maxRange + fixed::FromFloat(0.0001f)) || maxRange < fixed::Zero()) &&
+	        distance >= minRange - fixed::FromFloat(0.0001f);
 }
 
 bool CCmpObstructionManager::AreShapesInRange(const ObstructionSquare& source, const ObstructionSquare& target, entity_pos_t minRange, entity_pos_t maxRange, bool opposite) const
@@ -850,8 +850,8 @@ bool CCmpObstructionManager::AreShapesInRange(const ObstructionSquare& source, c
 	fixed dist = DistanceBetweenShapes(source, target);
 	// Treat -1 max range as infinite
 	return dist != fixed::FromInt(-1) &&
-	      (dist <= (maxRange + fixed::FromFloat(0.0001)) || maxRange < fixed::Zero()) &&
-	      (opposite ? MaxDistanceBetweenShapes(source, target) : dist) >= minRange - fixed::FromFloat(0.0001);
+	      (dist <= (maxRange + fixed::FromFloat(0.0001f)) || maxRange < fixed::Zero()) &&
+	      (opposite ? MaxDistanceBetweenShapes(source, target) : dist) >= minRange - fixed::FromFloat(0.0001f);
 }
 
 bool CCmpObstructionManager::TestLine(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r, bool relaxClearanceForUnits) const

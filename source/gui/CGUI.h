@@ -138,6 +138,12 @@ public:
 	void UnsetObjectHotkey(IGUIObject* pObject, const CStr& hotkeyTag);
 
 	/**
+	 * Allows the JS side to modify the style setting assigned to a GUI object.
+	 */
+	void SetObjectStyle(IGUIObject* pObject, const CStr& styleName);
+	void UnsetObjectStyle(IGUIObject* pObject);
+
+	/**
 	 * Allows the JS side to add or remove global hotkeys.
 	 */
 	void SetGlobalHotkey(const CStr& hotkeyTag, const CStr& eventName, JS::HandleValue function);

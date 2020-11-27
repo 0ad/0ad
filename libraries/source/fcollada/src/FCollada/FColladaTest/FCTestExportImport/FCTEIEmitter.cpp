@@ -12,6 +12,7 @@
 #include "FCDocument/FCDForceField.h"
 #include "FCDocument/FCDSceneNode.h"
 #include "FCTestExportImport.h"
+#include "FUtils/FUTestBed.h"
 
 namespace FCTestExportImport
 {

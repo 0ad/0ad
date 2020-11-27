@@ -8,6 +8,7 @@
 
 #include "StdAfx.h"
 #include "FCDocument/FCDocument.h"
+#include "FUtils/FUTestBed.h"
 
 TESTSUITE_START(FCTAssetManagement)
 

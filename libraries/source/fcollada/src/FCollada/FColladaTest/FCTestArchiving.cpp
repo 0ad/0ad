@@ -11,6 +11,7 @@
 #include "FCDocument/FCDLibrary.h"
 #include "FCDocument/FCDLight.h"
 #include "FUtils/FUFile.h"
+#include "FUtils/FUTestBed.h"
 
 TESTSUITE_START(FColladaArchiving)
 

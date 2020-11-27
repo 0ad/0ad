@@ -13,6 +13,7 @@
 #include "FCDocument/FCDAnimationCurve.h"
 #include "FCDocument/FCDLight.h"
 #include "FCTestExportImport.h"
+#include "FUtils/FUTestBed.h"
 
 static fm::string animId1 = "GrossAnimation";
 static fm::string animId2 = "GrossAnimation";

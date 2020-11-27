@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -153,10 +153,10 @@ void CNetServerTurnManager::NotifyFinishedClientUpdate(CNetServerSession& sessio
 			CSyncErrorMessage msg;
 			msg.m_Turn = clientStateHash.first;
 			msg.m_HashExpected = expected;
-			for (const CStrW& playername : OOSPlayerNames)
+			for (const CStrW& oosPlayername : OOSPlayerNames)
 			{
 				CSyncErrorMessage::S_m_PlayerNames h;
-				h.m_Name = playername;
+				h.m_Name = oosPlayername;
 				msg.m_PlayerNames.push_back(h);
 			}
 			m_NetServer.Broadcast(&msg, { NSS_INGAME });

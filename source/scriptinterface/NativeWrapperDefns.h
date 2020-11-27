@@ -180,7 +180,7 @@ bool ScriptInterface::CallFunction(JS::HandleValue val, const char* name, R& ret
 	ScriptRequest rq(this);
 	JS::RootedValue jsRet(rq.cx);
 	JS::AutoValueVector argv(rq.cx);
-	(void)argv.resize(sizeof...(Ts));
+	DISCARD argv.resize(sizeof...(Ts));
 	AssignOrToJSValHelper<0>(rq, argv, params...);
 	if (!CallFunction_(val, name, argv, &jsRet))
 		return false;
@@ -193,7 +193,7 @@ bool ScriptInterface::CallFunction(JS::HandleValue val, const char* name, JS::Ro
 	ScriptRequest rq(this);
 	JS::MutableHandle<R> jsRet(ret);
 	JS::AutoValueVector argv(rq.cx);
-	(void)argv.resize(sizeof...(Ts));
+	DISCARD argv.resize(sizeof...(Ts));
 	AssignOrToJSValHelper<0>(rq, argv, params...);
 	return CallFunction_(val, name, argv, jsRet);
 }
@@ -203,7 +203,7 @@ bool ScriptInterface::CallFunction(JS::HandleValue val, const char* name, JS::Mu
 {
 	ScriptRequest rq(this);
 	JS::AutoValueVector argv(rq.cx);
-	(void)argv.resize(sizeof...(Ts));
+	DISCARD argv.resize(sizeof...(Ts));
 	AssignOrToJSValHelper<0>(rq, argv, params...);
 	return CallFunction_(val, name, argv, ret);
 }
@@ -215,7 +215,7 @@ bool ScriptInterface::CallFunctionVoid(JS::HandleValue val, const char* name, co
 	ScriptRequest rq(this);
 	JS::RootedValue jsRet(rq.cx);
 	JS::AutoValueVector argv(rq.cx);
-	(void)argv.resize(sizeof...(Ts));
+	DISCARD argv.resize(sizeof...(Ts));
 	AssignOrToJSValHelper<0>(rq, argv, params...);
 	return CallFunction_(val, name, argv, &jsRet);
 }

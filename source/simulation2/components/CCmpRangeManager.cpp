@@ -126,7 +126,7 @@ static inline bool IsVisibilityDirty(u16 dirty, player_id_t player)
  */
 static inline bool HasVisionSharing(u16 visionSharing, player_id_t player)
 {
-	return visionSharing & 1 << (player-1);
+	return (visionSharing & (1 << (player - 1))) != 0;
 }
 
 /**
@@ -1051,12 +1051,12 @@ public:
 
 	virtual std::vector<entity_id_t> GetNonGaiaEntities() const
 	{
-		return GetEntitiesByMask(~3); // bit 0 for owner=-1 and bit 1 for gaia
+		return GetEntitiesByMask(~3u); // bit 0 for owner=-1 and bit 1 for gaia
 	}
 
 	virtual std::vector<entity_id_t> GetGaiaAndNonGaiaEntities() const
 	{
-		return GetEntitiesByMask(~1); // bit 0 for owner=-1
+		return GetEntitiesByMask(~1u); // bit 0 for owner=-1
 	}
 
 	std::vector<entity_id_t> GetEntitiesByMask(u32 ownerMask) const
@@ -1452,8 +1452,8 @@ public:
 				else
 				{
 					// elevation bonus is part of the 3D position. As if the unit is really that much higher
-					CFixedVector3D pos = cmpSourcePosition->GetPosition();
-					pos.Y += q.elevationBonus;
+					CFixedVector3D pos3D = cmpSourcePosition->GetPosition();
+					pos3D.Y += q.elevationBonus;
 
 					std::vector<entity_pos_t> coords;
 
@@ -1461,7 +1461,7 @@ public:
 					if (ParabolicRangesOutlines.find(q.source.GetId()) != ParabolicRangesOutlines.end())
 					{
 						EntityParabolicRangeOutline e = ParabolicRangesOutlines[q.source.GetId()];
-						if (e.position == pos && e.range == q.maxRange)
+						if (e.position == pos3D && e.range == q.maxRange)
 						{
 							// outline is cached correctly, use it
 							coords = e.outline;
@@ -1471,10 +1471,10 @@ public:
 							// outline was cached, but important parameters changed
 							// (position, elevation, range)
 							// update it
-							coords = getParabolicRangeForm(pos,q.maxRange,q.maxRange*2, entity_pos_t::Zero(), entity_pos_t::FromFloat(2.0f*3.14f),70);
+							coords = getParabolicRangeForm(pos3D,q.maxRange,q.maxRange*2, entity_pos_t::Zero(), entity_pos_t::FromFloat(2.0f*3.14f),70);
 							e.outline = coords;
 							e.range = q.maxRange;
-							e.position = pos;
+							e.position = pos3D;
 							ParabolicRangesOutlines[q.source.GetId()] = e;
 						}
 					}
@@ -1483,11 +1483,11 @@ public:
 						// outline wasn't cached (first time you enable the range overlay
 						// or you created a new entiy)
 						// cache a new outline
-						coords = getParabolicRangeForm(pos,q.maxRange,q.maxRange*2, entity_pos_t::Zero(), entity_pos_t::FromFloat(2.0f*3.14f),70);
+						coords = getParabolicRangeForm(pos3D,q.maxRange,q.maxRange*2, entity_pos_t::Zero(), entity_pos_t::FromFloat(2.0f*3.14f),70);
 						EntityParabolicRangeOutline e;
 						e.source = q.source.GetId();
 						e.range = q.maxRange;
-						e.position = pos;
+						e.position = pos3D;
 						e.outline = coords;
 						ParabolicRangesOutlines[q.source.GetId()] = e;
 					}
@@ -1498,10 +1498,10 @@ public:
 					for (size_t i = 3; i < coords.size(); i += 2)
 					{
 						std::vector<float> c;
-						c.push_back((coords[i-3]+pos.X).ToFloat());
-						c.push_back((coords[i-2]+pos.Z).ToFloat());
-						c.push_back((coords[i-1]+pos.X).ToFloat());
-						c.push_back((coords[i]+pos.Z).ToFloat());
+						c.push_back((coords[i - 3] + pos3D.X).ToFloat());
+						c.push_back((coords[i - 2] + pos3D.Z).ToFloat());
+						c.push_back((coords[i - 1] + pos3D.X).ToFloat());
+						c.push_back((coords[i] + pos3D.Z).ToFloat());
 						m_DebugOverlayLines.push_back(SOverlayLine());
 						m_DebugOverlayLines.back().m_Color = thiscolor;
 						SimRender::ConstructLineOnGround(GetSimContext(), c, m_DebugOverlayLines.back(), true);

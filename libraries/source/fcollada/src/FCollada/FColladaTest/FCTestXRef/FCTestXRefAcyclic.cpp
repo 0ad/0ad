@@ -14,6 +14,7 @@
 #include "FCDocument/FCDEntityInstance.h"
 #include "FCDocument/FCDExternalReferenceManager.h"
 #include "FCDocument/FCDSceneNode.h"
+#include "FUtils/FUTestBed.h"
 
 TESTSUITE_START(FCTestXRefAcyclic)
 

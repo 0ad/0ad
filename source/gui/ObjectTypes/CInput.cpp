@@ -1280,18 +1280,18 @@ void CInput::Draw()
 		// Anyway, since the drawing procedure needs "To" to be
 		//  greater than from, we need virtual values that might switch
 		//  place.
-
-		int VirtualFrom, VirtualTo;
+		int virtualFrom = 0;
+		int virtualTo = 0;
 
 		if (m_iBufferPos_Tail >= m_iBufferPos)
 		{
-			VirtualFrom = m_iBufferPos;
-			VirtualTo = m_iBufferPos_Tail;
+			virtualFrom = m_iBufferPos;
+			virtualTo = m_iBufferPos_Tail;
 		}
 		else
 		{
-			VirtualFrom = m_iBufferPos_Tail;
-			VirtualTo = m_iBufferPos;
+			virtualFrom = m_iBufferPos_Tail;
+			virtualTo = m_iBufferPos;
 		}
 
 
@@ -1307,7 +1307,7 @@ void CInput::Draw()
 			// (often compared against ints, so don't make it size_t)
 			for (int i = 0; i < (int)it->m_ListOfX.size()+2; ++i)
 			{
-				if (it->m_ListStart + i == VirtualFrom)
+				if (it->m_ListStart + i == virtualFrom)
 				{
 					// we won't actually draw it now, because we don't
 					//  know the width of each glyph to that position.
@@ -1321,13 +1321,13 @@ void CInput::Draw()
 
 				const bool at_end = (i == (int)it->m_ListOfX.size()+1);
 
-				if (drawing_box && (it->m_ListStart + i == VirtualTo || at_end))
+				if (drawing_box && (it->m_ListStart + i == virtualTo || at_end))
 				{
 					// Depending on if it's just a row change, or if it's
 					//  the end of the select box, do slightly different things.
 					if (at_end)
 					{
-						if (it->m_ListStart + i != VirtualFrom)
+						if (it->m_ListStart + i != virtualFrom)
 							// and actually add a white space! yes, this is done in any common input
 							x_pointer += font.GetCharacterWidth(L' ');
 					}
@@ -1755,10 +1755,10 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 				//  actually remove the entire lines they are on, it'll all have
 				//  to be redone. And when going along, we'll delete a row at a time
 				//  when continuing to see how much more after 'to' we need to remake.
-				int i = 0;
+
 				for (std::list<SRow>::iterator it = m_CharacterPositions.begin();
 				     it != m_CharacterPositions.end();
-				     ++it, ++i)
+				     ++it)
 				{
 					if (!destroy_row_from_used && it->m_ListStart > check_point_row_start)
 					{

@@ -367,7 +367,7 @@ bool CNetServerWorker::Broadcast(const CNetMessage* message, const std::vector<N
 	// of remote peers; could do it more efficiently if that's a real problem
 
 	for (CNetServerSession* session : m_Sessions)
-		if (std::find(targetStates.begin(), targetStates.end(), session->GetCurrState()) != targetStates.end() &&
+		if (std::find(targetStates.begin(), targetStates.end(), static_cast<NetServerSessionState>(session->GetCurrState())) != targetStates.end() &&
 		    !session->SendMessage(message))
 			ok = false;
 
@@ -1452,11 +1452,9 @@ bool CNetServerWorker::OnClientPaused(void* context, CFsmEvent* event)
 	}
 
 	// Send messages to clients that are in game, and are not the client who paused.
-	for (CNetServerSession* session : server.m_Sessions)
-	{
-		if (session->GetCurrState() == NSS_INGAME && message->m_GUID != session->GetGUID())
-			session->SendMessage(message);
-	}
+	for (CNetServerSession* netSession : server.m_Sessions)
+		if (netSession->GetCurrState() == NSS_INGAME && message->m_GUID != netSession->GetGUID())
+			netSession->SendMessage(message);
 
 	return true;
 }

@@ -60,8 +60,6 @@ need only be renamed (e.g. _open, _stat).
 #ifndef INCLUDED_POSIX
 #define INCLUDED_POSIX
 
-#include <cmath>	// see isfinite comment below
-
 #if OS_WIN
 # include "lib/sysdep/os/win/wposix/wposix.h"
 #endif
@@ -112,20 +110,6 @@ extern wchar_t* wcsdup(const wchar_t* str);
 
 #if EMULATE_WCSCASECMP
 extern int wcscasecmp(const wchar_t* s1, const wchar_t* s2);
-#endif
-
-// Some systems have C99 support but in C++ they provide only std::isfinite
-// and not isfinite. C99 specifies that isfinite is a macro, so we can use
-// #ifndef and define it if it's not there already.
-// We've included <cmath> above to make sure it defines that macro.
-#ifndef isfinite
-# if MSC_VERSION
-#  define isfinite _finite
-#  define isnan _isnan
-# else
-#  define isfinite std::isfinite
-#  define isnan std::isnan
-# endif
 #endif
 
 #endif	// #ifndef INCLUDED_POSIX

@@ -198,12 +198,12 @@ bool CSimulation2Impl::LoadScripts(CComponentManager& componentManager, std::set
 		return false;
 
 	bool ok = true;
-	for (const VfsPath& path : pathnames)
+	for (const VfsPath& scriptPath : pathnames)
 	{
 		if (loadedScripts)
-			loadedScripts->insert(path);
-		LOGMESSAGE("Loading simulation script '%s'", path.string8());
-		if (!componentManager.LoadScript(path))
+			loadedScripts->insert(scriptPath);
+		LOGMESSAGE("Loading simulation script '%s'", scriptPath.string8());
+		if (!componentManager.LoadScript(scriptPath))
 			ok = false;
 	}
 	return ok;
@@ -921,10 +921,10 @@ static std::vector<std::string> GetJSONData(const VfsPath& path)
 	{
 		// Load JSON file
 		CVFSFile file;
-		PSRETURN ret = file.Load(g_VFS, p);
-		if (ret != PSRETURN_OK)
+		PSRETURN loadStatus = file.Load(g_VFS, p);
+		if (loadStatus != PSRETURN_OK)
 		{
-			LOGERROR("GetJSONData: Failed to load file '%s': %s", p.string8(), GetErrorString(ret));
+			LOGERROR("GetJSONData: Failed to load file '%s': %s", p.string8(), GetErrorString(loadStatus));
 			continue;
 		}
 

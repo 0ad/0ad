@@ -55,6 +55,10 @@
 
 #include <boost/algorithm/string/predicate.hpp>
 
+#if defined(_MSC_VER) && _MSC_VER > 1900
+#pragma warning(disable: 4456) // Declaration hides previous local declaration.
+#pragma warning(disable: 4458) // Declaration hides class member.
+#endif
 
 CMapReader::CMapReader()
 	: xml_reader(0), m_PatchesPerSide(0), m_MapGen(0)
@@ -421,7 +425,9 @@ private:
 	int el_garrison;
 	int el_turrets;
 	int el_actor;
-	int at_x, at_y, at_z;
+	int at_x;
+	int at_y;
+	int at_z;
 	int at_group, at_group2;
 	int at_angle;
 	int at_uid;
@@ -656,20 +662,20 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 		{
 			XERO_ITER_EL(element, fog)
 			{
-				int element_name = fog.GetNodeName();
-				if (element_name == el_fogcolor)
+				int fog_element_name = fog.GetNodeName();
+				if (fog_element_name == el_fogcolor)
 				{
-					XMBAttributeList attrs = fog.GetAttributes();
+					XMBAttributeList fogAttributes = fog.GetAttributes();
 					m_MapReader.m_LightEnv.m_FogColor = RGBColor(
-						attrs.GetNamedItem(at_r).ToFloat(),
-						attrs.GetNamedItem(at_g).ToFloat(),
-						attrs.GetNamedItem(at_b).ToFloat());
+						fogAttributes.GetNamedItem(at_r).ToFloat(),
+						fogAttributes.GetNamedItem(at_g).ToFloat(),
+						fogAttributes.GetNamedItem(at_b).ToFloat());
 				}
-				else if (element_name == el_fogfactor)
+				else if (fog_element_name == el_fogfactor)
 				{
 					m_MapReader.m_LightEnv.m_FogFactor = fog.GetText().ToFloat();
 				}
-				else if (element_name == el_fogthickness)
+				else if (fog_element_name == el_fogthickness)
 				{
 					m_MapReader.m_LightEnv.m_FogMax = fog.GetText().ToFloat();
 				}
@@ -679,24 +685,24 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 		{
 			XERO_ITER_EL(element, postproc)
 			{
-				int element_name = postproc.GetNodeName();
-				if (element_name == el_brightness)
+				int post_element_name = postproc.GetNodeName();
+				if (post_element_name == el_brightness)
 				{
 					m_MapReader.m_LightEnv.m_Brightness = postproc.GetText().ToFloat();
 				}
-				else if (element_name == el_contrast)
+				else if (post_element_name == el_contrast)
 				{
 					m_MapReader.m_LightEnv.m_Contrast = postproc.GetText().ToFloat();
 				}
-				else if (element_name == el_saturation)
+				else if (post_element_name == el_saturation)
 				{
 					m_MapReader.m_LightEnv.m_Saturation = postproc.GetText().ToFloat();
 				}
-				else if (element_name == el_bloom)
+				else if (post_element_name == el_bloom)
 				{
 					m_MapReader.m_LightEnv.m_Bloom = postproc.GetText().ToFloat();
 				}
-				else if (element_name == el_posteffect)
+				else if (post_element_name == el_posteffect)
 				{
 					if (m_MapReader.pPostproc)
 						m_MapReader.pPostproc->SetPostEffect(postproc.GetText().FromUTF8());
@@ -710,8 +716,8 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 				ENSURE(waterbody.GetNodeName() == el_waterbody);
 				XERO_ITER_EL(waterbody, waterelement)
 				{
-					int element_name = waterelement.GetNodeName();
-					if (element_name == el_height)
+					int water_element_name = waterelement.GetNodeName();
+					if (water_element_name == el_height)
 					{
 						CmpPtr<ICmpWaterManager> cmpWaterManager(*m_MapReader.pSimContext, SYSTEM_ENTITY);
 						ENSURE(cmpWaterManager);
@@ -724,7 +730,7 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 					if (!m_MapReader.pWaterMan)
 						continue;
 
-					if (element_name == el_type)
+					if (water_element_name == el_type)
 					{
 						if (waterelement.GetText() == "default")
 							m_MapReader.pWaterMan->m_WaterType = L"ocean";
@@ -732,18 +738,18 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 							m_MapReader.pWaterMan->m_WaterType =  waterelement.GetText().FromUTF8();
 					}
 #define READ_COLOR(el, out) \
-					else if (element_name == el) \
+					else if (water_element_name == el) \
 					{ \
-						XMBAttributeList attrs = waterelement.GetAttributes(); \
+						XMBAttributeList colorAttrs = waterelement.GetAttributes(); \
 						out = CColor( \
-							attrs.GetNamedItem(at_r).ToFloat(), \
-							attrs.GetNamedItem(at_g).ToFloat(), \
-							attrs.GetNamedItem(at_b).ToFloat(), \
+							colorAttrs.GetNamedItem(at_r).ToFloat(), \
+							colorAttrs.GetNamedItem(at_g).ToFloat(), \
+							colorAttrs.GetNamedItem(at_b).ToFloat(), \
 							1.f); \
 					}
 
 #define READ_FLOAT(el, out) \
-					else if (element_name == el) \
+					else if (water_element_name == el) \
 					{ \
 						out = waterelement.GetText().ToFloat(); \
 					} \
@@ -981,28 +987,28 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 			// <position>
 			else if (element_name == el_position)
 			{
-				XMBAttributeList attrs = setting.GetAttributes();
+				XMBAttributeList positionAttrs = setting.GetAttributes();
 				Position = CFixedVector3D(
-					fixed::FromString(attrs.GetNamedItem(at_x)),
-					fixed::FromString(attrs.GetNamedItem(at_y)),
-					fixed::FromString(attrs.GetNamedItem(at_z)));
+					fixed::FromString(positionAttrs.GetNamedItem(at_x)),
+					fixed::FromString(positionAttrs.GetNamedItem(at_y)),
+					fixed::FromString(positionAttrs.GetNamedItem(at_z)));
 			}
 			// <orientation>
 			else if (element_name == el_orientation)
 			{
-				XMBAttributeList attrs = setting.GetAttributes();
+				XMBAttributeList orientationAttrs = setting.GetAttributes();
 				Orientation = CFixedVector3D(
-					fixed::FromString(attrs.GetNamedItem(at_x)),
-					fixed::FromString(attrs.GetNamedItem(at_y)),
-					fixed::FromString(attrs.GetNamedItem(at_z)));
+					fixed::FromString(orientationAttrs.GetNamedItem(at_x)),
+					fixed::FromString(orientationAttrs.GetNamedItem(at_y)),
+					fixed::FromString(orientationAttrs.GetNamedItem(at_z)));
 				// TODO: what happens if some attributes are missing?
 			}
 			// <obstruction>
 			else if (element_name == el_obstruction)
 			{
-				XMBAttributeList attrs = setting.GetAttributes();
-				ControlGroup = attrs.GetNamedItem(at_group).ToInt();
-				ControlGroup2 = attrs.GetNamedItem(at_group2).ToInt();
+				XMBAttributeList obstructionAttrs = setting.GetAttributes();
+				ControlGroup = obstructionAttrs.GetNamedItem(at_group).ToInt();
+				ControlGroup2 = obstructionAttrs.GetNamedItem(at_group2).ToInt();
 			}
 			// <garrison>
 			else if (element_name == el_garrison)
@@ -1011,8 +1017,8 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 				Garrison.reserve(garrison.size());
 				for (const XMBElement& garr_ent : garrison)
 				{
-					XMBAttributeList attrs = garr_ent.GetAttributes();
-					Garrison.push_back(attrs.GetNamedItem(at_uid).ToInt());
+					XMBAttributeList garrisonAttrs = garr_ent.GetAttributes();
+					Garrison.push_back(garrisonAttrs.GetNamedItem(at_uid).ToInt());
 				}
 			}
 			// <turrets>
@@ -1022,10 +1028,10 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 				Turrets.reserve(turrets.size());
 				for (const XMBElement& turretPoint : turrets)
 				{
-					XMBAttributeList attrs = turretPoint.GetAttributes();
+					XMBAttributeList turretAttrs = turretPoint.GetAttributes();
 					Turrets.push_back(std::make_pair(
-						attrs.GetNamedItem(at_turret),
-						attrs.GetNamedItem(at_uid).ToInt()
+						turretAttrs.GetNamedItem(at_turret),
+						turretAttrs.GetNamedItem(at_uid).ToInt()
 					));
 				}
 			}

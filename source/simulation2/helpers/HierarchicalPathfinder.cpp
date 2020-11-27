@@ -640,8 +640,8 @@ void HierarchicalPathfinder::UpdateGlobalRegions(const std::map<pass_class_t, st
 
 			GlobalRegionID ID = m_NextGlobalRegionID++;
 
-			for (const RegionID& reg : reachable)
-				globalRegions[reg] = ID;
+			for (const RegionID& regionId : reachable)
+				globalRegions[regionId] = ID;
 		}
 }
 
@@ -825,9 +825,9 @@ Grid<u16> HierarchicalPathfinder::GetConnectivityGrid(pass_class_t passClass) co
 
 	u16 idx = 1;
 
-	for (size_t i = 0; i < m_W; ++i)
+	for (u16 i = 0; i < m_W; ++i)
 	{
-		for (size_t j = 0; j < m_H; ++j)
+		for (u16 j = 0; j < m_H; ++j)
 		{
 			if (connectivityGrid.get(i, j) != 0)
 				continue;

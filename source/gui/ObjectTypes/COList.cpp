@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -364,21 +364,21 @@ void COList::DrawList(const int& selected, const CGUISpriteInstance& sprite, con
 		// Draw sort arrows in colum header
 		if (m_Sortable)
 		{
-			const CGUISpriteInstance* sprite;
+			const CGUISpriteInstance* pSprite;
 			if (m_SelectedColumn == column.m_Id)
 			{
 				if (m_SelectedColumnOrder == 0)
 					LOGERROR("selected_column_order must not be 0");
 
 				if (m_SelectedColumnOrder != -1)
-					sprite = &m_SpriteAsc;
+					pSprite = &m_SpriteAsc;
 				else
-					sprite = &m_SpriteDesc;
+					pSprite = &m_SpriteDesc;
 			}
 			else
-				sprite = &m_SpriteNotSorted;
+				pSprite = &m_SpriteNotSorted;
 
-			m_pGUI.DrawSprite(*sprite, m_CellID, bz + 0.1f, CRect(leftTopCorner + CPos(width - SORT_SPRITE_DIM, 0), leftTopCorner + CPos(width, SORT_SPRITE_DIM)));
+			m_pGUI.DrawSprite(*pSprite, m_CellID, bz + 0.1f, CRect(leftTopCorner + CPos(width - SORT_SPRITE_DIM, 0), leftTopCorner + CPos(width, SORT_SPRITE_DIM)));
 		}
 
 		// Draw column header text
@@ -413,14 +413,11 @@ void COList::DrawList(const int& selected, const CGUISpriteInstance& sprite, con
 
 		// Draw all items for that column
 		xpos = 0;
-		size_t col = 0;
-		for (const COListColumn& column : m_Columns)
+		for (size_t colIdx = 0; colIdx < m_Columns.size(); ++colIdx)
 		{
+			const COListColumn& column = m_Columns[i];
 			if (column.m_Hidden)
-			{
-				++col;
 				continue;
-			}
 
 			// Determine text position and width
 			const CPos textPos = rect.TopLeft() + CPos(xpos, -scroll + m_ItemsYPositions[i]);
@@ -436,9 +433,8 @@ void COList::DrawList(const int& selected, const CGUISpriteInstance& sprite, con
 			cliparea2.bottom = std::min(cliparea2.bottom, textPos.y + rowHeight);
 
 			// Draw list item
-			DrawText(objectsCount * (i +/*Heading*/1) + col, column.m_TextColor, textPos, bz + 0.1f, cliparea2);
+			DrawText(objectsCount * (i +/*Heading*/1) + colIdx, column.m_TextColor, textPos, bz + 0.1f, cliparea2);
 			xpos += width;
-			++col;
 		}
 	}
 }

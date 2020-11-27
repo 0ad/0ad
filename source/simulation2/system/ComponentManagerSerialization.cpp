@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -78,14 +78,14 @@ bool CComponentManager::DumpDebugState(std::ostream& stream, bool includeDebugIn
 		if (ENTITY_IS_LOCAL(cit->first))
 			serializer.TextLine("  type: local");
 
-		std::map<ComponentTypeId, IComponent*>::const_iterator ctit = cit->second.begin();
-		for (; ctit != cit->second.end(); ++ctit)
+		std::map<ComponentTypeId, IComponent*>::const_iterator it = cit->second.begin();
+		for (; it != cit->second.end(); ++it)
 		{
-			std::stringstream n;
-			n << "  " << LookupComponentTypeName(ctit->first) << ":";
-			serializer.TextLine(n.str());
+			std::stringstream st;
+			st << "  " << LookupComponentTypeName(it->first) << ":";
+			serializer.TextLine(st.str());
 			serializer.Indent(4);
-			ctit->second->Serialize(serializer);
+			it->second->Serialize(serializer);
 			serializer.Dedent(4);
 		}
 		serializer.TextLine("");

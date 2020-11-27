@@ -308,7 +308,7 @@ void CPatchRData::BuildBlends()
 
 		// Update the indices to include the base offset of the vertex data
 		for (size_t k = 0; k < blendIndices.size(); ++k)
-			blendIndices[k] += m_VBBlends->m_Index;
+			blendIndices[k] += static_cast<u16>(m_VBBlends->m_Index);
 
 		m_VBBlendIndices = g_VBMan.Allocate(sizeof(u16), blendIndices.size(), GL_STATIC_DRAW, GL_ELEMENT_ARRAY_BUFFER);
 		m_VBBlendIndices->m_Owner->UpdateChunkVertices(m_VBBlendIndices, &blendIndices[0]);
@@ -369,7 +369,7 @@ void CPatchRData::AddBlend(std::vector<SBlendVertex>& blendVertices, std::vector
 
 	CVector3D normal;
 
-	size_t index = blendVertices.size();
+	u16 index = static_cast<u16>(blendVertices.size());
 
 	terrain->CalcPosition(gx, gz, dst.m_Position);
 	terrain->CalcNormal(gx, gz, normal);
@@ -464,10 +464,11 @@ void CPatchRData::BuildIndices()
 	// build indices for base splats
 	size_t base=m_VBBase->m_Index;
 
-	for (size_t i=0;i<m_Splats.size();i++) {
-		CTerrainTextureEntry* tex=textures[i];
+	for (size_t k = 0; k < m_Splats.size(); ++k)
+	{
+		CTerrainTextureEntry* tex = textures[k];
 
-		SSplat& splat=m_Splats[i];
+		SSplat& splat=m_Splats[k];
 		splat.m_Texture=tex;
 		splat.m_IndexStart=indices.size();
 
@@ -1101,23 +1102,22 @@ void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches, const C
 void CPatchRData::RenderStreams(const std::vector<CPatchRData*>& patches, const CShaderProgramPtr& shader, int streamflags)
 {
 	// Each batch has a list of index counts, and a list of pointers-to-first-indexes
-	typedef std::pair<std::vector<GLint>, std::vector<void*> > BatchElements;
+	using StreamBatchElements = std::pair<std::vector<GLint>, std::vector<void*> > ;
 
 	// Group batches by index buffer
-	typedef std::map<CVertexBuffer*, BatchElements> IndexBufferBatches;
+	using StreamIndexBufferBatches = std::map<CVertexBuffer*, StreamBatchElements> ;
 
 	// Group batches by vertex buffer
-	typedef std::map<CVertexBuffer*, IndexBufferBatches> VertexBufferBatches;
+	using StreamVertexBufferBatches = std::map<CVertexBuffer*, StreamIndexBufferBatches> ;
 
- 	VertexBufferBatches batches;
+	StreamVertexBufferBatches batches;
 
  	PROFILE_START("compute batches");
 
  	// Collect all the patches into their appropriate batches
- 	for (size_t i = 0; i < patches.size(); ++i)
- 	{
- 		CPatchRData* patch = patches[i];
-		BatchElements& batch = batches[patch->m_VBBase->m_Owner][patch->m_VBBaseIndices->m_Owner];
+	for (const CPatchRData* patch : patches)
+	{
+		StreamBatchElements& batch = batches[patch->m_VBBase->m_Owner][patch->m_VBBaseIndices->m_Owner];
 
 		batch.first.push_back(patch->m_VBBaseIndices->m_Count);
 
@@ -1130,10 +1130,10 @@ void CPatchRData::RenderStreams(const std::vector<CPatchRData*>& patches, const 
 	ENSURE(!(streamflags & ~(STREAM_POS|STREAM_POSTOUV0|STREAM_POSTOUV1)));
 
  	// Render each batch
- 	for (VertexBufferBatches::iterator itv = batches.begin(); itv != batches.end(); ++itv)
+	for (const std::pair<CVertexBuffer*, StreamIndexBufferBatches>& streamBatch : batches)
 	{
 		GLsizei stride = sizeof(SBaseVertex);
-		SBaseVertex *base = (SBaseVertex *)itv->first->Bind();
+		SBaseVertex *base = (SBaseVertex *)streamBatch.first->Bind();
 
 		shader->VertexPointer(3, GL_FLOAT, stride, &base->m_Position);
 		if (streamflags & STREAM_POSTOUV0)
@@ -1143,11 +1143,11 @@ void CPatchRData::RenderStreams(const std::vector<CPatchRData*>& patches, const 
 
 		shader->AssertPointersBound();
 
-		for (IndexBufferBatches::iterator it = itv->second.begin(); it != itv->second.end(); ++it)
+		for (const std::pair<CVertexBuffer*, StreamBatchElements>& batchIndexBuffer : streamBatch.second)
 		{
-			it->first->Bind();
+			batchIndexBuffer.first->Bind();
 
-			BatchElements& batch = it->second;
+			const StreamBatchElements& batch = batchIndexBuffer.second;
 
 			if (!g_Renderer.m_SkipSubmit)
 			{
@@ -1381,7 +1381,7 @@ void CPatchRData::BuildWater()
 
 				vertex.m_WaterData = CVector2D(WaterMgr->m_WindStrength[xx + zz*mapSize], depth);
 
-				water_index_map[z+moves[i][1]][x+moves[i][0]] = water_vertex_data.size();
+				water_index_map[z+moves[i][1]][x+moves[i][0]] = static_cast<u16>(water_vertex_data.size());
 				water_vertex_data.push_back(vertex);
 			}
 			water_indices.push_back(water_index_map[z + moves[2][1]][x + moves[2][0]]);
@@ -1414,7 +1414,7 @@ void CPatchRData::BuildWater()
 
 				vertex.m_WaterData = CVector2D(0.0f, -5.0f);
 
-				water_shore_index_map[z+moves[i][1]][x+moves[i][0]] = water_vertex_data_shore.size();
+				water_shore_index_map[z+moves[i][1]][x+moves[i][0]] = static_cast<u16>(water_vertex_data_shore.size());
 				water_vertex_data_shore.push_back(vertex);
 			}
 			if (terrain->GetTriangulationDir(x + px, z + pz))

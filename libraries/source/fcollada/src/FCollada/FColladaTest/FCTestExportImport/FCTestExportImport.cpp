@@ -24,6 +24,7 @@
 #include "FCDocument/FCDEffectTools.h"
 #include "FCDocument/FCDEffectStandard.h"
 #include "FCDocument/FCDEffectParameter.h"
+#include "FUtils/FUTestBed.h"
 
 #include "FCTestExportImport.h"
 using namespace FCTestExportImport;

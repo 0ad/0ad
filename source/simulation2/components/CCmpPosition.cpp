@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -835,15 +835,15 @@ public:
 				if (newTerritory != m_Territory)
 				{
 					m_Territory = newTerritory;
-					CMessageTerritoryPositionChanged msg(GetEntityId(), m_Territory);
-					GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
+					CMessageTerritoryPositionChanged posMsg(GetEntityId(), m_Territory);
+					GetSimContext().GetComponentManager().PostMessage(GetEntityId(), posMsg);
 				}
 			}
 			else if (m_Territory != INVALID_PLAYER)
 			{
 				m_Territory = INVALID_PLAYER;
-				CMessageTerritoryPositionChanged msg(GetEntityId(), m_Territory);
-				GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
+				CMessageTerritoryPositionChanged posMsg(GetEntityId(), m_Territory);
+				GetSimContext().GetComponentManager().PostMessage(GetEntityId(), posMsg);
 			}
 			break;
 		}

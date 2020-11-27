@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -74,8 +74,8 @@ public:
 	{
 		// test that the map has the same global region everywhere
 		HierarchicalPathfinder::GlobalRegionID globalRegionID = hierPath.GetGlobalRegion(35, 23, PASS_1);
-		for (size_t i = 0; i < mapSize; ++i)
-			for (size_t j = 0; j < mapSize; ++j)
+		for (u16 i = 0; i < mapSize; ++i)
+			for (u16 j = 0; j < mapSize; ++j)
 			{
 				TS_ASSERT(globalRegionID == hierPath.GetGlobalRegion(i, j, PASS_1));
 				TS_ASSERT(hierPath.GetGlobalRegion(i, j, PASS_2) == 0);
@@ -137,19 +137,19 @@ public:
 
 		// Global region: check we are now split in two.
 		TS_ASSERT(hierPath.GetGlobalRegion(50, 50, PASS_1) != hierPath.GetGlobalRegion(150, 50, PASS_1));
-		for (size_t j = 0; j < mapSize; ++j)
+		for (u16 j = 0; j < mapSize; ++j)
 		{
 			TS_ASSERT(hierPath.Get(125, j, PASS_1).r == 0);
 			TS_ASSERT(hierPath.GetGlobalRegion(125, j, PASS_1) == 0);
 		}
-		for (size_t i = 0; i < 125; ++i)
-			for (size_t j = 0; j < mapSize; ++j)
+		for (u16 i = 0; i < 125; ++i)
+			for (u16 j = 0; j < mapSize; ++j)
 			{
 				TS_ASSERT(hierPath.GetGlobalRegion(50, 50, PASS_1) == hierPath.GetGlobalRegion(i, j, PASS_1));
 				TS_ASSERT(hierPath.GetGlobalRegion(i, j, PASS_2) == 0);
 			}
-		for (size_t i = 126; i < mapSize; ++i)
-			for (size_t j = 0; j < mapSize; ++j)
+		for (u16 i = 126; i < mapSize; ++i)
+			for (u16 j = 0; j < mapSize; ++j)
 			{
 				TS_ASSERT(hierPath.GetGlobalRegion(150, 50, PASS_1) == hierPath.GetGlobalRegion(i, j, PASS_1));
 				TS_ASSERT(hierPath.GetGlobalRegion(i, j, PASS_2) == 0);

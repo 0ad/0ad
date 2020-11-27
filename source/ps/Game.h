@@ -183,7 +183,7 @@ public:
 	 *						clamped to 0.0f.
 	 **/
 	inline void SetSimRate(float simRate)
-	{	if (isfinite(simRate)) m_SimRate = std::max(simRate, 0.0f); }
+	{	if (std::isfinite(simRate)) m_SimRate = std::max(simRate, 0.0f); }
 
 	inline float GetSimRate() const
 	{	return m_SimRate; }

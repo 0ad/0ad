@@ -347,11 +347,11 @@ private:
 
 	/// Total duration of a single fade, in seconds. Assumed constant for now; feel free to change this into
 	/// a member variable if you need to adjust it per component.
-	static const double FADE_DURATION;
+	static const float FADE_DURATION;
 	static const char* TEXTUREBASEPATH;
 };
 
-const double CCmpSelectable::FADE_DURATION = 0.3;
+const float CCmpSelectable::FADE_DURATION = 0.3f;
 const char* CCmpSelectable::TEXTUREBASEPATH = "art/textures/selection/";
 
 void CCmpSelectable::HandleMessage(const CMessage& msg, bool UNUSED(global))

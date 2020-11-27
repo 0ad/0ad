@@ -17,6 +17,7 @@
 #include "FCDocument/FCDPhysicsRigidConstraintInstance.h"
 #include "FUtils/FUDaeSyntax.h"
 #include "FCTestExportImport.h"
+#include "FUtils/FUTestBed.h"
 
 static fm::string physicsMaterialId1 = "Pmat";
 static fm::string physicsMaterialId2 = "PMat";

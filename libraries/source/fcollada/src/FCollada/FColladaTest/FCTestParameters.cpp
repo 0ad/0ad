@@ -16,6 +16,7 @@
 #include "FCDocument/FCDEntity.h"
 #include "FCDocument/FCDLibrary.h"
 #include "FCDocument/FCDParameterAnimatable.h"
+#include "FUtils/FUTestBed.h"
 
 class FCTestOutsideParameter : public FCDObject
 {

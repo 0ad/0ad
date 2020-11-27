@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -322,9 +322,12 @@ protected:
 	virtual InReaction ManuallyHandleKeys(const SDL_Event_* UNUSED(ev)) { return IN_PASS; }
 
 	/**
-	 * Loads a style.
+	 * Applies the given style to the object.
+	 *
+	 * Returns false if the style is not recognised (and thus has
+	 * not been applied).
 	 */
-	void LoadStyle(const CStr& StyleName);
+	bool ApplyStyle(const CStr& StyleName);
 
 	/**
 	 * Returns not the Z value, but the actual buffered Z value, i.e. if it's

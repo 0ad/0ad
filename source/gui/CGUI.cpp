@@ -389,6 +389,19 @@ void CGUI::SetFocusedObject(IGUIObject* pObject)
 	}
 }
 
+void CGUI::SetObjectStyle(IGUIObject* pObject, const CStr& styleName)
+{
+	// If the style is not recognised (or an empty string) then ApplyStyle will
+	// emit an error message. Thus we don't need to handle it here.
+	if (pObject->ApplyStyle(styleName))
+		pObject->m_Style = styleName;
+}
+
+void CGUI::UnsetObjectStyle(IGUIObject* pObject)
+{
+	SetObjectStyle(pObject, "default");
+}
+
 void CGUI::SetObjectHotkey(IGUIObject* pObject, const CStr& hotkeyTag)
 {
 	if (!hotkeyTag.empty())
@@ -599,18 +612,11 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	//
 	//	Always load default (if it's available) first!
 	//
+	SetObjectStyle(object, "default");
+
 	CStr argStyle(attributes.GetNamedItem(attr_style));
-
-	if (m_Styles.find("default") != m_Styles.end())
-		object->LoadStyle("default");
-
 	if (!argStyle.empty())
-	{
-		if (m_Styles.find(argStyle) == m_Styles.end())
-			LOGERROR("GUI: Trying to use style '%s' that doesn't exist.", argStyle.c_str());
-		else
-			object->LoadStyle(argStyle);
-	}
+		SetObjectStyle(object, argStyle);
 
 	bool NameSet = false;
 	bool ManuallySetZ = false;

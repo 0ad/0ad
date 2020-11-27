@@ -313,10 +313,9 @@ function project_set_build_flags()
 				links { "gcov" }
 			end
 
-			-- MacOS always provides SSE3 so enable that.
-			-- TODO: after <10.12 support is dropped, we can assume SSE4.1 is present.
+			-- MacOS 10.12 only supports processors with SSE 4.1, so enable that.
 			if os.istarget("macosx") then
-				buildoptions { "-msse3" }
+				buildoptions { "-msse4.1" }
 			end
 
 			-- Check if SDK path should be used
@@ -595,6 +594,7 @@ function setup_all_libs ()
 		"spidermonkey",
 		"enet",
 		"boost",	-- dragged in via server->simulation.h->random
+		"fmt",
 	}
 	if not _OPTIONS["without-miniupnpc"] then
 		table.insert(extern_libs, "miniupnpc")
@@ -606,6 +606,7 @@ function setup_all_libs ()
 	}
 	extern_libs = {
 		"boost", -- dragged in via simulation.h and scriptinterface.h
+		"fmt",
 		"spidermonkey",
 	}
 	setup_static_lib_project("rlinterface", source_dirs, extern_libs, { no_pch = 1 })
@@ -616,6 +617,7 @@ function setup_all_libs ()
 	extern_libs = {
 		"iconv",
 		"boost",
+		"fmt",
 	}
 	setup_third_party_static_lib_project("tinygettext", source_dirs, extern_libs, { } )
 
@@ -649,7 +651,8 @@ function setup_all_libs ()
 			"icu",
 			"iconv",
 			"libsodium",
-			"tinygettext"
+			"tinygettext",
+			"fmt",
 		}
 		setup_static_lib_project("lobby", source_dirs, extern_libs, {})
 
@@ -663,6 +666,7 @@ function setup_all_libs ()
 			extern_libs = {
 				"boost",
 				"gloox",
+				"fmt",
 			}
 			if _OPTIONS["build-shared-glooxwrapper"] then
 				setup_shared_lib_project("glooxwrapper", source_dirs, extern_libs, {})
@@ -678,7 +682,8 @@ function setup_all_libs ()
 		extern_libs = {
 			"spidermonkey",
 			"boost",
-			"libsodium"
+			"libsodium",
+			"fmt",
 		}
 		setup_static_lib_project("lobby", source_dirs, extern_libs, {})
 		files { source_root.."lobby/Globals.cpp" }
@@ -698,6 +703,7 @@ function setup_all_libs ()
 		"boost",
 		"opengl",
 		"spidermonkey",
+		"fmt",
 	}
 	setup_static_lib_project("simulation2", source_dirs, extern_libs, {})
 
@@ -711,6 +717,7 @@ function setup_all_libs ()
 		"spidermonkey",
 		"valgrind",
 		"sdl",
+		"fmt",
 	}
 	setup_static_lib_project("scriptinterface", source_dirs, extern_libs, {})
 
@@ -729,7 +736,6 @@ function setup_all_libs ()
 		"maths/scripting",
 		"i18n",
 		"i18n/scripting",
-		"third_party/fmt",
 	}
 	extern_libs = {
 		"spidermonkey",
@@ -744,6 +750,7 @@ function setup_all_libs ()
 		"icu",
 		"iconv",
 		"libsodium",
+		"fmt",
 	}
 
 	if not _OPTIONS["without-audio"] then
@@ -766,7 +773,8 @@ function setup_all_libs ()
 		"opengl",
 		"sdl",	-- key definitions
 		"spidermonkey",	-- for graphics/scripting
-		"boost"
+		"boost",
+		"fmt",
 	}
 	if not _OPTIONS["without-nvtt"] then
 		table.insert(extern_libs, "nvtt")
@@ -782,7 +790,8 @@ function setup_all_libs ()
 		"boost",
 		"sdl",	-- key definitions
 		"opengl",
-		"spidermonkey"
+		"spidermonkey",
+		"fmt",
 	}
 	setup_static_lib_project("atlas", source_dirs, extern_libs, {})
 
@@ -804,6 +813,7 @@ function setup_all_libs ()
 		"tinygettext",
 		"icu",
 		"iconv",
+		"fmt",
 	}
 	if not _OPTIONS["without-audio"] then
 		table.insert(extern_libs, "openal")
@@ -837,6 +847,7 @@ function setup_all_libs ()
 		"zlib",
 		"valgrind",
 		"cxxtest",
+		"fmt",
 	}
 
 	-- CPU architecture-specific
@@ -941,6 +952,7 @@ used_extern_libs = {
 	"icu",
 	"iconv",
 	"libsodium",
+	"fmt",
 
 	"valgrind",
 }

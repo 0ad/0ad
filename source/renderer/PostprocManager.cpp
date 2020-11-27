@@ -557,11 +557,11 @@ std::vector<CStrW> CPostprocManager::GetPostEffects()
 {
 	std::vector<CStrW> effects;
 
-	const VfsPath path(L"shaders/effects/postproc/");
+	const VfsPath folder(L"shaders/effects/postproc/");
 
 	VfsPaths pathnames;
-	if (vfs::GetPathnames(g_VFS, path, 0, pathnames) < 0)
-		LOGERROR("Error finding Post effects in '%s'", path.string8());
+	if (vfs::GetPathnames(g_VFS, folder, 0, pathnames) < 0)
+		LOGERROR("Error finding Post effects in '%s'", folder.string8());
 
 	for (const VfsPath& path : pathnames)
 		if (path.Extension() == L".xml")

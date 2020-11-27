@@ -21,31 +21,32 @@
 # --------------------------------------------------------------
 # Library versions for ease of updating:
 ZLIB_VERSION="zlib-1.2.11"
-CURL_VERSION="curl-7.59.0"
-ICONV_VERSION="libiconv-1.15"
-XML2_VERSION="libxml2-2.9.8"
-SDL2_VERSION="SDL2-2.0.5"
+CURL_VERSION="curl-7.71.0"
+ICONV_VERSION="libiconv-1.16"
+XML2_VERSION="libxml2-2.9.10"
+SDL2_VERSION="SDL2-2.0.12"
 # NOTE: remember to also update LIB_URL below when changing version
-BOOST_VERSION="boost_1_64_0"
+BOOST_VERSION="boost_1_74_0"
 # NOTE: remember to also update LIB_URL below when changing version
 WXWIDGETS_VERSION="wxWidgets-3.0.3.1"
 # libpng was included as part of X11 but that's removed from Mountain Lion
 # (also the Snow Leopard version was ancient 1.2)
-PNG_VERSION="libpng-1.6.34"
+PNG_VERSION="libpng-1.6.36"
 OGG_VERSION="libogg-1.3.3"
-VORBIS_VERSION="libvorbis-1.3.6"
+VORBIS_VERSION="libvorbis-1.3.7"
 # gloox requires GnuTLS, GnuTLS requires Nettle and GMP
-GMP_VERSION="gmp-6.1.2"
-NETTLE_VERSION="nettle-3.5.1"
+GMP_VERSION="gmp-6.2.0"
+NETTLE_VERSION="nettle-3.6"
 # NOTE: remember to also update LIB_URL below when changing version
-GNUTLS_VERSION="gnutls-3.6.13"
-GLOOX_VERSION="gloox-1.0.22"
+GLOOX_VERSION="gloox-1.0.24"
+GNUTLS_VERSION="gnutls-3.6.15"
 # OS X only includes part of ICU, and only the dylib
 # NOTE: remember to also update LIB_URL below when changing version
-ICU_VERSION="icu4c-59_2"
-ENET_VERSION="enet-1.3.13"
-MINIUPNPC_VERSION="miniupnpc-2.0.20180222"
+ICU_VERSION="icu4c-67_1"
+ENET_VERSION="enet-1.3.17"
+MINIUPNPC_VERSION="miniupnpc-2.1"
 SODIUM_VERSION="libsodium-1.0.18"
+FMT_VERSION="7.1.3"
 # --------------------------------------------------------------
 # Bundled with the game:
 # * SpiderMonkey
@@ -61,12 +62,8 @@ FCOLLADA_VERSION="fcollada-3.05+wildfiregames.2"
 # * OpenGL
 # --------------------------------------------------------------
 
-# Define compiler as "clang", this is all Mavericks supports.
-# gcc symlinks may still exist, but they are simply clang with
-# slightly different config, which confuses build scripts.
-# llvm-gcc and gcc 4.2 are no longer supported by SpiderMonkey.
 export CC=${CC:="clang"} CXX=${CXX:="clang++"}
-export MIN_OSX_VERSION=${MIN_OSX_VERSION:="10.9"}
+export MIN_OSX_VERSION=${MIN_OSX_VERSION:="10.12"}
 
 # The various libs offer inconsistent configure options, some allow
 # setting sysroot and OS X-specific options, others don't. Adding to
@@ -89,7 +86,7 @@ if [[ $MIN_OSX_VERSION && ${MIN_OSX_VERSION-_} ]]; then
 fi
 
 CFLAGS="$CFLAGS $C_FLAGS -fvisibility=hidden"
-CXXFLAGS="$CXXFLAGS $C_FLAGS -stdlib=libc++ -std=c++14 -msse3"
+CXXFLAGS="$CXXFLAGS $C_FLAGS -stdlib=libc++ -std=c++14 -msse4.1"
 OBJCFLAGS="$OBJCFLAGS $C_FLAGS"
 OBJCXXFLAGS="$OBJCXXFLAGS $C_FLAGS"
 
@@ -355,7 +352,7 @@ echo -e "Building Boost..."
 LIB_VERSION="${BOOST_VERSION}"
 LIB_ARCHIVE="$LIB_VERSION.tar.bz2"
 LIB_DIRECTORY="$LIB_VERSION"
-LIB_URL="https://dl.bintray.com/boostorg/release/1.64.0/source/"
+LIB_URL="https://dl.bintray.com/boostorg/release/1.74.0/source/"
 
 mkdir -p boost
 pushd boost > /dev/null
@@ -379,11 +376,11 @@ then
           cxxflags="$CXXFLAGS" \
           linkflags="$LDFLAGS" ${JOBS} \
           -d2 \
-          --layout=tagged \
+          --layout=system \
           --debug-configuration \
           link=static \
           threading=multi \
-          variant=release,debug install \
+          variant=release install \
     ) || die "Boost build failed"
 
   popd
@@ -475,8 +472,9 @@ then
   tar -xf $LIB_ARCHIVE
   pushd $LIB_DIRECTORY
 
-  (./configure CFLAGS="$CFLAGS" \
-      LDFLAGS="$LDFLAGS" \
+  # libpng has no flags for zlib but the 10.12 version is too old, so link our own.
+  (./configure CFLAGS="$CFLAGS" CPPFLAGS=" -I $ZLIB_DIR/include "\
+      LDFLAGS="$LDFLAGS -L$ZLIB_DIR/lib" \
       --prefix=$INSTALL_DIR \
       --enable-shared=no \
     && make ${JOBS} && make install) || die "libpng build failed"
@@ -668,10 +666,9 @@ then
   tar -xf $LIB_ARCHIVE
   pushd $LIB_DIRECTORY
 
-  # GnuTLS 3.6.8 added the TCP Fast Open feature, which requires connectx
-  # but that's only available on OS X 10.11+ (GnuTLS doesn't support SDK based builds yet)
-  # So we disable that functionality
-  (patch -Np0 -i ../../patches/gnutls-disable-tcpfastopen.diff \
+  # Patch GNUTLS for a linking issue with isdigit
+  # Patch by Ross Nicholson: https://gitlab.com/gnutls/gnutls/-/issues/1033#note_379529145
+  (patch -Np1 -i ../../patches/03-undo-libtasn1-cisdigit.patch \
     && ./configure CFLAGS="$CFLAGS" \
           CXXFLAGS="$CXXFLAGS" \
           LDFLAGS="$LDFLAGS" \
@@ -690,6 +687,8 @@ then
           --without-p11-kit \
           --disable-tests \
           --disable-guile \
+          --disable-doc \
+          --disable-tools \
           --disable-nls \
     && make ${JOBS} LDFLAGS= install) || die "GnuTLS build failed"
   popd
@@ -750,7 +749,7 @@ echo -e "Building ICU..."
 LIB_VERSION="${ICU_VERSION}"
 LIB_ARCHIVE="$LIB_VERSION-src.tgz"
 LIB_DIRECTORY="icu"
-LIB_URL="https://github.com/unicode-org/icu/releases/download/release-59-2/"
+LIB_URL="https://github.com/unicode-org/icu/releases/download/release-67-1/"
 
 mkdir -p $LIB_DIRECTORY
 pushd icu > /dev/null
@@ -889,6 +888,49 @@ then
   ) || die "libsodium build failed"
   popd
   echo "$LIB_VERSION" > .already-built
+else
+  already_built
+fi
+popd > /dev/null
+
+# --------------------------------------------------------------
+echo -e "Building fmt..."
+
+LIB_DIRECTORY="fmt-$FMT_VERSION"
+LIB_ARCHIVE="$FMT_VERSION.tar.gz"
+LIB_URL="https://github.com/fmtlib/fmt/archive/"
+
+mkdir -p fmt
+pushd fmt > /dev/null
+
+if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ "$(<.already-built)" != "$FMT_VERSION" ]]
+then
+  rm -f .already-built
+
+  download_lib $LIB_URL $LIB_ARCHIVE
+
+  rm -rf $LIB_DIRECTORY include lib
+  tar -xf $LIB_ARCHIVE
+  pushd $LIB_DIRECTORY
+
+  # It appears that older versions of Clang require constexpr statements to have a user-set constructor.
+  patch -Np1 -i ../../patches/fmt_constexpr.diff
+
+  mkdir -p build
+  pushd build
+
+  (cmake .. \
+      -DFMT_TEST=False \
+      -DFMT_DOC=False \
+    && make fmt ${JOBS}) || die "fmt build failed"
+  popd
+
+  mkdir -p ../lib
+  cp build/libfmt.a ../lib/
+  cp -r include ../include
+
+  popd
+  echo "$FMT_VERSION" > .already-built
 else
   already_built
 fi

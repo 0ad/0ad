@@ -611,20 +611,20 @@ void WaterManager::CreateWaveMeshes()
 	}
 
 	// Fourth step: create waves themselves, using those chains. We basically create subchains.
-	size_t waveSizes = 14;	// maximal size in width.
+	GLushort waveSizes = 14;	// maximal size in width.
 
 	// Construct indices buffer (we can afford one for all of them)
 	std::vector<GLushort> water_indices;
-	for (size_t a = 0; a < waveSizes-1;++a)
+	for (GLushort a = 0; a < waveSizes - 1; ++a)
 	{
-		for (size_t rect = 0; rect < 7; ++rect)
+		for (GLushort rect = 0; rect < 7; ++rect)
 		{
-			water_indices.push_back(a*9 + rect);
-			water_indices.push_back(a*9 + 9 + rect);
-			water_indices.push_back(a*9 + 1 + rect);
-			water_indices.push_back(a*9 + 9 + rect);
-			water_indices.push_back(a*9 + 10 + rect);
-			water_indices.push_back(a*9 + 1 + rect);
+			water_indices.push_back(a * 9 + rect);
+			water_indices.push_back(a * 9 + 9 + rect);
+			water_indices.push_back(a * 9 + 1 + rect);
+			water_indices.push_back(a * 9 + 9 + rect);
+			water_indices.push_back(a * 9 + 10 + rect);
+			water_indices.push_back(a * 9 + 1 + rect);
 		}
 	}
 	// Generic indexes, max-length
@@ -640,14 +640,14 @@ void WaterManager::CreateWaveMeshes()
 			if (CoastalPointsChains[i].size()- 1 - j < waveSizes)
 				break;
 
-			size_t width = waveSizes;
+			GLushort width = waveSizes;
 
 			// First pass to get some parameters out.
 			float outmost = 0.0f;	// how far to move on the shore.
 			float avgDepth = 0.0f;
 			int sign = 1;
 			CVector2D firstPerp(0,0), perp(0,0), lastPerp(0,0);
-			for (size_t a = 0; a < waveSizes;++a)
+			for (GLushort a = 0; a < waveSizes;++a)
 			{
 				lastPerp = perp;
 				perp = CVector2D(0,0);
@@ -728,9 +728,9 @@ void WaterManager::CreateWaveMeshes()
 			shoreWave->m_TimeDiff = diff;
 			diff += (rand() % 100) / 25.0f + 4.0f;
 
-			for (size_t a = 0; a < width;++a)
+			for (GLushort a = 0; a < width;++a)
 			{
-				CVector2D perp = CVector2D(0,0);
+				perp = CVector2D(0,0);
 				int nb = 0;
 				CVector2D pos = CoastalPointsChains[i][j+a].position;
 				CVector2D posPlus;
