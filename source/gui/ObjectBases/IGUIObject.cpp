@@ -162,6 +162,8 @@ void IGUIObject::SettingChanged(const CStr& Setting, const bool SendMessage)
 	}
 	else if (Setting == "hotkey")
 		m_pGUI.SetObjectHotkey(this, GetSetting<CStr>(Setting));
+	else if (Setting == "style")
+		m_pGUI.SetObjectStyle(this, GetSetting<CStr>(Setting));
 
 	if (SendMessage)
 	{
@@ -267,10 +269,13 @@ void IGUIObject::UpdateCachedSize()
 	}
 }
 
-void IGUIObject::LoadStyle(const CStr& StyleName)
+bool IGUIObject::ApplyStyle(const CStr& StyleName)
 {
 	if (!m_pGUI.HasStyle(StyleName))
-		debug_warn(L"IGUIObject::LoadStyle failed");
+	{
+		LOGERROR("IGUIObject: Trying to use style '%s' that doesn't exist.", StyleName.c_str());
+		return false;
+	}
 
 	// The default style may specify settings for any GUI object.
 	// Other styles are reported if they specify a Setting that does not exist,
@@ -283,6 +288,7 @@ void IGUIObject::LoadStyle(const CStr& StyleName)
 		else if (StyleName != "default")
 			LOGWARNING("GUI object has no setting \"%s\", but the style \"%s\" defines it", p.first, StyleName.c_str());
 	}
+	return true;
 }
 
 float IGUIObject::GetBufferedZ() const
