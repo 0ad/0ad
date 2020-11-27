@@ -35,10 +35,11 @@
 CNetServerTurnManager::CNetServerTurnManager(CNetServerWorker& server)
 	: m_NetServer(server), m_ReadyTurn(1), m_TurnLength(DEFAULT_TURN_LENGTH_MP), m_HasSyncError(false)
 {
-	// The first turn we will actually execute is number 2,
-	// so store dummy values into the saved lengths list
+	// Turn 0 is not actually executed, store a dummy value.
 	m_SavedTurnLengths.push_back(0);
-	m_SavedTurnLengths.push_back(0);
+	// Turn 1 is special: all clients run it without waiting on a server command batch.
+	// Because of this, it is always run with the default MP turn length.
+	m_SavedTurnLengths.push_back(m_TurnLength);
 }
 
 void CNetServerTurnManager::NotifyFinishedClientCommands(CNetServerSession& session, u32 turn)
