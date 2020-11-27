@@ -23,8 +23,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-11-20 08:09+0000\n"
-"PO-Revision-Date: 2020-11-20 09:17+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-11-26 21:45+0000\n"
+"Last-Translator: Bart <b.anthonisse@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -81,7 +81,7 @@ msgstr "De bediening van het spel en het spelverloop volgen de gebruikelijke man
 
 #: gui/manual/intro.txt:10
 msgid "Basic controls (by default):"
-msgstr ""
+msgstr "Standaard bediening (basis instellingen):"
 
 #: gui/manual/intro.txt:11
 msgid "• Left-click to select units"
@@ -107,7 +107,7 @@ msgstr "• Ctrl + pijltjestoetsen of shift + muiswiel om de camera te roteren"
 msgid ""
 "• Mouse wheel, or “hotkey.camera.zoom.in” and ““hotkey.camera.zoom.out” "
 "keys, to zoom"
-msgstr ""
+msgstr "• Muiswiel of “sneltoets.camera.zoom.in” en “sneltoets.camera.zoom.uit” toetsen om te zoomen"
 
 #: gui/manual/intro.txt:18
 msgid "[font=\"sans-bold-16\"]Modes[font=\"sans-14\"]"
@@ -193,13 +193,13 @@ msgstr "Als je klaar bent om te spelen, klik op “Start spel”."
 
 #: gui/manual/intro.txt:39
 msgid "[font=\"sans-bold-16\"]Hotkeys[font=\"sans-14\"]"
-msgstr "[font=\"sans-bold-16\"]Hotkeys[font=\"sans-14\"]"
+msgstr "[font=\"sans-bold-16\"]Sneltoetsen[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:40
 msgid ""
 "You may change hotkeys in [font=\"sans-bold-14\"]Options > "
 "Hotkeys[font=\"sans-14\"] to suit your liking."
-msgstr ""
+msgstr "Je kunt sneltoetsen aanpassen in [font=\"sans-bold-14\"]Instellingen > Sneltoetsen[font=\"sans-14\"]."
 
 #: gui/manual/intro.txt:42
 msgid "[font=\"sans-bold-14\"]Program-wide[font=\"sans-14\"]"
@@ -208,52 +208,52 @@ msgstr "[font=\"sans-bold-14\"]Overal in het programma[font=\"sans-14\"]"
 #: gui/manual/intro.txt:43
 msgid ""
 "  hotkey.exit – Immediately close the game, without asking for confirmation"
-msgstr ""
+msgstr " sneltoets.exit – Sluit het spel af zonder bevestigingsdialoog"
 
 #: gui/manual/intro.txt:44
 msgid "  hotkey.togglefullscreen – Toggle between fullscreen and windowed"
-msgstr ""
+msgstr "  sneltoets.togglefullscreen – Wissel tussen fullscreen en vensterweergave"
 
 #: gui/manual/intro.txt:45
 msgid "  hotkey.console.toggle – Toggle console"
-msgstr ""
+msgstr "  sneltoets.console.toggle – Toon / verberg console"
 
 #: gui/manual/intro.txt:46
 msgid "  hotkey.fps.toggle – Toggle frame counter (FPS)"
-msgstr ""
+msgstr "  sneltoets.fps.toggle – Toon / verberg frame teller (FPS)"
 
 #: gui/manual/intro.txt:47
 msgid ""
 "  hotkey.profile.toggle – Toggle real-time profiler (cycles through the "
 "displays of information)"
-msgstr ""
+msgstr "  sneltoets.profile.toggle – Toon / verberg real-time profiler (blader door de verschillende informatieweergaven)"
 
 #: gui/manual/intro.txt:48
 msgid ""
 "  hotkey.profile.save – Save current profiler data to “logs/profile.txt”"
-msgstr ""
+msgstr "  sneltoets.profile.save – Sla de huidige profieldata op in “logs/profile.txt”"
 
 #: gui/manual/intro.txt:49
 msgid ""
 "  hotkey.screenshot – Take screenshot (in .png format, location is displayed"
 " in the top left of the GUI after the file has been saved, and can also be "
 "seen in the console/logs if you miss it there)"
-msgstr ""
+msgstr "  sneltoets.screenshot – Maak een schermafbeelding (in .png formaat. De locatie wordt weergegeven in de linker bovenhoek nadat het bestand is opgeslagen. De locatie kan ook gevonden worden in de console of de logs)"
 
 #: gui/manual/intro.txt:50
 msgid ""
 "  hotkey.bigscreenshot – Take huge screenshot (6400×4800 pixels, in .bmp "
 "format, location is displayed in the top left of the GUI after the file has "
 "been saved, and can also be seen in the console/logs if you miss it there)"
-msgstr ""
+msgstr "  sneltoets.bigscreenshot – Maak een grote schermafbeelding (6400 x 4800 pixels in .bmp formaat. De locatie wordt weergegeven in de linker bovenhoek nadat het bestand is opgeslagen. De locatie kan ook gevonden worden in de console of de logs)"
 
 #: gui/manual/intro.txt:51
 msgid "  hotkey.tab.next – Switch to the next tab"
-msgstr ""
+msgstr "  sneltoets.tab.next – Ga naar het volgende tabblad"
 
 #: gui/manual/intro.txt:52
 msgid "  hotkey.tab.prev – Switch to the previous tab"
-msgstr ""
+msgstr "  sneltoets.tab.prev – Ga naar het vorige tabblad"
 
 #: gui/manual/intro.txt:54
 msgid "[font=\"sans-bold-14\"]In Game[font=\"sans-14\"]"
@@ -285,53 +285,53 @@ msgstr "  Alt + driedubbelklikken \\[op een eenheid] – Selecteer alle eenheden
 
 #: gui/manual/intro.txt:59
 msgid "  hotkey.quicksave – Quicksave"
-msgstr ""
+msgstr "  sneltoets.quicksave – Snel opslaan"
 
 #: gui/manual/intro.txt:60
 msgid "  hotkey.quickload – Quickload"
-msgstr ""
+msgstr "  sneltoets.quickload – Snel laden"
 
 #: gui/manual/intro.txt:61
 msgid "  hotkey.session.gui.menu.toggle – Toggle menu"
-msgstr ""
+msgstr "  sneltoets.session.gui.menu.toggle – Toon / verberg menu"
 
 #: gui/manual/intro.txt:62
 msgid "  hotkey.timeelapsedcounter.toggle – Toggle time elapsed counter"
-msgstr ""
+msgstr "  sneltoets.timeelapsedcounter.toggle – Toon / verberg verstreken speltijd"
 
 #: gui/manual/intro.txt:63
 msgid "  hotkey.cancel – Close all dialogs (chat, menu)"
-msgstr ""
+msgstr "  sneltoets.cancel – Sluit alle dialogen (chat, menu)"
 
 #: gui/manual/intro.txt:64
 msgid "  hotkey.confirm – Open chat or send message"
-msgstr ""
+msgstr "  sneltoets.confirm – Open chat of stuur bericht"
 
 #: gui/manual/intro.txt:65
 msgid "  hotkey.teamchat – Send team chat"
-msgstr ""
+msgstr "  sneltoets.teamchat – Stuur teamchat"
 
 #: gui/manual/intro.txt:66
 msgid ""
 "  hotkey.privatechat – Chat with the previously selected private chat "
 "partner"
-msgstr ""
+msgstr "  sneltoets.privatechat – Chat met de laatst geselecteerde privé chat partner"
 
 #: gui/manual/intro.txt:67
 msgid "  hotkey.pause – Pause or resume the game"
-msgstr ""
+msgstr "  sneltoets.pause – Pauzeer of hervat het spel"
 
 #: gui/manual/intro.txt:68
 msgid ""
 "  hotkey.session.kill – Delete currently selected unit(s)/structure(s), ask "
 "for confirmation"
-msgstr ""
+msgstr "  sneltoets.session.kill – Vernietig de geselecteerde eenheid (eenheden) / gebouw(en), met bevestiging"
 
 #: gui/manual/intro.txt:69
 msgid ""
 "    • With hotkey.session.noconfirmation – Immediately delete currently "
 "selected unit(s)/structure(s), without asking for confirmation"
-msgstr ""
+msgstr "    • Met sneltoets.session.noconfirmation – Vernietig de geselecteerde eenheid (eenheden) / gebouw(en), zonder bevestiging"
 
 #: gui/manual/intro.txt:70
 msgid ""
@@ -354,65 +354,65 @@ msgstr ""
 #: gui/manual/intro.txt:73
 msgid ""
 "  hotkey.selection.cancel – Unselect all units, cancel building placement."
-msgstr ""
+msgstr "  sneltoets.selection.cancel – Deselecteer alle eenheden of onderbreek gebouwen plaatsen."
 
 #: gui/manual/intro.txt:74
 msgid "  hotkey.selection.idlewarrior – Select idle fighter"
-msgstr ""
+msgstr "  sneltoets.selection.idlewarrior – Selecteer inactieve soldaat"
 
 #: gui/manual/intro.txt:75
 msgid ""
 "  hotkey.selection.idleworker – Select idle worker (including citizen-"
 "soldiers)"
-msgstr ""
+msgstr "  sneltoets.selection.idleworker – Selecteer inactieve werker (inclusief burgersoldaten)"
 
 #: gui/manual/intro.txt:76
 msgid "  hotkey.selection.idleunit – Select idle unit"
-msgstr ""
+msgstr "  sneltoets.selection.idleunit – Selecteer inactieve eenheid"
 
 #: gui/manual/intro.txt:77
 msgid "  hotkey.session.stop – Stop (halt) the currently selected units"
-msgstr ""
+msgstr "  sneltoets.session.stop – Stop (halt) de activiteit van de geselecteerde eenheden"
 
 #: gui/manual/intro.txt:78
 msgid "  hotkey.session.backtowork – The unit will go back to work"
-msgstr ""
+msgstr "  sneltoets.session.backtowork – De eenheid gaat verder met de activiteit"
 
 #: gui/manual/intro.txt:79
 msgid ""
 "  hotkey.session.unload – Unload the garrisoned units of the selected "
 "structure(s)"
-msgstr ""
+msgstr "  sneltoets.session.unload – Stuur de eenheden van het geselecteerde gebouw naar buiten"
 
 #: gui/manual/intro.txt:80
 msgid ""
 "  hotkey.selection.group.save.1 – Create control group 1 (by default, "
 "respectively 2,3, ...) from the selected unit(s)/structure(s)"
-msgstr ""
+msgstr "  sneltoets.selection.group.save.1 – Stel controlgroep 1 (t/m 0) in met de geselecteerde eenheid (eenheden) / gebouw(en)"
 
 #: gui/manual/intro.txt:81
 msgid ""
 "  hotkey.selection.group.select.1 - Select the unit(s)/structure(s) in "
 "control group 1"
-msgstr ""
+msgstr "  sneltoets.selection.group.select.1 - Selecteer de eenheid (eenheden) / gebouw(en) in controlegroep 1 (t/m 0)"
 
 #: gui/manual/intro.txt:82
 msgid ""
 "  hotkey.selection.group.add.1 – Add control group 1 (to 0) to the selected "
 "unit(s)/structure(s)"
-msgstr ""
+msgstr "  sneltoets.selection.group.add.1 – Voeg de geselecteerde eenheid (eenheden) / gebouw(en) toe aan controlegroep 1 (t/m 0)"
 
 #: gui/manual/intro.txt:83
 msgid ""
 "  hotkey.camera.jump.set.1 – Mark the current camera position, for jumping "
 "back to later (by default, there are 4 possible positions)"
-msgstr ""
+msgstr "  sneltoets.camera.jump.set.1 – Sla de huidige camerapositie op, om later naar terug te keren (er zijn standaard vier posities mogelijk)"
 
 #: gui/manual/intro.txt:84
 msgid ""
 "  hotkey.camera.jump.1 – Move the camera to a marked position. Jump back to "
 "the last location if the camera is already over the marked position"
-msgstr ""
+msgstr "  sneltoets.camera.jump.1 – Verplaats de camera naar de opgeslagen positie. Spring terug naar de laatste positie indien de camera al op de opgeslagen positie is"
 
 #: gui/manual/intro.txt:85
 msgid ""
@@ -421,19 +421,19 @@ msgid ""
 "hotkey.session.queueunit.5, hotkey.session.queueunit.6, "
 "hotkey.session.queueunit.7 – With training structure selected. Add the 1st, "
 "2nd, … unit shown to the training queue for all the selected structures"
-msgstr ""
+msgstr "  sneltoets.session.queueunit.1, sneltoets.session.queueunit.2, sneltoetssession.queueunit.3, sneltoets.session.queueunit.4, sneltoets.session.queueunit.5, sneltoets.session.queueunit.6, sneltoets.session.queueunit.7 – Met een rekruteringsgebouw geselecteerd. Voeg de 1e, 2e, … getoonde eenheid toe aan de rekruteringswachtrij voor alle geselecteerde gebouwen"
 
 #: gui/manual/intro.txt:86
 msgid ""
 "  hotkey.session.highlightguarded with unit(s) selected – Highlight the "
 "unit(s)/structure(s) guarded by the selection"
-msgstr ""
+msgstr "  sneltoets.session.highlightguarded met geselecteerde eenheid (eenheden – Toon welke eenheid (eenheden) / gebouw(en) bewaakt worden door de geselecteerde eenheden"
 
 #: gui/manual/intro.txt:87
 msgid ""
 "  hotkey.session.highlightguarding with unit(s)/structure(s) selected – "
 "Highlight the unit(s) guarding the selection"
-msgstr ""
+msgstr "  sneltoets.session.highlightguarding met geselecteerde eenheid (eenheden – Toon de eenheid (eenheden) die de selectie bewaken"
 
 #: gui/manual/intro.txt:88
 msgid ""
@@ -443,37 +443,37 @@ msgstr ""
 
 #: gui/manual/intro.txt:89
 msgid "  hotkey.summary – Toggle summary window"
-msgstr ""
+msgstr "  sneltoets.summary – Toon / verberg overzichtsscherm"
 
 #: gui/manual/intro.txt:90
 msgid "  hotkey.lobby – Show the multiplayer lobby in a dialog window"
-msgstr ""
+msgstr "  sneltoets.lobby – Toon de multiplayer lobby in een dialoogvenster"
 
 #: gui/manual/intro.txt:91
 msgid "  hotkey.session.gui.diplomacy.toggle – Toggle in-game diplomacy panel"
-msgstr ""
+msgstr "  sneltoets.session.gui.diplomacy.toggle – Toon / verberg het diplomatie paneel"
 
 #: gui/manual/intro.txt:92
 msgid ""
 "  hotkey.session.gui.barter.toggle – Toggle in-game barter and trade panel"
-msgstr ""
+msgstr "  sneltoets.session.gui.barter.toggle – Toon / verberg het ruil- en handelspaneel"
 
 #: gui/manual/intro.txt:93
 msgid ""
 "  hotkey.session.gui.objectives.toggle – Toggle in-game objectives panel"
-msgstr ""
+msgstr "  sneltoets.session.gui.objectives.toggle – Toon / verberg het speldoelen paneel"
 
 #: gui/manual/intro.txt:94
 msgid "  hotkey.session.gui.tutorial.toggle – Toggle in-game tutorial panel"
-msgstr ""
+msgstr "  sneltoets.session.gui.tutorial.toggle – Toon / verberg het paneel met de handleiding"
 
 #: gui/manual/intro.txt:95
 msgid "  hotkey.structree – Toggle structure tree panel"
-msgstr ""
+msgstr "  sneltoets.structree – Toon / verberg het paneel met de structuurboom"
 
 #: gui/manual/intro.txt:96
 msgid "  hotkey.civinfo – Toggle civilization info panel"
-msgstr ""
+msgstr "  sneltoets.civinfo – Toon / verberg het paneel met beschavingsinformatie"
 
 #: gui/manual/intro.txt:98
 msgid "[font=\"sans-bold-14\"]Modify mouse action[font=\"sans-14\"]"
@@ -481,34 +481,34 @@ msgstr "[font=\"sans-bold-14\"]Wijzig muis actie[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:99
 msgid "  hotkey.session.garrison + Right Click on structure – Garrison"
-msgstr ""
+msgstr "  sneltoets.session.garrison + rechtsklik op gebouw – Beman gebouw"
 
 #: gui/manual/intro.txt:100
 msgid "  hotkey.session.repair + Right Click on structure – Repair"
-msgstr ""
+msgstr "  sneltoets.session.repair + rechtsklik op gebouw – Repareer gebouw"
 
 #: gui/manual/intro.txt:101
 msgid "  hotkey.session.patrol + Right Click – Patrol"
-msgstr ""
+msgstr "  sneltoets.session.patrol + rechtsklik – Patrouilleer"
 
 #: gui/manual/intro.txt:102
 msgid ""
 "  hotkey.session.queue + Right Click – Queue the move/build/gather/etc. "
 "order"
-msgstr ""
+msgstr "  sneltoets.session.queue + rechtsklik – Voeg een (verplaats / bouw / verzamel / etc.) order toe aan de wachtrij"
 
 #: gui/manual/intro.txt:103
 msgid ""
 "  hotkey.session.orderone + Right Click – Order one unit from the current "
 "selection to move/build/gather/etc. and unselect it. Used to quickly "
 "dispatch units with specific tasks"
-msgstr ""
+msgstr "  sneltoets.session.orderone + rechtsklik – Geef een eenheid van de huidige selectie een commando om te verplaatsen / bouwen / verzamelen / etc. en deselecteer het. Handig om eenheden snel op pad te sturen met specifieke taken."
 
 #: gui/manual/intro.txt:104
 msgid ""
 "  hotkey.session.batchtrain + Left Click when training units – Add units in "
 "batches (the batch size is 5 by default and can be changed in the options)"
-msgstr ""
+msgstr "  sneltoets.session.batchtrain + klik bij het rekruteren van eenheden – Rekruteer eenheden in groepen (de standaard groepsgrootte is 5, dit kan aangepast worden in de opties)"
 
 #: gui/manual/intro.txt:105
 msgid ""

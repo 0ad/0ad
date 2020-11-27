@@ -12,7 +12,7 @@
 # Halyna Bondar, 2020
 # 009ee41e4c490a944b98e20dd0cc29dd_e31b370 <3a1cdc1a7c52cc59f91bdc5fed0a3a77_882482>, 2020
 # Igor Marchuk <jigorua@gmail.com>, 2018
-# Oleg Adept <adeptoleg@gmail.com>, 2016
+# Oleg Adept <adeptoleg@gmail.com>, 2016,2020
 # Victor Butko <victor.butko@gmail.com>, 2014
 # Victor Ptah, 2015
 # Victor Ptah, 2015
@@ -26,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-11-20 08:09+0000\n"
-"PO-Revision-Date: 2020-11-20 10:25+0000\n"
-"Last-Translator: Victor Butko <victor.butko@gmail.com>\n"
+"PO-Revision-Date: 2020-11-23 15:08+0000\n"
+"Last-Translator: Oleg Adept <adeptoleg@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -50,7 +50,7 @@ msgstr "Громадське"
 #: simulation/templates/structures/rome/army_camp.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Bow"
-msgstr ""
+msgstr "Лук"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:80
 msgid "Civic Center"
@@ -61,7 +61,7 @@ msgid ""
 "Build in own or neutral territory. Acquire large tracts of territory. "
 "Territory root. Train Citizens and research technologies. Garrison Soldiers "
 "for additional arrows."
-msgstr ""
+msgstr "Можна побудувати на власній або нейтральній території. Контролює велику ділянки території. Головна територія. Навчає громадян та досліджує технології. Солдати гарнізону на додаткових напрямках."
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:84
 #: simulation/templates/template_structure_defensive.xml:5
@@ -103,7 +103,7 @@ msgstr "Будинок"
 
 #: simulation/templates/template_structure_civic_stoa.xml:33
 msgid "Train Mercenary Champions."
-msgstr "Тренувати найманських чемпіонів."
+msgstr "Тренувати \"Чемпіон найманець\"."
 
 #: simulation/templates/template_structure_civic_stoa.xml:34
 #: simulation/templates/template_structure_civic_temple.xml:33
@@ -200,7 +200,7 @@ msgstr "Артилерійська вежа"
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Bolt"
-msgstr ""
+msgstr "Стріла"
 
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:57
 msgid "Bolt Tower"
@@ -280,7 +280,7 @@ msgstr "Господарське"
 
 #: simulation/templates/template_structure_economic_farmstead.xml:28
 msgid "Research food gathering technologies."
-msgstr ""
+msgstr "Дослідження технологій збору їжі."
 
 #: simulation/templates/template_structure_economic_farmstead.xml:30
 #: simulation/templates/template_structure_economic_farmstead.xml:26
@@ -291,7 +291,7 @@ msgstr "Господарство"
 msgid ""
 "Barter resources. Establish trade routes. Train Traders and research trade "
 "and barter technologies."
-msgstr ""
+msgstr "Обмін ресурсів. Встановлення торгових шляхів. Підготовка трейдерів та дослідження торгівлі з бартерними технологіями."
 
 #: simulation/templates/template_structure_economic_market.xml:28
 #: simulation/templates/template_structure_military_dock.xml:28
@@ -305,7 +305,7 @@ msgstr "Ринок"
 
 #: simulation/templates/template_structure_economic_storehouse.xml:29
 msgid "Research gathering technologies."
-msgstr ""
+msgstr "Технології збору дослідницьких даних."
 
 #: simulation/templates/template_structure_economic_storehouse.xml:31
 #: simulation/templates/template_structure_economic_storehouse.xml:27
@@ -329,7 +329,7 @@ msgstr "Тренувати чемпіонських піхотних арбал�
 #: simulation/templates/template_structure_military_arsenal.xml:28
 #: simulation/templates/template_structure_military_arsenal.xml:25
 msgid "Arsenal"
-msgstr ""
+msgstr "Арсенал"
 
 #: simulation/templates/template_structure_military_barracks.xml:28
 msgid "Train Citizen Soldiers and research technologies."
@@ -344,13 +344,13 @@ msgstr "Казарми"
 msgid ""
 "Build upon a shoreline in own, neutral, or allied territory. Establish trade"
 " routes. Construct Ships and research Ship technologies."
-msgstr ""
+msgstr "Побудуйте на береговій лінії на власній, нейтральній або союзній території. Встановіть торгові маршрути. Будуйте кораблі та досліджуйте корабельні технології"
 
 #: simulation/templates/template_structure_military_dock.xml:28
 #: simulation/templates/structures/brit/crannog.xml:16
 #: simulation/templates/structures/cart/super_dock.xml:44
 msgid "Naval"
-msgstr ""
+msgstr "Морські"
 
 #: simulation/templates/template_structure_military_dock.xml:28
 #: simulation/templates/template_structure_military_dock.xml:25
@@ -359,7 +359,7 @@ msgstr "Док"
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:24
 msgid "Elephant Stable"
-msgstr "Слонове стійло"
+msgstr "Стайня слонів"
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:26
 msgid "Train Elephants and research Elephant technologies."
@@ -382,7 +382,7 @@ msgstr "Досліджувати технології атаки та броні
 #: simulation/templates/template_structure_military_forge.xml:26
 #: simulation/templates/template_structure_military_forge.xml:22
 msgid "Forge"
-msgstr ""
+msgstr "Кузня"
 
 #: simulation/templates/template_structure_military_fortress.xml:71
 msgid ""
@@ -624,11 +624,11 @@ msgstr "Брама в частоколі"
 #: simulation/templates/structures/palisades_gate.xml:22
 #: simulation/templates/structures/palisades_long.xml:31
 msgid "Allow units access through Palisades. Can be locked to prevent access."
-msgstr ""
+msgstr "Дати змогу підрозділам проходити крізь мури. Може бути зачинено для запобігання доступу."
 
 #: simulation/templates/structures/palisades_long.xml:17
 msgid "Can be converted into a Palisade Gate."
-msgstr ""
+msgstr "Можна перетворити на ворота з частоколу."
 
 #: simulation/templates/structures/palisades_spike_angle.xml:17
 msgid "Angle Spike"
@@ -953,7 +953,7 @@ msgid ""
 "Build upon a shoreline in own, neutral, or allied territory. Acquire large "
 "tracts of territory. Territory root. Train Citizens, construct Ships, and "
 "research technologies. Garrison Soldiers for additional arrows."
-msgstr ""
+msgstr "Будувати на береговій лінії на власній, нейтральній або союзній території. Охоплює великі ділянки території. Основна територія. Навчайте \"Громадянин\", будуйте кораблі та проводіть дослідження технології. Солдати гарнізону для додаткових стріл."
 
 #: simulation/templates/structures/brit/defense_tower.xml:9
 #: simulation/templates/structures/brit/sentry_tower.xml:5
@@ -1087,7 +1087,7 @@ msgstr "Конструює рибальські човни для вилову �
 
 #: simulation/templates/structures/cart/embassy.xml:19
 msgid "Train Mercenaries and research Mercenary technologies."
-msgstr ""
+msgstr "Навчайте \"Ібберійський найманць\" та проводіть дослідження технології найманців."
 
 #: simulation/templates/structures/cart/embassy_celtic.xml:17
 msgid "Celtic Embassy"
@@ -1095,7 +1095,7 @@ msgstr "Кельтське посольство"
 
 #: simulation/templates/structures/cart/embassy_celtic.xml:18
 msgid "Train Celtic Mercenaries and research Mercenary technologies."
-msgstr ""
+msgstr "Навчайте \"Кельтський найманць\" та проводіть дослідження технології найманців."
 
 #: simulation/templates/structures/cart/embassy_iberian.xml:10
 msgid "Iberian Embassy"
@@ -1103,15 +1103,15 @@ msgstr "Іберійське посольство"
 
 #: simulation/templates/structures/cart/embassy_iberian.xml:11
 msgid "Train Iberian Mercenaries and research Mercenary technologies."
-msgstr ""
+msgstr "Навчайте \"Іберійський найманць\" та проводіть дослідження технології найманців."
 
 #: simulation/templates/structures/cart/embassy_italic.xml:17
 msgid "Italic Embassy"
-msgstr ""
+msgstr "Італійське посольство"
 
 #: simulation/templates/structures/cart/embassy_italic.xml:18
 msgid "Train Italic Mercenaries and research Mercenary technologies."
-msgstr ""
+msgstr "Навчайте \"Італійський найманць\" та проводіть дослідження технології найманців."
 
 #: simulation/templates/structures/cart/farmstead.xml:8
 msgid "Aḥuzāh"
@@ -1165,7 +1165,7 @@ msgid ""
 "Build upon a shoreline in own, neutral, or allied territory. Acquire large "
 "tracts of territory. Territory root. Construct Warships and research "
 "technologies."
-msgstr ""
+msgstr "Будувати на береговій лінії на власній, нейтральній або союзній території. Охоплює великі ділянки території. Основна територія. Будувати військові кораблі та досліджувати корабельні технології."
 
 #: simulation/templates/structures/cart/super_dock.xml:44
 msgid "Shipyard"
@@ -1177,7 +1177,7 @@ msgstr "Макдаш"
 
 #: simulation/templates/structures/cart/temple.xml:15
 msgid "Train Healers and Champions and research healing technologies."
-msgstr ""
+msgstr "Тренуйте \"Цілитель\" та \"Чемпіон\" та проводіть дослідження технології цілителів"
 
 #: simulation/templates/structures/cart/tophet.xml:18
 msgid "Sacrificial Temple"
@@ -1189,7 +1189,7 @@ msgstr "Тофет"
 
 #: simulation/templates/structures/cart/tophet.xml:20
 msgid "Train Healers and Champion Cavalry and research healing technologies."
-msgstr ""
+msgstr "Тренуйте цілителів з кавалерією чемпіонів та досліджуйте технології зцілення."
 
 #: simulation/templates/structures/cart/wall_gate.xml:12
 msgid "Mijdil-šaʿar"
@@ -1344,15 +1344,15 @@ msgstr "Блеммійський табір"
 
 #: simulation/templates/structures/kush/camp_blemmye.xml:23
 msgid "Train Blemmye Mercenaries."
-msgstr ""
+msgstr "Тренуйте Блеммійських найманців."
 
 #: simulation/templates/structures/kush/camp_noba.xml:22
 msgid "Noba Village"
-msgstr ""
+msgstr "Селище Ноба"
 
 #: simulation/templates/structures/kush/camp_noba.xml:23
 msgid "Train Noba Mercenaries."
-msgstr ""
+msgstr "Тренувати найманців Ноба"
 
 #: simulation/templates/structures/kush/civil_centre.xml:9
 msgid "Pr-nsw"
@@ -1458,7 +1458,7 @@ msgstr "Пер-Іаперемек"
 #: simulation/templates/structures/kush/temple.xml:10
 msgid ""
 "Train Healers and Apedamak Champions and research healing technologies."
-msgstr ""
+msgstr "Тренуйте \"Цілитель\" та \"Чемпіон Апедамаку\" та проводіть дослідження технології цілителів"
 
 #: simulation/templates/structures/kush/temple.xml:11
 msgid "TempleOfApedemak"
@@ -1474,7 +1474,7 @@ msgstr "Пер-Іамен"
 
 #: simulation/templates/structures/kush/temple_amun.xml:30
 msgid "Train Healers and Amun Champions and research healing technologies."
-msgstr ""
+msgstr "Тренуйте \"Цілитель\" та \"Чемпіон Амон\" та проводіть дослідження технології цілителів"
 
 #: simulation/templates/structures/kush/temple_amun.xml:31
 msgid "TempleOfAmun"
@@ -1651,7 +1651,7 @@ msgstr "Падган"
 
 #: simulation/templates/structures/pers/barracks.xml:6
 msgid "Train Infantry."
-msgstr ""
+msgstr "Тренування піхоти."
 
 #: simulation/templates/structures/pers/civil_centre.xml:8
 msgid "Provincial Governor"
@@ -1789,7 +1789,7 @@ msgstr "Фарос"
 msgid ""
 "Build upon a shoreline in own, neutral, or allied territory. Reveal the "
 "shorelines over the entire map. Very large vision range."
-msgstr ""
+msgstr "Побудуйте на береговій лінії на властній, нейтральній або союзній території. Розкриває берегову лінію по всій карті. Дуже великий радіус далекобійності. "
 
 #: simulation/templates/structures/ptol/lighthouse.xml:28
 #: simulation/templates/structures/ptol/lighthouse.xml:25

@@ -13,6 +13,7 @@
 # 12dde84ca529f511e7ad8b70de73f71c_b688a04 <2328b4f5662bb45a5de7adc879cc0db2_206283>, 2015
 # Boross Péter <borosspet@web.de>, 2015
 # Levente Krisztián Büte <chris020891@gmail.com>, 2013-2014
+# Csokán András <andrejmoltok@gmail.com>, 2020
 # davesajt, 2014
 # Gyuris Gellért <bubu@ujevangelizacio.hu>, 2014
 # Gyuris Gellért <bubu@ujevangelizacio.hu>, 2017
@@ -34,8 +35,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-07-24 07:08+0000\n"
-"PO-Revision-Date: 2020-10-06 14:22+0000\n"
-"Last-Translator: Mark Munkacsi <munkacsimark@gmail.com>\n"
+"PO-Revision-Date: 2020-11-26 19:40+0000\n"
+"Last-Translator: Csokán András <andrejmoltok@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -543,7 +544,7 @@ msgstr "Válaszd ki a világ népességének korlátját."
 msgid ""
 "Warning: There might be performance issues if %(popCap)s population is "
 "reached."
-msgstr ""
+msgstr "Figyelmeztetés: Teljesítmény gondok léphetnek fel ha a népesség eléri a %(popCap)s-at/-et."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:61
 msgid "Ceasefire"
@@ -642,7 +643,7 @@ msgstr "Pontozott játék."
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:77
 #, javascript-format
 msgid "Click to toggle the %(name)s settings tab."
-msgstr ""
+msgstr "Klikkelj a %(name)s beállítás-fül pöcköléséhez."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:80
 #, javascript-format
