@@ -415,7 +415,7 @@ void COList::DrawList(const int& selected, const CGUISpriteInstance& sprite, con
 		xpos = 0;
 		for (size_t colIdx = 0; colIdx < m_Columns.size(); ++colIdx)
 		{
-			const COListColumn& column = m_Columns[i];
+			const COListColumn& column = m_Columns[colIdx];
 			if (column.m_Hidden)
 				continue;
 
