@@ -73,9 +73,10 @@ Mirage.prototype.Mirages = function(iid)
 Mirage.prototype.CopyIdentity = function(cmpIdentity)
 {
 	this.miragedIids.add(IID_Identity);
-	// In almost all cases we want to ignore mirage entities when querying Identity components of owned entities.
-	// To avoid adding a test everywhere, we don't transfer the classeslist in the template but here.
-	// We clone this since the classes list is not synchronized and since the mirage should be a snapshot of the entity at the given time.
+	// Mirages don't get identity classes via the template-filter, so that code can query
+	// identity components via Engine.QueryInterface without having to explicitly check for mirages.
+	// This is cloned as otherwise we get a reference to Identity's property,
+	// and that array is deleted when serializing (as it's not seralized), which ends in OOS.
 	this.classesList = clone(cmpIdentity.GetClassesList());
 };
 

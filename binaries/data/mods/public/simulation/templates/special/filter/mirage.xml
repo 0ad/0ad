@@ -9,6 +9,8 @@
     <History merge=""/>
     <Icon merge=""/>
     <Undeletable merge=""/>
+    <!-- Classes are explicitly not added to avoid having to check for mirages
+         in unexpected places. -->
   </Identity>
   <Minimap merge=""/>
   <Mirage replace=""/>
