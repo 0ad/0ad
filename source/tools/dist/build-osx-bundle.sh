@@ -85,17 +85,19 @@ BUNDLE_SHAREDSUPPORT=$BUNDLE_CONTENTS/SharedSupport
 
 # TODO: Do we really want to regenerate everything? (consider if one task fails)
 
+./clean-workspaces.sh
+
 # Build libraries against SDK
 echo "\nBuilding libraries\n"
 pushd ../../libraries/osx > /dev/null
 ./build-osx-libs.sh $JOBS --force-rebuild || die "Libraries build script failed"
 popd > /dev/null
 
-# Clean and update workspaces
+# Update workspaces
 echo "\nGenerating workspaces\n"
 
 # Pass OS X options through to Premake
-(./clean-workspaces.sh && SYSROOT="$SYSROOT" MIN_OSX_VERSION="$MIN_OSX_VERSION" ./update-workspaces.sh --macosx-bundle="$BUNDLE_IDENTIFIER" --sysroot="$SYSROOT" --macosx-version-min="$MIN_OSX_VERSION") || die "update-workspaces.sh failed!"
+(SYSROOT="$SYSROOT" MIN_OSX_VERSION="$MIN_OSX_VERSION" ./update-workspaces.sh --macosx-bundle="$BUNDLE_IDENTIFIER" --sysroot="$SYSROOT" --macosx-version-min="$MIN_OSX_VERSION") || die "update-workspaces.sh failed!"
 
 pushd gcc > /dev/null
 echo "\nBuilding game\n"

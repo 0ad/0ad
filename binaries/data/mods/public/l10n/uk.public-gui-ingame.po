@@ -11,7 +11,7 @@
 # Dimaver <dimaver@ukr.net>, 2014
 # Dimaver <dimaver@ukr.net>, 2014
 # Dmytro Ryl'kov <tverdislav@ukr.net>, 2016-2017
-# Oleg Adept <adeptoleg@gmail.com>, 2016
+# Oleg Adept <adeptoleg@gmail.com>, 2016,2020
 # Olexandr Yaremenko <ua.limitless@gmail.com>, 2016
 # 009ee41e4c490a944b98e20dd0cc29dd_e31b370 <3a1cdc1a7c52cc59f91bdc5fed0a3a77_882482>, 2020
 # Victor Butko <victor.butko@gmail.com>, 2014
@@ -27,8 +27,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-11-20 08:08+0000\n"
-"PO-Revision-Date: 2020-11-20 10:27+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-11-23 15:35+0000\n"
+"Last-Translator: Oleg Adept <adeptoleg@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -75,7 +75,7 @@ msgstr "Налаштунки"
 
 #: gui/session/MenuButtons.js:182
 msgid "Hotkeys"
-msgstr ""
+msgstr "Гарячі клавіші"
 
 #: gui/session/MenuButtons.js:217
 msgid "Resume"
@@ -388,11 +388,11 @@ msgstr ", "
 
 #: gui/session/selection_panels.js:817
 msgid "Cannot research while upgrading."
-msgstr ""
+msgstr "Не можливо провести дослідження під час удосконалення."
 
 #: gui/session/selection_panels.js:1040
 msgid "Cannot train while upgrading."
-msgstr ""
+msgstr "Не можливо провести тренування під час удосконалення."
 
 #: gui/session/selection_panels.js:1102
 #, javascript-format
@@ -415,10 +415,10 @@ msgid ""
 msgid_plural ""
 "Cannot upgrade when all entities are training, researching or already "
 "upgrading."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Неможливо ужосконалити коли сутность проводять навчання, дослідження або вже удосконалюются."
+msgstr[1] "Неможливо ужосконалити коли декілька сутностей проводять навчання, дослідження або вже удосконалюются."
+msgstr[2] "Неможливо ужосконалити коли багато сутностей проводять навчання, дослідження або вже удосконалюются."
+msgstr[3] "Неможливо ужосконалити коли всі сутності проводять навчання, дослідження або вже удосконалюются."
 
 #: gui/session/selection_panels_helpers.js:51
 msgctxt "stance"
@@ -554,10 +554,10 @@ msgstr "Очікуваний прибуток: %(gain)s"
 #: gui/session/unit_actions.js:1129
 msgid "This entity cannot be controlled."
 msgid_plural "These entities cannot be controlled."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Ця сутність не може контролюватися."
+msgstr[1] "Ці сутністі не можуть контролюватися."
+msgstr[2] "Ці сутністі не можуть контролюватися."
+msgstr[3] "Ці сутністі не можуть контролюватися."
 
 #: gui/session/unit_actions.js:1166 gui/session/unit_actions.js:1494
 msgid "Unload All."
@@ -852,7 +852,7 @@ msgstr "Ви були атаковані %(attacker)s!"
 #: gui/session/chat/ChatMessageFormatSimulation.js:38
 #, javascript-format
 msgid "%(player)s bartered %(amountGiven)s for %(amountGained)s."
-msgstr ""
+msgstr "%(player)s обмінює %(amountGiven)s на %(amountGained)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:70
 #, javascript-format
@@ -1576,7 +1576,7 @@ msgstr "Очки захвату"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):62
 msgid "Attack and Resistance"
-msgstr ""
+msgstr "Атака та опір"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):77
 msgid "Experience"

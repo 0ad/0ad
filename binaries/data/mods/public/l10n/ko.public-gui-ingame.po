@@ -29,8 +29,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-11-20 08:08+0000\n"
-"PO-Revision-Date: 2020-11-20 10:27+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-11-25 03:34+0000\n"
+"Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -77,7 +77,7 @@ msgstr "선택사항"
 
 #: gui/session/MenuButtons.js:182
 msgid "Hotkeys"
-msgstr ""
+msgstr "바로가기 키"
 
 #: gui/session/MenuButtons.js:217
 msgid "Resume"
@@ -381,11 +381,11 @@ msgstr ", "
 
 #: gui/session/selection_panels.js:817
 msgid "Cannot research while upgrading."
-msgstr ""
+msgstr "판올림하는 동안에는 연구할 수 없습니다."
 
 #: gui/session/selection_panels.js:1040
 msgid "Cannot train while upgrading."
-msgstr ""
+msgstr "판올림하는 동안에는 훈련할 수 없습니다."
 
 #: gui/session/selection_panels.js:1102
 #, javascript-format
@@ -408,7 +408,7 @@ msgid ""
 msgid_plural ""
 "Cannot upgrade when all entities are training, researching or already "
 "upgrading."
-msgstr[0] ""
+msgstr[0] "모든 개체가 훈련하고 있거나 연구하고 있거나 이미 판올림하고 있으면 판올림할 수 없습니다."
 
 #: gui/session/selection_panels_helpers.js:51
 msgctxt "stance"
@@ -544,7 +544,7 @@ msgstr "예상 수익: %(gain)s"
 #: gui/session/unit_actions.js:1129
 msgid "This entity cannot be controlled."
 msgid_plural "These entities cannot be controlled."
-msgstr[0] ""
+msgstr[0] "이러한 개체를 제어할 수 없습니다."
 
 #: gui/session/unit_actions.js:1166 gui/session/unit_actions.js:1494
 msgid "Unload All."

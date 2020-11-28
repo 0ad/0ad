@@ -1100,7 +1100,7 @@ function setup_atlas_project(project_name, target_type, rel_source_dirs, rel_inc
 	-- Platform Specifics
 	if os.istarget("windows") then
 		-- Link to required libraries
-		links { "winmm", "comctl32", "rpcrt4", "delayimp", "ws2_32" }
+		links { "winmm", "delayimp" }
 
 	elseif os.istarget("linux") or os.istarget("bsd") then
 		buildoptions { "-rdynamic", "-fPIC" }
