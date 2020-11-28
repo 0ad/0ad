@@ -1,97 +1,45 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright (C) 2020 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
-#
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
+# project.
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2020-11-20 08:09+0000\n"
-"PO-Revision-Date: 2020-11-20 08:09+0000\n"
+"POT-Creation-Date: 2020-11-28 10:01+0000\n"
+"PO-Revision-Date: 2020-11-28 10:01+0000\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Content-Transfer-Encoding: 8bit"
 
-#: simulation/templates/template_formation.xml:26
-msgid "Requires at least 2 Soldiers or Siege Engines."
+#: simulation/data/template_helpers/damage_types/crush.json:description
+msgctxt "damage type"
+msgid "Damage caused by sheer force, like with a club or by trampling."
 msgstr ""
 
-#: simulation/templates/template_gaia.xml:7
-msgid "Gaia"
+#: simulation/data/template_helpers/damage_types/crush.json:name
+msgctxt "damage type"
+msgid "Crush"
 msgstr ""
 
-#: simulation/templates/template_gaia_fish.xml:8
-#: simulation/templates/gaia/fish/generic.xml:4
-msgid "Fish"
+#: simulation/data/template_helpers/damage_types/hack.json:description
+msgctxt "damage type"
+msgid "Damage caused by sharp objects cutting or chopping, like with a sword or an axe."
 msgstr ""
 
-#: simulation/templates/template_gaia_fish.xml:10
-msgid "Catch fish for food."
+#: simulation/data/template_helpers/damage_types/hack.json:name
+msgctxt "damage type"
+msgid "Hack"
 msgstr ""
 
-#: simulation/templates/template_gaia_fruit.xml:8
-msgid "Fruit"
+#: simulation/data/template_helpers/damage_types/pierce.json:description
+msgctxt "damage type"
+msgid "Damage caused by sharp pointy objects, like arrows or spears."
 msgstr ""
 
-#: simulation/templates/template_gaia_fruit.xml:9
-msgid "Pick fruit for food."
-msgstr ""
-
-#: simulation/templates/template_gaia_ore.xml:8
-msgid "Metal Mine"
-msgstr ""
-
-#: simulation/templates/template_gaia_ore.xml:9
-msgid "Mine ore for metal."
-msgstr ""
-
-#: simulation/templates/template_gaia_rock.xml:8
-msgid "Stone Quarry"
-msgstr ""
-
-#: simulation/templates/template_gaia_rock.xml:9
-msgid "Quarry rock for stone."
-msgstr ""
-
-#: simulation/templates/template_gaia_ruins.xml:8
-msgid "Ruins"
-msgstr ""
-
-#: simulation/templates/template_gaia_ruins.xml:9
-msgid "Demolish ruins for stone."
-msgstr ""
-
-#: simulation/templates/template_gaia_treasure.xml:8
-msgid "Treasure"
-msgstr ""
-
-#: simulation/templates/template_gaia_treasure.xml:9
-msgid "Collect treasures for resources."
-msgstr ""
-
-#: simulation/templates/template_gaia_tree.xml:8
-msgid "Tree"
-msgstr ""
-
-#: simulation/templates/template_gaia_tree.xml:9
-msgid "Chop trees for wood."
-msgstr ""
-
-#: simulation/templates/template_structure.xml:47
-msgid "Structure"
-msgstr ""
-
-#: simulation/templates/template_unit.xml:38
-msgid "Unit"
-msgstr ""
-
-#: simulation/templates/template_wallset.xml:10
-msgid "Wall off an area."
-msgstr ""
-
-#: simulation/templates/template_wallset.xml:11
-#: simulation/templates/template_wallset.xml:9
-msgid "Wall"
+#: simulation/data/template_helpers/damage_types/pierce.json:name
+msgctxt "damage type"
+msgid "Pierce"
 msgstr ""
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:24
@@ -383,8 +331,7 @@ msgstr ""
 msgid "Pony"
 msgstr ""
 
-#: simulation/templates/gaia/fauna_lion.xml:5
-#: simulation/templates/gaia/fauna_tiger.xml:5
+#: simulation/templates/gaia/fauna_lion.xml:5 simulation/templates/gaia/fauna_tiger.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Paws"
 msgstr ""
@@ -554,8 +501,7 @@ msgstr ""
 msgid "Berries"
 msgstr ""
 
-#: simulation/templates/gaia/fruit/date.xml:4
-#: simulation/templates/gaia/tree/date_palm.xml:4
+#: simulation/templates/gaia/fruit/date.xml:4 simulation/templates/gaia/tree/date_palm.xml:4
 #: simulation/templates/gaia/tree/date_palm_dead.xml:4
 msgid "Date Palm"
 msgstr ""
@@ -734,15 +680,13 @@ msgstr ""
 msgid "Cypress"
 msgstr ""
 
-#: simulation/templates/gaia/tree/dead.xml:4
-#: simulation/templates/gaia/tree/temperate.xml:4
+#: simulation/templates/gaia/tree/dead.xml:4 simulation/templates/gaia/tree/temperate.xml:4
 #: simulation/templates/gaia/tree/temperate_autumn.xml:4
 #: simulation/templates/gaia/tree/temperate_winter.xml:4
 msgid "Deciduous Tree"
 msgstr ""
 
-#: simulation/templates/gaia/tree/elm.xml:4
-#: simulation/templates/gaia/tree/elm_dead.xml:4
+#: simulation/templates/gaia/tree/elm.xml:4 simulation/templates/gaia/tree/elm_dead.xml:4
 msgid "Elm"
 msgstr ""
 
@@ -755,8 +699,7 @@ msgstr ""
 msgid "Silver Birch"
 msgstr ""
 
-#: simulation/templates/gaia/tree/fir.xml:4
-#: simulation/templates/gaia/tree/fir_winter.xml:4
+#: simulation/templates/gaia/tree/fir.xml:4 simulation/templates/gaia/tree/fir_winter.xml:4
 msgid "Fir"
 msgstr ""
 
@@ -780,11 +723,9 @@ msgstr ""
 msgid "Mediterranean Fan Palm"
 msgstr ""
 
-#: simulation/templates/gaia/tree/oak.xml:4
-#: simulation/templates/gaia/tree/oak_aut.xml:4
+#: simulation/templates/gaia/tree/oak.xml:4 simulation/templates/gaia/tree/oak_aut.xml:4
 #: simulation/templates/gaia/tree/oak_aut_new.xml:4
-#: simulation/templates/gaia/tree/oak_dead.xml:4
-#: simulation/templates/gaia/tree/oak_new.xml:4
+#: simulation/templates/gaia/tree/oak_dead.xml:4 simulation/templates/gaia/tree/oak_new.xml:4
 msgid "Oak"
 msgstr ""
 
@@ -821,8 +762,7 @@ msgstr ""
 msgid "Tropical Palm"
 msgstr ""
 
-#: simulation/templates/gaia/tree/pine.xml:4
-#: simulation/templates/gaia/tree/pine_w.xml:4
+#: simulation/templates/gaia/tree/pine.xml:4 simulation/templates/gaia/tree/pine_w.xml:4
 msgid "Pine"
 msgstr ""
 
@@ -872,15 +812,11 @@ msgid "Rainforest Tree"
 msgstr ""
 
 #: simulation/templates/skirmish/structures/default_house_10.xml:5
-msgid ""
-"Changes in a 10-pop house for civilisations with those houses, is deleted "
-"for other civs"
+msgid "Changes in a 10-pop house for civilisations with those houses, is deleted for other civs"
 msgstr ""
 
 #: simulation/templates/skirmish/structures/default_house_5.xml:8
-msgid ""
-"Changes in a 5-pop house for civilisations with those houses, is deleted for "
-"other civs"
+msgid "Changes in a 5-pop house for civilisations with those houses, is deleted for other civs"
 msgstr ""
 
 #: simulation/templates/skirmish/units/default_infantry_melee_b.xml:5
@@ -891,10 +827,6 @@ msgstr ""
 #: simulation/templates/skirmish/units/default_infantry_ranged_b.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Ranged"
-msgstr ""
-
-#: simulation/templates/special/spy.xml:17
-msgid "Spy"
 msgstr ""
 
 #: simulation/templates/special/formations/anti_cavalry.xml:6
@@ -990,34 +922,87 @@ msgstr ""
 msgid "Player"
 msgstr ""
 
-#: simulation/data/template_helpers/damage_types/crush.json:name
-msgctxt "damage type"
-msgid "Crush"
+#: simulation/templates/special/spy.xml:17
+msgid "Spy"
 msgstr ""
 
-#: simulation/data/template_helpers/damage_types/crush.json:description
-msgctxt "damage type"
-msgid "Damage caused by sheer force, like with a club or by trampling."
+#: simulation/templates/template_formation.xml:26
+msgid "Requires at least 2 Soldiers or Siege Engines."
 msgstr ""
 
-#: simulation/data/template_helpers/damage_types/hack.json:name
-msgctxt "damage type"
-msgid "Hack"
+#: simulation/templates/template_gaia.xml:7
+msgid "Gaia"
 msgstr ""
 
-#: simulation/data/template_helpers/damage_types/hack.json:description
-msgctxt "damage type"
-msgid ""
-"Damage caused by sharp objects cutting or chopping, like with a sword or an "
-"axe."
+#: simulation/templates/gaia/fish/generic.xml:4 simulation/templates/template_gaia_fish.xml:8
+msgid "Fish"
 msgstr ""
 
-#: simulation/data/template_helpers/damage_types/pierce.json:name
-msgctxt "damage type"
-msgid "Pierce"
+#: simulation/templates/template_gaia_fish.xml:10
+msgid "Catch fish for food."
 msgstr ""
 
-#: simulation/data/template_helpers/damage_types/pierce.json:description
-msgctxt "damage type"
-msgid "Damage caused by sharp pointy objects, like arrows or spears."
+#: simulation/templates/template_gaia_fruit.xml:8
+msgid "Fruit"
 msgstr ""
+
+#: simulation/templates/template_gaia_fruit.xml:9
+msgid "Pick fruit for food."
+msgstr ""
+
+#: simulation/templates/template_gaia_ore.xml:8
+msgid "Metal Mine"
+msgstr ""
+
+#: simulation/templates/template_gaia_ore.xml:9
+msgid "Mine ore for metal."
+msgstr ""
+
+#: simulation/templates/template_gaia_rock.xml:8
+msgid "Stone Quarry"
+msgstr ""
+
+#: simulation/templates/template_gaia_rock.xml:9
+msgid "Quarry rock for stone."
+msgstr ""
+
+#: simulation/templates/template_gaia_ruins.xml:8
+msgid "Ruins"
+msgstr ""
+
+#: simulation/templates/template_gaia_ruins.xml:9
+msgid "Demolish ruins for stone."
+msgstr ""
+
+#: simulation/templates/template_gaia_treasure.xml:8
+msgid "Treasure"
+msgstr ""
+
+#: simulation/templates/template_gaia_treasure.xml:9
+msgid "Collect treasures for resources."
+msgstr ""
+
+#: simulation/templates/template_gaia_tree.xml:8
+msgid "Tree"
+msgstr ""
+
+#: simulation/templates/template_gaia_tree.xml:9
+msgid "Chop trees for wood."
+msgstr ""
+
+#: simulation/templates/template_structure.xml:47
+msgid "Structure"
+msgstr ""
+
+#: simulation/templates/template_unit.xml:38
+msgid "Unit"
+msgstr ""
+
+#: simulation/templates/template_wallset.xml:9 simulation/templates/template_wallset.xml:11
+msgid "Wall"
+msgstr ""
+
+#: simulation/templates/template_wallset.xml:10
+msgid "Wall off an area."
+msgstr ""
+
