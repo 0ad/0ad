@@ -1,14 +1,12 @@
-/* $Id: upnpcommands.h,v 1.31 2015/07/21 13:16:55 nanard Exp $ */
+/* $Id: upnpcommands.h,v 1.33 2019/02/10 12:29:25 nanard Exp $ */
 /* Miniupnp project : http://miniupnp.free.fr/
  * Author : Thomas Bernard
- * Copyright (c) 2005-2015 Thomas Bernard
+ * Copyright (c) 2005-2018 Thomas Bernard
  * This software is subject to the conditions detailed in the
  * LICENCE file provided within this distribution */
 #ifndef UPNPCOMMANDS_H_INCLUDED
 #define UPNPCOMMANDS_H_INCLUDED
 
-#include "upnpreplyparse.h"
-#include "portlistingparse.h"
 #include "miniupnpc_declspec.h"
 #include "miniupnpctypes.h"
 
@@ -23,6 +21,8 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+struct PortMappingParserData;
 
 MINIUPNP_LIBSPEC UNSIGNED_INTEGER
 UPNP_GetTotalBytesSent(const char * controlURL,
@@ -206,9 +206,9 @@ UPNP_DeletePortMappingRange(const char * controlURL, const char * servicetype,
 /* UPNP_GetPortMappingNumberOfEntries()
  * not supported by all routers */
 MINIUPNP_LIBSPEC int
-UPNP_GetPortMappingNumberOfEntries(const char* controlURL,
-                                   const char* servicetype,
-                                   unsigned int * num);
+UPNP_GetPortMappingNumberOfEntries(const char * controlURL,
+                                   const char * servicetype,
+                                   unsigned int * numEntries);
 
 /* UPNP_GetSpecificPortMappingEntry()
  *    retrieves an existing port mapping

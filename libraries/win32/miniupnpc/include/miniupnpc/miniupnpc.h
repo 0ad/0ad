@@ -1,8 +1,9 @@
-/* $Id: miniupnpc.h,v 1.48 2015/10/08 16:19:40 nanard Exp $ */
-/* Project: miniupnp
+/* $Id: miniupnpc.h,v 1.55 2020/11/09 19:49:32 nanard Exp $ */
+/* vim: tabstop=4 shiftwidth=4 noexpandtab
+ * Project: miniupnp
  * http://miniupnp.free.fr/
  * Author: Thomas Bernard
- * Copyright (c) 2005-2015 Thomas Bernard
+ * Copyright (c) 2005-2018 Thomas Bernard
  * This software is subjects to the conditions detailed
  * in the LICENCE file provided within this distribution */
 #ifndef MINIUPNPC_H_INCLUDED
@@ -19,11 +20,11 @@
 #define UPNPDISCOVER_MEMORY_ERROR (-102)
 
 /* versions : */
-#define MINIUPNPC_VERSION	"1.9.20151008"
-#define MINIUPNPC_API_VERSION	15
+#define MINIUPNPC_VERSION	"2.2.0"
+#define MINIUPNPC_API_VERSION	17
 
 /* Source port:
-   Using "1" as an alias for 1900 for backwards compatability
+   Using "1" as an alias for 1900 for backwards compatibility
    (presuming one would have used that for the "sameport" parameter) */
 #define UPNP_LOCAL_PORT_ANY     0
 #define UPNP_LOCAL_PORT_SAME    1
