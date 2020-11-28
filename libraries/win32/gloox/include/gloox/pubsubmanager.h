@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2007-2017 by Jakob Schröter <js@camaya.net>
+  Copyright (c) 2007-2019 by Jakob Schröter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -668,6 +668,12 @@ namespace gloox
              * @return The pubsub node.
              */
             const std::string& node() const { return m_node; }
+
+            /**
+             * Returns the tracking context.
+             * @return The tracking context value.
+             */
+            TrackContext context() const { return m_ctx; }
 
             /**
              * Sets the Subscription ID to use.

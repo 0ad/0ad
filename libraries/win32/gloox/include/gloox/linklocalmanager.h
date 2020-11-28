@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2012-2017 by Jakob Schröter <js@camaya.net>
+  Copyright (c) 2012-2019 by Jakob Schröter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -162,7 +162,7 @@ namespace gloox
      * handling both incoming and outgoing connections.
      *
      * @author Jakob Schröter <js@camaya.net>
-     * @since 1.0.x
+     * @since 1.0.1
      */
     class GLOOX_API Manager
     {
