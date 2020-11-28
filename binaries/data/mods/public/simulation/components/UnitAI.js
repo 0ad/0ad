@@ -4552,7 +4552,7 @@ UnitAI.prototype.MoveToTargetAttackRange = function(target, type)
 	let s = thisCmpPosition.GetPosition();
 
 	let targetCmpPosition = Engine.QueryInterface(target, IID_Position);
-	if (!targetCmpPosition.IsInWorld())
+	if (!targetCmpPosition || !targetCmpPosition.IsInWorld())
 		return false;
 
 	let t = targetCmpPosition.GetPosition();

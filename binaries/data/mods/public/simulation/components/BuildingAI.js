@@ -357,7 +357,7 @@ BuildingAI.prototype.FireArrows = function()
 
 		// Copied from UnitAI's MoveToTargetAttackRange.
 		let targetCmpPosition = Engine.QueryInterface(selectedTarget, IID_Position);
-		if (!targetCmpPosition.IsInWorld())
+		if (!targetCmpPosition || !targetCmpPosition.IsInWorld())
 			continue;
 
 		let t = targetCmpPosition.GetPosition();
