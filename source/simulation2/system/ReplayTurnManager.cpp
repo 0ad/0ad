@@ -57,10 +57,10 @@ void CReplayTurnManager::StoreFinalReplayTurn(u32 turn)
 	m_FinalTurn = turn;
 }
 
-void CReplayTurnManager::NotifyFinishedUpdate(u32 turn)
+void CReplayTurnManager::NotifyFinishedOwnCommands(u32 turn)
 {
-	if (turn == 1 && m_FinalTurn == 0)
-		g_GUI->SendEventToAll(EventNameReplayFinished);
+	CLocalTurnManager::NotifyFinishedOwnCommands(turn);
+	turn = turn - COMMAND_DELAY;
 
 	if (turn > m_FinalTurn)
 		return;
