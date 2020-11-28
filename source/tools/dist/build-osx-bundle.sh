@@ -181,28 +181,33 @@ cp -v ../../libraries/LICENSE.txt "${BUNDLE_RESOURCES}/LIB_LICENSE.txt"
 
 # Create Info.plist
 echo "\nCreating Info.plist\n"
-alias PlistBuddy=/usr/libexec/PlistBuddy
 INFO_PLIST="${BUNDLE_CONTENTS}/Info.plist"
 
-PlistBuddy -c "Add :CFBundleName string 0 A.D." "${INFO_PLIST}"
-PlistBuddy -c "Add :CFBundleIdentifier string ${BUNDLE_IDENTIFIER}" "${INFO_PLIST}"
-PlistBuddy -c "Add :CFBundleVersion string ${BUNDLE_VERSION}" "${INFO_PLIST}"
-PlistBuddy -c "Add :CFBundlePackageType string APPL" "${INFO_PLIST}"
-PlistBuddy -c "Add :CFBundleSignature string none" "${INFO_PLIST}"
-PlistBuddy -c "Add :CFBundleExecutable string pyrogenesis" "${INFO_PLIST}"
-PlistBuddy -c "Add :CFBundleShortVersionString string ${BUNDLE_VERSION}" "${INFO_PLIST}"
-PlistBuddy -c "Add :CFBundleDevelopmentRegion string English" "${INFO_PLIST}"
-PlistBuddy -c "Add :CFBundleInfoDictionaryVersion string 6.0" "${INFO_PLIST}"
-PlistBuddy -c "Add :CFBundleIconFile string 0ad" "${INFO_PLIST}"
-PlistBuddy -c "Add :LSHasLocalizedDisplayName bool true" "${INFO_PLIST}"
-PlistBuddy -c "Add :LSMinimumSystemVersion string ${BUNDLE_MIN_OSX_VERSION}" "${INFO_PLIST}"
-PlistBuddy -c "Add :NSHumanReadableCopyright string Copyright © $(date +%Y) Wildfire Games" "${INFO_PLIST}"
+# This is kind of awful but plistlib is usde by dmgbuild
+# and it's very strict about what it accepts, so for now this will do.
+python3 -c "import plistlib; pl = { \
+  'CFBundleName': '0 A.D.', \
+  'CFBundleIdentifier':  '${BUNDLE_IDENTIFIER}', \
+  'CFBundleVersion':  '${BUNDLE_VERSION}', \
+  'CFBundlePackageType':  'APPL', \
+  'CFBundleSignature':  'none', \
+  'CFBundleExecutable':  'pyrogenesis', \
+  'CFBundleShortVersionString':  '${BUNDLE_VERSION}', \
+  'CFBundleDevelopmentRegion':  'English', \
+  'CFBundleInfoDictionaryVersion':  '6.0', \
+  'CFBundleIconFile':  '0ad', \
+  'LSHasLocalizedDisplayName':  True, \
+  'LSMinimumSystemVersion':  '${BUNDLE_MIN_OSX_VERSION}', \
+  'NSHumanReadableCopyright':  'Copyright © $(date +%Y) Wildfire Games', \
+}; \
+fp = open('${INFO_PLIST}', 'wb'); plistlib.dump(pl, fp); fp.close();"
 
 # Package the app into a dmg
 dmgbuild \
   -s "${DMGBUILD_CONFIG}" \
   -D app="${BUNDLE_OUTPUT}" \
   -D background="../../build/resources/dmgbackground.png" \
+  -D icon="../resources/0ad.icns" \
   "${BUNDLE_DMG_NAME}" "${BUNDLE_FILENAME}"
 
 
