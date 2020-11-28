@@ -218,18 +218,23 @@ InReaction CInput::ManuallyHandleKeys(const SDL_Event_* ev)
 	}
 	case SDL_KEYDOWN:
 	{
-		if (m_ComposingText)
-			return IN_HANDLED;
-
 		// Since the GUI framework doesn't handle to set settings
 		//  in Unicode (CStrW), we'll simply retrieve the actual
 		//  pointer and edit that.
 		SDL_Keycode keyCode = ev->ev.key.keysym.sym;
 
-		// Escape is treated specially to let players close out windows even if an input is in focus.
-		// TODO: there is maybe a better way to only handle text-like keys here?
-		if (keyCode == SDLK_ESCAPE)
+		// Regular text input is handled in SDL_TEXTINPUT, however keydown events are still sent (and they come first).
+		// To make things work correctly, we pass through 'escape' which is a non-character key.
+		// TODO: there are probably other keys that we could ignore, but recognizing "non-glyph" keys isn't that trivial.
+		// Further, don't input text if modifiers other than shift are pressed (the user is presumably trying to perform a hotkey).
+		if (keyCode == SDLK_ESCAPE ||
+		     g_keys[SDLK_LCTRL] || g_keys[SDLK_RCTRL] ||
+		     g_keys[SDLK_LALT] || g_keys[SDLK_RALT] ||
+		     g_keys[SDLK_LGUI] || g_keys[SDLK_RGUI])
 			return IN_PASS;
+
+		if (m_ComposingText)
+			return IN_HANDLED;
 
 		ManuallyImmutableHandleKeyDownEvent(keyCode);
 		ManuallyMutableHandleKeyDownEvent(keyCode);
@@ -327,8 +332,7 @@ void CInput::ManuallyMutableHandleKeyDownEvent(const SDL_Keycode keyCode)
 	}
 	default: // Insert a character
 	{
-		// In SDL2, we no longer get Unicode wchars via SDL_Keysym
-		// we use text input events instead and they provide UTF-8 chars
+		// Regular input is handled via SDL_TEXTINPUT, so we should ignore it here.
 		if (cooked == 0)
 			return;
 
