@@ -8,7 +8,13 @@
 	<include>common/sprites.xml</include>
 	<include>common/styles.xml</include>
 
-	<include>civinfo/civinfo.xml</include>
-	<include>civinfo/setup.xml</include>
-	<include>civinfo/sprites.xml</include>
+	<include>reference/common/sprites.xml</include>
+	<include>reference/common/styles.xml</include>
+
+	<include>reference/civinfo/sprites.xml</include>
+	<include>reference/civinfo/styles.xml</include>
+	<include>reference/civinfo/civinfo.xml</include>
+	<include>reference/civinfo/setup.xml</include>
+
+	<include>reference/common/setup.xml</include>
 </page>

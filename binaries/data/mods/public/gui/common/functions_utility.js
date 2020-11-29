@@ -71,6 +71,14 @@ function unescapeText(text)
 }
 
 /**
+ * Prepends a backslash to all quotation marks.
+ */
+function escapeQuotation(text)
+{
+	return text.replace(/"/g, "\\\"");
+}
+
+/**
  * Merge players by team to remove duplicate Team entries, thus reducing the packet size of the lobby report.
  */
 function playerDataToStringifiedTeamList(playerData)
