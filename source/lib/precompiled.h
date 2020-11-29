@@ -41,8 +41,8 @@
 
 // must come before any STL headers are included
 #if MSC_VERSION
-# if MSC_VERSION < 1900
-#   error "Visual Studio 2015 is the minimal supported version"
+# if MSC_VERSION < 1910
+#   error "Visual Studio 2017 is the minimal supported version"
 # endif
 # ifdef NDEBUG	// release: disable all checks
 #  define _HAS_ITERATOR_DEBUGGING 0

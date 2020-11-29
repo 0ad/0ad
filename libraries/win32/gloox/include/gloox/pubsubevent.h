@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2004-2017 by Jakob Schröter <js@camaya.net>
+  Copyright (c) 2004-2019 by Jakob Schröter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -67,6 +67,13 @@ namespace gloox
          * A list of ItemOperations.
          */
         typedef std::list<ItemOperation*> ItemOperationList;
+
+        /**
+         * PubSub event notification Stanza Extension.  This constructor can
+         * be used to create an empty instance for registering the
+         * StanzaExtension.
+         */
+        Event();
 
         /**
          * PubSub event notification Stanza Extension.

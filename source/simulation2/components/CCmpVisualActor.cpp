@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,12 +24,13 @@
 
 #include "ICmpFootprint.h"
 #include "ICmpIdentity.h"
-#include "ICmpUnitRenderer.h"
+#include "ICmpMirage.h"
 #include "ICmpOwnership.h"
 #include "ICmpPosition.h"
 #include "ICmpTemplateManager.h"
 #include "ICmpTerrain.h"
 #include "ICmpUnitMotion.h"
+#include "ICmpUnitRenderer.h"
 #include "ICmpValueModificationManager.h"
 #include "ICmpVisibility.h"
 #include "ICmpSound.h"
@@ -295,11 +296,14 @@ public:
 		{
 		case MT_OwnershipChanged:
 		{
+			RecomputeActorName();
+
 			if (!m_Unit)
 				break;
 
 			const CMessageOwnershipChanged& msgData = static_cast<const CMessageOwnershipChanged&> (msg);
 			m_Unit->GetModel().SetPlayerID(msgData.to);
+
 			break;
 		}
 		case MT_TerrainChanged:
@@ -313,20 +317,17 @@ public:
 		}
 		case MT_ValueModification:
 		{
+			// Mirages don't respond to technology modifications.
+			CmpPtr<ICmpMirage> cmpMirage(GetEntityHandle());
+			if (cmpMirage)
+				return;
+
 			const CMessageValueModification& msgData = static_cast<const CMessageValueModification&> (msg);
 			if (msgData.component != L"VisualActor")
 				break;
-			CmpPtr<ICmpValueModificationManager> cmpValueModificationManager(GetSystemEntity());
-			std::wstring newActorName;
-			if (m_IsFoundationActor)
-				newActorName = cmpValueModificationManager->ApplyModifications(L"VisualActor/FoundationActor", m_BaseActorName, GetEntityId());
-			else
-				newActorName = cmpValueModificationManager->ApplyModifications(L"VisualActor/Actor", m_BaseActorName, GetEntityId());
-			if (newActorName != m_ActorName)
-			{
-				ParseActorName(newActorName);
-				ReloadActor();
-			}
+
+			RecomputeActorName();
+
 			break;
 		}
 		case MT_InterpolatedPositionChanged:
@@ -526,6 +527,22 @@ public:
 
 		m_Seed = seed;
 		ReloadActor();
+	}
+
+	virtual void RecomputeActorName()
+	{
+		CmpPtr<ICmpValueModificationManager> cmpValueModificationManager(GetSystemEntity());
+		std::wstring newActorName;
+		if (m_IsFoundationActor)
+			newActorName = cmpValueModificationManager->ApplyModifications(L"VisualActor/FoundationActor", m_BaseActorName, GetEntityId());
+		else
+			newActorName = cmpValueModificationManager->ApplyModifications(L"VisualActor/Actor", m_BaseActorName, GetEntityId());
+
+		if (newActorName != m_ActorName)
+		{
+			ParseActorName(newActorName);
+			ReloadActor();
+		}
 	}
 
 	virtual bool HasConstructionPreview() const

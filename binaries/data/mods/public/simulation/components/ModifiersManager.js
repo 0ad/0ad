@@ -161,7 +161,7 @@ ModifiersManager.prototype.ApplyModifiers = function(propertyName, originalValue
 
 	newValue = originalValue;
 
-	let cmpIdentity = Engine.QueryInterface(entity, IID_Identity);
+	let cmpIdentity = QueryMiragedInterface(entity, IID_Identity);
 	if (!cmpIdentity)
 		return originalValue;
 	let classesList = cmpIdentity.GetClassesList();

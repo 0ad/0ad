@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2005-2017 by Jakob Schröter <js@camaya.net>
+  Copyright (c) 2005-2019 by Jakob Schröter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -777,7 +777,7 @@ namespace gloox
                                      * this error MAY be used instead of the more specific XML-related
                                      * errors, such as &lt;bad-namespace-prefix/&gt;, &lt;invalid-xml/&gt;,
                                      * &lt;restricted-xml/&gt;, &lt;unsupported-encoding/&gt;, and
-                                     * &lt;xml-not-well-formed/&gt;, although the more specific errors are
+                                     * &lt;not-well-formed/&gt;, although the more specific errors are
                                      * preferred. */
     StreamErrorBadNamespacePrefix,  /**< The entity has sent a namespace prefix that is unsupported, or has
                                      * sent no namespace prefix on an element that requires such a prefix
@@ -993,10 +993,10 @@ namespace gloox
     std::string issuer;             /**< The name of the issuing entity.*/
     std::string server;             /**< The server the certificate has been issued for. */
     int date_from;                  /**< The date from which onwards the certificate is valid
-                                     * (UNIX timestamp; UTC; not set when using OpenSSL).
+                                     * (UNIX timestamp; UTC).
                                      * @todo Change type to time_t or long? */
     int date_to;                    /**< The date up to which the certificate is valid
-                                     * (UNIX timestamp; UTC; not set when using OpenSSL).
+                                     * (UNIX timestamp; UTC).
                                      * @todo Change type to time_t or long? */
     std::string protocol;           /**< The encryption protocol used for the connection. */
     std::string cipher;             /**< The cipher used for the connection. */

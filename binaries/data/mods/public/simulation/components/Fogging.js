@@ -109,6 +109,8 @@ Fogging.prototype.LoadMirage = function(player)
 		error("Failed to copy the visual data of the fogged entity " + this.entity);
 		return;
 	}
+
+	cmpMirageVisualActor.RecomputeActorName();
 	cmpMirageVisualActor.SetActorSeed(cmpParentVisualActor.GetActorSeed());
 
 	// Store valuable information into the mirage component (especially for the GUI)

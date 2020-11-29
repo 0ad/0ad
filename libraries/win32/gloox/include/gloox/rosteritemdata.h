@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2004-2017 by Jakob Schröter <js@camaya.net>
+  Copyright (c) 2004-2019 by Jakob Schröter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -133,22 +133,22 @@ namespace gloox
        */
       void setSubscription( const std::string& subscription, const std::string& ask )
       {
-        m_sub = subscription;
+        m_sub = subscription.empty() ? "none" : subscription;
         m_ask = ask;
 
-        if( subscription == "from" && ask.empty() )
+        if( m_sub == "from" && ask.empty() )
           m_subscription = S10nFrom;
-        else if( subscription == "from" && !ask.empty() )
+        else if( m_sub == "from" && !ask.empty() )
           m_subscription = S10nFromOut;
-        else if( subscription == "to" && ask.empty() )
+        else if( m_sub == "to" && ask.empty() )
           m_subscription = S10nTo;
-        else if( subscription == "to" && !ask.empty() )
+        else if( m_sub == "to" && !ask.empty() )
           m_subscription = S10nToIn;
-        else if( subscription == "none" && ask.empty() )
+        else if( m_sub == "none" && ask.empty() )
           m_subscription = S10nNone;
-        else if( subscription == "none" && !ask.empty() )
+        else if( m_sub == "none" && !ask.empty() )
           m_subscription = S10nNoneOut;
-        else if( subscription == "both" )
+        else if( m_sub == "both" )
           m_subscription = S10nBoth;
       }
 

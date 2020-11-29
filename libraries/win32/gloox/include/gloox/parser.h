@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2004-2017 by Jakob Schröter <js@camaya.net>
+  Copyright (c) 2004-2019 by Jakob Schröter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -51,7 +51,7 @@ namespace gloox
        * Use this function to feed the parser with more XML.
        * @param data Raw xml to parse. It may be modified if backbuffering is necessary.
        * @return Returns @b -1 if parsing was successful. If a parse error occured, the
-       * character position where the error was occured is returned.
+       * character position where the error has occured is returned.
        */
       int feed( std::string& data );
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -151,6 +151,11 @@ public:
 	 * Set actor seed for random variations and reload model
 	 */
 	virtual void SetActorSeed(u32 seed) = 0;
+
+	/**
+	 * Recalculate the actor name, applying modifiers.
+	 */
+	virtual void RecomputeActorName() = 0;
 
 	/**
 	 * Returns true if this entity should have a construction preview
