@@ -939,7 +939,7 @@ function getAurasTooltip(template)
 	{
 		let tooltip = sprintf(translate("%(auralabel)s %(aurainfo)s"), {
 			"auralabel": headerFont(sprintf(translate("%(auraname)s:"), {
-				"auraname": translate(auras[auraID].name)
+				"auraname": getEntityNames(auras[auraID])
 			})),
 			"aurainfo": bodyFont(translate(auras[auraID].description))
 		});
