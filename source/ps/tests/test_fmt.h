@@ -25,7 +25,7 @@ public:
 	void test_basic()
 	{
 		// Make test behave independent of current host locale
-		char* old = setlocale(LC_ALL, "en_US.UTF-8");
+		char* old = setlocale(LC_ALL, "C");
 
 		TS_ASSERT_EQUALS(fmt::sprintf("abc"), "abc");
 
