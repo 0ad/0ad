@@ -794,7 +794,7 @@ public:
 		{
 			for (size_t id = 0; id < m_LosPlayerCounts.size(); ++id)
 			{
-				debug_printf("player %li\n", id);
+				debug_printf("player %zu\n", id);
 				for (size_t i = 0; i < oldPlayerCounts[id].width(); ++i)
 				{
 					for (size_t j = 0; j < oldPlayerCounts[id].height(); ++j)
@@ -804,7 +804,7 @@ public:
 			}
 			for (size_t id = 0; id < m_LosPlayerCounts.size(); ++id)
 			{
-				debug_printf("player %li\n", id);
+				debug_printf("player %zu\n", id);
 				for (size_t i = 0; i < m_LosPlayerCounts[id].width(); ++i)
 				{
 					for (size_t j = 0; j < m_LosPlayerCounts[id].height(); ++j)
