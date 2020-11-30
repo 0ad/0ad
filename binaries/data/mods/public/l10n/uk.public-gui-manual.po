@@ -1,7 +1,7 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright (C) 2020 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
-# 
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
+# project.
 # Translators:
 # 009ee41e4c490a944b98e20dd0cc29dd_e31b370 <3a1cdc1a7c52cc59f91bdc5fed0a3a77_882482>, 2020
 # Dmytro Ryl'kov <tverdislav@ukr.net>, 2016-2017
@@ -18,27 +18,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-20 08:09+0000\n"
-"PO-Revision-Date: 2020-11-20 09:17+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2020-11-28 10:01+0000\n"
+"PO-Revision-Date: 2020-11-29 20:13+0000\n"
+"Last-Translator: Микола Франчук <thekolian1996@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: uk\n"
 "Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
-
-#: gui/manual/manual.xml:(caption):13
-msgid "Manual"
-msgstr "Посібник"
-
-#: gui/manual/manual.xml:(caption):21
-msgid "Close"
-msgstr "Закрити"
-
-#: gui/manual/manual.xml:(caption):26
-msgid "View Online"
-msgstr "Переглянути в мережі"
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual[font=\"sans-14\"]"
@@ -77,7 +65,7 @@ msgstr "Елементи управління та ігровий процес �
 
 #: gui/manual/intro.txt:10
 msgid "Basic controls (by default):"
-msgstr ""
+msgstr "Основні елементи управління (за замовчуванням):"
 
 #: gui/manual/intro.txt:11
 msgid "• Left-click to select units"
@@ -212,11 +200,11 @@ msgstr ""
 
 #: gui/manual/intro.txt:45
 msgid "  hotkey.console.toggle – Toggle console"
-msgstr ""
+msgstr "  hotkey.console.toggle – Перемкнути консоль"
 
 #: gui/manual/intro.txt:46
 msgid "  hotkey.fps.toggle – Toggle frame counter (FPS)"
-msgstr ""
+msgstr "  hotkey.fps.toggle – Перемкнути лічильник кадрів (FPS)"
 
 #: gui/manual/intro.txt:47
 msgid ""
@@ -227,29 +215,29 @@ msgstr ""
 #: gui/manual/intro.txt:48
 msgid ""
 "  hotkey.profile.save – Save current profiler data to “logs/profile.txt”"
-msgstr ""
+msgstr "  hotkey.profile.save – Зберегти дані поточного профайлера до “logs/profile.txt”"
 
 #: gui/manual/intro.txt:49
 msgid ""
 "  hotkey.screenshot – Take screenshot (in .png format, location is displayed"
 " in the top left of the GUI after the file has been saved, and can also be "
 "seen in the console/logs if you miss it there)"
-msgstr ""
+msgstr "  hotkey.screenshot – Зробити знімок екрана (у форматі .png, місцезнаходження відображено зверху зліва на графічному інтерфейсі користувача після того, як файл було збережено, а також його можна побачити в консолі/журналах, якщо ви його пропустите)"
 
 #: gui/manual/intro.txt:50
 msgid ""
 "  hotkey.bigscreenshot – Take huge screenshot (6400×4800 pixels, in .bmp "
 "format, location is displayed in the top left of the GUI after the file has "
 "been saved, and can also be seen in the console/logs if you miss it there)"
-msgstr ""
+msgstr "  hotkey.bigscreenshot – Зробити величезний знімок екрана (6400×4800 пікселів, у форматі .bmp, місцезнаходження відображено зверху зліва на графічному інтерфейсі користувача після того, як файл було збережено, а також його можна побачити в консолі/журналах, якщо ви його пропустите)"
 
 #: gui/manual/intro.txt:51
 msgid "  hotkey.tab.next – Switch to the next tab"
-msgstr ""
+msgstr "  hotkey.tab.next – Перемкнутися до наступної вкладки"
 
 #: gui/manual/intro.txt:52
 msgid "  hotkey.tab.prev – Switch to the previous tab"
-msgstr ""
+msgstr "  hotkey.tab.prev – Перемкнутися до попередньої вкладки"
 
 #: gui/manual/intro.txt:54
 msgid "[font=\"sans-bold-14\"]In Game[font=\"sans-14\"]"
@@ -281,11 +269,11 @@ msgstr "  Alt + Потрійно клацнути лівою кнопкою ми
 
 #: gui/manual/intro.txt:59
 msgid "  hotkey.quicksave – Quicksave"
-msgstr ""
+msgstr "  hotkey.quicksave – Швидке збереження"
 
 #: gui/manual/intro.txt:60
 msgid "  hotkey.quickload – Quickload"
-msgstr ""
+msgstr "  hotkey.quickload – Швидке завантаження"
 
 #: gui/manual/intro.txt:61
 msgid "  hotkey.session.gui.menu.toggle – Toggle menu"
@@ -297,15 +285,15 @@ msgstr ""
 
 #: gui/manual/intro.txt:63
 msgid "  hotkey.cancel – Close all dialogs (chat, menu)"
-msgstr ""
+msgstr "  hotkey.cancel – Закрити всі діалоги (бесіда, меню)"
 
 #: gui/manual/intro.txt:64
 msgid "  hotkey.confirm – Open chat or send message"
-msgstr ""
+msgstr "  hotkey.confirm – Відкрити бесіду або надіслати повідомлення"
 
 #: gui/manual/intro.txt:65
 msgid "  hotkey.teamchat – Send team chat"
-msgstr ""
+msgstr "  hotkey.teamchat – Надіслати командну бесіду"
 
 #: gui/manual/intro.txt:66
 msgid ""
@@ -315,7 +303,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:67
 msgid "  hotkey.pause – Pause or resume the game"
-msgstr ""
+msgstr "  hotkey.pause – Призупинити чи продовжити гру"
 
 #: gui/manual/intro.txt:68
 msgid ""
@@ -354,13 +342,13 @@ msgstr ""
 
 #: gui/manual/intro.txt:74
 msgid "  hotkey.selection.idlewarrior – Select idle fighter"
-msgstr ""
+msgstr "  hotkey.selection.idlewarrior – Вибрати незайнятого бійця"
 
 #: gui/manual/intro.txt:75
 msgid ""
 "  hotkey.selection.idleworker – Select idle worker (including citizen-"
 "soldiers)"
-msgstr ""
+msgstr "  hotkey.selection.idleworker – Вибрати незайнятого працівника (включаючи громадян-солдатів)"
 
 #: gui/manual/intro.txt:76
 msgid "  hotkey.selection.idleunit – Select idle unit"
@@ -368,17 +356,17 @@ msgstr ""
 
 #: gui/manual/intro.txt:77
 msgid "  hotkey.session.stop – Stop (halt) the currently selected units"
-msgstr ""
+msgstr "  hotkey.session.stop – Призупинити (зупинити) вибрані на даний момент підрозділи"
 
 #: gui/manual/intro.txt:78
 msgid "  hotkey.session.backtowork – The unit will go back to work"
-msgstr ""
+msgstr "  hotkey.session.backtowork – Юніт повернеться до роботи"
 
 #: gui/manual/intro.txt:79
 msgid ""
 "  hotkey.session.unload – Unload the garrisoned units of the selected "
 "structure(s)"
-msgstr ""
+msgstr "  hotkey.session.unload – Вивести гарнізовані підрозділи з вибраної споруди(уд)"
 
 #: gui/manual/intro.txt:80
 msgid ""
@@ -439,11 +427,11 @@ msgstr ""
 
 #: gui/manual/intro.txt:89
 msgid "  hotkey.summary – Toggle summary window"
-msgstr ""
+msgstr "  hotkey.summary – Перемкнути вікно підсумку."
 
 #: gui/manual/intro.txt:90
 msgid "  hotkey.lobby – Show the multiplayer lobby in a dialog window"
-msgstr ""
+msgstr "  hotkey.lobby – Показати багатокористувацьке лобі у діалоговому вікні"
 
 #: gui/manual/intro.txt:91
 msgid "  hotkey.session.gui.diplomacy.toggle – Toggle in-game diplomacy panel"
@@ -481,7 +469,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:100
 msgid "  hotkey.session.repair + Right Click on structure – Repair"
-msgstr ""
+msgstr "  hotkey.session.repair + Клацнути правою кнопкою миші на споруді – Ремонтувати"
 
 #: gui/manual/intro.txt:101
 msgid "  hotkey.session.patrol + Right Click – Patrol"
@@ -498,13 +486,13 @@ msgid ""
 "  hotkey.session.orderone + Right Click – Order one unit from the current "
 "selection to move/build/gather/etc. and unselect it. Used to quickly "
 "dispatch units with specific tasks"
-msgstr ""
+msgstr "  hotkey.session.orderone + Клацнути правою кнопкою миші – Наказати юніту з поточного вибору рухатись/спорудити/зібрати/тощо та зняти виділення з неї. Використовується для того, щоб швидко відправити підрозділи із конкретними завданнями"
 
 #: gui/manual/intro.txt:104
 msgid ""
 "  hotkey.session.batchtrain + Left Click when training units – Add units in "
 "batches (the batch size is 5 by default and can be changed in the options)"
-msgstr ""
+msgstr "  hotkey.session.batchtrain + Клацнути лівою кнопкою миші під час тренування підрозділів – Додати підрозділи у групах (розмір групи за замовчуванням становить 5 і може бути змінений у налаштунках)"
 
 #: gui/manual/intro.txt:105
 msgid ""
@@ -540,7 +528,7 @@ msgstr ""
 msgid ""
 "  hotkey.selection.woundedonly + Left Drag over units on map – Only select "
 "wounded units"
-msgstr ""
+msgstr "  hotkey.selection.woundedonly + Перетягнути, утримуючи ліву кнопку миші, над підрозділами на мапі – Вибрати тільки поранені підрозділи"
 
 #: gui/manual/intro.txt:111
 msgid ""
@@ -590,46 +578,46 @@ msgstr ""
 msgid ""
 "  hotkey.session.devcommands.toggle – Toggle developer overlay (with "
 "developer options)"
-msgstr ""
+msgstr "  hotkey.session.devcommands.toggle – Перемкнути накладання розробника (з налаштунками розробника)"
 
 #: gui/manual/intro.txt:121
 msgid ""
 "  hotkey.wireframe – Toggle wireframe mode (press once to get wireframes "
 "overlaid over the textured models, twice to get just the wireframes colored "
 "by the textures, thrice to get back to normal textured mode)"
-msgstr ""
+msgstr "  hotkey.wireframe – Перемкнути відображення каркасу (одне натискання вмикає відображення каркасів над текстурованими моделями, подвійне — лише каркаси, пофарбовані текстурами, потрійне — повертає у звичайний текстурований режим)"
 
 #: gui/manual/intro.txt:122
 msgid ""
 "  hotkey.silhouettes – Toggle unit silhouettes (might give a small "
 "performance boost)"
-msgstr ""
+msgstr "  hotkey.silhouettes – Перемкнути силуети юнітів (може надавати невеликий приріст продуктивності)"
 
 #: gui/manual/intro.txt:123
 msgid "  hotkey.showsky – Toggle sky"
-msgstr ""
+msgstr "  hotkey.showsky – Перемкнути небо"
 
 #: gui/manual/intro.txt:124
 msgid "  hotkey.session.diplomacycolors – Toggle diplomacy colors"
-msgstr ""
+msgstr "  hotkey.session.diplomacycolors – Перемкнути кольори дипломатії"
 
 #: gui/manual/intro.txt:125
 msgid ""
 "  hotkey.session.toggleattackrange – Toggle attack range visualizations of "
 "selected units and structures"
-msgstr ""
+msgstr "  hotkey.session.toggleattackrange – Перемкнути візуалізації дистанції атаки вибраних підрозділів та споруд"
 
 #: gui/manual/intro.txt:126
 msgid ""
 "  hotkey.session.toggleaurasrange – Toggle aura range visualizations of "
 "selected units and structures"
-msgstr ""
+msgstr "  hotkey.session.toggleaurasrange – Перемкнути візуалізації дистанції аури вибраних підрозділів та споруд"
 
 #: gui/manual/intro.txt:127
 msgid ""
 "  hotkey.session.togglehealrange – Toggle heal range visualizations of "
 "selected units"
-msgstr ""
+msgstr "  hotkey.session.togglehealrange – Перемкнути візуалізації дистанції зцілення вибраних підрозділів"
 
 #: gui/manual/intro.txt:129
 msgid "[font=\"sans-bold-14\"]Camera manipulation[font=\"sans-14\"]"
@@ -637,73 +625,73 @@ msgstr "[font=\"sans-bold-14\"]Маніпуляція з камерою[font=\"s
 
 #: gui/manual/intro.txt:130
 msgid "  hotkey.camera.up – Pan screen up"
-msgstr ""
+msgstr "  hotkey.camera.up – Панорамувати екран вгору"
 
 #: gui/manual/intro.txt:131
 msgid "  hotkey.camera.down – Pan screen down"
-msgstr ""
+msgstr "  hotkey.camera.down – Панорамувати екран вниз"
 
 #: gui/manual/intro.txt:132
 msgid "  hotkey.camera.left – Pan screen left"
-msgstr ""
+msgstr "  hotkey.camera.left – Панорамувати екран вліво"
 
 #: gui/manual/intro.txt:133
 msgid "  hotkey.camera.right – Pan screen right"
-msgstr ""
+msgstr "  hotkey.camera.right – Панорамувати екран вправо"
 
 #: gui/manual/intro.txt:134
 msgid "  hotkey.camera.rotate.up – Rotate camera to look upward"
-msgstr ""
+msgstr "  hotkey.camera.rotate.up – Обертати камеру, щоб дивитися вгору"
 
 #: gui/manual/intro.txt:135
 msgid "  hotkey.camera.rotate.down – Rotate camera to look downward"
-msgstr ""
+msgstr "  hotkey.camera.rotate.down – Обертати камеру, щоб дивитися вниз"
 
 #: gui/manual/intro.txt:136
 msgid "  hotkey.camera.rotate.cw – Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "  hotkey.camera.rotate.cw – Обертати камеру за годинниковою стрілкою навколо місцевості"
 
 #: gui/manual/intro.txt:137
 msgid ""
 "  hotkey.camera.rotate.ccw – Rotate camera counter-clockwise around terrain"
-msgstr ""
+msgstr "  hotkey.camera.rotate.ccw – Обертати камеру проти годинникової стрілки навколо місцевості"
 
 #: gui/manual/intro.txt:138
 msgid ""
 "  hotkey.camera.rotate.wheel.cw – Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "  hotkey.camera.rotate.wheel.cw – Обертати камеру за годинниковою стрілкою навколо місцевості"
 
 #: gui/manual/intro.txt:139
 msgid ""
 "  hotkey.camera.rotate.wheel.ccw – Rotate camera counter-clockwise around "
 "terrain"
-msgstr ""
+msgstr "  hotkey.camera.rotate.wheel.ccw – Обертати камеру проти годинникової стрілки навколо місцевості"
 
 #: gui/manual/intro.txt:140
 msgid ""
 "  hotkey.camera.follow – Follow the selected unit (move the camera to stop "
 "following the unit)"
-msgstr ""
+msgstr "  hotkey.camera.follow – Слідувати за вибраним юнітом (перемістити камеру, щоб призупинити слідування за юнітом)"
 
 #: gui/manual/intro.txt:141
 msgid "  hotkey.camera.reset – Reset camera zoom and orientation"
-msgstr ""
+msgstr "  hotkey.camera.reset – Скинути масштабування і орієнтування камери"
 
 #: gui/manual/intro.txt:142
 msgid ""
 "  hotkey.camera.zoom.in, hotkey.camera.zoom.wheel.in – Zoom in (keep pressed"
 " for continuous zoom)"
-msgstr ""
+msgstr "  hotkey.camera.zoom.in, hotkey.camera.zoom.wheel.in – Збільшити масштаб (утримувати натиснутим для тривалого збільшення)"
 
 #: gui/manual/intro.txt:143
 msgid ""
 "  hotkey.camera.zoom.out, hotkey.camera.zoom.wheel.out – Zoom out (keep "
 "pressed for continuous zoom)"
-msgstr ""
+msgstr "  hotkey.camera.zoom.out, hotkey.camera.zoom.wheel.out – Зменшити масштаб (утримувати натиснутим для тривалого зменшення)"
 
 #: gui/manual/intro.txt:144
 msgid "  hotkey.camera.pan – Keep pressed and move the mouse to pan"
-msgstr ""
+msgstr "  hotkey.camera.pan – Утримувати натиснутою і перемістити мишу, щоб панорамувати"
 
 #: gui/manual/intro.txt:146
 msgid "[font=\"sans-bold-14\"]During Structure Placement[font=\"sans-14\"]"
@@ -712,11 +700,11 @@ msgstr "[font=\"sans-bold-14\"]Під час розміщення споруди
 #: gui/manual/intro.txt:147
 msgid ""
 "  hotkey.session.rotate.ccw – Rotate structure 15 degrees counter-clockwise"
-msgstr ""
+msgstr "  hotkey.session.rotate.ccw – Обертати споруду на 15 градусів проти годинникової стрілки"
 
 #: gui/manual/intro.txt:148
 msgid "  hotkey.session.rotate.cw – Rotate structure 15 degrees clockwise"
-msgstr ""
+msgstr "  hotkey.session.rotate.cw – Обертати споруду на 15 градусів за годинниковою стрілкою"
 
 #: gui/manual/intro.txt:149
 msgid ""
@@ -730,16 +718,28 @@ msgstr "[font=\"sans-bold-14\"]Під час завантаження збере
 
 #: gui/manual/intro.txt:152
 msgid "  hotkey.cancel – Cancel"
-msgstr ""
+msgstr "  hotkey.cancel – Скасувати"
 
 #: gui/manual/intro.txt:153
 msgid ""
 "  hotkey.session.savedgames.delete – Delete the selected saved game, ask for"
 " confirmation"
-msgstr ""
+msgstr "  hotkey.session.savedgames.delete – Видалити вибрану збережену гру, запитати підтвердження"
 
 #: gui/manual/intro.txt:154
 msgid ""
 "    • With hotkey.session.savedgames.noconfirmation – Don't ask for "
 "confirmation"
 msgstr ""
+
+#: gui/manual/manual.xml:(caption):13
+msgid "Manual"
+msgstr "Посібник"
+
+#: gui/manual/manual.xml:(caption):21
+msgid "Close"
+msgstr "Закрити"
+
+#: gui/manual/manual.xml:(caption):26
+msgid "View Online"
+msgstr "Переглянути в мережі"

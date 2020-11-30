@@ -1,7 +1,7 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright (C) 2020 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
-# 
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
+# project.
 # Translators:
 # Ibai Oihanguren Sala <ibai@oihanguren.com>, 2014,2016
 # Thadah D. Denyse <juchuf@gmail.com>, 2015-2016
@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-20 08:08+0000\n"
+"POT-Creation-Date: 2020-11-28 10:01+0000\n"
 "PO-Revision-Date: 2020-11-20 19:38+0000\n"
 "Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
@@ -21,6 +21,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: eu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: gui/session/GameSpeedControl.xml:(tooltip):11
+msgid "Choose game speed"
+msgstr "Hautatu jokoaren abiadura"
 
 #: gui/session/Menu.js:41
 #, javascript-format
@@ -128,11 +132,537 @@ msgstr ", "
 msgid "Paused by %(players)s"
 msgstr "%(players)s-engatik gelditua"
 
+#: gui/session/PauseOverlay.xml:(caption):7
+msgid "Game Paused"
+msgstr "Jokoa pausatuta"
+
+#: gui/session/PauseOverlay.xml:(caption):11
+msgid "Click to Resume Game"
+msgstr "Egin klik jokora itzultzeko"
+
 #: gui/session/ResearchProgress.js:108 gui/session/selection_details.js:268
 #: gui/session/selection_details.js:284 gui/session/selection_panels.js:600
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
+
+#: gui/session/chat/ChatAddressees.js:88
+msgctxt "chat addressee"
+msgid "Everyone"
+msgstr "Guztiak"
+
+#: gui/session/chat/ChatAddressees.js:94
+msgctxt "chat addressee"
+msgid "Allies"
+msgstr "Aliatuak"
+
+#: gui/session/chat/ChatAddressees.js:95
+msgctxt "chat message context"
+msgid "Ally"
+msgstr "Aliatua"
+
+#: gui/session/chat/ChatAddressees.js:105
+msgctxt "chat addressee"
+msgid "Enemies"
+msgstr "Etsaiak"
+
+#: gui/session/chat/ChatAddressees.js:106
+msgctxt "chat message context"
+msgid "Enemy"
+msgstr "Etsaia"
+
+#: gui/session/chat/ChatAddressees.js:116
+msgctxt "chat addressee"
+msgid "Observers"
+msgstr "Ikusleak"
+
+#: gui/session/chat/ChatAddressees.js:117
+msgctxt "chat message context"
+msgid "Observer"
+msgstr "Ikuslea"
+
+#: gui/session/chat/ChatAddressees.js:124
+msgctxt "chat message context"
+msgid "Private"
+msgstr "Pribatua"
+
+#: gui/session/chat/ChatHistory.js:49
+#, javascript-format
+msgid "%(time)s %(message)s"
+msgstr "%(time)s %(message)s"
+
+#: gui/session/chat/ChatHistory.js:61
+#, javascript-format
+msgid "\\[%(time)s]"
+msgstr "\\[%(time)s]"
+
+#: gui/session/chat/ChatHistory.js:62
+msgid "HH:mm"
+msgstr "HH:mm"
+
+#: gui/session/chat/ChatHistory.js:82
+msgctxt "chat history filter"
+msgid "Chat and notifications"
+msgstr "Txat eta notifikazioak"
+
+#: gui/session/chat/ChatHistory.js:87
+msgctxt "chat history filter"
+msgid "Chat messages"
+msgstr "Txat mezuak"
+
+#: gui/session/chat/ChatHistory.js:92
+msgctxt "chat history filter"
+msgid "Players chat"
+msgstr "Jokalarien txat"
+
+#: gui/session/chat/ChatHistory.js:99
+msgctxt "chat history filter"
+msgid "Ally chat"
+msgstr "Aliatuen txat"
+
+#: gui/session/chat/ChatHistory.js:106
+msgctxt "chat history filter"
+msgid "Enemy chat"
+msgstr "Etsaien txat"
+
+#: gui/session/chat/ChatHistory.js:113
+msgctxt "chat history filter"
+msgid "Observer chat"
+msgstr "Ikusle-txata"
+
+#: gui/session/chat/ChatHistory.js:120
+msgctxt "chat history filter"
+msgid "Private chat"
+msgstr "Txat pribatua"
+
+#: gui/session/chat/ChatHistory.js:125
+msgctxt "chat history filter"
+msgid "Game notifications"
+msgstr "Partidaren jakinarazpenak"
+
+#: gui/session/chat/ChatHistory.js:130
+msgctxt "chat history filter"
+msgid "Network notifications"
+msgstr "Sarearen jakinarazpenak"
+
+#: gui/session/chat/ChatInput.js:31
+msgctxt "chat input"
+msgid "Type the message to send."
+msgstr "Idatzi bidaliko duzun mezua."
+
+#: gui/session/chat/ChatInput.js:37
+#, javascript-format
+msgid "Press %(hotkey)s to open the public chat."
+msgstr "Sakatu %(hotkey)s txat publikoa irekitzeko."
+
+#: gui/session/chat/ChatInput.js:40
+#, javascript-format
+msgid "Press %(hotkey)s to open the observer chat."
+msgstr "Sakatu %(hotkey)s ikusle-txata irekitzeko."
+
+#: gui/session/chat/ChatInput.js:41
+#, javascript-format
+msgid "Press %(hotkey)s to open the ally chat."
+msgstr "Sakatu %(hotkey)s aliatuen txata irekitzeko."
+
+#: gui/session/chat/ChatInput.js:43
+#, javascript-format
+msgid "Press %(hotkey)s to open the previously selected private chat."
+msgstr "Sakatu %(hotkey)s azken txat pribatua berirekitzeko."
+
+#. Translation: A player that left the game joins again
+#: gui/session/chat/ChatMessageFormatNetwork.js:23
+#, javascript-format
+msgid "%(player)s is starting to rejoin the game."
+msgstr "%(player)s jokora bueltatzen hasi da."
+
+#. Translation: A player joins the game for the first time
+#: gui/session/chat/ChatMessageFormatNetwork.js:25
+#, javascript-format
+msgid "%(player)s is starting to join the game."
+msgstr "%(player)s partidara batzen hasi da."
+
+#: gui/session/chat/ChatMessageFormatNetwork.js:34
+#, javascript-format
+msgid "%(player)s has left the game."
+msgstr "%(player)s partida utzi du."
+
+#: gui/session/chat/ChatMessageFormatNetwork.js:46
+#, javascript-format
+msgid "%(username)s has been banned"
+msgstr "%(username)s debekatua izan da"
+
+#: gui/session/chat/ChatMessageFormatNetwork.js:47
+#, javascript-format
+msgid "%(username)s has been kicked"
+msgstr "%(username)s kanporatua izan da"
+
+#. Translation: A player that left the game joins again
+#: gui/session/chat/ChatMessageFormatNetwork.js:64
+#, javascript-format
+msgid "%(player)s has rejoined the game."
+msgstr "%(player)s partidara bueltatu da."
+
+#. Translation: A player joins the game for the first time
+#: gui/session/chat/ChatMessageFormatNetwork.js:66
+#, javascript-format
+msgid "%(player)s has joined the game."
+msgstr "%(player)s partidara batu da."
+
+#: gui/session/chat/ChatMessageFormatPlayer.js:57
+msgid "no-context"
+msgstr "testuingururik ez"
+
+#: gui/session/chat/ChatMessageFormatPlayer.js:61
+#, javascript-format
+msgid "<%(user)s>"
+msgstr "<%(user)s>"
+
+#: gui/session/chat/ChatMessageFormatPlayer.js:159
+#, javascript-format
+msgid "(%(context)s) %(userTag)s %(message)s"
+msgstr "(%(context)s) %(userTag)s %(message)s"
+
+#: gui/session/chat/ChatMessageFormatPlayer.js:160
+#, javascript-format
+msgid "%(userTag)s %(message)s"
+msgstr "%(userTag)s %(message)s"
+
+#: gui/session/chat/ChatMessageFormatPlayer.js:163
+#, javascript-format
+msgid "(%(context)s) * %(user)s %(message)s"
+msgstr "(%(context)s) * %(user)s %(message)s"
+
+#: gui/session/chat/ChatMessageFormatPlayer.js:164
+#, javascript-format
+msgid "* %(user)s %(message)s"
+msgstr "* %(user)s %(message)s"
+
+#: gui/session/chat/ChatMessageFormatSimulation.js:16
+#, javascript-format
+msgid "Your livestock has been attacked by %(attacker)s!"
+msgstr "%(attacker)s(e)k zure abereak eraso ditu!"
+
+#: gui/session/chat/ChatMessageFormatSimulation.js:17
+#, javascript-format
+msgid "You have been attacked by %(attacker)s!"
+msgstr "%(attacker)s(e)k eraso zaitu!"
+
+#: gui/session/chat/ChatMessageFormatSimulation.js:38
+#, javascript-format
+msgid "%(player)s bartered %(amountGiven)s for %(amountGained)s."
+msgstr "%(player)s aldatu du %(amountGiven)s honengatik %(amountGained)s."
+
+#: gui/session/chat/ChatMessageFormatSimulation.js:70
+#, javascript-format
+msgid "You are now allied with %(player)s."
+msgstr "Orain %(player)s(r)ekin aliatuta zaude."
+
+#: gui/session/chat/ChatMessageFormatSimulation.js:71
+#, javascript-format
+msgid "You are now at war with %(player)s."
+msgstr "Orain %(player)s(r)ekin gerran zaude."
+
+#: gui/session/chat/ChatMessageFormatSimulation.js:72
+#, javascript-format
+msgid "You are now neutral with %(player)s."
+msgstr "Orain %(player)s(r)ekin neutrala zara."
+
+#: gui/session/chat/ChatMessageFormatSimulation.js:75
+#, javascript-format
+msgid "%(player)s is now allied with you."
+msgstr "%(player)s orain zurekin aliatua dago."
+
+#: gui/session/chat/ChatMessageFormatSimulation.js:76
+#, javascript-format
+msgid "%(player)s is now at war with you."
+msgstr "%(player)s orain zurekin gerran dago."
+
+#: gui/session/chat/ChatMessageFormatSimulation.js:77
+#, javascript-format
+msgid "%(player)s is now neutral with you."
+msgstr "%(player)s orain zurekin neutrala da."
+
+#: gui/session/chat/ChatMessageFormatSimulation.js:80
+#, javascript-format
+msgid "%(player)s is now allied with %(player2)s."
+msgstr "%(player)s orain %(player2)s(r)ekin aliatua dago."
+
+#: gui/session/chat/ChatMessageFormatSimulation.js:81
+#, javascript-format
+msgid "%(player)s is now at war with %(player2)s."
+msgstr "%(player)s orain %(player2)s(r)ekin gerran dago."
+
+#: gui/session/chat/ChatMessageFormatSimulation.js:82
+#, javascript-format
+msgid "%(player)s is now neutral with %(player2)s."
+msgstr "%(player)s orain %(player2)s(r)ekin neutrala da."
+
+#: gui/session/chat/ChatMessageFormatSimulation.js:98
+#, javascript-format
+msgid "%(player)s is advancing to the %(phaseName)s."
+msgstr "%(player)s  %(phaseName)sra aurreratzen ari da."
+
+#: gui/session/chat/ChatMessageFormatSimulation.js:100
+#, javascript-format
+msgid "The %(phaseName)s of %(player)s has been aborted."
+msgstr "%(player)s(r)en %(phaseName)s ezeztatu da."
+
+#: gui/session/chat/ChatMessageFormatSimulation.js:103
+#, javascript-format
+msgid "%(player)s has reached the %(phaseName)s."
+msgstr "%(player)s %(phaseName)sra heldu da. "
+
+#. Translation: This comma is used for separating first to penultimate
+#. elements in an
+#. enumeration.
+#: gui/session/chat/ChatMessageFormatSimulation.js:126
+msgid ", "
+msgstr "."
+
+#: gui/session/chat/ChatMessageFormatSimulation.js:142
+#, javascript-format
+msgid "%(player)s has sent you %(amounts)s."
+msgstr "%(player)s %(amounts)s bidali dizkizu."
+
+#: gui/session/chat/ChatMessageFormatSimulation.js:144
+#, javascript-format
+msgid "You have sent %(player2)s %(amounts)s."
+msgstr "Bidali duzu %(player2)s(e)ra %(amounts)s."
+
+#: gui/session/chat/ChatMessageFormatSimulation.js:149
+#, javascript-format
+msgid "%(player)s has sent %(player2)s %(amounts)s."
+msgstr "%(player)s %(player2)s(e)ri %(amounts)s bidali dizkio."
+
+#: gui/session/chat/chat_window.xml:(caption):19
+msgctxt "chat input"
+msgid "Filter:"
+msgstr "Iragazkia:"
+
+#: gui/session/chat/chat_window.xml:(caption):46
+msgctxt "chat input"
+msgid "To:"
+msgstr "Nora:"
+
+#: gui/session/chat/chat_window.xml:(caption):60
+msgctxt "chat input"
+msgid "Text:"
+msgstr "Testua:"
+
+#: gui/session/chat/chat_window.xml:(caption):72
+msgid "Cancel"
+msgstr "Utzi"
+
+#: gui/session/chat/chat_window.xml:(caption):86
+msgctxt "chat"
+msgid "History"
+msgstr "Historiala"
+
+#: gui/session/chat/chat_window.xml:(caption):91
+msgid "Send"
+msgstr "Bidali"
+
+#: gui/session/chat/chat_window.xml:(tooltip):29
+msgctxt "chat input"
+msgid "Filter the chat history."
+msgstr "Txat historiala filtratu."
+
+#: gui/session/chat/chat_window.xml:(tooltip):55
+msgctxt "chat input"
+msgid "Select chat addressee."
+msgstr "Aukeratu mezua nori zuzenduta doan."
+
+#: gui/session/developer_overlay/DeveloperOverlay.js:67
+msgid "The Developer Overlay was opened."
+msgstr "Garatzailearen geruza zabaldu egin da."
+
+#: gui/session/developer_overlay/DeveloperOverlay.js:68
+msgid "The Developer Overlay was closed."
+msgstr "Garatzailearen geruza itxi egin da."
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:15
+msgid "Control all units"
+msgstr "Kontrolatu unitate guztiak"
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:42
+msgid "Change perspective"
+msgstr "Aldatu perspektiba"
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:60
+msgid "Display selection state"
+msgstr "Aukeraketaren egoera erakutsi"
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:73
+msgid "Pathfinder overlay"
+msgstr "Ibilbideen sortzailearen geruza"
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:86
+msgid "Hierarchical pathfinder overlay"
+msgstr "Ibilbideen sortzaile hierarkikoaren geruza"
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:99
+msgid "Obstruction overlay"
+msgstr "Obstrukzio geruza"
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:112
+msgid "Unit motion overlay"
+msgstr "Unitate mugimendu geruza"
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:125
+msgid "Range overlay"
+msgstr "Irismen geruza"
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:138
+msgid "Bounding box overlay"
+msgstr "Barne-hartze kutxaren geruza"
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:151
+msgid "Restrict camera"
+msgstr "Mugatu kamera"
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:169
+msgid "Reveal map"
+msgstr "Erakutsi mapa"
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:195
+msgid "Enable time warp"
+msgstr "Aldi bateko eraldaketa gaitu"
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:208
+msgid "Promote selected units"
+msgstr "Aukeratutako unitateak igoarazi"
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:229
+msgid "Enable culling"
+msgstr "Gaitu sakrifizioa"
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:247
+msgid "Lock cull camera"
+msgstr "Blokeo kamera"
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:265
+msgid "Display camera frustum"
+msgstr "Frustum ikuskatze kamera"
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:283
+msgid "Display shadows frustum"
+msgstr "Frustum ikuskatze iluna"
+
+#: gui/session/developer_overlay/TimeWarp.js:65
+msgid "Time warp mode"
+msgstr "Aldi bateko eraldatzea"
+
+#: gui/session/developer_overlay/TimeWarp.js:66
+msgid ""
+"Note: time warp mode is a developer option, and not intended for use over "
+"long periods of time. Using it incorrectly may cause the game to run out of "
+"memory or crash."
+msgstr "Oharra: aldi bateko eraldatzea garapenaren aukera bat da, eta ez dago denbora tarte luzez erabiltzeko egina. Hau gaizki erabiltzeak jokoa blokea dezake edo memoriarik gabe utz dezan eragin dezake."
+
+#: gui/session/dialogs/yes_no.xml:(caption):11
+msgid "Question"
+msgstr "Galdera"
+
+#: gui/session/dialogs/yes_no.xml:(caption):15
+msgid "Yes or no?"
+msgstr "Bai ala ez?"
+
+#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):15
+msgid "Name"
+msgstr "Izena"
+
+#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):18
+msgid "Civilization"
+msgstr "Zibilizazioa"
+
+#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):21
+msgid "Team"
+msgstr "Taldea"
+
+#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):24
+msgid "Theirs"
+msgstr "Haiena"
+
+#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):27
+msgid "A"
+msgstr "A"
+
+#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):31
+msgid "N"
+msgstr "N"
+
+#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):35
+msgid "E"
+msgstr "E"
+
+#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):39
+msgid "Tribute"
+msgstr "Tributoa"
+
+#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):90
+#: gui/session/objectives/ObjectivesDialog.xml:(caption):43
+#: gui/session/trade/TradeDialog.xml:(caption):22
+msgid "Close"
+msgstr "Itxi"
+
+#: gui/session/diplomacy/DiplomacyDialogCeasefireCounter.js:27
+#, javascript-format
+msgctxt "ceasefire"
+msgid "Remaining ceasefire time: %(time)s."
+msgstr "Suetenerako gelditzen den denbora: %(time)s."
+
+#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):85
+#: gui/session/diplomacy/DiplomacyDialogColorsButton.js:30
+#: gui/session/minimap/MiniMapDiplomacyColorsButton.js:34
+msgid "Toggle Diplomacy Colors"
+msgstr "Aldatu Diplomazia-koloreak"
+
+#: gui/session/diplomacy/playercontrols/AttackRequestButton.js:38
+msgid "Request your allies to attack this enemy"
+msgstr "Eskatu zure aliatuei etsai hau erasotzea"
+
+#: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:75
+msgctxt "team"
+msgid "None"
+msgstr "Bat ere ez"
+
+#: gui/session/diplomacy/DiplomacyDialog.xml:(tooltip):28
+#: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:78
+msgid "Ally"
+msgstr "Aliatua"
+
+#: gui/session/diplomacy/DiplomacyDialog.xml:(tooltip):32
+#: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:81
+msgid "Neutral"
+msgstr "Neutrala"
+
+#: gui/session/diplomacy/DiplomacyDialog.xml:(tooltip):36
+#: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:84
+msgid "Enemy"
+msgstr "Etsaia"
+
+#: gui/session/diplomacy/playercontrols/SpyRequestButton.js:139
+msgid ""
+"Bribe a random unit from this player and share its vision during a limited "
+"period."
+msgstr "Jokalari honen unitate bati eskupekoa eman eta erabili bere ikuspegia denbora batez."
+
+#: gui/session/diplomacy/playercontrols/SpyRequestButton.js:142
+msgid "A failed bribe will cost you:"
+msgstr "Huts egindako bono bakar bat kostatuko zaizu:"
+
+#: gui/session/diplomacy/playercontrols/StanceButton.js:60
+msgctxt "diplomatic stance selection"
+msgid "x"
+msgstr "x"
+
+#: gui/session/diplomacy/playercontrols/TributeButton.js:112
+#, javascript-format
+msgid ""
+"Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
+"to tribute %(greaterAmount)s."
+msgstr "Ordaindu %(resourceAmount)s honek %(resourceType)s honi %(playerName)s. Maiús+klik emateko %(greaterAmount)s ordaina."
 
 #: gui/session/input.js:176
 #, javascript-format
@@ -151,6 +681,152 @@ msgstr[1] "Batez besteko irismen hobaria: %(range)s metro"
 #: gui/session/input.js:700
 msgid "Cannot build wall here!"
 msgstr "Ezin duzu hesia eraiki hemen!"
+
+#: gui/session/message_box/DeleteSelectionConfirmation.js:10
+msgid "Delete"
+msgstr "Ezabatu"
+
+#: gui/session/message_box/DeleteSelectionConfirmation.js:11
+msgid "Destroy everything currently selected?"
+msgstr "Suntsitu aukeratuta dagoen guztia?"
+
+#: gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/message_box/DeleteSelectionConfirmation.js:14
+#: gui/session/message_box/QuitConfirmation.js:14
+#: gui/session/message_box/QuitConfirmationMenu.js:49
+#: gui/session/message_box/ResignConfirmation.js:9
+msgid "No"
+msgstr "Ez"
+
+#: gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/message_box/DeleteSelectionConfirmation.js:17
+#: gui/session/message_box/QuitConfirmation.js:17
+#: gui/session/message_box/QuitConfirmationMenu.js:52
+#: gui/session/message_box/ResignConfirmation.js:12
+msgid "Yes"
+msgstr "Bai"
+
+#: gui/session/message_box/OutOfSyncNetwork.js:15
+#: gui/session/message_box/OutOfSyncReplay.js:26
+#, javascript-format
+msgid "Out-Of-Sync error on turn %(turn)s."
+msgstr "Sinkronizatze akatsa txandan %(turn)s."
+
+#: gui/session/message_box/OutOfSyncNetwork.js:19
+#, javascript-format
+msgctxt "Out-Of-Sync"
+msgid "Players: %(players)s"
+msgstr "Jokalariak: %(players)s"
+
+#: gui/session/message_box/OutOfSyncNetwork.js:24
+msgctxt "Out-Of-Sync"
+msgid "Your game state is identical to the hosts game state."
+msgstr "Zure partidaren egoera eta anfitrioiarena berdinak dira."
+
+#: gui/session/message_box/OutOfSyncNetwork.js:25
+msgctxt "Out-Of-Sync"
+msgid "Your game state differs from the hosts game state."
+msgstr "Zure partidaren egoera eta anfitrioiarena ezberdinak dira."
+
+#: gui/session/message_box/OutOfSyncNetwork.js:31
+msgctxt "Out-Of-Sync"
+msgid "Rejoining Multiplayer games with AIs is not supported yet!"
+msgstr "AArekin hainbat jokalarien partidetara bueltatzera oraindik ez dago erabilgarri!"
+
+#: gui/session/message_box/OutOfSyncNetwork.js:34
+msgctxt "Out-Of-Sync"
+msgid "Ensure all players use the same mods."
+msgstr "Ziurtatu jokalari guztiek mod berdinak erabiltzen dituztela."
+
+#: gui/session/message_box/OutOfSyncNetwork.js:35
+msgctxt "Out-Of-Sync"
+msgid "Click on \"Report a Bug\" in the main menu to help fix this."
+msgstr "Hau konpontzeko «Errorea Bidali» gainean klikatu menu nagusian."
+
+#: gui/session/message_box/OutOfSyncNetwork.js:36
+#, javascript-format
+msgctxt "Out-Of-Sync"
+msgid "Replay saved to %(filepath)s"
+msgstr "Errepikapena hemen gorderik %(filepath)s"
+
+#: gui/session/message_box/OutOfSyncNetwork.js:39
+#, javascript-format
+msgctxt "Out-Of-Sync"
+msgid "Dumping current state to %(filepath)s"
+msgstr "Oraingo egoera hemen jaurtiz %(filepath)s"
+
+#: gui/session/message_box/OutOfSyncNetwork.js:51
+#: gui/session/message_box/OutOfSyncReplay.js:23
+msgid "Out of Sync"
+msgstr "Sinkronizatu gabe"
+
+#. Translation: This is shown if replay is out of sync
+#: gui/session/message_box/OutOfSyncReplay.js:28
+msgid "Out-Of-Sync"
+msgstr "Sinkronizatu gabe"
+
+#: gui/session/message_box/QuitConfirmation.js:6
+#: gui/session/message_box/QuitConfirmationMenu.js:63
+#: gui/session/message_box/ResignConfirmation.js:5
+msgid "Confirmation"
+msgstr "Berrespena"
+
+#: gui/session/message_box/QuitConfirmation.js:9
+msgid "Are you sure you want to quit?"
+msgstr "Ziur zaude irten nahi duzula?"
+
+#: gui/session/message_box/QuitConfirmationDefeat.js:54
+msgid "VICTORIOUS!"
+msgstr "GARAILE!"
+
+#: gui/session/message_box/QuitConfirmationDefeat.js:55
+msgid "DEFEATED!"
+msgstr "PORROTA!"
+
+#: gui/session/message_box/QuitConfirmationDefeat.js:57
+msgid "Do you want to quit?"
+msgstr "Irten nahi duzu?"
+
+#: gui/session/message_box/QuitConfirmationMenu.js:33
+msgid ""
+"Are you sure you want to quit? Leaving will disconnect all other players."
+msgstr "Irten nahi duzula ziur zaude? Irtetzean beste jokalari guztiak deskonektatuko dira."
+
+#: gui/session/message_box/QuitConfirmationMenu.js:64
+msgid "Do you want to resign or will you return soon?"
+msgstr "Errenditu nahi duzu edo laster bueltatuko zara?"
+
+#: gui/session/message_box/QuitConfirmationMenu.js:67
+msgid "I will return"
+msgstr "Bueltatu egingo naiz"
+
+#: gui/session/message_box/QuitConfirmationMenu.js:71
+msgid "I resign"
+msgstr "Errenditzen naiz"
+
+#: gui/session/message_box/QuitConfirmationReplay.js:14
+msgctxt "replayFinished"
+msgid "Confirmation"
+msgstr "Berrespena"
+
+#: gui/session/message_box/QuitConfirmationReplay.js:17
+msgctxt "replayFinished"
+msgid "The replay has finished. Do you want to quit?"
+msgstr "Errepikapena bukatu da. Irten nahi duzu?"
+
+#: gui/session/message_box/QuitConfirmationReplay.js:22
+msgctxt "replayFinished"
+msgid "No"
+msgstr "Ez"
+
+#: gui/session/message_box/QuitConfirmationReplay.js:25
+msgctxt "replayFinished"
+msgid "Yes"
+msgstr "Bai"
+
+#: gui/session/message_box/ResignConfirmation.js:6
+msgid "Are you sure you want to resign?"
+msgstr "Errenditu nahi duzula ziur zaude?"
 
 #: gui/session/messages.js:88
 msgid "You have won!"
@@ -180,12 +856,16 @@ msgstr "Jarraitu argibideak."
 msgid "Unknown Player"
 msgstr "Jokalari ezezaguna"
 
+#: gui/session/minimap/MiniMapIdleWorkerButton.js:40
+msgid "Find idle worker"
+msgstr "Aurkitu langile libre bat"
+
 #: gui/session/selection_details.js:68
 #, javascript-format
 msgid "%(genericName)s — Packed"
 msgstr "%(genericName)s — Multzokatua"
 
-#: gui/session/selection_details.js:78 gui/session/chat/ChatAddressees.js:74
+#: gui/session/chat/ChatAddressees.js:74 gui/session/selection_details.js:78
 #, javascript-format
 msgid "\\[OFFLINE] %(player)s"
 msgstr "\\[DESKONEKTATUTA] %(player)s"
@@ -489,722 +1169,40 @@ msgstr "%(action)s %(number)s trebatzeko."
 msgid "Shift-click"
 msgstr "Maius-klik"
 
-#: gui/session/unit_actions.js:578
+#: gui/session/selection_panels_left/garrison_panel.xml:(tooltip):16
+#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):20
+msgid "Health"
+msgstr "Osasuna"
+
+#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):34
+msgid "Capture points"
+msgstr "Atzemate puntuak"
+
+#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):62
+msgid "Attack and Resistance"
+msgstr "Erasoa eta erresistentzia"
+
+#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):77
+msgid "Experience"
+msgstr "Esperientzia"
+
+#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):85
+msgid "Rank"
+msgstr "Maila"
+
+#: gui/session/selection_panels_right/queue_panel.xml:(tooltip):8
+msgid "Production queue"
+msgstr "Produkzio ilara"
+
+#: gui/session/session_objects/selection_group_icons.xml:(tooltip):7
 msgid ""
-"This is the origin trade market.\n"
-"Right-click to cancel trade route."
-msgstr "Hau da jatorrizko merkatua.\nEgin klik eskuinean ibilbide komertziala bertan behera uzteko."
-
-#: gui/session/unit_actions.js:638
-msgid "Origin trade market."
-msgstr "Merkatari hartu-emanen iturburua."
-
-#: gui/session/unit_actions.js:648
-msgid "Destination trade market."
-msgstr "Merkatari hartu-emanen helburua."
-
-#: gui/session/unit_actions.js:655
-msgid "Right-click to set as origin trade market"
-msgstr "Eskuin klika merkatu iturburu gisa zehazteko."
-
-#: gui/session/unit_actions.js:662 gui/session/unit_actions.js:1004
-msgid "This market is too close to the origin market."
-msgstr "Merkatu hori jatorrizko merkatutik gertuegi dago."
-
-#: gui/session/unit_actions.js:666
-msgid "Right-click to set as destination trade market."
-msgstr "Eskuin klika merkatu helburu gisa zehazteko."
-
-#: gui/session/unit_actions.js:727 gui/session/unit_actions.js:942
-#, javascript-format
-msgid "Current garrison: %(garrisoned)s/%(capacity)s"
-msgstr "Oraingo garnizioa:  %(garrisoned)s/ %(capacity)s"
-
-#: gui/session/unit_actions.js:995
-msgid "Right-click to establish a default route for new traders."
-msgstr "Eskuin klika gure merkatarientzako berezko ibilbide bat zehazteko."
-
-#: gui/session/unit_actions.js:999
-#, javascript-format
-msgid "Expected gain: %(gain)s"
-msgstr "Itxarondako irabazia: %(gain)s"
-
-#: gui/session/unit_actions.js:1129
-msgid "This entity cannot be controlled."
-msgid_plural "These entities cannot be controlled."
-msgstr[0] "Entitate hori ezin da kontrolatu."
-msgstr[1] "Entitate horiek ezin dira kontrolatu."
-
-#: gui/session/unit_actions.js:1166 gui/session/unit_actions.js:1494
-msgid "Unload All."
-msgstr "Hustu guztia."
-
-#: gui/session/unit_actions.js:1184
-msgid "Destroy the selected units or structures."
-msgstr "Aukeratutako egitura edo unitateak eraisten ditu."
-
-#: gui/session/unit_actions.js:1186
-#, javascript-format
-msgid "Use %(hotkey)s to avoid the confirmation dialog."
-msgstr "Sakatu  %(hotkey)s baieztapen elkarrizketa ekiditeko."
-
-#: gui/session/unit_actions.js:1233
-msgid "Abort the current order."
-msgstr "Ezeztatu oraingo agindua."
-
-#: gui/session/unit_actions.js:1252
-msgid "Order the selected units to garrison in a structure or unit."
-msgstr "Agindu aukeratutako unitateei egitura edo unitate batean guardan sartzea."
-
-#: gui/session/unit_actions.js:1275
-msgid "Unload"
-msgstr "Hustu"
-
-#: gui/session/unit_actions.js:1293
-msgid "Order the selected units to repair a structure, ship, or siege engine."
-msgstr "Aukeratutako unitateei agindu egitura, itsasontzi edo setio makina konpontzea."
-
-#: gui/session/unit_actions.js:1312
-msgid "Focus on Rally Point."
-msgstr "Joan elkartzen puntura."
-
-#: gui/session/unit_actions.js:1347
-msgid "Back to Work"
-msgstr "Bueltan lanera"
-
-#: gui/session/unit_actions.js:1366
-msgid "Order the selected units to guard a structure or unit."
-msgstr "Aukeratutako unitateei agindu egitura edo unitate bat babestea."
-
-#: gui/session/unit_actions.js:1384
-msgid "Remove guard"
-msgstr "Kendu zaindaria"
-
-#: gui/session/unit_actions.js:1401
-#: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
-#: gui/session/trade/TradeDialog.xml:(caption):9
-msgid "Barter & Trade"
-msgstr "Merkataritza eta Trukeak"
-
-#: gui/session/unit_actions.js:1419
-msgid "Patrol"
-msgstr "Patruilatu"
-
-#: gui/session/unit_actions.js:1420
-msgid "Attack all encountered enemy units while avoiding structures."
-msgstr "Bidean aurkituko diren etsaiak eraso egiturak saihestuz."
-
-#: gui/session/unit_actions.js:1446
-msgid "Press to allow allies to use this dropsite"
-msgstr "Sakatu aliatuek deskarga puntu hau erabil dezaten"
-
-#: gui/session/unit_actions.js:1450
-msgid "Press to prevent allies from using this dropsite"
-msgstr "Sakatu aliatuek deskarga puntu hau erabil dezaten ekiditeko"
-
-#: gui/session/unit_actions.js:1515
-msgid "You are allowed to use this dropsite"
-msgstr "Deskarga puntu hau erabil dezakezu"
-
-#: gui/session/unit_actions.js:1520
-msgid "The use of this dropsite is prohibited"
-msgstr "Ezin duzu deskarga puntu hau erabili"
-
-#: gui/session/unit_actions.js:1594
-msgid "The entity has to be killed before it can be gathered from"
-msgstr "Entitate honekin bukatu behar da bere baliabideez jabetzeko"
-
-#: gui/session/unit_actions.js:1597
-msgid ""
-"You cannot destroy this entity as you own less than half the capture points"
-msgstr "Ezin duzu entitate hau birrindu ez bai duzu atzitze puntu erdiak baino gehiago kontrolatzen "
-
-#: gui/session/unit_actions.js:1600
-msgid "This entity is undeletable"
-msgstr "Ezinezkoa da entitate hau ezabatzea"
-
-#: gui/session/chat/ChatAddressees.js:88
-msgctxt "chat addressee"
-msgid "Everyone"
-msgstr "Guztiak"
-
-#: gui/session/chat/ChatAddressees.js:94
-msgctxt "chat addressee"
-msgid "Allies"
-msgstr "Aliatuak"
-
-#: gui/session/chat/ChatAddressees.js:95
-msgctxt "chat message context"
-msgid "Ally"
-msgstr "Aliatua"
-
-#: gui/session/chat/ChatAddressees.js:105
-msgctxt "chat addressee"
-msgid "Enemies"
-msgstr "Etsaiak"
-
-#: gui/session/chat/ChatAddressees.js:106
-msgctxt "chat message context"
-msgid "Enemy"
-msgstr "Etsaia"
-
-#: gui/session/chat/ChatAddressees.js:116
-msgctxt "chat addressee"
-msgid "Observers"
-msgstr "Ikusleak"
-
-#: gui/session/chat/ChatAddressees.js:117
-msgctxt "chat message context"
-msgid "Observer"
-msgstr "Ikuslea"
-
-#: gui/session/chat/ChatAddressees.js:124
-msgctxt "chat message context"
-msgid "Private"
-msgstr "Pribatua"
-
-#: gui/session/chat/ChatHistory.js:49
-#, javascript-format
-msgid "%(time)s %(message)s"
-msgstr "%(time)s %(message)s"
-
-#: gui/session/chat/ChatHistory.js:61
-#, javascript-format
-msgid "\\[%(time)s]"
-msgstr "\\[%(time)s]"
-
-#: gui/session/chat/ChatHistory.js:62
-msgid "HH:mm"
-msgstr "HH:mm"
-
-#: gui/session/chat/ChatHistory.js:82
-msgctxt "chat history filter"
-msgid "Chat and notifications"
-msgstr "Txat eta notifikazioak"
-
-#: gui/session/chat/ChatHistory.js:87
-msgctxt "chat history filter"
-msgid "Chat messages"
-msgstr "Txat mezuak"
-
-#: gui/session/chat/ChatHistory.js:92
-msgctxt "chat history filter"
-msgid "Players chat"
-msgstr "Jokalarien txat"
-
-#: gui/session/chat/ChatHistory.js:99
-msgctxt "chat history filter"
-msgid "Ally chat"
-msgstr "Aliatuen txat"
-
-#: gui/session/chat/ChatHistory.js:106
-msgctxt "chat history filter"
-msgid "Enemy chat"
-msgstr "Etsaien txat"
-
-#: gui/session/chat/ChatHistory.js:113
-msgctxt "chat history filter"
-msgid "Observer chat"
-msgstr "Ikusle-txata"
-
-#: gui/session/chat/ChatHistory.js:120
-msgctxt "chat history filter"
-msgid "Private chat"
-msgstr "Txat pribatua"
-
-#: gui/session/chat/ChatHistory.js:125
-msgctxt "chat history filter"
-msgid "Game notifications"
-msgstr "Partidaren jakinarazpenak"
-
-#: gui/session/chat/ChatHistory.js:130
-msgctxt "chat history filter"
-msgid "Network notifications"
-msgstr "Sarearen jakinarazpenak"
-
-#: gui/session/chat/ChatInput.js:31
-msgctxt "chat input"
-msgid "Type the message to send."
-msgstr "Idatzi bidaliko duzun mezua."
-
-#: gui/session/chat/ChatInput.js:37
-#, javascript-format
-msgid "Press %(hotkey)s to open the public chat."
-msgstr "Sakatu %(hotkey)s txat publikoa irekitzeko."
-
-#: gui/session/chat/ChatInput.js:40
-#, javascript-format
-msgid "Press %(hotkey)s to open the observer chat."
-msgstr "Sakatu %(hotkey)s ikusle-txata irekitzeko."
-
-#: gui/session/chat/ChatInput.js:41
-#, javascript-format
-msgid "Press %(hotkey)s to open the ally chat."
-msgstr "Sakatu %(hotkey)s aliatuen txata irekitzeko."
-
-#: gui/session/chat/ChatInput.js:43
-#, javascript-format
-msgid "Press %(hotkey)s to open the previously selected private chat."
-msgstr "Sakatu %(hotkey)s azken txat pribatua berirekitzeko."
-
-#. Translation: A player that left the game joins again
-#: gui/session/chat/ChatMessageFormatNetwork.js:23
-#, javascript-format
-msgid "%(player)s is starting to rejoin the game."
-msgstr "%(player)s jokora bueltatzen hasi da."
-
-#. Translation: A player joins the game for the first time
-#: gui/session/chat/ChatMessageFormatNetwork.js:25
-#, javascript-format
-msgid "%(player)s is starting to join the game."
-msgstr "%(player)s partidara batzen hasi da."
-
-#: gui/session/chat/ChatMessageFormatNetwork.js:34
-#, javascript-format
-msgid "%(player)s has left the game."
-msgstr "%(player)s partida utzi du."
-
-#: gui/session/chat/ChatMessageFormatNetwork.js:46
-#, javascript-format
-msgid "%(username)s has been banned"
-msgstr "%(username)s debekatua izan da"
-
-#: gui/session/chat/ChatMessageFormatNetwork.js:47
-#, javascript-format
-msgid "%(username)s has been kicked"
-msgstr "%(username)s kanporatua izan da"
-
-#. Translation: A player that left the game joins again
-#: gui/session/chat/ChatMessageFormatNetwork.js:64
-#, javascript-format
-msgid "%(player)s has rejoined the game."
-msgstr "%(player)s partidara bueltatu da."
-
-#. Translation: A player joins the game for the first time
-#: gui/session/chat/ChatMessageFormatNetwork.js:66
-#, javascript-format
-msgid "%(player)s has joined the game."
-msgstr "%(player)s partidara batu da."
-
-#: gui/session/chat/ChatMessageFormatPlayer.js:57
-msgid "no-context"
-msgstr "testuingururik ez"
-
-#: gui/session/chat/ChatMessageFormatPlayer.js:61
-#, javascript-format
-msgid "<%(user)s>"
-msgstr "<%(user)s>"
-
-#: gui/session/chat/ChatMessageFormatPlayer.js:159
-#, javascript-format
-msgid "(%(context)s) %(userTag)s %(message)s"
-msgstr "(%(context)s) %(userTag)s %(message)s"
-
-#: gui/session/chat/ChatMessageFormatPlayer.js:160
-#, javascript-format
-msgid "%(userTag)s %(message)s"
-msgstr "%(userTag)s %(message)s"
-
-#: gui/session/chat/ChatMessageFormatPlayer.js:163
-#, javascript-format
-msgid "(%(context)s) * %(user)s %(message)s"
-msgstr "(%(context)s) * %(user)s %(message)s"
-
-#: gui/session/chat/ChatMessageFormatPlayer.js:164
-#, javascript-format
-msgid "* %(user)s %(message)s"
-msgstr "* %(user)s %(message)s"
-
-#: gui/session/chat/ChatMessageFormatSimulation.js:16
-#, javascript-format
-msgid "Your livestock has been attacked by %(attacker)s!"
-msgstr "%(attacker)s(e)k zure abereak eraso ditu!"
-
-#: gui/session/chat/ChatMessageFormatSimulation.js:17
-#, javascript-format
-msgid "You have been attacked by %(attacker)s!"
-msgstr "%(attacker)s(e)k eraso zaitu!"
-
-#: gui/session/chat/ChatMessageFormatSimulation.js:38
-#, javascript-format
-msgid "%(player)s bartered %(amountGiven)s for %(amountGained)s."
-msgstr "%(player)s aldatu du %(amountGiven)s honengatik %(amountGained)s."
-
-#: gui/session/chat/ChatMessageFormatSimulation.js:70
-#, javascript-format
-msgid "You are now allied with %(player)s."
-msgstr "Orain %(player)s(r)ekin aliatuta zaude."
-
-#: gui/session/chat/ChatMessageFormatSimulation.js:71
-#, javascript-format
-msgid "You are now at war with %(player)s."
-msgstr "Orain %(player)s(r)ekin gerran zaude."
-
-#: gui/session/chat/ChatMessageFormatSimulation.js:72
-#, javascript-format
-msgid "You are now neutral with %(player)s."
-msgstr "Orain %(player)s(r)ekin neutrala zara."
-
-#: gui/session/chat/ChatMessageFormatSimulation.js:75
-#, javascript-format
-msgid "%(player)s is now allied with you."
-msgstr "%(player)s orain zurekin aliatua dago."
-
-#: gui/session/chat/ChatMessageFormatSimulation.js:76
-#, javascript-format
-msgid "%(player)s is now at war with you."
-msgstr "%(player)s orain zurekin gerran dago."
-
-#: gui/session/chat/ChatMessageFormatSimulation.js:77
-#, javascript-format
-msgid "%(player)s is now neutral with you."
-msgstr "%(player)s orain zurekin neutrala da."
-
-#: gui/session/chat/ChatMessageFormatSimulation.js:80
-#, javascript-format
-msgid "%(player)s is now allied with %(player2)s."
-msgstr "%(player)s orain %(player2)s(r)ekin aliatua dago."
-
-#: gui/session/chat/ChatMessageFormatSimulation.js:81
-#, javascript-format
-msgid "%(player)s is now at war with %(player2)s."
-msgstr "%(player)s orain %(player2)s(r)ekin gerran dago."
-
-#: gui/session/chat/ChatMessageFormatSimulation.js:82
-#, javascript-format
-msgid "%(player)s is now neutral with %(player2)s."
-msgstr "%(player)s orain %(player2)s(r)ekin neutrala da."
-
-#: gui/session/chat/ChatMessageFormatSimulation.js:98
-#, javascript-format
-msgid "%(player)s is advancing to the %(phaseName)s."
-msgstr "%(player)s  %(phaseName)sra aurreratzen ari da."
-
-#: gui/session/chat/ChatMessageFormatSimulation.js:100
-#, javascript-format
-msgid "The %(phaseName)s of %(player)s has been aborted."
-msgstr "%(player)s(r)en %(phaseName)s ezeztatu da."
-
-#: gui/session/chat/ChatMessageFormatSimulation.js:103
-#, javascript-format
-msgid "%(player)s has reached the %(phaseName)s."
-msgstr "%(player)s %(phaseName)sra heldu da. "
-
-#. Translation: This comma is used for separating first to penultimate
-#. elements in an enumeration.
-#: gui/session/chat/ChatMessageFormatSimulation.js:126
-msgid ", "
-msgstr "."
-
-#: gui/session/chat/ChatMessageFormatSimulation.js:142
-#, javascript-format
-msgid "%(player)s has sent you %(amounts)s."
-msgstr "%(player)s %(amounts)s bidali dizkizu."
-
-#: gui/session/chat/ChatMessageFormatSimulation.js:144
-#, javascript-format
-msgid "You have sent %(player2)s %(amounts)s."
-msgstr "Bidali duzu %(player2)s(e)ra %(amounts)s."
-
-#: gui/session/chat/ChatMessageFormatSimulation.js:149
-#, javascript-format
-msgid "%(player)s has sent %(player2)s %(amounts)s."
-msgstr "%(player)s %(player2)s(e)ri %(amounts)s bidali dizkio."
-
-#: gui/session/developer_overlay/DeveloperOverlay.js:67
-msgid "The Developer Overlay was opened."
-msgstr "Garatzailearen geruza zabaldu egin da."
-
-#: gui/session/developer_overlay/DeveloperOverlay.js:68
-msgid "The Developer Overlay was closed."
-msgstr "Garatzailearen geruza itxi egin da."
-
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:15
-msgid "Control all units"
-msgstr "Kontrolatu unitate guztiak"
-
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:42
-msgid "Change perspective"
-msgstr "Aldatu perspektiba"
-
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:60
-msgid "Display selection state"
-msgstr "Aukeraketaren egoera erakutsi"
-
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:73
-msgid "Pathfinder overlay"
-msgstr "Ibilbideen sortzailearen geruza"
-
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:86
-msgid "Hierarchical pathfinder overlay"
-msgstr "Ibilbideen sortzaile hierarkikoaren geruza"
-
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:99
-msgid "Obstruction overlay"
-msgstr "Obstrukzio geruza"
-
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:112
-msgid "Unit motion overlay"
-msgstr "Unitate mugimendu geruza"
-
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:125
-msgid "Range overlay"
-msgstr "Irismen geruza"
-
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:138
-msgid "Bounding box overlay"
-msgstr "Barne-hartze kutxaren geruza"
-
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:151
-msgid "Restrict camera"
-msgstr "Mugatu kamera"
-
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:169
-msgid "Reveal map"
-msgstr "Erakutsi mapa"
-
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:195
-msgid "Enable time warp"
-msgstr "Aldi bateko eraldaketa gaitu"
-
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:208
-msgid "Promote selected units"
-msgstr "Aukeratutako unitateak igoarazi"
-
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:229
-msgid "Enable culling"
-msgstr "Gaitu sakrifizioa"
-
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:247
-msgid "Lock cull camera"
-msgstr "Blokeo kamera"
-
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:265
-msgid "Display camera frustum"
-msgstr "Frustum ikuskatze kamera"
-
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:283
-msgid "Display shadows frustum"
-msgstr "Frustum ikuskatze iluna"
-
-#: gui/session/developer_overlay/TimeWarp.js:65
-msgid "Time warp mode"
-msgstr "Aldi bateko eraldatzea"
-
-#: gui/session/developer_overlay/TimeWarp.js:66
-msgid ""
-"Note: time warp mode is a developer option, and not intended for use over "
-"long periods of time. Using it incorrectly may cause the game to run out of "
-"memory or crash."
-msgstr "Oharra: aldi bateko eraldatzea garapenaren aukera bat da, eta ez dago denbora tarte luzez erabiltzeko egina. Hau gaizki erabiltzeak jokoa blokea dezake edo memoriarik gabe utz dezan eragin dezake."
-
-#: gui/session/diplomacy/DiplomacyDialogCeasefireCounter.js:27
-#, javascript-format
-msgctxt "ceasefire"
-msgid "Remaining ceasefire time: %(time)s."
-msgstr "Suetenerako gelditzen den denbora: %(time)s."
-
-#: gui/session/diplomacy/DiplomacyDialogColorsButton.js:30
-#: gui/session/minimap/MiniMapDiplomacyColorsButton.js:34
-#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):85
-msgid "Toggle Diplomacy Colors"
-msgstr "Aldatu Diplomazia-koloreak"
-
-#: gui/session/diplomacy/playercontrols/AttackRequestButton.js:38
-msgid "Request your allies to attack this enemy"
-msgstr "Eskatu zure aliatuei etsai hau erasotzea"
-
-#: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:75
-msgctxt "team"
-msgid "None"
-msgstr "Bat ere ez"
-
-#: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:78
-#: gui/session/diplomacy/DiplomacyDialog.xml:(tooltip):28
-msgid "Ally"
-msgstr "Aliatua"
-
-#: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:81
-#: gui/session/diplomacy/DiplomacyDialog.xml:(tooltip):32
-msgid "Neutral"
-msgstr "Neutrala"
-
-#: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:84
-#: gui/session/diplomacy/DiplomacyDialog.xml:(tooltip):36
-msgid "Enemy"
-msgstr "Etsaia"
-
-#: gui/session/diplomacy/playercontrols/SpyRequestButton.js:139
-msgid ""
-"Bribe a random unit from this player and share its vision during a limited "
-"period."
-msgstr "Jokalari honen unitate bati eskupekoa eman eta erabili bere ikuspegia denbora batez."
-
-#: gui/session/diplomacy/playercontrols/SpyRequestButton.js:142
-msgid "A failed bribe will cost you:"
-msgstr "Huts egindako bono bakar bat kostatuko zaizu:"
-
-#: gui/session/diplomacy/playercontrols/StanceButton.js:60
-msgctxt "diplomatic stance selection"
-msgid "x"
-msgstr "x"
-
-#: gui/session/diplomacy/playercontrols/TributeButton.js:112
-#, javascript-format
-msgid ""
-"Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
-"to tribute %(greaterAmount)s."
-msgstr "Ordaindu %(resourceAmount)s honek %(resourceType)s honi %(playerName)s. Maiús+klik emateko %(greaterAmount)s ordaina."
-
-#: gui/session/message_box/DeleteSelectionConfirmation.js:10
-msgid "Delete"
-msgstr "Ezabatu"
-
-#: gui/session/message_box/DeleteSelectionConfirmation.js:11
-msgid "Destroy everything currently selected?"
-msgstr "Suntsitu aukeratuta dagoen guztia?"
-
-#: gui/session/message_box/DeleteSelectionConfirmation.js:14
-#: gui/session/message_box/QuitConfirmation.js:14
-#: gui/session/message_box/QuitConfirmationMenu.js:49
-#: gui/session/message_box/ResignConfirmation.js:9
-#: gui/session/dialogs/yes_no.xml:(caption):24
-msgid "No"
-msgstr "Ez"
-
-#: gui/session/message_box/DeleteSelectionConfirmation.js:17
-#: gui/session/message_box/QuitConfirmation.js:17
-#: gui/session/message_box/QuitConfirmationMenu.js:52
-#: gui/session/message_box/ResignConfirmation.js:12
-#: gui/session/dialogs/yes_no.xml:(caption):19
-msgid "Yes"
-msgstr "Bai"
-
-#: gui/session/message_box/OutOfSyncNetwork.js:15
-#: gui/session/message_box/OutOfSyncReplay.js:26
-#, javascript-format
-msgid "Out-Of-Sync error on turn %(turn)s."
-msgstr "Sinkronizatze akatsa txandan %(turn)s."
-
-#: gui/session/message_box/OutOfSyncNetwork.js:19
-#, javascript-format
-msgctxt "Out-Of-Sync"
-msgid "Players: %(players)s"
-msgstr "Jokalariak: %(players)s"
-
-#: gui/session/message_box/OutOfSyncNetwork.js:24
-msgctxt "Out-Of-Sync"
-msgid "Your game state is identical to the hosts game state."
-msgstr "Zure partidaren egoera eta anfitrioiarena berdinak dira."
-
-#: gui/session/message_box/OutOfSyncNetwork.js:25
-msgctxt "Out-Of-Sync"
-msgid "Your game state differs from the hosts game state."
-msgstr "Zure partidaren egoera eta anfitrioiarena ezberdinak dira."
-
-#: gui/session/message_box/OutOfSyncNetwork.js:31
-msgctxt "Out-Of-Sync"
-msgid "Rejoining Multiplayer games with AIs is not supported yet!"
-msgstr "AArekin hainbat jokalarien partidetara bueltatzera oraindik ez dago erabilgarri!"
-
-#: gui/session/message_box/OutOfSyncNetwork.js:34
-msgctxt "Out-Of-Sync"
-msgid "Ensure all players use the same mods."
-msgstr "Ziurtatu jokalari guztiek mod berdinak erabiltzen dituztela."
-
-#: gui/session/message_box/OutOfSyncNetwork.js:35
-msgctxt "Out-Of-Sync"
-msgid "Click on \"Report a Bug\" in the main menu to help fix this."
-msgstr "Hau konpontzeko «Errorea Bidali» gainean klikatu menu nagusian."
-
-#: gui/session/message_box/OutOfSyncNetwork.js:36
-#, javascript-format
-msgctxt "Out-Of-Sync"
-msgid "Replay saved to %(filepath)s"
-msgstr "Errepikapena hemen gorderik %(filepath)s"
-
-#: gui/session/message_box/OutOfSyncNetwork.js:39
-#, javascript-format
-msgctxt "Out-Of-Sync"
-msgid "Dumping current state to %(filepath)s"
-msgstr "Oraingo egoera hemen jaurtiz %(filepath)s"
-
-#: gui/session/message_box/OutOfSyncNetwork.js:51
-#: gui/session/message_box/OutOfSyncReplay.js:23
-msgid "Out of Sync"
-msgstr "Sinkronizatu gabe"
-
-#. Translation: This is shown if replay is out of sync
-#: gui/session/message_box/OutOfSyncReplay.js:28
-msgid "Out-Of-Sync"
-msgstr "Sinkronizatu gabe"
-
-#: gui/session/message_box/QuitConfirmation.js:6
-#: gui/session/message_box/QuitConfirmationMenu.js:63
-#: gui/session/message_box/ResignConfirmation.js:5
-msgid "Confirmation"
-msgstr "Berrespena"
-
-#: gui/session/message_box/QuitConfirmation.js:9
-msgid "Are you sure you want to quit?"
-msgstr "Ziur zaude irten nahi duzula?"
-
-#: gui/session/message_box/QuitConfirmationDefeat.js:54
-msgid "VICTORIOUS!"
-msgstr "GARAILE!"
-
-#: gui/session/message_box/QuitConfirmationDefeat.js:55
-msgid "DEFEATED!"
-msgstr "PORROTA!"
-
-#: gui/session/message_box/QuitConfirmationDefeat.js:57
-msgid "Do you want to quit?"
-msgstr "Irten nahi duzu?"
-
-#: gui/session/message_box/QuitConfirmationMenu.js:33
-msgid ""
-"Are you sure you want to quit? Leaving will disconnect all other players."
-msgstr "Irten nahi duzula ziur zaude? Irtetzean beste jokalari guztiak deskonektatuko dira."
-
-#: gui/session/message_box/QuitConfirmationMenu.js:64
-msgid "Do you want to resign or will you return soon?"
-msgstr "Errenditu nahi duzu edo laster bueltatuko zara?"
-
-#: gui/session/message_box/QuitConfirmationMenu.js:67
-msgid "I will return"
-msgstr "Bueltatu egingo naiz"
-
-#: gui/session/message_box/QuitConfirmationMenu.js:71
-msgid "I resign"
-msgstr "Errenditzen naiz"
-
-#: gui/session/message_box/QuitConfirmationReplay.js:14
-msgctxt "replayFinished"
-msgid "Confirmation"
-msgstr "Berrespena"
-
-#: gui/session/message_box/QuitConfirmationReplay.js:17
-msgctxt "replayFinished"
-msgid "The replay has finished. Do you want to quit?"
-msgstr "Errepikapena bukatu da. Irten nahi duzu?"
-
-#: gui/session/message_box/QuitConfirmationReplay.js:22
-msgctxt "replayFinished"
-msgid "No"
-msgstr "Ez"
-
-#: gui/session/message_box/QuitConfirmationReplay.js:25
-msgctxt "replayFinished"
-msgid "Yes"
-msgstr "Bai"
-
-#: gui/session/message_box/ResignConfirmation.js:6
-msgid "Are you sure you want to resign?"
-msgstr "Errenditu nahi duzula ziur zaude?"
-
-#: gui/session/minimap/MiniMapIdleWorkerButton.js:40
-msgid "Find idle worker"
-msgstr "Aurkitu langile libre bat"
+"Click to select grouped units, double-click to focus the grouped units and "
+"right-click to disband the group."
+msgstr "Klikatu elkartutako unitateak aukeratzeko, klik bikoitza elkartutako unitateak erakusteko eta eskuin klika taldea banantzeko."
+
+#: gui/session/top_panel/BuildLabel.xml:(caption):6
+msgid "ALPHA XXIV"
+msgstr "ALFA XXIV"
 
 #: gui/session/top_panel/CivIcon.js:77
 #, javascript-format
@@ -1255,19 +1253,41 @@ msgstr "Gehieneko biztanleria: %(popCap)s"
 msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
 msgstr "%(popCount)s/ %(popLimit)s/ %(popMax)s"
 
+#: gui/session/top_panel/FollowPlayer.xml:(caption):15
+#: gui/session/top_panel/FollowPlayer.xml:(tooltip):11
+msgctxt "observer mode"
+msgid "Follow Player"
+msgstr "Jarraitu jokalaria"
+
+#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):10
+#: gui/session/top_panel/IconButtons/DiplomacyDialogButton.js:29
+msgid "Diplomacy"
+msgstr "Diplomazia"
+
+#: gui/session/top_panel/IconButtons/GameSpeedButton.xml:(tooltip):9
+msgid "Game Speed"
+msgstr "Jokoaren abiadura"
+
+#: gui/session/objectives/ObjectivesDialog.xml:(caption):15
+#: gui/session/top_panel/IconButtons/ObjectivesDialogButton.js:23
+msgid "Objectives"
+msgstr "Helburuak"
+
+#: gui/session/top_panel/MenuButton.xml:(caption):15
+msgid "Menu"
+msgstr "Menua"
+
 #: gui/session/top_panel/PlayerViewControl.js:123
 msgid "Observer"
 msgstr "Ikuslea"
 
-#: gui/session/top_panel/IconButtons/DiplomacyDialogButton.js:29
-#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):10
-msgid "Diplomacy"
-msgstr "Diplomazia"
+#: gui/session/top_panel/PlayerViewControl.xml:(caption):17
+msgid "Observer Mode"
+msgstr "Ikusle modua"
 
-#: gui/session/top_panel/IconButtons/ObjectivesDialogButton.js:23
-#: gui/session/objectives/ObjectivesDialog.xml:(caption):15
-msgid "Objectives"
-msgstr "Helburuak"
+#: gui/session/top_panel/PlayerViewControl.xml:(tooltip):13
+msgid "Choose player to view"
+msgstr "Aukeratu ikusi nahi duzun jokalaria"
 
 #: gui/session/trade/BarterButton.js:100
 #, javascript-format
@@ -1291,6 +1311,22 @@ msgctxt "sell action"
 msgid "-%(amount)s"
 msgstr "-%(amount)s"
 
+#: gui/session/trade/BarterPanel.xml:(caption):5
+msgid "Barter"
+msgstr "Trukea"
+
+#: gui/session/trade/BarterPanel.xml:(caption):13
+msgid "Sell:"
+msgstr "Saldu:"
+
+#: gui/session/trade/BarterPanel.xml:(caption):17
+msgid "Buy:"
+msgstr "Erosi:"
+
+#: gui/session/trade/BarterPanel.xml:(caption):21
+msgid "No Markets Available"
+msgstr "Merkaturi Ez Aukeran"
+
 #: gui/session/trade/TradeButton.js:56
 #, javascript-format
 msgctxt "trading good ratio"
@@ -1313,6 +1349,14 @@ msgid ""
 "will be sold for the displayed quantity of the lower. Press and hold "
 "%(hotkey)s to temporarily multiply the traded amount by %(multiplier)s."
 msgstr "Has zaitez saldu nahi duzun baliabidea aukeratuz goiko ilaratik. Beheko ilarako botoiak sakatzen diren bakoitzeko, %(quantity)sgoiko baliabidea salduko da beheran erakutsitako kopururako. %(hotkey)sSakatu eta sakatuta eduki adostutako kopurua aldi baterako %(multiplier)stik biderkatzeko."
+
+#: gui/session/trade/TradePanel.xml:(caption):5
+msgid "Trade"
+msgstr "Salerosi"
+
+#: gui/session/trade/TradePanel.xml:(caption):14
+msgid "Resources:"
+msgstr "Baliabideak:"
 
 #: gui/session/trade/TraderStatusTextLand.js:15
 #, javascript-format
@@ -1423,183 +1467,140 @@ msgstr[1] "%(numberOfShipTraders)s merkantzia ontzi geldi"
 msgid "There are no merchant ships."
 msgstr "Ez dago merkantzia ontzirik"
 
-#: gui/session/GameSpeedControl.xml:(tooltip):11
-msgid "Choose game speed"
-msgstr "Hautatu jokoaren abiadura"
-
-#: gui/session/PauseOverlay.xml:(caption):7
-msgid "Game Paused"
-msgstr "Jokoa pausatuta"
-
-#: gui/session/PauseOverlay.xml:(caption):11
-msgid "Click to Resume Game"
-msgstr "Egin klik jokora itzultzeko"
-
 #: gui/session/tutorial_panel.xml:(caption):11
 msgid "Ready"
 msgstr "Prest"
 
-#: gui/session/chat/chat_window.xml:(caption):19
-msgctxt "chat input"
-msgid "Filter:"
-msgstr "Iragazkia:"
-
-#: gui/session/chat/chat_window.xml:(caption):46
-msgctxt "chat input"
-msgid "To:"
-msgstr "Nora:"
-
-#: gui/session/chat/chat_window.xml:(caption):60
-msgctxt "chat input"
-msgid "Text:"
-msgstr "Testua:"
-
-#: gui/session/chat/chat_window.xml:(caption):72
-msgid "Cancel"
-msgstr "Utzi"
-
-#: gui/session/chat/chat_window.xml:(caption):86
-msgctxt "chat"
-msgid "History"
-msgstr "Historiala"
-
-#: gui/session/chat/chat_window.xml:(caption):91
-msgid "Send"
-msgstr "Bidali"
-
-#: gui/session/chat/chat_window.xml:(tooltip):29
-msgctxt "chat input"
-msgid "Filter the chat history."
-msgstr "Txat historiala filtratu."
-
-#: gui/session/chat/chat_window.xml:(tooltip):55
-msgctxt "chat input"
-msgid "Select chat addressee."
-msgstr "Aukeratu mezua nori zuzenduta doan."
-
-#: gui/session/dialogs/yes_no.xml:(caption):11
-msgid "Question"
-msgstr "Galdera"
-
-#: gui/session/dialogs/yes_no.xml:(caption):15
-msgid "Yes or no?"
-msgstr "Bai ala ez?"
-
-#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):15
-msgid "Name"
-msgstr "Izena"
-
-#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):18
-msgid "Civilization"
-msgstr "Zibilizazioa"
-
-#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):21
-msgid "Team"
-msgstr "Taldea"
-
-#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):24
-msgid "Theirs"
-msgstr "Haiena"
-
-#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):27
-msgid "A"
-msgstr "A"
-
-#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):31
-msgid "N"
-msgstr "N"
-
-#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):35
-msgid "E"
-msgstr "E"
-
-#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):39
-msgid "Tribute"
-msgstr "Tributoa"
-
-#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):90
-#: gui/session/objectives/ObjectivesDialog.xml:(caption):43
-#: gui/session/trade/TradeDialog.xml:(caption):22
-msgid "Close"
-msgstr "Itxi"
-
-#: gui/session/selection_panels_left/garrison_panel.xml:(tooltip):16
-#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):20
-msgid "Health"
-msgstr "Osasuna"
-
-#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):34
-msgid "Capture points"
-msgstr "Atzemate puntuak"
-
-#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):62
-msgid "Attack and Resistance"
-msgstr "Erasoa eta erresistentzia"
-
-#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):77
-msgid "Experience"
-msgstr "Esperientzia"
-
-#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):85
-msgid "Rank"
-msgstr "Maila"
-
-#: gui/session/selection_panels_right/queue_panel.xml:(tooltip):8
-msgid "Production queue"
-msgstr "Produkzio ilara"
-
-#: gui/session/session_objects/selection_group_icons.xml:(tooltip):7
+#: gui/session/unit_actions.js:578
 msgid ""
-"Click to select grouped units, double-click to focus the grouped units and "
-"right-click to disband the group."
-msgstr "Klikatu elkartutako unitateak aukeratzeko, klik bikoitza elkartutako unitateak erakusteko eta eskuin klika taldea banantzeko."
+"This is the origin trade market.\n"
+"Right-click to cancel trade route."
+msgstr "Hau da jatorrizko merkatua.\nEgin klik eskuinean ibilbide komertziala bertan behera uzteko."
 
-#: gui/session/top_panel/BuildLabel.xml:(caption):6
-msgid "ALPHA XXIV"
-msgstr "ALFA XXIV"
+#: gui/session/unit_actions.js:638
+msgid "Origin trade market."
+msgstr "Merkatari hartu-emanen iturburua."
 
-#: gui/session/top_panel/FollowPlayer.xml:(tooltip):11
-#: gui/session/top_panel/FollowPlayer.xml:(caption):15
-msgctxt "observer mode"
-msgid "Follow Player"
-msgstr "Jarraitu jokalaria"
+#: gui/session/unit_actions.js:648
+msgid "Destination trade market."
+msgstr "Merkatari hartu-emanen helburua."
 
-#: gui/session/top_panel/MenuButton.xml:(caption):15
-msgid "Menu"
-msgstr "Menua"
+#: gui/session/unit_actions.js:655
+msgid "Right-click to set as origin trade market"
+msgstr "Eskuin klika merkatu iturburu gisa zehazteko."
 
-#: gui/session/top_panel/PlayerViewControl.xml:(tooltip):13
-msgid "Choose player to view"
-msgstr "Aukeratu ikusi nahi duzun jokalaria"
+#: gui/session/unit_actions.js:662 gui/session/unit_actions.js:1004
+msgid "This market is too close to the origin market."
+msgstr "Merkatu hori jatorrizko merkatutik gertuegi dago."
 
-#: gui/session/top_panel/PlayerViewControl.xml:(caption):17
-msgid "Observer Mode"
-msgstr "Ikusle modua"
+#: gui/session/unit_actions.js:666
+msgid "Right-click to set as destination trade market."
+msgstr "Eskuin klika merkatu helburu gisa zehazteko."
 
-#: gui/session/top_panel/IconButtons/GameSpeedButton.xml:(tooltip):9
-msgid "Game Speed"
-msgstr "Jokoaren abiadura"
+#: gui/session/unit_actions.js:727 gui/session/unit_actions.js:942
+#, javascript-format
+msgid "Current garrison: %(garrisoned)s/%(capacity)s"
+msgstr "Oraingo garnizioa:  %(garrisoned)s/ %(capacity)s"
 
-#: gui/session/trade/BarterPanel.xml:(caption):5
-msgid "Barter"
-msgstr "Trukea"
+#: gui/session/unit_actions.js:995
+msgid "Right-click to establish a default route for new traders."
+msgstr "Eskuin klika gure merkatarientzako berezko ibilbide bat zehazteko."
 
-#: gui/session/trade/BarterPanel.xml:(caption):13
-msgid "Sell:"
-msgstr "Saldu:"
+#: gui/session/unit_actions.js:999
+#, javascript-format
+msgid "Expected gain: %(gain)s"
+msgstr "Itxarondako irabazia: %(gain)s"
 
-#: gui/session/trade/BarterPanel.xml:(caption):17
-msgid "Buy:"
-msgstr "Erosi:"
+#: gui/session/unit_actions.js:1129
+msgid "This entity cannot be controlled."
+msgid_plural "These entities cannot be controlled."
+msgstr[0] "Entitate hori ezin da kontrolatu."
+msgstr[1] "Entitate horiek ezin dira kontrolatu."
 
-#: gui/session/trade/BarterPanel.xml:(caption):21
-msgid "No Markets Available"
-msgstr "Merkaturi Ez Aukeran"
+#: gui/session/unit_actions.js:1166 gui/session/unit_actions.js:1494
+msgid "Unload All."
+msgstr "Hustu guztia."
 
-#: gui/session/trade/TradePanel.xml:(caption):5
-msgid "Trade"
-msgstr "Salerosi"
+#: gui/session/unit_actions.js:1184
+msgid "Destroy the selected units or structures."
+msgstr "Aukeratutako egitura edo unitateak eraisten ditu."
 
-#: gui/session/trade/TradePanel.xml:(caption):14
-msgid "Resources:"
-msgstr "Baliabideak:"
+#: gui/session/unit_actions.js:1186
+#, javascript-format
+msgid "Use %(hotkey)s to avoid the confirmation dialog."
+msgstr "Sakatu  %(hotkey)s baieztapen elkarrizketa ekiditeko."
+
+#: gui/session/unit_actions.js:1233
+msgid "Abort the current order."
+msgstr "Ezeztatu oraingo agindua."
+
+#: gui/session/unit_actions.js:1252
+msgid "Order the selected units to garrison in a structure or unit."
+msgstr "Agindu aukeratutako unitateei egitura edo unitate batean guardan sartzea."
+
+#: gui/session/unit_actions.js:1275
+msgid "Unload"
+msgstr "Hustu"
+
+#: gui/session/unit_actions.js:1293
+msgid "Order the selected units to repair a structure, ship, or siege engine."
+msgstr "Aukeratutako unitateei agindu egitura, itsasontzi edo setio makina konpontzea."
+
+#: gui/session/unit_actions.js:1312
+msgid "Focus on Rally Point."
+msgstr "Joan elkartzen puntura."
+
+#: gui/session/unit_actions.js:1347
+msgid "Back to Work"
+msgstr "Bueltan lanera"
+
+#: gui/session/unit_actions.js:1366
+msgid "Order the selected units to guard a structure or unit."
+msgstr "Aukeratutako unitateei agindu egitura edo unitate bat babestea."
+
+#: gui/session/unit_actions.js:1384
+msgid "Remove guard"
+msgstr "Kendu zaindaria"
+
+#: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
+#: gui/session/trade/TradeDialog.xml:(caption):9
+#: gui/session/unit_actions.js:1401
+msgid "Barter & Trade"
+msgstr "Merkataritza eta Trukeak"
+
+#: gui/session/unit_actions.js:1419
+msgid "Patrol"
+msgstr "Patruilatu"
+
+#: gui/session/unit_actions.js:1420
+msgid "Attack all encountered enemy units while avoiding structures."
+msgstr "Bidean aurkituko diren etsaiak eraso egiturak saihestuz."
+
+#: gui/session/unit_actions.js:1446
+msgid "Press to allow allies to use this dropsite"
+msgstr "Sakatu aliatuek deskarga puntu hau erabil dezaten"
+
+#: gui/session/unit_actions.js:1450
+msgid "Press to prevent allies from using this dropsite"
+msgstr "Sakatu aliatuek deskarga puntu hau erabil dezaten ekiditeko"
+
+#: gui/session/unit_actions.js:1515
+msgid "You are allowed to use this dropsite"
+msgstr "Deskarga puntu hau erabil dezakezu"
+
+#: gui/session/unit_actions.js:1520
+msgid "The use of this dropsite is prohibited"
+msgstr "Ezin duzu deskarga puntu hau erabili"
+
+#: gui/session/unit_actions.js:1594
+msgid "The entity has to be killed before it can be gathered from"
+msgstr "Entitate honekin bukatu behar da bere baliabideez jabetzeko"
+
+#: gui/session/unit_actions.js:1597
+msgid ""
+"You cannot destroy this entity as you own less than half the capture points"
+msgstr "Ezin duzu entitate hau birrindu ez bai duzu atzitze puntu erdiak baino gehiago kontrolatzen "
+
+#: gui/session/unit_actions.js:1600
+msgid "This entity is undeletable"
+msgstr "Ezinezkoa da entitate hau ezabatzea"

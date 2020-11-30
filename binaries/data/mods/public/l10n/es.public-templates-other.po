@@ -1,7 +1,7 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright (C) 2020 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
-# 
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
+# project.
 # Translators:
 # Alberto Verde <edgaralbertolv@gmail.com>, 2019
 # Antón Chinaev <Chinaev_Anton@outlook.es>, 2018
@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-20 08:09+0000\n"
+"POT-Creation-Date: 2020-11-28 10:01+0000\n"
 "PO-Revision-Date: 2020-11-27 09:46+0000\n"
 "Last-Translator: Miguel Magdaleno Santamaría\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
@@ -31,87 +31,37 @@ msgstr ""
 "Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: simulation/templates/template_formation.xml:26
-msgid "Requires at least 2 Soldiers or Siege Engines."
-msgstr "Requiere al menos 2 soldados o máquinas de asedio."
+#: simulation/data/template_helpers/damage_types/crush.jsondescription
+msgctxt "damage type"
+msgid "Damage caused by sheer force, like with a club or by trampling."
+msgstr "Daño causado por fuerza bruta, como con una porra o pisoteado."
 
-#: simulation/templates/template_gaia.xml:7
-msgid "Gaia"
-msgstr "Gaia"
+#: simulation/data/template_helpers/damage_types/crush.jsonname
+msgctxt "damage type"
+msgid "Crush"
+msgstr "Aplastamiento"
 
-#: simulation/templates/template_gaia_fish.xml:8
-#: simulation/templates/gaia/fish/generic.xml:4
-msgid "Fish"
-msgstr "Pescado"
+#: simulation/data/template_helpers/damage_types/hack.jsondescription
+msgctxt "damage type"
+msgid ""
+"Damage caused by sharp objects cutting or chopping, like with a sword or an "
+"axe."
+msgstr "Daño causado por objetos cortantes afilados como una espada o un hacha."
 
-#: simulation/templates/template_gaia_fish.xml:10
-msgid "Catch fish for food."
-msgstr "Pesca para conseguir comida."
+#: simulation/data/template_helpers/damage_types/hack.jsonname
+msgctxt "damage type"
+msgid "Hack"
+msgstr "Corte"
 
-#: simulation/templates/template_gaia_fruit.xml:8
-msgid "Fruit"
-msgstr "Frutal"
+#: simulation/data/template_helpers/damage_types/pierce.jsondescription
+msgctxt "damage type"
+msgid "Damage caused by sharp pointy objects, like arrows or spears."
+msgstr "Daño causado por objetos puntiagudos afilados, como flechas o lanzas."
 
-#: simulation/templates/template_gaia_fruit.xml:9
-msgid "Pick fruit for food."
-msgstr "Recoge fruta para conseguir comida."
-
-#: simulation/templates/template_gaia_ore.xml:8
-msgid "Metal Mine"
-msgstr "Mina de metal"
-
-#: simulation/templates/template_gaia_ore.xml:9
-msgid "Mine ore for metal."
-msgstr "Mina minerales para obtener metal."
-
-#: simulation/templates/template_gaia_rock.xml:8
-msgid "Stone Quarry"
-msgstr "Cantera de piedra"
-
-#: simulation/templates/template_gaia_rock.xml:9
-msgid "Quarry rock for stone."
-msgstr "Extrae rocas para obtener piedra."
-
-#: simulation/templates/template_gaia_ruins.xml:8
-msgid "Ruins"
-msgstr "Ruinas"
-
-#: simulation/templates/template_gaia_ruins.xml:9
-msgid "Demolish ruins for stone."
-msgstr "Demoler ruinas para obtener piedra."
-
-#: simulation/templates/template_gaia_treasure.xml:8
-msgid "Treasure"
-msgstr "Tesoro"
-
-#: simulation/templates/template_gaia_treasure.xml:9
-msgid "Collect treasures for resources."
-msgstr "Recoge tesoros para obtener recursos."
-
-#: simulation/templates/template_gaia_tree.xml:8
-msgid "Tree"
-msgstr "Árbol"
-
-#: simulation/templates/template_gaia_tree.xml:9
-msgid "Chop trees for wood."
-msgstr "Tala árboles para conseguir madera"
-
-#: simulation/templates/template_structure.xml:47
-msgid "Structure"
-msgstr "Estructura"
-
-#: simulation/templates/template_unit.xml:38
-msgid "Unit"
-msgstr "Unidad"
-
-#: simulation/templates/template_wallset.xml:10
-msgid "Wall off an area."
-msgstr "Levantar un muro en el área."
-
-#: simulation/templates/template_wallset.xml:11
-#: simulation/templates/template_wallset.xml:9
-msgid "Wall"
-msgstr "Muro"
+#: simulation/data/template_helpers/damage_types/pierce.jsonname
+msgctxt "damage type"
+msgid "Pierce"
+msgstr "Perforación"
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:24
 msgid "Army of Alexander the Great."
@@ -912,10 +862,6 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Ranged"
 msgstr "A distancia"
 
-#: simulation/templates/special/spy.xml:17
-msgid "Spy"
-msgstr "Espía"
-
 #: simulation/templates/special/formations/anti_cavalry.xml:6
 #: simulation/templates/special/formations/testudo.xml:6
 msgid "Melee Infantry only, requires at least 16."
@@ -1009,34 +955,88 @@ msgstr "Cuña"
 msgid "Player"
 msgstr "Jugador"
 
-#: simulation/data/template_helpers/damage_types/crush.jsonname
-msgctxt "damage type"
-msgid "Crush"
-msgstr "Aplastamiento"
+#: simulation/templates/special/spy.xml:17
+msgid "Spy"
+msgstr "Espía"
 
-#: simulation/data/template_helpers/damage_types/crush.jsondescription
-msgctxt "damage type"
-msgid "Damage caused by sheer force, like with a club or by trampling."
-msgstr "Daño causado por fuerza bruta, como con una porra o pisoteado."
+#: simulation/templates/template_formation.xml:26
+msgid "Requires at least 2 Soldiers or Siege Engines."
+msgstr "Requiere al menos 2 soldados o máquinas de asedio."
 
-#: simulation/data/template_helpers/damage_types/hack.jsonname
-msgctxt "damage type"
-msgid "Hack"
-msgstr "Corte"
+#: simulation/templates/template_gaia.xml:7
+msgid "Gaia"
+msgstr "Gaia"
 
-#: simulation/data/template_helpers/damage_types/hack.jsondescription
-msgctxt "damage type"
-msgid ""
-"Damage caused by sharp objects cutting or chopping, like with a sword or an "
-"axe."
-msgstr "Daño causado por objetos cortantes afilados como una espada o un hacha."
+#: simulation/templates/gaia/fish/generic.xml:4
+#: simulation/templates/template_gaia_fish.xml:8
+msgid "Fish"
+msgstr "Pescado"
 
-#: simulation/data/template_helpers/damage_types/pierce.jsonname
-msgctxt "damage type"
-msgid "Pierce"
-msgstr "Perforación"
+#: simulation/templates/template_gaia_fish.xml:10
+msgid "Catch fish for food."
+msgstr "Pesca para conseguir comida."
 
-#: simulation/data/template_helpers/damage_types/pierce.jsondescription
-msgctxt "damage type"
-msgid "Damage caused by sharp pointy objects, like arrows or spears."
-msgstr "Daño causado por objetos puntiagudos afilados, como flechas o lanzas."
+#: simulation/templates/template_gaia_fruit.xml:8
+msgid "Fruit"
+msgstr "Frutal"
+
+#: simulation/templates/template_gaia_fruit.xml:9
+msgid "Pick fruit for food."
+msgstr "Recoge fruta para conseguir comida."
+
+#: simulation/templates/template_gaia_ore.xml:8
+msgid "Metal Mine"
+msgstr "Mina de metal"
+
+#: simulation/templates/template_gaia_ore.xml:9
+msgid "Mine ore for metal."
+msgstr "Mina minerales para obtener metal."
+
+#: simulation/templates/template_gaia_rock.xml:8
+msgid "Stone Quarry"
+msgstr "Cantera de piedra"
+
+#: simulation/templates/template_gaia_rock.xml:9
+msgid "Quarry rock for stone."
+msgstr "Extrae rocas para obtener piedra."
+
+#: simulation/templates/template_gaia_ruins.xml:8
+msgid "Ruins"
+msgstr "Ruinas"
+
+#: simulation/templates/template_gaia_ruins.xml:9
+msgid "Demolish ruins for stone."
+msgstr "Demoler ruinas para obtener piedra."
+
+#: simulation/templates/template_gaia_treasure.xml:8
+msgid "Treasure"
+msgstr "Tesoro"
+
+#: simulation/templates/template_gaia_treasure.xml:9
+msgid "Collect treasures for resources."
+msgstr "Recoge tesoros para obtener recursos."
+
+#: simulation/templates/template_gaia_tree.xml:8
+msgid "Tree"
+msgstr "Árbol"
+
+#: simulation/templates/template_gaia_tree.xml:9
+msgid "Chop trees for wood."
+msgstr "Tala árboles para conseguir madera"
+
+#: simulation/templates/template_structure.xml:47
+msgid "Structure"
+msgstr "Estructura"
+
+#: simulation/templates/template_unit.xml:38
+msgid "Unit"
+msgstr "Unidad"
+
+#: simulation/templates/template_wallset.xml:9
+#: simulation/templates/template_wallset.xml:11
+msgid "Wall"
+msgstr "Muro"
+
+#: simulation/templates/template_wallset.xml:10
+msgid "Wall off an area."
+msgstr "Levantar un muro en el área."

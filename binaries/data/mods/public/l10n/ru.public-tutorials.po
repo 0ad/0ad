@@ -1,7 +1,7 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright (C) 2020 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
-# 
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
+# project.
 # Translators:
 # Woratiklis, 2017
 # Vladislav Belov <vladislavbelovdev@gmail.com>, 2017
@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2020-11-13 08:10+0000\n"
+"POT-Creation-Date: 2020-11-28 10:01+0000\n"
 "PO-Revision-Date: 2017-06-04 12:59+0000\n"
 "Last-Translator: Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2020\n"
 "Language-Team: Russian (https://www.transifex.com/wildfire-games/teams/17418/ru/)\n"
@@ -278,6 +278,23 @@ msgstr "Горожанки должны продолжать заниматьс�
 #: maps/tutorials/introductory_tutorial.js:371
 msgid "The enemy has been defeated. These tutorial tasks are now completed."
 msgstr "Вражеское поселение уничтожено. Цели данного обучения достигнуты."
+
+#: maps/tutorials/introductory_tutorial.xml:Description:39
+msgid "This is a basic tutorial to get you started playing 0 A.D."
+msgstr "Это базовое обучение, чтобы вы начали играть 0 A. D."
+
+#: maps/tutorials/introductory_tutorial.xml:Name:39
+msgid "Introductory Tutorial"
+msgstr "Ознакомительный урок"
+
+#: maps/tutorials/introductory_tutorial.xml:PlayerData[0].Name:39
+#: maps/tutorials/starting_economy_walkthrough.xml:PlayerData[0].Name:39
+msgid "Player 1"
+msgstr "Игрок 1"
+
+#: maps/tutorials/introductory_tutorial.xml:PlayerData[1].Name:39
+msgid "Player 2"
+msgstr "Игрок 2"
 
 #: maps/tutorials/starting_economy_walkthrough.js:4
 msgid ""
@@ -989,23 +1006,6 @@ msgid ""
 msgstr ""
 "На этом обучение закончено. Оно должно дать вам хорошее представление об "
 "основах создания вашей экономики."
-
-#: maps/tutorials/introductory_tutorial.xml:Description:39
-msgid "This is a basic tutorial to get you started playing 0 A.D."
-msgstr "Это базовое обучение, чтобы вы начали играть 0 A. D."
-
-#: maps/tutorials/introductory_tutorial.xml:PlayerData[0].Name:39
-#: maps/tutorials/starting_economy_walkthrough.xml:PlayerData[0].Name:39
-msgid "Player 1"
-msgstr "Игрок 1"
-
-#: maps/tutorials/introductory_tutorial.xml:PlayerData[1].Name:39
-msgid "Player 2"
-msgstr "Игрок 2"
-
-#: maps/tutorials/introductory_tutorial.xml:Name:39
-msgid "Introductory Tutorial"
-msgstr "Ознакомительный урок"
 
 #: maps/tutorials/starting_economy_walkthrough.xml:Description:39
 msgid ""

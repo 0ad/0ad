@@ -1,7 +1,7 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright (C) 2020 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
-# 
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
+# project.
 # Translators:
 # azayrahmad <azayrahmad@gmail.com>, 2014-2015
 # Muhammad Furqon Abrori <furqonklondigizoid@gmail.com>, 2016
@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-20 08:09+0000\n"
+"POT-Creation-Date: 2020-11-28 10:01+0000\n"
 "PO-Revision-Date: 2020-11-20 09:24+0000\n"
 "Last-Translator: Joshua Randiny <jrandiny2@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
@@ -51,22 +51,22 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Slaughter"
 msgstr ""
 
-#: simulation/templates/template_unit_cavalry.xml:34
+#: simulation/templates/template_unit_cavalry.xml:32
+#: simulation/templates/template_unit_cavalry.xml:35
+#: simulation/templates/template_unit_champion_cavalry.xml:20
+#: simulation/templates/template_unit_hero_cavalry.xml:20
+msgid "Cavalry"
+msgstr "Kavaleri"
+
+#: simulation/templates/template_unit_cavalry.xml:33
 #: simulation/templates/template_unit_elephant.xml:9
 #: simulation/templates/template_unit_infantry.xml:64
-#: simulation/templates/template_unit_support_healer.xml:28
+#: simulation/templates/template_unit_support_healer.xml:29
 msgctxt "Rank"
 msgid "Basic"
 msgstr "Dasar"
 
-#: simulation/templates/template_unit_cavalry.xml:36
-#: simulation/templates/template_unit_elephant.xml:11
-#: simulation/templates/template_unit_infantry.xml:62
-#: simulation/templates/template_unit_support_female_citizen.xml:65
-msgid "Citizen"
-msgstr "Rakyat"
-
-#: simulation/templates/template_unit_cavalry.xml:36
+#: simulation/templates/template_unit_cavalry.xml:35
 #: simulation/templates/template_unit_champion.xml:14
 #: simulation/templates/template_unit_elephant.xml:11
 #: simulation/templates/template_unit_hero.xml:28
@@ -74,12 +74,12 @@ msgstr "Rakyat"
 msgid "Soldier"
 msgstr "Tentara"
 
-#: simulation/templates/template_unit_cavalry.xml:36
-#: simulation/templates/template_unit_cavalry.xml:33
-#: simulation/templates/template_unit_champion_cavalry.xml:21
-#: simulation/templates/template_unit_hero_cavalry.xml:20
-msgid "Cavalry"
-msgstr "Kavaleri"
+#: simulation/templates/template_unit_cavalry.xml:35
+#: simulation/templates/template_unit_elephant.xml:11
+#: simulation/templates/template_unit_infantry.xml:62
+#: simulation/templates/template_unit_support_female_citizen.xml:66
+msgid "Citizen"
+msgstr "Rakyat"
 
 #: simulation/templates/template_unit_cavalry_melee.xml:7
 msgid "Melee Cavalry"
@@ -159,8 +159,8 @@ msgstr ""
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:29
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:26
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:26
-#: simulation/templates/template_unit_infantry_melee_spearman.xml:28
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:26
+#: simulation/templates/template_unit_infantry_melee_spearman.xml:28
 msgid "Spearman"
 msgstr "Penombak"
 
@@ -273,7 +273,7 @@ msgstr "Jawara"
 msgid "Champion Unit"
 msgstr "Unit Jawara"
 
-#: simulation/templates/template_unit_champion_cavalry.xml:22
+#: simulation/templates/template_unit_champion_cavalry.xml:21
 msgid "Champion Cavalry"
 msgstr "Jawara Kavaleri"
 
@@ -377,8 +377,8 @@ msgstr ""
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:29
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:26
-#: simulation/templates/template_unit_infantry_melee_pikeman.xml:29
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:27
+#: simulation/templates/template_unit_infantry_melee_pikeman.xml:29
 msgid "Pikeman"
 msgstr "Pasukan Tembiang"
 
@@ -471,16 +471,16 @@ msgid "Hero Cavalry Swordsman"
 msgstr "Pahlawan Kavaleri Pedang"
 
 #: simulation/templates/template_unit_hero_healer.xml:27
-#: simulation/templates/template_unit_support_healer.xml:25
-#: simulation/templates/template_unit_support_healer.xml:26
-msgid "Healer"
-msgstr "Tabib"
-
-#: simulation/templates/template_unit_hero_healer.xml:27
-#: simulation/templates/template_unit_support.xml:8
-#: simulation/templates/template_unit_support.xml:9
+#: simulation/templates/template_unit_support.xml:5
+#: simulation/templates/template_unit_support.xml:6
 msgid "Support"
 msgstr "Pendukung"
+
+#: simulation/templates/template_unit_hero_healer.xml:27
+#: simulation/templates/template_unit_support_healer.xml:26
+#: simulation/templates/template_unit_support_healer.xml:27
+msgid "Healer"
+msgstr "Tabib"
 
 #: simulation/templates/template_unit_hero_infantry_archer.xml:28
 msgid "Hero Archer"
@@ -507,8 +507,8 @@ msgid "Hero Swordsman"
 msgstr "Pahlawan Pedang"
 
 #: simulation/templates/template_unit_infantry.xml:62
-#: simulation/templates/template_unit_support_female_citizen.xml:65
-#: simulation/templates/template_unit_support_slave.xml:45
+#: simulation/templates/template_unit_support_female_citizen.xml:66
+#: simulation/templates/template_unit_support_slave.xml:42
 msgid "Worker"
 msgstr "Pekerja"
 
@@ -530,8 +530,8 @@ msgstr "Umban"
 msgid "Slinger"
 msgstr "Pengumban"
 
-#: simulation/templates/template_unit_ship.xml:29
 #: simulation/templates/template_unit_ship.xml:27
+#: simulation/templates/template_unit_ship.xml:29
 msgid "Ship"
 msgstr "Kapal"
 
@@ -610,14 +610,14 @@ msgstr "Berdagang antar dermaga. Tempatkan Pedagang untuk keuntungan tambahan (+
 
 #: simulation/templates/template_unit_ship_merchant.xml:21
 #: simulation/templates/template_unit_support_trader.xml:15
-#: simulation/templates/template_unit_support_trader.xml:16
-msgid "Trader"
-msgstr "Pedagang"
+msgid "Bribable"
+msgstr "Dapat Disogok"
 
 #: simulation/templates/template_unit_ship_merchant.xml:21
 #: simulation/templates/template_unit_support_trader.xml:15
-msgid "Bribable"
-msgstr "Dapat Disogok"
+#: simulation/templates/template_unit_support_trader.xml:16
+msgid "Trader"
+msgstr "Pedagang"
 
 #: simulation/templates/template_unit_ship_quinquereme.xml:5
 #: simulation/templates/template_unit_siege_stonethrower.xml:5
@@ -699,162 +699,27 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Dagger"
 msgstr ""
 
-#: simulation/templates/template_unit_support_female_citizen.xml:66
+#: simulation/templates/template_unit_support_female_citizen.xml:67
 msgid "Female Citizen"
 msgstr "Rakyat Wanita"
 
-#: simulation/templates/template_unit_support_healer.xml:30
+#: simulation/templates/template_unit_support_healer.xml:31
 msgid "Heal units."
 msgstr "Menyembuhkan unit."
 
-#: simulation/templates/template_unit_support_slave.xml:45
-#: simulation/templates/template_unit_support_slave.xml:46
+#: simulation/templates/template_unit_support_slave.xml:42
+#: simulation/templates/template_unit_support_slave.xml:43
 #: simulation/templates/units/rome/infantry_swordsman_slave.xml:19
 msgid "Slave"
 msgstr "Budak"
 
-#: simulation/templates/template_unit_support_slave.xml:48
+#: simulation/templates/template_unit_support_slave.xml:45
 msgid "Gatherer with a finite life span. Bonused at mining and lumbering."
 msgstr "Pengumpul dengan masa hidup yang terbatas. Bonus dalam menambang dan menebang kayu."
 
 #: simulation/templates/template_unit_support_trader.xml:18
 msgid "Trade resources between your own markets and those of your allies."
 msgstr "Berdagang sumber daya antara pasar pemain dan pasar sekutu."
-
-#: simulation/templates/units/merc_black_cloak.xml:5
-#: simulation/templates/units/mace/champion_infantry_swordsman.xml:5
-#: simulation/templates/units/sele/infantry_swordsman_merc_b.xml:5
-msgctxt ""
-"Name of an attack using a rhomphaia (ῥομφαία), a Thracian two-handed weapon "
-"capable of both thrusting and slashing."
-msgid "Rhomphaia"
-msgstr ""
-
-#: simulation/templates/units/merc_black_cloak.xml:9
-#: simulation/templates/units/merc_thorakites.xml:11
-#: simulation/templates/units/merc_thureophoros.xml:4
-#: simulation/templates/units/samnite_skirmisher.xml:4
-#: simulation/templates/units/samnite_spearman.xml:4
-#: simulation/templates/units/samnite_swordsman.xml:4
-#: simulation/templates/units/athen/infantry_javelineer_b.xml:19
-#: simulation/templates/units/athen/infantry_marine_archer_b.xml:19
-#: simulation/templates/units/cart/cavalry_spearman_ital_b.xml:14
-#: simulation/templates/units/cart/cavalry_swordsman_gaul_b.xml:14
-#: simulation/templates/units/cart/cavalry_swordsman_iber_b.xml:19
-#: simulation/templates/units/cart/infantry_javelineer_iber_b.xml:22
-#: simulation/templates/units/cart/infantry_slinger_iber_b.xml:22
-#: simulation/templates/units/cart/infantry_swordsman_gaul_b.xml:22
-#: simulation/templates/units/cart/infantry_swordsman_ital_b.xml:22
-#: simulation/templates/units/kush/cavalry_javelineer_merc_b.xml:15
-#: simulation/templates/units/kush/infantry_javelineer_merc_b.xml:21
-#: simulation/templates/units/kush/infantry_maceman_merc_b.xml:30
-#: simulation/templates/units/mace/cavalry_javelineer_b.xml:11
-#: simulation/templates/units/mace/infantry_archer_b.xml:17
-#: simulation/templates/units/mace/infantry_slinger_b.xml:17
-#: simulation/templates/units/pers/kardakes_hoplite.xml:5
-#: simulation/templates/units/pers/kardakes_skirmisher.xml:5
-#: simulation/templates/units/ptol/cavalry_javelineer_merc_b.xml:11
-#: simulation/templates/units/ptol/cavalry_spearman_merc_b.xml:11
-#: simulation/templates/units/ptol/infantry_archer_b.xml:17
-#: simulation/templates/units/ptol/infantry_javelineer_b.xml:17
-#: simulation/templates/units/ptol/infantry_spearman_merc_b.xml:17
-#: simulation/templates/units/ptol/infantry_swordsman_merc_b.xml:20
-#: simulation/templates/units/sele/cavalry_spearman_merc_b.xml:11
-#: simulation/templates/units/sele/infantry_archer_merc_b.xml:16
-#: simulation/templates/units/sele/infantry_swordsman_merc_b.xml:21
-msgid "Mercenary"
-msgstr "Prajurit Bayaran"
-
-#: simulation/templates/units/merc_black_cloak.xml:11
-#: simulation/templates/units/mace/champion_infantry_swordsman.xml:11
-msgid "Thracian Black Cloak"
-msgstr "Jubah Hitam Trakhia"
-
-#: simulation/templates/units/merc_black_cloak.xml:12
-#: simulation/templates/units/mace/champion_infantry_swordsman.xml:12
-msgid "Rhomphaiaphoros"
-msgstr "Rhomphaiaphoros"
-
-#: simulation/templates/units/merc_thorakites.xml:13
-msgid "Armored Swordsman"
-msgstr "Pasukan Pedang Berzirah"
-
-#: simulation/templates/units/merc_thorakites.xml:14
-msgid "Thōrakitēs"
-msgstr "Thōrakitēs"
-
-#: simulation/templates/units/merc_thureophoros.xml:6
-msgid "Heavy Skirmisher"
-msgstr "Penskirmis Berat"
-
-#: simulation/templates/units/merc_thureophoros.xml:7
-msgid "Thyreophóros"
-msgstr "Thyreophóros"
-
-#: simulation/templates/units/noldor_ship_bireme.xml:8
-msgid "Mankar Cirya"
-msgstr "Mankar Cirya"
-
-#: simulation/templates/units/plane.xml:5
-msgctxt "Name of an attack, usually the weapon."
-msgid "Machine Guns"
-msgstr ""
-
-#: simulation/templates/units/plane.xml:49
-msgid "P-51 Mustang"
-msgstr "P-51 Mustang"
-
-#: simulation/templates/units/plane.xml:50
-msgid "A World War 2 American fighter plane."
-msgstr "Pesawat tempur Amerika Perang Dunia 2"
-
-#: simulation/templates/units/samnite_skirmisher.xml:5
-#: simulation/templates/units/samnite_skirmisher.xml:6
-msgid "Samnite Skirmisher"
-msgstr "Penskirmis Samnium"
-
-#: simulation/templates/units/samnite_spearman.xml:5
-#: simulation/templates/units/samnite_spearman.xml:6
-msgid "Samnite Spearman"
-msgstr "Penombak Samnium"
-
-#: simulation/templates/units/samnite_swordsman.xml:5
-#: simulation/templates/units/samnite_swordsman.xml:6
-#: simulation/templates/units/cart/infantry_swordsman_ital_b.xml:19
-msgid "Samnite Swordsman"
-msgstr "Pasukan Pedang Samnium"
-
-#: simulation/templates/units/theb_siege_fireraiser.xml:40
-msgid "Fire Raiser"
-msgstr "Penggalang Api"
-
-#: simulation/templates/units/theb_siege_fireraiser.xml:41
-msgid "Pyrobolos"
-msgstr "Pyrobolos"
-
-#: simulation/templates/units/thebes_sacred_band_hoplitai.xml:5
-msgid "Theban Sacred Band Hoplite"
-msgstr "Pasukan Suci Hoplites Thiva"
-
-#: simulation/templates/units/thebes_sacred_band_hoplitai.xml:6
-msgid "Hieroû Thebaíou Lókhou Hoplítai"
-msgstr "Hieroû Thebaíou Lókhou Hoplítai"
-
-#: simulation/templates/units/thebes_sacred_band_hoplitai.xml:7
-msgid "Champion Spearman."
-msgstr "Jawara Penombak"
-
-#: simulation/templates/units/thespian_melanochitones.xml:5
-msgid "Thespian Black Cloak"
-msgstr "Jubah Hitam Thespiai"
-
-#: simulation/templates/units/thespian_melanochitones.xml:6
-msgid "Melanochitones"
-msgstr "Melanochitones"
-
-#: simulation/templates/units/viking_longship.xml:8
-msgid "Longship"
-msgstr "Kapal Panjang"
 
 #: simulation/templates/units/athen/catafalque.xml:9
 msgid "Solon"
@@ -2284,6 +2149,80 @@ msgstr "Brāhmaṇa Pujari"
 msgid "Vaishya"
 msgstr "Vaishya"
 
+#: simulation/templates/units/mace/champion_infantry_swordsman.xml:5
+#: simulation/templates/units/merc_black_cloak.xml:5
+#: simulation/templates/units/sele/infantry_swordsman_merc_b.xml:5
+msgctxt ""
+"Name of an attack using a rhomphaia (ῥομφαία), a Thracian two-handed weapon "
+"capable of both thrusting and slashing."
+msgid "Rhomphaia"
+msgstr ""
+
+#: simulation/templates/units/athen/infantry_javelineer_b.xml:19
+#: simulation/templates/units/athen/infantry_marine_archer_b.xml:19
+#: simulation/templates/units/cart/cavalry_spearman_ital_b.xml:14
+#: simulation/templates/units/cart/cavalry_swordsman_gaul_b.xml:14
+#: simulation/templates/units/cart/cavalry_swordsman_iber_b.xml:19
+#: simulation/templates/units/cart/infantry_javelineer_iber_b.xml:22
+#: simulation/templates/units/cart/infantry_slinger_iber_b.xml:22
+#: simulation/templates/units/cart/infantry_swordsman_gaul_b.xml:22
+#: simulation/templates/units/cart/infantry_swordsman_ital_b.xml:22
+#: simulation/templates/units/kush/cavalry_javelineer_merc_b.xml:15
+#: simulation/templates/units/kush/infantry_javelineer_merc_b.xml:21
+#: simulation/templates/units/kush/infantry_maceman_merc_b.xml:30
+#: simulation/templates/units/mace/cavalry_javelineer_b.xml:11
+#: simulation/templates/units/mace/infantry_archer_b.xml:17
+#: simulation/templates/units/mace/infantry_slinger_b.xml:17
+#: simulation/templates/units/merc_black_cloak.xml:9
+#: simulation/templates/units/merc_thorakites.xml:11
+#: simulation/templates/units/merc_thureophoros.xml:4
+#: simulation/templates/units/pers/kardakes_hoplite.xml:5
+#: simulation/templates/units/pers/kardakes_skirmisher.xml:5
+#: simulation/templates/units/ptol/cavalry_javelineer_merc_b.xml:11
+#: simulation/templates/units/ptol/cavalry_spearman_merc_b.xml:11
+#: simulation/templates/units/ptol/infantry_archer_b.xml:17
+#: simulation/templates/units/ptol/infantry_javelineer_b.xml:17
+#: simulation/templates/units/ptol/infantry_spearman_merc_b.xml:17
+#: simulation/templates/units/ptol/infantry_swordsman_merc_b.xml:20
+#: simulation/templates/units/samnite_skirmisher.xml:4
+#: simulation/templates/units/samnite_spearman.xml:4
+#: simulation/templates/units/samnite_swordsman.xml:4
+#: simulation/templates/units/sele/cavalry_spearman_merc_b.xml:11
+#: simulation/templates/units/sele/infantry_archer_merc_b.xml:16
+#: simulation/templates/units/sele/infantry_swordsman_merc_b.xml:21
+msgid "Mercenary"
+msgstr "Prajurit Bayaran"
+
+#: simulation/templates/units/mace/champion_infantry_swordsman.xml:11
+#: simulation/templates/units/merc_black_cloak.xml:11
+msgid "Thracian Black Cloak"
+msgstr "Jubah Hitam Trakhia"
+
+#: simulation/templates/units/mace/champion_infantry_swordsman.xml:12
+#: simulation/templates/units/merc_black_cloak.xml:12
+msgid "Rhomphaiaphoros"
+msgstr "Rhomphaiaphoros"
+
+#: simulation/templates/units/merc_thorakites.xml:13
+msgid "Armored Swordsman"
+msgstr "Pasukan Pedang Berzirah"
+
+#: simulation/templates/units/merc_thorakites.xml:14
+msgid "Thōrakitēs"
+msgstr "Thōrakitēs"
+
+#: simulation/templates/units/merc_thureophoros.xml:6
+msgid "Heavy Skirmisher"
+msgstr "Penskirmis Berat"
+
+#: simulation/templates/units/merc_thureophoros.xml:7
+msgid "Thyreophóros"
+msgstr "Thyreophóros"
+
+#: simulation/templates/units/noldor_ship_bireme.xml:8
+msgid "Mankar Cirya"
+msgstr "Mankar Cirya"
+
 #: simulation/templates/units/pers/arstibara.xml:13
 msgid "Persian Apple Bearer"
 msgstr "Pembawa Apel Persia"
@@ -2492,6 +2431,19 @@ msgid ""
 "Trade resources between your own markets and those of your allies. Persians "
 "have a +25% land trading bonus."
 msgstr "Perdagangkan sumber daya antara pasar pemain dengan pasar sekutu. Persia memiliki +25% bonus perdagangan darat"
+
+#: simulation/templates/units/plane.xml:5
+msgctxt "Name of an attack, usually the weapon."
+msgid "Machine Guns"
+msgstr ""
+
+#: simulation/templates/units/plane.xml:49
+msgid "P-51 Mustang"
+msgstr "P-51 Mustang"
+
+#: simulation/templates/units/plane.xml:50
+msgid "A World War 2 American fighter plane."
+msgstr "Pesawat tempur Amerika Perang Dunia 2"
 
 #: simulation/templates/units/ptol/catafalque.xml:8
 msgid "Ptolemy III Euergetes (Benefactor)"
@@ -2827,6 +2779,22 @@ msgstr "Saudagar Jelata"
 msgid "Mercātor"
 msgstr "Mercātor"
 
+#: simulation/templates/units/samnite_skirmisher.xml:5
+#: simulation/templates/units/samnite_skirmisher.xml:6
+msgid "Samnite Skirmisher"
+msgstr "Penskirmis Samnium"
+
+#: simulation/templates/units/samnite_spearman.xml:5
+#: simulation/templates/units/samnite_spearman.xml:6
+msgid "Samnite Spearman"
+msgstr "Penombak Samnium"
+
+#: simulation/templates/units/cart/infantry_swordsman_ital_b.xml:19
+#: simulation/templates/units/samnite_swordsman.xml:5
+#: simulation/templates/units/samnite_swordsman.xml:6
+msgid "Samnite Swordsman"
+msgstr "Pasukan Pedang Samnium"
+
 #: simulation/templates/units/sele/catafalque.xml:10
 msgid "Antiochus I Soter (Savior)"
 msgstr "Antiokhus I Soter (Penyelamat)"
@@ -3071,3 +3039,35 @@ msgstr "Spartiâtis"
 #: simulation/templates/units/spart/support_trader.xml:9
 msgid "Émporos Períoikos"
 msgstr "Émporos Períoikos"
+
+#: simulation/templates/units/theb_siege_fireraiser.xml:40
+msgid "Fire Raiser"
+msgstr "Penggalang Api"
+
+#: simulation/templates/units/theb_siege_fireraiser.xml:41
+msgid "Pyrobolos"
+msgstr "Pyrobolos"
+
+#: simulation/templates/units/thebes_sacred_band_hoplitai.xml:5
+msgid "Theban Sacred Band Hoplite"
+msgstr "Pasukan Suci Hoplites Thiva"
+
+#: simulation/templates/units/thebes_sacred_band_hoplitai.xml:6
+msgid "Hieroû Thebaíou Lókhou Hoplítai"
+msgstr "Hieroû Thebaíou Lókhou Hoplítai"
+
+#: simulation/templates/units/thebes_sacred_band_hoplitai.xml:7
+msgid "Champion Spearman."
+msgstr "Jawara Penombak"
+
+#: simulation/templates/units/thespian_melanochitones.xml:5
+msgid "Thespian Black Cloak"
+msgstr "Jubah Hitam Thespiai"
+
+#: simulation/templates/units/thespian_melanochitones.xml:6
+msgid "Melanochitones"
+msgstr "Melanochitones"
+
+#: simulation/templates/units/viking_longship.xml:8
+msgid "Longship"
+msgstr "Kapal Panjang"

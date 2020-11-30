@@ -1,7 +1,7 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright (C) 2020 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
-# 
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
+# project.
 # Translators:
 # A L <De_Sade@web.de>, 2016
 # Wuzzy <almikes@aol.com>, 2015-2018
@@ -52,7 +52,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-20 08:09+0000\n"
+"POT-Creation-Date: 2020-11-28 10:01+0000\n"
 "PO-Revision-Date: 2020-11-21 12:59+0000\n"
 "Last-Translator: xtother90\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
@@ -113,6 +113,10 @@ msgstr "Helden"
 #, javascript-format
 msgid "History of the %(civilization)s"
 msgstr "Geschichte der %(civilization)s"
+
+#: gui/civinfo/civinfo.xml:(caption):30
+msgid "Civilization Selection"
+msgstr "Zivilisationsauswahl"
 
 #: gui/common/MapCache.js:52
 msgctxt "map selection"
@@ -251,7 +255,8 @@ msgid "Team %(team)s"
 msgstr "Team %(team)s"
 
 #. Translation: Describe players of one team in a selected game, f.e. in the
-#. replay- or savegame menu or lobby
+#. replay- or
+#. savegame menu or lobby
 #: gui/common/gamedescription.js:163 gui/common/gamedescription.js:170
 #, javascript-format
 msgid ""
@@ -1122,7 +1127,8 @@ msgid "%(resourceIcon)s %(rate)s"
 msgstr "%(resourceIcon)s %(rate)s"
 
 #. Translation: Label in tooltip showing the resource type and quantity of a
-#. given resource supply.
+#. given resource
+#. supply.
 #: gui/common/tooltips.js:715
 #, javascript-format
 msgid "%(label)s %(component)s %(amount)s"
@@ -1133,7 +1139,8 @@ msgid "Resource Supply:"
 msgstr "Ressourcenversorgung:"
 
 #. Translation: Marks that a resource supply entity has an unending, infinite,
-#. supply of its resource.
+#. supply of its
+#. resource.
 #: gui/common/tooltips.js:719 gui/summary/summary.js:111
 msgid "∞"
 msgstr "∞"
@@ -1255,7 +1262,8 @@ msgid "Classes:"
 msgstr "Klassen:"
 
 #. Translation: %(component) will be the icon for the loot type and %(loot)
-#. will be the value.
+#. will be the
+#. value.
 #: gui/common/tooltips.js:1021
 #, javascript-format
 msgid "%(component)s %(loot)s"
@@ -1275,13 +1283,15 @@ msgid "Dropsite for:"
 msgstr "Lager für:"
 
 #. Translation: Appears in a tooltip to indicate that right-clicking the
-#. corresponding GUI element will open the Template Details GUI page.
+#. corresponding GUI
+#. element will open the Template Details GUI page.
 #: gui/common/tooltips.js:1050
 msgid "Right-click to view more information."
 msgstr "Rechtsklicken, um mehr Informationen anzuzeigen."
 
 #. Translation: Appears in a tooltip to indicate that clicking the
-#. corresponding GUI element will open the Template Details GUI page.
+#. corresponding GUI element
+#. will open the Template Details GUI page.
 #: gui/common/tooltips.js:1056
 msgid "Click to view more information."
 msgstr "Klicken, um mehr Informationen anzuzeigen,"
@@ -1290,6 +1300,215 @@ msgstr "Klicken, um mehr Informationen anzuzeigen,"
 #, javascript-format
 msgid "%(nick)s — %(name)s"
 msgstr "%(nick)s — %(name)s"
+
+#: gui/credits/credits.xml:(caption):19
+msgid "0 A.D. Credits"
+msgstr "0 A.D. Credits"
+
+#: gui/credits/texts/art.jsonContent[0].Title
+msgid "Art lead"
+msgstr "Leitung Grafik"
+
+#: gui/credits/texts/art.jsonContent[1].Title
+msgid "2D Art"
+msgstr "2D-Grafik"
+
+#: gui/credits/texts/art.jsonContent[2].Title
+msgid "3D Art"
+msgstr "3D-Grafik"
+
+#: gui/credits/texts/art.jsonTitle
+msgid "Art"
+msgstr "Grafik"
+
+#: gui/credits/texts/audio.jsonContent[0].Content[0].Subtitle
+msgid "Sound Manager"
+msgstr "Sound-Manager"
+
+#: gui/credits/texts/audio.jsonContent[0].Content[1].Subtitle
+msgid "Lead Composer"
+msgstr "Hauptkomponist"
+
+#: gui/credits/texts/audio.jsonContent[0].Title
+msgid "Audio managers"
+msgstr "Audio-Manager"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[10].Subtitle
+msgid "Viola, violin"
+msgstr "Bratsche, Geige"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[1].Subtitle
+msgid "Additional music, percussion, djembe, sampling"
+msgstr "Zusätzliche Musik, Perkussion, Djembe, Sampling"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[2].Subtitle
+msgid "Additional music"
+msgstr "Zusätzliche Musik"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[3].Subtitle
+msgid "Flute"
+msgstr "Flöte"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[4].Subtitle
+msgid "Djembe"
+msgstr "Djembe"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[5].Subtitle
+msgid "Frame drum, darbuka, riq, toms"
+msgstr "Rahmentrommel, Darbuka, Riq, Toms"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[6].Subtitle
+msgid "Didgeridoo"
+msgstr "Didgeridoo"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[7].Subtitle
+msgid "Trumpet"
+msgstr "Trompete"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[8].Subtitle
+msgid "Celtic harp"
+msgstr "Keltische Harfe"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[9].Subtitle
+msgid "Tin whistles"
+msgstr "Blechflöten"
+
+#: gui/credits/texts/audio.jsonContent[1].Title
+msgid "Music"
+msgstr "Musik"
+
+#: gui/credits/texts/audio.jsonContent[2].Title
+#: gui/options/options.json[2].label
+msgid "Sound"
+msgstr "Ton"
+
+#: gui/credits/texts/audio.jsonContent[3].Content[0].Subtitle
+msgid "Greek"
+msgstr "Griechisch"
+
+#: gui/credits/texts/audio.jsonContent[3].Content[1].Subtitle
+msgid "Latin"
+msgstr "Latein"
+
+#: gui/credits/texts/audio.jsonContent[3].Content[2].Subtitle
+msgid "Napatan"
+msgstr "Napataner"
+
+#: gui/credits/texts/audio.jsonContent[3].Content[3].Subtitle
+msgid "Persian"
+msgstr "Perser"
+
+#: gui/credits/texts/audio.jsonContent[3].Title
+msgid "Voices"
+msgstr "Stimmen"
+
+#: gui/credits/texts/audio.jsonTitle
+msgid "Audio"
+msgstr "Audio"
+
+#: gui/credits/texts/balancing.jsonContent[0].Subtitle
+#: gui/credits/texts/history.jsonContent[0].Subtitle
+msgid "Head"
+msgstr "Leitung"
+
+#: gui/credits/texts/balancing.jsonTitle
+msgid "Balancing"
+msgstr "Ausgewogenheit"
+
+#: gui/credits/texts/community.jsonTitle
+msgid "Community and Management"
+msgstr "Gemeinschaft und Management"
+
+#: gui/credits/texts/donators.jsonContent[0].Title
+msgid "Pledgie Drive 1"
+msgstr "1. Pledgie-Spendenaktion"
+
+#: gui/credits/texts/donators.jsonContent[1].Title
+msgid "Pledgie Drive 2"
+msgstr "2. Pledgie-Spendenaktion"
+
+#: gui/credits/texts/donators.jsonContent[2].Title
+msgid ""
+"Indiegogo 2013 campaign\n"
+"More than 1000 donators (!), including:"
+msgstr "Indiegogo-Kampagne 2013\nÜber 1000 Spender (!), inklusive:"
+
+#: gui/credits/texts/donators.jsonTitle
+msgid "Donors"
+msgstr "Spender"
+
+#: gui/credits/texts/history.jsonTitle
+msgid "History References"
+msgstr "Geschichtliche Verweise"
+
+#: gui/credits/texts/maps.jsonContent[0].Title
+msgid "Map Making"
+msgstr "Kartenerstellung"
+
+#: gui/credits/texts/maps.jsonContent[1].Title
+msgid "Random Map Scripts"
+msgstr "Zufallskartenskripte"
+
+#: gui/credits/texts/maps.jsonTitle
+msgid "Maps"
+msgstr "Karten"
+
+#: gui/credits/texts/programming.jsonContent[0].Title
+msgid "Programming managers"
+msgstr "Programmierungs-Manager"
+
+#: gui/credits/texts/programming.jsonContent[1].Subtitle
+msgid "Special thanks to"
+msgstr "Besonderes Dankeschön an"
+
+#: gui/credits/texts/programming.jsonTitle
+msgid "Programming"
+msgstr "Programmierung"
+
+#: gui/credits/texts/special.jsonContent[0].Title
+msgid "In Memoriam"
+msgstr "Zum Andenken an"
+
+#: gui/credits/texts/special.jsonContent[1].Content[0].Subtitle
+msgid "0 A.D. Founder"
+msgstr "0 A.D. Gründer"
+
+#: gui/credits/texts/special.jsonContent[1].Content[1].Subtitle
+msgid "Project Leaders"
+msgstr "Projektleiter"
+
+#: gui/credits/texts/special.jsonContent[1].Content[2].Subtitle
+msgid "Co-Lead Designers"
+msgstr "Unterstützendes Design"
+
+#: gui/credits/texts/special.jsonContent[1].Title
+msgid "Special thanks to:"
+msgstr "Besonderes Dankeschön an:"
+
+#: gui/credits/texts/special.jsonContent[2].Title
+msgid "And thanks to the entire community for making 0 A.D. possible."
+msgstr "Und danke an die gesamte Gemeinschaft, dafür, dass sie 0 A.D. möglich gemacht haben."
+
+#: gui/credits/texts/special.jsonContent[3].Title
+msgid "No historians were harmed during the development of this project."
+msgstr "Bei der Entwicklung dieses Spiels wurden keine Historiker verletzt."
+
+#: gui/credits/texts/special.jsonTitle
+msgid "Special Credits"
+msgstr "Special Credits"
+
+#: gui/credits/texts/translators.jsonTitle
+msgid "Translators"
+msgstr "Übersetzer"
+
+#: gui/gamesetup/Pages/GameSetupPage/Panels/Tips.txt:1
+msgid ""
+"Although reasonably easy for an experienced player, the default AI level is "
+"quite challenging for new players yet to master the basic mechanisms of the "
+"game. Beginners are advised to start by playing against a lower level AI "
+"(Sandbox or Very Easy). Change the AI level by clicking the gear icon next "
+"to the player you want to modify in the selection panel above."
+msgstr "Obwohl sie für einen erfahrenen Spieler relativ einfach ist, ist die Standard-KI für neue Spieler, die die grundlegenden Mechanismen des Spiels erst meistern müssen, ziemlich herausfordernd. Beginnern wird geraten, zu Anfang gegen einen niedrigeren Schwierigkeitsgrad (Sandkasten oder sehr einfach) zu spielen. Der KI-Schwierigkeitsgrad kann geändert werden, indem man auf das Zahnrad-Symbol neben dem Spieler im Spielerauswahlfenster klickt."
 
 #: gui/loadgame/SavegameDeleter.js:34
 #, javascript-format
@@ -1381,6 +1600,89 @@ msgstr "Bist du sicher, dass das gespeicherte Spiel dauerhaft überschrieben wer
 msgid "OVERWRITE SAVE"
 msgstr "SPIELSTAND ÜBERSCHREIBEN"
 
+#: gui/loadgame/load.xml:(caption):43
+msgid "No saved games found."
+msgstr "Keine Spielstände gefunden."
+
+#: gui/loadgame/load.xml:(caption):49 gui/locale/locale.xml:(caption):36
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: gui/loadgame/load.xml:(caption):53
+#: gui/replaymenu/replay_menu.xml:(caption):231
+msgid "Delete"
+msgstr "Löschen"
+
+#: gui/loadgame/load.xml:(caption):63
+msgid "Filter compatible saved games"
+msgstr "Kompatible Spielstände filtern"
+
+#: gui/loadgame/load.xml:(caption):73
+msgid "Players:"
+msgstr "Spieler:"
+
+#: gui/loadgame/load.xml:(caption):77
+msgid "Played time:"
+msgstr "Gespielte Zeit:"
+
+#: gui/loadgame/load.xml:(caption):81
+#: gui/replaymenu/replay_menu.xml:(caption):150
+msgid "Map Type:"
+msgstr "Kartentyp:"
+
+#: gui/loadgame/load.xml:(caption):85
+#: gui/replaymenu/replay_menu.xml:(caption):165
+msgid "Map Size:"
+msgstr "Kartengröße:"
+
+#: gui/loadgame/load.xml:(caption):89
+#: gui/replaymenu/replay_menu.xml:(caption):180
+msgid "Victory:"
+msgstr "Sieg:"
+
+#: gui/loadgame/load.xml:(heading):26
+#: gui/replaymenu/replay_menu.xml:(heading):69
+msgctxt "replay"
+msgid "Date / Time"
+msgstr "Datum/Zeit"
+
+#: gui/loadgame/load.xml:(heading):30
+msgctxt "replay"
+msgid "Map Type"
+msgstr "Kartentyp"
+
+#: gui/loadgame/load.xml:(heading):34
+#: gui/replaymenu/replay_menu.xml:(heading):77
+msgctxt "replay"
+msgid "Map Name"
+msgstr "Kartenname"
+
+#: gui/loadgame/load.xml:(heading):38
+msgctxt "replay"
+msgid "Description"
+msgstr "Beschreibung"
+
+#: gui/locale/locale.xml:(caption):17
+msgid "Language:"
+msgstr "Sprache:"
+
+#. A locale is a set of parameters that defines the user’s language, country
+#. and any special
+#. variant preferences that the user wants to see in their user interface.
+#. Here, “Locale”
+#. refers to the code that identifies those settings, such as ‘en_US’.
+#: gui/locale/locale.xml:(caption):31
+msgid "Locale:"
+msgstr "Gebietsschema:"
+
+#: gui/locale/locale.xml:(caption):41
+msgid "Advanced"
+msgstr "Erweitert"
+
+#: gui/locale/locale.xml:(caption):46
+msgid "Accept"
+msgstr "Annehmen"
+
 #: gui/options/options.js:95
 #, javascript-format
 msgid "Default: %(value)s"
@@ -1424,6 +1726,896 @@ msgstr "Einige Einstellungen sind ungültig! Bist du sicher, dass du speichern w
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "Du hast ungespeicherte Änderungen, willst du dieses Fenster schließen?"
 
+#: gui/options/options.json[0].label
+msgid "General"
+msgstr "Allgemein"
+
+#: gui/options/options.json[0].options[0].label
+msgid "Player name (single-player)"
+msgstr "Spielername (Einzelspieler)"
+
+#: gui/options/options.json[0].options[0].tooltip
+msgid "How you want to be addressed in single-player matches."
+msgstr "Wie du in Einzelspieler-Partien angesprochen werden möchtest."
+
+#: gui/options/options.json[0].options[10].label
+msgid "Observer limit"
+msgstr "Zuschauerlimit"
+
+#: gui/options/options.json[0].options[10].tooltip
+msgid "Prevent further observers from joining if the limit is reached."
+msgstr "Verhindert das weitere Zuschauer beitreten, wenn das Limit erreicht ist."
+
+#: gui/options/options.json[0].options[11].label
+msgid "Chat timestamp"
+msgstr "Chat Zeitstempel"
+
+#: gui/options/options.json[0].options[11].tooltip
+msgid ""
+"Show time that messages are posted in the lobby, gamesetup and ingame chat."
+msgstr "Zeige Zeitpunkt zu dem Nachrichten in der Lobby, in den Spieleeinstellungen und dem Ingame Chat gepostet werden."
+
+#: gui/options/options.json[0].options[1].label
+msgid "Player name (multiplayer)"
+msgstr "Spielername (Mehrspieler)"
+
+#: gui/options/options.json[0].options[1].tooltip
+msgid "How you want to be addressed in multiplayer matches (except lobby)."
+msgstr "Wie du in Mehrspieler-Partien angesprochen werden möchtest (Lobby ausgenommen)."
+
+#: gui/options/options.json[0].options[2].label
+msgid "Background pause"
+msgstr "Hintergrundpause"
+
+#: gui/options/options.json[0].options[2].tooltip
+msgid "Pause single-player games when window loses focus."
+msgstr "Pausiert Einzelspielerspiele wenn das Fenster den Fokus verliert."
+
+#: gui/options/options.json[0].options[3].label
+msgid "Enable welcome screen"
+msgstr "Begrüßungsfenster aktivieren"
+
+#: gui/options/options.json[0].options[3].tooltip
+msgid ""
+"If you disable it, the welcome screen will still appear once, each time a "
+"new version is available. You can always launch it from the main menu."
+msgstr "Wird dies deaktiviert, erscheint der Willkommensbildschirm trotzdem noch ein Mal, nämlich immer, wenn eine neue Version verfügbar ist. Du kannst ihn aber immer vom Hauptmenü aus öffnen."
+
+#: gui/options/options.json[0].options[4].label
+msgid "Network warnings"
+msgstr "Netzwerkwarnungen"
+
+#: gui/options/options.json[0].options[4].tooltip
+msgid "Show which player has a bad connection in multiplayer games."
+msgstr "Zeigt an, welche Spieler eine schlechte Verbindung in Mehrspielerspielen hat."
+
+#: gui/options/options.json[0].options[5].label
+msgid "FPS overlay"
+msgstr "FPS-Overlay"
+
+#: gui/options/options.json[0].options[5].tooltip
+msgid "Show frames per second in top right corner."
+msgstr "Bildrate in der oberen rechten Ecke anzeigen."
+
+#: gui/options/options.json[0].options[6].label
+msgid "Real time overlay"
+msgstr "Echtzeit-Overlay"
+
+#: gui/options/options.json[0].options[6].tooltip
+msgid "Show current system time in top right corner."
+msgstr "Aktuelle Systemzeit in der oberen rechten Ecke anzeigen."
+
+#: gui/options/options.json[0].options[7].label
+msgid "Game time overlay"
+msgstr "Spielzeit-Overlay"
+
+#: gui/options/options.json[0].options[7].tooltip
+msgid "Show current simulation time in top right corner."
+msgstr "Aktuelle Simulationszeit in der oberen rechten Ecke anzeigen."
+
+#: gui/options/options.json[0].options[8].label
+msgid "Ceasefire time overlay"
+msgstr "Waffenstillstandsdauer-Overlay"
+
+#: gui/options/options.json[0].options[8].tooltip
+msgid "Always show the remaining ceasefire time."
+msgstr "Immer die verbleibende Dauer des Waffenstillstands anzeigen."
+
+#: gui/options/options.json[0].options[9].label
+msgid "Late observer joins"
+msgstr "Späte Zuschauerbeitritte"
+
+#: gui/options/options.json[0].options[9].list[0].label
+#: gui/options/options.json[3].options[5].list[0].label
+msgid "Everyone"
+msgstr "Jeder"
+
+#: gui/options/options.json[0].options[9].list[1].label
+#: gui/options/options.json[3].options[5].list[1].label
+msgid "Buddies"
+msgstr "Freunde"
+
+#: gui/options/options.json[0].options[9].list[2].label
+#: gui/options/options.json[1].options[4].list[0].label
+#: gui/options/options.json[1].options[5].list[0].label
+#: gui/options/options.json[3].options[5].list[2].label
+msgid "Disabled"
+msgstr "Deaktiviert"
+
+#: gui/options/options.json[0].options[9].tooltip
+msgid ""
+"Allow everybody or buddies only to join the game as observer after it "
+"started."
+msgstr "Erlaubt jedem oder nur Freunden einem bereits begonnenen Spiel als Zuschauer beizutreten."
+
+#: gui/options/options.json[1].label
+msgid "Graphics"
+msgstr "Grafik"
+
+#: gui/options/options.json[1].options[0].label
+msgid "Windowed mode"
+msgstr "Fenstermodus"
+
+#: gui/options/options.json[1].options[0].tooltip
+msgid "Start 0 A.D. in a window."
+msgstr "Starte 0 A.D. in einem Fenster."
+
+#: gui/options/options.json[1].options[10].label
+msgid "Shadow filtering"
+msgstr "Schattenfilter"
+
+#: gui/options/options.json[1].options[10].tooltip
+msgid "Smooth shadows."
+msgstr "Weiche Schatten."
+
+#: gui/options/options.json[1].options[11].label
+msgid "Unit silhouettes"
+msgstr "Umrisse von Einheiten"
+
+#: gui/options/options.json[1].options[11].tooltip
+msgid "Show outlines of units behind structures."
+msgstr "Zeige die Umrisse von Einheiten hinter Gebäuden."
+
+#: gui/options/options.json[1].options[12].label
+msgid "Particles"
+msgstr "Partikel"
+
+#: gui/options/options.json[1].options[12].tooltip
+msgid "Enable particles."
+msgstr "Aktiviert Partikel."
+
+#: gui/options/options.json[1].options[13].label
+msgid "Water effects"
+msgstr "Wassereffekte"
+
+#: gui/options/options.json[1].options[13].tooltip
+msgid ""
+"When OFF, use the lowest settings possible to render water. This makes other"
+" settings irrelevant."
+msgstr "Wenn AUS wird die niedrigst möglichen Einstellungen verwendet, um Wasser zu rendern. Das macht andere Einstellungen irrelevant."
+
+#: gui/options/options.json[1].options[14].label
+msgid "High-quality water effects"
+msgstr "Hochwertige Wassereffekte"
+
+#: gui/options/options.json[1].options[14].tooltip
+msgid ""
+"Use higher-quality effects for water, rendering coastal waves, shore foam, "
+"and ships trails."
+msgstr "Detailliertere Effekte für Wasser, Rendern von Küstenwellen, Gischt und Schiffsspuren benutzen."
+
+#: gui/options/options.json[1].options[15].label
+msgid "Water reflections"
+msgstr "Wasserspiegelungen"
+
+#: gui/options/options.json[1].options[15].tooltip
+msgid "Allow water to reflect a mirror image."
+msgstr "Erlauben, dass Wasser ein Spiegelbild reflektiert."
+
+#: gui/options/options.json[1].options[16].label
+msgid "Water refraction"
+msgstr "Lichtbrechung im Wasser"
+
+#: gui/options/options.json[1].options[16].tooltip
+msgid "Use a real water refraction map and not transparency."
+msgstr "Eine echte Wasser-Brechungs-Karte und keine Transparenz verwenden."
+
+#: gui/options/options.json[1].options[17].label
+msgid "Real water depth"
+msgstr "Echte Wassertiefe"
+
+#: gui/options/options.json[1].options[17].tooltip
+msgid "Use actual water depth in rendering calculations."
+msgstr "Verwende die Wassertiefe zur Bildberechnung."
+
+#: gui/options/options.json[1].options[18].label
+msgid "Shadows on water"
+msgstr "Schatten auf dem Wasser"
+
+#: gui/options/options.json[1].options[18].tooltip
+msgid "Cast shadows on water."
+msgstr "Schatten auf dem Wasser anzeigen."
+
+#: gui/options/options.json[1].options[19].label
+msgid "Smooth vision"
+msgstr "Weiche Sichtweite"
+
+#: gui/options/options.json[1].options[19].tooltip
+msgid "Lift darkness and fog-of-war smoothly."
+msgstr "Dunkelheit und Nebel des Krieges weich aufdecken."
+
+#: gui/options/options.json[1].options[1].label
+msgid "Prefer GLSL"
+msgstr "GLSL bevorzugen"
+
+#: gui/options/options.json[1].options[1].tooltip
+msgid "Use OpenGL 2.0 shaders (recommended)."
+msgstr "Benutzt OpenGL 2.0 Shader (empfohlen)."
+
+#: gui/options/options.json[1].options[20].label
+msgid "Show sky"
+msgstr "Himmel zeigen"
+
+#: gui/options/options.json[1].options[20].tooltip
+msgid "Render Sky."
+msgstr "Himmel anzeigen."
+
+#: gui/options/options.json[1].options[21].label
+msgid "VSync"
+msgstr "Vertikale Synchronisation"
+
+#: gui/options/options.json[1].options[21].tooltip
+msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
+msgstr "Vertikale Synchronisation verwenden, um Screen-Tearing zu verhindern. ERFORDERT SPIELNEUSTART"
+
+#: gui/options/options.json[1].options[22].label
+msgid "FPS throttling in menus"
+msgstr "FPS-Begrenzung in Menüs"
+
+#: gui/options/options.json[1].options[22].tooltip
+msgid ""
+"To save CPU workload, throttle render frequency in all menus. Set to maximum"
+" to disable throttling."
+msgstr "Renderfrequenz in allen Menüs drosseln, um die CPU-Auslastung zu reduzieren, Auf Maximum setzen, um die Drosselung zu deaktivieren."
+
+#: gui/options/options.json[1].options[23].label
+msgid "FPS throttling in games"
+msgstr "FPS-Begrenzung in Spielen"
+
+#: gui/options/options.json[1].options[23].tooltip
+msgid ""
+"To save CPU workload, throttle render frequency in running games. Set to "
+"maximum to disable throttling."
+msgstr "Um die CPU-Auslastung zu reduzieren, wird dies die Renderhäufigkeit in laufenden Spielen begrenzen. Auf das Maximum setzen, um die Begrenzung zu deaktivieren."
+
+#: gui/options/options.json[1].options[2].label
+msgid "Fog"
+msgstr "Nebel"
+
+#: gui/options/options.json[1].options[2].tooltip
+msgid "Enable Fog."
+msgstr "Aktiviert Nebel."
+
+#: gui/options/options.json[1].options[3].label
+msgid "Post-processing"
+msgstr "Nachbearbeitung"
+
+#: gui/options/options.json[1].options[3].tooltip
+msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
+msgstr "Screen-Space-Nachbearbeitungsfilter benutzen (HDR, Bloom, DOF, etc.)"
+
+#: gui/options/options.json[1].options[4].label
+msgid "Anti-Aliasing"
+msgstr "Kantenglättung"
+
+#: gui/options/options.json[1].options[4].list[0].tooltip
+msgid "Do not use anti-aliasing."
+msgstr "Kantenglättung nicht verwenden."
+
+#: gui/options/options.json[1].options[4].list[1].label
+msgid "FXAA"
+msgstr "FXAA"
+
+#: gui/options/options.json[1].options[4].list[1].tooltip
+msgid "Fast, but simple anti-aliasing."
+msgstr "Schnelle aber einfache Kantenglättung."
+
+#: gui/options/options.json[1].options[4].list[2].label
+msgid "MSAA (x2)"
+msgstr "MSAA (x2)"
+
+#: gui/options/options.json[1].options[4].list[2].tooltip
+msgid ""
+"Slow, but high-quality anti-aliasing, uses 2 samples per pixel. Supported "
+"for GL3.3+."
+msgstr ""
+
+#: gui/options/options.json[1].options[4].list[3].label
+msgid "MSAA (x4)"
+msgstr "MSAA (x4)"
+
+#: gui/options/options.json[1].options[4].list[3].tooltip
+msgid ""
+"Slow, but high-quality anti-aliasing, uses 4 samples per pixel. Supported "
+"for GL3.3+."
+msgstr ""
+
+#: gui/options/options.json[1].options[4].list[4].label
+msgid "MSAA (x8)"
+msgstr "MSAA (x8)"
+
+#: gui/options/options.json[1].options[4].list[4].tooltip
+msgid ""
+"Slow, but high-quality anti-aliasing, uses 8 samples per pixel. Supported "
+"for GL3.3+."
+msgstr ""
+
+#: gui/options/options.json[1].options[4].list[5].label
+msgid "MSAA (x16)"
+msgstr "MSAA (x16)"
+
+#: gui/options/options.json[1].options[4].list[5].tooltip
+msgid ""
+"Slow, but high-quality anti-aliasing, uses 16 samples per pixel. Supported "
+"for GL3.3+."
+msgstr ""
+
+#: gui/options/options.json[1].options[4].tooltip
+msgid "Reduce aliasing effect on edges."
+msgstr "Treppcheneffekt an Rändern reduzieren."
+
+#: gui/options/options.json[1].options[5].label
+msgid "Sharpening"
+msgstr "Scharfzeichnen"
+
+#: gui/options/options.json[1].options[5].list[0].tooltip
+msgid "Do not use sharpening."
+msgstr "Scharfzeichnen nicht verwenden."
+
+#: gui/options/options.json[1].options[5].list[1].label
+msgid "FidelityFX CAS"
+msgstr "FidelityFX CAS"
+
+#: gui/options/options.json[1].options[5].list[1].tooltip
+msgid "Contrast adaptive sharpening, a fast, contrast based sharpening pass."
+msgstr "Kontrastadaptives Schärfen, ein schneller, kontrastbasierter Schärfdurchgang."
+
+#: gui/options/options.json[1].options[5].tooltip
+msgid "Reduce blurry effects."
+msgstr "Unschärfeeffekte reduzieren."
+
+#: gui/options/options.json[1].options[6].label
+msgid "Sharpness factor"
+msgstr "Schärfungsfaktor"
+
+#: gui/options/options.json[1].options[6].tooltip
+msgid "The sharpness of the choosen pass."
+msgstr "Die Schärfe des gewählten Durchgang."
+
+#: gui/options/options.json[1].options[7].label
+msgid "Shader effects"
+msgstr "Shader-Effekte"
+
+#: gui/options/options.json[1].options[7].tooltip
+msgid "Number of shader effects. REQUIRES GAME RESTART"
+msgstr "Anzahl der Shader-Effekte. BENÖTIGT SPIELNEUSTART"
+
+#: gui/options/options.json[1].options[8].label
+msgid "Shadows"
+msgstr "Schatten"
+
+#: gui/options/options.json[1].options[8].tooltip
+msgid "Enable shadows."
+msgstr "Aktiviert Schatten."
+
+#: gui/options/options.json[1].options[9].label
+msgid "Shadow quality"
+msgstr "Schattenqualität"
+
+#: gui/options/options.json[1].options[9].list[0].label
+msgid "Very Low"
+msgstr "Sehr Niedrig"
+
+#: gui/options/options.json[1].options[9].list[1].label
+msgid "Low"
+msgstr "Niedrig"
+
+#: gui/options/options.json[1].options[9].list[2].label
+#: gui/options/options.json[3].options[3].list[3].label
+msgid "Medium"
+msgstr "Mittel"
+
+#: gui/options/options.json[1].options[9].list[3].label
+msgid "High"
+msgstr "Hoch"
+
+#: gui/options/options.json[1].options[9].list[4].label
+msgid "Very High"
+msgstr "Sehr Hoch"
+
+#: gui/options/options.json[1].options[9].tooltip
+msgid ""
+"Shadow map resolution. High values can crash the game when using a graphics "
+"card with low memory!"
+msgstr "Auflösung der Shadow Map. Hohe Werte können bei einer Grafikkarte mit wenig Speicher das Spiel zum Absturz bringen"
+
+#: gui/options/options.json[1].tooltip
+msgid "Set the balance between performance and visual appearance."
+msgstr "Setzt die Balance zwischen Leistung und visuellem Aussehen."
+
+#: gui/options/options.json[2].options[0].label
+msgid "Master volume"
+msgstr "Gesamtlautstärke"
+
+#: gui/options/options.json[2].options[0].tooltip
+msgid "Master audio gain."
+msgstr "Allgemeine Lautstärke."
+
+#: gui/options/options.json[2].options[1].label
+msgid "Music volume"
+msgstr "Musiklautstärke"
+
+#: gui/options/options.json[2].options[1].tooltip
+msgid "In game music gain."
+msgstr "Hintergrundmusik."
+
+#: gui/options/options.json[2].options[2].label
+msgid "Ambient volume"
+msgstr "Umgebungslautstärke"
+
+#: gui/options/options.json[2].options[2].tooltip
+msgid "In game ambient sound gain."
+msgstr "Umgebungsgeräusche."
+
+#: gui/options/options.json[2].options[3].label
+msgid "Action volume"
+msgstr "Aktionslautstärke"
+
+#: gui/options/options.json[2].options[3].tooltip
+msgid "In game unit action sound gain."
+msgstr "Einheitenlautstärke."
+
+#: gui/options/options.json[2].options[4].label
+msgid "UI volume"
+msgstr "UI-Lautstärke"
+
+#: gui/options/options.json[2].options[4].tooltip
+msgid "UI sound gain."
+msgstr "Lautstärke der Bedienoberfläche."
+
+#: gui/options/options.json[2].options[5].label
+msgid "Nick notification"
+msgstr "Spitznamenbenachrichtigung"
+
+#: gui/options/options.json[2].options[5].tooltip
+msgid "Receive audio notification when someone types your nick."
+msgstr "Tonbenachrichtigung, wenn jemand deinen Namen schreibt."
+
+#: gui/options/options.json[2].options[6].label
+msgid "Game setup - new player notification"
+msgstr "Spieleinstellung - Benachrichtigung über neue Spieler"
+
+#: gui/options/options.json[2].options[6].tooltip
+msgid "Receive audio notification when a new client joins the game setup."
+msgstr "Tonbenachrichtigung, wenn jemand neues der Spielvorbereitungen beitritt."
+
+#: gui/options/options.json[3].label
+msgid "Game Setup"
+msgstr "Spieleinstellungen"
+
+#: gui/options/options.json[3].options[0].label
+msgid "Enable game setting tips"
+msgstr "Spieleinstellung-Tipps aktivieren"
+
+#: gui/options/options.json[3].options[0].tooltip
+msgid "Show tips when setting up a game."
+msgstr "Tipps bei der Spielvorbereitung anzeigen."
+
+#: gui/options/options.json[3].options[1].label
+msgid "Enable settings panel slide"
+msgstr "Einstellungs-Schiebefenster aktivieren"
+
+#: gui/options/options.json[3].options[1].tooltip
+msgid "Slide the settings panel when opening, closing or resizing."
+msgstr "Das Einstellungsfenster beim Öffnen, Schließen oder Ändern der Größe schieben."
+
+#: gui/options/options.json[3].options[2].label
+msgid "Persist match settings"
+msgstr "Spieleinstellungen behalten"
+
+#: gui/options/options.json[3].options[2].tooltip
+msgid ""
+"Save and restore match settings for quick reuse when hosting another game."
+msgstr "Spieleinstellungen für schnelle Wiederverwendung beim Hosten speichern und wiederherstellen."
+
+#: gui/options/options.json[3].options[3].label
+msgid "Default AI difficulty"
+msgstr "Standard AI-Schwierigkeit"
+
+#: gui/options/options.json[3].options[3].list[0].label
+msgid "Sandbox"
+msgstr "Sandkasten"
+
+#: gui/options/options.json[3].options[3].list[1].label
+msgid "Very Easy"
+msgstr "Sehr leicht"
+
+#: gui/options/options.json[3].options[3].list[2].label
+msgid "Easy"
+msgstr "Leicht"
+
+#: gui/options/options.json[3].options[3].list[4].label
+msgid "Hard"
+msgstr "Schwer"
+
+#: gui/options/options.json[3].options[3].list[5].label
+msgid "Very Hard"
+msgstr "Sehr Schwer"
+
+#: gui/options/options.json[3].options[3].tooltip
+msgid "Default difficulty of the AI."
+msgstr "Standardschwierigkeit der KI."
+
+#: gui/options/options.json[3].options[4].label
+msgid "Default AI behavior"
+msgstr "Standard-KI-Verhalten"
+
+#: gui/options/options.json[3].options[4].list[0].label
+msgid "Random"
+msgstr "Zufällig"
+
+#: gui/options/options.json[3].options[4].list[1].label
+msgid "Balanced"
+msgstr "Ausgewogen"
+
+#: gui/options/options.json[3].options[4].list[2].label
+msgid "Aggressive"
+msgstr "Aggressiv"
+
+#: gui/options/options.json[3].options[4].list[3].label
+msgid "Defensive"
+msgstr "Defensiv"
+
+#: gui/options/options.json[3].options[4].tooltip
+msgid "Default behavior of the AI."
+msgstr "Standardverhalten der KI."
+
+#: gui/options/options.json[3].options[5].label
+msgid "Assign players"
+msgstr "Spieler zuweisen"
+
+#: gui/options/options.json[3].options[5].list[0].tooltip
+msgid "Players joining the match will be assigned if there is a free slot."
+msgstr "Spieler, die einem Spiel beitreten werden zugewiesen, wenn es einen freien Platz gibt."
+
+#: gui/options/options.json[3].options[5].list[1].tooltip
+msgid ""
+"Players joining the match will only be assigned if they are a buddy of the "
+"host and if there is a free slot."
+msgstr "Spieler, die einem Spiel beitreten, werden nur zugewiesen wenn sie ein Buddy des Hosts sind und es einen freien Platz gibt."
+
+#: gui/options/options.json[3].options[5].list[2].tooltip
+msgid "Players only receive a slot when the host assigns them explicitly."
+msgstr "Spieler bekommen nur einen Platz wenn der Host sie dezidiert zuweist."
+
+#: gui/options/options.json[3].options[5].tooltip
+msgid ""
+"Automatically assign joining clients to free player slots during the match "
+"setup."
+msgstr "Beitretenden Clients während der Spielvorbereitung automatisch einen freien Slot zuweisen."
+
+#: gui/options/options.json[4].label
+msgid "Lobby"
+msgstr "Lobby"
+
+#: gui/options/options.json[4].options[0].label
+msgid "TLS encryption"
+msgstr "TLS Verschlüsselung"
+
+#: gui/options/options.json[4].options[0].tooltip
+msgid ""
+"Protect login and data exchanged with the lobby server using TLS encryption."
+msgstr "Beschützt Login und Daten, die mit dem Server getauscht werden, mittels TLS Verschlüsselung"
+
+#: gui/options/options.json[4].options[1].label
+msgid "Chat backlog"
+msgstr "Chat-Backlog"
+
+#: gui/options/options.json[4].options[1].tooltip
+msgid "Number of backlogged messages to load when joining the lobby."
+msgstr "Anzahl der letzten Meldungen beim Eintritt in die Lobby."
+
+#: gui/options/options.json[4].options[2].label
+msgid "Game rating column"
+msgstr "Spielbewertungsspalte"
+
+#: gui/options/options.json[4].options[2].tooltip
+msgid ""
+"Show the average rating of the participating players in a column of the "
+"gamelist."
+msgstr "Die Durchschnittsbewertung von teilnehmenden Spielern in einer Spalte der Spielliste anzeigen."
+
+#: gui/options/options.json[4].tooltip
+msgid "These settings only affect the multiplayer."
+msgstr "Diese Einstellungen wirken sich nur auf den Multiplayer aus."
+
+#: gui/options/options.json[5].label
+msgid "In-Game"
+msgstr "Im Spiel"
+
+#: gui/options/options.json[5].options[0].label
+msgid "Wounded unit health"
+msgstr "Gesundheit von verletzten Einheiten"
+
+#: gui/options/options.json[5].options[0].tooltip
+msgid ""
+"The wounded unit hotkey considers the selected units as wounded if their "
+"health percentage falls below this number."
+msgstr "Der Verwundete-Einheiten-Hotkey betrachtet die ausgewählten Einheiten als verwundet, wenn ihre Gesundheit unter diesen Prozentsat fällt."
+
+#: gui/options/options.json[5].options[10].label
+msgid "Rank icon above status bar"
+msgstr "Rangsymbol über der Statusleiste"
+
+#: gui/options/options.json[5].options[10].tooltip
+msgid "Show rank icons above status bars."
+msgstr "Rangsymbole über Statusleisten anzeigen."
+
+#: gui/options/options.json[5].options[11].label
+msgid "Experience status bar"
+msgstr "Statusanzeige der Erfahrung"
+
+#: gui/options/options.json[5].options[11].tooltip
+msgid "Show an experience status bar above each selected unit."
+msgstr "Zeige eine Statusanzeige mit der Erfahrung über jeder ausgewählten Einheit."
+
+#: gui/options/options.json[5].options[12].label
+msgid "Detailed tooltips"
+msgstr "Detaillierte Tooltips"
+
+#: gui/options/options.json[5].options[12].tooltip
+msgid ""
+"Show detailed tooltips for trainable units in unit-producing structures."
+msgstr "Detaillierte Kurzinfo für ausbildbare Einheiten in Ausbildungsgebäuden anzeigen."
+
+#: gui/options/options.json[5].options[13].label
+msgid "Sort resources and population tooltip"
+msgstr "Ressourcen- und Popup-Tooltip sortieren"
+
+#: gui/options/options.json[5].options[13].list[0].label
+msgid "Unordered"
+msgstr "Ungeordnet"
+
+#: gui/options/options.json[5].options[13].list[1].label
+msgid "Ascending"
+msgstr "Aufsteigend"
+
+#: gui/options/options.json[5].options[13].list[2].label
+msgid "Descending"
+msgstr "Absteigend"
+
+#: gui/options/options.json[5].options[13].tooltip
+msgid ""
+"Dynamically sort players in the resources and population tooltip by value."
+msgstr "Spieler in der Ressourcen- und Bevölkerungskurzinfo dynamisch nach Werten sortieren."
+
+#: gui/options/options.json[5].options[14].label
+msgid "Diplomacy colors: self"
+msgstr "Diplomatiefarben: Selbst"
+
+#: gui/options/options.json[5].options[14].tooltip
+msgid "Color of your units when diplomacy colors are enabled."
+msgstr "Farbe deiner Einheiten, wenn Diplomatiefarben aktiviert sind."
+
+#: gui/options/options.json[5].options[15].label
+msgid "Diplomacy colors: ally"
+msgstr "Diplomatiefarben: Verbündet"
+
+#: gui/options/options.json[5].options[15].tooltip
+msgid "Color of allies when diplomacy colors are enabled."
+msgstr "Farbe von Verbündeten, wenn Diplomatiefarben aktiviert sind."
+
+#: gui/options/options.json[5].options[16].label
+msgid "Diplomacy colors: neutral"
+msgstr "Diplomatiefarben: Neutral"
+
+#: gui/options/options.json[5].options[16].tooltip
+msgid "Color of neutral players when diplomacy colors are enabled."
+msgstr "Farbe von neutralen Spielern, wenn Diplomatiefarben aktiviert sind."
+
+#: gui/options/options.json[5].options[17].label
+msgid "Diplomacy colors: enemy"
+msgstr "Diplomatiefarben: Gegner"
+
+#: gui/options/options.json[5].options[17].tooltip
+msgid "Color of enemies when diplomacy colors are enabled."
+msgstr "Farben von Gegnern, wenn Diplomatiefarben aktiviert sind."
+
+#: gui/options/options.json[5].options[18].label
+msgid "Snap to edges"
+msgstr "An Rändern ausrichten"
+
+#: gui/options/options.json[5].options[18].list[0].label
+msgid "Hotkey to enable snapping"
+msgstr "Schnelltaste um Auto-Ausrichtung einzuschalten"
+
+#: gui/options/options.json[5].options[18].list[0].tooltip
+msgid ""
+"New structures are aligned with nearby structures while pressing the hotkey."
+msgstr "Neues Gebäude werden a nahegelegenen Gebäuden ausgerichtet, während die Schnelltaste gedrückt wird."
+
+#: gui/options/options.json[5].options[18].list[1].label
+msgid "Hotkey to disable snapping"
+msgstr "Schnelltaste um Auto-Ausrichtung abzuschalten"
+
+#: gui/options/options.json[5].options[18].list[1].tooltip
+msgid ""
+"New structures are aligned with nearby structures unless the hotkey is "
+"pressed."
+msgstr "Neue Gebäude werden an nahegelegenen Gebäude ausgerichtet, außer Schnelltaste wird gedrückt."
+
+#: gui/options/options.json[5].options[18].tooltip
+msgid "This option allows to align new structures with nearby structures."
+msgstr "Diese Option ermöglicht es, neue Gebäude an bestehenden Gebäuden auszurichten."
+
+#: gui/options/options.json[5].options[19].label
+msgid "Control Group Membership"
+msgstr "Kontrollgruppenmitgliedschaft"
+
+#: gui/options/options.json[5].options[19].list[0].label
+msgid "Single"
+msgstr "Einzel"
+
+#: gui/options/options.json[5].options[19].list[0].tooltip
+msgid ""
+"When adding a Unit or Structure to a control group, they are removed from "
+"other control groups. Use this choice if you want control groups to refer to"
+" distinct armies."
+msgstr "Wenn eine Einheit oder ein Gebäude einer Kontrollgruppe hinzugefügt wird, werden sie von anderen Kontrollgruppen entfernt. Nutze diese Option, wenn du möchtest das Kontrollgruppen separate Armeen repräsentieren."
+
+#: gui/options/options.json[5].options[19].list[1].label
+msgid "Multiple"
+msgstr "Mehrfach"
+
+#: gui/options/options.json[5].options[19].list[1].tooltip
+msgid ""
+"Units and Structures can be part of multiple control groups. This is useful "
+"to keep control groups for distinct armies and a control group for the "
+"entire army simultaneously."
+msgstr "Einheiten und Gebäude können Teil mehrerer Kontrollgruppen sein. Das ist nützlich, um Kontrollgruppen für separate Truppen und eine Kontrollgruppe für die gesamte Armee gleichzeitig zu haben."
+
+#: gui/options/options.json[5].options[19].tooltip
+msgid "Decide whether units can be part of multiple control groups."
+msgstr "Entscheide, ob Einheit Teil mehrerer Kontrollgruppen sein können."
+
+#: gui/options/options.json[5].options[1].label
+msgid "Batch training size"
+msgstr "Gruppen-Trainingsgröße"
+
+#: gui/options/options.json[5].options[1].tooltip
+msgid "Number of units trained per batch by default."
+msgstr "Standardmäßige Anzahl der Einheiten pro Gruppe."
+
+#: gui/options/options.json[5].options[2].label
+msgid "Scroll batch increment ratio"
+msgstr "Rate der Erhöhung der Gruppengröße beim Scrollen"
+
+#: gui/options/options.json[5].options[2].tooltip
+msgid ""
+"Number of times you have to scroll to increase/decrease the batchsize by 1."
+msgstr "Anzahl der Scroll-Vorgänge, um die Gruppengröße um 1 zu erhöhen/verringern."
+
+#: gui/options/options.json[5].options[3].label
+msgid "Chat notification attack"
+msgstr "Chatbenachrichtigung bei Angriff"
+
+#: gui/options/options.json[5].options[3].tooltip
+msgid "Show a chat notification if you are attacked by another player."
+msgstr "Chatnachricht anzeigen, wenn du von einem anderen Spieler angegriffen wirst."
+
+#: gui/options/options.json[5].options[4].label
+msgid "Chat notification tribute"
+msgstr "Chatbenachrichtigung bei Tribut"
+
+#: gui/options/options.json[5].options[4].tooltip
+msgid ""
+"Show a chat notification if an ally tributes resources to another team "
+"member if teams are locked, and all tributes in observer mode."
+msgstr "Chatbenachrichtigung anzeigen, wenn ein Verbündeter einem anderen Teammitglied bei fixen Teams einen Tribut schickt, und alle Tribute im Zuschauermodus."
+
+#: gui/options/options.json[5].options[5].label
+msgid "Chat notification barter"
+msgstr "Chatbenachrichtigung bei Tausch"
+
+#: gui/options/options.json[5].options[5].tooltip
+msgid ""
+"Show a chat notification to observers when a player bartered resources."
+msgstr "Beobachtern eine Chatbenachrichtigung anzeigen, wenn ein Spieler Rohstoffe getauscht hat."
+
+#: gui/options/options.json[5].options[6].label
+msgid "Chat notification phase"
+msgstr "Chatbenachrichtigung für Phasen"
+
+#: gui/options/options.json[5].options[6].list[0].label
+msgid "Disable"
+msgstr "Deaktiviert"
+
+#: gui/options/options.json[5].options[6].list[1].label
+msgid "Completed"
+msgstr "Abgeschlossen"
+
+#: gui/options/options.json[5].options[6].list[2].label
+msgid "All displayed"
+msgstr "Zeige alle"
+
+#: gui/options/options.json[5].options[6].tooltip
+msgid ""
+"Show a chat notification if you or an ally have started, aborted or "
+"completed a new phase, and phases of all players in observer mode."
+msgstr "Chatbenachrichtigung anzeigen, wenn du oder ein Verbündeter eine neue Phase begonnen, abgebrochen oder fertiggestellt hat, und die Phasen von allen Spielern im Zuschauermodus."
+
+#: gui/options/options.json[5].options[7].label
+msgid "Attack range visualization"
+msgstr "Visualisierung der Angriffsreichweite"
+
+#: gui/options/options.json[5].options[7].tooltip
+msgid ""
+"Display the attack range of selected defensive structures (can also be "
+"toggled in-game with the hotkey)."
+msgstr "Zeigt die Reichweite von ausgewählten Defensivgebäuden an (kann auch während des Spiels mit der Schnellzugriffstaste umgeschaltet werden)."
+
+#: gui/options/options.json[5].options[8].label
+msgid "Aura range visualization"
+msgstr "Visualisierung der Aurareichweite"
+
+#: gui/options/options.json[5].options[8].tooltip
+msgid ""
+"Display the range of auras of selected units and structures (can also be "
+"toggled in-game with the hotkey)."
+msgstr "Zeigt die Reichweite von Auren für ausgewählte Einheiten und Gebäude an (kann auch während des Spiels mit der Schnellzugriffstaste umgeschaltet werden)."
+
+#: gui/options/options.json[5].options[9].label
+msgid "Heal range visualization"
+msgstr "Visualisierung der Heilreichweite"
+
+#: gui/options/options.json[5].options[9].tooltip
+msgid ""
+"Display the healing range of selected units (can also be toggled in-game "
+"with the hotkey)."
+msgstr "Zeige die Reichweite der ausgewählten Einheiten (kann auch während des Spiels mit einem Hotkey umgeschaltet werden)"
+
+#: gui/options/options.json[5].tooltip
+msgid "Change options regarding the in-game settings."
+msgstr "Einstellungen im Spiel ändern"
+
+#: gui/options/options.xml:(caption):15
+msgid "Game Options"
+msgstr "Spieloptionen"
+
+#: gui/options/options.xml:(caption):42
+msgid "Reset"
+msgstr "Zurücksetzen"
+
+#: gui/options/options.xml:(caption):48
+msgid "Revert"
+msgstr "Rückgängig"
+
+#: gui/options/options.xml:(tooltip):43
+msgid "Resets user settings to their game default"
+msgstr "Setzt Benutzereinstellungen zum Spiel Standard zurück"
+
+#: gui/options/options.xml:(tooltip):49
+msgid "Reverts to previous saved settings"
+msgstr "Zurücksetzen auf letzte gespeicherte Einstellungen"
+
+#: gui/options/options.xml:(tooltip):55
+msgid "Saves changes"
+msgstr "Speichert Einstellungen"
+
+#: gui/options/options.xml:(tooltip):61
+msgid "Unsaved changes affect this session only"
+msgstr "Ungespeicherte Änderungen betreffen nur diese Sitzung"
+
 #: gui/pregame/MainMenuItems.js:3
 msgid "Learn To Play"
 msgstr "Spielen lernen"
@@ -1450,7 +2642,7 @@ msgstr "Einführung"
 msgid "Start the economic tutorial."
 msgstr "Starte die ökonomische Einführung."
 
-#: gui/pregame/MainMenuItems.js:24 gui/civinfo/civinfo.xml:(caption):123
+#: gui/civinfo/civinfo.xml:(caption):123 gui/pregame/MainMenuItems.js:24
 #: gui/reference/structree/structree.xml:(caption):20
 msgid "Structure Tree"
 msgstr "Gebäudebaum"
@@ -1461,9 +2653,8 @@ msgid ""
 "%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
 msgstr "%(hotkey)s: Schau dir den Gebäudebaum der Zivilisationen in 0 A.D. an."
 
-#: gui/pregame/MainMenuItems.js:36
+#: gui/civinfo/civinfo.xml:(caption):18 gui/pregame/MainMenuItems.js:36
 #: gui/reference/common/Buttons/CivInfoButton.js:21
-#: gui/civinfo/civinfo.xml:(caption):18
 msgid "Civilization Overview"
 msgstr "Zivilisationsübersicht"
 
@@ -1574,7 +2765,7 @@ msgstr "Taststurkürzel"
 msgid "Adjust hotkeys."
 msgstr "Tatsaturkürzel anpassen."
 
-#: gui/pregame/MainMenuItems.js:159 gui/locale/locale.xml:(caption):14
+#: gui/locale/locale.xml:(caption):14 gui/pregame/MainMenuItems.js:159
 msgid "Language"
 msgstr "Sprache"
 
@@ -1775,6 +2966,21 @@ msgid ""
 "improve performance and compatibility."
 msgstr "Du kannst uns automatisch Feedback senden, das uns dabei helfen kann, Programmfehler zu beheben sowie Leistung und Kompatibilität zu verbessern."
 
+#: gui/reference/common/Buttons/CivInfoButton.js:27
+#, javascript-format
+msgid "%(hotkey)s: Switch to Civilization Overview."
+msgstr "%(hotkey)s: Zur Zivilisationsübersicht wechseln."
+
+#: gui/civinfo/civinfo.xml:(caption):135 gui/credits/credits.xml:(caption):32
+#: gui/options/options.xml:(caption):60
+#: gui/reference/common/Buttons/CloseButton.js:13
+msgid "Close"
+msgstr "Schließen"
+
+#: gui/reference/common/Dropdowns/CivSelectDropdown.js:63
+msgid "Civilization:"
+msgstr "Zivilisation:"
+
 #: gui/reference/common/TemplateParser.js:128
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
@@ -1793,69 +2999,64 @@ msgid "Built by:"
 msgstr "Gebaut von:"
 
 #. Translation: Label before a list of the names of structures or units that
-#. train the unit selected.
+#. train the unit
+#. selected.
 #: gui/reference/common/tooltips.js:33
 msgid "Trained by:"
 msgstr "Ausgebildet von:"
 
 #. Translation: Label before a list of names of structures or units that
-#. research the technology selected.
+#. research the
+#. technology selected.
 #: gui/reference/common/tooltips.js:39
 msgid "Researched at:"
 msgstr "Erforscht in:"
 
 #. Translation: Label before a list of the names of structures the selected
-#. unit can construct or build.
+#. unit can
+#. construct or build.
 #: gui/reference/common/tooltips.js:48
 msgid "Builds:"
 msgstr "Baut:"
 
 #. Translation: Label before a list of the names of technologies the selected
-#. unit or structure can research.
+#. unit or
+#. structure can research.
 #: gui/reference/common/tooltips.js:57
 msgid "Researches:"
 msgstr "Erforscht:"
 
 #. Translation: Label before a list of the names of units the selected unit or
-#. structure can train.
+#. structure can
+#. train.
 #: gui/reference/common/tooltips.js:66
 msgid "Trains:"
 msgstr "Bildet aus:"
 
 #. Translation: Label before a list of the names of units or structures the
-#. selected unit or structure can be upgradable to.
+#. selected unit or
+#. structure can be upgradable to.
 #: gui/reference/common/tooltips.js:75
 msgid "Upgradable to:"
 msgstr "Aufwertbar zu:"
 
-#: gui/reference/common/Buttons/CivInfoButton.js:27
-#, javascript-format
-msgid "%(hotkey)s: Switch to Civilization Overview."
-msgstr "%(hotkey)s: Zur Zivilisationsübersicht wechseln."
-
-#: gui/reference/common/Buttons/CloseButton.js:13
-#: gui/civinfo/civinfo.xml:(caption):135 gui/credits/credits.xml:(caption):32
-#: gui/options/options.xml:(caption):60
-msgid "Close"
-msgstr "Schließen"
-
-#: gui/reference/common/Dropdowns/CivSelectDropdown.js:63
-msgid "Civilization:"
-msgstr "Zivilisation:"
+#: gui/reference/structree/Sections/Trainer/TrainerSection.js:70
+msgid "Trainer Units"
+msgstr "Ausbildereinh."
 
 #: gui/reference/structree/StructreePage.js:85
 #, javascript-format
 msgid "%(hotkey)s: Close Structure Tree."
 msgstr "%(hotkey)s: Gebäudebaum schließen."
 
-#: gui/reference/structree/Sections/Trainer/TrainerSection.js:70
-msgid "Trainer Units"
-msgstr "Ausbildereinh."
-
 #: gui/reference/viewer/ViewerPage.js:167
 #, javascript-format
 msgid "%(hotkey)s: Close Template Viewer"
 msgstr "%(hotkey)s: Vorlagenansicht schließen"
+
+#: gui/reference/viewer/viewer.xml:(caption):16
+msgid "Information"
+msgstr "Information"
 
 #: gui/replaymenu/replay_actions.js:90
 msgid "This replay needs a different sequence of mods:"
@@ -1983,6 +3184,102 @@ msgstr "dd.MM.yyyy HH:mm"
 #: gui/replaymenu/replay_menu.js:337
 msgid "yyyy-MM"
 msgstr "MM yyyy"
+
+#: gui/replaymenu/replay_menu.xml:(caption):13
+msgid "Replay Games"
+msgstr "Spielwiederholungen"
+
+#: gui/replaymenu/replay_menu.xml:(caption):109
+msgid "Filter compatible replays"
+msgstr "Kompatible Wiederholungen filtern"
+
+#: gui/replaymenu/replay_menu.xml:(caption):213
+msgid "Spoiler"
+msgstr "Spoiler"
+
+#: gui/replaymenu/replay_menu.xml:(caption):225
+msgid "Main Menu"
+msgstr "Hauptmenü"
+
+#: gui/replaymenu/replay_menu.xml:(caption):237
+msgid "Rebuild Cache"
+msgstr "Cache neu erstellen"
+
+#: gui/replaymenu/replay_menu.xml:(caption):244
+#: gui/summary/summary.xml:(caption):26
+msgid "Summary"
+msgstr "Zusammenfassung"
+
+#: gui/replaymenu/replay_menu.xml:(caption):250
+msgid "Start Replay"
+msgstr "Wiederholung starten"
+
+#: gui/replaymenu/replay_menu.xml:(heading):73
+msgctxt "replay"
+msgid "Players"
+msgstr "Spieler"
+
+#: gui/replaymenu/replay_menu.xml:(heading):81
+msgctxt "replay"
+msgid "Size"
+msgstr "Größe"
+
+#: gui/replaymenu/replay_menu.xml:(heading):85
+msgctxt "replay"
+msgid "Population"
+msgstr "Einwohnerzahl"
+
+#: gui/replaymenu/replay_menu.xml:(heading):89
+msgctxt "replay"
+msgid "Duration"
+msgstr "Dauer"
+
+#: gui/replaymenu/replay_menu.xml:(tooltip):238
+msgid "Rebuild the replay cache from scratch. Potentially slow!"
+msgstr "Erstellt den Cache vollständig neu. Möglicherweise recht langsam!"
+
+#: gui/splashscreen/splashscreen.txt:2
+msgid ""
+"[font=\"sans-bold-20\"]  Thank you for installing 0 A.D. Empires Ascendant!"
+msgstr "[font=\"sans-bold-20\"] Vielen Dank für die Installation von 0 A.D.!"
+
+#: gui/splashscreen/splashscreen.txt:3
+msgid "[font=\"sans-16\"]"
+msgstr "[font=\"sans-16\"]"
+
+#: gui/splashscreen/splashscreen.txt:4
+msgid ""
+"[imgleft=\"constructionIcon\"]This game is still in development. Features "
+"are missing and it contains bugs."
+msgstr "[imgleft=\"constructionIcon\"]Dieses Spiel ist in Entwicklung. Funktionen fehlen und es bestehen noch Fehler."
+
+#: gui/splashscreen/splashscreen.txt:6
+msgid ""
+"[imgleft=\"iconLag\"]The game can have performance problems, especially with"
+" large maps and a great number of units."
+msgstr "[imgleft=\"iconLag\"]Das Spiel kann Performance-Probleme verursachen, vor allem mit großen Karten und einer großen Anzahl von Einheiten."
+
+#: gui/splashscreen/splashscreen.txt:8
+msgid ""
+"[imgleft=\"iconFormation\"]Formations are a work in progress, but you can "
+"toggle forming and disbanding formations as desired."
+msgstr "[imgleft=\"iconFormation\"]Formationen sind in Arbeit, aber du kannst zwischen Formation und deaktivierter Formationen, wenn gewünscht, umschalten."
+
+#: gui/splashscreen/splashscreen.xml:(caption):14
+msgid "Welcome!"
+msgstr "Willkommen!"
+
+#: gui/splashscreen/splashscreen.xml:(caption):19
+msgid "Show this message in the future"
+msgstr "Diese Nachricht in Zukunft anzeigen"
+
+#: gui/splashscreen/splashscreen.xml:(caption):25
+msgid "Known Issues (web)"
+msgstr "Bekannte Fehler (web)"
+
+#: gui/splashscreen/splashscreen.xml:(caption):30
+msgid "OK"
+msgstr "OK"
 
 #: gui/summary/layout.js:13
 msgid "Score"
@@ -2329,197 +3626,6 @@ msgstr "Drücke %(hotkey)s, um ein Zusammenfassungs-Tab nach rechts zu gehen."
 msgid "Use %(hotkey)s to move a summary tab left."
 msgstr "Drücke %(hotkey)s, um ein Zusammenfassungs-Tab nach links zu gehen."
 
-#: gui/civinfo/civinfo.xml:(caption):30
-msgid "Civilization Selection"
-msgstr "Zivilisationsauswahl"
-
-#: gui/credits/credits.xml:(caption):19
-msgid "0 A.D. Credits"
-msgstr "0 A.D. Credits"
-
-#: gui/loadgame/load.xml:(heading):26
-#: gui/replaymenu/replay_menu.xml:(heading):69
-msgctxt "replay"
-msgid "Date / Time"
-msgstr "Datum/Zeit"
-
-#: gui/loadgame/load.xml:(heading):30
-msgctxt "replay"
-msgid "Map Type"
-msgstr "Kartentyp"
-
-#: gui/loadgame/load.xml:(heading):34
-#: gui/replaymenu/replay_menu.xml:(heading):77
-msgctxt "replay"
-msgid "Map Name"
-msgstr "Kartenname"
-
-#: gui/loadgame/load.xml:(heading):38
-msgctxt "replay"
-msgid "Description"
-msgstr "Beschreibung"
-
-#: gui/loadgame/load.xml:(caption):43
-msgid "No saved games found."
-msgstr "Keine Spielstände gefunden."
-
-#: gui/loadgame/load.xml:(caption):49 gui/locale/locale.xml:(caption):36
-msgid "Cancel"
-msgstr "Abbrechen"
-
-#: gui/loadgame/load.xml:(caption):53
-#: gui/replaymenu/replay_menu.xml:(caption):231
-msgid "Delete"
-msgstr "Löschen"
-
-#: gui/loadgame/load.xml:(caption):63
-msgid "Filter compatible saved games"
-msgstr "Kompatible Spielstände filtern"
-
-#: gui/loadgame/load.xml:(caption):73
-msgid "Players:"
-msgstr "Spieler:"
-
-#: gui/loadgame/load.xml:(caption):77
-msgid "Played time:"
-msgstr "Gespielte Zeit:"
-
-#: gui/loadgame/load.xml:(caption):81
-#: gui/replaymenu/replay_menu.xml:(caption):150
-msgid "Map Type:"
-msgstr "Kartentyp:"
-
-#: gui/loadgame/load.xml:(caption):85
-#: gui/replaymenu/replay_menu.xml:(caption):165
-msgid "Map Size:"
-msgstr "Kartengröße:"
-
-#: gui/loadgame/load.xml:(caption):89
-#: gui/replaymenu/replay_menu.xml:(caption):180
-msgid "Victory:"
-msgstr "Sieg:"
-
-#: gui/locale/locale.xml:(caption):17
-msgid "Language:"
-msgstr "Sprache:"
-
-#. A locale is a set of parameters that defines the user’s language, country
-#. and any special variant preferences that the user wants to see in their
-#. user interface. Here, “Locale” refers to the code that identifies those
-#. settings, such as ‘en_US’.
-#: gui/locale/locale.xml:(caption):31
-msgid "Locale:"
-msgstr "Gebietsschema:"
-
-#: gui/locale/locale.xml:(caption):41
-msgid "Advanced"
-msgstr "Erweitert"
-
-#: gui/locale/locale.xml:(caption):46
-msgid "Accept"
-msgstr "Annehmen"
-
-#: gui/options/options.xml:(caption):15
-msgid "Game Options"
-msgstr "Spieloptionen"
-
-#: gui/options/options.xml:(caption):42
-msgid "Reset"
-msgstr "Zurücksetzen"
-
-#: gui/options/options.xml:(caption):48
-msgid "Revert"
-msgstr "Rückgängig"
-
-#: gui/options/options.xml:(tooltip):43
-msgid "Resets user settings to their game default"
-msgstr "Setzt Benutzereinstellungen zum Spiel Standard zurück"
-
-#: gui/options/options.xml:(tooltip):49
-msgid "Reverts to previous saved settings"
-msgstr "Zurücksetzen auf letzte gespeicherte Einstellungen"
-
-#: gui/options/options.xml:(tooltip):55
-msgid "Saves changes"
-msgstr "Speichert Einstellungen"
-
-#: gui/options/options.xml:(tooltip):61
-msgid "Unsaved changes affect this session only"
-msgstr "Ungespeicherte Änderungen betreffen nur diese Sitzung"
-
-#: gui/reference/viewer/viewer.xml:(caption):16
-msgid "Information"
-msgstr "Information"
-
-#: gui/replaymenu/replay_menu.xml:(caption):13
-msgid "Replay Games"
-msgstr "Spielwiederholungen"
-
-#: gui/replaymenu/replay_menu.xml:(caption):109
-msgid "Filter compatible replays"
-msgstr "Kompatible Wiederholungen filtern"
-
-#: gui/replaymenu/replay_menu.xml:(caption):213
-msgid "Spoiler"
-msgstr "Spoiler"
-
-#: gui/replaymenu/replay_menu.xml:(caption):225
-msgid "Main Menu"
-msgstr "Hauptmenü"
-
-#: gui/replaymenu/replay_menu.xml:(caption):237
-msgid "Rebuild Cache"
-msgstr "Cache neu erstellen"
-
-#: gui/replaymenu/replay_menu.xml:(caption):244
-#: gui/summary/summary.xml:(caption):26
-msgid "Summary"
-msgstr "Zusammenfassung"
-
-#: gui/replaymenu/replay_menu.xml:(caption):250
-msgid "Start Replay"
-msgstr "Wiederholung starten"
-
-#: gui/replaymenu/replay_menu.xml:(heading):73
-msgctxt "replay"
-msgid "Players"
-msgstr "Spieler"
-
-#: gui/replaymenu/replay_menu.xml:(heading):81
-msgctxt "replay"
-msgid "Size"
-msgstr "Größe"
-
-#: gui/replaymenu/replay_menu.xml:(heading):85
-msgctxt "replay"
-msgid "Population"
-msgstr "Einwohnerzahl"
-
-#: gui/replaymenu/replay_menu.xml:(heading):89
-msgctxt "replay"
-msgid "Duration"
-msgstr "Dauer"
-
-#: gui/replaymenu/replay_menu.xml:(tooltip):238
-msgid "Rebuild the replay cache from scratch. Potentially slow!"
-msgstr "Erstellt den Cache vollständig neu. Möglicherweise recht langsam!"
-
-#: gui/splashscreen/splashscreen.xml:(caption):14
-msgid "Welcome!"
-msgstr "Willkommen!"
-
-#: gui/splashscreen/splashscreen.xml:(caption):19
-msgid "Show this message in the future"
-msgstr "Diese Nachricht in Zukunft anzeigen"
-
-#: gui/splashscreen/splashscreen.xml:(caption):25
-msgid "Known Issues (web)"
-msgstr "Bekannte Fehler (web)"
-
-#: gui/splashscreen/splashscreen.xml:(caption):30
-msgid "OK"
-msgstr "OK"
-
 #: gui/summary/summary.xml:(caption):120
 msgctxt "summary chart"
 msgid "Category:"
@@ -2561,1286 +3667,6 @@ msgstr "Wert"
 msgctxt "summary chart"
 msgid "Type"
 msgstr "Typ"
-
-#: gui/credits/texts/art.jsonContent[0].Title
-msgid "Art lead"
-msgstr "Leitung Grafik"
-
-#: gui/credits/texts/art.jsonContent[1].Title
-msgid "2D Art"
-msgstr "2D-Grafik"
-
-#: gui/credits/texts/art.jsonContent[2].Title
-msgid "3D Art"
-msgstr "3D-Grafik"
-
-#: gui/credits/texts/art.jsonTitle
-msgid "Art"
-msgstr "Grafik"
-
-#: gui/credits/texts/audio.jsonContent[0].Content[0].Subtitle
-msgid "Sound Manager"
-msgstr "Sound-Manager"
-
-#: gui/credits/texts/audio.jsonContent[0].Content[1].Subtitle
-msgid "Lead Composer"
-msgstr "Hauptkomponist"
-
-#: gui/credits/texts/audio.jsonContent[0].Title
-msgid "Audio managers"
-msgstr "Audio-Manager"
-
-#: gui/credits/texts/audio.jsonContent[1].Content[1].Subtitle
-msgid "Additional music, percussion, djembe, sampling"
-msgstr "Zusätzliche Musik, Perkussion, Djembe, Sampling"
-
-#: gui/credits/texts/audio.jsonContent[1].Content[2].Subtitle
-msgid "Additional music"
-msgstr "Zusätzliche Musik"
-
-#: gui/credits/texts/audio.jsonContent[1].Content[3].Subtitle
-msgid "Flute"
-msgstr "Flöte"
-
-#: gui/credits/texts/audio.jsonContent[1].Content[4].Subtitle
-msgid "Djembe"
-msgstr "Djembe"
-
-#: gui/credits/texts/audio.jsonContent[1].Content[5].Subtitle
-msgid "Frame drum, darbuka, riq, toms"
-msgstr "Rahmentrommel, Darbuka, Riq, Toms"
-
-#: gui/credits/texts/audio.jsonContent[1].Content[6].Subtitle
-msgid "Didgeridoo"
-msgstr "Didgeridoo"
-
-#: gui/credits/texts/audio.jsonContent[1].Content[7].Subtitle
-msgid "Trumpet"
-msgstr "Trompete"
-
-#: gui/credits/texts/audio.jsonContent[1].Content[8].Subtitle
-msgid "Celtic harp"
-msgstr "Keltische Harfe"
-
-#: gui/credits/texts/audio.jsonContent[1].Content[9].Subtitle
-msgid "Tin whistles"
-msgstr "Blechflöten"
-
-#: gui/credits/texts/audio.jsonContent[1].Content[10].Subtitle
-msgid "Viola, violin"
-msgstr "Bratsche, Geige"
-
-#: gui/credits/texts/audio.jsonContent[1].Title
-msgid "Music"
-msgstr "Musik"
-
-#: gui/credits/texts/audio.jsonContent[2].Title
-#: gui/options/options.json[2].label
-msgid "Sound"
-msgstr "Ton"
-
-#: gui/credits/texts/audio.jsonContent[3].Content[0].Subtitle
-msgid "Greek"
-msgstr "Griechisch"
-
-#: gui/credits/texts/audio.jsonContent[3].Content[1].Subtitle
-msgid "Latin"
-msgstr "Latein"
-
-#: gui/credits/texts/audio.jsonContent[3].Content[2].Subtitle
-msgid "Napatan"
-msgstr "Napataner"
-
-#: gui/credits/texts/audio.jsonContent[3].Content[3].Subtitle
-msgid "Persian"
-msgstr "Perser"
-
-#: gui/credits/texts/audio.jsonContent[3].Title
-msgid "Voices"
-msgstr "Stimmen"
-
-#: gui/credits/texts/audio.jsonTitle
-msgid "Audio"
-msgstr "Audio"
-
-#: gui/credits/texts/balancing.jsonContent[0].Subtitle
-#: gui/credits/texts/history.jsonContent[0].Subtitle
-msgid "Head"
-msgstr "Leitung"
-
-#: gui/credits/texts/balancing.jsonTitle
-msgid "Balancing"
-msgstr "Ausgewogenheit"
-
-#: gui/credits/texts/community.jsonTitle
-msgid "Community and Management"
-msgstr "Gemeinschaft und Management"
-
-#: gui/credits/texts/donators.jsonContent[0].Title
-msgid "Pledgie Drive 1"
-msgstr "1. Pledgie-Spendenaktion"
-
-#: gui/credits/texts/donators.jsonContent[1].Title
-msgid "Pledgie Drive 2"
-msgstr "2. Pledgie-Spendenaktion"
-
-#: gui/credits/texts/donators.jsonContent[2].Title
-msgid ""
-"Indiegogo 2013 campaign\n"
-"More than 1000 donators (!), including:"
-msgstr "Indiegogo-Kampagne 2013\nÜber 1000 Spender (!), inklusive:"
-
-#: gui/credits/texts/donators.jsonTitle
-msgid "Donors"
-msgstr "Spender"
-
-#: gui/credits/texts/history.jsonTitle
-msgid "History References"
-msgstr "Geschichtliche Verweise"
-
-#: gui/credits/texts/maps.jsonContent[0].Title
-msgid "Map Making"
-msgstr "Kartenerstellung"
-
-#: gui/credits/texts/maps.jsonContent[1].Title
-msgid "Random Map Scripts"
-msgstr "Zufallskartenskripte"
-
-#: gui/credits/texts/maps.jsonTitle
-msgid "Maps"
-msgstr "Karten"
-
-#: gui/credits/texts/programming.jsonContent[0].Title
-msgid "Programming managers"
-msgstr "Programmierungs-Manager"
-
-#: gui/credits/texts/programming.jsonContent[1].Subtitle
-msgid "Special thanks to"
-msgstr "Besonderes Dankeschön an"
-
-#: gui/credits/texts/programming.jsonTitle
-msgid "Programming"
-msgstr "Programmierung"
-
-#: gui/credits/texts/special.jsonContent[0].Title
-msgid "In Memoriam"
-msgstr "Zum Andenken an"
-
-#: gui/credits/texts/special.jsonContent[1].Content[0].Subtitle
-msgid "0 A.D. Founder"
-msgstr "0 A.D. Gründer"
-
-#: gui/credits/texts/special.jsonContent[1].Content[1].Subtitle
-msgid "Project Leaders"
-msgstr "Projektleiter"
-
-#: gui/credits/texts/special.jsonContent[1].Content[2].Subtitle
-msgid "Co-Lead Designers"
-msgstr "Unterstützendes Design"
-
-#: gui/credits/texts/special.jsonContent[1].Title
-msgid "Special thanks to:"
-msgstr "Besonderes Dankeschön an:"
-
-#: gui/credits/texts/special.jsonContent[2].Title
-msgid "And thanks to the entire community for making 0 A.D. possible."
-msgstr "Und danke an die gesamte Gemeinschaft, dafür, dass sie 0 A.D. möglich gemacht haben."
-
-#: gui/credits/texts/special.jsonContent[3].Title
-msgid "No historians were harmed during the development of this project."
-msgstr "Bei der Entwicklung dieses Spiels wurden keine Historiker verletzt."
-
-#: gui/credits/texts/special.jsonTitle
-msgid "Special Credits"
-msgstr "Special Credits"
-
-#: gui/credits/texts/translators.jsonTitle
-msgid "Translators"
-msgstr "Übersetzer"
-
-#: gui/options/options.json[0].options[0].tooltip
-msgid "How you want to be addressed in single-player matches."
-msgstr "Wie du in Einzelspieler-Partien angesprochen werden möchtest."
-
-#: gui/options/options.json[0].options[0].label
-msgid "Player name (single-player)"
-msgstr "Spielername (Einzelspieler)"
-
-#: gui/options/options.json[0].options[1].tooltip
-msgid "How you want to be addressed in multiplayer matches (except lobby)."
-msgstr "Wie du in Mehrspieler-Partien angesprochen werden möchtest (Lobby ausgenommen)."
-
-#: gui/options/options.json[0].options[1].label
-msgid "Player name (multiplayer)"
-msgstr "Spielername (Mehrspieler)"
-
-#: gui/options/options.json[0].options[2].tooltip
-msgid "Pause single-player games when window loses focus."
-msgstr "Pausiert Einzelspielerspiele wenn das Fenster den Fokus verliert."
-
-#: gui/options/options.json[0].options[2].label
-msgid "Background pause"
-msgstr "Hintergrundpause"
-
-#: gui/options/options.json[0].options[3].tooltip
-msgid ""
-"If you disable it, the welcome screen will still appear once, each time a "
-"new version is available. You can always launch it from the main menu."
-msgstr "Wird dies deaktiviert, erscheint der Willkommensbildschirm trotzdem noch ein Mal, nämlich immer, wenn eine neue Version verfügbar ist. Du kannst ihn aber immer vom Hauptmenü aus öffnen."
-
-#: gui/options/options.json[0].options[3].label
-msgid "Enable welcome screen"
-msgstr "Begrüßungsfenster aktivieren"
-
-#: gui/options/options.json[0].options[4].tooltip
-msgid "Show which player has a bad connection in multiplayer games."
-msgstr "Zeigt an, welche Spieler eine schlechte Verbindung in Mehrspielerspielen hat."
-
-#: gui/options/options.json[0].options[4].label
-msgid "Network warnings"
-msgstr "Netzwerkwarnungen"
-
-#: gui/options/options.json[0].options[5].tooltip
-msgid "Show frames per second in top right corner."
-msgstr "Bildrate in der oberen rechten Ecke anzeigen."
-
-#: gui/options/options.json[0].options[5].label
-msgid "FPS overlay"
-msgstr "FPS-Overlay"
-
-#: gui/options/options.json[0].options[6].tooltip
-msgid "Show current system time in top right corner."
-msgstr "Aktuelle Systemzeit in der oberen rechten Ecke anzeigen."
-
-#: gui/options/options.json[0].options[6].label
-msgid "Real time overlay"
-msgstr "Echtzeit-Overlay"
-
-#: gui/options/options.json[0].options[7].tooltip
-msgid "Show current simulation time in top right corner."
-msgstr "Aktuelle Simulationszeit in der oberen rechten Ecke anzeigen."
-
-#: gui/options/options.json[0].options[7].label
-msgid "Game time overlay"
-msgstr "Spielzeit-Overlay"
-
-#: gui/options/options.json[0].options[8].tooltip
-msgid "Always show the remaining ceasefire time."
-msgstr "Immer die verbleibende Dauer des Waffenstillstands anzeigen."
-
-#: gui/options/options.json[0].options[8].label
-msgid "Ceasefire time overlay"
-msgstr "Waffenstillstandsdauer-Overlay"
-
-#: gui/options/options.json[0].options[9].list[0].label
-#: gui/options/options.json[3].options[5].list[0].label
-msgid "Everyone"
-msgstr "Jeder"
-
-#: gui/options/options.json[0].options[9].list[1].label
-#: gui/options/options.json[3].options[5].list[1].label
-msgid "Buddies"
-msgstr "Freunde"
-
-#: gui/options/options.json[0].options[9].list[2].label
-#: gui/options/options.json[1].options[4].list[0].label
-#: gui/options/options.json[1].options[5].list[0].label
-#: gui/options/options.json[3].options[5].list[2].label
-msgid "Disabled"
-msgstr "Deaktiviert"
-
-#: gui/options/options.json[0].options[9].tooltip
-msgid ""
-"Allow everybody or buddies only to join the game as observer after it "
-"started."
-msgstr "Erlaubt jedem oder nur Freunden einem bereits begonnenen Spiel als Zuschauer beizutreten."
-
-#: gui/options/options.json[0].options[9].label
-msgid "Late observer joins"
-msgstr "Späte Zuschauerbeitritte"
-
-#: gui/options/options.json[0].options[10].tooltip
-msgid "Prevent further observers from joining if the limit is reached."
-msgstr "Verhindert das weitere Zuschauer beitreten, wenn das Limit erreicht ist."
-
-#: gui/options/options.json[0].options[10].label
-msgid "Observer limit"
-msgstr "Zuschauerlimit"
-
-#: gui/options/options.json[0].options[11].tooltip
-msgid ""
-"Show time that messages are posted in the lobby, gamesetup and ingame chat."
-msgstr "Zeige Zeitpunkt zu dem Nachrichten in der Lobby, in den Spieleeinstellungen und dem Ingame Chat gepostet werden."
-
-#: gui/options/options.json[0].options[11].label
-msgid "Chat timestamp"
-msgstr "Chat Zeitstempel"
-
-#: gui/options/options.json[0].label
-msgid "General"
-msgstr "Allgemein"
-
-#: gui/options/options.json[1].options[0].tooltip
-msgid "Start 0 A.D. in a window."
-msgstr "Starte 0 A.D. in einem Fenster."
-
-#: gui/options/options.json[1].options[0].label
-msgid "Windowed mode"
-msgstr "Fenstermodus"
-
-#: gui/options/options.json[1].options[1].tooltip
-msgid "Use OpenGL 2.0 shaders (recommended)."
-msgstr "Benutzt OpenGL 2.0 Shader (empfohlen)."
-
-#: gui/options/options.json[1].options[1].label
-msgid "Prefer GLSL"
-msgstr "GLSL bevorzugen"
-
-#: gui/options/options.json[1].options[2].tooltip
-msgid "Enable Fog."
-msgstr "Aktiviert Nebel."
-
-#: gui/options/options.json[1].options[2].label
-msgid "Fog"
-msgstr "Nebel"
-
-#: gui/options/options.json[1].options[3].tooltip
-msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
-msgstr "Screen-Space-Nachbearbeitungsfilter benutzen (HDR, Bloom, DOF, etc.)"
-
-#: gui/options/options.json[1].options[3].label
-msgid "Post-processing"
-msgstr "Nachbearbeitung"
-
-#: gui/options/options.json[1].options[4].list[0].tooltip
-msgid "Do not use anti-aliasing."
-msgstr "Kantenglättung nicht verwenden."
-
-#: gui/options/options.json[1].options[4].list[1].tooltip
-msgid "Fast, but simple anti-aliasing."
-msgstr "Schnelle aber einfache Kantenglättung."
-
-#: gui/options/options.json[1].options[4].list[1].label
-msgid "FXAA"
-msgstr "FXAA"
-
-#: gui/options/options.json[1].options[4].list[2].tooltip
-msgid ""
-"Slow, but high-quality anti-aliasing, uses 2 samples per pixel. Supported "
-"for GL3.3+."
-msgstr ""
-
-#: gui/options/options.json[1].options[4].list[2].label
-msgid "MSAA (x2)"
-msgstr "MSAA (x2)"
-
-#: gui/options/options.json[1].options[4].list[3].tooltip
-msgid ""
-"Slow, but high-quality anti-aliasing, uses 4 samples per pixel. Supported "
-"for GL3.3+."
-msgstr ""
-
-#: gui/options/options.json[1].options[4].list[3].label
-msgid "MSAA (x4)"
-msgstr "MSAA (x4)"
-
-#: gui/options/options.json[1].options[4].list[4].tooltip
-msgid ""
-"Slow, but high-quality anti-aliasing, uses 8 samples per pixel. Supported "
-"for GL3.3+."
-msgstr ""
-
-#: gui/options/options.json[1].options[4].list[4].label
-msgid "MSAA (x8)"
-msgstr "MSAA (x8)"
-
-#: gui/options/options.json[1].options[4].list[5].tooltip
-msgid ""
-"Slow, but high-quality anti-aliasing, uses 16 samples per pixel. Supported "
-"for GL3.3+."
-msgstr ""
-
-#: gui/options/options.json[1].options[4].list[5].label
-msgid "MSAA (x16)"
-msgstr "MSAA (x16)"
-
-#: gui/options/options.json[1].options[4].tooltip
-msgid "Reduce aliasing effect on edges."
-msgstr "Treppcheneffekt an Rändern reduzieren."
-
-#: gui/options/options.json[1].options[4].label
-msgid "Anti-Aliasing"
-msgstr "Kantenglättung"
-
-#: gui/options/options.json[1].options[5].list[0].tooltip
-msgid "Do not use sharpening."
-msgstr "Scharfzeichnen nicht verwenden."
-
-#: gui/options/options.json[1].options[5].list[1].tooltip
-msgid "Contrast adaptive sharpening, a fast, contrast based sharpening pass."
-msgstr "Kontrastadaptives Schärfen, ein schneller, kontrastbasierter Schärfdurchgang."
-
-#: gui/options/options.json[1].options[5].list[1].label
-msgid "FidelityFX CAS"
-msgstr "FidelityFX CAS"
-
-#: gui/options/options.json[1].options[5].tooltip
-msgid "Reduce blurry effects."
-msgstr "Unschärfeeffekte reduzieren."
-
-#: gui/options/options.json[1].options[5].label
-msgid "Sharpening"
-msgstr "Scharfzeichnen"
-
-#: gui/options/options.json[1].options[6].tooltip
-msgid "The sharpness of the choosen pass."
-msgstr "Die Schärfe des gewählten Durchgang."
-
-#: gui/options/options.json[1].options[6].label
-msgid "Sharpness factor"
-msgstr "Schärfungsfaktor"
-
-#: gui/options/options.json[1].options[7].tooltip
-msgid "Number of shader effects. REQUIRES GAME RESTART"
-msgstr "Anzahl der Shader-Effekte. BENÖTIGT SPIELNEUSTART"
-
-#: gui/options/options.json[1].options[7].label
-msgid "Shader effects"
-msgstr "Shader-Effekte"
-
-#: gui/options/options.json[1].options[8].tooltip
-msgid "Enable shadows."
-msgstr "Aktiviert Schatten."
-
-#: gui/options/options.json[1].options[8].label
-msgid "Shadows"
-msgstr "Schatten"
-
-#: gui/options/options.json[1].options[9].list[0].label
-msgid "Very Low"
-msgstr "Sehr Niedrig"
-
-#: gui/options/options.json[1].options[9].list[1].label
-msgid "Low"
-msgstr "Niedrig"
-
-#: gui/options/options.json[1].options[9].list[2].label
-#: gui/options/options.json[3].options[3].list[3].label
-msgid "Medium"
-msgstr "Mittel"
-
-#: gui/options/options.json[1].options[9].list[3].label
-msgid "High"
-msgstr "Hoch"
-
-#: gui/options/options.json[1].options[9].list[4].label
-msgid "Very High"
-msgstr "Sehr Hoch"
-
-#: gui/options/options.json[1].options[9].tooltip
-msgid ""
-"Shadow map resolution. High values can crash the game when using a graphics "
-"card with low memory!"
-msgstr "Auflösung der Shadow Map. Hohe Werte können bei einer Grafikkarte mit wenig Speicher das Spiel zum Absturz bringen"
-
-#: gui/options/options.json[1].options[9].label
-msgid "Shadow quality"
-msgstr "Schattenqualität"
-
-#: gui/options/options.json[1].options[10].tooltip
-msgid "Smooth shadows."
-msgstr "Weiche Schatten."
-
-#: gui/options/options.json[1].options[10].label
-msgid "Shadow filtering"
-msgstr "Schattenfilter"
-
-#: gui/options/options.json[1].options[11].tooltip
-msgid "Show outlines of units behind structures."
-msgstr "Zeige die Umrisse von Einheiten hinter Gebäuden."
-
-#: gui/options/options.json[1].options[11].label
-msgid "Unit silhouettes"
-msgstr "Umrisse von Einheiten"
-
-#: gui/options/options.json[1].options[12].tooltip
-msgid "Enable particles."
-msgstr "Aktiviert Partikel."
-
-#: gui/options/options.json[1].options[12].label
-msgid "Particles"
-msgstr "Partikel"
-
-#: gui/options/options.json[1].options[13].tooltip
-msgid ""
-"When OFF, use the lowest settings possible to render water. This makes other"
-" settings irrelevant."
-msgstr "Wenn AUS wird die niedrigst möglichen Einstellungen verwendet, um Wasser zu rendern. Das macht andere Einstellungen irrelevant."
-
-#: gui/options/options.json[1].options[13].label
-msgid "Water effects"
-msgstr "Wassereffekte"
-
-#: gui/options/options.json[1].options[14].tooltip
-msgid ""
-"Use higher-quality effects for water, rendering coastal waves, shore foam, "
-"and ships trails."
-msgstr "Detailliertere Effekte für Wasser, Rendern von Küstenwellen, Gischt und Schiffsspuren benutzen."
-
-#: gui/options/options.json[1].options[14].label
-msgid "High-quality water effects"
-msgstr "Hochwertige Wassereffekte"
-
-#: gui/options/options.json[1].options[15].tooltip
-msgid "Allow water to reflect a mirror image."
-msgstr "Erlauben, dass Wasser ein Spiegelbild reflektiert."
-
-#: gui/options/options.json[1].options[15].label
-msgid "Water reflections"
-msgstr "Wasserspiegelungen"
-
-#: gui/options/options.json[1].options[16].tooltip
-msgid "Use a real water refraction map and not transparency."
-msgstr "Eine echte Wasser-Brechungs-Karte und keine Transparenz verwenden."
-
-#: gui/options/options.json[1].options[16].label
-msgid "Water refraction"
-msgstr "Lichtbrechung im Wasser"
-
-#: gui/options/options.json[1].options[17].tooltip
-msgid "Use actual water depth in rendering calculations."
-msgstr "Verwende die Wassertiefe zur Bildberechnung."
-
-#: gui/options/options.json[1].options[17].label
-msgid "Real water depth"
-msgstr "Echte Wassertiefe"
-
-#: gui/options/options.json[1].options[18].tooltip
-msgid "Cast shadows on water."
-msgstr "Schatten auf dem Wasser anzeigen."
-
-#: gui/options/options.json[1].options[18].label
-msgid "Shadows on water"
-msgstr "Schatten auf dem Wasser"
-
-#: gui/options/options.json[1].options[19].tooltip
-msgid "Lift darkness and fog-of-war smoothly."
-msgstr "Dunkelheit und Nebel des Krieges weich aufdecken."
-
-#: gui/options/options.json[1].options[19].label
-msgid "Smooth vision"
-msgstr "Weiche Sichtweite"
-
-#: gui/options/options.json[1].options[20].tooltip
-msgid "Render Sky."
-msgstr "Himmel anzeigen."
-
-#: gui/options/options.json[1].options[20].label
-msgid "Show sky"
-msgstr "Himmel zeigen"
-
-#: gui/options/options.json[1].options[21].tooltip
-msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
-msgstr "Vertikale Synchronisation verwenden, um Screen-Tearing zu verhindern. ERFORDERT SPIELNEUSTART"
-
-#: gui/options/options.json[1].options[21].label
-msgid "VSync"
-msgstr "Vertikale Synchronisation"
-
-#: gui/options/options.json[1].options[22].tooltip
-msgid ""
-"To save CPU workload, throttle render frequency in all menus. Set to maximum"
-" to disable throttling."
-msgstr "Renderfrequenz in allen Menüs drosseln, um die CPU-Auslastung zu reduzieren, Auf Maximum setzen, um die Drosselung zu deaktivieren."
-
-#: gui/options/options.json[1].options[22].label
-msgid "FPS throttling in menus"
-msgstr "FPS-Begrenzung in Menüs"
-
-#: gui/options/options.json[1].options[23].tooltip
-msgid ""
-"To save CPU workload, throttle render frequency in running games. Set to "
-"maximum to disable throttling."
-msgstr "Um die CPU-Auslastung zu reduzieren, wird dies die Renderhäufigkeit in laufenden Spielen begrenzen. Auf das Maximum setzen, um die Begrenzung zu deaktivieren."
-
-#: gui/options/options.json[1].options[23].label
-msgid "FPS throttling in games"
-msgstr "FPS-Begrenzung in Spielen"
-
-#: gui/options/options.json[1].tooltip
-msgid "Set the balance between performance and visual appearance."
-msgstr "Setzt die Balance zwischen Leistung und visuellem Aussehen."
-
-#: gui/options/options.json[1].label
-msgid "Graphics"
-msgstr "Grafik"
-
-#: gui/options/options.json[2].options[0].tooltip
-msgid "Master audio gain."
-msgstr "Allgemeine Lautstärke."
-
-#: gui/options/options.json[2].options[0].label
-msgid "Master volume"
-msgstr "Gesamtlautstärke"
-
-#: gui/options/options.json[2].options[1].tooltip
-msgid "In game music gain."
-msgstr "Hintergrundmusik."
-
-#: gui/options/options.json[2].options[1].label
-msgid "Music volume"
-msgstr "Musiklautstärke"
-
-#: gui/options/options.json[2].options[2].tooltip
-msgid "In game ambient sound gain."
-msgstr "Umgebungsgeräusche."
-
-#: gui/options/options.json[2].options[2].label
-msgid "Ambient volume"
-msgstr "Umgebungslautstärke"
-
-#: gui/options/options.json[2].options[3].tooltip
-msgid "In game unit action sound gain."
-msgstr "Einheitenlautstärke."
-
-#: gui/options/options.json[2].options[3].label
-msgid "Action volume"
-msgstr "Aktionslautstärke"
-
-#: gui/options/options.json[2].options[4].tooltip
-msgid "UI sound gain."
-msgstr "Lautstärke der Bedienoberfläche."
-
-#: gui/options/options.json[2].options[4].label
-msgid "UI volume"
-msgstr "UI-Lautstärke"
-
-#: gui/options/options.json[2].options[5].tooltip
-msgid "Receive audio notification when someone types your nick."
-msgstr "Tonbenachrichtigung, wenn jemand deinen Namen schreibt."
-
-#: gui/options/options.json[2].options[5].label
-msgid "Nick notification"
-msgstr "Spitznamenbenachrichtigung"
-
-#: gui/options/options.json[2].options[6].tooltip
-msgid "Receive audio notification when a new client joins the game setup."
-msgstr "Tonbenachrichtigung, wenn jemand neues der Spielvorbereitungen beitritt."
-
-#: gui/options/options.json[2].options[6].label
-msgid "Game setup - new player notification"
-msgstr "Spieleinstellung - Benachrichtigung über neue Spieler"
-
-#: gui/options/options.json[3].options[0].tooltip
-msgid "Show tips when setting up a game."
-msgstr "Tipps bei der Spielvorbereitung anzeigen."
-
-#: gui/options/options.json[3].options[0].label
-msgid "Enable game setting tips"
-msgstr "Spieleinstellung-Tipps aktivieren"
-
-#: gui/options/options.json[3].options[1].tooltip
-msgid "Slide the settings panel when opening, closing or resizing."
-msgstr "Das Einstellungsfenster beim Öffnen, Schließen oder Ändern der Größe schieben."
-
-#: gui/options/options.json[3].options[1].label
-msgid "Enable settings panel slide"
-msgstr "Einstellungs-Schiebefenster aktivieren"
-
-#: gui/options/options.json[3].options[2].tooltip
-msgid ""
-"Save and restore match settings for quick reuse when hosting another game."
-msgstr "Spieleinstellungen für schnelle Wiederverwendung beim Hosten speichern und wiederherstellen."
-
-#: gui/options/options.json[3].options[2].label
-msgid "Persist match settings"
-msgstr "Spieleinstellungen behalten"
-
-#: gui/options/options.json[3].options[3].list[0].label
-msgid "Sandbox"
-msgstr "Sandkasten"
-
-#: gui/options/options.json[3].options[3].list[1].label
-msgid "Very Easy"
-msgstr "Sehr leicht"
-
-#: gui/options/options.json[3].options[3].list[2].label
-msgid "Easy"
-msgstr "Leicht"
-
-#: gui/options/options.json[3].options[3].list[4].label
-msgid "Hard"
-msgstr "Schwer"
-
-#: gui/options/options.json[3].options[3].list[5].label
-msgid "Very Hard"
-msgstr "Sehr Schwer"
-
-#: gui/options/options.json[3].options[3].tooltip
-msgid "Default difficulty of the AI."
-msgstr "Standardschwierigkeit der KI."
-
-#: gui/options/options.json[3].options[3].label
-msgid "Default AI difficulty"
-msgstr "Standard AI-Schwierigkeit"
-
-#: gui/options/options.json[3].options[4].list[0].label
-msgid "Random"
-msgstr "Zufällig"
-
-#: gui/options/options.json[3].options[4].list[1].label
-msgid "Balanced"
-msgstr "Ausgewogen"
-
-#: gui/options/options.json[3].options[4].list[2].label
-msgid "Aggressive"
-msgstr "Aggressiv"
-
-#: gui/options/options.json[3].options[4].list[3].label
-msgid "Defensive"
-msgstr "Defensiv"
-
-#: gui/options/options.json[3].options[4].tooltip
-msgid "Default behavior of the AI."
-msgstr "Standardverhalten der KI."
-
-#: gui/options/options.json[3].options[4].label
-msgid "Default AI behavior"
-msgstr "Standard-KI-Verhalten"
-
-#: gui/options/options.json[3].options[5].list[0].tooltip
-msgid "Players joining the match will be assigned if there is a free slot."
-msgstr "Spieler, die einem Spiel beitreten werden zugewiesen, wenn es einen freien Platz gibt."
-
-#: gui/options/options.json[3].options[5].list[1].tooltip
-msgid ""
-"Players joining the match will only be assigned if they are a buddy of the "
-"host and if there is a free slot."
-msgstr "Spieler, die einem Spiel beitreten, werden nur zugewiesen wenn sie ein Buddy des Hosts sind und es einen freien Platz gibt."
-
-#: gui/options/options.json[3].options[5].list[2].tooltip
-msgid "Players only receive a slot when the host assigns them explicitly."
-msgstr "Spieler bekommen nur einen Platz wenn der Host sie dezidiert zuweist."
-
-#: gui/options/options.json[3].options[5].tooltip
-msgid ""
-"Automatically assign joining clients to free player slots during the match "
-"setup."
-msgstr "Beitretenden Clients während der Spielvorbereitung automatisch einen freien Slot zuweisen."
-
-#: gui/options/options.json[3].options[5].label
-msgid "Assign players"
-msgstr "Spieler zuweisen"
-
-#: gui/options/options.json[3].label
-msgid "Game Setup"
-msgstr "Spieleinstellungen"
-
-#: gui/options/options.json[4].options[0].tooltip
-msgid ""
-"Protect login and data exchanged with the lobby server using TLS encryption."
-msgstr "Beschützt Login und Daten, die mit dem Server getauscht werden, mittels TLS Verschlüsselung"
-
-#: gui/options/options.json[4].options[0].label
-msgid "TLS encryption"
-msgstr "TLS Verschlüsselung"
-
-#: gui/options/options.json[4].options[1].tooltip
-msgid "Number of backlogged messages to load when joining the lobby."
-msgstr "Anzahl der letzten Meldungen beim Eintritt in die Lobby."
-
-#: gui/options/options.json[4].options[1].label
-msgid "Chat backlog"
-msgstr "Chat-Backlog"
-
-#: gui/options/options.json[4].options[2].tooltip
-msgid ""
-"Show the average rating of the participating players in a column of the "
-"gamelist."
-msgstr "Die Durchschnittsbewertung von teilnehmenden Spielern in einer Spalte der Spielliste anzeigen."
-
-#: gui/options/options.json[4].options[2].label
-msgid "Game rating column"
-msgstr "Spielbewertungsspalte"
-
-#: gui/options/options.json[4].tooltip
-msgid "These settings only affect the multiplayer."
-msgstr "Diese Einstellungen wirken sich nur auf den Multiplayer aus."
-
-#: gui/options/options.json[4].label
-msgid "Lobby"
-msgstr "Lobby"
-
-#: gui/options/options.json[5].options[0].tooltip
-msgid ""
-"The wounded unit hotkey considers the selected units as wounded if their "
-"health percentage falls below this number."
-msgstr "Der Verwundete-Einheiten-Hotkey betrachtet die ausgewählten Einheiten als verwundet, wenn ihre Gesundheit unter diesen Prozentsat fällt."
-
-#: gui/options/options.json[5].options[0].label
-msgid "Wounded unit health"
-msgstr "Gesundheit von verletzten Einheiten"
-
-#: gui/options/options.json[5].options[1].tooltip
-msgid "Number of units trained per batch by default."
-msgstr "Standardmäßige Anzahl der Einheiten pro Gruppe."
-
-#: gui/options/options.json[5].options[1].label
-msgid "Batch training size"
-msgstr "Gruppen-Trainingsgröße"
-
-#: gui/options/options.json[5].options[2].tooltip
-msgid ""
-"Number of times you have to scroll to increase/decrease the batchsize by 1."
-msgstr "Anzahl der Scroll-Vorgänge, um die Gruppengröße um 1 zu erhöhen/verringern."
-
-#: gui/options/options.json[5].options[2].label
-msgid "Scroll batch increment ratio"
-msgstr "Rate der Erhöhung der Gruppengröße beim Scrollen"
-
-#: gui/options/options.json[5].options[3].tooltip
-msgid "Show a chat notification if you are attacked by another player."
-msgstr "Chatnachricht anzeigen, wenn du von einem anderen Spieler angegriffen wirst."
-
-#: gui/options/options.json[5].options[3].label
-msgid "Chat notification attack"
-msgstr "Chatbenachrichtigung bei Angriff"
-
-#: gui/options/options.json[5].options[4].tooltip
-msgid ""
-"Show a chat notification if an ally tributes resources to another team "
-"member if teams are locked, and all tributes in observer mode."
-msgstr "Chatbenachrichtigung anzeigen, wenn ein Verbündeter einem anderen Teammitglied bei fixen Teams einen Tribut schickt, und alle Tribute im Zuschauermodus."
-
-#: gui/options/options.json[5].options[4].label
-msgid "Chat notification tribute"
-msgstr "Chatbenachrichtigung bei Tribut"
-
-#: gui/options/options.json[5].options[5].tooltip
-msgid ""
-"Show a chat notification to observers when a player bartered resources."
-msgstr "Beobachtern eine Chatbenachrichtigung anzeigen, wenn ein Spieler Rohstoffe getauscht hat."
-
-#: gui/options/options.json[5].options[5].label
-msgid "Chat notification barter"
-msgstr "Chatbenachrichtigung bei Tausch"
-
-#: gui/options/options.json[5].options[6].list[0].label
-msgid "Disable"
-msgstr "Deaktiviert"
-
-#: gui/options/options.json[5].options[6].list[1].label
-msgid "Completed"
-msgstr "Abgeschlossen"
-
-#: gui/options/options.json[5].options[6].list[2].label
-msgid "All displayed"
-msgstr "Zeige alle"
-
-#: gui/options/options.json[5].options[6].tooltip
-msgid ""
-"Show a chat notification if you or an ally have started, aborted or "
-"completed a new phase, and phases of all players in observer mode."
-msgstr "Chatbenachrichtigung anzeigen, wenn du oder ein Verbündeter eine neue Phase begonnen, abgebrochen oder fertiggestellt hat, und die Phasen von allen Spielern im Zuschauermodus."
-
-#: gui/options/options.json[5].options[6].label
-msgid "Chat notification phase"
-msgstr "Chatbenachrichtigung für Phasen"
-
-#: gui/options/options.json[5].options[7].tooltip
-msgid ""
-"Display the attack range of selected defensive structures (can also be "
-"toggled in-game with the hotkey)."
-msgstr "Zeigt die Reichweite von ausgewählten Defensivgebäuden an (kann auch während des Spiels mit der Schnellzugriffstaste umgeschaltet werden)."
-
-#: gui/options/options.json[5].options[7].label
-msgid "Attack range visualization"
-msgstr "Visualisierung der Angriffsreichweite"
-
-#: gui/options/options.json[5].options[8].tooltip
-msgid ""
-"Display the range of auras of selected units and structures (can also be "
-"toggled in-game with the hotkey)."
-msgstr "Zeigt die Reichweite von Auren für ausgewählte Einheiten und Gebäude an (kann auch während des Spiels mit der Schnellzugriffstaste umgeschaltet werden)."
-
-#: gui/options/options.json[5].options[8].label
-msgid "Aura range visualization"
-msgstr "Visualisierung der Aurareichweite"
-
-#: gui/options/options.json[5].options[9].tooltip
-msgid ""
-"Display the healing range of selected units (can also be toggled in-game "
-"with the hotkey)."
-msgstr "Zeige die Reichweite der ausgewählten Einheiten (kann auch während des Spiels mit einem Hotkey umgeschaltet werden)"
-
-#: gui/options/options.json[5].options[9].label
-msgid "Heal range visualization"
-msgstr "Visualisierung der Heilreichweite"
-
-#: gui/options/options.json[5].options[10].tooltip
-msgid "Show rank icons above status bars."
-msgstr "Rangsymbole über Statusleisten anzeigen."
-
-#: gui/options/options.json[5].options[10].label
-msgid "Rank icon above status bar"
-msgstr "Rangsymbol über der Statusleiste"
-
-#: gui/options/options.json[5].options[11].tooltip
-msgid "Show an experience status bar above each selected unit."
-msgstr "Zeige eine Statusanzeige mit der Erfahrung über jeder ausgewählten Einheit."
-
-#: gui/options/options.json[5].options[11].label
-msgid "Experience status bar"
-msgstr "Statusanzeige der Erfahrung"
-
-#: gui/options/options.json[5].options[12].tooltip
-msgid ""
-"Show detailed tooltips for trainable units in unit-producing structures."
-msgstr "Detaillierte Kurzinfo für ausbildbare Einheiten in Ausbildungsgebäuden anzeigen."
-
-#: gui/options/options.json[5].options[12].label
-msgid "Detailed tooltips"
-msgstr "Detaillierte Tooltips"
-
-#: gui/options/options.json[5].options[13].list[0].label
-msgid "Unordered"
-msgstr "Ungeordnet"
-
-#: gui/options/options.json[5].options[13].list[1].label
-msgid "Ascending"
-msgstr "Aufsteigend"
-
-#: gui/options/options.json[5].options[13].list[2].label
-msgid "Descending"
-msgstr "Absteigend"
-
-#: gui/options/options.json[5].options[13].tooltip
-msgid ""
-"Dynamically sort players in the resources and population tooltip by value."
-msgstr "Spieler in der Ressourcen- und Bevölkerungskurzinfo dynamisch nach Werten sortieren."
-
-#: gui/options/options.json[5].options[13].label
-msgid "Sort resources and population tooltip"
-msgstr "Ressourcen- und Popup-Tooltip sortieren"
-
-#: gui/options/options.json[5].options[14].tooltip
-msgid "Color of your units when diplomacy colors are enabled."
-msgstr "Farbe deiner Einheiten, wenn Diplomatiefarben aktiviert sind."
-
-#: gui/options/options.json[5].options[14].label
-msgid "Diplomacy colors: self"
-msgstr "Diplomatiefarben: Selbst"
-
-#: gui/options/options.json[5].options[15].tooltip
-msgid "Color of allies when diplomacy colors are enabled."
-msgstr "Farbe von Verbündeten, wenn Diplomatiefarben aktiviert sind."
-
-#: gui/options/options.json[5].options[15].label
-msgid "Diplomacy colors: ally"
-msgstr "Diplomatiefarben: Verbündet"
-
-#: gui/options/options.json[5].options[16].tooltip
-msgid "Color of neutral players when diplomacy colors are enabled."
-msgstr "Farbe von neutralen Spielern, wenn Diplomatiefarben aktiviert sind."
-
-#: gui/options/options.json[5].options[16].label
-msgid "Diplomacy colors: neutral"
-msgstr "Diplomatiefarben: Neutral"
-
-#: gui/options/options.json[5].options[17].tooltip
-msgid "Color of enemies when diplomacy colors are enabled."
-msgstr "Farben von Gegnern, wenn Diplomatiefarben aktiviert sind."
-
-#: gui/options/options.json[5].options[17].label
-msgid "Diplomacy colors: enemy"
-msgstr "Diplomatiefarben: Gegner"
-
-#: gui/options/options.json[5].options[18].list[0].tooltip
-msgid ""
-"New structures are aligned with nearby structures while pressing the hotkey."
-msgstr "Neues Gebäude werden a nahegelegenen Gebäuden ausgerichtet, während die Schnelltaste gedrückt wird."
-
-#: gui/options/options.json[5].options[18].list[0].label
-msgid "Hotkey to enable snapping"
-msgstr "Schnelltaste um Auto-Ausrichtung einzuschalten"
-
-#: gui/options/options.json[5].options[18].list[1].tooltip
-msgid ""
-"New structures are aligned with nearby structures unless the hotkey is "
-"pressed."
-msgstr "Neue Gebäude werden an nahegelegenen Gebäude ausgerichtet, außer Schnelltaste wird gedrückt."
-
-#: gui/options/options.json[5].options[18].list[1].label
-msgid "Hotkey to disable snapping"
-msgstr "Schnelltaste um Auto-Ausrichtung abzuschalten"
-
-#: gui/options/options.json[5].options[18].tooltip
-msgid "This option allows to align new structures with nearby structures."
-msgstr "Diese Option ermöglicht es, neue Gebäude an bestehenden Gebäuden auszurichten."
-
-#: gui/options/options.json[5].options[18].label
-msgid "Snap to edges"
-msgstr "An Rändern ausrichten"
-
-#: gui/options/options.json[5].options[19].list[0].tooltip
-msgid ""
-"When adding a Unit or Structure to a control group, they are removed from "
-"other control groups. Use this choice if you want control groups to refer to"
-" distinct armies."
-msgstr "Wenn eine Einheit oder ein Gebäude einer Kontrollgruppe hinzugefügt wird, werden sie von anderen Kontrollgruppen entfernt. Nutze diese Option, wenn du möchtest das Kontrollgruppen separate Armeen repräsentieren."
-
-#: gui/options/options.json[5].options[19].list[0].label
-msgid "Single"
-msgstr "Einzel"
-
-#: gui/options/options.json[5].options[19].list[1].tooltip
-msgid ""
-"Units and Structures can be part of multiple control groups. This is useful "
-"to keep control groups for distinct armies and a control group for the "
-"entire army simultaneously."
-msgstr "Einheiten und Gebäude können Teil mehrerer Kontrollgruppen sein. Das ist nützlich, um Kontrollgruppen für separate Truppen und eine Kontrollgruppe für die gesamte Armee gleichzeitig zu haben."
-
-#: gui/options/options.json[5].options[19].list[1].label
-msgid "Multiple"
-msgstr "Mehrfach"
-
-#: gui/options/options.json[5].options[19].tooltip
-msgid "Decide whether units can be part of multiple control groups."
-msgstr "Entscheide, ob Einheit Teil mehrerer Kontrollgruppen sein können."
-
-#: gui/options/options.json[5].options[19].label
-msgid "Control Group Membership"
-msgstr "Kontrollgruppenmitgliedschaft"
-
-#: gui/options/options.json[5].tooltip
-msgid "Change options regarding the in-game settings."
-msgstr "Einstellungen im Spiel ändern"
-
-#: gui/options/options.json[5].label
-msgid "In-Game"
-msgstr "Im Spiel"
-
-#: simulation/data/resources/food.jsondescription
-msgid "Harvest from animals, berry bushes, fish, or fields."
-msgstr "Von Tieren, Beerensträuchern, Fischen oder Feldern sammeln."
-
-#: simulation/data/resources/metal.jsondescription
-msgid "Mine from metal mines or quarries."
-msgstr "In Metallminen oder Steinbrüchen abbauen."
-
-#: simulation/data/resources/stone.jsondescription
-msgid "Mine from rocks, stone quarries or ruins."
-msgstr "Aus Felsen, Steinbrüchen oder Ruinen abbauen."
-
-#: simulation/data/resources/wood.jsondescription
-msgid "Cut down from trees or groves."
-msgstr "Holz von Bäumen oder Baumgruppen fällen."
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: simulation/data/resources/food.jsonname
-msgctxt "firstWord"
-msgid "Food"
-msgstr "Nahrung"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: simulation/data/resources/food.jsonname
-msgctxt "withinSentence"
-msgid "Food"
-msgstr "Nahrung"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: simulation/data/resources/food.jsonsubtypes.fish
-msgctxt "firstWord"
-msgid "Fish"
-msgstr "Fisch"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: simulation/data/resources/food.jsonsubtypes.fish
-msgctxt "withinSentence"
-msgid "Fish"
-msgstr "Fisch"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: simulation/data/resources/food.jsonsubtypes.fruit
-msgctxt "firstWord"
-msgid "Fruit"
-msgstr "Frucht"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: simulation/data/resources/food.jsonsubtypes.fruit
-msgctxt "withinSentence"
-msgid "Fruit"
-msgstr "Frucht"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: simulation/data/resources/food.jsonsubtypes.grain
-msgctxt "firstWord"
-msgid "Grain"
-msgstr "Getreide"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: simulation/data/resources/food.jsonsubtypes.grain
-msgctxt "withinSentence"
-msgid "Grain"
-msgstr "Getreide"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: simulation/data/resources/food.jsonsubtypes.meat
-msgctxt "firstWord"
-msgid "Meat"
-msgstr "Fleisch"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: simulation/data/resources/food.jsonsubtypes.meat
-msgctxt "withinSentence"
-msgid "Meat"
-msgstr "Fleisch"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: simulation/data/resources/metal.jsonname
-msgctxt "firstWord"
-msgid "Metal"
-msgstr "Metall"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: simulation/data/resources/metal.jsonname
-msgctxt "withinSentence"
-msgid "Metal"
-msgstr "Metall"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: simulation/data/resources/metal.jsonsubtypes.ore
-msgctxt "firstWord"
-msgid "Ore"
-msgstr "Erz"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: simulation/data/resources/metal.jsonsubtypes.ore
-msgctxt "withinSentence"
-msgid "Ore"
-msgstr "Erz"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: simulation/data/resources/stone.jsonname
-msgctxt "firstWord"
-msgid "Stone"
-msgstr "Stein"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: simulation/data/resources/stone.jsonname
-msgctxt "withinSentence"
-msgid "Stone"
-msgstr "Stein"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: simulation/data/resources/stone.jsonsubtypes.ruins
-#: simulation/data/resources/wood.jsonsubtypes.ruins
-msgctxt "firstWord"
-msgid "Ruins"
-msgstr "Ruinen"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: simulation/data/resources/stone.jsonsubtypes.ruins
-#: simulation/data/resources/wood.jsonsubtypes.ruins
-msgctxt "withinSentence"
-msgid "Ruins"
-msgstr "Ruinen"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: simulation/data/resources/stone.jsonsubtypes.rock
-msgctxt "firstWord"
-msgid "Rock"
-msgstr "Fels"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: simulation/data/resources/stone.jsonsubtypes.rock
-msgctxt "withinSentence"
-msgid "Rock"
-msgstr "Fels"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: simulation/data/resources/wood.jsonname
-msgctxt "firstWord"
-msgid "Wood"
-msgstr "Holz"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: simulation/data/resources/wood.jsonname
-msgctxt "withinSentence"
-msgid "Wood"
-msgstr "Holz"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: simulation/data/resources/wood.jsonsubtypes.tree
-msgctxt "firstWord"
-msgid "Tree"
-msgstr "Baum"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: simulation/data/resources/wood.jsonsubtypes.tree
-msgctxt "withinSentence"
-msgid "Tree"
-msgstr "Baum"
-
-#: gui/gamesetup/Pages/GameSetupPage/Panels/Tips.txt:1
-msgid ""
-"Although reasonably easy for an experienced player, the default AI level is "
-"quite challenging for new players yet to master the basic mechanisms of the "
-"game. Beginners are advised to start by playing against a lower level AI "
-"(Sandbox or Very Easy). Change the AI level by clicking the gear icon next "
-"to the player you want to modify in the selection panel above."
-msgstr "Obwohl sie für einen erfahrenen Spieler relativ einfach ist, ist die Standard-KI für neue Spieler, die die grundlegenden Mechanismen des Spiels erst meistern müssen, ziemlich herausfordernd. Beginnern wird geraten, zu Anfang gegen einen niedrigeren Schwierigkeitsgrad (Sandkasten oder sehr einfach) zu spielen. Der KI-Schwierigkeitsgrad kann geändert werden, indem man auf das Zahnrad-Symbol neben dem Spieler im Spielerauswahlfenster klickt."
-
-#: gui/splashscreen/splashscreen.txt:2
-msgid ""
-"[font=\"sans-bold-20\"]  Thank you for installing 0 A.D. Empires Ascendant!"
-msgstr "[font=\"sans-bold-20\"] Vielen Dank für die Installation von 0 A.D.!"
-
-#: gui/splashscreen/splashscreen.txt:3
-msgid "[font=\"sans-16\"]"
-msgstr "[font=\"sans-16\"]"
-
-#: gui/splashscreen/splashscreen.txt:4
-msgid ""
-"[imgleft=\"constructionIcon\"]This game is still in development. Features "
-"are missing and it contains bugs."
-msgstr "[imgleft=\"constructionIcon\"]Dieses Spiel ist in Entwicklung. Funktionen fehlen und es bestehen noch Fehler."
-
-#: gui/splashscreen/splashscreen.txt:6
-msgid ""
-"[imgleft=\"iconLag\"]The game can have performance problems, especially with"
-" large maps and a great number of units."
-msgstr "[imgleft=\"iconLag\"]Das Spiel kann Performance-Probleme verursachen, vor allem mit großen Karten und einer großen Anzahl von Einheiten."
-
-#: gui/splashscreen/splashscreen.txt:8
-msgid ""
-"[imgleft=\"iconFormation\"]Formations are a work in progress, but you can "
-"toggle forming and disbanding formations as desired."
-msgstr "[imgleft=\"iconFormation\"]Formationen sind in Arbeit, aber du kannst zwischen Formation und deaktivierter Formationen, wenn gewünscht, umschalten."
 
 #: gui/text/tips/army_camp.txt:1
 msgid "ROMAN ARMY CAMP"
@@ -4446,3 +4272,201 @@ msgstr "Können von Fischerbooten gesammelt werden, nachdem der Wal getötet wur
 #: gui/text/tips/whales.txt:5
 msgid "Roam around the oceans of the game and flee when attacked."
 msgstr "Sie schweifen durch die Ozeane des Spiels und fliehen, wenn sie angegriffen werden."
+
+#: simulation/data/resources/food.jsondescription
+msgid "Harvest from animals, berry bushes, fish, or fields."
+msgstr "Von Tieren, Beerensträuchern, Fischen oder Feldern sammeln."
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: simulation/data/resources/food.jsonname
+msgctxt "firstWord"
+msgid "Food"
+msgstr "Nahrung"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase
+#. for your language).
+#: simulation/data/resources/food.jsonname
+msgctxt "withinSentence"
+msgid "Food"
+msgstr "Nahrung"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: simulation/data/resources/food.jsonsubtypes.fish
+msgctxt "firstWord"
+msgid "Fish"
+msgstr "Fisch"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase
+#. for your language).
+#: simulation/data/resources/food.jsonsubtypes.fish
+msgctxt "withinSentence"
+msgid "Fish"
+msgstr "Fisch"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: simulation/data/resources/food.jsonsubtypes.fruit
+msgctxt "firstWord"
+msgid "Fruit"
+msgstr "Frucht"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase
+#. for your language).
+#: simulation/data/resources/food.jsonsubtypes.fruit
+msgctxt "withinSentence"
+msgid "Fruit"
+msgstr "Frucht"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: simulation/data/resources/food.jsonsubtypes.grain
+msgctxt "firstWord"
+msgid "Grain"
+msgstr "Getreide"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase
+#. for your language).
+#: simulation/data/resources/food.jsonsubtypes.grain
+msgctxt "withinSentence"
+msgid "Grain"
+msgstr "Getreide"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: simulation/data/resources/food.jsonsubtypes.meat
+msgctxt "firstWord"
+msgid "Meat"
+msgstr "Fleisch"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase
+#. for your language).
+#: simulation/data/resources/food.jsonsubtypes.meat
+msgctxt "withinSentence"
+msgid "Meat"
+msgstr "Fleisch"
+
+#: simulation/data/resources/metal.jsondescription
+msgid "Mine from metal mines or quarries."
+msgstr "In Metallminen oder Steinbrüchen abbauen."
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: simulation/data/resources/metal.jsonname
+msgctxt "firstWord"
+msgid "Metal"
+msgstr "Metall"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase
+#. for your language).
+#: simulation/data/resources/metal.jsonname
+msgctxt "withinSentence"
+msgid "Metal"
+msgstr "Metall"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: simulation/data/resources/metal.jsonsubtypes.ore
+msgctxt "firstWord"
+msgid "Ore"
+msgstr "Erz"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase
+#. for your language).
+#: simulation/data/resources/metal.jsonsubtypes.ore
+msgctxt "withinSentence"
+msgid "Ore"
+msgstr "Erz"
+
+#: simulation/data/resources/stone.jsondescription
+msgid "Mine from rocks, stone quarries or ruins."
+msgstr "Aus Felsen, Steinbrüchen oder Ruinen abbauen."
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: simulation/data/resources/stone.jsonname
+msgctxt "firstWord"
+msgid "Stone"
+msgstr "Stein"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase
+#. for your language).
+#: simulation/data/resources/stone.jsonname
+msgctxt "withinSentence"
+msgid "Stone"
+msgstr "Stein"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: simulation/data/resources/stone.jsonsubtypes.rock
+msgctxt "firstWord"
+msgid "Rock"
+msgstr "Fels"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase
+#. for your language).
+#: simulation/data/resources/stone.jsonsubtypes.rock
+msgctxt "withinSentence"
+msgid "Rock"
+msgstr "Fels"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: simulation/data/resources/stone.jsonsubtypes.ruins
+#: simulation/data/resources/wood.jsonsubtypes.ruins
+msgctxt "firstWord"
+msgid "Ruins"
+msgstr "Ruinen"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase
+#. for your language).
+#: simulation/data/resources/stone.jsonsubtypes.ruins
+#: simulation/data/resources/wood.jsonsubtypes.ruins
+msgctxt "withinSentence"
+msgid "Ruins"
+msgstr "Ruinen"
+
+#: simulation/data/resources/wood.jsondescription
+msgid "Cut down from trees or groves."
+msgstr "Holz von Bäumen oder Baumgruppen fällen."
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: simulation/data/resources/wood.jsonname
+msgctxt "firstWord"
+msgid "Wood"
+msgstr "Holz"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase
+#. for your language).
+#: simulation/data/resources/wood.jsonname
+msgctxt "withinSentence"
+msgid "Wood"
+msgstr "Holz"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: simulation/data/resources/wood.jsonsubtypes.tree
+msgctxt "firstWord"
+msgid "Tree"
+msgstr "Baum"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase
+#. for your language).
+#: simulation/data/resources/wood.jsonsubtypes.tree
+msgctxt "withinSentence"
+msgid "Tree"
+msgstr "Baum"

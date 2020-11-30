@@ -1,12 +1,12 @@
 # Translation template for Pyrogenesis - Mod Selector.
 # Copyright (C) 2020 Wildfire Games
-# This file is distributed under the same license as the Pyrogenesis - Mod Selector project.
-# 
+# This file is distributed under the same license as the Pyrogenesis - Mod Selector
+# project.
 # Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-13 07:19+0000\n"
+"POT-Creation-Date: 2020-11-28 10:01+0000\n"
 "PO-Revision-Date: 2020-07-13 13:20+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Russian (Ukraine) (http://www.transifex.com/wildfire-games/0ad/language/ru_UA/)\n"
@@ -54,7 +54,8 @@ msgid "%(filesize)s %(unit)s"
 msgstr ""
 
 #. Translation: Time-format string. See http://userguide.icu-
-#. project.org/formatparse/datetime for a guide to the meaning of the letters.
+#. project.org/formatparse/datetime
+#. for a guide to the meaning of the letters.
 #: gui/common/l10n.js:46
 msgid "mm:ss"
 msgstr ""
@@ -90,6 +91,43 @@ msgctxt "Mod comparison"
 msgid "Active: %(mods)s"
 msgstr ""
 
+#: gui/modio/Disclaimer.txt:1
+msgid "0 A.D. Empires Ascendant mod.io Disclaimer"
+msgstr ""
+
+#: gui/modio/Disclaimer.txt:3
+msgid "Document Date: 2018-10-12"
+msgstr ""
+
+#: gui/modio/Disclaimer.txt:5
+msgid "You are about to connect to the mod.io online service."
+msgstr ""
+
+#: gui/modio/Disclaimer.txt:6
+msgid ""
+"This service provides an easy way to download and install community-made "
+"mods and is provided by DBolical Pty Ltd, the company behind IndieDB and "
+"ModDB."
+msgstr ""
+
+#: gui/modio/Disclaimer.txt:7
+msgid "The service is for users age 13 and over."
+msgstr ""
+
+#: gui/modio/Disclaimer.txt:9
+msgid ""
+"Wildfire Games has taken care to make this connection secure and reviewed "
+"the mods for security flaws, but cannot guarantee that this does not pose "
+"any risks."
+msgstr ""
+
+#: gui/modio/Disclaimer.txt:11
+msgid ""
+"By using the service, you understand that mod.io's Terms of Use and Privacy "
+"Policy apply and that Wildfire Games is not liable for any damages resulting"
+" from this service."
+msgstr ""
+
 #: gui/modio/modio.js:80
 #, javascript-format
 msgctxt "mod.io error message"
@@ -105,12 +143,12 @@ msgid "Initialization Error"
 msgstr ""
 
 #: gui/modio/modio.js:84 gui/modio/modio.js:95 gui/modio/modio.js:106
-#: gui/modio/modio.js:117
-msgid "Abort"
+msgid "Retry"
 msgstr ""
 
 #: gui/modio/modio.js:84 gui/modio/modio.js:95 gui/modio/modio.js:106
-msgid "Retry"
+#: gui/modio/modio.js:117
+msgid "Abort"
 msgstr ""
 
 #: gui/modio/modio.js:91
@@ -198,7 +236,8 @@ msgid "Cancel Download"
 msgstr ""
 
 #. Translation: Mod file download indicator. Current size over expected final
-#. size, with percentage complete.
+#. size, with
+#. percentage complete.
 #: gui/modio/modio.js:333
 #, javascript-format
 msgid "%(current)s / %(total)s (%(percent)s%%)"
@@ -218,64 +257,11 @@ msgid "∞"
 msgstr ""
 
 #. Translation: Average download speed, used to give the user a very rough and
-#. naive idea of the download time. For example: 123.4 KiB/s
+#. naive idea of
+#. the download time. For example: 123.4 KiB/s
 #: gui/modio/modio.js:347
 #, javascript-format
 msgid "%(number)s %(unit)s/s"
-msgstr ""
-
-#: gui/modmod/modmod.js:107 gui/modmod/modmod.js:254 gui/modmod/modmod.js:275
-msgid "Filter"
-msgstr ""
-
-#: gui/modmod/modmod.js:118 gui/modmod/modmod.js:407
-msgctxt "mod activation"
-msgid "Enable"
-msgstr ""
-
-#: gui/modmod/modmod.js:317
-#, javascript-format
-msgid "Dependency not met: %(dep)s"
-msgstr ""
-
-#: gui/modmod/modmod.js:323
-msgid "All dependencies met"
-msgstr ""
-
-#: gui/modmod/modmod.js:408
-msgctxt "mod activation"
-msgid "Disable"
-msgstr ""
-
-#: gui/modmod/modmod.js:416
-msgid "No mod has been selected."
-msgstr ""
-
-#: gui/modmod/modmodio.js:5
-msgid "Disclaimer"
-msgstr ""
-
-#: gui/modmod/modmodio.js:12
-msgid "mod.io Terms"
-msgstr ""
-
-#: gui/modmod/modmodio.js:16
-msgid "mod.io Privacy Policy"
-msgstr ""
-
-#: gui/msgbox/msgbox.js:25
-msgid "OK"
-msgstr ""
-
-#. Translation: Label of a button that when pressed opens the Terms and
-#. Conditions in the default webbrowser.
-#: gui/termsdialog/termsdialog.js:30
-msgid "View online"
-msgstr ""
-
-#: gui/termsdialog/termsdialog.js:38
-#, javascript-format
-msgid "Open %(url)s in the browser."
 msgstr ""
 
 #: gui/modio/modio.xml:(caption):18
@@ -324,6 +310,80 @@ msgstr ""
 #: gui/modio/modio.xml:(heading):65 gui/modmod/modmod.xml:(heading):87
 #: gui/modmod/modmod.xml:(heading):127
 msgid "Dependencies"
+msgstr ""
+
+#: gui/modmod/help/help.txt:1
+msgid ""
+"0 A.D. is designed to be easily modded. Mods are distributed in the form of "
+".pyromod files, which can be opened like .zip files."
+msgstr ""
+
+#: gui/modmod/help/help.txt:3
+msgid ""
+"In order to install a mod, just open the file with 0 A.D. (either double-"
+"click on the file and choose to open it with the game, or run \"pyrogenesis "
+"file.pyromod\" in a terminal). The mod will then be available in the mod "
+"selector. You can enable it and disable it at will. You can delete the mod "
+"manually using your file browser if needed (see "
+"https://trac.wildfiregames.com/wiki/GameDataPaths)."
+msgstr ""
+
+#: gui/modmod/help/help.txt:5
+msgid ""
+"For more information about modding the game, see the Modding Guide online "
+"(click the Modding Guide button below)."
+msgstr ""
+
+#: gui/modmod/help/help.txt:7
+msgid ""
+"The mod.io service is developed by DBolical, the company behind IndieDB and "
+"ModDB. Those websites have spread the word about 0 A.D. and other indie "
+"projects for a long time! Today, mod.io allows us to list and download all "
+"the mods that were verified by the team. Click \"Download Mods\" to try it "
+"out and install some!"
+msgstr ""
+
+#: gui/modmod/help/help.xml:(caption):13
+msgid "Pyrogenesis Mod Selector"
+msgstr ""
+
+#: gui/modmod/help/help.xml:(caption):21
+msgid "Close"
+msgstr ""
+
+#: gui/modmod/help/help.xml:(caption):25
+msgid "Modding Guide"
+msgstr ""
+
+#: gui/modmod/help/help.xml:(caption):29
+msgid "Visit mod.io"
+msgstr ""
+
+#: gui/modmod/modmod.js:107 gui/modmod/modmod.js:254 gui/modmod/modmod.js:275
+msgid "Filter"
+msgstr ""
+
+#: gui/modmod/modmod.js:118 gui/modmod/modmod.js:407
+msgctxt "mod activation"
+msgid "Enable"
+msgstr ""
+
+#: gui/modmod/modmod.js:317
+#, javascript-format
+msgid "Dependency not met: %(dep)s"
+msgstr ""
+
+#: gui/modmod/modmod.js:323
+msgid "All dependencies met"
+msgstr ""
+
+#: gui/modmod/modmod.js:408
+msgctxt "mod activation"
+msgid "Disable"
+msgstr ""
+
+#: gui/modmod/modmod.js:416
+msgid "No mod has been selected."
 msgstr ""
 
 #: gui/modmod/modmod.xml:(caption):12
@@ -380,20 +440,32 @@ msgid ""
 "dependencies."
 msgstr ""
 
-#: gui/modmod/help/help.xml:(caption):13
-msgid "Pyrogenesis Mod Selector"
+#: gui/modmod/modmodio.js:5
+msgid "Disclaimer"
 msgstr ""
 
-#: gui/modmod/help/help.xml:(caption):21
-msgid "Close"
+#: gui/modmod/modmodio.js:12
+msgid "mod.io Terms"
 msgstr ""
 
-#: gui/modmod/help/help.xml:(caption):25
-msgid "Modding Guide"
+#: gui/modmod/modmodio.js:16
+msgid "mod.io Privacy Policy"
 msgstr ""
 
-#: gui/modmod/help/help.xml:(caption):29
-msgid "Visit mod.io"
+#: gui/msgbox/msgbox.js:25
+msgid "OK"
+msgstr ""
+
+#. Translation: Label of a button that when pressed opens the Terms and
+#. Conditions in the
+#. default webbrowser.
+#: gui/termsdialog/termsdialog.js:30
+msgid "View online"
+msgstr ""
+
+#: gui/termsdialog/termsdialog.js:38
+#, javascript-format
+msgid "Open %(url)s in the browser."
 msgstr ""
 
 #: gui/termsdialog/termsdialog.xml:(caption):15
@@ -406,72 +478,4 @@ msgstr ""
 
 #: gui/termsdialog/termsdialog.xml:(caption):38
 msgid "Accept"
-msgstr ""
-
-#: gui/modio/Disclaimer.txt:1
-msgid "0 A.D. Empires Ascendant mod.io Disclaimer"
-msgstr ""
-
-#: gui/modio/Disclaimer.txt:3
-msgid "Document Date: 2018-10-12"
-msgstr ""
-
-#: gui/modio/Disclaimer.txt:5
-msgid "You are about to connect to the mod.io online service."
-msgstr ""
-
-#: gui/modio/Disclaimer.txt:6
-msgid ""
-"This service provides an easy way to download and install community-made "
-"mods and is provided by DBolical Pty Ltd, the company behind IndieDB and "
-"ModDB."
-msgstr ""
-
-#: gui/modio/Disclaimer.txt:7
-msgid "The service is for users age 13 and over."
-msgstr ""
-
-#: gui/modio/Disclaimer.txt:9
-msgid ""
-"Wildfire Games has taken care to make this connection secure and reviewed "
-"the mods for security flaws, but cannot guarantee that this does not pose "
-"any risks."
-msgstr ""
-
-#: gui/modio/Disclaimer.txt:11
-msgid ""
-"By using the service, you understand that mod.io's Terms of Use and Privacy "
-"Policy apply and that Wildfire Games is not liable for any damages resulting"
-" from this service."
-msgstr ""
-
-#: gui/modmod/help/help.txt:1
-msgid ""
-"0 A.D. is designed to be easily modded. Mods are distributed in the form of "
-".pyromod files, which can be opened like .zip files."
-msgstr ""
-
-#: gui/modmod/help/help.txt:3
-msgid ""
-"In order to install a mod, just open the file with 0 A.D. (either double-"
-"click on the file and choose to open it with the game, or run \"pyrogenesis "
-"file.pyromod\" in a terminal). The mod will then be available in the mod "
-"selector. You can enable it and disable it at will. You can delete the mod "
-"manually using your file browser if needed (see "
-"https://trac.wildfiregames.com/wiki/GameDataPaths)."
-msgstr ""
-
-#: gui/modmod/help/help.txt:5
-msgid ""
-"For more information about modding the game, see the Modding Guide online "
-"(click the Modding Guide button below)."
-msgstr ""
-
-#: gui/modmod/help/help.txt:7
-msgid ""
-"The mod.io service is developed by DBolical, the company behind IndieDB and "
-"ModDB. Those websites have spread the word about 0 A.D. and other indie "
-"projects for a long time! Today, mod.io allows us to list and download all "
-"the mods that were verified by the team. Click \"Download Mods\" to try it "
-"out and install some!"
 msgstr ""

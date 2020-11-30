@@ -1,12 +1,12 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright (C) 2020 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
-# 
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
+# project.
 # Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-13 08:09+0000\n"
+"POT-Creation-Date: 2020-11-28 10:01+0000\n"
 "PO-Revision-Date: 2020-11-13 09:19+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Urdu (http://www.transifex.com/wildfire-games/0ad/language/ur/)\n"
@@ -353,6 +353,17 @@ msgid ""
 "us, I have abrogated my offer."
 msgstr ""
 
+#: simulation/ai/petra/data.jsondescription
+msgid ""
+"Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
+"\n"
+"The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
+msgstr ""
+
+#: simulation/ai/petra/data.jsonname
+msgid "Petra Bot"
+msgstr ""
+
 #: simulation/components/BuildRestrictions.js:86
 #, javascript-format
 msgid "%(name)s cannot be built due to unknown error"
@@ -374,42 +385,48 @@ msgid "%(name)s cannot be built on invalid terrain"
 msgstr ""
 
 #. Translation: territoryType being displayed in a translated sentence in the
-#. form: "House cannot be built in %(territoryType)s territory.".
+#. form: "House
+#. cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:185
 msgctxt "Territory type"
 msgid "own"
 msgstr ""
 
 #. Translation: territoryType being displayed in a translated sentence in the
-#. form: "House cannot be built in %(territoryType)s territory.".
+#. form: "House
+#. cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:188
 msgctxt "Territory type"
 msgid "unconnected own"
 msgstr ""
 
 #. Translation: territoryType being displayed in a translated sentence in the
-#. form: "House cannot be built in %(territoryType)s territory.".
+#. form: "House
+#. cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:194
 msgctxt "Territory type"
 msgid "allied"
 msgstr ""
 
 #. Translation: territoryType being displayed in a translated sentence in the
-#. form: "House cannot be built in %(territoryType)s territory.".
+#. form: "House
+#. cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:197
 msgctxt "Territory type"
 msgid "unconnected allied"
 msgstr ""
 
 #. Translation: territoryType being displayed in a translated sentence in the
-#. form: "House cannot be built in %(territoryType)s territory.".
+#. form: "House
+#. cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:203
 msgctxt "Territory type"
 msgid "neutral"
 msgstr ""
 
 #. Translation: territoryType being displayed in a translated sentence in the
-#. form: "House cannot be built in %(territoryType)s territory.".
+#. form: "House
+#. cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:210
 msgctxt "Territory type"
 msgid "enemy"
@@ -448,28 +465,32 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. Translation: Territory types being displayed as part of a list like "Valid
-#. territories: own, ally".
+#. territories:
+#. own, ally".
 #: simulation/components/BuildRestrictions.js:317
 msgctxt "Territory type list"
 msgid "own"
 msgstr ""
 
 #. Translation: Territory types being displayed as part of a list like "Valid
-#. territories: own, ally".
+#. territories:
+#. own, ally".
 #: simulation/components/BuildRestrictions.js:319
 msgctxt "Territory type list"
 msgid "ally"
 msgstr ""
 
 #. Translation: Territory types being displayed as part of a list like "Valid
-#. territories: own, ally".
+#. territories:
+#. own, ally".
 #: simulation/components/BuildRestrictions.js:321
 msgctxt "Territory type list"
 msgid "neutral"
 msgstr ""
 
 #. Translation: Territory types being displayed as part of a list like "Valid
-#. territories: own, ally".
+#. territories:
+#. own, ally".
 #: simulation/components/BuildRestrictions.js:323
 msgctxt "Territory type list"
 msgid "enemy"
@@ -553,106 +574,12 @@ msgstr ""
 msgid "Entity is producing. Cannot start upgrading."
 msgstr ""
 
-#: simulation/helpers/Cheat.js:58
-#, javascript-format
-msgid "%(player)s has been defeated (cheat)."
-msgstr ""
-
-#: simulation/helpers/Cheat.js:67
-msgid "You need to select a building that trains units."
-msgstr ""
-
-#: simulation/helpers/Commands.js:114
-msgid "(Cheat - control all units)"
-msgstr ""
-
-#: simulation/helpers/Commands.js:129
-msgid "(Cheat - reveal map)"
-msgstr ""
-
-#: simulation/helpers/Commands.js:442
-#, javascript-format
-msgid "%(player)s has resigned."
-msgstr ""
-
-#: simulation/helpers/Commands.js:581
-msgid "(Cheat - promoted units)"
-msgstr ""
-
-#: simulation/helpers/Commands.js:702
-msgid ""
-"Cannot upgrade as distance requirements are not verified or terrain is "
-"obstructed."
-msgstr ""
-
-#: simulation/helpers/Commands.js:712
-msgid "Cannot upgrade a garrisoned entity."
-msgstr ""
-
-#: simulation/helpers/Commands.js:757
-#, javascript-format
-msgid "Attack against %(_player_)s requested."
-msgstr ""
-
-#: simulation/helpers/Commands.js:796
-msgid "There are no bribable units"
-msgstr ""
-
-#: simulation/helpers/Commands.js:842
-msgid "Unable to ungarrison unit(s)"
-msgstr ""
-
-#: simulation/helpers/Commands.js:856
-msgid "Some unit(s) can't go back to work"
-msgstr ""
-
-#: simulation/helpers/Commands.js:875
-#, javascript-format
-msgid "%(unit)s can't be controlled."
-msgstr ""
-
-#: simulation/helpers/Commands.js:1115
-msgid "The building's technology requirements are not met."
-msgstr ""
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[0].Name
-msgid "Gaia"
-msgstr ""
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[1].Name
-msgid "Player 1"
-msgstr ""
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[2].Name
-msgid "Player 2"
-msgstr ""
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[3].Name
-msgid "Player 3"
-msgstr ""
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[4].Name
-msgid "Player 4"
-msgstr ""
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[5].Name
-msgid "Player 5"
-msgstr ""
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[6].Name
-msgid "Player 6"
-msgstr ""
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[7].Name
-msgid "Player 7"
-msgstr ""
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[8].Name
-msgid "Player 8"
-msgstr ""
-
 #: simulation/data/settings/game_speeds.jsonData[0].Title
 msgid "Turtle (0.1×)"
+msgstr ""
+
+#: simulation/data/settings/game_speeds.jsonData[10].Title
+msgid "Fast Forward (20×)"
 msgstr ""
 
 #: simulation/data/settings/game_speeds.jsonData[1].Title
@@ -689,138 +616,6 @@ msgstr ""
 
 #: simulation/data/settings/game_speeds.jsonData[9].Title
 msgid "Fast Forward (10×)"
-msgstr ""
-
-#: simulation/data/settings/game_speeds.jsonData[10].Title
-msgid "Fast Forward (20×)"
-msgstr ""
-
-#: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Description
-msgid ""
-"Capture all relics spread across the map and keep them for a certain time to"
-" win the game."
-msgstr ""
-
-#: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Title
-msgid "Capture the Relic"
-msgstr ""
-
-#: simulation/data/settings/victory_conditions/conquest.jsonData.Description
-msgid ""
-"Defeat opponents by killing all their units and destroying all their "
-"structures."
-msgstr ""
-
-#: simulation/data/settings/victory_conditions/conquest.jsonData.Title
-msgid "Conquest"
-msgstr ""
-
-#: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
-msgid "Defeat opponents by destroying all their structures."
-msgstr ""
-
-#: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
-msgid "Conquest Structures"
-msgstr ""
-
-#: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
-msgid "Defeat opponents by killing all their units."
-msgstr ""
-
-#: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
-msgid "Conquest Units"
-msgstr ""
-
-#: simulation/data/settings/victory_conditions/regicide.jsonData.Description
-msgid "Defeat opponents by killing their hero."
-msgstr ""
-
-#: simulation/data/settings/victory_conditions/regicide.jsonData.Title
-msgid "Regicide"
-msgstr ""
-
-#: simulation/data/settings/victory_conditions/wonder.jsonData.Description
-msgid ""
-"Be the first to build or capture a Wonder and keep it for a certain time to "
-"win the game. The timer will be reset when the Wonder is destroyed or "
-"captured. If the allied victory mode is enabled, the timer will also be "
-"reset when the alliances of the owner change."
-msgstr ""
-
-#: simulation/data/settings/victory_conditions/wonder.jsonData.Title
-msgid "Wonder"
-msgstr ""
-
-#: simulation/data/settings/starting_resources.jsonData[0].Title
-msgctxt "startingResources"
-msgid "Very Low"
-msgstr ""
-
-#: simulation/data/settings/starting_resources.jsonData[1].Title
-msgctxt "startingResources"
-msgid "Low"
-msgstr ""
-
-#: simulation/data/settings/starting_resources.jsonData[2].Title
-msgctxt "startingResources"
-msgid "Medium"
-msgstr ""
-
-#: simulation/data/settings/starting_resources.jsonData[3].Title
-msgctxt "startingResources"
-msgid "High"
-msgstr ""
-
-#: simulation/data/settings/starting_resources.jsonData[4].Title
-msgctxt "startingResources"
-msgid "Very High"
-msgstr ""
-
-#: simulation/data/settings/starting_resources.jsonData[5].Title
-msgctxt "startingResources"
-msgid "Deathmatch"
-msgstr ""
-
-#: simulation/data/settings/trigger_difficulties.jsonData[0].Tooltip
-msgid "Choose this difficulty if you are discovering 0 A.D."
-msgstr ""
-
-#: simulation/data/settings/trigger_difficulties.jsonData[0].Title
-msgid "Very Easy"
-msgstr ""
-
-#: simulation/data/settings/trigger_difficulties.jsonData[1].Tooltip
-msgid "Choose this difficulty if you do not like being knocked down."
-msgstr ""
-
-#: simulation/data/settings/trigger_difficulties.jsonData[1].Title
-msgid "Easy"
-msgstr ""
-
-#: simulation/data/settings/trigger_difficulties.jsonData[2].Tooltip
-msgid ""
-"Choose this difficulty if you have already a good experience with 0 A.D."
-msgstr ""
-
-#: simulation/data/settings/trigger_difficulties.jsonData[2].Title
-#: simulation/data/settings/map_sizes.jsonData[3].Name
-msgid "Medium"
-msgstr ""
-
-#: simulation/data/settings/trigger_difficulties.jsonData[3].Tooltip
-msgid "Choose this difficulty if you want to be really challenged."
-msgstr ""
-
-#: simulation/data/settings/trigger_difficulties.jsonData[3].Title
-msgid "Hard"
-msgstr ""
-
-#: simulation/data/settings/trigger_difficulties.jsonData[4].Tooltip
-msgid "Choose this difficulty if you do not mind being swept out."
-msgstr ""
-
-#: simulation/data/settings/trigger_difficulties.jsonData[4].Title
-msgid "Very Hard"
 msgstr ""
 
 #: simulation/data/settings/map_sizes.jsonData[0].Name
@@ -882,13 +677,228 @@ msgstr ""
 msgid "Giant"
 msgstr ""
 
-#: simulation/ai/petra/data.jsonname
-msgid "Petra Bot"
+#: simulation/data/settings/player_defaults.jsonPlayerData[0].Name
+msgid "Gaia"
 msgstr ""
 
-#: simulation/ai/petra/data.jsondescription
+#: simulation/data/settings/player_defaults.jsonPlayerData[1].Name
+msgid "Player 1"
+msgstr ""
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[2].Name
+msgid "Player 2"
+msgstr ""
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[3].Name
+msgid "Player 3"
+msgstr ""
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[4].Name
+msgid "Player 4"
+msgstr ""
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[5].Name
+msgid "Player 5"
+msgstr ""
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[6].Name
+msgid "Player 6"
+msgstr ""
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[7].Name
+msgid "Player 7"
+msgstr ""
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[8].Name
+msgid "Player 8"
+msgstr ""
+
+#: simulation/data/settings/starting_resources.jsonData[0].Title
+msgctxt "startingResources"
+msgid "Very Low"
+msgstr ""
+
+#: simulation/data/settings/starting_resources.jsonData[1].Title
+msgctxt "startingResources"
+msgid "Low"
+msgstr ""
+
+#: simulation/data/settings/starting_resources.jsonData[2].Title
+msgctxt "startingResources"
+msgid "Medium"
+msgstr ""
+
+#: simulation/data/settings/starting_resources.jsonData[3].Title
+msgctxt "startingResources"
+msgid "High"
+msgstr ""
+
+#: simulation/data/settings/starting_resources.jsonData[4].Title
+msgctxt "startingResources"
+msgid "Very High"
+msgstr ""
+
+#: simulation/data/settings/starting_resources.jsonData[5].Title
+msgctxt "startingResources"
+msgid "Deathmatch"
+msgstr ""
+
+#: simulation/data/settings/trigger_difficulties.jsonData[0].Title
+msgid "Very Easy"
+msgstr ""
+
+#: simulation/data/settings/trigger_difficulties.jsonData[0].Tooltip
+msgid "Choose this difficulty if you are discovering 0 A.D."
+msgstr ""
+
+#: simulation/data/settings/trigger_difficulties.jsonData[1].Title
+msgid "Easy"
+msgstr ""
+
+#: simulation/data/settings/trigger_difficulties.jsonData[1].Tooltip
+msgid "Choose this difficulty if you do not like being knocked down."
+msgstr ""
+
+#: simulation/data/settings/map_sizes.jsonData[3].Name
+#: simulation/data/settings/trigger_difficulties.jsonData[2].Title
+msgid "Medium"
+msgstr ""
+
+#: simulation/data/settings/trigger_difficulties.jsonData[2].Tooltip
 msgid ""
-"Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
-"\n"
-"The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
+"Choose this difficulty if you have already a good experience with 0 A.D."
+msgstr ""
+
+#: simulation/data/settings/trigger_difficulties.jsonData[3].Title
+msgid "Hard"
+msgstr ""
+
+#: simulation/data/settings/trigger_difficulties.jsonData[3].Tooltip
+msgid "Choose this difficulty if you want to be really challenged."
+msgstr ""
+
+#: simulation/data/settings/trigger_difficulties.jsonData[4].Title
+msgid "Very Hard"
+msgstr ""
+
+#: simulation/data/settings/trigger_difficulties.jsonData[4].Tooltip
+msgid "Choose this difficulty if you do not mind being swept out."
+msgstr ""
+
+#: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Description
+msgid ""
+"Capture all relics spread across the map and keep them for a certain time to"
+" win the game."
+msgstr ""
+
+#: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Title
+msgid "Capture the Relic"
+msgstr ""
+
+#: simulation/data/settings/victory_conditions/conquest.jsonData.Description
+msgid ""
+"Defeat opponents by killing all their units and destroying all their "
+"structures."
+msgstr ""
+
+#: simulation/data/settings/victory_conditions/conquest.jsonData.Title
+msgid "Conquest"
+msgstr ""
+
+#: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
+msgid "Defeat opponents by destroying all their structures."
+msgstr ""
+
+#: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
+msgid "Conquest Structures"
+msgstr ""
+
+#: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
+msgid "Defeat opponents by killing all their units."
+msgstr ""
+
+#: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
+msgid "Conquest Units"
+msgstr ""
+
+#: simulation/data/settings/victory_conditions/regicide.jsonData.Description
+msgid "Defeat opponents by killing their hero."
+msgstr ""
+
+#: simulation/data/settings/victory_conditions/regicide.jsonData.Title
+msgid "Regicide"
+msgstr ""
+
+#: simulation/data/settings/victory_conditions/wonder.jsonData.Description
+msgid ""
+"Be the first to build or capture a Wonder and keep it for a certain time to "
+"win the game. The timer will be reset when the Wonder is destroyed or "
+"captured. If the allied victory mode is enabled, the timer will also be "
+"reset when the alliances of the owner change."
+msgstr ""
+
+#: simulation/data/settings/victory_conditions/wonder.jsonData.Title
+msgid "Wonder"
+msgstr ""
+
+#: simulation/helpers/Cheat.js:58
+#, javascript-format
+msgid "%(player)s has been defeated (cheat)."
+msgstr ""
+
+#: simulation/helpers/Cheat.js:67
+msgid "You need to select a building that trains units."
+msgstr ""
+
+#: simulation/helpers/Commands.js:114
+msgid "(Cheat - control all units)"
+msgstr ""
+
+#: simulation/helpers/Commands.js:129
+msgid "(Cheat - reveal map)"
+msgstr ""
+
+#: simulation/helpers/Commands.js:442
+#, javascript-format
+msgid "%(player)s has resigned."
+msgstr ""
+
+#: simulation/helpers/Commands.js:581
+msgid "(Cheat - promoted units)"
+msgstr ""
+
+#: simulation/helpers/Commands.js:702
+msgid ""
+"Cannot upgrade as distance requirements are not verified or terrain is "
+"obstructed."
+msgstr ""
+
+#: simulation/helpers/Commands.js:712
+msgid "Cannot upgrade a garrisoned entity."
+msgstr ""
+
+#: simulation/helpers/Commands.js:757
+#, javascript-format
+msgid "Attack against %(_player_)s requested."
+msgstr ""
+
+#: simulation/helpers/Commands.js:796
+msgid "There are no bribable units"
+msgstr ""
+
+#: simulation/helpers/Commands.js:842
+msgid "Unable to ungarrison unit(s)"
+msgstr ""
+
+#: simulation/helpers/Commands.js:856
+msgid "Some unit(s) can't go back to work"
+msgstr ""
+
+#: simulation/helpers/Commands.js:875
+#, javascript-format
+msgid "%(unit)s can't be controlled."
+msgstr ""
+
+#: simulation/helpers/Commands.js:1115
+msgid "The building's technology requirements are not met."
 msgstr ""

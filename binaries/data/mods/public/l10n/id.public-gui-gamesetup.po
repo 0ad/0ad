@@ -1,7 +1,7 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright (C) 2020 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
-# 
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
+# project.
 # Translators:
 # Andrii Puzan <doctrina.90@mail.ru>, 2013
 # azayrahmad <azayrahmad@gmail.com>, 2014
@@ -24,7 +24,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-24 07:08+0000\n"
+"POT-Creation-Date: 2020-11-28 10:01+0000\n"
 "PO-Revision-Date: 2020-07-31 05:40+0000\n"
 "Last-Translator: Muhammad Furqon Abrori <furqonklondigizoid@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
@@ -82,15 +82,23 @@ msgstr "Semua Peta"
 msgid "Every map of the chosen maptype."
 msgstr "Semua peta dari tipe peta yang terpilih."
 
+#: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):13
+msgid "AI Configuration"
+msgstr "Konfigurasi AI"
+
+#: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):29
+msgid "OK"
+msgstr "OK"
+
 #: gui/gamesetup/Pages/AIConfigPage/AIDescription.js:37
 msgid "AI will be disabled for this player."
 msgstr "AI akan dimatikan untuk pemain ini."
 
-#: gui/gamesetup/Pages/AIConfigPage/Controls/AIBehavior.js:93
+#: gui/gamesetup/Pages/AIConfigPage/Controls/AIBehavior.js:95
 msgid "AI Behavior"
 msgstr "Tingkah laku kecerdasan buatan"
 
-#: gui/gamesetup/Pages/AIConfigPage/Controls/AIDifficulty.js:87
+#: gui/gamesetup/Pages/AIConfigPage/Controls/AIDifficulty.js:89
 msgid "AI Difficulty"
 msgstr "Kesusahan Komputer"
 
@@ -143,11 +151,6 @@ msgstr "Tiper Permainan"
 msgid "Configure AI: %(description)s."
 msgstr "Konfigurasi AI: %(description)s."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayerName.js:114
-#, javascript-format
-msgid "%(playerName)s %(romanNumber)s"
-msgstr "%(playerName)s %(romanNumber)s"
-
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:153
 msgid "Select player."
 msgstr "Pilih Pemain."
@@ -187,6 +190,31 @@ msgctxt "team"
 msgid "None"
 msgstr "Tidak ada"
 
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayerName.js:114
+#, javascript-format
+msgid "%(playerName)s %(romanNumber)s"
+msgstr "%(playerName)s %(romanNumber)s"
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):6
+msgid "Player Name"
+msgstr "Nama Pemain"
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):10
+msgid "Color"
+msgstr "Warna"
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):14
+msgid "Player Placement"
+msgstr "Penempatan Pemain"
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):18
+msgid "Civilization"
+msgstr "Peradaban"
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):25
+msgid "Team"
+msgstr "Regu"
+
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:40
 msgid "Cheats"
 msgstr "Cheat"
@@ -196,40 +224,42 @@ msgid "Toggle the usability of cheats."
 msgstr "Aktifkan/nonaktifkan penggunaan cheat."
 
 #. Translation: Make sure to differentiate between the revealed map and
-#. explored map settings!
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/ExploredMap.js:54
+#. explored map
+#. settings!
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/ExploredMap.js:55
 msgid "Explored Map"
 msgstr "Peta Terjelajah"
 
 #. Translation: Make sure to differentiate between the revealed map and
-#. explored map settings!
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/ExploredMap.js:58
+#. explored map
+#. settings!
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/ExploredMap.js:59
 msgid "Toggle explored map (see initial map)."
 msgstr "Aktifkan/nonaktifkan peta terjelajah (bisa melihat peta awal)."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:58
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:59
 msgid "Last Man Standing"
 msgstr "Orang Terakhir Bertahan"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:61
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:62
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
 msgstr "Aktifkan/nonaktifkan apakah pemain atau sebuah persekutuan terakhir bertahan menang."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:52
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:53
 msgid "Teams Locked"
 msgstr "Regu Terkunci"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:55
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:56
 msgid "Toggle locked teams."
 msgstr "Aktifkan/nonaktifkan regu terkunci."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Nomad.js:60
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Nomad.js:61
 msgid "Nomad"
 msgstr "Nomaden"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Nomad.js:63
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Nomad.js:64
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
@@ -243,66 +273,68 @@ msgstr "Permainan Berperingkat"
 msgid "Toggle if this game will be rated for the leaderboard."
 msgstr "Aktifkan/nonaktifkan apabila permainan ini akan diperingkat untuk papan peringkat."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:61
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:62
 msgid "Hero Garrison"
 msgstr "Penempatan Pahlawan"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:64
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:65
 msgid "Toggle whether heroes can be garrisoned."
 msgstr "Aktifkan/nonaktifkan apakah pahlawan dapat menempati atau tidak."
 
 #. Translation: Make sure to differentiate between the revealed map and
-#. explored map settings!
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RevealedMap.js:49
+#. explored map
+#. settings!
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RevealedMap.js:50
 msgid "Revealed Map"
 msgstr "Peta Terungkap"
 
 #. Translation: Make sure to differentiate between the revealed map and
-#. explored map settings!
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RevealedMap.js:53
+#. explored map
+#. settings!
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RevealedMap.js:54
 msgid "Toggle revealed map (see everything)."
 msgstr "Aktifkan/nonaktifkan peta terungkap (lihat semuanya)."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Spies.js:42
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Spies.js:43
 msgid "Disable Spies"
 msgstr "Matikan Mata-mata"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Spies.js:45
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Spies.js:46
 msgid "Disable spies during the game."
 msgstr "Matikan mata-mata pada permainan."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js:42
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js:43
 msgid "Disable Treasures"
 msgstr "Matikan Harta Karun"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js:45
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js:46
 msgid "Do not add treasures to the map."
 msgstr "Jangan tambahkan harta karun ke peta."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:46
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:49
 msgid "World population"
 msgstr "Populasi dunia"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:49
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:52
 msgid ""
 "When checked the Population Cap will be evenly distributed over all living "
 "players."
 msgstr "Bila aktif, Batas Populasi akan didistribusikan secara acak kepada semua pemain yang masih hidup."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:135
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:128
 msgid "Biome"
 msgstr "Bioma"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:141
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:134
 msgid "Select the flora and fauna."
 msgstr "Pilih flora dan fauna."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:144
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:137
 msgctxt "biome"
 msgid "Random"
 msgstr "Acak"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:147
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:140
 msgid "Pick a biome at random."
 msgstr "Pilih bioma secara acak."
 
@@ -324,48 +356,48 @@ msgctxt "daytime selection"
 msgid "Randomly pick a time of the day."
 msgstr ""
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:73
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:75
 msgid "Game Speed"
 msgstr "Kecepatan Permainan"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:76
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:78
 msgid "Select game speed."
 msgstr "Pilih kecepatan permainan."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:142
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:138
 msgid "Landscape"
 msgstr ""
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:145
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:141
 msgid "Select one of the landscapes of this map."
 msgstr ""
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:151
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:147
 msgctxt "landscape selection"
 msgid "Random Land or Naval"
 msgstr "Daratan atau perairan secara acak"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:152
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:148
 msgctxt "landscape selection"
 msgid "Select a random land or naval map generation."
 msgstr ""
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:156
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:152
 msgctxt "landscape selection"
 msgid "Random Land"
 msgstr "Daratan acak"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:157
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:153
 msgctxt "landscape selection"
 msgid "Select a random land map generation."
 msgstr ""
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:161
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:157
 msgctxt "landscape selection"
 msgid "Random Naval"
 msgstr "Perairan acak"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:162
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:158
 msgctxt "landscape selection"
 msgid "Select a random naval map generation."
 msgstr ""
@@ -395,11 +427,11 @@ msgstr "Acak"
 msgid "Pick any of the given maps at random."
 msgstr "Pilih map yang tersedia secara acak."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:74
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:75
 msgid "Map Size"
 msgstr "Ukuran Peta"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:77
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:78
 msgid "Select map size. (Larger sizes may reduce performance.)"
 msgstr "Pilih ukuran peta. (Peta besar bisa mengurangi performa.)"
 
@@ -419,40 +451,40 @@ msgstr "Jumlah Pemain"
 msgid "Select number of players."
 msgstr "Pilih jumlah pemain"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:91
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:92
 msgid "Population Cap"
 msgstr "Batas Maksimal Populasi"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:94
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:95
 msgid "Select population limit."
 msgstr "Pilih batas maksimal populasi."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:97
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:98
 msgctxt "population limit"
 msgid "Per Player"
 msgstr "Tiap Pemain"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:100
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:101
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
 "%(popCap)s population."
 msgstr "Peringatan: Masalah performa mungkin terjadi bila %(players)s pemain mencapai populasi %(popCap)s ."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:81
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:82
 msgid "Starting Resources"
 msgstr "Sumber Daya Awal"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:84
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:85
 msgid "Select the game's starting resources."
 msgstr "Pilih jumlah sumber daya di awal permainan."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:87
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:88
 #, javascript-format
 msgid "Initial amount of each resource: %(resources)s."
 msgstr "Jumlah tiap sumber daya awal: %(resources)s."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:90
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:91
 msgctxt "starting resources"
 msgid "Per Player"
 msgstr "Tiap Pemain"
@@ -521,76 +553,76 @@ msgstr "Kesulitan"
 msgid "Select the difficulty of this scenario."
 msgstr "Pilih kesulitan dari skenario ini."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:76
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:77
 msgid "World Population Cap"
 msgstr "Kapasitas Populasi Dunia"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:79
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:80
 msgid "Select world population limit."
 msgstr "Pilih batas populasi dunia."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:82
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:83
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if %(popCap)s population is "
 "reached."
 msgstr "Peringatan: Masalah performa mungkin terjadi apabila populasi telah mencapai angka %(popCap)s."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:61
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:62
 msgid "Ceasefire"
 msgstr "Gencatan Senjata"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:64
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:65
 msgid "Set time where no attacks are possible."
 msgstr "Atur waktu saat serangan dilarang."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:67
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:68
 msgctxt "ceasefire"
 msgid "No ceasefire"
 msgstr "Tidak ada gencatan senjata"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:70
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:71
 #, javascript-format
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
 msgstr[0] "%(minutes)s menit"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:86
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:87
 msgid "Relic Count"
 msgstr "Jumlah Relikui"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:89
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:90
 #, javascript-format
 msgid "%(number)s relic"
 msgid_plural "%(number)s relics"
 msgstr[0] "%(number)s pusaka"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:92
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:93
 msgid ""
 "Total number of relics spawned on the map. Relic victory is most realistic "
 "with only one or two relics. With greater numbers, the relics are important "
 "to capture to receive aura bonuses."
 msgstr ""
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:86
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:87
 msgid "Relic Duration"
 msgstr "Durasi Relik"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:89
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:90
 msgid "Minutes until the player has achieved Relic Victory."
 msgstr "Menit sampai seorang pemain mencapai Kemenangan Pusaka.."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:95
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:96
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:96
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:97
 #, javascript-format
 msgctxt "victory duration"
 msgid "%(min)s minute"
 msgid_plural "%(min)s minutes"
 msgstr[0] "%(min)s menit"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:98
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:99
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:99
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:100
 msgctxt "victory duration"
 msgid "Immediate Victory."
 msgstr "Langsung menang."
@@ -610,36 +642,13 @@ msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
 msgstr[0] "%(minutes)smenit"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:87
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:88
 msgid "Wonder Duration"
 msgstr "Durasi Keajaiban Dunia"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:90
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:91
 msgid "Minutes until the player has achieved Wonder Victory"
 msgstr "Menit hingga pemain mencapai kemenangan Keajaiban Dunia"
-
-#: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.js:38
-msgid "Cheats enabled."
-msgstr "Cheat diaktifkan."
-
-#: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.js:41
-msgid "Rated game."
-msgstr ""
-
-#: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:77
-#, javascript-format
-msgid "Click to toggle the %(name)s settings tab."
-msgstr "Klik untuk mengaktifkan tab konfigurasi %(name)s."
-
-#: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:80
-#, javascript-format
-msgid "Press %(hotkey)s to move to the next settings tab."
-msgstr "Tekan %(hotkey)s untuk berpindah ke tab pengaturan selanjutnya."
-
-#: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:83
-#, javascript-format
-msgid "Press %(hotkey)s to move to the previous settings tab."
-msgstr "Tekan %(hotkey)s untuk berpindah ke tab pengaturan sebelumnya."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/CancelButton.js:36
 msgid "Back"
@@ -716,25 +725,6 @@ msgstr "Mulai permainan dengan pengaturan saat ini (dinonaktifkan sampai semua p
 msgid "Press %(hotkey)s to autocomplete player names or settings."
 msgstr "Tekan %(hotkey)s untuk mengisi nama atau pengaturan pemain secara otomatis."
 
-#: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/StatusMessageFormat.js:24
-#, javascript-format
-msgid "== %(message)s"
-msgstr "== %(message)s"
-
-#: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/TimestampWrapper.js:25
-#, javascript-format
-msgid "%(time)s %(message)s"
-msgstr "%(time)s %(message)s"
-
-#: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/TimestampWrapper.js:28
-#, javascript-format
-msgid "\\[%(time)s]"
-msgstr "\\[%(time)s]"
-
-#: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/TimestampWrapper.js:31
-msgid "HH:mm"
-msgstr "HH:mm"
-
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientChat.js:27
 msgid "Unknown Player"
 msgstr "Pemain Tidak Dikenal"
@@ -782,6 +772,68 @@ msgstr "* %(username)s siap!"
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/GameSettingsChanged.js:22
 msgid "Game settings have been changed"
 msgstr "Pengaturan permainan telah diubah"
+
+#: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatPanel.xml:(caption):9
+msgid "Send"
+msgstr "Kirim"
+
+#: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/StatusMessageFormat.js:24
+#, javascript-format
+msgid "== %(message)s"
+msgstr "== %(message)s"
+
+#: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/TimestampWrapper.js:25
+#, javascript-format
+msgid "%(time)s %(message)s"
+msgstr "%(time)s %(message)s"
+
+#: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/TimestampWrapper.js:28
+#, javascript-format
+msgid "\\[%(time)s]"
+msgstr "\\[%(time)s]"
+
+#: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/TimestampWrapper.js:31
+msgid "HH:mm"
+msgstr "HH:mm"
+
+#: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.js:38
+msgid "Cheats enabled."
+msgstr "Cheat diaktifkan."
+
+#: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.js:41
+msgid "Rated game."
+msgstr ""
+
+#: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:77
+#, javascript-format
+msgid "Click to toggle the %(name)s settings tab."
+msgstr "Klik untuk mengaktifkan tab konfigurasi %(name)s."
+
+#: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:80
+#, javascript-format
+msgid "Press %(hotkey)s to move to the next settings tab."
+msgstr "Tekan %(hotkey)s untuk berpindah ke tab pengaturan selanjutnya."
+
+#: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:83
+#, javascript-format
+msgid "Press %(hotkey)s to move to the previous settings tab."
+msgstr "Tekan %(hotkey)s untuk berpindah ke tab pengaturan sebelumnya."
+
+#: gui/gamesetup/Pages/GameSetupPage/Panels/TipsPanel.xml:(caption):9
+msgid "Show this message in the future."
+msgstr "Tunjukkan pesan ini di masa mendatang."
+
+#: gui/gamesetup/Pages/LoadingPage/LoadingPage.xml:(caption):7
+msgid "Loading"
+msgstr "Memuat"
+
+#: gui/gamesetup/Pages/LoadingPage/LoadingPage.xml:(caption):11
+msgid "Loading map data. Please wait…"
+msgstr "Memuat data peta. Tunggu sebentar..."
+
+#: gui/gamesetup/gamesetup.xml:(caption):12
+msgid "Match Setup"
+msgstr "Pengaturan Peperangan"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:55
 #, javascript-format
@@ -841,77 +893,6 @@ msgstr "Tak dapat bergabung dengan permainan: %(message)s."
 msgid "%(playername)s's game"
 msgstr "Permainan %(playername)s"
 
-#: gui/loading/ProgressBar.js:48
-#, javascript-format
-msgctxt "loading screen progress"
-msgid "%(percentage)s%%"
-msgstr "%(percentage)s%%"
-
-#. Translation: A bullet point used before every item of list of tips
-#. displayed on loading screen
-#: gui/loading/TipDisplay.js:52
-#, javascript-format
-msgid "• %(tiptext)s"
-msgstr "• %(tiptext)s"
-
-#: gui/loading/TitleDisplay.js:15
-#, javascript-format
-msgid "Generating “%(map)s”"
-msgstr "Membuat “%(map)s”"
-
-#: gui/loading/TitleDisplay.js:17
-#, javascript-format
-msgid "Loading “%(map)s”"
-msgstr "Memuat “%(map)s”"
-
-#: gui/gamesetup/gamesetup.xml:(caption):12
-msgid "Match Setup"
-msgstr "Pengaturan Peperangan"
-
-#: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):13
-msgid "AI Configuration"
-msgstr "Konfigurasi AI"
-
-#: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):29
-msgid "OK"
-msgstr "OK"
-
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):6
-msgid "Player Name"
-msgstr "Nama Pemain"
-
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):10
-msgid "Color"
-msgstr "Warna"
-
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):14
-msgid "Player Placement"
-msgstr "Penempatan Pemain"
-
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):18
-msgid "Civilization"
-msgstr "Peradaban"
-
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):25
-msgid "Team"
-msgstr "Regu"
-
-#: gui/gamesetup/Pages/GameSetupPage/Panels/TipsPanel.xml:(caption):9
-msgid "Show this message in the future."
-msgstr "Tunjukkan pesan ini di masa mendatang."
-
-#: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatPanel.xml:(caption):9
-msgid "Send"
-msgstr "Kirim"
-
-#: gui/gamesetup/Pages/LoadingPage/LoadingPage.xml:(caption):7
-msgid "Loading"
-msgstr "Memuat"
-
-#: gui/gamesetup/Pages/LoadingPage/LoadingPage.xml:(caption):11
-msgid "Loading map data. Please wait…"
-msgstr "Memuat data peta. Tunggu sebentar..."
-
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):18
 msgid "Multiplayer"
 msgstr "Main Bersama"
@@ -958,6 +939,30 @@ msgstr "Batal"
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):99
 msgid "Leave blank to use the default port."
 msgstr ""
+
+#: gui/loading/ProgressBar.js:48
+#, javascript-format
+msgctxt "loading screen progress"
+msgid "%(percentage)s%%"
+msgstr "%(percentage)s%%"
+
+#. Translation: A bullet point used before every item of list of tips
+#. displayed on loading
+#. screen
+#: gui/loading/TipDisplay.js:52
+#, javascript-format
+msgid "• %(tiptext)s"
+msgstr "• %(tiptext)s"
+
+#: gui/loading/TitleDisplay.js:15
+#, javascript-format
+msgid "Generating “%(map)s”"
+msgstr "Membuat “%(map)s”"
+
+#: gui/loading/TitleDisplay.js:17
+#, javascript-format
+msgid "Loading “%(map)s”"
+msgstr "Memuat “%(map)s”"
 
 #: gui/text/quotes.txt:1
 msgid ""

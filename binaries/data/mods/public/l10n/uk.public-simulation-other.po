@@ -1,7 +1,7 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright (C) 2020 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
-# 
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
+# project.
 # Translators:
 # 009ee41e4c490a944b98e20dd0cc29dd_e31b370 <3a1cdc1a7c52cc59f91bdc5fed0a3a77_882482>, 2020
 # Dmytro Ryl'kov <tverdislav@ukr.net>, 2016-2017
@@ -10,14 +10,14 @@
 # Victor Butko <victor.butko@gmail.com>, 2014
 # Yaroslav Yenkala <hyper-news@yandex.ru>, 2015-2016
 # Андрій Бандура <andriykopanytsia@gmail.com>, 2015-2016
-# Микола Франчук <thekolian1996@gmail.com>, 2018-2019
+# Микола Франчук <thekolian1996@gmail.com>, 2018-2020
 # Сергій Дубик <dubyk@ukr.net>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-13 08:09+0000\n"
-"PO-Revision-Date: 2020-11-23 15:56+0000\n"
-"Last-Translator: Oleg Adept <adeptoleg@gmail.com>\n"
+"POT-Creation-Date: 2020-11-28 10:01+0000\n"
+"PO-Revision-Date: 2020-11-29 20:45+0000\n"
+"Last-Translator: Микола Франчук <thekolian1996@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -362,6 +362,17 @@ msgid ""
 "us, I have abrogated my offer."
 msgstr "%(_player_)s, якщо ви не змогли відповісти на моє прохання про мир між нами, я скасовую свою пропозицію."
 
+#: simulation/ai/petra/data.jsondescription
+msgid ""
+"Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
+"\n"
+"The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
+msgstr "Петра – стандартний бот в 0 A.D. Будь ласка, повідомляйте про проблеми в Wildfire Games (див. посилання в головному меню).\n\nШтучний інтелект має штраф/бонус на накопичення ресурсів (Пісочниця -58%, Дуже Легко -44%, Легко -25%, Середня складність ±0%, Важко +25%, Дуже Важко +56%). Найпростіші рівні також мають більш повільні дослідження, тренування та будівництво. Крім того, вороги на рівні Пісочниця не розширюються і не атакують."
+
+#: simulation/ai/petra/data.jsonname
+msgid "Petra Bot"
+msgstr "Бот Petra"
+
 #: simulation/components/BuildRestrictions.js:86
 #, javascript-format
 msgid "%(name)s cannot be built due to unknown error"
@@ -383,42 +394,48 @@ msgid "%(name)s cannot be built on invalid terrain"
 msgstr "%(name)s не може бути споруджено на невірній місцевості"
 
 #. Translation: territoryType being displayed in a translated sentence in the
-#. form: "House cannot be built in %(territoryType)s territory.".
+#. form: "House
+#. cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:185
 msgctxt "Territory type"
 msgid "own"
 msgstr "власній"
 
 #. Translation: territoryType being displayed in a translated sentence in the
-#. form: "House cannot be built in %(territoryType)s territory.".
+#. form: "House
+#. cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:188
 msgctxt "Territory type"
 msgid "unconnected own"
 msgstr "Вас не під'єднано"
 
 #. Translation: territoryType being displayed in a translated sentence in the
-#. form: "House cannot be built in %(territoryType)s territory.".
+#. form: "House
+#. cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:194
 msgctxt "Territory type"
 msgid "allied"
 msgstr "союзний"
 
 #. Translation: territoryType being displayed in a translated sentence in the
-#. form: "House cannot be built in %(territoryType)s territory.".
+#. form: "House
+#. cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:197
 msgctxt "Territory type"
 msgid "unconnected allied"
 msgstr "Союзник не під'єднано"
 
 #. Translation: territoryType being displayed in a translated sentence in the
-#. form: "House cannot be built in %(territoryType)s territory.".
+#. form: "House
+#. cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:203
 msgctxt "Territory type"
 msgid "neutral"
 msgstr "нейтральній"
 
 #. Translation: territoryType being displayed in a translated sentence in the
-#. form: "House cannot be built in %(territoryType)s territory.".
+#. form: "House
+#. cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:210
 msgctxt "Territory type"
 msgid "enemy"
@@ -461,28 +478,32 @@ msgstr[2] "%(name)s задалеко від %(category)s, має бути бли
 msgstr[3] "%(name)s задалеко від %(category)s, має бути ближче %(distance)s метрів"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
-#. territories: own, ally".
+#. territories:
+#. own, ally".
 #: simulation/components/BuildRestrictions.js:317
 msgctxt "Territory type list"
 msgid "own"
 msgstr "власні"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
-#. territories: own, ally".
+#. territories:
+#. own, ally".
 #: simulation/components/BuildRestrictions.js:319
 msgctxt "Territory type list"
 msgid "ally"
 msgstr "спільні"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
-#. territories: own, ally".
+#. territories:
+#. own, ally".
 #: simulation/components/BuildRestrictions.js:321
 msgctxt "Territory type list"
 msgid "neutral"
 msgstr "нейтральні"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
-#. territories: own, ally".
+#. territories:
+#. own, ally".
 #: simulation/components/BuildRestrictions.js:323
 msgctxt "Territory type list"
 msgid "enemy"
@@ -568,123 +589,29 @@ msgstr "Немає вільного місця, щоб готувати натр
 msgid "Entity is producing. Cannot start upgrading."
 msgstr ""
 
-#: simulation/helpers/Cheat.js:58
-#, javascript-format
-msgid "%(player)s has been defeated (cheat)."
-msgstr "%(player)s зазнав поразки (використання чит-кодів)."
-
-#: simulation/helpers/Cheat.js:67
-msgid "You need to select a building that trains units."
-msgstr "Ви повинні вибрати будівлю для тренування юнітів."
-
-#: simulation/helpers/Commands.js:114
-msgid "(Cheat - control all units)"
-msgstr "(Шахрайство - контролювати всі юніти)"
-
-#: simulation/helpers/Commands.js:129
-msgid "(Cheat - reveal map)"
-msgstr "(Шахрайство - розкрити карту)"
-
-#: simulation/helpers/Commands.js:442
-#, javascript-format
-msgid "%(player)s has resigned."
-msgstr "%(player)s здався."
-
-#: simulation/helpers/Commands.js:581
-msgid "(Cheat - promoted units)"
-msgstr "(Шахрайство - вдосконалити юніти)"
-
-#: simulation/helpers/Commands.js:702
-msgid ""
-"Cannot upgrade as distance requirements are not verified or terrain is "
-"obstructed."
-msgstr "Неможливо вдосконалити, так як вимоги по відстані не виконані або місцевість важкодоступна."
-
-#: simulation/helpers/Commands.js:712
-msgid "Cannot upgrade a garrisoned entity."
-msgstr "Неможливо вдосконалити об'єкт гарнізону."
-
-#: simulation/helpers/Commands.js:757
-#, javascript-format
-msgid "Attack against %(_player_)s requested."
-msgstr "Запропонували атаку проти %(_player_)s."
-
-#: simulation/helpers/Commands.js:796
-msgid "There are no bribable units"
-msgstr "Немає підкупних підрозділів"
-
-#: simulation/helpers/Commands.js:842
-msgid "Unable to ungarrison unit(s)"
-msgstr "Неможливо вивести юніт(и) з гарнізону"
-
-#: simulation/helpers/Commands.js:856
-msgid "Some unit(s) can't go back to work"
-msgstr "Деяка одиниця(ці) не може повернутися до праці"
-
-#: simulation/helpers/Commands.js:875
-#, javascript-format
-msgid "%(unit)s can't be controlled."
-msgstr ""
-
-#: simulation/helpers/Commands.js:1115
-msgid "The building's technology requirements are not met."
-msgstr "Технологічні вимоги до будівлі не дотримані."
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[0].Name
-msgid "Gaia"
-msgstr "Гея"
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[1].Name
-msgid "Player 1"
-msgstr "Гравець 1"
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[2].Name
-msgid "Player 2"
-msgstr "Гравець 2"
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[3].Name
-msgid "Player 3"
-msgstr "Гравець 3"
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[4].Name
-msgid "Player 4"
-msgstr "Гравець 4"
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[5].Name
-msgid "Player 5"
-msgstr "Гравець 5"
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[6].Name
-msgid "Player 6"
-msgstr "Гравець 6"
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[7].Name
-msgid "Player 7"
-msgstr "Гравець 7"
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[8].Name
-msgid "Player 8"
-msgstr "Гравець 8"
-
 #: simulation/data/settings/game_speeds.jsonData[0].Title
 msgid "Turtle (0.1×)"
-msgstr ""
+msgstr "Як черепаха (0.1×)"
+
+#: simulation/data/settings/game_speeds.jsonData[10].Title
+msgid "Fast Forward (20×)"
+msgstr "Швидке перемотування (20×)"
 
 #: simulation/data/settings/game_speeds.jsonData[1].Title
 msgid "Slow (0.25×)"
-msgstr ""
+msgstr "Повільно (0.25×)"
 
 #: simulation/data/settings/game_speeds.jsonData[2].Title
 msgid "Leisurely (0.5×)"
-msgstr ""
+msgstr "Неквапливо (0.5×)"
 
 #: simulation/data/settings/game_speeds.jsonData[3].Title
 msgid "Relaxed (0.75×)"
-msgstr ""
+msgstr "Спокійно (0.75×)"
 
 #: simulation/data/settings/game_speeds.jsonData[4].Title
 msgid "Normal (1×)"
-msgstr ""
+msgstr "Нормально (1×)"
 
 #: simulation/data/settings/game_speeds.jsonData[5].Title
 msgid "Fast (1.25×)"
@@ -692,151 +619,19 @@ msgstr "Швидко (1.25×)"
 
 #: simulation/data/settings/game_speeds.jsonData[6].Title
 msgid "Very Fast (1.5×)"
-msgstr ""
+msgstr "Дуже швидко (1.5×)"
 
 #: simulation/data/settings/game_speeds.jsonData[7].Title
 msgid "Insane (2×)"
-msgstr ""
+msgstr "Божевільно швидко (2×)"
 
 #: simulation/data/settings/game_speeds.jsonData[8].Title
 msgid "Fast Forward (5×)"
-msgstr ""
+msgstr "Швидке перемотування (5×)"
 
 #: simulation/data/settings/game_speeds.jsonData[9].Title
 msgid "Fast Forward (10×)"
-msgstr ""
-
-#: simulation/data/settings/game_speeds.jsonData[10].Title
-msgid "Fast Forward (20×)"
-msgstr ""
-
-#: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Description
-msgid ""
-"Capture all relics spread across the map and keep them for a certain time to"
-" win the game."
-msgstr "Захопіть усі реліквії на карті і утримайте контроль над ними протягом певного часу, щоб перемогти."
-
-#: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Title
-msgid "Capture the Relic"
-msgstr "Захоплення реліквії"
-
-#: simulation/data/settings/victory_conditions/conquest.jsonData.Description
-msgid ""
-"Defeat opponents by killing all their units and destroying all their "
-"structures."
-msgstr "Завдайте поразки суперникам, вбивши всіх їхніх юнітів і знищивши всі їхні будівлі."
-
-#: simulation/data/settings/victory_conditions/conquest.jsonData.Title
-msgid "Conquest"
-msgstr "Завоювання"
-
-#: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
-msgid "Defeat opponents by destroying all their structures."
-msgstr "Завдайте поразки суперникам, знищивши всі їхні будівлі."
-
-#: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
-msgid "Conquest Structures"
-msgstr "Завоювати будівлі"
-
-#: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
-msgid "Defeat opponents by killing all their units."
-msgstr "Завдайте поразки суперникам, вбивши всіх їхніх юнітів."
-
-#: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
-msgid "Conquest Units"
-msgstr "Завоювати підрозділи"
-
-#: simulation/data/settings/victory_conditions/regicide.jsonData.Description
-msgid "Defeat opponents by killing their hero."
-msgstr "Завдати поразки суперникам вбивши їхнього героя."
-
-#: simulation/data/settings/victory_conditions/regicide.jsonData.Title
-msgid "Regicide"
-msgstr "Царевбивство"
-
-#: simulation/data/settings/victory_conditions/wonder.jsonData.Description
-msgid ""
-"Be the first to build or capture a Wonder and keep it for a certain time to "
-"win the game. The timer will be reset when the Wonder is destroyed or "
-"captured. If the allied victory mode is enabled, the timer will also be "
-"reset when the alliances of the owner change."
-msgstr "Будьте першими, хто побудує або захопить Чудо і утримайте його протягом певного часу, щоб виграти гру. Таймер буде скинуто, коли Чудо буде зруйновано або захоплено. Якщо режим союзної перемоги увімкнено, таймер також буде скинуто, коли власники альянсу зміняться."
-
-#: simulation/data/settings/victory_conditions/wonder.jsonData.Title
-msgid "Wonder"
-msgstr "Диво"
-
-#: simulation/data/settings/starting_resources.jsonData[0].Title
-msgctxt "startingResources"
-msgid "Very Low"
-msgstr "Дуже мало"
-
-#: simulation/data/settings/starting_resources.jsonData[1].Title
-msgctxt "startingResources"
-msgid "Low"
-msgstr "Мало"
-
-#: simulation/data/settings/starting_resources.jsonData[2].Title
-msgctxt "startingResources"
-msgid "Medium"
-msgstr "Посередньо"
-
-#: simulation/data/settings/starting_resources.jsonData[3].Title
-msgctxt "startingResources"
-msgid "High"
-msgstr "Багато"
-
-#: simulation/data/settings/starting_resources.jsonData[4].Title
-msgctxt "startingResources"
-msgid "Very High"
-msgstr "Дуже багато"
-
-#: simulation/data/settings/starting_resources.jsonData[5].Title
-msgctxt "startingResources"
-msgid "Deathmatch"
-msgstr "Битва на смерть"
-
-#: simulation/data/settings/trigger_difficulties.jsonData[0].Tooltip
-msgid "Choose this difficulty if you are discovering 0 A.D."
-msgstr "Виберіть цю складність, якщо Ви у процесі відкриття 0 A.D."
-
-#: simulation/data/settings/trigger_difficulties.jsonData[0].Title
-msgid "Very Easy"
-msgstr "Дуже Просто"
-
-#: simulation/data/settings/trigger_difficulties.jsonData[1].Tooltip
-msgid "Choose this difficulty if you do not like being knocked down."
-msgstr "Виберіть цю складність, якщо вам не подобається бути переможеним."
-
-#: simulation/data/settings/trigger_difficulties.jsonData[1].Title
-msgid "Easy"
-msgstr "Просто"
-
-#: simulation/data/settings/trigger_difficulties.jsonData[2].Tooltip
-msgid ""
-"Choose this difficulty if you have already a good experience with 0 A.D."
-msgstr "Виберіть цю складність, якщо у вас вже є хороший досвід з 0 A.D."
-
-#: simulation/data/settings/trigger_difficulties.jsonData[2].Title
-#: simulation/data/settings/map_sizes.jsonData[3].Name
-msgid "Medium"
-msgstr "Середня"
-
-#: simulation/data/settings/trigger_difficulties.jsonData[3].Tooltip
-msgid "Choose this difficulty if you want to be really challenged."
-msgstr "Виберіть цю складність, якщо хочете справжнього виклику."
-
-#: simulation/data/settings/trigger_difficulties.jsonData[3].Title
-msgid "Hard"
-msgstr "Важко"
-
-#: simulation/data/settings/trigger_difficulties.jsonData[4].Tooltip
-msgid "Choose this difficulty if you do not mind being swept out."
-msgstr "Виберіть цю складність, якщо ви не проти, щоб вас винесли."
-
-#: simulation/data/settings/trigger_difficulties.jsonData[4].Title
-msgid "Very Hard"
-msgstr "Дуже Важко"
+msgstr "Швидке перемотування (10×)"
 
 #: simulation/data/settings/map_sizes.jsonData[0].Name
 msgid "Tiny"
@@ -897,13 +692,228 @@ msgstr "Дуже великі карти не рекомендуються, ос
 msgid "Giant"
 msgstr "Гігантська"
 
-#: simulation/ai/petra/data.jsonname
-msgid "Petra Bot"
-msgstr "Бот Petra"
+#: simulation/data/settings/player_defaults.jsonPlayerData[0].Name
+msgid "Gaia"
+msgstr "Гея"
 
-#: simulation/ai/petra/data.jsondescription
+#: simulation/data/settings/player_defaults.jsonPlayerData[1].Name
+msgid "Player 1"
+msgstr "Гравець 1"
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[2].Name
+msgid "Player 2"
+msgstr "Гравець 2"
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[3].Name
+msgid "Player 3"
+msgstr "Гравець 3"
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[4].Name
+msgid "Player 4"
+msgstr "Гравець 4"
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[5].Name
+msgid "Player 5"
+msgstr "Гравець 5"
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[6].Name
+msgid "Player 6"
+msgstr "Гравець 6"
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[7].Name
+msgid "Player 7"
+msgstr "Гравець 7"
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[8].Name
+msgid "Player 8"
+msgstr "Гравець 8"
+
+#: simulation/data/settings/starting_resources.jsonData[0].Title
+msgctxt "startingResources"
+msgid "Very Low"
+msgstr "Дуже мало"
+
+#: simulation/data/settings/starting_resources.jsonData[1].Title
+msgctxt "startingResources"
+msgid "Low"
+msgstr "Мало"
+
+#: simulation/data/settings/starting_resources.jsonData[2].Title
+msgctxt "startingResources"
+msgid "Medium"
+msgstr "Посередньо"
+
+#: simulation/data/settings/starting_resources.jsonData[3].Title
+msgctxt "startingResources"
+msgid "High"
+msgstr "Багато"
+
+#: simulation/data/settings/starting_resources.jsonData[4].Title
+msgctxt "startingResources"
+msgid "Very High"
+msgstr "Дуже багато"
+
+#: simulation/data/settings/starting_resources.jsonData[5].Title
+msgctxt "startingResources"
+msgid "Deathmatch"
+msgstr "Битва на смерть"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[0].Title
+msgid "Very Easy"
+msgstr "Дуже Просто"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[0].Tooltip
+msgid "Choose this difficulty if you are discovering 0 A.D."
+msgstr "Виберіть цю складність, якщо Ви у процесі відкриття 0 A.D."
+
+#: simulation/data/settings/trigger_difficulties.jsonData[1].Title
+msgid "Easy"
+msgstr "Просто"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[1].Tooltip
+msgid "Choose this difficulty if you do not like being knocked down."
+msgstr "Виберіть цю складність, якщо вам не подобається бути переможеним."
+
+#: simulation/data/settings/map_sizes.jsonData[3].Name
+#: simulation/data/settings/trigger_difficulties.jsonData[2].Title
+msgid "Medium"
+msgstr "Середня"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[2].Tooltip
 msgid ""
-"Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
-"\n"
-"The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr "Петра – стандартний бот в 0 A.D. Будь ласка, повідомляйте про проблеми в Wildfire Games (див. посилання в головному меню).\n\nШтучний інтелект має штраф/бонус на накопичення ресурсів (Пісочниця -58%, Дуже Легко -44%, Легко -25%, Середня складність ±0%, Важко +25%, Дуже Важко +56%). Найпростіші рівні також мають більш повільні дослідження, тренування та будівництво. Крім того, вороги на рівні Пісочниця не розширюються і не атакують."
+"Choose this difficulty if you have already a good experience with 0 A.D."
+msgstr "Виберіть цю складність, якщо у вас вже є хороший досвід з 0 A.D."
+
+#: simulation/data/settings/trigger_difficulties.jsonData[3].Title
+msgid "Hard"
+msgstr "Важко"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[3].Tooltip
+msgid "Choose this difficulty if you want to be really challenged."
+msgstr "Виберіть цю складність, якщо хочете справжнього виклику."
+
+#: simulation/data/settings/trigger_difficulties.jsonData[4].Title
+msgid "Very Hard"
+msgstr "Дуже Важко"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[4].Tooltip
+msgid "Choose this difficulty if you do not mind being swept out."
+msgstr "Виберіть цю складність, якщо ви не проти, щоб вас винесли."
+
+#: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Description
+msgid ""
+"Capture all relics spread across the map and keep them for a certain time to"
+" win the game."
+msgstr "Захопіть усі реліквії на карті і утримайте контроль над ними протягом певного часу, щоб перемогти."
+
+#: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Title
+msgid "Capture the Relic"
+msgstr "Захоплення реліквії"
+
+#: simulation/data/settings/victory_conditions/conquest.jsonData.Description
+msgid ""
+"Defeat opponents by killing all their units and destroying all their "
+"structures."
+msgstr "Завдайте поразки суперникам, вбивши всіх їхніх юнітів і знищивши всі їхні будівлі."
+
+#: simulation/data/settings/victory_conditions/conquest.jsonData.Title
+msgid "Conquest"
+msgstr "Завоювання"
+
+#: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
+msgid "Defeat opponents by destroying all their structures."
+msgstr "Завдайте поразки суперникам, знищивши всі їхні будівлі."
+
+#: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
+msgid "Conquest Structures"
+msgstr "Завоювати будівлі"
+
+#: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
+msgid "Defeat opponents by killing all their units."
+msgstr "Завдайте поразки суперникам, вбивши всіх їхніх юнітів."
+
+#: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
+msgid "Conquest Units"
+msgstr "Завоювати підрозділи"
+
+#: simulation/data/settings/victory_conditions/regicide.jsonData.Description
+msgid "Defeat opponents by killing their hero."
+msgstr "Завдати поразки суперникам вбивши їхнього героя."
+
+#: simulation/data/settings/victory_conditions/regicide.jsonData.Title
+msgid "Regicide"
+msgstr "Царевбивство"
+
+#: simulation/data/settings/victory_conditions/wonder.jsonData.Description
+msgid ""
+"Be the first to build or capture a Wonder and keep it for a certain time to "
+"win the game. The timer will be reset when the Wonder is destroyed or "
+"captured. If the allied victory mode is enabled, the timer will also be "
+"reset when the alliances of the owner change."
+msgstr "Будьте першими, хто побудує або захопить Чудо і утримайте його протягом певного часу, щоб виграти гру. Таймер буде скинуто, коли Чудо буде зруйновано або захоплено. Якщо режим союзної перемоги увімкнено, таймер також буде скинуто, коли власники альянсу зміняться."
+
+#: simulation/data/settings/victory_conditions/wonder.jsonData.Title
+msgid "Wonder"
+msgstr "Диво"
+
+#: simulation/helpers/Cheat.js:58
+#, javascript-format
+msgid "%(player)s has been defeated (cheat)."
+msgstr "%(player)s зазнав поразки (використання чит-кодів)."
+
+#: simulation/helpers/Cheat.js:67
+msgid "You need to select a building that trains units."
+msgstr "Ви повинні вибрати будівлю для тренування юнітів."
+
+#: simulation/helpers/Commands.js:114
+msgid "(Cheat - control all units)"
+msgstr "(Шахрайство - контролювати всі юніти)"
+
+#: simulation/helpers/Commands.js:129
+msgid "(Cheat - reveal map)"
+msgstr "(Шахрайство - розкрити карту)"
+
+#: simulation/helpers/Commands.js:442
+#, javascript-format
+msgid "%(player)s has resigned."
+msgstr "%(player)s здався."
+
+#: simulation/helpers/Commands.js:581
+msgid "(Cheat - promoted units)"
+msgstr "(Шахрайство - вдосконалити юніти)"
+
+#: simulation/helpers/Commands.js:702
+msgid ""
+"Cannot upgrade as distance requirements are not verified or terrain is "
+"obstructed."
+msgstr "Неможливо вдосконалити, так як вимоги по відстані не виконані або місцевість важкодоступна."
+
+#: simulation/helpers/Commands.js:712
+msgid "Cannot upgrade a garrisoned entity."
+msgstr "Неможливо вдосконалити об'єкт гарнізону."
+
+#: simulation/helpers/Commands.js:757
+#, javascript-format
+msgid "Attack against %(_player_)s requested."
+msgstr "Запропонували атаку проти %(_player_)s."
+
+#: simulation/helpers/Commands.js:796
+msgid "There are no bribable units"
+msgstr "Немає підкупних підрозділів"
+
+#: simulation/helpers/Commands.js:842
+msgid "Unable to ungarrison unit(s)"
+msgstr "Неможливо вивести юніт(и) з гарнізону"
+
+#: simulation/helpers/Commands.js:856
+msgid "Some unit(s) can't go back to work"
+msgstr "Деяка одиниця(ці) не може повернутися до праці"
+
+#: simulation/helpers/Commands.js:875
+#, javascript-format
+msgid "%(unit)s can't be controlled."
+msgstr "%(unit)s не можуть контролюватися."
+
+#: simulation/helpers/Commands.js:1115
+msgid "The building's technology requirements are not met."
+msgstr "Технологічні вимоги до будівлі не дотримані."

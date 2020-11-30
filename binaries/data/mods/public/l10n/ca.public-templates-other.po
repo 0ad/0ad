@@ -1,7 +1,7 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright (C) 2020 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
-# 
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
+# project.
 # Translators:
 # Albert F. <alb.fontquerni@gmail.com>, 2017-2018
 # Catalanoic <catalanoic@gmail.com>, 2015-2016,2018
@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-20 08:09+0000\n"
+"POT-Creation-Date: 2020-11-28 10:01+0000\n"
 "PO-Revision-Date: 2020-11-20 18:12+0000\n"
 "Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
@@ -23,87 +23,37 @@ msgstr ""
 "Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: simulation/templates/template_formation.xml:26
-msgid "Requires at least 2 Soldiers or Siege Engines."
-msgstr "Necessita al menys 2 soldats o màquines de setge."
+#: simulation/data/template_helpers/damage_types/crush.jsondescription
+msgctxt "damage type"
+msgid "Damage caused by sheer force, like with a club or by trampling."
+msgstr "Dany causat per la força bruta, com garrotades o atropellaments."
 
-#: simulation/templates/template_gaia.xml:7
-msgid "Gaia"
-msgstr "Natura"
+#: simulation/data/template_helpers/damage_types/crush.jsonname
+msgctxt "damage type"
+msgid "Crush"
+msgstr "Impacte"
 
-#: simulation/templates/template_gaia_fish.xml:8
-#: simulation/templates/gaia/fish/generic.xml:4
-msgid "Fish"
-msgstr "Peix"
+#: simulation/data/template_helpers/damage_types/hack.jsondescription
+msgctxt "damage type"
+msgid ""
+"Damage caused by sharp objects cutting or chopping, like with a sword or an "
+"axe."
+msgstr "Dany causat per objectes esmolats, com una espasa o una destral."
 
-#: simulation/templates/template_gaia_fish.xml:10
-msgid "Catch fish for food."
-msgstr "Pesqueu per aconseguir menjar."
+#: simulation/data/template_helpers/damage_types/hack.jsonname
+msgctxt "damage type"
+msgid "Hack"
+msgstr "Tall"
 
-#: simulation/templates/template_gaia_fruit.xml:8
-msgid "Fruit"
-msgstr "Fruita"
+#: simulation/data/template_helpers/damage_types/pierce.jsondescription
+msgctxt "damage type"
+msgid "Damage caused by sharp pointy objects, like arrows or spears."
+msgstr "Dany causat per objectes punxeguts, com les fletxes o les llances."
 
-#: simulation/templates/template_gaia_fruit.xml:9
-msgid "Pick fruit for food."
-msgstr "Colliu fruita per aconseguir menjar."
-
-#: simulation/templates/template_gaia_ore.xml:8
-msgid "Metal Mine"
-msgstr "Mina de metall"
-
-#: simulation/templates/template_gaia_ore.xml:9
-msgid "Mine ore for metal."
-msgstr "Extraieu mineral per aconseguir metall."
-
-#: simulation/templates/template_gaia_rock.xml:8
-msgid "Stone Quarry"
-msgstr "Pedrera"
-
-#: simulation/templates/template_gaia_rock.xml:9
-msgid "Quarry rock for stone."
-msgstr "Treballeu a la pedrera per aconseguir pedra."
-
-#: simulation/templates/template_gaia_ruins.xml:8
-msgid "Ruins"
-msgstr "Ruïnes"
-
-#: simulation/templates/template_gaia_ruins.xml:9
-msgid "Demolish ruins for stone."
-msgstr "Enderroqueu ruïnes per aconseguir pedra."
-
-#: simulation/templates/template_gaia_treasure.xml:8
-msgid "Treasure"
-msgstr "Tresor"
-
-#: simulation/templates/template_gaia_treasure.xml:9
-msgid "Collect treasures for resources."
-msgstr "Reclameu tresors per aconseguir recursos."
-
-#: simulation/templates/template_gaia_tree.xml:8
-msgid "Tree"
-msgstr "Arbre"
-
-#: simulation/templates/template_gaia_tree.xml:9
-msgid "Chop trees for wood."
-msgstr "Talleu arbres per aconseguir fusta."
-
-#: simulation/templates/template_structure.xml:47
-msgid "Structure"
-msgstr "Estructura"
-
-#: simulation/templates/template_unit.xml:38
-msgid "Unit"
-msgstr "Unitat"
-
-#: simulation/templates/template_wallset.xml:10
-msgid "Wall off an area."
-msgstr "Emmuralla una àrea."
-
-#: simulation/templates/template_wallset.xml:11
-#: simulation/templates/template_wallset.xml:9
-msgid "Wall"
-msgstr "Muralla"
+#: simulation/data/template_helpers/damage_types/pierce.jsonname
+msgctxt "damage type"
+msgid "Pierce"
+msgstr "Perforació"
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:24
 msgid "Army of Alexander the Great."
@@ -904,10 +854,6 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Ranged"
 msgstr "A distància"
 
-#: simulation/templates/special/spy.xml:17
-msgid "Spy"
-msgstr "Espia"
-
 #: simulation/templates/special/formations/anti_cavalry.xml:6
 #: simulation/templates/special/formations/testudo.xml:6
 msgid "Melee Infantry only, requires at least 16."
@@ -1001,34 +947,88 @@ msgstr "Falca"
 msgid "Player"
 msgstr "Jugador"
 
-#: simulation/data/template_helpers/damage_types/crush.jsonname
-msgctxt "damage type"
-msgid "Crush"
-msgstr "Impacte"
+#: simulation/templates/special/spy.xml:17
+msgid "Spy"
+msgstr "Espia"
 
-#: simulation/data/template_helpers/damage_types/crush.jsondescription
-msgctxt "damage type"
-msgid "Damage caused by sheer force, like with a club or by trampling."
-msgstr "Dany causat per la força bruta, com garrotades o atropellaments."
+#: simulation/templates/template_formation.xml:26
+msgid "Requires at least 2 Soldiers or Siege Engines."
+msgstr "Necessita al menys 2 soldats o màquines de setge."
 
-#: simulation/data/template_helpers/damage_types/hack.jsonname
-msgctxt "damage type"
-msgid "Hack"
-msgstr "Tall"
+#: simulation/templates/template_gaia.xml:7
+msgid "Gaia"
+msgstr "Natura"
 
-#: simulation/data/template_helpers/damage_types/hack.jsondescription
-msgctxt "damage type"
-msgid ""
-"Damage caused by sharp objects cutting or chopping, like with a sword or an "
-"axe."
-msgstr "Dany causat per objectes esmolats, com una espasa o una destral."
+#: simulation/templates/gaia/fish/generic.xml:4
+#: simulation/templates/template_gaia_fish.xml:8
+msgid "Fish"
+msgstr "Peix"
 
-#: simulation/data/template_helpers/damage_types/pierce.jsonname
-msgctxt "damage type"
-msgid "Pierce"
-msgstr "Perforació"
+#: simulation/templates/template_gaia_fish.xml:10
+msgid "Catch fish for food."
+msgstr "Pesqueu per aconseguir menjar."
 
-#: simulation/data/template_helpers/damage_types/pierce.jsondescription
-msgctxt "damage type"
-msgid "Damage caused by sharp pointy objects, like arrows or spears."
-msgstr "Dany causat per objectes punxeguts, com les fletxes o les llances."
+#: simulation/templates/template_gaia_fruit.xml:8
+msgid "Fruit"
+msgstr "Fruita"
+
+#: simulation/templates/template_gaia_fruit.xml:9
+msgid "Pick fruit for food."
+msgstr "Colliu fruita per aconseguir menjar."
+
+#: simulation/templates/template_gaia_ore.xml:8
+msgid "Metal Mine"
+msgstr "Mina de metall"
+
+#: simulation/templates/template_gaia_ore.xml:9
+msgid "Mine ore for metal."
+msgstr "Extraieu mineral per aconseguir metall."
+
+#: simulation/templates/template_gaia_rock.xml:8
+msgid "Stone Quarry"
+msgstr "Pedrera"
+
+#: simulation/templates/template_gaia_rock.xml:9
+msgid "Quarry rock for stone."
+msgstr "Treballeu a la pedrera per aconseguir pedra."
+
+#: simulation/templates/template_gaia_ruins.xml:8
+msgid "Ruins"
+msgstr "Ruïnes"
+
+#: simulation/templates/template_gaia_ruins.xml:9
+msgid "Demolish ruins for stone."
+msgstr "Enderroqueu ruïnes per aconseguir pedra."
+
+#: simulation/templates/template_gaia_treasure.xml:8
+msgid "Treasure"
+msgstr "Tresor"
+
+#: simulation/templates/template_gaia_treasure.xml:9
+msgid "Collect treasures for resources."
+msgstr "Reclameu tresors per aconseguir recursos."
+
+#: simulation/templates/template_gaia_tree.xml:8
+msgid "Tree"
+msgstr "Arbre"
+
+#: simulation/templates/template_gaia_tree.xml:9
+msgid "Chop trees for wood."
+msgstr "Talleu arbres per aconseguir fusta."
+
+#: simulation/templates/template_structure.xml:47
+msgid "Structure"
+msgstr "Estructura"
+
+#: simulation/templates/template_unit.xml:38
+msgid "Unit"
+msgstr "Unitat"
+
+#: simulation/templates/template_wallset.xml:9
+#: simulation/templates/template_wallset.xml:11
+msgid "Wall"
+msgstr "Muralla"
+
+#: simulation/templates/template_wallset.xml:10
+msgid "Wall off an area."
+msgstr "Emmuralla una àrea."

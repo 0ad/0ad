@@ -1,7 +1,7 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright (C) 2020 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
-# 
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
+# project.
 # Translators:
 # GunChleoc, 2015-2018
 # GunChleoc, 2014-2015
@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-13 08:09+0000\n"
+"POT-Creation-Date: 2020-11-28 10:01+0000\n"
 "PO-Revision-Date: 2020-11-13 09:19+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
@@ -356,6 +356,17 @@ msgid ""
 "us, I have abrogated my offer."
 msgstr "%(_player_)s, o nach do fhreagair thu ri mo thairgse airson sìth eadarainn, chan eil mi ’ga tairgsinn dhut tuilleadh."
 
+#: simulation/ai/petra/data.jsondescription
+msgid ""
+"Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
+"\n"
+"The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
+msgstr "’S e am bot tùsail aig 0 A.D. a th’ ann am Peadra. An aithris thu duilgheadas sam bith gu Wildfire Games (faic an ceangal air a’ phrìomh chlàr-taice)?\n\nTha buannachd a’ chruinneachaidh ’s air a’ mhalart an IF a-rèir leibheil an duilgheadais (seo −58% air leibheil a’ bhogsa-gainmhich, −44% air leibheil glè fhurasta, −25% air leibheil fhurasta, ±0% air leibheil mheadhanach, +25% air leibheil dhoirbh, +56% air leibheil dhùbhlanach). Tha an rannsachadh, an t-oideachadh ’s an togail nas maille air na leibheilean as fhasa cuideachd. A bharrachd air sin, cha dèan leibheil a’ bhogsa-ghainmhich leudachadh ’s cha doir e ionnsaigh."
+
+#: simulation/ai/petra/data.jsonname
+msgid "Petra Bot"
+msgstr "Bot Peadra"
+
 #: simulation/components/BuildRestrictions.js:86
 #, javascript-format
 msgid "%(name)s cannot be built due to unknown error"
@@ -377,42 +388,48 @@ msgid "%(name)s cannot be built on invalid terrain"
 msgstr "Cha ghabh %(name)s a thogail air cruth-tìre mì-dhligheach"
 
 #. Translation: territoryType being displayed in a translated sentence in the
-#. form: "House cannot be built in %(territoryType)s territory.".
+#. form: "House
+#. cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:185
 msgctxt "Territory type"
 msgid "own"
 msgstr "agad fhèin"
 
 #. Translation: territoryType being displayed in a translated sentence in the
-#. form: "House cannot be built in %(territoryType)s territory.".
+#. form: "House
+#. cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:188
 msgctxt "Territory type"
 msgid "unconnected own"
 msgstr "agad fhèin nach eil ceangailte"
 
 #. Translation: territoryType being displayed in a translated sentence in the
-#. form: "House cannot be built in %(territoryType)s territory.".
+#. form: "House
+#. cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:194
 msgctxt "Territory type"
 msgid "allied"
 msgstr "caidreabhach"
 
 #. Translation: territoryType being displayed in a translated sentence in the
-#. form: "House cannot be built in %(territoryType)s territory.".
+#. form: "House
+#. cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:197
 msgctxt "Territory type"
 msgid "unconnected allied"
 msgstr "caidreabhach nach eil ceangailte"
 
 #. Translation: territoryType being displayed in a translated sentence in the
-#. form: "House cannot be built in %(territoryType)s territory.".
+#. form: "House
+#. cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:203
 msgctxt "Territory type"
 msgid "neutral"
 msgstr "neo-phàirteach"
 
 #. Translation: territoryType being displayed in a translated sentence in the
-#. form: "House cannot be built in %(territoryType)s territory.".
+#. form: "House
+#. cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:210
 msgctxt "Territory type"
 msgid "enemy"
@@ -455,28 +472,32 @@ msgstr[2] "Tha %(name)s ro fhad air falbh o %(category)s, feumaidh e bhith am br
 msgstr[3] "Tha %(name)s ro fhad air falbh o %(category)s, feumaidh e bhith am broinn %(distance)s meatair a’ char as motha"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
-#. territories: own, ally".
+#. territories:
+#. own, ally".
 #: simulation/components/BuildRestrictions.js:317
 msgctxt "Territory type list"
 msgid "own"
 msgstr "agad fhèin"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
-#. territories: own, ally".
+#. territories:
+#. own, ally".
 #: simulation/components/BuildRestrictions.js:319
 msgctxt "Territory type list"
 msgid "ally"
 msgstr "aig caidreabhach"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
-#. territories: own, ally".
+#. territories:
+#. own, ally".
 #: simulation/components/BuildRestrictions.js:321
 msgctxt "Territory type list"
 msgid "neutral"
 msgstr "neo-phàirteach"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
-#. territories: own, ally".
+#. territories:
+#. own, ally".
 #: simulation/components/BuildRestrictions.js:323
 msgctxt "Territory type list"
 msgid "enemy"
@@ -562,6 +583,273 @@ msgstr "Cha do lorg sinn rum saor gus na h-aonadan air an oideachadh a shìoladh
 msgid "Entity is producing. Cannot start upgrading."
 msgstr ""
 
+#: simulation/data/settings/game_speeds.jsonData[0].Title
+msgid "Turtle (0.1×)"
+msgstr ""
+
+#: simulation/data/settings/game_speeds.jsonData[10].Title
+msgid "Fast Forward (20×)"
+msgstr ""
+
+#: simulation/data/settings/game_speeds.jsonData[1].Title
+msgid "Slow (0.25×)"
+msgstr ""
+
+#: simulation/data/settings/game_speeds.jsonData[2].Title
+msgid "Leisurely (0.5×)"
+msgstr ""
+
+#: simulation/data/settings/game_speeds.jsonData[3].Title
+msgid "Relaxed (0.75×)"
+msgstr ""
+
+#: simulation/data/settings/game_speeds.jsonData[4].Title
+msgid "Normal (1×)"
+msgstr ""
+
+#: simulation/data/settings/game_speeds.jsonData[5].Title
+msgid "Fast (1.25×)"
+msgstr ""
+
+#: simulation/data/settings/game_speeds.jsonData[6].Title
+msgid "Very Fast (1.5×)"
+msgstr ""
+
+#: simulation/data/settings/game_speeds.jsonData[7].Title
+msgid "Insane (2×)"
+msgstr ""
+
+#: simulation/data/settings/game_speeds.jsonData[8].Title
+msgid "Fast Forward (5×)"
+msgstr ""
+
+#: simulation/data/settings/game_speeds.jsonData[9].Title
+msgid "Fast Forward (10×)"
+msgstr ""
+
+#: simulation/data/settings/map_sizes.jsonData[0].Name
+msgid "Tiny"
+msgstr "Beag bìodach"
+
+#: simulation/data/settings/map_sizes.jsonData[0].Tooltip
+msgid "This map size has barely any room for even the most basic resources."
+msgstr "Tha am mapa seo cho beag ’s gu bheil an rum glè ghann fiù airson nan stòrasan as bunasaiche."
+
+#: simulation/data/settings/map_sizes.jsonData[1].Name
+msgid "Small"
+msgstr "Beag"
+
+#: simulation/data/settings/map_sizes.jsonData[1].Tooltip
+msgid ""
+"Small maps are suitable for 1v1 matches, as players can reach the enemy "
+"quickly while still having some room to expand."
+msgstr "Tha mapaichean beaga iomchaidh dha dhithis on a ruigeas na cluicheadairean an nàmhaid gu luath fhad ’s a bhios beagan ruim aca fhathast airson leudachadh an ranntair."
+
+#: simulation/data/settings/map_sizes.jsonData[2].Name
+msgid "Normal"
+msgstr "Àbhaisteach"
+
+#: simulation/data/settings/map_sizes.jsonData[2].Tooltip
+msgid ""
+"This map size provides plenty of space for two players, but even eight "
+"players fit."
+msgstr ""
+
+#: simulation/data/settings/map_sizes.jsonData[3].Tooltip
+msgid ""
+"This is the ideal mapsize for 4 to 8 players, because there is plenty of "
+"space to expand while the neighbors are quickly reachable."
+msgstr "Seo am meud as fheàrr airson 4 gu 8 chluicheadair on a tha pailteas ruim ann gus an ranntair leudachadh fhad ’s ghabhas na nàbaidhean ruigsinn gu luath."
+
+#: simulation/data/settings/map_sizes.jsonData[4].Name
+msgid "Large"
+msgstr "Mòr"
+
+#: simulation/data/settings/map_sizes.jsonData[4].Tooltip
+msgid ""
+"The large mapsize is recommended when great portions of the map are covered "
+"with water or inaccessible mountains."
+msgstr "Mholamaid mapaichean mòra nuair a bhios mòran dhiubh còmhdaichte le uisge no beanntan do-ruigsinn."
+
+#: simulation/data/settings/map_sizes.jsonData[5].Name
+msgid "Very Large"
+msgstr "Glè mhòr"
+
+#: simulation/data/settings/map_sizes.jsonData[5].Tooltip
+#: simulation/data/settings/map_sizes.jsonData[6].Tooltip
+msgid ""
+"Very large maps are not recommended as it takes very long to reach the enemy"
+" and the game performance can be reduced."
+msgstr "Cha mholamaid mapaichean glè mhòra on a bheir e glè fhada gus na nàimhdean a ruigsinn agus dh’fhaoidte gun cuir iad dèanadas a’ gheama am miosad."
+
+#: simulation/data/settings/map_sizes.jsonData[6].Name
+msgid "Giant"
+msgstr "Ana-mhòr"
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[0].Name
+msgid "Gaia"
+msgstr "Gaìa"
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[1].Name
+msgid "Player 1"
+msgstr "Cluicheadair 1"
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[2].Name
+msgid "Player 2"
+msgstr "Cluicheadair 2"
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[3].Name
+msgid "Player 3"
+msgstr "Cluicheadair 3"
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[4].Name
+msgid "Player 4"
+msgstr "Cluicheadair 4"
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[5].Name
+msgid "Player 5"
+msgstr "Cluicheadair 5"
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[6].Name
+msgid "Player 6"
+msgstr "Cluicheadair 6"
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[7].Name
+msgid "Player 7"
+msgstr "Cluicheadair 7"
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[8].Name
+msgid "Player 8"
+msgstr "Cluicheadair 8"
+
+#: simulation/data/settings/starting_resources.jsonData[0].Title
+msgctxt "startingResources"
+msgid "Very Low"
+msgstr "Glè ìosal"
+
+#: simulation/data/settings/starting_resources.jsonData[1].Title
+msgctxt "startingResources"
+msgid "Low"
+msgstr "Ìosal"
+
+#: simulation/data/settings/starting_resources.jsonData[2].Title
+msgctxt "startingResources"
+msgid "Medium"
+msgstr "Meadhanach"
+
+#: simulation/data/settings/starting_resources.jsonData[3].Title
+msgctxt "startingResources"
+msgid "High"
+msgstr "Àrd"
+
+#: simulation/data/settings/starting_resources.jsonData[4].Title
+msgctxt "startingResources"
+msgid "Very High"
+msgstr "Glè àrd"
+
+#: simulation/data/settings/starting_resources.jsonData[5].Title
+msgctxt "startingResources"
+msgid "Deathmatch"
+msgstr "Gus an dig am bàs"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[0].Title
+msgid "Very Easy"
+msgstr "Glè fhurasta"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[0].Tooltip
+msgid "Choose this difficulty if you are discovering 0 A.D."
+msgstr "Tagh an duilgheas seo ma tha 0 A.D ùr dhut."
+
+#: simulation/data/settings/trigger_difficulties.jsonData[1].Title
+msgid "Easy"
+msgstr "Furasta"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[1].Tooltip
+msgid "Choose this difficulty if you do not like being knocked down."
+msgstr "Tagh an duilgheas seo mura toigh leat mòran strì."
+
+#: simulation/data/settings/map_sizes.jsonData[3].Name
+#: simulation/data/settings/trigger_difficulties.jsonData[2].Title
+msgid "Medium"
+msgstr "Meadhanach"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[2].Tooltip
+msgid ""
+"Choose this difficulty if you have already a good experience with 0 A.D."
+msgstr "Tagh an duilgheadas seo ma tha thu eòlach air 0 A.D."
+
+#: simulation/data/settings/trigger_difficulties.jsonData[3].Title
+msgid "Hard"
+msgstr "Doirbh"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[3].Tooltip
+msgid "Choose this difficulty if you want to be really challenged."
+msgstr "Tagh an duilgheas seo ma tha thu a’ sireadh dùbhlan."
+
+#: simulation/data/settings/trigger_difficulties.jsonData[4].Title
+msgid "Very Hard"
+msgstr "Dùbhlanach"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[4].Tooltip
+msgid "Choose this difficulty if you do not mind being swept out."
+msgstr "Tagh an duilgheas seo ma tha thu coma gun dèid cur às dhut."
+
+#: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Description
+msgid ""
+"Capture all relics spread across the map and keep them for a certain time to"
+" win the game."
+msgstr "Glac gach fear dhe na taisean a tha sgapte air a’ mhapa agus cum iad fad ùine shònraichte gus an geama a bhuannachd."
+
+#: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Title
+msgid "Capture the Relic"
+msgstr "Glac na taisean"
+
+#: simulation/data/settings/victory_conditions/conquest.jsonData.Description
+msgid ""
+"Defeat opponents by killing all their units and destroying all their "
+"structures."
+msgstr "Marbh aonadan is mill togalaichean uile nan nàmhad gus ruaig a chur orra."
+
+#: simulation/data/settings/victory_conditions/conquest.jsonData.Title
+msgid "Conquest"
+msgstr "Ceannsachadh"
+
+#: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
+msgid "Defeat opponents by destroying all their structures."
+msgstr "Mill togalaichean uile nan nàmhad gus ruaig a chur orra."
+
+#: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
+msgid "Conquest Structures"
+msgstr "Ceannsaich togalaichean"
+
+#: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
+msgid "Defeat opponents by killing all their units."
+msgstr "Marbh aonadan uile nan nàmhad gus ruaig a chur orra."
+
+#: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
+msgid "Conquest Units"
+msgstr "Ceannsaich aonadan"
+
+#: simulation/data/settings/victory_conditions/regicide.jsonData.Description
+msgid "Defeat opponents by killing their hero."
+msgstr "Marbh curaidhean nan nàmhad gus ruaig a chur orra."
+
+#: simulation/data/settings/victory_conditions/regicide.jsonData.Title
+msgid "Regicide"
+msgstr "Rìgh-mhort"
+
+#: simulation/data/settings/victory_conditions/wonder.jsonData.Description
+msgid ""
+"Be the first to build or capture a Wonder and keep it for a certain time to "
+"win the game. The timer will be reset when the Wonder is destroyed or "
+"captured. If the allied victory mode is enabled, the timer will also be "
+"reset when the alliances of the owner change."
+msgstr "Tog no glac mìorbhail air thoiseach càich agus cum e fad ùine shònraichte gus an geama a bhuannachd. Thèid an tìmear ath-shuidheachadh nuair a thèid am mìorbhail a mhilleadh no a ghlacadh. Ma chaidh buaidh caidreachais a thaghadh, thèid an tìmear ath-shuidheachadh cuideachd nuair a dh’atharraicheas caidreachas an t-seilbheadair."
+
+#: simulation/data/settings/victory_conditions/wonder.jsonData.Title
+msgid "Wonder"
+msgstr "Mìorbhail"
+
 #: simulation/helpers/Cheat.js:58
 #, javascript-format
 msgid "%(player)s has been defeated (cheat)."
@@ -623,281 +911,3 @@ msgstr ""
 #: simulation/helpers/Commands.js:1115
 msgid "The building's technology requirements are not met."
 msgstr "Cha deach na riatanasan teicneòlais airson an togalaich a choileanadh."
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[0].Name
-msgid "Gaia"
-msgstr "Gaìa"
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[1].Name
-msgid "Player 1"
-msgstr "Cluicheadair 1"
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[2].Name
-msgid "Player 2"
-msgstr "Cluicheadair 2"
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[3].Name
-msgid "Player 3"
-msgstr "Cluicheadair 3"
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[4].Name
-msgid "Player 4"
-msgstr "Cluicheadair 4"
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[5].Name
-msgid "Player 5"
-msgstr "Cluicheadair 5"
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[6].Name
-msgid "Player 6"
-msgstr "Cluicheadair 6"
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[7].Name
-msgid "Player 7"
-msgstr "Cluicheadair 7"
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[8].Name
-msgid "Player 8"
-msgstr "Cluicheadair 8"
-
-#: simulation/data/settings/game_speeds.jsonData[0].Title
-msgid "Turtle (0.1×)"
-msgstr ""
-
-#: simulation/data/settings/game_speeds.jsonData[1].Title
-msgid "Slow (0.25×)"
-msgstr ""
-
-#: simulation/data/settings/game_speeds.jsonData[2].Title
-msgid "Leisurely (0.5×)"
-msgstr ""
-
-#: simulation/data/settings/game_speeds.jsonData[3].Title
-msgid "Relaxed (0.75×)"
-msgstr ""
-
-#: simulation/data/settings/game_speeds.jsonData[4].Title
-msgid "Normal (1×)"
-msgstr ""
-
-#: simulation/data/settings/game_speeds.jsonData[5].Title
-msgid "Fast (1.25×)"
-msgstr ""
-
-#: simulation/data/settings/game_speeds.jsonData[6].Title
-msgid "Very Fast (1.5×)"
-msgstr ""
-
-#: simulation/data/settings/game_speeds.jsonData[7].Title
-msgid "Insane (2×)"
-msgstr ""
-
-#: simulation/data/settings/game_speeds.jsonData[8].Title
-msgid "Fast Forward (5×)"
-msgstr ""
-
-#: simulation/data/settings/game_speeds.jsonData[9].Title
-msgid "Fast Forward (10×)"
-msgstr ""
-
-#: simulation/data/settings/game_speeds.jsonData[10].Title
-msgid "Fast Forward (20×)"
-msgstr ""
-
-#: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Description
-msgid ""
-"Capture all relics spread across the map and keep them for a certain time to"
-" win the game."
-msgstr "Glac gach fear dhe na taisean a tha sgapte air a’ mhapa agus cum iad fad ùine shònraichte gus an geama a bhuannachd."
-
-#: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Title
-msgid "Capture the Relic"
-msgstr "Glac na taisean"
-
-#: simulation/data/settings/victory_conditions/conquest.jsonData.Description
-msgid ""
-"Defeat opponents by killing all their units and destroying all their "
-"structures."
-msgstr "Marbh aonadan is mill togalaichean uile nan nàmhad gus ruaig a chur orra."
-
-#: simulation/data/settings/victory_conditions/conquest.jsonData.Title
-msgid "Conquest"
-msgstr "Ceannsachadh"
-
-#: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
-msgid "Defeat opponents by destroying all their structures."
-msgstr "Mill togalaichean uile nan nàmhad gus ruaig a chur orra."
-
-#: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
-msgid "Conquest Structures"
-msgstr "Ceannsaich togalaichean"
-
-#: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
-msgid "Defeat opponents by killing all their units."
-msgstr "Marbh aonadan uile nan nàmhad gus ruaig a chur orra."
-
-#: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
-msgid "Conquest Units"
-msgstr "Ceannsaich aonadan"
-
-#: simulation/data/settings/victory_conditions/regicide.jsonData.Description
-msgid "Defeat opponents by killing their hero."
-msgstr "Marbh curaidhean nan nàmhad gus ruaig a chur orra."
-
-#: simulation/data/settings/victory_conditions/regicide.jsonData.Title
-msgid "Regicide"
-msgstr "Rìgh-mhort"
-
-#: simulation/data/settings/victory_conditions/wonder.jsonData.Description
-msgid ""
-"Be the first to build or capture a Wonder and keep it for a certain time to "
-"win the game. The timer will be reset when the Wonder is destroyed or "
-"captured. If the allied victory mode is enabled, the timer will also be "
-"reset when the alliances of the owner change."
-msgstr "Tog no glac mìorbhail air thoiseach càich agus cum e fad ùine shònraichte gus an geama a bhuannachd. Thèid an tìmear ath-shuidheachadh nuair a thèid am mìorbhail a mhilleadh no a ghlacadh. Ma chaidh buaidh caidreachais a thaghadh, thèid an tìmear ath-shuidheachadh cuideachd nuair a dh’atharraicheas caidreachas an t-seilbheadair."
-
-#: simulation/data/settings/victory_conditions/wonder.jsonData.Title
-msgid "Wonder"
-msgstr "Mìorbhail"
-
-#: simulation/data/settings/starting_resources.jsonData[0].Title
-msgctxt "startingResources"
-msgid "Very Low"
-msgstr "Glè ìosal"
-
-#: simulation/data/settings/starting_resources.jsonData[1].Title
-msgctxt "startingResources"
-msgid "Low"
-msgstr "Ìosal"
-
-#: simulation/data/settings/starting_resources.jsonData[2].Title
-msgctxt "startingResources"
-msgid "Medium"
-msgstr "Meadhanach"
-
-#: simulation/data/settings/starting_resources.jsonData[3].Title
-msgctxt "startingResources"
-msgid "High"
-msgstr "Àrd"
-
-#: simulation/data/settings/starting_resources.jsonData[4].Title
-msgctxt "startingResources"
-msgid "Very High"
-msgstr "Glè àrd"
-
-#: simulation/data/settings/starting_resources.jsonData[5].Title
-msgctxt "startingResources"
-msgid "Deathmatch"
-msgstr "Gus an dig am bàs"
-
-#: simulation/data/settings/trigger_difficulties.jsonData[0].Tooltip
-msgid "Choose this difficulty if you are discovering 0 A.D."
-msgstr "Tagh an duilgheas seo ma tha 0 A.D ùr dhut."
-
-#: simulation/data/settings/trigger_difficulties.jsonData[0].Title
-msgid "Very Easy"
-msgstr "Glè fhurasta"
-
-#: simulation/data/settings/trigger_difficulties.jsonData[1].Tooltip
-msgid "Choose this difficulty if you do not like being knocked down."
-msgstr "Tagh an duilgheas seo mura toigh leat mòran strì."
-
-#: simulation/data/settings/trigger_difficulties.jsonData[1].Title
-msgid "Easy"
-msgstr "Furasta"
-
-#: simulation/data/settings/trigger_difficulties.jsonData[2].Tooltip
-msgid ""
-"Choose this difficulty if you have already a good experience with 0 A.D."
-msgstr "Tagh an duilgheadas seo ma tha thu eòlach air 0 A.D."
-
-#: simulation/data/settings/trigger_difficulties.jsonData[2].Title
-#: simulation/data/settings/map_sizes.jsonData[3].Name
-msgid "Medium"
-msgstr "Meadhanach"
-
-#: simulation/data/settings/trigger_difficulties.jsonData[3].Tooltip
-msgid "Choose this difficulty if you want to be really challenged."
-msgstr "Tagh an duilgheas seo ma tha thu a’ sireadh dùbhlan."
-
-#: simulation/data/settings/trigger_difficulties.jsonData[3].Title
-msgid "Hard"
-msgstr "Doirbh"
-
-#: simulation/data/settings/trigger_difficulties.jsonData[4].Tooltip
-msgid "Choose this difficulty if you do not mind being swept out."
-msgstr "Tagh an duilgheas seo ma tha thu coma gun dèid cur às dhut."
-
-#: simulation/data/settings/trigger_difficulties.jsonData[4].Title
-msgid "Very Hard"
-msgstr "Dùbhlanach"
-
-#: simulation/data/settings/map_sizes.jsonData[0].Name
-msgid "Tiny"
-msgstr "Beag bìodach"
-
-#: simulation/data/settings/map_sizes.jsonData[0].Tooltip
-msgid "This map size has barely any room for even the most basic resources."
-msgstr "Tha am mapa seo cho beag ’s gu bheil an rum glè ghann fiù airson nan stòrasan as bunasaiche."
-
-#: simulation/data/settings/map_sizes.jsonData[1].Name
-msgid "Small"
-msgstr "Beag"
-
-#: simulation/data/settings/map_sizes.jsonData[1].Tooltip
-msgid ""
-"Small maps are suitable for 1v1 matches, as players can reach the enemy "
-"quickly while still having some room to expand."
-msgstr "Tha mapaichean beaga iomchaidh dha dhithis on a ruigeas na cluicheadairean an nàmhaid gu luath fhad ’s a bhios beagan ruim aca fhathast airson leudachadh an ranntair."
-
-#: simulation/data/settings/map_sizes.jsonData[2].Name
-msgid "Normal"
-msgstr "Àbhaisteach"
-
-#: simulation/data/settings/map_sizes.jsonData[2].Tooltip
-msgid ""
-"This map size provides plenty of space for two players, but even eight "
-"players fit."
-msgstr ""
-
-#: simulation/data/settings/map_sizes.jsonData[3].Tooltip
-msgid ""
-"This is the ideal mapsize for 4 to 8 players, because there is plenty of "
-"space to expand while the neighbors are quickly reachable."
-msgstr "Seo am meud as fheàrr airson 4 gu 8 chluicheadair on a tha pailteas ruim ann gus an ranntair leudachadh fhad ’s ghabhas na nàbaidhean ruigsinn gu luath."
-
-#: simulation/data/settings/map_sizes.jsonData[4].Name
-msgid "Large"
-msgstr "Mòr"
-
-#: simulation/data/settings/map_sizes.jsonData[4].Tooltip
-msgid ""
-"The large mapsize is recommended when great portions of the map are covered "
-"with water or inaccessible mountains."
-msgstr "Mholamaid mapaichean mòra nuair a bhios mòran dhiubh còmhdaichte le uisge no beanntan do-ruigsinn."
-
-#: simulation/data/settings/map_sizes.jsonData[5].Name
-msgid "Very Large"
-msgstr "Glè mhòr"
-
-#: simulation/data/settings/map_sizes.jsonData[5].Tooltip
-#: simulation/data/settings/map_sizes.jsonData[6].Tooltip
-msgid ""
-"Very large maps are not recommended as it takes very long to reach the enemy"
-" and the game performance can be reduced."
-msgstr "Cha mholamaid mapaichean glè mhòra on a bheir e glè fhada gus na nàimhdean a ruigsinn agus dh’fhaoidte gun cuir iad dèanadas a’ gheama am miosad."
-
-#: simulation/data/settings/map_sizes.jsonData[6].Name
-msgid "Giant"
-msgstr "Ana-mhòr"
-
-#: simulation/ai/petra/data.jsonname
-msgid "Petra Bot"
-msgstr "Bot Peadra"
-
-#: simulation/ai/petra/data.jsondescription
-msgid ""
-"Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
-"\n"
-"The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr "’S e am bot tùsail aig 0 A.D. a th’ ann am Peadra. An aithris thu duilgheadas sam bith gu Wildfire Games (faic an ceangal air a’ phrìomh chlàr-taice)?\n\nTha buannachd a’ chruinneachaidh ’s air a’ mhalart an IF a-rèir leibheil an duilgheadais (seo −58% air leibheil a’ bhogsa-gainmhich, −44% air leibheil glè fhurasta, −25% air leibheil fhurasta, ±0% air leibheil mheadhanach, +25% air leibheil dhoirbh, +56% air leibheil dhùbhlanach). Tha an rannsachadh, an t-oideachadh ’s an togail nas maille air na leibheilean as fhasa cuideachd. A bharrachd air sin, cha dèan leibheil a’ bhogsa-ghainmhich leudachadh ’s cha doir e ionnsaigh."

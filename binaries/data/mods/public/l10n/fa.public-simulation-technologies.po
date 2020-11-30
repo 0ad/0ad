@@ -1,7 +1,7 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright (C) 2020 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
-# 
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
+# project.
 # Translators:
 # Ahmad Reza Kazemi <ahmadreza.kazemi82@gmail.com>, 2019
 # hamed farri <hamed.farri@gmail.com>, 2016
@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-09-04 07:09+0000\n"
+"POT-Creation-Date: 2020-11-28 10:01+0000\n"
 "PO-Revision-Date: 2020-09-20 18:06+0000\n"
 "Last-Translator: Mohammad Namvarpour <mohammadnamvarpour@gmail.com>\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
@@ -24,11 +24,6 @@ msgstr ""
 msgid ""
 "The Indian, Iranian, and Kushite peoples had a tradition of fine archery and"
 " a penchant for using massed archers in battle."
-msgstr ""
-
-#: simulation/data/technologies/archery_tradition.jsontooltip
-msgid ""
-"Archers −10% training time, +8 attack range, and −10% ranged attack spread."
 msgstr ""
 
 #: simulation/data/technologies/archery_tradition.jsongenericName
@@ -47,14 +42,14 @@ msgstr "سنت کمانداری"
 msgid "Unlocked in Village Phase."
 msgstr "قفل آن در فاز روستایی باز خواهد شد."
 
+#: simulation/data/technologies/archery_tradition.jsontooltip
+msgid ""
+"Archers −10% training time, +8 attack range, and −10% ranged attack spread."
+msgstr ""
+
 #: simulation/data/technologies/armor_cav_01.jsondescription
 msgid "Metal armor for a horse's face."
 msgstr "زره فلزی برای صورت اسبها"
-
-#: simulation/data/technologies/armor_cav_01.jsontooltip
-#: simulation/data/technologies/armor_cav_02.jsontooltip
-msgid "Cavalry +1 hack and pierce armor."
-msgstr ""
 
 #: simulation/data/technologies/armor_cav_01.jsongenericName
 #: simulation/data/technologies/armor_cav_02.jsongenericName
@@ -68,6 +63,8 @@ msgstr "زره اسب"
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_infantry_melee_01.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_infantry_ranged_01.jsonrequirementsTooltip
+#: simulation/data/technologies/carthaginians/special_colonisation.jsonrequirementsTooltip
+#: simulation/data/technologies/carthaginians/special_exploration.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_harvester.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_training.jsonrequirementsTooltip
@@ -77,6 +74,9 @@ msgstr "زره اسب"
 #: simulation/data/technologies/heal_barracks.jsonrequirementsTooltip
 #: simulation/data/technologies/heal_range.jsonrequirementsTooltip
 #: simulation/data/technologies/heal_rate.jsonrequirementsTooltip
+#: simulation/data/technologies/kushites/monumental_architecture.jsonrequirementsTooltip
+#: simulation/data/technologies/persians/training_levy_cavalry.jsonrequirementsTooltip
+#: simulation/data/technologies/persians/training_levy_infantry.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_crenellations.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_range.jsonrequirementsTooltip
@@ -84,21 +84,21 @@ msgstr "زره اسب"
 #: simulation/data/technologies/trade_convoys_speed.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_gain_01.jsonrequirementsTooltip
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsonrequirementsTooltip
-#: simulation/data/technologies/carthaginians/special_colonisation.jsonrequirementsTooltip
-#: simulation/data/technologies/carthaginians/special_exploration.jsonrequirementsTooltip
-#: simulation/data/technologies/kushites/monumental_architecture.jsonrequirementsTooltip
-#: simulation/data/technologies/persians/training_levy_cavalry.jsonrequirementsTooltip
-#: simulation/data/technologies/persians/training_levy_infantry.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase."
 msgstr "در مرحله شهرک باز می شود."
 
-#: simulation/data/technologies/armor_cav_01.jsonspecificName.sele
+#: simulation/data/technologies/armor_cav_01.jsonspecificName.athen
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.mace
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.ptol
+#: simulation/data/technologies/armor_cav_01.jsonspecificName.sele
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.spart
-#: simulation/data/technologies/armor_cav_01.jsonspecificName.athen
 msgid "Prometōpídion"
 msgstr "Prometōpídion"
+
+#: simulation/data/technologies/armor_cav_01.jsontooltip
+#: simulation/data/technologies/armor_cav_02.jsontooltip
+msgid "Cavalry +1 hack and pierce armor."
+msgstr ""
 
 #: simulation/data/technologies/armor_cav_02.jsondescription
 msgid "Metal armor for a horse's body."
@@ -114,6 +114,7 @@ msgstr "زره فلزی برای بدن اسبها"
 #: simulation/data/technologies/attack_infantry_ranged_02.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_soldiers_will.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_steel_working.jsonrequirementsTooltip
+#: simulation/data/technologies/carthaginians/training_phoenician_naval_architects.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_carts.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_fertilizer.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsonrequirementsTooltip
@@ -123,21 +124,6 @@ msgstr "زره فلزی برای بدن اسبها"
 #: simulation/data/technologies/heal_rate_2.jsonrequirementsTooltip
 #: simulation/data/technologies/heal_temple.jsonrequirementsTooltip
 #: simulation/data/technologies/health_regen_units.jsonrequirementsTooltip
-#: simulation/data/technologies/pop_house_02.jsonrequirementsTooltip
-#: simulation/data/technologies/pop_wonder.jsonrequirementsTooltip
-#: simulation/data/technologies/siege_armor.jsonrequirementsTooltip
-#: simulation/data/technologies/siege_attack.jsonrequirementsTooltip
-#: simulation/data/technologies/siege_bolt_accuracy.jsonrequirementsTooltip
-#: simulation/data/technologies/siege_cost_metal.jsonrequirementsTooltip
-#: simulation/data/technologies/siege_cost_wood.jsonrequirementsTooltip
-#: simulation/data/technologies/tower_armour.jsonrequirementsTooltip
-#: simulation/data/technologies/tower_murderholes.jsonrequirementsTooltip
-#: simulation/data/technologies/trade_convoys_armor.jsonrequirementsTooltip
-#: simulation/data/technologies/trade_gain_02.jsonrequirementsTooltip
-#: simulation/data/technologies/training_conscription.jsonrequirementsTooltip
-#: simulation/data/technologies/training_naval_architects.jsonrequirementsTooltip
-#: simulation/data/technologies/unlock_champion_units.jsonrequirementsTooltip
-#: simulation/data/technologies/carthaginians/training_phoenician_naval_architects.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenes/spartans_agoge.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenes/special_long_walls.jsonrequirementsTooltip
@@ -146,13 +132,27 @@ msgstr "زره فلزی برای بدن اسبها"
 #: simulation/data/technologies/persians/special_equine_transports.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/training_conscription_cavalry.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/training_conscription_infantry.jsonrequirementsTooltip
+#: simulation/data/technologies/pop_house_02.jsonrequirementsTooltip
+#: simulation/data/technologies/pop_wonder.jsonrequirementsTooltip
 #: simulation/data/technologies/romans/vision_sibylline.jsonrequirementsTooltip
+#: simulation/data/technologies/siege_armor.jsonrequirementsTooltip
+#: simulation/data/technologies/siege_attack.jsonrequirementsTooltip
+#: simulation/data/technologies/siege_bolt_accuracy.jsonrequirementsTooltip
+#: simulation/data/technologies/siege_cost_metal.jsonrequirementsTooltip
+#: simulation/data/technologies/siege_cost_wood.jsonrequirementsTooltip
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsonrequirementsTooltip
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsonrequirementsTooltip
 #: simulation/data/technologies/successors/special_war_horses.jsonrequirementsTooltip
 #: simulation/data/technologies/successors/unlock_reform_army.jsonrequirementsTooltip
 #: simulation/data/technologies/successors/unlock_traditional_army.jsonrequirementsTooltip
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsonrequirementsTooltip
+#: simulation/data/technologies/tower_armour.jsonrequirementsTooltip
+#: simulation/data/technologies/tower_murderholes.jsonrequirementsTooltip
+#: simulation/data/technologies/trade_convoys_armor.jsonrequirementsTooltip
+#: simulation/data/technologies/trade_gain_02.jsonrequirementsTooltip
+#: simulation/data/technologies/training_conscription.jsonrequirementsTooltip
+#: simulation/data/technologies/training_naval_architects.jsonrequirementsTooltip
+#: simulation/data/technologies/unlock_champion_units.jsonrequirementsTooltip
 msgid "Unlocked in City Phase."
 msgstr "در مرحله شهری باز می شود."
 
@@ -162,19 +162,15 @@ msgid ""
 " the ancients."
 msgstr "بدنه زره کاملا از آهن ساخته می شود، سخترین فلز قابل کار کردنی که در دوران باستان شناخته شده بود"
 
-#: simulation/data/technologies/armor_hero_01.jsontooltip
-msgid "Heroes +50 metal cost, +2 hack and pierce armor."
-msgstr ""
-
 #: simulation/data/technologies/armor_hero_01.jsongenericName
 msgid "Iron Hero Armor"
 msgstr "زره آهنی قهرمان ها"
 
-#: simulation/data/technologies/armor_hero_01.jsonspecificName.ptol
-#: simulation/data/technologies/armor_hero_01.jsonspecificName.spart
-#: simulation/data/technologies/armor_hero_01.jsonspecificName.sele
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.athen
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.mace
+#: simulation/data/technologies/armor_hero_01.jsonspecificName.ptol
+#: simulation/data/technologies/armor_hero_01.jsonspecificName.sele
+#: simulation/data/technologies/armor_hero_01.jsonspecificName.spart
 msgid "Sidḗrea Panoplía"
 msgstr "Sidḗrea Panoplía"
 
@@ -182,32 +178,36 @@ msgstr "Sidḗrea Panoplía"
 msgid "Lorica Ferrea"
 msgstr "Lorica Ferrea"
 
+#: simulation/data/technologies/armor_hero_01.jsontooltip
+msgid "Heroes +50 metal cost, +2 hack and pierce armor."
+msgstr ""
+
 #: simulation/data/technologies/armor_infantry_01.jsondescription
 msgid "Quilted linen or leather body armor for infantrymen."
 msgstr "زره دوخته شده از چرم یا کتان برای پیاده نظام."
-
-#: simulation/data/technologies/armor_infantry_01.jsontooltip
-#: simulation/data/technologies/armor_infantry_02.jsontooltip
-msgid "Infantry +1 hack and pierce armor."
-msgstr ""
 
 #: simulation/data/technologies/armor_infantry_01.jsongenericName
 msgid "Quilted Body Armor"
 msgstr "زره دوخته شده"
 
-#: simulation/data/technologies/armor_infantry_01.jsonspecificName.maur
-#: simulation/data/technologies/armor_infantry_01.jsonspecificName.spart
-#: simulation/data/technologies/armor_infantry_01.jsonspecificName.generic
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.athen
-#: simulation/data/technologies/armor_infantry_01.jsonspecificName.cart
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.brit
-#: simulation/data/technologies/armor_infantry_01.jsonspecificName.pers
-#: simulation/data/technologies/armor_infantry_01.jsonspecificName.mace
-#: simulation/data/technologies/armor_infantry_01.jsonspecificName.rome
+#: simulation/data/technologies/armor_infantry_01.jsonspecificName.cart
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.gaul
+#: simulation/data/technologies/armor_infantry_01.jsonspecificName.generic
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.iber
+#: simulation/data/technologies/armor_infantry_01.jsonspecificName.mace
+#: simulation/data/technologies/armor_infantry_01.jsonspecificName.maur
+#: simulation/data/technologies/armor_infantry_01.jsonspecificName.pers
+#: simulation/data/technologies/armor_infantry_01.jsonspecificName.rome
+#: simulation/data/technologies/armor_infantry_01.jsonspecificName.spart
 msgid "Spolas"
 msgstr "اسپولاس"
+
+#: simulation/data/technologies/armor_infantry_01.jsontooltip
+#: simulation/data/technologies/armor_infantry_02.jsontooltip
+msgid "Infantry +1 hack and pierce armor."
+msgstr ""
 
 #: simulation/data/technologies/armor_infantry_02.jsondescription
 msgid "Laminated linen body armor for infantrymen."
@@ -217,14 +217,14 @@ msgstr "زره کتانی ورقه ورقه برای پیاده نظام."
 msgid "Laminated Linen Body Armor"
 msgstr "زره طبقه طبقه کتانی"
 
-#: simulation/data/technologies/armor_infantry_02.jsonspecificName.ptol
-#: simulation/data/technologies/armor_infantry_02.jsonspecificName.spart
-#: simulation/data/technologies/armor_infantry_02.jsonspecificName.sele
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.athen
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.cart
-#: simulation/data/technologies/armor_infantry_02.jsonspecificName.pers
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.mace
+#: simulation/data/technologies/armor_infantry_02.jsonspecificName.pers
+#: simulation/data/technologies/armor_infantry_02.jsonspecificName.ptol
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.rome
+#: simulation/data/technologies/armor_infantry_02.jsonspecificName.sele
+#: simulation/data/technologies/armor_infantry_02.jsonspecificName.spart
 msgid "Linothorakes"
 msgstr "لینوتوراکس"
 
@@ -232,15 +232,15 @@ msgstr "لینوتوراکس"
 msgid "Lead sheathing protects ship hulls."
 msgstr "غلاف سرب برای محافظت از بدنه کشتی"
 
+#: simulation/data/technologies/armor_ship_hullsheathing.jsongenericName
+msgid "Lead hull sheathing"
+msgstr "ورقه کاری بدنه"
+
 #: simulation/data/technologies/armor_ship_hullsheathing.jsontooltip
 #: simulation/data/technologies/armor_ship_hypozomata.jsontooltip
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsontooltip
 msgid "Ships +2 armor."
 msgstr ""
-
-#: simulation/data/technologies/armor_ship_hullsheathing.jsongenericName
-msgid "Lead hull sheathing"
-msgstr "ورقه کاری بدنه"
 
 #: simulation/data/technologies/armor_ship_hypozomata.jsondescription
 msgid "The hypozomata braces the structure of a ship."
@@ -262,34 +262,30 @@ msgstr "بدنه ی تقویت شده"
 msgid "Training increases melee attack."
 msgstr "آموزش افزایش قدرت حمله نزدیکزن"
 
-#: simulation/data/technologies/attack_cavalry_melee_01.jsontooltip
-msgid "+20% melee cavalry attack."
-msgstr "+20% قدرت حمله سواره نظام نزدیکزن"
-
 #: simulation/data/technologies/attack_cavalry_melee_01.jsongenericName
 msgid "Close Combat Cavalry Training"
 msgstr "آموزش نبرد نزدیک برای سواره نظام"
 
-#: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.ptol
-#: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.spart
-#: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.sele
 #: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.athen
 #: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.mace
-#: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.ptol
-#: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.spart
-#: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.sele
+#: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.ptol
+#: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.sele
+#: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.spart
 #: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.athen
 #: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.mace
-#: simulation/data/technologies/attack_cavalry_ranged_01.jsonspecificName.ptol
-#: simulation/data/technologies/attack_cavalry_ranged_01.jsonspecificName.spart
-#: simulation/data/technologies/attack_cavalry_ranged_01.jsonspecificName.sele
+#: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.ptol
+#: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.sele
+#: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.spart
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsonspecificName.athen
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsonspecificName.mace
-#: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.ptol
-#: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.spart
-#: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.sele
+#: simulation/data/technologies/attack_cavalry_ranged_01.jsonspecificName.ptol
+#: simulation/data/technologies/attack_cavalry_ranged_01.jsonspecificName.sele
+#: simulation/data/technologies/attack_cavalry_ranged_01.jsonspecificName.spart
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.athen
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.mace
+#: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.ptol
+#: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.sele
+#: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.spart
 msgid "Xyston"
 msgstr "زیستون"
 
@@ -300,15 +296,14 @@ msgstr "زیستون"
 msgid "Hasta"
 msgstr "Hasta"
 
+#: simulation/data/technologies/attack_cavalry_melee_01.jsontooltip
+msgid "+20% melee cavalry attack."
+msgstr "+20% قدرت حمله سواره نظام نزدیکزن"
+
 #: simulation/data/technologies/attack_cavalry_melee_02.jsondescription
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsondescription
 msgid "Replaces bronze weapons with iron."
 msgstr "تعویض سلاح های برونزی با سلاح های آهنی"
-
-#: simulation/data/technologies/attack_cavalry_melee_02.jsontooltip
-msgid ""
-"Equip your melee cavalry with better weapons. +20% melee cavalry attack."
-msgstr "تجهیز کردن بهتر سواره نظام نزدیک‌زن با سلاح های بهتر. +20% قدرت حمله سواره نظام نزدیک‌زن"
 
 #: simulation/data/technologies/attack_cavalry_melee_02.jsongenericName
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsongenericName
@@ -316,17 +311,22 @@ msgstr "تجهیز کردن بهتر سواره نظام نزدیک‌زن با 
 msgid "Iron Weapons"
 msgstr "سلاح های آهنی"
 
+#: simulation/data/technologies/attack_cavalry_melee_02.jsontooltip
+msgid ""
+"Equip your melee cavalry with better weapons. +20% melee cavalry attack."
+msgstr "تجهیز کردن بهتر سواره نظام نزدیک‌زن با سلاح های بهتر. +20% قدرت حمله سواره نظام نزدیک‌زن"
+
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsondescription
 msgid "Training increases ranged attack."
 msgstr "آموزش افزایش شعاع حمله "
 
-#: simulation/data/technologies/attack_cavalry_ranged_01.jsontooltip
-msgid "+20% ranged cavalry attack."
-msgstr "+20% قدرت حمله سواره نظام دورزن"
-
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsongenericName
 msgid "Ranged Combat Cavalry Training"
 msgstr "آموزش نبرد های دور برای سواره نظام"
+
+#: simulation/data/technologies/attack_cavalry_ranged_01.jsontooltip
+msgid "+20% ranged cavalry attack."
+msgstr "+20% قدرت حمله سواره نظام دورزن"
 
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsontooltip
 msgid ""
@@ -340,26 +340,26 @@ msgid ""
 "been broken."
 msgstr "اغلب، پیاده نظام سلاح دومی را نیز در کنار سلاح اصلی خود به همراه دارند و زمانی که سلاح اصلی آنها شکسته شود یا به زمین بیافتد می توانند از سلاح دوم خود در نبرد استفاده کنند."
 
-#: simulation/data/technologies/attack_infantry_melee_01.jsontooltip
-#: simulation/data/technologies/attack_infantry_melee_02.jsontooltip
-msgid "+20% melee infantry attack."
-msgstr "+20% قدرت حمله پیاده نظام های نزدیک‌زن"
-
 #: simulation/data/technologies/attack_infantry_melee_01.jsongenericName
 msgid "Side Arms"
 msgstr "اسلحه جانبی"
 
-#: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.ptol
-#: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.spart
-#: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.sele
 #: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.athen
 #: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.mace
+#: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.ptol
+#: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.sele
+#: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.spart
 msgid "Xíphos"
 msgstr "Xíphos"
 
 #: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.rome
 msgid "Pugio"
 msgstr "Pugio"
+
+#: simulation/data/technologies/attack_infantry_melee_01.jsontooltip
+#: simulation/data/technologies/attack_infantry_melee_02.jsontooltip
+msgid "+20% melee infantry attack."
+msgstr "+20% قدرت حمله پیاده نظام های نزدیک‌زن"
 
 #: simulation/data/technologies/attack_infantry_melee_02.jsondescription
 msgid "Using iron instead of bronze gave weapons additional power."
@@ -370,27 +370,27 @@ msgstr "استفاده از آهن به جای برنز به اسلحه ها ق�
 msgid "Training increases damage of ranged infantry."
 msgstr ""
 
-#: simulation/data/technologies/attack_infantry_ranged_01.jsontooltip
-#: simulation/data/technologies/attack_infantry_ranged_02.jsontooltip
-msgid "+20% ranged infantry attack."
-msgstr "+20% قدرت حمله پیاده نظام های دورزن."
-
 #: simulation/data/technologies/attack_infantry_ranged_01.jsongenericName
 msgid "Ranged Infantry Irregulars"
 msgstr "پیاده های دورزن نامنظم"
 
-#: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.sele
+#: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.athen
 #: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.mace
 #: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.ptol
+#: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.sele
 #: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.spart
-#: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.athen
-#: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.sele
+#: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.athen
 #: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.mace
 #: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.ptol
+#: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.sele
 #: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.spart
-#: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.athen
 msgid "Átaktoi"
 msgstr "Átaktoi"
+
+#: simulation/data/technologies/attack_infantry_ranged_01.jsontooltip
+#: simulation/data/technologies/attack_infantry_ranged_02.jsontooltip
+msgid "+20% ranged infantry attack."
+msgstr "+20% قدرت حمله پیاده نظام های دورزن."
 
 #: simulation/data/technologies/attack_infantry_ranged_02.jsongenericName
 msgid "Ranged Infantry Masterclass"
@@ -400,22 +400,22 @@ msgstr "کلاس برتر پیاده نظام دورزن"
 msgid "The will to fight is crucial to victory."
 msgstr "اراده برای جنگ برای پیروزی حیاتی است."
 
-#: simulation/data/technologies/attack_soldiers_will.jsontooltip
-msgid ""
-"Inspire your troops with higher pay. All land and naval army +25% attack."
-msgstr "الهام بخشیدن به سربازانتان با پرستش بیشتر. تمام نیروهای زمینی و دریایی +25% قدرت حمله"
-
 #: simulation/data/technologies/attack_soldiers_will.jsongenericName
 msgid "Will to fight"
 msgstr "اراده به جنگیدن"
 
-#: simulation/data/technologies/attack_soldiers_will.jsonspecificName.sele
-#: simulation/data/technologies/attack_soldiers_will.jsonspecificName.ptol
-#: simulation/data/technologies/attack_soldiers_will.jsonspecificName.mace
-#: simulation/data/technologies/attack_soldiers_will.jsonspecificName.spart
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.athen
+#: simulation/data/technologies/attack_soldiers_will.jsonspecificName.mace
+#: simulation/data/technologies/attack_soldiers_will.jsonspecificName.ptol
+#: simulation/data/technologies/attack_soldiers_will.jsonspecificName.sele
+#: simulation/data/technologies/attack_soldiers_will.jsonspecificName.spart
 msgid "Dýnamis"
 msgstr "Dýnamis"
+
+#: simulation/data/technologies/attack_soldiers_will.jsontooltip
+msgid ""
+"Inspire your troops with higher pay. All land and naval army +25% attack."
+msgstr "الهام بخشیدن به سربازانتان با پرستش بیشتر. تمام نیروهای زمینی و دریایی +25% قدرت حمله"
 
 #: simulation/data/technologies/attack_steel_working.jsondescription
 msgid ""
@@ -423,59 +423,230 @@ msgid ""
 "markings. Not only that, but the steel's hardness is unparalleled."
 msgstr "روش های محرمانه کار با فولاد باعث ایجاد نقش و نگار های زیبا و بدیعی بر روی آن می شود. مهمتر این که سختی این فولاد بی رقیب است."
 
-#: simulation/data/technologies/attack_steel_working.jsontooltip
-msgid "+20% Hack attack for all swordsmen and macemen."
-msgstr "+20% قدرت حمله برشی برای تمام شمشیرزن ها و گرز دارها"
-
 #: simulation/data/technologies/attack_steel_working.jsongenericName
 msgid "Steel Working"
 msgstr "کار با فولاد"
-
-#: simulation/data/technologies/attack_steel_working.jsonspecificName.maur
-msgid "Wootz Steel"
-msgstr "فولاد ووتز"
 
 #: simulation/data/technologies/attack_steel_working.jsonspecificName.iber
 msgid "Toledo Steel"
 msgstr "فولاد تولدو"
 
+#: simulation/data/technologies/attack_steel_working.jsonspecificName.maur
+msgid "Wootz Steel"
+msgstr "فولاد ووتز"
+
+#: simulation/data/technologies/attack_steel_working.jsontooltip
+msgid "+20% Hack attack for all swordsmen and macemen."
+msgstr "+20% قدرت حمله برشی برای تمام شمشیرزن ها و گرز دارها"
+
+#: simulation/data/technologies/carthaginians/special_colonisation.jsondescription
+msgid ""
+"Carthaginians established many trading centers as colonies and ultimately "
+"held dominion over 300 cities and towns in North Africa alone."
+msgstr "کارتاژها مراکز تجاری بسیاری را شبیه مستعمرات خود راه اندازی کرده بودند آنها در اوج قدرت خود بیش از 300 شهر را در تنها در شمال آفریقا در اختیار داشتند"
+
+#: simulation/data/technologies/carthaginians/special_colonisation.jsongenericName
+msgid "Colonization"
+msgstr "مهاجرنشینی"
+
+#: simulation/data/technologies/carthaginians/special_colonisation.jsontooltip
+msgid ""
+"Carthaginians were colonizers. Civic Centers, Temples, and Houses -25% build"
+" time."
+msgstr "کارتاژ ها استعمارگر بودند. مراکز تمدن ، معابد و خانه -25% زمان ساخت"
+
+#: simulation/data/technologies/carthaginians/special_exploration.jsondescription
+msgid ""
+"Nobody knew better than the Carthaginians where in the ancient world they "
+"were going and going to go; their merchant traders had missions to "
+"everywhere."
+msgstr "هیچ کس بهتر از یک کارتاژی نمیداند که در دنیای باستان کجا می رود، تجار آنها به تمام دنیا ماموریت داشتند و به هرجای ممکن سفر میکردند"
+
+#: simulation/data/technologies/carthaginians/special_exploration.jsongenericName
+msgid "Exploration"
+msgstr "اکتشاف"
+
+#: simulation/data/technologies/carthaginians/special_exploration.jsontooltip
+msgid "Carthaginians were explorers. All Traders and Ships +25% vision range."
+msgstr "کارتاژ ها اکتشافگر بودند. تمام تاجرها و کشتی ها +25% شعاع دید بیشتر"
+
+#: simulation/data/technologies/carthaginians/training_phoenician_naval_architects.jsondescription
+msgid ""
+"Significantly increase build speed of batches of ships at the Shipyard."
+msgstr "به طرز قابل ملاحظه ای سرعت تولید دسته های ناو در کشتی سازی را افزایش می دهد."
+
+#: simulation/data/technologies/carthaginians/training_phoenician_naval_architects.jsongenericName
+msgid "Phoenician Naval Architects"
+msgstr "مهندسان دریایی فنیقی"
+
+#: simulation/data/technologies/carthaginians/training_phoenician_naval_architects.jsontooltip
+msgid "Shipyard increased batch construction speed bonus."
+msgstr "افزایش سرعت تولید دسته های ناو در کشتی سازی"
+
 #: simulation/data/technologies/cavalry_movement_speed.jsondescription
 msgid "Train your horses to move faster."
 msgstr "آموزش اسبها برای حرکت سریعتر"
+
+#: simulation/data/technologies/cavalry_movement_speed.jsongenericName
+msgid "Horse Racing"
+msgstr ""
 
 #: simulation/data/technologies/cavalry_movement_speed.jsontooltip
 msgid "Cavalry +10% walk speed."
 msgstr ""
 
-#: simulation/data/technologies/cavalry_movement_speed.jsongenericName
-msgid "Horse Racing"
+#: simulation/data/technologies/civbonuses/cart_walls.jsondescription
+msgid ""
+"Carthaginians built their city walls in three concentric circuits. These "
+"walls were never breached. Even when the city was taken by the Romans, it "
+"was via the city's harbor, not by storming its walls."
+msgstr "کارتاژها دیوارهای خود را در سه لایه دایره ای می ساختند. این دیوارها هیچ گاه اجازه عبور دشمن را ندادند حتی زمانی که شهر توسط رومی ها تصرف شد این کار از سمت بندر صورت گرفت و نه از سمت دیوار ها"
+
+#: simulation/data/technologies/civbonuses/cart_walls.jsongenericName
+msgid "Triple Walls"
+msgstr "دیوارهای سه لایه"
+
+#: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
+msgid "Walls +100% build time, +100% stone cost, and +200% health."
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/celt_structures.jsondescription
+msgid "Celtic structures were mostly made of wood with rubble foundations."
+msgstr "سازه های سلتی بیشتر از چوب و تکه سنگ به عنوان پی ریز آن ساخته می شدند"
+
+#: simulation/data/technologies/civbonuses/celt_structures.jsongenericName
+msgid "Wooden Construction"
+msgstr "ساختمان های چوبی"
+
+#: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
+msgid ""
+"Briton and Gaulish Structures −20% build time, −20% health, and −20% capture"
+" points."
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/greek_structures.jsondescription
+msgid "The Greeks used stone construction from early Mycenaean times."
+msgstr "یونانی از از ابتدای دوران میکنایی ساختمان های سنگی می ساختند."
+
+#: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
+msgid "Hellenic Architecture"
+msgstr "معماری یونان"
+
+#: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
+msgid "Structures +10% health and +10% capture points."
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/maur_elephants.jsondescription
+msgid ""
+"India is the land of the elephants. Elephant warfare originated in India and"
+" continued for millennia. It was also the source of elephants for the "
+"eastern Mediterranean. Indian kings were able to field large numbers of war "
+"elephants."
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/maur_elephants.jsongenericName
+msgid "Elephant Tradition"
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/maur_elephants.jsontooltip
+msgid "Elephants −30% training time."
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/maur_population.jsondescription
+msgid ""
+"The Mauryan Empire encompassed dozens of formerly independent kingdoms over "
+"an area of 5 million square kilometers, with a population of close to 60 "
+"million people. The Mauryan regents held the title Emperor of Emperors and "
+"commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
+"chariots, and 30,000 cavalry, making it arguably the largest army of its "
+"time."
+msgstr "امپراتوری مائوریان متشکل از دهها پادهاشی مستقل سابق بود که زیر پرچم مائوریان قرار گرفته بودند و وسعت این امپراتوری به بیش از 5 میلیون کیلومتر مربع با جمعیت نزدیک به 60 میلیون نفر رسیده بود. نایب السلطنه مائوریان ها که عنوان امپراتور امپراتورها را با خود داشت سپاهی با 600000 پیاده نظام، 9000 فیل جنگی، 8000 ارابه جنگی و 30000 سواره نظام را فرمان می داد که بدون شک عظیم ترین نیروی نظامی در زمان خوب بود."
+
+#: simulation/data/technologies/civbonuses/maur_population.jsongenericName
+msgid "Emperor of Emperors"
+msgstr "امپراتور امپراتوران"
+
+#: simulation/data/technologies/civbonuses/maur_population.jsonspecificName.maur
+msgid "Chakravarti Samrāt"
+msgstr "Chakravarti Samrāt"
+
+#: simulation/data/technologies/civbonuses/maur_population.jsontooltip
+msgid "Mauryas +10% maximum population limit."
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/maur_walls.jsondescription
+msgid ""
+"The Mauryas built their city walls out of wood, an abundant natural resource"
+" in India."
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/maur_walls.jsongenericName
+msgid "Wooden Walls"
+msgstr "دیوار های چوبی"
+
+#: simulation/data/technologies/civbonuses/maur_walls.jsontooltip
+msgid "Mauryan City Walls −20% build time and −20% health."
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/pers_population.jsondescription
+msgid ""
+"The Persians could and did levy a large number of infantry during wartime "
+"due to the sheer size of the Achaemenid Empire and the way in which it was "
+"set-up. In general the Persian infantry was well trained and fought with "
+"great tenacity. However while this was true the infantry were poor hand-to-"
+"hand, close combat fighters. Also, with the exception of the elite "
+"regiments, the Persian infantry was not a standing professional force."
+msgstr "ایرانی ها می توانستند یک ارتش پیاده نظام بزرگ را آماده نبرد کنند و اینکار را انجام می داند چراکه امپراتوری هخامنشی یک امپراتوری بزرگ و گسترده بود. با این وجود درحالی که سربازان ایرانی بخوبی آموزش دیده و سرسخت بودند اما در نبردهای تن به تن و جنگ های نزدیک زیاد قوی نبودند. البته به استثنای دسته های خاص و زبده. بطور کل پیاده نظام ایران یک نیروی حرفه ای به حساب نمی آمد."
+
+#: simulation/data/technologies/civbonuses/pers_population.jsongenericName
+msgid "Great King's Levy"
+msgstr "سربازگیری پادشاه بزرگ"
+
+#: simulation/data/technologies/civbonuses/pers_population.jsontooltip
+msgid "Persians +10% maximum population limit."
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/spart_population.jsondescription
+msgid ""
+"The Spartans did not have the largest army in the world, but they did have "
+"the best army in the world for their time. What they didn't have in "
+"quantity, they made up with quality. It was said that Sparta did not need "
+"strong city walls, for its men were its walls."
+msgstr "اسپارتها بزرگترین ارتش دنیا را نداشتند اما آنها بهترین ارتش دنبا در زمان خود بودند. چیزی که آنها نداشتند تعداد نفرات بود اما کیفیت سربازانشان بسیار بالا بود. نقل شده است که اسپارتها نیازی به ساخت دیوار برای محافظت از شهر های خود نداشتند مردانشان همچون دیوار از آنها حفاظت می کردند."
+
+#: simulation/data/technologies/civbonuses/spart_population.jsongenericName
+msgid "Underdogs"
+msgstr "زیردستان"
+
+#: simulation/data/technologies/civbonuses/spart_population.jsontooltip
+msgid "Spartans −10% maximum population limit."
 msgstr ""
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breed livestock (sheep, goats, cattle, etc.) for food."
 msgstr ""
 
-#: simulation/data/technologies/gather_animals_stockbreeding.jsontooltip
-msgid "Domestic Animals −25% breeding time."
-msgstr ""
-
 #: simulation/data/technologies/gather_animals_stockbreeding.jsongenericName
 msgid "Stockbreeding"
 msgstr "زراعت"
 
+#: simulation/data/technologies/gather_animals_stockbreeding.jsontooltip
+msgid "Domestic Animals −25% breeding time."
+msgstr ""
+
 #: simulation/data/technologies/gather_capacity_basket.jsondescription
 msgid "Workers use baskets. Increases shuttling capacity for all resources."
 msgstr ""
+
+#: simulation/data/technologies/gather_capacity_basket.jsongenericName
+msgid "Baskets"
+msgstr "سبدها"
 
 #: simulation/data/technologies/gather_capacity_basket.jsontooltip
 #: simulation/data/technologies/gather_capacity_carts.jsontooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsontooltip
 msgid "Workers +5 resource capacity."
 msgstr ""
-
-#: simulation/data/technologies/gather_capacity_basket.jsongenericName
-msgid "Baskets"
-msgstr "سبدها"
 
 #: simulation/data/technologies/gather_capacity_carts.jsondescription
 msgid ""
@@ -491,10 +662,6 @@ msgstr "گاری هایی که توسط اسب کشیده می شوند"
 msgid "Salting allows to preserve fish longer."
 msgstr "نمک زدن باعث می شود ماهی مدت زمان بیشتری باقی بماند"
 
-#: simulation/data/technologies/gather_capacity_fishing.jsontooltip
-msgid "Fishing Boats +20 food capacity."
-msgstr "قایق های ماهیگیری +20 ظرفیت غذا"
-
 #: simulation/data/technologies/gather_capacity_fishing.jsongenericName
 msgid "Salting Fish"
 msgstr "ماهی های نمکی شده"
@@ -502,6 +669,10 @@ msgstr "ماهی های نمکی شده"
 #: simulation/data/technologies/gather_capacity_fishing.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase. Requires Fishing Net."
 msgstr "باز کردن قفل برای فاز شهرک. نیازمند تور ماهیگیری"
+
+#: simulation/data/technologies/gather_capacity_fishing.jsontooltip
+msgid "Fishing Boats +20 food capacity."
+msgstr "قایق های ماهیگیری +20 ظرفیت غذا"
 
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsondescription
 msgid ""
@@ -516,15 +687,15 @@ msgstr "چرخ دستی"
 msgid "Extra nutrients for farms."
 msgstr "مواد مغذی بیشتر  برای مزارع."
 
+#: simulation/data/technologies/gather_farming_fertilizer.jsongenericName
+msgid "Fertilizer"
+msgstr "کود"
+
 #: simulation/data/technologies/gather_farming_fertilizer.jsontooltip
 #: simulation/data/technologies/gather_farming_plows.jsontooltip
 #: simulation/data/technologies/gather_farming_training.jsontooltip
 msgid "Workers +20% grain gather rate."
 msgstr ""
-
-#: simulation/data/technologies/gather_farming_fertilizer.jsongenericName
-msgid "Fertilizer"
-msgstr "کود"
 
 #: simulation/data/technologies/gather_farming_harvester.jsondescription
 msgid ""
@@ -532,13 +703,13 @@ msgid ""
 "grain."
 msgstr "گل ها دستگاه برداشت محصولی اختراع کردند که برداشت غلات را بسیار ساده تر می کرد."
 
-#: simulation/data/technologies/gather_farming_harvester.jsontooltip
-msgid "Workers +15% grain gather rate."
-msgstr ""
-
 #: simulation/data/technologies/gather_farming_harvester.jsongenericName
 msgid "Harvesting Machine"
 msgstr "دستگاه برداشت محصول"
+
+#: simulation/data/technologies/gather_farming_harvester.jsontooltip
+msgid "Workers +15% grain gather rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_farming_plows.jsondescription
 msgid ""
@@ -562,13 +733,13 @@ msgstr "آموزش جمع کردن"
 msgid "Use nets to improve the productivity of fishing boats."
 msgstr ""
 
-#: simulation/data/technologies/gather_fishing_net.jsontooltip
-msgid "Fishing Boats +30% fish gather rate."
-msgstr ""
-
 #: simulation/data/technologies/gather_fishing_net.jsongenericName
 msgid "Fishing Net"
 msgstr "تور ماهیگیری"
+
+#: simulation/data/technologies/gather_fishing_net.jsontooltip
+msgid "Fishing Boats +30% fish gather rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsondescription
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsondescription
@@ -576,15 +747,15 @@ msgstr "تور ماهیگیری"
 msgid "Increases wood gathering rates for trees."
 msgstr "افزایش سرعت جمع کردن چوب از درختان"
 
+#: simulation/data/technologies/gather_lumbering_ironaxes.jsongenericName
+msgid "Iron Ax Heads"
+msgstr "سرتبر های آهنی"
+
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsontooltip
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsontooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsontooltip
 msgid "Workers +25% wood gather rate."
 msgstr ""
-
-#: simulation/data/technologies/gather_lumbering_ironaxes.jsongenericName
-msgid "Iron Ax Heads"
-msgstr "سرتبر های آهنی"
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsongenericName
 msgid "Sharp Ax Heads"
@@ -600,21 +771,21 @@ msgid ""
 "rates."
 msgstr ""
 
+#: simulation/data/technologies/gather_mining_serfs.jsongenericName
+msgid "Serfs"
+msgstr "غلام ها"
+
+#: simulation/data/technologies/gather_mining_serfs.jsonspecificName.athen
+#: simulation/data/technologies/gather_mining_serfs.jsonspecificName.mace
+#: simulation/data/technologies/gather_mining_serfs.jsonspecificName.spart
+msgid "Heílōtes"
+msgstr "Heílōtes"
+
 #: simulation/data/technologies/gather_mining_serfs.jsontooltip
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
 #: simulation/data/technologies/gather_mining_slaves.jsontooltip
 msgid "Workers +25% stone gather rate."
 msgstr ""
-
-#: simulation/data/technologies/gather_mining_serfs.jsongenericName
-msgid "Serfs"
-msgstr "غلام ها"
-
-#: simulation/data/technologies/gather_mining_serfs.jsonspecificName.mace
-#: simulation/data/technologies/gather_mining_serfs.jsonspecificName.spart
-#: simulation/data/technologies/gather_mining_serfs.jsonspecificName.athen
-msgid "Heílōtes"
-msgstr "Heílōtes"
 
 #: simulation/data/technologies/gather_mining_servants.jsondescription
 msgid "Hire servants to help quarry stone. Increases stone gathering rates."
@@ -624,9 +795,9 @@ msgstr ""
 msgid "Servants"
 msgstr "خدمتکاران"
 
+#: simulation/data/technologies/gather_mining_servants.jsonspecificName.athen
 #: simulation/data/technologies/gather_mining_servants.jsonspecificName.mace
 #: simulation/data/technologies/gather_mining_servants.jsonspecificName.spart
-#: simulation/data/technologies/gather_mining_servants.jsonspecificName.athen
 msgid "Doûloi"
 msgstr "Doûloi"
 
@@ -634,15 +805,15 @@ msgstr "Doûloi"
 msgid "Develop shaft mining. Increases metal gathering rates."
 msgstr ""
 
+#: simulation/data/technologies/gather_mining_shaftmining.jsongenericName
+msgid "Shaft Mining"
+msgstr "تیرک های سقف"
+
 #: simulation/data/technologies/gather_mining_shaftmining.jsontooltip
 #: simulation/data/technologies/gather_mining_silvermining.jsontooltip
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
 msgid "Workers +25% metal gather rate."
 msgstr ""
-
-#: simulation/data/technologies/gather_mining_shaftmining.jsongenericName
-msgid "Shaft Mining"
-msgstr "تیرک های سقف"
 
 #: simulation/data/technologies/gather_mining_silvermining.jsondescription
 msgid "Strike a vein of precious silver. Increases metal gathering rates."
@@ -652,13 +823,13 @@ msgstr ""
 msgid "Silver Mining"
 msgstr "معدن کاری نقره"
 
-#: simulation/data/technologies/gather_mining_silvermining.jsonspecificName.mace
-msgid "Mines of Krenides"
-msgstr "معادن کرنیدس"
-
 #: simulation/data/technologies/gather_mining_silvermining.jsonspecificName.athen
 msgid "Mines of Laureion"
 msgstr "معادن لوریون"
+
+#: simulation/data/technologies/gather_mining_silvermining.jsonspecificName.mace
+msgid "Mines of Krenides"
+msgstr "معادن کرنیدس"
 
 #: simulation/data/technologies/gather_mining_slaves.jsondescription
 msgid ""
@@ -670,9 +841,9 @@ msgstr ""
 msgid "Slaves"
 msgstr "برده‌ها"
 
+#: simulation/data/technologies/gather_mining_slaves.jsonspecificName.athen
 #: simulation/data/technologies/gather_mining_slaves.jsonspecificName.mace
 #: simulation/data/technologies/gather_mining_slaves.jsonspecificName.spart
-#: simulation/data/technologies/gather_mining_slaves.jsonspecificName.athen
 msgid "Andrápoda"
 msgstr "Andrápoda"
 
@@ -689,53 +860,53 @@ msgstr "پتک و گوه"
 msgid "Equip your foragers with wicker baskets for foraging."
 msgstr ""
 
-#: simulation/data/technologies/gather_wicker_baskets.jsontooltip
-msgid "Workers +50% fruit gather rate."
-msgstr ""
-
 #: simulation/data/technologies/gather_wicker_baskets.jsongenericName
 msgid "Wicker Baskets"
 msgstr "سبد های حصیری"
+
+#: simulation/data/technologies/gather_wicker_baskets.jsontooltip
+msgid "Workers +50% fruit gather rate."
+msgstr ""
 
 #: simulation/data/technologies/heal_barracks.jsondescription
 msgid "Units garrisoned in Barracks heal over time."
 msgstr "سربازان مستقر شده در پادگان ها با گذر زمان درمان می شوند."
 
-#: simulation/data/technologies/heal_barracks.jsontooltip
-msgid "Units gain health over time while garrisoned in Barracks."
-msgstr "نیروها با گذر زمان در حالی که در پادگان ها مستقر شده اند سلامت خود را مجدد کسب می کنند."
-
 #: simulation/data/technologies/heal_barracks.jsongenericName
 msgid "Living Conditions"
 msgstr "شرایط زندگی"
+
+#: simulation/data/technologies/heal_barracks.jsontooltip
+msgid "Units gain health over time while garrisoned in Barracks."
+msgstr "نیروها با گذر زمان در حالی که در پادگان ها مستقر شده اند سلامت خود را مجدد کسب می کنند."
 
 #: simulation/data/technologies/heal_range.jsondescription
 #: simulation/data/technologies/heal_range_2.jsondescription
 msgid "Increases the healing and vision range of all healers."
 msgstr "افزایش شعاع درمان و شعاع دید برای تمام درمانگر ها."
 
+#: simulation/data/technologies/heal_range.jsongenericName
+msgid "Healing Range"
+msgstr "شعاع درمان"
+
+#: simulation/data/technologies/heal_range.jsonspecificName.athen
+#: simulation/data/technologies/heal_range.jsonspecificName.mace
+#: simulation/data/technologies/heal_range.jsonspecificName.spart
+msgid "Olympic Pantheon"
+msgstr "زیارتگاه المپ"
+
 #: simulation/data/technologies/heal_range.jsontooltip
 #: simulation/data/technologies/heal_range_2.jsontooltip
 msgid "Healers +5 Healing and Vision Range."
 msgstr "درمانگر ها +5 شعاع درمان و شعاع دید."
 
-#: simulation/data/technologies/heal_range.jsongenericName
-msgid "Healing Range"
-msgstr "شعاع درمان"
-
-#: simulation/data/technologies/heal_range.jsonspecificName.mace
-#: simulation/data/technologies/heal_range.jsonspecificName.spart
-#: simulation/data/technologies/heal_range.jsonspecificName.athen
-msgid "Olympic Pantheon"
-msgstr "زیارتگاه المپ"
-
 #: simulation/data/technologies/heal_range_2.jsongenericName
 msgid "Healing Range 2"
 msgstr "شعاع درمان 2"
 
+#: simulation/data/technologies/heal_range_2.jsonspecificName.athen
 #: simulation/data/technologies/heal_range_2.jsonspecificName.mace
 #: simulation/data/technologies/heal_range_2.jsonspecificName.spart
-#: simulation/data/technologies/heal_range_2.jsonspecificName.athen
 msgid "Akadḗmeia"
 msgstr "Akadḗmeia"
 
@@ -744,28 +915,28 @@ msgstr "Akadḗmeia"
 msgid "Increases the Healing Rate of all healers."
 msgstr "افزایش سرعت درمان برای تمام درمانگرها"
 
+#: simulation/data/technologies/heal_rate.jsongenericName
+msgid "Healing Rate"
+msgstr "سرعت درمان"
+
+#: simulation/data/technologies/heal_rate.jsonspecificName.athen
+#: simulation/data/technologies/heal_rate.jsonspecificName.mace
+#: simulation/data/technologies/heal_rate.jsonspecificName.spart
+msgid "Sphágia"
+msgstr "Sphágia"
+
 #: simulation/data/technologies/heal_rate.jsontooltip
 #: simulation/data/technologies/heal_rate_2.jsontooltip
 msgid "Healers −20% healing time."
 msgstr ""
 
-#: simulation/data/technologies/heal_rate.jsongenericName
-msgid "Healing Rate"
-msgstr "سرعت درمان"
-
-#: simulation/data/technologies/heal_rate.jsonspecificName.mace
-#: simulation/data/technologies/heal_rate.jsonspecificName.spart
-#: simulation/data/technologies/heal_rate.jsonspecificName.athen
-msgid "Sphágia"
-msgstr "Sphágia"
-
 #: simulation/data/technologies/heal_rate_2.jsongenericName
 msgid "Healing Rate 2"
 msgstr "سرعت درمان 2"
 
+#: simulation/data/technologies/heal_rate_2.jsonspecificName.athen
 #: simulation/data/technologies/heal_rate_2.jsonspecificName.mace
 #: simulation/data/technologies/heal_rate_2.jsonspecificName.spart
-#: simulation/data/technologies/heal_rate_2.jsonspecificName.athen
 msgid "Hippocratic Oath"
 msgstr "سوگندنامه بقراط"
 
@@ -773,22 +944,22 @@ msgstr "سوگندنامه بقراط"
 msgid "Units garrisoned in a temple are healed faster."
 msgstr "نیرو های مستقر شده در معبد سریع تر درمان می شوند."
 
-#: simulation/data/technologies/heal_temple.jsontooltip
-msgid "Temples +50% garrisoned healing rate."
-msgstr "معابد +50% افزایش سرعت درمان نیروهای مستقر شده"
-
 #: simulation/data/technologies/heal_temple.jsongenericName
 msgid "Divine Offerings"
 msgstr "پیشکش های الهی"
+
+#: simulation/data/technologies/heal_temple.jsonspecificName.athen
+msgid "Eleusian Mysteries"
+msgstr "راز های الوسیایی"
 
 #: simulation/data/technologies/heal_temple.jsonspecificName.mace
 #: simulation/data/technologies/heal_temple.jsonspecificName.spart
 msgid "Olympic Games"
 msgstr "بازی های المپیک"
 
-#: simulation/data/technologies/heal_temple.jsonspecificName.athen
-msgid "Eleusian Mysteries"
-msgstr "راز های الوسیایی"
+#: simulation/data/technologies/heal_temple.jsontooltip
+msgid "Temples +50% garrisoned healing rate."
+msgstr "معابد +50% افزایش سرعت درمان نیروهای مستقر شده"
 
 #: simulation/data/technologies/health_females_01.jsondescription
 msgid ""
@@ -797,31 +968,193 @@ msgid ""
 "subsequently spent a large share of their lives working with it."
 msgstr "دستگاه بافنگدی این اجازه را می دهد که برای مردم لباس های ظریفی بدوزید. زن های خانه دار از سنین کم  بافندگی بر روی ماشین بافندگی را آموزش می بینند و به همین خاطر زمان زیادی از عمر خود را صرف این کار می کنند."
 
-#: simulation/data/technologies/health_females_01.jsontooltip
-msgid "+100% health for female citizens."
-msgstr ""
-
 #: simulation/data/technologies/health_females_01.jsongenericName
 msgid "The Loom"
 msgstr "ماشین بافندگی"
+
+#: simulation/data/technologies/health_females_01.jsontooltip
+msgid "+100% health for female citizens."
+msgstr ""
 
 #: simulation/data/technologies/health_regen_units.jsondescription
 msgid "Unlock health regeneration for your units."
 msgstr "باز کردن قفل بازیابی سلامت برای نیروها"
 
-#: simulation/data/technologies/health_regen_units.jsontooltip
-msgid "Organic units will slowly regenerate health over time when idle."
-msgstr "نیروهای اندامدار با سرعت کم  و گذر زمان سلامت خود را بدست می آورند اگر بیکار باشند. "
-
 #: simulation/data/technologies/health_regen_units.jsongenericName
 msgid "Battlefield Medicine"
 msgstr "داروی میدان نبرد"
 
-#: simulation/data/technologies/phase_city.jsongenericName
-#: simulation/data/technologies/phase_city_athen.jsongenericName
-#: simulation/data/technologies/phase_city_generic.jsongenericName
-msgid "City Phase"
-msgstr "مرحله شهری"
+#: simulation/data/technologies/health_regen_units.jsontooltip
+msgid "Organic units will slowly regenerate health over time when idle."
+msgstr "نیروهای اندامدار با سرعت کم  و گذر زمان سلامت خود را بدست می آورند اگر بیکار باشند. "
+
+#: simulation/data/technologies/hellenes/spartans_agoge.jsondescription
+msgid ""
+"Spartans were housed and trained from a young age to be superlative warriors"
+" and to endure any hardship a military life can give them."
+msgstr "اسپارت ها از سنین کم آموزش می بینند تا جنگجویانی قدرتمند شوند و از پس هر شرایط سخت جنگی برآیند."
+
+#: simulation/data/technologies/hellenes/spartans_agoge.jsongenericName
+msgid "The Agoge"
+msgstr "آموزش و پرورش اسپارتی"
+
+#: simulation/data/technologies/hellenes/spartans_agoge.jsontooltip
+msgid "Champion Infantry Spearmen +25% health, but +5% training time."
+msgstr ""
+
+#: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsondescription
+msgid ""
+"Athenian triremes can train Marines (Epibates Athenaikos) and Cretan "
+"Mercenary Archers (Toxotes Kretikos)."
+msgstr "کشتی های جنگی آتنی می توانند می توانند سربازان دریایی پرورش دهند (Epibates Athenaikos) و مزدوران کماندار کرتان  (Toxotes Kretikos)."
+
+#: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsongenericName
+msgid "Iphicratean Reforms"
+msgstr "اصلاحات ایفیکراتی"
+
+#: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsontooltip
+msgid "Athenian triremes can train Marines and Cretan Mercenary Archers."
+msgstr "کشتی های جنگی آتنی ها می توانند سربازان دریایی و مزدوران کماندار پرورش دهند."
+
+#: simulation/data/technologies/hellenes/special_long_walls.jsondescription
+msgid ""
+"The Long Walls of Athens were constructed under the auspices of the wily "
+"Themistocles and extended 6 km from the city to the port of Piraeus. This "
+"secured the city's sea supply routes and prevented an enemy from starving "
+"out the city during a siege."
+msgstr "دیوار های بلند آتن زیر نظر تمیستوکلس باهوش ساخته شده بود و به طول 6 کیلومتر از شهر آتن تا بندر پیرئاس کشیده شده بود. این دیوار باعث حفاظت  مسیر های مبادلاتی شهر شده بود و در زمان محاصره شهر از گشنگی مردم جلوگیری کرد."
+
+#: simulation/data/technologies/hellenes/special_long_walls.jsongenericName
+msgid "Athenian Long Walls"
+msgstr "دیواره ای بلند آتنی"
+
+#: simulation/data/technologies/hellenes/special_long_walls.jsontooltip
+msgid "Build Walls in own or neutral territory."
+msgstr ""
+
+#: simulation/data/technologies/kushites/monumental_architecture.jsongenericName
+msgid "Monumental Architecture"
+msgstr "معماری بسیار برجسته"
+
+#: simulation/data/technologies/kushites/monumental_architecture.jsontooltip
+msgid ""
+"Civic Structures +20% build time, +20% health, and +20% capture points."
+msgstr ""
+
+#: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsondescription
+msgid ""
+"Have your priests instructed by the High Priest himself - may Amun bless "
+"him."
+msgstr "آموزش دادن راهبان توسط راهب اعظم - شاید آمون او را آمرزش دهد"
+
+#: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsongenericName
+msgid "Divine Instruction"
+msgstr "دستور الهی"
+
+#: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsontooltip
+msgid "Train elite rank healers."
+msgstr "پرورش درمانگرهای زبده"
+
+#: simulation/data/technologies/persians/immortals.jsondescription
+msgid ""
+"The Achaemenids maintained a 10,000-strong elite corps, referred to as "
+"Athanatoi (“Immortals”) by Greek authors."
+msgstr ""
+
+#: simulation/data/technologies/persians/immortals.jsongenericName
+msgid "Immortals"
+msgstr "گارد جاویدان"
+
+#: simulation/data/technologies/persians/immortals.jsontooltip
+msgid "Anušiya Champion Infantry -50% train time, but also -10% health."
+msgstr ""
+
+#: simulation/data/technologies/persians/persian_architecture.jsondescription
+msgid ""
+"The Persians built the wonderful 1677 mile-long Royal Highway from Sardis to"
+" Susa; Darius the Great and Xerxes also built the magnificent Persepolis; "
+"Cyrus the Great greatly improved Ecbatana and virtually 'rebuilt' the old "
+"Elamite capital of Susa."
+msgstr "ایرانی ها یک جاده بی نظیر طولانی را از شهر شوش تا شهر ساردیس به طول 2699 کیلومتر (1677 مایل) احداث کردند. داریوش بزرگ و خشیارشا نیز تخت جمشید بی نظیر را ساختند، کورش بزرگ نیز به شکل بی نظیری شهر اکباتان را توسعه داد و به نوعی پایتخت قدیمی ایلامی ها شوش را احیا کرد."
+
+#: simulation/data/technologies/persians/persian_architecture.jsongenericName
+msgid "Persian Architecture"
+msgstr "معماری پارسیان"
+
+#: simulation/data/technologies/persians/persian_architecture.jsontooltip
+msgid ""
+"All Persian structures +25% health and capture points, but also +20% build "
+"time."
+msgstr "تمام سازه های ایرانی ها +25% سلامت و امتیاز تسخیر اما +20% افزایش زمان ساخت."
+
+#: simulation/data/technologies/persians/special_equine_transports.jsondescription
+msgid ""
+"Early Achaemenid rulers acted towards making Persia the first great Asian "
+"empire to rule the seas. The Great King behaved favourably towards the "
+"various sea peoples in order to secure their services, but also carried out "
+"various marine initiatives. During the reign of Darius the Great, for "
+"example, a canal was built in Egypt and a Persian navy was sent exploring "
+"the Indus river. According to Herodotus, some 300 ships in the Persian navy "
+"were retrofitted to carry horses and their riders."
+msgstr "حکمرانان اولیه هخامنشی تلاش کردند تا امپراتوری ایران تبدیل به اولین امپراتوری آسیا شود که بر دریاها حکمرانی میکند. پادشاهان بزرگ ایران در این دوران توجه خاصی به مرد ساحلی داشتند تا نیازهای آنها براورده شود اما لشگرکشی های بسیاری را نیز به آنجا انجام دادند. در دوران حکومت داریوش بزرگ برای مثال یک کانال در مصر حفر شد تا مسیر آبی دریای مدیترانه و سرخ شود که این دستور به دنبال فرمان داریوش به اکتشافات دریایی داده شد که از سمت شرق و رود سن آغاز شد و تا به سمت شرق و مصر ادامه پیدا کرد. بر اساس نوشته های هرودوت در حدود 300 کشتی در نیروی دریایی ایران وجود داشت که سواره نظام ایران را جابه جا می کرد."
+
+#: simulation/data/technologies/persians/special_equine_transports.jsongenericName
+msgid "Equine Transports"
+msgstr "حمل اسب ها"
+
+#: simulation/data/technologies/persians/special_equine_transports.jsontooltip
+msgid "Phoenician Triremes gain the ability to train cavalry."
+msgstr ""
+
+#: simulation/data/technologies/persians/training_conscription_cavalry.jsondescription
+msgid ""
+"Significantly increase training speed of cavalry at the stables by training "
+"them in large batches or battalions."
+msgstr "با آموزش دست جمعی آن ها سرعت آموزش سواره نظام را به طور قابل ملاحظه ای افزایش دهید."
+
+#: simulation/data/technologies/persians/training_conscription_cavalry.jsongenericName
+msgid "Cavalry Conscription"
+msgstr "سربازگیری اجباری سواره"
+
+#: simulation/data/technologies/persians/training_conscription_cavalry.jsontooltip
+msgid "Faster batch training speed for the Stables."
+msgstr "پرورش دسته های سوار سریعتر در اصطبل ها "
+
+#: simulation/data/technologies/persians/training_conscription_infantry.jsongenericName
+msgid "Infantry Conscription"
+msgstr "سربازگیری اجباری پیاده"
+
+#: simulation/data/technologies/persians/training_levy_cavalry.jsondescription
+msgid ""
+"Calling up cavalry levies in time of war helps bolster the ranks of a king's"
+" army."
+msgstr "با فراخوان خدمت سواره نظام در زمان جنگ، ارتش یک پادشاه تقویت می شود."
+
+#: simulation/data/technologies/persians/training_levy_cavalry.jsongenericName
+msgid "Levy Cavalry"
+msgstr "خدمت سواره نظام"
+
+#: simulation/data/technologies/persians/training_levy_cavalry.jsontooltip
+msgid ""
+"All cavalry -20% train time, but also -5% health. Unlocks Cavalry "
+"Conscription."
+msgstr "تمام سواره نظام ها -20% زمان پرورش اما -5% سلامت. باز شدن قفل خدمت اجباری سواره نظام"
+
+#: simulation/data/technologies/persians/training_levy_infantry.jsondescription
+msgid ""
+"Calling up infantry levies in time of war helps bolster the ranks of a "
+"king's army."
+msgstr "با فراخوان خدمت پیاده نظام در زمان جنگ، ارتش یک پادشاه تقویت می شود."
+
+#: simulation/data/technologies/persians/training_levy_infantry.jsongenericName
+msgid "Levy Infantry"
+msgstr "خدمت پیاده نظام"
+
+#: simulation/data/technologies/persians/training_levy_infantry.jsontooltip
+msgid ""
+"All infantry -20% train time, but also -5% health. Unlocks Infantry "
+"Conscription."
+msgstr "تمام پیاده نظام ها -20% زمان پرورش اما -5% سلامت. باز شدن خدمت اجباری پیاده نظام"
 
 #: simulation/data/technologies/phase_city.jsondescription
 msgid ""
@@ -829,20 +1162,18 @@ msgid ""
 "phase_city_generic or phase_city_{civ}."
 msgstr "Dummy technology for use in templates requirements, replaced by phase_city_generic or phase_city_{civ}."
 
+#: simulation/data/technologies/phase_city.jsongenericName
+#: simulation/data/technologies/phase_city_athen.jsongenericName
+#: simulation/data/technologies/phase_city_generic.jsongenericName
+msgid "City Phase"
+msgstr "مرحله شهری"
+
 #: simulation/data/technologies/phase_city_athen.jsondescription
 msgid ""
 "Advances from a bustling town to a veritable metropolis, full of the wonders"
 " of modern technology. This is the Athenian city phase, where metal "
 "gathering rates are boosted because of the 'Silver Owls' bonus."
 msgstr "ارتقا از یک شهرک شلوغ به یک کلانشهر حیرت انگیز، پر از عجایب و تکنولوژی مدرن. این مرحله شهری آتنی هاست جایی که سرعت به دست آوردن فلز به خاطر امتیاز \"جغد های نقره ای\"، افزایش می یابد. "
-
-#: simulation/data/technologies/phase_city_athen.jsontooltip
-msgid ""
-"Advance to City Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
-"grants an extra +10% metal gather rate to all workers. Citizen Soldiers +10%"
-" health. All structures +9 garrisoned regeneration rate."
-msgstr ""
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
@@ -854,6 +1185,14 @@ msgstr ""
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.spart
 msgid "Megalópolis"
 msgstr "Megalópolis"
+
+#: simulation/data/technologies/phase_city_athen.jsontooltip
+msgid ""
+"Advance to City Phase, which unlocks more structures and units. Territory "
+"radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
+"grants an extra +10% metal gather rate to all workers. Citizen Soldiers +10%"
+" health. All structures +9 garrisoned regeneration rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
@@ -868,17 +1207,17 @@ msgid ""
 "health. All structures +9 garrisoned regeneration rate."
 msgstr ""
 
-#: simulation/data/technologies/phase_town.jsongenericName
-#: simulation/data/technologies/phase_town_athen.jsongenericName
-#: simulation/data/technologies/phase_town_generic.jsongenericName
-msgid "Town Phase"
-msgstr "مرحله شهرک"
-
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
 "Dummy technology for use in templates requirements, replaced by "
 "phase_town_generic or phase_town_{civ}."
 msgstr "Dummy technology for use in templates requirements, replaced by phase_town_generic or phase_town_{civ}."
+
+#: simulation/data/technologies/phase_town.jsongenericName
+#: simulation/data/technologies/phase_town_athen.jsongenericName
+#: simulation/data/technologies/phase_town_generic.jsongenericName
+msgid "Town Phase"
+msgstr "مرحله شهرک"
 
 #: simulation/data/technologies/phase_town_athen.jsondescription
 msgid ""
@@ -886,14 +1225,6 @@ msgid ""
 "This is the Athenian town phase, where metal gathering rates are boosted "
 "because of the 'Silver Owls' bonus."
 msgstr "ارتقا از روستای کوچک به یک شهرک شلوغ، آماده گسترش سریع باشید. این مرحله شهری آتنی هاست جایی که فلزات با سرعت بیشتری بواسطه امتیاز جغد نقره ای جمع می شود."
-
-#: simulation/data/technologies/phase_town_athen.jsontooltip
-msgid ""
-"Advance to Town Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants "
-"an extra +10% metal gather rate to all workers. Citizen Soldiers +20% "
-"health. All structures +7 garrisoned regeneration rate."
-msgstr ""
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
@@ -905,6 +1236,14 @@ msgstr ""
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.spart
 msgid "Kōmópolis"
 msgstr "Kōmópolis"
+
+#: simulation/data/technologies/phase_town_athen.jsontooltip
+msgid ""
+"Advance to Town Phase, which unlocks more structures and units. Territory "
+"radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants "
+"an extra +10% metal gather rate to all workers. Citizen Soldiers +20% "
+"health. All structures +7 garrisoned regeneration rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_generic.jsondescription
 msgid ""
@@ -928,27 +1267,22 @@ msgid ""
 "colonnaded enclosures."
 msgstr "طیف گسترده باغ های خانگی از باغهایی که با حسار های ساده مرز بندی شده تا باغهای مجللی که با گیاهان آرایش شده و مسیر های مجلل تفکیک شده بود."
 
-#: simulation/data/technologies/pop_house_01.jsontooltip
-#: simulation/data/technologies/pop_house_02.jsontooltip
-msgid "Houses +20% population cap bonus."
-msgstr "خانه ها +20% سقف جمعیت "
-
 #: simulation/data/technologies/pop_house_01.jsongenericName
 msgid "Home Garden"
 msgstr "باغ خانگی"
 
-#: simulation/data/technologies/pop_house_01.jsonspecificName.ptol
-#: simulation/data/technologies/pop_house_01.jsonspecificName.spart
-#: simulation/data/technologies/pop_house_01.jsonspecificName.sele
 #: simulation/data/technologies/pop_house_01.jsonspecificName.athen
 #: simulation/data/technologies/pop_house_01.jsonspecificName.mace
+#: simulation/data/technologies/pop_house_01.jsonspecificName.ptol
 #: simulation/data/technologies/pop_house_01.jsonspecificName.rome
-#: simulation/data/technologies/pop_wonder.jsonspecificName.ptol
-#: simulation/data/technologies/pop_wonder.jsonspecificName.spart
-#: simulation/data/technologies/pop_wonder.jsonspecificName.sele
+#: simulation/data/technologies/pop_house_01.jsonspecificName.sele
+#: simulation/data/technologies/pop_house_01.jsonspecificName.spart
 #: simulation/data/technologies/pop_wonder.jsonspecificName.athen
 #: simulation/data/technologies/pop_wonder.jsonspecificName.mace
+#: simulation/data/technologies/pop_wonder.jsonspecificName.ptol
 #: simulation/data/technologies/pop_wonder.jsonspecificName.rome
+#: simulation/data/technologies/pop_wonder.jsonspecificName.sele
+#: simulation/data/technologies/pop_wonder.jsonspecificName.spart
 msgid "Peristyle"
 msgstr "پریستایل"
 
@@ -956,6 +1290,11 @@ msgstr "پریستایل"
 #: simulation/data/technologies/pop_wonder.jsonspecificName.pers
 msgid "Paradise"
 msgstr "بهشت"
+
+#: simulation/data/technologies/pop_house_01.jsontooltip
+#: simulation/data/technologies/pop_house_02.jsontooltip
+msgid "Houses +20% population cap bonus."
+msgstr "خانه ها +20% سقف جمعیت "
 
 #: simulation/data/technologies/pop_house_02.jsondescription
 msgid ""
@@ -974,75 +1313,95 @@ msgstr "آپارتمان"
 msgid "The wonder attracts many more people to your civilization."
 msgstr "سازه های عجایب باعث جذب مردم بیشتری به تمدن شما می شود"
 
+#: simulation/data/technologies/pop_wonder.jsongenericName
+msgid "Glorious Expansion"
+msgstr "گسترش شکوهمندانه"
+
 #: simulation/data/technologies/pop_wonder.jsontooltip
 msgid ""
 "Enable Glorious Expansion. Further increase the population limit by 40 per "
 "Wonder owned."
 msgstr "فعال کردن گسترش شکوه. بالا بردن سقف جمعیت به میزان 40 برای هر سازه عجایب که متعلق به شما است."
 
-#: simulation/data/technologies/pop_wonder.jsongenericName
-msgid "Glorious Expansion"
-msgstr "گسترش شکوهمندانه"
+#: simulation/data/technologies/romans/vision_sibylline.jsondescription
+msgid ""
+"The Sibylline Books or 'Libri Sibyllini' were a collection of oracular "
+"utterances, set out in Greek hexameters, purchased from a sibyl by the last "
+"king of Rome, Tarquinius Superbus, and consulted at momentous crises through"
+" the history of the Republic and the Empire."
+msgstr "کتاب های سیبیلاین یا \"لیبری سیبلینی\" مجموعه ای از سخنرانی های در باره یونان بود که از سیبل توسط آخرین پادشاه روم تارکونیوس سوپربوس خریداری شد و در طول تاریخ اپراتوری و جهموری روم به عنوان یک مشاور نقش کلیدی ایفا کرد."
+
+#: simulation/data/technologies/romans/vision_sibylline.jsongenericName
+msgid "Sibylline Books"
+msgstr "کتاب های سیبلاین"
+
+#: simulation/data/technologies/romans/vision_sibylline.jsonspecificName
+msgid "Libri Sibyllini"
+msgstr "لیبری سبیلینی"
+
+#: simulation/data/technologies/romans/vision_sibylline.jsontooltip
+msgid "+25% Vision range for all units."
+msgstr "+25% شعاع دید برای تمام نیروها"
 
 #: simulation/data/technologies/siege_armor.jsondescription
 msgid "Increased armor on siege engines."
-msgstr ""
-
-#: simulation/data/technologies/siege_armor.jsontooltip
-msgid "Siege Engines +2 hack armor."
 msgstr ""
 
 #: simulation/data/technologies/siege_armor.jsongenericName
 msgid "Armor plating"
 msgstr "آبکاری فلزی زره"
 
-#: simulation/data/technologies/siege_attack.jsondescription
-msgid "Advanced technologies improve siege efficiency."
+#: simulation/data/technologies/siege_armor.jsontooltip
+msgid "Siege Engines +2 hack armor."
 msgstr ""
 
-#: simulation/data/technologies/siege_attack.jsontooltip
-msgid "Siege Engines +25% attack crush damage."
+#: simulation/data/technologies/siege_attack.jsondescription
+msgid "Advanced technologies improve siege efficiency."
 msgstr ""
 
 #: simulation/data/technologies/siege_attack.jsongenericName
 msgid "Advanced Siege"
 msgstr "دژکوب پیشرفته"
 
-#: simulation/data/technologies/siege_bolt_accuracy.jsondescription
-msgid "Improvement to projectile accuracy."
+#: simulation/data/technologies/siege_attack.jsontooltip
+msgid "Siege Engines +25% attack crush damage."
 msgstr ""
 
-#: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
-msgid "Bolt Shooters −20% ranged attack spread."
+#: simulation/data/technologies/siege_bolt_accuracy.jsondescription
+msgid "Improvement to projectile accuracy."
 msgstr ""
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsongenericName
 msgid "Bolt Accuracy"
 msgstr "دقت پرتابه"
 
-#: simulation/data/technologies/siege_cost_metal.jsondescription
-msgid "Siege engines require less metal."
+#: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
+msgid "Bolt Shooters −20% ranged attack spread."
 msgstr ""
 
-#: simulation/data/technologies/siege_cost_metal.jsontooltip
-msgid "Siege Engines −20% metal cost."
+#: simulation/data/technologies/siege_cost_metal.jsondescription
+msgid "Siege engines require less metal."
 msgstr ""
 
 #: simulation/data/technologies/siege_cost_metal.jsongenericName
 msgid "Metalworker"
 msgstr "فلزکار"
 
-#: simulation/data/technologies/siege_cost_wood.jsondescription
-msgid "Siege engines require less wood."
+#: simulation/data/technologies/siege_cost_metal.jsontooltip
+msgid "Siege Engines −20% metal cost."
 msgstr ""
 
-#: simulation/data/technologies/siege_cost_wood.jsontooltip
-msgid "Siege Engines −20% wood cost."
+#: simulation/data/technologies/siege_cost_wood.jsondescription
+msgid "Siege engines require less wood."
 msgstr ""
 
 #: simulation/data/technologies/siege_cost_wood.jsongenericName
 msgid "Artillery Instructors"
 msgstr "آموزش دهندگان دژکوب های پرتابی"
+
+#: simulation/data/technologies/siege_cost_wood.jsontooltip
+msgid "Siege Engines −20% wood cost."
+msgstr ""
 
 #: simulation/data/technologies/soldier_ranged_experience.jsontooltip
 msgid "Ranged Soldiers +25% promotion experience."
@@ -1052,25 +1411,117 @@ msgstr ""
 msgid "Recruit a network of informants to watch over your people."
 msgstr "استخدام یک شبکه از خبرچی ها برای اینکه مراقب مردم شما باشند"
 
+#: simulation/data/technologies/spy_counter.jsongenericName
+msgid "Counterintelligence"
+msgstr "ضد جاسوسی"
+
 #: simulation/data/technologies/spy_counter.jsontooltip
 msgid "Make your units 50% more expensive to bribe."
 msgstr "باعث می شود نیروهای شما 50% گرانتر باشند برای رشوه دادن"
 
-#: simulation/data/technologies/spy_counter.jsongenericName
-msgid "Counterintelligence"
-msgstr "ضد جاسوسی"
+#: simulation/data/technologies/successors/pair_unlock_champions.jsongenericName
+msgid "Traditional Army vs Reform Army"
+msgstr ""
+
+#: simulation/data/technologies/successors/special_hellenistic_metropolis.jsondescription
+msgid ""
+"Beginning with Alexander, the Hellenistic monarchs founded many cities "
+"throughout their empires, where Greek culture and art blended with local "
+"customs to create the motley Hellenistic civilization."
+msgstr "شروع با الکساندر، پادشاه یونانی که شهرهای زیادی را ضمیمه خاک امپراتوری خود کرد جایی که فرهنگ و هنر یونان با سنت های محلی ترکیب شدند و تمدنی یونانی رنگارنگی را شکل دادن."
+
+#: simulation/data/technologies/successors/special_hellenistic_metropolis.jsongenericName
+msgid "Hellenistic Metropolis"
+msgstr "کلان شهرهای یونانی"
+
+#: simulation/data/technologies/successors/special_hellenistic_metropolis.jsontooltip
+msgid "Civic Centers +100% health and capture points, double default arrows."
+msgstr ""
+
+#: simulation/data/technologies/successors/special_parade_of_daphne.jsondescription
+msgid ""
+"Significantly increase training speed of champions and siege engines at the "
+"fortress when training them in large batches."
+msgstr ""
+
+#: simulation/data/technologies/successors/special_parade_of_daphne.jsongenericName
+msgid "Parade of Daphne"
+msgstr "Parade of Daphne"
+
+#: simulation/data/technologies/successors/special_parade_of_daphne.jsontooltip
+msgid "Faster batch training speed for the Fortress."
+msgstr "سرعت پرورش و ساخت سریعتر برای قلعه نظامی"
+
+#: simulation/data/technologies/successors/special_war_horses.jsondescription
+msgid ""
+"The now-extinct Nisian breed of horse was one of the largest and robust "
+"horses of ancient times. They were highly sought after by the Seleucids and "
+"Persians as both rider and mount gained heavier armor as time progressed."
+msgstr "اسب های نسایی که امروز منقرض شدند یکی از بلندترین و قویترین اسب های دوران باستان بودند. این اسب ها بشدت مورد علاقه سلوکیه ای ها و ایرانی ها بودند که هم اسب و هم سوارکار را به زره مجهز می کردند."
+
+#: simulation/data/technologies/successors/special_war_horses.jsongenericName
+msgid "Nisean War Horses"
+msgstr "اسب های جنگی نسایی"
+
+#: simulation/data/technologies/successors/special_war_horses.jsonspecificName.sele
+msgid "Nisioi"
+msgstr "نیسویی"
+
+#: simulation/data/technologies/successors/special_war_horses.jsontooltip
+msgid "All cavalry +20% health."
+msgstr "تمام سواره نظام ها  +20% سلامت"
+
+#: simulation/data/technologies/successors/unlock_reform_army.jsondescription
+msgid "The Roman-style core of the Seleucid army."
+msgstr ""
+
+#: simulation/data/technologies/successors/unlock_reform_army.jsongenericName
+msgid "Reform Army"
+msgstr "ارتش اصلاح شده"
+
+#: simulation/data/technologies/successors/unlock_reform_army.jsontooltip
+msgid "Unlock the Champion Infantry Swordsman."
+msgstr ""
+
+#: simulation/data/technologies/successors/unlock_traditional_army.jsondescription
+msgid "The Macedonian-style core of the Seleucid army."
+msgstr ""
+
+#: simulation/data/technologies/successors/unlock_traditional_army.jsongenericName
+msgid "Traditional Army"
+msgstr "ارتش سنتی"
+
+#: simulation/data/technologies/successors/unlock_traditional_army.jsontooltip
+msgid "Unlock the Champion Infantry Pikeman."
+msgstr ""
+
+#: simulation/data/technologies/successors/upgrade_mace_silvershields.jsondescription
+msgid ""
+"The Silver Shields, or Argyraspidai, were the elite heavy infantry arm of "
+"the Macedonian army."
+msgstr "سپر نقره ای ها یا آرگیراسپیدای پیاده نظام سنگین زبده سپاه مقدونی بودند"
+
+#: simulation/data/technologies/successors/upgrade_mace_silvershields.jsongenericName
+msgid "Silver Shields Regiment"
+msgstr "هنگ سپر نقره ای ها"
+
+#: simulation/data/technologies/successors/upgrade_mace_silvershields.jsontooltip
+msgid ""
+"Upgrade Shield Bearer Champion Infantry to Silver Shields, with more health "
+"and attack damage."
+msgstr ""
 
 #: simulation/data/technologies/tower_armour.jsondescription
 msgid "Reinforce the foundations in preparation of an attack."
 msgstr "تقویت زیربنای آماده سازی برای یک حمله"
 
-#: simulation/data/technologies/tower_armour.jsontooltip
-msgid "Towers +2 armor."
-msgstr ""
-
 #: simulation/data/technologies/tower_armour.jsongenericName
 msgid "Sturdy Foundations"
 msgstr "پی ریزی محکم"
+
+#: simulation/data/technologies/tower_armour.jsontooltip
+msgid "Towers +2 armor."
+msgstr ""
 
 #: simulation/data/technologies/tower_crenellations.jsondescription
 msgid ""
@@ -1078,55 +1529,51 @@ msgid ""
 "defending a keep."
 msgstr "بارو هایی مستحکم به سربازان اجازه می دهد هنگام دفاع از برج، شعاع حمله وسیع تری داشته باشند."
 
-#: simulation/data/technologies/tower_crenellations.jsontooltip
-msgid "Sentry and Stone Towers +40% more arrows per garrisoned Soldier."
-msgstr ""
-
 #: simulation/data/technologies/tower_crenellations.jsongenericName
 msgid "Crenellations"
 msgstr "بارو ها"
+
+#: simulation/data/technologies/tower_crenellations.jsontooltip
+msgid "Sentry and Stone Towers +40% more arrows per garrisoned Soldier."
+msgstr ""
 
 #: simulation/data/technologies/tower_murderholes.jsondescription
 msgid "Murder holes allow hitting enemies at the foot of the tower."
 msgstr "چاله های مرگ این امکان را بوجود می آورد که سربازان مهاجمی که به پای برج می رسند آسیب ببینند"
 
-#: simulation/data/technologies/tower_murderholes.jsontooltip
-msgid "Sentry and Stone Towers have 0 minimum attack range."
-msgstr ""
-
 #: simulation/data/technologies/tower_murderholes.jsongenericName
 msgid "Murder Holes"
 msgstr "چاله های مرگ"
+
+#: simulation/data/technologies/tower_murderholes.jsontooltip
+msgid "Sentry and Stone Towers have 0 minimum attack range."
+msgstr ""
 
 #: simulation/data/technologies/tower_range.jsondescription
 msgid "Arrow shooters increase the maximum range of the fire arrows."
 msgstr "کماندارها حداکثر شعاع حمله برج را افزایش می دهند"
 
-#: simulation/data/technologies/tower_range.jsontooltip
-msgid "Sentry and Stone Towers +8 attack range."
-msgstr ""
-
 #: simulation/data/technologies/tower_range.jsongenericName
 msgid "Arrow Shooters"
 msgstr "تیر انداز ها"
+
+#: simulation/data/technologies/tower_range.jsontooltip
+msgid "Sentry and Stone Towers +8 attack range."
+msgstr ""
 
 #: simulation/data/technologies/tower_watch.jsondescription
 msgid "A night's watch increases vigilance."
 msgstr "افزایش آمادگی دیده بانان"
 
-#: simulation/data/technologies/tower_watch.jsontooltip
-msgid "Sentry and Stone Towers +1 default arrow count."
-msgstr ""
-
 #: simulation/data/technologies/tower_watch.jsongenericName
 msgid "Sentries"
 msgstr "دیده بانان"
 
-#: simulation/data/technologies/tower_watch.jsonspecificName.ptol
-#: simulation/data/technologies/tower_watch.jsonspecificName.spart
-#: simulation/data/technologies/tower_watch.jsonspecificName.sele
 #: simulation/data/technologies/tower_watch.jsonspecificName.athen
 #: simulation/data/technologies/tower_watch.jsonspecificName.mace
+#: simulation/data/technologies/tower_watch.jsonspecificName.ptol
+#: simulation/data/technologies/tower_watch.jsonspecificName.sele
+#: simulation/data/technologies/tower_watch.jsonspecificName.spart
 msgid "Nyktophýlakes"
 msgstr "Nyktophýlakes"
 
@@ -1134,30 +1581,34 @@ msgstr "Nyktophýlakes"
 msgid "Vigiles"
 msgstr "Vigiles"
 
+#: simulation/data/technologies/tower_watch.jsontooltip
+msgid "Sentry and Stone Towers +1 default arrow count."
+msgstr ""
+
 #: simulation/data/technologies/trade_commercial_treaty.jsondescription
 msgid "Improve the international trading profit."
 msgstr "بهبود سود تجارت های بین المللی"
-
-#: simulation/data/technologies/trade_commercial_treaty.jsontooltip
-msgid "+10% international trade bonus."
-msgstr ""
 
 #: simulation/data/technologies/trade_commercial_treaty.jsongenericName
 msgid "Commercial Treaty"
 msgstr "قرارداد تجاری"
 
+#: simulation/data/technologies/trade_commercial_treaty.jsontooltip
+msgid "+10% international trade bonus."
+msgstr ""
+
 #: simulation/data/technologies/trade_convoys_armor.jsondescription
 msgid "Increases defensive capability of traders."
 msgstr "افزایش قدرت دفاعی تاجر ها"
-
-#: simulation/data/technologies/trade_convoys_armor.jsontooltip
-msgid "Traders +2 hack and pierce armor."
-msgstr ""
 
 #: simulation/data/technologies/trade_convoys_armor.jsongenericName
 #: simulation/data/technologies/trade_convoys_speed.jsongenericName
 msgid "Trade Convoys"
 msgstr "قافله های تجاری"
+
+#: simulation/data/technologies/trade_convoys_armor.jsontooltip
+msgid "Traders +2 hack and pierce armor."
+msgstr ""
 
 #: simulation/data/technologies/trade_convoys_speed.jsondescription
 msgid ""
@@ -1173,49 +1624,49 @@ msgstr "تجار +25% سرعت راه رفتن که به سرعت باعث اف�
 msgid "The progress in handicraft improves the trading profit."
 msgstr "پیشرفت در صنایع دستی باعث بهبود در سود تجارت می شود"
 
-#: simulation/data/technologies/trade_gain_01.jsontooltip
-msgid "Traders +10% gain."
-msgstr "تجار +10% بدست می آورند"
-
 #: simulation/data/technologies/trade_gain_01.jsongenericName
 msgid "Handicraft"
 msgstr "صنایع دستی"
 
-#: simulation/data/technologies/trade_gain_02.jsontooltip
-msgid "Traders +15% gain."
-msgstr "تجار +15% بدست می آورند"
+#: simulation/data/technologies/trade_gain_01.jsontooltip
+msgid "Traders +10% gain."
+msgstr "تجار +10% بدست می آورند"
 
 #: simulation/data/technologies/trade_gain_02.jsongenericName
 msgid "Advanced Handicraft"
 msgstr "صنایع دستی پیشرفته"
 
-#: simulation/data/technologies/training_conscription.jsondescription
+#: simulation/data/technologies/trade_gain_02.jsontooltip
+msgid "Traders +15% gain."
+msgstr "تجار +15% بدست می آورند"
+
 #: simulation/data/technologies/persians/training_conscription_infantry.jsondescription
+#: simulation/data/technologies/training_conscription.jsondescription
 msgid ""
 "Significantly increase training speed of soldiers at the Barracks by "
 "training them in large batches or battalions."
 msgstr ""
 
-#: simulation/data/technologies/training_conscription.jsontooltip
-#: simulation/data/technologies/persians/training_conscription_infantry.jsontooltip
-msgid "Faster batch training speed for the Barracks."
-msgstr "پرورش سریعتر دسته ها در پادگان"
-
 #: simulation/data/technologies/training_conscription.jsongenericName
 msgid "Conscription"
 msgstr "سربازگیری اجباری"
+
+#: simulation/data/technologies/persians/training_conscription_infantry.jsontooltip
+#: simulation/data/technologies/training_conscription.jsontooltip
+msgid "Faster batch training speed for the Barracks."
+msgstr "پرورش سریعتر دسته ها در پادگان"
 
 #: simulation/data/technologies/training_naval_architects.jsondescription
 msgid "Significantly increase build speed of batches of ships at the Dock."
 msgstr "به طرز قابل ملاحظه ای سرعت تولید دسته های کشتی از بندرگاه را افزایش می دهد."
 
-#: simulation/data/technologies/training_naval_architects.jsontooltip
-msgid "Docks increased batch construction speed bonus."
-msgstr "افزایش سرعت تولید دسته های کشتی در بندرگاه"
-
 #: simulation/data/technologies/training_naval_architects.jsongenericName
 msgid "Naval Architects"
 msgstr "مهندسان دریایی"
+
+#: simulation/data/technologies/training_naval_architects.jsontooltip
+msgid "Docks increased batch construction speed bonus."
+msgstr "افزایش سرعت تولید دسته های کشتی در بندرگاه"
 
 #: simulation/data/technologies/unit_advanced.jsontooltip
 msgid ""
@@ -1251,17 +1702,13 @@ msgid ""
 "have the best training."
 msgstr "واحد های سلحشور سربازانی حرفه ای هستند که بهترین سلاح ها را در دست دارند و بیشترین آموزش را می بینند."
 
-#: simulation/data/technologies/unlock_champion_units.jsontooltip
-msgid "Unlock the ability to train Champions at the Barracks."
-msgstr ""
-
 #: simulation/data/technologies/unlock_champion_units.jsongenericName
 msgid "Unlock Champion Units"
 msgstr "باز کردن واحد های سلحشور"
 
+#: simulation/data/technologies/unlock_champion_units.jsonspecificName.athen
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.mace
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.spart
-#: simulation/data/technologies/unlock_champion_units.jsonspecificName.athen
 msgid "Ágēma"
 msgstr "Ágēma"
 
@@ -1269,21 +1716,21 @@ msgstr "Ágēma"
 msgid "Regio Cohors"
 msgstr "Regio Cohors"
 
+#: simulation/data/technologies/unlock_champion_units.jsontooltip
+msgid "Unlock the ability to train Champions at the Barracks."
+msgstr ""
+
 #: simulation/data/technologies/unlock_females_house.jsondescription
 msgid "A festival attended by women-only, to celebrate female fertility."
 msgstr "جشنواره ای که فقط زنان در آن شرکت می کردند. هدف آن جشن گرفتن باروری زنان بوده."
-
-#: simulation/data/technologies/unlock_females_house.jsontooltip
-msgid "Unlock the ability to train women from houses."
-msgstr "باز کردن امکان پرورش زنان از خانه ها"
 
 #: simulation/data/technologies/unlock_females_house.jsongenericName
 msgid "Fertility Festival"
 msgstr "جشنواره باروری"
 
+#: simulation/data/technologies/unlock_females_house.jsonspecificName.athen
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.mace
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.spart
-#: simulation/data/technologies/unlock_females_house.jsonspecificName.athen
 msgid "Thesmophória"
 msgstr "Thesmophória"
 
@@ -1291,16 +1738,16 @@ msgstr "Thesmophória"
 msgid "Bona Dea"
 msgstr "بونادئا"
 
+#: simulation/data/technologies/unlock_females_house.jsontooltip
+msgid "Unlock the ability to train women from houses."
+msgstr "باز کردن امکان پرورش زنان از خانه ها"
+
 #: simulation/data/technologies/unlock_shared_dropsites.jsondescription
 msgid ""
 "The extension of trade leads to the permanent establishment of storekeepers "
 "and their families in foreign countries, allowing them to exploit the wealth"
 " of these countries."
 msgstr "گسترش تجارت باعث می شود تا مغازه دارها و خانواده های آنها بصورت دایم در کشورهای خارجی ساکن شوند و به آنها اجازه می دهد تا از ثروت این کشورها بهره بگیرند"
-
-#: simulation/data/technologies/unlock_shared_dropsites.jsontooltip
-msgid "Allows using allied dropsites."
-msgstr "اجازه استفاده از محل تحویل منابع هم پیمان ها"
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsongenericName
 msgid "Diaspora"
@@ -1310,6 +1757,10 @@ msgstr "جوامع دور از وطن"
 msgid "Requires 3 Traders"
 msgstr "نیاز به 3 تاجر دارد"
 
+#: simulation/data/technologies/unlock_shared_dropsites.jsontooltip
+msgid "Allows using allied dropsites."
+msgstr "اجازه استفاده از محل تحویل منابع هم پیمان ها"
+
 #: simulation/data/technologies/unlock_shared_los.jsondescription
 msgid ""
 "By means of trading and travelling people explored beyond the boundaries of "
@@ -1317,15 +1768,15 @@ msgid ""
 "discoveries."
 msgstr "به وسیله تجارت و مسافرت، مردم توانستند خارج از مرز های تمدنشان را کشف کنند و برای ثبت خاطرات خود شروع به کشیدن مسیر های حرکت خود و نقشه ها کردند"
 
+#: simulation/data/technologies/unlock_shared_los.jsongenericName
+msgid "Cartography"
+msgstr "نقشه کشی"
+
 #: simulation/data/technologies/unlock_shared_los.jsontooltip
 msgid ""
 "See what your allies see, browse their summary and check their resources and"
 " population count in the top panel."
 msgstr "دیدن چیزی که هم پیمان شما می بیند، مشاهده اطلاعات جمعیت و منابع هم پیمانها در پنل بالا صفحه"
-
-#: simulation/data/technologies/unlock_shared_los.jsongenericName
-msgid "Cartography"
-msgstr "نقشه کشی"
 
 #: simulation/data/technologies/unlock_spies.jsondescription
 msgid ""
@@ -1333,474 +1784,23 @@ msgid ""
 "the countries they crossed."
 msgstr "هدف اول بازرگانان معامله بود اما آنها به جمع آوری اطلاعات در مورد کشورهایی که از آنها عبور می کردند نیز می پرداختند"
 
+#: simulation/data/technologies/unlock_spies.jsongenericName
+msgid "Espionage"
+msgstr "جاسوسی"
+
 #: simulation/data/technologies/unlock_spies.jsontooltip
 msgid ""
 "Allows bribing the units of other players in order to share their vision."
 msgstr "اجازه دادن برای رشوه دادن به نیروهای سایر بازیکن ها برای استفاده از دید آنها"
 
-#: simulation/data/technologies/unlock_spies.jsongenericName
-msgid "Espionage"
-msgstr "جاسوسی"
-
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsondescription
 msgid "Hire professional mercenaries to fight in your army."
 msgstr "اجیر کردن مزدورهای حرفه ای برای جنگیدن در سپاه شما"
-
-#: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
-msgid "Mercenaries are promoted to Advanced rank."
-msgstr ""
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsongenericName
 msgid "Expertise In War"
 msgstr "متخصص در جنگ"
 
-#: simulation/data/technologies/carthaginians/special_colonisation.jsondescription
-msgid ""
-"Carthaginians established many trading centers as colonies and ultimately "
-"held dominion over 300 cities and towns in North Africa alone."
-msgstr "کارتاژها مراکز تجاری بسیاری را شبیه مستعمرات خود راه اندازی کرده بودند آنها در اوج قدرت خود بیش از 300 شهر را در تنها در شمال آفریقا در اختیار داشتند"
-
-#: simulation/data/technologies/carthaginians/special_colonisation.jsontooltip
-msgid ""
-"Carthaginians were colonizers. Civic Centers, Temples, and Houses -25% build"
-" time."
-msgstr "کارتاژ ها استعمارگر بودند. مراکز تمدن ، معابد و خانه -25% زمان ساخت"
-
-#: simulation/data/technologies/carthaginians/special_colonisation.jsongenericName
-msgid "Colonization"
-msgstr "مهاجرنشینی"
-
-#: simulation/data/technologies/carthaginians/special_exploration.jsondescription
-msgid ""
-"Nobody knew better than the Carthaginians where in the ancient world they "
-"were going and going to go; their merchant traders had missions to "
-"everywhere."
-msgstr "هیچ کس بهتر از یک کارتاژی نمیداند که در دنیای باستان کجا می رود، تجار آنها به تمام دنیا ماموریت داشتند و به هرجای ممکن سفر میکردند"
-
-#: simulation/data/technologies/carthaginians/special_exploration.jsontooltip
-msgid "Carthaginians were explorers. All Traders and Ships +25% vision range."
-msgstr "کارتاژ ها اکتشافگر بودند. تمام تاجرها و کشتی ها +25% شعاع دید بیشتر"
-
-#: simulation/data/technologies/carthaginians/special_exploration.jsongenericName
-msgid "Exploration"
-msgstr "اکتشاف"
-
-#: simulation/data/technologies/carthaginians/training_phoenician_naval_architects.jsondescription
-msgid ""
-"Significantly increase build speed of batches of ships at the Shipyard."
-msgstr "به طرز قابل ملاحظه ای سرعت تولید دسته های ناو در کشتی سازی را افزایش می دهد."
-
-#: simulation/data/technologies/carthaginians/training_phoenician_naval_architects.jsontooltip
-msgid "Shipyard increased batch construction speed bonus."
-msgstr "افزایش سرعت تولید دسته های ناو در کشتی سازی"
-
-#: simulation/data/technologies/carthaginians/training_phoenician_naval_architects.jsongenericName
-msgid "Phoenician Naval Architects"
-msgstr "مهندسان دریایی فنیقی"
-
-#: simulation/data/technologies/civbonuses/cart_walls.jsondescription
-msgid ""
-"Carthaginians built their city walls in three concentric circuits. These "
-"walls were never breached. Even when the city was taken by the Romans, it "
-"was via the city's harbor, not by storming its walls."
-msgstr "کارتاژها دیوارهای خود را در سه لایه دایره ای می ساختند. این دیوارها هیچ گاه اجازه عبور دشمن را ندادند حتی زمانی که شهر توسط رومی ها تصرف شد این کار از سمت بندر صورت گرفت و نه از سمت دیوار ها"
-
-#: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
-msgid "Walls +100% build time, +100% stone cost, and +200% health."
+#: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
+msgid "Mercenaries are promoted to Advanced rank."
 msgstr ""
-
-#: simulation/data/technologies/civbonuses/cart_walls.jsongenericName
-msgid "Triple Walls"
-msgstr "دیوارهای سه لایه"
-
-#: simulation/data/technologies/civbonuses/celt_structures.jsondescription
-msgid "Celtic structures were mostly made of wood with rubble foundations."
-msgstr "سازه های سلتی بیشتر از چوب و تکه سنگ به عنوان پی ریز آن ساخته می شدند"
-
-#: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
-msgid ""
-"Briton and Gaulish Structures −20% build time, −20% health, and −20% capture"
-" points."
-msgstr ""
-
-#: simulation/data/technologies/civbonuses/celt_structures.jsongenericName
-msgid "Wooden Construction"
-msgstr "ساختمان های چوبی"
-
-#: simulation/data/technologies/civbonuses/greek_structures.jsondescription
-msgid "The Greeks used stone construction from early Mycenaean times."
-msgstr "یونانی از از ابتدای دوران میکنایی ساختمان های سنگی می ساختند."
-
-#: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
-msgid "Structures +10% health and +10% capture points."
-msgstr ""
-
-#: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
-msgid "Hellenic Architecture"
-msgstr "معماری یونان"
-
-#: simulation/data/technologies/civbonuses/maur_elephants.jsondescription
-msgid ""
-"India is the land of the elephants. Elephant warfare originated in India and"
-" continued for millennia. It was also the source of elephants for the "
-"eastern Mediterranean. Indian kings were able to field large numbers of war "
-"elephants."
-msgstr ""
-
-#: simulation/data/technologies/civbonuses/maur_elephants.jsontooltip
-msgid "Elephants −30% training time."
-msgstr ""
-
-#: simulation/data/technologies/civbonuses/maur_elephants.jsongenericName
-msgid "Elephant Tradition"
-msgstr ""
-
-#: simulation/data/technologies/civbonuses/maur_population.jsondescription
-msgid ""
-"The Mauryan Empire encompassed dozens of formerly independent kingdoms over "
-"an area of 5 million square kilometers, with a population of close to 60 "
-"million people. The Mauryan regents held the title Emperor of Emperors and "
-"commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
-"chariots, and 30,000 cavalry, making it arguably the largest army of its "
-"time."
-msgstr "امپراتوری مائوریان متشکل از دهها پادهاشی مستقل سابق بود که زیر پرچم مائوریان قرار گرفته بودند و وسعت این امپراتوری به بیش از 5 میلیون کیلومتر مربع با جمعیت نزدیک به 60 میلیون نفر رسیده بود. نایب السلطنه مائوریان ها که عنوان امپراتور امپراتورها را با خود داشت سپاهی با 600000 پیاده نظام، 9000 فیل جنگی، 8000 ارابه جنگی و 30000 سواره نظام را فرمان می داد که بدون شک عظیم ترین نیروی نظامی در زمان خوب بود."
-
-#: simulation/data/technologies/civbonuses/maur_population.jsontooltip
-msgid "Mauryas +10% maximum population limit."
-msgstr ""
-
-#: simulation/data/technologies/civbonuses/maur_population.jsongenericName
-msgid "Emperor of Emperors"
-msgstr "امپراتور امپراتوران"
-
-#: simulation/data/technologies/civbonuses/maur_population.jsonspecificName.maur
-msgid "Chakravarti Samrāt"
-msgstr "Chakravarti Samrāt"
-
-#: simulation/data/technologies/civbonuses/maur_walls.jsondescription
-msgid ""
-"The Mauryas built their city walls out of wood, an abundant natural resource"
-" in India."
-msgstr ""
-
-#: simulation/data/technologies/civbonuses/maur_walls.jsontooltip
-msgid "Mauryan City Walls −20% build time and −20% health."
-msgstr ""
-
-#: simulation/data/technologies/civbonuses/maur_walls.jsongenericName
-msgid "Wooden Walls"
-msgstr "دیوار های چوبی"
-
-#: simulation/data/technologies/civbonuses/pers_population.jsondescription
-msgid ""
-"The Persians could and did levy a large number of infantry during wartime "
-"due to the sheer size of the Achaemenid Empire and the way in which it was "
-"set-up. In general the Persian infantry was well trained and fought with "
-"great tenacity. However while this was true the infantry were poor hand-to-"
-"hand, close combat fighters. Also, with the exception of the elite "
-"regiments, the Persian infantry was not a standing professional force."
-msgstr "ایرانی ها می توانستند یک ارتش پیاده نظام بزرگ را آماده نبرد کنند و اینکار را انجام می داند چراکه امپراتوری هخامنشی یک امپراتوری بزرگ و گسترده بود. با این وجود درحالی که سربازان ایرانی بخوبی آموزش دیده و سرسخت بودند اما در نبردهای تن به تن و جنگ های نزدیک زیاد قوی نبودند. البته به استثنای دسته های خاص و زبده. بطور کل پیاده نظام ایران یک نیروی حرفه ای به حساب نمی آمد."
-
-#: simulation/data/technologies/civbonuses/pers_population.jsontooltip
-msgid "Persians +10% maximum population limit."
-msgstr ""
-
-#: simulation/data/technologies/civbonuses/pers_population.jsongenericName
-msgid "Great King's Levy"
-msgstr "سربازگیری پادشاه بزرگ"
-
-#: simulation/data/technologies/civbonuses/spart_population.jsondescription
-msgid ""
-"The Spartans did not have the largest army in the world, but they did have "
-"the best army in the world for their time. What they didn't have in "
-"quantity, they made up with quality. It was said that Sparta did not need "
-"strong city walls, for its men were its walls."
-msgstr "اسپارتها بزرگترین ارتش دنیا را نداشتند اما آنها بهترین ارتش دنبا در زمان خود بودند. چیزی که آنها نداشتند تعداد نفرات بود اما کیفیت سربازانشان بسیار بالا بود. نقل شده است که اسپارتها نیازی به ساخت دیوار برای محافظت از شهر های خود نداشتند مردانشان همچون دیوار از آنها حفاظت می کردند."
-
-#: simulation/data/technologies/civbonuses/spart_population.jsontooltip
-msgid "Spartans −10% maximum population limit."
-msgstr ""
-
-#: simulation/data/technologies/civbonuses/spart_population.jsongenericName
-msgid "Underdogs"
-msgstr "زیردستان"
-
-#: simulation/data/technologies/hellenes/spartans_agoge.jsondescription
-msgid ""
-"Spartans were housed and trained from a young age to be superlative warriors"
-" and to endure any hardship a military life can give them."
-msgstr "اسپارت ها از سنین کم آموزش می بینند تا جنگجویانی قدرتمند شوند و از پس هر شرایط سخت جنگی برآیند."
-
-#: simulation/data/technologies/hellenes/spartans_agoge.jsontooltip
-msgid "Champion Infantry Spearmen +25% health, but +5% training time."
-msgstr ""
-
-#: simulation/data/technologies/hellenes/spartans_agoge.jsongenericName
-msgid "The Agoge"
-msgstr "آموزش و پرورش اسپارتی"
-
-#: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsondescription
-msgid ""
-"Athenian triremes can train Marines (Epibates Athenaikos) and Cretan "
-"Mercenary Archers (Toxotes Kretikos)."
-msgstr "کشتی های جنگی آتنی می توانند می توانند سربازان دریایی پرورش دهند (Epibates Athenaikos) و مزدوران کماندار کرتان  (Toxotes Kretikos)."
-
-#: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsontooltip
-msgid "Athenian triremes can train Marines and Cretan Mercenary Archers."
-msgstr "کشتی های جنگی آتنی ها می توانند سربازان دریایی و مزدوران کماندار پرورش دهند."
-
-#: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsongenericName
-msgid "Iphicratean Reforms"
-msgstr "اصلاحات ایفیکراتی"
-
-#: simulation/data/technologies/hellenes/special_long_walls.jsondescription
-msgid ""
-"The Long Walls of Athens were constructed under the auspices of the wily "
-"Themistocles and extended 6 km from the city to the port of Piraeus. This "
-"secured the city's sea supply routes and prevented an enemy from starving "
-"out the city during a siege."
-msgstr "دیوار های بلند آتن زیر نظر تمیستوکلس باهوش ساخته شده بود و به طول 6 کیلومتر از شهر آتن تا بندر پیرئاس کشیده شده بود. این دیوار باعث حفاظت  مسیر های مبادلاتی شهر شده بود و در زمان محاصره شهر از گشنگی مردم جلوگیری کرد."
-
-#: simulation/data/technologies/hellenes/special_long_walls.jsontooltip
-msgid "Build Walls in own or neutral territory."
-msgstr ""
-
-#: simulation/data/technologies/hellenes/special_long_walls.jsongenericName
-msgid "Athenian Long Walls"
-msgstr "دیواره ای بلند آتنی"
-
-#: simulation/data/technologies/kushites/monumental_architecture.jsontooltip
-msgid ""
-"Civic Structures +20% build time, +20% health, and +20% capture points."
-msgstr ""
-
-#: simulation/data/technologies/kushites/monumental_architecture.jsongenericName
-msgid "Monumental Architecture"
-msgstr "معماری بسیار برجسته"
-
-#: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsondescription
-msgid ""
-"Have your priests instructed by the High Priest himself - may Amun bless "
-"him."
-msgstr "آموزش دادن راهبان توسط راهب اعظم - شاید آمون او را آمرزش دهد"
-
-#: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsontooltip
-msgid "Train elite rank healers."
-msgstr "پرورش درمانگرهای زبده"
-
-#: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsongenericName
-msgid "Divine Instruction"
-msgstr "دستور الهی"
-
-#: simulation/data/technologies/persians/immortals.jsondescription
-msgid ""
-"The Achaemenids maintained a 10,000-strong elite corps, referred to as "
-"Athanatoi (“Immortals”) by Greek authors."
-msgstr ""
-
-#: simulation/data/technologies/persians/immortals.jsontooltip
-msgid "Anušiya Champion Infantry -50% train time, but also -10% health."
-msgstr ""
-
-#: simulation/data/technologies/persians/immortals.jsongenericName
-msgid "Immortals"
-msgstr "گارد جاویدان"
-
-#: simulation/data/technologies/persians/persian_architecture.jsondescription
-msgid ""
-"The Persians built the wonderful 1677 mile-long Royal Highway from Sardis to"
-" Susa; Darius the Great and Xerxes also built the magnificent Persepolis; "
-"Cyrus the Great greatly improved Ecbatana and virtually 'rebuilt' the old "
-"Elamite capital of Susa."
-msgstr "ایرانی ها یک جاده بی نظیر طولانی را از شهر شوش تا شهر ساردیس به طول 2699 کیلومتر (1677 مایل) احداث کردند. داریوش بزرگ و خشیارشا نیز تخت جمشید بی نظیر را ساختند، کورش بزرگ نیز به شکل بی نظیری شهر اکباتان را توسعه داد و به نوعی پایتخت قدیمی ایلامی ها شوش را احیا کرد."
-
-#: simulation/data/technologies/persians/persian_architecture.jsontooltip
-msgid ""
-"All Persian structures +25% health and capture points, but also +20% build "
-"time."
-msgstr "تمام سازه های ایرانی ها +25% سلامت و امتیاز تسخیر اما +20% افزایش زمان ساخت."
-
-#: simulation/data/technologies/persians/persian_architecture.jsongenericName
-msgid "Persian Architecture"
-msgstr "معماری پارسیان"
-
-#: simulation/data/technologies/persians/special_equine_transports.jsondescription
-msgid ""
-"Early Achaemenid rulers acted towards making Persia the first great Asian "
-"empire to rule the seas. The Great King behaved favourably towards the "
-"various sea peoples in order to secure their services, but also carried out "
-"various marine initiatives. During the reign of Darius the Great, for "
-"example, a canal was built in Egypt and a Persian navy was sent exploring "
-"the Indus river. According to Herodotus, some 300 ships in the Persian navy "
-"were retrofitted to carry horses and their riders."
-msgstr "حکمرانان اولیه هخامنشی تلاش کردند تا امپراتوری ایران تبدیل به اولین امپراتوری آسیا شود که بر دریاها حکمرانی میکند. پادشاهان بزرگ ایران در این دوران توجه خاصی به مرد ساحلی داشتند تا نیازهای آنها براورده شود اما لشگرکشی های بسیاری را نیز به آنجا انجام دادند. در دوران حکومت داریوش بزرگ برای مثال یک کانال در مصر حفر شد تا مسیر آبی دریای مدیترانه و سرخ شود که این دستور به دنبال فرمان داریوش به اکتشافات دریایی داده شد که از سمت شرق و رود سن آغاز شد و تا به سمت شرق و مصر ادامه پیدا کرد. بر اساس نوشته های هرودوت در حدود 300 کشتی در نیروی دریایی ایران وجود داشت که سواره نظام ایران را جابه جا می کرد."
-
-#: simulation/data/technologies/persians/special_equine_transports.jsontooltip
-msgid "Phoenician Triremes gain the ability to train cavalry."
-msgstr ""
-
-#: simulation/data/technologies/persians/special_equine_transports.jsongenericName
-msgid "Equine Transports"
-msgstr "حمل اسب ها"
-
-#: simulation/data/technologies/persians/training_conscription_cavalry.jsondescription
-msgid ""
-"Significantly increase training speed of cavalry at the stables by training "
-"them in large batches or battalions."
-msgstr "با آموزش دست جمعی آن ها سرعت آموزش سواره نظام را به طور قابل ملاحظه ای افزایش دهید."
-
-#: simulation/data/technologies/persians/training_conscription_cavalry.jsontooltip
-msgid "Faster batch training speed for the Stables."
-msgstr "پرورش دسته های سوار سریعتر در اصطبل ها "
-
-#: simulation/data/technologies/persians/training_conscription_cavalry.jsongenericName
-msgid "Cavalry Conscription"
-msgstr "سربازگیری اجباری سواره"
-
-#: simulation/data/technologies/persians/training_conscription_infantry.jsongenericName
-msgid "Infantry Conscription"
-msgstr "سربازگیری اجباری پیاده"
-
-#: simulation/data/technologies/persians/training_levy_cavalry.jsondescription
-msgid ""
-"Calling up cavalry levies in time of war helps bolster the ranks of a king's"
-" army."
-msgstr "با فراخوان خدمت سواره نظام در زمان جنگ، ارتش یک پادشاه تقویت می شود."
-
-#: simulation/data/technologies/persians/training_levy_cavalry.jsontooltip
-msgid ""
-"All cavalry -20% train time, but also -5% health. Unlocks Cavalry "
-"Conscription."
-msgstr "تمام سواره نظام ها -20% زمان پرورش اما -5% سلامت. باز شدن قفل خدمت اجباری سواره نظام"
-
-#: simulation/data/technologies/persians/training_levy_cavalry.jsongenericName
-msgid "Levy Cavalry"
-msgstr "خدمت سواره نظام"
-
-#: simulation/data/technologies/persians/training_levy_infantry.jsondescription
-msgid ""
-"Calling up infantry levies in time of war helps bolster the ranks of a "
-"king's army."
-msgstr "با فراخوان خدمت پیاده نظام در زمان جنگ، ارتش یک پادشاه تقویت می شود."
-
-#: simulation/data/technologies/persians/training_levy_infantry.jsontooltip
-msgid ""
-"All infantry -20% train time, but also -5% health. Unlocks Infantry "
-"Conscription."
-msgstr "تمام پیاده نظام ها -20% زمان پرورش اما -5% سلامت. باز شدن خدمت اجباری پیاده نظام"
-
-#: simulation/data/technologies/persians/training_levy_infantry.jsongenericName
-msgid "Levy Infantry"
-msgstr "خدمت پیاده نظام"
-
-#: simulation/data/technologies/romans/vision_sibylline.jsondescription
-msgid ""
-"The Sibylline Books or 'Libri Sibyllini' were a collection of oracular "
-"utterances, set out in Greek hexameters, purchased from a sibyl by the last "
-"king of Rome, Tarquinius Superbus, and consulted at momentous crises through"
-" the history of the Republic and the Empire."
-msgstr "کتاب های سیبیلاین یا \"لیبری سیبلینی\" مجموعه ای از سخنرانی های در باره یونان بود که از سیبل توسط آخرین پادشاه روم تارکونیوس سوپربوس خریداری شد و در طول تاریخ اپراتوری و جهموری روم به عنوان یک مشاور نقش کلیدی ایفا کرد."
-
-#: simulation/data/technologies/romans/vision_sibylline.jsontooltip
-msgid "+25% Vision range for all units."
-msgstr "+25% شعاع دید برای تمام نیروها"
-
-#: simulation/data/technologies/romans/vision_sibylline.jsongenericName
-msgid "Sibylline Books"
-msgstr "کتاب های سیبلاین"
-
-#: simulation/data/technologies/romans/vision_sibylline.jsonspecificName
-msgid "Libri Sibyllini"
-msgstr "لیبری سبیلینی"
-
-#: simulation/data/technologies/successors/pair_unlock_champions.jsongenericName
-msgid "Traditional Army vs Reform Army"
-msgstr ""
-
-#: simulation/data/technologies/successors/special_hellenistic_metropolis.jsondescription
-msgid ""
-"Beginning with Alexander, the Hellenistic monarchs founded many cities "
-"throughout their empires, where Greek culture and art blended with local "
-"customs to create the motley Hellenistic civilization."
-msgstr "شروع با الکساندر، پادشاه یونانی که شهرهای زیادی را ضمیمه خاک امپراتوری خود کرد جایی که فرهنگ و هنر یونان با سنت های محلی ترکیب شدند و تمدنی یونانی رنگارنگی را شکل دادن."
-
-#: simulation/data/technologies/successors/special_hellenistic_metropolis.jsontooltip
-msgid "Civic Centers +100% health and capture points, double default arrows."
-msgstr ""
-
-#: simulation/data/technologies/successors/special_hellenistic_metropolis.jsongenericName
-msgid "Hellenistic Metropolis"
-msgstr "کلان شهرهای یونانی"
-
-#: simulation/data/technologies/successors/special_parade_of_daphne.jsondescription
-msgid ""
-"Significantly increase training speed of champions and siege engines at the "
-"fortress when training them in large batches."
-msgstr ""
-
-#: simulation/data/technologies/successors/special_parade_of_daphne.jsontooltip
-msgid "Faster batch training speed for the Fortress."
-msgstr "سرعت پرورش و ساخت سریعتر برای قلعه نظامی"
-
-#: simulation/data/technologies/successors/special_parade_of_daphne.jsongenericName
-msgid "Parade of Daphne"
-msgstr "Parade of Daphne"
-
-#: simulation/data/technologies/successors/special_war_horses.jsondescription
-msgid ""
-"The now-extinct Nisian breed of horse was one of the largest and robust "
-"horses of ancient times. They were highly sought after by the Seleucids and "
-"Persians as both rider and mount gained heavier armor as time progressed."
-msgstr "اسب های نسایی که امروز منقرض شدند یکی از بلندترین و قویترین اسب های دوران باستان بودند. این اسب ها بشدت مورد علاقه سلوکیه ای ها و ایرانی ها بودند که هم اسب و هم سوارکار را به زره مجهز می کردند."
-
-#: simulation/data/technologies/successors/special_war_horses.jsontooltip
-msgid "All cavalry +20% health."
-msgstr "تمام سواره نظام ها  +20% سلامت"
-
-#: simulation/data/technologies/successors/special_war_horses.jsongenericName
-msgid "Nisean War Horses"
-msgstr "اسب های جنگی نسایی"
-
-#: simulation/data/technologies/successors/special_war_horses.jsonspecificName.sele
-msgid "Nisioi"
-msgstr "نیسویی"
-
-#: simulation/data/technologies/successors/unlock_reform_army.jsondescription
-msgid "The Roman-style core of the Seleucid army."
-msgstr ""
-
-#: simulation/data/technologies/successors/unlock_reform_army.jsontooltip
-msgid "Unlock the Champion Infantry Swordsman."
-msgstr ""
-
-#: simulation/data/technologies/successors/unlock_reform_army.jsongenericName
-msgid "Reform Army"
-msgstr "ارتش اصلاح شده"
-
-#: simulation/data/technologies/successors/unlock_traditional_army.jsondescription
-msgid "The Macedonian-style core of the Seleucid army."
-msgstr ""
-
-#: simulation/data/technologies/successors/unlock_traditional_army.jsontooltip
-msgid "Unlock the Champion Infantry Pikeman."
-msgstr ""
-
-#: simulation/data/technologies/successors/unlock_traditional_army.jsongenericName
-msgid "Traditional Army"
-msgstr "ارتش سنتی"
-
-#: simulation/data/technologies/successors/upgrade_mace_silvershields.jsondescription
-msgid ""
-"The Silver Shields, or Argyraspidai, were the elite heavy infantry arm of "
-"the Macedonian army."
-msgstr "سپر نقره ای ها یا آرگیراسپیدای پیاده نظام سنگین زبده سپاه مقدونی بودند"
-
-#: simulation/data/technologies/successors/upgrade_mace_silvershields.jsontooltip
-msgid ""
-"Upgrade Shield Bearer Champion Infantry to Silver Shields, with more health "
-"and attack damage."
-msgstr ""
-
-#: simulation/data/technologies/successors/upgrade_mace_silvershields.jsongenericName
-msgid "Silver Shields Regiment"
-msgstr "هنگ سپر نقره ای ها"

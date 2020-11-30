@@ -1,7 +1,7 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright (C) 2020 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
-# 
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
+# project.
 # Translators:
 # Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2019
 # Cheng-Chia Tseng <pswo10680@gmail.com>, 2014-2015
@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-20 08:09+0000\n"
+"POT-Creation-Date: 2020-11-28 10:01+0000\n"
 "PO-Revision-Date: 2020-11-20 11:31+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
@@ -78,6 +78,10 @@ msgstr "英雄"
 #, javascript-format
 msgid "History of the %(civilization)s"
 msgstr "%(civilization)s 的歷史"
+
+#: gui/civinfo/civinfo.xml:(caption):30
+msgid "Civilization Selection"
+msgstr "文明選擇"
 
 #: gui/common/MapCache.js:52
 msgctxt "map selection"
@@ -216,7 +220,8 @@ msgid "Team %(team)s"
 msgstr "隊伍 %(team)s"
 
 #. Translation: Describe players of one team in a selected game, f.e. in the
-#. replay- or savegame menu or lobby
+#. replay- or
+#. savegame menu or lobby
 #: gui/common/gamedescription.js:163 gui/common/gamedescription.js:170
 #, javascript-format
 msgid ""
@@ -1074,7 +1079,8 @@ msgid "%(resourceIcon)s %(rate)s"
 msgstr "%(resourceIcon)s %(rate)s"
 
 #. Translation: Label in tooltip showing the resource type and quantity of a
-#. given resource supply.
+#. given resource
+#. supply.
 #: gui/common/tooltips.js:715
 #, javascript-format
 msgid "%(label)s %(component)s %(amount)s"
@@ -1085,7 +1091,8 @@ msgid "Resource Supply:"
 msgstr "資源供給"
 
 #. Translation: Marks that a resource supply entity has an unending, infinite,
-#. supply of its resource.
+#. supply of its
+#. resource.
 #: gui/common/tooltips.js:719 gui/summary/summary.js:111
 msgid "∞"
 msgstr "∞"
@@ -1206,7 +1213,8 @@ msgid "Classes:"
 msgstr "類型："
 
 #. Translation: %(component) will be the icon for the loot type and %(loot)
-#. will be the value.
+#. will be the
+#. value.
 #: gui/common/tooltips.js:1021
 #, javascript-format
 msgid "%(component)s %(loot)s"
@@ -1226,13 +1234,15 @@ msgid "Dropsite for:"
 msgstr "存放點給："
 
 #. Translation: Appears in a tooltip to indicate that right-clicking the
-#. corresponding GUI element will open the Template Details GUI page.
+#. corresponding GUI
+#. element will open the Template Details GUI page.
 #: gui/common/tooltips.js:1050
 msgid "Right-click to view more information."
 msgstr "按右鍵看更多資訊"
 
 #. Translation: Appears in a tooltip to indicate that clicking the
-#. corresponding GUI element will open the Template Details GUI page.
+#. corresponding GUI element
+#. will open the Template Details GUI page.
 #: gui/common/tooltips.js:1056
 msgid "Click to view more information."
 msgstr "點擊看更多資訊"
@@ -1241,6 +1251,215 @@ msgstr "點擊看更多資訊"
 #, javascript-format
 msgid "%(nick)s — %(name)s"
 msgstr "%(nick)s — %(name)s"
+
+#: gui/credits/credits.xml:(caption):19
+msgid "0 A.D. Credits"
+msgstr "0 A.D. 感謝名單"
+
+#: gui/credits/texts/art.jsonContent[0].Title
+msgid "Art lead"
+msgstr "美術指導"
+
+#: gui/credits/texts/art.jsonContent[1].Title
+msgid "2D Art"
+msgstr "2D 美術"
+
+#: gui/credits/texts/art.jsonContent[2].Title
+msgid "3D Art"
+msgstr "3D 美術"
+
+#: gui/credits/texts/art.jsonTitle
+msgid "Art"
+msgstr "美術"
+
+#: gui/credits/texts/audio.jsonContent[0].Content[0].Subtitle
+msgid "Sound Manager"
+msgstr "音效總監"
+
+#: gui/credits/texts/audio.jsonContent[0].Content[1].Subtitle
+msgid "Lead Composer"
+msgstr "首席作曲家"
+
+#: gui/credits/texts/audio.jsonContent[0].Title
+msgid "Audio managers"
+msgstr "音樂總監"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[10].Subtitle
+msgid "Viola, violin"
+msgstr "中提琴、小提琴"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[1].Subtitle
+msgid "Additional music, percussion, djembe, sampling"
+msgstr "額外的音樂、打擊樂、非洲鼓、樣本"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[2].Subtitle
+msgid "Additional music"
+msgstr "額外的音樂"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[3].Subtitle
+msgid "Flute"
+msgstr "長笛"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[4].Subtitle
+msgid "Djembe"
+msgstr "非洲鼓"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[5].Subtitle
+msgid "Frame drum, darbuka, riq, toms"
+msgstr "框架鼓、darbuka、riq、toms"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[6].Subtitle
+msgid "Didgeridoo"
+msgstr "迪吉里杜管"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[7].Subtitle
+msgid "Trumpet"
+msgstr "喇叭"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[8].Subtitle
+msgid "Celtic harp"
+msgstr "塞爾特豎琴"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[9].Subtitle
+msgid "Tin whistles"
+msgstr "錫哨"
+
+#: gui/credits/texts/audio.jsonContent[1].Title
+msgid "Music"
+msgstr "音樂"
+
+#: gui/credits/texts/audio.jsonContent[2].Title
+#: gui/options/options.json[2].label
+msgid "Sound"
+msgstr "音效"
+
+#: gui/credits/texts/audio.jsonContent[3].Content[0].Subtitle
+msgid "Greek"
+msgstr "希臘"
+
+#: gui/credits/texts/audio.jsonContent[3].Content[1].Subtitle
+msgid "Latin"
+msgstr "拉丁"
+
+#: gui/credits/texts/audio.jsonContent[3].Content[2].Subtitle
+msgid "Napatan"
+msgstr ""
+
+#: gui/credits/texts/audio.jsonContent[3].Content[3].Subtitle
+msgid "Persian"
+msgstr "波斯人"
+
+#: gui/credits/texts/audio.jsonContent[3].Title
+msgid "Voices"
+msgstr "聲音"
+
+#: gui/credits/texts/audio.jsonTitle
+msgid "Audio"
+msgstr "音訊"
+
+#: gui/credits/texts/balancing.jsonContent[0].Subtitle
+#: gui/credits/texts/history.jsonContent[0].Subtitle
+msgid "Head"
+msgstr "前端"
+
+#: gui/credits/texts/balancing.jsonTitle
+msgid "Balancing"
+msgstr "平衡調整"
+
+#: gui/credits/texts/community.jsonTitle
+msgid "Community and Management"
+msgstr "社群與管理"
+
+#: gui/credits/texts/donators.jsonContent[0].Title
+msgid "Pledgie Drive 1"
+msgstr "Pledgie 宣傳 1"
+
+#: gui/credits/texts/donators.jsonContent[1].Title
+msgid "Pledgie Drive 2"
+msgstr "Pledgie 宣傳 2"
+
+#: gui/credits/texts/donators.jsonContent[2].Title
+msgid ""
+"Indiegogo 2013 campaign\n"
+"More than 1000 donators (!), including:"
+msgstr "Indiegogo 2013 活動\n多於 1000 筆捐款 (!)，包含了："
+
+#: gui/credits/texts/donators.jsonTitle
+msgid "Donors"
+msgstr "捐贈者"
+
+#: gui/credits/texts/history.jsonTitle
+msgid "History References"
+msgstr "歷史參考資料"
+
+#: gui/credits/texts/maps.jsonContent[0].Title
+msgid "Map Making"
+msgstr "地圖製作"
+
+#: gui/credits/texts/maps.jsonContent[1].Title
+msgid "Random Map Scripts"
+msgstr "隨機地圖指令稿"
+
+#: gui/credits/texts/maps.jsonTitle
+msgid "Maps"
+msgstr "地圖"
+
+#: gui/credits/texts/programming.jsonContent[0].Title
+msgid "Programming managers"
+msgstr "程式設計總監"
+
+#: gui/credits/texts/programming.jsonContent[1].Subtitle
+msgid "Special thanks to"
+msgstr "特別感謝"
+
+#: gui/credits/texts/programming.jsonTitle
+msgid "Programming"
+msgstr "程式設計"
+
+#: gui/credits/texts/special.jsonContent[0].Title
+msgid "In Memoriam"
+msgstr "紀念"
+
+#: gui/credits/texts/special.jsonContent[1].Content[0].Subtitle
+msgid "0 A.D. Founder"
+msgstr "0 A.D. 創始者"
+
+#: gui/credits/texts/special.jsonContent[1].Content[1].Subtitle
+msgid "Project Leaders"
+msgstr "專案領導者"
+
+#: gui/credits/texts/special.jsonContent[1].Content[2].Subtitle
+msgid "Co-Lead Designers"
+msgstr "兼任首席設計師"
+
+#: gui/credits/texts/special.jsonContent[1].Title
+msgid "Special thanks to:"
+msgstr "特別感謝："
+
+#: gui/credits/texts/special.jsonContent[2].Title
+msgid "And thanks to the entire community for making 0 A.D. possible."
+msgstr "並感謝整個讓 0 A.D. 變為可能的社群。"
+
+#: gui/credits/texts/special.jsonContent[3].Title
+msgid "No historians were harmed during the development of this project."
+msgstr "在本專案的開發過程中並未傷害任何歷史學家。"
+
+#: gui/credits/texts/special.jsonTitle
+msgid "Special Credits"
+msgstr "特別感謝"
+
+#: gui/credits/texts/translators.jsonTitle
+msgid "Translators"
+msgstr "譯者"
+
+#: gui/gamesetup/Pages/GameSetupPage/Panels/Tips.txt:1
+msgid ""
+"Although reasonably easy for an experienced player, the default AI level is "
+"quite challenging for new players yet to master the basic mechanisms of the "
+"game. Beginners are advised to start by playing against a lower level AI "
+"(Sandbox or Very Easy). Change the AI level by clicking the gear icon next "
+"to the player you want to modify in the selection panel above."
+msgstr "雖然預設的 AI 難度對有經驗的玩家來說也許很簡單，但對於尚未掌握遊戲基礎架構的新手來說可能有點挑戰性。初學者建議在剛開始遊戲時，以較低難度的 AI（沙盒或非常簡單）開始對戰。點選上方選擇面板中，欲編輯玩家旁邊的齒輪圖示可以變更 AI 的難度。"
 
 #: gui/loadgame/SavegameDeleter.js:34
 #, javascript-format
@@ -1332,6 +1551,89 @@ msgstr "儲存的遊戲將被永遠覆蓋，您是否確定？"
 msgid "OVERWRITE SAVE"
 msgstr "覆蓋儲存"
 
+#: gui/loadgame/load.xml:(caption):43
+msgid "No saved games found."
+msgstr "找不到已儲存的遊戲。"
+
+#: gui/loadgame/load.xml:(caption):49 gui/locale/locale.xml:(caption):36
+msgid "Cancel"
+msgstr "取消"
+
+#: gui/loadgame/load.xml:(caption):53
+#: gui/replaymenu/replay_menu.xml:(caption):231
+msgid "Delete"
+msgstr "刪除"
+
+#: gui/loadgame/load.xml:(caption):63
+msgid "Filter compatible saved games"
+msgstr "相容於過濾器的已儲存遊戲"
+
+#: gui/loadgame/load.xml:(caption):73
+msgid "Players:"
+msgstr "玩家數："
+
+#: gui/loadgame/load.xml:(caption):77
+msgid "Played time:"
+msgstr "遊玩時間"
+
+#: gui/loadgame/load.xml:(caption):81
+#: gui/replaymenu/replay_menu.xml:(caption):150
+msgid "Map Type:"
+msgstr "地圖類型："
+
+#: gui/loadgame/load.xml:(caption):85
+#: gui/replaymenu/replay_menu.xml:(caption):165
+msgid "Map Size:"
+msgstr "地圖大小："
+
+#: gui/loadgame/load.xml:(caption):89
+#: gui/replaymenu/replay_menu.xml:(caption):180
+msgid "Victory:"
+msgstr "勝利："
+
+#: gui/loadgame/load.xml:(heading):26
+#: gui/replaymenu/replay_menu.xml:(heading):69
+msgctxt "replay"
+msgid "Date / Time"
+msgstr "日期／時間"
+
+#: gui/loadgame/load.xml:(heading):30
+msgctxt "replay"
+msgid "Map Type"
+msgstr "地圖類型"
+
+#: gui/loadgame/load.xml:(heading):34
+#: gui/replaymenu/replay_menu.xml:(heading):77
+msgctxt "replay"
+msgid "Map Name"
+msgstr "地圖名稱"
+
+#: gui/loadgame/load.xml:(heading):38
+msgctxt "replay"
+msgid "Description"
+msgstr "描述"
+
+#: gui/locale/locale.xml:(caption):17
+msgid "Language:"
+msgstr "語言："
+
+#. A locale is a set of parameters that defines the user’s language, country
+#. and any special
+#. variant preferences that the user wants to see in their user interface.
+#. Here, “Locale”
+#. refers to the code that identifies those settings, such as ‘en_US’.
+#: gui/locale/locale.xml:(caption):31
+msgid "Locale:"
+msgstr "所在區域："
+
+#: gui/locale/locale.xml:(caption):41
+msgid "Advanced"
+msgstr "進階"
+
+#: gui/locale/locale.xml:(caption):46
+msgid "Accept"
+msgstr "接受"
+
 #: gui/options/options.js:95
 #, javascript-format
 msgid "Default: %(value)s"
@@ -1375,6 +1677,896 @@ msgstr "部份設定值無效！您確定要儲存它們嗎？"
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "您有未儲存的變更，您想要關閉這個視窗嗎？"
 
+#: gui/options/options.json[0].label
+msgid "General"
+msgstr "一般"
+
+#: gui/options/options.json[0].options[0].label
+msgid "Player name (single-player)"
+msgstr "玩家名稱（單人）"
+
+#: gui/options/options.json[0].options[0].tooltip
+msgid "How you want to be addressed in single-player matches."
+msgstr "您在單人遊戲中要如被稱呼。"
+
+#: gui/options/options.json[0].options[10].label
+msgid "Observer limit"
+msgstr "觀察者限制"
+
+#: gui/options/options.json[0].options[10].tooltip
+msgid "Prevent further observers from joining if the limit is reached."
+msgstr "若已達到上限將會避免再有觀察者加入。"
+
+#: gui/options/options.json[0].options[11].label
+msgid "Chat timestamp"
+msgstr "聊天時間戳記"
+
+#: gui/options/options.json[0].options[11].tooltip
+msgid ""
+"Show time that messages are posted in the lobby, gamesetup and ingame chat."
+msgstr "顯示訊息被張貼在大廳、遊戲設定或是遊戲中聊天的時間。"
+
+#: gui/options/options.json[0].options[1].label
+msgid "Player name (multiplayer)"
+msgstr "玩家名稱（多人）"
+
+#: gui/options/options.json[0].options[1].tooltip
+msgid "How you want to be addressed in multiplayer matches (except lobby)."
+msgstr "您在多人遊戲配對中要如何被稱呼（除了大廳外）。"
+
+#: gui/options/options.json[0].options[2].label
+msgid "Background pause"
+msgstr "背景暫停"
+
+#: gui/options/options.json[0].options[2].tooltip
+msgid "Pause single-player games when window loses focus."
+msgstr "當視窗失去焦點時暫停單人遊戲。"
+
+#: gui/options/options.json[0].options[3].label
+msgid "Enable welcome screen"
+msgstr "啟用歡迎畫面"
+
+#: gui/options/options.json[0].options[3].tooltip
+msgid ""
+"If you disable it, the welcome screen will still appear once, each time a "
+"new version is available. You can always launch it from the main menu."
+msgstr "若您停用它，歡迎畫面只在每次有新版可用時才會出現。您仍能從主選單中啟動它。"
+
+#: gui/options/options.json[0].options[4].label
+msgid "Network warnings"
+msgstr "網路警告"
+
+#: gui/options/options.json[0].options[4].tooltip
+msgid "Show which player has a bad connection in multiplayer games."
+msgstr "顯示在多人遊戲中哪個玩家的連線不佳。"
+
+#: gui/options/options.json[0].options[5].label
+msgid "FPS overlay"
+msgstr "每秒禎數覆蓋層"
+
+#: gui/options/options.json[0].options[5].tooltip
+msgid "Show frames per second in top right corner."
+msgstr "在右上角顯示每秒幾禎。"
+
+#: gui/options/options.json[0].options[6].label
+msgid "Real time overlay"
+msgstr "實際時間覆蓋層"
+
+#: gui/options/options.json[0].options[6].tooltip
+msgid "Show current system time in top right corner."
+msgstr "在右上角顯示目前的系統時間。"
+
+#: gui/options/options.json[0].options[7].label
+msgid "Game time overlay"
+msgstr "遊戲時間覆蓋層"
+
+#: gui/options/options.json[0].options[7].tooltip
+msgid "Show current simulation time in top right corner."
+msgstr "在右上角顯示目前的模擬時間。"
+
+#: gui/options/options.json[0].options[8].label
+msgid "Ceasefire time overlay"
+msgstr "停火時間覆蓋層"
+
+#: gui/options/options.json[0].options[8].tooltip
+msgid "Always show the remaining ceasefire time."
+msgstr "總是顯示剩餘的停火時間。"
+
+#: gui/options/options.json[0].options[9].label
+msgid "Late observer joins"
+msgstr "後期加入觀察者"
+
+#: gui/options/options.json[0].options[9].list[0].label
+#: gui/options/options.json[3].options[5].list[0].label
+msgid "Everyone"
+msgstr "每個人"
+
+#: gui/options/options.json[0].options[9].list[1].label
+#: gui/options/options.json[3].options[5].list[1].label
+msgid "Buddies"
+msgstr "夥伴"
+
+#: gui/options/options.json[0].options[9].list[2].label
+#: gui/options/options.json[1].options[4].list[0].label
+#: gui/options/options.json[1].options[5].list[0].label
+#: gui/options/options.json[3].options[5].list[2].label
+msgid "Disabled"
+msgstr "已停用"
+
+#: gui/options/options.json[0].options[9].tooltip
+msgid ""
+"Allow everybody or buddies only to join the game as observer after it "
+"started."
+msgstr "讓每個人或是夥伴在遊戲開始後僅能作為觀察者加入遊戲。"
+
+#: gui/options/options.json[1].label
+msgid "Graphics"
+msgstr "顯示"
+
+#: gui/options/options.json[1].options[0].label
+msgid "Windowed mode"
+msgstr "視窗模式"
+
+#: gui/options/options.json[1].options[0].tooltip
+msgid "Start 0 A.D. in a window."
+msgstr "以視窗模式啟動 0 A.D. "
+
+#: gui/options/options.json[1].options[10].label
+msgid "Shadow filtering"
+msgstr "陰影過濾"
+
+#: gui/options/options.json[1].options[10].tooltip
+msgid "Smooth shadows."
+msgstr "柔和陰影"
+
+#: gui/options/options.json[1].options[11].label
+msgid "Unit silhouettes"
+msgstr "單位剪影"
+
+#: gui/options/options.json[1].options[11].tooltip
+msgid "Show outlines of units behind structures."
+msgstr "顯示在建築物後面的單位的輪廓"
+
+#: gui/options/options.json[1].options[12].label
+msgid "Particles"
+msgstr "粒子效果"
+
+#: gui/options/options.json[1].options[12].tooltip
+msgid "Enable particles."
+msgstr "開啟粒子效果"
+
+#: gui/options/options.json[1].options[13].label
+msgid "Water effects"
+msgstr "水面特效"
+
+#: gui/options/options.json[1].options[13].tooltip
+msgid ""
+"When OFF, use the lowest settings possible to render water. This makes other"
+" settings irrelevant."
+msgstr "當關閉時，儘可能使用最低階的設定來繪製水面。這將會忽略其他設定。"
+
+#: gui/options/options.json[1].options[14].label
+msgid "High-quality water effects"
+msgstr "高品質水面特效"
+
+#: gui/options/options.json[1].options[14].tooltip
+msgid ""
+"Use higher-quality effects for water, rendering coastal waves, shore foam, "
+"and ships trails."
+msgstr "使用較高品質的水面效果，算繪靠近岸邊的波浪、海岸波浪、以及船跡。"
+
+#: gui/options/options.json[1].options[15].label
+msgid "Water reflections"
+msgstr "水面反射"
+
+#: gui/options/options.json[1].options[15].tooltip
+msgid "Allow water to reflect a mirror image."
+msgstr "使水面反射鏡像"
+
+#: gui/options/options.json[1].options[16].label
+msgid "Water refraction"
+msgstr "水面反射"
+
+#: gui/options/options.json[1].options[16].tooltip
+msgid "Use a real water refraction map and not transparency."
+msgstr "使用不透明的真實水面折射。"
+
+#: gui/options/options.json[1].options[17].label
+msgid "Real water depth"
+msgstr "真實水深"
+
+#: gui/options/options.json[1].options[17].tooltip
+msgid "Use actual water depth in rendering calculations."
+msgstr "使用真實水深進行算圖"
+
+#: gui/options/options.json[1].options[18].label
+msgid "Shadows on water"
+msgstr "水中倒影"
+
+#: gui/options/options.json[1].options[18].tooltip
+msgid "Cast shadows on water."
+msgstr "投射水中倒影"
+
+#: gui/options/options.json[1].options[19].label
+msgid "Smooth vision"
+msgstr "柔和視覺"
+
+#: gui/options/options.json[1].options[19].tooltip
+msgid "Lift darkness and fog-of-war smoothly."
+msgstr "平順地解除黑暗與戰爭迷霧"
+
+#: gui/options/options.json[1].options[1].label
+msgid "Prefer GLSL"
+msgstr "偏好 GLSL"
+
+#: gui/options/options.json[1].options[1].tooltip
+msgid "Use OpenGL 2.0 shaders (recommended)."
+msgstr "使用 OpenGL 2.0 著色器（推薦）"
+
+#: gui/options/options.json[1].options[20].label
+msgid "Show sky"
+msgstr "顯示天空"
+
+#: gui/options/options.json[1].options[20].tooltip
+msgid "Render Sky."
+msgstr "算繪天空"
+
+#: gui/options/options.json[1].options[21].label
+msgid "VSync"
+msgstr "垂直同步"
+
+#: gui/options/options.json[1].options[21].tooltip
+msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
+msgstr "使用垂直同步以修復螢幕撕裂。需要重新啟動遊戲"
+
+#: gui/options/options.json[1].options[22].label
+msgid "FPS throttling in menus"
+msgstr "在選單中限制 FPS"
+
+#: gui/options/options.json[1].options[22].tooltip
+msgid ""
+"To save CPU workload, throttle render frequency in all menus. Set to maximum"
+" to disable throttling."
+msgstr "為了降低 CPU 負載，在所有選單中限制算繪頻率。設定為最大值以停用限制。"
+
+#: gui/options/options.json[1].options[23].label
+msgid "FPS throttling in games"
+msgstr "在遊戲中限制 FPS"
+
+#: gui/options/options.json[1].options[23].tooltip
+msgid ""
+"To save CPU workload, throttle render frequency in running games. Set to "
+"maximum to disable throttling."
+msgstr "為了降低 CPU 負載，在遊戲中限制算繪頻率。設定為最大值以停用限制。"
+
+#: gui/options/options.json[1].options[2].label
+msgid "Fog"
+msgstr "霧"
+
+#: gui/options/options.json[1].options[2].tooltip
+msgid "Enable Fog."
+msgstr "開啟霧。"
+
+#: gui/options/options.json[1].options[3].label
+msgid "Post-processing"
+msgstr "後處理"
+
+#: gui/options/options.json[1].options[3].tooltip
+msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
+msgstr "使用螢幕後處理過濾器（HDR、Bloom、DOF 等等）。"
+
+#: gui/options/options.json[1].options[4].label
+msgid "Anti-Aliasing"
+msgstr "反鋸齒"
+
+#: gui/options/options.json[1].options[4].list[0].tooltip
+msgid "Do not use anti-aliasing."
+msgstr "不要使用反鋸齒。"
+
+#: gui/options/options.json[1].options[4].list[1].label
+msgid "FXAA"
+msgstr "FXAA"
+
+#: gui/options/options.json[1].options[4].list[1].tooltip
+msgid "Fast, but simple anti-aliasing."
+msgstr "快速，但簡單的反鋸齒。"
+
+#: gui/options/options.json[1].options[4].list[2].label
+msgid "MSAA (x2)"
+msgstr ""
+
+#: gui/options/options.json[1].options[4].list[2].tooltip
+msgid ""
+"Slow, but high-quality anti-aliasing, uses 2 samples per pixel. Supported "
+"for GL3.3+."
+msgstr ""
+
+#: gui/options/options.json[1].options[4].list[3].label
+msgid "MSAA (x4)"
+msgstr ""
+
+#: gui/options/options.json[1].options[4].list[3].tooltip
+msgid ""
+"Slow, but high-quality anti-aliasing, uses 4 samples per pixel. Supported "
+"for GL3.3+."
+msgstr ""
+
+#: gui/options/options.json[1].options[4].list[4].label
+msgid "MSAA (x8)"
+msgstr ""
+
+#: gui/options/options.json[1].options[4].list[4].tooltip
+msgid ""
+"Slow, but high-quality anti-aliasing, uses 8 samples per pixel. Supported "
+"for GL3.3+."
+msgstr ""
+
+#: gui/options/options.json[1].options[4].list[5].label
+msgid "MSAA (x16)"
+msgstr ""
+
+#: gui/options/options.json[1].options[4].list[5].tooltip
+msgid ""
+"Slow, but high-quality anti-aliasing, uses 16 samples per pixel. Supported "
+"for GL3.3+."
+msgstr ""
+
+#: gui/options/options.json[1].options[4].tooltip
+msgid "Reduce aliasing effect on edges."
+msgstr "減少邊緣的鋸齒效果。"
+
+#: gui/options/options.json[1].options[5].label
+msgid "Sharpening"
+msgstr "銳利化"
+
+#: gui/options/options.json[1].options[5].list[0].tooltip
+msgid "Do not use sharpening."
+msgstr "不要使用銳利化。"
+
+#: gui/options/options.json[1].options[5].list[1].label
+msgid "FidelityFX CAS"
+msgstr "FidelityFX CAS"
+
+#: gui/options/options.json[1].options[5].list[1].tooltip
+msgid "Contrast adaptive sharpening, a fast, contrast based sharpening pass."
+msgstr "對比度自適應銳利化，一種基於對比度的快速銳利化過程。"
+
+#: gui/options/options.json[1].options[5].tooltip
+msgid "Reduce blurry effects."
+msgstr "減少模糊效果。"
+
+#: gui/options/options.json[1].options[6].label
+msgid "Sharpness factor"
+msgstr "銳利化係數"
+
+#: gui/options/options.json[1].options[6].tooltip
+msgid "The sharpness of the choosen pass."
+msgstr "選擇銳利化的方式。"
+
+#: gui/options/options.json[1].options[7].label
+msgid "Shader effects"
+msgstr "銳利化特效"
+
+#: gui/options/options.json[1].options[7].tooltip
+msgid "Number of shader effects. REQUIRES GAME RESTART"
+msgstr "陰影效果的數量。需要重新啟動遊戲"
+
+#: gui/options/options.json[1].options[8].label
+msgid "Shadows"
+msgstr "陰影"
+
+#: gui/options/options.json[1].options[8].tooltip
+msgid "Enable shadows."
+msgstr "開啟陰影"
+
+#: gui/options/options.json[1].options[9].label
+msgid "Shadow quality"
+msgstr "陰影品質"
+
+#: gui/options/options.json[1].options[9].list[0].label
+msgid "Very Low"
+msgstr "非常低"
+
+#: gui/options/options.json[1].options[9].list[1].label
+msgid "Low"
+msgstr "低"
+
+#: gui/options/options.json[1].options[9].list[2].label
+#: gui/options/options.json[3].options[3].list[3].label
+msgid "Medium"
+msgstr "中"
+
+#: gui/options/options.json[1].options[9].list[3].label
+msgid "High"
+msgstr "高"
+
+#: gui/options/options.json[1].options[9].list[4].label
+msgid "Very High"
+msgstr "非常高"
+
+#: gui/options/options.json[1].options[9].tooltip
+msgid ""
+"Shadow map resolution. High values can crash the game when using a graphics "
+"card with low memory!"
+msgstr "陰影解析度。太高的值可能會在使用較低記憶體顯示卡的時候讓您的遊戲當機！"
+
+#: gui/options/options.json[1].tooltip
+msgid "Set the balance between performance and visual appearance."
+msgstr "設定在效能與視覺效果間的平衡。"
+
+#: gui/options/options.json[2].options[0].label
+msgid "Master volume"
+msgstr "主音量"
+
+#: gui/options/options.json[2].options[0].tooltip
+msgid "Master audio gain."
+msgstr "調整主音量"
+
+#: gui/options/options.json[2].options[1].label
+msgid "Music volume"
+msgstr "音樂音量"
+
+#: gui/options/options.json[2].options[1].tooltip
+msgid "In game music gain."
+msgstr "調整遊戲中配樂音量"
+
+#: gui/options/options.json[2].options[2].label
+msgid "Ambient volume"
+msgstr "環境音量"
+
+#: gui/options/options.json[2].options[2].tooltip
+msgid "In game ambient sound gain."
+msgstr "調整遊戲中環境音效音量"
+
+#: gui/options/options.json[2].options[3].label
+msgid "Action volume"
+msgstr "動作音量"
+
+#: gui/options/options.json[2].options[3].tooltip
+msgid "In game unit action sound gain."
+msgstr "調整遊戲中單位動作音效的音量"
+
+#: gui/options/options.json[2].options[4].label
+msgid "UI volume"
+msgstr "介面音量"
+
+#: gui/options/options.json[2].options[4].tooltip
+msgid "UI sound gain."
+msgstr "調整界面的音量"
+
+#: gui/options/options.json[2].options[5].label
+msgid "Nick notification"
+msgstr "暱稱通知"
+
+#: gui/options/options.json[2].options[5].tooltip
+msgid "Receive audio notification when someone types your nick."
+msgstr "當某人輸入您的暱稱時，接收音訊通知。"
+
+#: gui/options/options.json[2].options[6].label
+msgid "Game setup - new player notification"
+msgstr "遊戲設置 - 新玩家通知"
+
+#: gui/options/options.json[2].options[6].tooltip
+msgid "Receive audio notification when a new client joins the game setup."
+msgstr "當新客戶端加入遊戲設置時，接收音訊通知。"
+
+#: gui/options/options.json[3].label
+msgid "Game Setup"
+msgstr "遊戲設定"
+
+#: gui/options/options.json[3].options[0].label
+msgid "Enable game setting tips"
+msgstr "啟用遊戲設定提示"
+
+#: gui/options/options.json[3].options[0].tooltip
+msgid "Show tips when setting up a game."
+msgstr "當設定遊戲時顯示提示。"
+
+#: gui/options/options.json[3].options[1].label
+msgid "Enable settings panel slide"
+msgstr "啟用設定面板簡報"
+
+#: gui/options/options.json[3].options[1].tooltip
+msgid "Slide the settings panel when opening, closing or resizing."
+msgstr "打開、關閉或調整大小時會滑動設定面板。"
+
+#: gui/options/options.json[3].options[2].label
+msgid "Persist match settings"
+msgstr "保持遭遇戰設定"
+
+#: gui/options/options.json[3].options[2].tooltip
+msgid ""
+"Save and restore match settings for quick reuse when hosting another game."
+msgstr "儲存及復原對戰設定以供主持另一場遊戲時快速再利用"
+
+#: gui/options/options.json[3].options[3].label
+msgid "Default AI difficulty"
+msgstr "預設的 AI 難度"
+
+#: gui/options/options.json[3].options[3].list[0].label
+msgid "Sandbox"
+msgstr "測試區"
+
+#: gui/options/options.json[3].options[3].list[1].label
+msgid "Very Easy"
+msgstr "非常簡單"
+
+#: gui/options/options.json[3].options[3].list[2].label
+msgid "Easy"
+msgstr "簡易"
+
+#: gui/options/options.json[3].options[3].list[4].label
+msgid "Hard"
+msgstr "困難"
+
+#: gui/options/options.json[3].options[3].list[5].label
+msgid "Very Hard"
+msgstr "非常難"
+
+#: gui/options/options.json[3].options[3].tooltip
+msgid "Default difficulty of the AI."
+msgstr "這個 AI 的預設難度。"
+
+#: gui/options/options.json[3].options[4].label
+msgid "Default AI behavior"
+msgstr "預設的 AI 行為"
+
+#: gui/options/options.json[3].options[4].list[0].label
+msgid "Random"
+msgstr "隨機"
+
+#: gui/options/options.json[3].options[4].list[1].label
+msgid "Balanced"
+msgstr "平衡的"
+
+#: gui/options/options.json[3].options[4].list[2].label
+msgid "Aggressive"
+msgstr "積極的"
+
+#: gui/options/options.json[3].options[4].list[3].label
+msgid "Defensive"
+msgstr "防禦"
+
+#: gui/options/options.json[3].options[4].tooltip
+msgid "Default behavior of the AI."
+msgstr "這個 AI 的預設行為"
+
+#: gui/options/options.json[3].options[5].label
+msgid "Assign players"
+msgstr "分配玩家"
+
+#: gui/options/options.json[3].options[5].list[0].tooltip
+msgid "Players joining the match will be assigned if there is a free slot."
+msgstr "玩家加入對戰時如果有空的槽位會被分配。"
+
+#: gui/options/options.json[3].options[5].list[1].tooltip
+msgid ""
+"Players joining the match will only be assigned if they are a buddy of the "
+"host and if there is a free slot."
+msgstr "玩家加入對戰時如果有空的槽位且是主持人的好友才會被分配。"
+
+#: gui/options/options.json[3].options[5].list[2].tooltip
+msgid "Players only receive a slot when the host assigns them explicitly."
+msgstr "玩家只有在主持人手動分配才會接收槽位。"
+
+#: gui/options/options.json[3].options[5].tooltip
+msgid ""
+"Automatically assign joining clients to free player slots during the match "
+"setup."
+msgstr "在配對設定中自動分配加入的客戶端以釋放遊戲中的玩家空缺。"
+
+#: gui/options/options.json[4].label
+msgid "Lobby"
+msgstr "大廳"
+
+#: gui/options/options.json[4].options[0].label
+msgid "TLS encryption"
+msgstr "TLS 加密"
+
+#: gui/options/options.json[4].options[0].tooltip
+msgid ""
+"Protect login and data exchanged with the lobby server using TLS encryption."
+msgstr "使用 TLS 加密的大廳伺服器保護登入與資料交換。"
+
+#: gui/options/options.json[4].options[1].label
+msgid "Chat backlog"
+msgstr "聊天記錄"
+
+#: gui/options/options.json[4].options[1].tooltip
+msgid "Number of backlogged messages to load when joining the lobby."
+msgstr "加入大廳時要載入的積壓訊息數量。"
+
+#: gui/options/options.json[4].options[2].label
+msgid "Game rating column"
+msgstr "遊戲評價欄"
+
+#: gui/options/options.json[4].options[2].tooltip
+msgid ""
+"Show the average rating of the participating players in a column of the "
+"gamelist."
+msgstr "在遊戲清單中的一欄顯示參與玩家的平均評價。"
+
+#: gui/options/options.json[4].tooltip
+msgid "These settings only affect the multiplayer."
+msgstr "這些設定僅影響多人遊戲。"
+
+#: gui/options/options.json[5].label
+msgid "In-Game"
+msgstr "遊戲中"
+
+#: gui/options/options.json[5].options[0].label
+msgid "Wounded unit health"
+msgstr "負傷單位的生命值"
+
+#: gui/options/options.json[5].options[0].tooltip
+msgid ""
+"The wounded unit hotkey considers the selected units as wounded if their "
+"health percentage falls below this number."
+msgstr "如果單位的血量百分比低於此數字，將會被受傷單位快捷鍵認定為受傷。"
+
+#: gui/options/options.json[5].options[10].label
+msgid "Rank icon above status bar"
+msgstr "在狀態列上的階級圖示"
+
+#: gui/options/options.json[5].options[10].tooltip
+msgid "Show rank icons above status bars."
+msgstr "在狀態列上顯示階級圖示。"
+
+#: gui/options/options.json[5].options[11].label
+msgid "Experience status bar"
+msgstr "經驗狀態條"
+
+#: gui/options/options.json[5].options[11].tooltip
+msgid "Show an experience status bar above each selected unit."
+msgstr ""
+
+#: gui/options/options.json[5].options[12].label
+msgid "Detailed tooltips"
+msgstr ""
+
+#: gui/options/options.json[5].options[12].tooltip
+msgid ""
+"Show detailed tooltips for trainable units in unit-producing structures."
+msgstr ""
+
+#: gui/options/options.json[5].options[13].label
+msgid "Sort resources and population tooltip"
+msgstr "排序資源與人口工具提示"
+
+#: gui/options/options.json[5].options[13].list[0].label
+msgid "Unordered"
+msgstr "未排序"
+
+#: gui/options/options.json[5].options[13].list[1].label
+msgid "Ascending"
+msgstr "升冪排序"
+
+#: gui/options/options.json[5].options[13].list[2].label
+msgid "Descending"
+msgstr "降冪"
+
+#: gui/options/options.json[5].options[13].tooltip
+msgid ""
+"Dynamically sort players in the resources and population tooltip by value."
+msgstr "按照值來動態排序資源與人口工具提示中的玩家。"
+
+#: gui/options/options.json[5].options[14].label
+msgid "Diplomacy colors: self"
+msgstr ""
+
+#: gui/options/options.json[5].options[14].tooltip
+msgid "Color of your units when diplomacy colors are enabled."
+msgstr "當外交顏色啟用時，你自己的單位之顏色"
+
+#: gui/options/options.json[5].options[15].label
+msgid "Diplomacy colors: ally"
+msgstr ""
+
+#: gui/options/options.json[5].options[15].tooltip
+msgid "Color of allies when diplomacy colors are enabled."
+msgstr "當外交顏色啟用時，同盟者之顏色"
+
+#: gui/options/options.json[5].options[16].label
+msgid "Diplomacy colors: neutral"
+msgstr ""
+
+#: gui/options/options.json[5].options[16].tooltip
+msgid "Color of neutral players when diplomacy colors are enabled."
+msgstr "當外交顏色啟用時，中立玩家之顏色"
+
+#: gui/options/options.json[5].options[17].label
+msgid "Diplomacy colors: enemy"
+msgstr ""
+
+#: gui/options/options.json[5].options[17].tooltip
+msgid "Color of enemies when diplomacy colors are enabled."
+msgstr "當外交顏色啟用時，敵對玩家之顏色"
+
+#: gui/options/options.json[5].options[18].label
+msgid "Snap to edges"
+msgstr ""
+
+#: gui/options/options.json[5].options[18].list[0].label
+msgid "Hotkey to enable snapping"
+msgstr ""
+
+#: gui/options/options.json[5].options[18].list[0].tooltip
+msgid ""
+"New structures are aligned with nearby structures while pressing the hotkey."
+msgstr ""
+
+#: gui/options/options.json[5].options[18].list[1].label
+msgid "Hotkey to disable snapping"
+msgstr ""
+
+#: gui/options/options.json[5].options[18].list[1].tooltip
+msgid ""
+"New structures are aligned with nearby structures unless the hotkey is "
+"pressed."
+msgstr ""
+
+#: gui/options/options.json[5].options[18].tooltip
+msgid "This option allows to align new structures with nearby structures."
+msgstr ""
+
+#: gui/options/options.json[5].options[19].label
+msgid "Control Group Membership"
+msgstr ""
+
+#: gui/options/options.json[5].options[19].list[0].label
+msgid "Single"
+msgstr ""
+
+#: gui/options/options.json[5].options[19].list[0].tooltip
+msgid ""
+"When adding a Unit or Structure to a control group, they are removed from "
+"other control groups. Use this choice if you want control groups to refer to"
+" distinct armies."
+msgstr ""
+
+#: gui/options/options.json[5].options[19].list[1].label
+msgid "Multiple"
+msgstr ""
+
+#: gui/options/options.json[5].options[19].list[1].tooltip
+msgid ""
+"Units and Structures can be part of multiple control groups. This is useful "
+"to keep control groups for distinct armies and a control group for the "
+"entire army simultaneously."
+msgstr ""
+
+#: gui/options/options.json[5].options[19].tooltip
+msgid "Decide whether units can be part of multiple control groups."
+msgstr ""
+
+#: gui/options/options.json[5].options[1].label
+msgid "Batch training size"
+msgstr "批次訓練數量"
+
+#: gui/options/options.json[5].options[1].tooltip
+msgid "Number of units trained per batch by default."
+msgstr "預設一批訓練多少單位。"
+
+#: gui/options/options.json[5].options[2].label
+msgid "Scroll batch increment ratio"
+msgstr "批次滾動增加速率"
+
+#: gui/options/options.json[5].options[2].tooltip
+msgid ""
+"Number of times you have to scroll to increase/decrease the batchsize by 1."
+msgstr "您必須捲動以將批次生產大小增加／減少 1 的次數。"
+
+#: gui/options/options.json[5].options[3].label
+msgid "Chat notification attack"
+msgstr "聊天通知攻擊"
+
+#: gui/options/options.json[5].options[3].tooltip
+msgid "Show a chat notification if you are attacked by another player."
+msgstr "如果您被其他玩家攻擊時顯示聊天通知。"
+
+#: gui/options/options.json[5].options[4].label
+msgid "Chat notification tribute"
+msgstr "聊天通知進貢"
+
+#: gui/options/options.json[5].options[4].tooltip
+msgid ""
+"Show a chat notification if an ally tributes resources to another team "
+"member if teams are locked, and all tributes in observer mode."
+msgstr "如果有盟友在團隊鎖定的情況下進貢資源給另一個團隊成員時顯示聊天通知，且所有進貢都可以在觀察者模式中看到。"
+
+#: gui/options/options.json[5].options[5].label
+msgid "Chat notification barter"
+msgstr "聊天通知交易"
+
+#: gui/options/options.json[5].options[5].tooltip
+msgid ""
+"Show a chat notification to observers when a player bartered resources."
+msgstr "當玩家交換資源時向觀察者顯示聊天通知。"
+
+#: gui/options/options.json[5].options[6].label
+msgid "Chat notification phase"
+msgstr "聊天通知時代"
+
+#: gui/options/options.json[5].options[6].list[0].label
+msgid "Disable"
+msgstr "停用"
+
+#: gui/options/options.json[5].options[6].list[1].label
+msgid "Completed"
+msgstr "已完成"
+
+#: gui/options/options.json[5].options[6].list[2].label
+msgid "All displayed"
+msgstr "所有已顯示"
+
+#: gui/options/options.json[5].options[6].tooltip
+msgid ""
+"Show a chat notification if you or an ally have started, aborted or "
+"completed a new phase, and phases of all players in observer mode."
+msgstr "如果您或盟友開始、中止或完成新的時代時顯示聊天通知，且所有玩家的時代都會在觀察者模式中顯示。"
+
+#: gui/options/options.json[5].options[7].label
+msgid "Attack range visualization"
+msgstr "攻擊範圍可見度"
+
+#: gui/options/options.json[5].options[7].tooltip
+msgid ""
+"Display the attack range of selected defensive structures (can also be "
+"toggled in-game with the hotkey)."
+msgstr "顯示被選的防禦建築之攻擊範圍（也可以在遊戲中用快捷鍵切換）"
+
+#: gui/options/options.json[5].options[8].label
+msgid "Aura range visualization"
+msgstr "光環範圍可見度"
+
+#: gui/options/options.json[5].options[8].tooltip
+msgid ""
+"Display the range of auras of selected units and structures (can also be "
+"toggled in-game with the hotkey)."
+msgstr "顯示選定單位與建築物的光環範圍（遊戲中也可以使用快捷鍵切換）"
+
+#: gui/options/options.json[5].options[9].label
+msgid "Heal range visualization"
+msgstr "治療範圍可見度"
+
+#: gui/options/options.json[5].options[9].tooltip
+msgid ""
+"Display the healing range of selected units (can also be toggled in-game "
+"with the hotkey)."
+msgstr "顯示選定單位的醫療範圍（遊戲中也可以使用快捷鍵切換）。"
+
+#: gui/options/options.json[5].tooltip
+msgid "Change options regarding the in-game settings."
+msgstr "改變關於 in-game的設定"
+
+#: gui/options/options.xml:(caption):15
+msgid "Game Options"
+msgstr "遊戲選項"
+
+#: gui/options/options.xml:(caption):42
+msgid "Reset"
+msgstr "重置"
+
+#: gui/options/options.xml:(caption):48
+msgid "Revert"
+msgstr "還原"
+
+#: gui/options/options.xml:(tooltip):43
+msgid "Resets user settings to their game default"
+msgstr "重置使用者設定為他們的遊戲預設值"
+
+#: gui/options/options.xml:(tooltip):49
+msgid "Reverts to previous saved settings"
+msgstr "復原至先前儲存的設定"
+
+#: gui/options/options.xml:(tooltip):55
+msgid "Saves changes"
+msgstr "儲存變更"
+
+#: gui/options/options.xml:(tooltip):61
+msgid "Unsaved changes affect this session only"
+msgstr "未儲存的變更只影響本遊戲階段"
+
 #: gui/pregame/MainMenuItems.js:3
 msgid "Learn To Play"
 msgstr "遊戲指南"
@@ -1401,7 +2593,7 @@ msgstr "新手教程"
 msgid "Start the economic tutorial."
 msgstr "開始一個經濟的教學課程。"
 
-#: gui/pregame/MainMenuItems.js:24 gui/civinfo/civinfo.xml:(caption):123
+#: gui/civinfo/civinfo.xml:(caption):123 gui/pregame/MainMenuItems.js:24
 #: gui/reference/structree/structree.xml:(caption):20
 msgid "Structure Tree"
 msgstr "科技樹"
@@ -1412,9 +2604,8 @@ msgid ""
 "%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
 msgstr "%(hotkey)s：觀看0 A.D的文明科技樹特色"
 
-#: gui/pregame/MainMenuItems.js:36
+#: gui/civinfo/civinfo.xml:(caption):18 gui/pregame/MainMenuItems.js:36
 #: gui/reference/common/Buttons/CivInfoButton.js:21
-#: gui/civinfo/civinfo.xml:(caption):18
 msgid "Civilization Overview"
 msgstr "文明總覽"
 
@@ -1525,7 +2716,7 @@ msgstr ""
 msgid "Adjust hotkeys."
 msgstr ""
 
-#: gui/pregame/MainMenuItems.js:159 gui/locale/locale.xml:(caption):14
+#: gui/locale/locale.xml:(caption):14 gui/pregame/MainMenuItems.js:159
 msgid "Language"
 msgstr "語言"
 
@@ -1726,6 +2917,21 @@ msgid ""
 "improve performance and compatibility."
 msgstr "您可以選擇自動將回饋傳給我們，以幫助我們修理錯誤、提升效能和相容性。"
 
+#: gui/reference/common/Buttons/CivInfoButton.js:27
+#, javascript-format
+msgid "%(hotkey)s: Switch to Civilization Overview."
+msgstr "%(hotkey)s：切換到文明總覽。"
+
+#: gui/civinfo/civinfo.xml:(caption):135 gui/credits/credits.xml:(caption):32
+#: gui/options/options.xml:(caption):60
+#: gui/reference/common/Buttons/CloseButton.js:13
+msgid "Close"
+msgstr "關閉"
+
+#: gui/reference/common/Dropdowns/CivSelectDropdown.js:63
+msgid "Civilization:"
+msgstr "文明："
+
 #: gui/reference/common/TemplateParser.js:128
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
@@ -1744,69 +2950,64 @@ msgid "Built by:"
 msgstr "建立者："
 
 #. Translation: Label before a list of the names of structures or units that
-#. train the unit selected.
+#. train the unit
+#. selected.
 #: gui/reference/common/tooltips.js:33
 msgid "Trained by:"
 msgstr "訓練："
 
 #. Translation: Label before a list of names of structures or units that
-#. research the technology selected.
+#. research the
+#. technology selected.
 #: gui/reference/common/tooltips.js:39
 msgid "Researched at:"
 msgstr "研究於："
 
 #. Translation: Label before a list of the names of structures the selected
-#. unit can construct or build.
+#. unit can
+#. construct or build.
 #: gui/reference/common/tooltips.js:48
 msgid "Builds:"
 msgstr "建立："
 
 #. Translation: Label before a list of the names of technologies the selected
-#. unit or structure can research.
+#. unit or
+#. structure can research.
 #: gui/reference/common/tooltips.js:57
 msgid "Researches:"
 msgstr "研究："
 
 #. Translation: Label before a list of the names of units the selected unit or
-#. structure can train.
+#. structure can
+#. train.
 #: gui/reference/common/tooltips.js:66
 msgid "Trains:"
 msgstr "訓練："
 
 #. Translation: Label before a list of the names of units or structures the
-#. selected unit or structure can be upgradable to.
+#. selected unit or
+#. structure can be upgradable to.
 #: gui/reference/common/tooltips.js:75
 msgid "Upgradable to:"
 msgstr "可升級到："
 
-#: gui/reference/common/Buttons/CivInfoButton.js:27
-#, javascript-format
-msgid "%(hotkey)s: Switch to Civilization Overview."
-msgstr "%(hotkey)s：切換到文明總覽。"
-
-#: gui/reference/common/Buttons/CloseButton.js:13
-#: gui/civinfo/civinfo.xml:(caption):135 gui/credits/credits.xml:(caption):32
-#: gui/options/options.xml:(caption):60
-msgid "Close"
-msgstr "關閉"
-
-#: gui/reference/common/Dropdowns/CivSelectDropdown.js:63
-msgid "Civilization:"
-msgstr "文明："
+#: gui/reference/structree/Sections/Trainer/TrainerSection.js:70
+msgid "Trainer Units"
+msgstr "訓練者單位"
 
 #: gui/reference/structree/StructreePage.js:85
 #, javascript-format
 msgid "%(hotkey)s: Close Structure Tree."
 msgstr "關閉科技樹"
 
-#: gui/reference/structree/Sections/Trainer/TrainerSection.js:70
-msgid "Trainer Units"
-msgstr "訓練者單位"
-
 #: gui/reference/viewer/ViewerPage.js:167
 #, javascript-format
 msgid "%(hotkey)s: Close Template Viewer"
 msgstr ""
+
+#: gui/reference/viewer/viewer.xml:(caption):16
+msgid "Information"
+msgstr "資訊"
 
 #: gui/replaymenu/replay_actions.js:90
 msgid "This replay needs a different sequence of mods:"
@@ -1932,6 +3133,102 @@ msgstr "yyyy-MM-dd HH:mm"
 #: gui/replaymenu/replay_menu.js:337
 msgid "yyyy-MM"
 msgstr "yyyy-MM"
+
+#: gui/replaymenu/replay_menu.xml:(caption):13
+msgid "Replay Games"
+msgstr "遊戲重播"
+
+#: gui/replaymenu/replay_menu.xml:(caption):109
+msgid "Filter compatible replays"
+msgstr "過濾相容的重播"
+
+#: gui/replaymenu/replay_menu.xml:(caption):213
+msgid "Spoiler"
+msgstr "掠奪者"
+
+#: gui/replaymenu/replay_menu.xml:(caption):225
+msgid "Main Menu"
+msgstr "主選單"
+
+#: gui/replaymenu/replay_menu.xml:(caption):237
+msgid "Rebuild Cache"
+msgstr "重建快取"
+
+#: gui/replaymenu/replay_menu.xml:(caption):244
+#: gui/summary/summary.xml:(caption):26
+msgid "Summary"
+msgstr "摘要"
+
+#: gui/replaymenu/replay_menu.xml:(caption):250
+msgid "Start Replay"
+msgstr "開始重播"
+
+#: gui/replaymenu/replay_menu.xml:(heading):73
+msgctxt "replay"
+msgid "Players"
+msgstr "玩家"
+
+#: gui/replaymenu/replay_menu.xml:(heading):81
+msgctxt "replay"
+msgid "Size"
+msgstr "大小"
+
+#: gui/replaymenu/replay_menu.xml:(heading):85
+msgctxt "replay"
+msgid "Population"
+msgstr "人口"
+
+#: gui/replaymenu/replay_menu.xml:(heading):89
+msgctxt "replay"
+msgid "Duration"
+msgstr "持續時間"
+
+#: gui/replaymenu/replay_menu.xml:(tooltip):238
+msgid "Rebuild the replay cache from scratch. Potentially slow!"
+msgstr "從頭建立重播快取。可能會比較慢！"
+
+#: gui/splashscreen/splashscreen.txt:2
+msgid ""
+"[font=\"sans-bold-20\"]  Thank you for installing 0 A.D. Empires Ascendant!"
+msgstr "[font=\"sans-bold-20\"]  感謝您安裝 0 A.D. 崛起的帝國！"
+
+#: gui/splashscreen/splashscreen.txt:3
+msgid "[font=\"sans-16\"]"
+msgstr "[font=\"sans-16\"]"
+
+#: gui/splashscreen/splashscreen.txt:4
+msgid ""
+"[imgleft=\"constructionIcon\"]This game is still in development. Features "
+"are missing and it contains bugs."
+msgstr "[imgleft=\"constructionIcon\"]  本遊戲尚未開發完成，可能缺少某些功能，也有一些程式臭蟲。"
+
+#: gui/splashscreen/splashscreen.txt:6
+msgid ""
+"[imgleft=\"iconLag\"]The game can have performance problems, especially with"
+" large maps and a great number of units."
+msgstr "[imgleft=\"iconLag\"]  遊戲過程可能會有效能上的問題，尤其是遇上大型地圖以及大量單位的時候。"
+
+#: gui/splashscreen/splashscreen.txt:8
+msgid ""
+"[imgleft=\"iconFormation\"]Formations are a work in progress, but you can "
+"toggle forming and disbanding formations as desired."
+msgstr "[imgleft=\"iconFormation\"]  陣型部份仍積極開發中，但您可以視需要切換及關閉陣型功能。"
+
+#: gui/splashscreen/splashscreen.xml:(caption):14
+msgid "Welcome!"
+msgstr "歡迎！"
+
+#: gui/splashscreen/splashscreen.xml:(caption):19
+msgid "Show this message in the future"
+msgstr "未來請顯示此訊息"
+
+#: gui/splashscreen/splashscreen.xml:(caption):25
+msgid "Known Issues (web)"
+msgstr "已知問題（網頁）"
+
+#: gui/splashscreen/splashscreen.xml:(caption):30
+msgid "OK"
+msgstr "確定"
 
 #: gui/summary/layout.js:13
 msgid "Score"
@@ -2278,197 +3575,6 @@ msgstr "用 %(hotkey)s 鍵將摘要分頁向右移動。"
 msgid "Use %(hotkey)s to move a summary tab left."
 msgstr "用 %(hotkey)s 鍵將摘要分頁向左移動。"
 
-#: gui/civinfo/civinfo.xml:(caption):30
-msgid "Civilization Selection"
-msgstr "文明選擇"
-
-#: gui/credits/credits.xml:(caption):19
-msgid "0 A.D. Credits"
-msgstr "0 A.D. 感謝名單"
-
-#: gui/loadgame/load.xml:(heading):26
-#: gui/replaymenu/replay_menu.xml:(heading):69
-msgctxt "replay"
-msgid "Date / Time"
-msgstr "日期／時間"
-
-#: gui/loadgame/load.xml:(heading):30
-msgctxt "replay"
-msgid "Map Type"
-msgstr "地圖類型"
-
-#: gui/loadgame/load.xml:(heading):34
-#: gui/replaymenu/replay_menu.xml:(heading):77
-msgctxt "replay"
-msgid "Map Name"
-msgstr "地圖名稱"
-
-#: gui/loadgame/load.xml:(heading):38
-msgctxt "replay"
-msgid "Description"
-msgstr "描述"
-
-#: gui/loadgame/load.xml:(caption):43
-msgid "No saved games found."
-msgstr "找不到已儲存的遊戲。"
-
-#: gui/loadgame/load.xml:(caption):49 gui/locale/locale.xml:(caption):36
-msgid "Cancel"
-msgstr "取消"
-
-#: gui/loadgame/load.xml:(caption):53
-#: gui/replaymenu/replay_menu.xml:(caption):231
-msgid "Delete"
-msgstr "刪除"
-
-#: gui/loadgame/load.xml:(caption):63
-msgid "Filter compatible saved games"
-msgstr "相容於過濾器的已儲存遊戲"
-
-#: gui/loadgame/load.xml:(caption):73
-msgid "Players:"
-msgstr "玩家數："
-
-#: gui/loadgame/load.xml:(caption):77
-msgid "Played time:"
-msgstr "遊玩時間"
-
-#: gui/loadgame/load.xml:(caption):81
-#: gui/replaymenu/replay_menu.xml:(caption):150
-msgid "Map Type:"
-msgstr "地圖類型："
-
-#: gui/loadgame/load.xml:(caption):85
-#: gui/replaymenu/replay_menu.xml:(caption):165
-msgid "Map Size:"
-msgstr "地圖大小："
-
-#: gui/loadgame/load.xml:(caption):89
-#: gui/replaymenu/replay_menu.xml:(caption):180
-msgid "Victory:"
-msgstr "勝利："
-
-#: gui/locale/locale.xml:(caption):17
-msgid "Language:"
-msgstr "語言："
-
-#. A locale is a set of parameters that defines the user’s language, country
-#. and any special variant preferences that the user wants to see in their
-#. user interface. Here, “Locale” refers to the code that identifies those
-#. settings, such as ‘en_US’.
-#: gui/locale/locale.xml:(caption):31
-msgid "Locale:"
-msgstr "所在區域："
-
-#: gui/locale/locale.xml:(caption):41
-msgid "Advanced"
-msgstr "進階"
-
-#: gui/locale/locale.xml:(caption):46
-msgid "Accept"
-msgstr "接受"
-
-#: gui/options/options.xml:(caption):15
-msgid "Game Options"
-msgstr "遊戲選項"
-
-#: gui/options/options.xml:(caption):42
-msgid "Reset"
-msgstr "重置"
-
-#: gui/options/options.xml:(caption):48
-msgid "Revert"
-msgstr "還原"
-
-#: gui/options/options.xml:(tooltip):43
-msgid "Resets user settings to their game default"
-msgstr "重置使用者設定為他們的遊戲預設值"
-
-#: gui/options/options.xml:(tooltip):49
-msgid "Reverts to previous saved settings"
-msgstr "復原至先前儲存的設定"
-
-#: gui/options/options.xml:(tooltip):55
-msgid "Saves changes"
-msgstr "儲存變更"
-
-#: gui/options/options.xml:(tooltip):61
-msgid "Unsaved changes affect this session only"
-msgstr "未儲存的變更只影響本遊戲階段"
-
-#: gui/reference/viewer/viewer.xml:(caption):16
-msgid "Information"
-msgstr "資訊"
-
-#: gui/replaymenu/replay_menu.xml:(caption):13
-msgid "Replay Games"
-msgstr "遊戲重播"
-
-#: gui/replaymenu/replay_menu.xml:(caption):109
-msgid "Filter compatible replays"
-msgstr "過濾相容的重播"
-
-#: gui/replaymenu/replay_menu.xml:(caption):213
-msgid "Spoiler"
-msgstr "掠奪者"
-
-#: gui/replaymenu/replay_menu.xml:(caption):225
-msgid "Main Menu"
-msgstr "主選單"
-
-#: gui/replaymenu/replay_menu.xml:(caption):237
-msgid "Rebuild Cache"
-msgstr "重建快取"
-
-#: gui/replaymenu/replay_menu.xml:(caption):244
-#: gui/summary/summary.xml:(caption):26
-msgid "Summary"
-msgstr "摘要"
-
-#: gui/replaymenu/replay_menu.xml:(caption):250
-msgid "Start Replay"
-msgstr "開始重播"
-
-#: gui/replaymenu/replay_menu.xml:(heading):73
-msgctxt "replay"
-msgid "Players"
-msgstr "玩家"
-
-#: gui/replaymenu/replay_menu.xml:(heading):81
-msgctxt "replay"
-msgid "Size"
-msgstr "大小"
-
-#: gui/replaymenu/replay_menu.xml:(heading):85
-msgctxt "replay"
-msgid "Population"
-msgstr "人口"
-
-#: gui/replaymenu/replay_menu.xml:(heading):89
-msgctxt "replay"
-msgid "Duration"
-msgstr "持續時間"
-
-#: gui/replaymenu/replay_menu.xml:(tooltip):238
-msgid "Rebuild the replay cache from scratch. Potentially slow!"
-msgstr "從頭建立重播快取。可能會比較慢！"
-
-#: gui/splashscreen/splashscreen.xml:(caption):14
-msgid "Welcome!"
-msgstr "歡迎！"
-
-#: gui/splashscreen/splashscreen.xml:(caption):19
-msgid "Show this message in the future"
-msgstr "未來請顯示此訊息"
-
-#: gui/splashscreen/splashscreen.xml:(caption):25
-msgid "Known Issues (web)"
-msgstr "已知問題（網頁）"
-
-#: gui/splashscreen/splashscreen.xml:(caption):30
-msgid "OK"
-msgstr "確定"
-
 #: gui/summary/summary.xml:(caption):120
 msgctxt "summary chart"
 msgid "Category:"
@@ -2510,1286 +3616,6 @@ msgstr "值"
 msgctxt "summary chart"
 msgid "Type"
 msgstr "類型"
-
-#: gui/credits/texts/art.jsonContent[0].Title
-msgid "Art lead"
-msgstr "美術指導"
-
-#: gui/credits/texts/art.jsonContent[1].Title
-msgid "2D Art"
-msgstr "2D 美術"
-
-#: gui/credits/texts/art.jsonContent[2].Title
-msgid "3D Art"
-msgstr "3D 美術"
-
-#: gui/credits/texts/art.jsonTitle
-msgid "Art"
-msgstr "美術"
-
-#: gui/credits/texts/audio.jsonContent[0].Content[0].Subtitle
-msgid "Sound Manager"
-msgstr "音效總監"
-
-#: gui/credits/texts/audio.jsonContent[0].Content[1].Subtitle
-msgid "Lead Composer"
-msgstr "首席作曲家"
-
-#: gui/credits/texts/audio.jsonContent[0].Title
-msgid "Audio managers"
-msgstr "音樂總監"
-
-#: gui/credits/texts/audio.jsonContent[1].Content[1].Subtitle
-msgid "Additional music, percussion, djembe, sampling"
-msgstr "額外的音樂、打擊樂、非洲鼓、樣本"
-
-#: gui/credits/texts/audio.jsonContent[1].Content[2].Subtitle
-msgid "Additional music"
-msgstr "額外的音樂"
-
-#: gui/credits/texts/audio.jsonContent[1].Content[3].Subtitle
-msgid "Flute"
-msgstr "長笛"
-
-#: gui/credits/texts/audio.jsonContent[1].Content[4].Subtitle
-msgid "Djembe"
-msgstr "非洲鼓"
-
-#: gui/credits/texts/audio.jsonContent[1].Content[5].Subtitle
-msgid "Frame drum, darbuka, riq, toms"
-msgstr "框架鼓、darbuka、riq、toms"
-
-#: gui/credits/texts/audio.jsonContent[1].Content[6].Subtitle
-msgid "Didgeridoo"
-msgstr "迪吉里杜管"
-
-#: gui/credits/texts/audio.jsonContent[1].Content[7].Subtitle
-msgid "Trumpet"
-msgstr "喇叭"
-
-#: gui/credits/texts/audio.jsonContent[1].Content[8].Subtitle
-msgid "Celtic harp"
-msgstr "塞爾特豎琴"
-
-#: gui/credits/texts/audio.jsonContent[1].Content[9].Subtitle
-msgid "Tin whistles"
-msgstr "錫哨"
-
-#: gui/credits/texts/audio.jsonContent[1].Content[10].Subtitle
-msgid "Viola, violin"
-msgstr "中提琴、小提琴"
-
-#: gui/credits/texts/audio.jsonContent[1].Title
-msgid "Music"
-msgstr "音樂"
-
-#: gui/credits/texts/audio.jsonContent[2].Title
-#: gui/options/options.json[2].label
-msgid "Sound"
-msgstr "音效"
-
-#: gui/credits/texts/audio.jsonContent[3].Content[0].Subtitle
-msgid "Greek"
-msgstr "希臘"
-
-#: gui/credits/texts/audio.jsonContent[3].Content[1].Subtitle
-msgid "Latin"
-msgstr "拉丁"
-
-#: gui/credits/texts/audio.jsonContent[3].Content[2].Subtitle
-msgid "Napatan"
-msgstr ""
-
-#: gui/credits/texts/audio.jsonContent[3].Content[3].Subtitle
-msgid "Persian"
-msgstr "波斯人"
-
-#: gui/credits/texts/audio.jsonContent[3].Title
-msgid "Voices"
-msgstr "聲音"
-
-#: gui/credits/texts/audio.jsonTitle
-msgid "Audio"
-msgstr "音訊"
-
-#: gui/credits/texts/balancing.jsonContent[0].Subtitle
-#: gui/credits/texts/history.jsonContent[0].Subtitle
-msgid "Head"
-msgstr "前端"
-
-#: gui/credits/texts/balancing.jsonTitle
-msgid "Balancing"
-msgstr "平衡調整"
-
-#: gui/credits/texts/community.jsonTitle
-msgid "Community and Management"
-msgstr "社群與管理"
-
-#: gui/credits/texts/donators.jsonContent[0].Title
-msgid "Pledgie Drive 1"
-msgstr "Pledgie 宣傳 1"
-
-#: gui/credits/texts/donators.jsonContent[1].Title
-msgid "Pledgie Drive 2"
-msgstr "Pledgie 宣傳 2"
-
-#: gui/credits/texts/donators.jsonContent[2].Title
-msgid ""
-"Indiegogo 2013 campaign\n"
-"More than 1000 donators (!), including:"
-msgstr "Indiegogo 2013 活動\n多於 1000 筆捐款 (!)，包含了："
-
-#: gui/credits/texts/donators.jsonTitle
-msgid "Donors"
-msgstr "捐贈者"
-
-#: gui/credits/texts/history.jsonTitle
-msgid "History References"
-msgstr "歷史參考資料"
-
-#: gui/credits/texts/maps.jsonContent[0].Title
-msgid "Map Making"
-msgstr "地圖製作"
-
-#: gui/credits/texts/maps.jsonContent[1].Title
-msgid "Random Map Scripts"
-msgstr "隨機地圖指令稿"
-
-#: gui/credits/texts/maps.jsonTitle
-msgid "Maps"
-msgstr "地圖"
-
-#: gui/credits/texts/programming.jsonContent[0].Title
-msgid "Programming managers"
-msgstr "程式設計總監"
-
-#: gui/credits/texts/programming.jsonContent[1].Subtitle
-msgid "Special thanks to"
-msgstr "特別感謝"
-
-#: gui/credits/texts/programming.jsonTitle
-msgid "Programming"
-msgstr "程式設計"
-
-#: gui/credits/texts/special.jsonContent[0].Title
-msgid "In Memoriam"
-msgstr "紀念"
-
-#: gui/credits/texts/special.jsonContent[1].Content[0].Subtitle
-msgid "0 A.D. Founder"
-msgstr "0 A.D. 創始者"
-
-#: gui/credits/texts/special.jsonContent[1].Content[1].Subtitle
-msgid "Project Leaders"
-msgstr "專案領導者"
-
-#: gui/credits/texts/special.jsonContent[1].Content[2].Subtitle
-msgid "Co-Lead Designers"
-msgstr "兼任首席設計師"
-
-#: gui/credits/texts/special.jsonContent[1].Title
-msgid "Special thanks to:"
-msgstr "特別感謝："
-
-#: gui/credits/texts/special.jsonContent[2].Title
-msgid "And thanks to the entire community for making 0 A.D. possible."
-msgstr "並感謝整個讓 0 A.D. 變為可能的社群。"
-
-#: gui/credits/texts/special.jsonContent[3].Title
-msgid "No historians were harmed during the development of this project."
-msgstr "在本專案的開發過程中並未傷害任何歷史學家。"
-
-#: gui/credits/texts/special.jsonTitle
-msgid "Special Credits"
-msgstr "特別感謝"
-
-#: gui/credits/texts/translators.jsonTitle
-msgid "Translators"
-msgstr "譯者"
-
-#: gui/options/options.json[0].options[0].tooltip
-msgid "How you want to be addressed in single-player matches."
-msgstr "您在單人遊戲中要如被稱呼。"
-
-#: gui/options/options.json[0].options[0].label
-msgid "Player name (single-player)"
-msgstr "玩家名稱（單人）"
-
-#: gui/options/options.json[0].options[1].tooltip
-msgid "How you want to be addressed in multiplayer matches (except lobby)."
-msgstr "您在多人遊戲配對中要如何被稱呼（除了大廳外）。"
-
-#: gui/options/options.json[0].options[1].label
-msgid "Player name (multiplayer)"
-msgstr "玩家名稱（多人）"
-
-#: gui/options/options.json[0].options[2].tooltip
-msgid "Pause single-player games when window loses focus."
-msgstr "當視窗失去焦點時暫停單人遊戲。"
-
-#: gui/options/options.json[0].options[2].label
-msgid "Background pause"
-msgstr "背景暫停"
-
-#: gui/options/options.json[0].options[3].tooltip
-msgid ""
-"If you disable it, the welcome screen will still appear once, each time a "
-"new version is available. You can always launch it from the main menu."
-msgstr "若您停用它，歡迎畫面只在每次有新版可用時才會出現。您仍能從主選單中啟動它。"
-
-#: gui/options/options.json[0].options[3].label
-msgid "Enable welcome screen"
-msgstr "啟用歡迎畫面"
-
-#: gui/options/options.json[0].options[4].tooltip
-msgid "Show which player has a bad connection in multiplayer games."
-msgstr "顯示在多人遊戲中哪個玩家的連線不佳。"
-
-#: gui/options/options.json[0].options[4].label
-msgid "Network warnings"
-msgstr "網路警告"
-
-#: gui/options/options.json[0].options[5].tooltip
-msgid "Show frames per second in top right corner."
-msgstr "在右上角顯示每秒幾禎。"
-
-#: gui/options/options.json[0].options[5].label
-msgid "FPS overlay"
-msgstr "每秒禎數覆蓋層"
-
-#: gui/options/options.json[0].options[6].tooltip
-msgid "Show current system time in top right corner."
-msgstr "在右上角顯示目前的系統時間。"
-
-#: gui/options/options.json[0].options[6].label
-msgid "Real time overlay"
-msgstr "實際時間覆蓋層"
-
-#: gui/options/options.json[0].options[7].tooltip
-msgid "Show current simulation time in top right corner."
-msgstr "在右上角顯示目前的模擬時間。"
-
-#: gui/options/options.json[0].options[7].label
-msgid "Game time overlay"
-msgstr "遊戲時間覆蓋層"
-
-#: gui/options/options.json[0].options[8].tooltip
-msgid "Always show the remaining ceasefire time."
-msgstr "總是顯示剩餘的停火時間。"
-
-#: gui/options/options.json[0].options[8].label
-msgid "Ceasefire time overlay"
-msgstr "停火時間覆蓋層"
-
-#: gui/options/options.json[0].options[9].list[0].label
-#: gui/options/options.json[3].options[5].list[0].label
-msgid "Everyone"
-msgstr "每個人"
-
-#: gui/options/options.json[0].options[9].list[1].label
-#: gui/options/options.json[3].options[5].list[1].label
-msgid "Buddies"
-msgstr "夥伴"
-
-#: gui/options/options.json[0].options[9].list[2].label
-#: gui/options/options.json[1].options[4].list[0].label
-#: gui/options/options.json[1].options[5].list[0].label
-#: gui/options/options.json[3].options[5].list[2].label
-msgid "Disabled"
-msgstr "已停用"
-
-#: gui/options/options.json[0].options[9].tooltip
-msgid ""
-"Allow everybody or buddies only to join the game as observer after it "
-"started."
-msgstr "讓每個人或是夥伴在遊戲開始後僅能作為觀察者加入遊戲。"
-
-#: gui/options/options.json[0].options[9].label
-msgid "Late observer joins"
-msgstr "後期加入觀察者"
-
-#: gui/options/options.json[0].options[10].tooltip
-msgid "Prevent further observers from joining if the limit is reached."
-msgstr "若已達到上限將會避免再有觀察者加入。"
-
-#: gui/options/options.json[0].options[10].label
-msgid "Observer limit"
-msgstr "觀察者限制"
-
-#: gui/options/options.json[0].options[11].tooltip
-msgid ""
-"Show time that messages are posted in the lobby, gamesetup and ingame chat."
-msgstr "顯示訊息被張貼在大廳、遊戲設定或是遊戲中聊天的時間。"
-
-#: gui/options/options.json[0].options[11].label
-msgid "Chat timestamp"
-msgstr "聊天時間戳記"
-
-#: gui/options/options.json[0].label
-msgid "General"
-msgstr "一般"
-
-#: gui/options/options.json[1].options[0].tooltip
-msgid "Start 0 A.D. in a window."
-msgstr "以視窗模式啟動 0 A.D. "
-
-#: gui/options/options.json[1].options[0].label
-msgid "Windowed mode"
-msgstr "視窗模式"
-
-#: gui/options/options.json[1].options[1].tooltip
-msgid "Use OpenGL 2.0 shaders (recommended)."
-msgstr "使用 OpenGL 2.0 著色器（推薦）"
-
-#: gui/options/options.json[1].options[1].label
-msgid "Prefer GLSL"
-msgstr "偏好 GLSL"
-
-#: gui/options/options.json[1].options[2].tooltip
-msgid "Enable Fog."
-msgstr "開啟霧。"
-
-#: gui/options/options.json[1].options[2].label
-msgid "Fog"
-msgstr "霧"
-
-#: gui/options/options.json[1].options[3].tooltip
-msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
-msgstr "使用螢幕後處理過濾器（HDR、Bloom、DOF 等等）。"
-
-#: gui/options/options.json[1].options[3].label
-msgid "Post-processing"
-msgstr "後處理"
-
-#: gui/options/options.json[1].options[4].list[0].tooltip
-msgid "Do not use anti-aliasing."
-msgstr "不要使用反鋸齒。"
-
-#: gui/options/options.json[1].options[4].list[1].tooltip
-msgid "Fast, but simple anti-aliasing."
-msgstr "快速，但簡單的反鋸齒。"
-
-#: gui/options/options.json[1].options[4].list[1].label
-msgid "FXAA"
-msgstr "FXAA"
-
-#: gui/options/options.json[1].options[4].list[2].tooltip
-msgid ""
-"Slow, but high-quality anti-aliasing, uses 2 samples per pixel. Supported "
-"for GL3.3+."
-msgstr ""
-
-#: gui/options/options.json[1].options[4].list[2].label
-msgid "MSAA (x2)"
-msgstr ""
-
-#: gui/options/options.json[1].options[4].list[3].tooltip
-msgid ""
-"Slow, but high-quality anti-aliasing, uses 4 samples per pixel. Supported "
-"for GL3.3+."
-msgstr ""
-
-#: gui/options/options.json[1].options[4].list[3].label
-msgid "MSAA (x4)"
-msgstr ""
-
-#: gui/options/options.json[1].options[4].list[4].tooltip
-msgid ""
-"Slow, but high-quality anti-aliasing, uses 8 samples per pixel. Supported "
-"for GL3.3+."
-msgstr ""
-
-#: gui/options/options.json[1].options[4].list[4].label
-msgid "MSAA (x8)"
-msgstr ""
-
-#: gui/options/options.json[1].options[4].list[5].tooltip
-msgid ""
-"Slow, but high-quality anti-aliasing, uses 16 samples per pixel. Supported "
-"for GL3.3+."
-msgstr ""
-
-#: gui/options/options.json[1].options[4].list[5].label
-msgid "MSAA (x16)"
-msgstr ""
-
-#: gui/options/options.json[1].options[4].tooltip
-msgid "Reduce aliasing effect on edges."
-msgstr "減少邊緣的鋸齒效果。"
-
-#: gui/options/options.json[1].options[4].label
-msgid "Anti-Aliasing"
-msgstr "反鋸齒"
-
-#: gui/options/options.json[1].options[5].list[0].tooltip
-msgid "Do not use sharpening."
-msgstr "不要使用銳利化。"
-
-#: gui/options/options.json[1].options[5].list[1].tooltip
-msgid "Contrast adaptive sharpening, a fast, contrast based sharpening pass."
-msgstr "對比度自適應銳利化，一種基於對比度的快速銳利化過程。"
-
-#: gui/options/options.json[1].options[5].list[1].label
-msgid "FidelityFX CAS"
-msgstr "FidelityFX CAS"
-
-#: gui/options/options.json[1].options[5].tooltip
-msgid "Reduce blurry effects."
-msgstr "減少模糊效果。"
-
-#: gui/options/options.json[1].options[5].label
-msgid "Sharpening"
-msgstr "銳利化"
-
-#: gui/options/options.json[1].options[6].tooltip
-msgid "The sharpness of the choosen pass."
-msgstr "選擇銳利化的方式。"
-
-#: gui/options/options.json[1].options[6].label
-msgid "Sharpness factor"
-msgstr "銳利化係數"
-
-#: gui/options/options.json[1].options[7].tooltip
-msgid "Number of shader effects. REQUIRES GAME RESTART"
-msgstr "陰影效果的數量。需要重新啟動遊戲"
-
-#: gui/options/options.json[1].options[7].label
-msgid "Shader effects"
-msgstr "銳利化特效"
-
-#: gui/options/options.json[1].options[8].tooltip
-msgid "Enable shadows."
-msgstr "開啟陰影"
-
-#: gui/options/options.json[1].options[8].label
-msgid "Shadows"
-msgstr "陰影"
-
-#: gui/options/options.json[1].options[9].list[0].label
-msgid "Very Low"
-msgstr "非常低"
-
-#: gui/options/options.json[1].options[9].list[1].label
-msgid "Low"
-msgstr "低"
-
-#: gui/options/options.json[1].options[9].list[2].label
-#: gui/options/options.json[3].options[3].list[3].label
-msgid "Medium"
-msgstr "中"
-
-#: gui/options/options.json[1].options[9].list[3].label
-msgid "High"
-msgstr "高"
-
-#: gui/options/options.json[1].options[9].list[4].label
-msgid "Very High"
-msgstr "非常高"
-
-#: gui/options/options.json[1].options[9].tooltip
-msgid ""
-"Shadow map resolution. High values can crash the game when using a graphics "
-"card with low memory!"
-msgstr "陰影解析度。太高的值可能會在使用較低記憶體顯示卡的時候讓您的遊戲當機！"
-
-#: gui/options/options.json[1].options[9].label
-msgid "Shadow quality"
-msgstr "陰影品質"
-
-#: gui/options/options.json[1].options[10].tooltip
-msgid "Smooth shadows."
-msgstr "柔和陰影"
-
-#: gui/options/options.json[1].options[10].label
-msgid "Shadow filtering"
-msgstr "陰影過濾"
-
-#: gui/options/options.json[1].options[11].tooltip
-msgid "Show outlines of units behind structures."
-msgstr "顯示在建築物後面的單位的輪廓"
-
-#: gui/options/options.json[1].options[11].label
-msgid "Unit silhouettes"
-msgstr "單位剪影"
-
-#: gui/options/options.json[1].options[12].tooltip
-msgid "Enable particles."
-msgstr "開啟粒子效果"
-
-#: gui/options/options.json[1].options[12].label
-msgid "Particles"
-msgstr "粒子效果"
-
-#: gui/options/options.json[1].options[13].tooltip
-msgid ""
-"When OFF, use the lowest settings possible to render water. This makes other"
-" settings irrelevant."
-msgstr "當關閉時，儘可能使用最低階的設定來繪製水面。這將會忽略其他設定。"
-
-#: gui/options/options.json[1].options[13].label
-msgid "Water effects"
-msgstr "水面特效"
-
-#: gui/options/options.json[1].options[14].tooltip
-msgid ""
-"Use higher-quality effects for water, rendering coastal waves, shore foam, "
-"and ships trails."
-msgstr "使用較高品質的水面效果，算繪靠近岸邊的波浪、海岸波浪、以及船跡。"
-
-#: gui/options/options.json[1].options[14].label
-msgid "High-quality water effects"
-msgstr "高品質水面特效"
-
-#: gui/options/options.json[1].options[15].tooltip
-msgid "Allow water to reflect a mirror image."
-msgstr "使水面反射鏡像"
-
-#: gui/options/options.json[1].options[15].label
-msgid "Water reflections"
-msgstr "水面反射"
-
-#: gui/options/options.json[1].options[16].tooltip
-msgid "Use a real water refraction map and not transparency."
-msgstr "使用不透明的真實水面折射。"
-
-#: gui/options/options.json[1].options[16].label
-msgid "Water refraction"
-msgstr "水面反射"
-
-#: gui/options/options.json[1].options[17].tooltip
-msgid "Use actual water depth in rendering calculations."
-msgstr "使用真實水深進行算圖"
-
-#: gui/options/options.json[1].options[17].label
-msgid "Real water depth"
-msgstr "真實水深"
-
-#: gui/options/options.json[1].options[18].tooltip
-msgid "Cast shadows on water."
-msgstr "投射水中倒影"
-
-#: gui/options/options.json[1].options[18].label
-msgid "Shadows on water"
-msgstr "水中倒影"
-
-#: gui/options/options.json[1].options[19].tooltip
-msgid "Lift darkness and fog-of-war smoothly."
-msgstr "平順地解除黑暗與戰爭迷霧"
-
-#: gui/options/options.json[1].options[19].label
-msgid "Smooth vision"
-msgstr "柔和視覺"
-
-#: gui/options/options.json[1].options[20].tooltip
-msgid "Render Sky."
-msgstr "算繪天空"
-
-#: gui/options/options.json[1].options[20].label
-msgid "Show sky"
-msgstr "顯示天空"
-
-#: gui/options/options.json[1].options[21].tooltip
-msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
-msgstr "使用垂直同步以修復螢幕撕裂。需要重新啟動遊戲"
-
-#: gui/options/options.json[1].options[21].label
-msgid "VSync"
-msgstr "垂直同步"
-
-#: gui/options/options.json[1].options[22].tooltip
-msgid ""
-"To save CPU workload, throttle render frequency in all menus. Set to maximum"
-" to disable throttling."
-msgstr "為了降低 CPU 負載，在所有選單中限制算繪頻率。設定為最大值以停用限制。"
-
-#: gui/options/options.json[1].options[22].label
-msgid "FPS throttling in menus"
-msgstr "在選單中限制 FPS"
-
-#: gui/options/options.json[1].options[23].tooltip
-msgid ""
-"To save CPU workload, throttle render frequency in running games. Set to "
-"maximum to disable throttling."
-msgstr "為了降低 CPU 負載，在遊戲中限制算繪頻率。設定為最大值以停用限制。"
-
-#: gui/options/options.json[1].options[23].label
-msgid "FPS throttling in games"
-msgstr "在遊戲中限制 FPS"
-
-#: gui/options/options.json[1].tooltip
-msgid "Set the balance between performance and visual appearance."
-msgstr "設定在效能與視覺效果間的平衡。"
-
-#: gui/options/options.json[1].label
-msgid "Graphics"
-msgstr "顯示"
-
-#: gui/options/options.json[2].options[0].tooltip
-msgid "Master audio gain."
-msgstr "調整主音量"
-
-#: gui/options/options.json[2].options[0].label
-msgid "Master volume"
-msgstr "主音量"
-
-#: gui/options/options.json[2].options[1].tooltip
-msgid "In game music gain."
-msgstr "調整遊戲中配樂音量"
-
-#: gui/options/options.json[2].options[1].label
-msgid "Music volume"
-msgstr "音樂音量"
-
-#: gui/options/options.json[2].options[2].tooltip
-msgid "In game ambient sound gain."
-msgstr "調整遊戲中環境音效音量"
-
-#: gui/options/options.json[2].options[2].label
-msgid "Ambient volume"
-msgstr "環境音量"
-
-#: gui/options/options.json[2].options[3].tooltip
-msgid "In game unit action sound gain."
-msgstr "調整遊戲中單位動作音效的音量"
-
-#: gui/options/options.json[2].options[3].label
-msgid "Action volume"
-msgstr "動作音量"
-
-#: gui/options/options.json[2].options[4].tooltip
-msgid "UI sound gain."
-msgstr "調整界面的音量"
-
-#: gui/options/options.json[2].options[4].label
-msgid "UI volume"
-msgstr "介面音量"
-
-#: gui/options/options.json[2].options[5].tooltip
-msgid "Receive audio notification when someone types your nick."
-msgstr "當某人輸入您的暱稱時，接收音訊通知。"
-
-#: gui/options/options.json[2].options[5].label
-msgid "Nick notification"
-msgstr "暱稱通知"
-
-#: gui/options/options.json[2].options[6].tooltip
-msgid "Receive audio notification when a new client joins the game setup."
-msgstr "當新客戶端加入遊戲設置時，接收音訊通知。"
-
-#: gui/options/options.json[2].options[6].label
-msgid "Game setup - new player notification"
-msgstr "遊戲設置 - 新玩家通知"
-
-#: gui/options/options.json[3].options[0].tooltip
-msgid "Show tips when setting up a game."
-msgstr "當設定遊戲時顯示提示。"
-
-#: gui/options/options.json[3].options[0].label
-msgid "Enable game setting tips"
-msgstr "啟用遊戲設定提示"
-
-#: gui/options/options.json[3].options[1].tooltip
-msgid "Slide the settings panel when opening, closing or resizing."
-msgstr "打開、關閉或調整大小時會滑動設定面板。"
-
-#: gui/options/options.json[3].options[1].label
-msgid "Enable settings panel slide"
-msgstr "啟用設定面板簡報"
-
-#: gui/options/options.json[3].options[2].tooltip
-msgid ""
-"Save and restore match settings for quick reuse when hosting another game."
-msgstr "儲存及復原對戰設定以供主持另一場遊戲時快速再利用"
-
-#: gui/options/options.json[3].options[2].label
-msgid "Persist match settings"
-msgstr "保持遭遇戰設定"
-
-#: gui/options/options.json[3].options[3].list[0].label
-msgid "Sandbox"
-msgstr "測試區"
-
-#: gui/options/options.json[3].options[3].list[1].label
-msgid "Very Easy"
-msgstr "非常簡單"
-
-#: gui/options/options.json[3].options[3].list[2].label
-msgid "Easy"
-msgstr "簡易"
-
-#: gui/options/options.json[3].options[3].list[4].label
-msgid "Hard"
-msgstr "困難"
-
-#: gui/options/options.json[3].options[3].list[5].label
-msgid "Very Hard"
-msgstr "非常難"
-
-#: gui/options/options.json[3].options[3].tooltip
-msgid "Default difficulty of the AI."
-msgstr "這個 AI 的預設難度。"
-
-#: gui/options/options.json[3].options[3].label
-msgid "Default AI difficulty"
-msgstr "預設的 AI 難度"
-
-#: gui/options/options.json[3].options[4].list[0].label
-msgid "Random"
-msgstr "隨機"
-
-#: gui/options/options.json[3].options[4].list[1].label
-msgid "Balanced"
-msgstr "平衡的"
-
-#: gui/options/options.json[3].options[4].list[2].label
-msgid "Aggressive"
-msgstr "積極的"
-
-#: gui/options/options.json[3].options[4].list[3].label
-msgid "Defensive"
-msgstr "防禦"
-
-#: gui/options/options.json[3].options[4].tooltip
-msgid "Default behavior of the AI."
-msgstr "這個 AI 的預設行為"
-
-#: gui/options/options.json[3].options[4].label
-msgid "Default AI behavior"
-msgstr "預設的 AI 行為"
-
-#: gui/options/options.json[3].options[5].list[0].tooltip
-msgid "Players joining the match will be assigned if there is a free slot."
-msgstr "玩家加入對戰時如果有空的槽位會被分配。"
-
-#: gui/options/options.json[3].options[5].list[1].tooltip
-msgid ""
-"Players joining the match will only be assigned if they are a buddy of the "
-"host and if there is a free slot."
-msgstr "玩家加入對戰時如果有空的槽位且是主持人的好友才會被分配。"
-
-#: gui/options/options.json[3].options[5].list[2].tooltip
-msgid "Players only receive a slot when the host assigns them explicitly."
-msgstr "玩家只有在主持人手動分配才會接收槽位。"
-
-#: gui/options/options.json[3].options[5].tooltip
-msgid ""
-"Automatically assign joining clients to free player slots during the match "
-"setup."
-msgstr "在配對設定中自動分配加入的客戶端以釋放遊戲中的玩家空缺。"
-
-#: gui/options/options.json[3].options[5].label
-msgid "Assign players"
-msgstr "分配玩家"
-
-#: gui/options/options.json[3].label
-msgid "Game Setup"
-msgstr "遊戲設定"
-
-#: gui/options/options.json[4].options[0].tooltip
-msgid ""
-"Protect login and data exchanged with the lobby server using TLS encryption."
-msgstr "使用 TLS 加密的大廳伺服器保護登入與資料交換。"
-
-#: gui/options/options.json[4].options[0].label
-msgid "TLS encryption"
-msgstr "TLS 加密"
-
-#: gui/options/options.json[4].options[1].tooltip
-msgid "Number of backlogged messages to load when joining the lobby."
-msgstr "加入大廳時要載入的積壓訊息數量。"
-
-#: gui/options/options.json[4].options[1].label
-msgid "Chat backlog"
-msgstr "聊天記錄"
-
-#: gui/options/options.json[4].options[2].tooltip
-msgid ""
-"Show the average rating of the participating players in a column of the "
-"gamelist."
-msgstr "在遊戲清單中的一欄顯示參與玩家的平均評價。"
-
-#: gui/options/options.json[4].options[2].label
-msgid "Game rating column"
-msgstr "遊戲評價欄"
-
-#: gui/options/options.json[4].tooltip
-msgid "These settings only affect the multiplayer."
-msgstr "這些設定僅影響多人遊戲。"
-
-#: gui/options/options.json[4].label
-msgid "Lobby"
-msgstr "大廳"
-
-#: gui/options/options.json[5].options[0].tooltip
-msgid ""
-"The wounded unit hotkey considers the selected units as wounded if their "
-"health percentage falls below this number."
-msgstr "如果單位的血量百分比低於此數字，將會被受傷單位快捷鍵認定為受傷。"
-
-#: gui/options/options.json[5].options[0].label
-msgid "Wounded unit health"
-msgstr "負傷單位的生命值"
-
-#: gui/options/options.json[5].options[1].tooltip
-msgid "Number of units trained per batch by default."
-msgstr "預設一批訓練多少單位。"
-
-#: gui/options/options.json[5].options[1].label
-msgid "Batch training size"
-msgstr "批次訓練數量"
-
-#: gui/options/options.json[5].options[2].tooltip
-msgid ""
-"Number of times you have to scroll to increase/decrease the batchsize by 1."
-msgstr "您必須捲動以將批次生產大小增加／減少 1 的次數。"
-
-#: gui/options/options.json[5].options[2].label
-msgid "Scroll batch increment ratio"
-msgstr "批次滾動增加速率"
-
-#: gui/options/options.json[5].options[3].tooltip
-msgid "Show a chat notification if you are attacked by another player."
-msgstr "如果您被其他玩家攻擊時顯示聊天通知。"
-
-#: gui/options/options.json[5].options[3].label
-msgid "Chat notification attack"
-msgstr "聊天通知攻擊"
-
-#: gui/options/options.json[5].options[4].tooltip
-msgid ""
-"Show a chat notification if an ally tributes resources to another team "
-"member if teams are locked, and all tributes in observer mode."
-msgstr "如果有盟友在團隊鎖定的情況下進貢資源給另一個團隊成員時顯示聊天通知，且所有進貢都可以在觀察者模式中看到。"
-
-#: gui/options/options.json[5].options[4].label
-msgid "Chat notification tribute"
-msgstr "聊天通知進貢"
-
-#: gui/options/options.json[5].options[5].tooltip
-msgid ""
-"Show a chat notification to observers when a player bartered resources."
-msgstr "當玩家交換資源時向觀察者顯示聊天通知。"
-
-#: gui/options/options.json[5].options[5].label
-msgid "Chat notification barter"
-msgstr "聊天通知交易"
-
-#: gui/options/options.json[5].options[6].list[0].label
-msgid "Disable"
-msgstr "停用"
-
-#: gui/options/options.json[5].options[6].list[1].label
-msgid "Completed"
-msgstr "已完成"
-
-#: gui/options/options.json[5].options[6].list[2].label
-msgid "All displayed"
-msgstr "所有已顯示"
-
-#: gui/options/options.json[5].options[6].tooltip
-msgid ""
-"Show a chat notification if you or an ally have started, aborted or "
-"completed a new phase, and phases of all players in observer mode."
-msgstr "如果您或盟友開始、中止或完成新的時代時顯示聊天通知，且所有玩家的時代都會在觀察者模式中顯示。"
-
-#: gui/options/options.json[5].options[6].label
-msgid "Chat notification phase"
-msgstr "聊天通知時代"
-
-#: gui/options/options.json[5].options[7].tooltip
-msgid ""
-"Display the attack range of selected defensive structures (can also be "
-"toggled in-game with the hotkey)."
-msgstr "顯示被選的防禦建築之攻擊範圍（也可以在遊戲中用快捷鍵切換）"
-
-#: gui/options/options.json[5].options[7].label
-msgid "Attack range visualization"
-msgstr "攻擊範圍可見度"
-
-#: gui/options/options.json[5].options[8].tooltip
-msgid ""
-"Display the range of auras of selected units and structures (can also be "
-"toggled in-game with the hotkey)."
-msgstr "顯示選定單位與建築物的光環範圍（遊戲中也可以使用快捷鍵切換）"
-
-#: gui/options/options.json[5].options[8].label
-msgid "Aura range visualization"
-msgstr "光環範圍可見度"
-
-#: gui/options/options.json[5].options[9].tooltip
-msgid ""
-"Display the healing range of selected units (can also be toggled in-game "
-"with the hotkey)."
-msgstr "顯示選定單位的醫療範圍（遊戲中也可以使用快捷鍵切換）。"
-
-#: gui/options/options.json[5].options[9].label
-msgid "Heal range visualization"
-msgstr "治療範圍可見度"
-
-#: gui/options/options.json[5].options[10].tooltip
-msgid "Show rank icons above status bars."
-msgstr "在狀態列上顯示階級圖示。"
-
-#: gui/options/options.json[5].options[10].label
-msgid "Rank icon above status bar"
-msgstr "在狀態列上的階級圖示"
-
-#: gui/options/options.json[5].options[11].tooltip
-msgid "Show an experience status bar above each selected unit."
-msgstr ""
-
-#: gui/options/options.json[5].options[11].label
-msgid "Experience status bar"
-msgstr "經驗狀態條"
-
-#: gui/options/options.json[5].options[12].tooltip
-msgid ""
-"Show detailed tooltips for trainable units in unit-producing structures."
-msgstr ""
-
-#: gui/options/options.json[5].options[12].label
-msgid "Detailed tooltips"
-msgstr ""
-
-#: gui/options/options.json[5].options[13].list[0].label
-msgid "Unordered"
-msgstr "未排序"
-
-#: gui/options/options.json[5].options[13].list[1].label
-msgid "Ascending"
-msgstr "升冪排序"
-
-#: gui/options/options.json[5].options[13].list[2].label
-msgid "Descending"
-msgstr "降冪"
-
-#: gui/options/options.json[5].options[13].tooltip
-msgid ""
-"Dynamically sort players in the resources and population tooltip by value."
-msgstr "按照值來動態排序資源與人口工具提示中的玩家。"
-
-#: gui/options/options.json[5].options[13].label
-msgid "Sort resources and population tooltip"
-msgstr "排序資源與人口工具提示"
-
-#: gui/options/options.json[5].options[14].tooltip
-msgid "Color of your units when diplomacy colors are enabled."
-msgstr "當外交顏色啟用時，你自己的單位之顏色"
-
-#: gui/options/options.json[5].options[14].label
-msgid "Diplomacy colors: self"
-msgstr ""
-
-#: gui/options/options.json[5].options[15].tooltip
-msgid "Color of allies when diplomacy colors are enabled."
-msgstr "當外交顏色啟用時，同盟者之顏色"
-
-#: gui/options/options.json[5].options[15].label
-msgid "Diplomacy colors: ally"
-msgstr ""
-
-#: gui/options/options.json[5].options[16].tooltip
-msgid "Color of neutral players when diplomacy colors are enabled."
-msgstr "當外交顏色啟用時，中立玩家之顏色"
-
-#: gui/options/options.json[5].options[16].label
-msgid "Diplomacy colors: neutral"
-msgstr ""
-
-#: gui/options/options.json[5].options[17].tooltip
-msgid "Color of enemies when diplomacy colors are enabled."
-msgstr "當外交顏色啟用時，敵對玩家之顏色"
-
-#: gui/options/options.json[5].options[17].label
-msgid "Diplomacy colors: enemy"
-msgstr ""
-
-#: gui/options/options.json[5].options[18].list[0].tooltip
-msgid ""
-"New structures are aligned with nearby structures while pressing the hotkey."
-msgstr ""
-
-#: gui/options/options.json[5].options[18].list[0].label
-msgid "Hotkey to enable snapping"
-msgstr ""
-
-#: gui/options/options.json[5].options[18].list[1].tooltip
-msgid ""
-"New structures are aligned with nearby structures unless the hotkey is "
-"pressed."
-msgstr ""
-
-#: gui/options/options.json[5].options[18].list[1].label
-msgid "Hotkey to disable snapping"
-msgstr ""
-
-#: gui/options/options.json[5].options[18].tooltip
-msgid "This option allows to align new structures with nearby structures."
-msgstr ""
-
-#: gui/options/options.json[5].options[18].label
-msgid "Snap to edges"
-msgstr ""
-
-#: gui/options/options.json[5].options[19].list[0].tooltip
-msgid ""
-"When adding a Unit or Structure to a control group, they are removed from "
-"other control groups. Use this choice if you want control groups to refer to"
-" distinct armies."
-msgstr ""
-
-#: gui/options/options.json[5].options[19].list[0].label
-msgid "Single"
-msgstr ""
-
-#: gui/options/options.json[5].options[19].list[1].tooltip
-msgid ""
-"Units and Structures can be part of multiple control groups. This is useful "
-"to keep control groups for distinct armies and a control group for the "
-"entire army simultaneously."
-msgstr ""
-
-#: gui/options/options.json[5].options[19].list[1].label
-msgid "Multiple"
-msgstr ""
-
-#: gui/options/options.json[5].options[19].tooltip
-msgid "Decide whether units can be part of multiple control groups."
-msgstr ""
-
-#: gui/options/options.json[5].options[19].label
-msgid "Control Group Membership"
-msgstr ""
-
-#: gui/options/options.json[5].tooltip
-msgid "Change options regarding the in-game settings."
-msgstr "改變關於 in-game的設定"
-
-#: gui/options/options.json[5].label
-msgid "In-Game"
-msgstr "遊戲中"
-
-#: simulation/data/resources/food.jsondescription
-msgid "Harvest from animals, berry bushes, fish, or fields."
-msgstr "從動物、漿果叢、魚或是田地中採收。"
-
-#: simulation/data/resources/metal.jsondescription
-msgid "Mine from metal mines or quarries."
-msgstr "從礦山或採石場採礦。"
-
-#: simulation/data/resources/stone.jsondescription
-msgid "Mine from rocks, stone quarries or ruins."
-msgstr "從岩石、採石場或廢墟中採礦。"
-
-#: simulation/data/resources/wood.jsondescription
-msgid "Cut down from trees or groves."
-msgstr "從樹木或樹林砍下木材。"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: simulation/data/resources/food.jsonname
-msgctxt "firstWord"
-msgid "Food"
-msgstr "糧食"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: simulation/data/resources/food.jsonname
-msgctxt "withinSentence"
-msgid "Food"
-msgstr "糧食"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: simulation/data/resources/food.jsonsubtypes.fish
-msgctxt "firstWord"
-msgid "Fish"
-msgstr "魚場"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: simulation/data/resources/food.jsonsubtypes.fish
-msgctxt "withinSentence"
-msgid "Fish"
-msgstr "魚場"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: simulation/data/resources/food.jsonsubtypes.fruit
-msgctxt "firstWord"
-msgid "Fruit"
-msgstr "果樹"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: simulation/data/resources/food.jsonsubtypes.fruit
-msgctxt "withinSentence"
-msgid "Fruit"
-msgstr "果樹"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: simulation/data/resources/food.jsonsubtypes.grain
-msgctxt "firstWord"
-msgid "Grain"
-msgstr "穀物"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: simulation/data/resources/food.jsonsubtypes.grain
-msgctxt "withinSentence"
-msgid "Grain"
-msgstr "穀物"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: simulation/data/resources/food.jsonsubtypes.meat
-msgctxt "firstWord"
-msgid "Meat"
-msgstr "肉食"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: simulation/data/resources/food.jsonsubtypes.meat
-msgctxt "withinSentence"
-msgid "Meat"
-msgstr "肉食"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: simulation/data/resources/metal.jsonname
-msgctxt "firstWord"
-msgid "Metal"
-msgstr "金屬"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: simulation/data/resources/metal.jsonname
-msgctxt "withinSentence"
-msgid "Metal"
-msgstr "金屬"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: simulation/data/resources/metal.jsonsubtypes.ore
-msgctxt "firstWord"
-msgid "Ore"
-msgstr "礦石"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: simulation/data/resources/metal.jsonsubtypes.ore
-msgctxt "withinSentence"
-msgid "Ore"
-msgstr "礦石"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: simulation/data/resources/stone.jsonname
-msgctxt "firstWord"
-msgid "Stone"
-msgstr "石頭"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: simulation/data/resources/stone.jsonname
-msgctxt "withinSentence"
-msgid "Stone"
-msgstr "石頭"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: simulation/data/resources/stone.jsonsubtypes.ruins
-#: simulation/data/resources/wood.jsonsubtypes.ruins
-msgctxt "firstWord"
-msgid "Ruins"
-msgstr "廢墟"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: simulation/data/resources/stone.jsonsubtypes.ruins
-#: simulation/data/resources/wood.jsonsubtypes.ruins
-msgctxt "withinSentence"
-msgid "Ruins"
-msgstr "廢墟"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: simulation/data/resources/stone.jsonsubtypes.rock
-msgctxt "firstWord"
-msgid "Rock"
-msgstr "岩石"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: simulation/data/resources/stone.jsonsubtypes.rock
-msgctxt "withinSentence"
-msgid "Rock"
-msgstr "岩石"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: simulation/data/resources/wood.jsonname
-msgctxt "firstWord"
-msgid "Wood"
-msgstr "木材"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: simulation/data/resources/wood.jsonname
-msgctxt "withinSentence"
-msgid "Wood"
-msgstr "木材"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: simulation/data/resources/wood.jsonsubtypes.tree
-msgctxt "firstWord"
-msgid "Tree"
-msgstr "樹木"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: simulation/data/resources/wood.jsonsubtypes.tree
-msgctxt "withinSentence"
-msgid "Tree"
-msgstr "樹木"
-
-#: gui/gamesetup/Pages/GameSetupPage/Panels/Tips.txt:1
-msgid ""
-"Although reasonably easy for an experienced player, the default AI level is "
-"quite challenging for new players yet to master the basic mechanisms of the "
-"game. Beginners are advised to start by playing against a lower level AI "
-"(Sandbox or Very Easy). Change the AI level by clicking the gear icon next "
-"to the player you want to modify in the selection panel above."
-msgstr "雖然預設的 AI 難度對有經驗的玩家來說也許很簡單，但對於尚未掌握遊戲基礎架構的新手來說可能有點挑戰性。初學者建議在剛開始遊戲時，以較低難度的 AI（沙盒或非常簡單）開始對戰。點選上方選擇面板中，欲編輯玩家旁邊的齒輪圖示可以變更 AI 的難度。"
-
-#: gui/splashscreen/splashscreen.txt:2
-msgid ""
-"[font=\"sans-bold-20\"]  Thank you for installing 0 A.D. Empires Ascendant!"
-msgstr "[font=\"sans-bold-20\"]  感謝您安裝 0 A.D. 崛起的帝國！"
-
-#: gui/splashscreen/splashscreen.txt:3
-msgid "[font=\"sans-16\"]"
-msgstr "[font=\"sans-16\"]"
-
-#: gui/splashscreen/splashscreen.txt:4
-msgid ""
-"[imgleft=\"constructionIcon\"]This game is still in development. Features "
-"are missing and it contains bugs."
-msgstr "[imgleft=\"constructionIcon\"]  本遊戲尚未開發完成，可能缺少某些功能，也有一些程式臭蟲。"
-
-#: gui/splashscreen/splashscreen.txt:6
-msgid ""
-"[imgleft=\"iconLag\"]The game can have performance problems, especially with"
-" large maps and a great number of units."
-msgstr "[imgleft=\"iconLag\"]  遊戲過程可能會有效能上的問題，尤其是遇上大型地圖以及大量單位的時候。"
-
-#: gui/splashscreen/splashscreen.txt:8
-msgid ""
-"[imgleft=\"iconFormation\"]Formations are a work in progress, but you can "
-"toggle forming and disbanding formations as desired."
-msgstr "[imgleft=\"iconFormation\"]  陣型部份仍積極開發中，但您可以視需要切換及關閉陣型功能。"
 
 #: gui/text/tips/army_camp.txt:1
 msgid "ROMAN ARMY CAMP"
@@ -4395,3 +4221,201 @@ msgstr ""
 #: gui/text/tips/whales.txt:5
 msgid "Roam around the oceans of the game and flee when attacked."
 msgstr ""
+
+#: simulation/data/resources/food.jsondescription
+msgid "Harvest from animals, berry bushes, fish, or fields."
+msgstr "從動物、漿果叢、魚或是田地中採收。"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: simulation/data/resources/food.jsonname
+msgctxt "firstWord"
+msgid "Food"
+msgstr "糧食"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase
+#. for your language).
+#: simulation/data/resources/food.jsonname
+msgctxt "withinSentence"
+msgid "Food"
+msgstr "糧食"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: simulation/data/resources/food.jsonsubtypes.fish
+msgctxt "firstWord"
+msgid "Fish"
+msgstr "魚場"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase
+#. for your language).
+#: simulation/data/resources/food.jsonsubtypes.fish
+msgctxt "withinSentence"
+msgid "Fish"
+msgstr "魚場"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: simulation/data/resources/food.jsonsubtypes.fruit
+msgctxt "firstWord"
+msgid "Fruit"
+msgstr "果樹"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase
+#. for your language).
+#: simulation/data/resources/food.jsonsubtypes.fruit
+msgctxt "withinSentence"
+msgid "Fruit"
+msgstr "果樹"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: simulation/data/resources/food.jsonsubtypes.grain
+msgctxt "firstWord"
+msgid "Grain"
+msgstr "穀物"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase
+#. for your language).
+#: simulation/data/resources/food.jsonsubtypes.grain
+msgctxt "withinSentence"
+msgid "Grain"
+msgstr "穀物"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: simulation/data/resources/food.jsonsubtypes.meat
+msgctxt "firstWord"
+msgid "Meat"
+msgstr "肉食"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase
+#. for your language).
+#: simulation/data/resources/food.jsonsubtypes.meat
+msgctxt "withinSentence"
+msgid "Meat"
+msgstr "肉食"
+
+#: simulation/data/resources/metal.jsondescription
+msgid "Mine from metal mines or quarries."
+msgstr "從礦山或採石場採礦。"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: simulation/data/resources/metal.jsonname
+msgctxt "firstWord"
+msgid "Metal"
+msgstr "金屬"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase
+#. for your language).
+#: simulation/data/resources/metal.jsonname
+msgctxt "withinSentence"
+msgid "Metal"
+msgstr "金屬"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: simulation/data/resources/metal.jsonsubtypes.ore
+msgctxt "firstWord"
+msgid "Ore"
+msgstr "礦石"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase
+#. for your language).
+#: simulation/data/resources/metal.jsonsubtypes.ore
+msgctxt "withinSentence"
+msgid "Ore"
+msgstr "礦石"
+
+#: simulation/data/resources/stone.jsondescription
+msgid "Mine from rocks, stone quarries or ruins."
+msgstr "從岩石、採石場或廢墟中採礦。"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: simulation/data/resources/stone.jsonname
+msgctxt "firstWord"
+msgid "Stone"
+msgstr "石頭"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase
+#. for your language).
+#: simulation/data/resources/stone.jsonname
+msgctxt "withinSentence"
+msgid "Stone"
+msgstr "石頭"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: simulation/data/resources/stone.jsonsubtypes.rock
+msgctxt "firstWord"
+msgid "Rock"
+msgstr "岩石"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase
+#. for your language).
+#: simulation/data/resources/stone.jsonsubtypes.rock
+msgctxt "withinSentence"
+msgid "Rock"
+msgstr "岩石"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: simulation/data/resources/stone.jsonsubtypes.ruins
+#: simulation/data/resources/wood.jsonsubtypes.ruins
+msgctxt "firstWord"
+msgid "Ruins"
+msgstr "廢墟"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase
+#. for your language).
+#: simulation/data/resources/stone.jsonsubtypes.ruins
+#: simulation/data/resources/wood.jsonsubtypes.ruins
+msgctxt "withinSentence"
+msgid "Ruins"
+msgstr "廢墟"
+
+#: simulation/data/resources/wood.jsondescription
+msgid "Cut down from trees or groves."
+msgstr "從樹木或樹林砍下木材。"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: simulation/data/resources/wood.jsonname
+msgctxt "firstWord"
+msgid "Wood"
+msgstr "木材"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase
+#. for your language).
+#: simulation/data/resources/wood.jsonname
+msgctxt "withinSentence"
+msgid "Wood"
+msgstr "木材"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: simulation/data/resources/wood.jsonsubtypes.tree
+msgctxt "firstWord"
+msgid "Tree"
+msgstr "樹木"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase
+#. for your language).
+#: simulation/data/resources/wood.jsonsubtypes.tree
+msgctxt "withinSentence"
+msgid "Tree"
+msgstr "樹木"

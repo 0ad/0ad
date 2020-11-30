@@ -1,7 +1,7 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright (C) 2020 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
-# 
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
+# project.
 # Translators:
 # Andrii Puzan <doctrina.90@mail.ru>, 2013
 # Andriy Nahirnjak <andriy.nagirnjak@gmail.com>, 2014
@@ -26,7 +26,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-20 08:08+0000\n"
+"POT-Creation-Date: 2020-11-28 10:01+0000\n"
 "PO-Revision-Date: 2020-11-23 15:35+0000\n"
 "Last-Translator: Oleg Adept <adeptoleg@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
@@ -35,6 +35,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: uk\n"
 "Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
+
+#: gui/session/GameSpeedControl.xml:(tooltip):11
+msgid "Choose game speed"
+msgstr "Вибрати швидкість гри."
 
 #: gui/session/Menu.js:41
 #, javascript-format
@@ -142,11 +146,537 @@ msgstr ", "
 msgid "Paused by %(players)s"
 msgstr "Призупинено гравцем %(players)s"
 
+#: gui/session/PauseOverlay.xml:(caption):7
+msgid "Game Paused"
+msgstr "Гру призупинено"
+
+#: gui/session/PauseOverlay.xml:(caption):11
+msgid "Click to Resume Game"
+msgstr "Клацнути, щоб продовжити гру"
+
 #: gui/session/ResearchProgress.js:108 gui/session/selection_details.js:268
 #: gui/session/selection_details.js:284 gui/session/selection_panels.js:600
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
+
+#: gui/session/chat/ChatAddressees.js:88
+msgctxt "chat addressee"
+msgid "Everyone"
+msgstr "Усіх"
+
+#: gui/session/chat/ChatAddressees.js:94
+msgctxt "chat addressee"
+msgid "Allies"
+msgstr "Союзників"
+
+#: gui/session/chat/ChatAddressees.js:95
+msgctxt "chat message context"
+msgid "Ally"
+msgstr "Союзника"
+
+#: gui/session/chat/ChatAddressees.js:105
+msgctxt "chat addressee"
+msgid "Enemies"
+msgstr "Ворогів"
+
+#: gui/session/chat/ChatAddressees.js:106
+msgctxt "chat message context"
+msgid "Enemy"
+msgstr "Ворога"
+
+#: gui/session/chat/ChatAddressees.js:116
+msgctxt "chat addressee"
+msgid "Observers"
+msgstr "Спостерігачів"
+
+#: gui/session/chat/ChatAddressees.js:117
+msgctxt "chat message context"
+msgid "Observer"
+msgstr "Спостерігача"
+
+#: gui/session/chat/ChatAddressees.js:124
+msgctxt "chat message context"
+msgid "Private"
+msgstr "Приватного"
+
+#: gui/session/chat/ChatHistory.js:49
+#, javascript-format
+msgid "%(time)s %(message)s"
+msgstr "%(time)s %(message)s"
+
+#: gui/session/chat/ChatHistory.js:61
+#, javascript-format
+msgid "\\[%(time)s]"
+msgstr "\\[%(time)s]"
+
+#: gui/session/chat/ChatHistory.js:62
+msgid "HH:mm"
+msgstr "HH:mm"
+
+#: gui/session/chat/ChatHistory.js:82
+msgctxt "chat history filter"
+msgid "Chat and notifications"
+msgstr "Бесіда та сповіщення"
+
+#: gui/session/chat/ChatHistory.js:87
+msgctxt "chat history filter"
+msgid "Chat messages"
+msgstr "Повідомлення бесіди"
+
+#: gui/session/chat/ChatHistory.js:92
+msgctxt "chat history filter"
+msgid "Players chat"
+msgstr "Бесіда гравців"
+
+#: gui/session/chat/ChatHistory.js:99
+msgctxt "chat history filter"
+msgid "Ally chat"
+msgstr "Бесіда союзника"
+
+#: gui/session/chat/ChatHistory.js:106
+msgctxt "chat history filter"
+msgid "Enemy chat"
+msgstr "Бесіда ворога"
+
+#: gui/session/chat/ChatHistory.js:113
+msgctxt "chat history filter"
+msgid "Observer chat"
+msgstr "Бесіда спостерігача"
+
+#: gui/session/chat/ChatHistory.js:120
+msgctxt "chat history filter"
+msgid "Private chat"
+msgstr "Приватна бесіда"
+
+#: gui/session/chat/ChatHistory.js:125
+msgctxt "chat history filter"
+msgid "Game notifications"
+msgstr "Ігрові сповіщення"
+
+#: gui/session/chat/ChatHistory.js:130
+msgctxt "chat history filter"
+msgid "Network notifications"
+msgstr "Мережеві сповіщення"
+
+#: gui/session/chat/ChatInput.js:31
+msgctxt "chat input"
+msgid "Type the message to send."
+msgstr "Ввести повідомлення для надсилання."
+
+#: gui/session/chat/ChatInput.js:37
+#, javascript-format
+msgid "Press %(hotkey)s to open the public chat."
+msgstr "Натиснути %(hotkey)s, щоб відкрити публічну бесіду."
+
+#: gui/session/chat/ChatInput.js:40
+#, javascript-format
+msgid "Press %(hotkey)s to open the observer chat."
+msgstr "Натиснути %(hotkey)s, щоб відкрити бесіду спостерігача."
+
+#: gui/session/chat/ChatInput.js:41
+#, javascript-format
+msgid "Press %(hotkey)s to open the ally chat."
+msgstr "Натиснути %(hotkey)s, щоб відкрити бесіду союзника."
+
+#: gui/session/chat/ChatInput.js:43
+#, javascript-format
+msgid "Press %(hotkey)s to open the previously selected private chat."
+msgstr "Натиснути %(hotkey)s, щоб відкрити попередньо вибрану приватну бесіду."
+
+#. Translation: A player that left the game joins again
+#: gui/session/chat/ChatMessageFormatNetwork.js:23
+#, javascript-format
+msgid "%(player)s is starting to rejoin the game."
+msgstr "%(player)s починає переприєднання до гри."
+
+#. Translation: A player joins the game for the first time
+#: gui/session/chat/ChatMessageFormatNetwork.js:25
+#, javascript-format
+msgid "%(player)s is starting to join the game."
+msgstr "%(player)s починає приєднання до гри."
+
+#: gui/session/chat/ChatMessageFormatNetwork.js:34
+#, javascript-format
+msgid "%(player)s has left the game."
+msgstr "%(player)s залишає гру."
+
+#: gui/session/chat/ChatMessageFormatNetwork.js:46
+#, javascript-format
+msgid "%(username)s has been banned"
+msgstr "%(username)s було заблоковано"
+
+#: gui/session/chat/ChatMessageFormatNetwork.js:47
+#, javascript-format
+msgid "%(username)s has been kicked"
+msgstr "%(username)s було вигнано"
+
+#. Translation: A player that left the game joins again
+#: gui/session/chat/ChatMessageFormatNetwork.js:64
+#, javascript-format
+msgid "%(player)s has rejoined the game."
+msgstr "%(player)s повертаєтся до гри."
+
+#. Translation: A player joins the game for the first time
+#: gui/session/chat/ChatMessageFormatNetwork.js:66
+#, javascript-format
+msgid "%(player)s has joined the game."
+msgstr "%(player)s приєднуется до гри."
+
+#: gui/session/chat/ChatMessageFormatPlayer.js:57
+msgid "no-context"
+msgstr "без контексту"
+
+#: gui/session/chat/ChatMessageFormatPlayer.js:61
+#, javascript-format
+msgid "<%(user)s>"
+msgstr "<%(user)s>"
+
+#: gui/session/chat/ChatMessageFormatPlayer.js:159
+#, javascript-format
+msgid "(%(context)s) %(userTag)s %(message)s"
+msgstr "(%(context)s) %(userTag)s %(message)s"
+
+#: gui/session/chat/ChatMessageFormatPlayer.js:160
+#, javascript-format
+msgid "%(userTag)s %(message)s"
+msgstr "%(userTag)s %(message)s"
+
+#: gui/session/chat/ChatMessageFormatPlayer.js:163
+#, javascript-format
+msgid "(%(context)s) * %(user)s %(message)s"
+msgstr "(%(context)s) * %(user)s %(message)s"
+
+#: gui/session/chat/ChatMessageFormatPlayer.js:164
+#, javascript-format
+msgid "* %(user)s %(message)s"
+msgstr "* %(user)s %(message)s"
+
+#: gui/session/chat/ChatMessageFormatSimulation.js:16
+#, javascript-format
+msgid "Your livestock has been attacked by %(attacker)s!"
+msgstr "Вашу худобу було атаковано %(attacker)s!"
+
+#: gui/session/chat/ChatMessageFormatSimulation.js:17
+#, javascript-format
+msgid "You have been attacked by %(attacker)s!"
+msgstr "Ви були атаковані %(attacker)s!"
+
+#: gui/session/chat/ChatMessageFormatSimulation.js:38
+#, javascript-format
+msgid "%(player)s bartered %(amountGiven)s for %(amountGained)s."
+msgstr "%(player)s обмінює %(amountGiven)s на %(amountGained)s."
+
+#: gui/session/chat/ChatMessageFormatSimulation.js:70
+#, javascript-format
+msgid "You are now allied with %(player)s."
+msgstr "Ви наразі уклали союз із %(player)s."
+
+#: gui/session/chat/ChatMessageFormatSimulation.js:71
+#, javascript-format
+msgid "You are now at war with %(player)s."
+msgstr "Ви тепер воюєте з %(player)s."
+
+#: gui/session/chat/ChatMessageFormatSimulation.js:72
+#, javascript-format
+msgid "You are now neutral with %(player)s."
+msgstr "Ви зараз прийняли нейтралітет до %(player)s."
+
+#: gui/session/chat/ChatMessageFormatSimulation.js:75
+#, javascript-format
+msgid "%(player)s is now allied with you."
+msgstr "%(player)s наразі укладає союз із Вами."
+
+#: gui/session/chat/ChatMessageFormatSimulation.js:76
+#, javascript-format
+msgid "%(player)s is now at war with you."
+msgstr "%(player)s тепер воює з Вами."
+
+#: gui/session/chat/ChatMessageFormatSimulation.js:77
+#, javascript-format
+msgid "%(player)s is now neutral with you."
+msgstr "%(player)s зараз приймає нейтралітет до Вас."
+
+#: gui/session/chat/ChatMessageFormatSimulation.js:80
+#, javascript-format
+msgid "%(player)s is now allied with %(player2)s."
+msgstr "%(player)s наразі укладає союз із %(player2)s."
+
+#: gui/session/chat/ChatMessageFormatSimulation.js:81
+#, javascript-format
+msgid "%(player)s is now at war with %(player2)s."
+msgstr "%(player)s тепер воює з %(player2)s."
+
+#: gui/session/chat/ChatMessageFormatSimulation.js:82
+#, javascript-format
+msgid "%(player)s is now neutral with %(player2)s."
+msgstr "%(player)s зараз приймає нейтралітет до %(player2)s."
+
+#: gui/session/chat/ChatMessageFormatSimulation.js:98
+#, javascript-format
+msgid "%(player)s is advancing to the %(phaseName)s."
+msgstr "%(player)s просувається до %(phaseName)s."
+
+#: gui/session/chat/ChatMessageFormatSimulation.js:100
+#, javascript-format
+msgid "The %(phaseName)s of %(player)s has been aborted."
+msgstr "Просування %(player)s до %(phaseName)s було перервано."
+
+#: gui/session/chat/ChatMessageFormatSimulation.js:103
+#, javascript-format
+msgid "%(player)s has reached the %(phaseName)s."
+msgstr "%(player)s досягає %(phaseName)s."
+
+#. Translation: This comma is used for separating first to penultimate
+#. elements in an
+#. enumeration.
+#: gui/session/chat/ChatMessageFormatSimulation.js:126
+msgid ", "
+msgstr ", "
+
+#: gui/session/chat/ChatMessageFormatSimulation.js:142
+#, javascript-format
+msgid "%(player)s has sent you %(amounts)s."
+msgstr "%(player)s надсилає Вам %(amounts)s."
+
+#: gui/session/chat/ChatMessageFormatSimulation.js:144
+#, javascript-format
+msgid "You have sent %(player2)s %(amounts)s."
+msgstr "Ви надіслали %(amounts)s до %(player2)s."
+
+#: gui/session/chat/ChatMessageFormatSimulation.js:149
+#, javascript-format
+msgid "%(player)s has sent %(player2)s %(amounts)s."
+msgstr "%(player)s надсилає %(amounts)s до %(player2)s."
+
+#: gui/session/chat/chat_window.xml:(caption):19
+msgctxt "chat input"
+msgid "Filter:"
+msgstr "Фільтр:"
+
+#: gui/session/chat/chat_window.xml:(caption):46
+msgctxt "chat input"
+msgid "To:"
+msgstr "До:"
+
+#: gui/session/chat/chat_window.xml:(caption):60
+msgctxt "chat input"
+msgid "Text:"
+msgstr "Зміст:"
+
+#: gui/session/chat/chat_window.xml:(caption):72
+msgid "Cancel"
+msgstr "Скасувати"
+
+#: gui/session/chat/chat_window.xml:(caption):86
+msgctxt "chat"
+msgid "History"
+msgstr "Історія"
+
+#: gui/session/chat/chat_window.xml:(caption):91
+msgid "Send"
+msgstr "Надіслати"
+
+#: gui/session/chat/chat_window.xml:(tooltip):29
+msgctxt "chat input"
+msgid "Filter the chat history."
+msgstr "Фільтрувати історію бесіди."
+
+#: gui/session/chat/chat_window.xml:(tooltip):55
+msgctxt "chat input"
+msgid "Select chat addressee."
+msgstr "Вибрати адресата бесіди."
+
+#: gui/session/developer_overlay/DeveloperOverlay.js:67
+msgid "The Developer Overlay was opened."
+msgstr "Накладання розробника відкрито."
+
+#: gui/session/developer_overlay/DeveloperOverlay.js:68
+msgid "The Developer Overlay was closed."
+msgstr "Накладання розробника закрито."
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:15
+msgid "Control all units"
+msgstr "Контролювати всі підрозділи"
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:42
+msgid "Change perspective"
+msgstr "Змінити точку зору"
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:60
+msgid "Display selection state"
+msgstr "Відобразити стан вибору"
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:73
+msgid "Pathfinder overlay"
+msgstr "Накладання алгоритму пошуку шляху"
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:86
+msgid "Hierarchical pathfinder overlay"
+msgstr "Ієрархічне накладання алгоритму пошуку шляху"
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:99
+msgid "Obstruction overlay"
+msgstr "Накладання перешкод"
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:112
+msgid "Unit motion overlay"
+msgstr "Накладання руху одиниці"
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:125
+msgid "Range overlay"
+msgstr "Накладання дистанції"
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:138
+msgid "Bounding box overlay"
+msgstr "Накладання обмежувальної коробки"
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:151
+msgid "Restrict camera"
+msgstr "Обмежити камеру"
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:169
+msgid "Reveal map"
+msgstr "Відкрити мапу"
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:195
+msgid "Enable time warp"
+msgstr "Увімкнути викривлення часу"
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:208
+msgid "Promote selected units"
+msgstr "Підвищити вибрані підрозділи"
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:229
+msgid "Enable culling"
+msgstr "Увімкнути відсікання"
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:247
+msgid "Lock cull camera"
+msgstr "Замкнути камеру відсікання"
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:265
+msgid "Display camera frustum"
+msgstr "Відобразити зрізаний конус камери"
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:283
+msgid "Display shadows frustum"
+msgstr "Відобразити тіні зрізаного конусу камери"
+
+#: gui/session/developer_overlay/TimeWarp.js:65
+msgid "Time warp mode"
+msgstr "Режим викривлення часу"
+
+#: gui/session/developer_overlay/TimeWarp.js:66
+msgid ""
+"Note: time warp mode is a developer option, and not intended for use over "
+"long periods of time. Using it incorrectly may cause the game to run out of "
+"memory or crash."
+msgstr "Примітка: режим викривлення часу — це опція для розробників і не призначена для використання протягом тривалих періодів часу. Неправильне використання може спричинити переповнення пам’яті або поломку гри."
+
+#: gui/session/dialogs/yes_no.xml:(caption):11
+msgid "Question"
+msgstr "Запитання"
+
+#: gui/session/dialogs/yes_no.xml:(caption):15
+msgid "Yes or no?"
+msgstr "Так чи ні?"
+
+#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):15
+msgid "Name"
+msgstr "Ім'я"
+
+#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):18
+msgid "Civilization"
+msgstr "Цивілізація"
+
+#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):21
+msgid "Team"
+msgstr "Команда"
+
+#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):24
+msgid "Theirs"
+msgstr "Їхній статус"
+
+#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):27
+msgid "A"
+msgstr "С"
+
+#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):31
+msgid "N"
+msgstr "Н"
+
+#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):35
+msgid "E"
+msgstr "В"
+
+#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):39
+msgid "Tribute"
+msgstr "Підношення"
+
+#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):90
+#: gui/session/objectives/ObjectivesDialog.xml:(caption):43
+#: gui/session/trade/TradeDialog.xml:(caption):22
+msgid "Close"
+msgstr "Закрити"
+
+#: gui/session/diplomacy/DiplomacyDialogCeasefireCounter.js:27
+#, javascript-format
+msgctxt "ceasefire"
+msgid "Remaining ceasefire time: %(time)s."
+msgstr "Залишок часу призупинення бойових дій: %(time)s."
+
+#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):85
+#: gui/session/diplomacy/DiplomacyDialogColorsButton.js:30
+#: gui/session/minimap/MiniMapDiplomacyColorsButton.js:34
+msgid "Toggle Diplomacy Colors"
+msgstr "Перемкнути кольори дипломатії"
+
+#: gui/session/diplomacy/playercontrols/AttackRequestButton.js:38
+msgid "Request your allies to attack this enemy"
+msgstr "Запропонувати Вашим союзникам атакувати цього ворога"
+
+#: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:75
+msgctxt "team"
+msgid "None"
+msgstr "Немає"
+
+#: gui/session/diplomacy/DiplomacyDialog.xml:(tooltip):28
+#: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:78
+msgid "Ally"
+msgstr "Союзник"
+
+#: gui/session/diplomacy/DiplomacyDialog.xml:(tooltip):32
+#: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:81
+msgid "Neutral"
+msgstr "Нейтральний"
+
+#: gui/session/diplomacy/DiplomacyDialog.xml:(tooltip):36
+#: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:84
+msgid "Enemy"
+msgstr "Ворог"
+
+#: gui/session/diplomacy/playercontrols/SpyRequestButton.js:139
+msgid ""
+"Bribe a random unit from this player and share its vision during a limited "
+"period."
+msgstr "Підкупити випадкову одиницю цього гравця та скористатися її баченням протягом обмеженого періоду."
+
+#: gui/session/diplomacy/playercontrols/SpyRequestButton.js:142
+msgid "A failed bribe will cost you:"
+msgstr "Невдалий підкуп коштуватиме Вам:"
+
+#: gui/session/diplomacy/playercontrols/StanceButton.js:60
+msgctxt "diplomatic stance selection"
+msgid "x"
+msgstr "x"
+
+#: gui/session/diplomacy/playercontrols/TributeButton.js:112
+#, javascript-format
+msgid ""
+"Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
+"to tribute %(greaterAmount)s."
+msgstr "Піднести %(resourceAmount)s %(resourceType)s до %(playerName)s. Клацнути, утримуючи Shift, щоб зробити підношення %(greaterAmount)s."
 
 #: gui/session/input.js:176
 #, javascript-format
@@ -169,6 +699,152 @@ msgstr[3] "Середня бонусна дистанція: %(range)s метр�
 #: gui/session/input.js:700
 msgid "Cannot build wall here!"
 msgstr "Неможливо побудувати стіну тут!"
+
+#: gui/session/message_box/DeleteSelectionConfirmation.js:10
+msgid "Delete"
+msgstr "Видалити"
+
+#: gui/session/message_box/DeleteSelectionConfirmation.js:11
+msgid "Destroy everything currently selected?"
+msgstr "Знищити все вибране на даний момент?"
+
+#: gui/session/dialogs/yes_no.xml:(caption):24
+#: gui/session/message_box/DeleteSelectionConfirmation.js:14
+#: gui/session/message_box/QuitConfirmation.js:14
+#: gui/session/message_box/QuitConfirmationMenu.js:49
+#: gui/session/message_box/ResignConfirmation.js:9
+msgid "No"
+msgstr "Ні"
+
+#: gui/session/dialogs/yes_no.xml:(caption):19
+#: gui/session/message_box/DeleteSelectionConfirmation.js:17
+#: gui/session/message_box/QuitConfirmation.js:17
+#: gui/session/message_box/QuitConfirmationMenu.js:52
+#: gui/session/message_box/ResignConfirmation.js:12
+msgid "Yes"
+msgstr "Так"
+
+#: gui/session/message_box/OutOfSyncNetwork.js:15
+#: gui/session/message_box/OutOfSyncReplay.js:26
+#, javascript-format
+msgid "Out-Of-Sync error on turn %(turn)s."
+msgstr "Помилка поза синхронізацією на черзі %(turn)s."
+
+#: gui/session/message_box/OutOfSyncNetwork.js:19
+#, javascript-format
+msgctxt "Out-Of-Sync"
+msgid "Players: %(players)s"
+msgstr "Гравці: %(players)s"
+
+#: gui/session/message_box/OutOfSyncNetwork.js:24
+msgctxt "Out-Of-Sync"
+msgid "Your game state is identical to the hosts game state."
+msgstr "Ваш ігровий стан наразі ідентичний до стану гри власників."
+
+#: gui/session/message_box/OutOfSyncNetwork.js:25
+msgctxt "Out-Of-Sync"
+msgid "Your game state differs from the hosts game state."
+msgstr "Ваш ігровий стан наразі відрізняєтся від стану гри власників."
+
+#: gui/session/message_box/OutOfSyncNetwork.js:31
+msgctxt "Out-Of-Sync"
+msgid "Rejoining Multiplayer games with AIs is not supported yet!"
+msgstr "Повторне з'єднання до багатокористувацьких ігор із ШІ ще не підтримується!"
+
+#: gui/session/message_box/OutOfSyncNetwork.js:34
+msgctxt "Out-Of-Sync"
+msgid "Ensure all players use the same mods."
+msgstr "Переконайтеся, що всі гравці користуються однаковими модифікаціями."
+
+#: gui/session/message_box/OutOfSyncNetwork.js:35
+msgctxt "Out-Of-Sync"
+msgid "Click on \"Report a Bug\" in the main menu to help fix this."
+msgstr "Клацнути на \"Повідомити про програмну помилку\" в головному меню, щоб допомогти виправити її."
+
+#: gui/session/message_box/OutOfSyncNetwork.js:36
+#, javascript-format
+msgctxt "Out-Of-Sync"
+msgid "Replay saved to %(filepath)s"
+msgstr "Відтворення збережено до %(filepath)s"
+
+#: gui/session/message_box/OutOfSyncNetwork.js:39
+#, javascript-format
+msgctxt "Out-Of-Sync"
+msgid "Dumping current state to %(filepath)s"
+msgstr "Скидання поточного стану до %(filepath)s"
+
+#: gui/session/message_box/OutOfSyncNetwork.js:51
+#: gui/session/message_box/OutOfSyncReplay.js:23
+msgid "Out of Sync"
+msgstr "Не синхронізовано"
+
+#. Translation: This is shown if replay is out of sync
+#: gui/session/message_box/OutOfSyncReplay.js:28
+msgid "Out-Of-Sync"
+msgstr "Не синхронізовано"
+
+#: gui/session/message_box/QuitConfirmation.js:6
+#: gui/session/message_box/QuitConfirmationMenu.js:63
+#: gui/session/message_box/ResignConfirmation.js:5
+msgid "Confirmation"
+msgstr "Підтвердження"
+
+#: gui/session/message_box/QuitConfirmation.js:9
+msgid "Are you sure you want to quit?"
+msgstr "Чи впевнені Ви, що Ви хочете завершити?"
+
+#: gui/session/message_box/QuitConfirmationDefeat.js:54
+msgid "VICTORIOUS!"
+msgstr "ЗДОБУТО ПЕРЕМОГУ!"
+
+#: gui/session/message_box/QuitConfirmationDefeat.js:55
+msgid "DEFEATED!"
+msgstr "ОТРИМАНО ПОРАЗКУ!"
+
+#: gui/session/message_box/QuitConfirmationDefeat.js:57
+msgid "Do you want to quit?"
+msgstr "Чи хочете Ви завершити?"
+
+#: gui/session/message_box/QuitConfirmationMenu.js:33
+msgid ""
+"Are you sure you want to quit? Leaving will disconnect all other players."
+msgstr "Чи впевнені Ви, що Ви хочете завершити? Із завершенням всіх інших гравців буде роз'єднано."
+
+#: gui/session/message_box/QuitConfirmationMenu.js:64
+msgid "Do you want to resign or will you return soon?"
+msgstr "Чи хочете Ви здатися, чи незабаром Ви повернетеся?"
+
+#: gui/session/message_box/QuitConfirmationMenu.js:67
+msgid "I will return"
+msgstr "Я повернусь"
+
+#: gui/session/message_box/QuitConfirmationMenu.js:71
+msgid "I resign"
+msgstr "Я здаюсь"
+
+#: gui/session/message_box/QuitConfirmationReplay.js:14
+msgctxt "replayFinished"
+msgid "Confirmation"
+msgstr "Підтвердження"
+
+#: gui/session/message_box/QuitConfirmationReplay.js:17
+msgctxt "replayFinished"
+msgid "The replay has finished. Do you want to quit?"
+msgstr "Відтворення закінчено. Чи хочете Ви завершити?"
+
+#: gui/session/message_box/QuitConfirmationReplay.js:22
+msgctxt "replayFinished"
+msgid "No"
+msgstr "Ні"
+
+#: gui/session/message_box/QuitConfirmationReplay.js:25
+msgctxt "replayFinished"
+msgid "Yes"
+msgstr "Так"
+
+#: gui/session/message_box/ResignConfirmation.js:6
+msgid "Are you sure you want to resign?"
+msgstr "Чи впевнені Ви, що Ви хочете здатися?"
 
 #: gui/session/messages.js:88
 msgid "You have won!"
@@ -198,12 +874,16 @@ msgstr "Дотримуйтесь інструкцій."
 msgid "Unknown Player"
 msgstr "Невідомий гравець"
 
+#: gui/session/minimap/MiniMapIdleWorkerButton.js:40
+msgid "Find idle worker"
+msgstr "Знайти незайнятого працівника"
+
 #: gui/session/selection_details.js:68
 #, javascript-format
 msgid "%(genericName)s — Packed"
 msgstr "%(genericName)s — запаковано"
 
-#: gui/session/selection_details.js:78 gui/session/chat/ChatAddressees.js:74
+#: gui/session/chat/ChatAddressees.js:74 gui/session/selection_details.js:78
 #, javascript-format
 msgid "\\[OFFLINE] %(player)s"
 msgstr "\\[ПОЗА МЕРЕЖЕЮ] %(player)s"
@@ -511,724 +1191,40 @@ msgstr "%(action)s, щоб тренувати %(number)s."
 msgid "Shift-click"
 msgstr "Клацнути з утриманням Shift"
 
-#: gui/session/unit_actions.js:578
+#: gui/session/selection_panels_left/garrison_panel.xml:(tooltip):16
+#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):20
+msgid "Health"
+msgstr "Здоров'я"
+
+#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):34
+msgid "Capture points"
+msgstr "Очки захвату"
+
+#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):62
+msgid "Attack and Resistance"
+msgstr "Атака та опір"
+
+#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):77
+msgid "Experience"
+msgstr "Досвід:"
+
+#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):85
+msgid "Rank"
+msgstr "Ранг"
+
+#: gui/session/selection_panels_right/queue_panel.xml:(tooltip):8
+msgid "Production queue"
+msgstr "Черга виробництва"
+
+#: gui/session/session_objects/selection_group_icons.xml:(tooltip):7
 msgid ""
-"This is the origin trade market.\n"
-"Right-click to cancel trade route."
-msgstr "Це є ринок початку торгівлі. Клацнути правою кнопкою миші, щоб скасувати торговий маршрут."
-
-#: gui/session/unit_actions.js:638
-msgid "Origin trade market."
-msgstr "Ринок початку торгівлі."
-
-#: gui/session/unit_actions.js:648
-msgid "Destination trade market."
-msgstr "Ринок призначення торгівлі."
-
-#: gui/session/unit_actions.js:655
-msgid "Right-click to set as origin trade market"
-msgstr "Клацнути правою кнопкою миші, щоб вибрати ринок початку торгівлі"
-
-#: gui/session/unit_actions.js:662 gui/session/unit_actions.js:1004
-msgid "This market is too close to the origin market."
-msgstr "Цей ринок занадто близький до початкового ринку."
-
-#: gui/session/unit_actions.js:666
-msgid "Right-click to set as destination trade market."
-msgstr "Клацнути правою кнопкою миші, щоб вибрати ринок призначення торгівлі."
-
-#: gui/session/unit_actions.js:727 gui/session/unit_actions.js:942
-#, javascript-format
-msgid "Current garrison: %(garrisoned)s/%(capacity)s"
-msgstr "Поточний гарнізон: %(garrisoned)s/%(capacity)s"
-
-#: gui/session/unit_actions.js:995
-msgid "Right-click to establish a default route for new traders."
-msgstr "Клацнути правою кнопкою миші, щоб встановити маршрут за замовчуванням для нових торговців."
-
-#: gui/session/unit_actions.js:999
-#, javascript-format
-msgid "Expected gain: %(gain)s"
-msgstr "Очікуваний прибуток: %(gain)s"
-
-#: gui/session/unit_actions.js:1129
-msgid "This entity cannot be controlled."
-msgid_plural "These entities cannot be controlled."
-msgstr[0] "Ця сутність не може контролюватися."
-msgstr[1] "Ці сутністі не можуть контролюватися."
-msgstr[2] "Ці сутністі не можуть контролюватися."
-msgstr[3] "Ці сутністі не можуть контролюватися."
-
-#: gui/session/unit_actions.js:1166 gui/session/unit_actions.js:1494
-msgid "Unload All."
-msgstr "Вивести всіх."
-
-#: gui/session/unit_actions.js:1184
-msgid "Destroy the selected units or structures."
-msgstr "Знищити вибрані підрозділи чи споруди."
-
-#: gui/session/unit_actions.js:1186
-#, javascript-format
-msgid "Use %(hotkey)s to avoid the confirmation dialog."
-msgstr "Застосувати %(hotkey)s, щоб уникнути підтвердження діалогу."
-
-#: gui/session/unit_actions.js:1233
-msgid "Abort the current order."
-msgstr "Перервати поточний наказ."
-
-#: gui/session/unit_actions.js:1252
-msgid "Order the selected units to garrison in a structure or unit."
-msgstr "Наказати вибраним підрозділам стати гарнізоном у споруді чи одиниці."
-
-#: gui/session/unit_actions.js:1275
-msgid "Unload"
-msgstr "Вивести"
-
-#: gui/session/unit_actions.js:1293
-msgid "Order the selected units to repair a structure, ship, or siege engine."
-msgstr "Наказати вибраним підрозділам ремонтувати споруду, корабель чи облогове знаряддя."
-
-#: gui/session/unit_actions.js:1312
-msgid "Focus on Rally Point."
-msgstr "Зосередити увагу на точці збору."
-
-#: gui/session/unit_actions.js:1347
-msgid "Back to Work"
-msgstr "Повернути до праці"
-
-#: gui/session/unit_actions.js:1366
-msgid "Order the selected units to guard a structure or unit."
-msgstr "Наказати вибраним підрозділам охороняти споруду чи одиницю."
-
-#: gui/session/unit_actions.js:1384
-msgid "Remove guard"
-msgstr "Зняти охорону"
-
-#: gui/session/unit_actions.js:1401
-#: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
-#: gui/session/trade/TradeDialog.xml:(caption):9
-msgid "Barter & Trade"
-msgstr "Обмін та торгівля"
-
-#: gui/session/unit_actions.js:1419
-msgid "Patrol"
-msgstr "Патрулювати"
-
-#: gui/session/unit_actions.js:1420
-msgid "Attack all encountered enemy units while avoiding structures."
-msgstr "Атакувати всі зустрічні ворожі підрозділи, уникаючи будівель."
-
-#: gui/session/unit_actions.js:1446
-msgid "Press to allow allies to use this dropsite"
-msgstr "Натиснути, щоб дозволити союзникам використовувати це місце збору"
-
-#: gui/session/unit_actions.js:1450
-msgid "Press to prevent allies from using this dropsite"
-msgstr "Натиснути, щоб завадити союзникам використовувати це місце збору"
-
-#: gui/session/unit_actions.js:1515
-msgid "You are allowed to use this dropsite"
-msgstr "Вам дозволено використовувати це місце збору"
-
-#: gui/session/unit_actions.js:1520
-msgid "The use of this dropsite is prohibited"
-msgstr "Використовувати це місце збору заборонено"
-
-#: gui/session/unit_actions.js:1594
-msgid "The entity has to be killed before it can be gathered from"
-msgstr "Об'єкт повинен бути вбитий, перш ніж його можна буде зібрати"
-
-#: gui/session/unit_actions.js:1597
-msgid ""
-"You cannot destroy this entity as you own less than half the capture points"
-msgstr "Ви не можете зруйнувати цей об'єкт, так як Ви володієте менш, ніж половиною від очок захоплення"
-
-#: gui/session/unit_actions.js:1600
-msgid "This entity is undeletable"
-msgstr "Цей об'єкт неможливо видалити"
-
-#: gui/session/chat/ChatAddressees.js:88
-msgctxt "chat addressee"
-msgid "Everyone"
-msgstr "Усіх"
-
-#: gui/session/chat/ChatAddressees.js:94
-msgctxt "chat addressee"
-msgid "Allies"
-msgstr "Союзників"
-
-#: gui/session/chat/ChatAddressees.js:95
-msgctxt "chat message context"
-msgid "Ally"
-msgstr "Союзника"
-
-#: gui/session/chat/ChatAddressees.js:105
-msgctxt "chat addressee"
-msgid "Enemies"
-msgstr "Ворогів"
-
-#: gui/session/chat/ChatAddressees.js:106
-msgctxt "chat message context"
-msgid "Enemy"
-msgstr "Ворога"
-
-#: gui/session/chat/ChatAddressees.js:116
-msgctxt "chat addressee"
-msgid "Observers"
-msgstr "Спостерігачів"
-
-#: gui/session/chat/ChatAddressees.js:117
-msgctxt "chat message context"
-msgid "Observer"
-msgstr "Спостерігача"
-
-#: gui/session/chat/ChatAddressees.js:124
-msgctxt "chat message context"
-msgid "Private"
-msgstr "Приватного"
-
-#: gui/session/chat/ChatHistory.js:49
-#, javascript-format
-msgid "%(time)s %(message)s"
-msgstr "%(time)s %(message)s"
-
-#: gui/session/chat/ChatHistory.js:61
-#, javascript-format
-msgid "\\[%(time)s]"
-msgstr "\\[%(time)s]"
-
-#: gui/session/chat/ChatHistory.js:62
-msgid "HH:mm"
-msgstr "HH:mm"
-
-#: gui/session/chat/ChatHistory.js:82
-msgctxt "chat history filter"
-msgid "Chat and notifications"
-msgstr "Бесіда та сповіщення"
-
-#: gui/session/chat/ChatHistory.js:87
-msgctxt "chat history filter"
-msgid "Chat messages"
-msgstr "Повідомлення бесіди"
-
-#: gui/session/chat/ChatHistory.js:92
-msgctxt "chat history filter"
-msgid "Players chat"
-msgstr "Бесіда гравців"
-
-#: gui/session/chat/ChatHistory.js:99
-msgctxt "chat history filter"
-msgid "Ally chat"
-msgstr "Бесіда союзника"
-
-#: gui/session/chat/ChatHistory.js:106
-msgctxt "chat history filter"
-msgid "Enemy chat"
-msgstr "Бесіда ворога"
-
-#: gui/session/chat/ChatHistory.js:113
-msgctxt "chat history filter"
-msgid "Observer chat"
-msgstr "Бесіда спостерігача"
-
-#: gui/session/chat/ChatHistory.js:120
-msgctxt "chat history filter"
-msgid "Private chat"
-msgstr "Приватна бесіда"
-
-#: gui/session/chat/ChatHistory.js:125
-msgctxt "chat history filter"
-msgid "Game notifications"
-msgstr "Ігрові сповіщення"
-
-#: gui/session/chat/ChatHistory.js:130
-msgctxt "chat history filter"
-msgid "Network notifications"
-msgstr "Мережеві сповіщення"
-
-#: gui/session/chat/ChatInput.js:31
-msgctxt "chat input"
-msgid "Type the message to send."
-msgstr "Ввести повідомлення для надсилання."
-
-#: gui/session/chat/ChatInput.js:37
-#, javascript-format
-msgid "Press %(hotkey)s to open the public chat."
-msgstr "Натиснути %(hotkey)s, щоб відкрити публічну бесіду."
-
-#: gui/session/chat/ChatInput.js:40
-#, javascript-format
-msgid "Press %(hotkey)s to open the observer chat."
-msgstr "Натиснути %(hotkey)s, щоб відкрити бесіду спостерігача."
-
-#: gui/session/chat/ChatInput.js:41
-#, javascript-format
-msgid "Press %(hotkey)s to open the ally chat."
-msgstr "Натиснути %(hotkey)s, щоб відкрити бесіду союзника."
-
-#: gui/session/chat/ChatInput.js:43
-#, javascript-format
-msgid "Press %(hotkey)s to open the previously selected private chat."
-msgstr "Натиснути %(hotkey)s, щоб відкрити попередньо вибрану приватну бесіду."
-
-#. Translation: A player that left the game joins again
-#: gui/session/chat/ChatMessageFormatNetwork.js:23
-#, javascript-format
-msgid "%(player)s is starting to rejoin the game."
-msgstr "%(player)s починає переприєднання до гри."
-
-#. Translation: A player joins the game for the first time
-#: gui/session/chat/ChatMessageFormatNetwork.js:25
-#, javascript-format
-msgid "%(player)s is starting to join the game."
-msgstr "%(player)s починає приєднання до гри."
-
-#: gui/session/chat/ChatMessageFormatNetwork.js:34
-#, javascript-format
-msgid "%(player)s has left the game."
-msgstr "%(player)s залишає гру."
-
-#: gui/session/chat/ChatMessageFormatNetwork.js:46
-#, javascript-format
-msgid "%(username)s has been banned"
-msgstr "%(username)s було заблоковано"
-
-#: gui/session/chat/ChatMessageFormatNetwork.js:47
-#, javascript-format
-msgid "%(username)s has been kicked"
-msgstr "%(username)s було вигнано"
-
-#. Translation: A player that left the game joins again
-#: gui/session/chat/ChatMessageFormatNetwork.js:64
-#, javascript-format
-msgid "%(player)s has rejoined the game."
-msgstr "%(player)s повертаєтся до гри."
-
-#. Translation: A player joins the game for the first time
-#: gui/session/chat/ChatMessageFormatNetwork.js:66
-#, javascript-format
-msgid "%(player)s has joined the game."
-msgstr "%(player)s приєднуется до гри."
-
-#: gui/session/chat/ChatMessageFormatPlayer.js:57
-msgid "no-context"
-msgstr "без контексту"
-
-#: gui/session/chat/ChatMessageFormatPlayer.js:61
-#, javascript-format
-msgid "<%(user)s>"
-msgstr "<%(user)s>"
-
-#: gui/session/chat/ChatMessageFormatPlayer.js:159
-#, javascript-format
-msgid "(%(context)s) %(userTag)s %(message)s"
-msgstr "(%(context)s) %(userTag)s %(message)s"
-
-#: gui/session/chat/ChatMessageFormatPlayer.js:160
-#, javascript-format
-msgid "%(userTag)s %(message)s"
-msgstr "%(userTag)s %(message)s"
-
-#: gui/session/chat/ChatMessageFormatPlayer.js:163
-#, javascript-format
-msgid "(%(context)s) * %(user)s %(message)s"
-msgstr "(%(context)s) * %(user)s %(message)s"
-
-#: gui/session/chat/ChatMessageFormatPlayer.js:164
-#, javascript-format
-msgid "* %(user)s %(message)s"
-msgstr "* %(user)s %(message)s"
-
-#: gui/session/chat/ChatMessageFormatSimulation.js:16
-#, javascript-format
-msgid "Your livestock has been attacked by %(attacker)s!"
-msgstr "Вашу худобу було атаковано %(attacker)s!"
-
-#: gui/session/chat/ChatMessageFormatSimulation.js:17
-#, javascript-format
-msgid "You have been attacked by %(attacker)s!"
-msgstr "Ви були атаковані %(attacker)s!"
-
-#: gui/session/chat/ChatMessageFormatSimulation.js:38
-#, javascript-format
-msgid "%(player)s bartered %(amountGiven)s for %(amountGained)s."
-msgstr "%(player)s обмінює %(amountGiven)s на %(amountGained)s."
-
-#: gui/session/chat/ChatMessageFormatSimulation.js:70
-#, javascript-format
-msgid "You are now allied with %(player)s."
-msgstr "Ви наразі уклали союз із %(player)s."
-
-#: gui/session/chat/ChatMessageFormatSimulation.js:71
-#, javascript-format
-msgid "You are now at war with %(player)s."
-msgstr "Ви тепер воюєте з %(player)s."
-
-#: gui/session/chat/ChatMessageFormatSimulation.js:72
-#, javascript-format
-msgid "You are now neutral with %(player)s."
-msgstr "Ви зараз прийняли нейтралітет до %(player)s."
-
-#: gui/session/chat/ChatMessageFormatSimulation.js:75
-#, javascript-format
-msgid "%(player)s is now allied with you."
-msgstr "%(player)s наразі укладає союз із Вами."
-
-#: gui/session/chat/ChatMessageFormatSimulation.js:76
-#, javascript-format
-msgid "%(player)s is now at war with you."
-msgstr "%(player)s тепер воює з Вами."
-
-#: gui/session/chat/ChatMessageFormatSimulation.js:77
-#, javascript-format
-msgid "%(player)s is now neutral with you."
-msgstr "%(player)s зараз приймає нейтралітет до Вас."
-
-#: gui/session/chat/ChatMessageFormatSimulation.js:80
-#, javascript-format
-msgid "%(player)s is now allied with %(player2)s."
-msgstr "%(player)s наразі укладає союз із %(player2)s."
-
-#: gui/session/chat/ChatMessageFormatSimulation.js:81
-#, javascript-format
-msgid "%(player)s is now at war with %(player2)s."
-msgstr "%(player)s тепер воює з %(player2)s."
-
-#: gui/session/chat/ChatMessageFormatSimulation.js:82
-#, javascript-format
-msgid "%(player)s is now neutral with %(player2)s."
-msgstr "%(player)s зараз приймає нейтралітет до %(player2)s."
-
-#: gui/session/chat/ChatMessageFormatSimulation.js:98
-#, javascript-format
-msgid "%(player)s is advancing to the %(phaseName)s."
-msgstr "%(player)s просувається до %(phaseName)s."
-
-#: gui/session/chat/ChatMessageFormatSimulation.js:100
-#, javascript-format
-msgid "The %(phaseName)s of %(player)s has been aborted."
-msgstr "Просування %(player)s до %(phaseName)s було перервано."
-
-#: gui/session/chat/ChatMessageFormatSimulation.js:103
-#, javascript-format
-msgid "%(player)s has reached the %(phaseName)s."
-msgstr "%(player)s досягає %(phaseName)s."
-
-#. Translation: This comma is used for separating first to penultimate
-#. elements in an enumeration.
-#: gui/session/chat/ChatMessageFormatSimulation.js:126
-msgid ", "
-msgstr ", "
-
-#: gui/session/chat/ChatMessageFormatSimulation.js:142
-#, javascript-format
-msgid "%(player)s has sent you %(amounts)s."
-msgstr "%(player)s надсилає Вам %(amounts)s."
-
-#: gui/session/chat/ChatMessageFormatSimulation.js:144
-#, javascript-format
-msgid "You have sent %(player2)s %(amounts)s."
-msgstr "Ви надіслали %(amounts)s до %(player2)s."
-
-#: gui/session/chat/ChatMessageFormatSimulation.js:149
-#, javascript-format
-msgid "%(player)s has sent %(player2)s %(amounts)s."
-msgstr "%(player)s надсилає %(amounts)s до %(player2)s."
-
-#: gui/session/developer_overlay/DeveloperOverlay.js:67
-msgid "The Developer Overlay was opened."
-msgstr "Накладання розробника відкрито."
-
-#: gui/session/developer_overlay/DeveloperOverlay.js:68
-msgid "The Developer Overlay was closed."
-msgstr "Накладання розробника закрито."
-
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:15
-msgid "Control all units"
-msgstr "Контролювати всі підрозділи"
-
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:42
-msgid "Change perspective"
-msgstr "Змінити точку зору"
-
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:60
-msgid "Display selection state"
-msgstr "Відобразити стан вибору"
-
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:73
-msgid "Pathfinder overlay"
-msgstr "Накладання алгоритму пошуку шляху"
-
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:86
-msgid "Hierarchical pathfinder overlay"
-msgstr "Ієрархічне накладання алгоритму пошуку шляху"
-
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:99
-msgid "Obstruction overlay"
-msgstr "Накладання перешкод"
-
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:112
-msgid "Unit motion overlay"
-msgstr "Накладання руху одиниці"
-
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:125
-msgid "Range overlay"
-msgstr "Накладання дистанції"
-
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:138
-msgid "Bounding box overlay"
-msgstr "Накладання обмежувальної коробки"
-
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:151
-msgid "Restrict camera"
-msgstr "Обмежити камеру"
-
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:169
-msgid "Reveal map"
-msgstr "Відкрити мапу"
-
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:195
-msgid "Enable time warp"
-msgstr "Увімкнути викривлення часу"
-
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:208
-msgid "Promote selected units"
-msgstr "Підвищити вибрані підрозділи"
-
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:229
-msgid "Enable culling"
-msgstr "Увімкнути відсікання"
-
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:247
-msgid "Lock cull camera"
-msgstr "Замкнути камеру відсікання"
-
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:265
-msgid "Display camera frustum"
-msgstr "Відобразити зрізаний конус камери"
-
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:283
-msgid "Display shadows frustum"
-msgstr "Відобразити тіні зрізаного конусу камери"
-
-#: gui/session/developer_overlay/TimeWarp.js:65
-msgid "Time warp mode"
-msgstr "Режим викривлення часу"
-
-#: gui/session/developer_overlay/TimeWarp.js:66
-msgid ""
-"Note: time warp mode is a developer option, and not intended for use over "
-"long periods of time. Using it incorrectly may cause the game to run out of "
-"memory or crash."
-msgstr "Примітка: режим викривлення часу — це опція для розробників і не призначена для використання протягом тривалих періодів часу. Неправильне використання може спричинити переповнення пам’яті або поломку гри."
-
-#: gui/session/diplomacy/DiplomacyDialogCeasefireCounter.js:27
-#, javascript-format
-msgctxt "ceasefire"
-msgid "Remaining ceasefire time: %(time)s."
-msgstr "Залишок часу призупинення бойових дій: %(time)s."
-
-#: gui/session/diplomacy/DiplomacyDialogColorsButton.js:30
-#: gui/session/minimap/MiniMapDiplomacyColorsButton.js:34
-#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):85
-msgid "Toggle Diplomacy Colors"
-msgstr "Перемкнути кольори дипломатії"
-
-#: gui/session/diplomacy/playercontrols/AttackRequestButton.js:38
-msgid "Request your allies to attack this enemy"
-msgstr "Запропонувати Вашим союзникам атакувати цього ворога"
-
-#: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:75
-msgctxt "team"
-msgid "None"
-msgstr "Немає"
-
-#: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:78
-#: gui/session/diplomacy/DiplomacyDialog.xml:(tooltip):28
-msgid "Ally"
-msgstr "Союзник"
-
-#: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:81
-#: gui/session/diplomacy/DiplomacyDialog.xml:(tooltip):32
-msgid "Neutral"
-msgstr "Нейтральний"
-
-#: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:84
-#: gui/session/diplomacy/DiplomacyDialog.xml:(tooltip):36
-msgid "Enemy"
-msgstr "Ворог"
-
-#: gui/session/diplomacy/playercontrols/SpyRequestButton.js:139
-msgid ""
-"Bribe a random unit from this player and share its vision during a limited "
-"period."
-msgstr "Підкупити випадкову одиницю цього гравця та скористатися її баченням протягом обмеженого періоду."
-
-#: gui/session/diplomacy/playercontrols/SpyRequestButton.js:142
-msgid "A failed bribe will cost you:"
-msgstr "Невдалий підкуп коштуватиме Вам:"
-
-#: gui/session/diplomacy/playercontrols/StanceButton.js:60
-msgctxt "diplomatic stance selection"
-msgid "x"
-msgstr "x"
-
-#: gui/session/diplomacy/playercontrols/TributeButton.js:112
-#, javascript-format
-msgid ""
-"Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
-"to tribute %(greaterAmount)s."
-msgstr "Піднести %(resourceAmount)s %(resourceType)s до %(playerName)s. Клацнути, утримуючи Shift, щоб зробити підношення %(greaterAmount)s."
-
-#: gui/session/message_box/DeleteSelectionConfirmation.js:10
-msgid "Delete"
-msgstr "Видалити"
-
-#: gui/session/message_box/DeleteSelectionConfirmation.js:11
-msgid "Destroy everything currently selected?"
-msgstr "Знищити все вибране на даний момент?"
-
-#: gui/session/message_box/DeleteSelectionConfirmation.js:14
-#: gui/session/message_box/QuitConfirmation.js:14
-#: gui/session/message_box/QuitConfirmationMenu.js:49
-#: gui/session/message_box/ResignConfirmation.js:9
-#: gui/session/dialogs/yes_no.xml:(caption):24
-msgid "No"
-msgstr "Ні"
-
-#: gui/session/message_box/DeleteSelectionConfirmation.js:17
-#: gui/session/message_box/QuitConfirmation.js:17
-#: gui/session/message_box/QuitConfirmationMenu.js:52
-#: gui/session/message_box/ResignConfirmation.js:12
-#: gui/session/dialogs/yes_no.xml:(caption):19
-msgid "Yes"
-msgstr "Так"
-
-#: gui/session/message_box/OutOfSyncNetwork.js:15
-#: gui/session/message_box/OutOfSyncReplay.js:26
-#, javascript-format
-msgid "Out-Of-Sync error on turn %(turn)s."
-msgstr "Помилка поза синхронізацією на черзі %(turn)s."
-
-#: gui/session/message_box/OutOfSyncNetwork.js:19
-#, javascript-format
-msgctxt "Out-Of-Sync"
-msgid "Players: %(players)s"
-msgstr "Гравці: %(players)s"
-
-#: gui/session/message_box/OutOfSyncNetwork.js:24
-msgctxt "Out-Of-Sync"
-msgid "Your game state is identical to the hosts game state."
-msgstr "Ваш ігровий стан наразі ідентичний до стану гри власників."
-
-#: gui/session/message_box/OutOfSyncNetwork.js:25
-msgctxt "Out-Of-Sync"
-msgid "Your game state differs from the hosts game state."
-msgstr "Ваш ігровий стан наразі відрізняєтся від стану гри власників."
-
-#: gui/session/message_box/OutOfSyncNetwork.js:31
-msgctxt "Out-Of-Sync"
-msgid "Rejoining Multiplayer games with AIs is not supported yet!"
-msgstr "Повторне з'єднання до багатокористувацьких ігор із ШІ ще не підтримується!"
-
-#: gui/session/message_box/OutOfSyncNetwork.js:34
-msgctxt "Out-Of-Sync"
-msgid "Ensure all players use the same mods."
-msgstr "Переконайтеся, що всі гравці користуються однаковими модифікаціями."
-
-#: gui/session/message_box/OutOfSyncNetwork.js:35
-msgctxt "Out-Of-Sync"
-msgid "Click on \"Report a Bug\" in the main menu to help fix this."
-msgstr "Клацнути на \"Повідомити про програмну помилку\" в головному меню, щоб допомогти виправити її."
-
-#: gui/session/message_box/OutOfSyncNetwork.js:36
-#, javascript-format
-msgctxt "Out-Of-Sync"
-msgid "Replay saved to %(filepath)s"
-msgstr "Відтворення збережено до %(filepath)s"
-
-#: gui/session/message_box/OutOfSyncNetwork.js:39
-#, javascript-format
-msgctxt "Out-Of-Sync"
-msgid "Dumping current state to %(filepath)s"
-msgstr "Скидання поточного стану до %(filepath)s"
-
-#: gui/session/message_box/OutOfSyncNetwork.js:51
-#: gui/session/message_box/OutOfSyncReplay.js:23
-msgid "Out of Sync"
-msgstr "Не синхронізовано"
-
-#. Translation: This is shown if replay is out of sync
-#: gui/session/message_box/OutOfSyncReplay.js:28
-msgid "Out-Of-Sync"
-msgstr "Не синхронізовано"
-
-#: gui/session/message_box/QuitConfirmation.js:6
-#: gui/session/message_box/QuitConfirmationMenu.js:63
-#: gui/session/message_box/ResignConfirmation.js:5
-msgid "Confirmation"
-msgstr "Підтвердження"
-
-#: gui/session/message_box/QuitConfirmation.js:9
-msgid "Are you sure you want to quit?"
-msgstr "Чи впевнені Ви, що Ви хочете завершити?"
-
-#: gui/session/message_box/QuitConfirmationDefeat.js:54
-msgid "VICTORIOUS!"
-msgstr "ЗДОБУТО ПЕРЕМОГУ!"
-
-#: gui/session/message_box/QuitConfirmationDefeat.js:55
-msgid "DEFEATED!"
-msgstr "ОТРИМАНО ПОРАЗКУ!"
-
-#: gui/session/message_box/QuitConfirmationDefeat.js:57
-msgid "Do you want to quit?"
-msgstr "Чи хочете Ви завершити?"
-
-#: gui/session/message_box/QuitConfirmationMenu.js:33
-msgid ""
-"Are you sure you want to quit? Leaving will disconnect all other players."
-msgstr "Чи впевнені Ви, що Ви хочете завершити? Із завершенням всіх інших гравців буде роз'єднано."
-
-#: gui/session/message_box/QuitConfirmationMenu.js:64
-msgid "Do you want to resign or will you return soon?"
-msgstr "Чи хочете Ви здатися, чи незабаром Ви повернетеся?"
-
-#: gui/session/message_box/QuitConfirmationMenu.js:67
-msgid "I will return"
-msgstr "Я повернусь"
-
-#: gui/session/message_box/QuitConfirmationMenu.js:71
-msgid "I resign"
-msgstr "Я здаюсь"
-
-#: gui/session/message_box/QuitConfirmationReplay.js:14
-msgctxt "replayFinished"
-msgid "Confirmation"
-msgstr "Підтвердження"
-
-#: gui/session/message_box/QuitConfirmationReplay.js:17
-msgctxt "replayFinished"
-msgid "The replay has finished. Do you want to quit?"
-msgstr "Відтворення закінчено. Чи хочете Ви завершити?"
-
-#: gui/session/message_box/QuitConfirmationReplay.js:22
-msgctxt "replayFinished"
-msgid "No"
-msgstr "Ні"
-
-#: gui/session/message_box/QuitConfirmationReplay.js:25
-msgctxt "replayFinished"
-msgid "Yes"
-msgstr "Так"
-
-#: gui/session/message_box/ResignConfirmation.js:6
-msgid "Are you sure you want to resign?"
-msgstr "Чи впевнені Ви, що Ви хочете здатися?"
-
-#: gui/session/minimap/MiniMapIdleWorkerButton.js:40
-msgid "Find idle worker"
-msgstr "Знайти незайнятого працівника"
+"Click to select grouped units, double-click to focus the grouped units and "
+"right-click to disband the group."
+msgstr "Клацнути, щоб вибрати згруповані підрозділи, подвійно клацнути, щоб сфокусуватися на згрупованих підрозділах та клацнути правою кнопкою миші, щоб розформовувати групу."
+
+#: gui/session/top_panel/BuildLabel.xml:(caption):6
+msgid "ALPHA XXIV"
+msgstr "ALPHA XXIV"
 
 #: gui/session/top_panel/CivIcon.js:77
 #, javascript-format
@@ -1279,19 +1275,41 @@ msgstr "Максимальна чисельність населення: %(popC
 msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
 msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 
+#: gui/session/top_panel/FollowPlayer.xml:(caption):15
+#: gui/session/top_panel/FollowPlayer.xml:(tooltip):11
+msgctxt "observer mode"
+msgid "Follow Player"
+msgstr "Слідувати за гравцем"
+
+#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):10
+#: gui/session/top_panel/IconButtons/DiplomacyDialogButton.js:29
+msgid "Diplomacy"
+msgstr "Дипломатія"
+
+#: gui/session/top_panel/IconButtons/GameSpeedButton.xml:(tooltip):9
+msgid "Game Speed"
+msgstr "Швидкість гри"
+
+#: gui/session/objectives/ObjectivesDialog.xml:(caption):15
+#: gui/session/top_panel/IconButtons/ObjectivesDialogButton.js:23
+msgid "Objectives"
+msgstr "Цілі"
+
+#: gui/session/top_panel/MenuButton.xml:(caption):15
+msgid "Menu"
+msgstr "Меню"
+
 #: gui/session/top_panel/PlayerViewControl.js:123
 msgid "Observer"
 msgstr "Спостерігач"
 
-#: gui/session/top_panel/IconButtons/DiplomacyDialogButton.js:29
-#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):10
-msgid "Diplomacy"
-msgstr "Дипломатія"
+#: gui/session/top_panel/PlayerViewControl.xml:(caption):17
+msgid "Observer Mode"
+msgstr "Режим спостерігача"
 
-#: gui/session/top_panel/IconButtons/ObjectivesDialogButton.js:23
-#: gui/session/objectives/ObjectivesDialog.xml:(caption):15
-msgid "Objectives"
-msgstr "Цілі"
+#: gui/session/top_panel/PlayerViewControl.xml:(tooltip):13
+msgid "Choose player to view"
+msgstr "Вибрати гравця для перегляду"
 
 #: gui/session/trade/BarterButton.js:100
 #, javascript-format
@@ -1315,6 +1333,22 @@ msgctxt "sell action"
 msgid "-%(amount)s"
 msgstr "-%(amount)s"
 
+#: gui/session/trade/BarterPanel.xml:(caption):5
+msgid "Barter"
+msgstr "Обмін"
+
+#: gui/session/trade/BarterPanel.xml:(caption):13
+msgid "Sell:"
+msgstr "Продати:"
+
+#: gui/session/trade/BarterPanel.xml:(caption):17
+msgid "Buy:"
+msgstr "Придбати:"
+
+#: gui/session/trade/BarterPanel.xml:(caption):21
+msgid "No Markets Available"
+msgstr "Немає доступних ринків"
+
 #: gui/session/trade/TradeButton.js:56
 #, javascript-format
 msgctxt "trading good ratio"
@@ -1337,6 +1371,14 @@ msgid ""
 "will be sold for the displayed quantity of the lower. Press and hold "
 "%(hotkey)s to temporarily multiply the traded amount by %(multiplier)s."
 msgstr "Почніть з вибору ресурсу, який Ви бажаєте продати, з верхнього ряду. Кожного разу, коли нижні кнопки натискаються, %(quantity)s верхнього ресурсу буде продано за відображену кількість нижнього. Натиснути та утримувати %(hotkey)s, щоб тимчасово помножити торгувану суму на %(multiplier)s."
+
+#: gui/session/trade/TradePanel.xml:(caption):5
+msgid "Trade"
+msgstr "Торгівля"
+
+#: gui/session/trade/TradePanel.xml:(caption):14
+msgid "Resources:"
+msgstr "Ресурси:"
 
 #: gui/session/trade/TraderStatusTextLand.js:15
 #, javascript-format
@@ -1465,183 +1507,142 @@ msgstr[3] "Не задіяно %(numberOfShipTraders)s торгових суде
 msgid "There are no merchant ships."
 msgstr "Немає торгових суден."
 
-#: gui/session/GameSpeedControl.xml:(tooltip):11
-msgid "Choose game speed"
-msgstr "Вибрати швидкість гри."
-
-#: gui/session/PauseOverlay.xml:(caption):7
-msgid "Game Paused"
-msgstr "Гру призупинено"
-
-#: gui/session/PauseOverlay.xml:(caption):11
-msgid "Click to Resume Game"
-msgstr "Клацнути, щоб продовжити гру"
-
 #: gui/session/tutorial_panel.xml:(caption):11
 msgid "Ready"
 msgstr "Готово"
 
-#: gui/session/chat/chat_window.xml:(caption):19
-msgctxt "chat input"
-msgid "Filter:"
-msgstr "Фільтр:"
-
-#: gui/session/chat/chat_window.xml:(caption):46
-msgctxt "chat input"
-msgid "To:"
-msgstr "До:"
-
-#: gui/session/chat/chat_window.xml:(caption):60
-msgctxt "chat input"
-msgid "Text:"
-msgstr "Зміст:"
-
-#: gui/session/chat/chat_window.xml:(caption):72
-msgid "Cancel"
-msgstr "Скасувати"
-
-#: gui/session/chat/chat_window.xml:(caption):86
-msgctxt "chat"
-msgid "History"
-msgstr "Історія"
-
-#: gui/session/chat/chat_window.xml:(caption):91
-msgid "Send"
-msgstr "Надіслати"
-
-#: gui/session/chat/chat_window.xml:(tooltip):29
-msgctxt "chat input"
-msgid "Filter the chat history."
-msgstr "Фільтрувати історію бесіди."
-
-#: gui/session/chat/chat_window.xml:(tooltip):55
-msgctxt "chat input"
-msgid "Select chat addressee."
-msgstr "Вибрати адресата бесіди."
-
-#: gui/session/dialogs/yes_no.xml:(caption):11
-msgid "Question"
-msgstr "Запитання"
-
-#: gui/session/dialogs/yes_no.xml:(caption):15
-msgid "Yes or no?"
-msgstr "Так чи ні?"
-
-#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):15
-msgid "Name"
-msgstr "Ім'я"
-
-#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):18
-msgid "Civilization"
-msgstr "Цивілізація"
-
-#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):21
-msgid "Team"
-msgstr "Команда"
-
-#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):24
-msgid "Theirs"
-msgstr "Їхній статус"
-
-#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):27
-msgid "A"
-msgstr "С"
-
-#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):31
-msgid "N"
-msgstr "Н"
-
-#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):35
-msgid "E"
-msgstr "В"
-
-#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):39
-msgid "Tribute"
-msgstr "Підношення"
-
-#: gui/session/diplomacy/DiplomacyDialog.xml:(caption):90
-#: gui/session/objectives/ObjectivesDialog.xml:(caption):43
-#: gui/session/trade/TradeDialog.xml:(caption):22
-msgid "Close"
-msgstr "Закрити"
-
-#: gui/session/selection_panels_left/garrison_panel.xml:(tooltip):16
-#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):20
-msgid "Health"
-msgstr "Здоров'я"
-
-#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):34
-msgid "Capture points"
-msgstr "Очки захвату"
-
-#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):62
-msgid "Attack and Resistance"
-msgstr "Атака та опір"
-
-#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):77
-msgid "Experience"
-msgstr "Досвід:"
-
-#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):85
-msgid "Rank"
-msgstr "Ранг"
-
-#: gui/session/selection_panels_right/queue_panel.xml:(tooltip):8
-msgid "Production queue"
-msgstr "Черга виробництва"
-
-#: gui/session/session_objects/selection_group_icons.xml:(tooltip):7
+#: gui/session/unit_actions.js:578
 msgid ""
-"Click to select grouped units, double-click to focus the grouped units and "
-"right-click to disband the group."
-msgstr "Клацнути, щоб вибрати згруповані підрозділи, подвійно клацнути, щоб сфокусуватися на згрупованих підрозділах та клацнути правою кнопкою миші, щоб розформовувати групу."
+"This is the origin trade market.\n"
+"Right-click to cancel trade route."
+msgstr "Це є ринок початку торгівлі. Клацнути правою кнопкою миші, щоб скасувати торговий маршрут."
 
-#: gui/session/top_panel/BuildLabel.xml:(caption):6
-msgid "ALPHA XXIV"
-msgstr "ALPHA XXIV"
+#: gui/session/unit_actions.js:638
+msgid "Origin trade market."
+msgstr "Ринок початку торгівлі."
 
-#: gui/session/top_panel/FollowPlayer.xml:(tooltip):11
-#: gui/session/top_panel/FollowPlayer.xml:(caption):15
-msgctxt "observer mode"
-msgid "Follow Player"
-msgstr "Слідувати за гравцем"
+#: gui/session/unit_actions.js:648
+msgid "Destination trade market."
+msgstr "Ринок призначення торгівлі."
 
-#: gui/session/top_panel/MenuButton.xml:(caption):15
-msgid "Menu"
-msgstr "Меню"
+#: gui/session/unit_actions.js:655
+msgid "Right-click to set as origin trade market"
+msgstr "Клацнути правою кнопкою миші, щоб вибрати ринок початку торгівлі"
 
-#: gui/session/top_panel/PlayerViewControl.xml:(tooltip):13
-msgid "Choose player to view"
-msgstr "Вибрати гравця для перегляду"
+#: gui/session/unit_actions.js:662 gui/session/unit_actions.js:1004
+msgid "This market is too close to the origin market."
+msgstr "Цей ринок занадто близький до початкового ринку."
 
-#: gui/session/top_panel/PlayerViewControl.xml:(caption):17
-msgid "Observer Mode"
-msgstr "Режим спостерігача"
+#: gui/session/unit_actions.js:666
+msgid "Right-click to set as destination trade market."
+msgstr "Клацнути правою кнопкою миші, щоб вибрати ринок призначення торгівлі."
 
-#: gui/session/top_panel/IconButtons/GameSpeedButton.xml:(tooltip):9
-msgid "Game Speed"
-msgstr "Швидкість гри"
+#: gui/session/unit_actions.js:727 gui/session/unit_actions.js:942
+#, javascript-format
+msgid "Current garrison: %(garrisoned)s/%(capacity)s"
+msgstr "Поточний гарнізон: %(garrisoned)s/%(capacity)s"
 
-#: gui/session/trade/BarterPanel.xml:(caption):5
-msgid "Barter"
-msgstr "Обмін"
+#: gui/session/unit_actions.js:995
+msgid "Right-click to establish a default route for new traders."
+msgstr "Клацнути правою кнопкою миші, щоб встановити маршрут за замовчуванням для нових торговців."
 
-#: gui/session/trade/BarterPanel.xml:(caption):13
-msgid "Sell:"
-msgstr "Продати:"
+#: gui/session/unit_actions.js:999
+#, javascript-format
+msgid "Expected gain: %(gain)s"
+msgstr "Очікуваний прибуток: %(gain)s"
 
-#: gui/session/trade/BarterPanel.xml:(caption):17
-msgid "Buy:"
-msgstr "Придбати:"
+#: gui/session/unit_actions.js:1129
+msgid "This entity cannot be controlled."
+msgid_plural "These entities cannot be controlled."
+msgstr[0] "Ця сутність не може контролюватися."
+msgstr[1] "Ці сутністі не можуть контролюватися."
+msgstr[2] "Ці сутністі не можуть контролюватися."
+msgstr[3] "Ці сутністі не можуть контролюватися."
 
-#: gui/session/trade/BarterPanel.xml:(caption):21
-msgid "No Markets Available"
-msgstr "Немає доступних ринків"
+#: gui/session/unit_actions.js:1166 gui/session/unit_actions.js:1494
+msgid "Unload All."
+msgstr "Вивести всіх."
 
-#: gui/session/trade/TradePanel.xml:(caption):5
-msgid "Trade"
-msgstr "Торгівля"
+#: gui/session/unit_actions.js:1184
+msgid "Destroy the selected units or structures."
+msgstr "Знищити вибрані підрозділи чи споруди."
 
-#: gui/session/trade/TradePanel.xml:(caption):14
-msgid "Resources:"
-msgstr "Ресурси:"
+#: gui/session/unit_actions.js:1186
+#, javascript-format
+msgid "Use %(hotkey)s to avoid the confirmation dialog."
+msgstr "Застосувати %(hotkey)s, щоб уникнути підтвердження діалогу."
+
+#: gui/session/unit_actions.js:1233
+msgid "Abort the current order."
+msgstr "Перервати поточний наказ."
+
+#: gui/session/unit_actions.js:1252
+msgid "Order the selected units to garrison in a structure or unit."
+msgstr "Наказати вибраним підрозділам стати гарнізоном у споруді чи одиниці."
+
+#: gui/session/unit_actions.js:1275
+msgid "Unload"
+msgstr "Вивести"
+
+#: gui/session/unit_actions.js:1293
+msgid "Order the selected units to repair a structure, ship, or siege engine."
+msgstr "Наказати вибраним підрозділам ремонтувати споруду, корабель чи облогове знаряддя."
+
+#: gui/session/unit_actions.js:1312
+msgid "Focus on Rally Point."
+msgstr "Зосередити увагу на точці збору."
+
+#: gui/session/unit_actions.js:1347
+msgid "Back to Work"
+msgstr "Повернути до праці"
+
+#: gui/session/unit_actions.js:1366
+msgid "Order the selected units to guard a structure or unit."
+msgstr "Наказати вибраним підрозділам охороняти споруду чи одиницю."
+
+#: gui/session/unit_actions.js:1384
+msgid "Remove guard"
+msgstr "Зняти охорону"
+
+#: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
+#: gui/session/trade/TradeDialog.xml:(caption):9
+#: gui/session/unit_actions.js:1401
+msgid "Barter & Trade"
+msgstr "Обмін та торгівля"
+
+#: gui/session/unit_actions.js:1419
+msgid "Patrol"
+msgstr "Патрулювати"
+
+#: gui/session/unit_actions.js:1420
+msgid "Attack all encountered enemy units while avoiding structures."
+msgstr "Атакувати всі зустрічні ворожі підрозділи, уникаючи будівель."
+
+#: gui/session/unit_actions.js:1446
+msgid "Press to allow allies to use this dropsite"
+msgstr "Натиснути, щоб дозволити союзникам використовувати це місце збору"
+
+#: gui/session/unit_actions.js:1450
+msgid "Press to prevent allies from using this dropsite"
+msgstr "Натиснути, щоб завадити союзникам використовувати це місце збору"
+
+#: gui/session/unit_actions.js:1515
+msgid "You are allowed to use this dropsite"
+msgstr "Вам дозволено використовувати це місце збору"
+
+#: gui/session/unit_actions.js:1520
+msgid "The use of this dropsite is prohibited"
+msgstr "Використовувати це місце збору заборонено"
+
+#: gui/session/unit_actions.js:1594
+msgid "The entity has to be killed before it can be gathered from"
+msgstr "Об'єкт повинен бути вбитий, перш ніж його можна буде зібрати"
+
+#: gui/session/unit_actions.js:1597
+msgid ""
+"You cannot destroy this entity as you own less than half the capture points"
+msgstr "Ви не можете зруйнувати цей об'єкт, так як Ви володієте менш, ніж половиною від очок захоплення"
+
+#: gui/session/unit_actions.js:1600
+msgid "This entity is undeletable"
+msgstr "Цей об'єкт неможливо видалити"

@@ -1,7 +1,7 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright (C) 2020 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
-# 
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
+# project.
 # Translators:
 # lynx121 <adam.ostruszka@seznam.cz>, 2016
 # Filip Kružík <fildakr@gmail.com>, 2015
@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-13 08:10+0000\n"
+"POT-Creation-Date: 2020-11-28 10:01+0000\n"
 "PO-Revision-Date: 2020-11-13 10:15+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
@@ -241,17 +241,6 @@ msgstr "Každý hráč začíná na ostrově obklopeném vodou.\n\nKyklady jsou 
 msgid "Cycladic Archipelago"
 msgstr "Kykladské souostroví"
 
-#: maps/random/danubius.jsonsettings.Description
-msgid ""
-"Players start along the banks of the river Danube in the period following "
-"the expansion into Pannonia by the Celtic Boii tribe. Seeking to consolidate"
-" their hold on this land, celtic reinforcements have been sent to root out "
-"the remaining foreign cultures. Players not only have to vie for power "
-"amongst themselves, but also beat back these ruthless invaders. Ultimately, "
-"the Boii were defeated by the rising power of the Dacians, hence leading to "
-"the reemergence of the Geto-Dacian Confederation under King Burebista."
-msgstr "Hráči začínají podél břehů řeky Dunaje v období po rozšíření se keltského kmene Bójů do Panonie. S cílem posílit jejich držbu této půdy byly poslány keltské posily, aby byly vytlačeny zbývající cizí kultury. Hráči nejen musí zkřížit síly mezi sebou, ale i proti bezohledným útočníkům. V konečném důsledku byl kmen Bójů poražen rostoucí silou Dáků, což vedlo ke znovuvytvoření Geto-dákské konfederace pod králem Burebistou."
-
 #: maps/random/danubius.jsonsettings.Daytime[0].Description
 msgid "Bright daylight illuminates the scene."
 msgstr ""
@@ -267,6 +256,17 @@ msgstr "Útočníci se ukrývají pod rouškou tmy."
 #: maps/random/danubius.jsonsettings.Daytime[1].Name
 msgid "Night"
 msgstr "Noc"
+
+#: maps/random/danubius.jsonsettings.Description
+msgid ""
+"Players start along the banks of the river Danube in the period following "
+"the expansion into Pannonia by the Celtic Boii tribe. Seeking to consolidate"
+" their hold on this land, celtic reinforcements have been sent to root out "
+"the remaining foreign cultures. Players not only have to vie for power "
+"amongst themselves, but also beat back these ruthless invaders. Ultimately, "
+"the Boii were defeated by the rising power of the Dacians, hence leading to "
+"the reemergence of the Geto-Dacian Confederation under King Burebista."
+msgstr "Hráči začínají podél břehů řeky Dunaje v období po rozšíření se keltského kmene Bójů do Panonie. S cílem posílit jejich držbu této půdy byly poslány keltské posily, aby byly vytlačeny zbývající cizí kultury. Hráči nejen musí zkřížit síly mezi sebou, ale i proti bezohledným útočníkům. V konečném důsledku byl kmen Bójů poražen rostoucí silou Dáků, což vedlo ke znovuvytvoření Geto-dákské konfederace pod králem Burebistou."
 
 #: maps/random/danubius.jsonsettings.Name
 msgid "Danubius"
@@ -336,6 +336,22 @@ msgstr "[color=\"red\"]DŮLEŽITÁ POZNÁMKA: Umělá inteligence hráčů nepra
 #: maps/random/extinct_volcano.jsonsettings.Name
 msgid "Extinct Volcano"
 msgstr "Vyhaslé sopky"
+
+#: maps/random/extinct_volcano_triggers.js:59
+msgid "It keeps on raining, we will have to evacuate soon!"
+msgstr "Nepřestává pršet, brzy to tu musíme opustit!"
+
+#: maps/random/extinct_volcano_triggers.js:60
+msgid "The rivers are standing high, we need to find a safe place!"
+msgstr "Hladina řek je vysoko, musíme najít bezpečné místo!"
+
+#: maps/random/extinct_volcano_triggers.js:61
+msgid "We have to find dry ground, our lands will drown soon!"
+msgstr "Musíme najít suchou zem, naše země se brzy zaplaví!"
+
+#: maps/random/extinct_volcano_triggers.js:62
+msgid "The lakes start swallowing the land, we have to find shelter!"
+msgstr "Jezera začínají zaplavovat zem, musíme najít úkryt!"
 
 #: maps/random/fields_of_meroe.jsonsettings.Description
 msgid ""
@@ -498,6 +514,15 @@ msgstr "Začínající poblíž úrodných břehů Nilu hráči obléhají těž
 #: maps/random/jebel_barkal.jsonsettings.Name
 msgid "Jebel Barkal"
 msgstr "Jebel Barkal"
+
+#: maps/random/jebel_barkal_triggers.js:592
+msgid "Napata is attacking!"
+msgstr "Napata útočí!"
+
+#: maps/random/jebel_barkal_triggers.js:602
+#, javascript-format
+msgid "Napata will attack in %(time)s!"
+msgstr "Napata zaútočí za %(time)s!"
 
 #: maps/random/kerala.jsonsettings.Description
 msgid ""
@@ -690,19 +715,6 @@ msgstr "Hráči začínají ve východní části mapy, zatímco rozsáhlé jeze
 msgid "Phoenician Levant"
 msgstr "Fénická Levanta"
 
-#: maps/random/polar_sea.jsonsettings.Description
-msgid ""
-"Players start in a cold polar region barren of vegetation. In the sea fish "
-"and whales abound, while the fragile icy land teems with huntable walruses "
-"and deadly wolves. These wolves, made ravenous by the harsh and forbidding "
-"climate, drawn by the scent of prey, have started appearing in terrifying "
-"numbers. A wise and strong ruler will not only achieve victory over his "
-"enemies, but also keep the number of these beasts at bay, lest they "
-"undermine his economy and cause his downfall. [color=\"red\"]Warning: It is "
-"inadvisable to disable treasures, since there is no gatherable wood. Not "
-"recommended for inexperienced players.[/color]"
-msgstr "Hráči začínají ve studené polární oblasti neplodná vegetace. Je tu hojno mořských ryb a velryb, zatímco křehká ledová země je plná mrožů na ulovení a smrtelně-nebezpečných vlků. Tito vlci, kteří jsou hladoví díky nevlídným, drsným a odpudivým podnebím, jež se táhnou za kořistí, se začaly objevovat v děsivých číslech. Moudrý a silný vládce nejen dosáhne vítězství nad svými nepřáteli, ale také udržuje počet těchto zvířat pod kontrolou, aby nedošlo k podkopání jeho hospodářství a způsobení jeho pádu. [color = \"red\"] Upozornění: Je zakázáno zakazovat poklady, protože zde není dřevo. Nedoporučuje se pro nezkušené hráče. [/ Color]"
-
 #: maps/random/polar_sea.jsonsettings.Daytime[0].Description
 msgid "Scattered sunlight illuminates the scenery in a vivid red tone."
 msgstr ""
@@ -718,6 +730,19 @@ msgstr ""
 #: maps/random/polar_sea.jsonsettings.Daytime[1].Name
 msgid "Daylight"
 msgstr "Denní světlo"
+
+#: maps/random/polar_sea.jsonsettings.Description
+msgid ""
+"Players start in a cold polar region barren of vegetation. In the sea fish "
+"and whales abound, while the fragile icy land teems with huntable walruses "
+"and deadly wolves. These wolves, made ravenous by the harsh and forbidding "
+"climate, drawn by the scent of prey, have started appearing in terrifying "
+"numbers. A wise and strong ruler will not only achieve victory over his "
+"enemies, but also keep the number of these beasts at bay, lest they "
+"undermine his economy and cause his downfall. [color=\"red\"]Warning: It is "
+"inadvisable to disable treasures, since there is no gatherable wood. Not "
+"recommended for inexperienced players.[/color]"
+msgstr "Hráči začínají ve studené polární oblasti neplodná vegetace. Je tu hojno mořských ryb a velryb, zatímco křehká ledová země je plná mrožů na ulovení a smrtelně-nebezpečných vlků. Tito vlci, kteří jsou hladoví díky nevlídným, drsným a odpudivým podnebím, jež se táhnou za kořistí, se začaly objevovat v děsivých číslech. Moudrý a silný vládce nejen dosáhne vítězství nad svými nepřáteli, ale také udržuje počet těchto zvířat pod kontrolou, aby nedošlo k podkopání jeho hospodářství a způsobení jeho pádu. [color = \"red\"] Upozornění: Je zakázáno zakazovat poklady, protože zde není dřevo. Nedoporučuje se pro nezkušené hráče. [/ Color]"
 
 #: maps/random/polar_sea.jsonsettings.Name
 msgid "Polar Sea"
@@ -800,6 +825,199 @@ msgstr "Řeky tečou mezi hráči a spojují se ve středu mapy."
 msgid "Rivers"
 msgstr "Řeky"
 
+#: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"The vitalizing waters of the Nile sustain life along its banks, while the "
+"long dry season scorches the land."
+msgstr "Blahodárné vody Nilu udržují život podél břehů, zatímco dlouhá suchá sezóna vysušuje zem."
+
+#: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Dry Season"
+msgstr "Suché období"
+
+#: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Revelling in the much awaited rain, the baked land transforms into a lush "
+"haven for both man and beast."
+msgstr "Z radostného očekávání na déšť se suchá půda promění v bujné útočiště pro člověka i zvíře."
+
+#: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Rainy Season"
+msgstr "Deštivé období"
+
+#: maps/random/rmbiome/generic/alpine.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"A region in the high snowy mountains. Biting winds sweep through the "
+"abundant conifer forests, making even the more resilient deer and mountain "
+"goats shiver."
+msgstr "Oblast ve vysokých zasněžených horách. Mrazivé větry procházejí bohatými jehličnatými lesy, čímž se roztřepou i odolnější jeleni a horské kozy."
+
+#: maps/random/rmbiome/generic/alpine.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Alpine"
+msgstr "Alpské"
+
+#: maps/random/rmbiome/generic/autumn.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Autumn at its peak. The landscape is a dazzling dash of colors irrevocably "
+"intertwined. The native beech and oak trees of this temperate zone display a"
+" multi-colored foliage while the evergreen pines look on with indifference "
+"at the approaching winter."
+msgstr ""
+
+#: maps/random/rmbiome/generic/autumn.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Autumn"
+msgstr "Podzim"
+
+#: maps/random/rmbiome/generic/desert.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"A semi-desert area that boasts numerous clumps of date palms and tamarix "
+"trees. Herds of camels roam the wild and the occasional gazelle jumps up in "
+"fright at being disturbed."
+msgstr "Polopouštní oblast, která se může pochlubit řadou datlovníků a tamarixů. Stáda velbloudů se toulá divočinou a příležitostná gazela vyskočí, když je znepokojena."
+
+#: maps/random/rmbiome/generic/desert.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Desert"
+msgstr "Poušť"
+
+#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Start in a region blessed with the Mediterranean climate, a warm and "
+"inviting land. The cypresses are in a perpetual struggle with the dominant "
+"fan palms while deer graze in their shadows, blissfully unaware."
+msgstr "Začnete v oblasti, požehnané středomořským podnebím, teplou a příjemnou zemí. Cypřiše jsou ve věčném boji s dominantními datlovníky, zatímco jeleni se pasou v jejich stínech, blaženě nevědomí."
+
+#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Mediterranean"
+msgstr "Středozemní moře"
+
+#: maps/random/rmbiome/generic/savanna.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"The savanna, a dry climate in which only the hardy Baobab trees thrive. "
+"Solitary gazelles graze the sparse grass, while herds of zebras, wildebeest,"
+" giraffes or elephants roam the wild in search of food."
+msgstr "Savana, suché klima, ve kterém se daří jenom vytrvalým baobabským stromům. Osamělé gazely se pasou řídkou travou, zatímco stáda zebry, divokých zvířat, žirafy nebo sloni se toulají divočinou při hledání jídla."
+
+#: maps/random/rmbiome/generic/savanna.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Savanna"
+msgstr "Savana"
+
+#: maps/random/rmbiome/generic/snowy.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Settle in the cold regions of the North, the native habitat of the wooly "
+"muskox. Here you can pine away to your content and also hunt the occasional "
+"walrus or two."
+msgstr "Usaď se v chladných oblastech severu, přirozeném prostředí vlčího muskoxu. Zde můžete vyrazit dle vašeho uvážení a také pronásledovat příležitostného mrože nebo dva."
+
+#: maps/random/rmbiome/generic/snowy.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Snowy"
+msgstr "Zasněžený"
+
+#: maps/random/rmbiome/generic/temperate.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Lush grasslands carpet the land, in places giving way to magnificent and "
+"diverse broadleaf forests. Poplars, pines, beeches and oaks all vie for "
+"supremacy but this root-war is a neverending struggle. Numerous apple trees "
+"dot the land, deer and sheep gorge themselves on this years fallen fruit."
+msgstr "Bujný trávník se rozprostírá po zemi, místně se daří nádherným a rozmanitým listnatým lesům. Topoly, borovice, buky a duby všichni bojují o nadřazenost, ale tato kořenová válka je nekonečný boj. Ovoce z mnoha jabloní opadává na zem, jelen a ovce si pochutnávají na letošním padlém ovoci."
+
+#: maps/random/rmbiome/generic/temperate.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Temperate"
+msgstr "Mírné"
+
+#: maps/random/rmbiome/generic/tropic.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Explore the mysterious tropics. An extremely green, but also extremely humid"
+" environment awaits. The tall Toona trees look on disapprovingly at this "
+"invasion of their privacy and ferocious tigers are determined to defend "
+"their territory at all costs."
+msgstr "Prozkoumejte tajemné tropy. Vysoce zelené, ale i extrémně vlhké prostředí tu na Vás čeká. Vysoké toonské stromy se na tuto invazi soukromí dívají nesouhlasně a divocí tygři jsou rozhodnuti obhájit své území za každou cenu."
+
+#: maps/random/rmbiome/generic/tropic.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Tropic"
+msgstr "Tropický"
+
+#: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Solidifying it's grip, the harsh cold has succeeded in freezing up the gulf."
+" The thick ice formed is capable of withstanding any weight."
+msgstr "Zpevněním svého uchopení se drsné zimě podařilo zmrazit záliv. Vytvořený tlustý led je schopen odolat jakékoliv hmotnosti."
+
+#: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Frozen Lake"
+msgstr "Zamrzlé jezero"
+
+#: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"A late spring breeze ripples through the conifer forests of the Gulf of "
+"Bothnia. Herds of deer dot the landscape and playful rabbits frolick in the "
+"undergrowth."
+msgstr "Pozdní jarní vánek se prolíná přes jehličnaté lesy Botnického zálivu. Stáda jelenů jsou součástí krajiny a hraví králíci hnízdí v podrostu."
+
+#: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Late Spring"
+msgstr "Pozdní jaro"
+
+#: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Winter has set in, carpeting the land with its first snow. The still "
+"unfrozen gulf offers great fishing opportunities."
+msgstr "Zima započala, pokryla zem prvním sněhem. Stále nezamrzlý záliv nabízí velké možnosti rybolovu."
+
+#: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Winter"
+msgstr "Zima"
+
+#: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Spring in the highlands, yet the heat has already begun making itself felt. "
+"The short-lived green grasses are on the retreat, paving the way for "
+"scorching summer."
+msgstr "Jaro ve vysokohorských oblastech, ale teplo se začalo dát na sobě znát. Krátko-trvající zelené traviny jsou na ústupu a dláždějí cestu ke spalujícímu létu."
+
+#: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Spring"
+msgstr "Jaro"
+
+#: maps/random/rmbiome/persian_highlands/summer.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"An arid, hostile land. The blistering heat has baked the ground to a sickly "
+"brown and the remaining trees struggle for survival."
+msgstr "Suchá, nepřátelská země. Úpěnlivé horko upeklo půdu na bledě hnědou barvu a zbývající stromy se pokouší přežít."
+
+#: maps/random/rmbiome/persian_highlands/summer.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Summer"
+msgstr "Léto"
+
 #: maps/random/saharan_oases.jsonsettings.Description
 msgid "Each players starts near a lush oasis in a large, desolate desert."
 msgstr "Každý hráč začíná v blízkosti bujné oázy ve velké, pusté poušti."
@@ -880,6 +1098,20 @@ msgstr "[color = \" red \" ] UPOZORNĚNÍ: AI hráči nebudou pracovat s tímto 
 #: maps/random/survivalofthefittest.jsonsettings.Name
 msgid "Survival of the Fittest"
 msgstr "Přežití nejsilnějších"
+
+#: maps/random/survivalofthefittest_triggers.js:163
+#, javascript-format
+msgid "The first wave will start in %(time)s!"
+msgstr "První vlna začne za %(time)s!"
+
+#: maps/random/survivalofthefittest_triggers.js:268
+msgid "An enemy wave is attacking!"
+msgstr "Vlna nepřátel útočí!"
+
+#: maps/random/survivalofthefittest_triggers.js:292
+#, javascript-format
+msgid "%(player)s has been defeated (lost civic center)."
+msgstr "%(player)sbyl poražen (byl připraven o městské centrum)"
 
 #: maps/random/syria.jsonsettings.Description
 msgid "Players start in a plains with slightly rolling highlands."
@@ -1015,130 +1247,15 @@ msgstr "Jezero obklopené kopci."
 msgid "Wild Lake"
 msgstr "Přírodní jezero"
 
-#: maps/random/extinct_volcano_triggers.js:59
-msgid "It keeps on raining, we will have to evacuate soon!"
-msgstr "Nepřestává pršet, brzy to tu musíme opustit!"
-
-#: maps/random/extinct_volcano_triggers.js:60
-msgid "The rivers are standing high, we need to find a safe place!"
-msgstr "Hladina řek je vysoko, musíme najít bezpečné místo!"
-
-#: maps/random/extinct_volcano_triggers.js:61
-msgid "We have to find dry ground, our lands will drown soon!"
-msgstr "Musíme najít suchou zem, naše země se brzy zaplaví!"
-
-#: maps/random/extinct_volcano_triggers.js:62
-msgid "The lakes start swallowing the land, we have to find shelter!"
-msgstr "Jezera začínají zaplavovat zem, musíme najít úkryt!"
-
-#: maps/random/jebel_barkal_triggers.js:592
-msgid "Napata is attacking!"
-msgstr "Napata útočí!"
-
-#: maps/random/jebel_barkal_triggers.js:602
-#, javascript-format
-msgid "Napata will attack in %(time)s!"
-msgstr "Napata zaútočí za %(time)s!"
-
-#: maps/random/survivalofthefittest_triggers.js:163
-#, javascript-format
-msgid "The first wave will start in %(time)s!"
-msgstr "První vlna začne za %(time)s!"
-
-#: maps/random/survivalofthefittest_triggers.js:268
-msgid "An enemy wave is attacking!"
-msgstr "Vlna nepřátel útočí!"
-
-#: maps/random/survivalofthefittest_triggers.js:292
-#, javascript-format
-msgid "%(player)s has been defeated (lost civic center)."
-msgstr "%(player)sbyl poražen (byl připraven o městské centrum)"
-
-#: maps/scenarios/cinema_demo.js:6
-msgid "Cutscene starts after 5 seconds"
-msgstr "Střihová scéna začne po 5 sekundách"
-
-#: maps/scenarios/treasure_islands.js:9
-msgid "Collect the treasures before your enemy does! May the better win!"
-msgstr "Posbírejte poklady dřív, než to udělá nepřítel. Lepší ať vyhraje!"
-
-#: maps/scenarios/treasure_islands.js:28
-msgid "No winner yet, prepare for battle!"
-msgstr "Dosud žádný vítěz. Připrav se na bitvu!"
-
-#: maps/scenarios/treasure_islands.js:43
-msgid "Your enemy's treasury is filled to the brim, you lose!"
-msgstr "Pokladnice vašeho nepřítele je naplněná po okraj. Prohrajete!"
-
-#: maps/scenarios/treasure_islands.js:48
-msgid "Your treasury is filled to the brim, you are victorious!"
-msgstr "Vaše pokladnice je naplněna po okraj. Vyhrál jste!"
-
-#: maps/scenarios/treasure_islands.js:60
-msgid "Hurry up! Your enemy is close to victory!"
-msgstr "Pospěště si. Váš nepřítel se přiblížil k vítězství!"
-
-#: maps/scenarios/treasure_islands.js:71
-#, javascript-format
-msgid "Treasures remaining to collect for victory:  %(remainingTreasures)s!"
-msgstr "Pro vítězství zbývá posbírat poklady:  %(remainingTreasures)s!"
-
-#: maps/scenarios/treasure_islands.js:79
-msgid "You have collected a treasure!"
-msgstr "Sebral jste poklad!"
-
-#: maps/scenarios/treasure_islands.js:91
-msgid "Defeat your enemy to win!"
-msgstr "Poražte nepřítele. Vyhrajte!"
-
-#: maps/scenarios/treasure_islands.js:100
-#, javascript-format
-msgid "%(lastPlayer)s has won (treasure collected)."
-msgid_plural "%(players)s and %(lastPlayer)s have won (treasure collected)."
-msgstr[0] "%(lastPlayer)svyhrál (shromáždil poklad)."
-msgstr[1] "%(lastPlayer)svyhrál (shromáždil poklad)."
-msgstr[2] "%(lastPlayer)svyhrálo (shromáždili poklad)."
-msgstr[3] "%(players)sa%(lastPlayer)s vyhráli (shromáždili poklad)."
-
-#: maps/scenarios/treasure_islands.js:104
-#, javascript-format
-msgid "%(lastPlayer)s has been defeated (treasure collected)."
-msgid_plural ""
-"%(players)s and %(lastPlayer)s have been defeated (treasure collected)."
-msgstr[0] "%(lastPlayer)sprohrál (neshromáždil poklad)."
-msgstr[1] "%(lastPlayer)sprohrál (neshromáždil poklad)."
-msgstr[2] "%(lastPlayer)sprohráli (neshromáždili poklad)."
-msgstr[3] "%(players)sa%(lastPlayer)s prohráli (neshromáždili poklad)."
-
-#: maps/scenarios/triggers_demo.js:73
-msgid "Testing the yes-no dialog. Do you want to say sure or rather not?"
-msgstr "Zkouška dialogu Ano-Ne. Chcete říci ano anebo raději ne?"
-
-#: maps/scenarios/triggers_demo.js:79
-msgid "Sure"
-msgstr "Ano"
-
-#: maps/scenarios/triggers_demo.js:83
-msgid "Say sure"
-msgstr "Říct ano"
-
-#: maps/scenarios/triggers_demo.js:89
-msgid "Rather not"
-msgstr "Raději ne"
-
-#: maps/scenarios/triggers_demo.js:93
-msgid "Say rather not"
-msgstr "Říct raději ne"
-
-#: maps/scenarios/_default.xml:Name:28
-msgid "Unnamed map"
-msgstr "Nepojmenovaná mapa"
-
 #: maps/scenarios/_default.xml:Description:28
 #: maps/scenarios/temperate_map.xml:Description:27
 #: maps/scenarios/walltest.xml:Description:27
 msgid "Give an interesting description of your map."
 msgstr "Podejte zajímavý popis své mapy."
+
+#: maps/scenarios/_default.xml:Name:28
+msgid "Unnamed map"
+msgstr "Nepojmenovaná mapa"
 
 #: maps/scenarios/arcadia.xml:Description:39
 msgid ""
@@ -1146,6 +1263,10 @@ msgid ""
 "\n"
 "Players start on either side of a mountainous region rich in resources. Extra starting buildings help players jumpstart building their new colonies."
 msgstr "Jaro v Arkádii v Řecku. Jarní deště rozvodnily to, co je po zbytek roku jen vyschlá řeka, což rozdělilo zemi na dva soupeřící kmeny.\n\n\nKaždý z hráčů začíná na jedné ze stran hornaté země, bohaté na materiál. Některé základní budovy jsou postaveny pro rychlý začátek růstu jejich kolonií."
+
+#: maps/scenarios/arcadia.xml:Name:39
+msgid "Arcadia"
+msgstr "Arkádie"
 
 #: maps/scenarios/arcadia.xml:PlayerData[0].Name:39
 #: maps/scenarios/belgian_bog_night.xml:PlayerData[0].Name:39
@@ -1197,15 +1318,15 @@ msgstr "Hráč 1"
 msgid "Player 2"
 msgstr "Hráč 2"
 
-#: maps/scenarios/arcadia.xml:Name:39
-msgid "Arcadia"
-msgstr "Arkádie"
-
 #: maps/scenarios/azure_coast_2p.xml:Description:27
 #: maps/scenarios/azure_coast_4p.xml:Description:27
 #: maps/scenarios/azure_coast_8p.xml:Description:39
 msgid "Help the young Massilia to settle or expel the Greeks from Gaul."
 msgstr "Pomozte mladé Massilii s kolonizací nebo vyžeňte Řeky z Galie."
+
+#: maps/scenarios/azure_coast_2p.xml:Name:27
+msgid "Azure Coast 2"
+msgstr "Azurové pobřeží 2"
 
 #: maps/scenarios/azure_coast_2p.xml:PlayerData[0].Name:27
 msgid "Greeks"
@@ -1215,9 +1336,9 @@ msgstr "Řekové"
 msgid "Celts"
 msgstr "Keltové"
 
-#: maps/scenarios/azure_coast_2p.xml:Name:27
-msgid "Azure Coast 2"
-msgstr "Azurové pobřeží 2"
+#: maps/scenarios/azure_coast_4p.xml:Name:27
+msgid "Azure Coast 3"
+msgstr "Azurové pobřeží 3"
 
 #: maps/scenarios/azure_coast_4p.xml:PlayerData[0].Name:27
 msgid "East"
@@ -1235,9 +1356,9 @@ msgstr "Jih"
 msgid "North"
 msgstr "Sever"
 
-#: maps/scenarios/azure_coast_4p.xml:Name:27
-msgid "Azure Coast 3"
-msgstr "Azurové pobřeží 3"
+#: maps/scenarios/azure_coast_8p.xml:Name:39
+msgid "Azure Coast 1"
+msgstr "Azurové pobřeží 1"
 
 #: maps/scenarios/azure_coast_8p.xml:PlayerData[0].Name:39
 msgid "Antipolis"
@@ -1271,15 +1392,15 @@ msgstr "Cavařané"
 msgid "Verguni"
 msgstr "Verguňané"
 
-#: maps/scenarios/azure_coast_8p.xml:Name:39
-msgid "Azure Coast 1"
-msgstr "Azurové pobřeží 1"
-
 #: maps/scenarios/battle_for_the_tiber.xml:Description:27
 msgid ""
 "Rome battles against the Etruscan city of Veii for control of the Tiber "
 "River basin."
 msgstr "Řím bojuje proti etruskému městu Veje o ovládnutí povodí řeky Tibery."
+
+#: maps/scenarios/battle_for_the_tiber.xml:Name:27
+msgid "Battle for the Tiber"
+msgstr "Bitva o Tiber"
 
 #: maps/scenarios/battle_for_the_tiber.xml:PlayerData[0].Name:27
 msgid "Rome"
@@ -1294,10 +1415,6 @@ msgstr "Veje"
 msgid "Gallic Invaders"
 msgstr "Galští nájezdníci"
 
-#: maps/scenarios/battle_for_the_tiber.xml:Name:27
-msgid "Battle for the Tiber"
-msgstr "Bitva o Tiber"
-
 #: maps/scenarios/belgian_bog_night.xml:Description:39
 msgid "Two Celtic tribes face off across a large bog at night."
 msgstr "Dva keltské kmeny se v noci utkají přes velkou slatinu."
@@ -1305,14 +1422,6 @@ msgstr "Dva keltské kmeny se v noci utkají přes velkou slatinu."
 #: maps/scenarios/belgian_bog_night.xml:Name:39
 msgid "Belgian Bog Night"
 msgstr "Belgická slatina v noci"
-
-#: maps/scenarios/bridge_demo.xml:PlayerData[0].Name:27
-msgid "Bridge Demo"
-msgstr "Ukázka mostu"
-
-#: maps/scenarios/bridge_demo.xml:PlayerData[1].Name:27
-msgid "Other"
-msgstr "Jiné"
 
 #: maps/scenarios/bridge_demo.xml:Description:27
 msgid "Demo map showing how to simulate bridges in the Atlas map editor."
@@ -1322,9 +1431,21 @@ msgstr "Ukázková mapa ukazující, jak simulovat mosty v editoru map Atlas."
 msgid "Bridge demo"
 msgstr "Ukázka mostu"
 
+#: maps/scenarios/bridge_demo.xml:PlayerData[0].Name:27
+msgid "Bridge Demo"
+msgstr "Ukázka mostu"
+
+#: maps/scenarios/bridge_demo.xml:PlayerData[1].Name:27
+msgid "Other"
+msgstr "Jiné"
+
 #: maps/scenarios/campaign_test_map.xml:Description:39
 msgid "A test map for potential Strategic Campaigns."
 msgstr "Testovací mapa pro případné strategické kampaně"
+
+#: maps/scenarios/campaign_test_map.xml:Name:39
+msgid "Strategic Campaign Proof of Concept"
+msgstr "Zkouška konceptu kampaně"
 
 #: maps/scenarios/campaign_test_map.xml:PlayerData[0].Name:39
 msgid "Delian League"
@@ -1360,17 +1481,21 @@ msgstr "Peloponéská liga"
 msgid "Religious Institutions"
 msgstr "Náboženské instituce"
 
-#: maps/scenarios/campaign_test_map.xml:Name:39
-msgid "Strategic Campaign Proof of Concept"
-msgstr "Zkouška konceptu kampaně"
-
 #: maps/scenarios/campaign_test_map_2_heightmap.xml:Name:39
 msgid "Campaign Map - Test"
 msgstr "Kampaňová mapa - Zkouška"
 
+#: maps/scenarios/cinema_demo.js:6
+msgid "Cutscene starts after 5 seconds"
+msgstr "Střihová scéna začne po 5 sekundách"
+
 #: maps/scenarios/cinema_demo.xml:Description:40
 msgid "Demo map for cinematic camera movements."
 msgstr "Ukázková mapa s pohyby filmové kamery."
+
+#: maps/scenarios/cinema_demo.xml:Name:40
+msgid "Cinema Demo"
+msgstr "Filmová ukázka"
 
 #: maps/scenarios/cinema_demo.xml:PlayerData[1].Name:40
 msgid "Xerxes I"
@@ -1380,27 +1505,23 @@ msgstr "Xerxes I."
 msgid "You"
 msgstr "Ty"
 
-#: maps/scenarios/cinema_demo.xml:Name:40
-msgid "Cinema Demo"
-msgstr "Filmová ukázka"
-
-#: maps/scenarios/combat_demo.xml:Name:27
-msgid "Combat Demo"
-msgstr "Ukázka boje"
-
 #: maps/scenarios/combat_demo.xml:Description:27
 msgid ""
 "A combat demonstration between a small number of ranged and melee infantry "
 "units."
 msgstr "Ukázka boje mezi malým počtem pěších jednotek pro boj na dálku a pro boj na blízko."
 
-#: maps/scenarios/combat_demo_huge.xml:Name:74
-msgid "Combat Demo (Huge)"
-msgstr "Ukázka boje (obrovská)"
+#: maps/scenarios/combat_demo.xml:Name:27
+msgid "Combat Demo"
+msgstr "Ukázka boje"
 
 #: maps/scenarios/combat_demo_huge.xml:Description:74
 msgid "1296 units. Extremely slow (we need more optimisation)."
 msgstr "1296 jednotek. Nesmírně pomalé (je potřeba větší optimalizace)."
+
+#: maps/scenarios/combat_demo_huge.xml:Name:74
+msgid "Combat Demo (Huge)"
+msgstr "Ukázka boje (obrovská)"
 
 #: maps/scenarios/death_canyon_invasion_force.xml:Description:39
 msgid ""
@@ -1408,6 +1529,10 @@ msgid ""
 "\n"
 "2 teams of 2 players. 1 player on each team starts with a base and resources. The other player starts with only a large army to assist their teammate."
 msgstr "Hluboká, skalnatá horská propast v poušti. Dobré pro hru více hráčů.\n\nDva týmy po dvou hráčích. Jeden hráč v každém týmu začíná se základnou a přírodními zdroji. Druhý hráč začíná jen s velkou armádou, se kterou podporuje svého spoluhráče."
+
+#: maps/scenarios/death_canyon_invasion_force.xml:Name:39
+msgid "Death Canyon - Invasion Force"
+msgstr "Smrtící kaňon - Útočící armáda"
 
 #: maps/scenarios/death_canyon_invasion_force.xml:PlayerData[1].Name:39
 #: maps/scenarios/death_canyon_invasion_force.xml:PlayerData[3].Name:39
@@ -1426,10 +1551,6 @@ msgstr "Invazní armáda"
 #: maps/scenarios/siwa_oasis.xml:PlayerData[2].Name:27
 msgid "Player 3"
 msgstr "Hráč 3"
-
-#: maps/scenarios/death_canyon_invasion_force.xml:Name:39
-msgid "Death Canyon - Invasion Force"
-msgstr "Smrtící kaňon - Útočící armáda"
 
 #: maps/scenarios/demo_trading.xml:Description:27
 msgid "A demonstration of the new trading feature."
@@ -1456,6 +1577,10 @@ msgid ""
 "Gameplay is tight and fast, with no time to stop and smell the roses."
 msgstr "Malá pouštní mapa. Každý hráč začíná u oázy spatřené v jinak ponuré a písečné poušti, která je dokořán otevřená k útoku a plenění.\n\nHratelnost je napínavá a rychlá, bez času se zastavit a přičichnout k růžím."
 
+#: maps/scenarios/fast_oasis.xml:Name:27
+msgid "Fast Oasis"
+msgstr "Rychlá oáza"
+
 #: maps/scenarios/fast_oasis.xml:PlayerData[3].Name:27
 #: maps/scenarios/gold_rush.xml:PlayerData[3].Name:27
 #: maps/scenarios/necropolis.xml:PlayerData[3].Name:39
@@ -1464,17 +1589,13 @@ msgstr "Malá pouštní mapa. Každý hráč začíná u oázy spatřené v jina
 msgid "Player 4"
 msgstr "Hráč 4"
 
-#: maps/scenarios/fast_oasis.xml:Name:27
-msgid "Fast Oasis"
-msgstr "Rychlá oáza"
+#: maps/scenarios/fishing_demo.xml:Description:27
+msgid "Test out fishing with a fishing boat. Still in development."
+msgstr "Vyzkoušejte si lov ryb v rybářském člunu. Ve vývoji."
 
 #: maps/scenarios/fishing_demo.xml:Name:27
 msgid "Fishing Demo"
 msgstr "Ukázka rybolovu"
-
-#: maps/scenarios/fishing_demo.xml:Description:27
-msgid "Test out fishing with a fishing boat. Still in development."
-msgstr "Vyzkoušejte si lov ryb v rybářském člunu. Ve vývoji."
 
 #: maps/scenarios/flight_demo.xml:Description:40
 msgid "Fly some Mustangs."
@@ -1550,8 +1671,12 @@ msgid ""
 "This is a WFG community-designed map by: SMST, NOXAS1, and Yodaspirine."
 msgstr "Mapa více hráčů. Každý hráč začíná na malém ostrově s malými zdroji nacházejícím se blízko pobřeží o hodně větší pevniny\n\nTato mapa byla vytvořena členy WFG komunity: SMST, NOXAS1, a Yodaspirine."
 
-#: maps/scenarios/miletus.xml:PlayerData[0].Name:27
+#: maps/scenarios/miletus.xml:Description:27
+msgid "A sandbox scenario for one player."
+msgstr "Scénář pískoviště pro jednoho hráče."
+
 #: maps/scenarios/miletus.xml:Name:27
+#: maps/scenarios/miletus.xml:PlayerData[0].Name:27
 msgid "Miletus"
 msgstr "Milét"
 
@@ -1560,29 +1685,25 @@ msgstr "Milét"
 msgid "Romans"
 msgstr "Římané"
 
-#: maps/scenarios/miletus.xml:Description:27
-msgid "A sandbox scenario for one player."
-msgstr "Scénář pískoviště pro jednoho hráče."
-
-#: maps/scenarios/multiplayer_demo.xml:Name:27
-msgid "Multiplayer Demo"
-msgstr "Ukázka hry pro více hráčů"
-
 #: maps/scenarios/multiplayer_demo.xml:Description:27
 msgid ""
 "Small map with lots of resources and some water, for testing gameplay in "
 "non-competitive multiplayer matches."
 msgstr "Malá mapa se spoustou zdrojů a nějakou vodou k vyzkoušení hry v nesoutěživých kláních pro více hráčů."
 
-#: maps/scenarios/napata_reconstruction.xml:Name:40
-msgid "Napata Reconstruction"
-msgstr "Rekonstrukce Napaty."
+#: maps/scenarios/multiplayer_demo.xml:Name:27
+msgid "Multiplayer Demo"
+msgstr "Ukázka hry pro více hráčů"
 
 #: maps/scenarios/napata_reconstruction.xml:Description:40
 msgid ""
 "This map displays a reconstruction of the ancient city Napata. "
 "[color=\"red\"]Note:[/color] The map is not intended to be playable."
 msgstr "Tato mapa zobrazuje rekonstrukci starobylého města Napaty. [color = \"red\"] Poznámka: [/ color] Mapa není určena k hraní."
+
+#: maps/scenarios/napata_reconstruction.xml:Name:40
+msgid "Napata Reconstruction"
+msgstr "Rekonstrukce Napaty."
 
 #: maps/scenarios/necropolis.xml:Description:39
 msgid ""
@@ -1603,19 +1724,23 @@ msgstr "Mapa ke zkoušení algoritmů pro pohyb jednotek."
 msgid "Pathfinding Demo"
 msgstr "Ukázka hledání cesty"
 
-#: maps/scenarios/pathfinding_terrain_demo.xml:Name:27
-msgid "Pathfinding Terrain Demo"
-msgstr "Ukázka hledání cesty územím"
-
 #: maps/scenarios/pathfinding_terrain_demo.xml:Description:27
 msgid ""
 "A map for testing movement costs and terrain properties in the A* "
 "pathfinder."
 msgstr "Mapa na vyzkoušení náročnosti na pohyb a vlastností krajiny v A*  hledači cesty."
 
+#: maps/scenarios/pathfinding_terrain_demo.xml:Name:27
+msgid "Pathfinding Terrain Demo"
+msgstr "Ukázka hledání cesty územím"
+
 #: maps/scenarios/peloponnese.xml:Description:39
 msgid "A real-world map of the Greek homeland."
 msgstr "Skutečná mapa řecké vlasti."
+
+#: maps/scenarios/peloponnese.xml:Name:39
+msgid "Peloponnesian Wars"
+msgstr "Peloponéské války"
 
 #: maps/scenarios/peloponnese.xml:PlayerData[0].Name:39
 msgid "Athens"
@@ -1633,10 +1758,6 @@ msgstr "Elida"
 msgid "Corinth"
 msgstr "Korint"
 
-#: maps/scenarios/peloponnese.xml:Name:39
-msgid "Peloponnesian Wars"
-msgstr "Peloponéské války"
-
 #: maps/scenarios/pickup_test_map.xml:Description:40
 msgid ""
 "Test map for picking units up, with sea and two islands. Trigger points are "
@@ -1651,6 +1772,10 @@ msgstr ""
 msgid "Demo map for new fancy water effects."
 msgstr "Ukázková mapa s novými působivými vodními efekty."
 
+#: maps/scenarios/polynesia.xml:Name:39
+msgid "Polynesia"
+msgstr "Polynésie"
+
 #: maps/scenarios/polynesia.xml:PlayerData[0].Name:39
 msgid "Samoa"
 msgstr "Samoa"
@@ -1658,10 +1783,6 @@ msgstr "Samoa"
 #: maps/scenarios/polynesia.xml:PlayerData[1].Name:39
 msgid "Vanuatu"
 msgstr "Vanuatu"
-
-#: maps/scenarios/polynesia.xml:Name:39
-msgid "Polynesia"
-msgstr "Polynésie"
 
 #: maps/scenarios/reservoir.xml:Description:27
 msgid "A demo showing water planes."
@@ -1671,13 +1792,13 @@ msgstr "Ukázková mapa ukazující vodní plochy."
 msgid "Reservoir"
 msgstr "Jezero"
 
-#: maps/scenarios/resource_demo.xml:Name:27
-msgid "Resource demo"
-msgstr "Ukázka zdrojů"
-
 #: maps/scenarios/resource_demo.xml:Description:27
 msgid "Demo map for resource gathering."
 msgstr "Ukázková mapa pro sbírání zdrojů"
+
+#: maps/scenarios/resource_demo.xml:Name:27
+msgid "Resource demo"
+msgstr "Ukázka zdrojů"
 
 #: maps/scenarios/road_demo.xml:Description:27
 msgid "Demo map showcasing Temperate Road decals."
@@ -1721,6 +1842,10 @@ msgid ""
 "Play with the Athenians faction in a non-threatening sandbox environment."
 msgstr "Hrajte za Athény v prostředí pískoviště. Nic vás tu nebude ohrožovat."
 
+#: maps/scenarios/sandbox_athenians.xml:Name:39
+msgid "Sandbox - The Athenians"
+msgstr "Pískoviště - Atéňané"
+
 #: maps/scenarios/sandbox_athenians.xml:PlayerData[0].Name:39
 msgid "The Athenians"
 msgstr "Atéňané"
@@ -1744,27 +1869,27 @@ msgstr "Peršané"
 msgid "The Gauls"
 msgstr "Galové"
 
-#: maps/scenarios/sandbox_athenians.xml:Name:39
-msgid "Sandbox - The Athenians"
-msgstr "Pískoviště - Atéňané"
-
 #: maps/scenarios/sandbox_britons.xml:Description:39
 #: maps/scenarios/sandbox_gauls.xml:Description:40
 msgid "Play around with the Gallic faction in an idyllic sandbox setting."
 msgstr "Hrajte za Galy v idylickém prostředí pískoviště."
+
+#: maps/scenarios/sandbox_britons.xml:Name:39
+msgid "Sandbox - The Britons"
+msgstr "Pískoviště - Britové"
 
 #: maps/scenarios/sandbox_britons.xml:PlayerData[3].Name:39
 #: maps/scenarios/sandbox_gauls.xml:PlayerData[4].Name:40
 msgid "Roman Interlopers"
 msgstr "Římští vetřelci"
 
-#: maps/scenarios/sandbox_britons.xml:Name:39
-msgid "Sandbox - The Britons"
-msgstr "Pískoviště - Britové"
-
 #: maps/scenarios/sandbox_carthaginians.xml:Description:39
 msgid "Explore the Carthaginian Buildings and Units."
 msgstr "Prozkoumejte kartaginské budovy a jednotky."
+
+#: maps/scenarios/sandbox_carthaginians.xml:Name:39
+msgid "Sandbox - The Carthaginians"
+msgstr "Pískoviště - Kartágiňané"
 
 #: maps/scenarios/sandbox_carthaginians.xml:PlayerData[0].Name:39
 #: maps/scenarios/serengeti.xml:PlayerData[0].Name:27
@@ -1775,10 +1900,6 @@ msgstr "Kartágo"
 #: maps/scenarios/sandbox_persians.xml:PlayerData[1].Name:39
 msgid "Creeps"
 msgstr "Hnusáci"
-
-#: maps/scenarios/sandbox_carthaginians.xml:Name:39
-msgid "Sandbox - The Carthaginians"
-msgstr "Pískoviště - Kartágiňané"
 
 #: maps/scenarios/sandbox_gauls.xml:Name:40
 msgid "Sandbox - The Gauls"
@@ -1796,6 +1917,10 @@ msgstr "Pískoviště - Iberové"
 msgid "Play the Kushites faction in a non-threatening sandbox scenario."
 msgstr "Hrajte za Kush v prostředí pískoviště. Nic vás tu nebude ohrožovat."
 
+#: maps/scenarios/sandbox_kushites.xml:Name:40
+msgid "Sandbox - The Kushites"
+msgstr "Pískoviště - Kúšité"
+
 #: maps/scenarios/sandbox_kushites.xml:PlayerData[1].Name:40
 msgid "Kushites"
 msgstr "Kúšité"
@@ -1804,26 +1929,26 @@ msgstr "Kúšité"
 msgid "Egyptians"
 msgstr "Egypťané"
 
-#: maps/scenarios/sandbox_kushites.xml:Name:40
-msgid "Sandbox - The Kushites"
-msgstr "Pískoviště - Kúšité"
-
 #: maps/scenarios/sandbox_macedonians.xml:Description:39
 msgid ""
 "Play with the Macedonians faction in a non-threatening sandbox environment."
 msgstr "Hrajte za Makedoňany v prostředí pískoviště. Nic vás tu nebude ohrožovat."
 
-#: maps/scenarios/sandbox_macedonians.xml:PlayerData[0].Name:39
-msgid "The Macedonians"
-msgstr "Makedoňané"
-
 #: maps/scenarios/sandbox_macedonians.xml:Name:39
 msgid "Sandbox - The Macedonians"
 msgstr "Pískoviště - Makedoňané"
 
+#: maps/scenarios/sandbox_macedonians.xml:PlayerData[0].Name:39
+msgid "The Macedonians"
+msgstr "Makedoňané"
+
 #: maps/scenarios/sandbox_mauryas.xml:Description:39
 msgid "Mauryan Indian faction showcase map."
 msgstr "Předváděcí mapa maurijské indické frakce."
+
+#: maps/scenarios/sandbox_mauryas.xml:Name:39
+msgid "Sandbox - The Mauryas"
+msgstr ""
 
 #: maps/scenarios/sandbox_mauryas.xml:PlayerData[0].Name:39
 msgid "Mauryan Indians"
@@ -1833,26 +1958,26 @@ msgstr "Maurjovští Indové"
 msgid "Enemy"
 msgstr "Nepřítel"
 
-#: maps/scenarios/sandbox_mauryas.xml:Name:39
-msgid "Sandbox - The Mauryas"
-msgstr ""
-
 #: maps/scenarios/sandbox_persians.xml:Description:39
 msgid "Demo Map. Play with the Persian civilisation in a sandbox setting."
 msgstr "Ukázková mapa. Hrajte za Peršany v prostředí pískoviště."
-
-#: maps/scenarios/sandbox_persians.xml:PlayerData[0].Name:39
-msgid "Achaemenids"
-msgstr "Achaimenovci"
 
 #: maps/scenarios/sandbox_persians.xml:Name:39
 msgid "Sandbox - The Persians"
 msgstr "Pískoviště - Peršané"
 
+#: maps/scenarios/sandbox_persians.xml:PlayerData[0].Name:39
+msgid "Achaemenids"
+msgstr "Achaimenovci"
+
 #: maps/scenarios/sandbox_ptolemies.xml:Description:39
 #: maps/skirmishes/sporades_islands_2p.xml:Description:39
 msgid "An islands map good for intense naval combat."
 msgstr "Ostrovní mapa, dobrá pro intenzivní námořní boje."
+
+#: maps/scenarios/sandbox_ptolemies.xml:Name:39
+msgid "Sandbox - The Ptolemaic Egyptians"
+msgstr "Pískoviště - Ptolemajovský Egypt"
 
 #: maps/scenarios/sandbox_ptolemies.xml:PlayerData[0].Name:39
 msgid "Ptolemaios A' Soter"
@@ -1862,14 +1987,14 @@ msgstr "Ptolemaios I. Sótér"
 msgid "Kautilya"
 msgstr "Kautilja"
 
-#: maps/scenarios/sandbox_ptolemies.xml:Name:39
-msgid "Sandbox - The Ptolemaic Egyptians"
-msgstr "Pískoviště - Ptolemajovský Egypt"
-
 #: maps/scenarios/sandbox_ptolemies_02.xml:Description:39
 msgid ""
 "Play with the Ptolemaic Egyptians in a non-threatening sandbox setting."
 msgstr "Hrajte za Ptolemaiovský Egypt v prostředí pískoviště. Nic vás tu nebude ohrožovat."
+
+#: maps/scenarios/sandbox_ptolemies_02.xml:Name:39
+msgid "Sandbox - The Ptolemaic Egyptians 2"
+msgstr "Pískoviště - Ptolemajovský Egypt 2"
 
 #: maps/scenarios/sandbox_ptolemies_02.xml:PlayerData[0].Name:39
 msgid "Ptolemy \"Savior\""
@@ -1883,10 +2008,6 @@ msgstr "Seleukovci"
 msgid "Libyans"
 msgstr "Lybijci"
 
-#: maps/scenarios/sandbox_ptolemies_02.xml:Name:39
-msgid "Sandbox - The Ptolemaic Egyptians 2"
-msgstr "Pískoviště - Ptolemajovský Egypt 2"
-
 #: maps/scenarios/sandbox_romans.xml:Description:39
 msgid "A sandbox scenario for players to try out the Roman civilisation."
 msgstr "Scénář pískoviště pro hráče, kteří si chtějí vyzkoušet římskou civilizaci."
@@ -1899,6 +2020,10 @@ msgstr "Pískoviště - Římská republika"
 msgid "A sandbox scenario for players to try out the Seleucid civilisation."
 msgstr "Scénář pískoviště pro hráče, kteří si chtějí vyzkoušet seleukovskou civilizaci."
 
+#: maps/scenarios/sandbox_seleucids.xml:Name:39
+msgid "Sandbox - The Seleucids"
+msgstr "Pískoviště - Seleukovci"
+
 #: maps/scenarios/sandbox_seleucids.xml:PlayerData[0].Name:39
 msgid "The Seleucids"
 msgstr "Seleukovci"
@@ -1906,10 +2031,6 @@ msgstr "Seleukovci"
 #: maps/scenarios/sandbox_seleucids.xml:PlayerData[1].Name:39
 msgid "The Ptolemies"
 msgstr "Ptolemajovci"
-
-#: maps/scenarios/sandbox_seleucids.xml:Name:39
-msgid "Sandbox - The Seleucids"
-msgstr "Pískoviště - Seleukovci"
 
 #: maps/scenarios/sandbox_spartans.xml:Description:39
 msgid ""
@@ -1920,15 +2041,25 @@ msgstr "Hrajte za Spartu v prostředí pískoviště. Nic vás tu nebude ohrožo
 msgid "Sandbox - The Spartans"
 msgstr "Pískoviště - Sparťané"
 
-#: maps/scenarios/savanna_ravine.xml:Name:39
-msgid "Savanna Ravine"
-msgstr "Stepní rozsedlina"
-
 #: maps/scenarios/savanna_ravine.xml:Description:39
 msgid ""
 "A wide-open Savanna map with a small ravine running down the center, which "
 "is easily forded."
 msgstr "Mapa s široce otevřenou stepní krajinou a malou rozsedlinou ve středu, kterou lze snadno přebrodit."
+
+#: maps/scenarios/savanna_ravine.xml:Name:39
+msgid "Savanna Ravine"
+msgstr "Stepní rozsedlina"
+
+#: maps/scenarios/serengeti.xml:Description:27
+msgid ""
+"The African serengeti has herds of animals criss crossing the plain. Mineral"
+" wealth is bountiful and wood is in full supply."
+msgstr "Africkou krajinu Serengeti křižují stáda zvířat. Kovy jsou bohatě přítomny stejně jako dřevo."
+
+#: maps/scenarios/serengeti.xml:Name:27
+msgid "Serengeti 1"
+msgstr "Serengeti 1"
 
 #: maps/scenarios/serengeti.xml:PlayerData[1].Name:27
 msgid "Iberia"
@@ -1942,27 +2073,17 @@ msgstr "Řecko"
 msgid "Persia"
 msgstr "Persie"
 
-#: maps/scenarios/serengeti.xml:Description:27
-msgid ""
-"The African serengeti has herds of animals criss crossing the plain. Mineral"
-" wealth is bountiful and wood is in full supply."
-msgstr "Africkou krajinu Serengeti křižují stáda zvířat. Kovy jsou bohatě přítomny stejně jako dřevo."
-
-#: maps/scenarios/serengeti.xml:Name:27
-msgid "Serengeti 1"
-msgstr "Serengeti 1"
-
 #: maps/scenarios/ship_formations.xml:Description:27
 msgid "Ship formations mockup."
 msgstr "Návrh formace lodí"
 
-#: maps/scenarios/ship_formations.xml:PlayerData[0].Name:27
-msgid "Ships"
-msgstr "Lodě"
-
 #: maps/scenarios/ship_formations.xml:Name:27
 msgid "Ship Formations"
 msgstr "Formace lodí"
+
+#: maps/scenarios/ship_formations.xml:PlayerData[0].Name:27
+msgid "Ships"
+msgstr "Lodě"
 
 #: maps/scenarios/shipattacks.xml:Description:27
 msgid "Move ships around. Attack other ships."
@@ -2023,6 +2144,10 @@ msgid ""
 "Will Alexander push his way through The Persian Gates and fulfill his destiny, or will Ariobarzanes defend the rugged ancient land of Persis against a foreign invader?"
 msgstr "\"Jít na východ bylo vždy velkým snem Řeků.\" \n\n\"Dejte si pozor na hrdost. Východ je způsob, jak si nechat spolknout muže i své sny.\" \n\nBude Alexandr tlačit svou cestu přes Perské brány a naplní svůj osud, nebo budou Ariobarzané obhajovat skalnaté a předávné země Persisu proti vetřelcům?"
 
+#: maps/scenarios/the_persian_gates.xml:Name:27
+msgid "The Persian Gates"
+msgstr "Perské brány"
+
 #: maps/scenarios/the_persian_gates.xml:PlayerData[0].Name:27
 msgid "Alexandros Megas"
 msgstr "Alexandr Veliký"
@@ -2039,15 +2164,15 @@ msgstr "Ariobarzanes"
 msgid "Persians"
 msgstr "Peršané"
 
-#: maps/scenarios/the_persian_gates.xml:Name:27
-msgid "The Persian Gates"
-msgstr "Perské brány"
-
 #: maps/scenarios/third_macedonian_war.xml:Description:27
 msgid ""
 "The Romans encroach upon Macedonian lands for the third and final time. Can "
 "the once-proud Macedonians prevail against the Roman juggernaut?"
 msgstr "Římané zasahují v Makedonii potřetí a naposledy. Mohou kdysi hrdí Makedoňané zvítězit proti římské vojenské síle?"
+
+#: maps/scenarios/third_macedonian_war.xml:Name:27
+msgid "Third Macedonian War"
+msgstr "Třetí makedonská válka"
 
 #: maps/scenarios/third_macedonian_war.xml:PlayerData[0].Name:27
 msgid "Lucius Aemilius Paullus"
@@ -2061,9 +2186,57 @@ msgstr "Perseus Makedonský"
 msgid "Greek Allies"
 msgstr "Řečtí spojenci"
 
-#: maps/scenarios/third_macedonian_war.xml:Name:27
-msgid "Third Macedonian War"
-msgstr "Třetí makedonská válka"
+#: maps/scenarios/treasure_islands.js:9
+msgid "Collect the treasures before your enemy does! May the better win!"
+msgstr "Posbírejte poklady dřív, než to udělá nepřítel. Lepší ať vyhraje!"
+
+#: maps/scenarios/treasure_islands.js:28
+msgid "No winner yet, prepare for battle!"
+msgstr "Dosud žádný vítěz. Připrav se na bitvu!"
+
+#: maps/scenarios/treasure_islands.js:43
+msgid "Your enemy's treasury is filled to the brim, you lose!"
+msgstr "Pokladnice vašeho nepřítele je naplněná po okraj. Prohrajete!"
+
+#: maps/scenarios/treasure_islands.js:48
+msgid "Your treasury is filled to the brim, you are victorious!"
+msgstr "Vaše pokladnice je naplněna po okraj. Vyhrál jste!"
+
+#: maps/scenarios/treasure_islands.js:60
+msgid "Hurry up! Your enemy is close to victory!"
+msgstr "Pospěště si. Váš nepřítel se přiblížil k vítězství!"
+
+#: maps/scenarios/treasure_islands.js:71
+#, javascript-format
+msgid "Treasures remaining to collect for victory:  %(remainingTreasures)s!"
+msgstr "Pro vítězství zbývá posbírat poklady:  %(remainingTreasures)s!"
+
+#: maps/scenarios/treasure_islands.js:79
+msgid "You have collected a treasure!"
+msgstr "Sebral jste poklad!"
+
+#: maps/scenarios/treasure_islands.js:91
+msgid "Defeat your enemy to win!"
+msgstr "Poražte nepřítele. Vyhrajte!"
+
+#: maps/scenarios/treasure_islands.js:100
+#, javascript-format
+msgid "%(lastPlayer)s has won (treasure collected)."
+msgid_plural "%(players)s and %(lastPlayer)s have won (treasure collected)."
+msgstr[0] "%(lastPlayer)svyhrál (shromáždil poklad)."
+msgstr[1] "%(lastPlayer)svyhrál (shromáždil poklad)."
+msgstr[2] "%(lastPlayer)svyhrálo (shromáždili poklad)."
+msgstr[3] "%(players)sa%(lastPlayer)s vyhráli (shromáždili poklad)."
+
+#: maps/scenarios/treasure_islands.js:104
+#, javascript-format
+msgid "%(lastPlayer)s has been defeated (treasure collected)."
+msgid_plural ""
+"%(players)s and %(lastPlayer)s have been defeated (treasure collected)."
+msgstr[0] "%(lastPlayer)sprohrál (neshromáždil poklad)."
+msgstr[1] "%(lastPlayer)sprohrál (neshromáždil poklad)."
+msgstr[2] "%(lastPlayer)sprohráli (neshromáždili poklad)."
+msgstr[3] "%(players)sa%(lastPlayer)s prohráli (neshromáždili poklad)."
 
 #: maps/scenarios/treasure_islands.xml:Description:39
 msgid ""
@@ -2074,6 +2247,26 @@ msgstr "Hledejte poklady na malých ostrovech a ve vodě. Sesbírejte více pokl
 #: maps/scenarios/treasure_islands.xml:Name:39
 msgid "Treasure Islands"
 msgstr "Ostrovy pokladů"
+
+#: maps/scenarios/triggers_demo.js:73
+msgid "Testing the yes-no dialog. Do you want to say sure or rather not?"
+msgstr "Zkouška dialogu Ano-Ne. Chcete říci ano anebo raději ne?"
+
+#: maps/scenarios/triggers_demo.js:79
+msgid "Sure"
+msgstr "Ano"
+
+#: maps/scenarios/triggers_demo.js:83
+msgid "Say sure"
+msgstr "Říct ano"
+
+#: maps/scenarios/triggers_demo.js:89
+msgid "Rather not"
+msgstr "Raději ne"
+
+#: maps/scenarios/triggers_demo.js:93
+msgid "Say rather not"
+msgstr "Říct raději ne"
 
 #: maps/scenarios/triggers_demo.xml:Description:39
 msgid ""
@@ -2105,13 +2298,13 @@ msgstr ""
 msgid "Unit Motion Integration Test"
 msgstr ""
 
-#: maps/scenarios/units_demo.xml:Name:28
-msgid "Units Demo"
-msgstr "Ukázka jednotek"
-
 #: maps/scenarios/units_demo.xml:Description:28
 msgid "Every unit in the game."
 msgstr "Každá jednotka ve hře."
+
+#: maps/scenarios/units_demo.xml:Name:28
+msgid "Units Demo"
+msgstr "Ukázka jednotek"
 
 #: maps/scenarios/walls.xml:Description:27
 msgid "Walls."
@@ -2125,13 +2318,13 @@ msgstr "Hradby"
 msgid "WallTest"
 msgstr "Zkouška zdi"
 
-#: maps/scenarios/we_are_legion.xml:Name:27
-msgid "We Are Legion"
-msgstr "My jsme legie"
-
 #: maps/scenarios/we_are_legion.xml:Description:27
 msgid "A quick battle demo map using Roman legionaries."
 msgstr ""
+
+#: maps/scenarios/we_are_legion.xml:Name:27
+msgid "We Are Legion"
+msgstr "My jsme legie"
 
 #: maps/skirmishes/acropolis_bay_2p.xml:Description:39
 msgid ""
@@ -2187,10 +2380,6 @@ msgstr "Vyschlé země Baktrie (dnešní Afghánistán) bohaté na minerály v �
 msgid "Bactria (2)"
 msgstr "Baktrie (2)"
 
-#: maps/skirmishes/barcania_3p.xml:Name:27
-msgid "Barcania (3)"
-msgstr "Barcania (3)"
-
 #: maps/skirmishes/barcania_3p.xml:Description:27
 msgid ""
 "A wild and wooded isle, full of forests, gold, and mystery. Mountains, seas,"
@@ -2198,6 +2387,10 @@ msgid ""
 "lots of potential for skirmishing and guerilla warfare as well as tough "
 "defensive fighting or aggressive maneuvers."
 msgstr "Divoký a zalesněný ostrov plný lesů, zlata a záhad. Hory, moře a husté lesy přispívají k velmi dynamické a rychlé hře 3 hráčů s velkým potenciálem pro souboje a partyzánské války stejně jako pro silnou obrannou válku nebo agresivní manévry."
+
+#: maps/skirmishes/barcania_3p.xml:Name:27
+msgid "Barcania (3)"
+msgstr "Barcania (3)"
 
 #: maps/skirmishes/belgian_bog_2p.xml:Description:39
 msgid ""
@@ -2216,6 +2409,10 @@ msgid ""
 "as the Butana Steppe."
 msgstr "Jižně od Sahary, východně od Nilu, leží polosuchá oblast, známá dnes jako Butanská step."
 
+#: maps/skirmishes/butana_steppe_2p.xml:Name:40
+msgid "Butana Steppe (2)"
+msgstr "Butanská step (2)"
+
 #: maps/skirmishes/butana_steppe_2p.xml:PlayerData[0].Name:40
 msgid "West Player"
 msgstr "Západní hráč"
@@ -2223,10 +2420,6 @@ msgstr "Západní hráč"
 #: maps/skirmishes/butana_steppe_2p.xml:PlayerData[1].Name:40
 msgid "East Player"
 msgstr "Východní hráč"
-
-#: maps/skirmishes/butana_steppe_2p.xml:Name:40
-msgid "Butana Steppe (2)"
-msgstr "Butanská step (2)"
 
 #: maps/skirmishes/caspian_sea_2pv2p.xml:Description:39
 msgid ""
@@ -2273,6 +2466,10 @@ msgid ""
 "Map size: Very Large"
 msgstr "Mapa stylizovaná jako malý ostrov v Egejském moři.\n\nVelikost mapy: Velmi velká"
 
+#: maps/skirmishes/cycladic_archipelago_3p.xml:Name:39
+msgid "Cycladic Archipelago (3)"
+msgstr "Kykladské souostroví (3)"
+
 #: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[0].Name:39
 msgid "Samos"
 msgstr "Samos"
@@ -2284,10 +2481,6 @@ msgstr "Lesbos"
 #: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[2].Name:39
 msgid "Delos"
 msgstr "Délos"
-
-#: maps/skirmishes/cycladic_archipelago_3p.xml:Name:39
-msgid "Cycladic Archipelago (3)"
-msgstr "Kykladské souostroví (3)"
 
 #: maps/skirmishes/death_canyon_2p.xml:Description:39
 msgid ""
@@ -2324,6 +2517,23 @@ msgstr "Alpský kraj plný mlh se stane bojištěm, ve kterém má každý tým 
 msgid "Dueling Cliffs (3v3)"
 msgstr "Klání útesů (3v3)"
 
+#: maps/skirmishes/egypt_3pv3p.xml:Description:40
+msgid ""
+"Fight for the remains of ancient Egypt!\n"
+"\n"
+"Players start with full grown cities and small armies, each having distinct advantages and drawbacks. Take care, there are 7 mighty forts and marauding bandids!\n"
+"\n"
+"It is the last century before 0 A.D. Egypt is internally divided between hellenistic (Alexandria, represented by Seleucids) and traditional influences (Memphis, represented by Ptolemies). Thebes in the southern clime of river Nile has already been taken over by the Kush. In the north western Al-Dschabal al-Achdar, where the mediterranean city of Cyrene is located the Romans are preparing their invasion. From the eastern desert at-Tih and mount Sinai enemies (represented by Persians) are pushing forward and the oasis Siwa. Charga (represented by Carthage) in the south western desert are trying to get a share of the pie as well.\n"
+"Locations:\n"
+"- Alexandria: library, harbor\n"
+"- Memphis: Necropolis, pyramids, Apis shrine\n"
+"- Thebes: temple district, Valley of the Kings \n"
+"- Cyrene: mediterranean Macchie, olive groves\n"
+"- Fayyum: crocodile shrine, nile dam\n"
+"- Eastern desert: mount Sinai, deep Wadi, Red Sea reefs\n"
+"- Western desert: Oasis Charga and Siwa, Qattara Depression\n"
+msgstr "Bojujte za pozůstatky starověkého Egypta!\n\nHráči začínají s před-postavenými městy a malými armádami, z nichž každá má zřetelné výhody a nevýhody. Dávejte si pozor, zde je sedm mocných pevností a obtěžujících banditů!\n\nJe to poslední století předtím, než je Egypt rozdělený mezi helenistické (Alexandrie, zastoupená Seleukovci) a tradičními vlivy (Memfis, reprezentovaný Ptolemájovci). Théby v jižním klínu Nilu již Kush převzal. V severozápadním Al-Dschabal al-Achdar, kde se nachází Středozemní město Kyrény, připravují Římané svou invazi. Z východní pouště at-Tih a hory Sinaj nepřátelé (reprezentovaní Peršany) postupují kupředu k oáze Síwa. Charga (zastoupená Kartágem) v jihozápadní poušti se také snaží dostat podíl na tomto území.\nMísta:\n- Alexandrie: knihovna, přístav\n- Memfis: Nekropole, pyramidy, svatyně Apis\n- Théby: chrámová čtvrť, Údolí králů\n- Kyrény: Středozemní Macchie, olivové háje\n- Fayyum: svatyně krokodýla, přehrada Nilu\n- Východní poušť: hora Sinaj, hluboké Wádi, útesy Rudého moře\n- Západní poušť: Oázy Charga a Síwa, Katarská deprese\n"
+
 #: maps/skirmishes/egypt_3pv3p.xml:Name:40
 msgid "Egypt (3v3)"
 msgstr "Egypt (3v3)"
@@ -2351,23 +2561,6 @@ msgstr "Memfis"
 #: maps/skirmishes/egypt_3pv3p.xml:PlayerData[5].Name:40
 msgid "Cyrene"
 msgstr "Kyréna"
-
-#: maps/skirmishes/egypt_3pv3p.xml:Description:40
-msgid ""
-"Fight for the remains of ancient Egypt!\n"
-"\n"
-"Players start with full grown cities and small armies, each having distinct advantages and drawbacks. Take care, there are 7 mighty forts and marauding bandids!\n"
-"\n"
-"It is the last century before 0 A.D. Egypt is internally divided between hellenistic (Alexandria, represented by Seleucids) and traditional influences (Memphis, represented by Ptolemies). Thebes in the southern clime of river Nile has already been taken over by the Kush. In the north western Al-Dschabal al-Achdar, where the mediterranean city of Cyrene is located the Romans are preparing their invasion. From the eastern desert at-Tih and mount Sinai enemies (represented by Persians) are pushing forward and the oasis Siwa. Charga (represented by Carthage) in the south western desert are trying to get a share of the pie as well.\n"
-"Locations:\n"
-"- Alexandria: library, harbor\n"
-"- Memphis: Necropolis, pyramids, Apis shrine\n"
-"- Thebes: temple district, Valley of the Kings \n"
-"- Cyrene: mediterranean Macchie, olive groves\n"
-"- Fayyum: crocodile shrine, nile dam\n"
-"- Eastern desert: mount Sinai, deep Wadi, Red Sea reefs\n"
-"- Western desert: Oasis Charga and Siwa, Qattara Depression\n"
-msgstr "Bojujte za pozůstatky starověkého Egypta!\n\nHráči začínají s před-postavenými městy a malými armádami, z nichž každá má zřetelné výhody a nevýhody. Dávejte si pozor, zde je sedm mocných pevností a obtěžujících banditů!\n\nJe to poslední století předtím, než je Egypt rozdělený mezi helenistické (Alexandrie, zastoupená Seleukovci) a tradičními vlivy (Memfis, reprezentovaný Ptolemájovci). Théby v jižním klínu Nilu již Kush převzal. V severozápadním Al-Dschabal al-Achdar, kde se nachází Středozemní město Kyrény, připravují Římané svou invazi. Z východní pouště at-Tih a hory Sinaj nepřátelé (reprezentovaní Peršany) postupují kupředu k oáze Síwa. Charga (zastoupená Kartágem) v jihozápadní poušti se také snaží dostat podíl na tomto území.\nMísta:\n- Alexandrie: knihovna, přístav\n- Memfis: Nekropole, pyramidy, svatyně Apis\n- Théby: chrámová čtvrť, Údolí králů\n- Kyrény: Středozemní Macchie, olivové háje\n- Fayyum: svatyně krokodýla, přehrada Nilu\n- Východní poušť: hora Sinaj, hluboké Wádi, útesy Rudého moře\n- Západní poušť: Oázy Charga a Síwa, Katarská deprese\n"
 
 #: maps/skirmishes/farmland_2p.xml:Description:40
 msgid "Farmland in Eastern Europe."
@@ -2784,196 +2977,3 @@ msgstr "Hory chránící perskou domovinu, pokrývající Persis (Pársa), Susia
 #: maps/skirmishes/zagros_mountains_2p.xml:Name:39
 msgid "Zagros Mountains (2)"
 msgstr "Pohoří Zagros (2)"
-
-#: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"The vitalizing waters of the Nile sustain life along its banks, while the "
-"long dry season scorches the land."
-msgstr "Blahodárné vody Nilu udržují život podél břehů, zatímco dlouhá suchá sezóna vysušuje zem."
-
-#: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Dry Season"
-msgstr "Suché období"
-
-#: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Revelling in the much awaited rain, the baked land transforms into a lush "
-"haven for both man and beast."
-msgstr "Z radostného očekávání na déšť se suchá půda promění v bujné útočiště pro člověka i zvíře."
-
-#: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Rainy Season"
-msgstr "Deštivé období"
-
-#: maps/random/rmbiome/generic/alpine.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"A region in the high snowy mountains. Biting winds sweep through the "
-"abundant conifer forests, making even the more resilient deer and mountain "
-"goats shiver."
-msgstr "Oblast ve vysokých zasněžených horách. Mrazivé větry procházejí bohatými jehličnatými lesy, čímž se roztřepou i odolnější jeleni a horské kozy."
-
-#: maps/random/rmbiome/generic/alpine.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Alpine"
-msgstr "Alpské"
-
-#: maps/random/rmbiome/generic/autumn.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Autumn at its peak. The landscape is a dazzling dash of colors irrevocably "
-"intertwined. The native beech and oak trees of this temperate zone display a"
-" multi-colored foliage while the evergreen pines look on with indifference "
-"at the approaching winter."
-msgstr ""
-
-#: maps/random/rmbiome/generic/autumn.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Autumn"
-msgstr "Podzim"
-
-#: maps/random/rmbiome/generic/desert.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"A semi-desert area that boasts numerous clumps of date palms and tamarix "
-"trees. Herds of camels roam the wild and the occasional gazelle jumps up in "
-"fright at being disturbed."
-msgstr "Polopouštní oblast, která se může pochlubit řadou datlovníků a tamarixů. Stáda velbloudů se toulá divočinou a příležitostná gazela vyskočí, když je znepokojena."
-
-#: maps/random/rmbiome/generic/desert.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Desert"
-msgstr "Poušť"
-
-#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Start in a region blessed with the Mediterranean climate, a warm and "
-"inviting land. The cypresses are in a perpetual struggle with the dominant "
-"fan palms while deer graze in their shadows, blissfully unaware."
-msgstr "Začnete v oblasti, požehnané středomořským podnebím, teplou a příjemnou zemí. Cypřiše jsou ve věčném boji s dominantními datlovníky, zatímco jeleni se pasou v jejich stínech, blaženě nevědomí."
-
-#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Mediterranean"
-msgstr "Středozemní moře"
-
-#: maps/random/rmbiome/generic/savanna.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"The savanna, a dry climate in which only the hardy Baobab trees thrive. "
-"Solitary gazelles graze the sparse grass, while herds of zebras, wildebeest,"
-" giraffes or elephants roam the wild in search of food."
-msgstr "Savana, suché klima, ve kterém se daří jenom vytrvalým baobabským stromům. Osamělé gazely se pasou řídkou travou, zatímco stáda zebry, divokých zvířat, žirafy nebo sloni se toulají divočinou při hledání jídla."
-
-#: maps/random/rmbiome/generic/savanna.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Savanna"
-msgstr "Savana"
-
-#: maps/random/rmbiome/generic/snowy.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Settle in the cold regions of the North, the native habitat of the wooly "
-"muskox. Here you can pine away to your content and also hunt the occasional "
-"walrus or two."
-msgstr "Usaď se v chladných oblastech severu, přirozeném prostředí vlčího muskoxu. Zde můžete vyrazit dle vašeho uvážení a také pronásledovat příležitostného mrože nebo dva."
-
-#: maps/random/rmbiome/generic/snowy.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Snowy"
-msgstr "Zasněžený"
-
-#: maps/random/rmbiome/generic/temperate.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Lush grasslands carpet the land, in places giving way to magnificent and "
-"diverse broadleaf forests. Poplars, pines, beeches and oaks all vie for "
-"supremacy but this root-war is a neverending struggle. Numerous apple trees "
-"dot the land, deer and sheep gorge themselves on this years fallen fruit."
-msgstr "Bujný trávník se rozprostírá po zemi, místně se daří nádherným a rozmanitým listnatým lesům. Topoly, borovice, buky a duby všichni bojují o nadřazenost, ale tato kořenová válka je nekonečný boj. Ovoce z mnoha jabloní opadává na zem, jelen a ovce si pochutnávají na letošním padlém ovoci."
-
-#: maps/random/rmbiome/generic/temperate.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Temperate"
-msgstr "Mírné"
-
-#: maps/random/rmbiome/generic/tropic.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Explore the mysterious tropics. An extremely green, but also extremely humid"
-" environment awaits. The tall Toona trees look on disapprovingly at this "
-"invasion of their privacy and ferocious tigers are determined to defend "
-"their territory at all costs."
-msgstr "Prozkoumejte tajemné tropy. Vysoce zelené, ale i extrémně vlhké prostředí tu na Vás čeká. Vysoké toonské stromy se na tuto invazi soukromí dívají nesouhlasně a divocí tygři jsou rozhodnuti obhájit své území za každou cenu."
-
-#: maps/random/rmbiome/generic/tropic.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Tropic"
-msgstr "Tropický"
-
-#: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Solidifying it's grip, the harsh cold has succeeded in freezing up the gulf."
-" The thick ice formed is capable of withstanding any weight."
-msgstr "Zpevněním svého uchopení se drsné zimě podařilo zmrazit záliv. Vytvořený tlustý led je schopen odolat jakékoliv hmotnosti."
-
-#: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Frozen Lake"
-msgstr "Zamrzlé jezero"
-
-#: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"A late spring breeze ripples through the conifer forests of the Gulf of "
-"Bothnia. Herds of deer dot the landscape and playful rabbits frolick in the "
-"undergrowth."
-msgstr "Pozdní jarní vánek se prolíná přes jehličnaté lesy Botnického zálivu. Stáda jelenů jsou součástí krajiny a hraví králíci hnízdí v podrostu."
-
-#: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Late Spring"
-msgstr "Pozdní jaro"
-
-#: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Winter has set in, carpeting the land with its first snow. The still "
-"unfrozen gulf offers great fishing opportunities."
-msgstr "Zima započala, pokryla zem prvním sněhem. Stále nezamrzlý záliv nabízí velké možnosti rybolovu."
-
-#: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Winter"
-msgstr "Zima"
-
-#: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Spring in the highlands, yet the heat has already begun making itself felt. "
-"The short-lived green grasses are on the retreat, paving the way for "
-"scorching summer."
-msgstr "Jaro ve vysokohorských oblastech, ale teplo se začalo dát na sobě znát. Krátko-trvající zelené traviny jsou na ústupu a dláždějí cestu ke spalujícímu létu."
-
-#: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Spring"
-msgstr "Jaro"
-
-#: maps/random/rmbiome/persian_highlands/summer.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"An arid, hostile land. The blistering heat has baked the ground to a sickly "
-"brown and the remaining trees struggle for survival."
-msgstr "Suchá, nepřátelská země. Úpěnlivé horko upeklo půdu na bledě hnědou barvu a zbývající stromy se pokouší přežít."
-
-#: maps/random/rmbiome/persian_highlands/summer.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Summer"
-msgstr "Léto"

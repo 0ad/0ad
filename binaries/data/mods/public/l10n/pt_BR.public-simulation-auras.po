@@ -1,7 +1,7 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright (C) 2020 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
-# 
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
+# project.
 # Translators:
 # Alison Machado <alison.mbatista@outlook.com>, 2017
 # borg 2k <estevanborg@gmail.com>, 2017-2018
@@ -33,7 +33,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-08-28 07:10+0000\n"
+"POT-Creation-Date: 2020-11-28 10:01+0000\n"
 "PO-Revision-Date: 2020-10-24 06:21+0000\n"
 "Last-Translator: Márcio Souza <agente.juniorsilva@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
@@ -43,195 +43,191 @@ msgstr ""
 "Language: pt_BR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: simulation/data/auras/structures/arsenal_repair.jsonauraName
-msgid "Arsenal Repairs"
-msgstr "Reparação do Arsenal"
-
 #: simulation/data/auras/structures/arsenal_repair.jsonauraDescription
 msgid "Garrisoned Siege Engines +3 health regeneration rate."
 msgstr "Armas de Cerco abastecidas possuem +3 de \"Taxa de regeneração de vida\"."
 
-#: simulation/data/auras/structures/barracks_xp_trickle.jsonauraName
-msgid "Rigorous Training"
-msgstr "Treinamento Rigoroso"
+#: simulation/data/auras/structures/arsenal_repair.jsonauraName
+msgid "Arsenal Repairs"
+msgstr "Reparação do Arsenal"
 
 #: simulation/data/auras/structures/barracks_xp_trickle.jsonauraDescription
 msgid "Units gain experience while garrisoned in barracks."
 msgstr "Unidades ganham experiência enquanto aquarteladas em quartéis."
 
-#: simulation/data/auras/structures/cart_super_dock_repair.jsonauraName
-msgid "Dockyard Repairs"
-msgstr "Reparação do Estaleiro"
+#: simulation/data/auras/structures/barracks_xp_trickle.jsonauraName
+msgid "Rigorous Training"
+msgstr "Treinamento Rigoroso"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Garrisoned Ships +10 health regeneration rate."
 msgstr "Navios aquartelados têm +10 na taxa de regeneração de vida."
 
-#: simulation/data/auras/structures/iber_monument.jsonauraName
-msgid "Religious Fervor"
-msgstr "Fervor Religioso"
+#: simulation/data/auras/structures/cart_super_dock_repair.jsonauraName
+msgid "Dockyard Repairs"
+msgstr "Reparação do Estaleiro"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage."
 msgstr "Soldados têm +20% de ataque corpo-a-corpo e de dano à distância."
 
-#: simulation/data/auras/structures/kush_pyramids_economic.jsonauraName
-msgid "Patriotism"
-msgstr "Patriotismo"
+#: simulation/data/auras/structures/iber_monument.jsonauraName
+msgid "Religious Fervor"
+msgstr "Fervor Religioso"
 
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraDescription
 #: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraDescription
 msgid "Workers +15% gather speed."
 msgstr "Trabalhadores têm +15% de velocidade de coleta."
 
-#: simulation/data/auras/structures/kush_pyramids_military.jsonauraName
-msgid "Exhortative Presence"
-msgstr "Presença Encorajadora"
+#: simulation/data/auras/structures/kush_pyramids_economic.jsonauraName
+msgid "Patriotism"
+msgstr "Patriotismo"
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraDescription
 msgid "Soldiers +1 armor level and +10% melee and ranged attack damage."
 msgstr "Soldados tem +1 de armadura e +10% de ataque à distância e de corpo-a-corpo."
 
-#: simulation/data/auras/structures/kush_temple_amun.jsonauraName
-msgid "Powerful Priesthood"
-msgstr "Sacerdócio Poderoso"
+#: simulation/data/auras/structures/kush_pyramids_military.jsonauraName
+msgid "Exhortative Presence"
+msgstr "Presença Encorajadora"
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraDescription
 msgid "Heroes −5% health."
 msgstr "Heróis têm -5% da vida máxima."
 
-#: simulation/data/auras/structures/library.jsonauraName
-msgid "Power of Knowledge"
-msgstr "Poder de Conhecimento"
+#: simulation/data/auras/structures/kush_temple_amun.jsonauraName
+msgid "Powerful Priesthood"
+msgstr "Sacerdócio Poderoso"
 
 #: simulation/data/auras/structures/library.jsonauraDescription
 msgid "Structures −10% technology resource costs and research time."
 msgstr "Estruturas possuem -10% de custos de recursos tecnológicos e de tempo de pesquisa."
 
-#: simulation/data/auras/structures/loyalty_regen.jsonauraName
-msgid "Loyalty"
-msgstr "Lealdade"
+#: simulation/data/auras/structures/library.jsonauraName
+msgid "Power of Knowledge"
+msgstr "Poder de Conhecimento"
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraDescription
 msgid "Structures +50% capture points garrison regeneration rate."
 msgstr "Estruturas têm +50% na taxa de regeneração de pontos de captura de unidades aquarteladas."
 
-#: simulation/data/auras/structures/maur_pillar.jsonauraName
-msgid "Edict of Ashoka"
-msgstr "Édito de Ashoka"
+#: simulation/data/auras/structures/loyalty_regen.jsonauraName
+msgid "Loyalty"
+msgstr "Lealdade"
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraDescription
 msgid "Traders +20% movement speed."
 msgstr "Comerciantes têm +20% de velocidade de movimento."
 
-#: simulation/data/auras/structures/rotary_mill.jsonauraName
-msgid "Farming bonus"
-msgstr "Bônus de cultivo"
+#: simulation/data/auras/structures/maur_pillar.jsonauraName
+msgid "Edict of Ashoka"
+msgstr "Édito de Ashoka"
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraDescription
 msgid "Workers +25% grain gather rate."
 msgstr "Trabalhadores têm +25% de taxa de coleta de grãos."
 
-#: simulation/data/auras/structures/temple_heal.jsonauraName
-msgid "Medical Treatment"
-msgstr "Tratamento Médico"
+#: simulation/data/auras/structures/rotary_mill.jsonauraName
+msgid "Farming bonus"
+msgstr "Bônus de cultivo"
 
 #: simulation/data/auras/structures/temple_heal.jsonauraDescription
 msgid "Humans +1 health regeneration rate."
 msgstr "Humanos têm +1 na taxa de regeneração de vida."
 
-#: simulation/data/auras/structures/theater.jsonauraName
-msgid "Hellenization"
-msgstr "Helenização"
+#: simulation/data/auras/structures/temple_heal.jsonauraName
+msgid "Medical Treatment"
+msgstr "Tratamento Médico"
 
 #: simulation/data/auras/structures/theater.jsonauraDescription
 msgid "Structures +20% territory influence radius."
 msgstr "Estruturas têm +20% de raio de influência de território."
 
-#: simulation/data/auras/structures/wall_garrisoned.jsonauraName
-msgid "Wall Protection"
-msgstr "Muralha de Proteção"
+#: simulation/data/auras/structures/theater.jsonauraName
+msgid "Hellenization"
+msgstr "Helenização"
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraDescription
 msgid "Garrisoned Soldiers +3 armor and +20 vision range."
 msgstr "Soldados aquartelados têm +3 de armadura e +20 de campo de visão."
 
-#: simulation/data/auras/structures/wonder_pop_1.jsonauraName
-msgid "Symbol of Greatness"
-msgstr "Símbolo de Grandeza"
+#: simulation/data/auras/structures/wall_garrisoned.jsonauraName
+msgid "Wall Protection"
+msgstr "Muralha de Proteção"
 
 #: simulation/data/auras/structures/wonder_pop_1.jsonauraDescription
 msgid "+10 maximum population limit."
 msgstr "+10 no limite máximo de população."
 
-#: simulation/data/auras/structures/wonder_pop_2.jsonauraName
-msgid "Glorious Expansion"
-msgstr "Expansão Gloriosa"
+#: simulation/data/auras/structures/wonder_pop_1.jsonauraName
+msgid "Symbol of Greatness"
+msgstr "Símbolo de Grandeza"
 
 #: simulation/data/auras/structures/wonder_pop_2.jsonauraDescription
 msgid ""
 "+40 maximum population limit (requires the “Glorious Expansion” technology)."
 msgstr "+40 no limite máximo de população (requer a tecnologia “Expansão Gloriosa”)."
 
-#: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
-msgid "Delian League"
-msgstr "Liga de Delos"
+#: simulation/data/auras/structures/wonder_pop_2.jsonauraName
+msgid "Glorious Expansion"
+msgstr "Expansão Gloriosa"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
 msgid "Allied Warships −25% construction time."
 msgstr "Navios de Guerra Aliados possuem -25% de tempo de construção."
 
-#: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraName
-msgid "Druids"
-msgstr "Druidas"
+#: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
+msgid "Delian League"
+msgstr "Liga de Delos"
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
 msgid "Allied Healers −20% resource costs."
 msgstr "Curandeiros Aliados possuem -20% em custo de recursos."
 
-#: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
-msgid "Trademasters"
-msgstr "Mestres Mercantes"
+#: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraName
+msgid "Druids"
+msgstr "Druidas"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
 msgid "Allies +10% international trade bonus."
 msgstr "Aliados têm +10% de bônus de comércio internacional."
 
-#: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraName
-msgid "Products from Gaul"
-msgstr "Produtos da Gália"
+#: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
+msgid "Trademasters"
+msgstr "Mestres Mercantes"
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraDescription
 msgid "Forges −15% technology resource costs and research time."
 msgstr "Gastou -15% de custo de recursos tecnológicos e tempo de pesquisa"
 
-#: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
-msgid "Saripeko"
-msgstr "Saripeko"
+#: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraName
+msgid "Products from Gaul"
+msgstr "Produtos da Gália"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
 msgid "Allied Citizen Javelineers −10% resource costs."
 msgstr "Dardeiros Cidadãos Aliados têm -10% de custo de recursos."
 
-#: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraName
-msgid "Elephant Suppliers"
-msgstr "Fornecedores de Elefantes"
+#: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
+msgid "Saripeko"
+msgstr "Saripeko"
 
 #: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraDescription
 msgid "Allied Elephants −20% resource costs and training time."
 msgstr "Elefantes Aliados possuem -20% de custo em recursos e tempo de treino."
 
-#: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraName
-msgid "Standardized Currency"
-msgstr "Moeda Padronizada"
+#: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraName
+msgid "Elephant Suppliers"
+msgstr "Fornecedores de Elefantes"
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraDescription
 msgid "Allies +20% barter sell prices."
 msgstr "Aliados têm +20% no preço de venda de trocas comerciais."
 
-#: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraName
-msgid "Ashoka's Religious Support"
-msgstr "Apoio Religioso de Ashoka"
+#: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraName
+msgid "Standardized Currency"
+msgstr "Moeda Padronizada"
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraDescription
 msgid ""
@@ -239,65 +235,49 @@ msgid ""
 "−50% resource costs and research time."
 msgstr "Templos Aliados possuem -50% de custos em recursos e tempo de construção; Tecnologias do Templo possuem -50% de custos em recursos e tempo de pesquisa."
 
-#: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
-msgid "The Royal Road"
-msgstr "A Estrada Real"
+#: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraName
+msgid "Ashoka's Religious Support"
+msgstr "Apoio Religioso de Ashoka"
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraDescription
 msgid "Allied Land Traders +15% trade gain."
 msgstr "Comerciantes Terrestres Aliados têm +15% de ganho em comércio."
 
-#: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraName
-msgid "Breadbasket of the Mediterranean"
-msgstr "Celeiro do Mediterrâneo"
+#: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
+msgid "The Royal Road"
+msgstr "A Estrada Real"
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraDescription
 msgid "Allies +1.0 food trickle rate."
 msgstr "Aliados têm +1.0 na taxa constante de comida."
 
-#: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraName
-msgid "Conscription"
-msgstr "Conscrição"
+#: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraName
+msgid "Breadbasket of the Mediterranean"
+msgstr "Celeiro do Mediterrâneo"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraDescription
 msgid "Allied Citizen Infantry −10% training time."
 msgstr "Infantaria de Cidadãos Aliados possui -10% de tempo de treinamento."
 
-#: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
-msgid "Syrian Tetrapolis"
-msgstr "Tetrápoles Síria"
+#: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraName
+msgid "Conscription"
+msgstr "Conscrição"
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraDescription
 msgid "Allied Civil Centers −20% resource costs."
 msgstr " Centros Cívicos Aliados possuem -20% de custo em recursos."
 
-#: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraName
-msgid "Peloponnesian League"
-msgstr "Liga do Peloponeso"
+#: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
+msgid "Syrian Tetrapolis"
+msgstr "Tetrápoles Síria"
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraDescription
 msgid "Allied Citizen Infantry Spearmen +10% health."
 msgstr "Lanceiros da Infantaria de Cidadãos Aliados têm +10% da vida máxima."
 
-#: simulation/data/auras/units/elephant_worker.jsonauraName
-msgid "Elephant Workers"
-msgstr "Elefantes Trabalhadores"
-
-#: simulation/data/auras/units/elephant_worker.jsonauraDescription
-msgid "Workers +25% build rate."
-msgstr "Trabalhadores têm +25% de taxa de construção."
-
-#: simulation/data/auras/units/female_inspiration.jsonauraName
-msgid "Inspiration"
-msgstr "Inspiração"
-
-#: simulation/data/auras/units/female_inspiration.jsonauraDescription
-msgid "Citizen Soldiers +10% build rate and gather speed."
-msgstr "Soldados Cidadãos têm +10% de taxa de construção e velocidade de coleta."
-
-#: simulation/data/auras/units/catafalques/athen_catafalque_1.jsonauraName
-msgid "Economic Reforms"
-msgstr "Reformas Econômicas"
+#: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraName
+msgid "Peloponnesian League"
+msgstr "Liga do Peloponeso"
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_1.jsonauraDescription
 msgid ""
@@ -305,9 +285,9 @@ msgid ""
 "Workers +15% gather speed."
 msgstr "Sólon instituiu diversas reformas econômicas buscando encorajar o comércio e a agricultura.\nTrabalhadores têm +15% de velocidade de coleta."
 
-#: simulation/data/auras/units/catafalques/athen_catafalque_2.jsonauraName
-msgid "Economic Fortune"
-msgstr "Fortuna Econômica"
+#: simulation/data/auras/units/catafalques/athen_catafalque_1.jsonauraName
+msgid "Economic Reforms"
+msgstr "Reformas Econômicas"
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_2.jsonauraDescription
 msgid ""
@@ -315,10 +295,9 @@ msgid ""
 "Economic technologies −10% resource costs."
 msgstr "Sólon trouxe um novo sistema de pesos e medidas, e os pais foram encorajados a encontrar negócios para seus filhos.\nTecnologias econômicas possuem -10% de custos de recurso."
 
-#: simulation/data/auras/units/catafalques/brit_catafalque_1.jsonauraName
-#: simulation/data/auras/units/heroes/iber_hero_viriato_1.jsonauraName
-msgid "Guerrilla Tactics"
-msgstr "Táticas de Guerrilha"
+#: simulation/data/auras/units/catafalques/athen_catafalque_2.jsonauraName
+msgid "Economic Fortune"
+msgstr "Fortuna Econômica"
 
 #: simulation/data/auras/units/catafalques/brit_catafalque_1.jsonauraDescription
 msgid ""
@@ -326,9 +305,10 @@ msgid ""
 "Soldiers +15% movement speed and +15% vision range."
 msgstr "Vendo a defesa entrincheirada ser inútil contra o exército Romano, Cassivelauno recorreu a táticas de guerrilha. Isto foi empregado mais tarde por outros chefes também.\nSoldados têm +15% de velocidade de movimento e +15% de alcance de visão."
 
-#: simulation/data/auras/units/catafalques/brit_catafalque_2.jsonauraName
-msgid "Skirmisher Harassment"
-msgstr "Perseguição dos Escaramuçadores"
+#: simulation/data/auras/units/catafalques/brit_catafalque_1.jsonauraName
+#: simulation/data/auras/units/heroes/iber_hero_viriato_1.jsonauraName
+msgid "Guerrilla Tactics"
+msgstr "Táticas de Guerrilha"
 
 #: simulation/data/auras/units/catafalques/brit_catafalque_2.jsonauraDescription
 msgid ""
@@ -336,9 +316,9 @@ msgid ""
 "Javelineers +20% attack range."
 msgstr "Cassivelauno implementou movimentos rápidos para escaramuçadores, para perseguir tropas e forrageadores Romanos.\nDardeiros têm +20% de alcance de ataque."
 
-#: simulation/data/auras/units/catafalques/cart_catafalque.jsonauraName
-msgid "Commander of Heavy Cavalry"
-msgstr "Comandante de Cavalaria Pesada"
+#: simulation/data/auras/units/catafalques/brit_catafalque_2.jsonauraName
+msgid "Skirmisher Harassment"
+msgstr "Perseguição dos Escaramuçadores"
 
 #: simulation/data/auras/units/catafalques/cart_catafalque.jsonauraDescription
 msgid ""
@@ -346,9 +326,9 @@ msgid ""
 "Melee Cavalry +1 armor and +10% health."
 msgstr "Líder da cavalaria pesada Cartaginesa em Trébia e Canas, onde sua carga tripla teve efeitos devastadores sobre o inimigo.\nCavalaria de combate corpo-a-corpo tem +1 de armadura e +10% de vida."
 
-#: simulation/data/auras/units/catafalques/gaul_catafalque_1.jsonauraName
-msgid "Ambush Slaughter"
-msgstr "Abate em Emboscada"
+#: simulation/data/auras/units/catafalques/cart_catafalque.jsonauraName
+msgid "Commander of Heavy Cavalry"
+msgstr "Comandante de Cavalaria Pesada"
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_1.jsonauraDescription
 msgid ""
@@ -356,9 +336,9 @@ msgid ""
 "Soldiers +5% melee and ranged attack damage and −25% promotion experience."
 msgstr "Combatendo os Romanos, Ambiórix percebeu a futilidade da guerra aberta e, em vez disso, recorreu a táticas de emboscada. Os Gauleses aprenderam rapidamente onde e quando executar ataques surpresas.\nOs Soldados têm +5% de dano corpo-a-corpo e de ataque à distância e -25% de experiência de promoção."
 
-#: simulation/data/auras/units/catafalques/gaul_catafalque_2.jsonauraName
-msgid "Tribute to Rome"
-msgstr "Tributo a Roma"
+#: simulation/data/auras/units/catafalques/gaul_catafalque_1.jsonauraName
+msgid "Ambush Slaughter"
+msgstr "Abate em Emboscada"
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_2.jsonauraDescription
 msgid ""
@@ -366,9 +346,9 @@ msgid ""
 "Workers −10% grain gather rate."
 msgstr "Quando o exército Romano ficou aquém do abastecimento de comida, as tribos Gaulesas foram obrigadas a desistir de uma parte de sua já escassa colheita. Os Eburões sob Ambiórix estavam relutantes em fazer dessa forma, consequentemente César enviou tropas para tomá-los pela força.\nTrabalhadores possuem -10% de taxa de coleta de grãos."
 
-#: simulation/data/auras/units/catafalques/iber_catafalque_1.jsonauraName
-msgid "Mercenary Commander"
-msgstr "Comandante Mercenário"
+#: simulation/data/auras/units/catafalques/gaul_catafalque_2.jsonauraName
+msgid "Tribute to Rome"
+msgstr "Tributo a Roma"
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_1.jsonauraDescription
 msgid ""
@@ -376,9 +356,9 @@ msgid ""
 "Allied Citizen Mercenaries −25% metal cost."
 msgstr "Juntamente com seu irmão Indíbil, Mandônio comandou os recrutas e mercenários Ibéricos que participaram nas Guerras Púnicas.\nMercenários Cidadãos Aliados possuem -25% de custo de metal."
 
-#: simulation/data/auras/units/catafalques/iber_catafalque_2.jsonauraName
-msgid "Saver of Lives"
-msgstr "Salvador de Vidas"
+#: simulation/data/auras/units/catafalques/iber_catafalque_1.jsonauraName
+msgid "Mercenary Commander"
+msgstr "Comandante Mercenário"
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_2.jsonauraDescription
 msgid ""
@@ -386,9 +366,9 @@ msgid ""
 "Soldiers +10% health."
 msgstr "Após a queda de Indíbil na batalha, Mandônio conduziu todos à segurança.\nSoldados têm +10% de vida máxima."
 
-#: simulation/data/auras/units/catafalques/kush_catafalque_1.jsonauraName
-msgid "Earliest Nubian Queen"
-msgstr "Mais Aintiga Rainha Núbia"
+#: simulation/data/auras/units/catafalques/iber_catafalque_2.jsonauraName
+msgid "Saver of Lives"
+msgstr "Salvador de Vidas"
 
 #: simulation/data/auras/units/catafalques/kush_catafalque_1.jsonauraDescription
 msgid ""
@@ -396,9 +376,9 @@ msgid ""
 "Enemy Female Citizens −15% gather speed."
 msgstr "Governando o Império Meroé com toda sua força e também sendo uma parte importante da religião Meroítica, Shanakdakheto representou a ira de Cuxe, algo que é pra ser levado a sério.\nCidadãs Inimigas possúem -15% de velocidade de colheita."
 
-#: simulation/data/auras/units/catafalques/kush_catafalque_2.jsonauraName
-msgid "Temple at Naqa"
-msgstr "Templo em Naqa"
+#: simulation/data/auras/units/catafalques/kush_catafalque_1.jsonauraName
+msgid "Earliest Nubian Queen"
+msgstr "Mais Aintiga Rainha Núbia"
 
 #: simulation/data/auras/units/catafalques/kush_catafalque_2.jsonauraDescription
 msgid ""
@@ -406,9 +386,9 @@ msgid ""
 "Temples +1 garrison heal rate."
 msgstr "Como em todas as culturas, a religião teve um papel importante para os Cuxes. Shanakdakheto teve o templo construído por volta de 160 a.C., como um símbolo dos avanços de Meroé.\nTemplos têm +1 na taxa de cura de unidades aquarteladas."
 
-#: simulation/data/auras/units/catafalques/mace_catafalque.jsonauraName
-msgid "Sacker of Cities"
-msgstr "Saqueador de Cidades"
+#: simulation/data/auras/units/catafalques/kush_catafalque_2.jsonauraName
+msgid "Temple at Naqa"
+msgstr "Templo em Naqa"
 
 #: simulation/data/auras/units/catafalques/mace_catafalque.jsonauraDescription
 msgid ""
@@ -416,9 +396,9 @@ msgid ""
 "Humans, Siege Engines, Ships, and Structures gain +5 food and wood loot."
 msgstr "Durante a Primeira Guerra Macedônica, Philip e suas tropas saquearam Termo, o centro político e religioso de Aetolia.\nHumanos, Armas de Cerco, Barcos e Estruturas têm +5 de alimentos e madeira em saques."
 
-#: simulation/data/auras/units/catafalques/maur_catafalque_1.jsonauraName
-msgid "Consolidator of the Empire"
-msgstr "Consolidador do Império"
+#: simulation/data/auras/units/catafalques/mace_catafalque.jsonauraName
+msgid "Sacker of Cities"
+msgstr "Saqueador de Cidades"
 
 #: simulation/data/auras/units/catafalques/maur_catafalque_1.jsonauraDescription
 msgid ""
@@ -426,9 +406,9 @@ msgid ""
 "Structures +20% territory influence radius."
 msgstr "Filho de Chandragupta Maurya, Bindusara consolidou seu império, criando um Estado estável para seu filho Ashoka herdar.\nEstruturas têm +20% no raio de influência de território."
 
-#: simulation/data/auras/units/catafalques/maur_catafalque_2.jsonauraName
-msgid "Vamba Moriyar"
-msgstr "Vamba Moriyar"
+#: simulation/data/auras/units/catafalques/maur_catafalque_1.jsonauraName
+msgid "Consolidator of the Empire"
+msgstr "Consolidador do Império"
 
 #: simulation/data/auras/units/catafalques/maur_catafalque_2.jsonauraDescription
 msgid ""
@@ -436,9 +416,9 @@ msgid ""
 "Soldiers +15% capture attack strength."
 msgstr "Disseram por aí que Bindusara conquistou terras ao sul do império.\nSoldados têm +15% de força de ataque de captura."
 
-#: simulation/data/auras/units/catafalques/pers_catafalque.jsonauraName
-msgid "Great Builder"
-msgstr "Grande Construtor"
+#: simulation/data/auras/units/catafalques/maur_catafalque_2.jsonauraName
+msgid "Vamba Moriyar"
+msgstr "Vamba Moriyar"
 
 #: simulation/data/auras/units/catafalques/pers_catafalque.jsonauraDescription
 msgid ""
@@ -446,9 +426,9 @@ msgid ""
 "Structures −10% resource costs and +5% health."
 msgstr "Por todo seu reinado, muitas das riquezas de Artaxerxes foram gastas com projetos de construção. Ele restaurou o Palácio de Dario I em Susã e restaurou a antiga cidade de Ecbátana.\nEstruturas têm -10% de recursos para construir e recebem +5% de vida."
 
-#: simulation/data/auras/units/catafalques/ptol_catafalque.jsonauraName
-msgid "Great Librarian"
-msgstr "Grande Bibliotecário"
+#: simulation/data/auras/units/catafalques/pers_catafalque.jsonauraName
+msgid "Great Builder"
+msgstr "Grande Construtor"
 
 #: simulation/data/auras/units/catafalques/ptol_catafalque.jsonauraDescription
 msgid ""
@@ -456,9 +436,9 @@ msgid ""
 "Structure technologies −10% resource costs."
 msgstr "Continuando o trabalho de seus antecessores na Grande Biblioteca de Alexandria, ele tomou posse de todos os livros trazidos à cidade, assim deixando uma vasta herança de conhecimento acumulado ao seu povo.\nTecnologia das estruturas custam -10% de recursos."
 
-#: simulation/data/auras/units/catafalques/rome_catafalque_1.jsonauraName
-msgid "Avenger of Lucretia"
-msgstr "Vingador de Lucrécia"
+#: simulation/data/auras/units/catafalques/ptol_catafalque.jsonauraName
+msgid "Great Librarian"
+msgstr "Grande Bibliotecário"
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_1.jsonauraDescription
 msgid ""
@@ -466,9 +446,9 @@ msgid ""
 "Female Citizens −20% food cost and +10% gather speed."
 msgstr "Depois de ser estuprada pelo filho do rei Tarquínio, o Soberbo, Lucretia cometeu suicídio; isso fez com que Bruto jurasse derrubar a monarquia e vingá-la.\nCidadãs custam -20% de comida e têm +10% de velocidade na colheita."
 
-#: simulation/data/auras/units/catafalques/rome_catafalque_2.jsonauraName
-msgid "Founder and Defender of the Republic"
-msgstr "Fundador e Defensor da República"
+#: simulation/data/auras/units/catafalques/rome_catafalque_1.jsonauraName
+msgid "Avenger of Lucretia"
+msgstr "Vingador de Lucrécia"
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_2.jsonauraDescription
 msgid ""
@@ -476,9 +456,9 @@ msgid ""
 "Humans and Siege Engines +1 armor."
 msgstr "Bruto foi uma das figuras mais importantes na queda da monarquia e na fundação da República Romana. Mais tarde, como um cônsul, liderou o exército Romano para a vitória contra o rei etrusco Tarquínio que buscava retomar o trono.\nHumanos e Armas de Cerco têm +1 de armadura."
 
-#: simulation/data/auras/units/catafalques/sele_catafalque_1.jsonauraName
-msgid "Founder of the Ezida Temple"
-msgstr "Fundador do Templo de Ezida"
+#: simulation/data/auras/units/catafalques/rome_catafalque_2.jsonauraName
+msgid "Founder and Defender of the Republic"
+msgstr "Fundador e Defensor da República"
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_1.jsonauraDescription
 msgid ""
@@ -486,9 +466,9 @@ msgid ""
 "Temples −10% resource costs; Temple technologies −10% resource costs."
 msgstr "Antiochus I contribuiu para a construção do Templo Ezida em Borsippa.\nTemplos custam -10% de recursos; tecnologias de Templos custam -10% de recursos."
 
-#: simulation/data/auras/units/catafalques/sele_catafalque_2.jsonauraName
-msgid "Immigration"
-msgstr "Imigração"
+#: simulation/data/auras/units/catafalques/sele_catafalque_1.jsonauraName
+msgid "Founder of the Ezida Temple"
+msgstr "Fundador do Templo de Ezida"
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_2.jsonauraDescription
 msgid ""
@@ -496,9 +476,9 @@ msgid ""
 "+5% maximum population limit."
 msgstr "Antíoco incentivou a imigração Grega ao seu reino e estabeleceu várias novas cidades na Anatólia para servirem de contrapeso para os Gauleses.\n+5% no limite da população."
 
-#: simulation/data/auras/units/catafalques/sele_catafalque_3.jsonauraName
-msgid "Basileus Megas"
-msgstr "Basileus Megas"
+#: simulation/data/auras/units/catafalques/sele_catafalque_2.jsonauraName
+msgid "Immigration"
+msgstr "Imigração"
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_3.jsonauraDescription
 msgid ""
@@ -506,10 +486,9 @@ msgid ""
 "Champion Elephants −10% resource costs."
 msgstr "Filho de Seleucus Nicator, Antiochus foi bem sucedido na formidável tarefa de manter o império unido e estável, enquanto fundava novos templos e derrotava os Gauls invasores com elefantes de guerra.\nElefantes Campeões custam -10% de recursos."
 
-#: simulation/data/auras/units/catafalques/spart_catafalque_1.jsonauraName
-#: simulation/data/auras/units/catafalques/spart_catafalque_2.jsonauraName
-msgid "Lycurgan Military Reforms"
-msgstr "Reformas Militares de Lycurgan"
+#: simulation/data/auras/units/catafalques/sele_catafalque_3.jsonauraName
+msgid "Basileus Megas"
+msgstr "Basileus Megas"
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_1.jsonauraDescription
 msgid ""
@@ -517,13 +496,14 @@ msgid ""
 "Citizen Infantry Spearmen −10% resource costs."
 msgstr "Lycurgus instituiu diversas reformas militares e, sob sua forma de governo, foi implementada uma fidelidade completa e absoluta com Esparta e seus cidadãos.\nInfantaria de Lanceiros Civis custam -10% de recursos."
 
+#: simulation/data/auras/units/catafalques/spart_catafalque_1.jsonauraName
+#: simulation/data/auras/units/catafalques/spart_catafalque_2.jsonauraName
+msgid "Lycurgan Military Reforms"
+msgstr "Reformas Militares de Lycurgan"
+
 #: simulation/data/auras/units/catafalques/spart_catafalque_2.jsonauraDescription
 msgid "Champion Infantry Spearmen −5% resource costs."
 msgstr "Lanceiro de Infantaria Campeão -5% custo de recursos."
-
-#: simulation/data/auras/units/catafalques/spart_catafalque_3.jsonauraName
-msgid "Iron Pelanors"
-msgstr "Pelanors de Ferro"
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_3.jsonauraDescription
 msgid ""
@@ -531,41 +511,57 @@ msgid ""
 "Workers +15% metal gather rate."
 msgstr "Apoiando ainda mais a igualdade, Lycurgus proibiu o uso de ouro e prata, introduzindo uma nova moeda de ferro chamada pelanors.\nTrabalhadores têm +15% na taxa de coleta de metal."
 
-#: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraName
-msgid "Formation Reforms"
-msgstr "Reformas na Formação"
+#: simulation/data/auras/units/catafalques/spart_catafalque_3.jsonauraName
+msgid "Iron Pelanors"
+msgstr "Pelanors de Ferro"
+
+#: simulation/data/auras/units/elephant_worker.jsonauraDescription
+msgid "Workers +25% build rate."
+msgstr "Trabalhadores têm +25% de taxa de construção."
+
+#: simulation/data/auras/units/elephant_worker.jsonauraName
+msgid "Elephant Workers"
+msgstr "Elefantes Trabalhadores"
+
+#: simulation/data/auras/units/female_inspiration.jsonauraDescription
+msgid "Citizen Soldiers +10% build rate and gather speed."
+msgstr "Soldados Cidadãos têm +10% de taxa de construção e velocidade de coleta."
+
+#: simulation/data/auras/units/female_inspiration.jsonauraName
+msgid "Inspiration"
+msgstr "Inspiração"
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraDescription
 msgid "Soldiers in his formation +3 armor, +15% movement speed."
 msgstr "Soldados em sua formação têm +3 de armadura e +15% de velocidade de movimento."
 
-#: simulation/data/auras/units/heroes/athen_hero_iphicrates_2.jsonauraName
-msgid "Peltast Reforms"
-msgstr "Reformas na Infantaria Leve"
+#: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraName
+msgid "Formation Reforms"
+msgstr "Reformas na Formação"
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_2.jsonauraDescription
 msgid "Infantry Javelineers +15% movement speed."
 msgstr "Dardeiros de Infantaria têm +15% de velocidade de movimento."
 
-#: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraName
-msgid "Periclean Building Program"
-msgstr "Programa de Construção de Péricles"
+#: simulation/data/auras/units/heroes/athen_hero_iphicrates_2.jsonauraName
+msgid "Peltast Reforms"
+msgstr "Reformas na Infantaria Leve"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraDescription
 msgid "Workers +15% build rate."
 msgstr "Trabalhadores têm +15% na taxa de construção."
 
-#: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraName
-msgid "Temple of Athena Nike"
-msgstr "Templo de Atena Nice"
+#: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraName
+msgid "Periclean Building Program"
+msgstr "Programa de Construção de Péricles"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraDescription
 msgid "Temples −25% stone cost, +2 garrisoned heal rate."
 msgstr "Templos custam -15% de pedra e têm +2% na taxa de cura de unidades aquarteladas."
 
-#: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraName
-msgid "Naval Commander"
-msgstr "Comandante Naval"
+#: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraName
+msgid "Temple of Athena Nike"
+msgstr "Templo de Atena Nice"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraDescription
 msgid ""
@@ -573,17 +569,17 @@ msgid ""
 "speed."
 msgstr "Quando aquartelado, o Barco têm -30% no tempo de treinamento e +50% de velocidade de movimento."
 
-#: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraName
-msgid "Naval Architect"
-msgstr "Arquiteto Naval"
+#: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraName
+msgid "Naval Commander"
+msgstr "Comandante Naval"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraDescription
 msgid "Ships −50% metal cost, −20% construction time."
 msgstr "Barcos custam -50% de metal e levam -20% de tempo para construir."
 
-#: simulation/data/auras/units/heroes/brit_hero_boudicca.jsonauraName
-msgid "Champion Army"
-msgstr "Exército Campeão"
+#: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraName
+msgid "Naval Architect"
+msgstr "Arquiteto Naval"
 
 #: simulation/data/auras/units/heroes/brit_hero_boudicca.jsonauraDescription
 msgid ""
@@ -591,42 +587,42 @@ msgid ""
 "+10% movement speed."
 msgstr "Campeões têm +2 de força de ataque de captura, +20% de dano de ataque corpo-a-corpo e de longo alcance e +10% de velocidade de movimento."
 
-#: simulation/data/auras/units/heroes/brit_hero_caratacos.jsonauraName
-msgid "Guerrilla Chief"
-msgstr "Chefe de Guerrilha"
+#: simulation/data/auras/units/heroes/brit_hero_boudicca.jsonauraName
+msgid "Champion Army"
+msgstr "Exército Campeão"
 
 #: simulation/data/auras/units/heroes/brit_hero_caratacos.jsonauraDescription
 msgid "Soldiers and Siege Engines +1 armor, +15% movement speed."
 msgstr "Soldados e Armas de Cerco têm +1 de armadura e +15% na velocidade de movimento."
 
-#: simulation/data/auras/units/heroes/brit_hero_cunobelin.jsonauraName
-msgid "Britannorum Rex"
-msgstr "Britannorum Rex"
+#: simulation/data/auras/units/heroes/brit_hero_caratacos.jsonauraName
+msgid "Guerrilla Chief"
+msgstr "Chefe de Guerrilha"
 
 #: simulation/data/auras/units/heroes/brit_hero_cunobelin.jsonauraDescription
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraDescription
 msgid "Humans +0.8 health regeneration rate."
 msgstr "Humanos têm +0.8 na taxa de regeneração de vida."
 
-#: simulation/data/auras/units/heroes/cart_hero_hamilcar_1.jsonauraName
-msgid "Lightning General"
-msgstr "General Relâmpago"
+#: simulation/data/auras/units/heroes/brit_hero_cunobelin.jsonauraName
+msgid "Britannorum Rex"
+msgstr "Britannorum Rex"
 
 #: simulation/data/auras/units/heroes/cart_hero_hamilcar_1.jsonauraDescription
 msgid "Soldiers and Siege Engines +15% movement speed."
 msgstr "Soldados e Armas de Cerco têm +15% na velocidade de movimento."
 
-#: simulation/data/auras/units/heroes/cart_hero_hamilcar_2.jsonauraName
-msgid "Subduer of Mercenaries"
-msgstr "Subjugador de Mercenários"
+#: simulation/data/auras/units/heroes/cart_hero_hamilcar_1.jsonauraName
+msgid "Lightning General"
+msgstr "General Relâmpago"
 
 #: simulation/data/auras/units/heroes/cart_hero_hamilcar_2.jsonauraDescription
 msgid "Enemy Mercenaries −20% melee and ranged attack damage."
 msgstr "Mercenários Inimigos têm -20% de dano de ataque à distância e de corpo-a-corpo."
 
-#: simulation/data/auras/units/heroes/cart_hero_hannibal.jsonauraName
-msgid "Tactician"
-msgstr "Tático"
+#: simulation/data/auras/units/heroes/cart_hero_hamilcar_2.jsonauraName
+msgid "Subduer of Mercenaries"
+msgstr "Subjugador de Mercenários"
 
 #: simulation/data/auras/units/heroes/cart_hero_hannibal.jsonauraDescription
 msgid ""
@@ -634,25 +630,25 @@ msgid ""
 "melee and ranged attack damage."
 msgstr "Soldados e Armas de Cerco próprios e aliados têm +1% de poder de captura e +20% de dano de ataque corpo-a-corpo e à distância."
 
-#: simulation/data/auras/units/heroes/cart_hero_maharbal.jsonauraName
-msgid "Cavalry Commander"
-msgstr "Comandante da Cavalaria"
+#: simulation/data/auras/units/heroes/cart_hero_hannibal.jsonauraName
+msgid "Tactician"
+msgstr "Tático"
 
 #: simulation/data/auras/units/heroes/cart_hero_maharbal.jsonauraDescription
 msgid "Melee Cavalry +30% melee attack damage."
 msgstr "Cavalaria de combate corpo-a-corpo tem +30% de dano de ataque corpo-a-corpo."
 
-#: simulation/data/auras/units/heroes/gaul_hero_brennus.jsonauraName
-msgid "Sacker of Rome"
-msgstr "Saqueador de Roma"
+#: simulation/data/auras/units/heroes/cart_hero_maharbal.jsonauraName
+msgid "Cavalry Commander"
+msgstr "Comandante da Cavalaria"
 
 #: simulation/data/auras/units/heroes/gaul_hero_brennus.jsonauraDescription
 msgid "Humans, Siege Engines, and Ships gain +15 metal loot."
 msgstr "Humanos, Armas de Cerco e Barcos têm +15 de metal em saques."
 
-#: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.jsonauraName
-msgid "Celtic Warlord"
-msgstr "Chefe de Guerra Celta"
+#: simulation/data/auras/units/heroes/gaul_hero_brennus.jsonauraName
+msgid "Sacker of Rome"
+msgstr "Saqueador de Roma"
 
 #: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.jsonauraDescription
 msgid ""
@@ -660,13 +656,13 @@ msgid ""
 " attack damage."
 msgstr "Soldados e Armas de Cerco têm +1 de poder de captura e +20% de dano de ataque à distância e de corpo-a-corpo."
 
+#: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.jsonauraName
+msgid "Celtic Warlord"
+msgstr "Chefe de Guerra Celta"
+
 #: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraName
 msgid "Preparation for War"
 msgstr "Preparação para Guerra"
-
-#: simulation/data/auras/units/heroes/hero_garrison.jsonauraName
-msgid "Inspired Defense"
-msgstr "Defesa Inspirada"
 
 #: simulation/data/auras/units/heroes/hero_garrison.jsonauraDescription
 msgid ""
@@ -674,45 +670,45 @@ msgid ""
 "garrison regeneration rate."
 msgstr "Quando aquartelados, a Estrutura ou Arma de Cerco têm +2% na taxa de pontos de captura de unidades aquarteladas."
 
-#: simulation/data/auras/units/heroes/iber_hero_caros_1.jsonauraName
-msgid "Valiant Defender"
-msgstr "Valente Defensor"
+#: simulation/data/auras/units/heroes/hero_garrison.jsonauraName
+msgid "Inspired Defense"
+msgstr "Defesa Inspirada"
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_1.jsonauraDescription
 msgid "When garrisoned, the Structure or Siege Tower has +75% arrow count."
 msgstr "Quando aquartelado, a Estrutura ou Arma de Cerco têm +75% de flechas."
 
-#: simulation/data/auras/units/heroes/iber_hero_caros_2.jsonauraName
-msgid "Battle Fervor"
-msgstr "Fervor da Batalha"
+#: simulation/data/auras/units/heroes/iber_hero_caros_1.jsonauraName
+msgid "Valiant Defender"
+msgstr "Valente Defensor"
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_2.jsonauraDescription
 msgid "Soldiers +1 armor."
 msgstr "Soldados têm +1 de armadura."
 
-#: simulation/data/auras/units/heroes/iber_hero_indibil.jsonauraName
-msgid "Mobilization"
-msgstr "Mobilização"
+#: simulation/data/auras/units/heroes/iber_hero_caros_2.jsonauraName
+msgid "Battle Fervor"
+msgstr "Fervor da Batalha"
 
 #: simulation/data/auras/units/heroes/iber_hero_indibil.jsonauraDescription
 msgid "Soldiers −15% resources costs, −20% training time."
 msgstr "Soldados têm -15% de custo de recursos e -20% de tempo de treinamento."
 
+#: simulation/data/auras/units/heroes/iber_hero_indibil.jsonauraName
+msgid "Mobilization"
+msgstr "Mobilização"
+
 #: simulation/data/auras/units/heroes/iber_hero_viriato_1.jsonauraDescription
 msgid "Soldiers +20% movement speed."
 msgstr "Soldados têm +20% na velocidade de movimento."
-
-#: simulation/data/auras/units/heroes/iber_hero_viriato_2.jsonauraName
-msgid "Swag"
-msgstr "Pilhagem"
 
 #: simulation/data/auras/units/heroes/iber_hero_viriato_2.jsonauraDescription
 msgid "Soldiers and Siege Engines gain +100% resource loot."
 msgstr "Soldados e Armas de Cerco têm +100% de recursos de saque."
 
-#: simulation/data/auras/units/heroes/kush_hero_amanirenas.jsonauraName
-msgid "Warrior Queen"
-msgstr "Rainha Guerreira"
+#: simulation/data/auras/units/heroes/iber_hero_viriato_2.jsonauraName
+msgid "Swag"
+msgstr "Pilhagem"
 
 #: simulation/data/auras/units/heroes/kush_hero_amanirenas.jsonauraDescription
 #: simulation/data/auras/units/heroes/mace_hero_philip.jsonauraDescription
@@ -720,9 +716,9 @@ msgid ""
 "Champions +2 capture attack strength, +20% melee and ranged attack damage."
 msgstr "Campeões têm +2 de poder de captura e +20% de dano de ataque à distância e de corpo-a-corpo."
 
-#: simulation/data/auras/units/heroes/kush_hero_arakamani_1.jsonauraName
-msgid "Defier of Tradition"
-msgstr "Desafiador das Tradições"
+#: simulation/data/auras/units/heroes/kush_hero_amanirenas.jsonauraName
+msgid "Warrior Queen"
+msgstr "Rainha Guerreira"
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_1.jsonauraDescription
 msgid ""
@@ -730,9 +726,9 @@ msgid ""
 "resource costs and training time."
 msgstr "Templo de Ámon têm +20% no custo dos recursos e no tempo de construção. Guarda do Templo de Ámon custa +20% de recurso e de tempo de treinamento."
 
-#: simulation/data/auras/units/heroes/kush_hero_arakamani_2.jsonauraName
-msgid "Follower of Apedemak"
-msgstr "Seguidor de Apedemak"
+#: simulation/data/auras/units/heroes/kush_hero_arakamani_1.jsonauraName
+msgid "Defier of Tradition"
+msgstr "Desafiador das Tradições"
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_2.jsonauraDescription
 msgid ""
@@ -740,58 +736,58 @@ msgid ""
 " −20% resource costs and training time."
 msgstr "Templo de Apedemak possúi -20% no custo dos recursos e no tempo de construção. Guarda do Templo de Apedemak custa -20% de recurso e de tempo de treinamento."
 
-#: simulation/data/auras/units/heroes/kush_hero_arakamani_3.jsonauraName
-msgid "Slaughter of the Faithful"
-msgstr "Matança dos Fiéis"
+#: simulation/data/auras/units/heroes/kush_hero_arakamani_2.jsonauraName
+msgid "Follower of Apedemak"
+msgstr "Seguidor de Apedemak"
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_3.jsonauraDescription
 msgid "Enemy Healers −50% healing strength."
 msgstr "Curandeiros Inimigos −50% força de cura."
 
-#: simulation/data/auras/units/heroes/kush_hero_nastasen_1.jsonauraName
-msgid "Savior of Kush"
-msgstr "Redentor de Cuxe"
+#: simulation/data/auras/units/heroes/kush_hero_arakamani_3.jsonauraName
+msgid "Slaughter of the Faithful"
+msgstr "Matança dos Fiéis"
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_1.jsonauraDescription
 msgid "Soldiers +10 melee and ranged attack damage, gain +50% resource loot."
 msgstr "Soldados têm +10% de dano de ataque à distância e de corpo-a-corpo e +50% no saque de recursos."
 
-#: simulation/data/auras/units/heroes/kush_hero_nastasen_2.jsonauraName
-msgid "Gift of Warships"
-msgstr "Presente de Navios de Guerra"
+#: simulation/data/auras/units/heroes/kush_hero_nastasen_1.jsonauraName
+msgid "Savior of Kush"
+msgstr "Redentor de Cuxe"
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_2.jsonauraDescription
 msgid "Kushite Triremes −50 wood and metal cost."
 msgstr "Trirremes Cuchitas custam -50% de madeira e metal."
 
-#: simulation/data/auras/units/heroes/mace_hero_alexander_1.jsonauraName
-msgid "Imperialism"
-msgstr "Imperialismo"
+#: simulation/data/auras/units/heroes/kush_hero_nastasen_2.jsonauraName
+msgid "Gift of Warships"
+msgstr "Presente de Navios de Guerra"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_1.jsonauraDescription
 msgid "Structures +10% territory influence radius."
 msgstr "Estruturas têm +10% no raio de influência de território."
 
-#: simulation/data/auras/units/heroes/mace_hero_alexander_2.jsonauraName
-msgid "Conqueror"
-msgstr "Conquistador"
+#: simulation/data/auras/units/heroes/mace_hero_alexander_1.jsonauraName
+msgid "Imperialism"
+msgstr "Imperialismo"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_2.jsonauraDescription
 msgid "Enemy Civic Centres −50% capture points garrisoned regeneration rate."
 msgstr "Centros Cívicos Inimigos possúem -50% na taxa de pontos de captura de unidades aquarteladas."
 
-#: simulation/data/auras/units/heroes/mace_hero_craterus.jsonauraName
-msgid "Taxiarchès"
-msgstr "Taxiarchès"
+#: simulation/data/auras/units/heroes/mace_hero_alexander_2.jsonauraName
+msgid "Conqueror"
+msgstr "Conquistador"
 
 #: simulation/data/auras/units/heroes/mace_hero_craterus.jsonauraDescription
 msgid ""
 "Infantry Pikemen +20% capture attack strength, +20% melee attack damage."
 msgstr "Piqueiros têm +20% de poder de captura e +20% de dano de ataque corpo-a-corpo."
 
-#: simulation/data/auras/units/heroes/mace_hero_demetrius.jsonauraName
-msgid "Besieger"
-msgstr "Sitiante"
+#: simulation/data/auras/units/heroes/mace_hero_craterus.jsonauraName
+msgid "Taxiarchès"
+msgstr "Taxiarchès"
 
 #: simulation/data/auras/units/heroes/mace_hero_demetrius.jsonauraDescription
 msgid ""
@@ -799,21 +795,21 @@ msgid ""
 "attack range, +10% vision range."
 msgstr "Armas de Cerco têm +1 de armadura, +20% de dano de ataque à distância e de corpo-a-corpo, +10% de alcance de ataque e +10% de campo de visão."
 
+#: simulation/data/auras/units/heroes/mace_hero_demetrius.jsonauraName
+msgid "Besieger"
+msgstr "Sitiante"
+
 #: simulation/data/auras/units/heroes/mace_hero_philip.jsonauraName
 msgid "Rise of Macedon"
 msgstr "Ascensão da Macedônia"
-
-#: simulation/data/auras/units/heroes/mace_hero_pyrrhus.jsonauraName
-msgid "Pyrrhic Victory"
-msgstr "Vitória Pírrica"
 
 #: simulation/data/auras/units/heroes/mace_hero_pyrrhus.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage, −15% health."
 msgstr "Soldados têm +20% de dano de ataque à distância e de corpo-a-corpo e -15% de saúde."
 
-#: simulation/data/auras/units/heroes/maur_hero_ashoka.jsonauraName
-msgid "Buddhism"
-msgstr "Budismo"
+#: simulation/data/auras/units/heroes/mace_hero_pyrrhus.jsonauraName
+msgid "Pyrrhic Victory"
+msgstr "Vitória Pírrica"
 
 #: simulation/data/auras/units/heroes/maur_hero_ashoka.jsonauraDescription
 msgid ""
@@ -821,9 +817,9 @@ msgid ""
 "resource costs and research time."
 msgstr "Templos custam -50% de recursos e tempo de construção. Tecnologias do Templo possúem -50% no custo de recursos e no tempo de pesquisa."
 
-#: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraName
-msgid "Teacher"
-msgstr "Professor"
+#: simulation/data/auras/units/heroes/maur_hero_ashoka.jsonauraName
+msgid "Buddhism"
+msgstr "Budismo"
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraDescription
 msgid ""
@@ -831,105 +827,105 @@ msgid ""
 "−50% research time."
 msgstr "Quando aquartelados, as tecnologias das Estruturas têm -20% de custo de recursos e -50% de tempo de pesquisa."
 
+#: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraName
+msgid "Teacher"
+msgstr "Professor"
+
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraName
 msgid "Regeneration"
 msgstr "Regeneração"
-
-#: simulation/data/auras/units/heroes/pers_hero_cyrus.jsonauraName
-msgid "Forefront Leader"
-msgstr "Líder de Frente"
 
 #: simulation/data/auras/units/heroes/pers_hero_cyrus.jsonauraDescription
 msgid ""
 "Cavalry +1 capture attack strength, +20% melee and ranged attack damage."
 msgstr "Cavalaria tem +1 de poder de captura e +20% de dano de ataque à distância e de corpo-a-corpo."
 
-#: simulation/data/auras/units/heroes/pers_hero_darius.jsonauraName
-msgid "Leadership"
-msgstr "Liderança"
+#: simulation/data/auras/units/heroes/pers_hero_cyrus.jsonauraName
+msgid "Forefront Leader"
+msgstr "Líder de Frente"
 
 #: simulation/data/auras/units/heroes/pers_hero_darius.jsonauraDescription
 msgid ""
 "Soldiers, Siege Engines, Traders, and Merchant Ships +15% movement speed."
 msgstr "Soldados, Armas de Cerco, Comerciantes e Navios Mercantes têm +15% de velocidade de movimento."
 
-#: simulation/data/auras/units/heroes/pers_hero_xerxes.jsonauraName
-msgid "Administrator"
-msgstr "Administrador"
+#: simulation/data/auras/units/heroes/pers_hero_darius.jsonauraName
+msgid "Leadership"
+msgstr "Liderança"
 
 #: simulation/data/auras/units/heroes/pers_hero_xerxes.jsonauraDescription
 msgid "Workers +15% build rate and gather speed."
 msgstr "Trabalhadores têm +15% de taxa de construção e de velocidade de coleta."
 
-#: simulation/data/auras/units/heroes/ptol_hero_cleopatra_1.jsonauraName
-msgid "Patriot"
-msgstr "Patriota"
+#: simulation/data/auras/units/heroes/pers_hero_xerxes.jsonauraName
+msgid "Administrator"
+msgstr "Administrador"
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_1.jsonauraDescription
 msgid "Soldiers and Siege Engines −20% melee and ranged attack repeat time."
 msgstr "Soldados e Armas de Cerco têm -20% no tempo de repetição de ataque à distância e de corpo-a-corpo."
+
+#: simulation/data/auras/units/heroes/ptol_hero_cleopatra_1.jsonauraName
+msgid "Patriot"
+msgstr "Patriota"
+
+#: simulation/data/auras/units/heroes/ptol_hero_cleopatra_2.jsonauraDescription
+msgid "Allied Heroes +10% health."
+msgstr "Heróis Aliados têm +10% de vida."
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_2.jsonauraName
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_3.jsonauraName
 msgid "Consort"
 msgstr "Consorte"
 
-#: simulation/data/auras/units/heroes/ptol_hero_cleopatra_2.jsonauraDescription
-msgid "Allied Heroes +10% health."
-msgstr "Heróis Aliados têm +10% de vida."
-
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_3.jsonauraDescription
 msgid "Enemy Heroes −10% health."
 msgstr "Heróis Inimigos têm -10% de vida."
-
-#: simulation/data/auras/units/heroes/ptol_hero_ptolemy_IV.jsonauraName
-msgid "Raphia"
-msgstr "Ráfia"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_IV.jsonauraDescription
 msgid "Pikemen +40% health."
 msgstr "Piqueiros têm +40% de vida."
 
-#: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_1.jsonauraName
-msgid "Patron of Construction"
-msgstr "Patrono da Construção"
+#: simulation/data/auras/units/heroes/ptol_hero_ptolemy_IV.jsonauraName
+msgid "Raphia"
+msgstr "Ráfia"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_1.jsonauraDescription
 msgid "Workers +10% build rate."
 msgstr "Trabalhadores têm +10% de taxa de construção."
 
-#: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_2.jsonauraName
-msgid "Mercenary Patron"
-msgstr "Patrono dos Mercenários"
+#: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_1.jsonauraName
+msgid "Patron of Construction"
+msgstr "Patrono da Construção"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_2.jsonauraDescription
 msgid "Mercenaries −35% resource costs."
 msgstr "Mercenários têm -35% de custo de recursos."
+
+#: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_2.jsonauraName
+msgid "Mercenary Patron"
+msgstr "Patrono dos Mercenários"
+
+#: simulation/data/auras/units/heroes/rome_hero_marcellus_1.jsonauraDescription
+msgid "Cavalry +15% melee and ranged attack damage."
+msgstr "Cavalaria tem +15% de dano de ataque à distância e de corpo-a-corpo."
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_1.jsonauraName
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_2.jsonauraName
 msgid "Sword of Rome"
 msgstr "Espada de Roma"
 
-#: simulation/data/auras/units/heroes/rome_hero_marcellus_1.jsonauraDescription
-msgid "Cavalry +15% melee and ranged attack damage."
-msgstr "Cavalaria tem +15% de dano de ataque à distância e de corpo-a-corpo."
-
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_2.jsonauraDescription
 msgid "Enemy Infantry −10% melee and ranged attack damage."
 msgstr "Infantaria Inimiga tem -10% de dano de ataque à distância e de corpo-a-corpo."
-
-#: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraName
-msgid "Shield of Rome"
-msgstr "Escudo de Roma"
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraDescription
 msgid "Humans and Structures +1 armor."
 msgstr "Humanos e Estruturas têm +1 de armadura."
 
-#: simulation/data/auras/units/heroes/rome_hero_scipio.jsonauraName
-msgid "Triumph"
-msgstr "Triunfo"
+#: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraName
+msgid "Shield of Rome"
+msgstr "Escudo de Roma"
 
 #: simulation/data/auras/units/heroes/rome_hero_scipio.jsonauraDescription
 msgid ""
@@ -937,43 +933,47 @@ msgid ""
 " attack damage."
 msgstr "Soldados e Armas de Cerco têm +2 de força de ataque de captura, +20% de dano de ataque corpo-a-corpo e de longo alcance."
 
-#: simulation/data/auras/units/heroes/sele_hero_antiochus_great.jsonauraName
-msgid "Ilarchès"
-msgstr "Ilarchès"
+#: simulation/data/auras/units/heroes/rome_hero_scipio.jsonauraName
+msgid "Triumph"
+msgstr "Triunfo"
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_great.jsonauraDescription
 msgid "Cavalry +2 armor."
 msgstr "Cavalaria têm +2 de armadura."
 
-#: simulation/data/auras/units/heroes/sele_hero_antiochus_righteous.jsonauraName
-msgid "Renowned Conqueror"
-msgstr "Conquistador Renomado"
+#: simulation/data/auras/units/heroes/sele_hero_antiochus_great.jsonauraName
+msgid "Ilarchès"
+msgstr "Ilarchès"
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_righteous.jsonauraDescription
 msgid "Enemy Structures, Ships, and Siege Engines -20% health."
 msgstr "Estruturas Inimigas, Navios e Armas de Cerco têm -20% de vida."
 
-#: simulation/data/auras/units/heroes/sele_hero_seleucus_victor.jsonauraName
-msgid "Zooiarchos"
-msgstr "Zooiarchos"
+#: simulation/data/auras/units/heroes/sele_hero_antiochus_righteous.jsonauraName
+msgid "Renowned Conqueror"
+msgstr "Conquistador Renomado"
 
 #: simulation/data/auras/units/heroes/sele_hero_seleucus_victor.jsonauraDescription
 msgid "Champion Elephants +20% melee attack damage, +20% movement speed."
 msgstr "Elefantes Campeões têm +20% de dano de ataque corpo-a-corpo e +20% de velocidade de movimento."
 
-#: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraName
-msgid "Helot Reforms"
-msgstr "Reformas dos Escravos"
+#: simulation/data/auras/units/heroes/sele_hero_seleucus_victor.jsonauraName
+msgid "Zooiarchos"
+msgstr "Zooiarchos"
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraDescription
 msgid ""
 "Citizen Infantry Javelineers +1 armor, +25% ranged attack pierce damage."
 msgstr "Dardeiros de Infantaria Cidadãos têm +1 de armadura e +25% de dano de ataque perfurante à distância."
 
-#: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraName
-msgid "Last Stand"
-msgstr "Último Suporte"
+#: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraName
+msgid "Helot Reforms"
+msgstr "Reformas dos Escravos"
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraDescription
 msgid "Spearmen +1 capture attack strength, +25% melee attack damage."
 msgstr "Lanceiros têm +1 de poder de captura e +25% de dano de ataque corpo-a-corpo."
+
+#: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraName
+msgid "Last Stand"
+msgstr "Último Suporte"

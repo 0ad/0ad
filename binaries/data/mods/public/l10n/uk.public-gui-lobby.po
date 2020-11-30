@@ -1,7 +1,7 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2019 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
-# 
+# Copyright (C) 2020 Wildfire Games
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
+# project.
 # Translators:
 # 009ee41e4c490a944b98e20dd0cc29dd_e31b370 <3a1cdc1a7c52cc59f91bdc5fed0a3a77_882482>, 2020
 # Dmytro Ryl'kov <tverdislav@ukr.net>, 2016-2017
@@ -18,7 +18,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-11-22 08:08+0000\n"
+"POT-Creation-Date: 2020-11-28 10:01+0000\n"
 "PO-Revision-Date: 2020-05-11 18:20+0000\n"
 "Last-Translator: 009ee41e4c490a944b98e20dd0cc29dd_e31b370 <3a1cdc1a7c52cc59f91bdc5fed0a3a77_882482>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
@@ -28,180 +28,34 @@ msgstr ""
 "Language: uk\n"
 "Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
 
+#: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(caption):28
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):61
+msgid "Back"
+msgstr "Повернутися"
+
+#: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(caption):32
+msgid "Update"
+msgstr "Оновити"
+
+#: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(heading):17
+msgid "Rank"
+msgstr "Ранг"
+
+#: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(heading):20
+#: gui/lobby/LobbyPage/GameList.xml:(heading):12
+#: gui/lobby/LobbyPage/PlayerList.xml:(heading):15
+msgid "Name"
+msgstr "Ім'я"
+
+#: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(heading):23
+#: gui/lobby/LobbyPage/GameList.xml:(heading):27
+#: gui/lobby/LobbyPage/PlayerList.xml:(heading):18
+msgid "Rating"
+msgstr "Оцінка"
+
 #: gui/lobby/LobbyPage/AnnouncementHandler.js:18
 msgid "Notice"
 msgstr "Сповіщення"
-
-#: gui/lobby/LobbyPage/ConnectionHandler.js:45
-msgid "BANNED"
-msgstr "ЗАБЛОКОВАНО"
-
-#: gui/lobby/LobbyPage/ConnectionHandler.js:45
-msgid "KICKED"
-msgstr "ВИГНАНО"
-
-#: gui/lobby/LobbyPage/ConnectionHandler.js:61
-msgid "You have been disconnected from the lobby. Do you want to reconnect?"
-msgstr "Вас було роз'єднано із лобі. Чи хочете Ви перепідключитися?"
-
-#: gui/lobby/LobbyPage/ConnectionHandler.js:62
-#: gui/lobby/LobbyPage/Buttons/JoinButton.js:53
-#: gui/prelobby/common/credentials/credentials.js:55
-msgid "Confirmation"
-msgstr "Підтвердження"
-
-#: gui/lobby/LobbyPage/ConnectionHandler.js:63
-#: gui/lobby/LobbyPage/Buttons/JoinButton.js:44
-#: gui/lobby/LobbyPage/Buttons/JoinButton.js:54
-#: gui/prelobby/common/credentials/credentials.js:56
-msgid "No"
-msgstr "Ні"
-
-#: gui/lobby/LobbyPage/ConnectionHandler.js:63
-#: gui/lobby/LobbyPage/Buttons/JoinButton.js:44
-#: gui/lobby/LobbyPage/Buttons/JoinButton.js:54
-#: gui/prelobby/common/credentials/credentials.js:56
-msgid "Yes"
-msgstr "Так"
-
-#. Translation: The number of players and observers in this game
-#: gui/lobby/LobbyPage/Game.js:298
-#, javascript-format
-msgid "%(current)s/%(max)s +%(observercount)s"
-msgstr "%(current)s/%(max)s +%(observercount)s"
-
-#. Translation: The number of players in this game
-#: gui/lobby/LobbyPage/Game.js:301
-#, javascript-format
-msgid "%(current)s/%(max)s"
-msgstr "%(current)s/%(max)s"
-
-#: gui/lobby/LobbyPage/GameDetails.js:65
-msgctxt "victory condition"
-msgid "Endless Game"
-msgstr "Нескінченна гра"
-
-#: gui/lobby/LobbyPage/GameDetails.js:117
-#, javascript-format
-msgid "Host: %(playername)s"
-msgstr "Власник: %(playername)s"
-
-#: gui/lobby/LobbyPage/GameDetails.js:119
-#, javascript-format
-msgid "Players: %(current)s/%(total)s"
-msgstr "Гравці: %(current)s/%(total)s"
-
-#: gui/lobby/LobbyPage/GameDetails.js:121
-msgid "Victory Conditions:"
-msgstr "Умови перемоги:"
-
-#. Translation: Comma used to concatenate victory conditions
-#: gui/lobby/LobbyPage/GameDetails.js:124
-msgid ", "
-msgstr ", "
-
-#: gui/lobby/LobbyPage/GameDetails.js:126
-msgid "Mods:"
-msgstr "Модифікації:"
-
-#. Translation: %(time)s is the hour and minute here.
-#: gui/lobby/LobbyPage/GameDetails.js:129
-#, javascript-format
-msgid "Game started at %(time)s"
-msgstr "Гру розпочато о %(time)s"
-
-#: gui/lobby/LobbyPage/GameDetails.js:131
-#: gui/lobby/LobbyPage/Chat/TimestampWrapper.js:33
-msgid "HH:mm"
-msgstr "HH:mm"
-
-#: gui/lobby/LobbyPage/GameDetails.js:133
-msgid "Map Type:"
-msgstr "Тип мапи:"
-
-#: gui/lobby/LobbyPage/GameDetails.js:135
-msgid "Map Size:"
-msgstr "Розмір мапи:"
-
-#: gui/lobby/LobbyPage/GameDetails.js:137
-msgid "Map Description:"
-msgstr "Опис мапи:"
-
-#: gui/lobby/LobbyPage/KickStrings.js:39
-msgid "You have been kicked from the lobby!"
-msgstr "Вас було вигнано з лобі!"
-
-#: gui/lobby/LobbyPage/KickStrings.js:40
-msgid "You have been banned from the lobby!"
-msgstr "Вас було заблоковано в лобі!"
-
-#: gui/lobby/LobbyPage/KickStrings.js:43
-#, javascript-format
-msgid "%(nick)s has been kicked from the lobby."
-msgstr "%(nick)s було вигнано з лобі."
-
-#: gui/lobby/LobbyPage/KickStrings.js:44
-#, javascript-format
-msgid "%(nick)s has been banned from the lobby."
-msgstr "%(nick)s було заблоковано в лобі."
-
-#: gui/lobby/LobbyPage/KickStrings.js:49
-#, javascript-format
-msgctxt "lobby kick"
-msgid "Reason: %(reason)s"
-msgstr "Причина: %(reason)s"
-
-#: gui/lobby/LobbyPage/PlayerColor.js:34
-#, javascript-format
-msgid "%(nick)s (%(rating)s)"
-msgstr "%(nick)s (%(rating)s)"
-
-#: gui/lobby/LobbyPage/PlayerList.js:178
-msgid "Online"
-msgstr "В мережі"
-
-#: gui/lobby/LobbyPage/PlayerList.js:184
-msgid "Away"
-msgstr "У відсутності"
-
-#: gui/lobby/LobbyPage/PlayerList.js:190
-msgid "Busy"
-msgstr "У справах"
-
-#: gui/lobby/LobbyPage/PlayerList.js:196
-msgid "Offline"
-msgstr "Поза мережею"
-
-#: gui/lobby/LobbyPage/PlayerList.js:202
-msgctxt "lobby presence"
-msgid "Unknown"
-msgstr "Невідомо"
-
-#: gui/lobby/LobbyPage/ProfilePanel.js:106
-msgid "N/A"
-msgstr "Немає відповіді"
-
-#: gui/lobby/LobbyPage/ProfilePanel.js:112
-msgid "Moderator"
-msgstr "Модератор"
-
-#: gui/lobby/LobbyPage/ProfilePanel.js:113
-msgid "Player"
-msgstr "Гравець"
-
-#: gui/lobby/LobbyPage/ProfilePanel.js:114
-msgid "Muted Player"
-msgstr "Приглушений гравець"
-
-#: gui/lobby/LobbyPage/ProfilePanel.js:120
-msgctxt "Used for an undefined winning rate"
-msgid "-"
-msgstr "-"
-
-#: gui/lobby/LobbyPage/ProfilePanel.js:122
-#, javascript-format
-msgid "%(percentage)s%%"
-msgstr "%(percentage)s%%"
 
 #: gui/lobby/LobbyPage/Buttons/BuddyButton.js:69
 msgid "Mark as Buddy"
@@ -245,13 +99,13 @@ msgstr "Помилка"
 msgid "Join Game"
 msgstr "Приєднатися до гри"
 
+#: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(caption):12
 #: gui/lobby/LobbyPage/Buttons/LeaderboardButton.js:9
-#: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(caption):10
 msgid "Leaderboard"
 msgstr "Таблиця лідерів"
 
 #: gui/lobby/LobbyPage/Buttons/ProfileButton.js:9
-#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):10
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):12
 msgid "Player Profile Lookup"
 msgstr "Пошук профілю гравця"
 
@@ -334,19 +188,6 @@ msgstr "/say"
 msgid "Clear all chat scrollback."
 msgstr "Очистити всю прокрутку бесіди."
 
-#. Translation: Chat message format when there is a time prefix.
-#: gui/lobby/LobbyPage/Chat/TimestampWrapper.js:25
-#, javascript-format
-msgid "%(time)s %(message)s"
-msgstr "%(time)s %(message)s"
-
-#. Translation: Time prefix as shown in the multiplayer lobby (when you enable
-#. it in the options page).
-#: gui/lobby/LobbyPage/Chat/TimestampWrapper.js:28
-#, javascript-format
-msgid "\\[%(time)s]"
-msgstr "\\[%(time)s]"
-
 #. Translation: Chat message issued using the ‘/me’ command.
 #: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessageFormatMe.js:24
 #, javascript-format
@@ -371,6 +212,10 @@ msgstr "Приватно"
 #, javascript-format
 msgid "(%(private)s) %(message)s"
 msgstr "(%(private)s) %(message)s"
+
+#: gui/lobby/LobbyPage/Chat/ChatPanel.xml:(caption):12
+msgid "Send"
+msgstr "Надіслати"
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:47
 #, javascript-format
@@ -457,6 +302,137 @@ msgstr "Система:"
 msgid "=== %(system)s %(message)s"
 msgstr "=== %(system)s %(message)s"
 
+#. Translation: Chat message format when there is a time prefix.
+#: gui/lobby/LobbyPage/Chat/TimestampWrapper.js:25
+#, javascript-format
+msgid "%(time)s %(message)s"
+msgstr "%(time)s %(message)s"
+
+#. Translation: Time prefix as shown in the multiplayer lobby (when you enable
+#. it in the
+#. options page).
+#: gui/lobby/LobbyPage/Chat/TimestampWrapper.js:28
+#, javascript-format
+msgid "\\[%(time)s]"
+msgstr "\\[%(time)s]"
+
+#: gui/lobby/LobbyPage/ConnectionHandler.js:45
+msgid "BANNED"
+msgstr "ЗАБЛОКОВАНО"
+
+#: gui/lobby/LobbyPage/ConnectionHandler.js:45
+msgid "KICKED"
+msgstr "ВИГНАНО"
+
+#: gui/lobby/LobbyPage/ConnectionHandler.js:61
+msgid "You have been disconnected from the lobby. Do you want to reconnect?"
+msgstr "Вас було роз'єднано із лобі. Чи хочете Ви перепідключитися?"
+
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:53
+#: gui/lobby/LobbyPage/ConnectionHandler.js:62
+#: gui/prelobby/common/credentials/credentials.js:55
+msgid "Confirmation"
+msgstr "Підтвердження"
+
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:44
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:54
+#: gui/lobby/LobbyPage/ConnectionHandler.js:63
+#: gui/prelobby/common/credentials/credentials.js:56
+msgid "No"
+msgstr "Ні"
+
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:44
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:54
+#: gui/lobby/LobbyPage/ConnectionHandler.js:63
+#: gui/prelobby/common/credentials/credentials.js:56
+msgid "Yes"
+msgstr "Так"
+
+#. Translation: The number of players and observers in this game
+#: gui/lobby/LobbyPage/Game.js:301
+#, javascript-format
+msgid "%(current)s/%(max)s +%(observercount)s"
+msgstr "%(current)s/%(max)s +%(observercount)s"
+
+#. Translation: The number of players in this game
+#: gui/lobby/LobbyPage/Game.js:304
+#, javascript-format
+msgid "%(current)s/%(max)s"
+msgstr "%(current)s/%(max)s"
+
+#: gui/lobby/LobbyPage/GameDetails.js:65
+msgctxt "victory condition"
+msgid "Endless Game"
+msgstr "Нескінченна гра"
+
+#: gui/lobby/LobbyPage/GameDetails.js:117
+#, javascript-format
+msgid "Host: %(playername)s"
+msgstr "Власник: %(playername)s"
+
+#: gui/lobby/LobbyPage/GameDetails.js:119
+#, javascript-format
+msgid "Players: %(current)s/%(total)s"
+msgstr "Гравці: %(current)s/%(total)s"
+
+#: gui/lobby/LobbyPage/GameDetails.js:121
+msgid "Victory Conditions:"
+msgstr "Умови перемоги:"
+
+#. Translation: Comma used to concatenate victory conditions
+#: gui/lobby/LobbyPage/GameDetails.js:124
+msgid ", "
+msgstr ", "
+
+#: gui/lobby/LobbyPage/GameDetails.js:126
+msgid "Mods:"
+msgstr "Модифікації:"
+
+#. Translation: %(time)s is the hour and minute here.
+#: gui/lobby/LobbyPage/GameDetails.js:129
+#, javascript-format
+msgid "Game started at %(time)s"
+msgstr "Гру розпочато о %(time)s"
+
+#: gui/lobby/LobbyPage/Chat/TimestampWrapper.js:33
+#: gui/lobby/LobbyPage/GameDetails.js:131
+msgid "HH:mm"
+msgstr "HH:mm"
+
+#: gui/lobby/LobbyPage/GameDetails.js:133
+msgid "Map Type:"
+msgstr "Тип мапи:"
+
+#: gui/lobby/LobbyPage/GameDetails.js:135
+msgid "Map Size:"
+msgstr "Розмір мапи:"
+
+#: gui/lobby/LobbyPage/GameDetails.js:137
+msgid "Map Description:"
+msgstr "Опис мапи:"
+
+#: gui/lobby/LobbyPage/GameList.xml:(heading):15
+msgid "Map Name"
+msgstr "Назва мапи"
+
+#: gui/lobby/LobbyPage/GameList.xml:(heading):18
+msgctxt "map"
+msgid "Size"
+msgstr "Розмір"
+
+#: gui/lobby/LobbyPage/GameList.xml:(heading):21
+msgctxt "map"
+msgid "Type"
+msgstr "Тип"
+
+#: gui/lobby/LobbyPage/GameList.xml:(heading):24
+msgid "Players"
+msgstr "Гравці"
+
+#: gui/lobby/LobbyPage/GameListFilters.xml:(caption):7
+msgid "Show only open games"
+msgstr "Показати лише відкриті ігри"
+
 #: gui/lobby/LobbyPage/GameListFilters/MapSize.js:9
 msgctxt "map size"
 msgid "Any"
@@ -485,10 +461,141 @@ msgctxt "gamelist filter"
 msgid "< %(rating)s"
 msgstr "< %(rating)s"
 
+#: gui/lobby/LobbyPage/KickStrings.js:39
+msgid "You have been kicked from the lobby!"
+msgstr "Вас було вигнано з лобі!"
+
+#: gui/lobby/LobbyPage/KickStrings.js:40
+msgid "You have been banned from the lobby!"
+msgstr "Вас було заблоковано в лобі!"
+
+#: gui/lobby/LobbyPage/KickStrings.js:43
+#, javascript-format
+msgid "%(nick)s has been kicked from the lobby."
+msgstr "%(nick)s було вигнано з лобі."
+
+#: gui/lobby/LobbyPage/KickStrings.js:44
+#, javascript-format
+msgid "%(nick)s has been banned from the lobby."
+msgstr "%(nick)s було заблоковано в лобі."
+
+#: gui/lobby/LobbyPage/KickStrings.js:49
+#, javascript-format
+msgctxt "lobby kick"
+msgid "Reason: %(reason)s"
+msgstr "Причина: %(reason)s"
+
+#: gui/lobby/LobbyPage/LobbyPage.xml:(caption):13
+#: gui/prelobby/entrance/entrance.xml:(caption):14
+msgid "Multiplayer Lobby"
+msgstr "Багатокористувацьке лобі"
+
+#: gui/lobby/LobbyPage/PlayerColor.js:34
+#, javascript-format
+msgid "%(nick)s (%(rating)s)"
+msgstr "%(nick)s (%(rating)s)"
+
+#: gui/lobby/LobbyPage/PlayerList.js:178
+msgid "Online"
+msgstr "В мережі"
+
+#: gui/lobby/LobbyPage/PlayerList.js:184
+msgid "Away"
+msgstr "У відсутності"
+
+#: gui/lobby/LobbyPage/PlayerList.js:190
+msgid "Busy"
+msgstr "У справах"
+
+#: gui/lobby/LobbyPage/PlayerList.js:196
+msgid "Offline"
+msgstr "Поза мережею"
+
+#: gui/lobby/LobbyPage/PlayerList.js:202
+msgctxt "lobby presence"
+msgid "Unknown"
+msgstr "Невідомо"
+
+#: gui/lobby/LobbyPage/PlayerList.xml:(heading):12
+msgid "Status"
+msgstr "Стан"
+
+#: gui/lobby/LobbyPage/ProfilePanel.js:106
+msgid "N/A"
+msgstr "Немає відповіді"
+
+#: gui/lobby/LobbyPage/ProfilePanel.js:112
+msgid "Moderator"
+msgstr "Модератор"
+
+#: gui/lobby/LobbyPage/ProfilePanel.js:113
+msgid "Player"
+msgstr "Гравець"
+
+#: gui/lobby/LobbyPage/ProfilePanel.js:114
+msgid "Muted Player"
+msgstr "Приглушений гравець"
+
+#: gui/lobby/LobbyPage/ProfilePanel.js:120
+msgctxt "Used for an undefined winning rate"
+msgid "-"
+msgstr "-"
+
+#: gui/lobby/LobbyPage/ProfilePanel.js:122
+#, javascript-format
+msgid "%(percentage)s%%"
+msgstr "%(percentage)s%%"
+
+#: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):8
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):30
+msgid "Current Rank:"
+msgstr "Поточний ранг:"
+
+#: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):12
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):34
+msgid "Highest Rating:"
+msgstr "Найвища оцінка:"
+
+#: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):16
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):38
+msgid "Total Games:"
+msgstr "Всього ігор:"
+
+#: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):20
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):42
+msgid "Wins:"
+msgstr "Перемог:"
+
+#: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):24
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):46
+msgid "Losses:"
+msgstr "Поразок:"
+
+#: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):28
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):50
+msgid "Win Rate:"
+msgstr "Оцінка перемоги:"
+
 #: gui/lobby/ProfilePage/ProfilePage.js:70
 #, javascript-format
 msgid "Player \"%(nick)s\" not found."
 msgstr "Гравця \"%(nick)s\" не знайдено."
+
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):16
+msgid "Enter playername:"
+msgstr "Ввести ім'я гравця:"
+
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):22
+msgid "View Profile"
+msgstr "Переглянути профіль"
+
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):55
+msgid "Please enter a player name."
+msgstr "Будь ласка, введіть ім'я гравця."
+
+#: gui/prelobby/common/credentials/confirmpassword.xml:(caption):4
+msgid "Password again:"
+msgstr "Пароль знову:"
 
 #: gui/prelobby/common/credentials/credentials.js:5
 msgid "Please enter your username"
@@ -524,162 +631,6 @@ msgstr "Паролі не співпадають"
 msgid "Are you sure you want to delete the password after connecting?"
 msgstr "Чи впевнені Ви, що Ви хочете видалити пароль після підключення?"
 
-#: gui/prelobby/common/feedback/feedback.js:4
-msgid ""
-"Unknown error. This usually occurs because the same IP address is not "
-"allowed to register more than one account within one hour."
-msgstr "Невідома помилка. Зазвичай це трапляється через те, що однаковій IP-адресі не дозволено реєструвати більше ніж один обліковий запис протягом однієї години."
-
-#: gui/prelobby/common/terms/termslobby.js:9
-msgid "Terms of Service"
-msgstr "Умови послуги"
-
-#: gui/prelobby/common/terms/termslobby.js:10
-msgid "Please read and accept the Terms of Service."
-msgstr "Будь-ласка, прочитайте та прийміть умови послуги."
-
-#: gui/prelobby/common/terms/termslobby.js:19
-msgid "Terms of Use"
-msgstr "Умови використання"
-
-#: gui/prelobby/common/terms/termslobby.js:20
-msgid "Please read and accept the Terms of Use."
-msgstr "Будь-ласка, прочитайте та прийміть умови використання."
-
-#: gui/prelobby/common/terms/termslobby.js:29
-msgid "Privacy Policy"
-msgstr "Політика конфіденційності"
-
-#: gui/prelobby/common/terms/termslobby.js:30
-msgid "Please read and accept the Privacy Policy."
-msgstr "Будь-ласка, прочитайте та прийміть політику конфіденційності."
-
-#: gui/prelobby/login/login.js:5
-msgid "Connect"
-msgstr "Підключитися"
-
-#: gui/prelobby/login/login.js:32
-msgid "Connecting…"
-msgstr "Підключення…"
-
-#: gui/prelobby/register/register.js:5
-msgid "Register"
-msgstr "Зареєструватися"
-
-#: gui/prelobby/register/register.js:26
-msgid "Registering…"
-msgstr "Реєстрація…"
-
-#: gui/prelobby/register/register.js:39
-msgid "Registered"
-msgstr "Зареєстровано"
-
-#: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(heading):15
-msgid "Rank"
-msgstr "Ранг"
-
-#: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(heading):18
-#: gui/lobby/LobbyPage/GameList.xml:(heading):12
-#: gui/lobby/LobbyPage/PlayerList.xml:(heading):15
-msgid "Name"
-msgstr "Ім'я"
-
-#: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(heading):21
-#: gui/lobby/LobbyPage/GameList.xml:(heading):27
-#: gui/lobby/LobbyPage/PlayerList.xml:(heading):18
-msgid "Rating"
-msgstr "Оцінка"
-
-#: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(caption):26
-#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):59
-msgid "Back"
-msgstr "Повернутися"
-
-#: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(caption):30
-msgid "Update"
-msgstr "Оновити"
-
-#: gui/lobby/LobbyPage/GameList.xml:(heading):15
-msgid "Map Name"
-msgstr "Назва мапи"
-
-#: gui/lobby/LobbyPage/GameList.xml:(heading):18
-msgctxt "map"
-msgid "Size"
-msgstr "Розмір"
-
-#: gui/lobby/LobbyPage/GameList.xml:(heading):21
-msgctxt "map"
-msgid "Type"
-msgstr "Тип"
-
-#: gui/lobby/LobbyPage/GameList.xml:(heading):24
-msgid "Players"
-msgstr "Гравці"
-
-#: gui/lobby/LobbyPage/GameListFilters.xml:(caption):5
-msgid "Show only open games"
-msgstr "Показати лише відкриті ігри"
-
-#: gui/lobby/LobbyPage/LobbyPage.xml:(caption):10
-#: gui/prelobby/entrance/entrance.xml:(caption):14
-msgid "Multiplayer Lobby"
-msgstr "Багатокористувацьке лобі"
-
-#: gui/lobby/LobbyPage/PlayerList.xml:(heading):12
-msgid "Status"
-msgstr "Стан"
-
-#: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):8
-#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):28
-msgid "Current Rank:"
-msgstr "Поточний ранг:"
-
-#: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):12
-#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):32
-msgid "Highest Rating:"
-msgstr "Найвища оцінка:"
-
-#: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):16
-#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):36
-msgid "Total Games:"
-msgstr "Всього ігор:"
-
-#: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):20
-#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):40
-msgid "Wins:"
-msgstr "Перемог:"
-
-#: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):24
-#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):44
-msgid "Losses:"
-msgstr "Поразок:"
-
-#: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):28
-#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):48
-msgid "Win Rate:"
-msgstr "Оцінка перемоги:"
-
-#: gui/lobby/LobbyPage/Chat/ChatPanel.xml:(caption):6
-msgid "Send"
-msgstr "Надіслати"
-
-#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):14
-msgid "Enter playername:"
-msgstr "Ввести ім'я гравця:"
-
-#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):20
-msgid "View Profile"
-msgstr "Переглянути профіль"
-
-#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):53
-msgid "Please enter a player name."
-msgstr "Будь ласка, введіть ім'я гравця."
-
-#: gui/prelobby/common/credentials/confirmpassword.xml:(caption):4
-msgid "Password again:"
-msgstr "Пароль знову:"
-
 #: gui/prelobby/common/credentials/credentials.xml:(caption):6
 msgid "Login:"
 msgstr "Логін:"
@@ -692,26 +643,16 @@ msgstr "Пароль:"
 msgid "Remember Password"
 msgstr "Запам'ятати пароль"
 
+#: gui/prelobby/common/feedback/feedback.js:4
+msgid ""
+"Unknown error. This usually occurs because the same IP address is not "
+"allowed to register more than one account within one hour."
+msgstr "Невідома помилка. Зазвичай це трапляється через те, що однаковій IP-адресі не дозволено реєструвати більше ніж один обліковий запис протягом однієї години."
+
 #: gui/prelobby/common/feedback/feedback.xml:(caption):10
 #: gui/prelobby/entrance/entrance.xml:(caption):30
 msgid "Cancel"
 msgstr "Скасувати"
-
-#: gui/prelobby/entrance/entrance.xml:(caption):20
-msgid "Create a new account"
-msgstr "Створити новий обліковий запис"
-
-#: gui/prelobby/entrance/entrance.xml:(caption):25
-msgid "Login to an existing account"
-msgstr "Увійти в існуючий обліковий запис"
-
-#: gui/prelobby/login/login.xml:(caption):13
-msgid "Connect to the game lobby"
-msgstr "Підключитися до ігрового лобі"
-
-#: gui/prelobby/register/register.xml:(caption):13
-msgid "Registration"
-msgstr "Реєстрація"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:1
 msgid ""
@@ -1284,3 +1225,63 @@ msgid ""
 "If a moderator deems your behavior to be inconsistent with these terms, your"
 " account may be restricted, suspended or terminated."
 msgstr "Якщо модератор вважає, що Ваша поведінка не відповідає цим умовам, Ваш обліковий запис може бути обмежено, призупинено чи закрито."
+
+#: gui/prelobby/common/terms/termslobby.js:9
+msgid "Terms of Service"
+msgstr "Умови послуги"
+
+#: gui/prelobby/common/terms/termslobby.js:10
+msgid "Please read and accept the Terms of Service."
+msgstr "Будь-ласка, прочитайте та прийміть умови послуги."
+
+#: gui/prelobby/common/terms/termslobby.js:19
+msgid "Terms of Use"
+msgstr "Умови використання"
+
+#: gui/prelobby/common/terms/termslobby.js:20
+msgid "Please read and accept the Terms of Use."
+msgstr "Будь-ласка, прочитайте та прийміть умови використання."
+
+#: gui/prelobby/common/terms/termslobby.js:29
+msgid "Privacy Policy"
+msgstr "Політика конфіденційності"
+
+#: gui/prelobby/common/terms/termslobby.js:30
+msgid "Please read and accept the Privacy Policy."
+msgstr "Будь-ласка, прочитайте та прийміть політику конфіденційності."
+
+#: gui/prelobby/entrance/entrance.xml:(caption):20
+msgid "Create a new account"
+msgstr "Створити новий обліковий запис"
+
+#: gui/prelobby/entrance/entrance.xml:(caption):25
+msgid "Login to an existing account"
+msgstr "Увійти в існуючий обліковий запис"
+
+#: gui/prelobby/login/login.js:5
+msgid "Connect"
+msgstr "Підключитися"
+
+#: gui/prelobby/login/login.js:32
+msgid "Connecting…"
+msgstr "Підключення…"
+
+#: gui/prelobby/login/login.xml:(caption):13
+msgid "Connect to the game lobby"
+msgstr "Підключитися до ігрового лобі"
+
+#: gui/prelobby/register/register.js:5
+msgid "Register"
+msgstr "Зареєструватися"
+
+#: gui/prelobby/register/register.js:26
+msgid "Registering…"
+msgstr "Реєстрація…"
+
+#: gui/prelobby/register/register.js:39
+msgid "Registered"
+msgstr "Зареєстровано"
+
+#: gui/prelobby/register/register.xml:(caption):13
+msgid "Registration"
+msgstr "Реєстрація"

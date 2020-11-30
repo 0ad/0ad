@@ -1,7 +1,7 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright (C) 2020 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
-# 
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
+# project.
 # Translators:
 # 76407af6b051a571d67c2577de2183db_7380deb <7a4a088c8c60986e924b802e46370579_512231>, 2016
 # Aksidion Kreimben <aksidionkreimben@gmail.com>, 2016
@@ -28,7 +28,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-20 08:09+0000\n"
+"POT-Creation-Date: 2020-11-28 10:01+0000\n"
 "PO-Revision-Date: 2020-11-20 10:22+0000\n"
 "Last-Translator: YongNam Kim <darkgem11@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
@@ -38,87 +38,37 @@ msgstr ""
 "Language: ko\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: simulation/templates/template_formation.xml:26
-msgid "Requires at least 2 Soldiers or Siege Engines."
-msgstr "적어도 2명의 병사 또는 공성 전차가 필요합니다."
+#: simulation/data/template_helpers/damage_types/crush.jsondescription
+msgctxt "damage type"
+msgid "Damage caused by sheer force, like with a club or by trampling."
+msgstr "몽둥이나 짓밟는 것과 같은 순수한 힘에 의한 피해입니다."
 
-#: simulation/templates/template_gaia.xml:7
-msgid "Gaia"
-msgstr "가이아ehsms 자연"
+#: simulation/data/template_helpers/damage_types/crush.jsonname
+msgctxt "damage type"
+msgid "Crush"
+msgstr "때리기"
 
-#: simulation/templates/template_gaia_fish.xml:8
-#: simulation/templates/gaia/fish/generic.xml:4
-msgid "Fish"
-msgstr "물고기"
+#: simulation/data/template_helpers/damage_types/hack.jsondescription
+msgctxt "damage type"
+msgid ""
+"Damage caused by sharp objects cutting or chopping, like with a sword or an "
+"axe."
+msgstr "칼이나 도끼처럼 날카로운 물체에의한 베거나 찍히는 피해입니다."
 
-#: simulation/templates/template_gaia_fish.xml:10
-msgid "Catch fish for food."
-msgstr "식량을 위해 물고기를 잡습니다."
+#: simulation/data/template_helpers/damage_types/hack.jsonname
+msgctxt "damage type"
+msgid "Hack"
+msgstr "베기"
 
-#: simulation/templates/template_gaia_fruit.xml:8
-msgid "Fruit"
-msgstr "과일"
+#: simulation/data/template_helpers/damage_types/pierce.jsondescription
+msgctxt "damage type"
+msgid "Damage caused by sharp pointy objects, like arrows or spears."
+msgstr "화살이나 창과 같은 뾰족한 물체로 인한 피해입니다."
 
-#: simulation/templates/template_gaia_fruit.xml:9
-msgid "Pick fruit for food."
-msgstr "식량을 위해 과일을 땁니다."
-
-#: simulation/templates/template_gaia_ore.xml:8
-msgid "Metal Mine"
-msgstr "금속 광산"
-
-#: simulation/templates/template_gaia_ore.xml:9
-msgid "Mine ore for metal."
-msgstr "금속을 위해 광물을 캡니다."
-
-#: simulation/templates/template_gaia_rock.xml:8
-msgid "Stone Quarry"
-msgstr "채석장"
-
-#: simulation/templates/template_gaia_rock.xml:9
-msgid "Quarry rock for stone."
-msgstr "석재를 위해 바위를 캡니다."
-
-#: simulation/templates/template_gaia_ruins.xml:8
-msgid "Ruins"
-msgstr "유적"
-
-#: simulation/templates/template_gaia_ruins.xml:9
-msgid "Demolish ruins for stone."
-msgstr "석재를 위해 폐허를 철거합니다."
-
-#: simulation/templates/template_gaia_treasure.xml:8
-msgid "Treasure"
-msgstr "보물"
-
-#: simulation/templates/template_gaia_treasure.xml:9
-msgid "Collect treasures for resources."
-msgstr "자원을 위해 보물을 수집합니다."
-
-#: simulation/templates/template_gaia_tree.xml:8
-msgid "Tree"
-msgstr "나무"
-
-#: simulation/templates/template_gaia_tree.xml:9
-msgid "Chop trees for wood."
-msgstr "목재를 위해 나무를 팹니다."
-
-#: simulation/templates/template_structure.xml:47
-msgid "Structure"
-msgstr "건축물"
-
-#: simulation/templates/template_unit.xml:38
-msgid "Unit"
-msgstr "유닛"
-
-#: simulation/templates/template_wallset.xml:10
-msgid "Wall off an area."
-msgstr "한 지역을 벽으로 막으십시오."
-
-#: simulation/templates/template_wallset.xml:11
-#: simulation/templates/template_wallset.xml:9
-msgid "Wall"
-msgstr "벽"
+#: simulation/data/template_helpers/damage_types/pierce.jsonname
+msgctxt "damage type"
+msgid "Pierce"
+msgstr "뚫기"
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:24
 msgid "Army of Alexander the Great."
@@ -919,10 +869,6 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Ranged"
 msgstr "원거리"
 
-#: simulation/templates/special/spy.xml:17
-msgid "Spy"
-msgstr "첩자"
-
 #: simulation/templates/special/formations/anti_cavalry.xml:6
 #: simulation/templates/special/formations/testudo.xml:6
 msgid "Melee Infantry only, requires at least 16."
@@ -1016,34 +962,88 @@ msgstr "쐐기"
 msgid "Player"
 msgstr "선수"
 
-#: simulation/data/template_helpers/damage_types/crush.jsonname
-msgctxt "damage type"
-msgid "Crush"
-msgstr "때리기"
+#: simulation/templates/special/spy.xml:17
+msgid "Spy"
+msgstr "첩자"
 
-#: simulation/data/template_helpers/damage_types/crush.jsondescription
-msgctxt "damage type"
-msgid "Damage caused by sheer force, like with a club or by trampling."
-msgstr "몽둥이나 짓밟는 것과 같은 순수한 힘에 의한 피해입니다."
+#: simulation/templates/template_formation.xml:26
+msgid "Requires at least 2 Soldiers or Siege Engines."
+msgstr "적어도 2명의 병사 또는 공성 전차가 필요합니다."
 
-#: simulation/data/template_helpers/damage_types/hack.jsonname
-msgctxt "damage type"
-msgid "Hack"
-msgstr "베기"
+#: simulation/templates/template_gaia.xml:7
+msgid "Gaia"
+msgstr "가이아ehsms 자연"
 
-#: simulation/data/template_helpers/damage_types/hack.jsondescription
-msgctxt "damage type"
-msgid ""
-"Damage caused by sharp objects cutting or chopping, like with a sword or an "
-"axe."
-msgstr "칼이나 도끼처럼 날카로운 물체에의한 베거나 찍히는 피해입니다."
+#: simulation/templates/gaia/fish/generic.xml:4
+#: simulation/templates/template_gaia_fish.xml:8
+msgid "Fish"
+msgstr "물고기"
 
-#: simulation/data/template_helpers/damage_types/pierce.jsonname
-msgctxt "damage type"
-msgid "Pierce"
-msgstr "뚫기"
+#: simulation/templates/template_gaia_fish.xml:10
+msgid "Catch fish for food."
+msgstr "식량을 위해 물고기를 잡습니다."
 
-#: simulation/data/template_helpers/damage_types/pierce.jsondescription
-msgctxt "damage type"
-msgid "Damage caused by sharp pointy objects, like arrows or spears."
-msgstr "화살이나 창과 같은 뾰족한 물체로 인한 피해입니다."
+#: simulation/templates/template_gaia_fruit.xml:8
+msgid "Fruit"
+msgstr "과일"
+
+#: simulation/templates/template_gaia_fruit.xml:9
+msgid "Pick fruit for food."
+msgstr "식량을 위해 과일을 땁니다."
+
+#: simulation/templates/template_gaia_ore.xml:8
+msgid "Metal Mine"
+msgstr "금속 광산"
+
+#: simulation/templates/template_gaia_ore.xml:9
+msgid "Mine ore for metal."
+msgstr "금속을 위해 광물을 캡니다."
+
+#: simulation/templates/template_gaia_rock.xml:8
+msgid "Stone Quarry"
+msgstr "채석장"
+
+#: simulation/templates/template_gaia_rock.xml:9
+msgid "Quarry rock for stone."
+msgstr "석재를 위해 바위를 캡니다."
+
+#: simulation/templates/template_gaia_ruins.xml:8
+msgid "Ruins"
+msgstr "유적"
+
+#: simulation/templates/template_gaia_ruins.xml:9
+msgid "Demolish ruins for stone."
+msgstr "석재를 위해 폐허를 철거합니다."
+
+#: simulation/templates/template_gaia_treasure.xml:8
+msgid "Treasure"
+msgstr "보물"
+
+#: simulation/templates/template_gaia_treasure.xml:9
+msgid "Collect treasures for resources."
+msgstr "자원을 위해 보물을 수집합니다."
+
+#: simulation/templates/template_gaia_tree.xml:8
+msgid "Tree"
+msgstr "나무"
+
+#: simulation/templates/template_gaia_tree.xml:9
+msgid "Chop trees for wood."
+msgstr "목재를 위해 나무를 팹니다."
+
+#: simulation/templates/template_structure.xml:47
+msgid "Structure"
+msgstr "건축물"
+
+#: simulation/templates/template_unit.xml:38
+msgid "Unit"
+msgstr "유닛"
+
+#: simulation/templates/template_wallset.xml:9
+#: simulation/templates/template_wallset.xml:11
+msgid "Wall"
+msgstr "벽"
+
+#: simulation/templates/template_wallset.xml:10
+msgid "Wall off an area."
+msgstr "한 지역을 벽으로 막으십시오."

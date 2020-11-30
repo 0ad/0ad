@@ -1,7 +1,7 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright (C) 2020 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
-# 
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
+# project.
 # Translators:
 # 978f34620323a49beac44c046cb2117a_1860a64 <e8de3b350daafa1075da72408a4b8b7a_136008>, 2013
 # Amanda Ringqvist, 2014
@@ -14,23 +14,23 @@
 # Kristoffer Grundström <lovaren@gmail.com>, 2018
 # liothe <lucy@liothe.se>, 2013
 # magicae, 2014
-# Martin H <pilino1234@zoho.eu>, 2020
-# Martin H <pilino1234@zoho.eu>, 2016
-# Martin H <pilino1234@zoho.eu>, 2015
+# Martin H <pilino@posteo.de>, 2020
+# Martin H <pilino@posteo.de>, 2016
+# Martin H <pilino@posteo.de>, 2015
 # Mattias Münster <mattiasmun@gmail.com>, 2019
-# Martin H <pilino1234@zoho.eu>, 2016-2017
+# Martin H <pilino@posteo.de>, 2016-2017
 # mljungberg10 <mikael.ljungberg@gmail.com>, 2019
 # Patrik Nilsson <asavartzeth@gmail.com>, 2014
-# Martin H <pilino1234@zoho.eu>, 2017,2019
+# Martin H <pilino@posteo.de>, 2017,2019
 # Sam Johnsson <johnsson.sam@gmail.com>, 2015
 # theschitz <theodore@theschitz.se>, 2015
 # Ulrika Uddeborg <aurorauddeborg@gmail.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-24 07:08+0000\n"
+"POT-Creation-Date: 2020-11-28 10:01+0000\n"
 "PO-Revision-Date: 2020-08-07 21:56+0000\n"
-"Last-Translator: Martin H <pilino1234@zoho.eu>\n"
+"Last-Translator: Martin H <pilino@posteo.de>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -86,15 +86,23 @@ msgstr "Alla kartor"
 msgid "Every map of the chosen maptype."
 msgstr "Alla kartor för den valda karttypen."
 
+#: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):13
+msgid "AI Configuration"
+msgstr "AI-konfiguration"
+
+#: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):29
+msgid "OK"
+msgstr "OK"
+
 #: gui/gamesetup/Pages/AIConfigPage/AIDescription.js:37
 msgid "AI will be disabled for this player."
 msgstr "AI kommer att vara inaktiverad för den här spelaren."
 
-#: gui/gamesetup/Pages/AIConfigPage/Controls/AIBehavior.js:93
+#: gui/gamesetup/Pages/AIConfigPage/Controls/AIBehavior.js:95
 msgid "AI Behavior"
 msgstr "AI beteende"
 
-#: gui/gamesetup/Pages/AIConfigPage/Controls/AIDifficulty.js:87
+#: gui/gamesetup/Pages/AIConfigPage/Controls/AIDifficulty.js:89
 msgid "AI Difficulty"
 msgstr "AI-Svårighetsgrad"
 
@@ -147,11 +155,6 @@ msgstr "Typ av spel"
 msgid "Configure AI: %(description)s."
 msgstr "Ställ in AI: %(description)s."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayerName.js:114
-#, javascript-format
-msgid "%(playerName)s %(romanNumber)s"
-msgstr "%(playerName)s %(romanNumber)s"
-
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:153
 msgid "Select player."
 msgstr "Välj spelare."
@@ -191,6 +194,31 @@ msgctxt "team"
 msgid "None"
 msgstr "Inga"
 
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayerName.js:114
+#, javascript-format
+msgid "%(playerName)s %(romanNumber)s"
+msgstr "%(playerName)s %(romanNumber)s"
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):6
+msgid "Player Name"
+msgstr "Spelarnamn"
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):10
+msgid "Color"
+msgstr "Färg"
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):14
+msgid "Player Placement"
+msgstr "Spelarplacering"
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):18
+msgid "Civilization"
+msgstr "Civilisation"
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):25
+msgid "Team"
+msgstr "Lag"
+
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:40
 msgid "Cheats"
 msgstr "Fusk"
@@ -200,40 +228,42 @@ msgid "Toggle the usability of cheats."
 msgstr "Växla om fusk ska gå att använda."
 
 #. Translation: Make sure to differentiate between the revealed map and
-#. explored map settings!
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/ExploredMap.js:54
+#. explored map
+#. settings!
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/ExploredMap.js:55
 msgid "Explored Map"
 msgstr "Utforskad Karta"
 
 #. Translation: Make sure to differentiate between the revealed map and
-#. explored map settings!
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/ExploredMap.js:58
+#. explored map
+#. settings!
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/ExploredMap.js:59
 msgid "Toggle explored map (see initial map)."
 msgstr "Växla upptäckt karta (se kartan i början)."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:58
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:59
 msgid "Last Man Standing"
 msgstr "Sista Man Stående"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:61
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:62
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
 msgstr "Välj om sista överlevande spelare eller sista överlevande grupp allierade vinner."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:52
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:53
 msgid "Teams Locked"
 msgstr "Låsta Lag"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:55
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:56
 msgid "Toggle locked teams."
 msgstr "Växla låsta lag."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Nomad.js:60
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Nomad.js:61
 msgid "Nomad"
 msgstr "Nomad"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Nomad.js:63
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Nomad.js:64
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
@@ -247,66 +277,68 @@ msgstr "Värderat Spel"
 msgid "Toggle if this game will be rated for the leaderboard."
 msgstr "Välj om detta spel ska värderas för topplistan."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:61
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:62
 msgid "Hero Garrison"
 msgstr "Hjältegarnison"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:64
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:65
 msgid "Toggle whether heroes can be garrisoned."
 msgstr "Välj om hjältar kan garnisoneras."
 
 #. Translation: Make sure to differentiate between the revealed map and
-#. explored map settings!
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RevealedMap.js:49
+#. explored map
+#. settings!
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RevealedMap.js:50
 msgid "Revealed Map"
 msgstr "Synlig Karta"
 
 #. Translation: Make sure to differentiate between the revealed map and
-#. explored map settings!
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RevealedMap.js:53
+#. explored map
+#. settings!
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RevealedMap.js:54
 msgid "Toggle revealed map (see everything)."
 msgstr "Växla avslöjad karta (se allt)."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Spies.js:42
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Spies.js:43
 msgid "Disable Spies"
 msgstr "Inaktivera Spioner"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Spies.js:45
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Spies.js:46
 msgid "Disable spies during the game."
 msgstr "Inaktivera spioner under spelet."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js:42
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js:43
 msgid "Disable Treasures"
 msgstr "Inaktivera skatter"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js:45
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js:46
 msgid "Do not add treasures to the map."
 msgstr "Lägg inte till skatter på kartan."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:46
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:49
 msgid "World population"
 msgstr "Världsbefolkning"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:49
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:52
 msgid ""
 "When checked the Population Cap will be evenly distributed over all living "
 "players."
 msgstr "Om markerad kommer befolkningsgränsen fördelas jämnt över alla spelare."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:135
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:128
 msgid "Biome"
 msgstr "Biom"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:141
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:134
 msgid "Select the flora and fauna."
 msgstr "Välj flora och fauna"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:144
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:137
 msgctxt "biome"
 msgid "Random"
 msgstr "Slumpmässig"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:147
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:140
 msgid "Pick a biome at random."
 msgstr "Välj en av de angivna biomerna slumpmässigt."
 
@@ -328,48 +360,48 @@ msgctxt "daytime selection"
 msgid "Randomly pick a time of the day."
 msgstr "Slumpmässigt välj tid på dagen."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:73
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:75
 msgid "Game Speed"
 msgstr "Spelhastighet"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:76
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:78
 msgid "Select game speed."
 msgstr "Välj spelhastighet."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:142
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:138
 msgid "Landscape"
 msgstr "Landskap"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:145
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:141
 msgid "Select one of the landscapes of this map."
 msgstr "Välj ett av kartans landskap."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:151
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:147
 msgctxt "landscape selection"
 msgid "Random Land or Naval"
 msgstr "Slumpmässigt land eller sjö"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:152
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:148
 msgctxt "landscape selection"
 msgid "Select a random land or naval map generation."
 msgstr "Välj slumpmässig generation av land- eller sjökarta."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:156
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:152
 msgctxt "landscape selection"
 msgid "Random Land"
 msgstr "Slumpmässigt land"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:157
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:153
 msgctxt "landscape selection"
 msgid "Select a random land map generation."
 msgstr "Välj en slumpmässigt generad landkarta."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:161
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:157
 msgctxt "landscape selection"
 msgid "Random Naval"
 msgstr "Slumpmässig Sjökarta"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:162
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:158
 msgctxt "landscape selection"
 msgid "Select a random naval map generation."
 msgstr "Välj en slumpmässigt genererad sjökarta"
@@ -399,11 +431,11 @@ msgstr "Slumpmässig"
 msgid "Pick any of the given maps at random."
 msgstr "Välj en av de angivna kartorna slumpmässigt."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:74
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:75
 msgid "Map Size"
 msgstr "Kartstorlek"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:77
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:78
 msgid "Select map size. (Larger sizes may reduce performance.)"
 msgstr "Välj kartstorlek. (Större storlekar kan påverka prestandan.)"
 
@@ -423,40 +455,40 @@ msgstr "Antal Spelare"
 msgid "Select number of players."
 msgstr "Välj antal spelare."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:91
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:92
 msgid "Population Cap"
 msgstr "Befolkningsgräns"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:94
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:95
 msgid "Select population limit."
 msgstr "Välj befolkningsgräns"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:97
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:98
 msgctxt "population limit"
 msgid "Per Player"
 msgstr "Per spelare"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:100
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:101
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
 "%(popCap)s population."
 msgstr "Varning: det kan uppstå prestandaproblem om alla %(players)s når %(popCap)s befolkning."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:81
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:82
 msgid "Starting Resources"
 msgstr "Startresurser"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:84
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:85
 msgid "Select the game's starting resources."
 msgstr "Välj spelets startresurser."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:87
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:88
 #, javascript-format
 msgid "Initial amount of each resource: %(resources)s."
 msgstr "Ursprunglig mängd av varje resurs: %(resources)s."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:90
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:91
 msgctxt "starting resources"
 msgid "Per Player"
 msgstr "Per spelare"
@@ -525,35 +557,35 @@ msgstr "Svårighetsgrad"
 msgid "Select the difficulty of this scenario."
 msgstr "Välj svårighetsgraden för det här scenariot."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:76
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:77
 msgid "World Population Cap"
 msgstr "Världsbefolkningsgräns"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:79
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:80
 msgid "Select world population limit."
 msgstr "Välj världsbefolkningsgräns"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:82
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:83
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if %(popCap)s population is "
 "reached."
 msgstr "Varning: Det kan uppstå prestandaproblem om %(popCap)sbefolkning uppnås."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:61
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:62
 msgid "Ceasefire"
 msgstr "Vapenvila"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:64
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:65
 msgid "Set time where no attacks are possible."
 msgstr "Ställ in tid där inga attacker är möjliga."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:67
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:68
 msgctxt "ceasefire"
 msgid "No ceasefire"
 msgstr "Ingen vapenvila"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:70
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:71
 #, javascript-format
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
@@ -561,34 +593,34 @@ msgid_plural "%(minutes)s minutes"
 msgstr[0] "%(minutes)s minut"
 msgstr[1] "%(minutes)s minuter"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:86
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:87
 msgid "Relic Count"
 msgstr "Antal Reliker"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:89
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:90
 #, javascript-format
 msgid "%(number)s relic"
 msgid_plural "%(number)s relics"
 msgstr[0] "%(number)s relik"
 msgstr[1] "%(number)s reliker"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:92
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:93
 msgid ""
 "Total number of relics spawned on the map. Relic victory is most realistic "
 "with only one or two relics. With greater numbers, the relics are important "
 "to capture to receive aura bonuses."
 msgstr "Totalt antal reliker på kartan. Relikseger är mest realistisk med bara en eller två reliker. Med större antal är relikerna viktiga att fånga för att få aura-bonusar."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:86
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:87
 msgid "Relic Duration"
 msgstr "Reliklängd"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:89
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:90
 msgid "Minutes until the player has achieved Relic Victory."
 msgstr "Antal minuter tills spelaren har vunnit relikseger."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:95
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:96
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:96
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:97
 #, javascript-format
 msgctxt "victory duration"
 msgid "%(min)s minute"
@@ -596,8 +628,8 @@ msgid_plural "%(min)s minutes"
 msgstr[0] "%(min)s minut"
 msgstr[1] "%(min)s minuter"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:98
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:99
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:99
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:100
 msgctxt "victory duration"
 msgid "Immediate Victory."
 msgstr "Omedelbar seger."
@@ -618,36 +650,13 @@ msgid_plural "%(minutes)s minutes"
 msgstr[0] "%(minutes)s minut"
 msgstr[1] "%(minutes)s minuter"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:87
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:88
 msgid "Wonder Duration"
 msgstr "Underlängd"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:90
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:91
 msgid "Minutes until the player has achieved Wonder Victory"
 msgstr "Antal minuter tills spelaren har vunnit underseger"
-
-#: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.js:38
-msgid "Cheats enabled."
-msgstr "Fusk är påslagna"
-
-#: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.js:41
-msgid "Rated game."
-msgstr "Värderat spel."
-
-#: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:77
-#, javascript-format
-msgid "Click to toggle the %(name)s settings tab."
-msgstr "Klicka för att växla %(name)sinställningsfliken."
-
-#: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:80
-#, javascript-format
-msgid "Press %(hotkey)s to move to the next settings tab."
-msgstr "Tryck %(hotkey)s för att gå vidare till nästa inställningsflik."
-
-#: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:83
-#, javascript-format
-msgid "Press %(hotkey)s to move to the previous settings tab."
-msgstr "Tryck %(hotkey)s för att gå tillbaka till förra inställningsfliken."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/CancelButton.js:36
 msgid "Back"
@@ -724,25 +733,6 @@ msgstr "Starta ett nytt spel med nuvarande inställningar (inaktiverad tills all
 msgid "Press %(hotkey)s to autocomplete player names or settings."
 msgstr "Tryck %(hotkey)s för att automatiskt komplettera spelarnamn eller inställningar."
 
-#: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/StatusMessageFormat.js:24
-#, javascript-format
-msgid "== %(message)s"
-msgstr "== %(message)s"
-
-#: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/TimestampWrapper.js:25
-#, javascript-format
-msgid "%(time)s %(message)s"
-msgstr "%(time)s %(message)s"
-
-#: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/TimestampWrapper.js:28
-#, javascript-format
-msgid "\\[%(time)s]"
-msgstr "\\[%(time)s]"
-
-#: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/TimestampWrapper.js:31
-msgid "HH:mm"
-msgstr "HH:mm"
-
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientChat.js:27
 msgid "Unknown Player"
 msgstr "Okänd Spelare"
@@ -790,6 +780,68 @@ msgstr "* %(username)s är redo!"
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/GameSettingsChanged.js:22
 msgid "Game settings have been changed"
 msgstr "Spelinställningarna har ändrats"
+
+#: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatPanel.xml:(caption):9
+msgid "Send"
+msgstr "Skicka"
+
+#: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/StatusMessageFormat.js:24
+#, javascript-format
+msgid "== %(message)s"
+msgstr "== %(message)s"
+
+#: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/TimestampWrapper.js:25
+#, javascript-format
+msgid "%(time)s %(message)s"
+msgstr "%(time)s %(message)s"
+
+#: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/TimestampWrapper.js:28
+#, javascript-format
+msgid "\\[%(time)s]"
+msgstr "\\[%(time)s]"
+
+#: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/TimestampWrapper.js:31
+msgid "HH:mm"
+msgstr "HH:mm"
+
+#: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.js:38
+msgid "Cheats enabled."
+msgstr "Fusk är påslagna"
+
+#: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.js:41
+msgid "Rated game."
+msgstr "Värderat spel."
+
+#: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:77
+#, javascript-format
+msgid "Click to toggle the %(name)s settings tab."
+msgstr "Klicka för att växla %(name)sinställningsfliken."
+
+#: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:80
+#, javascript-format
+msgid "Press %(hotkey)s to move to the next settings tab."
+msgstr "Tryck %(hotkey)s för att gå vidare till nästa inställningsflik."
+
+#: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:83
+#, javascript-format
+msgid "Press %(hotkey)s to move to the previous settings tab."
+msgstr "Tryck %(hotkey)s för att gå tillbaka till förra inställningsfliken."
+
+#: gui/gamesetup/Pages/GameSetupPage/Panels/TipsPanel.xml:(caption):9
+msgid "Show this message in the future."
+msgstr "Visa detta meddelande i framtiden."
+
+#: gui/gamesetup/Pages/LoadingPage/LoadingPage.xml:(caption):7
+msgid "Loading"
+msgstr "Läser in"
+
+#: gui/gamesetup/Pages/LoadingPage/LoadingPage.xml:(caption):11
+msgid "Loading map data. Please wait…"
+msgstr "Läser in kartdata. Vänligen vänta..."
+
+#: gui/gamesetup/gamesetup.xml:(caption):12
+msgid "Match Setup"
+msgstr "Spelinställningar"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:55
 #, javascript-format
@@ -849,77 +901,6 @@ msgstr "Kan inte ansluta till match: %(message)s."
 msgid "%(playername)s's game"
 msgstr "%(playername)ss spel"
 
-#: gui/loading/ProgressBar.js:48
-#, javascript-format
-msgctxt "loading screen progress"
-msgid "%(percentage)s%%"
-msgstr "%(percentage)s%%"
-
-#. Translation: A bullet point used before every item of list of tips
-#. displayed on loading screen
-#: gui/loading/TipDisplay.js:52
-#, javascript-format
-msgid "• %(tiptext)s"
-msgstr "• %(tiptext)s"
-
-#: gui/loading/TitleDisplay.js:15
-#, javascript-format
-msgid "Generating “%(map)s”"
-msgstr "Genererar “%(map)s”"
-
-#: gui/loading/TitleDisplay.js:17
-#, javascript-format
-msgid "Loading “%(map)s”"
-msgstr "Läser in \"%(map)s”"
-
-#: gui/gamesetup/gamesetup.xml:(caption):12
-msgid "Match Setup"
-msgstr "Spelinställningar"
-
-#: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):13
-msgid "AI Configuration"
-msgstr "AI-konfiguration"
-
-#: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):29
-msgid "OK"
-msgstr "OK"
-
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):6
-msgid "Player Name"
-msgstr "Spelarnamn"
-
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):10
-msgid "Color"
-msgstr "Färg"
-
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):14
-msgid "Player Placement"
-msgstr "Spelarplacering"
-
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):18
-msgid "Civilization"
-msgstr "Civilisation"
-
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):25
-msgid "Team"
-msgstr "Lag"
-
-#: gui/gamesetup/Pages/GameSetupPage/Panels/TipsPanel.xml:(caption):9
-msgid "Show this message in the future."
-msgstr "Visa detta meddelande i framtiden."
-
-#: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatPanel.xml:(caption):9
-msgid "Send"
-msgstr "Skicka"
-
-#: gui/gamesetup/Pages/LoadingPage/LoadingPage.xml:(caption):7
-msgid "Loading"
-msgstr "Läser in"
-
-#: gui/gamesetup/Pages/LoadingPage/LoadingPage.xml:(caption):11
-msgid "Loading map data. Please wait…"
-msgstr "Läser in kartdata. Vänligen vänta..."
-
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):18
 msgid "Multiplayer"
 msgstr "Flera spelare"
@@ -966,6 +947,30 @@ msgstr "Avbryt"
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):99
 msgid "Leave blank to use the default port."
 msgstr "Lämna tom för att använda standardporten."
+
+#: gui/loading/ProgressBar.js:48
+#, javascript-format
+msgctxt "loading screen progress"
+msgid "%(percentage)s%%"
+msgstr "%(percentage)s%%"
+
+#. Translation: A bullet point used before every item of list of tips
+#. displayed on loading
+#. screen
+#: gui/loading/TipDisplay.js:52
+#, javascript-format
+msgid "• %(tiptext)s"
+msgstr "• %(tiptext)s"
+
+#: gui/loading/TitleDisplay.js:15
+#, javascript-format
+msgid "Generating “%(map)s”"
+msgstr "Genererar “%(map)s”"
+
+#: gui/loading/TitleDisplay.js:17
+#, javascript-format
+msgid "Loading “%(map)s”"
+msgstr "Läser in \"%(map)s”"
 
 #: gui/text/quotes.txt:1
 msgid ""

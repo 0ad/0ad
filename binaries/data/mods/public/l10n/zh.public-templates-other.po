@@ -1,7 +1,7 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright (C) 2020 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
-# 
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
+# project.
 # Translators:
 # chaoyang huang <huangchaoyang0201@gmail.com>, 2018
 # Christian Xia <wood_elf@126.com>, 2016
@@ -16,7 +16,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-20 08:09+0000\n"
+"POT-Creation-Date: 2020-11-28 10:01+0000\n"
 "PO-Revision-Date: 2020-11-20 10:22+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
@@ -26,87 +26,37 @@ msgstr ""
 "Language: zh\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: simulation/templates/template_formation.xml:26
-msgid "Requires at least 2 Soldiers or Siege Engines."
-msgstr "需要至少 2 名士兵或攻城器械。"
+#: simulation/data/template_helpers/damage_types/crush.jsondescription
+msgctxt "damage type"
+msgid "Damage caused by sheer force, like with a club or by trampling."
+msgstr "棍棒、践踏等造成的伤害。"
 
-#: simulation/templates/template_gaia.xml:7
-msgid "Gaia"
-msgstr "大自然"
+#: simulation/data/template_helpers/damage_types/crush.jsonname
+msgctxt "damage type"
+msgid "Crush"
+msgstr "冲锋"
 
-#: simulation/templates/template_gaia_fish.xml:8
-#: simulation/templates/gaia/fish/generic.xml:4
-msgid "Fish"
-msgstr "鱼"
+#: simulation/data/template_helpers/damage_types/hack.jsondescription
+msgctxt "damage type"
+msgid ""
+"Damage caused by sharp objects cutting or chopping, like with a sword or an "
+"axe."
+msgstr "由锋利的物体（剑、斧之类）所造成的伤害。"
 
-#: simulation/templates/template_gaia_fish.xml:10
-msgid "Catch fish for food."
-msgstr "打鱼获取食物。"
+#: simulation/data/template_helpers/damage_types/hack.jsonname
+msgctxt "damage type"
+msgid "Hack"
+msgstr "砍"
 
-#: simulation/templates/template_gaia_fruit.xml:8
-msgid "Fruit"
-msgstr "浆果"
+#: simulation/data/template_helpers/damage_types/pierce.jsondescription
+msgctxt "damage type"
+msgid "Damage caused by sharp pointy objects, like arrows or spears."
+msgstr "由尖锐的物体（如箭头或长矛）造成的伤害。"
 
-#: simulation/templates/template_gaia_fruit.xml:9
-msgid "Pick fruit for food."
-msgstr "采集野果获取食物。"
-
-#: simulation/templates/template_gaia_ore.xml:8
-msgid "Metal Mine"
-msgstr "金矿"
-
-#: simulation/templates/template_gaia_ore.xml:9
-msgid "Mine ore for metal."
-msgstr "金属矿"
-
-#: simulation/templates/template_gaia_rock.xml:8
-msgid "Stone Quarry"
-msgstr "采石场"
-
-#: simulation/templates/template_gaia_rock.xml:9
-msgid "Quarry rock for stone."
-msgstr "去采石场获得石头。"
-
-#: simulation/templates/template_gaia_ruins.xml:8
-msgid "Ruins"
-msgstr "废墟"
-
-#: simulation/templates/template_gaia_ruins.xml:9
-msgid "Demolish ruins for stone."
-msgstr "收集废墟的石头。"
-
-#: simulation/templates/template_gaia_treasure.xml:8
-msgid "Treasure"
-msgstr "宝藏"
-
-#: simulation/templates/template_gaia_treasure.xml:9
-msgid "Collect treasures for resources."
-msgstr "收集宝藏，获得资源。"
-
-#: simulation/templates/template_gaia_tree.xml:8
-msgid "Tree"
-msgstr "树"
-
-#: simulation/templates/template_gaia_tree.xml:9
-msgid "Chop trees for wood."
-msgstr "伐木获取食物。"
-
-#: simulation/templates/template_structure.xml:47
-msgid "Structure"
-msgstr "建筑"
-
-#: simulation/templates/template_unit.xml:38
-msgid "Unit"
-msgstr "单位"
-
-#: simulation/templates/template_wallset.xml:10
-msgid "Wall off an area."
-msgstr "用墙分隔一片区域。"
-
-#: simulation/templates/template_wallset.xml:11
-#: simulation/templates/template_wallset.xml:9
-msgid "Wall"
-msgstr "城墙"
+#: simulation/data/template_helpers/damage_types/pierce.jsonname
+msgctxt "damage type"
+msgid "Pierce"
+msgstr "穿刺"
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:24
 msgid "Army of Alexander the Great."
@@ -907,10 +857,6 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Ranged"
 msgstr "远程"
 
-#: simulation/templates/special/spy.xml:17
-msgid "Spy"
-msgstr "间谍"
-
 #: simulation/templates/special/formations/anti_cavalry.xml:6
 #: simulation/templates/special/formations/testudo.xml:6
 msgid "Melee Infantry only, requires at least 16."
@@ -1004,34 +950,88 @@ msgstr "楔形队形"
 msgid "Player"
 msgstr "玩家"
 
-#: simulation/data/template_helpers/damage_types/crush.jsonname
-msgctxt "damage type"
-msgid "Crush"
-msgstr "冲锋"
+#: simulation/templates/special/spy.xml:17
+msgid "Spy"
+msgstr "间谍"
 
-#: simulation/data/template_helpers/damage_types/crush.jsondescription
-msgctxt "damage type"
-msgid "Damage caused by sheer force, like with a club or by trampling."
-msgstr "棍棒、践踏等造成的伤害。"
+#: simulation/templates/template_formation.xml:26
+msgid "Requires at least 2 Soldiers or Siege Engines."
+msgstr "需要至少 2 名士兵或攻城器械。"
 
-#: simulation/data/template_helpers/damage_types/hack.jsonname
-msgctxt "damage type"
-msgid "Hack"
-msgstr "砍"
+#: simulation/templates/template_gaia.xml:7
+msgid "Gaia"
+msgstr "大自然"
 
-#: simulation/data/template_helpers/damage_types/hack.jsondescription
-msgctxt "damage type"
-msgid ""
-"Damage caused by sharp objects cutting or chopping, like with a sword or an "
-"axe."
-msgstr "由锋利的物体（剑、斧之类）所造成的伤害。"
+#: simulation/templates/gaia/fish/generic.xml:4
+#: simulation/templates/template_gaia_fish.xml:8
+msgid "Fish"
+msgstr "鱼"
 
-#: simulation/data/template_helpers/damage_types/pierce.jsonname
-msgctxt "damage type"
-msgid "Pierce"
-msgstr "穿刺"
+#: simulation/templates/template_gaia_fish.xml:10
+msgid "Catch fish for food."
+msgstr "打鱼获取食物。"
 
-#: simulation/data/template_helpers/damage_types/pierce.jsondescription
-msgctxt "damage type"
-msgid "Damage caused by sharp pointy objects, like arrows or spears."
-msgstr "由尖锐的物体（如箭头或长矛）造成的伤害。"
+#: simulation/templates/template_gaia_fruit.xml:8
+msgid "Fruit"
+msgstr "浆果"
+
+#: simulation/templates/template_gaia_fruit.xml:9
+msgid "Pick fruit for food."
+msgstr "采集野果获取食物。"
+
+#: simulation/templates/template_gaia_ore.xml:8
+msgid "Metal Mine"
+msgstr "金矿"
+
+#: simulation/templates/template_gaia_ore.xml:9
+msgid "Mine ore for metal."
+msgstr "金属矿"
+
+#: simulation/templates/template_gaia_rock.xml:8
+msgid "Stone Quarry"
+msgstr "采石场"
+
+#: simulation/templates/template_gaia_rock.xml:9
+msgid "Quarry rock for stone."
+msgstr "去采石场获得石头。"
+
+#: simulation/templates/template_gaia_ruins.xml:8
+msgid "Ruins"
+msgstr "废墟"
+
+#: simulation/templates/template_gaia_ruins.xml:9
+msgid "Demolish ruins for stone."
+msgstr "收集废墟的石头。"
+
+#: simulation/templates/template_gaia_treasure.xml:8
+msgid "Treasure"
+msgstr "宝藏"
+
+#: simulation/templates/template_gaia_treasure.xml:9
+msgid "Collect treasures for resources."
+msgstr "收集宝藏，获得资源。"
+
+#: simulation/templates/template_gaia_tree.xml:8
+msgid "Tree"
+msgstr "树"
+
+#: simulation/templates/template_gaia_tree.xml:9
+msgid "Chop trees for wood."
+msgstr "伐木获取食物。"
+
+#: simulation/templates/template_structure.xml:47
+msgid "Structure"
+msgstr "建筑"
+
+#: simulation/templates/template_unit.xml:38
+msgid "Unit"
+msgstr "单位"
+
+#: simulation/templates/template_wallset.xml:9
+#: simulation/templates/template_wallset.xml:11
+msgid "Wall"
+msgstr "城墙"
+
+#: simulation/templates/template_wallset.xml:10
+msgid "Wall off an area."
+msgstr "用墙分隔一片区域。"

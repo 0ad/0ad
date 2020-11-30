@@ -1,11 +1,11 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2019 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
-# 
+# Copyright (C) 2020 Wildfire Games
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
+# project.
 # Translators:
 # LeviTaule <levi.taule@gmail.com>, 2017-2018
 # LeviTaule <levi.taule@gmail.com>, 2015-2016
-# Marián Mižik <inactive+marian.mizik@transifex.com>, 2015
+# 2001c3bfc7421750b343e20d6f8feae5_62d342a <746da4594d700c1e2023e1839e1e5d4f_309682>, 2015
 # Mário Bulejko, 2015
 # Martin Plávala <martinplavala@gmail.com>, 2014
 # Miroslav Kadlec <mirokadlec12@gmail.com>, 2018
@@ -18,7 +18,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2019-11-22 08:08+0000\n"
+"POT-Creation-Date: 2020-11-28 10:01+0000\n"
 "PO-Revision-Date: 2019-12-03 19:15+0000\n"
 "Last-Translator: Zuzana Miadoková <akara.horse@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
@@ -28,180 +28,34 @@ msgstr ""
 "Language: sk\n"
 "Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);\n"
 
+#: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(caption):28
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):61
+msgid "Back"
+msgstr "Späť"
+
+#: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(caption):32
+msgid "Update"
+msgstr "Aktualizovať"
+
+#: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(heading):17
+msgid "Rank"
+msgstr "Hodnosť"
+
+#: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(heading):20
+#: gui/lobby/LobbyPage/GameList.xml:(heading):12
+#: gui/lobby/LobbyPage/PlayerList.xml:(heading):15
+msgid "Name"
+msgstr "Meno"
+
+#: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(heading):23
+#: gui/lobby/LobbyPage/GameList.xml:(heading):27
+#: gui/lobby/LobbyPage/PlayerList.xml:(heading):18
+msgid "Rating"
+msgstr "Hodnotenie"
+
 #: gui/lobby/LobbyPage/AnnouncementHandler.js:18
 msgid "Notice"
 msgstr "Poznámka"
-
-#: gui/lobby/LobbyPage/ConnectionHandler.js:45
-msgid "BANNED"
-msgstr "ZABANOVANÝ "
-
-#: gui/lobby/LobbyPage/ConnectionHandler.js:45
-msgid "KICKED"
-msgstr "VYHODENÝ "
-
-#: gui/lobby/LobbyPage/ConnectionHandler.js:61
-msgid "You have been disconnected from the lobby. Do you want to reconnect?"
-msgstr "Boli ste odpojený z lobby. Chceš sa znova pripojiť? "
-
-#: gui/lobby/LobbyPage/ConnectionHandler.js:62
-#: gui/lobby/LobbyPage/Buttons/JoinButton.js:53
-#: gui/prelobby/common/credentials/credentials.js:55
-msgid "Confirmation"
-msgstr "Potvrdenie"
-
-#: gui/lobby/LobbyPage/ConnectionHandler.js:63
-#: gui/lobby/LobbyPage/Buttons/JoinButton.js:44
-#: gui/lobby/LobbyPage/Buttons/JoinButton.js:54
-#: gui/prelobby/common/credentials/credentials.js:56
-msgid "No"
-msgstr "Nie"
-
-#: gui/lobby/LobbyPage/ConnectionHandler.js:63
-#: gui/lobby/LobbyPage/Buttons/JoinButton.js:44
-#: gui/lobby/LobbyPage/Buttons/JoinButton.js:54
-#: gui/prelobby/common/credentials/credentials.js:56
-msgid "Yes"
-msgstr "Áno"
-
-#. Translation: The number of players and observers in this game
-#: gui/lobby/LobbyPage/Game.js:298
-#, javascript-format
-msgid "%(current)s/%(max)s +%(observercount)s"
-msgstr "%(current)s/%(max)s +%(observercount)s"
-
-#. Translation: The number of players in this game
-#: gui/lobby/LobbyPage/Game.js:301
-#, javascript-format
-msgid "%(current)s/%(max)s"
-msgstr "%(current)s/%(max)s"
-
-#: gui/lobby/LobbyPage/GameDetails.js:65
-msgctxt "victory condition"
-msgid "Endless Game"
-msgstr "Hra bez konca"
-
-#: gui/lobby/LobbyPage/GameDetails.js:117
-#, javascript-format
-msgid "Host: %(playername)s"
-msgstr "Hostiteľ: %(playername)s"
-
-#: gui/lobby/LobbyPage/GameDetails.js:119
-#, javascript-format
-msgid "Players: %(current)s/%(total)s"
-msgstr "Hráčov: %(current)s/%(total)s"
-
-#: gui/lobby/LobbyPage/GameDetails.js:121
-msgid "Victory Conditions:"
-msgstr "Podmienky víťazstva:"
-
-#. Translation: Comma used to concatenate victory conditions
-#: gui/lobby/LobbyPage/GameDetails.js:124
-msgid ", "
-msgstr ", "
-
-#: gui/lobby/LobbyPage/GameDetails.js:126
-msgid "Mods:"
-msgstr "Módy:"
-
-#. Translation: %(time)s is the hour and minute here.
-#: gui/lobby/LobbyPage/GameDetails.js:129
-#, javascript-format
-msgid "Game started at %(time)s"
-msgstr "Hra sa začala o %(time)s"
-
-#: gui/lobby/LobbyPage/GameDetails.js:131
-#: gui/lobby/LobbyPage/Chat/TimestampWrapper.js:33
-msgid "HH:mm"
-msgstr "HH:mm"
-
-#: gui/lobby/LobbyPage/GameDetails.js:133
-msgid "Map Type:"
-msgstr "Typ mapy:"
-
-#: gui/lobby/LobbyPage/GameDetails.js:135
-msgid "Map Size:"
-msgstr "Veľkosť mapy"
-
-#: gui/lobby/LobbyPage/GameDetails.js:137
-msgid "Map Description:"
-msgstr "Popis mapy:"
-
-#: gui/lobby/LobbyPage/KickStrings.js:39
-msgid "You have been kicked from the lobby!"
-msgstr "Bol si vyhodený z lobby! "
-
-#: gui/lobby/LobbyPage/KickStrings.js:40
-msgid "You have been banned from the lobby!"
-msgstr "Bol si zabanovaný z lobby! "
-
-#: gui/lobby/LobbyPage/KickStrings.js:43
-#, javascript-format
-msgid "%(nick)s has been kicked from the lobby."
-msgstr "%(nick)s bol vyhodený z lobby. "
-
-#: gui/lobby/LobbyPage/KickStrings.js:44
-#, javascript-format
-msgid "%(nick)s has been banned from the lobby."
-msgstr "%(nick)s bol zabanovaný z lobby. "
-
-#: gui/lobby/LobbyPage/KickStrings.js:49
-#, javascript-format
-msgctxt "lobby kick"
-msgid "Reason: %(reason)s"
-msgstr "Dôvod: %(reason)s"
-
-#: gui/lobby/LobbyPage/PlayerColor.js:34
-#, javascript-format
-msgid "%(nick)s (%(rating)s)"
-msgstr "%(nick)s (%(rating)s)"
-
-#: gui/lobby/LobbyPage/PlayerList.js:178
-msgid "Online"
-msgstr "Pripojený"
-
-#: gui/lobby/LobbyPage/PlayerList.js:184
-msgid "Away"
-msgstr "Preč"
-
-#: gui/lobby/LobbyPage/PlayerList.js:190
-msgid "Busy"
-msgstr "Zaneprázdnený"
-
-#: gui/lobby/LobbyPage/PlayerList.js:196
-msgid "Offline"
-msgstr "Nepripojený"
-
-#: gui/lobby/LobbyPage/PlayerList.js:202
-msgctxt "lobby presence"
-msgid "Unknown"
-msgstr "Neznámy"
-
-#: gui/lobby/LobbyPage/ProfilePanel.js:106
-msgid "N/A"
-msgstr "Nie je k dispozícií"
-
-#: gui/lobby/LobbyPage/ProfilePanel.js:112
-msgid "Moderator"
-msgstr "Moderátor"
-
-#: gui/lobby/LobbyPage/ProfilePanel.js:113
-msgid "Player"
-msgstr "Hráč"
-
-#: gui/lobby/LobbyPage/ProfilePanel.js:114
-msgid "Muted Player"
-msgstr "Stlmený hráč"
-
-#: gui/lobby/LobbyPage/ProfilePanel.js:120
-msgctxt "Used for an undefined winning rate"
-msgid "-"
-msgstr "-"
-
-#: gui/lobby/LobbyPage/ProfilePanel.js:122
-#, javascript-format
-msgid "%(percentage)s%%"
-msgstr "%(percentage)s%%"
 
 #: gui/lobby/LobbyPage/Buttons/BuddyButton.js:69
 msgid "Mark as Buddy"
@@ -245,13 +99,13 @@ msgstr "Chyba"
 msgid "Join Game"
 msgstr "Pridať sa  k hre"
 
+#: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(caption):12
 #: gui/lobby/LobbyPage/Buttons/LeaderboardButton.js:9
-#: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(caption):10
 msgid "Leaderboard"
 msgstr "Tabuľka najlepších hráčov"
 
 #: gui/lobby/LobbyPage/Buttons/ProfileButton.js:9
-#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):10
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):12
 msgid "Player Profile Lookup"
 msgstr "Vyhľadávanie hráčskeho profilu"
 
@@ -334,19 +188,6 @@ msgstr "/say"
 msgid "Clear all chat scrollback."
 msgstr "Vyčistiť celý pokec. "
 
-#. Translation: Chat message format when there is a time prefix.
-#: gui/lobby/LobbyPage/Chat/TimestampWrapper.js:25
-#, javascript-format
-msgid "%(time)s %(message)s"
-msgstr "%(time)s %(message)s"
-
-#. Translation: Time prefix as shown in the multiplayer lobby (when you enable
-#. it in the options page).
-#: gui/lobby/LobbyPage/Chat/TimestampWrapper.js:28
-#, javascript-format
-msgid "\\[%(time)s]"
-msgstr "\\[%(time)s]"
-
 #. Translation: Chat message issued using the ‘/me’ command.
 #: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessageFormatMe.js:24
 #, javascript-format
@@ -371,6 +212,10 @@ msgstr "Súkromné"
 #, javascript-format
 msgid "(%(private)s) %(message)s"
 msgstr "(%(private)s) %(message)s"
+
+#: gui/lobby/LobbyPage/Chat/ChatPanel.xml:(caption):12
+msgid "Send"
+msgstr "Poslať"
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:47
 #, javascript-format
@@ -457,6 +302,137 @@ msgstr "Systém:"
 msgid "=== %(system)s %(message)s"
 msgstr "=== %(system)s %(message)s"
 
+#. Translation: Chat message format when there is a time prefix.
+#: gui/lobby/LobbyPage/Chat/TimestampWrapper.js:25
+#, javascript-format
+msgid "%(time)s %(message)s"
+msgstr "%(time)s %(message)s"
+
+#. Translation: Time prefix as shown in the multiplayer lobby (when you enable
+#. it in the
+#. options page).
+#: gui/lobby/LobbyPage/Chat/TimestampWrapper.js:28
+#, javascript-format
+msgid "\\[%(time)s]"
+msgstr "\\[%(time)s]"
+
+#: gui/lobby/LobbyPage/ConnectionHandler.js:45
+msgid "BANNED"
+msgstr "ZABANOVANÝ "
+
+#: gui/lobby/LobbyPage/ConnectionHandler.js:45
+msgid "KICKED"
+msgstr "VYHODENÝ "
+
+#: gui/lobby/LobbyPage/ConnectionHandler.js:61
+msgid "You have been disconnected from the lobby. Do you want to reconnect?"
+msgstr "Boli ste odpojený z lobby. Chceš sa znova pripojiť? "
+
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:53
+#: gui/lobby/LobbyPage/ConnectionHandler.js:62
+#: gui/prelobby/common/credentials/credentials.js:55
+msgid "Confirmation"
+msgstr "Potvrdenie"
+
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:44
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:54
+#: gui/lobby/LobbyPage/ConnectionHandler.js:63
+#: gui/prelobby/common/credentials/credentials.js:56
+msgid "No"
+msgstr "Nie"
+
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:44
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:54
+#: gui/lobby/LobbyPage/ConnectionHandler.js:63
+#: gui/prelobby/common/credentials/credentials.js:56
+msgid "Yes"
+msgstr "Áno"
+
+#. Translation: The number of players and observers in this game
+#: gui/lobby/LobbyPage/Game.js:301
+#, javascript-format
+msgid "%(current)s/%(max)s +%(observercount)s"
+msgstr "%(current)s/%(max)s +%(observercount)s"
+
+#. Translation: The number of players in this game
+#: gui/lobby/LobbyPage/Game.js:304
+#, javascript-format
+msgid "%(current)s/%(max)s"
+msgstr "%(current)s/%(max)s"
+
+#: gui/lobby/LobbyPage/GameDetails.js:65
+msgctxt "victory condition"
+msgid "Endless Game"
+msgstr "Hra bez konca"
+
+#: gui/lobby/LobbyPage/GameDetails.js:117
+#, javascript-format
+msgid "Host: %(playername)s"
+msgstr "Hostiteľ: %(playername)s"
+
+#: gui/lobby/LobbyPage/GameDetails.js:119
+#, javascript-format
+msgid "Players: %(current)s/%(total)s"
+msgstr "Hráčov: %(current)s/%(total)s"
+
+#: gui/lobby/LobbyPage/GameDetails.js:121
+msgid "Victory Conditions:"
+msgstr "Podmienky víťazstva:"
+
+#. Translation: Comma used to concatenate victory conditions
+#: gui/lobby/LobbyPage/GameDetails.js:124
+msgid ", "
+msgstr ", "
+
+#: gui/lobby/LobbyPage/GameDetails.js:126
+msgid "Mods:"
+msgstr "Módy:"
+
+#. Translation: %(time)s is the hour and minute here.
+#: gui/lobby/LobbyPage/GameDetails.js:129
+#, javascript-format
+msgid "Game started at %(time)s"
+msgstr "Hra sa začala o %(time)s"
+
+#: gui/lobby/LobbyPage/Chat/TimestampWrapper.js:33
+#: gui/lobby/LobbyPage/GameDetails.js:131
+msgid "HH:mm"
+msgstr "HH:mm"
+
+#: gui/lobby/LobbyPage/GameDetails.js:133
+msgid "Map Type:"
+msgstr "Typ mapy:"
+
+#: gui/lobby/LobbyPage/GameDetails.js:135
+msgid "Map Size:"
+msgstr "Veľkosť mapy"
+
+#: gui/lobby/LobbyPage/GameDetails.js:137
+msgid "Map Description:"
+msgstr "Popis mapy:"
+
+#: gui/lobby/LobbyPage/GameList.xml:(heading):15
+msgid "Map Name"
+msgstr "Meno mapy"
+
+#: gui/lobby/LobbyPage/GameList.xml:(heading):18
+msgctxt "map"
+msgid "Size"
+msgstr "Veľkosť"
+
+#: gui/lobby/LobbyPage/GameList.xml:(heading):21
+msgctxt "map"
+msgid "Type"
+msgstr "Typ"
+
+#: gui/lobby/LobbyPage/GameList.xml:(heading):24
+msgid "Players"
+msgstr "Hráči"
+
+#: gui/lobby/LobbyPage/GameListFilters.xml:(caption):7
+msgid "Show only open games"
+msgstr "Zobraz iba otvorené hry"
+
 #: gui/lobby/LobbyPage/GameListFilters/MapSize.js:9
 msgctxt "map size"
 msgid "Any"
@@ -485,10 +461,141 @@ msgctxt "gamelist filter"
 msgid "< %(rating)s"
 msgstr "< %(rating)s"
 
+#: gui/lobby/LobbyPage/KickStrings.js:39
+msgid "You have been kicked from the lobby!"
+msgstr "Bol si vyhodený z lobby! "
+
+#: gui/lobby/LobbyPage/KickStrings.js:40
+msgid "You have been banned from the lobby!"
+msgstr "Bol si zabanovaný z lobby! "
+
+#: gui/lobby/LobbyPage/KickStrings.js:43
+#, javascript-format
+msgid "%(nick)s has been kicked from the lobby."
+msgstr "%(nick)s bol vyhodený z lobby. "
+
+#: gui/lobby/LobbyPage/KickStrings.js:44
+#, javascript-format
+msgid "%(nick)s has been banned from the lobby."
+msgstr "%(nick)s bol zabanovaný z lobby. "
+
+#: gui/lobby/LobbyPage/KickStrings.js:49
+#, javascript-format
+msgctxt "lobby kick"
+msgid "Reason: %(reason)s"
+msgstr "Dôvod: %(reason)s"
+
+#: gui/lobby/LobbyPage/LobbyPage.xml:(caption):13
+#: gui/prelobby/entrance/entrance.xml:(caption):14
+msgid "Multiplayer Lobby"
+msgstr "Lobby hry viac hráčov"
+
+#: gui/lobby/LobbyPage/PlayerColor.js:34
+#, javascript-format
+msgid "%(nick)s (%(rating)s)"
+msgstr "%(nick)s (%(rating)s)"
+
+#: gui/lobby/LobbyPage/PlayerList.js:178
+msgid "Online"
+msgstr "Pripojený"
+
+#: gui/lobby/LobbyPage/PlayerList.js:184
+msgid "Away"
+msgstr "Preč"
+
+#: gui/lobby/LobbyPage/PlayerList.js:190
+msgid "Busy"
+msgstr "Zaneprázdnený"
+
+#: gui/lobby/LobbyPage/PlayerList.js:196
+msgid "Offline"
+msgstr "Nepripojený"
+
+#: gui/lobby/LobbyPage/PlayerList.js:202
+msgctxt "lobby presence"
+msgid "Unknown"
+msgstr "Neznámy"
+
+#: gui/lobby/LobbyPage/PlayerList.xml:(heading):12
+msgid "Status"
+msgstr "Stav"
+
+#: gui/lobby/LobbyPage/ProfilePanel.js:106
+msgid "N/A"
+msgstr "Nie je k dispozícií"
+
+#: gui/lobby/LobbyPage/ProfilePanel.js:112
+msgid "Moderator"
+msgstr "Moderátor"
+
+#: gui/lobby/LobbyPage/ProfilePanel.js:113
+msgid "Player"
+msgstr "Hráč"
+
+#: gui/lobby/LobbyPage/ProfilePanel.js:114
+msgid "Muted Player"
+msgstr "Stlmený hráč"
+
+#: gui/lobby/LobbyPage/ProfilePanel.js:120
+msgctxt "Used for an undefined winning rate"
+msgid "-"
+msgstr "-"
+
+#: gui/lobby/LobbyPage/ProfilePanel.js:122
+#, javascript-format
+msgid "%(percentage)s%%"
+msgstr "%(percentage)s%%"
+
+#: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):8
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):30
+msgid "Current Rank:"
+msgstr "Súčasná hodnosť:"
+
+#: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):12
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):34
+msgid "Highest Rating:"
+msgstr "Najvyššie dosiahnuté hodnotenie:"
+
+#: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):16
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):38
+msgid "Total Games:"
+msgstr "Celkovo hier:"
+
+#: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):20
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):42
+msgid "Wins:"
+msgstr "Výhier:"
+
+#: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):24
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):46
+msgid "Losses:"
+msgstr "Prehier:"
+
+#: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):28
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):50
+msgid "Win Rate:"
+msgstr "Pomer víťazstiev:"
+
 #: gui/lobby/ProfilePage/ProfilePage.js:70
 #, javascript-format
 msgid "Player \"%(nick)s\" not found."
 msgstr "Hráč \"%(nick)s\" nebol nájdený."
+
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):16
+msgid "Enter playername:"
+msgstr "Zadajte meno hráča:"
+
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):22
+msgid "View Profile"
+msgstr "Prezrieť profil"
+
+#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):55
+msgid "Please enter a player name."
+msgstr "Zadajte, prosím, meno hráča."
+
+#: gui/prelobby/common/credentials/confirmpassword.xml:(caption):4
+msgid "Password again:"
+msgstr "Heslo znovu:"
 
 #: gui/prelobby/common/credentials/credentials.js:5
 msgid "Please enter your username"
@@ -524,162 +631,6 @@ msgstr "Heslá nie sú rovnaké"
 msgid "Are you sure you want to delete the password after connecting?"
 msgstr "Ste si istý že chcete vymazať heslo po pripojení? "
 
-#: gui/prelobby/common/feedback/feedback.js:4
-msgid ""
-"Unknown error. This usually occurs because the same IP address is not "
-"allowed to register more than one account within one hour."
-msgstr "Neznáma chyba. Zvyčajne je to spôsobené, že z jednej IP adresy nie je povolené registrovať viac ako jeden účet počas jednej hodiny."
-
-#: gui/prelobby/common/terms/termslobby.js:9
-msgid "Terms of Service"
-msgstr "Servisné požiadavky"
-
-#: gui/prelobby/common/terms/termslobby.js:10
-msgid "Please read and accept the Terms of Service."
-msgstr "Prosím prečítajte si a akceptujte Servisné požiadavky."
-
-#: gui/prelobby/common/terms/termslobby.js:19
-msgid "Terms of Use"
-msgstr "Podmienky použitia"
-
-#: gui/prelobby/common/terms/termslobby.js:20
-msgid "Please read and accept the Terms of Use."
-msgstr "Prosím prečítajte si a akceptujte podmienky použitia."
-
-#: gui/prelobby/common/terms/termslobby.js:29
-msgid "Privacy Policy"
-msgstr "Ochrana osobných údajov"
-
-#: gui/prelobby/common/terms/termslobby.js:30
-msgid "Please read and accept the Privacy Policy."
-msgstr "Prosím prečítajte si a akceptujte Ochranu osobných údajov."
-
-#: gui/prelobby/login/login.js:5
-msgid "Connect"
-msgstr "Pripojiť sa"
-
-#: gui/prelobby/login/login.js:32
-msgid "Connecting…"
-msgstr "Pripájam sa..."
-
-#: gui/prelobby/register/register.js:5
-msgid "Register"
-msgstr "Registrovať sa"
-
-#: gui/prelobby/register/register.js:26
-msgid "Registering…"
-msgstr "Registrujem vás..."
-
-#: gui/prelobby/register/register.js:39
-msgid "Registered"
-msgstr "Zaregistrovaný"
-
-#: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(heading):15
-msgid "Rank"
-msgstr "Hodnosť"
-
-#: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(heading):18
-#: gui/lobby/LobbyPage/GameList.xml:(heading):12
-#: gui/lobby/LobbyPage/PlayerList.xml:(heading):15
-msgid "Name"
-msgstr "Meno"
-
-#: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(heading):21
-#: gui/lobby/LobbyPage/GameList.xml:(heading):27
-#: gui/lobby/LobbyPage/PlayerList.xml:(heading):18
-msgid "Rating"
-msgstr "Hodnotenie"
-
-#: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(caption):26
-#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):59
-msgid "Back"
-msgstr "Späť"
-
-#: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(caption):30
-msgid "Update"
-msgstr "Aktualizovať"
-
-#: gui/lobby/LobbyPage/GameList.xml:(heading):15
-msgid "Map Name"
-msgstr "Meno mapy"
-
-#: gui/lobby/LobbyPage/GameList.xml:(heading):18
-msgctxt "map"
-msgid "Size"
-msgstr "Veľkosť"
-
-#: gui/lobby/LobbyPage/GameList.xml:(heading):21
-msgctxt "map"
-msgid "Type"
-msgstr "Typ"
-
-#: gui/lobby/LobbyPage/GameList.xml:(heading):24
-msgid "Players"
-msgstr "Hráči"
-
-#: gui/lobby/LobbyPage/GameListFilters.xml:(caption):5
-msgid "Show only open games"
-msgstr "Zobraz iba otvorené hry"
-
-#: gui/lobby/LobbyPage/LobbyPage.xml:(caption):10
-#: gui/prelobby/entrance/entrance.xml:(caption):14
-msgid "Multiplayer Lobby"
-msgstr "Lobby hry viac hráčov"
-
-#: gui/lobby/LobbyPage/PlayerList.xml:(heading):12
-msgid "Status"
-msgstr "Stav"
-
-#: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):8
-#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):28
-msgid "Current Rank:"
-msgstr "Súčasná hodnosť:"
-
-#: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):12
-#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):32
-msgid "Highest Rating:"
-msgstr "Najvyššie dosiahnuté hodnotenie:"
-
-#: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):16
-#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):36
-msgid "Total Games:"
-msgstr "Celkovo hier:"
-
-#: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):20
-#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):40
-msgid "Wins:"
-msgstr "Výhier:"
-
-#: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):24
-#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):44
-msgid "Losses:"
-msgstr "Prehier:"
-
-#: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):28
-#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):48
-msgid "Win Rate:"
-msgstr "Pomer víťazstiev:"
-
-#: gui/lobby/LobbyPage/Chat/ChatPanel.xml:(caption):6
-msgid "Send"
-msgstr "Poslať"
-
-#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):14
-msgid "Enter playername:"
-msgstr "Zadajte meno hráča:"
-
-#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):20
-msgid "View Profile"
-msgstr "Prezrieť profil"
-
-#: gui/lobby/ProfilePage/ProfilePage.xml:(caption):53
-msgid "Please enter a player name."
-msgstr "Zadajte, prosím, meno hráča."
-
-#: gui/prelobby/common/credentials/confirmpassword.xml:(caption):4
-msgid "Password again:"
-msgstr "Heslo znovu:"
-
 #: gui/prelobby/common/credentials/credentials.xml:(caption):6
 msgid "Login:"
 msgstr "Prihlasovacie meno:"
@@ -692,26 +643,16 @@ msgstr "Heslo:"
 msgid "Remember Password"
 msgstr "Zapamätať heslo "
 
+#: gui/prelobby/common/feedback/feedback.js:4
+msgid ""
+"Unknown error. This usually occurs because the same IP address is not "
+"allowed to register more than one account within one hour."
+msgstr "Neznáma chyba. Zvyčajne je to spôsobené, že z jednej IP adresy nie je povolené registrovať viac ako jeden účet počas jednej hodiny."
+
 #: gui/prelobby/common/feedback/feedback.xml:(caption):10
 #: gui/prelobby/entrance/entrance.xml:(caption):30
 msgid "Cancel"
 msgstr "Zrušiť"
-
-#: gui/prelobby/entrance/entrance.xml:(caption):20
-msgid "Create a new account"
-msgstr "Vytvoriť nový účet"
-
-#: gui/prelobby/entrance/entrance.xml:(caption):25
-msgid "Login to an existing account"
-msgstr "Prihlásiť sa do existujúceho účtu"
-
-#: gui/prelobby/login/login.xml:(caption):13
-msgid "Connect to the game lobby"
-msgstr "Pripájam sa do herného lobby"
-
-#: gui/prelobby/register/register.xml:(caption):13
-msgid "Registration"
-msgstr "Registrácia"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:1
 msgid ""
@@ -1284,3 +1225,63 @@ msgid ""
 "If a moderator deems your behavior to be inconsistent with these terms, your"
 " account may be restricted, suspended or terminated."
 msgstr "Ak moderátor pokladá tvoje chovanie v rozpore s týmito podmienkami, tvoj účet môže byť obmedzený, pozastavený alebo zrušený."
+
+#: gui/prelobby/common/terms/termslobby.js:9
+msgid "Terms of Service"
+msgstr "Servisné požiadavky"
+
+#: gui/prelobby/common/terms/termslobby.js:10
+msgid "Please read and accept the Terms of Service."
+msgstr "Prosím prečítajte si a akceptujte Servisné požiadavky."
+
+#: gui/prelobby/common/terms/termslobby.js:19
+msgid "Terms of Use"
+msgstr "Podmienky použitia"
+
+#: gui/prelobby/common/terms/termslobby.js:20
+msgid "Please read and accept the Terms of Use."
+msgstr "Prosím prečítajte si a akceptujte podmienky použitia."
+
+#: gui/prelobby/common/terms/termslobby.js:29
+msgid "Privacy Policy"
+msgstr "Ochrana osobných údajov"
+
+#: gui/prelobby/common/terms/termslobby.js:30
+msgid "Please read and accept the Privacy Policy."
+msgstr "Prosím prečítajte si a akceptujte Ochranu osobných údajov."
+
+#: gui/prelobby/entrance/entrance.xml:(caption):20
+msgid "Create a new account"
+msgstr "Vytvoriť nový účet"
+
+#: gui/prelobby/entrance/entrance.xml:(caption):25
+msgid "Login to an existing account"
+msgstr "Prihlásiť sa do existujúceho účtu"
+
+#: gui/prelobby/login/login.js:5
+msgid "Connect"
+msgstr "Pripojiť sa"
+
+#: gui/prelobby/login/login.js:32
+msgid "Connecting…"
+msgstr "Pripájam sa..."
+
+#: gui/prelobby/login/login.xml:(caption):13
+msgid "Connect to the game lobby"
+msgstr "Pripájam sa do herného lobby"
+
+#: gui/prelobby/register/register.js:5
+msgid "Register"
+msgstr "Registrovať sa"
+
+#: gui/prelobby/register/register.js:26
+msgid "Registering…"
+msgstr "Registrujem vás..."
+
+#: gui/prelobby/register/register.js:39
+msgid "Registered"
+msgstr "Zaregistrovaný"
+
+#: gui/prelobby/register/register.xml:(caption):13
+msgid "Registration"
+msgstr "Registrácia"

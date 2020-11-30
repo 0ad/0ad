@@ -1,7 +1,7 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright (C) 2020 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
-# 
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
+# project.
 # Translators:
 # annihilator solar <incoming@upcmail.nl>, 2019
 # Bart <b.anthonisse@gmail.com>, 2020
@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-20 08:09+0000\n"
+"POT-Creation-Date: 2020-11-28 10:01+0000\n"
 "PO-Revision-Date: 2020-11-20 19:36+0000\n"
 "Last-Translator: Bart <b.anthonisse@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
@@ -29,87 +29,37 @@ msgstr ""
 "Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: simulation/templates/template_formation.xml:26
-msgid "Requires at least 2 Soldiers or Siege Engines."
-msgstr "Vereist tenminste 2 soldaten of belegeringswerktuigen."
+#: simulation/data/template_helpers/damage_types/crush.jsondescription
+msgctxt "damage type"
+msgid "Damage caused by sheer force, like with a club or by trampling."
+msgstr "Schade veroorzaakt door brute kracht, zoals met een knuppel of door vertrappen."
 
-#: simulation/templates/template_gaia.xml:7
-msgid "Gaia"
-msgstr "Gaia"
+#: simulation/data/template_helpers/damage_types/crush.jsonname
+msgctxt "damage type"
+msgid "Crush"
+msgstr "Verpletter"
 
-#: simulation/templates/template_gaia_fish.xml:8
-#: simulation/templates/gaia/fish/generic.xml:4
-msgid "Fish"
-msgstr "Vis"
+#: simulation/data/template_helpers/damage_types/hack.jsondescription
+msgctxt "damage type"
+msgid ""
+"Damage caused by sharp objects cutting or chopping, like with a sword or an "
+"axe."
+msgstr "Schade veroorzaakt door snijden of hakken met een scherp voorwerp zoals een zwaard of een bijl."
 
-#: simulation/templates/template_gaia_fish.xml:10
-msgid "Catch fish for food."
-msgstr "Verzamel voedsel door te vissen."
+#: simulation/data/template_helpers/damage_types/hack.jsonname
+msgctxt "damage type"
+msgid "Hack"
+msgstr "Hak"
 
-#: simulation/templates/template_gaia_fruit.xml:8
-msgid "Fruit"
-msgstr "Fruit"
+#: simulation/data/template_helpers/damage_types/pierce.jsondescription
+msgctxt "damage type"
+msgid "Damage caused by sharp pointy objects, like arrows or spears."
+msgstr "Schade veroorzaakt door scherpe puntige voorwerpen zoals pijlen of speren."
 
-#: simulation/templates/template_gaia_fruit.xml:9
-msgid "Pick fruit for food."
-msgstr "Pluk fruit voor voedsel."
-
-#: simulation/templates/template_gaia_ore.xml:8
-msgid "Metal Mine"
-msgstr "Metaalmijn"
-
-#: simulation/templates/template_gaia_ore.xml:9
-msgid "Mine ore for metal."
-msgstr "Mijn erts voor metaal."
-
-#: simulation/templates/template_gaia_rock.xml:8
-msgid "Stone Quarry"
-msgstr "Steengroeve"
-
-#: simulation/templates/template_gaia_rock.xml:9
-msgid "Quarry rock for stone."
-msgstr "Verzamel steen door steen te houwen."
-
-#: simulation/templates/template_gaia_ruins.xml:8
-msgid "Ruins"
-msgstr "Ruïnes"
-
-#: simulation/templates/template_gaia_ruins.xml:9
-msgid "Demolish ruins for stone."
-msgstr "Verzamel steen door ruïnes af te breken."
-
-#: simulation/templates/template_gaia_treasure.xml:8
-msgid "Treasure"
-msgstr "Schat"
-
-#: simulation/templates/template_gaia_treasure.xml:9
-msgid "Collect treasures for resources."
-msgstr "Verzamel schatten voor grondstoffen."
-
-#: simulation/templates/template_gaia_tree.xml:8
-msgid "Tree"
-msgstr "Boom"
-
-#: simulation/templates/template_gaia_tree.xml:9
-msgid "Chop trees for wood."
-msgstr "Verzamel hout door bomen om te hakken."
-
-#: simulation/templates/template_structure.xml:47
-msgid "Structure"
-msgstr "Gebouw"
-
-#: simulation/templates/template_unit.xml:38
-msgid "Unit"
-msgstr "Eenheid"
-
-#: simulation/templates/template_wallset.xml:10
-msgid "Wall off an area."
-msgstr "Ommuur een gebied."
-
-#: simulation/templates/template_wallset.xml:11
-#: simulation/templates/template_wallset.xml:9
-msgid "Wall"
-msgstr "Muur"
+#: simulation/data/template_helpers/damage_types/pierce.jsonname
+msgctxt "damage type"
+msgid "Pierce"
+msgstr "Doorboor"
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:24
 msgid "Army of Alexander the Great."
@@ -910,10 +860,6 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Ranged"
 msgstr "Afstand"
 
-#: simulation/templates/special/spy.xml:17
-msgid "Spy"
-msgstr "Spion"
-
 #: simulation/templates/special/formations/anti_cavalry.xml:6
 #: simulation/templates/special/formations/testudo.xml:6
 msgid "Melee Infantry only, requires at least 16."
@@ -1007,34 +953,88 @@ msgstr "Hoek"
 msgid "Player"
 msgstr "Speler"
 
-#: simulation/data/template_helpers/damage_types/crush.jsonname
-msgctxt "damage type"
-msgid "Crush"
-msgstr "Verpletter"
+#: simulation/templates/special/spy.xml:17
+msgid "Spy"
+msgstr "Spion"
 
-#: simulation/data/template_helpers/damage_types/crush.jsondescription
-msgctxt "damage type"
-msgid "Damage caused by sheer force, like with a club or by trampling."
-msgstr "Schade veroorzaakt door brute kracht, zoals met een knuppel of door vertrappen."
+#: simulation/templates/template_formation.xml:26
+msgid "Requires at least 2 Soldiers or Siege Engines."
+msgstr "Vereist tenminste 2 soldaten of belegeringswerktuigen."
 
-#: simulation/data/template_helpers/damage_types/hack.jsonname
-msgctxt "damage type"
-msgid "Hack"
-msgstr "Hak"
+#: simulation/templates/template_gaia.xml:7
+msgid "Gaia"
+msgstr "Gaia"
 
-#: simulation/data/template_helpers/damage_types/hack.jsondescription
-msgctxt "damage type"
-msgid ""
-"Damage caused by sharp objects cutting or chopping, like with a sword or an "
-"axe."
-msgstr "Schade veroorzaakt door snijden of hakken met een scherp voorwerp zoals een zwaard of een bijl."
+#: simulation/templates/gaia/fish/generic.xml:4
+#: simulation/templates/template_gaia_fish.xml:8
+msgid "Fish"
+msgstr "Vis"
 
-#: simulation/data/template_helpers/damage_types/pierce.jsonname
-msgctxt "damage type"
-msgid "Pierce"
-msgstr "Doorboor"
+#: simulation/templates/template_gaia_fish.xml:10
+msgid "Catch fish for food."
+msgstr "Verzamel voedsel door te vissen."
 
-#: simulation/data/template_helpers/damage_types/pierce.jsondescription
-msgctxt "damage type"
-msgid "Damage caused by sharp pointy objects, like arrows or spears."
-msgstr "Schade veroorzaakt door scherpe puntige voorwerpen zoals pijlen of speren."
+#: simulation/templates/template_gaia_fruit.xml:8
+msgid "Fruit"
+msgstr "Fruit"
+
+#: simulation/templates/template_gaia_fruit.xml:9
+msgid "Pick fruit for food."
+msgstr "Pluk fruit voor voedsel."
+
+#: simulation/templates/template_gaia_ore.xml:8
+msgid "Metal Mine"
+msgstr "Metaalmijn"
+
+#: simulation/templates/template_gaia_ore.xml:9
+msgid "Mine ore for metal."
+msgstr "Mijn erts voor metaal."
+
+#: simulation/templates/template_gaia_rock.xml:8
+msgid "Stone Quarry"
+msgstr "Steengroeve"
+
+#: simulation/templates/template_gaia_rock.xml:9
+msgid "Quarry rock for stone."
+msgstr "Verzamel steen door steen te houwen."
+
+#: simulation/templates/template_gaia_ruins.xml:8
+msgid "Ruins"
+msgstr "Ruïnes"
+
+#: simulation/templates/template_gaia_ruins.xml:9
+msgid "Demolish ruins for stone."
+msgstr "Verzamel steen door ruïnes af te breken."
+
+#: simulation/templates/template_gaia_treasure.xml:8
+msgid "Treasure"
+msgstr "Schat"
+
+#: simulation/templates/template_gaia_treasure.xml:9
+msgid "Collect treasures for resources."
+msgstr "Verzamel schatten voor grondstoffen."
+
+#: simulation/templates/template_gaia_tree.xml:8
+msgid "Tree"
+msgstr "Boom"
+
+#: simulation/templates/template_gaia_tree.xml:9
+msgid "Chop trees for wood."
+msgstr "Verzamel hout door bomen om te hakken."
+
+#: simulation/templates/template_structure.xml:47
+msgid "Structure"
+msgstr "Gebouw"
+
+#: simulation/templates/template_unit.xml:38
+msgid "Unit"
+msgstr "Eenheid"
+
+#: simulation/templates/template_wallset.xml:9
+#: simulation/templates/template_wallset.xml:11
+msgid "Wall"
+msgstr "Muur"
+
+#: simulation/templates/template_wallset.xml:10
+msgid "Wall off an area."
+msgstr "Ommuur een gebied."

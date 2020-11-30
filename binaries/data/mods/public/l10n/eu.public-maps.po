@@ -1,7 +1,7 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright (C) 2020 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
-# 
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
+# project.
 # Translators:
 # Thadah D. Denyse <juchuf@gmail.com>, 2016
 # Mielanjel Iraeta <pospolos@gmail.com>, 2017-2020
@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-13 08:10+0000\n"
+"POT-Creation-Date: 2020-11-28 10:01+0000\n"
 "PO-Revision-Date: 2020-11-14 09:21+0000\n"
 "Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
@@ -230,17 +230,6 @@ msgstr "Jokalari bakoitza urez inguratutako uharte batean hasten da.\nZikladak  
 msgid "Cycladic Archipelago"
 msgstr "Ziklade-aldiko Artxipelagoa"
 
-#: maps/random/danubius.jsonsettings.Description
-msgid ""
-"Players start along the banks of the river Danube in the period following "
-"the expansion into Pannonia by the Celtic Boii tribe. Seeking to consolidate"
-" their hold on this land, celtic reinforcements have been sent to root out "
-"the remaining foreign cultures. Players not only have to vie for power "
-"amongst themselves, but also beat back these ruthless invaders. Ultimately, "
-"the Boii were defeated by the rising power of the Dacians, hence leading to "
-"the reemergence of the Geto-Dacian Confederation under King Burebista."
-msgstr "Danubio ibaiaren ertzean hasiko zarete Panoniako Boll Zelten zabaltze garaian. Tribu Zelta honek boterea egonkortzen saiatzen da bertakoak botaz. Zuen artean borrokatu beharko duzue inbasoreen kontra egiten duzuen bitartean. Azkenean Bollak garaituak izan ziren Dazioak aurrera egitean, Burebista erregearen babesean Geto-Dazio konfederazioaren birsortzea bultzatuz."
-
 #: maps/random/danubius.jsonsettings.Daytime[0].Description
 msgid "Bright daylight illuminates the scene."
 msgstr "Egun argi distiratsuak argitzen du eszena."
@@ -256,6 +245,17 @@ msgstr "Erasotzaileak gauaren iluntasunean ezkutuan daude."
 #: maps/random/danubius.jsonsettings.Daytime[1].Name
 msgid "Night"
 msgstr "Gaua"
+
+#: maps/random/danubius.jsonsettings.Description
+msgid ""
+"Players start along the banks of the river Danube in the period following "
+"the expansion into Pannonia by the Celtic Boii tribe. Seeking to consolidate"
+" their hold on this land, celtic reinforcements have been sent to root out "
+"the remaining foreign cultures. Players not only have to vie for power "
+"amongst themselves, but also beat back these ruthless invaders. Ultimately, "
+"the Boii were defeated by the rising power of the Dacians, hence leading to "
+"the reemergence of the Geto-Dacian Confederation under King Burebista."
+msgstr "Danubio ibaiaren ertzean hasiko zarete Panoniako Boll Zelten zabaltze garaian. Tribu Zelta honek boterea egonkortzen saiatzen da bertakoak botaz. Zuen artean borrokatu beharko duzue inbasoreen kontra egiten duzuen bitartean. Azkenean Bollak garaituak izan ziren Dazioak aurrera egitean, Burebista erregearen babesean Geto-Dazio konfederazioaren birsortzea bultzatuz."
 
 #: maps/random/danubius.jsonsettings.Name
 msgid "Danubius"
@@ -325,6 +325,22 @@ msgstr "[Color = \"red\"]OHAR GARRANTZITSUA: AA JOKALARIAK EZ DABILTZA MAPA HONE
 #: maps/random/extinct_volcano.jsonsettings.Name
 msgid "Extinct Volcano"
 msgstr "Sumendi Hila"
+
+#: maps/random/extinct_volcano_triggers.js:59
+msgid "It keeps on raining, we will have to evacuate soon!"
+msgstr "Euria eten gabe, azkar alde egin beharko dugu!"
+
+#: maps/random/extinct_volcano_triggers.js:60
+msgid "The rivers are standing high, we need to find a safe place!"
+msgstr "Ibaiak gainezka daude, ziur egoteko lekua aurkitu behar dugu!"
+
+#: maps/random/extinct_volcano_triggers.js:61
+msgid "We have to find dry ground, our lands will drown soon!"
+msgstr "Lur lehorra aurkitu beharrean gaude, gure lurrak laster itoko dira!"
+
+#: maps/random/extinct_volcano_triggers.js:62
+msgid "The lakes start swallowing the land, we have to find shelter!"
+msgstr "Lakuak lurra jaten hasi dira, aterpea aurkitu beharrean gaude!"
 
 #: maps/random/fields_of_meroe.jsonsettings.Description
 msgid ""
@@ -487,6 +503,15 @@ msgstr "Niloko ibaiertz oparoetan hasirik, Jokalariek ondo babestutako Napata hi
 #: maps/random/jebel_barkal.jsonsettings.Name
 msgid "Jebel Barkal"
 msgstr "Jebel Barkal"
+
+#: maps/random/jebel_barkal_triggers.js:592
+msgid "Napata is attacking!"
+msgstr "Napata erasotzen ari da!"
+
+#: maps/random/jebel_barkal_triggers.js:602
+#, javascript-format
+msgid "Napata will attack in %(time)s!"
+msgstr "Napata erasoan %(time)s!"
 
 #: maps/random/kerala.jsonsettings.Description
 msgid ""
@@ -679,19 +704,6 @@ msgstr "Jokalariek maparen sortaldean hasiko dute partida, itsaso handia berriz,
 msgid "Phoenician Levant"
 msgstr "Sortalde Feniziarra"
 
-#: maps/random/polar_sea.jsonsettings.Description
-msgid ""
-"Players start in a cold polar region barren of vegetation. In the sea fish "
-"and whales abound, while the fragile icy land teems with huntable walruses "
-"and deadly wolves. These wolves, made ravenous by the harsh and forbidding "
-"climate, drawn by the scent of prey, have started appearing in terrifying "
-"numbers. A wise and strong ruler will not only achieve victory over his "
-"enemies, but also keep the number of these beasts at bay, lest they "
-"undermine his economy and cause his downfall. [color=\"red\"]Warning: It is "
-"inadvisable to disable treasures, since there is no gatherable wood. Not "
-"recommended for inexperienced players.[/color]"
-msgstr "Jokalariak poloko eskualde hotz eta idor batean hasiko dira. Itsasoan arrainak eta baleak ugariak dira, eta lur ahul izoztua mortsa ehiztari eta otso hilgarriz beterik dago. Otso hauek, dagoen klima gogor eta ezatsegina dela eta jatunak, harrapakinaren usaiari jarraiki, kopuru izugarrietan agertzen hasi dira. Agintari indartsu eta jakintsu batek ez du bakarrik bere etsaia garaituko, pizti hauek ere urruti mantenduko ditu, ea ez duten bere ekonomia suntsitzen eta bere erorketa bultzatzen.  [color=\"red\"]Kontuz: Gomendatzen da altxorrak ez desgaitzea, ez bai dago pilatzeko egurrik. Ez da gomendagarria jokalari berrientzat.[/color]"
-
 #: maps/random/polar_sea.jsonsettings.Daytime[0].Description
 msgid "Scattered sunlight illuminates the scenery in a vivid red tone."
 msgstr "Sakabanatutako argi gorriak argitzen du eszena."
@@ -707,6 +719,19 @@ msgstr ".Eszena eguzkiaren argi zuzenez edo zeharkako argiz argitu daiteke."
 #: maps/random/polar_sea.jsonsettings.Daytime[1].Name
 msgid "Daylight"
 msgstr "Eguneko argia"
+
+#: maps/random/polar_sea.jsonsettings.Description
+msgid ""
+"Players start in a cold polar region barren of vegetation. In the sea fish "
+"and whales abound, while the fragile icy land teems with huntable walruses "
+"and deadly wolves. These wolves, made ravenous by the harsh and forbidding "
+"climate, drawn by the scent of prey, have started appearing in terrifying "
+"numbers. A wise and strong ruler will not only achieve victory over his "
+"enemies, but also keep the number of these beasts at bay, lest they "
+"undermine his economy and cause his downfall. [color=\"red\"]Warning: It is "
+"inadvisable to disable treasures, since there is no gatherable wood. Not "
+"recommended for inexperienced players.[/color]"
+msgstr "Jokalariak poloko eskualde hotz eta idor batean hasiko dira. Itsasoan arrainak eta baleak ugariak dira, eta lur ahul izoztua mortsa ehiztari eta otso hilgarriz beterik dago. Otso hauek, dagoen klima gogor eta ezatsegina dela eta jatunak, harrapakinaren usaiari jarraiki, kopuru izugarrietan agertzen hasi dira. Agintari indartsu eta jakintsu batek ez du bakarrik bere etsaia garaituko, pizti hauek ere urruti mantenduko ditu, ea ez duten bere ekonomia suntsitzen eta bere erorketa bultzatzen.  [color=\"red\"]Kontuz: Gomendatzen da altxorrak ez desgaitzea, ez bai dago pilatzeko egurrik. Ez da gomendagarria jokalari berrientzat.[/color]"
 
 #: maps/random/polar_sea.jsonsettings.Name
 msgid "Polar Sea"
@@ -789,6 +814,199 @@ msgstr "Errekak sortzen dira jokalarien artetik eta maparen erdian elkartzen dir
 msgid "Rivers"
 msgstr "Ibaiak"
 
+#: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"The vitalizing waters of the Nile sustain life along its banks, while the "
+"long dry season scorches the land."
+msgstr "Nilo ibaiko ur bizigarriek ertzetako bizitza mantentzen dute, urtaro lehor luzeak lurra erretzen duen bitartean."
+
+#: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Dry Season"
+msgstr "Urtaro Lehorra "
+
+#: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Revelling in the much awaited rain, the baked land transforms into a lush "
+"haven for both man and beast."
+msgstr "Horrenbeste denboraz esperotako euritan, berotutako ura aterpe emankor bihurtzen da gizaki eta piztientzako."
+
+#: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Rainy Season"
+msgstr "Euri garaia"
+
+#: maps/random/rmbiome/generic/alpine.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"A region in the high snowy mountains. Biting winds sweep through the "
+"abundant conifer forests, making even the more resilient deer and mountain "
+"goats shiver."
+msgstr "Goi mendi elurtutako eskualde bat. Haize sarkorrek konifera baso ugarien artean erratza pasatzen dute, mendiko orein eta ahuntz gogorrenak ere dardaraz jarriz."
+
+#: maps/random/rmbiome/generic/alpine.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Alpine"
+msgstr "Alpinoa"
+
+#: maps/random/rmbiome/generic/autumn.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Autumn at its peak. The landscape is a dazzling dash of colors irrevocably "
+"intertwined. The native beech and oak trees of this temperate zone display a"
+" multi-colored foliage while the evergreen pines look on with indifference "
+"at the approaching winter."
+msgstr "Udazken bete betea. Paisaiak elkar loturiko kolore nahasketa miragarria da. Pago zuhaitzek eta bertako haritzek kolore anitzetako hostoak dituzte hostorik galtzeen ez duten pinuek gertu dagoen neguari muzin egiten dioten bitartean. "
+
+#: maps/random/rmbiome/generic/autumn.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Autumn"
+msgstr "Udazkena "
+
+#: maps/random/rmbiome/generic/desert.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"A semi-desert area that boasts numerous clumps of date palms and tamarix "
+"trees. Herds of camels roam the wild and the occasional gazelle jumps up in "
+"fright at being disturbed."
+msgstr "Datil-palmondo eta milazka bilguneak dituen ia basamortua den gunea. Gamelu taldeak naturan zehar dabiltza eta tarteka ikusten den gazelak salto egiten du traba egingo dioten beldurrez. "
+
+#: maps/random/rmbiome/generic/desert.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Desert"
+msgstr "Basamortua"
+
+#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Start in a region blessed with the Mediterranean climate, a warm and "
+"inviting land. The cypresses are in a perpetual struggle with the dominant "
+"fan palms while deer graze in their shadows, blissfully unaware."
+msgstr "Mediterraneoko klimak bedeinkaturiko eskualde batean has zaitez, lurralde bero eta abegikor batean. Altzifrek betiko haizearen kontrako borrokan dihardute oreinak bere itzalean bazkatzen diren bitartean, axolagabe eta zoriontsu. "
+
+#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Mediterranean"
+msgstr "Mediterraneoa"
+
+#: maps/random/rmbiome/generic/savanna.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"The savanna, a dry climate in which only the hardy Baobab trees thrive. "
+"Solitary gazelles graze the sparse grass, while herds of zebras, wildebeest,"
+" giraffes or elephants roam the wild in search of food."
+msgstr "Sabana, Baobab zuhaitz sendoak baino aurrera egiten ez duten klima lehorra. Gazela bakartiak belar exkaxaren artetik dabiltza, zebra, ñu, jirafak edo elefanteak naturan zehar janari bila doazen bitartean."
+
+#: maps/random/rmbiome/generic/savanna.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Savanna"
+msgstr "Sabana "
+
+#: maps/random/rmbiome/generic/snowy.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Settle in the cold regions of the North, the native habitat of the wooly "
+"muskox. Here you can pine away to your content and also hunt the occasional "
+"walrus or two."
+msgstr "Iparreko eskualde hotzetan kokatu, muskox iletsuaren bizilekua. Hemen utz dezakezu daramazuna eta tarteka azalduko den mortsa bat, edo bi, ehizatu."
+
+#: maps/random/rmbiome/generic/snowy.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Snowy"
+msgstr "Elurra"
+
+#: maps/random/rmbiome/generic/temperate.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Lush grasslands carpet the land, in places giving way to magnificent and "
+"diverse broadleaf forests. Poplars, pines, beeches and oaks all vie for "
+"supremacy but this root-war is a neverending struggle. Numerous apple trees "
+"dot the land, deer and sheep gorge themselves on this years fallen fruit."
+msgstr "Zelai mardulak lurra estaltzen dute, hosto zabaleko zuhaitzei tokia eginez. Makal, pinu, pago eta haritzek beren nagusitasunagatik borrokatzen dira, baina sustrai guda hau amaitu ezinezko borroka da. Sagasti anitzek tartekatzen dira lurrean eta ardiek urtetan eroritako fruitu hortaz elikatzen dira."
+
+#: maps/random/rmbiome/generic/temperate.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Temperate"
+msgstr "Epela"
+
+#: maps/random/rmbiome/generic/tropic.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Explore the mysterious tropics. An extremely green, but also extremely humid"
+" environment awaits. The tall Toona trees look on disapprovingly at this "
+"invasion of their privacy and ferocious tigers are determined to defend "
+"their territory at all costs."
+msgstr "Tropiko misteriotsuak esploratu. Giro ezin berdeagoa, eta bide batez ezin umelagoa zain dago. Toona zuhaitz altuek beren pribatutasunaren inbasioa ez dute begi onez ikusten eta tigre krudelek bere lurraldearen babesean arduratuko dira sutsuki."
+
+#: maps/random/rmbiome/generic/tropic.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Tropic"
+msgstr "Tropikoa"
+
+#: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Solidifying it's grip, the harsh cold has succeeded in freezing up the gulf."
+" The thick ice formed is capable of withstanding any weight."
+msgstr "Heldulekua gogortuz, izotz handiak golkoa izoztea lortu du. Sortu den izotz geruza lodiak edozein karga jasan dezake."
+
+#: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Frozen Lake"
+msgstr "Laku izoztua"
+
+#: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"A late spring breeze ripples through the conifer forests of the Gulf of "
+"Bothnia. Herds of deer dot the landscape and playful rabbits frolick in the "
+"undergrowth."
+msgstr "Udaberri bukaerako brisa bat Botnia Golkoko konifera basoen artetik zabaltzen da. Orein taldeak margotzen dira paisaian eta untxi jolastiak sasitzan dabiltza saltoka."
+
+#: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Late Spring"
+msgstr "Udaberri Berantiarra"
+
+#: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Winter has set in, carpeting the land with its first snow. The still "
+"unfrozen gulf offers great fishing opportunities."
+msgstr "Negu betea heldu da, lurra lehen elurrez estalirik. Oraindik izoztu gabeko golkoak arrantzarako aukera handiak uzten ditu."
+
+#: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Winter"
+msgstr "Negua"
+
+#: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Spring in the highlands, yet the heat has already begun making itself felt. "
+"The short-lived green grasses are on the retreat, paving the way for "
+"scorching summer."
+msgstr "Udaberria goi landetan, baino beroa jada sentitzen hasia da. Bizi laburreko belar berde motzak desagertuz doaz, uda sargoriari tokia eginez."
+
+#: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Spring"
+msgstr "Udaberria"
+
+#: maps/random/rmbiome/persian_highlands/summer.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"An arid, hostile land. The blistering heat has baked the ground to a sickly "
+"brown and the remaining trees struggle for survival."
+msgstr "Lur elkor eta etsaia. Bero kiskalgarriak lurra marroi bihurtu du eta gelditzen diren zuhaitzak bizirauteko borrokatzen dira."
+
+#: maps/random/rmbiome/persian_highlands/summer.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Summer"
+msgstr "Uda"
+
 #: maps/random/saharan_oases.jsonsettings.Description
 msgid "Each players starts near a lush oasis in a large, desolate desert."
 msgstr "Jokalari bakoitza oasi oparo batean hasten da, basamortu handi eta atsekabegarri baten erdian."
@@ -869,6 +1087,20 @@ msgstr "[color=\"red\"]GARRANTZITSUA: AAko JOKALARIEK EZ DUTE MAPA HONETAN FUNTZ
 #: maps/random/survivalofthefittest.jsonsettings.Name
 msgid "Survival of the Fittest"
 msgstr "Indartsuenaren Biziraupena"
+
+#: maps/random/survivalofthefittest_triggers.js:163
+#, javascript-format
+msgid "The first wave will start in %(time)s!"
+msgstr "Lehenengo saldoa %(time)s tan hasiko da!"
+
+#: maps/random/survivalofthefittest_triggers.js:268
+msgid "An enemy wave is attacking!"
+msgstr "Etsaien saldoa eraso dator!"
+
+#: maps/random/survivalofthefittest_triggers.js:292
+#, javascript-format
+msgid "%(player)s has been defeated (lost civic center)."
+msgstr "%(player)s menderatua izan da (gizarte zentroa galdu du). "
 
 #: maps/random/syria.jsonsettings.Description
 msgid "Players start in a plains with slightly rolling highlands."
@@ -1004,126 +1236,15 @@ msgstr "Mendi tontorrak inguratutako lakua."
 msgid "Wild Lake"
 msgstr "Laku basatia"
 
-#: maps/random/extinct_volcano_triggers.js:59
-msgid "It keeps on raining, we will have to evacuate soon!"
-msgstr "Euria eten gabe, azkar alde egin beharko dugu!"
-
-#: maps/random/extinct_volcano_triggers.js:60
-msgid "The rivers are standing high, we need to find a safe place!"
-msgstr "Ibaiak gainezka daude, ziur egoteko lekua aurkitu behar dugu!"
-
-#: maps/random/extinct_volcano_triggers.js:61
-msgid "We have to find dry ground, our lands will drown soon!"
-msgstr "Lur lehorra aurkitu beharrean gaude, gure lurrak laster itoko dira!"
-
-#: maps/random/extinct_volcano_triggers.js:62
-msgid "The lakes start swallowing the land, we have to find shelter!"
-msgstr "Lakuak lurra jaten hasi dira, aterpea aurkitu beharrean gaude!"
-
-#: maps/random/jebel_barkal_triggers.js:592
-msgid "Napata is attacking!"
-msgstr "Napata erasotzen ari da!"
-
-#: maps/random/jebel_barkal_triggers.js:602
-#, javascript-format
-msgid "Napata will attack in %(time)s!"
-msgstr "Napata erasoan %(time)s!"
-
-#: maps/random/survivalofthefittest_triggers.js:163
-#, javascript-format
-msgid "The first wave will start in %(time)s!"
-msgstr "Lehenengo saldoa %(time)s tan hasiko da!"
-
-#: maps/random/survivalofthefittest_triggers.js:268
-msgid "An enemy wave is attacking!"
-msgstr "Etsaien saldoa eraso dator!"
-
-#: maps/random/survivalofthefittest_triggers.js:292
-#, javascript-format
-msgid "%(player)s has been defeated (lost civic center)."
-msgstr "%(player)s menderatua izan da (gizarte zentroa galdu du). "
-
-#: maps/scenarios/cinema_demo.js:6
-msgid "Cutscene starts after 5 seconds"
-msgstr "Zinematika 5 segunduetan hasiko da"
-
-#: maps/scenarios/treasure_islands.js:9
-msgid "Collect the treasures before your enemy does! May the better win!"
-msgstr "Altxorraz jabetu etsaiak egin aurretik! Onenak irabaz dezala!"
-
-#: maps/scenarios/treasure_islands.js:28
-msgid "No winner yet, prepare for battle!"
-msgstr "Oraindik ez da garailerik, prestatu borrokarako!"
-
-#: maps/scenarios/treasure_islands.js:43
-msgid "Your enemy's treasury is filled to the brim, you lose!"
-msgstr "Etsaien kutxak aberastasunez beterik daude, galdu duzu!"
-
-#: maps/scenarios/treasure_islands.js:48
-msgid "Your treasury is filled to the brim, you are victorious!"
-msgstr "Zure kutxak aberastasunez beterik daude, irabazi duzu!"
-
-#: maps/scenarios/treasure_islands.js:60
-msgid "Hurry up! Your enemy is close to victory!"
-msgstr "Agudo! Etsaiak ia lortu du!"
-
-#: maps/scenarios/treasure_islands.js:71
-#, javascript-format
-msgid "Treasures remaining to collect for victory:  %(remainingTreasures)s!"
-msgstr "Garaipena lortzeko beharrezko altxorrak:  %(remainingTreasures)s!"
-
-#: maps/scenarios/treasure_islands.js:79
-msgid "You have collected a treasure!"
-msgstr "Altxorraz jabetu zara!"
-
-#: maps/scenarios/treasure_islands.js:91
-msgid "Defeat your enemy to win!"
-msgstr "Garaitu etsaia garaipena lortzeko!"
-
-#: maps/scenarios/treasure_islands.js:100
-#, javascript-format
-msgid "%(lastPlayer)s has won (treasure collected)."
-msgid_plural "%(players)s and %(lastPlayer)s have won (treasure collected)."
-msgstr[0] "%(lastPlayer)s irabazi du (altxorra jasorik)."
-msgstr[1] "%(players)s and %(lastPlayer)s irabazi dute (altxorra jasorik)."
-
-#: maps/scenarios/treasure_islands.js:104
-#, javascript-format
-msgid "%(lastPlayer)s has been defeated (treasure collected)."
-msgid_plural ""
-"%(players)s and %(lastPlayer)s have been defeated (treasure collected)."
-msgstr[0] "%(lastPlayer)s garaitua izan da (altxorra jasorik)."
-msgstr[1] "%(players)s eta %(lastPlayer)s garaituak izan dira (altxorra jasorik)."
-
-#: maps/scenarios/triggers_demo.js:73
-msgid "Testing the yes-no dialog. Do you want to say sure or rather not?"
-msgstr "Baieztapen elkarrizketa probatzen. Nahiago duzu esan bai edo ez?"
-
-#: maps/scenarios/triggers_demo.js:79
-msgid "Sure"
-msgstr "Bai noski!"
-
-#: maps/scenarios/triggers_demo.js:83
-msgid "Say sure"
-msgstr "Esan bai noski"
-
-#: maps/scenarios/triggers_demo.js:89
-msgid "Rather not"
-msgstr "Hobeto ez"
-
-#: maps/scenarios/triggers_demo.js:93
-msgid "Say rather not"
-msgstr "Esan hobeto ez"
-
-#: maps/scenarios/_default.xml:Name:28
-msgid "Unnamed map"
-msgstr "Mapa izengabea"
-
 #: maps/scenarios/_default.xml:Description:28
 #: maps/scenarios/temperate_map.xml:Description:27
 #: maps/scenarios/walltest.xml:Description:27
 msgid "Give an interesting description of your map."
 msgstr "Zure mapari azalpen interesgarria ematen dio."
+
+#: maps/scenarios/_default.xml:Name:28
+msgid "Unnamed map"
+msgstr "Mapa izengabea"
 
 #: maps/scenarios/arcadia.xml:Description:39
 msgid ""
@@ -1131,6 +1252,10 @@ msgid ""
 "\n"
 "Players start on either side of a mountainous region rich in resources. Extra starting buildings help players jumpstart building their new colonies."
 msgstr "Udaberria da Arkadian, Grezia. Udaberriko euriek urte guztian zehar lehor dauden errekak beteko dituzte, gerran dauden bi tribuen lurrak bananduz.\n\nJokalariak baliabidez beterik dagoen eskualde menditsu baten alde bietan hasiko dira. Eraikin gehigarri batzuk jokalariei koloniak egonkortzen lagunduko die."
+
+#: maps/scenarios/arcadia.xml:Name:39
+msgid "Arcadia"
+msgstr "Arkadia"
 
 #: maps/scenarios/arcadia.xml:PlayerData[0].Name:39
 #: maps/scenarios/belgian_bog_night.xml:PlayerData[0].Name:39
@@ -1182,15 +1307,15 @@ msgstr "1. jokalaria"
 msgid "Player 2"
 msgstr "2. jokalaria"
 
-#: maps/scenarios/arcadia.xml:Name:39
-msgid "Arcadia"
-msgstr "Arkadia"
-
 #: maps/scenarios/azure_coast_2p.xml:Description:27
 #: maps/scenarios/azure_coast_4p.xml:Description:27
 #: maps/scenarios/azure_coast_8p.xml:Description:39
 msgid "Help the young Massilia to settle or expel the Greeks from Gaul."
 msgstr "Lagundu Massilia gaztea grekoak Galiatik botatzen edo kolonizatzen."
+
+#: maps/scenarios/azure_coast_2p.xml:Name:27
+msgid "Azure Coast 2"
+msgstr "Azur Kostaldea 2"
 
 #: maps/scenarios/azure_coast_2p.xml:PlayerData[0].Name:27
 msgid "Greeks"
@@ -1200,9 +1325,9 @@ msgstr "Grekoak"
 msgid "Celts"
 msgstr "Zeltak"
 
-#: maps/scenarios/azure_coast_2p.xml:Name:27
-msgid "Azure Coast 2"
-msgstr "Azur Kostaldea 2"
+#: maps/scenarios/azure_coast_4p.xml:Name:27
+msgid "Azure Coast 3"
+msgstr "Azur Kostaldea 3"
 
 #: maps/scenarios/azure_coast_4p.xml:PlayerData[0].Name:27
 msgid "East"
@@ -1220,9 +1345,9 @@ msgstr "Hegoaldea"
 msgid "North"
 msgstr "Iparraldea"
 
-#: maps/scenarios/azure_coast_4p.xml:Name:27
-msgid "Azure Coast 3"
-msgstr "Azur Kostaldea 3"
+#: maps/scenarios/azure_coast_8p.xml:Name:39
+msgid "Azure Coast 1"
+msgstr "Azur Kostaldea 1"
 
 #: maps/scenarios/azure_coast_8p.xml:PlayerData[0].Name:39
 msgid "Antipolis"
@@ -1256,15 +1381,15 @@ msgstr "Cavares"
 msgid "Verguni"
 msgstr "Verguni"
 
-#: maps/scenarios/azure_coast_8p.xml:Name:39
-msgid "Azure Coast 1"
-msgstr "Azur Kostaldea 1"
-
 #: maps/scenarios/battle_for_the_tiber.xml:Description:27
 msgid ""
 "Rome battles against the Etruscan city of Veii for control of the Tiber "
 "River basin."
 msgstr "Erroma Veii hiri Etruskoaren kontra borrokatzen da Tiber ibaiaren arroa kontrolatzeko."
+
+#: maps/scenarios/battle_for_the_tiber.xml:Name:27
+msgid "Battle for the Tiber"
+msgstr "Tiber lortzeko Borroka"
 
 #: maps/scenarios/battle_for_the_tiber.xml:PlayerData[0].Name:27
 msgid "Rome"
@@ -1279,10 +1404,6 @@ msgstr "Veii"
 msgid "Gallic Invaders"
 msgstr "Galiar Inbasoreak"
 
-#: maps/scenarios/battle_for_the_tiber.xml:Name:27
-msgid "Battle for the Tiber"
-msgstr "Tiber lortzeko Borroka"
-
 #: maps/scenarios/belgian_bog_night.xml:Description:39
 msgid "Two Celtic tribes face off across a large bog at night."
 msgstr "Bi tribu Zelta borrokatuko dira lokazti batean borrokatuko dira luze eta zabal gau argipean."
@@ -1290,14 +1411,6 @@ msgstr "Bi tribu Zelta borrokatuko dira lokazti batean borrokatuko dira luze eta
 #: maps/scenarios/belgian_bog_night.xml:Name:39
 msgid "Belgian Bog Night"
 msgstr "Belgikar Lokaztia Gauez"
-
-#: maps/scenarios/bridge_demo.xml:PlayerData[0].Name:27
-msgid "Bridge Demo"
-msgstr "Zubien Adibidea"
-
-#: maps/scenarios/bridge_demo.xml:PlayerData[1].Name:27
-msgid "Other"
-msgstr "Beste Bat"
 
 #: maps/scenarios/bridge_demo.xml:Description:27
 msgid "Demo map showing how to simulate bridges in the Atlas map editor."
@@ -1307,9 +1420,21 @@ msgstr "Adibide mapa bat Atlas mapa editorean zubiak nola simulatu erakusten due
 msgid "Bridge demo"
 msgstr "Zubien Adibidea"
 
+#: maps/scenarios/bridge_demo.xml:PlayerData[0].Name:27
+msgid "Bridge Demo"
+msgstr "Zubien Adibidea"
+
+#: maps/scenarios/bridge_demo.xml:PlayerData[1].Name:27
+msgid "Other"
+msgstr "Beste Bat"
+
 #: maps/scenarios/campaign_test_map.xml:Description:39
 msgid "A test map for potential Strategic Campaigns."
 msgstr "Adibide mapa Kanpaina Estrategiko alegizkoentzat."
+
+#: maps/scenarios/campaign_test_map.xml:Name:39
+msgid "Strategic Campaign Proof of Concept"
+msgstr "Estrategia Kanpaina - Kontzeptu proba"
 
 #: maps/scenarios/campaign_test_map.xml:PlayerData[0].Name:39
 msgid "Delian League"
@@ -1345,17 +1470,21 @@ msgstr "Liga Peloponesiarra"
 msgid "Religious Institutions"
 msgstr "Instituzio Erlijiosoak"
 
-#: maps/scenarios/campaign_test_map.xml:Name:39
-msgid "Strategic Campaign Proof of Concept"
-msgstr "Estrategia Kanpaina - Kontzeptu proba"
-
 #: maps/scenarios/campaign_test_map_2_heightmap.xml:Name:39
 msgid "Campaign Map - Test"
 msgstr "Kanpaina Mapa - Proba"
 
+#: maps/scenarios/cinema_demo.js:6
+msgid "Cutscene starts after 5 seconds"
+msgstr "Zinematika 5 segunduetan hasiko da"
+
 #: maps/scenarios/cinema_demo.xml:Description:40
 msgid "Demo map for cinematic camera movements."
 msgstr "Kameraren zinematika mugimenduetarako adibidea."
+
+#: maps/scenarios/cinema_demo.xml:Name:40
+msgid "Cinema Demo"
+msgstr "Zinema Adibidea"
 
 #: maps/scenarios/cinema_demo.xml:PlayerData[1].Name:40
 msgid "Xerxes I"
@@ -1365,27 +1494,23 @@ msgstr "Xerxes I"
 msgid "You"
 msgstr "Zu"
 
-#: maps/scenarios/cinema_demo.xml:Name:40
-msgid "Cinema Demo"
-msgstr "Zinema Adibidea"
-
-#: maps/scenarios/combat_demo.xml:Name:27
-msgid "Combat Demo"
-msgstr "Borroka Adibidea"
-
 #: maps/scenarios/combat_demo.xml:Description:27
 msgid ""
 "A combat demonstration between a small number of ranged and melee infantry "
 "units."
 msgstr "Infanteria unitate gutxi batzuen arteko buruz-buruko eta urrutiko borroka baten adibidea."
 
-#: maps/scenarios/combat_demo_huge.xml:Name:74
-msgid "Combat Demo (Huge)"
-msgstr "Borroka Adibidea (Handia)"
+#: maps/scenarios/combat_demo.xml:Name:27
+msgid "Combat Demo"
+msgstr "Borroka Adibidea"
 
 #: maps/scenarios/combat_demo_huge.xml:Description:74
 msgid "1296 units. Extremely slow (we need more optimisation)."
 msgstr "1296 unitate. Oso-oso poliki (optimizazio handiagoa behar dugu)."
+
+#: maps/scenarios/combat_demo_huge.xml:Name:74
+msgid "Combat Demo (Huge)"
+msgstr "Borroka Adibidea (Handia)"
 
 #: maps/scenarios/death_canyon_invasion_force.xml:Description:39
 msgid ""
@@ -1393,6 +1518,10 @@ msgid ""
 "\n"
 "2 teams of 2 players. 1 player on each team starts with a base and resources. The other player starts with only a large army to assist their teammate."
 msgstr "Basamortua ebakitzen duen harrizko zintzur sakona. Hainbat jokalarientzako partidetarako ona.\n\n2 talde 2 jokalariz. Talde bakoitzeko jokalari 1 base bat eta baliabideekin hasten da. Bestea bere kidea laguntzeko armada handi batez baino ez da hasten."
+
+#: maps/scenarios/death_canyon_invasion_force.xml:Name:39
+msgid "Death Canyon - Invasion Force"
+msgstr "Herioaren Zintzurra - Indar Inbasorea"
 
 #: maps/scenarios/death_canyon_invasion_force.xml:PlayerData[1].Name:39
 #: maps/scenarios/death_canyon_invasion_force.xml:PlayerData[3].Name:39
@@ -1411,10 +1540,6 @@ msgstr "Indar Inbasorea"
 #: maps/scenarios/siwa_oasis.xml:PlayerData[2].Name:27
 msgid "Player 3"
 msgstr "3. jokalaria"
-
-#: maps/scenarios/death_canyon_invasion_force.xml:Name:39
-msgid "Death Canyon - Invasion Force"
-msgstr "Herioaren Zintzurra - Indar Inbasorea"
 
 #: maps/scenarios/demo_trading.xml:Description:27
 msgid "A demonstration of the new trading feature."
@@ -1441,6 +1566,10 @@ msgid ""
 "Gameplay is tight and fast, with no time to stop and smell the roses."
 msgstr "Basamortu mapa txiki bat. Jokalari bakoitza oasi batean hasiko da lur mortu itsugarri eta hondartsu bati begira, eraso eta harraparitzen zain.\n\nPartida txikia eta azkarra da, ez duzu astirik izango loreak usaintzen gelditzeko."
 
+#: maps/scenarios/fast_oasis.xml:Name:27
+msgid "Fast Oasis"
+msgstr "Oasi Azkarra"
+
 #: maps/scenarios/fast_oasis.xml:PlayerData[3].Name:27
 #: maps/scenarios/gold_rush.xml:PlayerData[3].Name:27
 #: maps/scenarios/necropolis.xml:PlayerData[3].Name:39
@@ -1449,17 +1578,13 @@ msgstr "Basamortu mapa txiki bat. Jokalari bakoitza oasi batean hasiko da lur mo
 msgid "Player 4"
 msgstr "4. jokalaria"
 
-#: maps/scenarios/fast_oasis.xml:Name:27
-msgid "Fast Oasis"
-msgstr "Oasi Azkarra"
+#: maps/scenarios/fishing_demo.xml:Description:27
+msgid "Test out fishing with a fishing boat. Still in development."
+msgstr "Txalupaz arrantzatzearen proba. Oraindik garatu bidean."
 
 #: maps/scenarios/fishing_demo.xml:Name:27
 msgid "Fishing Demo"
 msgstr "Arrantz Adibidea"
-
-#: maps/scenarios/fishing_demo.xml:Description:27
-msgid "Test out fishing with a fishing boat. Still in development."
-msgstr "Txalupaz arrantzatzearen proba. Oraindik garatu bidean."
 
 #: maps/scenarios/flight_demo.xml:Description:40
 msgid "Fly some Mustangs."
@@ -1535,8 +1660,12 @@ msgid ""
 "This is a WFG community-designed map by: SMST, NOXAS1, and Yodaspirine."
 msgstr "Hainbat jokalarientzako mapa. Jokalari bakoitza baliabide eskaseko uhate txiki batean hasiko da lur eremu handi baten bazterrean.\n\nHau komunitateak diseinaturiko WFGren mapa bat da. SMST, NOXAS1 eta Yodaspirinek egina."
 
-#: maps/scenarios/miletus.xml:PlayerData[0].Name:27
+#: maps/scenarios/miletus.xml:Description:27
+msgid "A sandbox scenario for one player."
+msgstr "Probetarako jokalekua jokalari bakar batentzako. "
+
 #: maps/scenarios/miletus.xml:Name:27
+#: maps/scenarios/miletus.xml:PlayerData[0].Name:27
 msgid "Miletus"
 msgstr "Mileto"
 
@@ -1545,29 +1674,25 @@ msgstr "Mileto"
 msgid "Romans"
 msgstr "Erromatarrak"
 
-#: maps/scenarios/miletus.xml:Description:27
-msgid "A sandbox scenario for one player."
-msgstr "Probetarako jokalekua jokalari bakar batentzako. "
-
-#: maps/scenarios/multiplayer_demo.xml:Name:27
-msgid "Multiplayer Demo"
-msgstr "Hainbat jokalarientzako adibidea"
-
 #: maps/scenarios/multiplayer_demo.xml:Description:27
 msgid ""
 "Small map with lots of resources and some water, for testing gameplay in "
 "non-competitive multiplayer matches."
 msgstr "Baliabide asko eta ur gutxiko mapa txikia, erabilgarria lehiarik gabe hainbat jokalarien partiden dinamika probatzeko."
 
-#: maps/scenarios/napata_reconstruction.xml:Name:40
-msgid "Napata Reconstruction"
-msgstr "Napata berreraikitzea"
+#: maps/scenarios/multiplayer_demo.xml:Name:27
+msgid "Multiplayer Demo"
+msgstr "Hainbat jokalarientzako adibidea"
 
 #: maps/scenarios/napata_reconstruction.xml:Description:40
 msgid ""
 "This map displays a reconstruction of the ancient city Napata. "
 "[color=\"red\"]Note:[/color] The map is not intended to be playable."
 msgstr "Mapa honek Napata antzinako hiria berreraikitzen erakusten du. [color=\"red\"]Oharra:[/color] Mapa ez da erreproduzitzeko."
+
+#: maps/scenarios/napata_reconstruction.xml:Name:40
+msgid "Napata Reconstruction"
+msgstr "Napata berreraikitzea"
 
 #: maps/scenarios/necropolis.xml:Description:39
 msgid ""
@@ -1588,19 +1713,23 @@ msgstr "Unitateen mugitze algoritmoak probatzeko mapa."
 msgid "Pathfinding Demo"
 msgstr "Pathfinding Adibidea"
 
-#: maps/scenarios/pathfinding_terrain_demo.xml:Name:27
-msgid "Pathfinding Terrain Demo"
-msgstr "Pathfinding Lurren Adibidea"
-
 #: maps/scenarios/pathfinding_terrain_demo.xml:Description:27
 msgid ""
 "A map for testing movement costs and terrain properties in the A* "
 "pathfinder."
 msgstr "A * pathfinder-aren mugimendua eta lurraren ezaugarrien kostua probatzeko mapa.\n"
 
+#: maps/scenarios/pathfinding_terrain_demo.xml:Name:27
+msgid "Pathfinding Terrain Demo"
+msgstr "Pathfinding Lurren Adibidea"
+
 #: maps/scenarios/peloponnese.xml:Description:39
 msgid "A real-world map of the Greek homeland."
 msgstr "Grekoen bizilekuaren tamaina errealeko mapa."
+
+#: maps/scenarios/peloponnese.xml:Name:39
+msgid "Peloponnesian Wars"
+msgstr "Peloponesoko Gudak"
 
 #: maps/scenarios/peloponnese.xml:PlayerData[0].Name:39
 msgid "Athens"
@@ -1618,10 +1747,6 @@ msgstr "Elis"
 msgid "Corinth"
 msgstr "Korinto"
 
-#: maps/scenarios/peloponnese.xml:Name:39
-msgid "Peloponnesian Wars"
-msgstr "Peloponesoko Gudak"
-
 #: maps/scenarios/pickup_test_map.xml:Description:40
 msgid ""
 "Test map for picking units up, with sea and two islands. Trigger points are "
@@ -1636,6 +1761,10 @@ msgstr "Bilketaren froga mapa"
 msgid "Demo map for new fancy water effects."
 msgstr "Adibidezko mapa uraren alegiazko efektu berriak probatzeko."
 
+#: maps/scenarios/polynesia.xml:Name:39
+msgid "Polynesia"
+msgstr "Polinesia"
+
 #: maps/scenarios/polynesia.xml:PlayerData[0].Name:39
 msgid "Samoa"
 msgstr "Samoa"
@@ -1643,10 +1772,6 @@ msgstr "Samoa"
 #: maps/scenarios/polynesia.xml:PlayerData[1].Name:39
 msgid "Vanuatu"
 msgstr "Vanuatu"
-
-#: maps/scenarios/polynesia.xml:Name:39
-msgid "Polynesia"
-msgstr "Polinesia"
 
 #: maps/scenarios/reservoir.xml:Description:27
 msgid "A demo showing water planes."
@@ -1656,13 +1781,13 @@ msgstr "Ur lautadak erakusten dituen adibidea."
 msgid "Reservoir"
 msgstr "Uraska"
 
-#: maps/scenarios/resource_demo.xml:Name:27
-msgid "Resource demo"
-msgstr "Baliabide Adibidea"
-
 #: maps/scenarios/resource_demo.xml:Description:27
 msgid "Demo map for resource gathering."
 msgstr "Adibidezko mapa baliabideak ustiatzeko."
+
+#: maps/scenarios/resource_demo.xml:Name:27
+msgid "Resource demo"
+msgstr "Baliabide Adibidea"
 
 #: maps/scenarios/road_demo.xml:Description:27
 msgid "Demo map showcasing Temperate Road decals."
@@ -1706,6 +1831,10 @@ msgid ""
 "Play with the Athenians faction in a non-threatening sandbox environment."
 msgstr "Esperimentatu nahi bezala Atenastarren zibilizazioarekin  arriskurik gabeko probetarako ingurune batean."
 
+#: maps/scenarios/sandbox_athenians.xml:Name:39
+msgid "Sandbox - The Athenians"
+msgstr "Probetarako jokalekua - Atenastarrak"
+
 #: maps/scenarios/sandbox_athenians.xml:PlayerData[0].Name:39
 msgid "The Athenians"
 msgstr "Atenastarrak"
@@ -1729,27 +1858,27 @@ msgstr "Persiarrak"
 msgid "The Gauls"
 msgstr "Galiarrak"
 
-#: maps/scenarios/sandbox_athenians.xml:Name:39
-msgid "Sandbox - The Athenians"
-msgstr "Probetarako jokalekua - Atenastarrak"
-
 #: maps/scenarios/sandbox_britons.xml:Description:39
 #: maps/scenarios/sandbox_gauls.xml:Description:40
 msgid "Play around with the Gallic faction in an idyllic sandbox setting."
 msgstr "Esperimentatu nahi bezala Galiarrekin probetarako inguru sinestezinean."
+
+#: maps/scenarios/sandbox_britons.xml:Name:39
+msgid "Sandbox - The Britons"
+msgstr "Probetarako jokalekua - Britaniarrak"
 
 #: maps/scenarios/sandbox_britons.xml:PlayerData[3].Name:39
 #: maps/scenarios/sandbox_gauls.xml:PlayerData[4].Name:40
 msgid "Roman Interlopers"
 msgstr "Erromatar Mugalariak"
 
-#: maps/scenarios/sandbox_britons.xml:Name:39
-msgid "Sandbox - The Britons"
-msgstr "Probetarako jokalekua - Britaniarrak"
-
 #: maps/scenarios/sandbox_carthaginians.xml:Description:39
 msgid "Explore the Carthaginian Buildings and Units."
 msgstr "Kartagotarren Eraikin eta Unitateak esploratu."
+
+#: maps/scenarios/sandbox_carthaginians.xml:Name:39
+msgid "Sandbox - The Carthaginians"
+msgstr "Probetarako jokalekua - Kartagotarrak"
 
 #: maps/scenarios/sandbox_carthaginians.xml:PlayerData[0].Name:39
 #: maps/scenarios/serengeti.xml:PlayerData[0].Name:27
@@ -1760,10 +1889,6 @@ msgstr "Kartago"
 #: maps/scenarios/sandbox_persians.xml:PlayerData[1].Name:39
 msgid "Creeps"
 msgstr "Basapiztiak"
-
-#: maps/scenarios/sandbox_carthaginians.xml:Name:39
-msgid "Sandbox - The Carthaginians"
-msgstr "Probetarako jokalekua - Kartagotarrak"
 
 #: maps/scenarios/sandbox_gauls.xml:Name:40
 msgid "Sandbox - The Gauls"
@@ -1781,6 +1906,10 @@ msgstr "Probetarako jokalekua - Iberiarrak"
 msgid "Play the Kushites faction in a non-threatening sandbox scenario."
 msgstr "Jolastu Kux zibilizazioarekin arriskutsua ez den probetarako jokaleku batean."
 
+#: maps/scenarios/sandbox_kushites.xml:Name:40
+msgid "Sandbox - The Kushites"
+msgstr "Probetarako jokalekua - Kuxtarrak"
+
 #: maps/scenarios/sandbox_kushites.xml:PlayerData[1].Name:40
 msgid "Kushites"
 msgstr "Kuxtarrak"
@@ -1789,26 +1918,26 @@ msgstr "Kuxtarrak"
 msgid "Egyptians"
 msgstr "Egiptoarrak"
 
-#: maps/scenarios/sandbox_kushites.xml:Name:40
-msgid "Sandbox - The Kushites"
-msgstr "Probetarako jokalekua - Kuxtarrak"
-
 #: maps/scenarios/sandbox_macedonians.xml:Description:39
 msgid ""
 "Play with the Macedonians faction in a non-threatening sandbox environment."
 msgstr "Esperimentatu nahi bezala Mazedoniarren zibilizazioarekin arriskurik gabeko probetarako ingurune batean."
 
-#: maps/scenarios/sandbox_macedonians.xml:PlayerData[0].Name:39
-msgid "The Macedonians"
-msgstr "Mazedoniarrak"
-
 #: maps/scenarios/sandbox_macedonians.xml:Name:39
 msgid "Sandbox - The Macedonians"
 msgstr "Probetarako jokalekua - Mazedoniarrak"
 
+#: maps/scenarios/sandbox_macedonians.xml:PlayerData[0].Name:39
+msgid "The Macedonians"
+msgstr "Mazedoniarrak"
+
 #: maps/scenarios/sandbox_mauryas.xml:Description:39
 msgid "Mauryan Indian faction showcase map."
 msgstr "Hindu Mauryarren fakzioaren adibide mapa."
+
+#: maps/scenarios/sandbox_mauryas.xml:Name:39
+msgid "Sandbox - The Mauryas"
+msgstr "Probetarako jokalekua - Mauryarrak"
 
 #: maps/scenarios/sandbox_mauryas.xml:PlayerData[0].Name:39
 msgid "Mauryan Indians"
@@ -1818,26 +1947,26 @@ msgstr "Hindu Mauryarrak"
 msgid "Enemy"
 msgstr "Etsaia"
 
-#: maps/scenarios/sandbox_mauryas.xml:Name:39
-msgid "Sandbox - The Mauryas"
-msgstr "Probetarako jokalekua - Mauryarrak"
-
 #: maps/scenarios/sandbox_persians.xml:Description:39
 msgid "Demo Map. Play with the Persian civilisation in a sandbox setting."
 msgstr "Probetarako mapa. Jokalariak Pertsiar zibilizazioarekin esperimentatzeko."
-
-#: maps/scenarios/sandbox_persians.xml:PlayerData[0].Name:39
-msgid "Achaemenids"
-msgstr "Achaemenids"
 
 #: maps/scenarios/sandbox_persians.xml:Name:39
 msgid "Sandbox - The Persians"
 msgstr "Probetarako jokalekua - Pertsiarrak"
 
+#: maps/scenarios/sandbox_persians.xml:PlayerData[0].Name:39
+msgid "Achaemenids"
+msgstr "Achaemenids"
+
 #: maps/scenarios/sandbox_ptolemies.xml:Description:39
 #: maps/skirmishes/sporades_islands_2p.xml:Description:39
 msgid "An islands map good for intense naval combat."
 msgstr "Uharte mapa bat, ona baino hobea itsas borroka amaiezina burutzeko."
+
+#: maps/scenarios/sandbox_ptolemies.xml:Name:39
+msgid "Sandbox - The Ptolemaic Egyptians"
+msgstr "Probetarako jokalekua - Egiptoar Ptolemaikoak"
 
 #: maps/scenarios/sandbox_ptolemies.xml:PlayerData[0].Name:39
 msgid "Ptolemaios A' Soter"
@@ -1847,14 +1976,14 @@ msgstr "Ptolemaios A' Soter"
 msgid "Kautilya"
 msgstr "Kautilya"
 
-#: maps/scenarios/sandbox_ptolemies.xml:Name:39
-msgid "Sandbox - The Ptolemaic Egyptians"
-msgstr "Probetarako jokalekua - Egiptoar Ptolemaikoak"
-
 #: maps/scenarios/sandbox_ptolemies_02.xml:Description:39
 msgid ""
 "Play with the Ptolemaic Egyptians in a non-threatening sandbox setting."
 msgstr "Probetarako antzokia jokalariak Egipto-Ptolomaiko zibilizazioarekin esperimentatzeko."
+
+#: maps/scenarios/sandbox_ptolemies_02.xml:Name:39
+msgid "Sandbox - The Ptolemaic Egyptians 2"
+msgstr "Probetarako jokalekua - Egiptoar Ptolemaikoak 2"
 
 #: maps/scenarios/sandbox_ptolemies_02.xml:PlayerData[0].Name:39
 msgid "Ptolemy \"Savior\""
@@ -1868,10 +1997,6 @@ msgstr "Seleuzidak"
 msgid "Libyans"
 msgstr "Libiarrak"
 
-#: maps/scenarios/sandbox_ptolemies_02.xml:Name:39
-msgid "Sandbox - The Ptolemaic Egyptians 2"
-msgstr "Probetarako jokalekua - Egiptoar Ptolemaikoak 2"
-
 #: maps/scenarios/sandbox_romans.xml:Description:39
 msgid "A sandbox scenario for players to try out the Roman civilisation."
 msgstr "Probetarako jokalekua jokalariak Erromatarren zibilizazioarekin esperimentatzeko."
@@ -1884,6 +2009,10 @@ msgstr "Probetarako jokalekua - Erromako Errepublika"
 msgid "A sandbox scenario for players to try out the Seleucid civilisation."
 msgstr "Probetarako jokalekua jokalariak Seleuzidarren zibilizazioarekin esperimentatzeko."
 
+#: maps/scenarios/sandbox_seleucids.xml:Name:39
+msgid "Sandbox - The Seleucids"
+msgstr "Probetarako jokalekua - Seleuziarrak"
+
 #: maps/scenarios/sandbox_seleucids.xml:PlayerData[0].Name:39
 msgid "The Seleucids"
 msgstr "Seleuziarrak"
@@ -1891,10 +2020,6 @@ msgstr "Seleuziarrak"
 #: maps/scenarios/sandbox_seleucids.xml:PlayerData[1].Name:39
 msgid "The Ptolemies"
 msgstr "Ptolomeok"
-
-#: maps/scenarios/sandbox_seleucids.xml:Name:39
-msgid "Sandbox - The Seleucids"
-msgstr "Probetarako jokalekua - Seleuziarrak"
 
 #: maps/scenarios/sandbox_spartans.xml:Description:39
 msgid ""
@@ -1905,15 +2030,25 @@ msgstr "Esperimentatu nahi bezala Espartarren zibilizazioarekin arriskurik gabek
 msgid "Sandbox - The Spartans"
 msgstr "Probetarako jokalekua - Espartarrak"
 
-#: maps/scenarios/savanna_ravine.xml:Name:39
-msgid "Savanna Ravine"
-msgstr "Sabanako Mendiartea"
-
 #: maps/scenarios/savanna_ravine.xml:Description:39
 msgid ""
 "A wide-open Savanna map with a small ravine running down the center, which "
 "is easily forded."
 msgstr "Sabanan kokaturiko mapa irekia erdian mendiarte txiki bat duena, igarotzeko erraza."
+
+#: maps/scenarios/savanna_ravine.xml:Name:39
+msgid "Savanna Ravine"
+msgstr "Sabanako Mendiartea"
+
+#: maps/scenarios/serengeti.xml:Description:27
+msgid ""
+"The African serengeti has herds of animals criss crossing the plain. Mineral"
+" wealth is bountiful and wood is in full supply."
+msgstr "Afrikako serengetia bere lautada igarotzen duten abere saldoez beterik dago. Mineral aberastasuna aparta da eta egur hornidura erabatekoa da."
+
+#: maps/scenarios/serengeti.xml:Name:27
+msgid "Serengeti 1"
+msgstr "Serengeti 1"
 
 #: maps/scenarios/serengeti.xml:PlayerData[1].Name:27
 msgid "Iberia"
@@ -1927,27 +2062,17 @@ msgstr "Grezia"
 msgid "Persia"
 msgstr "Persia"
 
-#: maps/scenarios/serengeti.xml:Description:27
-msgid ""
-"The African serengeti has herds of animals criss crossing the plain. Mineral"
-" wealth is bountiful and wood is in full supply."
-msgstr "Afrikako serengetia bere lautada igarotzen duten abere saldoez beterik dago. Mineral aberastasuna aparta da eta egur hornidura erabatekoa da."
-
-#: maps/scenarios/serengeti.xml:Name:27
-msgid "Serengeti 1"
-msgstr "Serengeti 1"
-
 #: maps/scenarios/ship_formations.xml:Description:27
 msgid "Ship formations mockup."
 msgstr "Ontzi formazioen proba."
 
-#: maps/scenarios/ship_formations.xml:PlayerData[0].Name:27
-msgid "Ships"
-msgstr "Ontziak"
-
 #: maps/scenarios/ship_formations.xml:Name:27
 msgid "Ship Formations"
 msgstr "Ontzi Formazioak"
+
+#: maps/scenarios/ship_formations.xml:PlayerData[0].Name:27
+msgid "Ships"
+msgstr "Ontziak"
 
 #: maps/scenarios/shipattacks.xml:Description:27
 msgid "Move ships around. Attack other ships."
@@ -2008,6 +2133,10 @@ msgid ""
 "Will Alexander push his way through The Persian Gates and fulfill his destiny, or will Ariobarzanes defend the rugged ancient land of Persis against a foreign invader?"
 msgstr "\"Grekoen ametsa betidanik izan da Ekialderantz joatea\".\n\n\"Zaindu harrokeria hortaz. Sortaldeak gizonak eta ametsak irentsi ohi ditu\".\n\nAlejandrok ahal izango du Pertsiarren ateak igaro eta bere destinoa bete edota Ariobarzanesek ahal izango du Persis antzinako lurra inbasore arrotzetatik defendatu?"
 
+#: maps/scenarios/the_persian_gates.xml:Name:27
+msgid "The Persian Gates"
+msgstr "Pertsiar Ateak"
+
 #: maps/scenarios/the_persian_gates.xml:PlayerData[0].Name:27
 msgid "Alexandros Megas"
 msgstr "Alexandros Megas"
@@ -2024,15 +2153,15 @@ msgstr "Ariobarzanes"
 msgid "Persians"
 msgstr "Persiarrak"
 
-#: maps/scenarios/the_persian_gates.xml:Name:27
-msgid "The Persian Gates"
-msgstr "Pertsiar Ateak"
-
 #: maps/scenarios/third_macedonian_war.xml:Description:27
 msgid ""
 "The Romans encroach upon Macedonian lands for the third and final time. Can "
 "the once-proud Macedonians prevail against the Roman juggernaut?"
 msgstr "Erromatarrak hirugarren eta azkeneko aldiz hartzen dituzte mazedoniarren lurrak. Mazedoniar harro ohiek erromatar erraldoia garaitu ahal izango dute?"
+
+#: maps/scenarios/third_macedonian_war.xml:Name:27
+msgid "Third Macedonian War"
+msgstr "Hirugarren Mazedoniar Guda"
 
 #: maps/scenarios/third_macedonian_war.xml:PlayerData[0].Name:27
 msgid "Lucius Aemilius Paullus"
@@ -2046,9 +2175,53 @@ msgstr "Mazedoniako Perseo "
 msgid "Greek Allies"
 msgstr "Aliatu Grekoak"
 
-#: maps/scenarios/third_macedonian_war.xml:Name:27
-msgid "Third Macedonian War"
-msgstr "Hirugarren Mazedoniar Guda"
+#: maps/scenarios/treasure_islands.js:9
+msgid "Collect the treasures before your enemy does! May the better win!"
+msgstr "Altxorraz jabetu etsaiak egin aurretik! Onenak irabaz dezala!"
+
+#: maps/scenarios/treasure_islands.js:28
+msgid "No winner yet, prepare for battle!"
+msgstr "Oraindik ez da garailerik, prestatu borrokarako!"
+
+#: maps/scenarios/treasure_islands.js:43
+msgid "Your enemy's treasury is filled to the brim, you lose!"
+msgstr "Etsaien kutxak aberastasunez beterik daude, galdu duzu!"
+
+#: maps/scenarios/treasure_islands.js:48
+msgid "Your treasury is filled to the brim, you are victorious!"
+msgstr "Zure kutxak aberastasunez beterik daude, irabazi duzu!"
+
+#: maps/scenarios/treasure_islands.js:60
+msgid "Hurry up! Your enemy is close to victory!"
+msgstr "Agudo! Etsaiak ia lortu du!"
+
+#: maps/scenarios/treasure_islands.js:71
+#, javascript-format
+msgid "Treasures remaining to collect for victory:  %(remainingTreasures)s!"
+msgstr "Garaipena lortzeko beharrezko altxorrak:  %(remainingTreasures)s!"
+
+#: maps/scenarios/treasure_islands.js:79
+msgid "You have collected a treasure!"
+msgstr "Altxorraz jabetu zara!"
+
+#: maps/scenarios/treasure_islands.js:91
+msgid "Defeat your enemy to win!"
+msgstr "Garaitu etsaia garaipena lortzeko!"
+
+#: maps/scenarios/treasure_islands.js:100
+#, javascript-format
+msgid "%(lastPlayer)s has won (treasure collected)."
+msgid_plural "%(players)s and %(lastPlayer)s have won (treasure collected)."
+msgstr[0] "%(lastPlayer)s irabazi du (altxorra jasorik)."
+msgstr[1] "%(players)s and %(lastPlayer)s irabazi dute (altxorra jasorik)."
+
+#: maps/scenarios/treasure_islands.js:104
+#, javascript-format
+msgid "%(lastPlayer)s has been defeated (treasure collected)."
+msgid_plural ""
+"%(players)s and %(lastPlayer)s have been defeated (treasure collected)."
+msgstr[0] "%(lastPlayer)s garaitua izan da (altxorra jasorik)."
+msgstr[1] "%(players)s eta %(lastPlayer)s garaituak izan dira (altxorra jasorik)."
 
 #: maps/scenarios/treasure_islands.xml:Description:39
 msgid ""
@@ -2059,6 +2232,26 @@ msgstr "Aurkitu eta bildu altxorrak uharte txikietan eta uretan. Lortu zure etsa
 #: maps/scenarios/treasure_islands.xml:Name:39
 msgid "Treasure Islands"
 msgstr "Altxor Irlak"
+
+#: maps/scenarios/triggers_demo.js:73
+msgid "Testing the yes-no dialog. Do you want to say sure or rather not?"
+msgstr "Baieztapen elkarrizketa probatzen. Nahiago duzu esan bai edo ez?"
+
+#: maps/scenarios/triggers_demo.js:79
+msgid "Sure"
+msgstr "Bai noski!"
+
+#: maps/scenarios/triggers_demo.js:83
+msgid "Say sure"
+msgstr "Esan bai noski"
+
+#: maps/scenarios/triggers_demo.js:89
+msgid "Rather not"
+msgstr "Hobeto ez"
+
+#: maps/scenarios/triggers_demo.js:93
+msgid "Say rather not"
+msgstr "Esan hobeto ez"
 
 #: maps/scenarios/triggers_demo.xml:Description:39
 msgid ""
@@ -2090,13 +2283,13 @@ msgstr "mapa hau unitateen mugimenduaren oinarrizko kaus batzuk probatzeko disei
 msgid "Unit Motion Integration Test"
 msgstr "Unitateen mugimenduaren integrazio proba"
 
-#: maps/scenarios/units_demo.xml:Name:28
-msgid "Units Demo"
-msgstr "Unitateen Adibidea"
-
 #: maps/scenarios/units_demo.xml:Description:28
 msgid "Every unit in the game."
 msgstr "Unitate bakoitza jokoan."
+
+#: maps/scenarios/units_demo.xml:Name:28
+msgid "Units Demo"
+msgstr "Unitateen Adibidea"
 
 #: maps/scenarios/walls.xml:Description:27
 msgid "Walls."
@@ -2110,13 +2303,13 @@ msgstr "Hesiak"
 msgid "WallTest"
 msgstr "Hesien proba"
 
-#: maps/scenarios/we_are_legion.xml:Name:27
-msgid "We Are Legion"
-msgstr "Legioa Gara"
-
 #: maps/scenarios/we_are_legion.xml:Description:27
 msgid "A quick battle demo map using Roman legionaries."
 msgstr "Borroka azkarraren adibidea Erromatar legionarioekin."
+
+#: maps/scenarios/we_are_legion.xml:Name:27
+msgid "We Are Legion"
+msgstr "Legioa Gara"
 
 #: maps/skirmishes/acropolis_bay_2p.xml:Description:39
 msgid ""
@@ -2172,10 +2365,6 @@ msgstr "Bactriako (gaur egungo Afganistan) lur lehor eta mineraletan aberatsa Hi
 msgid "Bactria (2)"
 msgstr "Bactria (2)"
 
-#: maps/skirmishes/barcania_3p.xml:Name:27
-msgid "Barcania (3)"
-msgstr "Barcania (3)"
-
 #: maps/skirmishes/barcania_3p.xml:Description:27
 msgid ""
 "A wild and wooded isle, full of forests, gold, and mystery. Mountains, seas,"
@@ -2183,6 +2372,10 @@ msgid ""
 "lots of potential for skirmishing and guerilla warfare as well as tough "
 "defensive fighting or aggressive maneuvers."
 msgstr "Uharte basatia oihan, urre eta misterioz beteriko Mendiak, itsasoak eta baso ilunak 3 jokalarientzako mapa hau bizkorra eta bizia egiten dute, gerrillarako eta borroka txikiak egiteko ahalmen handia emanez, hala nola babes estrategiak landu  edota erasorako amarruetarako."
+
+#: maps/skirmishes/barcania_3p.xml:Name:27
+msgid "Barcania (3)"
+msgstr "Barcania (3)"
 
 #: maps/skirmishes/belgian_bog_2p.xml:Description:39
 msgid ""
@@ -2201,6 +2394,10 @@ msgid ""
 "as the Butana Steppe."
 msgstr "Sahara Hegoaldean, Nilo Ekialdean, gaur egun Butana Steppe izenez ezaguna den eskualde erdi-elkor bat dago."
 
+#: maps/skirmishes/butana_steppe_2p.xml:Name:40
+msgid "Butana Steppe (2)"
+msgstr "Butana Steppe (2)"
+
 #: maps/skirmishes/butana_steppe_2p.xml:PlayerData[0].Name:40
 msgid "West Player"
 msgstr "Mendebaldeko Jokalaria"
@@ -2208,10 +2405,6 @@ msgstr "Mendebaldeko Jokalaria"
 #: maps/skirmishes/butana_steppe_2p.xml:PlayerData[1].Name:40
 msgid "East Player"
 msgstr "Ekialdeko Jokalaria"
-
-#: maps/skirmishes/butana_steppe_2p.xml:Name:40
-msgid "Butana Steppe (2)"
-msgstr "Butana Steppe (2)"
 
 #: maps/skirmishes/caspian_sea_2pv2p.xml:Description:39
 msgid ""
@@ -2258,6 +2451,10 @@ msgid ""
 "Map size: Very Large"
 msgstr "Egeo Itsasoan girotutako \"uharte txikietako\" mapa.\n\nMaparen neurria: Oso Handia"
 
+#: maps/skirmishes/cycladic_archipelago_3p.xml:Name:39
+msgid "Cycladic Archipelago (3)"
+msgstr "Ziklade-aldiko Artxipelagoa (3)"
+
 #: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[0].Name:39
 msgid "Samos"
 msgstr "Samos"
@@ -2269,10 +2466,6 @@ msgstr "Lesbos"
 #: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[2].Name:39
 msgid "Delos"
 msgstr "Delos"
-
-#: maps/skirmishes/cycladic_archipelago_3p.xml:Name:39
-msgid "Cycladic Archipelago (3)"
-msgstr "Ziklade-aldiko Artxipelagoa (3)"
 
 #: maps/skirmishes/death_canyon_2p.xml:Description:39
 msgid ""
@@ -2309,6 +2502,23 @@ msgstr "Alpeetako paisai lainotsu bat guda zelai bihurtuko da non talde bakoitza
 msgid "Dueling Cliffs (3v3)"
 msgstr "Aurrez-aurreko Labarrak (3v3)"
 
+#: maps/skirmishes/egypt_3pv3p.xml:Description:40
+msgid ""
+"Fight for the remains of ancient Egypt!\n"
+"\n"
+"Players start with full grown cities and small armies, each having distinct advantages and drawbacks. Take care, there are 7 mighty forts and marauding bandids!\n"
+"\n"
+"It is the last century before 0 A.D. Egypt is internally divided between hellenistic (Alexandria, represented by Seleucids) and traditional influences (Memphis, represented by Ptolemies). Thebes in the southern clime of river Nile has already been taken over by the Kush. In the north western Al-Dschabal al-Achdar, where the mediterranean city of Cyrene is located the Romans are preparing their invasion. From the eastern desert at-Tih and mount Sinai enemies (represented by Persians) are pushing forward and the oasis Siwa. Charga (represented by Carthage) in the south western desert are trying to get a share of the pie as well.\n"
+"Locations:\n"
+"- Alexandria: library, harbor\n"
+"- Memphis: Necropolis, pyramids, Apis shrine\n"
+"- Thebes: temple district, Valley of the Kings \n"
+"- Cyrene: mediterranean Macchie, olive groves\n"
+"- Fayyum: crocodile shrine, nile dam\n"
+"- Eastern desert: mount Sinai, deep Wadi, Red Sea reefs\n"
+"- Western desert: Oasis Charga and Siwa, Qattara Depression\n"
+msgstr "Antzinako Egiptoko aztarnen alde borrokatu!\n\nJokalariak garaturik diren hiri eta armada txikiekin hasten dira, bakoitzak abantaila eta desabantaila desberdinak dituzte. Kontuz, badira 7 indartsu boteretsu eta lapur maltzurrak.\n\nHau 0 A.D. aurreko mendea da. Egipto zatiturik dago barnean helenístico (Alejandría,  seleuzidak ordezkaturik) eta barne influentzien (Memphis, Ptolomeok ordezkaturik) artean Tebas Kushek hartua izan da NIlo hegoaldeko kliman. Al-Dschabal al-Achdaren ipar-mendebaldean, Cirene mediterraneoko hiria aurkitzen den lekuan, erromatarrak inbasioa prestatzen ari dira. Tih basamortua eta Sinai menditik, etsaiak (persiarrak ordezkaturik) Siwa oasira aldera doaz. Chargak ere (Kartagok ordezkaturik) hego-mendebaldeko basamortuan, pastelaren zati bat bereganatu nahi du.\nTokiak:\n- Alejandria: Liburutegia, kaia\n- Memphis: Necropoli, piramide, Apis santutegia\n- Tebas: tenpluaren distritua, Erregeen harana\n- Cirene: Macchie mediterraneo, olibondoak\n- Fayyum: krokodiloen santutegia, Niloko aldaparoa\n- Ekialdeko basamortua: Sinaí mendia, Wadi sakona, Itsas Gorriaren labarrak\n- Mendebaldeko basamortua: Oasis Charga eta Siwa, Qattarako sakonunea\n"
+
 #: maps/skirmishes/egypt_3pv3p.xml:Name:40
 msgid "Egypt (3v3)"
 msgstr "Egipto (3v3)"
@@ -2336,23 +2546,6 @@ msgstr "Memphis"
 #: maps/skirmishes/egypt_3pv3p.xml:PlayerData[5].Name:40
 msgid "Cyrene"
 msgstr "Cyrene"
-
-#: maps/skirmishes/egypt_3pv3p.xml:Description:40
-msgid ""
-"Fight for the remains of ancient Egypt!\n"
-"\n"
-"Players start with full grown cities and small armies, each having distinct advantages and drawbacks. Take care, there are 7 mighty forts and marauding bandids!\n"
-"\n"
-"It is the last century before 0 A.D. Egypt is internally divided between hellenistic (Alexandria, represented by Seleucids) and traditional influences (Memphis, represented by Ptolemies). Thebes in the southern clime of river Nile has already been taken over by the Kush. In the north western Al-Dschabal al-Achdar, where the mediterranean city of Cyrene is located the Romans are preparing their invasion. From the eastern desert at-Tih and mount Sinai enemies (represented by Persians) are pushing forward and the oasis Siwa. Charga (represented by Carthage) in the south western desert are trying to get a share of the pie as well.\n"
-"Locations:\n"
-"- Alexandria: library, harbor\n"
-"- Memphis: Necropolis, pyramids, Apis shrine\n"
-"- Thebes: temple district, Valley of the Kings \n"
-"- Cyrene: mediterranean Macchie, olive groves\n"
-"- Fayyum: crocodile shrine, nile dam\n"
-"- Eastern desert: mount Sinai, deep Wadi, Red Sea reefs\n"
-"- Western desert: Oasis Charga and Siwa, Qattara Depression\n"
-msgstr "Antzinako Egiptoko aztarnen alde borrokatu!\n\nJokalariak garaturik diren hiri eta armada txikiekin hasten dira, bakoitzak abantaila eta desabantaila desberdinak dituzte. Kontuz, badira 7 indartsu boteretsu eta lapur maltzurrak.\n\nHau 0 A.D. aurreko mendea da. Egipto zatiturik dago barnean helenístico (Alejandría,  seleuzidak ordezkaturik) eta barne influentzien (Memphis, Ptolomeok ordezkaturik) artean Tebas Kushek hartua izan da NIlo hegoaldeko kliman. Al-Dschabal al-Achdaren ipar-mendebaldean, Cirene mediterraneoko hiria aurkitzen den lekuan, erromatarrak inbasioa prestatzen ari dira. Tih basamortua eta Sinai menditik, etsaiak (persiarrak ordezkaturik) Siwa oasira aldera doaz. Chargak ere (Kartagok ordezkaturik) hego-mendebaldeko basamortuan, pastelaren zati bat bereganatu nahi du.\nTokiak:\n- Alejandria: Liburutegia, kaia\n- Memphis: Necropoli, piramide, Apis santutegia\n- Tebas: tenpluaren distritua, Erregeen harana\n- Cirene: Macchie mediterraneo, olibondoak\n- Fayyum: krokodiloen santutegia, Niloko aldaparoa\n- Ekialdeko basamortua: Sinaí mendia, Wadi sakona, Itsas Gorriaren labarrak\n- Mendebaldeko basamortua: Oasis Charga eta Siwa, Qattarako sakonunea\n"
 
 #: maps/skirmishes/farmland_2p.xml:Description:40
 msgid "Farmland in Eastern Europe."
@@ -2769,196 +2962,3 @@ msgstr "Persis, Susiana eta Mediaren artean irteten diren mendi neutralak Pertsi
 #: maps/skirmishes/zagros_mountains_2p.xml:Name:39
 msgid "Zagros Mountains (2)"
 msgstr "Zagros Mendiak (2)"
-
-#: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"The vitalizing waters of the Nile sustain life along its banks, while the "
-"long dry season scorches the land."
-msgstr "Nilo ibaiko ur bizigarriek ertzetako bizitza mantentzen dute, urtaro lehor luzeak lurra erretzen duen bitartean."
-
-#: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Dry Season"
-msgstr "Urtaro Lehorra "
-
-#: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Revelling in the much awaited rain, the baked land transforms into a lush "
-"haven for both man and beast."
-msgstr "Horrenbeste denboraz esperotako euritan, berotutako ura aterpe emankor bihurtzen da gizaki eta piztientzako."
-
-#: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Rainy Season"
-msgstr "Euri garaia"
-
-#: maps/random/rmbiome/generic/alpine.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"A region in the high snowy mountains. Biting winds sweep through the "
-"abundant conifer forests, making even the more resilient deer and mountain "
-"goats shiver."
-msgstr "Goi mendi elurtutako eskualde bat. Haize sarkorrek konifera baso ugarien artean erratza pasatzen dute, mendiko orein eta ahuntz gogorrenak ere dardaraz jarriz."
-
-#: maps/random/rmbiome/generic/alpine.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Alpine"
-msgstr "Alpinoa"
-
-#: maps/random/rmbiome/generic/autumn.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Autumn at its peak. The landscape is a dazzling dash of colors irrevocably "
-"intertwined. The native beech and oak trees of this temperate zone display a"
-" multi-colored foliage while the evergreen pines look on with indifference "
-"at the approaching winter."
-msgstr "Udazken bete betea. Paisaiak elkar loturiko kolore nahasketa miragarria da. Pago zuhaitzek eta bertako haritzek kolore anitzetako hostoak dituzte hostorik galtzeen ez duten pinuek gertu dagoen neguari muzin egiten dioten bitartean. "
-
-#: maps/random/rmbiome/generic/autumn.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Autumn"
-msgstr "Udazkena "
-
-#: maps/random/rmbiome/generic/desert.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"A semi-desert area that boasts numerous clumps of date palms and tamarix "
-"trees. Herds of camels roam the wild and the occasional gazelle jumps up in "
-"fright at being disturbed."
-msgstr "Datil-palmondo eta milazka bilguneak dituen ia basamortua den gunea. Gamelu taldeak naturan zehar dabiltza eta tarteka ikusten den gazelak salto egiten du traba egingo dioten beldurrez. "
-
-#: maps/random/rmbiome/generic/desert.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Desert"
-msgstr "Basamortua"
-
-#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Start in a region blessed with the Mediterranean climate, a warm and "
-"inviting land. The cypresses are in a perpetual struggle with the dominant "
-"fan palms while deer graze in their shadows, blissfully unaware."
-msgstr "Mediterraneoko klimak bedeinkaturiko eskualde batean has zaitez, lurralde bero eta abegikor batean. Altzifrek betiko haizearen kontrako borrokan dihardute oreinak bere itzalean bazkatzen diren bitartean, axolagabe eta zoriontsu. "
-
-#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Mediterranean"
-msgstr "Mediterraneoa"
-
-#: maps/random/rmbiome/generic/savanna.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"The savanna, a dry climate in which only the hardy Baobab trees thrive. "
-"Solitary gazelles graze the sparse grass, while herds of zebras, wildebeest,"
-" giraffes or elephants roam the wild in search of food."
-msgstr "Sabana, Baobab zuhaitz sendoak baino aurrera egiten ez duten klima lehorra. Gazela bakartiak belar exkaxaren artetik dabiltza, zebra, ñu, jirafak edo elefanteak naturan zehar janari bila doazen bitartean."
-
-#: maps/random/rmbiome/generic/savanna.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Savanna"
-msgstr "Sabana "
-
-#: maps/random/rmbiome/generic/snowy.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Settle in the cold regions of the North, the native habitat of the wooly "
-"muskox. Here you can pine away to your content and also hunt the occasional "
-"walrus or two."
-msgstr "Iparreko eskualde hotzetan kokatu, muskox iletsuaren bizilekua. Hemen utz dezakezu daramazuna eta tarteka azalduko den mortsa bat, edo bi, ehizatu."
-
-#: maps/random/rmbiome/generic/snowy.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Snowy"
-msgstr "Elurra"
-
-#: maps/random/rmbiome/generic/temperate.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Lush grasslands carpet the land, in places giving way to magnificent and "
-"diverse broadleaf forests. Poplars, pines, beeches and oaks all vie for "
-"supremacy but this root-war is a neverending struggle. Numerous apple trees "
-"dot the land, deer and sheep gorge themselves on this years fallen fruit."
-msgstr "Zelai mardulak lurra estaltzen dute, hosto zabaleko zuhaitzei tokia eginez. Makal, pinu, pago eta haritzek beren nagusitasunagatik borrokatzen dira, baina sustrai guda hau amaitu ezinezko borroka da. Sagasti anitzek tartekatzen dira lurrean eta ardiek urtetan eroritako fruitu hortaz elikatzen dira."
-
-#: maps/random/rmbiome/generic/temperate.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Temperate"
-msgstr "Epela"
-
-#: maps/random/rmbiome/generic/tropic.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Explore the mysterious tropics. An extremely green, but also extremely humid"
-" environment awaits. The tall Toona trees look on disapprovingly at this "
-"invasion of their privacy and ferocious tigers are determined to defend "
-"their territory at all costs."
-msgstr "Tropiko misteriotsuak esploratu. Giro ezin berdeagoa, eta bide batez ezin umelagoa zain dago. Toona zuhaitz altuek beren pribatutasunaren inbasioa ez dute begi onez ikusten eta tigre krudelek bere lurraldearen babesean arduratuko dira sutsuki."
-
-#: maps/random/rmbiome/generic/tropic.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Tropic"
-msgstr "Tropikoa"
-
-#: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Solidifying it's grip, the harsh cold has succeeded in freezing up the gulf."
-" The thick ice formed is capable of withstanding any weight."
-msgstr "Heldulekua gogortuz, izotz handiak golkoa izoztea lortu du. Sortu den izotz geruza lodiak edozein karga jasan dezake."
-
-#: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Frozen Lake"
-msgstr "Laku izoztua"
-
-#: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"A late spring breeze ripples through the conifer forests of the Gulf of "
-"Bothnia. Herds of deer dot the landscape and playful rabbits frolick in the "
-"undergrowth."
-msgstr "Udaberri bukaerako brisa bat Botnia Golkoko konifera basoen artetik zabaltzen da. Orein taldeak margotzen dira paisaian eta untxi jolastiak sasitzan dabiltza saltoka."
-
-#: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Late Spring"
-msgstr "Udaberri Berantiarra"
-
-#: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Winter has set in, carpeting the land with its first snow. The still "
-"unfrozen gulf offers great fishing opportunities."
-msgstr "Negu betea heldu da, lurra lehen elurrez estalirik. Oraindik izoztu gabeko golkoak arrantzarako aukera handiak uzten ditu."
-
-#: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Winter"
-msgstr "Negua"
-
-#: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Spring in the highlands, yet the heat has already begun making itself felt. "
-"The short-lived green grasses are on the retreat, paving the way for "
-"scorching summer."
-msgstr "Udaberria goi landetan, baino beroa jada sentitzen hasia da. Bizi laburreko belar berde motzak desagertuz doaz, uda sargoriari tokia eginez."
-
-#: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Spring"
-msgstr "Udaberria"
-
-#: maps/random/rmbiome/persian_highlands/summer.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"An arid, hostile land. The blistering heat has baked the ground to a sickly "
-"brown and the remaining trees struggle for survival."
-msgstr "Lur elkor eta etsaia. Bero kiskalgarriak lurra marroi bihurtu du eta gelditzen diren zuhaitzak bizirauteko borrokatzen dira."
-
-#: maps/random/rmbiome/persian_highlands/summer.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Summer"
-msgstr "Uda"

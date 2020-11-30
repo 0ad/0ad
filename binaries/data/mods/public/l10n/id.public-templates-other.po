@@ -1,7 +1,7 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright (C) 2020 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
-# 
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
+# project.
 # Translators:
 # azayrahmad <azayrahmad@gmail.com>, 2014
 # Dedi Wahyudi <dedi.dkv@gmail.com>, 2017
@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-20 08:09+0000\n"
+"POT-Creation-Date: 2020-11-28 10:01+0000\n"
 "PO-Revision-Date: 2020-11-20 10:22+0000\n"
 "Last-Translator: azayrahmad <azayrahmad@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
@@ -25,87 +25,37 @@ msgstr ""
 "Language: id\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: simulation/templates/template_formation.xml:26
-msgid "Requires at least 2 Soldiers or Siege Engines."
+#: simulation/data/template_helpers/damage_types/crush.jsondescription
+msgctxt "damage type"
+msgid "Damage caused by sheer force, like with a club or by trampling."
 msgstr ""
 
-#: simulation/templates/template_gaia.xml:7
-msgid "Gaia"
-msgstr "Gaia"
+#: simulation/data/template_helpers/damage_types/crush.jsonname
+msgctxt "damage type"
+msgid "Crush"
+msgstr "Lindas"
 
-#: simulation/templates/template_gaia_fish.xml:8
-#: simulation/templates/gaia/fish/generic.xml:4
-msgid "Fish"
-msgstr "ikan"
-
-#: simulation/templates/template_gaia_fish.xml:10
-msgid "Catch fish for food."
-msgstr "Tangkap ikan untuk mendapatkan makanan."
-
-#: simulation/templates/template_gaia_fruit.xml:8
-msgid "Fruit"
-msgstr "buah"
-
-#: simulation/templates/template_gaia_fruit.xml:9
-msgid "Pick fruit for food."
-msgstr "Petik buah untuk mendapatkan makanan."
-
-#: simulation/templates/template_gaia_ore.xml:8
-msgid "Metal Mine"
-msgstr "Tambang Logam"
-
-#: simulation/templates/template_gaia_ore.xml:9
-msgid "Mine ore for metal."
-msgstr "Tambang bijih untuk mendapatkan logam."
-
-#: simulation/templates/template_gaia_rock.xml:8
-msgid "Stone Quarry"
-msgstr "Galian Batu"
-
-#: simulation/templates/template_gaia_rock.xml:9
-msgid "Quarry rock for stone."
+#: simulation/data/template_helpers/damage_types/hack.jsondescription
+msgctxt "damage type"
+msgid ""
+"Damage caused by sharp objects cutting or chopping, like with a sword or an "
+"axe."
 msgstr ""
 
-#: simulation/templates/template_gaia_ruins.xml:8
-msgid "Ruins"
-msgstr "Reruntuhan"
+#: simulation/data/template_helpers/damage_types/hack.jsonname
+msgctxt "damage type"
+msgid "Hack"
+msgstr "Tebas"
 
-#: simulation/templates/template_gaia_ruins.xml:9
-msgid "Demolish ruins for stone."
-msgstr "Bongkar reruntuhan untuk mendapatkan batu."
+#: simulation/data/template_helpers/damage_types/pierce.jsondescription
+msgctxt "damage type"
+msgid "Damage caused by sharp pointy objects, like arrows or spears."
+msgstr ""
 
-#: simulation/templates/template_gaia_treasure.xml:8
-msgid "Treasure"
-msgstr "Harta Karun"
-
-#: simulation/templates/template_gaia_treasure.xml:9
-msgid "Collect treasures for resources."
-msgstr "Ambil harta karun untuk mendapatkan sumber daya."
-
-#: simulation/templates/template_gaia_tree.xml:8
-msgid "Tree"
-msgstr "Pohon"
-
-#: simulation/templates/template_gaia_tree.xml:9
-msgid "Chop trees for wood."
-msgstr "Tebang pohon untuk mendapatkan kayu."
-
-#: simulation/templates/template_structure.xml:47
-msgid "Structure"
-msgstr "Struktur"
-
-#: simulation/templates/template_unit.xml:38
-msgid "Unit"
-msgstr "Unit"
-
-#: simulation/templates/template_wallset.xml:10
-msgid "Wall off an area."
-msgstr "Membentengi satu area."
-
-#: simulation/templates/template_wallset.xml:11
-#: simulation/templates/template_wallset.xml:9
-msgid "Wall"
-msgstr "Dinding"
+#: simulation/data/template_helpers/damage_types/pierce.jsonname
+msgctxt "damage type"
+msgid "Pierce"
+msgstr "Tusuk"
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:24
 msgid "Army of Alexander the Great."
@@ -906,10 +856,6 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Ranged"
 msgstr "Jarak Jauh"
 
-#: simulation/templates/special/spy.xml:17
-msgid "Spy"
-msgstr "Mata-mata"
-
 #: simulation/templates/special/formations/anti_cavalry.xml:6
 #: simulation/templates/special/formations/testudo.xml:6
 msgid "Melee Infantry only, requires at least 16."
@@ -1003,34 +949,88 @@ msgstr "Baji"
 msgid "Player"
 msgstr "Pemain"
 
-#: simulation/data/template_helpers/damage_types/crush.jsonname
-msgctxt "damage type"
-msgid "Crush"
-msgstr "Lindas"
+#: simulation/templates/special/spy.xml:17
+msgid "Spy"
+msgstr "Mata-mata"
 
-#: simulation/data/template_helpers/damage_types/crush.jsondescription
-msgctxt "damage type"
-msgid "Damage caused by sheer force, like with a club or by trampling."
+#: simulation/templates/template_formation.xml:26
+msgid "Requires at least 2 Soldiers or Siege Engines."
 msgstr ""
 
-#: simulation/data/template_helpers/damage_types/hack.jsonname
-msgctxt "damage type"
-msgid "Hack"
-msgstr "Tebas"
+#: simulation/templates/template_gaia.xml:7
+msgid "Gaia"
+msgstr "Gaia"
 
-#: simulation/data/template_helpers/damage_types/hack.jsondescription
-msgctxt "damage type"
-msgid ""
-"Damage caused by sharp objects cutting or chopping, like with a sword or an "
-"axe."
+#: simulation/templates/gaia/fish/generic.xml:4
+#: simulation/templates/template_gaia_fish.xml:8
+msgid "Fish"
+msgstr "ikan"
+
+#: simulation/templates/template_gaia_fish.xml:10
+msgid "Catch fish for food."
+msgstr "Tangkap ikan untuk mendapatkan makanan."
+
+#: simulation/templates/template_gaia_fruit.xml:8
+msgid "Fruit"
+msgstr "buah"
+
+#: simulation/templates/template_gaia_fruit.xml:9
+msgid "Pick fruit for food."
+msgstr "Petik buah untuk mendapatkan makanan."
+
+#: simulation/templates/template_gaia_ore.xml:8
+msgid "Metal Mine"
+msgstr "Tambang Logam"
+
+#: simulation/templates/template_gaia_ore.xml:9
+msgid "Mine ore for metal."
+msgstr "Tambang bijih untuk mendapatkan logam."
+
+#: simulation/templates/template_gaia_rock.xml:8
+msgid "Stone Quarry"
+msgstr "Galian Batu"
+
+#: simulation/templates/template_gaia_rock.xml:9
+msgid "Quarry rock for stone."
 msgstr ""
 
-#: simulation/data/template_helpers/damage_types/pierce.jsonname
-msgctxt "damage type"
-msgid "Pierce"
-msgstr "Tusuk"
+#: simulation/templates/template_gaia_ruins.xml:8
+msgid "Ruins"
+msgstr "Reruntuhan"
 
-#: simulation/data/template_helpers/damage_types/pierce.jsondescription
-msgctxt "damage type"
-msgid "Damage caused by sharp pointy objects, like arrows or spears."
-msgstr ""
+#: simulation/templates/template_gaia_ruins.xml:9
+msgid "Demolish ruins for stone."
+msgstr "Bongkar reruntuhan untuk mendapatkan batu."
+
+#: simulation/templates/template_gaia_treasure.xml:8
+msgid "Treasure"
+msgstr "Harta Karun"
+
+#: simulation/templates/template_gaia_treasure.xml:9
+msgid "Collect treasures for resources."
+msgstr "Ambil harta karun untuk mendapatkan sumber daya."
+
+#: simulation/templates/template_gaia_tree.xml:8
+msgid "Tree"
+msgstr "Pohon"
+
+#: simulation/templates/template_gaia_tree.xml:9
+msgid "Chop trees for wood."
+msgstr "Tebang pohon untuk mendapatkan kayu."
+
+#: simulation/templates/template_structure.xml:47
+msgid "Structure"
+msgstr "Struktur"
+
+#: simulation/templates/template_unit.xml:38
+msgid "Unit"
+msgstr "Unit"
+
+#: simulation/templates/template_wallset.xml:9
+#: simulation/templates/template_wallset.xml:11
+msgid "Wall"
+msgstr "Dinding"
+
+#: simulation/templates/template_wallset.xml:10
+msgid "Wall off an area."
+msgstr "Membentengi satu area."
