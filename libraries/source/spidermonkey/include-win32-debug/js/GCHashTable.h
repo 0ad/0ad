@@ -1,5 +1,5 @@
-/* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*-
- * vim: set ts=8 sts=4 et sw=4 tw=99:
+/* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+ * vim: set ts=8 sts=2 et sw=2 tw=80:
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
@@ -58,40 +58,40 @@ class GCHashMap : public js::HashMap<Key, Value, HashPolicy, AllocPolicy> {
 
  public:
   explicit GCHashMap(AllocPolicy a = AllocPolicy()) : Base(a) {}
+  explicit GCHashMap(size_t length) : Base(length) {}
+  GCHashMap(AllocPolicy a, size_t length) : Base(a, length) {}
 
   static void trace(GCHashMap* map, JSTracer* trc) { map->trace(trc); }
   void trace(JSTracer* trc) {
-    if (!this->initialized()) return;
     for (typename Base::Enum e(*this); !e.empty(); e.popFront()) {
       GCPolicy<Value>::trace(trc, &e.front().value(), "hashmap value");
       GCPolicy<Key>::trace(trc, &e.front().mutableKey(), "hashmap key");
     }
   }
 
-  bool needsSweep() const { return this->initialized() && !this->empty(); }
+  bool needsSweep() const { return !this->empty(); }
 
   void sweep() {
-    if (!this->initialized()) return;
-
     for (typename Base::Enum e(*this); !e.empty(); e.popFront()) {
       if (MapSweepPolicy::needsSweep(&e.front().mutableKey(),
-                                     &e.front().value()))
+                                     &e.front().value())) {
         e.removeFront();
+      }
     }
   }
 
   // GCHashMap is movable
-  GCHashMap(GCHashMap&& rhs) : Base(mozilla::Move(rhs)) {}
+  GCHashMap(GCHashMap&& rhs) : Base(std::move(rhs)) {}
   void operator=(GCHashMap&& rhs) {
     MOZ_ASSERT(this != &rhs, "self-move assignment is prohibited");
-    Base::operator=(mozilla::Move(rhs));
+    Base::operator=(std::move(rhs));
   }
 
  private:
   // GCHashMap is not copyable or assignable
   GCHashMap(const GCHashMap& hm) = delete;
   GCHashMap& operator=(const GCHashMap& hm) = delete;
-};
+} MOZ_INHERIT_TYPE_ANNOTATIONS_FROM_TEMPLATE_ARGS;
 
 }  // namespace JS
 
@@ -112,26 +112,27 @@ class GCRekeyableHashMap : public JS::GCHashMap<Key, Value, HashPolicy,
 
  public:
   explicit GCRekeyableHashMap(AllocPolicy a = AllocPolicy()) : Base(a) {}
+  explicit GCRekeyableHashMap(size_t length) : Base(length) {}
+  GCRekeyableHashMap(AllocPolicy a, size_t length) : Base(a, length) {}
 
   void sweep() {
-    if (!this->initialized()) return;
-
     for (typename Base::Enum e(*this); !e.empty(); e.popFront()) {
       Key key(e.front().key());
-      if (MapSweepPolicy::needsSweep(&key, &e.front().value()))
+      if (MapSweepPolicy::needsSweep(&key, &e.front().value())) {
         e.removeFront();
-      else if (!HashPolicy::match(key, e.front().key()))
+      } else if (!HashPolicy::match(key, e.front().key())) {
         e.rekeyFront(key);
+      }
     }
   }
 
   // GCRekeyableHashMap is movable
-  GCRekeyableHashMap(GCRekeyableHashMap&& rhs) : Base(mozilla::Move(rhs)) {}
+  GCRekeyableHashMap(GCRekeyableHashMap&& rhs) : Base(std::move(rhs)) {}
   void operator=(GCRekeyableHashMap&& rhs) {
     MOZ_ASSERT(this != &rhs, "self-move assignment is prohibited");
-    Base::operator=(mozilla::Move(rhs));
+    Base::operator=(std::move(rhs));
   }
-};
+} MOZ_INHERIT_TYPE_ANNOTATIONS_FROM_TEMPLATE_ARGS;
 
 template <typename Wrapper, typename... Args>
 class WrappedPtrOperations<JS::GCHashMap<Args...>, Wrapper> {
@@ -145,9 +146,7 @@ class WrappedPtrOperations<JS::GCHashMap<Args...>, Wrapper> {
   using Ptr = typename Map::Ptr;
   using Range = typename Map::Range;
 
-  bool initialized() const { return map().initialized(); }
   Ptr lookup(const Lookup& l) const { return map().lookup(l); }
-  AddPtr lookupForAdd(const Lookup& l) const { return map().lookupForAdd(l); }
   Range all() const { return map().all(); }
   bool empty() const { return map().empty(); }
   uint32_t count() const { return map().count(); }
@@ -177,38 +176,35 @@ class MutableWrappedPtrOperations<JS::GCHashMap<Args...>, Wrapper>
   using Ptr = typename Map::Ptr;
   using Range = typename Map::Range;
 
-  bool init(uint32_t len = 16) { return map().init(len); }
   void clear() { map().clear(); }
-  void finish() { map().finish(); }
+  void clearAndCompact() { map().clearAndCompact(); }
   void remove(Ptr p) { map().remove(p); }
+  AddPtr lookupForAdd(const Lookup& l) { return map().lookupForAdd(l); }
 
   template <typename KeyInput, typename ValueInput>
   bool add(AddPtr& p, KeyInput&& k, ValueInput&& v) {
-    return map().add(p, mozilla::Forward<KeyInput>(k),
-                     mozilla::Forward<ValueInput>(v));
+    return map().add(p, std::forward<KeyInput>(k), std::forward<ValueInput>(v));
   }
 
   template <typename KeyInput>
   bool add(AddPtr& p, KeyInput&& k) {
-    return map().add(p, mozilla::Forward<KeyInput>(k), Map::Value());
+    return map().add(p, std::forward<KeyInput>(k), Map::Value());
   }
 
   template <typename KeyInput, typename ValueInput>
   bool relookupOrAdd(AddPtr& p, KeyInput&& k, ValueInput&& v) {
-    return map().relookupOrAdd(p, k, mozilla::Forward<KeyInput>(k),
-                               mozilla::Forward<ValueInput>(v));
+    return map().relookupOrAdd(p, k, std::forward<KeyInput>(k),
+                               std::forward<ValueInput>(v));
   }
 
   template <typename KeyInput, typename ValueInput>
   bool put(KeyInput&& k, ValueInput&& v) {
-    return map().put(mozilla::Forward<KeyInput>(k),
-                     mozilla::Forward<ValueInput>(v));
+    return map().put(std::forward<KeyInput>(k), std::forward<ValueInput>(v));
   }
 
   template <typename KeyInput, typename ValueInput>
   bool putNew(KeyInput&& k, ValueInput&& v) {
-    return map().putNew(mozilla::Forward<KeyInput>(k),
-                        mozilla::Forward<ValueInput>(v));
+    return map().putNew(std::forward<KeyInput>(k), std::forward<ValueInput>(v));
   }
 };
 
@@ -236,35 +232,38 @@ class GCHashSet : public js::HashSet<T, HashPolicy, AllocPolicy> {
 
  public:
   explicit GCHashSet(AllocPolicy a = AllocPolicy()) : Base(a) {}
+  explicit GCHashSet(size_t length) : Base(length) {}
+  GCHashSet(AllocPolicy a, size_t length) : Base(a, length) {}
 
   static void trace(GCHashSet* set, JSTracer* trc) { set->trace(trc); }
   void trace(JSTracer* trc) {
-    if (!this->initialized()) return;
-    for (typename Base::Enum e(*this); !e.empty(); e.popFront())
+    for (typename Base::Enum e(*this); !e.empty(); e.popFront()) {
       GCPolicy<T>::trace(trc, &e.mutableFront(), "hashset element");
+    }
   }
 
-  bool needsSweep() const { return this->initialized() && !this->empty(); }
+  bool needsSweep() const { return !this->empty(); }
 
   void sweep() {
-    if (!this->initialized()) return;
     for (typename Base::Enum e(*this); !e.empty(); e.popFront()) {
-      if (GCPolicy<T>::needsSweep(&e.mutableFront())) e.removeFront();
+      if (GCPolicy<T>::needsSweep(&e.mutableFront())) {
+        e.removeFront();
+      }
     }
   }
 
   // GCHashSet is movable
-  GCHashSet(GCHashSet&& rhs) : Base(mozilla::Move(rhs)) {}
+  GCHashSet(GCHashSet&& rhs) : Base(std::move(rhs)) {}
   void operator=(GCHashSet&& rhs) {
     MOZ_ASSERT(this != &rhs, "self-move assignment is prohibited");
-    Base::operator=(mozilla::Move(rhs));
+    Base::operator=(std::move(rhs));
   }
 
  private:
   // GCHashSet is not copyable or assignable
   GCHashSet(const GCHashSet& hs) = delete;
   GCHashSet& operator=(const GCHashSet& hs) = delete;
-};
+} MOZ_INHERIT_TYPE_ANNOTATIONS_FROM_TEMPLATE_ARGS;
 
 }  // namespace JS
 
@@ -283,9 +282,7 @@ class WrappedPtrOperations<JS::GCHashSet<Args...>, Wrapper> {
   using Ptr = typename Set::Ptr;
   using Range = typename Set::Range;
 
-  bool initialized() const { return set().initialized(); }
   Ptr lookup(const Lookup& l) const { return set().lookup(l); }
-  AddPtr lookupForAdd(const Lookup& l) const { return set().lookupForAdd(l); }
   Range all() const { return set().all(); }
   bool empty() const { return set().empty(); }
   uint32_t count() const { return set().count(); }
@@ -316,35 +313,36 @@ class MutableWrappedPtrOperations<JS::GCHashSet<Args...>, Wrapper>
   using Ptr = typename Set::Ptr;
   using Range = typename Set::Range;
 
-  bool init(uint32_t len = 16) { return set().init(len); }
   void clear() { set().clear(); }
-  void finish() { set().finish(); }
+  void clearAndCompact() { set().clearAndCompact(); }
+  MOZ_MUST_USE bool reserve(uint32_t len) { return set().reserve(len); }
   void remove(Ptr p) { set().remove(p); }
   void remove(const Lookup& l) { set().remove(l); }
+  AddPtr lookupForAdd(const Lookup& l) { return set().lookupForAdd(l); }
 
   template <typename TInput>
   bool add(AddPtr& p, TInput&& t) {
-    return set().add(p, mozilla::Forward<TInput>(t));
+    return set().add(p, std::forward<TInput>(t));
   }
 
   template <typename TInput>
   bool relookupOrAdd(AddPtr& p, const Lookup& l, TInput&& t) {
-    return set().relookupOrAdd(p, l, mozilla::Forward<TInput>(t));
+    return set().relookupOrAdd(p, l, std::forward<TInput>(t));
   }
 
   template <typename TInput>
   bool put(TInput&& t) {
-    return set().put(mozilla::Forward<TInput>(t));
+    return set().put(std::forward<TInput>(t));
   }
 
   template <typename TInput>
   bool putNew(TInput&& t) {
-    return set().putNew(mozilla::Forward<TInput>(t));
+    return set().putNew(std::forward<TInput>(t));
   }
 
   template <typename TInput>
   bool putNew(const Lookup& l, TInput&& t) {
-    return set().putNew(l, mozilla::Forward<TInput>(t));
+    return set().putNew(l, std::forward<TInput>(t));
   }
 };
 
@@ -368,20 +366,18 @@ class WeakCache<GCHashMap<Key, Value, HashPolicy, AllocPolicy, MapSweepPolicy>>
   template <typename... Args>
   explicit WeakCache(Zone* zone, Args&&... args)
       : WeakCacheBase(zone),
-        map(mozilla::Forward<Args>(args)...),
+        map(std::forward<Args>(args)...),
         needsBarrier(false) {}
   template <typename... Args>
   explicit WeakCache(JSRuntime* rt, Args&&... args)
       : WeakCacheBase(rt),
-        map(mozilla::Forward<Args>(args)...),
+        map(std::forward<Args>(args)...),
         needsBarrier(false) {}
   ~WeakCache() { MOZ_ASSERT(!needsBarrier); }
 
   bool needsSweep() override { return map.needsSweep(); }
 
   size_t sweep() override {
-    if (!this->initialized()) return 0;
-
     size_t steps = map.count();
     map.sweep();
     return steps;
@@ -428,7 +424,9 @@ class WeakCache<GCHashMap<Key, Value, HashPolicy, AllocPolicy, MapSweepPolicy>>
     typename Map::Range range;
 
     void settle() {
-      while (!empty() && entryNeedsSweep(front())) popFront();
+      while (!empty() && entryNeedsSweep(front())) {
+        popFront();
+      }
     }
   };
 
@@ -440,8 +438,6 @@ class WeakCache<GCHashMap<Key, Value, HashPolicy, AllocPolicy, MapSweepPolicy>>
     }
   };
 
-  bool initialized() const { return map.initialized(); }
-
   Ptr lookup(const Lookup& l) const {
     Ptr ptr = map.lookup(l);
     if (needsBarrier && ptr && entryNeedsSweep(*ptr)) {
@@ -451,7 +447,7 @@ class WeakCache<GCHashMap<Key, Value, HashPolicy, AllocPolicy, MapSweepPolicy>>
     return ptr;
   }
 
-  AddPtr lookupForAdd(const Lookup& l) const {
+  AddPtr lookupForAdd(const Lookup& l) {
     AddPtr ptr = map.lookupForAdd(l);
     if (needsBarrier && ptr && entryNeedsSweep(*ptr)) {
       const_cast<Map&>(map).remove(ptr);
@@ -486,12 +482,7 @@ class WeakCache<GCHashMap<Key, Value, HashPolicy, AllocPolicy, MapSweepPolicy>>
     return map.sizeOfExcludingThis(mallocSizeOf);
   }
   size_t sizeOfIncludingThis(mozilla::MallocSizeOf mallocSizeOf) const {
-    return mallocSizeOf(this) + map.sizeOfExcludingThis(mallocSizeOf);
-  }
-
-  bool init(uint32_t len = 16) {
-    MOZ_ASSERT(!needsBarrier);
-    return map.init(len);
+    return mallocSizeOf(this) + map.shallowSizeOfExcludingThis(mallocSizeOf);
   }
 
   void clear() {
@@ -501,11 +492,11 @@ class WeakCache<GCHashMap<Key, Value, HashPolicy, AllocPolicy, MapSweepPolicy>>
     map.clear();
   }
 
-  void finish() {
+  void clearAndCompact() {
     // This operation is not currently allowed while barriers are in place
-    // since it doesn't make sense to destroy a cache while it is being swept.
+    // since it doesn't make sense to clear a cache while it is being swept.
     MOZ_ASSERT(!needsBarrier);
-    map.finish();
+    map.clearAndCompact();
   }
 
   void remove(Ptr p) {
@@ -517,39 +508,32 @@ class WeakCache<GCHashMap<Key, Value, HashPolicy, AllocPolicy, MapSweepPolicy>>
 
   void remove(const Lookup& l) {
     Ptr p = lookup(l);
-    if (p) remove(p);
-  }
-
-  template <typename KeyInput>
-  bool add(AddPtr& p, KeyInput&& k) {
-    using mozilla::Forward;
-    return map.add(p, Forward<KeyInput>(k));
+    if (p) {
+      remove(p);
+    }
   }
 
   template <typename KeyInput, typename ValueInput>
   bool add(AddPtr& p, KeyInput&& k, ValueInput&& v) {
-    using mozilla::Forward;
-    return map.add(p, Forward<KeyInput>(k), Forward<ValueInput>(v));
+    return map.add(p, std::forward<KeyInput>(k), std::forward<ValueInput>(v));
   }
 
   template <typename KeyInput, typename ValueInput>
   bool relookupOrAdd(AddPtr& p, KeyInput&& k, ValueInput&& v) {
-    using mozilla::Forward;
-    return map.relookupOrAdd(p, Forward<KeyInput>(k), Forward<ValueInput>(v));
+    return map.relookupOrAdd(p, std::forward<KeyInput>(k),
+                             std::forward<ValueInput>(v));
   }
 
   template <typename KeyInput, typename ValueInput>
   bool put(KeyInput&& k, ValueInput&& v) {
-    using mozilla::Forward;
-    return map.put(Forward<KeyInput>(k), Forward<ValueInput>(v));
+    return map.put(std::forward<KeyInput>(k), std::forward<ValueInput>(v));
   }
 
   template <typename KeyInput, typename ValueInput>
   bool putNew(KeyInput&& k, ValueInput&& v) {
-    using mozilla::Forward;
-    return map.putNew(Forward<KeyInput>(k), Forward<ValueInput>(v));
+    return map.putNew(std::forward<KeyInput>(k), std::forward<ValueInput>(v));
   }
-};
+} JS_HAZ_NON_GC_POINTER;
 
 // Specialize WeakCache for GCHashSet to provide a barriered set that does not
 // need to be swept immediately.
@@ -568,17 +552,15 @@ class WeakCache<GCHashSet<T, HashPolicy, AllocPolicy>>
   template <typename... Args>
   explicit WeakCache(Zone* zone, Args&&... args)
       : WeakCacheBase(zone),
-        set(mozilla::Forward<Args>(args)...),
+        set(std::forward<Args>(args)...),
         needsBarrier(false) {}
   template <typename... Args>
   explicit WeakCache(JSRuntime* rt, Args&&... args)
       : WeakCacheBase(rt),
-        set(mozilla::Forward<Args>(args)...),
+        set(std::forward<Args>(args)...),
         needsBarrier(false) {}
 
   size_t sweep() override {
-    if (!this->initialized()) return 0;
-
     size_t steps = set.count();
     set.sweep();
     return steps;
@@ -623,7 +605,9 @@ class WeakCache<GCHashSet<T, HashPolicy, AllocPolicy>>
     typename Set::Range range;
 
     void settle() {
-      while (!empty() && entryNeedsSweep(front())) popFront();
+      while (!empty() && entryNeedsSweep(front())) {
+        popFront();
+      }
     }
   };
 
@@ -635,8 +619,6 @@ class WeakCache<GCHashSet<T, HashPolicy, AllocPolicy>>
     }
   };
 
-  bool initialized() const { return set.initialized(); }
-
   Ptr lookup(const Lookup& l) const {
     Ptr ptr = set.lookup(l);
     if (needsBarrier && ptr && entryNeedsSweep(*ptr)) {
@@ -646,7 +628,7 @@ class WeakCache<GCHashSet<T, HashPolicy, AllocPolicy>>
     return ptr;
   }
 
-  AddPtr lookupForAdd(const Lookup& l) const {
+  AddPtr lookupForAdd(const Lookup& l) {
     AddPtr ptr = set.lookupForAdd(l);
     if (needsBarrier && ptr && entryNeedsSweep(*ptr)) {
       const_cast<Set&>(set).remove(ptr);
@@ -678,15 +660,10 @@ class WeakCache<GCHashSet<T, HashPolicy, AllocPolicy>>
   bool has(const Lookup& l) const { return lookup(l).found(); }
 
   size_t sizeOfExcludingThis(mozilla::MallocSizeOf mallocSizeOf) const {
-    return set.sizeOfExcludingThis(mallocSizeOf);
+    return set.shallowSizeOfExcludingThis(mallocSizeOf);
   }
   size_t sizeOfIncludingThis(mozilla::MallocSizeOf mallocSizeOf) const {
-    return mallocSizeOf(this) + set.sizeOfExcludingThis(mallocSizeOf);
-  }
-
-  bool init(uint32_t len = 16) {
-    MOZ_ASSERT(!needsBarrier);
-    return set.init(len);
+    return mallocSizeOf(this) + set.shallowSizeOfExcludingThis(mallocSizeOf);
   }
 
   void clear() {
@@ -696,11 +673,11 @@ class WeakCache<GCHashSet<T, HashPolicy, AllocPolicy>>
     set.clear();
   }
 
-  void finish() {
+  void clearAndCompact() {
     // This operation is not currently allowed while barriers are in place
-    // since it doesn't make sense to destroy a cache while it is being swept.
+    // since it doesn't make sense to clear a cache while it is being swept.
     MOZ_ASSERT(!needsBarrier);
-    set.finish();
+    set.clearAndCompact();
   }
 
   void remove(Ptr p) {
@@ -712,34 +689,36 @@ class WeakCache<GCHashSet<T, HashPolicy, AllocPolicy>>
 
   void remove(const Lookup& l) {
     Ptr p = lookup(l);
-    if (p) remove(p);
+    if (p) {
+      remove(p);
+    }
   }
 
   template <typename TInput>
   bool add(AddPtr& p, TInput&& t) {
-    return set.add(p, mozilla::Forward<TInput>(t));
+    return set.add(p, std::forward<TInput>(t));
   }
 
   template <typename TInput>
   bool relookupOrAdd(AddPtr& p, const Lookup& l, TInput&& t) {
-    return set.relookupOrAdd(p, l, mozilla::Forward<TInput>(t));
+    return set.relookupOrAdd(p, l, std::forward<TInput>(t));
   }
 
   template <typename TInput>
   bool put(TInput&& t) {
-    return set.put(mozilla::Forward<TInput>(t));
+    return set.put(std::forward<TInput>(t));
   }
 
   template <typename TInput>
   bool putNew(TInput&& t) {
-    return set.putNew(mozilla::Forward<TInput>(t));
+    return set.putNew(std::forward<TInput>(t));
   }
 
   template <typename TInput>
   bool putNew(const Lookup& l, TInput&& t) {
-    return set.putNew(l, mozilla::Forward<TInput>(t));
+    return set.putNew(l, std::forward<TInput>(t));
   }
-};
+} JS_HAZ_NON_GC_POINTER;
 
 }  // namespace JS
 

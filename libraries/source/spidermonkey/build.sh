@@ -3,10 +3,10 @@
 set -e
 
 # This should match the version in config/milestone.txt
-FOLDER="mozjs-60.9.1"
+FOLDER="mozjs-68.12.1"
 # If same-version changes are needed, increment this.
-LIB_VERSION="60.9.1+0"
-LIB_NAME="mozjs60-ps"
+LIB_VERSION="68.12.1+0"
+LIB_NAME="mozjs68-ps"
 
 # Since this script is called by update-workspaces.sh, we want to quickly
 # avoid doing any work if SpiderMonkey is already built and up-to-date.
@@ -43,7 +43,13 @@ CONF_OPTS="--disable-tests
 # to match your environment.
 if [ "${OS}" = "Windows_NT" ]
 then
-  CONF_OPTS="${CONF_OPTS} --enable-nspr-build --with-visual-studio-version=2015"
+  # On windows, you may either use the full firefox build process (via mach bootstrap)
+  # or simply install LLVM to some convenient directory and hack the env.
+  if [ ! -d "~/.mozbuild"];
+  then
+    export MOZBUILD_STATE_PATH="C:/Program Files/LLVM"
+  fi
+  CONF_OPTS="${CONF_OPTS} --enable-nspr-build --with-visual-studio-version=2017 --target=i686"
 else
   CONF_OPTS="${CONF_OPTS} --enable-posix-nspr-emulation"
 fi
@@ -68,6 +74,13 @@ then
   CONF_OPTS="${CONF_OPTS} --enable-valgrind"
 fi
 
+# Quick sanity check to print explicit error messages
+if [ ! "$(command -v rustc)" ]
+then
+  echo "Error: rustc is not available. Install the rust toolchain before proceeding."
+  exit 1
+fi
+
 # We need to be able to override CHOST in case it is 32bit userland on 64bit kernel
 CONF_OPTS="${CONF_OPTS} \
   ${CBUILD:+--build=${CBUILD}} \
@@ -86,7 +99,7 @@ then
   then
     # The tarball is committed to svn, but it's useful to let jenkins download it (when testing upgrade scripts).
     download="$(command -v wget || echo "curl -L -o "${FOLDER}.tar.bz2"")"
-    $download "https://github.com/wraitii/spidermonkey-tarballs/releases/download/v60.9.1/${FOLDER}.tar.bz2"
+    $download "https://github.com/wraitii/spidermonkey-tarballs/releases/download/v68.12.1/${FOLDER}.tar.bz2"
   fi
   tar xjf "${FOLDER}.tar.bz2"
 
@@ -105,8 +118,9 @@ fi
 
 mkdir -p build-debug
 cd build-debug
-# SM build scripts check for autoconf, but it isn't actually needed, so just pass something.
-CXXFLAGS="${CXXFLAGS}" ../js/src/configure AUTOCONF="false" ${CONF_OPTS} \
+# SM configure checks for autoconf and llvm-objdump, but neither are actually used for building.
+# To avoid a dependency, pass something arbitrary (it does need to be an actual program).
+CXXFLAGS="${CXXFLAGS}" ../js/src/configure AUTOCONF="ls" LLVM_OBJDUMP="ls" ${CONF_OPTS} \
   --enable-debug \
   --disable-optimize \
   --enable-gczeal
@@ -115,7 +129,7 @@ cd ..
 
 mkdir -p build-release
 cd build-release
-CXXFLAGS="${CXXFLAGS}" ../js/src/configure AUTOCONF="false" ${CONF_OPTS} \
+CXXFLAGS="${CXXFLAGS}" ../js/src/configure AUTOCONF="ls" LLVM_OBJDUMP="ls" ${CONF_OPTS} \
   --enable-optimize
 ${MAKE} ${MAKE_OPTS}
 cd ..

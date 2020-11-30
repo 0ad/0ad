@@ -1,5 +1,5 @@
-/* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*-
- * vim: set ts=8 sts=4 et sw=4 tw=99:
+/* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+ * vim: set ts=8 sts=2 et sw=2 tw=80:
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
@@ -11,9 +11,11 @@
 
 #include "mozilla/Attributes.h"
 #include "mozilla/Casting.h"
+#include "mozilla/Compiler.h"
 #include "mozilla/EndianUtils.h"
 #include "mozilla/FloatingPoint.h"
 #include "mozilla/Likely.h"
+#include "mozilla/Maybe.h"
 
 #include <limits> /* for std::numeric_limits */
 
@@ -25,7 +27,7 @@
 #include "js/Utility.h"
 
 namespace JS {
-class Value;
+union JS_PUBLIC_API Value;
 }
 
 /* JS::Value can store a full int32_t. */
@@ -34,31 +36,53 @@ class Value;
 #define JSVAL_INT_MAX ((int32_t)0x7fffffff)
 
 #if defined(JS_PUNBOX64)
-#define JSVAL_TAG_SHIFT 47
+#  define JSVAL_TAG_SHIFT 47
 #endif
 
 // Use enums so that printing a JS::Value in the debugger shows nice
 // symbolic type tags.
 
-#if defined(_MSC_VER)
-#define JS_ENUM_HEADER(id, type) enum id : type
-#define JS_ENUM_FOOTER(id)
+// Work around a GCC bug. See comment above #undef JS_ENUM_HEADER.
+#if MOZ_IS_GCC
+#  define JS_ENUM_HEADER(id, type) enum id
+#  define JS_ENUM_FOOTER(id) __attribute__((packed))
 #else
-#define JS_ENUM_HEADER(id, type) enum id
-#define JS_ENUM_FOOTER(id) __attribute__((packed))
+#  define JS_ENUM_HEADER(id, type) enum id : type
+#  define JS_ENUM_FOOTER(id)
 #endif
 
-JS_ENUM_HEADER(JSValueType, uint8_t){
-    JSVAL_TYPE_DOUBLE = 0x00, JSVAL_TYPE_INT32 = 0x01,
-    JSVAL_TYPE_BOOLEAN = 0x02, JSVAL_TYPE_UNDEFINED = 0x03,
-    JSVAL_TYPE_NULL = 0x04, JSVAL_TYPE_MAGIC = 0x05, JSVAL_TYPE_STRING = 0x06,
-    JSVAL_TYPE_SYMBOL = 0x07, JSVAL_TYPE_PRIVATE_GCTHING = 0x08,
-    JSVAL_TYPE_OBJECT = 0x0c,
+enum JSValueType : uint8_t {
+  JSVAL_TYPE_DOUBLE = 0x00,
+  JSVAL_TYPE_INT32 = 0x01,
+  JSVAL_TYPE_BOOLEAN = 0x02,
+  JSVAL_TYPE_UNDEFINED = 0x03,
+  JSVAL_TYPE_NULL = 0x04,
+  JSVAL_TYPE_MAGIC = 0x05,
+  JSVAL_TYPE_STRING = 0x06,
+  JSVAL_TYPE_SYMBOL = 0x07,
+  JSVAL_TYPE_PRIVATE_GCTHING = 0x08,
+  JSVAL_TYPE_BIGINT = 0x09,
+  JSVAL_TYPE_OBJECT = 0x0c,
 
-    // These never appear in a jsval; they are only provided as an out-of-band
-    // value.
-    JSVAL_TYPE_UNKNOWN = 0x20,
-    JSVAL_TYPE_MISSING = 0x21} JS_ENUM_FOOTER(JSValueType);
+  // This type never appears in a Value; it's only an out-of-band value.
+  JSVAL_TYPE_UNKNOWN = 0x20
+};
+
+namespace JS {
+enum class ValueType : uint8_t {
+  Double = JSVAL_TYPE_DOUBLE,
+  Int32 = JSVAL_TYPE_INT32,
+  Boolean = JSVAL_TYPE_BOOLEAN,
+  Undefined = JSVAL_TYPE_UNDEFINED,
+  Null = JSVAL_TYPE_NULL,
+  Magic = JSVAL_TYPE_MAGIC,
+  String = JSVAL_TYPE_STRING,
+  Symbol = JSVAL_TYPE_SYMBOL,
+  PrivateGCThing = JSVAL_TYPE_PRIVATE_GCTHING,
+  BigInt = JSVAL_TYPE_BIGINT,
+  Object = JSVAL_TYPE_OBJECT,
+};
+}
 
 static_assert(sizeof(JSValueType) == 1,
               "compiler typed enum support is apparently buggy");
@@ -75,6 +99,7 @@ JS_ENUM_HEADER(JSValueTag, uint32_t){
     JSVAL_TAG_STRING = JSVAL_TAG_CLEAR | JSVAL_TYPE_STRING,
     JSVAL_TAG_SYMBOL = JSVAL_TAG_CLEAR | JSVAL_TYPE_SYMBOL,
     JSVAL_TAG_PRIVATE_GCTHING = JSVAL_TAG_CLEAR | JSVAL_TYPE_PRIVATE_GCTHING,
+    JSVAL_TAG_BIGINT = JSVAL_TAG_CLEAR | JSVAL_TYPE_BIGINT,
     JSVAL_TAG_OBJECT = JSVAL_TAG_CLEAR |
                        JSVAL_TYPE_OBJECT} JS_ENUM_FOOTER(JSValueTag);
 
@@ -94,31 +119,30 @@ JS_ENUM_HEADER(JSValueTag, uint32_t){
     JSVAL_TAG_SYMBOL = JSVAL_TAG_MAX_DOUBLE | JSVAL_TYPE_SYMBOL,
     JSVAL_TAG_PRIVATE_GCTHING = JSVAL_TAG_MAX_DOUBLE |
                                 JSVAL_TYPE_PRIVATE_GCTHING,
+    JSVAL_TAG_BIGINT = JSVAL_TAG_MAX_DOUBLE | JSVAL_TYPE_BIGINT,
     JSVAL_TAG_OBJECT = JSVAL_TAG_MAX_DOUBLE |
                        JSVAL_TYPE_OBJECT} JS_ENUM_FOOTER(JSValueTag);
 
 static_assert(sizeof(JSValueTag) == sizeof(uint32_t),
               "compiler typed enum support is apparently buggy");
 
-JS_ENUM_HEADER(JSValueShiftedTag, uint64_t){
-    JSVAL_SHIFTED_TAG_MAX_DOUBLE =
-        ((((uint64_t)JSVAL_TAG_MAX_DOUBLE) << JSVAL_TAG_SHIFT) | 0xFFFFFFFF),
-    JSVAL_SHIFTED_TAG_INT32 = (((uint64_t)JSVAL_TAG_INT32) << JSVAL_TAG_SHIFT),
-    JSVAL_SHIFTED_TAG_UNDEFINED = (((uint64_t)JSVAL_TAG_UNDEFINED)
-                                   << JSVAL_TAG_SHIFT),
-    JSVAL_SHIFTED_TAG_NULL = (((uint64_t)JSVAL_TAG_NULL) << JSVAL_TAG_SHIFT),
-    JSVAL_SHIFTED_TAG_BOOLEAN = (((uint64_t)JSVAL_TAG_BOOLEAN)
-                                 << JSVAL_TAG_SHIFT),
-    JSVAL_SHIFTED_TAG_MAGIC = (((uint64_t)JSVAL_TAG_MAGIC) << JSVAL_TAG_SHIFT),
-    JSVAL_SHIFTED_TAG_STRING = (((uint64_t)JSVAL_TAG_STRING)
-                                << JSVAL_TAG_SHIFT),
-    JSVAL_SHIFTED_TAG_SYMBOL = (((uint64_t)JSVAL_TAG_SYMBOL)
-                                << JSVAL_TAG_SHIFT),
-    JSVAL_SHIFTED_TAG_PRIVATE_GCTHING = (((uint64_t)JSVAL_TAG_PRIVATE_GCTHING)
-                                         << JSVAL_TAG_SHIFT),
-    JSVAL_SHIFTED_TAG_OBJECT =
-        (((uint64_t)JSVAL_TAG_OBJECT)
-         << JSVAL_TAG_SHIFT)} JS_ENUM_FOOTER(JSValueShiftedTag);
+enum JSValueShiftedTag : uint64_t {
+  JSVAL_SHIFTED_TAG_MAX_DOUBLE =
+      ((((uint64_t)JSVAL_TAG_MAX_DOUBLE) << JSVAL_TAG_SHIFT) | 0xFFFFFFFF),
+  JSVAL_SHIFTED_TAG_INT32 = (((uint64_t)JSVAL_TAG_INT32) << JSVAL_TAG_SHIFT),
+  JSVAL_SHIFTED_TAG_UNDEFINED =
+      (((uint64_t)JSVAL_TAG_UNDEFINED) << JSVAL_TAG_SHIFT),
+  JSVAL_SHIFTED_TAG_NULL = (((uint64_t)JSVAL_TAG_NULL) << JSVAL_TAG_SHIFT),
+  JSVAL_SHIFTED_TAG_BOOLEAN =
+      (((uint64_t)JSVAL_TAG_BOOLEAN) << JSVAL_TAG_SHIFT),
+  JSVAL_SHIFTED_TAG_MAGIC = (((uint64_t)JSVAL_TAG_MAGIC) << JSVAL_TAG_SHIFT),
+  JSVAL_SHIFTED_TAG_STRING = (((uint64_t)JSVAL_TAG_STRING) << JSVAL_TAG_SHIFT),
+  JSVAL_SHIFTED_TAG_SYMBOL = (((uint64_t)JSVAL_TAG_SYMBOL) << JSVAL_TAG_SHIFT),
+  JSVAL_SHIFTED_TAG_PRIVATE_GCTHING =
+      (((uint64_t)JSVAL_TAG_PRIVATE_GCTHING) << JSVAL_TAG_SHIFT),
+  JSVAL_SHIFTED_TAG_BIGINT = (((uint64_t)JSVAL_TAG_BIGINT) << JSVAL_TAG_SHIFT),
+  JSVAL_SHIFTED_TAG_OBJECT = (((uint64_t)JSVAL_TAG_OBJECT) << JSVAL_TAG_SHIFT)
+};
 
 static_assert(sizeof(JSValueShiftedTag) == sizeof(uint64_t),
               "compiler typed enum support is apparently buggy");
@@ -137,37 +161,33 @@ static_assert(sizeof(JSValueShiftedTag) == sizeof(uint64_t),
 
 #if defined(JS_NUNBOX32)
 
-#define JSVAL_TYPE_TO_TAG(type) ((JSValueTag)(JSVAL_TAG_CLEAR | (type)))
+#  define JSVAL_TYPE_TO_TAG(type) ((JSValueTag)(JSVAL_TAG_CLEAR | (type)))
 
-#define JSVAL_RAW64_UNDEFINED (uint64_t(JSVAL_TAG_UNDEFINED) << 32)
-
-#define JSVAL_UPPER_EXCL_TAG_OF_PRIMITIVE_SET JSVAL_TAG_OBJECT
-#define JSVAL_UPPER_INCL_TAG_OF_NUMBER_SET JSVAL_TAG_INT32
-#define JSVAL_LOWER_INCL_TAG_OF_GCTHING_SET JSVAL_TAG_STRING
+#  define JSVAL_UPPER_EXCL_TAG_OF_PRIMITIVE_SET JSVAL_TAG_OBJECT
+#  define JSVAL_UPPER_INCL_TAG_OF_NUMBER_SET JSVAL_TAG_INT32
+#  define JSVAL_LOWER_INCL_TAG_OF_GCTHING_SET JSVAL_TAG_STRING
 
 #elif defined(JS_PUNBOX64)
 
-#define JSVAL_RAW64_UNDEFINED (uint64_t(JSVAL_TAG_UNDEFINED) << JSVAL_TAG_SHIFT)
-
 // This should only be used in toGCThing, see the 'Spectre mitigations' comment.
-#define JSVAL_PAYLOAD_MASK_GCTHING 0x00007FFFFFFFFFFFLL
+#  define JSVAL_PAYLOAD_MASK_GCTHING 0x00007FFFFFFFFFFFLL
 
-#define JSVAL_TAG_MASK 0xFFFF800000000000LL
-#define JSVAL_TYPE_TO_TAG(type) ((JSValueTag)(JSVAL_TAG_MAX_DOUBLE | (type)))
-#define JSVAL_TYPE_TO_SHIFTED_TAG(type) \
-  (((uint64_t)JSVAL_TYPE_TO_TAG(type)) << JSVAL_TAG_SHIFT)
+#  define JSVAL_TAG_MASK 0xFFFF800000000000LL
+#  define JSVAL_TYPE_TO_TAG(type) ((JSValueTag)(JSVAL_TAG_MAX_DOUBLE | (type)))
+#  define JSVAL_TYPE_TO_SHIFTED_TAG(type) \
+    (((uint64_t)JSVAL_TYPE_TO_TAG(type)) << JSVAL_TAG_SHIFT)
 
-#define JSVAL_UPPER_EXCL_TAG_OF_PRIMITIVE_SET JSVAL_TAG_OBJECT
-#define JSVAL_UPPER_INCL_TAG_OF_NUMBER_SET JSVAL_TAG_INT32
-#define JSVAL_LOWER_INCL_TAG_OF_GCTHING_SET JSVAL_TAG_STRING
+#  define JSVAL_UPPER_EXCL_TAG_OF_PRIMITIVE_SET JSVAL_TAG_OBJECT
+#  define JSVAL_UPPER_INCL_TAG_OF_NUMBER_SET JSVAL_TAG_INT32
+#  define JSVAL_LOWER_INCL_TAG_OF_GCTHING_SET JSVAL_TAG_STRING
 
-#define JSVAL_UPPER_EXCL_SHIFTED_TAG_OF_PRIMITIVE_SET JSVAL_SHIFTED_TAG_OBJECT
-#define JSVAL_UPPER_EXCL_SHIFTED_TAG_OF_NUMBER_SET JSVAL_SHIFTED_TAG_BOOLEAN
-#define JSVAL_LOWER_INCL_SHIFTED_TAG_OF_GCTHING_SET JSVAL_SHIFTED_TAG_STRING
+#  define JSVAL_UPPER_EXCL_SHIFTED_TAG_OF_PRIMITIVE_SET JSVAL_SHIFTED_TAG_OBJECT
+#  define JSVAL_UPPER_EXCL_SHIFTED_TAG_OF_NUMBER_SET JSVAL_SHIFTED_TAG_BOOLEAN
+#  define JSVAL_LOWER_INCL_SHIFTED_TAG_OF_GCTHING_SET JSVAL_SHIFTED_TAG_STRING
 
 // JSVAL_TYPE_OBJECT and JSVAL_TYPE_NULL differ by one bit. We can use this to
 // implement toObjectOrNull more efficiently.
-#define JSVAL_OBJECT_OR_NULL_BIT (uint64_t(0x8) << JSVAL_TAG_SHIFT)
+#  define JSVAL_OBJECT_OR_NULL_BIT (uint64_t(0x8) << JSVAL_TAG_SHIFT)
 static_assert(
     (JSVAL_SHIFTED_TAG_NULL ^ JSVAL_SHIFTED_TAG_OBJECT) ==
         JSVAL_OBJECT_OR_NULL_BIT,
@@ -175,7 +195,7 @@ static_assert(
 
 #endif /* JS_PUNBOX64 */
 
-typedef enum JSWhyMagic {
+enum JSWhyMagic {
   /** a hole in a native object's elements */
   JS_ELEMENTS_HOLE,
 
@@ -185,29 +205,17 @@ typedef enum JSWhyMagic {
   /** exception value thrown when closing a generator */
   JS_GENERATOR_CLOSING,
 
-  /** compiler sentinel value */
-  JS_NO_CONSTANT,
-
-  /** used in debug builds to catch tracing errors */
-  JS_THIS_POISON,
-
   /** used in debug builds to catch tracing errors */
   JS_ARG_POISON,
 
   /** an empty subnode in the AST serializer */
   JS_SERIALIZE_NO_NODE,
 
-  /** lazy arguments value on the stack */
-  JS_LAZY_ARGUMENTS,
-
   /** optimized-away 'arguments' value */
   JS_OPTIMIZED_ARGUMENTS,
 
   /** magic value passed to natives to indicate construction */
   JS_IS_CONSTRUCTING,
-
-  /** value of static block object slot */
-  JS_BLOCK_NEEDS_CLONE,
 
   /** see class js::HashableValue */
   JS_HASH_KEY_EMPTY,
@@ -227,19 +235,20 @@ typedef enum JSWhyMagic {
   /** standard constructors are not created for off-thread parsing. */
   JS_OFF_THREAD_CONSTRUCTOR,
 
+  /** used in jit::TrySkipAwait */
+  JS_CANNOT_SKIP_AWAIT,
+
   /** for local use */
   JS_GENERIC_MAGIC,
 
   JS_WHY_MAGIC_COUNT
-} JSWhyMagic;
+};
 
 namespace js {
 static inline JS::Value PoisonedObjectValue(uintptr_t poison);
 }  // namespace js
 
 namespace JS {
-
-static inline constexpr JS::Value UndefinedValue();
 
 namespace detail {
 
@@ -263,25 +272,22 @@ static MOZ_ALWAYS_INLINE double GenericNaN() {
                                       detail::CanonicalizedNaNSignificand);
 }
 
-/* MSVC with PGO miscompiles this function. */
-#if defined(_MSC_VER)
-#pragma optimize("g", off)
-#endif
 static inline double CanonicalizeNaN(double d) {
-  if (MOZ_UNLIKELY(mozilla::IsNaN(d))) return GenericNaN();
+  if (MOZ_UNLIKELY(mozilla::IsNaN(d))) {
+    return GenericNaN();
+  }
   return d;
 }
-#if defined(_MSC_VER)
-#pragma optimize("", on)
-#endif
 
 /**
+ * [SMDOC] JS::Value type
+ *
  * JS::Value is the interface for a single JavaScript Engine value.  A few
  * general notes on JS::Value:
  *
  * - JS::Value has setX() and isX() members for X in
  *
- *     { Int32, Double, String, Symbol, Boolean, Undefined, Null,
+ *     { Int32, Double, String, Symbol, BigInt, Boolean, Undefined, Null,
  *       Object, Magic }
  *
  *   JS::Value also contains toX() for each of the non-singleton types.
@@ -319,7 +325,73 @@ static inline double CanonicalizeNaN(double d) {
  *   conditional move (not speculated) to zero the payload register if the type
  *   doesn't match.
  */
-class MOZ_NON_PARAM alignas(8) Value {
+union alignas(8) Value {
+ private:
+  uint64_t asBits_;
+  double asDouble_;
+
+#if defined(JS_PUNBOX64) && !defined(_WIN64)
+  // MSVC doesn't pack these correctly :-(
+  struct {
+#  if MOZ_LITTLE_ENDIAN
+    uint64_t payload47_ : 47;
+    JSValueTag tag_ : 17;
+#  else
+    JSValueTag tag_ : 17;
+    uint64_t payload47_ : 47;
+#  endif  // MOZ_LITTLE_ENDIAN
+  } debugView_;
+#endif  // defined(JS_PUNBOX64) && !defined(_WIN64)
+
+  struct {
+#if defined(JS_PUNBOX64)
+#  if MOZ_BIG_ENDIAN
+    uint32_t : 32;  // padding
+#  endif            // MOZ_BIG_ENDIAN
+    union {
+      int32_t i32_;
+      uint32_t u32_;
+      JSWhyMagic why_;
+    } payload_;
+#elif defined(JS_NUNBOX32)
+#  if MOZ_BIG_ENDIAN
+    JSValueTag tag_;
+#  endif  // MOZ_BIG_ENDIAN
+    union {
+      int32_t i32_;
+      uint32_t u32_;
+      uint32_t boo_;  // Don't use |bool| -- it must be four bytes.
+      JSString* str_;
+      JS::Symbol* sym_;
+      JS::BigInt* bi_;
+      JSObject* obj_;
+      js::gc::Cell* cell_;
+      void* ptr_;
+      JSWhyMagic why_;
+    } payload_;
+#  if MOZ_LITTLE_ENDIAN
+    JSValueTag tag_;
+#  endif  // MOZ_LITTLE_ENDIAN
+#endif    // defined(JS_PUNBOX64)
+  } s_;
+
+ public:
+  constexpr Value() : asBits_(bitsFromTagAndPayload(JSVAL_TAG_UNDEFINED, 0)) {}
+  Value(const Value& v) = default;
+
+ private:
+  explicit constexpr Value(uint64_t asBits) : asBits_(asBits) {}
+  explicit constexpr Value(double d) : asDouble_(d) {}
+
+  static_assert(sizeof(JSValueType) == 1,
+                "type bits must fit in a single byte");
+  static_assert(sizeof(JSValueTag) == 4,
+                "32-bit Value's tag_ must have size 4 to complement the "
+                "payload union's size 4");
+  static_assert(sizeof(JSWhyMagic) <= 4,
+                "32-bit Value's JSWhyMagic payload field must not inflate "
+                "the payload beyond 4 bytes");
+
  public:
 #if defined(JS_NUNBOX32)
   using PayloadType = uint32_t;
@@ -327,13 +399,29 @@ class MOZ_NON_PARAM alignas(8) Value {
   using PayloadType = uint64_t;
 #endif
 
-  /*
-   * N.B. the default constructor leaves Value unitialized. Adding a default
-   * constructor prevents Value from being stored in a union.
-   */
-  Value() = default;
-  Value(const Value& v) = default;
+  static constexpr uint64_t bitsFromTagAndPayload(JSValueTag tag,
+                                                  PayloadType payload) {
+#if defined(JS_NUNBOX32)
+    return (uint64_t(uint32_t(tag)) << 32) | payload;
+#elif defined(JS_PUNBOX64)
+    return (uint64_t(uint32_t(tag)) << JSVAL_TAG_SHIFT) | payload;
+#endif
+  }
 
+  static constexpr Value fromTagAndPayload(JSValueTag tag,
+                                           PayloadType payload) {
+    return fromRawBits(bitsFromTagAndPayload(tag, payload));
+  }
+
+  static constexpr Value fromRawBits(uint64_t asBits) { return Value(asBits); }
+
+  static constexpr Value fromInt32(int32_t i) {
+    return fromTagAndPayload(JSVAL_TAG_INT32, uint32_t(i));
+  }
+
+  static constexpr Value fromDouble(double d) { return Value(d); }
+
+ public:
   /**
    * Returns false if creating a NumberValue containing the given type would
    * be lossy, true otherwise.
@@ -345,59 +433,42 @@ class MOZ_NON_PARAM alignas(8) Value {
 
   /*** Mutators ***/
 
-  void setNull() { data.asBits = bitsFromTagAndPayload(JSVAL_TAG_NULL, 0); }
+  void setNull() { asBits_ = bitsFromTagAndPayload(JSVAL_TAG_NULL, 0); }
 
   void setUndefined() {
-    data.asBits = bitsFromTagAndPayload(JSVAL_TAG_UNDEFINED, 0);
+    asBits_ = bitsFromTagAndPayload(JSVAL_TAG_UNDEFINED, 0);
   }
 
   void setInt32(int32_t i) {
-    data.asBits = bitsFromTagAndPayload(JSVAL_TAG_INT32, uint32_t(i));
-  }
-
-  int32_t& getInt32Ref() {
-    MOZ_ASSERT(isInt32());
-    return data.s.payload.i32;
+    asBits_ = bitsFromTagAndPayload(JSVAL_TAG_INT32, uint32_t(i));
   }
 
   void setDouble(double d) {
-    // Don't assign to data.asDouble to fix a miscompilation with
-    // GCC 5.2.1 and 5.3.1. See bug 1312488.
-    data = layout(d);
+    // Don't assign to asDouble_ to fix a miscompilation with GCC 5.2.1 and
+    // 5.3.1. See bug 1312488.
+    *this = Value(d);
     MOZ_ASSERT(isDouble());
   }
 
   void setNaN() { setDouble(GenericNaN()); }
 
-  double& getDoubleRef() {
-    MOZ_ASSERT(isDouble());
-    return data.asDouble;
-  }
-
   void setString(JSString* str) {
     MOZ_ASSERT(js::gc::IsCellPointerValid(str));
-    data.asBits = bitsFromTagAndPayload(JSVAL_TAG_STRING, PayloadType(str));
+    asBits_ = bitsFromTagAndPayload(JSVAL_TAG_STRING, PayloadType(str));
   }
 
   void setSymbol(JS::Symbol* sym) {
     MOZ_ASSERT(js::gc::IsCellPointerValid(sym));
-    data.asBits = bitsFromTagAndPayload(JSVAL_TAG_SYMBOL, PayloadType(sym));
+    asBits_ = bitsFromTagAndPayload(JSVAL_TAG_SYMBOL, PayloadType(sym));
+  }
+
+  void setBigInt(JS::BigInt* bi) {
+    MOZ_ASSERT(js::gc::IsCellPointerValid(bi));
+    asBits_ = bitsFromTagAndPayload(JSVAL_TAG_BIGINT, PayloadType(bi));
   }
 
   void setObject(JSObject& obj) {
     MOZ_ASSERT(js::gc::IsCellPointerValid(&obj));
-
-    // This should not be possible and is undefined behavior, but some
-    // ObjectValue(nullptr) are sneaking in. Try to catch them here, if
-    // indeed they are going through this code. I tested gcc, and it at
-    // least will *not* elide the null check even though it would be
-    // permitted according to the spec. The temporary is necessary to
-    // prevent gcc from helpfully pointing out that this code makes no
-    // sense.
-#ifdef MOZ_DIAGNOSTIC_ASSERT_ENABLED
-    JSObject* testObj = &obj;
-    MOZ_DIAGNOSTIC_ASSERT(testObj != nullptr);
-#endif
 
 #if defined(JS_PUNBOX64)
     // VisualStudio cannot contain parenthesized C++ style cast and shift
@@ -411,22 +482,22 @@ class MOZ_NON_PARAM alignas(8) Value {
 
  private:
   void setObjectNoCheck(JSObject* obj) {
-    data.asBits = bitsFromTagAndPayload(JSVAL_TAG_OBJECT, PayloadType(obj));
+    asBits_ = bitsFromTagAndPayload(JSVAL_TAG_OBJECT, PayloadType(obj));
   }
 
   friend inline Value js::PoisonedObjectValue(uintptr_t poison);
 
  public:
   void setBoolean(bool b) {
-    data.asBits = bitsFromTagAndPayload(JSVAL_TAG_BOOLEAN, uint32_t(b));
+    asBits_ = bitsFromTagAndPayload(JSVAL_TAG_BOOLEAN, uint32_t(b));
   }
 
   void setMagic(JSWhyMagic why) {
-    data.asBits = bitsFromTagAndPayload(JSVAL_TAG_MAGIC, uint32_t(why));
+    asBits_ = bitsFromTagAndPayload(JSVAL_TAG_MAGIC, uint32_t(why));
   }
 
   void setMagicUint32(uint32_t payload) {
-    data.asBits = bitsFromTagAndPayload(JSVAL_TAG_MAGIC, payload);
+    asBits_ = bitsFromTagAndPayload(JSVAL_TAG_MAGIC, payload);
   }
 
   bool setNumber(uint32_t ui) {
@@ -451,24 +522,25 @@ class MOZ_NON_PARAM alignas(8) Value {
   }
 
   void setObjectOrNull(JSObject* arg) {
-    if (arg)
+    if (arg) {
       setObject(*arg);
-    else
+    } else {
       setNull();
+    }
   }
 
   void swap(Value& rhs) {
-    uint64_t tmp = rhs.data.asBits;
-    rhs.data.asBits = data.asBits;
-    data.asBits = tmp;
+    uint64_t tmp = rhs.asBits_;
+    rhs.asBits_ = asBits_;
+    asBits_ = tmp;
   }
 
  private:
   JSValueTag toTag() const {
 #if defined(JS_NUNBOX32)
-    return data.s.tag;
+    return s_.tag_;
 #elif defined(JS_PUNBOX64)
-    return JSValueTag(data.asBits >> JSVAL_TAG_SHIFT);
+    return JSValueTag(asBits_ >> JSVAL_TAG_SHIFT);
 #endif
   }
 
@@ -476,13 +548,13 @@ class MOZ_NON_PARAM alignas(8) Value {
   /*** JIT-only interfaces to interact with and create raw Values ***/
 #if defined(JS_NUNBOX32)
   PayloadType toNunboxPayload() const {
-    return static_cast<PayloadType>(data.s.payload.i32);
+    return static_cast<PayloadType>(s_.payload_.i32_);
   }
 
-  JSValueTag toNunboxTag() const { return data.s.tag; }
+  JSValueTag toNunboxTag() const { return s_.tag_; }
 #elif defined(JS_PUNBOX64)
   const void* bitsAsPunboxPointer() const {
-    return reinterpret_cast<void*>(data.asBits);
+    return reinterpret_cast<void*>(asBits_);
   }
 #endif
 
@@ -499,7 +571,7 @@ class MOZ_NON_PARAM alignas(8) Value {
 #if defined(JS_NUNBOX32)
     return toTag() == JSVAL_TAG_UNDEFINED;
 #elif defined(JS_PUNBOX64)
-    return data.asBits == JSVAL_SHIFTED_TAG_UNDEFINED;
+    return asBits_ == JSVAL_SHIFTED_TAG_UNDEFINED;
 #endif
   }
 
@@ -507,7 +579,7 @@ class MOZ_NON_PARAM alignas(8) Value {
 #if defined(JS_NUNBOX32)
     return toTag() == JSVAL_TAG_NULL;
 #elif defined(JS_PUNBOX64)
-    return data.asBits == JSVAL_SHIFTED_TAG_NULL;
+    return asBits_ == JSVAL_SHIFTED_TAG_NULL;
 #endif
   }
 
@@ -516,14 +588,14 @@ class MOZ_NON_PARAM alignas(8) Value {
   bool isInt32() const { return toTag() == JSVAL_TAG_INT32; }
 
   bool isInt32(int32_t i32) const {
-    return data.asBits == bitsFromTagAndPayload(JSVAL_TAG_INT32, uint32_t(i32));
+    return asBits_ == bitsFromTagAndPayload(JSVAL_TAG_INT32, uint32_t(i32));
   }
 
   bool isDouble() const {
 #if defined(JS_NUNBOX32)
     return uint32_t(toTag()) <= uint32_t(JSVAL_TAG_CLEAR);
 #elif defined(JS_PUNBOX64)
-    return (data.asBits | mozilla::DoubleTypeTraits::kSignBit) <=
+    return (asBits_ | mozilla::FloatingPoint<double>::kSignBit) <=
            JSVAL_SHIFTED_TAG_MAX_DOUBLE;
 #endif
   }
@@ -533,7 +605,7 @@ class MOZ_NON_PARAM alignas(8) Value {
     MOZ_ASSERT(toTag() != JSVAL_TAG_CLEAR);
     return uint32_t(toTag()) <= uint32_t(JSVAL_UPPER_INCL_TAG_OF_NUMBER_SET);
 #elif defined(JS_PUNBOX64)
-    return data.asBits < JSVAL_UPPER_EXCL_SHIFTED_TAG_OF_NUMBER_SET;
+    return asBits_ < JSVAL_UPPER_EXCL_SHIFTED_TAG_OF_NUMBER_SET;
 #endif
   }
 
@@ -541,12 +613,14 @@ class MOZ_NON_PARAM alignas(8) Value {
 
   bool isSymbol() const { return toTag() == JSVAL_TAG_SYMBOL; }
 
+  bool isBigInt() const { return toTag() == JSVAL_TAG_BIGINT; }
+
   bool isObject() const {
 #if defined(JS_NUNBOX32)
     return toTag() == JSVAL_TAG_OBJECT;
 #elif defined(JS_PUNBOX64)
-    MOZ_ASSERT((data.asBits >> JSVAL_TAG_SHIFT) <= JSVAL_TAG_OBJECT);
-    return data.asBits >= JSVAL_SHIFTED_TAG_OBJECT;
+    MOZ_ASSERT((asBits_ >> JSVAL_TAG_SHIFT) <= JSVAL_TAG_OBJECT);
+    return asBits_ >= JSVAL_SHIFTED_TAG_OBJECT;
 #endif
   }
 
@@ -554,7 +628,7 @@ class MOZ_NON_PARAM alignas(8) Value {
 #if defined(JS_NUNBOX32)
     return uint32_t(toTag()) < uint32_t(JSVAL_UPPER_EXCL_TAG_OF_PRIMITIVE_SET);
 #elif defined(JS_PUNBOX64)
-    return data.asBits < JSVAL_UPPER_EXCL_SHIFTED_TAG_OF_PRIMITIVE_SET;
+    return asBits_ < JSVAL_UPPER_EXCL_SHIFTED_TAG_OF_PRIMITIVE_SET;
 #endif
   }
 
@@ -565,20 +639,18 @@ class MOZ_NON_PARAM alignas(8) Value {
     /* gcc sometimes generates signed < without explicit casts. */
     return uint32_t(toTag()) >= uint32_t(JSVAL_LOWER_INCL_TAG_OF_GCTHING_SET);
 #elif defined(JS_PUNBOX64)
-    return data.asBits >= JSVAL_LOWER_INCL_SHIFTED_TAG_OF_GCTHING_SET;
+    return asBits_ >= JSVAL_LOWER_INCL_SHIFTED_TAG_OF_GCTHING_SET;
 #endif
   }
 
   bool isBoolean() const { return toTag() == JSVAL_TAG_BOOLEAN; }
 
   bool isTrue() const {
-    return data.asBits ==
-           bitsFromTagAndPayload(JSVAL_TAG_BOOLEAN, uint32_t(true));
+    return asBits_ == bitsFromTagAndPayload(JSVAL_TAG_BOOLEAN, uint32_t(true));
   }
 
   bool isFalse() const {
-    return data.asBits ==
-           bitsFromTagAndPayload(JSVAL_TAG_BOOLEAN, uint32_t(false));
+    return asBits_ == bitsFromTagAndPayload(JSVAL_TAG_BOOLEAN, uint32_t(false));
   }
 
   bool isMagic() const { return toTag() == JSVAL_TAG_MAGIC; }
@@ -587,7 +659,7 @@ class MOZ_NON_PARAM alignas(8) Value {
     if (!isMagic()) {
       return false;
     }
-    MOZ_RELEASE_ASSERT(data.s.payload.why == why);
+    MOZ_RELEASE_ASSERT(s_.payload_.why_ == why);
     return true;
   }
 
@@ -599,30 +671,30 @@ class MOZ_NON_PARAM alignas(8) Value {
                   "Value type tags must correspond with JS::TraceKinds.");
     static_assert((JSVAL_TAG_OBJECT & 0x03) == size_t(JS::TraceKind::Object),
                   "Value type tags must correspond with JS::TraceKinds.");
-    if (MOZ_UNLIKELY(isPrivateGCThing()))
+    if (MOZ_UNLIKELY(isPrivateGCThing())) {
       return JS::GCThingTraceKind(toGCThing());
+    }
+    if (MOZ_UNLIKELY(isBigInt())) {
+      return JS::TraceKind::BigInt;
+    }
     return JS::TraceKind(toTag() & 0x03);
   }
 
   JSWhyMagic whyMagic() const {
     MOZ_ASSERT(isMagic());
-    return data.s.payload.why;
+    return s_.payload_.why_;
   }
 
   uint32_t magicUint32() const {
     MOZ_ASSERT(isMagic());
-    return data.s.payload.u32;
+    return s_.payload_.u32_;
   }
 
   /*** Comparison ***/
 
-  bool operator==(const Value& rhs) const {
-    return data.asBits == rhs.data.asBits;
-  }
+  bool operator==(const Value& rhs) const { return asBits_ == rhs.asBits_; }
 
-  bool operator!=(const Value& rhs) const {
-    return data.asBits != rhs.data.asBits;
-  }
+  bool operator!=(const Value& rhs) const { return asBits_ != rhs.asBits_; }
 
   friend inline bool SameType(const Value& lhs, const Value& rhs);
 
@@ -631,15 +703,15 @@ class MOZ_NON_PARAM alignas(8) Value {
   int32_t toInt32() const {
     MOZ_ASSERT(isInt32());
 #if defined(JS_NUNBOX32)
-    return data.s.payload.i32;
+    return s_.payload_.i32_;
 #elif defined(JS_PUNBOX64)
-    return int32_t(data.asBits);
+    return int32_t(asBits_);
 #endif
   }
 
   double toDouble() const {
     MOZ_ASSERT(isDouble());
-    return data.asDouble;
+    return asDouble_;
   }
 
   double toNumber() const {
@@ -650,28 +722,36 @@ class MOZ_NON_PARAM alignas(8) Value {
   JSString* toString() const {
     MOZ_ASSERT(isString());
 #if defined(JS_NUNBOX32)
-    return data.s.payload.str;
+    return s_.payload_.str_;
 #elif defined(JS_PUNBOX64)
-    return reinterpret_cast<JSString*>(data.asBits ^ JSVAL_SHIFTED_TAG_STRING);
+    return reinterpret_cast<JSString*>(asBits_ ^ JSVAL_SHIFTED_TAG_STRING);
 #endif
   }
 
   JS::Symbol* toSymbol() const {
     MOZ_ASSERT(isSymbol());
 #if defined(JS_NUNBOX32)
-    return data.s.payload.sym;
+    return s_.payload_.sym_;
 #elif defined(JS_PUNBOX64)
-    return reinterpret_cast<JS::Symbol*>(data.asBits ^
-                                         JSVAL_SHIFTED_TAG_SYMBOL);
+    return reinterpret_cast<JS::Symbol*>(asBits_ ^ JSVAL_SHIFTED_TAG_SYMBOL);
+#endif
+  }
+
+  JS::BigInt* toBigInt() const {
+    MOZ_ASSERT(isBigInt());
+#if defined(JS_NUNBOX32)
+    return s_.payload_.bi_;
+#elif defined(JS_PUNBOX64)
+    return reinterpret_cast<JS::BigInt*>(asBits_ ^ JSVAL_SHIFTED_TAG_BIGINT);
 #endif
   }
 
   JSObject& toObject() const {
     MOZ_ASSERT(isObject());
 #if defined(JS_NUNBOX32)
-    return *data.s.payload.obj;
+    return *s_.payload_.obj_;
 #elif defined(JS_PUNBOX64)
-    uint64_t ptrBits = data.asBits ^ JSVAL_SHIFTED_TAG_OBJECT;
+    uint64_t ptrBits = asBits_ ^ JSVAL_SHIFTED_TAG_OBJECT;
     MOZ_ASSERT(ptrBits);
     MOZ_ASSERT((ptrBits & 0x7) == 0);
     return *reinterpret_cast<JSObject*>(ptrBits);
@@ -681,12 +761,12 @@ class MOZ_NON_PARAM alignas(8) Value {
   JSObject* toObjectOrNull() const {
     MOZ_ASSERT(isObjectOrNull());
 #if defined(JS_NUNBOX32)
-    return data.s.payload.obj;
+    return s_.payload_.obj_;
 #elif defined(JS_PUNBOX64)
     // Note: the 'Spectre mitigations' comment at the top of this class
     // explains why we use XOR here and in other to* methods.
     uint64_t ptrBits =
-        (data.asBits ^ JSVAL_SHIFTED_TAG_OBJECT) & ~JSVAL_OBJECT_OR_NULL_BIT;
+        (asBits_ ^ JSVAL_SHIFTED_TAG_OBJECT) & ~JSVAL_OBJECT_OR_NULL_BIT;
     MOZ_ASSERT((ptrBits & 0x7) == 0);
     return reinterpret_cast<JSObject*>(ptrBits);
 #endif
@@ -695,9 +775,9 @@ class MOZ_NON_PARAM alignas(8) Value {
   js::gc::Cell* toGCThing() const {
     MOZ_ASSERT(isGCThing());
 #if defined(JS_NUNBOX32)
-    return data.s.payload.cell;
+    return s_.payload_.cell_;
 #elif defined(JS_PUNBOX64)
-    uint64_t ptrBits = data.asBits & JSVAL_PAYLOAD_MASK_GCTHING;
+    uint64_t ptrBits = asBits_ & JSVAL_PAYLOAD_MASK_GCTHING;
     MOZ_ASSERT((ptrBits & 0x7) == 0);
     return reinterpret_cast<js::gc::Cell*>(ptrBits);
 #endif
@@ -708,23 +788,33 @@ class MOZ_NON_PARAM alignas(8) Value {
   bool toBoolean() const {
     MOZ_ASSERT(isBoolean());
 #if defined(JS_NUNBOX32)
-    return bool(data.s.payload.boo);
+    return bool(s_.payload_.boo_);
 #elif defined(JS_PUNBOX64)
-    return bool(int32_t(data.asBits));
+    return bool(int32_t(asBits_));
 #endif
   }
 
   uint32_t payloadAsRawUint32() const {
     MOZ_ASSERT(!isDouble());
-    return data.s.payload.u32;
+    return s_.payload_.u32_;
   }
 
-  uint64_t asRawBits() const { return data.asBits; }
+  uint64_t asRawBits() const { return asBits_; }
 
   JSValueType extractNonDoubleType() const {
     uint32_t type = toTag() & 0xF;
     MOZ_ASSERT(type > JSVAL_TYPE_DOUBLE);
     return JSValueType(type);
+  }
+
+  JS::ValueType type() const {
+    if (isDouble()) {
+      return JS::ValueType::Double;
+    }
+
+    JSValueType type = extractNonDoubleType();
+    MOZ_ASSERT(type <= JSVAL_TYPE_OBJECT);
+    return JS::ValueType(type);
   }
 
   /*
@@ -737,12 +827,18 @@ class MOZ_NON_PARAM alignas(8) Value {
    */
 
   void setPrivate(void* ptr) {
-    MOZ_ASSERT((uintptr_t(ptr) & 1) == 0);
 #if defined(JS_NUNBOX32)
-    data.s.tag = JSValueTag(0);
-    data.s.payload.ptr = ptr;
+    s_.tag_ = JSValueTag(0);
+    s_.payload_.ptr_ = ptr;
 #elif defined(JS_PUNBOX64)
-    data.asBits = uintptr_t(ptr) >> 1;
+# if defined(JS_UNALIGNED_PRIVATE_VALUES)
+    // ptr must be a valid user-mode pointer, with the top 16 bits clear.
+    MOZ_ASSERT((uintptr_t(ptr) & 0xFFFF000000000000ULL) == 0);
+    asBits_ = uintptr_t(ptr);
+# else
+    MOZ_ASSERT((uintptr_t(ptr) & 1) == 0);
+    asBits_ = uintptr_t(ptr) >> 1;
+# endif
 #endif
     MOZ_ASSERT(isDouble());
   }
@@ -750,10 +846,15 @@ class MOZ_NON_PARAM alignas(8) Value {
   void* toPrivate() const {
     MOZ_ASSERT(isDouble());
 #if defined(JS_NUNBOX32)
-    return data.s.payload.ptr;
+    return s_.payload_.ptr_;
 #elif defined(JS_PUNBOX64)
-    MOZ_ASSERT((data.asBits & 0x8000000000000000ULL) == 0);
-    return reinterpret_cast<void*>(data.asBits << 1);
+# if defined(JS_UNALIGNED_PRIVATE_VALUES)
+    // This must be a valid user-mode pointer, with the top 16 bits clear.
+    MOZ_ASSERT((asBits_ & 0xFFFF000000000000ULL) == 0);
+    return reinterpret_cast<void*>(asBits_);
+# else
+    return reinterpret_cast<void*>(asBits_ << 1);
+# endif
 #endif
   }
 
@@ -780,6 +881,9 @@ class MOZ_NON_PARAM alignas(8) Value {
     MOZ_ASSERT(JS::GCThingTraceKind(cell) != JS::TraceKind::Symbol,
                "Private GC thing Values must not be symbols. Make a "
                "SymbolValue instead.");
+    MOZ_ASSERT(JS::GCThingTraceKind(cell) != JS::TraceKind::BigInt,
+               "Private GC thing Values must not be BigInts. Make a "
+               "BigIntValue instead.");
     MOZ_ASSERT(JS::GCThingTraceKind(cell) != JS::TraceKind::Object,
                "Private GC thing Values must not be objects. Make an "
                "ObjectValue instead.");
@@ -792,215 +896,16 @@ class MOZ_NON_PARAM alignas(8) Value {
     // It throws syntax error.
     MOZ_ASSERT((((uintptr_t)cell) >> JSVAL_TAG_SHIFT) == 0);
 #endif
-    data.asBits =
+    asBits_ =
         bitsFromTagAndPayload(JSVAL_TAG_PRIVATE_GCTHING, PayloadType(cell));
   }
 
   bool isPrivateGCThing() const { return toTag() == JSVAL_TAG_PRIVATE_GCTHING; }
-
-  const size_t* payloadWord() const {
-#if defined(JS_NUNBOX32)
-    return &data.s.payload.word;
-#elif defined(JS_PUNBOX64)
-    return &data.asWord;
-#endif
-  }
-
-  const uintptr_t* payloadUIntPtr() const {
-#if defined(JS_NUNBOX32)
-    return &data.s.payload.uintptr;
-#elif defined(JS_PUNBOX64)
-    return &data.asUIntPtr;
-#endif
-  }
-
-#if !defined(_MSC_VER) && !defined(__sparc)
-  // Value must be POD so that MSVC will pass it by value and not in memory
-  // (bug 689101); the same is true for SPARC as well (bug 737344).  More
-  // precisely, we don't want Value return values compiled as out params.
- private:
-#endif
-
-#if MOZ_LITTLE_ENDIAN
-#if defined(JS_NUNBOX32)
-  union layout {
-    uint64_t asBits;
-    struct {
-      union {
-        int32_t i32;
-        uint32_t u32;
-        uint32_t boo;  // Don't use |bool| -- it must be four bytes.
-        JSString* str;
-        JS::Symbol* sym;
-        JSObject* obj;
-        js::gc::Cell* cell;
-        void* ptr;
-        JSWhyMagic why;
-        size_t word;
-        uintptr_t uintptr;
-      } payload;
-      JSValueTag tag;
-    } s;
-    double asDouble;
-    void* asPtr;
-
-    layout() : asBits(JSVAL_RAW64_UNDEFINED) {}
-    explicit constexpr layout(uint64_t bits) : asBits(bits) {}
-    explicit constexpr layout(double d) : asDouble(d) {}
-  } data;
-#elif defined(JS_PUNBOX64)
-  union layout {
-    uint64_t asBits;
-#if !defined(_WIN64)
-    /* MSVC does not pack these correctly :-( */
-    struct {
-      uint64_t payload47 : 47;
-      JSValueTag tag : 17;
-    } debugView;
-#endif
-    struct {
-      union {
-        int32_t i32;
-        uint32_t u32;
-        JSWhyMagic why;
-      } payload;
-    } s;
-    double asDouble;
-    void* asPtr;
-    size_t asWord;
-    uintptr_t asUIntPtr;
-
-    layout() : asBits(JSVAL_RAW64_UNDEFINED) {}
-    explicit constexpr layout(uint64_t bits) : asBits(bits) {}
-    explicit constexpr layout(double d) : asDouble(d) {}
-  } data;
-#endif /* JS_PUNBOX64 */
-#else  /* MOZ_LITTLE_ENDIAN */
-#if defined(JS_NUNBOX32)
-  union layout {
-    uint64_t asBits;
-    struct {
-      JSValueTag tag;
-      union {
-        int32_t i32;
-        uint32_t u32;
-        uint32_t boo;  // Don't use |bool| -- it must be four bytes.
-        JSString* str;
-        JS::Symbol* sym;
-        JSObject* obj;
-        js::gc::Cell* cell;
-        void* ptr;
-        JSWhyMagic why;
-        size_t word;
-        uintptr_t uintptr;
-      } payload;
-    } s;
-    double asDouble;
-    void* asPtr;
-
-    layout() : asBits(JSVAL_RAW64_UNDEFINED) {}
-    explicit constexpr layout(uint64_t bits) : asBits(bits) {}
-    explicit constexpr layout(double d) : asDouble(d) {}
-  } data;
-#elif defined(JS_PUNBOX64)
-  union layout {
-    uint64_t asBits;
-    struct {
-      JSValueTag tag : 17;
-      uint64_t payload47 : 47;
-    } debugView;
-    struct {
-      uint32_t padding;
-      union {
-        int32_t i32;
-        uint32_t u32;
-        JSWhyMagic why;
-      } payload;
-    } s;
-    double asDouble;
-    void* asPtr;
-    size_t asWord;
-    uintptr_t asUIntPtr;
-
-    layout() : asBits(JSVAL_RAW64_UNDEFINED) {}
-    explicit constexpr layout(uint64_t bits) : asBits(bits) {}
-    explicit constexpr layout(double d) : asDouble(d) {}
-  } data;
-#endif /* JS_PUNBOX64 */
-#endif /* MOZ_LITTLE_ENDIAN */
-
- private:
-  explicit constexpr Value(uint64_t asBits) : data(asBits) {}
-  explicit constexpr Value(double d) : data(d) {}
-
-  void staticAssertions() {
-    JS_STATIC_ASSERT(sizeof(JSValueType) == 1);
-    JS_STATIC_ASSERT(sizeof(JSValueTag) == 4);
-    JS_STATIC_ASSERT(sizeof(JSWhyMagic) <= 4);
-    JS_STATIC_ASSERT(sizeof(Value) == 8);
-  }
-
-  friend constexpr Value JS::UndefinedValue();
-
- public:
-  static constexpr uint64_t bitsFromTagAndPayload(JSValueTag tag,
-                                                  PayloadType payload) {
-#if defined(JS_NUNBOX32)
-    return (uint64_t(uint32_t(tag)) << 32) | payload;
-#elif defined(JS_PUNBOX64)
-    return (uint64_t(uint32_t(tag)) << JSVAL_TAG_SHIFT) | payload;
-#endif
-  }
-
-  static constexpr Value fromTagAndPayload(JSValueTag tag,
-                                           PayloadType payload) {
-    return fromRawBits(bitsFromTagAndPayload(tag, payload));
-  }
-
-  static constexpr Value fromRawBits(uint64_t asBits) { return Value(asBits); }
-
-  static constexpr Value fromInt32(int32_t i) {
-    return fromTagAndPayload(JSVAL_TAG_INT32, uint32_t(i));
-  }
-
-  static constexpr Value fromDouble(double d) { return Value(d); }
-} JS_HAZ_GC_POINTER;
-
-/**
- * This is a null-constructible structure that can convert to and from
- * a Value, allowing UninitializedValue to be stored in unions.
- */
-struct MOZ_NON_PARAM alignas(8) UninitializedValue {
- private:
-  uint64_t bits;
-
- public:
-  UninitializedValue() = default;
-  UninitializedValue(const UninitializedValue&) = default;
-  MOZ_IMPLICIT UninitializedValue(const Value& val) : bits(val.asRawBits()) {}
-
-  inline uint64_t asRawBits() const { return bits; }
-
-  inline Value& asValueRef() { return *reinterpret_cast<Value*>(this); }
-  inline const Value& asValueRef() const {
-    return *reinterpret_cast<const Value*>(this);
-  }
-
-  inline operator Value&() { return asValueRef(); }
-  inline operator Value const&() const { return asValueRef(); }
-  inline operator Value() const { return asValueRef(); }
-
-  inline void operator=(Value const& other) { asValueRef() = other; }
-};
+} JS_HAZ_GC_POINTER MOZ_NON_PARAM;
 
 static_assert(sizeof(Value) == 8,
-              "Value size must leave three tag bits, be a binary power, and is "
-              "ubiquitously depended upon everywhere");
-
-static_assert(sizeof(UninitializedValue) == sizeof(Value),
-              "Value and UninitializedValue must be the same size");
-static_assert(alignof(UninitializedValue) == alignof(Value),
-              "Value and UninitializedValue must have same alignment");
+              "Value size must leave three tag bits, be a binary power, and "
+              "is ubiquitously depended upon everywhere");
 
 inline bool IsOptimizedPlaceholderMagicValue(const Value& v) {
   if (v.isMagic()) {
@@ -1016,7 +921,9 @@ static MOZ_ALWAYS_INLINE void ExposeValueToActiveJS(const Value& v) {
   Value tmp = v;
   MOZ_ASSERT(!js::gc::EdgeNeedsSweepUnbarrieredSlow(&tmp));
 #endif
-  if (v.isGCThing()) js::gc::ExposeGCThingToActiveJS(GCCellPtr(v));
+  if (v.isGCThing()) {
+    js::gc::ExposeGCThingToActiveJS(GCCellPtr(v));
+  }
 }
 
 /************************************************************************/
@@ -1027,9 +934,7 @@ static inline MOZ_MAY_CALL_AFTER_MUST_RETURN Value NullValue() {
   return v;
 }
 
-static inline constexpr Value UndefinedValue() {
-  return Value::fromTagAndPayload(JSVAL_TAG_UNDEFINED, 0);
-}
+static inline constexpr Value UndefinedValue() { return Value(); }
 
 static inline constexpr Value Int32Value(int32_t i32) {
   return Value::fromInt32(i32);
@@ -1048,11 +953,13 @@ static inline Value CanonicalizedDoubleValue(double d) {
 }
 
 static inline bool IsCanonicalized(double d) {
-  if (mozilla::IsInfinite(d) || mozilla::IsFinite(d)) return true;
+  if (mozilla::IsInfinite(d) || mozilla::IsFinite(d)) {
+    return true;
+  }
 
   uint64_t bits;
   mozilla::BitwiseCast<uint64_t>(d, &bits);
-  return (bits & ~mozilla::DoubleTypeTraits::kSignBit) ==
+  return (bits & ~mozilla::FloatingPoint<double>::kSignBit) ==
          detail::CanonicalizedNaNBits;
 }
 
@@ -1077,6 +984,12 @@ static inline Value StringValue(JSString* str) {
 static inline Value SymbolValue(JS::Symbol* sym) {
   Value v;
   v.setSymbol(sym);
+  return v;
+}
+
+static inline Value BigIntValue(JS::BigInt* bi) {
+  Value v;
+  v.setBigInt(bi);
   return v;
 }
 
@@ -1151,10 +1064,11 @@ class MakeNumberValue {
   template <typename T>
   static inline Value create(const T t) {
     Value v;
-    if (JSVAL_INT_MIN <= t && t <= JSVAL_INT_MAX)
+    if (JSVAL_INT_MIN <= t && t <= JSVAL_INT_MAX) {
       v.setInt32(int32_t(t));
-    else
+    } else {
       v.setDouble(double(t));
+    }
     return v;
   }
 };
@@ -1165,10 +1079,11 @@ class MakeNumberValue<false> {
   template <typename T>
   static inline Value create(const T t) {
     Value v;
-    if (t <= JSVAL_INT_MAX)
+    if (t <= JSVAL_INT_MAX) {
       v.setInt32(int32_t(t));
-    else
+    } else {
       v.setDouble(double(t));
+    }
     return v;
   }
 };
@@ -1211,7 +1126,7 @@ inline bool SameType(const Value& lhs, const Value& rhs) {
   return ltag == rtag || (ltag < JSVAL_TAG_CLEAR && rtag < JSVAL_TAG_CLEAR);
 #elif defined(JS_PUNBOX64)
   return (lhs.isDouble() && rhs.isDouble()) ||
-         (((lhs.data.asBits ^ rhs.data.asBits) & 0xFFFF800000000000ULL) == 0);
+         (((lhs.asBits_ ^ rhs.asBits_) & 0xFFFF800000000000ULL) == 0);
 #endif
 }
 
@@ -1220,12 +1135,11 @@ inline bool SameType(const Value& lhs, const Value& rhs) {
 /************************************************************************/
 
 namespace JS {
-JS_PUBLIC_API void HeapValuePostBarrier(Value* valuep, const Value& prev,
-                                        const Value& next);
+JS_PUBLIC_API void HeapValueWriteBarriers(Value* valuep, const Value& prev,
+                                          const Value& next);
 
 template <>
 struct GCPolicy<JS::Value> {
-  static Value initial() { return UndefinedValue(); }
   static void trace(JSTracer* trc, Value* v, const char* name) {
     js::UnsafeTraceManuallyBarrieredEdge(trc, v, name);
   }
@@ -1246,9 +1160,9 @@ struct BarrierMethods<JS::Value> {
   static gc::Cell* asGCThingOrNull(const JS::Value& v) {
     return v.isGCThing() ? v.toGCThing() : nullptr;
   }
-  static void postBarrier(JS::Value* v, const JS::Value& prev,
-                          const JS::Value& next) {
-    JS::HeapValuePostBarrier(v, prev, next);
+  static void writeBarriers(JS::Value* v, const JS::Value& prev,
+                            const JS::Value& next) {
+    JS::HeapValueWriteBarriers(v, prev, next);
   }
   static void exposeToJS(const JS::Value& v) { JS::ExposeValueToActiveJS(v); }
 };
@@ -1280,6 +1194,7 @@ class WrappedPtrOperations<JS::Value, Wrapper> {
   bool isDouble() const { return value().isDouble(); }
   bool isString() const { return value().isString(); }
   bool isSymbol() const { return value().isSymbol(); }
+  bool isBigInt() const { return value().isBigInt(); }
   bool isObject() const { return value().isObject(); }
   bool isMagic() const { return value().isMagic(); }
   bool isMagic(JSWhyMagic why) const { return value().isMagic(why); }
@@ -1295,6 +1210,7 @@ class WrappedPtrOperations<JS::Value, Wrapper> {
   double toDouble() const { return value().toDouble(); }
   JSString* toString() const { return value().toString(); }
   JS::Symbol* toSymbol() const { return value().toSymbol(); }
+  JS::BigInt* toBigInt() const { return value().toBigInt(); }
   JSObject& toObject() const { return value().toObject(); }
   JSObject* toObjectOrNull() const { return value().toObjectOrNull(); }
   gc::Cell* toGCThing() const { return value().toGCThing(); }
@@ -1306,6 +1222,7 @@ class WrappedPtrOperations<JS::Value, Wrapper> {
   JSValueType extractNonDoubleType() const {
     return value().extractNonDoubleType();
   }
+  JS::ValueType type() const { return value().type(); }
 
   JSWhyMagic whyMagic() const { return value().whyMagic(); }
   uint32_t magicUint32() const { return value().magicUint32(); }
@@ -1334,6 +1251,7 @@ class MutableWrappedPtrOperations<JS::Value, Wrapper>
   bool setNumber(double d) { return value().setNumber(d); }
   void setString(JSString* str) { this->value().setString(str); }
   void setSymbol(JS::Symbol* sym) { this->value().setSymbol(sym); }
+  void setBigInt(JS::BigInt* bi) { this->value().setBigInt(bi); }
   void setObject(JSObject& obj) { this->value().setObject(obj); }
   void setObjectOrNull(JSObject* arg) { this->value().setObjectOrNull(arg); }
   void setPrivate(void* ptr) { this->value().setPrivate(ptr); }
@@ -1364,6 +1282,7 @@ class HeapBase<JS::Value, Wrapper>
   void setMagic(JSWhyMagic why) { setBarriered(JS::MagicValue(why)); }
   void setString(JSString* str) { setBarriered(JS::StringValue(str)); }
   void setSymbol(JS::Symbol* sym) { setBarriered(JS::SymbolValue(sym)); }
+  void setBigInt(JS::BigInt* bi) { setBarriered(JS::BigIntValue(bi)); }
   void setObject(JSObject& obj) { setBarriered(JS::ObjectValue(obj)); }
   void setPrivateGCThing(js::gc::Cell* cell) {
     setBarriered(JS::PrivateGCThingValue(cell));
@@ -1391,56 +1310,69 @@ class HeapBase<JS::Value, Wrapper>
   }
 
   void setObjectOrNull(JSObject* arg) {
-    if (arg)
+    if (arg) {
       setObject(*arg);
-    else
+    } else {
       setNull();
+    }
   }
 };
 
-/*
- * If the Value is a GC pointer type, convert to that type and call |f| with
- * the pointer. If the Value is not a GC type, calls F::defaultValue.
- */
-template <typename F, typename... Args>
-auto DispatchTyped(F f, const JS::Value& val, Args&&... args)
-    -> decltype(f(static_cast<JSObject*>(nullptr),
-                  mozilla::Forward<Args>(args)...)) {
-  if (val.isString()) {
-    JSString* str = val.toString();
-    MOZ_ASSERT(gc::IsCellPointerValid(str));
-    return f(str, mozilla::Forward<Args>(args)...);
+// If the Value is a GC pointer type, call |f| with the pointer cast to that
+// type and return the result wrapped in a Maybe, otherwise return None().
+template <typename F>
+auto MapGCThingTyped(const JS::Value& val, F&& f) {
+  switch (val.type()) {
+    case JS::ValueType::String: {
+      JSString* str = val.toString();
+      MOZ_ASSERT(gc::IsCellPointerValid(str));
+      return mozilla::Some(f(str));
+    }
+    case JS::ValueType::Object: {
+      JSObject* obj = &val.toObject();
+      MOZ_ASSERT(gc::IsCellPointerValid(obj));
+      return mozilla::Some(f(obj));
+    }
+    case JS::ValueType::Symbol: {
+      JS::Symbol* sym = val.toSymbol();
+      MOZ_ASSERT(gc::IsCellPointerValid(sym));
+      return mozilla::Some(f(sym));
+    }
+    case JS::ValueType::BigInt: {
+      JS::BigInt* bi = val.toBigInt();
+      MOZ_ASSERT(gc::IsCellPointerValid(bi));
+      return mozilla::Some(f(bi));
+    }
+    case JS::ValueType::PrivateGCThing: {
+      MOZ_ASSERT(gc::IsCellPointerValid(val.toGCThing()));
+      return mozilla::Some(MapGCThingTyped(val.toGCCellPtr(), std::move(f)));
+    }
+    case JS::ValueType::Double:
+    case JS::ValueType::Int32:
+    case JS::ValueType::Boolean:
+    case JS::ValueType::Undefined:
+    case JS::ValueType::Null:
+    case JS::ValueType::Magic: {
+      MOZ_ASSERT(!val.isGCThing());
+      using ReturnType = decltype(f(static_cast<JSObject*>(nullptr)));
+      return mozilla::Maybe<ReturnType>();
+    }
   }
-  if (val.isObject()) {
-    JSObject* obj = &val.toObject();
-    MOZ_ASSERT(gc::IsCellPointerValid(obj));
-    return f(obj, mozilla::Forward<Args>(args)...);
-  }
-  if (val.isSymbol()) {
-    JS::Symbol* sym = val.toSymbol();
-    MOZ_ASSERT(gc::IsCellPointerValid(sym));
-    return f(sym, mozilla::Forward<Args>(args)...);
-  }
-  if (MOZ_UNLIKELY(val.isPrivateGCThing())) {
-    MOZ_ASSERT(gc::IsCellPointerValid(val.toGCThing()));
-    return DispatchTyped(f, val.toGCCellPtr(), mozilla::Forward<Args>(args)...);
-  }
-  MOZ_ASSERT(!val.isGCThing());
-  return F::defaultValue(val);
+
+  MOZ_CRASH("no missing return");
 }
 
-template <class S>
-struct VoidDefaultAdaptor {
-  static void defaultValue(const S&) {}
-};
-template <class S>
-struct IdentityDefaultAdaptor {
-  static S defaultValue(const S& v) { return v; }
-};
-template <class S, bool v>
-struct BoolDefaultAdaptor {
-  static bool defaultValue(const S&) { return v; }
-};
+// If the Value is a GC pointer type, call |f| with the pointer cast to that
+// type. Return whether this happened.
+template <typename F>
+bool ApplyGCThingTyped(const JS::Value& val, F&& f) {
+  return MapGCThingTyped(val,
+                         [&f](auto t) {
+                           f(t);
+                           return true;
+                         })
+      .isSome();
+}
 
 static inline JS::Value PoisonedObjectValue(uintptr_t poison) {
   JS::Value v;
@@ -1453,14 +1385,14 @@ static inline JS::Value PoisonedObjectValue(uintptr_t poison) {
 #ifdef DEBUG
 namespace JS {
 
-MOZ_ALWAYS_INLINE bool ValueIsNotGray(const Value& value) {
-  if (!value.isGCThing()) return true;
-
-  return CellIsNotGray(value.toGCThing());
+MOZ_ALWAYS_INLINE void AssertValueIsNotGray(const Value& value) {
+  if (value.isGCThing()) {
+    AssertCellIsNotGray(value.toGCThing());
+  }
 }
 
-MOZ_ALWAYS_INLINE bool ValueIsNotGray(const Heap<Value>& value) {
-  return ValueIsNotGray(value.unbarrieredGet());
+MOZ_ALWAYS_INLINE void AssertValueIsNotGray(const Heap<Value>& value) {
+  AssertValueIsNotGray(value.unbarrieredGet());
 }
 
 }  // namespace JS

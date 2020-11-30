@@ -7,8 +7,8 @@
 /* Utilities for hashing. */
 
 /*
- * This file exports functions for hashing data down to a 32-bit value,
- * including:
+ * This file exports functions for hashing data down to a uint32_t (a.k.a.
+ * mozilla::HashNumber), including:
  *
  *  - HashString    Hash a char* or char16_t/wchar_t* of known or unknown
  *                  length.
@@ -32,9 +32,9 @@
  *    void (*mCallbackFn)();
  *
  *  public:
- *    uint32_t hash()
+ *    HashNumber hash()
  *    {
- *      uint32_t hash = HashString(mStr);
+ *      HashNumber hash = HashString(mStr);
  *      hash = AddToHash(hash, mUint1, mUint2);
  *      return AddToHash(hash, mCallbackFn);
  *    }
@@ -55,17 +55,60 @@
 #include "mozilla/WrappingOperations.h"
 
 #include <stdint.h>
+#include <type_traits>
 
 namespace mozilla {
+
+using HashNumber = uint32_t;
+static const uint32_t kHashNumberBits = 32;
 
 /**
  * The golden ratio as a 32-bit fixed-point value.
  */
-static const uint32_t kGoldenRatioU32 = 0x9E3779B9U;
+static const HashNumber kGoldenRatioU32 = 0x9E3779B9U;
+
+/*
+ * Given a raw hash code, h, return a number that can be used to select a hash
+ * bucket.
+ *
+ * This function aims to produce as uniform an output distribution as possible,
+ * especially in the most significant (leftmost) bits, even though the input
+ * distribution may be highly nonrandom, given the constraints that this must
+ * be deterministic and quick to compute.
+ *
+ * Since the leftmost bits of the result are best, the hash bucket index is
+ * computed by doing ScrambleHashCode(h) / (2^32/N) or the equivalent
+ * right-shift, not ScrambleHashCode(h) % N or the equivalent bit-mask.
+ *
+ * FIXME: OrderedHashTable uses a bit-mask; see bug 775896.
+ */
+constexpr HashNumber ScrambleHashCode(HashNumber h) {
+  /*
+   * Simply returning h would not cause any hash tables to produce wrong
+   * answers. But it can produce pathologically bad performance: The caller
+   * right-shifts the result, keeping only the highest bits. The high bits of
+   * hash codes are very often completely entropy-free. (So are the lowest
+   * bits.)
+   *
+   * So we use Fibonacci hashing, as described in Knuth, The Art of Computer
+   * Programming, 6.4. This mixes all the bits of the input hash code h.
+   *
+   * The value of goldenRatio is taken from the hex expansion of the golden
+   * ratio, which starts 1.9E3779B9.... This value is especially good if
+   * values with consecutive hash codes are stored in a hash table; see Knuth
+   * for details.
+   */
+  return mozilla::WrappingMultiply(h, kGoldenRatioU32);
+}
 
 namespace detail {
 
-inline uint32_t AddU32ToHash(uint32_t aHash, uint32_t aValue) {
+MOZ_NO_SANITIZE_UNSIGNED_OVERFLOW
+constexpr HashNumber RotateLeft5(HashNumber aValue) {
+  return (aValue << 5) | (aValue >> 27);
+}
+
+constexpr HashNumber AddU32ToHash(HashNumber aHash, uint32_t aValue) {
   /*
    * This is the meat of all our hash routines.  This hash function is not
    * particularly sophisticated, but it seems to work well for our mostly
@@ -87,7 +130,7 @@ inline uint32_t AddU32ToHash(uint32_t aHash, uint32_t aValue) {
    * Otherwise, if |aHash| is 0 (as it often is for the beginning of a
    * message), the expression
    *
-   *   mozilla::WrappingMultiply(kGoldenRatioU32, RotateBitsLeft(aHash, 5))
+   *   mozilla::WrappingMultiply(kGoldenRatioU32, RotateLeft5(aHash))
    *   |xor|
    *   aValue
    *
@@ -108,19 +151,19 @@ inline uint32_t AddU32ToHash(uint32_t aHash, uint32_t aValue) {
    * more than enough for our purposes.)
    */
   return mozilla::WrappingMultiply(kGoldenRatioU32,
-                                   RotateLeft(aHash, 5) ^ aValue);
+                                   RotateLeft5(aHash) ^ aValue);
 }
 
 /**
  * AddUintptrToHash takes sizeof(uintptr_t) as a template parameter.
  */
 template <size_t PtrSize>
-inline uint32_t AddUintptrToHash(uint32_t aHash, uintptr_t aValue) {
+constexpr HashNumber AddUintptrToHash(HashNumber aHash, uintptr_t aValue) {
   return AddU32ToHash(aHash, static_cast<uint32_t>(aValue));
 }
 
 template <>
-inline uint32_t AddUintptrToHash<8>(uint32_t aHash, uintptr_t aValue) {
+inline HashNumber AddUintptrToHash<8>(HashNumber aHash, uintptr_t aValue) {
   uint32_t v1 = static_cast<uint32_t>(aValue);
   uint32_t v2 = static_cast<uint32_t>(static_cast<uint64_t>(aValue) >> 32);
   return AddU32ToHash(AddU32ToHash(aHash, v1), v2);
@@ -137,7 +180,7 @@ inline uint32_t AddUintptrToHash<8>(uint32_t aHash, uintptr_t aValue) {
  */
 template <typename T, bool TypeIsNotIntegral = !mozilla::IsIntegral<T>::value,
           typename U = typename mozilla::EnableIf<TypeIsNotIntegral>::Type>
-MOZ_MUST_USE inline uint32_t AddToHash(uint32_t aHash, T aA) {
+MOZ_MUST_USE inline HashNumber AddToHash(HashNumber aHash, T aA) {
   /*
    * Try to convert |A| to uint32_t implicitly.  If this works, great.  If not,
    * we'll error out.
@@ -146,7 +189,7 @@ MOZ_MUST_USE inline uint32_t AddToHash(uint32_t aHash, T aA) {
 }
 
 template <typename A>
-MOZ_MUST_USE inline uint32_t AddToHash(uint32_t aHash, A* aA) {
+MOZ_MUST_USE inline HashNumber AddToHash(HashNumber aHash, A* aA) {
   /*
    * You might think this function should just take a void*.  But then we'd only
    * catch data pointers and couldn't handle function pointers.
@@ -163,12 +206,12 @@ MOZ_MUST_USE inline uint32_t AddToHash(uint32_t aHash, A* aA) {
 // to be hashed.
 template <typename T, typename U = typename mozilla::EnableIf<
                           mozilla::IsIntegral<T>::value>::Type>
-MOZ_MUST_USE inline uint32_t AddToHash(uint32_t aHash, T aA) {
+MOZ_MUST_USE constexpr HashNumber AddToHash(HashNumber aHash, T aA) {
   return detail::AddUintptrToHash<sizeof(T)>(aHash, aA);
 }
 
 template <typename A, typename... Args>
-MOZ_MUST_USE uint32_t AddToHash(uint32_t aHash, A aArg, Args... aArgs) {
+MOZ_MUST_USE HashNumber AddToHash(HashNumber aHash, A aArg, Args... aArgs) {
   return AddToHash(AddToHash(aHash, aArg), aArgs...);
 }
 
@@ -180,73 +223,96 @@ MOZ_MUST_USE uint32_t AddToHash(uint32_t aHash, A aArg, Args... aArgs) {
  * that x has already been hashed.
  */
 template <typename... Args>
-MOZ_MUST_USE inline uint32_t HashGeneric(Args... aArgs) {
+MOZ_MUST_USE inline HashNumber HashGeneric(Args... aArgs) {
   return AddToHash(0, aArgs...);
 }
 
-namespace detail {
-
-template <typename T>
-uint32_t HashUntilZero(const T* aStr) {
-  uint32_t hash = 0;
-  for (T c; (c = *aStr); aStr++) {
+/**
+ * Hash successive |*aIter| until |!*aIter|, i.e. til null-termination.
+ *
+ * This function is *not* named HashString like the non-template overloads
+ * below.  Some users define HashString overloads and pass inexactly-matching
+ * values to them -- but an inexactly-matching value would match this overload
+ * instead!  We follow the general rule and don't mix and match template and
+ * regular overloads to avoid this.
+ *
+ * If you have the string's length, call HashStringKnownLength: it may be
+ * marginally faster.
+ */
+template <typename Iterator>
+MOZ_MUST_USE constexpr HashNumber HashStringUntilZero(Iterator aIter) {
+  HashNumber hash = 0;
+  for (; auto c = *aIter; ++aIter) {
     hash = AddToHash(hash, c);
   }
   return hash;
 }
 
-template <typename T>
-uint32_t HashKnownLength(const T* aStr, size_t aLength) {
-  uint32_t hash = 0;
+/**
+ * Hash successive |aIter[i]| up to |i == aLength|.
+ */
+template <typename Iterator>
+MOZ_MUST_USE constexpr HashNumber HashStringKnownLength(Iterator aIter,
+                                                        size_t aLength) {
+  HashNumber hash = 0;
   for (size_t i = 0; i < aLength; i++) {
-    hash = AddToHash(hash, aStr[i]);
+    hash = AddToHash(hash, aIter[i]);
   }
   return hash;
 }
 
-} /* namespace detail */
-
 /**
  * The HashString overloads below do just what you'd expect.
  *
- * If you have the string's length, you might as well call the overload which
- * includes the length.  It may be marginally faster.
+ * These functions are non-template functions so that users can 1) overload them
+ * with their own types 2) in a way that allows implicit conversions to happen.
  */
-MOZ_MUST_USE inline uint32_t HashString(const char* aStr) {
-  return detail::HashUntilZero(reinterpret_cast<const unsigned char*>(aStr));
+MOZ_MUST_USE inline HashNumber HashString(const char* aStr) {
+  // Use the |const unsigned char*| version of the above so that all ordinary
+  // character data hashes identically.
+  return HashStringUntilZero(reinterpret_cast<const unsigned char*>(aStr));
 }
 
-MOZ_MUST_USE inline uint32_t HashString(const char* aStr, size_t aLength) {
-  return detail::HashKnownLength(reinterpret_cast<const unsigned char*>(aStr),
-                                 aLength);
+MOZ_MUST_USE inline HashNumber HashString(const char* aStr, size_t aLength) {
+  // Delegate to the |const unsigned char*| version of the above to share
+  // template instantiations.
+  return HashStringKnownLength(reinterpret_cast<const unsigned char*>(aStr),
+                               aLength);
 }
 
 MOZ_MUST_USE
-inline uint32_t HashString(const unsigned char* aStr, size_t aLength) {
-  return detail::HashKnownLength(aStr, aLength);
+inline HashNumber HashString(const unsigned char* aStr, size_t aLength) {
+  return HashStringKnownLength(aStr, aLength);
 }
 
-MOZ_MUST_USE inline uint32_t HashString(const char16_t* aStr) {
-  return detail::HashUntilZero(aStr);
+// You may need to use the
+// MOZ_{PUSH,POP}_DISABLE_INTEGRAL_CONSTANT_OVERFLOW_WARNING macros if you use
+// this function. See the comment on those macros' definitions for more detail.
+MOZ_MUST_USE constexpr HashNumber HashString(const char16_t* aStr) {
+  return HashStringUntilZero(aStr);
 }
 
-MOZ_MUST_USE inline uint32_t HashString(const char16_t* aStr, size_t aLength) {
-  return detail::HashKnownLength(aStr, aLength);
+MOZ_MUST_USE inline HashNumber HashString(const char16_t* aStr,
+                                          size_t aLength) {
+  return HashStringKnownLength(aStr, aLength);
 }
 
-/*
- * On Windows, wchar_t is not the same as char16_t, even though it's
- * the same width!
+/**
+ * HashString overloads for |wchar_t| on platforms where it isn't |char16_t|.
  */
-#ifdef WIN32
-MOZ_MUST_USE inline uint32_t HashString(const wchar_t* aStr) {
-  return detail::HashUntilZero(aStr);
+template <typename WCharT, typename = typename std::enable_if<
+                               std::is_same<WCharT, wchar_t>::value &&
+                               !std::is_same<wchar_t, char16_t>::value>::type>
+MOZ_MUST_USE inline HashNumber HashString(const WCharT* aStr) {
+  return HashStringUntilZero(aStr);
 }
 
-MOZ_MUST_USE inline uint32_t HashString(const wchar_t* aStr, size_t aLength) {
-  return detail::HashKnownLength(aStr, aLength);
+template <typename WCharT, typename = typename std::enable_if<
+                               std::is_same<WCharT, wchar_t>::value &&
+                               !std::is_same<wchar_t, char16_t>::value>::type>
+MOZ_MUST_USE inline HashNumber HashString(const WCharT* aStr, size_t aLength) {
+  return HashStringKnownLength(aStr, aLength);
 }
-#endif
 
 /**
  * Hash some number of bytes.
@@ -254,8 +320,8 @@ MOZ_MUST_USE inline uint32_t HashString(const wchar_t* aStr, size_t aLength) {
  * This hash walks word-by-word, rather than byte-by-byte, so you won't get the
  * same result out of HashBytes as you would out of HashString.
  */
-MOZ_MUST_USE extern MFBT_API uint32_t HashBytes(const void* bytes,
-                                                size_t aLength);
+MOZ_MUST_USE extern MFBT_API HashNumber HashBytes(const void* bytes,
+                                                  size_t aLength);
 
 /**
  * A pseudorandom function mapping 32-bit integers to 32-bit integers.
@@ -287,9 +353,9 @@ class HashCodeScrambler {
    * Scramble a hash code. Always produces the same result for the same
    * combination of key and hash code.
    */
-  uint32_t scramble(uint32_t aHashCode) const {
+  HashNumber scramble(HashNumber aHashCode) const {
     SipHasher hasher(mK0, mK1);
-    return uint32_t(hasher.sipHash(aHashCode));
+    return HashNumber(hasher.sipHash(aHashCode));
   }
 
  private:
@@ -314,19 +380,18 @@ class HashCodeScrambler {
       return mV0 ^ mV1 ^ mV2 ^ mV3;
     }
 
-    MOZ_NO_SANITIZE_UNSIGNED_OVERFLOW
     void sipRound() {
-      mV0 += mV1;
+      mV0 = WrappingAdd(mV0, mV1);
       mV1 = RotateLeft(mV1, 13);
       mV1 ^= mV0;
       mV0 = RotateLeft(mV0, 32);
-      mV2 += mV3;
+      mV2 = WrappingAdd(mV2, mV3);
       mV3 = RotateLeft(mV3, 16);
       mV3 ^= mV2;
-      mV0 += mV3;
+      mV0 = WrappingAdd(mV0, mV3);
       mV3 = RotateLeft(mV3, 21);
       mV3 ^= mV0;
-      mV2 += mV1;
+      mV2 = WrappingAdd(mV2, mV1);
       mV1 = RotateLeft(mV1, 17);
       mV1 ^= mV2;
       mV2 = RotateLeft(mV2, 32);

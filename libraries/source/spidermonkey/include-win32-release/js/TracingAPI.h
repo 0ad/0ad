@@ -1,5 +1,5 @@
-/* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*-
- * vim: set ts=8 sts=4 et sw=4 tw=99:
+/* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+ * vim: set ts=8 sts=2 et sw=2 tw=80:
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
@@ -90,6 +90,7 @@ class JS_PUBLIC_API JSTracer {
   bool isCallbackTracer() const { return tag_ == TracerKindTag::Callback; }
   inline JS::CallbackTracer* asCallbackTracer();
   bool traceWeakEdges() const { return traceWeakEdges_; }
+  bool canSkipJsids() const { return canSkipJsids_; }
 #ifdef DEBUG
   bool checkEdges() { return checkEdges_; }
 #endif
@@ -109,7 +110,8 @@ class JS_PUBLIC_API JSTracer {
 #endif
         ,
         tag_(tag),
-        traceWeakEdges_(true) {
+        traceWeakEdges_(true),
+        canSkipJsids_(false) {
   }
 
 #ifdef DEBUG
@@ -127,6 +129,7 @@ class JS_PUBLIC_API JSTracer {
  protected:
   TracerKindTag tag_;
   bool traceWeakEdges_;
+  bool canSkipJsids_;
 };
 
 namespace JS {
@@ -156,6 +159,7 @@ class JS_PUBLIC_API CallbackTracer : public JSTracer {
   virtual void onSymbolEdge(JS::Symbol** symp) {
     onChild(JS::GCCellPtr(*symp));
   }
+  virtual void onBigIntEdge(JS::BigInt** bip) { onChild(JS::GCCellPtr(*bip)); }
   virtual void onScriptEdge(JSScript** scriptp) {
     onChild(JS::GCCellPtr(*scriptp));
   }
@@ -253,6 +257,7 @@ class JS_PUBLIC_API CallbackTracer : public JSTracer {
   void dispatchToOnEdge(JSObject** objp) { onObjectEdge(objp); }
   void dispatchToOnEdge(JSString** strp) { onStringEdge(strp); }
   void dispatchToOnEdge(JS::Symbol** symp) { onSymbolEdge(symp); }
+  void dispatchToOnEdge(JS::BigInt** bip) { onBigIntEdge(bip); }
   void dispatchToOnEdge(JSScript** scriptp) { onScriptEdge(scriptp); }
   void dispatchToOnEdge(js::Shape** shapep) { onShapeEdge(shapep); }
   void dispatchToOnEdge(js::ObjectGroup** groupp) { onObjectGroupEdge(groupp); }
@@ -266,6 +271,10 @@ class JS_PUBLIC_API CallbackTracer : public JSTracer {
 
  protected:
   void setTraceWeakEdges(bool value) { traceWeakEdges_ = value; }
+
+  // If this is set to false, then the tracer will skip some jsids
+  // to improve performance. This is needed for the cycle collector.
+  void setCanSkipJsids(bool value) { canSkipJsids_ = value; }
 
  private:
   friend class AutoTracingName;
@@ -379,7 +388,9 @@ namespace JS {
 template <typename T>
 inline void TraceEdge(JSTracer* trc, JS::Heap<T>* thingp, const char* name) {
   MOZ_ASSERT(thingp);
-  if (*thingp) js::gc::TraceExternalEdge(trc, thingp->unsafeGet(), name);
+  if (*thingp) {
+    js::gc::TraceExternalEdge(trc, thingp->unsafeGet(), name);
+  }
 }
 
 template <typename T>
@@ -388,7 +399,7 @@ inline void TraceEdge(JSTracer* trc, JS::TenuredHeap<T>* thingp,
   MOZ_ASSERT(thingp);
   if (T ptr = thingp->unbarrieredGetPtr()) {
     js::gc::TraceExternalEdge(trc, &ptr, name);
-    thingp->setPtr(ptr);
+    thingp->unbarrieredSetPtr(ptr);
   }
 }
 
@@ -407,7 +418,7 @@ extern JS_PUBLIC_API void TraceChildren(JSTracer* trc, GCCellPtr thing);
 using ZoneSet =
     js::HashSet<Zone*, js::DefaultHasher<Zone*>, js::SystemAllocPolicy>;
 using CompartmentSet =
-    js::HashSet<JSCompartment*, js::DefaultHasher<JSCompartment*>,
+    js::HashSet<JS::Compartment*, js::DefaultHasher<JS::Compartment*>,
                 js::SystemAllocPolicy>;
 
 /**

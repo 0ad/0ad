@@ -10,13 +10,15 @@
 #include <stdint.h>
 
 #include "mozilla/Assertions.h"
-#include "mozilla/Move.h"
+#include "mozilla/FunctionTypeTraits.h"
+#include "mozilla/HashFunctions.h"
 #include "mozilla/OperatorNewExtensions.h"
 #include "mozilla/TemplateLib.h"
 #include "mozilla/TypeTraits.h"
+#include <utility>
 
 #ifndef mozilla_Variant_h
-#define mozilla_Variant_h
+#  define mozilla_Variant_h
 
 namespace IPC {
 template <typename T>
@@ -108,10 +110,10 @@ struct VariantTag {
 
  public:
   using Type = typename Conditional < TypeCount < 3, bool,
-        typename Conditional<
-            TypeCount<(1 << 8), uint_fast8_t,
-                      size_t  // stop caring past a certain point :-)
-                      >::Type>::Type;
+        typename Conditional<TypeCount<(1 << 8), uint_fast8_t,
+                                       size_t  // stop caring past a certain
+                                               // point :-)
+                                       >::Type>::Type;
 };
 
 // TagHelper gets the given sentinel tag value for the given type T. This has to
@@ -174,9 +176,13 @@ struct VariantImplementation<Tag, N, T> {
   }
 
   template <typename Matcher, typename ConcreteVariant>
-  static auto match(Matcher&& aMatcher, ConcreteVariant& aV)
-      -> decltype(aMatcher.match(aV.template as<N>())) {
-    return aMatcher.match(aV.template as<N>());
+  static decltype(auto) match(Matcher&& aMatcher, ConcreteVariant& aV) {
+    return aMatcher(aV.template as<N>());
+  }
+
+  template <typename ConcreteVariant, typename Matcher>
+  static decltype(auto) matchN(ConcreteVariant& aV, Matcher&& aMatcher) {
+    return aMatcher(aV.template as<N>());
   }
 };
 
@@ -205,7 +211,7 @@ struct VariantImplementation<Tag, N, T, Ts...> {
     if (aRhs.template is<N>()) {
       ::new (KnownNotNull, aLhs) T(aRhs.template extract<N>());
     } else {
-      Next::moveConstruct(aLhs, Move(aRhs));
+      Next::moveConstruct(aLhs, std::move(aRhs));
     }
   }
 
@@ -229,22 +235,34 @@ struct VariantImplementation<Tag, N, T, Ts...> {
   }
 
   template <typename Matcher, typename ConcreteVariant>
-  static auto match(Matcher&& aMatcher, ConcreteVariant& aV)
-      -> decltype(aMatcher.match(aV.template as<N>())) {
+  static decltype(auto) match(Matcher&& aMatcher, ConcreteVariant& aV) {
     if (aV.template is<N>()) {
-      return aMatcher.match(aV.template as<N>());
+      return aMatcher(aV.template as<N>());
     } else {
       // If you're seeing compilation errors here like "no matching
       // function for call to 'match'" then that means that the
       // Matcher doesn't exhaust all variant types. There must exist a
-      // Matcher::match(T&) for every variant type T.
+      // Matcher::operator()(T&) for every variant type T.
       //
-      // If you're seeing compilation errors here like "cannot
-      // initialize return object of type <...> with an rvalue of type
-      // <...>" then that means that the Matcher::match(T&) overloads
-      // are returning different types. They must all return the same
-      // Matcher::ReturnType type.
-      return Next::match(aMatcher, aV);
+      // If you're seeing compilation errors here like "cannot initialize
+      // return object of type <...> with an rvalue of type <...>" then that
+      // means that the Matcher::operator()(T&) overloads are returning
+      // different types. They must all return the same type.
+      return Next::match(std::forward<Matcher>(aMatcher), aV);
+    }
+  }
+
+  template <typename ConcreteVariant, typename Mi, typename... Ms>
+  static decltype(auto) matchN(ConcreteVariant& aV, Mi&& aMi, Ms&&... aMs) {
+    if (aV.template is<N>()) {
+      return aMi(aV.template as<N>());
+    } else {
+      // If you're seeing compilation errors here like "no matching
+      // function for call to 'match'" then that means that the
+      // Matchers don't exhaust all variant types. There must exist a
+      // Matcher (with its operator()(T&)) for every variant type T, in the
+      // exact same order.
+      return Next::matchN(aV, std::forward<Ms>(aMs)...);
     }
   }
 };
@@ -260,13 +278,13 @@ struct AsVariantTemporary {
   explicit AsVariantTemporary(const T& aValue) : mValue(aValue) {}
 
   template <typename U>
-  explicit AsVariantTemporary(U&& aValue) : mValue(Forward<U>(aValue)) {}
+  explicit AsVariantTemporary(U&& aValue) : mValue(std::forward<U>(aValue)) {}
 
   AsVariantTemporary(const AsVariantTemporary& aOther)
       : mValue(aOther.mValue) {}
 
   AsVariantTemporary(AsVariantTemporary&& aOther)
-      : mValue(Move(aOther.mValue)) {}
+      : mValue(std::move(aOther.mValue)) {}
 
   AsVariantTemporary() = delete;
   void operator=(const AsVariantTemporary&) = delete;
@@ -423,17 +441,32 @@ struct VariantIndex {
  *       }
  *     }
  *
- *     // Good!
+ *     // Instead, a single function object (that can deal with all possible
+ *     // options) may be provided:
  *     struct FooMatcher
  *     {
  *       // The return type of all matchers must be identical.
- *       char* match(A& a) { ... }
- *       char* match(B& b) { ... }
- *       char* match(C& c) { ... }
- *       char* match(D& d) { ... } // Compile-time error to forget D!
+ *       char* operator()(A& a) { ... }
+ *       char* operator()(B& b) { ... }
+ *       char* operator()(C& c) { ... }
+ *       char* operator()(D& d) { ... } // Compile-time error to forget D!
  *     }
  *     char* foo(Variant<A, B, C, D>& v) {
  *       return v.match(FooMatcher());
+ *     }
+ *
+ *     // In some situations, a single generic lambda may also be appropriate:
+ *     char* foo(Variant<A, B, C, D>& v) {
+ *       return v.match([](auto&){...});
+ *     }
+ *
+ *     // Alternatively, multiple function objects may be provided, each one
+ *     // corresponding to an option, in the same order:
+ *     char* foo(Variant<A, B, C, D>& v) {
+ *       return v.match([](A&) { ... },
+ *                      [](B&) { ... },
+ *                      [](C&) { ... },
+ *                      [](D&) { ... });
  *     }
  *
  * ## Examples
@@ -506,7 +539,7 @@ class MOZ_INHERIT_TYPE_ANNOTATIONS_FROM_TEMPLATE_ARGS MOZ_NON_PARAM Variant {
     static_assert(
         detail::SelectVariantType<RefT, Ts...>::count == 1,
         "Variant can only be selected by type if that type is unique");
-    ::new (KnownNotNull, ptr()) T(Forward<RefT>(aT));
+    ::new (KnownNotNull, ptr()) T(std::forward<RefT>(aT));
   }
 
   /**
@@ -518,7 +551,7 @@ class MOZ_INHERIT_TYPE_ANNOTATIONS_FROM_TEMPLATE_ARGS MOZ_NON_PARAM Variant {
   template <typename T, typename... Args>
   MOZ_IMPLICIT Variant(const VariantType<T>&, Args&&... aTs)
       : tag(Impl::template tag<T>()) {
-    ::new (KnownNotNull, ptr()) T(Forward<Args>(aTs)...);
+    ::new (KnownNotNull, ptr()) T(std::forward<Args>(aTs)...);
   }
 
   /**
@@ -531,7 +564,7 @@ class MOZ_INHERIT_TYPE_ANNOTATIONS_FROM_TEMPLATE_ARGS MOZ_NON_PARAM Variant {
   template <size_t N, typename... Args>
   MOZ_IMPLICIT Variant(const VariantIndex<N>&, Args&&... aTs) : tag(N) {
     using T = typename detail::Nth<N, Ts...>::Type;
-    ::new (KnownNotNull, ptr()) T(Forward<Args>(aTs)...);
+    ::new (KnownNotNull, ptr()) T(std::forward<Args>(aTs)...);
   }
 
   /**
@@ -547,7 +580,7 @@ class MOZ_INHERIT_TYPE_ANNOTATIONS_FROM_TEMPLATE_ARGS MOZ_NON_PARAM Variant {
     static_assert(
         detail::SelectVariantType<RefT, Ts...>::count == 1,
         "Variant can only be selected by type if that type is unique");
-    ::new (KnownNotNull, ptr()) T(Move(aValue.mValue));
+    ::new (KnownNotNull, ptr()) T(std::move(aValue.mValue));
   }
 
   /** Copy construction. */
@@ -557,7 +590,7 @@ class MOZ_INHERIT_TYPE_ANNOTATIONS_FROM_TEMPLATE_ARGS MOZ_NON_PARAM Variant {
 
   /** Move construction. */
   Variant(Variant&& aRhs) : tag(aRhs.tag) {
-    Impl::moveConstruct(ptr(), Move(aRhs));
+    Impl::moveConstruct(ptr(), std::move(aRhs));
   }
 
   /** Copy assignment. */
@@ -572,7 +605,7 @@ class MOZ_INHERIT_TYPE_ANNOTATIONS_FROM_TEMPLATE_ARGS MOZ_NON_PARAM Variant {
   Variant& operator=(Variant&& aRhs) {
     MOZ_ASSERT(&aRhs != this, "self-assign disallowed");
     this->~Variant();
-    ::new (KnownNotNull, this) Variant(Move(aRhs));
+    ::new (KnownNotNull, this) Variant(std::move(aRhs));
     return *this;
   }
 
@@ -583,7 +616,7 @@ class MOZ_INHERIT_TYPE_ANNOTATIONS_FROM_TEMPLATE_ARGS MOZ_NON_PARAM Variant {
         detail::SelectVariantType<T, Ts...>::count == 1,
         "Variant can only be selected by type if that type is unique");
     this->~Variant();
-    ::new (KnownNotNull, this) Variant(Move(aValue));
+    ::new (KnownNotNull, this) Variant(std::move(aValue));
     return *this;
   }
 
@@ -669,7 +702,7 @@ class MOZ_INHERIT_TYPE_ANNOTATIONS_FROM_TEMPLATE_ARGS MOZ_NON_PARAM Variant {
         detail::SelectVariantType<T, Ts...>::count == 1,
         "provided a type not uniquely found in this Variant's type list");
     MOZ_ASSERT(is<T>());
-    return T(Move(as<T>()));
+    return T(std::move(as<T>()));
   }
 
   template <size_t N>
@@ -677,22 +710,64 @@ class MOZ_INHERIT_TYPE_ANNOTATIONS_FROM_TEMPLATE_ARGS MOZ_NON_PARAM Variant {
     static_assert(N < sizeof...(Ts),
                   "provided an index outside of this Variant's type list");
     MOZ_RELEASE_ASSERT(is<N>());
-    return typename detail::Nth<N, Ts...>::Type(Move(as<N>()));
+    return typename detail::Nth<N, Ts...>::Type(std::move(as<N>()));
   }
 
   // Exhaustive matching of all variant types on the contained value.
 
   /** Match on an immutable const reference. */
   template <typename Matcher>
-  auto match(Matcher&& aMatcher) const
-      -> decltype(Impl::match(aMatcher, *this)) {
-    return Impl::match(aMatcher, *this);
+  decltype(auto) match(Matcher&& aMatcher) const {
+    return Impl::match(std::forward<Matcher>(aMatcher), *this);
+  }
+
+  template <typename M0, typename M1, typename... Ms>
+  decltype(auto) match(M0&& aM0, M1&& aM1, Ms&&... aMs) const {
+    static_assert(
+        2 + sizeof...(Ms) == sizeof...(Ts),
+        "Variant<T...>::match() takes either one callable argument that "
+        "accepts every type T; or one for each type T, in order");
+    static_assert(
+        tl::And<IsSame<typename FunctionTypeTraits<M0>::ReturnType,
+                       typename FunctionTypeTraits<M1>::ReturnType>::value,
+                IsSame<typename FunctionTypeTraits<M1>::ReturnType,
+                       typename FunctionTypeTraits<Ms>::ReturnType>::value...>::
+            value,
+        "all matchers must have the same return type");
+    return Impl::matchN(*this, std::forward<M0>(aM0), std::forward<M1>(aM1),
+                        std::forward<Ms>(aMs)...);
   }
 
   /** Match on a mutable non-const reference. */
   template <typename Matcher>
-  auto match(Matcher&& aMatcher) -> decltype(Impl::match(aMatcher, *this)) {
-    return Impl::match(aMatcher, *this);
+  decltype(auto) match(Matcher&& aMatcher) {
+    return Impl::match(std::forward<Matcher>(aMatcher), *this);
+  }
+
+  template <typename M0, typename M1, typename... Ms>
+  decltype(auto) match(M0&& aM0, M1&& aM1, Ms&&... aMs) {
+    static_assert(
+        2 + sizeof...(Ms) == sizeof...(Ts),
+        "Variant<T...>::match() takes either one callable argument that "
+        "accepts every type T; or one for each type T, in order");
+    static_assert(
+        tl::And<IsSame<typename FunctionTypeTraits<M0>::ReturnType,
+                       typename FunctionTypeTraits<M1>::ReturnType>::value,
+                IsSame<typename FunctionTypeTraits<M0>::ReturnType,
+                       typename FunctionTypeTraits<Ms>::ReturnType>::value...>::
+            value,
+        "all matchers must have the same return type");
+    return Impl::matchN(*this, std::forward<M0>(aM0), std::forward<M1>(aM1),
+                        std::forward<Ms>(aMs)...);
+  }
+
+  /**
+   * Incorporate the current variant's tag into hashValue.
+   * Note that this does not hash the actual contents; you must take
+   * care of that yourself, perhaps by using a match.
+   */
+  mozilla::HashNumber addTagToHash(mozilla::HashNumber hashValue) const {
+    return mozilla::AddToHash(hashValue, tag);
   }
 };
 
@@ -711,7 +786,7 @@ class MOZ_INHERIT_TYPE_ANNOTATIONS_FROM_TEMPLATE_ARGS MOZ_NON_PARAM Variant {
  */
 template <typename T>
 detail::AsVariantTemporary<T> AsVariant(T&& aValue) {
-  return detail::AsVariantTemporary<T>(Forward<T>(aValue));
+  return detail::AsVariantTemporary<T>(std::forward<T>(aValue));
 }
 
 }  // namespace mozilla

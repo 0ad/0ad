@@ -14,14 +14,15 @@
 #include "mozilla/Assertions.h"
 #include "mozilla/Attributes.h"
 
+#include <algorithm>
 #include <stddef.h>
 
 #ifdef __cplusplus
 
-#include "mozilla/Alignment.h"
-#include "mozilla/Array.h"
-#include "mozilla/EnumeratedArray.h"
-#include "mozilla/TypeTraits.h"
+#  include "mozilla/Alignment.h"
+#  include "mozilla/Array.h"
+#  include "mozilla/EnumeratedArray.h"
+#  include "mozilla/TypeTraits.h"
 
 namespace mozilla {
 
@@ -82,6 +83,20 @@ constexpr T* ArrayEnd(Array<T, N>& aArr) {
 template <typename T, size_t N>
 constexpr const T* ArrayEnd(const Array<T, N>& aArr) {
   return &aArr[0] + ArrayLength(aArr);
+}
+
+/**
+ * std::equal has subpar ergonomics.
+ */
+
+template <typename T, typename U, size_t N>
+bool ArrayEqual(const T (&a)[N], const U (&b)[N]) {
+  return std::equal(a, a + N, b);
+}
+
+template <typename T, typename U>
+bool ArrayEqual(const T* const a, const U* const b, const size_t n) {
+  return std::equal(a, a + n, b);
 }
 
 namespace detail {
@@ -160,10 +175,10 @@ char (&ArrayLengthHelper(T (&array)[N]))[N];
  * can't call ArrayLength() when it is not a C++11 constexpr function.
  */
 #ifdef __cplusplus
-#define MOZ_ARRAY_LENGTH(array) \
-  sizeof(mozilla::detail::ArrayLengthHelper(array))
+#  define MOZ_ARRAY_LENGTH(array) \
+    sizeof(mozilla::detail::ArrayLengthHelper(array))
 #else
-#define MOZ_ARRAY_LENGTH(array) (sizeof(array) / sizeof((array)[0]))
+#  define MOZ_ARRAY_LENGTH(array) (sizeof(array) / sizeof((array)[0]))
 #endif
 
 #endif /* mozilla_ArrayUtils_h */

@@ -93,6 +93,7 @@
 #define mozilla_JSONWriter_h
 
 #include "double-conversion/double-conversion.h"
+#include "mozilla/Assertions.h"
 #include "mozilla/IntegerPrintfMacros.h"
 #include "mozilla/PodOperations.h"
 #include "mozilla/Sprintf.h"
@@ -295,9 +296,7 @@ class JSONWriter {
                        CollectionStyle aStyle = MultiLineStyle) {
     Separator();
     if (aMaybePropertyName) {
-      mWriter->Write("\"");
-      mWriter->Write(aMaybePropertyName);
-      mWriter->Write("\": ");
+      PropertyNameAndColon(aMaybePropertyName);
     }
     mWriter->Write(aStartChar);
     mNeedComma[mDepth] = true;
@@ -309,6 +308,7 @@ class JSONWriter {
 
   // Adds the whitespace and closing char necessary to end a collection.
   void EndCollection(const char* aEndChar) {
+    MOZ_ASSERT(mDepth > 0);
     if (mNeedNewlines[mDepth]) {
       mWriter->Write("\n");
       mDepth--;
@@ -321,7 +321,7 @@ class JSONWriter {
 
  public:
   explicit JSONWriter(UniquePtr<JSONWriteFunc> aWriter)
-      : mWriter(Move(aWriter)), mNeedComma(), mNeedNewlines(), mDepth(0) {
+      : mWriter(std::move(aWriter)), mNeedComma(), mNeedNewlines(), mDepth(0) {
     NewVectorEntries();
   }
 

@@ -1,11 +1,13 @@
-/* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*-
- * vim: set ts=8 sts=4 et sw=4 tw=99:
+/* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+ * vim: set ts=8 sts=2 et sw=2 tw=80:
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 #ifndef js_SliceBudget_h
 #define js_SliceBudget_h
+
+#include "mozilla/TimeStamp.h"
 
 #include <stdint.h>
 
@@ -32,7 +34,7 @@ struct JS_PUBLIC_API WorkBudget {
  * gettimeofday calls, we only check the time every 1000 operations.
  */
 class JS_PUBLIC_API SliceBudget {
-  static const int64_t unlimitedDeadline = INT64_MAX;
+  static mozilla::TimeStamp unlimitedDeadline;
   static const intptr_t unlimitedStartCounter = INTPTR_MAX;
 
   bool checkOverBudget();
@@ -46,7 +48,7 @@ class JS_PUBLIC_API SliceBudget {
   TimeBudget timeBudget;
   WorkBudget workBudget;
 
-  int64_t deadline; /* in microseconds */
+  mozilla::TimeStamp deadline;
   intptr_t counter;
 
   static const intptr_t CounterReset = 1000;
@@ -64,6 +66,7 @@ class JS_PUBLIC_API SliceBudget {
   explicit SliceBudget(WorkBudget work);
 
   void makeUnlimited() {
+    MOZ_ASSERT(unlimitedDeadline);
     deadline = unlimitedDeadline;
     counter = unlimitedStartCounter;
   }
@@ -71,15 +74,19 @@ class JS_PUBLIC_API SliceBudget {
   void step(intptr_t amt = 1) { counter -= amt; }
 
   bool isOverBudget() {
-    if (counter > 0) return false;
+    if (counter > 0) {
+      return false;
+    }
     return checkOverBudget();
   }
 
-  bool isWorkBudget() const { return deadline == 0; }
-  bool isTimeBudget() const { return deadline > 0 && !isUnlimited(); }
+  bool isWorkBudget() const { return deadline.IsNull(); }
+  bool isTimeBudget() const { return !deadline.IsNull() && !isUnlimited(); }
   bool isUnlimited() const { return deadline == unlimitedDeadline; }
 
   int describe(char* buffer, size_t maxlen) const;
+
+  static void Init();
 };
 
 }  // namespace js

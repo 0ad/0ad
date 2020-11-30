@@ -73,10 +73,10 @@ class MOZ_NON_PARAM MaybeOneOf {
   MaybeOneOf(MaybeOneOf&& rhs) : state(None) {
     if (!rhs.empty()) {
       if (rhs.constructed<T1>()) {
-        construct<T1>(Move(rhs.as<T1>()));
+        construct<T1>(std::move(rhs.as<T1>()));
         rhs.as<T1>().~T1();
       } else {
-        construct<T2>(Move(rhs.as<T2>()));
+        construct<T2>(std::move(rhs.as<T2>()));
         rhs.as<T2>().~T2();
       }
       rhs.state = None;
@@ -86,7 +86,7 @@ class MOZ_NON_PARAM MaybeOneOf {
   MaybeOneOf& operator=(MaybeOneOf&& rhs) {
     MOZ_ASSERT(this != &rhs, "Self-move is prohibited");
     this->~MaybeOneOf();
-    new (this) MaybeOneOf(Move(rhs));
+    new (this) MaybeOneOf(std::move(rhs));
     return *this;
   }
 
@@ -101,7 +101,7 @@ class MOZ_NON_PARAM MaybeOneOf {
   void construct(Args&&... aArgs) {
     MOZ_ASSERT(state == None);
     state = Type2State<T>::result;
-    ::new (KnownNotNull, data()) T(Forward<Args>(aArgs)...);
+    ::new (KnownNotNull, data()) T(std::forward<Args>(aArgs)...);
   }
 
   template <class T>

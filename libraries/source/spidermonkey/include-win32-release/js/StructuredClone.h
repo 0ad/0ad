@@ -1,5 +1,5 @@
-/* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*-
- * vim: set ts=8 sts=4 et sw=4 tw=99:
+/* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+ * vim: set ts=8 sts=2 et sw=2 tw=80:
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
@@ -310,6 +310,14 @@ typedef void (*FreeTransferStructuredCloneOp)(
     uint32_t tag, JS::TransferableOwnership ownership, void* content,
     uint64_t extraData, void* closure);
 
+/**
+ * Called when the transferring objects are checked. If this function returns
+ * false, the serialization ends throwing a DataCloneError exception.
+ */
+typedef bool (*CanTransferStructuredCloneOp)(JSContext* cx,
+                                             JS::Handle<JSObject*> obj,
+                                             void* closure);
+
 struct JSStructuredCloneCallbacks {
   ReadStructuredCloneOp read;
   WriteStructuredCloneOp write;
@@ -317,11 +325,30 @@ struct JSStructuredCloneCallbacks {
   ReadTransferStructuredCloneOp readTransfer;
   TransferStructuredCloneOp writeTransfer;
   FreeTransferStructuredCloneOp freeTransfer;
+  CanTransferStructuredCloneOp canTransfer;
 };
 
 enum OwnTransferablePolicy {
+  /**
+   * The buffer owns any Transferables that it might contain, and should
+   * properly release them upon destruction.
+   */
   OwnsTransferablesIfAny,
+
+  /**
+   * Do not free any Transferables within this buffer when deleting it. This
+   * is used to mark as clone buffer as containing data from another process,
+   * and so it can't legitimately contain pointers. If the buffer claims to
+   * have transferables, it's a bug or an attack. This is also used for
+   * abandon(), where a buffer still contains raw data but the ownership has
+   * been given over to some other entity.
+   */
   IgnoreTransferablesIfAny,
+
+  /**
+   * A buffer that cannot contain Transferables at all. This usually means
+   * the buffer is empty (not yet filled in, or having been cleared).
+   */
   NoTransferables
 };
 
@@ -393,13 +420,13 @@ class MOZ_NON_MEMMOVABLE JS_PUBLIC_API JSStructuredCloneData {
   // Steal the raw data from a BufferList. In this case, we don't know the
   // scope and none of the callback info is assigned yet.
   JSStructuredCloneData(BufferList&& buffers, JS::StructuredCloneScope scope)
-      : bufList_(mozilla::Move(buffers)),
+      : bufList_(std::move(buffers)),
         scope_(scope),
         callbacks_(nullptr),
         closure_(nullptr),
         ownTransferables_(OwnTransferablePolicy::NoTransferables) {}
   MOZ_IMPLICIT JSStructuredCloneData(BufferList&& buffers)
-      : JSStructuredCloneData(mozilla::Move(buffers),
+      : JSStructuredCloneData(std::move(buffers),
                               JS::StructuredCloneScope::Unassigned) {}
   JSStructuredCloneData(JSStructuredCloneData&& other) = default;
   JSStructuredCloneData& operator=(JSStructuredCloneData&& other) = default;
@@ -412,7 +439,7 @@ class MOZ_NON_MEMMOVABLE JS_PUBLIC_API JSStructuredCloneData {
     ownTransferables_ = policy;
   }
 
-  bool Init(size_t initialCapacity = 0) {
+  MOZ_MUST_USE bool Init(size_t initialCapacity = 0) {
     return bufList_.Init(0, initialCapacity);
   }
 
@@ -420,9 +447,10 @@ class MOZ_NON_MEMMOVABLE JS_PUBLIC_API JSStructuredCloneData {
 
   void initScope(JS::StructuredCloneScope scope) {
     MOZ_ASSERT(Size() == 0, "initScope() of nonempty JSStructuredCloneData");
-    if (scope_ != JS::StructuredCloneScope::Unassigned)
+    if (scope_ != JS::StructuredCloneScope::Unassigned) {
       MOZ_ASSERT(scope_ == scope,
                  "Cannot change scope after it has been initialized");
+    }
     scope_ = scope;
   }
 
@@ -430,23 +458,24 @@ class MOZ_NON_MEMMOVABLE JS_PUBLIC_API JSStructuredCloneData {
 
   const Iterator Start() const { return bufList_.Iter(); }
 
-  bool Advance(Iterator& iter, size_t distance) const {
+  MOZ_MUST_USE bool Advance(Iterator& iter, size_t distance) const {
     return iter.AdvanceAcrossSegments(bufList_, distance);
   }
 
-  bool ReadBytes(Iterator& iter, char* buffer, size_t size) const {
+  MOZ_MUST_USE bool ReadBytes(Iterator& iter, char* buffer, size_t size) const {
     return bufList_.ReadBytes(iter, buffer, size);
   }
 
   // Append new data to the end of the buffer.
-  bool AppendBytes(const char* data, size_t size) {
+  MOZ_MUST_USE bool AppendBytes(const char* data, size_t size) {
     MOZ_ASSERT(scope_ != JS::StructuredCloneScope::Unassigned);
     return bufList_.WriteBytes(data, size);
   }
 
   // Update data stored within the existing buffer. There must be at least
   // 'size' bytes between the position of 'iter' and the end of the buffer.
-  bool UpdateBytes(Iterator& iter, const char* data, size_t size) const {
+  MOZ_MUST_USE bool UpdateBytes(Iterator& iter, const char* data,
+                                size_t size) const {
     MOZ_ASSERT(scope_ != JS::StructuredCloneScope::Unassigned);
     while (size > 0) {
       size_t remaining = iter.RemainingInSegment();
@@ -487,14 +516,16 @@ class MOZ_NON_MEMMOVABLE JS_PUBLIC_API JSStructuredCloneData {
   bool ForEachDataChunk(FunctionToApply&& function) const {
     Iterator iter = bufList_.Iter();
     while (!iter.Done()) {
-      if (!function(iter.Data(), iter.RemainingInSegment())) return false;
+      if (!function(iter.Data(), iter.RemainingInSegment())) {
+        return false;
+      }
       iter.Advance(bufList_, iter.RemainingInSegment());
     }
     return true;
   }
 
   // Append the entire contents of other's bufList_ to our own.
-  bool Append(const JSStructuredCloneData& other) {
+  MOZ_MUST_USE bool Append(const JSStructuredCloneData& other) {
     MOZ_ASSERT(scope_ == other.scope());
     return other.ForEachDataChunk(
         [&](const char* data, size_t size) { return AppendBytes(data, size); });

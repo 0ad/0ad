@@ -52,8 +52,8 @@ class EnumeratedArray {
   EnumeratedArray() {}
 
   template <typename... Args>
-  MOZ_IMPLICIT EnumeratedArray(Args&&... aArgs)
-      : mArray{mozilla::Forward<Args>(aArgs)...} {}
+  MOZ_IMPLICIT constexpr EnumeratedArray(Args&&... aArgs)
+      : mArray{std::forward<Args>(aArgs)...} {}
 
   explicit EnumeratedArray(const EnumeratedArray& aOther) {
     for (size_t i = 0; i < kSize; i++) {
@@ -63,7 +63,7 @@ class EnumeratedArray {
 
   EnumeratedArray(EnumeratedArray&& aOther) {
     for (size_t i = 0; i < kSize; i++) {
-      mArray[i] = Move(aOther.mArray[i]);
+      mArray[i] = std::move(aOther.mArray[i]);
     }
   }
 
@@ -75,7 +75,14 @@ class EnumeratedArray {
 
   EnumeratedArray& operator=(EnumeratedArray&& aOther) {
     for (size_t i = 0; i < kSize; i++) {
-      mArray[i] = Move(aOther.mArray[i]);
+      mArray[i] = std::move(aOther.mArray[i]);
+    }
+    return *this;
+  }
+
+  EnumeratedArray& operator=(const EnumeratedArray& aOther) {
+    for (size_t i = 0; i < kSize; i++) {
+      mArray[i] = aOther.mArray[i];
     }
     return *this;
   }

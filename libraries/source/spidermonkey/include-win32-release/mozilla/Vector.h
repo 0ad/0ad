@@ -26,8 +26,8 @@
 
 /* Silence dire "bugs in previous versions of MSVC have been fixed" warnings */
 #ifdef _MSC_VER
-#pragma warning(push)
-#pragma warning(disable : 4345)
+#  pragma warning(push)
+#  pragma warning(disable : 4345)
 #endif
 
 namespace mozilla {
@@ -60,7 +60,7 @@ struct VectorImpl {
   template <typename... Args>
   MOZ_NONNULL(1)
   static inline void new_(T* aDst, Args&&... aArgs) {
-    new (KnownNotNull, aDst) T(Forward<Args>(aArgs)...);
+    new (KnownNotNull, aDst) T(std::forward<Args>(aArgs)...);
   }
 
   /* Destroys constructed objects in the range [aBegin, aEnd). */
@@ -87,7 +87,7 @@ struct VectorImpl {
   static inline void copyConstruct(T* aDst, const U* aSrcStart,
                                    const U* aSrcEnd) {
     MOZ_ASSERT(aSrcStart <= aSrcEnd);
-    for (const U *p = aSrcStart; p < aSrcEnd; ++p, ++aDst) {
+    for (const U* p = aSrcStart; p < aSrcEnd; ++p, ++aDst) {
       new_(aDst, *p);
     }
   }
@@ -99,8 +99,8 @@ struct VectorImpl {
   template <typename U>
   static inline void moveConstruct(T* aDst, U* aSrcStart, U* aSrcEnd) {
     MOZ_ASSERT(aSrcStart <= aSrcEnd);
-    for (U *p = aSrcStart; p < aSrcEnd; ++p, ++aDst) {
-      new_(aDst, Move(*p));
+    for (U* p = aSrcStart; p < aSrcEnd; ++p, ++aDst) {
+      new_(aDst, std::move(*p));
     }
   }
 
@@ -131,10 +131,10 @@ struct VectorImpl {
     T* dst = newbuf;
     T* src = aV.beginNoCheck();
     for (; src < aV.endNoCheck(); ++dst, ++src) {
-      new_(dst, Move(*src));
+      new_(dst, std::move(*src));
     }
     VectorImpl::destroy(aV.beginNoCheck(), aV.endNoCheck());
-    aV.free_(aV.mBegin);
+    aV.free_(aV.mBegin, aV.mTail.mCapacity);
     aV.mBegin = newbuf;
     /* aV.mLength is unchanged. */
     aV.mTail.mCapacity = aNewCap;
@@ -156,7 +156,7 @@ struct VectorImpl<T, N, AP, true> {
     // T(args...) will be treated like a C-style cast in the unary case and
     // allow unsafe conversions. Both forms should be equivalent to an
     // optimizing compiler.
-    T temp(Forward<Args>(aArgs)...);
+    T temp(std::forward<Args>(aArgs)...);
     *aDst = temp;
   }
 
@@ -188,7 +188,7 @@ struct VectorImpl<T, N, AP, true> {
      * memcpy(aDst, aSrcStart, sizeof(T) * (aSrcEnd - aSrcStart));
      */
     MOZ_ASSERT(aSrcStart <= aSrcEnd);
-    for (const U *p = aSrcStart; p < aSrcEnd; ++p, ++aDst) {
+    for (const U* p = aSrcStart; p < aSrcEnd; ++p, ++aDst) {
       new_(aDst, *p);
     }
   }
@@ -224,7 +224,7 @@ struct VectorImpl<T, N, AP, true> {
       return;
     }
     if (!aV.mLength) {
-      aV.free_(aV.mBegin);
+      aV.free_(aV.mBegin, aV.mTail.mCapacity);
       aV.mBegin = aV.inlineStorage();
       aV.mTail.mCapacity = aV.kInlineCapacity;
 #ifdef DEBUG
@@ -378,8 +378,8 @@ class MOZ_NON_PARAM Vector final : private AllocPolicy {
 // Silence warnings about this struct possibly being padded dued to the
 // alignas() in it -- there's nothing we can do to avoid it.
 #ifdef _MSC_VER
-#pragma warning(push)
-#pragma warning(disable : 4324)
+#  pragma warning(push)
+#  pragma warning(disable : 4324)
 #endif  // _MSC_VER
 
   template <size_t Capacity, size_t Dummy>
@@ -403,13 +403,20 @@ class MOZ_NON_PARAM Vector final : private AllocPolicy {
         : CapacityAndReserved(aCapacity, aReserved) {}
     CRAndStorage() = default;
 
-    T* storage() { return nullptr; }
+    T* storage() {
+      // If this returns |nullptr|, functions like |Vector::begin()| would too,
+      // breaking callers that pass a vector's elements as pointer/length to
+      // code that bounds its operation by length but (even just as a sanity
+      // check) always wants a non-null pointer.  Fake up an aligned, non-null
+      // pointer to support these callers.
+      return reinterpret_cast<T*>(sizeof(T));
+    }
   };
 
   CRAndStorage<kInlineCapacity, 0> mTail;
 
 #ifdef _MSC_VER
-#pragma warning(pop)
+#  pragma warning(pop)
 #endif  // _MSC_VER
 
 #ifdef DEBUG
@@ -671,7 +678,7 @@ class MOZ_NON_PARAM Vector final : private AllocPolicy {
   template <typename... Args>
   MOZ_MUST_USE bool emplaceBack(Args&&... aArgs) {
     if (!growByUninitialized(1)) return false;
-    Impl::new_(&back(), Forward<Args>(aArgs)...);
+    Impl::new_(&back(), std::forward<Args>(aArgs)...);
     return true;
   }
 
@@ -690,7 +697,7 @@ class MOZ_NON_PARAM Vector final : private AllocPolicy {
    */
   template <typename U>
   void infallibleAppend(U&& aU) {
-    internalAppend(Forward<U>(aU));
+    internalAppend(std::forward<U>(aU));
   }
   void infallibleAppendN(const T& aT, size_t aN) { internalAppendN(aT, aN); }
   template <typename U>
@@ -704,7 +711,7 @@ class MOZ_NON_PARAM Vector final : private AllocPolicy {
   template <typename... Args>
   void infallibleEmplaceBack(Args&&... aArgs) {
     infallibleGrowByUninitialized(1);
-    Impl::new_(&back(), Forward<Args>(aArgs)...);
+    Impl::new_(&back(), std::forward<Args>(aArgs)...);
   }
 
   void popBack();
@@ -794,6 +801,20 @@ class MOZ_NON_PARAM Vector final : private AllocPolicy {
   void erase(T* aBegin, T* aEnd);
 
   /**
+   * Removes all elements that satisfy the predicate, shifting existing elements
+   * lower to fill erased gaps.
+   */
+  template <typename Pred>
+  void eraseIf(Pred aPred);
+
+  /**
+   * Removes all elements that compare equal to |aU|, shifting existing elements
+   * lower to fill erased gaps.
+   */
+  template <typename U>
+  void eraseIfEqual(const U& aU);
+
+  /**
    * Measure the size of the vector's heap-allocated storage.
    */
   size_t sizeOfExcludingThis(MallocSizeOf aMallocSizeOf) const;
@@ -837,7 +858,7 @@ MOZ_ALWAYS_INLINE Vector<T, N, AP>::Vector(AP aAP)
 /* Move constructor. */
 template <typename T, size_t N, class AllocPolicy>
 MOZ_ALWAYS_INLINE Vector<T, N, AllocPolicy>::Vector(Vector&& aRhs)
-    : AllocPolicy(Move(aRhs))
+    : AllocPolicy(std::move(aRhs))
 #ifdef DEBUG
       ,
       mEntered(false)
@@ -877,7 +898,7 @@ template <typename T, size_t N, class AP>
 MOZ_ALWAYS_INLINE Vector<T, N, AP>& Vector<T, N, AP>::operator=(Vector&& aRhs) {
   MOZ_ASSERT(this != &aRhs, "self-move assignment is prohibited");
   this->~Vector();
-  new (KnownNotNull, this) Vector(Move(aRhs));
+  new (KnownNotNull, this) Vector(std::move(aRhs));
   return *this;
 }
 
@@ -886,7 +907,7 @@ MOZ_ALWAYS_INLINE Vector<T, N, AP>::~Vector() {
   MOZ_REENTRANCY_GUARD_ET_AL;
   Impl::destroy(beginNoCheck(), endNoCheck());
   if (!usingInlineStorage()) {
-    this->free_(beginNoCheck());
+    this->free_(beginNoCheck(), mTail.mCapacity);
   }
 }
 
@@ -1167,7 +1188,7 @@ inline void Vector<T, N, AP>::clearAndFree() {
   if (usingInlineStorage()) {
     return;
   }
-  this->free_(beginNoCheck());
+  this->free_(beginNoCheck(), mTail.mCapacity);
   mBegin = inlineStorage();
   mTail.mCapacity = kInlineCapacity;
 #ifdef DEBUG
@@ -1199,7 +1220,7 @@ template <typename U>
 MOZ_ALWAYS_INLINE void Vector<T, N, AP>::internalAppend(U&& aU) {
   MOZ_ASSERT(mLength + 1 <= mTail.mReserved);
   MOZ_ASSERT(mTail.mReserved <= mTail.mCapacity);
-  Impl::new_(endNoCheck(), Forward<U>(aU));
+  Impl::new_(endNoCheck(), std::forward<U>(aU));
   ++mLength;
 }
 
@@ -1240,18 +1261,18 @@ inline T* Vector<T, N, AP>::insert(T* aP, U&& aVal) {
   MOZ_ASSERT(pos <= mLength);
   size_t oldLength = mLength;
   if (pos == oldLength) {
-    if (!append(Forward<U>(aVal))) {
+    if (!append(std::forward<U>(aVal))) {
       return nullptr;
     }
   } else {
-    T oldBack = Move(back());
-    if (!append(Move(oldBack))) {
+    T oldBack = std::move(back());
+    if (!append(std::move(oldBack))) {
       return nullptr;
     }
     for (size_t i = oldLength - 1; i > pos; --i) {
-      (*this)[i] = Move((*this)[i - 1]);
+      (*this)[i] = std::move((*this)[i - 1]);
     }
-    (*this)[pos] = Forward<U>(aVal);
+    (*this)[pos] = std::forward<U>(aVal);
   }
   return begin() + pos;
 }
@@ -1261,7 +1282,7 @@ inline void Vector<T, N, AP>::erase(T* aIt) {
   MOZ_ASSERT(begin() <= aIt);
   MOZ_ASSERT(aIt < end());
   while (aIt + 1 < end()) {
-    *aIt = Move(*(aIt + 1));
+    *aIt = std::move(*(aIt + 1));
     ++aIt;
   }
   popBack();
@@ -1273,9 +1294,29 @@ inline void Vector<T, N, AP>::erase(T* aBegin, T* aEnd) {
   MOZ_ASSERT(aBegin <= aEnd);
   MOZ_ASSERT(aEnd <= end());
   while (aEnd < end()) {
-    *aBegin++ = Move(*aEnd++);
+    *aBegin++ = std::move(*aEnd++);
   }
   shrinkBy(aEnd - aBegin);
+}
+
+template <typename T, size_t N, class AP>
+template <typename Pred>
+void Vector<T, N, AP>::eraseIf(Pred aPred) {
+  // remove_if finds the first element to be erased, and then efficiently move-
+  // assigns elements to effectively overwrite elements that satisfy the
+  // predicate. It returns the new end pointer, after which there are only
+  // moved-from elements ready to be destroyed, so we just need to shrink the
+  // vector accordingly.
+  T* newEnd = std::remove_if(begin(), end(),
+                             [&aPred](const T& aT) { return aPred(aT); });
+  MOZ_ASSERT(newEnd <= end());
+  shrinkBy(end() - newEnd);
+}
+
+template <typename T, size_t N, class AP>
+template <typename U>
+void Vector<T, N, AP>::eraseIfEqual(const U& aU) {
+  return eraseIf([&aU](const T& aT) { return aT == aU; });
 }
 
 template <typename T, size_t N, class AP>
@@ -1326,7 +1367,7 @@ MOZ_ALWAYS_INLINE bool Vector<T, N, AP>::append(U&& aU) {
     mTail.mReserved = mLength + 1;
   }
 #endif
-  internalAppend(Forward<U>(aU));
+  internalAppend(std::forward<U>(aU));
   return true;
 }
 
@@ -1409,7 +1450,7 @@ inline void Vector<T, N, AP>::replaceRawBuffer(T* aP, size_t aLength,
   /* Destroy what we have. */
   Impl::destroy(beginNoCheck(), endNoCheck());
   if (!usingInlineStorage()) {
-    this->free_(beginNoCheck());
+    this->free_(beginNoCheck(), mTail.mCapacity);
   }
 
   /* Take in the new buffer. */
@@ -1424,7 +1465,7 @@ inline void Vector<T, N, AP>::replaceRawBuffer(T* aP, size_t aLength,
     mTail.mCapacity = kInlineCapacity;
     Impl::moveConstruct(mBegin, aP, aP + aLength);
     Impl::destroy(aP, aP + aLength);
-    this->free_(aP);
+    this->free_(aP, aCapacity);
   } else {
     mBegin = aP;
     mLength = aLength;
@@ -1479,7 +1520,7 @@ inline void Vector<T, N, AP>::swap(Vector& aOther) {
 }  // namespace mozilla
 
 #ifdef _MSC_VER
-#pragma warning(pop)
+#  pragma warning(pop)
 #endif
 
 #endif /* mozilla_Vector_h */

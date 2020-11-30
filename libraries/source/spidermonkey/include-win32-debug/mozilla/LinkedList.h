@@ -98,6 +98,11 @@ struct LinkedListElementTraits {
   // to a list.
   static void enterList(LinkedListElement<T>* elt) {}
   static void exitList(LinkedListElement<T>* elt) {}
+
+  // This method is called when AutoCleanLinkedList cleans itself
+  // during destruction. It can be used to call delete on elements if
+  // the list is the sole owner.
+  static void cleanElement(LinkedListElement<T>* elt) { delete elt->asT(); }
 };
 
 template <typename T>
@@ -113,6 +118,7 @@ struct LinkedListElementTraits<RefPtr<T>> {
   static void exitList(LinkedListElement<RefPtr<T>>* elt) {
     elt->asT()->Release();
   }
+  static void cleanElement(LinkedListElement<RefPtr<T>>* elt) {}
 };
 
 } /* namespace detail */
@@ -176,14 +182,14 @@ class LinkedListElement {
    */
   LinkedListElement(LinkedListElement<T>&& aOther)
       : mIsSentinel(aOther.mIsSentinel) {
-    adjustLinkForMove(Move(aOther));
+    adjustLinkForMove(std::move(aOther));
   }
 
   LinkedListElement& operator=(LinkedListElement<T>&& aOther) {
     MOZ_ASSERT(mIsSentinel == aOther.mIsSentinel, "Mismatch NodeKind!");
     MOZ_ASSERT(!isInList(),
                "Assigning to an element in a list messes up that list!");
-    adjustLinkForMove(Move(aOther));
+    adjustLinkForMove(std::move(aOther));
     return *this;
   }
 
@@ -384,37 +390,39 @@ class LinkedList {
   typedef typename Traits::ConstRawType ConstRawType;
   typedef typename Traits::ClientType ClientType;
   typedef typename Traits::ConstClientType ConstClientType;
+  typedef LinkedListElement<T>* ElementType;
+  typedef const LinkedListElement<T>* ConstElementType;
 
   LinkedListElement<T> sentinel;
 
  public:
+  template <typename Type, typename Element>
   class Iterator {
-    RawType mCurrent;
+    Type mCurrent;
 
    public:
-    explicit Iterator(RawType aCurrent) : mCurrent(aCurrent) {}
+    explicit Iterator(Type aCurrent) : mCurrent(aCurrent) {}
 
-    RawType operator*() const { return mCurrent; }
+    Type operator*() const { return mCurrent; }
 
     const Iterator& operator++() {
-      mCurrent = mCurrent->getNext();
+      mCurrent = static_cast<Element>(mCurrent)->getNext();
       return *this;
     }
 
-    bool operator!=(Iterator& aOther) const {
+    bool operator!=(const Iterator& aOther) const {
       return mCurrent != aOther.mCurrent;
     }
   };
 
   LinkedList() : sentinel(LinkedListElement<T>::NodeKind::Sentinel) {}
 
-  LinkedList(LinkedList<T>&& aOther)
-      : sentinel(mozilla::Move(aOther.sentinel)) {}
+  LinkedList(LinkedList<T>&& aOther) : sentinel(std::move(aOther.sentinel)) {}
 
   LinkedList& operator=(LinkedList<T>&& aOther) {
     MOZ_ASSERT(isEmpty(),
                "Assigning to a non-empty list leaks elements in that list!");
-    sentinel = mozilla::Move(aOther.sentinel);
+    sentinel = std::move(aOther.sentinel);
     return *this;
   }
 
@@ -495,8 +503,18 @@ class LinkedList {
    *
    *     for (MyElementType* elt : myList) { ... }
    */
-  Iterator begin() { return Iterator(getFirst()); }
-  Iterator end() { return Iterator(nullptr); }
+  Iterator<RawType, ElementType> begin() {
+    return Iterator<RawType, ElementType>(getFirst());
+  }
+  Iterator<ConstRawType, ConstElementType> begin() const {
+    return Iterator<ConstRawType, ConstElementType>(getFirst());
+  }
+  Iterator<RawType, ElementType> end() {
+    return Iterator<RawType, ElementType>(nullptr);
+  }
+  Iterator<ConstRawType, ConstElementType> end() const {
+    return Iterator<ConstRawType, ConstElementType>(nullptr);
+  }
 
   /*
    * Measures the memory consumption of the list excluding |this|.  Note that
@@ -506,8 +524,10 @@ class LinkedList {
    */
   size_t sizeOfExcludingThis(MallocSizeOf aMallocSizeOf) const {
     size_t n = 0;
-    for (ConstRawType t = getFirst(); t; t = t->getNext()) {
+    ConstRawType t = getFirst();
+    while (t) {
       n += aMallocSizeOf(t);
+      t = static_cast<const LinkedListElement<T>*>(t)->getNext();
     }
     return n;
   }
@@ -524,7 +544,7 @@ class LinkedList {
    * mNext/mPrev pointers, only one sentinel).  Has no effect in release builds.
    */
   void debugAssertIsSane() const {
-#ifdef DEBUG
+#  ifdef DEBUG
     const LinkedListElement<T>* slow;
     const LinkedListElement<T>* fast1;
     const LinkedListElement<T>* fast2;
@@ -569,21 +589,21 @@ class LinkedList {
       prev = cur;
       cur = cur->mNext;
     } while (cur != &sentinel);
-#endif /* ifdef DEBUG */
+#  endif /* ifdef DEBUG */
   }
 
  private:
   friend class LinkedListElement<T>;
 
   void assertContains(const RawType aValue) const {
-#ifdef DEBUG
+#  ifdef DEBUG
     for (ConstRawType elem = getFirst(); elem; elem = elem->getNext()) {
       if (elem == aValue) {
         return;
       }
     }
     MOZ_CRASH("element wasn't found in this list!");
-#endif
+#  endif
   }
 
   LinkedList& operator=(const LinkedList<T>& aOther) = delete;
@@ -592,17 +612,21 @@ class LinkedList {
 
 template <typename T>
 class AutoCleanLinkedList : public LinkedList<T> {
+ private:
+  using Traits = detail::LinkedListElementTraits<T>;
+  using ClientType = typename detail::LinkedListElementTraits<T>::ClientType;
+
  public:
   ~AutoCleanLinkedList() { clear(); }
 
   AutoCleanLinkedList& operator=(AutoCleanLinkedList&& aOther) {
-    LinkedList<T>::operator=(Forward<LinkedList<T>>(aOther));
+    LinkedList<T>::operator=(std::forward<LinkedList<T>>(aOther));
     return *this;
   }
 
   void clear() {
-    while (T* element = this->popFirst()) {
-      delete element;
+    while (ClientType element = this->popFirst()) {
+      Traits::cleanElement(element);
     }
   }
 };

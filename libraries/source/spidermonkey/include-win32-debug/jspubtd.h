@@ -1,5 +1,5 @@
-/* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*-
- * vim: set ts=8 sts=4 et sw=4 tw=99:
+/* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+ * vim: set ts=8 sts=2 et sw=2 tw=80:
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
@@ -11,11 +11,6 @@
  * JS public API typedefs.
  */
 
-#include "mozilla/Assertions.h"
-#include "mozilla/EnumeratedArray.h"
-#include "mozilla/LinkedList.h"
-#include "mozilla/PodOperations.h"
-
 #include "jstypes.h"
 
 #include "js/ProtoKey.h"
@@ -24,24 +19,14 @@
 #include "js/TypeDecls.h"
 
 #if defined(JS_GC_ZEAL) || defined(DEBUG)
-#define JSGC_HASH_TABLE_CHECKS
+#  define JSGC_HASH_TABLE_CHECKS
 #endif
 
 namespace JS {
 
-template <typename T>
-class AutoVector;
-using AutoIdVector = AutoVector<jsid>;
-using AutoValueVector = AutoVector<Value>;
-using AutoObjectVector = AutoVector<JSObject*>;
-
 class CallArgs;
 
-class JS_FRIEND_API CompileOptions;
-class JS_FRIEND_API ReadOnlyCompileOptions;
-class JS_FRIEND_API OwningCompileOptions;
-class JS_FRIEND_API TransitiveCompileOptions;
-class JS_PUBLIC_API CompartmentOptions;
+class JS_PUBLIC_API RealmOptions;
 
 }  // namespace JS
 
@@ -55,6 +40,7 @@ enum JSType {
   JSTYPE_BOOLEAN,   /* boolean */
   JSTYPE_NULL,      /* null */
   JSTYPE_SYMBOL,    /* symbol */
+  JSTYPE_BIGINT,    /* BigInt */
   JSTYPE_LIMIT
 };
 
@@ -71,7 +57,6 @@ struct JSClass;
 class JSErrorReport;
 struct JSExceptionState;
 struct JSFunctionSpec;
-struct JSLocaleCallbacks;
 struct JSPrincipals;
 struct JSPropertySpec;
 struct JSSecurityCallbacks;
@@ -82,22 +67,15 @@ class JS_PUBLIC_API JSTracer;
 
 class JSFlatString;
 
-typedef bool (*JSInitCallback)(void);
-
 template <typename T>
 struct JSConstScalarSpec;
 typedef JSConstScalarSpec<double> JSConstDoubleSpec;
 typedef JSConstScalarSpec<int32_t> JSConstIntegerSpec;
 
 namespace js {
-namespace gc {
-class AutoTraceSession;
-class StoreBuffer;
-}  // namespace gc
 
-class CooperatingContext;
-
-inline JSCompartment* GetContextCompartment(const JSContext* cx);
+inline JS::Realm* GetContextRealm(const JSContext* cx);
+inline JS::Compartment* GetContextCompartment(const JSContext* cx);
 inline JS::Zone* GetContextZone(const JSContext* cx);
 
 // Whether the current thread is permitted access to any part of the specified
@@ -112,11 +90,7 @@ JS_FRIEND_API bool CurrentThreadIsPerformingGC();
 
 namespace JS {
 
-class JS_PUBLIC_API AutoEnterCycleCollection;
-class JS_PUBLIC_API AutoAssertOnBarrier;
 struct JS_PUBLIC_API PropertyDescriptor;
-
-typedef void (*OffThreadCompileCallback)(void* token, void* callbackData);
 
 enum class HeapState {
   Idle,             // doing nothing with the GC heap
@@ -127,38 +101,43 @@ enum class HeapState {
   CycleCollecting   // in the "Unlink" phase of cycle collection
 };
 
-JS_PUBLIC_API HeapState CurrentThreadHeapState();
+JS_PUBLIC_API HeapState RuntimeHeapState();
 
-static inline bool CurrentThreadIsHeapBusy() {
-  return CurrentThreadHeapState() != HeapState::Idle;
+static inline bool RuntimeHeapIsBusy() {
+  return RuntimeHeapState() != HeapState::Idle;
 }
 
-static inline bool CurrentThreadIsHeapTracing() {
-  return CurrentThreadHeapState() == HeapState::Tracing;
+static inline bool RuntimeHeapIsTracing() {
+  return RuntimeHeapState() == HeapState::Tracing;
 }
 
-static inline bool CurrentThreadIsHeapMajorCollecting() {
-  return CurrentThreadHeapState() == HeapState::MajorCollecting;
+static inline bool RuntimeHeapIsMajorCollecting() {
+  return RuntimeHeapState() == HeapState::MajorCollecting;
 }
 
-static inline bool CurrentThreadIsHeapMinorCollecting() {
-  return CurrentThreadHeapState() == HeapState::MinorCollecting;
+static inline bool RuntimeHeapIsMinorCollecting() {
+  return RuntimeHeapState() == HeapState::MinorCollecting;
 }
 
-static inline bool CurrentThreadIsHeapCollecting() {
-  HeapState state = CurrentThreadHeapState();
+static inline bool RuntimeHeapIsCollecting(HeapState state) {
   return state == HeapState::MajorCollecting ||
          state == HeapState::MinorCollecting;
 }
 
-static inline bool CurrentThreadIsHeapCycleCollecting() {
-  return CurrentThreadHeapState() == HeapState::CycleCollecting;
+static inline bool RuntimeHeapIsCollecting() {
+  return RuntimeHeapIsCollecting(RuntimeHeapState());
+}
+
+static inline bool RuntimeHeapIsCycleCollecting() {
+  return RuntimeHeapState() == HeapState::CycleCollecting;
 }
 
 // Decorates the Unlinking phase of CycleCollection so that accidental use
 // of barriered accessors results in assertions instead of leaks.
 class MOZ_STACK_CLASS JS_PUBLIC_API AutoEnterCycleCollection {
 #ifdef DEBUG
+  JSRuntime* runtime_;
+
  public:
   explicit AutoEnterCycleCollection(JSRuntime* rt);
   ~AutoEnterCycleCollection();
@@ -171,11 +150,10 @@ class MOZ_STACK_CLASS JS_PUBLIC_API AutoEnterCycleCollection {
 
 } /* namespace JS */
 
-MOZ_BEGIN_EXTERN_C
+extern "C" {
 
 // Defined in NSPR prio.h.
 typedef struct PRFileDesc PRFileDesc;
-
-MOZ_END_EXTERN_C
+}
 
 #endif /* jspubtd_h */

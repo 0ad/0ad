@@ -1,5 +1,5 @@
-/* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*-
- * vim: set ts=8 sts=4 et sw=4 tw=99:
+/* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+ * vim: set ts=8 sts=2 et sw=2 tw=80:
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
@@ -75,6 +75,18 @@ class PrintfTarget {
 
   /* The Vprintf-like interface.  */
   bool MFBT_API vprint(const char* format, va_list) MOZ_FORMAT_PRINTF(2, 0);
+
+  /* Fast paths for formatting integers as though by %d, %o, %u, or %x.
+     Since octal and hex formatting always treat numbers as unsigned, there
+     are no signed overloads for AppendInt{Oct,Hex}.  */
+  bool MFBT_API appendIntDec(int32_t);
+  bool MFBT_API appendIntDec(uint32_t);
+  bool MFBT_API appendIntOct(uint32_t);
+  bool MFBT_API appendIntHex(uint32_t);
+  bool MFBT_API appendIntDec(int64_t);
+  bool MFBT_API appendIntDec(uint64_t);
+  bool MFBT_API appendIntOct(uint64_t);
+  bool MFBT_API appendIntHex(uint64_t);
 
  protected:
   MFBT_API PrintfTarget();
@@ -161,12 +173,13 @@ class MOZ_STACK_CLASS SprintfState final : private mozilla::PrintfTarget,
     if (off + len >= mMaxlen) {
       /* Grow the buffer */
       newlen = mMaxlen + ((len > 32) ? len : 32);
-      newbase =
-          static_cast<char*>(this->maybe_pod_realloc(mBase, mMaxlen, newlen));
+      newbase = this->template maybe_pod_malloc<char>(newlen);
       if (!newbase) {
         /* Ran out of memory */
         return false;
       }
+      memcpy(newbase, mBase, mMaxlen);
+      this->free_(mBase);
       mBase = newbase;
       mMaxlen = newlen;
       mCur = mBase + off;

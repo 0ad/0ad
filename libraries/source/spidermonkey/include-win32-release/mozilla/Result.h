@@ -1,5 +1,5 @@
-/* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*-
- * vim: set ts=8 sts=4 et sw=4 tw=99:
+/* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+ * vim: set ts=8 sts=2 et sw=2 tw=80:
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
@@ -211,12 +211,18 @@ struct HasFreeLSB {
   static const bool value = false;
 };
 
+// As an incomplete type, void* does not have a spare bit.
+template <>
+struct HasFreeLSB<void*> {
+  static const bool value = false;
+};
+
 // The lowest bit of a properly-aligned pointer is always zero if the pointee
 // type is greater than byte-aligned. That bit is free to use if it's masked
 // out of such pointers before they're dereferenced.
 template <typename T>
 struct HasFreeLSB<T*> {
-  static const bool value = (MOZ_ALIGNOF(T) & 1) == 0;
+  static const bool value = (alignof(T) & 1) == 0;
 };
 
 // We store references as pointers, so they have a free bit if a pointer would
@@ -254,8 +260,8 @@ struct IsResult<Result<V, E>> : TrueType {};
 
 template <typename V, typename E>
 auto ToResult(Result<V, E>&& aValue)
-    -> decltype(Forward<Result<V, E>>(aValue)) {
-  return Forward<Result<V, E>>(aValue);
+    -> decltype(std::forward<Result<V, E>>(aValue)) {
+  return std::forward<Result<V, E>>(aValue);
 }
 
 /**

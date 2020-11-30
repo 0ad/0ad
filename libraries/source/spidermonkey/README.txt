@@ -28,8 +28,15 @@ Building on Windows:
 We provide precompiled binaries for Windows.
 If you still need to build on Windows, here's a short guide.
 
-Setting up the build environment:
-1. Go to https://firefox-source-docs.mozilla.org/setup/windows_build.html#mozillabuild
-2. Download the latest mozbuild package and install it to C:/mozilla-build (default).
-3. Run MozillaBuild 3.x (start-shell.bat)
-4. cd to the build.sh directory and run ./build.sh
+The basic idea is to follow the instructions to build Firefox:
+https://firefox-source-docs.mozilla.org/setup/windows_build.html#mozillabuild
+And after running "mach boostrap", run ./build.sh
+
+The customised option (which I used):
+- Install mozilla-build per the instructions above
+- Install rust (make sure to add it to your PATH)
+- Open Powershell and run "rustup install i686-pc-windows-msvc" and "rustup install x86_64-pc-windows-msvc"
+- Install LLVM 8 prebuilt binaries from https://releases.llvm.org somewhere (the script plans for C:/Program Files/LLVM)
+- From powershell, run ". C:/mozilla-build/start-shell.bat", cd to 0ad/libraries/source/spidermonkey and then run "./build.sh"
+
+At that point, everything should be setup and run correctly.
