@@ -21,9 +21,9 @@
 
 #include "ps/GameSetup/Config.h"
 #include "ps/Profile.h"
+#include "scriptinterface/ScriptExtraHeaders.h"
 #include "scriptinterface/ScriptEngine.h"
 #include "scriptinterface/ScriptInterface.h"
-
 
 void GCSliceCallbackHook(JSContext* UNUSED(cx), JS::GCProgress progress, const JS::GCDescription& UNUSED(desc))
 {
@@ -130,15 +130,15 @@ ScriptContext::~ScriptContext()
 	ScriptEngine::GetSingleton().UnRegisterContext(m_cx);
 }
 
-void ScriptContext::RegisterCompartment(JSCompartment* cmpt)
+void ScriptContext::RegisterRealm(JS::Realm* realm)
 {
-	ENSURE(cmpt);
-	m_Compartments.push_back(cmpt);
+	ENSURE(realm);
+	m_Realms.push_back(realm);
 }
 
-void ScriptContext::UnRegisterCompartment(JSCompartment* cmpt)
+void ScriptContext::UnRegisterRealm(JS::Realm* realm)
 {
-	m_Compartments.remove(cmpt);
+	m_Realms.remove(realm);
 }
 
 #define GC_DEBUG_PRINT 0
@@ -204,8 +204,8 @@ void ScriptContext::MaybeIncrementalGC(double delay)
 #if GC_DEBUG_PRINT
 					printf("Finishing incremental GC because gcBytes > m_ContextSize / 2. \n");
 #endif
-					PrepareCompartmentsForIncrementalGC();
-					JS::FinishIncrementalGC(m_cx, JS::gcreason::API);
+					PrepareZonesForIncrementalGC();
+					JS::FinishIncrementalGC(m_cx, JS::GCReason::API);
 				}
 				else
 				{
@@ -233,11 +233,11 @@ void ScriptContext::MaybeIncrementalGC(double delay)
 				else
 					printf("Running incremental GC slice \n");
 #endif
-				PrepareCompartmentsForIncrementalGC();
+				PrepareZonesForIncrementalGC();
 				if (!JS::IsIncrementalGCInProgress(m_cx))
-					JS::StartIncrementalGC(m_cx, GC_NORMAL, JS::gcreason::API, GCSliceTimeBudget);
+					JS::StartIncrementalGC(m_cx, GC_NORMAL, JS::GCReason::API, GCSliceTimeBudget);
 				else
-					JS::IncrementalGCSlice(m_cx, JS::gcreason::API, GCSliceTimeBudget);
+					JS::IncrementalGCSlice(m_cx, JS::GCReason::API, GCSliceTimeBudget);
 			}
 			m_LastGCBytes = gcBytes;
 		}
@@ -248,12 +248,12 @@ void ScriptContext::ShrinkingGC()
 {
 	JS_SetGCParameter(m_cx, JSGC_MODE, JSGC_MODE_ZONE);
 	JS::PrepareForFullGC(m_cx);
-	JS::GCForReason(m_cx, GC_SHRINK, JS::gcreason::API);
+	JS::NonIncrementalGC(m_cx, GC_SHRINK, JS::GCReason::API);
 	JS_SetGCParameter(m_cx, JSGC_MODE, JSGC_MODE_INCREMENTAL);
 }
 
-void ScriptContext::PrepareCompartmentsForIncrementalGC() const
+void ScriptContext::PrepareZonesForIncrementalGC() const
 {
-	for (JSCompartment* const& cmpt : m_Compartments)
-		JS::PrepareZoneForGC(js::GetCompartmentZone(cmpt));
+	for (JS::Realm* const& realm : m_Realms)
+		JS::PrepareZoneForGC(js::GetRealmZone(realm));
 }

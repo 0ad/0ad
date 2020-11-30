@@ -32,6 +32,7 @@
 #include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
 #include "ps/Pyrogenesis.h"
+#include "scriptinterface/ScriptExtraHeaders.h" // StructuredClone
 #include "scriptinterface/ScriptInterface.h"
 
 #include <gloox/gloox.h>

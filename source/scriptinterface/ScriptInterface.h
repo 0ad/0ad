@@ -49,6 +49,8 @@ ERROR_TYPE(Scripting_DefineType, CreationFailed);
 // but as large as necessary for all wrapped functions)
 #define SCRIPT_INTERFACE_MAX_ARGS 8
 
+class JSStructuredCloneData;
+
 class ScriptInterface;
 struct ScriptInterface_impl;
 
@@ -61,7 +63,7 @@ extern thread_local shared_ptr<ScriptContext> g_ScriptContext;
  * RAII structure which encapsulates an access to the context and compartment of a ScriptInterface.
  * This struct provides:
  * - a pointer to the context, while acting like JSAutoRequest
- * - a pointer to the global object of the compartment, while acting like JSAutoCompartment
+ * - a pointer to the global object of the compartment, while acting like JSAutoRealm
  *
  * This way, getting and using those pointers is safe with respect to the GC
  * and to the separation of compartments.
@@ -81,11 +83,11 @@ public:
 	JSContext* cx;
 	JSObject* glob;
 private:
-	JSCompartment* m_formerCompartment;
+	JS::Realm* m_formerRealm;
 };
 
 /**
- * Abstraction around a SpiderMonkey JSCompartment.
+ * Abstraction around a SpiderMonkey JS::Realm.
  *
  * Thread-safety:
  * - May be used in non-main threads.
@@ -244,11 +246,6 @@ public:
 
 	bool FreezeObject(JS::HandleValue objVal, bool deep) const;
 
-	bool Eval(const char* code) const;
-
-	template<typename CHAR> bool Eval(const CHAR* code, JS::MutableHandleValue out) const;
-	template<typename T, typename CHAR> bool Eval(const CHAR* code, T& out) const;
-
 	/**
 	 * Convert an object to a UTF-8 encoded string, either with JSON
 	 * (if pretty == true and there is no JSON error) or with toSource().
@@ -288,13 +285,21 @@ public:
 	 * @param code JS code to execute
 	 * @return true on successful compilation and execution; false otherwise
 	 */
-	bool LoadGlobalScript(const VfsPath& filename, const std::wstring& code) const;
+	bool LoadGlobalScript(const VfsPath& filename, const std::string& code) const;
 
 	/**
 	 * Load and execute the given script in the global scope.
 	 * @return true on successful compilation and execution; false otherwise
 	 */
 	bool LoadGlobalScriptFile(const VfsPath& path) const;
+
+	/**
+	 * Evaluate some JS code in the global scope.
+	 * @return true on successful compilation and execution; false otherwise
+	 */
+	bool Eval(const char* code) const;
+	bool Eval(const char* code, JS::MutableHandleValue out) const;
+	template<typename T> bool Eval(const char* code, T& out) const;
 
 	/**
 	 * Convert a JS::Value to a C++ type. (This might trigger GC.)
@@ -425,8 +430,6 @@ private:
 	}
 
 	bool CallFunction_(JS::HandleValue val, const char* name, JS::HandleValueArray argv, JS::MutableHandleValue ret) const;
-	bool Eval_(const char* code, JS::MutableHandleValue ret) const;
-	bool Eval_(const wchar_t* code, JS::MutableHandleValue ret) const;
 	bool SetGlobal_(const char* name, JS::HandleValue value, bool replace, bool constant, bool enumerate);
 	bool SetProperty_(JS::HandleValue obj, const char* name, JS::HandleValue value, bool constant, bool enumerate) const;
 	bool SetProperty_(JS::HandleValue obj, const wchar_t* name, JS::HandleValue value, bool constant, bool enumerate) const;
@@ -592,20 +595,13 @@ bool ScriptInterface::GetPropertyInt(JS::HandleValue obj, int name, T& out) cons
 	return FromJSVal(rq, val, out);
 }
 
-template<typename CHAR>
-bool ScriptInterface::Eval(const CHAR* code, JS::MutableHandleValue ret) const
-{
-	if (!Eval_(code, ret))
-		return false;
-	return true;
-}
 
-template<typename T, typename CHAR>
-bool ScriptInterface::Eval(const CHAR* code, T& ret) const
+template<typename T>
+bool ScriptInterface::Eval(const char* code, T& ret) const
 {
 	ScriptRequest rq(this);
 	JS::RootedValue rval(rq.cx);
-	if (!Eval_(code, &rval))
+	if (!Eval(code, &rval))
 		return false;
 	return FromJSVal(rq, rval, ret);
 }

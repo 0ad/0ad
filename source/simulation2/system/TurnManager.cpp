@@ -26,6 +26,7 @@
 #include "ps/CLogger.h"
 #include "ps/Replay.h"
 #include "ps/Util.h"
+#include "scriptinterface/ScriptExtraHeaders.h" // StructuredClone
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
 

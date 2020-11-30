@@ -91,15 +91,15 @@ protected:
 	{
 		return false;
 	}
-	// Return nothing.
-	virtual bool ownPropertyKeys(JSContext* UNUSED(cx), JS::HandleObject UNUSED(proxy), JS::AutoIdVector& UNUSED(props)) const override
+	// No accessible properties.
+	virtual bool ownPropertyKeys(JSContext* UNUSED(cx), JS::HandleObject UNUSED(proxy), JS::MutableHandleIdVector UNUSED(props)) const override
 	{
 		return true;
 	}
-	// Return nothing.
-	virtual JSObject* enumerate(JSContext* UNUSED(cx), JS::HandleObject UNUSED(proxy)) const override
+	// Nothing to enumerate.
+	virtual bool enumerate(JSContext* UNUSED(cx), JS::HandleObject UNUSED(proxy), JS::MutableHandleIdVector UNUSED(props)) const override
 	{
-		return nullptr;
+		return true;
 	}
 	// Throw an exception is JS attempts to query the prototype.
 	virtual bool getPrototypeIfOrdinary(JSContext* UNUSED(cx), JS::HandleObject UNUSED(proxy), bool* UNUSED(isOrdinary), JS::MutableHandleObject UNUSED(protop)) const override

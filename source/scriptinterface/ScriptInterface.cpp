@@ -18,6 +18,7 @@
 #include "precompiled.h"
 
 #include "ScriptContext.h"
+#include "ScriptExtraHeaders.h"
 #include "ScriptInterface.h"
 #include "ScriptStats.h"
 
@@ -41,8 +42,6 @@
 #include <boost/flyweight/no_tracking.hpp>
 
 #include "valgrind.h"
-
-#include "scriptinterface/ScriptExtraHeaders.h"
 
 /**
  * @file
@@ -75,8 +74,7 @@ struct ScriptInterface_impl
 ScriptRequest::ScriptRequest(const ScriptInterface& scriptInterface) :
 	cx(scriptInterface.m->m_cx)
 {
-	JS_BeginRequest(cx);
-	m_formerCompartment = JS_EnterCompartment(cx, scriptInterface.m->m_glob);
+	m_formerRealm = JS::EnterRealm(cx, scriptInterface.m->m_glob);
 	glob = JS::CurrentGlobalOrNull(cx);
 }
 
@@ -87,8 +85,7 @@ JS::Value ScriptRequest::globalValue() const
 
 ScriptRequest::~ScriptRequest()
 {
-	JS_LeaveCompartment(cx, m_formerCompartment);
-	JS_EndRequest(cx);
+	JS::LeaveRealm(cx, m_formerRealm);
 }
 
 namespace
@@ -324,17 +321,16 @@ bool ScriptInterface::MathRandom(double& nbr)
 ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const shared_ptr<ScriptContext>& context) :
 	m_context(context), m_cx(context->GetGeneralJSContext()), m_glob(context->GetGeneralJSContext()), m_nativeScope(context->GetGeneralJSContext())
 {
-	JS::CompartmentCreationOptions creationOpt;
+	JS::RealmCreationOptions creationOpt;
 	// Keep JIT code during non-shrinking GCs. This brings a quite big performance improvement.
 	creationOpt.setPreserveJitCode(true);
-	JS::CompartmentOptions opt(creationOpt, JS::CompartmentBehaviors{});
+	JS::RealmOptions opt(creationOpt, JS::RealmBehaviors{});
 
-	JSAutoRequest rq(m_cx);
 	m_glob = JS_NewGlobalObject(m_cx, &global_class, nullptr, JS::OnNewGlobalHookOption::FireOnNewGlobalHook, opt);
 
-	JSAutoCompartment autoCmpt(m_cx, m_glob);
+	JSAutoRealm autoRealm(m_cx, m_glob);
 
-	ENSURE(JS_InitStandardClasses(m_cx, m_glob));
+	ENSURE(JS::InitRealmStandardClasses(m_cx));
 
 	JS_DefineProperty(m_cx, m_glob, "global", m_glob, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
 
@@ -351,18 +347,17 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const sh
 	Register("ProfileStop", ::ProfileStop, 0);
 	Register("ProfileAttribute", ::ProfileAttribute, 1);
 
-	m_context->RegisterCompartment(js::GetObjectCompartment(m_glob));
+	m_context->RegisterRealm(JS::GetObjectRealmOrNull(m_glob));
 }
 
 ScriptInterface_impl::~ScriptInterface_impl()
 {
-	m_context->UnRegisterCompartment(js::GetObjectCompartment(m_glob));
+	m_context->UnRegisterRealm(JS::GetObjectRealmOrNull(m_glob));
 }
 
 void ScriptInterface_impl::Register(const char* name, JSNative fptr, uint nargs) const
 {
-	JSAutoRequest rq(m_cx);
-	JSAutoCompartment autoCmpt(m_cx, m_glob);
+	JSAutoRealm autoRealm(m_cx, m_glob);
 	JS::RootedObject nativeScope(m_cx, m_nativeScope);
 	JS::RootedFunction func(m_cx, JS_DefineFunction(m_cx, nativeScope, name, fptr, nargs, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT));
 }
@@ -718,7 +713,7 @@ bool ScriptInterface::EnumeratePropertyNames(JS::HandleValue objVal, bool enumer
 	}
 
 	JS::RootedObject obj(rq.cx, &objVal.toObject());
-	JS::AutoIdVector props(rq.cx);
+	JS::RootedIdVector props(rq.cx);
 	// This recurses up the prototype chain on its own.
 	if (!js::GetPropertyKeys(rq.cx, obj, enumerableOnly? 0 : JSITER_HIDDEN, &props))
 		return false;
@@ -774,20 +769,20 @@ bool ScriptInterface::LoadScript(const VfsPath& filename, const std::string& cod
 {
 	ScriptRequest rq(this);
 	JS::RootedObject global(rq.cx, rq.glob);
-	utf16string codeUtf16(code.begin(), code.end());
-	uint lineNo = 1;
+
 	// CompileOptions does not copy the contents of the filename string pointer.
 	// Passing a temporary string there will cause undefined behaviour, so we create a separate string to avoid the temporary.
 	std::string filenameStr = filename.string8();
 
 	JS::CompileOptions options(rq.cx);
-	options.setFileAndLine(filenameStr.c_str(), lineNo);
+	options.setFileAndLine(filenameStr.c_str(), 1);
 	options.setIsRunOnce(false);
 
-	JS::RootedFunction func(rq.cx);
-	JS::AutoObjectVector emptyScopeChain(rq.cx);
-	if (!JS::CompileFunction(rq.cx, emptyScopeChain, options, NULL, 0, NULL,
-	                         reinterpret_cast<const char16_t*>(codeUtf16.c_str()), (uint)(codeUtf16.length()), &func))
+	JS::SourceText<mozilla::Utf8Unit> src;
+	ENSURE(src.init(rq.cx, code.c_str(), code.length(), JS::SourceOwnership::Borrowed));
+	JS::RootedObjectVector emptyScopeChain(rq.cx);
+	JS::RootedFunction func(rq.cx, JS::CompileFunction(rq.cx, emptyScopeChain, options, NULL, 0, NULL, src));
+	if (func == nullptr)
 	{
 		ScriptException::CatchPending(rq);
 		return false;
@@ -801,19 +796,20 @@ bool ScriptInterface::LoadScript(const VfsPath& filename, const std::string& cod
 	return false;
 }
 
-bool ScriptInterface::LoadGlobalScript(const VfsPath& filename, const std::wstring& code) const
+bool ScriptInterface::LoadGlobalScript(const VfsPath& filename, const std::string& code) const
 {
 	ScriptRequest rq(this);
-	utf16string codeUtf16(code.begin(), code.end());
-	uint lineNo = 1;
 	// CompileOptions does not copy the contents of the filename string pointer.
 	// Passing a temporary string there will cause undefined behaviour, so we create a separate string to avoid the temporary.
 	std::string filenameStr = filename.string8();
 
 	JS::RootedValue rval(rq.cx);
 	JS::CompileOptions opts(rq.cx);
-	opts.setFileAndLine(filenameStr.c_str(), lineNo);
-	if (JS::Evaluate(rq.cx, opts, reinterpret_cast<const char16_t*>(codeUtf16.c_str()), (uint)(codeUtf16.length()), &rval))
+	opts.setFileAndLine(filenameStr.c_str(), 1);
+
+	JS::SourceText<mozilla::Utf8Unit> src;
+	ENSURE(src.init(rq.cx, code.c_str(), code.length(), JS::SourceOwnership::Borrowed));
+	if (JS::Evaluate(rq.cx, opts, src, &rval))
 		return true;
 
 	ScriptException::CatchPending(rq);
@@ -839,9 +835,8 @@ bool ScriptInterface::LoadGlobalScriptFile(const VfsPath& path) const
 		return false;
 	}
 
-	std::wstring code = wstring_from_utf8(file.DecodeUTF8()); // assume it's UTF-8
+	CStr code = file.DecodeUTF8(); // assume it's UTF-8
 
-	utf16string codeUtf16(code.begin(), code.end());
 	uint lineNo = 1;
 	// CompileOptions does not copy the contents of the filename string pointer.
 	// Passing a temporary string there will cause undefined behaviour, so we create a separate string to avoid the temporary.
@@ -850,7 +845,9 @@ bool ScriptInterface::LoadGlobalScriptFile(const VfsPath& path) const
 	JS::RootedValue rval(rq.cx);
 	JS::CompileOptions opts(rq.cx);
 	opts.setFileAndLine(filenameStr.c_str(), lineNo);
-	if (JS::Evaluate(rq.cx, opts, reinterpret_cast<const char16_t*>(codeUtf16.c_str()), (uint)(codeUtf16.length()), &rval))
+	JS::SourceText<mozilla::Utf8Unit> src;
+	ENSURE(src.init(rq.cx, code.c_str(), code.length(), JS::SourceOwnership::Borrowed));
+	if (JS::Evaluate(rq.cx, opts, src, &rval))
 		return true;
 
 	ScriptException::CatchPending(rq);
@@ -861,31 +858,27 @@ bool ScriptInterface::Eval(const char* code) const
 {
 	ScriptRequest rq(this);
 	JS::RootedValue rval(rq.cx);
-	return Eval_(code, &rval);
-}
-
-bool ScriptInterface::Eval_(const char* code, JS::MutableHandleValue rval) const
-{
-	ScriptRequest rq(this);
-	utf16string codeUtf16(code, code+strlen(code));
 
 	JS::CompileOptions opts(rq.cx);
 	opts.setFileAndLine("(eval)", 1);
-	if (JS::Evaluate(rq.cx, opts, reinterpret_cast<const char16_t*>(codeUtf16.c_str()), (uint)codeUtf16.length(), rval))
+	JS::SourceText<mozilla::Utf8Unit> src;
+	ENSURE(src.init(rq.cx, code, strlen(code), JS::SourceOwnership::Borrowed));
+	if (JS::Evaluate(rq.cx, opts, src, &rval))
 		return true;
 
 	ScriptException::CatchPending(rq);
 	return false;
 }
 
-bool ScriptInterface::Eval_(const wchar_t* code, JS::MutableHandleValue rval) const
+bool ScriptInterface::Eval(const char* code, JS::MutableHandleValue rval) const
 {
 	ScriptRequest rq(this);
-	utf16string codeUtf16(code, code+wcslen(code));
 
 	JS::CompileOptions opts(rq.cx);
 	opts.setFileAndLine("(eval)", 1);
-	if (JS::Evaluate(rq.cx, opts, reinterpret_cast<const char16_t*>(codeUtf16.c_str()), (uint)codeUtf16.length(), rval))
+	JS::SourceText<mozilla::Utf8Unit> src;
+	ENSURE(src.init(rq.cx, code, strlen(code), JS::SourceOwnership::Borrowed));
+	if (JS::Evaluate(rq.cx, opts, src, rval))
 		return true;
 
 	ScriptException::CatchPending(rq);

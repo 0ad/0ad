@@ -27,6 +27,7 @@
 #include "ps/GameSetup/Config.h"
 #include "ps/Profile.h"
 #include "scriptinterface/ScriptContext.h"
+#include "scriptinterface/ScriptExtraHeaders.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "soundmanager/ISoundManager.h"
 
@@ -320,13 +321,16 @@ void IGUIObject::RegisterScriptHandler(const CStr& eventName, const CStr& Code, 
 	char buf[64];
 	sprintf_s(buf, ARRAY_SIZE(buf), "__eventhandler%d (%s)", x++, eventName.c_str());
 
+	// TODO: this is essentially the same code as ScriptInterface::LoadScript (with a tweak for the argument).
 	JS::CompileOptions options(rq.cx);
 	options.setFileAndLine(CodeName.c_str(), 0);
 	options.setIsRunOnce(false);
 
-	JS::RootedFunction func(rq.cx);
-	JS::AutoObjectVector emptyScopeChain(rq.cx);
-	if (!JS::CompileFunction(rq.cx, emptyScopeChain, options, buf, paramCount, paramNames, Code.c_str(), Code.length(), &func))
+	JS::SourceText<mozilla::Utf8Unit> src;
+	ENSURE(src.init(rq.cx, Code.c_str(), Code.length(), JS::SourceOwnership::Borrowed));
+	JS::RootedObjectVector emptyScopeChain(rq.cx);
+	JS::RootedFunction func(rq.cx, JS::CompileFunction(rq.cx, emptyScopeChain, options, buf, paramCount, paramNames, src));
+	if (func == nullptr)
 	{
 		LOGERROR("RegisterScriptHandler: Failed to compile the script for %s", eventName.c_str());
 		return;
@@ -408,7 +412,7 @@ InReaction IGUIObject::SendMouseEvent(EGUIMessageType type, const CStr& eventNam
 		"x", mousePos.x,
 		"y", mousePos.y,
 		"buttons", m_pGUI.GetMouseButtons());
-	JS::AutoValueVector paramData(rq.cx);
+	JS::RootedValueVector paramData(rq.cx);
 	DISCARD paramData.append(mouse);
 	ScriptEvent(eventName, paramData);
 
@@ -426,7 +430,7 @@ bool IGUIObject::ScriptEventWithReturn(const CStr& eventName)
 		return false;
 
 	ScriptRequest rq(m_pGUI.GetScriptInterface());
-	JS::AutoValueVector paramData(rq.cx);
+	JS::RootedValueVector paramData(rq.cx);
 	return ScriptEventWithReturn(eventName, paramData);
 }
 

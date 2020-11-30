@@ -77,7 +77,7 @@ MESSAGE(SetViewParamS,
 		);
 
 MESSAGE(JavaScript,
-		((std::wstring, command))
+		((std::string, command))
 		);
 
 //////////////////////////////////////////////////////////////////////////

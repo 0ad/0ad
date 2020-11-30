@@ -916,7 +916,7 @@ void ScenarioEditor::OnJavaScript(wxCommandEvent& WXUNUSED(event))
 	wxString cmd = ::wxGetTextFromUser(_T(""), _("JS command"), _T(""), this);
 	if (cmd.IsEmpty())
 		return;
-	POST_MESSAGE(JavaScript, ((std::wstring)cmd.wc_str()));
+	POST_MESSAGE(JavaScript, (std::string(cmd.ToUTF8())));
 }
 
 void ScenarioEditor::OnCameraReset(wxCommandEvent& WXUNUSED(event))

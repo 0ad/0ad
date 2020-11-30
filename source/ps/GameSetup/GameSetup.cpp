@@ -186,7 +186,7 @@ void GUI_DisplayLoadProgress(int percent, const wchar_t* pending_task)
 	const ScriptInterface& scriptInterface = *(g_GUI->GetActiveGUI()->GetScriptInterface());
 	ScriptRequest rq(scriptInterface);
 
-	JS::AutoValueVector paramData(rq.cx);
+	JS::RootedValueVector paramData(rq.cx);
 
 	DISCARD paramData.append(JS::NumberValue(percent));
 
