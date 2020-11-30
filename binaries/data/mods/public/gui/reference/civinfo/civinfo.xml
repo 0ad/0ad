@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<objects>
+
+	<script directory="gui/common/"/>
+
+	<script directory="gui/reference/common/"/>
+	<script directory="gui/reference/common/Buttons/"/>
+	<script directory="gui/reference/common/Dropdowns/"/>
+
+	<script directory="gui/reference/civinfo/"/>
+	<script directory="gui/reference/civinfo/Sections/"/>
+	<script directory="gui/reference/civinfo/Sections/Subsections/"/>
+
+	<!-- Add a translucent black background to fade out the menu page -->
+	<object type="image" sprite="BackgroundTranslucent"/>
+
+	<object type="image" style="ModernDialog" size="50%-500 50%-368 50%+500 50%+370">
+
+		<object style="TitleText" type="text" size="50%-128 -18 50%+128 14">
+			<translatableAttribute id="caption">Civilization Overview</translatableAttribute>
+		</object>
+
+		<!-- Civ selection -->
+		<include file="gui/reference/common/Dropdowns/CivSelectDropdown.xml"/>
+
+		<!-- Civ gameplay data display -->
+		<include file="gui/reference/civinfo/Sections/GameplaySection.xml"/>
+
+		<!-- Civ history display -->
+		<include file="gui/reference/civinfo/Sections/HistorySection.xml"/>
+
+		<!-- Buttons -->
+		<include file="gui/reference/common/Buttons/StructreeButton.xml"/>
+		<include file="gui/reference/common/Buttons/CloseButton.xml"/>
+
+	</object>
+
+</objects>

@@ -25,6 +25,8 @@
 /* Define int64_t and uint64_t types */
 #if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L
 #include <inttypes.h>
+#elif defined(__cplusplus) && __cplusplus >= 201103L
+#include <cinttypes>
 #elif defined(_WIN32) && defined(__GNUC__)
 #include <stdint.h>
 #elif defined(_WIN32)
@@ -97,6 +99,31 @@ extern "C" {
 
 #ifndef AL_EXT_MCFORMATS
 #define AL_EXT_MCFORMATS 1
+/* Provides support for surround sound buffer formats with 8, 16, and 32-bit
+ * samples.
+ *
+ * QUAD8: Unsigned 8-bit, Quadraphonic (Front Left, Front Right, Rear Left,
+ *        Rear Right).
+ * QUAD16: Signed 16-bit, Quadraphonic.
+ * QUAD32: 32-bit float, Quadraphonic.
+ * REAR8: Unsigned 8-bit, Rear Stereo (Rear Left, Rear Right).
+ * REAR16: Signed 16-bit, Rear Stereo.
+ * REAR32: 32-bit float, Rear Stereo.
+ * 51CHN8: Unsigned 8-bit, 5.1 Surround (Front Left, Front Right, Front Center,
+ *         LFE, Side Left, Side Right). Note that some audio systems may label
+ *         5.1's Side channels as Rear or Surround; they are equivalent for the
+ *         purposes of this extension.
+ * 51CHN16: Signed 16-bit, 5.1 Surround.
+ * 51CHN32: 32-bit float, 5.1 Surround.
+ * 61CHN8: Unsigned 8-bit, 6.1 Surround (Front Left, Front Right, Front Center,
+ *         LFE, Rear Center, Side Left, Side Right).
+ * 61CHN16: Signed 16-bit, 6.1 Surround.
+ * 61CHN32: 32-bit float, 6.1 Surround.
+ * 71CHN8: Unsigned 8-bit, 7.1 Surround (Front Left, Front Right, Front Center,
+ *         LFE, Rear Left, Rear Right, Side Left, Side Right).
+ * 71CHN16: Signed 16-bit, 7.1 Surround.
+ * 71CHN32: 32-bit float, 7.1 Surround.
+ */
 #define AL_FORMAT_QUAD8                          0x1204
 #define AL_FORMAT_QUAD16                         0x1205
 #define AL_FORMAT_QUAD32                         0x1206
@@ -133,9 +160,9 @@ extern "C" {
 
 #ifndef AL_EXT_STATIC_BUFFER
 #define AL_EXT_STATIC_BUFFER 1
-typedef ALvoid (AL_APIENTRY*PFNALBUFFERDATASTATICPROC)(const ALint,ALenum,ALvoid*,ALsizei,ALsizei);
+typedef void (AL_APIENTRY*PFNALBUFFERDATASTATICPROC)(const ALint,ALenum,ALvoid*,ALsizei,ALsizei);
 #ifdef AL_ALEXT_PROTOTYPES
-AL_API ALvoid AL_APIENTRY alBufferDataStatic(const ALint buffer, ALenum format, ALvoid *data, ALsizei len, ALsizei freq);
+AL_API void AL_APIENTRY alBufferDataStatic(const ALint buffer, ALenum format, ALvoid *data, ALsizei len, ALsizei freq);
 #endif
 #endif
 
@@ -168,9 +195,9 @@ ALC_API ALCcontext* ALC_APIENTRY alcGetThreadContext(void);
 #define AL_SOFT_buffer_sub_data 1
 #define AL_BYTE_RW_OFFSETS_SOFT                  0x1031
 #define AL_SAMPLE_RW_OFFSETS_SOFT                0x1032
-typedef ALvoid (AL_APIENTRY*PFNALBUFFERSUBDATASOFTPROC)(ALuint,ALenum,const ALvoid*,ALsizei,ALsizei);
+typedef void (AL_APIENTRY*PFNALBUFFERSUBDATASOFTPROC)(ALuint,ALenum,const ALvoid*,ALsizei,ALsizei);
 #ifdef AL_ALEXT_PROTOTYPES
-AL_API ALvoid AL_APIENTRY alBufferSubDataSOFT(ALuint buffer,ALenum format,const ALvoid *data,ALsizei offset,ALsizei length);
+AL_API void AL_APIENTRY alBufferSubDataSOFT(ALuint buffer,ALenum format,const ALvoid *data,ALsizei offset,ALsizei length);
 #endif
 #endif
 
@@ -356,11 +383,11 @@ AL_API void AL_APIENTRY alGetSourcei64vSOFT(ALuint source, ALenum param, ALint64
 #ifndef AL_SOFT_deferred_updates
 #define AL_SOFT_deferred_updates 1
 #define AL_DEFERRED_UPDATES_SOFT                 0xC002
-typedef ALvoid (AL_APIENTRY*LPALDEFERUPDATESSOFT)(void);
-typedef ALvoid (AL_APIENTRY*LPALPROCESSUPDATESSOFT)(void);
+typedef void (AL_APIENTRY*LPALDEFERUPDATESSOFT)(void);
+typedef void (AL_APIENTRY*LPALPROCESSUPDATESSOFT)(void);
 #ifdef AL_ALEXT_PROTOTYPES
-AL_API ALvoid AL_APIENTRY alDeferUpdatesSOFT(void);
-AL_API ALvoid AL_APIENTRY alProcessUpdatesSOFT(void);
+AL_API void AL_APIENTRY alDeferUpdatesSOFT(void);
+AL_API void AL_APIENTRY alProcessUpdatesSOFT(void);
 #endif
 #endif
 
@@ -395,6 +422,16 @@ ALC_API void ALC_APIENTRY alcDeviceResumeSOFT(ALCdevice *device);
 
 #ifndef AL_EXT_BFORMAT
 #define AL_EXT_BFORMAT 1
+/* Provides support for B-Format ambisonic buffers (first-order, FuMa scaling
+ * and layout).
+ *
+ * BFORMAT2D_8: Unsigned 8-bit, 3-channel non-periphonic (WXY).
+ * BFORMAT2D_16: Signed 16-bit, 3-channel non-periphonic (WXY).
+ * BFORMAT2D_FLOAT32: 32-bit float, 3-channel non-periphonic (WXY).
+ * BFORMAT3D_8: Unsigned 8-bit, 4-channel periphonic (WXYZ).
+ * BFORMAT3D_16: Signed 16-bit, 4-channel periphonic (WXYZ).
+ * BFORMAT3D_FLOAT32: 32-bit float, 4-channel periphonic (WXYZ).
+ */
 #define AL_FORMAT_BFORMAT2D_8                    0x20021
 #define AL_FORMAT_BFORMAT2D_16                   0x20022
 #define AL_FORMAT_BFORMAT2D_FLOAT32              0x20023
@@ -428,6 +465,116 @@ typedef ALCboolean (ALC_APIENTRY*LPALCRESETDEVICESOFT)(ALCdevice *device, const 
 #ifdef AL_ALEXT_PROTOTYPES
 ALC_API const ALCchar* ALC_APIENTRY alcGetStringiSOFT(ALCdevice *device, ALCenum paramName, ALCsizei index);
 ALC_API ALCboolean ALC_APIENTRY alcResetDeviceSOFT(ALCdevice *device, const ALCint *attribs);
+#endif
+#endif
+
+#ifndef AL_SOFT_gain_clamp_ex
+#define AL_SOFT_gain_clamp_ex 1
+#define AL_GAIN_LIMIT_SOFT                       0x200E
+#endif
+
+#ifndef AL_SOFT_source_resampler
+#define AL_SOFT_source_resampler
+#define AL_NUM_RESAMPLERS_SOFT                   0x1210
+#define AL_DEFAULT_RESAMPLER_SOFT                0x1211
+#define AL_SOURCE_RESAMPLER_SOFT                 0x1212
+#define AL_RESAMPLER_NAME_SOFT                   0x1213
+typedef const ALchar* (AL_APIENTRY*LPALGETSTRINGISOFT)(ALenum pname, ALsizei index);
+#ifdef AL_ALEXT_PROTOTYPES
+AL_API const ALchar* AL_APIENTRY alGetStringiSOFT(ALenum pname, ALsizei index);
+#endif
+#endif
+
+#ifndef AL_SOFT_source_spatialize
+#define AL_SOFT_source_spatialize
+#define AL_SOURCE_SPATIALIZE_SOFT                0x1214
+#define AL_AUTO_SOFT                             0x0002
+#endif
+
+#ifndef ALC_SOFT_output_limiter
+#define ALC_SOFT_output_limiter
+#define ALC_OUTPUT_LIMITER_SOFT                  0x199A
+#endif
+
+#ifndef ALC_SOFT_device_clock
+#define ALC_SOFT_device_clock 1
+typedef int64_t ALCint64SOFT;
+typedef uint64_t ALCuint64SOFT;
+#define ALC_DEVICE_CLOCK_SOFT                    0x1600
+#define ALC_DEVICE_LATENCY_SOFT                  0x1601
+#define ALC_DEVICE_CLOCK_LATENCY_SOFT            0x1602
+#define AL_SAMPLE_OFFSET_CLOCK_SOFT              0x1202
+#define AL_SEC_OFFSET_CLOCK_SOFT                 0x1203
+typedef void (ALC_APIENTRY*LPALCGETINTEGER64VSOFT)(ALCdevice *device, ALCenum pname, ALsizei size, ALCint64SOFT *values);
+#ifdef AL_ALEXT_PROTOTYPES
+ALC_API void ALC_APIENTRY alcGetInteger64vSOFT(ALCdevice *device, ALCenum pname, ALsizei size, ALCint64SOFT *values);
+#endif
+#endif
+
+#ifndef AL_SOFT_direct_channels_remix
+#define AL_SOFT_direct_channels_remix 1
+#define AL_DROP_UNMATCHED_SOFT                   0x0001
+#define AL_REMIX_UNMATCHED_SOFT                  0x0002
+#endif
+
+#ifndef AL_SOFT_bformat_ex
+#define AL_SOFT_bformat_ex 1
+#define AL_AMBISONIC_LAYOUT_SOFT                 0x1997
+#define AL_AMBISONIC_SCALING_SOFT                0x1998
+
+/* Ambisonic layouts */
+#define AL_FUMA_SOFT                             0x0000
+#define AL_ACN_SOFT                              0x0001
+
+/* Ambisonic scalings (normalization) */
+/*#define AL_FUMA_SOFT*/
+#define AL_SN3D_SOFT                             0x0001
+#define AL_N3D_SOFT                              0x0002
+#endif
+
+#ifndef ALC_SOFT_loopback_bformat
+#define ALC_SOFT_loopback_bformat 1
+#define ALC_AMBISONIC_LAYOUT_SOFT                0x1997
+#define ALC_AMBISONIC_SCALING_SOFT               0x1998
+#define ALC_AMBISONIC_ORDER_SOFT                 0x1999
+#define ALC_MAX_AMBISONIC_ORDER_SOFT             0x199B
+
+#define ALC_BFORMAT3D_SOFT                       0x1507
+
+/* Ambisonic layouts */
+#define ALC_FUMA_SOFT                            0x0000
+#define ALC_ACN_SOFT                             0x0001
+
+/* Ambisonic scalings (normalization) */
+/*#define ALC_FUMA_SOFT*/
+#define ALC_SN3D_SOFT                            0x0001
+#define ALC_N3D_SOFT                             0x0002
+#endif
+
+#ifndef AL_SOFT_effect_target
+#define AL_SOFT_effect_target
+#define AL_EFFECTSLOT_TARGET_SOFT                0x199C
+#endif
+
+#ifndef AL_SOFT_events
+#define AL_SOFT_events 1
+#define AL_EVENT_CALLBACK_FUNCTION_SOFT          0x19A2
+#define AL_EVENT_CALLBACK_USER_PARAM_SOFT        0x19A3
+#define AL_EVENT_TYPE_BUFFER_COMPLETED_SOFT      0x19A4
+#define AL_EVENT_TYPE_SOURCE_STATE_CHANGED_SOFT  0x19A5
+#define AL_EVENT_TYPE_DISCONNECTED_SOFT          0x19A6
+typedef void (AL_APIENTRY*ALEVENTPROCSOFT)(ALenum eventType, ALuint object, ALuint param,
+                                           ALsizei length, const ALchar *message,
+                                           void *userParam);
+typedef void (AL_APIENTRY*LPALEVENTCONTROLSOFT)(ALsizei count, const ALenum *types, ALboolean enable);
+typedef void (AL_APIENTRY*LPALEVENTCALLBACKSOFT)(ALEVENTPROCSOFT callback, void *userParam);
+typedef void* (AL_APIENTRY*LPALGETPOINTERSOFT)(ALenum pname);
+typedef void (AL_APIENTRY*LPALGETPOINTERVSOFT)(ALenum pname, void **values);
+#ifdef AL_ALEXT_PROTOTYPES
+AL_API void AL_APIENTRY alEventControlSOFT(ALsizei count, const ALenum *types, ALboolean enable);
+AL_API void AL_APIENTRY alEventCallbackSOFT(ALEVENTPROCSOFT callback, void *userParam);
+AL_API void* AL_APIENTRY alGetPointerSOFT(ALenum pname);
+AL_API void AL_APIENTRY alGetPointervSOFT(ALenum pname, void **values);
 #endif
 #endif
 

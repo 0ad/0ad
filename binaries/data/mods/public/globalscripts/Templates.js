@@ -256,14 +256,7 @@ function GetTemplateDataHelper(template, player, auraTemplates, modifiers = {})
 	{
 		ret.auras = {};
 		for (let auraID of template.Auras._string.split(/\s+/))
-		{
-			let aura = auraTemplates[auraID];
-			ret.auras[auraID] = {
-				"name": aura.auraName,
-				"description": aura.auraDescription || null,
-				"radius": aura.radius || null
-			};
-		}
+			ret.auras[auraID] = GetAuraDataHelper(auraTemplates[auraID]);
 	}
 
 	if (template.BuildingAI)
@@ -548,6 +541,22 @@ function GetTechnologyDataHelper(template, civ, resources)
 	ret.requirementsTooltip = template.requirementsTooltip || "";
 
 	return ret;
+}
+
+/**
+ * Get information about an aura template.
+ * @param {object} template - A valid template as obtained by loading the aura JSON file.
+ */
+function GetAuraDataHelper(template)
+{
+	return {
+		"name": {
+			"generic": template.auraName,
+		},
+		"description": template.auraDescription || null,
+		"modifications": template.modifications,
+		"radius": template.radius || null,
+	};
 }
 
 function calculateCarriedResources(carriedResources, tradingGoods)

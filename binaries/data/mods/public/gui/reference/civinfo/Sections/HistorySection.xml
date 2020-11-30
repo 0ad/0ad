@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object size="25 65% 100%-25 100%-56">
+
+	<object type="image" sprite="TranslucentPanelThinBorder" size="0 0 100% 35">
+		<object
+			name="civHistoryHeading"
+			type="text"
+			font="sans-bold-16"
+			textcolor="white"
+			text_align="left"
+			text_valign="center"
+			size="10 0 100% 100%"
+		/>
+	</object>
+
+	<object type="image" sprite="ModernDarkBoxGold" size="0 35 100% 100%">
+		<object
+			name="civHistoryText"
+			type="text"
+			font="sans-14"
+			scrollbar="true"
+			scrollbar_style="ModernScrollBar"
+			textcolor="white"
+			text_align="left"
+			size="10 0 100% 100%"
+		/>
+	</object>
+
+</object>

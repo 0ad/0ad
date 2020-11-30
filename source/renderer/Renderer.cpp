@@ -1387,9 +1387,6 @@ void CRenderer::RenderSubmissions(const CBoundingBoxAligned& waterScissor)
 		ogl_WarnIfError();
 	}
 
-	if (g_Renderer.GetPostprocManager().IsMultisampleEnabled())
-		g_Renderer.GetPostprocManager().ResolveMultisampleFramebuffer();
-
 	// render debug-related terrain overlays
 	ITerrainOverlay::RenderOverlaysAfterWater(cullGroup);
 	ogl_WarnIfError();
@@ -1407,6 +1404,9 @@ void CRenderer::RenderSubmissions(const CBoundingBoxAligned& waterScissor)
 
 	if (g_RenderingOptions.GetPostProc())
 	{
+		if (g_Renderer.GetPostprocManager().IsMultisampleEnabled())
+			g_Renderer.GetPostprocManager().ResolveMultisampleFramebuffer();
+
 		m->postprocManager.ApplyPostproc();
 		m->postprocManager.ReleaseRenderOutput();
 	}

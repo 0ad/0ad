@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object size="25 50 100%-25 65%-5">
+	<object type="image" sprite="TranslucentPanelThinBorder" size="0 5 100% 40">
+		<object
+			name="civGameplayHeading"
+			type="text"
+			font="sans-bold-16"
+			textcolor="white"
+			text_align="left"
+			text_valign="center"
+			size="10 0 100% 100%"
+		/>
+	</object>
+
+	<include file="gui/reference/civinfo/Sections/Subsections/BonusesSubsection.xml"/>
+
+	<include file="gui/reference/civinfo/Sections/Subsections/TechnologiesSubsection.xml"/>
+
+	<include file="gui/reference/civinfo/Sections/Subsections/StructuresSubsection.xml"/>
+
+	<include file="gui/reference/civinfo/Sections/Subsections/HeroesSubsection.xml"/>
+
+</object>
