@@ -23,6 +23,9 @@
 
 #include "simulation2/system/EntityMap.h"
 
+#include <algorithm>
+#include <random>
+
 class TestEntityMap : public CxxTest::TestSuite
 {
 public:
@@ -226,7 +229,8 @@ public:
 		std::vector<int> vec;
 		for (int i = 1; i <= 200000; ++i)
 			vec.push_back(i);
-		std::random_shuffle(vec.begin(), vec.end());
+
+		std::shuffle(vec.begin(), vec.end(), std::mt19937{});
 
 		for (int i = 1; i <= 200000; ++i)
 			test.insert(i,i);

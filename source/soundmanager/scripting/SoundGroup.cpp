@@ -33,22 +33,46 @@
 #include "soundmanager/SoundManager.h"
 
 #include <algorithm>
+#include <random>
 
 extern CGame *g_Game;
 
 #if CONFIG2_AUDIO
-inline u32 CSoundGroup::FastRand()
+/**
+ * Low randomness, quite-a-lot-faster-than-std::mt19937 random number generator.
+ * It matches the interface of UniformRandomBitGenerator for use in std::shuffle.
+ */
+class CFastRand
 {
-	// This is a mixed linear congruential random number generator.
-	// The magic numbers are chosen so that they generate pseudo random numbers over a big enough period (0xFFFF).
-	m_Seed = 214013 * m_Seed + 2531011;
-	return (m_Seed >> 16) & 0xFFFF;
-}
+public:
+	using result_type = u32;
 
-float CSoundGroup::RandFloat(float min, float max)
-{
-	return (static_cast<float>(FastRand()) / (0xFFFF)) * (max - min) + min;
-}
+	constexpr static result_type min() { return 0; }
+	constexpr static result_type max() { return 0xFFFF; }
+
+	static result_type Rand(result_type& seed)
+	{
+		// This is a mixed linear congruential random number generator.
+		// The magic numbers are chosen so that they generate pseudo random numbers over a big enough period (0xFFFF).
+		seed = 214013 * seed + 2531011;
+		return (seed >> 16) & max();
+	}
+
+	static float RandFloat(result_type& seed, float min, float max)
+	{
+		return (static_cast<float>(Rand(seed)) / (0xFFFF)) * (max - min) + min;
+	}
+
+	CFastRand() {};
+	CFastRand(result_type init) : m_Seed(init) {};
+
+	result_type operator()()
+	{
+		return Rand(m_Seed);
+	}
+
+	result_type m_Seed;
+};
 #endif
 
 void CSoundGroup::SetGain(float gain)
@@ -194,10 +218,10 @@ void CSoundGroup::UploadPropertiesAndPlay(size_t index, const CVector3D& positio
 	if (cmpVisual)
 		m_Seed = cmpVisual->GetActorSeed();
 
-	hSound->SetPitch(TestFlag(eRandPitch) ? RandFloat(m_PitchLower, m_PitchUpper) : m_Pitch);
+	hSound->SetPitch(TestFlag(eRandPitch) ? CFastRand::RandFloat(m_Seed, m_PitchLower, m_PitchUpper) : m_Pitch);
 
 	if (TestFlag(eRandGain))
-		m_Gain = RandFloat(m_GainLower, m_GainUpper);
+		m_Gain = CFastRand::RandFloat(m_Seed, m_GainLower, m_GainUpper);
 
 	hSound->SetCone(m_ConeInnerAngle, m_ConeOuterAngle, m_ConeOuterGain);
 	static_cast<CSoundManager*>(g_SoundManager)->PlayGroupItem(hSound, m_Gain);
@@ -242,7 +266,7 @@ void CSoundGroup::Reload()
 	}
 
 	if (TestFlag(eRandOrder))
-		random_shuffle(m_SoundGroups.begin(), m_SoundGroups.end());
+		std::shuffle(m_SoundGroups.begin(), m_SoundGroups.end(), CFastRand(m_Seed));
 #endif
 }
 

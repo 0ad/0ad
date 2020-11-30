@@ -81,9 +81,6 @@ private:
 
 	void SetDefaultValues();
 #if CONFIG2_AUDIO
-	inline u32 FastRand();
-	// Contains the current sound seed for the generator
-	float RandFloat(float min, float max);
 	// We store the handles so we can load now and play later
 	std::vector<CSoundData*> m_SoundGroups;
 #endif
