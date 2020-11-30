@@ -6,8 +6,8 @@ RUN apt-get -qq update && apt-get -qq upgrade
 RUN apt-get install -qqy cmake libcurl4-gnutls-dev libenet-dev         \
     libgnutls28-dev libgtk-3-dev libicu-dev libidn11-dev libjson-perl  \
     libminiupnpc-dev libnspr4-dev libpython-dev libogg-dev             \
-    libopenal-dev libpng-dev libsdl2-dev libvorbis-dev libxcursor-dev  \
-    libxml2-dev libxml-simple-perl subversion zlib1g-dev
+    libopenal-dev libpng-dev libsdl2-dev libvorbis-dev libxml2-dev     \
+    libxml-simple-perl subversion zlib1g-dev
 
 ADD libsodium-1.0.17.tar.gz /root/libsodium/
 RUN cd /root/libsodium/libsodium-1.0.17 \

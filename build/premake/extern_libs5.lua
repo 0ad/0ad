@@ -693,13 +693,6 @@ extern_lib_defs = {
 			end
 		end,
 	},
-	xcursor = {
-		link_settings = function()
-			add_default_links({
-				unix_names = { "Xcursor" },
-			})
-		end,
-	},
 	zlib = {
 		compile_settings = function()
 			if os.istarget("windows") or os.istarget("macosx") then

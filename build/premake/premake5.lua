@@ -958,7 +958,6 @@ used_extern_libs = {
 if not os.istarget("windows") and not _OPTIONS["android"] and not os.istarget("macosx") then
 	-- X11 should only be linked on *nix
 	table.insert(used_extern_libs, "x11")
-	table.insert(used_extern_libs, "xcursor")
 end
 
 if not _OPTIONS["without-audio"] then
