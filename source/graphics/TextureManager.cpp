@@ -60,8 +60,6 @@ private:
 };
 
 struct TPequal_to
-	: std::binary_function<CTextureProperties, CTextureProperties, bool>,
-	std::binary_function<CTexturePtr, CTexturePtr, bool>
 {
 	bool operator()(CTextureProperties const& a, CTextureProperties const& b) const
 	{

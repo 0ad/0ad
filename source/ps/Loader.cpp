@@ -82,17 +82,6 @@ struct LoadRequest
 typedef std::deque<LoadRequest> LoadRequests;
 static LoadRequests load_requests;
 
-// std::accumulate binary op; used by LDR_EndRegistering to sum up all
-// estimated durations (for % progress calculation)
-struct DurationAdder: public std::binary_function<double, const LoadRequest&, double>
-{
-	double operator()(double partial_result, const LoadRequest& lr) const
-	{
-		return partial_result + lr.estimated_duration_ms*1e-3;
-	}
-};
-
-
 // call before starting to register load requests.
 // this routine is provided so we can prevent 2 simultaneous load operations,
 // which is bogus. that can happen by clicking the load button quickly,
@@ -134,7 +123,8 @@ void LDR_EndRegistering()
 	state = FIRST_LOAD;
 	estimated_duration_tally = 0.0;
 	task_elapsed_time = 0.0;
-	total_estimated_duration = std::accumulate(load_requests.begin(), load_requests.end(), 0.0, DurationAdder());
+	total_estimated_duration = std::accumulate(load_requests.begin(), load_requests.end(), 0.0,
+	    [](double partial_result, const LoadRequest& lr) -> double { return partial_result + lr.estimated_duration_ms * 1e-3; });
 }
 
 
