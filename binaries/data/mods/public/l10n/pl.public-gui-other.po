@@ -44,8 +44,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2020-11-20 19:48+0000\n"
+"POT-Creation-Date: 2020-11-30 07:41+0000\n"
+"PO-Revision-Date: 2020-11-30 16:58+0000\n"
 "Last-Translator: Przemysław Murach <moonshine133@vp.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -53,68 +53,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pl\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
-
-#: gui/civinfo/civinfo.js:20
-#, javascript-format
-msgid "%(hotkey)s: Switch to Structure Tree."
-msgstr "%(hotkey)s: Przełącz na drzewo budowli."
-
-#: gui/civinfo/civinfo.js:21
-#, javascript-format
-msgid "%(hotkey)s: Close Civilization Overview."
-msgstr "%(hotkey)s: Zamknij przegląd cywilizacji."
-
-#. Translation: insert an itemization symbol for each entry.
-#: gui/civinfo/civinfo.js:85
-#, javascript-format
-msgid "• %(string)s"
-msgstr "• %(string)s"
-
-#: gui/civinfo/civinfo.js:113
-#, javascript-format
-msgid "%(civilization)s Gameplay"
-msgstr "Rozgrywka %(civilization)s"
-
-#: gui/civinfo/civinfo.js:116
-msgid "Civilization Bonus"
-msgid_plural "Civilization Bonuses"
-msgstr[0] "Premia cywilizacyjna"
-msgstr[1] "Premie cywilizacyjne"
-msgstr[2] "Premie cywilizacyjne"
-msgstr[3] "Premie cywilizacyjne"
-
-#: gui/civinfo/civinfo.js:121
-msgid "Team Bonus"
-msgid_plural "Team Bonuses"
-msgstr[0] "Premia drużynowa"
-msgstr[1] "Premie drużynowe"
-msgstr[2] "Premie drużynowe"
-msgstr[3] "Premie drużynowe"
-
-#: gui/civinfo/civinfo.js:128
-msgid "Special Technologies"
-msgstr "Technologie specjalne"
-
-#: gui/civinfo/civinfo.js:134
-msgid "Special Structure"
-msgid_plural "Special Structures"
-msgstr[0] "Budynek specjalny"
-msgstr[1] "Budynki specjalne"
-msgstr[2] "Budynki specjalne"
-msgstr[3] "Budynki specjalne"
-
-#: gui/civinfo/civinfo.js:141 gui/summary/layout.js:77
-msgid "Heroes"
-msgstr "Bohaterowie"
-
-#: gui/civinfo/civinfo.js:151
-#, javascript-format
-msgid "History of the %(civilization)s"
-msgstr "Historia %(civilization)s"
-
-#: gui/civinfo/civinfo.xml:(caption):30
-msgid "Civilization Selection"
-msgstr "Wybór cywilizacji"
 
 #: gui/common/MapCache.js:52
 msgctxt "map selection"
@@ -154,7 +92,7 @@ msgstr "Wczytywanie przerwane"
 msgid "Gaia"
 msgstr "Gaja"
 
-#: gui/common/functions_utility.js:228
+#: gui/common/functions_utility.js:236
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Kompilacja: %(buildDate)s (%(revision)s)"
@@ -2668,7 +2606,8 @@ msgstr "Samouczek"
 msgid "Start the economic tutorial."
 msgstr "Rozpocznij ekonomiczny samouczek."
 
-#: gui/civinfo/civinfo.xml:(caption):123 gui/pregame/MainMenuItems.js:24
+#: gui/pregame/MainMenuItems.js:24
+#: gui/reference/common/Buttons/StructreeButton.js:21
 #: gui/reference/structree/structree.xml:(caption):20
 msgid "Structure Tree"
 msgstr "Drzewo struktur"
@@ -2679,7 +2618,8 @@ msgid ""
 "%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
 msgstr "%(hotkey)s: Wyświetl strukturę drzewa cywilizacji występujących w 0 A.D."
 
-#: gui/civinfo/civinfo.xml:(caption):18 gui/pregame/MainMenuItems.js:36
+#: gui/pregame/MainMenuItems.js:36
+#: gui/reference/civinfo/civinfo.xml:(caption):21
 #: gui/reference/common/Buttons/CivInfoButton.js:21
 msgid "Civilization Overview"
 msgstr "Przegląd cywilizacji"
@@ -2992,16 +2932,95 @@ msgid ""
 "improve performance and compatibility."
 msgstr "Możesz nam automatycznie wysyłać komentarze, które pomogą nam poprawić błędy, zwiększyć wydajność i kompatybilność."
 
+#. Translation: Description of an item in the CivInfo page, on a new line and
+#. indented.
+#: gui/reference/civinfo/CivInfoPage.js:101
+#, javascript-format
+msgid ""
+"\n"
+"     %(description)s"
+msgstr "\n     %(description)s"
+
+#. Translation: An entry in the CivInfo Page. The newline and indentation of
+#. the description
+#. is handled elsewhere.
+#. Example:
+#. > • Name of a Special Something (i)
+#. >     A brief description of the aforementioned something.
+#: gui/reference/civinfo/CivInfoPage.js:108
+#, javascript-format
+msgid "• %(name)s %(info_icon)s%(description)s"
+msgstr "• %(name)s %(info_icon)s%(description)s"
+
+#: gui/reference/civinfo/CivInfoPage.js:119
+#, javascript-format
+msgid "%(hotkey)s: Close Civilization Overview."
+msgstr "%(hotkey)s: Zamknij przegląd cywilizacji."
+
+#: gui/reference/civinfo/Sections/GameplaySection.js:30
+#, javascript-format
+msgid "%(civilization)s Gameplay"
+msgstr "Rozgrywka %(civilization)s"
+
+#: gui/reference/civinfo/Sections/HistorySection.js:23
+#, javascript-format
+msgid "History of the %(civilization)s"
+msgstr "Historia %(civilization)s"
+
+#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:32
+msgid "Civilization Bonus"
+msgid_plural "Civilization Bonuses"
+msgstr[0] "Premia cywilizacyjna"
+msgstr[1] "Premie cywilizacyjne"
+msgstr[2] "Premie cywilizacyjne"
+msgstr[3] "Premie cywilizacyjne"
+
+#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:35
+msgid "Team Bonus"
+msgid_plural "Team Bonuses"
+msgstr[0] "Premia drużynowa"
+msgstr[1] "Premie drużynowe"
+msgstr[2] "Premie drużynowe"
+msgstr[3] "Premie drużynowe"
+
+#: gui/reference/civinfo/Sections/Subsections/HeroesSubsection.js:30
+msgid "Hero"
+msgid_plural "Heroes"
+msgstr[0] "Bohater"
+msgstr[1] "Bohaterów"
+msgstr[2] "Bohaterów"
+msgstr[3] "Bohaterowie"
+
+#: gui/reference/civinfo/Sections/Subsections/StructuresSubsection.js:24
+msgid "Special Structure"
+msgid_plural "Special Structures"
+msgstr[0] "Budynek specjalny"
+msgstr[1] "Budynki specjalne"
+msgstr[2] "Budynki specjalne"
+msgstr[3] "Budynki specjalne"
+
+#: gui/reference/civinfo/Sections/Subsections/TechnologiesSubsection.js:30
+msgid "Special Technology"
+msgid_plural "Special Technologies"
+msgstr[0] "Wyjątkowa technologia"
+msgstr[1] "Wyjątkowych technologii"
+msgstr[2] "Wyjątkowych technologii"
+msgstr[3] "Wyjątkowe technologie"
+
 #: gui/reference/common/Buttons/CivInfoButton.js:27
 #, javascript-format
 msgid "%(hotkey)s: Switch to Civilization Overview."
 msgstr "%(hotkey)s: Przełącz na przegląd cywilizacji."
 
-#: gui/civinfo/civinfo.xml:(caption):135 gui/credits/credits.xml:(caption):32
-#: gui/options/options.xml:(caption):60
+#: gui/credits/credits.xml:(caption):32 gui/options/options.xml:(caption):60
 #: gui/reference/common/Buttons/CloseButton.js:13
 msgid "Close"
 msgstr "Wyjdź"
+
+#: gui/reference/common/Buttons/StructreeButton.js:27
+#, javascript-format
+msgid "%(hotkey)s: Switch to Structure Tree."
+msgstr "%(hotkey)s: Przełącz na drzewo budowli."
 
 #: gui/reference/common/Dropdowns/CivSelectDropdown.js:63
 msgid "Civilization:"
@@ -3399,6 +3418,10 @@ msgstr "Kawaleria"
 #: gui/summary/layout.js:76
 msgid "Champion"
 msgstr "Mistrz"
+
+#: gui/summary/layout.js:77
+msgid "Heroes"
+msgstr "Bohaterowie"
 
 #: gui/summary/layout.js:78
 msgid "Siege"

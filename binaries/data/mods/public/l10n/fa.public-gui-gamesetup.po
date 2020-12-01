@@ -13,12 +13,13 @@
 # omidh <omid_h28@hotmail.com>, 2013
 # reza latifi <reza.bubba@gmail.com>, 2019
 # VAHID SOHRABLOO <vahid4134@gmail.com>, 2014
+# سهیل خانعلی‌پور <soheilkhanalipur@tutanota.com>, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2020-09-23 17:20+0000\n"
-"Last-Translator: Mohammad Namvarpour <mohammadnamvarpour@gmail.com>\n"
+"PO-Revision-Date: 2020-12-01 11:21+0000\n"
+"Last-Translator: سهیل خانعلی‌پور <soheilkhanalipur@tutanota.com>\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,7 +29,7 @@ msgstr ""
 
 #: gui/gamesetup/Controls/MapFilters.js:85
 msgid "Default"
-msgstr "پیش فرض"
+msgstr "پیشگزیده"
 
 #: gui/gamesetup/Controls/MapFilters.js:86
 msgid "All maps except naval and demo maps."
@@ -305,7 +306,7 @@ msgstr "گنجینه ها را به نقشه اضافه نکن"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:49
 msgid "World population"
-msgstr "جمعیت دنیا"
+msgstr "مردم جهان"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:52
 msgid ""
@@ -578,8 +579,8 @@ msgstr "بدون آتش بس"
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(minutes)s دقیقه"
+msgstr[1] "%(minutes)s دقیقه"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:87
 msgid "Relic Count"
@@ -613,14 +614,14 @@ msgstr "دقیقه تا زمانی که بازیکن موفق به پیروزی 
 msgctxt "victory duration"
 msgid "%(min)s minute"
 msgid_plural "%(min)s minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(min)s دقیقه"
+msgstr[1] "%(min)s دقیقه"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:99
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:100
 msgctxt "victory duration"
 msgid "Immediate Victory."
-msgstr "پیروزی بی درنگ"
+msgstr "پیروزی بی‌درنگ"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:73
 msgid "Sea Level Rise Time"
@@ -635,8 +636,8 @@ msgstr "زمانی که سطح آب شروع به بالا آمدن میکند �
 msgctxt "sea level rise time"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(minutes)s دقیقه"
+msgstr[1] "%(minutes)s دقیقه"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:88
 msgid "Wonder Duration"

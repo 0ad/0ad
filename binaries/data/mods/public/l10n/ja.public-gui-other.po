@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2020-11-20 11:31+0000\n"
+"POT-Creation-Date: 2020-11-30 07:41+0000\n"
+"PO-Revision-Date: 2020-11-30 08:39+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -22,59 +22,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-
-#: gui/civinfo/civinfo.js:20
-#, javascript-format
-msgid "%(hotkey)s: Switch to Structure Tree."
-msgstr "%(hotkey)s: 建築早見表へ切り替える"
-
-#: gui/civinfo/civinfo.js:21
-#, javascript-format
-msgid "%(hotkey)s: Close Civilization Overview."
-msgstr ""
-
-#. Translation: insert an itemization symbol for each entry.
-#: gui/civinfo/civinfo.js:85
-#, javascript-format
-msgid "• %(string)s"
-msgstr ""
-
-#: gui/civinfo/civinfo.js:113
-#, javascript-format
-msgid "%(civilization)s Gameplay"
-msgstr "%(civilization)sの特性"
-
-#: gui/civinfo/civinfo.js:116
-msgid "Civilization Bonus"
-msgid_plural "Civilization Bonuses"
-msgstr[0] "文明ボーナス"
-
-#: gui/civinfo/civinfo.js:121
-msgid "Team Bonus"
-msgid_plural "Team Bonuses"
-msgstr[0] "チームボーナス"
-
-#: gui/civinfo/civinfo.js:128
-msgid "Special Technologies"
-msgstr "特有のテクノロジー"
-
-#: gui/civinfo/civinfo.js:134
-msgid "Special Structure"
-msgid_plural "Special Structures"
-msgstr[0] ""
-
-#: gui/civinfo/civinfo.js:141 gui/summary/layout.js:77
-msgid "Heroes"
-msgstr "英雄"
-
-#: gui/civinfo/civinfo.js:151
-#, javascript-format
-msgid "History of the %(civilization)s"
-msgstr "%(civilization)sの歴史"
-
-#: gui/civinfo/civinfo.xml:(caption):30
-msgid "Civilization Selection"
-msgstr "文明選択"
 
 #: gui/common/MapCache.js:52
 msgctxt "map selection"
@@ -114,7 +61,7 @@ msgstr "読込みを中止しました"
 msgid "Gaia"
 msgstr "野生"
 
-#: gui/common/functions_utility.js:228
+#: gui/common/functions_utility.js:236
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Build: %(buildDate)s (%(revision)s)"
@@ -2586,7 +2533,8 @@ msgstr "チュートリアル"
 msgid "Start the economic tutorial."
 msgstr "経済のチュートリアルを始める"
 
-#: gui/civinfo/civinfo.xml:(caption):123 gui/pregame/MainMenuItems.js:24
+#: gui/pregame/MainMenuItems.js:24
+#: gui/reference/common/Buttons/StructreeButton.js:21
 #: gui/reference/structree/structree.xml:(caption):20
 msgid "Structure Tree"
 msgstr "建設早見表"
@@ -2597,7 +2545,8 @@ msgid ""
 "%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
 msgstr "%(hotkey)s: 0 A.D.に登場する文明の建設早見表を表示します。"
 
-#: gui/civinfo/civinfo.xml:(caption):18 gui/pregame/MainMenuItems.js:36
+#: gui/pregame/MainMenuItems.js:36
+#: gui/reference/civinfo/civinfo.xml:(caption):21
 #: gui/reference/common/Buttons/CivInfoButton.js:21
 msgid "Civilization Overview"
 msgstr ""
@@ -2910,16 +2859,80 @@ msgid ""
 "improve performance and compatibility."
 msgstr ""
 
+#. Translation: Description of an item in the CivInfo page, on a new line and
+#. indented.
+#: gui/reference/civinfo/CivInfoPage.js:101
+#, javascript-format
+msgid ""
+"\n"
+"     %(description)s"
+msgstr ""
+
+#. Translation: An entry in the CivInfo Page. The newline and indentation of
+#. the description
+#. is handled elsewhere.
+#. Example:
+#. > • Name of a Special Something (i)
+#. >     A brief description of the aforementioned something.
+#: gui/reference/civinfo/CivInfoPage.js:108
+#, javascript-format
+msgid "• %(name)s %(info_icon)s%(description)s"
+msgstr ""
+
+#: gui/reference/civinfo/CivInfoPage.js:119
+#, javascript-format
+msgid "%(hotkey)s: Close Civilization Overview."
+msgstr ""
+
+#: gui/reference/civinfo/Sections/GameplaySection.js:30
+#, javascript-format
+msgid "%(civilization)s Gameplay"
+msgstr "%(civilization)sの特性"
+
+#: gui/reference/civinfo/Sections/HistorySection.js:23
+#, javascript-format
+msgid "History of the %(civilization)s"
+msgstr "%(civilization)sの歴史"
+
+#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:32
+msgid "Civilization Bonus"
+msgid_plural "Civilization Bonuses"
+msgstr[0] "文明ボーナス"
+
+#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:35
+msgid "Team Bonus"
+msgid_plural "Team Bonuses"
+msgstr[0] "チームボーナス"
+
+#: gui/reference/civinfo/Sections/Subsections/HeroesSubsection.js:30
+msgid "Hero"
+msgid_plural "Heroes"
+msgstr[0] ""
+
+#: gui/reference/civinfo/Sections/Subsections/StructuresSubsection.js:24
+msgid "Special Structure"
+msgid_plural "Special Structures"
+msgstr[0] ""
+
+#: gui/reference/civinfo/Sections/Subsections/TechnologiesSubsection.js:30
+msgid "Special Technology"
+msgid_plural "Special Technologies"
+msgstr[0] ""
+
 #: gui/reference/common/Buttons/CivInfoButton.js:27
 #, javascript-format
 msgid "%(hotkey)s: Switch to Civilization Overview."
 msgstr ""
 
-#: gui/civinfo/civinfo.xml:(caption):135 gui/credits/credits.xml:(caption):32
-#: gui/options/options.xml:(caption):60
+#: gui/credits/credits.xml:(caption):32 gui/options/options.xml:(caption):60
 #: gui/reference/common/Buttons/CloseButton.js:13
 msgid "Close"
 msgstr "閉じる"
+
+#: gui/reference/common/Buttons/StructreeButton.js:27
+#, javascript-format
+msgid "%(hotkey)s: Switch to Structure Tree."
+msgstr "%(hotkey)s: 建築早見表へ切り替える"
 
 #: gui/reference/common/Dropdowns/CivSelectDropdown.js:63
 msgid "Civilization:"
@@ -3311,6 +3324,10 @@ msgstr "騎兵"
 #: gui/summary/layout.js:76
 msgid "Champion"
 msgstr "チャンピオン"
+
+#: gui/summary/layout.js:77
+msgid "Heroes"
+msgstr "英雄"
 
 #: gui/summary/layout.js:78
 msgid "Siege"
