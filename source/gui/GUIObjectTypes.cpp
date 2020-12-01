@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -38,6 +38,7 @@ void CGUI::AddObjectTypes()
 {
 	m_ProxyData.insert(JSI_GUIProxy<IGUIObject>::CreateData(*m_ScriptInterface));
 	m_ProxyData.insert(JSI_GUIProxy<CText>::CreateData(*m_ScriptInterface));
+	m_ProxyData.insert(JSI_GUIProxy<CList>::CreateData(*m_ScriptInterface));
 
 	AddObjectType("button", &CButton::ConstructObject);
 	AddObjectType("chart", &CChart::ConstructObject);

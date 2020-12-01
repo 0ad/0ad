@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,6 +23,7 @@
 #include "gui/CGUIScrollBarVertical.h"
 #include "gui/SettingTypes/CGUIColor.h"
 #include "gui/SettingTypes/CGUIList.h"
+#include "gui/Scripting/JSInterface_GUIProxy.h"
 #include "lib/external_libraries/libsdl.h"
 #include "lib/timer.h"
 
@@ -60,6 +61,7 @@ CList::CList(CGUI& pGUI)
 	RegisterSetting("font", m_Font);
 	RegisterSetting("scrollbar", m_ScrollBar);
 	RegisterSetting("scrollbar_style", m_ScrollBarStyle);
+	RegisterSetting("scroll_bottom", m_ScrollBottom);
 	RegisterSetting("sound_disabled", m_SoundDisabled);
 	RegisterSetting("sound_selected", m_SoundSelected);
 	RegisterSetting("sprite", m_Sprite);
@@ -93,24 +95,39 @@ CList::~CList()
 
 void CList::SetupText()
 {
+	SetupText(false);
+}
+
+void CList::SetupText(bool append)
+{
 	m_Modified = true;
 
 	m_ItemsYPositions.resize(m_List.m_Items.size() + 1);
 
-	// Delete all generated texts. Some could probably be saved,
-	//  but this is easier, and this function will never be called
-	//  continuously, or even often, so it'll probably be okay.
-	m_GeneratedTexts.clear();
+	if (!append)
+		// Delete all generated texts.
+		// TODO: try to be cleverer if we want to update items before the end.
+		m_GeneratedTexts.clear();
 
 	float width = GetListRect().GetWidth();
-	// remove scrollbar if applicable
+
+	bool bottom = false;
 	if (m_ScrollBar && GetScrollBar(0).GetStyle())
+	{
+		if (m_ScrollBottom && GetScrollBar(0).GetPos() > GetScrollBar(0).GetMaxPos() - 1.5f)
+			bottom = true;
+
+		// remove scrollbar if applicable
 		width -= GetScrollBar(0).GetStyle()->m_Width;
+	}
 
 	// Generate texts
 	float buffered_y = 0.f;
 
-	for (size_t i = 0; i < m_List.m_Items.size(); ++i)
+	if (append)
+		buffered_y = m_ItemsYPositions[m_List.m_Items.size() - 1];
+
+	for (size_t i = append ? m_List.m_Items.size() - 1 : 0; i < m_List.m_Items.size(); ++i)
 	{
 		CGUIText* text;
 
@@ -141,6 +158,9 @@ void CList::SetupText()
 		GetScrollBar(0).SetY(rect.top);
 		GetScrollBar(0).SetZ(GetBufferedZ());
 		GetScrollBar(0).SetLength(rect.bottom - rect.top);
+
+		if (bottom)
+			GetScrollBar(0).SetPos(GetScrollBar(0).GetMaxPos());
 	}
 }
 
@@ -380,18 +400,11 @@ void CList::DrawList(const int& selected, const CGUISpriteInstance& sprite, cons
 	}
 }
 
-void CList::AddItem(const CStrW& str, const CStrW& data)
+void CList::AddItem(const CGUIString& str, const CGUIString& data)
 {
-	CGUIString gui_string;
-	gui_string.SetValue(str);
-
 	// Do not send a settings-changed message
-	m_List.m_Items.push_back(gui_string);
-
-	CGUIString data_string;
-	data_string.SetValue(data);
-
-	m_ListData.m_Items.push_back(data_string);
+	m_List.m_Items.push_back(str);
+	m_ListData.m_Items.push_back(data);
 
 	// TODO Temp
 	SetupText();
@@ -403,7 +416,9 @@ bool CList::HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile)
 
 	if (child.GetNodeName() == elmt_item)
 	{
-		AddItem(child.GetText().FromUTF8(), child.GetText().FromUTF8());
+		CGUIString vlist;
+		vlist.SetValue(child.GetText().FromUTF8());
+		AddItem(vlist, vlist);
 		return true;
 	}
 
@@ -484,4 +499,34 @@ int CList::GetHoveredItem()
 			return i;
 
 	return -1;
+}
+
+void CList::CreateJSObject()
+{
+	ScriptRequest rq(m_pGUI.GetScriptInterface());
+
+	js::ProxyOptions options;
+	options.setClass(&JSI_GUIProxy<CList>::ClassDefinition());
+
+	JS::RootedValue cppObj(rq.cx), data(rq.cx);
+	cppObj.get().setPrivate(this);
+	data.get().setPrivate(GetGUI().GetProxyData(&JSI_GUIProxy<CList>::Singleton()));
+	m_JSObject.init(rq.cx, js::NewProxyObject(rq.cx, &JSI_GUIProxy<CList>::Singleton(), cppObj, nullptr, options));
+	js::SetProxyReservedSlot(m_JSObject, 0, data);
+}
+
+bool CList::Script_AddItem(JSContext* cx, uint argc, JS::Value* vp)
+{
+	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
+	CList* e = static_cast<CList*>(js::GetProxyPrivate(args.thisv().toObjectOrNull()).toPrivate());
+	if (!e)
+		return false;
+
+	ScriptInterface& scriptInterface = *ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
+	ScriptRequest rq(scriptInterface);
+	CGUIString text;
+	if (!ScriptInterface::FromJSVal(rq, args.get(0), text))
+		return false;
+	e->AddItem(text, text);
+	return true;
 }

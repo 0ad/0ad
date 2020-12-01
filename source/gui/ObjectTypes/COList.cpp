@@ -192,7 +192,9 @@ bool COList::HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile
 
 	if (child.GetNodeName() == elmt_item)
 	{
-		AddItem(child.GetText().FromUTF8(), child.GetText().FromUTF8());
+		CGUIString vlist;
+		vlist.SetValue(child.GetText().FromUTF8());
+		AddItem(vlist, vlist);
 		return true;
 	}
 	else if (child.GetNodeName() == elmt_column)

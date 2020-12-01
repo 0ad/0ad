@@ -32,7 +32,7 @@ class ChatMessagesPanel
 			text = this.timestampWrapper.format(text);
 
 		this.chatHistory += this.chatHistory ? "\n" + text : text;
-		this.chatText.caption = this.chatHistory;
+		this.chatText.addItem(text);
 	}
 
 	addStatusMessage(text)

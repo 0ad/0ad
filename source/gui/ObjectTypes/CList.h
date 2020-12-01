@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -38,6 +38,8 @@ class CList : public IGUIObject, public IGUIScrollBarOwner, public IGUITextOwner
 {
 	GUI_OBJECT(CList)
 
+	friend JSI_GUIProxy<CList>;
+
 public:
 	CList(CGUI& pGUI);
 	virtual ~CList();
@@ -55,15 +57,19 @@ public:
 	/**
 	 * Adds an item last to the list.
 	 */
-	virtual void AddItem(const CStrW& str, const CStrW& data);
+	virtual void AddItem(const CGUIString& str, const CGUIString& data);
 
 protected:
+
+	static bool Script_AddItem(JSContext* cx, uint argc, JS::Value* vp);
 
 	/**
 	 * Sets up text, should be called every time changes has been
 	 * made that can change the visual.
+	 * @param append - if true, we assume we only need to render the new element at the end of the list.
 	 */
 	virtual void SetupText();
+	virtual void SetupText(bool append);
 
 	/**
 	 * @see IGUIObject#HandleMessage()
@@ -79,6 +85,8 @@ protected:
 	 * Draws the List box
 	 */
 	virtual void Draw();
+
+	virtual void CreateJSObject();
 
 	/**
 	 * Easy select elements functions
@@ -123,6 +131,7 @@ protected:
 	CStrW m_Font;
 	bool m_ScrollBar;
 	CStr m_ScrollBarStyle;
+	bool m_ScrollBottom;
 	CStrW m_SoundDisabled;
 	CStrW m_SoundSelected;
 	CGUISpriteInstance m_Sprite;
