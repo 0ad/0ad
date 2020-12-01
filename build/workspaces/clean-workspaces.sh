@@ -31,7 +31,9 @@ if [ "$preserve_libs" != "true" ]; then
   echo "Cleaning bundled third-party dependencies..."
 
   (cd ../../libraries/source/fcollada/src && rm -rf ./output)
+  (cd ../../libraries/source/fcollada && rm -f .already-built)
   (cd ../../libraries/source/nvtt/src && rm -rf ./build)
+  (cd ../../libraries/source/nvtt && rm -f .already-built)
   (cd ../../libraries/source/spidermonkey && rm -f .already-built)
   (cd ../../libraries/source/spidermonkey && rm -rf ./lib/*.a && rm -rf ./lib/*.so)
   (cd ../../libraries/source/spidermonkey && rm -rf ./include-unix-debug)

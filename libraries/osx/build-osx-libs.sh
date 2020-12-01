@@ -52,11 +52,7 @@ FMT_VERSION="7.1.3"
 # * SpiderMonkey
 # * NVTT
 # * FCollada
-# --------------------------------------------------------------
-# We use suffixes here in order to force rebuilding when patching these libs
-NVTT_VERSION="nvtt-2.1.1+wildfiregames.2"
-FCOLLADA_VERSION="fcollada-3.05+wildfiregames.2"
-# --------------------------------------------------------------
+
 # Provided by OS X:
 # * OpenAL
 # * OpenGL
@@ -956,73 +952,26 @@ popd > /dev/null
 
 # --------------------------------------------------------------
 # NVTT - bundled, no download
-echo -e "Building NVTT..."
-
-LIB_VERSION="${NVTT_VERSION}"
-
 pushd ../source/nvtt > /dev/null
 
-if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ "$(<.already-built)" != "$LIB_VERSION" ]]
+if [[ "$force_rebuild" = "true" ]]
 then
   rm -f .already-built
-  rm -f lib/*.a
-  pushd src
-  rm -rf build
-  mkdir -p build
-
-  pushd build
-
-  # Could use CMAKE_OSX_DEPLOYMENT_TARGET and CMAKE_OSX_SYSROOT
-  # but they're not as flexible for cross-compiling
-  # Disable png support (avoids some conflicts with MacPorts)
-  (cmake .. \
-      -DCMAKE_LINK_FLAGS="$LDFLAGS" \
-      -DCMAKE_C_FLAGS="$CFLAGS" \
-      -DCMAKE_CXX_FLAGS="$CXXFLAGS" \
-      -DCMAKE_BUILD_TYPE=Release \
-      -DBINDIR=bin \
-      -DLIBDIR=lib \
-      -DPNG=0 \
-      -G "Unix Makefiles" \
-    && make clean && make nvtt ${JOBS}) || die "NVTT build failed"
-  popd
-
-  mkdir -p ../lib
-  cp build/src/bc*/libbc*.a ../lib/
-  cp build/src/nv*/libnv*.a ../lib/
-  cp build/src/nvtt/squish/libsquish.a ../lib/
-  popd
-  echo "$LIB_VERSION" > .already-built
-else
-  already_built
 fi
+
+CXXFLAGS="$CXXFLAGS" CFLAGS="$CFLAGS" LDFLAGS="$LDFLAGS" JOBS="$JOBS" ./build.sh || die "Error building NVTT"
+
 popd > /dev/null
 
 # --------------------------------------------------------------
 # FCollada - bundled, no download
-echo -e "Building FCollada..."
+pushd ../source/fcollada/ > /dev/null
 
-LIB_VERSION="${FCOLLADA_VERSION}"
-
-pushd ../source/fcollada > /dev/null
-
-if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ "$(<.already-built)" != "$LIB_VERSION" ]]
+if [[ "$force_rebuild" = "true" ]]
 then
   rm -f .already-built
-  rm -f lib/*.a
-  pushd src
-  rm -rf output
-  mkdir -p ../lib
-
-  # The Makefile refers to pkg-config for libxml2, but we
-  # don't have that (replace with xml2-config instead)
-  sed -i.bak -e 's/pkg-config libxml-2.0/xml2-config/' Makefile
-  (make clean && CXXFLAGS=$CXXFLAGS make ${JOBS}) || die "FCollada build failed"
-  # Undo Makefile change
-  mv Makefile.bak Makefile
-  popd
-  echo "$LIB_VERSION" > .already-built
-else
-  already_built
 fi
+
+CXXFLAGS="$CXXFLAGS" CFLAGS="$CFLAGS" LDFLAGS="$LDFLAGS" JOBS="$JOBS" ./build.sh || die "Error building FCollada"
+
 popd > /dev/null

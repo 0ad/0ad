@@ -14,7 +14,7 @@ LIB_NAME="mozjs68-ps"
 # special file and only rebuild if the build.sh version differs.
 if [ -e .already-built ] && [ "$(cat .already-built)" = "${LIB_VERSION}" ]
 then
-    echo "SpiderMonkey is already up to date"
+    echo "SpiderMonkey is already up to date."
     exit
 fi
 
