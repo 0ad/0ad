@@ -39,15 +39,9 @@ variable_to_be_watched.NotifyObservers();
 
 */
 
-#include <boost/bind.hpp>
-#include <boost/version.hpp>
-#if BOOST_VERSION >= 104000
-# include <boost/signals2.hpp>
+#include <boost/signals2.hpp>
 typedef boost::signals2::connection ObservableConnection;
 typedef boost::signals2::scoped_connection ObservableScopedConnection;
-#else
-# error Atlas requires Boost 1.40 or later
-#endif
 
 template <typename T> class Observable : public T
 {
@@ -63,7 +57,7 @@ public:
 
 	template<typename C> ObservableConnection RegisterObserver(int order, void (C::*callback) (const T&), C* obj)
 	{
-		return m_Signal.connect(order, boost::bind(std::mem_fun(callback), obj, _1));
+		return m_Signal.connect(order, std::bind(std::mem_fn(callback), obj, std::placeholders::_1));
 	}
 
 	ObservableConnection RegisterObserver(int order, void (*callback) (const T&))
@@ -135,7 +129,7 @@ public:
 
 	template<typename C> ObservableConnection RegisterObserver(int order, void (C::*callback) (T*), C* obj)
 	{
-		return m_Signal.connect(order, boost::bind(std::mem_fun(callback), obj, _1));
+		return m_Signal.connect(order, std::bind(std::mem_fn(callback), obj, std::placeholders::_1));
 	}
 
 	ObservableConnection RegisterObserver(int order, void (*callback) (T*))

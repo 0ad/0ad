@@ -23,8 +23,8 @@ void ObservableScopedConnections::Add(const ObservableConnection& conn)
 {
 	// Clean up any disconnected connections that might be left in here
 	m_Conns.erase(
-		remove_if(m_Conns.begin(), m_Conns.end(),
-			not1(std::mem_fun_ref(&ObservableConnection::connected))),
+	    std::remove_if(m_Conns.begin(), m_Conns.end(),
+	        std::not_fn(std::mem_fn(&ObservableConnection::connected))),
 		m_Conns.end()
 	);
 
@@ -35,5 +35,5 @@ void ObservableScopedConnections::Add(const ObservableConnection& conn)
 ObservableScopedConnections::~ObservableScopedConnections()
 {
 	// Disconnect all connections that we hold
-	for_each(m_Conns.begin(), m_Conns.end(), std::mem_fun_ref(&ObservableConnection::disconnect));
+	for_each(m_Conns.begin(), m_Conns.end(), std::mem_fn(&ObservableConnection::disconnect));
 }

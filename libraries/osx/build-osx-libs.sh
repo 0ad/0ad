@@ -86,7 +86,7 @@ if [[ $MIN_OSX_VERSION && ${MIN_OSX_VERSION-_} ]]; then
 fi
 
 CFLAGS="$CFLAGS $C_FLAGS -fvisibility=hidden"
-CXXFLAGS="$CXXFLAGS $C_FLAGS -stdlib=libc++ -std=c++14 -msse4.1"
+CXXFLAGS="$CXXFLAGS $C_FLAGS -stdlib=libc++ -std=c++17 -msse4.1"
 OBJCFLAGS="$OBJCFLAGS $C_FLAGS"
 OBJCXXFLAGS="$OBJCXXFLAGS $C_FLAGS"
 
@@ -427,6 +427,7 @@ then
     --without-libtiff
     --without-sdl
     --without-x
+    --disable-stc
     --disable-webview
     --disable-webkit
     --disable-webviewwebkit

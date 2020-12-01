@@ -199,11 +199,11 @@ function project_set_build_flags()
 	-- being used as a DLL (which is currently not the case in 0ad)
 	defines { "LIB_STATIC_LINK" }
 
-	-- Enable C++14 standard.
+	-- Enable C++17 standard.
 	filter "action:vs*"
-		buildoptions { "/std:c++14" }
+		buildoptions { "/std:c++17" }
 	filter "action:not vs*"
-		buildoptions { "-std=c++14" }
+		buildoptions { "-std=c++17" }
 	filter {}
 
 	-- various platform-specific build flags
