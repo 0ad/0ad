@@ -382,7 +382,7 @@ PETRA.HQ.prototype.dispatchUnits = function(gameState)
 				--num1;
 				ent.setMetadata(PlayerID, "allied", true);
 				let range = 1.5 * cc.footprintRadius();
-				ent.moveToRange(cc.position()[0], cc.position()[1], range, range);
+				ent.moveToRange(cc.position()[0], cc.position()[1], range, range + 5);
 				break;
 			}
 		});
@@ -401,7 +401,7 @@ PETRA.HQ.prototype.dispatchUnits = function(gameState)
 				--num2;
 				ent.setMetadata(PlayerID, "allied", true);
 				let range = 1.5 * cc.footprintRadius();
-				ent.moveToRange(cc.position()[0], cc.position()[1], range, range);
+				ent.moveToRange(cc.position()[0], cc.position()[1], range, range + 5);
 				break;
 			}
 		});
@@ -420,7 +420,7 @@ PETRA.HQ.prototype.dispatchUnits = function(gameState)
 					--num;
 				ent.setMetadata(PlayerID, "allied", true);
 				let range = 1.5 * cc.footprintRadius();
-				ent.moveToRange(cc.position()[0], cc.position()[1], range, range);
+				ent.moveToRange(cc.position()[0], cc.position()[1], range, range + 5);
 				break;
 			}
 		});

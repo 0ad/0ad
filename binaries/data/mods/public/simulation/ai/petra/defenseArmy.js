@@ -277,7 +277,7 @@ PETRA.DefenseArmy.prototype.clear = function(gameState)
 				continue;
 
 			if (destination && !gameState.isPlayerMutualAlly(gameState.ai.HQ.territoryMap.getOwner(ent.position())))
-				ent.moveToRange(destination[0], destination[1], radius, radius+5);
+				ent.moveToRange(destination[0], destination[1], radius, radius + 5);
 			else
 				ent.stopMoving();
 		}

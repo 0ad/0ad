@@ -393,7 +393,7 @@ PETRA.TransportPlan.prototype.onBoarding = function(gameState)
 							continue;
 						}
 						if (this.nTry[ent.id()] > 1)
-							ent.moveToRange(newPos[0], newPos[1], 30, 30);
+							ent.moveToRange(newPos[0], newPos[1], 30, 35);
 						ent.garrison(ship, true);
 					}
 					else if (API3.SquareVectorDistance(this.boardingPos[shipId], newPos) > 225)
@@ -599,9 +599,9 @@ PETRA.TransportPlan.prototype.onSailing = function(gameState)
 			let goal = ent.getMetadata(PlayerID, "endPos");
 			let dist = goal ? API3.VectorDistance(pos, goal) : 0;
 			if (dist > 30)
-				ent.moveToRange(goal[0], goal[1], dist-20, dist-20);
+				ent.moveToRange(goal[0], goal[1], dist-25, dist-20);
 			else
-				ent.moveToRange(pos[0], pos[1], 20, 20);
+				ent.moveToRange(pos[0], pos[1], 20, 25);
 			ent.setMetadata(PlayerID, "transport", undefined);
 			ent.setMetadata(PlayerID, "onBoard", undefined);
 			ent.setMetadata(PlayerID, "endPos", undefined);

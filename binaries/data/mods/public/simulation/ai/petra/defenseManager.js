@@ -584,7 +584,7 @@ PETRA.DefenseManager.prototype.checkEvents = function(gameState, events)
 				let pos = attacker.position();
 				let range = attacker.attackRange("Ranged") ? attacker.attackRange("Ranged").max + 15 : 25;
 				if (range * range > API3.SquareVectorDistance(pos, target.position()))
-					target.moveToRange(pos[0], pos[1], range, range);
+					target.moveToRange(pos[0], pos[1], range, range + 5);
 			}
 			continue;
 		}

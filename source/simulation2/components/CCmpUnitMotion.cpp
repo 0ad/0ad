@@ -1501,6 +1501,9 @@ bool CCmpUnitMotion::MoveTo(MoveRequest request)
 {
 	PROFILE("MoveTo");
 
+	if (request.m_MinRange == request.m_MaxRange && !request.m_MinRange.IsZero())
+		LOGWARNING("MaxRange must be larger than MinRange; See CCmpUnitMotion.cpp for more information");
+
 	CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
 	if (!cmpPosition || !cmpPosition->IsInWorld())
 		return false;
