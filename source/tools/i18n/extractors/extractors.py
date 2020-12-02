@@ -1,5 +1,3 @@
-# -*- coding:utf-8 -*-
-#
 # Copyright (C) 2016 Wildfire Games.
 # All rights reserved.
 #
@@ -20,8 +18,6 @@
 # HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
 # OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-from __future__ import absolute_import, division, print_function, unicode_literals
-
 import codecs, re, os, sys
 import json as jsonParser
 
@@ -39,7 +35,7 @@ def pathmatch(mask, path):
     """
     s = re.split(r"([*][*]?)", mask)
     p = ""
-    for i in xrange(len(s)):
+    for i in range(len(s)):
         if i % 2 != 0:
             p = p + "[^/]+"
             if len(s[i]) == 2:
@@ -327,7 +323,7 @@ class json(Extractor):
     def extractFromFile(self, filepath):
         with codecs.open(filepath, "r", 'utf-8') as fileObject:
             for message, breadcrumbs in self.extractFromString(fileObject.read()):
-                yield message, None, self.context, self.formatBreadcrumbs(breadcrumbs), -1, self.comments
+                yield message, None, self.context, self.formatBreadcrumbs(breadcrumbs), None, self.comments
 
     def extractFromString(self, string):
         self.breadcrumbs = []
@@ -360,7 +356,7 @@ class json(Extractor):
         for keyword in dictionary:
             self.breadcrumbs.append(keyword)
             if keyword in self.keywords:
-                if isinstance(dictionary[keyword], unicode):
+                if isinstance(dictionary[keyword], str):
                     yield dictionary[keyword], self.breadcrumbs
                 elif isinstance(dictionary[keyword], list):
                     for message, breadcrumbs in self.extractList(dictionary[keyword]):
@@ -380,7 +376,7 @@ class json(Extractor):
         index = 0
         for listItem in itemsList:
             self.breadcrumbs.append(index)
-            if isinstance(listItem, unicode):
+            if isinstance(listItem, str):
                 yield listItem, self.breadcrumbs
             del self.breadcrumbs[-1]
             index += 1
@@ -388,7 +384,7 @@ class json(Extractor):
     def extractDictionary(self, dictionary):
         for keyword in dictionary:
             self.breadcrumbs.append(keyword)
-            if isinstance(dictionary[keyword], unicode):
+            if isinstance(dictionary[keyword], str):
                 yield dictionary[keyword], self.breadcrumbs
             del self.breadcrumbs[-1]
 
@@ -429,7 +425,7 @@ class xml(Extractor):
                                 attributes = [element.get(attribute) for attribute in self.keywords[keyword]["locationAttributes"] if attribute in element.attrib]
                                 breadcrumb = "({attributes})".format(attributes=", ".join(attributes))
                             if "context" in element.attrib:
-                                context = unicode(element.get("context"))
+                                context = str(element.get("context"))
                             elif "tagAsContext" in self.keywords[keyword]:
                                 context = keyword
                             elif "customContext" in self.keywords[keyword]:
@@ -442,9 +438,9 @@ class xml(Extractor):
                                 for splitText in element.text.split():
                                     # split on whitespace is used for token lists, there, a leading '-' means the token has to be removed, so it's not to be processed here either
                                     if splitText[0] != "-":
-                                        yield unicode(splitText), None, context, breadcrumb, position, comments
+                                        yield str(splitText), None, context, breadcrumb, position, comments
                             else:
-                                yield unicode(element.text), None, context, breadcrumb, position, comments
+                                yield str(element.text), None, context, breadcrumb, position, comments
 
 
 # Hack from http://stackoverflow.com/a/2819788
