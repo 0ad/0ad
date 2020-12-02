@@ -1,3 +1,5 @@
+// © 2016 and later: Unicode, Inc. and others.
+// License & terms of use: http://www.unicode.org/copyright.html
 /*
  ********************************************************************************
  *   Copyright (C) 1997-2006, International Business Machines
@@ -23,6 +25,8 @@
 #define FIELDPOS_H
 
 #include "unicode/utypes.h"
+
+#if U_SHOW_CPLUSPLUS_API
 
 /**
  * \file 
@@ -56,7 +60,7 @@ U_NAMESPACE_BEGIN
  * to perform partial formatting or to get information about the
  * formatted output (such as the position of a field).
  *
- * The FieldPosition class is not suitable for subclassing.
+ * The FieldPosition class is not intended for public subclassing.
  *
  * <p>
  * Below is an example of using <code>FieldPosition</code> to aid
@@ -107,7 +111,8 @@ class U_I18N_API FieldPosition : public UObject {
 public:
     /**
      * DONT_CARE may be specified as the field to indicate that the
-     * caller doesn't need to specify a field.  Do not subclass.
+     * caller doesn't need to specify a field.
+     * @stable ICU 2.0
      */
     enum { DONT_CARE = -1 };
 
@@ -156,7 +161,7 @@ public:
     /** 
      * Equality operator.
      * @param that    the object to be compared with.
-     * @return        TRUE if the two field positions are equal, FALSE otherwise.
+     * @return        true if the two field positions are equal, false otherwise.
      * @stable ICU 2.0
      */
     UBool              operator==(const FieldPosition& that) const;
@@ -164,7 +169,7 @@ public:
     /** 
      * Equality operator.
      * @param that    the object to be compared with.
-     * @return        TRUE if the two field positions are not equal, FALSE otherwise.
+     * @return        true if the two field positions are not equal, false otherwise.
      * @stable ICU 2.0
      */
     UBool              operator!=(const FieldPosition& that) const;
@@ -286,6 +291,8 @@ FieldPosition::operator!=(const FieldPosition& copy) const
 U_NAMESPACE_END
 
 #endif /* #if !UCONFIG_NO_FORMATTING */
+
+#endif /* U_SHOW_CPLUSPLUS_API */
 
 #endif // _FIELDPOS
 //eof

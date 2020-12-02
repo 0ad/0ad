@@ -1,10 +1,12 @@
+// © 2016 and later: Unicode, Inc. and others.
+// License & terms of use: http://www.unicode.org/copyright.html
 /*
 *******************************************************************************
-*   Copyright (C) 2010-2014, International Business Machines
+*   Copyright (C) 2010-2016, International Business Machines
 *   Corporation and others.  All Rights Reserved.
 *******************************************************************************
 *   file name:  bytestriebuilder.h
-*   encoding:   US-ASCII
+*   encoding:   UTF-8
 *   tab size:   8 (not used)
 *   indentation:4
 *
@@ -21,6 +23,9 @@
 #define __BYTESTRIEBUILDER_H__
 
 #include "unicode/utypes.h"
+
+#if U_SHOW_CPLUSPLUS_API
+
 #include "unicode/bytestrie.h"
 #include "unicode/stringpiece.h"
 #include "unicode/stringtriebuilder.h"
@@ -29,7 +34,6 @@ U_NAMESPACE_BEGIN
 
 class BytesTrieElement;
 class CharString;
-
 /**
  * Builder class for BytesTrie.
  *
@@ -65,7 +69,7 @@ public:
      * @return *this
      * @stable ICU 4.8
      */
-    BytesTrieBuilder &add(const StringPiece &s, int32_t value, UErrorCode &errorCode);
+    BytesTrieBuilder &add(StringPiece s, int32_t value, UErrorCode &errorCode);
 
     /**
      * Builds a BytesTrie for the add()ed data.
@@ -97,9 +101,10 @@ public:
      * Multiple calls to buildStringPiece() return StringPieces referring to the
      * builder's same byte array, without rebuilding.
      * If buildStringPiece() is called after build(), the trie will be
-     * re-serialized into a new array.
-     * If build() is called after buildStringPiece(), the trie object will become
-     * the owner of the previously returned array.
+     * re-serialized into a new array (because build() passes on ownership).
+     * If build() is called after buildStringPiece(), the trie object returned
+     * by build() will become the owner of the underlying string for the
+     * previously returned StringPiece.
      * After clear() has been called, a new array will be used as well.
      * @param buildOption Build option, see UStringTrieBuildOption.
      * @param errorCode Standard ICU error code. Its input value must
@@ -126,23 +131,23 @@ private:
     void buildBytes(UStringTrieBuildOption buildOption, UErrorCode &errorCode);
 
     virtual int32_t getElementStringLength(int32_t i) const;
-    virtual UChar getElementUnit(int32_t i, int32_t byteIndex) const;
+    virtual char16_t getElementUnit(int32_t i, int32_t byteIndex) const;
     virtual int32_t getElementValue(int32_t i) const;
 
     virtual int32_t getLimitOfLinearMatch(int32_t first, int32_t last, int32_t byteIndex) const;
 
     virtual int32_t countElementUnits(int32_t start, int32_t limit, int32_t byteIndex) const;
     virtual int32_t skipElementsBySomeUnits(int32_t i, int32_t byteIndex, int32_t count) const;
-    virtual int32_t indexOfElementWithNextUnit(int32_t i, int32_t byteIndex, UChar byte) const;
+    virtual int32_t indexOfElementWithNextUnit(int32_t i, int32_t byteIndex, char16_t byte) const;
 
-    virtual UBool matchNodesCanHaveValues() const { return FALSE; }
+    virtual UBool matchNodesCanHaveValues() const { return false; }
 
     virtual int32_t getMaxBranchLinearSubNodeLength() const { return BytesTrie::kMaxBranchLinearSubNodeLength; }
     virtual int32_t getMinLinearMatch() const { return BytesTrie::kMinLinearMatch; }
     virtual int32_t getMaxLinearMatchLength() const { return BytesTrie::kMaxLinearMatchLength; }
 
     /**
-     * @internal
+     * @internal (private)
      */
     class BTLinearMatchNode : public LinearMatchNode {
     public:
@@ -152,7 +157,7 @@ private:
     private:
         const char *s;
     };
-
+    
     virtual Node *createLinearMatchNode(int32_t i, int32_t byteIndex, int32_t length,
                                         Node *nextNode) const;
 
@@ -177,5 +182,7 @@ private:
 };
 
 U_NAMESPACE_END
+
+#endif /* U_SHOW_CPLUSPLUS_API */
 
 #endif  // __BYTESTRIEBUILDER_H__

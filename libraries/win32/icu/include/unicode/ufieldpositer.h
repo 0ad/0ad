@@ -1,6 +1,8 @@
+// © 2016 and later: Unicode, Inc. and others.
+// License & terms of use: http://www.unicode.org/copyright.html
 /*
 *****************************************************************************************
-* Copyright (C) 2015, International Business Machines
+* Copyright (C) 2015-2016, International Business Machines
 * Corporation and others. All Rights Reserved.
 *****************************************************************************************
 */
@@ -11,9 +13,10 @@
 #include "unicode/utypes.h"
 
 #if !UCONFIG_NO_FORMATTING
-#ifndef U_HIDE_DRAFT_API
 
+#if U_SHOW_CPLUSPLUS_API
 #include "unicode/localpointer.h"
+#endif   // U_SHOW_CPLUSPLUS_API
 
 /**
  * \file
@@ -37,10 +40,10 @@
 
 /**
  * Opaque UFieldPositionIterator object for use in C.
- * @draft ICU 55
+ * @stable ICU 55
  */
 struct UFieldPositionIterator;
-typedef struct UFieldPositionIterator UFieldPositionIterator;  /**< C typedef for struct UFieldPositionIterator. @draft ICU 55 */
+typedef struct UFieldPositionIterator UFieldPositionIterator;  /**< C typedef for struct UFieldPositionIterator. @stable ICU 55 */
 
 /**
  * Open a new, unset UFieldPositionIterator object.
@@ -49,18 +52,18 @@ typedef struct UFieldPositionIterator UFieldPositionIterator;  /**< C typedef fo
  * @return
  *          A pointer to an empty (unset) UFieldPositionIterator object,
  *          or NULL if an error occurred.
- * @draft ICU 55
+ * @stable ICU 55
  */
-U_DRAFT UFieldPositionIterator* U_EXPORT2
+U_CAPI UFieldPositionIterator* U_EXPORT2
 ufieldpositer_open(UErrorCode* status);
 
 /**
  * Close a UFieldPositionIterator object. Once closed it may no longer be used.
  * @param fpositer
  *          A pointer to the UFieldPositionIterator object to close.
- * @draft ICU 55
+ * @stable ICU 55
  */
-U_DRAFT void U_EXPORT2
+U_CAPI void U_EXPORT2
 ufieldpositer_close(UFieldPositionIterator *fpositer);
 
 
@@ -75,7 +78,7 @@ U_NAMESPACE_BEGIN
  *
  * @see LocalPointerBase
  * @see LocalPointer
- * @draft ICU 55
+ * @stable ICU 55
  */
 U_DEFINE_LOCAL_OPEN_POINTER(LocalUFieldPositionIteratorPointer, UFieldPositionIterator, ufieldpositer_close);
 
@@ -85,8 +88,8 @@ U_NAMESPACE_END
 
 /**
  * Get information for the next field in the formatted string to which this
- * UFieldPositionIterator currently applies, or return FALSE if there are
- * no more fields.
+ * UFieldPositionIterator currently applies, or return a negative value if there
+ * are no more fields.
  * @param fpositer
  *          A pointer to the UFieldPositionIterator object containing iteration
  *          state for the format fields.
@@ -109,13 +112,12 @@ U_NAMESPACE_END
  *          descriptions of format functions that take a UFieldPositionIterator*
  *          parameter, such as {@link #udat_formatForFields}.
  *
- * @draft ICU 55
+ * @stable ICU 55
  */
-U_DRAFT int32_t U_EXPORT2
+U_CAPI int32_t U_EXPORT2
 ufieldpositer_next(UFieldPositionIterator *fpositer,
                    int32_t *beginIndex, int32_t *endIndex);
 
-#endif /* U_HIDE_DRAFT_API */
 #endif /* #if !UCONFIG_NO_FORMATTING */
 
 #endif

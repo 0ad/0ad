@@ -201,7 +201,7 @@ void L10n::ReevaluateCurrentLocaleAndReload()
 	else
 	{
 		GetDictionaryLocale(locale, currentLocale);
-		currentLocaleIsOriginalGameLocale = (currentLocale == icu::Locale::getUS()) == TRUE;
+		currentLocaleIsOriginalGameLocale = (currentLocale == icu::Locale::getUS()) == 1;
 		useLongStrings = false;
 	}
 	LoadDictionaryForCurrentLocale();

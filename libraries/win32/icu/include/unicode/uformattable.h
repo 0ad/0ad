@@ -1,3 +1,5 @@
+// © 2016 and later: Unicode, Inc. and others.
+// License & terms of use: http://www.unicode.org/copyright.html
 /*
 ********************************************************************************
 * Copyright (C) 2013-2014, International Business Machines Corporation and others.
@@ -32,7 +34,9 @@
 
 #if !UCONFIG_NO_FORMATTING
 
+#if U_SHOW_CPLUSPLUS_API
 #include "unicode/localpointer.h"
+#endif   // U_SHOW_CPLUSPLUS_API
 
 /**
  * Enum designating the type of a UFormattable instance.
@@ -49,7 +53,13 @@ typedef enum UFormattableType {
   UFMT_ARRAY,    /**< ufmt_countArray() and ufmt_getArray() will return the value.  @see ufmt_getArrayItemByIndex */
   UFMT_INT64,    /**< ufmt_getInt64() will return without conversion. @see ufmt_getInt64 */
   UFMT_OBJECT,   /**< ufmt_getObject() will return without conversion.  @see ufmt_getObject*/
-  UFMT_COUNT     /**< Count of defined UFormattableType values */
+#ifndef U_HIDE_DEPRECATED_API
+    /**
+     * One more than the highest normal UFormattableType value.
+     * @deprecated ICU 58 The numeric value may change over time, see ICU ticket #12420.
+     */
+    UFMT_COUNT
+#endif  /* U_HIDE_DEPRECATED_API */
 } UFormattableType;
 
 
@@ -71,7 +81,7 @@ typedef void *UFormattable;
  * @see ufmt_close
  * @see icu::Formattable::Formattable()
  */
-U_STABLE UFormattable* U_EXPORT2
+U_CAPI UFormattable* U_EXPORT2
 ufmt_open(UErrorCode* status);
 
 /**
@@ -80,7 +90,7 @@ ufmt_open(UErrorCode* status);
  * @stable ICU 52
  * @see ufmt_open
  */
-U_STABLE void U_EXPORT2
+U_CAPI void U_EXPORT2
 ufmt_close(UFormattable* fmt);
 
 #if U_SHOW_CPLUSPLUS_API
@@ -112,7 +122,7 @@ U_NAMESPACE_END
  * @see icu::Formattable::getType() const
  * @stable ICU 52
  */
-U_STABLE UFormattableType U_EXPORT2
+U_CAPI UFormattableType U_EXPORT2
 ufmt_getType(const UFormattable* fmt, UErrorCode *status);
 
 /**
@@ -123,7 +133,7 @@ ufmt_getType(const UFormattable* fmt, UErrorCode *status);
  * @see icu::Formattable::isNumeric() const
  * @stable ICU 52
  */
-U_STABLE UBool U_EXPORT2
+U_CAPI UBool U_EXPORT2
 ufmt_isNumeric(const UFormattable* fmt);
 
 /**
@@ -136,7 +146,7 @@ ufmt_isNumeric(const UFormattable* fmt);
  * @stable ICU 52
  * @see icu::Formattable::getDate(UErrorCode&) const
  */
-U_STABLE UDate U_EXPORT2
+U_CAPI UDate U_EXPORT2
 ufmt_getDate(const UFormattable* fmt, UErrorCode *status);
 
 /**
@@ -154,7 +164,7 @@ ufmt_getDate(const UFormattable* fmt, UErrorCode *status);
  * @stable ICU 52
  * @see icu::Formattable::getDouble(UErrorCode&) const
  */
-U_STABLE double U_EXPORT2
+U_CAPI double U_EXPORT2
 ufmt_getDouble(UFormattable* fmt, UErrorCode *status);
 
 /**
@@ -175,7 +185,7 @@ ufmt_getDouble(UFormattable* fmt, UErrorCode *status);
  * @stable ICU 52
  * @see icu::Formattable::getLong(UErrorCode&) const
  */
-U_STABLE int32_t U_EXPORT2
+U_CAPI int32_t U_EXPORT2
 ufmt_getLong(UFormattable* fmt, UErrorCode *status);
 
 
@@ -196,7 +206,7 @@ ufmt_getLong(UFormattable* fmt, UErrorCode *status);
  * @stable ICU 52
  * @see icu::Formattable::getInt64(UErrorCode&) const
  */
-U_STABLE int64_t U_EXPORT2
+U_CAPI int64_t U_EXPORT2
 ufmt_getInt64(UFormattable* fmt, UErrorCode *status);
 
 /**
@@ -209,7 +219,7 @@ ufmt_getInt64(UFormattable* fmt, UErrorCode *status);
  * @stable ICU 52
  * @see icu::Formattable::getObject() const
  */
-U_STABLE const void *U_EXPORT2
+U_CAPI const void *U_EXPORT2
 ufmt_getObject(const UFormattable* fmt, UErrorCode *status);
 
 /**
@@ -224,7 +234,7 @@ ufmt_getObject(const UFormattable* fmt, UErrorCode *status);
  * @stable ICU 52
  * @see icu::Formattable::getString(UnicodeString&)const
  */
-U_STABLE const UChar* U_EXPORT2
+U_CAPI const UChar* U_EXPORT2
 ufmt_getUChars(UFormattable* fmt, int32_t *len, UErrorCode *status);
 
 /**
@@ -235,7 +245,7 @@ ufmt_getUChars(UFormattable* fmt, int32_t *len, UErrorCode *status);
  * @stable ICU 52
  * @see ufmt_getArrayItemByIndex
  */
-U_STABLE int32_t U_EXPORT2
+U_CAPI int32_t U_EXPORT2
 ufmt_getArrayLength(const UFormattable* fmt, UErrorCode *status);
 
 /**
@@ -247,7 +257,7 @@ ufmt_getArrayLength(const UFormattable* fmt, UErrorCode *status);
  * @stable ICU 52
  * @see icu::Formattable::getArray(int32_t&, UErrorCode&) const
  */
-U_STABLE UFormattable * U_EXPORT2
+U_CAPI UFormattable * U_EXPORT2
 ufmt_getArrayItemByIndex(UFormattable* fmt, int32_t n, UErrorCode *status);
 
 /**
@@ -272,7 +282,7 @@ ufmt_getArrayItemByIndex(UFormattable* fmt, int32_t n, UErrorCode *status);
  * @stable ICU 52
  * @see icu::Formattable::getDecimalNumber(UErrorCode&)
  */
-U_STABLE const char * U_EXPORT2
+U_CAPI const char * U_EXPORT2
 ufmt_getDecNumChars(UFormattable *fmt, int32_t *len, UErrorCode *status);
 
 #endif
