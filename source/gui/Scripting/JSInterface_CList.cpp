@@ -32,19 +32,36 @@
 // Include the definition of the generic templates.
 #include "JSInterface_GUIProxy_impl.h"
 
-namespace {
-	struct SData
-	{
-		JS::PersistentRootedObject m_ToString;
-		JS::PersistentRootedObject m_Focus;
-		JS::PersistentRootedObject m_Blur;
-		JS::PersistentRootedObject m_GetComputedSize;
-		JS::PersistentRootedObject m_AddItem;
-	};
+namespace
+{
+struct SData
+{
+	JS::PersistentRootedObject m_ToString;
+	JS::PersistentRootedObject m_Focus;
+	JS::PersistentRootedObject m_Blur;
+	JS::PersistentRootedObject m_GetComputedSize;
+	JS::PersistentRootedObject m_AddItem;
+};
+
+bool CList_AddItem(JSContext* cx, uint argc, JS::Value* vp)
+{
+	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
+	CList* e = static_cast<CList*>(js::GetProxyPrivate(args.thisv().toObjectOrNull()).toPrivate());
+	if (!e)
+		return false;
+
+	ScriptInterface& scriptInterface = *ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
+	ScriptRequest rq(scriptInterface);
+	CGUIString text;
+	if (!ScriptInterface::FromJSVal(rq, args.get(0), text))
+		return false;
+	e->AddItem(text, text);
+	return true;
+}
 }
 
 template <>
-bool JSI_GUIProxy<CList>::funcGetter(JS::HandleObject proxy, const std::string& propName, JS::MutableHandleValue vp) const
+bool JSI_GUIProxy<CList>::FuncGetter(JS::HandleObject proxy, const std::string& propName, JS::MutableHandleValue vp) const
 {
 	const SData& data = *static_cast<const SData*>(js::GetProxyReservedSlot(proxy, 0).toPrivate());
 	if (propName == "toString")
@@ -72,7 +89,7 @@ std::pair<const js::BaseProxyHandler*, void*> JSI_GUIProxy<CList>::CreateData(Sc
 	data->m_Blur.init(rq.cx, JS_GetFunctionObject(JS_NewFunction(rq.cx, func(IGUIObject, blur), 0, 0, "blur")));
 	data->m_GetComputedSize.init(rq.cx, JS_GetFunctionObject(JS_NewFunction(rq.cx, func(IGUIObject, getComputedSize), 0, 0, "getComputedSize")));
 #undef func
-	data->m_AddItem.init(rq.cx, JS_GetFunctionObject(JS_NewFunction(rq.cx, CList::Script_AddItem, 0, 0, "addItem")));
+	data->m_AddItem.init(rq.cx, JS_GetFunctionObject(JS_NewFunction(rq.cx, CList_AddItem, 1, 0, "addItem")));
 
 	return { &Singleton(), data };
 }

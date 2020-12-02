@@ -66,7 +66,7 @@ bool JSI_GUIProxy<T>::get(JSContext* cx, JS::HandleObject proxy, JS::HandleValue
 		return false;
 
 	// Return function properties. Specializable.
-	if (funcGetter(proxy, propName, vp))
+	if (FuncGetter(proxy, propName, vp))
 		return true;
 
 	// Use onWhatever to access event handlers

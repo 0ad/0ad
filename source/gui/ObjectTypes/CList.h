@@ -60,9 +60,6 @@ public:
 	virtual void AddItem(const CGUIString& str, const CGUIString& data);
 
 protected:
-
-	static bool Script_AddItem(JSContext* cx, uint argc, JS::Value* vp);
-
 	/**
 	 * Sets up text, should be called every time changes has been
 	 * made that can change the visual.

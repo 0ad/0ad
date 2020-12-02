@@ -64,7 +64,7 @@ protected:
 
 	// This handles returning function properties.
 	// Specialize this.
-	bool funcGetter(JS::HandleObject proxy, const std::string& propName, JS::MutableHandleValue vp) const;
+	bool FuncGetter(JS::HandleObject proxy, const std::string& propName, JS::MutableHandleValue vp) const;
 protected:
 	// BaseProxyHandler interface below
 

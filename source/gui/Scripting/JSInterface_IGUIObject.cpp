@@ -32,18 +32,19 @@
 // Include the definition of the generic templates.
 #include "JSInterface_GUIProxy_impl.h"
 
-namespace {
-	struct SData
-	{
-		JS::PersistentRootedObject m_ToString;
-		JS::PersistentRootedObject m_Focus;
-		JS::PersistentRootedObject m_Blur;
-		JS::PersistentRootedObject m_GetComputedSize;
-	};
+namespace
+{
+struct SData
+{
+	JS::PersistentRootedObject m_ToString;
+	JS::PersistentRootedObject m_Focus;
+	JS::PersistentRootedObject m_Blur;
+	JS::PersistentRootedObject m_GetComputedSize;
+};
 }
 
 template <>
-bool JSI_GUIProxy<IGUIObject>::funcGetter(JS::HandleObject proxy, const std::string& propName, JS::MutableHandleValue vp) const
+bool JSI_GUIProxy<IGUIObject>::FuncGetter(JS::HandleObject proxy, const std::string& propName, JS::MutableHandleValue vp) const
 {
 	const SData& data = *static_cast<const SData*>(js::GetProxyReservedSlot(proxy, 0).toPrivate());
 	if (propName == "toString")

@@ -43,6 +43,7 @@ CList::CList(CGUI& pGUI)
 	  m_Font(),
 	  m_ScrollBar(),
 	  m_ScrollBarStyle(),
+	  m_ScrollBottom(false),
 	  m_SoundDisabled(),
 	  m_SoundSelected(),
 	  m_Sprite(),
@@ -102,8 +103,6 @@ void CList::SetupText(bool append)
 {
 	m_Modified = true;
 
-	m_ItemsYPositions.resize(m_List.m_Items.size() + 1);
-
 	if (!append)
 		// Delete all generated texts.
 		// TODO: try to be cleverer if we want to update items before the end.
@@ -125,7 +124,9 @@ void CList::SetupText(bool append)
 	float buffered_y = 0.f;
 
 	if (append)
-		buffered_y = m_ItemsYPositions[m_List.m_Items.size() - 1];
+		buffered_y = m_ItemsYPositions.back();
+
+	m_ItemsYPositions.resize(m_List.m_Items.size() + 1);
 
 	for (size_t i = append ? m_List.m_Items.size() - 1 : 0; i < m_List.m_Items.size(); ++i)
 	{
@@ -406,8 +407,7 @@ void CList::AddItem(const CGUIString& str, const CGUIString& data)
 	m_List.m_Items.push_back(str);
 	m_ListData.m_Items.push_back(data);
 
-	// TODO Temp
-	SetupText();
+	SetupText(true);
 }
 
 bool CList::HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile)
@@ -515,18 +515,3 @@ void CList::CreateJSObject()
 	js::SetProxyReservedSlot(m_JSObject, 0, data);
 }
 
-bool CList::Script_AddItem(JSContext* cx, uint argc, JS::Value* vp)
-{
-	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
-	CList* e = static_cast<CList*>(js::GetProxyPrivate(args.thisv().toObjectOrNull()).toPrivate());
-	if (!e)
-		return false;
-
-	ScriptInterface& scriptInterface = *ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
-	ScriptRequest rq(scriptInterface);
-	CGUIString text;
-	if (!ScriptInterface::FromJSVal(rq, args.get(0), text))
-		return false;
-	e->AddItem(text, text);
-	return true;
-}
