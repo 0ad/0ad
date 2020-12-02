@@ -4,6 +4,8 @@ binaries/system/AtlasUI.dll
 binaries/system/Collada.dll
 binaries/system/pyrogenesis.exe
 binaries/system/pyrogenesis.pdb
+# These are actually above the github limit of 100MB
+binaries/system/mozjs*.pdb
 
 # Build files
 *.so
@@ -23,6 +25,7 @@ build/workspaces/xcode3/
 build/workspaces/xcode4/
 build/workspaces/vc2013
 build/workspaces/vc2015
+build/workspaces/vs2017
 build/premake/premake5/**/.gitignore
 build/premake/premake5/**/.travis.yml
 build/premake/premake5/.editorconfig
