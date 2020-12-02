@@ -4,18 +4,18 @@
     <Melee>
       <AttackName>Pike</AttackName>
       <Damage>
-        <Hack>2.0</Hack>
-        <Pierce>6.0</Pierce>
-        <Crush>0.0</Crush>
+        <Hack>4</Hack>
+        <Pierce>6</Pierce>
+        <Crush>0</Crush>
       </Damage>
       <MaxRange>7</MaxRange>
       <PrepareTime>1000</PrepareTime>
       <RepeatTime>2000</RepeatTime>
       <Bonuses>
-          <BonusCavMelee>
-            <Classes>Cavalry</Classes>
-            <Multiplier>3.0</Multiplier>
-          </BonusCavMelee>
+        <BonusCavMelee>
+          <Classes>Cavalry</Classes>
+          <Multiplier>3.0</Multiplier>
+        </BonusCavMelee>
       </Bonuses>
       <PreferredClasses datatype="tokens">Human</PreferredClasses>
     </Melee>
@@ -29,7 +29,6 @@
     <VisibleClasses datatype="tokens">Melee Pikeman</VisibleClasses>
     <Formations datatype="tokens">
       special/formations/syntagma
-      special/formations/testudo
     </Formations>
   </Identity>
   <Resistance>
