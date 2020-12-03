@@ -596,8 +596,6 @@ static void InitRenderer()
 	// create terrain related stuff
 	new CTerrainTextureManager;
 
-	g_RenderingOptions.ReadConfigAndSetupHooks();
-
 	g_Renderer.Open(g_xres, g_yres);
 
 	// Setup lighting environment. Since the Renderer accesses the
@@ -1044,6 +1042,9 @@ void InitGraphics(const CmdLineArgs& args, int flags, const std::vector<CStr>& i
 	}
 
 	ogl_WarnIfError();
+
+	g_RenderingOptions.ReadConfigAndSetupHooks();
+
 	InitRenderer();
 
 	InitInput();

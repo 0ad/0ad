@@ -92,11 +92,13 @@ void CPostprocManager::Initialize()
 	m_Width = g_Renderer.GetWidth();
 	m_Height = g_Renderer.GetHeight();
 
+	RecreateBuffers();
+	m_IsInitialized = true;
+
+	// Once we have initialised the buffers, we can update the techniques.
 	UpdateAntiAliasingTechnique();
 	UpdateSharpeningTechnique();
 	UpdateSharpnessFactor();
-	RecreateBuffers();
-	m_IsInitialized = true;
 
 	// This might happen after the map is loaded and the effect chosen
 	SetPostEffect(m_PostProcEffect);
