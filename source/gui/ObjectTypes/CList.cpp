@@ -123,7 +123,7 @@ void CList::SetupText(bool append)
 	// Generate texts
 	float buffered_y = 0.f;
 
-	if (append)
+	if (append && !m_ItemsYPositions.empty())
 		buffered_y = m_ItemsYPositions.back();
 
 	m_ItemsYPositions.resize(m_List.m_Items.size() + 1);
