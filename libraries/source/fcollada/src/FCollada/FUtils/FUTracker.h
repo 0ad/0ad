@@ -2,7 +2,7 @@
 	Copyright (C) 2005-2007 Feeling Software Inc.
 	Portions of the code are:
 	Copyright (C) 2005-2007 Sony Computer Entertainment America
-	
+
 	MIT License: http://www.opensource.org/licenses/mit-license.php
 */
 
@@ -114,20 +114,20 @@ protected:
 
 public:
 	/** Copy constructor.
-		@param _ptr The object to track. This pointer can be NULL to indicate
+		@param pObj The object to track. This pointer can be NULL to indicate
 			that no object should be tracked at this time. */
-	FUTrackedPtr(ObjectClass* _ptr = NULL) : ptr(_ptr)
+	FUTrackedPtr(ObjectClass* pObj = nullptr) : ptr(pObj)
 	{
-		if (ptr != NULL) FUTracker::TrackObject((FUTrackable*) ptr);
-		ptr = ptr;
+		if (pObj != nullptr)
+			FUTracker::TrackObject(static_cast<FUTrackable*>(pObj));
 	}
 
 	/** Destructor.
 		Stops the tracking of the pointer. */
 	~FUTrackedPtr()
 	{
-		if (ptr != NULL) FUTracker::UntrackObject((FUTrackable*) ptr);
-		ptr = NULL;
+		if (ptr != nullptr) FUTracker::UntrackObject((FUTrackable*) ptr);
+		ptr = nullptr;
 	}
 
 	/** Assigns this tracking pointer a new object to track.
@@ -195,7 +195,7 @@ public:
 		}
 		Parent::clear();
 	}
-	
+
 	/** Retrieves the first element of the container.
 		@return The first element in the container. */
 	ObjectClass*& front() { return (ObjectClass*&) Parent::front(); }
@@ -218,12 +218,12 @@ public:
 		@return an iterator for the first element in the list. */
 	inline iterator begin() { return (iterator) Parent::begin(); }
 	inline const_iterator begin() const { return (const_iterator) Parent::begin(); } /**< See above. */
-	
+
 	/** Retrieves an iterator for the element after the last element in the list.
 		@return an iterator for the element after the last element in the list. */
 	inline iterator end() { return (iterator) Parent::end(); }
 	inline const_iterator end() const { return (const_iterator) Parent::end(); } /**< See above. */
-	
+
 	/** Retrieves an iterator for a given element in the list.
 		@param item An item of the list.
 		@return An iterator for the given item. If the item is not
@@ -286,7 +286,7 @@ public:
 			Parent::pop_back();
 		}
 	}
-	
+
 	/** Removes the value at the given position within the list.
 		@param _it The list position for the value to remove. */
 	iterator erase(iterator _it)

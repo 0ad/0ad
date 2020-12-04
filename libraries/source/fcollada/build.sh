@@ -1,6 +1,6 @@
 #!/bin/sh
 set -e
-LIB_VERSION="fcollada-3.05+wildfiregames.3"
+LIB_VERSION="fcollada-3.05+wildfiregames.4"
 JOBS=${JOBS:="-j2"}
 MAKE=${MAKE:="make"}
 LDFLAGS=${LDFLAGS:=""}

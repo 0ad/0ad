@@ -117,7 +117,7 @@ void FCDAnimation::GetHierarchicalAssets(FCDAssetConstList& assets) const
 void FCDAnimation::GetCurves(FCDAnimationCurveList& curves)
 {
 	// Retrieve the curves for this animation tree element
-	for (const FCDAnimationChannel** it = (const FCDAnimationChannel**) channels.begin(); it != channels.end(); ++it)
+	for (const FCDAnimationChannel* const* it = channels.begin(); it != channels.end(); ++it)
 	{
 		size_t channelCurveCount = (*it)->GetCurveCount();
 		for (size_t i = 0; i < channelCurveCount; ++i)
