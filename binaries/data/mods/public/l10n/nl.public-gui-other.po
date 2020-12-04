@@ -38,8 +38,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-11-30 07:41+0000\n"
-"PO-Revision-Date: 2020-11-30 08:39+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-12-01 19:33+0000\n"
+"Last-Translator: Bart <b.anthonisse@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2904,7 +2904,7 @@ msgstr "U kunt ons automatisch feedback sturen. Dit kan ons helpen om bugs op te
 msgid ""
 "\n"
 "     %(description)s"
-msgstr ""
+msgstr "\n     %(description)s"
 
 #. Translation: An entry in the CivInfo Page. The newline and indentation of
 #. the description
@@ -2915,7 +2915,7 @@ msgstr ""
 #: gui/reference/civinfo/CivInfoPage.js:108
 #, javascript-format
 msgid "• %(name)s %(info_icon)s%(description)s"
-msgstr ""
+msgstr "• %(name)s %(info_icon)s%(description)s"
 
 #: gui/reference/civinfo/CivInfoPage.js:119
 #, javascript-format
@@ -2947,8 +2947,8 @@ msgstr[1] "Teambonussen"
 #: gui/reference/civinfo/Sections/Subsections/HeroesSubsection.js:30
 msgid "Hero"
 msgid_plural "Heroes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Held"
+msgstr[1] "Helden"
 
 #: gui/reference/civinfo/Sections/Subsections/StructuresSubsection.js:24
 msgid "Special Structure"
@@ -2959,8 +2959,8 @@ msgstr[1] "Speciale gebouwen"
 #: gui/reference/civinfo/Sections/Subsections/TechnologiesSubsection.js:30
 msgid "Special Technology"
 msgid_plural "Special Technologies"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Speciale technologie"
+msgstr[1] "Speciale technologieën"
 
 #: gui/reference/common/Buttons/CivInfoButton.js:27
 #, javascript-format
