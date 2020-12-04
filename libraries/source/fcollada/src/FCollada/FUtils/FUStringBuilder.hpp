@@ -2,13 +2,20 @@
 	Copyright (C) 2005-2007 Feeling Software Inc.
 	Portions of the code are:
 	Copyright (C) 2005-2007 Sony Computer Entertainment America
-	
-	MIT License: http://www.opensource.org/licenses/mit-license.php
+
+	MIT License: https://www.opensource.org/licenses/mit-license.php
 */
 /*
 	Based on the FS Import classes:
 	Copyright (C) 2005-2006 Feeling Software Inc
 	Copyright (C) 2005-2006 Autodesk Media Entertainment
+	MIT License: http://www.opensource.org/licenses/mit-license.php
+*/
+
+/*
+	musl
+	Copyright (C) 2005-2019 Rich Felker, et al.
+	https://git.musl-libc.org/cgit/musl/tree/COPYRIGHT
 	MIT License: http://www.opensource.org/licenses/mit-license.php
 */
 
@@ -20,10 +27,32 @@
 
 #ifdef WIN32
 #define ecvt _ecvt
-#endif // WIN32
+#elif !HAS_ECVT
+#include <stdio.h>
+char* ecvt(double x, int n, int *dp, int *sign)
+{
+	static char buf[16];
+	char tmp[32];
+	int i, j;
+
+	if (n - 1 > 15)
+		n = 15;
+
+	sprintf(tmp, "%.*e", n - 1, x);
+	i = *sign = (tmp[0] == '-');
+
+	for (j = 0; tmp[i] != 'e'; j += (tmp[i++] != '.'))
+		buf[j] = tmp[i];
+
+	buf[j] = 0;
+	*dp = atoi(tmp + i + 1) + 1;
+
+	return buf;
+}
+#endif
 
 #ifndef SAFE_DELETE_ARRAY
-#define SAFE_DELETE_ARRAY(ptr) if (ptr != NULL) { delete [] ptr; ptr = NULL; }
+#define SAFE_DELETE_ARRAY(ptr) { delete [] ptr; ptr = NULL; }
 #endif
 
 template <class Char, class FloatType>
@@ -89,7 +118,7 @@ FUStringBuilderT<Char>::FUStringBuilderT(const String& sz)
 	this->buffer = NULL;
 	this->size = 0;
 	this->reserved = 0;
-	
+
 	reserve(sz.size() + 32);
 	append(sz.c_str());
 }
@@ -300,7 +329,7 @@ void FUStringBuilderT<Char>::append(const FMVector3& v)
 	{
 		append((Char)' ');
 	}
-	append(v.x); append((Char)' '); append(v.y); append((Char)' '); append(v.z); 
+	append(v.x); append((Char)' '); append(v.y); append((Char)' '); append(v.z);
 }
 
 template <class Char>
@@ -310,7 +339,7 @@ void FUStringBuilderT<Char>::append(const FMVector4& v)
 	{
 		append((Char)' ');
 	}
-	append(v.x); append((Char)' '); append(v.y); append((Char)' '); append(v.z); append((Char)' '); append(v.w); 
+	append(v.x); append((Char)' '); append(v.y); append((Char)' '); append(v.z); append((Char)' '); append(v.w);
 }
 
 template <class Char>
@@ -352,7 +381,7 @@ void FUStringBuilderT<Char>::remove(int32 start, int32 end)
 	}
 }
 
-template <class Char> 
+template <class Char>
 const Char* FUStringBuilderT<Char>::ToCharPtr() const
 {
 	FUStringBuilderT<Char>* ncThis = const_cast< FUStringBuilderT<Char>* >(this);

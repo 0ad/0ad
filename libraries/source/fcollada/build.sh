@@ -1,6 +1,6 @@
 #!/bin/sh
 set -e
-LIB_VERSION="fcollada-3.05+wildfiregames.4"
+LIB_VERSION="fcollada-3.05+wildfiregames.5"
 JOBS=${JOBS:="-j2"}
 MAKE=${MAKE:="make"}
 LDFLAGS=${LDFLAGS:=""}
@@ -15,6 +15,14 @@ fi
 
 echo "Building FCollada..."
 echo
+
+if cc ./tests/ecvt.c -o /dev/null > /dev/null 2>&1; then
+  CXXFLAGS="${CXXFLAGS} -DHAS_ECVT=1"
+  echo "checking for ecvt... yes"
+else
+  CXXFLAGS="${CXXFLAGS} -DHAS_ECVT=0"
+  echo "checking for ecvt... no"
+fi
 
 if [ "$(uname -s)" = "Darwin" ]; then
   # The Makefile refers to pkg-config for libxml2, but we
