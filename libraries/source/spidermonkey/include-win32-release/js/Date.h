@@ -1,4 +1,4 @@
-/* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
+/* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
@@ -29,11 +29,15 @@
  * of accessor methods to the various aspects of the represented date.
  */
 
-#include "mozilla/FloatingPoint.h"
-#include "mozilla/MathAlgorithms.h"
+#include "mozilla/FloatingPoint.h"  // mozilla::{IsFinite,IsNaN}, mozilla::UnspecifiedNaN
+#include "mozilla/MathAlgorithms.h"  // mozilla::Abs
 
-#include "js/Conversions.h"
-#include "js/Value.h"
+#include "js/Conversions.h"  // JS::ToInteger
+#include "js/RootingAPI.h"   // JS::Handle
+#include "js/Value.h"        // JS::CanonicalizeNaN, JS::DoubleValue, JS::Value
+
+struct JS_PUBLIC_API JSContext;
+class JS_PUBLIC_API JSObject;
 
 namespace JS {
 
@@ -43,12 +47,12 @@ namespace JS {
  * cause all Date object non-UTC methods and formatting functions to produce
  * appropriately adjusted results.
  *
- * Left to its own devices, SpiderMonkey itself may occasionally call this
- * method to attempt to keep up with system time changes.  However, no
- * particular frequency of checking is guaranteed.  Embedders unable to accept
- * occasional inaccuracies should call this method in response to system time
- * changes, or immediately before operations requiring instantaneous
- * correctness, to guarantee correct behavior.
+ * Left to its own devices, SpiderMonkey itself may occasionally try to detect
+ * system time changes.  However, no particular frequency of checking is
+ * guaranteed.  Embedders unable to accept occasional inaccuracies should call
+ * this method in response to system time changes, or immediately before
+ * operations requiring instantaneous correctness, to guarantee correct
+ * behavior.
  */
 extern JS_PUBLIC_API void ResetTimeZone();
 
@@ -99,8 +103,9 @@ class ClippedTime {
 inline ClippedTime TimeClip(double time) {
   // Steps 1-2.
   const double MaxTimeMagnitude = 8.64e15;
-  if (!mozilla::IsFinite(time) || mozilla::Abs(time) > MaxTimeMagnitude)
+  if (!mozilla::IsFinite(time) || mozilla::Abs(time) > MaxTimeMagnitude) {
     return ClippedTime(mozilla::UnspecifiedNaN<double>());
+  }
 
   // Step 3.
   return ClippedTime(ToInteger(time) + (+0.0));
@@ -109,13 +114,38 @@ inline ClippedTime TimeClip(double time) {
 // Produce a double Value from the given time.  Because times may be NaN,
 // prefer using this to manual canonicalization.
 inline Value TimeValue(ClippedTime time) {
-  return DoubleValue(JS::CanonicalizeNaN(time.toDouble()));
+  return DoubleValue(CanonicalizeNaN(time.toDouble()));
 }
 
 // Create a new Date object whose [[DateValue]] internal slot contains the
 // clipped |time|.  (Users who must represent times outside that range must use
 // another representation.)
 extern JS_PUBLIC_API JSObject* NewDateObject(JSContext* cx, ClippedTime time);
+
+/**
+ * Create a new Date object for a year/month/day-of-month/hour/minute/second.
+ *
+ * The created date is initialized with the time value
+ *
+ *   TimeClip(UTC(MakeDate(MakeDay(year, mon, mday),
+ *                MakeTime(hour, min, sec, 0.0))))
+ *
+ * where each function/operation is as specified in ECMAScript.
+ */
+extern JS_PUBLIC_API JSObject* NewDateObject(JSContext* cx, int year, int mon,
+                                             int mday, int hour, int min,
+                                             int sec);
+
+/**
+ * On success, returns true, setting |*isDate| to true if |obj| is a Date
+ * object or a wrapper around one, or to false if not.  Returns false on
+ * failure.
+ *
+ * This method returns true with |*isDate == false| when passed an ES6 proxy
+ * whose target is a Date, or when passed a revoked proxy.
+ */
+extern JS_PUBLIC_API bool ObjectIsDate(JSContext* cx, Handle<JSObject*> obj,
+                                       bool* isDate);
 
 // Year is a year, month is 0-11, day is 1-based.  The return value is a number
 // of milliseconds since the epoch.

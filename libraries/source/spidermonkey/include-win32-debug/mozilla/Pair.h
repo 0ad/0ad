@@ -40,7 +40,7 @@ struct PairHelper<A, B, AsMember, AsMember> {
  protected:
   template <typename AArg, typename BArg>
   PairHelper(AArg&& aA, BArg&& aB)
-      : mFirstA(Forward<AArg>(aA)), mSecondB(Forward<BArg>(aB)) {}
+      : mFirstA(std::forward<AArg>(aA)), mSecondB(std::forward<BArg>(aB)) {}
 
   A& first() { return mFirstA; }
   const A& first() const { return mFirstA; }
@@ -62,7 +62,7 @@ struct PairHelper<A, B, AsMember, AsBase> : private B {
  protected:
   template <typename AArg, typename BArg>
   PairHelper(AArg&& aA, BArg&& aB)
-      : B(Forward<BArg>(aB)), mFirstA(Forward<AArg>(aA)) {}
+      : B(std::forward<BArg>(aB)), mFirstA(std::forward<AArg>(aA)) {}
 
   A& first() { return mFirstA; }
   const A& first() const { return mFirstA; }
@@ -83,7 +83,7 @@ struct PairHelper<A, B, AsBase, AsMember> : private A {
  protected:
   template <typename AArg, typename BArg>
   PairHelper(AArg&& aA, BArg&& aB)
-      : A(Forward<AArg>(aA)), mSecondB(Forward<BArg>(aB)) {}
+      : A(std::forward<AArg>(aA)), mSecondB(std::forward<BArg>(aB)) {}
 
   A& first() { return *this; }
   const A& first() const { return *this; }
@@ -104,7 +104,7 @@ struct PairHelper<A, B, AsBase, AsBase> : private A, private B {
  protected:
   template <typename AArg, typename BArg>
   PairHelper(AArg&& aA, BArg&& aB)
-      : A(Forward<AArg>(aA)), B(Forward<BArg>(aB)) {}
+      : A(std::forward<AArg>(aA)), B(std::forward<BArg>(aB)) {}
 
   A& first() { return static_cast<A&>(*this); }
   const A& first() const { return static_cast<A&>(*this); }
@@ -138,17 +138,19 @@ struct Pair : private detail::PairHelper<A, B> {
 
  public:
   template <typename AArg, typename BArg>
-  Pair(AArg&& aA, BArg&& aB) : Base(Forward<AArg>(aA), Forward<BArg>(aB)) {}
+  Pair(AArg&& aA, BArg&& aB)
+      : Base(std::forward<AArg>(aA), std::forward<BArg>(aB)) {}
 
-  Pair(Pair&& aOther) : Base(Move(aOther.first()), Move(aOther.second())) {}
+  Pair(Pair&& aOther)
+      : Base(std::move(aOther.first()), std::move(aOther.second())) {}
 
   Pair(const Pair& aOther) = default;
 
   Pair& operator=(Pair&& aOther) {
     MOZ_ASSERT(this != &aOther, "Self-moves are prohibited");
 
-    first() = Move(aOther.first());
-    second() = Move(aOther.second());
+    first() = std::move(aOther.first());
+    second() = std::move(aOther.second());
 
     return *this;
   }
@@ -183,7 +185,7 @@ Pair<typename RemoveCV<typename RemoveReference<A>::Type>::Type,
 MakePair(A&& aA, B&& aB) {
   return Pair<typename RemoveCV<typename RemoveReference<A>::Type>::Type,
               typename RemoveCV<typename RemoveReference<B>::Type>::Type>(
-      Forward<A>(aA), Forward<B>(aB));
+      std::forward<A>(aA), std::forward<B>(aB));
 }
 
 }  // namespace mozilla

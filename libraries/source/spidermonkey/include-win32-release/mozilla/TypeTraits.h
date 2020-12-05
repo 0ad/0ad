@@ -114,6 +114,8 @@ template <>
 struct IsIntegralHelper<wchar_t> : TrueType {};
 template <>
 struct IsIntegralHelper<char16_t> : TrueType {};
+template <>
+struct IsIntegralHelper<char32_t> : TrueType {};
 
 } /* namespace detail */
 
@@ -728,6 +730,7 @@ struct BaseOfTester<Type, const Type> : TrueType {};
  *   class B : public A {};
  *   class C {};
  *
+ * mozilla::IsBaseOf<A, A>::value is true;
  * mozilla::IsBaseOf<A, B>::value is true;
  * mozilla::IsBaseOf<A, C>::value is false;
  */

@@ -1,7 +1,7 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright (C) 2020 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
-# 
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
+# project.
 # Translators:
 # hamed farri <hamed.farri@gmail.com>, 2016
 # mohammad khodadadi <asmanp2012@gmail.com>, 2017
@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-13 08:09+0000\n"
+"POT-Creation-Date: 2020-11-28 10:01+0000\n"
 "PO-Revision-Date: 2020-11-13 09:19+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
@@ -357,6 +357,17 @@ msgid ""
 "us, I have abrogated my offer."
 msgstr "%(_player_)s، بدلیل این موضوع که شما پاسخ درخواست پیمان صلح من را ندادید من پیشنهادی که ارسال کرده بودم را لغو میکنم"
 
+#: simulation/ai/petra/data.jsondescription
+msgid ""
+"Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
+"\n"
+"The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
+msgstr "پترا ربات پیش فرض هوش مصنوعی از بازی \"0 A.D.\" است. اگر هر مشکل اتفاق باید لطفا به شرکت \"Wildfire Games\" گذرش کنید.(منابع خود زیر است)\n\nتجارت و نرخ منبع گیری از پترا بستگی سطح مشکل دارد(Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). آسان ترین سطح ها نیز نرخ کندتر ساخت و ساز , آموزشی و پژوهشی دارند.علاوه بر این، سطح \"sandbox\" خشونت نیست و گسترش خود را نمی دهد."
+
+#: simulation/ai/petra/data.jsonname
+msgid "Petra Bot"
+msgstr "بات پترا"
+
 #: simulation/components/BuildRestrictions.js:86
 #, javascript-format
 msgid "%(name)s cannot be built due to unknown error"
@@ -378,42 +389,48 @@ msgid "%(name)s cannot be built on invalid terrain"
 msgstr "%(name)s در زمین نامعبر امکان ساخت وجود ندارد"
 
 #. Translation: territoryType being displayed in a translated sentence in the
-#. form: "House cannot be built in %(territoryType)s territory.".
+#. form: "House
+#. cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:185
 msgctxt "Territory type"
 msgid "own"
 msgstr "خودت"
 
 #. Translation: territoryType being displayed in a translated sentence in the
-#. form: "House cannot be built in %(territoryType)s territory.".
+#. form: "House
+#. cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:188
 msgctxt "Territory type"
 msgid "unconnected own"
 msgstr "خود وصل نشده"
 
 #. Translation: territoryType being displayed in a translated sentence in the
-#. form: "House cannot be built in %(territoryType)s territory.".
+#. form: "House
+#. cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:194
 msgctxt "Territory type"
 msgid "allied"
 msgstr "هم پیمان"
 
 #. Translation: territoryType being displayed in a translated sentence in the
-#. form: "House cannot be built in %(territoryType)s territory.".
+#. form: "House
+#. cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:197
 msgctxt "Territory type"
 msgid "unconnected allied"
 msgstr "هم پیمان وصل نشده"
 
 #. Translation: territoryType being displayed in a translated sentence in the
-#. form: "House cannot be built in %(territoryType)s territory.".
+#. form: "House
+#. cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:203
 msgctxt "Territory type"
 msgid "neutral"
 msgstr "بی طرف"
 
 #. Translation: territoryType being displayed in a translated sentence in the
-#. form: "House cannot be built in %(territoryType)s territory.".
+#. form: "House
+#. cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:210
 msgctxt "Territory type"
 msgid "enemy"
@@ -452,28 +469,32 @@ msgstr[0] "%(name)s خیلی دور از یک %(category)s، باید محدود
 msgstr[1] "%(name)s خیلی دور از یک %(category)s، باید در محدوده %(distance)s متر قرار داشته باشد"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
-#. territories: own, ally".
+#. territories:
+#. own, ally".
 #: simulation/components/BuildRestrictions.js:317
 msgctxt "Territory type list"
 msgid "own"
 msgstr "خودت"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
-#. territories: own, ally".
+#. territories:
+#. own, ally".
 #: simulation/components/BuildRestrictions.js:319
 msgctxt "Territory type list"
 msgid "ally"
 msgstr "متحد"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
-#. territories: own, ally".
+#. territories:
+#. own, ally".
 #: simulation/components/BuildRestrictions.js:321
 msgctxt "Territory type list"
 msgid "neutral"
 msgstr "بی طرف"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
-#. territories: own, ally".
+#. territories:
+#. own, ally".
 #: simulation/components/BuildRestrictions.js:323
 msgctxt "Territory type list"
 msgid "enemy"
@@ -557,6 +578,273 @@ msgstr "نمی توان فضای خالی پیدا کرد تا نیروهای پ
 msgid "Entity is producing. Cannot start upgrading."
 msgstr ""
 
+#: simulation/data/settings/game_speeds.jsonData[0].Title
+msgid "Turtle (0.1×)"
+msgstr ""
+
+#: simulation/data/settings/game_speeds.jsonData[10].Title
+msgid "Fast Forward (20×)"
+msgstr ""
+
+#: simulation/data/settings/game_speeds.jsonData[1].Title
+msgid "Slow (0.25×)"
+msgstr ""
+
+#: simulation/data/settings/game_speeds.jsonData[2].Title
+msgid "Leisurely (0.5×)"
+msgstr ""
+
+#: simulation/data/settings/game_speeds.jsonData[3].Title
+msgid "Relaxed (0.75×)"
+msgstr ""
+
+#: simulation/data/settings/game_speeds.jsonData[4].Title
+msgid "Normal (1×)"
+msgstr ""
+
+#: simulation/data/settings/game_speeds.jsonData[5].Title
+msgid "Fast (1.25×)"
+msgstr ""
+
+#: simulation/data/settings/game_speeds.jsonData[6].Title
+msgid "Very Fast (1.5×)"
+msgstr ""
+
+#: simulation/data/settings/game_speeds.jsonData[7].Title
+msgid "Insane (2×)"
+msgstr ""
+
+#: simulation/data/settings/game_speeds.jsonData[8].Title
+msgid "Fast Forward (5×)"
+msgstr ""
+
+#: simulation/data/settings/game_speeds.jsonData[9].Title
+msgid "Fast Forward (10×)"
+msgstr ""
+
+#: simulation/data/settings/map_sizes.jsonData[0].Name
+msgid "Tiny"
+msgstr "ریز"
+
+#: simulation/data/settings/map_sizes.jsonData[0].Tooltip
+msgid "This map size has barely any room for even the most basic resources."
+msgstr "اندازه این نقشه به سختی یک فضا برای حتی منابع اولیه دارد"
+
+#: simulation/data/settings/map_sizes.jsonData[1].Name
+msgid "Small"
+msgstr "کوچک"
+
+#: simulation/data/settings/map_sizes.jsonData[1].Tooltip
+msgid ""
+"Small maps are suitable for 1v1 matches, as players can reach the enemy "
+"quickly while still having some room to expand."
+msgstr "نقشه های کوچک برای بازی های 1v1 مناسب است، چون بازیکن ها خیلی سریع می توانند به دشمنان خود دسترسی پیدا کنند در حالی که همچنان فضا برای گسترش قلمرو وجود دارد"
+
+#: simulation/data/settings/map_sizes.jsonData[2].Name
+msgid "Normal"
+msgstr "متوسط"
+
+#: simulation/data/settings/map_sizes.jsonData[2].Tooltip
+msgid ""
+"This map size provides plenty of space for two players, but even eight "
+"players fit."
+msgstr ""
+
+#: simulation/data/settings/map_sizes.jsonData[3].Tooltip
+msgid ""
+"This is the ideal mapsize for 4 to 8 players, because there is plenty of "
+"space to expand while the neighbors are quickly reachable."
+msgstr "این یک اندازه ایده آل برای 4 تا 8 بازیکن است، چرا که فضای کافی برای گسترش آنها وجود دارد و دشمنان همسایه خیلی سریع قابل دستیابی هستند"
+
+#: simulation/data/settings/map_sizes.jsonData[4].Name
+msgid "Large"
+msgstr "بزرگ"
+
+#: simulation/data/settings/map_sizes.jsonData[4].Tooltip
+msgid ""
+"The large mapsize is recommended when great portions of the map are covered "
+"with water or inaccessible mountains."
+msgstr "نقشه های سایز بزرگ زمانی پیشنهاد می شوند که بخش زیادی از نقشه توسط آب یا کوهای غیر قابل دسترسی پر شده اند."
+
+#: simulation/data/settings/map_sizes.jsonData[5].Name
+msgid "Very Large"
+msgstr "خیلی بزرگ"
+
+#: simulation/data/settings/map_sizes.jsonData[5].Tooltip
+#: simulation/data/settings/map_sizes.jsonData[6].Tooltip
+msgid ""
+"Very large maps are not recommended as it takes very long to reach the enemy"
+" and the game performance can be reduced."
+msgstr "نقشه های خیلی بزرگ پیشنهاد نمی شوند بخاطر اینکه زمان زیادی طول میکشد تا به دشمن دسترسی پیدا کنید و Performance بازی کاهش پیدا می کند"
+
+#: simulation/data/settings/map_sizes.jsonData[6].Name
+msgid "Giant"
+msgstr "غول‌آسا"
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[0].Name
+msgid "Gaia"
+msgstr "مادر طبیعت"
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[1].Name
+msgid "Player 1"
+msgstr "بازیکن 1"
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[2].Name
+msgid "Player 2"
+msgstr "بازیکن 2"
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[3].Name
+msgid "Player 3"
+msgstr "بازیکن 3"
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[4].Name
+msgid "Player 4"
+msgstr "بازیکن 4"
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[5].Name
+msgid "Player 5"
+msgstr "بازیکن 5"
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[6].Name
+msgid "Player 6"
+msgstr "بازیکن 6"
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[7].Name
+msgid "Player 7"
+msgstr "بازیکن 7"
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[8].Name
+msgid "Player 8"
+msgstr "بازیکن 8"
+
+#: simulation/data/settings/starting_resources.jsonData[0].Title
+msgctxt "startingResources"
+msgid "Very Low"
+msgstr "خیلی کم"
+
+#: simulation/data/settings/starting_resources.jsonData[1].Title
+msgctxt "startingResources"
+msgid "Low"
+msgstr "کم"
+
+#: simulation/data/settings/starting_resources.jsonData[2].Title
+msgctxt "startingResources"
+msgid "Medium"
+msgstr "متوسط"
+
+#: simulation/data/settings/starting_resources.jsonData[3].Title
+msgctxt "startingResources"
+msgid "High"
+msgstr "زیاد"
+
+#: simulation/data/settings/starting_resources.jsonData[4].Title
+msgctxt "startingResources"
+msgid "Very High"
+msgstr "خیلی زیاد"
+
+#: simulation/data/settings/starting_resources.jsonData[5].Title
+msgctxt "startingResources"
+msgid "Deathmatch"
+msgstr "بازی مرگ"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[0].Title
+msgid "Very Easy"
+msgstr "خیلی راحت"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[0].Tooltip
+msgid "Choose this difficulty if you are discovering 0 A.D."
+msgstr "این حالت سختی را انتخاب کنید اگر شما در حال کشف بازی 0 A.D هستید"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[1].Title
+msgid "Easy"
+msgstr "راحت"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[1].Tooltip
+msgid "Choose this difficulty if you do not like being knocked down."
+msgstr "این حالت سختی را انتخاب کنید اگر شما دوست ندارید له شوید"
+
+#: simulation/data/settings/map_sizes.jsonData[3].Name
+#: simulation/data/settings/trigger_difficulties.jsonData[2].Title
+msgid "Medium"
+msgstr "متوسط"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[2].Tooltip
+msgid ""
+"Choose this difficulty if you have already a good experience with 0 A.D."
+msgstr "این حالت سختی را انتخاب کنید اگر شما بازیکن باتجربه ای در بازی 0 A.D هستید"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[3].Title
+msgid "Hard"
+msgstr "سخت"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[3].Tooltip
+msgid "Choose this difficulty if you want to be really challenged."
+msgstr "این حالت از سختی را انتخاب کنید اگر بدنبال یک رقابت سخت هستید"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[4].Title
+msgid "Very Hard"
+msgstr "خیلی سخت"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[4].Tooltip
+msgid "Choose this difficulty if you do not mind being swept out."
+msgstr "این حالت از سختی را انتخاب کنید اگر برای شما مهم نیست نابود شوید"
+
+#: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Description
+msgid ""
+"Capture all relics spread across the map and keep them for a certain time to"
+" win the game."
+msgstr "تسخیر کردن تمام آثار مقدس در سرتاسر نقشه بازی و نگهداشتن آنها در یک مدت زمان خاص برای پیروز شدن"
+
+#: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Title
+msgid "Capture the Relic"
+msgstr "تسخیر اثر مقدس"
+
+#: simulation/data/settings/victory_conditions/conquest.jsonData.Description
+msgid ""
+"Defeat opponents by killing all their units and destroying all their "
+"structures."
+msgstr "شکست حریف ها با کشتن تمام نیروهای آنها و از بین بردن تمام ساختمان های آنها"
+
+#: simulation/data/settings/victory_conditions/conquest.jsonData.Title
+msgid "Conquest"
+msgstr "فتح"
+
+#: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
+msgid "Defeat opponents by destroying all their structures."
+msgstr "شکست حریف ها با از بین بردن تمام ساختمان های آنها"
+
+#: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
+msgid "Conquest Structures"
+msgstr "فتح ساختمان ها"
+
+#: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
+msgid "Defeat opponents by killing all their units."
+msgstr "شکست حریف ها با کشتن تمام نیروهای آنها"
+
+#: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
+msgid "Conquest Units"
+msgstr "نیرو های فتح"
+
+#: simulation/data/settings/victory_conditions/regicide.jsonData.Description
+msgid "Defeat opponents by killing their hero."
+msgstr "شکست حریف ها با کشتن تمام قهرمان های آنها"
+
+#: simulation/data/settings/victory_conditions/regicide.jsonData.Title
+msgid "Regicide"
+msgstr "قتل شاه"
+
+#: simulation/data/settings/victory_conditions/wonder.jsonData.Description
+msgid ""
+"Be the first to build or capture a Wonder and keep it for a certain time to "
+"win the game. The timer will be reset when the Wonder is destroyed or "
+"captured. If the allied victory mode is enabled, the timer will also be "
+"reset when the alliances of the owner change."
+msgstr "اولین نفری باشید که یک سازه عجایب را میسازید یا تسخیر می کنید و آنرا برای مدتی معین نگهدارید تا برنده بازی شوید. تایمر ریست خواهد شد زمانی که سازه عجایب خراب یا تسخیر شود و یا در یک اتحاد زمانیکه مالک پیمان اتحاد تغییر می کند."
+
+#: simulation/data/settings/victory_conditions/wonder.jsonData.Title
+msgid "Wonder"
+msgstr "سازه عجایب"
+
 #: simulation/helpers/Cheat.js:58
 #, javascript-format
 msgid "%(player)s has been defeated (cheat)."
@@ -618,281 +906,3 @@ msgstr ""
 #: simulation/helpers/Commands.js:1115
 msgid "The building's technology requirements are not met."
 msgstr "الزامات فناوری ساختمان برآورده نشده است"
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[0].Name
-msgid "Gaia"
-msgstr "مادر طبیعت"
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[1].Name
-msgid "Player 1"
-msgstr "بازیکن 1"
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[2].Name
-msgid "Player 2"
-msgstr "بازیکن 2"
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[3].Name
-msgid "Player 3"
-msgstr "بازیکن 3"
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[4].Name
-msgid "Player 4"
-msgstr "بازیکن 4"
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[5].Name
-msgid "Player 5"
-msgstr "بازیکن 5"
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[6].Name
-msgid "Player 6"
-msgstr "بازیکن 6"
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[7].Name
-msgid "Player 7"
-msgstr "بازیکن 7"
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[8].Name
-msgid "Player 8"
-msgstr "بازیکن 8"
-
-#: simulation/data/settings/game_speeds.jsonData[0].Title
-msgid "Turtle (0.1×)"
-msgstr ""
-
-#: simulation/data/settings/game_speeds.jsonData[1].Title
-msgid "Slow (0.25×)"
-msgstr ""
-
-#: simulation/data/settings/game_speeds.jsonData[2].Title
-msgid "Leisurely (0.5×)"
-msgstr ""
-
-#: simulation/data/settings/game_speeds.jsonData[3].Title
-msgid "Relaxed (0.75×)"
-msgstr ""
-
-#: simulation/data/settings/game_speeds.jsonData[4].Title
-msgid "Normal (1×)"
-msgstr ""
-
-#: simulation/data/settings/game_speeds.jsonData[5].Title
-msgid "Fast (1.25×)"
-msgstr ""
-
-#: simulation/data/settings/game_speeds.jsonData[6].Title
-msgid "Very Fast (1.5×)"
-msgstr ""
-
-#: simulation/data/settings/game_speeds.jsonData[7].Title
-msgid "Insane (2×)"
-msgstr ""
-
-#: simulation/data/settings/game_speeds.jsonData[8].Title
-msgid "Fast Forward (5×)"
-msgstr ""
-
-#: simulation/data/settings/game_speeds.jsonData[9].Title
-msgid "Fast Forward (10×)"
-msgstr ""
-
-#: simulation/data/settings/game_speeds.jsonData[10].Title
-msgid "Fast Forward (20×)"
-msgstr ""
-
-#: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Description
-msgid ""
-"Capture all relics spread across the map and keep them for a certain time to"
-" win the game."
-msgstr "تسخیر کردن تمام آثار مقدس در سرتاسر نقشه بازی و نگهداشتن آنها در یک مدت زمان خاص برای پیروز شدن"
-
-#: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Title
-msgid "Capture the Relic"
-msgstr "تسخیر اثر مقدس"
-
-#: simulation/data/settings/victory_conditions/conquest.jsonData.Description
-msgid ""
-"Defeat opponents by killing all their units and destroying all their "
-"structures."
-msgstr "شکست حریف ها با کشتن تمام نیروهای آنها و از بین بردن تمام ساختمان های آنها"
-
-#: simulation/data/settings/victory_conditions/conquest.jsonData.Title
-msgid "Conquest"
-msgstr "فتح"
-
-#: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
-msgid "Defeat opponents by destroying all their structures."
-msgstr "شکست حریف ها با از بین بردن تمام ساختمان های آنها"
-
-#: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
-msgid "Conquest Structures"
-msgstr "فتح ساختمان ها"
-
-#: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
-msgid "Defeat opponents by killing all their units."
-msgstr "شکست حریف ها با کشتن تمام نیروهای آنها"
-
-#: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
-msgid "Conquest Units"
-msgstr "نیرو های فتح"
-
-#: simulation/data/settings/victory_conditions/regicide.jsonData.Description
-msgid "Defeat opponents by killing their hero."
-msgstr "شکست حریف ها با کشتن تمام قهرمان های آنها"
-
-#: simulation/data/settings/victory_conditions/regicide.jsonData.Title
-msgid "Regicide"
-msgstr "قتل شاه"
-
-#: simulation/data/settings/victory_conditions/wonder.jsonData.Description
-msgid ""
-"Be the first to build or capture a Wonder and keep it for a certain time to "
-"win the game. The timer will be reset when the Wonder is destroyed or "
-"captured. If the allied victory mode is enabled, the timer will also be "
-"reset when the alliances of the owner change."
-msgstr "اولین نفری باشید که یک سازه عجایب را میسازید یا تسخیر می کنید و آنرا برای مدتی معین نگهدارید تا برنده بازی شوید. تایمر ریست خواهد شد زمانی که سازه عجایب خراب یا تسخیر شود و یا در یک اتحاد زمانیکه مالک پیمان اتحاد تغییر می کند."
-
-#: simulation/data/settings/victory_conditions/wonder.jsonData.Title
-msgid "Wonder"
-msgstr "سازه عجایب"
-
-#: simulation/data/settings/starting_resources.jsonData[0].Title
-msgctxt "startingResources"
-msgid "Very Low"
-msgstr "خیلی کم"
-
-#: simulation/data/settings/starting_resources.jsonData[1].Title
-msgctxt "startingResources"
-msgid "Low"
-msgstr "کم"
-
-#: simulation/data/settings/starting_resources.jsonData[2].Title
-msgctxt "startingResources"
-msgid "Medium"
-msgstr "متوسط"
-
-#: simulation/data/settings/starting_resources.jsonData[3].Title
-msgctxt "startingResources"
-msgid "High"
-msgstr "زیاد"
-
-#: simulation/data/settings/starting_resources.jsonData[4].Title
-msgctxt "startingResources"
-msgid "Very High"
-msgstr "خیلی زیاد"
-
-#: simulation/data/settings/starting_resources.jsonData[5].Title
-msgctxt "startingResources"
-msgid "Deathmatch"
-msgstr "بازی مرگ"
-
-#: simulation/data/settings/trigger_difficulties.jsonData[0].Tooltip
-msgid "Choose this difficulty if you are discovering 0 A.D."
-msgstr "این حالت سختی را انتخاب کنید اگر شما در حال کشف بازی 0 A.D هستید"
-
-#: simulation/data/settings/trigger_difficulties.jsonData[0].Title
-msgid "Very Easy"
-msgstr "خیلی راحت"
-
-#: simulation/data/settings/trigger_difficulties.jsonData[1].Tooltip
-msgid "Choose this difficulty if you do not like being knocked down."
-msgstr "این حالت سختی را انتخاب کنید اگر شما دوست ندارید له شوید"
-
-#: simulation/data/settings/trigger_difficulties.jsonData[1].Title
-msgid "Easy"
-msgstr "راحت"
-
-#: simulation/data/settings/trigger_difficulties.jsonData[2].Tooltip
-msgid ""
-"Choose this difficulty if you have already a good experience with 0 A.D."
-msgstr "این حالت سختی را انتخاب کنید اگر شما بازیکن باتجربه ای در بازی 0 A.D هستید"
-
-#: simulation/data/settings/trigger_difficulties.jsonData[2].Title
-#: simulation/data/settings/map_sizes.jsonData[3].Name
-msgid "Medium"
-msgstr "متوسط"
-
-#: simulation/data/settings/trigger_difficulties.jsonData[3].Tooltip
-msgid "Choose this difficulty if you want to be really challenged."
-msgstr "این حالت از سختی را انتخاب کنید اگر بدنبال یک رقابت سخت هستید"
-
-#: simulation/data/settings/trigger_difficulties.jsonData[3].Title
-msgid "Hard"
-msgstr "سخت"
-
-#: simulation/data/settings/trigger_difficulties.jsonData[4].Tooltip
-msgid "Choose this difficulty if you do not mind being swept out."
-msgstr "این حالت از سختی را انتخاب کنید اگر برای شما مهم نیست نابود شوید"
-
-#: simulation/data/settings/trigger_difficulties.jsonData[4].Title
-msgid "Very Hard"
-msgstr "خیلی سخت"
-
-#: simulation/data/settings/map_sizes.jsonData[0].Name
-msgid "Tiny"
-msgstr "ریز"
-
-#: simulation/data/settings/map_sizes.jsonData[0].Tooltip
-msgid "This map size has barely any room for even the most basic resources."
-msgstr "اندازه این نقشه به سختی یک فضا برای حتی منابع اولیه دارد"
-
-#: simulation/data/settings/map_sizes.jsonData[1].Name
-msgid "Small"
-msgstr "کوچک"
-
-#: simulation/data/settings/map_sizes.jsonData[1].Tooltip
-msgid ""
-"Small maps are suitable for 1v1 matches, as players can reach the enemy "
-"quickly while still having some room to expand."
-msgstr "نقشه های کوچک برای بازی های 1v1 مناسب است، چون بازیکن ها خیلی سریع می توانند به دشمنان خود دسترسی پیدا کنند در حالی که همچنان فضا برای گسترش قلمرو وجود دارد"
-
-#: simulation/data/settings/map_sizes.jsonData[2].Name
-msgid "Normal"
-msgstr "متوسط"
-
-#: simulation/data/settings/map_sizes.jsonData[2].Tooltip
-msgid ""
-"This map size provides plenty of space for two players, but even eight "
-"players fit."
-msgstr ""
-
-#: simulation/data/settings/map_sizes.jsonData[3].Tooltip
-msgid ""
-"This is the ideal mapsize for 4 to 8 players, because there is plenty of "
-"space to expand while the neighbors are quickly reachable."
-msgstr "این یک اندازه ایده آل برای 4 تا 8 بازیکن است، چرا که فضای کافی برای گسترش آنها وجود دارد و دشمنان همسایه خیلی سریع قابل دستیابی هستند"
-
-#: simulation/data/settings/map_sizes.jsonData[4].Name
-msgid "Large"
-msgstr "بزرگ"
-
-#: simulation/data/settings/map_sizes.jsonData[4].Tooltip
-msgid ""
-"The large mapsize is recommended when great portions of the map are covered "
-"with water or inaccessible mountains."
-msgstr "نقشه های سایز بزرگ زمانی پیشنهاد می شوند که بخش زیادی از نقشه توسط آب یا کوهای غیر قابل دسترسی پر شده اند."
-
-#: simulation/data/settings/map_sizes.jsonData[5].Name
-msgid "Very Large"
-msgstr "خیلی بزرگ"
-
-#: simulation/data/settings/map_sizes.jsonData[5].Tooltip
-#: simulation/data/settings/map_sizes.jsonData[6].Tooltip
-msgid ""
-"Very large maps are not recommended as it takes very long to reach the enemy"
-" and the game performance can be reduced."
-msgstr "نقشه های خیلی بزرگ پیشنهاد نمی شوند بخاطر اینکه زمان زیادی طول میکشد تا به دشمن دسترسی پیدا کنید و Performance بازی کاهش پیدا می کند"
-
-#: simulation/data/settings/map_sizes.jsonData[6].Name
-msgid "Giant"
-msgstr "غول‌آسا"
-
-#: simulation/ai/petra/data.jsonname
-msgid "Petra Bot"
-msgstr "بات پترا"
-
-#: simulation/ai/petra/data.jsondescription
-msgid ""
-"Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
-"\n"
-"The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr "پترا ربات پیش فرض هوش مصنوعی از بازی \"0 A.D.\" است. اگر هر مشکل اتفاق باید لطفا به شرکت \"Wildfire Games\" گذرش کنید.(منابع خود زیر است)\n\nتجارت و نرخ منبع گیری از پترا بستگی سطح مشکل دارد(Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). آسان ترین سطح ها نیز نرخ کندتر ساخت و ساز , آموزشی و پژوهشی دارند.علاوه بر این، سطح \"sandbox\" خشونت نیست و گسترش خود را نمی دهد."

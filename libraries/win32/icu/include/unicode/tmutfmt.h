@@ -1,3 +1,5 @@
+// © 2016 and later: Unicode, Inc. and others.
+// License & terms of use: http://www.unicode.org/copyright.html
 /*
  *******************************************************************************
  * Copyright (C) 2008-2014, Google, International Business Machines Corporation
@@ -16,8 +18,9 @@
  */
 
 
+#if U_SHOW_CPLUSPLUS_API
+
 #if !UCONFIG_NO_FORMATTING
-#ifndef U_HIDE_DEPRECATED_API
 
 #include "unicode/unistr.h"
 #include "unicode/tmunit.h"
@@ -26,6 +29,7 @@
 #include "unicode/numfmt.h"
 #include "unicode/plurrule.h"
 
+#ifndef U_HIDE_DEPRECATED_API
 
 /**
  * Constants for various styles.
@@ -49,6 +53,8 @@ U_NAMESPACE_BEGIN
 
 class Hashtable;
 class UVector;
+
+struct TimeUnitFormatReadSink;
 
 /**
  * Format or parse a TimeUnitAmount, using plural rules for the units where available.
@@ -120,7 +126,7 @@ public:
      * @return    A copy of the object.
      * @deprecated ICU 53
      */
-    virtual Format* clone(void) const;
+    virtual TimeUnitFormat* clone() const;
 
     /**
      * Assignment operator
@@ -227,6 +233,7 @@ private:
     // UTIMEUNIT_YEAR.
     static const char* getTimeUnitName(TimeUnit::UTimeUnitFields field, UErrorCode& status);
 
+    friend struct TimeUnitFormatReadSink;
 };
 
 inline UBool
@@ -238,6 +245,8 @@ U_NAMESPACE_END
 
 #endif /* U_HIDE_DEPRECATED_API */
 #endif /* #if !UCONFIG_NO_FORMATTING */
+
+#endif /* U_SHOW_CPLUSPLUS_API */
 
 #endif // __TMUTFMT_H__
 //eof

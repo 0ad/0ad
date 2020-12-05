@@ -1,7 +1,7 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright (C) 2020 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
-# 
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
+# project.
 # Translators:
 # Eslam obeidat <islamobidat92@gmail.com>, 2018
 # Nicolas Auvray <na.itms76@gmail.com>, 2017
@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-13 08:09+0000\n"
+"POT-Creation-Date: 2020-11-28 10:01+0000\n"
 "PO-Revision-Date: 2020-11-13 09:19+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
@@ -358,6 +358,17 @@ msgid ""
 "us, I have abrogated my offer."
 msgstr "%(_player_)s، كما فشلت في الرد علي عرضي للسلام بيننا، أنا قد ألغيت عرضي."
 
+#: simulation/ai/petra/data.jsondescription
+msgid ""
+"Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
+"\n"
+"The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
+msgstr ""
+
+#: simulation/ai/petra/data.jsonname
+msgid "Petra Bot"
+msgstr "الآلة پترا"
+
 #: simulation/components/BuildRestrictions.js:86
 #, javascript-format
 msgid "%(name)s cannot be built due to unknown error"
@@ -379,42 +390,48 @@ msgid "%(name)s cannot be built on invalid terrain"
 msgstr "لا يمكن بناء %(name)s على أرض غير صالحة"
 
 #. Translation: territoryType being displayed in a translated sentence in the
-#. form: "House cannot be built in %(territoryType)s territory.".
+#. form: "House
+#. cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:185
 msgctxt "Territory type"
 msgid "own"
 msgstr "ك"
 
 #. Translation: territoryType being displayed in a translated sentence in the
-#. form: "House cannot be built in %(territoryType)s territory.".
+#. form: "House
+#. cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:188
 msgctxt "Territory type"
 msgid "unconnected own"
 msgstr "غير متصله خاصة"
 
 #. Translation: territoryType being displayed in a translated sentence in the
-#. form: "House cannot be built in %(territoryType)s territory.".
+#. form: "House
+#. cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:194
 msgctxt "Territory type"
 msgid "allied"
 msgstr " حليف"
 
 #. Translation: territoryType being displayed in a translated sentence in the
-#. form: "House cannot be built in %(territoryType)s territory.".
+#. form: "House
+#. cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:197
 msgctxt "Territory type"
 msgid "unconnected allied"
 msgstr "حلفاء غير متصلين"
 
 #. Translation: territoryType being displayed in a translated sentence in the
-#. form: "House cannot be built in %(territoryType)s territory.".
+#. form: "House
+#. cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:203
 msgctxt "Territory type"
 msgid "neutral"
 msgstr " محايد"
 
 #. Translation: territoryType being displayed in a translated sentence in the
-#. form: "House cannot be built in %(territoryType)s territory.".
+#. form: "House
+#. cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:210
 msgctxt "Territory type"
 msgid "enemy"
@@ -461,28 +478,32 @@ msgstr[4] "%(name)s بعيد جداً عن %(category)s, يجب أن يكون ف
 msgstr[5] "%(name)s بعيد جداً عن %(category)s, يجب أن يكون في حدود %(distance)s متر"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
-#. territories: own, ally".
+#. territories:
+#. own, ally".
 #: simulation/components/BuildRestrictions.js:317
 msgctxt "Territory type list"
 msgid "own"
 msgstr "أقاليمك"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
-#. territories: own, ally".
+#. territories:
+#. own, ally".
 #: simulation/components/BuildRestrictions.js:319
 msgctxt "Territory type list"
 msgid "ally"
 msgstr "أقاليم الحلفاء"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
-#. territories: own, ally".
+#. territories:
+#. own, ally".
 #: simulation/components/BuildRestrictions.js:321
 msgctxt "Territory type list"
 msgid "neutral"
 msgstr "الأقاليم المحايدة"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
-#. territories: own, ally".
+#. territories:
+#. own, ally".
 #: simulation/components/BuildRestrictions.js:323
 msgctxt "Territory type list"
 msgid "enemy"
@@ -570,6 +591,273 @@ msgstr "لا يمكن إيجاد مساحة حرة لتنزيل الوحدات �
 msgid "Entity is producing. Cannot start upgrading."
 msgstr ""
 
+#: simulation/data/settings/game_speeds.jsonData[0].Title
+msgid "Turtle (0.1×)"
+msgstr ""
+
+#: simulation/data/settings/game_speeds.jsonData[10].Title
+msgid "Fast Forward (20×)"
+msgstr ""
+
+#: simulation/data/settings/game_speeds.jsonData[1].Title
+msgid "Slow (0.25×)"
+msgstr ""
+
+#: simulation/data/settings/game_speeds.jsonData[2].Title
+msgid "Leisurely (0.5×)"
+msgstr ""
+
+#: simulation/data/settings/game_speeds.jsonData[3].Title
+msgid "Relaxed (0.75×)"
+msgstr ""
+
+#: simulation/data/settings/game_speeds.jsonData[4].Title
+msgid "Normal (1×)"
+msgstr ""
+
+#: simulation/data/settings/game_speeds.jsonData[5].Title
+msgid "Fast (1.25×)"
+msgstr ""
+
+#: simulation/data/settings/game_speeds.jsonData[6].Title
+msgid "Very Fast (1.5×)"
+msgstr ""
+
+#: simulation/data/settings/game_speeds.jsonData[7].Title
+msgid "Insane (2×)"
+msgstr ""
+
+#: simulation/data/settings/game_speeds.jsonData[8].Title
+msgid "Fast Forward (5×)"
+msgstr ""
+
+#: simulation/data/settings/game_speeds.jsonData[9].Title
+msgid "Fast Forward (10×)"
+msgstr ""
+
+#: simulation/data/settings/map_sizes.jsonData[0].Name
+msgid "Tiny"
+msgstr "ضئيلة"
+
+#: simulation/data/settings/map_sizes.jsonData[0].Tooltip
+msgid "This map size has barely any room for even the most basic resources."
+msgstr "مقاس الخريطة هذه يكفي بالكاد للموارد الأساسيّة حتّى."
+
+#: simulation/data/settings/map_sizes.jsonData[1].Name
+msgid "Small"
+msgstr "صغيرة"
+
+#: simulation/data/settings/map_sizes.jsonData[1].Tooltip
+msgid ""
+"Small maps are suitable for 1v1 matches, as players can reach the enemy "
+"quickly while still having some room to expand."
+msgstr "الخرائط الصّغيرة مناسبة لمبارزات الواحد ضدّ الواحد، حيث يمكن للاعبين الوصول إلى أعدائهم بسرعة كما ووجود مساحات كافية للتّوسّع."
+
+#: simulation/data/settings/map_sizes.jsonData[2].Name
+msgid "Normal"
+msgstr "عاديّة"
+
+#: simulation/data/settings/map_sizes.jsonData[2].Tooltip
+msgid ""
+"This map size provides plenty of space for two players, but even eight "
+"players fit."
+msgstr ""
+
+#: simulation/data/settings/map_sizes.jsonData[3].Tooltip
+msgid ""
+"This is the ideal mapsize for 4 to 8 players, because there is plenty of "
+"space to expand while the neighbors are quickly reachable."
+msgstr "هذا هو مقاس الخريطة الأمثل لأربع إلى ثمان لاعبين، وذلك بسبب وجود مساحات كافية للتّوسّع كما وإمكانيّة الوصول بسرعة إلى الجيران."
+
+#: simulation/data/settings/map_sizes.jsonData[4].Name
+msgid "Large"
+msgstr "كبيرة"
+
+#: simulation/data/settings/map_sizes.jsonData[4].Tooltip
+msgid ""
+"The large mapsize is recommended when great portions of the map are covered "
+"with water or inaccessible mountains."
+msgstr "مقاس الخريطة الكبير مستحسن عندما يكون في الخريطة أجزاء كبيرة مغطّاة بالمياه أو بجبال لا يمكن الوصول إليها."
+
+#: simulation/data/settings/map_sizes.jsonData[5].Name
+msgid "Very Large"
+msgstr "كبيرة جدًّا"
+
+#: simulation/data/settings/map_sizes.jsonData[5].Tooltip
+#: simulation/data/settings/map_sizes.jsonData[6].Tooltip
+msgid ""
+"Very large maps are not recommended as it takes very long to reach the enemy"
+" and the game performance can be reduced."
+msgstr "الخرائط الضّخمة جدًّا غير مستحسنة إذ أنّ الوقت اللازم للوصول إلى العدوّ طويل جدًّا كما أن أداء اللعبة قد يقلّ."
+
+#: simulation/data/settings/map_sizes.jsonData[6].Name
+msgid "Giant"
+msgstr "ضخمة"
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[0].Name
+msgid "Gaia"
+msgstr "الطّبيعة"
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[1].Name
+msgid "Player 1"
+msgstr "اللاعب 1"
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[2].Name
+msgid "Player 2"
+msgstr "اللاعب 2"
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[3].Name
+msgid "Player 3"
+msgstr "اللاعب 3"
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[4].Name
+msgid "Player 4"
+msgstr "اللاعب 4"
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[5].Name
+msgid "Player 5"
+msgstr "اللاعب 5"
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[6].Name
+msgid "Player 6"
+msgstr "اللاعب 6"
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[7].Name
+msgid "Player 7"
+msgstr "اللاعب 7"
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[8].Name
+msgid "Player 8"
+msgstr "اللاعب 8"
+
+#: simulation/data/settings/starting_resources.jsonData[0].Title
+msgctxt "startingResources"
+msgid "Very Low"
+msgstr "منخفضة للغاية"
+
+#: simulation/data/settings/starting_resources.jsonData[1].Title
+msgctxt "startingResources"
+msgid "Low"
+msgstr "منخفضة"
+
+#: simulation/data/settings/starting_resources.jsonData[2].Title
+msgctxt "startingResources"
+msgid "Medium"
+msgstr "متوسّطة"
+
+#: simulation/data/settings/starting_resources.jsonData[3].Title
+msgctxt "startingResources"
+msgid "High"
+msgstr "عالية"
+
+#: simulation/data/settings/starting_resources.jsonData[4].Title
+msgctxt "startingResources"
+msgid "Very High"
+msgstr "عالية للغاية"
+
+#: simulation/data/settings/starting_resources.jsonData[5].Title
+msgctxt "startingResources"
+msgid "Deathmatch"
+msgstr "قتال حتى الموت"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[0].Title
+msgid "Very Easy"
+msgstr "سهل جداً"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[0].Tooltip
+msgid "Choose this difficulty if you are discovering 0 A.D."
+msgstr "اختر هذه الصعوبه إذا كنت تكتشف 0 A.D."
+
+#: simulation/data/settings/trigger_difficulties.jsonData[1].Title
+msgid "Easy"
+msgstr "سهل"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[1].Tooltip
+msgid "Choose this difficulty if you do not like being knocked down."
+msgstr "اختر هذه الصعوبه إذا كنت لا تحب ان تغلب."
+
+#: simulation/data/settings/map_sizes.jsonData[3].Name
+#: simulation/data/settings/trigger_difficulties.jsonData[2].Title
+msgid "Medium"
+msgstr "متوسّطة"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[2].Tooltip
+msgid ""
+"Choose this difficulty if you have already a good experience with 0 A.D."
+msgstr "اختر هذه الصعوبه إذا كان لديك خبرة جيدة مع 0 A.D."
+
+#: simulation/data/settings/trigger_difficulties.jsonData[3].Title
+msgid "Hard"
+msgstr "صعب"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[3].Tooltip
+msgid "Choose this difficulty if you want to be really challenged."
+msgstr "اختر هذه الصعوبه إذا كنت تريد تحدي حقيقي."
+
+#: simulation/data/settings/trigger_difficulties.jsonData[4].Title
+msgid "Very Hard"
+msgstr "صعب جداً"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[4].Tooltip
+msgid "Choose this difficulty if you do not mind being swept out."
+msgstr "اختر هذه الصعوبه إذا لم يكن لديك مانع من أن تنسف."
+
+#: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Description
+msgid ""
+"Capture all relics spread across the map and keep them for a certain time to"
+" win the game."
+msgstr "إحتل كل الأثار في الخريطة وإحتفظ بهم لفترة معينة لكي تفوز في اللعبة."
+
+#: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Title
+msgid "Capture the Relic"
+msgstr "استولي على الأثر المقدس"
+
+#: simulation/data/settings/victory_conditions/conquest.jsonData.Description
+msgid ""
+"Defeat opponents by killing all their units and destroying all their "
+"structures."
+msgstr ".إهزم الأعداء بقتل كل وحداتهم وتدمير كل مبانيهم"
+
+#: simulation/data/settings/victory_conditions/conquest.jsonData.Title
+msgid "Conquest"
+msgstr "الاحتلال"
+
+#: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
+msgid "Defeat opponents by destroying all their structures."
+msgstr "أهزم الخصوم عن طريق تدمير كل مبانيهم."
+
+#: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
+msgid "Conquest Structures"
+msgstr "إحتلال المبانى"
+
+#: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
+msgid "Defeat opponents by killing all their units."
+msgstr "أهزم الخصوم عن طريق قتل كل وحداتهم."
+
+#: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
+msgid "Conquest Units"
+msgstr "قتل الجنود"
+
+#: simulation/data/settings/victory_conditions/regicide.jsonData.Description
+msgid "Defeat opponents by killing their hero."
+msgstr "اهزم الخصوم بقتل أشاوسهم."
+
+#: simulation/data/settings/victory_conditions/regicide.jsonData.Title
+msgid "Regicide"
+msgstr "قتل الملك"
+
+#: simulation/data/settings/victory_conditions/wonder.jsonData.Description
+msgid ""
+"Be the first to build or capture a Wonder and keep it for a certain time to "
+"win the game. The timer will be reset when the Wonder is destroyed or "
+"captured. If the allied victory mode is enabled, the timer will also be "
+"reset when the alliances of the owner change."
+msgstr ""
+
+#: simulation/data/settings/victory_conditions/wonder.jsonData.Title
+msgid "Wonder"
+msgstr "عجيبة"
+
 #: simulation/helpers/Cheat.js:58
 #, javascript-format
 msgid "%(player)s has been defeated (cheat)."
@@ -631,281 +919,3 @@ msgstr ""
 #: simulation/helpers/Commands.js:1115
 msgid "The building's technology requirements are not met."
 msgstr "تقنية المبنى غير متوافرة بعد."
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[0].Name
-msgid "Gaia"
-msgstr "الطّبيعة"
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[1].Name
-msgid "Player 1"
-msgstr "اللاعب 1"
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[2].Name
-msgid "Player 2"
-msgstr "اللاعب 2"
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[3].Name
-msgid "Player 3"
-msgstr "اللاعب 3"
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[4].Name
-msgid "Player 4"
-msgstr "اللاعب 4"
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[5].Name
-msgid "Player 5"
-msgstr "اللاعب 5"
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[6].Name
-msgid "Player 6"
-msgstr "اللاعب 6"
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[7].Name
-msgid "Player 7"
-msgstr "اللاعب 7"
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[8].Name
-msgid "Player 8"
-msgstr "اللاعب 8"
-
-#: simulation/data/settings/game_speeds.jsonData[0].Title
-msgid "Turtle (0.1×)"
-msgstr ""
-
-#: simulation/data/settings/game_speeds.jsonData[1].Title
-msgid "Slow (0.25×)"
-msgstr ""
-
-#: simulation/data/settings/game_speeds.jsonData[2].Title
-msgid "Leisurely (0.5×)"
-msgstr ""
-
-#: simulation/data/settings/game_speeds.jsonData[3].Title
-msgid "Relaxed (0.75×)"
-msgstr ""
-
-#: simulation/data/settings/game_speeds.jsonData[4].Title
-msgid "Normal (1×)"
-msgstr ""
-
-#: simulation/data/settings/game_speeds.jsonData[5].Title
-msgid "Fast (1.25×)"
-msgstr ""
-
-#: simulation/data/settings/game_speeds.jsonData[6].Title
-msgid "Very Fast (1.5×)"
-msgstr ""
-
-#: simulation/data/settings/game_speeds.jsonData[7].Title
-msgid "Insane (2×)"
-msgstr ""
-
-#: simulation/data/settings/game_speeds.jsonData[8].Title
-msgid "Fast Forward (5×)"
-msgstr ""
-
-#: simulation/data/settings/game_speeds.jsonData[9].Title
-msgid "Fast Forward (10×)"
-msgstr ""
-
-#: simulation/data/settings/game_speeds.jsonData[10].Title
-msgid "Fast Forward (20×)"
-msgstr ""
-
-#: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Description
-msgid ""
-"Capture all relics spread across the map and keep them for a certain time to"
-" win the game."
-msgstr "إحتل كل الأثار في الخريطة وإحتفظ بهم لفترة معينة لكي تفوز في اللعبة."
-
-#: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Title
-msgid "Capture the Relic"
-msgstr "استولي على الأثر المقدس"
-
-#: simulation/data/settings/victory_conditions/conquest.jsonData.Description
-msgid ""
-"Defeat opponents by killing all their units and destroying all their "
-"structures."
-msgstr ".إهزم الأعداء بقتل كل وحداتهم وتدمير كل مبانيهم"
-
-#: simulation/data/settings/victory_conditions/conquest.jsonData.Title
-msgid "Conquest"
-msgstr "الاحتلال"
-
-#: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
-msgid "Defeat opponents by destroying all their structures."
-msgstr "أهزم الخصوم عن طريق تدمير كل مبانيهم."
-
-#: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
-msgid "Conquest Structures"
-msgstr "إحتلال المبانى"
-
-#: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
-msgid "Defeat opponents by killing all their units."
-msgstr "أهزم الخصوم عن طريق قتل كل وحداتهم."
-
-#: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
-msgid "Conquest Units"
-msgstr "قتل الجنود"
-
-#: simulation/data/settings/victory_conditions/regicide.jsonData.Description
-msgid "Defeat opponents by killing their hero."
-msgstr "اهزم الخصوم بقتل أشاوسهم."
-
-#: simulation/data/settings/victory_conditions/regicide.jsonData.Title
-msgid "Regicide"
-msgstr "قتل الملك"
-
-#: simulation/data/settings/victory_conditions/wonder.jsonData.Description
-msgid ""
-"Be the first to build or capture a Wonder and keep it for a certain time to "
-"win the game. The timer will be reset when the Wonder is destroyed or "
-"captured. If the allied victory mode is enabled, the timer will also be "
-"reset when the alliances of the owner change."
-msgstr ""
-
-#: simulation/data/settings/victory_conditions/wonder.jsonData.Title
-msgid "Wonder"
-msgstr "عجيبة"
-
-#: simulation/data/settings/starting_resources.jsonData[0].Title
-msgctxt "startingResources"
-msgid "Very Low"
-msgstr "منخفضة للغاية"
-
-#: simulation/data/settings/starting_resources.jsonData[1].Title
-msgctxt "startingResources"
-msgid "Low"
-msgstr "منخفضة"
-
-#: simulation/data/settings/starting_resources.jsonData[2].Title
-msgctxt "startingResources"
-msgid "Medium"
-msgstr "متوسّطة"
-
-#: simulation/data/settings/starting_resources.jsonData[3].Title
-msgctxt "startingResources"
-msgid "High"
-msgstr "عالية"
-
-#: simulation/data/settings/starting_resources.jsonData[4].Title
-msgctxt "startingResources"
-msgid "Very High"
-msgstr "عالية للغاية"
-
-#: simulation/data/settings/starting_resources.jsonData[5].Title
-msgctxt "startingResources"
-msgid "Deathmatch"
-msgstr "قتال حتى الموت"
-
-#: simulation/data/settings/trigger_difficulties.jsonData[0].Tooltip
-msgid "Choose this difficulty if you are discovering 0 A.D."
-msgstr "اختر هذه الصعوبه إذا كنت تكتشف 0 A.D."
-
-#: simulation/data/settings/trigger_difficulties.jsonData[0].Title
-msgid "Very Easy"
-msgstr "سهل جداً"
-
-#: simulation/data/settings/trigger_difficulties.jsonData[1].Tooltip
-msgid "Choose this difficulty if you do not like being knocked down."
-msgstr "اختر هذه الصعوبه إذا كنت لا تحب ان تغلب."
-
-#: simulation/data/settings/trigger_difficulties.jsonData[1].Title
-msgid "Easy"
-msgstr "سهل"
-
-#: simulation/data/settings/trigger_difficulties.jsonData[2].Tooltip
-msgid ""
-"Choose this difficulty if you have already a good experience with 0 A.D."
-msgstr "اختر هذه الصعوبه إذا كان لديك خبرة جيدة مع 0 A.D."
-
-#: simulation/data/settings/trigger_difficulties.jsonData[2].Title
-#: simulation/data/settings/map_sizes.jsonData[3].Name
-msgid "Medium"
-msgstr "متوسّطة"
-
-#: simulation/data/settings/trigger_difficulties.jsonData[3].Tooltip
-msgid "Choose this difficulty if you want to be really challenged."
-msgstr "اختر هذه الصعوبه إذا كنت تريد تحدي حقيقي."
-
-#: simulation/data/settings/trigger_difficulties.jsonData[3].Title
-msgid "Hard"
-msgstr "صعب"
-
-#: simulation/data/settings/trigger_difficulties.jsonData[4].Tooltip
-msgid "Choose this difficulty if you do not mind being swept out."
-msgstr "اختر هذه الصعوبه إذا لم يكن لديك مانع من أن تنسف."
-
-#: simulation/data/settings/trigger_difficulties.jsonData[4].Title
-msgid "Very Hard"
-msgstr "صعب جداً"
-
-#: simulation/data/settings/map_sizes.jsonData[0].Name
-msgid "Tiny"
-msgstr "ضئيلة"
-
-#: simulation/data/settings/map_sizes.jsonData[0].Tooltip
-msgid "This map size has barely any room for even the most basic resources."
-msgstr "مقاس الخريطة هذه يكفي بالكاد للموارد الأساسيّة حتّى."
-
-#: simulation/data/settings/map_sizes.jsonData[1].Name
-msgid "Small"
-msgstr "صغيرة"
-
-#: simulation/data/settings/map_sizes.jsonData[1].Tooltip
-msgid ""
-"Small maps are suitable for 1v1 matches, as players can reach the enemy "
-"quickly while still having some room to expand."
-msgstr "الخرائط الصّغيرة مناسبة لمبارزات الواحد ضدّ الواحد، حيث يمكن للاعبين الوصول إلى أعدائهم بسرعة كما ووجود مساحات كافية للتّوسّع."
-
-#: simulation/data/settings/map_sizes.jsonData[2].Name
-msgid "Normal"
-msgstr "عاديّة"
-
-#: simulation/data/settings/map_sizes.jsonData[2].Tooltip
-msgid ""
-"This map size provides plenty of space for two players, but even eight "
-"players fit."
-msgstr ""
-
-#: simulation/data/settings/map_sizes.jsonData[3].Tooltip
-msgid ""
-"This is the ideal mapsize for 4 to 8 players, because there is plenty of "
-"space to expand while the neighbors are quickly reachable."
-msgstr "هذا هو مقاس الخريطة الأمثل لأربع إلى ثمان لاعبين، وذلك بسبب وجود مساحات كافية للتّوسّع كما وإمكانيّة الوصول بسرعة إلى الجيران."
-
-#: simulation/data/settings/map_sizes.jsonData[4].Name
-msgid "Large"
-msgstr "كبيرة"
-
-#: simulation/data/settings/map_sizes.jsonData[4].Tooltip
-msgid ""
-"The large mapsize is recommended when great portions of the map are covered "
-"with water or inaccessible mountains."
-msgstr "مقاس الخريطة الكبير مستحسن عندما يكون في الخريطة أجزاء كبيرة مغطّاة بالمياه أو بجبال لا يمكن الوصول إليها."
-
-#: simulation/data/settings/map_sizes.jsonData[5].Name
-msgid "Very Large"
-msgstr "كبيرة جدًّا"
-
-#: simulation/data/settings/map_sizes.jsonData[5].Tooltip
-#: simulation/data/settings/map_sizes.jsonData[6].Tooltip
-msgid ""
-"Very large maps are not recommended as it takes very long to reach the enemy"
-" and the game performance can be reduced."
-msgstr "الخرائط الضّخمة جدًّا غير مستحسنة إذ أنّ الوقت اللازم للوصول إلى العدوّ طويل جدًّا كما أن أداء اللعبة قد يقلّ."
-
-#: simulation/data/settings/map_sizes.jsonData[6].Name
-msgid "Giant"
-msgstr "ضخمة"
-
-#: simulation/ai/petra/data.jsonname
-msgid "Petra Bot"
-msgstr "الآلة پترا"
-
-#: simulation/ai/petra/data.jsondescription
-msgid ""
-"Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
-"\n"
-"The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr ""

@@ -1,5 +1,5 @@
-/* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*-
- * vim: set ts=8 sts=4 et sw=4 tw=99:
+/* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+ * vim: set ts=8 sts=2 et sw=2 tw=80:
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
@@ -8,6 +8,8 @@
 
 #ifndef js_Class_h
 #define js_Class_h
+
+#include "mozilla/Attributes.h"
 
 #include "jstypes.h"
 
@@ -23,7 +25,7 @@
  */
 
 struct JSAtomState;
-struct JSFreeOp;
+struct JS_PUBLIC_API JSFreeOp;
 struct JSFunctionSpec;
 
 namespace js {
@@ -95,14 +97,16 @@ extern JS_PUBLIC_API bool IsArray(JSContext* cx, HandleObject obj,
  * Typical usage:
  *
  *     ObjectOpResult result;
- *     if (!DefineProperty(cx, obj, id, ..., result))
+ *     if (!DefineProperty(cx, obj, id, ..., result)) {
  *         return false;
- *     if (!result)
+ *     }
+ *     if (!result) {
  *         return result.reportError(cx, obj, id);
+ *     }
  *
  * Users don't have to call `result.report()`; another possible ending is:
  *
- *     argv.rval().setBoolean(bool(result));
+ *     argv.rval().setBoolean(result.reallyOk());
  *     return true;
  */
 class ObjectOpResult {
@@ -121,15 +125,24 @@ class ObjectOpResult {
  public:
   enum SpecialCodes : uintptr_t { OkCode = 0, Uninitialized = uintptr_t(-1) };
 
+  static const uintptr_t SoftFailBit = uintptr_t(1)
+                                       << (sizeof(uintptr_t) * 8 - 1);
+
   ObjectOpResult() : code_(Uninitialized) {}
 
-  /* Return true if succeed() was called. */
+  /* Return true if succeed() or failSoft() was called. */
   bool ok() const {
     MOZ_ASSERT(code_ != Uninitialized);
-    return code_ == OkCode;
+    return code_ == OkCode || (code_ & SoftFailBit);
   }
 
   explicit operator bool() const { return ok(); }
+
+  /* Return true if succeed() was called. */
+  bool reallyOk() const {
+    MOZ_ASSERT(code_ != Uninitialized);
+    return code_ == OkCode;
+  }
 
   /* Set this ObjectOpResult to true and return true. */
   bool succeed() {
@@ -142,15 +155,32 @@ class ObjectOpResult {
    *
    * Always returns true, as a convenience. Typical usage will be:
    *
-   *     if (funny condition)
+   *     if (funny condition) {
    *         return result.fail(JSMSG_CANT_DO_THE_THINGS);
+   *     }
    *
    * The true return value indicates that no exception is pending, and it
    * would be OK to ignore the failure and continue.
    */
   bool fail(uint32_t msg) {
     MOZ_ASSERT(msg != OkCode);
+    MOZ_ASSERT((msg & SoftFailBit) == 0);
     code_ = msg;
+    return true;
+  }
+
+  /*
+   * DEPRECATED: This is a non-standard compatibility hack.
+   *
+   * Set this ObjectOpResult to true, but remembers an error code.
+   * This is used for situations where we really want to fail,
+   * but can't for legacy reasons.
+   *
+   * Always returns true, as a convenience.
+   */
+  bool failSoft(uint32_t msg) {
+    // The msg code is currently never extracted again.
+    code_ = msg | SoftFailBit;
     return true;
   }
 
@@ -167,6 +197,10 @@ class ObjectOpResult {
   JS_PUBLIC_API bool failCantSetProto();
   JS_PUBLIC_API bool failNoNamedSetter();
   JS_PUBLIC_API bool failNoIndexedSetter();
+  JS_PUBLIC_API bool failNotDataDescriptor();
+
+  // Careful: This case has special handling in Object.defineProperty.
+  JS_PUBLIC_API bool failCantDefineWindowNonConfigurable();
 
   uint32_t failureCode() const {
     MOZ_ASSERT(!ok());
@@ -189,7 +223,9 @@ class ObjectOpResult {
    */
   bool checkStrictErrorOrWarning(JSContext* cx, HandleObject obj, HandleId id,
                                  bool strict) {
-    if (ok()) return true;
+    if (ok()) {
+      return true;
+    }
     return reportStrictErrorOrWarning(cx, obj, id, strict);
   }
 
@@ -383,7 +419,7 @@ typedef bool (*JSDeletePropertyOp)(JSContext* cx, JS::HandleObject obj,
  * add enumerable properties.
  */
 typedef bool (*JSNewEnumerateOp)(JSContext* cx, JS::HandleObject obj,
-                                 JS::AutoIdVector& properties,
+                                 JS::MutableHandleIdVector properties,
                                  bool enumerableOnly);
 
 /**
@@ -456,8 +492,6 @@ typedef bool (*JSHasInstanceOp)(JSContext* cx, JS::HandleObject obj,
  * marking its native structures.
  */
 typedef void (*JSTraceOp)(JSTracer* trc, JSObject* obj);
-
-typedef JSObject* (*JSWeakmapKeyDelegateOp)(JSObject* obj);
 
 typedef size_t (*JSObjectMovedOp)(JSObject* obj, JSObject* old);
 
@@ -587,12 +621,7 @@ typedef void (*FinalizeOp)(FreeOp* fop, JSObject* obj);
     cOps->trace(trc, obj);                                                     \
   }
 
-// XXX: MOZ_NONHEAP_CLASS allows objects to be created statically or on the
-// stack. We actually want to ban stack objects too, but that's currently not
-// possible. So we define JS_STATIC_CLASS to make the intention clearer.
-#define JS_STATIC_CLASS MOZ_NONHEAP_CLASS
-
-struct JS_STATIC_CLASS ClassOps {
+struct MOZ_STATIC_CLASS ClassOps {
   /* Function pointer members (may be null). */
   JSAddPropertyOp addProperty;
   JSDeletePropertyOp delProperty;
@@ -619,7 +648,7 @@ typedef bool (*FinishClassInitOp)(JSContext* cx, JS::HandleObject ctor,
 
 const size_t JSCLASS_CACHED_PROTO_WIDTH = 6;
 
-struct JS_STATIC_CLASS ClassSpec {
+struct MOZ_STATIC_CLASS ClassSpec {
   ClassObjectCreationOp createConstructor;
   ClassObjectCreationOp createPrototype;
   const JSFunctionSpec* constructorFunctions;
@@ -642,7 +671,9 @@ struct JS_STATIC_CLASS ClassSpec {
     static_assert(JSProto_Null == 0, "zeroed key must be null");
 
     // Default: Inherit from Object.
-    if (!(flags & ProtoKeyMask)) return JSProto_Object;
+    if (!(flags & ProtoKeyMask)) {
+      return JSProto_Object;
+    }
 
     return JSProtoKey(flags & ProtoKeyMask);
   }
@@ -653,20 +684,7 @@ struct JS_STATIC_CLASS ClassSpec {
   }
 };
 
-struct JS_STATIC_CLASS ClassExtension {
-  /**
-   * If an object is used as a key in a weakmap, it may be desirable for the
-   * garbage collector to keep that object around longer than it otherwise
-   * would. A common case is when the key is a wrapper around an object in
-   * another compartment, and we want to avoid collecting the wrapper (and
-   * removing the weakmap entry) as long as the wrapped object is alive. In
-   * that case, the wrapped object is returned by the wrapper's
-   * weakmapKeyDelegateOp hook. As long as the wrapper is used as a weakmap
-   * key, it will not be collected (and remain in the weakmap) until the
-   * wrapped object is collected.
-   */
-  JSWeakmapKeyDelegateOp weakmapKeyDelegateOp;
-
+struct MOZ_STATIC_CLASS ClassExtension {
   /**
    * Optional hook called when an object is moved by generational or
    * compacting GC.
@@ -691,7 +709,7 @@ struct JS_STATIC_CLASS ClassExtension {
 #define JS_NULL_CLASS_SPEC nullptr
 #define JS_NULL_CLASS_EXT nullptr
 
-struct JS_STATIC_CLASS ObjectOps {
+struct MOZ_STATIC_CLASS ObjectOps {
   LookupPropertyOp lookupProperty;
   DefinePropertyOp defineProperty;
   HasPropertyOp hasProperty;
@@ -711,7 +729,7 @@ struct JS_STATIC_CLASS ObjectOps {
 
 typedef void (*JSClassInternal)();
 
-struct JS_STATIC_CLASS JSClassOps {
+struct MOZ_STATIC_CLASS JSClassOps {
   /* Function pointer members (may be null). */
   JSAddPropertyOp addProperty;
   JSDeletePropertyOp delProperty;
@@ -783,8 +801,8 @@ static const uint32_t JSCLASS_RESERVED_SLOTS_MASK =
 #define JSCLASS_HIGH_FLAGS_SHIFT \
   (JSCLASS_RESERVED_SLOTS_SHIFT + JSCLASS_RESERVED_SLOTS_WIDTH)
 
-static const uint32_t JSCLASS_IS_ANONYMOUS = 1
-                                             << (JSCLASS_HIGH_FLAGS_SHIFT + 0);
+static const uint32_t JSCLASS_INTERNAL_FLAG1 =
+    1 << (JSCLASS_HIGH_FLAGS_SHIFT + 0);
 static const uint32_t JSCLASS_IS_GLOBAL = 1 << (JSCLASS_HIGH_FLAGS_SHIFT + 1);
 static const uint32_t JSCLASS_INTERNAL_FLAG2 =
     1 << (JSCLASS_HIGH_FLAGS_SHIFT + 2);
@@ -850,7 +868,7 @@ static const uint32_t JSCLASS_CACHED_PROTO_MASK =
 
 namespace js {
 
-struct JS_STATIC_CLASS Class {
+struct MOZ_STATIC_CLASS Class {
   JS_CLASS_MEMBERS(js::ClassOps, FreeOp);
   const ClassSpec* spec;
   const ClassExtension* ext;
@@ -919,9 +937,6 @@ struct JS_STATIC_CLASS Class {
     return spec ? spec->finishInit : nullptr;
   }
 
-  JSWeakmapKeyDelegateOp extWeakmapKeyDelegateOp() const {
-    return ext ? ext->weakmapKeyDelegateOp : nullptr;
-  }
   JSObjectMovedOp extObjectMovedOp() const {
     return ext ? ext->objectMovedOp : nullptr;
   }
@@ -1023,6 +1038,7 @@ enum class ESClass {
   SetIterator,
   Arguments,
   Error,
+  BigInt,
 
   /** None of the above. */
   Other

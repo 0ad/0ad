@@ -441,7 +441,7 @@ void CGUI::SetGlobalHotkey(const CStr& hotkeyTag, const CStr& eventName, JS::Han
 		return;
 	}
 
-	if (!function.isObject() || !JS_ObjectIsFunction(rq.cx, &function.toObject()))
+	if (!function.isObject() || !JS_ObjectIsFunction(&function.toObject()))
 	{
 		ScriptException::Raise(rq, "Cannot assign non-function value to global hotkey '%s'", hotkeyTag.c_str());
 		return;
@@ -923,7 +923,7 @@ void CGUI::Xeromyces_ReadScript(XMBElement Element, CXeromyces* pFile, std::unor
 
 	CStr code(Element.GetText());
 	if (!code.empty())
-		m_ScriptInterface->LoadGlobalScript(L"Some XML file", code.FromUTF8());
+		m_ScriptInterface->LoadGlobalScript(L"Some XML file", code);
 }
 
 void CGUI::Xeromyces_ReadSprite(XMBElement Element, CXeromyces* pFile)

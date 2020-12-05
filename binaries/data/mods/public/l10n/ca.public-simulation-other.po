@@ -1,7 +1,7 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright (C) 2020 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
-# 
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
+# project.
 # Translators:
 # Albert F. <alb.fontquerni@gmail.com>, 2018-2019
 # Catalanoic <catalanoic@gmail.com>, 2016
@@ -16,7 +16,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-13 08:09+0000\n"
+"POT-Creation-Date: 2020-11-28 10:01+0000\n"
 "PO-Revision-Date: 2020-11-15 13:43+0000\n"
 "Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
@@ -363,6 +363,17 @@ msgid ""
 "us, I have abrogated my offer."
 msgstr "%(_player_)s, com que no has respost a la meva oferta de pau, l'he anul·lat."
 
+#: simulation/ai/petra/data.jsondescription
+msgid ""
+"Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
+"\n"
+"The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
+msgstr "Petra és la IA per defecte del 0 A.D. Podeu informar de qualsevol error a Wildfire Games mitjançant l'enllaç del menú principal.\n\nLa velocitat de recollida de recursos i benefici comercial de la IA depenen del nivell de dificultat (Proves −58%, Molt fàcil −44%, Fàcil −25%, Mitjà ±0%, Difícil +25%, Molt difícil +56%). A més a més, en el mode de proves la IA no s'expandeix ni ataca."
+
+#: simulation/ai/petra/data.jsonname
+msgid "Petra Bot"
+msgstr "Bot Petra"
+
 #: simulation/components/BuildRestrictions.js:86
 #, javascript-format
 msgid "%(name)s cannot be built due to unknown error"
@@ -384,42 +395,48 @@ msgid "%(name)s cannot be built on invalid terrain"
 msgstr "%(name)s no es pot construir en un terreny invàlid"
 
 #. Translation: territoryType being displayed in a translated sentence in the
-#. form: "House cannot be built in %(territoryType)s territory.".
+#. form: "House
+#. cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:185
 msgctxt "Territory type"
 msgid "own"
 msgstr "propi"
 
 #. Translation: territoryType being displayed in a translated sentence in the
-#. form: "House cannot be built in %(territoryType)s territory.".
+#. form: "House
+#. cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:188
 msgctxt "Territory type"
 msgid "unconnected own"
 msgstr "propi desvinculat"
 
 #. Translation: territoryType being displayed in a translated sentence in the
-#. form: "House cannot be built in %(territoryType)s territory.".
+#. form: "House
+#. cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:194
 msgctxt "Territory type"
 msgid "allied"
 msgstr "aliat"
 
 #. Translation: territoryType being displayed in a translated sentence in the
-#. form: "House cannot be built in %(territoryType)s territory.".
+#. form: "House
+#. cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:197
 msgctxt "Territory type"
 msgid "unconnected allied"
 msgstr "aliat desvinculat"
 
 #. Translation: territoryType being displayed in a translated sentence in the
-#. form: "House cannot be built in %(territoryType)s territory.".
+#. form: "House
+#. cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:203
 msgctxt "Territory type"
 msgid "neutral"
 msgstr "neutral"
 
 #. Translation: territoryType being displayed in a translated sentence in the
-#. form: "House cannot be built in %(territoryType)s territory.".
+#. form: "House
+#. cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:210
 msgctxt "Territory type"
 msgid "enemy"
@@ -458,28 +475,32 @@ msgstr[0] "%(name)s està massa lluny de %(category)s, ha d'estar com a màxim a
 msgstr[1] "%(name)s està massa lluny de %(category)s, ha d'estar com a màxim a %(distance)s metres"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
-#. territories: own, ally".
+#. territories:
+#. own, ally".
 #: simulation/components/BuildRestrictions.js:317
 msgctxt "Territory type list"
 msgid "own"
 msgstr "propi"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
-#. territories: own, ally".
+#. territories:
+#. own, ally".
 #: simulation/components/BuildRestrictions.js:319
 msgctxt "Territory type list"
 msgid "ally"
 msgstr "aliat"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
-#. territories: own, ally".
+#. territories:
+#. own, ally".
 #: simulation/components/BuildRestrictions.js:321
 msgctxt "Territory type list"
 msgid "neutral"
 msgstr "neutral"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
-#. territories: own, ally".
+#. territories:
+#. own, ally".
 #: simulation/components/BuildRestrictions.js:323
 msgctxt "Territory type list"
 msgid "enemy"
@@ -563,6 +584,273 @@ msgstr "No hi ha espai al punt de sortida per a les noves unitats"
 msgid "Entity is producing. Cannot start upgrading."
 msgstr "No es pot millorar un edifici que està produint."
 
+#: simulation/data/settings/game_speeds.jsonData[0].Title
+msgid "Turtle (0.1×)"
+msgstr "Tortuga (0,1×)"
+
+#: simulation/data/settings/game_speeds.jsonData[10].Title
+msgid "Fast Forward (20×)"
+msgstr "Avança ràpidament (20×)"
+
+#: simulation/data/settings/game_speeds.jsonData[1].Title
+msgid "Slow (0.25×)"
+msgstr "Lent (0,25×)"
+
+#: simulation/data/settings/game_speeds.jsonData[2].Title
+msgid "Leisurely (0.5×)"
+msgstr "Sense pressa (0,5×)"
+
+#: simulation/data/settings/game_speeds.jsonData[3].Title
+msgid "Relaxed (0.75×)"
+msgstr "Relaxat (0,75×)"
+
+#: simulation/data/settings/game_speeds.jsonData[4].Title
+msgid "Normal (1×)"
+msgstr "Normal (1×)"
+
+#: simulation/data/settings/game_speeds.jsonData[5].Title
+msgid "Fast (1.25×)"
+msgstr "Ràpid (1,25×)"
+
+#: simulation/data/settings/game_speeds.jsonData[6].Title
+msgid "Very Fast (1.5×)"
+msgstr "Molt ràpid (1,5×)"
+
+#: simulation/data/settings/game_speeds.jsonData[7].Title
+msgid "Insane (2×)"
+msgstr "Frenètic (2×)"
+
+#: simulation/data/settings/game_speeds.jsonData[8].Title
+msgid "Fast Forward (5×)"
+msgstr "Avança ràpidament (5×)"
+
+#: simulation/data/settings/game_speeds.jsonData[9].Title
+msgid "Fast Forward (10×)"
+msgstr "Avança ràpidament (10×)"
+
+#: simulation/data/settings/map_sizes.jsonData[0].Name
+msgid "Tiny"
+msgstr "Minúscul"
+
+#: simulation/data/settings/map_sizes.jsonData[0].Tooltip
+msgid "This map size has barely any room for even the most basic resources."
+msgstr "Aquest mapa amb prou feines té espai per als recursos bàsics."
+
+#: simulation/data/settings/map_sizes.jsonData[1].Name
+msgid "Small"
+msgstr "Petit"
+
+#: simulation/data/settings/map_sizes.jsonData[1].Tooltip
+msgid ""
+"Small maps are suitable for 1v1 matches, as players can reach the enemy "
+"quickly while still having some room to expand."
+msgstr "Els mapes petits són òptims per a partides d'un contra un perquè els jugadors poden arribar a l'enemic ràpidament i alhora tenir espai per expandir-se."
+
+#: simulation/data/settings/map_sizes.jsonData[2].Name
+msgid "Normal"
+msgstr "Normal"
+
+#: simulation/data/settings/map_sizes.jsonData[2].Tooltip
+msgid ""
+"This map size provides plenty of space for two players, but even eight "
+"players fit."
+msgstr "Aquesta mida de mapa proporciona molt d'espai per a dos jugadors, però n'hi poden cabre fins a vuit."
+
+#: simulation/data/settings/map_sizes.jsonData[3].Tooltip
+msgid ""
+"This is the ideal mapsize for 4 to 8 players, because there is plenty of "
+"space to expand while the neighbors are quickly reachable."
+msgstr "Aquesta és la mida ideal de mapa per a 4 - 8 jugadors, perquè hi ha prou espai per expandir-se sense tenir els veïns massa lluny."
+
+#: simulation/data/settings/map_sizes.jsonData[4].Name
+msgid "Large"
+msgstr "Gran"
+
+#: simulation/data/settings/map_sizes.jsonData[4].Tooltip
+msgid ""
+"The large mapsize is recommended when great portions of the map are covered "
+"with water or inaccessible mountains."
+msgstr "Els mapes grans són recomanables quan hi ha grans seccions cobertes d'aigua o muntanyes inaccessibles."
+
+#: simulation/data/settings/map_sizes.jsonData[5].Name
+msgid "Very Large"
+msgstr "Molt gran"
+
+#: simulation/data/settings/map_sizes.jsonData[5].Tooltip
+#: simulation/data/settings/map_sizes.jsonData[6].Tooltip
+msgid ""
+"Very large maps are not recommended as it takes very long to reach the enemy"
+" and the game performance can be reduced."
+msgstr "Els mapes molt grans no són recomanables perquè es triga molt a arribar fins on és l'enemic i poden afectar el rendiment."
+
+#: simulation/data/settings/map_sizes.jsonData[6].Name
+msgid "Giant"
+msgstr "Gegant"
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[0].Name
+msgid "Gaia"
+msgstr "Natura"
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[1].Name
+msgid "Player 1"
+msgstr "Jugador 1"
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[2].Name
+msgid "Player 2"
+msgstr "Jugador 2"
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[3].Name
+msgid "Player 3"
+msgstr "Jugador 3"
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[4].Name
+msgid "Player 4"
+msgstr "Jugador 4"
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[5].Name
+msgid "Player 5"
+msgstr "Jugador 5"
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[6].Name
+msgid "Player 6"
+msgstr "Jugador 6"
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[7].Name
+msgid "Player 7"
+msgstr "Jugador 7"
+
+#: simulation/data/settings/player_defaults.jsonPlayerData[8].Name
+msgid "Player 8"
+msgstr "Jugador 8"
+
+#: simulation/data/settings/starting_resources.jsonData[0].Title
+msgctxt "startingResources"
+msgid "Very Low"
+msgstr "Molt baix"
+
+#: simulation/data/settings/starting_resources.jsonData[1].Title
+msgctxt "startingResources"
+msgid "Low"
+msgstr "Baix"
+
+#: simulation/data/settings/starting_resources.jsonData[2].Title
+msgctxt "startingResources"
+msgid "Medium"
+msgstr "Mitjà"
+
+#: simulation/data/settings/starting_resources.jsonData[3].Title
+msgctxt "startingResources"
+msgid "High"
+msgstr "Alt"
+
+#: simulation/data/settings/starting_resources.jsonData[4].Title
+msgctxt "startingResources"
+msgid "Very High"
+msgstr "Molt alt"
+
+#: simulation/data/settings/starting_resources.jsonData[5].Title
+msgctxt "startingResources"
+msgid "Deathmatch"
+msgstr "Tots contra tots"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[0].Title
+msgid "Very Easy"
+msgstr "Molt fàcil"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[0].Tooltip
+msgid "Choose this difficulty if you are discovering 0 A.D."
+msgstr "Trieu aquesta dificultat si esteu descobrint el 0 A.D."
+
+#: simulation/data/settings/trigger_difficulties.jsonData[1].Title
+msgid "Easy"
+msgstr "Fàcil"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[1].Tooltip
+msgid "Choose this difficulty if you do not like being knocked down."
+msgstr "Trieu aquesta dificultat si no us agrada que us apallissin."
+
+#: simulation/data/settings/map_sizes.jsonData[3].Name
+#: simulation/data/settings/trigger_difficulties.jsonData[2].Title
+msgid "Medium"
+msgstr "Mitjà"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[2].Tooltip
+msgid ""
+"Choose this difficulty if you have already a good experience with 0 A.D."
+msgstr "Trieu aquesta dificultat si ja teniu força experiència amb el 0 A.D."
+
+#: simulation/data/settings/trigger_difficulties.jsonData[3].Title
+msgid "Hard"
+msgstr "Difícil"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[3].Tooltip
+msgid "Choose this difficulty if you want to be really challenged."
+msgstr "Trieu aquesta dificultat si voleu un repte de veritat."
+
+#: simulation/data/settings/trigger_difficulties.jsonData[4].Title
+msgid "Very Hard"
+msgstr "Molt difícil"
+
+#: simulation/data/settings/trigger_difficulties.jsonData[4].Tooltip
+msgid "Choose this difficulty if you do not mind being swept out."
+msgstr "Trieu aquesta dificultat si no us importa rebre de valent."
+
+#: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Description
+msgid ""
+"Capture all relics spread across the map and keep them for a certain time to"
+" win the game."
+msgstr "Trobeu totes les relíquies escampades pel mapa i conserveu-les un temps per guanyar la partida."
+
+#: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Title
+msgid "Capture the Relic"
+msgstr "Captura de relíquies"
+
+#: simulation/data/settings/victory_conditions/conquest.jsonData.Description
+msgid ""
+"Defeat opponents by killing all their units and destroying all their "
+"structures."
+msgstr "Derroteu els adversaris matant totes les seves unitats i destruint tots els seus edificis."
+
+#: simulation/data/settings/victory_conditions/conquest.jsonData.Title
+msgid "Conquest"
+msgstr "Conquesta"
+
+#: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
+msgid "Defeat opponents by destroying all their structures."
+msgstr "Derroteu els adversaris destruint totes les seves estructures."
+
+#: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
+msgid "Conquest Structures"
+msgstr "Conquesta per estructures"
+
+#: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
+msgid "Defeat opponents by killing all their units."
+msgstr "Derroteu els adversaris matant totes les seves unitats."
+
+#: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
+msgid "Conquest Units"
+msgstr "Conquesta per unitats"
+
+#: simulation/data/settings/victory_conditions/regicide.jsonData.Description
+msgid "Defeat opponents by killing their hero."
+msgstr "Derroteu els adversaris matant el seu heroi."
+
+#: simulation/data/settings/victory_conditions/regicide.jsonData.Title
+msgid "Regicide"
+msgstr "Regicidi"
+
+#: simulation/data/settings/victory_conditions/wonder.jsonData.Description
+msgid ""
+"Be the first to build or capture a Wonder and keep it for a certain time to "
+"win the game. The timer will be reset when the Wonder is destroyed or "
+"captured. If the allied victory mode is enabled, the timer will also be "
+"reset when the alliances of the owner change."
+msgstr "El primer jugador que construeixi o capturi una meravella i la mantingui durant un cert temps guanyarà la partida. El temporitzador es reinicia si la meravella és destruïda o capturada. Si s'activa el mode de victòria aliada, el temporitzador també es reinicia quan les aliances del propietari canviïn."
+
+#: simulation/data/settings/victory_conditions/wonder.jsonData.Title
+msgid "Wonder"
+msgstr "Meravella"
+
 #: simulation/helpers/Cheat.js:58
 #, javascript-format
 msgid "%(player)s has been defeated (cheat)."
@@ -624,281 +912,3 @@ msgstr "%(unit)s no es pot controlar."
 #: simulation/helpers/Commands.js:1115
 msgid "The building's technology requirements are not met."
 msgstr "No s'han aconseguit totes les tecnologies necessàries."
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[0].Name
-msgid "Gaia"
-msgstr "Natura"
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[1].Name
-msgid "Player 1"
-msgstr "Jugador 1"
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[2].Name
-msgid "Player 2"
-msgstr "Jugador 2"
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[3].Name
-msgid "Player 3"
-msgstr "Jugador 3"
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[4].Name
-msgid "Player 4"
-msgstr "Jugador 4"
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[5].Name
-msgid "Player 5"
-msgstr "Jugador 5"
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[6].Name
-msgid "Player 6"
-msgstr "Jugador 6"
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[7].Name
-msgid "Player 7"
-msgstr "Jugador 7"
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[8].Name
-msgid "Player 8"
-msgstr "Jugador 8"
-
-#: simulation/data/settings/game_speeds.jsonData[0].Title
-msgid "Turtle (0.1×)"
-msgstr "Tortuga (0,1×)"
-
-#: simulation/data/settings/game_speeds.jsonData[1].Title
-msgid "Slow (0.25×)"
-msgstr "Lent (0,25×)"
-
-#: simulation/data/settings/game_speeds.jsonData[2].Title
-msgid "Leisurely (0.5×)"
-msgstr "Sense pressa (0,5×)"
-
-#: simulation/data/settings/game_speeds.jsonData[3].Title
-msgid "Relaxed (0.75×)"
-msgstr "Relaxat (0,75×)"
-
-#: simulation/data/settings/game_speeds.jsonData[4].Title
-msgid "Normal (1×)"
-msgstr "Normal (1×)"
-
-#: simulation/data/settings/game_speeds.jsonData[5].Title
-msgid "Fast (1.25×)"
-msgstr "Ràpid (1,25×)"
-
-#: simulation/data/settings/game_speeds.jsonData[6].Title
-msgid "Very Fast (1.5×)"
-msgstr "Molt ràpid (1,5×)"
-
-#: simulation/data/settings/game_speeds.jsonData[7].Title
-msgid "Insane (2×)"
-msgstr "Frenètic (2×)"
-
-#: simulation/data/settings/game_speeds.jsonData[8].Title
-msgid "Fast Forward (5×)"
-msgstr "Avança ràpidament (5×)"
-
-#: simulation/data/settings/game_speeds.jsonData[9].Title
-msgid "Fast Forward (10×)"
-msgstr "Avança ràpidament (10×)"
-
-#: simulation/data/settings/game_speeds.jsonData[10].Title
-msgid "Fast Forward (20×)"
-msgstr "Avança ràpidament (20×)"
-
-#: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Description
-msgid ""
-"Capture all relics spread across the map and keep them for a certain time to"
-" win the game."
-msgstr "Trobeu totes les relíquies escampades pel mapa i conserveu-les un temps per guanyar la partida."
-
-#: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Title
-msgid "Capture the Relic"
-msgstr "Captura de relíquies"
-
-#: simulation/data/settings/victory_conditions/conquest.jsonData.Description
-msgid ""
-"Defeat opponents by killing all their units and destroying all their "
-"structures."
-msgstr "Derroteu els adversaris matant totes les seves unitats i destruint tots els seus edificis."
-
-#: simulation/data/settings/victory_conditions/conquest.jsonData.Title
-msgid "Conquest"
-msgstr "Conquesta"
-
-#: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
-msgid "Defeat opponents by destroying all their structures."
-msgstr "Derroteu els adversaris destruint totes les seves estructures."
-
-#: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
-msgid "Conquest Structures"
-msgstr "Conquesta per estructures"
-
-#: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
-msgid "Defeat opponents by killing all their units."
-msgstr "Derroteu els adversaris matant totes les seves unitats."
-
-#: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
-msgid "Conquest Units"
-msgstr "Conquesta per unitats"
-
-#: simulation/data/settings/victory_conditions/regicide.jsonData.Description
-msgid "Defeat opponents by killing their hero."
-msgstr "Derroteu els adversaris matant el seu heroi."
-
-#: simulation/data/settings/victory_conditions/regicide.jsonData.Title
-msgid "Regicide"
-msgstr "Regicidi"
-
-#: simulation/data/settings/victory_conditions/wonder.jsonData.Description
-msgid ""
-"Be the first to build or capture a Wonder and keep it for a certain time to "
-"win the game. The timer will be reset when the Wonder is destroyed or "
-"captured. If the allied victory mode is enabled, the timer will also be "
-"reset when the alliances of the owner change."
-msgstr "El primer jugador que construeixi o capturi una meravella i la mantingui durant un cert temps guanyarà la partida. El temporitzador es reinicia si la meravella és destruïda o capturada. Si s'activa el mode de victòria aliada, el temporitzador també es reinicia quan les aliances del propietari canviïn."
-
-#: simulation/data/settings/victory_conditions/wonder.jsonData.Title
-msgid "Wonder"
-msgstr "Meravella"
-
-#: simulation/data/settings/starting_resources.jsonData[0].Title
-msgctxt "startingResources"
-msgid "Very Low"
-msgstr "Molt baix"
-
-#: simulation/data/settings/starting_resources.jsonData[1].Title
-msgctxt "startingResources"
-msgid "Low"
-msgstr "Baix"
-
-#: simulation/data/settings/starting_resources.jsonData[2].Title
-msgctxt "startingResources"
-msgid "Medium"
-msgstr "Mitjà"
-
-#: simulation/data/settings/starting_resources.jsonData[3].Title
-msgctxt "startingResources"
-msgid "High"
-msgstr "Alt"
-
-#: simulation/data/settings/starting_resources.jsonData[4].Title
-msgctxt "startingResources"
-msgid "Very High"
-msgstr "Molt alt"
-
-#: simulation/data/settings/starting_resources.jsonData[5].Title
-msgctxt "startingResources"
-msgid "Deathmatch"
-msgstr "Tots contra tots"
-
-#: simulation/data/settings/trigger_difficulties.jsonData[0].Tooltip
-msgid "Choose this difficulty if you are discovering 0 A.D."
-msgstr "Trieu aquesta dificultat si esteu descobrint el 0 A.D."
-
-#: simulation/data/settings/trigger_difficulties.jsonData[0].Title
-msgid "Very Easy"
-msgstr "Molt fàcil"
-
-#: simulation/data/settings/trigger_difficulties.jsonData[1].Tooltip
-msgid "Choose this difficulty if you do not like being knocked down."
-msgstr "Trieu aquesta dificultat si no us agrada que us apallissin."
-
-#: simulation/data/settings/trigger_difficulties.jsonData[1].Title
-msgid "Easy"
-msgstr "Fàcil"
-
-#: simulation/data/settings/trigger_difficulties.jsonData[2].Tooltip
-msgid ""
-"Choose this difficulty if you have already a good experience with 0 A.D."
-msgstr "Trieu aquesta dificultat si ja teniu força experiència amb el 0 A.D."
-
-#: simulation/data/settings/trigger_difficulties.jsonData[2].Title
-#: simulation/data/settings/map_sizes.jsonData[3].Name
-msgid "Medium"
-msgstr "Mitjà"
-
-#: simulation/data/settings/trigger_difficulties.jsonData[3].Tooltip
-msgid "Choose this difficulty if you want to be really challenged."
-msgstr "Trieu aquesta dificultat si voleu un repte de veritat."
-
-#: simulation/data/settings/trigger_difficulties.jsonData[3].Title
-msgid "Hard"
-msgstr "Difícil"
-
-#: simulation/data/settings/trigger_difficulties.jsonData[4].Tooltip
-msgid "Choose this difficulty if you do not mind being swept out."
-msgstr "Trieu aquesta dificultat si no us importa rebre de valent."
-
-#: simulation/data/settings/trigger_difficulties.jsonData[4].Title
-msgid "Very Hard"
-msgstr "Molt difícil"
-
-#: simulation/data/settings/map_sizes.jsonData[0].Name
-msgid "Tiny"
-msgstr "Minúscul"
-
-#: simulation/data/settings/map_sizes.jsonData[0].Tooltip
-msgid "This map size has barely any room for even the most basic resources."
-msgstr "Aquest mapa amb prou feines té espai per als recursos bàsics."
-
-#: simulation/data/settings/map_sizes.jsonData[1].Name
-msgid "Small"
-msgstr "Petit"
-
-#: simulation/data/settings/map_sizes.jsonData[1].Tooltip
-msgid ""
-"Small maps are suitable for 1v1 matches, as players can reach the enemy "
-"quickly while still having some room to expand."
-msgstr "Els mapes petits són òptims per a partides d'un contra un perquè els jugadors poden arribar a l'enemic ràpidament i alhora tenir espai per expandir-se."
-
-#: simulation/data/settings/map_sizes.jsonData[2].Name
-msgid "Normal"
-msgstr "Normal"
-
-#: simulation/data/settings/map_sizes.jsonData[2].Tooltip
-msgid ""
-"This map size provides plenty of space for two players, but even eight "
-"players fit."
-msgstr "Aquesta mida de mapa proporciona molt d'espai per a dos jugadors, però n'hi poden cabre fins a vuit."
-
-#: simulation/data/settings/map_sizes.jsonData[3].Tooltip
-msgid ""
-"This is the ideal mapsize for 4 to 8 players, because there is plenty of "
-"space to expand while the neighbors are quickly reachable."
-msgstr "Aquesta és la mida ideal de mapa per a 4 - 8 jugadors, perquè hi ha prou espai per expandir-se sense tenir els veïns massa lluny."
-
-#: simulation/data/settings/map_sizes.jsonData[4].Name
-msgid "Large"
-msgstr "Gran"
-
-#: simulation/data/settings/map_sizes.jsonData[4].Tooltip
-msgid ""
-"The large mapsize is recommended when great portions of the map are covered "
-"with water or inaccessible mountains."
-msgstr "Els mapes grans són recomanables quan hi ha grans seccions cobertes d'aigua o muntanyes inaccessibles."
-
-#: simulation/data/settings/map_sizes.jsonData[5].Name
-msgid "Very Large"
-msgstr "Molt gran"
-
-#: simulation/data/settings/map_sizes.jsonData[5].Tooltip
-#: simulation/data/settings/map_sizes.jsonData[6].Tooltip
-msgid ""
-"Very large maps are not recommended as it takes very long to reach the enemy"
-" and the game performance can be reduced."
-msgstr "Els mapes molt grans no són recomanables perquè es triga molt a arribar fins on és l'enemic i poden afectar el rendiment."
-
-#: simulation/data/settings/map_sizes.jsonData[6].Name
-msgid "Giant"
-msgstr "Gegant"
-
-#: simulation/ai/petra/data.jsonname
-msgid "Petra Bot"
-msgstr "Bot Petra"
-
-#: simulation/ai/petra/data.jsondescription
-msgid ""
-"Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
-"\n"
-"The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr "Petra és la IA per defecte del 0 A.D. Podeu informar de qualsevol error a Wildfire Games mitjançant l'enllaç del menú principal.\n\nLa velocitat de recollida de recursos i benefici comercial de la IA depenen del nivell de dificultat (Proves −58%, Molt fàcil −44%, Fàcil −25%, Mitjà ±0%, Difícil +25%, Molt difícil +56%). A més a més, en el mode de proves la IA no s'expandeix ni ataca."

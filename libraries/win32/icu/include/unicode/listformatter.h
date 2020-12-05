@@ -1,12 +1,14 @@
+// © 2016 and later: Unicode, Inc. and others.
+// License & terms of use: http://www.unicode.org/copyright.html
 /*
 *******************************************************************************
 *
-*   Copyright (C) 2012-2014, International Business Machines
+*   Copyright (C) 2012-2016, International Business Machines
 *   Corporation and others.  All Rights Reserved.
 *
 *******************************************************************************
 *   file name:  listformatter.h
-*   encoding:   US-ASCII
+*   encoding:   UTF-8
 *   tab size:   8 (not used)
 *   indentation:4
 *
@@ -19,10 +21,18 @@
 
 #include "unicode/utypes.h"
 
+#if U_SHOW_CPLUSPLUS_API
+
 #include "unicode/unistr.h"
 #include "unicode/locid.h"
+#include "unicode/formattedvalue.h"
+#include "unicode/ulistformatter.h"
 
 U_NAMESPACE_BEGIN
+
+class FieldPositionHandler;
+class FormattedListData;
+class ListFormatter;
 
 /** @internal */
 class Hashtable;
@@ -31,22 +41,101 @@ class Hashtable;
 struct ListFormatInternal;
 
 /* The following can't be #ifndef U_HIDE_INTERNAL_API, needed for other .h file declarations */
-/** @internal */
+/**
+ * @internal
+ * \cond
+ */
 struct ListFormatData : public UMemory {
     UnicodeString twoPattern;
     UnicodeString startPattern;
     UnicodeString middlePattern;
     UnicodeString endPattern;
+    Locale locale;
 
-  ListFormatData(const UnicodeString& two, const UnicodeString& start, const UnicodeString& middle, const UnicodeString& end) :
-      twoPattern(two), startPattern(start), middlePattern(middle), endPattern(end) {}
+  ListFormatData(const UnicodeString& two, const UnicodeString& start, const UnicodeString& middle, const UnicodeString& end,
+                 const Locale& loc) :
+      twoPattern(two), startPattern(start), middlePattern(middle), endPattern(end), locale(loc) {}
 };
+/** \endcond */
 
 
 /**
  * \file
  * \brief C++ API: API for formatting a list.
  */
+
+
+#if !UCONFIG_NO_FORMATTING
+/**
+ * An immutable class containing the result of a list formatting operation.
+ *
+ * Instances of this class are immutable and thread-safe.
+ *
+ * When calling nextPosition():
+ * The fields are returned from start to end. The special field category
+ * UFIELD_CATEGORY_LIST_SPAN is used to indicate which argument
+ * was inserted at the given position. The span category will
+ * always occur before the corresponding instance of UFIELD_CATEGORY_LIST
+ * in the nextPosition() iterator.
+ *
+ * Not intended for public subclassing.
+ *
+ * @stable ICU 64
+ */
+class U_I18N_API FormattedList : public UMemory, public FormattedValue {
+  public:
+    /**
+     * Default constructor; makes an empty FormattedList.
+     * @stable ICU 64
+     */
+    FormattedList() : fData(nullptr), fErrorCode(U_INVALID_STATE_ERROR) {}
+
+    /**
+     * Move constructor: Leaves the source FormattedList in an undefined state.
+     * @stable ICU 64
+     */
+    FormattedList(FormattedList&& src) U_NOEXCEPT;
+
+    /**
+     * Destruct an instance of FormattedList.
+     * @stable ICU 64
+     */
+    virtual ~FormattedList() U_OVERRIDE;
+
+    /** Copying not supported; use move constructor instead. */
+    FormattedList(const FormattedList&) = delete;
+
+    /** Copying not supported; use move assignment instead. */
+    FormattedList& operator=(const FormattedList&) = delete;
+
+    /**
+     * Move assignment: Leaves the source FormattedList in an undefined state.
+     * @stable ICU 64
+     */
+    FormattedList& operator=(FormattedList&& src) U_NOEXCEPT;
+
+    /** @copydoc FormattedValue::toString() */
+    UnicodeString toString(UErrorCode& status) const U_OVERRIDE;
+
+    /** @copydoc FormattedValue::toTempString() */
+    UnicodeString toTempString(UErrorCode& status) const U_OVERRIDE;
+
+    /** @copydoc FormattedValue::appendTo() */
+    Appendable &appendTo(Appendable& appendable, UErrorCode& status) const U_OVERRIDE;
+
+    /** @copydoc FormattedValue::nextPosition() */
+    UBool nextPosition(ConstrainedFieldPosition& cfpos, UErrorCode& status) const U_OVERRIDE;
+
+  private:
+    FormattedListData *fData;
+    UErrorCode fErrorCode;
+    explicit FormattedList(FormattedListData *results)
+        : fData(results), fErrorCode(U_ZERO_ERROR) {}
+    explicit FormattedList(UErrorCode errorCode)
+        : fData(nullptr), fErrorCode(errorCode) {}
+    friend class ListFormatter;
+};
+#endif // !UCONFIG_NO_FORMATTING
 
 
 /**
@@ -59,7 +148,7 @@ struct ListFormatData : public UMemory {
  * The ListFormatter class is not intended for public subclassing.
  * @stable ICU 50
  */
-class U_COMMON_API ListFormatter : public UObject{
+class U_I18N_API ListFormatter : public UObject{
 
   public:
 
@@ -96,12 +185,31 @@ class U_COMMON_API ListFormatter : public UObject{
      */
     static ListFormatter* createInstance(const Locale& locale, UErrorCode& errorCode);
 
+#ifndef U_HIDE_DRAFT_API
+#if !UCONFIG_NO_FORMATTING
+    /**
+     * Creates a ListFormatter for the given locale, list type, and style.
+     *
+     * @param locale The locale.
+     * @param type The type of list formatting to use.
+     * @param width The width of formatting to use.
+     * @param errorCode ICU error code, set if no data available for the given locale.
+     * @return A ListFormatter object created from internal data derived from CLDR data.
+     * @draft ICU 67
+     */
+    static ListFormatter* createInstance(
+      const Locale& locale, UListFormatterType type, UListFormatterWidth width, UErrorCode& errorCode);
+#endif  /* !UCONFIG_NO_FORMATTING */
+#endif  /* U_HIDE_DRAFT_API */
+  
 #ifndef U_HIDE_INTERNAL_API
     /**
      * Creates a ListFormatter appropriate for a locale and style.
      *
+     * TODO(ICU-20888): Remove this in ICU 68.
+     *
      * @param locale The locale.
-     * @param style the style, either "standard", "duration", or "duration-short"
+     * @param style the style, either "standard", "or", "unit", "unit-narrow", or "unit-short"
      * @param errorCode ICU error code, set if no data available for the given locale.
      * @return A ListFormatter object created from internal data derived from
      *     CLDR data.
@@ -131,6 +239,24 @@ class U_COMMON_API ListFormatter : public UObject{
     UnicodeString& format(const UnicodeString items[], int32_t n_items,
         UnicodeString& appendTo, UErrorCode& errorCode) const;
 
+#if !UCONFIG_NO_FORMATTING
+    /**
+     * Formats a list of strings to a FormattedList, which exposes field
+     * position information. The FormattedList contains more information than
+     * a FieldPositionIterator.
+     *
+     * @param items     An array of strings to be combined and formatted.
+     * @param n_items   Length of the array items.
+     * @param errorCode ICU error code returned here.
+     * @return          A FormattedList containing field information.
+     * @stable ICU 64
+     */
+    FormattedList formatStringsToValue(
+        const UnicodeString items[],
+        int32_t n_items,
+        UErrorCode& errorCode) const;
+#endif // !UCONFIG_NO_FORMATTING
+
 #ifndef U_HIDE_INTERNAL_API
     /**
       @internal for MeasureFormat
@@ -145,7 +271,7 @@ class U_COMMON_API ListFormatter : public UObject{
     /**
      * @internal constructor made public for testing.
      */
-    ListFormatter(const ListFormatData &data);
+    ListFormatter(const ListFormatData &data, UErrorCode &errorCode);
     /**
      * @internal constructor made public for testing.
      */
@@ -155,6 +281,12 @@ class U_COMMON_API ListFormatter : public UObject{
   private:
     static void initializeHash(UErrorCode& errorCode);
     static const ListFormatInternal* getListFormatInternal(const Locale& locale, const char *style, UErrorCode& errorCode);
+    struct ListPatternsSink;
+    static ListFormatInternal* loadListFormatInternal(const Locale& locale, const char* style, UErrorCode& errorCode);
+
+    UnicodeString& format_(
+        const UnicodeString items[], int32_t n_items, UnicodeString& appendTo,
+        int32_t index, int32_t &offset, FieldPositionHandler* handler, UErrorCode& errorCode) const;
 
     ListFormatter();
 
@@ -164,4 +296,6 @@ class U_COMMON_API ListFormatter : public UObject{
 
 U_NAMESPACE_END
 
-#endif
+#endif /* U_SHOW_CPLUSPLUS_API */
+
+#endif // __LISTFORMATTER_H__

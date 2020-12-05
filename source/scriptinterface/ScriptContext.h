@@ -69,10 +69,10 @@ public:
 	void ShrinkingGC();
 
 	/**
-	 * This is used to keep track of compartments which should be prepared for a GC.
+	 * This is used to keep track of realms which should be prepared for a GC.
 	 */
-	void RegisterCompartment(JSCompartment* cmpt);
-	void UnRegisterCompartment(JSCompartment* cmpt);
+	void RegisterRealm(JS::Realm* realm);
+	void UnRegisterRealm(JS::Realm* realm);
 
 	/**
 	 * GetGeneralJSContext returns the context without starting a GC request and without
@@ -87,8 +87,8 @@ private:
 
 	JSContext* m_cx;
 
-	void PrepareCompartmentsForIncrementalGC() const;
-	std::list<JSCompartment*> m_Compartments;
+	void PrepareZonesForIncrementalGC() const;
+	std::list<JS::Realm*> m_Realms;
 
 	int m_ContextSize;
 	int m_HeapGrowthBytesGCTrigger;

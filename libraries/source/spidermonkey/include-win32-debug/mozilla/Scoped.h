@@ -81,7 +81,7 @@ class MOZ_NON_TEMPORARY_CLASS Scoped {
 
   /* Move constructor. */
   Scoped(Scoped&& aOther MOZ_GUARD_OBJECT_NOTIFIER_PARAM)
-      : mValue(Move(aOther.mValue)) {
+      : mValue(std::move(aOther.mValue)) {
     MOZ_GUARD_OBJECT_NOTIFIER_INIT;
     aOther.mValue = Traits::empty();
   }
@@ -142,7 +142,7 @@ class MOZ_NON_TEMPORARY_CLASS Scoped {
   Scoped& operator=(Scoped&& aRhs) {
     MOZ_ASSERT(&aRhs != this, "self-move-assignment not allowed");
     this->~Scoped();
-    new (this) Scoped(Move(aRhs));
+    new (this) Scoped(std::move(aRhs));
     return *this;
   }
 
@@ -163,30 +163,30 @@ class MOZ_NON_TEMPORARY_CLASS Scoped {
  * @param Traits A struct implementing clean-up. See the implementations
  * for more details.
  */
-#define SCOPED_TEMPLATE(name, Traits)                                    \
-  template <typename Type>                                               \
-  struct MOZ_NON_TEMPORARY_CLASS name                                    \
-      : public mozilla::Scoped<Traits<Type> > {                          \
-    typedef mozilla::Scoped<Traits<Type> > Super;                        \
-    typedef typename Super::Resource Resource;                           \
-    name& operator=(Resource aRhs) {                                     \
-      Super::operator=(aRhs);                                            \
-      return *this;                                                      \
-    }                                                                    \
-    name& operator=(name&& aRhs) {                                       \
-      Super::operator=(Move(aRhs));                                      \
-      return *this;                                                      \
-    }                                                                    \
-    explicit name(MOZ_GUARD_OBJECT_NOTIFIER_ONLY_PARAM)                  \
-        : Super(MOZ_GUARD_OBJECT_NOTIFIER_ONLY_PARAM_TO_PARENT) {}       \
-    explicit name(Resource aRhs MOZ_GUARD_OBJECT_NOTIFIER_PARAM)         \
-        : Super(aRhs MOZ_GUARD_OBJECT_NOTIFIER_PARAM_TO_PARENT) {}       \
-    name(name&& aRhs MOZ_GUARD_OBJECT_NOTIFIER_PARAM)                    \
-        : Super(Move(aRhs) MOZ_GUARD_OBJECT_NOTIFIER_PARAM_TO_PARENT) {} \
-                                                                         \
-   private:                                                              \
-    explicit name(name&) = delete;                                       \
-    name& operator=(name&) = delete;                                     \
+#define SCOPED_TEMPLATE(name, Traits)                                         \
+  template <typename Type>                                                    \
+  struct MOZ_NON_TEMPORARY_CLASS name                                         \
+      : public mozilla::Scoped<Traits<Type> > {                               \
+    typedef mozilla::Scoped<Traits<Type> > Super;                             \
+    typedef typename Super::Resource Resource;                                \
+    name& operator=(Resource aRhs) {                                          \
+      Super::operator=(aRhs);                                                 \
+      return *this;                                                           \
+    }                                                                         \
+    name& operator=(name&& aRhs) {                                            \
+      Super::operator=(std::move(aRhs));                                      \
+      return *this;                                                           \
+    }                                                                         \
+    explicit name(MOZ_GUARD_OBJECT_NOTIFIER_ONLY_PARAM)                       \
+        : Super(MOZ_GUARD_OBJECT_NOTIFIER_ONLY_PARAM_TO_PARENT) {}            \
+    explicit name(Resource aRhs MOZ_GUARD_OBJECT_NOTIFIER_PARAM)              \
+        : Super(aRhs MOZ_GUARD_OBJECT_NOTIFIER_PARAM_TO_PARENT) {}            \
+    name(name&& aRhs MOZ_GUARD_OBJECT_NOTIFIER_PARAM)                         \
+        : Super(std::move(aRhs) MOZ_GUARD_OBJECT_NOTIFIER_PARAM_TO_PARENT) {} \
+                                                                              \
+   private:                                                                   \
+    explicit name(name&) = delete;                                            \
+    name& operator=(name&) = delete;                                          \
   };
 
 /*

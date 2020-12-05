@@ -1,7 +1,7 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright (C) 2020 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
-# 
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
+# project.
 # Translators:
 # Ole Sannes Riiser <OLE-SR@online.no>, 2017
 # Allan Nordhøy <epost@anotheragency.no>, 2018
@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2020-11-13 08:10+0000\n"
+"POT-Creation-Date: 2020-11-28 10:01+0000\n"
 "PO-Revision-Date: 2017-06-04 12:59+0000\n"
 "Last-Translator: Specced, 2019\n"
 "Language-Team: Norwegian Bokmål (https://www.transifex.com/wildfire-games/teams/17418/nb/)\n"
@@ -238,6 +238,25 @@ msgstr "Kvinnelige borgere burde fortsette å samle ressurser."
 msgid "The enemy has been defeated. These tutorial tasks are now completed."
 msgstr ""
 "Fienden har blitt beseiret. Disse veiledningsoppgavene er nå fullførte."
+
+#: maps/tutorials/introductory_tutorial.xml:Description:39
+msgid "This is a basic tutorial to get you started playing 0 A.D."
+msgstr ""
+"Dette er en grunnleggende veiledning som har til hensikt å hjelpe deg igang "
+"med å spille 0 A.D"
+
+#: maps/tutorials/introductory_tutorial.xml:Name:39
+msgid "Introductory Tutorial"
+msgstr "Introduksjons-veiledning"
+
+#: maps/tutorials/introductory_tutorial.xml:PlayerData[0].Name:39
+#: maps/tutorials/starting_economy_walkthrough.xml:PlayerData[0].Name:39
+msgid "Player 1"
+msgstr "Spiller 1"
+
+#: maps/tutorials/introductory_tutorial.xml:PlayerData[1].Name:39
+msgid "Player 2"
+msgstr "Spiller 1"
 
 #: maps/tutorials/starting_economy_walkthrough.js:4
 msgid ""
@@ -808,25 +827,6 @@ msgid ""
 msgstr ""
 "Dette er slutten på veiledningen. Dette burde ha gitt deg en god ide om "
 "hovedtrekkene i å sette opp økonomien din."
-
-#: maps/tutorials/introductory_tutorial.xml:Description:39
-msgid "This is a basic tutorial to get you started playing 0 A.D."
-msgstr ""
-"Dette er en grunnleggende veiledning som har til hensikt å hjelpe deg igang "
-"med å spille 0 A.D"
-
-#: maps/tutorials/introductory_tutorial.xml:PlayerData[0].Name:39
-#: maps/tutorials/starting_economy_walkthrough.xml:PlayerData[0].Name:39
-msgid "Player 1"
-msgstr "Spiller 1"
-
-#: maps/tutorials/introductory_tutorial.xml:PlayerData[1].Name:39
-msgid "Player 2"
-msgstr "Spiller 1"
-
-#: maps/tutorials/introductory_tutorial.xml:Name:39
-msgid "Introductory Tutorial"
-msgstr "Introduksjons-veiledning"
 
 #: maps/tutorials/starting_economy_walkthrough.xml:Description:39
 msgid ""

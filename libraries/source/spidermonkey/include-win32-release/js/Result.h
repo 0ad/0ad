@@ -1,10 +1,12 @@
-/* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*-
- * vim: set ts=8 sts=4 et sw=4 tw=99:
+/* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+ * vim: set ts=8 sts=2 et sw=2 tw=80:
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 /*
+ * [SMDOC] JS::Result
+ *
  * `Result` is used as the return type of many SpiderMonkey functions that
  * can either succeed or fail. See "/mfbt/Result.h".
  *
@@ -145,13 +147,13 @@
  * Like JS_TRY_OR_RETURN_FALSE, but returning nullptr on error,
  * rather than false.
  */
-#define JS_TRY_OR_RETURN_NULL(cx, expr)                \
-  do {                                                 \
-    auto tmpResult_ = (expr);                          \
-    if (tmpResult_.isErr()) {                          \
-      JS_ALWAYS_FALSE((cx)->resultToBool(tmpResult_)); \
-      return nullptr;                                  \
-    }                                                  \
+#define JS_TRY_OR_RETURN_NULL(cx, expr)                 \
+  do {                                                  \
+    auto tmpResult_ = (expr);                           \
+    if (tmpResult_.isErr()) {                           \
+      MOZ_ALWAYS_FALSE((cx)->resultToBool(tmpResult_)); \
+      return nullptr;                                   \
+    }                                                   \
   } while (0)
 
 #define JS_TRY_VAR_OR_RETURN_FALSE(cx, target, expr)               \
@@ -161,14 +163,14 @@
     (target) = tmpResult_.unwrap();                                \
   } while (0)
 
-#define JS_TRY_VAR_OR_RETURN_NULL(cx, target, expr)    \
-  do {                                                 \
-    auto tmpResult_ = (expr);                          \
-    if (tmpResult_.isErr()) {                          \
-      JS_ALWAYS_FALSE((cx)->resultToBool(tmpResult_)); \
-      return nullptr;                                  \
-    }                                                  \
-    (target) = tmpResult_.unwrap();                    \
+#define JS_TRY_VAR_OR_RETURN_NULL(cx, target, expr)     \
+  do {                                                  \
+    auto tmpResult_ = (expr);                           \
+    if (tmpResult_.isErr()) {                           \
+      MOZ_ALWAYS_FALSE((cx)->resultToBool(tmpResult_)); \
+      return nullptr;                                   \
+    }                                                   \
+    (target) = tmpResult_.unwrap();                     \
   } while (0)
 
 namespace JS {

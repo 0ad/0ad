@@ -85,7 +85,7 @@ if [ "`uname -s`" != "Darwin" ]; then
   echo
 
   # Build/update bundled external libraries
-  (cd ../../libraries/source/fcollada/src && ${MAKE} ${JOBS}) || die "FCollada build failed"
+  (cd ../../libraries/source/fcollada && MAKE=${MAKE} JOBS=${JOBS} ./build.sh) || die "FCollada build failed"
   echo
   if [ "$with_system_mozjs" = "false" ]; then
     (cd ../../libraries/source/spidermonkey && MAKE=${MAKE} JOBS=${JOBS} ./build.sh) || die "SpiderMonkey build failed"

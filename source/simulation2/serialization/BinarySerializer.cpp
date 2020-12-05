@@ -129,7 +129,7 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 			HandleScriptVal(bufferVal);
 			break;
 		}
-		else if (JS_IsArrayBufferObject(obj))
+		else if (JS::IsArrayBufferObject(obj))
 		{
 			m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_ARRAY_BUFFER);
 
@@ -137,11 +137,11 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 #error TODO: need to convert JS ArrayBuffer data to little-endian
 #endif
 
-			u32 length = JS_GetArrayBufferByteLength(obj);
+			u32 length = JS::GetArrayBufferByteLength(obj);
 			m_Serializer.NumberU32_Unbounded("buffer length", length);
 			JS::AutoCheckCannotGC nogc;
 			bool sharedMemory;
-			m_Serializer.RawBytes("buffer data", (const u8*)JS_GetArrayBufferData(obj, &sharedMemory, nogc), length);
+			m_Serializer.RawBytes("buffer data", (const u8*)JS::GetArrayBufferData(obj, &sharedMemory, nogc), length);
 			break;
 		}
 

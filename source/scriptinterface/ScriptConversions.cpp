@@ -18,6 +18,7 @@
 #include "precompiled.h"
 
 #include "ScriptConversions.h"
+#include "ScriptExtraHeaders.h"
 
 #include "graphics/Entity.h"
 #include "maths/Vector2D.h"
@@ -28,7 +29,7 @@
 #define FAIL(msg) STMT(LOGERROR(msg); return false)
 
 // Implicit type conversions often hide bugs, so warn about them
-#define WARN_IF_NOT(c, v) STMT(if (!(c)) { JS_ReportWarningUTF8(rq.cx, "Script value conversion check failed: %s (got type %s)", #c, JS::InformalValueTypeName(v)); })
+#define WARN_IF_NOT(c, v) STMT(if (!(c)) { JS::WarnUTF8(rq.cx, "Script value conversion check failed: %s (got type %s)", #c, JS::InformalValueTypeName(v)); })
 
 template<> bool ScriptInterface::FromJSVal<bool>(const ScriptRequest& rq, JS::HandleValue v, bool& out)
 {

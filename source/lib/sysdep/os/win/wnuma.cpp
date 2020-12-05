@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -232,13 +232,19 @@ static ProximityDomains ExtractProximityDomainsFromSRAT(const SRAT* srat)
 		header = (const AffinityHeader*)(uintptr_t(header) + header->length))
 	{
 		const AffinityAPIC* affinityAPIC = DynamicCastFromHeader<AffinityAPIC>(header);
-		if(affinityAPIC)
+		if(!affinityAPIC)
+			continue;
+
+		if(!IsProcessorKnown(affinityAPIC->apicId))
 		{
-			const size_t processor = ProcessorFromApicId(affinityAPIC->apicId);
-			const u32 proximityDomainNumber = affinityAPIC->ProximityDomainNumber();
-			ProximityDomain& proximityDomain = proximityDomains[proximityDomainNumber];
-			proximityDomain.processorMask |= Bit<uintptr_t>(processor);
+			debug_printf("Processor with APIC ID %d found in SRAT but not known to CPUID.", affinityAPIC->apicId);
+			continue;
 		}
+
+		const size_t processor = ProcessorFromApicId(affinityAPIC->apicId);
+		const u32 proximityDomainNumber = affinityAPIC->ProximityDomainNumber();
+		ProximityDomain& proximityDomain = proximityDomains[proximityDomainNumber];
+		proximityDomain.processorMask |= Bit<uintptr_t>(processor);
 	}
 
 	return proximityDomains;

@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-#
 # Copyright (C) 2008-2011 Edgewall Software
 # Copyright (C) 2013-2014 Wildfire Games.
 # All rights reserved.
@@ -30,8 +28,6 @@
 """A simple JavaScript 1.5 lexer which is used for the JavaScript
 extractor.
 """
-
-from __future__ import absolute_import, division, print_function, unicode_literals
 
 from operator import itemgetter
 import re
@@ -128,7 +124,7 @@ def unquote_string(string):
                 escaped_value = escaped.group()
                 if len(escaped_value) == 4:
                     try:
-                        add(unichr(int(escaped_value, 16)))
+                        add(chr(int(escaped_value, 16)))
                     except ValueError:
                         pass
                     else:

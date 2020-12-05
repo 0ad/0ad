@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -110,6 +110,13 @@ bool AreApicIdsReliable()
 	return true;
 }
 
+bool IsProcessorKnown(ApicId apicId)
+{
+	ModuleInit(&apicInitState, InitApicIds);
+
+	const ApicId* pos = std::find(processorApicIds, processorApicIds+numIds, apicId);
+	return pos != processorApicIds+numIds;
+}
 
 static size_t IndexFromApicId(const ApicId* apicIds, ApicId apicId)
 {

@@ -573,7 +573,7 @@ PETRA.NavalManager.prototype.moveApart = function(gameState)
 			// New transport ships receive boarding commands only on the following turn.
 			if (gameState.ai.playedTurn < ship.getMetadata(PlayerID, "turnPreviousPosition") + 2)
 				continue;
-			ship.moveToRange(shipPosition[0] + randFloat(-1, 1), shipPosition[1] + randFloat(-1, 1), 30, 30);
+			ship.moveToRange(shipPosition[0] + randFloat(-1, 1), shipPosition[1] + randFloat(-1, 1), 30, 35);
 			blockedShips.push(ship);
 			blockedIds.push(ship.id());
 		}
@@ -601,7 +601,7 @@ PETRA.NavalManager.prototype.moveApart = function(gameState)
 					continue;
 				if (API3.SquareVectorDistance(shipPosition, dock.position()) > 4900)
 					continue;
-				ship.moveToRange(dock.position()[0], dock.position()[1], 70, 70);
+				ship.moveToRange(dock.position()[0], dock.position()[1], 70, 75);
 			}
 
 		}
@@ -630,7 +630,7 @@ PETRA.NavalManager.prototype.moveApart = function(gameState)
 			// New transport ships receives boarding commands only on the following turn.
 			if (gameState.ai.playedTurn < ship.getMetadata(PlayerID, "turnPreviousPosition") + 2)
 				continue;
-			ship.moveToRange(shipPosition[0] + randFloat(-1, 1), shipPosition[1] + randFloat(-1, 1), 30, 30);
+			ship.moveToRange(shipPosition[0] + randFloat(-1, 1), shipPosition[1] + randFloat(-1, 1), 30, 35);
 			blockedShips.push(ship);
 			blockedIds.push(ship.id());
 		}
@@ -658,7 +658,7 @@ PETRA.NavalManager.prototype.moveApart = function(gameState)
 					continue;
 				if (API3.SquareVectorDistance(shipPosition, dock.position()) > 4900)
 					continue;
-				ship.moveToRange(dock.position()[0], dock.position()[1], 70, 70);
+				ship.moveToRange(dock.position()[0], dock.position()[1], 70, 75);
 			}
 		}
 	}
@@ -678,10 +678,10 @@ PETRA.NavalManager.prototype.moveApart = function(gameState)
 			    unitAIState != "INDIVIDUAL.RETURNRESOURCE.APPROACHING")
 			{
 				if (distSquare < 1600)
-					blockingShip.moveToRange(shipPosition[0], shipPosition[1], 40, 40);
+					blockingShip.moveToRange(shipPosition[0], shipPosition[1], 40, 45);
 			}
 			else if (distSquare < 900)
-				blockingShip.moveToRange(shipPosition[0], shipPosition[1], 30, 30);
+				blockingShip.moveToRange(shipPosition[0], shipPosition[1], 30, 35);
 		}
 
 		for (let blockingShip of gameState.ai.HQ.tradeManager.traders.filter(API3.Filters.byClass("Ship")).values())
@@ -698,10 +698,10 @@ PETRA.NavalManager.prototype.moveApart = function(gameState)
 			if (unitAIState != "INDIVIDUAL.TRADE.APPROACHINGMARKET")
 			{
 				if (distSquare < 1600)
-					blockingShip.moveToRange(shipPosition[0], shipPosition[1], 40, 40);
+					blockingShip.moveToRange(shipPosition[0], shipPosition[1], 40, 45);
 			}
 			else if (distSquare < 900)
-				blockingShip.moveToRange(shipPosition[0], shipPosition[1], 30, 30);
+				blockingShip.moveToRange(shipPosition[0], shipPosition[1], 30, 35);
 		}
 	}
 };

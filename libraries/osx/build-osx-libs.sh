@@ -28,7 +28,7 @@ SDL2_VERSION="SDL2-2.0.12"
 # NOTE: remember to also update LIB_URL below when changing version
 BOOST_VERSION="boost_1_74_0"
 # NOTE: remember to also update LIB_URL below when changing version
-WXWIDGETS_VERSION="wxWidgets-3.0.3.1"
+WXWIDGETS_VERSION="wxWidgets-3.0.5.1"
 # libpng was included as part of X11 but that's removed from Mountain Lion
 # (also the Snow Leopard version was ancient 1.2)
 PNG_VERSION="libpng-1.6.36"
@@ -52,11 +52,7 @@ FMT_VERSION="7.1.3"
 # * SpiderMonkey
 # * NVTT
 # * FCollada
-# --------------------------------------------------------------
-# We use suffixes here in order to force rebuilding when patching these libs
-NVTT_VERSION="nvtt-2.1.1+wildfiregames.2"
-FCOLLADA_VERSION="fcollada-3.05+wildfiregames.2"
-# --------------------------------------------------------------
+
 # Provided by OS X:
 # * OpenAL
 # * OpenGL
@@ -86,7 +82,7 @@ if [[ $MIN_OSX_VERSION && ${MIN_OSX_VERSION-_} ]]; then
 fi
 
 CFLAGS="$CFLAGS $C_FLAGS -fvisibility=hidden"
-CXXFLAGS="$CXXFLAGS $C_FLAGS -stdlib=libc++ -std=c++14 -msse4.1"
+CXXFLAGS="$CXXFLAGS $C_FLAGS -stdlib=libc++ -std=c++17 -msse4.1"
 OBJCFLAGS="$OBJCFLAGS $C_FLAGS"
 OBJCXXFLAGS="$OBJCXXFLAGS $C_FLAGS"
 
@@ -397,7 +393,7 @@ echo -e "Building wxWidgets..."
 LIB_VERSION="${WXWIDGETS_VERSION}"
 LIB_ARCHIVE="$LIB_VERSION.tar.bz2"
 LIB_DIRECTORY="$LIB_VERSION"
-LIB_URL="http://github.com/wxWidgets/wxWidgets/releases/download/v3.0.3.1/"
+LIB_URL="http://github.com/wxWidgets/wxWidgets/releases/download/v3.0.5.1/"
 
 mkdir -p wxwidgets
 pushd wxwidgets > /dev/null
@@ -427,6 +423,7 @@ then
     --without-libtiff
     --without-sdl
     --without-x
+    --disable-stc
     --disable-webview
     --disable-webkit
     --disable-webviewwebkit
@@ -955,73 +952,26 @@ popd > /dev/null
 
 # --------------------------------------------------------------
 # NVTT - bundled, no download
-echo -e "Building NVTT..."
-
-LIB_VERSION="${NVTT_VERSION}"
-
 pushd ../source/nvtt > /dev/null
 
-if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ "$(<.already-built)" != "$LIB_VERSION" ]]
+if [[ "$force_rebuild" = "true" ]]
 then
   rm -f .already-built
-  rm -f lib/*.a
-  pushd src
-  rm -rf build
-  mkdir -p build
-
-  pushd build
-
-  # Could use CMAKE_OSX_DEPLOYMENT_TARGET and CMAKE_OSX_SYSROOT
-  # but they're not as flexible for cross-compiling
-  # Disable png support (avoids some conflicts with MacPorts)
-  (cmake .. \
-      -DCMAKE_LINK_FLAGS="$LDFLAGS" \
-      -DCMAKE_C_FLAGS="$CFLAGS" \
-      -DCMAKE_CXX_FLAGS="$CXXFLAGS" \
-      -DCMAKE_BUILD_TYPE=Release \
-      -DBINDIR=bin \
-      -DLIBDIR=lib \
-      -DPNG=0 \
-      -G "Unix Makefiles" \
-    && make clean && make nvtt ${JOBS}) || die "NVTT build failed"
-  popd
-
-  mkdir -p ../lib
-  cp build/src/bc*/libbc*.a ../lib/
-  cp build/src/nv*/libnv*.a ../lib/
-  cp build/src/nvtt/squish/libsquish.a ../lib/
-  popd
-  echo "$LIB_VERSION" > .already-built
-else
-  already_built
 fi
+
+CXXFLAGS="$CXXFLAGS" CFLAGS="$CFLAGS" LDFLAGS="$LDFLAGS" JOBS="$JOBS" ./build.sh || die "Error building NVTT"
+
 popd > /dev/null
 
 # --------------------------------------------------------------
 # FCollada - bundled, no download
-echo -e "Building FCollada..."
+pushd ../source/fcollada/ > /dev/null
 
-LIB_VERSION="${FCOLLADA_VERSION}"
-
-pushd ../source/fcollada > /dev/null
-
-if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ "$(<.already-built)" != "$LIB_VERSION" ]]
+if [[ "$force_rebuild" = "true" ]]
 then
   rm -f .already-built
-  rm -f lib/*.a
-  pushd src
-  rm -rf output
-  mkdir -p ../lib
-
-  # The Makefile refers to pkg-config for libxml2, but we
-  # don't have that (replace with xml2-config instead)
-  sed -i.bak -e 's/pkg-config libxml-2.0/xml2-config/' Makefile
-  (make clean && CXXFLAGS=$CXXFLAGS make ${JOBS}) || die "FCollada build failed"
-  # Undo Makefile change
-  mv Makefile.bak Makefile
-  popd
-  echo "$LIB_VERSION" > .already-built
-else
-  already_built
 fi
+
+CXXFLAGS="$CXXFLAGS" CFLAGS="$CFLAGS" LDFLAGS="$LDFLAGS" JOBS="$JOBS" ./build.sh || die "Error building FCollada"
+
 popd > /dev/null

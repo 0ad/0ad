@@ -186,7 +186,7 @@ void GUI_DisplayLoadProgress(int percent, const wchar_t* pending_task)
 	const ScriptInterface& scriptInterface = *(g_GUI->GetActiveGUI()->GetScriptInterface());
 	ScriptRequest rq(scriptInterface);
 
-	JS::AutoValueVector paramData(rq.cx);
+	JS::RootedValueVector paramData(rq.cx);
 
 	DISCARD paramData.append(JS::NumberValue(percent));
 
@@ -595,8 +595,6 @@ static void InitRenderer()
 
 	// create terrain related stuff
 	new CTerrainTextureManager;
-
-	g_RenderingOptions.ReadConfigAndSetupHooks();
 
 	g_Renderer.Open(g_xres, g_yres);
 
@@ -1044,6 +1042,9 @@ void InitGraphics(const CmdLineArgs& args, int flags, const std::vector<CStr>& i
 	}
 
 	ogl_WarnIfError();
+
+	g_RenderingOptions.ReadConfigAndSetupHooks();
+
 	InitRenderer();
 
 	InitInput();

@@ -1,13 +1,13 @@
 # Translation template for Pyrogenesis - Mod Selector.
 # Copyright (C) 2020 Wildfire Games
-# This file is distributed under the same license as the Pyrogenesis - Mod Selector project.
-# 
+# This file is distributed under the same license as the Pyrogenesis - Mod Selector
+# project.
 # Translators:
 # abuyop <abuyop@gmail.com>, 2014,2017-2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-13 07:19+0000\n"
+"POT-Creation-Date: 2020-11-28 10:01+0000\n"
 "PO-Revision-Date: 2020-07-13 13:20+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Malay (http://www.transifex.com/wildfire-games/0ad/language/ms/)\n"
@@ -55,7 +55,8 @@ msgid "%(filesize)s %(unit)s"
 msgstr "%(filesize)s %(unit)s"
 
 #. Translation: Time-format string. See http://userguide.icu-
-#. project.org/formatparse/datetime for a guide to the meaning of the letters.
+#. project.org/formatparse/datetime
+#. for a guide to the meaning of the letters.
 #: gui/common/l10n.js:46
 msgid "mm:ss"
 msgstr "mm:ss"
@@ -91,6 +92,43 @@ msgctxt "Mod comparison"
 msgid "Active: %(mods)s"
 msgstr "Aktif: %(mods)s"
 
+#: gui/modio/Disclaimer.txt:1
+msgid "0 A.D. Empires Ascendant mod.io Disclaimer"
+msgstr "Penafian mod.io 0 A.D. Empires Ascendant (Kekuasaan Empayar)"
+
+#: gui/modio/Disclaimer.txt:3
+msgid "Document Date: 2018-10-12"
+msgstr "Tarikh Dikumen: 2018-10-12"
+
+#: gui/modio/Disclaimer.txt:5
+msgid "You are about to connect to the mod.io online service."
+msgstr "Anda kini sedang bersambung dengan perkhidmatan atas-talian mod.io."
+
+#: gui/modio/Disclaimer.txt:6
+msgid ""
+"This service provides an easy way to download and install community-made "
+"mods and is provided by DBolical Pty Ltd, the company behind IndieDB and "
+"ModDB."
+msgstr "Perkhidmatan ini menyediakan laluan mudah untuk muat turun dan pasang mod buatan-komuniti dan daripada DBolical Pty Ltd, syarikat disebalik IndieDB dan ModDB."
+
+#: gui/modio/Disclaimer.txt:7
+msgid "The service is for users age 13 and over."
+msgstr "Perkhidmatan untuk pengguna berusia 13 tahun dan ke atas."
+
+#: gui/modio/Disclaimer.txt:9
+msgid ""
+"Wildfire Games has taken care to make this connection secure and reviewed "
+"the mods for security flaws, but cannot guarantee that this does not pose "
+"any risks."
+msgstr "Wildfire Games telah memastikan sambungan ini selamat dan menyemak mod jika ada kerentanan keselamatan, tetapi tidak memberi jaminan ia tidak menimbulkan apa-apa risiko."
+
+#: gui/modio/Disclaimer.txt:11
+msgid ""
+"By using the service, you understand that mod.io's Terms of Use and Privacy "
+"Policy apply and that Wildfire Games is not liable for any damages resulting"
+" from this service."
+msgstr "Dengan menggunakan perkhidmatan ini, anda memahami dan setuju dengan Terma Penggunaan mod.io serta Dasar Kerahsiaan yang mana Wildfire Games tidak bertanggungjawab atas apa jua kerosakan yang berlaku daripada perkhidmatan ini."
+
 #: gui/modio/modio.js:80
 #, javascript-format
 msgctxt "mod.io error message"
@@ -106,13 +144,13 @@ msgid "Initialization Error"
 msgstr "Ralat Pengawalan"
 
 #: gui/modio/modio.js:84 gui/modio/modio.js:95 gui/modio/modio.js:106
+msgid "Retry"
+msgstr "Cuba lagi"
+
+#: gui/modio/modio.js:84 gui/modio/modio.js:95 gui/modio/modio.js:106
 #: gui/modio/modio.js:117
 msgid "Abort"
 msgstr "Henti paksa"
-
-#: gui/modio/modio.js:84 gui/modio/modio.js:95 gui/modio/modio.js:106
-msgid "Retry"
-msgstr "Cuba lagi"
 
 #: gui/modio/modio.js:91
 #, javascript-format
@@ -199,7 +237,8 @@ msgid "Cancel Download"
 msgstr "Batal Muat Turun"
 
 #. Translation: Mod file download indicator. Current size over expected final
-#. size, with percentage complete.
+#. size, with
+#. percentage complete.
 #: gui/modio/modio.js:333
 #, javascript-format
 msgid "%(current)s / %(total)s (%(percent)s%%)"
@@ -219,65 +258,12 @@ msgid "∞"
 msgstr "∞"
 
 #. Translation: Average download speed, used to give the user a very rough and
-#. naive idea of the download time. For example: 123.4 KiB/s
+#. naive idea of
+#. the download time. For example: 123.4 KiB/s
 #: gui/modio/modio.js:347
 #, javascript-format
 msgid "%(number)s %(unit)s/s"
 msgstr "%(number)s %(unit)s/s"
-
-#: gui/modmod/modmod.js:107 gui/modmod/modmod.js:254 gui/modmod/modmod.js:275
-msgid "Filter"
-msgstr "Penapis"
-
-#: gui/modmod/modmod.js:118 gui/modmod/modmod.js:407
-msgctxt "mod activation"
-msgid "Enable"
-msgstr "Benarkan"
-
-#: gui/modmod/modmod.js:317
-#, javascript-format
-msgid "Dependency not met: %(dep)s"
-msgstr "Dependensi tidak dipenuhi: %(dep)s"
-
-#: gui/modmod/modmod.js:323
-msgid "All dependencies met"
-msgstr "Semua dependensi dipenuhi"
-
-#: gui/modmod/modmod.js:408
-msgctxt "mod activation"
-msgid "Disable"
-msgstr "Dilumpuhkan"
-
-#: gui/modmod/modmod.js:416
-msgid "No mod has been selected."
-msgstr "Tiada mod dipilih."
-
-#: gui/modmod/modmodio.js:5
-msgid "Disclaimer"
-msgstr "Penafian"
-
-#: gui/modmod/modmodio.js:12
-msgid "mod.io Terms"
-msgstr "Terma mod.io"
-
-#: gui/modmod/modmodio.js:16
-msgid "mod.io Privacy Policy"
-msgstr "Dasar Kerahsiaan mod.io"
-
-#: gui/msgbox/msgbox.js:25
-msgid "OK"
-msgstr "OK"
-
-#. Translation: Label of a button that when pressed opens the Terms and
-#. Conditions in the default webbrowser.
-#: gui/termsdialog/termsdialog.js:30
-msgid "View online"
-msgstr "Tonton atas-talian"
-
-#: gui/termsdialog/termsdialog.js:38
-#, javascript-format
-msgid "Open %(url)s in the browser."
-msgstr "Buka %(url)s dalam pelayar."
 
 #: gui/modio/modio.xml:(caption):18
 msgid "mod.io Mods"
@@ -326,6 +312,80 @@ msgstr "Saiz Fail"
 #: gui/modmod/modmod.xml:(heading):127
 msgid "Dependencies"
 msgstr "Dependensi"
+
+#: gui/modmod/help/help.txt:1
+msgid ""
+"0 A.D. is designed to be easily modded. Mods are distributed in the form of "
+".pyromod files, which can be opened like .zip files."
+msgstr "0 A.D telah direka untuk mudah dimodkan. Mod diedar dalam bentuk fail .pyromod, yang mana boleh dibuka seperti fail dalam format .zip."
+
+#: gui/modmod/help/help.txt:3
+msgid ""
+"In order to install a mod, just open the file with 0 A.D. (either double-"
+"click on the file and choose to open it with the game, or run \"pyrogenesis "
+"file.pyromod\" in a terminal). The mod will then be available in the mod "
+"selector. You can enable it and disable it at will. You can delete the mod "
+"manually using your file browser if needed (see "
+"https://trac.wildfiregames.com/wiki/GameDataPaths)."
+msgstr "Untuk memasang mod, hanya buka fail tersebut dengan 0 A.D. (sama ada dwi-klik pada fail dan pilih untuk membukanya dengan permainan, atau jalankan \"pyrogenesis file.pyromod\" menerusi terminal). Mod kemudiannya akan tersedia melalui pemilih mod. Anda boleh benarkannya atau sebaliknya mengikut kemahuan anda. Anda juga boleh memadam mod secara manual menggunakan pelayar fail adna jika perlu (sila rujuk https://trac.wildfiregames.com/wiki/GameDataPaths)."
+
+#: gui/modmod/help/help.txt:5
+msgid ""
+"For more information about modding the game, see the Modding Guide online "
+"(click the Modding Guide button below)."
+msgstr "Untuk maklumat lanjut mengenai modding permainan, sila rujuk Panduan Modding atas talian (klik butang Panduan Modding di bawah)."
+
+#: gui/modmod/help/help.txt:7
+msgid ""
+"The mod.io service is developed by DBolical, the company behind IndieDB and "
+"ModDB. Those websites have spread the word about 0 A.D. and other indie "
+"projects for a long time! Today, mod.io allows us to list and download all "
+"the mods that were verified by the team. Click \"Download Mods\" to try it "
+"out and install some!"
+msgstr "Perkhidmatan mod.io dibangunkan oleh DBolical, syarikat yang juga membangunkan IndieDB dan ModDB. Laman sesawang tersebut telah memviralkan 0 A..D. dan lain-lain projek indie selama ini! Hari ini, mod.io juga memberi keizinan kepada kami untuk senaraikan dan muat turun semua mod yang telah disahkan oleh pasukan. Klik \"Muat Turun Mod\" untuk mencuba dan memasangnya!"
+
+#: gui/modmod/help/help.xml:(caption):13
+msgid "Pyrogenesis Mod Selector"
+msgstr "Pemilih Mod Pyrogenesis"
+
+#: gui/modmod/help/help.xml:(caption):21
+msgid "Close"
+msgstr "Tutup"
+
+#: gui/modmod/help/help.xml:(caption):25
+msgid "Modding Guide"
+msgstr "Panduan Melakukan Mod"
+
+#: gui/modmod/help/help.xml:(caption):29
+msgid "Visit mod.io"
+msgstr "Lawati mod.io"
+
+#: gui/modmod/modmod.js:107 gui/modmod/modmod.js:254 gui/modmod/modmod.js:275
+msgid "Filter"
+msgstr "Penapis"
+
+#: gui/modmod/modmod.js:118 gui/modmod/modmod.js:407
+msgctxt "mod activation"
+msgid "Enable"
+msgstr "Benarkan"
+
+#: gui/modmod/modmod.js:317
+#, javascript-format
+msgid "Dependency not met: %(dep)s"
+msgstr "Dependensi tidak dipenuhi: %(dep)s"
+
+#: gui/modmod/modmod.js:323
+msgid "All dependencies met"
+msgstr "Semua dependensi dipenuhi"
+
+#: gui/modmod/modmod.js:408
+msgctxt "mod activation"
+msgid "Disable"
+msgstr "Dilumpuhkan"
+
+#: gui/modmod/modmod.js:416
+msgid "No mod has been selected."
+msgstr "Tiada mod dipilih."
 
 #: gui/modmod/modmod.xml:(caption):12
 msgid "Modifications"
@@ -381,21 +441,33 @@ msgid ""
 "dependencies."
 msgstr "Ubah tertib yang mana mod akan dilancarkan. Ia sepatutnya sepadan dengan dependensi mod."
 
-#: gui/modmod/help/help.xml:(caption):13
-msgid "Pyrogenesis Mod Selector"
-msgstr "Pemilih Mod Pyrogenesis"
+#: gui/modmod/modmodio.js:5
+msgid "Disclaimer"
+msgstr "Penafian"
 
-#: gui/modmod/help/help.xml:(caption):21
-msgid "Close"
-msgstr "Tutup"
+#: gui/modmod/modmodio.js:12
+msgid "mod.io Terms"
+msgstr "Terma mod.io"
 
-#: gui/modmod/help/help.xml:(caption):25
-msgid "Modding Guide"
-msgstr "Panduan Melakukan Mod"
+#: gui/modmod/modmodio.js:16
+msgid "mod.io Privacy Policy"
+msgstr "Dasar Kerahsiaan mod.io"
 
-#: gui/modmod/help/help.xml:(caption):29
-msgid "Visit mod.io"
-msgstr "Lawati mod.io"
+#: gui/msgbox/msgbox.js:25
+msgid "OK"
+msgstr "OK"
+
+#. Translation: Label of a button that when pressed opens the Terms and
+#. Conditions in the
+#. default webbrowser.
+#: gui/termsdialog/termsdialog.js:30
+msgid "View online"
+msgstr "Tonton atas-talian"
+
+#: gui/termsdialog/termsdialog.js:38
+#, javascript-format
+msgid "Open %(url)s in the browser."
+msgstr "Buka %(url)s dalam pelayar."
 
 #: gui/termsdialog/termsdialog.xml:(caption):15
 msgid "Language"
@@ -408,71 +480,3 @@ msgstr "Tolak"
 #: gui/termsdialog/termsdialog.xml:(caption):38
 msgid "Accept"
 msgstr "Terima"
-
-#: gui/modio/Disclaimer.txt:1
-msgid "0 A.D. Empires Ascendant mod.io Disclaimer"
-msgstr "Penafian mod.io 0 A.D. Empires Ascendant (Kekuasaan Empayar)"
-
-#: gui/modio/Disclaimer.txt:3
-msgid "Document Date: 2018-10-12"
-msgstr "Tarikh Dikumen: 2018-10-12"
-
-#: gui/modio/Disclaimer.txt:5
-msgid "You are about to connect to the mod.io online service."
-msgstr "Anda kini sedang bersambung dengan perkhidmatan atas-talian mod.io."
-
-#: gui/modio/Disclaimer.txt:6
-msgid ""
-"This service provides an easy way to download and install community-made "
-"mods and is provided by DBolical Pty Ltd, the company behind IndieDB and "
-"ModDB."
-msgstr "Perkhidmatan ini menyediakan laluan mudah untuk muat turun dan pasang mod buatan-komuniti dan daripada DBolical Pty Ltd, syarikat disebalik IndieDB dan ModDB."
-
-#: gui/modio/Disclaimer.txt:7
-msgid "The service is for users age 13 and over."
-msgstr "Perkhidmatan untuk pengguna berusia 13 tahun dan ke atas."
-
-#: gui/modio/Disclaimer.txt:9
-msgid ""
-"Wildfire Games has taken care to make this connection secure and reviewed "
-"the mods for security flaws, but cannot guarantee that this does not pose "
-"any risks."
-msgstr "Wildfire Games telah memastikan sambungan ini selamat dan menyemak mod jika ada kerentanan keselamatan, tetapi tidak memberi jaminan ia tidak menimbulkan apa-apa risiko."
-
-#: gui/modio/Disclaimer.txt:11
-msgid ""
-"By using the service, you understand that mod.io's Terms of Use and Privacy "
-"Policy apply and that Wildfire Games is not liable for any damages resulting"
-" from this service."
-msgstr "Dengan menggunakan perkhidmatan ini, anda memahami dan setuju dengan Terma Penggunaan mod.io serta Dasar Kerahsiaan yang mana Wildfire Games tidak bertanggungjawab atas apa jua kerosakan yang berlaku daripada perkhidmatan ini."
-
-#: gui/modmod/help/help.txt:1
-msgid ""
-"0 A.D. is designed to be easily modded. Mods are distributed in the form of "
-".pyromod files, which can be opened like .zip files."
-msgstr "0 A.D telah direka untuk mudah dimodkan. Mod diedar dalam bentuk fail .pyromod, yang mana boleh dibuka seperti fail dalam format .zip."
-
-#: gui/modmod/help/help.txt:3
-msgid ""
-"In order to install a mod, just open the file with 0 A.D. (either double-"
-"click on the file and choose to open it with the game, or run \"pyrogenesis "
-"file.pyromod\" in a terminal). The mod will then be available in the mod "
-"selector. You can enable it and disable it at will. You can delete the mod "
-"manually using your file browser if needed (see "
-"https://trac.wildfiregames.com/wiki/GameDataPaths)."
-msgstr "Untuk memasang mod, hanya buka fail tersebut dengan 0 A.D. (sama ada dwi-klik pada fail dan pilih untuk membukanya dengan permainan, atau jalankan \"pyrogenesis file.pyromod\" menerusi terminal). Mod kemudiannya akan tersedia melalui pemilih mod. Anda boleh benarkannya atau sebaliknya mengikut kemahuan anda. Anda juga boleh memadam mod secara manual menggunakan pelayar fail adna jika perlu (sila rujuk https://trac.wildfiregames.com/wiki/GameDataPaths)."
-
-#: gui/modmod/help/help.txt:5
-msgid ""
-"For more information about modding the game, see the Modding Guide online "
-"(click the Modding Guide button below)."
-msgstr "Untuk maklumat lanjut mengenai modding permainan, sila rujuk Panduan Modding atas talian (klik butang Panduan Modding di bawah)."
-
-#: gui/modmod/help/help.txt:7
-msgid ""
-"The mod.io service is developed by DBolical, the company behind IndieDB and "
-"ModDB. Those websites have spread the word about 0 A.D. and other indie "
-"projects for a long time! Today, mod.io allows us to list and download all "
-"the mods that were verified by the team. Click \"Download Mods\" to try it "
-"out and install some!"
-msgstr "Perkhidmatan mod.io dibangunkan oleh DBolical, syarikat yang juga membangunkan IndieDB dan ModDB. Laman sesawang tersebut telah memviralkan 0 A..D. dan lain-lain projek indie selama ini! Hari ini, mod.io juga memberi keizinan kepada kami untuk senaraikan dan muat turun semua mod yang telah disahkan oleh pasukan. Klik \"Muat Turun Mod\" untuk mencuba dan memasangnya!"

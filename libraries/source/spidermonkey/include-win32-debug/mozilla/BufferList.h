@@ -92,7 +92,7 @@ class BufferList : private AllocPolicy {
 
   BufferList(BufferList&& aOther)
       : mOwning(aOther.mOwning),
-        mSegments(Move(aOther.mSegments)),
+        mSegments(std::move(aOther.mSegments)),
         mSize(aOther.mSize),
         mStandardCapacity(aOther.mStandardCapacity) {
     aOther.mSegments.clear();
@@ -105,7 +105,7 @@ class BufferList : private AllocPolicy {
     Clear();
 
     mOwning = aOther.mOwning;
-    mSegments = Move(aOther.mSegments);
+    mSegments = std::move(aOther.mSegments);
     mSize = aOther.mSize;
     aOther.mSegments.clear();
     aOther.mSize = 0;
@@ -124,6 +124,28 @@ class BufferList : private AllocPolicy {
     return AllocateSegment(aInitialSize, aInitialCapacity);
   }
 
+  bool CopyFrom(const BufferList& aOther) {
+    MOZ_ASSERT(mOwning);
+
+    Clear();
+
+    // We don't make an exact copy of aOther. Instead, create a single segment
+    // with enough space to hold all data in aOther.
+    if (!Init(aOther.mSize, (aOther.mSize + kSegmentAlignment - 1) &
+                                ~(kSegmentAlignment - 1))) {
+      return false;
+    }
+
+    size_t offset = 0;
+    for (const Segment& segment : aOther.mSegments) {
+      memcpy(Start() + offset, segment.mData, segment.mSize);
+      offset += segment.mSize;
+    }
+    MOZ_ASSERT(offset == mSize);
+
+    return true;
+  }
+
   // Returns the sum of the sizes of all the buffers.
   size_t Size() const { return mSize; }
 
@@ -138,7 +160,7 @@ class BufferList : private AllocPolicy {
   void Clear() {
     if (mOwning) {
       for (Segment& segment : mSegments) {
-        this->free_(segment.mData);
+        this->free_(segment.mData, segment.mCapacity);
       }
     }
     mSegments.clear();
@@ -187,6 +209,21 @@ class BufferList : private AllocPolicy {
     size_t RemainingInSegment() const {
       MOZ_RELEASE_ASSERT(mData <= mDataEnd);
       return mDataEnd - mData;
+    }
+
+    bool HasBytesAvailable(const BufferList& aBuffers, uint32_t aBytes) const {
+      if (RemainingInSegment() >= aBytes) {
+        return true;
+      }
+      aBytes -= RemainingInSegment();
+      for (size_t i = mSegment + 1; i < aBuffers.mSegments.length(); i++) {
+        if (aBuffers.mSegments[i].mSize >= aBytes) {
+          return true;
+        }
+        aBytes -= aBuffers.mSegments[i].mSize;
+      }
+
+      return false;
     }
 
     // Advances the iterator by aBytes bytes. aBytes must be less than
@@ -270,7 +307,7 @@ class BufferList : private AllocPolicy {
 
   // Copies aSize bytes from aData into the BufferList. The storage for these
   // bytes may be split across multiple buffers. Size() is increased by aSize.
-  inline bool WriteBytes(const char* aData, size_t aSize);
+  inline MOZ_MUST_USE bool WriteBytes(const char* aData, size_t aSize);
 
   // Allocates a buffer of at most |aMaxBytes| bytes and, if successful, returns
   // that buffer, and places its size in |aSize|. If unsuccessful, returns null
@@ -327,7 +364,7 @@ class BufferList : private AllocPolicy {
     MOZ_ASSERT(mOwning);
 
     if (!mSegments.append(Segment(aData, aSize, aCapacity))) {
-      this->free_(aData);
+      this->free_(aData, aCapacity);
       return nullptr;
     }
     mSize += aSize;
@@ -348,7 +385,7 @@ class BufferList : private AllocPolicy {
       return nullptr;
     }
     if (!mSegments.append(Segment(data, aSize, aCapacity))) {
-      this->free_(data);
+      this->free_(data, aCapacity);
       return nullptr;
     }
     mSize += aSize;
@@ -362,7 +399,8 @@ class BufferList : private AllocPolicy {
 };
 
 template <typename AllocPolicy>
-bool BufferList<AllocPolicy>::WriteBytes(const char* aData, size_t aSize) {
+MOZ_MUST_USE bool BufferList<AllocPolicy>::WriteBytes(const char* aData,
+                                                      size_t aSize) {
   MOZ_RELEASE_ASSERT(mOwning);
   MOZ_RELEASE_ASSERT(mStandardCapacity);
 

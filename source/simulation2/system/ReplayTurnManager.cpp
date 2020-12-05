@@ -89,7 +89,7 @@ void CReplayTurnManager::NotifyFinishedOwnCommands(u32 turn)
 	const ScriptInterface& scriptInterface = m_Simulation2.GetScriptInterface();
 	ScriptRequest rq(scriptInterface);
 
-	JS::AutoValueVector paramData(rq.cx);
+	JS::RootedValueVector paramData(rq.cx);
 
 	DISCARD paramData.append(JS::NumberValue(turn));
 

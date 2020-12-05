@@ -234,7 +234,7 @@ const FCDENode* FCDENode::FindParameter(const char* name) const
 
 void FCDENode::FindParameters(FCDENodeList& nodes, StringList& names)
 {
-	for (const FCDENode** itN = (const FCDENode**) children.begin(); itN != children.end(); ++itN)
+	for (const FCDENode* const* itN = children.begin(); itN != children.end(); ++itN)
 	{
 		const FCDENode* node = (*itN);
 		if (node->GetChildNodeCount() == 0)

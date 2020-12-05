@@ -226,7 +226,7 @@ void CGUIManager::SGUIPage::SetCallbackFunction(ScriptInterface& scriptInterface
 
 	ScriptRequest rq(scriptInterface);
 
-	if (!JS_ObjectIsFunction(rq.cx, &callbackFunc.toObject()))
+	if (!JS_ObjectIsFunction(&callbackFunc.toObject()))
 	{
 		LOGERROR("Given callback handler is not a function!");
 		return;
@@ -254,7 +254,7 @@ void CGUIManager::SGUIPage::PerformCallbackFunction(ScriptInterface::StructuredC
 	if (args)
 		scriptInterface->ReadStructuredClone(args, &argVal);
 
-	JS::AutoValueVector paramData(rq.cx);
+	JS::RootedValueVector paramData(rq.cx);
 	DISCARD paramData.append(argVal);
 
 	JS::RootedValue result(rq.cx);

@@ -4,9 +4,9 @@
     <Melee>
       <AttackName>Pike</AttackName>
       <Damage>
-        <Hack>4.0</Hack>
-        <Pierce>20.0</Pierce>
-        <Crush>0.0</Crush>
+        <Hack>8</Hack>
+        <Pierce>12</Pierce>
+        <Crush>0</Crush>
       </Damage>
       <MaxRange>7</MaxRange>
       <PrepareTime>1000</PrepareTime>
@@ -25,7 +25,7 @@
     <Tooltip>Counters: 3× vs Cavalry.</Tooltip>
     <VisibleClasses datatype="tokens">Melee Pikeman</VisibleClasses>
     <Formations datatype="tokens">
-      special/formations/testudo
+      special/formations/syntagma
     </Formations>
   </Identity>
   <Resistance>

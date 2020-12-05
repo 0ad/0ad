@@ -558,7 +558,7 @@ void CConsole::ProcessBuffer(const wchar_t* szLine)
 	ScriptRequest rq(*pScriptInterface);
 
 	JS::RootedValue rval(rq.cx);
-	pScriptInterface->Eval(szLine, &rval);
+	pScriptInterface->Eval(CStrW(szLine).ToUTF8().c_str(), &rval);
 	if (!rval.isUndefined())
 		InsertMessage(pScriptInterface->ToString(&rval));
 }

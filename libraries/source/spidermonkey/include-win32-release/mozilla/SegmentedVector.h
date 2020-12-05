@@ -20,12 +20,13 @@
 #ifndef mozilla_SegmentedVector_h
 #define mozilla_SegmentedVector_h
 
-#include "mozilla/Alignment.h"
 #include "mozilla/AllocPolicy.h"
 #include "mozilla/Array.h"
+#include "mozilla/Attributes.h"
 #include "mozilla/LinkedList.h"
 #include "mozilla/MemoryReporting.h"
 #include "mozilla/Move.h"
+#include "mozilla/OperatorNewExtensions.h"
 #include "mozilla/TypeTraits.h"
 
 #include <new>  // for placement new
@@ -54,6 +55,18 @@ class SegmentedVector : private AllocPolicy {
   template <size_t SegmentCapacity>
   struct SegmentImpl
       : public mozilla::LinkedListElement<SegmentImpl<SegmentCapacity>> {
+   private:
+    uint32_t mLength;
+    alignas(T) MOZ_INIT_OUTSIDE_CTOR
+        unsigned char mData[sizeof(T) * SegmentCapacity];
+
+    // Some versions of GCC treat it as a -Wstrict-aliasing violation (ergo a
+    // -Werror compile error) to reinterpret_cast<> |mData| to |T*|, even
+    // through |void*|.  Placing the latter cast in these separate functions
+    // breaks the chain such that affected GCC versions no longer warn/error.
+    void* RawData() { return mData; }
+
+   public:
     SegmentImpl() : mLength(0) {}
 
     ~SegmentImpl() {
@@ -64,7 +77,7 @@ class SegmentedVector : private AllocPolicy {
 
     uint32_t Length() const { return mLength; }
 
-    T* Elems() { return reinterpret_cast<T*>(&mStorage.mBuf); }
+    T* Elems() { return reinterpret_cast<T*>(RawData()); }
 
     T& operator[](size_t aIndex) {
       MOZ_ASSERT(aIndex < mLength);
@@ -82,7 +95,7 @@ class SegmentedVector : private AllocPolicy {
       // Pre-increment mLength so that the bounds-check in operator[] passes.
       mLength++;
       T* elem = &(*this)[mLength - 1];
-      new (elem) T(mozilla::Forward<U>(aU));
+      new (KnownNotNull, elem) T(std::forward<U>(aU));
     }
 
     void PopLast() {
@@ -90,17 +103,6 @@ class SegmentedVector : private AllocPolicy {
       (*this)[mLength - 1].~T();
       mLength--;
     }
-
-    uint32_t mLength;
-
-    // The union ensures that the elements are appropriately aligned.
-    union Storage {
-      char mBuf[sizeof(T) * SegmentCapacity];
-      mozilla::AlignedElem<MOZ_ALIGNOF(T)> mAlign;
-    } mStorage;
-
-    static_assert(MOZ_ALIGNOF(T) == MOZ_ALIGNOF(Storage),
-                  "SegmentedVector provides incorrect alignment");
   };
 
   // See how many we elements we can fit in a segment of IdealSegmentSize. If
@@ -130,7 +132,7 @@ class SegmentedVector : private AllocPolicy {
   }
 
   SegmentedVector(SegmentedVector&& aOther)
-      : mSegments(mozilla::Move(aOther.mSegments)) {}
+      : mSegments(std::move(aOther.mSegments)) {}
 
   ~SegmentedVector() { Clear(); }
 
@@ -157,10 +159,10 @@ class SegmentedVector : private AllocPolicy {
       if (!last) {
         return false;
       }
-      new (last) Segment();
+      new (KnownNotNull, last) Segment();
       mSegments.insertBack(last);
     }
-    last->Append(mozilla::Forward<U>(aU));
+    last->Append(std::forward<U>(aU));
     return true;
   }
 
@@ -168,7 +170,7 @@ class SegmentedVector : private AllocPolicy {
   // infallible allocation policy. It will crash if the allocation fails.
   template <typename U>
   void InfallibleAppend(U&& aU) {
-    bool ok = Append(mozilla::Forward<U>(aU));
+    bool ok = Append(std::forward<U>(aU));
     MOZ_RELEASE_ASSERT(ok);
   }
 
@@ -176,7 +178,7 @@ class SegmentedVector : private AllocPolicy {
     Segment* segment;
     while ((segment = mSegments.popFirst())) {
       segment->~Segment();
-      this->free_(segment);
+      this->free_(segment, 1);
     }
   }
 
@@ -199,7 +201,7 @@ class SegmentedVector : private AllocPolicy {
     if (!last->Length()) {
       mSegments.popLast();
       last->~Segment();
-      this->free_(last);
+      this->free_(last, 1);
     }
   }
 
@@ -231,7 +233,7 @@ class SegmentedVector : private AllocPolicy {
       // Destroying the segment destroys all elements contained therein.
       mSegments.popLast();
       last->~Segment();
-      this->free_(last);
+      this->free_(last, 1);
 
       MOZ_ASSERT(aNumElements >= segmentLen);
       aNumElements -= segmentLen;

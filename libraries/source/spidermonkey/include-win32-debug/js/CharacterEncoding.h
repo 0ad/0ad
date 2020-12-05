@@ -1,5 +1,5 @@
-/* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*-
- * vim: set ts=8 sts=4 et sw=4 tw=99:
+/* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+ * vim: set ts=8 sts=2 et sw=2 tw=80:
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
@@ -75,6 +75,28 @@ class UTF8Chars : public mozilla::Range<unsigned char> {
   UTF8Chars(const char* aBytes, size_t aLength)
       : Base(reinterpret_cast<unsigned char*>(const_cast<char*>(aBytes)),
              aLength) {}
+  UTF8Chars(mozilla::Utf8Unit* aUnits, size_t aLength)
+      : UTF8Chars(reinterpret_cast<char*>(aUnits), aLength) {}
+  UTF8Chars(const mozilla::Utf8Unit* aUnits, size_t aLength)
+      : UTF8Chars(reinterpret_cast<const char*>(aUnits), aLength) {}
+};
+
+/*
+ * Similar to UTF8Chars, but contains WTF-8.
+ * https://simonsapin.github.io/wtf-8/
+ */
+class WTF8Chars : public mozilla::Range<unsigned char> {
+  typedef mozilla::Range<unsigned char> Base;
+
+ public:
+  using CharT = unsigned char;
+
+  WTF8Chars() : Base() {}
+  WTF8Chars(char* aBytes, size_t aLength)
+      : Base(reinterpret_cast<unsigned char*>(aBytes), aLength) {}
+  WTF8Chars(const char* aBytes, size_t aLength)
+      : Base(reinterpret_cast<unsigned char*>(const_cast<char*>(aBytes)),
+             aLength) {}
 };
 
 /*
@@ -97,6 +119,9 @@ class UTF8CharsZ : public mozilla::RangedPtr<unsigned char> {
     MOZ_ASSERT(aBytes[aLength] == '\0');
   }
 
+  UTF8CharsZ(mozilla::Utf8Unit* aUnits, size_t aLength)
+      : UTF8CharsZ(reinterpret_cast<char*>(aUnits), aLength) {}
+
   using Base::operator=;
 
   char* c_str() { return reinterpret_cast<char*>(get()); }
@@ -106,7 +131,7 @@ class UTF8CharsZ : public mozilla::RangedPtr<unsigned char> {
  * A wrapper for a "const char*" that is encoded using UTF-8.
  * This class does not manage ownership of the data; that is left
  * to others.  This differs from UTF8CharsZ in that the chars are
- * const and it allows assignment.
+ * const and it disallows assignment.
  */
 class JS_PUBLIC_API ConstUTF8CharsZ {
   const char* data_;
@@ -222,25 +247,36 @@ JS_PUBLIC_API uint32_t Utf8ToOneUcs4Char(const uint8_t* utf8Buffer,
  * - On success, returns a malloc'd TwoByteCharsZ, and updates |outlen| to hold
  *   its length;  the length value excludes the trailing null.
  */
-extern JS_PUBLIC_API TwoByteCharsZ UTF8CharsToNewTwoByteCharsZ(
-    JSContext* cx, const UTF8Chars utf8, size_t* outlen);
+extern JS_PUBLIC_API TwoByteCharsZ
+UTF8CharsToNewTwoByteCharsZ(JSContext* cx, const UTF8Chars utf8, size_t* outlen,
+                            arena_id_t destArenaId);
+
+/*
+ * Like UTF8CharsToNewTwoByteCharsZ, but for WTF8Chars.
+ */
+extern JS_PUBLIC_API TwoByteCharsZ
+WTF8CharsToNewTwoByteCharsZ(JSContext* cx, const WTF8Chars wtf8, size_t* outlen,
+                            arena_id_t destArenaId);
 
 /*
  * Like UTF8CharsToNewTwoByteCharsZ, but for ConstUTF8CharsZ.
  */
-extern JS_PUBLIC_API TwoByteCharsZ UTF8CharsToNewTwoByteCharsZ(
-    JSContext* cx, const ConstUTF8CharsZ& utf8, size_t* outlen);
+extern JS_PUBLIC_API TwoByteCharsZ
+UTF8CharsToNewTwoByteCharsZ(JSContext* cx, const ConstUTF8CharsZ& utf8,
+                            size_t* outlen, arena_id_t destArenaId);
 
 /*
  * The same as UTF8CharsToNewTwoByteCharsZ(), except that any malformed UTF-8
  * characters will be replaced by \uFFFD. No exception will be thrown for
  * malformed UTF-8 input.
  */
-extern JS_PUBLIC_API TwoByteCharsZ LossyUTF8CharsToNewTwoByteCharsZ(
-    JSContext* cx, const UTF8Chars utf8, size_t* outlen);
+extern JS_PUBLIC_API TwoByteCharsZ
+LossyUTF8CharsToNewTwoByteCharsZ(JSContext* cx, const UTF8Chars utf8,
+                                 size_t* outlen, arena_id_t destArenaId);
 
-extern JS_PUBLIC_API TwoByteCharsZ LossyUTF8CharsToNewTwoByteCharsZ(
-    JSContext* cx, const ConstUTF8CharsZ& utf8, size_t* outlen);
+extern JS_PUBLIC_API TwoByteCharsZ
+LossyUTF8CharsToNewTwoByteCharsZ(JSContext* cx, const ConstUTF8CharsZ& utf8,
+                                 size_t* outlen, arena_id_t destArenaId);
 
 /*
  * Returns the length of the char buffer required to encode |s| as UTF8.
@@ -285,15 +321,17 @@ JS_PUBLIC_API SmallestEncoding FindSmallestEncoding(UTF8Chars utf8);
  * Latin1CharsZ() on failure.
  */
 extern JS_PUBLIC_API Latin1CharsZ
-UTF8CharsToNewLatin1CharsZ(JSContext* cx, const UTF8Chars utf8, size_t* outlen);
+UTF8CharsToNewLatin1CharsZ(JSContext* cx, const UTF8Chars utf8, size_t* outlen,
+                           arena_id_t destArenaId);
 
 /*
  * Return a null-terminated Latin-1 string copied from the input string,
  * storing its length (excluding null terminator) in |*outlen|.  Non-Latin-1
  * codepoints are replaced by '?'.  Returns Latin1CharsZ() on failure.
  */
-extern JS_PUBLIC_API Latin1CharsZ LossyUTF8CharsToNewLatin1CharsZ(
-    JSContext* cx, const UTF8Chars utf8, size_t* outlen);
+extern JS_PUBLIC_API Latin1CharsZ
+LossyUTF8CharsToNewLatin1CharsZ(JSContext* cx, const UTF8Chars utf8,
+                                size_t* outlen, arena_id_t destArenaId);
 
 /*
  * Returns true if all characters in the given null-terminated string are
@@ -301,15 +339,65 @@ extern JS_PUBLIC_API Latin1CharsZ LossyUTF8CharsToNewLatin1CharsZ(
  */
 extern JS_PUBLIC_API bool StringIsASCII(const char* s);
 
-/*
- * Returns true if the given length-delimited string is a valid UTF-8 string,
- * false otherwise.
- */
-extern JS_PUBLIC_API bool StringIsUTF8(const uint8_t* s, uint32_t length);
-
 }  // namespace JS
 
 inline void JS_free(JS::Latin1CharsZ& ptr) { js_free((void*)ptr.get()); }
 inline void JS_free(JS::UTF8CharsZ& ptr) { js_free((void*)ptr.get()); }
+
+/**
+ * DEPRECATED
+ *
+ * Allocate memory sufficient to contain the characters of |str| truncated to
+ * Latin-1 and a trailing null terminator, fill the memory with the characters
+ * interpreted in that manner plus the null terminator, and return a pointer to
+ * the memory.
+ *
+ * This function *loses information* when it copies the characters of |str| if
+ * |str| contains code units greater than 0xFF.  Additionally, users that
+ * depend on null-termination will misinterpret the copied characters if |str|
+ * contains any nulls.  Avoid using this function if possible, because it will
+ * eventually be removed.
+ */
+extern JS_PUBLIC_API JS::UniqueChars JS_EncodeStringToLatin1(JSContext* cx,
+                                                             JSString* str);
+
+/**
+ * DEPRECATED
+ *
+ * Same behavior as JS_EncodeStringToLatin1(), but encode into a UTF-8 string.
+ *
+ * This function *loses information* when it copies the characters of |str| if
+ * |str| contains invalid UTF-16: U+FFFD REPLACEMENT CHARACTER will be copied
+ * instead.
+ *
+ * The returned string is also subject to misinterpretation if |str| contains
+ * any nulls (which are faithfully transcribed into the returned string, but
+ * which will implicitly truncate the string if it's passed to functions that
+ * expect null-terminated strings).
+ *
+ * Avoid using this function if possible, because we'll remove it once we can
+ * devise a better API for the task.
+ */
+extern JS_PUBLIC_API JS::UniqueChars JS_EncodeStringToUTF8(
+    JSContext* cx, JS::Handle<JSString*> str);
+
+/**
+ * DEPRECATED
+ *
+ * Same behavior as JS_EncodeStringToLatin1(), but encode into an ASCII string.
+ *
+ * This function asserts in debug mode that the input string contains only
+ * ASCII characters.
+ *
+ * The returned string is also subject to misinterpretation if |str| contains
+ * any nulls (which are faithfully transcribed into the returned string, but
+ * which will implicitly truncate the string if it's passed to functions that
+ * expect null-terminated strings).
+ *
+ * Avoid using this function if possible, because we'll remove it once we can
+ * devise a better API for the task.
+ */
+extern JS_PUBLIC_API JS::UniqueChars JS_EncodeStringToASCII(JSContext* cx,
+                                                            JSString* str);
 
 #endif /* js_CharacterEncoding_h */

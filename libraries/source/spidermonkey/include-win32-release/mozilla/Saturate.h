@@ -84,7 +84,7 @@ class SaturateOp {
     return operator+=(static_cast<T>(1));
   }
 
-  T operator++(int)const  // postfix
+  T operator++(int) const  // postfix
   {
     const T value(mValue);
     operator++();
@@ -96,7 +96,7 @@ class SaturateOp {
     return operator-=(static_cast<T>(1));
   }
 
-  T operator--(int)const  // postfix
+  T operator--(int) const  // postfix
   {
     const T value(mValue);
     operator--();
@@ -122,7 +122,9 @@ class Saturate {
   Saturate() = default;
   MOZ_IMPLICIT Saturate(const Saturate<T>&) = default;
 
-  MOZ_IMPLICIT Saturate(Saturate<T>&& aValue) { mValue = Move(aValue.mValue); }
+  MOZ_IMPLICIT Saturate(Saturate<T>&& aValue) {
+    mValue = std::move(aValue.mValue);
+  }
 
   explicit Saturate(const T& aValue) : mValue(aValue) {}
 
@@ -145,7 +147,7 @@ class Saturate {
   Saturate<T>& operator=(const Saturate<T>&) = default;
 
   Saturate<T>& operator=(Saturate<T>&& aRhs) {
-    mValue = Move(aRhs.mValue);
+    mValue = std::move(aRhs.mValue);
     return *this;
   }
 

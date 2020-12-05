@@ -40,6 +40,9 @@ LIB_API ApicId GetApicId();
 // apicId<->contiguousId and apicId<->processor.
 LIB_API bool AreApicIdsReliable();
 
+// we may get the apicId of a processor we don't have access to.
+LIB_API bool IsProcessorKnown(ApicId apicId);
+
 LIB_API size_t ProcessorFromApicId(ApicId apicId);
 LIB_API size_t ContiguousIdFromApicId(ApicId apicId);
 

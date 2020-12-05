@@ -259,7 +259,7 @@ void CText::CreateJSObject()
 	ScriptRequest rq(m_pGUI.GetScriptInterface());
 
 	js::ProxyOptions options;
-	options.setClass(&JSI_GUIProxy<IGUIObject>::ClassDefinition());
+	options.setClass(&JSI_GUIProxy<CText>::ClassDefinition());
 
 	JS::RootedValue cppObj(rq.cx), data(rq.cx);
 	cppObj.get().setPrivate(this);

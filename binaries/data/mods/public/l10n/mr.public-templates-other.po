@@ -1,14 +1,14 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright (C) 2020 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
-# 
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
+# project.
 # Translators:
 # Neha Deogade <n.deogade@mailbox.org>, 2020
 # Neha Deogade <n.deogade@mailbox.org>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-20 08:09+0000\n"
+"POT-Creation-Date: 2020-11-28 10:01+0000\n"
 "PO-Revision-Date: 2020-11-20 10:22+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Marathi (http://www.transifex.com/wildfire-games/0ad/language/mr/)\n"
@@ -18,86 +18,36 @@ msgstr ""
 "Language: mr\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: simulation/templates/template_formation.xml:26
-msgid "Requires at least 2 Soldiers or Siege Engines."
+#: simulation/data/template_helpers/damage_types/crush.jsondescription
+msgctxt "damage type"
+msgid "Damage caused by sheer force, like with a club or by trampling."
 msgstr ""
 
-#: simulation/templates/template_gaia.xml:7
-msgid "Gaia"
-msgstr "गाया"
-
-#: simulation/templates/template_gaia_fish.xml:8
-#: simulation/templates/gaia/fish/generic.xml:4
-msgid "Fish"
-msgstr "मासे"
-
-#: simulation/templates/template_gaia_fish.xml:10
-msgid "Catch fish for food."
-msgstr "अन्नासाठी मासे पकडा."
-
-#: simulation/templates/template_gaia_fruit.xml:8
-msgid "Fruit"
+#: simulation/data/template_helpers/damage_types/crush.jsonname
+msgctxt "damage type"
+msgid "Crush"
 msgstr ""
 
-#: simulation/templates/template_gaia_fruit.xml:9
-msgid "Pick fruit for food."
-msgstr "खाण्यासाठी फळ निवडा."
-
-#: simulation/templates/template_gaia_ore.xml:8
-msgid "Metal Mine"
-msgstr "धातू खाण"
-
-#: simulation/templates/template_gaia_ore.xml:9
-msgid "Mine ore for metal."
-msgstr "धातुसाठी खाणकाम करणे."
-
-#: simulation/templates/template_gaia_rock.xml:8
-msgid "Stone Quarry"
-msgstr "दगडखाना."
-
-#: simulation/templates/template_gaia_rock.xml:9
-msgid "Quarry rock for stone."
-msgstr "दगडासाठी खडक."
-
-#: simulation/templates/template_gaia_ruins.xml:8
-msgid "Ruins"
-msgstr " खंड"
-
-#: simulation/templates/template_gaia_ruins.xml:9
-msgid "Demolish ruins for stone."
-msgstr "दगडांचे अवशेष तोडून टाका."
-
-#: simulation/templates/template_gaia_treasure.xml:8
-msgid "Treasure"
-msgstr "खजिना"
-
-#: simulation/templates/template_gaia_treasure.xml:9
-msgid "Collect treasures for resources."
-msgstr "संसाधनांसाठी खजिना गोळा करा."
-
-#: simulation/templates/template_gaia_tree.xml:8
-msgid "Tree"
-msgstr "झाड"
-
-#: simulation/templates/template_gaia_tree.xml:9
-msgid "Chop trees for wood."
-msgstr "लाकडासाठी झाडे तोडा."
-
-#: simulation/templates/template_structure.xml:47
-msgid "Structure"
-msgstr "रचना"
-
-#: simulation/templates/template_unit.xml:38
-msgid "Unit"
-msgstr "मूळ माप"
-
-#: simulation/templates/template_wallset.xml:10
-msgid "Wall off an area."
+#: simulation/data/template_helpers/damage_types/hack.jsondescription
+msgctxt "damage type"
+msgid ""
+"Damage caused by sharp objects cutting or chopping, like with a sword or an "
+"axe."
 msgstr ""
 
-#: simulation/templates/template_wallset.xml:11
-#: simulation/templates/template_wallset.xml:9
-msgid "Wall"
+#: simulation/data/template_helpers/damage_types/hack.jsonname
+msgctxt "damage type"
+msgid "Hack"
+msgstr ""
+
+#: simulation/data/template_helpers/damage_types/pierce.jsondescription
+msgctxt "damage type"
+msgid "Damage caused by sharp pointy objects, like arrows or spears."
+msgstr ""
+
+#: simulation/data/template_helpers/damage_types/pierce.jsonname
+msgctxt "damage type"
+msgid "Pierce"
 msgstr ""
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:24
@@ -899,10 +849,6 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Ranged"
 msgstr ""
 
-#: simulation/templates/special/spy.xml:17
-msgid "Spy"
-msgstr ""
-
 #: simulation/templates/special/formations/anti_cavalry.xml:6
 #: simulation/templates/special/formations/testudo.xml:6
 msgid "Melee Infantry only, requires at least 16."
@@ -996,34 +942,88 @@ msgstr ""
 msgid "Player"
 msgstr "खेळाडू"
 
-#: simulation/data/template_helpers/damage_types/crush.jsonname
-msgctxt "damage type"
-msgid "Crush"
+#: simulation/templates/special/spy.xml:17
+msgid "Spy"
 msgstr ""
 
-#: simulation/data/template_helpers/damage_types/crush.jsondescription
-msgctxt "damage type"
-msgid "Damage caused by sheer force, like with a club or by trampling."
+#: simulation/templates/template_formation.xml:26
+msgid "Requires at least 2 Soldiers or Siege Engines."
 msgstr ""
 
-#: simulation/data/template_helpers/damage_types/hack.jsonname
-msgctxt "damage type"
-msgid "Hack"
+#: simulation/templates/template_gaia.xml:7
+msgid "Gaia"
+msgstr "गाया"
+
+#: simulation/templates/gaia/fish/generic.xml:4
+#: simulation/templates/template_gaia_fish.xml:8
+msgid "Fish"
+msgstr "मासे"
+
+#: simulation/templates/template_gaia_fish.xml:10
+msgid "Catch fish for food."
+msgstr "अन्नासाठी मासे पकडा."
+
+#: simulation/templates/template_gaia_fruit.xml:8
+msgid "Fruit"
 msgstr ""
 
-#: simulation/data/template_helpers/damage_types/hack.jsondescription
-msgctxt "damage type"
-msgid ""
-"Damage caused by sharp objects cutting or chopping, like with a sword or an "
-"axe."
+#: simulation/templates/template_gaia_fruit.xml:9
+msgid "Pick fruit for food."
+msgstr "खाण्यासाठी फळ निवडा."
+
+#: simulation/templates/template_gaia_ore.xml:8
+msgid "Metal Mine"
+msgstr "धातू खाण"
+
+#: simulation/templates/template_gaia_ore.xml:9
+msgid "Mine ore for metal."
+msgstr "धातुसाठी खाणकाम करणे."
+
+#: simulation/templates/template_gaia_rock.xml:8
+msgid "Stone Quarry"
+msgstr "दगडखाना."
+
+#: simulation/templates/template_gaia_rock.xml:9
+msgid "Quarry rock for stone."
+msgstr "दगडासाठी खडक."
+
+#: simulation/templates/template_gaia_ruins.xml:8
+msgid "Ruins"
+msgstr " खंड"
+
+#: simulation/templates/template_gaia_ruins.xml:9
+msgid "Demolish ruins for stone."
+msgstr "दगडांचे अवशेष तोडून टाका."
+
+#: simulation/templates/template_gaia_treasure.xml:8
+msgid "Treasure"
+msgstr "खजिना"
+
+#: simulation/templates/template_gaia_treasure.xml:9
+msgid "Collect treasures for resources."
+msgstr "संसाधनांसाठी खजिना गोळा करा."
+
+#: simulation/templates/template_gaia_tree.xml:8
+msgid "Tree"
+msgstr "झाड"
+
+#: simulation/templates/template_gaia_tree.xml:9
+msgid "Chop trees for wood."
+msgstr "लाकडासाठी झाडे तोडा."
+
+#: simulation/templates/template_structure.xml:47
+msgid "Structure"
+msgstr "रचना"
+
+#: simulation/templates/template_unit.xml:38
+msgid "Unit"
+msgstr "मूळ माप"
+
+#: simulation/templates/template_wallset.xml:9
+#: simulation/templates/template_wallset.xml:11
+msgid "Wall"
 msgstr ""
 
-#: simulation/data/template_helpers/damage_types/pierce.jsonname
-msgctxt "damage type"
-msgid "Pierce"
-msgstr ""
-
-#: simulation/data/template_helpers/damage_types/pierce.jsondescription
-msgctxt "damage type"
-msgid "Damage caused by sharp pointy objects, like arrows or spears."
+#: simulation/templates/template_wallset.xml:10
+msgid "Wall off an area."
 msgstr ""

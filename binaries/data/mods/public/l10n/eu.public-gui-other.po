@@ -1,7 +1,7 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright (C) 2020 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
-# 
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
+# project.
 # Translators:
 # Mielanjel Iraeta <pospolos@gmail.com>, 2017-2020
 # Osoitz <oelkoro@gmail.com>, 2015,2019-2020
@@ -10,67 +10,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-20 08:09+0000\n"
-"PO-Revision-Date: 2020-11-20 19:48+0000\n"
-"Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
+"POT-Creation-Date: 2020-11-30 07:41+0000\n"
+"PO-Revision-Date: 2020-11-30 08:39+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: eu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#: gui/civinfo/civinfo.js:20
-#, javascript-format
-msgid "%(hotkey)s: Switch to Structure Tree."
-msgstr "%(hotkey)s: Joan egitura zuhaitzera."
-
-#: gui/civinfo/civinfo.js:21
-#, javascript-format
-msgid "%(hotkey)s: Close Civilization Overview."
-msgstr "%(hotkey)s: Itxi zibilizazioaren ikuspegi orokorra."
-
-#. Translation: insert an itemization symbol for each entry.
-#: gui/civinfo/civinfo.js:85
-#, javascript-format
-msgid "• %(string)s"
-msgstr "• %(string)s"
-
-#: gui/civinfo/civinfo.js:113
-#, javascript-format
-msgid "%(civilization)s Gameplay"
-msgstr "%(civilization)s – Jolasteko era"
-
-#: gui/civinfo/civinfo.js:116
-msgid "Civilization Bonus"
-msgid_plural "Civilization Bonuses"
-msgstr[0] "Zibilizazioaren hobaria"
-msgstr[1] "Zibilizazioaren hobariak"
-
-#: gui/civinfo/civinfo.js:121
-msgid "Team Bonus"
-msgid_plural "Team Bonuses"
-msgstr[0] "Taldearen hobaria"
-msgstr[1] "Taldearen hobariak"
-
-#: gui/civinfo/civinfo.js:128
-msgid "Special Technologies"
-msgstr "Teknologia bereziak"
-
-#: gui/civinfo/civinfo.js:134
-msgid "Special Structure"
-msgid_plural "Special Structures"
-msgstr[0] "Egitura berezia"
-msgstr[1] "Egitura bereziak"
-
-#: gui/civinfo/civinfo.js:141 gui/summary/layout.js:77
-msgid "Heroes"
-msgstr "Heroiak"
-
-#: gui/civinfo/civinfo.js:151
-#, javascript-format
-msgid "History of the %(civilization)s"
-msgstr "%(civilization)s zibilizazioaren historia"
 
 #: gui/common/MapCache.js:52
 msgctxt "map selection"
@@ -110,7 +58,7 @@ msgstr "Karga eten da"
 msgid "Gaia"
 msgstr "Gaia"
 
-#: gui/common/functions_utility.js:228
+#: gui/common/functions_utility.js:236
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Konpilazioa: %(buildDate)s (%(revision)s)"
@@ -209,7 +157,8 @@ msgid "Team %(team)s"
 msgstr "%(team)s taldea"
 
 #. Translation: Describe players of one team in a selected game, f.e. in the
-#. replay- or savegame menu or lobby
+#. replay- or
+#. savegame menu or lobby
 #: gui/common/gamedescription.js:163 gui/common/gamedescription.js:170
 #, javascript-format
 msgid ""
@@ -1080,7 +1029,8 @@ msgid "%(resourceIcon)s %(rate)s"
 msgstr "%(resourceIcon)s %(rate)s"
 
 #. Translation: Label in tooltip showing the resource type and quantity of a
-#. given resource supply.
+#. given resource
+#. supply.
 #: gui/common/tooltips.js:715
 #, javascript-format
 msgid "%(label)s %(component)s %(amount)s"
@@ -1091,7 +1041,8 @@ msgid "Resource Supply:"
 msgstr "Baliabideen hornikuntza:"
 
 #. Translation: Marks that a resource supply entity has an unending, infinite,
-#. supply of its resource.
+#. supply of its
+#. resource.
 #: gui/common/tooltips.js:719 gui/summary/summary.js:111
 msgid "∞"
 msgstr "∞"
@@ -1213,7 +1164,8 @@ msgid "Classes:"
 msgstr "Klaseak:"
 
 #. Translation: %(component) will be the icon for the loot type and %(loot)
-#. will be the value.
+#. will be the
+#. value.
 #: gui/common/tooltips.js:1021
 #, javascript-format
 msgid "%(component)s %(loot)s"
@@ -1233,13 +1185,15 @@ msgid "Dropsite for:"
 msgstr "Honetarako biltegia:"
 
 #. Translation: Appears in a tooltip to indicate that right-clicking the
-#. corresponding GUI element will open the Template Details GUI page.
+#. corresponding GUI
+#. element will open the Template Details GUI page.
 #: gui/common/tooltips.js:1050
 msgid "Right-click to view more information."
 msgstr "Eskuin klika informazio gehiago ikusteko."
 
 #. Translation: Appears in a tooltip to indicate that clicking the
-#. corresponding GUI element will open the Template Details GUI page.
+#. corresponding GUI element
+#. will open the Template Details GUI page.
 #: gui/common/tooltips.js:1056
 msgid "Click to view more information."
 msgstr "Klikatu informazio gehiago ikusteko."
@@ -1248,6 +1202,215 @@ msgstr "Klikatu informazio gehiago ikusteko."
 #, javascript-format
 msgid "%(nick)s — %(name)s"
 msgstr "%(nick)s — %(name)s"
+
+#: gui/credits/credits.xml:(caption):19
+msgid "0 A.D. Credits"
+msgstr "0 A.D. Kredituak"
+
+#: gui/credits/texts/art.jsonContent[0].Title
+msgid "Art lead"
+msgstr "Diseinu grafikoen zuzendaria"
+
+#: gui/credits/texts/art.jsonContent[1].Title
+msgid "2D Art"
+msgstr "2D diseinuak"
+
+#: gui/credits/texts/art.jsonContent[2].Title
+msgid "3D Art"
+msgstr "3D diseinuak"
+
+#: gui/credits/texts/art.jsonTitle
+msgid "Art"
+msgstr "Diseinu grafikoa"
+
+#: gui/credits/texts/audio.jsonContent[0].Content[0].Subtitle
+msgid "Sound Manager"
+msgstr "Soinu zuzendaria"
+
+#: gui/credits/texts/audio.jsonContent[0].Content[1].Subtitle
+msgid "Lead Composer"
+msgstr "Egile nagusia"
+
+#: gui/credits/texts/audio.jsonContent[0].Title
+msgid "Audio managers"
+msgstr "Audio zuzendaria"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[10].Subtitle
+msgid "Viola, violin"
+msgstr "Biola eta bibolina "
+
+#: gui/credits/texts/audio.jsonContent[1].Content[1].Subtitle
+msgid "Additional music, percussion, djembe, sampling"
+msgstr "Musika gehigarria, perkusioa, Yembe eta musika laginketa"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[2].Subtitle
+msgid "Additional music"
+msgstr "Musika gehigarria"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[3].Subtitle
+msgid "Flute"
+msgstr "Flauta"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[4].Subtitle
+msgid "Djembe"
+msgstr "Yembe"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[5].Subtitle
+msgid "Frame drum, darbuka, riq, toms"
+msgstr "Marko tanborra, derbake, riq eta tomtomak"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[6].Subtitle
+msgid "Didgeridoo"
+msgstr "Didgeridoo"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[7].Subtitle
+msgid "Trumpet"
+msgstr "Tronpeta"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[8].Subtitle
+msgid "Celtic harp"
+msgstr "Harpa zelta"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[9].Subtitle
+msgid "Tin whistles"
+msgstr "Irlandar flautak"
+
+#: gui/credits/texts/audio.jsonContent[1].Title
+msgid "Music"
+msgstr "Musika"
+
+#: gui/credits/texts/audio.jsonContent[2].Title
+#: gui/options/options.json[2].label
+msgid "Sound"
+msgstr "Soinua"
+
+#: gui/credits/texts/audio.jsonContent[3].Content[0].Subtitle
+msgid "Greek"
+msgstr "Grekoa"
+
+#: gui/credits/texts/audio.jsonContent[3].Content[1].Subtitle
+msgid "Latin"
+msgstr "Latina"
+
+#: gui/credits/texts/audio.jsonContent[3].Content[2].Subtitle
+msgid "Napatan"
+msgstr "Napatan"
+
+#: gui/credits/texts/audio.jsonContent[3].Content[3].Subtitle
+msgid "Persian"
+msgstr "Persiarra"
+
+#: gui/credits/texts/audio.jsonContent[3].Title
+msgid "Voices"
+msgstr "Ahotsak"
+
+#: gui/credits/texts/audio.jsonTitle
+msgid "Audio"
+msgstr "Audioa"
+
+#: gui/credits/texts/balancing.jsonContent[0].Subtitle
+#: gui/credits/texts/history.jsonContent[0].Subtitle
+msgid "Head"
+msgstr "Zuzendaria"
+
+#: gui/credits/texts/balancing.jsonTitle
+msgid "Balancing"
+msgstr "Oreka"
+
+#: gui/credits/texts/community.jsonTitle
+msgid "Community and Management"
+msgstr "Komunikazio eta komunitate arduraduna"
+
+#: gui/credits/texts/donators.jsonContent[0].Title
+msgid "Pledgie Drive 1"
+msgstr "1. sosa biltzea"
+
+#: gui/credits/texts/donators.jsonContent[1].Title
+msgid "Pledgie Drive 2"
+msgstr "2. sosa biltzea"
+
+#: gui/credits/texts/donators.jsonContent[2].Title
+msgid ""
+"Indiegogo 2013 campaign\n"
+"More than 1000 donators (!), including:"
+msgstr "2013 ko Indiegogoren kanpaina⏎\n1000 baino gehiago partaideekin (!), hauek barne:"
+
+#: gui/credits/texts/donators.jsonTitle
+msgid "Donors"
+msgstr "Emaileak"
+
+#: gui/credits/texts/history.jsonTitle
+msgid "History References"
+msgstr "Erreferentzi historikoak"
+
+#: gui/credits/texts/maps.jsonContent[0].Title
+msgid "Map Making"
+msgstr "Antzestoki sortzailea"
+
+#: gui/credits/texts/maps.jsonContent[1].Title
+msgid "Random Map Scripts"
+msgstr "Ausazko antzeztoki scriptak"
+
+#: gui/credits/texts/maps.jsonTitle
+msgid "Maps"
+msgstr "MapaK"
+
+#: gui/credits/texts/programming.jsonContent[0].Title
+msgid "Programming managers"
+msgstr "Programazio nagusiak"
+
+#: gui/credits/texts/programming.jsonContent[1].Subtitle
+msgid "Special thanks to"
+msgstr "Eskerrak honi"
+
+#: gui/credits/texts/programming.jsonTitle
+msgid "Programming"
+msgstr "Programazioa"
+
+#: gui/credits/texts/special.jsonContent[0].Title
+msgid "In Memoriam"
+msgstr "Honen oroimenez"
+
+#: gui/credits/texts/special.jsonContent[1].Content[0].Subtitle
+msgid "0 A.D. Founder"
+msgstr "0 A.D.en Sortzailea"
+
+#: gui/credits/texts/special.jsonContent[1].Content[1].Subtitle
+msgid "Project Leaders"
+msgstr "Proiektuaren liderrak"
+
+#: gui/credits/texts/special.jsonContent[1].Content[2].Subtitle
+msgid "Co-Lead Designers"
+msgstr "Diseinatzaile laguntzaileak"
+
+#: gui/credits/texts/special.jsonContent[1].Title
+msgid "Special thanks to:"
+msgstr "Esker bereziak:"
+
+#: gui/credits/texts/special.jsonContent[2].Title
+msgid "And thanks to the entire community for making 0 A.D. possible."
+msgstr "Eta eskerrak 0 A.D. komunitateari hau aurrera ateratzeagatik."
+
+#: gui/credits/texts/special.jsonContent[3].Title
+msgid "No historians were harmed during the development of this project."
+msgstr "Ez da historialaririk mindu proiektuaren ekoizpenean."
+
+#: gui/credits/texts/special.jsonTitle
+msgid "Special Credits"
+msgstr "Kreditu bereziak"
+
+#: gui/credits/texts/translators.jsonTitle
+msgid "Translators"
+msgstr "Itzultzaileak"
+
+#: gui/gamesetup/Pages/GameSetupPage/Panels/Tips.txt:1
+msgid ""
+"Although reasonably easy for an experienced player, the default AI level is "
+"quite challenging for new players yet to master the basic mechanisms of the "
+"game. Beginners are advised to start by playing against a lower level AI "
+"(Sandbox or Very Easy). Change the AI level by clicking the gear icon next "
+"to the player you want to modify in the selection panel above."
+msgstr "Naiz jokalari adituarentzat nahikoa erraza izan, jokoaren nondik norakoa ezagutzen ez duten jokalari berrientzat AA maila erronka da. Gomendagarria da lehenengo partidetan maila jaistea (Probetarako jokalekua edo Oso erraza). AA maila aldatzeko sakatu goiko aukera paneleko aldatu nahi den jokalariaren ondoko gurpiltxoan ."
 
 #: gui/loadgame/SavegameDeleter.js:34
 #, javascript-format
@@ -1339,6 +1502,89 @@ msgstr "Gordetako partida behin betiko gainidatziko da, ziur zaude?"
 msgid "OVERWRITE SAVE"
 msgstr "PARTIDA GAINIDATZI"
 
+#: gui/loadgame/load.xml:(caption):43
+msgid "No saved games found."
+msgstr "Ez da gordetako partidarik aurkitu."
+
+#: gui/loadgame/load.xml:(caption):49 gui/locale/locale.xml:(caption):36
+msgid "Cancel"
+msgstr "Utzi"
+
+#: gui/loadgame/load.xml:(caption):53
+#: gui/replaymenu/replay_menu.xml:(caption):231
+msgid "Delete"
+msgstr "Ezabatu"
+
+#: gui/loadgame/load.xml:(caption):63
+msgid "Filter compatible saved games"
+msgstr "Ez erakutsi gordetako partida bateraezinak"
+
+#: gui/loadgame/load.xml:(caption):73
+msgid "Players:"
+msgstr "Jokalariak:"
+
+#: gui/loadgame/load.xml:(caption):77
+msgid "Played time:"
+msgstr "Jokatutako denbora:"
+
+#: gui/loadgame/load.xml:(caption):81
+#: gui/replaymenu/replay_menu.xml:(caption):150
+msgid "Map Type:"
+msgstr "Mapa mota:"
+
+#: gui/loadgame/load.xml:(caption):85
+#: gui/replaymenu/replay_menu.xml:(caption):165
+msgid "Map Size:"
+msgstr "Maparen Tamaina:"
+
+#: gui/loadgame/load.xml:(caption):89
+#: gui/replaymenu/replay_menu.xml:(caption):180
+msgid "Victory:"
+msgstr "Garaipena:"
+
+#: gui/loadgame/load.xml:(heading):26
+#: gui/replaymenu/replay_menu.xml:(heading):69
+msgctxt "replay"
+msgid "Date / Time"
+msgstr "Eguna / Ordua"
+
+#: gui/loadgame/load.xml:(heading):30
+msgctxt "replay"
+msgid "Map Type"
+msgstr "Mapa mota"
+
+#: gui/loadgame/load.xml:(heading):34
+#: gui/replaymenu/replay_menu.xml:(heading):77
+msgctxt "replay"
+msgid "Map Name"
+msgstr "Maparen izena"
+
+#: gui/loadgame/load.xml:(heading):38
+msgctxt "replay"
+msgid "Description"
+msgstr "Deskripzioa"
+
+#: gui/locale/locale.xml:(caption):17
+msgid "Language:"
+msgstr "Hizkuntza:"
+
+#. A locale is a set of parameters that defines the user’s language, country
+#. and any special
+#. variant preferences that the user wants to see in their user interface.
+#. Here, “Locale”
+#. refers to the code that identifies those settings, such as ‘en_US’.
+#: gui/locale/locale.xml:(caption):31
+msgid "Locale:"
+msgstr "Hizkuntza:"
+
+#: gui/locale/locale.xml:(caption):41
+msgid "Advanced"
+msgstr "Aurreratua"
+
+#: gui/locale/locale.xml:(caption):46
+msgid "Accept"
+msgstr "Onartu"
+
 #: gui/options/options.js:95
 #, javascript-format
 msgid "Default: %(value)s"
@@ -1382,6 +1628,896 @@ msgstr "Ezarpen balio batzuk baliogabeak dira! Ziur al zaude gorde nahi duzula?"
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "Gorde gabeko aldaketak dituzu. Leiho hau itxi nahi duzu?"
 
+#: gui/options/options.json[0].label
+msgid "General"
+msgstr "Orokorra"
+
+#: gui/options/options.json[0].options[0].label
+msgid "Player name (single-player)"
+msgstr "Jokalariaren izena (jokalari bat)"
+
+#: gui/options/options.json[0].options[0].tooltip
+msgid "How you want to be addressed in single-player matches."
+msgstr "Jokalari bakarreko partidetan erabiltzeko izena."
+
+#: gui/options/options.json[0].options[10].label
+msgid "Observer limit"
+msgstr "Gehieneko ikusleak"
+
+#: gui/options/options.json[0].options[10].tooltip
+msgid "Prevent further observers from joining if the limit is reached."
+msgstr "Behin muga gainditu ezkero ikusle gehiago batzea eragozten du."
+
+#: gui/options/options.json[0].options[11].label
+msgid "Chat timestamp"
+msgstr "Txataren denbora-zigilua"
+
+#: gui/options/options.json[0].options[11].tooltip
+msgid ""
+"Show time that messages are posted in the lobby, gamesetup and ingame chat."
+msgstr "Jokalari anitzen Gelako txaten mezuak noiz argitaratu ziren erakusten du, partida sortzean eta jokoaren bitartean."
+
+#: gui/options/options.json[0].options[1].label
+msgid "Player name (multiplayer)"
+msgstr "Jokalariaren izena (Hainbat jokalari)"
+
+#: gui/options/options.json[0].options[1].tooltip
+msgid "How you want to be addressed in multiplayer matches (except lobby)."
+msgstr "Hainbat jokalarietako partidetan erabiltzeko izena (salbu hizketako gelan)"
+
+#: gui/options/options.json[0].options[2].label
+msgid "Background pause"
+msgstr "Pausatu bigarren planoan"
+
+#: gui/options/options.json[0].options[2].tooltip
+msgid "Pause single-player games when window loses focus."
+msgstr "Pausatu jokalari bakarreko partidak leihoak fokua galtzen duenean"
+
+#: gui/options/options.json[0].options[3].label
+msgid "Enable welcome screen"
+msgstr "Gaitu ongietorri pantaila"
+
+#: gui/options/options.json[0].options[3].tooltip
+msgid ""
+"If you disable it, the welcome screen will still appear once, each time a "
+"new version is available. You can always launch it from the main menu."
+msgstr "Nahiz desgaitu, ongietorri pantaila bertsio berri bat dagoen bakoitzeko behin erakutsiko da. Nahi izan ezkero menu nagusitik sartu ahal izango duzu."
+
+#: gui/options/options.json[0].options[4].label
+msgid "Network warnings"
+msgstr "Sareko abisuak"
+
+#: gui/options/options.json[0].options[4].tooltip
+msgid "Show which player has a bad connection in multiplayer games."
+msgstr "Hainbat jokalarientzako partidetan konexio txarra duten jokalariak erakusten ditu."
+
+#: gui/options/options.json[0].options[5].label
+msgid "FPS overlay"
+msgstr "FPS geruza"
+
+#: gui/options/options.json[0].options[5].tooltip
+msgid "Show frames per second in top right corner."
+msgstr "Segundoko fotogramak erakutsi goian eskuin aldeko kantoian."
+
+#: gui/options/options.json[0].options[6].label
+msgid "Real time overlay"
+msgstr "Denbora errealeko geruza"
+
+#: gui/options/options.json[0].options[6].tooltip
+msgid "Show current system time in top right corner."
+msgstr "Bistaratu sistemaren ordua goi eskumako ertzean."
+
+#: gui/options/options.json[0].options[7].label
+msgid "Game time overlay"
+msgstr "Partida denboraren geruza"
+
+#: gui/options/options.json[0].options[7].tooltip
+msgid "Show current simulation time in top right corner."
+msgstr "Bistaratu uneko simulazio denbora goi eskumako ertzean."
+
+#: gui/options/options.json[0].options[8].label
+msgid "Ceasefire time overlay"
+msgstr "Su-eten denboraren geruza"
+
+#: gui/options/options.json[0].options[8].tooltip
+msgid "Always show the remaining ceasefire time."
+msgstr "Beti bistaratu geratzen den sueten denbora."
+
+#: gui/options/options.json[0].options[9].label
+msgid "Late observer joins"
+msgstr "Ikusle berantiarrak bat egin du"
+
+#: gui/options/options.json[0].options[9].list[0].label
+#: gui/options/options.json[3].options[5].list[0].label
+msgid "Everyone"
+msgstr "Guztiak"
+
+#: gui/options/options.json[0].options[9].list[1].label
+#: gui/options/options.json[3].options[5].list[1].label
+msgid "Buddies"
+msgstr "Lagunak"
+
+#: gui/options/options.json[0].options[9].list[2].label
+#: gui/options/options.json[1].options[4].list[0].label
+#: gui/options/options.json[1].options[5].list[0].label
+#: gui/options/options.json[3].options[5].list[2].label
+msgid "Disabled"
+msgstr "Desgaituta"
+
+#: gui/options/options.json[0].options[9].tooltip
+msgid ""
+"Allow everybody or buddies only to join the game as observer after it "
+"started."
+msgstr "Utzi denak edo lagunak bakarrik hasitako partidetara ikusle gisa batu daitezen."
+
+#: gui/options/options.json[1].label
+msgid "Graphics"
+msgstr "Grafikoak"
+
+#: gui/options/options.json[1].options[0].label
+msgid "Windowed mode"
+msgstr "Leiho modua"
+
+#: gui/options/options.json[1].options[0].tooltip
+msgid "Start 0 A.D. in a window."
+msgstr "Abiarazi 0 A.D. leiho batean."
+
+#: gui/options/options.json[1].options[10].label
+msgid "Shadow filtering"
+msgstr "Itzalen iragazketa"
+
+#: gui/options/options.json[1].options[10].tooltip
+msgid "Smooth shadows."
+msgstr "Itzal leunak."
+
+#: gui/options/options.json[1].options[11].label
+msgid "Unit silhouettes"
+msgstr "Unitateen siluetak"
+
+#: gui/options/options.json[1].options[11].tooltip
+msgid "Show outlines of units behind structures."
+msgstr "Bistaratu eraikinen atzean dauden unitateen siluetak."
+
+#: gui/options/options.json[1].options[12].label
+msgid "Particles"
+msgstr "Partikulak"
+
+#: gui/options/options.json[1].options[12].tooltip
+msgid "Enable particles."
+msgstr "Gaitu partikulak."
+
+#: gui/options/options.json[1].options[13].label
+msgid "Water effects"
+msgstr "Uraren efektuak"
+
+#: gui/options/options.json[1].options[13].tooltip
+msgid ""
+"When OFF, use the lowest settings possible to render water. This makes other"
+" settings irrelevant."
+msgstr "Desaktibatzean erabili ezarpen baxuena ura errendatzeko. Honek beste ezarpenak garrantzi gabekoak bihurtzen ditu."
+
+#: gui/options/options.json[1].options[14].label
+msgid "High-quality water effects"
+msgstr "Kalitate handiko ur efektuak"
+
+#: gui/options/options.json[1].options[14].tooltip
+msgid ""
+"Use higher-quality effects for water, rendering coastal waves, shore foam, "
+"and ships trails."
+msgstr "Erabili kalitate handiko efektuak uretan, kostaldeko olatuak, aparra itsasbazterrean eta itsasontzien lorratzak ur azalean."
+
+#: gui/options/options.json[1].options[15].label
+msgid "Water reflections"
+msgstr "Uraren islapenak"
+
+#: gui/options/options.json[1].options[15].tooltip
+msgid "Allow water to reflect a mirror image."
+msgstr "Baimendu urak irudiaren ispilu bat islatzea."
+
+#: gui/options/options.json[1].options[16].label
+msgid "Water refraction"
+msgstr "Uraren errefrakzioa"
+
+#: gui/options/options.json[1].options[16].tooltip
+msgid "Use a real water refraction map and not transparency."
+msgstr "Erabili egiazko uraren errefrakzio mapa eta ez gardentasuna."
+
+#: gui/options/options.json[1].options[17].label
+msgid "Real water depth"
+msgstr "Ur sakontasun erreala"
+
+#: gui/options/options.json[1].options[17].tooltip
+msgid "Use actual water depth in rendering calculations."
+msgstr "Erabili uraren egiazko sakontasuna errendatze kalkuluetan."
+
+#: gui/options/options.json[1].options[18].label
+msgid "Shadows on water"
+msgstr "Itzalak uretan"
+
+#: gui/options/options.json[1].options[18].tooltip
+msgid "Cast shadows on water."
+msgstr "Sortu itzalak uretan."
+
+#: gui/options/options.json[1].options[19].label
+msgid "Smooth vision"
+msgstr "Ikusmen leuna"
+
+#: gui/options/options.json[1].options[19].tooltip
+msgid "Lift darkness and fog-of-war smoothly."
+msgstr "Altxatu leunki iluntasuna eta gatazka lainoa."
+
+#: gui/options/options.json[1].options[1].label
+msgid "Prefer GLSL"
+msgstr "GLSL nahiago"
+
+#: gui/options/options.json[1].options[1].tooltip
+msgid "Use OpenGL 2.0 shaders (recommended)."
+msgstr "Erabili OpenGL 2.0 shaderrak (gomendatua)."
+
+#: gui/options/options.json[1].options[20].label
+msgid "Show sky"
+msgstr "Bistaratu zerua"
+
+#: gui/options/options.json[1].options[20].tooltip
+msgid "Render Sky."
+msgstr "Errendatu zerua."
+
+#: gui/options/options.json[1].options[21].label
+msgid "VSync"
+msgstr "VSync"
+
+#: gui/options/options.json[1].options[21].tooltip
+msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
+msgstr "Pantailako zutikako sinkronizazioa mantendu «screen tearing» deituriko ekiditeko. JOKOA BERRABIARAZI BEHAR DA"
+
+#: gui/options/options.json[1].options[22].label
+msgid "FPS throttling in menus"
+msgstr "FPSa menuetan mugatu"
+
+#: gui/options/options.json[1].options[22].tooltip
+msgid ""
+"To save CPU workload, throttle render frequency in all menus. Set to maximum"
+" to disable throttling."
+msgstr "Marrazte abiadura mugatu dezakezu menuan prozesatzailean baliabide gutxiago jateko eta tenperatura eta energia gastua murrizteko. Gehienezko tamainan jarri mugatzailea ezgaitzeko."
+
+#: gui/options/options.json[1].options[23].label
+msgid "FPS throttling in games"
+msgstr "FPSa partidan mugatu"
+
+#: gui/options/options.json[1].options[23].tooltip
+msgid ""
+"To save CPU workload, throttle render frequency in running games. Set to "
+"maximum to disable throttling."
+msgstr "Marrazte abiadura mugatu dezakezu partida jokatzean prozesatzailean baliabide gutxiago jateko eta tenperatura eta energia gastua murrizteko. Gehienezko tamainan jarri mugatzailea ezgaitzeko."
+
+#: gui/options/options.json[1].options[2].label
+msgid "Fog"
+msgstr "Lainoa"
+
+#: gui/options/options.json[1].options[2].tooltip
+msgid "Enable Fog."
+msgstr "Gaitu lainoa."
+
+#: gui/options/options.json[1].options[3].label
+msgid "Post-processing"
+msgstr "Post prozesatzea"
+
+#: gui/options/options.json[1].options[3].tooltip
+msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
+msgstr "Erabili post prozesatze iragazkiak (HDR, Bloom, DOF, eta abar)."
+
+#: gui/options/options.json[1].options[4].label
+msgid "Anti-Aliasing"
+msgstr "Anti-Aliasing"
+
+#: gui/options/options.json[1].options[4].list[0].tooltip
+msgid "Do not use anti-aliasing."
+msgstr "Ez erabili anti-aliasing."
+
+#: gui/options/options.json[1].options[4].list[1].label
+msgid "FXAA"
+msgstr "FXAA"
+
+#: gui/options/options.json[1].options[4].list[1].tooltip
+msgid "Fast, but simple anti-aliasing."
+msgstr "Anti-aliasing azkarra, baina xinplea."
+
+#: gui/options/options.json[1].options[4].list[2].label
+msgid "MSAA (x2)"
+msgstr "MSAA (x2)"
+
+#: gui/options/options.json[1].options[4].list[2].tooltip
+msgid ""
+"Slow, but high-quality anti-aliasing, uses 2 samples per pixel. Supported "
+"for GL3.3+."
+msgstr "Anti-aliasing motelak baina kalitate handikoak, pixel bakoitzeko 2 lagin erabiltzen ditu. GL3.3 + bertsiorako onartzen da."
+
+#: gui/options/options.json[1].options[4].list[3].label
+msgid "MSAA (x4)"
+msgstr "MSAA (x4)"
+
+#: gui/options/options.json[1].options[4].list[3].tooltip
+msgid ""
+"Slow, but high-quality anti-aliasing, uses 4 samples per pixel. Supported "
+"for GL3.3+."
+msgstr "Anti-aliasing motelak baina kalitate handikoak, pixel bakoitzeko 4 lagin erabiltzen ditu. GL3.3 + bertsiorako onartzen da."
+
+#: gui/options/options.json[1].options[4].list[4].label
+msgid "MSAA (x8)"
+msgstr "MSAA (x8)"
+
+#: gui/options/options.json[1].options[4].list[4].tooltip
+msgid ""
+"Slow, but high-quality anti-aliasing, uses 8 samples per pixel. Supported "
+"for GL3.3+."
+msgstr "Anti-aliasing motelak baina kalitate handikoak, pixel bakoitzeko 8 lagin erabiltzen ditu. GL3.3 + bertsiorako onartzen da."
+
+#: gui/options/options.json[1].options[4].list[5].label
+msgid "MSAA (x16)"
+msgstr "MSAA (x16)"
+
+#: gui/options/options.json[1].options[4].list[5].tooltip
+msgid ""
+"Slow, but high-quality anti-aliasing, uses 16 samples per pixel. Supported "
+"for GL3.3+."
+msgstr "Anti-aliasing motelak baina kalitate handikoak, pixel bakoitzeko 16 lagin erabiltzen ditu. GL3.3 + bertsiorako onartzen da."
+
+#: gui/options/options.json[1].options[4].tooltip
+msgid "Reduce aliasing effect on edges."
+msgstr "Murriztu ertzetan aliasing-en eragina."
+
+#: gui/options/options.json[1].options[5].label
+msgid "Sharpening"
+msgstr "Zorrotz"
+
+#: gui/options/options.json[1].options[5].list[0].tooltip
+msgid "Do not use sharpening."
+msgstr "Ez erabili kontrasterik."
+
+#: gui/options/options.json[1].options[5].list[1].label
+msgid "FidelityFX CAS"
+msgstr "FidelityFX CAS"
+
+#: gui/options/options.json[1].options[5].list[1].tooltip
+msgid "Contrast adaptive sharpening, a fast, contrast based sharpening pass."
+msgstr "Kontrastea egokitzeko garbitasuna, kontrastean oinarritutako garbitze azkar bat."
+
+#: gui/options/options.json[1].options[5].tooltip
+msgid "Reduce blurry effects."
+msgstr "Efektu lausoak murrizten ditu."
+
+#: gui/options/options.json[1].options[6].label
+msgid "Sharpness factor"
+msgstr "Zorroztasun faktorea"
+
+#: gui/options/options.json[1].options[6].tooltip
+msgid "The sharpness of the choosen pass."
+msgstr "Aukeratutako bidearen zorroztasuna."
+
+#: gui/options/options.json[1].options[7].label
+msgid "Shader effects"
+msgstr "Itzal efektuak"
+
+#: gui/options/options.json[1].options[7].tooltip
+msgid "Number of shader effects. REQUIRES GAME RESTART"
+msgstr "Shaderren efektuen zenbatekoa. JOKOA BERRABIARAZI BEHAR DA"
+
+#: gui/options/options.json[1].options[8].label
+msgid "Shadows"
+msgstr "Itzalak"
+
+#: gui/options/options.json[1].options[8].tooltip
+msgid "Enable shadows."
+msgstr "Gaitu itzalak."
+
+#: gui/options/options.json[1].options[9].label
+msgid "Shadow quality"
+msgstr "Itzalen kalitatea"
+
+#: gui/options/options.json[1].options[9].list[0].label
+msgid "Very Low"
+msgstr "Oso baxua"
+
+#: gui/options/options.json[1].options[9].list[1].label
+msgid "Low"
+msgstr "Baxua"
+
+#: gui/options/options.json[1].options[9].list[2].label
+#: gui/options/options.json[3].options[3].list[3].label
+msgid "Medium"
+msgstr "Ertaina"
+
+#: gui/options/options.json[1].options[9].list[3].label
+msgid "High"
+msgstr "Altua"
+
+#: gui/options/options.json[1].options[9].list[4].label
+msgid "Very High"
+msgstr "Oso altua"
+
+#: gui/options/options.json[1].options[9].tooltip
+msgid ""
+"Shadow map resolution. High values can crash the game when using a graphics "
+"card with low memory!"
+msgstr "Itzal maparen bereizmena. Memoria gutxi duen txartel grafikoa erabili ezkero balore altuek jokoa blokea dezakete!"
+
+#: gui/options/options.json[1].tooltip
+msgid "Set the balance between performance and visual appearance."
+msgstr "Eragiketa eta ikusizko itxura arteko oreka ezarri."
+
+#: gui/options/options.json[2].options[0].label
+msgid "Master volume"
+msgstr "Bolumen nagusia"
+
+#: gui/options/options.json[2].options[0].tooltip
+msgid "Master audio gain."
+msgstr "Soinu orokorraren bolumenaren irabazia."
+
+#: gui/options/options.json[2].options[1].label
+msgid "Music volume"
+msgstr "Musikaren bolumena"
+
+#: gui/options/options.json[2].options[1].tooltip
+msgid "In game music gain."
+msgstr "Jokoko musikaren bolumenaren irabazia."
+
+#: gui/options/options.json[2].options[2].label
+msgid "Ambient volume"
+msgstr "Giroaren bolumena"
+
+#: gui/options/options.json[2].options[2].tooltip
+msgid "In game ambient sound gain."
+msgstr "Inguruneko soinuen bolumenaren irabazia."
+
+#: gui/options/options.json[2].options[3].label
+msgid "Action volume"
+msgstr "Akzioaren bolumena"
+
+#: gui/options/options.json[2].options[3].tooltip
+msgid "In game unit action sound gain."
+msgstr "Joko unitateek sortzen duten soinuen bolumenaren irabazia."
+
+#: gui/options/options.json[2].options[4].label
+msgid "UI volume"
+msgstr "Interfazearen bolumena"
+
+#: gui/options/options.json[2].options[4].tooltip
+msgid "UI sound gain."
+msgstr "Norberaren interfazearen soinuen bolumenaren irabazia."
+
+#: gui/options/options.json[2].options[5].label
+msgid "Nick notification"
+msgstr "Ezizen jakinarazpena"
+
+#: gui/options/options.json[2].options[5].tooltip
+msgid "Receive audio notification when someone types your nick."
+msgstr "Norbaitek zure izena aipatzen den bakoitzean soinu bat entzungo duzu."
+
+#: gui/options/options.json[2].options[6].label
+msgid "Game setup - new player notification"
+msgstr "Partidaren ezarpena - jokalari berriaren jakinarazpena"
+
+#: gui/options/options.json[2].options[6].tooltip
+msgid "Receive audio notification when a new client joins the game setup."
+msgstr "Jaso audio jakinarazpen bat bezero berri bat jokoaren ezarpenekin bat egitean."
+
+#: gui/options/options.json[3].label
+msgid "Game Setup"
+msgstr "Jokoaren konfigurazioa"
+
+#: gui/options/options.json[3].options[0].label
+msgid "Enable game setting tips"
+msgstr "Gaitu partidaren ezarpenen aholkuak"
+
+#: gui/options/options.json[3].options[0].tooltip
+msgid "Show tips when setting up a game."
+msgstr "Aholkuak erakusten ditu partida berria konfiguratzean."
+
+#: gui/options/options.json[3].options[1].label
+msgid "Enable settings panel slide"
+msgstr "Gaitu ezarpen panelaren diapositiba"
+
+#: gui/options/options.json[3].options[1].tooltip
+msgid "Slide the settings panel when opening, closing or resizing."
+msgstr "Ireki, itxi edota tamaina aldatzean ezarpenen panela irristatu."
+
+#: gui/options/options.json[3].options[2].label
+msgid "Persist match settings"
+msgstr "Mantendu partidaren ezarpenak"
+
+#: gui/options/options.json[3].options[2].tooltip
+msgid ""
+"Save and restore match settings for quick reuse when hosting another game."
+msgstr "Gorde eta berrezarri partidaren ezarpenak erraz berrerabiltzeko beste partida bat ostatatzean."
+
+#: gui/options/options.json[3].options[3].label
+msgid "Default AI difficulty"
+msgstr "AA zailtasuna"
+
+#: gui/options/options.json[3].options[3].list[0].label
+msgid "Sandbox"
+msgstr "Probetarako jokalekua"
+
+#: gui/options/options.json[3].options[3].list[1].label
+msgid "Very Easy"
+msgstr "Oso erraza"
+
+#: gui/options/options.json[3].options[3].list[2].label
+msgid "Easy"
+msgstr "Erraza"
+
+#: gui/options/options.json[3].options[3].list[4].label
+msgid "Hard"
+msgstr "Zaila"
+
+#: gui/options/options.json[3].options[3].list[5].label
+msgid "Very Hard"
+msgstr "Oso zaila"
+
+#: gui/options/options.json[3].options[3].tooltip
+msgid "Default difficulty of the AI."
+msgstr "AAren berezko zailtasuna."
+
+#: gui/options/options.json[3].options[4].label
+msgid "Default AI behavior"
+msgstr "AA portaera lehenetsia"
+
+#: gui/options/options.json[3].options[4].list[0].label
+msgid "Random"
+msgstr "Ausazkoa"
+
+#: gui/options/options.json[3].options[4].list[1].label
+msgid "Balanced"
+msgstr "Orekatua"
+
+#: gui/options/options.json[3].options[4].list[2].label
+msgid "Aggressive"
+msgstr "Erasokorra"
+
+#: gui/options/options.json[3].options[4].list[3].label
+msgid "Defensive"
+msgstr "Defentsiboa"
+
+#: gui/options/options.json[3].options[4].tooltip
+msgid "Default behavior of the AI."
+msgstr "AAren portaera lehenetsia."
+
+#: gui/options/options.json[3].options[5].label
+msgid "Assign players"
+msgstr "Esleitu jokalariak"
+
+#: gui/options/options.json[3].options[5].list[0].tooltip
+msgid "Players joining the match will be assigned if there is a free slot."
+msgstr "Tarte bat libre badago, esleitu egingo zaizkie partidarekin bat egiten duten jokalariei."
+
+#: gui/options/options.json[3].options[5].list[1].tooltip
+msgid ""
+"Players joining the match will only be assigned if they are a buddy of the "
+"host and if there is a free slot."
+msgstr "Partidarekin bat egiten duten jokalariak anfitrioiaren lagunak badira eta espazio libre bat badago bakarrik esleituko dira."
+
+#: gui/options/options.json[3].options[5].list[2].tooltip
+msgid "Players only receive a slot when the host assigns them explicitly."
+msgstr "Jokalariek espazioa hartzen dute anfitrioiak esplizituki esleitzen dituenean."
+
+#: gui/options/options.json[3].options[5].tooltip
+msgid ""
+"Automatically assign joining clients to free player slots during the match "
+"setup."
+msgstr "Partidaren ezarpenak zehazten diren bitartean jokalari librentzako zuloetara elkartzen diren bezeroei automatikoki eman."
+
+#: gui/options/options.json[4].label
+msgid "Lobby"
+msgstr "Jokalarien gela"
+
+#: gui/options/options.json[4].options[0].label
+msgid "TLS encryption"
+msgstr "TLS zifratzea"
+
+#: gui/options/options.json[4].options[0].tooltip
+msgid ""
+"Protect login and data exchanged with the lobby server using TLS encryption."
+msgstr "Babestu saio hasiera eta lobbyrekin trukatutako datuak TLS enkriptatzea erabiliz."
+
+#: gui/options/options.json[4].options[1].label
+msgid "Chat backlog"
+msgstr "Txataren historiala"
+
+#: gui/options/options.json[4].options[1].tooltip
+msgid "Number of backlogged messages to load when joining the lobby."
+msgstr "Jokalarien gelan sartzerakoan historian kargatu beharreko mezuen zenbatekoa."
+
+#: gui/options/options.json[4].options[2].label
+msgid "Game rating column"
+msgstr "Jokoaren puntuazio zutabea"
+
+#: gui/options/options.json[4].options[2].tooltip
+msgid ""
+"Show the average rating of the participating players in a column of the "
+"gamelist."
+msgstr "Parte hartzen duten jokalarien batezbesteko puntuazioa erakusten du jokoen zerrendako zutabe batean."
+
+#: gui/options/options.json[4].tooltip
+msgid "These settings only affect the multiplayer."
+msgstr "Ezarpen hauek hainbat jokalarien moduari baino ez diote eragiten."
+
+#: gui/options/options.json[5].label
+msgid "In-Game"
+msgstr "Jokoan"
+
+#: gui/options/options.json[5].options[0].label
+msgid "Wounded unit health"
+msgstr "Zauritutako unitateen osasuna"
+
+#: gui/options/options.json[5].options[0].tooltip
+msgid ""
+"The wounded unit hotkey considers the selected units as wounded if their "
+"health percentage falls below this number."
+msgstr "Sarbide azkarreko teklak ebazten du aukeratutako unitateak zauriturik daudela duten osasun ehunekoa zenbaki honen azpikoa bada."
+
+#: gui/options/options.json[5].options[10].label
+msgid "Rank icon above status bar"
+msgstr "Sailkatu ikonoak egoera-barraren gainean"
+
+#: gui/options/options.json[5].options[10].tooltip
+msgid "Show rank icons above status bars."
+msgstr "Erakutsi goialdeko ikonoak goitibeherako barran."
+
+#: gui/options/options.json[5].options[11].label
+msgid "Experience status bar"
+msgstr "Esperientzia egoera barra"
+
+#: gui/options/options.json[5].options[11].tooltip
+msgid "Show an experience status bar above each selected unit."
+msgstr "Esperientzia egoera barra erakusten du aukeratutako unitate bakoitzeko. "
+
+#: gui/options/options.json[5].options[12].label
+msgid "Detailed tooltips"
+msgstr "Laster-leiho xehetsuak"
+
+#: gui/options/options.json[5].options[12].tooltip
+msgid ""
+"Show detailed tooltips for trainable units in unit-producing structures."
+msgstr "Erakutsi unitate-sormen egituretan trebatu daitezken unitateen ezaugarrien laster-leiho xehetsuak."
+
+#: gui/options/options.json[5].options[13].label
+msgid "Sort resources and population tooltip"
+msgstr "Ordenatu baliabide eta biztanleen laster-leihoa"
+
+#: gui/options/options.json[5].options[13].list[0].label
+msgid "Unordered"
+msgstr "Ordenatu gabea"
+
+#: gui/options/options.json[5].options[13].list[1].label
+msgid "Ascending"
+msgstr "Goruntz"
+
+#: gui/options/options.json[5].options[13].list[2].label
+msgid "Descending"
+msgstr "Beheranzkoa"
+
+#: gui/options/options.json[5].options[13].tooltip
+msgid ""
+"Dynamically sort players in the resources and population tooltip by value."
+msgstr "Dinamikoki ordenatu jokalariak baliabideetan eta biztanleriaren argibideak balioaren arabera."
+
+#: gui/options/options.json[5].options[14].label
+msgid "Diplomacy colors: self"
+msgstr "Diplomazia-koloreak: Norbera"
+
+#: gui/options/options.json[5].options[14].tooltip
+msgid "Color of your units when diplomacy colors are enabled."
+msgstr "Zure unitateen kolorea-diplomazia koloreak gaituta daudenean."
+
+#: gui/options/options.json[5].options[15].label
+msgid "Diplomacy colors: ally"
+msgstr "Diplomazia-koloreak: Aliatua"
+
+#: gui/options/options.json[5].options[15].tooltip
+msgid "Color of allies when diplomacy colors are enabled."
+msgstr "Aliatuen kolorea diplomazia-koloreak gaituta daudenean."
+
+#: gui/options/options.json[5].options[16].label
+msgid "Diplomacy colors: neutral"
+msgstr "Diplomazia-koloreak: Neutrala"
+
+#: gui/options/options.json[5].options[16].tooltip
+msgid "Color of neutral players when diplomacy colors are enabled."
+msgstr "Jokalari neutralen kolorea diplomazia-koloreak gaituta daudenean."
+
+#: gui/options/options.json[5].options[17].label
+msgid "Diplomacy colors: enemy"
+msgstr "Diplomazia-koloreak: Etsaia"
+
+#: gui/options/options.json[5].options[17].tooltip
+msgid "Color of enemies when diplomacy colors are enabled."
+msgstr "Etsaien kolorea diplomazia-koloreak gaituta daudenean."
+
+#: gui/options/options.json[5].options[18].label
+msgid "Snap to edges"
+msgstr "Ertzetara doitu"
+
+#: gui/options/options.json[5].options[18].list[0].label
+msgid "Hotkey to enable snapping"
+msgstr "Doikuntza gaitzeko sarbide azkarreko tekla"
+
+#: gui/options/options.json[5].options[18].list[0].tooltip
+msgid ""
+"New structures are aligned with nearby structures while pressing the hotkey."
+msgstr "Egitura berriak hurbileko egiturekin lerrokatzen dira, sarbide azkarreko tekla sakatzen den bitartean."
+
+#: gui/options/options.json[5].options[18].list[1].label
+msgid "Hotkey to disable snapping"
+msgstr "Doikuntza desgaitzeko sarbide azkarreko tekla"
+
+#: gui/options/options.json[5].options[18].list[1].tooltip
+msgid ""
+"New structures are aligned with nearby structures unless the hotkey is "
+"pressed."
+msgstr "Egitura berriak hurbileko egiturekin lerrokatzen dira, sarbide azkarreko tekla sakatu ezean."
+
+#: gui/options/options.json[5].options[18].tooltip
+msgid "This option allows to align new structures with nearby structures."
+msgstr "Aukera honek aukera ematen du egitura berriak hurbileko egiturekin lerrokatzeko."
+
+#: gui/options/options.json[5].options[19].label
+msgid "Control Group Membership"
+msgstr "Kontrol taldearen partaidea"
+
+#: gui/options/options.json[5].options[19].list[0].label
+msgid "Single"
+msgstr "Bakarra"
+
+#: gui/options/options.json[5].options[19].list[0].tooltip
+msgid ""
+"When adding a Unit or Structure to a control group, they are removed from "
+"other control groups. Use this choice if you want control groups to refer to"
+" distinct armies."
+msgstr "Unitate edo egitura bat kontrol-talde bati gehitzean, beste kontrol-talde batzuetatik kentzen dira. Erabili aukera hau kontrol-taldeek armada desberdinei erreferentzia egitea nahi baduzu."
+
+#: gui/options/options.json[5].options[19].list[1].label
+msgid "Multiple"
+msgstr "Multiplea"
+
+#: gui/options/options.json[5].options[19].list[1].tooltip
+msgid ""
+"Units and Structures can be part of multiple control groups. This is useful "
+"to keep control groups for distinct armies and a control group for the "
+"entire army simultaneously."
+msgstr "Unitateak eta egiturak kontrol-talde ugariren parte izan daitezke. Hau baliagarria da armada ezberdinentzako kontrol taldeak mantentzeko eta aldi berean armada osoarentzako kontrol talde bat mantentzeko"
+
+#: gui/options/options.json[5].options[19].tooltip
+msgid "Decide whether units can be part of multiple control groups."
+msgstr "Unitateak kontrol-talde ugariren parte izan daitezkeen erabaki."
+
+#: gui/options/options.json[5].options[1].label
+msgid "Batch training size"
+msgstr "Taldeka trebatutako kopurua"
+
+#: gui/options/options.json[5].options[1].tooltip
+msgid "Number of units trained per batch by default."
+msgstr "Lote bakoitzeko prestatutako unitate kopurua lehenetsia."
+
+#: gui/options/options.json[5].options[2].label
+msgid "Scroll batch increment ratio"
+msgstr "Lotea handitzeko bataz besteko mugimendua"
+
+#: gui/options/options.json[5].options[2].tooltip
+msgid ""
+"Number of times you have to scroll to increase/decrease the batchsize by 1."
+msgstr "Zenbatetan mugitu behar duzun zenbakia 1en handitzeko / txikitzeko lotearen tamaina."
+
+#: gui/options/options.json[5].options[3].label
+msgid "Chat notification attack"
+msgstr "Txataren eraso kakinarazpena"
+
+#: gui/options/options.json[5].options[3].tooltip
+msgid "Show a chat notification if you are attacked by another player."
+msgstr "Txatean argitaratu beste jokalari baten erasoa jasotzean."
+
+#: gui/options/options.json[5].options[4].label
+msgid "Chat notification tribute"
+msgstr "Txataren jakinarazpena tributua"
+
+#: gui/options/options.json[5].options[4].tooltip
+msgid ""
+"Show a chat notification if an ally tributes resources to another team "
+"member if teams are locked, and all tributes in observer mode."
+msgstr "Txatean argitaratu aliatuen arteko baliabideen trukea taldeak blokeaturik badaude eta betiere ikusle moduan."
+
+#: gui/options/options.json[5].options[5].label
+msgid "Chat notification barter"
+msgstr "Txataren jakinarazpen trukea"
+
+#: gui/options/options.json[5].options[5].tooltip
+msgid ""
+"Show a chat notification to observers when a player bartered resources."
+msgstr "Erakutsi txat jakinarazpen bat ikusleei jokalari batek baliabideak trukatzen dituenean-"
+
+#: gui/options/options.json[5].options[6].label
+msgid "Chat notification phase"
+msgstr "Txataren jakinarazpena aroa"
+
+#: gui/options/options.json[5].options[6].list[0].label
+msgid "Disable"
+msgstr "Desgaitu"
+
+#: gui/options/options.json[5].options[6].list[1].label
+msgid "Completed"
+msgstr "Osaturik"
+
+#: gui/options/options.json[5].options[6].list[2].label
+msgid "All displayed"
+msgstr "Dena agerian"
+
+#: gui/options/options.json[5].options[6].tooltip
+msgid ""
+"Show a chat notification if you or an ally have started, aborted or "
+"completed a new phase, and phases of all players in observer mode."
+msgstr "Erakutsi txat jakinarazpen bat zuk edo zure aliatuak aro berri bat hasi, ezeztatu edo osatu baduzue eta jokalari guztien aroak ikusle moduan."
+
+#: gui/options/options.json[5].options[7].label
+msgid "Attack range visualization"
+msgstr "Erasoaren irismena bistaratzea"
+
+#: gui/options/options.json[5].options[7].tooltip
+msgid ""
+"Display the attack range of selected defensive structures (can also be "
+"toggled in-game with the hotkey)."
+msgstr "Aukeratutako babes egituren eraso maila erakusten du (sarbide azkarreko tekla erabiliz ere jokoan txandakatu daiteke)."
+
+#: gui/options/options.json[5].options[8].label
+msgid "Aura range visualization"
+msgstr "Auraren irismena bistaratzea"
+
+#: gui/options/options.json[5].options[8].tooltip
+msgid ""
+"Display the range of auras of selected units and structures (can also be "
+"toggled in-game with the hotkey)."
+msgstr "Aukeratutako unitate eta egituren auraren maila erakusten du (sarbide azkarreko tekla erabiliz ere jokoan txandakatu daiteke)."
+
+#: gui/options/options.json[5].options[9].label
+msgid "Heal range visualization"
+msgstr "Sendatze-irismena bistaratzea"
+
+#: gui/options/options.json[5].options[9].tooltip
+msgid ""
+"Display the healing range of selected units (can also be toggled in-game "
+"with the hotkey)."
+msgstr "Aukeratutako unitateen sendatze maila erakutsi (sarbide azkarreko tekla erabiliz ere jokoan txandakatu daiteke)."
+
+#: gui/options/options.json[5].tooltip
+msgid "Change options regarding the in-game settings."
+msgstr "Aldatu jokoaren ezarpenei buruzko aukerak."
+
+#: gui/options/options.xml:(caption):15
+msgid "Game Options"
+msgstr "Partidaren aukerak"
+
+#: gui/options/options.xml:(caption):42
+msgid "Reset"
+msgstr "Leheneratu"
+
+#: gui/options/options.xml:(caption):48
+msgid "Revert"
+msgstr "Desegin"
+
+#: gui/options/options.xml:(tooltip):43
+msgid "Resets user settings to their game default"
+msgstr "Ezarpenak hasierakoetara leheneratzen ditu"
+
+#: gui/options/options.xml:(tooltip):49
+msgid "Reverts to previous saved settings"
+msgstr "Lehen gordetako ezarpenetara itzultzen da"
+
+#: gui/options/options.xml:(tooltip):55
+msgid "Saves changes"
+msgstr "Aldaketak gorde"
+
+#: gui/options/options.xml:(tooltip):61
+msgid "Unsaved changes affect this session only"
+msgstr "Gordetzen ez diren aldaketek oraingo saioari baino ez diote eragingo"
+
 #: gui/pregame/MainMenuItems.js:3
 msgid "Learn To Play"
 msgstr "Ikasi nola jolastu"
@@ -1408,7 +2544,8 @@ msgstr "Tutoretza"
 msgid "Start the economic tutorial."
 msgstr "Ekonomia tutoretza hasi."
 
-#: gui/pregame/MainMenuItems.js:24 gui/civinfo/civinfo.xml:(caption):123
+#: gui/pregame/MainMenuItems.js:24
+#: gui/reference/common/Buttons/StructreeButton.js:21
 #: gui/reference/structree/structree.xml:(caption):20
 msgid "Structure Tree"
 msgstr "Egitura zuhaitza"
@@ -1420,8 +2557,8 @@ msgid ""
 msgstr "%(hotkey)s: Ikusi 0 A.D.en azaltzen diren zibilizazioen egituren zuhaitza."
 
 #: gui/pregame/MainMenuItems.js:36
+#: gui/reference/civinfo/civinfo.xml:(caption):21
 #: gui/reference/common/Buttons/CivInfoButton.js:21
-#: gui/civinfo/civinfo.xml:(caption):18
 msgid "Civilization Overview"
 msgstr "Zibilizazioaren ikuspegi orokorra"
 
@@ -1532,7 +2669,7 @@ msgstr "Laster teklak"
 msgid "Adjust hotkeys."
 msgstr "Doitu laster-teklak."
 
-#: gui/pregame/MainMenuItems.js:159 gui/locale/locale.xml:(caption):14
+#: gui/locale/locale.xml:(caption):14 gui/pregame/MainMenuItems.js:159
 msgid "Language"
 msgstr "Hizkuntza"
 
@@ -1733,6 +2870,90 @@ msgid ""
 "improve performance and compatibility."
 msgstr "Automatikoki bidal diezagukezu informazioa, honela erroreak konpontzen eta errendimendua eta bateragarritasuna hobetzen lagunduz."
 
+#. Translation: Description of an item in the CivInfo page, on a new line and
+#. indented.
+#: gui/reference/civinfo/CivInfoPage.js:101
+#, javascript-format
+msgid ""
+"\n"
+"     %(description)s"
+msgstr ""
+
+#. Translation: An entry in the CivInfo Page. The newline and indentation of
+#. the description
+#. is handled elsewhere.
+#. Example:
+#. > • Name of a Special Something (i)
+#. >     A brief description of the aforementioned something.
+#: gui/reference/civinfo/CivInfoPage.js:108
+#, javascript-format
+msgid "• %(name)s %(info_icon)s%(description)s"
+msgstr ""
+
+#: gui/reference/civinfo/CivInfoPage.js:119
+#, javascript-format
+msgid "%(hotkey)s: Close Civilization Overview."
+msgstr "%(hotkey)s: Itxi zibilizazioaren ikuspegi orokorra."
+
+#: gui/reference/civinfo/Sections/GameplaySection.js:30
+#, javascript-format
+msgid "%(civilization)s Gameplay"
+msgstr "%(civilization)s – Jolasteko era"
+
+#: gui/reference/civinfo/Sections/HistorySection.js:23
+#, javascript-format
+msgid "History of the %(civilization)s"
+msgstr "%(civilization)s zibilizazioaren historia"
+
+#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:32
+msgid "Civilization Bonus"
+msgid_plural "Civilization Bonuses"
+msgstr[0] "Zibilizazioaren hobaria"
+msgstr[1] "Zibilizazioaren hobariak"
+
+#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:35
+msgid "Team Bonus"
+msgid_plural "Team Bonuses"
+msgstr[0] "Taldearen hobaria"
+msgstr[1] "Taldearen hobariak"
+
+#: gui/reference/civinfo/Sections/Subsections/HeroesSubsection.js:30
+msgid "Hero"
+msgid_plural "Heroes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: gui/reference/civinfo/Sections/Subsections/StructuresSubsection.js:24
+msgid "Special Structure"
+msgid_plural "Special Structures"
+msgstr[0] "Egitura berezia"
+msgstr[1] "Egitura bereziak"
+
+#: gui/reference/civinfo/Sections/Subsections/TechnologiesSubsection.js:30
+msgid "Special Technology"
+msgid_plural "Special Technologies"
+msgstr[0] ""
+msgstr[1] ""
+
+#: gui/reference/common/Buttons/CivInfoButton.js:27
+#, javascript-format
+msgid "%(hotkey)s: Switch to Civilization Overview."
+msgstr "%(hotkey)s: Aldatu zibilizazioaren ikuspegi orokorra."
+
+#: gui/credits/credits.xml:(caption):32 gui/options/options.xml:(caption):60
+#: gui/reference/common/Buttons/CloseButton.js:13
+msgid "Close"
+msgstr "Itxi"
+
+#: gui/reference/common/Buttons/StructreeButton.js:27
+#, javascript-format
+msgid "%(hotkey)s: Switch to Structure Tree."
+msgstr "%(hotkey)s: Joan egitura zuhaitzera."
+
+#: gui/reference/common/Dropdowns/CivSelectDropdown.js:63
+msgid "Civilization:"
+msgstr "Zibilizazioa:"
+
 #: gui/reference/common/TemplateParser.js:128
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
@@ -1751,69 +2972,64 @@ msgid "Built by:"
 msgstr "Eraikia:"
 
 #. Translation: Label before a list of the names of structures or units that
-#. train the unit selected.
+#. train the unit
+#. selected.
 #: gui/reference/common/tooltips.js:33
 msgid "Trained by:"
 msgstr "Non trebatuta:"
 
 #. Translation: Label before a list of names of structures or units that
-#. research the technology selected.
+#. research the
+#. technology selected.
 #: gui/reference/common/tooltips.js:39
 msgid "Researched at:"
 msgstr "Non ikertua:"
 
 #. Translation: Label before a list of the names of structures the selected
-#. unit can construct or build.
+#. unit can
+#. construct or build.
 #: gui/reference/common/tooltips.js:48
 msgid "Builds:"
 msgstr "Eraiki dezake:"
 
 #. Translation: Label before a list of the names of technologies the selected
-#. unit or structure can research.
+#. unit or
+#. structure can research.
 #: gui/reference/common/tooltips.js:57
 msgid "Researches:"
 msgstr "Ikerketak:"
 
 #. Translation: Label before a list of the names of units the selected unit or
-#. structure can train.
+#. structure can
+#. train.
 #: gui/reference/common/tooltips.js:66
 msgid "Trains:"
 msgstr "Trebatuak:"
 
 #. Translation: Label before a list of the names of units or structures the
-#. selected unit or structure can be upgradable to.
+#. selected unit or
+#. structure can be upgradable to.
 #: gui/reference/common/tooltips.js:75
 msgid "Upgradable to:"
 msgstr "Eguneratzea:"
 
-#: gui/reference/common/Buttons/CivInfoButton.js:27
-#, javascript-format
-msgid "%(hotkey)s: Switch to Civilization Overview."
-msgstr "%(hotkey)s: Aldatu zibilizazioaren ikuspegi orokorra."
-
-#: gui/reference/common/Buttons/CloseButton.js:13
-#: gui/civinfo/civinfo.xml:(caption):135 gui/credits/credits.xml:(caption):32
-#: gui/options/options.xml:(caption):60
-msgid "Close"
-msgstr "Itxi"
-
-#: gui/reference/common/Dropdowns/CivSelectDropdown.js:63
-msgid "Civilization:"
-msgstr "Zibilizazioa:"
+#: gui/reference/structree/Sections/Trainer/TrainerSection.js:70
+msgid "Trainer Units"
+msgstr "Instrukzio unitateak"
 
 #: gui/reference/structree/StructreePage.js:85
 #, javascript-format
 msgid "%(hotkey)s: Close Structure Tree."
 msgstr "%(hotkey)s: Itxi egitura zuhaitza."
 
-#: gui/reference/structree/Sections/Trainer/TrainerSection.js:70
-msgid "Trainer Units"
-msgstr "Instrukzio unitateak"
-
 #: gui/reference/viewer/ViewerPage.js:167
 #, javascript-format
 msgid "%(hotkey)s: Close Template Viewer"
 msgstr "%(hotkey)s: Txantiloi bisorea itxi"
+
+#: gui/reference/viewer/viewer.xml:(caption):16
+msgid "Information"
+msgstr "Informazioa"
 
 #: gui/replaymenu/replay_actions.js:90
 msgid "This replay needs a different sequence of mods:"
@@ -1942,6 +3158,102 @@ msgstr "uuuu-HH-ee OO:mm"
 msgid "yyyy-MM"
 msgstr "uuuu-HH"
 
+#: gui/replaymenu/replay_menu.xml:(caption):13
+msgid "Replay Games"
+msgstr "Errepikapenak"
+
+#: gui/replaymenu/replay_menu.xml:(caption):109
+msgid "Filter compatible replays"
+msgstr "Ez erakutsi  errepikapen bateraezinak"
+
+#: gui/replaymenu/replay_menu.xml:(caption):213
+msgid "Spoiler"
+msgstr "Izkutua:"
+
+#: gui/replaymenu/replay_menu.xml:(caption):225
+msgid "Main Menu"
+msgstr "Menu nagusia"
+
+#: gui/replaymenu/replay_menu.xml:(caption):237
+msgid "Rebuild Cache"
+msgstr "Berregin cachea"
+
+#: gui/replaymenu/replay_menu.xml:(caption):244
+#: gui/summary/summary.xml:(caption):26
+msgid "Summary"
+msgstr "Laburpena"
+
+#: gui/replaymenu/replay_menu.xml:(caption):250
+msgid "Start Replay"
+msgstr "Errepikapena ikusi"
+
+#: gui/replaymenu/replay_menu.xml:(heading):73
+msgctxt "replay"
+msgid "Players"
+msgstr "Jokalariak"
+
+#: gui/replaymenu/replay_menu.xml:(heading):81
+msgctxt "replay"
+msgid "Size"
+msgstr "Tamaina"
+
+#: gui/replaymenu/replay_menu.xml:(heading):85
+msgctxt "replay"
+msgid "Population"
+msgstr "Biztanleria"
+
+#: gui/replaymenu/replay_menu.xml:(heading):89
+msgctxt "replay"
+msgid "Duration"
+msgstr "Iraupena"
+
+#: gui/replaymenu/replay_menu.xml:(tooltip):238
+msgid "Rebuild the replay cache from scratch. Potentially slow!"
+msgstr "Erreprodukzio cachea zerotik berreraiki. Agian motela!"
+
+#: gui/splashscreen/splashscreen.txt:2
+msgid ""
+"[font=\"sans-bold-20\"]  Thank you for installing 0 A.D. Empires Ascendant!"
+msgstr "[font=\"sans-bold-20\"]Eskerrik asko 0 A.D. Empires Ascendant instalatzeagatik!"
+
+#: gui/splashscreen/splashscreen.txt:3
+msgid "[font=\"sans-16\"]"
+msgstr "[font=\"sans-16\"]"
+
+#: gui/splashscreen/splashscreen.txt:4
+msgid ""
+"[imgleft=\"constructionIcon\"]This game is still in development. Features "
+"are missing and it contains bugs."
+msgstr "[imgleft=\"constructionIcon\"]Joko hau eraikuntza bidean dago oraindik. Ezaugarriak falta zaizkio eta akatsak ditu."
+
+#: gui/splashscreen/splashscreen.txt:6
+msgid ""
+"[imgleft=\"iconLag\"]The game can have performance problems, especially with"
+" large maps and a great number of units."
+msgstr "[imgleft=\"iconLag\"]Jokoak errendimendu arazoak izan ditzake, batez ere mapa handiekin eta unitate asko daudenean."
+
+#: gui/splashscreen/splashscreen.txt:8
+msgid ""
+"[imgleft=\"iconFormation\"]Formations are a work in progress, but you can "
+"toggle forming and disbanding formations as desired."
+msgstr "[imgleft=\"iconFormation\"]Formazioak, garatzen ari den lan bat da, baina alda dezakezu formazioak eginez edo formazioak deseginez, nahi duzun eran."
+
+#: gui/splashscreen/splashscreen.xml:(caption):14
+msgid "Welcome!"
+msgstr "Ongi etorri!"
+
+#: gui/splashscreen/splashscreen.xml:(caption):19
+msgid "Show this message in the future"
+msgstr "Bistaratu mezu hau etorkizunean ere"
+
+#: gui/splashscreen/splashscreen.xml:(caption):25
+msgid "Known Issues (web)"
+msgstr "Arazo ezagunak (webgunea)"
+
+#: gui/splashscreen/splashscreen.xml:(caption):30
+msgid "OK"
+msgstr "Ados"
+
 #: gui/summary/layout.js:13
 msgid "Score"
 msgstr "Puntuazioa"
@@ -2030,6 +3342,10 @@ msgstr "Zalditeria"
 #: gui/summary/layout.js:76
 msgid "Champion"
 msgstr "Aldezkaria"
+
+#: gui/summary/layout.js:77
+msgid "Heroes"
+msgstr "Heroiak"
 
 #: gui/summary/layout.js:78
 msgid "Siege"
@@ -2287,197 +3603,6 @@ msgstr "Erabili %(hotkey)s laburpenen fitxa bat eskuinera mugitzeko."
 msgid "Use %(hotkey)s to move a summary tab left."
 msgstr "Erabili %(hotkey)s laburpenen fitxa bat ezkerrera mugitzeko."
 
-#: gui/civinfo/civinfo.xml:(caption):30
-msgid "Civilization Selection"
-msgstr "Zibilizazioaren Aukeraketa"
-
-#: gui/credits/credits.xml:(caption):19
-msgid "0 A.D. Credits"
-msgstr "0 A.D. Kredituak"
-
-#: gui/loadgame/load.xml:(heading):26
-#: gui/replaymenu/replay_menu.xml:(heading):69
-msgctxt "replay"
-msgid "Date / Time"
-msgstr "Eguna / Ordua"
-
-#: gui/loadgame/load.xml:(heading):30
-msgctxt "replay"
-msgid "Map Type"
-msgstr "Mapa mota"
-
-#: gui/loadgame/load.xml:(heading):34
-#: gui/replaymenu/replay_menu.xml:(heading):77
-msgctxt "replay"
-msgid "Map Name"
-msgstr "Maparen izena"
-
-#: gui/loadgame/load.xml:(heading):38
-msgctxt "replay"
-msgid "Description"
-msgstr "Deskripzioa"
-
-#: gui/loadgame/load.xml:(caption):43
-msgid "No saved games found."
-msgstr "Ez da gordetako partidarik aurkitu."
-
-#: gui/loadgame/load.xml:(caption):49 gui/locale/locale.xml:(caption):36
-msgid "Cancel"
-msgstr "Utzi"
-
-#: gui/loadgame/load.xml:(caption):53
-#: gui/replaymenu/replay_menu.xml:(caption):231
-msgid "Delete"
-msgstr "Ezabatu"
-
-#: gui/loadgame/load.xml:(caption):63
-msgid "Filter compatible saved games"
-msgstr "Ez erakutsi gordetako partida bateraezinak"
-
-#: gui/loadgame/load.xml:(caption):73
-msgid "Players:"
-msgstr "Jokalariak:"
-
-#: gui/loadgame/load.xml:(caption):77
-msgid "Played time:"
-msgstr "Jokatutako denbora:"
-
-#: gui/loadgame/load.xml:(caption):81
-#: gui/replaymenu/replay_menu.xml:(caption):150
-msgid "Map Type:"
-msgstr "Mapa mota:"
-
-#: gui/loadgame/load.xml:(caption):85
-#: gui/replaymenu/replay_menu.xml:(caption):165
-msgid "Map Size:"
-msgstr "Maparen Tamaina:"
-
-#: gui/loadgame/load.xml:(caption):89
-#: gui/replaymenu/replay_menu.xml:(caption):180
-msgid "Victory:"
-msgstr "Garaipena:"
-
-#: gui/locale/locale.xml:(caption):17
-msgid "Language:"
-msgstr "Hizkuntza:"
-
-#. A locale is a set of parameters that defines the user’s language, country
-#. and any special variant preferences that the user wants to see in their
-#. user interface. Here, “Locale” refers to the code that identifies those
-#. settings, such as ‘en_US’.
-#: gui/locale/locale.xml:(caption):31
-msgid "Locale:"
-msgstr "Hizkuntza:"
-
-#: gui/locale/locale.xml:(caption):41
-msgid "Advanced"
-msgstr "Aurreratua"
-
-#: gui/locale/locale.xml:(caption):46
-msgid "Accept"
-msgstr "Onartu"
-
-#: gui/options/options.xml:(caption):15
-msgid "Game Options"
-msgstr "Partidaren aukerak"
-
-#: gui/options/options.xml:(caption):42
-msgid "Reset"
-msgstr "Leheneratu"
-
-#: gui/options/options.xml:(caption):48
-msgid "Revert"
-msgstr "Desegin"
-
-#: gui/options/options.xml:(tooltip):43
-msgid "Resets user settings to their game default"
-msgstr "Ezarpenak hasierakoetara leheneratzen ditu"
-
-#: gui/options/options.xml:(tooltip):49
-msgid "Reverts to previous saved settings"
-msgstr "Lehen gordetako ezarpenetara itzultzen da"
-
-#: gui/options/options.xml:(tooltip):55
-msgid "Saves changes"
-msgstr "Aldaketak gorde"
-
-#: gui/options/options.xml:(tooltip):61
-msgid "Unsaved changes affect this session only"
-msgstr "Gordetzen ez diren aldaketek oraingo saioari baino ez diote eragingo"
-
-#: gui/reference/viewer/viewer.xml:(caption):16
-msgid "Information"
-msgstr "Informazioa"
-
-#: gui/replaymenu/replay_menu.xml:(caption):13
-msgid "Replay Games"
-msgstr "Errepikapenak"
-
-#: gui/replaymenu/replay_menu.xml:(caption):109
-msgid "Filter compatible replays"
-msgstr "Ez erakutsi  errepikapen bateraezinak"
-
-#: gui/replaymenu/replay_menu.xml:(caption):213
-msgid "Spoiler"
-msgstr "Izkutua:"
-
-#: gui/replaymenu/replay_menu.xml:(caption):225
-msgid "Main Menu"
-msgstr "Menu nagusia"
-
-#: gui/replaymenu/replay_menu.xml:(caption):237
-msgid "Rebuild Cache"
-msgstr "Berregin cachea"
-
-#: gui/replaymenu/replay_menu.xml:(caption):244
-#: gui/summary/summary.xml:(caption):26
-msgid "Summary"
-msgstr "Laburpena"
-
-#: gui/replaymenu/replay_menu.xml:(caption):250
-msgid "Start Replay"
-msgstr "Errepikapena ikusi"
-
-#: gui/replaymenu/replay_menu.xml:(heading):73
-msgctxt "replay"
-msgid "Players"
-msgstr "Jokalariak"
-
-#: gui/replaymenu/replay_menu.xml:(heading):81
-msgctxt "replay"
-msgid "Size"
-msgstr "Tamaina"
-
-#: gui/replaymenu/replay_menu.xml:(heading):85
-msgctxt "replay"
-msgid "Population"
-msgstr "Biztanleria"
-
-#: gui/replaymenu/replay_menu.xml:(heading):89
-msgctxt "replay"
-msgid "Duration"
-msgstr "Iraupena"
-
-#: gui/replaymenu/replay_menu.xml:(tooltip):238
-msgid "Rebuild the replay cache from scratch. Potentially slow!"
-msgstr "Erreprodukzio cachea zerotik berreraiki. Agian motela!"
-
-#: gui/splashscreen/splashscreen.xml:(caption):14
-msgid "Welcome!"
-msgstr "Ongi etorri!"
-
-#: gui/splashscreen/splashscreen.xml:(caption):19
-msgid "Show this message in the future"
-msgstr "Bistaratu mezu hau etorkizunean ere"
-
-#: gui/splashscreen/splashscreen.xml:(caption):25
-msgid "Known Issues (web)"
-msgstr "Arazo ezagunak (webgunea)"
-
-#: gui/splashscreen/splashscreen.xml:(caption):30
-msgid "OK"
-msgstr "Ados"
-
 #: gui/summary/summary.xml:(caption):120
 msgctxt "summary chart"
 msgid "Category:"
@@ -2519,1286 +3644,6 @@ msgstr "Balioa"
 msgctxt "summary chart"
 msgid "Type"
 msgstr "Mota"
-
-#: gui/credits/texts/art.jsonContent[0].Title
-msgid "Art lead"
-msgstr "Diseinu grafikoen zuzendaria"
-
-#: gui/credits/texts/art.jsonContent[1].Title
-msgid "2D Art"
-msgstr "2D diseinuak"
-
-#: gui/credits/texts/art.jsonContent[2].Title
-msgid "3D Art"
-msgstr "3D diseinuak"
-
-#: gui/credits/texts/art.jsonTitle
-msgid "Art"
-msgstr "Diseinu grafikoa"
-
-#: gui/credits/texts/audio.jsonContent[0].Content[0].Subtitle
-msgid "Sound Manager"
-msgstr "Soinu zuzendaria"
-
-#: gui/credits/texts/audio.jsonContent[0].Content[1].Subtitle
-msgid "Lead Composer"
-msgstr "Egile nagusia"
-
-#: gui/credits/texts/audio.jsonContent[0].Title
-msgid "Audio managers"
-msgstr "Audio zuzendaria"
-
-#: gui/credits/texts/audio.jsonContent[1].Content[1].Subtitle
-msgid "Additional music, percussion, djembe, sampling"
-msgstr "Musika gehigarria, perkusioa, Yembe eta musika laginketa"
-
-#: gui/credits/texts/audio.jsonContent[1].Content[2].Subtitle
-msgid "Additional music"
-msgstr "Musika gehigarria"
-
-#: gui/credits/texts/audio.jsonContent[1].Content[3].Subtitle
-msgid "Flute"
-msgstr "Flauta"
-
-#: gui/credits/texts/audio.jsonContent[1].Content[4].Subtitle
-msgid "Djembe"
-msgstr "Yembe"
-
-#: gui/credits/texts/audio.jsonContent[1].Content[5].Subtitle
-msgid "Frame drum, darbuka, riq, toms"
-msgstr "Marko tanborra, derbake, riq eta tomtomak"
-
-#: gui/credits/texts/audio.jsonContent[1].Content[6].Subtitle
-msgid "Didgeridoo"
-msgstr "Didgeridoo"
-
-#: gui/credits/texts/audio.jsonContent[1].Content[7].Subtitle
-msgid "Trumpet"
-msgstr "Tronpeta"
-
-#: gui/credits/texts/audio.jsonContent[1].Content[8].Subtitle
-msgid "Celtic harp"
-msgstr "Harpa zelta"
-
-#: gui/credits/texts/audio.jsonContent[1].Content[9].Subtitle
-msgid "Tin whistles"
-msgstr "Irlandar flautak"
-
-#: gui/credits/texts/audio.jsonContent[1].Content[10].Subtitle
-msgid "Viola, violin"
-msgstr "Biola eta bibolina "
-
-#: gui/credits/texts/audio.jsonContent[1].Title
-msgid "Music"
-msgstr "Musika"
-
-#: gui/credits/texts/audio.jsonContent[2].Title
-#: gui/options/options.json[2].label
-msgid "Sound"
-msgstr "Soinua"
-
-#: gui/credits/texts/audio.jsonContent[3].Content[0].Subtitle
-msgid "Greek"
-msgstr "Grekoa"
-
-#: gui/credits/texts/audio.jsonContent[3].Content[1].Subtitle
-msgid "Latin"
-msgstr "Latina"
-
-#: gui/credits/texts/audio.jsonContent[3].Content[2].Subtitle
-msgid "Napatan"
-msgstr "Napatan"
-
-#: gui/credits/texts/audio.jsonContent[3].Content[3].Subtitle
-msgid "Persian"
-msgstr "Persiarra"
-
-#: gui/credits/texts/audio.jsonContent[3].Title
-msgid "Voices"
-msgstr "Ahotsak"
-
-#: gui/credits/texts/audio.jsonTitle
-msgid "Audio"
-msgstr "Audioa"
-
-#: gui/credits/texts/balancing.jsonContent[0].Subtitle
-#: gui/credits/texts/history.jsonContent[0].Subtitle
-msgid "Head"
-msgstr "Zuzendaria"
-
-#: gui/credits/texts/balancing.jsonTitle
-msgid "Balancing"
-msgstr "Oreka"
-
-#: gui/credits/texts/community.jsonTitle
-msgid "Community and Management"
-msgstr "Komunikazio eta komunitate arduraduna"
-
-#: gui/credits/texts/donators.jsonContent[0].Title
-msgid "Pledgie Drive 1"
-msgstr "1. sosa biltzea"
-
-#: gui/credits/texts/donators.jsonContent[1].Title
-msgid "Pledgie Drive 2"
-msgstr "2. sosa biltzea"
-
-#: gui/credits/texts/donators.jsonContent[2].Title
-msgid ""
-"Indiegogo 2013 campaign\n"
-"More than 1000 donators (!), including:"
-msgstr "2013 ko Indiegogoren kanpaina⏎\n1000 baino gehiago partaideekin (!), hauek barne:"
-
-#: gui/credits/texts/donators.jsonTitle
-msgid "Donors"
-msgstr "Emaileak"
-
-#: gui/credits/texts/history.jsonTitle
-msgid "History References"
-msgstr "Erreferentzi historikoak"
-
-#: gui/credits/texts/maps.jsonContent[0].Title
-msgid "Map Making"
-msgstr "Antzestoki sortzailea"
-
-#: gui/credits/texts/maps.jsonContent[1].Title
-msgid "Random Map Scripts"
-msgstr "Ausazko antzeztoki scriptak"
-
-#: gui/credits/texts/maps.jsonTitle
-msgid "Maps"
-msgstr "MapaK"
-
-#: gui/credits/texts/programming.jsonContent[0].Title
-msgid "Programming managers"
-msgstr "Programazio nagusiak"
-
-#: gui/credits/texts/programming.jsonContent[1].Subtitle
-msgid "Special thanks to"
-msgstr "Eskerrak honi"
-
-#: gui/credits/texts/programming.jsonTitle
-msgid "Programming"
-msgstr "Programazioa"
-
-#: gui/credits/texts/special.jsonContent[0].Title
-msgid "In Memoriam"
-msgstr "Honen oroimenez"
-
-#: gui/credits/texts/special.jsonContent[1].Content[0].Subtitle
-msgid "0 A.D. Founder"
-msgstr "0 A.D.en Sortzailea"
-
-#: gui/credits/texts/special.jsonContent[1].Content[1].Subtitle
-msgid "Project Leaders"
-msgstr "Proiektuaren liderrak"
-
-#: gui/credits/texts/special.jsonContent[1].Content[2].Subtitle
-msgid "Co-Lead Designers"
-msgstr "Diseinatzaile laguntzaileak"
-
-#: gui/credits/texts/special.jsonContent[1].Title
-msgid "Special thanks to:"
-msgstr "Esker bereziak:"
-
-#: gui/credits/texts/special.jsonContent[2].Title
-msgid "And thanks to the entire community for making 0 A.D. possible."
-msgstr "Eta eskerrak 0 A.D. komunitateari hau aurrera ateratzeagatik."
-
-#: gui/credits/texts/special.jsonContent[3].Title
-msgid "No historians were harmed during the development of this project."
-msgstr "Ez da historialaririk mindu proiektuaren ekoizpenean."
-
-#: gui/credits/texts/special.jsonTitle
-msgid "Special Credits"
-msgstr "Kreditu bereziak"
-
-#: gui/credits/texts/translators.jsonTitle
-msgid "Translators"
-msgstr "Itzultzaileak"
-
-#: gui/options/options.json[0].options[0].tooltip
-msgid "How you want to be addressed in single-player matches."
-msgstr "Jokalari bakarreko partidetan erabiltzeko izena."
-
-#: gui/options/options.json[0].options[0].label
-msgid "Player name (single-player)"
-msgstr "Jokalariaren izena (jokalari bat)"
-
-#: gui/options/options.json[0].options[1].tooltip
-msgid "How you want to be addressed in multiplayer matches (except lobby)."
-msgstr "Hainbat jokalarietako partidetan erabiltzeko izena (salbu hizketako gelan)"
-
-#: gui/options/options.json[0].options[1].label
-msgid "Player name (multiplayer)"
-msgstr "Jokalariaren izena (Hainbat jokalari)"
-
-#: gui/options/options.json[0].options[2].tooltip
-msgid "Pause single-player games when window loses focus."
-msgstr "Pausatu jokalari bakarreko partidak leihoak fokua galtzen duenean"
-
-#: gui/options/options.json[0].options[2].label
-msgid "Background pause"
-msgstr "Pausatu bigarren planoan"
-
-#: gui/options/options.json[0].options[3].tooltip
-msgid ""
-"If you disable it, the welcome screen will still appear once, each time a "
-"new version is available. You can always launch it from the main menu."
-msgstr "Nahiz desgaitu, ongietorri pantaila bertsio berri bat dagoen bakoitzeko behin erakutsiko da. Nahi izan ezkero menu nagusitik sartu ahal izango duzu."
-
-#: gui/options/options.json[0].options[3].label
-msgid "Enable welcome screen"
-msgstr "Gaitu ongietorri pantaila"
-
-#: gui/options/options.json[0].options[4].tooltip
-msgid "Show which player has a bad connection in multiplayer games."
-msgstr "Hainbat jokalarientzako partidetan konexio txarra duten jokalariak erakusten ditu."
-
-#: gui/options/options.json[0].options[4].label
-msgid "Network warnings"
-msgstr "Sareko abisuak"
-
-#: gui/options/options.json[0].options[5].tooltip
-msgid "Show frames per second in top right corner."
-msgstr "Segundoko fotogramak erakutsi goian eskuin aldeko kantoian."
-
-#: gui/options/options.json[0].options[5].label
-msgid "FPS overlay"
-msgstr "FPS geruza"
-
-#: gui/options/options.json[0].options[6].tooltip
-msgid "Show current system time in top right corner."
-msgstr "Bistaratu sistemaren ordua goi eskumako ertzean."
-
-#: gui/options/options.json[0].options[6].label
-msgid "Real time overlay"
-msgstr "Denbora errealeko geruza"
-
-#: gui/options/options.json[0].options[7].tooltip
-msgid "Show current simulation time in top right corner."
-msgstr "Bistaratu uneko simulazio denbora goi eskumako ertzean."
-
-#: gui/options/options.json[0].options[7].label
-msgid "Game time overlay"
-msgstr "Partida denboraren geruza"
-
-#: gui/options/options.json[0].options[8].tooltip
-msgid "Always show the remaining ceasefire time."
-msgstr "Beti bistaratu geratzen den sueten denbora."
-
-#: gui/options/options.json[0].options[8].label
-msgid "Ceasefire time overlay"
-msgstr "Su-eten denboraren geruza"
-
-#: gui/options/options.json[0].options[9].list[0].label
-#: gui/options/options.json[3].options[5].list[0].label
-msgid "Everyone"
-msgstr "Guztiak"
-
-#: gui/options/options.json[0].options[9].list[1].label
-#: gui/options/options.json[3].options[5].list[1].label
-msgid "Buddies"
-msgstr "Lagunak"
-
-#: gui/options/options.json[0].options[9].list[2].label
-#: gui/options/options.json[1].options[4].list[0].label
-#: gui/options/options.json[1].options[5].list[0].label
-#: gui/options/options.json[3].options[5].list[2].label
-msgid "Disabled"
-msgstr "Desgaituta"
-
-#: gui/options/options.json[0].options[9].tooltip
-msgid ""
-"Allow everybody or buddies only to join the game as observer after it "
-"started."
-msgstr "Utzi denak edo lagunak bakarrik hasitako partidetara ikusle gisa batu daitezen."
-
-#: gui/options/options.json[0].options[9].label
-msgid "Late observer joins"
-msgstr "Ikusle berantiarrak bat egin du"
-
-#: gui/options/options.json[0].options[10].tooltip
-msgid "Prevent further observers from joining if the limit is reached."
-msgstr "Behin muga gainditu ezkero ikusle gehiago batzea eragozten du."
-
-#: gui/options/options.json[0].options[10].label
-msgid "Observer limit"
-msgstr "Gehieneko ikusleak"
-
-#: gui/options/options.json[0].options[11].tooltip
-msgid ""
-"Show time that messages are posted in the lobby, gamesetup and ingame chat."
-msgstr "Jokalari anitzen Gelako txaten mezuak noiz argitaratu ziren erakusten du, partida sortzean eta jokoaren bitartean."
-
-#: gui/options/options.json[0].options[11].label
-msgid "Chat timestamp"
-msgstr "Txataren denbora-zigilua"
-
-#: gui/options/options.json[0].label
-msgid "General"
-msgstr "Orokorra"
-
-#: gui/options/options.json[1].options[0].tooltip
-msgid "Start 0 A.D. in a window."
-msgstr "Abiarazi 0 A.D. leiho batean."
-
-#: gui/options/options.json[1].options[0].label
-msgid "Windowed mode"
-msgstr "Leiho modua"
-
-#: gui/options/options.json[1].options[1].tooltip
-msgid "Use OpenGL 2.0 shaders (recommended)."
-msgstr "Erabili OpenGL 2.0 shaderrak (gomendatua)."
-
-#: gui/options/options.json[1].options[1].label
-msgid "Prefer GLSL"
-msgstr "GLSL nahiago"
-
-#: gui/options/options.json[1].options[2].tooltip
-msgid "Enable Fog."
-msgstr "Gaitu lainoa."
-
-#: gui/options/options.json[1].options[2].label
-msgid "Fog"
-msgstr "Lainoa"
-
-#: gui/options/options.json[1].options[3].tooltip
-msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
-msgstr "Erabili post prozesatze iragazkiak (HDR, Bloom, DOF, eta abar)."
-
-#: gui/options/options.json[1].options[3].label
-msgid "Post-processing"
-msgstr "Post prozesatzea"
-
-#: gui/options/options.json[1].options[4].list[0].tooltip
-msgid "Do not use anti-aliasing."
-msgstr "Ez erabili anti-aliasing."
-
-#: gui/options/options.json[1].options[4].list[1].tooltip
-msgid "Fast, but simple anti-aliasing."
-msgstr "Anti-aliasing azkarra, baina xinplea."
-
-#: gui/options/options.json[1].options[4].list[1].label
-msgid "FXAA"
-msgstr "FXAA"
-
-#: gui/options/options.json[1].options[4].list[2].tooltip
-msgid ""
-"Slow, but high-quality anti-aliasing, uses 2 samples per pixel. Supported "
-"for GL3.3+."
-msgstr "Anti-aliasing motelak baina kalitate handikoak, pixel bakoitzeko 2 lagin erabiltzen ditu. GL3.3 + bertsiorako onartzen da."
-
-#: gui/options/options.json[1].options[4].list[2].label
-msgid "MSAA (x2)"
-msgstr "MSAA (x2)"
-
-#: gui/options/options.json[1].options[4].list[3].tooltip
-msgid ""
-"Slow, but high-quality anti-aliasing, uses 4 samples per pixel. Supported "
-"for GL3.3+."
-msgstr "Anti-aliasing motelak baina kalitate handikoak, pixel bakoitzeko 4 lagin erabiltzen ditu. GL3.3 + bertsiorako onartzen da."
-
-#: gui/options/options.json[1].options[4].list[3].label
-msgid "MSAA (x4)"
-msgstr "MSAA (x4)"
-
-#: gui/options/options.json[1].options[4].list[4].tooltip
-msgid ""
-"Slow, but high-quality anti-aliasing, uses 8 samples per pixel. Supported "
-"for GL3.3+."
-msgstr "Anti-aliasing motelak baina kalitate handikoak, pixel bakoitzeko 8 lagin erabiltzen ditu. GL3.3 + bertsiorako onartzen da."
-
-#: gui/options/options.json[1].options[4].list[4].label
-msgid "MSAA (x8)"
-msgstr "MSAA (x8)"
-
-#: gui/options/options.json[1].options[4].list[5].tooltip
-msgid ""
-"Slow, but high-quality anti-aliasing, uses 16 samples per pixel. Supported "
-"for GL3.3+."
-msgstr "Anti-aliasing motelak baina kalitate handikoak, pixel bakoitzeko 16 lagin erabiltzen ditu. GL3.3 + bertsiorako onartzen da."
-
-#: gui/options/options.json[1].options[4].list[5].label
-msgid "MSAA (x16)"
-msgstr "MSAA (x16)"
-
-#: gui/options/options.json[1].options[4].tooltip
-msgid "Reduce aliasing effect on edges."
-msgstr "Murriztu ertzetan aliasing-en eragina."
-
-#: gui/options/options.json[1].options[4].label
-msgid "Anti-Aliasing"
-msgstr "Anti-Aliasing"
-
-#: gui/options/options.json[1].options[5].list[0].tooltip
-msgid "Do not use sharpening."
-msgstr "Ez erabili kontrasterik."
-
-#: gui/options/options.json[1].options[5].list[1].tooltip
-msgid "Contrast adaptive sharpening, a fast, contrast based sharpening pass."
-msgstr "Kontrastea egokitzeko garbitasuna, kontrastean oinarritutako garbitze azkar bat."
-
-#: gui/options/options.json[1].options[5].list[1].label
-msgid "FidelityFX CAS"
-msgstr "FidelityFX CAS"
-
-#: gui/options/options.json[1].options[5].tooltip
-msgid "Reduce blurry effects."
-msgstr "Efektu lausoak murrizten ditu."
-
-#: gui/options/options.json[1].options[5].label
-msgid "Sharpening"
-msgstr "Zorrotz"
-
-#: gui/options/options.json[1].options[6].tooltip
-msgid "The sharpness of the choosen pass."
-msgstr "Aukeratutako bidearen zorroztasuna."
-
-#: gui/options/options.json[1].options[6].label
-msgid "Sharpness factor"
-msgstr "Zorroztasun faktorea"
-
-#: gui/options/options.json[1].options[7].tooltip
-msgid "Number of shader effects. REQUIRES GAME RESTART"
-msgstr "Shaderren efektuen zenbatekoa. JOKOA BERRABIARAZI BEHAR DA"
-
-#: gui/options/options.json[1].options[7].label
-msgid "Shader effects"
-msgstr "Itzal efektuak"
-
-#: gui/options/options.json[1].options[8].tooltip
-msgid "Enable shadows."
-msgstr "Gaitu itzalak."
-
-#: gui/options/options.json[1].options[8].label
-msgid "Shadows"
-msgstr "Itzalak"
-
-#: gui/options/options.json[1].options[9].list[0].label
-msgid "Very Low"
-msgstr "Oso baxua"
-
-#: gui/options/options.json[1].options[9].list[1].label
-msgid "Low"
-msgstr "Baxua"
-
-#: gui/options/options.json[1].options[9].list[2].label
-#: gui/options/options.json[3].options[3].list[3].label
-msgid "Medium"
-msgstr "Ertaina"
-
-#: gui/options/options.json[1].options[9].list[3].label
-msgid "High"
-msgstr "Altua"
-
-#: gui/options/options.json[1].options[9].list[4].label
-msgid "Very High"
-msgstr "Oso altua"
-
-#: gui/options/options.json[1].options[9].tooltip
-msgid ""
-"Shadow map resolution. High values can crash the game when using a graphics "
-"card with low memory!"
-msgstr "Itzal maparen bereizmena. Memoria gutxi duen txartel grafikoa erabili ezkero balore altuek jokoa blokea dezakete!"
-
-#: gui/options/options.json[1].options[9].label
-msgid "Shadow quality"
-msgstr "Itzalen kalitatea"
-
-#: gui/options/options.json[1].options[10].tooltip
-msgid "Smooth shadows."
-msgstr "Itzal leunak."
-
-#: gui/options/options.json[1].options[10].label
-msgid "Shadow filtering"
-msgstr "Itzalen iragazketa"
-
-#: gui/options/options.json[1].options[11].tooltip
-msgid "Show outlines of units behind structures."
-msgstr "Bistaratu eraikinen atzean dauden unitateen siluetak."
-
-#: gui/options/options.json[1].options[11].label
-msgid "Unit silhouettes"
-msgstr "Unitateen siluetak"
-
-#: gui/options/options.json[1].options[12].tooltip
-msgid "Enable particles."
-msgstr "Gaitu partikulak."
-
-#: gui/options/options.json[1].options[12].label
-msgid "Particles"
-msgstr "Partikulak"
-
-#: gui/options/options.json[1].options[13].tooltip
-msgid ""
-"When OFF, use the lowest settings possible to render water. This makes other"
-" settings irrelevant."
-msgstr "Desaktibatzean erabili ezarpen baxuena ura errendatzeko. Honek beste ezarpenak garrantzi gabekoak bihurtzen ditu."
-
-#: gui/options/options.json[1].options[13].label
-msgid "Water effects"
-msgstr "Uraren efektuak"
-
-#: gui/options/options.json[1].options[14].tooltip
-msgid ""
-"Use higher-quality effects for water, rendering coastal waves, shore foam, "
-"and ships trails."
-msgstr "Erabili kalitate handiko efektuak uretan, kostaldeko olatuak, aparra itsasbazterrean eta itsasontzien lorratzak ur azalean."
-
-#: gui/options/options.json[1].options[14].label
-msgid "High-quality water effects"
-msgstr "Kalitate handiko ur efektuak"
-
-#: gui/options/options.json[1].options[15].tooltip
-msgid "Allow water to reflect a mirror image."
-msgstr "Baimendu urak irudiaren ispilu bat islatzea."
-
-#: gui/options/options.json[1].options[15].label
-msgid "Water reflections"
-msgstr "Uraren islapenak"
-
-#: gui/options/options.json[1].options[16].tooltip
-msgid "Use a real water refraction map and not transparency."
-msgstr "Erabili egiazko uraren errefrakzio mapa eta ez gardentasuna."
-
-#: gui/options/options.json[1].options[16].label
-msgid "Water refraction"
-msgstr "Uraren errefrakzioa"
-
-#: gui/options/options.json[1].options[17].tooltip
-msgid "Use actual water depth in rendering calculations."
-msgstr "Erabili uraren egiazko sakontasuna errendatze kalkuluetan."
-
-#: gui/options/options.json[1].options[17].label
-msgid "Real water depth"
-msgstr "Ur sakontasun erreala"
-
-#: gui/options/options.json[1].options[18].tooltip
-msgid "Cast shadows on water."
-msgstr "Sortu itzalak uretan."
-
-#: gui/options/options.json[1].options[18].label
-msgid "Shadows on water"
-msgstr "Itzalak uretan"
-
-#: gui/options/options.json[1].options[19].tooltip
-msgid "Lift darkness and fog-of-war smoothly."
-msgstr "Altxatu leunki iluntasuna eta gatazka lainoa."
-
-#: gui/options/options.json[1].options[19].label
-msgid "Smooth vision"
-msgstr "Ikusmen leuna"
-
-#: gui/options/options.json[1].options[20].tooltip
-msgid "Render Sky."
-msgstr "Errendatu zerua."
-
-#: gui/options/options.json[1].options[20].label
-msgid "Show sky"
-msgstr "Bistaratu zerua"
-
-#: gui/options/options.json[1].options[21].tooltip
-msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
-msgstr "Pantailako zutikako sinkronizazioa mantendu «screen tearing» deituriko ekiditeko. JOKOA BERRABIARAZI BEHAR DA"
-
-#: gui/options/options.json[1].options[21].label
-msgid "VSync"
-msgstr "VSync"
-
-#: gui/options/options.json[1].options[22].tooltip
-msgid ""
-"To save CPU workload, throttle render frequency in all menus. Set to maximum"
-" to disable throttling."
-msgstr "Marrazte abiadura mugatu dezakezu menuan prozesatzailean baliabide gutxiago jateko eta tenperatura eta energia gastua murrizteko. Gehienezko tamainan jarri mugatzailea ezgaitzeko."
-
-#: gui/options/options.json[1].options[22].label
-msgid "FPS throttling in menus"
-msgstr "FPSa menuetan mugatu"
-
-#: gui/options/options.json[1].options[23].tooltip
-msgid ""
-"To save CPU workload, throttle render frequency in running games. Set to "
-"maximum to disable throttling."
-msgstr "Marrazte abiadura mugatu dezakezu partida jokatzean prozesatzailean baliabide gutxiago jateko eta tenperatura eta energia gastua murrizteko. Gehienezko tamainan jarri mugatzailea ezgaitzeko."
-
-#: gui/options/options.json[1].options[23].label
-msgid "FPS throttling in games"
-msgstr "FPSa partidan mugatu"
-
-#: gui/options/options.json[1].tooltip
-msgid "Set the balance between performance and visual appearance."
-msgstr "Eragiketa eta ikusizko itxura arteko oreka ezarri."
-
-#: gui/options/options.json[1].label
-msgid "Graphics"
-msgstr "Grafikoak"
-
-#: gui/options/options.json[2].options[0].tooltip
-msgid "Master audio gain."
-msgstr "Soinu orokorraren bolumenaren irabazia."
-
-#: gui/options/options.json[2].options[0].label
-msgid "Master volume"
-msgstr "Bolumen nagusia"
-
-#: gui/options/options.json[2].options[1].tooltip
-msgid "In game music gain."
-msgstr "Jokoko musikaren bolumenaren irabazia."
-
-#: gui/options/options.json[2].options[1].label
-msgid "Music volume"
-msgstr "Musikaren bolumena"
-
-#: gui/options/options.json[2].options[2].tooltip
-msgid "In game ambient sound gain."
-msgstr "Inguruneko soinuen bolumenaren irabazia."
-
-#: gui/options/options.json[2].options[2].label
-msgid "Ambient volume"
-msgstr "Giroaren bolumena"
-
-#: gui/options/options.json[2].options[3].tooltip
-msgid "In game unit action sound gain."
-msgstr "Joko unitateek sortzen duten soinuen bolumenaren irabazia."
-
-#: gui/options/options.json[2].options[3].label
-msgid "Action volume"
-msgstr "Akzioaren bolumena"
-
-#: gui/options/options.json[2].options[4].tooltip
-msgid "UI sound gain."
-msgstr "Norberaren interfazearen soinuen bolumenaren irabazia."
-
-#: gui/options/options.json[2].options[4].label
-msgid "UI volume"
-msgstr "Interfazearen bolumena"
-
-#: gui/options/options.json[2].options[5].tooltip
-msgid "Receive audio notification when someone types your nick."
-msgstr "Norbaitek zure izena aipatzen den bakoitzean soinu bat entzungo duzu."
-
-#: gui/options/options.json[2].options[5].label
-msgid "Nick notification"
-msgstr "Ezizen jakinarazpena"
-
-#: gui/options/options.json[2].options[6].tooltip
-msgid "Receive audio notification when a new client joins the game setup."
-msgstr "Jaso audio jakinarazpen bat bezero berri bat jokoaren ezarpenekin bat egitean."
-
-#: gui/options/options.json[2].options[6].label
-msgid "Game setup - new player notification"
-msgstr "Partidaren ezarpena - jokalari berriaren jakinarazpena"
-
-#: gui/options/options.json[3].options[0].tooltip
-msgid "Show tips when setting up a game."
-msgstr "Aholkuak erakusten ditu partida berria konfiguratzean."
-
-#: gui/options/options.json[3].options[0].label
-msgid "Enable game setting tips"
-msgstr "Gaitu partidaren ezarpenen aholkuak"
-
-#: gui/options/options.json[3].options[1].tooltip
-msgid "Slide the settings panel when opening, closing or resizing."
-msgstr "Ireki, itxi edota tamaina aldatzean ezarpenen panela irristatu."
-
-#: gui/options/options.json[3].options[1].label
-msgid "Enable settings panel slide"
-msgstr "Gaitu ezarpen panelaren diapositiba"
-
-#: gui/options/options.json[3].options[2].tooltip
-msgid ""
-"Save and restore match settings for quick reuse when hosting another game."
-msgstr "Gorde eta berrezarri partidaren ezarpenak erraz berrerabiltzeko beste partida bat ostatatzean."
-
-#: gui/options/options.json[3].options[2].label
-msgid "Persist match settings"
-msgstr "Mantendu partidaren ezarpenak"
-
-#: gui/options/options.json[3].options[3].list[0].label
-msgid "Sandbox"
-msgstr "Probetarako jokalekua"
-
-#: gui/options/options.json[3].options[3].list[1].label
-msgid "Very Easy"
-msgstr "Oso erraza"
-
-#: gui/options/options.json[3].options[3].list[2].label
-msgid "Easy"
-msgstr "Erraza"
-
-#: gui/options/options.json[3].options[3].list[4].label
-msgid "Hard"
-msgstr "Zaila"
-
-#: gui/options/options.json[3].options[3].list[5].label
-msgid "Very Hard"
-msgstr "Oso zaila"
-
-#: gui/options/options.json[3].options[3].tooltip
-msgid "Default difficulty of the AI."
-msgstr "AAren berezko zailtasuna."
-
-#: gui/options/options.json[3].options[3].label
-msgid "Default AI difficulty"
-msgstr "AA zailtasuna"
-
-#: gui/options/options.json[3].options[4].list[0].label
-msgid "Random"
-msgstr "Ausazkoa"
-
-#: gui/options/options.json[3].options[4].list[1].label
-msgid "Balanced"
-msgstr "Orekatua"
-
-#: gui/options/options.json[3].options[4].list[2].label
-msgid "Aggressive"
-msgstr "Erasokorra"
-
-#: gui/options/options.json[3].options[4].list[3].label
-msgid "Defensive"
-msgstr "Defentsiboa"
-
-#: gui/options/options.json[3].options[4].tooltip
-msgid "Default behavior of the AI."
-msgstr "AAren portaera lehenetsia."
-
-#: gui/options/options.json[3].options[4].label
-msgid "Default AI behavior"
-msgstr "AA portaera lehenetsia"
-
-#: gui/options/options.json[3].options[5].list[0].tooltip
-msgid "Players joining the match will be assigned if there is a free slot."
-msgstr "Tarte bat libre badago, esleitu egingo zaizkie partidarekin bat egiten duten jokalariei."
-
-#: gui/options/options.json[3].options[5].list[1].tooltip
-msgid ""
-"Players joining the match will only be assigned if they are a buddy of the "
-"host and if there is a free slot."
-msgstr "Partidarekin bat egiten duten jokalariak anfitrioiaren lagunak badira eta espazio libre bat badago bakarrik esleituko dira."
-
-#: gui/options/options.json[3].options[5].list[2].tooltip
-msgid "Players only receive a slot when the host assigns them explicitly."
-msgstr "Jokalariek espazioa hartzen dute anfitrioiak esplizituki esleitzen dituenean."
-
-#: gui/options/options.json[3].options[5].tooltip
-msgid ""
-"Automatically assign joining clients to free player slots during the match "
-"setup."
-msgstr "Partidaren ezarpenak zehazten diren bitartean jokalari librentzako zuloetara elkartzen diren bezeroei automatikoki eman."
-
-#: gui/options/options.json[3].options[5].label
-msgid "Assign players"
-msgstr "Esleitu jokalariak"
-
-#: gui/options/options.json[3].label
-msgid "Game Setup"
-msgstr "Jokoaren konfigurazioa"
-
-#: gui/options/options.json[4].options[0].tooltip
-msgid ""
-"Protect login and data exchanged with the lobby server using TLS encryption."
-msgstr "Babestu saio hasiera eta lobbyrekin trukatutako datuak TLS enkriptatzea erabiliz."
-
-#: gui/options/options.json[4].options[0].label
-msgid "TLS encryption"
-msgstr "TLS zifratzea"
-
-#: gui/options/options.json[4].options[1].tooltip
-msgid "Number of backlogged messages to load when joining the lobby."
-msgstr "Jokalarien gelan sartzerakoan historian kargatu beharreko mezuen zenbatekoa."
-
-#: gui/options/options.json[4].options[1].label
-msgid "Chat backlog"
-msgstr "Txataren historiala"
-
-#: gui/options/options.json[4].options[2].tooltip
-msgid ""
-"Show the average rating of the participating players in a column of the "
-"gamelist."
-msgstr "Parte hartzen duten jokalarien batezbesteko puntuazioa erakusten du jokoen zerrendako zutabe batean."
-
-#: gui/options/options.json[4].options[2].label
-msgid "Game rating column"
-msgstr "Jokoaren puntuazio zutabea"
-
-#: gui/options/options.json[4].tooltip
-msgid "These settings only affect the multiplayer."
-msgstr "Ezarpen hauek hainbat jokalarien moduari baino ez diote eragiten."
-
-#: gui/options/options.json[4].label
-msgid "Lobby"
-msgstr "Jokalarien gela"
-
-#: gui/options/options.json[5].options[0].tooltip
-msgid ""
-"The wounded unit hotkey considers the selected units as wounded if their "
-"health percentage falls below this number."
-msgstr "Sarbide azkarreko teklak ebazten du aukeratutako unitateak zauriturik daudela duten osasun ehunekoa zenbaki honen azpikoa bada."
-
-#: gui/options/options.json[5].options[0].label
-msgid "Wounded unit health"
-msgstr "Zauritutako unitateen osasuna"
-
-#: gui/options/options.json[5].options[1].tooltip
-msgid "Number of units trained per batch by default."
-msgstr "Lote bakoitzeko prestatutako unitate kopurua lehenetsia."
-
-#: gui/options/options.json[5].options[1].label
-msgid "Batch training size"
-msgstr "Taldeka trebatutako kopurua"
-
-#: gui/options/options.json[5].options[2].tooltip
-msgid ""
-"Number of times you have to scroll to increase/decrease the batchsize by 1."
-msgstr "Zenbatetan mugitu behar duzun zenbakia 1en handitzeko / txikitzeko lotearen tamaina."
-
-#: gui/options/options.json[5].options[2].label
-msgid "Scroll batch increment ratio"
-msgstr "Lotea handitzeko bataz besteko mugimendua"
-
-#: gui/options/options.json[5].options[3].tooltip
-msgid "Show a chat notification if you are attacked by another player."
-msgstr "Txatean argitaratu beste jokalari baten erasoa jasotzean."
-
-#: gui/options/options.json[5].options[3].label
-msgid "Chat notification attack"
-msgstr "Txataren eraso kakinarazpena"
-
-#: gui/options/options.json[5].options[4].tooltip
-msgid ""
-"Show a chat notification if an ally tributes resources to another team "
-"member if teams are locked, and all tributes in observer mode."
-msgstr "Txatean argitaratu aliatuen arteko baliabideen trukea taldeak blokeaturik badaude eta betiere ikusle moduan."
-
-#: gui/options/options.json[5].options[4].label
-msgid "Chat notification tribute"
-msgstr "Txataren jakinarazpena tributua"
-
-#: gui/options/options.json[5].options[5].tooltip
-msgid ""
-"Show a chat notification to observers when a player bartered resources."
-msgstr "Erakutsi txat jakinarazpen bat ikusleei jokalari batek baliabideak trukatzen dituenean-"
-
-#: gui/options/options.json[5].options[5].label
-msgid "Chat notification barter"
-msgstr "Txataren jakinarazpen trukea"
-
-#: gui/options/options.json[5].options[6].list[0].label
-msgid "Disable"
-msgstr "Desgaitu"
-
-#: gui/options/options.json[5].options[6].list[1].label
-msgid "Completed"
-msgstr "Osaturik"
-
-#: gui/options/options.json[5].options[6].list[2].label
-msgid "All displayed"
-msgstr "Dena agerian"
-
-#: gui/options/options.json[5].options[6].tooltip
-msgid ""
-"Show a chat notification if you or an ally have started, aborted or "
-"completed a new phase, and phases of all players in observer mode."
-msgstr "Erakutsi txat jakinarazpen bat zuk edo zure aliatuak aro berri bat hasi, ezeztatu edo osatu baduzue eta jokalari guztien aroak ikusle moduan."
-
-#: gui/options/options.json[5].options[6].label
-msgid "Chat notification phase"
-msgstr "Txataren jakinarazpena aroa"
-
-#: gui/options/options.json[5].options[7].tooltip
-msgid ""
-"Display the attack range of selected defensive structures (can also be "
-"toggled in-game with the hotkey)."
-msgstr "Aukeratutako babes egituren eraso maila erakusten du (sarbide azkarreko tekla erabiliz ere jokoan txandakatu daiteke)."
-
-#: gui/options/options.json[5].options[7].label
-msgid "Attack range visualization"
-msgstr "Erasoaren irismena bistaratzea"
-
-#: gui/options/options.json[5].options[8].tooltip
-msgid ""
-"Display the range of auras of selected units and structures (can also be "
-"toggled in-game with the hotkey)."
-msgstr "Aukeratutako unitate eta egituren auraren maila erakusten du (sarbide azkarreko tekla erabiliz ere jokoan txandakatu daiteke)."
-
-#: gui/options/options.json[5].options[8].label
-msgid "Aura range visualization"
-msgstr "Auraren irismena bistaratzea"
-
-#: gui/options/options.json[5].options[9].tooltip
-msgid ""
-"Display the healing range of selected units (can also be toggled in-game "
-"with the hotkey)."
-msgstr "Aukeratutako unitateen sendatze maila erakutsi (sarbide azkarreko tekla erabiliz ere jokoan txandakatu daiteke)."
-
-#: gui/options/options.json[5].options[9].label
-msgid "Heal range visualization"
-msgstr "Sendatze-irismena bistaratzea"
-
-#: gui/options/options.json[5].options[10].tooltip
-msgid "Show rank icons above status bars."
-msgstr "Erakutsi goialdeko ikonoak goitibeherako barran."
-
-#: gui/options/options.json[5].options[10].label
-msgid "Rank icon above status bar"
-msgstr "Sailkatu ikonoak egoera-barraren gainean"
-
-#: gui/options/options.json[5].options[11].tooltip
-msgid "Show an experience status bar above each selected unit."
-msgstr "Esperientzia egoera barra erakusten du aukeratutako unitate bakoitzeko. "
-
-#: gui/options/options.json[5].options[11].label
-msgid "Experience status bar"
-msgstr "Esperientzia egoera barra"
-
-#: gui/options/options.json[5].options[12].tooltip
-msgid ""
-"Show detailed tooltips for trainable units in unit-producing structures."
-msgstr "Erakutsi unitate-sormen egituretan trebatu daitezken unitateen ezaugarrien laster-leiho xehetsuak."
-
-#: gui/options/options.json[5].options[12].label
-msgid "Detailed tooltips"
-msgstr "Laster-leiho xehetsuak"
-
-#: gui/options/options.json[5].options[13].list[0].label
-msgid "Unordered"
-msgstr "Ordenatu gabea"
-
-#: gui/options/options.json[5].options[13].list[1].label
-msgid "Ascending"
-msgstr "Goruntz"
-
-#: gui/options/options.json[5].options[13].list[2].label
-msgid "Descending"
-msgstr "Beheranzkoa"
-
-#: gui/options/options.json[5].options[13].tooltip
-msgid ""
-"Dynamically sort players in the resources and population tooltip by value."
-msgstr "Dinamikoki ordenatu jokalariak baliabideetan eta biztanleriaren argibideak balioaren arabera."
-
-#: gui/options/options.json[5].options[13].label
-msgid "Sort resources and population tooltip"
-msgstr "Ordenatu baliabide eta biztanleen laster-leihoa"
-
-#: gui/options/options.json[5].options[14].tooltip
-msgid "Color of your units when diplomacy colors are enabled."
-msgstr "Zure unitateen kolorea-diplomazia koloreak gaituta daudenean."
-
-#: gui/options/options.json[5].options[14].label
-msgid "Diplomacy colors: self"
-msgstr "Diplomazia-koloreak: Norbera"
-
-#: gui/options/options.json[5].options[15].tooltip
-msgid "Color of allies when diplomacy colors are enabled."
-msgstr "Aliatuen kolorea diplomazia-koloreak gaituta daudenean."
-
-#: gui/options/options.json[5].options[15].label
-msgid "Diplomacy colors: ally"
-msgstr "Diplomazia-koloreak: Aliatua"
-
-#: gui/options/options.json[5].options[16].tooltip
-msgid "Color of neutral players when diplomacy colors are enabled."
-msgstr "Jokalari neutralen kolorea diplomazia-koloreak gaituta daudenean."
-
-#: gui/options/options.json[5].options[16].label
-msgid "Diplomacy colors: neutral"
-msgstr "Diplomazia-koloreak: Neutrala"
-
-#: gui/options/options.json[5].options[17].tooltip
-msgid "Color of enemies when diplomacy colors are enabled."
-msgstr "Etsaien kolorea diplomazia-koloreak gaituta daudenean."
-
-#: gui/options/options.json[5].options[17].label
-msgid "Diplomacy colors: enemy"
-msgstr "Diplomazia-koloreak: Etsaia"
-
-#: gui/options/options.json[5].options[18].list[0].tooltip
-msgid ""
-"New structures are aligned with nearby structures while pressing the hotkey."
-msgstr "Egitura berriak hurbileko egiturekin lerrokatzen dira, sarbide azkarreko tekla sakatzen den bitartean."
-
-#: gui/options/options.json[5].options[18].list[0].label
-msgid "Hotkey to enable snapping"
-msgstr "Doikuntza gaitzeko sarbide azkarreko tekla"
-
-#: gui/options/options.json[5].options[18].list[1].tooltip
-msgid ""
-"New structures are aligned with nearby structures unless the hotkey is "
-"pressed."
-msgstr "Egitura berriak hurbileko egiturekin lerrokatzen dira, sarbide azkarreko tekla sakatu ezean."
-
-#: gui/options/options.json[5].options[18].list[1].label
-msgid "Hotkey to disable snapping"
-msgstr "Doikuntza desgaitzeko sarbide azkarreko tekla"
-
-#: gui/options/options.json[5].options[18].tooltip
-msgid "This option allows to align new structures with nearby structures."
-msgstr "Aukera honek aukera ematen du egitura berriak hurbileko egiturekin lerrokatzeko."
-
-#: gui/options/options.json[5].options[18].label
-msgid "Snap to edges"
-msgstr "Ertzetara doitu"
-
-#: gui/options/options.json[5].options[19].list[0].tooltip
-msgid ""
-"When adding a Unit or Structure to a control group, they are removed from "
-"other control groups. Use this choice if you want control groups to refer to"
-" distinct armies."
-msgstr "Unitate edo egitura bat kontrol-talde bati gehitzean, beste kontrol-talde batzuetatik kentzen dira. Erabili aukera hau kontrol-taldeek armada desberdinei erreferentzia egitea nahi baduzu."
-
-#: gui/options/options.json[5].options[19].list[0].label
-msgid "Single"
-msgstr "Bakarra"
-
-#: gui/options/options.json[5].options[19].list[1].tooltip
-msgid ""
-"Units and Structures can be part of multiple control groups. This is useful "
-"to keep control groups for distinct armies and a control group for the "
-"entire army simultaneously."
-msgstr "Unitateak eta egiturak kontrol-talde ugariren parte izan daitezke. Hau baliagarria da armada ezberdinentzako kontrol taldeak mantentzeko eta aldi berean armada osoarentzako kontrol talde bat mantentzeko"
-
-#: gui/options/options.json[5].options[19].list[1].label
-msgid "Multiple"
-msgstr "Multiplea"
-
-#: gui/options/options.json[5].options[19].tooltip
-msgid "Decide whether units can be part of multiple control groups."
-msgstr "Unitateak kontrol-talde ugariren parte izan daitezkeen erabaki."
-
-#: gui/options/options.json[5].options[19].label
-msgid "Control Group Membership"
-msgstr "Kontrol taldearen partaidea"
-
-#: gui/options/options.json[5].tooltip
-msgid "Change options regarding the in-game settings."
-msgstr "Aldatu jokoaren ezarpenei buruzko aukerak."
-
-#: gui/options/options.json[5].label
-msgid "In-Game"
-msgstr "Jokoan"
-
-#: simulation/data/resources/food.jsondescription
-msgid "Harvest from animals, berry bushes, fish, or fields."
-msgstr "Ustiatu animaliak, baia zuhaixkak, arrainak, edo soroak."
-
-#: simulation/data/resources/metal.jsondescription
-msgid "Mine from metal mines or quarries."
-msgstr "Metal mehatzetatik edo harrobietatik atera."
-
-#: simulation/data/resources/stone.jsondescription
-msgid "Mine from rocks, stone quarries or ruins."
-msgstr "Harkaitz, harrobi edo hondakinetatik atera."
-
-#: simulation/data/resources/wood.jsondescription
-msgid "Cut down from trees or groves."
-msgstr "Zuhaitz edo zuhaiztietatik gutxitu."
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: simulation/data/resources/food.jsonname
-msgctxt "firstWord"
-msgid "Food"
-msgstr "Jana"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: simulation/data/resources/food.jsonname
-msgctxt "withinSentence"
-msgid "Food"
-msgstr "Jana"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: simulation/data/resources/food.jsonsubtypes.fish
-msgctxt "firstWord"
-msgid "Fish"
-msgstr "Arrainkia"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: simulation/data/resources/food.jsonsubtypes.fish
-msgctxt "withinSentence"
-msgid "Fish"
-msgstr "Arrainkia"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: simulation/data/resources/food.jsonsubtypes.fruit
-msgctxt "firstWord"
-msgid "Fruit"
-msgstr "Fruta"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: simulation/data/resources/food.jsonsubtypes.fruit
-msgctxt "withinSentence"
-msgid "Fruit"
-msgstr "Fruta"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: simulation/data/resources/food.jsonsubtypes.grain
-msgctxt "firstWord"
-msgid "Grain"
-msgstr "Alea"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: simulation/data/resources/food.jsonsubtypes.grain
-msgctxt "withinSentence"
-msgid "Grain"
-msgstr "Alea"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: simulation/data/resources/food.jsonsubtypes.meat
-msgctxt "firstWord"
-msgid "Meat"
-msgstr "Haragia"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: simulation/data/resources/food.jsonsubtypes.meat
-msgctxt "withinSentence"
-msgid "Meat"
-msgstr "Haragia"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: simulation/data/resources/metal.jsonname
-msgctxt "firstWord"
-msgid "Metal"
-msgstr "Metala"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: simulation/data/resources/metal.jsonname
-msgctxt "withinSentence"
-msgid "Metal"
-msgstr "Metala"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: simulation/data/resources/metal.jsonsubtypes.ore
-msgctxt "firstWord"
-msgid "Ore"
-msgstr "Mea"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: simulation/data/resources/metal.jsonsubtypes.ore
-msgctxt "withinSentence"
-msgid "Ore"
-msgstr "Mea"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: simulation/data/resources/stone.jsonname
-msgctxt "firstWord"
-msgid "Stone"
-msgstr "Harria"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: simulation/data/resources/stone.jsonname
-msgctxt "withinSentence"
-msgid "Stone"
-msgstr "Harria"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: simulation/data/resources/stone.jsonsubtypes.ruins
-#: simulation/data/resources/wood.jsonsubtypes.ruins
-msgctxt "firstWord"
-msgid "Ruins"
-msgstr "Hondakinak"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: simulation/data/resources/stone.jsonsubtypes.ruins
-#: simulation/data/resources/wood.jsonsubtypes.ruins
-msgctxt "withinSentence"
-msgid "Ruins"
-msgstr "Hondakinak"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: simulation/data/resources/stone.jsonsubtypes.rock
-msgctxt "firstWord"
-msgid "Rock"
-msgstr "Harkaitza"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: simulation/data/resources/stone.jsonsubtypes.rock
-msgctxt "withinSentence"
-msgid "Rock"
-msgstr "Harkaitza"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: simulation/data/resources/wood.jsonname
-msgctxt "firstWord"
-msgid "Wood"
-msgstr "Zura"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: simulation/data/resources/wood.jsonname
-msgctxt "withinSentence"
-msgid "Wood"
-msgstr "Zura"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: simulation/data/resources/wood.jsonsubtypes.tree
-msgctxt "firstWord"
-msgid "Tree"
-msgstr "Zuhaitza"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase for your language).
-#: simulation/data/resources/wood.jsonsubtypes.tree
-msgctxt "withinSentence"
-msgid "Tree"
-msgstr "Zuhaitza"
-
-#: gui/gamesetup/Pages/GameSetupPage/Panels/Tips.txt:1
-msgid ""
-"Although reasonably easy for an experienced player, the default AI level is "
-"quite challenging for new players yet to master the basic mechanisms of the "
-"game. Beginners are advised to start by playing against a lower level AI "
-"(Sandbox or Very Easy). Change the AI level by clicking the gear icon next "
-"to the player you want to modify in the selection panel above."
-msgstr "Naiz jokalari adituarentzat nahikoa erraza izan, jokoaren nondik norakoa ezagutzen ez duten jokalari berrientzat AA maila erronka da. Gomendagarria da lehenengo partidetan maila jaistea (Probetarako jokalekua edo Oso erraza). AA maila aldatzeko sakatu goiko aukera paneleko aldatu nahi den jokalariaren ondoko gurpiltxoan ."
-
-#: gui/splashscreen/splashscreen.txt:2
-msgid ""
-"[font=\"sans-bold-20\"]  Thank you for installing 0 A.D. Empires Ascendant!"
-msgstr "[font=\"sans-bold-20\"]Eskerrik asko 0 A.D. Empires Ascendant instalatzeagatik!"
-
-#: gui/splashscreen/splashscreen.txt:3
-msgid "[font=\"sans-16\"]"
-msgstr "[font=\"sans-16\"]"
-
-#: gui/splashscreen/splashscreen.txt:4
-msgid ""
-"[imgleft=\"constructionIcon\"]This game is still in development. Features "
-"are missing and it contains bugs."
-msgstr "[imgleft=\"constructionIcon\"]Joko hau eraikuntza bidean dago oraindik. Ezaugarriak falta zaizkio eta akatsak ditu."
-
-#: gui/splashscreen/splashscreen.txt:6
-msgid ""
-"[imgleft=\"iconLag\"]The game can have performance problems, especially with"
-" large maps and a great number of units."
-msgstr "[imgleft=\"iconLag\"]Jokoak errendimendu arazoak izan ditzake, batez ere mapa handiekin eta unitate asko daudenean."
-
-#: gui/splashscreen/splashscreen.txt:8
-msgid ""
-"[imgleft=\"iconFormation\"]Formations are a work in progress, but you can "
-"toggle forming and disbanding formations as desired."
-msgstr "[imgleft=\"iconFormation\"]Formazioak, garatzen ari den lan bat da, baina alda dezakezu formazioak eginez edo formazioak deseginez, nahi duzun eran."
 
 #: gui/text/tips/army_camp.txt:1
 msgid "ROMAN ARMY CAMP"
@@ -4404,3 +4249,201 @@ msgstr "Arrantza txalupen bidez ustiatu daiteke behin balea hilda."
 #: gui/text/tips/whales.txt:5
 msgid "Roam around the oceans of the game and flee when attacked."
 msgstr "Jokoko ozeanoetatik nora ezean ibili eta erasopean ihes egin."
+
+#: simulation/data/resources/food.jsondescription
+msgid "Harvest from animals, berry bushes, fish, or fields."
+msgstr "Ustiatu animaliak, baia zuhaixkak, arrainak, edo soroak."
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: simulation/data/resources/food.jsonname
+msgctxt "firstWord"
+msgid "Food"
+msgstr "Jana"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase
+#. for your language).
+#: simulation/data/resources/food.jsonname
+msgctxt "withinSentence"
+msgid "Food"
+msgstr "Jana"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: simulation/data/resources/food.jsonsubtypes.fish
+msgctxt "firstWord"
+msgid "Fish"
+msgstr "Arrainkia"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase
+#. for your language).
+#: simulation/data/resources/food.jsonsubtypes.fish
+msgctxt "withinSentence"
+msgid "Fish"
+msgstr "Arrainkia"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: simulation/data/resources/food.jsonsubtypes.fruit
+msgctxt "firstWord"
+msgid "Fruit"
+msgstr "Fruta"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase
+#. for your language).
+#: simulation/data/resources/food.jsonsubtypes.fruit
+msgctxt "withinSentence"
+msgid "Fruit"
+msgstr "Fruta"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: simulation/data/resources/food.jsonsubtypes.grain
+msgctxt "firstWord"
+msgid "Grain"
+msgstr "Alea"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase
+#. for your language).
+#: simulation/data/resources/food.jsonsubtypes.grain
+msgctxt "withinSentence"
+msgid "Grain"
+msgstr "Alea"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: simulation/data/resources/food.jsonsubtypes.meat
+msgctxt "firstWord"
+msgid "Meat"
+msgstr "Haragia"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase
+#. for your language).
+#: simulation/data/resources/food.jsonsubtypes.meat
+msgctxt "withinSentence"
+msgid "Meat"
+msgstr "Haragia"
+
+#: simulation/data/resources/metal.jsondescription
+msgid "Mine from metal mines or quarries."
+msgstr "Metal mehatzetatik edo harrobietatik atera."
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: simulation/data/resources/metal.jsonname
+msgctxt "firstWord"
+msgid "Metal"
+msgstr "Metala"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase
+#. for your language).
+#: simulation/data/resources/metal.jsonname
+msgctxt "withinSentence"
+msgid "Metal"
+msgstr "Metala"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: simulation/data/resources/metal.jsonsubtypes.ore
+msgctxt "firstWord"
+msgid "Ore"
+msgstr "Mea"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase
+#. for your language).
+#: simulation/data/resources/metal.jsonsubtypes.ore
+msgctxt "withinSentence"
+msgid "Ore"
+msgstr "Mea"
+
+#: simulation/data/resources/stone.jsondescription
+msgid "Mine from rocks, stone quarries or ruins."
+msgstr "Harkaitz, harrobi edo hondakinetatik atera."
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: simulation/data/resources/stone.jsonname
+msgctxt "firstWord"
+msgid "Stone"
+msgstr "Harria"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase
+#. for your language).
+#: simulation/data/resources/stone.jsonname
+msgctxt "withinSentence"
+msgid "Stone"
+msgstr "Harria"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: simulation/data/resources/stone.jsonsubtypes.rock
+msgctxt "firstWord"
+msgid "Rock"
+msgstr "Harkaitza"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase
+#. for your language).
+#: simulation/data/resources/stone.jsonsubtypes.rock
+msgctxt "withinSentence"
+msgid "Rock"
+msgstr "Harkaitza"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: simulation/data/resources/stone.jsonsubtypes.ruins
+#: simulation/data/resources/wood.jsonsubtypes.ruins
+msgctxt "firstWord"
+msgid "Ruins"
+msgstr "Hondakinak"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase
+#. for your language).
+#: simulation/data/resources/stone.jsonsubtypes.ruins
+#: simulation/data/resources/wood.jsonsubtypes.ruins
+msgctxt "withinSentence"
+msgid "Ruins"
+msgstr "Hondakinak"
+
+#: simulation/data/resources/wood.jsondescription
+msgid "Cut down from trees or groves."
+msgstr "Zuhaitz edo zuhaiztietatik gutxitu."
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: simulation/data/resources/wood.jsonname
+msgctxt "firstWord"
+msgid "Wood"
+msgstr "Zura"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase
+#. for your language).
+#: simulation/data/resources/wood.jsonname
+msgctxt "withinSentence"
+msgid "Wood"
+msgstr "Zura"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: simulation/data/resources/wood.jsonsubtypes.tree
+msgctxt "firstWord"
+msgid "Tree"
+msgstr "Zuhaitza"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase
+#. for your language).
+#: simulation/data/resources/wood.jsonsubtypes.tree
+msgctxt "withinSentence"
+msgid "Tree"
+msgstr "Zuhaitza"

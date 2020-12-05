@@ -1,3 +1,5 @@
+// © 2016 and later: Unicode, Inc. and others.
+// License & terms of use: http://www.unicode.org/copyright.html
 /*
 *****************************************************************************************
 * Copyright (C) 2010-2013, International Business Machines
@@ -12,7 +14,9 @@
 
 #if !UCONFIG_NO_FORMATTING
 
+#if U_SHOW_CPLUSPLUS_API
 #include "unicode/localpointer.h"
+#endif   // U_SHOW_CPLUSPLUS_API
 
 /**
  * \file
@@ -47,11 +51,11 @@ enum UGender {
  */
 typedef enum UGender UGender;
 
+struct UGenderInfo;
 /**
  * Opaque UGenderInfo object for use in C programs.
  * @stable ICU 50
  */
-struct UGenderInfo;
 typedef struct UGenderInfo UGenderInfo;
 
 /**
@@ -61,7 +65,7 @@ typedef struct UGenderInfo UGenderInfo;
  * @return A UGenderInfo for the specified locale, or NULL if an error occurred.
  * @stable ICU 50
  */
-U_STABLE const UGenderInfo* U_EXPORT2
+U_CAPI const UGenderInfo* U_EXPORT2
 ugender_getInstance(const char *locale, UErrorCode *status);
 
 
@@ -74,8 +78,8 @@ ugender_getInstance(const char *locale, UErrorCode *status);
  * @return The gender of the list.
  * @stable ICU 50
  */
-U_STABLE UGender U_EXPORT2
-ugender_getListGender(const UGenderInfo* genderinfo, const UGender *genders, int32_t size, UErrorCode *status);
+U_CAPI UGender U_EXPORT2
+ugender_getListGender(const UGenderInfo* genderInfo, const UGender *genders, int32_t size, UErrorCode *status);
 
 #endif /* #if !UCONFIG_NO_FORMATTING */
 

@@ -18,9 +18,36 @@
 #ifndef INCLUDED_SCRIPTFORWARD
 #define INCLUDED_SCRIPTFORWARD
 
+
+// Ignore some harmless warnings
+#if GCC_VERSION
+# pragma GCC diagnostic push
+# pragma GCC diagnostic ignored "-Wunused-parameter"
+#endif
+#if CLANG_VERSION
+# pragma clang diagnostic push
+# pragma clang diagnostic ignored "-Wunused-parameter"
+#endif
+#if MSC_VERSION
+# pragma warning(push, 1)
+# pragma warning(disable: 4100)
+#endif
+
+
 #include "js/TypeDecls.h"
 
 class ScriptInterface;
 class ScriptRequest;
+
+#if GCC_VERSION
+# pragma GCC diagnostic pop
+#endif
+#if CLANG_VERSION
+# pragma clang diagnostic pop
+#endif
+#if MSC_VERSION
+# pragma warning(pop)
+#endif
+
 
 #endif // INCLUDED_SCRIPTFORWARD

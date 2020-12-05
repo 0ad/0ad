@@ -158,7 +158,7 @@ private:
 				m_ScriptInterface->SetProperty(settings, "templates", m_Worker.m_EntityTemplates, false);
 			}
 
-			JS::AutoValueVector argv(rq.cx);
+			JS::RootedValueVector argv(rq.cx);
 			DISCARD argv.append(settings.get());
 			m_ScriptInterface->CallConstructor(ctor, argv, &m_Obj);
 
@@ -457,7 +457,7 @@ public:
 			"players", playersID,
 			"templates", m_EntityTemplates);
 
-		JS::AutoValueVector argv(rq.cx);
+		JS::RootedValueVector argv(rq.cx);
 		DISCARD argv.append(settings);
 		m_ScriptInterface->CallConstructor(ctor, argv, &m_SharedAIObj);
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <object name="chatPanel" type="image" sprite="ModernDarkBoxGold">
 
-	<object name="chatText" type="text" size="2 2 100%-2 100%-28" style="ChatPanel"/>
+	<object name="chatText" type="list" size="2 2 100%-2 100%-28" style="ChatPanel"/>
 
 	<object name="chatInput" type="input" size="4 100%-26 100%-96 100%-4" style="ModernInput" max_length="1024"/>
 

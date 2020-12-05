@@ -1,7 +1,7 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright (C) 2020 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
-# 
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
+# project.
 # Translators:
 # Allan Nordhøy <epost@anotheragency.no>, 2017
 # Jacob Carlsson <yejcob@gmail.com>, 2015
@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-13 08:10+0000\n"
+"POT-Creation-Date: 2020-11-28 10:01+0000\n"
 "PO-Revision-Date: 2020-11-13 10:15+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
@@ -237,17 +237,6 @@ msgstr "Varje spelare börjar på en ö omgiven av hav.\n\nKykladerna är en ög
 msgid "Cycladic Archipelago"
 msgstr "Kykladiska Skärgården"
 
-#: maps/random/danubius.jsonsettings.Description
-msgid ""
-"Players start along the banks of the river Danube in the period following "
-"the expansion into Pannonia by the Celtic Boii tribe. Seeking to consolidate"
-" their hold on this land, celtic reinforcements have been sent to root out "
-"the remaining foreign cultures. Players not only have to vie for power "
-"amongst themselves, but also beat back these ruthless invaders. Ultimately, "
-"the Boii were defeated by the rising power of the Dacians, hence leading to "
-"the reemergence of the Geto-Dacian Confederation under King Burebista."
-msgstr "Spelare börjar längs Donauflodens stränder i perioden efter expansionen till Pannonia av ketliska Boii-stammen. Keltiska förstärkningar har skickats för att utrota de återstående utländska kulturerna för att konsolidera deras håll på detta land. Spelare behöver inte bara kämpa för makten bland varandra, utan också slå tillbaka dessa hänsynslösa angripare. I slutändan besegrades Boii av Dakiernas stigande kraft, vilket ledde till uppkomsten av Geto-Dakiska konfederationen under kung Burebista."
-
 #: maps/random/danubius.jsonsettings.Daytime[0].Description
 msgid "Bright daylight illuminates the scene."
 msgstr "Kraftigt dagsljus lyser upp området."
@@ -263,6 +252,17 @@ msgstr "Attackerare döljs av nattens mörker."
 #: maps/random/danubius.jsonsettings.Daytime[1].Name
 msgid "Night"
 msgstr "Natt"
+
+#: maps/random/danubius.jsonsettings.Description
+msgid ""
+"Players start along the banks of the river Danube in the period following "
+"the expansion into Pannonia by the Celtic Boii tribe. Seeking to consolidate"
+" their hold on this land, celtic reinforcements have been sent to root out "
+"the remaining foreign cultures. Players not only have to vie for power "
+"amongst themselves, but also beat back these ruthless invaders. Ultimately, "
+"the Boii were defeated by the rising power of the Dacians, hence leading to "
+"the reemergence of the Geto-Dacian Confederation under King Burebista."
+msgstr "Spelare börjar längs Donauflodens stränder i perioden efter expansionen till Pannonia av ketliska Boii-stammen. Keltiska förstärkningar har skickats för att utrota de återstående utländska kulturerna för att konsolidera deras håll på detta land. Spelare behöver inte bara kämpa för makten bland varandra, utan också slå tillbaka dessa hänsynslösa angripare. I slutändan besegrades Boii av Dakiernas stigande kraft, vilket ledde till uppkomsten av Geto-Dakiska konfederationen under kung Burebista."
 
 #: maps/random/danubius.jsonsettings.Name
 msgid "Danubius"
@@ -332,6 +332,22 @@ msgstr "[color=\"red\"]OBS: AI-SPELARE FUNGERAR INTE MED DENNA KARTA[/color]\n\n
 #: maps/random/extinct_volcano.jsonsettings.Name
 msgid "Extinct Volcano"
 msgstr "Utdöd Vulkan"
+
+#: maps/random/extinct_volcano_triggers.js:59
+msgid "It keeps on raining, we will have to evacuate soon!"
+msgstr "Det slutar inte att regna, vi måste evakuera snart!"
+
+#: maps/random/extinct_volcano_triggers.js:60
+msgid "The rivers are standing high, we need to find a safe place!"
+msgstr "Floderna står höga, vi måste hitta en säker plats!"
+
+#: maps/random/extinct_volcano_triggers.js:61
+msgid "We have to find dry ground, our lands will drown soon!"
+msgstr "Vi måste hitta torr mark, våra länder kommer att drunkna snart!"
+
+#: maps/random/extinct_volcano_triggers.js:62
+msgid "The lakes start swallowing the land, we have to find shelter!"
+msgstr "Sjöarna börjar svälja landet, vi måste hitta skydd!"
 
 #: maps/random/fields_of_meroe.jsonsettings.Description
 msgid ""
@@ -494,6 +510,15 @@ msgstr "Börjande nära Nilens bördiga befästningar, belägrar spelarna den st
 #: maps/random/jebel_barkal.jsonsettings.Name
 msgid "Jebel Barkal"
 msgstr "Gebel Barkal"
+
+#: maps/random/jebel_barkal_triggers.js:592
+msgid "Napata is attacking!"
+msgstr "Napata attackerar!"
+
+#: maps/random/jebel_barkal_triggers.js:602
+#, javascript-format
+msgid "Napata will attack in %(time)s!"
+msgstr "Napata kommer att attackera om %(time)s!"
 
 #: maps/random/kerala.jsonsettings.Description
 msgid ""
@@ -686,19 +711,6 @@ msgstr "Spelare börjar i den östra delen av kartan medan ett stort hav ligger 
 msgid "Phoenician Levant"
 msgstr "Feniciska Levanten"
 
-#: maps/random/polar_sea.jsonsettings.Description
-msgid ""
-"Players start in a cold polar region barren of vegetation. In the sea fish "
-"and whales abound, while the fragile icy land teems with huntable walruses "
-"and deadly wolves. These wolves, made ravenous by the harsh and forbidding "
-"climate, drawn by the scent of prey, have started appearing in terrifying "
-"numbers. A wise and strong ruler will not only achieve victory over his "
-"enemies, but also keep the number of these beasts at bay, lest they "
-"undermine his economy and cause his downfall. [color=\"red\"]Warning: It is "
-"inadvisable to disable treasures, since there is no gatherable wood. Not "
-"recommended for inexperienced players.[/color]"
-msgstr "Spelare börjar i ett kallt polarområde, kargt och utan vegetation. I havet finns det havsfisk och valar i överflöd, medan det bräckliga och isiga landet myllrar av jaktbara valrossar och dödliga vargar. Dessa vargar, gjorda glupande av det hårda och omilda klimatet, lockade av doften av bytesdjur, har börjat förekomma i skrämmande siffror. En klok och stark härskare kommer inte bara att uppnå seger över sina fiender, utan också hålla antalet av dessa djur i schack, så att de inte undergräver hans ekonomi och orsakar hans undergång. [color=\"red\"] Varning: Det rekommenderas ej att avaktivera skatter, eftersom det inte finns något trä som kan samlas. Rekommenderas inte för oerfarna spelare. [/color]"
-
 #: maps/random/polar_sea.jsonsettings.Daytime[0].Description
 msgid "Scattered sunlight illuminates the scenery in a vivid red tone."
 msgstr "Skingrat solljus belyser landskapet med ett ljuvligt rött ljus."
@@ -714,6 +726,19 @@ msgstr "Landskapet lyses upp av direkt eller indirekt solsken."
 #: maps/random/polar_sea.jsonsettings.Daytime[1].Name
 msgid "Daylight"
 msgstr "Dagsljus"
+
+#: maps/random/polar_sea.jsonsettings.Description
+msgid ""
+"Players start in a cold polar region barren of vegetation. In the sea fish "
+"and whales abound, while the fragile icy land teems with huntable walruses "
+"and deadly wolves. These wolves, made ravenous by the harsh and forbidding "
+"climate, drawn by the scent of prey, have started appearing in terrifying "
+"numbers. A wise and strong ruler will not only achieve victory over his "
+"enemies, but also keep the number of these beasts at bay, lest they "
+"undermine his economy and cause his downfall. [color=\"red\"]Warning: It is "
+"inadvisable to disable treasures, since there is no gatherable wood. Not "
+"recommended for inexperienced players.[/color]"
+msgstr "Spelare börjar i ett kallt polarområde, kargt och utan vegetation. I havet finns det havsfisk och valar i överflöd, medan det bräckliga och isiga landet myllrar av jaktbara valrossar och dödliga vargar. Dessa vargar, gjorda glupande av det hårda och omilda klimatet, lockade av doften av bytesdjur, har börjat förekomma i skrämmande siffror. En klok och stark härskare kommer inte bara att uppnå seger över sina fiender, utan också hålla antalet av dessa djur i schack, så att de inte undergräver hans ekonomi och orsakar hans undergång. [color=\"red\"] Varning: Det rekommenderas ej att avaktivera skatter, eftersom det inte finns något trä som kan samlas. Rekommenderas inte för oerfarna spelare. [/color]"
 
 #: maps/random/polar_sea.jsonsettings.Name
 msgid "Polar Sea"
@@ -796,6 +821,199 @@ msgstr "Floder flyter mellan spelare och träffar varandra i mitten av kartan."
 msgid "Rivers"
 msgstr "Floder"
 
+#: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"The vitalizing waters of the Nile sustain life along its banks, while the "
+"long dry season scorches the land."
+msgstr "Nilens vitaliserande vatten håller liv längs sina banker, medan den långa torra säsongen skryter landet."
+
+#: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Dry Season"
+msgstr "Torrperioden"
+
+#: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Revelling in the much awaited rain, the baked land transforms into a lush "
+"haven for both man and beast."
+msgstr "Festande i det efterlängtade regnet, förvandlas det bakade landet till en frodig fristad för både människor och djur."
+
+#: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Rainy Season"
+msgstr "Regnperioden"
+
+#: maps/random/rmbiome/generic/alpine.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"A region in the high snowy mountains. Biting winds sweep through the "
+"abundant conifer forests, making even the more resilient deer and mountain "
+"goats shiver."
+msgstr "En region i de höga snöiga bergen. Iskalla vindar blåser genom de rikliga barrskogarna, och får till och med de tuffare hjortarna och snögetter att skaka."
+
+#: maps/random/rmbiome/generic/alpine.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Alpine"
+msgstr "Alpin"
+
+#: maps/random/rmbiome/generic/autumn.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Autumn at its peak. The landscape is a dazzling dash of colors irrevocably "
+"intertwined. The native beech and oak trees of this temperate zone display a"
+" multi-colored foliage while the evergreen pines look on with indifference "
+"at the approaching winter."
+msgstr "Hösten i sin topp. Landskapet är en ett oupplösligt sammanflätat, bländande färgstreck. Den inhemska boken och ekarna i detta tempererade klimat visar ett mångfärgat lövverk, medan de vintergröna tallarna ser likgiltigt på den sig närmande vintern."
+
+#: maps/random/rmbiome/generic/autumn.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Autumn"
+msgstr "Höst"
+
+#: maps/random/rmbiome/generic/desert.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"A semi-desert area that boasts numerous clumps of date palms and tamarix "
+"trees. Herds of camels roam the wild and the occasional gazelle jumps up in "
+"fright at being disturbed."
+msgstr "Ett ökenliknande område som ståtar med många dungar med dadelpalmer och tamarisker. Kameler strövar omkring och den enstaka gasellen hoppas upp i skräck när den störs."
+
+#: maps/random/rmbiome/generic/desert.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Desert"
+msgstr "Öken"
+
+#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Start in a region blessed with the Mediterranean climate, a warm and "
+"inviting land. The cypresses are in a perpetual struggle with the dominant "
+"fan palms while deer graze in their shadows, blissfully unaware."
+msgstr "Börja i en region välsignad med Medelhavsklimatet, ett varmt och inbjudande land. Cypresserna är i en ständig kamp med de dominerande palmträden medan rådjur betar i deras skuggor, lyckligt omedvetna."
+
+#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Mediterranean"
+msgstr "Medelhavet"
+
+#: maps/random/rmbiome/generic/savanna.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"The savanna, a dry climate in which only the hardy Baobab trees thrive. "
+"Solitary gazelles graze the sparse grass, while herds of zebras, wildebeest,"
+" giraffes or elephants roam the wild in search of food."
+msgstr "Savann, ett torrt klimat där endast de hårda baobabträden trivs. Enstaka gaseller betar det glesa gräset, medan besättningar av zebror, gnagare, giraffer eller elefanter strövar omkring efter mat."
+
+#: maps/random/rmbiome/generic/savanna.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Savanna"
+msgstr "Savann"
+
+#: maps/random/rmbiome/generic/snowy.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Settle in the cold regions of the North, the native habitat of the wooly "
+"muskox. Here you can pine away to your content and also hunt the occasional "
+"walrus or two."
+msgstr "Bosätt dig i de kalla områdena i norr, den inhemska livsmiljön av den ulliga myskoxen. Här kan du hugga tall tills du är glad eller jaga den enstaka valrossen eller två."
+
+#: maps/random/rmbiome/generic/snowy.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Snowy"
+msgstr "Snöig"
+
+#: maps/random/rmbiome/generic/temperate.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Lush grasslands carpet the land, in places giving way to magnificent and "
+"diverse broadleaf forests. Poplars, pines, beeches and oaks all vie for "
+"supremacy but this root-war is a neverending struggle. Numerous apple trees "
+"dot the land, deer and sheep gorge themselves on this years fallen fruit."
+msgstr "Frodiga gräsmarker täcker landet, då och då givande plats åt magnifika och varierande lövskogar. Popplar, tallar, bokar och ekar tävlar om överlägsenhet, men detta rotkrig är en oändlig kamp. Många äppelträd är utspridda över terrängen, rådjur och får äter sig mätta på detta årets fallfrukt."
+
+#: maps/random/rmbiome/generic/temperate.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Temperate"
+msgstr "Tempererad"
+
+#: maps/random/rmbiome/generic/tropic.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Explore the mysterious tropics. An extremely green, but also extremely humid"
+" environment awaits. The tall Toona trees look on disapprovingly at this "
+"invasion of their privacy and ferocious tigers are determined to defend "
+"their territory at all costs."
+msgstr "Utforska de mystiska tropikerna. En extremt grön men också extremt fuktig miljö väntar. De långa toonaträden träd ser på misstänksamma på denna invasion av deras hederlighet och grymma tigrar är fast beslutna att försvara sitt territorium till varje pris."
+
+#: maps/random/rmbiome/generic/tropic.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Tropic"
+msgstr "Tropisk"
+
+#: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Solidifying it's grip, the harsh cold has succeeded in freezing up the gulf."
+" The thick ice formed is capable of withstanding any weight."
+msgstr "Det hårda kölden har lyckats frysa upp i bukten. Den tjocka isen som bildas är kapabel att motstå vilken vikt som helst."
+
+#: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Frozen Lake"
+msgstr "Frusen sjö"
+
+#: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"A late spring breeze ripples through the conifer forests of the Gulf of "
+"Bothnia. Herds of deer dot the landscape and playful rabbits frolick in the "
+"undergrowth."
+msgstr "En sen vårbris skvalpar genom barrskogarna i Botniska viken. Flockar av rådjur är utspridda över landskapet och lekfulla kaniner skuttar i småskogen."
+
+#: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Late Spring"
+msgstr "Sen vår"
+
+#: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Winter has set in, carpeting the land with its first snow. The still "
+"unfrozen gulf offers great fishing opportunities."
+msgstr "Vintern har satts in, täcker marken med sin första snö. Den fortfarande oförstörda bukten erbjuder stora fiskemöjligheter."
+
+#: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Winter"
+msgstr "Vinter"
+
+#: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Spring in the highlands, yet the heat has already begun making itself felt. "
+"The short-lived green grasses are on the retreat, paving the way for "
+"scorching summer."
+msgstr "Våren på höglandet, men värmen har redan börjat göra sig känd. De kortlivade gröna gräset ligger på reträtten och banar vägen för brinnande sommar."
+
+#: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Spring"
+msgstr "Vår"
+
+#: maps/random/rmbiome/persian_highlands/summer.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"An arid, hostile land. The blistering heat has baked the ground to a sickly "
+"brown and the remaining trees struggle for survival."
+msgstr "Ett torrt, fientligt land. Blåsningsvärmen har bakat marken till en sjukt brun och de återstående träden kämpar för att överleva."
+
+#: maps/random/rmbiome/persian_highlands/summer.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Summer"
+msgstr "Sommar"
+
 #: maps/random/saharan_oases.jsonsettings.Description
 msgid "Each players starts near a lush oasis in a large, desolate desert."
 msgstr "Varje spelare startar i en stor, ödslig öken nära en grönskande oas."
@@ -876,6 +1094,20 @@ msgstr "[color=\"red\"]OBS: AI SPELARE FUNGERAR INTE MED DENNA KARTA[/color]\n\n
 #: maps/random/survivalofthefittest.jsonsettings.Name
 msgid "Survival of the Fittest"
 msgstr "Den starkaste överlever"
+
+#: maps/random/survivalofthefittest_triggers.js:163
+#, javascript-format
+msgid "The first wave will start in %(time)s!"
+msgstr "Den första vågen startar om %(time)s!"
+
+#: maps/random/survivalofthefittest_triggers.js:268
+msgid "An enemy wave is attacking!"
+msgstr "En våg av fiender attackerar!"
+
+#: maps/random/survivalofthefittest_triggers.js:292
+#, javascript-format
+msgid "%(player)s has been defeated (lost civic center)."
+msgstr "%(player)s har blivit besegrad (förlorade samhällscentrum)."
 
 #: maps/random/syria.jsonsettings.Description
 msgid "Players start in a plains with slightly rolling highlands."
@@ -1011,126 +1243,15 @@ msgstr "En sjö omgiven av kullar."
 msgid "Wild Lake"
 msgstr "Vild Sjö"
 
-#: maps/random/extinct_volcano_triggers.js:59
-msgid "It keeps on raining, we will have to evacuate soon!"
-msgstr "Det slutar inte att regna, vi måste evakuera snart!"
-
-#: maps/random/extinct_volcano_triggers.js:60
-msgid "The rivers are standing high, we need to find a safe place!"
-msgstr "Floderna står höga, vi måste hitta en säker plats!"
-
-#: maps/random/extinct_volcano_triggers.js:61
-msgid "We have to find dry ground, our lands will drown soon!"
-msgstr "Vi måste hitta torr mark, våra länder kommer att drunkna snart!"
-
-#: maps/random/extinct_volcano_triggers.js:62
-msgid "The lakes start swallowing the land, we have to find shelter!"
-msgstr "Sjöarna börjar svälja landet, vi måste hitta skydd!"
-
-#: maps/random/jebel_barkal_triggers.js:592
-msgid "Napata is attacking!"
-msgstr "Napata attackerar!"
-
-#: maps/random/jebel_barkal_triggers.js:602
-#, javascript-format
-msgid "Napata will attack in %(time)s!"
-msgstr "Napata kommer att attackera om %(time)s!"
-
-#: maps/random/survivalofthefittest_triggers.js:163
-#, javascript-format
-msgid "The first wave will start in %(time)s!"
-msgstr "Den första vågen startar om %(time)s!"
-
-#: maps/random/survivalofthefittest_triggers.js:268
-msgid "An enemy wave is attacking!"
-msgstr "En våg av fiender attackerar!"
-
-#: maps/random/survivalofthefittest_triggers.js:292
-#, javascript-format
-msgid "%(player)s has been defeated (lost civic center)."
-msgstr "%(player)s har blivit besegrad (förlorade samhällscentrum)."
-
-#: maps/scenarios/cinema_demo.js:6
-msgid "Cutscene starts after 5 seconds"
-msgstr "Cutscene börjar efter 5 sekunder"
-
-#: maps/scenarios/treasure_islands.js:9
-msgid "Collect the treasures before your enemy does! May the better win!"
-msgstr "Samla skatter innan din fiende gör det! Må den bättre vinna!"
-
-#: maps/scenarios/treasure_islands.js:28
-msgid "No winner yet, prepare for battle!"
-msgstr "Ingen vinnare än, förbered dig för strid!"
-
-#: maps/scenarios/treasure_islands.js:43
-msgid "Your enemy's treasury is filled to the brim, you lose!"
-msgstr "Fiendens skattkammare är fylld till brädden, du förlorar!"
-
-#: maps/scenarios/treasure_islands.js:48
-msgid "Your treasury is filled to the brim, you are victorious!"
-msgstr "Din skattkammare är fylld till brädden, du segrar!"
-
-#: maps/scenarios/treasure_islands.js:60
-msgid "Hurry up! Your enemy is close to victory!"
-msgstr "Skynda! Dina fiender håller på att vinna!"
-
-#: maps/scenarios/treasure_islands.js:71
-#, javascript-format
-msgid "Treasures remaining to collect for victory:  %(remainingTreasures)s!"
-msgstr "Skatter som återstår att samla för seger: %(remainingTreasures)s!"
-
-#: maps/scenarios/treasure_islands.js:79
-msgid "You have collected a treasure!"
-msgstr "Du har hittat en skatt!"
-
-#: maps/scenarios/treasure_islands.js:91
-msgid "Defeat your enemy to win!"
-msgstr "Besegra dina fiender för att vinna!"
-
-#: maps/scenarios/treasure_islands.js:100
-#, javascript-format
-msgid "%(lastPlayer)s has won (treasure collected)."
-msgid_plural "%(players)s and %(lastPlayer)s have won (treasure collected)."
-msgstr[0] "%(lastPlayer)s har vunnit (skatt samlad)."
-msgstr[1] "%(players)s och %(lastPlayer)s har vunnit (skatt samlad)."
-
-#: maps/scenarios/treasure_islands.js:104
-#, javascript-format
-msgid "%(lastPlayer)s has been defeated (treasure collected)."
-msgid_plural ""
-"%(players)s and %(lastPlayer)s have been defeated (treasure collected)."
-msgstr[0] "%(lastPlayer)s har blivit besegrade (skatt samlad)."
-msgstr[1] "%(players)s och %(lastPlayer)s har blivit besegrade (skatt samlad)."
-
-#: maps/scenarios/triggers_demo.js:73
-msgid "Testing the yes-no dialog. Do you want to say sure or rather not?"
-msgstr "Test av ja-nej dialog. Vill du säga visst eller snarare inte?"
-
-#: maps/scenarios/triggers_demo.js:79
-msgid "Sure"
-msgstr "Visst"
-
-#: maps/scenarios/triggers_demo.js:83
-msgid "Say sure"
-msgstr "Säg visst"
-
-#: maps/scenarios/triggers_demo.js:89
-msgid "Rather not"
-msgstr "Helst inte"
-
-#: maps/scenarios/triggers_demo.js:93
-msgid "Say rather not"
-msgstr "Säg helst inte"
-
-#: maps/scenarios/_default.xml:Name:28
-msgid "Unnamed map"
-msgstr "Ej namngiven karta"
-
 #: maps/scenarios/_default.xml:Description:28
 #: maps/scenarios/temperate_map.xml:Description:27
 #: maps/scenarios/walltest.xml:Description:27
 msgid "Give an interesting description of your map."
 msgstr "Ange en intressant beskrivning av din karta."
+
+#: maps/scenarios/_default.xml:Name:28
+msgid "Unnamed map"
+msgstr "Ej namngiven karta"
 
 #: maps/scenarios/arcadia.xml:Description:39
 msgid ""
@@ -1138,6 +1259,10 @@ msgid ""
 "\n"
 "Players start on either side of a mountainous region rich in resources. Extra starting buildings help players jumpstart building their new colonies."
 msgstr "Vår i Arkadien, Grekland. Vårregnen har dränkt vad som brukar vara torra åbäddar resten av året vilka nu delar landet mellan två stridande stammar.\n\nSpelarna börjar på vardera sidan av en bergig region rik på resurser. Extra start byggnader hjälper spelare att snabbt kunna bygga sina nya kolonier."
+
+#: maps/scenarios/arcadia.xml:Name:39
+msgid "Arcadia"
+msgstr "Arkadien"
 
 #: maps/scenarios/arcadia.xml:PlayerData[0].Name:39
 #: maps/scenarios/belgian_bog_night.xml:PlayerData[0].Name:39
@@ -1189,15 +1314,15 @@ msgstr "Spelare 1"
 msgid "Player 2"
 msgstr "Spelare 2"
 
-#: maps/scenarios/arcadia.xml:Name:39
-msgid "Arcadia"
-msgstr "Arkadien"
-
 #: maps/scenarios/azure_coast_2p.xml:Description:27
 #: maps/scenarios/azure_coast_4p.xml:Description:27
 #: maps/scenarios/azure_coast_8p.xml:Description:39
 msgid "Help the young Massilia to settle or expel the Greeks from Gaul."
 msgstr "Hjälp den unga Massalia att bosätta sig eller utvisa grekerna från Gallien."
+
+#: maps/scenarios/azure_coast_2p.xml:Name:27
+msgid "Azure Coast 2"
+msgstr "Azurblå Kust 2"
 
 #: maps/scenarios/azure_coast_2p.xml:PlayerData[0].Name:27
 msgid "Greeks"
@@ -1207,9 +1332,9 @@ msgstr "Greker"
 msgid "Celts"
 msgstr "Kelter"
 
-#: maps/scenarios/azure_coast_2p.xml:Name:27
-msgid "Azure Coast 2"
-msgstr "Azurblå Kust 2"
+#: maps/scenarios/azure_coast_4p.xml:Name:27
+msgid "Azure Coast 3"
+msgstr "Azurblå Kust 3"
 
 #: maps/scenarios/azure_coast_4p.xml:PlayerData[0].Name:27
 msgid "East"
@@ -1227,9 +1352,9 @@ msgstr "Söder"
 msgid "North"
 msgstr "Norr"
 
-#: maps/scenarios/azure_coast_4p.xml:Name:27
-msgid "Azure Coast 3"
-msgstr "Azurblå Kust 3"
+#: maps/scenarios/azure_coast_8p.xml:Name:39
+msgid "Azure Coast 1"
+msgstr "Azurblå Kust 1"
 
 #: maps/scenarios/azure_coast_8p.xml:PlayerData[0].Name:39
 msgid "Antipolis"
@@ -1263,15 +1388,15 @@ msgstr "Cavares"
 msgid "Verguni"
 msgstr "Verguni"
 
-#: maps/scenarios/azure_coast_8p.xml:Name:39
-msgid "Azure Coast 1"
-msgstr "Azurblå Kust 1"
-
 #: maps/scenarios/battle_for_the_tiber.xml:Description:27
 msgid ""
 "Rome battles against the Etruscan city of Veii for control of the Tiber "
 "River basin."
 msgstr "Rom strider mot den etruskiska staden Veii om kontrollen över Tiberflodens bassäng."
+
+#: maps/scenarios/battle_for_the_tiber.xml:Name:27
+msgid "Battle for the Tiber"
+msgstr "Kampen för Tibern"
 
 #: maps/scenarios/battle_for_the_tiber.xml:PlayerData[0].Name:27
 msgid "Rome"
@@ -1286,10 +1411,6 @@ msgstr "Veji"
 msgid "Gallic Invaders"
 msgstr "Galliska Invadörer"
 
-#: maps/scenarios/battle_for_the_tiber.xml:Name:27
-msgid "Battle for the Tiber"
-msgstr "Kampen för Tibern"
-
 #: maps/scenarios/belgian_bog_night.xml:Description:39
 msgid "Two Celtic tribes face off across a large bog at night."
 msgstr "Två keltiska stammar möts vid en stor mosse på natten."
@@ -1297,14 +1418,6 @@ msgstr "Två keltiska stammar möts vid en stor mosse på natten."
 #: maps/scenarios/belgian_bog_night.xml:Name:39
 msgid "Belgian Bog Night"
 msgstr "Belgisk Mosse Natt"
-
-#: maps/scenarios/bridge_demo.xml:PlayerData[0].Name:27
-msgid "Bridge Demo"
-msgstr "Bro Demo"
-
-#: maps/scenarios/bridge_demo.xml:PlayerData[1].Name:27
-msgid "Other"
-msgstr "Annat"
 
 #: maps/scenarios/bridge_demo.xml:Description:27
 msgid "Demo map showing how to simulate bridges in the Atlas map editor."
@@ -1314,9 +1427,21 @@ msgstr "Demo karta som visar hur man kan simulera broar i scenarioredigeraren At
 msgid "Bridge demo"
 msgstr "Bro demo"
 
+#: maps/scenarios/bridge_demo.xml:PlayerData[0].Name:27
+msgid "Bridge Demo"
+msgstr "Bro Demo"
+
+#: maps/scenarios/bridge_demo.xml:PlayerData[1].Name:27
+msgid "Other"
+msgstr "Annat"
+
 #: maps/scenarios/campaign_test_map.xml:Description:39
 msgid "A test map for potential Strategic Campaigns."
 msgstr "En test karta för potentiella strategiska kampanjer."
+
+#: maps/scenarios/campaign_test_map.xml:Name:39
+msgid "Strategic Campaign Proof of Concept"
+msgstr "Strategisk kampanj Proof of Concept"
 
 #: maps/scenarios/campaign_test_map.xml:PlayerData[0].Name:39
 msgid "Delian League"
@@ -1352,17 +1477,21 @@ msgstr "Peloponnesiska förbundet"
 msgid "Religious Institutions"
 msgstr "Religiösa Institutioner"
 
-#: maps/scenarios/campaign_test_map.xml:Name:39
-msgid "Strategic Campaign Proof of Concept"
-msgstr "Strategisk kampanj Proof of Concept"
-
 #: maps/scenarios/campaign_test_map_2_heightmap.xml:Name:39
 msgid "Campaign Map - Test"
 msgstr "Kampanj Karta - Test"
 
+#: maps/scenarios/cinema_demo.js:6
+msgid "Cutscene starts after 5 seconds"
+msgstr "Cutscene börjar efter 5 sekunder"
+
 #: maps/scenarios/cinema_demo.xml:Description:40
 msgid "Demo map for cinematic camera movements."
 msgstr "Demokarta för filmiska kamerarörelser."
+
+#: maps/scenarios/cinema_demo.xml:Name:40
+msgid "Cinema Demo"
+msgstr "Film Demo"
 
 #: maps/scenarios/cinema_demo.xml:PlayerData[1].Name:40
 msgid "Xerxes I"
@@ -1372,27 +1501,23 @@ msgstr "Xerxes I"
 msgid "You"
 msgstr "Du"
 
-#: maps/scenarios/cinema_demo.xml:Name:40
-msgid "Cinema Demo"
-msgstr "Film Demo"
-
-#: maps/scenarios/combat_demo.xml:Name:27
-msgid "Combat Demo"
-msgstr "Strid Demo"
-
 #: maps/scenarios/combat_demo.xml:Description:27
 msgid ""
 "A combat demonstration between a small number of ranged and melee infantry "
 "units."
 msgstr "En stridsdemonstration mellan ett litet antal distans- och närstridssoldater."
 
-#: maps/scenarios/combat_demo_huge.xml:Name:74
-msgid "Combat Demo (Huge)"
-msgstr "Strids Demo (Jättestor)"
+#: maps/scenarios/combat_demo.xml:Name:27
+msgid "Combat Demo"
+msgstr "Strid Demo"
 
 #: maps/scenarios/combat_demo_huge.xml:Description:74
 msgid "1296 units. Extremely slow (we need more optimisation)."
 msgstr "1296 soldater. Extremt långsam (vi behöver mer optimering)."
+
+#: maps/scenarios/combat_demo_huge.xml:Name:74
+msgid "Combat Demo (Huge)"
+msgstr "Strids Demo (Jättestor)"
 
 #: maps/scenarios/death_canyon_invasion_force.xml:Description:39
 msgid ""
@@ -1400,6 +1525,10 @@ msgid ""
 "\n"
 "2 teams of 2 players. 1 player on each team starts with a base and resources. The other player starts with only a large army to assist their teammate."
 msgstr "En djup stenig ravin skär genom öknen. Bra för flera spelare.\n\n2 lag med 2 spelare. 1 spelare i varje lag börjar med en bas och resurser. Den andra spelaren börjar bara med en stor armé för att hjälpa deras lagkamrat."
+
+#: maps/scenarios/death_canyon_invasion_force.xml:Name:39
+msgid "Death Canyon - Invasion Force"
+msgstr "Death Canyon - Invasionsstyrka"
 
 #: maps/scenarios/death_canyon_invasion_force.xml:PlayerData[1].Name:39
 #: maps/scenarios/death_canyon_invasion_force.xml:PlayerData[3].Name:39
@@ -1418,10 +1547,6 @@ msgstr "Invasionsstyrka"
 #: maps/scenarios/siwa_oasis.xml:PlayerData[2].Name:27
 msgid "Player 3"
 msgstr "Spelare 3"
-
-#: maps/scenarios/death_canyon_invasion_force.xml:Name:39
-msgid "Death Canyon - Invasion Force"
-msgstr "Death Canyon - Invasionsstyrka"
 
 #: maps/scenarios/demo_trading.xml:Description:27
 msgid "A demonstration of the new trading feature."
@@ -1448,6 +1573,10 @@ msgid ""
 "Gameplay is tight and fast, with no time to stop and smell the roses."
 msgstr "En liten ökenkarta. Varje spelare börjar nära en oas utspridd omkring en annars ruggig sandöken som är vidöppen för anfall och plundring.\n\nSpelupplägget är tätt och snabbt, med ingen tid att stanna upp och lukta på rosor."
 
+#: maps/scenarios/fast_oasis.xml:Name:27
+msgid "Fast Oasis"
+msgstr "Snabb Oas"
+
 #: maps/scenarios/fast_oasis.xml:PlayerData[3].Name:27
 #: maps/scenarios/gold_rush.xml:PlayerData[3].Name:27
 #: maps/scenarios/necropolis.xml:PlayerData[3].Name:39
@@ -1456,17 +1585,13 @@ msgstr "En liten ökenkarta. Varje spelare börjar nära en oas utspridd omkring
 msgid "Player 4"
 msgstr "Spelare 4"
 
-#: maps/scenarios/fast_oasis.xml:Name:27
-msgid "Fast Oasis"
-msgstr "Snabb Oas"
+#: maps/scenarios/fishing_demo.xml:Description:27
+msgid "Test out fishing with a fishing boat. Still in development."
+msgstr "Testa fiske med en fiskebåt. Fortfarande under utveckling."
 
 #: maps/scenarios/fishing_demo.xml:Name:27
 msgid "Fishing Demo"
 msgstr "Fiske Demo"
-
-#: maps/scenarios/fishing_demo.xml:Description:27
-msgid "Test out fishing with a fishing boat. Still in development."
-msgstr "Testa fiske med en fiskebåt. Fortfarande under utveckling."
 
 #: maps/scenarios/flight_demo.xml:Description:40
 msgid "Fly some Mustangs."
@@ -1542,8 +1667,12 @@ msgid ""
 "This is a WFG community-designed map by: SMST, NOXAS1, and Yodaspirine."
 msgstr "Flerspelarkarta. Varje spelare börjar på en liten ö med få resurser som ligger utanför ett stor landmassa.\n\nDetta är en WFG-gemenskapsdesignad karta av SMST, NOXAS1 och Yodaspirine."
 
-#: maps/scenarios/miletus.xml:PlayerData[0].Name:27
+#: maps/scenarios/miletus.xml:Description:27
+msgid "A sandbox scenario for one player."
+msgstr "Ett sandlåde scenario för en spelare."
+
 #: maps/scenarios/miletus.xml:Name:27
+#: maps/scenarios/miletus.xml:PlayerData[0].Name:27
 msgid "Miletus"
 msgstr "Miletos"
 
@@ -1552,29 +1681,25 @@ msgstr "Miletos"
 msgid "Romans"
 msgstr "Romare"
 
-#: maps/scenarios/miletus.xml:Description:27
-msgid "A sandbox scenario for one player."
-msgstr "Ett sandlåde scenario för en spelare."
-
-#: maps/scenarios/multiplayer_demo.xml:Name:27
-msgid "Multiplayer Demo"
-msgstr "Flerspelardemo"
-
 #: maps/scenarios/multiplayer_demo.xml:Description:27
 msgid ""
 "Small map with lots of resources and some water, for testing gameplay in "
 "non-competitive multiplayer matches."
 msgstr "Liten karta med många resurser och lite vatten, för att testa spelupplägg i icke-konkurrenskraftiga flerspelarmatcher."
 
-#: maps/scenarios/napata_reconstruction.xml:Name:40
-msgid "Napata Reconstruction"
-msgstr "Rekonstruktion av Napata"
+#: maps/scenarios/multiplayer_demo.xml:Name:27
+msgid "Multiplayer Demo"
+msgstr "Flerspelardemo"
 
 #: maps/scenarios/napata_reconstruction.xml:Description:40
 msgid ""
 "This map displays a reconstruction of the ancient city Napata. "
 "[color=\"red\"]Note:[/color] The map is not intended to be playable."
 msgstr "Den här kartan visar en rekonstruktion av den antika staden Napata. [color=\"red\"]Obs:[/color] Kartan är inte avsedd att vara spelbar."
+
+#: maps/scenarios/napata_reconstruction.xml:Name:40
+msgid "Napata Reconstruction"
+msgstr "Rekonstruktion av Napata"
 
 #: maps/scenarios/necropolis.xml:Description:39
 msgid ""
@@ -1595,19 +1720,23 @@ msgstr "En karta för att testa soldatsrörelsealgoritmer."
 msgid "Pathfinding Demo"
 msgstr "Pathfinding Demo"
 
-#: maps/scenarios/pathfinding_terrain_demo.xml:Name:27
-msgid "Pathfinding Terrain Demo"
-msgstr "Pathfinding Terräng Demo"
-
 #: maps/scenarios/pathfinding_terrain_demo.xml:Description:27
 msgid ""
 "A map for testing movement costs and terrain properties in the A* "
 "pathfinder."
 msgstr "En karta för att testa rörelsekostnader och terrängegenskaper i A* pathfindern."
 
+#: maps/scenarios/pathfinding_terrain_demo.xml:Name:27
+msgid "Pathfinding Terrain Demo"
+msgstr "Pathfinding Terräng Demo"
+
 #: maps/scenarios/peloponnese.xml:Description:39
 msgid "A real-world map of the Greek homeland."
 msgstr "En äkta karta av Grekland."
+
+#: maps/scenarios/peloponnese.xml:Name:39
+msgid "Peloponnesian Wars"
+msgstr "Peloponnesiska Krigen"
 
 #: maps/scenarios/peloponnese.xml:PlayerData[0].Name:39
 msgid "Athens"
@@ -1625,10 +1754,6 @@ msgstr "Elis"
 msgid "Corinth"
 msgstr "Korint"
 
-#: maps/scenarios/peloponnese.xml:Name:39
-msgid "Peloponnesian Wars"
-msgstr "Peloponnesiska Krigen"
-
 #: maps/scenarios/pickup_test_map.xml:Description:40
 msgid ""
 "Test map for picking units up, with sea and two islands. Trigger points are "
@@ -1643,6 +1768,10 @@ msgstr "Testkarta lasta på"
 msgid "Demo map for new fancy water effects."
 msgstr "Demokarta för de nya snygga vatteneffekterna."
 
+#: maps/scenarios/polynesia.xml:Name:39
+msgid "Polynesia"
+msgstr "Polynesien"
+
 #: maps/scenarios/polynesia.xml:PlayerData[0].Name:39
 msgid "Samoa"
 msgstr "Samoa"
@@ -1650,10 +1779,6 @@ msgstr "Samoa"
 #: maps/scenarios/polynesia.xml:PlayerData[1].Name:39
 msgid "Vanuatu"
 msgstr "Vanuatu"
-
-#: maps/scenarios/polynesia.xml:Name:39
-msgid "Polynesia"
-msgstr "Polynesien"
 
 #: maps/scenarios/reservoir.xml:Description:27
 msgid "A demo showing water planes."
@@ -1663,13 +1788,13 @@ msgstr "En demo för vattenytor."
 msgid "Reservoir"
 msgstr "Reservoar"
 
-#: maps/scenarios/resource_demo.xml:Name:27
-msgid "Resource demo"
-msgstr "Resurs Demo"
-
 #: maps/scenarios/resource_demo.xml:Description:27
 msgid "Demo map for resource gathering."
 msgstr "Demo karta för resursinsamling."
+
+#: maps/scenarios/resource_demo.xml:Name:27
+msgid "Resource demo"
+msgstr "Resurs Demo"
 
 #: maps/scenarios/road_demo.xml:Description:27
 msgid "Demo map showcasing Temperate Road decals."
@@ -1713,6 +1838,10 @@ msgid ""
 "Play with the Athenians faction in a non-threatening sandbox environment."
 msgstr "Spela med Atenarna i en ofarlig sandlådemiljö."
 
+#: maps/scenarios/sandbox_athenians.xml:Name:39
+msgid "Sandbox - The Athenians"
+msgstr "Atenarna - Sandlåda"
+
 #: maps/scenarios/sandbox_athenians.xml:PlayerData[0].Name:39
 msgid "The Athenians"
 msgstr "Aternarna"
@@ -1736,27 +1865,27 @@ msgstr "Perserna"
 msgid "The Gauls"
 msgstr "Gallerna"
 
-#: maps/scenarios/sandbox_athenians.xml:Name:39
-msgid "Sandbox - The Athenians"
-msgstr "Atenarna - Sandlåda"
-
 #: maps/scenarios/sandbox_britons.xml:Description:39
 #: maps/scenarios/sandbox_gauls.xml:Description:40
 msgid "Play around with the Gallic faction in an idyllic sandbox setting."
 msgstr "Spela med Gallerna i en idyllisk sandlådemiljö."
+
+#: maps/scenarios/sandbox_britons.xml:Name:39
+msgid "Sandbox - The Britons"
+msgstr "Britter - Sandlåda"
 
 #: maps/scenarios/sandbox_britons.xml:PlayerData[3].Name:39
 #: maps/scenarios/sandbox_gauls.xml:PlayerData[4].Name:40
 msgid "Roman Interlopers"
 msgstr "Romerska Inkräktare"
 
-#: maps/scenarios/sandbox_britons.xml:Name:39
-msgid "Sandbox - The Britons"
-msgstr "Britter - Sandlåda"
-
 #: maps/scenarios/sandbox_carthaginians.xml:Description:39
 msgid "Explore the Carthaginian Buildings and Units."
 msgstr "Utforska Karthaginska byggnader och soldater."
+
+#: maps/scenarios/sandbox_carthaginians.xml:Name:39
+msgid "Sandbox - The Carthaginians"
+msgstr "Kartagerna - Sandlåda"
 
 #: maps/scenarios/sandbox_carthaginians.xml:PlayerData[0].Name:39
 #: maps/scenarios/serengeti.xml:PlayerData[0].Name:27
@@ -1767,10 +1896,6 @@ msgstr "Karthago"
 #: maps/scenarios/sandbox_persians.xml:PlayerData[1].Name:39
 msgid "Creeps"
 msgstr "Creeps"
-
-#: maps/scenarios/sandbox_carthaginians.xml:Name:39
-msgid "Sandbox - The Carthaginians"
-msgstr "Kartagerna - Sandlåda"
 
 #: maps/scenarios/sandbox_gauls.xml:Name:40
 msgid "Sandbox - The Gauls"
@@ -1788,6 +1913,10 @@ msgstr "Iberierna - Sandlåda"
 msgid "Play the Kushites faction in a non-threatening sandbox scenario."
 msgstr "Spela med Kushiterna i en ofarlig sandlådemiljö."
 
+#: maps/scenarios/sandbox_kushites.xml:Name:40
+msgid "Sandbox - The Kushites"
+msgstr "Sandlåda - Kushiterna"
+
 #: maps/scenarios/sandbox_kushites.xml:PlayerData[1].Name:40
 msgid "Kushites"
 msgstr "Kushiter"
@@ -1796,26 +1925,26 @@ msgstr "Kushiter"
 msgid "Egyptians"
 msgstr "Egyptier"
 
-#: maps/scenarios/sandbox_kushites.xml:Name:40
-msgid "Sandbox - The Kushites"
-msgstr "Sandlåda - Kushiterna"
-
 #: maps/scenarios/sandbox_macedonians.xml:Description:39
 msgid ""
 "Play with the Macedonians faction in a non-threatening sandbox environment."
 msgstr "Spela med Makedonierna i en ofarlig sandlådemiljö."
 
-#: maps/scenarios/sandbox_macedonians.xml:PlayerData[0].Name:39
-msgid "The Macedonians"
-msgstr "Makedonierna"
-
 #: maps/scenarios/sandbox_macedonians.xml:Name:39
 msgid "Sandbox - The Macedonians"
 msgstr "Makedonierna - Sandlåda"
 
+#: maps/scenarios/sandbox_macedonians.xml:PlayerData[0].Name:39
+msgid "The Macedonians"
+msgstr "Makedonierna"
+
 #: maps/scenarios/sandbox_mauryas.xml:Description:39
 msgid "Mauryan Indian faction showcase map."
 msgstr "Demokarta för Mauryariket"
+
+#: maps/scenarios/sandbox_mauryas.xml:Name:39
+msgid "Sandbox - The Mauryas"
+msgstr "Sandlåda - Mauryariket"
 
 #: maps/scenarios/sandbox_mauryas.xml:PlayerData[0].Name:39
 msgid "Mauryan Indians"
@@ -1825,26 +1954,26 @@ msgstr "Mauryan Indianer"
 msgid "Enemy"
 msgstr "Fiende"
 
-#: maps/scenarios/sandbox_mauryas.xml:Name:39
-msgid "Sandbox - The Mauryas"
-msgstr "Sandlåda - Mauryariket"
-
 #: maps/scenarios/sandbox_persians.xml:Description:39
 msgid "Demo Map. Play with the Persian civilisation in a sandbox setting."
 msgstr "Spela med Perserna in in ofarlig sandlådemiljö."
-
-#: maps/scenarios/sandbox_persians.xml:PlayerData[0].Name:39
-msgid "Achaemenids"
-msgstr "Akemenider"
 
 #: maps/scenarios/sandbox_persians.xml:Name:39
 msgid "Sandbox - The Persians"
 msgstr "Perserna - Sandlåda"
 
+#: maps/scenarios/sandbox_persians.xml:PlayerData[0].Name:39
+msgid "Achaemenids"
+msgstr "Akemenider"
+
 #: maps/scenarios/sandbox_ptolemies.xml:Description:39
 #: maps/skirmishes/sporades_islands_2p.xml:Description:39
 msgid "An islands map good for intense naval combat."
 msgstr "En karta med öar som är bra för intensiv sjöstrid."
+
+#: maps/scenarios/sandbox_ptolemies.xml:Name:39
+msgid "Sandbox - The Ptolemaic Egyptians"
+msgstr "Ptolemeiska Egypten - Sandlåda"
 
 #: maps/scenarios/sandbox_ptolemies.xml:PlayerData[0].Name:39
 msgid "Ptolemaios A' Soter"
@@ -1854,14 +1983,14 @@ msgstr "Ptolemaios A' Soter"
 msgid "Kautilya"
 msgstr "Kautilya"
 
-#: maps/scenarios/sandbox_ptolemies.xml:Name:39
-msgid "Sandbox - The Ptolemaic Egyptians"
-msgstr "Ptolemeiska Egypten - Sandlåda"
-
 #: maps/scenarios/sandbox_ptolemies_02.xml:Description:39
 msgid ""
 "Play with the Ptolemaic Egyptians in a non-threatening sandbox setting."
 msgstr "Spela med Ptolemeiska Egypten i en ofarlig sandlådemiljö."
+
+#: maps/scenarios/sandbox_ptolemies_02.xml:Name:39
+msgid "Sandbox - The Ptolemaic Egyptians 2"
+msgstr "Ptolemeiska Egypten 2 - Sandlåda"
 
 #: maps/scenarios/sandbox_ptolemies_02.xml:PlayerData[0].Name:39
 msgid "Ptolemy \"Savior\""
@@ -1875,10 +2004,6 @@ msgstr "Seleukider"
 msgid "Libyans"
 msgstr "Libyer"
 
-#: maps/scenarios/sandbox_ptolemies_02.xml:Name:39
-msgid "Sandbox - The Ptolemaic Egyptians 2"
-msgstr "Ptolemeiska Egypten 2 - Sandlåda"
-
 #: maps/scenarios/sandbox_romans.xml:Description:39
 msgid "A sandbox scenario for players to try out the Roman civilisation."
 msgstr "Ett sandblådescenario för spelare att prova den Romerska fraktionen."
@@ -1891,6 +2016,10 @@ msgstr "Romarriket - Sandlåda"
 msgid "A sandbox scenario for players to try out the Seleucid civilisation."
 msgstr "Ett sandlådescenario för spelare att prova den Seleukidiska fraktionen."
 
+#: maps/scenarios/sandbox_seleucids.xml:Name:39
+msgid "Sandbox - The Seleucids"
+msgstr "Seleukiderna - Sandlåda"
+
 #: maps/scenarios/sandbox_seleucids.xml:PlayerData[0].Name:39
 msgid "The Seleucids"
 msgstr "Seleukiderna"
@@ -1898,10 +2027,6 @@ msgstr "Seleukiderna"
 #: maps/scenarios/sandbox_seleucids.xml:PlayerData[1].Name:39
 msgid "The Ptolemies"
 msgstr "Ptolemaierna"
-
-#: maps/scenarios/sandbox_seleucids.xml:Name:39
-msgid "Sandbox - The Seleucids"
-msgstr "Seleukiderna - Sandlåda"
 
 #: maps/scenarios/sandbox_spartans.xml:Description:39
 msgid ""
@@ -1912,15 +2037,25 @@ msgstr "Spela med Spartanerna i en ofarlig sandlådemiljö."
 msgid "Sandbox - The Spartans"
 msgstr "Spartanerna - Sandlåda"
 
-#: maps/scenarios/savanna_ravine.xml:Name:39
-msgid "Savanna Ravine"
-msgstr "Savannravin"
-
 #: maps/scenarios/savanna_ravine.xml:Description:39
 msgid ""
 "A wide-open Savanna map with a small ravine running down the center, which "
 "is easily forded."
 msgstr "En vidöppen Savannkarta med ett liten ravin ner på mitten som är lätt att korsa."
+
+#: maps/scenarios/savanna_ravine.xml:Name:39
+msgid "Savanna Ravine"
+msgstr "Savannravin"
+
+#: maps/scenarios/serengeti.xml:Description:27
+msgid ""
+"The African serengeti has herds of animals criss crossing the plain. Mineral"
+" wealth is bountiful and wood is in full supply."
+msgstr "Den afrikanska serengeti har hjordar av djur som korsar slätten. Mineraltillgången är riklig och det finns gott om träd."
+
+#: maps/scenarios/serengeti.xml:Name:27
+msgid "Serengeti 1"
+msgstr "Serengeti 1"
 
 #: maps/scenarios/serengeti.xml:PlayerData[1].Name:27
 msgid "Iberia"
@@ -1934,27 +2069,17 @@ msgstr "Grekland"
 msgid "Persia"
 msgstr "Persien"
 
-#: maps/scenarios/serengeti.xml:Description:27
-msgid ""
-"The African serengeti has herds of animals criss crossing the plain. Mineral"
-" wealth is bountiful and wood is in full supply."
-msgstr "Den afrikanska serengeti har hjordar av djur som korsar slätten. Mineraltillgången är riklig och det finns gott om träd."
-
-#: maps/scenarios/serengeti.xml:Name:27
-msgid "Serengeti 1"
-msgstr "Serengeti 1"
-
 #: maps/scenarios/ship_formations.xml:Description:27
 msgid "Ship formations mockup."
 msgstr "Skeppsformationer prototyp."
 
-#: maps/scenarios/ship_formations.xml:PlayerData[0].Name:27
-msgid "Ships"
-msgstr "Skepp"
-
 #: maps/scenarios/ship_formations.xml:Name:27
 msgid "Ship Formations"
 msgstr "Skeppsformationer"
+
+#: maps/scenarios/ship_formations.xml:PlayerData[0].Name:27
+msgid "Ships"
+msgstr "Skepp"
 
 #: maps/scenarios/shipattacks.xml:Description:27
 msgid "Move ships around. Attack other ships."
@@ -2015,6 +2140,10 @@ msgid ""
 "Will Alexander push his way through The Persian Gates and fulfill his destiny, or will Ariobarzanes defend the rugged ancient land of Persis against a foreign invader?"
 msgstr "\"Det har alltid varit en grekisk dröm att gå österut.\"\n\n\"Akta sådan stolthet. Östern har ett sätt att svälja män och deras drömmar.\"\n\nKommer Alexander driva sin väg genom Persiska Porten och uppfylla sin bestämmelse eller kommer Ariobarzanes att försvara det karga gamla Persiska landet mot den främmande invadören?"
 
+#: maps/scenarios/the_persian_gates.xml:Name:27
+msgid "The Persian Gates"
+msgstr "Persiska Porten"
+
 #: maps/scenarios/the_persian_gates.xml:PlayerData[0].Name:27
 msgid "Alexandros Megas"
 msgstr "Alexandros Megas"
@@ -2031,15 +2160,15 @@ msgstr "Ariobarzanes"
 msgid "Persians"
 msgstr "Perser"
 
-#: maps/scenarios/the_persian_gates.xml:Name:27
-msgid "The Persian Gates"
-msgstr "Persiska Porten"
-
 #: maps/scenarios/third_macedonian_war.xml:Description:27
 msgid ""
 "The Romans encroach upon Macedonian lands for the third and final time. Can "
 "the once-proud Macedonians prevail against the Roman juggernaut?"
 msgstr "Romarna tränger in i makedonska trakter för tredje och sista gången. Kan de en gång stolta makedonierna segra mot den romerska juggernauten?"
+
+#: maps/scenarios/third_macedonian_war.xml:Name:27
+msgid "Third Macedonian War"
+msgstr "Tredje Makedonska Kriget"
 
 #: maps/scenarios/third_macedonian_war.xml:PlayerData[0].Name:27
 msgid "Lucius Aemilius Paullus"
@@ -2053,9 +2182,53 @@ msgstr "Perseus av Makedonien"
 msgid "Greek Allies"
 msgstr "Grekiska Allierade"
 
-#: maps/scenarios/third_macedonian_war.xml:Name:27
-msgid "Third Macedonian War"
-msgstr "Tredje Makedonska Kriget"
+#: maps/scenarios/treasure_islands.js:9
+msgid "Collect the treasures before your enemy does! May the better win!"
+msgstr "Samla skatter innan din fiende gör det! Må den bättre vinna!"
+
+#: maps/scenarios/treasure_islands.js:28
+msgid "No winner yet, prepare for battle!"
+msgstr "Ingen vinnare än, förbered dig för strid!"
+
+#: maps/scenarios/treasure_islands.js:43
+msgid "Your enemy's treasury is filled to the brim, you lose!"
+msgstr "Fiendens skattkammare är fylld till brädden, du förlorar!"
+
+#: maps/scenarios/treasure_islands.js:48
+msgid "Your treasury is filled to the brim, you are victorious!"
+msgstr "Din skattkammare är fylld till brädden, du segrar!"
+
+#: maps/scenarios/treasure_islands.js:60
+msgid "Hurry up! Your enemy is close to victory!"
+msgstr "Skynda! Dina fiender håller på att vinna!"
+
+#: maps/scenarios/treasure_islands.js:71
+#, javascript-format
+msgid "Treasures remaining to collect for victory:  %(remainingTreasures)s!"
+msgstr "Skatter som återstår att samla för seger: %(remainingTreasures)s!"
+
+#: maps/scenarios/treasure_islands.js:79
+msgid "You have collected a treasure!"
+msgstr "Du har hittat en skatt!"
+
+#: maps/scenarios/treasure_islands.js:91
+msgid "Defeat your enemy to win!"
+msgstr "Besegra dina fiender för att vinna!"
+
+#: maps/scenarios/treasure_islands.js:100
+#, javascript-format
+msgid "%(lastPlayer)s has won (treasure collected)."
+msgid_plural "%(players)s and %(lastPlayer)s have won (treasure collected)."
+msgstr[0] "%(lastPlayer)s har vunnit (skatt samlad)."
+msgstr[1] "%(players)s och %(lastPlayer)s har vunnit (skatt samlad)."
+
+#: maps/scenarios/treasure_islands.js:104
+#, javascript-format
+msgid "%(lastPlayer)s has been defeated (treasure collected)."
+msgid_plural ""
+"%(players)s and %(lastPlayer)s have been defeated (treasure collected)."
+msgstr[0] "%(lastPlayer)s har blivit besegrade (skatt samlad)."
+msgstr[1] "%(players)s och %(lastPlayer)s har blivit besegrade (skatt samlad)."
 
 #: maps/scenarios/treasure_islands.xml:Description:39
 msgid ""
@@ -2066,6 +2239,26 @@ msgstr "Sök skatter på små öar och på vattnet. Samla fler skatter än din m
 #: maps/scenarios/treasure_islands.xml:Name:39
 msgid "Treasure Islands"
 msgstr "Skattöarna"
+
+#: maps/scenarios/triggers_demo.js:73
+msgid "Testing the yes-no dialog. Do you want to say sure or rather not?"
+msgstr "Test av ja-nej dialog. Vill du säga visst eller snarare inte?"
+
+#: maps/scenarios/triggers_demo.js:79
+msgid "Sure"
+msgstr "Visst"
+
+#: maps/scenarios/triggers_demo.js:83
+msgid "Say sure"
+msgstr "Säg visst"
+
+#: maps/scenarios/triggers_demo.js:89
+msgid "Rather not"
+msgstr "Helst inte"
+
+#: maps/scenarios/triggers_demo.js:93
+msgid "Say rather not"
+msgstr "Säg helst inte"
 
 #: maps/scenarios/triggers_demo.xml:Description:39
 msgid ""
@@ -2097,13 +2290,13 @@ msgstr "Denna karta är utformad för att testa några grundläggande enheters r
 msgid "Unit Motion Integration Test"
 msgstr "Integrationstest för enhetsrörelse"
 
-#: maps/scenarios/units_demo.xml:Name:28
-msgid "Units Demo"
-msgstr "Soldatdemo"
-
 #: maps/scenarios/units_demo.xml:Description:28
 msgid "Every unit in the game."
 msgstr "Alla soldater i spelet."
+
+#: maps/scenarios/units_demo.xml:Name:28
+msgid "Units Demo"
+msgstr "Soldatdemo"
 
 #: maps/scenarios/walls.xml:Description:27
 msgid "Walls."
@@ -2117,13 +2310,13 @@ msgstr "Murar"
 msgid "WallTest"
 msgstr "MurTest"
 
-#: maps/scenarios/we_are_legion.xml:Name:27
-msgid "We Are Legion"
-msgstr "We Are Legion"
-
 #: maps/scenarios/we_are_legion.xml:Description:27
 msgid "A quick battle demo map using Roman legionaries."
 msgstr "En snabb stridsdemokarta med romerska legionärer."
+
+#: maps/scenarios/we_are_legion.xml:Name:27
+msgid "We Are Legion"
+msgstr "We Are Legion"
 
 #: maps/skirmishes/acropolis_bay_2p.xml:Description:39
 msgid ""
@@ -2179,10 +2372,6 @@ msgstr "De torra och mineralrika länderna av Baktrien (dagens Afghanistan) vid 
 msgid "Bactria (2)"
 msgstr "Baktrien (2)"
 
-#: maps/skirmishes/barcania_3p.xml:Name:27
-msgid "Barcania (3)"
-msgstr "Barcania (3)"
-
 #: maps/skirmishes/barcania_3p.xml:Description:27
 msgid ""
 "A wild and wooded isle, full of forests, gold, and mystery. Mountains, seas,"
@@ -2190,6 +2379,10 @@ msgid ""
 "lots of potential for skirmishing and guerilla warfare as well as tough "
 "defensive fighting or aggressive maneuvers."
 msgstr "En vild och trädbevuxen ö, full av skogar, guld och mysterier. Berg, hav och täta skogar ger en mycket dynamisk och snabb 3-spelar karta med mycket potential för sammandrabbningar och gerillakrig samt hårda defensiva strider eller aggressiva manövrer."
+
+#: maps/skirmishes/barcania_3p.xml:Name:27
+msgid "Barcania (3)"
+msgstr "Barcania (3)"
 
 #: maps/skirmishes/belgian_bog_2p.xml:Description:39
 msgid ""
@@ -2208,6 +2401,10 @@ msgid ""
 "as the Butana Steppe."
 msgstr "Söder om Sahara, öster om Nilen, ligger en halvtorkad region idag känd som Butanas stäpp."
 
+#: maps/skirmishes/butana_steppe_2p.xml:Name:40
+msgid "Butana Steppe (2)"
+msgstr "Butanas stäpp (2)"
+
 #: maps/skirmishes/butana_steppe_2p.xml:PlayerData[0].Name:40
 msgid "West Player"
 msgstr "Västra spelaren"
@@ -2215,10 +2412,6 @@ msgstr "Västra spelaren"
 #: maps/skirmishes/butana_steppe_2p.xml:PlayerData[1].Name:40
 msgid "East Player"
 msgstr "Östra spelaren"
-
-#: maps/skirmishes/butana_steppe_2p.xml:Name:40
-msgid "Butana Steppe (2)"
-msgstr "Butanas stäpp (2)"
 
 #: maps/skirmishes/caspian_sea_2pv2p.xml:Description:39
 msgid ""
@@ -2265,6 +2458,10 @@ msgid ""
 "Map size: Very Large"
 msgstr "En \"små öar\"-karta belägen i Egeiska havet.\n\nKartstorlek: Väldigt Stor"
 
+#: maps/skirmishes/cycladic_archipelago_3p.xml:Name:39
+msgid "Cycladic Archipelago (3)"
+msgstr "Kykladiska skärgården (3)"
+
 #: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[0].Name:39
 msgid "Samos"
 msgstr "Samos"
@@ -2276,10 +2473,6 @@ msgstr "Lesbos"
 #: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[2].Name:39
 msgid "Delos"
 msgstr "Delos"
-
-#: maps/skirmishes/cycladic_archipelago_3p.xml:Name:39
-msgid "Cycladic Archipelago (3)"
-msgstr "Kykladiska skärgården (3)"
 
 #: maps/skirmishes/death_canyon_2p.xml:Description:39
 msgid ""
@@ -2316,6 +2509,23 @@ msgstr "Ett dimmigt alplandskap blir ett slagfält när varje lag har en alliera
 msgid "Dueling Cliffs (3v3)"
 msgstr "Duellerande Klippor (3v3)"
 
+#: maps/skirmishes/egypt_3pv3p.xml:Description:40
+msgid ""
+"Fight for the remains of ancient Egypt!\n"
+"\n"
+"Players start with full grown cities and small armies, each having distinct advantages and drawbacks. Take care, there are 7 mighty forts and marauding bandids!\n"
+"\n"
+"It is the last century before 0 A.D. Egypt is internally divided between hellenistic (Alexandria, represented by Seleucids) and traditional influences (Memphis, represented by Ptolemies). Thebes in the southern clime of river Nile has already been taken over by the Kush. In the north western Al-Dschabal al-Achdar, where the mediterranean city of Cyrene is located the Romans are preparing their invasion. From the eastern desert at-Tih and mount Sinai enemies (represented by Persians) are pushing forward and the oasis Siwa. Charga (represented by Carthage) in the south western desert are trying to get a share of the pie as well.\n"
+"Locations:\n"
+"- Alexandria: library, harbor\n"
+"- Memphis: Necropolis, pyramids, Apis shrine\n"
+"- Thebes: temple district, Valley of the Kings \n"
+"- Cyrene: mediterranean Macchie, olive groves\n"
+"- Fayyum: crocodile shrine, nile dam\n"
+"- Eastern desert: mount Sinai, deep Wadi, Red Sea reefs\n"
+"- Western desert: Oasis Charga and Siwa, Qattara Depression\n"
+msgstr "Kämpa för resterna av antika Egypten!\n\nSpelarna börjar med fullvuxna städer och små arméer, som alla har olika fördelar och nackdelar. Var försiktig, det finns 7 mäktiga fort och plundrande bandider!\n\nDet är förra seklet före 0 A.D. Egypten är internt uppdelad mellan hellenistisk (Alexandria, representerad av Seleukiderna) och traditionella influenser (Memphis, representerad av Ptolemyerna). Theber i södra klumpen av floden Nilen har redan tagits över av Kush. I nordvästra Al-Dschabal al-Achdar, där medelhavet staden Cyrene ligger, förbereder romarna sin invasion. Från den östra öknen vid-Tih och Mount Sinai pressar fiender (representerade av perserna) framåt och oasen Siwa. Charga (representerat av Karthago) i den sydvästra delen av öken försöker få en del av cirkeln också.\nPlatser:\n- Alexandria: bibliotek, hamn\n- Memphis: Nekropol, pyramider, Apis-helgedom\n- Thebe: Templet, Kungarnas dal\n- Kyrene: Medelhavet Macchie, olivlundar\n- Fayoum: krokodil helgedom, damm i Nilen\n- Östra öknen: Mount Sinai, djupa Wadi, Röda havet rev\n- Västra öknen: Oasen Kharga och Siwa, Qattarasänkan\n"
+
 #: maps/skirmishes/egypt_3pv3p.xml:Name:40
 msgid "Egypt (3v3)"
 msgstr "Egypten (3v3)"
@@ -2343,23 +2553,6 @@ msgstr "Memphis"
 #: maps/skirmishes/egypt_3pv3p.xml:PlayerData[5].Name:40
 msgid "Cyrene"
 msgstr "Kyrene"
-
-#: maps/skirmishes/egypt_3pv3p.xml:Description:40
-msgid ""
-"Fight for the remains of ancient Egypt!\n"
-"\n"
-"Players start with full grown cities and small armies, each having distinct advantages and drawbacks. Take care, there are 7 mighty forts and marauding bandids!\n"
-"\n"
-"It is the last century before 0 A.D. Egypt is internally divided between hellenistic (Alexandria, represented by Seleucids) and traditional influences (Memphis, represented by Ptolemies). Thebes in the southern clime of river Nile has already been taken over by the Kush. In the north western Al-Dschabal al-Achdar, where the mediterranean city of Cyrene is located the Romans are preparing their invasion. From the eastern desert at-Tih and mount Sinai enemies (represented by Persians) are pushing forward and the oasis Siwa. Charga (represented by Carthage) in the south western desert are trying to get a share of the pie as well.\n"
-"Locations:\n"
-"- Alexandria: library, harbor\n"
-"- Memphis: Necropolis, pyramids, Apis shrine\n"
-"- Thebes: temple district, Valley of the Kings \n"
-"- Cyrene: mediterranean Macchie, olive groves\n"
-"- Fayyum: crocodile shrine, nile dam\n"
-"- Eastern desert: mount Sinai, deep Wadi, Red Sea reefs\n"
-"- Western desert: Oasis Charga and Siwa, Qattara Depression\n"
-msgstr "Kämpa för resterna av antika Egypten!\n\nSpelarna börjar med fullvuxna städer och små arméer, som alla har olika fördelar och nackdelar. Var försiktig, det finns 7 mäktiga fort och plundrande bandider!\n\nDet är förra seklet före 0 A.D. Egypten är internt uppdelad mellan hellenistisk (Alexandria, representerad av Seleukiderna) och traditionella influenser (Memphis, representerad av Ptolemyerna). Theber i södra klumpen av floden Nilen har redan tagits över av Kush. I nordvästra Al-Dschabal al-Achdar, där medelhavet staden Cyrene ligger, förbereder romarna sin invasion. Från den östra öknen vid-Tih och Mount Sinai pressar fiender (representerade av perserna) framåt och oasen Siwa. Charga (representerat av Karthago) i den sydvästra delen av öken försöker få en del av cirkeln också.\nPlatser:\n- Alexandria: bibliotek, hamn\n- Memphis: Nekropol, pyramider, Apis-helgedom\n- Thebe: Templet, Kungarnas dal\n- Kyrene: Medelhavet Macchie, olivlundar\n- Fayoum: krokodil helgedom, damm i Nilen\n- Östra öknen: Mount Sinai, djupa Wadi, Röda havet rev\n- Västra öknen: Oasen Kharga och Siwa, Qattarasänkan\n"
 
 #: maps/skirmishes/farmland_2p.xml:Description:40
 msgid "Farmland in Eastern Europe."
@@ -2776,196 +2969,3 @@ msgstr "Bergen som skyddar det Persiska hemlandet som gränslar Persis, Susiana,
 #: maps/skirmishes/zagros_mountains_2p.xml:Name:39
 msgid "Zagros Mountains (2)"
 msgstr "Zagrosbergen (2)"
-
-#: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"The vitalizing waters of the Nile sustain life along its banks, while the "
-"long dry season scorches the land."
-msgstr "Nilens vitaliserande vatten håller liv längs sina banker, medan den långa torra säsongen skryter landet."
-
-#: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Dry Season"
-msgstr "Torrperioden"
-
-#: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Revelling in the much awaited rain, the baked land transforms into a lush "
-"haven for both man and beast."
-msgstr "Festande i det efterlängtade regnet, förvandlas det bakade landet till en frodig fristad för både människor och djur."
-
-#: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Rainy Season"
-msgstr "Regnperioden"
-
-#: maps/random/rmbiome/generic/alpine.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"A region in the high snowy mountains. Biting winds sweep through the "
-"abundant conifer forests, making even the more resilient deer and mountain "
-"goats shiver."
-msgstr "En region i de höga snöiga bergen. Iskalla vindar blåser genom de rikliga barrskogarna, och får till och med de tuffare hjortarna och snögetter att skaka."
-
-#: maps/random/rmbiome/generic/alpine.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Alpine"
-msgstr "Alpin"
-
-#: maps/random/rmbiome/generic/autumn.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Autumn at its peak. The landscape is a dazzling dash of colors irrevocably "
-"intertwined. The native beech and oak trees of this temperate zone display a"
-" multi-colored foliage while the evergreen pines look on with indifference "
-"at the approaching winter."
-msgstr "Hösten i sin topp. Landskapet är en ett oupplösligt sammanflätat, bländande färgstreck. Den inhemska boken och ekarna i detta tempererade klimat visar ett mångfärgat lövverk, medan de vintergröna tallarna ser likgiltigt på den sig närmande vintern."
-
-#: maps/random/rmbiome/generic/autumn.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Autumn"
-msgstr "Höst"
-
-#: maps/random/rmbiome/generic/desert.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"A semi-desert area that boasts numerous clumps of date palms and tamarix "
-"trees. Herds of camels roam the wild and the occasional gazelle jumps up in "
-"fright at being disturbed."
-msgstr "Ett ökenliknande område som ståtar med många dungar med dadelpalmer och tamarisker. Kameler strövar omkring och den enstaka gasellen hoppas upp i skräck när den störs."
-
-#: maps/random/rmbiome/generic/desert.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Desert"
-msgstr "Öken"
-
-#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Start in a region blessed with the Mediterranean climate, a warm and "
-"inviting land. The cypresses are in a perpetual struggle with the dominant "
-"fan palms while deer graze in their shadows, blissfully unaware."
-msgstr "Börja i en region välsignad med Medelhavsklimatet, ett varmt och inbjudande land. Cypresserna är i en ständig kamp med de dominerande palmträden medan rådjur betar i deras skuggor, lyckligt omedvetna."
-
-#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Mediterranean"
-msgstr "Medelhavet"
-
-#: maps/random/rmbiome/generic/savanna.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"The savanna, a dry climate in which only the hardy Baobab trees thrive. "
-"Solitary gazelles graze the sparse grass, while herds of zebras, wildebeest,"
-" giraffes or elephants roam the wild in search of food."
-msgstr "Savann, ett torrt klimat där endast de hårda baobabträden trivs. Enstaka gaseller betar det glesa gräset, medan besättningar av zebror, gnagare, giraffer eller elefanter strövar omkring efter mat."
-
-#: maps/random/rmbiome/generic/savanna.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Savanna"
-msgstr "Savann"
-
-#: maps/random/rmbiome/generic/snowy.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Settle in the cold regions of the North, the native habitat of the wooly "
-"muskox. Here you can pine away to your content and also hunt the occasional "
-"walrus or two."
-msgstr "Bosätt dig i de kalla områdena i norr, den inhemska livsmiljön av den ulliga myskoxen. Här kan du hugga tall tills du är glad eller jaga den enstaka valrossen eller två."
-
-#: maps/random/rmbiome/generic/snowy.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Snowy"
-msgstr "Snöig"
-
-#: maps/random/rmbiome/generic/temperate.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Lush grasslands carpet the land, in places giving way to magnificent and "
-"diverse broadleaf forests. Poplars, pines, beeches and oaks all vie for "
-"supremacy but this root-war is a neverending struggle. Numerous apple trees "
-"dot the land, deer and sheep gorge themselves on this years fallen fruit."
-msgstr "Frodiga gräsmarker täcker landet, då och då givande plats åt magnifika och varierande lövskogar. Popplar, tallar, bokar och ekar tävlar om överlägsenhet, men detta rotkrig är en oändlig kamp. Många äppelträd är utspridda över terrängen, rådjur och får äter sig mätta på detta årets fallfrukt."
-
-#: maps/random/rmbiome/generic/temperate.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Temperate"
-msgstr "Tempererad"
-
-#: maps/random/rmbiome/generic/tropic.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Explore the mysterious tropics. An extremely green, but also extremely humid"
-" environment awaits. The tall Toona trees look on disapprovingly at this "
-"invasion of their privacy and ferocious tigers are determined to defend "
-"their territory at all costs."
-msgstr "Utforska de mystiska tropikerna. En extremt grön men också extremt fuktig miljö väntar. De långa toonaträden träd ser på misstänksamma på denna invasion av deras hederlighet och grymma tigrar är fast beslutna att försvara sitt territorium till varje pris."
-
-#: maps/random/rmbiome/generic/tropic.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Tropic"
-msgstr "Tropisk"
-
-#: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Solidifying it's grip, the harsh cold has succeeded in freezing up the gulf."
-" The thick ice formed is capable of withstanding any weight."
-msgstr "Det hårda kölden har lyckats frysa upp i bukten. Den tjocka isen som bildas är kapabel att motstå vilken vikt som helst."
-
-#: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Frozen Lake"
-msgstr "Frusen sjö"
-
-#: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"A late spring breeze ripples through the conifer forests of the Gulf of "
-"Bothnia. Herds of deer dot the landscape and playful rabbits frolick in the "
-"undergrowth."
-msgstr "En sen vårbris skvalpar genom barrskogarna i Botniska viken. Flockar av rådjur är utspridda över landskapet och lekfulla kaniner skuttar i småskogen."
-
-#: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Late Spring"
-msgstr "Sen vår"
-
-#: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Winter has set in, carpeting the land with its first snow. The still "
-"unfrozen gulf offers great fishing opportunities."
-msgstr "Vintern har satts in, täcker marken med sin första snö. Den fortfarande oförstörda bukten erbjuder stora fiskemöjligheter."
-
-#: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Winter"
-msgstr "Vinter"
-
-#: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Spring in the highlands, yet the heat has already begun making itself felt. "
-"The short-lived green grasses are on the retreat, paving the way for "
-"scorching summer."
-msgstr "Våren på höglandet, men värmen har redan börjat göra sig känd. De kortlivade gröna gräset ligger på reträtten och banar vägen för brinnande sommar."
-
-#: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Spring"
-msgstr "Vår"
-
-#: maps/random/rmbiome/persian_highlands/summer.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"An arid, hostile land. The blistering heat has baked the ground to a sickly "
-"brown and the remaining trees struggle for survival."
-msgstr "Ett torrt, fientligt land. Blåsningsvärmen har bakat marken till en sjukt brun och de återstående träden kämpar för att överleva."
-
-#: maps/random/rmbiome/persian_highlands/summer.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Summer"
-msgstr "Sommar"

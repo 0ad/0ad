@@ -23,7 +23,7 @@
 #include "StdSerializer.h" // for DEBUG_SERIALIZER_ANNOTATE
 
 #include "scriptinterface/ScriptInterface.h"
-#include "scriptinterface/ScriptExtraHeaders.h" // for typed arrays
+#include "scriptinterface/ScriptExtraHeaders.h" // For typed arrays and ArrayBuffer
 
 #include "lib/byte_order.h"
 
@@ -284,7 +284,7 @@ JS::Value CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleOb
 			throw PSERROR_Deserialize_ScriptError();
 
 		JS::RootedObject bufferObj(rq.cx, &bufferVal.toObject());
-		if (!JS_IsArrayBufferObject(bufferObj))
+		if (!JS::IsArrayBufferObject(bufferObj))
 			throw PSERROR_Deserialize_ScriptError("js_IsArrayBuffer failed");
 
 		switch(arrayType)
@@ -335,7 +335,7 @@ JS::Value CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleOb
 		void* contents = malloc(length);
 		ENSURE(contents);
 		RawBytes("buffer data", (u8*)contents, length);
-		JS::RootedObject bufferObj(rq.cx, JS_NewArrayBufferWithContents(rq.cx, length, contents));
+		JS::RootedObject bufferObj(rq.cx, JS::NewArrayBufferWithContents(rq.cx, length, contents));
 		AddScriptBackref(bufferObj);
 
 		return JS::ObjectValue(*bufferObj);

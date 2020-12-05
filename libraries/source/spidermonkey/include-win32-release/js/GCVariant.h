@@ -1,5 +1,5 @@
-/* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*-
- * vim: set ts=8 sts=4 et sw=4 tw=99:
+/* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+ * vim: set ts=8 sts=2 et sw=2 tw=80:
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
@@ -47,8 +47,7 @@ struct GCVariantImplementation<T> {
   template <typename ConcreteVariant>
   static void trace(JSTracer* trc, ConcreteVariant* v, const char* name) {
     T& thing = v->template as<T>();
-    if (!mozilla::IsPointer<T>::value || thing)
-      GCPolicy<T>::trace(trc, &thing, name);
+    GCPolicy<T>::trace(trc, &thing, name);
   }
 
   template <typename Matcher, typename ConcreteVariant>
@@ -75,8 +74,7 @@ struct GCVariantImplementation<T, Ts...> {
   static void trace(JSTracer* trc, ConcreteVariant* v, const char* name) {
     if (v->template is<T>()) {
       T& thing = v->template as<T>();
-      if (!mozilla::IsPointer<T>::value || thing)
-        GCPolicy<T>::trace(trc, &thing, name);
+      GCPolicy<T>::trace(trc, &thing, name);
     } else {
       Next::trace(trc, v, name);
     }
@@ -109,25 +107,17 @@ template <typename... Ts>
 struct GCPolicy<mozilla::Variant<Ts...>> {
   using Impl = detail::GCVariantImplementation<Ts...>;
 
-  // Variants do not provide initial(). They do not have a default initial
-  // value and one must be provided.
-
   static void trace(JSTracer* trc, mozilla::Variant<Ts...>* v,
                     const char* name) {
     Impl::trace(trc, v, name);
   }
 
   static bool isValid(const mozilla::Variant<Ts...>& v) {
-    return v.match(IsValidMatcher());
+    return v.match([](auto& v) {
+      return GCPolicy<
+          typename mozilla::RemoveReference<decltype(v)>::Type>::isValid(v);
+    });
   }
-
- private:
-  struct IsValidMatcher {
-    template <typename T>
-    bool match(T& v) {
-      return GCPolicy<T>::isValid(v);
-    };
-  };
 };
 
 }  // namespace JS

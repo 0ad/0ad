@@ -1,14 +1,8 @@
-/* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*-
- * vim: set ts=8 sts=4 et sw=4 tw=99:
+/* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+ * vim: set ts=8 sts=2 et sw=2 tw=80:
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
-
-/*
- * Ways to get various per-Realm objects. All the getters declared in this
- * header operate on the Realm corresponding to the current compartment on the
- * JSContext.
- */
 
 #ifndef js_Realm_h
 #define js_Realm_h
@@ -31,7 +25,9 @@ namespace JS {
 template <>
 struct GCPolicy<Realm*> : public NonGCPointerPolicy<Realm*> {
   static void trace(JSTracer* trc, Realm** vp, const char* name) {
-    if (*vp) ::js::gc::TraceRealm(trc, *vp, name);
+    if (*vp) {
+      ::js::gc::TraceRealm(trc, *vp, name);
+    }
   }
   static bool needsSweep(Realm** vp) {
     return *vp && ::js::gc::RealmNeedsSweep(*vp);
@@ -42,19 +38,26 @@ struct GCPolicy<Realm*> : public NonGCPointerPolicy<Realm*> {
 // Realm Record".
 extern JS_PUBLIC_API Realm* GetCurrentRealmOrNull(JSContext* cx);
 
-// Return the compartment that contains a given realm.
-inline JSCompartment* GetCompartmentForRealm(Realm* realm) {
-  // Implementation note: For now, realms are a fiction; we treat realms and
-  // compartments as being one-to-one, but they are actually identical.
-  return reinterpret_cast<JSCompartment*>(realm);
-}
+namespace shadow {
 
-// Return the realm in a given compartment.
-//
-// Deprecated. There is currently exactly one realm per compartment, but this
-// will change.
-inline Realm* GetRealmForCompartment(JSCompartment* compartment) {
-  return reinterpret_cast<Realm*>(compartment);
+class Realm {
+ protected:
+  JS::Compartment* compartment_;
+
+  explicit Realm(JS::Compartment* comp) : compartment_(comp) {}
+
+ public:
+  JS::Compartment* compartment() { return compartment_; }
+  static shadow::Realm* get(JS::Realm* realm) {
+    return reinterpret_cast<shadow::Realm*>(realm);
+  }
+};
+
+};  // namespace shadow
+
+// Return the compartment that contains a given realm.
+inline JS::Compartment* GetCompartmentForRealm(Realm* realm) {
+  return shadow::Realm::get(realm)->compartment();
 }
 
 // Return an object's realm. All objects except cross-compartment wrappers are
@@ -89,9 +92,19 @@ typedef void (*RealmNameCallback)(JSContext* cx, Handle<Realm*> realm,
 extern JS_PUBLIC_API void SetRealmNameCallback(JSContext* cx,
                                                RealmNameCallback callback);
 
-// Get the global object for the given realm. Returns null only if `realm` is
-// in the atoms compartment.
+// Get the global object for the given realm. This only returns nullptr during
+// GC, between collecting the global object and destroying the Realm.
 extern JS_PUBLIC_API JSObject* GetRealmGlobalOrNull(Handle<Realm*> realm);
+
+// Initialize standard JS class constructors, prototypes, and any top-level
+// functions and constants associated with the standard classes (e.g. isNaN
+// for Number).
+extern JS_PUBLIC_API bool InitRealmStandardClasses(JSContext* cx);
+
+/*
+ * Ways to get various per-Realm objects. All the getters declared below operate
+ * on the JSContext's current Realm.
+ */
 
 extern JS_PUBLIC_API JSObject* GetRealmObjectPrototype(JSContext* cx);
 
@@ -102,6 +115,16 @@ extern JS_PUBLIC_API JSObject* GetRealmArrayPrototype(JSContext* cx);
 extern JS_PUBLIC_API JSObject* GetRealmErrorPrototype(JSContext* cx);
 
 extern JS_PUBLIC_API JSObject* GetRealmIteratorPrototype(JSContext* cx);
+
+// Implements https://tc39.github.io/ecma262/#sec-getfunctionrealm
+// 7.3.22 GetFunctionRealm ( obj )
+//
+// WARNING: may return a realm in a different compartment!
+//
+// Will throw an exception and return nullptr when a security wrapper or revoked
+// proxy is encountered.
+extern JS_PUBLIC_API Realm* GetFunctionRealm(JSContext* cx,
+                                             HandleObject objArg);
 
 }  // namespace JS
 

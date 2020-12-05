@@ -24,6 +24,7 @@ class ChatMessagesPanel
 			text = this.timestampWrapper.format(timestamp, text);
 
 		this.chatHistory += this.chatHistory ? "\n" + text : text;
+		this.chatText.addItem(text);
 
 		if (!this.hasUpdate)
 		{
@@ -38,7 +39,6 @@ class ChatMessagesPanel
 	{
 		if (this.hasUpdate)
 		{
-			this.chatText.caption = this.chatHistory;
 			this.hasUpdate = false;
 			this.xmppMessages.unregisterMessageBatchProcessedHandler(this.flushEvent);
 		}

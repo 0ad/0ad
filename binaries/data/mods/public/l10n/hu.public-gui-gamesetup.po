@@ -1,7 +1,7 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright (C) 2020 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
-# 
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
+# project.
 # Translators:
 # Ács Zoltán <acszoltan111@gmail.com>, 2019-2020
 # Hammer Andrew <andrewhammer87@gmail.com>, 2017
@@ -15,8 +15,8 @@
 # Levente Krisztián Büte <chris020891@gmail.com>, 2013-2014
 # Csokán András <andrejmoltok@gmail.com>, 2020
 # davesajt, 2014
-# Gyuris Gellért <bubu@ujevangelizacio.hu>, 2014
-# Gyuris Gellért <bubu@ujevangelizacio.hu>, 2017
+# Gyuris Gellért <jobel@ujevangelizacio.hu>, 2014
+# Gyuris Gellért <jobel@ujevangelizacio.hu>, 2017
 # kelemeng <kelemeng@ubuntu.com>, 2015
 # Kristóf Kófiás <kristof.kofias@gmail.com>, 2014
 # lkishalmi <laszlo.kishalmi@gmail.com>, 2015
@@ -34,7 +34,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-07-24 07:08+0000\n"
+"POT-Creation-Date: 2020-11-28 10:01+0000\n"
 "PO-Revision-Date: 2020-11-26 19:40+0000\n"
 "Last-Translator: Csokán András <andrejmoltok@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
@@ -92,15 +92,23 @@ msgstr "Összes térkép"
 msgid "Every map of the chosen maptype."
 msgstr "Minden térkép a kiválasztott típusból."
 
+#: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):13
+msgid "AI Configuration"
+msgstr "MI beállítása"
+
+#: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):29
+msgid "OK"
+msgstr "OK"
+
 #: gui/gamesetup/Pages/AIConfigPage/AIDescription.js:37
 msgid "AI will be disabled for this player."
 msgstr "MI kikapcsolása a jelenlegi játékosnál."
 
-#: gui/gamesetup/Pages/AIConfigPage/Controls/AIBehavior.js:93
+#: gui/gamesetup/Pages/AIConfigPage/Controls/AIBehavior.js:95
 msgid "AI Behavior"
 msgstr "MI viselkedés"
 
-#: gui/gamesetup/Pages/AIConfigPage/Controls/AIDifficulty.js:87
+#: gui/gamesetup/Pages/AIConfigPage/Controls/AIDifficulty.js:89
 msgid "AI Difficulty"
 msgstr "MI Nehézsége"
 
@@ -153,11 +161,6 @@ msgstr "Játéktípus"
 msgid "Configure AI: %(description)s."
 msgstr "MI beállítása: %(description)s."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayerName.js:114
-#, javascript-format
-msgid "%(playerName)s %(romanNumber)s"
-msgstr "%(playerName)s %(romanNumber)s"
-
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:153
 msgid "Select player."
 msgstr "Játékos választása."
@@ -197,6 +200,31 @@ msgctxt "team"
 msgid "None"
 msgstr "Nincs"
 
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayerName.js:114
+#, javascript-format
+msgid "%(playerName)s %(romanNumber)s"
+msgstr "%(playerName)s %(romanNumber)s"
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):6
+msgid "Player Name"
+msgstr "Játékos neve"
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):10
+msgid "Color"
+msgstr "Szín"
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):14
+msgid "Player Placement"
+msgstr "Játékos elhelyezése"
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):18
+msgid "Civilization"
+msgstr "Civilizáció"
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):25
+msgid "Team"
+msgstr "Csapat"
+
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:40
 msgid "Cheats"
 msgstr "Csalások"
@@ -206,40 +234,42 @@ msgid "Toggle the usability of cheats."
 msgstr "Csalás használhatóság váltása."
 
 #. Translation: Make sure to differentiate between the revealed map and
-#. explored map settings!
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/ExploredMap.js:54
+#. explored map
+#. settings!
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/ExploredMap.js:55
 msgid "Explored Map"
 msgstr "Felfedezett térkép"
 
 #. Translation: Make sure to differentiate between the revealed map and
-#. explored map settings!
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/ExploredMap.js:58
+#. explored map
+#. settings!
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/ExploredMap.js:59
 msgid "Toggle explored map (see initial map)."
 msgstr "Felfedezett térkép bekapcsolása (kezdeti térkép látszik)"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:58
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:59
 msgid "Last Man Standing"
 msgstr "Utolsó emberig"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:61
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:62
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
 msgstr "Kapcsold be, hogy az utolsó megmaradt játékos vagy szövetség nyerjen."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:52
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:53
 msgid "Teams Locked"
 msgstr "Zárolt csapatok"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:55
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:56
 msgid "Toggle locked teams."
 msgstr "Csapat zárolás váltása."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Nomad.js:60
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Nomad.js:61
 msgid "Nomad"
 msgstr "Nomád"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Nomad.js:63
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Nomad.js:64
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
@@ -253,66 +283,68 @@ msgstr "Pontozott játék"
 msgid "Toggle if this game will be rated for the leaderboard."
 msgstr "Kapcsold be, ha szerentél pontozott játékot indítani. "
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:61
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:62
 msgid "Hero Garrison"
 msgstr "Hős beszállásolása"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:64
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:65
 msgid "Toggle whether heroes can be garrisoned."
 msgstr "A hősök beszállásolhatóságának átváltása."
 
 #. Translation: Make sure to differentiate between the revealed map and
-#. explored map settings!
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RevealedMap.js:49
+#. explored map
+#. settings!
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RevealedMap.js:50
 msgid "Revealed Map"
 msgstr "Felderített térkép"
 
 #. Translation: Make sure to differentiate between the revealed map and
-#. explored map settings!
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RevealedMap.js:53
+#. explored map
+#. settings!
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RevealedMap.js:54
 msgid "Toggle revealed map (see everything)."
 msgstr "Felfedezett térkép bekapcsolása (minden látszik)."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Spies.js:42
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Spies.js:43
 msgid "Disable Spies"
 msgstr "Kémek letiltása"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Spies.js:45
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Spies.js:46
 msgid "Disable spies during the game."
 msgstr "A kémek letiltása a játék során."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js:42
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js:43
 msgid "Disable Treasures"
 msgstr "Kincsek letiltása"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js:45
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js:46
 msgid "Do not add treasures to the map."
 msgstr "Ne adjon kincseket a térképhez."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:46
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:49
 msgid "World population"
 msgstr "Világ népessége"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:49
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:52
 msgid ""
 "When checked the Population Cap will be evenly distributed over all living "
 "players."
 msgstr ""
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:135
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:128
 msgid "Biome"
 msgstr "Biom"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:141
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:134
 msgid "Select the flora and fauna."
 msgstr "Válaszd ki a flórát és faunát."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:144
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:137
 msgctxt "biome"
 msgid "Random"
 msgstr "Véletlenszerű"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:147
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:140
 msgid "Pick a biome at random."
 msgstr "Véletlenszerű biom választása."
 
@@ -334,48 +366,48 @@ msgctxt "daytime selection"
 msgid "Randomly pick a time of the day."
 msgstr "Napszak véletlenszerű kiválasztása."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:73
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:75
 msgid "Game Speed"
 msgstr "Játék sebessége"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:76
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:78
 msgid "Select game speed."
 msgstr "Játék sebességének kiválasztása."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:142
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:138
 msgid "Landscape"
 msgstr "Táj"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:145
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:141
 msgid "Select one of the landscapes of this map."
 msgstr "Válaszd ki a térkép táját."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:151
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:147
 msgctxt "landscape selection"
 msgid "Random Land or Naval"
 msgstr "Véletlenszerű szárazföldi vagy tengeri"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:152
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:148
 msgctxt "landscape selection"
 msgid "Select a random land or naval map generation."
 msgstr "Véletlenszerű szárazföldi vagy tengeri térkép előállítása."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:156
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:152
 msgctxt "landscape selection"
 msgid "Random Land"
 msgstr "Véletlenszerű szárazföldi"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:157
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:153
 msgctxt "landscape selection"
 msgid "Select a random land map generation."
 msgstr "Véletlenszerű szárazföldi térkép előállítása."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:161
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:157
 msgctxt "landscape selection"
 msgid "Random Naval"
 msgstr "Véletlenszerű tengeri"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:162
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:158
 msgctxt "landscape selection"
 msgid "Select a random naval map generation."
 msgstr "Véletlenszerű tengeri térkép előállítása."
@@ -405,11 +437,11 @@ msgstr "Véletlenszerű"
 msgid "Pick any of the given maps at random."
 msgstr "A létező pályák közül véletlenszerűen választva."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:74
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:75
 msgid "Map Size"
 msgstr "Térkép mérete"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:77
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:78
 msgid "Select map size. (Larger sizes may reduce performance.)"
 msgstr "Térkép méretének kiválasztása. (Nagyobb méret csökkentheti a teljesítményt.)"
 
@@ -429,40 +461,40 @@ msgstr "Játékosok száma"
 msgid "Select number of players."
 msgstr "Játékosok számának kiválasztása."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:91
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:92
 msgid "Population Cap"
 msgstr "Népességkorlát"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:94
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:95
 msgid "Select population limit."
 msgstr "Népességhatár kiválasztása."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:97
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:98
 msgctxt "population limit"
 msgid "Per Player"
 msgstr "Játékosonként"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:100
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:101
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
 "%(popCap)s population."
 msgstr "Figyelmeztetés: Teljesítményproblémák lehetnek, ha mind a(z) %(players)s játékos eléri ezt a népességet: %(popCap)s."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:81
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:82
 msgid "Starting Resources"
 msgstr "Kezdő nyersanyagok"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:84
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:85
 msgid "Select the game's starting resources."
 msgstr "Kezdő nyersanyagok kiválasztása."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:87
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:88
 #, javascript-format
 msgid "Initial amount of each resource: %(resources)s."
 msgstr "Az egyes nyersanyagok kezdeti mennyisége: %(resources)s."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:90
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:91
 msgctxt "starting resources"
 msgid "Per Player"
 msgstr "Játékosonként"
@@ -531,35 +563,35 @@ msgstr "Nehézség"
 msgid "Select the difficulty of this scenario."
 msgstr "Válaszd ki a küldetés nehézségét"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:76
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:77
 msgid "World Population Cap"
 msgstr "Világ népességkorlátka"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:79
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:80
 msgid "Select world population limit."
 msgstr "Válaszd ki a világ népességének korlátját."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:82
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:83
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if %(popCap)s population is "
 "reached."
 msgstr "Figyelmeztetés: Teljesítmény gondok léphetnek fel ha a népesség eléri a %(popCap)s-at/-et."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:61
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:62
 msgid "Ceasefire"
 msgstr "Tűzszünet"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:64
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:65
 msgid "Set time where no attacks are possible."
 msgstr "Idők beállítása, ahol támadás nem lehetséges."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:67
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:68
 msgctxt "ceasefire"
 msgid "No ceasefire"
 msgstr "Nincs tűzszünet"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:70
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:71
 #, javascript-format
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
@@ -567,34 +599,34 @@ msgid_plural "%(minutes)s minutes"
 msgstr[0] "%(minutes)s perc"
 msgstr[1] "%(minutes)s perc"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:86
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:87
 msgid "Relic Count"
 msgstr "Ereklyék száma"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:89
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:90
 #, javascript-format
 msgid "%(number)s relic"
 msgid_plural "%(number)s relics"
 msgstr[0] "%(number)s ereklye"
 msgstr[1] "%(number)s ereklye"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:92
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:93
 msgid ""
 "Total number of relics spawned on the map. Relic victory is most realistic "
 "with only one or two relics. With greater numbers, the relics are important "
 "to capture to receive aura bonuses."
 msgstr "A pályán elhelyezett összes ereklye száma. Az Ereklye győzelem leginkább csak egy-két ereklyével képzelhető el. Nagyobb szám esetén az ereklyék elfoglalása a területi bónuszok megszerzése miatt fontos."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:86
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:87
 msgid "Relic Duration"
 msgstr "Ereklyék időtartama"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:89
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:90
 msgid "Minutes until the player has achieved Relic Victory."
 msgstr "A percek száma, miután a játékos Ereklye győzelmet ér el."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:95
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:96
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:96
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:97
 #, javascript-format
 msgctxt "victory duration"
 msgid "%(min)s minute"
@@ -602,8 +634,8 @@ msgid_plural "%(min)s minutes"
 msgstr[0] "%(min)s perc"
 msgstr[1] "%(min)s perc"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:98
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:99
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:99
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:100
 msgctxt "victory duration"
 msgid "Immediate Victory."
 msgstr "Azonnali győzelem."
@@ -624,36 +656,13 @@ msgid_plural "%(minutes)s minutes"
 msgstr[0] "%(minutes)s perc"
 msgstr[1] "%(minutes)s perc"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:87
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:88
 msgid "Wonder Duration"
 msgstr "Csoda időtartama"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:90
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:91
 msgid "Minutes until the player has achieved Wonder Victory"
 msgstr "A percek száma, miután a játékos Csoda győzelmet ér el"
-
-#: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.js:38
-msgid "Cheats enabled."
-msgstr "Csalások engedélyezve."
-
-#: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.js:41
-msgid "Rated game."
-msgstr "Pontozott játék."
-
-#: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:77
-#, javascript-format
-msgid "Click to toggle the %(name)s settings tab."
-msgstr "Klikkelj a %(name)s beállítás-fül pöcköléséhez."
-
-#: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:80
-#, javascript-format
-msgid "Press %(hotkey)s to move to the next settings tab."
-msgstr "A következő fülre ugráshoz nyomd meg a %(hotkey)s billentyűkombinációt."
-
-#: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:83
-#, javascript-format
-msgid "Press %(hotkey)s to move to the previous settings tab."
-msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/CancelButton.js:36
 msgid "Back"
@@ -730,25 +739,6 @@ msgstr "Új játék kezdése a meglévő beállításokkal (letiltva, amíg ninc
 msgid "Press %(hotkey)s to autocomplete player names or settings."
 msgstr "Nyomd meg a játékosnevek vagy -beállítások automatikus kiegészítéséhez: %(hotkey)s."
 
-#: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/StatusMessageFormat.js:24
-#, javascript-format
-msgid "== %(message)s"
-msgstr "== %(message)s"
-
-#: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/TimestampWrapper.js:25
-#, javascript-format
-msgid "%(time)s %(message)s"
-msgstr "%(time)s %(message)s"
-
-#: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/TimestampWrapper.js:28
-#, javascript-format
-msgid "\\[%(time)s]"
-msgstr "\\[%(time)s]"
-
-#: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/TimestampWrapper.js:31
-msgid "HH:mm"
-msgstr "HH:mm"
-
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientChat.js:27
 msgid "Unknown Player"
 msgstr "Ismeretlen játékos"
@@ -796,6 +786,68 @@ msgstr "*%(username)s készen áll!"
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/GameSettingsChanged.js:22
 msgid "Game settings have been changed"
 msgstr "Játékbeállítások módosítva"
+
+#: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatPanel.xml:(caption):9
+msgid "Send"
+msgstr "Küldés"
+
+#: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/StatusMessageFormat.js:24
+#, javascript-format
+msgid "== %(message)s"
+msgstr "== %(message)s"
+
+#: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/TimestampWrapper.js:25
+#, javascript-format
+msgid "%(time)s %(message)s"
+msgstr "%(time)s %(message)s"
+
+#: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/TimestampWrapper.js:28
+#, javascript-format
+msgid "\\[%(time)s]"
+msgstr "\\[%(time)s]"
+
+#: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/TimestampWrapper.js:31
+msgid "HH:mm"
+msgstr "HH:mm"
+
+#: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.js:38
+msgid "Cheats enabled."
+msgstr "Csalások engedélyezve."
+
+#: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.js:41
+msgid "Rated game."
+msgstr "Pontozott játék."
+
+#: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:77
+#, javascript-format
+msgid "Click to toggle the %(name)s settings tab."
+msgstr "Klikkelj a %(name)s beállítás-fül pöcköléséhez."
+
+#: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:80
+#, javascript-format
+msgid "Press %(hotkey)s to move to the next settings tab."
+msgstr "A következő fülre ugráshoz nyomd meg a %(hotkey)s billentyűkombinációt."
+
+#: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:83
+#, javascript-format
+msgid "Press %(hotkey)s to move to the previous settings tab."
+msgstr ""
+
+#: gui/gamesetup/Pages/GameSetupPage/Panels/TipsPanel.xml:(caption):9
+msgid "Show this message in the future."
+msgstr "Jelenítse meg ezt az üzenetet a jövőben."
+
+#: gui/gamesetup/Pages/LoadingPage/LoadingPage.xml:(caption):7
+msgid "Loading"
+msgstr "Betöltés"
+
+#: gui/gamesetup/Pages/LoadingPage/LoadingPage.xml:(caption):11
+msgid "Loading map data. Please wait…"
+msgstr "Térképadatok betöltése. Légy türelmes!"
+
+#: gui/gamesetup/gamesetup.xml:(caption):12
+msgid "Match Setup"
+msgstr "Játszma beállítás"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:55
 #, javascript-format
@@ -855,77 +907,6 @@ msgstr "Nem lehet csatlakozni a játékhoz: %(message)s."
 msgid "%(playername)s's game"
 msgstr "%(playername)s játéka"
 
-#: gui/loading/ProgressBar.js:48
-#, javascript-format
-msgctxt "loading screen progress"
-msgid "%(percentage)s%%"
-msgstr "%(percentage)s%%"
-
-#. Translation: A bullet point used before every item of list of tips
-#. displayed on loading screen
-#: gui/loading/TipDisplay.js:52
-#, javascript-format
-msgid "• %(tiptext)s"
-msgstr "• %(tiptext)s"
-
-#: gui/loading/TitleDisplay.js:15
-#, javascript-format
-msgid "Generating “%(map)s”"
-msgstr "„%(map)s” elkészítése"
-
-#: gui/loading/TitleDisplay.js:17
-#, javascript-format
-msgid "Loading “%(map)s”"
-msgstr "„%(map)s” betöltése"
-
-#: gui/gamesetup/gamesetup.xml:(caption):12
-msgid "Match Setup"
-msgstr "Játszma beállítás"
-
-#: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):13
-msgid "AI Configuration"
-msgstr "MI beállítása"
-
-#: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):29
-msgid "OK"
-msgstr "OK"
-
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):6
-msgid "Player Name"
-msgstr "Játékos neve"
-
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):10
-msgid "Color"
-msgstr "Szín"
-
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):14
-msgid "Player Placement"
-msgstr "Játékos elhelyezése"
-
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):18
-msgid "Civilization"
-msgstr "Civilizáció"
-
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):25
-msgid "Team"
-msgstr "Csapat"
-
-#: gui/gamesetup/Pages/GameSetupPage/Panels/TipsPanel.xml:(caption):9
-msgid "Show this message in the future."
-msgstr "Jelenítse meg ezt az üzenetet a jövőben."
-
-#: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatPanel.xml:(caption):9
-msgid "Send"
-msgstr "Küldés"
-
-#: gui/gamesetup/Pages/LoadingPage/LoadingPage.xml:(caption):7
-msgid "Loading"
-msgstr "Betöltés"
-
-#: gui/gamesetup/Pages/LoadingPage/LoadingPage.xml:(caption):11
-msgid "Loading map data. Please wait…"
-msgstr "Térképadatok betöltése. Légy türelmes!"
-
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):18
 msgid "Multiplayer"
 msgstr "Többjátékos mód"
@@ -972,6 +953,30 @@ msgstr "Mégse"
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):99
 msgid "Leave blank to use the default port."
 msgstr "Hagyja üresen az alapértelmezett port használatához."
+
+#: gui/loading/ProgressBar.js:48
+#, javascript-format
+msgctxt "loading screen progress"
+msgid "%(percentage)s%%"
+msgstr "%(percentage)s%%"
+
+#. Translation: A bullet point used before every item of list of tips
+#. displayed on loading
+#. screen
+#: gui/loading/TipDisplay.js:52
+#, javascript-format
+msgid "• %(tiptext)s"
+msgstr "• %(tiptext)s"
+
+#: gui/loading/TitleDisplay.js:15
+#, javascript-format
+msgid "Generating “%(map)s”"
+msgstr "„%(map)s” elkészítése"
+
+#: gui/loading/TitleDisplay.js:17
+#, javascript-format
+msgid "Loading “%(map)s”"
+msgstr "„%(map)s” betöltése"
 
 #: gui/text/quotes.txt:1
 msgid ""

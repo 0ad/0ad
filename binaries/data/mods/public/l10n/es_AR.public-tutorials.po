@@ -1,20 +1,21 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright (C) 2020 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
-# 
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
+# project.
 # Translators:
 # Guillermo Grunwaldt <guigrunwaldt@gmail.com>, 2017
 # Javier Mora <jhm.ciberman@gmail.com>, 2017
 # Facundo Abiega <abiegafacundo@gmail.com>, 2018
 # Facundo Decena <facundo.decena@gmail.com>, 2019
 # angek crobalan <correoparaangel@yahoo.com.ar>, 2019
+# Victor Darritchon <extraved@aol.com>, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2020-11-13 08:10+0000\n"
+"POT-Creation-Date: 2020-11-28 10:01+0000\n"
 "PO-Revision-Date: 2017-06-04 12:59+0000\n"
-"Last-Translator: angek crobalan <correoparaangel@yahoo.com.ar>, 2019\n"
+"Last-Translator: Victor Darritchon <extraved@aol.com>, 2020\n"
 "Language-Team: Spanish (Argentina) (https://www.transifex.com/wildfire-games/teams/17418/es_AR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -212,12 +213,17 @@ msgid ""
 "Prepare for an attack by an enemy player. Train more soldiers using the "
 "Barracks, and get idle soldiers to build a Tower near your Outpost."
 msgstr ""
+"Preparáte para un ataque de un jugador enemigo. Entrena mas soldados usando "
+"las Barracas y consegui soldados desocupados para construir una Torre cerca "
+"de tu Puesto de Avanzada."
 
 #: maps/tutorials/introductory_tutorial.js:274
 msgid ""
 "Build a Forge and research the Infantry Training technology (sword icon) to "
 "improve infantry hack attack."
 msgstr ""
+"Construí una Forja e investiga la tecnología de Entrenamiento de Infantería "
+"(icono de una espada) para mejorar el ataque de cortes de la infanteria."
 
 #: maps/tutorials/introductory_tutorial.js:282
 msgid "The enemy is coming. Train more soldiers to fight off the enemies."
@@ -281,6 +287,23 @@ msgid "The enemy has been defeated. These tutorial tasks are now completed."
 msgstr ""
 "El enemigo ha sido derrotado. Estas tareas del tutorial han sido "
 "completadas."
+
+#: maps/tutorials/introductory_tutorial.xml:Description:39
+msgid "This is a basic tutorial to get you started playing 0 A.D."
+msgstr "Este es el tutorial básico para que comiences a jugar 0 A.D."
+
+#: maps/tutorials/introductory_tutorial.xml:Name:39
+msgid "Introductory Tutorial"
+msgstr "Tutorial Introductorio"
+
+#: maps/tutorials/introductory_tutorial.xml:PlayerData[0].Name:39
+#: maps/tutorials/starting_economy_walkthrough.xml:PlayerData[0].Name:39
+msgid "Player 1"
+msgstr "Jugador 1"
+
+#: maps/tutorials/introductory_tutorial.xml:PlayerData[1].Name:39
+msgid "Player 2"
+msgstr "Jugador 2"
 
 #: maps/tutorials/starting_economy_walkthrough.js:4
 msgid ""
@@ -1003,23 +1026,6 @@ msgid ""
 msgstr ""
 "Este es el final de esta guía. Esto debería darte una buena idea de los "
 "conocimientos básicos para organizar economía."
-
-#: maps/tutorials/introductory_tutorial.xml:Description:39
-msgid "This is a basic tutorial to get you started playing 0 A.D."
-msgstr "Este es el tutorial básico para que comiences a jugar 0 A.D."
-
-#: maps/tutorials/introductory_tutorial.xml:PlayerData[0].Name:39
-#: maps/tutorials/starting_economy_walkthrough.xml:PlayerData[0].Name:39
-msgid "Player 1"
-msgstr "Jugador 1"
-
-#: maps/tutorials/introductory_tutorial.xml:PlayerData[1].Name:39
-msgid "Player 2"
-msgstr "Jugador 2"
-
-#: maps/tutorials/introductory_tutorial.xml:Name:39
-msgid "Introductory Tutorial"
-msgstr "Tutorial Introductorio"
 
 #: maps/tutorials/starting_economy_walkthrough.xml:Description:39
 msgid ""

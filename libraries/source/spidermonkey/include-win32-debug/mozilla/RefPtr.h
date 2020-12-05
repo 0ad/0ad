@@ -10,6 +10,7 @@
 #include "mozilla/AlreadyAddRefed.h"
 #include "mozilla/Assertions.h"
 #include "mozilla/Attributes.h"
+#include "mozilla/DbgMacro.h"
 
 /*****************************************************************************/
 
@@ -17,12 +18,18 @@
 
 class nsQueryReferent;
 class nsCOMPtr_helper;
+class nsISupports;
 
 namespace mozilla {
 template <class T>
 class OwningNonNull;
 template <class T>
 class StaticRefPtr;
+#if defined(XP_WIN)
+namespace mscom {
+class AgileReference;
+}  // namespace mscom
+#endif  // defined(XP_WIN)
 
 // Traditionally, RefPtr supports automatic refcounting of any pointer type
 // with AddRef() and Release() methods that follow the traditional semantics.
@@ -131,6 +138,9 @@ class MOZ_IS_REFPTR RefPtr {
 
   MOZ_IMPLICIT RefPtr(const nsQueryReferent& aHelper);
   MOZ_IMPLICIT RefPtr(const nsCOMPtr_helper& aHelper);
+#if defined(XP_WIN)
+  MOZ_IMPLICIT RefPtr(const mozilla::mscom::AgileReference& aAgileRef);
+#endif  // defined(XP_WIN)
 
   // Defined in OwningNonNull.h
   template <class U>
@@ -187,10 +197,12 @@ class MOZ_IS_REFPTR RefPtr {
 
   RefPtr<T>& operator=(const nsQueryReferent& aQueryReferent);
   RefPtr<T>& operator=(const nsCOMPtr_helper& aHelper);
+#if defined(XP_WIN)
+  RefPtr<T>& operator=(const mozilla::mscom::AgileReference& aAgileRef);
+#endif  // defined(XP_WIN)
 
   RefPtr<T>& operator=(RefPtr<T>&& aRefPtr) {
-    assign_assuming_AddRef(aRefPtr.mRawPtr);
-    aRefPtr.mRawPtr = nullptr;
+    assign_assuming_AddRef(aRefPtr.forget().take());
     return *this;
   }
 
@@ -241,6 +253,12 @@ class MOZ_IS_REFPTR RefPtr {
     mRawPtr = nullptr;
   }
 
+  void forget(nsISupports** aRhs) {
+    MOZ_ASSERT(aRhs, "Null pointer passed to forget!");
+    *aRhs = ToSupports(mRawPtr);
+    mRawPtr = nullptr;
+  }
+
   T* get() const
   /*
     Prefer the implicit conversion provided automatically by |operator T*()
@@ -250,7 +268,7 @@ class MOZ_IS_REFPTR RefPtr {
     return const_cast<T*>(mRawPtr);
   }
 
-  operator T*() const &
+  operator T*() const&
   /*
     ...makes an |RefPtr| act like its underlying raw pointer type whenever it
     is used in a context where a raw pointer is expected.  It is this operator
@@ -266,7 +284,7 @@ class MOZ_IS_REFPTR RefPtr {
   // Don't allow implicit conversion of temporary RefPtr to raw pointer,
   // because the refcount might be one and the pointer will immediately become
   // invalid.
-  operator T*() const && = delete;
+  operator T*() const&& = delete;
 
   // These are needed to avoid the deleted operator above.  XXX Why is operator!
   // needed separately?  Shouldn't the compiler prefer using the non-deleted
@@ -291,7 +309,7 @@ class MOZ_IS_REFPTR RefPtr {
         : mRawPtr(aRawPtr), mFunction(aFunction) {}
     template <typename... ActualArgs>
     R operator()(ActualArgs&&... aArgs) {
-      return ((*mRawPtr).*mFunction)(mozilla::Forward<ActualArgs>(aArgs)...);
+      return ((*mRawPtr).*mFunction)(std::forward<ActualArgs>(aArgs)...);
     }
   };
 
@@ -506,6 +524,13 @@ inline bool operator!=(decltype(nullptr), const RefPtr<T>& aRhs) {
   return nullptr != aRhs.get();
 }
 
+// MOZ_DBG support
+
+template <class T>
+std::ostream& operator<<(std::ostream& aOut, const RefPtr<T>& aObj) {
+  return mozilla::DebugValue(aOut, aObj.get());
+}
+
 /*****************************************************************************/
 
 template <class T>
@@ -533,7 +558,7 @@ namespace mozilla {
  */
 template <typename T, typename... Args>
 already_AddRefed<T> MakeAndAddRef(Args&&... aArgs) {
-  RefPtr<T> p(new T(Forward<Args>(aArgs)...));
+  RefPtr<T> p(new T(std::forward<Args>(aArgs)...));
   return p.forget();
 }
 
@@ -546,7 +571,7 @@ already_AddRefed<T> MakeAndAddRef(Args&&... aArgs) {
  */
 template <typename T, typename... Args>
 RefPtr<T> MakeRefPtr(Args&&... aArgs) {
-  RefPtr<T> p(new T(Forward<Args>(aArgs)...));
+  RefPtr<T> p(new T(std::forward<Args>(aArgs)...));
   return p;
 }
 

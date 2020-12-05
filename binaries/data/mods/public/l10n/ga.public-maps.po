@@ -1,7 +1,7 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright (C) 2020 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
-# 
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
+# project.
 # Translators:
 # Brian Mac Giolla Mhuire <brian@oireas.com>, 2018-2019
 # Cormac O'Brien <cormacm.obrien@gmail.com>, 2018
@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-13 08:10+0000\n"
+"POT-Creation-Date: 2020-11-28 10:01+0000\n"
 "PO-Revision-Date: 2020-11-13 10:15+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Irish (http://www.transifex.com/wildfire-games/0ad/language/ga/)\n"
@@ -229,17 +229,6 @@ msgstr "Tosaíonn gach imreoir ar oileán le muir ina dtimpeall.\n\nIs grúpa oi
 msgid "Cycladic Archipelago"
 msgstr "Oileánra Cíocláideach"
 
-#: maps/random/danubius.jsonsettings.Description
-msgid ""
-"Players start along the banks of the river Danube in the period following "
-"the expansion into Pannonia by the Celtic Boii tribe. Seeking to consolidate"
-" their hold on this land, celtic reinforcements have been sent to root out "
-"the remaining foreign cultures. Players not only have to vie for power "
-"amongst themselves, but also beat back these ruthless invaders. Ultimately, "
-"the Boii were defeated by the rising power of the Dacians, hence leading to "
-"the reemergence of the Geto-Dacian Confederation under King Burebista."
-msgstr "Tosaíonn gach imreoir ar taobh na Danóibe san aois tar éis forbartha don threibh Gallach na Bóí isteach i mPannóinia. Sheol trúpaí breise Ceilteacha ag iarraidh comhdhlúthú a dhéanamh isteach ina gcúige nua do dheireadh a chur le cultúir iasactha. Teastaíonn ar na imreoir a bheith in iomaíocht lena chéile, ach teastaíonn uathu freisin na hionróirí seo a bhrú siar. Ar deireadh, bhí na Bóí cloíte faoin smacht atá ag fás na nDáiceach, dá bhrí sin ag teacht chun chin Cónaidhme na nGeata-Dáiceach faoi Rí Búireabastas."
-
 #: maps/random/danubius.jsonsettings.Daytime[0].Description
 msgid "Bright daylight illuminates the scene."
 msgstr ""
@@ -255,6 +244,17 @@ msgstr ""
 #: maps/random/danubius.jsonsettings.Daytime[1].Name
 msgid "Night"
 msgstr ""
+
+#: maps/random/danubius.jsonsettings.Description
+msgid ""
+"Players start along the banks of the river Danube in the period following "
+"the expansion into Pannonia by the Celtic Boii tribe. Seeking to consolidate"
+" their hold on this land, celtic reinforcements have been sent to root out "
+"the remaining foreign cultures. Players not only have to vie for power "
+"amongst themselves, but also beat back these ruthless invaders. Ultimately, "
+"the Boii were defeated by the rising power of the Dacians, hence leading to "
+"the reemergence of the Geto-Dacian Confederation under King Burebista."
+msgstr "Tosaíonn gach imreoir ar taobh na Danóibe san aois tar éis forbartha don threibh Gallach na Bóí isteach i mPannóinia. Sheol trúpaí breise Ceilteacha ag iarraidh comhdhlúthú a dhéanamh isteach ina gcúige nua do dheireadh a chur le cultúir iasactha. Teastaíonn ar na imreoir a bheith in iomaíocht lena chéile, ach teastaíonn uathu freisin na hionróirí seo a bhrú siar. Ar deireadh, bhí na Bóí cloíte faoin smacht atá ag fás na nDáiceach, dá bhrí sin ag teacht chun chin Cónaidhme na nGeata-Dáiceach faoi Rí Búireabastas."
 
 #: maps/random/danubius.jsonsettings.Name
 msgid "Danubius"
@@ -324,6 +324,22 @@ msgstr "[color=\"red\"]FÓGRA TÁBHACHTACH: NÍ OIBRÍONN IMREOIRÍ IS AR AN LÉ
 #: maps/random/extinct_volcano.jsonsettings.Name
 msgid "Extinct Volcano"
 msgstr "Bolcán Marbh"
+
+#: maps/random/extinct_volcano_triggers.js:59
+msgid "It keeps on raining, we will have to evacuate soon!"
+msgstr "Tá sé fós ina bháistí, téastaíonn uainn a bhogadh amach as an áit seo go luath!"
+
+#: maps/random/extinct_volcano_triggers.js:60
+msgid "The rivers are standing high, we need to find a safe place!"
+msgstr "Tá na haibhneacha ró-arda, Tá uainn áit sábháilte a aimsiú!"
+
+#: maps/random/extinct_volcano_triggers.js:61
+msgid "We have to find dry ground, our lands will drown soon!"
+msgstr "Tá uainn talamh tirim a aimsiú, báfaidh ár dtalaimh go luath!"
+
+#: maps/random/extinct_volcano_triggers.js:62
+msgid "The lakes start swallowing the land, we have to find shelter!"
+msgstr "Tosaíonn na lochanna dár dtalamh a slogadh, tá uainn brú a aimsiú!"
 
 #: maps/random/fields_of_meroe.jsonsettings.Description
 msgid ""
@@ -486,6 +502,15 @@ msgstr "Tosaíonn na himreoirí in aice láimhe le bruacha na Níle, agus chuire
 #: maps/random/jebel_barkal.jsonsettings.Name
 msgid "Jebel Barkal"
 msgstr "Diebéal Barcál"
+
+#: maps/random/jebel_barkal_triggers.js:592
+msgid "Napata is attacking!"
+msgstr "Tá Napata ag ionsaí!"
+
+#: maps/random/jebel_barkal_triggers.js:602
+#, javascript-format
+msgid "Napata will attack in %(time)s!"
+msgstr "Ionsóidh Napata i %(time)s!"
 
 #: maps/random/kerala.jsonsettings.Description
 msgid ""
@@ -678,19 +703,6 @@ msgstr "Tosaíonn na himreoirí in oirthear na léarscáile agus tá muir mhór 
 msgid "Phoenician Levant"
 msgstr "An Leiveaint Féiníceach"
 
-#: maps/random/polar_sea.jsonsettings.Description
-msgid ""
-"Players start in a cold polar region barren of vegetation. In the sea fish "
-"and whales abound, while the fragile icy land teems with huntable walruses "
-"and deadly wolves. These wolves, made ravenous by the harsh and forbidding "
-"climate, drawn by the scent of prey, have started appearing in terrifying "
-"numbers. A wise and strong ruler will not only achieve victory over his "
-"enemies, but also keep the number of these beasts at bay, lest they "
-"undermine his economy and cause his downfall. [color=\"red\"]Warning: It is "
-"inadvisable to disable treasures, since there is no gatherable wood. Not "
-"recommended for inexperienced players.[/color]"
-msgstr "Tosaíonn na himreoirí i réigiún polach agus fuar gan fasraí. Tá éisc agus míolta móra go leor sa mhuir, agus tá rosuailt agus faolchúnna ar an dtalamh oighreata. Tá na faolchúnna seo, le craosach mór orthu san aeráid crua agus doicheallach seo, in slua mór agus tá siad ag fás go tapa. Buafaidh taoiseach láidir agus eagnaí os cionn a naimhde, agus buafaidh sé os cionn na bhfaolchúnna seo freisin, ar eagla go gcuireann siad as don gheilleagar. [color=\"red\"]Fógra: Níl sé inmhólta go taiscrí a dhíchumasú mar níl aon adhmad so-bhailithe. Ní mholtar an léarscáil seo d'imreoirí ar bheagán taithí.[/color]"
-
 #: maps/random/polar_sea.jsonsettings.Daytime[0].Description
 msgid "Scattered sunlight illuminates the scenery in a vivid red tone."
 msgstr ""
@@ -706,6 +718,19 @@ msgstr ""
 #: maps/random/polar_sea.jsonsettings.Daytime[1].Name
 msgid "Daylight"
 msgstr ""
+
+#: maps/random/polar_sea.jsonsettings.Description
+msgid ""
+"Players start in a cold polar region barren of vegetation. In the sea fish "
+"and whales abound, while the fragile icy land teems with huntable walruses "
+"and deadly wolves. These wolves, made ravenous by the harsh and forbidding "
+"climate, drawn by the scent of prey, have started appearing in terrifying "
+"numbers. A wise and strong ruler will not only achieve victory over his "
+"enemies, but also keep the number of these beasts at bay, lest they "
+"undermine his economy and cause his downfall. [color=\"red\"]Warning: It is "
+"inadvisable to disable treasures, since there is no gatherable wood. Not "
+"recommended for inexperienced players.[/color]"
+msgstr "Tosaíonn na himreoirí i réigiún polach agus fuar gan fasraí. Tá éisc agus míolta móra go leor sa mhuir, agus tá rosuailt agus faolchúnna ar an dtalamh oighreata. Tá na faolchúnna seo, le craosach mór orthu san aeráid crua agus doicheallach seo, in slua mór agus tá siad ag fás go tapa. Buafaidh taoiseach láidir agus eagnaí os cionn a naimhde, agus buafaidh sé os cionn na bhfaolchúnna seo freisin, ar eagla go gcuireann siad as don gheilleagar. [color=\"red\"]Fógra: Níl sé inmhólta go taiscrí a dhíchumasú mar níl aon adhmad so-bhailithe. Ní mholtar an léarscáil seo d'imreoirí ar bheagán taithí.[/color]"
 
 #: maps/random/polar_sea.jsonsettings.Name
 msgid "Polar Sea"
@@ -788,6 +813,199 @@ msgstr "Ritheann aibhneacha idir na himreoirí agus téann siad le chéile i lá
 msgid "Rivers"
 msgstr "Aibhneacha"
 
+#: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"The vitalizing waters of the Nile sustain life along its banks, while the "
+"long dry season scorches the land."
+msgstr "Cothaíonn uiscí bríomhara na Níle beatha ar feadh a braucha, nuair a loisceann an séasúr tirim an talamh intíre."
+
+#: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Dry Season"
+msgstr "Séasúr Tirim"
+
+#: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Revelling in the much awaited rain, the baked land transforms into a lush "
+"haven for both man and beast."
+msgstr "A ragairne a dhéanamh faoin bháisteach atá ag fánacht go mór, athraíonn an talamh bácáilte ó bhonn go dídeann mhéith ar son daoine agus ainmhithe le chéile."
+
+#: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Rainy Season"
+msgstr "Séasúr na Baistí"
+
+#: maps/random/rmbiome/generic/alpine.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"A region in the high snowy mountains. Biting winds sweep through the "
+"abundant conifer forests, making even the more resilient deer and mountain "
+"goats shiver."
+msgstr "Réigiún sna sléibhte arda sneachtúla. Scuabann gaotha feannaideacha trí choillte fhlúirseacha buaircíneacha, agus déanann siad crith san fhia is láidre agus gabhar sléibhe."
+
+#: maps/random/rmbiome/generic/alpine.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Alpine"
+msgstr "Alpach"
+
+#: maps/random/rmbiome/generic/autumn.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Autumn at its peak. The landscape is a dazzling dash of colors irrevocably "
+"intertwined. The native beech and oak trees of this temperate zone display a"
+" multi-colored foliage while the evergreen pines look on with indifference "
+"at the approaching winter."
+msgstr "Tá Fómhar ina bharr. Tá an tírdhreach lán le dathanna dalltacha i measc lena chéile. Léiríonn na féanna agus daracha dúchasacha duilliúr ildaite sa cheantar measartha seo nuair a sheasann na giúiseanna síorghlasa, is cuma leo ar teacht geimhridh."
+
+#: maps/random/rmbiome/generic/autumn.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Autumn"
+msgstr "Fómhar"
+
+#: maps/random/rmbiome/generic/desert.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"A semi-desert area that boasts numerous clumps of date palms and tamarix "
+"trees. Herds of camels roam the wild and the occasional gazelle jumps up in "
+"fright at being disturbed."
+msgstr "Réigiún leath-fhásaigh a bhfuil dosanna líonmhara pailmeacha dátaí agus tamaraiscí. Tá tréadanna camall ag fánaíocht san fhiántas agus léimeann gasail go huaireanta nuair a bheith siad buartha."
+
+#: maps/random/rmbiome/generic/desert.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Desert"
+msgstr "Fásach"
+
+#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Start in a region blessed with the Mediterranean climate, a warm and "
+"inviting land. The cypresses are in a perpetual struggle with the dominant "
+"fan palms while deer graze in their shadows, blissfully unaware."
+msgstr "Tosaíonn na himreoirí i réigiún beannaithe faoi aeráid na Meánmhara, tír té agus tarraingteach í. Tá na cufróga i measc troda gan deireadh leis na pailmeacha ceannasacha nuair atá fianna ag iníor ina scáthanna, neamhbhraiteach go sona."
+
+#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Mediterranean"
+msgstr "An Mheánmhuir"
+
+#: maps/random/rmbiome/generic/savanna.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"The savanna, a dry climate in which only the hardy Baobab trees thrive. "
+"Solitary gazelles graze the sparse grass, while herds of zebras, wildebeest,"
+" giraffes or elephants roam the wild in search of food."
+msgstr "An sabhána, aeráid tur ina bhfuil na baobaib chrua amháin ag fás. Tá gasailí ina aonar ag iníor ar an bhféar gann, nuair atá tréideanna séabraí, gnúnna, sioráf nó eilifintí do bhia a fháil. "
+
+#: maps/random/rmbiome/generic/savanna.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Savanna"
+msgstr "Sabhána"
+
+#: maps/random/rmbiome/generic/snowy.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Settle in the cold regions of the North, the native habitat of the wooly "
+"muskox. Here you can pine away to your content and also hunt the occasional "
+"walrus or two."
+msgstr "Cuir fút i réigiúin fuara an tuaiscirt, áit dhúchais an mhuscdhaimh lomraigh. Anseo is féidir leat am a chaitheamh agus aon nó dhá rosualt a sheilg."
+
+#: maps/random/rmbiome/generic/snowy.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Snowy"
+msgstr "Snéachtúil"
+
+#: maps/random/rmbiome/generic/temperate.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Lush grasslands carpet the land, in places giving way to magnificent and "
+"diverse broadleaf forests. Poplars, pines, beeches and oaks all vie for "
+"supremacy but this root-war is a neverending struggle. Numerous apple trees "
+"dot the land, deer and sheep gorge themselves on this years fallen fruit."
+msgstr "Tá féarthalaimh mhéithe ar feadh na tíre, i roinnt áit tá coillte leathanduilleacha agus éagsúla eatarthu. Troideann poibleoga, giúiseanna, feánna agus daracha ar son ceannais na foraoise a fháil i gcogadh na rútaí seo gan deireadh. Tá crainn úlla go leor sa talamh, agus déanann fianna agus gabhair craos ar torthaí tite na bliana seo."
+
+#: maps/random/rmbiome/generic/temperate.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Temperate"
+msgstr "Measartha"
+
+#: maps/random/rmbiome/generic/tropic.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Explore the mysterious tropics. An extremely green, but also extremely humid"
+" environment awaits. The tall Toona trees look on disapprovingly at this "
+"invasion of their privacy and ferocious tigers are determined to defend "
+"their territory at all costs."
+msgstr "Taiscéal san teochrios rúndiamhair. Tá talamh an-ghlas a fháil ort, ach an-thais freisin. Féiceann na céadair rua ar neamhshuim ag an ionradh seo ar a bpríobháideacht agus tá tíogair fhíocmhara lena gcríoch á cosaint, is cuma cad a tharlaíonn."
+
+#: maps/random/rmbiome/generic/tropic.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Tropic"
+msgstr "An Teochrios"
+
+#: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Solidifying it's grip, the harsh cold has succeeded in freezing up the gulf."
+" The thick ice formed is capable of withstanding any weight."
+msgstr "Tá an fhuacht ag neartú, agus tá an camas anois ina reoite. Tá an leac oighir ina chionn an-thiubh agus is féidir léi aon mhéid a sheasamh."
+
+#: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Frozen Lake"
+msgstr "Loch Reoite"
+
+#: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"A late spring breeze ripples through the conifer forests of the Gulf of "
+"Bothnia. Herds of deer dot the landscape and playful rabbits frolick in the "
+"undergrowth."
+msgstr "Seideann siorradh earraigh trí na coillte buaircíneacha i gCamas na Boitne. Ritheann tréada fia ar feadh ant talaimh agus tá coiníní go leor sna fáschoillte."
+
+#: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Late Spring"
+msgstr "Deireadh Earraigh"
+
+#: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Winter has set in, carpeting the land with its first snow. The still "
+"unfrozen gulf offers great fishing opportunities."
+msgstr "Tá an geimhreadh ag teacht, agus tá an príomh-sneachta ar feadh an talaimh. Ach níl an camas ina reoite fós, agus tá sé lán le deiseanna iascaireachta."
+
+#: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Winter"
+msgstr "Geimhreadh"
+
+#: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Spring in the highlands, yet the heat has already begun making itself felt. "
+"The short-lived green grasses are on the retreat, paving the way for "
+"scorching summer."
+msgstr "Tá an t-éarrach ar na ardchláir, ach níl a theocht fós mothaithe. Tá na glasfhéara neamhbhuana ag cúlú, agus beidh an samhradh loiscneach ag teacht go luath."
+
+#: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Spring"
+msgstr "Earrach"
+
+#: maps/random/rmbiome/persian_highlands/summer.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"An arid, hostile land. The blistering heat has baked the ground to a sickly "
+"brown and the remaining trees struggle for survival."
+msgstr "Talamh tur, naimhdeach. Tá an talamh bácáilte fós ag an dteocht loiscneach agus tá sé tinn-dhonn anois, agus troideann na crainn ar son a marthanas gach lá."
+
+#: maps/random/rmbiome/persian_highlands/summer.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Summer"
+msgstr "Samhradh"
+
 #: maps/random/saharan_oases.jsonsettings.Description
 msgid "Each players starts near a lush oasis in a large, desolate desert."
 msgstr "Tosaíonn gach imreoir in aice le hósais mhéith i bhfásach mór agus sceirdiúil."
@@ -868,6 +1086,20 @@ msgstr "[color=\"red\"]FÓGRA TÁBHACHTACH: NÍ OIBRÍONN IMREOIRÍ IS AR AN LÉ
 #: maps/random/survivalofthefittest.jsonsettings.Name
 msgid "Survival of the Fittest"
 msgstr "Bua na hOiriúnachta"
+
+#: maps/random/survivalofthefittest_triggers.js:163
+#, javascript-format
+msgid "The first wave will start in %(time)s!"
+msgstr "Tosóidh an príomhsruth i %(time)s!"
+
+#: maps/random/survivalofthefittest_triggers.js:268
+msgid "An enemy wave is attacking!"
+msgstr "Tá sruth an namhad ag ionsaí!"
+
+#: maps/random/survivalofthefittest_triggers.js:292
+#, javascript-format
+msgid "%(player)s has been defeated (lost civic center)."
+msgstr "Tá %(player)s cloíte (ionad cathartha caillte)."
 
 #: maps/random/syria.jsonsettings.Description
 msgid "Players start in a plains with slightly rolling highlands."
@@ -1003,132 +1235,15 @@ msgstr "Loch le crann go leor ina thimpeall."
 msgid "Wild Lake"
 msgstr "Loch Allta"
 
-#: maps/random/extinct_volcano_triggers.js:59
-msgid "It keeps on raining, we will have to evacuate soon!"
-msgstr "Tá sé fós ina bháistí, téastaíonn uainn a bhogadh amach as an áit seo go luath!"
-
-#: maps/random/extinct_volcano_triggers.js:60
-msgid "The rivers are standing high, we need to find a safe place!"
-msgstr "Tá na haibhneacha ró-arda, Tá uainn áit sábháilte a aimsiú!"
-
-#: maps/random/extinct_volcano_triggers.js:61
-msgid "We have to find dry ground, our lands will drown soon!"
-msgstr "Tá uainn talamh tirim a aimsiú, báfaidh ár dtalaimh go luath!"
-
-#: maps/random/extinct_volcano_triggers.js:62
-msgid "The lakes start swallowing the land, we have to find shelter!"
-msgstr "Tosaíonn na lochanna dár dtalamh a slogadh, tá uainn brú a aimsiú!"
-
-#: maps/random/jebel_barkal_triggers.js:592
-msgid "Napata is attacking!"
-msgstr "Tá Napata ag ionsaí!"
-
-#: maps/random/jebel_barkal_triggers.js:602
-#, javascript-format
-msgid "Napata will attack in %(time)s!"
-msgstr "Ionsóidh Napata i %(time)s!"
-
-#: maps/random/survivalofthefittest_triggers.js:163
-#, javascript-format
-msgid "The first wave will start in %(time)s!"
-msgstr "Tosóidh an príomhsruth i %(time)s!"
-
-#: maps/random/survivalofthefittest_triggers.js:268
-msgid "An enemy wave is attacking!"
-msgstr "Tá sruth an namhad ag ionsaí!"
-
-#: maps/random/survivalofthefittest_triggers.js:292
-#, javascript-format
-msgid "%(player)s has been defeated (lost civic center)."
-msgstr "Tá %(player)s cloíte (ionad cathartha caillte)."
-
-#: maps/scenarios/cinema_demo.js:6
-msgid "Cutscene starts after 5 seconds"
-msgstr "Tosaíonn gearr-radharc tar éis 5 soicind"
-
-#: maps/scenarios/treasure_islands.js:9
-msgid "Collect the treasures before your enemy does! May the better win!"
-msgstr "Bailigh na taiscí roimh atá siad bailithe ag do namhaid! B'fhéidir gurb é an bua is fearr!"
-
-#: maps/scenarios/treasure_islands.js:28
-msgid "No winner yet, prepare for battle!"
-msgstr "Níl aon duine ina bhuaiteoir fós, ullmhaígí do chath a dhéanamh!"
-
-#: maps/scenarios/treasure_islands.js:43
-msgid "Your enemy's treasury is filled to the brim, you lose!"
-msgstr "Tá státchiste do namhad fíorlán, tá tú cloíte!"
-
-#: maps/scenarios/treasure_islands.js:48
-msgid "Your treasury is filled to the brim, you are victorious!"
-msgstr "Tá do státchiste fíorlán, tá tú buacach!"
-
-#: maps/scenarios/treasure_islands.js:60
-msgid "Hurry up! Your enemy is close to victory!"
-msgstr "Brostaigh ort! Tá do namhaid gar lena bhua!"
-
-#: maps/scenarios/treasure_islands.js:71
-#, javascript-format
-msgid "Treasures remaining to collect for victory:  %(remainingTreasures)s!"
-msgstr "Taiscí ag fanacht iad a bhailiú do bhua: %(remainingTreasures)s!"
-
-#: maps/scenarios/treasure_islands.js:79
-msgid "You have collected a treasure!"
-msgstr "Tá taisce bailithe agat!"
-
-#: maps/scenarios/treasure_islands.js:91
-msgid "Defeat your enemy to win!"
-msgstr "Buaigh ar do namhaid do bhua a dhéanamh!"
-
-#: maps/scenarios/treasure_islands.js:100
-#, javascript-format
-msgid "%(lastPlayer)s has won (treasure collected)."
-msgid_plural "%(players)s and %(lastPlayer)s have won (treasure collected)."
-msgstr[0] "Tá %(lastPlayer)s ina bhauiteoir (taiscí bailithe)."
-msgstr[1] "Tá %(players)s agus %(lastPlayer)s ina mbuaiteoir (taiscí bailithe)."
-msgstr[2] "Tá %(players)s agus %(lastPlayer)s ina mbuaiteoir (taiscí bailithe)."
-msgstr[3] "Tá %(players)s agus %(lastPlayer)s ina mbuaiteoir (taiscí bailithe)."
-msgstr[4] "Tá %(players)s agus %(lastPlayer)s ina mbuaiteoir (taiscí bailithe)."
-
-#: maps/scenarios/treasure_islands.js:104
-#, javascript-format
-msgid "%(lastPlayer)s has been defeated (treasure collected)."
-msgid_plural ""
-"%(players)s and %(lastPlayer)s have been defeated (treasure collected)."
-msgstr[0] "Tá %(lastPlayer)s cloíte (taiscí bailithe)."
-msgstr[1] "Tá %(players)s agus %(lastPlayer)s cloíte (taiscí bailithe)."
-msgstr[2] "Tá %(players)s agus %(lastPlayer)s cloíte (taiscí bailithe)."
-msgstr[3] "Tá %(players)s agus %(lastPlayer)s cloíte (taiscí bailithe)."
-msgstr[4] "Tá %(players)s agus %(lastPlayer)s cloíte (taiscí bailithe)."
-
-#: maps/scenarios/triggers_demo.js:73
-msgid "Testing the yes-no dialog. Do you want to say sure or rather not?"
-msgstr "Triailímid an dialóg 'sea-ní hea'. Ar mhaith leat a rá 'sea' nó 'ní hea'?"
-
-#: maps/scenarios/triggers_demo.js:79
-msgid "Sure"
-msgstr "Sea"
-
-#: maps/scenarios/triggers_demo.js:83
-msgid "Say sure"
-msgstr "Abair 'sea'"
-
-#: maps/scenarios/triggers_demo.js:89
-msgid "Rather not"
-msgstr "Ní hea"
-
-#: maps/scenarios/triggers_demo.js:93
-msgid "Say rather not"
-msgstr "Abair 'ní hea'"
-
-#: maps/scenarios/_default.xml:Name:28
-msgid "Unnamed map"
-msgstr "Léarscáil gan ainm"
-
 #: maps/scenarios/_default.xml:Description:28
 #: maps/scenarios/temperate_map.xml:Description:27
 #: maps/scenarios/walltest.xml:Description:27
 msgid "Give an interesting description of your map."
 msgstr "Tabhair cuntas spéisiúil do do léarscáil."
+
+#: maps/scenarios/_default.xml:Name:28
+msgid "Unnamed map"
+msgstr "Léarscáil gan ainm"
 
 #: maps/scenarios/arcadia.xml:Description:39
 msgid ""
@@ -1136,6 +1251,10 @@ msgid ""
 "\n"
 "Players start on either side of a mountainous region rich in resources. Extra starting buildings help players jumpstart building their new colonies."
 msgstr "Tá samhradh ar Arcáid na Gréige. Tá leabaí tirime na n-aibhneacha lán agus fliuch anois le baistí samhraidh sa tséasúr seo, agus tá ana talamh roinnte idir dhá treibh atá i mbún cogaíochta.\n\nTosaíonn gach imreoir ar gach ar dhá taobh réigiúin sléibhtiúil lán le hacmhainní. Cabhraíonn foirgnimh tosaithe sa bhreise ar leathadh na n-imreoirí agus do choilíneachtaí eile a thógáil."
+
+#: maps/scenarios/arcadia.xml:Name:39
+msgid "Arcadia"
+msgstr "An Arcáid"
 
 #: maps/scenarios/arcadia.xml:PlayerData[0].Name:39
 #: maps/scenarios/belgian_bog_night.xml:PlayerData[0].Name:39
@@ -1187,15 +1306,15 @@ msgstr "Imreoir 1"
 msgid "Player 2"
 msgstr "Imreoir 2"
 
-#: maps/scenarios/arcadia.xml:Name:39
-msgid "Arcadia"
-msgstr "An Arcáid"
-
 #: maps/scenarios/azure_coast_2p.xml:Description:27
 #: maps/scenarios/azure_coast_4p.xml:Description:27
 #: maps/scenarios/azure_coast_8p.xml:Description:39
 msgid "Help the young Massilia to settle or expel the Greeks from Gaul."
 msgstr "Cabhraigh an Mhasaíl óg do na Gréigigh a lonnú i nó a ruaigeadh as an nGaill."
+
+#: maps/scenarios/azure_coast_2p.xml:Name:27
+msgid "Azure Coast 2"
+msgstr "Cósta Gormghlas 2"
 
 #: maps/scenarios/azure_coast_2p.xml:PlayerData[0].Name:27
 msgid "Greeks"
@@ -1205,9 +1324,9 @@ msgstr "Na Gréigigh"
 msgid "Celts"
 msgstr "Na Ceiltigh"
 
-#: maps/scenarios/azure_coast_2p.xml:Name:27
-msgid "Azure Coast 2"
-msgstr "Cósta Gormghlas 2"
+#: maps/scenarios/azure_coast_4p.xml:Name:27
+msgid "Azure Coast 3"
+msgstr "Cósta Gormghlas 3"
 
 #: maps/scenarios/azure_coast_4p.xml:PlayerData[0].Name:27
 msgid "East"
@@ -1225,9 +1344,9 @@ msgstr "Deisceart"
 msgid "North"
 msgstr "Tuaisceart"
 
-#: maps/scenarios/azure_coast_4p.xml:Name:27
-msgid "Azure Coast 3"
-msgstr "Cósta Gormghlas 3"
+#: maps/scenarios/azure_coast_8p.xml:Name:39
+msgid "Azure Coast 1"
+msgstr "Cósta Gormghlas 1"
 
 #: maps/scenarios/azure_coast_8p.xml:PlayerData[0].Name:39
 msgid "Antipolis"
@@ -1261,15 +1380,15 @@ msgstr "Na Caúairí"
 msgid "Verguni"
 msgstr "Na Féirgiúiní"
 
-#: maps/scenarios/azure_coast_8p.xml:Name:39
-msgid "Azure Coast 1"
-msgstr "Cósta Gormghlas 1"
-
 #: maps/scenarios/battle_for_the_tiber.xml:Description:27
 msgid ""
 "Rome battles against the Etruscan city of Veii for control of the Tiber "
 "River basin."
 msgstr "Troideann an Róimh i gcoinne cathrach Éatrúscaigh na Váíse le haghaidh smacht cuaiche na Tibire a fháil."
+
+#: maps/scenarios/battle_for_the_tiber.xml:Name:27
+msgid "Battle for the Tiber"
+msgstr "Cath um an dTibir"
 
 #: maps/scenarios/battle_for_the_tiber.xml:PlayerData[0].Name:27
 msgid "Rome"
@@ -1284,10 +1403,6 @@ msgstr "An Váías"
 msgid "Gallic Invaders"
 msgstr "Ionróirí Gallacha"
 
-#: maps/scenarios/battle_for_the_tiber.xml:Name:27
-msgid "Battle for the Tiber"
-msgstr "Cath um an dTibir"
-
 #: maps/scenarios/belgian_bog_night.xml:Description:39
 msgid "Two Celtic tribes face off across a large bog at night."
 msgstr "Dhá treibheanna Ceilteacha ag aghaidh amach ar gach taobh bogaigh san oíche."
@@ -1295,14 +1410,6 @@ msgstr "Dhá treibheanna Ceilteacha ag aghaidh amach ar gach taobh bogaigh san o
 #: maps/scenarios/belgian_bog_night.xml:Name:39
 msgid "Belgian Bog Night"
 msgstr "Bogach Beilgeach san Oíche"
-
-#: maps/scenarios/bridge_demo.xml:PlayerData[0].Name:27
-msgid "Bridge Demo"
-msgstr "Taispeáint Droichid"
-
-#: maps/scenarios/bridge_demo.xml:PlayerData[1].Name:27
-msgid "Other"
-msgstr "Eile"
 
 #: maps/scenarios/bridge_demo.xml:Description:27
 msgid "Demo map showing how to simulate bridges in the Atlas map editor."
@@ -1312,9 +1419,21 @@ msgstr "Léarscáil taispeánach ag léiriú conas a ionsamhlú droichid san Eag
 msgid "Bridge demo"
 msgstr "Taispeáint Droichid"
 
+#: maps/scenarios/bridge_demo.xml:PlayerData[0].Name:27
+msgid "Bridge Demo"
+msgstr "Taispeáint Droichid"
+
+#: maps/scenarios/bridge_demo.xml:PlayerData[1].Name:27
+msgid "Other"
+msgstr "Eile"
+
 #: maps/scenarios/campaign_test_map.xml:Description:39
 msgid "A test map for potential Strategic Campaigns."
 msgstr "Léarscáil trialach d'Fheachtais Straitéiseacha nua."
+
+#: maps/scenarios/campaign_test_map.xml:Name:39
+msgid "Strategic Campaign Proof of Concept"
+msgstr "Cruthúnas Coincheapa na bhFeachtas Straitéiseacha"
 
 #: maps/scenarios/campaign_test_map.xml:PlayerData[0].Name:39
 msgid "Delian League"
@@ -1350,17 +1469,21 @@ msgstr "Conradh na Péalopoinéise"
 msgid "Religious Institutions"
 msgstr "Forais Creidimh"
 
-#: maps/scenarios/campaign_test_map.xml:Name:39
-msgid "Strategic Campaign Proof of Concept"
-msgstr "Cruthúnas Coincheapa na bhFeachtas Straitéiseacha"
-
 #: maps/scenarios/campaign_test_map_2_heightmap.xml:Name:39
 msgid "Campaign Map - Test"
 msgstr "Léarscáil Feachtais - Triail"
 
+#: maps/scenarios/cinema_demo.js:6
+msgid "Cutscene starts after 5 seconds"
+msgstr "Tosaíonn gearr-radharc tar éis 5 soicind"
+
 #: maps/scenarios/cinema_demo.xml:Description:40
 msgid "Demo map for cinematic camera movements."
 msgstr "Léarscáil tainspeánach le haghaidh gluaiseachta cineamataigh an cheamara."
+
+#: maps/scenarios/cinema_demo.xml:Name:40
+msgid "Cinema Demo"
+msgstr "Taispeáint Scannánaíochta"
 
 #: maps/scenarios/cinema_demo.xml:PlayerData[1].Name:40
 msgid "Xerxes I"
@@ -1370,27 +1493,23 @@ msgstr "Xerxes I"
 msgid "You"
 msgstr "Tusa"
 
-#: maps/scenarios/cinema_demo.xml:Name:40
-msgid "Cinema Demo"
-msgstr "Taispeáint Scannánaíochta"
-
-#: maps/scenarios/combat_demo.xml:Name:27
-msgid "Combat Demo"
-msgstr "Taispeáint Troda"
-
 #: maps/scenarios/combat_demo.xml:Description:27
 msgid ""
 "A combat demonstration between a small number of ranged and melee infantry "
 "units."
 msgstr "Taispeáint troda idir grúpa beag coisithe raonta agus trodach."
 
-#: maps/scenarios/combat_demo_huge.xml:Name:74
-msgid "Combat Demo (Huge)"
-msgstr "Taispeáint Troda (Ollmhór)"
+#: maps/scenarios/combat_demo.xml:Name:27
+msgid "Combat Demo"
+msgstr "Taispeáint Troda"
 
 #: maps/scenarios/combat_demo_huge.xml:Description:74
 msgid "1296 units. Extremely slow (we need more optimisation)."
 msgstr "1296 aonad. Fíormhall (teastaíonn níos mó optamú uainn)."
+
+#: maps/scenarios/combat_demo_huge.xml:Name:74
+msgid "Combat Demo (Huge)"
+msgstr "Taispeáint Troda (Ollmhór)"
 
 #: maps/scenarios/death_canyon_invasion_force.xml:Description:39
 msgid ""
@@ -1398,6 +1517,10 @@ msgid ""
 "\n"
 "2 teams of 2 players. 1 player on each team starts with a base and resources. The other player starts with only a large army to assist their teammate."
 msgstr "Cainneon domhain agus creagach i rith tríd an bhfásach. Maith le haghaidh cluichí ilimreortha.\n\nTá 2 fhoireann le 2 imreoir gach aon. Tosaíonn 1 imreoir as gach foireann le bunáit agus le hacmhainní. Tosaíonn an t-imreoir eile le harm mór amháin dá chomhimreoir a chabhrú."
+
+#: maps/scenarios/death_canyon_invasion_force.xml:Name:39
+msgid "Death Canyon - Invasion Force"
+msgstr "Caineonn na Marbh - Fórsa Ionraidh"
 
 #: maps/scenarios/death_canyon_invasion_force.xml:PlayerData[1].Name:39
 #: maps/scenarios/death_canyon_invasion_force.xml:PlayerData[3].Name:39
@@ -1416,10 +1539,6 @@ msgstr "Fórsa Ionraidh"
 #: maps/scenarios/siwa_oasis.xml:PlayerData[2].Name:27
 msgid "Player 3"
 msgstr "Imreoir 3"
-
-#: maps/scenarios/death_canyon_invasion_force.xml:Name:39
-msgid "Death Canyon - Invasion Force"
-msgstr "Caineonn na Marbh - Fórsa Ionraidh"
 
 #: maps/scenarios/demo_trading.xml:Description:27
 msgid "A demonstration of the new trading feature."
@@ -1446,6 +1565,10 @@ msgid ""
 "Gameplay is tight and fast, with no time to stop and smell the roses."
 msgstr "Léarscáil bheag an fhásach. Tosaíonn gach imreoir in aice láimhe ósaisí ganna i measc gaineamhlaigh gruama a bheith oscailte d'ionsaí agus foghail.\n\nTá an imreoireacht tapa agus teann, agus níl am ar bith le codail a dhéanamh."
 
+#: maps/scenarios/fast_oasis.xml:Name:27
+msgid "Fast Oasis"
+msgstr "Ósais Tapa"
+
 #: maps/scenarios/fast_oasis.xml:PlayerData[3].Name:27
 #: maps/scenarios/gold_rush.xml:PlayerData[3].Name:27
 #: maps/scenarios/necropolis.xml:PlayerData[3].Name:39
@@ -1454,17 +1577,13 @@ msgstr "Léarscáil bheag an fhásach. Tosaíonn gach imreoir in aice láimhe ó
 msgid "Player 4"
 msgstr "Imreoir 4"
 
-#: maps/scenarios/fast_oasis.xml:Name:27
-msgid "Fast Oasis"
-msgstr "Ósais Tapa"
+#: maps/scenarios/fishing_demo.xml:Description:27
+msgid "Test out fishing with a fishing boat. Still in development."
+msgstr "Baint triail as an iascaireacht le bád iascaireachta. Fós ina fhorbairt."
 
 #: maps/scenarios/fishing_demo.xml:Name:27
 msgid "Fishing Demo"
 msgstr "Taispeáint Iascaireachta"
-
-#: maps/scenarios/fishing_demo.xml:Description:27
-msgid "Test out fishing with a fishing boat. Still in development."
-msgstr "Baint triail as an iascaireacht le bád iascaireachta. Fós ina fhorbairt."
 
 #: maps/scenarios/flight_demo.xml:Description:40
 msgid "Fly some Mustangs."
@@ -1540,8 +1659,12 @@ msgid ""
 "This is a WFG community-designed map by: SMST, NOXAS1, and Yodaspirine."
 msgstr "Léarscáil ilimreortha. Tosaíonn gach imreoir ar oileán beag le hacmhainní ganna, atá suite as cósta na mór-thíre.\n\nTá an léarscáil seo dearadh ag an bpobal WFG le haghaidh: SMST, NOXAS1, agus Yodaspirine."
 
-#: maps/scenarios/miletus.xml:PlayerData[0].Name:27
+#: maps/scenarios/miletus.xml:Description:27
+msgid "A sandbox scenario for one player."
+msgstr "Feachtas an bhosca gainimh le haghaidh aon imreoir amhain."
+
 #: maps/scenarios/miletus.xml:Name:27
+#: maps/scenarios/miletus.xml:PlayerData[0].Name:27
 msgid "Miletus"
 msgstr "Miléatas"
 
@@ -1550,29 +1673,25 @@ msgstr "Miléatas"
 msgid "Romans"
 msgstr "Na Rómhánaigh"
 
-#: maps/scenarios/miletus.xml:Description:27
-msgid "A sandbox scenario for one player."
-msgstr "Feachtas an bhosca gainimh le haghaidh aon imreoir amhain."
-
-#: maps/scenarios/multiplayer_demo.xml:Name:27
-msgid "Multiplayer Demo"
-msgstr "Taispeáint Ilimreortha"
-
 #: maps/scenarios/multiplayer_demo.xml:Description:27
 msgid ""
 "Small map with lots of resources and some water, for testing gameplay in "
 "non-competitive multiplayer matches."
 msgstr "Léarscáil beag le hacmhainní go leor agus roinnt uisce, le haghaidh taispeáint a dhéanamh as an imirt i gcluichí neamhiomaíocha ilimreortha."
 
-#: maps/scenarios/napata_reconstruction.xml:Name:40
-msgid "Napata Reconstruction"
-msgstr "Athchruthú Napata"
+#: maps/scenarios/multiplayer_demo.xml:Name:27
+msgid "Multiplayer Demo"
+msgstr "Taispeáint Ilimreortha"
 
 #: maps/scenarios/napata_reconstruction.xml:Description:40
 msgid ""
 "This map displays a reconstruction of the ancient city Napata. "
 "[color=\"red\"]Note:[/color] The map is not intended to be playable."
 msgstr "Léiríonn an léarscáil seo athchruthú na cathrach ársa Napata. [color=\"red\"]Fógra:[/color] Níl an léarscáil seo beartaithe le himirt a dhéanamh."
+
+#: maps/scenarios/napata_reconstruction.xml:Name:40
+msgid "Napata Reconstruction"
+msgstr "Athchruthú Napata"
 
 #: maps/scenarios/necropolis.xml:Description:39
 msgid ""
@@ -1593,19 +1712,23 @@ msgstr "Léarscáil d'algartaim gluaiseachta na n-aonad a thriailliú."
 msgid "Pathfinding Demo"
 msgstr "Taispeáint Taiscéalaíochta"
 
-#: maps/scenarios/pathfinding_terrain_demo.xml:Name:27
-msgid "Pathfinding Terrain Demo"
-msgstr "Táispeáint Taiscéalaíochta an Talaimh"
-
 #: maps/scenarios/pathfinding_terrain_demo.xml:Description:27
 msgid ""
 "A map for testing movement costs and terrain properties in the A* "
 "pathfinder."
 msgstr "Léarscáil do chostas gluaiseachta agus airíonna talún sa taiscéalaí A* a thriailliú."
 
+#: maps/scenarios/pathfinding_terrain_demo.xml:Name:27
+msgid "Pathfinding Terrain Demo"
+msgstr "Táispeáint Taiscéalaíochta an Talaimh"
+
 #: maps/scenarios/peloponnese.xml:Description:39
 msgid "A real-world map of the Greek homeland."
 msgstr "Léarscáil fíor-domhain na Gréige dúchasaí."
+
+#: maps/scenarios/peloponnese.xml:Name:39
+msgid "Peloponnesian Wars"
+msgstr "Cogaí na Péalapoinéise"
 
 #: maps/scenarios/peloponnese.xml:PlayerData[0].Name:39
 msgid "Athens"
@@ -1623,10 +1746,6 @@ msgstr "An Éilis"
 msgid "Corinth"
 msgstr "An Corant"
 
-#: maps/scenarios/peloponnese.xml:Name:39
-msgid "Peloponnesian Wars"
-msgstr "Cogaí na Péalapoinéise"
-
 #: maps/scenarios/pickup_test_map.xml:Description:40
 msgid ""
 "Test map for picking units up, with sea and two islands. Trigger points are "
@@ -1641,6 +1760,10 @@ msgstr ""
 msgid "Demo map for new fancy water effects."
 msgstr "Taispeán-léarscáil d'éifeachtaí galánta an uisce."
 
+#: maps/scenarios/polynesia.xml:Name:39
+msgid "Polynesia"
+msgstr "An Pholainéis"
+
 #: maps/scenarios/polynesia.xml:PlayerData[0].Name:39
 msgid "Samoa"
 msgstr "An tSamoa"
@@ -1648,10 +1771,6 @@ msgstr "An tSamoa"
 #: maps/scenarios/polynesia.xml:PlayerData[1].Name:39
 msgid "Vanuatu"
 msgstr "An Fanuatú"
-
-#: maps/scenarios/polynesia.xml:Name:39
-msgid "Polynesia"
-msgstr "An Pholainéis"
 
 #: maps/scenarios/reservoir.xml:Description:27
 msgid "A demo showing water planes."
@@ -1661,13 +1780,13 @@ msgstr "Taispeáint ag léiriú painéal uisce."
 msgid "Reservoir"
 msgstr "Taiscumar"
 
-#: maps/scenarios/resource_demo.xml:Name:27
-msgid "Resource demo"
-msgstr "Taispeáint Acmhainne"
-
 #: maps/scenarios/resource_demo.xml:Description:27
 msgid "Demo map for resource gathering."
 msgstr "Taispeán-léarscáil ar son bhailithe na n-acmhainní."
+
+#: maps/scenarios/resource_demo.xml:Name:27
+msgid "Resource demo"
+msgstr "Taispeáint Acmhainne"
 
 #: maps/scenarios/road_demo.xml:Description:27
 msgid "Demo map showcasing Temperate Road decals."
@@ -1711,6 +1830,10 @@ msgid ""
 "Play with the Athenians faction in a non-threatening sandbox environment."
 msgstr "Imir le faicsean na nAithneach i gcás neamhbhagrach."
 
+#: maps/scenarios/sandbox_athenians.xml:Name:39
+msgid "Sandbox - The Athenians"
+msgstr "Bosca Gainimh - na hAithnigh"
+
 #: maps/scenarios/sandbox_athenians.xml:PlayerData[0].Name:39
 msgid "The Athenians"
 msgstr "Na hAithnigh"
@@ -1734,27 +1857,27 @@ msgstr "Na Peirsigh"
 msgid "The Gauls"
 msgstr "Na Gallaigh"
 
-#: maps/scenarios/sandbox_athenians.xml:Name:39
-msgid "Sandbox - The Athenians"
-msgstr "Bosca Gainimh - na hAithnigh"
-
 #: maps/scenarios/sandbox_britons.xml:Description:39
 #: maps/scenarios/sandbox_gauls.xml:Description:40
 msgid "Play around with the Gallic faction in an idyllic sandbox setting."
 msgstr "Imir le faicsean na nGallach i gcás neamhbhagrach."
+
+#: maps/scenarios/sandbox_britons.xml:Name:39
+msgid "Sandbox - The Britons"
+msgstr "Bosca Gainimh - na Briotnaigh"
 
 #: maps/scenarios/sandbox_britons.xml:PlayerData[3].Name:39
 #: maps/scenarios/sandbox_gauls.xml:PlayerData[4].Name:40
 msgid "Roman Interlopers"
 msgstr "Tuilithe Rómhánacha"
 
-#: maps/scenarios/sandbox_britons.xml:Name:39
-msgid "Sandbox - The Britons"
-msgstr "Bosca Gainimh - na Briotnaigh"
-
 #: maps/scenarios/sandbox_carthaginians.xml:Description:39
 msgid "Explore the Carthaginian Buildings and Units."
 msgstr "Féach thart ar na foirgnimh agus na haonaid de chuid na gCartagach."
+
+#: maps/scenarios/sandbox_carthaginians.xml:Name:39
+msgid "Sandbox - The Carthaginians"
+msgstr "Bosca Gainimh - na Cartagaigh"
 
 #: maps/scenarios/sandbox_carthaginians.xml:PlayerData[0].Name:39
 #: maps/scenarios/serengeti.xml:PlayerData[0].Name:27
@@ -1765,10 +1888,6 @@ msgstr "An Chartaig"
 #: maps/scenarios/sandbox_persians.xml:PlayerData[1].Name:39
 msgid "Creeps"
 msgstr "Péistí"
-
-#: maps/scenarios/sandbox_carthaginians.xml:Name:39
-msgid "Sandbox - The Carthaginians"
-msgstr "Bosca Gainimh - na Cartagaigh"
 
 #: maps/scenarios/sandbox_gauls.xml:Name:40
 msgid "Sandbox - The Gauls"
@@ -1786,6 +1905,10 @@ msgstr "Bosca Gainimh - na hIbéirigh"
 msgid "Play the Kushites faction in a non-threatening sandbox scenario."
 msgstr "Imir le faicsean na gCúiseach i gcás neamhbhagrach."
 
+#: maps/scenarios/sandbox_kushites.xml:Name:40
+msgid "Sandbox - The Kushites"
+msgstr "Bosca Gainimh - na Cúisigh"
+
 #: maps/scenarios/sandbox_kushites.xml:PlayerData[1].Name:40
 msgid "Kushites"
 msgstr "Na Cúisigh"
@@ -1794,26 +1917,26 @@ msgstr "Na Cúisigh"
 msgid "Egyptians"
 msgstr "Na hÉigiptigh"
 
-#: maps/scenarios/sandbox_kushites.xml:Name:40
-msgid "Sandbox - The Kushites"
-msgstr "Bosca Gainimh - na Cúisigh"
-
 #: maps/scenarios/sandbox_macedonians.xml:Description:39
 msgid ""
 "Play with the Macedonians faction in a non-threatening sandbox environment."
 msgstr "Imir le faicsean na Macadónach i gcás neamhbhagrach."
 
-#: maps/scenarios/sandbox_macedonians.xml:PlayerData[0].Name:39
-msgid "The Macedonians"
-msgstr "Na Macadóinigh"
-
 #: maps/scenarios/sandbox_macedonians.xml:Name:39
 msgid "Sandbox - The Macedonians"
 msgstr "Bosca Gainimh - na Macadóinigh"
 
+#: maps/scenarios/sandbox_macedonians.xml:PlayerData[0].Name:39
+msgid "The Macedonians"
+msgstr "Na Macadóinigh"
+
 #: maps/scenarios/sandbox_mauryas.xml:Description:39
 msgid "Mauryan Indian faction showcase map."
 msgstr "Léarscáil taispeánach de chuid na Mauiriach."
+
+#: maps/scenarios/sandbox_mauryas.xml:Name:39
+msgid "Sandbox - The Mauryas"
+msgstr "Bosca Gainimh - na Mauiriaigh"
 
 #: maps/scenarios/sandbox_mauryas.xml:PlayerData[0].Name:39
 msgid "Mauryan Indians"
@@ -1823,26 +1946,26 @@ msgstr "Indiaigh Mauiriacha"
 msgid "Enemy"
 msgstr "Namhaid"
 
-#: maps/scenarios/sandbox_mauryas.xml:Name:39
-msgid "Sandbox - The Mauryas"
-msgstr "Bosca Gainimh - na Mauiriaigh"
-
 #: maps/scenarios/sandbox_persians.xml:Description:39
 msgid "Demo Map. Play with the Persian civilisation in a sandbox setting."
 msgstr "Léarscáil taispeánach de chuid na mPeirseach."
-
-#: maps/scenarios/sandbox_persians.xml:PlayerData[0].Name:39
-msgid "Achaemenids"
-msgstr "Na hAcaeiméinigh"
 
 #: maps/scenarios/sandbox_persians.xml:Name:39
 msgid "Sandbox - The Persians"
 msgstr "Bosca Gainimh - na Peirsigh"
 
+#: maps/scenarios/sandbox_persians.xml:PlayerData[0].Name:39
+msgid "Achaemenids"
+msgstr "Na hAcaeiméinigh"
+
 #: maps/scenarios/sandbox_ptolemies.xml:Description:39
 #: maps/skirmishes/sporades_islands_2p.xml:Description:39
 msgid "An islands map good for intense naval combat."
 msgstr "Léarscáil oileán ina mhaith mar gheall ar chomhrac cabhlaigh."
+
+#: maps/scenarios/sandbox_ptolemies.xml:Name:39
+msgid "Sandbox - The Ptolemaic Egyptians"
+msgstr "Bosca Gainimh - na hÉigiptigh Tolomasacha"
 
 #: maps/scenarios/sandbox_ptolemies.xml:PlayerData[0].Name:39
 msgid "Ptolemaios A' Soter"
@@ -1852,14 +1975,14 @@ msgstr "Ptolemaios A' Soter"
 msgid "Kautilya"
 msgstr "Cautailia"
 
-#: maps/scenarios/sandbox_ptolemies.xml:Name:39
-msgid "Sandbox - The Ptolemaic Egyptians"
-msgstr "Bosca Gainimh - na hÉigiptigh Tolomasacha"
-
 #: maps/scenarios/sandbox_ptolemies_02.xml:Description:39
 msgid ""
 "Play with the Ptolemaic Egyptians in a non-threatening sandbox setting."
 msgstr "Imir le faicsean na nÉigipteach i gás neamhbhagrach."
+
+#: maps/scenarios/sandbox_ptolemies_02.xml:Name:39
+msgid "Sandbox - The Ptolemaic Egyptians 2"
+msgstr "Bosca Gainimh - na hÉigiptigh Tolomasacha 2"
 
 #: maps/scenarios/sandbox_ptolemies_02.xml:PlayerData[0].Name:39
 msgid "Ptolemy \"Savior\""
@@ -1873,10 +1996,6 @@ msgstr "Na Séileucaidí"
 msgid "Libyans"
 msgstr "Na Libiaigh"
 
-#: maps/scenarios/sandbox_ptolemies_02.xml:Name:39
-msgid "Sandbox - The Ptolemaic Egyptians 2"
-msgstr "Bosca Gainimh - na hÉigiptigh Tolomasacha 2"
-
 #: maps/scenarios/sandbox_romans.xml:Description:39
 msgid "A sandbox scenario for players to try out the Roman civilisation."
 msgstr "Léarscáil tainspeánach de chuid na Rómhánach."
@@ -1889,6 +2008,10 @@ msgstr "Bosca Gainimh - na Rómhánaigh Poblachtacha"
 msgid "A sandbox scenario for players to try out the Seleucid civilisation."
 msgstr "Léarscáil taispeánach de chuid na Séileucaidí."
 
+#: maps/scenarios/sandbox_seleucids.xml:Name:39
+msgid "Sandbox - The Seleucids"
+msgstr "Bosca Gainimh - na Séileucaidí"
+
 #: maps/scenarios/sandbox_seleucids.xml:PlayerData[0].Name:39
 msgid "The Seleucids"
 msgstr "Na Séileucaidí"
@@ -1896,10 +2019,6 @@ msgstr "Na Séileucaidí"
 #: maps/scenarios/sandbox_seleucids.xml:PlayerData[1].Name:39
 msgid "The Ptolemies"
 msgstr "Na Tolomaesí"
-
-#: maps/scenarios/sandbox_seleucids.xml:Name:39
-msgid "Sandbox - The Seleucids"
-msgstr "Bosca Gainimh - na Séileucaidí"
 
 #: maps/scenarios/sandbox_spartans.xml:Description:39
 msgid ""
@@ -1910,15 +2029,25 @@ msgstr "Imir le faicsean na Spartach i gcás neamhbhagrach."
 msgid "Sandbox - The Spartans"
 msgstr "Bosca Gainimh - na Spartaigh"
 
-#: maps/scenarios/savanna_ravine.xml:Name:39
-msgid "Savanna Ravine"
-msgstr "Ailt Sabhána"
-
 #: maps/scenarios/savanna_ravine.xml:Description:39
 msgid ""
 "A wide-open Savanna map with a small ravine running down the center, which "
 "is easily forded."
 msgstr "Léarscáil shabhánach oscailte ar leathadh le hailt bheag i rith trína lár, atá éasca á trasnú."
+
+#: maps/scenarios/savanna_ravine.xml:Name:39
+msgid "Savanna Ravine"
+msgstr "Ailt Sabhána"
+
+#: maps/scenarios/serengeti.xml:Description:27
+msgid ""
+"The African serengeti has herds of animals criss crossing the plain. Mineral"
+" wealth is bountiful and wood is in full supply."
+msgstr "Tá tréadanna ainmhithe ag dul ar feadh Saerengeti na hAfraice. Tá a dhóthain mionraí agus adhmad go leor aici."
+
+#: maps/scenarios/serengeti.xml:Name:27
+msgid "Serengeti 1"
+msgstr "An tSaerengeti 1"
 
 #: maps/scenarios/serengeti.xml:PlayerData[1].Name:27
 msgid "Iberia"
@@ -1932,27 +2061,17 @@ msgstr "An Ghréig"
 msgid "Persia"
 msgstr "An Pheirs"
 
-#: maps/scenarios/serengeti.xml:Description:27
-msgid ""
-"The African serengeti has herds of animals criss crossing the plain. Mineral"
-" wealth is bountiful and wood is in full supply."
-msgstr "Tá tréadanna ainmhithe ag dul ar feadh Saerengeti na hAfraice. Tá a dhóthain mionraí agus adhmad go leor aici."
-
-#: maps/scenarios/serengeti.xml:Name:27
-msgid "Serengeti 1"
-msgstr "An tSaerengeti 1"
-
 #: maps/scenarios/ship_formations.xml:Description:27
 msgid "Ship formations mockup."
 msgstr "Samhail na n-eagar long "
 
-#: maps/scenarios/ship_formations.xml:PlayerData[0].Name:27
-msgid "Ships"
-msgstr "Longa"
-
 #: maps/scenarios/ship_formations.xml:Name:27
 msgid "Ship Formations"
 msgstr "Egair Loinge"
+
+#: maps/scenarios/ship_formations.xml:PlayerData[0].Name:27
+msgid "Ships"
+msgstr "Longa"
 
 #: maps/scenarios/shipattacks.xml:Description:27
 msgid "Move ships around. Attack other ships."
@@ -2013,6 +2132,10 @@ msgid ""
 "Will Alexander push his way through The Persian Gates and fulfill his destiny, or will Ariobarzanes defend the rugged ancient land of Persis against a foreign invader?"
 msgstr "\"Bíodh sí i gcónaí Broinglóid na nGréigeach a dhul Soir.\"\n\n\"Fainic as an uabhar seo. Cailltear fir agus a mbrionglóidí san Oirthear.\"\n\nAn gcuirfidh Alastar buille tríd na Geataí Peirseacha agus a chinniúint a chomhlíonadh, nó an gcosnóidh Áiriabarsánas talamh ársa na Peirse i gcoinne ionróra eachtrannaigh?"
 
+#: maps/scenarios/the_persian_gates.xml:Name:27
+msgid "The Persian Gates"
+msgstr "Geataí na Peirsigh"
+
 #: maps/scenarios/the_persian_gates.xml:PlayerData[0].Name:27
 msgid "Alexandros Megas"
 msgstr "Alexandros Megas"
@@ -2029,15 +2152,15 @@ msgstr "Áiriabarsánas"
 msgid "Persians"
 msgstr "Na Peirsigh"
 
-#: maps/scenarios/the_persian_gates.xml:Name:27
-msgid "The Persian Gates"
-msgstr "Geataí na Peirsigh"
-
 #: maps/scenarios/third_macedonian_war.xml:Description:27
 msgid ""
 "The Romans encroach upon Macedonian lands for the third and final time. Can "
 "the once-proud Macedonians prevail against the Roman juggernaut?"
 msgstr "Sáraíonn na Rómhánaigh ar talaimh Mhacadónacha don thríú agus an am deireanach. An féidir leis na Macadónaigh iarbhródúla a bheidh i réim i gcoinne maidhme na Rómhánach?"
+
+#: maps/scenarios/third_macedonian_war.xml:Name:27
+msgid "Third Macedonian War"
+msgstr "Triú Chogadh Macadónach"
 
 #: maps/scenarios/third_macedonian_war.xml:PlayerData[0].Name:27
 msgid "Lucius Aemilius Paullus"
@@ -2051,9 +2174,59 @@ msgstr "Peirséas Macadónach"
 msgid "Greek Allies"
 msgstr "Comhghuaillithe Gréigeacha"
 
-#: maps/scenarios/third_macedonian_war.xml:Name:27
-msgid "Third Macedonian War"
-msgstr "Triú Chogadh Macadónach"
+#: maps/scenarios/treasure_islands.js:9
+msgid "Collect the treasures before your enemy does! May the better win!"
+msgstr "Bailigh na taiscí roimh atá siad bailithe ag do namhaid! B'fhéidir gurb é an bua is fearr!"
+
+#: maps/scenarios/treasure_islands.js:28
+msgid "No winner yet, prepare for battle!"
+msgstr "Níl aon duine ina bhuaiteoir fós, ullmhaígí do chath a dhéanamh!"
+
+#: maps/scenarios/treasure_islands.js:43
+msgid "Your enemy's treasury is filled to the brim, you lose!"
+msgstr "Tá státchiste do namhad fíorlán, tá tú cloíte!"
+
+#: maps/scenarios/treasure_islands.js:48
+msgid "Your treasury is filled to the brim, you are victorious!"
+msgstr "Tá do státchiste fíorlán, tá tú buacach!"
+
+#: maps/scenarios/treasure_islands.js:60
+msgid "Hurry up! Your enemy is close to victory!"
+msgstr "Brostaigh ort! Tá do namhaid gar lena bhua!"
+
+#: maps/scenarios/treasure_islands.js:71
+#, javascript-format
+msgid "Treasures remaining to collect for victory:  %(remainingTreasures)s!"
+msgstr "Taiscí ag fanacht iad a bhailiú do bhua: %(remainingTreasures)s!"
+
+#: maps/scenarios/treasure_islands.js:79
+msgid "You have collected a treasure!"
+msgstr "Tá taisce bailithe agat!"
+
+#: maps/scenarios/treasure_islands.js:91
+msgid "Defeat your enemy to win!"
+msgstr "Buaigh ar do namhaid do bhua a dhéanamh!"
+
+#: maps/scenarios/treasure_islands.js:100
+#, javascript-format
+msgid "%(lastPlayer)s has won (treasure collected)."
+msgid_plural "%(players)s and %(lastPlayer)s have won (treasure collected)."
+msgstr[0] "Tá %(lastPlayer)s ina bhauiteoir (taiscí bailithe)."
+msgstr[1] "Tá %(players)s agus %(lastPlayer)s ina mbuaiteoir (taiscí bailithe)."
+msgstr[2] "Tá %(players)s agus %(lastPlayer)s ina mbuaiteoir (taiscí bailithe)."
+msgstr[3] "Tá %(players)s agus %(lastPlayer)s ina mbuaiteoir (taiscí bailithe)."
+msgstr[4] "Tá %(players)s agus %(lastPlayer)s ina mbuaiteoir (taiscí bailithe)."
+
+#: maps/scenarios/treasure_islands.js:104
+#, javascript-format
+msgid "%(lastPlayer)s has been defeated (treasure collected)."
+msgid_plural ""
+"%(players)s and %(lastPlayer)s have been defeated (treasure collected)."
+msgstr[0] "Tá %(lastPlayer)s cloíte (taiscí bailithe)."
+msgstr[1] "Tá %(players)s agus %(lastPlayer)s cloíte (taiscí bailithe)."
+msgstr[2] "Tá %(players)s agus %(lastPlayer)s cloíte (taiscí bailithe)."
+msgstr[3] "Tá %(players)s agus %(lastPlayer)s cloíte (taiscí bailithe)."
+msgstr[4] "Tá %(players)s agus %(lastPlayer)s cloíte (taiscí bailithe)."
 
 #: maps/scenarios/treasure_islands.xml:Description:39
 msgid ""
@@ -2064,6 +2237,26 @@ msgstr "Cuardaigh ar taiscí ar oileáin bheaga agus san uisce. Bailigh níos m�
 #: maps/scenarios/treasure_islands.xml:Name:39
 msgid "Treasure Islands"
 msgstr "Oileáin Taisce"
+
+#: maps/scenarios/triggers_demo.js:73
+msgid "Testing the yes-no dialog. Do you want to say sure or rather not?"
+msgstr "Triailímid an dialóg 'sea-ní hea'. Ar mhaith leat a rá 'sea' nó 'ní hea'?"
+
+#: maps/scenarios/triggers_demo.js:79
+msgid "Sure"
+msgstr "Sea"
+
+#: maps/scenarios/triggers_demo.js:83
+msgid "Say sure"
+msgstr "Abair 'sea'"
+
+#: maps/scenarios/triggers_demo.js:89
+msgid "Rather not"
+msgstr "Ní hea"
+
+#: maps/scenarios/triggers_demo.js:93
+msgid "Say rather not"
+msgstr "Abair 'ní hea'"
 
 #: maps/scenarios/triggers_demo.xml:Description:39
 msgid ""
@@ -2095,13 +2288,13 @@ msgstr "Tá dearadh ar an léarscáil seo chun bunghluaiseachta na n-aonad a thr
 msgid "Unit Motion Integration Test"
 msgstr "Triail Comhtháthaithe Gluaiseachta na nAonad"
 
-#: maps/scenarios/units_demo.xml:Name:28
-msgid "Units Demo"
-msgstr "Taispeáint Aonad"
-
 #: maps/scenarios/units_demo.xml:Description:28
 msgid "Every unit in the game."
 msgstr "Na haonaid ar fad sa chluiche."
+
+#: maps/scenarios/units_demo.xml:Name:28
+msgid "Units Demo"
+msgstr "Taispeáint Aonad"
 
 #: maps/scenarios/walls.xml:Description:27
 msgid "Walls."
@@ -2115,13 +2308,13 @@ msgstr "Ballaí"
 msgid "WallTest"
 msgstr "Triail Balla"
 
-#: maps/scenarios/we_are_legion.xml:Name:27
-msgid "We Are Legion"
-msgstr "Táimid Iomadúil"
-
 #: maps/scenarios/we_are_legion.xml:Description:27
 msgid "A quick battle demo map using Roman legionaries."
 msgstr "Taispeán-léarscáil gasta de chuid troda ag úsáid Léigiúnaigh Rómhánacha."
+
+#: maps/scenarios/we_are_legion.xml:Name:27
+msgid "We Are Legion"
+msgstr "Táimid Iomadúil"
 
 #: maps/skirmishes/acropolis_bay_2p.xml:Description:39
 msgid ""
@@ -2177,10 +2370,6 @@ msgstr "Na tailte tura agus lán le mianraí sa Bhactáir (an Afganastáin sa l�
 msgid "Bactria (2)"
 msgstr "An Bhactáir (2)"
 
-#: maps/skirmishes/barcania_3p.xml:Name:27
-msgid "Barcania (3)"
-msgstr "An Bharcáin (3)"
-
 #: maps/skirmishes/barcania_3p.xml:Description:27
 msgid ""
 "A wild and wooded isle, full of forests, gold, and mystery. Mountains, seas,"
@@ -2188,6 +2377,10 @@ msgid ""
 "lots of potential for skirmishing and guerilla warfare as well as tough "
 "defensive fighting or aggressive maneuvers."
 msgstr "Inis fhiáin agus mó-adhmadtha, lán le foraois, ór agus rúin. Tá sléibhte, mara agus coillte tiubha sa talamh seo, déanann sé seo léarscáil maith le haghaidh cluiche tapa agus 3-imreoir a imirt, lán le deiseanna do treallchogaíocht nó cogaíocht scirmise a dhéanamh, agus cosaint láidir nó inlíochtaí trodacha freisin."
+
+#: maps/skirmishes/barcania_3p.xml:Name:27
+msgid "Barcania (3)"
+msgstr "An Bharcáin (3)"
 
 #: maps/skirmishes/belgian_bog_2p.xml:Description:39
 msgid ""
@@ -2206,6 +2399,10 @@ msgid ""
 "as the Butana Steppe."
 msgstr "Deas ón Sahára, soir ón Níle, tá réigiún leath-thura a dtugtar Steip na Bútaine sa lá atá inniu."
 
+#: maps/skirmishes/butana_steppe_2p.xml:Name:40
+msgid "Butana Steppe (2)"
+msgstr "Steip na Bútana (2)"
+
 #: maps/skirmishes/butana_steppe_2p.xml:PlayerData[0].Name:40
 msgid "West Player"
 msgstr "Imreoir an Iarthair"
@@ -2213,10 +2410,6 @@ msgstr "Imreoir an Iarthair"
 #: maps/skirmishes/butana_steppe_2p.xml:PlayerData[1].Name:40
 msgid "East Player"
 msgstr "Imreoir an Oirthir"
-
-#: maps/skirmishes/butana_steppe_2p.xml:Name:40
-msgid "Butana Steppe (2)"
-msgstr "Steip na Bútana (2)"
 
 #: maps/skirmishes/caspian_sea_2pv2p.xml:Description:39
 msgid ""
@@ -2263,6 +2456,10 @@ msgid ""
 "Map size: Very Large"
 msgstr "Léarscáil i stíl \"oileán beag\" atá suite sa Mhuir Áigeach.\n\nMéid léarscáile: An-mhór"
 
+#: maps/skirmishes/cycladic_archipelago_3p.xml:Name:39
+msgid "Cycladic Archipelago (3)"
+msgstr "An tOileánra Cíocláideach (3)"
+
 #: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[0].Name:39
 msgid "Samos"
 msgstr "An tSamas"
@@ -2274,10 +2471,6 @@ msgstr "An Leasbas"
 #: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[2].Name:39
 msgid "Delos"
 msgstr "An Dalas"
-
-#: maps/skirmishes/cycladic_archipelago_3p.xml:Name:39
-msgid "Cycladic Archipelago (3)"
-msgstr "An tOileánra Cíocláideach (3)"
 
 #: maps/skirmishes/death_canyon_2p.xml:Description:39
 msgid ""
@@ -2314,6 +2507,23 @@ msgstr "Éiríonn an tírdhreach ceomhar alpach seo go latháir catha mar tá co
 msgid "Dueling Cliffs (3v3)"
 msgstr "Aillte i gComhrac (3v3)"
 
+#: maps/skirmishes/egypt_3pv3p.xml:Description:40
+msgid ""
+"Fight for the remains of ancient Egypt!\n"
+"\n"
+"Players start with full grown cities and small armies, each having distinct advantages and drawbacks. Take care, there are 7 mighty forts and marauding bandids!\n"
+"\n"
+"It is the last century before 0 A.D. Egypt is internally divided between hellenistic (Alexandria, represented by Seleucids) and traditional influences (Memphis, represented by Ptolemies). Thebes in the southern clime of river Nile has already been taken over by the Kush. In the north western Al-Dschabal al-Achdar, where the mediterranean city of Cyrene is located the Romans are preparing their invasion. From the eastern desert at-Tih and mount Sinai enemies (represented by Persians) are pushing forward and the oasis Siwa. Charga (represented by Carthage) in the south western desert are trying to get a share of the pie as well.\n"
+"Locations:\n"
+"- Alexandria: library, harbor\n"
+"- Memphis: Necropolis, pyramids, Apis shrine\n"
+"- Thebes: temple district, Valley of the Kings \n"
+"- Cyrene: mediterranean Macchie, olive groves\n"
+"- Fayyum: crocodile shrine, nile dam\n"
+"- Eastern desert: mount Sinai, deep Wadi, Red Sea reefs\n"
+"- Western desert: Oasis Charga and Siwa, Qattara Depression\n"
+msgstr "Troid ar son smidiríní na hÉigipte!\n\nTosaíonn na himreoirí le cathair lánfhásta agus arm beag, agus tá buntáistí agus míbhuntáistí soiléire ag gach faicsean. Bígí cúramach! Tá 7 dún ollmhór agus ropairí go leor ann.\n\ntá sé an chéad seo caite roimh 0 AD. Tá an Éigipt deighilte go hinmheánach idir tionchar na Heilléineach (Cathair Alastair, léirithe ag na Séileucaidí) agus a dtionchar traidisiúnta (an Mheimfís, léirithe ag na Tolomaesí). Sa deisceart na Níle, tá cathair na Téibhe Chéadgheataigh cheana faoi smacht na gCúiseach. Sna sléibhte thiar thuaidh Diébeal-Achdár, tá na Rómhánaigh ag ullmhú a n-ionradh i gcathair na Saíréine. Tá namhaid eile (léirithe ag na Peirsigh) ag ullmhú iad féin i bhfásach na Síonáí agus a súile ar ósais na Saomhá. San fhásach thiar theas tá Tiárga (léirithe ag na Cartagaigh) ag ullmhú dá gconcas féin a dhéanamh san Éigipt.\nÁiteanna Thábhachtacha:\n- Cathair Alastair: leabharlann, cuan\n- An Mheimfís: reilig, pirimidí, teampaill Aipise\n- Téibh Chéadgheatach: ceantar na dteampall, Gleann na Ríthe\n- An tSaíréín: machaire na Meánmhara, doirí ológ\n- Faídhiam: teampall Shobaic, damba na Níle\n- Fásach Thoir: Sliabh Síonáí, 'wadi' domhain, sceirí na Mara Rua\n- Fásach Thiar: Ósaisí Tiárga agus Saomhá, Logán Catara\n"
+
 #: maps/skirmishes/egypt_3pv3p.xml:Name:40
 msgid "Egypt (3v3)"
 msgstr "An Éigipt (3v3)"
@@ -2341,23 +2551,6 @@ msgstr "An Mheimfís"
 #: maps/skirmishes/egypt_3pv3p.xml:PlayerData[5].Name:40
 msgid "Cyrene"
 msgstr "An tSaíréin"
-
-#: maps/skirmishes/egypt_3pv3p.xml:Description:40
-msgid ""
-"Fight for the remains of ancient Egypt!\n"
-"\n"
-"Players start with full grown cities and small armies, each having distinct advantages and drawbacks. Take care, there are 7 mighty forts and marauding bandids!\n"
-"\n"
-"It is the last century before 0 A.D. Egypt is internally divided between hellenistic (Alexandria, represented by Seleucids) and traditional influences (Memphis, represented by Ptolemies). Thebes in the southern clime of river Nile has already been taken over by the Kush. In the north western Al-Dschabal al-Achdar, where the mediterranean city of Cyrene is located the Romans are preparing their invasion. From the eastern desert at-Tih and mount Sinai enemies (represented by Persians) are pushing forward and the oasis Siwa. Charga (represented by Carthage) in the south western desert are trying to get a share of the pie as well.\n"
-"Locations:\n"
-"- Alexandria: library, harbor\n"
-"- Memphis: Necropolis, pyramids, Apis shrine\n"
-"- Thebes: temple district, Valley of the Kings \n"
-"- Cyrene: mediterranean Macchie, olive groves\n"
-"- Fayyum: crocodile shrine, nile dam\n"
-"- Eastern desert: mount Sinai, deep Wadi, Red Sea reefs\n"
-"- Western desert: Oasis Charga and Siwa, Qattara Depression\n"
-msgstr "Troid ar son smidiríní na hÉigipte!\n\nTosaíonn na himreoirí le cathair lánfhásta agus arm beag, agus tá buntáistí agus míbhuntáistí soiléire ag gach faicsean. Bígí cúramach! Tá 7 dún ollmhór agus ropairí go leor ann.\n\ntá sé an chéad seo caite roimh 0 AD. Tá an Éigipt deighilte go hinmheánach idir tionchar na Heilléineach (Cathair Alastair, léirithe ag na Séileucaidí) agus a dtionchar traidisiúnta (an Mheimfís, léirithe ag na Tolomaesí). Sa deisceart na Níle, tá cathair na Téibhe Chéadgheataigh cheana faoi smacht na gCúiseach. Sna sléibhte thiar thuaidh Diébeal-Achdár, tá na Rómhánaigh ag ullmhú a n-ionradh i gcathair na Saíréine. Tá namhaid eile (léirithe ag na Peirsigh) ag ullmhú iad féin i bhfásach na Síonáí agus a súile ar ósais na Saomhá. San fhásach thiar theas tá Tiárga (léirithe ag na Cartagaigh) ag ullmhú dá gconcas féin a dhéanamh san Éigipt.\nÁiteanna Thábhachtacha:\n- Cathair Alastair: leabharlann, cuan\n- An Mheimfís: reilig, pirimidí, teampaill Aipise\n- Téibh Chéadgheatach: ceantar na dteampall, Gleann na Ríthe\n- An tSaíréín: machaire na Meánmhara, doirí ológ\n- Faídhiam: teampall Shobaic, damba na Níle\n- Fásach Thoir: Sliabh Síonáí, 'wadi' domhain, sceirí na Mara Rua\n- Fásach Thiar: Ósaisí Tiárga agus Saomhá, Logán Catara\n"
 
 #: maps/skirmishes/farmland_2p.xml:Description:40
 msgid "Farmland in Eastern Europe."
@@ -2774,196 +2967,3 @@ msgstr "Baolaíonn na sléibhte seo ar tír dhúchais na mPeirseach, leis an mPe
 #: maps/skirmishes/zagros_mountains_2p.xml:Name:39
 msgid "Zagros Mountains (2)"
 msgstr "Sléibhte na Sagrais (2)"
-
-#: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"The vitalizing waters of the Nile sustain life along its banks, while the "
-"long dry season scorches the land."
-msgstr "Cothaíonn uiscí bríomhara na Níle beatha ar feadh a braucha, nuair a loisceann an séasúr tirim an talamh intíre."
-
-#: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Dry Season"
-msgstr "Séasúr Tirim"
-
-#: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Revelling in the much awaited rain, the baked land transforms into a lush "
-"haven for both man and beast."
-msgstr "A ragairne a dhéanamh faoin bháisteach atá ag fánacht go mór, athraíonn an talamh bácáilte ó bhonn go dídeann mhéith ar son daoine agus ainmhithe le chéile."
-
-#: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Rainy Season"
-msgstr "Séasúr na Baistí"
-
-#: maps/random/rmbiome/generic/alpine.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"A region in the high snowy mountains. Biting winds sweep through the "
-"abundant conifer forests, making even the more resilient deer and mountain "
-"goats shiver."
-msgstr "Réigiún sna sléibhte arda sneachtúla. Scuabann gaotha feannaideacha trí choillte fhlúirseacha buaircíneacha, agus déanann siad crith san fhia is láidre agus gabhar sléibhe."
-
-#: maps/random/rmbiome/generic/alpine.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Alpine"
-msgstr "Alpach"
-
-#: maps/random/rmbiome/generic/autumn.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Autumn at its peak. The landscape is a dazzling dash of colors irrevocably "
-"intertwined. The native beech and oak trees of this temperate zone display a"
-" multi-colored foliage while the evergreen pines look on with indifference "
-"at the approaching winter."
-msgstr "Tá Fómhar ina bharr. Tá an tírdhreach lán le dathanna dalltacha i measc lena chéile. Léiríonn na féanna agus daracha dúchasacha duilliúr ildaite sa cheantar measartha seo nuair a sheasann na giúiseanna síorghlasa, is cuma leo ar teacht geimhridh."
-
-#: maps/random/rmbiome/generic/autumn.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Autumn"
-msgstr "Fómhar"
-
-#: maps/random/rmbiome/generic/desert.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"A semi-desert area that boasts numerous clumps of date palms and tamarix "
-"trees. Herds of camels roam the wild and the occasional gazelle jumps up in "
-"fright at being disturbed."
-msgstr "Réigiún leath-fhásaigh a bhfuil dosanna líonmhara pailmeacha dátaí agus tamaraiscí. Tá tréadanna camall ag fánaíocht san fhiántas agus léimeann gasail go huaireanta nuair a bheith siad buartha."
-
-#: maps/random/rmbiome/generic/desert.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Desert"
-msgstr "Fásach"
-
-#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Start in a region blessed with the Mediterranean climate, a warm and "
-"inviting land. The cypresses are in a perpetual struggle with the dominant "
-"fan palms while deer graze in their shadows, blissfully unaware."
-msgstr "Tosaíonn na himreoirí i réigiún beannaithe faoi aeráid na Meánmhara, tír té agus tarraingteach í. Tá na cufróga i measc troda gan deireadh leis na pailmeacha ceannasacha nuair atá fianna ag iníor ina scáthanna, neamhbhraiteach go sona."
-
-#: maps/random/rmbiome/generic/mediterranean.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Mediterranean"
-msgstr "An Mheánmhuir"
-
-#: maps/random/rmbiome/generic/savanna.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"The savanna, a dry climate in which only the hardy Baobab trees thrive. "
-"Solitary gazelles graze the sparse grass, while herds of zebras, wildebeest,"
-" giraffes or elephants roam the wild in search of food."
-msgstr "An sabhána, aeráid tur ina bhfuil na baobaib chrua amháin ag fás. Tá gasailí ina aonar ag iníor ar an bhféar gann, nuair atá tréideanna séabraí, gnúnna, sioráf nó eilifintí do bhia a fháil. "
-
-#: maps/random/rmbiome/generic/savanna.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Savanna"
-msgstr "Sabhána"
-
-#: maps/random/rmbiome/generic/snowy.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Settle in the cold regions of the North, the native habitat of the wooly "
-"muskox. Here you can pine away to your content and also hunt the occasional "
-"walrus or two."
-msgstr "Cuir fút i réigiúin fuara an tuaiscirt, áit dhúchais an mhuscdhaimh lomraigh. Anseo is féidir leat am a chaitheamh agus aon nó dhá rosualt a sheilg."
-
-#: maps/random/rmbiome/generic/snowy.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Snowy"
-msgstr "Snéachtúil"
-
-#: maps/random/rmbiome/generic/temperate.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Lush grasslands carpet the land, in places giving way to magnificent and "
-"diverse broadleaf forests. Poplars, pines, beeches and oaks all vie for "
-"supremacy but this root-war is a neverending struggle. Numerous apple trees "
-"dot the land, deer and sheep gorge themselves on this years fallen fruit."
-msgstr "Tá féarthalaimh mhéithe ar feadh na tíre, i roinnt áit tá coillte leathanduilleacha agus éagsúla eatarthu. Troideann poibleoga, giúiseanna, feánna agus daracha ar son ceannais na foraoise a fháil i gcogadh na rútaí seo gan deireadh. Tá crainn úlla go leor sa talamh, agus déanann fianna agus gabhair craos ar torthaí tite na bliana seo."
-
-#: maps/random/rmbiome/generic/temperate.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Temperate"
-msgstr "Measartha"
-
-#: maps/random/rmbiome/generic/tropic.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Explore the mysterious tropics. An extremely green, but also extremely humid"
-" environment awaits. The tall Toona trees look on disapprovingly at this "
-"invasion of their privacy and ferocious tigers are determined to defend "
-"their territory at all costs."
-msgstr "Taiscéal san teochrios rúndiamhair. Tá talamh an-ghlas a fháil ort, ach an-thais freisin. Féiceann na céadair rua ar neamhshuim ag an ionradh seo ar a bpríobháideacht agus tá tíogair fhíocmhara lena gcríoch á cosaint, is cuma cad a tharlaíonn."
-
-#: maps/random/rmbiome/generic/tropic.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Tropic"
-msgstr "An Teochrios"
-
-#: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Solidifying it's grip, the harsh cold has succeeded in freezing up the gulf."
-" The thick ice formed is capable of withstanding any weight."
-msgstr "Tá an fhuacht ag neartú, agus tá an camas anois ina reoite. Tá an leac oighir ina chionn an-thiubh agus is féidir léi aon mhéid a sheasamh."
-
-#: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Frozen Lake"
-msgstr "Loch Reoite"
-
-#: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"A late spring breeze ripples through the conifer forests of the Gulf of "
-"Bothnia. Herds of deer dot the landscape and playful rabbits frolick in the "
-"undergrowth."
-msgstr "Seideann siorradh earraigh trí na coillte buaircíneacha i gCamas na Boitne. Ritheann tréada fia ar feadh ant talaimh agus tá coiníní go leor sna fáschoillte."
-
-#: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Late Spring"
-msgstr "Deireadh Earraigh"
-
-#: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Winter has set in, carpeting the land with its first snow. The still "
-"unfrozen gulf offers great fishing opportunities."
-msgstr "Tá an geimhreadh ag teacht, agus tá an príomh-sneachta ar feadh an talaimh. Ach níl an camas ina reoite fós, agus tá sé lán le deiseanna iascaireachta."
-
-#: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Winter"
-msgstr "Geimhreadh"
-
-#: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"Spring in the highlands, yet the heat has already begun making itself felt. "
-"The short-lived green grasses are on the retreat, paving the way for "
-"scorching summer."
-msgstr "Tá an t-éarrach ar na ardchláir, ach níl a theocht fós mothaithe. Tá na glasfhéara neamhbhuana ag cúlú, agus beidh an samhradh loiscneach ag teacht go luath."
-
-#: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Spring"
-msgstr "Earrach"
-
-#: maps/random/rmbiome/persian_highlands/summer.jsonDescription.Description
-msgctxt "biome definition"
-msgid ""
-"An arid, hostile land. The blistering heat has baked the ground to a sickly "
-"brown and the remaining trees struggle for survival."
-msgstr "Talamh tur, naimhdeach. Tá an talamh bácáilte fós ag an dteocht loiscneach agus tá sé tinn-dhonn anois, agus troideann na crainn ar son a marthanas gach lá."
-
-#: maps/random/rmbiome/persian_highlands/summer.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Summer"
-msgstr "Samhradh"

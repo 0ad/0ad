@@ -1,5 +1,5 @@
-/* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*-
- * vim: set ts=8 sts=4 et sw=4 tw=99:
+/* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+ * vim: set ts=8 sts=2 et sw=2 tw=80:
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
@@ -58,19 +58,19 @@ struct PostOrder {
     EdgeVector edges;
 
     OriginAndEdges(const Node& node, EdgeVector&& edges)
-        : origin(node), edges(mozilla::Move(edges)) {}
+        : origin(node), edges(std::move(edges)) {}
 
     OriginAndEdges(const OriginAndEdges& rhs) = delete;
     OriginAndEdges& operator=(const OriginAndEdges& rhs) = delete;
 
     OriginAndEdges(OriginAndEdges&& rhs)
-        : origin(rhs.origin), edges(mozilla::Move(rhs.edges)) {
+        : origin(rhs.origin), edges(std::move(rhs.edges)) {
       MOZ_ASSERT(&rhs != this, "self-move disallowed");
     }
 
     OriginAndEdges& operator=(OriginAndEdges&& rhs) {
       this->~OriginAndEdges();
-      new (this) OriginAndEdges(mozilla::Move(rhs));
+      new (this) OriginAndEdges(std::move(rhs));
       return *this;
     }
   };
@@ -90,7 +90,9 @@ struct PostOrder {
                                        js::UniquePtr<EdgeRange>& range) {
     MOZ_ASSERT(range);
     for (; !range->empty(); range->popFront()) {
-      if (!edges.append(mozilla::Move(range->front()))) return false;
+      if (!edges.append(std::move(range->front()))) {
+        return false;
+      }
     }
     return true;
   }
@@ -99,7 +101,7 @@ struct PostOrder {
     EdgeVector edges;
     auto range = node.edges(cx, /* wantNames */ false);
     return range && fillEdgesFromRange(edges, range) &&
-           stack.append(OriginAndEdges(node, mozilla::Move(edges)));
+           stack.append(OriginAndEdges(node, std::move(edges)));
   }
 
  public:
@@ -119,13 +121,12 @@ struct PostOrder {
   {
   }
 
-  // Initialize this traversal object. Return false on OOM.
-  MOZ_MUST_USE bool init() { return seen.init(); }
-
   // Add `node` as a starting point for the traversal. You may add
   // as many starting points as you like. Returns false on OOM.
   MOZ_MUST_USE bool addStart(const Node& node) {
-    if (!seen.put(node)) return false;
+    if (!seen.put(node)) {
+      return false;
+    }
     return pushForTraversing(node);
   }
 
@@ -150,19 +151,25 @@ struct PostOrder {
       auto& edges = stack.back().edges;
 
       if (edges.empty()) {
-        if (!onNode(origin)) return false;
+        if (!onNode(origin)) {
+          return false;
+        }
         stack.popBack();
         continue;
       }
 
-      Edge edge = mozilla::Move(edges.back());
+      Edge edge = std::move(edges.back());
       edges.popBack();
 
-      if (!onEdge(origin, edge)) return false;
+      if (!onEdge(origin, edge)) {
+        return false;
+      }
 
       auto ptr = seen.lookupForAdd(edge.referent);
       // We've already seen this node, don't follow its edges.
-      if (ptr) continue;
+      if (ptr) {
+        continue;
+      }
 
       // Mark the referent as seen and follow its edges.
       if (!seen.add(ptr, edge.referent) || !pushForTraversing(edge.referent)) {

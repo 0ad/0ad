@@ -1,5 +1,5 @@
-/* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*-
- * vim: set ts=8 sts=4 et sw=4 tw=99:
+/* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+ * vim: set ts=8 sts=2 et sw=2 tw=80:
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
@@ -13,6 +13,7 @@
 
 #include "js/AllocPolicy.h"
 #include "js/UbiNodeBreadthFirst.h"
+#include "js/UniquePtr.h"
 #include "js/Vector.h"
 
 namespace JS {
@@ -27,7 +28,7 @@ struct JS_PUBLIC_API BackEdge {
   EdgeName name_;
 
  public:
-  using Ptr = mozilla::UniquePtr<BackEdge, JS::DeletePolicy<BackEdge>>;
+  using Ptr = js::UniquePtr<BackEdge>;
 
   BackEdge() : predecessor_(), name_(nullptr) {}
 
@@ -36,7 +37,7 @@ struct JS_PUBLIC_API BackEdge {
     MOZ_ASSERT(!name_);
 
     predecessor_ = predecessor;
-    name_ = mozilla::Move(edge.name);
+    name_ = std::move(edge.name);
     return true;
   }
 
@@ -44,13 +45,13 @@ struct JS_PUBLIC_API BackEdge {
   BackEdge& operator=(const BackEdge&) = delete;
 
   BackEdge(BackEdge&& rhs)
-      : predecessor_(rhs.predecessor_), name_(mozilla::Move(rhs.name_)) {
+      : predecessor_(rhs.predecessor_), name_(std::move(rhs.name_)) {
     MOZ_ASSERT(&rhs != this);
   }
 
   BackEdge& operator=(BackEdge&& rhs) {
     this->~BackEdge();
-    new (this) BackEdge(Move(rhs));
+    new (this) BackEdge(std::move(rhs));
     return *this;
   }
 
@@ -109,9 +110,13 @@ struct JS_PUBLIC_API ShortestPaths {
                  traversal.visited.has(origin));
       MOZ_ASSERT(totalPathsRecorded < totalMaxPathsToRecord);
 
-      if (first && !back->init(origin, edge)) return false;
+      if (first && !back->init(origin, edge)) {
+        return false;
+      }
 
-      if (!shortestPaths.targets_.has(edge.referent)) return true;
+      if (!shortestPaths.targets_.has(edge.referent)) {
+        return true;
+      }
 
       // If `first` is true, then we moved the edge's name into `back` in
       // the above call to `init`. So clone that back edge to get the
@@ -122,12 +127,17 @@ struct JS_PUBLIC_API ShortestPaths {
 
       if (first) {
         BackEdgeVector paths;
-        if (!paths.reserve(shortestPaths.maxNumPaths_)) return false;
-        auto cloned = back->clone();
-        if (!cloned) return false;
-        paths.infallibleAppend(mozilla::Move(cloned));
-        if (!shortestPaths.paths_.putNew(edge.referent, mozilla::Move(paths)))
+        if (!paths.reserve(shortestPaths.maxNumPaths_)) {
           return false;
+        }
+        auto cloned = back->clone();
+        if (!cloned) {
+          return false;
+        }
+        paths.infallibleAppend(std::move(cloned));
+        if (!shortestPaths.paths_.putNew(edge.referent, std::move(paths))) {
+          return false;
+        }
         totalPathsRecorded++;
       } else {
         auto ptr = shortestPaths.paths_.lookup(edge.referent);
@@ -139,15 +149,19 @@ struct JS_PUBLIC_API ShortestPaths {
                    "saw it.");
 
         if (ptr->value().length() < shortestPaths.maxNumPaths_) {
-          BackEdge::Ptr thisBackEdge(js_new<BackEdge>());
-          if (!thisBackEdge || !thisBackEdge->init(origin, edge)) return false;
-          ptr->value().infallibleAppend(mozilla::Move(thisBackEdge));
+          auto thisBackEdge = js::MakeUnique<BackEdge>();
+          if (!thisBackEdge || !thisBackEdge->init(origin, edge)) {
+            return false;
+          }
+          ptr->value().infallibleAppend(std::move(thisBackEdge));
           totalPathsRecorded++;
         }
       }
 
       MOZ_ASSERT(totalPathsRecorded <= totalMaxPathsToRecord);
-      if (totalPathsRecorded == totalMaxPathsToRecord) traversal.stop();
+      if (totalPathsRecorded == totalMaxPathsToRecord) {
+        traversal.stop();
+      }
 
       return true;
     }
@@ -175,17 +189,11 @@ struct JS_PUBLIC_API ShortestPaths {
   ShortestPaths(uint32_t maxNumPaths, const Node& root, NodeSet&& targets)
       : maxNumPaths_(maxNumPaths),
         root_(root),
-        targets_(mozilla::Move(targets)),
-        paths_(),
+        targets_(std::move(targets)),
+        paths_(targets_.count()),
         backEdges_() {
     MOZ_ASSERT(maxNumPaths_ > 0);
     MOZ_ASSERT(root_);
-    MOZ_ASSERT(targets_.initialized());
-  }
-
-  bool initialized() const {
-    return targets_.initialized() && paths_.initialized() &&
-           backEdges_.initialized();
   }
 
  public:
@@ -194,15 +202,15 @@ struct JS_PUBLIC_API ShortestPaths {
   ShortestPaths(ShortestPaths&& rhs)
       : maxNumPaths_(rhs.maxNumPaths_),
         root_(rhs.root_),
-        targets_(mozilla::Move(rhs.targets_)),
-        paths_(mozilla::Move(rhs.paths_)),
-        backEdges_(mozilla::Move(rhs.backEdges_)) {
+        targets_(std::move(rhs.targets_)),
+        paths_(std::move(rhs.paths_)),
+        backEdges_(std::move(rhs.backEdges_)) {
     MOZ_ASSERT(this != &rhs, "self-move is not allowed");
   }
 
   ShortestPaths& operator=(ShortestPaths&& rhs) {
     this->~ShortestPaths();
-    new (this) ShortestPaths(mozilla::Move(rhs));
+    new (this) ShortestPaths(std::move(rhs));
     return *this;
   }
 
@@ -237,34 +245,29 @@ struct JS_PUBLIC_API ShortestPaths {
     MOZ_ASSERT(targets.count() > 0);
     MOZ_ASSERT(maxNumPaths > 0);
 
-    size_t count = targets.count();
-    ShortestPaths paths(maxNumPaths, root, mozilla::Move(targets));
-    if (!paths.paths_.init(count)) return mozilla::Nothing();
+    ShortestPaths paths(maxNumPaths, root, std::move(targets));
 
     Handler handler(paths);
     Traversal traversal(cx, handler, noGC);
     traversal.wantNames = true;
-    if (!traversal.init() || !traversal.addStart(root) || !traversal.traverse())
+    if (!traversal.addStart(root) || !traversal.traverse()) {
       return mozilla::Nothing();
+    }
 
     // Take ownership of the back edges we created while traversing the
     // graph so that we can follow them from `paths_` and don't
     // use-after-free.
-    paths.backEdges_ = mozilla::Move(traversal.visited);
+    paths.backEdges_ = std::move(traversal.visited);
 
-    MOZ_ASSERT(paths.initialized());
-    return mozilla::Some(mozilla::Move(paths));
+    return mozilla::Some(std::move(paths));
   }
 
   /**
-   * Get a range that iterates over each target node we searched for retaining
-   * paths for. The returned range must not outlive the `ShortestPaths`
+   * Get an iterator over each target node we searched for retaining paths
+   * for. The returned iterator must not outlive the `ShortestPaths`
    * instance.
    */
-  NodeSet::Range eachTarget() const {
-    MOZ_ASSERT(initialized());
-    return targets_.all();
-  }
+  NodeSet::Iterator targetIter() const { return targets_.iter(); }
 
   /**
    * Invoke the provided functor/lambda/callable once for each retaining path
@@ -278,13 +281,14 @@ struct JS_PUBLIC_API ShortestPaths {
    */
   template <class Func>
   MOZ_MUST_USE bool forEachPath(const Node& target, Func func) {
-    MOZ_ASSERT(initialized());
     MOZ_ASSERT(targets_.has(target));
 
     auto ptr = paths_.lookup(target);
 
     // We didn't find any paths to this target, so nothing to do here.
-    if (!ptr) return true;
+    if (!ptr) {
+      return true;
+    }
 
     MOZ_ASSERT(ptr->value().length() <= maxNumPaths_);
 
@@ -292,7 +296,9 @@ struct JS_PUBLIC_API ShortestPaths {
     for (const auto& backEdge : ptr->value()) {
       path.clear();
 
-      if (!path.append(backEdge.get())) return false;
+      if (!path.append(backEdge.get())) {
+        return false;
+      }
 
       Node here = backEdge->predecessor();
       MOZ_ASSERT(here);
@@ -300,14 +306,18 @@ struct JS_PUBLIC_API ShortestPaths {
       while (here != root_) {
         auto p = backEdges_.lookup(here);
         MOZ_ASSERT(p);
-        if (!path.append(&p->value())) return false;
+        if (!path.append(&p->value())) {
+          return false;
+        }
         here = p->value().predecessor();
         MOZ_ASSERT(here);
       }
 
       path.reverse();
 
-      if (!func(path)) return false;
+      if (!func(path)) {
+        return false;
+      }
     }
 
     return true;

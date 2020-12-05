@@ -133,6 +133,8 @@ class SplayTree {
       mRoot->mRight->mParent = mRoot;
     }
 
+    last->mLeft = nullptr;
+    last->mRight = nullptr;
     return last;
   }
 

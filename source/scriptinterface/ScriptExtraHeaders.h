@@ -46,10 +46,20 @@
 #endif
 
 #include "jsfriendapi.h"
+
+#include "js/ArrayBuffer.h"
 #include "js/Conversions.h"
+#include "js/ContextOptions.h"
+#include "js/ForOfIterator.h"
 #include "js/GCAPI.h"
+#include "js/JSON.h"
 #include "js/StructuredClone.h"
 #include "js/Proxy.h"
+#include "js/Warnings.h"
+
+// CompileFunction & Evaluate
+#include "js/CompilationAndEvaluation.h"
+#include "js/SourceText.h"
 
 #undef signbit
 

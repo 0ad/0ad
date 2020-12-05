@@ -1,10 +1,12 @@
-/* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*-
- * vim: set ts=8 sts=4 et sw=4 tw=99:
+/* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+ * vim: set ts=8 sts=2 et sw=2 tw=80:
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 /*
+ * [SMDOC] JS::CallArgs API
+ *
  * Helper classes encapsulating access to the callee, |this| value, arguments,
  * and argument count for a call/construct operation.
  *
@@ -46,10 +48,7 @@
  *
  * It's possible (albeit deprecated) to manually index into |vp| to access the
  * callee, |this|, and arguments of a function, and to set its return value.
- * It's also possible to use the supported API of JS_CALLEE, JS_THIS, JS_ARGV,
- * JS_RVAL, and JS_SET_RVAL to the same ends.
- *
- * But neither API has the error-handling or moving-GC correctness of CallArgs.
+ * This does not have the error-handling or moving-GC correctness of CallArgs.
  * New code should use CallArgs instead whenever possible.
  *
  * The eventual plan is to change JSNative to take |const CallArgs&| directly,
@@ -74,7 +73,7 @@
 #include "js/Value.h"
 
 /* Typedef for native functions called by the JS VM. */
-typedef bool (*JSNative)(JSContext* cx, unsigned argc, JS::Value* vp);
+using JSNative = bool (*)(JSContext* cx, unsigned argc, JS::Value* vp);
 
 namespace JS {
 
@@ -86,7 +85,8 @@ namespace detail {
  * Compute |this| for the |vp| inside a JSNative, either boxing primitives or
  * replacing with the global object as necessary.
  */
-extern JS_PUBLIC_API Value ComputeThis(JSContext* cx, JS::Value* vp);
+extern JS_PUBLIC_API bool ComputeThis(JSContext* cx, JS::Value* vp,
+                                      MutableHandleObject thisObject);
 
 #ifdef JS_DEBUG
 extern JS_PUBLIC_API void CheckIsValidConstructible(const Value& v);
@@ -158,10 +158,14 @@ class MOZ_STACK_CLASS CallArgsBase {
   // CALLING/CONSTRUCTING-DIFFERENTIATIONS
 
   bool isConstructing() const {
-    if (!argv_[-1].isMagic()) return false;
+    if (!argv_[-1].isMagic()) {
+      return false;
+    }
 
 #ifdef JS_DEBUG
-    if (!this->usedRval()) CheckIsValidConstructible(calleev());
+    if (!this->usedRval()) {
+      CheckIsValidConstructible(calleev());
+    }
 #endif
 
     return true;
@@ -187,10 +191,13 @@ class MOZ_STACK_CLASS CallArgsBase {
     return HandleValue::fromMarkedLocation(&argv_[-1]);
   }
 
-  Value computeThis(JSContext* cx) const {
-    if (thisv().isObject()) return thisv();
+  bool computeThis(JSContext* cx, MutableHandleObject thisObject) const {
+    if (thisv().isObject()) {
+      thisObject.set(&thisv().toObject());
+      return true;
+    }
 
-    return ComputeThis(cx, base());
+    return ComputeThis(cx, base(), thisObject);
   }
 
   // ARGUMENTS
@@ -238,6 +245,13 @@ class MOZ_STACK_CLASS CallArgsBase {
     this->setUsedRval();
     return MutableHandleValue::fromMarkedLocation(&argv_[-2]);
   }
+
+  /*
+   * Returns true if there are at least |required| arguments passed in. If
+   * false, it reports an error message on the context.
+   */
+  JS_PUBLIC_API inline bool requireAtLeast(JSContext* cx, const char* fnname,
+                                           unsigned required) const;
 
  public:
   // These methods are publicly exposed, but they are *not* to be used when
@@ -293,21 +307,39 @@ class MOZ_STACK_CLASS CallArgs
     args.constructing_ = constructing;
     args.ignoresReturnValue_ = ignoresReturnValue;
 #ifdef DEBUG
-    MOZ_ASSERT(ValueIsNotGray(args.thisv()));
-    MOZ_ASSERT(ValueIsNotGray(args.calleev()));
-    for (unsigned i = 0; i < argc; ++i) MOZ_ASSERT(ValueIsNotGray(argv[i]));
+    AssertValueIsNotGray(args.thisv());
+    AssertValueIsNotGray(args.calleev());
+    for (unsigned i = 0; i < argc; ++i) {
+      AssertValueIsNotGray(argv[i]);
+    }
 #endif
     return args;
   }
 
  public:
   /*
-   * Returns true if there are at least |required| arguments passed in. If
-   * false, it reports an error message on the context.
+   * Helper for requireAtLeast to report the actual exception.  Public
+   * so we can call it from CallArgsBase and not need multiple
+   * per-template instantiations of it.
    */
-  JS_PUBLIC_API bool requireAtLeast(JSContext* cx, const char* fnname,
-                                    unsigned required) const;
+  static JS_PUBLIC_API void reportMoreArgsNeeded(JSContext* cx,
+                                                 const char* fnname,
+                                                 unsigned required,
+                                                 unsigned actual);
 };
+
+namespace detail {
+template <class WantUsedRval>
+JS_PUBLIC_API inline bool CallArgsBase<WantUsedRval>::requireAtLeast(
+    JSContext* cx, const char* fnname, unsigned required) const {
+  if (MOZ_LIKELY(required <= length())) {
+    return true;
+  }
+
+  CallArgs::reportMoreArgsNeeded(cx, fnname, required, length());
+  return false;
+}
+}  // namespace detail
 
 MOZ_ALWAYS_INLINE CallArgs CallArgsFromVp(unsigned argc, Value* vp) {
   return CallArgs::create(argc, vp + 2, vp[1].isMagic(JS_IS_CONSTRUCTING));
@@ -324,48 +356,5 @@ MOZ_ALWAYS_INLINE CallArgs CallArgsFromSp(unsigned stackSlots, Value* sp,
 }
 
 }  // namespace JS
-
-/*
- * Macros to hide interpreter stack layout details from a JSNative using its
- * JS::Value* vp parameter.  DO NOT USE THESE!  Instead use JS::CallArgs and
- * friends, above.  These macros will be removed when we change JSNative to
- * take a const JS::CallArgs&.
- */
-
-/*
- * Return |this| if |this| is an object.  Otherwise, return the global object
- * if |this| is null or undefined, and finally return a boxed version of any
- * other primitive.
- *
- * Note: if this method returns null, an error has occurred and must be
- * propagated or caught.
- */
-MOZ_ALWAYS_INLINE JS::Value JS_THIS(JSContext* cx, JS::Value* vp) {
-  return vp[1].isPrimitive() ? JS::detail::ComputeThis(cx, vp) : vp[1];
-}
-
-/*
- * A note on JS_THIS_OBJECT: no equivalent method is part of the CallArgs
- * interface, and we're unlikely to add one (functions shouldn't be implicitly
- * exposing the global object to arbitrary callers).  Continue using |vp|
- * directly for this case, but be aware this API will eventually be replaced
- * with a function that operates directly upon |args.thisv()|.
- */
-#define JS_THIS_OBJECT(cx, vp) (JS_THIS(cx, vp).toObjectOrNull())
-
-/*
- * |this| is passed to functions in ES5 without change.  Functions themselves
- * do any post-processing they desire to box |this|, compute the global object,
- * &c.  This macro retrieves a function's unboxed |this| value.
- *
- * This macro must not be used in conjunction with JS_THIS or JS_THIS_OBJECT,
- * or vice versa.  Either use the provided this value with this macro, or
- * compute the boxed |this| value using those.  JS_THIS_VALUE must not be used
- * if the function is being called as a constructor.
- *
- * But: DO NOT USE THIS!  Instead use JS::CallArgs::thisv(), above.
- *
- */
-#define JS_THIS_VALUE(cx, vp) ((vp)[1])
 
 #endif /* js_CallArgs_h */

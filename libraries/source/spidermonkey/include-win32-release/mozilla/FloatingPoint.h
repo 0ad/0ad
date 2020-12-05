@@ -37,34 +37,36 @@ namespace mozilla {
  * compiler bustage, particularly PGO-specific bustage.
  */
 
-struct FloatTypeTraits {
+namespace detail {
+
+/*
+ * These implementations assume float/double are 32/64-bit single/double
+ * format number types compatible with the IEEE-754 standard.  C++ doesn't
+ * require this, but we required it in implementations of these algorithms that
+ * preceded this header, so we shouldn't break anything to continue doing so.
+ */
+template <typename T>
+struct FloatingPointTrait;
+
+template <>
+struct FloatingPointTrait<float> {
+ protected:
   using Bits = uint32_t;
 
-  static constexpr unsigned kExponentBias = 127;
-  static constexpr unsigned kExponentShift = 23;
-
-  static constexpr Bits kSignBit = 0x80000000UL;
-  static constexpr Bits kExponentBits = 0x7F800000UL;
-  static constexpr Bits kSignificandBits = 0x007FFFFFUL;
+  static constexpr unsigned kExponentWidth = 8;
+  static constexpr unsigned kSignificandWidth = 23;
 };
 
-struct DoubleTypeTraits {
+template <>
+struct FloatingPointTrait<double> {
+ protected:
   using Bits = uint64_t;
 
-  static constexpr unsigned kExponentBias = 1023;
-  static constexpr unsigned kExponentShift = 52;
-
-  static constexpr Bits kSignBit = 0x8000000000000000ULL;
-  static constexpr Bits kExponentBits = 0x7ff0000000000000ULL;
-  static constexpr Bits kSignificandBits = 0x000fffffffffffffULL;
+  static constexpr unsigned kExponentWidth = 11;
+  static constexpr unsigned kSignificandWidth = 52;
 };
 
-template <typename T>
-struct SelectTrait;
-template <>
-struct SelectTrait<float> : public FloatTypeTraits {};
-template <>
-struct SelectTrait<double> : public DoubleTypeTraits {};
+}  // namespace detail
 
 /*
  *  This struct contains details regarding the encoding of floating-point
@@ -93,29 +95,63 @@ struct SelectTrait<double> : public DoubleTypeTraits {};
  *  http://en.wikipedia.org/wiki/Floating_point#IEEE_754:_floating_point_in_modern_computers
  */
 template <typename T>
-struct FloatingPoint : public SelectTrait<T> {
-  using Base = SelectTrait<T>;
+struct FloatingPoint final : private detail::FloatingPointTrait<T> {
+ private:
+  using Base = detail::FloatingPointTrait<T>;
+
+ public:
+  /**
+   * An unsigned integral type suitable for accessing the bitwise representation
+   * of T.
+   */
   using Bits = typename Base::Bits;
 
-  static_assert((Base::kSignBit & Base::kExponentBits) == 0,
+  static_assert(sizeof(T) == sizeof(Bits), "Bits must be same size as T");
+
+  /** The bit-width of the exponent component of T. */
+  using Base::kExponentWidth;
+
+  /** The bit-width of the significand component of T. */
+  using Base::kSignificandWidth;
+
+  static_assert(1 + kExponentWidth + kSignificandWidth == CHAR_BIT * sizeof(T),
+                "sign bit plus bit widths should sum to overall bit width");
+
+  /**
+   * The exponent field in an IEEE-754 floating point number consists of bits
+   * encoding an unsigned number.  The *actual* represented exponent (for all
+   * values finite and not denormal) is that value, minus a bias |kExponentBias|
+   * so that a useful range of numbers is represented.
+   */
+  static constexpr unsigned kExponentBias = (1U << (kExponentWidth - 1)) - 1;
+
+  /**
+   * The amount by which the bits of the exponent-field in an IEEE-754 floating
+   * point number are shifted from the LSB of the floating point type.
+   */
+  static constexpr unsigned kExponentShift = kSignificandWidth;
+
+  /** The sign bit in the floating point representation. */
+  static constexpr Bits kSignBit = static_cast<Bits>(1)
+                                   << (CHAR_BIT * sizeof(Bits) - 1);
+
+  /** The exponent bits in the floating point representation. */
+  static constexpr Bits kExponentBits =
+      ((static_cast<Bits>(1) << kExponentWidth) - 1) << kSignificandWidth;
+
+  /** The significand bits in the floating point representation. */
+  static constexpr Bits kSignificandBits =
+      (static_cast<Bits>(1) << kSignificandWidth) - 1;
+
+  static_assert((kSignBit & kExponentBits) == 0,
                 "sign bit shouldn't overlap exponent bits");
-  static_assert((Base::kSignBit & Base::kSignificandBits) == 0,
+  static_assert((kSignBit & kSignificandBits) == 0,
                 "sign bit shouldn't overlap significand bits");
-  static_assert((Base::kExponentBits & Base::kSignificandBits) == 0,
+  static_assert((kExponentBits & kSignificandBits) == 0,
                 "exponent bits shouldn't overlap significand bits");
 
-  static_assert((Base::kSignBit | Base::kExponentBits |
-                 Base::kSignificandBits) == ~Bits(0),
+  static_assert((kSignBit | kExponentBits | kSignificandBits) == ~Bits(0),
                 "all bits accounted for");
-
-  /*
-   * These implementations assume float/double are 32/64-bit single/double
-   * format number types compatible with the IEEE-754 standard.  C++ don't
-   * require this to be the case.  But we required this in implementations of
-   * these algorithms that preceded this header, so we shouldn't break anything
-   * if we keep doing so.
-   */
-  static_assert(sizeof(T) == sizeof(Bits), "Bits must be same size as T");
 };
 
 /** Determines whether a float/double is NaN. */
@@ -517,15 +553,13 @@ static MOZ_ALWAYS_INLINE bool FuzzyEqualsMultiplicative(
 }
 
 /**
- * Returns true if the given value can be losslessly represented as an IEEE-754
- * single format number, false otherwise.  All NaN values are considered
- * representable (notwithstanding that the exact bit pattern of a double format
- * NaN value can't be exactly represented in single format).
- *
- * This function isn't inlined to avoid buggy optimizations by MSVC.
+ * Returns true if |aValue| can be losslessly represented as an IEEE-754 single
+ * precision number, false otherwise.  All NaN values are considered
+ * representable (even though the bit patterns of double precision NaNs can't
+ * all be exactly represented in single precision).
  */
 MOZ_MUST_USE
-extern MFBT_API bool IsFloat32Representable(double aFloat32);
+extern MFBT_API bool IsFloat32Representable(double aValue);
 
 } /* namespace mozilla */
 
