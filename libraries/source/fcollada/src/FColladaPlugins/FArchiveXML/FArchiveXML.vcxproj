@@ -323,100 +323,100 @@
     <_ProjectFileVersion>15.0.28307.799</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug DLL|Win32'">
-    <OutDir>$(ProjectDir)../Output/$(Configuration) $(Platform)/$(ProjectName)\</OutDir>
-    <IntDir>$(ProjectDir)../Output/$(Configuration) $(Platform)/$(ProjectName)/Intermediate\</IntDir>
+    <OutDir>$(ProjectDir)../Output\$(Configuration) $(Platform)\$(ProjectName)\</OutDir>
+    <IntDir>$(ProjectDir)../Output\$(Configuration) $(Platform)\$(ProjectName)/Intermediate\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release DLL|Win32'">
-    <OutDir>$(ProjectDir)../Output/$(Configuration) $(Platform)/$(ProjectName)\</OutDir>
-    <IntDir>$(ProjectDir)../Output/$(Configuration) $(Platform)/$(ProjectName)/Intermediate\</IntDir>
+    <OutDir>$(ProjectDir)../Output\$(Configuration) $(Platform)\$(ProjectName)\</OutDir>
+    <IntDir>$(ProjectDir)../Output\$(Configuration) $(Platform)\$(ProjectName)/Intermediate\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Retail DLL|Win32'">
-    <OutDir>$(ProjectDir)../Output/$(Configuration) $(Platform)/$(ProjectName)\</OutDir>
-    <IntDir>$(ProjectDir)../Output/$(Configuration) $(Platform)/$(ProjectName)/Intermediate\</IntDir>
+    <OutDir>$(ProjectDir)../Output\$(Configuration) $(Platform)\$(ProjectName)\</OutDir>
+    <IntDir>$(ProjectDir)../Output\$(Configuration) $(Platform)\$(ProjectName)/Intermediate\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(ProjectDir)../Output/$(Configuration) $(Platform)/$(ProjectName)\</OutDir>
-    <IntDir>$(ProjectDir)../Output/$(Configuration) $(Platform)/$(ProjectName)/Intermediate\</IntDir>
+    <OutDir>$(ProjectDir)../Output\$(Configuration) $(Platform)\$(ProjectName)\</OutDir>
+    <IntDir>$(ProjectDir)../Output\$(Configuration) $(Platform)\$(ProjectName)/Intermediate\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(ProjectDir)../Output/$(Configuration) $(Platform)/$(ProjectName)\</OutDir>
-    <IntDir>$(ProjectDir)../Output/$(Configuration) $(Platform)/$(ProjectName)/Intermediate\</IntDir>
+    <OutDir>$(ProjectDir)../Output\$(Configuration) $(Platform)\$(ProjectName)\</OutDir>
+    <IntDir>$(ProjectDir)../Output\$(Configuration) $(Platform)\$(ProjectName)/Intermediate\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Retail|Win32'">
-    <OutDir>$(ProjectDir)../Output/$(Configuration) $(Platform)/$(ProjectName)\</OutDir>
-    <IntDir>$(ProjectDir)../Output/$(Configuration) $(Platform)/$(ProjectName)/Intermediate\</IntDir>
+    <OutDir>$(ProjectDir)../Output\$(Configuration) $(Platform)\$(ProjectName)\</OutDir>
+    <IntDir>$(ProjectDir)../Output\$(Configuration) $(Platform)\$(ProjectName)/Intermediate\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Unicode|Win32'">
-    <OutDir>$(ProjectDir)../Output/$(Configuration) $(Platform)/$(ProjectName)\</OutDir>
-    <IntDir>$(ProjectDir)../Output/$(Configuration) $(Platform)/$(ProjectName)/Intermediate\</IntDir>
+    <OutDir>$(ProjectDir)../Output\$(Configuration) $(Platform)\$(ProjectName)\</OutDir>
+    <IntDir>$(ProjectDir)../Output\$(Configuration) $(Platform)\$(ProjectName)/Intermediate\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Unicode DLL|Win32'">
-    <OutDir>$(ProjectDir)../Output/$(Configuration) $(Platform)/$(ProjectName)\</OutDir>
-    <IntDir>$(ProjectDir)../Output/$(Configuration) $(Platform)/$(ProjectName)/Intermediate\</IntDir>
+    <OutDir>$(ProjectDir)../Output\$(Configuration) $(Platform)\$(ProjectName)\</OutDir>
+    <IntDir>$(ProjectDir)../Output\$(Configuration) $(Platform)\$(ProjectName)/Intermediate\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Unicode|Win32'">
-    <OutDir>$(ProjectDir)../Output/$(Configuration) $(Platform)/$(ProjectName)\</OutDir>
-    <IntDir>$(ProjectDir)../Output/$(Configuration) $(Platform)/$(ProjectName)/Intermediate\</IntDir>
+    <OutDir>$(ProjectDir)../Output\$(Configuration) $(Platform)\$(ProjectName)\</OutDir>
+    <IntDir>$(ProjectDir)../Output\$(Configuration) $(Platform)\$(ProjectName)/Intermediate\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Unicode DLL|Win32'">
-    <OutDir>$(ProjectDir)../Output/$(Configuration) $(Platform)/$(ProjectName)\</OutDir>
-    <IntDir>$(ProjectDir)../Output/$(Configuration) $(Platform)/$(ProjectName)/Intermediate\</IntDir>
+    <OutDir>$(ProjectDir)../Output\$(Configuration) $(Platform)\$(ProjectName)\</OutDir>
+    <IntDir>$(ProjectDir)../Output\$(Configuration) $(Platform)\$(ProjectName)/Intermediate\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Retail Unicode|Win32'">
-    <OutDir>$(ProjectDir)../Output/$(Configuration) $(Platform)/$(ProjectName)\</OutDir>
-    <IntDir>$(ProjectDir)../Output/$(Configuration) $(Platform)/$(ProjectName)/Intermediate\</IntDir>
+    <OutDir>$(ProjectDir)../Output\$(Configuration) $(Platform)\$(ProjectName)\</OutDir>
+    <IntDir>$(ProjectDir)../Output\$(Configuration) $(Platform)\$(ProjectName)/Intermediate\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Retail Unicode DLL|Win32'">
-    <OutDir>$(ProjectDir)../Output/$(Configuration) $(Platform)/$(ProjectName)\</OutDir>
-    <IntDir>$(ProjectDir)../Output/$(Configuration) $(Platform)/$(ProjectName)/Intermediate\</IntDir>
+    <OutDir>$(ProjectDir)../Output\$(Configuration) $(Platform)\$(ProjectName)\</OutDir>
+    <IntDir>$(ProjectDir)../Output\$(Configuration) $(Platform)\$(ProjectName)/Intermediate\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug DLL|x64'">
-    <OutDir>$(ProjectDir)../Output/$(Configuration) $(Platform)/$(ProjectName)\</OutDir>
-    <IntDir>$(ProjectDir)../Output/$(Configuration) $(Platform)/$(ProjectName)/Intermediate\</IntDir>
+    <OutDir>$(ProjectDir)../Output\$(Configuration) $(Platform)\$(ProjectName)\</OutDir>
+    <IntDir>$(ProjectDir)../Output\$(Configuration) $(Platform)\$(ProjectName)/Intermediate\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release DLL|x64'">
-    <OutDir>$(ProjectDir)../Output/$(Configuration) $(Platform)/$(ProjectName)\</OutDir>
-    <IntDir>$(ProjectDir)../Output/$(Configuration) $(Platform)/$(ProjectName)/Intermediate\</IntDir>
+    <OutDir>$(ProjectDir)../Output\$(Configuration) $(Platform)\$(ProjectName)\</OutDir>
+    <IntDir>$(ProjectDir)../Output\$(Configuration) $(Platform)\$(ProjectName)/Intermediate\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Retail DLL|x64'">
-    <OutDir>$(ProjectDir)../Output/$(Configuration) $(Platform)/$(ProjectName)\</OutDir>
-    <IntDir>$(ProjectDir)../Output/$(Configuration) $(Platform)/$(ProjectName)/Intermediate\</IntDir>
+    <OutDir>$(ProjectDir)../Output\$(Configuration) $(Platform)\$(ProjectName)\</OutDir>
+    <IntDir>$(ProjectDir)../Output\$(Configuration) $(Platform)\$(ProjectName)/Intermediate\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(ProjectDir)../Output/$(Configuration) $(Platform)/$(ProjectName)\</OutDir>
-    <IntDir>$(ProjectDir)../Output/$(Configuration) $(Platform)/$(ProjectName)/Intermediate\</IntDir>
+    <OutDir>$(ProjectDir)../Output\$(Configuration) $(Platform)\$(ProjectName)\</OutDir>
+    <IntDir>$(ProjectDir)../Output\$(Configuration) $(Platform)\$(ProjectName)/Intermediate\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(ProjectDir)../Output/$(Configuration) $(Platform)/$(ProjectName)\</OutDir>
-    <IntDir>$(ProjectDir)../Output/$(Configuration) $(Platform)/$(ProjectName)/Intermediate\</IntDir>
+    <OutDir>$(ProjectDir)../Output\$(Configuration) $(Platform)\$(ProjectName)\</OutDir>
+    <IntDir>$(ProjectDir)../Output\$(Configuration) $(Platform)\$(ProjectName)/Intermediate\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Retail|x64'">
-    <OutDir>$(ProjectDir)../Output/$(Configuration) $(Platform)/$(ProjectName)\</OutDir>
-    <IntDir>$(ProjectDir)../Output/$(Configuration) $(Platform)/$(ProjectName)/Intermediate\</IntDir>
+    <OutDir>$(ProjectDir)../Output\$(Configuration) $(Platform)\$(ProjectName)\</OutDir>
+    <IntDir>$(ProjectDir)../Output\$(Configuration) $(Platform)\$(ProjectName)/Intermediate\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Unicode|x64'">
-    <OutDir>$(ProjectDir)../Output/$(Configuration) $(Platform)/$(ProjectName)\</OutDir>
-    <IntDir>$(ProjectDir)../Output/$(Configuration) $(Platform)/$(ProjectName)/Intermediate\</IntDir>
+    <OutDir>$(ProjectDir)../Output\$(Configuration) $(Platform)\$(ProjectName)\</OutDir>
+    <IntDir>$(ProjectDir)../Output\$(Configuration) $(Platform)\$(ProjectName)/Intermediate\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Unicode DLL|x64'">
-    <OutDir>$(ProjectDir)../Output/$(Configuration) $(Platform)/$(ProjectName)\</OutDir>
-    <IntDir>$(ProjectDir)../Output/$(Configuration) $(Platform)/$(ProjectName)/Intermediate\</IntDir>
+    <OutDir>$(ProjectDir)../Output\$(Configuration) $(Platform)\$(ProjectName)\</OutDir>
+    <IntDir>$(ProjectDir)../Output\$(Configuration) $(Platform)\$(ProjectName)/Intermediate\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Unicode|x64'">
-    <OutDir>$(ProjectDir)../Output/$(Configuration) $(Platform)/$(ProjectName)\</OutDir>
-    <IntDir>$(ProjectDir)../Output/$(Configuration) $(Platform)/$(ProjectName)/Intermediate\</IntDir>
+    <OutDir>$(ProjectDir)../Output\$(Configuration) $(Platform)\$(ProjectName)\</OutDir>
+    <IntDir>$(ProjectDir)../Output\$(Configuration) $(Platform)\$(ProjectName)/Intermediate\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Unicode DLL|x64'">
-    <OutDir>$(ProjectDir)../Output/$(Configuration) $(Platform)/$(ProjectName)\</OutDir>
-    <IntDir>$(ProjectDir)../Output/$(Configuration) $(Platform)/$(ProjectName)/Intermediate\</IntDir>
+    <OutDir>$(ProjectDir)../Output\$(Configuration) $(Platform)\$(ProjectName)\</OutDir>
+    <IntDir>$(ProjectDir)../Output\$(Configuration) $(Platform)\$(ProjectName)/Intermediate\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Retail Unicode|x64'">
-    <OutDir>$(ProjectDir)../Output/$(Configuration) $(Platform)/$(ProjectName)\</OutDir>
-    <IntDir>$(ProjectDir)../Output/$(Configuration) $(Platform)/$(ProjectName)/Intermediate\</IntDir>
+    <OutDir>$(ProjectDir)../Output\$(Configuration) $(Platform)\$(ProjectName)\</OutDir>
+    <IntDir>$(ProjectDir)../Output\$(Configuration) $(Platform)\$(ProjectName)/Intermediate\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Retail Unicode DLL|x64'">
-    <OutDir>$(ProjectDir)../Output/$(Configuration) $(Platform)/$(ProjectName)\</OutDir>
-    <IntDir>$(ProjectDir)../Output/$(Configuration) $(Platform)/$(ProjectName)/Intermediate\</IntDir>
+    <OutDir>$(ProjectDir)../Output\$(Configuration) $(Platform)\$(ProjectName)\</OutDir>
+    <IntDir>$(ProjectDir)../Output\$(Configuration) $(Platform)\$(ProjectName)/Intermediate\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug DLL|Win32'">
     <ClCompile>
@@ -427,7 +427,6 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <DisableSpecificWarnings>4458;4457;4456;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
@@ -491,7 +490,6 @@
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <DisableSpecificWarnings>4458;4457;4456;%(DisableSpecificWarnings)</DisableSpecificWarnings>
@@ -553,12 +551,10 @@
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\..\..\win32\iconv\include;$(ProjectDir)..\..\..\..\..\win32\libxml2\include;$(ProjectDir)..\..\FCollada;$(ProjectDir)..\..\..\External;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <DisableSpecificWarnings>4458;4457;4456;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
@@ -574,12 +570,10 @@
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\..\..\win32\iconv\include;$(ProjectDir)..\..\..\..\..\win32\libxml2\include;$(ProjectDir)..\..\FCollada;$(ProjectDir)..\..\..\External;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;FCOLLADA_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <DisableSpecificWarnings>4458;4457;4456;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
@@ -685,14 +679,12 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\FCollada\LibXML/include;$(ProjectDir)..\..\FCollada;$(ProjectDir)..\..\..\External;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\..\..\win32\iconv\include;$(ProjectDir)..\..\..\..\..\win32\libxml2\include;$(ProjectDir)..\..\FCollada;$(ProjectDir)..\..\..\External;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;FCOLLADA_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
-      <TreatWarningAsError>true</TreatWarningAsError>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Lib>
@@ -710,13 +702,12 @@
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\FCollada\LibXML/include;$(ProjectDir)..\..\FCollada;$(ProjectDir)..\..\..\External;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\..\..\win32\iconv\include;$(ProjectDir)..\..\..\..\..\win32\libxml2\include;$(ProjectDir)..\..\FCollada;$(ProjectDir)..\..\..\External;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;FCOLLADA_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <ProgramDataBaseFileName>$(OutDir)FArchiveXML.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
-      <TreatWarningAsError>true</TreatWarningAsError>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Lib>
@@ -734,13 +725,12 @@
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\FCollada\LibXML/include;$(ProjectDir)..\..\FCollada;$(ProjectDir)..\..\..\External;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\..\..\win32\iconv\include;$(ProjectDir)..\..\..\..\..\win32\libxml2\include;$(ProjectDir)..\..\FCollada;$(ProjectDir)..\..\..\External;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;RETAIL;FCOLLADA_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <ProgramDataBaseFileName>$(OutDir)FArchiveXML.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
-      <TreatWarningAsError>true</TreatWarningAsError>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Lib>
@@ -756,14 +746,12 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\FCollada\LibXML/include;$(ProjectDir)..\..\FCollada;$(ProjectDir)..\..\..\External;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\..\..\win32\iconv\include;$(ProjectDir)..\..\..\..\..\win32\libxml2\include;$(ProjectDir)..\..\FCollada;$(ProjectDir)..\..\..\External;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
-      <TreatWarningAsError>true</TreatWarningAsError>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Lib>
@@ -781,13 +769,12 @@
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\FCollada\LibXML/include;$(ProjectDir)..\..\FCollada;$(ProjectDir)..\..\..\External;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\..\..\win32\iconv\include;$(ProjectDir)..\..\..\..\..\win32\libxml2\include;$(ProjectDir)..\..\FCollada;$(ProjectDir)..\..\..\External;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <ProgramDataBaseFileName>$(OutDir)FArchiveXML.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
-      <TreatWarningAsError>true</TreatWarningAsError>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Lib>
@@ -805,13 +792,12 @@
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\FCollada\LibXML/include;$(ProjectDir)..\..\FCollada;$(ProjectDir)..\..\..\External;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\..\..\win32\iconv\include;$(ProjectDir)..\..\..\..\..\win32\libxml2\include;$(ProjectDir)..\..\FCollada;$(ProjectDir)..\..\..\External;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;RETAIL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <ProgramDataBaseFileName>$(OutDir)FArchiveXML.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
-      <TreatWarningAsError>true</TreatWarningAsError>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Lib>
@@ -827,14 +813,12 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\FCollada\LibXML/include;$(ProjectDir)..\..\FCollada;$(ProjectDir)..\..\..\External;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\..\..\win32\iconv\include;$(ProjectDir)..\..\..\..\..\win32\libxml2\include;$(ProjectDir)..\..\FCollada;$(ProjectDir)..\..\..\External;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
-      <TreatWarningAsError>true</TreatWarningAsError>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Lib>
@@ -850,14 +834,12 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\FCollada\LibXML/include;$(ProjectDir)..\..\FCollada;$(ProjectDir)..\..\..\External;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\..\..\win32\iconv\include;$(ProjectDir)..\..\..\..\..\win32\libxml2\include;$(ProjectDir)..\..\FCollada;$(ProjectDir)..\..\..\External;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;FCOLLADA_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
-      <TreatWarningAsError>true</TreatWarningAsError>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Lib>
@@ -875,13 +857,12 @@
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\FCollada\LibXML/include;$(ProjectDir)..\..\FCollada;$(ProjectDir)..\..\..\External;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\..\..\win32\iconv\include;$(ProjectDir)..\..\..\..\..\win32\libxml2\include;$(ProjectDir)..\..\FCollada;$(ProjectDir)..\..\..\External;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <ProgramDataBaseFileName>$(OutDir)FArchiveXML.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
-      <TreatWarningAsError>true</TreatWarningAsError>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Lib>
@@ -899,13 +880,12 @@
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\FCollada\LibXML/include;$(ProjectDir)..\..\FCollada;$(ProjectDir)..\..\..\External;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\..\..\win32\iconv\include;$(ProjectDir)..\..\..\..\..\win32\libxml2\include;$(ProjectDir)..\..\FCollada;$(ProjectDir)..\..\..\External;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;FCOLLADA_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <ProgramDataBaseFileName>$(OutDir)FArchiveXML.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
-      <TreatWarningAsError>true</TreatWarningAsError>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Lib>
@@ -924,13 +904,12 @@
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\FCollada\LibXML/include;$(ProjectDir)..\..\FCollada;$(ProjectDir)..\..\..\External;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\..\..\win32\iconv\include;$(ProjectDir)..\..\..\..\..\win32\libxml2\include;$(ProjectDir)..\..\FCollada;$(ProjectDir)..\..\..\External;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;RETAIL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <ProgramDataBaseFileName>$(OutDir)FArchiveXML.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
-      <TreatWarningAsError>true</TreatWarningAsError>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Lib>
@@ -948,13 +927,12 @@
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\FCollada\LibXML/include;$(ProjectDir)..\..\FCollada;$(ProjectDir)..\..\..\External;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\..\..\win32\iconv\include;$(ProjectDir)..\..\..\..\..\win32\libxml2\include;$(ProjectDir)..\..\FCollada;$(ProjectDir)..\..\..\External;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;RETAIL;FCOLLADA_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <ProgramDataBaseFileName>$(OutDir)FArchiveXML.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
-      <TreatWarningAsError>true</TreatWarningAsError>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Lib>
