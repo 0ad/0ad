@@ -20,9 +20,6 @@ Trigger.prototype.InitCaptureTheRelic = function()
 	{
 		this.relics[i] = TriggerHelper.SpawnUnits(pickRandom(potentialSpawnPoints), catafalqueTemplates[i], 1, 0)[0];
 
-		let cmpResistance = Engine.QueryInterface(this.relics[i], IID_Resistance);
-		cmpResistance.SetInvulnerability(true);
-
 		let cmpPositionRelic = Engine.QueryInterface(this.relics[i], IID_Position);
 		cmpPositionRelic.SetYRotation(randomAngle());
 	}

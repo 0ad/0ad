@@ -384,13 +384,7 @@ UnitAI.prototype.UnitFsmSpec = {
 	},
 
 	"Order.Attack": function(msg) {
-		if (!this.TargetIsAlive(this.order.data.target))
-		{
-			this.FinishOrder();
-			return;
-		}
-
-		var type = this.GetBestAttackAgainst(this.order.data.target, this.order.data.allowCapture);
+		let type = this.GetBestAttackAgainst(this.order.data.target, this.order.data.allowCapture);
 		if (!type)
 		{
 			// Oops, we can't attack at all
@@ -743,7 +737,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 			if (!this.CheckFormationTargetAttackRange(target))
 			{
-				if (this.TargetIsAlive(target) && this.CheckTargetVisible(target))
+				if (this.CanAttack(target) && this.CheckTargetVisible(target))
 				{
 					this.SetNextState("COMBAT.APPROACHING");
 					return;
@@ -882,7 +876,7 @@ UnitAI.prototype.UnitFsmSpec = {
 			// TODO: on what should we base this range?
 			if (!this.CheckTargetRangeExplicit(msg.data.target, 0, 10))
 			{
-				if (!this.TargetIsAlive(msg.data.target) || !this.CheckTargetVisible(msg.data.target))
+				if (!this.CheckTargetVisible(msg.data.target))
 					this.FinishOrder();
 				else
 					// Out of range; move there in formation
@@ -1135,7 +1129,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					let allowCapture = this.order.data.allowCapture;
 					if (!this.CheckFormationTargetAttackRange(target))
 					{
-						if (this.TargetIsAlive(target) && this.CheckTargetVisible(target))
+						if (this.CanAttack(target) && this.CheckTargetVisible(target))
 						{
 							this.SetNextState("COMBAT.APPROACHING");
 							return true;
@@ -1157,7 +1151,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					let allowCapture = this.order.data.allowCapture;
 					if (!this.CheckFormationTargetAttackRange(target))
 					{
-						if (this.TargetIsAlive(target) && this.CheckTargetVisible(target))
+						if (this.CanAttack(target) && this.CheckTargetVisible(target))
 						{
 							this.SetNextState("COMBAT.APPROACHING");
 							return;
@@ -1396,7 +1390,7 @@ UnitAI.prototype.UnitFsmSpec = {
 			}
 			// if we already are targeting another unit still alive, finish with it first
 			if (this.order && (this.order.type == "WalkAndFight" || this.order.type == "Attack"))
-				if (this.order.data.target != msg.data.attacker && this.TargetIsAlive(msg.data.attacker))
+				if (this.order.data.target != msg.data.attacker && this.CanAttack(msg.data.attacker))
 					return;
 
 			var cmpIdentity = Engine.QueryInterface(this.entity, IID_Identity);
@@ -1665,7 +1659,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				},
 
 				"Timer": function(msg) {
-					if (!this.TargetIsAlive(this.isGuardOf))
+					if (!this.ShouldGuard(this.isGuardOf))
 					{
 						this.FinishOrder();
 						return;
@@ -1707,7 +1701,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				},
 
 				"Timer": function(msg) {
-					if (!this.TargetIsAlive(this.isGuardOf))
+					if (!this.ShouldGuard(this.isGuardOf))
 					{
 						this.FinishOrder();
 						return;
@@ -5185,6 +5179,16 @@ UnitAI.prototype.Guard = function(target, queued)
 	}
 
 	this.AddOrder("Guard", { "target": target, "force": false }, queued);
+};
+
+/**
+ * @return {boolean} - Whether it makes sense to guard the given entity.
+ */
+UnitAI.prototype.ShouldGuard = function(target)
+{
+	return this.TargetIsAlive(target) ||
+		Engine.QueryInterface(target, IID_Capturable) ||
+		Engine.QueryInterface(target, IID_StatusEffectsReceiver);
 };
 
 UnitAI.prototype.AddGuard = function(target)

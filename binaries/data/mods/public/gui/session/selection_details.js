@@ -120,6 +120,7 @@ function displaySingle(entState)
 
 	let showHealth = entState.hitpoints;
 	let showResource = entState.resourceSupply;
+	let showCapture = entState.capturePoints;
 
 	let healthSection = Engine.GetGUIObjectByName("healthSection");
 	let captureSection = Engine.GetGUIObjectByName("captureSection");
@@ -145,11 +146,13 @@ function displaySingle(entState)
 		captureSection.size = showResource ? sectionPosMiddle.size : sectionPosBottom.size;
 		resourceSection.size = showResource ? sectionPosBottom.size : sectionPosMiddle.size;
 	}
-	else
+	else if (showResource)
 	{
 		captureSection.size = sectionPosBottom.size;
 		resourceSection.size = sectionPosTop.size;
 	}
+	else if (showCapture)
+		captureSection.size = sectionPosTop.size;
 
 	// CapturePoints
 	captureSection.hidden = !entState.capturePoints;

@@ -155,7 +155,7 @@ var g_UnitActions =
 		},
 		"getActionInfo": function(entState, targetState)
 		{
-			if (!entState.attack || !targetState.hitpoints)
+			if (!entState.attack || !targetState.capturePoints)
 				return false;
 
 			return {
