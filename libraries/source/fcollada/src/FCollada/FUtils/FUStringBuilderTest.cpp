@@ -48,12 +48,6 @@ TESTSUITE_TEST(1, Modifications)
 TESTSUITE_TEST(2, ExtremeNumbers)
 	FUSStringBuilder builder;
 
-	builder.set(-10231.52f);
-	// Last time I checked: we had 6 digits of precision.
-	// If this one fails: the number of digits of precisions have changed
-	// and the strings below are now useless.
-	PassIf(IsEquivalent(builder.ToCharPtr(), "-10231.5"));
-
 	builder.set(123456789.0f);
 	PassIf(IsEquivalent(builder.ToCharPtr(), "1.23457e8"));
 
@@ -68,6 +62,12 @@ TESTSUITE_TEST(2, ExtremeNumbers)
 
 	builder.set(9.55e9f);
 	PassIf(IsEquivalent(builder.ToCharPtr(), "9.55e9"));
+
+	builder.set(1e-6);
+	PassIf(IsEquivalent(builder.ToCharPtr(), "0"));
+
+	builder.set(1e-3);
+	PassIf(IsEquivalent(builder.ToCharPtr(), "0.001"));
 
 	// Right now, the expected behavior for very small numbers is to output a zero.
 	builder.set(-1e-16f);
