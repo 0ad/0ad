@@ -33,6 +33,7 @@
 #include "ps/Replay.h"
 #include "ps/Util.h"
 #include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/ScriptExtraHeaders.h"
 
 /**
  * Filter too short replays (value in seconds).
@@ -85,7 +86,7 @@ bool VisualReplay::ReadCacheFile(const ScriptInterface& scriptInterface, JS::Mut
 	{
 		cachedReplaysObject.set(&cachedReplays.toObject());
 		bool isArray;
-		if (JS_IsArrayObject(rq.cx, cachedReplaysObject, &isArray) && isArray)
+		if (JS::IsArrayObject(rq.cx, cachedReplaysObject, &isArray) && isArray)
 			return true;
 	}
 
@@ -123,7 +124,7 @@ JS::HandleObject VisualReplay::ReloadReplayCache(const ScriptInterface& scriptIn
 	{
 		// Create list of files included in the cache
 		u32 cacheLength = 0;
-		JS_GetArrayLength(rq.cx, cachedReplaysObject, &cacheLength);
+		JS::GetArrayLength(rq.cx, cachedReplaysObject, &cacheLength);
 		for (u32 j = 0; j < cacheLength; ++j)
 		{
 			JS::RootedValue replay(rq.cx);
@@ -139,7 +140,7 @@ JS::HandleObject VisualReplay::ReloadReplayCache(const ScriptInterface& scriptIn
 		}
 	}
 
-	JS::RootedObject replays(rq.cx, JS_NewArrayObject(rq.cx, 0));
+	JS::RootedObject replays(rq.cx, JS::NewArrayObject(rq.cx, 0));
 	DirectoryNames directories;
 
 	if (GetDirectoryEntries(GetDirectoryPath(), nullptr, &directories) != INFO::OK)
@@ -236,7 +237,7 @@ JS::Value VisualReplay::GetReplays(const ScriptInterface& scriptInterface, bool 
 	ScriptInterface::CreateArray(rq, &replaysWithoutNullEntries);
 
 	u32 replaysLength = 0;
-	JS_GetArrayLength(rq.cx, replays, &replaysLength);
+	JS::GetArrayLength(rq.cx, replays, &replaysLength);
 	for (u32 j = 0, i = 0; j < replaysLength; ++j)
 	{
 		JS::RootedValue replay(rq.cx);
@@ -458,10 +459,10 @@ void VisualReplay::AddReplayToCache(const ScriptInterface& scriptInterface, cons
 
 	JS::RootedObject cachedReplaysObject(rq.cx);
 	if (!ReadCacheFile(scriptInterface, &cachedReplaysObject))
-		cachedReplaysObject = JS_NewArrayObject(rq.cx, 0);
+		cachedReplaysObject = JS::NewArrayObject(rq.cx, 0);
 
 	u32 cacheLength = 0;
-	JS_GetArrayLength(rq.cx, cachedReplaysObject, &cacheLength);
+	JS::GetArrayLength(rq.cx, cachedReplaysObject, &cacheLength);
 	JS_SetElement(rq.cx, cachedReplaysObject, cacheLength, replayData);
 
 	StoreCacheFile(scriptInterface, cachedReplaysObject);

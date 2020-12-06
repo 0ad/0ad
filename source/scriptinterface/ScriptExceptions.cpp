@@ -67,7 +67,7 @@ bool ScriptException::CatchPending(const ScriptRequest& rq)
 	}
 
 	std::stringstream msg;
-	msg << (JSREPORT_IS_EXCEPTION(report->flags) ? "JavaScript exception: " : "JavaScript error: ");
+	msg << "JavaScript error: ";
 	if (report->filename)
 	{
 		msg << report->filename;

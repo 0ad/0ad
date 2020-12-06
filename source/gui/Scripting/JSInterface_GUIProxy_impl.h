@@ -18,9 +18,9 @@
 // This file is included directly into actual implementation files.
 
 template <typename T>
-js::Class& JSI_GUIProxy<T>::ClassDefinition()
+JSClass& JSI_GUIProxy<T>::ClassDefinition()
 {
-	static js::Class c = PROXY_CLASS_DEF("GUIObjectProxy", JSCLASS_HAS_CACHED_PROTO(JSProto_Proxy) | JSCLASS_HAS_RESERVED_SLOTS(1));
+	static JSClass c = PROXY_CLASS_DEF("GUIObjectProxy", JSCLASS_HAS_CACHED_PROTO(JSProto_Proxy) | JSCLASS_HAS_RESERVED_SLOTS(1));
 	return c;
 }
 
@@ -123,23 +123,26 @@ bool JSI_GUIProxy<T>::set(JSContext* cx, JS::HandleObject proxy, JS::HandleId id
 {
 	T* e = static_cast<T*>(js::GetProxyPrivate(proxy.get()).toPrivate());
 	if (!e)
-		return result.fail(JSMSG_NOT_NONNULL_OBJECT);
+	{
+		LOGERROR("C++ GUI Object could not be found");
+		return result.fail(JSMSG_OBJECT_REQUIRED);
+	}
 
 	ScriptRequest rq(*ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface);
 
 	JS::RootedValue idval(rq.cx);
 	if (!JS_IdToValue(rq.cx, id, &idval))
-		return result.fail(JSMSG_NOT_NONNULL_OBJECT);
+		return result.fail(JSMSG_BAD_PROP_ID);
 
 	std::string propName;
 	if (!ScriptInterface::FromJSVal(rq, idval, propName))
-		return result.fail(JSMSG_UNDEFINED_PROP);
+		return result.fail(JSMSG_BAD_PROP_ID);
 
 	if (propName == "name")
 	{
 		std::string value;
 		if (!ScriptInterface::FromJSVal(rq, vp, value))
-			return result.fail(JSMSG_UNDEFINED_PROP);
+			return result.fail(JSMSG_BAD_PROP_ID);
 		e->SetName(value);
 		return result.succeed();
 	}
@@ -167,7 +170,7 @@ bool JSI_GUIProxy<T>::set(JSContext* cx, JS::HandleObject proxy, JS::HandleId id
 		return e->m_Settings[propName]->FromJSVal(rq, vp, true) ? result.succeed() : result.fail(JSMSG_USER_DEFINED_ERROR);
 
 	LOGERROR("Property '%s' does not exist!", propName.c_str());
-	return result.fail(JSMSG_UNDEFINED_PROP);
+	return result.fail(JSMSG_BAD_PROP_ID);
 }
 
 template<typename T>
@@ -175,17 +178,20 @@ bool JSI_GUIProxy<T>::delete_(JSContext* cx, JS::HandleObject proxy, JS::HandleI
 {
 	T* e = static_cast<T*>(js::GetProxyPrivate(proxy.get()).toPrivate());
 	if (!e)
-		return result.fail(JSMSG_NOT_NONNULL_OBJECT);
+	{
+		LOGERROR("C++ GUI Object could not be found");
+		return result.fail(JSMSG_OBJECT_REQUIRED);
+	}
 
 	ScriptRequest rq(*ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface);
 
 	JS::RootedValue idval(rq.cx);
 	if (!JS_IdToValue(rq.cx, id, &idval))
-		return result.fail(JSMSG_NOT_NONNULL_OBJECT);
+		return result.fail(JSMSG_BAD_PROP_ID);
 
 	std::string propName;
 	if (!ScriptInterface::FromJSVal(rq, idval, propName))
-		return result.fail(JSMSG_UNDEFINED_PROP);
+		return result.fail(JSMSG_BAD_PROP_ID);
 
 	// event handlers
 	if (propName.substr(0, 2) == "on")
@@ -196,5 +202,5 @@ bool JSI_GUIProxy<T>::delete_(JSContext* cx, JS::HandleObject proxy, JS::HandleI
 	}
 
 	LOGERROR("Only event handlers can be deleted from GUI objects!");
-	return result.fail(JSMSG_UNDEFINED_PROP);
+	return result.fail(JSMSG_BAD_PROP_ID);
 }

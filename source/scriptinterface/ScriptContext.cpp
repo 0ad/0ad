@@ -89,20 +89,15 @@ ScriptContext::ScriptContext(int contextSize, int heapGrowthBytesGCTrigger):
 {
 	ENSURE(ScriptEngine::IsInitialised() && "The ScriptEngine must be initialized before constructing any ScriptContexts!");
 
-	m_cx = JS_NewContext(contextSize, JS::DefaultNurseryBytes, nullptr);
+	m_cx = JS_NewContext(contextSize);
 	ENSURE(m_cx); // TODO: error handling
 
 	ENSURE(JS::InitSelfHostedCode(m_cx));
 
 	JS::SetGCSliceCallback(m_cx, GCSliceCallbackHook);
 
-	JS_SetGCParameter(m_cx, JSGC_MAX_MALLOC_BYTES, m_ContextSize);
 	JS_SetGCParameter(m_cx, JSGC_MAX_BYTES, m_ContextSize);
-	JS_SetGCParameter(m_cx, JSGC_MODE, JSGC_MODE_INCREMENTAL);
-
-	// The whole heap-growth mechanism seems to work only for non-incremental GCs.
-	// We disable it to make it more clear if full GCs happen triggered by this JSAPI internal mechanism.
-	JS_SetGCParameter(m_cx, JSGC_DYNAMIC_HEAP_GROWTH, false);
+	JS_SetGCParameter(m_cx, JSGC_MODE, JSGC_MODE_ZONE_INCREMENTAL);
 
 	JS_SetOffthreadIonCompilationEnabled(m_cx, true);
 
@@ -114,10 +109,7 @@ ScriptContext::ScriptContext(int contextSize, int heapGrowthBytesGCTrigger):
 	JS_SetGlobalJitCompilerOption(m_cx, JSJITCOMPILER_ION_ENABLE, 1);
 	JS_SetGlobalJitCompilerOption(m_cx, JSJITCOMPILER_BASELINE_ENABLE, 1);
 
-	JS::ContextOptionsRef(m_cx)
-		.setExtraWarnings(true)
-		.setWerror(false)
-		.setStrictMode(true);
+	JS::ContextOptionsRef(m_cx).setStrictMode(true);
 
 	ScriptEngine::GetSingleton().RegisterContext(m_cx);
 }

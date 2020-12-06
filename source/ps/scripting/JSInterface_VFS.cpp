@@ -23,6 +23,7 @@
 #include "ps/CLogger.h"
 #include "ps/CStr.h"
 #include "ps/Filesystem.h"
+#include "scriptinterface/ScriptExtraHeaders.h"
 #include "scriptinterface/ScriptInterface.h"
 
 #include <sstream>
@@ -58,7 +59,7 @@ struct BuildDirEntListState
 		cur_idx(0)
 	{
 		ScriptRequest rq(pScriptInterface);
-		filename_array = JS_NewArrayObject(rq.cx, JS::HandleValueArray::empty());
+		filename_array = JS::NewArrayObject(rq.cx, JS::HandleValueArray::empty());
 	}
 };
 

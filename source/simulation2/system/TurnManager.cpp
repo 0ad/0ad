@@ -354,7 +354,7 @@ void CTurnManager::QuickLoad()
 		return;
 	}
 
-	JS::AutoValueArray<1> paramData(rq.cx);
+	JS::RootedValueArray<1> paramData(rq.cx);
 	paramData[0].set(quickSaveMetadataClone);
 	g_GUI->SendEventToAll(EventNameSavegameLoaded, paramData);
 

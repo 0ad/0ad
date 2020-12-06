@@ -20,6 +20,7 @@
 #include "ICmpAIManager.h"
 
 #include "simulation2/system/InterfaceScripted.h"
+#include "scriptinterface/ScriptExtraHeaders.h"
 
 #include "lib/file/vfs/vfs_util.h"
 #include "ps/Filesystem.h"
@@ -42,7 +43,7 @@ public:
 		m_AIs(scriptInterface.GetGeneralJSContext())
 	{
 		ScriptRequest rq(m_ScriptInterface);
-		m_AIs = JS_NewArrayObject(rq.cx, 0);
+		m_AIs = JS::NewArrayObject(rq.cx, 0);
 	}
 
 	void Run()
@@ -69,7 +70,7 @@ public:
 		self->m_ScriptInterface.SetProperty(ai, "id", dirname, true);
 		self->m_ScriptInterface.SetProperty(ai, "data", data, true);
 		u32 length;
-		JS_GetArrayLength(rq.cx, self->m_AIs, &length);
+		JS::GetArrayLength(rq.cx, self->m_AIs, &length);
 		JS_SetElement(rq.cx, self->m_AIs, length, ai);
 
 		return INFO::OK;
