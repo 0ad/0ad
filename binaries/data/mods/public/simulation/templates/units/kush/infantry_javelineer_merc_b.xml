@@ -9,19 +9,13 @@
       structures/kush/camp_noba
     </Entities>
   </Builder>
-  <Cost>
-    <Resources>
-      <food op="add">-25</food>
-      <metal op="add">25</metal>
-    </Resources>
-  </Cost>
   <Identity>
     <Civ>kush</Civ>
     <Lang>napatan</Lang>
-    <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
     <SelectionGroupName>units/kush/infantry_javelineer_merc_b</SelectionGroupName>
     <GenericName>Noba Skirmisher</GenericName>
     <SpecificName>nhw ʿhȝw Noba</SpecificName>
+    <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
     <Icon>units/kush_infantry_javelinist.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>

@@ -5,12 +5,6 @@
       <AttackName context="Name of an attack using a single-edged sword.">Sword</AttackName>
     </Melee>
   </Attack>
-  <Cost>
-    <Resources>
-      <food op="add">-25</food>
-      <metal op="add">25</metal>
-    </Resources>
-  </Cost>
   <Identity>
     <Civ>cart</Civ>
     <GenericName>Iberian Heavy Cavalry</GenericName>

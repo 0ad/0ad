@@ -1,0 +1,11 @@
+{
+	"autoResearch": true,
+	"tooltip": "Non-Champion Mercenaries cost −25 food, +25 metal.",
+	"modifications": [
+		{ "value": "Cost/Resources/food", "add": -25 },
+		{ "value": "Cost/Resources/metal", "add": 25 },
+		{ "value": "Loot/food", "add": -2 },
+		{ "value": "Loot/metal", "add": 2 }
+	],
+	"affects": ["Mercenary !Champion"]
+}
