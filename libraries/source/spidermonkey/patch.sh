@@ -14,15 +14,17 @@ patch -p1 < ../RenameLibs.diff
 # Many thanks to bellaz89 for finding this and reporting it
 patch -p1 < ../FixSharedArray.diff
 
-# Fix bindgen trying to use different clang settings.
-# https://bugzilla.mozilla.org/show_bug.cgi?id=1526857 (landed in SM69)
-patch -p1 < ../FixBindgenClang.diff
-
-# Fix gcc/clang macro extension
-# https://bugzilla.mozilla.org/show_bug.cgi?id=1614243 (landed in SM75)
-patch -p1 < ../StandardDbgMacro.diff
-
 # Fix public export on MSVC (C2487)
 # https://bugzilla.mozilla.org/show_bug.cgi?id=1614243
 # (mentionned in the comments, no patch/commit found)
 patch -p1 < ../FixPublicExport.diff
+
+# Fix Rooted<void*> not working on VS17
+# https://bugzilla.mozilla.org/show_bug.cgi?id=1679736
+# (Landed in 85)
+patch -p1 < ../FixMSVCRootedVoid.diff
+
+# -ftrivial-auto-var-init is clang 8,
+# but apple-clang 10.0.0 (the maximum in 10.13)
+# doesn't actually have it, so patch it out.
+patch -p1 < ../FixMac10.13.diff

@@ -1,5 +1,20 @@
+diff --git a/js/src/build/moz.build b/js/src/build/moz.build
+index b311e9549fed..55f26497ec8d 100644
+--- a/js/src/build/moz.build
++++ b/js/src/build/moz.build
+@@ -10,9 +10,7 @@ CONFIGURE_SUBST_FILES += [
+ ]
+ 
+ LIBRARY_DEFINES['EXPORT_JS_API'] = True
+-
+-if not CONFIG['JS_STANDALONE']:
+-    LIBRARY_DEFINES['MOZ_HAS_MOZGLUE'] = True
++LIBRARY_DEFINES['MOZ_HAS_MOZGLUE'] = True
+ 
+ # JavaScript must be built shared, even for static builds, as it is used by
+ # other modules which are always built shared. Failure to do so results in
 diff --git a/mozglue/build/moz.build b/mozglue/build/moz.build
-index 53758485ac3d..3b5ce063ebb4 100644
+index ab0cff86fafc..d8bcead49deb 100644
 --- a/mozglue/build/moz.build
 +++ b/mozglue/build/moz.build
 @@ -9,6 +9,7 @@
@@ -10,3 +25,23 @@ index 53758485ac3d..3b5ce063ebb4 100644
  elif CONFIG['OS_TARGET'] in ('WINNT', 'Darwin', 'Android'):
      SharedLibrary('mozglue')
  else:
+diff --git a/config/makefiles/target_binaries.mk b/config/makefiles/target_binaries.mk
+index 31b2c4367e94..a7f9037dfd54 100644
+diff --git a/js/src/moz.build b/js/src/moz.build
+index 9c2ab1e1ac18..7444259bca6a 100755
+--- a/js/src/moz.build
++++ b/js/src/moz.build
+@@ -50,7 +50,12 @@ with Files('builtin/intl/*'):
+ if CONFIG['ENABLE_WASM_CRANELIFT']:
+     CONFIGURE_SUBST_FILES += ['rust/extra-bindgen-flags']
+ 
+-if not CONFIG['JS_DISABLE_SHELL']:
++if CONFIG['JS_STANDALONE'] and CONFIG['JS_DISABLE_SHELL']:
++    DIRS += [
++        'rust',
++    ]
++
++elif not CONFIG['JS_DISABLE_SHELL']:
+     DIRS += [
+         'rust',
+         'shell',

@@ -585,7 +585,7 @@ extern_lib_defs = {
 		compile_settings = function()
 			if _OPTIONS["with-system-mozjs"] then
 				if not _OPTIONS["android"] then
-					pkgconfig.add_includes("mozjs-68")
+					pkgconfig.add_includes("mozjs-78")
 				end
 			else
 				if os.istarget("windows") then
@@ -605,15 +605,20 @@ extern_lib_defs = {
 		link_settings = function()
 			if _OPTIONS["with-system-mozjs"] then
 				if _OPTIONS["android"] then
-					links { "mozjs-68" }
+					links { "mozjs-78" }
 				else
-					pkgconfig.add_links("mozjs-68")
+					pkgconfig.add_links("mozjs-78")
 				end
 			else
-				filter { "Debug" }
-					links { "mozjs68-ps-debug" }
+				filter { "Debug", "action:vs*" }
+					links { "mozjs78-ps-debug" }
+					links { "mozjs78-ps-rust-debug" }
+				filter { "Debug", "action:not vs*" }
+					links { "mozjs78-ps-debug" }
+					links { "mozjs78-ps-rust" }
 				filter { "Release" }
-					links { "mozjs68-ps-release" }
+					links { "mozjs78-ps-release" }
+					links { "mozjs78-ps-rust" }
 				filter { }
 				add_source_lib_paths("spidermonkey")
 			end

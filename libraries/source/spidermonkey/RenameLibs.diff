@@ -7,7 +7,7 @@ index 7d621b52ce..85e2934fa9 100644
  
  
 -if test -n "$JS_STANDALONE"; then
- MOZ_APP_NAME="mozjs"
+ MOZ_APP_NAME="js"
 -JS_LIBRARY_NAME="mozjs-$MOZILLA_SYMBOLVERSION"
 -else
 -JS_LIBRARY_NAME="mozjs"
