@@ -149,7 +149,7 @@ function getWallElement(element, style)
 	// Defaults to a wall tower piece
 	const quarterBend = Math.PI / 2;
 	let wallset = g_WallStyles[style];
-	let civ = style.split("/")[1];
+	let civ = style.split("/")[0];
 	let ret = wallset.tower ? clone(wallset.tower) : { "angle": 0, "bend": 0, "length": 0, "indent": 0 };
 
 	switch (element)
