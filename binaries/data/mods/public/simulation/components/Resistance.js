@@ -124,7 +124,7 @@ Resistance.prototype.GetFullResistance = function()
 Resistance.prototype.GetResistanceOfForm = function(entityForm)
 {
 	let ret = {};
-	let template = this.template[entityForm];
+	let template = this.template && this.template[entityForm];
 	if (!template)
 		return ret;
 

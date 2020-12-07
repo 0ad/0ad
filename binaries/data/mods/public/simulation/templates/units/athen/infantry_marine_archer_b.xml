@@ -8,19 +8,13 @@
       structures/athen/royal_stoa
     </Entities>
   </Builder>
-  <Cost>
-    <Resources>
-      <food op="add">-25</food>
-      <metal op="add">25</metal>
-    </Resources>
-  </Cost>
   <Identity>
     <Civ>athen</Civ>
-    <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
     <Lang>greek</Lang>
     <SelectionGroupName>units/athen/infantry_marine_archer_b</SelectionGroupName>
     <GenericName>Cretan Mercenary Archer</GenericName>
     <SpecificName>Toxótēs Krētikós</SpecificName>
+    <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
     <Icon>units/mace_infantry_archer.png</Icon>
     <RequiredTechnology>hellenes/special_iphicratean_reforms</RequiredTechnology>
   </Identity>

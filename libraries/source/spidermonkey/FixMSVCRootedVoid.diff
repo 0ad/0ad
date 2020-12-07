@@ -1,0 +1,13 @@
+--- a/js/public/RootingAPI.h
++++ b/js/public/RootingAPI.h
+@@ -931,6 +931,10 @@
+ struct MapTypeToRootKind<void*> {
+   static const RootKind kind = RootKind::Traceable;
+ };
++// VS17 instantiates RootedTraceable::trace for void*, which fails.
++// To work around this, specialize it.
++template<>
++struct GCPolicy<void*> : public IgnoreGCPolicy<void*> {};
+ 
+ using RootedListHeads =
+     mozilla::EnumeratedArray<RootKind, RootKind::Limit, Rooted<void*>*>;

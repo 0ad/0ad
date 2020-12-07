@@ -120,42 +120,42 @@
     <_ProjectFileVersion>15.0.28307.799</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(ProjectDir)Output/$(Configuration) $(Platform)/$(ProjectName)\</OutDir>
-    <IntDir>$(ProjectDir)Output/$(Configuration) $(Platform)/$(ProjectName)/Intermediate\</IntDir>
+    <OutDir>$(ProjectDir)Output\$(Configuration) $(Platform)\$(ProjectName)\</OutDir>
+    <IntDir>$(ProjectDir)Output\$(Configuration) $(Platform)\$(ProjectName)/Intermediate\</IntDir>
     <PreBuildEventUseInBuild>true</PreBuildEventUseInBuild>
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(ProjectDir)Output/$(Configuration) $(Platform)/$(ProjectName)\</OutDir>
-    <IntDir>$(ProjectDir)Output/$(Configuration) $(Platform)/$(ProjectName)/Intermediate\</IntDir>
+    <OutDir>$(ProjectDir)Output\$(Configuration) $(Platform)\$(ProjectName)\</OutDir>
+    <IntDir>$(ProjectDir)Output\$(Configuration) $(Platform)\$(ProjectName)/Intermediate\</IntDir>
     <PreBuildEventUseInBuild>true</PreBuildEventUseInBuild>
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(ProjectDir)Output/$(Configuration) $(Platform)/$(ProjectName)\</OutDir>
-    <IntDir>$(ProjectDir)Output/$(Configuration) $(Platform)/$(ProjectName)/Intermediate\</IntDir>
+    <OutDir>$(ProjectDir)Output\$(Configuration) $(Platform)\$(ProjectName)\</OutDir>
+    <IntDir>$(ProjectDir)Output\$(Configuration) $(Platform)\$(ProjectName)/Intermediate\</IntDir>
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(ProjectDir)Output/$(Configuration) $(Platform)/$(ProjectName)\</OutDir>
-    <IntDir>$(ProjectDir)Output/$(Configuration) $(Platform)/$(ProjectName)/Intermediate\</IntDir>
+    <OutDir>$(ProjectDir)Output\$(Configuration) $(Platform)\$(ProjectName)\</OutDir>
+    <IntDir>$(ProjectDir)Output\$(Configuration) $(Platform)\$(ProjectName)/Intermediate\</IntDir>
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Lib|Win32'">
-    <OutDir>$(ProjectDir)Output/$(Configuration) $(Platform)/$(ProjectName)\</OutDir>
-    <IntDir>$(ProjectDir)Output/$(Configuration) $(Platform)/$(ProjectName)/Intermediate\</IntDir>
+    <OutDir>$(ProjectDir)Output\$(Configuration) $(Platform)\$(ProjectName)\</OutDir>
+    <IntDir>$(ProjectDir)Output\$(Configuration) $(Platform)\$(ProjectName)/Intermediate\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Lib|x64'">
-    <OutDir>$(ProjectDir)Output/$(Configuration) $(Platform)/$(ProjectName)\</OutDir>
-    <IntDir>$(ProjectDir)Output/$(Configuration) $(Platform)/$(ProjectName)/Intermediate\</IntDir>
+    <OutDir>$(ProjectDir)Output\$(Configuration) $(Platform)\$(ProjectName)\</OutDir>
+    <IntDir>$(ProjectDir)Output\$(Configuration) $(Platform)\$(ProjectName)/Intermediate\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Lib|Win32'">
-    <OutDir>$(ProjectDir)Output/$(Configuration) $(Platform)/$(ProjectName)\</OutDir>
-    <IntDir>$(ProjectDir)Output/$(Configuration) $(Platform)/$(ProjectName)/Intermediate\</IntDir>
+    <OutDir>$(ProjectDir)Output\$(Configuration) $(Platform)\$(ProjectName)\</OutDir>
+    <IntDir>$(ProjectDir)Output\$(Configuration) $(Platform)\$(ProjectName)/Intermediate\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Lib|x64'">
-    <OutDir>$(ProjectDir)Output/$(Configuration) $(Platform)/$(ProjectName)\</OutDir>
-    <IntDir>$(ProjectDir)Output/$(Configuration) $(Platform)/$(ProjectName)/Intermediate\</IntDir>
+    <OutDir>$(ProjectDir)Output\$(Configuration) $(Platform)\$(ProjectName)\</OutDir>
+    <IntDir>$(ProjectDir)Output\$(Configuration) $(Platform)\$(ProjectName)/Intermediate\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <PreBuildEvent>
@@ -174,7 +174,7 @@
       <DisableSpecificWarnings>4458;4457;4456;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
-      <OutputFile>$(ProjectDir)Output/$(Configuration) $(Platform)/$(ProjectName)\$(ProjectName).exe</OutputFile>
+      <OutputFile>$(ProjectDir)Output\$(Configuration) $(Platform)\$(ProjectName)\$(ProjectName).exe</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)FColladaTest.pdb</ProgramDatabaseFile>
       <SubSystem>Console</SubSystem>
@@ -203,7 +203,6 @@ xcopy /E /C /Q /Y "$(ProjectDir)\..\..\..\..\..\..\binaries\system\FColladaD.pdb
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\..\..\win32\iconv\include;$(ProjectDir)..\..\..\..\..\win32\libxml2\include;$(ProjectDir)..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;MEMORY_DEBUG;FCOLLADA_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -214,7 +213,7 @@ xcopy /E /C /Q /Y "$(ProjectDir)\..\..\..\..\..\..\binaries\system\FColladaD.pdb
       <DisableSpecificWarnings>4458;4457;4456;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
-      <OutputFile>$(ProjectDir)Output/$(Configuration) $(Platform)/$(ProjectName)\$(ProjectName).exe</OutputFile>
+      <OutputFile>$(ProjectDir)Output\$(Configuration) $(Platform)\$(ProjectName)\$(ProjectName).exe</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)FColladaTest.pdb</ProgramDatabaseFile>
       <SubSystem>Console</SubSystem>
@@ -249,7 +248,7 @@ xcopy /E /C /Q /Y "$(ProjectDir)\..\..\..\..\..\..\binaries\system\FColladaD.pdb
       <DisableSpecificWarnings>4458;4457;4456;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
-      <OutputFile>$(ProjectDir)Output/$(Configuration) $(Platform)/$(ProjectName)\$(ProjectName).exe</OutputFile>
+      <OutputFile>$(ProjectDir)Output\$(Configuration) $(Platform)\$(ProjectName)\$(ProjectName).exe</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
@@ -287,7 +286,7 @@ xcopy /E /C /Q /Y "$(ProjectDir)\..\..\..\..\..\..\binaries\system\FCollada.pdb"
       <DisableSpecificWarnings>4458;4457;4456;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
-      <OutputFile>$(ProjectDir)Output/$(Configuration) $(Platform)/$(ProjectName)\$(ProjectName).exe</OutputFile>
+      <OutputFile>$(ProjectDir)Output\$(Configuration) $(Platform)\$(ProjectName)\$(ProjectName).exe</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
@@ -311,13 +310,10 @@ xcopy /E /C /Q /Y "$(ProjectDir)\..\..\..\..\..\..\binaries\system\FCollada.pdb"
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\..\..\win32\iconv\include;$(ProjectDir)..\..\..\..\..\win32\libxml2\include;$(ProjectDir)..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;MEMORY_DEBUG;FCOLLADA_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
-      <TreatWarningAsError>true</TreatWarningAsError>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <DisableSpecificWarnings>4458;4457;4456;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
@@ -339,12 +335,10 @@ xcopy /E /C /Q /Y "$(ProjectDir)\..\..\..\..\..\..\binaries\system\FColladaD.pdb
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\..\..\win32\iconv\include;$(ProjectDir)..\..\..\..\..\win32\libxml2\include;$(ProjectDir)..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;FCOLLADA_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
-      <TreatWarningAsError>true</TreatWarningAsError>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <PostBuildEvent>
@@ -368,7 +362,6 @@ xcopy /E /C /Q /Y "$(ProjectDir)\..\..\..\..\..\..\binaries\system\FColladaD.pdb
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
-      <TreatWarningAsError>true</TreatWarningAsError>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <DisableSpecificWarnings>4458;4457;4456;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -397,7 +390,6 @@ xcopy /E /C /Q /Y "$(ProjectDir)\..\..\..\..\..\..\binaries\system\FCollada.pdb"
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
-      <TreatWarningAsError>true</TreatWarningAsError>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <PostBuildEvent>

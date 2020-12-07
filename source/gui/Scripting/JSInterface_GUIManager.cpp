@@ -29,7 +29,7 @@
 // Functions aren't supported for example!
 void JSI_GUIManager::PushGuiPage(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& name, JS::HandleValue initData, JS::HandleValue callbackFunction)
 {
-	g_GUI->PushPage(name, pCmptPrivate->pScriptInterface->WriteStructuredClone(initData, true), callbackFunction);
+	g_GUI->PushPage(name, pCmptPrivate->pScriptInterface->WriteStructuredClone(initData), callbackFunction);
 }
 
 void JSI_GUIManager::SwitchGuiPage(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& name, JS::HandleValue initData)
@@ -46,7 +46,7 @@ void JSI_GUIManager::PopGuiPage(ScriptInterface::CmptPrivate* pCmptPrivate, JS::
 		return;
 	}
 
-	g_GUI->PopPage(pCmptPrivate->pScriptInterface->WriteStructuredClone(args, true));
+	g_GUI->PopPage(pCmptPrivate->pScriptInterface->WriteStructuredClone(args));
 }
 
 JS::Value JSI_GUIManager::GetGUIObjectByName(ScriptInterface::CmptPrivate* pCmptPrivate, const std::string& name)

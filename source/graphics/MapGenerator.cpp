@@ -232,7 +232,7 @@ void CMapGeneratorWorker::ExportMap(ScriptInterface::CmptPrivate* pCmptPrivate, 
 
 	// Copy results
 	std::lock_guard<std::mutex> lock(self->m_WorkerMutex);
-	self->m_MapData = self->m_ScriptInterface->WriteStructuredClone(data, false);
+	self->m_MapData = self->m_ScriptInterface->WriteStructuredClone(data);
 	self->m_Progress = 0;
 }
 

@@ -18,19 +18,13 @@
       structures/kush/camp_noba
     </Entities>
   </Builder>
-  <Cost>
-    <Resources>
-      <food op="add">-25</food>
-      <metal op="add">25</metal>
-    </Resources>
-  </Cost>
   <Identity>
     <Civ>kush</Civ>
     <Lang>napatan</Lang>
-    <VisibleClasses datatype="tokens">-Swordsman Macemen Mercenary</VisibleClasses>
     <SelectionGroupName>units/kush/infantry_maceman_b</SelectionGroupName>
     <GenericName>Noba Maceman</GenericName>
     <SpecificName>nhw Noba</SpecificName>
+    <VisibleClasses datatype="tokens">-Swordsman Maceman Mercenary</VisibleClasses>
     <Icon>units/kush_infantry_clubman.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>

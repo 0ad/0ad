@@ -73,7 +73,7 @@
 # pragma GCC diagnostic pop
 #endif
 
-#if MOZJS_MAJOR_VERSION != 68
+#if MOZJS_MAJOR_VERSION != 78
 #error Your compiler is trying to use an incorrect major version of the \
 SpiderMonkey library. The only version that works is the one in the \
 libraries/spidermonkey/ directory, and it will not work with a typical \
@@ -81,7 +81,7 @@ system-installed version. Make sure you have got all the right files and \
 include paths.
 #endif
 
-#if MOZJS_MINOR_VERSION != 12
+#if MOZJS_MINOR_VERSION != 6
 #error Your compiler is trying to use an untested minor version of the \
 SpiderMonkey library. If you are a package maintainer, please make sure \
 to check very carefully that this version does not change the behaviour \

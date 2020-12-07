@@ -8,19 +8,13 @@
       structures/athen/royal_stoa
     </Entities>
   </Builder>
-  <Cost>
-    <Resources>
-      <food op="add">-25</food>
-      <metal op="add">25</metal>
-    </Resources>
-  </Cost>
   <Identity>
     <Civ>athen</Civ>
-    <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
     <Lang>greek</Lang>
     <SelectionGroupName>units/athen/infantry_javelineer_b</SelectionGroupName>
     <GenericName>Thracian Peltast</GenericName>
     <SpecificName>Peltastḗs Thrâx</SpecificName>
+    <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
     <Icon>units/athen_infantry_javelinist.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>

@@ -6,18 +6,12 @@
       structures/ptol/library
     </Entities>
   </Builder>
-  <Cost>
-    <Resources>
-      <food op="add">-25</food>
-      <metal op="add">25</metal>
-    </Resources>
-  </Cost>
   <Identity>
     <Civ>ptol</Civ>
-    <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
     <SelectionGroupName>units/ptol/infantry_archer_b</SelectionGroupName>
     <GenericName>Cretan Mercenary Archer</GenericName>
     <SpecificName>Toxótēs Krētikós</SpecificName>
+    <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
     <Icon>units/mace_infantry_archer.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>

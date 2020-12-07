@@ -90,7 +90,7 @@ void CGUIManager::SwitchPage(const CStrW& pageName, ScriptInterface* srcScriptIn
 
 	ScriptInterface::StructuredClone initDataClone;
 	if (!initData.isUndefined())
-		initDataClone = srcScriptInterface->WriteStructuredClone(initData, true);
+		initDataClone = srcScriptInterface->WriteStructuredClone(initData);
 
 	m_PageStack.clear();
 
@@ -138,7 +138,7 @@ void CGUIManager::SGUIPage::LoadPage(shared_ptr<ScriptContext> scriptContext)
 		JS::RootedValue global(rq.cx, rq.globalValue());
 		JS::RootedValue hotloadDataVal(rq.cx);
 		scriptInterface->CallFunction(global, "getHotloadData", &hotloadDataVal);
-		hotloadData = scriptInterface->WriteStructuredClone(hotloadDataVal, true);
+		hotloadData = scriptInterface->WriteStructuredClone(hotloadDataVal);
 	}
 
 	g_CursorName = g_DefaultCursor;

@@ -26,7 +26,6 @@ CScriptStatsTable* g_ScriptStatsTable;
 enum
 {
 	Row_MaxBytes,
-	Row_MaxMallocBytes,
 	Row_Bytes,
 	Row_NumberGC,
 	NumberRows
@@ -85,13 +84,6 @@ CStr CScriptStatsTable::GetCellText(size_t row, size_t col)
 		if (col == 0)
 			return "max nominal heap bytes";
 		uint32_t n = JS_GetGCParameter(m_ScriptInterfaces.at(col-1).first->GetGeneralJSContext(), JSGC_MAX_BYTES);
-		return CStr::FromUInt(n);
-	}
-	case Row_MaxMallocBytes:
-	{
-		if (col == 0)
-			return "max JS_malloc bytes";
-		uint32_t n = JS_GetGCParameter(m_ScriptInterfaces.at(col-1).first->GetGeneralJSContext(), JSGC_MAX_MALLOC_BYTES);
 		return CStr::FromUInt(n);
 	}
 	case Row_Bytes:

@@ -1,0 +1,13 @@
+--- a/build/moz.configure/toolchain.configure
++++ b/build/moz.configure/toolchain.configure
+@@ -1619,8 +1619,9 @@
+         # Initialize local variables with a 0xAA pattern in clang debug builds.
+         # Linux32 fails some xpcshell tests with -ftrivial-auto-var-init
+         linux32 = target.kernel == 'Linux' and target.cpu == 'x86'
++        mac = target.kernel == 'Darwin'
+         if (c_compiler.type == 'clang' or c_compiler.type == 'clang-cl') and \
+-            c_compiler.version >= '8' and debug and not linux32:
++            c_compiler.version >= '8' and debug and not linux32 and not mac:
+             if c_compiler.type == 'clang-cl':
+                 flags.append('-Xclang')
+                 js_flags.append('-Xclang')

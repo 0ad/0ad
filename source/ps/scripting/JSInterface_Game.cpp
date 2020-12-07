@@ -51,7 +51,7 @@ void JSI_Game::StartGame(ScriptInterface::CmptPrivate* pCmptPrivate, JS::HandleV
 	ScriptRequest rqSim(sim->GetScriptInterface());
 
 	JS::RootedValue gameAttribs(rqSim.cx,
-		sim->GetScriptInterface().CloneValueFromOtherCompartment(*(pCmptPrivate->pScriptInterface), attribs, false));
+		sim->GetScriptInterface().CloneValueFromOtherCompartment(*(pCmptPrivate->pScriptInterface), attribs));
 
 	g_Game->SetPlayerID(playerID);
 	g_Game->StartGame(&gameAttribs, "");

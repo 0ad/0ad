@@ -49,7 +49,7 @@ class JSI_GUIProxy : public js::BaseProxyHandler
 {
 public:
 	// Access the js::Class of the Proxy.
-	static js::Class& ClassDefinition();
+	static JSClass& ClassDefinition();
 
 	// For convenience, this is the single instantiated JSI_GUIProxy.
 	static JSI_GUIProxy& Singleton();

@@ -10,6 +10,7 @@
     <Height>2.0</Height>
     <Square width="5.0" depth="12.0"/>
   </Footprint>
+  <Health disable=""/>
   <Identity>
     <Classes datatype="tokens">-Organic -ConquestCritical</Classes>
     <VisibleClasses datatype="tokens">Relic</VisibleClasses>
@@ -26,6 +27,7 @@
   <Position>
     <Anchor>pitch-roll</Anchor>
   </Position>
+  <Resistance replace=""/>
   <ResourceGatherer disable=""/>
   <Selectable>
     <Overlay>

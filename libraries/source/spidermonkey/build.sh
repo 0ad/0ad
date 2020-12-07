@@ -3,10 +3,10 @@
 set -e
 
 # This should match the version in config/milestone.txt
-FOLDER="mozjs-68.12.1"
+FOLDER="mozjs-78.6.0"
 # If same-version changes are needed, increment this.
-LIB_VERSION="68.12.1+0"
-LIB_NAME="mozjs68-ps"
+LIB_VERSION="78.6.0+0"
+LIB_NAME="mozjs78-ps"
 
 # Since this script is called by update-workspaces.sh, we want to quickly
 # avoid doing any work if SpiderMonkey is already built and up-to-date.
@@ -32,32 +32,26 @@ fi
 MAKE_OPTS="${JOBS}"
 
 # Standalone SpiderMonkey can not use jemalloc (see https://bugzilla.mozilla.org/show_bug.cgi?id=1465038)
+# Jitspew doesn't compile on VS17 in the zydis disassembler - since we don't use it, deactivate it.
 CONF_OPTS="--disable-tests
            --disable-jemalloc
            --disable-js-shell
            --without-intl-api
-           --enable-shared-js"
+           --enable-shared-js
+           --disable-jitspew"
 
-# NSPR is needed on Windows for POSIX emulation.
-# If you want to build on Windows, check README.txt and edit the absolute paths
-# to match your environment.
 if [ "${OS}" = "Windows_NT" ]
 then
-  # On windows, you may either use the full firefox build process (via mach bootstrap)
-  # or simply install LLVM to some convenient directory and hack the env.
-  if [ ! -d "~/.mozbuild"];
-  then
-    export MOZBUILD_STATE_PATH="C:/Program Files/LLVM"
-  fi
-  CONF_OPTS="${CONF_OPTS} --enable-nspr-build --with-visual-studio-version=2017 --target=i686"
+  CONF_OPTS="${CONF_OPTS} --with-visual-studio-version=2017 --target=i686"
 else
-  CONF_OPTS="${CONF_OPTS} --enable-posix-nspr-emulation"
+  CONF_OPTS="${CONF_OPTS}"
 fi
 
 if [ "`uname -s`" = "Darwin" ]
 then
   # Link to custom-built zlib
-  CONF_OPTS="${CONF_OPTS} --with-system-zlib=${ZLIB_DIR}"
+  export PKG_CONFIG_PATH="=${ZLIB_DIR}:${PKG_CONFIG_PATH}"
+  CONF_OPTS="${CONF_OPTS} --with-system-zlib"
   # Specify target versions and SDK
   if [ "${MIN_OSX_VERSION}" ] && [ "${MIN_OSX_VERSION-_}" ]; then
     CONF_OPTS="${CONF_OPTS} --enable-macos-target=$MIN_OSX_VERSION"
@@ -67,18 +61,19 @@ then
   fi
 fi
 
+# Quick sanity check to print explicit error messages
+# (Don't run this on windows as it would likely fail spuriously)
+if [ "${OS}" != "Windows_NT" ]
+then
+  [ ! -z "$(command -v rustc)" ] || (echo "Error: rustc is not available. Install the rust toolchain (rust + cargo) before proceeding." && exit 1)
+  [ ! -z "$(command -v objdump llvm-objdump)" ] || (echo "Error: LLVM objdump is not available. Install it (likely via LLVM-clang) before proceeding." && exit 1)
+fi
+
 # If Valgrind looks like it's installed, then set up SM to support it
 # (else the JITs will interact poorly with it)
 if [ -e /usr/include/valgrind/valgrind.h ]
 then
   CONF_OPTS="${CONF_OPTS} --enable-valgrind"
-fi
-
-# Quick sanity check to print explicit error messages
-if [ ! "$(command -v rustc)" ]
-then
-  echo "Error: rustc is not available. Install the rust toolchain before proceeding."
-  exit 1
 fi
 
 # We need to be able to override CHOST in case it is 32bit userland on 64bit kernel
@@ -99,7 +94,7 @@ then
   then
     # The tarball is committed to svn, but it's useful to let jenkins download it (when testing upgrade scripts).
     download="$(command -v wget || echo "curl -L -o "${FOLDER}.tar.bz2"")"
-    $download "https://github.com/wraitii/spidermonkey-tarballs/releases/download/v68.12.1/${FOLDER}.tar.bz2"
+    $download "https://github.com/wraitii/spidermonkey-tarballs/releases/download/v78.6.0/${FOLDER}.tar.bz2"
   fi
   tar xjf "${FOLDER}.tar.bz2"
 
@@ -118,9 +113,12 @@ fi
 
 mkdir -p build-debug
 cd build-debug
-# SM configure checks for autoconf and llvm-objdump, but neither are actually used for building.
+# SM configure checks for autoconf, but we don't actually need it.
 # To avoid a dependency, pass something arbitrary (it does need to be an actual program).
-CXXFLAGS="${CXXFLAGS}" ../js/src/configure AUTOCONF="ls" LLVM_OBJDUMP="ls" ${CONF_OPTS} \
+# llvm-objdump is searched for with the complete name, not simply 'objdump', account for that.
+CXXFLAGS="${CXXFLAGS}" ../js/src/configure AUTOCONF="ls" \
+  LLVM_OBJDUMP="$(command -v objdump llvm-objdump)" \
+  ${CONF_OPTS} \
   --enable-debug \
   --disable-optimize \
   --enable-gczeal
@@ -129,7 +127,9 @@ cd ..
 
 mkdir -p build-release
 cd build-release
-CXXFLAGS="${CXXFLAGS}" ../js/src/configure AUTOCONF="ls" LLVM_OBJDUMP="ls" ${CONF_OPTS} \
+CXXFLAGS="${CXXFLAGS}" ../js/src/configure AUTOCONF="ls" \
+  LLVM_OBJDUMP="$(command -v objdump llvm-objdump)" \
+  ${CONF_OPTS} \
   --enable-optimize
 ${MAKE} ${MAKE_OPTS}
 cd ..
@@ -142,11 +142,13 @@ then
   INCLUDE_DIR_RELEASE=include-win32-release
   LIB_PREFIX=
   LIB_SUFFIX=.dll
+  STATIC_LIB_SUFFIX=.lib
 else
   INCLUDE_DIR_DEBUG=include-unix-debug
   INCLUDE_DIR_RELEASE=include-unix-release
   LIB_PREFIX=lib
   LIB_SUFFIX=.so
+  STATIC_LIB_SUFFIX=.a
   if [ "`uname -s`" = "OpenBSD" ];
   then
     LIB_SUFFIX=.so.1.0
@@ -182,6 +184,11 @@ DEB="debug"
 REL="release"
 
 mkdir -p lib/
+
+# Fetch the jsrust static library. Path is grepped from the build file as it varies by rust toolset.
+rust_path=$(grep jsrust < "${FOLDER}/build-release/js/src/build/backend.mk" | cut -d = -f 2 | cut -c2-)
+cp -L "${rust_path}" "lib/${LIB_PREFIX}${LIB_NAME}-rust${STATIC_LIB_SUFFIX}"
+
 if [ "`uname -s`" = "Darwin" ]
 then
   # On MacOS, copy the static libraries only.
@@ -192,11 +199,14 @@ then
   # Windows needs DLLs to binaries/, static stubs to lib/ and debug symbols
   cp -L "${FOLDER}/build-${DEB}/js/src/build/${LIB_PREFIX}${LIB_NAME}-${DEB}${LIB_SUFFIX}" "../../../binaries/system/${LIB_PREFIX}${LIB_NAME}-${DEB}${LIB_SUFFIX}"
   cp -L "${FOLDER}/build-${REL}/js/src/build/${LIB_PREFIX}${LIB_NAME}-${REL}${LIB_SUFFIX}" "../../../binaries/system/${LIB_PREFIX}${LIB_NAME}-${REL}${LIB_SUFFIX}"
-  cp -L "${FOLDER}/build-${DEB}/js/src/build/${LIB_PREFIX}${LIB_NAME}-${DEB}.lib" "lib/${LIB_PREFIX}${LIB_NAME}-${DEB}.lib"
-  cp -L "${FOLDER}/build-${REL}/js/src/build/${LIB_PREFIX}${LIB_NAME}-${REL}.lib" "lib/${LIB_PREFIX}${LIB_NAME}-${REL}.lib"
+  cp -L "${FOLDER}/build-${DEB}/js/src/build/${LIB_PREFIX}${LIB_NAME}-${DEB}${STATIC_LIB_SUFFIX}" "lib/${LIB_PREFIX}${LIB_NAME}-${DEB}${STATIC_LIB_SUFFIX}"
+  cp -L "${FOLDER}/build-${REL}/js/src/build/${LIB_PREFIX}${LIB_NAME}-${REL}${STATIC_LIB_SUFFIX}" "lib/${LIB_PREFIX}${LIB_NAME}-${REL}${STATIC_LIB_SUFFIX}"
   # Copy debug symbols as well.
   cp -L "${FOLDER}/build-${DEB}/js/src/build/${LIB_PREFIX}${LIB_NAME}-${DEB}.pdb" "../../../binaries/system/${LIB_PREFIX}${LIB_NAME}-${DEB}.pdb"
   cp -L "${FOLDER}/build-${REL}/js/src/build/${LIB_PREFIX}${LIB_NAME}-${REL}.pdb" "../../../binaries/system/${LIB_PREFIX}${LIB_NAME}-${REL}.pdb"
+  # Copy the debug jsrust library.
+  rust_path=$(grep jsrust < "${FOLDER}/build-debug/js/src/build/backend.mk" | cut -d = -f 2 | cut -c2-)
+  cp -L "${rust_path}" "lib/${LIB_PREFIX}${LIB_NAME}-rust-debug${STATIC_LIB_SUFFIX}"
   # Windows need some additional libraries for posix emulation.
   cp -L "${FOLDER}/build-release/dist/bin/${LIB_PREFIX}nspr4.dll" "../../../binaries/system/${LIB_PREFIX}nspr4.dll"
   cp -L "${FOLDER}/build-release/dist/bin/${LIB_PREFIX}plc4.dll" "../../../binaries/system/${LIB_PREFIX}plc4.dll"

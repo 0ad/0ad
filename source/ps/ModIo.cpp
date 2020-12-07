@@ -607,7 +607,7 @@ bool ModIo::ParseGameIdResponse(const ScriptInterface& scriptInterface, const st
 	JS::RootedObject data(rq.cx, dataVal.toObjectOrNull());
 	u32 length;
 	bool isArray;
-	if (!JS_IsArrayObject(rq.cx, data, &isArray) || !isArray || !JS_GetArrayLength(rq.cx, data, &length) || !length)
+	if (!JS::IsArrayObject(rq.cx, data, &isArray) || !isArray || !JS::GetArrayLength(rq.cx, data, &length) || !length)
 		FAIL("data property not an array with at least one element.");
 
 	// {"id": 42, ...}
@@ -678,7 +678,7 @@ bool ModIo::ParseModsResponse(const ScriptInterface& scriptInterface, const std:
 	JS::RootedObject rData(rq.cx, dataVal.toObjectOrNull());
 	u32 length;
 	bool isArray;
-	if (!JS_IsArrayObject(rq.cx, rData, &isArray) || !isArray || !JS_GetArrayLength(rq.cx, rData, &length) || !length)
+	if (!JS::IsArrayObject(rq.cx, rData, &isArray) || !isArray || !JS::GetArrayLength(rq.cx, rData, &length) || !length)
 		FAIL("data property not an array with at least one element.");
 
 	modData.clear();

@@ -52,11 +52,11 @@ JS::Value JSI_Simulation::GuiInterfaceCall(ScriptInterface::CmptPrivate* pCmptPr
 		return JS::UndefinedValue();
 
 	ScriptRequest rqSim(sim->GetScriptInterface());
-	JS::RootedValue arg(rqSim.cx, sim->GetScriptInterface().CloneValueFromOtherCompartment(*(pCmptPrivate->pScriptInterface), data, false));
+	JS::RootedValue arg(rqSim.cx, sim->GetScriptInterface().CloneValueFromOtherCompartment(*(pCmptPrivate->pScriptInterface), data));
 	JS::RootedValue ret(rqSim.cx);
 	cmpGuiInterface->ScriptCall(g_Game->GetViewedPlayerID(), name, arg, &ret);
 
-	return pCmptPrivate->pScriptInterface->CloneValueFromOtherCompartment(sim->GetScriptInterface(), ret, false);
+	return pCmptPrivate->pScriptInterface->CloneValueFromOtherCompartment(sim->GetScriptInterface(), ret);
 }
 
 void JSI_Simulation::PostNetworkCommand(ScriptInterface::CmptPrivate* pCmptPrivate, JS::HandleValue cmd)
@@ -73,7 +73,7 @@ void JSI_Simulation::PostNetworkCommand(ScriptInterface::CmptPrivate* pCmptPriva
 
 	ScriptRequest rqSim(sim->GetScriptInterface());
 	JS::RootedValue cmd2(rqSim.cx,
-		sim->GetScriptInterface().CloneValueFromOtherCompartment(*(pCmptPrivate->pScriptInterface), cmd, false));
+		sim->GetScriptInterface().CloneValueFromOtherCompartment(*(pCmptPrivate->pScriptInterface), cmd));
 
 	cmpCommandQueue->PostNetworkCommand(cmd2);
 }

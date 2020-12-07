@@ -36,7 +36,8 @@ The customised option (which I used):
 - Install mozilla-build per the instructions above
 - Install rust (make sure to add it to your PATH)
 - Open Powershell and run "rustup install i686-pc-windows-msvc" and "rustup install x86_64-pc-windows-msvc"
-- Install LLVM 8 prebuilt binaries from https://releases.llvm.org somewhere (the script plans for C:/Program Files/LLVM)
+- Install LLVM 8 prebuilt binaries from https://releases.llvm.org somewhere.
 - From powershell, run ". C:/mozilla-build/start-shell.bat", cd to 0ad/libraries/source/spidermonkey and then run "./build.sh"
-
-At that point, everything should be setup and run correctly.
+- This will fail. Edit build.sh to not rebuild (REBUILD=false)
+- Edit the build/moz.configure/toolchain.configure file to have your LLVM/bin folder in the `toolchain_search_path`. I added the path directly to the bootstrapped variable L721
+- Rerun build.sh. It should run.

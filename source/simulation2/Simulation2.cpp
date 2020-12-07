@@ -173,7 +173,7 @@ public:
 		ScriptRequest rqNew(newScript);
 		for (const SimulationCommand& command : commands)
 		{
-			JS::RootedValue tmpCommand(rqNew.cx, newScript.CloneValueFromOtherCompartment(oldScript, command.data, true));
+			JS::RootedValue tmpCommand(rqNew.cx, newScript.CloneValueFromOtherCompartment(oldScript, command.data));
 			newScript.FreezeObject(tmpCommand, true);
 			SimulationCommand cmd(command.player, rqNew.cx, tmpCommand);
 			newCommands.emplace_back(std::move(cmd));
@@ -423,8 +423,7 @@ void CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 		{
 			ScriptRequest rq2(m_SecondaryComponentManager->GetScriptInterface());
 			JS::RootedValue mapSettingsCloned(rq2.cx,
-				m_SecondaryComponentManager->GetScriptInterface().CloneValueFromOtherCompartment(
-					scriptInterface, m_MapSettings, true));
+				m_SecondaryComponentManager->GetScriptInterface().CloneValueFromOtherCompartment(scriptInterface, m_MapSettings));
 			ENSURE(LoadTriggerScripts(*m_SecondaryComponentManager, mapSettingsCloned, m_SecondaryLoadedScripts));
 		}
 

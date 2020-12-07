@@ -6,18 +6,12 @@
       structures/ptol/library
     </Entities>
   </Builder>
-  <Cost>
-    <Resources>
-      <food op="add">-25</food>
-      <metal op="add">25</metal>
-    </Resources>
-  </Cost>
   <Identity>
     <Civ>ptol</Civ>
-    <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
     <SelectionGroupName>units/ptol/infantry_javelineer_b</SelectionGroupName>
     <GenericName>Mercenary Thureos Skirmisher</GenericName>
     <SpecificName>Thureophóros Akrobolistḗs</SpecificName>
+    <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
     <Icon>units/ptol_infantry_javelinist_merc.png</Icon>
     <RequiredTechnology>phase_village</RequiredTechnology>
   </Identity>

@@ -337,7 +337,7 @@ public:
 	 */
 	using StructuredClone = shared_ptr<JSStructuredCloneData>;
 
-	StructuredClone WriteStructuredClone(JS::HandleValue v, bool sameThread) const;
+	StructuredClone WriteStructuredClone(JS::HandleValue v) const;
 	void ReadStructuredClone(const StructuredClone& ptr, JS::MutableHandleValue ret) const;
 
 	/**
@@ -346,7 +346,7 @@ public:
 	 * Complex values (functions, XML, etc) won't be cloned correctly, but basic
 	 * types and cyclic references should be fine.
 	 */
-	JS::Value CloneValueFromOtherCompartment(const ScriptInterface& otherCompartment, JS::HandleValue val, bool sameThread) const;
+	JS::Value CloneValueFromOtherCompartment(const ScriptInterface& otherCompartment, JS::HandleValue val) const;
 
 	/**
 	 * Retrieve the private data field of a JSObject that is an instance of the given JSClass.

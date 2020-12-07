@@ -122,7 +122,7 @@ pipeline {
 				} catch(e) {
 					throw e
 				} finally {
-					sh "rm -f .phabricator-comment builderr-*.txt cxxtest_*.xml"
+					sh "rm -f .phabricator-comment builderr-*.txt cxxtest-*.xml"
 					sh "svn revert -R ."
 					sh "svn st binaries/data/ | cut -c 9- | xargs rm -rf"
 					sh "svn st source/ | cut -c 9- | xargs rm -rf"

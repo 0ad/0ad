@@ -71,8 +71,8 @@ const oTemples = ["structures/kush/temple_amun", "structures/kush/temple"];
 const oPyramid = "structures/kush/pyramid_large";
 const oTowers = new Array(2).fill("uncapturable|structures/kush/sentry_tower").concat(["uncapturable|structures/kush/defense_tower"]);
 
-const oHeroes = Engine.FindTemplates("units/", true).filter(templateName => templateName.startsWith("units/kush/hero_"));
-const oUnits = Engine.FindTemplates("units/", false).filter(templateName =>
+const oHeroes = Engine.FindTemplates("units/kush/", true).filter(templateName => templateName.startsWith("units/kush/hero_"));
+const oUnits = Engine.FindTemplates("units/kush/", false).filter(templateName =>
 	templateName.startsWith("units/kush/") &&
 	oHeroes.every(heroTemplateName => heroTemplateName != templateName) &&
 	Engine.GetTemplate(templateName).Identity.VisibleClasses._string.split(" ").some(type => ["Soldier", "Healer", "Female"].indexOf(type) != -1));

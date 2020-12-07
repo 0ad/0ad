@@ -159,6 +159,18 @@ function getCurrentHealthTooltip(entState, label)
 	});
 }
 
+function getCurrentCaptureTooltip(entState, label)
+{
+	if (!entState.maxCapturePoints)
+		return "";
+
+	return sprintf(translate("%(captureLabel)s %(current)s / %(max)s"), {
+		"captureLabel": headerFont(label || translate("Capture points:")),
+		"current": Math.round(entState.capturePoints[entState.player]),
+		"max": Math.round(entState.maxCapturePoints)
+	});
+}
+
 /**
  * Converts an resistance level into the actual reduction percentage.
  */
@@ -184,10 +196,10 @@ function getResistanceTooltip(template)
 	if (template.resistance.ApplyStatus)
 		details.push(getStatusEffectsResistanceTooltip(template.resistance.ApplyStatus));
 
-	return sprintf(translate("%(label)s\n%(details)s"), {
+	return details.length ? sprintf(translate("%(label)s\n%(details)s"), {
 		"label": headerFont(translate("Resistance:")),
 		"details": g_Indent + details.join("\n" + g_Indent)
-	});
+	}) : "";
 }
 
 function getDamageResistanceTooltip(resistanceTypeTemplate)

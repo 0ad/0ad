@@ -299,7 +299,7 @@ public:
 		{
 			if (m_Players[i]->m_Player == playerid)
 			{
-				m_Players[i]->m_Commands.push_back(m_ScriptInterface->WriteStructuredClone(cmd, false));
+				m_Players[i]->m_Commands.push_back(m_ScriptInterface->WriteStructuredClone(cmd));
 				return;
 			}
 		}
@@ -557,7 +557,7 @@ public:
 			JS::RootedObject dataObj(rq.cx, &mapData.toObject());
 
 			u32 length = 0;
-			ENSURE(JS_GetArrayLength(rq.cx, dataObj, &length));
+			ENSURE(JS::GetArrayLength(rq.cx, dataObj, &length));
 			u32 nbytes = (u32)(length * sizeof(NavcellData));
 
 			bool sharedMemory;
@@ -585,7 +585,7 @@ public:
 			JS::RootedObject dataObj(rq.cx, &mapData.toObject());
 
 			u32 length = 0;
-			ENSURE(JS_GetArrayLength(rq.cx, dataObj, &length));
+			ENSURE(JS::GetArrayLength(rq.cx, dataObj, &length));
 			u32 nbytes = (u32)(length * sizeof(u8));
 
 			bool sharedMemory;
@@ -765,7 +765,7 @@ public:
 			{
 				JS::RootedValue val(rq.cx);
 				deserializer.ScriptVal("command", &val);
-				m_Players.back()->m_Commands.push_back(m_ScriptInterface->WriteStructuredClone(val, false));
+				m_Players.back()->m_Commands.push_back(m_ScriptInterface->WriteStructuredClone(val));
 			}
 
 			bool hasCustomDeserialize = m_ScriptInterface->HasProperty(m_Players.back()->m_Obj, "Deserialize");
@@ -1016,7 +1016,7 @@ public:
 		if (cmpPathfinder)
 			cmpPathfinder->GetPassabilityClasses(nonPathfindingPassClassMasks, pathfindingPassClassMasks);
 
-		m_Worker.RunGamestateInit(scriptInterface.WriteStructuredClone(state, false),
+		m_Worker.RunGamestateInit(scriptInterface.WriteStructuredClone(state),
 			*passabilityMap, *territoryMap, nonPathfindingPassClassMasks, pathfindingPassClassMasks);
 	}
 
@@ -1042,7 +1042,7 @@ public:
 		LoadPathfinderClasses(state); // add the pathfinding classes to it
 
 		// Update the game state
-		m_Worker.UpdateGameState(scriptInterface.WriteStructuredClone(state, false));
+		m_Worker.UpdateGameState(scriptInterface.WriteStructuredClone(state));
 
 		// Update the pathfinding data
 		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
