@@ -23,28 +23,46 @@ pipeline {
 		buildDiscarder(logRotator(artifactNumToKeepStr: '1'))
 	}
 
-	parameters {
-		booleanParam(name: 'release', defaultValue: false)
-	}
-
 	stages {
 		stage("Checkout") {
 			steps {
 				svn "https://svn.wildfiregames.com/public/ps/trunk"
 				sh "svn cleanup"
-				sh "svn st --no-ignore | cut -c 9- | xargs rm -rf"
+				sh "svn revert . -R"
+				sh "svn st --no-ignore | cut -c 9- | xargs rm -rfv"
 			}
 		}
-		stage("Bundle") {
+		stage("Compile Mac Executable") {
 			steps {
-				sh "cd source/tools/dist && ./build-osx-bundle.sh"
+				sh "source/tools/dist/build-osx-executable.sh"
+			}
+		}
+		stage("Create archive data") {
+			steps {
+				sh "source/tools/dist/build-archives.sh"
+			}
+		}
+		stage("Create Mac Bundle") {
+			steps {
+				sh "python3 source/tools/dist/build-osx-bundle.py '0.0.24dev'"
+			}
+		}
+		stage("Create Windows installer & *nix files") {
+			steps {
+				// The files created by the mac compilation need to be deleted
+				sh "svn st binaries/ --no-ignore | cut -c 9- | xargs rm -rf"
+				sh "svn st build/ --no-ignore | cut -c 9- | xargs rm -rf"
+				sh "svn st libraries/ --no-ignore | cut -c 9- | xargs rm -rf"
+				sh "svn revert build/ -R"
+
+				sh "BUNDLE_VERSION='0.0.24dev' source/tools/dist/build-unix-win32.sh"
 			}
 		}
 	}
 
 	post {
 		success {
-			archiveArtifacts 'build/workspaces/*.dmg'
+			archiveArtifacts '*.dmg,*.exe,*.tar.gz,*.tar.xz'
 		}
 	}
 }
