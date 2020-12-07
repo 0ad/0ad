@@ -20,11 +20,11 @@
 #ifndef HEADER_TINYGETTEXT_DICTIONARY_MANAGER_HPP
 #define HEADER_TINYGETTEXT_DICTIONARY_MANAGER_HPP
 
+#include <deque>
 #include <memory>
 #include <set>
 #include <string>
 #include <unordered_map>
-#include <vector>
 
 #include "dictionary.hpp"
 #include "language.hpp"
@@ -42,7 +42,7 @@ private:
   typedef std::unordered_map<Language, Dictionary*, Language_hash> Dictionaries;
   Dictionaries dictionaries;
 
-  typedef std::vector<std::string> SearchPath;
+  typedef std::deque<std::string> SearchPath;
   SearchPath search_path;
 
   std::string charset;
@@ -81,8 +81,12 @@ public:
   void set_charset(const std::string& charset);
 
   /** Add a directory to the search path for dictionaries, earlier
-      added directories have higher priority then later added ones */
-  void add_directory(const std::string& pathname);
+      added directories have higher priority then later added ones.
+      Set @p precedence to true to invert this for a single addition. */
+  void add_directory(const std::string& pathname, bool precedence = false);
+
+  /** Remove a directory from the search path */
+  void remove_directory(const std::string& pathname);
 
   /** Return a set of the available languages in their country code */
   std::set<Language> get_languages();

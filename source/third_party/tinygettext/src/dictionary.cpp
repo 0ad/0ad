@@ -26,6 +26,8 @@
 
 namespace tinygettext {
 
+namespace {
+
 std::ostream& operator<<(std::ostream& o, const std::vector<std::string>& v)
 {
   for (std::vector<std::string>::const_iterator it = v.begin(); it != v.end(); ++it)
@@ -36,6 +38,8 @@ std::ostream& operator<<(std::ostream& o, const std::vector<std::string>& v)
   }
   return o;
 }
+
+} // namespace
 
 Dictionary::Dictionary(const std::string& charset_) :
   entries(),

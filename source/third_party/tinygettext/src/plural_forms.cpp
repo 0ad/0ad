@@ -1,7 +1,3 @@
-/*
- * Slightly modified version by Wildfire Games, for 0 A.D to support more languages.
- */
-
 // tinygettext - A gettext replacement that works directly on .po files
 // Copyright (c) 2006 Ingo Ruhnke <grumbel@gmail.com>
 //
@@ -28,6 +24,8 @@
 #include <unordered_map>
 
 namespace tinygettext {
+
+namespace {
 
 /**
  *  Plural functions are used to select a string that matches a given
@@ -63,6 +61,7 @@ unsigned int plural4_uk(int n) { return static_cast<unsigned int>(n % 1 == 0 && 
 unsigned int plural5_ga(int n) { return static_cast<unsigned int>(n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : 4);}
 unsigned int plural6_ar(int n) { return static_cast<unsigned int>( n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5); }
 
+} // namespace
 
 PluralForms
 PluralForms::from_string(const std::string& str)
