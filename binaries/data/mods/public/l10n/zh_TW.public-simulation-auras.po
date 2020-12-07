@@ -19,12 +19,13 @@
 # 張峻瑜 <a728728728@gmail.com>, 2018
 # StarAtt <tea55688@gmail.com>, 2019
 # 詮 歐陽 <charlie890414@gmail.com>, 2019
+# 郭泂寰 <tulips3592@gmail.com>, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-12-01 11:21+0000\n"
-"PO-Revision-Date: 2020-12-01 14:32+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-12-07 06:56+0000\n"
+"Last-Translator: 郭泂寰 <tulips3592@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,7 +35,7 @@ msgstr ""
 
 #: simulation/data/auras/structures/arsenal_repair.jsonauraDescription
 msgid "Garrisoned Siege Engines +3 health regeneration rate."
-msgstr "駐紮的工程武器單位增+3的生命恢復。"
+msgstr "駐守的攻城武器單位+3生命值回復率。"
 
 #: simulation/data/auras/structures/arsenal_repair.jsonauraName
 msgid "Arsenal Repairs"
@@ -46,11 +47,11 @@ msgstr "單位在駐守軍營時獲得經驗值。"
 
 #: simulation/data/auras/structures/barracks_xp_trickle.jsonauraName
 msgid "Rigorous Training"
-msgstr ""
+msgstr "嚴格訓練"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Garrisoned Ships +10 health regeneration rate."
-msgstr "駐紮在船隻中的單位增+10的生命恢復。"
+msgstr "駐守在船隻中的單位+10的生命值恢復率。"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraName
 msgid "Dockyard Repairs"
@@ -751,7 +752,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_1.jsonauraName
 msgid "Imperialism"
-msgstr "帝國"
+msgstr "帝國主義"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_2.jsonauraDescription
 msgid "Enemy Civic Centres −50% capture points garrisoned regeneration rate."
