@@ -1,5 +1,7 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
+<meta charset="utf-8"/>
 <title>0 A.D. profiler UI</title>
 <script src="jquery-1.6.4.js"></script>
 <script src="utilities.js"></script>
@@ -45,6 +47,8 @@ header nav p.active { cursor:pointer; background:#eee; box-shadow: 0px 0px 2px 0
 </head>
 <body>
 <button onclick="save_as_file()">Save Live Report to file</button>
+<label for="gameport">Port:</label>
+<input id="gameport" type="text" value="8000" onchange="updatePort()">
 
 <header>
 	<h1>Open reports</h1>

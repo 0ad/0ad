@@ -91,7 +91,7 @@ function refresh_from_jsonp(callback, content)
 function refresh_live(callback, file)
 {
     $.ajax({
-        url: 'http://127.0.0.1:8000/overview',
+        url: `http://127.0.0.1:${$("#gameport").val()}/overview`,
         dataType: 'json',
         success: function (data) {
             var threads = [];
@@ -115,7 +115,7 @@ function refresh_live(callback, file)
 function refresh_thread(callback, thread, callback_data)
 {
     $.ajax({
-        url: 'http://127.0.0.1:8000/query',
+        url: `http://127.0.0.1:${$("#gameport").val()}/query`,
         dataType: 'json',
         data: { 'thread': thread.name },
         success: function (data) {

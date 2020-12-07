@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -27,6 +27,7 @@
 #include "lib/allocators/shared_ptr.h"
 #include "lib/os_path.h"
 #include "ps/CLogger.h"
+#include "ps/ConfigDB.h"
 #include "ps/CStr.h"
 #include "ps/Profiler2GPU.h"
 #include "ps/Pyrogenesis.h"
@@ -178,10 +179,21 @@ void CProfiler2::EnableHTTP()
 	if (m_MgContext)
 		return;
 
-	const char *options[] = {
-		"listening_ports", "127.0.0.1:8000", // bind to localhost for security
-		"num_threads", "6", // enough for the browser's parallel connection limit
-		NULL
+	CStr listeningPort = "8000";
+	CStr listeningServer = "127.0.0.1";
+	CStr numThreads = "6";
+	if (CConfigDB::IsInitialised())
+	{
+		CFG_GET_VAL("profiler2.server.port", listeningPort);
+		CFG_GET_VAL("profiler2.server", listeningServer);
+		CFG_GET_VAL("profiler2.server.threads", numThreads);
+	}
+
+	std::string listening_ports = fmt::format("{0}:{1}", listeningServer, listeningPort);
+	const char* options[] = {
+		"listening_ports", listening_ports.c_str(),
+		"num_threads", numThreads.c_str(),
+		nullptr
 	};
 	m_MgContext = mg_start(MgCallback, this, options);
 	ENSURE(m_MgContext);
@@ -922,6 +934,8 @@ const char* CProfiler2::ConstructJSONResponse(std::ostream& stream, const std::s
 void CProfiler2::SaveToFile()
 {
 	OsPath path = psLogDir()/"profile2.jsonp";
+	debug_printf("Writing profile data to %s \n", path.string8().c_str());
+	LOGMESSAGERENDER("Writing profile data to %s \n", path.string8().c_str());
 	std::ofstream stream(OsString(path).c_str(), std::ofstream::out | std::ofstream::trunc);
 	ENSURE(stream.good());
 
