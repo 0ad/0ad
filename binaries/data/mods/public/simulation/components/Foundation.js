@@ -20,6 +20,13 @@ Foundation.prototype.Init = function()
 	this.previewEntity = INVALID_ENTITY;
 };
 
+Foundation.prototype.OnDeserialized = function()
+{
+	// Reset this to avoid calling DestroyEntity (it does nothing, but still).
+	this.previewEntity = INVALID_ENTITY;
+	this.CreateConstructionPreview();
+};
+
 Foundation.prototype.InitialiseConstruction = function(owner, template)
 {
 	this.finalTemplateName = template;
@@ -48,7 +55,7 @@ Foundation.prototype.InitialiseConstruction = function(owner, template)
 Foundation.prototype.OnHealthChanged = function(msg)
 {
 	// Gradually reveal the final building preview
-	var cmpPosition = Engine.QueryInterface(this.previewEntity, IID_Position);
+	let cmpPosition = Engine.QueryInterface(this.previewEntity, IID_Position);
 	if (cmpPosition)
 		cmpPosition.SetConstructionProgress(this.GetBuildProgress());
 
@@ -95,8 +102,19 @@ Foundation.prototype.IsFinished = function()
 	return (this.GetBuildProgress() == 1.0);
 };
 
-Foundation.prototype.OnDestroy = function()
+Foundation.prototype.OnOwnershipChanged = function(msg)
 {
+	if (msg.to != INVALID_PLAYER && this.previewEntity != INVALID_ENTITY)
+	{
+		let cmpPreviewOwnership = Engine.QueryInterface(this.previewEntity, IID_Ownership);
+		if (cmpPreviewOwnership)
+			cmpPreviewOwnership.SetOwner(msg.to);
+		return;
+	}
+
+	if (msg.to != INVALID_PLAYER)
+		return;
+
 	// Refund a portion of the construction cost, proportional to the amount of build progress remaining
 
 	if (!this.initialised) // this happens if the foundation was destroyed because the player had insufficient resources
@@ -162,7 +180,7 @@ Foundation.prototype.AddBuilderHelper = function(builderEnt)
 	this.totalBuilderRate += buildRate;
 
 	return true;
-}
+};
 
 /**
  * Adds a builder to the counter.
@@ -197,7 +215,7 @@ Foundation.prototype.HandleBuildersChanged = function()
 		cmpVisual.SetVariable("numbuilders", this.builders.size);
 
 	Engine.PostMessage(this.entity, MT_FoundationBuildersChanged, { "to": this.GetBuilders() });
-}
+};
 
 /**
  * The build multiplier is a penalty that is applied to each builder.
@@ -289,32 +307,7 @@ Foundation.prototype.Build = function(builderEnt, work)
 		if (cmpFoundationVisual)
 			cmpFoundationVisual.SelectAnimation("scaffold", false, 1.0);
 
-		// Create preview entity and copy various parameters from the foundation
-		if (cmpFoundationVisual && cmpFoundationVisual.HasConstructionPreview())
-		{
-			this.previewEntity = Engine.AddEntity("construction|"+this.finalTemplateName);
-			var cmpFoundationOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-			var cmpPreviewOwnership = Engine.QueryInterface(this.previewEntity, IID_Ownership);
-			cmpPreviewOwnership.SetOwner(cmpFoundationOwnership.GetOwner());
-
-			// Initially hide the preview underground
-			var cmpPreviewPosition = Engine.QueryInterface(this.previewEntity, IID_Position);
-			cmpPreviewPosition.SetConstructionProgress(0.0);
-
-			var cmpPreviewVisual = Engine.QueryInterface(this.previewEntity, IID_Visual);
-			if (cmpPreviewVisual)
-			{
-				cmpPreviewVisual.SetActorSeed(cmpFoundationVisual.GetActorSeed());
-				cmpPreviewVisual.SelectAnimation("scaffold", false, 1.0, "");
-			}
-
-			var cmpFoundationPosition = Engine.QueryInterface(this.entity, IID_Position);
-			var pos = cmpFoundationPosition.GetPosition2D();
-			var rot = cmpFoundationPosition.GetRotation();
-			cmpPreviewPosition.SetYRotation(rot.y);
-			cmpPreviewPosition.SetXZRotation(rot.x, rot.z);
-			cmpPreviewPosition.JumpTo(pos.x, pos.y);
-		}
+		this.CreateConstructionPreview();
 
 		this.committed = true;
 	}
@@ -476,6 +469,53 @@ Foundation.prototype.GetBuildRate = function()
 	let cmpCost = Engine.QueryInterface(this.entity, IID_Cost);
 	// Return infinity for instant structure conversion
 	return cmpHealth.GetMaxHitpoints() / cmpCost.GetBuildTime();
+};
+
+/**
+ * Create preview entity and copy various parameters from the foundation.
+ */
+Foundation.prototype.CreateConstructionPreview = function()
+{
+	if (this.previewEntity)
+	{
+		Engine.DestroyEntity(this.previewEntity);
+		this.previewEntity = INVALID_ENTITY;
+	}
+
+	let cmpFoundationVisual = Engine.QueryInterface(this.entity, IID_Visual);
+	if (!cmpFoundationVisual || !cmpFoundationVisual.HasConstructionPreview())
+		return;
+
+	this.previewEntity = Engine.AddLocalEntity("construction|"+this.finalTemplateName);
+	let cmpFoundationOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	let cmpPreviewOwnership = Engine.QueryInterface(this.previewEntity, IID_Ownership);
+	if (cmpFoundationOwnership && cmpPreviewOwnership)
+		cmpPreviewOwnership.SetOwner(cmpFoundationOwnership.GetOwner());
+
+	// TODO: the 'preview' would be invisible if it doesn't have the below component,
+	// Maybe it makes more sense to simply delete it then?
+
+	// Initially hide the preview underground
+	let cmpPreviewPosition = Engine.QueryInterface(this.previewEntity, IID_Position);
+	let cmpFoundationPosition = Engine.QueryInterface(this.entity, IID_Position);
+	if (cmpPreviewPosition && cmpFoundationPosition)
+	{
+		let rot = cmpFoundationPosition.GetRotation();
+		cmpPreviewPosition.SetYRotation(rot.y);
+		cmpPreviewPosition.SetXZRotation(rot.x, rot.z);
+
+		let pos = cmpFoundationPosition.GetPosition2D();
+		cmpPreviewPosition.JumpTo(pos.x, pos.y);
+
+		cmpPreviewPosition.SetConstructionProgress(this.GetBuildProgress());
+	}
+
+	let cmpPreviewVisual = Engine.QueryInterface(this.previewEntity, IID_Visual);
+	if (cmpPreviewVisual && cmpFoundationVisual)
+	{
+		cmpPreviewVisual.SetActorSeed(cmpFoundationVisual.GetActorSeed());
+		cmpPreviewVisual.SelectAnimation("scaffold", false, 1.0);
+	}
 };
 
 Engine.RegisterComponentType(IID_Foundation, "Foundation", Foundation);
