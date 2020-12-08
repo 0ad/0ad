@@ -27,8 +27,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2020-11-20 10:27+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-12-05 14:41+0000\n"
+"Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -79,7 +79,7 @@ msgstr "Beállítások"
 
 #: gui/session/MenuButtons.js:182
 msgid "Hotkeys"
-msgstr ""
+msgstr "Gyorsbillentyű"
 
 #: gui/session/MenuButtons.js:217
 msgid "Resume"
@@ -1062,11 +1062,11 @@ msgstr ", "
 
 #: gui/session/selection_panels.js:817
 msgid "Cannot research while upgrading."
-msgstr ""
+msgstr "Fejlesztés közben nem lehet kutatni."
 
 #: gui/session/selection_panels.js:1040
 msgid "Cannot train while upgrading."
-msgstr ""
+msgstr "Fejlesztés közben nem lehet kiképezni."
 
 #: gui/session/selection_panels.js:1102
 #, javascript-format
@@ -1089,8 +1089,8 @@ msgid ""
 msgid_plural ""
 "Cannot upgrade when all entities are training, researching or already "
 "upgrading."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Nem lehet fejleszteni, ha kiképzés vagy kutatás alatt van, illetve már fejlesztés alatt van."
+msgstr[1] "Nem lehet fejleszteni, ha minden kiképzés vagy kutatás alatt van, illetve már fejlesztés alatt van."
 
 #: gui/session/selection_panels_helpers.js:51
 msgctxt "stance"
@@ -1528,8 +1528,8 @@ msgstr "Elvárt növekedés: %(gain)s"
 #: gui/session/unit_actions.js:1129
 msgid "This entity cannot be controlled."
 msgid_plural "These entities cannot be controlled."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ez nem vezérelhető."
+msgstr[1] "Ezek nem vezérelhetőek."
 
 #: gui/session/unit_actions.js:1166 gui/session/unit_actions.js:1494
 msgid "Unload All."

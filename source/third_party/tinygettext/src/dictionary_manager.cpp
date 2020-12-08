@@ -48,7 +48,7 @@ DictionaryManager::DictionaryManager(const std::string& charset_) :
   charset(charset_),
   use_fuzzy(true),
   current_language(),
-  current_dict(0),
+  current_dict(nullptr),
   empty_dict(),
   filesystem(new UnixFileSystem)
 {
@@ -71,7 +71,7 @@ DictionaryManager::clear_cache()
   }
   dictionaries.clear();
 
-  current_dict = 0;
+  current_dict = nullptr;
 }
 
 Dictionary&
@@ -152,7 +152,7 @@ DictionaryManager::get_dictionary(const Language& language)
         try
         {
           std::unique_ptr<std::istream> in = filesystem->open_file(pofile);
-          if (!in.get())
+          if (!in)
           {
             log_error << "error: failure opening: " << pofile << std::endl;
           }
@@ -204,7 +204,7 @@ DictionaryManager::set_language(const Language& language)
   if (current_language != language)
   {
     current_language = language;
-    current_dict     = 0;
+    current_dict     = nullptr;
   }
 }
 
@@ -235,10 +235,24 @@ DictionaryManager::get_use_fuzzy() const
 }
 
 void
-DictionaryManager::add_directory(const std::string& pathname)
+DictionaryManager::add_directory(const std::string& pathname, bool precedence /* = false */)
 {
   clear_cache(); // adding directories invalidates cache
-  search_path.push_back(pathname);
+  if (precedence)
+    search_path.push_front(pathname);
+  else
+    search_path.push_back(pathname);
+}
+
+void
+DictionaryManager::remove_directory(const std::string& pathname)
+{
+  SearchPath::iterator it = std::find(search_path.begin(), search_path.end(), pathname);
+  if (it != search_path.end())
+  {
+    clear_cache(); // removing directories invalidates cache
+    search_path.erase(it);
+  }
 }
 
 void

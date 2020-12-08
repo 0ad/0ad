@@ -34,7 +34,7 @@ var g_loading_timeout = null;
 function save_as_file()
 {
     $.ajax({
-        url: 'http://127.0.0.1:8000/download',
+        url: `http://127.0.0.1:${$("#gameport").val()}/download`,
         success: function () {
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -500,4 +500,9 @@ window.onload = function()
 
     // add new reports
     document.getElementById('report_load_input').addEventListener('change', load_report_from_file, false);
+}
+
+
+function updatePort() {
+    document.location.reload();
 }

@@ -26,107 +26,54 @@
 
 #import "osx_bundle.h"
 
-#define STRINGIZE2(id) # id
-#define STRINGIZE(id) STRINGIZE2(id)
-
-// Pass the bundle identifier string as a build option
-#ifdef BUNDLE_IDENTIFIER
-static const char* BUNDLE_ID_STR = STRINGIZE(BUNDLE_IDENTIFIER);
-#else
-static const char* BUNDLE_ID_STR = "";
-#endif
-
-
 bool osx_IsAppBundleValid()
 {
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 
-	// Check for the existence of bundle with correct identifier property
-	//  (can't just use mainBundle because that can return a bundle reference
-	//  even for a loose binary!)
-	NSBundle *bundle = [NSBundle bundleWithIdentifier: [NSString stringWithUTF8String: BUNDLE_ID_STR]];
+	NSBundle *bundle = [NSBundle mainBundle];
+	// mainBundle can create an NSBundle even with a loose executable.
+	// Assume that if the identifier is defined, we are actually inside a bundle.
+	NSString *identifier = [bundle bundleIdentifier];
 
 	[pool drain];
-	return bundle != nil;
+	return bundle != nil && identifier != nil;
+}
+
+namespace {
+std::string GetBundlePath(SEL selector)
+{
+	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+	std::string path;
+
+	NSBundle *bundle = [NSBundle mainBundle];
+	if (bundle != nil)
+	{
+		NSString *pathStr;
+		// Retrieve NSURL and convert to POSIX path, then get C-string
+		//	encoded as UTF-8, and use it to construct std::string
+		// NSURL:path "If the receiver does not conform to RFC 1808, returns nil."
+		pathStr = [[bundle performSelector:selector] path];
+
+		if (pathStr != nil)
+			path = std::string([pathStr UTF8String]);
+	}
+
+	[pool drain];
+	return path;
+}
 }
 
 std::string osx_GetBundlePath()
 {
-	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-	std::string path;
-
-	NSBundle *bundle = [NSBundle bundleWithIdentifier: [NSString stringWithUTF8String: BUNDLE_ID_STR]];
-	if (bundle != nil)
-	{
-		NSString *pathStr;
-#if MAC_OS_X_VERSION_MIN_REQUIRED >= 1060
-		// Retrieve NSURL and convert to POSIX path, then get C-string
-		//	encoded as UTF-8, and use it to construct std::string
-		// NSURL:path "If the receiver does not conform to RFC 1808, returns nil."
-		if ([bundle respondsToSelector: @selector(bundleURL)])
-			pathStr = [[bundle bundleURL] path];
-		else
-#endif
-		pathStr = [bundle bundlePath];
-
-		if (pathStr != nil)
-			path = std::string([pathStr UTF8String]);
-	}
-
-	[pool drain];
-	return path;
+	return GetBundlePath(@selector(bundleURL));
 }
 
 std::string osx_GetBundleResourcesPath()
 {
-	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-	std::string path;
-
-	NSBundle *bundle = [NSBundle bundleWithIdentifier: [NSString stringWithUTF8String: BUNDLE_ID_STR]];
-	if (bundle != nil)
-	{
-		NSString *pathStr;
-#if MAC_OS_X_VERSION_MIN_REQUIRED >= 1060
-		// Retrieve NSURL and convert to POSIX path, then get C-string
-		//	encoded as UTF-8, and use it to construct std::string
-		// NSURL:path "If the receiver does not conform to RFC 1808, returns nil."
-		if ([bundle respondsToSelector: @selector(resourceURL)])
-			pathStr = [[bundle resourceURL] path];
-		else
-#endif
-			pathStr = [bundle resourcePath];
-
-		if (pathStr != nil)
-			path = std::string([pathStr UTF8String]);
-	}
-
-	[pool drain];
-	return path;
+	return GetBundlePath(@selector(resourceURL));
 }
 
 std::string osx_GetBundleFrameworksPath()
 {
-	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-	std::string path;
-
-	NSBundle *bundle = [NSBundle bundleWithIdentifier: [NSString stringWithUTF8String: BUNDLE_ID_STR]];
-	if (bundle != nil)
-	{
-		NSString *pathStr;
-#if MAC_OS_X_VERSION_MIN_REQUIRED >= 1060
-		// Retrieve NSURL and convert to POSIX path, then get C-string
-		//	encoded as UTF-8, and use it to construct std::string
-		// NSURL:path "If the receiver does not conform to RFC 1808, returns nil."
-		if ([bundle respondsToSelector: @selector(privateFrameworksURL)])
-			pathStr = [[bundle privateFrameworksURL] path];
-		else
-#endif
-			pathStr = [bundle privateFrameworksPath];
-
-		if (pathStr != nil)
-			path = std::string([pathStr UTF8String]);
-	}
-
-	[pool drain];
-	return path;
+	return GetBundlePath(@selector(privateFrameworksURL));
 }

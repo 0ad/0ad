@@ -19,7 +19,6 @@ newoption { trigger = "without-tests", description = "Disable generation of test
 newoption { trigger = "prefer-local-libs", description = "Prefer locally built libs. Any local libraries used must also be listed within a file within /etc/ld.so.conf.d so the dynamic linker can find them at runtime." }
 
 -- OS X specific options
-newoption { trigger = "macosx-bundle", description = "Enable OSX bundle, the argument is the bundle identifier string (e.g. com.wildfiregames.0ad)" }
 newoption { trigger = "macosx-version-min", description = "Set minimum required version of the OS X API, the build will possibly fail if an older SDK is used, while newer API functions will be weakly linked (i.e. resolved at runtime)" }
 newoption { trigger = "sysroot", description = "Set compiler system root path, used for building against a non-system SDK. For example /usr/local becomes SYSROOT/user/local" }
 
@@ -330,11 +329,6 @@ function project_set_build_flags()
 				-- clang and llvm-gcc look at mmacosx-version-min to determine link target
 				-- and CRT version, and use it to set the macosx_version_min linker flag
 				linkoptions { "-mmacosx-version-min=" .. _OPTIONS["macosx-version-min"] }
-			end
-
-			-- Check if we're building a bundle
-			if _OPTIONS["macosx-bundle"] then
-				defines { "BUNDLE_IDENTIFIER=" .. _OPTIONS["macosx-bundle"] }
 			end
 
 			-- Only libc++ is supported on MacOS
@@ -1105,26 +1099,6 @@ function setup_atlas_project(project_name, target_type, rel_source_dirs, rel_inc
 
 		-- warnings triggered by wxWidgets
 		buildoptions { "-Wno-unused-local-typedefs" }
-
-	elseif os.istarget("macosx") then
-		-- install_name settings aren't really supported yet by premake, but there are plans for the future.
-		-- we currently use this hack to work around some bugs with wrong install_names.
-		if target_type == "SharedLib" then
-			if _OPTIONS["macosx-bundle"] then
-				-- If we're building a bundle, it will be in ../Frameworks
-				filter "Debug"
-					linkoptions { "-install_name @executable_path/../Frameworks/lib"..project_name.."_dbg.dylib" }
-				filter "Release"
-					linkoptions { "-install_name @executable_path/../Frameworks/lib"..project_name..".dylib" }
-				filter { }
-			else
-				filter "Debug"
-					linkoptions { "-install_name @executable_path/lib"..project_name.."_dbg.dylib" }
-				filter "Release"
-					linkoptions { "-install_name @executable_path/lib"..project_name..".dylib" }
-				filter { }
-			end
-		end
 	end
 
 end
@@ -1291,17 +1265,6 @@ function setup_collada_project(project_name, target_type, rel_source_dirs, rel_i
 
 	elseif os.istarget("macosx") then
 		-- define MACOS-something?
-
-		-- install_name settings aren't really supported yet by premake, but there are plans for the future.
-		-- we currently use this hack to work around some bugs with wrong install_names.
-		if target_type == "SharedLib" then
-			if _OPTIONS["macosx-bundle"] then
-				-- If we're building a bundle, it will be in ../Frameworks
-				linkoptions { "-install_name @executable_path/../Frameworks/lib"..project_name..".dylib" }
-			else
-				linkoptions { "-install_name @executable_path/lib"..project_name..".dylib" }
-			end
-		end
 
 		buildoptions { "-fno-strict-aliasing" }
 		-- On OSX, fcollada uses a few utility functions from coreservices

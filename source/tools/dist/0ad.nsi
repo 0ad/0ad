@@ -2,11 +2,11 @@
 ;  Do an 'svn export' into a directory called e.g. "export-win32"
 ;  makensis -nocd -dcheckoutpath=export-win32 -drevision=1234 -dprefix=0ad-0.1.2-alpha export-win32/source/tools/dist/0ad.nsi
 
-  SetCompressor /SOLID lzma
+  SetCompressor /SOLID ZLIB
 
   !include "MUI2.nsh"
   !include "LogicLib.nsh"
-  !include "FileAssociation.nsh"
+  !include "source/tools/dist/FileAssociation.nsh"
 
   ;Control whether to include source code (and component selection screen)
   !define INCLUDE_SOURCE 0
@@ -116,17 +116,22 @@ Section "!Game and data files" GameSection
   File "${CHECKOUTPATH}\*.txt"
   File "${CHECKOUTPATH}\source\tools\openlogsfolder\*.*"
   !if INCLUDE_SOURCE
-    File /r /x "public" /x "mod" /x "dev.cfg" "${CHECKOUTPATH}\binaries"
+    File /r /x "*.a" /x "*.dylib" /x "public" /x "mod" /x "dev.cfg" "${CHECKOUTPATH}\binaries"
   !else
     ;Exclude debug DLLs and related files
-    File /r /x "public" /x "mod" /x "dev.cfg" /x "*_d.dll" /x "enetd.dll" /x "FColladaD.dll" /x "gloox-1.0d.dll" /x "glooxwrapper_dbg.*" /x "libcurld.dll" /x "libpng16d.dll" /x "libsodiumd.dll" /x "miniupnpcd.dll" /x "mozjs*-ps-debug*" /x "mozjs*vc140.*" /x "msvc*d.dll" /x "zlib1d.dll" "${CHECKOUTPATH}\binaries"
+    File /r /x "public" /x "mod" /x "dev.cfg" /x "*_d.dll" /x "enetd.dll" /x "FColladaD.dll" /x "gloox-1.0d.dll" /x "glooxwrapper_dbg.*" /x "libcurld.dll" /x "libpng16d.dll" /x "*.a" /x "*.dylib" /x "pyrogenesis" /x "*.dsym*" /x "test" /x "libsodiumd.dll" /x "miniupnpcd.dll" /x "mozjs*-ps-debug*" /x "mozjs*vc140.*" /x "msvc*d.dll" /x "zlib1d.dll" "${CHECKOUTPATH}\binaries\"
   !endif
 
-  SetOutPath "$INSTDIR\binaries\data\mods\public"
-  File "${CHECKOUTPATH}\binaries\data\mods\public\public.zip"
-  File "${CHECKOUTPATH}\binaries\data\mods\public\mod.json"
-  SetOutPath "$INSTDIR\binaries\data\mods\mod"
-  File "${CHECKOUTPATH}\binaries\data\mods\mod\mod.zip"
+  !ifdef ARCHIVE_PATH
+    SetOutPath "$INSTDIR\binaries\data\mods\"
+    File /r "${ARCHIVE_PATH}"
+  !else
+    SetOutPath "$INSTDIR\binaries\data\mods\public"
+    File "${CHECKOUTPATH}\binaries\data\mods\public\public.zip"
+    File "${CHECKOUTPATH}\binaries\data\mods\public\mod.json"
+    SetOutPath "$INSTDIR\binaries\data\mods\mod"
+    File "${CHECKOUTPATH}\binaries\data\mods\mod\mod.zip"
+  !endif
 
   ;Store installation folder
   WriteRegStr SHCTX "Software\0 A.D." "" $INSTDIR

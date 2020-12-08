@@ -58,7 +58,7 @@ public:
   /** Create an undefined Language object */
   Language();
 
-  explicit operator bool() const { return language_spec != NULL; }
+  explicit operator bool() const { return language_spec != nullptr; }
 
   /** Returns the language code (i.e. de, en, fr) */
   std::string get_language() const;
