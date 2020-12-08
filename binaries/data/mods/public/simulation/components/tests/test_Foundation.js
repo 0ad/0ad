@@ -122,7 +122,7 @@ function testFoundation(...mocks)
 		AddMock(...mock);
 
 	// INITIALISE
-	Engine.AddEntity = function(template) {
+	Engine.AddLocalEntity = function(template) {
 		TS_ASSERT_EQUALS(template, "construction|" + finalTemplate);
 		return previewEnt;
 	};
