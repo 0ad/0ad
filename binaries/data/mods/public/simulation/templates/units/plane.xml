@@ -2,7 +2,7 @@
 <Entity parent="template_unit">
   <Attack>
     <Ranged>
-      <AttackName>Machine Guns</AttackName>
+      <AttackName context="Name of an attack of a World War II fighter plane.">Machine Guns</AttackName>
       <Damage>
         <Hack>0.0</Hack>
         <Pierce>100.0</Pierce>
@@ -47,7 +47,7 @@
   </Health>
   <Identity>
     <SpecificName>P-51 Mustang</SpecificName>
-    <Tooltip>A World War 2 American fighter plane.</Tooltip>
+    <Tooltip>A World War II American fighter plane.</Tooltip>
     <Icon>units/global_mustang.png</Icon>
     <Formations datatype="tokens" replace=""/>
   </Identity>
