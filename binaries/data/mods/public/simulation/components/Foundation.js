@@ -20,10 +20,21 @@ Foundation.prototype.Init = function()
 	this.previewEntity = INVALID_ENTITY;
 };
 
+Foundation.prototype.Serialize = function()
+{
+	let ret = Object.assign({}, this);
+	ret.previewEntity = INVALID_ENTITY;
+	return ret;
+};
+
+Foundation.prototype.Deserialize = function(data)
+{
+	this.Init();
+	Object.assign(this, data);
+};
+
 Foundation.prototype.OnDeserialized = function()
 {
-	// Reset this to avoid calling DestroyEntity (it does nothing, but still).
-	this.previewEntity = INVALID_ENTITY;
 	this.CreateConstructionPreview();
 };
 
