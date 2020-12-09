@@ -12,6 +12,7 @@ CXXFLAGS += -fvisibility=hidden -W -Wall -Wno-unused-parameter -Wno-unused-funct
 CXXFLAGS_DEBUG := -O0 -g -D_DEBUG -DRETAIL
 CXXFLAGS_RELEASE := -O2 -DNDEBUG -DRETAIL
 CXXFLAGS_TEST := -O0 -g -D_DEBUG
+LDFLAGS_TEST= -ldl
 LIBS += `pkg-config libxml-2.0 --libs`
 INCLUDES += -IFCollada `pkg-config libxml-2.0 --cflags`
 INCLUDES_TEST := -IFCollada/FColladaTest $(INCLUDES)
@@ -227,11 +228,21 @@ OBJECTS_ALL = $(OBJECTS_DEBUG) $(OBJECTS_RELEASE) $(OBJECTS_TEST)
 all: output/libFColladaSD.a output/libFColladaSR.a install
 
 output_dirs:
-	bash -c 'mkdir -p output/{debug,release,test}/{FCollada/{FCDocument,FMath,FUtils,FColladaTest/{FCTestAssetManagement,FCTestExportImport,FCTestXRef}},FColladaPlugins/FArchiveXML}'
+	@for x in debug release test; \
+	do \
+		mkdir -p output/$$x/FColladaPlugins/FArchiveXML; \
+		for y in FCDocument FMath FUtils FColladaTest; \
+		do \
+			for z in FCTestAssetManagement FCTestExportImport FCTestXRef; \
+			do \
+				mkdir -p output/$$x/FCollada/$$y/$$z; \
+			done \
+		done \
+	done
 
 test: FCollada/FColladaTest/ output/FColladaTest
-	( cd FCollada/FColladaTest/ ; ../../output/FColladaTest )
-	cat FCollada/FColladaTest/FColladaTestLog.txt
+	(cd FCollada/FColladaTest/ ; ../../output/FColladaTest )
+	(cp -r FCollada/FColladaTest/Samples/ output/Samples && cd output/ && ./FColladaTest && cat FColladaTestLog.txt)
 
 output/libFColladaSD.a: $(OBJECTS_DEBUG) | output_dirs
 	@echo "$@"
@@ -242,7 +253,7 @@ output/libFColladaSR.a: $(OBJECTS_RELEASE) | output_dirs
 	@ar -cr $@ $(OBJECTS_RELEASE); ranlib $@
 
 output/FColladaTest: $(OBJECTS_TEST) | output_dirs
-	$(CXX) -o $@ $(LDFLAGS) $(OBJECTS_TEST) $(LIBS)
+	$(CXX) -o $@  $(OBJECTS_TEST) $(LIBS) $(LDFLAGS_TEST)
 
 install: output/libFColladaSD.a output/libFColladaSR.a
 	cp output/libFColladaSD.a ../lib/libFColladaSD.a
