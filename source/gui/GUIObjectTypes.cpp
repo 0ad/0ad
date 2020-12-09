@@ -21,6 +21,7 @@
 #include "gui/ObjectTypes/CChart.h"
 #include "gui/ObjectTypes/CCheckBox.h"
 #include "gui/ObjectTypes/CDropDown.h"
+#include "gui/ObjectTypes/CGUIDummyObject.h"
 #include "gui/ObjectTypes/CHotkeyPicker.h"
 #include "gui/ObjectTypes/CImage.h"
 #include "gui/ObjectTypes/CInput.h"

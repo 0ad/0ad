@@ -23,7 +23,6 @@
 
 #include "gui/GUIManager.h"
 #include "ps/Game.h"
-#include "ps/GameSetup/GameSetup.h"
 #include "ps/Loader.h"
 #include "ps/CLogger.h"
 #include "simulation2/components/ICmpAIInterface.h"
@@ -32,8 +31,6 @@
 #include "simulation2/system/LocalTurnManager.h"
 #include "third_party/mongoose/mongoose.h"
 
-#include <queue>
-#include <tuple>
 #include <sstream>
 
 // Globally accessible pointer to the RL Interface.

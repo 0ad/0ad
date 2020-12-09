@@ -18,7 +18,6 @@
 #ifndef INCLUDED_DECALRDATA
 #define INCLUDED_DECALRDATA
 
-#include "graphics/Camera.h"
 #include "graphics/RenderableObject.h"
 #include "graphics/ShaderProgramPtr.h"
 #include "renderer/VertexArray.h"

@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,11 +19,10 @@
 
 // "engine"-specific PCH:
 
-#include "ps/Pyrogenesis.h"	// old error system
-
 #if CONFIG_ENABLE_PCH
-
-#include "SDL.h"
-#include "SDL_endian.h"
-
+#include "ps/CStr.h"
+#include "ps/Errors.h"
+#include "lib/file/vfs/vfs_path.h"
+#include "lib/file/vfs/vfs_util.h"
+#include "scriptinterface/ScriptTypes.h"
 #endif // CONFIG_ENABLE_PCH

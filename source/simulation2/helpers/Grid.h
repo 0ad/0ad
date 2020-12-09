@@ -18,11 +18,10 @@
 #ifndef INCLUDED_GRID
 #define INCLUDED_GRID
 
-#include <cstring>
-
 #include "simulation2/serialization/IDeserializer.h"
 #include "simulation2/serialization/ISerializer.h"
 
+#include <cstring>
 
 #ifdef NDEBUG
 #define GRID_BOUNDS_DEBUG 0

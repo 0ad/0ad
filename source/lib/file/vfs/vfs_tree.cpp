@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -28,6 +28,7 @@
 #include "lib/file/vfs/vfs_tree.h"
 
 #include <cstdio>
+#include <ctime>
 
 #include "lib/file/common/file_stats.h"
 #include "lib/sysdep/cpu.h"

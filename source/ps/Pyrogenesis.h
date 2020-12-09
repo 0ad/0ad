@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,7 +24,8 @@ Standard declarations which are included in all projects.
 #ifndef INCLUDED_PYROGENESIS
 #define INCLUDED_PYROGENESIS
 
-#include "lib/os_path.h"
+class Path;
+using OsPath = Path;
 
 extern const char* engine_version;
 

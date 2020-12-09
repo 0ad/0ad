@@ -29,6 +29,7 @@
 #include "lib/sysdep/os_cpu.h"
 #include "lib/sysdep/arch/x86_x64/x86_x64.h"
 
+#include <algorithm>
 
 ApicId GetApicId()
 {

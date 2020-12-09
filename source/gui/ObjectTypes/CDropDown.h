@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -29,6 +29,7 @@ GUI Object - Drop Down (list)
 #define INCLUDED_CDROPDOWN
 
 #include "gui/CGUISprite.h"
+#include "gui/ObjectBases/IGUIObject.h"
 #include "gui/ObjectTypes/CList.h"
 
 #include <string>

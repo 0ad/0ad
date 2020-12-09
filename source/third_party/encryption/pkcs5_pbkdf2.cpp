@@ -19,6 +19,8 @@
 
 #include "pkcs5_pbkdf2.h"
 
+#include <cstring>
+
 // This does not match libsodium crypto_auth_hmacsha256, which has a constant key_len.
 static void hmac_sha256(unsigned char (&digest)[crypto_hash_sha256_BYTES],
 						const unsigned char* text, size_t text_len,

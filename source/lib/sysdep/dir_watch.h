@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -29,8 +29,11 @@
 
 #include "lib/os_path.h"
 
+#include <vector>
+#include <memory>
+
 struct DirWatch;
-typedef shared_ptr<DirWatch> PDirWatch;
+typedef std::shared_ptr<DirWatch> PDirWatch;
 
 /**
  * start watching a single directory for changes.

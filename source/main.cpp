@@ -31,8 +31,6 @@ that of Atlas depending on commandline parameters.
 #define MINIMAL_PCH 2
 #include "lib/precompiled.h"
 
-#include <chrono>
-
 #include "lib/debug.h"
 #include "lib/status.h"
 #include "lib/secure_crt.h"
@@ -94,6 +92,9 @@ that of Atlas depending on commandline parameters.
 #include <process.h>
 #define getpid _getpid // Use the non-deprecated function name
 #endif
+
+#include <chrono>
+#include <iostream>
 
 extern CmdLineArgs g_args;
 extern CStrW g_UniqueLogPostfix;

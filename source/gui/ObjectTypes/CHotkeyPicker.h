@@ -19,6 +19,7 @@
 #define INCLUDED_CHOTKEYPICKER
 
 #include "gui/CGUI.h"
+#include "gui/ObjectBases/IGUIObject.h"
 #include "lib/external_libraries/libsdl.h"
 #include "ps/CStr.h"
 

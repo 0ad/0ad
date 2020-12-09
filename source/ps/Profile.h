@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -29,10 +29,6 @@
 #include "ps/Profiler2.h"
 #include "ps/Singleton.h"
 
-#include <boost/flyweight.hpp>
-#include <boost/flyweight/key_value.hpp>
-#include <boost/flyweight/no_locking.hpp>
-#include <boost/flyweight/no_tracking.hpp>
 
 #define PROFILE_AMORTIZE_FRAMES 30
 #define PROFILE_AMORTIZE_TURNS 1
@@ -49,15 +45,6 @@ class CProfileNodeTable;
 //
 // TODO: Check again how much the overhead for getting filename and line really is and if
 // it has increased with the new approach after the SpiderMonkey 31 upgrade.
-//
-// Flyweight types (with no_locking because the call hooks are only used in the
-// main thread, and no_tracking because we mustn't delete values the profiler is
-// using and it's not going to waste much memory)
-typedef boost::flyweight<
-	std::string,
-	boost::flyweights::no_tracking,
-	boost::flyweights::no_locking
-> StringFlyweight;
 
 class CProfileNode
 {

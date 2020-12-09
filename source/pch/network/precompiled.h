@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,5 +23,6 @@
 // These headers are included by almost all compilation units.
 #include "ps/CStr.h"
 #include "ps/ThreadUtil.h"
-
+#include "network/NetMessage.h"
+#include "scriptinterface/ScriptInterface.h"
 #endif // CONFIG_ENABLE_PCH

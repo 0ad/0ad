@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,12 +18,13 @@
 #ifndef INCLUDED_IGUISCROLLBAROWNER
 #define INCLUDED_IGUISCROLLBAROWNER
 
-#include "gui/ObjectBases/IGUIObject.h"
-
 #include <vector>
 
+class CStr8;
+struct SGUIMessage;
 struct SGUIScrollBarStyle;
 class IGUIScrollBar;
+class IGUIObject;
 
 /**
  * Base-class this if you want an object to contain
@@ -54,7 +55,7 @@ public:
 	/**
 	 * Interface for the m_ScrollBar to use.
 	 */
-	virtual const SGUIScrollBarStyle* GetScrollBarStyle(const CStr& style) const;
+	virtual const SGUIScrollBarStyle* GetScrollBarStyle(const CStr8& style) const;
 
 	/**
 	 * Add a scroll-bar

@@ -21,6 +21,8 @@
 #include "ps/CStr.h"
 #include "simulation2/system/Interface.h"
 
+#include <vector>
+
 class ICmpAttack : public IComponent
 {
 public:

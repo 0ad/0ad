@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -23,6 +23,8 @@
 #include "lib/self_test.h"
 
 #include "lib/secure_crt.h"
+
+#include <cstring>
 
 // note: we only test the char version. this avoids having to
 // expose secure_crt.cpp's tchar / tcpy etc. macros in the header and/or

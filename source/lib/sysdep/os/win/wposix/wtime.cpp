@@ -30,6 +30,8 @@
 
 #include "lib/sysdep/os/win/wposix/wposix_internal.h"
 
+#include <ctime>
+
 WINIT_REGISTER_MAIN_INIT(wtime_Init);	// whrt -> wtime
 
 // NT system time and FILETIME are hectonanoseconds since Jan. 1, 1601 UTC.

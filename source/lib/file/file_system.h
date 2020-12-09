@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -30,6 +30,7 @@
 #include "lib/os_path.h"
 #include "lib/posix/posix_filesystem.h"	// mode_t
 
+#include <vector>
 
 LIB_API bool DirectoryExists(const OsPath& path);
 LIB_API bool FileExists(const OsPath& pathname);

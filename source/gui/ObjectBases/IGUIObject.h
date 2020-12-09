@@ -42,8 +42,6 @@ class IGUISetting;
 template <typename T>
 class JSI_GUIProxy;
 
-using map_pObjects = std::map<CStr, IGUIObject*>;
-
 #define GUI_OBJECT(obj) \
 public: \
 	static IGUIObject* ConstructObject(CGUI& pGUI) \

@@ -34,6 +34,7 @@
 # include "lib/sysdep/os/win/wgfx.h"
 #endif
 
+#include <string>
 
 namespace gfx {
 

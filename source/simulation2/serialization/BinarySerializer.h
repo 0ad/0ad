@@ -23,7 +23,9 @@
 #include "lib/byte_order.h"
 #include "lib/allocators/arena.h"
 
+#include <iostream>
 #include <map>
+#include <streambuf>
 
 /**
  * Wrapper for redirecting ostream writes to CBinarySerializer's impl

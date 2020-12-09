@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -39,6 +39,7 @@
 
 #include "lib/utf8.h"
 
+#include <algorithm>
 #include <cstring>
 #include <functional>
 
@@ -247,7 +248,7 @@ public:
 
 		// Convert the separator to allow for string comparison
 		if(other.separator != ret.separator)
-			replace(other.path.begin(), other.path.end(), other.separator, ret.separator);
+			std::replace(other.path.begin(), other.path.end(), other.separator, ret.separator);
 
 		const size_t idx = ret.path.rfind(other.path);
 		if(idx == String::npos)

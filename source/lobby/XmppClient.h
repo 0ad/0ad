@@ -20,9 +20,12 @@
 
 #include "IXmppClient.h"
 
-#include <deque>
-
 #include "glooxwrapper/glooxwrapper.h"
+
+#include <ctime>
+#include <deque>
+#include <string>
+#include <vector>
 
 class ScriptInterface;
 

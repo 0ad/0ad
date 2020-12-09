@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -30,12 +30,13 @@
 #include "lib/file/file.h"
 #include "lib/posix/posix_filesystem.h" // mode_t
 
+#include "ps/CLogger.h"
+
 #include <AvailabilityMacros.h> // MAC_OS_X_VERSION_MIN_REQUIRED
 #include <CoreFoundation/CoreFoundation.h>
 #include <CoreServices/CoreServices.h>
 
-
-#include "ps/CLogger.h"
+#include <vector>
 
 static FSEventStreamRef g_Stream = NULL;
 

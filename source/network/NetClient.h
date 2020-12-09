@@ -25,6 +25,7 @@
 
 #include "ps/CStr.h"
 
+#include <ctime>
 #include <deque>
 
 class CGame;

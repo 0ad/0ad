@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,9 +25,11 @@
 // On Linux, wchar_t is 32-bit, so define a new version of it.
 // We now use this code on Windows as well, because wchar_t is a
 // native type and distinct from utf16_t.
-#include <string>
-#include <memory.h>
 #include <algorithm>
+#include <cstring>
+#include <memory>
+#include <string>
+
 
 typedef uint16_t utf16_t;
 

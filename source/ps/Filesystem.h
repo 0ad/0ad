@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,7 +19,6 @@
 #define INCLUDED_PS_FILESYSTEM
 
 #include "lib/file/file.h"
-#include "lib/file/io/io.h"
 #include "lib/file/io/write_buffer.h"
 #include "lib/file/vfs/vfs_util.h"
 

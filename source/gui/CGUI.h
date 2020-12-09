@@ -24,7 +24,6 @@
 #define INCLUDED_CGUI
 
 #include "gui/GUITooltip.h"
-#include "gui/ObjectTypes/CGUIDummyObject.h"
 #include "gui/SettingTypes/CGUIColor.h"
 #include "gui/SGUIIcon.h"
 #include "gui/SGUIStyle.h"
@@ -48,6 +47,8 @@ struct SGUIImageEffects;
 struct SGUIScrollBarStyle;
 
 namespace js { class BaseProxyHandler; }
+
+using map_pObjects = std::map<CStr, IGUIObject*>;
 
 /**
  * The main object that represents a whole GUI page.
@@ -152,7 +153,7 @@ public:
 	/**
 	 * Return the object which is an ancestor of every other GUI object.
 	 */
-	CGUIDummyObject& GetBaseObject() { return m_BaseObject; };
+	IGUIObject* GetBaseObject();
 
 	/**
 	 * Checks if object exists and return true or false accordingly
@@ -576,7 +577,7 @@ private:
 	 * Base Object, all its children are considered parentless
 	 * because this is not a real object per se.
 	 */
-	CGUIDummyObject m_BaseObject;
+	std::unique_ptr<IGUIObject> m_BaseObject;
 
 	/**
 	 * Focused object!

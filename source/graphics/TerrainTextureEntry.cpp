@@ -22,6 +22,7 @@
 #include "lib/utf8.h"
 #include "lib/ogl.h"
 #include "lib/allocators/shared_ptr.h"
+#include "lib/file/io/io.h"
 #include "lib/res/graphics/ogl_tex.h"
 
 #include "ps/CLogger.h"

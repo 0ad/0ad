@@ -23,6 +23,7 @@
 #include "ps/utf16string.h"
 
 #include <map>
+#include <vector>
 
 class CStdDeserializer : public IDeserializer
 {

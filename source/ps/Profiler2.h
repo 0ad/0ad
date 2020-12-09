@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -78,13 +78,14 @@
 #ifndef INCLUDED_PROFILER2
 #define INCLUDED_PROFILER2
 
-#include <map>
-#include <thread>
-
 #include "lib/timer.h"
 #include "ps/ThreadUtil.h"
 
+#include <cstring>
+#include <map>
 #include <mutex>
+#include <vector>
+#include <thread>
 
 struct mg_context;
 

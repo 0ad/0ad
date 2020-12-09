@@ -25,6 +25,7 @@
 #include "graphics/Patch.h"
 #include "graphics/ShaderManager.h"
 #include "graphics/Terrain.h"
+#include "graphics/TerrainTextureEntry.h"
 #include "graphics/TextRenderer.h"
 #include "lib/alignment.h"
 #include "lib/allocators/arena.h"

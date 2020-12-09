@@ -20,6 +20,7 @@
 #include "CGUI.h"
 
 #include "gui/IGUIScrollBar.h"
+#include "gui/ObjectTypes/CGUIDummyObject.h"
 #include "gui/ObjectTypes/CTooltip.h"
 #include "gui/Scripting/ScriptFunctions.h"
 #include "i18n/L10n.h"
@@ -63,7 +64,7 @@ const CStr CGUI::EventNameMouseRightDoubleClick = "MouseRightDoubleClick";
 const CStr CGUI::EventNameMouseRightRelease = "MouseRightRelease";
 
 CGUI::CGUI(const shared_ptr<ScriptContext>& context)
-	: m_BaseObject(*this),
+	: m_BaseObject(new CGUIDummyObject(*this)),
 	  m_FocusedObject(nullptr),
 	  m_InternalNameNumber(0),
 	  m_MouseButtons(0)
@@ -126,7 +127,7 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 		m_MousePos = CPos((float)ev->ev.motion.x / g_GuiScale, (float)ev->ev.motion.y / g_GuiScale);
 
 		SGUIMessage msg(GUIM_MOUSE_MOTION);
-		m_BaseObject.RecurseObject(&IGUIObject::IsHiddenOrGhost, &IGUIObject::HandleMessage, msg);
+		m_BaseObject->RecurseObject(&IGUIObject::IsHiddenOrGhost, &IGUIObject::HandleMessage, msg);
 	}
 
 	// Update m_MouseButtons. (BUTTONUP is handled later.)
@@ -164,7 +165,7 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 		// Now we'll call UpdateMouseOver on *all* objects,
 		// we'll input the one hovered, and they will each
 		// update their own data and send messages accordingly
-		m_BaseObject.RecurseObject(&IGUIObject::IsHiddenOrGhost, &IGUIObject::UpdateMouseOver, static_cast<IGUIObject* const&>(pNearest));
+		m_BaseObject->RecurseObject(&IGUIObject::IsHiddenOrGhost, &IGUIObject::UpdateMouseOver, static_cast<IGUIObject* const&>(pNearest));
 
 		if (ev->ev.type == SDL_MOUSEBUTTONDOWN)
 		{
@@ -223,10 +224,10 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 			}
 
 			// Reset all states on all visible objects
-			m_BaseObject.RecurseObject(&IGUIObject::IsHidden, &IGUIObject::ResetStates);
+			m_BaseObject->RecurseObject(&IGUIObject::IsHidden, &IGUIObject::ResetStates);
 
 			// Since the hover state will have been reset, we reload it.
-			m_BaseObject.RecurseObject(&IGUIObject::IsHiddenOrGhost, &IGUIObject::UpdateMouseOver, static_cast<IGUIObject* const&>(pNearest));
+			m_BaseObject->RecurseObject(&IGUIObject::IsHiddenOrGhost, &IGUIObject::UpdateMouseOver, static_cast<IGUIObject* const&>(pNearest));
 		}
 	}
 
@@ -266,7 +267,7 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 
 void CGUI::TickObjects()
 {
-	m_BaseObject.RecurseObject(&IGUIObject::IsHiddenOrGhost, &IGUIObject::Tick);
+	m_BaseObject->RecurseObject(&IGUIObject::IsHiddenOrGhost, &IGUIObject::Tick);
 	SendEventToAll(EventNameTick);
 	m_Tooltip.Update(FindObjectUnderMouse(), m_MousePos, *this);
 }
@@ -299,7 +300,7 @@ void CGUI::Draw()
 	// drawn on top of everything else
 	glClear(GL_DEPTH_BUFFER_BIT);
 
-	m_BaseObject.RecurseObject(&IGUIObject::IsHidden, &IGUIObject::Draw);
+	m_BaseObject->RecurseObject(&IGUIObject::IsHidden, &IGUIObject::Draw);
 }
 
 void CGUI::DrawSprite(const CGUISpriteInstance& Sprite, int CellID, const float& Z, const CRect& Rect, const CRect& UNUSED(Clipping))
@@ -315,7 +316,7 @@ void CGUI::DrawSprite(const CGUISpriteInstance& Sprite, int CellID, const float&
 
 void CGUI::UpdateResolution()
 {
-	m_BaseObject.RecurseObject(nullptr, &IGUIObject::UpdateCachedSize);
+	m_BaseObject->RecurseObject(nullptr, &IGUIObject::UpdateCachedSize);
 }
 
 IGUIObject* CGUI::ConstructObject(const CStr& str)
@@ -347,6 +348,11 @@ bool CGUI::AddObject(IGUIObject& parent, IGUIObject& child)
 	return true;
 }
 
+IGUIObject* CGUI::GetBaseObject()
+{
+	return m_BaseObject.get();
+};
+
 bool CGUI::ObjectExists(const CStr& Name) const
 {
 	return m_pAllObjects.find(Name) != m_pAllObjects.end();
@@ -365,7 +371,7 @@ IGUIObject* CGUI::FindObjectByName(const CStr& Name) const
 IGUIObject* CGUI::FindObjectUnderMouse()
 {
 	IGUIObject* pNearest = nullptr;
-	m_BaseObject.RecurseObject(&IGUIObject::IsHiddenOrGhost, &IGUIObject::ChooseMouseOverAndClosest, pNearest);
+	m_BaseObject->RecurseObject(&IGUIObject::IsHiddenOrGhost, &IGUIObject::ChooseMouseOverAndClosest, pNearest);
 	return pNearest;
 }
 
@@ -500,10 +506,10 @@ void CGUI::LoadXmlFile(const VfsPath& Filename, std::unordered_set<VfsPath>& Pat
 
 void CGUI::LoadedXmlFiles()
 {
-	m_BaseObject.RecurseObject(nullptr, &IGUIObject::UpdateCachedSize);
+	m_BaseObject->RecurseObject(nullptr, &IGUIObject::UpdateCachedSize);
 
 	SGUIMessage msg(GUIM_LOAD);
-	m_BaseObject.RecurseObject(nullptr, &IGUIObject::HandleMessage, msg);
+	m_BaseObject->RecurseObject(nullptr, &IGUIObject::HandleMessage, msg);
 
 	SendEventToAll(EventNameLoad);
 }
@@ -527,7 +533,7 @@ void CGUI::Xeromyces_ReadRootObjects(XMBElement Element, CXeromyces* pFile, std:
 			Xeromyces_ReadScript(child, pFile, Paths);
 		else
 			// Read in this whole object into the GUI
-			Xeromyces_ReadObject(child, pFile, &m_BaseObject, subst, Paths, 0);
+			Xeromyces_ReadObject(child, pFile, m_BaseObject.get(), subst, Paths, 0);
 	}
 }
 
@@ -1265,7 +1271,7 @@ void CGUI::Xeromyces_ReadTooltip(XMBElement Element, CXeromyces* pFile)
 			object->SetSettingFromString(attr_name, attr_value.FromUTF8(), true);
 	}
 
-	if (!AddObject(m_BaseObject, *object))
+	if (!AddObject(*m_BaseObject, *object))
 		delete object;
 }
 

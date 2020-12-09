@@ -37,6 +37,8 @@
 
 #include <gloox/gloox.h>
 
+#include <iostream>
+
 //debug
 #if 1
 #define DbgXMPP(x)

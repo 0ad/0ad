@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -45,25 +45,26 @@
 #include <cwctype>
 #endif // !MINIMAL_PCH
 
-#if MINIMAL_PCH < 2
+#if MINIMAL_PCH < 3
 // common C++98 STL headers
 #include <algorithm>
-#include <vector>
-#endif
-
-#if MINIMAL_PCH < 3
-// all other C++98 STL headers
-#include <deque>
-#include <functional>
 #include <iterator>
 #include <list>
 #include <map>
 #include <memory>
+#include <set>
+#include <string>
+#include <utility>
+#include <vector>
+#endif
+
+#if MINIMAL_PCH < 2
+// all other C++98 STL headers
+#include <deque>
+#include <functional>
 #include <numeric>
 #include <queue>
-#include <set>
 #include <stack>
-#include <utility>
 #endif
 
 #if !MINIMAL_PCH
@@ -84,7 +85,6 @@
 #include <sstream>
 #include <stdexcept>
 #include <streambuf>
-#include <string>
 #include <sstream>
 #include <typeinfo>
 #include <valarray>
