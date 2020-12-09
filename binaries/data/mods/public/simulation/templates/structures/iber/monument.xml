@@ -7,7 +7,7 @@
     <Category>Monument</Category>
     <Distance>
       <FromClass>Monument</FromClass>
-      <MinDistance>135</MinDistance>
+      <MinDistance>145</MinDistance>
     </Distance>
   </BuildRestrictions>
   <Capturable disable=""/>
@@ -19,7 +19,7 @@
     </Resources>
   </Cost>
   <Footprint>
-    <Square width="10.0" depth="10.0"/>
+    <Square width="8.0" depth="8.0"/>
     <Height>8.0</Height>
   </Footprint>
   <GarrisonHolder disable=""/>
@@ -39,7 +39,7 @@
     <metal>20</metal>
   </Loot>
   <Obstruction>
-    <Static width="10.0" depth="10.0"/>
+    <Static width="6.0" depth="6.0"/>
   </Obstruction>
   <ProductionQueue disable=""/>
   <RallyPoint disable=""/>

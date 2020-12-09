@@ -61,12 +61,14 @@ then
   fi
 fi
 
+LLVM_OBJDUMP=${LLVM_OBJDUMP:=$(command -v llvm-objdump || command -v objdump)}
+
 # Quick sanity check to print explicit error messages
 # (Don't run this on windows as it would likely fail spuriously)
 if [ "${OS}" != "Windows_NT" ]
 then
   [ ! -z "$(command -v rustc)" ] || (echo "Error: rustc is not available. Install the rust toolchain (rust + cargo) before proceeding." && exit 1)
-  [ ! -z "$(command -v objdump llvm-objdump)" ] || (echo "Error: LLVM objdump is not available. Install it (likely via LLVM-clang) before proceeding." && exit 1)
+  [ ! -z "${LLVM_OBJDUMP}" ] || (echo "Error: LLVM objdump is not available. Install it (likely via LLVM-clang) before proceeding." && exit 1)
 fi
 
 # If Valgrind looks like it's installed, then set up SM to support it
@@ -85,7 +87,7 @@ CONF_OPTS="${CONF_OPTS} \
 echo "SpiderMonkey build options: ${CONF_OPTS}"
 
 # It can occasionally be useful to not rebuild everything, but don't do this by default.
-REBUILD=true
+REBUILD=${REBUILD:=true}
 if $REBUILD = true;
 then
   # Delete the existing directory to avoid conflicts and extract the tarball
@@ -117,7 +119,7 @@ cd build-debug
 # To avoid a dependency, pass something arbitrary (it does need to be an actual program).
 # llvm-objdump is searched for with the complete name, not simply 'objdump', account for that.
 CXXFLAGS="${CXXFLAGS}" ../js/src/configure AUTOCONF="ls" \
-  LLVM_OBJDUMP="$(command -v objdump llvm-objdump)" \
+  LLVM_OBJDUMP="${LLVM_OBJDUMP}" \
   ${CONF_OPTS} \
   --enable-debug \
   --disable-optimize \
@@ -128,7 +130,7 @@ cd ..
 mkdir -p build-release
 cd build-release
 CXXFLAGS="${CXXFLAGS}" ../js/src/configure AUTOCONF="ls" \
-  LLVM_OBJDUMP="$(command -v objdump llvm-objdump)" \
+  LLVM_OBJDUMP="${LLVM_OBJDUMP}" \
   ${CONF_OPTS} \
   --enable-optimize
 ${MAKE} ${MAKE_OPTS}
