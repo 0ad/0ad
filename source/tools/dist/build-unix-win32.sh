@@ -7,7 +7,7 @@ GZIP7ZOPTS="-mx=9"
 BUNDLE_VERSION=${BUNDLE_VERSION:="0.0.xxx"}
 PREFIX="0ad-${BUNDLE_VERSION}-alpha"
 
-SVN_REV=$(svnversion -n .)
+SVN_REV=${SVN_REV:=$(svnversion -n .)}
 echo "${SVN_REV}-release" > build/svn_revision/svn_revision.txt
 
 # Collect the relevant files

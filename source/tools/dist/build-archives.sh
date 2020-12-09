@@ -3,8 +3,8 @@ set -e
 
 die()
 {
-  echo ERROR: $*
-  exit 1
+	echo ERROR: $*
+	exit 1
 }
 
 # Build the mod .zip using the pyrogenesis executable.
@@ -28,20 +28,25 @@ echo "${SVN_REV}-release" > build/svn_revision/svn_revision.txt
 # Build archive(s) - don't archive the _test.* mods
 pushd binaries/data/mods > /dev/null
 archives=""
-for modname in [a-zA-Z0-9]*
-do
-  archives="${archives} ${modname}"
-done
+ONLY_MOD="${ONLY_MOD:=false}"
+if [ "${ONLY_MOD}" = true ]; then
+	archives="mod"
+else
+	for modname in [a-zA-Z0-9]*
+	do
+		archives="${archives} ${modname}"
+	done
+fi
 popd > /dev/null
 
 for modname in $archives
 do
-  echo "\nBuilding archive for '${modname}'\n"
-  ARCHIVEBUILD_INPUT="binaries/data/mods/${modname}"
-  ARCHIVEBUILD_OUTPUT="archives/${modname}"
+	echo "\nBuilding archive for '${modname}'\n"
+	ARCHIVEBUILD_INPUT="binaries/data/mods/${modname}"
+	ARCHIVEBUILD_OUTPUT="archives/${modname}"
 
-  mkdir -p "${ARCHIVEBUILD_OUTPUT}"
+	mkdir -p "${ARCHIVEBUILD_OUTPUT}"
 
-  (./binaries/system/pyrogenesis -archivebuild="${ARCHIVEBUILD_INPUT}" -archivebuild-output="${ARCHIVEBUILD_OUTPUT}/${modname}.zip") || die "Archive build for '${modname}' failed!"
-  cp "${ARCHIVEBUILD_INPUT}/mod.json" "${ARCHIVEBUILD_OUTPUT}" || true
+	(./binaries/system/pyrogenesis -archivebuild="${ARCHIVEBUILD_INPUT}" -archivebuild-output="${ARCHIVEBUILD_OUTPUT}/${modname}.zip") || die "Archive build for '${modname}' failed!"
+	cp "${ARCHIVEBUILD_INPUT}/mod.json" "${ARCHIVEBUILD_OUTPUT}" &> /dev/null || true
 done

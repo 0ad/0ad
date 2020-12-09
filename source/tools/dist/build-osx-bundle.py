@@ -24,6 +24,8 @@ parser.add_argument('--min_osx', help='Minimum supported OSX version',
     default='10.12')
 parser.add_argument('--bundle_identifier', help='Bundle identifier',
     default='com.wildfiregames.0ad')
+parser.add_argument('--dev', help='Turn on dev mode, which isn\'t fit for release but faster',
+    action="store_true")
 args = parser.parse_args()
 
 BUNDLE_DMG_NAME = "0 A.D."
@@ -59,10 +61,18 @@ print("Copying libs")
 shutil.copy("binaries/system/libAtlasUI.dylib", BUNDLE_FRAMEWORKS)
 shutil.copy("binaries/system/libCollada.dylib", BUNDLE_FRAMEWORKS)
 
-print("Copying archived game data")
-for mod in glob.glob("archives/*/"):
-    print(f"Copying {mod}")
-    shutil.copytree(mod, BUNDLE_RESOURCES + "/data/mods/" + mod.replace("archives/", ""))
+if not args.dev:
+    print("Copying archived game data from archives/")
+    for mod in glob.glob("archives/*/"):
+        print(f"Copying {mod}")
+        shutil.copytree(mod, BUNDLE_RESOURCES + "/data/mods/" + mod.replace("archives/", ""))
+else:
+    print("Symlinking mods")
+    os.makedirs(BUNDLE_RESOURCES + "/data/mods")
+    os.chdir(BUNDLE_RESOURCES + "/data/mods")
+    for mod in glob.glob("../../../../../binaries/data/mods/*"):
+        os.symlink(mod, mod.replace("../../../../../binaries/data/mods/", ""))
+    os.chdir("../../../../../")
 
 print("Copying non-archived game data")
 shutil.copytree("binaries/data/config", BUNDLE_RESOURCES + "/data/config")
@@ -98,6 +108,10 @@ with open(BUNDLE_CONTENTS + "/Info.plist", 'wb') as f:
         'LSMinimumSystemVersion': BUNDLE_MIN_OSX_VERSION,
         'NSHumanReadableCopyright': f'Copyright © {datetime.datetime.now().year} Wildfire Games',
     }, f)
+
+if args.dev:
+    print(f"Dev mode bundle complete, located at {BUNDLE_OUTPUT}")
+    exit(0)
 
 print("Creating .dmg")
 
