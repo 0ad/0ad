@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,11 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#define MINIMAL_PCH 1
+#define MINIMAL_PCH 2
 #include "lib/precompiled.h"	// common precompiled header
-
-// Minimal is a bit *too* minimal to let things compile, so include a few more headers
-#include "lib/debug.h"
 
 #if CONFIG_ENABLE_PCH
 
@@ -29,5 +26,7 @@
 #include "simulation2/system/Component.h"
 #include "simulation2/system/Interface.h"
 #include "simulation2/system/InterfaceScripted.h"
+#include "maths/FixedVector2D.h"
+#include "maths/FixedVector3D.h"
 
 #endif // CONFIG_ENABLE_PCH

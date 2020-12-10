@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -27,13 +27,14 @@
 #include "precompiled.h"
 #include "lib/debug_stl.h"
 
+#include "lib/regex.h"
+
+#include <cassert>
 #include <deque>
+#include <list>
 #include <map>
 #include <set>
-#include <cassert>
-#include <list>
-
-#include "lib/regex.h"
+#include <vector>
 
 static const StatusDefinition debugStlStatusDefinitions[] = {
 	{ ERR::STL_CNT_UNKNOWN, L"Unknown STL container type_name" },

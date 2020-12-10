@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -22,6 +22,8 @@
 
 #ifndef INCLUDED_ALLOCATORS_FREELIST
 #define INCLUDED_ALLOCATORS_FREELIST
+
+#include <cstring>
 
 // "freelist" is a pointer to the first unused element or a sentinel.
 // their memory holds a pointer to the previous element in the freelist

@@ -25,6 +25,8 @@
 #include "maths/FixedVector3D.h"
 #include "ps/CStrIntern.h"
 
+#include <vector>
+
 class CFrustum;
 class CTerrain;
 class CSimContext;

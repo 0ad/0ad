@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -31,6 +31,8 @@
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 #include "ps/Profile.h"
+
+#include <boost/filesystem.hpp>
 
 #include <iomanip>
 #include <unordered_map>

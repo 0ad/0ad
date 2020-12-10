@@ -2,14 +2,17 @@
 ;  Do an 'svn export' into a directory called e.g. "export-win32"
 ;  makensis -nocd -dcheckoutpath=export-win32 -drevision=1234 -dprefix=0ad-0.1.2-alpha export-win32/source/tools/dist/0ad.nsi
 
-  SetCompressor /SOLID ZLIB
+  SetCompressor /SOLID LZMA
 
   !include "MUI2.nsh"
   !include "LogicLib.nsh"
   !include "source/tools/dist/FileAssociation.nsh"
 
   ;Control whether to include source code (and component selection screen)
-  !define INCLUDE_SOURCE 0
+  ;Off by default, uncomment or pass directly to use.
+  !ifndef INCLUDE_SOURCE
+    ;!define INCLUDE_SOURCE 1
+  !endif
 
 ;--------------------------------
 ;General
@@ -55,7 +58,7 @@
 ;Pages
 
   !insertmacro MUI_PAGE_WELCOME
-  !if INCLUDE_SOURCE
+  !ifdef INCLUDE_SOURCE
     !insertmacro MUI_PAGE_COMPONENTS
   !endif
   !insertmacro MUI_PAGE_DIRECTORY
@@ -70,6 +73,10 @@
 
   !insertmacro MUI_PAGE_INSTFILES
 
+  !define MUI_FINISHPAGE_SHOWREADME ""
+  !define MUI_FINISHPAGE_SHOWREADME_NOTCHECKED
+  !define MUI_FINISHPAGE_SHOWREADME_TEXT "Create Desktop Shortcut"
+  !define MUI_FINISHPAGE_SHOWREADME_FUNCTION CreateDesktopLink
   !define MUI_FINISHPAGE_RUN $INSTDIR\binaries\system\pyrogenesis.exe
   !insertmacro MUI_PAGE_FINISH
   
@@ -115,12 +122,26 @@ Section "!Game and data files" GameSection
   SetOutPath "$INSTDIR"
   File "${CHECKOUTPATH}\*.txt"
   File "${CHECKOUTPATH}\source\tools\openlogsfolder\*.*"
-  !if INCLUDE_SOURCE
-    File /r /x "*.a" /x "*.dylib" /x "public" /x "mod" /x "dev.cfg" "${CHECKOUTPATH}\binaries"
-  !else
-    ;Exclude debug DLLs and related files
-    File /r /x "public" /x "mod" /x "dev.cfg" /x "*_d.dll" /x "enetd.dll" /x "FColladaD.dll" /x "gloox-1.0d.dll" /x "glooxwrapper_dbg.*" /x "libcurld.dll" /x "libpng16d.dll" /x "*.a" /x "*.dylib" /x "pyrogenesis" /x "*.dsym*" /x "test" /x "libsodiumd.dll" /x "miniupnpcd.dll" /x "mozjs*-ps-debug*" /x "mozjs*vc140.*" /x "msvc*d.dll" /x "zlib1d.dll" "${CHECKOUTPATH}\binaries\"
-  !endif
+
+  ; Binaries: exclude debug DLLs and related files
+  SetOutPath "$INSTDIR\binaries\data"
+  File /r /x "public" /x "mod" /x "dev.cfg" "${CHECKOUTPATH}\binaries\data\"
+
+  ; Warning: libraries that end in 'd' need to be added explicitly.
+  ; There are currently none.
+  SetOutPath "$INSTDIR\binaries\system"
+  File /r /x "*d.dll" /x "*_dbg*" /x "*debug*" "${CHECKOUTPATH}\binaries\system\*.dll"
+  File /r /x "*d.pdb" /x "*_dbg*" /x "*debug*" /x "test" "${CHECKOUTPATH}\binaries\system\*.pdb"
+  File /r /x "*_dbg*" /x "*debug*" /x "test" "${CHECKOUTPATH}\binaries\system\*.exe"
+  File /r "${CHECKOUTPATH}\binaries\system\*.bat"
+  File /r "${CHECKOUTPATH}\binaries\system\*.txt"
+
+  ; Create shortcuts in the root installation folder.
+  ; Keep synched with the start menu shortcuts.
+  SetOutPath "$INSTDIR"
+  CreateShortCut "$INSTDIR\0 A.D..lnk" "$INSTDIR\binaries\system\pyrogenesis.exe" ""
+  CreateShortCut "$INSTDIR\Map editor.lnk" "$INSTDIR\binaries\system\pyrogenesis.exe" "-editor" "$INSTDIR\binaries\data\tools\atlas\icons\ScenarioEditor.ico"
+  WriteINIStr "$INSTDIR\Web site.url" "InternetShortcut" "URL" "http://play0ad.com/"
 
   !ifdef ARCHIVE_PATH
     SetOutPath "$INSTDIR\binaries\data\mods\"
@@ -172,14 +193,14 @@ Section "!Game and data files" GameSection
 
 SectionEnd
 
-!if INCLUDE_SOURCE
+!ifdef INCLUDE_SOURCE
 Section /o "Source code" SourceSection
 
   SetOutPath "$INSTDIR"
-  File /r ${CHECKOUTPATH}\source
-  File /r ${CHECKOUTPATH}\docs
-  File /r ${CHECKOUTPATH}\build
-  File /r ${CHECKOUTPATH}\libraries
+  File /r "${CHECKOUTPATH}\source\"
+  File /r "${CHECKOUTPATH}\docs\"
+  File /r "${CHECKOUTPATH}\build"
+  File /r "${CHECKOUTPATH}\libraries"
 
 SectionEnd
 !endif
@@ -208,10 +229,14 @@ done:
 
 FunctionEnd
 
+Function CreateDesktopLink
+  CreateShortCut "$DESKTOP\0 A.D..lnk" "$INSTDIR\binaries\system\pyrogenesis.exe" ""
+FunctionEnd
+
 ;--------------------------------
 ;Descriptions
 
-  !if INCLUDE_SOURCE
+  !ifdef INCLUDE_SOURCE
 
     ;Assign descriptions to sections
     !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
@@ -227,7 +252,7 @@ FunctionEnd
 Section "Uninstall"
 
   RMDir /r "$INSTDIR\binaries"
-  !if INCLUDE_SOURCE
+  !ifdef INCLUDE_SOURCE
     RMDir /r "$INSTDIR\source"
     RMDir /r "$INSTDIR\docs"
     RMDir /r "$INSTDIR\build"
@@ -236,13 +261,17 @@ Section "Uninstall"
   Delete "$INSTDIR\*.txt"
   Delete "$INSTDIR\*.bat"
   Delete "$INSTDIR\OpenLogsFolder.vbs"
-  Delete "$INSTDIR\Uninstall.exe"
-
-  RMDir "$INSTDIR"
+  Delete "$INSTDIR\Map editor.lnk"
+  Delete "$INSTDIR\0 A.D..lnk"
+  Delete "$INSTDIR\Web site.url"
+  Delete /REBOOTOK "$INSTDIR\Uninstall.exe"
+  RMDir /REBOOTOK "$INSTDIR"
 
   RMDir /r "$LOCALAPPDATA\0ad\cache"
   RMDir /r "$LOCALAPPDATA\0ad\logs"
   ; leave the other directories (screenshots, config files, etc)
+
+  Delete "$DESKTOP\0 A.D..lnk"
 
   !insertmacro MUI_STARTMENU_GETFOLDER Application $StartMenuFolder
 

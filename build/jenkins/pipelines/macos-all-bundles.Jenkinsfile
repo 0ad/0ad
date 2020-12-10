@@ -23,6 +23,11 @@ pipeline {
 		buildDiscarder(logRotator(artifactNumToKeepStr: '1'))
 	}
 
+	parameters {
+		string(name: 'BUNDLE_VERSION', defaultValue: '0.0.24dev', description: 'Bundle Version')
+		booleanParam(name: 'ONLY_MOD', defaultValue: true, description: 'Only archive the mod mod.')
+	}
+
 	stages {
 		stage("Checkout") {
 			steps {
@@ -39,12 +44,12 @@ pipeline {
 		}
 		stage("Create archive data") {
 			steps {
-				sh "source/tools/dist/build-archives.sh"
+				sh "ONLY_MOD=${ONLY_MOD} source/tools/dist/build-archives.sh"
 			}
 		}
 		stage("Create Mac Bundle") {
 			steps {
-				sh "python3 source/tools/dist/build-osx-bundle.py '0.0.24dev'"
+				sh "python3 source/tools/dist/build-osx-bundle.py ${BUNDLE_VERSION}"
 			}
 		}
 		stage("Create Windows installer & *nix files") {
@@ -55,7 +60,8 @@ pipeline {
 				sh "svn st libraries/ --no-ignore | cut -c 9- | xargs rm -rf"
 				sh "svn revert build/ -R"
 
-				sh "BUNDLE_VERSION='0.0.24dev' source/tools/dist/build-unix-win32.sh"
+				// Then run the core object.
+				sh "BUNDLE_VERSION=${BUNDLE_VERSION} source/tools/dist/build-unix-win32.sh"
 			}
 		}
 	}

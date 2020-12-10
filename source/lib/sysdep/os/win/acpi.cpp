@@ -21,13 +21,13 @@
  */
 
 #include "precompiled.h"
-#include "lib/sysdep/acpi.h"
+#include "lib/sysdep/os/win/acpi.h"
 
 #include "lib/byte_order.h"
 #include "lib/sysdep/cpu.h"
 #include "lib/module_init.h"
 
-# include "lib/sysdep/os/win/wfirmware.h"
+#include "lib/sysdep/os/win/wfirmware.h"
 
 #pragma pack(1)
 

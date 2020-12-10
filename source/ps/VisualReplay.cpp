@@ -19,9 +19,10 @@
 
 #include "VisualReplay.h"
 #include "graphics/GameView.h"
+#include "lib/timer.h"
+#include "lib/utf8.h"
 #include "lib/allocators/shared_ptr.h"
 #include "lib/external_libraries/libsdl.h"
-#include "lib/utf8.h"
 #include "network/NetClient.h"
 #include "network/NetServer.h"
 #include "ps/CLogger.h"

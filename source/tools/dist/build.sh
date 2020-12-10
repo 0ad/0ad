@@ -7,7 +7,7 @@ set -e
 
 ./source/tools/dist/build-osx-executable.sh
 ./source/tools/dist/build-archives.sh
-python3 source/tools/dist/build-osx-bundle.py
+python3 source/tools/dist/build-osx-bundle.py 0ad-dev
 # Note that at this point, you'll have left-over compilation files.
 # The CI cleans them via svn st | cut -c9- | xargs rm -rf
-./source/tools/dist/build-unix-win32.sh
+BUNDLE_VERSION=0ad-dev ./source/tools/dist/build-unix-win32.sh

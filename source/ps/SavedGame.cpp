@@ -23,6 +23,7 @@
 #include "i18n/L10n.h"
 #include "lib/allocators/shared_ptr.h"
 #include "lib/file/archive/archive_zip.h"
+#include "lib/file/io/io.h"
 #include "lib/utf8.h"
 #include "maths/Vector3D.h"
 #include "ps/CLogger.h"

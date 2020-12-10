@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -54,7 +54,13 @@
 #else
 # define BOOST_FILESYSTEM_VERSION 2
 #endif
-#include <boost/filesystem.hpp>
+
+namespace boost{
+	namespace filesystem {
+		class path;
+		typedef path wpath;
+	};
+}
 namespace fs = boost::filesystem;
 
 #endif	// #ifndef INCLUDED_PCH_BOOST

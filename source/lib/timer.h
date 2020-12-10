@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -35,6 +35,8 @@
 #endif
 
 #include "lib/utf8.h"
+
+#include <cstring>
 
 /**
  * timer_Time will subsequently return values relative to the current time.

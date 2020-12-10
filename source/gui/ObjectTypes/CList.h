@@ -19,6 +19,7 @@
 #define INCLUDED_CLIST
 
 #include "gui/CGUISprite.h"
+#include "gui/ObjectBases/IGUIObject.h"
 #include "gui/ObjectBases/IGUIScrollBarOwner.h"
 #include "gui/ObjectBases/IGUITextOwner.h"
 #include "gui/SettingTypes/CGUIList.h"

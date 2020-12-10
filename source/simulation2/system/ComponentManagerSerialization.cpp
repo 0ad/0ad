@@ -32,14 +32,14 @@
 
 #include "ps/CLogger.h"
 
-std::string SerializeRNG(const boost::rand48& rng)
+std::string SerializeRNG(const boost::random::rand48& rng)
 {
 	std::stringstream s;
 	s << rng;
 	return s.str();
 }
 
-void DeserializeRNG(const std::string& str, boost::rand48& rng)
+void DeserializeRNG(const std::string& str, boost::random::rand48& rng)
 {
 	std::stringstream s;
 	s << str;

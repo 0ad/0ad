@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -31,6 +31,7 @@
 #include "lib/allocators/allocator_adapters.h"
 #include "lib/allocators/freelist.h"
 
+#include <cstring>
 
 namespace Allocators {
 

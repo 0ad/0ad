@@ -24,7 +24,6 @@
 #include "scriptinterface/ScriptExceptions.h"
 #include "scriptinterface/ScriptTypes.h"
 
-#include <boost/random/linear_congruential.hpp>
 #include <map>
 
 ERROR_GROUP(Scripting);
@@ -58,6 +57,8 @@ class ScriptContext;
 // Using a global object for the context is a workaround until Simulation, AI, etc,
 // use their own threads and also their own contexts.
 extern thread_local shared_ptr<ScriptContext> g_ScriptContext;
+
+namespace boost { namespace random { class rand48; } }
 
 /**
  * RAII structure which encapsulates an access to the context and compartment of a ScriptInterface.
@@ -140,7 +141,7 @@ public:
 	/**
 	 * Replace the default JS random number geenrator with a seeded, network-sync'd one.
 	 */
-	bool ReplaceNondeterministicRNG(boost::rand48& rng);
+	bool ReplaceNondeterministicRNG(boost::random::rand48& rng);
 
 	/**
 	 * Call a constructor function, equivalent to JS "new ctor(arg)".
@@ -449,7 +450,7 @@ private:
 	// members have to be called before the custom destructor of ScriptInterface_impl.
 	std::unique_ptr<ScriptInterface_impl> m;
 
-	boost::rand48* m_rng;
+	boost::random::rand48* m_rng;
 	std::map<std::string, CustomType> m_CustomObjectTypes;
 
 // The nasty macro/template bits are split into a separate file so you don't have to look at them

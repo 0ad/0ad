@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -28,6 +28,8 @@
 
 #include "FixedVector3D.h"
 #include "Vector3D.h"
+
+#include <vector>
 
 /**
  * Describes a node of the spline

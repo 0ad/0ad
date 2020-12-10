@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,6 +21,9 @@
 #include "graphics/Overlay.h"
 #include "simulation2/helpers/Pathfinding.h"
 #include "simulation2/system/CmpPtr.h"
+
+#include <atomic>
+#include <vector>
 
 // A vertex around the corners of an obstruction
 // (paths will be sequences of these vertexes)

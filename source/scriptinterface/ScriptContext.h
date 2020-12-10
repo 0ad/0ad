@@ -21,6 +21,7 @@
 #include "ScriptTypes.h"
 #include "ScriptExtraHeaders.h"
 
+#include <list>
 #include <sstream>
 
 // Those are minimal defaults. The runtime for the main game is larger and GCs upon a larger growth.

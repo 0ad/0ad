@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -41,6 +41,8 @@
 #include "lib/sysdep/os/win/wiocp.h"
 #include "lib/sysdep/os/win/winit.h"
 #include "lib/sysdep/os/win/wposix/crt_posix.h"	// _get_osfhandle
+
+#include <ctime>
 
 WINIT_REGISTER_MAIN_SHUTDOWN(waio_Shutdown);
 

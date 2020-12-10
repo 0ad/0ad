@@ -554,12 +554,12 @@ bool IGUIObject::IsFocused() const
 
 bool IGUIObject::IsBaseObject() const
 {
-	return this == &m_pGUI.GetBaseObject();
+	return this == m_pGUI.GetBaseObject();
 }
 
 bool IGUIObject::IsRootObject() const
 {
-	return m_pParent == &m_pGUI.GetBaseObject();
+	return m_pParent == m_pGUI.GetBaseObject();
 }
 
 void IGUIObject::TraceMember(JSTracer* trc)

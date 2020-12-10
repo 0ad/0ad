@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,6 +19,7 @@
 #define INCLUDED_CTEXT
 
 #include "gui/CGUISprite.h"
+#include "gui/ObjectBases/IGUIObject.h"
 #include "gui/ObjectBases/IGUIScrollBarOwner.h"
 #include "gui/ObjectBases/IGUITextOwner.h"
 #include "gui/SettingTypes/CGUIString.h"

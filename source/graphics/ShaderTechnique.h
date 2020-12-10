@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,6 +21,8 @@
 #include "graphics/ShaderProgramPtr.h"
 #include "graphics/ShaderTechniquePtr.h"
 #include "lib/ogl.h"
+
+#include <vector>
 
 /**
  * Implements a render pass consisting of various GL state changes and a shader,

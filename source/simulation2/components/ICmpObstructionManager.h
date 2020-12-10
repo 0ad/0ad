@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,6 +22,8 @@
 
 #include "maths/FixedVector2D.h"
 #include "simulation2/helpers/Position.h"
+
+#include <vector>
 
 class IObstructionTestFilter;
 template<typename T>

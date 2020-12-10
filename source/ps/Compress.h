@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -17,6 +17,8 @@
 
 #ifndef INCLUDED_COMPRESS
 #define INCLUDED_COMPRESS
+
+#include <string>
 
 /**
  * @file

@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -27,8 +27,6 @@
 #include "precompiled.h"
 #include "lib/sysdep/arch/x86_x64/topology.h"
 
-#include <bitset>
-
 #include "lib/bits.h"
 #include "lib/module_init.h"
 #include "lib/sysdep/cpu.h"	// ERR::CPU_FEATURE_MISSING
@@ -37,6 +35,9 @@
 #include "lib/sysdep/arch/x86_x64/x86_x64.h"
 #include "lib/sysdep/arch/x86_x64/cache.h"
 #include "lib/sysdep/arch/x86_x64/apic.h"
+
+#include <bitset>
+#include <vector>
 
 namespace topology {
 

@@ -35,6 +35,7 @@
 #include "lib/input.h"
 
 #include <unordered_map>
+#include <vector>
 
 // SDL_Scancode is an enum, we'll use an explicit int to avoid including SDL in this header.
 using SDL_Scancode_ = int;
