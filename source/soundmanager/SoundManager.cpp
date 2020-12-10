@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -257,6 +257,8 @@ CSoundManager::CSoundManager()
 		LOGERROR("CSoundManager: failed to load grammar file 'audio/sound_group.rng'");
 
 	RegisterFileReloadFunc(ReloadChangedFileCB, this);
+
+	RunHardwareDetection();
 }
 
 CSoundManager::~CSoundManager()
@@ -808,11 +810,56 @@ void CSoundManager::SetAmbientItem(ISoundItem* anItem)
 		AL_CHECK;
 	}
 }
+
+void CSoundManager::RunHardwareDetection()
+{
+	// OpenAL alGetString might not return anything interesting on certain platforms
+	// (see https://stackoverflow.com/questions/28960638 for an example).
+	// However our previous code supported only Windows, and alGetString does work on
+	// Windows, so this is an improvement.
+
+	// Sound cards
+
+	const ALCchar* devices = nullptr;
+	if (alcIsExtensionPresent(nullptr, "ALC_enumeration_EXT") == AL_TRUE)
+	{
+		if (alcIsExtensionPresent(nullptr, "ALC_enumerate_all_EXT") == AL_TRUE)
+			devices = alcGetString(nullptr, ALC_ALL_DEVICES_SPECIFIER);
+		else
+			devices = alcGetString(nullptr, ALC_DEVICE_SPECIFIER);
+	}
+	WARN_IF_FALSE(devices);
+
+	m_SoundCardNames.clear();
+	do {
+		m_SoundCardNames += devices;
+		devices += strlen(devices) + 1;
+		m_SoundCardNames += "; ";
+	} while (*devices);
+
+	// Driver version
+	const ALCchar* al_version = alGetString(AL_VERSION);
+	if (al_version)
+		m_OpenALVersion = al_version;
+}
+
+CStr8 CSoundManager::GetOpenALVersion() const
+{
+	return m_OpenALVersion;
+}
+
+CStr8 CSoundManager::GetSoundCardNames() const
+{
+	return m_SoundCardNames;
+}
+
 #else // CONFIG2_AUDIO
 
 void ISoundManager::CreateSoundManager(){}
 void ISoundManager::SetEnabled(bool UNUSED(doEnable)){}
 void ISoundManager::CloseGame(){}
-
+void ISoundManager::RunHardwareDetection() {}
+CStr8 ISoundManager::GetSoundCardNames() const { return CStr8(); };
+CStr8 ISoundManager::GetOpenALVersion() const { return CStr8(); };
 #endif // CONFIG2_AUDIO
 

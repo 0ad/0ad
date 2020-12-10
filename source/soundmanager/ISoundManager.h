@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,6 +23,7 @@
 #include "simulation2/system/Entity.h"
 
 class CVector3D;
+class CStr8;
 
 class ISoundManager
 {
@@ -43,6 +44,10 @@ public:
 	virtual void SetAmbientGain(float gain) = 0;
 	virtual void SetActionGain(float gain) = 0;
 	virtual void SetUIGain(float gain) = 0;
+
+	virtual void RunHardwareDetection() = 0;
+	virtual CStr8 GetSoundCardNames() const = 0;
+	virtual CStr8 GetOpenALVersion() const = 0;
 
 	virtual void PlayAsUI(const VfsPath& itemPath, bool looping) = 0;
 	virtual void PlayAsMusic(const VfsPath& itemPath, bool looping) = 0;

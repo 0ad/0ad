@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -35,6 +35,8 @@
 #include <map>
 #include <mutex>
 #include <vector>
+
+class CStr8;
 
 #define AL_CHECK CSoundManager::al_check(__func__, __LINE__)
 
@@ -91,7 +93,8 @@ protected:
 	long m_DistressErrCount;
 	long m_DistressTime;
 
-
+	CStr8 m_SoundCardNames;
+	CStr8 m_OpenALVersion;
 public:
 	CSoundManager();
 	virtual ~CSoundManager();
@@ -134,6 +137,8 @@ public:
 	void SetMemoryUsage(long bufferSize, int bufferCount);
 	long GetBufferCount();
 	long GetBufferSize();
+	CStr8 GetSoundCardNames() const;
+	CStr8 GetOpenALVersion() const;
 
 	void PlayAsMusic(const VfsPath& itemPath, bool looping);
 	void PlayAsAmbient(const VfsPath& itemPath, bool looping);
@@ -150,6 +155,9 @@ public:
 	void PauseMusic(bool pauseIt);
 	void PauseAmbient(bool pauseIt);
 	void PauseAction(bool pauseIt);
+
+	void RunHardwareDetection();
+
 	void SetAmbientItem(ISoundItem* anItem);
 
 	void SetMasterGain(float gain);

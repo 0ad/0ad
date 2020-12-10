@@ -21,9 +21,6 @@
 
 #include "lib/posix/posix_utsname.h"
 #include "lib/ogl.h"
-#if CONFIG2_AUDIO
-#include "lib/snd.h"
-#endif
 #include "lib/timer.h"
 #include "lib/bits.h"	// round_up
 #include "lib/allocators/shared_ptr.h"
@@ -50,6 +47,10 @@
 #include "renderer/Renderer.h"
 #include "maths/MathUtil.h"
 #include "graphics/GameView.h"
+
+#if CONFIG2_AUDIO
+#include "soundmanager/SoundManager.h"
+#endif
 
 #include <iomanip>
 #include <sstream>
@@ -136,9 +137,8 @@ void WriteSystemInfo()
 	fprintf(f, "Video Mode     : %dx%d:%d\n", g_VideoMode.GetXRes(), g_VideoMode.GetYRes(), g_VideoMode.GetBPP());
 
 #if CONFIG2_AUDIO
-	snd_detect();
-	fprintf(f, "Sound Card     : %s\n", snd_card.c_str());
-	fprintf(f, "Sound Drivers  : %s\n", snd_drv_ver.c_str());
+	fprintf(f, "Sound Card     : %s\n", g_SoundManager->GetSoundCardNames().c_str());
+	fprintf(f, "Sound Drivers  : %s\n", g_SoundManager->GetOpenALVersion().c_str());
 #else
 	fprintf(f, "Sound          : Game was compiled without audio\n");
 #endif
