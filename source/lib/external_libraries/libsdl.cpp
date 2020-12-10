@@ -84,7 +84,10 @@ const char* GetSDLSubsystem(SDL_Window* window)
 		subsystem = "OS/2";
 		break;
 #endif
-	// Insert newer supported platforms here.
+#if SDL_VERSION_ATLEAST(2, 0, 12)
+	case SDL_SYSWM_HAIKU:
+		subsystem = "Haiku";
+#endif
 #if SDL_VERSION_ATLEAST(2, 0, 11)
 	default:
 		debug_printf("Unknown platform, please add it to source/lib/external_libraries/libsdl.cpp\n");
