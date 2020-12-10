@@ -24,6 +24,9 @@ UnitAI.prototype.Schema =
 	"<element name='CanPatrol'>" +
 		"<data type='boolean'/>" +
 	"</element>" +
+	"<element name='PatrolWaitTime' a:help='Number of seconds to wait in between patrol waypoints.'>" +
+		"<data type='nonNegativeInteger'/>" +
+	"</element>" +
 	"<optional>" +
 		"<element name='CheeringTime'>" +
 			"<data type='nonNegativeInteger'/>" +
@@ -454,7 +457,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 		this.order.data.relaxed = true;
 
-		this.SetNextState("INDIVIDUAL.PATROL");
+		this.SetNextState("INDIVIDUAL.PATROL.PATROLLING");
 	},
 
 	"Order.Heal": function(msg) {
@@ -707,7 +710,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 		"Order.Patrol": function(msg) {
 			this.CallMemberFunction("SetHeldPosition", [msg.data.x, msg.data.z]);
-			this.SetNextState("PATROL");
+			this.SetNextState("PATROL.PATROLLING");
 		},
 
 		"Order.Guard": function(msg) {
@@ -960,7 +963,7 @@ UnitAI.prototype.UnitFsmSpec = {
 		},
 
 		"PATROL": {
-			"enter": function(msg) {
+			"enter": function() {
 				let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 				if (!cmpPosition || !cmpPosition.IsInWorld())
 				{
@@ -975,51 +978,81 @@ UnitAI.prototype.UnitFsmSpec = {
 					this.patrolStartPosOrder.allowCapture = this.order.data.allowCapture;
 				}
 
-				if (!this.MoveTo(this.order.data))
-				{
-					this.FinishOrder();
-					return true;
-				}
-				this.StartTimer(0, 1000);
+				this.SetAnimationVariant("combat");
 
-				let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-				cmpFormation.SetRearrange(true);
-				cmpFormation.MoveMembersIntoFormation(true, true, "combat");
 				return false;
 			},
 
-			"Timer": function(msg) {
-				this.FindWalkAndFightTargets();
-			},
-
-			"leave": function(msg) {
-				this.StopTimer();
-				this.StopMoving();
+			"leave": function() {
 				delete this.patrolStartPosOrder;
+				this.SetDefaultAnimationVariant();
 			},
 
-			"MovementUpdate": function(msg) {
-				if (!msg.likelyFailure && !this.CheckRange(this.order.data))
-					return;
-				/**
-				 * A-B-A-B-..:
-				 * if the user only commands one patrol order, the patrol will be between
-				 * the last position and the defined waypoint
-				 * A-B-C-..-A-B-..:
-				 * otherwise, the patrol is only between the given patrol commands and the
-				 * last position is not included (last position = the position where the unit
-				 * is located at the time of the first patrol order)
-				 */
+			"PATROLLING": {
+				"enter": function() {
+					let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+					if (!cmpPosition || !cmpPosition.IsInWorld() ||
+					    !this.MoveTo(this.order.data))
+					{
+						this.FinishOrder();
+						return true;
+					}
 
-				if (this.orderQueue.length == 1)
-					this.PushOrder("Patrol", this.patrolStartPosOrder);
+					let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+					cmpFormation.SetRearrange(true);
+					cmpFormation.MoveMembersIntoFormation(true, true, "combat");
 
-				this.PushOrder(this.order.type, this.order.data);
-				this.FinishOrder();
+					this.StartTimer(0, 1000);
+					return false;
+				},
+
+				"leave": function() {
+					this.StopMoving();
+					this.StopTimer();
+				},
+
+				"Timer": function(msg) {
+					this.FindWalkAndFightTargets();
+				},
+
+				"MovementUpdate": function(msg) {
+					if (!msg.likelyFailure && !msg.likelySuccess && !this.RelaxedMaxRangeCheck(this.order.data, this.DefaultRelaxedMaxRange))
+						return;
+
+					if (this.orderQueue.length == 1)
+						this.PushOrder("Patrol", this.patrolStartPosOrder);
+
+					this.PushOrder(this.order.type, this.order.data);
+					this.SetNextState("CHECKINGWAYPOINT");
+				},
 			},
+
+			"CHECKINGWAYPOINT": {
+				"enter": function() {
+					this.StartTimer(0, 1000);
+					this.stopSurveying = 0;
+					// TODO: pick a proper animation
+					return false;
+				},
+
+				"leave": function() {
+					this.StopTimer();
+					delete this.stopSurveying;
+				},
+
+				"Timer": function(msg) {
+					if (this.stopSurveying >= +this.template.PatrolWaitTime)
+					{
+						this.FinishOrder();
+						return;
+					}
+					this.FindWalkAndFightTargets();
+					++this.stopSurveying;
+				}
+			}
 		},
 
-		"GARRISON":{
+		"GARRISON": {
 			"APPROACHING": {
 				"enter": function() {
 					if (!this.MoveToGarrisonRange(this.order.data.target))
@@ -1593,8 +1626,7 @@ UnitAI.prototype.UnitFsmSpec = {
 		"PATROL": {
 			"enter": function() {
 				let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
-				if (!cmpPosition || !cmpPosition.IsInWorld() ||
-				    !this.MoveTo(this.order.data))
+				if (!cmpPosition || !cmpPosition.IsInWorld())
 				{
 					this.FinishOrder();
 					return true;
@@ -1608,32 +1640,73 @@ UnitAI.prototype.UnitFsmSpec = {
 					this.patrolStartPosOrder.allowCapture = this.order.data.allowCapture;
 				}
 
-				this.StartTimer(0, 1000);
 				this.SetAnimationVariant("combat");
+
 				return false;
 			},
 
 			"leave": function() {
-				this.StopMoving();
-				this.StopTimer();
 				delete this.patrolStartPosOrder;
 				this.SetDefaultAnimationVariant();
 			},
 
-			"Timer": function(msg) {
-				this.FindWalkAndFightTargets();
+			"PATROLLING": {
+				"enter": function() {
+					let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+					if (!cmpPosition || !cmpPosition.IsInWorld() ||
+					    !this.MoveTo(this.order.data))
+					{
+						this.FinishOrder();
+						return true;
+					}
+					this.StartTimer(0, 1000);
+					return false;
+				},
+
+				"leave": function() {
+					this.StopMoving();
+					this.StopTimer();
+				},
+
+				"Timer": function(msg) {
+					this.FindWalkAndFightTargets();
+				},
+
+				"MovementUpdate": function(msg) {
+					if (!msg.likelyFailure && !msg.likelySuccess && !this.RelaxedMaxRangeCheck(this.order.data, this.DefaultRelaxedMaxRange))
+						return;
+
+					if (this.orderQueue.length == 1)
+						this.PushOrder("Patrol", this.patrolStartPosOrder);
+
+					this.PushOrder(this.order.type, this.order.data);
+					this.SetNextState("CHECKINGWAYPOINT");
+				},
 			},
 
-			"MovementUpdate": function(msg) {
-				if (!msg.likelyFailure && !msg.likelySuccess && !this.RelaxedMaxRangeCheck(this.order.data, this.DefaultRelaxedMaxRange))
-					return;
+			"CHECKINGWAYPOINT": {
+				"enter": function() {
+					this.StartTimer(0, 1000);
+					this.stopSurveying = 0;
+					// TODO: pick a proper animation
+					return false;
+				},
 
-				if (this.orderQueue.length == 1)
-					this.PushOrder("Patrol", this.patrolStartPosOrder);
+				"leave": function() {
+					this.StopTimer();
+					delete this.stopSurveying;
+				},
 
-				this.PushOrder(this.order.type, this.order.data);
-				this.FinishOrder();
-			},
+				"Timer": function(msg) {
+					if (this.stopSurveying >= +this.template.PatrolWaitTime)
+					{
+						this.FinishOrder();
+						return;
+					}
+					this.FindWalkAndFightTargets();
+					++this.stopSurveying;
+				}
+			}
 		},
 
 		"GUARD": {
