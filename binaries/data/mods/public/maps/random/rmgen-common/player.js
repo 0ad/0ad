@@ -461,7 +461,7 @@ function placePlayersNomad(playerClass, constraints)
 			ents => new SimpleObject(ents.Template, ents.Count || 1, ents.Count || 1, 1, 3));
 
 		// Add treasure if too few resources for a civic center
-		let ccCost = Engine.GetTemplate("structures/" + getCivCode(playerIDs[i]) + "_civil_centre").Cost.Resources;
+		let ccCost = Engine.GetTemplate("structures/" + getCivCode(playerIDs[i]) + "/civil_centre").Cost.Resources;
 		for (let resourceType in ccCost)
 		{
 			let treasureTemplate = g_NomadTreasureTemplates[resourceType];
