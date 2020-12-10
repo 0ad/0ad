@@ -34,6 +34,7 @@
 #include <stack>
 
 #include "lib/bits.h"
+#include "lib/code_annotation.h"
 #include "lib/sysdep/os/win/win.h"	// HWND
 #include "lib/sysdep/sysdep.h"
 #include "lib/sysdep/os/win/wdbg_sym.h"
@@ -59,7 +60,7 @@ static Status OnFrame(const _tagSTACKFRAME64* frame, uintptr_t UNUSED(cbData))
 __declspec(noinline) static void Func1()
 {
 	CONTEXT context;
-	debug_CaptureContext(&context);
+	UNUSED2(debug_CaptureContext(&context));
 	wdbg_sym_WalkStack(OnFrame, 0, context);
 }
 
@@ -276,8 +277,8 @@ class TestWdbgSym : public CxxTest::TestSuite
 		UNUSED2(l_funcptr);
 		UNUSED2(l_enum);
 		UNUSED2(l_uint);
-		(void)l_u8s;
-		(void)l_wchars;
+		UNUSED2(l_u8s);
+		UNUSED2(l_wchars);
 #endif
 
 		m_test_stl();
