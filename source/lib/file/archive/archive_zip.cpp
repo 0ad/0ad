@@ -269,6 +269,11 @@ public:
 		cd_size      = (size_t)read_le32(&m_cd_size);
 	}
 
+	off_t getCommentLength() const
+	{
+		return static_cast<off_t>(read_le16(&m_comment_len));
+	}
+
 private:
 	u32 m_magic;
 	u16 m_diskNum;
@@ -521,8 +526,40 @@ private:
 		io::Operation op(*file.get(), buf, scanSize, ofs);
 		RETURN_STATUS_IF_ERR(io::Run(op));
 
-		// look for ECDR in buffer
-		const ECDR* ecdr = (const ECDR*)FindRecord(buf, scanSize, buf, ecdr_magic, sizeof(ECDR));
+		// Scanning for ECDR first assumes no comment exists
+		// (standard case), so ECDR structure exists right at
+		// end of file
+		off_t offsetInBlock = scanSize - sizeof(ECDR);
+		const ECDR* ecdr = nullptr;
+
+		for (off_t commentSize = 0; commentSize <= offsetInBlock && !ecdr; ++commentSize)
+		{
+			const u8 *pECDRTest = buf + offsetInBlock - commentSize;
+			if (*(const u32*)pECDRTest == ecdr_magic)
+			{
+				// Signature matches, test whether comment
+				// fills up the whole space following the
+				// ECDR
+				ecdr = (const ECDR*)pECDRTest;
+				if (commentSize != ecdr->getCommentLength())
+				{
+					// Signature matches but there is some other data between
+					// header, comment and EOF. There are three possibilities
+					// for this:
+					// 1) Header file format and size differ from what we expect
+					// 2) File has been truncated
+					// 3) The magic id occurs inside a zip comment 
+					ecdr = nullptr;
+				}
+				else
+				{
+					// Seems like a valid archive header before an archive-level
+					// comment
+					break;
+				}
+			}
+		}
+
 		if(!ecdr)
 			return INFO::CANNOT_HANDLE;
 
@@ -534,17 +571,10 @@ private:
 	{
 		const size_t maxScanSize = 66000u;	// see below
 		io::BufferPtr buf(io::Allocate(maxScanSize));
-
-		// expected case: ECDR at EOF; no file comment
-		Status ret = ScanForEcdr(file, fileSize, buf.get(), sizeof(ECDR), cd_numEntries, cd_ofs, cd_size);
-		if(ret == INFO::OK)
-			return INFO::OK;
-		// worst case: ECDR precedes 64 KiB of file comment
-		ret = ScanForEcdr(file, fileSize, buf.get(), maxScanSize, cd_numEntries, cd_ofs, cd_size);
+		Status ret = ScanForEcdr(file, fileSize, static_cast<u8*>(buf.get()), maxScanSize, cd_numEntries, cd_ofs, cd_size);
 		if(ret == INFO::OK)
 			return INFO::OK;
 
-		// both ECDR scans failed - this is not a valid Zip file.
 		io::Operation op(*file.get(), buf.get(), sizeof(LFH));
 		RETURN_STATUS_IF_ERR(io::Run(op));
 		// the Zip file has an LFH but lacks an ECDR. this can happen if
