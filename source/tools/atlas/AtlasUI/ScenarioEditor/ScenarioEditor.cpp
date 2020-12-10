@@ -58,6 +58,19 @@ static int g_Clicks = 1;
 
 using namespace AtlasMessage;
 
+enum TIMER_TYPE
+{
+	TIMER_TOOL,
+	TIMER_RENDER
+};
+
+const int TIMER_TOOL_INTERVAL = 16;
+const int TIMER_RENDER_INTERVAL = 16;
+const int TIMER_RENDER_SLOW_INTERVAL = 200;
+
+// This records the last activity on the WX side.
+double last_wx_user_activity = 0.0;
+
 //////////////////////////////////////////////////////////////////////////
 
 // GL functions exported from DLL, and called by game (in a separate
@@ -126,6 +139,7 @@ private:
 		{
 			// Key event has been handled by the tool, so don't try
 			// to use it for camera motion too
+			last_wx_user_activity = g_Timer.GetTime();
 			return;
 		}
 
@@ -140,7 +154,10 @@ private:
 	void OnKeyUp(wxKeyEvent& evt)
 	{
 		if (m_ScenarioEditor.GetToolManager().GetCurrentTool()->OnKey(evt, ITool::KEY_UP))
+		{
+			last_wx_user_activity = g_Timer.GetTime();
 			return;
+		}
 
 		if (KeyScroll(evt, false))
 			return;
@@ -153,7 +170,10 @@ private:
 	void OnChar(wxKeyEvent& evt)
 	{
 		if (m_ScenarioEditor.GetToolManager().GetCurrentTool()->OnKey(evt, ITool::KEY_CHAR))
+		{
+			last_wx_user_activity = g_Timer.GetTime();
 			return;
+		}
 
 		// Alt+enter toggles fullscreen
 		if (evt.GetKeyCode() == WXK_RETURN && wxGetKeyState(WXK_ALT))
@@ -168,6 +188,7 @@ private:
 		if (evt.GetKeyCode() == 'c')
 		{
 			POST_MESSAGE(CameraReset, ());
+			last_wx_user_activity = g_Timer.GetTime();
 			return;
 		}
 
@@ -220,6 +241,9 @@ private:
 		// of the camera.
 		if (evt.Moving())
 			SetFocus();
+
+		// Refresh on any mouse event, including just moving the mouse around.
+		last_wx_user_activity = g_Timer.GetTime();
 
 		if (m_ScenarioEditor.GetToolManager().GetCurrentTool()->OnMouse(evt))
 		{
@@ -299,13 +323,6 @@ BEGIN_EVENT_TABLE(GameCanvas, Canvas)
 END_EVENT_TABLE()
 
 //////////////////////////////////////////////////////////////////////////
-
-volatile bool g_FrameHasEnded;
-// Called from game thread
-ATLASDLLIMPEXP void Atlas_NotifyEndOfFrame()
-{
-	g_FrameHasEnded = true;
-}
 
 enum
 {
@@ -597,8 +614,13 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 	// Set up a timer to make sure tool-updates happen frequently (in addition
 	// to the idle handler (which makes them happen more frequently if there's nothing
 	// else to do))
-	m_Timer.SetOwner(this);
-	m_Timer.Start(20);
+	m_Timer.SetOwner(this, TIMER_TOOL);
+	m_Timer.Start(TIMER_TOOL_INTERVAL); // in ms
+
+	// Set up a timer to trigger engine rendering.
+	// This is split from the tool timer to enable different framerates.
+	m_RenderTimer.SetOwner(this, TIMER_RENDER);
+	m_RenderTimer.Start(TIMER_RENDER_INTERVAL); // in ms
 }
 
 wxToolBar* ScenarioEditor::OnCreateToolBar(long style, wxWindowID id, const wxString& WXUNUSED(name))
@@ -657,20 +679,27 @@ void ScenarioEditor::OnClose(wxCloseEvent& event)
 
 static void UpdateTool(ToolManager& toolManager)
 {
-	// Don't keep posting events if the game can't keep up
-	if (g_FrameHasEnded)
-	{
-		g_FrameHasEnded = false; // (thread safety doesn't matter here)
-		// TODO: Smoother timing stuff?
-		static double last = g_Timer.GetTime();
-		double time = g_Timer.GetTime();
-		toolManager.GetCurrentTool()->OnTick(time-last);
-		last = time;
-	}
+	// TODO: Smoother timing stuff?
+	static double last = g_Timer.GetTime();
+	double time = g_Timer.GetTime();
+	toolManager.GetCurrentTool()->OnTick(time-last);
+	last = time;
 }
-void ScenarioEditor::OnTimer(wxTimerEvent&)
+
+void ScenarioEditor::OnTimer(wxTimerEvent& evt)
 {
-	UpdateTool(m_ToolManager);
+	if (evt.GetId() == TIMER_TOOL)
+		UpdateTool(m_ToolManager);
+	else
+	{
+		AtlasMessage::qRenderLoop qryRenderLoop;
+		qryRenderLoop.Post();
+		if (!qryRenderLoop.wantHighFPS &&
+			qryRenderLoop.timeSinceActivity > 1.0 && g_Timer.GetTime() - last_wx_user_activity > 1.0)
+			m_RenderTimer.Start(TIMER_RENDER_SLOW_INTERVAL); // save CPU/GPU when activity is lower.
+		else
+			m_RenderTimer.Start(TIMER_RENDER_INTERVAL);
+	}
 }
 void ScenarioEditor::OnIdle(wxIdleEvent&)
 {

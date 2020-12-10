@@ -29,8 +29,6 @@ ATLASDLLIMPEXP void Atlas_StartWindow(const wchar_t* type);
 ATLASDLLIMPEXP void Atlas_GLSetCurrent(void* context);
 ATLASDLLIMPEXP void Atlas_GLSwapBuffers(void* context);
 
-ATLASDLLIMPEXP void Atlas_NotifyEndOfFrame();
-
 ATLASDLLIMPEXP void Atlas_DisplayError(const wchar_t* text, size_t flags);
 
 #endif // DLLINTERFACE_INCLUDED

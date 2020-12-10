@@ -20,32 +20,19 @@
 
 #include "MessagePasser.h"
 
-#include "lib/posix/posix_pthread.h"
-#include "ps/CStr.h"
-#include <queue>
-
-#include <mutex>
-
 class MessagePasserImpl : public AtlasMessage::MessagePasser
 {
 	NONCOPYABLE(MessagePasserImpl);
 public:
-	MessagePasserImpl();
-	~MessagePasserImpl();
-	virtual void Add(AtlasMessage::IMessage* msg);
-	virtual AtlasMessage::IMessage* Retrieve();
-	virtual void Query(AtlasMessage::QueryMessage* qry, void(*timeoutCallback)());
+	MessagePasserImpl() = default;
 
-	bool IsEmpty();
+	virtual void Add(AtlasMessage::IMessage* msg);
+	virtual void Query(AtlasMessage::QueryMessage* qry, void(*timeoutCallback)());
 
 	void SetTrace(bool t);
 
 private:
-	std::mutex m_Mutex;
-	CStr m_SemaphoreName;
-	sem_t* m_Semaphore;
-	std::queue<AtlasMessage::IMessage*> m_Queue;
-	bool m_Trace;
+	bool m_Trace = false;
 };
 
 #endif // INCLUDED_MESSAGEPASSERIMPL
