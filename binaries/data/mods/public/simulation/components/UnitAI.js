@@ -2221,6 +2221,9 @@ UnitAI.prototype.UnitFsmSpec = {
 						return true;
 					}
 					this.SetAnimationVariant("approach_" + this.order.data.type.specific);
+					let cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
+					if (cmpResourceGatherer)
+						cmpResourceGatherer.AddToPlayerCounter(this.order.data.type.generic);
 					return false;
 				},
 
@@ -2242,6 +2245,11 @@ UnitAI.prototype.UnitFsmSpec = {
 					let cmpSupply = Engine.QueryInterface(this.gatheringTarget, IID_ResourceSupply);
 					if (cmpSupply)
 						cmpSupply.RemoveGatherer(this.entity);
+
+					let cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
+					if (cmpResourceGatherer)
+						cmpResourceGatherer.RemoveFromPlayerCounter();
+
 					delete this.gatheringTarget;
 				},
 			},
@@ -2323,6 +2331,7 @@ UnitAI.prototype.UnitFsmSpec = {
 						this.SetDefaultAnimationVariant();
 						this.FaceTowardsTarget(this.order.data.target);
 						this.SelectAnimation("gather_" + this.order.data.type.specific);
+						cmpResourceGatherer.AddToPlayerCounter(this.order.data.type.generic);
 					}
 					return false;
 				},
@@ -2335,6 +2344,11 @@ UnitAI.prototype.UnitFsmSpec = {
 					let cmpSupply = Engine.QueryInterface(this.gatheringTarget, IID_ResourceSupply);
 					if (cmpSupply)
 						cmpSupply.RemoveGatherer(this.entity);
+
+					let cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
+					if (cmpResourceGatherer)
+						cmpResourceGatherer.RemoveFromPlayerCounter();
+
 					delete this.gatheringTarget;
 
 					this.ResetAnimation();

@@ -4,7 +4,7 @@
  */
 class CounterPopulation
 {
-	constructor(resCode, panel, icon, count)
+	constructor(resCode, panel, icon, count, stats)
 	{
 		this.resCode = resCode;
 		this.panel = panel;
@@ -13,18 +13,25 @@ class CounterPopulation
 		this.count.onTick = this.onTick.bind(this);
 		this.isTrainingBlocked = false;
 		this.color = this.DefaultPopulationColor;
+		this.stats = stats;
 	}
 
 	rebuild(playerState, getAllyStatTooltip)
 	{
 		this.count.caption = sprintf(translate(this.CounterCaption), playerState);
+		let total = 0;
+		for (let resCode of g_ResourceData.GetCodes())
+			total += playerState.resourceGatherers[resCode];
+		// Do not show zeroes.
+		this.stats.caption = total || "";
 
 		this.isTrainingBlocked = playerState.trainingBlocked;
 
 		this.panel.tooltip =
 			setStringTags(translate(this.PopulationTooltip), CounterManager.ResourceTitleTags) + "\n" +
 			sprintf(translate(this.MaximumPopulationTooltip), { "popCap": playerState.popMax }) +
-			getAllyStatTooltip(this.getTooltipData.bind(this));
+			getAllyStatTooltip(this.getTooltipData.bind(this)) + "\n" +
+			(total > 0 ? sprintf(translate("Current gatherers: %(amount)s"), { "amount" : total }) : "");
 	}
 
 	getTooltipData(playerState, playername)

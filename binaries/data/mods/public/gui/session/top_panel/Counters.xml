@@ -6,6 +6,7 @@
 		<object name="resource[n]" size="0 0 89 100%" type="button" style="resourceCounter" tooltip_style="sessionToolTipBold">
 			<object size="0 -2 40 38" type="image" name="resource[n]_icon" ghost="true"/>
 			<object size="34 0 100%-2 100%-2" type="text" style="resourceText" name="resource[n]_count"/>
+			<object size="0 0 32 32" type="text" style="gathererCounts" name="resource[n]_stats"/>
 		</object>
 	</repeat>
 </object>

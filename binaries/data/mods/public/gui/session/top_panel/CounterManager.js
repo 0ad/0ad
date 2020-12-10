@@ -37,7 +37,8 @@ class CounterManager
 				resCode,
 				Engine.GetGUIObjectByName("resource" + id),
 				Engine.GetGUIObjectByName("resource" + id + "_icon"),
-				Engine.GetGUIObjectByName("resource" + id + "_count")));
+				Engine.GetGUIObjectByName("resource" + id + "_count"),
+				Engine.GetGUIObjectByName("resource" + id + "_stats")));
 	}
 
 	init()

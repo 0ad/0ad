@@ -54,6 +54,7 @@ Player.prototype.Init = function()
 	this.maxPop = 300; // Maximum population.
 	this.trainingBlocked = false; // Indicates whether any training queue is currently blocked.
 	this.resourceCount = {};
+	this.resourceGatherers = {};
 	this.tradingGoods = []; // Goods for next trade-route and its probabilities * 100.
 	this.team = -1;	// Team number of the player, players on the same team will always have ally diplomatic status. Also this is useful for team emblems, scoring, etc.
 	this.teamsLocked = false;
@@ -83,6 +84,7 @@ Player.prototype.Init = function()
 	{
 		this.resourceCount[res] = 300;
 		this.resourceNames[res] = Resources.GetResource(res).name;
+		this.resourceGatherers[res] = 0;
 	}
 	// Trading goods probability in steps of 5.
 	let resTradeCodes = Resources.GetTradableCodes();
@@ -260,6 +262,27 @@ Player.prototype.SetResourceCounts = function(resources)
 Player.prototype.GetResourceCounts = function()
 {
 	return this.resourceCount;
+};
+
+Player.prototype.GetResourceGatherers = function()
+{
+	return this.resourceGatherers;
+};
+
+/**
+ * @param {string} type - The generic type of resource to add the gatherer for.
+ */
+Player.prototype.AddResourceGatherer = function(type)
+{
+	++this.resourceGatherers[type];
+};
+
+/**
+ * @param {string} type - The generic type of resource to remove the gatherer from.
+ */
+Player.prototype.RemoveResourceGatherer = function(type)
+{
+	--this.resourceGatherers[type];
 };
 
 /**
