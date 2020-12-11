@@ -107,6 +107,27 @@ with open(BUNDLE_CONTENTS + "/Info.plist", 'wb') as f:
         'LSHasLocalizedDisplayName': True,
         'LSMinimumSystemVersion': BUNDLE_MIN_OSX_VERSION,
         'NSHumanReadableCopyright': f'Copyright © {datetime.datetime.now().year} Wildfire Games',
+        'UTExportedTypeDeclarations': [{
+            'UTTypeIdentifier': BUNDLE_IDENTIFIER,
+            'UTTypeTagSpecification': {
+                'public.filename-extension': ["pyromod"],
+            },
+            'UTTypeConformsTo': ['public.zip-archive'],
+            'UTTypeDescription': '0 A.D. Zipped Mod',
+            'UTTypeIconFile': '0ad'
+        }],
+        'CFBundleDocumentTypes': [{
+            'CFBundleTypeExtensions': ['pyromod'],
+            'CFBundleTypeRole': 'Editor',
+            'CFBundleTypeIconFile': '0ad',
+            'LSHandlerRank': 'Owner'
+        },
+        {
+            'CFBundleTypeExtensions': ['zip'],
+            'CFBundleTypeRole': 'Viewer',
+            'CFBundleTypeIconFile': '0ad',
+            'LSHandlerRank': 'Alternate'
+        }],
     }, f)
 
 if args.dev:

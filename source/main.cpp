@@ -177,6 +177,23 @@ static InReaction MainInputHandler(const SDL_Event_* ev)
 		QuitEngine();
 		break;
 
+	case SDL_DROPFILE:
+	{
+		char* dropped_filedir = ev->ev.drop.file;
+		const Paths paths(g_args);
+		CModInstaller installer(paths.UserData() / "mods", paths.Cache());
+		installer.Install(std::string(dropped_filedir), g_ScriptContext, true);
+		SDL_free(dropped_filedir);
+		if (installer.GetInstalledMods().empty())
+			LOGERROR("Failed to install mod %s", dropped_filedir);
+		else
+		{
+			LOGMESSAGE("Installed mod %s", installer.GetInstalledMods().front());
+			RestartEngine();
+		}
+		break;
+	}
+
 	case SDL_HOTKEYPRESS:
 		std::string hotkey = static_cast<const char*>(ev->ev.user.data1);
 		if (hotkey == "exit")
