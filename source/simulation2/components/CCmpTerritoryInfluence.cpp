@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -75,12 +75,20 @@ public:
 
 	virtual bool IsRoot() const
 	{
-		return m_Root;
+		CmpPtr<ICmpValueModificationManager> cmpValueModificationManager(GetSystemEntity());
+		if (!cmpValueModificationManager)
+			return m_Root;
+
+		return cmpValueModificationManager->ApplyModifications(L"TerritoryInfluence/Root", m_Root, GetEntityId());
 	}
 
 	virtual u16 GetWeight() const
 	{
-		return m_Weight;
+		CmpPtr<ICmpValueModificationManager> cmpValueModificationManager(GetSystemEntity());
+		if (!cmpValueModificationManager)
+			return m_Weight;
+
+		return cmpValueModificationManager->ApplyModifications(L"TerritoryInfluence/Weight", m_Weight, GetEntityId());
 	}
 
 	virtual u32 GetRadius() const

@@ -23,9 +23,25 @@ function GetTechModifiedProperty(modifications, classes, originalValue)
 	// is about as efficient, but splitting makes it easier to report errors.
 	if (typeof originalValue === "string")
 		return GetTechModifiedProperty_string(modifications, classes, originalValue);
-	return GetTechModifiedProperty_numeric(modifications, classes, originalValue);
+	if (typeof originalValue === "number")
+		return GetTechModifiedProperty_numeric(modifications, classes, originalValue);
+	return GetTechModifiedProperty_generic(modifications, classes, originalValue);
 }
 
+function GetTechModifiedProperty_generic(modifications, classes, originalValue)
+{
+	for (let modification of modifications)
+	{
+		if (!DoesModificationApply(modification, classes))
+			continue;
+		if (!modification.replace)
+			warn("GetTechModifiedProperty: modification format not recognised : " + uneval(modification));
+
+		return modification.replace;
+	}
+
+	return originalValue;
+}
 
 function GetTechModifiedProperty_numeric(modifications, classes, originalValue)
 {

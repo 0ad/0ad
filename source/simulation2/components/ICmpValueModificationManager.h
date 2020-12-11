@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -30,9 +30,11 @@
 class ICmpValueModificationManager : public IComponent
 {
 public:
-	virtual fixed ApplyModifications(std::wstring valueName, fixed currentValue, entity_id_t entity) = 0;
-	virtual u32 ApplyModifications(std::wstring valueName, u32 currentValue, entity_id_t entity) = 0;
-	virtual std::wstring ApplyModifications(std::wstring valueName, std::wstring currentValue, entity_id_t entity) = 0;
+	virtual fixed ApplyModifications(std::wstring valueName, fixed currentValue, entity_id_t entity) const = 0;
+	virtual u32 ApplyModifications(std::wstring valueName, u32 currentValue, entity_id_t entity) const = 0;
+	virtual u16 ApplyModifications(std::wstring valueName, u16 currentValue, entity_id_t entity) const = 0;
+	virtual std::wstring ApplyModifications(std::wstring valueName, std::wstring currentValue, entity_id_t entity) const = 0;
+	virtual bool ApplyModifications(std::wstring valueName, bool currentValue, entity_id_t entity) const = 0;
 
 	DECLARE_INTERFACE_TYPE(ValueModificationManager)
 };
