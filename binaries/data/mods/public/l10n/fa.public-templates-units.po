@@ -13,9 +13,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2020-11-20 09:24+0000\n"
-"Last-Translator: Mostafa Lotfi <lotfi.mostafa@gmail.com>\n"
+"POT-Creation-Date: 2020-12-07 08:42+0000\n"
+"PO-Revision-Date: 2020-12-07 09:29+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,15 +23,15 @@ msgstr ""
 "Language: fa\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: simulation/templates/template_unit_catafalque.xml:15
+#: simulation/templates/template_unit_catafalque.xml:16
 msgid "Relic"
 msgstr "آثار مقدس"
 
-#: simulation/templates/template_unit_catafalque.xml:17
+#: simulation/templates/template_unit_catafalque.xml:18
 msgid "Catafalque"
 msgstr "تابوت"
 
-#: simulation/templates/template_unit_catafalque.xml:20
+#: simulation/templates/template_unit_catafalque.xml:21
 msgid "A catafalque that holds the remains of a great leader."
 msgstr "یک تابوت که دارای بقایای یک رهبر بزرگ است"
 
@@ -76,7 +76,7 @@ msgstr "سرباز"
 #: simulation/templates/template_unit_cavalry.xml:35
 #: simulation/templates/template_unit_elephant.xml:11
 #: simulation/templates/template_unit_infantry.xml:62
-#: simulation/templates/template_unit_support_female_citizen.xml:66
+#: simulation/templates/template_unit_support_female_citizen.xml:63
 msgid "Citizen"
 msgstr "شهروند"
 
@@ -347,6 +347,7 @@ msgid "Mace"
 msgstr ""
 
 #: simulation/templates/template_unit_champion_infantry_maceman.xml:20
+#: simulation/templates/units/kush/infantry_maceman_merc_b.xml:27
 msgid "Maceman"
 msgstr "مرد گرزدار"
 
@@ -369,15 +370,15 @@ msgstr "سلحشور نیزه بلند دار"
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:28
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:25
-#: simulation/templates/template_unit_infantry_melee_pikeman.xml:28
+#: simulation/templates/template_unit_infantry_melee_pikeman.xml:30
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:27
 msgid "Counters: 3× vs Cavalry."
 msgstr ""
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:29
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:26
-#: simulation/templates/template_unit_infantry_melee_pikeman.xml:27
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:29
+#: simulation/templates/template_unit_infantry_melee_pikeman.xml:31
 msgid "Pikeman"
 msgstr "نیزه بلند دار"
 
@@ -506,7 +507,7 @@ msgid "Hero Swordsman"
 msgstr "قهرمان شمشیرزن"
 
 #: simulation/templates/template_unit_infantry.xml:62
-#: simulation/templates/template_unit_support_female_citizen.xml:66
+#: simulation/templates/template_unit_support_female_citizen.xml:63
 #: simulation/templates/template_unit_support_slave.xml:42
 msgid "Worker"
 msgstr "کارگر"
@@ -698,7 +699,7 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Dagger"
 msgstr ""
 
-#: simulation/templates/template_unit_support_female_citizen.xml:67
+#: simulation/templates/template_unit_support_female_citizen.xml:64
 msgid "Female Citizen"
 msgstr "شهروند زن"
 
@@ -1015,23 +1016,23 @@ msgstr "کسنوفون"
 msgid "Xenophōn"
 msgstr ""
 
-#: simulation/templates/units/athen/infantry_javelineer_b.xml:22
+#: simulation/templates/units/athen/infantry_javelineer_b.xml:15
 msgid "Thracian Peltast"
 msgstr "زوبیندار تراکیایی"
 
-#: simulation/templates/units/athen/infantry_javelineer_b.xml:23
+#: simulation/templates/units/athen/infantry_javelineer_b.xml:16
 msgid "Peltastḗs Thrâx"
 msgstr "Peltastḗs Thrâx"
 
-#: simulation/templates/units/athen/infantry_marine_archer_b.xml:22
-#: simulation/templates/units/mace/infantry_archer_b.xml:20
-#: simulation/templates/units/ptol/infantry_archer_b.xml:19
+#: simulation/templates/units/athen/infantry_marine_archer_b.xml:15
+#: simulation/templates/units/mace/infantry_archer_b.xml:13
+#: simulation/templates/units/ptol/infantry_archer_b.xml:12
 msgid "Cretan Mercenary Archer"
 msgstr "کماندار مزدور کرتی"
 
-#: simulation/templates/units/athen/infantry_marine_archer_b.xml:23
-#: simulation/templates/units/mace/infantry_archer_b.xml:21
-#: simulation/templates/units/ptol/infantry_archer_b.xml:20
+#: simulation/templates/units/athen/infantry_marine_archer_b.xml:16
+#: simulation/templates/units/mace/infantry_archer_b.xml:14
+#: simulation/templates/units/ptol/infantry_archer_b.xml:13
 msgid "Toxótēs Krētikós"
 msgstr "Toxótēs Krētikós"
 
@@ -1298,24 +1299,24 @@ msgstr "سوار نومیدیایی"
 msgid "Ḥayyāl Raḫūv Masili"
 msgstr "Ḥayyāl Raḫūv Masili"
 
-#: simulation/templates/units/cart/cavalry_spearman_ital_b.xml:11
+#: simulation/templates/units/cart/cavalry_spearman_ital_b.xml:5
 msgid "Italic Cavalry"
 msgstr "سوار ایتالیایی"
 
-#: simulation/templates/units/cart/cavalry_spearman_ital_b.xml:12
+#: simulation/templates/units/cart/cavalry_spearman_ital_b.xml:6
 msgid "Ḥayyāl Romaḥ Raḫūv"
 msgstr "Ḥayyāl Romaḥ Raḫūv"
 
-#: simulation/templates/units/cart/cavalry_swordsman_gaul_b.xml:11
+#: simulation/templates/units/cart/cavalry_swordsman_gaul_b.xml:5
 msgid "Gallic Mercenary Cavalry"
 msgstr "سوار مزدور گال"
 
-#: simulation/templates/units/cart/cavalry_swordsman_gaul_b.xml:12
-#: simulation/templates/units/cart/cavalry_swordsman_iber_b.xml:17
+#: simulation/templates/units/cart/cavalry_swordsman_gaul_b.xml:6
+#: simulation/templates/units/cart/cavalry_swordsman_iber_b.xml:11
 msgid "Ḥayyāl Ḥerev Raḫūv"
 msgstr "Ḥayyāl Ḥerev Raḫūv"
 
-#: simulation/templates/units/cart/cavalry_swordsman_iber_b.xml:16
+#: simulation/templates/units/cart/cavalry_swordsman_iber_b.xml:10
 msgid "Iberian Heavy Cavalry"
 msgstr "سوار سنگین ایبریایی"
 
@@ -1383,19 +1384,19 @@ msgstr "کماندار موریتانیایی"
 msgid "Qešet"
 msgstr "Qešet"
 
-#: simulation/templates/units/cart/infantry_javelineer_iber_b.xml:19
+#: simulation/templates/units/cart/infantry_javelineer_iber_b.xml:13
 msgid "Iberian Mercenary Skirmisher"
 msgstr "نیزه انداز مزدور ایبریایی"
 
-#: simulation/templates/units/cart/infantry_javelineer_iber_b.xml:20
+#: simulation/templates/units/cart/infantry_javelineer_iber_b.xml:14
 msgid "Sǝḫīr Kidōn"
 msgstr "Sǝḫīr Kidōn"
 
-#: simulation/templates/units/cart/infantry_slinger_iber_b.xml:19
+#: simulation/templates/units/cart/infantry_slinger_iber_b.xml:13
 msgid "Balearic Slinger"
 msgstr "قلابسنگدار بالری"
 
-#: simulation/templates/units/cart/infantry_slinger_iber_b.xml:20
+#: simulation/templates/units/cart/infantry_slinger_iber_b.xml:14
 msgid "Qallāʿ Ibušimi"
 msgstr "Qallāʿ Ibušimi"
 
@@ -1407,16 +1408,16 @@ msgstr "نیزه دار لیبیایی"
 msgid "Sǝḫīr Ḥanīt"
 msgstr "Sǝḫīr Ḥanīt"
 
-#: simulation/templates/units/cart/infantry_swordsman_gaul_b.xml:19
-#: simulation/templates/units/ptol/infantry_swordsman_merc_b.xml:17
+#: simulation/templates/units/cart/infantry_swordsman_gaul_b.xml:13
+#: simulation/templates/units/ptol/infantry_swordsman_merc_b.xml:11
 msgid "Gallic Mercenary Swordsman"
 msgstr "مزدور شمشیرزن گال"
 
-#: simulation/templates/units/cart/infantry_swordsman_gaul_b.xml:20
+#: simulation/templates/units/cart/infantry_swordsman_gaul_b.xml:14
 msgid "Seḫīr Ḥerev"
 msgstr "Seḫīr Ḥerev"
 
-#: simulation/templates/units/cart/infantry_swordsman_ital_b.xml:20
+#: simulation/templates/units/cart/infantry_swordsman_ital_b.xml:14
 msgid "Seḫīr Romaḥ"
 msgstr "Seḫīr Romaḥ"
 
@@ -1627,18 +1628,18 @@ msgstr "iry hr ssmwtt"
 msgid "Napatan Light Cavalry"
 msgstr "سواره نظام سبک ناپاتان"
 
-#: simulation/templates/units/kush/cavalry_javelineer_merc_b.xml:15
-#: simulation/templates/units/ptol/cavalry_archer_b.xml:8
-msgid "Camel"
-msgstr "شتر"
-
-#: simulation/templates/units/kush/cavalry_javelineer_merc_b.xml:17
+#: simulation/templates/units/kush/cavalry_javelineer_merc_b.xml:10
 msgid "Blemmye Desert Raider"
 msgstr "مهاجمان صحرای بلمی"
 
-#: simulation/templates/units/kush/cavalry_javelineer_merc_b.xml:18
+#: simulation/templates/units/kush/cavalry_javelineer_merc_b.xml:11
 msgid "nhw Bulahau gml"
 msgstr "nhw Bulahau gml"
+
+#: simulation/templates/units/kush/cavalry_javelineer_merc_b.xml:12
+#: simulation/templates/units/ptol/cavalry_archer_b.xml:8
+msgid "Camel"
+msgstr "شتر"
 
 #: simulation/templates/units/kush/cavalry_spearman_b.xml:7
 msgid "Meroitic Heavy Cavalry"
@@ -1726,23 +1727,19 @@ msgstr "کماندار نوبیان"
 msgid "Pdty Nhsyw"
 msgstr "Pdty Nhsyw"
 
-#: simulation/templates/units/kush/infantry_javelineer_merc_b.xml:23
+#: simulation/templates/units/kush/infantry_javelineer_merc_b.xml:16
 msgid "Noba Skirmisher"
 msgstr ""
 
-#: simulation/templates/units/kush/infantry_javelineer_merc_b.xml:24
+#: simulation/templates/units/kush/infantry_javelineer_merc_b.xml:17
 msgid "nhw ʿhȝw Noba"
 msgstr ""
 
-#: simulation/templates/units/kush/infantry_maceman_merc_b.xml:30
-msgid "Macemen"
-msgstr ""
-
-#: simulation/templates/units/kush/infantry_maceman_merc_b.xml:32
+#: simulation/templates/units/kush/infantry_maceman_merc_b.xml:25
 msgid "Noba Maceman"
 msgstr ""
 
-#: simulation/templates/units/kush/infantry_maceman_merc_b.xml:33
+#: simulation/templates/units/kush/infantry_maceman_merc_b.xml:26
 msgid "nhw Noba"
 msgstr "nhw Noba"
 
@@ -1833,11 +1830,11 @@ msgid ""
 " currency. Gain a slow trickle of metal."
 msgstr "سازماندهی مجدد مالی: هم پیمان شدن با روم، فیلیپ مسائل مالی داخلی کشور را ساماندهی کرد  و معادن را بازگشایی کرد و حتی یک واحد پولی جدید ایجاد کرد. بدست آوردن مقدار کمی آهن"
 
-#: simulation/templates/units/mace/cavalry_javelineer_b.xml:14
+#: simulation/templates/units/mace/cavalry_javelineer_b.xml:7
 msgid "Odrysian Skirmish Cavalry"
 msgstr "سواره نظام جنگجو اودریسیان"
 
-#: simulation/templates/units/mace/cavalry_javelineer_b.xml:15
+#: simulation/templates/units/mace/cavalry_javelineer_b.xml:8
 msgid "Hippakontistḕs Odrysós"
 msgstr "Hippakontistḕs Odrysós"
 
@@ -1850,7 +1847,7 @@ msgid "Xystophóros Thessalikós"
 msgstr "Xystophóros Thessalikós"
 
 #: simulation/templates/units/mace/champion_cavalry.xml:6
-#: simulation/templates/units/sele/cavalry_spearman_merc_b.xml:14
+#: simulation/templates/units/sele/cavalry_spearman_merc_b.xml:7
 msgid "Companion Cavalry"
 msgstr "سوار همراه"
 
@@ -1949,11 +1946,11 @@ msgstr "پیاده نظام همراه"
 msgid "Pezétairos"
 msgstr "Pezétairos"
 
-#: simulation/templates/units/mace/infantry_slinger_b.xml:20
+#: simulation/templates/units/mace/infantry_slinger_b.xml:13
 msgid "Rhodian Slinger"
 msgstr "قلابسنگ دار رودسی"
 
-#: simulation/templates/units/mace/infantry_slinger_b.xml:21
+#: simulation/templates/units/mace/infantry_slinger_b.xml:14
 msgid "Sphendonḗtēs Rhódios"
 msgstr "Sphendonḗtēs Rhódios"
 
@@ -2157,38 +2154,38 @@ msgctxt ""
 msgid "Rhomphaia"
 msgstr ""
 
-#: simulation/templates/units/athen/infantry_javelineer_b.xml:19
-#: simulation/templates/units/athen/infantry_marine_archer_b.xml:19
-#: simulation/templates/units/cart/cavalry_spearman_ital_b.xml:14
-#: simulation/templates/units/cart/cavalry_swordsman_gaul_b.xml:14
-#: simulation/templates/units/cart/cavalry_swordsman_iber_b.xml:19
-#: simulation/templates/units/cart/infantry_javelineer_iber_b.xml:22
-#: simulation/templates/units/cart/infantry_slinger_iber_b.xml:22
-#: simulation/templates/units/cart/infantry_swordsman_gaul_b.xml:22
-#: simulation/templates/units/cart/infantry_swordsman_ital_b.xml:22
-#: simulation/templates/units/kush/cavalry_javelineer_merc_b.xml:15
-#: simulation/templates/units/kush/infantry_javelineer_merc_b.xml:21
-#: simulation/templates/units/kush/infantry_maceman_merc_b.xml:30
-#: simulation/templates/units/mace/cavalry_javelineer_b.xml:11
-#: simulation/templates/units/mace/infantry_archer_b.xml:17
-#: simulation/templates/units/mace/infantry_slinger_b.xml:17
+#: simulation/templates/units/athen/infantry_javelineer_b.xml:17
+#: simulation/templates/units/athen/infantry_marine_archer_b.xml:17
+#: simulation/templates/units/cart/cavalry_spearman_ital_b.xml:8
+#: simulation/templates/units/cart/cavalry_swordsman_gaul_b.xml:8
+#: simulation/templates/units/cart/cavalry_swordsman_iber_b.xml:13
+#: simulation/templates/units/cart/infantry_javelineer_iber_b.xml:16
+#: simulation/templates/units/cart/infantry_slinger_iber_b.xml:16
+#: simulation/templates/units/cart/infantry_swordsman_gaul_b.xml:16
+#: simulation/templates/units/cart/infantry_swordsman_ital_b.xml:16
+#: simulation/templates/units/kush/cavalry_javelineer_merc_b.xml:12
+#: simulation/templates/units/kush/infantry_javelineer_merc_b.xml:18
+#: simulation/templates/units/kush/infantry_maceman_merc_b.xml:27
+#: simulation/templates/units/mace/cavalry_javelineer_b.xml:9
+#: simulation/templates/units/mace/infantry_archer_b.xml:15
+#: simulation/templates/units/mace/infantry_slinger_b.xml:15
 #: simulation/templates/units/merc_black_cloak.xml:9
 #: simulation/templates/units/merc_thorakites.xml:11
 #: simulation/templates/units/merc_thureophoros.xml:4
 #: simulation/templates/units/pers/kardakes_hoplite.xml:5
 #: simulation/templates/units/pers/kardakes_skirmisher.xml:5
-#: simulation/templates/units/ptol/cavalry_javelineer_merc_b.xml:11
-#: simulation/templates/units/ptol/cavalry_spearman_merc_b.xml:11
-#: simulation/templates/units/ptol/infantry_archer_b.xml:17
-#: simulation/templates/units/ptol/infantry_javelineer_b.xml:17
-#: simulation/templates/units/ptol/infantry_spearman_merc_b.xml:17
-#: simulation/templates/units/ptol/infantry_swordsman_merc_b.xml:20
+#: simulation/templates/units/ptol/cavalry_javelineer_merc_b.xml:8
+#: simulation/templates/units/ptol/cavalry_spearman_merc_b.xml:8
+#: simulation/templates/units/ptol/infantry_archer_b.xml:14
+#: simulation/templates/units/ptol/infantry_javelineer_b.xml:14
+#: simulation/templates/units/ptol/infantry_spearman_merc_b.xml:14
+#: simulation/templates/units/ptol/infantry_swordsman_merc_b.xml:14
 #: simulation/templates/units/samnite_skirmisher.xml:4
 #: simulation/templates/units/samnite_spearman.xml:4
 #: simulation/templates/units/samnite_swordsman.xml:4
-#: simulation/templates/units/sele/cavalry_spearman_merc_b.xml:11
-#: simulation/templates/units/sele/infantry_archer_merc_b.xml:16
-#: simulation/templates/units/sele/infantry_swordsman_merc_b.xml:21
+#: simulation/templates/units/sele/cavalry_spearman_merc_b.xml:9
+#: simulation/templates/units/sele/infantry_archer_merc_b.xml:14
+#: simulation/templates/units/sele/infantry_swordsman_merc_b.xml:19
 msgid "Mercenary"
 msgstr "مزدور"
 
@@ -2456,19 +2453,19 @@ msgstr "شترسوار کماندار نبطی"
 msgid "Mutsābiq Gamal Nabatu"
 msgstr "Mutsābiq Gamal Nabatu"
 
-#: simulation/templates/units/ptol/cavalry_javelineer_merc_b.xml:13
+#: simulation/templates/units/ptol/cavalry_javelineer_merc_b.xml:6
 msgid "Tarantine Settler Cavalry"
 msgstr "سوار مهاجر تارانتی"
 
-#: simulation/templates/units/ptol/cavalry_javelineer_merc_b.xml:14
+#: simulation/templates/units/ptol/cavalry_javelineer_merc_b.xml:7
 msgid "Hippeús Tarantînos"
 msgstr "Hippeús Tarantînos"
 
-#: simulation/templates/units/ptol/cavalry_spearman_merc_b.xml:13
+#: simulation/templates/units/ptol/cavalry_spearman_merc_b.xml:6
 msgid "Macedonian Settler Cavalry"
 msgstr "سوار مهاجر مقدونی"
 
-#: simulation/templates/units/ptol/cavalry_spearman_merc_b.xml:14
+#: simulation/templates/units/ptol/cavalry_spearman_merc_b.xml:7
 msgid "Hippeús Makedonikós"
 msgstr "Hippeús Makedonikós"
 
@@ -2536,11 +2533,11 @@ msgstr "کماندار مزدور حبشی"
 msgid "Kousít Misthophóros Toxótēs"
 msgstr "Kousít Misthophóros Toxótēs"
 
-#: simulation/templates/units/ptol/infantry_javelineer_b.xml:19
+#: simulation/templates/units/ptol/infantry_javelineer_b.xml:12
 msgid "Mercenary Thureos Skirmisher"
 msgstr "مزدوران نیزه انداز توروس"
 
-#: simulation/templates/units/ptol/infantry_javelineer_b.xml:20
+#: simulation/templates/units/ptol/infantry_javelineer_b.xml:13
 msgid "Thureophóros Akrobolistḗs"
 msgstr "Thureophóros Akrobolistḗs"
 
@@ -2560,15 +2557,15 @@ msgstr "قلابسنگ دار یهودی"
 msgid "Hebraikós Sphendonḗtēs"
 msgstr "Hebraikós Sphendonḗtēs"
 
-#: simulation/templates/units/ptol/infantry_spearman_merc_b.xml:19
+#: simulation/templates/units/ptol/infantry_spearman_merc_b.xml:12
 msgid "Mercenary Thureos Spearman"
 msgstr "مزدوران نیزه دار توروس"
 
-#: simulation/templates/units/ptol/infantry_spearman_merc_b.xml:20
+#: simulation/templates/units/ptol/infantry_spearman_merc_b.xml:13
 msgid "Thureophóros Misthophóros"
 msgstr "Thureophóros Misthophóros"
 
-#: simulation/templates/units/ptol/infantry_swordsman_merc_b.xml:18
+#: simulation/templates/units/ptol/infantry_swordsman_merc_b.xml:12
 msgid "Gallikós Mistophorós"
 msgstr "Gallikós Mistophorós"
 
@@ -2788,7 +2785,7 @@ msgstr "نیزه انداز سامنیت"
 msgid "Samnite Spearman"
 msgstr "نیزه دار سامنیت"
 
-#: simulation/templates/units/cart/infantry_swordsman_ital_b.xml:19
+#: simulation/templates/units/cart/infantry_swordsman_ital_b.xml:13
 #: simulation/templates/units/samnite_swordsman.xml:5
 #: simulation/templates/units/samnite_swordsman.xml:6
 msgid "Samnite Swordsman"
@@ -2814,7 +2811,7 @@ msgstr "سوار شبه نظامی"
 msgid "Hippakontistès Politès"
 msgstr "Hippakontistès Politès"
 
-#: simulation/templates/units/sele/cavalry_spearman_merc_b.xml:15
+#: simulation/templates/units/sele/cavalry_spearman_merc_b.xml:8
 msgid "Hippos Hetairike"
 msgstr "Hippos Hetairike"
 
@@ -2882,11 +2879,11 @@ msgstr ""
 msgid "Seleukos A' Nikatōr"
 msgstr ""
 
-#: simulation/templates/units/sele/infantry_archer_merc_b.xml:19
+#: simulation/templates/units/sele/infantry_archer_merc_b.xml:12
 msgid "Syrian Archer"
 msgstr "کماندار سوری"
 
-#: simulation/templates/units/sele/infantry_archer_merc_b.xml:20
+#: simulation/templates/units/sele/infantry_archer_merc_b.xml:13
 msgid "Toxótēs Syrías"
 msgstr "Toxótēs Syrías"
 
@@ -2914,11 +2911,11 @@ msgstr "نیزه دار شبه نظامی"
 msgid "Thureophóros Politès"
 msgstr "Thureophóros Politès"
 
-#: simulation/templates/units/sele/infantry_swordsman_merc_b.xml:24
+#: simulation/templates/units/sele/infantry_swordsman_merc_b.xml:17
 msgid "Thracian Mercenary Swordsman"
 msgstr "شمشیر زن مزدور تراکیایی"
 
-#: simulation/templates/units/sele/infantry_swordsman_merc_b.xml:25
+#: simulation/templates/units/sele/infantry_swordsman_merc_b.xml:18
 msgid "Rhomphaiaphoros Thrakikós"
 msgstr "Rhomphaiaphoros Thrakikós"
 

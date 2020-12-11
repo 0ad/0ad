@@ -37,8 +37,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2020-09-05 17:06+0000\n"
+"POT-Creation-Date: 2020-12-07 08:42+0000\n"
+"PO-Revision-Date: 2020-12-08 20:20+0000\n"
 "Last-Translator: Przemysław Murach <moonshine133@vp.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -1722,6 +1722,10 @@ msgid ""
 "+3 healing range; Melee units +20% attack damage; Ranged units +4 attack "
 "range and −10% spread."
 msgstr "Jednostki zaawansowane i elitarne szkolą się o 20% szybciej, mają 1 więcej punkt pancerza, 10% więcej zdrowia, 0.8 punktu przejmowania, 20% zasobów i zbierają zasoby 30% szybciej. Uzdrowiciele otrzymują +5 siły leczenia i +3 zasięgu leczenia. Jednostki walczące wręcz +20% obrażeń. Jednostki walczące na dystans +4 zasięgu ataku i -10% rozstrzału."
+
+#: simulation/data/technologies/unit_mercenary.jsontooltip
+msgid "Non-Champion Mercenaries cost −25 food, +25 metal."
+msgstr "Najemnicy, którzy nie są czempionami, kosztują -25 żywności i +25 metalu."
 
 #: simulation/data/technologies/unlock_champion_units.jsondescription
 msgid ""
