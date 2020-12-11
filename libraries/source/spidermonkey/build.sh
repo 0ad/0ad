@@ -5,7 +5,7 @@ set -e
 # This should match the version in config/milestone.txt
 FOLDER="mozjs-78.6.0"
 # If same-version changes are needed, increment this.
-LIB_VERSION="78.6.0+0"
+LIB_VERSION="78.6.0+1"
 LIB_NAME="mozjs78-ps"
 
 # Since this script is called by update-workspaces.sh, we want to quickly
