@@ -44,18 +44,18 @@ def process(dir, root, suffix):
             del anchors[anchor]
         else:
             for anchor in anchors:
-                os.write(anchors[anchor].fileno(), line)
+                os.write(anchors[anchor].fileno(), line.encode())
     INPUT.close()
     for anchor in anchors:
         if anchor != '':
-            print "ERROR: anchor '%s' did not terminate" % anchor
+            print("ERROR: anchor '%s' did not terminate" % anchor)
         anchors[anchor].close()
     #
     processed.add(bname)
 
 
 for file in sys.argv[1:]:
-    print "Processing file '%s' ..." % file
+    print("Processing file '%s' ..." % file)
     INPUT = open(file, 'r')
     for line in INPUT:
         suffix = None
@@ -82,8 +82,8 @@ for file in sys.argv[1:]:
             #print "HERE", line, suffix
             fname = m.group(1)+m.group(2)+'.'+suffix
             if not os.path.exists(fname):
-                print line
-                print "ERROR: file '%s' does not exist!" % fname
+                print(line)
+                print("ERROR: file '%s' does not exist!" % fname)
                 sys.exit(1)
             process(m.group(1), m.group(2), suffix)
     INPUT.close()
