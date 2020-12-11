@@ -87,6 +87,7 @@ private:
 	ToolManager m_ToolManager;
 
 	wxTimer m_Timer;
+	wxTimer m_RenderTimer;
 
 	SectionLayout m_SectionLayout;
 

@@ -12,7 +12,7 @@ var tShore = "polar_ice_snow";
 var tWater = "polar_ice_c";
 
 var oArcticFox = "gaia/fauna_fox_arctic";
-var oArcticWolf = "gaia/fauna_wolf_arctic_domestic";
+var oArcticWolf = "gaia/fauna_wolf_arctic_violent";
 var oMuskox = "gaia/fauna_muskox";
 var oWalrus = "gaia/fauna_walrus";
 var oWhaleFin = "gaia/fauna_whale_fin";

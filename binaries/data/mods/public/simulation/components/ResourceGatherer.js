@@ -334,6 +334,41 @@ ResourceGatherer.prototype.DropResources = function()
 	Engine.PostMessage(this.entity, MT_ResourceCarryingChanged, { "to": this.GetCarryingStatus() });
 };
 
+
+/**
+ * @param {string} type - A generic resource type.
+ */
+ResourceGatherer.prototype.AddToPlayerCounter = function(type)
+{
+	// We need to be removed from the player counter first.
+	if (this.lastGathered)
+		return;
+
+	let cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
+	if (cmpPlayer)
+		cmpPlayer.AddResourceGatherer(type);
+
+	this.lastGathered = type;
+};
+
+/**
+ * @param {number} playerid - Optionally a player ID.
+ */
+ResourceGatherer.prototype.RemoveFromPlayerCounter = function(playerid)
+{
+	if (!this.lastGathered)
+		return;
+
+	let cmpPlayer = playerid != undefined ?
+		QueryPlayerIDInterface(playerid) :
+		QueryOwnerInterface(this.entity, IID_Player);
+
+	if (cmpPlayer)
+		cmpPlayer.RemoveResourceGatherer(this.lastGathered);
+
+	delete this.lastGathered;
+};
+
 // Since we cache gather rates, we need to make sure we update them when tech changes.
 // and when our owner change because owners can had different techs.
 ResourceGatherer.prototype.OnValueModification = function(msg)
@@ -347,7 +382,11 @@ ResourceGatherer.prototype.OnValueModification = function(msg)
 ResourceGatherer.prototype.OnOwnershipChanged = function(msg)
 {
 	if (msg.to == INVALID_PLAYER)
+	{
+		this.RemoveFromPlayerCounter(msg.from);
 		return;
+	}
+
 	this.RecalculateGatherRatesAndCapacities();
 };
 

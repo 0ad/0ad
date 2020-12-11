@@ -148,6 +148,11 @@ MESSAGE(ResizeScreen,
 		((int, height))
 		);
 
+QUERY(RenderLoop, ,
+	  ((bool, wantHighFPS))
+	  ((double, timeSinceActivity))
+	  );
+
 //////////////////////////////////////////////////////////////////////////
 // Messages for map panel
 

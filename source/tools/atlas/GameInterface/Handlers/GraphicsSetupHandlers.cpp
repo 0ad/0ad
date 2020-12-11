@@ -22,18 +22,29 @@
 #include "../CommandProc.h"
 #include "../ActorViewer.h"
 #include "../View.h"
+#include "../InputProcessor.h"
 
 #include "graphics/GameView.h"
 #include "graphics/ObjectManager.h"
+#include "gui/GUIManager.h"
 #include "lib/external_libraries/libsdl.h"
 #include "lib/ogl.h"
+#include "lib/timer.h"
 #include "maths/MathUtil.h"
 #include "ps/CConsole.h"
+#include "ps/Profile.h"
+#include "ps/Profiler2.h"
 #include "ps/Game.h"
 #include "ps/VideoMode.h"
 #include "ps/GameSetup/Config.h"
 #include "ps/GameSetup/GameSetup.h"
 #include "renderer/Renderer.h"
+
+static InputProcessor g_Input;
+
+// This keeps track of the last in-game user input.
+// It is used to throttle FPS to save CPU & GPU.
+static double last_user_activity;
 
 namespace AtlasMessage {
 
@@ -190,6 +201,46 @@ MESSAGEHANDLER(ResizeScreen)
 	// OS X seems to require this to update the GL canvas
 	Atlas_GLSetCurrent(const_cast<void*>(g_AtlasGameLoop->glCanvas));
 #endif
+}
+
+QUERYHANDLER(RenderLoop)
+{
+	{
+		const double time = timer_Time();
+		static double last_time = time;
+		const double realFrameLength = time-last_time;
+		last_time = time;
+		ENSURE(realFrameLength >= 0.0);
+		// TODO: filter out big jumps, e.g. when having done a lot of slow
+		// processing in the last frame
+		g_AtlasGameLoop->realFrameLength = realFrameLength;
+	}
+
+	if (g_Input.ProcessInput(g_AtlasGameLoop))
+		last_user_activity = timer_Time();
+
+	msg->timeSinceActivity = timer_Time() - last_user_activity;
+
+	ReloadChangedFiles();
+
+	RendererIncrementalLoad();
+
+	// Pump SDL events (e.g. hotkeys)
+	SDL_Event_ ev;
+	while (in_poll_priority_event(&ev))
+		in_dispatch_event(&ev);
+
+	if (g_GUI)
+		g_GUI->TickObjects();
+
+	g_AtlasGameLoop->view->Update(g_AtlasGameLoop->realFrameLength);
+
+	g_AtlasGameLoop->view->Render();
+
+	if (CProfileManager::IsInitialised())
+		g_Profiler.Frame();
+
+	msg->wantHighFPS = g_AtlasGameLoop->view->WantsHighFramerate();
 }
 
 //////////////////////////////////////////////////////////////////////////

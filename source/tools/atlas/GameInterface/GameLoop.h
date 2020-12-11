@@ -24,6 +24,8 @@ extern void (*Atlas_GLSetCurrent)(void* context);
 
 class AtlasView;
 
+void RendererIncrementalLoad();
+
 struct GameLoopState
 {
 	GameLoopState() : running(false) {};
