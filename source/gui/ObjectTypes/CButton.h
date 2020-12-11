@@ -28,6 +28,8 @@ class CButton : public IGUIObject, public IGUITextOwner, public IGUIButtonBehavi
 {
 	GUI_OBJECT(CButton)
 
+	friend JSI_GUIProxy<CButton>;
+
 public:
 	CButton(CGUI& pGUI);
 	virtual ~CButton();
@@ -68,6 +70,10 @@ protected:
 	 * Placement of text.
 	 */
 	CPos m_TextPos;
+
+	virtual void CreateJSObject();
+
+	void getTextSize(ScriptInterface& scriptInterface, JS::MutableHandleValue ret);
 
 	// Settings
 	float m_BufferZone;

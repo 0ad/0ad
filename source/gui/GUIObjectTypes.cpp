@@ -40,6 +40,7 @@ void CGUI::AddObjectTypes()
 	m_ProxyData.insert(JSI_GUIProxy<IGUIObject>::CreateData(*m_ScriptInterface));
 	m_ProxyData.insert(JSI_GUIProxy<CText>::CreateData(*m_ScriptInterface));
 	m_ProxyData.insert(JSI_GUIProxy<CList>::CreateData(*m_ScriptInterface));
+	m_ProxyData.insert(JSI_GUIProxy<CButton>::CreateData(*m_ScriptInterface));
 
 	AddObjectType("button", &CButton::ConstructObject);
 	AddObjectType("chart", &CChart::ConstructObject);
