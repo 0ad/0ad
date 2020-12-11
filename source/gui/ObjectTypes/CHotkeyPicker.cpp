@@ -135,8 +135,8 @@ InReaction CHotkeyPicker::PreemptEvent(const SDL_Event_* ev)
 				return IN_HANDLED;
 		}
 		// Don't handle keys and mouse together except for modifiers.
-		std::remove_if(m_KeysPressed.begin(), m_KeysPressed.end(), [](const Key& k) {
-			return static_cast<int>(k.code) < UNIFIED_SHIFT || static_cast<int>(k.code) >= UNIFIED_LAST; } );
+		m_KeysPressed.erase(std::remove_if(m_KeysPressed.begin(), m_KeysPressed.end(), [](const Key& k) {
+			return static_cast<int>(k.code) < UNIFIED_SHIFT || static_cast<int>(k.code) >= UNIFIED_LAST; } ), m_KeysPressed.end());
 		m_KeysPressed.emplace_back(Key{scancode, FindScancodeName(scancode)});
 		// For mouse events, assume we immediately want to return.
 		FireEvent(EventNameCombination);
