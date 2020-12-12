@@ -74,7 +74,34 @@ static struct timeval start;
 //-----------------------------------------------------------------------------
 // timer API
 
-void timer_LatchStartTime()
+
+// Cached because the default implementation may take several milliseconds.
+static double resolution;
+static Status InitResolution()
+{
+#if OS_WIN
+	LARGE_INTEGER frequency;
+	ENSURE(QueryPerformanceFrequency(&frequency));
+	resolution = 1.0 / static_cast<double>(frequency.QuadPart);
+#elif HAVE_CLOCK_GETTIME
+	struct timespec ts;
+	if (clock_getres(CLOCK_REALTIME, &ts) == 0)
+		resolution = ts.tv_nsec * 1e-9;
+	else
+		resolution = 1e-9;
+#elif HAVE_GETTIMEOFDAY
+	resolution = 1e-6;
+#else
+	const double t0 = timer_Time();
+	double t1, t2;
+	do t1 = timer_Time(); while (t1 == t0);
+	do t2 = timer_Time(); while (t2 == t1);
+	resolution = t2 - t1;
+#endif
+	return INFO::OK;
+}
+
+void timer_Init()
 {
 #if OS_WIN
 	ENSURE(QueryPerformanceCounter(&start));
@@ -83,6 +110,10 @@ void timer_LatchStartTime()
 #elif HAVE_GETTIMEOFDAY
 	gettimeofday(&start, 0);
 #endif
+
+	static ModuleInitState initState;
+	ModuleInit(&initState, InitResolution);
+	ENSURE(resolution != 0.0);
 }
 
 static std::mutex ensure_monotonic_mutex;
@@ -96,14 +127,12 @@ static void EnsureMonotonic(double& newTime)
 	newTime = maxTime;
 }
 
-// Cached because the default implementation may take several milliseconds.
-static double resolution;
-
 double timer_Time()
 {
 	double t;
 
 #if OS_WIN
+	ENSURE(start.QuadPart); // must have called timer_LatchStartTime first
 	LARGE_INTEGER now;
 	ENSURE(QueryPerformanceCounter(&now));
 	t = static_cast<double>(now.QuadPart - start.QuadPart) * resolution;
@@ -111,12 +140,12 @@ double timer_Time()
 	ENSURE(start.tv_sec || start.tv_nsec);	// must have called timer_LatchStartTime first
 	struct timespec cur;
 	(void)clock_gettime(CLOCK_REALTIME, &cur);
-	t = (cur.tv_sec - start.tv_sec) + (cur.tv_nsec - start.tv_nsec)*1e-9;
+	t = (cur.tv_sec - start.tv_sec) + (cur.tv_nsec - start.tv_nsec) * resolution;
 #elif HAVE_GETTIMEOFDAY
 	ENSURE(start.tv_sec || start.tv_usec);	// must have called timer_LatchStartTime first
 	struct timeval cur;
 	gettimeofday(&cur, 0);
-	t = (cur.tv_sec - start.tv_sec) + (cur.tv_usec - start.tv_usec)*1e-6;
+	t = (cur.tv_sec - start.tv_sec) + (cur.tv_usec - start.tv_usec) * resolution;
 #else
 # error "timer_Time: add timer implementation for this platform!"
 #endif
@@ -126,31 +155,8 @@ double timer_Time()
 }
 
 
-static Status InitResolution()
-{
-#if OS_WIN
-	LARGE_INTEGER frequency;
-	ENSURE(QueryPerformanceFrequency(&frequency));
-	resolution = 1.0 / static_cast<double>(frequency.QuadPart);
-#elif HAVE_CLOCK_GETTIME
-	struct timespec ts;
-	if(clock_getres(CLOCK_REALTIME, &ts) == 0)
-		resolution = ts.tv_nsec * 1e-9;
-#else
-	const double t0 = timer_Time();
-	double t1, t2;
-	do t1 = timer_Time(); while(t1 == t0);
-	do t2 = timer_Time(); while(t2 == t1);
-	resolution = t2-t1;
-#endif
-
-	return INFO::OK;
-}
-
 double timer_Resolution()
 {
-	static ModuleInitState initState;
-	ModuleInit(&initState, InitResolution);
 	return resolution;
 }
 

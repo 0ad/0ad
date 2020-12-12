@@ -832,7 +832,7 @@ void EarlyInit()
 	// add all debug_printf "tags" that we are interested in:
 	debug_filter_add("TIMER");
 
-	timer_LatchStartTime();
+	timer_Init();
 
 	// initialise profiler early so it can profile startup,
 	// but only after LatchStartTime
