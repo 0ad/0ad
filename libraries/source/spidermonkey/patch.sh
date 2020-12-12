@@ -28,3 +28,8 @@ patch -p1 < ../FixMSVCRootedVoid.diff
 # but apple-clang 10.0.0 (the maximum in 10.13)
 # doesn't actually have it, so patch it out.
 patch -p1 < ../FixMac10.13.diff
+
+# Fix FP access breaking compilation on RPI3+
+# https://bugzilla.mozilla.org/show_bug.cgi?id=1526653
+# https://bugzilla.mozilla.org/show_bug.cgi?id=1536491 
+patch -p1 < ../FixRpiUnalignedFpAccess.diff

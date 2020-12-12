@@ -26,15 +26,15 @@
 # papalote alreves <papalotealreves@gmail.com>, 2018
 # Rafael Cuevas Montero <rafcumon@hotmail.com>, 2017
 # Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>, 2020
-# Swyter ™ <Swyterzone@gmail.com>, 2014-2018,2020
-# Swyter ™ <Swyterzone@gmail.com>, 2020
+# Swyter <Swyterzone@gmail.com>, 2014-2018,2020
+# Swyter <Swyterzone@gmail.com>, 2020
 # vega93 <arkadas_llisa@hotmail.com>, 2015,2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2020-10-04 20:28+0000\n"
-"Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>\n"
+"POT-Creation-Date: 2020-12-07 08:42+0000\n"
+"PO-Revision-Date: 2020-12-07 11:22+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1717,6 +1717,10 @@ msgid ""
 "+3 healing range; Melee units +20% attack damage; Ranged units +4 attack "
 "range and −10% spread."
 msgstr "Unidades de élite (Tiempo de adiestramiento: +20%; Armadura: +1; Salud: +10%; Fuerza de captura: +0.8; Saqueo: +20%; Velocidad de recolección: −30%). Sanadores (Curación: +5; Alcance: +3). Unidades cuerpo a cuerpo (Daño: +20%). Unidades de tiro (Distancia: +4; Dispersión: −10%)"
+
+#: simulation/data/technologies/unit_mercenary.jsontooltip
+msgid "Non-Champion Mercenaries cost −25 food, +25 metal."
+msgstr ""
 
 #: simulation/data/technologies/unlock_champion_units.jsondescription
 msgid ""

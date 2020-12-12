@@ -36,9 +36,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2020-09-14 09:53+0000\n"
-"Last-Translator: Michał Trzebiatowski <michtrz@gmail.com>\n"
+"POT-Creation-Date: 2020-12-07 08:42+0000\n"
+"PO-Revision-Date: 2020-12-07 11:22+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1721,6 +1721,10 @@ msgid ""
 "+3 healing range; Melee units +20% attack damage; Ranged units +4 attack "
 "range and −10% spread."
 msgstr "Eliteeinheiten +20% Ausbildungszeit, +1 Rüstung, +10% Gesundheit, +0,8 Einnehmrate, +20% Beute und −30% Sammelrate; Heiler +5 Heilstärke und +3 Heilungsreichweite; Nahkampfeinheiten +20% Angriffsschaden; Fernkampfeinheiten +4 Angriffsreichweite und −10% Streuung."
+
+#: simulation/data/technologies/unit_mercenary.jsontooltip
+msgid "Non-Champion Mercenaries cost −25 food, +25 metal."
+msgstr ""
 
 #: simulation/data/technologies/unlock_champion_units.jsondescription
 msgid ""

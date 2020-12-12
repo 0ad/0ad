@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2020-09-04 08:16+0000\n"
+"POT-Creation-Date: 2020-12-07 08:42+0000\n"
+"PO-Revision-Date: 2020-12-07 11:22+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Latin (http://www.transifex.com/wildfire-games/0ad/language/la/)\n"
 "MIME-Version: 1.0\n"
@@ -1693,6 +1693,10 @@ msgid ""
 "+3 healing range; Melee units +20% attack damage; Ranged units +4 attack "
 "range and −10% spread."
 msgstr "Milites Robores +20% tempus conscribendi, +1 arma, +10% valetudinem, +0.8 vim capiendi, +20% praedam, et −30% velocitatem colligendi; Medici +5% vim sanandi et +3 fines sanandi; qui propinque pugnant +20% detrimentum; iaculatores +4 iactum et -10% dissipationem."
+
+#: simulation/data/technologies/unit_mercenary.jsontooltip
+msgid "Non-Champion Mercenaries cost −25 food, +25 metal."
+msgstr ""
 
 #: simulation/data/technologies/unlock_champion_units.jsondescription
 msgid ""

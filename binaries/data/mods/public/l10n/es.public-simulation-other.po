@@ -8,6 +8,7 @@
 # Albert, 2016
 # Antón Chinaev <Chinaev_Anton@outlook.es>, 2018
 # Antonio Martín <antonio.martinperez1991@gmail.com>, 2018
+# Cristian Alejandro Rueda Rodriguez <crisrueda99@gmail.com>, 2020
 # The_Gipsy <xelectronhd@gmail.com>, 2018
 # Jesus A <jasenjot@gmail.com>, 2017
 # Jesus Covo <jurdikd@gmail.com>, 2019
@@ -22,13 +23,13 @@
 # Mihai Pantazi <malexandru_70@hotmail.com>, 2017-2018
 # Rafael Cuevas Montero <rafcumon@hotmail.com>, 2017
 # Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>, 2018,2020
-# Swyter ™ <Swyterzone@gmail.com>, 2014-2018
+# Swyter <Swyterzone@gmail.com>, 2014-2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2020-11-13 09:19+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-12-08 16:10+0000\n"
+"Last-Translator: Cristian Alejandro Rueda Rodriguez <crisrueda99@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -917,7 +918,7 @@ msgstr "Alguna unidad (unidades) no pueden volver al trabajo"
 #: simulation/helpers/Commands.js:875
 #, javascript-format
 msgid "%(unit)s can't be controlled."
-msgstr ""
+msgstr "%(unit)sno se pueden controlar."
 
 #: simulation/helpers/Commands.js:1115
 msgid "The building's technology requirements are not met."

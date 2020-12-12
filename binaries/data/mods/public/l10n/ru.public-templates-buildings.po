@@ -16,6 +16,7 @@
 # Igor Kustov, 2014
 # Igor Kustov, 2014
 # Ivan, 2014
+# Ivan Potapov <elsewhere@yandex.ru>, 2020
 # Ivan, 2014
 # John Smith <mae_mbllo@mail.ru>, 2016
 # Kirill Ptukha <kirill.ptukha@gmail.com>, 2019
@@ -46,8 +47,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2020-11-20 10:25+0000\n"
-"Last-Translator: Vitalii Mostipaka <imprtat@gmail.com>\n"
+"PO-Revision-Date: 2020-12-07 20:06+0000\n"
+"Last-Translator: Ivan Potapov <elsewhere@yandex.ru>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -69,7 +70,7 @@ msgstr "Хоплотек"
 #: simulation/templates/structures/sele/barracks.xml:12
 #: simulation/templates/structures/spart/barracks.xml:12
 msgid "Stratopedon"
-msgstr "Каструм"
+msgstr "Стратопедон"
 
 #: simulation/templates/structures/athen/civil_centre.xml:8
 #: simulation/templates/structures/mace/civil_centre.xml:8
@@ -151,7 +152,7 @@ msgstr "Гимнасий"
 
 #: simulation/templates/structures/athen/gymnasium.xml:24
 msgid "Train Champions."
-msgstr ""
+msgstr "Обучайте чемпионов."
 
 #: simulation/templates/structures/athen/house.xml:5
 #: simulation/templates/structures/mace/house.xml:5
@@ -175,7 +176,7 @@ msgstr "Эмпорий"
 #: simulation/templates/structures/sele/outpost.xml:5
 #: simulation/templates/structures/spart/outpost.xml:5
 msgid "Prophylagma"
-msgstr ""
+msgstr "Профилагма"
 
 #: simulation/templates/structures/athen/prytaneion.xml:22
 msgid "Council Chamber"
@@ -192,7 +193,7 @@ msgstr "Обучайте героев и исследуйте технологи
 #: simulation/templates/structures/athen/prytaneion.xml:26
 #: simulation/templates/structures/spart/gerousia.xml:26
 msgid "Council"
-msgstr ""
+msgstr "Совет"
 
 #: simulation/templates/structures/athen/range.xml:8
 #: simulation/templates/structures/mace/range.xml:8
@@ -476,7 +477,7 @@ msgstr "Позволяет строить рыбацкие лодки для д�
 
 #: simulation/templates/structures/cart/embassy.xml:19
 msgid "Train Mercenaries and research Mercenary technologies."
-msgstr ""
+msgstr "Обучайте Наёмников и исследуйте технологии Наёмников."
 
 #: simulation/templates/structures/cart/embassy_celtic.xml:17
 msgid "Celtic Embassy"
@@ -484,7 +485,7 @@ msgstr "Кельтское посольство"
 
 #: simulation/templates/structures/cart/embassy_celtic.xml:18
 msgid "Train Celtic Mercenaries and research Mercenary technologies."
-msgstr ""
+msgstr "Обучайте Кельтских Наёмников и исследуйте технологии Наёмников. "
 
 #: simulation/templates/structures/cart/embassy_iberian.xml:10
 msgid "Iberian Embassy"
@@ -492,7 +493,7 @@ msgstr "Иберийское посольство"
 
 #: simulation/templates/structures/cart/embassy_iberian.xml:11
 msgid "Train Iberian Mercenaries and research Mercenary technologies."
-msgstr ""
+msgstr "Обучайте Иберийских Наёмников и исследуйте технологии Наёмников."
 
 #: simulation/templates/structures/cart/embassy_italic.xml:17
 msgid "Italic Embassy"
@@ -500,7 +501,7 @@ msgstr "Посольство Италиков"
 
 #: simulation/templates/structures/cart/embassy_italic.xml:18
 msgid "Train Italic Mercenaries and research Mercenary technologies."
-msgstr ""
+msgstr "Обучайте Италийских Наёмников и исследуйте технологии Наёмников. "
 
 #: simulation/templates/structures/cart/farmstead.xml:8
 msgid "Aḥuzāh"
@@ -543,7 +544,7 @@ msgstr "Махсабах"
 
 #: simulation/templates/structures/cart/super_dock.xml:40
 msgid "Naval Shipyard"
-msgstr "Военно-морская верфь"
+msgstr "Военная верфь"
 
 #: simulation/templates/structures/cart/super_dock.xml:41
 msgid "Cothon"
@@ -566,7 +567,7 @@ msgstr "Макдаш"
 
 #: simulation/templates/structures/cart/temple.xml:15
 msgid "Train Healers and Champions and research healing technologies."
-msgstr ""
+msgstr "Обучайте Целителей и Чемпионов и исследуйте технологии целительства."
 
 #: simulation/templates/structures/cart/tophet.xml:18
 msgid "Sacrificial Temple"
@@ -578,7 +579,7 @@ msgstr "Тофет"
 
 #: simulation/templates/structures/cart/tophet.xml:20
 msgid "Train Healers and Champion Cavalry and research healing technologies."
-msgstr ""
+msgstr "Обучайте Целителей и Элитную конницу и исследуйте технологии целительства. "
 
 #: simulation/templates/structures/cart/wall_gate.xml:12
 msgid "Mijdil-šaʿar"
@@ -670,7 +671,7 @@ msgstr "Таберна"
 
 #: simulation/templates/structures/gaul/tavern.xml:23
 msgid "Recruit Naked Fanatics."
-msgstr "Добавляет +10 к пределу населения и позволяет нанимать Голых Фанатиков."
+msgstr "Позволяет нанимать Голых Фанатиков."
 
 #: simulation/templates/structures/gaul/theater.xml:10
 msgid "Assembly of Princes"
@@ -811,7 +812,7 @@ msgstr "Лагерь блеммиев"
 
 #: simulation/templates/structures/kush/camp_blemmye.xml:23
 msgid "Train Blemmye Mercenaries."
-msgstr ""
+msgstr "Обучайте Блеммийских наёмников."
 
 #: simulation/templates/structures/kush/camp_noba.xml:22
 msgid "Noba Village"
@@ -1185,7 +1186,7 @@ msgstr "Падган"
 
 #: simulation/templates/structures/pers/barracks.xml:6
 msgid "Train Infantry."
-msgstr ""
+msgstr "Обучайте Пехоту."
 
 #: simulation/templates/structures/pers/civil_centre.xml:8
 msgid "Provincial Governor"
@@ -1227,7 +1228,7 @@ msgstr "Дида"
 
 #: simulation/templates/structures/pers/fortress.xml:6
 msgid "Research technologies. Garrison Soldiers for additional arrows."
-msgstr ""
+msgstr "Исследуйте технлогии. Размщайте Воинов внутри для усиления оборонительной стрельбы."
 
 #: simulation/templates/structures/pers/hall.xml:23
 msgid "Gate of All Nations"
@@ -1239,7 +1240,7 @@ msgstr ""
 
 #: simulation/templates/structures/pers/hall.xml:25
 msgid "Hall"
-msgstr ""
+msgstr "Зал"
 
 #: simulation/templates/structures/pers/house.xml:8
 msgid "Huvādā"
@@ -1256,7 +1257,7 @@ msgstr "Ворота Иштар в Вавилоне"
 
 #: simulation/templates/structures/pers/ishtar_gate.xml:27
 msgid "IshtarGate"
-msgstr ""
+msgstr "ВоротаИштар"
 
 #: simulation/templates/structures/pers/outpost.xml:5
 msgid "Didebani"
@@ -1307,7 +1308,7 @@ msgstr ""
 msgid ""
 "Train Champions and research technologies. Garrison Soldiers for additional "
 "arrows."
-msgstr ""
+msgstr "Обучайте Чемпионов и исследуйте технологии. Размещайте Воинов внутри для усиления оборонительной стрельбы."
 
 #: simulation/templates/structures/ptol/house.xml:19
 msgid ""
@@ -1726,7 +1727,7 @@ msgstr "Храм"
 
 #: simulation/templates/template_structure_civic_temple.xml:32
 msgid "Train Healers and research healing technologies."
-msgstr ""
+msgstr "Обучайте Целителей и исследуйте технологии целительства."
 
 #: simulation/templates/template_structure_defensive.xml:4
 msgid "Defensive Structure"
@@ -1754,7 +1755,7 @@ msgstr "Частокол"
 
 #: simulation/templates/template_structure_defensive_palisade.xml:17
 msgid "Wall off an area."
-msgstr ""
+msgstr "Обнесите территорию стеной."
 
 #: simulation/templates/template_structure_defensive_tower.xml:37
 #: simulation/templates/template_structure_defensive_tower.xml:53
@@ -1810,7 +1811,7 @@ msgstr "Сторожевая башня"
 msgid ""
 "Garrison Infantry for additional arrows. Needs the “Murder Holes” technology"
 " to protect its foot."
-msgstr ""
+msgstr "Размещайте Пехоту для усиления оборонительной стрельбы. Необходима технология «Дыры-убийцы» для защиты основания."
 
 #: simulation/templates/template_structure_defensive_tower_sentry.xml:33
 msgid "SentryTower"
@@ -1846,7 +1847,7 @@ msgstr "Врата"
 #: simulation/templates/template_structure_defensive_wall_gate.xml:24
 #: simulation/templates/template_structure_defensive_wall_long.xml:29
 msgid "Allow units access through Walls. Can be locked to prevent access."
-msgstr ""
+msgstr "Позволяют юнитам проходить через Стены. Могут быть заперты для предотвращения доступа."
 
 #: simulation/templates/template_structure_defensive_wall_long.xml:20
 msgid "Can be converted into a Gate."
@@ -1876,7 +1877,7 @@ msgstr "Усадьба"
 
 #: simulation/templates/template_structure_economic_farmstead.xml:28
 msgid "Research food gathering technologies."
-msgstr ""
+msgstr "Исследуйте технологии сбора пищи."
 
 #: simulation/templates/template_structure_economic_market.xml:24
 #: simulation/templates/template_structure_economic_market.xml:28
@@ -1901,7 +1902,7 @@ msgstr "Склад"
 
 #: simulation/templates/template_structure_economic_storehouse.xml:29
 msgid "Research gathering technologies."
-msgstr ""
+msgstr "Исследуйте технологии сбора."
 
 #: simulation/templates/template_structure_military.xml:10
 msgid "Military Structure"
@@ -1989,7 +1990,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_military_range.xml:22
 msgid "Practice Range"
-msgstr "Практическая дальность"
+msgstr "Учебное стрельбище"
 
 #: simulation/templates/template_structure_military_range.xml:24
 msgid "Train Ranged Infantry and research technologies."
@@ -1997,7 +1998,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_military_range.xml:25
 msgid "Range"
-msgstr "Дальность"
+msgstr "Стрельбище"
 
 #: simulation/templates/template_structure_military_stable.xml:23
 #: simulation/templates/template_structure_military_stable.xml:26
@@ -2033,7 +2034,7 @@ msgstr "Поле"
 #: simulation/templates/template_structure_resource_field.xml:21
 msgid ""
 "Harvest grain for food. Each subsequent gatherer works less efficiently."
-msgstr "Собирайте зерно для производства пищи. Каждый дополнительный сборщик работает менее эффективно, чем предыдущие."
+msgstr "Собирайте зерно для производства пищи. Каждый следующие сборщик работает менее эффективно, чем предыдущие."
 
 #: simulation/templates/template_structure_special.xml:19
 msgid "Special Structure"
