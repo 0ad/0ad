@@ -23,6 +23,7 @@
 #include "gui/ObjectTypes/CGUIDummyObject.h"
 #include "gui/ObjectTypes/CTooltip.h"
 #include "gui/Scripting/ScriptFunctions.h"
+#include "gui/Scripting/JSInterface_GUIProxy.h"
 #include "i18n/L10n.h"
 #include "lib/bits.h"
 #include "lib/input.h"

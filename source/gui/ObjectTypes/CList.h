@@ -38,9 +38,6 @@
 class CList : public IGUIObject, public IGUIScrollBarOwner, public IGUITextOwner
 {
 	GUI_OBJECT(CList)
-
-	friend JSI_GUIProxy<CList>;
-
 public:
 	CList(CGUI& pGUI);
 	virtual ~CList();

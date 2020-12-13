@@ -504,14 +504,7 @@ int CList::GetHoveredItem()
 void CList::CreateJSObject()
 {
 	ScriptRequest rq(m_pGUI.GetScriptInterface());
-
-	js::ProxyOptions options;
-	options.setClass(&JSI_GUIProxy<CList>::ClassDefinition());
-
-	JS::RootedValue cppObj(rq.cx), data(rq.cx);
-	cppObj.get().setPrivate(this);
-	data.get().setPrivate(GetGUI().GetProxyData(&JSI_GUIProxy<CList>::Singleton()));
-	m_JSObject.init(rq.cx, js::NewProxyObject(rq.cx, &JSI_GUIProxy<CList>::Singleton(), cppObj, nullptr, options));
-	js::SetProxyReservedSlot(m_JSObject, 0, data);
+	using ProxyHandler = JSI_GUIProxy<std::remove_pointer_t<decltype(this)>>;
+	ProxyHandler::CreateJSObject(rq, this, GetGUI().GetProxyData(&ProxyHandler::Singleton()), m_JSObject);
 }
 

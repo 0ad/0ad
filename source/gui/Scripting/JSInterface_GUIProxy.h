@@ -23,6 +23,7 @@
 #include <utility>
 
 class ScriptInterface;
+class ScriptRequest;
 
 // See JSI_GuiProxy below
 #if GCC_VERSION
@@ -34,6 +35,22 @@ class ScriptInterface;
 #endif
 
 /**
+ * Proxies need to store some data whose lifetime is tied to an interface.
+ * This is the virtual interface of that data.
+ */
+class GUIProxyProps
+{
+public:
+	virtual ~GUIProxyProps() {};
+
+	// @return true if @param name exists in this cache.
+	virtual bool has(const std::string& name) const = 0;
+	// @return the JSFunction matching @param name. Must call has() first as it can assume existence.
+	virtual JSObject* get(const std::string& name) const = 0;
+	virtual bool setFunction(const ScriptRequest& rq, const std::string& name, JSNative function, int nargs) = 0;
+};
+
+/**
  * Handles the js interface with C++ GUI objects.
  * Proxy handlers must live for at least as long as the JS runtime
  * where a proxy object with that handler was created. The reason is that
@@ -43,6 +60,17 @@ class ScriptInterface;
  * GUI Objects only exist in C++ and have no JS-only properties.
  * As such, there is no "target" JS object that this proxy could point to,
  * and thus we should inherit from BaseProxyHandler and not js::Wrapper.
+ *
+ * Proxies can be used with prototypes and almost treated like regular JS objects.
+ * However, the default implementation embarks a lot of code that we don't really need here,
+ * since the only fanciness is that we cache JSFunction* properties.
+ * As such, these GUI proxies don't have one and instead override get/set directly.
+ *
+ * To add a new JSI_GUIProxy, you'll need to:
+ *  - overload the GUI Object's CreateJSObject with the correct types and pointers
+ *  - change the CGUI::AddObjectTypes method
+ *  - explicitly instantiate the template.
+ *
  */
 template<typename GUIObjectType>
 class JSI_GUIProxy : public js::BaseProxyHandler
@@ -54,17 +82,27 @@ public:
 	// For convenience, this is the single instantiated JSI_GUIProxy.
 	static JSI_GUIProxy& Singleton();
 
-	static std::pair<const js::BaseProxyHandler*, void*> CreateData(ScriptInterface& scriptInterface);
+	// Call this in CGUI::AddObjectTypes.
+	static std::pair<const js::BaseProxyHandler*, GUIProxyProps*> CreateData(ScriptInterface& scriptInterface);
+
+	static void CreateJSObject(const ScriptRequest& rq, GUIObjectType* ptr, GUIProxyProps* data, JS::PersistentRootedObject& val);
 protected:
 	// @param family can't be nullptr because that's used for some DOM object and it crashes.
 	JSI_GUIProxy() : BaseProxyHandler(this, false, false) {};
+
 	// Note: SM provides no virtual destructor for baseProxyHandler.
 	// This also enforces making proxy handlers dataless static variables.
 	~JSI_GUIProxy() {};
 
-	// This handles returning function properties.
-	// Specialize this.
-	bool FuncGetter(JS::HandleObject proxy, const std::string& propName, JS::MutableHandleValue vp) const;
+	// The default implementations need to know the type of the GUIProxyProps for this proxy type.
+	// This is done by specializing this struct's alias type.
+	struct PropCache;
+
+	// Specialize this to define the custom properties of this type.
+	static void CreateFunctions(const ScriptRequest& rq, GUIProxyProps* cache);
+
+	// This handles returning custom properties. Specialize this if needed.
+	bool PropGetter(JS::HandleObject proxy, const std::string& propName, JS::MutableHandleValue vp) const;
 protected:
 	// BaseProxyHandler interface below
 
