@@ -38,6 +38,10 @@
 extern CGame *g_Game;
 
 #if CONFIG2_AUDIO
+
+constexpr ALfloat DEFAULT_ROLLOFF = 0.7f;
+constexpr ALfloat MAX_ROLLOFF = 0.9f;
+
 /**
  * Low randomness, quite-a-lot-faster-than-std::mt19937 random number generator.
  * It matches the interface of UniformRandomBitGenerator for use in std::shuffle.
@@ -143,7 +147,7 @@ float CSoundGroup::RadiansOffCenter(const CVector3D& position, bool& onScreen, f
 	else
 	{
 		if (x < 0 || x > screenWidth)
-			itemRollOff = 0.5;
+			itemRollOff = MAX_ROLLOFF;
 
 		answer = radianCap * (x * 2 / screenWidth - 1);
 	}
@@ -158,7 +162,7 @@ float CSoundGroup::RadiansOffCenter(const CVector3D& position, bool& onScreen, f
 	}
 	else if (y < 0 || y > screenHeight)
 	{
-		itemRollOff = 0.5;
+		itemRollOff = MAX_ROLLOFF;
 	}
 
 	return answer;
@@ -175,7 +179,7 @@ void CSoundGroup::UploadPropertiesAndPlay(size_t index, const CVector3D& positio
 		return;
 
 	bool isOnscreen = false;
-	ALfloat itemRollOff = 0.1f;
+	ALfloat itemRollOff = DEFAULT_ROLLOFF;
 	float offset = RadiansOffCenter(position, isOnscreen, itemRollOff);
 
 	if (!isOnscreen && !TestFlag(eDistanceless) && !TestFlag(eOmnipresent))
@@ -198,11 +202,7 @@ void CSoundGroup::UploadPropertiesAndPlay(size_t index, const CVector3D& positio
 	if (!TestFlag(eOmnipresent))
 	{
 		CVector3D origin = g_Game->GetView()->GetCamera()->GetOrientation().GetTranslation();
-		float sndDist = origin.Y;
 		float itemDist = (position - origin).Length();
-
-		if (sndDist * 2 < itemDist)
-			sndDist = itemDist;
 
 		if (TestFlag(eDistanceless))
 			itemRollOff = 0;
@@ -210,7 +210,7 @@ void CSoundGroup::UploadPropertiesAndPlay(size_t index, const CVector3D& positio
 		if (sndData->IsStereo())
 			LOGWARNING("OpenAL: stereo sounds can't be positioned: %s", sndData->GetFileName().string8());
 
-		hSound->SetLocation(CVector3D(sndDist * sin(offset), 0, -sndDist * cos(offset)));
+		hSound->SetLocation(CVector3D(itemDist * sin(offset), 0, -itemDist * cos(offset)));
 		hSound->SetRollOff(itemRollOff);
 	}
 

@@ -41,7 +41,7 @@
 /**
  * timer_Time will subsequently return values relative to the current time.
  **/
-LIB_API void timer_LatchStartTime();
+LIB_API void timer_Init();
 
 /**
  * @return high resolution (> 1 us) timestamp [s].
