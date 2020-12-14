@@ -104,7 +104,9 @@
     </SoundGroups>
   </Sound>
   <TerritoryInfluence>
-    <Radius>100</Radius>
+    <Root>true</Root>
+    <Radius>80</Radius>
+    <Weight>40000</Weight>
   </TerritoryInfluence>
   <Vision>
     <Range>80</Range>
