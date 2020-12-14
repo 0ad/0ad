@@ -51,9 +51,15 @@ fi
 (cd ../../libraries/source/spidermonkey && rm -rf ./mozjs31)
 (cd ../../libraries/source/spidermonkey && rm -rf ./mozjs24)
 
-(cd ../premake/premake5/build/gmake.bsd && ${MAKE} clean)
-(cd ../premake/premake5/build/gmake.macosx && ${MAKE} clean)
-(cd ../premake/premake5/build/gmake.unix && ${MAKE} clean)
+# Delete former premake5 gmake.* directories
+(cd ../premake/premake5/build && rm -rf ./gmake.bsd)
+(cd ../premake/premake5/build && rm -rf ./gmake.macosx)
+(cd ../premake/premake5/build && rm -rf ./gmake.unix)
+
+# Cleanup current premake directories
+(cd ../premake/premake5/build/gmake2.bsd && ${MAKE} clean)
+(cd ../premake/premake5/build/gmake2.macosx && ${MAKE} clean)
+(cd ../premake/premake5/build/gmake2.unix && ${MAKE} clean)
 
 echo "Removing generated test files..."
 
