@@ -47,6 +47,7 @@ struct SGUIImageEffects;
 struct SGUIScrollBarStyle;
 
 namespace js { class BaseProxyHandler; }
+class GUIProxyProps;
 
 using map_pObjects = std::map<CStr, IGUIObject*>;
 
@@ -247,7 +248,7 @@ public:
 	 */
 	const CGUIColor& GetPreDefinedColor(const CStr& name) const { return m_PreDefinedColors.at(name); }
 
-	void* GetProxyData(const js::BaseProxyHandler* ptr) { return m_ProxyData.at(ptr); }
+	GUIProxyProps* GetProxyData(const js::BaseProxyHandler* ptr) { return m_ProxyData.at(ptr).get(); }
 
 	shared_ptr<ScriptInterface> GetScriptInterface() { return m_ScriptInterface; };
 
@@ -611,15 +612,16 @@ private:
 	std::map<CStr, ConstructObjectFunction> m_ObjectTypes;
 
 	/**
-	 * This is intended to store the JS Functions returned when accessing some object properties.
-	 * It's not a great solution, but I can't find a better one at the moment.
+	 * This is intended to store the JSFunction when accessing certain properties.
 	 * The problem is that these functions are per-scriptInterface, and proxy handlers aren't.
 	 * So we know what we want to store, but we don't really have anywhere to store it.
 	 * It would be simpler to recreate the functions on every JS call, but that is slower
 	 * (this may or may not matter now and in the future).
-	 * Another alternative would be to store them on each proxied object, but that wastes memory.
+	 * It's not a great solution, but I can't find a better one at the moment.
+	 * An alternative would be to store these on the proxy's prototype,
+	 * but that embarks a lot of un-necessary code.
 	 */
-	std::unordered_map<const js::BaseProxyHandler*, void*> m_ProxyData;
+	std::unordered_map<const js::BaseProxyHandler*, std::unique_ptr<GUIProxyProps>> m_ProxyData;
 
 	/**
 	 * Map from hotkey names to objects that listen to the hotkey.

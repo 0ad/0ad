@@ -27,9 +27,6 @@
 class CButton : public IGUIObject, public IGUITextOwner, public IGUIButtonBehavior
 {
 	GUI_OBJECT(CButton)
-
-	friend JSI_GUIProxy<CButton>;
-
 public:
 	CButton(CGUI& pGUI);
 	virtual ~CButton();
@@ -54,6 +51,11 @@ public:
 	 */
 	virtual void Draw();
 
+	/**
+	 * Populate @param ret with the object's text size.
+	 */
+	void getTextSize(ScriptInterface& scriptInterface, JS::MutableHandleValue ret);
+
 protected:
 	/**
 	 * Sets up text, should be called every time changes has been
@@ -72,8 +74,6 @@ protected:
 	CPos m_TextPos;
 
 	virtual void CreateJSObject();
-
-	void getTextSize(ScriptInterface& scriptInterface, JS::MutableHandleValue ret);
 
 	// Settings
 	float m_BufferZone;

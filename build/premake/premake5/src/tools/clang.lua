@@ -63,7 +63,8 @@
 		warnings = gcc.shared.warnings,
 		symbols = gcc.shared.symbols,
 		unsignedchar = gcc.shared.unsignedchar,
-		omitframepointer = gcc.shared.omitframepointer
+		omitframepointer = gcc.shared.omitframepointer,
+		compileas = gcc.shared.compileas
 	}
 
 	clang.cflags = table.merge(gcc.cflags, {
@@ -210,7 +211,7 @@
 					table.insert(r, '-Wl,--out-implib="' .. cfg.linktarget.relpath .. '"')
 				elseif cfg.system == p.LINUX then
 					table.insert(r, '-Wl,-soname=' .. p.quoted(cfg.linktarget.name))
-				elseif cfg.system == p.MACOSX then
+				elseif table.contains(os.getSystemTags(cfg.system), "darwin") then
 					table.insert(r, '-Wl,-install_name,' .. p.quoted('@rpath/' .. cfg.linktarget.name))
 				end
 				return r

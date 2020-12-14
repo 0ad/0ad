@@ -119,23 +119,16 @@ const CGUIColor& CButton::ChooseColor()
 	return m_TextColorOver || m_TextColor;
 }
 
-void CButton::CreateJSObject()
-{
-	ScriptRequest rq(m_pGUI.GetScriptInterface());
-
-	js::ProxyOptions options;
-	options.setClass(&JSI_GUIProxy<CButton>::ClassDefinition());
-
-	JS::RootedValue cppObj(rq.cx), data(rq.cx);
-	cppObj.get().setPrivate(this);
-	data.get().setPrivate(GetGUI().GetProxyData(&JSI_GUIProxy<CButton>::Singleton()));
-	m_JSObject.init(rq.cx, js::NewProxyObject(rq.cx, &JSI_GUIProxy<CButton>::Singleton(), cppObj, nullptr, options));
-	js::SetProxyReservedSlot(m_JSObject, 0, data);
-}
-
 void CButton::getTextSize(ScriptInterface& scriptInterface, JS::MutableHandleValue ret)
 {
 	ScriptRequest rq(scriptInterface);
 	UpdateText();
 	ScriptInterface::ToJSVal(rq, ret, m_GeneratedTexts[0].GetSize());
+}
+
+void CButton::CreateJSObject()
+{
+	ScriptRequest rq(m_pGUI.GetScriptInterface());
+	using ProxyHandler = JSI_GUIProxy<std::remove_pointer_t<decltype(this)>>;
+	ProxyHandler::CreateJSObject(rq, this, GetGUI().GetProxyData(&ProxyHandler::Singleton()), m_JSObject);
 }

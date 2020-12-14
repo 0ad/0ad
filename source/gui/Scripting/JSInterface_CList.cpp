@@ -17,31 +17,9 @@
 
 #include "precompiled.h"
 
-#include "JSInterface_GUIProxy.h"
-
-#include "gui/CGUI.h"
-#include "gui/CGUISetting.h"
-#include "gui/ObjectBases/IGUIObject.h"
-#include "gui/ObjectTypes/CList.h"
-#include "ps/CLogger.h"
-#include "scriptinterface/ScriptExtraHeaders.h"
-#include "scriptinterface/ScriptInterface.h"
-
-#include <string>
-
-// Include the definition of the generic templates.
 #include "JSInterface_GUIProxy_impl.h"
 
-namespace
-{
-struct SData
-{
-	JS::PersistentRootedObject m_ToString;
-	JS::PersistentRootedObject m_Focus;
-	JS::PersistentRootedObject m_Blur;
-	JS::PersistentRootedObject m_GetComputedSize;
-	JS::PersistentRootedObject m_AddItem;
-};
+#include "gui/ObjectTypes/CList.h"
 
 bool CList_AddItem(JSContext* cx, uint argc, JS::Value* vp)
 {
@@ -58,40 +36,19 @@ bool CList_AddItem(JSContext* cx, uint argc, JS::Value* vp)
 	e->AddItem(text, text);
 	return true;
 }
-}
 
-template <>
-bool JSI_GUIProxy<CList>::FuncGetter(JS::HandleObject proxy, const std::string& propName, JS::MutableHandleValue vp) const
+using GUIObjectType = CList;
+
+template<>
+void JSI_GUIProxy<GUIObjectType>::CreateFunctions(const ScriptRequest& rq, GUIProxyProps* cache)
 {
-	const SData& data = *static_cast<const SData*>(js::GetProxyReservedSlot(proxy, 0).toPrivate());
-	if (propName == "toString")
-		return vp.setObjectOrNull(data.m_ToString), true;
-	if (propName == "focus")
-		return vp.setObjectOrNull(data.m_Focus), true;
-	if (propName == "blur")
-		return vp.setObjectOrNull(data.m_Blur), true;
-	if (propName == "getComputedSize")
-		return vp.setObjectOrNull(data.m_GetComputedSize), true;
-	if (propName == "addItem")
-		return vp.setObjectOrNull(data.m_AddItem), true;
-	return false;
-}
-
-template <>
-std::pair<const js::BaseProxyHandler*, void*> JSI_GUIProxy<CList>::CreateData(ScriptInterface& scriptInterface)
-{
-	SData* data = new SData();
-	ScriptRequest rq(scriptInterface);
-
-#define func(class, func) &apply_to<CList, class, &class::func>
-	data->m_ToString.init(rq.cx, JS_GetFunctionObject(JS_NewFunction(rq.cx, func(IGUIObject, toString), 0, 0, "toString")));
-	data->m_Focus.init(rq.cx, JS_GetFunctionObject(JS_NewFunction(rq.cx, func(IGUIObject, focus), 0, 0, "focus")));
-	data->m_Blur.init(rq.cx, JS_GetFunctionObject(JS_NewFunction(rq.cx, func(IGUIObject, blur), 0, 0, "blur")));
-	data->m_GetComputedSize.init(rq.cx, JS_GetFunctionObject(JS_NewFunction(rq.cx, func(IGUIObject, getComputedSize), 0, 0, "getComputedSize")));
+#define func(class, func) &JSInterface_GUIProxy::apply_to<GUIObjectType, class, &class::func>
+	cache->setFunction(rq, "toString", func(IGUIObject, toString), 0);
+	cache->setFunction(rq, "focus", func(IGUIObject, focus), 0);
+	cache->setFunction(rq, "blur", func(IGUIObject, blur), 0);
+	cache->setFunction(rq, "getComputedSize", func(IGUIObject, getComputedSize), 0);
 #undef func
-	data->m_AddItem.init(rq.cx, JS_GetFunctionObject(JS_NewFunction(rq.cx, CList_AddItem, 1, 0, "addItem")));
-
-	return { &Singleton(), data };
+	cache->setFunction(rq, "addItem", CList_AddItem, 1);
 }
 
-template class JSI_GUIProxy<CList>;
+template class JSI_GUIProxy<GUIObjectType>;

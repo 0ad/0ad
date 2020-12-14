@@ -98,9 +98,9 @@ static const u8 MAX_FAILED_PATH_COMPUTATIONS = 15;
 
 /**
  * If we have failed path computations this many times and ComputePathToGoal is called,
- * always run a long-path, to avoid getting stuck sometimes (see D1424).
+ * run the opposite path type to what we normally would, to avoid getting stuck sometimes.
  */
-static const u8 MAX_FAILED_PATH_COMPUTATIONS_BEFORE_LONG_PATH = 3;
+static const u8 ALTERNATE_PATH_TYPE_ON = 3;
 
 static const CColor OVERLAY_COLOR_LONG_PATH(1, 1, 1, 1);
 static const CColor OVERLAY_COLOR_SHORT_PATH(1, 0, 0, 1);
@@ -1442,7 +1442,7 @@ void CCmpUnitMotion::ComputePathToGoal(const CFixedVector2D& from, const PathGoa
 
 	// If the target is close and we can reach it in a straight line,
 	// then we'll just go along the straight line instead of computing a path.
-	if (m_FailedPathComputations != MAX_FAILED_PATH_COMPUTATIONS_BEFORE_LONG_PATH && TryGoingStraightToTarget(from))
+	if (m_FailedPathComputations != ALTERNATE_PATH_TYPE_ON && TryGoingStraightToTarget(from))
 		return;
 
 	// Otherwise we need to compute a path.
@@ -1451,16 +1451,23 @@ void CCmpUnitMotion::ComputePathToGoal(const CFixedVector2D& from, const PathGoa
 	// TODO: If it's close on the opposite side of a river then we really
 	// need a long path, so we shouldn't simply check linear distance
 	// the check is arbitrary but should be a reasonably small distance.
-	// To avoid getting stuck because the short-range pathfinder is bounded, occasionally compute a long path instead.
-	if (m_FailedPathComputations != MAX_FAILED_PATH_COMPUTATIONS_BEFORE_LONG_PATH && InShortPathRange(goal, from))
+	// We want to occasionally compute a long path if we're computing short-paths, because the short path domain
+	// is bounded and thus it can't around very large static obstacles.
+	// Likewise, we want to compile a short-path occasionally when the target is far because we might be stuck
+	// on a navcell surrounded by impassable navcells, but the short-pathfinder could move us out of there.
+	bool shortPath = InShortPathRange(goal, from);
+	if (m_FailedPathComputations == ALTERNATE_PATH_TYPE_ON)
+	{
+		shortPath = !shortPath;
+		m_FailedPathComputations++; // This makes sure we don't end up stuck in this special state which can break pathing.
+	}
+	if (shortPath)
 	{
 		m_LongPath.m_Waypoints.clear();
 		RequestShortPath(from, goal, true);
 	}
 	else
 	{
-		if (m_FailedPathComputations == MAX_FAILED_PATH_COMPUTATIONS_BEFORE_LONG_PATH)
-			m_FailedPathComputations++; // This makes sure we don't end up stuck in this special state which can break pathing.
 		m_ShortPath.m_Waypoints.clear();
 		RequestLongPath(from, goal);
 	}

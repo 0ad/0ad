@@ -17,6 +17,17 @@
 
 // This file is included directly into actual implementation files.
 
+#include "JSInterface_GUIProxy.h"
+
+#include "gui/CGUI.h"
+#include "gui/CGUISetting.h"
+#include "gui/ObjectBases/IGUIObject.h"
+#include "ps/CLogger.h"
+#include "scriptinterface/ScriptExtraHeaders.h"
+#include "scriptinterface/ScriptInterface.h"
+
+#include <string>
+
 template <typename T>
 JSClass& JSI_GUIProxy<T>::ClassDefinition()
 {
@@ -31,8 +42,12 @@ JSI_GUIProxy<T>& JSI_GUIProxy<T>::Singleton()
 	return s;
 }
 
-namespace
+// Use a common namespace to avoid duplicating the symbols un-necessarily.
+namespace JSInterface_GUIProxy
 {
+/**
+ * Conveniently wrap a simple C++ function to a JSNative.
+ */
 template<class OG, class R, void (R::*funcptr)(ScriptInterface&, JS::MutableHandleValue)>
 inline bool apply_to(JSContext* cx, uint argc, JS::Value* vp)
 {
@@ -45,6 +60,76 @@ inline bool apply_to(JSContext* cx, uint argc, JS::Value* vp)
 
 	return true;
 }
+
+// Default implementation of the cache via unordered_map
+class MapCache : public GUIProxyProps
+{
+public:
+	virtual ~MapCache() {};
+
+	virtual bool has(const std::string& name) const override
+	{
+		return m_Functions.find(name) != m_Functions.end();
+	}
+
+	virtual JSObject* get(const std::string& name) const override
+	{
+		return m_Functions.at(name).get();
+	}
+
+	virtual bool setFunction(const ScriptRequest& rq, const std::string& name, JSNative function, int nargs) override
+	{
+		m_Functions[name].init(rq.cx, JS_GetFunctionObject(JS_NewFunction(rq.cx, function, nargs, 0, name.c_str())));
+		return true;
+	}
+
+protected:
+	std::unordered_map<std::string, JS::PersistentRootedObject> m_Functions;
+};
+}
+
+// The default propcache is a MapCache.
+template<typename T>
+struct JSI_GUIProxy<T>::PropCache
+{
+	using type = JSInterface_GUIProxy::MapCache;
+};
+
+template <typename T>
+bool JSI_GUIProxy<T>::PropGetter(JS::HandleObject proxy, const std::string& propName, JS::MutableHandleValue vp) const
+{
+	using PropertyCache = typename PropCache::type;
+	// Since we know at compile time what the type actually is, avoid the virtual call.
+	const PropertyCache* data = static_cast<const PropertyCache*>(static_cast<const GUIProxyProps*>(js::GetProxyReservedSlot(proxy, 0).toPrivate()));
+	if (data->has(propName))
+	{
+		vp.setObjectOrNull(data->get(propName));
+		return true;
+	}
+	return false;
+}
+
+template <typename T>
+std::pair<const js::BaseProxyHandler*, GUIProxyProps*> JSI_GUIProxy<T>::CreateData(ScriptInterface& scriptInterface)
+{
+	using PropertyCache = typename PropCache::type;
+	PropertyCache* data = new PropertyCache();
+	ScriptRequest rq(scriptInterface);
+	CreateFunctions(rq, data);
+	return { &Singleton(), data };
+}
+
+template<typename T>
+void JSI_GUIProxy<T>::CreateJSObject(const ScriptRequest& rq, T* ptr, GUIProxyProps* dataPtr, JS::PersistentRootedObject& val)
+{
+	js::ProxyOptions options;
+	options.setClass(&ClassDefinition());
+
+	JS::RootedValue cppObj(rq.cx), data(rq.cx);
+	cppObj.get().setPrivate(ptr);
+	data.get().setPrivate(static_cast<void*>(dataPtr));
+	val.init(rq.cx, js::NewProxyObject(rq.cx, &Singleton(), cppObj, nullptr, options));
+	js::SetProxyReservedSlot(val, 0, data);
 }
 
 template <typename T>
@@ -66,7 +151,7 @@ bool JSI_GUIProxy<T>::get(JSContext* cx, JS::HandleObject proxy, JS::HandleValue
 		return false;
 
 	// Return function properties. Specializable.
-	if (FuncGetter(proxy, propName, vp))
+	if (PropGetter(proxy, propName, vp))
 		return true;
 
 	// Use onWhatever to access event handlers

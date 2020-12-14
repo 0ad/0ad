@@ -353,6 +353,14 @@
 		test.contains({ "-Wl,-x", "-bundle" }, gcc.getldflags(cfg))
 	end
 
+	function suite.ldflags_onMacOSXXCTest()
+		system "MacOSX"
+		kind "SharedLib"
+		sharedlibtype "XCTest"
+		prepare()
+		test.contains({ "-Wl,-x", "-bundle" }, gcc.getldflags(cfg))
+	end
+
 	function suite.ldflags_onMacOSXFramework()
 		system "MacOSX"
 		kind "SharedLib"
@@ -493,6 +501,24 @@
 
 		prepare()
 		test.isequal({ "lib/libMyProject2.so" }, gcc.getlinks(cfg))
+	end
+
+
+--
+-- Test that sibling and external links are grouped when required
+--
+
+	function suite.linkgroups_onSiblingAndExternalLibrary()
+		links { "MyProject2", "ExternalProj" }
+		linkgroups "On"
+
+		test.createproject(wks)
+		system "Linux"
+		kind "StaticLib"
+		targetdir "lib"
+
+		prepare()
+		test.isequal({ "-Wl,--start-group", "lib/libMyProject2.a", "-lExternalProj", "-Wl,--end-group" }, gcc.getlinks(cfg))
 	end
 
 

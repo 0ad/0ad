@@ -29,6 +29,7 @@
 			[".cc"] = "Sources",
 			[".cpp"] = "Sources",
 			[".cxx"] = "Sources",
+			[".c++"] = "Sources",
 			[".dylib"] = "Frameworks",
 			[".framework"] = "Frameworks",
 			[".m"] = "Sources",
@@ -48,8 +49,7 @@
 	end
 
 	function xcode.isItemResource(project, node)
-
-		local res;
+		local res
 
 		if project and project.xcodebuildresources then
 			if type(project.xcodebuildresources) == "table" then
@@ -59,20 +59,15 @@
 
 		local function checkItemInList(item, list)
 			if item then
-				if list then
-					if type(list) == "table" then
-						for _,v in pairs(list) do
-							if string.find(item, v) then
-								return true
-							end
-						end
+				for _,v in pairs(list) do
+					if string.find(item, path.wildcards(v)) then
+						return true
 					end
 				end
 			end
 			return false
 		end
 
-		--print (node.path, node.buildid, node.cfg, res)
 		if (checkItemInList(node.path, res)) then
 			return true
 		end
@@ -111,9 +106,9 @@
 					return "sourcecode.c.c"
 				elseif p.languages.iscpp(filecfg.compileas) then
 					return "sourcecode.cpp.cpp"
-				elseif filecfg.language == "ObjC" then
+				elseif filecfg.compileas == p.OBJECTIVEC then
 					return "sourcecode.c.objc"
-				elseif 	filecfg.language == "ObjCpp" then
+				elseif filecfg.compileas == p.OBJECTIVECPP then
 					return "sourcecode.cpp.objcpp"
 				end
 			end
@@ -125,6 +120,7 @@
 			[".cpp"]       = "sourcecode.cpp.cpp",
 			[".css"]       = "text.css",
 			[".cxx"]       = "sourcecode.cpp.cpp",
+			[".c++"]       = "sourcecode.cpp.cpp",
 			[".S"]         = "sourcecode.asm.asm",
 			[".framework"] = "wrapper.framework",
 			[".gif"]       = "image.gif",
@@ -246,7 +242,7 @@
 		if type(overrides) == 'table' then
 			for name, value in pairs(overrides) do
 				-- Allow an override to remove a value by using false
-				settings[name] = iif(value ~= false, value, nil)
+				settings[name] = iif(not table.equals(value, { false }), value, nil)
 			end
 		end
 	end
@@ -268,6 +264,7 @@
 			SharedLib    = "com.apple.product-type.library.dynamic",
 			OSXBundle    = "com.apple.product-type.bundle",
 			OSXFramework = "com.apple.product-type.framework",
+			XCTest       = "com.apple.product-type.bundle.unit-test",
 		}
 		return types[iif(node.cfg.kind == "SharedLib" and node.cfg.sharedlibtype, node.cfg.sharedlibtype, node.cfg.kind)]
 	end
@@ -290,10 +287,32 @@
 			SharedLib    = "\"compiled.mach-o.dylib\"",
 			OSXBundle    = "wrapper.cfbundle",
 			OSXFramework = "wrapper.framework",
+			XCTest       = "wrapper.cfbundle",
 		}
 		return types[iif(node.cfg.kind == "SharedLib" and node.cfg.sharedlibtype, node.cfg.sharedlibtype, node.cfg.kind)]
 	end
 
+--
+-- Return the Xcode debug information format for the current configuration
+--
+-- @param cfg
+--    The current configuration
+-- @returns
+--    The corresponding value of DEBUG_INFORMATION_FORMAT, or 'dwarf-with-dsym' if invalid
+--
+
+	function xcode.getdebugformat(cfg)
+		local formats = {
+			["Dwarf"]      = "dwarf",
+			["Default"]    = "dwarf-with-dsym",
+			["SplitDwarf"] = "dwarf-with-dsym",
+		}
+		local rval = "dwarf-with-dsym"
+		if cfg.debugformat then
+			rval = formats[cfg.debugformat] or rval
+		end
+		return rval
+	end
 
 --
 -- Return a unique file name for a project. Since Xcode uses .xcodeproj's to
@@ -726,16 +745,7 @@
 		for _, node in ipairs(tr.products.children) do
 			local name = tr.project.name
 
-			-- This function checks whether there are build commands of a specific
-			-- type to be executed; they will be generated correctly, but the project
-			-- commands will not contain any per-configuration commands, so the logic
-			-- has to be extended a bit to account for that.
 			local function hasBuildCommands(which)
-				-- standard check...this is what existed before
-				if #tr.project[which] > 0 then
-					return true
-				end
-				-- what if there are no project-level commands? check configs...
 				for _, cfg in ipairs(tr.configs) do
 					if #cfg[which] > 0 then
 						return true
@@ -916,16 +926,13 @@
 		local wrapperWritten = false
 
 		local function doblock(id, name, which)
-			-- start with the project-level commands (most common)
-			local prjcmds = tr.project[which]
-			local commands = table.join(prjcmds, {})
-
 			-- see if there are any config-specific commands to add
+			local commands = {}
 			for _, cfg in ipairs(tr.configs) do
 				local cfgcmds = cfg[which]
-				if #cfgcmds > #prjcmds then
+				if #cfgcmds > 0 then
 					table.insert(commands, 'if [ "${CONFIGURATION}" = "' .. cfg.buildcfg .. '" ]; then')
-					for i = #prjcmds + 1, #cfgcmds do
+					for i = 1, #cfgcmds do
 						table.insert(commands, cfgcmds[i])
 					end
 					table.insert(commands, 'fi')
@@ -933,6 +940,7 @@
 			end
 
 			if #commands > 0 then
+				table.insert(commands, 1, 'set -e') -- Tells the shell to exit when any command fails
 				commands = os.translateCommands(commands, p.MACOSX)
 				if not wrapperWritten then
 					_p('/* Begin PBXShellScriptBuildPhase section */')
@@ -985,6 +993,11 @@
 								end
 							end
 						end
+
+						if #commands > 0 then
+							table.insert(commands, 1, 'set -e') -- Tells the shell to exit when any command fails
+						end
+
 						_p(level,'%s /* Build "%s" */ = {', node.buildcommandid, node.name)
 						_p(level+1,'isa = PBXShellScriptBuildPhase;')
 						_p(level+1,'buildActionMask = 2147483647;')
@@ -1111,7 +1124,7 @@
 		settings['ALWAYS_SEARCH_USER_PATHS'] = 'NO'
 
 		if cfg.symbols ~= p.OFF then
-			settings['DEBUG_INFORMATION_FORMAT'] = 'dwarf-with-dsym'
+			settings['DEBUG_INFORMATION_FORMAT'] = xcode.getdebugformat(cfg)
 		end
 
 		if cfg.kind ~= "StaticLib" and cfg.buildtarget.prefix ~= '' then
@@ -1125,6 +1138,7 @@
 				StaticLib    = "a",
 				OSXBundle    = "bundle",
 				OSXFramework = "framework",
+				XCTest       = "xctest",
 			}
 			local ext = cfg.buildtarget.extension:sub(2)
 			if ext ~= exts[iif(cfg.kind == "SharedLib" and cfg.sharedlibtype, cfg.sharedlibtype, cfg.kind)] then
@@ -1202,6 +1216,11 @@
 			local family = families[cfg.iosfamily]
 			if family then
 				settings['TARGETED_DEVICE_FAMILY'] = family
+			end
+		else
+			local minOSVersion = project.systemversion(cfg)
+			if minOSVersion ~= nil then
+				settings['MACOSX_DEPLOYMENT_TARGET'] = minOSVersion
 			end
 		end
 

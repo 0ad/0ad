@@ -103,17 +103,17 @@ premake_command="premake5"
 if [ "$with_system_premake5" = "false" ]; then
   # Build bundled premake
   cd ../premake/premake5
-  PREMAKE_BUILD_DIR=build/gmake.unix
+  PREMAKE_BUILD_DIR=build/gmake2.unix
   # BSD and OS X need different Makefiles
   case "`uname -s`" in
     "GNU/kFreeBSD" )
-      # use default gmake.unix (needs -ldl as we have a GNU userland and libc)
+      # use default gmake2.unix (needs -ldl as we have a GNU userland and libc)
       ;;
     *"BSD" )
-      PREMAKE_BUILD_DIR=build/gmake.bsd
+      PREMAKE_BUILD_DIR=build/gmake2.bsd
       ;;
     "Darwin" )
-      PREMAKE_BUILD_DIR=build/gmake.macosx
+      PREMAKE_BUILD_DIR=build/gmake2.macosx
       ;;
   esac
   ${MAKE} -C $PREMAKE_BUILD_DIR ${JOBS} || die "Premake build failed"

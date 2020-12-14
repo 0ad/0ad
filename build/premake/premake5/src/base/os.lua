@@ -69,7 +69,7 @@
 		elseif os.istarget("haiku") then
 			path = os.getenv("LIBRARY_PATH") or ""
 		else
-			if os.istarget("macosx") then
+			if os.istarget("darwin") then
 				path = os.getenv("DYLD_LIBRARY_PATH") or ""
 			else
 				path = os.getenv("LD_LIBRARY_PATH") or ""
@@ -90,7 +90,7 @@
 
 			path = path or ""
 			local archpath = "/lib:/usr/lib:/usr/local/lib"
-			if os.is64bit() and not os.istarget("macosx") then
+			if os.is64bit() and not (os.istarget("darwin")) then
 				archpath = "/lib64:/usr/lib64/:usr/local/lib64" .. ":" .. archpath
 			end
 			if (#path > 0) then
@@ -116,7 +116,7 @@
 		elseif os.istarget("haiku") then
 			formats = { "lib%s.so", "%s.so" }
 		else
-			if os.istarget("macosx") then
+			if os.istarget("darwin") then
 				formats = { "lib%s.dylib", "%s.dylib" }
 			else
 				formats = { "lib%s.so", "%s.so" }
@@ -497,43 +497,55 @@
 		if type(f) == "string" then
 			local p = os.matchfiles(f)
 			for _, v in pairs(p) do
-				local ok, err = builtin_remove(v)
+				local ok, err, code = builtin_remove(v)
 				if not ok then
-					return ok, err
+					return ok, err, code
 				end
+			end
+			if #p == 0 then
+				return nil, "Couldn't find any file matching: " .. f, 1
 			end
 		-- in case of table, match files for every table entry
 		elseif type(f) == "table" then
 			for _, v in pairs(f) do
-				local ok, err = os.remove(v)
+				local ok, err, code = os.remove(v)
 				if not ok then
-					return ok, err
+					return ok, err, code
 				end
 			end
 		end
+
+		return true
 	end
 
 
 --
 -- Remove a directory, along with any contained files or subdirectories.
 --
+-- @return true on success, false and an appropriate error message on error
 
 	local builtin_rmdir = os.rmdir
 	function os.rmdir(p)
 		-- recursively remove subdirectories
 		local dirs = os.matchdirs(p .. "/*")
 		for _, dname in ipairs(dirs) do
-			os.rmdir(dname)
+			local ok, err = os.rmdir(dname)
+			if not ok then
+				return ok, err
+			end
 		end
 
 		-- remove any files
 		local files = os.matchfiles(p .. "/*")
 		for _, fname in ipairs(files) do
-			os.remove(fname)
+			local ok, err = os.remove(fname)
+			if not ok then
+				return ok, err
+			end
 		end
 
 		-- remove this directory
-		builtin_rmdir(p)
+		return builtin_rmdir(p)
 	end
 
 
@@ -734,6 +746,7 @@
 		["aix"]      = { "aix",     "posix" },
 		["bsd"]      = { "bsd",     "posix" },
 		["haiku"]    = { "haiku",   "posix" },
+		["ios"]      = { "ios",     "darwin", "posix", "mobile" },
 		["linux"]    = { "linux",   "posix" },
 		["macosx"]   = { "macosx",  "darwin", "posix" },
 		["solaris"]  = { "solaris", "posix" },
