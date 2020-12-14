@@ -48,7 +48,7 @@
 		local bundlename = ""
 		local bundlepath = ""
 
-		if cfg.system == p.MACOSX and (kind == p.WINDOWEDAPP or (kind == p.SHAREDLIB and cfg.sharedlibtype)) then
+		if table.contains(os.getSystemTags(cfg.system), "darwin") and (kind == p.WINDOWEDAPP or (kind == p.SHAREDLIB and cfg.sharedlibtype)) then
 			bundlename = basename .. extension
 			bundlepath = path.join(bundlename, iif(kind == p.SHAREDLIB and cfg.sharedlibtype == "OSXFramework", "Versions/A", "Contents/MacOS"))
 		end
@@ -97,6 +97,19 @@
 
 			if target.kind ~= "SharedLib" and target.kind ~= "StaticLib" then
 				return false
+			end
+
+			-- Can link mixed C++ with native projects
+
+			if cfg.language == "C++" then
+				if cfg.clr == p.ON then
+					return true
+				end
+			end
+			if target.language == "C++" then
+				if target.clr == p.ON then
+					return true
+				end
 			end
 
 			-- Can't link managed and unmanaged projects
@@ -492,6 +505,9 @@
 
 		for field in p.field.eachOrdered() do
 			local map = mappings[field.name]
+			if type(map) == "function" then
+				map = map(cfg, mappings)
+			end
 			if map then
 
 				-- Pass each cfg value in the list through the map and append the

@@ -36,9 +36,20 @@
 			value = false,
 			switch = "-p2"
 		}
+	
+		propertydefinition {
+			name = "TestListProperty",
+			kind = "list"
+		}
+	
+		propertydefinition {
+			name = "TestListPropertySeparator",
+			kind = "list",
+			separator = ","
+		}
 
 		buildmessage 'Rule-ing %{file.name}'
-		buildcommands 'dorule %{TestProperty} %{TestProperty2} "%{file.path}"'
+		buildcommands 'dorule %{TestProperty} %{TestProperty2} %{TestListProperty} %{TestListPropertySeparator} "%{file.path}"'
 		buildoutputs { "%{file.basename}.obj" }
 
 		wks = test.createWorkspace()
@@ -146,8 +157,6 @@ $(OBJDIR)/hello.o: src/hello.c
 	@echo $(notdir $<)
 	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 
-else
-  $(error "invalid configuration $(config)")
 endif
 		]]
 	end
@@ -183,8 +192,6 @@ obj/Release/hello.obj: hello.x
 	$(SILENT) cxc -c "hello.x" -o "obj/Release/hello.xo"
 	$(SILENT) c2o -c "obj/Release/hello.xo" -o "obj/Release/hello.obj"
 
-else
-  $(error "invalid configuration $(config)")
 endif
 		]]
 	end
@@ -216,8 +223,6 @@ obj/Release/hello.obj: hello.x hello.x.inc hello.x.inc2
 	$(SILENT) cxc -c "hello.x" -o "obj/Release/hello.xo"
 	$(SILENT) c2o -c "obj/Release/hello.xo" -o "obj/Release/hello.obj"
 
-else
-  $(error "invalid configuration $(config)")
 endif
 		]]
 	end
@@ -250,8 +255,6 @@ obj/Release/hello.obj: hello.x
 	$(SILENT) c2o -c "obj/Release/hello.xo" -o "obj/Release/hello.obj"
 obj/Release/hello.other obj/Release/hello.another: obj/Release/hello.obj
 
-else
-  $(error "invalid configuration $(config)")
 endif
 		]]
 	end
@@ -278,9 +281,40 @@ endif
 
 test.obj: test.rule
 	@echo Rule-ing test.rule
-	$(SILENT) dorule -p  "test.rule"
+	$(SILENT) dorule -p    "test.rule"
 test2.obj: test2.rule
 	@echo Rule-ing test2.rule
-	$(SILENT) dorule -p -p2 "test2.rule"
+	$(SILENT) dorule -p -p2   "test2.rule"
 		]]
 	end
+
+	function suite.propertydefinitionSeparator()
+
+		rules { "TestRule" }
+
+		files { "test.rule", "test2.rule" }
+
+		filter "files:test.rule"
+			testRuleVars {
+				TestListProperty = { "testValue1", "testValue2" }
+			}
+
+		filter "files:test2.rule"
+			testRuleVars {
+				TestListPropertySeparator = { "testValue1", "testValue2" }
+			}
+
+		prepare()
+		test.capture [[
+# File Rules
+# #############################################
+
+test.obj: test.rule
+	@echo Rule-ing test.rule
+	$(SILENT) dorule   testValue1\ testValue2  "test.rule"
+test2.obj: test2.rule
+	@echo Rule-ing test2.rule
+	$(SILENT) dorule    testValue1,testValue2 "test2.rule"
+		]]
+	end
+

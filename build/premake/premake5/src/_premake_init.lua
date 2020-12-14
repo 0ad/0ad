@@ -182,6 +182,8 @@
 			"Default",
 			"C",
 			"C++",
+			"Objective-C",
+			"Objective-C++",
 		}
 	}
 
@@ -255,7 +257,10 @@
 		scope = "config",
 		kind = "string",
 		allowed = {
+			"Default",
 			"c7",
+			"Dwarf",
+			"SplitDwarf",
 		},
 	}
 
@@ -591,6 +596,13 @@
 	}
 
 	api.register {
+		name = "enabledefaultcompileitems",
+		scope = "config",
+		kind = "boolean",
+		default = false
+	}
+
+	api.register {
 		name = "csversion",
 		scope = "config",
 		kind = "string",
@@ -698,6 +710,7 @@
 			"StaticLib",
 			"WindowedApp",
 			"Utility",
+			"SharedItems",
 		},
 	}
 
@@ -708,6 +721,7 @@
 		allowed = {
 			"OSXBundle",
 			"OSXFramework",
+			"XCTest",
 		},
 	}
 
@@ -1369,6 +1383,12 @@
 		}
 	}
 
+	api.register {
+		name = "assemblydebug",
+		scope = "config",
+		kind  = "boolean"
+	}	
+
 -----------------------------------------------------------------------------
 --
 -- Field name aliases for backward compatibility
@@ -1634,6 +1654,7 @@
 		allowed = {
 			{ "clang", "Clang (clang)" },
 			{ "gcc", "GNU GCC (gcc/g++)" },
+			{ "mingw", "MinGW GCC (gcc/g++)" },
 		}
 	}
 
@@ -1697,6 +1718,7 @@
 			{ "bsd",      "OpenBSD, NetBSD, or FreeBSD" },
 			{ "haiku",    "Haiku" },
 			{ "hurd",     "GNU/Hurd" },
+			{ "ios",      "iOS" },
 			{ "linux",    "Linux" },
 			{ "macosx",   "Apple Mac OS X" },
 			{ "solaris",  "Solaris" },
@@ -1763,19 +1785,23 @@
 
 	-- Add variations for other Posix-like systems.
 
-	filter { "system:MacOSX", "kind:WindowedApp" }
+	filter { "system:darwin", "kind:WindowedApp" }
 		targetextension ".app"
 
-	filter { "system:MacOSX", "kind:SharedLib" }
+	filter { "system:darwin", "kind:SharedLib" }
 		targetextension ".dylib"
 
-	filter { "system:MacOSX", "kind:SharedLib", "sharedlibtype:OSXBundle" }
+	filter { "system:darwin", "kind:SharedLib", "sharedlibtype:OSXBundle" }
 		targetprefix ""
 		targetextension ".bundle"
 
-	filter { "system:MacOSX", "kind:SharedLib", "sharedlibtype:OSXFramework" }
+	filter { "system:darwin", "kind:SharedLib", "sharedlibtype:OSXFramework" }
 		targetprefix ""
 		targetextension ".framework"
+
+	filter { "system:darwin", "kind:SharedLib", "sharedlibtype:XCTest" }
+		targetprefix ""
+		targetextension ".xctest"
 
 	-- Windows and friends.
 
@@ -1799,7 +1825,10 @@
 	filter { "kind:SharedLib", "system:not Windows" }
 		pic "On"
 
-	filter { "system:macosx" }
+	filter { "system:darwin" }
 		toolset "clang"
+
+	filter { "platforms:Win64" }
+		architecture "x86_64"
 
 	filter {}

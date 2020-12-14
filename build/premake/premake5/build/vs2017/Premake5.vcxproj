@@ -23,6 +23,7 @@
     <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Premake5</RootNamespace>
+    <LatestTargetPlatformVersion>$([Microsoft.Build.Utilities.ToolLocationHelper]::GetLatestSDKTargetPlatformVersion('Windows', '10.0'))</LatestTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -115,7 +116,7 @@
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>ole32.lib;ws2_32.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ole32.lib;ws2_32.lib;advapi32.lib;version.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -138,7 +139,7 @@
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>ole32.lib;ws2_32.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ole32.lib;ws2_32.lib;advapi32.lib;version.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -156,7 +157,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>ole32.lib;ws2_32.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ole32.lib;ws2_32.lib;advapi32.lib;version.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -174,7 +175,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>ole32.lib;ws2_32.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ole32.lib;ws2_32.lib;advapi32.lib;version.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -207,6 +208,7 @@
     <ClCompile Include="..\..\src\host\os_isdir.c" />
     <ClCompile Include="..\..\src\host\os_isfile.c" />
     <ClCompile Include="..\..\src\host\os_islink.c" />
+    <ClCompile Include="..\..\src\host\os_listWindowsRegistry.c" />
     <ClCompile Include="..\..\src\host\os_locate.c" />
     <ClCompile Include="..\..\src\host\os_match.c" />
     <ClCompile Include="..\..\src\host\os_mkdir.c" />
@@ -248,6 +250,7 @@
     <None Include="..\..\modules\android\_preload.lua" />
     <None Include="..\..\modules\android\android.lua" />
     <None Include="..\..\modules\android\tests\_tests.lua" />
+    <None Include="..\..\modules\android\tests\test_android_files.lua" />
     <None Include="..\..\modules\android\tests\test_android_project.lua" />
     <None Include="..\..\modules\android\vsandroid_androidproj.lua" />
     <None Include="..\..\modules\android\vsandroid_sln2005.lua" />
@@ -354,6 +357,7 @@
     <None Include="..\..\modules\vstudio\tests\cs2005\test_debug_props.lua" />
     <None Include="..\..\modules\vstudio\tests\cs2005\test_files.lua" />
     <None Include="..\..\modules\vstudio\tests\cs2005\test_icon.lua" />
+    <None Include="..\..\modules\vstudio\tests\cs2005\test_netcore.lua" />
     <None Include="..\..\modules\vstudio\tests\cs2005\test_no_warn.lua" />
     <None Include="..\..\modules\vstudio\tests\cs2005\test_nuget_config.lua" />
     <None Include="..\..\modules\vstudio\tests\cs2005\test_nuget_packages_config.lua" />
@@ -372,6 +376,7 @@
     <None Include="..\..\modules\vstudio\tests\sln2005\test_platforms.lua" />
     <None Include="..\..\modules\vstudio\tests\sln2005\test_projects.lua" />
     <None Include="..\..\modules\vstudio\tests\sln2005\test_sections.lua" />
+    <None Include="..\..\modules\vstudio\tests\sln2005\test_shared_projects.lua" />
     <None Include="..\..\modules\vstudio\tests\vc200x\test_assembly_refs.lua" />
     <None Include="..\..\modules\vstudio\tests\vc200x\test_build_steps.lua" />
     <None Include="..\..\modules\vstudio\tests\vc200x\test_compiler_block.lua" />
@@ -390,6 +395,7 @@
     <None Include="..\..\modules\vstudio\tests\vc2010\test_assembly_refs.lua" />
     <None Include="..\..\modules\vstudio\tests\vc2010\test_build_events.lua" />
     <None Include="..\..\modules\vstudio\tests\vc2010\test_build_log.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc2010\test_build_steps.lua" />
     <None Include="..\..\modules\vstudio\tests\vc2010\test_character_set.lua" />
     <None Include="..\..\modules\vstudio\tests\vc2010\test_compile_settings.lua" />
     <None Include="..\..\modules\vstudio\tests\vc2010\test_config_props.lua" />
@@ -427,6 +433,7 @@
     <None Include="..\..\modules\vstudio\tests\vc2010\test_tokens.lua" />
     <None Include="..\..\modules\vstudio\tests\vc2010\test_user_file.lua" />
     <None Include="..\..\modules\vstudio\tests\vc2010\test_vectorextensions.lua" />
+    <None Include="..\..\modules\vstudio\tests\vc2013\test_vcxitems.lua" />
     <None Include="..\..\modules\vstudio\vs2005.lua" />
     <None Include="..\..\modules\vstudio\vs2005_csproj.lua" />
     <None Include="..\..\modules\vstudio\vs2005_csproj_user.lua" />
@@ -447,8 +454,10 @@
     <None Include="..\..\modules\vstudio\vs2010_vcxproj_user.lua" />
     <None Include="..\..\modules\vstudio\vs2012.lua" />
     <None Include="..\..\modules\vstudio\vs2013.lua" />
+    <None Include="..\..\modules\vstudio\vs2013_vcxitems.lua" />
     <None Include="..\..\modules\vstudio\vs2015.lua" />
     <None Include="..\..\modules\vstudio\vs2017.lua" />
+    <None Include="..\..\modules\vstudio\vs2019.lua" />
     <None Include="..\..\modules\vstudio\vstudio.lua" />
     <None Include="..\..\modules\xcode\LICENSE.TXT" />
     <None Include="..\..\modules\xcode\_manifest.lua" />
@@ -512,6 +521,7 @@
     <None Include="..\..\src\tools\clang.lua" />
     <None Include="..\..\src\tools\dotnet.lua" />
     <None Include="..\..\src\tools\gcc.lua" />
+    <None Include="..\..\src\tools\mingw.lua" />
     <None Include="..\..\src\tools\msc.lua" />
     <None Include="..\..\src\tools\snc.lua" />
     <None Include="..\..\tests\_tests.lua" />

@@ -19,7 +19,7 @@
 
 
 	premake.override(vstudio.vs2010, "generateProject", function(oldfn, prj)
-		if prj.kind == p.ANDROIDPROJ then
+		if prj.kind == p.PACKAGING then
 			p.eol("\r\n")
 			p.indent("  ")
 			p.escaper(vstudio.vs2010.esc)
@@ -40,7 +40,7 @@
 
 
 	premake.override(vstudio, "projectfile", function(oldfn, prj)
-		if prj.kind == p.ANDROIDPROJ then
+		if prj.kind == p.PACKAGING then
 			return premake.filename(prj, ".androidproj")
 		else
 			return oldfn(prj)
@@ -49,7 +49,7 @@
 
 
 	premake.override(vstudio, "tool", function(oldfn, prj)
-		if prj.kind == p.ANDROIDPROJ then
+		if prj.kind == p.PACKAGING then
 			return "39E2626F-3545-4960-A6E8-258AD8476CE5"
 		else
 			return oldfn(prj)
@@ -60,7 +60,7 @@
 	premake.override(vc2010.elements, "globals", function (oldfn, cfg)
 		local elements = oldfn(cfg)
 
-		if cfg.kind == premake.ANDROIDPROJ then
+		if cfg.kind == premake.PACKAGING then
 			-- Remove "IgnoreWarnCompileDuplicatedFilename".
 			local pos = table.indexof(elements, vc2010.ignoreWarnDuplicateFilename)
 			table.remove(elements, pos)
@@ -82,8 +82,9 @@
 
 	premake.override(vc2010.elements, "configurationProperties", function(oldfn, cfg)
 		local elements = oldfn(cfg)
-		if cfg.kind == p.ANDROIDPROJ then
+		if cfg.kind == p.PACKAGING then
 			elements = {
+				android.androidAPILevel,
 				vc2010.useDebugLibraries,
 			}
 		end
@@ -93,7 +94,7 @@
 
 	premake.override(vc2010.elements, "itemDefinitionGroup", function(oldfn, cfg)
 		local elements = oldfn(cfg)
-		if cfg.kind == p.ANDROIDPROJ then
+		if cfg.kind == p.PACKAGING then
 			elements = {
 				android.antPackage,
 			}
@@ -103,7 +104,7 @@
 
 
 	premake.override(vc2010, "importDefaultProps", function(oldfn, prj)
-		if prj.kind == p.ANDROIDPROJ then
+		if prj.kind == p.PACKAGING then
 			p.w('<Import Project="$(AndroidTargetsPath)\\Android.Default.props" />')
 		else
 			oldfn(prj)
@@ -112,7 +113,7 @@
 
 
 	premake.override(vc2010, "importLanguageSettings", function(oldfn, prj)
-		if prj.kind == p.ANDROIDPROJ then
+		if prj.kind == p.PACKAGING then
 			p.w('<Import Project="$(AndroidTargetsPath)\\Android.props" />')
 		else
 			oldfn(prj)
@@ -121,16 +122,18 @@
 
 
 	premake.override(vc2010, "propertySheets", function(oldfn, cfg)
-		if cfg.kind ~= p.ANDROIDPROJ then
+		if cfg.kind ~= p.PACKAGING then
 			oldfn(cfg)
 		end
 	end)
 
 
 	premake.override(vc2010.elements, "outputProperties", function(oldfn, cfg)
-		if cfg.kind == p.ANDROIDPROJ then
+		if cfg.kind == p.PACKAGING then
 			return {
 				android.outDir,
+				vc2010.intDir,
+				vc2010.targetName,
 			}
 		else
 			return oldfn(cfg)
@@ -144,7 +147,7 @@
 
 
 	premake.override(vc2010, "importLanguageTargets", function(oldfn, prj)
-		if prj.kind == p.ANDROIDPROJ then
+		if prj.kind == p.PACKAGING then
 			p.w('<Import Project="$(AndroidTargetsPath)\\Android.targets" />')
 		else
 			oldfn(prj)
@@ -156,7 +159,7 @@
 		-- below. Otherwise the function will use target seperator which
 		-- could be '\\' and result in failure to create links.
 		local fname = path.translate(file.relpath, '/')
-		
+
 		-- Files that live outside of the project tree need to be "linked"
 		-- and provided with a project relative pseudo-path. Check for any
 		-- leading "../" sequences and, if found, remove them and mark this
@@ -220,6 +223,19 @@
 		end
 	}
 
+	vc2010.categories.JavaCompile = {
+		name = "JavaCompile",
+		priority = 99,
+
+		emitFiles = function(prj, group)
+			vc2010.emitFiles(prj, group, "JavaCompile", {vc2010.generatedFile, android.link})
+		end,
+
+		emitFilter = function(prj, group)
+			vc2010.filterGroup(prj, group, "JavaCompile")
+		end
+	}
+
 	vc2010.categories.Content = {
 		name = "Content",
 		priority = 99,
@@ -234,11 +250,12 @@
 	}
 
 	premake.override(vc2010, "categorizeFile", function(base, prj, file)
-		if prj.kind ~= p.ANDROIDPROJ then
+		if prj.kind ~= p.PACKAGING then
 			return base(prj, file)
 		end
 
 		local filename = path.getname(file.name):lower()
+		local extension = path.getextension(filename)
 
 		if filename == "androidmanifest.xml" then
 			return vc2010.categories.AndroidManifest
@@ -246,6 +263,8 @@
 			return vc2010.categories.AntBuildXml
 		elseif filename == "project.properties" then
 			return vc2010.categories.AntProjectPropertiesFile
+		elseif extension == ".java" then
+			return vc2010.categories.JavaCompile
 		else
 			return vc2010.categories.Content
 		end

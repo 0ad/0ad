@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{2DAB880B-99B4-887C-2230-9F7C8E38947C}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\binmodules\luasocket\src\auxiliar.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\binmodules\luasocket\src\buffer.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\binmodules\luasocket\src\compat.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\binmodules\luasocket\src\except.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\binmodules\luasocket\src\inet.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\binmodules\luasocket\src\io.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\binmodules\luasocket\src\luasocket.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\binmodules\luasocket\src\mime.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\binmodules\luasocket\src\options.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\binmodules\luasocket\src\pierror.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\binmodules\luasocket\src\select.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\binmodules\luasocket\src\socket.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\binmodules\luasocket\src\tcp.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\binmodules\luasocket\src\timeout.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\binmodules\luasocket\src\udp.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\binmodules\luasocket\src\wsocket.h">
+      <Filter>src</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\binmodules\luasocket\main.c" />
+    <ClCompile Include="..\..\binmodules\luasocket\src\auxiliar.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\binmodules\luasocket\src\buffer.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\binmodules\luasocket\src\compat.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\binmodules\luasocket\src\except.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\binmodules\luasocket\src\inet.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\binmodules\luasocket\src\io.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\binmodules\luasocket\src\luasocket.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\binmodules\luasocket\src\mime.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\binmodules\luasocket\src\options.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\binmodules\luasocket\src\select.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\binmodules\luasocket\src\tcp.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\binmodules\luasocket\src\timeout.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\binmodules\luasocket\src\udp.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\binmodules\luasocket\src\wsocket.c">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\binmodules\luasocket\src\ftp.lua">
+      <Filter>src</Filter>
+    </None>
+    <None Include="..\..\binmodules\luasocket\src\headers.lua">
+      <Filter>src</Filter>
+    </None>
+    <None Include="..\..\binmodules\luasocket\src\http.lua">
+      <Filter>src</Filter>
+    </None>
+    <None Include="..\..\binmodules\luasocket\src\ltn12.lua">
+      <Filter>src</Filter>
+    </None>
+    <None Include="..\..\binmodules\luasocket\src\mbox.lua">
+      <Filter>src</Filter>
+    </None>
+    <None Include="..\..\binmodules\luasocket\src\mime.lua">
+      <Filter>src</Filter>
+    </None>
+    <None Include="..\..\binmodules\luasocket\src\smtp.lua">
+      <Filter>src</Filter>
+    </None>
+    <None Include="..\..\binmodules\luasocket\src\socket.lua">
+      <Filter>src</Filter>
+    </None>
+    <None Include="..\..\binmodules\luasocket\src\tp.lua">
+      <Filter>src</Filter>
+    </None>
+    <None Include="..\..\binmodules\luasocket\src\url.lua">
+      <Filter>src</Filter>
+    </None>
+  </ItemGroup>
+</Project>

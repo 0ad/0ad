@@ -41,8 +41,10 @@
 # File sets
 # #############################################
 
+GENERATED :=
 OBJECTS :=
 
+GENERATED += $(OBJDIR)/hello.o
 OBJECTS += $(OBJDIR)/hello.o
 
 		]]
@@ -60,8 +62,10 @@ OBJECTS += $(OBJDIR)/hello.o
 # File sets
 # #############################################
 
+GENERATED :=
 OBJECTS :=
 
+GENERATED += $(OBJDIR)/hello.o
 OBJECTS += $(OBJDIR)/hello.o
 
 		]]
@@ -82,16 +86,17 @@ OBJECTS += $(OBJDIR)/hello.o
 # File sets
 # #############################################
 
+GENERATED :=
 OBJECTS :=
 
 ifeq ($(config),debug)
+GENERATED += $(OBJDIR)/hello_debug.o
 OBJECTS += $(OBJDIR)/hello_debug.o
 
 else ifeq ($(config),release)
+GENERATED += $(OBJDIR)/hello_release.o
 OBJECTS += $(OBJDIR)/hello_release.o
 
-else
-  $(error "invalid configuration $(config)")
 endif
 
 		]]
@@ -109,14 +114,177 @@ endif
 # File sets
 # #############################################
 
+GENERATED :=
 OBJECTS :=
 
+GENERATED += $(OBJDIR)/hello.o
+GENERATED += $(OBJDIR)/hello1.o
 OBJECTS += $(OBJDIR)/hello.o
 OBJECTS += $(OBJDIR)/hello1.o
 
 		]]
 	end
 
+	function suite.uniqueObjNames_onBaseNameCollision2()
+		files { "a/hello.cpp", "b/hello.cpp", "c/hello1.cpp" }
+		prepare()
+		test.capture [[
+# File sets
+# #############################################
+
+GENERATED :=
+OBJECTS :=
+
+GENERATED += $(OBJDIR)/hello.o
+GENERATED += $(OBJDIR)/hello1.o
+GENERATED += $(OBJDIR)/hello11.o
+OBJECTS += $(OBJDIR)/hello.o
+OBJECTS += $(OBJDIR)/hello1.o
+OBJECTS += $(OBJDIR)/hello11.o
+
+		]]
+	end
+
+	function suite.uniqueObjectNames_onBaseNameCollision_Release()
+		files { "a/hello.cpp", "b/hello.cpp", "c/hello1.cpp", "d/hello11.cpp" }
+		filter "configurations:Debug"
+			excludes {"b/hello.cpp"}
+		filter "configurations:Release"
+			excludes {"d/hello11.cpp"}
+
+		prepare()
+		test.capture [[
+# File sets
+# #############################################
+
+GENERATED :=
+OBJECTS :=
+
+GENERATED += $(OBJDIR)/hello.o
+GENERATED += $(OBJDIR)/hello11.o
+OBJECTS += $(OBJDIR)/hello.o
+OBJECTS += $(OBJDIR)/hello11.o
+
+ifeq ($(config),debug)
+GENERATED += $(OBJDIR)/hello111.o
+OBJECTS += $(OBJDIR)/hello111.o
+
+else ifeq ($(config),release)
+GENERATED += $(OBJDIR)/hello1.o
+OBJECTS += $(OBJDIR)/hello1.o
+
+endif
+
+		]]
+	end
+
+--
+-- Test that changes in case are treated as if multiple files of the same name are being built
+--
+
+	function suite.uniqueObjNames_ignoreCase1()
+		files { "a/hello.cpp", "b/Hello.cpp" }
+		prepare()
+		test.capture [[
+# File sets
+# #############################################
+
+GENERATED :=
+OBJECTS :=
+
+GENERATED += $(OBJDIR)/Hello1.o
+GENERATED += $(OBJDIR)/hello.o
+OBJECTS += $(OBJDIR)/Hello1.o
+OBJECTS += $(OBJDIR)/hello.o
+
+		]]
+	end
+
+	function suite.uniqueObjNames_ignoreCase2()
+		files { "a/hello.cpp", "b/hello.cpp", "c/Hello1.cpp" }
+		prepare()
+		test.capture [[
+# File sets
+# #############################################
+
+GENERATED :=
+OBJECTS :=
+
+GENERATED += $(OBJDIR)/Hello11.o
+GENERATED += $(OBJDIR)/hello.o
+GENERATED += $(OBJDIR)/hello1.o
+OBJECTS += $(OBJDIR)/Hello11.o
+OBJECTS += $(OBJDIR)/hello.o
+OBJECTS += $(OBJDIR)/hello1.o
+
+		]]
+	end
+
+	function suite.uniqueObjectNames_ignoreCase_Release()
+		files { "a/hello.cpp", "b/hello.cpp", "c/Hello1.cpp", "d/Hello11.cpp" }
+		filter "configurations:Debug"
+			excludes {"b/hello.cpp"}
+		filter "configurations:Release"
+			excludes {"d/Hello11.cpp"}
+
+		prepare()
+		test.capture [[
+# File sets
+# #############################################
+
+GENERATED :=
+OBJECTS :=
+
+GENERATED += $(OBJDIR)/Hello11.o
+GENERATED += $(OBJDIR)/hello.o
+OBJECTS += $(OBJDIR)/Hello11.o
+OBJECTS += $(OBJDIR)/hello.o
+
+ifeq ($(config),debug)
+GENERATED += $(OBJDIR)/Hello111.o
+OBJECTS += $(OBJDIR)/Hello111.o
+
+else ifeq ($(config),release)
+GENERATED += $(OBJDIR)/hello1.o
+OBJECTS += $(OBJDIR)/hello1.o
+
+endif
+
+		]]
+	end
+
+
+--
+-- If there's a custom rule which generate C++ sources build outputs should be placed
+-- in separate list so they can be cleaned up properly.
+--
+
+	function suite.customBuildCommand_generatedCpp()
+		files { "interface.pkg","source.cpp" }
+		filter "files:**.pkg"
+			buildmessage "Binding pkg: %{file.name}"
+			buildcommands './tolua -o %{file.basename}.cpp -H %{file.basename}.h -n %{file.basename}}  %{file.abspath}'
+			buildoutputs { '%{file.basename}.cpp','%{file.basename}.h' }
+		prepare()
+		test.capture [[
+# File sets
+# #############################################
+
+CUSTOM :=
+GENERATED :=
+OBJECTS :=
+SOURCES :=
+
+CUSTOM += interface.h
+GENERATED += $(OBJDIR)/interface.o
+GENERATED += $(OBJDIR)/source.o
+GENERATED += interface.cpp
+GENERATED += interface.h
+OBJECTS += $(OBJDIR)/interface.o
+OBJECTS += $(OBJDIR)/source.o
+SOURCES += interface.cpp
+]]
+	end
 
 --
 -- If there's a custom rule for a non-C++ file extension, make sure that those
@@ -137,15 +305,16 @@ OBJECTS += $(OBJDIR)/hello1.o
 # #############################################
 
 CUSTOM :=
+GENERATED :=
 
 ifeq ($(config),debug)
 CUSTOM += obj/Debug/hello.luac
+GENERATED += obj/Debug/hello.luac
 
 else ifeq ($(config),release)
 CUSTOM += obj/Release/hello.luac
+GENERATED += obj/Release/hello.luac
 
-else
-  $(error "invalid configuration $(config)")
 endif
 		]]
 	end
@@ -170,16 +339,17 @@ endif
 # File sets
 # #############################################
 
+GENERATED :=
 OBJECTS :=
 
 ifeq ($(config),debug)
+GENERATED += obj/Debug/hello.obj
 OBJECTS += obj/Debug/hello.obj
 
 else ifeq ($(config),release)
+GENERATED += obj/Release/hello.obj
 OBJECTS += obj/Release/hello.obj
 
-else
-  $(error "invalid configuration $(config)")
 endif
 		]]
 	end
@@ -205,16 +375,17 @@ endif
 # File sets
 # #############################################
 
+GENERATED :=
 OBJECTS :=
 
 ifeq ($(config),debug)
+GENERATED += obj/Debug/hello.obj
 OBJECTS += obj/Debug/hello.obj
 
 else ifeq ($(config),release)
+GENERATED += obj/Release/hello.obj
 OBJECTS += obj/Release/hello.obj
 
-else
-  $(error "invalid configuration $(config)")
 endif
 		]]
 	end
@@ -241,15 +412,16 @@ endif
 # #############################################
 
 CUSTOM :=
+GENERATED :=
 
 ifeq ($(config),debug)
 CUSTOM += obj/Debug/hello.obj
+GENERATED += obj/Debug/hello.obj
 
 else ifeq ($(config),release)
 CUSTOM += obj/Release/hello.obj
+GENERATED += obj/Release/hello.obj
 
-else
-  $(error "invalid configuration $(config)")
 endif
 		]]
 	end
@@ -268,13 +440,13 @@ endif
 # File sets
 # #############################################
 
+GENERATED :=
 OBJECTS :=
 
 ifeq ($(config),release)
+GENERATED += $(OBJDIR)/hello.o
 OBJECTS += $(OBJDIR)/hello.o
 
-else
-  $(error "invalid configuration $(config)")
 endif
 
 		]]
@@ -289,13 +461,13 @@ endif
 # File sets
 # #############################################
 
+GENERATED :=
 OBJECTS :=
 
 ifeq ($(config),release)
+GENERATED += $(OBJDIR)/hello.o
 OBJECTS += $(OBJDIR)/hello.o
 
-else
-  $(error "invalid configuration $(config)")
 endif
 
 		]]

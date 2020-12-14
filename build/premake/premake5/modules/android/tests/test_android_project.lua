@@ -1,6 +1,7 @@
 	local p = premake
 	local suite = test.declare("test_android_project")
 	local vc2010 = p.vstudio.vc2010
+	local android = p.modules.android
 
 
 --
@@ -11,13 +12,57 @@
 
 	function suite.setup()
 		p.action.set("vs2015")
+		system "android"
 		wks, prj = test.createWorkspace()
 	end
 
 	local function prepare()
-		system "android"
-		local cfg = test.getconfig(prj, "Debug", platform)
+		local cfg = test.getconfig(prj, "Debug")
 		vc2010.clCompile(cfg)
+	end
+
+	local function prepareGlobals()
+		prj = test.getproject(wks, 1)
+		vc2010.globals(prj)
+	end
+
+	function suite.minVisualStudioVersion_14()
+		prepareGlobals()
+		test.capture [[
+<PropertyGroup Label="Globals">
+	<ProjectGuid>{42B5DBC6-AE1F-903D-F75D-41E363076E92}</ProjectGuid>
+	<Keyword>Android</Keyword>
+	<RootNamespace>MyProject</RootNamespace>
+	<MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
+	<ApplicationType>Android</ApplicationType>
+	<ApplicationTypeRevision>2.0</ApplicationTypeRevision>]]
+	end
+
+	function suite.minVisualStudioVersion_15()
+		p.action.set("vs2017")
+		prepareGlobals()
+		test.capture [[
+<PropertyGroup Label="Globals">
+	<ProjectGuid>{42B5DBC6-AE1F-903D-F75D-41E363076E92}</ProjectGuid>
+	<LatestTargetPlatformVersion>$([Microsoft.Build.Utilities.ToolLocationHelper]::GetLatestSDKTargetPlatformVersion('Windows', '10.0'))</LatestTargetPlatformVersion>
+	<Keyword>Android</Keyword>
+	<RootNamespace>MyProject</RootNamespace>
+	<MinimumVisualStudioVersion>15.0</MinimumVisualStudioVersion>
+	<ApplicationType>Android</ApplicationType>
+	<ApplicationTypeRevision>3.0</ApplicationTypeRevision>]]
+	end
+
+	function suite.minVisualStudioVersion_16()
+		p.action.set("vs2019")
+		prepareGlobals()
+		test.capture [[
+<PropertyGroup Label="Globals">
+	<ProjectGuid>{42B5DBC6-AE1F-903D-F75D-41E363076E92}</ProjectGuid>
+	<Keyword>Android</Keyword>
+	<RootNamespace>MyProject</RootNamespace>
+	<MinimumVisualStudioVersion>16.0</MinimumVisualStudioVersion>
+	<ApplicationType>Android</ApplicationType>
+	<ApplicationTypeRevision>3.0</ApplicationTypeRevision>]]
 	end
 
 	function suite.noOptions()
@@ -36,7 +81,6 @@
 <ClCompile>
 	<PrecompiledHeader>NotUsing</PrecompiledHeader>
 	<Optimization>Disabled</Optimization>
-	<ExceptionHandling>Enabled</ExceptionHandling>
 </ClCompile>]]
 	end
 
@@ -47,7 +91,6 @@
 <ClCompile>
 	<PrecompiledHeader>NotUsing</PrecompiledHeader>
 	<Optimization>Disabled</Optimization>
-	<ExceptionHandling>Enabled</ExceptionHandling>
 	<RuntimeTypeInfo>true</RuntimeTypeInfo>
 ]]
 	end
@@ -70,7 +113,6 @@
 	<PrecompiledHeader>NotUsing</PrecompiledHeader>
 	<Optimization>Disabled</Optimization>
 	<ExceptionHandling>Enabled</ExceptionHandling>
-	<RuntimeTypeInfo>true</RuntimeTypeInfo>
 ]]
 	end
 
@@ -81,8 +123,6 @@
 <ClCompile>
 	<PrecompiledHeader>NotUsing</PrecompiledHeader>
 	<Optimization>Disabled</Optimization>
-	<ExceptionHandling>Enabled</ExceptionHandling>
-	<RuntimeTypeInfo>true</RuntimeTypeInfo>
 	<CppLanguageStandard>c++11</CppLanguageStandard>
 ]]
 	end
@@ -94,8 +134,6 @@
 <ClCompile>
 	<PrecompiledHeader>NotUsing</PrecompiledHeader>
 	<Optimization>Disabled</Optimization>
-	<ExceptionHandling>Enabled</ExceptionHandling>
-	<RuntimeTypeInfo>true</RuntimeTypeInfo>
 	<CppLanguageStandard>c++1y</CppLanguageStandard>
 ]]
 	end
@@ -107,8 +145,6 @@
 <ClCompile>
 	<PrecompiledHeader>NotUsing</PrecompiledHeader>
 	<Optimization>Disabled</Optimization>
-	<ExceptionHandling>Enabled</ExceptionHandling>
-	<RuntimeTypeInfo>true</RuntimeTypeInfo>
-	<AdditionalOptions>-std=c++1z %(AdditionalOptions)</AdditionalOptions>
+	<CppLanguageStandard>c++1z</CppLanguageStandard>
 ]]
 	end

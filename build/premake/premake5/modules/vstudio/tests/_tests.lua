@@ -14,6 +14,7 @@ return {
 	"cs2005/test_debug_props.lua",
 	"cs2005/test_files.lua",
 	"cs2005/test_icon.lua",
+	"cs2005/test_netcore.lua",
 	"cs2005/test_nuget_config.lua",
 	"cs2005/test_nuget_packages_config.lua",
 	"cs2005/test_nuget_references.lua",
@@ -31,6 +32,7 @@ return {
 	"sln2005/test_projects.lua",
 	"sln2005/test_platforms.lua",
 	"sln2005/test_sections.lua",
+	"sln2005/test_shared_projects.lua",
 
 	-- Visual Studio 2002-2008 C/C++ projects
 	"vc200x/test_assembly_refs.lua",
@@ -53,6 +55,7 @@ return {
 	"vc2010/test_assembly_refs.lua",
 	"vc2010/test_build_events.lua",
 	"vc2010/test_build_log.lua",
+	"vc2010/test_build_steps.lua",
 	"vc2010/test_character_set.lua",
 	"vc2010/test_compile_settings.lua",
 	"vc2010/test_config_props.lua",
@@ -90,4 +93,7 @@ return {
 	"vc2010/test_user_file.lua",
 	"vc2010/test_vectorextensions.lua",
 	"vc2010/test_ensure_nuget_imports.lua",
+
+	-- Visual Studio 2013+ C/C++ Shared Items projects
+	"vc2013/test_vcxitems.lua",
 }
