@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_economic_farmstead">
-  <Cost>
-    <PopulationBonus>2</PopulationBonus>
-  </Cost>
   <Footprint>
     <Square width="12.0" depth="12.0"/>
   </Footprint>
@@ -16,6 +13,9 @@
   <Obstruction>
     <Static width="10.0" depth="10.0"/>
   </Obstruction>
+  <Population>
+    <Bonus>2</Bonus>
+  </Population>
   <VisualActor>
     <Actor>structures/britons/farmstead.xml</Actor>
     <FoundationActor>structures/fndn_3x3.xml</FoundationActor>

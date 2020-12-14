@@ -4,7 +4,6 @@
     <Category>Stoa</Category>
   </BuildRestrictions>
   <Cost>
-    <PopulationBonus>10</PopulationBonus>
     <BuildTime>150</BuildTime>
     <Resources>
       <stone>100</stone>
@@ -42,6 +41,9 @@
   <Obstruction>
     <Static width="28.0" depth="20.0"/>
   </Obstruction>
+  <Population>
+    <Bonus>10</Bonus>
+  </Population>
   <ProductionQueue>
     <BatchTimeModifier>0.7</BatchTimeModifier>
     <Entities datatype="tokens">

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_military_forge">
-  <Cost>
-    <PopulationBonus>2</PopulationBonus>
-  </Cost>
   <Identity>
     <Civ>brit</Civ>
     <SpecificName>Gobanion</SpecificName>
   </Identity>
+  <Population>
+    <Bonus>2</Bonus>
+  </Population>
   <VisualActor>
     <Actor>structures/britons/blacksmith.xml</Actor>
   </VisualActor>

@@ -9,7 +9,6 @@
     <DefaultArrowCount>2</DefaultArrowCount>
   </BuildingAI>
   <Cost>
-    <PopulationBonus>5</PopulationBonus>
     <BuildTime>200</BuildTime>
     <Resources>
       <wood>50</wood>
@@ -38,6 +37,9 @@
   <Obstruction>
     <Static width="14.0" depth="14.0"/>
   </Obstruction>
+  <Population>
+    <Bonus>5</Bonus>
+  </Population>
   <StatusBars>
     <HeightOffset>17.0</HeightOffset>
   </StatusBars>

@@ -47,7 +47,6 @@
     <GarrisonRegenRate>3.0</GarrisonRegenRate>
   </Capturable>
   <Cost>
-    <PopulationBonus>5</PopulationBonus>
     <BuildTime>250</BuildTime>
     <Resources>
       <wood>500</wood>
@@ -82,6 +81,9 @@
   <Obstruction>
     <Static width="36.0" depth="36.0"/>
   </Obstruction>
+  <Population>
+    <Bonus>5</Bonus>
+  </Population>
   <ProductionQueue>
     <BatchTimeModifier>0.7</BatchTimeModifier>
     <Entities datatype="tokens">

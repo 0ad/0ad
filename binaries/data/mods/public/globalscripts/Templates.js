@@ -304,9 +304,6 @@ function GetTemplateDataHelper(template, player, auraTemplates, modifiers = {})
 		if (template.Cost.Population)
 			ret.cost.population = getEntityValue("Cost/Population");
 
-		if (template.Cost.PopulationBonus)
-			ret.cost.populationBonus = getEntityValue("Cost/PopulationBonus");
-
 		if (template.Cost.BuildTime)
 			ret.cost.time = getEntityValue("Cost/BuildTime");
 	}
@@ -405,6 +402,11 @@ function GetTemplateDataHelper(template, player, auraTemplates, modifiers = {})
 		ret.pack = {
 			"state": template.Pack.State,
 			"time": getEntityValue("Pack/Time"),
+		};
+
+	if (template.Population && template.Population.Bonus)
+		ret.population = {
+			"bonus": getEntityValue("Population/Bonus")
 		};
 
 	if (template.Health)

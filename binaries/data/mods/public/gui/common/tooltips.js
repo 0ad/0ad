@@ -24,7 +24,7 @@ var g_AlwaysDisplayFriendlyFire = false;
 
 function getCostTypes()
 {
-	return g_ResourceData.GetCodes().concat(["population", "populationBonus", "time"]);
+	return g_ResourceData.GetCodes().concat(["population", "time"]);
 }
 
 function resourceIcon(resource)
@@ -663,8 +663,7 @@ function getEntityCostComponentsTooltipString(template, entity, buildingsCountTo
 
 	let costs = [];
 	for (let type of getCostTypes())
-		// Population bonus is shown in the tooltip
-		if (type != "populationBonus" && totalCosts[type])
+		if (totalCosts[type])
 			costs.push(sprintf(translate("%(component)s %(cost)s"), {
 				"component": resourceIcon(type),
 				"cost": totalCosts[type]
@@ -857,13 +856,13 @@ function getRequiredTechnologyTooltip(technologyEnabled, requiredTechnology, civ
  */
 function getPopulationBonusTooltip(template)
 {
-	let popBonus = "";
-	if (template.cost && template.cost.populationBonus)
-		popBonus = sprintf(translate("%(label)s %(populationBonus)s"), {
-			"label": headerFont(translate("Population Bonus:")),
-			"populationBonus": template.cost.populationBonus
-		});
-	return popBonus;
+	if (!template.population || !template.population.bonus)
+		return "";
+
+	return sprintf(translate("%(label)s %(bonus)s"), {
+		"label": headerFont(translate("Population Bonus:")),
+		"bonus": template.population.bonus
+	});
 }
 
 /**

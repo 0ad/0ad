@@ -4,7 +4,6 @@ Cost.prototype.Schema =
 	"<a:help>Specifies the construction/training costs of this entity.</a:help>" +
 	"<a:example>" +
 		"<Population>1</Population>" +
-		"<PopulationBonus>15</PopulationBonus>" +
 		"<BuildTime>20.0</BuildTime>" +
 		"<Resources>" +
 			"<food>50</food>" +
@@ -14,9 +13,6 @@ Cost.prototype.Schema =
 		"</Resources>" +
 	"</a:example>" +
 	"<element name='Population' a:help='Population cost'>" +
-		"<data type='nonNegativeInteger'/>" +
-	"</element>" +
-	"<element name='PopulationBonus' a:help='Population cap increase while this entity exists'>" +
 		"<data type='nonNegativeInteger'/>" +
 	"</element>" +
 	"<element name='BuildTime' a:help='Time taken to construct/train this entity (in seconds)'>" +
@@ -29,7 +25,6 @@ Cost.prototype.Schema =
 Cost.prototype.Init = function()
 {
 	this.populationCost = +this.template.Population;
-	this.populationBonus = +this.template.PopulationBonus;
 };
 
 Cost.prototype.GetPopCost = function()
@@ -37,10 +32,6 @@ Cost.prototype.GetPopCost = function()
 	return this.populationCost;
 };
 
-Cost.prototype.GetPopBonus = function()
-{
-	return this.populationBonus;
-};
 
 Cost.prototype.GetBuildTime = function()
 {
@@ -69,28 +60,13 @@ Cost.prototype.GetResourceCosts = function(owner)
 	return costs;
 };
 
-Cost.prototype.OnOwnershipChanged = function(msg)
-{
-	if (msg.from != INVALID_PLAYER)
-	{
-		let cmpPlayer = QueryPlayerIDInterface(msg.from);
-		if (cmpPlayer)
-			cmpPlayer.AddPopulationBonuses(-this.GetPopBonus());
-	}
-	if (msg.to != INVALID_PLAYER)
-	{
-		let cmpPlayer = QueryPlayerIDInterface(msg.to);
-		if (cmpPlayer)
-			cmpPlayer.AddPopulationBonuses(this.GetPopBonus());
-	}
-};
 
 Cost.prototype.OnValueModification = function(msg)
 {
 	if (msg.component != "Cost")
 		return;
 
-	// foundations shouldn't give a pop bonus and a pop cost
+	// Foundations shouldn't have a pop cost.
 	var cmpFoundation = Engine.QueryInterface(this.entity, IID_Foundation);
 	if (cmpFoundation)
 		return;
@@ -100,18 +76,11 @@ Cost.prototype.OnValueModification = function(msg)
 	var popCostDifference = newPopCost - this.populationCost;
 	this.populationCost = newPopCost;
 
-	// update the population bonuses
-	var newPopBonus = Math.round(ApplyValueModificationsToEntity("Cost/PopulationBonus", +this.template.PopulationBonus, this.entity));
-	var popDifference = newPopBonus - this.populationBonus;
-	this.populationBonus = newPopBonus;
-
 	var cmpPlayer = QueryOwnerInterface(this.entity);
 	if (!cmpPlayer)
 		return;
 	if (popCostDifference)
 		cmpPlayer.AddPopulation(popCostDifference);
-	if (popDifference)
-		cmpPlayer.AddPopulationBonuses(popDifference);
 };
 
 Engine.RegisterComponentType(IID_Cost, "Cost", Cost);

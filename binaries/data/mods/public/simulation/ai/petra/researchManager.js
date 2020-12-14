@@ -46,7 +46,7 @@ PETRA.ResearchManager.prototype.researchPopulationBonus = function(gameState, qu
 		if (!tech[1]._template.modifications)
 			continue;
 		// TODO may-be loop on all modifs and check if the effect if positive ?
-		if (tech[1]._template.modifications[0].value !== "Cost/PopulationBonus")
+		if (tech[1]._template.modifications[0].value !== "Population/Bonus")
 			continue;
 		queues.minorTech.addPlan(new PETRA.ResearchPlan(gameState, tech[0]));
 		break;

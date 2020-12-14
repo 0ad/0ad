@@ -2,7 +2,6 @@
 <Entity parent="template_structure_special">
   <Cost>
     <BuildTime>300</BuildTime>
-    <PopulationBonus>10</PopulationBonus>
     <Resources>
       <wood>200</wood>
       <stone>400</stone>
@@ -34,6 +33,9 @@
   <Obstruction>
     <Static width="38.5" depth="22.5"/>
   </Obstruction>
+  <Population>
+    <Bonus>10</Bonus>
+  </Population>
   <ProductionQueue disable=""/>
   <Sound>
     <SoundGroups>

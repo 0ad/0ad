@@ -5,7 +5,6 @@
   </BuildRestrictions>
   <Cost>
     <BuildTime>300</BuildTime>
-    <PopulationBonus>10</PopulationBonus>
     <Resources>
       <stone>300</stone>
       <metal>200</metal>
@@ -38,6 +37,9 @@
   <Obstruction>
     <Static width="30.0" depth="30.0"/>
   </Obstruction>
+  <Population>
+    <Bonus>10</Bonus>
+  </Population>
   <ProductionQueue>
     <BatchTimeModifier>0.8</BatchTimeModifier>
     <Entities datatype="tokens">

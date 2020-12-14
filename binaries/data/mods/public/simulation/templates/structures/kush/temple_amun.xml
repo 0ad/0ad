@@ -7,7 +7,6 @@
     <Category>TempleOfAmun</Category>
   </BuildRestrictions>
   <Cost>
-    <PopulationBonus>10</PopulationBonus>
     <BuildTime>300</BuildTime>
     <Resources>
       <stone>500</stone>
@@ -38,6 +37,9 @@
   <Obstruction>
     <Static width="28" depth="56.0"/>
   </Obstruction>
+  <Population>
+    <Bonus>10</Bonus>
+  </Population>
   <ProductionQueue>
     <Entities datatype="tokens">
       units/{civ}/champion_infantry_amun
