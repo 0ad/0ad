@@ -35,9 +35,12 @@ build/premake/premake5/CONTRIBUTING.md
 build/premake/premake5/FUNDING.yml
 build/premake/premake5/appveyor.yml
 build/premake/premake5/bin/release/premake5
-build/premake/premake5/build/gmake.macosx/obj/
-build/premake/premake5/build/gmake.unix/obj/
-build/premake/premake5/build/gmake.bsd/obj/
+build/premake/premake5/build/*/obj/
+build/premake/premake5/build/codelite*
+build/premake/premake5/build/gmake2.windows/
+build/premake/premake5/build/vs200*/
+build/premake/premake5/build/vs201[0-5]/
+build/premake/premake5/build/xcode4/
 build/premake/premake5/packages/
 build/premake/.gccmachine.tmp
 build/premake/.gccver.tmp
