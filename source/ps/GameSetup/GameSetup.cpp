@@ -188,11 +188,11 @@ void GUI_DisplayLoadProgress(int percent, const wchar_t* pending_task)
 
 	JS::RootedValueVector paramData(rq.cx);
 
-	DISCARD paramData.append(JS::NumberValue(percent));
+	ignore_result(paramData.append(JS::NumberValue(percent)));
 
 	JS::RootedValue valPendingTask(rq.cx);
 	scriptInterface.ToJSVal(rq, &valPendingTask, pending_task);
-	DISCARD paramData.append(valPendingTask);
+	ignore_result(paramData.append(valPendingTask));
 
 	g_GUI->SendEventToAll(g_EventNameGameLoadProgress, paramData);
 }

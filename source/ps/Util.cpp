@@ -195,7 +195,7 @@ Status tex_write(Tex* t, const VfsPath& filename)
 			ret = (Status)bytes_written;
 	}
 
-	DISCARD da_free(&da);
+	ignore_result(da_free(&da));
 	return ret;
 }
 

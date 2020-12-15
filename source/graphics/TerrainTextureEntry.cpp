@@ -267,7 +267,7 @@ void CTerrainTextureEntry::LoadAlphaMaps(VfsPath &amtype)
 		// get its size and make sure they are all equal.
 		// (the packing algo assumes this)
 		size_t this_width = 0, this_height = 0, this_bpp = 0;	// fail-safe
-		DISCARD ogl_tex_get_size(textures[i], &this_width, &this_height, &this_bpp);
+		ignore_result(ogl_tex_get_size(textures[i], &this_width, &this_height, &this_bpp));
 		if(this_width != this_height)
 			DEBUG_DISPLAY_ERROR(L"Alpha maps are not square");
 		// .. first iteration: establish size
@@ -294,7 +294,7 @@ void CTerrainTextureEntry::LoadAlphaMaps(VfsPath &amtype)
 	{
 		// get src of copy
 		u8* src = 0;
-		DISCARD ogl_tex_get_data(textures[i], &src);
+		ignore_result(ogl_tex_get_data(textures[i], &src));
 
 		size_t srcstep = bpp/8;
 
@@ -330,11 +330,11 @@ void CTerrainTextureEntry::LoadAlphaMaps(VfsPath &amtype)
 	}
 
 	for (size_t i = 0; i < NUM_ALPHA_MAPS; i++)
-		DISCARD ogl_tex_free(textures[i]);
+		ignore_result(ogl_tex_free(textures[i]));
 
 	// upload the composite texture
 	Tex t;
-	DISCARD t.wrap(total_w, total_h, 8, TEX_GREY, data, 0);
+	ignore_result(t.wrap(total_w, total_h, 8, TEX_GREY, data, 0));
 
 	// uncomment the following to save a png of the generated texture
 	// in the public/ directory, for debugging
@@ -354,11 +354,11 @@ void CTerrainTextureEntry::LoadAlphaMaps(VfsPath &amtype)
 		//	ret = (Status)bytes_written;
 	}
 
-	DISCARD da_free(&da);*/
+	ignore_result(da_free(&da));*/
 
 	Handle hCompositeAlphaMap = ogl_tex_wrap(&t, g_VFS, key);
-	DISCARD ogl_tex_set_filter(hCompositeAlphaMap, GL_LINEAR);
-	DISCARD ogl_tex_set_wrap  (hCompositeAlphaMap, GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE);
+	ignore_result(ogl_tex_set_filter(hCompositeAlphaMap, GL_LINEAR));
+	ignore_result(ogl_tex_set_wrap  (hCompositeAlphaMap, GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE));
 	ogl_tex_upload(hCompositeAlphaMap, GL_ALPHA, 0, 0);
 	result.m_hCompositeAlphaMap = hCompositeAlphaMap;
 

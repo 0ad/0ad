@@ -159,7 +159,7 @@ private:
 			}
 
 			JS::RootedValueVector argv(rq.cx);
-			DISCARD argv.append(settings.get());
+			ignore_result(argv.append(settings.get()));
 			m_ScriptInterface->CallConstructor(ctor, argv, &m_Obj);
 
 			if (m_Obj.get().isNull())
@@ -458,7 +458,7 @@ public:
 			"templates", m_EntityTemplates);
 
 		JS::RootedValueVector argv(rq.cx);
-		DISCARD argv.append(settings);
+		ignore_result(argv.append(settings));
 		m_ScriptInterface->CallConstructor(ctor, argv, &m_SharedAIObj);
 
 		if (m_SharedAIObj.get().isNull())
