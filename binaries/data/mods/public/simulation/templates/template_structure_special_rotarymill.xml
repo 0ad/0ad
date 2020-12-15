@@ -5,7 +5,6 @@
   </Auras>
   <Cost>
     <BuildTime>100</BuildTime>
-    <PopulationBonus>2</PopulationBonus>
     <Resources>
       <wood>200</wood>
       <stone>100</stone>
@@ -32,6 +31,9 @@
   <Obstruction>
     <Static width="16.0" depth="16.0"/>
   </Obstruction>
+  <Population>
+    <Bonus>2</Bonus>
+  </Population>
   <ProductionQueue disable=""/>
   <RallyPoint disable=""/>
   <Sound>

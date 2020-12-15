@@ -304,6 +304,12 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 			"progress": cmpPack.GetProgress()
 		};
 
+	let cmpPopulation = Engine.QueryInterface(ent, IID_Population);
+	if (cmpPopulation)
+		ret.population = {
+			"bonus": cmpPopulation.GetPopBonus()
+		};
+
 	let cmpUpgrade = Engine.QueryInterface(ent, IID_Upgrade);
 	if (cmpUpgrade)
 		ret.upgrade = {
@@ -1190,7 +1196,6 @@ GuiInterface.prototype.SetBuildingPlacementPreview = function(player, cmd)
  *     'stone': ...,
  *     'metal': ...,
  *     'population': ...,
- *     'populationBonus': ...,
  *   }
  * }
  *
@@ -1342,7 +1347,7 @@ GuiInterface.prototype.SetWallPlacementPreview = function(player, cmd)
 
 	let result = {
 		"pieces": [],
-		"cost": { "population": 0, "populationBonus": 0, "time": 0 }
+		"cost": { "population": 0, "time": 0 }
 	};
 	for (let res of Resources.GetCodes())
 		result.cost[res] = 0;
@@ -1619,7 +1624,7 @@ GuiInterface.prototype.SetWallPlacementPreview = function(player, cmd)
 			// copied over, so we need to fetch it from the template instead).
 			// TODO: We should really use a Cost object or at least some utility functions for this, this is mindless
 			// boilerplate that's probably duplicated in tons of places.
-			for (let res of Resources.GetCodes().concat(["population", "populationBonus", "time"]))
+			for (let res of Resources.GetCodes().concat(["population", "time"]))
 				result.cost[res] += tplData.cost[res];
 		}
 

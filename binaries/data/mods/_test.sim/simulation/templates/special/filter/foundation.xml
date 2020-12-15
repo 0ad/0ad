@@ -2,10 +2,7 @@
 <Entity filtered="">
   <AIProxy merge=""/>
   <BuildRestrictions merge=""/>
-  <!-- Don't provide population bonuses yet (but still do take up population cost) -->
-  <Cost merge="">
-    <PopulationBonus>0</PopulationBonus>
-  </Cost>
+  <Cost merge=""/>
   <Decay merge=""/>
   <Health>
     <Initial>1</Initial>
@@ -23,6 +20,10 @@
   </Obstruction>
   <OverlayRenderer merge=""/>
   <Ownership merge=""/>
+  <!-- Don't provide population bonuses yet. -->
+  <Population>
+    <Bonus>0</Bonus>
+  </Population>
   <Position merge=""/>
   <RallyPoint merge=""/>
   <RallyPointRenderer merge=""/>

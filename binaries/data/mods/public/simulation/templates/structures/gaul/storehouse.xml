@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_economic_storehouse">
-  <Cost>
-    <PopulationBonus>2</PopulationBonus>
-  </Cost>
   <Footprint>
     <Square width="15.0" depth="17.0"/>
   </Footprint>
@@ -13,6 +10,9 @@
   <Obstruction>
     <Static width="13.0" depth="15.0"/>
   </Obstruction>
+  <Population>
+    <Bonus>2</Bonus>
+  </Population>
   <VisualActor>
     <Actor>structures/gauls/storehouse.xml</Actor>
   </VisualActor>

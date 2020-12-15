@@ -13,7 +13,6 @@
     <GarrisonRegenRate>10</GarrisonRegenRate>
   </Capturable>
   <Cost>
-    <PopulationBonus>10</PopulationBonus>
     <BuildTime>500</BuildTime>
     <Resources>
       <wood>300</wood>
@@ -52,6 +51,9 @@
   <Obstruction>
     <Static width="42.0" depth="58.0"/>
   </Obstruction>
+  <Population>
+    <Bonus>10</Bonus>
+  </Population>
   <Position>
     <Floating>true</Floating>
     <FloatDepth>0.0</FloatDepth>

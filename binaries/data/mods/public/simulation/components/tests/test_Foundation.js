@@ -6,6 +6,7 @@ Engine.LoadComponentScript("interfaces/Cost.js");
 Engine.LoadComponentScript("interfaces/Foundation.js");
 Engine.LoadComponentScript("interfaces/Health.js");
 Engine.LoadComponentScript("interfaces/ModifiersManager.js");
+Engine.LoadComponentScript("interfaces/Population.js");
 Engine.LoadComponentScript("interfaces/StatisticsTracker.js");
 Engine.LoadComponentScript("interfaces/TerritoryDecay.js");
 Engine.LoadComponentScript("interfaces/Trigger.js");

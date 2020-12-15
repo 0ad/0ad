@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_military_fortress">
-  <Cost>
-    <PopulationBonus>12</PopulationBonus>
-  </Cost>
   <Identity>
     <Civ>gaul</Civ>
     <SpecificName>Dunon</SpecificName>
   </Identity>
+  <Population>
+    <Bonus>12</Bonus>
+  </Population>
   <ProductionQueue>
     <Entities datatype="tokens">
       units/{civ}/champion_infantry

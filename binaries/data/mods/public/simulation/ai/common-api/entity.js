@@ -194,7 +194,7 @@ m.Template = m.Class({
 
 	"isRepairable": function() { return this.get("Repairable") !== undefined; },
 
-	"getPopulationBonus": function() { return +this.get("Cost/PopulationBonus"); },
+	"getPopulationBonus": function() { return +this.get("Population/Bonus"); },
 
 	"resistanceStrengths": function() {
 		let resistanceTypes = this.get("Resistance");

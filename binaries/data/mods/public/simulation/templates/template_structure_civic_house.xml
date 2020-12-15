@@ -5,7 +5,6 @@
     <GarrisonRegenRate>4.0</GarrisonRegenRate>
   </Capturable>
   <Cost>
-    <PopulationBonus>5</PopulationBonus>
     <BuildTime>30</BuildTime>
     <Resources>
       <wood>75</wood>
@@ -40,6 +39,9 @@
   <Obstruction>
     <Static width="11.0" depth="11.0"/>
   </Obstruction>
+  <Population>
+    <Bonus>5</Bonus>
+  </Population>
   <ProductionQueue>
     <Entities datatype="tokens">
       units/{civ}/support_female_citizen_house

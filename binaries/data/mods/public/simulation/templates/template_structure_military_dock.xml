@@ -6,7 +6,6 @@
     <Category>Dock</Category>
   </BuildRestrictions>
   <Cost>
-    <PopulationBonus>5</PopulationBonus>
     <BuildTime>150</BuildTime>
     <Resources>
       <wood>200</wood>
@@ -38,6 +37,9 @@
   <Obstruction>
     <Static width="18.0" depth="18.0"/>
   </Obstruction>
+  <Population>
+    <Bonus>5</Bonus>
+  </Population>
   <Position>
     <Floating>true</Floating>
     <FloatDepth>0.0</FloatDepth>

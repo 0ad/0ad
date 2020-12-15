@@ -52,7 +52,6 @@
     <RegenRate>5.0</RegenRate>
   </Capturable>
   <Cost>
-    <PopulationBonus>20</PopulationBonus>
     <BuildTime>500</BuildTime>
     <Resources>
       <wood>500</wood>
@@ -92,6 +91,9 @@
   <Obstruction>
     <Static width="30.0" depth="30.0"/>
   </Obstruction>
+  <Population>
+    <Bonus>20</Bonus>
+  </Population>
   <ProductionQueue>
     <BatchTimeModifier>0.8</BatchTimeModifier>
     <Entities datatype="tokens">

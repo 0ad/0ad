@@ -2,7 +2,6 @@
 <Entity parent="template_structure_special">
   <Cost>
     <BuildTime>200</BuildTime>
-    <PopulationBonus>10</PopulationBonus>
     <Resources>
       <stone>200</stone>
       <metal>200</metal>
@@ -30,6 +29,9 @@
   <Obstruction>
     <Static width="36.0" depth="12.0"/>
   </Obstruction>
+  <Population>
+    <Bonus>10</Bonus>
+  </Population>
   <ProductionQueue>
     <BatchTimeModifier>0.7</BatchTimeModifier>
     <Entities datatype="tokens">

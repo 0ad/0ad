@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_economic_storehouse">
-  <Cost>
-    <PopulationBonus>2</PopulationBonus>
-  </Cost>
   <Footprint>
     <Square width="18.0" depth="18.0"/>
   </Footprint>
@@ -10,6 +7,9 @@
     <Civ>brit</Civ>
     <SpecificName>Capanon</SpecificName>
   </Identity>
+  <Population>
+    <Bonus>2</Bonus>
+  </Population>
   <Obstruction>
     <Static width="16.0" depth="16.0"/>
   </Obstruction>

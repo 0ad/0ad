@@ -256,7 +256,7 @@ AIInterface.prototype.OnTemplateModification = function(msg)
 			let newValue = ApplyValueModificationsToTemplate(valName, oldValue, msg.player, template);
 			// Apply the same roundings as in the components
 			if (valName === "Player/MaxPopulation" || valName === "Cost/Population" ||
-			    valName === "Cost/PopulationBonus")
+			    valName === "Population/Bonus")
 				newValue = Math.round(newValue);
 			// TODO in some cases, we can have two opposite changes which bring us to the old value,
 			// and we should keep it. But how to distinguish it ?
@@ -305,7 +305,7 @@ AIInterface.prototype.OnGlobalValueModification = function(msg)
 			let newValue = ApplyValueModificationsToEntity(valName, oldValue, ent);
 			// Apply the same roundings as in the components
 			if (valName === "Player/MaxPopulation" || valName === "Cost/Population" ||
-			    valName === "Cost/PopulationBonus")
+			    valName === "Population/Bonus")
 				newValue = Math.round(newValue);
 			// TODO in some cases, we can have two opposite changes which bring us to the old value,
 			// and we should keep it. But how to distinguish it ?

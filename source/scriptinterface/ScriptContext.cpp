@@ -130,6 +130,10 @@ void ScriptContext::RegisterRealm(JS::Realm* realm)
 
 void ScriptContext::UnRegisterRealm(JS::Realm* realm)
 {
+	// Schedule the zone for GC, which will destroy the realm.
+	if (JS::IsIncrementalGCInProgress(m_cx))
+		JS::FinishIncrementalGC(m_cx, JS::GCReason::API);
+	JS::PrepareZoneForGC(js::GetRealmZone(realm));
 	m_Realms.remove(realm);
 }
 
@@ -241,7 +245,7 @@ void ScriptContext::ShrinkingGC()
 	JS_SetGCParameter(m_cx, JSGC_MODE, JSGC_MODE_ZONE);
 	JS::PrepareForFullGC(m_cx);
 	JS::NonIncrementalGC(m_cx, GC_SHRINK, JS::GCReason::API);
-	JS_SetGCParameter(m_cx, JSGC_MODE, JSGC_MODE_INCREMENTAL);
+	JS_SetGCParameter(m_cx, JSGC_MODE, JSGC_MODE_ZONE_INCREMENTAL);
 }
 
 void ScriptContext::PrepareZonesForIncrementalGC() const

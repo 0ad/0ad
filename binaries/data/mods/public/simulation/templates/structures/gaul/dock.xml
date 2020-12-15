@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_military_dock">
-  <Cost>
-    <PopulationBonus>2</PopulationBonus>
-  </Cost>
   <Footprint>
     <Square width="12.0" depth="24.0"/>
     <Height>8.0</Height>
@@ -17,6 +14,9 @@
   <Obstruction>
     <Static width="10.0" depth="22.0"/>
   </Obstruction>
+  <Population>
+    <Bonus>2</Bonus>
+  </Population>
   <VisualActor>
     <Actor>structures/celts/dock.xml</Actor>
     <FoundationActor>structures/fndn_celt_dock.xml</FoundationActor>
