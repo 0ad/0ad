@@ -413,7 +413,7 @@ InReaction IGUIObject::SendMouseEvent(EGUIMessageType type, const CStr& eventNam
 		"y", mousePos.y,
 		"buttons", m_pGUI.GetMouseButtons());
 	JS::RootedValueVector paramData(rq.cx);
-	DISCARD paramData.append(mouse);
+	ignore_result(paramData.append(mouse));
 	ScriptEvent(eventName, paramData);
 
 	return msg.skipped ? IN_PASS : IN_HANDLED;

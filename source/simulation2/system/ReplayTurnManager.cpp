@@ -91,15 +91,15 @@ void CReplayTurnManager::NotifyFinishedOwnCommands(u32 turn)
 
 	JS::RootedValueVector paramData(rq.cx);
 
-	DISCARD paramData.append(JS::NumberValue(turn));
+	ignore_result(paramData.append(JS::NumberValue(turn)));
 
 	JS::RootedValue hashVal(rq.cx);
 	scriptInterface.ToJSVal(rq, &hashVal, hash);
-	DISCARD paramData.append(hashVal);
+	ignore_result(paramData.append(hashVal));
 
 	JS::RootedValue expectedHashVal(rq.cx);
 	scriptInterface.ToJSVal(rq, &expectedHashVal, expectedHash);
-	DISCARD paramData.append(expectedHashVal);
+	ignore_result(paramData.append(expectedHashVal));
 
 	g_GUI->SendEventToAll(EventNameReplayOutOfSync, paramData);
 }

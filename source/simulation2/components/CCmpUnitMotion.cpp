@@ -1050,11 +1050,11 @@ void CCmpUnitMotion::UpdateMovementState(entity_pos_t speed)
 		if (cmpObstruction)
 			cmpObstruction->SetMovingFlag(true);
 		if (cmpVisual)
-			cmpVisual->SelectMovementAnimation(m_Speed > m_WalkSpeed ? "run" : "walk", m_Speed);
+			cmpVisual->SelectMovementAnimation(speed > m_WalkSpeed ? "run" : "walk", speed);
 	}
 	// Speed change, update the visual actor if necessary.
 	else if (speed != m_CurSpeed && cmpVisual)
-		cmpVisual->SelectMovementAnimation(m_Speed > m_WalkSpeed ? "run" : "walk", m_Speed);
+		cmpVisual->SelectMovementAnimation(speed > m_WalkSpeed ? "run" : "walk", speed);
 
 	m_CurSpeed = speed;
 }

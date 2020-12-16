@@ -1795,7 +1795,7 @@ int CRenderer::LoadAlphaMaps()
 		// get its size and make sure they are all equal.
 		// (the packing algo assumes this)
 		size_t this_width = 0, this_height = 0, this_bpp = 0;	// fail-safe
-		DISCARD ogl_tex_get_size(textures[i], &this_width, &this_height, &this_bpp);
+		ignore_result(ogl_tex_get_size(textures[i], &this_width, &this_height, &this_bpp));
 		if(this_width != this_height)
 			DEBUG_DISPLAY_ERROR(L"Alpha maps are not square");
 		// .. first iteration: establish size
@@ -1822,7 +1822,7 @@ int CRenderer::LoadAlphaMaps()
 	{
 		// get src of copy
 		u8* src = 0;
-		DISCARD ogl_tex_get_data(textures[i], &src);
+		ignore_result(ogl_tex_get_data(textures[i], &src));
 
 		size_t srcstep = bpp/8;
 
@@ -1858,11 +1858,11 @@ int CRenderer::LoadAlphaMaps()
 	}
 
 	for (size_t i = 0; i < NumAlphaMaps; i++)
-		DISCARD ogl_tex_free(textures[i]);
+		ignore_result(ogl_tex_free(textures[i]));
 
 	// upload the composite texture
 	Tex t;
-	DISCARD t.wrap(total_w, total_h, 8, TEX_GREY, data, 0);
+	ignore_result(t.wrap(total_w, total_h, 8, TEX_GREY, data, 0));
 
 	/*VfsPath filename("blendtex.png");
 
@@ -1880,11 +1880,11 @@ int CRenderer::LoadAlphaMaps()
 		//	ret = (Status)bytes_written;
 	}
 
-	DISCARD da_free(&da);*/
+	ignore_result(da_free(&da));*/
 
 	m_hCompositeAlphaMap = ogl_tex_wrap(&t, g_VFS, key);
-	DISCARD ogl_tex_set_filter(m_hCompositeAlphaMap, GL_LINEAR);
-	DISCARD ogl_tex_set_wrap  (m_hCompositeAlphaMap, GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE);
+	ignore_result(ogl_tex_set_filter(m_hCompositeAlphaMap, GL_LINEAR));
+	ignore_result(ogl_tex_set_wrap  (m_hCompositeAlphaMap, GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE));
 	int ret = ogl_tex_upload(m_hCompositeAlphaMap, GL_ALPHA, 0, 0);
 
 	return ret;

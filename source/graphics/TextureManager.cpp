@@ -95,12 +95,12 @@ public:
 			data.get()[1] = 64;
 			data.get()[2] = 64;
 			Tex t;
-			DISCARD t.wrap(1, 1, 24, 0, data, 0);
+			ignore_result(t.wrap(1, 1, 24, 0, data, 0));
 
 			m_DefaultHandle = ogl_tex_wrap(&t, m_VFS, L"(default texture)");
-			DISCARD ogl_tex_set_filter(m_DefaultHandle, GL_LINEAR);
+			ignore_result(ogl_tex_set_filter(m_DefaultHandle, GL_LINEAR));
 			if (!m_DisableGL)
-				DISCARD ogl_tex_upload(m_DefaultHandle);
+				ignore_result(ogl_tex_upload(m_DefaultHandle));
 		}
 
 		// Error texture (magenta)
@@ -112,12 +112,12 @@ public:
 			data.get()[1] = 0;
 			data.get()[2] = 255;
 			Tex t;
-			DISCARD t.wrap(1, 1, 24, 0, data, 0);
+			ignore_result(t.wrap(1, 1, 24, 0, data, 0));
 
 			m_ErrorHandle = ogl_tex_wrap(&t, m_VFS, L"(error texture)");
-			DISCARD ogl_tex_set_filter(m_ErrorHandle, GL_LINEAR);
+			ignore_result(ogl_tex_set_filter(m_ErrorHandle, GL_LINEAR));
 			if (!m_DisableGL)
-				DISCARD ogl_tex_upload(m_ErrorHandle);
+				ignore_result(ogl_tex_upload(m_ErrorHandle));
 
 			// Construct a CTexture to return to callers who want an error texture
 			CTextureProperties props(L"(error texture)");
@@ -134,8 +134,8 @@ public:
 	{
 		UnregisterFileReloadFunc(ReloadChangedFileCB, this);
 
-		DISCARD ogl_tex_free(m_DefaultHandle);
-		DISCARD ogl_tex_free(m_ErrorHandle);
+		ignore_result(ogl_tex_free(m_DefaultHandle));
+		ignore_result(ogl_tex_free(m_ErrorHandle));
 	}
 
 	CTexturePtr GetErrorTexture()
@@ -188,14 +188,14 @@ public:
 
 		// Get some flags for later use
 		size_t flags = 0;
-		DISCARD ogl_tex_get_format(h, &flags, NULL);
+		ignore_result(ogl_tex_get_format(h, &flags, NULL));
 
 		// Initialise base color from the texture
-		DISCARD ogl_tex_get_average_color(h, &texture->m_BaseColor);
+		ignore_result(ogl_tex_get_average_color(h, &texture->m_BaseColor));
 
 		// Set GL upload properties
-		DISCARD ogl_tex_set_wrap(h, texture->m_Properties.m_WrapS, texture->m_Properties.m_WrapT);
-		DISCARD ogl_tex_set_anisotropy(h, texture->m_Properties.m_Aniso);
+		ignore_result(ogl_tex_set_wrap(h, texture->m_Properties.m_WrapS, texture->m_Properties.m_WrapT));
+		ignore_result(ogl_tex_set_anisotropy(h, texture->m_Properties.m_Aniso));
 
 		// Prevent ogl_tex automatically generating mipmaps (which is slow and unwanted),
 		// by avoiding mipmapped filters unless the source texture already has mipmaps
@@ -214,7 +214,7 @@ public:
 				break;
 			}
 		}
-		DISCARD ogl_tex_set_filter(h, filter);
+		ignore_result(ogl_tex_set_filter(h, filter));
 
 		// Upload to GL
 		if (!m_DisableGL && ogl_tex_upload(h, texture->m_Properties.m_Format) < 0)
@@ -604,21 +604,21 @@ void CTexture::SetHandle(Handle handle, bool takeOwnership)
 size_t CTexture::GetWidth() const
 {
 	size_t w = 0;
-	DISCARD ogl_tex_get_size(m_Handle, &w, 0, 0);
+	ignore_result(ogl_tex_get_size(m_Handle, &w, 0, 0));
 	return w;
 }
 
 size_t CTexture::GetHeight() const
 {
 	size_t h = 0;
-	DISCARD ogl_tex_get_size(m_Handle, 0, &h, 0);
+	ignore_result(ogl_tex_get_size(m_Handle, 0, &h, 0));
 	return h;
 }
 
 bool CTexture::HasAlpha() const
 {
 	size_t flags = 0;
-	DISCARD ogl_tex_get_format(m_Handle, &flags, 0);
+	ignore_result(ogl_tex_get_format(m_Handle, &flags, 0));
 	return (flags & TEX_ALPHA) != 0;
 }
 
@@ -630,7 +630,7 @@ u32 CTexture::GetBaseColor() const
 size_t CTexture::GetUploadedSize() const
 {
 	size_t size = 0;
-	DISCARD ogl_tex_get_uploaded_size(m_Handle, &size);
+	ignore_result(ogl_tex_get_uploaded_size(m_Handle, &size));
 	return size;
 }
 
