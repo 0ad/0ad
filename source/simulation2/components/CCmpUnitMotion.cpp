@@ -616,7 +616,7 @@ private:
 	 * This does not send actually change the position.
 	 * @returns true if the move was obstructed.
 	 */
-	bool PerformMove(fixed dt, WaypointPath& shortPath, WaypointPath& longPath, CFixedVector2D& pos) const;
+	bool PerformMove(fixed dt, const fixed& turnRate, WaypointPath& shortPath, WaypointPath& longPath, CFixedVector2D& pos, entity_angle_t& angle);
 
 	/**
 	 * Update other components on our speed.
@@ -872,28 +872,33 @@ void CCmpUnitMotion::Move(fixed dt)
 		return;
 
 	CFixedVector2D initialPos = cmpPosition->GetPosition2D();
+	entity_angle_t initialAngle = cmpPosition->GetRotation().Y;
 
-	// Keep track of the current unit's position during the update
+	// Keep track of the current unit's position and rotation during the update.
 	CFixedVector2D pos = initialPos;
+	entity_angle_t angle = initialAngle;
 
 	// If we're chasing a potentially-moving unit and are currently close
 	// enough to its current position, and we can head in a straight line
 	// to it, then throw away our current path and go straight to it
 	bool wentStraight = TryGoingStraightToTarget(initialPos);
 
-	bool wasObstructed = PerformMove(dt, m_ShortPath, m_LongPath, pos);
+	bool wasObstructed = PerformMove(dt, cmpPosition->GetTurnRate(), m_ShortPath, m_LongPath, pos, angle);
 
 	// Update our speed over this turn so that the visual actor shows the correct animation.
 	if (pos == initialPos)
+	{
+		if (angle != initialAngle)
+			cmpPosition->TurnTo(angle);
 		UpdateMovementState(fixed::Zero());
+	}
 	else
 	{
 		// Update the Position component after our movement (if we actually moved anywhere)
+		// When moving always set the angle in the direction of the movement.
 		CFixedVector2D offset = pos - initialPos;
-
-		// Face towards the target
-		entity_angle_t angle = atan2_approx(offset.X, offset.Y);
-		cmpPosition->MoveAndTurnTo(pos.X,pos.Y, angle);
+		angle = atan2_approx(offset.X, offset.Y);
+		cmpPosition->MoveAndTurnTo(pos.X, pos.Y, angle);
 
 		// Calculate the mean speed over this past turn.
 		UpdateMovementState(offset.Length() / dt);
@@ -942,11 +947,17 @@ bool CCmpUnitMotion::PossiblyAtDestination() const
 	return false;
 }
 
-bool CCmpUnitMotion::PerformMove(fixed dt, WaypointPath& shortPath, WaypointPath& longPath, CFixedVector2D& pos) const
+bool CCmpUnitMotion::PerformMove(fixed dt, const fixed& turnRate, WaypointPath& shortPath, WaypointPath& longPath, CFixedVector2D& pos, entity_angle_t& angle)
 {
 	// If there are no waypoint, behave as though we were obstructed and let HandleObstructedMove handle it.
 	if (shortPath.m_Waypoints.empty() && longPath.m_Waypoints.empty())
 		return true;
+
+	// Wrap the angle to (-Pi, Pi].
+	while (angle > entity_angle_t::Pi())
+		angle -= entity_angle_t::Pi() * 2;
+	while (angle < -entity_angle_t::Pi())
+		angle += entity_angle_t::Pi() * 2;
 
 	// TODO: there's some asymmetry here when units look at other
 	// units' positions - the result will depend on the order of execution.
@@ -957,26 +968,24 @@ bool CCmpUnitMotion::PerformMove(fixed dt, WaypointPath& shortPath, WaypointPath
 	ENSURE(cmpPathfinder);
 
 	fixed basicSpeed = m_Speed;
-	// If in formation, run to keep up; otherwise just walk
+	// If in formation, run to keep up; otherwise just walk.
 	if (IsFormationMember())
 		basicSpeed = m_Speed.Multiply(m_RunMultiplier);
 
-	// Find the speed factor of the underlying terrain
+	// Find the speed factor of the underlying terrain.
 	// (We only care about the tile we start on - it doesn't matter if we're moving
-	// partially onto a much slower/faster tile)
-	// TODO: Terrain-dependent speeds are not currently supported
+	// partially onto a much slower/faster tile).
+	// TODO: Terrain-dependent speeds are not currently supported.
 	fixed terrainSpeed = fixed::FromInt(1);
 
 	fixed maxSpeed = basicSpeed.Multiply(terrainSpeed);
-
-	// We want to move (at most) maxSpeed*dt units from pos towards the next waypoint
 
 	fixed timeLeft = dt;
 	fixed zero = fixed::Zero();
 
 	while (timeLeft > zero)
 	{
-		// If we ran out of path, we have to stop
+		// If we ran out of path, we have to stop.
 		if (shortPath.m_Waypoints.empty() && longPath.m_Waypoints.empty())
 			break;
 
@@ -987,11 +996,37 @@ bool CCmpUnitMotion::PerformMove(fixed dt, WaypointPath& shortPath, WaypointPath
 			target = CFixedVector2D(shortPath.m_Waypoints.back().x, shortPath.m_Waypoints.back().z);
 
 		CFixedVector2D offset = target - pos;
+		if (turnRate > zero)
+		{
+			fixed maxRotation = turnRate.Multiply(timeLeft);
+			fixed angleDiff = angle - atan2_approx(offset.X, offset.Y);
+			if (angleDiff != zero)
+			{
+				fixed absoluteAngleDiff = angleDiff.Absolute();
+				if (absoluteAngleDiff > entity_angle_t::Pi())
+					absoluteAngleDiff = entity_angle_t::Pi() * 2 - absoluteAngleDiff;
 
-		// Work out how far we can travel in timeLeft
+				// Figure out whether rotating will increase or decrease the angle, and how far we need to rotate in that direction.
+				int direction = (entity_angle_t::Zero() < angleDiff && angleDiff <= entity_angle_t::Pi()) || angleDiff < -entity_angle_t::Pi() ? -1 : 1;
+
+				// Can't rotate far enough, just rotate in the correct direction.
+				if (absoluteAngleDiff > maxRotation)
+				{
+					angle += maxRotation * direction;
+					if (angle * direction > entity_angle_t::Pi())
+						angle -= entity_angle_t::Pi() * 2 * direction;
+					break;
+				}
+				// Rotate towards the next waypoint and continue moving.
+				angle = atan2_approx(offset.X, offset.Y);
+				timeLeft = (maxRotation - absoluteAngleDiff) / turnRate;
+			}
+		}
+
+		// Work out how far we can travel in timeLeft.
 		fixed maxdist = maxSpeed.Multiply(timeLeft);
 
-		// If the target is close, we can move there directly
+		// If the target is close, we can move there directly.
 		fixed offsetLength = offset.Length();
 		if (offsetLength <= maxdist)
 		{
@@ -999,7 +1034,7 @@ bool CCmpUnitMotion::PerformMove(fixed dt, WaypointPath& shortPath, WaypointPath
 			{
 				pos = target;
 
-				// Spend the rest of the time heading towards the next waypoint
+				// Spend the rest of the time heading towards the next waypoint.
 				timeLeft = (maxdist - offsetLength) / maxSpeed;
 
 				if (shortPath.m_Waypoints.empty())
@@ -1011,13 +1046,13 @@ bool CCmpUnitMotion::PerformMove(fixed dt, WaypointPath& shortPath, WaypointPath
 			}
 			else
 			{
-				// Error - path was obstructed
+				// Error - path was obstructed.
 				return true;
 			}
 		}
 		else
 		{
-			// Not close enough, so just move in the right direction
+			// Not close enough, so just move in the right direction.
 			offset.Normalize(maxdist);
 			target = pos + offset;
 

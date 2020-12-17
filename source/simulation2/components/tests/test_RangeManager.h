@@ -62,6 +62,7 @@ public:
 	virtual CFixedVector2D GetPosition2D() const { return CFixedVector2D(m_Pos.X, m_Pos.Z); }
 	virtual CFixedVector3D GetPreviousPosition() const { return CFixedVector3D(); }
 	virtual CFixedVector2D GetPreviousPosition2D() const { return CFixedVector2D(); }
+	virtual fixed GetTurnRate() const { return fixed::Zero(); }
 	virtual void TurnTo(entity_angle_t UNUSED(y)) { }
 	virtual void SetYRotation(entity_angle_t UNUSED(y)) { }
 	virtual void SetXZRotation(entity_angle_t UNUSED(x), entity_angle_t UNUSED(z)) { }

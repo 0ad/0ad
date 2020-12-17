@@ -70,7 +70,8 @@ public:
 	bool m_Floating;
 	entity_pos_t m_FloatDepth;
 
-	float m_RotYSpeed; // maximum radians per second, used by InterpolatedRotY to follow RotY
+	// Maximum radians per second, used by InterpolatedRotY to follow RotY and the unitMotion.
+	fixed m_RotYSpeed;
 
 	// Dynamic state:
 
@@ -129,7 +130,7 @@ public:
 			"<element name='FloatDepth' a:help='The depth at which an entity floats on water (needs Floating to be true)'>"
 				"<ref name='nonNegativeDecimal'/>"
 			"</element>"
-			"<element name='TurnRate' a:help='Maximum graphical rotation speed around Y axis, in radians per second'>"
+			"<element name='TurnRate' a:help='Maximum rotation speed around Y axis, in radians per second. Used for all graphical rotations and some real unitMotion driven rotations.'>"
 				"<ref name='positiveDecimal'/>"
 			"</element>";
 	}
@@ -154,7 +155,7 @@ public:
 		m_Floating = paramNode.GetChild("Floating").ToBool();
 		m_FloatDepth = paramNode.GetChild("FloatDepth").ToFixed();
 
-		m_RotYSpeed = paramNode.GetChild("TurnRate").ToFixed().ToFloat();
+		m_RotYSpeed = paramNode.GetChild("TurnRate").ToFixed();
 
 		m_RotX = m_RotY = m_RotZ = entity_angle_t::FromInt(0);
 		m_InterpolatedRotX = m_InterpolatedRotY = m_InterpolatedRotZ = 0.f;
@@ -189,6 +190,7 @@ public:
 		serialize.NumberFixed_Unbounded("rot x", m_RotX);
 		serialize.NumberFixed_Unbounded("rot y", m_RotY);
 		serialize.NumberFixed_Unbounded("rot z", m_RotZ);
+		serialize.NumberFixed_Unbounded("rot y speed", m_RotYSpeed);
 		serialize.NumberFixed_Unbounded("altitude", m_Y);
 		serialize.Bool("relative", m_RelativeToGround);
 		serialize.Bool("floating", m_Floating);
@@ -246,6 +248,7 @@ public:
 		deserialize.NumberFixed_Unbounded("rot x", m_RotX);
 		deserialize.NumberFixed_Unbounded("rot y", m_RotY);
 		deserialize.NumberFixed_Unbounded("rot z", m_RotZ);
+		deserialize.NumberFixed_Unbounded("rot y speed", m_RotYSpeed);
 		deserialize.NumberFixed_Unbounded("altitude", m_Y);
 		deserialize.Bool("relative", m_RelativeToGround);
 		deserialize.Bool("floating", m_Floating);
@@ -536,6 +539,11 @@ public:
 		return CFixedVector2D(m_PrevX, m_PrevZ);
 	}
 
+	virtual fixed GetTurnRate() const
+	{
+		return m_RotYSpeed;
+	}
+
 	virtual void TurnTo(entity_angle_t y)
 	{
 		if (m_TurretParent != INVALID_ENTITY)
@@ -780,13 +788,14 @@ public:
 
 			if (rotY != m_InterpolatedRotY)
 			{
+				float rotYSpeed = m_RotYSpeed.ToFloat();
 				float delta = rotY - m_InterpolatedRotY;
 				// Wrap delta to -M_PI..M_PI
 				delta = fmodf(delta + (float)M_PI, 2*(float)M_PI); // range -2PI..2PI
 				if (delta < 0) delta += 2*(float)M_PI; // range 0..2PI
 				delta -= (float)M_PI; // range -M_PI..M_PI
 				// Clamp to max rate
-				float deltaClamped = Clamp(delta, -m_RotYSpeed*msgData.deltaSimTime, +m_RotYSpeed*msgData.deltaSimTime);
+				float deltaClamped = Clamp(delta, -rotYSpeed*msgData.deltaSimTime, +rotYSpeed*msgData.deltaSimTime);
 				// Calculate new orientation, in a peculiar way in order to make sure the
 				// result gets close to m_orientation (rather than being n*2*M_PI out)
 				m_InterpolatedRotY = rotY + deltaClamped - delta;

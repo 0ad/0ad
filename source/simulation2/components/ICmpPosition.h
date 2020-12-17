@@ -185,6 +185,11 @@ public:
 	virtual CFixedVector2D GetPreviousPosition2D() const = 0;
 
 	/**
+	 * Returns the turn rate in radians per second.
+	 */
+	virtual fixed GetTurnRate() const = 0;
+
+	/**
 	 * Rotate smoothly to the given angle around the upwards axis.
 	 * @param y clockwise radians from the +Z axis.
 	 */

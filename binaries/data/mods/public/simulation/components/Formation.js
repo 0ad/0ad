@@ -859,36 +859,18 @@ Formation.prototype.GetRealOffsetPositions = function(offsets, pos)
 };
 
 /**
- * Calculate the estimated rotation of the formation
- * based on the first unitAI target position when ordered to walk,
- * based on the current rotation in other cases.
+ * Calculate the estimated rotation of the formation based on the current rotation.
  * Return the sine and cosine of the angle.
  */
 Formation.prototype.GetEstimatedOrientation = function(pos)
 {
-	let cmpUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
-	let r = { "sin": 0, "cos": 1 };
-	let unitAIState = cmpUnitAI.GetCurrentState();
-	if (unitAIState == "FORMATIONCONTROLLER.WALKING" || unitAIState == "FORMATIONCONTROLLER.COMBAT.APPROACHING")
-	{
-		let targetPos = cmpUnitAI.GetTargetPositions();
-		if (!targetPos.length)
-			return r;
-		let d = targetPos[0].sub(pos).normalize();
-		if (!d.x && !d.y)
-			return r;
-		r.cos = d.y;
-		r.sin = d.x;
-	}
-	else
-	{
-		let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
-		if (!cmpPosition)
-			return r;
-		let rot = cmpPosition.GetRotation().y;
-		r.sin = Math.sin(rot);
-		r.cos = Math.cos(rot);
-	}
+	let r = {};
+	let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+	if (!cmpPosition)
+		return r;
+	let rot = cmpPosition.GetRotation().y;
+	r.sin = Math.sin(rot);
+	r.cos = Math.cos(rot);
 	return r;
 };
 

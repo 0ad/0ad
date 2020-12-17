@@ -42,6 +42,7 @@ DEFINE_INTERFACE_METHOD_CONST_0("GetPosition", CFixedVector3D, ICmpPosition, Get
 DEFINE_INTERFACE_METHOD_CONST_0("GetPosition2D", CFixedVector2D, ICmpPosition, GetPosition2D)
 DEFINE_INTERFACE_METHOD_CONST_0("GetPreviousPosition", CFixedVector3D, ICmpPosition, GetPreviousPosition)
 DEFINE_INTERFACE_METHOD_CONST_0("GetPreviousPosition2D", CFixedVector2D, ICmpPosition, GetPreviousPosition2D)
+DEFINE_INTERFACE_METHOD_CONST_0("GetTurnRate", fixed, ICmpPosition, GetTurnRate)
 DEFINE_INTERFACE_METHOD_1("TurnTo", void, ICmpPosition, TurnTo, entity_angle_t)
 DEFINE_INTERFACE_METHOD_1("SetYRotation", void, ICmpPosition, SetYRotation, entity_angle_t)
 DEFINE_INTERFACE_METHOD_2("SetXZRotation", void, ICmpPosition, SetXZRotation, entity_angle_t, entity_angle_t)
