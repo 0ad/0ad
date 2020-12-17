@@ -22,13 +22,13 @@ const g_BiomesDirectory = "maps/random/rmbiome/";
 
 /**
  * An object containing all values given by setting name.
- * Used by lobby, gamesetup, session, summary screen and replay menu.
+ * Used by lobby, game setup, session, summary screen, and replay menu.
  */
 const g_Settings = loadSettingsValues();
 
 /**
  * Loads and translates all values of all settings which
- * can be configured by dropdowns in the gamesetup.
+ * can be configured by dropdowns in the game setup.
  *
  * @returns {Object|undefined}
  */
@@ -171,7 +171,7 @@ function loadMapTypes()
 		{
 			"Name": "skirmish",
 			"Title": translateWithContext("map", "Skirmish"),
-			"Description": translate("A map with a predefined landscape and number of players. Freely select the other gamesettings."),
+			"Description": translate("A map with a predefined landscape and number of players. Freely select the other game settings."),
 			"Default": true,
 			"Path": "maps/skirmishes/",
 			"Suffix": ".xml",

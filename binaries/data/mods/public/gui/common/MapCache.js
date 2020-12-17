@@ -1,5 +1,5 @@
 /**
- * This class obtains, caches and provides the gamesettings from map XML and JSON files.
+ * This class obtains, caches, and provides the game settings from map XML and JSON files.
  */
 class MapCache
 {

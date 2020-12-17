@@ -1,5 +1,5 @@
 /**
- * This class owns all handlers of the gamesetup page, excluding controllers that apply to all subpages and handlers for specific subpages.
+ * This class owns all handlers of the game setup page, excluding controllers that apply to all subpages and handlers for specific subpages.
  */
 SetupWindowPages.GameSetupPage = class
 {
@@ -7,7 +7,7 @@ SetupWindowPages.GameSetupPage = class
 	{
 		Engine.ProfileStart("GameSetupPage");
 
-		// This class instance owns all gamesetting GUI controls such as dropdowns and checkboxes visible in this page.
+		// This class instance owns all game setting GUI controls such as dropdowns and checkboxes visible in this page.
 		this.gameSettingControlManager = new GameSettingControlManager(setupWindow);
 
 		// These classes manage GUI buttons.

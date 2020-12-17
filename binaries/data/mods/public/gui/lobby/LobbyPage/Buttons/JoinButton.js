@@ -23,7 +23,7 @@ class JoinButton
 	}
 
 	/**
-	 * Immediately rejoin and join gamesetups. Otherwise confirm late-observer join attempt.
+	 * Immediately rejoin and join game setups. Otherwise confirm late-observer join attempt.
 	 */
 	onPress()
 	{

@@ -204,7 +204,7 @@ class GameSettingsControl
 	/**
 	 * This function is to be called when a GUI control has initiated a value change.
 	 *
-	 * To avoid an infinite loop, do not call this function when a gamesetup message was
+	 * To avoid an infinite loop, do not call this function when a game setup message was
 	 * received and the data had only been modified deterministically.
 	 */
 	setNetworkGameAttributes()

@@ -1,5 +1,5 @@
 /**
- * This class handles the button that shows the gamespeed control.
+ * This class handles the button that shows the game speed control.
  */
 class GameSpeedButton
 {

@@ -1,14 +1,14 @@
 /**
  * Cheat prevention:
  *
- * 1. Ensure that the host cannot start the game unless all clients agreed on the gamesettings using the ready system.
+ * 1. Ensure that the host cannot start the game unless all clients agreed on the game settings using the ready system.
  *
  * TODO:
  * 2. Ensure that the host cannot start the game with GameAttributes different from the agreed ones.
  * This may be achieved by:
  * - Determining the seed collectively.
- * - passing the agreed gamesettings to the engine when starting the game instance
- * - rejecting new gamesettings from the server after the game launch event
+ * - passing the agreed game settings to the engine when starting the game instance
+ * - rejecting new game settings from the server after the game launch event
  */
 class StartGameControl
 {

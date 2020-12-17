@@ -1,5 +1,5 @@
 /**
- * This class stores the GameSetupPage and every subpage that is shown in the gamesetup.
+ * This class stores the GameSetupPage and every subpage that is shown in the game setup.
  */
 class SetupWindowPages
 {

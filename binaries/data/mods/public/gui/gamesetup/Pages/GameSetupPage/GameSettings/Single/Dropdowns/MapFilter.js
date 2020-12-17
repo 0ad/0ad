@@ -80,7 +80,7 @@ GameSettingControls.MapFilter = class extends GameSettingControlDropdown
 
 	onGameAttributesFinalize()
 	{
-		// The setting is only relevant to the gamesetup stage!
+		// This setting is only relevant in the game-setup stage.
 		delete g_GameAttributes.mapFilter;
 	}
 };

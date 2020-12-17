@@ -154,7 +154,7 @@ function initSingleplayerFilter(filters)
 function initVictoryConditionFilter(filters)
 {
 	let victoryConditionFilter = Engine.GetGUIObjectByName("victoryConditionFilter");
-	victoryConditionFilter.list = [translate("Any Victory Condition")].concat(g_VictoryConditions.map(victoryCondition => translateVictoryCondition(victoryCondition.Name)));
+	victoryConditionFilter.list = [translate("Any victory condition")].concat(g_VictoryConditions.map(victoryCondition => translateVictoryCondition(victoryCondition.Name)));
 	victoryConditionFilter.list_data = [""].concat(g_VictoryConditions.map(victoryCondition => victoryCondition.Name));
 
 	if (filters && filters.victoryCondition)

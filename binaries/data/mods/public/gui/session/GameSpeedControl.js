@@ -1,5 +1,5 @@
 /**
- * This class controls the gamespeed.
+ * This class controls the game speed.
  * The control is only available in single-player and replay mode.
  * Fast forwarding is enabled if and only if there is no human player assigned.
  */
@@ -27,7 +27,7 @@ class GameSpeedControl
 
 		let simRate = Engine.GetSimRate();
 
-		// If the gamespeed is something like 0.100001 from the gamesetup, set it to 0.1
+		// If the game speed is something like 0.100001 from the game setup, set it to 0.1
 		let gameSpeedIdx = gameSpeeds.Speed.indexOf(+simRate.toFixed(2));
 		this.gameSpeed.selected = gameSpeedIdx != -1 ? gameSpeedIdx : gameSpeeds.Default;
 	}

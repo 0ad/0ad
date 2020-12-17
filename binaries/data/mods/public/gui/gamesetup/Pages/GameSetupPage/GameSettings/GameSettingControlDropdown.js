@@ -1,5 +1,5 @@
 /**
- * This class is implemented by gamesettings that are controlled by a dropdown.
+ * This class is implemented by game settings that are controlled by a dropdown.
  */
 class GameSettingControlDropdown extends GameSettingControl
 {
