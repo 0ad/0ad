@@ -318,9 +318,8 @@ Foundation.prototype.Build = function(builderEnt, work)
 		if (cmpFoundationVisual)
 			cmpFoundationVisual.SelectAnimation("scaffold", false, 1.0);
 
-		this.CreateConstructionPreview();
-
 		this.committed = true;
+		this.CreateConstructionPreview();
 	}
 
 	// Add an appropriate proportion of hitpoints
@@ -492,6 +491,9 @@ Foundation.prototype.CreateConstructionPreview = function()
 		Engine.DestroyEntity(this.previewEntity);
 		this.previewEntity = INVALID_ENTITY;
 	}
+
+	if (!this.committed)
+		return;
 
 	let cmpFoundationVisual = Engine.QueryInterface(this.entity, IID_Visual);
 	if (!cmpFoundationVisual || !cmpFoundationVisual.HasConstructionPreview())
