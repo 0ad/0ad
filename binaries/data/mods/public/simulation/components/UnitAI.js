@@ -4623,6 +4623,7 @@ UnitAI.prototype.MoveToTargetAttackRange = function(target, type)
 	if (!targetCmpPosition || !targetCmpPosition.IsInWorld())
 		return false;
 
+	// Parabolic range compuation is the same as in BuildingAI's FireArrows.
 	let t = targetCmpPosition.GetPosition();
 	// h is positive when I'm higher than the target
 	let h = s.y - t.y + range.elevationBonus;

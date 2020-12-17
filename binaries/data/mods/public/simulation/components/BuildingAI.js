@@ -74,7 +74,7 @@ BuildingAI.prototype.OnDiplomacyChanged = function(msg)
 	if (!IsOwnedByPlayer(msg.player, this.entity))
 		return;
 
-	// Remove maybe now allied/neutral units
+	// Remove maybe now allied/neutral units.
 	this.targetUnits = [];
 	this.SetupRangeQuery();
 	this.SetupGaiaRangeQuery();
@@ -89,7 +89,7 @@ BuildingAI.prototype.OnDestroy = function()
 		this.timer = undefined;
 	}
 
-	// Clean up range queries
+	// Clean up range queries.
 	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	if (this.enemyUnitsQuery)
 		cmpRangeManager.DestroyActiveQuery(this.enemyUnitsQuery);
@@ -98,7 +98,7 @@ BuildingAI.prototype.OnDestroy = function()
 };
 
 /**
- * React on Attack value modifications, as it might influence the range
+ * React on Attack value modifications, as it might influence the range.
  */
 BuildingAI.prototype.OnValueModification = function(msg)
 {
@@ -111,7 +111,7 @@ BuildingAI.prototype.OnValueModification = function(msg)
 };
 
 /**
- * Setup the Range Query to detect units coming in & out of range
+ * Setup the Range Query to detect units coming in & out of range.
  */
 BuildingAI.prototype.SetupRangeQuery = function()
 {
@@ -131,16 +131,17 @@ BuildingAI.prototype.SetupRangeQuery = function()
 		return;
 
 	var enemies = cmpPlayer.GetEnemies();
+	// Remove gaia.
 	if (enemies.length && enemies[0] == 0)
-		enemies.shift(); // remove gaia
+		enemies.shift();
 
 	if (!enemies.length)
 		return;
 
 	var range = cmpAttack.GetRange(attackType);
 	this.enemyUnitsQuery = cmpRangeManager.CreateActiveParabolicQuery(
-			this.entity, range.min, range.max, range.elevationBonus,
-			enemies, IID_Resistance, cmpRangeManager.GetEntityFlagMask("normal"));
+		this.entity, range.min, range.max, range.elevationBonus,
+		enemies, IID_Resistance, cmpRangeManager.GetEntityFlagMask("normal"));
 
 	cmpRangeManager.EnableActiveQuery(this.enemyUnitsQuery);
 };
@@ -168,14 +169,14 @@ BuildingAI.prototype.SetupGaiaRangeQuery = function()
 
 	// This query is only interested in Gaia entities that can attack.
 	this.gaiaUnitsQuery = cmpRangeManager.CreateActiveParabolicQuery(
-			this.entity, range.min, range.max, range.elevationBonus,
-			[0], IID_Attack, cmpRangeManager.GetEntityFlagMask("normal"));
+		this.entity, range.min, range.max, range.elevationBonus,
+		[0], IID_Attack, cmpRangeManager.GetEntityFlagMask("normal"));
 
 	cmpRangeManager.EnableActiveQuery(this.gaiaUnitsQuery);
 };
 
 /**
- * Called when units enter or leave range
+ * Called when units enter or leave range.
  */
 BuildingAI.prototype.OnRangeUpdate = function(msg)
 {
@@ -184,7 +185,7 @@ BuildingAI.prototype.OnRangeUpdate = function(msg)
 	if (!cmpAttack)
 		return;
 
-	// Target enemy units except non-dangerous animals
+	// Target enemy units except non-dangerous animals.
 	if (msg.tag == this.gaiaUnitsQuery)
 	{
 		msg.added = msg.added.filter(e => {
@@ -195,12 +196,12 @@ BuildingAI.prototype.OnRangeUpdate = function(msg)
 	else if (msg.tag != this.enemyUnitsQuery)
 		return;
 
-	// Add new targets
+	// Add new targets.
 	for (let entity of msg.added)
 		if (cmpAttack.CanAttack(entity))
 			this.targetUnits.push(entity);
 
-	// Remove targets outside of vision-range
+	// Remove targets outside of vision-range.
 	for (let entity of msg.removed)
 	{
 		let index = this.targetUnits.indexOf(entity);
@@ -259,8 +260,8 @@ BuildingAI.prototype.GetGarrisonArrowClasses = function()
 
 /**
  * Returns the number of arrows which needs to be fired.
- * DefaultArrowCount + Garrisoned Archers(ie., any unit capable
- * of shooting arrows from inside buildings)
+ * DefaultArrowCount + Garrisoned Archers (i.e., any unit capable
+ * of shooting arrows from inside buildings).
  */
 BuildingAI.prototype.GetArrowCount = function()
 {
@@ -319,7 +320,7 @@ BuildingAI.prototype.FireArrows = function()
 		return;
 	}
 
-	// Add targets to a weighted list, to allow preferences
+	// Add targets to a weighted list, to allow preferences.
 	let targets = new WeightedList();
 	let maxPreference = this.MAX_PREFERENCE_BONUS;
 	let addTarget = function(target)
@@ -333,13 +334,13 @@ BuildingAI.prototype.FireArrows = function()
 		targets.push(target, weight);
 	};
 
-	// Add the UnitAI target separately, as the UnitMotion and RangeManager implementations differ
+	// Add the UnitAI target separately, as the UnitMotion and RangeManager implementations differ.
 	if (this.unitAITarget && this.targetUnits.indexOf(this.unitAITarget) == -1)
 		addTarget(this.unitAITarget);
 	for (let target of this.targetUnits)
 		addTarget(target);
 
-	// The obstruction manager performs approximate range checks
+	// The obstruction manager performs approximate range checks.
 	// so we need to verify them here.
 	// TODO: perhaps an optional 'precise' mode to range queries would be more performant.
 	let cmpObstructionManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ObstructionManager);
@@ -350,42 +351,37 @@ BuildingAI.prototype.FireArrows = function()
 		return;
 	let s = thisCmpPosition.GetPosition();
 
-	for (let i = 0; i < arrowsToFire; ++i)
+	let firedArrows = 0;
+	while (firedArrows < arrowsToFire && targets.length())
 	{
 		let selectedIndex = targets.randomIndex();
 		let selectedTarget = targets.itemAt(selectedIndex);
 
-		// Copied from UnitAI's MoveToTargetAttackRange.
 		let targetCmpPosition = Engine.QueryInterface(selectedTarget, IID_Position);
-		if (!targetCmpPosition || !targetCmpPosition.IsInWorld())
-			continue;
-
-		let t = targetCmpPosition.GetPosition();
-		// h is positive when I'm higher than the target
-		let h = s.y - t.y + range.elevationBonus;
-		let parabolicMaxRange = Math.sqrt(Math.square(range.max) + 2 * range.max * h);
-		if (selectedTarget && this.CheckTargetVisible(selectedTarget) &&
-		    h > -range.max / 2 && cmpObstructionManager.IsInTargetRange(
-		        this.entity, selectedTarget, range.min, parabolicMaxRange, false))
+		if (targetCmpPosition && targetCmpPosition.IsInWorld() && this.CheckTargetVisible(selectedTarget))
 		{
-			cmpAttack.PerformAttack(attackType, selectedTarget);
-			PlaySound("attack_" + attackType.toLowerCase(), this.entity);
-			continue;
+			// Parabolic range compuation is the same as in UnitAI's MoveToTargetAttackRange.
+			// h is positive when I'm higher than the target.
+			let h = s.y - targetCmpPosition.GetPosition().y + range.elevationBonus;
+			if (h > -range.max / 2 && cmpObstructionManager.IsInTargetRange(
+				this.entity,
+				selectedTarget,
+				range.min,
+				Math.sqrt(Math.square(range.max) + 2 * range.max * h), false))
+			{
+				cmpAttack.PerformAttack(attackType, selectedTarget);
+				PlaySound("attack_" + attackType.toLowerCase(), this.entity);
+				++firedArrows;
+				continue;
+			}
 		}
 
-		// Could not attack target, retry
+		// Could not attack target, try a different target.
 		targets.removeAt(selectedIndex);
-		--i;
-
-		if (!targets.length())
-		{
-			this.arrowsLeft += arrowsToFire;
-			break;
-		}
 	}
 
-	this.arrowsLeft -= arrowsToFire;
-	this.currentRound++;
+	this.arrowsLeft -= firedArrows;
+	++this.currentRound;
 };
 
 /**
@@ -397,12 +393,12 @@ BuildingAI.prototype.CheckTargetVisible = function(target)
 	if (!cmpOwnership)
 		return false;
 
-	// Entities that are hidden and miraged are considered visible
+	// Entities that are hidden and miraged are considered visible.
 	var cmpFogging = Engine.QueryInterface(target, IID_Fogging);
 	if (cmpFogging && cmpFogging.IsMiraged(cmpOwnership.GetOwner()))
 		return true;
 
-	// Either visible directly, or visible in fog
+	// Either visible directly, or visible in fog.
 	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	return cmpRangeManager.GetLosVisibility(target, cmpOwnership.GetOwner()) != "hidden";
 };
