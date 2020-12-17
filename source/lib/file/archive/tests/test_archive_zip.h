@@ -22,11 +22,12 @@
 
 #include "lib/self_test.h"
 
-#include "lib/file/file_system.h"
 #include "lib/file/archive/archive_zip.h"
+#include "lib/file/file_system.h"
 #include "lib/file/io/io.h"
 #include "lib/status.h"
 
+#include <iterator>
 #include <string>
 
 namespace
@@ -80,7 +81,7 @@ public:
 		// Note: This file write access has to be done synchronously,
 		//       as the following statement expects the file to be
 		//       present and complete
-		TS_ASSERT_EQUALS(INFO::OK, io::Store(testPath, cbTestZip, sizeof(cbTestZip) / sizeof(cbTestZip[0])));
+		TS_ASSERT_EQUALS(INFO::OK, io::Store(testPath, cbTestZip, std::size(cbTestZip)));
 
 		PIArchiveReader testee = CreateArchiveReader_Zip(testPath);
 		TS_ASSERT_DIFFERS(nullptr, testee);
