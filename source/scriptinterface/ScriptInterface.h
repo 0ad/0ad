@@ -234,6 +234,15 @@ public:
 	bool HasProperty(JS::HandleValue obj, const char* name) const;
 
 	/**
+	 * Get an object from the global scope or any lexical scope.
+	 * This can return globally accessible objects even if they are not properties
+	 * of the global object (e.g. ES6 class definitions).
+	 * @param name - Name of the property.
+	 * @param out The object or null.
+	 */
+	static bool GetGlobalProperty(const ScriptRequest& rq, const std::string& name, JS::MutableHandleValue out);
+
+	/**
 	 * Returns all properties of the object, both own properties and inherited.
 	 * This is essentially equivalent to calling Object.getOwnPropertyNames()
 	 * and recursing up the prototype chain.
