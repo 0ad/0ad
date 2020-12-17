@@ -161,6 +161,16 @@ UnitAI.prototype.UnitFsmSpec = {
 
 	// Default event handlers:
 
+	"MovementUpdate": function(msg) {
+		// ignore spurious movement messages
+		// (these can happen when stopping moving at the same time
+		// as switching states)
+	},
+
+	"ConstructionFinished": function(msg) {
+		// ignore uninteresting construction messages
+	},
+
 	"LosRangeUpdate": function(msg) {
 		// Ignore newly-seen units by default.
 	},
@@ -181,7 +191,15 @@ UnitAI.prototype.UnitFsmSpec = {
 		// ignore
 	},
 
+	"PackFinished": function(msg) {
+		// ignore
+	},
+
 	"PickupCanceled": function(msg) {
+		// ignore
+	},
+
+	"TradingCanceled": function(msg) {
 		// ignore
 	},
 
