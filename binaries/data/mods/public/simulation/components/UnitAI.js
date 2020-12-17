@@ -187,10 +187,6 @@ UnitAI.prototype.UnitFsmSpec = {
 		// ignore attacker
 	},
 
-	"HealthChanged": function(msg) {
-		// ignore
-	},
-
 	"PackFinished": function(msg) {
 		// ignore
 	},
@@ -1829,10 +1825,6 @@ UnitAI.prototype.UnitFsmSpec = {
 				if (this.CheckTargetRangeExplicit(this.order.data.target, this.order.data.distanceToFlee, -1) ||
 				    !cmpUnitMotion || !cmpUnitMotion.MoveToTargetRange(this.order.data.target, this.order.data.distanceToFlee, -1))
 					this.FinishOrder();
-			},
-
-			"HealthChanged": function() {
-				this.SetSpeedMultiplier(this.GetRunMultiplier());
 			},
 
 			"leave": function() {
@@ -4240,11 +4232,6 @@ UnitAI.prototype.OnAttacked = function(msg)
 UnitAI.prototype.OnGuardedAttacked = function(msg)
 {
 	this.UnitFsm.ProcessMessage(this, {"type": "GuardedAttacked", "data": msg.data});
-};
-
-UnitAI.prototype.OnHealthChanged = function(msg)
-{
-	this.UnitFsm.ProcessMessage(this, {"type": "HealthChanged", "from": msg.from, "to": msg.to});
 };
 
 UnitAI.prototype.OnRangeUpdate = function(msg)
