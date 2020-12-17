@@ -1,4 +1,6 @@
-# Copyright (C) 2016 Wildfire Games.
+#!/usr/bin/env python3
+#
+# Copyright (C) 2020 Wildfire Games.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification, are permitted provided that the
@@ -120,7 +122,9 @@ class javascript(Extractor):
         keywords = self.options.get('keywords', {}).keys()
 
         for token in tokenize(fileObject.read()):
-            if token.type == 'operator' and token.value == '(':
+            if token.type == 'operator' and \
+                (token.value == '(' or (call_stack != -1 and \
+                (token.value == '[' or token.value == '{'))):
                 if funcname:
                     message_lineno = token.lineno
                     call_stack += 1
@@ -198,8 +202,8 @@ class javascript(Extractor):
                     elif token.value == '+':
                         concatenate_next = True
 
-            elif call_stack > 0 and token.type == 'operator' \
-                and token.value == ')':
+            elif call_stack > 0 and token.type == 'operator' and \
+                (token.value == ')' or token.value == ']' or token.value == '}'):
                 call_stack -= 1
 
             elif funcname and call_stack == -1:
