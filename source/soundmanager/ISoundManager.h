@@ -22,8 +22,8 @@
 #include "lib/file/vfs/vfs_path.h"
 #include "simulation2/system/Entity.h"
 
-class CVector3D;
 class CStr8;
+class CVector3D;
 
 class ISoundManager
 {

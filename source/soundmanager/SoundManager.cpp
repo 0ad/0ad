@@ -831,7 +831,8 @@ void CSoundManager::RunHardwareDetection()
 	WARN_IF_FALSE(devices);
 
 	m_SoundCardNames.clear();
-	do {
+	do
+	{
 		m_SoundCardNames += devices;
 		devices += strlen(devices) + 1;
 		m_SoundCardNames += "; ";
