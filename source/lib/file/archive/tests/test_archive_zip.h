@@ -21,10 +21,19 @@
  */
 
 #include "lib/self_test.h"
-#include "lib/file/file_system.h"	// For CreateDirectories()
-#include "lib/file/archive/archive_zip.h"
 
-#include "lib/file/io/io.h"	// For io::Store()
+#include "lib/file/file_system.h"
+#include "lib/file/archive/archive_zip.h"
+#include "lib/file/io/io.h"
+#include "lib/status.h"
+
+#include <string>
+
+namespace
+{
+	// Implementation of the static buffer used to communicate with ArchiveEntryCallback
+	std::string g_ResultBuffer;
+}
 
 class TestArchiveZip : public CxxTest::TestSuite
 {
@@ -67,35 +76,28 @@ public:
 		//       contain binary data, the sample archive is stored
 		//       as a hexdump above and written to the file system
 		//       as the test executes.
-		CreateDirectories(testDir, 0700, false);
+		TS_ASSERT_EQUALS(INFO::OK, CreateDirectories(testDir, 0700, false));
 		// Note: This file write access has to be done synchronously,
 		//       as the following statement expects the file to be
 		//       present and complete
-		io::Store(testPath,  cbTestZip, sizeof(cbTestZip)/sizeof(cbTestZip[0]));
+		TS_ASSERT_EQUALS(INFO::OK, io::Store(testPath, cbTestZip, sizeof(cbTestZip) / sizeof(cbTestZip[0])));
 
 		PIArchiveReader testee = CreateArchiveReader_Zip(testPath);
+		TS_ASSERT_DIFFERS(nullptr, testee);
 
-		TS_ASSERT(nullptr != testee);
+		g_ResultBuffer = "";
+		TS_ASSERT_EQUALS(INFO::OK, testee->ReadEntries(TestArchiveZip::ArchiveEntryCallback, 0));
 
-		resultbuffer = "";
-		testee->ReadEntries(TestArchiveZip::ArchiveEntryCallback, 0);
-
-		TS_ASSERT_EQUALS("buildzipwithcomment.sh", resultbuffer);
+		TS_ASSERT_EQUALS("buildzipwithcomment.sh", g_ResultBuffer);
 	}
 
 private:
-	static std::string resultbuffer;
-
 	static void ArchiveEntryCallback(
 		const VfsPath& path,
 		const CFileInfo& UNUSED(fileInfo),
 		PIArchiveFile UNUSED(archiveFile),
 		uintptr_t UNUSED(cbData))
 	{
-		resultbuffer = path.string8();
+		g_ResultBuffer = path.string8();
 	}
 };
-
-// Implementation of the static buffer used to communicate with ArchiveEntryCallback
-std::string TestArchiveZip::resultbuffer;
-

@@ -269,7 +269,7 @@ public:
 		cd_size      = (size_t)read_le32(&m_cd_size);
 	}
 
-	off_t getCommentLength() const
+	off_t GetCommentLength() const
 	{
 		return static_cast<off_t>(read_le16(&m_comment_len));
 	}
@@ -535,13 +535,13 @@ private:
 		for (off_t commentSize = 0; commentSize <= offsetInBlock && !ecdr; ++commentSize)
 		{
 			const u8 *pECDRTest = buf + offsetInBlock - commentSize;
-			if (*(const u32*)pECDRTest == ecdr_magic)
+			if (*reinterpret_cast<const u32*>(pECDRTest) == ecdr_magic)
 			{
 				// Signature matches, test whether comment
 				// fills up the whole space following the
 				// ECDR
-				ecdr = (const ECDR*)pECDRTest;
-				if (commentSize != ecdr->getCommentLength())
+				ecdr = reinterpret_cast<const ECDR*>(pECDRTest);
+				if (commentSize != ecdr->GetCommentLength())
 				{
 					// Signature matches but there is some other data between
 					// header, comment and EOF. There are three possibilities
