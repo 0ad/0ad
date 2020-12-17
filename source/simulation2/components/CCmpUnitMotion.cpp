@@ -616,7 +616,7 @@ private:
 	 * This does not send actually change the position.
 	 * @returns true if the move was obstructed.
 	 */
-	bool PerformMove(fixed dt, const fixed& turnRate, WaypointPath& shortPath, WaypointPath& longPath, CFixedVector2D& pos, entity_angle_t& angle);
+	bool PerformMove(fixed dt, const fixed& turnRate, WaypointPath& shortPath, WaypointPath& longPath, CFixedVector2D& pos, entity_angle_t& angle) const;
 
 	/**
 	 * Update other components on our speed.
@@ -947,7 +947,7 @@ bool CCmpUnitMotion::PossiblyAtDestination() const
 	return false;
 }
 
-bool CCmpUnitMotion::PerformMove(fixed dt, const fixed& turnRate, WaypointPath& shortPath, WaypointPath& longPath, CFixedVector2D& pos, entity_angle_t& angle)
+bool CCmpUnitMotion::PerformMove(fixed dt, const fixed& turnRate, WaypointPath& shortPath, WaypointPath& longPath, CFixedVector2D& pos, entity_angle_t& angle) const
 {
 	// If there are no waypoint, behave as though we were obstructed and let HandleObstructedMove handle it.
 	if (shortPath.m_Waypoints.empty() && longPath.m_Waypoints.empty())
