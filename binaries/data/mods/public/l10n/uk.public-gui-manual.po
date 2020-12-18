@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2020-11-29 20:13+0000\n"
+"PO-Revision-Date: 2020-12-13 18:53+0000\n"
 "Last-Translator: Микола Франчук <thekolian1996@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -91,7 +91,7 @@ msgstr "• Ctrl + клавіші зі стрілками або shift + кол�
 msgid ""
 "• Mouse wheel, or “hotkey.camera.zoom.in” and ““hotkey.camera.zoom.out” "
 "keys, to zoom"
-msgstr ""
+msgstr "• Колесо миші, або клавіші “hotkey.camera.zoom.in” та “hotkey.camera.zoom.out” слугують для збільшення"
 
 #: gui/manual/intro.txt:18
 msgid "[font=\"sans-bold-16\"]Modes[font=\"sans-14\"]"
@@ -192,11 +192,11 @@ msgstr "[font=\"sans-bold-14\"]Загальнопрограмні[font=\"sans-14
 #: gui/manual/intro.txt:43
 msgid ""
 "  hotkey.exit – Immediately close the game, without asking for confirmation"
-msgstr ""
+msgstr "  hotkey.exit – Негайно закрити гру, не запитуючи підтвердження"
 
 #: gui/manual/intro.txt:44
 msgid "  hotkey.togglefullscreen – Toggle between fullscreen and windowed"
-msgstr ""
+msgstr "  hotkey.togglefullscreen – Перемкнути між повноекранним та віконним"
 
 #: gui/manual/intro.txt:45
 msgid "  hotkey.console.toggle – Toggle console"
@@ -210,7 +210,7 @@ msgstr "  hotkey.fps.toggle – Перемкнути лічильник кадр
 msgid ""
 "  hotkey.profile.toggle – Toggle real-time profiler (cycles through the "
 "displays of information)"
-msgstr ""
+msgstr "  hotkey.profile.toggle – Перемкнути профайлер реального часу (перемикає відображення інформації)"
 
 #: gui/manual/intro.txt:48
 msgid ""
@@ -277,7 +277,7 @@ msgstr "  hotkey.quickload – Швидке завантаження"
 
 #: gui/manual/intro.txt:61
 msgid "  hotkey.session.gui.menu.toggle – Toggle menu"
-msgstr ""
+msgstr "  hotkey.session.gui.menu.toggle – Перемкнути меню"
 
 #: gui/manual/intro.txt:62
 msgid "  hotkey.timeelapsedcounter.toggle – Toggle time elapsed counter"
@@ -309,7 +309,7 @@ msgstr "  hotkey.pause – Призупинити чи продовжити гр
 msgid ""
 "  hotkey.session.kill – Delete currently selected unit(s)/structure(s), ask "
 "for confirmation"
-msgstr ""
+msgstr "  hotkey.session.kill – Видалити вибрану на даний момент одиницю(ці)/споруду(ди), запит на підтвердження"
 
 #: gui/manual/intro.txt:69
 msgid ""
@@ -352,7 +352,7 @@ msgstr "  hotkey.selection.idleworker – Вибрати незайнятого 
 
 #: gui/manual/intro.txt:76
 msgid "  hotkey.selection.idleunit – Select idle unit"
-msgstr ""
+msgstr "  hotkey.selection.idleunit – Вибрати незайнятого юніта"
 
 #: gui/manual/intro.txt:77
 msgid "  hotkey.session.stop – Stop (halt) the currently selected units"
@@ -405,7 +405,7 @@ msgid ""
 "hotkey.session.queueunit.5, hotkey.session.queueunit.6, "
 "hotkey.session.queueunit.7 – With training structure selected. Add the 1st, "
 "2nd, … unit shown to the training queue for all the selected structures"
-msgstr ""
+msgstr "  hotkey.session.queueunit.1, hotkey.session.queueunit.2, hotkey.session.queueunit.3, hotkey.session.queueunit.4, hotkey.session.queueunit.5, hotkey.session.queueunit.6, hotkey.session.queueunit.7 – З вибраною спорудою для тренування. Додайте 1-ий, 2-ий, ... відображений юніт до черги тренування для всіх вибраних споруд"
 
 #: gui/manual/intro.txt:86
 msgid ""
@@ -423,7 +423,7 @@ msgstr ""
 msgid ""
 "  highlightguarding.showstatusbars – See all status bars (which would also "
 "show the building progress)"
-msgstr ""
+msgstr "  highlightguarding.showstatusbars – Побачити всі смуги стану (що також покаже просування будівництва)"
 
 #: gui/manual/intro.txt:89
 msgid "  hotkey.summary – Toggle summary window"
@@ -435,29 +435,29 @@ msgstr "  hotkey.lobby – Показати багатокористувацьк
 
 #: gui/manual/intro.txt:91
 msgid "  hotkey.session.gui.diplomacy.toggle – Toggle in-game diplomacy panel"
-msgstr ""
+msgstr "  hotkey.session.gui.diplomacy.toggle – Перемкнути внутрішньоігрову панель дипломатії"
 
 #: gui/manual/intro.txt:92
 msgid ""
 "  hotkey.session.gui.barter.toggle – Toggle in-game barter and trade panel"
-msgstr ""
+msgstr "  hotkey.session.gui.barter.toggle – Перемкнути внутрішньоігрову панель обміну та торгівлі"
 
 #: gui/manual/intro.txt:93
 msgid ""
 "  hotkey.session.gui.objectives.toggle – Toggle in-game objectives panel"
-msgstr ""
+msgstr "  hotkey.session.gui.objectives.toggle – Перемкнути внутрішньоігрову панель цілей"
 
 #: gui/manual/intro.txt:94
 msgid "  hotkey.session.gui.tutorial.toggle – Toggle in-game tutorial panel"
-msgstr ""
+msgstr "  hotkey.session.gui.tutorial.toggle – Перемкнути внутрішньоігрову панель керівництва"
 
 #: gui/manual/intro.txt:95
 msgid "  hotkey.structree – Toggle structure tree panel"
-msgstr ""
+msgstr "  hotkey.structree – Перемкнути панель дерева споруд."
 
 #: gui/manual/intro.txt:96
 msgid "  hotkey.civinfo – Toggle civilization info panel"
-msgstr ""
+msgstr "  hotkey.civinfo – Перемкнути панель інформації щодо цивілізації"
 
 #: gui/manual/intro.txt:98
 msgid "[font=\"sans-bold-14\"]Modify mouse action[font=\"sans-14\"]"
@@ -522,7 +522,7 @@ msgstr ""
 msgid ""
 "  hotkey.selection.idleonly + Left Drag over units on map – Only select idle"
 " units"
-msgstr ""
+msgstr "  hotkey.selection.idleonly + Перетягнути, утримуючи ліву кнопку миші, над підрозділами на мапі – Вибрати тільки незайнятих юнітів"
 
 #: gui/manual/intro.txt:110
 msgid ""

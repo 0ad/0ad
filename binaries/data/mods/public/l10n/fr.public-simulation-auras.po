@@ -29,6 +29,7 @@
 # Taonas Crockan <taonasb@live.fr>, 2016
 # Lucas Bertram <lucasjbertram@gmail.com>, 2017
 # Luc <luc.absil2@gmail.com>, 2017
+# Marc Veillet <marc.veillet@cgocable.ca>, 2020
 # Inperpetuammemoriam, 2016
 # Michaël DEMESSINE <m.demessine@gmail.com>, 2020
 # Micky Jault <micky037@hotmail.fr>, 2016
@@ -49,8 +50,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-12-01 11:21+0000\n"
-"PO-Revision-Date: 2020-12-01 14:32+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-12-17 01:42+0000\n"
+"Last-Translator: Marc Veillet <marc.veillet@cgocable.ca>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -64,7 +65,7 @@ msgstr "Augmente la régénération de points de vie des engins de siège en gar
 
 #: simulation/data/auras/structures/arsenal_repair.jsonauraName
 msgid "Arsenal Repairs"
-msgstr "Réparations d'arsenal"
+msgstr "Réparations de pièces d'arsenal"
 
 #: simulation/data/auras/structures/barracks_xp_trickle.jsonauraDescription
 msgid "Units gain experience while garrisoned in barracks."
@@ -206,7 +207,7 @@ msgstr "Druides"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
 msgid "Allies +10% international trade bonus."
-msgstr "+10% de bonus commercial avec les alliés"
+msgstr "+10% de bonus commercial avec les alliés."
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
 msgid "Trademasters"
@@ -214,11 +215,11 @@ msgstr "Maîtres commerçants"
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraDescription
 msgid "Forges −15% technology resource costs and research time."
-msgstr "-15% de coût de production et de temps de recherche pour les forges"
+msgstr "-15% de coût de production et de temps de recherche pour les forges."
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraName
 msgid "Products from Gaul"
-msgstr "Production de Gaule"
+msgstr "Produits de la Gaule."
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
 msgid "Allied Citizen Javelineers −10% resource costs."
@@ -369,7 +370,7 @@ msgstr "Tribut à Rome"
 msgid ""
 "Along with his brother Indibil, Mandonius commanded the Iberian recruits and mercenaries that took part in the Punic Wars.\n"
 "Allied Citizen Mercenaries −25% metal cost."
-msgstr "Au côté de son frère Indibil, Mandonius commanda les recrues Ibériques et les mercenaires qui ont prit part aux Guerre Puniques.\nLes Citoyens Mercenaires alliés coûtent 25% de métal en moins."
+msgstr "Au côté de son frère Indibil, Mandonius commanda les recrues ibériques et les mercenaires qui ont pris part aux Guerre puniques.\nLes Citoyens mercenaires alliés coûtent 25% de métal en moins."
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_1.jsonauraName
 msgid "Mercenary Commander"
@@ -379,7 +380,7 @@ msgstr "Commandant mercenaire"
 msgid ""
 "Following the fall of Indibil in battle, Mandonius led the survivors to safety.\n"
 "Soldiers +10% health."
-msgstr "Suivant la chute d'Indibil au combat, Mandonius mena les survivants en lieu sûr.\nLes Soldats gagnent 10% de santé supplémentaire."
+msgstr "À la suite de la chute d'Indibil au combat, Mandonius mena les survivants en lieu sûr.\nLes Soldats gagnent 10% de santé supplémentaire."
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_2.jsonauraName
 msgid "Saver of Lives"
@@ -389,7 +390,7 @@ msgstr "Sauveur de Vies"
 msgid ""
 "Ruling with full power in the Meroë Empire and also playing a significant role in the Meroitic religion, Shanakdakheto represented the might of Kush, something not to be taken lightly.\n"
 "Enemy Female Citizens −15% gather speed."
-msgstr "Gouvernant avec les pleins pouvoirs sur l'empire de Meroë et en jouant un rôle important dans la religion Meroitic, Shankdakheto représentait la puissance de Kush, quelque chose qu'il ne faut pas prendre à la légère.\nLes citoyennes ennemies voient leur vitesse de récolte diminuer de 15%."
+msgstr "Gouvernant avec les pleins pouvoirs sur l'empire de Meroë et jouant un rôle important dans la religion méroïtique, Shankdakheto représentait la puissance de Kush, à ne pas prendre à la légère.\nLes citoyennes ennemies voient leur vitesse de récolte diminuer de 15%."
 
 #: simulation/data/auras/units/catafalques/kush_catafalque_1.jsonauraName
 msgid "Earliest Nubian Queen"
@@ -399,7 +400,7 @@ msgstr "Première Reine Nubienne"
 msgid ""
 "As in all cultures, religion played a significant part in Kush. Shanakdakheto had the temple built around 160 BC as a symbol of the advancedness of Meroë.\n"
 "Temples +1 garrison heal rate."
-msgstr "Comme dans toutes les cultures, la religion joua une partie importante dans L'Empire Méroïtique. Shanakdakheto avait un temple construit aux environs de 160 av. J.-C. comme un symbole de l'avancement de Méroé.\nLes Temples gagnent +1 en taux de régénération de garnison."
+msgstr "Comme dans toutes les cultures, la religion joua une partie importante dans L'Empire méroïtique. Shanakdakheto eut un temple construit aux environs de 160 av. J.-C. et représentant l'avancement de Méroé.\nLes temples gagnent +1 en taux de régénération de garnison."
 
 #: simulation/data/auras/units/catafalques/kush_catafalque_2.jsonauraName
 msgid "Temple at Naqa"
@@ -409,7 +410,7 @@ msgstr "Temple de Naqa"
 msgid ""
 "During the First Macedonian War, Philip and his troops sacked Thermum, the religious and political center of Aetolia.\n"
 "Humans, Siege Engines, Ships, and Structures gain +5 food and wood loot."
-msgstr "\nPendant la Première Guerre Macédonienne, Philippe et ses troupes saccagèrent Thermos, le centre politique et religieux de l'Etoile.\nLes Humains, les Engins de Sièges, et les Bâtiment gagnent +5 en butin de nourriture et de bois. "
+msgstr "\nPendant la Première Guerre macédonienne, Philippe et ses troupes saccagèrent Thermos, le centre politique et religieux de l'Étoile.\nLes Humains, les Engins de Sièges, et les Bâtiment gagnent +5 en butin de nourriture et de bois. "
 
 #: simulation/data/auras/units/catafalques/mace_catafalque.jsonauraName
 msgid "Sacker of Cities"
@@ -439,7 +440,7 @@ msgstr "Vamba Moriyar"
 msgid ""
 "Throughout his reign, much of Artaxerxes' wealth was spent on building projects. He restored the Palace of Darius I at Susa and restored the ancient city of Ecbatana.\n"
 "Structures −10% resource costs and +5% health."
-msgstr "tout au long de  son règne, une grande partie de la richesse d'Artaxerxès avait été dépensée dans des projets de construction. Il restaura le Palais de Darius I à Suse et restaura la ville d'Ecbatana.\nLes Bâtiments coûtent 10% de ressource de moins et gagnent 5% de santé supplémentaire."
+msgstr "Tout au long du règne d'Artaxerxès, une grande partie de sa richesse a été dépensée dans des projets de construction. Il restaura le Palais de Darius I à Suse et restaura la ville d'Ecbatana.\nLes Bâtiments coûtent 10% de ressource de moins et gagnent 5% de santé supplémentaire."
 
 #: simulation/data/auras/units/catafalques/pers_catafalque.jsonauraName
 msgid "Great Builder"

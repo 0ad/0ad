@@ -6,6 +6,7 @@
 # Albert, 2016
 # Alejandro Avellaneda <aleavellaneda1@gmail.com>, 2019
 # Álvaro Mondéjar <mondejar1994@gmail.com>, 2019
+# Alvaro Rojas <alvaro.rojas.wm@gmail.com>, 2020
 # Antonio Vazquez <antoniovavazquez@gmail.com>, 2020
 # Antón Chinaev <Chinaev_Anton@outlook.es>, 2018
 # Antonio Martín <antonio.martinperez1991@gmail.com>, 2018
@@ -40,8 +41,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-12-07 08:42+0000\n"
-"PO-Revision-Date: 2020-12-08 16:18+0000\n"
-"Last-Translator: Cristian Alejandro Rueda Rodriguez <crisrueda99@gmail.com>\n"
+"PO-Revision-Date: 2020-12-15 20:14+0000\n"
+"Last-Translator: Alvaro Rojas <alvaro.rojas.wm@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1129,8 +1130,8 @@ msgstr "Necesita %(technology)s"
 
 #: gui/common/tooltips.js:862
 #, javascript-format
-msgid "%(label)s %(populationBonus)s"
-msgstr "%(label)s %(populationBonus)s"
+msgid "%(label)s %(bonus)s"
+msgstr ""
 
 #: gui/common/tooltips.js:863
 msgid "Population Bonus:"
@@ -2701,11 +2702,11 @@ msgstr "Ajustar los parámetros del juego."
 
 #: gui/pregame/MainMenuItems.js:152
 msgid "Hotkeys"
-msgstr ""
+msgstr "Teclas rápidas"
 
 #: gui/pregame/MainMenuItems.js:153
 msgid "Adjust hotkeys."
-msgstr ""
+msgstr "Austar teclas rápidas."
 
 #: gui/locale/locale.xml:(caption):14 gui/pregame/MainMenuItems.js:159
 msgid "Language"
@@ -2970,8 +2971,8 @@ msgstr[1] "Estructuras especiales"
 #: gui/reference/civinfo/Sections/Subsections/TechnologiesSubsection.js:30
 msgid "Special Technology"
 msgid_plural "Special Technologies"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Tecnología Especial"
+msgstr[1] "Tecnologías Especiales"
 
 #: gui/reference/common/Buttons/CivInfoButton.js:27
 #, javascript-format

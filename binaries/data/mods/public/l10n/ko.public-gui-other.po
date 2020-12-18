@@ -24,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-12-07 08:42+0000\n"
-"PO-Revision-Date: 2020-12-07 11:38+0000\n"
+"PO-Revision-Date: 2020-12-17 10:52+0000\n"
 "Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -696,7 +696,7 @@ msgstr "%(healthLabel)s %(current)s / %(max)s"
 #: gui/common/tooltips.js:167
 #, javascript-format
 msgid "%(captureLabel)s %(current)s / %(max)s"
-msgstr ""
+msgstr "%(captureLabel)s %(current)s / %(max)s"
 
 #: gui/common/tooltips.js:168
 msgid "Capture points:"
@@ -754,7 +754,7 @@ msgstr ""
 #: gui/common/tooltips.js:276
 #, javascript-format
 msgid "%(name)s %(details)s"
-msgstr ""
+msgstr "%(name)s %(details)s"
 
 #: gui/common/tooltips.js:263
 #, javascript-format
@@ -1100,8 +1100,8 @@ msgstr "%(technology)s 이(가) 필요합니다"
 
 #: gui/common/tooltips.js:862
 #, javascript-format
-msgid "%(label)s %(populationBonus)s"
-msgstr "%(label)s %(populationBonus)s"
+msgid "%(label)s %(bonus)s"
+msgstr "%(label)s %(bonus)s"
 
 #: gui/common/tooltips.js:863
 msgid "Population Bonus:"
@@ -1962,7 +1962,7 @@ msgstr ""
 
 #: gui/options/options.json[1].options[4].list[5].label
 msgid "MSAA (x16)"
-msgstr ""
+msgstr "MSAA (x16)"
 
 #: gui/options/options.json[1].options[4].list[5].tooltip
 msgid ""
@@ -2885,7 +2885,7 @@ msgstr "버그를 수정하고 성능과 호환성을 향상시키는 데 도움
 msgid ""
 "\n"
 "     %(description)s"
-msgstr ""
+msgstr "\n     %(description)s"
 
 #. Translation: An entry in the CivInfo Page. The newline and indentation of
 #. the description
@@ -2896,7 +2896,7 @@ msgstr ""
 #: gui/reference/civinfo/CivInfoPage.js:108
 #, javascript-format
 msgid "• %(name)s %(info_icon)s%(description)s"
-msgstr ""
+msgstr "• %(name)s %(info_icon)s%(description)s"
 
 #: gui/reference/civinfo/CivInfoPage.js:119
 #, javascript-format
@@ -2926,7 +2926,7 @@ msgstr[0] "편 포상"
 #: gui/reference/civinfo/Sections/Subsections/HeroesSubsection.js:30
 msgid "Hero"
 msgid_plural "Heroes"
-msgstr[0] ""
+msgstr[0] "영웅"
 
 #: gui/reference/civinfo/Sections/Subsections/StructuresSubsection.js:24
 msgid "Special Structure"
@@ -2936,7 +2936,7 @@ msgstr[0] "특수 건축물"
 #: gui/reference/civinfo/Sections/Subsections/TechnologiesSubsection.js:30
 msgid "Special Technology"
 msgid_plural "Special Technologies"
-msgstr[0] ""
+msgstr[0] "특수 기술"
 
 #: gui/reference/common/Buttons/CivInfoButton.js:27
 #, javascript-format

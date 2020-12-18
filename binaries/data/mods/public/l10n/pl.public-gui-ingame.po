@@ -61,8 +61,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2020-11-20 19:48+0000\n"
+"POT-Creation-Date: 2020-12-11 08:01+0000\n"
+"PO-Revision-Date: 2020-12-11 13:35+0000\n"
 "Last-Translator: Przemysław Murach <moonshine133@vp.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -189,8 +189,8 @@ msgstr "Gra zatrzymana"
 msgid "Click to Resume Game"
 msgstr "Kliknij by wznowić grę"
 
-#: gui/session/ResearchProgress.js:108 gui/session/selection_details.js:268
-#: gui/session/selection_details.js:284 gui/session/selection_panels.js:600
+#: gui/session/ResearchProgress.js:108 gui/session/selection_details.js:271
+#: gui/session/selection_details.js:287 gui/session/selection_panels.js:600
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
@@ -928,101 +928,101 @@ msgstr "\\[OFFLINE] %(player)s"
 msgid "%(rank)s Rank"
 msgstr "Ranga %(rank)s "
 
-#: gui/session/selection_details.js:139
+#: gui/session/selection_details.js:140
 #, javascript-format
 msgid "%(hitpoints)s / %(maxHitpoints)s"
 msgstr "%(hitpoints)s / %(maxHitpoints)s"
 
-#: gui/session/selection_details.js:178
+#: gui/session/selection_details.js:181
 #, javascript-format
 msgid "%(capturePoints)s / %(maxCapturePoints)s"
 msgstr "%(capturePoints)s / %(maxCapturePoints)s"
 
-#: gui/session/selection_details.js:198
+#: gui/session/selection_details.js:201
 #, javascript-format
 msgid "%(experience)s %(current)s / %(required)s"
 msgstr "%(experience)s %(current)s / %(required)s"
 
-#: gui/session/selection_details.js:199 gui/session/selection_details.js:205
+#: gui/session/selection_details.js:202 gui/session/selection_details.js:208
 msgid "Experience:"
 msgstr "Doświadczenie:"
 
-#: gui/session/selection_details.js:204
+#: gui/session/selection_details.js:207
 #, javascript-format
 msgid "%(experience)s %(current)s"
 msgstr "%(experience)s %(current)s"
 
-#: gui/session/selection_details.js:214
+#: gui/session/selection_details.js:217
 msgid "∞"
 msgstr "∞"
 
-#: gui/session/selection_details.js:215 gui/session/selection_details.js:245
-#: gui/session/selection_details.js:273
+#: gui/session/selection_details.js:218 gui/session/selection_details.js:248
+#: gui/session/selection_details.js:276
 #, javascript-format
 msgid "%(amount)s / %(max)s"
 msgstr "%(amount)s / %(max)s"
 
-#: gui/session/selection_details.js:227
+#: gui/session/selection_details.js:230
 #, javascript-format
 msgid "%(resource)s:"
 msgstr "%(resource)s:"
 
-#: gui/session/selection_details.js:258 gui/session/unit_actions.js:640
+#: gui/session/selection_details.js:261 gui/session/unit_actions.js:640
 #: gui/session/unit_actions.js:649 gui/session/unit_actions.js:667
 #: gui/session/unit_actions.js:998
 #, javascript-format
 msgid "Gain: %(gain)s"
 msgstr "Zysk: %(gain)s"
 
-#: gui/session/selection_details.js:277
+#: gui/session/selection_details.js:280
 msgid "Current/max gatherers"
 msgstr "Liczba zbieraczy: obecna/maksimum"
 
-#: gui/session/selection_details.js:299
+#: gui/session/selection_details.js:302
 #, javascript-format
 msgid "(%(genericName)s)"
 msgstr "(%(genericName)s)"
 
-#: gui/session/selection_details.js:429
+#: gui/session/selection_details.js:432
 msgid "Capture Points:"
 msgstr "Przejęte punkty:"
 
-#: gui/session/selection_details.js:437
+#: gui/session/selection_details.js:440
 #, javascript-format
 msgid "%(label)s %(details)s\n"
 msgstr "%(label)s %(details)s\n"
 
-#: gui/session/selection_details.js:438
+#: gui/session/selection_details.js:441
 msgid "Carrying:"
 msgstr "Przenieś:"
 
-#: gui/session/selection_details.js:441 gui/session/selection_details.js:450
+#: gui/session/selection_details.js:444 gui/session/selection_details.js:453
 #, javascript-format
 msgid "%(type)s %(amount)s"
 msgstr "%(type)s %(amount)s"
 
-#: gui/session/selection_details.js:446
+#: gui/session/selection_details.js:449
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/session/selection_details.js:447
+#: gui/session/selection_details.js:450
 msgid "Loot:"
 msgstr "Łup:"
 
 #. Translation: Used in the trading gain tooltip
-#: gui/session/selection_details.js:508
+#: gui/session/selection_details.js:511
 #, javascript-format
 msgid "%(gain)s (%(player)s)"
 msgstr "%(gain)s (%(player)s)"
 
 #. Translation: Used in the trading gain tooltip to concatenate profits of
 #. different players
-#: gui/session/selection_details.js:532
+#: gui/session/selection_details.js:535
 msgid "+"
 msgstr "+"
 
-#: gui/session/selection_details.js:539
+#: gui/session/selection_details.js:542
 msgctxt "Separation mark in an enumeration"
 msgid ", "
 msgstr ", "
@@ -1269,46 +1269,56 @@ msgid ""
 "Last opened will be reopened on click."
 msgstr "%(civ)s\n%(hotkey_civinfo)s/%(hotkey_structree)s: Włącz przegląd cywilizacji / drzewko budynków\nZostanie włączone ostatnio otwarte okno."
 
-#: gui/session/top_panel/CounterManager.js:100
+#: gui/session/top_panel/CounterManager.js:101
 #, javascript-format
 msgid "%(order)s: %(hotkey)s to change order."
 msgstr "%(order)s: %(hotkey)s by zmienić kolejność."
 
-#: gui/session/top_panel/CounterManager.js:104
+#: gui/session/top_panel/CounterManager.js:105
 msgid "Unordered"
 msgstr "Nieposortowane"
 
-#: gui/session/top_panel/CounterManager.js:106
+#: gui/session/top_panel/CounterManager.js:107
 msgid "Descending"
 msgstr "Malejąco"
 
-#: gui/session/top_panel/CounterManager.js:107
+#: gui/session/top_panel/CounterManager.js:108
 msgid "Ascending"
 msgstr "Rosnąco"
 
-#: gui/session/top_panel/CounterManager.js:132
+#: gui/session/top_panel/CounterManager.js:133
 #, javascript-format
 msgid "%(playername)s: %(statValue)s"
 msgstr "%(playername)s: %(statValue)s"
 
-#: gui/session/top_panel/CounterPopulation.js:56
+#: gui/session/top_panel/CounterPopulation.js:34
+#, javascript-format
+msgid "Current gatherers: %(amount)s"
+msgstr "Liczba zbieraczy: %(amount)s"
+
+#: gui/session/top_panel/CounterPopulation.js:63
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s"
 msgstr "%(popCount)s/%(popLimit)s"
 
-#: gui/session/top_panel/CounterPopulation.js:58
+#: gui/session/top_panel/CounterPopulation.js:65
 msgid "Population (current / limit)"
 msgstr "Populacja (bieżąca / limit)"
 
-#: gui/session/top_panel/CounterPopulation.js:60
+#: gui/session/top_panel/CounterPopulation.js:67
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
 msgstr "Maksymalna populacja: %(popCap)s"
 
-#: gui/session/top_panel/CounterPopulation.js:62
+#: gui/session/top_panel/CounterPopulation.js:69
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
 msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
+
+#: gui/session/top_panel/CounterResource.js:32
+#, javascript-format
+msgid "Gatherers: %(amount)s"
+msgstr "Zbieracze: %(amount)s"
 
 #: gui/session/top_panel/FollowPlayer.xml:(caption):15
 #: gui/session/top_panel/FollowPlayer.xml:(tooltip):11
