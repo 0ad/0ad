@@ -113,7 +113,7 @@ class TestWdbgSym : public CxxTest::TestSuite
 		// amount of text (not just "(failed)" error messages) was produced.
 		ErrorMessageMem emm = {0};
 		CACHE_ALIGNED(u8) context[DEBUG_CONTEXT_SIZE];
-		TS_ASSERT(debug_CaptureContext(context) == INFO::OK);
+		TS_ASSERT_EQUALS(debug_CaptureContext(context), INFO::OK);
 		const wchar_t* text = debug_BuildErrorMessage(L"dummy", 0,0,0, context, L"m_test_array", &emm);
 		TS_ASSERT(wcslen(text) > 500);
 #if 0

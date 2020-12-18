@@ -54,7 +54,7 @@ class GameRegisterStanza
 	}
 
 	/**
-	 * Send the relevant gamesettings to the lobbybot in a deferred manner.
+	 * Send the relevant game settings to the lobby bot in a deferred manner.
 	 */
 	sendDelayed()
 	{
@@ -68,7 +68,7 @@ class GameRegisterStanza
 	}
 
 	/**
-	 * Send the relevant gamesettings to the lobbybot immediately.
+	 * Send the relevant game settings to the lobby bot immediately.
 	 */
 	sendImmediately()
 	{
@@ -141,6 +141,6 @@ class GameRegisterStanza
 }
 
 /**
- * Send the current gamesettings to the lobby bot if the settings didn't change for this number of milliseconds.
+ * Send the current game settings to the lobby bot if the settings didn't change for this number of milliseconds.
  */
 GameRegisterStanza.prototype.Timeout = 2000;

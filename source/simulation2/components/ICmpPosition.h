@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -183,6 +183,11 @@ public:
 	 * Must not be called unless IsInWorld is true.
 	 */
 	virtual CFixedVector2D GetPreviousPosition2D() const = 0;
+
+	/**
+	 * Returns the turn rate in radians per second.
+	 */
+	virtual fixed GetTurnRate() const = 0;
 
 	/**
 	 * Rotate smoothly to the given angle around the upwards axis.

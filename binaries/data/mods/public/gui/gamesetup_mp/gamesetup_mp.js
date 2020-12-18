@@ -14,7 +14,7 @@ var g_GameType;
 var g_ServerName = "";
 
 /**
- * Cached to pass it to the gamesetup of the controller to report the game to the lobby.
+ * Cached to pass it to the game setup of the controller to report the game to the lobby.
  */
 var g_ServerPort;
 

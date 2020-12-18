@@ -1,5 +1,5 @@
 /**
- * This class is implemented by gamesettings that are controlled by a slider.
+ * This class is implemented by game settings that are controlled by a slider.
  */
 class GameSettingControlSlider extends GameSettingControl
 {

@@ -201,6 +201,46 @@ DeveloperOverlayCheckboxes.prototype.EnableTimeWarp = class
 	}
 };
 
+
+DeveloperOverlayCheckboxes.prototype.ActivateRejoinTest = class
+{
+	constructor()
+	{
+		this.disabled = false;
+	}
+
+	label()
+	{
+		return translate("Activate Rejoin Test");
+	}
+
+	onPress(checked)
+	{
+		let box = new SessionMessageBox();
+		box.Title = "Rejoin Test";
+		box.Caption = "Warning: the rejoin test can't be de-activated and is quite slow. Its only purpose is to check for OOS.";
+		let self = this;
+		box.Buttons = [
+			{ "caption": "Cancel" }, { "caption": "OK", "onPress": () => {
+				Engine.ActivateRejoinTest();
+				this.disabled = true;
+				this.update();
+			} }
+		];
+		box.display();
+	}
+
+	checked()
+	{
+		return this.disabled;
+	}
+
+	enabled()
+	{
+		return !this.disabled && g_GameAttributes.mapType != "random";
+	}
+};
+
 DeveloperOverlayCheckboxes.prototype.PromoteSelectedUnits = class
 {
 	label()

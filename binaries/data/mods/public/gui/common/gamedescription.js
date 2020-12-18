@@ -38,7 +38,7 @@ var g_BuddySymbol = '•';
  * Returns a formatted string describing the player assignments.
  * Needs g_CivData to translate!
  *
- * @param {Object} playerDataArray - As known from gamesetup and simstate.
+ * @param {Object} playerDataArray - As known from game setup and sim state.
  * @param {(string[]|false)} playerStates - One of "won", "defeated", "active" for each player.
  * @returns {string}
  */
@@ -176,7 +176,7 @@ function formatPlayerInfo(playerDataArray, playerStates)
 }
 
 /**
- * Sets an additional map label, map preview image and describes the chosen gamesettings more closely.
+ * Sets an additional map label, map preview image and describes the chosen game settings more closely.
  *
  * Requires g_GameAttributes and g_VictoryConditions.
  */
@@ -411,8 +411,8 @@ function getGameDescription(mapCache)
 	return titles.map(title => sprintf(translate("%(label)s %(details)s"), {
 		"label": coloredText(title.label, g_DescriptionHighlight),
 		"details":
-			title.value === true ? translateWithContext("gamesetup option", "enabled") :
-				title.value || translateWithContext("gamesetup option", "disabled")
+			title.value === true ? translateWithContext("game setup option", "enabled") :
+				title.value || translateWithContext("game setup option", "disabled")
 	})).join("\n");
 }
 

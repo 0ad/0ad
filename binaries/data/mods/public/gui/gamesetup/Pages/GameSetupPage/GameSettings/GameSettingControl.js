@@ -1,5 +1,5 @@
 /**
- * The GameSettingControl is an abstract class that is inherited by gamesetting control classes specific to a GUI object type,
+ * The GameSettingControl is an abstract class that is inherited by game-setting control classes specific to a GUI-object type,
  * such as the GameSettingControlCheckbox or GameSettingControlDropdown.
  *
  * These classes are abstract classes too and are implemented by each handler class specific to one logical setting of g_GameAttributes.
@@ -24,7 +24,7 @@
 class GameSettingControl
 {
 	// The constructor and inherited constructors shall not modify game attributes,
-	// since all GameSettingControl shall be able to subscribe to any gamesetting change.
+	// since all GameSettingControl shall be able to subscribe to any game-setting change.
 	constructor(gameSettingControlManager, category, playerIndex, setupWindow)
 	{
 		// Store arguments

@@ -160,7 +160,7 @@ template<> void ScriptInterface::ToJSVal<CFixedVector3D>(const ScriptRequest& rq
 {
 	JS::RootedObject global(rq.cx, rq.glob);
 	JS::RootedValue valueVector3D(rq.cx);
-	if (!JS_GetProperty(rq.cx, global, "Vector3D", &valueVector3D))
+	if (!ScriptInterface::GetGlobalProperty(rq, "Vector3D", &valueVector3D))
 		FAIL_VOID("Failed to get Vector3D constructor");
 
 	JS::RootedValueArray<3> args(rq.cx);
@@ -196,7 +196,7 @@ template<> void ScriptInterface::ToJSVal<CFixedVector2D>(const ScriptRequest& rq
 {
 	JS::RootedObject global(rq.cx, rq.glob);
 	JS::RootedValue valueVector2D(rq.cx);
-	if (!JS_GetProperty(rq.cx, global, "Vector2D", &valueVector2D))
+	if (!ScriptInterface::GetGlobalProperty(rq, "Vector2D", &valueVector2D))
 		FAIL_VOID("Failed to get Vector2D constructor");
 
 	JS::RootedValueArray<2> args(rq.cx);

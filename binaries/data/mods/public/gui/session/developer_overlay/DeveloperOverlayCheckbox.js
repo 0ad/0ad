@@ -6,6 +6,7 @@ class DeveloperOverlayCheckbox
 	constructor(handler, i)
 	{
 		this.handler = handler;
+		this.handler.update = () => this.update();
 
 		this.label = Engine.GetGUIObjectByName("dev_command_label[" + i + "]");
 		this.label.caption = this.handler.label();
@@ -25,14 +26,15 @@ class DeveloperOverlayCheckbox
 	onPress()
 	{
 		this.handler.onPress(this.checkbox.checked);
-
-		if (this.handler.checked)
-			this.update();
+		this.update();
 	}
 
 	update()
 	{
-		this.checkbox.checked = this.handler.checked();
+		if (this.handler.checked)
+			this.checkbox.checked = this.handler.checked();
+		if (this.handler.enabled)
+			this.checkbox.enabled = this.handler.enabled();
 	}
 
 	setHidden(hidden)

@@ -898,6 +898,14 @@ bool CSimulation2::DeserializeState(std::istream& stream)
 	return m->m_ComponentManager.DeserializeState(stream);
 }
 
+void CSimulation2::ActivateRejoinTest(int turn)
+{
+	if (m->m_RejoinTestTurn != -1)
+		return;
+	LOGMESSAGERENDER("Rejoin test will activate in %i turns", turn - m->m_TurnNumber);
+	m->m_RejoinTestTurn = turn;
+}
+
 std::string CSimulation2::GenerateSchema()
 {
 	return m->m_ComponentManager.GenerateSchema();

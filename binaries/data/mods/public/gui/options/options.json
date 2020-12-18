@@ -79,7 +79,7 @@
 			{
 				"type": "boolean",
 				"label": "Chat timestamp",
-				"tooltip": "Show time that messages are posted in the lobby, gamesetup and ingame chat.",
+				"tooltip": "Display the time at which a chat message was posted.",
 				"config": "chat.timestamp"
 			}
 		]
@@ -104,7 +104,7 @@
 			{
 				"type": "boolean",
 				"label": "Fog",
-				"tooltip": "Enable Fog.",
+				"tooltip": "Enable fog.",
 				"dependencies": ["preferglsl"],
 				"config": "fog"
 			},
@@ -116,17 +116,17 @@
 			},
 			{
 				"type": "dropdown",
-				"label": "Anti-Aliasing",
+				"label": "Antialiasing",
 				"tooltip": "Reduce aliasing effect on edges.",
 				"dependencies": ["postproc", "preferglsl"],
 				"config": "antialiasing",
 				"list": [
-					{ "value": "disabled", "label": "Disabled", "tooltip": "Do not use anti-aliasing." },
-					{ "value": "fxaa", "label": "FXAA", "tooltip": "Fast, but simple anti-aliasing." },
-					{ "value": "msaa2", "label": "MSAA (x2)", "tooltip": "Slow, but high-quality anti-aliasing, uses 2 samples per pixel. Supported for GL3.3+." },
-					{ "value": "msaa4", "label": "MSAA (x4)", "tooltip": "Slow, but high-quality anti-aliasing, uses 4 samples per pixel. Supported for GL3.3+." },
-					{ "value": "msaa8", "label": "MSAA (x8)", "tooltip": "Slow, but high-quality anti-aliasing, uses 8 samples per pixel. Supported for GL3.3+." },
-					{ "value": "msaa16", "label": "MSAA (x16)", "tooltip": "Slow, but high-quality anti-aliasing, uses 16 samples per pixel. Supported for GL3.3+." }
+					{ "value": "disabled", "label": "Disabled", "tooltip": "Do not use antialiasing." },
+					{ "value": "fxaa", "label": "FXAA", "tooltip": "Fast, but simple antialiasing." },
+					{ "value": "msaa2", "label": "MSAA (2×)", "tooltip": "Slow, but high-quality antialiasing, uses two samples per pixel. Supported for GL3.3+." },
+					{ "value": "msaa4", "label": "MSAA (4×)", "tooltip": "Slow, but high-quality antialiasing, uses four samples per pixel. Supported for GL3.3+." },
+					{ "value": "msaa8", "label": "MSAA (8×)", "tooltip": "Slow, but high-quality antialiasing, uses eight samples per pixel. Supported for GL3.3+." },
+					{ "value": "msaa16", "label": "MSAA (16×)", "tooltip": "Slow, but high-quality antialiasing, uses sixteen samples per pixel. Supported for GL3.3+." }
 				]
 			},
 			{
@@ -240,7 +240,7 @@
 			{
 				"type": "boolean",
 				"label": "Smooth vision",
-				"tooltip": "Lift darkness and fog-of-war smoothly.",
+				"tooltip": "Lift darkness and fog of war smoothly.",
 				"config": "smoothlos"
 			},
 			{
@@ -330,7 +330,7 @@
 			},
 			{
 				"type": "boolean",
-				"label": "Game setup - new player notification",
+				"label": "New player notification in game setup",
 				"tooltip": "Receive audio notification when a new client joins the game setup.",
 				"config": "sound.notify.gamesetup.join"
 			}
@@ -436,7 +436,7 @@
 		]
 	},
 	{
-		"label": "In-Game",
+		"label": "Game Session",
 		"tooltip": "Change options regarding the in-game settings.",
 		"options":
 		[
@@ -496,19 +496,19 @@
 			{
 				"type": "boolean",
 				"label": "Attack range visualization",
-				"tooltip": "Display the attack range of selected defensive structures (can also be toggled in-game with the hotkey).",
+				"tooltip": "Display the attack range of selected defensive structures. (It can also be toggled with the hotkey during a game).",
 				"config": "gui.session.attackrange"
 			},
 			{
 				"type": "boolean",
 				"label": "Aura range visualization",
-				"tooltip": "Display the range of auras of selected units and structures (can also be toggled in-game with the hotkey).",
+				"tooltip": "Display the range of auras of selected units and structures. (It can also be toggled with the hotkey during a game).",
 				"config": "gui.session.aurasrange"
 			},
 			{
 				"type": "boolean",
 				"label": "Heal range visualization",
-				"tooltip": "Display the healing range of selected units (can also be toggled in-game with the hotkey).",
+				"tooltip": "Display the healing range of selected units. (It can also be toggled with the hotkey during a game).",
 				"config": "gui.session.healrange"
 			},
 			{
@@ -584,7 +584,7 @@
 			},
 			{
 				"type": "dropdown",
-				"label": "Control Group Membership",
+				"label": "Control group membership",
 				"tooltip": "Decide whether units can be part of multiple control groups.",
 				"config": "gui.session.disjointcontrolgroups",
 				"list": [

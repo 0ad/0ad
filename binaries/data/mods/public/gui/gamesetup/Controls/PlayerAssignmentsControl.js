@@ -85,7 +85,7 @@ class PlayerAssignmentsControl
 	}
 
 	/**
-	 * Called whenever a client joins/leaves or any gamesetting is changed.
+	 * Called whenever a client joins or leaves or any game setting is changed.
 	 */
 	onPlayerAssignmentMessage(message)
 	{

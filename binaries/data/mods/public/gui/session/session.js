@@ -35,7 +35,7 @@ var g_TopPanel;
 var g_TradeDialog;
 
 /**
- * Map, player and match settings set in gamesetup.
+ * Map, player and match settings set in game setup.
  */
 const g_GameAttributes = deepfreeze(Engine.GuiInterfaceCall("GetInitAttributes"));
 

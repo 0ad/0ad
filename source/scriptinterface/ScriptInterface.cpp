@@ -704,6 +704,36 @@ bool ScriptInterface::HasProperty(JS::HandleValue obj, const char* name) const
 	return found;
 }
 
+bool ScriptInterface::GetGlobalProperty(const ScriptRequest& rq, const std::string& name, JS::MutableHandleValue out)
+{
+	// Try to get the object as a property of the global object.
+	JS::RootedObject global(rq.cx, rq.glob);
+	if (!JS_GetProperty(rq.cx, global, name.c_str(), out))
+	{
+		out.set(JS::NullHandleValue);
+		return false;
+	}
+
+	if (!out.isNullOrUndefined())
+		return true;
+
+	// Some objects, such as const definitions, or Class definitions, are hidden inside closures.
+	// We must fetch those from the correct lexical scope.
+	//JS::RootedValue glob(cx);
+	JS::RootedObject lexical_environment(rq.cx, JS_GlobalLexicalEnvironment(rq.glob));
+	if (!JS_GetProperty(rq.cx, lexical_environment, name.c_str(), out))
+	{
+		out.set(JS::NullHandleValue);
+		return false;
+	}
+
+	if (!out.isNullOrUndefined())
+		return true;
+
+	out.set(JS::NullHandleValue);
+	return false;
+}
+
 bool ScriptInterface::EnumeratePropertyNames(JS::HandleValue objVal, bool enumerableOnly, std::vector<std::string>& out) const
 {
 	ScriptRequest rq(this);

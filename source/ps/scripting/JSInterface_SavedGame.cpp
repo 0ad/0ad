@@ -113,6 +113,13 @@ JS::Value JSI_SavedGame::StartSavedGame(ScriptInterface::CmptPrivate* pCmptPriva
 	return guiContextMetadata;
 }
 
+void ActivateRejoinTest(ScriptInterface::CmptPrivate*)
+{
+	if (!g_Game || !g_Game->GetSimulation2() || !g_Game->GetTurnManager())
+		return;
+	g_Game->GetSimulation2()->ActivateRejoinTest(g_Game->GetTurnManager()->GetCurrentTurn() + 1);
+}
+
 void JSI_SavedGame::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
 {
 	scriptInterface.RegisterFunction<JS::Value, &GetSavedGames>("GetSavedGames");
@@ -121,5 +128,6 @@ void JSI_SavedGame::RegisterScriptFunctions(const ScriptInterface& scriptInterfa
 	scriptInterface.RegisterFunction<void, std::wstring, std::wstring, JS::HandleValue, &SaveGamePrefix>("SaveGamePrefix");
 	scriptInterface.RegisterFunction<void, JS::HandleValue, &QuickSave>("QuickSave");
 	scriptInterface.RegisterFunction<void, &QuickLoad>("QuickLoad");
+	scriptInterface.RegisterFunction<void, &ActivateRejoinTest>("ActivateRejoinTest");
 	scriptInterface.RegisterFunction<JS::Value, std::wstring, &StartSavedGame>("StartSavedGame");
 }

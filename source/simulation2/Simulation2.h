@@ -229,6 +229,11 @@ public:
 	bool SerializeState(std::ostream& stream);
 	bool DeserializeState(std::istream& stream);
 
+	/**
+	 * Activate the rejoin-test feature for turn @param turn.
+	 */
+	void ActivateRejoinTest(int turn);
+
 	std::string GenerateSchema();
 
 	/////////////////////////////////////////////////////////////////////////////

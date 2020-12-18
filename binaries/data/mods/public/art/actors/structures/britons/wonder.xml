@@ -1,15 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-  <float/>
+  <castshadow/>
   <group>
-    <variant name="Uffington Horse" frequency="1">
-      <decal width="60" depth="30" angle="0" offsetx="0" offsetz="0"/>
+    <variant frequency="1" name="Briton Wonder">
+      <mesh>structural/brit_wonder.dae</mesh>
+      <animations>
+        <animation event="0.5" load="0.0" name="attack_ranged" speed="100"/>
+      </animations>
+      <props>
+        <prop actor="props/structures/britons/wonder_ground.xml" attachpoint="root"/>
+        <prop actor="props/structures/britons/wonder_roof.xml" attachpoint="root"/>
+        <prop actor="props/structures/britons/wonder_turf.xml" attachpoint="root"/>
+        <prop actor="particle/smoke_light_delay.xml" attachpoint="smoke_01"/>
+        <prop actor="particle/smoke_light_delay.xml" attachpoint="smoke_02"/>
+        <prop actor="particle/flame.xml" attachpoint="flame_01"/>
+        <prop actor="props/units/shields/celt_shield_sq_a_01.xml" attachpoint="shield_01"/>
+        <prop actor="props/units/shields/celt_shield_sq_a_01.xml" attachpoint="shield_02"/>
+        <prop actor="props/units/shields/brit_shield_jav_sq_a_01.xml" attachpoint="shield_03"/>
+        <prop actor="props/units/shields/brit_shield_cav_jav_oval_g_01.xml" attachpoint="shield_04"/>
+        <prop actor="props/special/eyecandy/dead_bull_head.xml" attachpoint="skull_01"/>
+      </props>
       <textures>
-        <texture file="structural/brit_white_horse.png" name="baseTex"/>
-        <texture file="structural/brit_white_horse_norm.png" name="normTex"/>
-        <texture file="structural/brit_white_horse_spec.png" name="specTex"/>
+        <texture file="structural/brit_struct.png" name="baseTex"/>
+        <texture file="structural/celt_struct_norm.png" name="normTex"/>
+        <texture file="structural/celt_struct_spec.png" name="specTex"/>
+        <texture file="structural/ao/brit_wonder.png" name="aoTex"/>
       </textures>
     </variant>
   </group>
-  <material>terrain_norm_spec.xml</material>
+  <group>
+    <variant frequency="1" name="ungarrisoned"/>
+    <variant frequency="0" name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_celt.xml" attachpoint="garrisoned_01"/>
+        <prop actor="props/special/common/garrison_flag_celt.xml" attachpoint="garrisoned_02"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
 </actor>
