@@ -30,7 +30,7 @@ GameSettingControls.PopulationCap = class extends GameSettingControlDropdown
 
 		this.perPlayer =
 			isScenario &&
-			mapData.settings.PlayerData &&
+			mapData && mapData.settings && mapData.settings.PlayerData &&
 			mapData.settings.PlayerData.some(pData => pData && pData.PopulationLimit !== undefined);
 
 		this.setEnabled(!isScenario && !this.perPlayer);
