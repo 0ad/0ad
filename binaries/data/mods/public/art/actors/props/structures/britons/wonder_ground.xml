@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Briton Wonder Ground">
+      <mesh>props/structural/brit_wonder_ground.dae</mesh>
+      <animations>
+        <animation event="0.5" load="0.0" name="attack_ranged" speed="100"/>
+      </animations>
+      <textures>
+        <texture file="props/celt_barracks_decal.png" name="baseTex"/>
+        <texture file="props/celt_barracks_decal_norm.png" name="normTex"/>
+        <texture file="structural/ao/brit_wonder.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_ao_parallax.xml</material>
+</actor>

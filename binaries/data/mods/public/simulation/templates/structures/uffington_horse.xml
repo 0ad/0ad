@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_wonder">
+  <Footprint>
+    <Square width="60.0" depth="30.0"/>
+    <Height>10.0</Height>
+  </Footprint>
+  <GarrisonHolder disable=""/>
+  <Identity>
+    <Civ>brit</Civ>
+    <SpecificName>Uffington White Horse</SpecificName>
+  </Identity>
+  <Obstruction>
+    <Static width="60.0" depth="30.0"/>
+    <BlockMovement>false</BlockMovement>
+    <BlockPathfinding>false</BlockPathfinding>
+  </Obstruction>
+  <ProductionQueue disable=""/>
+  <RallyPoint disable=""/>
+  <StatusBars>
+    <HeightOffset>8.0</HeightOffset>
+  </StatusBars>
+  <VisualActor>
+    <FoundationActor>structures/fndn_stonehenge.xml</FoundationActor>
+    <Actor>structures/britons/uffington_horse.xml</Actor>
+    <SelectionShape>
+      <Footprint/>
+    </SelectionShape>
+  </VisualActor>
+</Entity>

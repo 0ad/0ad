@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Briton Wonder Turf">
+      <mesh>props/structural/brit_wonder_turf.dae</mesh>
+      <textures>
+        <texture file="props/rome_sb_turf.png" name="baseTex"/>
+        <texture file="structural/ao/brit_wonder.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>no_trans_ao.xml</material>
+</actor>

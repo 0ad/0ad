@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <float/>
+  <group>
+    <variant name="Uffington Horse" frequency="1">
+      <decal width="60" depth="30" angle="0" offsetx="0" offsetz="0"/>
+      <textures>
+        <texture file="structural/brit_white_horse.png" name="baseTex"/>
+        <texture file="structural/brit_white_horse_norm.png" name="normTex"/>
+        <texture file="structural/brit_white_horse_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>terrain_norm_spec.xml</material>
+</actor>
