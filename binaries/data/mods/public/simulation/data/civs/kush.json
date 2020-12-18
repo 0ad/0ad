@@ -35,11 +35,6 @@
 				{
 					"Name": "Monumental Architecture",
 					"Description": "Civic Structures +20% build time, +20% health, and +20% capture points."
-				},
-				{
-					"Name": "High Priest of Amun",
-					"History": "Have your priests instructed by the High Priest himself - may Amun bless him.",
-					"Description": "Train elite rank healers."
 				}
 			],
 			"Heroes": [
@@ -121,6 +116,9 @@
 		},
 		{
 			"Template": "units/kush/cavalry_javelineer_b"
+		},
+		{
+			"Template": "units/kush_support_healer_b"
 		}
 	],
 	"WallSets": [

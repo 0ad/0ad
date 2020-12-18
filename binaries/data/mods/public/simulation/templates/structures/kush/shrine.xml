@@ -15,20 +15,7 @@
   <Obstruction>
     <Static width="20" depth="21"/>
   </Obstruction>
-  <ProductionQueue>
-    <Entities datatype="tokens">
-      -units/{civ}/support_healer_b
-      units/kush/support_healer_e
-    </Entities>
-    <Technologies datatype="tokens">
-      -heal_range
-      -heal_range_2
-      -heal_rate
-      -heal_rate_2
-      -heal_temple
-      -health_regen_units
-    </Technologies>
-  </ProductionQueue>
+  <ProductionQueue disable=""/>
   <VisualActor>
     <Actor>structures/kushites/shrine.xml</Actor>
     <FoundationActor>structures/fndn_6x6.xml</FoundationActor>

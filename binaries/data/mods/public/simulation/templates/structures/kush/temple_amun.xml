@@ -7,19 +7,19 @@
     <Category>TempleOfAmun</Category>
   </BuildRestrictions>
   <Cost>
-    <BuildTime>300</BuildTime>
+    <BuildTime op="mul">2</BuildTime>
     <Resources>
-      <stone>500</stone>
+      <stone op="mul">2</stone>
     </Resources>
   </Cost>
   <Footprint>
     <Square width="32.0" depth="62.0"/>
   </Footprint>
   <GarrisonHolder>
-    <Max>30</Max>
+    <Max op="mul">2</Max>
   </GarrisonHolder>
   <Health>
-    <Max>3000</Max>
+    <Max op="mul">2</Max>
     <SpawnEntityOnDeath>decay|rubble/rubble_stone_6x6</SpawnEntityOnDeath>
   </Health>
   <Identity>
@@ -32,7 +32,7 @@
     <RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>
   <Loot>
-    <stone>100</stone>
+    <stone op="mul">2</stone>
   </Loot>
   <Obstruction>
     <Static width="28" depth="56.0"/>
@@ -42,12 +42,14 @@
   </Population>
   <ProductionQueue>
     <Entities datatype="tokens">
+      -units/{civ}_support_healer_b
+      units/{civ}_support_healer_e
       units/{civ}/champion_infantry_amun
     </Entities>
-    <Technologies datatype="tokens">
-      kushites/upgrade_rank_elite_healer
-    </Technologies>
   </ProductionQueue>
+  <TerritoryInfluence>
+    <Radius op="mul">2</Radius>
+  </TerritoryInfluence>
   <VisualActor>
     <Actor>structures/kushites/temple_amun.xml</Actor>
     <FoundationActor>structures/fndn_9x9.xml</FoundationActor>
