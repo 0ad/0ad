@@ -654,6 +654,8 @@ function multiplyEntityCosts(template, trainNum)
  */
 function getEntityCostComponentsTooltipString(template, entity, buildingsCountToTrainFullBatch = 1, fullBatchSize = 1, remainderBatch = 0)
 {
+	if (!template.cost)
+		return [];
 	let totalCosts = multiplyEntityCosts(template, buildingsCountToTrainFullBatch * fullBatchSize + remainderBatch);
 	if (template.cost.time)
 		totalCosts.time = Math.ceil(template.cost.time * (entity ? Engine.GuiInterfaceCall("GetBatchTime", {
