@@ -10,6 +10,11 @@ UnitMotionFlying.prototype.Schema =
 	"<element name='TakeoffSpeed'>" +
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>" +
+	"<optional>" +
+		"<element name='StationaryDistance' a:help='Allows the object to be stationary when reaching a target. Value defines the maximum distance at which a target is considered reached.'>" +
+			"<ref name='positiveDecimal'/>" +
+		"</element>" +
+	"</optional>" +
 	"<element name='LandingSpeed'>" +
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>" +
@@ -72,6 +77,7 @@ UnitMotionFlying.prototype.OnUpdate = function(msg)
 	let ground = Math.max(cmpTerrain.GetGroundLevel(pos.x, pos.z), cmpWaterManager.GetWaterLevel(pos.x, pos.z));
 	let newangle = angle;
 	let canTurn = true;
+	let distanceToTargetSquared = Math.euclidDistance2DSquared(pos.x, pos.z, this.targetX, this.targetZ);
 	if (this.landing)
 	{
 		if (this.speed > 0 && this.onGround)
@@ -119,6 +125,7 @@ UnitMotionFlying.prototype.OnUpdate = function(msg)
 						pos.x = mapRadius + x*div;
 						pos.z = mapRadius + z*div;
 						newangle += Math.PI;
+						distanceToTargetSquared = Math.euclidDistance2DSquared(pos.x, pos.z, this.targetX, this.targetZ);
 					}
 				}
 				else
@@ -126,6 +133,7 @@ UnitMotionFlying.prototype.OnUpdate = function(msg)
 					pos.x = Math.max(Math.min(pos.x, terrainSize - 12), 12);
 					pos.z = Math.max(Math.min(pos.z, terrainSize - 12), 12);
 					newangle += Math.PI;
+					distanceToTargetSquared = Math.euclidDistance2DSquared(pos.x, pos.z, this.targetX, this.targetZ);
 				}
 			}
 		}
@@ -156,6 +164,16 @@ UnitMotionFlying.prototype.OnUpdate = function(msg)
 	}
 	else
 	{
+		if (this.template.StationaryDistance && distanceToTargetSquared <= +this.template.StationaryDistance * +this.template.StationaryDistance)
+		{
+			cmpPosition.SetXZRotation(0, 0);
+			this.pitch = 0;
+			this.roll = 0;
+			this.reachedTarget = true;
+			cmpPosition.TurnTo(Math.atan2(this.targetX - pos.x, this.targetZ - pos.z));
+			Engine.PostMessage(this.entity, MT_MotionUpdate, { "updateString": "likelySuccess" });
+			return;
+		}
 		// If we haven't reached max speed yet then we're still on the ground;
 		// otherwise we're taking off or flying.
 		// this.onGround in case of a go-around after landing (but not fully stopped).
@@ -199,8 +217,9 @@ UnitMotionFlying.prototype.OnUpdate = function(msg)
 
 	// If we're in range of the target then tell people that we've reached it.
 	// (TODO: quantisation breaks this)
-	let distFromTarget = Math.euclidDistance2D(pos.x, pos.z, this.targetX, this.targetZ);
-	if (!this.reachedTarget && this.targetMinRange <= distFromTarget && distFromTarget <= this.targetMaxRange)
+	if (!this.reachedTarget &&
+		this.targetMinRange * this.targetMinRange <= distanceToTargetSquared &&
+		distanceToTargetSquared <= this.targetMaxRange * this.targetMaxRange)
 	{
 		this.reachedTarget = true;
 		Engine.PostMessage(this.entity, MT_MotionUpdate, { "updateString": "likelySuccess" });
@@ -210,7 +229,7 @@ UnitMotionFlying.prototype.OnUpdate = function(msg)
 	// then carry on going straight so we overshoot in a straight line.
 	let isBehindTarget = ((this.targetX - pos.x) * Math.sin(angle) + (this.targetZ - pos.z) * Math.cos(angle) < 0);
 	// Overshoot the target: carry on straight.
-	if (isBehindTarget && distFromTarget < this.template.MaxSpeed * this.template.OvershootTime)
+	if (isBehindTarget && distanceToTargetSquared < this.template.MaxSpeed * this.template.MaxSpeed * this.template.OvershootTime * this.template.OvershootTime)
 		canTurn = false;
 
 	if (canTurn)

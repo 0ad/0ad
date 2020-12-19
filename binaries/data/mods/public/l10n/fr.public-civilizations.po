@@ -15,6 +15,7 @@
 # Calinou, 2013
 # Cyril Mercier, 2018
 # Thibaut Cuvelier <dourouc05@gmail.com>, 2014
+# Eric Poiteaux <ericpoiteaux@hotmail.fr>, 2020
 # François Magimel, 2018-2019
 # François O, 2019
 # François Poirotte <clicky@erebot.net>, 2014,2016
@@ -65,8 +66,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2020-12-06 14:54+0000\n"
-"Last-Translator: Manu Nadiras <enadiras@gmail.com>\n"
+"PO-Revision-Date: 2020-12-17 17:24+0000\n"
+"Last-Translator: Eric Poiteaux <ericpoiteaux@hotmail.fr>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1167,13 +1168,13 @@ msgstr "Africains koushites"
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[0].Description
 msgid ""
 "Archers −10% training time, +8 attack range, and −10% ranged attack spread."
-msgstr ""
+msgstr "Archers, Temps entraînement -10%, +8 att \net portée, mais -10%vitesse d'attaque\n"
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[0].History
 msgid ""
 "The Kushites had a tradition of fine archery and a penchant for using massed"
 " archers in battle."
-msgstr ""
+msgstr "Les Kushites avaient une tradition d'archerie de qualité \net une tendance à les utiliser en masse durant les batailles"
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Name
 #: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
@@ -1184,11 +1185,11 @@ msgstr "Tradition d'archerie"
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Description
 msgid ""
 "Civic Structures +20% build time, +20% health, and +20% capture points."
-msgstr ""
+msgstr "Bâtiments Civils +20% vitesse de construction, +20% santé\net +20% points de capture"
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Name
 msgid "Monumental Architecture"
-msgstr "Monument d'architecture"
+msgstr "Architecture Monumentale"
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[2].Description
 msgid "Train elite rank healers."
@@ -1220,7 +1221,7 @@ msgid ""
 "Meroitic kingdom was known as Aethiopia. The Kushite kingdom persisted until"
 " the 4th century AD, when it weakened and disintegrated due to internal "
 "rebellion, eventually succumbing to the rising power of Axum."
-msgstr "Le royaume de Kush était un ancien royaume africain situé sur les confluences du Nil Bleu, du Nil Blanc et de la rivière Atbara dans ce qui est maintenant la République du Soudan. L'ère koushite de la domination dans la région a été établie après l'effondrement de l'âge du bronze du Nouveau Royaume d'Égypte, et elle était centrée à Napata dans . Ils ont envahi l'Egypte au 8ème siècle avant JC, et les empereurs Koushites ont régné en tant que pharaons de la vingt-cinquième dynastie d'Egypte pendant un siècle, jusqu'à ce qu'ils soient expulsés par les Assyriens. La culture Koushite a été fortement influencée par les Égyptiens, avec la construction de pyramides Koushite et l'extension de l'architecture monumentale des temples. Les Koushites adoraient même de nombreux dieux égyptiens, y compris Amon. Au cours de l'antiquité classique, la capitale impériale Koushite était situé à Méroé. En Grèce, le royaume méroïtique était connu sous le nom de Aethiopia. Le royaume Koushite a persisté jusqu'au 4ème siècle après JC, jusqu’à ce qu'il s'affaiblisse et se désintégre en raison d'une rébellion interne, succombant finalement à la montée en puissance d'Axum."
+msgstr "Le royaume de Kush était un ancien royaume africain situé sur les confluences du Nil Bleu, du Nil Blanc et de la rivière Atbara dans ce qui est maintenant la République du Soudan. L'ère de la domination koushite dans la région s'est établie après l'effondrement de l'âge du bronze du Nouveau Royaume d'Égypte,  lors de son commencement elle était centrée à Napata. Après quoi, ils ont envahi l'Egypte au 8ème siècle avant JC, et les empereurs Koushites y ont régné en tant que pharaons de la vingt-cinquième dynastie d'Egypte pendant un siècle, jusqu'à ce qu'ils en soient expulsés par les Assyriens. La culture Koushite a été fortement influencée par les Égyptiens, avec la construction de pyramides Koushite et l'extension de l'architecture monumentale des temples. Les Koushites adoraient même de nombreux dieux égyptiens, y compris Amon. Au cours de l'antiquité classique, la capitale impériale Koushite était situé à Méroé. En Grèce, le royaume méroïtique était connu sous le nom de Aethiopia. Le royaume Koushite a persisté jusqu'au 4ème siècle après JC, jusqu’à ce qu'il s'affaiblisse et se désintègre en raison d'une rébellion interne, succombant finalement à la montée en puissance du royaume d'Axum."
 
 #: simulation/data/civs/kush.jsonName
 msgid "Kushites"
@@ -2527,7 +2528,7 @@ msgid ""
 "unobstructed path. Finding the enemy at his rear, Leonidas sent home most of"
 " his troops, choosing to stay behind with 300 hand-picked hoplites and win "
 "time for the others to withdraw."
-msgstr "Le roi de Sparte, qui a combattu et est mort pendant la bataille des Thermopyles en 480 avant J.C. Il bloqua avec succès la route de l'énorme armée Perse à travers ce passage étroit avec l'aide de ses 7 000 hommes, jusqu'à ce que Xerxès eut connaissance d'un passage secret sans embûche. Contourné par son adversaire, Léonidas renvoya chez eux la plupart de ses hommes et choisit de rester avec 300 de ses meilleurs hoplites pour faire gagner du temps aux autres de se retirer. "
+msgstr "C'est le roi de Sparte qui a combattu et est mort durant la bataille des Thermopyles en 480 avant J.C. Il réussi à bloquer l'étroit passage à l'énorme armée Perse avec l'aide de ses 7 000 hommes, jusqu'à ce que Xerxès eut connaissance d'un passage secret sans embûche. Contourné par son adversaire, Léonidas renvoya chez eux la plupart de ses hommes et choisit de rester avec 300 de ses meilleurs hoplites pour faire gagner du temps aux autres lors de leur retraite. "
 
 #: simulation/data/civs/spart.jsonFactions[0].Heroes[0].Name
 msgid "Leonidas I"
@@ -2556,7 +2557,7 @@ msgid ""
 " the Battle of Megalopolis, the Macedonians prevailed in a long and bloody "
 "battle. Much like Leonidas 150 years earlier, instead of surrendering, Agis "
 "made a heroic final stand in order to buy time for his troops to retreat."
-msgstr "Agis III était le 20ème roi de Sparte de la dynastie des Eurypontides. Agis concocta une alliance des états de la Grèce du sud pour combattre l'hégémonie macédonienne lorsqu'Alexandre le Grand se trouvait en Asie pour ses conquêtes. Après avoir sécurisé la Crète comme un tributaire de Sparte, Agis assiégea ensuite la cité de Megalopolis dans le Péloponnèse, qui était un allié des Macédoniens. Antipater, le régent de Macédoine, y conduisit une armée pour arrêter ce nouveau soulèvement. Lors de la bataille de Megalopolis, les Macédoniens s'attendaient à une longue et sanglante bataille. Comme Léonidas 150 ans plus tôt, au lieu de se rendre, Agis s'opposa héroïquement dans un dernier combat afin de laisser du temps à ses troupes pour qu'elles battent en retraite."
+msgstr "Agis III était le 20ème roi de Sparte de la dynastie des Eurypontides. Agis concocta une alliance des états du Sud de la Grèce pour combattre l'hégémonie macédonienne lorsqu'Alexandre le Grand se trouvait en Asie pour ses conquêtes. Après avoir sécurisé la Crète comme tributaire de Sparte, Agis assiégea ensuite la cité de Megalopolis dans le Péloponnèse, qui était un allié des Macédoniens. Antipater, le régent de Macédoine, y conduisit une armée pour arrêter ce nouveau soulèvement. Lors de la bataille de Megalopolis, les Macédoniens s'attendaient à une longue et sanglante bataille. Comme Léonidas 150 ans plus tôt, au lieu de se rendre, Agis s'opposa héroïquement dans un dernier combat afin de laisser du temps à ses troupes pour battre en retraite."
 
 #: simulation/data/civs/spart.jsonFactions[0].Heroes[2].Name
 msgid "Agis III"
@@ -2566,7 +2567,7 @@ msgstr "Agis III"
 msgid ""
 "Spartan female citizens cannot be captured and will doggedly fight back "
 "against any attackers."
-msgstr "Les citoyennes Spartiates étaient difficilement capturables et se battaient ardemment contre leurs assaillants."
+msgstr "Les Citoyennes de Sparte ne peuvent pas être capturées et se battront vigoureusement contre tout assaillant."
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[0].History
 msgid ""
@@ -2577,11 +2578,11 @@ msgid ""
 "lost battle against Pyrrhus of Epirus they overnight built an earthen "
 "rampart to protect the city while their men slept in preparation for the "
 "next day's siege."
-msgstr "Les femmes de Sparte étaient parmi celles qui avaient le plus de droit dans l'Antiquité. Elles pouvaient être propriétaires terriens, avoir des esclaves et même travailler nues comme les hommes spartiates. On disait que seules les femmes spartiates pouvaient donner naissance à de vrais hommes. Ces dures à cuire ont sauvé plus d'une fois leur cité du désastre, par exemple après une bataille perdue contre Pyrrhus d'Épire, elles ont construit pendant la nuit des remparts en terre pendant que leurs hommes dormaient afin de se préparer pour le siège du lendemain. "
+msgstr "Les femmes de Sparte étaient parmi celles qui avaient le plus de droit dans l'Antiquité. Elles pouvaient être propriétaires terriens, avoir des esclaves et même s'entraîner nues comme les hommes. On disait que seules spartiates pouvaient donner naissance à de vrais hommes. Ces dures à cuire ont sauvé plus d'une fois leur cité du désastre, comme après une bataille perdue contre Pyrrhus d'Épire, où elles ont construit pendant la nuit des remparts en terre pendant que les hommes dormaient afin de se préparer pour le siège du lendemain. "
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[0].Name
 msgid "Feminine Mystique"
-msgstr "Mystique féminine"
+msgstr "Mystique "
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[1].Description
 msgid "Units in phalanx formation move faster."
@@ -2600,13 +2601,13 @@ msgstr "Péans de Tyrtée"
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[2].Description
 msgid "Champion Infantry Spearmen +25% health, but +5% training time."
-msgstr ""
+msgstr "Lancier d'infanterie Champion, Santé +25%, mais +5% temps d'entraînement "
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[2].History
 msgid ""
 "Spartans were housed and trained from a young age to be superlative warriors"
 " and to endure any hardship a military life can give them."
-msgstr "Les Spartiates sont abrités et formés dès leur plus jeune âge à être des guerriers hors normes et à supporter n'importe quelle épreuve qu'une vie militaire peut leur apporter."
+msgstr "Les Spartiates étaient élevés dès leur plus jeune âge à être des guerriers hors normes et à supporter n'importe quelle épreuve qu'une vie militaire pouvait leur faire endurer."
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[2].Name
 msgid "The Agoge"
@@ -2620,7 +2621,7 @@ msgid ""
 " at age seven. Thanks to its military might, Sparta led a coalition of Greek"
 " forces during the Greco-Persian Wars, and won over Athens in the "
 "Peloponnesian Wars, though at great cost."
-msgstr "Sparte était une cité-État de premier plan dans la Grèce antique, et sa puissance militaire dominait sur le terrain vers 650 ans avant J.C. La culture spartiate était obsédée par l'excellence et la formation militaire, avec une formation rigoureuse pour les garçons dès l'âge de sept ans. Grâce à sa puissance militaire, Sparte a dirigé la coalition des forces grecques pendant les Guerres gréco-perses, et vaincu Athènes pendant les guerres du Péloponnèse, même si ce fut au prix d'un lourd tribu."
+msgstr "Sparte était une cité-État de premier plan dans la Grèce antique, et sa puissance militaire dominait sur le terrain vers 650 ans avant J.C. La culture spartiate était obsédée par l'excellence et la formation militaire, avec une formation rigoureuse pour les garçons dès l'âge de sept ans. Grâce à sa puissance militaire, Sparte a dirigé la coalition des forces grecques pendant les Guerres gréco-perses, et vaincu Athènes pendant les guerres du Péloponnèse, même si ce fut au prix d'un lourd tribut."
 
 #: simulation/data/civs/spart.jsonFactions[0].Name
 #: simulation/data/civs/spart.jsonName
@@ -2639,7 +2640,7 @@ msgstr "Syssition"
 
 #: simulation/data/civs/spart.jsonStructures[1].Special
 msgid "Train heroes and Spartiates and research technologies related to them."
-msgstr "Former des héros et des Spartiates. Rechercher les technologies associées."
+msgstr "Forme des Spartiates, leurs héros et leurs technologies."
 
 #: simulation/data/civs/spart.jsonTeamBonuses[0].Description
 msgid "Allied Citizen Infantry Spearmen +10% health."

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2019-11-22 15:16+0000\n"
-"Last-Translator: ప్రవీణ్ ఇళ్ళ <mail2ipn@gmail.com>\n"
+"PO-Revision-Date: 2020-12-16 14:10+0000\n"
+"Last-Translator: Jagadeesh Vijay Varma B\n"
 "Language-Team: Telugu (http://www.transifex.com/wildfire-games/0ad/language/te/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -270,7 +270,7 @@ msgstr ""
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageFormat.js:25
 #, javascript-format
 msgid "== %(message)s"
-msgstr ""
+msgstr "== %(message)s"
 
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageEvents.js:55
 msgid "Connected."
@@ -294,7 +294,7 @@ msgstr ""
 #: gui/lobby/LobbyPage/Chat/TimestampWrapper.js:25
 #, javascript-format
 msgid "%(time)s %(message)s"
-msgstr ""
+msgstr "%(times)s %(messages)s"
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it in the
@@ -302,7 +302,7 @@ msgstr ""
 #: gui/lobby/LobbyPage/Chat/TimestampWrapper.js:28
 #, javascript-format
 msgid "\\[%(time)s]"
-msgstr ""
+msgstr "\\[%time)s]"
 
 #: gui/lobby/LobbyPage/ConnectionHandler.js:45
 msgid "BANNED"
@@ -518,7 +518,7 @@ msgstr ""
 
 #: gui/lobby/LobbyPage/ProfilePanel.js:113
 msgid "Player"
-msgstr ""
+msgstr "ఆటగాడు"
 
 #: gui/lobby/LobbyPage/ProfilePanel.js:114
 msgid "Muted Player"
@@ -532,7 +532,7 @@ msgstr ""
 #: gui/lobby/LobbyPage/ProfilePanel.js:122
 #, javascript-format
 msgid "%(percentage)s%%"
-msgstr ""
+msgstr "%(percentage)s %%"
 
 #: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):8
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):30
@@ -942,7 +942,7 @@ msgstr ""
 msgid ""
 "Requests that are manifestly unfounded or excessive are not responded to or "
 "may be charged (GDPR 12.4, GDPR 12.5)."
-msgstr ""
+msgstr "స్పష్టంగా ఆధారం లేని లేదా అధికంగా ఉన్న అభ్యర్థనలకు స్పందించబడదు లేదా వసూలు చేయబడవచ్చు (జిడిపిఆర్ 12.4, GDPస్పష్టంగా ఆధారం లేని లేదా అధికంగా ఉన్న అభ్యర్థనలకు స్పందించబడదు లేదా వసూలు చేయబడవచ్చు (GDPR 12.4, జిడిపిఆర్ 12.5).R 12.5)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:65
 msgid "[font=\"sans-bold-16\"]Wildfire Games obligations:[/font]"
@@ -965,7 +965,7 @@ msgstr ""
 msgid ""
 " 3. Wildfire Games processes personal data lawfully, fairly and "
 "transparently (GDPR 5.1.a, GDPR 12.1)."
-msgstr ""
+msgstr "3. వైల్డ్‌ఫైర్ గేమ్స్ వ్యక్తిగత డేటాను చట్టబద్ధంగా, న్యాయంగా మరియు పారదర్శకంగా ప్రాసెస్ చేస్తుంది (జిడిపిఆర్ 5.1.ఎ,జిడిపిఆర్ 12.1)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:69
 msgid ""
@@ -1008,13 +1008,13 @@ msgid ""
 "erase personal data and the right to restrict, to withdraw consent to, to "
 "object to personal data processing and to complain at a supervisory "
 "authority (GDPR 13.2.b, GDPR 13.2.c, GDPR 13.2.d)."
-msgstr ""
+msgstr "9. వైల్డ్‌ఫైర్ గేమ్స్ వినియోగదారులకు వారి ప్రాప్యత, సరిదిద్దడానికి, వ్యక్తిగత డేటాను చెరిపేయడానికి మరియు పరిమితం చేసే హక్కును, సమ్మతిని ఉపసంహరించుకోవటానికి, వ్యక్తిగత డేటా ప్రాసెసింగ్‌కు అభ్యంతరం చెప్పడానికి మరియు పర్యవేక్షక అధికారం వద్ద ఫిర్యాదు చేయడానికి తెలియజేస్తుంది (జిడిపిఆర్ 13.2.బి, జిడిపిఆర్ 13.2.సి, జిడిపిఆర్ 13.2.డి)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:75
 msgid ""
 "10. Wildfire Games facilitates the exercise of user rights where possible "
 "(GDPR 12.2), without undue delay (GDPR 12.3)."
-msgstr ""
+msgstr "10. వైల్డ్‌ఫైర్ గేమ్స్ అనవసరమైన ఆలస్యం లేకుండా (జిడిపిఆర్ 12.2) వినియోగదారు హక్కులను సాధ్యమైన చోట (జిడిపిఆర్ 12.2) ఉపయోగించుకునేలా చేస్తుంది."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:76
 msgid ""
@@ -1046,7 +1046,7 @@ msgstr ""
 msgid ""
 "For further information on Wildfire Games Privacy Policies, visit "
 "https://trac.wildfiregames.com/wiki/UserDataProtection"
-msgstr ""
+msgstr "వైల్డ్‌ఫైర్ ఆటల గోప్యతా విధానాలపై మరింత సమాచారం కోసం, సందర్శించండి\nhttps://trac.wildfiregames.com/wiki/UserDataProtection"
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:1
 msgid ""
@@ -1134,7 +1134,7 @@ msgstr ""
 msgid ""
 "If parts of the terms are held to be illegal or otherwise unenforceable, the"
 " remainder of the terms shall still apply ('severability')."
-msgstr ""
+msgstr "నిబంధనల యొక్క భాగాలు చట్టవిరుద్ధమైనవి లేదా అమలు చేయలేనివిగా ఉంటే, మిగిలిన నిబంధనలు ఇప్పటికీ వర్తిస్తాయి ('వేరుచేయడం')."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:1
 msgid ""

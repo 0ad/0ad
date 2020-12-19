@@ -8,7 +8,7 @@ class GameSettingsControl
 	{
 		this.startGameControl = startGameControl;
 		this.mapCache = mapCache;
-		this.gameSettingsFile = new GameSettingsFile(setupWindow);
+		this.gameSettingsFile = new GameSettingsFile(this);
 
 		this.previousMap = undefined;
 		this.depth = 0;
@@ -27,6 +27,8 @@ class GameSettingsControl
 		setupWindow.registerGetHotloadDataHandler(this.onGetHotloadData.bind(this));
 
 		startGameControl.registerLaunchGameHandler(this.onLaunchGame.bind(this));
+
+		setupWindow.registerClosePageHandler(this.onClose.bind(this));
 
 		if (g_IsNetworked)
 			netMessages.registerNetMessageHandler("gamesetup", this.onGamesetupMessage.bind(this));
@@ -134,6 +136,12 @@ class GameSettingsControl
 		}
 	}
 
+	onClose()
+	{
+		if (!this.autostart)
+			this.gameSettingsFile.saveFile();
+	}
+
 	onGetHotloadData(object)
 	{
 		object.gameAttributes = g_GameAttributes;
@@ -183,9 +191,18 @@ class GameSettingsControl
 		if (g_GameAttributes.map && this.previousMap != g_GameAttributes.map && g_GameAttributes.mapType)
 		{
 			this.previousMap = g_GameAttributes.map;
-			let mapData = this.mapCache.getMapData(g_GameAttributes.mapType, g_GameAttributes.map);
-			for (let handler of this.mapChangeHandlers)
-				handler(mapData);
+			// Use a try..catch to avoid completely failing in case of an error
+			// as this prevents even going back to the main menu.
+			try
+			{
+				let mapData = this.mapCache.getMapData(g_GameAttributes.mapType, g_GameAttributes.map);
+				for (let handler of this.mapChangeHandlers)
+					handler(mapData);
+			} catch(err) {
+				// Report the error regardless so that the underlying bug gets fixed.
+				error(err);
+				error(err.stack);
+			}
 		}
 
 		for (let handler of this.gameAttributesChangeHandlers)

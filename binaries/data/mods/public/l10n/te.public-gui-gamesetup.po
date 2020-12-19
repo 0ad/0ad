@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
+# Jagadeesh Vijay Varma B, 2020
 # జయంత్ వర్మ బెల్లపుకొండ <jayanthvarma.b@gmail.com>, 2017
 # ప్రవీణ్ ఇళ్ళ <mail2ipn@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2020-07-24 12:17+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-12-16 14:14+0000\n"
+"Last-Translator: Jagadeesh Vijay Varma B\n"
 "Language-Team: Telugu (http://www.transifex.com/wildfire-games/0ad/language/te/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,7 +25,7 @@ msgstr "అప్రమేయం"
 
 #: gui/gamesetup/Controls/MapFilters.js:86
 msgid "All maps except naval and demo maps."
-msgstr ""
+msgstr "నావల్ మరియు డెమో పటాలు మినహా అన్ని పటాలు."
 
 #: gui/gamesetup/Controls/MapFilters.js:91
 msgid "Naval Maps"
@@ -32,7 +33,7 @@ msgstr "నావికా పటాలు"
 
 #: gui/gamesetup/Controls/MapFilters.js:92
 msgid "Maps where ships are needed to reach the enemy."
-msgstr ""
+msgstr "శత్రువులను చేరుకోవడానికి ఓడలు అవసరమయ్యే పటాలు."
 
 #: gui/gamesetup/Controls/MapFilters.js:97
 msgid "Demo Maps"
@@ -40,7 +41,7 @@ msgstr "ఉదాహరణా పటాలు"
 
 #: gui/gamesetup/Controls/MapFilters.js:98
 msgid "These maps are not playable but for demonstration purposes only."
-msgstr ""
+msgstr "ఈ పటాలు ఆడలేనివి కాని ప్రదర్శన ప్రయోజనాల కోసం మాత్రమే."
 
 #: gui/gamesetup/Controls/MapFilters.js:103
 msgid "New Maps"
@@ -48,15 +49,15 @@ msgstr "కొత్త పటాలు"
 
 #: gui/gamesetup/Controls/MapFilters.js:104
 msgid "Maps that are brand new in this release of the game."
-msgstr ""
+msgstr "ఆట యొక్క ఈ విడుదలలో సరికొత్తగా ఉన్న పటాలు."
 
 #: gui/gamesetup/Controls/MapFilters.js:109
 msgid "Trigger Maps"
-msgstr ""
+msgstr "పటాలును ట్రిగ్గర్ చేయండి"
 
 #: gui/gamesetup/Controls/MapFilters.js:110
 msgid "Maps that come with scripted events and potentially spawn enemy units."
-msgstr ""
+msgstr "స్క్రిప్ట్ చేసిన సంఘటనలు మరియు శత్రు యూనిట్లతో సంభావ్యంగా వచ్చే పటాలు."
 
 #: gui/gamesetup/Controls/MapFilters.js:115
 msgid "All Maps"
@@ -64,11 +65,11 @@ msgstr "అన్ని పటాలు"
 
 #: gui/gamesetup/Controls/MapFilters.js:116
 msgid "Every map of the chosen maptype."
-msgstr ""
+msgstr "ఎంచుకున్న పటం రకం యొక్క ప్రతి పటం."
 
 #: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):13
 msgid "AI Configuration"
-msgstr ""
+msgstr "ఎఐ ఆకృతీకరణ"
 
 #: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):29
 msgid "OK"
@@ -76,15 +77,15 @@ msgstr "సరే"
 
 #: gui/gamesetup/Pages/AIConfigPage/AIDescription.js:37
 msgid "AI will be disabled for this player."
-msgstr ""
+msgstr "ఈ ఆటగాడి కోసం ఎఐ నిలిపివేయబడుతుంది."
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIBehavior.js:95
 msgid "AI Behavior"
-msgstr ""
+msgstr "ఎఐ ప్రవర్తన"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIDifficulty.js:89
 msgid "AI Difficulty"
-msgstr ""
+msgstr "ఎఐ కష్టం"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AISelection.js:86
 msgctxt "ai"
@@ -93,13 +94,13 @@ msgstr "ఏదీకాదు"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AISelection.js:91
 msgid "AI Player"
-msgstr ""
+msgstr "ఎఐ ఆటగాడు"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingControl.js:172
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
-msgstr ""
+msgstr "%(setting)s:"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingControlCheckbox.js:57
 msgid "Yes"
@@ -118,22 +119,22 @@ msgstr "తెలియదు"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:7
 msgctxt "Match settings tab name"
 msgid "Map"
-msgstr ""
+msgstr "పటం"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:26
 msgctxt "Match settings tab name"
 msgid "Player"
-msgstr ""
+msgstr "ఆటగాడు"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:38
 msgctxt "Match settings tab name"
 msgid "Game Type"
-msgstr ""
+msgstr "ఆట రకం"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/AIConfigButton.js:32
 #, javascript-format
 msgid "Configure AI: %(description)s."
-msgstr ""
+msgstr "ఎఐను ఆకృతీకరించు: %(description)s."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:153
 msgid "Select player."
@@ -146,11 +147,11 @@ msgstr "AI: %(ai)s"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:265
 msgid "Unassigned"
-msgstr ""
+msgstr "కేటాయించబడలేదు"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:131
 msgid "Choose the civilization for this player."
-msgstr ""
+msgstr "ఈ ఆటగాడి కోసం నాగరికతను ఎంచుకోండి."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:134
 msgctxt "civilization"
@@ -159,15 +160,15 @@ msgstr "యాదృచ్ఛికం"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:140
 msgid "Picks one civilization at random when the game starts."
-msgstr ""
+msgstr "ఆట ప్రారంభమైనప్పుడు యాదృచ్ఛికంగా ఒక నాగరికతను ఎంచుకుంటుంది."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerColor.js:172
 msgid "Pick a color."
-msgstr ""
+msgstr "రంగును ఎంచుకోండి."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerTeam.js:73
 msgid "Select player's team."
-msgstr ""
+msgstr "ఆటగాడి జట్టును ఎంచుకోండి."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerTeam.js:76
 msgctxt "team"
@@ -185,15 +186,15 @@ msgstr "ఆటగాడి పేరు"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):10
 msgid "Color"
-msgstr ""
+msgstr "రంగు"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):14
 msgid "Player Placement"
-msgstr ""
+msgstr "ఆటగాడి ప్లేస్‌మెంట్"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):18
 msgid "Civilization"
-msgstr ""
+msgstr "నాగరికత"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):25
 msgid "Team"
@@ -201,18 +202,18 @@ msgstr "జట్టు"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:40
 msgid "Cheats"
-msgstr ""
+msgstr "చీట్స్"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:43
 msgid "Toggle the usability of cheats."
-msgstr ""
+msgstr "చీట్స్ యొక్క వినియోగాన్ని టోగుల్ చేయండి."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map
 #. settings!
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/ExploredMap.js:55
 msgid "Explored Map"
-msgstr ""
+msgstr "అన్వేషించిన మ్యాప్"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map
@@ -223,7 +224,7 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:59
 msgid "Last Man Standing"
-msgstr ""
+msgstr "చివర నిలపడిన వ్యక్తి"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:62
 msgid ""
@@ -233,15 +234,15 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:53
 msgid "Teams Locked"
-msgstr ""
+msgstr "జట్లు లాక్ చేయబడ్డయి"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:56
 msgid "Toggle locked teams."
-msgstr ""
+msgstr "లాక్ చేసిన జట్లను టోగుల్ చేయండి."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Nomad.js:61
 msgid "Nomad"
-msgstr ""
+msgstr "నోమాడ్"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Nomad.js:64
 msgid ""
@@ -259,7 +260,7 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:62
 msgid "Hero Garrison"
-msgstr ""
+msgstr "రక్షక దళం వీరుడు"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:65
 msgid "Toggle whether heroes can be garrisoned."
@@ -281,15 +282,15 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Spies.js:43
 msgid "Disable Spies"
-msgstr ""
+msgstr "గూడచారులను నిలిపివేయండి"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Spies.js:46
 msgid "Disable spies during the game."
-msgstr ""
+msgstr "ఆట సమయంలో గూడచారులను నిలిపివేయండి."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js:43
 msgid "Disable Treasures"
-msgstr ""
+msgstr "నిధులను నిలిపివేయండి"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js:46
 msgid "Do not add treasures to the map."
@@ -297,7 +298,7 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:49
 msgid "World population"
-msgstr ""
+msgstr "ప్రపంచ జనాభా"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:52
 msgid ""
@@ -311,7 +312,7 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:134
 msgid "Select the flora and fauna."
-msgstr ""
+msgstr "వృక్షజాలం మరియు జంతుజాలం ఎంచుకోండి."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:137
 msgctxt "biome"
@@ -324,11 +325,11 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:101
 msgid "Daytime"
-msgstr ""
+msgstr "పగటిపూట"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:104
 msgid "Select whether the match takes place at daylight or night."
-msgstr ""
+msgstr "ఆట పగటిపూట లేదా రాత్రిపూట జరగాలో ఎంచుకోండి."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:107
 msgctxt "daytime selection"
@@ -342,7 +343,7 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:75
 msgid "Game Speed"
-msgstr ""
+msgstr "ఆట వేగం"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:78
 msgid "Select game speed."
@@ -350,7 +351,7 @@ msgstr "ఆట వేగాన్ని ఎంచుకోండి"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:138
 msgid "Landscape"
-msgstr ""
+msgstr "ప్రకృతి దృశ్యం"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:141
 msgid "Select one of the landscapes of this map."
@@ -446,7 +447,7 @@ msgstr ""
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:98
 msgctxt "population limit"
 msgid "Per Player"
-msgstr ""
+msgstr "ప్రతి ఆటగాడు"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:101
 #, javascript-format
@@ -461,17 +462,17 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:85
 msgid "Select the game's starting resources."
-msgstr ""
+msgstr "ఆట ప్రారంభ వనరులను ఎంచుకోండి."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:88
 #, javascript-format
 msgid "Initial amount of each resource: %(resources)s."
-msgstr ""
+msgstr "ప్రతి వనరు యొక్క ప్రారంభ మొత్తం: %(resources)s."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:91
 msgctxt "starting resources"
 msgid "Per Player"
-msgstr ""
+msgstr "ప్రతి ఆటగాడు"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:91
 msgid "Team Placement"
@@ -523,7 +524,7 @@ msgstr ""
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:120
 msgctxt "team placement"
 msgid "Stronghold"
-msgstr ""
+msgstr "బలమైన"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:121
 msgid "Allied players are grouped in one random place of the map."
@@ -539,11 +540,11 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:77
 msgid "World Population Cap"
-msgstr ""
+msgstr "ప్రపంచ జనాభా పరిమితి"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:80
 msgid "Select world population limit."
-msgstr ""
+msgstr "ప్రపంచ జనాభా పరిమితిని ఎంచుకోండి."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:83
 #, javascript-format
@@ -554,16 +555,16 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:62
 msgid "Ceasefire"
-msgstr ""
+msgstr "కాల్పుల విరమణ"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:65
 msgid "Set time where no attacks are possible."
-msgstr ""
+msgstr "దాడులు సాధ్యం కాని సమయాన్ని సెట్ చేయండి."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:68
 msgctxt "ceasefire"
 msgid "No ceasefire"
-msgstr ""
+msgstr "కాల్పుల విరమణ లేదు"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:71
 #, javascript-format
@@ -575,7 +576,7 @@ msgstr[1] ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:87
 msgid "Relic Count"
-msgstr ""
+msgstr "అవశిష్టా లెక్కింపు"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:90
 #, javascript-format
@@ -593,7 +594,7 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:87
 msgid "Relic Duration"
-msgstr ""
+msgstr "అవశిష్ట వ్యవధి"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:90
 msgid "Minutes until the player has achieved Relic Victory."
@@ -612,15 +613,15 @@ msgstr[1] ""
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:100
 msgctxt "victory duration"
 msgid "Immediate Victory."
-msgstr ""
+msgstr "తక్షణ విజయం."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:73
 msgid "Sea Level Rise Time"
-msgstr ""
+msgstr "సముద్ర మట్టం పెరుగుదల సమయం"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:76
 msgid "Set the time when the water will start to rise."
-msgstr ""
+msgstr "నీరు పెరగడం ప్రారంభమయ్యే సమయాన్ని సెట్ చేయండి."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:79
 #, javascript-format
@@ -632,7 +633,7 @@ msgstr[1] ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:88
 msgid "Wonder Duration"
-msgstr ""
+msgstr "వండర్ వ్యవధి"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:91
 msgid "Minutes until the player has achieved Wonder Victory"
@@ -659,7 +660,7 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/LobbyButton.js:19
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr ""
+msgstr "డైలాగ్ విండోలో మల్టీప్లేయర్ లాబీని చూపించు."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:79
 msgid "I'm ready"
@@ -679,7 +680,7 @@ msgstr "మీరు ఆడుటకు సిద్ధమే అని వా�
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:86
 msgid "Stay ready even when the game settings change."
-msgstr ""
+msgstr "ఆట సెట్టింగులు మారినప్పుడు కూడా సిద్ధంగా ఉండండి."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:87
 msgid "State that you are not ready to play."
@@ -692,15 +693,15 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ResetTeamsButton.js:35
 msgid "Reset all teams to the default."
-msgstr ""
+msgstr "అన్ని జట్లను డిఫాల్ట్‌కి రీసెట్ చేయండి."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/StartGameButton.js:65
 msgid "Start Game!"
-msgstr ""
+msgstr "ఆట ప్రారంభించండి!"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/StartGameButton.js:68
 msgid "Start a new game with the current settings."
-msgstr ""
+msgstr "ప్రస్తుత సెట్టింగ్‌లతో క్రొత్త ఆటను ప్రారంభించండి."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/StartGameButton.js:71
 msgid ""
@@ -768,17 +769,17 @@ msgstr "పంపు"
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/StatusMessageFormat.js:24
 #, javascript-format
 msgid "== %(message)s"
-msgstr ""
+msgstr "== %(message)s"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/TimestampWrapper.js:25
 #, javascript-format
 msgid "%(time)s %(message)s"
-msgstr ""
+msgstr "%(time)s %(message)s"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/TimestampWrapper.js:28
 #, javascript-format
 msgid "\\[%(time)s]"
-msgstr ""
+msgstr "\\[%(time)s]"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/TimestampWrapper.js:31
 msgid "HH:mm"
@@ -809,7 +810,7 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/TipsPanel.xml:(caption):9
 msgid "Show this message in the future."
-msgstr ""
+msgstr "భవిష్యత్తులో ఈ సందేశాన్ని చూపించు."
 
 #: gui/gamesetup/Pages/LoadingPage/LoadingPage.xml:(caption):7
 msgid "Loading"
@@ -821,7 +822,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:(caption):12
 msgid "Match Setup"
-msgstr ""
+msgstr "మ్యాచ్ సెటప్"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:55
 #, javascript-format
@@ -830,7 +831,7 @@ msgstr "%(name)s's ఆట"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:114
 msgid "Please enter a valid server name."
-msgstr ""
+msgstr "దయచేసి చెల్లుబాటు అయ్యే సర్వర్ పేరును నమోదు చేయండి."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:121
 #, javascript-format
@@ -844,28 +845,28 @@ msgstr "సేవకానికి అనుసంధానమవుతూం�
 #: gui/gamesetup_mp/gamesetup_mp.js:157
 #, javascript-format
 msgid "Net message: %(message)s"
-msgstr ""
+msgstr "నికర సందేశం: %(message)s"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:223
 msgid "Registering with server..."
-msgstr ""
+msgstr "సర్వర్‌తో నమోదు అవుతోంది ..."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:229
 msgid "Game has already started, rejoining..."
-msgstr ""
+msgstr "ఆట ఇప్పటికే ప్రారంభమైంది, మలీ చేరుతుంది..."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:300
 msgid "Game name already in use."
-msgstr ""
+msgstr "ఆట పేరు ఇప్పటికే వాడుకలో ఉంది."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:310
 msgid "Failed to host via STUN."
-msgstr ""
+msgstr "స్టన్ ద్వారా హోస్ట్ చేయడంలో విఫలమైంది."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:324
 #, javascript-format
 msgid "Cannot host game: %(message)s."
-msgstr ""
+msgstr "ఆటను హోస్ట్ చేయలేరు: %(message)s."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:325 gui/gamesetup_mp/gamesetup_mp.js:354
 msgid "Error"
@@ -874,12 +875,12 @@ msgstr "దోషం"
 #: gui/gamesetup_mp/gamesetup_mp.js:353
 #, javascript-format
 msgid "Cannot join game: %(message)s."
-msgstr ""
+msgstr "ఆటలో చేరలేరు: %(message)s."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:375
 #, javascript-format
 msgid "%(playername)s's game"
-msgstr ""
+msgstr "%(playername)s's ఆట"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):18
 msgid "Multiplayer"
@@ -887,33 +888,33 @@ msgstr "బహుళఆటగాళ్ళు"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):24
 msgid "Joining an existing game."
-msgstr ""
+msgstr "ఇప్పటికే ఉన్న ఆటలోకి చేరుతుంది."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):28
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):70
 msgid "Player Name:"
-msgstr ""
+msgstr "ఆటగాడి పేరు:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):38
 msgid "Server Hostname or IP:"
-msgstr ""
+msgstr "సర్వర్ హోస్ట్ పేరు లేదా ఐపి:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):48
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):95
 msgid "Server Port:"
-msgstr ""
+msgstr "సర్వర్ పోర్ట్:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):65
 msgid "Set up your server to host."
-msgstr ""
+msgstr "హోస్ట్ చేయడానికి మీ సర్వర్‌ను సెటప్ చేయండి."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):83
 msgid "Server Name:"
-msgstr ""
+msgstr "సర్వర్ పేరు:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):114
 msgid "Use STUN to work around firewalls"
-msgstr ""
+msgstr "ఫైర్‌వాల్‌ల చుట్టూ పనిచేయడానికి స్టన్ ఉపయోగించండి"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):122
 msgid "Continue"
@@ -926,13 +927,13 @@ msgstr "రద్దుచేయి"
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):52
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):99
 msgid "Leave blank to use the default port."
-msgstr ""
+msgstr "డిఫాల్ట్ పోర్ట్‌ను ఉపయోగించడానికి ఖాళీగా ఉంచండి."
 
 #: gui/loading/ProgressBar.js:48
 #, javascript-format
 msgctxt "loading screen progress"
 msgid "%(percentage)s%%"
-msgstr ""
+msgstr "%(percentage)s %%"
 
 #. Translation: A bullet point used before every item of list of tips
 #. displayed on loading
@@ -940,12 +941,12 @@ msgstr ""
 #: gui/loading/TipDisplay.js:52
 #, javascript-format
 msgid "• %(tiptext)s"
-msgstr ""
+msgstr "%(tiptext)s"
 
 #: gui/loading/TitleDisplay.js:15
 #, javascript-format
 msgid "Generating “%(map)s”"
-msgstr ""
+msgstr "రూపొందిస్తోంది \"%(map)s\""
 
 #: gui/loading/TitleDisplay.js:17
 #, javascript-format
