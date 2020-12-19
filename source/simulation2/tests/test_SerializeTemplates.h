@@ -20,11 +20,12 @@
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/helpers/Grid.h"
 #include "simulation2/serialization/DebugSerializer.h"
-#include "simulation2/serialization/SerializeTemplates.h"
 
 #include <set>
 #include <sstream>
 #include <vector>
+
+#include "simulation2/serialization/SerializedTypes.h"
 
 class TestSerializeTemplates : public CxxTest::TestSuite
 {
@@ -38,7 +39,7 @@ public:
 		std::array<u32, 6> value = {
 			3, 0, 1, 4, 1, 5
 		};
-		SerializeArray<SerializeU32_Unbounded>()(serialize, "E", value);
+		Serializer(serialize, "E", value);
 		TS_ASSERT_STR_EQUALS(stream.str(), "E: 3\nE: 0\nE: 1\nE: 4\nE: 1\nE: 5\n");
 	}
 
@@ -51,7 +52,7 @@ public:
 		std::vector<u32> value = {
 			3, 0, 1, 4, 1, 5
 		};
-		SerializeVector<SerializeU32_Unbounded>()(serialize, "E", value);
+		Serializer(serialize, "E", value);
 		TS_ASSERT_STR_EQUALS(stream.str(), "length: 6\nE: 3\nE: 0\nE: 1\nE: 4\nE: 1\nE: 5\n");
 	}
 
@@ -64,7 +65,7 @@ public:
 		std::set<u32> value = {
 			3, 0, 1, 4, 1, 5
 		};
-		SerializeSet<SerializeU32_Unbounded>()(serialize, "E", value);
+		Serializer(serialize, "E", value);
 		TS_ASSERT_STR_EQUALS(stream.str(), "size: 5\nE: 0\nE: 1\nE: 3\nE: 4\nE: 5\n");
 	}
 
@@ -81,7 +82,7 @@ public:
 			for (u8 i = 0; i < value.width(); ++i)
 				value.set(i, j, ((i % 2) + (j % 2)) % 2);
 
-		SerializedGridCompressed<SerializeU16_Unbounded>()(serialize, "E", value);
+		Serializer(serialize, "E", value);
 		TS_ASSERT_STR_EQUALS(stream.str(), "width: 3\nheight: 2\n"
 							 "#: 1\nE: 0\n#: 1\nE: 1\n#: 1\nE: 0\n"
 							 "#: 1\nE: 1\n#: 1\nE: 0\n#: 1\nE: 1\n");

@@ -36,6 +36,7 @@
 #include "simulation2/helpers/MapEdgeTiles.h"
 #include "simulation2/helpers/Render.h"
 #include "simulation2/helpers/Spatial.h"
+#include "simulation2/serialization/SerializedTypes.h"
 
 #include "graphics/Overlay.h"
 #include "graphics/Terrain.h"
@@ -237,10 +238,11 @@ cassert(sizeof(EntityData) == 24);
 /**
  * Serialization helper template for Query
  */
-struct SerializeQuery
+template<>
+struct SerializeHelper<Query>
 {
 	template<typename S>
-	void Common(S& serialize, const char* UNUSED(name), Query& value)
+	void Common(S& serialize, const char* UNUSED(name), Serialize::qualify<S, Query> value)
 	{
 		serialize.Bool("enabled", value.enabled);
 		serialize.Bool("parabolic",value.parabolic);
@@ -249,7 +251,7 @@ struct SerializeQuery
 		serialize.NumberFixed_Unbounded("elevation bonus", value.elevationBonus);
 		serialize.NumberU32_Unbounded("owners mask", value.ownersMask);
 		serialize.NumberI32_Unbounded("interface", value.interface);
-		SerializeVector<SerializeU32_Unbounded>()(serialize, "last match", value.lastMatch);
+		Serializer(serialize, "last match", value.lastMatch);
 		serialize.NumberU8_Unbounded("flagsMask", value.flagsMask);
 	}
 
@@ -276,10 +278,11 @@ struct SerializeQuery
 /**
  * Serialization helper template for EntityData
  */
-struct SerializeEntityData
+template<>
+struct SerializeHelper<EntityData>
 {
 	template<typename S>
-	void operator()(S& serialize, const char* UNUSED(name), EntityData& value)
+	void operator()(S& serialize, const char* UNUSED(name), Serialize::qualify<S, EntityData> value)
 	{
 		serialize.NumberFixed_Unbounded("x", value.x);
 		serialize.NumberFixed_Unbounded("z", value.z);
@@ -455,25 +458,25 @@ public:
 		serialize.NumberFixed_Unbounded("world z1", m_WorldZ1);
 
 		serialize.NumberU32_Unbounded("query next", m_QueryNext);
-		SerializeMap<SerializeU32_Unbounded, SerializeQuery>()(serialize, "queries", m_Queries, GetSimContext());
-		SerializeEntityMap<SerializeEntityData>()(serialize, "entity data", m_EntityData);
+		Serializer(serialize, "queries", m_Queries, GetSimContext());
+		Serializer(serialize, "entity data", m_EntityData);
 
-		SerializeArray<SerializeBool>()(serialize, "los reveal all", m_LosRevealAll);
+		Serializer(serialize, "los reveal all", m_LosRevealAll);
 		serialize.Bool("los circular", m_LosCircular);
 		serialize.NumberI32_Unbounded("terrain verts per side", m_TerrainVerticesPerSide);
 
 		serialize.Bool("global visibility update", m_GlobalVisibilityUpdate);
-		SerializeArray<SerializeBool>()(serialize, "global player visibility update", m_GlobalPlayerVisibilityUpdate);
-		SerializedGridCompressed<SerializeU16_Unbounded>()(serialize, "dirty visibility", m_DirtyVisibility);
-		SerializeVector<SerializeU32_Unbounded>()(serialize, "modified entities", m_ModifiedEntities);
+		Serializer(serialize, "global player visibility update", m_GlobalPlayerVisibilityUpdate);
+		Serializer(serialize, "dirty visibility", m_DirtyVisibility);
+		Serializer(serialize, "modified entities", m_ModifiedEntities);
 
 		// We don't serialize m_Subdivision, m_LosPlayerCounts or m_LosTiles
 		// since they can be recomputed from the entity data when deserializing;
 		// m_LosState must be serialized since it depends on the history of exploration
 
-		SerializedGridCompressed<SerializeU32_Unbounded>()(serialize, "los state", m_LosState);
-		SerializeArray<SerializeU32_Unbounded>()(serialize, "shared los masks", m_SharedLosMasks);
-		SerializeArray<SerializeU16_Unbounded>()(serialize, "shared dirty visibility masks", m_SharedDirtyVisibilityMasks);
+		Serializer(serialize, "los state", m_LosState);
+		Serializer(serialize, "shared los masks", m_SharedLosMasks);
+		Serializer(serialize, "shared dirty visibility masks", m_SharedDirtyVisibilityMasks);
 	}
 
 	virtual void Serialize(ISerializer& serialize)

@@ -19,6 +19,8 @@
 
 #include "Entity.h"
 
+#include "simulation2/serialization/SerializeTemplates.h"
+
 /**
  * A fast replacement for map<entity_id_t, T>.
  * We make the following assumptions:
@@ -241,19 +243,18 @@ fill_gaps:
 	}
 };
 
-template<class VSerializer>
-struct SerializeEntityMap
+template<typename T>
+struct SerializeHelper<EntityMap<T>>
 {
-	template<class V>
-	void operator()(ISerializer& serialize, const char* UNUSED(name), EntityMap<V>& value)
+	void operator()(ISerializer& serialize, const char* UNUSED(name), EntityMap<T>& value)
 	{
 		size_t len = value.size();
 		serialize.NumberU32_Unbounded("length", (u32)len);
 		size_t count = 0;
-		for (typename EntityMap<V>::iterator it = value.begin(); it != value.end(); ++it)
+		for (typename EntityMap<T>::iterator it = value.begin(); it != value.end(); ++it)
 		{
 			serialize.NumberU32_Unbounded("key", it->first);
-			VSerializer()(serialize, "value", it->second);
+			Serializer(serialize, "value", it->second);
 			count++;
 		}
 		// test to see if the entityMap count wasn't wrong
@@ -261,8 +262,7 @@ struct SerializeEntityMap
 		ENSURE(count == len);
 	}
 
-	template<class V>
-	void operator()(IDeserializer& deserialize, const char* UNUSED(name), EntityMap<V>& value)
+	void operator()(IDeserializer& deserialize, const char* UNUSED(name), EntityMap<T>& value)
 	{
 		value.clear();
 		uint32_t len;
@@ -270,9 +270,9 @@ struct SerializeEntityMap
 		for (size_t i = 0; i < len; ++i)
 		{
 			entity_id_t k;
-			V v;
+			T v;
 			deserialize.NumberU32_Unbounded("key", k);
-			VSerializer()(deserialize, "value", v);
+			Serializer(deserialize, "value", v);
 			value.insert(k, v);
 		}
 	}

@@ -63,7 +63,7 @@ class SpatialSubdivision
 	uint32_t m_DivisionsW;
 	uint32_t m_DivisionsH;
 
-	friend struct SerializeSpatialSubdivision;
+	friend struct SerializeHelper<SpatialSubdivision>;
 
 public:
 	SpatialSubdivision() : m_Divisions(NULL), m_DivisionsW(0), m_DivisionsH(0)
@@ -316,7 +316,8 @@ private:
 /**
  * Serialization helper template for SpatialSubdivision
  */
-struct SerializeSpatialSubdivision
+template<>
+struct SerializeHelper<SpatialSubdivision>
 {
 	void operator()(ISerializer& serialize, const char* UNUSED(name), SpatialSubdivision& value)
 	{
@@ -326,7 +327,7 @@ struct SerializeSpatialSubdivision
 
 		size_t count = value.m_DivisionsH * value.m_DivisionsW;
 		for (size_t i = 0; i < count; ++i)
-			SerializeVector<SerializeU32_Unbounded>()(serialize, "subdiv items", value.m_Divisions[i].items);
+			Serializer(serialize, "subdiv items", value.m_Divisions[i].items);
 	}
 
 	void operator()(IDeserializer& serialize, const char* UNUSED(name), SpatialSubdivision& value)
@@ -338,7 +339,7 @@ struct SerializeSpatialSubdivision
 		size_t count = value.m_DivisionsW * value.m_DivisionsH;
 		value.Create(count);
 		for (size_t i = 0; i < count; ++i)
-			SerializeVector<SerializeU32_Unbounded>()(serialize, "subdiv items", value.m_Divisions[i].items);
+			Serializer(serialize, "subdiv items", value.m_Divisions[i].items);
 	}
 };
 

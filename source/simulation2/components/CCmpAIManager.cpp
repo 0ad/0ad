@@ -42,9 +42,9 @@
 #include "simulation2/helpers/HierarchicalPathfinder.h"
 #include "simulation2/helpers/LongPathfinder.h"
 #include "simulation2/serialization/DebugSerializer.h"
+#include "simulation2/serialization/SerializedTypes.h"
 #include "simulation2/serialization/StdDeserializer.h"
 #include "simulation2/serialization/StdSerializer.h"
-#include "simulation2/serialization/SerializeTemplates.h"
 
 extern void QuitEngine();
 
@@ -705,8 +705,8 @@ public:
 		}
 
 		// AI pathfinder
-		SerializeMap<SerializeString, SerializeU16_Unbounded>()(serializer, "non pathfinding pass classes", m_NonPathfindingPassClasses);
-		SerializeMap<SerializeString, SerializeU16_Unbounded>()(serializer, "pathfinding pass classes", m_PathfindingPassClasses);
+		Serializer(serializer, "non pathfinding pass classes", m_NonPathfindingPassClasses);
+		Serializer(serializer, "pathfinding pass classes", m_PathfindingPassClasses);
 		serializer.NumberU16_Unbounded("pathfinder grid w", m_PassabilityMap.m_W);
 		serializer.NumberU16_Unbounded("pathfinder grid h", m_PassabilityMap.m_H);
 		serializer.RawBytes("pathfinder grid data", (const u8*)m_PassabilityMap.m_Data,
@@ -790,8 +790,8 @@ public:
 		}
 
 		// AI pathfinder
-		SerializeMap<SerializeString, SerializeU16_Unbounded>()(deserializer, "non pathfinding pass classes", m_NonPathfindingPassClasses);
-		SerializeMap<SerializeString, SerializeU16_Unbounded>()(deserializer, "pathfinding pass classes", m_PathfindingPassClasses);
+		Serializer(deserializer, "non pathfinding pass classes", m_NonPathfindingPassClasses);
+		Serializer(deserializer, "pathfinding pass classes", m_PathfindingPassClasses);
 		u16 mapW, mapH;
 		deserializer.NumberU16_Unbounded("pathfinder grid w", mapW);
 		deserializer.NumberU16_Unbounded("pathfinder grid h", mapH);

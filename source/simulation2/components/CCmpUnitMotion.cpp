@@ -31,7 +31,8 @@
 #include "simulation2/helpers/Geometry.h"
 #include "simulation2/helpers/Render.h"
 #include "simulation2/MessageTypes.h"
-#include "simulation2/serialization/SerializeTemplates.h"
+#include "simulation2/serialization/SerializedPathfinder.h"
+#include "simulation2/serialization/SerializedTypes.h"
 
 #include "graphics/Overlay.h"
 #include "graphics/Terrain.h"
@@ -261,12 +262,12 @@ public:
 		serialize.StringASCII("pass class", m_PassClassName, 0, 64);
 
 		serialize.NumberU32_Unbounded("ticket", m_ExpectedPathTicket.m_Ticket);
-		SerializeU8_Enum<Ticket::Type, Ticket::Type::LONG_PATH>()(serialize, "ticket type", m_ExpectedPathTicket.m_Type);
+		Serializer(serialize, "ticket type", m_ExpectedPathTicket.m_Type, Ticket::Type::LONG_PATH);
 
 		serialize.NumberU8_Unbounded("failed path computations", m_FailedPathComputations);
 		serialize.NumberU8_Unbounded("followknownimperfectpath", m_FollowKnownImperfectPathCountdown);
 
-		SerializeU8_Enum<MoveRequest::Type, MoveRequest::Type::OFFSET>()(serialize, "target type", m_MoveRequest.m_Type);
+		Serializer(serialize, "target type", m_MoveRequest.m_Type, MoveRequest::Type::OFFSET);
 		serialize.NumberU32_Unbounded("target entity", m_MoveRequest.m_Entity);
 		serialize.NumberFixed_Unbounded("target pos x", m_MoveRequest.m_Position.X);
 		serialize.NumberFixed_Unbounded("target pos y", m_MoveRequest.m_Position.Y);
@@ -279,8 +280,8 @@ public:
 
 		serialize.Bool("facePointAfterMove", m_FacePointAfterMove);
 
-		SerializeVector<SerializeWaypoint>()(serialize, "long path", m_LongPath.m_Waypoints);
-		SerializeVector<SerializeWaypoint>()(serialize, "short path", m_ShortPath.m_Waypoints);
+		Serializer(serialize, "long path", m_LongPath.m_Waypoints);
+		Serializer(serialize, "short path", m_ShortPath.m_Waypoints);
 	}
 
 	virtual void Serialize(ISerializer& serialize)
