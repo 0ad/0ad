@@ -292,6 +292,74 @@ experiments.multiple_resources = {
 	}
 };
 
+
+/**
+ * The unit is, from the long pathfinder's perspective,
+ * stuck inside, and also can't reach the goal.
+ * However, the vertex pathfinder should be able to find a way out, then a way in.
+ */
+experiments.locked_within = {
+	"spawn": () => {
+		QuickSpawn(gx + 10, gy + 7, SMALL_STRUCTURE_TEMPLATE);
+		QuickSpawn(gx - 10, gy + 7, SMALL_STRUCTURE_TEMPLATE);
+		QuickSpawn(gx, gy, SMALL_STRUCTURE_TEMPLATE);
+
+		QuickSpawn(gx + 8, gy + 20, SMALL_STRUCTURE_TEMPLATE);
+		QuickSpawn(gx - 8, gy + 20, SMALL_STRUCTURE_TEMPLATE);
+		QuickSpawn(gx + 8, gy + 30, SMALL_STRUCTURE_TEMPLATE);
+		QuickSpawn(gx - 8, gy + 30, SMALL_STRUCTURE_TEMPLATE);
+		QuickSpawn(gx + 8, gy + 40, SMALL_STRUCTURE_TEMPLATE);
+		QuickSpawn(gx - 8, gy + 40, SMALL_STRUCTURE_TEMPLATE);
+
+		QuickSpawn(gx + 10, gy + 93, SMALL_STRUCTURE_TEMPLATE);
+		QuickSpawn(gx - 10, gy + 93, SMALL_STRUCTURE_TEMPLATE);
+		QuickSpawn(gx, gy + 100, SMALL_STRUCTURE_TEMPLATE);
+		QuickSpawn(gx + 8, gy + 80, SMALL_STRUCTURE_TEMPLATE);
+		QuickSpawn(gx - 8, gy + 80, SMALL_STRUCTURE_TEMPLATE);
+
+		WalkTo(gx, gy + 90, QuickSpawn(gx, gy + 10, UNIT_TEMPLATE));
+	}
+};
+
+
+/**
+ * The long-pathfinder finds a direct path, but it's blocked by units.
+ * so the short-pathfinder has to backtrack.
+ */
+experiments.need_to_backtrack = {
+	"spawn": () => {
+		gx += 50;
+		QuickSpawn(gx + 10, gy + 60, SMALL_STRUCTURE_TEMPLATE);
+		QuickSpawn(gx - 10, gy + 60, SMALL_STRUCTURE_TEMPLATE);
+		QuickSpawn(gx + 20, gy + 50, SMALL_STRUCTURE_TEMPLATE);
+		QuickSpawn(gx - 20, gy + 50, SMALL_STRUCTURE_TEMPLATE);
+		QuickSpawn(gx + 30, gy + 40, SMALL_STRUCTURE_TEMPLATE);
+		QuickSpawn(gx - 30, gy + 40, SMALL_STRUCTURE_TEMPLATE);
+		for (let i = -4; i <= 4; ++i)
+			QuickSpawn(gx + i, gy + 65, UNIT_TEMPLATE);
+
+		WalkTo(gx, gy + 90, QuickSpawn(gx, gy + 10, UNIT_TEMPLATE));
+	}
+};
+
+
+/**
+ * Regression test for #5795
+ * Before the fix, the units were pathing to the bottom-right dead-end,
+ * before going back through the corridor.
+ * After the fix, that should mostly not happen: units should just wait.
+ * (note that it's not an entirely perfect fix, but it should just be a few units, not half)
+ */
+experiments.small_exit_of_hill = {
+	"spawn": () => {
+		let x = 350;
+		let y = 615;
+		for (let i = -5; i <= 5; i += 1)
+			for (let j = -5; j <= 5; j += 1)
+				WalkTo(350, 500, QuickSpawn(x + i, y + j, UNIT_TEMPLATE));
+	}
+};
+
 var cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
 
 Trigger.prototype.SetupUnits = function()
