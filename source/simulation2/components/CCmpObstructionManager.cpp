@@ -29,7 +29,7 @@
 #include "simulation2/helpers/Rasterize.h"
 #include "simulation2/helpers/Render.h"
 #include "simulation2/helpers/Spatial.h"
-#include "simulation2/serialization/SerializeTemplates.h"
+#include "simulation2/serialization/SerializedTypes.h"
 
 #include "graphics/Overlay.h"
 #include "graphics/Terrain.h"
@@ -77,10 +77,11 @@ struct StaticShape
 /**
  * Serialization helper template for UnitShape
  */
-struct SerializeUnitShape
+template<>
+struct SerializeHelper<UnitShape>
 {
 	template<typename S>
-	void operator()(S& serialize, const char* UNUSED(name), UnitShape& value) const
+	void operator()(S& serialize, const char* UNUSED(name), Serialize::qualify<S, UnitShape> value) const
 	{
 		serialize.NumberU32_Unbounded("entity", value.entity);
 		serialize.NumberFixed_Unbounded("x", value.x);
@@ -94,10 +95,11 @@ struct SerializeUnitShape
 /**
  * Serialization helper template for StaticShape
  */
-struct SerializeStaticShape
+template<>
+struct SerializeHelper<StaticShape>
 {
 	template<typename S>
-	void operator()(S& serialize, const char* UNUSED(name), StaticShape& value) const
+	void operator()(S& serialize, const char* UNUSED(name), Serialize::qualify<S, StaticShape> value) const
 	{
 		serialize.NumberU32_Unbounded("entity", value.entity);
 		serialize.NumberFixed_Unbounded("x", value.x);
@@ -180,13 +182,13 @@ public:
 	template<typename S>
 	void SerializeCommon(S& serialize)
 	{
-		SerializeSpatialSubdivision()(serialize, "unit subdiv", m_UnitSubdivision);
-		SerializeSpatialSubdivision()(serialize, "static subdiv", m_StaticSubdivision);
+		Serializer(serialize, "unit subdiv", m_UnitSubdivision);
+		Serializer(serialize, "static subdiv", m_StaticSubdivision);
 
 		serialize.NumberFixed_Unbounded("max clearance", m_MaxClearance);
 
-		SerializeMap<SerializeU32_Unbounded, SerializeUnitShape>()(serialize, "unit shapes", m_UnitShapes);
-		SerializeMap<SerializeU32_Unbounded, SerializeStaticShape>()(serialize, "static shapes", m_StaticShapes);
+		Serializer(serialize, "unit shapes", m_UnitShapes);
+		Serializer(serialize, "static shapes", m_StaticShapes);
 		serialize.NumberU32_Unbounded("unit shape next", m_UnitShapeNext);
 		serialize.NumberU32_Unbounded("static shape next", m_StaticShapeNext);
 

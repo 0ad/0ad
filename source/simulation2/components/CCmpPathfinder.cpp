@@ -24,11 +24,6 @@
 
 #include "CCmpPathfinder_Common.h"
 
-#include "ps/CLogger.h"
-#include "ps/CStr.h"
-#include "ps/Profile.h"
-#include "ps/XML/Xeromyces.h"
-#include "renderer/Scene.h"
 #include "simulation2/MessageTypes.h"
 #include "simulation2/components/ICmpObstruction.h"
 #include "simulation2/components/ICmpObstructionManager.h"
@@ -39,7 +34,14 @@
 #include "simulation2/helpers/MapEdgeTiles.h"
 #include "simulation2/helpers/Rasterize.h"
 #include "simulation2/helpers/VertexPathfinder.h"
-#include "simulation2/serialization/SerializeTemplates.h"
+#include "simulation2/serialization/SerializedPathfinder.h"
+#include "simulation2/serialization/SerializedTypes.h"
+
+#include "ps/CLogger.h"
+#include "ps/CStr.h"
+#include "ps/Profile.h"
+#include "ps/XML/Xeromyces.h"
+#include "renderer/Scene.h"
 
 REGISTER_COMPONENT_TYPE(Pathfinder)
 
@@ -113,31 +115,33 @@ void CCmpPathfinder::Deinit()
 	SAFE_DELETE(m_TerrainOnlyGrid);
 }
 
-struct SerializeLongRequest
+template<>
+struct SerializeHelper<LongPathRequest>
 {
 	template<typename S>
-	void operator()(S& serialize, const char* UNUSED(name), LongPathRequest& value)
+	void operator()(S& serialize, const char* UNUSED(name), Serialize::qualify<S, LongPathRequest> value)
 	{
 		serialize.NumberU32_Unbounded("ticket", value.ticket);
 		serialize.NumberFixed_Unbounded("x0", value.x0);
 		serialize.NumberFixed_Unbounded("z0", value.z0);
-		SerializeGoal()(serialize, "goal", value.goal);
+		Serializer(serialize, "goal", value.goal);
 		serialize.NumberU16_Unbounded("pass class", value.passClass);
 		serialize.NumberU32_Unbounded("notify", value.notify);
 	}
 };
 
-struct SerializeShortRequest
+template<>
+struct SerializeHelper<ShortPathRequest>
 {
 	template<typename S>
-	void operator()(S& serialize, const char* UNUSED(name), ShortPathRequest& value)
+	void operator()(S& serialize, const char* UNUSED(name), Serialize::qualify<S, ShortPathRequest> value)
 	{
 		serialize.NumberU32_Unbounded("ticket", value.ticket);
 		serialize.NumberFixed_Unbounded("x0", value.x0);
 		serialize.NumberFixed_Unbounded("z0", value.z0);
 		serialize.NumberFixed_Unbounded("clearance", value.clearance);
 		serialize.NumberFixed_Unbounded("range", value.range);
-		SerializeGoal()(serialize, "goal", value.goal);
+		Serializer(serialize, "goal", value.goal);
 		serialize.NumberU16_Unbounded("pass class", value.passClass);
 		serialize.Bool("avoid moving units", value.avoidMovingUnits);
 		serialize.NumberU32_Unbounded("group", value.group);
@@ -148,8 +152,8 @@ struct SerializeShortRequest
 template<typename S>
 void CCmpPathfinder::SerializeCommon(S& serialize)
 {
-	SerializeVector<SerializeLongRequest>()(serialize, "long requests", m_LongPathRequests);
-	SerializeVector<SerializeShortRequest>()(serialize, "short requests", m_ShortPathRequests);
+	Serializer(serialize, "long requests", m_LongPathRequests);
+	Serializer(serialize, "short requests", m_ShortPathRequests);
 	serialize.NumberU32_Unbounded("next ticket", m_NextAsyncTicket);
 	serialize.NumberU16_Unbounded("map size", m_MapSize);
 }

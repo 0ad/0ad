@@ -17,16 +17,26 @@
 
 #include "precompiled.h"
 
-#include "simulation2/system/Component.h"
 #include "ICmpObstruction.h"
 
-#include "ps/CLogger.h"
 #include "simulation2/MessageTypes.h"
 #include "simulation2/components/ICmpObstructionManager.h"
 #include "simulation2/components/ICmpTerrain.h"
 #include "simulation2/components/ICmpUnitMotion.h"
 #include "simulation2/components/ICmpWaterManager.h"
-#include "simulation2/serialization/SerializeTemplates.h"
+#include "simulation2/serialization/SerializedTypes.h"
+
+#include "ps/CLogger.h"
+
+template<>
+struct SerializeHelper<ICmpObstructionManager::tag_t>
+{
+	template<typename S>
+	void operator()(S& serialize, const char* UNUSED(name), Serialize::qualify<S, ICmpObstructionManager::tag_t> value)
+	{
+		serialize.NumberU32_Unbounded("tag", value.n);
+	}
+};
 
 /**
  * Obstruction implementation. This keeps the ICmpPathfinder's model of the world updated when the
@@ -261,15 +271,6 @@ public:
 	{
 	}
 
-	struct SerializeTag
-	{
-		template<typename S>
-		void operator()(S& serialize, const char* UNUSED(name), tag_t& value)
-		{
-			serialize.NumberU32_Unbounded("tag", value.n);
-		}
-	};
-
 	template<typename S>
 	void SerializeCommon(S& serialize)
 	{
@@ -280,7 +281,7 @@ public:
 		serialize.NumberU32_Unbounded("tag", m_Tag.n);
 		serialize.NumberU8_Unbounded("flags", m_Flags);
 		if (m_Type == CLUSTER)
-			SerializeVector<SerializeTag>()(serialize, "cluster tags", m_ClusterTags);
+			Serializer(serialize, "cluster tags", m_ClusterTags);
 		if (m_Type == UNIT)
 			serialize.NumberFixed_Unbounded("clearance", m_Clearance);
 	}

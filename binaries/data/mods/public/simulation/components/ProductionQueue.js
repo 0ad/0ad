@@ -452,8 +452,9 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 			let techCostMultiplier = this.GetTechCostMultiplier();
 
 			let cost = {};
-			for (let res in template.cost)
-				cost[res] = Math.floor((techCostMultiplier[res] || 1) * template.cost[res]);
+			if (template.cost)
+				for (let res in template.cost)
+					cost[res] = Math.floor((techCostMultiplier[res] || 1) * template.cost[res]);
 
 			// TrySubtractResources should report error to player (they ran out of resources).
 			if (!cmpPlayer.TrySubtractResources(cost))
@@ -469,7 +470,7 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 				this.SetAnimation("researching");
 			}
 
-			let time = techCostMultiplier.time * template.researchTime * 1000;
+			let time = techCostMultiplier.time * (template.researchTime || 0) * 1000;
 			this.queue.push({
 			    "id": this.nextID++,
 			    "player": cmpPlayer.GetPlayerID(),

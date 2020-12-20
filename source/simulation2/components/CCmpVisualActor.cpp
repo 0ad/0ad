@@ -21,6 +21,7 @@
 #include "ICmpVisual.h"
 
 #include "simulation2/MessageTypes.h"
+#include "simulation2/serialization/SerializedTypes.h"
 
 #include "ICmpFootprint.h"
 #include "ICmpIdentity.h"
@@ -34,8 +35,6 @@
 #include "ICmpValueModificationManager.h"
 #include "ICmpVisibility.h"
 #include "ICmpSound.h"
-
-#include "simulation2/serialization/SerializeTemplates.h"
 
 #include "graphics/Decal.h"
 #include "graphics/Frustum.h"
@@ -246,7 +245,7 @@ public:
 		serialize.NumberFixed_Unbounded("anim sync repeat time", m_AnimSyncRepeatTime);
 		serialize.NumberFixed_Unbounded("anim sync offset time", m_AnimSyncOffsetTime);
 
-		SerializeMap<SerializeString, SerializeString>()(serialize, "variation", m_VariantSelections);
+		Serializer(serialize, "variation", m_VariantSelections);
 
 		serialize.NumberU32_Unbounded("seed", m_Seed);
 		serialize.String("actor", m_ActorName, 0, 256);

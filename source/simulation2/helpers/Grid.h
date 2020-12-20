@@ -18,8 +18,7 @@
 #ifndef INCLUDED_GRID
 #define INCLUDED_GRID
 
-#include "simulation2/serialization/IDeserializer.h"
-#include "simulation2/serialization/ISerializer.h"
+#include "simulation2/serialization/SerializeTemplates.h"
 
 #include <cstring>
 
@@ -29,9 +28,6 @@
 #define GRID_BOUNDS_DEBUG 1
 #endif
 
-template<typename T>
-struct SerializedGridCompressed;
-
 /**
  * Basic 2D array, intended for storing tile data, plus support for lazy updates
  * by ICmpObstructionManager.
@@ -40,7 +36,7 @@ struct SerializedGridCompressed;
 template<typename T>
 class Grid
 {
-	friend struct SerializedGridCompressed<T>;
+	friend struct SerializeHelper<Grid<T>>;
 protected:
 	// Tag-dispatching internal utilities for convenience.
 	struct default_type{};
@@ -258,10 +254,9 @@ public:
 /**
  * Serialize a grid, applying a simple RLE compression that is assumed efficient.
  */
-template<typename ELEM>
-struct SerializedGridCompressed
+template<typename T>
+struct SerializeHelper<Grid<T>>
 {
-	template<typename T>
 	void operator()(ISerializer& serialize, const char* name, Grid<T>& value)
 	{
 		size_t len = value.m_H * value.m_W;
@@ -279,15 +274,14 @@ struct SerializedGridCompressed
 				continue;
 			}
 			serialize.NumberU32_Unbounded("#", count);
-			ELEM()(serialize, name, prevVal);
+			Serializer(serialize, name, prevVal);
 			count = 1;
 			prevVal = value.m_Data[i];
 		}
 		serialize.NumberU32_Unbounded("#", count);
-		ELEM()(serialize, name, prevVal);
+		Serializer(serialize, name, prevVal);
 	}
 
-	template<typename T>
 	void operator()(IDeserializer& deserialize, const char* name, Grid<T>& value)
 	{
 		u16 w, h;
@@ -300,7 +294,7 @@ struct SerializedGridCompressed
 			u32 count;
 			deserialize.NumberU32_Unbounded("#", count);
 			T el;
-			ELEM()(deserialize, name, el);
+			Serializer(deserialize, name, el);
 			std::fill(&value.m_Data[i], &value.m_Data[i+count], el);
 			i += count;
 		}

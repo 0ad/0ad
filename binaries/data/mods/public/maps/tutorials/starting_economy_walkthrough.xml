@@ -17,10 +17,11 @@
 			<WaterBody>
 				<Type>lake</Type>
 				<Color r="0.294118" g="0.34902" b="0.694118"/>
-				<Height>19.9</Height>
-				<Waviness>4.0</Waviness>
-				<Murkiness>0.45</Murkiness>
 				<Tint r="0.27451" g="0.294118" b="0.584314"/>
+				<Height>26.0485</Height>
+				<Waviness>4</Waviness>
+				<Murkiness>0.45</Murkiness>
+				<WindAngle>0</WindAngle>
 			</WaterBody>
 		</Water>
 		<Postproc>
@@ -32,8 +33,8 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="630.044" y="98.8605" z="752.104"/>
-		<Rotation angle="0"/>
+		<Position x="505.499" y="153.707" z="372.823"/>
+		<Rotation angle="0.306037"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
@@ -48,7 +49,9 @@
   ],
   "CircularMap": true,
   "Description": "This map will give a rough guide for starting the game effectively.  Early in the game the most important thing is to gather resources as fast as possible so you are able to build enough troops later.",
-  "Keywords": ["trigger"],
+  "Keywords": [
+    "trigger"
+  ],
   "LockTeams": false,
   "Name": "Starting Economy Walkthrough",
   "PlayerData": [
@@ -65,12 +68,12 @@
     }
   ],
   "RevealMap": false,
+  "Size": 256,
   "TriggerScripts": [
     "scripts/TriggerHelper.js",
     "scripts/Tutorial.js",
     "tutorials/starting_economy_walkthrough.js"
   ],
-  "Size": 256,
   "VictoryConditions": []
 }
 ]]></ScriptSettings>
@@ -4771,24 +4774,6 @@
 			<Position x="60.50605" z="510.81926"/>
 			<Orientation y="-0.91175"/>
 		</Entity>
-		<Entity uid="1004">
-			<Template>gaia/rock/desert_small</Template>
-			<Player>0</Player>
-			<Position x="451.3712" z="600.12162"/>
-			<Orientation y="0.60962"/>
-		</Entity>
-		<Entity uid="1005">
-			<Template>gaia/rock/desert_small</Template>
-			<Player>0</Player>
-			<Position x="460.74523" z="603.83443"/>
-			<Orientation y="-4.61622"/>
-		</Entity>
-		<Entity uid="1006">
-			<Template>gaia/rock/badlands_large</Template>
-			<Player>0</Player>
-			<Position x="453.79427" z="604.66131"/>
-			<Orientation y="-2.37778"/>
-		</Entity>
 		<Entity uid="1007">
 			<Template>actor|props/flora/bush_dry_a.xml</Template>
 			<Position x="457.35532" z="601.31887"/>
@@ -4803,12 +4788,6 @@
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
 			<Position x="455.31263" z="606.71981"/>
 			<Orientation y="-2.12923"/>
-		</Entity>
-		<Entity uid="1010">
-			<Template>gaia/rock/badlands_large</Template>
-			<Player>0</Player>
-			<Position x="530.69417" z="381.83329"/>
-			<Orientation y="-1.44372"/>
 		</Entity>
 		<Entity uid="1011">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
@@ -4830,30 +4809,6 @@
 			<Position x="526.47695" z="383.94986"/>
 			<Orientation y="0.64138"/>
 		</Entity>
-		<Entity uid="1015">
-			<Template>gaia/rock/desert_small</Template>
-			<Player>0</Player>
-			<Position x="399.0377" z="595.51269"/>
-			<Orientation y="-2.68027"/>
-		</Entity>
-		<Entity uid="1016">
-			<Template>gaia/rock/desert_small</Template>
-			<Player>0</Player>
-			<Position x="398.68964" z="592.94085"/>
-			<Orientation y="-2.15561"/>
-		</Entity>
-		<Entity uid="1017">
-			<Template>gaia/rock/desert_small</Template>
-			<Player>0</Player>
-			<Position x="401.3517" z="593.2555"/>
-			<Orientation y="-2.17312"/>
-		</Entity>
-		<Entity uid="1018">
-			<Template>gaia/rock/desert_small</Template>
-			<Player>0</Player>
-			<Position x="393.31824" z="591.87955"/>
-			<Orientation y="-2.52927"/>
-		</Entity>
 		<Entity uid="1019">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
 			<Position x="394.00768" z="594.65087"/>
@@ -4869,36 +4824,6 @@
 			<Position x="400.10613" z="596.85494"/>
 			<Orientation y="0.56595"/>
 		</Entity>
-		<Entity uid="1022">
-			<Template>gaia/rock/desert_small</Template>
-			<Player>0</Player>
-			<Position x="340.89641" z="484.70821"/>
-			<Orientation y="-0.57412"/>
-		</Entity>
-		<Entity uid="1023">
-			<Template>gaia/rock/desert_small</Template>
-			<Player>0</Player>
-			<Position x="345.60425" z="492.43899"/>
-			<Orientation y="-0.61658"/>
-		</Entity>
-		<Entity uid="1024">
-			<Template>gaia/rock/desert_small</Template>
-			<Player>0</Player>
-			<Position x="356.6816" z="498.1253"/>
-			<Orientation y="-4.43108"/>
-		</Entity>
-		<Entity uid="1025">
-			<Template>gaia/rock/desert_small</Template>
-			<Player>0</Player>
-			<Position x="354.3839" z="489.6752"/>
-			<Orientation y="0.26595"/>
-		</Entity>
-		<Entity uid="1026">
-			<Template>gaia/rock/desert_small</Template>
-			<Player>0</Player>
-			<Position x="344.81791" z="489.64721"/>
-			<Orientation y="-2.01595"/>
-		</Entity>
 		<Entity uid="1027">
 			<Template>actor|props/flora/bush_dry_a.xml</Template>
 			<Position x="354.33336" z="491.65587"/>
@@ -4909,30 +4834,6 @@
 			<Position x="354.74865" z="487.76272"/>
 			<Orientation y="1.28037"/>
 		</Entity>
-		<Entity uid="1029">
-			<Template>gaia/rock/desert_small</Template>
-			<Player>0</Player>
-			<Position x="392.98946" z="542.12764"/>
-			<Orientation y="-2.28721"/>
-		</Entity>
-		<Entity uid="1030">
-			<Template>gaia/rock/desert_small</Template>
-			<Player>0</Player>
-			<Position x="391.25147" z="524.86716"/>
-			<Orientation y="-4.041"/>
-		</Entity>
-		<Entity uid="1031">
-			<Template>gaia/rock/desert_small</Template>
-			<Player>0</Player>
-			<Position x="405.02988" z="535.965"/>
-			<Orientation y="-2.25448"/>
-		</Entity>
-		<Entity uid="1032">
-			<Template>gaia/rock/desert_small</Template>
-			<Player>0</Player>
-			<Position x="400.46311" z="535.86231"/>
-			<Orientation y="-1.50573"/>
-		</Entity>
 		<Entity uid="1033">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
 			<Position x="400.1398" z="531.89963"/>
@@ -4942,24 +4843,6 @@
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
 			<Position x="396.67179" z="534.68003"/>
 			<Orientation y="-2.86602"/>
-		</Entity>
-		<Entity uid="1035">
-			<Template>gaia/rock/desert_small</Template>
-			<Player>0</Player>
-			<Position x="492.93554" z="478.29093"/>
-			<Orientation y="-3.78064"/>
-		</Entity>
-		<Entity uid="1036">
-			<Template>gaia/rock/desert_small</Template>
-			<Player>0</Player>
-			<Position x="496.62575" z="486.26023"/>
-			<Orientation y="-2.49569"/>
-		</Entity>
-		<Entity uid="1037">
-			<Template>gaia/rock/desert_small</Template>
-			<Player>0</Player>
-			<Position x="493.51029" z="484.7612"/>
-			<Orientation y="-3.40926"/>
 		</Entity>
 		<Entity uid="1038">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
@@ -4976,36 +4859,6 @@
 			<Position x="500.22059" z="484.23139"/>
 			<Orientation y="0.19318"/>
 		</Entity>
-		<Entity uid="1041">
-			<Template>gaia/rock/desert_small</Template>
-			<Player>0</Player>
-			<Position x="453.10352" z="523.49228"/>
-			<Orientation y="-1.78771"/>
-		</Entity>
-		<Entity uid="1042">
-			<Template>gaia/rock/desert_small</Template>
-			<Player>0</Player>
-			<Position x="459.86493" z="527.97896"/>
-			<Orientation y="0.84281"/>
-		</Entity>
-		<Entity uid="1043">
-			<Template>gaia/rock/desert_small</Template>
-			<Player>0</Player>
-			<Position x="457.67785" z="528.72704"/>
-			<Orientation y="-4.0186"/>
-		</Entity>
-		<Entity uid="1044">
-			<Template>gaia/rock/desert_small</Template>
-			<Player>0</Player>
-			<Position x="465.56702" z="527.89556"/>
-			<Orientation y="-3.42414"/>
-		</Entity>
-		<Entity uid="1045">
-			<Template>gaia/rock/desert_small</Template>
-			<Player>0</Player>
-			<Position x="459.72867" z="513.32297"/>
-			<Orientation y="-4.42481"/>
-		</Entity>
 		<Entity uid="1046">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
 			<Position x="466.57641" z="516.41033"/>
@@ -5021,18 +4874,6 @@
 			<Position x="462.15795" z="518.37723"/>
 			<Orientation y="-0.73812"/>
 		</Entity>
-		<Entity uid="1049">
-			<Template>gaia/rock/desert_small</Template>
-			<Player>0</Player>
-			<Position x="637.76394" z="590.44681"/>
-			<Orientation y="-2.83396"/>
-		</Entity>
-		<Entity uid="1050">
-			<Template>gaia/rock/desert_small</Template>
-			<Player>0</Player>
-			<Position x="625.47602" z="582.71273"/>
-			<Orientation y="1.32222"/>
-		</Entity>
 		<Entity uid="1051">
 			<Template>actor|props/flora/bush_dry_a.xml</Template>
 			<Position x="630.0687" z="586.04482"/>
@@ -5042,18 +4883,6 @@
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
 			<Position x="628.17881" z="587.67722"/>
 			<Orientation y="-0.6759"/>
-		</Entity>
-		<Entity uid="1053">
-			<Template>gaia/rock/desert_small</Template>
-			<Player>0</Player>
-			<Position x="386.65137" z="575.18998"/>
-			<Orientation y="-3.50536"/>
-		</Entity>
-		<Entity uid="1054">
-			<Template>gaia/rock/desert_small</Template>
-			<Player>0</Player>
-			<Position x="389.27375" z="586.50264"/>
-			<Orientation y="-4.66807"/>
 		</Entity>
 		<Entity uid="1055">
 			<Template>actor|props/flora/bush_dry_a.xml</Template>
@@ -5075,30 +4904,6 @@
 			<Position x="388.14406" z="584.14521"/>
 			<Orientation y="-0.8382"/>
 		</Entity>
-		<Entity uid="1059">
-			<Template>gaia/rock/desert_small</Template>
-			<Player>0</Player>
-			<Position x="394.9789" z="378.53196"/>
-			<Orientation y="0.2013"/>
-		</Entity>
-		<Entity uid="1060">
-			<Template>gaia/rock/desert_small</Template>
-			<Player>0</Player>
-			<Position x="408.07786" z="378.19776"/>
-			<Orientation y="-4.11585"/>
-		</Entity>
-		<Entity uid="1061">
-			<Template>gaia/rock/desert_small</Template>
-			<Player>0</Player>
-			<Position x="404.76862" z="373.03202"/>
-			<Orientation y="-0.58599"/>
-		</Entity>
-		<Entity uid="1062">
-			<Template>gaia/rock/desert_small</Template>
-			<Player>0</Player>
-			<Position x="405.9337" z="380.85898"/>
-			<Orientation y="0.57387"/>
-		</Entity>
 		<Entity uid="1063">
 			<Template>actor|props/flora/bush_dry_a.xml</Template>
 			<Position x="401.53663" z="377.21139"/>
@@ -5117,14 +4922,8 @@
 		<Entity uid="1066">
 			<Template>gaia/rock/desert_small</Template>
 			<Player>0</Player>
-			<Position x="430.42045" z="455.71145"/>
+			<Position x="431.58237" z="455.89484"/>
 			<Orientation y="-0.48862"/>
-		</Entity>
-		<Entity uid="1067">
-			<Template>gaia/rock/desert_small</Template>
-			<Player>0</Player>
-			<Position x="432.83867" z="466.88631"/>
-			<Orientation y="-2.7244"/>
 		</Entity>
 		<Entity uid="1068">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
@@ -5146,24 +4945,6 @@
 			<Position x="426.04081" z="458.3124"/>
 			<Orientation y="-3.33263"/>
 		</Entity>
-		<Entity uid="1072">
-			<Template>gaia/rock/desert_small</Template>
-			<Player>0</Player>
-			<Position x="446.79256" z="384.82222"/>
-			<Orientation y="-0.14078"/>
-		</Entity>
-		<Entity uid="1073">
-			<Template>gaia/rock/desert_small</Template>
-			<Player>0</Player>
-			<Position x="447.88772" z="383.03206"/>
-			<Orientation y="-0.7549"/>
-		</Entity>
-		<Entity uid="1074">
-			<Template>gaia/rock/desert_small</Template>
-			<Player>0</Player>
-			<Position x="448.59925" z="379.6301"/>
-			<Orientation y="-3.4964"/>
-		</Entity>
 		<Entity uid="1075">
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
 			<Position x="441.0318" z="389.9636"/>
@@ -5184,24 +4965,6 @@
 			<Position x="441.86051" z="385.87668"/>
 			<Orientation y="0.4426"/>
 		</Entity>
-		<Entity uid="1079">
-			<Template>gaia/rock/desert_small</Template>
-			<Player>0</Player>
-			<Position x="465.4693" z="370.80311"/>
-			<Orientation y="0.27196"/>
-		</Entity>
-		<Entity uid="1080">
-			<Template>gaia/rock/desert_small</Template>
-			<Player>0</Player>
-			<Position x="452.78193" z="377.916"/>
-			<Orientation y="0.73888"/>
-		</Entity>
-		<Entity uid="1081">
-			<Template>gaia/rock/desert_small</Template>
-			<Player>0</Player>
-			<Position x="468.29912" z="379.02788"/>
-			<Orientation y="-3.98206"/>
-		</Entity>
 		<Entity uid="1082">
 			<Template>actor|props/flora/bush_dry_a.xml</Template>
 			<Position x="464.5645" z="375.77274"/>
@@ -5216,30 +4979,6 @@
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
 			<Position x="465.4361" z="372.10177"/>
 			<Orientation y="-4.66066"/>
-		</Entity>
-		<Entity uid="1085">
-			<Template>gaia/rock/desert_small</Template>
-			<Player>0</Player>
-			<Position x="471.06461" z="497.83693"/>
-			<Orientation y="-1.3455"/>
-		</Entity>
-		<Entity uid="1086">
-			<Template>gaia/rock/desert_small</Template>
-			<Player>0</Player>
-			<Position x="458.88122" z="502.28783"/>
-			<Orientation y="-1.83332"/>
-		</Entity>
-		<Entity uid="1087">
-			<Template>gaia/rock/desert_small</Template>
-			<Player>0</Player>
-			<Position x="471.77451" z="511.08872"/>
-			<Orientation y="0.68847"/>
-		</Entity>
-		<Entity uid="1088">
-			<Template>gaia/rock/desert_small</Template>
-			<Player>0</Player>
-			<Position x="470.99466" z="499.11252"/>
-			<Orientation y="-2.2637"/>
 		</Entity>
 		<Entity uid="1089">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
@@ -5256,12 +4995,6 @@
 			<Position x="468.44956" z="507.51195"/>
 			<Orientation y="-4.4727"/>
 		</Entity>
-		<Entity uid="1092">
-			<Template>gaia/ore/desert_large</Template>
-			<Player>0</Player>
-			<Position x="339.2959" z="440.89437"/>
-			<Orientation y="-3.82369"/>
-		</Entity>
 		<Entity uid="1093">
 			<Template>actor|props/flora/bush_dry_a.xml</Template>
 			<Position x="353.47777" z="439.49471"/>
@@ -5276,12 +5009,6 @@
 			<Template>actor|props/flora/bush_dry_a.xml</Template>
 			<Position x="347.70411" z="438.62133"/>
 			<Orientation y="-1.43194"/>
-		</Entity>
-		<Entity uid="1096">
-			<Template>gaia/ore/desert_large</Template>
-			<Player>0</Player>
-			<Position x="580.88668" z="628.34652"/>
-			<Orientation y="0.97423"/>
 		</Entity>
 		<Entity uid="1097">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
@@ -5298,12 +5025,6 @@
 			<Position x="596.01203" z="625.23922"/>
 			<Orientation y="0.79165"/>
 		</Entity>
-		<Entity uid="1100">
-			<Template>gaia/ore/desert_large</Template>
-			<Player>0</Player>
-			<Position x="402.04871" z="520.42197"/>
-			<Orientation y="-0.94187"/>
-		</Entity>
 		<Entity uid="1101">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
 			<Position x="394.38692" z="525.55571"/>
@@ -5319,12 +5040,6 @@
 			<Position x="385.96126" z="516.82003"/>
 			<Orientation y="-0.47053"/>
 		</Entity>
-		<Entity uid="1104">
-			<Template>gaia/ore/desert_large</Template>
-			<Player>0</Player>
-			<Position x="390.13543" z="414.78154"/>
-			<Orientation y="-3.66222"/>
-		</Entity>
 		<Entity uid="1105">
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
 			<Position x="396.33416" z="419.98104"/>
@@ -5334,12 +5049,6 @@
 			<Template>actor|props/flora/bush_desert_a.xml</Template>
 			<Position x="390.2534" z="415.15398"/>
 			<Orientation y="-2.6852"/>
-		</Entity>
-		<Entity uid="1107">
-			<Template>gaia/ore/desert_large</Template>
-			<Player>0</Player>
-			<Position x="457.71796" z="615.71818"/>
-			<Orientation y="-2.33355"/>
 		</Entity>
 		<Entity uid="1108">
 			<Template>actor|props/flora/bush_dry_a.xml</Template>
@@ -5355,12 +5064,6 @@
 			<Template>actor|props/flora/plant_desert_a.xml</Template>
 			<Position x="454.4064" z="617.24555"/>
 			<Orientation y="0.06807"/>
-		</Entity>
-		<Entity uid="1112">
-			<Template>gaia/ore/desert_large</Template>
-			<Player>0</Player>
-			<Position x="423.63411" z="419.96764"/>
-			<Orientation y="1.14448"/>
 		</Entity>
 		<Entity uid="1113">
 			<Template>actor|props/flora/bush_dry_a.xml</Template>
@@ -6977,282 +6680,6 @@
 			<Position x="576.43017" z="118.34812"/>
 			<Orientation y="0.21225"/>
 		</Entity>
-		<Entity uid="1429">
-			<Template>gaia/fauna_camel</Template>
-			<Player>0</Player>
-			<Position x="539.87551" z="628.21743"/>
-			<Orientation y="-1.61861"/>
-		</Entity>
-		<Entity uid="1430">
-			<Template>gaia/fauna_camel</Template>
-			<Player>0</Player>
-			<Position x="541.89017" z="626.00234"/>
-			<Orientation y="1.4933"/>
-		</Entity>
-		<Entity uid="1431">
-			<Template>gaia/fauna_camel</Template>
-			<Player>0</Player>
-			<Position x="545.7768" z="624.29691"/>
-			<Orientation y="-1.15918"/>
-		</Entity>
-		<Entity uid="1432">
-			<Template>gaia/fauna_camel</Template>
-			<Player>0</Player>
-			<Position x="384.97713" z="486.05643"/>
-			<Orientation y="-0.88738"/>
-		</Entity>
-		<Entity uid="1433">
-			<Template>gaia/fauna_camel</Template>
-			<Player>0</Player>
-			<Position x="377.73531" z="485.69352"/>
-			<Orientation y="0.64057"/>
-		</Entity>
-		<Entity uid="1434">
-			<Template>gaia/fauna_camel</Template>
-			<Player>0</Player>
-			<Position x="375.34731" z="482.28611"/>
-			<Orientation y="-0.22077"/>
-		</Entity>
-		<Entity uid="1435">
-			<Template>gaia/fauna_camel</Template>
-			<Player>0</Player>
-			<Position x="617.40143" z="585.52749"/>
-			<Orientation y="0.75779"/>
-		</Entity>
-		<Entity uid="1436">
-			<Template>gaia/fauna_camel</Template>
-			<Player>0</Player>
-			<Position x="620.23525" z="581.24007"/>
-			<Orientation y="0.86997"/>
-		</Entity>
-		<Entity uid="1437">
-			<Template>gaia/fauna_camel</Template>
-			<Player>0</Player>
-			<Position x="618.22585" z="577.07467"/>
-			<Orientation y="-3.03588"/>
-		</Entity>
-		<Entity uid="1438">
-			<Template>gaia/tree/tamarix</Template>
-			<Player>0</Player>
-			<Position x="586.787" z="608.39152"/>
-			<Orientation y="-4.16614"/>
-		</Entity>
-		<Entity uid="1439">
-			<Template>gaia/tree/tamarix</Template>
-			<Player>0</Player>
-			<Position x="566.42251" z="385.72326"/>
-			<Orientation y="-0.07624"/>
-		</Entity>
-		<Entity uid="1440">
-			<Template>gaia/tree/tamarix</Template>
-			<Player>0</Player>
-			<Position x="433.90012" z="377.9303"/>
-			<Orientation y="1.11442"/>
-		</Entity>
-		<Entity uid="1441">
-			<Template>gaia/tree/tamarix</Template>
-			<Player>0</Player>
-			<Position x="461.25147" z="479.60946"/>
-			<Orientation y="-3.1695"/>
-		</Entity>
-		<Entity uid="1442">
-			<Template>gaia/tree/tamarix</Template>
-			<Player>0</Player>
-			<Position x="638.28284" z="478.55626"/>
-			<Orientation y="-2.03106"/>
-		</Entity>
-		<Entity uid="1443">
-			<Template>gaia/tree/tamarix</Template>
-			<Player>0</Player>
-			<Position x="619.3317" z="583.01372"/>
-			<Orientation y="1.4481"/>
-		</Entity>
-		<Entity uid="1444">
-			<Template>gaia/tree/tamarix</Template>
-			<Player>0</Player>
-			<Position x="671.30605" z="558.9177"/>
-			<Orientation y="-0.00376"/>
-		</Entity>
-		<Entity uid="1445">
-			<Template>gaia/tree/tamarix</Template>
-			<Player>0</Player>
-			<Position x="598.42414" z="406.0413"/>
-			<Orientation y="-2.10503"/>
-		</Entity>
-		<Entity uid="1446">
-			<Template>gaia/tree/tamarix</Template>
-			<Player>0</Player>
-			<Position x="430.05823" z="385.76119"/>
-			<Orientation y="-0.79317"/>
-		</Entity>
-		<Entity uid="1447">
-			<Template>gaia/tree/tamarix</Template>
-			<Player>0</Player>
-			<Position x="542.98594" z="424.35856"/>
-			<Orientation y="0.46805"/>
-		</Entity>
-		<Entity uid="1448">
-			<Template>gaia/tree/tamarix</Template>
-			<Player>0</Player>
-			<Position x="454.89882" z="546.73122"/>
-			<Orientation y="-4.35029"/>
-		</Entity>
-		<Entity uid="1449">
-			<Template>gaia/tree/tamarix</Template>
-			<Player>0</Player>
-			<Position x="443.6379" z="506.26903"/>
-			<Orientation y="1.44175"/>
-		</Entity>
-		<Entity uid="1450">
-			<Template>gaia/tree/tamarix</Template>
-			<Player>0</Player>
-			<Position x="502.93801" z="349.86129"/>
-			<Orientation y="-3.14374"/>
-		</Entity>
-		<Entity uid="1451">
-			<Template>gaia/tree/tamarix</Template>
-			<Player>0</Player>
-			<Position x="445.81885" z="399.79715"/>
-			<Orientation y="-1.20646"/>
-		</Entity>
-		<Entity uid="1452">
-			<Template>gaia/tree/tamarix</Template>
-			<Player>0</Player>
-			<Position x="541.31756" z="490.8574"/>
-			<Orientation y="-3.36231"/>
-		</Entity>
-		<Entity uid="1453">
-			<Template>gaia/tree/tamarix</Template>
-			<Player>0</Player>
-			<Position x="508.90467" z="629.64087"/>
-			<Orientation y="-4.47231"/>
-		</Entity>
-		<Entity uid="1454">
-			<Template>gaia/tree/tamarix</Template>
-			<Player>0</Player>
-			<Position x="398.14208" z="473.34377"/>
-			<Orientation y="-0.59751"/>
-		</Entity>
-		<Entity uid="1455">
-			<Template>gaia/tree/tamarix</Template>
-			<Player>0</Player>
-			<Position x="609.37145" z="505.56572"/>
-			<Orientation y="0.65821"/>
-		</Entity>
-		<Entity uid="1456">
-			<Template>gaia/tree/tamarix</Template>
-			<Player>0</Player>
-			<Position x="472.3012" z="397.93734"/>
-			<Orientation y="-1.39683"/>
-		</Entity>
-		<Entity uid="1457">
-			<Template>gaia/tree/tamarix</Template>
-			<Player>0</Player>
-			<Position x="513.30237" z="654.69271"/>
-			<Orientation y="0.85212"/>
-		</Entity>
-		<Entity uid="1458">
-			<Template>gaia/tree/tamarix</Template>
-			<Player>0</Player>
-			<Position x="631.36484" z="639.15281"/>
-			<Orientation y="1.33625"/>
-		</Entity>
-		<Entity uid="1459">
-			<Template>gaia/tree/tamarix</Template>
-			<Player>0</Player>
-			<Position x="429.26873" z="367.98926"/>
-			<Orientation y="-3.73321"/>
-		</Entity>
-		<Entity uid="1460">
-			<Template>gaia/tree/tamarix</Template>
-			<Player>0</Player>
-			<Position x="504.29082" z="384.23937"/>
-			<Orientation y="0.99686"/>
-		</Entity>
-		<Entity uid="1461">
-			<Template>gaia/tree/tamarix</Template>
-			<Player>0</Player>
-			<Position x="367.03957" z="490.53301"/>
-			<Orientation y="-0.01342"/>
-		</Entity>
-		<Entity uid="1462">
-			<Template>gaia/tree/tamarix</Template>
-			<Player>0</Player>
-			<Position x="546.13863" z="581.73292"/>
-			<Orientation y="0.4711"/>
-		</Entity>
-		<Entity uid="1463">
-			<Template>gaia/tree/tamarix</Template>
-			<Player>0</Player>
-			<Position x="471.70759" z="581.13537"/>
-			<Orientation y="-4.06148"/>
-		</Entity>
-		<Entity uid="1464">
-			<Template>gaia/tree/tamarix</Template>
-			<Player>0</Player>
-			<Position x="530.52149" z="495.89448"/>
-			<Orientation y="-2.25728"/>
-		</Entity>
-		<Entity uid="1465">
-			<Template>gaia/tree/tamarix</Template>
-			<Player>0</Player>
-			<Position x="586.16434" z="427.6292"/>
-			<Orientation y="-0.96421"/>
-		</Entity>
-		<Entity uid="1466">
-			<Template>gaia/tree/tamarix</Template>
-			<Player>0</Player>
-			<Position x="432.70163" z="521.6268"/>
-			<Orientation y="-1.68195"/>
-		</Entity>
-		<Entity uid="1467">
-			<Template>gaia/tree/tamarix</Template>
-			<Player>0</Player>
-			<Position x="583.9694" z="517.92631"/>
-			<Orientation y="-2.98597"/>
-		</Entity>
-		<Entity uid="1468">
-			<Template>gaia/tree/tamarix</Template>
-			<Player>0</Player>
-			<Position x="494.60105" z="350.78573"/>
-			<Orientation y="-3.90647"/>
-		</Entity>
-		<Entity uid="1469">
-			<Template>gaia/tree/tamarix</Template>
-			<Player>0</Player>
-			<Position x="492.85878" z="419.95781"/>
-			<Orientation y="-0.18743"/>
-		</Entity>
-		<Entity uid="1470">
-			<Template>gaia/tree/tamarix</Template>
-			<Player>0</Player>
-			<Position x="541.88141" z="490.5699"/>
-			<Orientation y="-0.85657"/>
-		</Entity>
-		<Entity uid="1471">
-			<Template>gaia/tree/tamarix</Template>
-			<Player>0</Player>
-			<Position x="535.30784" z="524.2983"/>
-			<Orientation y="-3.74614"/>
-		</Entity>
-		<Entity uid="1472">
-			<Template>gaia/tree/tamarix</Template>
-			<Player>0</Player>
-			<Position x="547.38692" z="503.83918"/>
-			<Orientation y="0.38453"/>
-		</Entity>
-		<Entity uid="1473">
-			<Template>gaia/tree/tamarix</Template>
-			<Player>0</Player>
-			<Position x="501.49712" z="515.16692"/>
-			<Orientation y="-3.4813"/>
-		</Entity>
-		<Entity uid="1474">
-			<Template>gaia/tree/tamarix</Template>
-			<Player>0</Player>
-			<Position x="529.61951" z="467.36963"/>
-			<Orientation y="-2.53806"/>
-		</Entity>
 		<Entity uid="1475">
 			<Template>gaia/tree/oak</Template>
 			<Player>0</Player>
@@ -8698,6 +8125,48 @@
 			<Player>0</Player>
 			<Position x="898.54836" z="635.44423"/>
 			<Orientation y="-1.20017"/>
+		</Entity>
+		<Entity uid="1716">
+			<Template>gaia/fish/generic</Template>
+			<Player>0</Player>
+			<Position x="402.58942" z="456.63352"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="38622"/>
+		</Entity>
+		<Entity uid="1717">
+			<Template>gaia/fish/generic</Template>
+			<Player>0</Player>
+			<Position x="313.5399" z="405.07569"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="28384"/>
+		</Entity>
+		<Entity uid="1718">
+			<Template>gaia/fish/generic</Template>
+			<Player>0</Player>
+			<Position x="327.43702" z="374.85691"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="9216"/>
+		</Entity>
+		<Entity uid="1719">
+			<Template>gaia/fish/generic</Template>
+			<Player>0</Player>
+			<Position x="427.23795" z="384.11979"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="16452"/>
+		</Entity>
+		<Entity uid="1720">
+			<Template>gaia/fish/generic</Template>
+			<Player>0</Player>
+			<Position x="579.8614" z="615.0116"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="41998"/>
+		</Entity>
+		<Entity uid="1721">
+			<Template>gaia/fish/generic</Template>
+			<Player>0</Player>
+			<Position x="611.0193" z="581.56336"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="4502"/>
 		</Entity>
 	</Entities>
 	<Paths/>

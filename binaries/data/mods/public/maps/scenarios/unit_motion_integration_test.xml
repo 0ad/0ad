@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Scenario version="6">
-	<Terrain patches="10" texture="grass1_spring" priority="0" height="16384"/>
 	<Environment>
 		<SkySet>default</SkySet>
 		<SunColor r="0.74902" g="0.74902" b="0.74902"/>
@@ -12,13 +11,13 @@
 		<Fog>
 			<FogFactor>0</FogFactor>
 			<FogThickness>0.5</FogThickness>
-			<FogColor r="0.8" g="0.8" b="0.898039"/>
+			<FogColor r="0.8" g="0.8" b="0.894118"/>
 		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>ocean</Type>
-				<Color r="0.298039" g="0.34902" b="0.698039"/>
-				<Tint r="0.278431" g="0.298039" b="0.588235"/>
+				<Color r="0.294118" g="0.34902" b="0.694118"/>
+				<Tint r="0.27451" g="0.294118" b="0.584314"/>
 				<Height>5</Height>
 				<Waviness>4</Waviness>
 				<Murkiness>0.45</Murkiness>
@@ -34,7 +33,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="300" y="77.5248" z="306.255"/>
+		<Position x="330.378" y="418.536" z="253.809"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -48,6 +47,7 @@
   ],
   "Name": "Unit Motion Integration Test",
   "PlayerData": [
+    null,
     {
       "Civ": "athen"
     },

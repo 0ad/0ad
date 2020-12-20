@@ -17,16 +17,14 @@
 
 #include "precompiled.h"
 
-#include "simulation2/system/Component.h"
 #include "ICmpTemplateManager.h"
 
 #include "simulation2/MessageTypes.h"
-#include "simulation2/serialization/SerializeTemplates.h"
-
-#include "ps/TemplateLoader.h"
+#include "simulation2/serialization/SerializedTypes.h"
 
 #include "lib/utf8.h"
 #include "ps/CLogger.h"
+#include "ps/TemplateLoader.h"
 #include "ps/XML/RelaxNG.h"
 
 class CCmpTemplateManager : public ICmpTemplateManager
@@ -65,7 +63,7 @@ public:
 			if (!ENTITY_IS_LOCAL(templateEnt.first))
 				templateMap[templateEnt.second].push_back(templateEnt.first);
 
-		SerializeMap<SerializeString, SerializeVector<SerializeU32_Unbounded>>()(serialize, "templates", templateMap);
+		Serializer(serialize, "templates", templateMap);
 	}
 
 	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize)
@@ -73,7 +71,7 @@ public:
 		Init(paramNode);
 
 		std::map<CStr, std::vector<entity_id_t>> templateMap;
-		SerializeMap<SerializeString, SerializeVector<SerializeU32_Unbounded>>()(deserialize, "templates", templateMap);
+		Serializer(deserialize, "templates", templateMap);
 		for (const std::pair<CStr, std::vector<entity_id_t>>& mapEl : templateMap)
 			for (entity_id_t id : mapEl.second)
 				m_LatestTemplates[id] = mapEl.first;

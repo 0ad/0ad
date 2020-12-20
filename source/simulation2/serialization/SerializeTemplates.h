@@ -20,295 +20,50 @@
 
 /**
  * @file
- * Helper templates for serializing/deserializing common objects.
+ * Helper templates definitions for serializing/deserializing common objects.
+ *
+ * Usage:
+ * You need to (partially) specialize SerializeHelper for your type.
+ * The optional SFINAE argument can be used to provide generic specializations
+ * via std::enable_if_t<T>.
+ * If both paths are common, you can templatize operator()'s first argument,
+ * but you will need to templatize the passed value to account for different value categories.
+ *
+ * See SerializedTypes.h for some examples.
+ *
  */
 
-#include "simulation2/components/ICmpPathfinder.h"
-#include "simulation2/serialization/IDeserializer.h"
 #include "simulation2/serialization/ISerializer.h"
+#include "simulation2/serialization/IDeserializer.h"
 
-#include <unordered_map>
-#include <utility>
-
-template<typename ELEM>
-struct SerializeArray
+// SFINAE is just there to allow SFINAE-partial specializations.
+template <typename T, typename SFINAE = void>
+struct SerializeHelper
 {
-	template<typename T, size_t N>
-	void operator()(ISerializer& serialize, const char* name, std::array<T, N>& value)
-	{
-		for (size_t i = 0; i < N; ++i)
-			ELEM()(serialize, name, value[i]);
-	}
-
-	template<typename T, size_t N>
-	void operator()(IDeserializer& deserialize, const char* name, std::array<T, N>& value)
-	{
-		for (size_t i = 0; i < N; ++i)
-			ELEM()(deserialize, name, value[i]);
-	}
+	template<typename... Args>
+	void operator()(ISerializer& serialize, const char* name, T value, Args&&...);
+	template<typename... Args>
+	void operator()(IDeserializer& serialize, const char* name, T& value, Args&&...);
 };
 
-template<typename ELEM>
-struct SerializeVector
+// This is the variant for an explicitly specified T (where what you pass is another type).
+template <typename T, typename S, typename... Args>
+void Serializer(S& serialize, const char* name, Args&&... args)
 {
-	template<typename T>
-	void operator()(ISerializer& serialize, const char* name, std::vector<T>& value)
-	{
-		size_t len = value.size();
-		serialize.NumberU32_Unbounded("length", (u32)len);
-		for (size_t i = 0; i < len; ++i)
-			ELEM()(serialize, name, value[i]);
-	}
+	SerializeHelper<std::remove_const_t<std::remove_reference_t<T>>>()(serialize, name, std::forward<Args>(args)...);
+}
 
-	template<typename T>
-	void operator()(IDeserializer& deserialize, const char* name, std::vector<T>& value)
-	{
-		value.clear();
-		u32 len;
-		deserialize.NumberU32_Unbounded("length", len);
-		value.reserve(len); // TODO: watch out for out-of-memory
-		for (size_t i = 0; i < len; ++i)
-		{
-			T el;
-			ELEM()(deserialize, name, el);
-			value.emplace_back(el);
-		}
-	}
-};
-
-template<typename ELEM>
-struct SerializeSet
+// This lets T be deduced from the argument.
+template <typename T, typename S, typename... Args>
+void Serializer(S& serialize, const char* name, T&& value, Args&&... args)
 {
-	template<typename T>
-	void operator()(ISerializer& serialize, const char* name, const std::set<T>& value)
-	{
-		serialize.NumberU32_Unbounded("size", static_cast<u32>(value.size()));
-		for (const T& elem : value)
-			ELEM()(serialize, name, elem);
-	}
+	SerializeHelper<std::remove_const_t<std::remove_reference_t<T>>>()(serialize, name, std::forward<T>(value), std::forward<Args>(args)...);
+}
 
-	template<typename T>
-	void operator()(IDeserializer& deserialize, const char* name, std::set<T>& value)
-	{
-		value.clear();
-		u32 size;
-		deserialize.NumberU32_Unbounded("size", size);
-		for (size_t i = 0; i < size; ++i)
-		{
-			T el;
-			ELEM()(deserialize, name, el);
-			value.emplace(std::move(el));
-		}
-	}
-};
-
-template<typename KS, typename VS>
-struct SerializeMap
+namespace Serialize
 {
-	template<typename K, typename V>
-	void operator()(ISerializer& serialize, const char* UNUSED(name), std::map<K, V>& value)
-	{
-		size_t len = value.size();
-		serialize.NumberU32_Unbounded("length", (u32)len);
-		for (typename std::map<K, V>::iterator it = value.begin(); it != value.end(); ++it)
-		{
-			KS()(serialize, "key", it->first);
-			VS()(serialize, "value", it->second);
-		}
-	}
-
-	template<typename K, typename V, typename C>
-	void operator()(ISerializer& serialize, const char* UNUSED(name), std::map<K, V>& value, C& context)
-	{
-		size_t len = value.size();
-		serialize.NumberU32_Unbounded("length", (u32)len);
-		for (typename std::map<K, V>::iterator it = value.begin(); it != value.end(); ++it)
-		{
-			KS()(serialize, "key", it->first);
-			VS()(serialize, "value", it->second, context);
-		}
-	}
-
-	template<typename M>
-	void operator()(IDeserializer& deserialize, const char* UNUSED(name), M& value)
-	{
-		typedef typename M::key_type K;
-		typedef typename M::value_type::second_type V; // M::data_type gives errors with gcc
-		value.clear();
-		u32 len;
-		deserialize.NumberU32_Unbounded("length", len);
-		for (size_t i = 0; i < len; ++i)
-		{
-			K k;
-			V v;
-			KS()(deserialize, "key", k);
-			VS()(deserialize, "value", v);
-			value.emplace(std::move(k), std::move(v));
-		}
-	}
-
-	template<typename M, typename C>
-	void operator()(IDeserializer& deserialize, const char* UNUSED(name), M& value, C& context)
-	{
-		typedef typename M::key_type K;
-		typedef typename M::value_type::second_type V; // M::data_type gives errors with gcc
-		value.clear();
-		u32 len;
-		deserialize.NumberU32_Unbounded("length", len);
-		for (size_t i = 0; i < len; ++i)
-		{
-			K k;
-			V v;
-			KS()(deserialize, "key", k);
-			VS()(deserialize, "value", v, context);
-			value.emplace(std::move(k), std::move(v));
-		}
-	}
-};
-
-// We have to order the map before serializing to make things consistent
-template<typename KS, typename VS>
-struct SerializeUnorderedMap
-{
-	template<typename K, typename V>
-	void operator()(ISerializer& serialize, const char* name, std::unordered_map<K, V>& value)
-	{
-		std::map<K, V> ordered_value(value.begin(), value.end());
-		SerializeMap<KS, VS>()(serialize, name, ordered_value);
-	}
-
-	template<typename K, typename V>
-	void operator()(IDeserializer& deserialize, const char* name, std::unordered_map<K, V>& value)
-	{
-		SerializeMap<KS, VS>()(deserialize, name, value);
-	}
-};
-
-template<typename T, T max>
-struct SerializeU8_Enum
-{
-	void operator()(ISerializer& serialize, const char* name, T value)
-	{
-		serialize.NumberU8(name, value, 0, max);
-	}
-
-	void operator()(IDeserializer& deserialize, const char* name, T& value)
-	{
-		u8 val;
-		deserialize.NumberU8(name, val, 0, max);
-		value = static_cast<T>(val);
-	}
-};
-
-struct SerializeU8_Unbounded
-{
-	void operator()(ISerializer& serialize, const char* name, u8 value)
-	{
-		serialize.NumberU8_Unbounded(name, value);
-	}
-
-	void operator()(IDeserializer& deserialize, const char* name, u8& value)
-	{
-		deserialize.NumberU8_Unbounded(name, value);
-	}
-};
-
-struct SerializeU16_Unbounded
-{
-	void operator()(ISerializer& serialize, const char* name, u16 value)
-	{
-		serialize.NumberU16_Unbounded(name, value);
-	}
-
-	void operator()(IDeserializer& deserialize, const char* name, u16& value)
-	{
-		deserialize.NumberU16_Unbounded(name, value);
-	}
-};
-
-struct SerializeU32_Unbounded
-{
-	void operator()(ISerializer& serialize, const char* name, u32 value)
-	{
-		serialize.NumberU32_Unbounded(name, value);
-	}
-
-	void operator()(IDeserializer& deserialize, const char* name, u32& value)
-	{
-		deserialize.NumberU32_Unbounded(name, value);
-	}
-};
-
-struct SerializeI32_Unbounded
-{
-	void operator()(ISerializer& serialize, const char* name, i32 value)
-	{
-		serialize.NumberI32_Unbounded(name, value);
-	}
-
-	void operator()(IDeserializer& deserialize, const char* name, i32& value)
-	{
-		deserialize.NumberI32_Unbounded(name, value);
-	}
-};
-
-struct SerializeBool
-{
-	void operator()(ISerializer& serialize, const char* name, bool value)
-	{
-		serialize.Bool(name, value);
-	}
-
-	void operator()(IDeserializer& deserialize, const char* name, bool& value)
-	{
-		deserialize.Bool(name, value);
-	}
-};
-
-struct SerializeString
-{
-	void operator()(ISerializer& serialize, const char* name, const std::string& value)
-	{
-		serialize.StringASCII(name, value, 0, UINT32_MAX);
-	}
-
-	void operator()(IDeserializer& deserialize, const char* name, std::string& value)
-	{
-		deserialize.StringASCII(name, value, 0, UINT32_MAX);
-	}
-};
-
-struct SerializeWaypoint
-{
-	void operator()(ISerializer& serialize, const char* UNUSED(name), const Waypoint& value)
-	{
-		serialize.NumberFixed_Unbounded("waypoint x", value.x);
-		serialize.NumberFixed_Unbounded("waypoint z", value.z);
-	}
-
-	void operator()(IDeserializer& deserialize, const char* UNUSED(name), Waypoint& value)
-	{
-		deserialize.NumberFixed_Unbounded("waypoint x", value.x);
-		deserialize.NumberFixed_Unbounded("waypoint z", value.z);
-	}
-};
-
-struct SerializeGoal
-{
-	template<typename S>
-	void operator()(S& serialize, const char* UNUSED(name), PathGoal& value)
-	{
-		SerializeU8_Enum<PathGoal::Type, PathGoal::INVERTED_SQUARE>()(serialize, "type", value.type);
-		serialize.NumberFixed_Unbounded("goal x", value.x);
-		serialize.NumberFixed_Unbounded("goal z", value.z);
-		serialize.NumberFixed_Unbounded("goal u x", value.u.X);
-		serialize.NumberFixed_Unbounded("goal u z", value.u.Y);
-		serialize.NumberFixed_Unbounded("goal v x", value.v.X);
-		serialize.NumberFixed_Unbounded("goal v z", value.v.Y);
-		serialize.NumberFixed_Unbounded("goal hw", value.hw);
-		serialize.NumberFixed_Unbounded("goal hh", value.hh);
-		serialize.NumberFixed_Unbounded("maxdist", value.maxdist);
-	}
-};
+	template<typename S, class T>
+	using qualify = std::conditional_t<std::is_same_v<S, ISerializer&>, const T&, T&>;
+}
 
 #endif // INCLUDED_SERIALIZETEMPLATES

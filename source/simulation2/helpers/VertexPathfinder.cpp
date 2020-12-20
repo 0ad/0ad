@@ -525,10 +525,15 @@ WaypointPath VertexPathfinder::ComputeShortPath(const ShortPathRequest& request,
 	fixed rangeZMin = request.z0 - request.range;
 	fixed rangeZMax = request.z0 + request.range;
 
-	// If useful, move the center of the search-space so that it's slightly towards the goal,
-	// as the vertex pathfinder tends to be used to get around entities in front of us.
+	// If the goal is outside the bounds, move the center of the search-space towards it slightly,
+	// as the vertex pathfinder tends to be used to get around entities in front of us
+	// (this makes it possible to use smaller search ranges, but still find good paths).
+	// Don't do this for the largest ranges: it makes it harder to backtrack, and large search domains
+	// indicate a rather stuck unit, which means having to backtrack is probable.
+	// (keep this in sync with unitMotion's max-search range).
+	// (this also ensures symmetrical behaviour for goals inside/outside the max search range).
 	CFixedVector2D toGoal = CFixedVector2D(request.goal.x, request.goal.z) - CFixedVector2D(request.x0, request.z0);
-	if (toGoal.CompareLength(request.range) >= 0)
+	if (toGoal.CompareLength(request.range) >= 0 && request.range < fixed::FromInt(TERRAIN_TILE_SIZE) * 10)
 	{
 		fixed toGoalLength = toGoal.Length();
 		fixed inv = fixed::FromInt(1) / toGoalLength;

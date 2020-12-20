@@ -421,7 +421,7 @@ Trigger.prototype.AttackAndPatrol = function(entities, targetClass, triggerPoint
 		if (!TriggerHelper.IsInWorld(target) || this.IsLeftRiverside(target) != isLeft)
 			continue;
 
-		let targetDistance = DistanceBetweenEntities(attackers[0], target);
+		let targetDistance = PositionHelper.DistanceBetweenEntities(attackers[0], target);
 		if (targetDistance < minDistance)
 		{
 			closestTarget = target;
@@ -555,7 +555,7 @@ Trigger.prototype.CheckShipRange = function()
 {
 	for (let ship of this.ships)
 	{
-		if (!this.shipTarget[ship] || DistanceBetweenEntities(ship, this.shipTarget[ship].ungarrisonPoint) > shipUngarrisonDistance)
+		if (!this.shipTarget[ship] || PositionHelper.DistanceBetweenEntities(ship, this.shipTarget[ship].ungarrisonPoint) > shipUngarrisonDistance)
 			continue;
 
 		let cmpGarrisonHolder = Engine.QueryInterface(ship, IID_GarrisonHolder);
