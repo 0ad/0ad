@@ -21,6 +21,7 @@
 #include "gui/CGUISprite.h"
 #include "gui/ObjectBases/IGUIObject.h"
 #include "gui/ObjectBases/IGUIScrollBarOwner.h"
+#include "gui/SettingTypes/CGUIString.h"
 #include "lib/external_libraries/libsdl.h"
 
 #include <list>
@@ -58,6 +59,9 @@ public:
 	int GetXTextPosition(const std::list<SRow>::const_iterator& c, const float& x, float& wanted) const;
 
 protected:
+
+	void SetupGeneratedPlaceholderText();
+
 	/**
 	 * @see IGUIObject#HandleMessage()
 	 */
@@ -104,6 +108,15 @@ protected:
 	 * that.
 	 */
 	void UpdateText(int from = 0, int to_before = -1, int to_after = -1);
+
+	/**
+	 * Draws the text generated for placeholder.
+	 *
+	 * @param z Z value
+	 * @param clipping Clipping rectangle, don't even add a parameter
+	 *        to get no clipping.
+	 */
+	virtual void DrawPlaceholderText(float z, const CRect& clipping = CRect());
 
 	/**
 	 * Delete the current selection. Also places the pointer at the
@@ -180,6 +193,13 @@ protected:
 	 */
 	bool m_SelectingText;
 
+	/**
+	 * Whether the cached text is currently valid (if not then SetupText will be called by Draw)
+	 */
+	bool m_GeneratedPlaceholderTextValid;
+
+	CGUIText m_GeneratedPlaceholderText;
+
 	// *** Things for one-line input control *** //
 	float m_HorizontalScroll;
 
@@ -200,6 +220,7 @@ protected:
 	i32 m_BufferPosition;
 	float m_BufferZone;
 	CStrW m_Caption;
+	CGUIString m_PlaceholderText;
 	i32 m_CellID;
 	CStrW m_Font;
 	CStrW m_MaskChar;
@@ -213,6 +234,7 @@ protected:
 	CGUISpriteInstance m_SpriteSelectArea;
 	CGUIColor m_TextColor;
 	CGUIColor m_TextColorSelected;
+	CGUIColor m_PlaceholderColor;
 };
 
 #endif // INCLUDED_CINPUT

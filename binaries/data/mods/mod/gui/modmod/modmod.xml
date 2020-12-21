@@ -18,9 +18,11 @@
 				type="input"
 				style="ModernInput"
 				size="16 0 176 100%"
+				placeholder_color="gray"
 			>
 				<action on="Press">applyFilters();</action>
 				<action on="TextEdit">applyFilters();</action>
+				<translatableAttribute id="placeholder_text">Filter</translatableAttribute>
 			</object>
 
 			<!-- Checkboxes -->

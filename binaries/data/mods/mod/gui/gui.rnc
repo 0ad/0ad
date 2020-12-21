@@ -71,6 +71,8 @@ ex_settings =
   attribute maxwidth { xsd:decimal }? &
   attribute multiline { bool }?&
   attribute offset { pos }?&
+  attribute placeholder_text { text }?&
+  attribute placeholder_color { ccolor }?&
   attribute readonly { bool }?&
   attribute scrollbar { bool }?&
   attribute scrollbar_style { text }?&

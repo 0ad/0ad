@@ -52,6 +52,7 @@ CInput::CInput(CGUI& pGUI)
 	m_CursorVisState(true),
 	m_CursorBlinkRate(0.5),
 	m_ComposingText(),
+	m_GeneratedPlaceholderTextValid(false),
 	m_iComposedLength(),
 	m_iComposedPos(),
 	m_iInsertPos(),
@@ -88,6 +89,8 @@ CInput::CInput(CGUI& pGUI)
 	RegisterSetting("sprite_selectarea", m_SpriteSelectArea);
 	RegisterSetting("textcolor", m_TextColor);
 	RegisterSetting("textcolor_selected", m_TextColorSelected);
+	RegisterSetting("placeholder_text", m_PlaceholderText);
+	RegisterSetting("placeholder_color", m_PlaceholderColor);
 
 	CFG_GET_VAL("gui.cursorblinkrate", m_CursorBlinkRate);
 
@@ -598,6 +601,12 @@ void CInput::ManuallyImmutableHandleKeyDownEvent(const SDL_Keycode keyCode)
 	}
 }
 
+void CInput::SetupGeneratedPlaceholderText()
+{
+	m_GeneratedPlaceholderText = CGUIText(m_pGUI, m_PlaceholderText, m_Font, 0, m_BufferZone, this);
+	m_GeneratedPlaceholderTextValid = true;
+}
+
 InReaction CInput::ManuallyHandleHotkeyEvent(const SDL_Event_* ev)
 {
 	bool shiftKeyPressed = g_keys[SDLK_RSHIFT] || g_keys[SDLK_LSHIFT];
@@ -921,6 +930,15 @@ void CInput::HandleMessage(SGUIMessage& Message)
 			UpdateText();
 		}
 
+		if (Message.value == "placeholder_text" ||
+			Message.value == "size" ||
+			Message.value == "font" ||
+			Message.value == "z" ||
+			Message.value == "text_valign")
+		{
+			m_GeneratedPlaceholderTextValid = false;
+		}
+
 		UpdateAutoScroll();
 
 		break;
@@ -1156,6 +1174,8 @@ void CInput::UpdateCachedSize()
 		GetScrollBar(0).SetZ(GetBufferedZ());
 		GetScrollBar(0).SetLength(m_CachedActualSize.bottom - m_CachedActualSize.top);
 	}
+
+	m_GeneratedPlaceholderTextValid = false;
 }
 
 void CInput::Draw()
@@ -1500,6 +1520,17 @@ void CInput::Draw()
 		glDisable(GL_SCISSOR_TEST);
 
 	tech->EndPass();
+
+	if (m_Caption.empty() && !m_PlaceholderText.GetRawString().empty())
+		DrawPlaceholderText(bz, cliparea);
+}
+
+void CInput::DrawPlaceholderText(float z, const CRect& clipping)
+{
+	if (!m_GeneratedPlaceholderTextValid)
+		SetupGeneratedPlaceholderText();
+
+	m_GeneratedPlaceholderText.Draw(m_pGUI, m_PlaceholderColor, m_CachedActualSize.TopLeft(), z, clipping);
 }
 
 void CInput::UpdateText(int from, int to_before, int to_after)
