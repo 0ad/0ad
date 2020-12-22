@@ -435,6 +435,14 @@
         </attribute>
       </optional>
       <optional>
+        <attribute name="placeholder_text"/>
+      </optional>
+      <optional>
+        <attribute name="placeholder_color">
+          <ref name="ccolor"/>
+        </attribute>
+      </optional>
+      <optional>
         <attribute name="text_align">
           <ref name="align"/>
         </attribute>

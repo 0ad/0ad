@@ -104,7 +104,6 @@ function validateMods()
 function initGUIFilters()
 {
 	Engine.GetGUIObjectByName("negateFilter").checked = false;
-	Engine.GetGUIObjectByName("modGenericFilter").caption = translate("Filter");
 
 	displayModLists();
 }
@@ -251,7 +250,6 @@ function filterMod(folder)
 	let searchText = Engine.GetGUIObjectByName("modGenericFilter").caption;
 
 	if (searchText &&
-	    searchText != translate("Filter") &&
 	    folder.indexOf(searchText) == -1 &&
 	    mod.name.indexOf(searchText) == -1 &&
 	    mod.label.indexOf(searchText) == -1 &&
