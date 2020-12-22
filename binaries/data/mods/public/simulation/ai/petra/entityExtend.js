@@ -80,7 +80,20 @@ PETRA.getMaxStrength = function(ent, debugLevel, DamageTypeImportance, againstCl
 PETRA.getLandAccess = function(gameState, ent)
 {
 	if (ent.hasClass("Unit"))
-		return gameState.ai.accessibility.getAccessValue(ent.position());
+	{
+		let pos = ent.position();
+		if (!pos)
+		{
+			let holder = PETRA.getHolder(gameState, ent);
+			if (holder)
+				return PETRA.getLandAccess(gameState, holder);
+
+			API3.warn("Petra error: entity without position, but not garrisoned");
+			PETRA.dumpEntity(ent);
+			return undefined;
+		}
+		return gameState.ai.accessibility.getAccessValue(pos);
+	}
 
 	let access = ent.getMetadata(PlayerID, "access");
 	if (!access)
