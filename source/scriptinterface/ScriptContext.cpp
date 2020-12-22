@@ -97,7 +97,7 @@ ScriptContext::ScriptContext(int contextSize, int heapGrowthBytesGCTrigger):
 	JS::SetGCSliceCallback(m_cx, GCSliceCallbackHook);
 
 	JS_SetGCParameter(m_cx, JSGC_MAX_BYTES, m_ContextSize);
-	JS_SetGCParameter(m_cx, JSGC_MODE, JSGC_MODE_ZONE_INCREMENTAL);
+	JS_SetGCParameter(m_cx, JSGC_MODE, JSGC_MODE_INCREMENTAL);
 
 	JS_SetOffthreadIonCompilationEnabled(m_cx, true);
 
@@ -245,7 +245,7 @@ void ScriptContext::ShrinkingGC()
 	JS_SetGCParameter(m_cx, JSGC_MODE, JSGC_MODE_ZONE);
 	JS::PrepareForFullGC(m_cx);
 	JS::NonIncrementalGC(m_cx, GC_SHRINK, JS::GCReason::API);
-	JS_SetGCParameter(m_cx, JSGC_MODE, JSGC_MODE_ZONE_INCREMENTAL);
+	JS_SetGCParameter(m_cx, JSGC_MODE, JSGC_MODE_INCREMENTAL);
 }
 
 void ScriptContext::PrepareZonesForIncrementalGC() const
