@@ -17,7 +17,7 @@ var testData = {
 	"garrisonRegenRate": 5,
 	"decay": false,
 	"decayRate": 30,
-	"maxCp": 3000,
+	"maxCapturePoints": 3000,
 	"neighbours": [20, 0, 20, 10]
 };
 
@@ -70,7 +70,7 @@ function testCapturable(testData, test_function)
 	});
 
 	let cmpCapturable = ConstructComponent(testData.structure, "Capturable", {
-		"CapturePoints": testData.maxCp,
+		"CapturePoints": testData.maxCapturePoints,
 		"RegenRate": testData.regenRate,
 		"GarrisonRegenRate": testData.garrisonRegenRate
 	});
@@ -128,17 +128,17 @@ testCapturable(testData, cmpCapturable => {
 	TS_ASSERT_UNEVAL_EQUALS(cmpCapturable.GetCapturePoints(), [0, 0, 0, 3000]);
 });
 
-function testRegen(testData, cpIn, cpOut, regenerating)
+function testRegen(testData, capturePointsIn, capturePointsOut, regenerating)
 {
 	testCapturable(testData, cmpCapturable => {
-		cmpCapturable.SetCapturePoints(cpIn);
+		cmpCapturable.SetCapturePoints(capturePointsIn);
 		cmpCapturable.CheckTimer();
 		Engine.PostMessage = function(ent, iid, message) {
 			if (iid == MT_CaptureRegenStateChanged)
 				TS_ASSERT_UNEVAL_EQUALS(message.regenerating, regenerating);
 		};
-		cmpCapturable.TimerTick(cpIn);
-		TS_ASSERT_UNEVAL_EQUALS(cmpCapturable.GetCapturePoints(), cpOut);
+		cmpCapturable.TimerTick(capturePointsIn);
+		TS_ASSERT_UNEVAL_EQUALS(cmpCapturable.GetCapturePoints(), capturePointsOut);
 	});
 }
 
@@ -153,17 +153,17 @@ testData.regenRate = -32;
 testRegen(testData, [100, 2800, 50, 50], [112, 2796, 46, 46], true);
 testData.regenRate = 2;
 
-function testDecay(testData, cpIn, cpOut)
+function testDecay(testData, capturePointsIn, capturePointsOut)
 {
 	testCapturable(testData, cmpCapturable => {
-		cmpCapturable.SetCapturePoints(cpIn);
+		cmpCapturable.SetCapturePoints(capturePointsIn);
 		cmpCapturable.CheckTimer();
 		Engine.PostMessage = function(ent, iid, message) {
 			if (iid == MT_CaptureRegenStateChanged)
 				TS_ASSERT_UNEVAL_EQUALS(message.territoryDecay, testData.decayRate);
 		};
 		cmpCapturable.TimerTick();
-		TS_ASSERT_UNEVAL_EQUALS(cmpCapturable.GetCapturePoints(), cpOut);
+		TS_ASSERT_UNEVAL_EQUALS(cmpCapturable.GetCapturePoints(), capturePointsOut);
 	});
 }
 testData.decay = true;
