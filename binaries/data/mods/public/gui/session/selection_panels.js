@@ -1109,7 +1109,7 @@ g_SelectionPanels.Upgrade = {
 				}));
 
 			tooltips.push(
-				getEntityCostComponentsTooltipString(data.item, undefined, upgradableEntStates.length),
+				getEntityCostTooltip(data.item, undefined, undefined, data.unitEntStates.length),
 				formatLimitString(limits.entLimit, limits.entCount, limits.entLimitChangers),
 				getRequiredTechnologyTooltip(technologyEnabled, data.item.requiredTechnology, GetSimState().players[data.player].civ),
 				getNeededResourcesTooltip(neededResources),
