@@ -28,6 +28,7 @@
 					<action on="Tab">
 						autoCompleteText(this, g_Playernames);
 					</action>
+					<translatableAttribute id="placeholder_text">Search for Player</translatableAttribute>
 				</object>
 
 				<object name="mapNameFilter" type="dropdown" style="ModernDropDown" size="56%-5 0 70%-10 100%" font="sans-bold-13">
