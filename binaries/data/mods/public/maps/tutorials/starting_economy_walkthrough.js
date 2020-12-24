@@ -311,7 +311,7 @@ Trigger.prototype.tutorialGoals = [
 	},
 	{
 		"instructions": [
-			markForTranslation("A field can have up to five farmers working on it. To add additional gatherers, select the Civic Center and setup a rally point on a field by right-clicking on it. As long as the field is not yet build, new workers sent by a rally point will help building it, while they will gather it when built.")
+			markForTranslation("Up to five Workers can gather from a Field. To add additional Workers, select the Civic Center and set a rally point on a Field by right-clicking on it. If the Field is not yet finished, new Workers sent by a rally point will help building it, and when built, they will gather food.")
 		],
 		"OnPlayerCommand": function(msg)
 		{

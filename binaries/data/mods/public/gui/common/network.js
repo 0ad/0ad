@@ -70,7 +70,7 @@ function getDisconnectReason(id, wasConnected)
 	case 4: return translate("Game has already started, no observers allowed.");
 	case 5: return translate("You have been kicked.");
 	case 6: return translate("You have been banned.");
-	case 7: return translate("Playername in use. If you were disconnected, retry in few seconds.");
+	case 7: return translate("Player name in use. If you were disconnected, retry in few seconds.");
 	case 8: return translate("Server full.");
 	case 9: return translate("Secure lobby authentication failed. Join via lobby.");
 	case 10: return translate("Error: Server failed to allocate a unique client identifier.");
