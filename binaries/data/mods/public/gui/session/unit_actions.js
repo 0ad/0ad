@@ -66,23 +66,22 @@ var g_UnitActions =
 		},
 		"getActionInfo": function(entState, targetState)
 		{
+			if (!entState.unitAI)
+				return false;
 			return { "possible": true };
 		},
 		"hotkeyActionCheck": function(target, selection)
 		{
-			if (!someUnitAI(selection) ||
-			    !Engine.HotkeyIsPressed("session.move") ||
-			    !getActionInfo("move", target, selection).possible)
-				return false;
-
-			return { "type": "move" };
+			return Engine.HotkeyIsPressed("session.move") &&
+				this.actionCheck(target, selection);
 		},
 		"actionCheck": function(target, selection)
 		{
-			if (!someUnitAI(selection) || !getActionInfo("move", target, selection).possible)
-				return false;
-
-			return { "type": "move" };
+			let actionInfo = getActionInfo("move", target, selection);
+			return actionInfo.possible && {
+				"type": "move",
+				"firstAbleEntity": actionInfo.entity
+			};
 		},
 		"specificness": 12,
 	},
@@ -117,18 +116,22 @@ var g_UnitActions =
 		},
 		"getActionInfo": function(entState, targetState)
 		{
+			if (!entState.unitAI)
+				return false;
 			return { "possible": true };
 		},
 		"hotkeyActionCheck": function(target, selection)
 		{
-			if (!someUnitAI(selection) ||
-			    !Engine.HotkeyIsPressed("session.attackmove") ||
-			    !getActionInfo("attack-move", target, selection).possible)
-				return false;
-
-			return {
+			return Engine.HotkeyIsPressed("session.attackmove") &&
+				this.actionCheck(target, selection);
+		},
+		"actionCheck": function(target, selection)
+		{
+			let actionInfo = getActionInfo("attack-move", target, selection);
+			return actionInfo.possible && {
 				"type": "attack-move",
-				"cursor": "action-attack-move"
+				"cursor": "action-attack-move",
+				"firstAbleEntity": actionInfo.entity
 			};
 		},
 		"specificness": 30,
@@ -155,7 +158,7 @@ var g_UnitActions =
 		},
 		"getActionInfo": function(entState, targetState)
 		{
-			if (!entState.attack || !targetState.capturePoints)
+			if (!entState.attack || !targetState || !targetState.capturePoints)
 				return false;
 
 			return {
@@ -168,13 +171,12 @@ var g_UnitActions =
 		},
 		"actionCheck": function(target, selection)
 		{
-			if (!getActionInfo("capture", target, selection).possible)
-				return false;
-
-			return {
+			let actionInfo = getActionInfo("capture", target, selection);
+			return actionInfo.possible && {
 				"type": "capture",
 				"cursor": "action-capture",
-				"target": target
+				"target": target,
+				"firstAbleEntity": actionInfo.entity
 			};
 		},
 		"specificness": 9,
@@ -201,7 +203,7 @@ var g_UnitActions =
 		},
 		"getActionInfo": function(entState, targetState)
 		{
-			if (!entState.attack || !targetState.hitpoints)
+			if (!entState.attack || !targetState || !targetState.hitpoints)
 				return false;
 
 			return {
@@ -214,25 +216,17 @@ var g_UnitActions =
 		},
 		"hotkeyActionCheck": function(target, selection)
 		{
-			if (!Engine.HotkeyIsPressed("session.attack") ||
-			    !getActionInfo("attack", target, selection).possible)
-				return false;
-
-			return {
-				"type": "attack",
-				"cursor": "action-attack",
-				"target": target
-			};
+			return Engine.HotkeyIsPressed("session.attack") &&
+				this.actionCheck(target, selection);
 		},
 		"actionCheck": function(target, selection)
 		{
-			if (!getActionInfo("attack", target, selection).possible)
-				return false;
-
-			return {
+			let actionInfo = getActionInfo("attack", target, selection);
+			return actionInfo.possible && {
 				"type": "attack",
 				"cursor": "action-attack",
-				"target": target
+				"target": target,
+				"firstAbleEntity": actionInfo.entity
 			};
 		},
 		"specificness": 10,
@@ -255,7 +249,10 @@ var g_UnitActions =
 
 			DrawTargetMarker(target);
 
-			Engine.GuiInterfaceCall("PlaySound", { "name": "order_patrol", "entity": selection[0] });
+			Engine.GuiInterfaceCall("PlaySound", {
+				"name": "order_patrol",
+				"entity": selection[0]
+			});
 			return true;
 		},
 		"getActionInfo": function(entState, targetState)
@@ -267,24 +264,22 @@ var g_UnitActions =
 		},
 		"hotkeyActionCheck": function(target, selection)
 		{
-			if (!someCanPatrol(selection) ||
-			    !Engine.HotkeyIsPressed("session.patrol") ||
-			    !getActionInfo("patrol", target, selection).possible)
-				return false;
-			return {
-				"type": "patrol",
-				"cursor": "action-patrol",
-				"target": target
-			};
+			return Engine.HotkeyIsPressed("session.patrol") &&
+				this.actionCheck(target, selection);
 		},
 		"preSelectedActionCheck": function(target, selection)
 		{
-			if (preSelectedAction != ACTION_PATROL || !getActionInfo("patrol", target, selection).possible)
-				return false;
-			return {
+			return preSelectedAction == ACTION_PATROL &&
+				this.actionCheck(target, selection);
+		},
+		"actionCheck": function(target, selection)
+		{
+			let actionInfo = getActionInfo("patrol", target, selection);
+			return actionInfo.possible && {
 				"type": "patrol",
 				"cursor": "action-patrol",
-				"target": target
+				"target": target,
+				"firstAbleEntity": actionInfo.entity
 			};
 		},
 		"specificness": 37,
@@ -310,7 +305,7 @@ var g_UnitActions =
 		},
 		"getActionInfo": function(entState, targetState)
 		{
-			if (!entState.heal ||
+			if (!entState.heal || !targetState ||
 			    !hasClass(targetState, "Unit") || !targetState.needsHeal ||
 			    !playerCheck(entState, targetState, ["Player", "Ally"]) ||
 			    entState.id == targetState.id) // Healers can't heal themselves.
@@ -328,13 +323,12 @@ var g_UnitActions =
 		},
 		"actionCheck": function(target, selection)
 		{
-			if (!getActionInfo("heal", target, selection).possible)
-				return false;
-
-			return {
+			let actionInfo = getActionInfo("heal", target, selection);
+			return actionInfo.possible && {
 				"type": "heal",
 				"cursor": "action-heal",
-				"target": target
+				"target": target,
+				"firstAbleEntity": actionInfo.entity
 			};
 		},
 		"specificness": 7,
@@ -376,7 +370,7 @@ var g_UnitActions =
 		},
 		"getActionInfo": function(entState, targetState)
 		{
-			if (!entState.builder ||
+			if (!entState.builder || !targetState ||
 			    !targetState.needsRepair && !targetState.foundation ||
 			    !playerCheck(entState, targetState, ["Player", "Ally"]))
 				return false;
@@ -388,49 +382,26 @@ var g_UnitActions =
 		},
 		"preSelectedActionCheck": function(target, selection)
 		{
-			if (preSelectedAction != ACTION_REPAIR)
-				return false;
-
-			let actionInfo = getActionInfo("repair", target, selection);
-			if (actionInfo.possible)
-				return {
-					"type": "repair",
-					"cursor": "action-repair",
-					"target": target,
-					"foundation": actionInfo.foundation
-				};
-
-			return {
+			return preSelectedAction == ACTION_REPAIR && (this.actionCheck(target, selection) || {
 				"type": "none",
 				"cursor": "action-repair-disabled",
 				"target": null
-			};
+			});
 		},
 		"hotkeyActionCheck": function(target, selection)
 		{
-			let actionInfo = getActionInfo("repair", target, selection);
-			if (!Engine.HotkeyIsPressed("session.repair") ||
-			    !actionInfo.possible)
-				return false;
-
-			return {
-				"type": "repair",
-				"cursor": "action-repair",
-				"target": target,
-				"foundation": actionInfo.foundation
-			};
+			return Engine.HotkeyIsPressed("session.repair") &&
+				this.actionCheck(target, selection);
 		},
 		"actionCheck": function(target, selection)
 		{
 			let actionInfo = getActionInfo("repair", target, selection);
-			if (!actionInfo.possible)
-				return false;
-
-			return {
+			return actionInfo.possible && {
 				"type": "repair",
 				"cursor": "action-repair",
 				"target": target,
-				"foundation": actionInfo.foundation
+				"foundation": actionInfo.foundation,
+				"firstAbleEntity": actionInfo.entity
 			};
 		},
 		"specificness": 11,
@@ -456,10 +427,15 @@ var g_UnitActions =
 		},
 		"getActionInfo": function(entState, targetState)
 		{
-			if (!targetState.resourceSupply)
+			if (!entState.resourceGatherRates ||
+				!targetState || !targetState.resourceSupply)
 				return false;
 
-			let resource = findGatherType(entState, targetState.resourceSupply);
+			let resource;
+			if (entState.resourceGatherRates[targetState.resourceSupply.type.generic + "." + targetState.resourceSupply.type.specific])
+				resource = targetState.resourceSupply.type.specific;
+			else if (entState.resourceGatherRates[targetState.resourceSupply.type.generic])
+				resource = targetState.resourceSupply.type.generic;
 			if (!resource)
 				return false;
 
@@ -471,14 +447,11 @@ var g_UnitActions =
 		"actionCheck": function(target, selection)
 		{
 			let actionInfo = getActionInfo("gather", target, selection);
-
-			if (!actionInfo.possible)
-				return false;
-
-			return {
+			return actionInfo.possible && {
 				"type": "gather",
 				"cursor": actionInfo.cursor,
-				"target": target
+				"target": target,
+				"firstAbleEntity": actionInfo.entity
 			};
 		},
 		"specificness": 1,
@@ -504,7 +477,7 @@ var g_UnitActions =
 		},
 		"getActionInfo": function(entState, targetState)
 		{
-			if (!targetState.resourceDropsite)
+			if (!targetState || !targetState.resourceDropsite)
 				return false;
 
 			let playerState = GetSimState().players[entState.player];
@@ -531,13 +504,11 @@ var g_UnitActions =
 		"actionCheck": function(target, selection)
 		{
 			let actionInfo = getActionInfo("returnresource", target, selection);
-			if (!actionInfo.possible)
-				return false;
-
-			return {
+			return actionInfo.possible && {
 				"type": "returnresource",
 				"cursor": actionInfo.cursor,
-				"target": target
+				"target": target,
+				"firstAbleEntity": actionInfo.entity
 			};
 		},
 		"specificness": 2,
@@ -545,7 +516,7 @@ var g_UnitActions =
 
 	"cancel-setup-trade-route":
 	{
-		"execute":function(target, action, selection, queued)
+		"execute": function(target, action, selection, queued)
 		{
 			Engine.PostNetworkCommand({
 				"type": "cancel-setup-trade-route",
@@ -558,7 +529,7 @@ var g_UnitActions =
 		},
 		"getActionInfo": function(entState, targetState)
 		{
-			if (targetState.foundation || !entState.trader || !targetState.market ||
+			if (!targetState || targetState.foundation || !entState.trader || !targetState.market ||
 			    playerCheck(entState, targetState, ["Enemy"]) ||
 			    !(targetState.market.land && hasClass(entState, "Organic") ||
 			      targetState.market.naval && hasClass(entState, "Ship")))
@@ -582,15 +553,13 @@ var g_UnitActions =
 		"actionCheck": function(target, selection)
 		{
 			let actionInfo = getActionInfo("cancel-setup-trade-route", target, selection);
-
-			if (!actionInfo.possible)
-				return false;
-			return {
+			return actionInfo.possible && {
 				"type": "cancel-setup-trade-route",
 				"cursor": "action-cancel-setup-trade-route",
 				"tooltip": actionInfo.tooltip,
-				"target": target
-			}
+				"target": target,
+				"firstAbleEntity": actionInfo.entity
+			};
 		},
 		"specificness": 2,
 	},
@@ -617,7 +586,7 @@ var g_UnitActions =
 		},
 		"getActionInfo": function(entState, targetState)
 		{
-			if (targetState.foundation || !entState.trader || !targetState.market ||
+			if (!targetState || targetState.foundation || !entState.trader || !targetState.market ||
 			    playerCheck(entState, targetState, ["Enemy"]) ||
 			    !(targetState.market.land && hasClass(entState, "Organic") ||
 			      targetState.market.naval && hasClass(entState, "Ship")))
@@ -678,7 +647,6 @@ var g_UnitActions =
 		"actionCheck": function(target, selection)
 		{
 			let actionInfo = getActionInfo("setup-trade-route", target, selection);
-
 			if (actionInfo.disabled)
 				return {
 					"type": "none",
@@ -687,14 +655,12 @@ var g_UnitActions =
 					"tooltip": actionInfo.tooltip
 				};
 
-			if (!actionInfo.possible)
-				return false;
-
-			return {
+			return actionInfo.possible && {
 				"type": "setup-trade-route",
 				"cursor": "action-setup-trade-route",
 				"tooltip": actionInfo.tooltip,
-				"target": target
+				"target": target,
+				"firstAbleEntity": actionInfo.entity
 			};
 		},
 		"specificness": 0,
@@ -720,7 +686,7 @@ var g_UnitActions =
 		},
 		"getActionInfo": function(entState, targetState)
 		{
-			if (!entState.canGarrison || !targetState.garrisonHolder ||
+			if (!entState.canGarrison || !targetState || !targetState.garrisonHolder ||
 			    !playerCheck(entState, targetState, ["Player", "MutualAlly"]))
 				return false;
 
@@ -746,36 +712,27 @@ var g_UnitActions =
 		},
 		"preSelectedActionCheck": function(target, selection)
 		{
-			if (preSelectedAction != ACTION_GARRISON)
-				return false;
-
-			let actionInfo = getActionInfo("garrison", target, selection);
-			if (!actionInfo.possible)
-				return {
-					"type": "none",
-					"cursor": "action-garrison-disabled",
-					"target": null
-				};
-
-			return {
-				"type": "garrison",
-				"cursor": "action-garrison",
-				"tooltip": actionInfo.tooltip,
-				"target": target
-			};
+			return preSelectedAction == ACTION_GARRISON && (this.actionCheck(target, selection) || {
+				"type": "none",
+				"cursor": "action-garrison-disabled",
+				"target": null
+			});
 		},
 		"hotkeyActionCheck": function(target, selection)
 		{
+			return Engine.HotkeyIsPressed("session.garrison") &&
+				this.actionCheck(target, selection);
+
+		},
+		"actionCheck": function(target, selection)
+		{
 			let actionInfo = getActionInfo("garrison", target, selection);
-
-			if (!Engine.HotkeyIsPressed("session.garrison") || !actionInfo.possible)
-				return false;
-
-			return {
+			return actionInfo.possible && {
 				"type": "garrison",
 				"cursor": "action-garrison",
 				"tooltip": actionInfo.tooltip,
-				"target": target
+				"target": target,
+				"firstAbleEntity": actionInfo.entity
 			};
 		},
 		"specificness": 20,
@@ -801,7 +758,7 @@ var g_UnitActions =
 		},
 		"getActionInfo": function(entState, targetState)
 		{
-			if (!targetState.guard || entState.id == targetState.id ||
+			if (!targetState || !targetState.guard || entState.id == targetState.id ||
 			    !playerCheck(entState, targetState, ["Player", "Ally"]) ||
 			    !entState.unitAI || !entState.unitAI.canGuard)
 				return false;
@@ -810,32 +767,25 @@ var g_UnitActions =
 		},
 		"preSelectedActionCheck": function(target, selection)
 		{
-			if (preSelectedAction != ACTION_GUARD)
-				return false;
-
-			if (getActionInfo("guard", target, selection).possible)
-				return {
-					"type": "guard",
-					"cursor": "action-guard",
-					"target": target
-				};
-
-			return {
+			return preSelectedAction == ACTION_GUARD && (this.actionCheck(target, selection) || {
 				"type": "none",
 				"cursor": "action-guard-disabled",
 				"target": null
-			};
+			});
 		},
 		"hotkeyActionCheck": function(target, selection)
 		{
-			if (!Engine.HotkeyIsPressed("session.guard") ||
-			    !getActionInfo("guard", target, selection).possible)
-				return false;
-
-			return {
+			return Engine.HotkeyIsPressed("session.guard") &&
+				this.actionCheck(target, selection);
+		},
+		"actionCheck": function(target, selection)
+		{
+			let actionInfo = getActionInfo("guard", target, selection);
+			return actionInfo.possible && {
 				"type": "guard",
 				"cursor": "action-guard",
-				"target": target
+				"target": target,
+				"firstAbleEntity": actionInfo.entity
 			};
 		},
 		"specificness": 40,
@@ -859,19 +809,26 @@ var g_UnitActions =
 
 			return true;
 		},
+		"getActionInfo": function(entState, targetState)
+		{
+			if (!entState.unitAI || !entState.unitAI.isGuarding)
+				return false;
+			return { "possible": true };
+		},
 		"hotkeyActionCheck": function(target, selection)
 		{
-			if (!Engine.HotkeyIsPressed("session.guard") ||
-			    !getActionInfo("remove-guard", target, selection).possible ||
-			    !someGuarding(selection))
-				return false;
-
-			return {
+			return Engine.HotkeyIsPressed("session.guard") &&
+				this.actionCheck(target, selection);
+		},
+		"actionCheck": function(target, selection)
+		{
+			let actionInfo = getActionInfo("remove-guard", target, selection);
+			return actionInfo.possible && {
 				"type": "remove-guard",
-				"cursor": "action-remove-guard"
+				"cursor": "action-remove-guard",
+				"firstAbleEntity": actionInfo.entity
 			};
 		},
-
 		"specificness": 41,
 	},
 
@@ -905,6 +862,18 @@ var g_UnitActions =
 		},
 		"getActionInfo": function(entState, targetState)
 		{
+			if (!entState.rallyPoint)
+				return false;
+
+			// Don't allow the rally point to be set on any of the currently selected entities (used for unset)
+			// except if the autorallypoint hotkey is pressed and the target can produce entities.
+			if (targetState && (!Engine.HotkeyIsPressed("session.autorallypoint") ||
+			    !targetState.production ||
+			    !targetState.production.entities.length))
+				for (let ent in g_Selection.selected)
+					if (targetState.id == +ent)
+						return false;
+
 			let tooltip;
 			let disabled = false;
 			// default to walking there (or attack-walking if hotkey pressed)
@@ -924,7 +893,7 @@ var g_UnitActions =
 				cursor = "action-attack-move";
 			}
 
-			if (Engine.HotkeyIsPressed("session.repair") &&
+			if (Engine.HotkeyIsPressed("session.repair") && targetState &&
 			    (targetState.needsRepair || targetState.foundation) &&
 			    playerCheck(entState, targetState, ["Player", "Ally"]))
 			{
@@ -932,7 +901,7 @@ var g_UnitActions =
 				data.target = targetState.id;
 				cursor = "action-repair";
 			}
-			else if (targetState.garrisonHolder &&
+			else if (targetState && targetState.garrisonHolder &&
 			    playerCheck(entState, targetState, ["Player", "MutualAlly"]))
 			{
 				data.command = "garrison";
@@ -948,7 +917,7 @@ var g_UnitActions =
 				    targetState.garrisonHolder.capacity)
 					tooltip = coloredText(tooltip, "orange");
 			}
-			else if (targetState.resourceSupply)
+			else if (targetState && targetState.resourceSupply)
 			{
 				let resourceType = targetState.resourceSupply.type;
 				if (resourceType.generic == "treasure")
@@ -965,7 +934,7 @@ var g_UnitActions =
 					data.target = targetState.id;
 				}
 			}
-			else if (entState.market && targetState.market &&
+			else if (entState.market && targetState && targetState.market &&
 			         entState.id != targetState.id &&
 			         (!entState.market.naval || targetState.market.naval) &&
 			         !playerCheck(entState, targetState, ["Enemy"]))
@@ -1006,45 +975,44 @@ var g_UnitActions =
 					}
 				}
 			}
-			else if ((targetState.needsRepair || targetState.foundation) && playerCheck(entState, targetState, ["Ally"]))
+			else if (targetState && (targetState.needsRepair || targetState.foundation) && playerCheck(entState, targetState, ["Ally"]))
 			{
 				data.command = "repair";
 				data.target = targetState.id;
 				cursor = "action-repair";
 			}
-			else if (playerCheck(entState, targetState, ["Enemy"]))
+			else if (targetState && playerCheck(entState, targetState, ["Enemy"]))
 			{
 				data.target = targetState.id;
 				data.command = "attack";
 				cursor = "action-attack";
 			}
 
-			// Don't allow the rally point to be set on any of the currently selected entities (used for unset)
-			// except if the autorallypoint hotkey is pressed and the target can produce entities
-			if (!Engine.HotkeyIsPressed("session.autorallypoint") ||
-			    !targetState.production ||
-			    !targetState.production.entities.length)
-				for (let ent in g_Selection.selected)
-					if (targetState.id == +ent)
-						return false;
-
 			return {
 				"possible": true,
 				"data": data,
-				"position": targetState.position,
+				"position": targetState && targetState.position,
 				"cursor": cursor,
 				"disabled": disabled,
 				"tooltip": tooltip
 			};
 
 		},
+		"hotkeyActionCheck": function(target, selection)
+		{
+			// Hotkeys are checked in the actionInfo.
+			return this.actionCheck(target, selection);
+		},
 		"actionCheck": function(target, selection)
 		{
-			if (someUnitAI(selection) || !someRallyPoints(selection))
+			// We want commands to units take precedence.
+			if (selection.some(ent => {
+				let entState = GetEntityState(ent);
+				return entState && !!entState.unitAI;
+			}))
 				return false;
 
 			let actionInfo = getActionInfo("set-rallypoint", target, selection);
-
 			if (actionInfo.disabled)
 				return {
 					"type": "none",
@@ -1053,15 +1021,13 @@ var g_UnitActions =
 					"tooltip": actionInfo.tooltip
 				};
 
-			if (!actionInfo.possible)
-				return false;
-
-			return {
+			return actionInfo.possible && {
 				"type": "set-rallypoint",
 				"cursor": actionInfo.cursor,
 				"data": actionInfo.data,
 				"tooltip": actionInfo.tooltip,
-				"position": actionInfo.position
+				"position": actionInfo.position,
+				"firstAbleEntity": actionInfo.entity
 			};
 		},
 		"specificness": 6,
@@ -1085,21 +1051,20 @@ var g_UnitActions =
 		},
 		"getActionInfo": function(entState, targetState)
 		{
-			if (entState.id != targetState.id ||
-			    !entState.rallyPoint || !entState.rallyPoint.position)
+			if (!targetState ||
+				entState.id != targetState.id || entState.unitAI ||
+				!entState.rallyPoint || !entState.rallyPoint.position)
 				return false;
 
 			return { "possible": true };
 		},
 		"actionCheck": function(target, selection)
 		{
-			if (someUnitAI(selection) || !someRallyPoints(selection) ||
-			    !getActionInfo("unset-rallypoint", target, selection).possible)
-				return false;
-
-			return {
+			let actionInfo = getActionInfo("unset-rallypoint", target, selection);
+			return actionInfo.possible && {
 				"type": "unset-rallypoint",
-				"cursor": "action-unset-rally"
+				"cursor": "action-unset-rally",
+				"firstAbleEntity": actionInfo.entity
 			};
 		},
 		"specificness": 11,
@@ -1547,41 +1512,6 @@ function hasClass(entState, className)
 }
 
 /**
- * Work out whether at least part of the selected entities have UnitAI.
- */
-function someUnitAI(entities)
-{
-	return entities.some(ent => {
-		let entState = GetEntityState(ent);
-		return entState && entState.unitAI || false;
-	});
-}
-
-function someRallyPoints(entities)
-{
-	return entities.some(ent => {
-		let entState = GetEntityState(ent);
-		return entState && entState.rallyPoint || false;
-	});
-}
-
-function someGuarding(entities)
-{
-	return entities.some(ent => {
-		let entState = GetEntityState(ent);
-		return entState && entState.unitAI && entState.unitAI.isGuarding;
-	});
-}
-
-function someCanPatrol(entities)
-{
-	return entities.some(ent => {
-		let entState = GetEntityState(ent);
-		return entState && entState.unitAI && entState.unitAI.canPatrol;
-	});
-}
-
-/**
  * Keep in sync with Commands.js.
  */
 function isUndeletable(entState)
@@ -1611,75 +1541,20 @@ function DrawTargetMarker(target)
 	});
 }
 
-function findGatherType(gatherer, supply)
-{
-	if (!gatherer.resourceGatherRates || !supply)
-		return undefined;
-
-	if (gatherer.resourceGatherRates[supply.type.generic + "." + supply.type.specific])
-		return supply.type.specific;
-
-	if (gatherer.resourceGatherRates[supply.type.generic])
-		return supply.type.generic;
-
-	return undefined;
-}
-
 function getActionInfo(action, target, selection)
 {
 	if (!selection || !selection.length || !GetEntityState(selection[0]))
 		return { "possible": false };
 
-	if (!target) // TODO move these non-target actions to an object like unit_actions.js
-	{
-		// Ensure one entity at least is controllable.
-		let playerState = g_SimState.players[g_ViewedPlayer];
-		if (playerState && !playerState.controlsAll && !selection.some(ent => {
-			let entState = GetEntityState(ent);
-			return entState && entState.identity && entState.identity.controllable;
-		}))
-			return { "possible": false };
-
-		if (action == "set-rallypoint")
-		{
-			let cursor = "";
-			let data = { "command": "walk" };
-			if (Engine.HotkeyIsPressed("session.attackmove"))
-			{
-				data.command = "attack-walk";
-				data.targetClasses = Engine.HotkeyIsPressed("session.attackmoveUnit") ?
-					{ "attack": ["Unit"] } : { "attack": ["Unit", "Structure"] };
-				cursor = "action-attack-move";
-			}
-			else if (Engine.HotkeyIsPressed("session.patrol"))
-			{
-				data.command = "patrol";
-				data.targetClasses = { "attack": g_PatrolTargets };
-				cursor = "action-patrol";
-			}
-			return {
-				"possible": true,
-				"data": data,
-				"cursor": cursor
-			};
-		}
-
-		return {
-			"possible": ["move", "attack-move", "remove-guard", "patrol"].indexOf(action) != -1
-		};
-	}
-
 	// Look at the first targeted entity
 	// (TODO: maybe we eventually want to look at more, and be more context-sensitive?
 	// e.g. prefer to attack an enemy unit, even if some friendly units are closer to the mouse)
 	let targetState = GetEntityState(target);
-	if (!targetState)
-		return { "possible": false };
 
 	let simState = GetSimState();
 	let playerState = g_SimState.players[g_ViewedPlayer];
 
-	// Check if any entities in the selection can do some of the available actions with target
+	// Check if any entities in the selection can do some of the available actions.
 	for (let entityID of selection)
 	{
 		let entState = GetEntityState(entityID);
@@ -1692,8 +1567,11 @@ function getActionInfo(action, target, selection)
 		if (g_UnitActions[action] && g_UnitActions[action].getActionInfo)
 		{
 			let r = g_UnitActions[action].getActionInfo(entState, targetState, simState);
-			if (r && r.possible) // return true if it's possible for one of the entities
+			if (r && r.possible)
+			{
+				r.entity = entityID;
 				return r;
+			}
 		}
 	}
 	return { "possible": false };
