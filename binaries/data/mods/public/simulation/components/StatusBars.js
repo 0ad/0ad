@@ -257,7 +257,7 @@ StatusBars.prototype.AddCaptureBar = function(cmpOverlayRenderer, yoffset)
 		return 0;
 
 	this.usedPlayerColors = true;
-	let cp = cmpCapturable.GetCapturePoints();
+	let capturePoints = cmpCapturable.GetCapturePoints();
 
 	// Size of health bar (in world-space units)
 	let width = +this.template.BarWidth;
@@ -270,7 +270,7 @@ StatusBars.prototype.AddCaptureBar = function(cmpOverlayRenderer, yoffset)
 	{
 		let c = QueryPlayerIDInterface(playerID).GetDisplayedColor();
 		let strColor = (c.r * 255) + " " + (c.g * 255) + " " + (c.b * 255) + " 255";
-		let size = width * cp[playerID] / cmpCapturable.GetMaxCapturePoints();
+		let size = width * capturePoints[playerID] / cmpCapturable.GetMaxCapturePoints();
 
 		cmpOverlayRenderer.AddSprite(
 			"art/textures/ui/session/icons/capture_bar.png",
@@ -285,8 +285,8 @@ StatusBars.prototype.AddCaptureBar = function(cmpOverlayRenderer, yoffset)
 
 	// First handle the owner's points, to keep those points on the left for clarity
 	let size = setCaptureBarPart(owner, -width / 2);
-	for (let i in cp)
-		if (i != owner && cp[i] > 0)
+	for (let i in capturePoints)
+		if (i != owner && capturePoints[i] > 0)
 			size = setCaptureBarPart(i, size);
 
 	return height * 1.2;

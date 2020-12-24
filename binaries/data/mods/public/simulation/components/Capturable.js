@@ -13,10 +13,10 @@ Capturable.prototype.Schema =
 
 Capturable.prototype.Init = function()
 {
-	this.maxCp = +this.template.CapturePoints;
+	this.maxCapturePoints = +this.template.CapturePoints;
 	this.garrisonRegenRate = +this.template.GarrisonRegenRate;
 	this.regenRate = +this.template.RegenRate;
-	this.cp = [];
+	this.capturePoints = [];
 };
 
 //// Interface functions ////
@@ -26,12 +26,12 @@ Capturable.prototype.Init = function()
  */
 Capturable.prototype.GetCapturePoints = function()
 {
-	return this.cp;
+	return this.capturePoints;
 };
 
 Capturable.prototype.GetMaxCapturePoints = function()
 {
-	return this.maxCp;
+	return this.maxCapturePoints;
 };
 
 Capturable.prototype.GetGarrisonRegenRate = function()
@@ -47,7 +47,7 @@ Capturable.prototype.GetGarrisonRegenRate = function()
  */
 Capturable.prototype.SetCapturePoints = function(capturePointsArray)
 {
-	this.cp = capturePointsArray;
+	this.capturePoints = capturePointsArray;
 };
 
 /**
@@ -92,7 +92,7 @@ Capturable.prototype.Reduce = function(amount, playerID)
 	if (cmpFogging)
 		cmpFogging.Activate();
 
-	let numberOfEnemies = this.cp.filter((v, i) => v > 0 && cmpPlayerSource.IsEnemy(i)).length;
+	let numberOfEnemies = this.capturePoints.filter((v, i) => v > 0 && cmpPlayerSource.IsEnemy(i)).length;
 
 	if (numberOfEnemies == 0)
 		return 0;
@@ -103,32 +103,32 @@ Capturable.prototype.Reduce = function(amount, playerID)
 	while (distributedAmount > 0.0001)
 	{
 		numberOfEnemies = 0;
-		for (let i in this.cp)
+		for (let i in this.capturePoints)
 		{
-			if (!this.cp[i] || !cmpPlayerSource.IsEnemy(i))
+			if (!this.capturePoints[i] || !cmpPlayerSource.IsEnemy(i))
 				continue;
-			if (this.cp[i] > distributedAmount)
+			if (this.capturePoints[i] > distributedAmount)
 			{
 				removedAmount += distributedAmount;
-				this.cp[i] -= distributedAmount;
+				this.capturePoints[i] -= distributedAmount;
 				++numberOfEnemies;
 			}
 			else
 			{
-				removedAmount += this.cp[i];
-				this.cp[i] = 0;
+				removedAmount += this.capturePoints[i];
+				this.capturePoints[i] = 0;
 			}
 		}
 		distributedAmount = numberOfEnemies ? (amount - removedAmount) / numberOfEnemies : 0;
 	}
 
-	// Give all cp taken to the player.
-	let takenCp = this.maxCp - this.cp.reduce((a, b) => a + b);
-	this.cp[playerID] += takenCp;
+	// Give all capture points taken to the player.
+	let takenCapturePoints = this.maxCapturePoints - this.capturePoints.reduce((a, b) => a + b);
+	this.capturePoints[playerID] += takenCapturePoints;
 
 	this.CheckTimer();
 	this.RegisterCapturePointsChanged();
-	return takenCp;
+	return takenCapturePoints;
 };
 
 /**
@@ -142,12 +142,12 @@ Capturable.prototype.CanCapture = function(playerID)
 
 	if (!cmpPlayerSource)
 		warn(playerID + " has no player component defined on its id.");
-	let cp = this.GetCapturePoints();
-	let sourceEnemyCp = 0;
+	let capturePoints = this.GetCapturePoints();
+	let sourceEnemyCapturePoints = 0;
 	for (let i in this.GetCapturePoints())
 		if (cmpPlayerSource.IsEnemy(i))
-			sourceEnemyCp += cp[i];
-	return sourceEnemyCp > 0;
+			sourceEnemyCapturePoints += capturePoints[i];
+	return sourceEnemyCapturePoints > 0;
 };
 
 //// Private functions ////
@@ -162,18 +162,18 @@ Capturable.prototype.RegisterCapturePointsChanged = function()
 	if (!cmpOwnership)
 		return;
 
-	Engine.PostMessage(this.entity, MT_CapturePointsChanged, { "capturePoints": this.cp });
+	Engine.PostMessage(this.entity, MT_CapturePointsChanged, { "capturePoints": this.capturePoints });
 
 	let owner = cmpOwnership.GetOwner();
-	if (owner == INVALID_PLAYER || this.cp[owner] > 0)
+	if (owner == INVALID_PLAYER || this.capturePoints[owner] > 0)
 		return;
 
-	// If all cp has been taken from the owner, convert it to player with the most capture points.
+	// If all capture points have been taken from the owner, convert it to player with the most capture points.
 	let cmpLostPlayerStatisticsTracker = QueryOwnerInterface(this.entity, IID_StatisticsTracker);
 	if (cmpLostPlayerStatisticsTracker)
 		cmpLostPlayerStatisticsTracker.LostEntity(this.entity);
 
-	cmpOwnership.SetOwner(this.cp.reduce((bestPlayer, playerCp, player, cp) => playerCp > cp[bestPlayer] ? player : bestPlayer, 0));
+	cmpOwnership.SetOwner(this.capturePoints.reduce((bestPlayer, playerCapturePoints, player, capturePoints) => playerCapturePoints > capturePoints[bestPlayer] ? player : bestPlayer, 0));
 
 	let cmpCapturedPlayerStatisticsTracker = QueryOwnerInterface(this.entity, IID_StatisticsTracker);
 	if (cmpCapturedPlayerStatisticsTracker)
@@ -196,36 +196,36 @@ Capturable.prototype.TimerTick = function()
 		return;
 
 	let owner = cmpOwnership.GetOwner();
-	let modifiedCp = 0;
+	let modifiedCapturePoints = 0;
 
 	// Special handle for the territory decay.
-	// Reduce cp from the owner in favour of all neighbours (also allies).
+	// Reduce capture points from the owner in favour of all neighbours (also allies).
 	let cmpTerritoryDecay = Engine.QueryInterface(this.entity, IID_TerritoryDecay);
 	if (cmpTerritoryDecay && cmpTerritoryDecay.IsDecaying())
 	{
 		let neighbours = cmpTerritoryDecay.GetConnectedNeighbours();
 		let totalNeighbours = neighbours.reduce((a, b) => a + b);
-		let decay = Math.min(cmpTerritoryDecay.GetDecayRate(), this.cp[owner]);
-		this.cp[owner] -= decay;
+		let decay = Math.min(cmpTerritoryDecay.GetDecayRate(), this.capturePoints[owner]);
+		this.capturePoints[owner] -= decay;
 
 		if (totalNeighbours)
 			for (let p in neighbours)
-				this.cp[p] += decay * neighbours[p] / totalNeighbours;
+				this.capturePoints[p] += decay * neighbours[p] / totalNeighbours;
 		// Decay to gaia as default.
 		else
-			this.cp[0] += decay;
+			this.capturePoints[0] += decay;
 
-		modifiedCp += decay;
+		modifiedCapturePoints += decay;
 		this.RegisterCapturePointsChanged();
 	}
 
 	let regenRate = this.GetRegenRate();
 	if (regenRate < 0)
-		modifiedCp += this.Reduce(-regenRate, 0);
+		modifiedCapturePoints += this.Reduce(-regenRate, 0);
 	else if (regenRate > 0)
-		modifiedCp += this.Reduce(regenRate, owner);
+		modifiedCapturePoints += this.Reduce(regenRate, owner);
 
-	if (modifiedCp)
+	if (modifiedCapturePoints)
 		return;
 
 	// Nothing changed, stop the timer.
@@ -263,29 +263,29 @@ Capturable.prototype.UpdateCachedValues = function()
 {
 	this.garrisonRegenRate = ApplyValueModificationsToEntity("Capturable/GarrisonRegenRate", +this.template.GarrisonRegenRate, this.entity);
 	this.regenRate = ApplyValueModificationsToEntity("Capturable/RegenRate", +this.template.RegenRate, this.entity);
-	this.maxCp = ApplyValueModificationsToEntity("Capturable/CapturePoints", +this.template.CapturePoints, this.entity);
+	this.maxCapturePoints = ApplyValueModificationsToEntity("Capturable/CapturePoints", +this.template.CapturePoints, this.entity);
 };
 
 /**
  * Update all chached values that could be affected by modifications.
  * Check timer and send changed messages when required.
- * @param {boolean} dontSendCpChanged - Whether not to send a CapturePointsChanged message. When true, caller should take care of sending that message.
+ * @param {boolean} message - Whether not to send a CapturePointsChanged message. When false, caller should take care of sending that message.
 */
-Capturable.prototype.UpdateCachedValuesAndNotify = function(dontSendCpChanged = false)
+Capturable.prototype.UpdateCachedValuesAndNotify = function(sendMessage = true)
 {
-	let oldMaxCp = this.maxCp;
+	let oldMaxCapturePoints = this.maxCapturePoints;
 	let oldGarrisonRegenRate = this.garrisonRegenRate;
 	let oldRegenRate = this.regenRate;
 
 	this.UpdateCachedValues();
 
-	if (oldMaxCp != this.maxCp)
+	if (oldMaxCapturePoints != this.maxCapturePoints)
 	{
-		let scale = this.maxCp / oldMaxCp;
-		for (let i in this.cp)
-			this.cp[i] *= scale;
-		if (!dontSendCpChanged)
-			Engine.PostMessage(this.entity, MT_CapturePointsChanged, { "capturePoints": this.cp });
+		let scale = this.maxCapturePoints / oldMaxCapturePoints;
+		for (let i in this.capturePoints)
+			this.capturePoints[i] *= scale;
+		if (sendMessage)
+			Engine.PostMessage(this.entity, MT_CapturePointsChanged, { "capturePoints": this.capturePoints });
 	}
 
 	if (oldGarrisonRegenRate != this.garrisonRegenRate || oldRegenRate != this.regenRate)
@@ -322,16 +322,16 @@ Capturable.prototype.OnOwnershipChanged = function(msg)
 		return;
 
 	// Initialise the capture points when created.
-	if (!this.cp.length)
+	if (!this.capturePoints.length)
 	{
 		this.UpdateCachedValues();
 		let numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
 		for (let i = 0; i < numPlayers; ++i)
 		{
 			if (i == msg.to)
-				this.cp[i] = this.maxCp;
+				this.capturePoints[i] = this.maxCapturePoints;
 			else
-				this.cp[i] = 0;
+				this.capturePoints[i] = 0;
 		}
 		this.CheckTimer();
 		return;
@@ -339,11 +339,11 @@ Capturable.prototype.OnOwnershipChanged = function(msg)
 
 	// When already initialised, this happens on defeat or wololo,
 	// transfer the points of the old owner to the new one.
-	if (this.cp[msg.from])
+	if (this.capturePoints[msg.from])
 	{
-		this.cp[msg.to] += this.cp[msg.from];
-		this.cp[msg.from] = 0;
-		this.UpdateCachedValuesAndNotify(true);
+		this.capturePoints[msg.to] += this.capturePoints[msg.from];
+		this.capturePoints[msg.from] = 0;
+		this.UpdateCachedValuesAndNotify(false);
 		this.RegisterCapturePointsChanged();
 		return;
 	}
@@ -352,19 +352,19 @@ Capturable.prototype.OnOwnershipChanged = function(msg)
 };
 
 /**
- * When a player is defeated, reassign the cp of non-owned entities to gaia.
+ * When a player is defeated, reassign the capture points of non-owned entities to gaia.
  * Those owned by the defeated player are dealt with onOwnershipChanged.
  */
 Capturable.prototype.OnGlobalPlayerDefeated = function(msg)
 {
-	if (!this.cp[msg.playerId])
+	if (!this.capturePoints[msg.playerId])
 		return;
 	let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 	if (cmpOwnership && (cmpOwnership.GetOwner() == INVALID_PLAYER ||
 	                     cmpOwnership.GetOwner() == msg.playerId))
 		return;
-	this.cp[0] += this.cp[msg.playerId];
-	this.cp[msg.playerId] = 0;
+	this.capturePoints[0] += this.capturePoints[msg.playerId];
+	this.capturePoints[msg.playerId] = 0;
 	this.RegisterCapturePointsChanged();
 	this.CheckTimer();
 };

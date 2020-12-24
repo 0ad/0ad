@@ -40,8 +40,8 @@ function ChangeEntityTemplate(oldEnt, newTemplate)
 	if (cmpCapturable && cmpNewCapturable)
 	{
 		let scale = cmpCapturable.GetMaxCapturePoints() / cmpNewCapturable.GetMaxCapturePoints();
-		let newCp = cmpCapturable.GetCapturePoints().map(v => v / scale);
-		cmpNewCapturable.SetCapturePoints(newCp);
+		let newCapturePoints = cmpCapturable.GetCapturePoints().map(v => v / scale);
+		cmpNewCapturable.SetCapturePoints(newCapturePoints);
 	}
 
 	// Maintain current health level
