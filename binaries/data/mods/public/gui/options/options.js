@@ -348,7 +348,7 @@ function saveChanges()
 
 			messageBox(
 				500, 200,
-				translate("Some setting values are invalid! Are you sure to save them?"),
+				translate("Some setting values are invalid! Are you sure you want to save them?"),
 				translate("Warning"),
 				[translate("No"), translate("Yes")],
 				[null, reallySaveChanges]

@@ -6,11 +6,9 @@
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "architecture.png",
 	"researchTime": 40,
-	"tooltip": "Towers +2 armor.",
+	"tooltip": "Towers +25% health.",
 	"modifications": [
-		{ "value": "Resistance/Entity/Damage/Hack", "add": 2 },
-		{ "value": "Resistance/Entity/Damage/Pierce", "add": 2 },
-		{ "value": "Resistance/Entity/Damage/Crush", "add": 2 }
+		{ "value": "Health/Max", "multiply": 1.25 }
 	],
 	"affects": ["Tower"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"

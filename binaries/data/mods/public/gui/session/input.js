@@ -1153,7 +1153,7 @@ function doAction(action, ev)
 function popOneFromSelection(action)
 {
 	// Pick the first unit that can do this order.
-	let unit = g_Selection.find(entity =>
+	let unit = action.firstAbleEntity || g_Selection.find(entity =>
 		["preSelectedActionCheck", "hotkeyActionCheck", "actionCheck"].some(method =>
 			g_UnitActions[action.type][method] &&
 			g_UnitActions[action.type][method](action.target || undefined, [entity])
