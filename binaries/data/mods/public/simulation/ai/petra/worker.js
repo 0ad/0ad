@@ -112,7 +112,7 @@ PETRA.Worker.prototype.update = function(gameState, ent)
 					}
 					else if (!gameState.isPlayerAlly(territoryOwner))
 					{
-						let distanceSquare = ent.isFastMoving() ? 90000 : 30000;
+						let distanceSquare = PETRA.isFastMoving(ent) ? 90000 : 30000;
 						let targetAccess = PETRA.getLandAccess(gameState, target);
 						let foodDropsites = gameState.playerData.hasSharedDropsites ?
 						                    gameState.getAnyDropsites("food") : gameState.getOwnDropsites("food");
