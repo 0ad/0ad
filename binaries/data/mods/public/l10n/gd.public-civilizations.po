@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2020-08-28 11:42+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-12-23 12:10+0000\n"
+"Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -73,7 +73,7 @@ msgstr "Miltiades"
 #: simulation/data/civs/mace.jsonCivBonuses[0].Description
 #: simulation/data/civs/spart.jsonCivBonuses[0].Description
 msgid "Structures +10% health and +10% capture points."
-msgstr ""
+msgstr "Gheibh togalaichean +10% air an slàinte agus +10% de phuingean glacaidh."
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].History
 #: simulation/data/civs/mace.jsonCivBonuses[0].History
@@ -488,7 +488,7 @@ msgstr "Himilco"
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].Description
 msgid "Walls +100% build time, +100% stone cost, and +200% health."
-msgstr ""
+msgstr "Gheibh ballachan +100% air an ùine togail, +100% air cosgais cloiche agus +200% air an slàinte."
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].History
 msgid "Carthaginians built triple city walls."
@@ -632,7 +632,7 @@ msgstr ""
 
 #: simulation/data/civs/cart.jsonStructures[3].Name
 msgid "Italic Embassy"
-msgstr ""
+msgstr "Ambasaid Eadailteach"
 
 #: simulation/data/civs/cart.jsonStructures[3].Special
 msgid "Train Italic Mercenaries."
@@ -640,7 +640,7 @@ msgstr ""
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].Description
 msgid "Allies +10% international trade bonus."
-msgstr ""
+msgstr "+10% air buannachd malairt eadar-nàiseanta do chaidreabhaich."
 
 #: simulation/data/civs/cart.jsonTeamBonuses[0].History
 msgid ""
@@ -785,11 +785,11 @@ msgstr "+15% air astar buain gràin an luchd-obrach."
 msgid ""
 "The Gauls invented an harvesting machine, making it much easier to harvest "
 "grain."
-msgstr ""
+msgstr "Thionnsgnaich Muinntir na Gaille inneal buana a rinn e mòran nas fhasa dhaibh gràn a bhuain."
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Name
 msgid "Harvesting Machine"
-msgstr ""
+msgstr "Inneal-buana"
 
 #: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Description
 msgid ""
@@ -840,7 +840,7 @@ msgstr "Muinntir na Gaille"
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
 msgid "Forges −15% technology resource costs and research time."
-msgstr ""
+msgstr "Gheibh ceàrdaich −15% air cosgaisean stòrais agus ùine rannsachaidh nan teicneolasan."
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].History
 msgid ""
@@ -850,7 +850,7 @@ msgstr ""
 
 #: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
 msgid "Products from Gaul"
-msgstr ""
+msgstr "Batharan na Gaille"
 
 #: simulation/data/civs/iber.jsonAINames[4]
 msgid "Audax"
@@ -1017,7 +1017,7 @@ msgstr "Aura dìonach – Bheir e ionnsaigh de 10-15% a bharrachd do na h-uile a
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].Description
 msgid "Allied Citizen Javelineers −10% resource costs."
-msgstr ""
+msgstr "−10% a chosgaisean stòrais air gathadairean-dùthcha caidreabhach."
 
 #: simulation/data/civs/iber.jsonTeamBonuses[0].History
 msgid ""
@@ -1114,7 +1114,7 @@ msgstr "Afraganaich Kulušach"
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[0].Description
 msgid ""
 "Archers −10% training time, +8 attack range, and −10% ranged attack spread."
-msgstr ""
+msgstr "Gheibh boghadairean −10% air an ùine oideachaidh, +8 air astar an ionnsaighean ’s −10% air sgapadh an ionnsaighean astair."
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[0].History
 msgid ""
@@ -1131,7 +1131,7 @@ msgstr "Gnàth nam boghadairean"
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Description
 msgid ""
 "Civic Structures +20% build time, +20% health, and +20% capture points."
-msgstr ""
+msgstr "Gheibh togalaichean sìobhalta +20% air an ùine togail, +20% air an slàinte agus +20% de phuingean glacaidh."
 
 #: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Name
 msgid "Monumental Architecture"
@@ -1318,7 +1318,7 @@ msgstr "Demetrios nan Sèist"
 #: simulation/data/civs/ptol.jsonFactions[0].Technologies[0].Description
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[0].Description
 msgid "Civic Centers +100% health and capture points, double default arrows."
-msgstr ""
+msgstr "Gheibh ionadan sìobhalta +100% de shlàinte is puingean glacaidh is dà uiread dhe shaighdean tùsail."
 
 #: simulation/data/civs/mace.jsonFactions[0].Technologies[0].History
 #: simulation/data/civs/ptol.jsonFactions[0].Technologies[0].History
@@ -1339,7 +1339,7 @@ msgstr "Mòr-bhaile Greugach"
 msgid ""
 "Upgrade Shield Bearer Champion Infantry to Silver Shields, with more health "
 "and attack damage."
-msgstr ""
+msgstr "Àrdaich laoich coisridh nan giùlanairean-sgèithe gu sgiathan airgid aig a bheil barrachd slàinte ’s dochann ionnsaighe."
 
 #: simulation/data/civs/mace.jsonFactions[0].Technologies[1].History
 msgid ""
@@ -1459,7 +1459,7 @@ msgstr "Impire nan impirean."
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].Description
 msgid "Elephants −30% training time."
-msgstr ""
+msgstr "Thèid ailbheanan oideachadh −30% nas luaithe."
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].History
 msgid ""
@@ -1467,11 +1467,11 @@ msgid ""
 " continued for millennia. It was also the source of elephants for the "
 "eastern Mediterranean. Indian kings were able to field large numbers of war "
 "elephants."
-msgstr ""
+msgstr "’S e dùthaich nan ailbheanan a th’ anns na h-Innseachan. Tha tùs cogadh le ailbheanan sna h-Innseachan agus chleachdte iad fad linntean. ’S ann às an àite seo a thàinig ailbheanan gu taobh an ear na Mara Meadhanaiche. Bhiodh grunn ailbheanan cogaidh aig rìghrean nan Innseachan."
 
 #: simulation/data/civs/maur.jsonCivBonuses[1].Name
 msgid "Elephant Tradition"
-msgstr ""
+msgstr "Dualchas ailbheanan"
 
 #: simulation/data/civs/maur.jsonFactions[0].Heroes[0].History
 msgid "Founder of the Mauryan Empire."
@@ -1527,11 +1527,11 @@ msgstr "Na Mauraidhich"
 
 #: simulation/data/civs/maur.jsonStructures[0].Name
 msgid "Elephant Stable"
-msgstr ""
+msgstr "Stàball ailbheanan"
 
 #: simulation/data/civs/maur.jsonStructures[0].Special
 msgid "Train Elephants and research Elephant technologies."
-msgstr ""
+msgstr "Oidich ailbheanan is rannsaich teicneolasan ailbheanan."
 
 #: simulation/data/civs/maur.jsonStructures[1].Name
 msgid "Edict Pillar of Ashoka"
@@ -1705,13 +1705,13 @@ msgstr "Ailtireachd Phearsach"
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[3].Description
 msgid "Anušiya Champion Infantry -50% train time, but also -10% health."
-msgstr ""
+msgstr "Thèid laoich coisridh Anušiya oideachadh nas luaithe le −50% ach caillidh iad slàinte cuideachd le −10%."
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[3].History
 msgid ""
 "The Achaemenids maintained a 10,000-strong elite corps, referred to as "
 "Athanatoi (“Immortals”) by Greek authors."
-msgstr ""
+msgstr "Bhiodh grunn de 10,000 seann-ghaisgeach aig na h-Achaimenich is chuir ùghdaran na Grèige Athanatoi (“an fheadhainn neo-bhàsmhor”) orra."
 
 #: simulation/data/civs/pers.jsonFactions[0].Technologies[3].Name
 msgid "Immortals"
@@ -1758,7 +1758,7 @@ msgstr "Stàball"
 
 #: simulation/data/civs/pers.jsonStructures[0].Special
 msgid "Train Cavalry and research Cavalry technologies."
-msgstr ""
+msgstr "Oidich eachraidh is rannsaich teicneolasan eachraidh."
 
 #: simulation/data/civs/pers.jsonStructures[1].History
 msgid ""
@@ -2375,7 +2375,7 @@ msgstr "Chaidh cleasan-cogaidh nan Seleucaich ’s an iar-theachdaichean a leasa
 
 #: simulation/data/civs/sele.jsonFactions[0].Technologies[2].Name
 msgid "Traditional Army vs Reform Army"
-msgstr ""
+msgstr "Feachd tradaiseanta no feachd an ath-leasachaidh"
 
 #: simulation/data/civs/sele.jsonHistory
 msgid ""
@@ -2547,7 +2547,7 @@ msgstr "Laoidhean Thirteus"
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[2].Description
 msgid "Champion Infantry Spearmen +25% health, but +5% training time."
-msgstr ""
+msgstr "Gheibh laoich sleaghair coisridh +25% de shlàinte ach bheir iad +5% nas faide gus an oideachadh."
 
 #: simulation/data/civs/spart.jsonFactions[0].Technologies[2].History
 msgid ""

@@ -10,6 +10,7 @@
 # Maximilian Wagenbach <foaly@posteo.de>, 2016
 # Jakob Raidt <jakob.raidt@hotmail.com>, 2019
 # ... ... <jon12@gmx.de>, 2017
+# Latein Lebt, 2020
 # leper <leper@wildfiregames.com>, 2014-2016
 # Luksoft <luksoft999@gmail.com>, 2017
 # Luksoft <luksoft999@gmail.com>, 2017
@@ -30,8 +31,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2020-12-12 20:25+0000\n"
-"Last-Translator: xtother90\n"
+"PO-Revision-Date: 2020-12-20 01:42+0000\n"
+"Last-Translator: Latein Lebt\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -367,7 +368,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:77
 msgid "  hotkey.session.stop – Stop (halt) the currently selected units"
-msgstr ""
+msgstr " hotkey.session.stop – Die derzeit ausgewählten Einheiten anhalten"
 
 #: gui/manual/intro.txt:78
 msgid "  hotkey.session.backtowork – The unit will go back to work"
@@ -377,7 +378,7 @@ msgstr ""
 msgid ""
 "  hotkey.session.unload – Unload the garrisoned units of the selected "
 "structure(s)"
-msgstr ""
+msgstr " hotkey.session.unload – Alle Einheiten aus dem gewählten Gebäude ausquartieren"
 
 #: gui/manual/intro.txt:80
 msgid ""
@@ -468,7 +469,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:96
 msgid "  hotkey.civinfo – Toggle civilization info panel"
-msgstr ""
+msgstr "  hotkey.civinfo – Zivilisations-Infopanel umschalten"
 
 #: gui/manual/intro.txt:98
 msgid "[font=\"sans-bold-14\"]Modify mouse action[font=\"sans-14\"]"
@@ -596,17 +597,17 @@ msgid ""
 "  hotkey.wireframe – Toggle wireframe mode (press once to get wireframes "
 "overlaid over the textured models, twice to get just the wireframes colored "
 "by the textures, thrice to get back to normal textured mode)"
-msgstr ""
+msgstr " hotkey.wireframe – Drahtgittermodelle (wireframe) umschalten (einmal drücken, um Drahtgitter über die Texturen zu legen, ein weiteres Mal, um nur mit Texturen eingefärbte Drahtgitter zu bekommen, und ein drittes mal, um in den normalen texturierten Modus zu wechseln)"
 
 #: gui/manual/intro.txt:122
 msgid ""
 "  hotkey.silhouettes – Toggle unit silhouettes (might give a small "
 "performance boost)"
-msgstr ""
+msgstr " hotkey.silhouettes – Umrisse von Einheiten ein-/ausschalten (kann einen leichten Performancegewinn bringen)"
 
 #: gui/manual/intro.txt:123
 msgid "  hotkey.showsky – Toggle sky"
-msgstr ""
+msgstr " hotkey.showsky – Himmel umschalten"
 
 #: gui/manual/intro.txt:124
 msgid "  hotkey.session.diplomacycolors – Toggle diplomacy colors"
@@ -656,11 +657,11 @@ msgstr ""
 
 #: gui/manual/intro.txt:135
 msgid "  hotkey.camera.rotate.down – Rotate camera to look downward"
-msgstr ""
+msgstr " hotkey.camera.rotate.down – Kamera nach unten schwenken"
 
 #: gui/manual/intro.txt:136
 msgid "  hotkey.camera.rotate.cw – Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "  hotkey.camera.rotate.cw – Kamera im Uhrzeigersinn um das Gelände drehen"
 
 #: gui/manual/intro.txt:137
 msgid ""
@@ -729,7 +730,7 @@ msgstr "[font=\"sans-bold-14\"]Beim Laden eines Spielstand[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:152
 msgid "  hotkey.cancel – Cancel"
-msgstr ""
+msgstr "hotkey.cancel – Abbrechen"
 
 #: gui/manual/intro.txt:153
 msgid ""

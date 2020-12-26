@@ -5,12 +5,27 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2020-11-28 10:01+0000\n"
+"POT-Creation-Date: 2020-12-26 15:10+0000\n"
+"PO-Revision-Date: 2020-12-26 15:10+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit"
+
+#: simulation/data/status_effects/burning.json:applierTooltip
+msgctxt "status effect"
+msgid "This unit causes fire damage."
+msgstr ""
+
+#: simulation/data/status_effects/burning.json:receiverTooltip
+msgctxt "status effect"
+msgid "This unit is burning."
+msgstr ""
+
+#: simulation/data/status_effects/burning.json:statusName
+msgctxt "status effect"
+msgid "Burning"
+msgstr ""
 
 #: simulation/data/template_helpers/damage_types/crush.json:description
 msgctxt "damage type"
@@ -20,6 +35,16 @@ msgstr ""
 #: simulation/data/template_helpers/damage_types/crush.json:name
 msgctxt "damage type"
 msgid "Crush"
+msgstr ""
+
+#: simulation/data/template_helpers/damage_types/fire.json:description
+msgctxt "damage type"
+msgid "Damage caused by burning objects, like a torch or a flaming arrow."
+msgstr ""
+
+#: simulation/data/template_helpers/damage_types/fire.json:name
+msgctxt "damage type"
+msgid "Fire"
 msgstr ""
 
 #: simulation/data/template_helpers/damage_types/hack.json:description
@@ -922,7 +947,7 @@ msgstr ""
 msgid "Player"
 msgstr ""
 
-#: simulation/templates/special/spy.xml:17
+#: simulation/templates/special/spy.xml:16
 msgid "Spy"
 msgstr ""
 
@@ -990,11 +1015,11 @@ msgstr ""
 msgid "Chop trees for wood."
 msgstr ""
 
-#: simulation/templates/template_structure.xml:47
+#: simulation/templates/template_structure.xml:46
 msgid "Structure"
 msgstr ""
 
-#: simulation/templates/template_unit.xml:38
+#: simulation/templates/template_unit.xml:37
 msgid "Unit"
 msgstr ""
 

@@ -3,11 +3,12 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
+# Jagadeesh Vijay Varma B, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2020-12-16 07:05+0000\n"
+"PO-Revision-Date: 2020-12-20 10:49+0000\n"
 "Last-Translator: Jagadeesh Vijay Varma B\n"
 "Language-Team: Telugu (http://www.transifex.com/wildfire-games/0ad/language/te/)\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +22,7 @@ msgstr ""
 msgid ""
 "I am starting a massive military campaign against %(_player_)s, come and "
 "join me."
-msgstr ""
+msgstr "నేను %(_player_)s వ్యతిరేకంగా భారీ సైనిక దండయాత్ర ప్రారంభిస్తున్నాను, వచ్చి నాతో చేరండి."
 
 #: simulation/ai/petra/chatHelper.js:4
 #, javascript-format
@@ -430,7 +431,7 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:210
 msgctxt "Territory type"
 msgid "enemy"
-msgstr ""
+msgstr "శత్రువు"
 
 #: simulation/components/BuildRestrictions.js:215
 #, javascript-format
@@ -494,27 +495,27 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:323
 msgctxt "Territory type list"
 msgid "enemy"
-msgstr ""
+msgstr "శత్రువు"
 
 #: simulation/components/CeasefireManager.js:99
 #, javascript-format
 msgid "You can attack in %(time)s"
-msgstr ""
+msgstr "మీరు %(time)sల్లో దాడి చేయవచ్చు"
 
 #: simulation/components/CeasefireManager.js:112
 msgid "You can attack now!"
-msgstr ""
+msgstr "మీరు ఇప్పుడు దాడి చేయవచ్చు"
 
 #: simulation/components/EndGameManager.js:174
 #, javascript-format
 msgid "%(lastPlayer)s has won (last player alive)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (last players alive)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(lastPlayer)s గెలిచారు (చివరి ఆటగాళ్ళు సజీవంగా ఉన్నారు)"
+msgstr[1] "%(players)s మరియు %(lastPlayer)s గెలిచారు (చివరి ఆటగాళ్ళు సజీవంగా ఉన్నారు)."
 
 #: simulation/components/EndGameManager.js:182
 msgid "Last remaining player wins."
-msgstr ""
+msgstr "చివరిగా మిగిలి ఉన్న ఆటగాడు గెలుస్తాడు."
 
 #: simulation/components/EntityLimits.js:165
 #, javascript-format

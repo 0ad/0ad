@@ -60,7 +60,7 @@
 # ab661d6cee6a756af4a49df8163441b7_633a6fb, 2014
 # soloooy0 fg <juanjo.fg@hotmail.com>, 2017,2019
 # Spartan2411 <andyyosoy@hotmail.com>, 2014
-# Swyter ™ <Swyterzone@gmail.com>, 2013-2018
+# Swyter <Swyterzone@gmail.com>, 2013-2018
 # Tomato <moreno.alb1@gmail.com>, 2014
 # Trombe <el.jesus.9@hotmail.com>, 2014
 # vega93 <arkadas_llisa@hotmail.com>, 2013,2015
@@ -69,7 +69,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2020-10-04 20:17+0000\n"
+"PO-Revision-Date: 2020-12-23 13:51+0000\n"
 "Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -88,7 +88,7 @@ msgstr "Todos los mapas excepto los navales y de demostración."
 
 #: gui/gamesetup/Controls/MapFilters.js:91
 msgid "Naval Maps"
-msgstr "Mapas navales"
+msgstr "Escenarios navales"
 
 #: gui/gamesetup/Controls/MapFilters.js:92
 msgid "Maps where ships are needed to reach the enemy."
@@ -96,7 +96,7 @@ msgstr "Mapas donde los barcos son necesarios para llegar al enemigo."
 
 #: gui/gamesetup/Controls/MapFilters.js:97
 msgid "Demo Maps"
-msgstr "Mapas de ejemplo"
+msgstr "Escenarios de ejemplo"
 
 #: gui/gamesetup/Controls/MapFilters.js:98
 msgid "These maps are not playable but for demonstration purposes only."
@@ -120,7 +120,7 @@ msgstr "Mapas que vienen con eventos programados y potencialmente generen unidad
 
 #: gui/gamesetup/Controls/MapFilters.js:115
 msgid "All Maps"
-msgstr "Todos los mapas"
+msgstr "Todos los escenarios"
 
 #: gui/gamesetup/Controls/MapFilters.js:116
 msgid "Every map of the chosen maptype."
@@ -272,14 +272,14 @@ msgstr "Activa o desactiva los trucos."
 #. settings!
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/ExploredMap.js:55
 msgid "Explored Map"
-msgstr "Mapa ya explorado"
+msgstr "Escenario explorado"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map
 #. settings!
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/ExploredMap.js:59
 msgid "Toggle explored map (see initial map)."
-msgstr "Ver o no el mapa explorado (muestra el mapa inicial)."
+msgstr "Mostrar escenario explorado (muestra el mapa inicial)."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:59
 msgid "Last Man Standing"
@@ -337,7 +337,7 @@ msgstr "Revelar el mapa"
 #. settings!
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RevealedMap.js:54
 msgid "Toggle revealed map (see everything)."
-msgstr "Ver todo el mapa (o no)."
+msgstr "Mostrar todo el escenario (ver todo)."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Spies.js:43
 msgid "Disable Spies"
@@ -452,7 +452,7 @@ msgstr "Filtro de mapa"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:92
 msgid "Select a map filter."
-msgstr "Elige un filtro de mapa."
+msgstr "Elige un filtro de escenario."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:143
 msgid "Select Map"
@@ -460,7 +460,7 @@ msgstr "Elige un mapa"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:146
 msgid "Select a map to play on."
-msgstr "Elige un mapa en el que jugar."
+msgstr "Elige un escenario de juego."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:152
 msgctxt "map selection"
@@ -477,7 +477,7 @@ msgstr "Tamaño del mapa"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:78
 msgid "Select map size. (Larger sizes may reduce performance.)"
-msgstr "Elige un tamaño de mapa. (Los mapas más grandes pueden ralentizar el juego)"
+msgstr "Elige un tamaño del escenario (los más grandes pueden ralentizar el juego)."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapType.js:61
 msgid "Map Type"
@@ -485,7 +485,7 @@ msgstr "Tipo de mapa"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapType.js:64
 msgid "Select a map type."
-msgstr "Elige el tipo de mapa."
+msgstr "Elige el tipo de escenario."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PlayerCount.js:49
 msgid "Number of Players"
