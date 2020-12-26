@@ -59,7 +59,7 @@ var g_UnitActions =
 
 			Engine.GuiInterfaceCall("PlaySound", {
 				"name": "order_walk",
-				"entity": selection[0]
+				"entity": action.firstAbleEntity
 			});
 
 			return true;
@@ -109,7 +109,7 @@ var g_UnitActions =
 
 			Engine.GuiInterfaceCall("PlaySound", {
 				"name": "order_walk",
-				"entity": selection[0]
+				"entity": action.firstAbleEntity
 			});
 
 			return true;
@@ -151,7 +151,7 @@ var g_UnitActions =
 
 			Engine.GuiInterfaceCall("PlaySound", {
 				"name": "order_attack",
-				"entity": selection[0]
+				"entity": action.firstAbleEntity
 			});
 
 			return true;
@@ -196,7 +196,7 @@ var g_UnitActions =
 
 			Engine.GuiInterfaceCall("PlaySound", {
 				"name": "order_attack",
-				"entity": selection[0]
+				"entity": action.firstAbleEntity
 			});
 
 			return true;
@@ -251,7 +251,7 @@ var g_UnitActions =
 
 			Engine.GuiInterfaceCall("PlaySound", {
 				"name": "order_patrol",
-				"entity": selection[0]
+				"entity": action.firstAbleEntity
 			});
 			return true;
 		},
@@ -298,7 +298,7 @@ var g_UnitActions =
 
 			Engine.GuiInterfaceCall("PlaySound", {
 				"name": "order_heal",
-				"entity": selection[0]
+				"entity": action.firstAbleEntity
 			});
 
 			return true;
@@ -363,7 +363,7 @@ var g_UnitActions =
 
 			Engine.GuiInterfaceCall("PlaySound", {
 				"name": action.foundation ? "order_build" : "order_repair",
-				"entity": selection[0]
+				"entity": action.firstAbleEntity
 			});
 
 			return true;
@@ -420,7 +420,7 @@ var g_UnitActions =
 
 			Engine.GuiInterfaceCall("PlaySound", {
 				"name": "order_gather",
-				"entity": selection[0]
+				"entity": action.firstAbleEntity
 			});
 
 			return true;
@@ -470,7 +470,7 @@ var g_UnitActions =
 
 			Engine.GuiInterfaceCall("PlaySound", {
 				"name": "order_gather",
-				"entity": selection[0]
+				"entity": action.firstAbleEntity
 			});
 
 			return true;
@@ -579,7 +579,7 @@ var g_UnitActions =
 
 			Engine.GuiInterfaceCall("PlaySound", {
 				"name": "order_trade",
-				"entity": selection[0]
+				"entity": action.firstAbleEntity
 			});
 
 			return true;
@@ -679,7 +679,7 @@ var g_UnitActions =
 
 			Engine.GuiInterfaceCall("PlaySound", {
 				"name": "order_garrison",
-				"entity": selection[0]
+				"entity": action.firstAbleEntity
 			});
 
 			return true;
@@ -751,7 +751,7 @@ var g_UnitActions =
 
 			Engine.GuiInterfaceCall("PlaySound", {
 				"name": "order_guard",
-				"entity": selection[0]
+				"entity": action.firstAbleEntity
 			});
 
 			return true;
@@ -804,7 +804,7 @@ var g_UnitActions =
 
 			Engine.GuiInterfaceCall("PlaySound", {
 				"name": "order_guard",
-				"entity": selection[0]
+				"entity": action.firstAbleEntity
 			});
 
 			return true;
