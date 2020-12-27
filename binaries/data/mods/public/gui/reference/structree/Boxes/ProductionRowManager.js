@@ -54,7 +54,7 @@ class ProductionRowManager
 			for (let upgrade of template.upgrades)
 			{
 				let pIdx = 0;
-				if (this.phaseSort)
+				if (this.sortProductionsByPhase)
 					pIdx = this.page.TemplateParser.phaseList.indexOf(upgrade.phase);
 				let rowIdx = Math.max(0, pIdx - phaseIdx);
 				this.productionRows[rowIdx].drawIcon(upgrade, civCode);
