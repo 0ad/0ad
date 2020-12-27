@@ -594,46 +594,70 @@ function getProjectilesTooltip(template)
 
 function getRepairTimeTooltip(entState)
 {
-	return sprintf(translate("%(label)s %(details)s"), {
+	let result = [];
+	result.push(sprintf(translate("%(label)s %(details)s"), {
 		"label": headerFont(translate("Number of repairers:")),
 		"details": entState.repairable.numBuilders
-	}) + "\n" + (entState.repairable.numBuilders ?
-		sprintf(translatePlural(
+	}));
+	if (entState.repairable.numBuilders)
+	{
+		result.push(sprintf(translate("%(label)s %(details)s"), {
+			"label": headerFont(translate("Remaining repair time:")),
+			"details": getSecondsString(Math.floor(entState.repairable.buildTime.timeRemaining))
+		}));
+		let timeReduction = Math.round(entState.repairable.buildTime.timeRemaining - entState.repairable.buildTime.timeRemainingNew);
+		result.push(sprintf(translatePlural(
 			"Add another worker to speed up the repairs by %(second)s second.",
 			"Add another worker to speed up the repairs by %(second)s seconds.",
-			Math.round(entState.repairable.buildTime.timeRemaining - entState.repairable.buildTime.timeRemainingNew)),
+			timeReduction),
 		{
-			"second": Math.round(entState.repairable.buildTime.timeRemaining - entState.repairable.buildTime.timeRemainingNew)
-		}) :
-		sprintf(translatePlural(
+			"second": timeReduction
+		}));
+	}
+	else
+		result.push(sprintf(translatePlural(
 			"Add a worker to finish the repairs in %(second)s second.",
 			"Add a worker to finish the repairs in %(second)s seconds.",
 			Math.round(entState.repairable.buildTime.timeRemainingNew)),
 		{
 			"second": Math.round(entState.repairable.buildTime.timeRemainingNew)
 		}));
+
+	return result.join("\n");
 }
 
 function getBuildTimeTooltip(entState)
 {
-	return sprintf(translate("%(label)s %(details)s"), {
+	let result = [];
+	result.push(sprintf(translate("%(label)s %(details)s"), {
 		"label": headerFont(translate("Number of builders:")),
 		"details": entState.foundation.numBuilders
-	}) + "\n" + (entState.foundation.numBuilders ?
-		sprintf(translatePlural(
+	}));
+	if (entState.foundation.numBuilders)
+	{
+		result.push(sprintf(translate("%(label)s %(details)s"), {
+			"label": headerFont(translate("Remaining build time:")),
+			"details": getSecondsString(Math.floor(entState.foundation.buildTime.timeRemaining))
+		}));
+		let timeReduction = Math.round(entState.foundation.buildTime.timeRemaining - entState.foundation.buildTime.timeRemainingNew);
+		result.push(sprintf(translatePlural(
 			"Add another worker to speed up the construction by %(second)s second.",
 			"Add another worker to speed up the construction by %(second)s seconds.",
-			Math.round(entState.foundation.buildTime.timeRemaining - entState.foundation.buildTime.timeRemainingNew)),
+			timeReduction),
 		{
-			"second": Math.round(entState.foundation.buildTime.timeRemaining - entState.foundation.buildTime.timeRemainingNew)
-		}) :
-		sprintf(translatePlural(
+			"second": timeReduction
+		}));
+	}
+	else
+		result.push(sprintf(translatePlural(
 			"Add a worker to finish the construction in %(second)s second.",
 			"Add a worker to finish the construction in %(second)s seconds.",
 			Math.round(entState.foundation.buildTime.timeRemainingNew)),
 		{
 			"second": Math.round(entState.foundation.buildTime.timeRemainingNew)
 		}));
+
+	return result.join("\n");
 }
 
 /**

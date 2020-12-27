@@ -267,8 +267,10 @@ function displaySingle(entState)
 	{
 		resourceCarryingIcon.sprite = "stretched:session/icons/repair.png";
 		resourceCarryingIcon.tooltip = getBuildTimeTooltip(entState);
-		resourceCarryingText.caption = entState.foundation.numBuilders ?
-			Engine.FormatMillisecondsIntoDateStringGMT(entState.foundation.buildTime.timeRemaining * 1000, translateWithContext("countdown format", "m:ss")) : "";
+		resourceCarryingText.caption = entState.foundation.numBuilders ? sprintf(translate("(%(number)s)\n%(time)s"), {
+			"number": entState.foundation.numBuilders,
+			"time": Engine.FormatMillisecondsIntoDateStringGMT(entState.foundation.buildTime.timeRemaining * 1000, translateWithContext("countdown format", "m:ss"))
+		}) : "";
 	}
 	else if (entState.resourceSupply && (!entState.resourceSupply.killBeforeGather || !entState.hitpoints))
 	{
@@ -283,8 +285,10 @@ function displaySingle(entState)
 	{
 		resourceCarryingIcon.sprite = "stretched:session/icons/repair.png";
 		resourceCarryingIcon.tooltip = getRepairTimeTooltip(entState);
-		resourceCarryingText.caption = entState.repairable.numBuilders ?
-			Engine.FormatMillisecondsIntoDateStringGMT(entState.repairable.buildTime.timeRemaining * 1000, translateWithContext("countdown format", "m:ss")) : "";
+		resourceCarryingText.caption = entState.repairable.numBuilders ? sprintf(translate("(%(number)s)\n%(time)s"), {
+			"number": entState.repairable.numBuilders,
+			"time": Engine.FormatMillisecondsIntoDateStringGMT(entState.repairable.buildTime.timeRemaining * 1000, translateWithContext("countdown format", "m:ss"))
+		}) : "";
 	}
 	else
 	{
