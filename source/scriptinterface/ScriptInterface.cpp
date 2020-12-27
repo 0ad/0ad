@@ -807,7 +807,10 @@ bool ScriptInterface::LoadScript(const VfsPath& filename, const std::string& cod
 	std::string filenameStr = filename.string8();
 
 	JS::CompileOptions options(rq.cx);
-	options.setFileAndLine(filenameStr.c_str(), 1);
+	// Set the line to 0 because CompileFunction silently adds a `(function() {` as the first line,
+	// and errors get misreported.
+	// TODO: it would probably be better to not implicitly introduce JS scopes.
+	options.setFileAndLine(filenameStr.c_str(), 0);
 	options.setIsRunOnce(false);
 
 	JS::SourceText<mozilla::Utf8Unit> src;
