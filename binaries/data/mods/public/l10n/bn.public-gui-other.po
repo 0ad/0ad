@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-12-07 08:42+0000\n"
-"PO-Revision-Date: 2020-12-14 20:38+0000\n"
+"POT-Creation-Date: 2020-12-18 08:02+0000\n"
+"PO-Revision-Date: 2020-12-18 08:36+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Bengali (http://www.transifex.com/wildfire-games/0ad/language/bn/)\n"
 "MIME-Version: 1.0\n"
@@ -382,19 +382,19 @@ msgstr ""
 #: gui/common/tooltips.js:210 gui/common/tooltips.js:231
 #: gui/common/tooltips.js:250 gui/common/tooltips.js:313
 #: gui/common/tooltips.js:597 gui/common/tooltips.js:619
-#: gui/common/tooltips.js:703 gui/common/tooltips.js:744
-#: gui/common/tooltips.js:1042
+#: gui/common/tooltips.js:702 gui/common/tooltips.js:743
+#: gui/common/tooltips.js:1041
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr ""
 
 #: gui/common/gamedescription.js:414
-msgctxt "gamesetup option"
+msgctxt "game setup option"
 msgid "enabled"
 msgstr ""
 
 #: gui/common/gamedescription.js:415
-msgctxt "gamesetup option"
+msgctxt "game setup option"
 msgid "disabled"
 msgstr ""
 
@@ -519,8 +519,8 @@ msgstr ""
 #: gui/common/tooltips.js:406 gui/common/tooltips.js:420
 #: gui/common/tooltips.js:497 gui/common/tooltips.js:502
 #: gui/common/tooltips.js:559 gui/common/tooltips.js:592
-#: gui/common/tooltips.js:907 gui/common/tooltips.js:940
-#: gui/common/tooltips.js:1007 gui/loadgame/SavegameDetails.js:38
+#: gui/common/tooltips.js:906 gui/common/tooltips.js:939
+#: gui/common/tooltips.js:1006 gui/loadgame/SavegameDetails.js:38
 #: gui/reference/common/tooltips.js:13 gui/replaymenu/replay_menu.js:282
 msgid ", "
 msgstr ","
@@ -583,7 +583,7 @@ msgstr ""
 #: gui/common/settings.js:174
 msgid ""
 "A map with a predefined landscape and number of players. Freely select the "
-"other gamesettings."
+"other game settings."
 msgstr ""
 
 #: gui/common/settings.js:182
@@ -667,7 +667,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: gui/common/tooltips.js:92 gui/common/tooltips.js:555
-#: gui/common/tooltips.js:938
+#: gui/common/tooltips.js:937
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] ""
@@ -765,7 +765,7 @@ msgstr ""
 msgid "Garrison to fire arrows"
 msgstr ""
 
-#: gui/common/tooltips.js:297 gui/common/tooltips.js:936
+#: gui/common/tooltips.js:297 gui/common/tooltips.js:935
 msgid "Interval:"
 msgstr ""
 
@@ -817,7 +817,7 @@ msgstr ""
 msgid "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
 msgstr ""
 
-#: gui/common/tooltips.js:345 gui/common/tooltips.js:931
+#: gui/common/tooltips.js:345 gui/common/tooltips.js:930
 msgid "Range:"
 msgstr ""
 
@@ -832,8 +832,8 @@ msgstr ""
 msgid "meters"
 msgstr ""
 
-#: gui/common/tooltips.js:353 gui/common/tooltips.js:933
-#: gui/common/tooltips.js:963
+#: gui/common/tooltips.js:353 gui/common/tooltips.js:932
+#: gui/common/tooltips.js:962
 msgid "meter"
 msgid_plural "meters"
 msgstr[0] ""
@@ -953,11 +953,11 @@ msgstr ""
 msgid "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 msgstr ""
 
-#: gui/common/tooltips.js:552 gui/common/tooltips.js:926
+#: gui/common/tooltips.js:552 gui/common/tooltips.js:925
 msgid "Heal:"
 msgstr ""
 
-#: gui/common/tooltips.js:554 gui/common/tooltips.js:928
+#: gui/common/tooltips.js:554 gui/common/tooltips.js:927
 msgid "Health"
 msgstr ""
 
@@ -1019,16 +1019,16 @@ msgid_plural "Add a worker to finish the construction in %(second)s seconds."
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/common/tooltips.js:668 gui/common/tooltips.js:879
+#: gui/common/tooltips.js:667 gui/common/tooltips.js:878
 #, javascript-format
 msgid "%(component)s %(cost)s"
 msgstr ""
 
-#: gui/common/tooltips.js:704
+#: gui/common/tooltips.js:703
 msgid "Gather Rates:"
 msgstr ""
 
-#: gui/common/tooltips.js:707 gui/common/tooltips.js:749
+#: gui/common/tooltips.js:706 gui/common/tooltips.js:748
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
 msgstr ""
@@ -1036,60 +1036,60 @@ msgstr ""
 #. Translation: Label in tooltip showing the resource type and quantity of a
 #. given resource
 #. supply.
-#: gui/common/tooltips.js:727
+#: gui/common/tooltips.js:726
 #, javascript-format
 msgid "%(label)s %(component)s %(amount)s"
 msgstr ""
 
-#: gui/common/tooltips.js:728
+#: gui/common/tooltips.js:727
 msgid "Resource Supply:"
 msgstr ""
 
 #. Translation: Marks that a resource supply entity has an unending, infinite,
 #. supply of its
 #. resource.
-#: gui/common/tooltips.js:731 gui/summary/summary.js:111
+#: gui/common/tooltips.js:730 gui/summary/summary.js:111
 msgid "∞"
 msgstr ""
 
-#: gui/common/tooltips.js:745
+#: gui/common/tooltips.js:744
 msgid "Resource Trickle:"
 msgstr ""
 
-#: gui/common/tooltips.js:746
+#: gui/common/tooltips.js:745
 #, javascript-format
 msgid "%(resources)s / %(time)s"
 msgstr ""
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
-#: gui/common/tooltips.js:798
+#: gui/common/tooltips.js:797
 #, javascript-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
 msgstr ""
 
-#: gui/common/tooltips.js:827
+#: gui/common/tooltips.js:826
 #, javascript-format
 msgid "Walls:  %(costs)s"
 msgstr ""
 
-#: gui/common/tooltips.js:828
+#: gui/common/tooltips.js:827
 #, javascript-format
 msgid "Towers:  %(costs)s"
 msgstr ""
 
 #. Translation: Label in tooltip showing cost of a unit, structure or
 #. technology.
-#: gui/common/tooltips.js:836
+#: gui/common/tooltips.js:835
 #, javascript-format
 msgid "%(label)s %(costs)s"
 msgstr ""
 
-#: gui/common/tooltips.js:837
+#: gui/common/tooltips.js:836
 msgid "Cost:"
 msgstr ""
 
-#: gui/common/tooltips.js:850
+#: gui/common/tooltips.js:849
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr ""
@@ -1103,103 +1103,103 @@ msgstr ""
 msgid "Population Bonus:"
 msgstr ""
 
-#: gui/common/tooltips.js:884
+#: gui/common/tooltips.js:883
 msgid "Insufficient resources:"
 msgstr ""
 
-#: gui/common/tooltips.js:900
+#: gui/common/tooltips.js:899
 #, javascript-format
 msgid "%(label)s %(speeds)s"
 msgstr ""
 
-#: gui/common/tooltips.js:901
+#: gui/common/tooltips.js:900
 msgid "Speed:"
 msgstr ""
 
-#: gui/common/tooltips.js:903 gui/common/tooltips.js:908
+#: gui/common/tooltips.js:902 gui/common/tooltips.js:907
 #, javascript-format
 msgid "%(speed)s %(movementType)s"
 msgstr ""
 
-#: gui/common/tooltips.js:905
+#: gui/common/tooltips.js:904
 msgid "Walk"
 msgstr ""
 
-#: gui/common/tooltips.js:910
+#: gui/common/tooltips.js:909
 msgid "Run"
 msgstr ""
 
-#: gui/common/tooltips.js:925 gui/common/tooltips.js:930
-#: gui/common/tooltips.js:935 gui/common/tooltips.js:960
+#: gui/common/tooltips.js:924 gui/common/tooltips.js:929
+#: gui/common/tooltips.js:934 gui/common/tooltips.js:959
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/common/tooltips.js:952
+#: gui/common/tooltips.js:951
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
 msgstr ""
 
-#: gui/common/tooltips.js:953
+#: gui/common/tooltips.js:952
 #, javascript-format
 msgid "%(auraname)s:"
 msgstr ""
 
-#: gui/common/tooltips.js:961
+#: gui/common/tooltips.js:960
 msgctxt "aura"
 msgid "Range:"
 msgstr ""
 
-#: gui/common/tooltips.js:978
+#: gui/common/tooltips.js:977
 #, javascript-format
 msgid "%(specificName)s (%(genericName)s)"
 msgstr ""
 
 #. Translation: Example: "Epibátēs Athēnaîos [font="sans-bold-16"](Athenian
 #. Marine)[/font]"
-#: gui/common/tooltips.js:991
+#: gui/common/tooltips.js:990
 #, javascript-format
 msgid "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 msgstr ""
 
-#: gui/common/tooltips.js:1006
+#: gui/common/tooltips.js:1005
 msgid "Classes:"
 msgstr ""
 
 #. Translation: %(component) will be the icon for the loot type and %(loot)
 #. will be the
 #. value.
-#: gui/common/tooltips.js:1033
+#: gui/common/tooltips.js:1032
 #, javascript-format
 msgid "%(component)s %(loot)s"
 msgstr ""
 
-#: gui/common/tooltips.js:1043
+#: gui/common/tooltips.js:1042
 msgid "Loot:"
 msgstr ""
 
-#: gui/common/tooltips.js:1053
+#: gui/common/tooltips.js:1052
 #, javascript-format
 msgid "%(label)s %(icons)s"
 msgstr ""
 
-#: gui/common/tooltips.js:1054
+#: gui/common/tooltips.js:1053
 msgid "Dropsite for:"
 msgstr ""
 
 #. Translation: Appears in a tooltip to indicate that right-clicking the
 #. corresponding GUI
 #. element will open the Template Details GUI page.
-#: gui/common/tooltips.js:1062
+#: gui/common/tooltips.js:1061
 msgid "Right-click to view more information."
 msgstr ""
 
 #. Translation: Appears in a tooltip to indicate that clicking the
 #. corresponding GUI element
 #. will open the Template Details GUI page.
-#: gui/common/tooltips.js:1068
+#: gui/common/tooltips.js:1067
 msgid "Click to view more information."
 msgstr ""
 
@@ -1658,8 +1658,7 @@ msgid "Chat timestamp"
 msgstr ""
 
 #: gui/options/options.json[0].options[11].tooltip
-msgid ""
-"Show time that messages are posted in the lobby, gamesetup and ingame chat."
+msgid "Display the time at which a chat message was posted."
 msgstr ""
 
 #: gui/options/options.json[0].options[1].label
@@ -1848,7 +1847,7 @@ msgid "Smooth vision"
 msgstr ""
 
 #: gui/options/options.json[1].options[19].tooltip
-msgid "Lift darkness and fog-of-war smoothly."
+msgid "Lift darkness and fog of war smoothly."
 msgstr ""
 
 #: gui/options/options.json[1].options[1].label
@@ -1900,7 +1899,7 @@ msgid "Fog"
 msgstr ""
 
 #: gui/options/options.json[1].options[2].tooltip
-msgid "Enable Fog."
+msgid "Enable fog."
 msgstr ""
 
 #: gui/options/options.json[1].options[3].label
@@ -1912,11 +1911,11 @@ msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
 msgstr ""
 
 #: gui/options/options.json[1].options[4].label
-msgid "Anti-Aliasing"
+msgid "Antialiasing"
 msgstr ""
 
 #: gui/options/options.json[1].options[4].list[0].tooltip
-msgid "Do not use anti-aliasing."
+msgid "Do not use antialiasing."
 msgstr ""
 
 #: gui/options/options.json[1].options[4].list[1].label
@@ -1924,47 +1923,47 @@ msgid "FXAA"
 msgstr ""
 
 #: gui/options/options.json[1].options[4].list[1].tooltip
-msgid "Fast, but simple anti-aliasing."
+msgid "Fast, but simple antialiasing."
 msgstr ""
 
 #: gui/options/options.json[1].options[4].list[2].label
-msgid "MSAA (x2)"
+msgid "MSAA (2×)"
 msgstr ""
 
 #: gui/options/options.json[1].options[4].list[2].tooltip
 msgid ""
-"Slow, but high-quality anti-aliasing, uses 2 samples per pixel. Supported "
+"Slow, but high-quality antialiasing, uses two samples per pixel. Supported "
 "for GL3.3+."
 msgstr ""
 
 #: gui/options/options.json[1].options[4].list[3].label
-msgid "MSAA (x4)"
+msgid "MSAA (4×)"
 msgstr ""
 
 #: gui/options/options.json[1].options[4].list[3].tooltip
 msgid ""
-"Slow, but high-quality anti-aliasing, uses 4 samples per pixel. Supported "
+"Slow, but high-quality antialiasing, uses four samples per pixel. Supported "
 "for GL3.3+."
 msgstr ""
 
 #: gui/options/options.json[1].options[4].list[4].label
-msgid "MSAA (x8)"
+msgid "MSAA (8×)"
 msgstr ""
 
 #: gui/options/options.json[1].options[4].list[4].tooltip
 msgid ""
-"Slow, but high-quality anti-aliasing, uses 8 samples per pixel. Supported "
-"for GL3.3+."
+"Slow, but high-quality antialiasing, uses eight samples per pixel. Supported"
+" for GL3.3+."
 msgstr ""
 
 #: gui/options/options.json[1].options[4].list[5].label
-msgid "MSAA (x16)"
+msgid "MSAA (16×)"
 msgstr ""
 
 #: gui/options/options.json[1].options[4].list[5].tooltip
 msgid ""
-"Slow, but high-quality anti-aliasing, uses 16 samples per pixel. Supported "
-"for GL3.3+."
+"Slow, but high-quality antialiasing, uses sixteen samples per pixel. "
+"Supported for GL3.3+."
 msgstr ""
 
 #: gui/options/options.json[1].options[4].tooltip
@@ -2099,7 +2098,7 @@ msgid "Receive audio notification when someone types your nick."
 msgstr ""
 
 #: gui/options/options.json[2].options[6].label
-msgid "Game setup - new player notification"
+msgid "New player notification in game setup"
 msgstr ""
 
 #: gui/options/options.json[2].options[6].tooltip
@@ -2247,7 +2246,7 @@ msgid "These settings only affect the multiplayer."
 msgstr ""
 
 #: gui/options/options.json[5].label
-msgid "In-Game"
+msgid "Game Session"
 msgstr ""
 
 #: gui/options/options.json[5].options[0].label
@@ -2366,7 +2365,7 @@ msgid "This option allows to align new structures with nearby structures."
 msgstr ""
 
 #: gui/options/options.json[5].options[19].label
-msgid "Control Group Membership"
+msgid "Control group membership"
 msgstr ""
 
 #: gui/options/options.json[5].options[19].list[0].label
@@ -2467,8 +2466,8 @@ msgstr ""
 
 #: gui/options/options.json[5].options[7].tooltip
 msgid ""
-"Display the attack range of selected defensive structures (can also be "
-"toggled in-game with the hotkey)."
+"Display the attack range of selected defensive structures. (It can also be "
+"toggled with the hotkey during a game)."
 msgstr ""
 
 #: gui/options/options.json[5].options[8].label
@@ -2477,8 +2476,8 @@ msgstr ""
 
 #: gui/options/options.json[5].options[8].tooltip
 msgid ""
-"Display the range of auras of selected units and structures (can also be "
-"toggled in-game with the hotkey)."
+"Display the range of auras of selected units and structures. (It can also be"
+" toggled with the hotkey during a game)."
 msgstr ""
 
 #: gui/options/options.json[5].options[9].label
@@ -2487,8 +2486,8 @@ msgstr ""
 
 #: gui/options/options.json[5].options[9].tooltip
 msgid ""
-"Display the healing range of selected units (can also be toggled in-game "
-"with the hotkey)."
+"Display the healing range of selected units. (It can also be toggled with "
+"the hotkey during a game)."
 msgstr ""
 
 #: gui/options/options.json[5].tooltip
@@ -2524,7 +2523,7 @@ msgid "Unsaved changes affect this session only"
 msgstr ""
 
 #: gui/pregame/MainMenuItems.js:3
-msgid "Learn To Play"
+msgid "Learn to Play"
 msgstr ""
 
 #: gui/pregame/MainMenuItems.js:4
@@ -3125,7 +3124,7 @@ msgid "Single-player and multiplayer"
 msgstr ""
 
 #: gui/replaymenu/replay_filters.js:157
-msgid "Any Victory Condition"
+msgid "Any victory condition"
 msgstr ""
 
 #: gui/replaymenu/replay_filters.js:170

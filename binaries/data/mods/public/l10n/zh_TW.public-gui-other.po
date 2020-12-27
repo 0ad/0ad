@@ -20,9 +20,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-12-07 08:42+0000\n"
-"PO-Revision-Date: 2020-12-14 20:38+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2020-12-18 08:02+0000\n"
+"PO-Revision-Date: 2020-12-18 08:37+0000\n"
+"Last-Translator: 黃柏諺 <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -392,19 +392,19 @@ msgstr "作弊秘技"
 #: gui/common/tooltips.js:210 gui/common/tooltips.js:231
 #: gui/common/tooltips.js:250 gui/common/tooltips.js:313
 #: gui/common/tooltips.js:597 gui/common/tooltips.js:619
-#: gui/common/tooltips.js:703 gui/common/tooltips.js:744
-#: gui/common/tooltips.js:1042
+#: gui/common/tooltips.js:702 gui/common/tooltips.js:743
+#: gui/common/tooltips.js:1041
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
 #: gui/common/gamedescription.js:414
-msgctxt "gamesetup option"
+msgctxt "game setup option"
 msgid "enabled"
 msgstr "已啟用"
 
 #: gui/common/gamedescription.js:415
-msgctxt "gamesetup option"
+msgctxt "game setup option"
 msgid "disabled"
 msgstr "已停用"
 
@@ -529,8 +529,8 @@ msgstr "使用者 (%(num)s)：%(users)s"
 #: gui/common/tooltips.js:406 gui/common/tooltips.js:420
 #: gui/common/tooltips.js:497 gui/common/tooltips.js:502
 #: gui/common/tooltips.js:559 gui/common/tooltips.js:592
-#: gui/common/tooltips.js:907 gui/common/tooltips.js:940
-#: gui/common/tooltips.js:1007 gui/loadgame/SavegameDetails.js:38
+#: gui/common/tooltips.js:906 gui/common/tooltips.js:939
+#: gui/common/tooltips.js:1006 gui/loadgame/SavegameDetails.js:38
 #: gui/reference/common/tooltips.js:13 gui/replaymenu/replay_menu.js:282
 msgid ", "
 msgstr "，"
@@ -593,8 +593,8 @@ msgstr "小規模戰鬥"
 #: gui/common/settings.js:174
 msgid ""
 "A map with a predefined landscape and number of players. Freely select the "
-"other gamesettings."
-msgstr "具有預先定義好的景觀與玩家人數的地圖。可自由選取其他遊戲設定。"
+"other game settings."
+msgstr ""
 
 #: gui/common/settings.js:182
 msgctxt "map"
@@ -676,7 +676,7 @@ msgid_plural "%(time)s %(second)s"
 msgstr[0] "%(time)s %(second)s"
 
 #: gui/common/tooltips.js:92 gui/common/tooltips.js:555
-#: gui/common/tooltips.js:938
+#: gui/common/tooltips.js:937
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "秒"
@@ -773,7 +773,7 @@ msgstr ""
 msgid "Garrison to fire arrows"
 msgstr "駐守以發射箭矢"
 
-#: gui/common/tooltips.js:297 gui/common/tooltips.js:936
+#: gui/common/tooltips.js:297 gui/common/tooltips.js:935
 msgid "Interval:"
 msgstr "間隔："
 
@@ -823,7 +823,7 @@ msgstr "%(rangeLabel)s %(minRange)s 到 %(maxRange)s %(rangeUnit)s"
 msgid "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
 msgstr "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
 
-#: gui/common/tooltips.js:345 gui/common/tooltips.js:931
+#: gui/common/tooltips.js:345 gui/common/tooltips.js:930
 msgid "Range:"
 msgstr "範圍："
 
@@ -838,8 +838,8 @@ msgstr "+%(number)s"
 msgid "meters"
 msgstr "公尺"
 
-#: gui/common/tooltips.js:353 gui/common/tooltips.js:933
-#: gui/common/tooltips.js:963
+#: gui/common/tooltips.js:353 gui/common/tooltips.js:932
+#: gui/common/tooltips.js:962
 msgid "meter"
 msgid_plural "meters"
 msgstr[0] "公尺"
@@ -958,11 +958,11 @@ msgstr "駐守限制"
 msgid "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 msgstr "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 
-#: gui/common/tooltips.js:552 gui/common/tooltips.js:926
+#: gui/common/tooltips.js:552 gui/common/tooltips.js:925
 msgid "Heal:"
 msgstr "治療："
 
-#: gui/common/tooltips.js:554 gui/common/tooltips.js:928
+#: gui/common/tooltips.js:554 gui/common/tooltips.js:927
 msgid "Health"
 msgstr "生命值"
 
@@ -1020,16 +1020,16 @@ msgid "Add a worker to finish the construction in %(second)s second."
 msgid_plural "Add a worker to finish the construction in %(second)s seconds."
 msgstr[0] "用一位工人在%(second)s秒內蓋好建築。"
 
-#: gui/common/tooltips.js:668 gui/common/tooltips.js:879
+#: gui/common/tooltips.js:667 gui/common/tooltips.js:878
 #, javascript-format
 msgid "%(component)s %(cost)s"
 msgstr "%(component)s %(cost)s"
 
-#: gui/common/tooltips.js:704
+#: gui/common/tooltips.js:703
 msgid "Gather Rates:"
 msgstr "採集速率："
 
-#: gui/common/tooltips.js:707 gui/common/tooltips.js:749
+#: gui/common/tooltips.js:706 gui/common/tooltips.js:748
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
 msgstr "%(resourceIcon)s %(rate)s"
@@ -1037,60 +1037,60 @@ msgstr "%(resourceIcon)s %(rate)s"
 #. Translation: Label in tooltip showing the resource type and quantity of a
 #. given resource
 #. supply.
-#: gui/common/tooltips.js:727
+#: gui/common/tooltips.js:726
 #, javascript-format
 msgid "%(label)s %(component)s %(amount)s"
 msgstr "%(label)s %(component)s %(amount)s"
 
-#: gui/common/tooltips.js:728
+#: gui/common/tooltips.js:727
 msgid "Resource Supply:"
 msgstr "資源供給"
 
 #. Translation: Marks that a resource supply entity has an unending, infinite,
 #. supply of its
 #. resource.
-#: gui/common/tooltips.js:731 gui/summary/summary.js:111
+#: gui/common/tooltips.js:730 gui/summary/summary.js:111
 msgid "∞"
 msgstr "∞"
 
-#: gui/common/tooltips.js:745
+#: gui/common/tooltips.js:744
 msgid "Resource Trickle:"
 msgstr "資源流入："
 
-#: gui/common/tooltips.js:746
+#: gui/common/tooltips.js:745
 #, javascript-format
 msgid "%(resources)s / %(time)s"
 msgstr "%(resources)s / %(time)s"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
-#: gui/common/tooltips.js:798
+#: gui/common/tooltips.js:797
 #, javascript-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
 msgstr "%(resourceIcon)s %(minimum)s 到 %(resourceIcon)s %(maximum)s"
 
-#: gui/common/tooltips.js:827
+#: gui/common/tooltips.js:826
 #, javascript-format
 msgid "Walls:  %(costs)s"
 msgstr "城牆： %(costs)s"
 
-#: gui/common/tooltips.js:828
+#: gui/common/tooltips.js:827
 #, javascript-format
 msgid "Towers:  %(costs)s"
 msgstr "塔樓： %(costs)s"
 
 #. Translation: Label in tooltip showing cost of a unit, structure or
 #. technology.
-#: gui/common/tooltips.js:836
+#: gui/common/tooltips.js:835
 #, javascript-format
 msgid "%(label)s %(costs)s"
 msgstr "%(label)s %(costs)s"
 
-#: gui/common/tooltips.js:837
+#: gui/common/tooltips.js:836
 msgid "Cost:"
 msgstr "花費："
 
-#: gui/common/tooltips.js:850
+#: gui/common/tooltips.js:849
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "需要 %(technology)s"
@@ -1104,102 +1104,102 @@ msgstr ""
 msgid "Population Bonus:"
 msgstr "人口獎勵："
 
-#: gui/common/tooltips.js:884
+#: gui/common/tooltips.js:883
 msgid "Insufficient resources:"
 msgstr "資源不足："
 
-#: gui/common/tooltips.js:900
+#: gui/common/tooltips.js:899
 #, javascript-format
 msgid "%(label)s %(speeds)s"
 msgstr "%(label)s %(speeds)s"
 
-#: gui/common/tooltips.js:901
+#: gui/common/tooltips.js:900
 msgid "Speed:"
 msgstr "速度："
 
-#: gui/common/tooltips.js:903 gui/common/tooltips.js:908
+#: gui/common/tooltips.js:902 gui/common/tooltips.js:907
 #, javascript-format
 msgid "%(speed)s %(movementType)s"
 msgstr "%(speed)s %(movementType)s"
 
-#: gui/common/tooltips.js:905
+#: gui/common/tooltips.js:904
 msgid "Walk"
 msgstr "步行"
 
-#: gui/common/tooltips.js:910
+#: gui/common/tooltips.js:909
 msgid "Run"
 msgstr "奔走"
 
-#: gui/common/tooltips.js:925 gui/common/tooltips.js:930
-#: gui/common/tooltips.js:935 gui/common/tooltips.js:960
+#: gui/common/tooltips.js:924 gui/common/tooltips.js:929
+#: gui/common/tooltips.js:934 gui/common/tooltips.js:959
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
 msgstr[0] "%(label)s %(val)s %(unit)s"
 
-#: gui/common/tooltips.js:952
+#: gui/common/tooltips.js:951
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
 msgstr "%(auralabel)s %(aurainfo)s"
 
-#: gui/common/tooltips.js:953
+#: gui/common/tooltips.js:952
 #, javascript-format
 msgid "%(auraname)s:"
 msgstr "%(auraname)s："
 
-#: gui/common/tooltips.js:961
+#: gui/common/tooltips.js:960
 msgctxt "aura"
 msgid "Range:"
 msgstr "範圍："
 
-#: gui/common/tooltips.js:978
+#: gui/common/tooltips.js:977
 #, javascript-format
 msgid "%(specificName)s (%(genericName)s)"
 msgstr "%(specificName)s (%(genericName)s)"
 
 #. Translation: Example: "Epibátēs Athēnaîos [font="sans-bold-16"](Athenian
 #. Marine)[/font]"
-#: gui/common/tooltips.js:991
+#: gui/common/tooltips.js:990
 #, javascript-format
 msgid "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 msgstr "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 
-#: gui/common/tooltips.js:1006
+#: gui/common/tooltips.js:1005
 msgid "Classes:"
 msgstr "類型："
 
 #. Translation: %(component) will be the icon for the loot type and %(loot)
 #. will be the
 #. value.
-#: gui/common/tooltips.js:1033
+#: gui/common/tooltips.js:1032
 #, javascript-format
 msgid "%(component)s %(loot)s"
 msgstr "%(component)s %(loot)s"
 
-#: gui/common/tooltips.js:1043
+#: gui/common/tooltips.js:1042
 msgid "Loot:"
 msgstr "戰利品："
 
-#: gui/common/tooltips.js:1053
+#: gui/common/tooltips.js:1052
 #, javascript-format
 msgid "%(label)s %(icons)s"
 msgstr "%(label)s %(icons)s"
 
-#: gui/common/tooltips.js:1054
+#: gui/common/tooltips.js:1053
 msgid "Dropsite for:"
 msgstr "存放點給："
 
 #. Translation: Appears in a tooltip to indicate that right-clicking the
 #. corresponding GUI
 #. element will open the Template Details GUI page.
-#: gui/common/tooltips.js:1062
+#: gui/common/tooltips.js:1061
 msgid "Right-click to view more information."
 msgstr "按右鍵看更多資訊"
 
 #. Translation: Appears in a tooltip to indicate that clicking the
 #. corresponding GUI element
 #. will open the Template Details GUI page.
-#: gui/common/tooltips.js:1068
+#: gui/common/tooltips.js:1067
 msgid "Click to view more information."
 msgstr "點擊看更多資訊"
 
@@ -1658,9 +1658,8 @@ msgid "Chat timestamp"
 msgstr "聊天時間戳記"
 
 #: gui/options/options.json[0].options[11].tooltip
-msgid ""
-"Show time that messages are posted in the lobby, gamesetup and ingame chat."
-msgstr "顯示訊息被張貼在大廳、遊戲設定或是遊戲中聊天的時間。"
+msgid "Display the time at which a chat message was posted."
+msgstr ""
 
 #: gui/options/options.json[0].options[1].label
 msgid "Player name (multiplayer)"
@@ -1848,8 +1847,8 @@ msgid "Smooth vision"
 msgstr "柔和視覺"
 
 #: gui/options/options.json[1].options[19].tooltip
-msgid "Lift darkness and fog-of-war smoothly."
-msgstr "平順地解除黑暗與戰爭迷霧"
+msgid "Lift darkness and fog of war smoothly."
+msgstr ""
 
 #: gui/options/options.json[1].options[1].label
 msgid "Prefer GLSL"
@@ -1900,8 +1899,8 @@ msgid "Fog"
 msgstr "霧"
 
 #: gui/options/options.json[1].options[2].tooltip
-msgid "Enable Fog."
-msgstr "開啟霧。"
+msgid "Enable fog."
+msgstr ""
 
 #: gui/options/options.json[1].options[3].label
 msgid "Post-processing"
@@ -1912,59 +1911,59 @@ msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
 msgstr "使用螢幕後處理過濾器（HDR、Bloom、DOF 等等）。"
 
 #: gui/options/options.json[1].options[4].label
-msgid "Anti-Aliasing"
-msgstr "反鋸齒"
+msgid "Antialiasing"
+msgstr ""
 
 #: gui/options/options.json[1].options[4].list[0].tooltip
-msgid "Do not use anti-aliasing."
-msgstr "不要使用反鋸齒。"
+msgid "Do not use antialiasing."
+msgstr ""
 
 #: gui/options/options.json[1].options[4].list[1].label
 msgid "FXAA"
 msgstr "FXAA"
 
 #: gui/options/options.json[1].options[4].list[1].tooltip
-msgid "Fast, but simple anti-aliasing."
-msgstr "快速，但簡單的反鋸齒。"
+msgid "Fast, but simple antialiasing."
+msgstr ""
 
 #: gui/options/options.json[1].options[4].list[2].label
-msgid "MSAA (x2)"
+msgid "MSAA (2×)"
 msgstr ""
 
 #: gui/options/options.json[1].options[4].list[2].tooltip
 msgid ""
-"Slow, but high-quality anti-aliasing, uses 2 samples per pixel. Supported "
+"Slow, but high-quality antialiasing, uses two samples per pixel. Supported "
 "for GL3.3+."
 msgstr ""
 
 #: gui/options/options.json[1].options[4].list[3].label
-msgid "MSAA (x4)"
+msgid "MSAA (4×)"
 msgstr ""
 
 #: gui/options/options.json[1].options[4].list[3].tooltip
 msgid ""
-"Slow, but high-quality anti-aliasing, uses 4 samples per pixel. Supported "
+"Slow, but high-quality antialiasing, uses four samples per pixel. Supported "
 "for GL3.3+."
 msgstr ""
 
 #: gui/options/options.json[1].options[4].list[4].label
-msgid "MSAA (x8)"
+msgid "MSAA (8×)"
 msgstr ""
 
 #: gui/options/options.json[1].options[4].list[4].tooltip
 msgid ""
-"Slow, but high-quality anti-aliasing, uses 8 samples per pixel. Supported "
-"for GL3.3+."
+"Slow, but high-quality antialiasing, uses eight samples per pixel. Supported"
+" for GL3.3+."
 msgstr ""
 
 #: gui/options/options.json[1].options[4].list[5].label
-msgid "MSAA (x16)"
+msgid "MSAA (16×)"
 msgstr ""
 
 #: gui/options/options.json[1].options[4].list[5].tooltip
 msgid ""
-"Slow, but high-quality anti-aliasing, uses 16 samples per pixel. Supported "
-"for GL3.3+."
+"Slow, but high-quality antialiasing, uses sixteen samples per pixel. "
+"Supported for GL3.3+."
 msgstr ""
 
 #: gui/options/options.json[1].options[4].tooltip
@@ -2099,8 +2098,8 @@ msgid "Receive audio notification when someone types your nick."
 msgstr "當某人輸入您的暱稱時，接收音訊通知。"
 
 #: gui/options/options.json[2].options[6].label
-msgid "Game setup - new player notification"
-msgstr "遊戲設置 - 新玩家通知"
+msgid "New player notification in game setup"
+msgstr ""
 
 #: gui/options/options.json[2].options[6].tooltip
 msgid "Receive audio notification when a new client joins the game setup."
@@ -2247,8 +2246,8 @@ msgid "These settings only affect the multiplayer."
 msgstr "這些設定僅影響多人遊戲。"
 
 #: gui/options/options.json[5].label
-msgid "In-Game"
-msgstr "遊戲中"
+msgid "Game Session"
+msgstr ""
 
 #: gui/options/options.json[5].options[0].label
 msgid "Wounded unit health"
@@ -2366,7 +2365,7 @@ msgid "This option allows to align new structures with nearby structures."
 msgstr ""
 
 #: gui/options/options.json[5].options[19].label
-msgid "Control Group Membership"
+msgid "Control group membership"
 msgstr ""
 
 #: gui/options/options.json[5].options[19].list[0].label
@@ -2467,9 +2466,9 @@ msgstr "攻擊範圍可見度"
 
 #: gui/options/options.json[5].options[7].tooltip
 msgid ""
-"Display the attack range of selected defensive structures (can also be "
-"toggled in-game with the hotkey)."
-msgstr "顯示被選的防禦建築之攻擊範圍（也可以在遊戲中用快捷鍵切換）"
+"Display the attack range of selected defensive structures. (It can also be "
+"toggled with the hotkey during a game)."
+msgstr ""
 
 #: gui/options/options.json[5].options[8].label
 msgid "Aura range visualization"
@@ -2477,9 +2476,9 @@ msgstr "光環範圍可見度"
 
 #: gui/options/options.json[5].options[8].tooltip
 msgid ""
-"Display the range of auras of selected units and structures (can also be "
-"toggled in-game with the hotkey)."
-msgstr "顯示選定單位與建築物的光環範圍（遊戲中也可以使用快捷鍵切換）"
+"Display the range of auras of selected units and structures. (It can also be"
+" toggled with the hotkey during a game)."
+msgstr ""
 
 #: gui/options/options.json[5].options[9].label
 msgid "Heal range visualization"
@@ -2487,9 +2486,9 @@ msgstr "治療範圍可見度"
 
 #: gui/options/options.json[5].options[9].tooltip
 msgid ""
-"Display the healing range of selected units (can also be toggled in-game "
-"with the hotkey)."
-msgstr "顯示選定單位的醫療範圍（遊戲中也可以使用快捷鍵切換）。"
+"Display the healing range of selected units. (It can also be toggled with "
+"the hotkey during a game)."
+msgstr ""
 
 #: gui/options/options.json[5].tooltip
 msgid "Change options regarding the in-game settings."
@@ -2524,7 +2523,7 @@ msgid "Unsaved changes affect this session only"
 msgstr "未儲存的變更只影響本遊戲階段"
 
 #: gui/pregame/MainMenuItems.js:3
-msgid "Learn To Play"
+msgid "Learn to Play"
 msgstr "遊戲指南"
 
 #: gui/pregame/MainMenuItems.js:4
@@ -3118,8 +3117,8 @@ msgid "Single-player and multiplayer"
 msgstr "單人和多人遊戲"
 
 #: gui/replaymenu/replay_filters.js:157
-msgid "Any Victory Condition"
-msgstr "任何勝利條件"
+msgid "Any victory condition"
+msgstr ""
 
 #: gui/replaymenu/replay_filters.js:170
 msgid "Rated and unrated games"

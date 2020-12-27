@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-12-11 08:01+0000\n"
-"PO-Revision-Date: 2020-12-14 16:29+0000\n"
+"POT-Creation-Date: 2020-12-18 08:02+0000\n"
+"PO-Revision-Date: 2020-12-18 18:56+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -305,10 +305,6 @@ msgstr "%(player)s rexunióse a la partida."
 msgid "%(player)s has joined the game."
 msgstr "%(player)s xunióse a la partida."
 
-#: gui/session/chat/ChatMessageFormatPlayer.js:57
-msgid "no-context"
-msgstr "ensin contestu"
-
 #: gui/session/chat/ChatMessageFormatPlayer.js:61
 #, javascript-format
 msgid "<%(user)s>"
@@ -525,23 +521,27 @@ msgstr "Descubrir el mapa"
 msgid "Enable time warp"
 msgstr "Activar la deformación del tiempu"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:208
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:214
+msgid "Activate Rejoin Test"
+msgstr "Probar la rexunidura"
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:248
 msgid "Promote selected units"
 msgstr "Promover les unidaes esbillaes"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:229
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:269
 msgid "Enable culling"
 msgstr "Activar esmesón"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:247
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:287
 msgid "Lock cull camera"
 msgstr "Fixar la cámara d'esmesón"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:265
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:305
 msgid "Display camera frustum"
 msgstr "Amosar el tueru piramidal de la cámara"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:283
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:323
 msgid "Display shadows frustum"
 msgstr "Amosar tueru piramidal de solombres"
 
@@ -926,46 +926,46 @@ msgstr "Coyedores actuales/máximos"
 msgid "(%(genericName)s)"
 msgstr "(%(genericName)s)"
 
-#: gui/session/selection_details.js:432
+#: gui/session/selection_details.js:433
 msgid "Capture Points:"
 msgstr "Puntos de captura:"
 
-#: gui/session/selection_details.js:440
+#: gui/session/selection_details.js:441
 #, javascript-format
 msgid "%(label)s %(details)s\n"
 msgstr "%(label)s %(details)s\n"
 
-#: gui/session/selection_details.js:441
+#: gui/session/selection_details.js:442
 msgid "Carrying:"
 msgstr "Llevando:"
 
-#: gui/session/selection_details.js:444 gui/session/selection_details.js:453
+#: gui/session/selection_details.js:445 gui/session/selection_details.js:454
 #, javascript-format
 msgid "%(type)s %(amount)s"
 msgstr "%(type)s %(amount)s"
 
-#: gui/session/selection_details.js:449
+#: gui/session/selection_details.js:450
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/session/selection_details.js:450
+#: gui/session/selection_details.js:451
 msgid "Loot:"
 msgstr "Botín:"
 
 #. Translation: Used in the trading gain tooltip
-#: gui/session/selection_details.js:511
+#: gui/session/selection_details.js:512
 #, javascript-format
 msgid "%(gain)s (%(player)s)"
 msgstr "%(gain)s (%(player)s)"
 
 #. Translation: Used in the trading gain tooltip to concatenate profits of
 #. different players
-#: gui/session/selection_details.js:535
+#: gui/session/selection_details.js:536
 msgid "+"
 msgstr "+"
 
-#: gui/session/selection_details.js:542
+#: gui/session/selection_details.js:543
 msgctxt "Separation mark in an enumeration"
 msgid ", "
 msgstr ","

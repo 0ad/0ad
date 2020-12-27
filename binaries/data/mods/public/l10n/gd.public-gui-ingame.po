@@ -10,9 +10,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-12-11 08:01+0000\n"
-"PO-Revision-Date: 2020-12-11 10:32+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2020-12-18 08:02+0000\n"
+"PO-Revision-Date: 2020-12-19 09:30+0000\n"
+"Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -63,7 +63,7 @@ msgstr "Roghainnean"
 
 #: gui/session/MenuButtons.js:182
 msgid "Hotkeys"
-msgstr ""
+msgstr "Grad-iuchraichean"
 
 #: gui/session/MenuButtons.js:217
 msgid "Resume"
@@ -307,10 +307,6 @@ msgstr "Thill %(player)s dhan gheama."
 msgid "%(player)s has joined the game."
 msgstr "Thàinig %(player)s a-steach sa gheama."
 
-#: gui/session/chat/ChatMessageFormatPlayer.js:57
-msgid "no-context"
-msgstr "gun cho-theacsa"
-
 #: gui/session/chat/ChatMessageFormatPlayer.js:61
 #, javascript-format
 msgid "<%(user)s>"
@@ -349,7 +345,7 @@ msgstr "Thug %(attacker)s ionnsaigh ort!"
 #: gui/session/chat/ChatMessageFormatSimulation.js:38
 #, javascript-format
 msgid "%(player)s bartered %(amountGiven)s for %(amountGained)s."
-msgstr ""
+msgstr "Dh’iomlaidich %(player)s %(amountGiven)s air %(amountGained)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:70
 #, javascript-format
@@ -527,23 +523,27 @@ msgstr "Foillsich am mapa"
 msgid "Enable time warp"
 msgstr "Cuir dlùthadh an ama an comas"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:208
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:214
+msgid "Activate Rejoin Test"
+msgstr "Gnìomhaich deuchainn air tilleadh"
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:248
 msgid "Promote selected units"
 msgstr "Àrdaich na h‑aonadan a thagh thu"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:229
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:269
 msgid "Enable culling"
 msgstr "Cuir an dìoghlamadh an comas"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:247
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:287
 msgid "Lock cull camera"
 msgstr "Glais camara an dìoghlamaidh"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:265
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:305
 msgid "Display camera frustum"
 msgstr "Seall frustum a’ chamara"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:283
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:323
 msgid "Display shadows frustum"
 msgstr "Seall frustum nan sgàilean"
 
@@ -932,46 +932,46 @@ msgstr "Cruinnichean an-dràsta/as motha"
 msgid "(%(genericName)s)"
 msgstr "(%(genericName)s)"
 
-#: gui/session/selection_details.js:432
+#: gui/session/selection_details.js:433
 msgid "Capture Points:"
 msgstr "Puingean glacaidh:"
 
-#: gui/session/selection_details.js:440
+#: gui/session/selection_details.js:441
 #, javascript-format
 msgid "%(label)s %(details)s\n"
 msgstr "%(label)s %(details)s\n"
 
-#: gui/session/selection_details.js:441
+#: gui/session/selection_details.js:442
 msgid "Carrying:"
 msgstr "A’ giùlan:"
 
-#: gui/session/selection_details.js:444 gui/session/selection_details.js:453
+#: gui/session/selection_details.js:445 gui/session/selection_details.js:454
 #, javascript-format
 msgid "%(type)s %(amount)s"
 msgstr "%(type)s %(amount)s"
 
-#: gui/session/selection_details.js:449
+#: gui/session/selection_details.js:450
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/session/selection_details.js:450
+#: gui/session/selection_details.js:451
 msgid "Loot:"
 msgstr "Spùinn:"
 
 #. Translation: Used in the trading gain tooltip
-#: gui/session/selection_details.js:511
+#: gui/session/selection_details.js:512
 #, javascript-format
 msgid "%(gain)s (%(player)s)"
 msgstr "%(gain)s (%(player)s)"
 
 #. Translation: Used in the trading gain tooltip to concatenate profits of
 #. different players
-#: gui/session/selection_details.js:535
+#: gui/session/selection_details.js:536
 msgid "+"
 msgstr "+"
 
-#: gui/session/selection_details.js:542
+#: gui/session/selection_details.js:543
 msgctxt "Separation mark in an enumeration"
 msgid ", "
 msgstr ", "
@@ -1052,11 +1052,11 @@ msgstr ", "
 
 #: gui/session/selection_panels.js:817
 msgid "Cannot research while upgrading."
-msgstr ""
+msgstr "Chan urrainn dhut rannsachadh fhad ’s a tha thu ag àrdachadh."
 
 #: gui/session/selection_panels.js:1040
 msgid "Cannot train while upgrading."
-msgstr ""
+msgstr "Chan urrainn dhut trèanadh fhad ’s a tha thu ag àrdachadh."
 
 #: gui/session/selection_panels.js:1102
 #, javascript-format
@@ -1079,10 +1079,10 @@ msgid ""
 msgid_plural ""
 "Cannot upgrade when all entities are training, researching or already "
 "upgrading."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Cha ghabh nì àrdachadh a tha a’ trèanadh, a rannsachadh no ’ga àrdachadh mu thràth."
+msgstr[1] "Cha ghabh àrdachadh nuair a bhios a h-uile nì a’ trèanadh, a rannsachadh no ’gan àrdachadh mu thràth."
+msgstr[2] "Cha ghabh àrdachadh nuair a bhios a h-uile nì a’ trèanadh, a rannsachadh no ’gan àrdachadh mu thràth."
+msgstr[3] "Cha ghabh àrdachadh nuair a bhios a h-uile nì a’ trèanadh, a rannsachadh no ’gan àrdachadh mu thràth."
 
 #: gui/session/selection_panels_helpers.js:51
 msgctxt "stance"
@@ -1186,7 +1186,7 @@ msgstr "Puingean-glacaidh"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):62
 msgid "Attack and Resistance"
-msgstr ""
+msgstr "Ionnsaigh ’s comas-seasaimh"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):77
 msgid "Experience"
@@ -1243,7 +1243,7 @@ msgstr "%(playername)s: %(statValue)s"
 #: gui/session/top_panel/CounterPopulation.js:34
 #, javascript-format
 msgid "Current gatherers: %(amount)s"
-msgstr ""
+msgstr "Cruinnichean an-dràsta: %(amount)s"
 
 #: gui/session/top_panel/CounterPopulation.js:63
 #, javascript-format
@@ -1267,7 +1267,7 @@ msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 #: gui/session/top_panel/CounterResource.js:32
 #, javascript-format
 msgid "Gatherers: %(amount)s"
-msgstr ""
+msgstr "Cruinnichean: %(amount)s"
 
 #: gui/session/top_panel/FollowPlayer.xml:(caption):15
 #: gui/session/top_panel/FollowPlayer.xml:(tooltip):11
@@ -1548,10 +1548,10 @@ msgstr "Dùil air buannachd: %(gain)s"
 #: gui/session/unit_actions.js:1129
 msgid "This entity cannot be controlled."
 msgid_plural "These entities cannot be controlled."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Chan eil smachd air an nì seo."
+msgstr[1] "Chan eil smachd air na nithean seo."
+msgstr[2] "Chan eil smachd air na nithean seo."
+msgstr[3] "Chan eil smachd air na nithean seo."
 
 #: gui/session/unit_actions.js:1166 gui/session/unit_actions.js:1494
 msgid "Unload All."

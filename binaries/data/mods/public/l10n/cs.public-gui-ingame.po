@@ -13,6 +13,7 @@
 # Jakub Jelen <jakuje@gmail.com>, 2017
 # Jaroslav Lichtblau <jlichtblau@seznam.cz>, 2016
 # xgimp <l.bacovsky@gmail.com>, 2020
+# xgimp <l.bacovsky@gmail.com>, 2020
 # Marek Mojžíš <marek.moj@seznam.cz>, 2020
 # LiberteCzech <liberte.czech@gmail.com>, 2015
 # OndraK <ondrej.kajinek@gmail.com>, 2014
@@ -27,9 +28,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-12-11 08:01+0000\n"
-"PO-Revision-Date: 2020-12-11 10:32+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2020-12-18 08:02+0000\n"
+"PO-Revision-Date: 2020-12-19 19:29+0000\n"
+"Last-Translator: xgimp <l.bacovsky@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -80,7 +81,7 @@ msgstr "Volby"
 
 #: gui/session/MenuButtons.js:182
 msgid "Hotkeys"
-msgstr ""
+msgstr "Klávesové zkratky"
 
 #: gui/session/MenuButtons.js:217
 msgid "Resume"
@@ -324,10 +325,6 @@ msgstr "%(player)s se znovu připojil ke hře."
 msgid "%(player)s has joined the game."
 msgstr "%(player)s se připojil ke hře."
 
-#: gui/session/chat/ChatMessageFormatPlayer.js:57
-msgid "no-context"
-msgstr "bez kontextu"
-
 #: gui/session/chat/ChatMessageFormatPlayer.js:61
 #, javascript-format
 msgid "<%(user)s>"
@@ -544,23 +541,27 @@ msgstr "Odhalit mapu"
 msgid "Enable time warp"
 msgstr "Povolit zrychlení času"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:208
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:214
+msgid "Activate Rejoin Test"
+msgstr ""
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:248
 msgid "Promote selected units"
 msgstr "Povýšit vybrané jednotky"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:229
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:269
 msgid "Enable culling"
 msgstr ""
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:247
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:287
 msgid "Lock cull camera"
 msgstr ""
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:265
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:305
 msgid "Display camera frustum"
 msgstr ""
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:283
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:323
 msgid "Display shadows frustum"
 msgstr ""
 
@@ -949,46 +950,46 @@ msgstr "Nyní/maximum sběračů"
 msgid "(%(genericName)s)"
 msgstr "(%(genericName)s)"
 
-#: gui/session/selection_details.js:432
+#: gui/session/selection_details.js:433
 msgid "Capture Points:"
 msgstr "Body za zajetí:"
 
-#: gui/session/selection_details.js:440
+#: gui/session/selection_details.js:441
 #, javascript-format
 msgid "%(label)s %(details)s\n"
 msgstr "%(label)s %(details)s\n"
 
-#: gui/session/selection_details.js:441
+#: gui/session/selection_details.js:442
 msgid "Carrying:"
 msgstr "Nese:"
 
-#: gui/session/selection_details.js:444 gui/session/selection_details.js:453
+#: gui/session/selection_details.js:445 gui/session/selection_details.js:454
 #, javascript-format
 msgid "%(type)s %(amount)s"
 msgstr "%(type)s %(amount)s"
 
-#: gui/session/selection_details.js:449
+#: gui/session/selection_details.js:450
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/session/selection_details.js:450
+#: gui/session/selection_details.js:451
 msgid "Loot:"
 msgstr "Kořist:"
 
 #. Translation: Used in the trading gain tooltip
-#: gui/session/selection_details.js:511
+#: gui/session/selection_details.js:512
 #, javascript-format
 msgid "%(gain)s (%(player)s)"
 msgstr "%(gain)s (%(player)s)"
 
 #. Translation: Used in the trading gain tooltip to concatenate profits of
 #. different players
-#: gui/session/selection_details.js:535
+#: gui/session/selection_details.js:536
 msgid "+"
 msgstr "+"
 
-#: gui/session/selection_details.js:542
+#: gui/session/selection_details.js:543
 msgctxt "Separation mark in an enumeration"
 msgid ", "
 msgstr ", "
@@ -1284,7 +1285,7 @@ msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 #: gui/session/top_panel/CounterResource.js:32
 #, javascript-format
 msgid "Gatherers: %(amount)s"
-msgstr ""
+msgstr "Sběrači: %(amount)s"
 
 #: gui/session/top_panel/FollowPlayer.xml:(caption):15
 #: gui/session/top_panel/FollowPlayer.xml:(tooltip):11
@@ -1526,7 +1527,7 @@ msgstr "Připraven"
 msgid ""
 "This is the origin trade market.\n"
 "Right-click to cancel trade route."
-msgstr ""
+msgstr "Toto je zdrojový obchodní trh. \nPravým klik pro zrušení obchodní cesty."
 
 #: gui/session/unit_actions.js:638
 msgid "Origin trade market."

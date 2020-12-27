@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-12-07 08:42+0000\n"
-"PO-Revision-Date: 2020-12-14 20:38+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2020-12-18 08:02+0000\n"
+"PO-Revision-Date: 2020-12-19 09:56+0000\n"
+"Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -361,7 +361,7 @@ msgstr "Gach cluicheadair"
 
 #: gui/common/gamedescription.js:382
 msgid "World Population Cap"
-msgstr ""
+msgstr "Tomhas-sluaigh as motha an t-saoghail"
 
 #: gui/common/gamedescription.js:390
 msgid "Treasures"
@@ -393,19 +393,19 @@ msgstr "Cealgaireachd"
 #: gui/common/tooltips.js:210 gui/common/tooltips.js:231
 #: gui/common/tooltips.js:250 gui/common/tooltips.js:313
 #: gui/common/tooltips.js:597 gui/common/tooltips.js:619
-#: gui/common/tooltips.js:703 gui/common/tooltips.js:744
-#: gui/common/tooltips.js:1042
+#: gui/common/tooltips.js:702 gui/common/tooltips.js:743
+#: gui/common/tooltips.js:1041
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
 #: gui/common/gamedescription.js:414
-msgctxt "gamesetup option"
+msgctxt "game setup option"
 msgid "enabled"
 msgstr "an comas"
 
 #: gui/common/gamedescription.js:415
-msgctxt "gamesetup option"
+msgctxt "game setup option"
 msgid "disabled"
 msgstr "à comas"
 
@@ -530,8 +530,8 @@ msgstr "Cleachdaichean (%(num)s): %(users)s"
 #: gui/common/tooltips.js:406 gui/common/tooltips.js:420
 #: gui/common/tooltips.js:497 gui/common/tooltips.js:502
 #: gui/common/tooltips.js:559 gui/common/tooltips.js:592
-#: gui/common/tooltips.js:907 gui/common/tooltips.js:940
-#: gui/common/tooltips.js:1007 gui/loadgame/SavegameDetails.js:38
+#: gui/common/tooltips.js:906 gui/common/tooltips.js:939
+#: gui/common/tooltips.js:1006 gui/loadgame/SavegameDetails.js:38
 #: gui/reference/common/tooltips.js:13 gui/replaymenu/replay_menu.js:282
 msgid ", "
 msgstr ", "
@@ -594,7 +594,7 @@ msgstr "Streup"
 #: gui/common/settings.js:174
 msgid ""
 "A map with a predefined landscape and number of players. Freely select the "
-"other gamesettings."
+"other game settings."
 msgstr "Chaidh an cruth-tìre agus àireamh nan cluicheadairean a shocrachadh dhan mhapa seo. Atharraich roghainn sam bith eile mar a thogras tu."
 
 #: gui/common/settings.js:182
@@ -649,7 +649,7 @@ msgstr "Bun-roghainn"
 #: gui/common/settings.js:400
 msgctxt "population capacity addendum"
 msgid "(world)"
-msgstr ""
+msgstr "(saoghal)"
 
 #: gui/common/settings.js:401 gui/common/settings.js:405
 msgctxt "population capacity"
@@ -680,7 +680,7 @@ msgstr[2] "%(time)s %(second)s"
 msgstr[3] "%(time)s %(second)s"
 
 #: gui/common/tooltips.js:92 gui/common/tooltips.js:555
-#: gui/common/tooltips.js:938
+#: gui/common/tooltips.js:937
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "diog"
@@ -700,7 +700,7 @@ msgstr "%(healthLabel)s %(current)s / %(max)s"
 #: gui/common/tooltips.js:167
 #, javascript-format
 msgid "%(captureLabel)s %(current)s / %(max)s"
-msgstr ""
+msgstr "%(captureLabel)s %(current)s / %(max)s"
 
 #: gui/common/tooltips.js:168
 msgid "Capture points:"
@@ -716,29 +716,29 @@ msgstr "%(percentage)s%%"
 msgid ""
 "%(label)s\n"
 "%(details)s"
-msgstr ""
+msgstr "%(label)s\n%(details)s"
 
 #: gui/common/tooltips.js:200
 msgid "Resistance:"
-msgstr ""
+msgstr "Comas-seasaimh:"
 
 #: gui/common/tooltips.js:211
 msgid "Damage:"
-msgstr ""
+msgstr "Dochann:"
 
 #: gui/common/tooltips.js:214 gui/common/tooltips.js:234
 #, javascript-format
 msgid "%(damage)s %(damageType)s %(resistancePercentage)s"
-msgstr ""
+msgstr "%(damage)s %(damageType)s %(resistancePercentage)s"
 
 #: gui/common/tooltips.js:219 gui/common/tooltips.js:239
 #, javascript-format
 msgid "(%(resistancePercentage)s)"
-msgstr ""
+msgstr "(%(resistancePercentage)s)"
 
 #: gui/common/tooltips.js:232
 msgid "Capture:"
-msgstr ""
+msgstr "Glacadh:"
 
 #: gui/common/tooltips.js:236 gui/common/tooltips.js:376
 msgctxt "damage type"
@@ -747,40 +747,40 @@ msgstr "Glacadh"
 
 #: gui/common/tooltips.js:251
 msgid "Status Effects:"
-msgstr ""
+msgstr "Èifeachdan staide:"
 
 #: gui/common/tooltips.js:256
 #, javascript-format
 msgid "Blocks %(name)s"
-msgstr ""
+msgstr "Bacaidh e %(name)s"
 
 #: gui/common/tooltips.js:261 gui/common/tooltips.js:269
 #: gui/common/tooltips.js:276
 #, javascript-format
 msgid "%(name)s %(details)s"
-msgstr ""
+msgstr "%(name)s %(details)s"
 
 #: gui/common/tooltips.js:263
 #, javascript-format
 msgid "Duration reduction: %(durationReduction)s%%"
-msgstr ""
+msgstr "Lùghdachadh na faide: %(durationReduction)s%%"
 
 #: gui/common/tooltips.js:271
 #, javascript-format
 msgid "Blocks: %(blockPercentage)s%%"
-msgstr ""
+msgstr "Bacadh: %(blockPercentage)s%%"
 
 #: gui/common/tooltips.js:278
 #, javascript-format
 msgid ""
 "Blocks: %(blockPercentage)s%%, Duration reduction: %(durationReduction)s%%"
-msgstr ""
+msgstr "Bacadh: %(blockPercentage)s%%, Lùghdachadh na faide: %(durationReduction)s%%"
 
 #: gui/common/tooltips.js:294
 msgid "Garrison to fire arrows"
 msgstr "Cuir gearastan ann airson saighdean a thilgeil"
 
-#: gui/common/tooltips.js:297 gui/common/tooltips.js:936
+#: gui/common/tooltips.js:297 gui/common/tooltips.js:935
 msgid "Interval:"
 msgstr "Eadaramh:"
 
@@ -836,7 +836,7 @@ msgstr "%(rangeLabel)s %(minRange)s gu %(maxRange)s %(rangeUnit)s"
 msgid "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
 msgstr "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
 
-#: gui/common/tooltips.js:345 gui/common/tooltips.js:931
+#: gui/common/tooltips.js:345 gui/common/tooltips.js:930
 msgid "Range:"
 msgstr "Astar:"
 
@@ -851,8 +851,8 @@ msgstr "+%(number)s"
 msgid "meters"
 msgstr "meatair"
 
-#: gui/common/tooltips.js:353 gui/common/tooltips.js:933
-#: gui/common/tooltips.js:963
+#: gui/common/tooltips.js:353 gui/common/tooltips.js:932
+#: gui/common/tooltips.js:962
 msgid "meter"
 msgid_plural "meters"
 msgstr[0] "mheatair"
@@ -873,7 +873,7 @@ msgstr "%(amount)s %(name)s"
 #: gui/common/tooltips.js:382
 #, javascript-format
 msgid "%(splashShape)s Splash"
-msgstr ""
+msgstr "Stealladh %(splashShape)s"
 
 #: gui/common/tooltips.js:385
 #, javascript-format
@@ -909,13 +909,13 @@ msgstr "bheir e %(name)s dhut"
 #: gui/common/tooltips.js:436
 #, javascript-format
 msgid "%(attackType)s"
-msgstr ""
+msgstr "%(attackType)s"
 
 #: gui/common/tooltips.js:457
 #, javascript-format
 msgid ""
 "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s%(splash)s"
-msgstr ""
+msgstr "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s%(splash)s"
 
 #: gui/common/tooltips.js:468
 msgid "Attack:"
@@ -924,12 +924,12 @@ msgstr "Ionnsaigh:"
 #: gui/common/tooltips.js:495
 #, javascript-format
 msgid "%(statusName)s: %(statusInfo)s %(stackability)s"
-msgstr ""
+msgstr "%(statusName)s: %(statusInfo)s %(stackability)s"
 
 #: gui/common/tooltips.js:500
 #, javascript-format
 msgid "%(statusName)s: %(statusInfo)s"
-msgstr ""
+msgstr "%(statusName)s: %(statusInfo)s"
 
 #: gui/common/tooltips.js:511
 #, javascript-format
@@ -943,22 +943,22 @@ msgstr "Faide"
 #: gui/common/tooltips.js:526
 msgctxt "status effect stackability"
 msgid "(extends)"
-msgstr ""
+msgstr "(a’ leudachadh)"
 
 #: gui/common/tooltips.js:528
 msgctxt "status effect stackability"
 msgid "(replaces)"
-msgstr ""
+msgstr "(’ga chur an àite)"
 
 #: gui/common/tooltips.js:530
 msgctxt "status effect stackability"
 msgid "(stacks)"
-msgstr ""
+msgstr "(’ga chur ri)"
 
 #: gui/common/tooltips.js:532
 #, javascript-format
 msgid "%(stackability)s"
-msgstr ""
+msgstr "%(stackability)s"
 
 #: gui/common/tooltips.js:543
 #, javascript-format
@@ -974,11 +974,11 @@ msgstr "An gearastan as motha"
 msgid "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 msgstr "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 
-#: gui/common/tooltips.js:552 gui/common/tooltips.js:926
+#: gui/common/tooltips.js:552 gui/common/tooltips.js:925
 msgid "Heal:"
 msgstr "Slànachadh:"
 
-#: gui/common/tooltips.js:554 gui/common/tooltips.js:928
+#: gui/common/tooltips.js:554 gui/common/tooltips.js:927
 msgid "Health"
 msgstr "Slàinte"
 
@@ -1048,16 +1048,16 @@ msgstr[1] "Cuir obraiche ris ach an dèid a thogail am broinn %(second)s dhiog."
 msgstr[2] "Cuir obraiche ris ach an dèid a thogail am broinn %(second)s diogan."
 msgstr[3] "Cuir obraiche ris ach an dèid a thogail am broinn %(second)s diog."
 
-#: gui/common/tooltips.js:668 gui/common/tooltips.js:879
+#: gui/common/tooltips.js:667 gui/common/tooltips.js:878
 #, javascript-format
 msgid "%(component)s %(cost)s"
 msgstr "%(component)s %(cost)s"
 
-#: gui/common/tooltips.js:704
+#: gui/common/tooltips.js:703
 msgid "Gather Rates:"
 msgstr "Reat a’ chruinneachaidh:"
 
-#: gui/common/tooltips.js:707 gui/common/tooltips.js:749
+#: gui/common/tooltips.js:706 gui/common/tooltips.js:748
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
 msgstr "%(resourceIcon)s %(rate)s"
@@ -1065,60 +1065,60 @@ msgstr "%(resourceIcon)s %(rate)s"
 #. Translation: Label in tooltip showing the resource type and quantity of a
 #. given resource
 #. supply.
-#: gui/common/tooltips.js:727
+#: gui/common/tooltips.js:726
 #, javascript-format
 msgid "%(label)s %(component)s %(amount)s"
 msgstr "%(label)s %(component)s %(amount)s"
 
-#: gui/common/tooltips.js:728
+#: gui/common/tooltips.js:727
 msgid "Resource Supply:"
 msgstr "Solar stòrais:"
 
 #. Translation: Marks that a resource supply entity has an unending, infinite,
 #. supply of its
 #. resource.
-#: gui/common/tooltips.js:731 gui/summary/summary.js:111
+#: gui/common/tooltips.js:730 gui/summary/summary.js:111
 msgid "∞"
 msgstr "∞"
 
-#: gui/common/tooltips.js:745
+#: gui/common/tooltips.js:744
 msgid "Resource Trickle:"
 msgstr "Beagan stòrais gu cunbhalach:"
 
-#: gui/common/tooltips.js:746
+#: gui/common/tooltips.js:745
 #, javascript-format
 msgid "%(resources)s / %(time)s"
 msgstr "%(resources)s / %(time)s"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
-#: gui/common/tooltips.js:798
+#: gui/common/tooltips.js:797
 #, javascript-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
 msgstr "%(resourceIcon)s %(minimum)s gu %(resourceIcon)s %(maximum)s"
 
-#: gui/common/tooltips.js:827
+#: gui/common/tooltips.js:826
 #, javascript-format
 msgid "Walls:  %(costs)s"
 msgstr "Ballachan:  %(costs)s"
 
-#: gui/common/tooltips.js:828
+#: gui/common/tooltips.js:827
 #, javascript-format
 msgid "Towers:  %(costs)s"
 msgstr "Tùir:  %(costs)s"
 
 #. Translation: Label in tooltip showing cost of a unit, structure or
 #. technology.
-#: gui/common/tooltips.js:836
+#: gui/common/tooltips.js:835
 #, javascript-format
 msgid "%(label)s %(costs)s"
 msgstr "%(label)s %(costs)s"
 
-#: gui/common/tooltips.js:837
+#: gui/common/tooltips.js:836
 msgid "Cost:"
 msgstr "Cosgais:"
 
-#: gui/common/tooltips.js:850
+#: gui/common/tooltips.js:849
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "Tha %(technology)s a dhìth"
@@ -1126,40 +1126,40 @@ msgstr "Tha %(technology)s a dhìth"
 #: gui/common/tooltips.js:862
 #, javascript-format
 msgid "%(label)s %(bonus)s"
-msgstr ""
+msgstr "%(label)s %(bonus)s"
 
 #: gui/common/tooltips.js:863
 msgid "Population Bonus:"
 msgstr "Buannachd sluaigh:"
 
-#: gui/common/tooltips.js:884
+#: gui/common/tooltips.js:883
 msgid "Insufficient resources:"
 msgstr "Tha stòras a dhìth:"
 
-#: gui/common/tooltips.js:900
+#: gui/common/tooltips.js:899
 #, javascript-format
 msgid "%(label)s %(speeds)s"
 msgstr "%(label)s %(speeds)s"
 
-#: gui/common/tooltips.js:901
+#: gui/common/tooltips.js:900
 msgid "Speed:"
 msgstr "Luaths:"
 
-#: gui/common/tooltips.js:903 gui/common/tooltips.js:908
+#: gui/common/tooltips.js:902 gui/common/tooltips.js:907
 #, javascript-format
 msgid "%(speed)s %(movementType)s"
 msgstr "%(speed)s %(movementType)s"
 
-#: gui/common/tooltips.js:905
+#: gui/common/tooltips.js:904
 msgid "Walk"
 msgstr "Coisich"
 
-#: gui/common/tooltips.js:910
+#: gui/common/tooltips.js:909
 msgid "Run"
 msgstr "Ruith"
 
-#: gui/common/tooltips.js:925 gui/common/tooltips.js:930
-#: gui/common/tooltips.js:935 gui/common/tooltips.js:960
+#: gui/common/tooltips.js:924 gui/common/tooltips.js:929
+#: gui/common/tooltips.js:934 gui/common/tooltips.js:959
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
@@ -1168,76 +1168,76 @@ msgstr[1] "%(label)s %(val)s %(unit)s"
 msgstr[2] "%(label)s %(val)s %(unit)s"
 msgstr[3] "%(label)s %(val)s %(unit)s"
 
-#: gui/common/tooltips.js:952
+#: gui/common/tooltips.js:951
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
 msgstr "%(auralabel)s %(aurainfo)s"
 
-#: gui/common/tooltips.js:953
+#: gui/common/tooltips.js:952
 #, javascript-format
 msgid "%(auraname)s:"
 msgstr "%(auraname)s:"
 
-#: gui/common/tooltips.js:961
+#: gui/common/tooltips.js:960
 msgctxt "aura"
 msgid "Range:"
 msgstr "Astar:"
 
-#: gui/common/tooltips.js:978
+#: gui/common/tooltips.js:977
 #, javascript-format
 msgid "%(specificName)s (%(genericName)s)"
 msgstr "%(specificName)s (%(genericName)s)"
 
 #. Translation: Example: "Epibátēs Athēnaîos [font="sans-bold-16"](Athenian
 #. Marine)[/font]"
-#: gui/common/tooltips.js:991
+#: gui/common/tooltips.js:990
 #, javascript-format
 msgid "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 msgstr "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 
-#: gui/common/tooltips.js:1006
+#: gui/common/tooltips.js:1005
 msgid "Classes:"
 msgstr "Seòrsa:"
 
 #. Translation: %(component) will be the icon for the loot type and %(loot)
 #. will be the
 #. value.
-#: gui/common/tooltips.js:1033
+#: gui/common/tooltips.js:1032
 #, javascript-format
 msgid "%(component)s %(loot)s"
 msgstr "%(component)s %(loot)s"
 
-#: gui/common/tooltips.js:1043
+#: gui/common/tooltips.js:1042
 msgid "Loot:"
 msgstr "Spùinn:"
 
-#: gui/common/tooltips.js:1053
+#: gui/common/tooltips.js:1052
 #, javascript-format
 msgid "%(label)s %(icons)s"
-msgstr ""
+msgstr "%(label)s %(icons)s"
 
-#: gui/common/tooltips.js:1054
+#: gui/common/tooltips.js:1053
 msgid "Dropsite for:"
-msgstr ""
+msgstr "Ionad-stòrais airson:"
 
 #. Translation: Appears in a tooltip to indicate that right-clicking the
 #. corresponding GUI
 #. element will open the Template Details GUI page.
-#: gui/common/tooltips.js:1062
+#: gui/common/tooltips.js:1061
 msgid "Right-click to view more information."
 msgstr "Dèan briogadh deas gus barrachd fiosrachaidh a shealltainn."
 
 #. Translation: Appears in a tooltip to indicate that clicking the
 #. corresponding GUI element
 #. will open the Template Details GUI page.
-#: gui/common/tooltips.js:1068
+#: gui/common/tooltips.js:1067
 msgid "Click to view more information."
 msgstr "Briog air gus barrachd fiosrachaidh a shealltainn."
 
 #: gui/credits/credits.js:83
 #, javascript-format
 msgid "%(nick)s — %(name)s"
-msgstr ""
+msgstr "%(nick)s – %(name)s"
 
 #: gui/credits/credits.xml:(caption):19
 msgid "0 A.D. Credits"
@@ -1265,11 +1265,11 @@ msgstr "Manaidsear nam fuaimean"
 
 #: gui/credits/texts/audio.jsonContent[0].Content[1].Subtitle
 msgid "Lead Composer"
-msgstr ""
+msgstr "Prìomh cheòl-sgrìobhaiche"
 
 #: gui/credits/texts/audio.jsonContent[0].Title
 msgid "Audio managers"
-msgstr ""
+msgstr "Manaidsearan nam fuaimean"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[10].Subtitle
 msgid "Viola, violin"
@@ -1330,7 +1330,7 @@ msgstr "Laideann"
 
 #: gui/credits/texts/audio.jsonContent[3].Content[2].Subtitle
 msgid "Napatan"
-msgstr ""
+msgstr "Napatais"
 
 #: gui/credits/texts/audio.jsonContent[3].Content[3].Subtitle
 msgid "Persian"
@@ -1342,7 +1342,7 @@ msgstr "Guthan"
 
 #: gui/credits/texts/audio.jsonTitle
 msgid "Audio"
-msgstr ""
+msgstr "Fuaim"
 
 #: gui/credits/texts/balancing.jsonContent[0].Subtitle
 #: gui/credits/texts/history.jsonContent[0].Subtitle
@@ -1389,7 +1389,7 @@ msgstr "Sgrìobtaichean tuaireamach nam mapaichean"
 
 #: gui/credits/texts/maps.jsonTitle
 msgid "Maps"
-msgstr ""
+msgstr "Mapaichean"
 
 #: gui/credits/texts/programming.jsonContent[0].Title
 msgid "Programming managers"
@@ -1689,9 +1689,8 @@ msgid "Chat timestamp"
 msgstr "Stampa-tìde na cabadaich"
 
 #: gui/options/options.json[0].options[11].tooltip
-msgid ""
-"Show time that messages are posted in the lobby, gamesetup and ingame chat."
-msgstr "Seall an t-àm a thèid teachdaireachdan a phostadh gu cabadaich na lobaidh, suidheachadh a’ gheama is am broinn a’ gheama."
+msgid "Display the time at which a chat message was posted."
+msgstr "Seall cuin a chaidh teachdaireachd cabadaich a chur."
 
 #: gui/options/options.json[0].options[1].label
 msgid "Player name (multiplayer)"
@@ -1879,8 +1878,8 @@ msgid "Smooth vision"
 msgstr "Lèirsinn rèidh"
 
 #: gui/options/options.json[1].options[19].tooltip
-msgid "Lift darkness and fog-of-war smoothly."
-msgstr "Tog dubhar agus ceò a’ chogaidh gu rèidh."
+msgid "Lift darkness and fog of war smoothly."
+msgstr "Tog an sgleò agus ceò cogaidh gu rèidh."
 
 #: gui/options/options.json[1].options[1].label
 msgid "Prefer GLSL"
@@ -1931,7 +1930,7 @@ msgid "Fog"
 msgstr "Ceò"
 
 #: gui/options/options.json[1].options[2].tooltip
-msgid "Enable Fog."
+msgid "Enable fog."
 msgstr "Cuir an ceò an comas."
 
 #: gui/options/options.json[1].options[3].label
@@ -1943,60 +1942,60 @@ msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
 msgstr "Cleachd criathragan pròiseasadh-sgrìn an dèidh làimh (HDR, Bloom, DOF is msaa)."
 
 #: gui/options/options.json[1].options[4].label
-msgid "Anti-Aliasing"
-msgstr "Anti-aliasing"
+msgid "Antialiasing"
+msgstr "Antialiasing"
 
 #: gui/options/options.json[1].options[4].list[0].tooltip
-msgid "Do not use anti-aliasing."
-msgstr "Na cleachd anti-aliasing."
+msgid "Do not use antialiasing."
+msgstr "Na cleachd antialiasing."
 
 #: gui/options/options.json[1].options[4].list[1].label
 msgid "FXAA"
 msgstr "FXAA"
 
 #: gui/options/options.json[1].options[4].list[1].tooltip
-msgid "Fast, but simple anti-aliasing."
-msgstr "Anti-aliasing sìmplidh ach luath."
+msgid "Fast, but simple antialiasing."
+msgstr "Antialiasing sìmplidh ach luath."
 
 #: gui/options/options.json[1].options[4].list[2].label
-msgid "MSAA (x2)"
-msgstr ""
+msgid "MSAA (2×)"
+msgstr "MSAA (2×)"
 
 #: gui/options/options.json[1].options[4].list[2].tooltip
 msgid ""
-"Slow, but high-quality anti-aliasing, uses 2 samples per pixel. Supported "
+"Slow, but high-quality antialiasing, uses two samples per pixel. Supported "
 "for GL3.3+."
-msgstr ""
+msgstr "Antialiasing slaodach ach le càileachd àrd. Cleachdaidh e dà shampall air gach piogsail. Tha taic ris le GL3.3+."
 
 #: gui/options/options.json[1].options[4].list[3].label
-msgid "MSAA (x4)"
-msgstr ""
+msgid "MSAA (4×)"
+msgstr "MSAA (4×)"
 
 #: gui/options/options.json[1].options[4].list[3].tooltip
 msgid ""
-"Slow, but high-quality anti-aliasing, uses 4 samples per pixel. Supported "
+"Slow, but high-quality antialiasing, uses four samples per pixel. Supported "
 "for GL3.3+."
-msgstr ""
+msgstr "Antialiasing slaodach ach le càileachd àrd. Cleachdaidh e ceithir sampallan air gach piogsail. Tha taic ris le GL3.3+."
 
 #: gui/options/options.json[1].options[4].list[4].label
-msgid "MSAA (x8)"
-msgstr ""
+msgid "MSAA (8×)"
+msgstr "MSAA (8×)"
 
 #: gui/options/options.json[1].options[4].list[4].tooltip
 msgid ""
-"Slow, but high-quality anti-aliasing, uses 8 samples per pixel. Supported "
-"for GL3.3+."
-msgstr ""
+"Slow, but high-quality antialiasing, uses eight samples per pixel. Supported"
+" for GL3.3+."
+msgstr "Antialiasing slaodach ach le càileachd àrd. Cleachdaidh e ochd sampallan air gach piogsail. Tha taic ris le GL3.3+."
 
 #: gui/options/options.json[1].options[4].list[5].label
-msgid "MSAA (x16)"
-msgstr ""
+msgid "MSAA (16×)"
+msgstr "MSAA (16×)"
 
 #: gui/options/options.json[1].options[4].list[5].tooltip
 msgid ""
-"Slow, but high-quality anti-aliasing, uses 16 samples per pixel. Supported "
-"for GL3.3+."
-msgstr ""
+"Slow, but high-quality antialiasing, uses sixteen samples per pixel. "
+"Supported for GL3.3+."
+msgstr "Antialiasing slaodach ach le càileachd àrd. Cleachdaidh e sia sampallan deug air gach piogsail. Tha taic ris le GL3.3+."
 
 #: gui/options/options.json[1].options[4].tooltip
 msgid "Reduce aliasing effect on edges."
@@ -2004,31 +2003,31 @@ msgstr "Lùghdaich buaidh an aliasing air na h-oirean."
 
 #: gui/options/options.json[1].options[5].label
 msgid "Sharpening"
-msgstr ""
+msgstr "Geurachadh"
 
 #: gui/options/options.json[1].options[5].list[0].tooltip
 msgid "Do not use sharpening."
-msgstr ""
+msgstr "Na cleachd geurachadh."
 
 #: gui/options/options.json[1].options[5].list[1].label
 msgid "FidelityFX CAS"
-msgstr ""
+msgstr "FidelityFX CAS"
 
 #: gui/options/options.json[1].options[5].list[1].tooltip
 msgid "Contrast adaptive sharpening, a fast, contrast based sharpening pass."
-msgstr ""
+msgstr "Geurachadh a cho-fhreagras ris an iomsgaradh. Seo ceum geurachaidh luath stèidhichte air an iomsgaradh."
 
 #: gui/options/options.json[1].options[5].tooltip
 msgid "Reduce blurry effects."
-msgstr ""
+msgstr "Lùghdaich èifeachdan sgleòthte."
 
 #: gui/options/options.json[1].options[6].label
 msgid "Sharpness factor"
-msgstr ""
+msgstr "Factar a’ gheurachaidh"
 
 #: gui/options/options.json[1].options[6].tooltip
 msgid "The sharpness of the choosen pass."
-msgstr ""
+msgstr "Dè cho geur ’s a bhios an ceum a thagh thu."
 
 #: gui/options/options.json[1].options[7].label
 msgid "Shader effects"
@@ -2130,8 +2129,8 @@ msgid "Receive audio notification when someone types your nick."
 msgstr "Faigh brath fuaime nuair a sgrìobas cuideigin d’ fhar-ainm."
 
 #: gui/options/options.json[2].options[6].label
-msgid "Game setup - new player notification"
-msgstr "Rèiteachadh geama – brath cluicheadair ùir"
+msgid "New player notification in game setup"
+msgstr "Brathan mu chluicheadairean ùra rè rèiteachadh a’ gheama"
 
 #: gui/options/options.json[2].options[6].tooltip
 msgid "Receive audio notification when a new client joins the game setup."
@@ -2278,8 +2277,8 @@ msgid "These settings only affect the multiplayer."
 msgstr "Cha bidh buaidh aig na roghainnean seo ach air geamannan ioma-chluicheadair."
 
 #: gui/options/options.json[5].label
-msgid "In-Game"
-msgstr "Am broinn geama"
+msgid "Game Session"
+msgstr "Seisean a’ gheama"
 
 #: gui/options/options.json[5].options[0].label
 msgid "Wounded unit health"
@@ -2397,7 +2396,7 @@ msgid "This option allows to align new structures with nearby structures."
 msgstr "Leigidh an roghainn seo leat togalaichean ùra a cho-thaobhachadh le togalaichean am fagas."
 
 #: gui/options/options.json[5].options[19].label
-msgid "Control Group Membership"
+msgid "Control group membership"
 msgstr "Ballrachd nam buidhnean-smachd"
 
 #: gui/options/options.json[5].options[19].list[0].label
@@ -2498,8 +2497,8 @@ msgstr "Samhlaidhean astar na h-ionnsaighe"
 
 #: gui/options/options.json[5].options[7].tooltip
 msgid ""
-"Display the attack range of selected defensive structures (can also be "
-"toggled in-game with the hotkey)."
+"Display the attack range of selected defensive structures. (It can also be "
+"toggled with the hotkey during a game)."
 msgstr "Seall astar ionnsaighe nan togalaichean dìona a chaidh a thaghadh (gabhaidh a thoglachadh le grad-iuchair am broinn a’ gheama cuideachd)."
 
 #: gui/options/options.json[5].options[8].label
@@ -2508,9 +2507,9 @@ msgstr "Samhlaidhean astar nan aura"
 
 #: gui/options/options.json[5].options[8].tooltip
 msgid ""
-"Display the range of auras of selected units and structures (can also be "
-"toggled in-game with the hotkey)."
-msgstr "Seall astar nan aura airson nan aonadan is togalaichean a chaidh a thaghadh (gabhaidh a thoglachadh le grad-iuchair am broinn a’ gheama cuideachd)."
+"Display the range of auras of selected units and structures. (It can also be"
+" toggled with the hotkey during a game)."
+msgstr "Seall astar aura nan aonadan is togalaichean a chaidh a thaghadh (gabhaidh a thoglachadh le grad-iuchair am broinn a’ gheama cuideachd)."
 
 #: gui/options/options.json[5].options[9].label
 msgid "Heal range visualization"
@@ -2518,9 +2517,9 @@ msgstr "Samhlaidhean astar an t-slànachaidh"
 
 #: gui/options/options.json[5].options[9].tooltip
 msgid ""
-"Display the healing range of selected units (can also be toggled in-game "
-"with the hotkey)."
-msgstr "Seall astar slànachaidh nan aonadan a chaidh a thaghadh (gabhaidh a thoglachadh le grad-iuchair am broinn a’ gheama cuideachd)."
+"Display the healing range of selected units. (It can also be toggled with "
+"the hotkey during a game)."
+msgstr "Seall astar leigheas nan aonadan a chaidh a thaghadh (gabhaidh a thoglachadh le grad-iuchair am broinn a’ gheama cuideachd)."
 
 #: gui/options/options.json[5].tooltip
 msgid "Change options regarding the in-game settings."
@@ -2555,8 +2554,8 @@ msgid "Unsaved changes affect this session only"
 msgstr "Cha buaidh aig na dh’atharraich thu gun a shàbhaladh air an t-seisean seo a-mhàin"
 
 #: gui/pregame/MainMenuItems.js:3
-msgid "Learn To Play"
-msgstr "Leabhar-mìneachaidh"
+msgid "Learn to Play"
+msgstr "Cobhair"
 
 #: gui/pregame/MainMenuItems.js:4
 msgid ""
@@ -2699,11 +2698,11 @@ msgstr "Cuir gleus air roghainnean a’ gheama."
 
 #: gui/pregame/MainMenuItems.js:152
 msgid "Hotkeys"
-msgstr ""
+msgstr "Grad-iuchraichean"
 
 #: gui/pregame/MainMenuItems.js:153
 msgid "Adjust hotkeys."
-msgstr ""
+msgstr "Cuir gleus air na grad-iuchraichean."
 
 #: gui/locale/locale.xml:(caption):14 gui/pregame/MainMenuItems.js:159
 msgid "Language"
@@ -2913,7 +2912,7 @@ msgstr "’S urrainn dhut fiosrachadh a chur thugainn gu fèin-obrachail a chuid
 msgid ""
 "\n"
 "     %(description)s"
-msgstr ""
+msgstr "\n     %(description)s"
 
 #. Translation: An entry in the CivInfo Page. The newline and indentation of
 #. the description
@@ -2924,7 +2923,7 @@ msgstr ""
 #: gui/reference/civinfo/CivInfoPage.js:108
 #, javascript-format
 msgid "• %(name)s %(info_icon)s%(description)s"
-msgstr ""
+msgstr "• %(name)s %(info_icon)s%(description)s"
 
 #: gui/reference/civinfo/CivInfoPage.js:119
 #, javascript-format
@@ -2960,10 +2959,10 @@ msgstr[3] "Buannachdan an sgioba"
 #: gui/reference/civinfo/Sections/Subsections/HeroesSubsection.js:30
 msgid "Hero"
 msgid_plural "Heroes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Curaidh"
+msgstr[1] "Curaidhean"
+msgstr[2] "Curaidhean"
+msgstr[3] "Curaidhean"
 
 #: gui/reference/civinfo/Sections/Subsections/StructuresSubsection.js:24
 msgid "Special Structure"
@@ -2976,10 +2975,10 @@ msgstr[3] "Togalaichean sònraichte"
 #: gui/reference/civinfo/Sections/Subsections/TechnologiesSubsection.js:30
 msgid "Special Technology"
 msgid_plural "Special Technologies"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Teicneolas sònraichte"
+msgstr[1] "Teicneolasan sònraichte"
+msgstr[2] "Teicneolasan sònraichte"
+msgstr[3] "Teicneolasan sònraichte"
 
 #: gui/reference/common/Buttons/CivInfoButton.js:27
 #, javascript-format
@@ -3071,7 +3070,7 @@ msgstr "%(hotkey)s: Dùin craobh nan sìobhaltas."
 #: gui/reference/viewer/ViewerPage.js:167
 #, javascript-format
 msgid "%(hotkey)s: Close Template Viewer"
-msgstr ""
+msgstr "%(hotkey)s: Tagh sealladair teamplaid"
 
 #: gui/reference/viewer/viewer.xml:(caption):16
 msgid "Information"
@@ -3170,7 +3169,7 @@ msgid "Single-player and multiplayer"
 msgstr "Aon- is ioma-chluicheadair"
 
 #: gui/replaymenu/replay_filters.js:157
-msgid "Any Victory Condition"
+msgid "Any victory condition"
 msgstr "Cumha buaidhe sam bith"
 
 #: gui/replaymenu/replay_filters.js:170
@@ -3579,12 +3578,12 @@ msgstr "A dh’fhàillig"
 #, javascript-format
 msgctxt "Player listing with color indicator"
 msgid "%(colorIndicator)s %(playerListing)s"
-msgstr ""
+msgstr "%(colorIndicator)s %(playerListing)s"
 
 #: gui/summary/summary.js:195
 msgctxt "Charts player color indicator"
 msgid "■"
-msgstr ""
+msgstr "■"
 
 #: gui/summary/summary.js:225
 msgctxt "Player listing"
@@ -3641,17 +3640,17 @@ msgstr "%(hotkey)s: Toglaich an lobaidh ioma-chluicheadair ann an uinneag còmhr
 #: gui/summary/summary.js:546
 #, javascript-format
 msgid "Toggle the %(name)s summary tab."
-msgstr ""
+msgstr "Toglaich taba geàrr-chunntas %(name)s."
 
 #: gui/summary/summary.js:547
 #, javascript-format
 msgid "Use %(hotkey)s to move a summary tab right."
-msgstr ""
+msgstr "Cleachd %(hotkey)s gus taba geàrr-chunntais a ghluasad dhan taobh deas."
 
 #: gui/summary/summary.js:548
 #, javascript-format
 msgid "Use %(hotkey)s to move a summary tab left."
-msgstr ""
+msgstr "Cleachd %(hotkey)s gus taba geàrr-chunntais a ghluasad dhan taobh chlì."
 
 #: gui/summary/summary.xml:(caption):120
 msgctxt "summary chart"
@@ -3670,7 +3669,7 @@ msgstr "Seòrsa:"
 
 #: gui/summary/summary.xml:(caption):167
 msgid "Group by team"
-msgstr ""
+msgstr "Buidhnich a-rèir sgioba"
 
 #: gui/summary/summary.xml:(caption):187
 msgid "Watch Replay"
@@ -3859,7 +3858,7 @@ msgstr "Thoir an aire! Chan e stòras gun chrìch a tha sna h‑èisg!"
 
 #: gui/text/tips/forge.txt:1
 msgid "FORGE"
-msgstr ""
+msgstr "CEÀRDACH"
 
 #: gui/text/tips/forge.txt:2
 msgid "Research structure for all factions."
@@ -3958,17 +3957,17 @@ msgstr "GEARASTANAN"
 
 #: gui/text/tips/outposts.txt:2
 msgid "Build in neutral or own territory."
-msgstr ""
+msgstr "Tog iad air ranntair neo-phàirteach no san ranntair agad fhèin."
 
 #: gui/text/tips/outposts.txt:3
 msgid "Cheap and quickly built, but weak."
-msgstr ""
+msgstr "Tha iad saor is luath a thogail ach lag."
 
 #: gui/text/tips/outposts.txt:4
 msgid ""
 "Garrison infantry for extensive vision, and to prevent losing control of the"
 " outpost due to territory decay."
-msgstr ""
+msgstr "Cuir coisridh ’na ghearastan ann airson barrachd lèirsinn agus dìon a aghaidh call smachd ri linn crìonadh ranntair."
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"

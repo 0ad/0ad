@@ -24,9 +24,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-12-11 08:01+0000\n"
-"PO-Revision-Date: 2020-12-11 10:32+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2020-12-18 08:02+0000\n"
+"PO-Revision-Date: 2020-12-18 14:13+0000\n"
+"Last-Translator: Angen <slavomir.slovenkai@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -321,10 +321,6 @@ msgstr "%(player)s sa znovu pripojil do hry."
 msgid "%(player)s has joined the game."
 msgstr "%(player)s sa pripojil do hry. "
 
-#: gui/session/chat/ChatMessageFormatPlayer.js:57
-msgid "no-context"
-msgstr ""
-
 #: gui/session/chat/ChatMessageFormatPlayer.js:61
 #, javascript-format
 msgid "<%(user)s>"
@@ -541,23 +537,27 @@ msgstr "Odkryť mapu"
 msgid "Enable time warp"
 msgstr "Povoliť time warp"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:208
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:214
+msgid "Activate Rejoin Test"
+msgstr ""
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:248
 msgid "Promote selected units"
 msgstr "Povýšiť vybrané jednotky"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:229
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:269
 msgid "Enable culling"
 msgstr ""
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:247
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:287
 msgid "Lock cull camera"
 msgstr ""
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:265
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:305
 msgid "Display camera frustum"
 msgstr ""
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:283
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:323
 msgid "Display shadows frustum"
 msgstr ""
 
@@ -946,46 +946,46 @@ msgstr "Aktuálny/maximálny počet zberačov"
 msgid "(%(genericName)s)"
 msgstr "(%(genericName)s)"
 
-#: gui/session/selection_details.js:432
+#: gui/session/selection_details.js:433
 msgid "Capture Points:"
 msgstr "Obsadzovacie body:"
 
-#: gui/session/selection_details.js:440
+#: gui/session/selection_details.js:441
 #, javascript-format
 msgid "%(label)s %(details)s\n"
 msgstr "%(label)s %(details)s\n"
 
-#: gui/session/selection_details.js:441
+#: gui/session/selection_details.js:442
 msgid "Carrying:"
 msgstr "Nesie:"
 
-#: gui/session/selection_details.js:444 gui/session/selection_details.js:453
+#: gui/session/selection_details.js:445 gui/session/selection_details.js:454
 #, javascript-format
 msgid "%(type)s %(amount)s"
 msgstr "%(type)s %(amount)s"
 
-#: gui/session/selection_details.js:449
+#: gui/session/selection_details.js:450
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/session/selection_details.js:450
+#: gui/session/selection_details.js:451
 msgid "Loot:"
 msgstr "Korisť:"
 
 #. Translation: Used in the trading gain tooltip
-#: gui/session/selection_details.js:511
+#: gui/session/selection_details.js:512
 #, javascript-format
 msgid "%(gain)s (%(player)s)"
 msgstr "%(gain)s (%(player)s)"
 
 #. Translation: Used in the trading gain tooltip to concatenate profits of
 #. different players
-#: gui/session/selection_details.js:535
+#: gui/session/selection_details.js:536
 msgid "+"
 msgstr "+"
 
-#: gui/session/selection_details.js:542
+#: gui/session/selection_details.js:543
 msgctxt "Separation mark in an enumeration"
 msgid ", "
 msgstr ", "
@@ -1066,11 +1066,11 @@ msgstr ","
 
 #: gui/session/selection_panels.js:817
 msgid "Cannot research while upgrading."
-msgstr ""
+msgstr "Nie je možné začať výskum, kým prebieha vylepšovanie."
 
 #: gui/session/selection_panels.js:1040
 msgid "Cannot train while upgrading."
-msgstr ""
+msgstr "Nie je možné začať tréning, kým prebieha vylepšovanie."
 
 #: gui/session/selection_panels.js:1102
 #, javascript-format
@@ -1093,10 +1093,10 @@ msgid ""
 msgid_plural ""
 "Cannot upgrade when all entities are training, researching or already "
 "upgrading."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Nie je možné začať vylepšovanie, kým prebieha tréning, výskup alebo vylepšovanie už začalo."
+msgstr[1] "Nie je možné začať vylepšovanie, kým prebieha tréning, výskup alebo vylepšovanie už začalo."
+msgstr[2] "Nie je možné začať vylepšovanie, kým prebieha tréning, výskup alebo vylepšovanie už začalo."
+msgstr[3] "Nie je možné začať vylepšovanie, kým prebieha tréning, výskup alebo vylepšovanie už začalo."
 
 #: gui/session/selection_panels_helpers.js:51
 msgctxt "stance"

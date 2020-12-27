@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the Pyrogenesis - Mod Selector
 # project.
 # Translators:
+# Jagadeesh Vijay Varma B, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2020-07-13 13:20+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-12-20 10:21+0000\n"
+"Last-Translator: Jagadeesh Vijay Varma B\n"
 "Language-Team: Telugu (http://www.transifex.com/wildfire-games/0ad/language/te/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,16 +22,16 @@ msgstr ""
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait…"
-msgstr ""
+msgstr "డిఫాల్ట్ వెబ్ బ్రౌజర్‌లో %(url)s తెరుతుంది. దయచేసి వేచి ఉండండి…"
 
 #: gui/common/functions_msgbox.js:28
 msgid "Opening page"
-msgstr ""
+msgstr "పేజీని తెరుస్తుంది"
 
 #: gui/common/l10n.js:9
 msgctxt "filesize unit"
 msgid "B"
-msgstr ""
+msgstr "బి"
 
 #: gui/common/l10n.js:10
 msgctxt "filesize unit"
@@ -51,7 +52,7 @@ msgstr ""
 #: gui/common/l10n.js:33
 #, javascript-format
 msgid "%(filesize)s %(unit)s"
-msgstr ""
+msgstr "%(filesize)s %(unit)s"
 
 #. Translation: Time-format string. See http://userguide.icu-
 #. project.org/formatparse/datetime
@@ -67,41 +68,41 @@ msgstr "HH:mm:ss"
 #: gui/common/l10n.js:143
 msgctxt "enumeration"
 msgid ", "
-msgstr ""
+msgstr ","
 
 #: gui/common/mod.js:17
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "%(mod)s (%(version)s)"
-msgstr ""
+msgstr "%(mod)s (%(version)s)"
 
 #: gui/common/mod.js:20
 msgid ", "
-msgstr ""
+msgstr ","
 
 #: gui/common/mod.js:28
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "Required: %(mods)s"
-msgstr ""
+msgstr "కావలసిన: %(mods)s"
 
 #: gui/common/mod.js:30
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "Active: %(mods)s"
-msgstr ""
+msgstr "క్రియాశీలమైన: %(mods)s"
 
 #: gui/modio/Disclaimer.txt:1
 msgid "0 A.D. Empires Ascendant mod.io Disclaimer"
-msgstr ""
+msgstr "0 ఎ.డి. ఎంపైర్స్ అస్సెండెంట్ మోడ్.ఐఒ నిరాకరణ"
 
 #: gui/modio/Disclaimer.txt:3
 msgid "Document Date: 2018-10-12"
-msgstr ""
+msgstr "పత్రం తేదీ: 2018-10-12"
 
 #: gui/modio/Disclaimer.txt:5
 msgid "You are about to connect to the mod.io online service."
-msgstr ""
+msgstr "మీరు మోడ్.ఐఒ ఆన్‌లైన్ సేవకు కనెక్ట్ కానున్నారు."
 
 #: gui/modio/Disclaimer.txt:6
 msgid ""
@@ -112,7 +113,7 @@ msgstr ""
 
 #: gui/modio/Disclaimer.txt:7
 msgid "The service is for users age 13 and over."
-msgstr ""
+msgstr "ఈ సేవ 13 మరియు అంతకంటే ఎక్కువ వయస్సు గల వినియోగదారుల కోసం."
 
 #: gui/modio/Disclaimer.txt:9
 msgid ""
@@ -135,16 +136,16 @@ msgid ""
 "Game ID could not be retrieved.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr ""
+msgstr "గేమ్ ఐడి తిరిగి పొందలేము. %(technicalDetails)s"
 
 #: gui/modio/modio.js:83
 msgctxt "mod.io error message"
 msgid "Initialization Error"
-msgstr ""
+msgstr "ప్రారంభ లోపం"
 
 #: gui/modio/modio.js:84 gui/modio/modio.js:95 gui/modio/modio.js:106
 msgid "Retry"
-msgstr ""
+msgstr "మళ్లీ ప్రయత్నించు"
 
 #: gui/modio/modio.js:84 gui/modio/modio.js:95 gui/modio/modio.js:106
 #: gui/modio/modio.js:117
@@ -158,7 +159,7 @@ msgid ""
 "Mod List could not be retrieved.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr ""
+msgstr "మోడ్ జాబితాను తిరిగి పొందడం సాధ్యం కాలేదు.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:94
 msgctxt "mod.io error message"
@@ -172,12 +173,12 @@ msgid ""
 "File download failed.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr ""
+msgstr "ఫైల్ డౌన్‌లోడ్ విఫలమైంది.\n\n%(technicalDetails)s\n"
 
 #: gui/modio/modio.js:105
 msgctxt "mod.io error message"
 msgid "Download Error"
-msgstr ""
+msgstr "డౌన్‌లోడ్ లోపం"
 
 #: gui/modio/modio.js:113
 #, javascript-format
@@ -186,20 +187,20 @@ msgid ""
 "File verification error.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr ""
+msgstr "ఫైల్ ధృవీకరణ లోపం.                      \n\n\n%(technicalDetails)s\n\n"
 
 #: gui/modio/modio.js:116
 msgctxt "mod.io error message"
 msgid "Verification Error"
-msgstr ""
+msgstr "ధృవీకరణ లోపం"
 
 #: gui/modio/modio.js:133
 msgid "Initializing mod.io interface."
-msgstr ""
+msgstr "మోడ్.ఐఒ ఇంటర్ఫేస్ ప్రారంభిస్తోంది."
 
 #: gui/modio/modio.js:134
 msgid "Initializing"
-msgstr ""
+msgstr "ప్రారంభిస్తోంది."
 
 #: gui/modio/modio.js:136 gui/modmod/modmod.xml:(caption):181
 msgid "Cancel"
@@ -208,32 +209,32 @@ msgstr "రద్దుచేయి"
 #: gui/modio/modio.js:219
 #, javascript-format
 msgid "Invalid mod: %(error)s"
-msgstr ""
+msgstr "చెల్లని మోడ్: %(error)s"
 
 #: gui/modio/modio.js:242
 msgid "Fetching and updating list of available mods."
-msgstr ""
+msgstr "అందుబాటులో ఉన్న మోడ్‌ల జాబితాను పొందుతుంది మరియు నవీకరిస్తోంది."
 
 #: gui/modio/modio.js:243
 msgid "Updating"
-msgstr ""
+msgstr "నవీకరిస్తోంది"
 
 #: gui/modio/modio.js:245
 msgid "Cancel Update"
-msgstr ""
+msgstr "నవీకరణను రద్దు చేయి"
 
 #: gui/modio/modio.js:261
 #, javascript-format
 msgid "Downloading “%(modname)s”"
-msgstr ""
+msgstr "డౌన్‌లోడ్ చేస్తోంది “%(modname)s”"
 
 #: gui/modio/modio.js:264
 msgid "Downloading"
-msgstr ""
+msgstr "డౌన్‌లోడ్ చేస్తోంది"
 
 #: gui/modio/modio.js:266
 msgid "Cancel Download"
-msgstr ""
+msgstr "డౌన్‌లోడ్ రద్దు"
 
 #. Translation: Mod file download indicator. Current size over expected final
 #. size, with
@@ -241,7 +242,7 @@ msgstr ""
 #: gui/modio/modio.js:333
 #, javascript-format
 msgid "%(current)s / %(total)s (%(percent)s%%)"
-msgstr ""
+msgstr "%(current)s / %(total)s (%(percent)s %%)"
 
 #. Translation: Mod file download status message.
 #: gui/modio/modio.js:343
@@ -250,7 +251,7 @@ msgid ""
 "Time Elapsed: %(elapsed)s\n"
 "Estimated Time Remaining: %(remaining)s\n"
 "Average Speed: %(avgSpeed)s"
-msgstr ""
+msgstr "సమయం అయిపోయింది: %(elapsed)s అంచనా సమయం మిగిలి ఉంది: %(remaining)s సగటు వేగం: %(avgSpeed)s"
 
 #: gui/modio/modio.js:345
 msgid "∞"
@@ -262,15 +263,15 @@ msgstr "∞"
 #: gui/modio/modio.js:347
 #, javascript-format
 msgid "%(number)s %(unit)s/s"
-msgstr ""
+msgstr "%(number)s %(unit)s/s"
 
 #: gui/modio/modio.xml:(caption):18
 msgid "mod.io Mods"
-msgstr ""
+msgstr "మోడ్.ఐఒ మోడ్స్"
 
 #: gui/modio/modio.xml:(caption):25 gui/modmod/modmod.xml:(caption):55
 msgid "Available Mods"
-msgstr ""
+msgstr "అందుబాటులో ఉన్న మోడ్‌లు"
 
 #: gui/modio/modio.xml:(caption):81
 msgid "Filter valid mods"
@@ -286,7 +287,7 @@ msgstr ""
 
 #: gui/modio/modio.xml:(caption):97
 msgid "Download"
-msgstr ""
+msgstr "డౌన్‌లోడ్"
 
 #: gui/modio/modio.xml:(heading):53 gui/modmod/modmod.xml:(heading):75
 #: gui/modmod/modmod.xml:(heading):115
@@ -345,7 +346,7 @@ msgstr ""
 
 #: gui/modmod/help/help.xml:(caption):13
 msgid "Pyrogenesis Mod Selector"
-msgstr ""
+msgstr "పైరోజెనిసిస్ మోడ్ సెలెక్టర్"
 
 #: gui/modmod/help/help.xml:(caption):21
 msgid "Close"
@@ -353,11 +354,11 @@ msgstr "మూసివేయి"
 
 #: gui/modmod/help/help.xml:(caption):25
 msgid "Modding Guide"
-msgstr ""
+msgstr "మోడింగ్ గైడ్"
 
 #: gui/modmod/help/help.xml:(caption):29
 msgid "Visit mod.io"
-msgstr ""
+msgstr "మోడ్.ఐఒ ని సందర్శించండి"
 
 #: gui/modmod/modmod.js:107 gui/modmod/modmod.js:254 gui/modmod/modmod.js:275
 msgid "Filter"
@@ -366,7 +367,7 @@ msgstr ""
 #: gui/modmod/modmod.js:118 gui/modmod/modmod.js:407
 msgctxt "mod activation"
 msgid "Enable"
-msgstr ""
+msgstr "ప్రారంభించు"
 
 #: gui/modmod/modmod.js:317
 #, javascript-format
@@ -380,15 +381,15 @@ msgstr ""
 #: gui/modmod/modmod.js:408
 msgctxt "mod activation"
 msgid "Disable"
-msgstr ""
+msgstr "నిలిపివేయి"
 
 #: gui/modmod/modmod.js:416
 msgid "No mod has been selected."
-msgstr ""
+msgstr "ఏ మోడ్స్ ఎంచుకోబడలేదు."
 
 #: gui/modmod/modmod.xml:(caption):12
 msgid "Modifications"
-msgstr ""
+msgstr "మార్పులు"
 
 #: gui/modmod/modmod.xml:(caption):36
 msgid "Negate"
@@ -396,43 +397,43 @@ msgstr ""
 
 #: gui/modmod/modmod.xml:(caption):48
 msgid "Description"
-msgstr ""
+msgstr "వివరణ"
 
 #: gui/modmod/modmod.xml:(caption):99
 msgid "Enabled Mods"
-msgstr ""
+msgstr "ప్రారంభించబడిన మోడ్‌లు"
 
 #: gui/modmod/modmod.xml:(caption):167
 msgid "Visit Website"
-msgstr ""
+msgstr "వెబ్‌సైట్‌ను సందర్శించండి"
 
 #: gui/modmod/modmod.xml:(caption):176
 msgid "Quit"
-msgstr ""
+msgstr "నిష్క్రమించండి"
 
 #: gui/modmod/modmod.xml:(caption):186
 msgid "Help"
-msgstr ""
+msgstr "సహాయం"
 
 #: gui/modmod/modmod.xml:(caption):191
 msgid "Download Mods"
-msgstr ""
+msgstr "మోడ్లను డౌన్‌లోడ్ చేయండి"
 
 #: gui/modmod/modmod.xml:(caption):196
 msgid "Save Configuration"
-msgstr ""
+msgstr "ఆకృతీకరణను సేవ్ చేయండి"
 
 #: gui/modmod/modmod.xml:(caption):201
 msgid "Start Mods"
-msgstr ""
+msgstr "మోడ్లను ప్రారంభించు"
 
 #: gui/modmod/modmod.xml:(heading):81 gui/modmod/modmod.xml:(heading):121
 msgid "(Folder)"
-msgstr ""
+msgstr "(ఫోల్డర్)"
 
 #: gui/modmod/modmod.xml:(heading):90 gui/modmod/modmod.xml:(heading):130
 msgid "Website"
-msgstr "జాలగూడు"
+msgstr "వెబ్‌సైట్"
 
 #: gui/modmod/modmod.xml:(tooltip):145 gui/modmod/modmod.xml:(tooltip):159
 msgid ""
@@ -442,15 +443,15 @@ msgstr ""
 
 #: gui/modmod/modmodio.js:5
 msgid "Disclaimer"
-msgstr ""
+msgstr "నిరాకరణ"
 
 #: gui/modmod/modmodio.js:12
 msgid "mod.io Terms"
-msgstr ""
+msgstr "మోడ్.ఐఒ నిబంధనలు"
 
 #: gui/modmod/modmodio.js:16
 msgid "mod.io Privacy Policy"
-msgstr ""
+msgstr "మోడ్.ఐఒ గోప్యతా విధానం"
 
 #: gui/msgbox/msgbox.js:25
 msgid "OK"
@@ -461,12 +462,12 @@ msgstr "సరే"
 #. default webbrowser.
 #: gui/termsdialog/termsdialog.js:30
 msgid "View online"
-msgstr ""
+msgstr "ఆన్‌లైన్‌లో చూడండి"
 
 #: gui/termsdialog/termsdialog.js:38
 #, javascript-format
 msgid "Open %(url)s in the browser."
-msgstr ""
+msgstr "బ్రౌజర్‌లో %(url)s తెరవండి."
 
 #: gui/termsdialog/termsdialog.xml:(caption):15
 msgid "Language"
@@ -474,7 +475,7 @@ msgstr "భాష"
 
 #: gui/termsdialog/termsdialog.xml:(caption):33
 msgid "Decline"
-msgstr ""
+msgstr "తిరస్కరించు"
 
 #: gui/termsdialog/termsdialog.xml:(caption):38
 msgid "Accept"

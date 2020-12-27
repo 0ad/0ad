@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2020-11-20 10:22+0000\n"
+"PO-Revision-Date: 2020-12-23 11:43+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgstr ""
 #: simulation/data/template_helpers/damage_types/crush.jsondescription
 msgctxt "damage type"
 msgid "Damage caused by sheer force, like with a club or by trampling."
-msgstr ""
+msgstr "Seo dochann a dh’adhbhraicheas neart a-mhàin, can o steabhag no saltairt."
 
 #: simulation/data/template_helpers/damage_types/crush.jsonname
 msgctxt "damage type"
@@ -34,7 +34,7 @@ msgctxt "damage type"
 msgid ""
 "Damage caused by sharp objects cutting or chopping, like with a sword or an "
 "axe."
-msgstr ""
+msgstr "Seo dochann a dh’adhbharaicheas gearradh le nithean geura, can le claidheamh no tuagh."
 
 #: simulation/data/template_helpers/damage_types/hack.jsonname
 msgctxt "damage type"
@@ -44,7 +44,7 @@ msgstr "Spealgadh"
 #: simulation/data/template_helpers/damage_types/pierce.jsondescription
 msgctxt "damage type"
 msgid "Damage caused by sharp pointy objects, like arrows or spears."
-msgstr ""
+msgstr "Seo dochann a dh’adhbharaicheas nithean geura biorach, can saighdean no sleaghan."
 
 #: simulation/data/template_helpers/damage_types/pierce.jsonname
 msgctxt "damage type"
@@ -144,7 +144,7 @@ msgstr "Ursus maritimus"
 #: simulation/templates/gaia/fauna_walrus.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Tusks"
-msgstr ""
+msgstr "Tosgan"
 
 #: simulation/templates/gaia/fauna_boar.xml:20
 msgid "Wild Boar"
@@ -202,7 +202,7 @@ msgstr "Gallus gallus domesticus"
 #: simulation/templates/gaia/fauna_crocodile_nile.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Teeth"
-msgstr ""
+msgstr "Fiaclan"
 
 #: simulation/templates/gaia/fauna_crocodile_nile.xml:20
 msgid "Nile Crocodile"
@@ -344,7 +344,7 @@ msgstr "Pònaidh"
 #: simulation/templates/gaia/fauna_tiger.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Paws"
-msgstr ""
+msgstr "Spògan"
 
 #: simulation/templates/gaia/fauna_lion.xml:20
 msgid "Lion"
@@ -401,7 +401,7 @@ msgstr "Oryctolagus cuniculus"
 #: simulation/templates/gaia/fauna_rhinoceros_white.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Horn"
-msgstr ""
+msgstr "Adharc"
 
 #: simulation/templates/gaia/fauna_rhinoceros_white.xml:20
 msgid "White Rhinoceros"
@@ -497,7 +497,7 @@ msgstr "Tùna"
 
 #: simulation/templates/gaia/fruit/apple.xml:4
 msgid "Apple"
-msgstr ""
+msgstr "Ubhal"
 
 #: simulation/templates/gaia/fruit/banana.xml:4
 msgid "Banana"
@@ -527,7 +527,7 @@ msgstr "Fìon-dhearcan"
 
 #: simulation/templates/gaia/fruit/olive.xml:4
 msgid "Olive"
-msgstr ""
+msgstr "Dearc-ola"
 
 #: simulation/templates/gaia/ruins/column_doric.xml:8
 msgid "Ancient Ruins"
@@ -622,11 +622,11 @@ msgstr "Ulaidh fhiodha"
 
 #: simulation/templates/gaia/tree/acacia.xml:4
 msgid "Acacia"
-msgstr ""
+msgstr "Sitta"
 
 #: simulation/templates/gaia/tree/aleppo_pine.xml:4
 msgid "Aleppo Pine"
-msgstr ""
+msgstr "Giuthas Aleppo"
 
 #: simulation/templates/gaia/tree/bamboo.xml:4
 #: simulation/templates/gaia/tree/bamboo_single.xml:4
@@ -667,7 +667,7 @@ msgstr "Preas"
 
 #: simulation/templates/gaia/tree/carob.xml:4
 msgid "Carob"
-msgstr ""
+msgstr "Craobh aran Eòin"
 
 #: simulation/templates/gaia/tree/cedar_atlas_1_sapling.xml:4
 msgid "Atlas Cedar Sapling"
@@ -689,7 +689,7 @@ msgstr "Pailm deite Chriteach"
 #: simulation/templates/gaia/tree/cypress_wild.xml:4
 #: simulation/templates/gaia/tree/cypress_windswept.xml:4
 msgid "Cypress"
-msgstr ""
+msgstr "Craobh-bhròin"
 
 #: simulation/templates/gaia/tree/dead.xml:4
 #: simulation/templates/gaia/tree/temperate.xml:4
@@ -701,12 +701,12 @@ msgstr "Craobh sheargach"
 #: simulation/templates/gaia/tree/elm.xml:4
 #: simulation/templates/gaia/tree/elm_dead.xml:4
 msgid "Elm"
-msgstr ""
+msgstr "Ailm"
 
 #: simulation/templates/gaia/tree/euro_beech.xml:4
 #: simulation/templates/gaia/tree/euro_beech_aut.xml:4
 msgid "European Beech"
-msgstr ""
+msgstr "Beithe Eòrpach"
 
 #: simulation/templates/gaia/tree/euro_birch.xml:4
 msgid "Silver Birch"
@@ -715,7 +715,7 @@ msgstr "Beith-gheal"
 #: simulation/templates/gaia/tree/fir.xml:4
 #: simulation/templates/gaia/tree/fir_winter.xml:4
 msgid "Fir"
-msgstr ""
+msgstr "Giuthas"
 
 #: simulation/templates/gaia/tree/fir_sapling.xml:4
 msgid "Fir Sapling"
@@ -743,7 +743,7 @@ msgstr "Pailm gaotharain mheadhan-thìreach"
 #: simulation/templates/gaia/tree/oak_dead.xml:4
 #: simulation/templates/gaia/tree/oak_new.xml:4
 msgid "Oak"
-msgstr ""
+msgstr "Darach"
 
 #: simulation/templates/gaia/tree/oak_holly.xml:4
 msgid "Holly Oak"
@@ -756,7 +756,7 @@ msgstr "Darach Ungaireach"
 
 #: simulation/templates/gaia/tree/oak_large.xml:4
 msgid "Large Oak"
-msgstr ""
+msgstr "Darach mòr"
 
 #: simulation/templates/gaia/tree/palm_areca.xml:4
 msgid "Areca Palm"
@@ -781,7 +781,7 @@ msgstr "Pailm thropaigeach"
 #: simulation/templates/gaia/tree/pine.xml:4
 #: simulation/templates/gaia/tree/pine_w.xml:4
 msgid "Pine"
-msgstr ""
+msgstr "Giuthas"
 
 #: simulation/templates/gaia/tree/pine_black.xml:4
 #: simulation/templates/gaia/tree/pine_black_dead.xml:4
@@ -802,7 +802,7 @@ msgstr "Pobhlar"
 #: simulation/templates/gaia/tree/poplar_lombardy.xml:4
 #: simulation/templates/gaia/tree/poplar_lombardy_dead.xml:4
 msgid "Black Poplar"
-msgstr ""
+msgstr "Craobh-phobaill dhubh"
 
 #: simulation/templates/gaia/tree/senegal_date_palm.xml:4
 msgid "Senegal Date Palm"
@@ -814,7 +814,7 @@ msgstr "Fiogag"
 
 #: simulation/templates/gaia/tree/tamarix.xml:4
 msgid "Tamarix"
-msgstr ""
+msgstr "Craobh-sheudair salainn"
 
 #: simulation/templates/gaia/tree/teak.xml:8
 msgid "Teak"
@@ -822,7 +822,7 @@ msgstr "Tìoc"
 
 #: simulation/templates/gaia/tree/toona.xml:4
 msgid "Toona"
-msgstr ""
+msgstr "Craobh-sheudair dhearg"
 
 #: simulation/templates/gaia/tree/tropic_rainforest.xml:4
 msgid "Rainforest Tree"
@@ -949,7 +949,7 @@ msgstr "Brathadair"
 
 #: simulation/templates/template_formation.xml:26
 msgid "Requires at least 2 Soldiers or Siege Engines."
-msgstr ""
+msgstr "Tha feum air 2 shaighdear no inneal-sèiste air a char as lugha."
 
 #: simulation/templates/template_gaia.xml:7
 msgid "Gaia"
@@ -1023,8 +1023,8 @@ msgstr "Aonad"
 #: simulation/templates/template_wallset.xml:9
 #: simulation/templates/template_wallset.xml:11
 msgid "Wall"
-msgstr ""
+msgstr "Balla"
 
 #: simulation/templates/template_wallset.xml:10
 msgid "Wall off an area."
-msgstr ""
+msgstr "Dìon sgìre le balla."

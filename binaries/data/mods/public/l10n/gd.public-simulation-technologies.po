@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-12-07 08:42+0000\n"
-"PO-Revision-Date: 2020-12-07 11:22+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-12-24 07:08+0000\n"
+"Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -44,7 +44,7 @@ msgstr "Ri fhaighinn ri linn nan clachan."
 #: simulation/data/technologies/archery_tradition.jsontooltip
 msgid ""
 "Archers −10% training time, +8 attack range, and −10% ranged attack spread."
-msgstr ""
+msgstr "Gheibh boghadairean −10% air an ùine oideachaidh, +8 air astar an ionnsaighean ’s −10% air sgapadh an ionnsaighean astair."
 
 #: simulation/data/technologies/armor_cav_01.jsondescription
 msgid "Metal armor for a horse's face."
@@ -97,7 +97,7 @@ msgstr "Prometōpídion"
 #: simulation/data/technologies/armor_cav_01.jsontooltip
 #: simulation/data/technologies/armor_cav_02.jsontooltip
 msgid "Cavalry +1 hack and pierce armor."
-msgstr ""
+msgstr "+1 de dh’armachd an aghaidh spealgaidh ’s bioraidh airson eachraidh."
 
 #: simulation/data/technologies/armor_cav_02.jsondescription
 msgid "Metal armor for a horse's body."
@@ -179,7 +179,7 @@ msgstr "Lorica Ferrea"
 
 #: simulation/data/technologies/armor_hero_01.jsontooltip
 msgid "Heroes +50 metal cost, +2 hack and pierce armor."
-msgstr ""
+msgstr "+50 de chosgais meatailte, +2 de dh’armachd an aghaidh spealgaidh ’s bioraidh airson curaidhean."
 
 #: simulation/data/technologies/armor_infantry_01.jsondescription
 msgid "Quilted linen or leather body armor for infantrymen."
@@ -206,7 +206,7 @@ msgstr "Spolas"
 #: simulation/data/technologies/armor_infantry_01.jsontooltip
 #: simulation/data/technologies/armor_infantry_02.jsontooltip
 msgid "Infantry +1 hack and pierce armor."
-msgstr ""
+msgstr "+1 de dh’armachd an aghaidh spealgaidh ’s bioraidh airson coisridh."
 
 #: simulation/data/technologies/armor_infantry_02.jsondescription
 msgid "Laminated linen body armor for infantrymen."
@@ -239,7 +239,7 @@ msgstr "Lìnigean luaidhe nan long"
 #: simulation/data/technologies/armor_ship_hypozomata.jsontooltip
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsontooltip
 msgid "Ships +2 armor."
-msgstr ""
+msgstr "Gheibh longan +2 a dh’armachd."
 
 #: simulation/data/technologies/armor_ship_hypozomata.jsondescription
 msgid "The hypozomata braces the structure of a ship."
@@ -488,11 +488,11 @@ msgstr "Oidich na h-eich agad ach an gluais iad nas luaithe."
 
 #: simulation/data/technologies/cavalry_movement_speed.jsongenericName
 msgid "Horse Racing"
-msgstr ""
+msgstr "Rèiseadh each"
 
 #: simulation/data/technologies/cavalry_movement_speed.jsontooltip
 msgid "Cavalry +10% walk speed."
-msgstr ""
+msgstr "Coisichidh an eachraidh +10% nas luaithe."
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsondescription
 msgid ""
@@ -507,7 +507,7 @@ msgstr "Ballachan trìoblaichte"
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
 msgid "Walls +100% build time, +100% stone cost, and +200% health."
-msgstr ""
+msgstr "Gheibh ballachan +100% air an ùine togail, +100% air cosgais cloiche agus +200% air an slàinte."
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsondescription
 msgid "Celtic structures were mostly made of wood with rubble foundations."
@@ -533,7 +533,7 @@ msgstr "Ailtireachd Greugach"
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
 msgid "Structures +10% health and +10% capture points."
-msgstr ""
+msgstr "Gheibh togalaichean +10% air an slàinte agus +10% de phuingean glacaidh."
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsondescription
 msgid ""
@@ -541,15 +541,15 @@ msgid ""
 " continued for millennia. It was also the source of elephants for the "
 "eastern Mediterranean. Indian kings were able to field large numbers of war "
 "elephants."
-msgstr ""
+msgstr "’S e dùthaich nan ailbheanan a th’ anns na h-Innseachan. Tha tùs cogadh le ailbheanan sna h-Innseachan agus chleachdte iad fad linntean. ’S ann às an àite seo a thàinig ailbheanan gu taobh an ear na Mara Meadhanaiche. Bhiodh grunn ailbheanan cogaidh aig rìghrean nan Innseachan."
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsongenericName
 msgid "Elephant Tradition"
-msgstr ""
+msgstr "Dualchas ailbheanan"
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsontooltip
 msgid "Elephants −30% training time."
-msgstr ""
+msgstr "Thèid ailbheanan oideachadh −30% nas luaithe."
 
 #: simulation/data/technologies/civbonuses/maur_population.jsondescription
 msgid ""
@@ -694,21 +694,21 @@ msgstr "Todhar"
 #: simulation/data/technologies/gather_farming_plows.jsontooltip
 #: simulation/data/technologies/gather_farming_training.jsontooltip
 msgid "Workers +20% grain gather rate."
-msgstr ""
+msgstr "Cruinnichidh an luchd-obrach gràn +20% nas luaithe."
 
 #: simulation/data/technologies/gather_farming_harvester.jsondescription
 msgid ""
 "The Gauls invented an harvesting machine, making it much easier to harvest "
 "grain."
-msgstr ""
+msgstr "Thionnsgnaich Muinntir na Gaille inneal buana a rinn e mòran nas fhasa dhaibh gràn a bhuain."
 
 #: simulation/data/technologies/gather_farming_harvester.jsongenericName
 msgid "Harvesting Machine"
-msgstr ""
+msgstr "Inneal-buana"
 
 #: simulation/data/technologies/gather_farming_harvester.jsontooltip
 msgid "Workers +15% grain gather rate."
-msgstr "+15% air astar buain gràin an luchd-obrach."
+msgstr "Cruinnichidh an luchd-obrach gràn +15% nas luaithe."
 
 #: simulation/data/technologies/gather_farming_plows.jsondescription
 msgid ""
@@ -738,7 +738,7 @@ msgstr "Lìon-èisg"
 
 #: simulation/data/technologies/gather_fishing_net.jsontooltip
 msgid "Fishing Boats +30% fish gather rate."
-msgstr "+30% air astar buain iasg nam bàtaichean-iasgaich."
+msgstr "Cruinnichidh na bàtaichean-iasgaich iasg +30% nas luaithe."
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsondescription
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsondescription
@@ -754,7 +754,7 @@ msgstr "An ceann tuaighe iarainn"
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsontooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsontooltip
 msgid "Workers +25% wood gather rate."
-msgstr ""
+msgstr "Cruinnichidh an luchd-obrach fiodh +25% nas luaithe."
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsongenericName
 msgid "Sharp Ax Heads"
@@ -784,7 +784,7 @@ msgstr "Heílōtes"
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
 #: simulation/data/technologies/gather_mining_slaves.jsontooltip
 msgid "Workers +25% stone gather rate."
-msgstr ""
+msgstr "Cruinnichidh an luchd-obrach clach +25% nas luaithe."
 
 #: simulation/data/technologies/gather_mining_servants.jsondescription
 msgid "Hire servants to help quarry stone. Increases stone gathering rates."
@@ -812,7 +812,7 @@ msgstr "Mèinnearachd sluic"
 #: simulation/data/technologies/gather_mining_silvermining.jsontooltip
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
 msgid "Workers +25% metal gather rate."
-msgstr ""
+msgstr "Cruinnichidh an luchd-obrach meatailt +25% nas luaithe."
 
 #: simulation/data/technologies/gather_mining_silvermining.jsondescription
 msgid "Strike a vein of precious silver. Increases metal gathering rates."
@@ -865,7 +865,7 @@ msgstr "Cliabhan"
 
 #: simulation/data/technologies/gather_wicker_baskets.jsontooltip
 msgid "Workers +50% fruit gather rate."
-msgstr "+50% air astar buain mheasan an luchd-obrach."
+msgstr "Cruinnichidh an luchd-obrach measan +50% nas luaithe."
 
 #: simulation/data/technologies/heal_barracks.jsondescription
 msgid "Units garrisoned in Barracks heal over time."
@@ -927,7 +927,7 @@ msgstr "Sphágia"
 #: simulation/data/technologies/heal_rate.jsontooltip
 #: simulation/data/technologies/heal_rate_2.jsontooltip
 msgid "Healers −20% healing time."
-msgstr ""
+msgstr "Nì na lighichean slànachadh nas luaithe le −20%."
 
 #: simulation/data/technologies/heal_rate_2.jsongenericName
 msgid "Healing Rate 2"
@@ -999,7 +999,7 @@ msgstr "An t‑Agoga"
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsontooltip
 msgid "Champion Infantry Spearmen +25% health, but +5% training time."
-msgstr ""
+msgstr "Gheibh laoich sleaghair coisridh +25% de shlàinte ach bheir iad +5% nas faide gus an oideachadh."
 
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsondescription
 msgid ""
@@ -1029,7 +1029,7 @@ msgstr "Ballachan fada na h-Àithne"
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsontooltip
 msgid "Build Walls in own or neutral territory."
-msgstr ""
+msgstr "Tog ballachan air ranntair neo-phàirteach no air an ranntair agad fhèin."
 
 #: simulation/data/technologies/kushites/monumental_architecture.jsongenericName
 msgid "Monumental Architecture"
@@ -1038,7 +1038,7 @@ msgstr "Ailtireachd-laighe"
 #: simulation/data/technologies/kushites/monumental_architecture.jsontooltip
 msgid ""
 "Civic Structures +20% build time, +20% health, and +20% capture points."
-msgstr ""
+msgstr "Gheibh togalaichean sìobhalta +20% air an ùine togail, +20% air an slàinte agus +20% de phuingean glacaidh."
 
 #: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsondescription
 msgid ""
@@ -1058,7 +1058,7 @@ msgstr "Oidich lighichean seann-ghaisgeach."
 msgid ""
 "The Achaemenids maintained a 10,000-strong elite corps, referred to as "
 "Athanatoi (“Immortals”) by Greek authors."
-msgstr ""
+msgstr "Bhiodh grunn de 10,000 seann-ghaisgeach aig na h-Achaimenich is chuir ùghdaran na Grèige Athanatoi (“an fheadhainn neo-bhàsmhor”) orra."
 
 #: simulation/data/technologies/persians/immortals.jsongenericName
 msgid "Immortals"
@@ -1066,7 +1066,7 @@ msgstr "Lèintean-crios neo-bhàsmhor"
 
 #: simulation/data/technologies/persians/immortals.jsontooltip
 msgid "Anušiya Champion Infantry -50% train time, but also -10% health."
-msgstr ""
+msgstr "Thèid laoich coisridh Anušiya oideachadh nas luaithe le −50% ach caillidh iad slàinte cuideachd le −10%."
 
 #: simulation/data/technologies/persians/persian_architecture.jsondescription
 msgid ""
@@ -1177,7 +1177,7 @@ msgstr "Adhartaich o bhaile iomairteach gu mòr-bhaile, làn chulaidhean-iongant
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
 msgid "Requires 4 Town Structures."
-msgstr ""
+msgstr "Feum air 4 togalaichean o linn nam bailtean."
 
 #: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
@@ -1228,7 +1228,7 @@ msgstr "Adhartaich o chlachan bheag gu baile iomairteach, ullamh airson leudacha
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
 msgid "Requires 5 Village Structures."
-msgstr ""
+msgstr "Feum air 5 togalaichean o linn nan clachan."
 
 #: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
@@ -1404,7 +1404,7 @@ msgstr "−20% a chosgais fiodha airson innealan-sèiste."
 
 #: simulation/data/technologies/soldier_ranged_experience.jsontooltip
 msgid "Ranged Soldiers +25% promotion experience."
-msgstr ""
+msgstr "Gheibh saighdearan astair +25% air an eòlas àrdachaidh."
 
 #: simulation/data/technologies/spy_counter.jsondescription
 msgid "Recruit a network of informants to watch over your people."
@@ -1420,7 +1420,7 @@ msgstr "Dèan ceannach nan aonadan agad le càch nas dorra le 50%."
 
 #: simulation/data/technologies/successors/pair_unlock_champions.jsongenericName
 msgid "Traditional Army vs Reform Army"
-msgstr ""
+msgstr "Feachd tradaiseanta no feachd an ath-leasachaidh"
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsondescription
 msgid ""
@@ -1435,7 +1435,7 @@ msgstr "Mòr-bhaile Greugach"
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsontooltip
 msgid "Civic Centers +100% health and capture points, double default arrows."
-msgstr ""
+msgstr "Gheibh ionadan sìobhalta +100% de shlàinte is puingean glacaidh is dà uiread dhe shaighdean tùsail."
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsondescription
 msgid ""
@@ -1472,7 +1472,7 @@ msgstr "Gheibh a h-uile eachraidh +20% de shlàinte."
 
 #: simulation/data/technologies/successors/unlock_reform_army.jsondescription
 msgid "The Roman-style core of the Seleucid army."
-msgstr ""
+msgstr "Seo bun le stoidhle Ròmanach aig feachd nan Seleucach."
 
 #: simulation/data/technologies/successors/unlock_reform_army.jsongenericName
 msgid "Reform Army"
@@ -1480,11 +1480,11 @@ msgstr "Feachd an ath-leasachaidh"
 
 #: simulation/data/technologies/successors/unlock_reform_army.jsontooltip
 msgid "Unlock the Champion Infantry Swordsman."
-msgstr ""
+msgstr "Thoir a’ ghlas far laoich claidheamhair coisridh."
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsondescription
 msgid "The Macedonian-style core of the Seleucid army."
-msgstr ""
+msgstr "Seo bun le stoidhle Mhasadonach aig feachd nan Seleucach."
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsongenericName
 msgid "Traditional Army"
@@ -1492,7 +1492,7 @@ msgstr "Feachd tradaiseanta"
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsontooltip
 msgid "Unlock the Champion Infantry Pikeman."
-msgstr ""
+msgstr "Thoir a’ ghlas far laoich pìcear coisridh."
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsondescription
 msgid ""
@@ -1508,7 +1508,7 @@ msgstr "Rèiseamaid nan sgiathan airgid"
 msgid ""
 "Upgrade Shield Bearer Champion Infantry to Silver Shields, with more health "
 "and attack damage."
-msgstr ""
+msgstr "Àrdaich laoich coisridh nan giùlanairean-sgèithe gu sgiathan airgid aig a bheil barrachd slàinte ’s dochann ionnsaighe."
 
 #: simulation/data/technologies/tower_armour.jsondescription
 msgid "Reinforce the foundations in preparation of an attack."
@@ -1520,13 +1520,13 @@ msgstr "Buinn threuna"
 
 #: simulation/data/technologies/tower_armour.jsontooltip
 msgid "Towers +2 armor."
-msgstr ""
+msgstr "Gheibh tùir +2 a dh’armachd."
 
 #: simulation/data/technologies/tower_crenellations.jsondescription
 msgid ""
 "Crenellations on the battlements allow soldiers wider range of fire in "
 "defending a keep."
-msgstr "Le creanailean air na ballachan, gheibh ionsaigh nan saighdearan astar nas motha nuair a dhìonas iad daingean."
+msgstr "Le creanailean air na ballachan, gheibh ionnsaigh nan saighdearan astar nas motha nuair a dhìonas iad daingean."
 
 #: simulation/data/technologies/tower_crenellations.jsongenericName
 msgid "Crenellations"
@@ -1534,7 +1534,7 @@ msgstr "Creanailean"
 
 #: simulation/data/technologies/tower_crenellations.jsontooltip
 msgid "Sentry and Stone Towers +40% more arrows per garrisoned Soldier."
-msgstr ""
+msgstr "Gheibh tùir freiceadain is cloiche +40% saighead a bharrachd air gach saighdear a tha ’na ghearastan annta."
 
 #: simulation/data/technologies/tower_murderholes.jsondescription
 msgid "Murder holes allow hitting enemies at the foot of the tower."
@@ -1546,7 +1546,7 @@ msgstr "Tuill-mharbhaidh"
 
 #: simulation/data/technologies/tower_murderholes.jsontooltip
 msgid "Sentry and Stone Towers have 0 minimum attack range."
-msgstr ""
+msgstr "Bidh astar ionnsaighe de 0 air tùir freiceadain is cloiche."
 
 #: simulation/data/technologies/tower_range.jsondescription
 msgid "Arrow shooters increase the maximum range of the fire arrows."
@@ -1558,7 +1558,7 @@ msgstr "Torain"
 
 #: simulation/data/technologies/tower_range.jsontooltip
 msgid "Sentry and Stone Towers +8 attack range."
-msgstr ""
+msgstr "Gheibh tùir freiceadain is cloiche +8 air an astar ionnsaighe."
 
 #: simulation/data/technologies/tower_watch.jsondescription
 msgid "A night's watch increases vigilance."
@@ -1582,7 +1582,7 @@ msgstr "Vigiles"
 
 #: simulation/data/technologies/tower_watch.jsontooltip
 msgid "Sentry and Stone Towers +1 default arrow count."
-msgstr ""
+msgstr "Gheibh tùir freiceadain is cloiche +1 air na saighdean tùsail aca."
 
 #: simulation/data/technologies/trade_commercial_treaty.jsondescription
 msgid "Improve the international trading profit."
@@ -1594,7 +1594,7 @@ msgstr "Cùmhnant malairteach"
 
 #: simulation/data/technologies/trade_commercial_treaty.jsontooltip
 msgid "+10% international trade bonus."
-msgstr ""
+msgstr "Buannachd de +10% air a’ mhalairt eadar-nàiseanta."
 
 #: simulation/data/technologies/trade_convoys_armor.jsondescription
 msgid "Increases defensive capability of traders."
@@ -1607,7 +1607,7 @@ msgstr "Coimheadachdan malairt"
 
 #: simulation/data/technologies/trade_convoys_armor.jsontooltip
 msgid "Traders +2 hack and pierce armor."
-msgstr ""
+msgstr "Gheibh an luchd-mhalairt +2 de dh’armachd an aghaidh spealgaidh ’s bioraidh."
 
 #: simulation/data/technologies/trade_convoys_speed.jsondescription
 msgid ""
@@ -1673,19 +1673,19 @@ msgid ""
 "capture attack strength, +20% loot, and −30% gather speed; Healers +5 "
 "healing strength and +3 healing range; Melee units +20% attack damage; "
 "Ranged units +4 attack range and −10% spread."
-msgstr ""
+msgstr "Gheibh aonadan adhartach is seann-ghaisgeach +20% air an ùine oideachaidh, +1 air an armachd, +10% de shlàinte, +0.7 air neart an ionnsaighean glacaidh, +20% de spuinn agus cruinnichidh iad −30% nas luaithe; gheibh lighichean +5 air neart agus +3 air astar an t‑slànachaidh; gheibh aonadan dlùtha +20% de dhochann ionnsaighe; gheibh aonadan astair +4 air astar agus −10% air sgapadh an ionnsaighean."
 
 #: simulation/data/technologies/unit_elephant_african.jsontooltip
 msgid ""
 "African Elephants −10% resource costs, training time, health, attack damage,"
 " and loot."
-msgstr ""
+msgstr "Gheibh ailbheanan Afraganach −10% air an cosgais stòrasan, ùine oideachaidh, slànaich, dochann ionnsaighe agus spùinn."
 
 #: simulation/data/technologies/unit_elephant_indian.jsontooltip
 msgid ""
 "Indian Elephants +10% resource costs, training time, health, attack damage, "
 "and loot."
-msgstr ""
+msgstr "Gheibh ailbheanan Innseanach +10% air an cosgais stòrasan, ùine oideachaidh, slànaich, dochann ionnsaighe agus spùinn."
 
 #: simulation/data/technologies/unit_elite.jsontooltip
 msgid ""
@@ -1693,11 +1693,11 @@ msgid ""
 "strength, +20% loot, and −30% gather speed; Healers +5 healing strength and "
 "+3 healing range; Melee units +20% attack damage; Ranged units +4 attack "
 "range and −10% spread."
-msgstr ""
+msgstr "Gheibh aonadan seann-ghaisgeach +20% air an ùine oideachaidh, +1 air an armachd, +10% de shlàinte, +0.8 air neart an ionnsaighean glacaidh, +20% de spuinn agus cruinnichidh iad −30% nas luaithe; gheibh lighichean +5 air neart agus +3 air astar an t‑slànachaidh; gheibh aonadan dlùtha +20% de dhochann ionnsaighe; gheibh aonadan astair +4 air astar agus −10% air sgapadh an ionnsaighean."
 
 #: simulation/data/technologies/unit_mercenary.jsontooltip
 msgid "Non-Champion Mercenaries cost −25 food, +25 metal."
-msgstr ""
+msgstr "Cosgaidh saighdeadan-duaise nach eil ’nan laoch −25 de bhiadh, +25 de mheatailt."
 
 #: simulation/data/technologies/unlock_champion_units.jsondescription
 msgid ""
@@ -1806,4 +1806,4 @@ msgstr "Ealantas cogaidh"
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
 msgid "Mercenaries are promoted to Advanced rank."
-msgstr ""
+msgstr "Thèid saighdearan-duaise àrdachadh gu rang adhartach."

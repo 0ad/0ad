@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-12-11 08:01+0000\n"
-"PO-Revision-Date: 2020-12-16 14:33+0000\n"
+"POT-Creation-Date: 2020-12-18 08:02+0000\n"
+"PO-Revision-Date: 2020-12-20 08:26+0000\n"
 "Last-Translator: Jagadeesh Vijay Varma B\n"
 "Language-Team: Telugu (http://www.transifex.com/wildfire-games/0ad/language/te/)\n"
 "MIME-Version: 1.0\n"
@@ -29,7 +29,7 @@ msgstr "ఈ మెనుని టోగుల్ చేయడానికి %(
 
 #: gui/session/MenuButtons.js:32
 msgid "Chat"
-msgstr "సంభాషణ"
+msgstr "కబుర్లు"
 
 #: gui/session/MenuButtons.js:53
 msgid "Save"
@@ -61,11 +61,11 @@ msgstr "ఎంపికలు"
 
 #: gui/session/MenuButtons.js:182
 msgid "Hotkeys"
-msgstr ""
+msgstr "హాట్‌కీలు"
 
 #: gui/session/MenuButtons.js:217
 msgid "Resume"
-msgstr ""
+msgstr "పునఃప్రారంభం"
 
 #: gui/session/MenuButtons.js:217
 msgid "Pause"
@@ -74,7 +74,7 @@ msgstr "నిలిపివేయి"
 #: gui/session/MenuButtons.js:218
 #, javascript-format
 msgid "Press %(hotkey)s to pause or resume the game."
-msgstr ""
+msgstr "ఆటను పాజ్ చేయడానికి లేదా తిరిగి ప్రారంభించడానికి %(hotkey)s నొక్కండి."
 
 #: gui/session/MenuButtons.js:234
 msgid "Resign"
@@ -87,46 +87,46 @@ msgstr "నిష్క్రమించు"
 
 #: gui/session/NetworkStatusOverlay.js:38
 msgid "Connection to the server has been authenticated."
-msgstr ""
+msgstr "సర్వర్‌కు కనెక్షన్ ప్రామాణీకరించబడింది."
 
 #: gui/session/NetworkStatusOverlay.js:39
 msgid "Connected to the server."
-msgstr ""
+msgstr "సర్వర్‌కు కనెక్ట్ చేయబడింది."
 
 #: gui/session/NetworkStatusOverlay.js:40
 msgid "Connection to the server has been lost."
-msgstr ""
+msgstr "సర్వర్‌కు కనెక్షన్ పోయింది."
 
 #: gui/session/NetworkStatusOverlay.js:42
 msgid "Waiting for players to connect:"
-msgstr ""
+msgstr "ఆటగాళ్ళు కనెక్ట్ కావడానికి వేచి ఉన్నారు:"
 
 #: gui/session/NetworkStatusOverlay.js:43
 msgid "Synchronizing gameplay with other players…"
-msgstr ""
+msgstr "ఇతర ఆటగాళ్లతో గేమ్‌ప్లేను సమకాలీకరిస్తోంది…"
 
 #: gui/session/NetworkStatusOverlay.js:47
 msgctxt "Separator for a list of client loading messages"
 msgid ", "
-msgstr ""
+msgstr ","
 
 #. Translation: The "x" means "times", with the mathematical meaning of
 #. multiplication.
 #: gui/session/OverlayCounterElapsedTime.js:33
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
-msgstr ""
+msgstr "%(time)s (%(speed)sx)"
 
 #: gui/session/PauseOverlay.js:40
 #: gui/session/message_box/OutOfSyncNetwork.js:20
 msgctxt "Separator for a list of players"
 msgid ", "
-msgstr ""
+msgstr ","
 
 #: gui/session/PauseOverlay.js:45
 #, javascript-format
 msgid "Paused by %(players)s"
-msgstr ""
+msgstr "%(players)s ద్వారా పాజ్ చేయబడింది"
 
 #: gui/session/PauseOverlay.xml:(caption):7
 msgid "Game Paused"
@@ -145,37 +145,37 @@ msgstr ""
 #: gui/session/chat/ChatAddressees.js:88
 msgctxt "chat addressee"
 msgid "Everyone"
-msgstr ""
+msgstr "ప్రతి ఒక్కరూ"
 
 #: gui/session/chat/ChatAddressees.js:94
 msgctxt "chat addressee"
 msgid "Allies"
-msgstr ""
+msgstr "మిత్రపక్షాలు"
 
 #: gui/session/chat/ChatAddressees.js:95
 msgctxt "chat message context"
 msgid "Ally"
-msgstr ""
+msgstr "మిత్రుడు"
 
 #: gui/session/chat/ChatAddressees.js:105
 msgctxt "chat addressee"
 msgid "Enemies"
-msgstr ""
+msgstr "శత్రువులు"
 
 #: gui/session/chat/ChatAddressees.js:106
 msgctxt "chat message context"
 msgid "Enemy"
-msgstr ""
+msgstr "శత్రువు"
 
 #: gui/session/chat/ChatAddressees.js:116
 msgctxt "chat addressee"
 msgid "Observers"
-msgstr ""
+msgstr "పరిశీలకులు"
 
 #: gui/session/chat/ChatAddressees.js:117
 msgctxt "chat message context"
 msgid "Observer"
-msgstr ""
+msgstr "పరిశీలకుడు"
 
 #: gui/session/chat/ChatAddressees.js:124
 msgctxt "chat message context"
@@ -185,12 +185,12 @@ msgstr ""
 #: gui/session/chat/ChatHistory.js:49
 #, javascript-format
 msgid "%(time)s %(message)s"
-msgstr "%(times)s %(messages)s"
+msgstr "%(time)s %(message)s"
 
 #: gui/session/chat/ChatHistory.js:61
 #, javascript-format
 msgid "\\[%(time)s]"
-msgstr "\\[%time)s]"
+msgstr "\\[%(time)s]"
 
 #: gui/session/chat/ChatHistory.js:62
 msgid "HH:mm"
@@ -199,17 +199,17 @@ msgstr ""
 #: gui/session/chat/ChatHistory.js:82
 msgctxt "chat history filter"
 msgid "Chat and notifications"
-msgstr ""
+msgstr "కబుర్లు మరియు ప్రకటనలు"
 
 #: gui/session/chat/ChatHistory.js:87
 msgctxt "chat history filter"
 msgid "Chat messages"
-msgstr ""
+msgstr "సందేశాలను కబురు చేయండి"
 
 #: gui/session/chat/ChatHistory.js:92
 msgctxt "chat history filter"
 msgid "Players chat"
-msgstr ""
+msgstr "ఆటగాళ్ళ కబుర్లు"
 
 #: gui/session/chat/ChatHistory.js:99
 msgctxt "chat history filter"
@@ -234,22 +234,22 @@ msgstr ""
 #: gui/session/chat/ChatHistory.js:125
 msgctxt "chat history filter"
 msgid "Game notifications"
-msgstr ""
+msgstr "ఆట ప్రకటనలు"
 
 #: gui/session/chat/ChatHistory.js:130
 msgctxt "chat history filter"
 msgid "Network notifications"
-msgstr ""
+msgstr "నెట్‌వర్క్ ప్రకటనలు"
 
 #: gui/session/chat/ChatInput.js:31
 msgctxt "chat input"
 msgid "Type the message to send."
-msgstr ""
+msgstr "సందేశాన్ని పంపడానికి టైప్ చేయండి."
 
 #: gui/session/chat/ChatInput.js:37
 #, javascript-format
 msgid "Press %(hotkey)s to open the public chat."
-msgstr ""
+msgstr "ప్రజా కబురులు తెరవడానికి %(hotkey)s ని నొక్కండి."
 
 #: gui/session/chat/ChatInput.js:40
 #, javascript-format
@@ -270,18 +270,18 @@ msgstr ""
 #: gui/session/chat/ChatMessageFormatNetwork.js:23
 #, javascript-format
 msgid "%(player)s is starting to rejoin the game."
-msgstr ""
+msgstr "%(player)s ఆటలో తిరిగి చేరడం ప్రారంభిస్తోంది."
 
 #. Translation: A player joins the game for the first time
 #: gui/session/chat/ChatMessageFormatNetwork.js:25
 #, javascript-format
 msgid "%(player)s is starting to join the game."
-msgstr ""
+msgstr "%(player)s ఆటలో చేరడం ప్రారంభిస్తోంది."
 
 #: gui/session/chat/ChatMessageFormatNetwork.js:34
 #, javascript-format
 msgid "%(player)s has left the game."
-msgstr ""
+msgstr "%(player)s ఆట నుండి నిష్క్రమించారు."
 
 #: gui/session/chat/ChatMessageFormatNetwork.js:46
 #, javascript-format
@@ -297,17 +297,13 @@ msgstr "%(username)s వెళ్ళగొట్టబడ్డారు"
 #: gui/session/chat/ChatMessageFormatNetwork.js:64
 #, javascript-format
 msgid "%(player)s has rejoined the game."
-msgstr ""
+msgstr "%(player)s తిరిగి ఆటలో చేరారు."
 
 #. Translation: A player joins the game for the first time
 #: gui/session/chat/ChatMessageFormatNetwork.js:66
 #, javascript-format
 msgid "%(player)s has joined the game."
-msgstr ""
-
-#: gui/session/chat/ChatMessageFormatPlayer.js:57
-msgid "no-context"
-msgstr ""
+msgstr "%(player)s ఆటలో చేరారు."
 
 #: gui/session/chat/ChatMessageFormatPlayer.js:61
 #, javascript-format
@@ -342,7 +338,7 @@ msgstr ""
 #: gui/session/chat/ChatMessageFormatSimulation.js:17
 #, javascript-format
 msgid "You have been attacked by %(attacker)s!"
-msgstr ""
+msgstr "మీరు %(attacker)sచే దాడి చేయబడ్డారు!"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:38
 #, javascript-format
@@ -352,47 +348,47 @@ msgstr ""
 #: gui/session/chat/ChatMessageFormatSimulation.js:70
 #, javascript-format
 msgid "You are now allied with %(player)s."
-msgstr ""
+msgstr "మీరు ఇప్పుడు  %(player)sతో పొత్తు పెట్టుకున్నారు"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:71
 #, javascript-format
 msgid "You are now at war with %(player)s."
-msgstr ""
+msgstr "మీరు ఇప్పుడు %(player)sతో యుద్ధం చేస్తున్నారు."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:72
 #, javascript-format
 msgid "You are now neutral with %(player)s."
-msgstr ""
+msgstr "మీరు ఇప్పుడు %(player)sతో తటస్థంగా ఉన్నారు."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:75
 #, javascript-format
 msgid "%(player)s is now allied with you."
-msgstr ""
+msgstr "%(player)s ఇప్పుడు మీతో పొత్తు పెట్టుకున్నారు."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:76
 #, javascript-format
 msgid "%(player)s is now at war with you."
-msgstr ""
+msgstr "%(player)s ఇప్పుడు మీతో యుద్ధం చేస్తున్నారు."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:77
 #, javascript-format
 msgid "%(player)s is now neutral with you."
-msgstr ""
+msgstr "%(player)s ఇప్పుడు మీతో తటస్థంగా ఉన్నారు."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:80
 #, javascript-format
 msgid "%(player)s is now allied with %(player2)s."
-msgstr ""
+msgstr "%(player)s ఇప్పుడు %(player2)sతో పొత్తు పెట్టుకున్నారు."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:81
 #, javascript-format
 msgid "%(player)s is now at war with %(player2)s."
-msgstr ""
+msgstr "%(player)s ఇప్పుడు %(player2)sతో యుద్ధం చేస్తున్నారు."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:82
 #, javascript-format
 msgid "%(player)s is now neutral with %(player2)s."
-msgstr ""
+msgstr "%(player)s ఇప్పుడు %(player2)sతో తటస్థంగా ఉన్నారు."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:98
 #, javascript-format
@@ -414,12 +410,12 @@ msgstr ""
 #. enumeration.
 #: gui/session/chat/ChatMessageFormatSimulation.js:126
 msgid ", "
-msgstr ""
+msgstr ","
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:142
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
-msgstr ""
+msgstr "%(player)s మీకు %(amounts)s పంపారు."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:144
 #, javascript-format
@@ -453,7 +449,7 @@ msgstr "రద్దుచేయి"
 #: gui/session/chat/chat_window.xml:(caption):86
 msgctxt "chat"
 msgid "History"
-msgstr ""
+msgstr "చరిత్ర"
 
 #: gui/session/chat/chat_window.xml:(caption):91
 msgid "Send"
@@ -483,11 +479,11 @@ msgstr "అన్ని విభాగాలను నియంత్రిం�
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:42
 msgid "Change perspective"
-msgstr ""
+msgstr "దృక్పథాన్ని మార్చండి"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:60
 msgid "Display selection state"
-msgstr ""
+msgstr "ఎంపిక స్థితిని ప్రదర్శించు"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:73
 msgid "Pathfinder overlay"
@@ -523,25 +519,29 @@ msgstr ""
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:195
 msgid "Enable time warp"
+msgstr "టైమ్ వార్ప్‌ను ప్రారంభించండి"
+
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:214
+msgid "Activate Rejoin Test"
 msgstr ""
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:208
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:248
 msgid "Promote selected units"
-msgstr ""
+msgstr "ఎంచుకున్న యూనిట్లను ప్రోత్సహించండి"
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:229
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:269
 msgid "Enable culling"
 msgstr ""
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:247
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:287
 msgid "Lock cull camera"
 msgstr ""
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:265
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:305
 msgid "Display camera frustum"
 msgstr ""
 
-#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:283
+#: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:323
 msgid "Display shadows frustum"
 msgstr ""
 
@@ -558,11 +558,11 @@ msgstr ""
 
 #: gui/session/dialogs/yes_no.xml:(caption):11
 msgid "Question"
-msgstr ""
+msgstr "ప్రశ్న"
 
 #: gui/session/dialogs/yes_no.xml:(caption):15
 msgid "Yes or no?"
-msgstr ""
+msgstr "అవును లేదా కాదు?"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):15
 msgid "Name"
@@ -578,7 +578,7 @@ msgstr "జట్టు"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):24
 msgid "Theirs"
-msgstr ""
+msgstr "వారిది"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):27
 msgid "A"
@@ -594,7 +594,7 @@ msgstr "E"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):39
 msgid "Tribute"
-msgstr ""
+msgstr "కప్పము"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):90
 #: gui/session/objectives/ObjectivesDialog.xml:(caption):43
@@ -606,17 +606,17 @@ msgstr "మూసివేయి"
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Remaining ceasefire time: %(time)s."
-msgstr ""
+msgstr "మిగిలిన కాల్పుల విరమణ సమయం: %(time)s."
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):85
 #: gui/session/diplomacy/DiplomacyDialogColorsButton.js:30
 #: gui/session/minimap/MiniMapDiplomacyColorsButton.js:34
 msgid "Toggle Diplomacy Colors"
-msgstr ""
+msgstr "దౌత్యం రంగులను టోగుల్ చేయండి"
 
 #: gui/session/diplomacy/playercontrols/AttackRequestButton.js:38
 msgid "Request your allies to attack this enemy"
-msgstr ""
+msgstr "ఈ శత్రువుపై దాడి చేయడానికి మీ మిత్రులను అభ్యర్థించండి"
 
 #: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:75
 msgctxt "team"
@@ -626,27 +626,27 @@ msgstr "ఏదీకాదు"
 #: gui/session/diplomacy/DiplomacyDialog.xml:(tooltip):28
 #: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:78
 msgid "Ally"
-msgstr ""
+msgstr "మిత్రుడు"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(tooltip):32
 #: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:81
 msgid "Neutral"
-msgstr ""
+msgstr "తటస్థ"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(tooltip):36
 #: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:84
 msgid "Enemy"
-msgstr ""
+msgstr "శత్రువు"
 
 #: gui/session/diplomacy/playercontrols/SpyRequestButton.js:139
 msgid ""
 "Bribe a random unit from this player and share its vision during a limited "
 "period."
-msgstr ""
+msgstr "ఈ ఆటగాడి నుండి యాదృచ్ఛిక యూనిట్కు లంచం ఇవ్వండి మరియు పరిమిత కాలంలో దాని దృష్టిని పంచుకోండి."
 
 #: gui/session/diplomacy/playercontrols/SpyRequestButton.js:142
 msgid "A failed bribe will cost you:"
-msgstr ""
+msgstr "విఫలమైన లంచం మీకు ఖర్చు అవుతుంది:"
 
 #: gui/session/diplomacy/playercontrols/StanceButton.js:60
 msgctxt "diplomatic stance selection"
@@ -676,7 +676,7 @@ msgstr[1] ""
 
 #: gui/session/input.js:700
 msgid "Cannot build wall here!"
-msgstr ""
+msgstr "ఇక్కడ గోడ నిర్మించలేరు!"
 
 #: gui/session/message_box/DeleteSelectionConfirmation.js:10
 msgid "Delete"
@@ -684,7 +684,7 @@ msgstr "తొలగించు"
 
 #: gui/session/message_box/DeleteSelectionConfirmation.js:11
 msgid "Destroy everything currently selected?"
-msgstr ""
+msgstr "ప్రస్తుతం ఎంచుకున్న ప్రతిదాన్ని నాశనం చేయాలా?"
 
 #: gui/session/dialogs/yes_no.xml:(caption):24
 #: gui/session/message_box/DeleteSelectionConfirmation.js:14
@@ -712,27 +712,27 @@ msgstr ""
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Players: %(players)s"
-msgstr ""
+msgstr "ఆటగాళ్ళు: %(players)s"
 
 #: gui/session/message_box/OutOfSyncNetwork.js:24
 msgctxt "Out-Of-Sync"
 msgid "Your game state is identical to the hosts game state."
-msgstr ""
+msgstr "మీ ఆట స్థితి అతిధేయల ఆట స్థితికి సమానంగా ఉంటుంది."
 
 #: gui/session/message_box/OutOfSyncNetwork.js:25
 msgctxt "Out-Of-Sync"
 msgid "Your game state differs from the hosts game state."
-msgstr ""
+msgstr "మీ ఆట స్థితి అతిధేయల ఆట స్థితికి భిన్నంగా ఉంటుంది."
 
 #: gui/session/message_box/OutOfSyncNetwork.js:31
 msgctxt "Out-Of-Sync"
 msgid "Rejoining Multiplayer games with AIs is not supported yet!"
-msgstr ""
+msgstr "ఎఐ లతో మల్టీప్లేయర్ ఆటలను తిరిగి చేరడానికి ఇంకా మద్దతు లేదు!"
 
 #: gui/session/message_box/OutOfSyncNetwork.js:34
 msgctxt "Out-Of-Sync"
 msgid "Ensure all players use the same mods."
-msgstr ""
+msgstr "ఆటగాళ్ళు అందరు ఒకే మోడ్‌లను ఉపయోగిస్తున్నారని నిర్ధారించుకోండి."
 
 #: gui/session/message_box/OutOfSyncNetwork.js:35
 msgctxt "Out-Of-Sync"
@@ -743,13 +743,13 @@ msgstr ""
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Replay saved to %(filepath)s"
-msgstr ""
+msgstr "రీప్లే %(filepath)sలో సేవ్ చేయబడింది"
 
 #: gui/session/message_box/OutOfSyncNetwork.js:39
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Dumping current state to %(filepath)s"
-msgstr ""
+msgstr "ప్రస్తుత స్థితిని %(filepath)sకు డంపింగ్"
 
 #: gui/session/message_box/OutOfSyncNetwork.js:51
 #: gui/session/message_box/OutOfSyncReplay.js:23
@@ -769,28 +769,28 @@ msgstr "నిర్ధారణ"
 
 #: gui/session/message_box/QuitConfirmation.js:9
 msgid "Are you sure you want to quit?"
-msgstr ""
+msgstr "మీరు ఖచ్చితంగా నిష్క్రమించాలనుకుంటున్నారా?"
 
 #: gui/session/message_box/QuitConfirmationDefeat.js:54
 msgid "VICTORIOUS!"
-msgstr ""
+msgstr "విజయం!"
 
 #: gui/session/message_box/QuitConfirmationDefeat.js:55
 msgid "DEFEATED!"
-msgstr ""
+msgstr "ఓడించబడింది!"
 
 #: gui/session/message_box/QuitConfirmationDefeat.js:57
 msgid "Do you want to quit?"
-msgstr ""
+msgstr "మీరు నిష్క్రమించాలనుకుంటున్నారా?"
 
 #: gui/session/message_box/QuitConfirmationMenu.js:33
 msgid ""
 "Are you sure you want to quit? Leaving will disconnect all other players."
-msgstr ""
+msgstr "మీరు ఖచ్చితంగా నిష్క్రమించాలనుకుంటున్నారా? వదిలివేయడంవలన మిగతా ఆటగాళ్లందరినీ డిస్‌కనెక్ట్ చేస్తుంది."
 
 #: gui/session/message_box/QuitConfirmationMenu.js:64
 msgid "Do you want to resign or will you return soon?"
-msgstr ""
+msgstr "మీరు రాజీనామా చేయాలనుకుంటున్నారా లేదా త్వరలో తిరిగి వస్తారా?"
 
 #: gui/session/message_box/QuitConfirmationMenu.js:67
 msgid "I will return"
@@ -803,50 +803,50 @@ msgstr "నేను రాజీనామా చేస్తాను"
 #: gui/session/message_box/QuitConfirmationReplay.js:14
 msgctxt "replayFinished"
 msgid "Confirmation"
-msgstr ""
+msgstr "నిర్ధారణ"
 
 #: gui/session/message_box/QuitConfirmationReplay.js:17
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
-msgstr ""
+msgstr "రీప్లే పూర్తయింది. మీరు నిష్క్రమించాలనుకుంటున్నారా?"
 
 #: gui/session/message_box/QuitConfirmationReplay.js:22
 msgctxt "replayFinished"
 msgid "No"
-msgstr ""
+msgstr "కాదు"
 
 #: gui/session/message_box/QuitConfirmationReplay.js:25
 msgctxt "replayFinished"
 msgid "Yes"
-msgstr ""
+msgstr "అవును"
 
 #: gui/session/message_box/ResignConfirmation.js:6
 msgid "Are you sure you want to resign?"
-msgstr ""
+msgstr "మీరు ఖచ్చితంగా రాజీనామా చేయాలనుకుంటున్నారా?"
 
 #: gui/session/messages.js:88
 msgid "You have won!"
-msgstr ""
+msgstr "మీరు గెలిచారు!"
 
 #: gui/session/messages.js:89
 msgid "You have been defeated!"
-msgstr ""
+msgstr "మీరు ఓడిపోయారు!"
 
 #: gui/session/messages.js:352
 msgid "Click to quit this tutorial."
-msgstr ""
+msgstr "ఈ ట్యుటోరియల్ నుండి నిష్క్రమించడానికి క్లిక్ చేయండి"
 
 #: gui/session/messages.js:353
 msgid "Quit"
-msgstr ""
+msgstr "నిష్క్రమించండి"
 
 #: gui/session/messages.js:357
 msgid "Click when ready."
-msgstr ""
+msgstr "సిద్ధంగా ఉన్నప్పుడు క్లిక్ చేయండి."
 
 #: gui/session/messages.js:361
 msgid "Follow the instructions."
-msgstr ""
+msgstr "సూచనలను అనుసరించండి."
 
 #: gui/session/messages.js:486
 msgid "Unknown Player"
@@ -854,22 +854,22 @@ msgstr "అపరిచిత ఆటగాడు"
 
 #: gui/session/minimap/MiniMapIdleWorkerButton.js:40
 msgid "Find idle worker"
-msgstr ""
+msgstr "ఖాలీగాఉన కార్మికుడిని ఎతకండి"
 
 #: gui/session/selection_details.js:68
 #, javascript-format
 msgid "%(genericName)s — Packed"
-msgstr ""
+msgstr "%(genericName)s — ప్యాక్ చేయబడింది"
 
 #: gui/session/chat/ChatAddressees.js:74 gui/session/selection_details.js:78
 #, javascript-format
 msgid "\\[OFFLINE] %(player)s"
-msgstr ""
+msgstr "\\[ఆఫ్‌లైన్] %(player)s"
 
 #: gui/session/selection_details.js:83
 #, javascript-format
 msgid "%(rank)s Rank"
-msgstr ""
+msgstr "%(rank)s స్థాయి"
 
 #: gui/session/selection_details.js:140
 #, javascript-format
@@ -879,7 +879,7 @@ msgstr "%(hitpoints)s / %(maxHitpoints)s"
 #: gui/session/selection_details.js:181
 #, javascript-format
 msgid "%(capturePoints)s / %(maxCapturePoints)s"
-msgstr ""
+msgstr "%(capturePoints)s / %(maxCapturePoints)s"
 
 #: gui/session/selection_details.js:201
 #, javascript-format
@@ -915,68 +915,68 @@ msgstr "%(resource)s:"
 #: gui/session/unit_actions.js:998
 #, javascript-format
 msgid "Gain: %(gain)s"
-msgstr ""
+msgstr "రాబడి %(gain)s"
 
 #: gui/session/selection_details.js:280
 msgid "Current/max gatherers"
-msgstr ""
+msgstr "ప్రస్తుత/గరిష్టంగా సేకరించేవారు"
 
 #: gui/session/selection_details.js:302
 #, javascript-format
 msgid "(%(genericName)s)"
-msgstr ""
+msgstr "(%(genericName)s)"
 
-#: gui/session/selection_details.js:432
+#: gui/session/selection_details.js:433
 msgid "Capture Points:"
-msgstr ""
-
-#: gui/session/selection_details.js:440
-#, javascript-format
-msgid "%(label)s %(details)s\n"
-msgstr ""
+msgstr "క్యాప్చర్ పాయింట్లు:"
 
 #: gui/session/selection_details.js:441
-msgid "Carrying:"
-msgstr ""
+#, javascript-format
+msgid "%(label)s %(details)s\n"
+msgstr "%(label)s %(details)s\n"
 
-#: gui/session/selection_details.js:444 gui/session/selection_details.js:453
+#: gui/session/selection_details.js:442
+msgid "Carrying:"
+msgstr "మోస్తున్నది:"
+
+#: gui/session/selection_details.js:445 gui/session/selection_details.js:454
 #, javascript-format
 msgid "%(type)s %(amount)s"
-msgstr ""
-
-#: gui/session/selection_details.js:449
-#, javascript-format
-msgid "%(label)s %(details)s"
-msgstr ""
+msgstr "%(type)s %(amount)s"
 
 #: gui/session/selection_details.js:450
+#, javascript-format
+msgid "%(label)s %(details)s"
+msgstr "%(label)s %(details)s"
+
+#: gui/session/selection_details.js:451
 msgid "Loot:"
-msgstr ""
+msgstr "దోపిడి:"
 
 #. Translation: Used in the trading gain tooltip
-#: gui/session/selection_details.js:511
+#: gui/session/selection_details.js:512
 #, javascript-format
 msgid "%(gain)s (%(player)s)"
 msgstr "%(gain)s (%(player)s)"
 
 #. Translation: Used in the trading gain tooltip to concatenate profits of
 #. different players
-#: gui/session/selection_details.js:535
+#: gui/session/selection_details.js:536
 msgid "+"
 msgstr "+"
 
-#: gui/session/selection_details.js:542
+#: gui/session/selection_details.js:543
 msgctxt "Separation mark in an enumeration"
 msgid ", "
-msgstr ""
+msgstr ","
 
 #: gui/session/selection_panels.js:65
 msgid "Raise an alert!"
-msgstr ""
+msgstr "హెచ్చరికను పెంచండి!"
 
 #: gui/session/selection_panels.js:68
 msgid "End of alert."
-msgstr ""
+msgstr "హెచ్చరిక ముగింపు."
 
 #: gui/session/selection_panels.js:380
 #, javascript-format
@@ -990,7 +990,7 @@ msgstr ""
 #: gui/session/selection_panels.js:383 gui/session/selection_panels.js:893
 #, javascript-format
 msgid "Player: %(playername)s"
-msgstr ""
+msgstr "ఆటగాడు: %(playername)s"
 
 #: gui/session/selection_panels.js:419
 msgid "Lock Gate"
@@ -1002,7 +1002,7 @@ msgstr ""
 
 #: gui/session/selection_panels.js:476
 msgid "Pack"
-msgstr ""
+msgstr "ప్యాక్"
 
 #: gui/session/selection_panels.js:484
 msgid "Unpack"
@@ -1018,37 +1018,37 @@ msgstr ""
 
 #: gui/session/selection_panels.js:587
 msgid "Insufficient population capacity:"
-msgstr ""
+msgstr "తగినంత జనాభా సామర్థ్యం లేదు:"
 
 #: gui/session/selection_panels.js:588
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
-msgstr ""
+msgstr "%(population)s %(neededSlots)s"
 
 #: gui/session/selection_panels.js:758
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(number)s క్లాస్ అర్హతలు %(class)s"
+msgstr[1] "%(number)s క్లాస్ అర్హతలు %(class)s"
 
 #: gui/session/selection_panels.js:764
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
-msgstr ""
+msgstr "మిగిలినవి: %(entityCounts)s"
 
 #: gui/session/selection_panels.js:765
 msgctxt "Separator for a list of entity counts"
 msgid ", "
-msgstr ""
+msgstr ","
 
 #: gui/session/selection_panels.js:817
 msgid "Cannot research while upgrading."
-msgstr ""
+msgstr "అభివృధ్ధి చేస్తున్నప్పుడు పరిశోధన చేయలేరు."
 
 #: gui/session/selection_panels.js:1040
 msgid "Cannot train while upgrading."
-msgstr ""
+msgstr "అభివృధ్ధి చేస్తున్నప్పుడు శిక్షణ ఇవ్వలేరు."
 
 #: gui/session/selection_panels.js:1102
 #, javascript-format
@@ -1062,7 +1062,7 @@ msgstr ""
 
 #: gui/session/selection_panels.js:1142
 msgid "Cancel Upgrading"
-msgstr ""
+msgstr "అభివృధ్ధిని రద్దు చేయి"
 
 #: gui/session/selection_panels.js:1157
 msgid ""
@@ -1077,22 +1077,22 @@ msgstr[1] ""
 #: gui/session/selection_panels_helpers.js:51
 msgctxt "stance"
 msgid "Violent"
-msgstr ""
+msgstr "హింసా"
 
 #: gui/session/selection_panels_helpers.js:53
 msgctxt "stance"
 msgid "Aggressive"
-msgstr ""
+msgstr "దూకుడు"
 
 #: gui/session/selection_panels_helpers.js:55
 msgctxt "stance"
 msgid "Defensive"
-msgstr ""
+msgstr "రక్షణాత్మక"
 
 #: gui/session/selection_panels_helpers.js:57
 msgctxt "stance"
 msgid "Passive"
-msgstr ""
+msgstr "నిష్క్రియాత్మ"
 
 #: gui/session/selection_panels_helpers.js:59
 msgctxt "stance"
@@ -1107,29 +1107,29 @@ msgstr ""
 #: gui/session/selection_panels_helpers.js:73
 msgctxt "stance"
 msgid "Attack nearby opponents"
-msgstr ""
+msgstr "సమీపంలోని ప్రత్యర్థులపై దాడి చేయండి"
 
 #: gui/session/selection_panels_helpers.js:75
 msgctxt "stance"
 msgid ""
 "Attack nearby opponents, chase a short distance and return to the original "
 "location"
-msgstr ""
+msgstr "సమీప ప్రత్యర్థులపై దాడి చేయండి, కొద్ది దూరం వెంబడించి అసలు స్థానానికి తిరిగి వెళ్ళుండి"
 
 #: gui/session/selection_panels_helpers.js:77
 msgctxt "stance"
 msgid "Flee if attacked"
-msgstr ""
+msgstr "దాడి చేస్తే పారిపోండి"
 
 #: gui/session/selection_panels_helpers.js:79
 msgctxt "stance"
 msgid "Attack opponents in range, but don't move"
-msgstr ""
+msgstr "పరిధిలో ఉన్న ప్రత్యర్థులను దాడి చేయండి, కాని కదలకండి"
 
 #: gui/session/selection_panels_helpers.js:93
 #, javascript-format
 msgid "Current Count: %(count)s, Limit: %(limit)s."
-msgstr ""
+msgstr "ప్రస్తుత లెక్క: %(count)s, పరిమితి: %(limit)s"
 
 #: gui/session/selection_panels_helpers.js:107
 #, javascript-format
@@ -1144,7 +1144,7 @@ msgstr ""
 #: gui/session/selection_panels_helpers.js:139
 #, javascript-format
 msgid "%(buildings)s*%(batchSize)s"
-msgstr ""
+msgstr "%(buildings)s*%(batchSize)s"
 
 #: gui/session/selection_panels_helpers.js:153
 #, javascript-format
@@ -1163,12 +1163,12 @@ msgstr ""
 
 #: gui/session/selection_panels_helpers.js:162
 msgid "Shift-click"
-msgstr ""
+msgstr "షిఫ్ట్‌-క్లిక్"
 
 #: gui/session/selection_panels_left/garrison_panel.xml:(tooltip):16
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):20
 msgid "Health"
-msgstr ""
+msgstr "ఆరోగ్యం"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):34
 msgid "Capture points"
@@ -1176,7 +1176,7 @@ msgstr ""
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):62
 msgid "Attack and Resistance"
-msgstr ""
+msgstr "దాడి మరియు ప్రతిఘటన"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):77
 msgid "Experience"
@@ -1188,13 +1188,13 @@ msgstr "ర్యాంకు"
 
 #: gui/session/selection_panels_right/queue_panel.xml:(tooltip):8
 msgid "Production queue"
-msgstr ""
+msgstr "ఉత్పత్తి జాబితా"
 
 #: gui/session/session_objects/selection_group_icons.xml:(tooltip):7
 msgid ""
 "Click to select grouped units, double-click to focus the grouped units and "
 "right-click to disband the group."
-msgstr ""
+msgstr "సమూహ యూనిట్లను ఎంచుకోవడానికి క్లిక్ చేయండి, సమూహ యూనిట్లను కేంద్రీకరించడానికి డబుల్ క్లిక్ చేయండి మరియు సమూహాన్ని రద్దుచేయడానికి కుడి క్లిక్ చేయండి."
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
 msgid "ALPHA XXIV"
@@ -1211,11 +1211,11 @@ msgstr ""
 #: gui/session/top_panel/CounterManager.js:101
 #, javascript-format
 msgid "%(order)s: %(hotkey)s to change order."
-msgstr ""
+msgstr "%(order)s: క్రమాన్ని మార్చడానికి %(hotkey)s."
 
 #: gui/session/top_panel/CounterManager.js:105
 msgid "Unordered"
-msgstr ""
+msgstr "క్రమం లేనిది"
 
 #: gui/session/top_panel/CounterManager.js:107
 msgid "Descending"
@@ -1228,47 +1228,47 @@ msgstr ""
 #: gui/session/top_panel/CounterManager.js:133
 #, javascript-format
 msgid "%(playername)s: %(statValue)s"
-msgstr ""
+msgstr "%(playername)s: %(statValue)s"
 
 #: gui/session/top_panel/CounterPopulation.js:34
 #, javascript-format
 msgid "Current gatherers: %(amount)s"
-msgstr ""
+msgstr "ప్రస్తుత సేకరణదారులు: %(amount)s"
 
 #: gui/session/top_panel/CounterPopulation.js:63
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s"
-msgstr ""
+msgstr "%(popCount)s/%(popLimit)s"
 
 #: gui/session/top_panel/CounterPopulation.js:65
 msgid "Population (current / limit)"
-msgstr ""
+msgstr "జనాభా (ప్రస్తుత/పరిమితి)"
 
 #: gui/session/top_panel/CounterPopulation.js:67
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
-msgstr ""
+msgstr "గరిష్ట జనాభా: %(popCap)s"
 
 #: gui/session/top_panel/CounterPopulation.js:69
 #, javascript-format
 msgid "%(popCount)s/%(popLimit)s/%(popMax)s"
-msgstr ""
+msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 
 #: gui/session/top_panel/CounterResource.js:32
 #, javascript-format
 msgid "Gatherers: %(amount)s"
-msgstr ""
+msgstr "సేకరణదారులు: %(amount)s"
 
 #: gui/session/top_panel/FollowPlayer.xml:(caption):15
 #: gui/session/top_panel/FollowPlayer.xml:(tooltip):11
 msgctxt "observer mode"
 msgid "Follow Player"
-msgstr ""
+msgstr "ఆటగాను అనుసరించండి"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):10
 #: gui/session/top_panel/IconButtons/DiplomacyDialogButton.js:29
 msgid "Diplomacy"
-msgstr ""
+msgstr "దౌత్యం"
 
 #: gui/session/top_panel/IconButtons/GameSpeedButton.xml:(tooltip):9
 msgid "Game Speed"
@@ -1277,67 +1277,67 @@ msgstr "ఆట వేగం"
 #: gui/session/objectives/ObjectivesDialog.xml:(caption):15
 #: gui/session/top_panel/IconButtons/ObjectivesDialogButton.js:23
 msgid "Objectives"
-msgstr ""
+msgstr "లక్ష్యాలు"
 
 #: gui/session/top_panel/MenuButton.xml:(caption):15
 msgid "Menu"
-msgstr ""
+msgstr "కార్యక్రమపట్టిక"
 
 #: gui/session/top_panel/PlayerViewControl.js:123
 msgid "Observer"
-msgstr ""
+msgstr "పరిశీలకుడు"
 
 #: gui/session/top_panel/PlayerViewControl.xml:(caption):17
 msgid "Observer Mode"
-msgstr ""
+msgstr "పరిశీలకుడు మోడ్"
 
 #: gui/session/top_panel/PlayerViewControl.xml:(tooltip):13
 msgid "Choose player to view"
-msgstr "చూడటానికి ప్రదర్శకాన్ని ఎంచుకోండి"
+msgstr "చూడటానికి ఆటగాడిని ఎంచుకోండి"
 
 #: gui/session/trade/BarterButton.js:100
 #, javascript-format
 msgid "Buy %(resource)s"
-msgstr ""
+msgstr "కొను %(resource)s"
 
 #: gui/session/trade/BarterButton.js:101
 #, javascript-format
 msgid "Sell %(resource)s"
-msgstr ""
+msgstr "అమ్ము %(resource)s"
 
 #: gui/session/trade/BarterButton.js:102
 #, javascript-format
 msgctxt "buy action"
 msgid "+%(amount)s"
-msgstr ""
+msgstr "+%(amount)s"
 
 #: gui/session/trade/BarterButton.js:103
 #, javascript-format
 msgctxt "sell action"
 msgid "-%(amount)s"
-msgstr ""
+msgstr "-%(amount)s"
 
 #: gui/session/trade/BarterPanel.xml:(caption):5
 msgid "Barter"
-msgstr ""
+msgstr "మార్చుకొను"
 
 #: gui/session/trade/BarterPanel.xml:(caption):13
 msgid "Sell:"
-msgstr ""
+msgstr "అమ్ము:"
 
 #: gui/session/trade/BarterPanel.xml:(caption):17
 msgid "Buy:"
-msgstr ""
+msgstr "కొను:"
 
 #: gui/session/trade/BarterPanel.xml:(caption):21
 msgid "No Markets Available"
-msgstr ""
+msgstr "బజారులు అందుబాటులో లేవు"
 
 #: gui/session/trade/TradeButton.js:56
 #, javascript-format
 msgctxt "trading good ratio"
 msgid "%(amount)s%%"
-msgstr ""
+msgstr "%(amount)s%%"
 
 #: gui/session/trade/TradeButtonManager.js:80
 #, javascript-format
@@ -1358,11 +1358,11 @@ msgstr ""
 
 #: gui/session/trade/TradePanel.xml:(caption):5
 msgid "Trade"
-msgstr ""
+msgstr "వాణిజ్యం"
 
 #: gui/session/trade/TradePanel.xml:(caption):14
 msgid "Resources:"
-msgstr ""
+msgstr "వనరులు"
 
 #: gui/session/trade/TraderStatusTextLand.js:15
 #, javascript-format
@@ -1375,15 +1375,15 @@ msgstr[1] ""
 #, javascript-format
 msgid "%(numberOfLandTraders)s inactive"
 msgid_plural "%(numberOfLandTraders)s inactive"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(numberOfLandTraders)s క్రియారహితం"
+msgstr[1] "%(numberOfLandTraders)s క్రియారహితం"
 
 #: gui/session/trade/TraderStatusTextLand.js:30
 #, javascript-format
 msgid "%(numberOfLandTraders)s land trader inactive"
 msgid_plural "%(numberOfLandTraders)s land traders inactive"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(numberOfLandTraders)s భూ వ్యాపారులు క్రియారహితంగా ఉన్నారు"
+msgstr[1] "%(numberOfLandTraders)s భూ వ్యాపారులు క్రియారహితంగా ఉన్నారు"
 
 #: gui/session/trade/TraderStatusTextLand.js:40
 #, javascript-format
@@ -1406,47 +1406,47 @@ msgstr[1] ""
 #: gui/session/trade/TraderStatusTextLand.js:65
 #, javascript-format
 msgid "%(openingTradingString)s, and %(garrisonedString)s."
-msgstr ""
+msgstr "%(openingTradingString)s, మరియు %(garrisonedString)s."
 
 #: gui/session/trade/TraderStatusTextLand.js:66
 #, javascript-format
 msgid ""
 "%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s."
-msgstr ""
+msgstr "%(openingTradingString)s, %(garrisonedString)s, మరియు %(inactiveString)s."
 
 #: gui/session/trade/TraderStatusTextLand.js:69
 #: gui/session/trade/TraderStatusTextShip.js:47
 #, javascript-format
 msgid "%(openingTradingString)s."
-msgstr ""
+msgstr "%(openingTradingString)s."
 
 #: gui/session/trade/TraderStatusTextLand.js:70
 #: gui/session/trade/TraderStatusTextShip.js:46
 #, javascript-format
 msgid "%(openingTradingString)s, and %(inactiveString)s."
-msgstr ""
+msgstr "%(openingTradingString)s, మరియు %(inactiveString)s."
 
 #: gui/session/trade/TraderStatusTextLand.js:75
 #, javascript-format
 msgid "%(openingGarrisonedString)s."
-msgstr ""
+msgstr "%(openingGarrisonedString)s."
 
 #: gui/session/trade/TraderStatusTextLand.js:76
 #, javascript-format
 msgid "%(openingGarrisonedString)s, and %(inactiveString)s."
-msgstr ""
+msgstr "%(openingGarrisonedString)s, మరియు %(inactiveString)s."
 
 #: gui/session/trade/TraderStatusTextLand.js:79
 #: gui/session/trade/TraderStatusTextShip.js:50
 #, javascript-format
 msgid "There is %(inactiveString)s."
 msgid_plural "There are %(inactiveString)s."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(inactiveString)s ఉన్నాయి."
+msgstr[1] "%(inactiveString)s ఉన్నాయి."
 
 #: gui/session/trade/TraderStatusTextLand.js:80
 msgid "There are no land traders."
-msgstr ""
+msgstr "భూ వ్యాపారులు లేరు"
 
 #: gui/session/trade/TraderStatusTextShip.js:14
 #, javascript-format
@@ -1459,23 +1459,23 @@ msgstr[1] ""
 #, javascript-format
 msgid "%(numberOfShipTraders)s inactive"
 msgid_plural "%(numberOfShipTraders)s inactive"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(numberOfShipTraders)s క్రియారహితంగా ఉన్నాయి"
+msgstr[1] "%(numberOfShipTraders)s క్రియారహితంగా ఉన్నాయి"
 
 #: gui/session/trade/TraderStatusTextShip.js:29
 #, javascript-format
 msgid "%(numberOfShipTraders)s merchant ship inactive"
 msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(numberOfShipTraders)s వ్యాపారి నౌకలు క్రియారహితంగా ఉన్నాయి"
+msgstr[1] "%(numberOfShipTraders)s వ్యాపారి నౌకలు క్రియారహితంగా ఉన్నాయి"
 
 #: gui/session/trade/TraderStatusTextShip.js:51
 msgid "There are no merchant ships."
-msgstr ""
+msgstr "వ్యాపారి నౌకలు లేవు"
 
 #: gui/session/tutorial_panel.xml:(caption):11
 msgid "Ready"
-msgstr ""
+msgstr "సిద్ధంగా వున్న"
 
 #: gui/session/unit_actions.js:578
 msgid ""
@@ -1489,7 +1489,7 @@ msgstr ""
 
 #: gui/session/unit_actions.js:648
 msgid "Destination trade market."
-msgstr ""
+msgstr "గమ్యం వాణిజ్య మార్కెట్."
 
 #: gui/session/unit_actions.js:655
 msgid "Right-click to set as origin trade market"
@@ -1506,97 +1506,97 @@ msgstr ""
 #: gui/session/unit_actions.js:727 gui/session/unit_actions.js:942
 #, javascript-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
-msgstr ""
+msgstr "ప్రస్తుత రక్షక దళం: %(garrisoned)s/%(capacity)s"
 
 #: gui/session/unit_actions.js:995
 msgid "Right-click to establish a default route for new traders."
-msgstr ""
+msgstr "క్రొత్త వ్యాపారుల కోసం డిఫాల్ట్ మార్గాన్ని ఏర్పాటు చేయడానికి కుడి-క్లిక్ చేయండి."
 
 #: gui/session/unit_actions.js:999
 #, javascript-format
 msgid "Expected gain: %(gain)s"
-msgstr ""
+msgstr "ఊహించిన లాభం: %(gain)s"
 
 #: gui/session/unit_actions.js:1129
 msgid "This entity cannot be controlled."
 msgid_plural "These entities cannot be controlled."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ఈ ఎంటిటీలను నియంత్రించలేము."
+msgstr[1] "ఈ ఎంటిటీలను నియంత్రించలేము."
 
 #: gui/session/unit_actions.js:1166 gui/session/unit_actions.js:1494
 msgid "Unload All."
-msgstr ""
+msgstr "అన్నీ దించండి."
 
 #: gui/session/unit_actions.js:1184
 msgid "Destroy the selected units or structures."
-msgstr ""
+msgstr "ఎంచుకున్న యూనిట్లు లేదా నిర్మాణాలను నాశనం చేయి."
 
 #: gui/session/unit_actions.js:1186
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
-msgstr ""
+msgstr "నిర్ధారణ డైలాగ్‌ను నివారించడానికి %(hotkey)sని ఉపయోగించండి."
 
 #: gui/session/unit_actions.js:1233
 msgid "Abort the current order."
-msgstr ""
+msgstr "ప్రస్తుత ఆజ్ఞ నిలిపివేయండి."
 
 #: gui/session/unit_actions.js:1252
 msgid "Order the selected units to garrison in a structure or unit."
-msgstr ""
+msgstr "ఎంచుకున్న యూనిట్లను ఒక నిర్మాణంలో లేదా యూనిట్‌లో గారిసన్ చేయమని ఆదేశించండి."
 
 #: gui/session/unit_actions.js:1275
 msgid "Unload"
-msgstr ""
+msgstr "దించు"
 
 #: gui/session/unit_actions.js:1293
 msgid "Order the selected units to repair a structure, ship, or siege engine."
-msgstr ""
+msgstr "నిర్మాణం, నౌక లేదా ముట్టడి ఇంజిన్‌ను రిపేర్ చేయడానికి ఎంచుకున్న యూనిట్లను ఆదేశించండి."
 
 #: gui/session/unit_actions.js:1312
 msgid "Focus on Rally Point."
-msgstr ""
+msgstr "ర్యాలీ పాయింట్‌పై దృష్టి పెట్టండి."
 
 #: gui/session/unit_actions.js:1347
 msgid "Back to Work"
-msgstr ""
+msgstr "తిరిగి పనిలోకి వెళ్ళు"
 
 #: gui/session/unit_actions.js:1366
 msgid "Order the selected units to guard a structure or unit."
-msgstr ""
+msgstr "ఒక నిర్మాణం లేదా యూనిట్‌ను కాపలాకాయడానికి ఎంచుకున్న యూనిట్లను ఆదేశించండి."
 
 #: gui/session/unit_actions.js:1384
 msgid "Remove guard"
-msgstr ""
+msgstr "కాపలాదార్డుని తొలగించండి"
 
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
 #: gui/session/trade/TradeDialog.xml:(caption):9
 #: gui/session/unit_actions.js:1401
 msgid "Barter & Trade"
-msgstr ""
+msgstr "మార్చుకొను మరియు వాణిజ్యం"
 
 #: gui/session/unit_actions.js:1419
 msgid "Patrol"
-msgstr ""
+msgstr "కాపలాకాయుట"
 
 #: gui/session/unit_actions.js:1420
 msgid "Attack all encountered enemy units while avoiding structures."
-msgstr ""
+msgstr "నిర్మాణాలను తప్పించేటప్పుడు ఎదుర్కొన్న అన్ని శత్రు యూనిట్లపై దాడి చేయండి."
 
 #: gui/session/unit_actions.js:1446
 msgid "Press to allow allies to use this dropsite"
-msgstr ""
+msgstr "ఈ డ్రాప్ సైట్‌ను మిత్రులు ఉపయోగించడానికి అనుమతించడానికి నొక్కండి"
 
 #: gui/session/unit_actions.js:1450
 msgid "Press to prevent allies from using this dropsite"
-msgstr ""
+msgstr "ఈ డ్రాప్‌సైట్‌ను మిత్రులు ఉపయోగించకుండా నిరోధించడానికి నొక్కండి"
 
 #: gui/session/unit_actions.js:1515
 msgid "You are allowed to use this dropsite"
-msgstr ""
+msgstr "ఈ డ్రాప్‌సైట్‌ను ఉపయోగించడానికి మీకు అనుమతి ఉంది"
 
 #: gui/session/unit_actions.js:1520
 msgid "The use of this dropsite is prohibited"
-msgstr ""
+msgstr "ఈ డ్రాప్‌సైట్ వాడకం నిషేధించబడింది"
 
 #: gui/session/unit_actions.js:1594
 msgid "The entity has to be killed before it can be gathered from"
@@ -1609,4 +1609,4 @@ msgstr ""
 
 #: gui/session/unit_actions.js:1600
 msgid "This entity is undeletable"
-msgstr ""
+msgstr "ఈ ఎంటిటీ తొలగించలేనిది"
