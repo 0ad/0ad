@@ -1827,6 +1827,18 @@ UnitAI.prototype.UnitFsmSpec = {
 					this.FinishOrder();
 			},
 
+			"Attacked": function(msg) {
+				if (msg.data.attacker == this.order.data.target)
+					return;
+
+				let cmpObstructionManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ObstructionManager);
+				if (cmpObstructionManager.DistanceToTarget(this.entity, msg.data.target) > cmpObstructionManager.DistanceToTarget(this.entity, this.order.data.target))
+					return;
+
+				if (this.GetStance().targetAttackersAlways || !this.order || !this.order.data || !this.order.data.force)
+					this.RespondToTargetedEntities([msg.data.attacker]);
+			},
+
 			"leave": function() {
 				this.ResetSpeedMultiplier();
 				this.StopMoving();
@@ -1836,8 +1848,6 @@ UnitAI.prototype.UnitFsmSpec = {
 				if (msg.likelyFailure || this.CheckTargetRangeExplicit(this.order.data.target, this.order.data.distanceToFlee, -1))
 					this.FinishOrder();
 			},
-
-			// TODO: what if we run into more enemies while fleeing?
 		},
 
 		"COMBAT": {
