@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<objects>
+
+	<script directory="gui/common/"/>
+	<script directory="gui/maps/"/>
+	<object>
+		<include file="gui/maps/mapbrowser/MapBrowser.xml"/>
+	</object>
+	<script file="gui/maps/mapbrowser/MapBrowserPage.js"/>
+
+</objects>

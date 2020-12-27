@@ -69,7 +69,7 @@ class MapFilters
 		}
 
 		Engine.ProfileStop();
-		return existence ? false : maps;
+		return existence ? false : maps.sort((a, b) => a.name.localeCompare(b.name));
 	}
 }
 

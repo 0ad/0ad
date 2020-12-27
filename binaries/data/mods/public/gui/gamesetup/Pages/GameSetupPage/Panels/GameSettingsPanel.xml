@@ -5,6 +5,13 @@
 
 	<object name="settingsPanel" size="0 5 100% 100%-5" z="1">
 
+		<!-- There is currently only one button, so don't add un-necessary objects. -->
+		<repeat count="1" var="n">
+			<object>
+				<include file="gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingControlButton.xml"/>
+			</object>
+		</repeat>
+
 		<repeat count="40" var="n">
 			<object>
 				<include file="gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingControlDropdown.xml"/>
