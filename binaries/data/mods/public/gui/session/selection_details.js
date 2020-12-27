@@ -318,7 +318,7 @@ function displaySingle(entState)
 			showTemplateDetails(entState.template);
 		};
 
-	Engine.GetGUIObjectByName("attackAndResistanceStats").tooltip = [
+	let detailedTooltip = [
 		getAttackTooltip,
 		getHealerTooltip,
 		getResistanceTooltip,
@@ -330,6 +330,13 @@ function displaySingle(entState)
 		getResourceTrickleTooltip,
 		getLootTooltip
 	].map(func => func(entState)).filter(tip => tip).join("\n");
+	if (detailedTooltip)
+	{
+		Engine.GetGUIObjectByName("attackAndResistanceStats").hidden = false;
+		Engine.GetGUIObjectByName("attackAndResistanceStats").tooltip = detailedTooltip;
+	}
+	else
+		Engine.GetGUIObjectByName("attackAndResistanceStats").hidden = true;
 
 	let iconTooltips = [];
 
