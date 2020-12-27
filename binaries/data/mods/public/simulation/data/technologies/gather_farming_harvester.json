@@ -1,7 +1,7 @@
 {
 	"genericName": "Harvesting Machine",
 	"description": "The Gauls invented an harvesting machine, making it much easier to harvest grain.",
-	"cost": { "food": 0, "wood": 400, "stone": 0, "metal": 200 },
+	"cost": { "food": 0, "wood": 200, "stone": 0, "metal": 100 },
 	"requirements": {
 		"all": [
 			{ "tech": "phase_town" },
@@ -15,9 +15,9 @@
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "plow.png",
 	"researchTime": 50,
-	"tooltip": "Workers +15% grain gather rate.",
+	"tooltip": "Workers +10% grain gather rate.",
 	"modifications": [
-		{ "value": "ResourceGatherer/Rates/food.grain", "multiply": 1.15 }
+		{ "value": "ResourceGatherer/Rates/food.grain", "multiply": 1.10 }
 	],
 	"affects": ["Worker"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
