@@ -31,7 +31,7 @@ enum
 	SCRIPT_TYPE_BACKREF = 8,
 	SCRIPT_TYPE_TYPED_ARRAY = 9,		// ArrayBufferView subclasses - see below
 	SCRIPT_TYPE_ARRAY_BUFFER = 10,		// ArrayBuffer containing actual typed array data (may be shared by multiple views)
-	SCRIPT_TYPE_OBJECT_PROTOTYPE = 11,	// user-defined prototype - currently unused
+	SCRIPT_TYPE_OBJECT_PROTOTYPE = 11,	// User-defined prototype - see GetPrototypeInfo
 	SCRIPT_TYPE_OBJECT_NUMBER = 12,		// standard Number class
 	SCRIPT_TYPE_OBJECT_STRING = 13,		// standard String class
 	SCRIPT_TYPE_OBJECT_BOOLEAN = 14,	// standard Boolean class
@@ -52,5 +52,43 @@ enum
 	SCRIPT_TYPED_ARRAY_FLOAT64 = 7,
 	SCRIPT_TYPED_ARRAY_UINT8_CLAMPED = 8
 };
+
+struct SPrototypeSerialization
+{
+	std::string name = "";
+	bool hasCustomSerialize = false;
+	bool hasCustomDeserialize = false;
+	bool hasNullSerialize = false;
+};
+
+inline SPrototypeSerialization GetPrototypeInfo(const ScriptRequest& rq, JS::HandleObject prototype)
+{
+	SPrototypeSerialization ret;
+
+	JS::RootedValue constructor(rq.cx, JS::ObjectOrNullValue(JS_GetConstructor(rq.cx, prototype)));
+	if (!ScriptInterface::GetProperty(rq, constructor, "name", ret.name))
+		throw PSERROR_Serialize_ScriptError("Could not get constructor name.");
+
+	// Nothing to do for basic Object objects.
+	if (ret.name == "Object")
+		return ret;
+
+	if (!JS_HasProperty(rq.cx, prototype, "Serialize", &ret.hasCustomSerialize) ||
+	     !JS_HasProperty(rq.cx, prototype, "Deserialize", &ret.hasCustomDeserialize))
+		throw PSERROR_Serialize_ScriptError("JS_HasProperty failed");
+
+	if (ret.hasCustomSerialize)
+	{
+		JS::RootedValue serialize(rq.cx);
+		if (!JS_GetProperty(rq.cx, prototype, "Serialize", &serialize))
+			throw PSERROR_Serialize_ScriptError("JS_GetProperty failed");
+
+		if (serialize.isNull())
+			ret.hasNullSerialize = true;
+		else if (!ret.hasCustomDeserialize)
+			throw PSERROR_Serialize_ScriptError("Cannot serialize script with non-null Serialize but no Deserialize.");
+	}
+	return ret;
+}
 
 #endif // INCLUDED_SERIALIZEDSCRIPTTYPES

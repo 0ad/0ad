@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -773,7 +773,7 @@ public:
 entities:\n\
 - id: 1\n\
   TestScript1_values:\n\
-    object: {\n\
+    comp: {\n\
   \"x\": 1234,\n\
   \"str\": \"this is a string\",\n\
   \"things\": {\n\
@@ -792,17 +792,17 @@ entities:\n\
 \n\
 - id: 2\n\
   TestScript1_entity:\n\
-    object: {}\n\
+    comp: {}\n\
 \n\
 - id: 3\n\
   TestScript1_nontree:\n\
-    object: ({x:[[2], [2], [], {y:[2]}]})\n\
+    comp: ({x:[[2], [2], [], {y:[2]}]})\n\
 \n\
 - id: 4\n\
   TestScript1_custom:\n\
-    object: {\n\
+    comp: {\n\
   \"c\": 1\n\
-}\n\
+} (raw: ({y:2}))\n\
 \n"
 		);
 

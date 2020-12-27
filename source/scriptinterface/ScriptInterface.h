@@ -210,23 +210,26 @@ public:
 	 */
 	template<typename T>
 	bool GetProperty(JS::HandleValue obj, const char* name, T& out) const;
-
-	/**
-	 * Get the named property of the given object.
-	 */
 	bool GetProperty(JS::HandleValue obj, const char* name, JS::MutableHandleValue out) const;
 	bool GetProperty(JS::HandleValue obj, const char* name, JS::MutableHandleObject out) const;
+
+	template<typename T>
+	static bool GetProperty(const ScriptRequest& rq, JS::HandleValue obj, const char* name, T& out);
+	static bool GetProperty(const ScriptRequest& rq, JS::HandleValue obj, const char* name, JS::MutableHandleValue out);
+	static bool GetProperty(const ScriptRequest& rq, JS::HandleValue obj, const char* name, JS::MutableHandleObject out);
 
 	/**
 	 * Get the integer-named property on the given object.
 	 */
 	template<typename T>
 	bool GetPropertyInt(JS::HandleValue obj, int name, T& out) const;
-
-	/**
-	 * Get the named property of the given object.
-	 */
 	bool GetPropertyInt(JS::HandleValue obj, int name, JS::MutableHandleValue out) const;
+	bool GetPropertyInt(JS::HandleValue obj, int name, JS::MutableHandleObject out) const;
+
+	template<typename T>
+	static bool GetPropertyInt(const ScriptRequest& rq, JS::HandleValue obj, int name, T& out);
+	static bool GetPropertyInt(const ScriptRequest& rq, JS::HandleValue obj, int name, JS::MutableHandleValue out);
+	static bool GetPropertyInt(const ScriptRequest& rq, JS::HandleValue obj, int name, JS::MutableHandleObject out);
 
 	/**
 	 * Check the named property has been defined on the given object.
@@ -444,8 +447,6 @@ private:
 	bool SetProperty_(JS::HandleValue obj, const char* name, JS::HandleValue value, bool constant, bool enumerate) const;
 	bool SetProperty_(JS::HandleValue obj, const wchar_t* name, JS::HandleValue value, bool constant, bool enumerate) const;
 	bool SetPropertyInt_(JS::HandleValue obj, int name, JS::HandleValue value, bool constant, bool enumerate) const;
-	bool GetProperty_(JS::HandleValue obj, const char* name, JS::MutableHandleValue out) const;
-	bool GetPropertyInt_(JS::HandleValue obj, int name, JS::MutableHandleValue value) const;
 
 	struct CustomType
 	{
@@ -589,8 +590,14 @@ template<typename T>
 bool ScriptInterface::GetProperty(JS::HandleValue obj, const char* name, T& out) const
 {
 	ScriptRequest rq(this);
+	return GetProperty(rq, obj, name, out);
+}
+
+template<typename T>
+bool ScriptInterface::GetProperty(const ScriptRequest& rq, JS::HandleValue obj, const char* name, T& out)
+{
 	JS::RootedValue val(rq.cx);
-	if (!GetProperty_(obj, name, &val))
+	if (!GetProperty(rq, obj, name, &val))
 		return false;
 	return FromJSVal(rq, val, out);
 }
@@ -599,8 +606,14 @@ template<typename T>
 bool ScriptInterface::GetPropertyInt(JS::HandleValue obj, int name, T& out) const
 {
 	ScriptRequest rq(this);
+	return GetPropertyInt(rq, obj, name, out);
+}
+
+template<typename T>
+bool ScriptInterface::GetPropertyInt(const ScriptRequest& rq, JS::HandleValue obj, int name, T& out)
+{
 	JS::RootedValue val(rq.cx);
-	if (!GetPropertyInt_(obj, name, &val))
+	if (!GetPropertyInt(rq, obj, name, &val))
 		return false;
 	return FromJSVal(rq, val, out);
 }

@@ -48,7 +48,7 @@ function LoadMapSettings(settings)
 	}
 
 	let cmpEndGameManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager);
-	let gameSettings = { "victoryConditions": settings.VictoryConditions };
+	let gameSettings = { "victoryConditions": clone(settings.VictoryConditions) };
 	if (gameSettings.victoryConditions.indexOf("capture_the_relic") != -1)
 	{
 		gameSettings.relicCount = settings.RelicCount;

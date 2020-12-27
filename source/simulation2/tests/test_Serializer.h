@@ -324,6 +324,14 @@ public:
 		TSM_ASSERT(msg, !stream.bad() && !stream.fail());
 		TSM_ASSERT_EQUALS(msg, stream.peek(), EOF);
 
+		std::stringstream stream2;
+		CStdSerializer serialize2(script, stream2);
+		CStdDeserializer deserialize2(script, stream2);
+
+		// Round-trip the deserialized value again. This helps ensure prototypes are correctly deserialized.
+		serialize2.ScriptVal("script2", &newobj);
+		deserialize2.ScriptVal("script2", &newobj);
+
 		std::string source;
 		TSM_ASSERT(msg, script.CallFunction(newobj, "toSource", source));
 		TS_ASSERT_STR_EQUALS(source, expected);
@@ -409,6 +417,44 @@ public:
 
 		helper_script_roundtrip("Boolean", "[new Boolean('true'), false]", "[(new Boolean(true)), false]");
 		helper_script_roundtrip("Boolean with props", "var b=new Boolean('true'); b.foo='bar'; b", "(new Boolean(true))");
+	}
+
+	void test_script_fancy_objects()
+	{
+		// This asserts that objects are deserialized with their correct prototypes.
+		helper_script_roundtrip("Custom Object", ""
+								"function customObj() { this.a = this.customFunc.name; };"
+								"customObj.prototype.customFunc = function customFunc(){};"
+								"new customObj();", "({a:\"customFunc\"})");
+
+		helper_script_roundtrip("Custom Class", ""
+								"class customObj {"
+								"  constructor() { this.a = this.customFunc.name; }"
+								"  customFunc(){};"
+								"}; new customObj();", "({a:\"customFunc\"})");
+
+		helper_script_roundtrip("Custom Class with Serialize/Deserialize()", ""
+								"class customObj {"
+								"  constructor() { this.a = this.customFunc.name; }"
+								"  Serialize() { return { 'foo': 'bar' }; }"
+								"  Deserialize(data) { this.foo = data.foo; }"
+								"  customFunc(){};"
+								"}; new customObj();", "({a:\"customFunc\", foo:\"bar\"})");
+
+		helper_script_roundtrip("Custom Class with null serialize & deserialize()", ""
+								"class customObj {"
+								"  constructor() { this.a = this.customFunc.name; }"
+								"  Deserialize(data) { this.test = 'test'; };"
+								"  customFunc(){};"
+								"}; customObj.prototype.Serialize=null;"
+								"new customObj();", "({a:\"customFunc\", test:\"test\"})");
+
+		helper_script_roundtrip("Custom Class with arguments but still works", ""
+								"class customObj {"
+								"  constructor(test) { this.a = test; }"
+								"  Serialize() { return { 'data': this.a }; };"
+								"  Deserialize(data) { this.a = data.data; };"
+								"}; new customObj(4);", "({a:4})");
 	}
 
 	void test_script_objects_properties()

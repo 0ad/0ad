@@ -644,16 +644,16 @@ bool ScriptInterface::SetPropertyInt_(JS::HandleValue obj, int name, JS::HandleV
 	return JS_DefinePropertyById(rq.cx, object, id, value, attrs);
 }
 
-bool ScriptInterface::GetProperty(JS::HandleValue obj, const char* name, JS::MutableHandleValue out) const
-{
-	return GetProperty_(obj, name, out);
-}
-
 bool ScriptInterface::GetProperty(JS::HandleValue obj, const char* name, JS::MutableHandleObject out) const
 {
 	ScriptRequest rq(this);
+	return GetProperty(rq, obj, name, out);
+}
+
+bool ScriptInterface::GetProperty(const ScriptRequest& rq, JS::HandleValue obj, const char* name, JS::MutableHandleObject out)
+{
 	JS::RootedValue val(rq.cx);
-	if (!GetProperty_(obj, name, &val))
+	if (!GetProperty(rq, obj, name, &val))
 		return false;
 	if (!val.isObject())
 	{
@@ -665,14 +665,14 @@ bool ScriptInterface::GetProperty(JS::HandleValue obj, const char* name, JS::Mut
 	return true;
 }
 
-bool ScriptInterface::GetPropertyInt(JS::HandleValue obj, int name, JS::MutableHandleValue out) const
-{
-	return GetPropertyInt_(obj, name, out);
-}
-
-bool ScriptInterface::GetProperty_(JS::HandleValue obj, const char* name, JS::MutableHandleValue out) const
+bool ScriptInterface::GetProperty(JS::HandleValue obj, const char* name, JS::MutableHandleValue out) const
 {
 	ScriptRequest rq(this);
+	return GetProperty(rq, obj, name, out);
+}
+
+bool ScriptInterface::GetProperty(const ScriptRequest& rq, JS::HandleValue obj, const char* name, JS::MutableHandleValue out)
+{
 	if (!obj.isObject())
 		return false;
 	JS::RootedObject object(rq.cx, &obj.toObject());
@@ -680,9 +680,14 @@ bool ScriptInterface::GetProperty_(JS::HandleValue obj, const char* name, JS::Mu
 	return JS_GetProperty(rq.cx, object, name, out);
 }
 
-bool ScriptInterface::GetPropertyInt_(JS::HandleValue obj, int name, JS::MutableHandleValue out) const
+bool ScriptInterface::GetPropertyInt(JS::HandleValue obj, int name, JS::MutableHandleValue out) const
 {
 	ScriptRequest rq(this);
+	return GetPropertyInt(rq,obj, name, out);
+}
+
+bool ScriptInterface::GetPropertyInt(const ScriptRequest& rq, JS::HandleValue obj, int name, JS::MutableHandleValue out)
+{
 	JS::RootedId nameId(rq.cx, INT_TO_JSID(name));
 	if (!obj.isObject())
 		return false;

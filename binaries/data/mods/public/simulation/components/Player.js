@@ -36,6 +36,12 @@ Player.prototype.Serialize = function()
 	return state;
 };
 
+Player.prototype.Deserialize = function(state)
+{
+	for (let prop in state)
+		this[prop] = state[prop];
+};
+
 /**
  * Which units will be shown with special icons at the top.
  */

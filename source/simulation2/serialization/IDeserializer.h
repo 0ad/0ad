@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -58,8 +58,11 @@ public:
 	/// Deserialize a JS::Value, replacing 'out'
 	virtual void ScriptVal(const char* name, JS::MutableHandleValue out) = 0;
 
-	/// Deserialize an object value, appending properties to object 'objVal'
-	virtual void ScriptObjectAppend(const char* name, JS::HandleValue objVal) = 0;
+	/**
+	 * Deserialize an object and assign its properties to objVal
+	 * (Essentially equivalent to Object.assign(objVal, serialized))
+	 */
+	virtual void ScriptObjectAssign(const char* name, JS::HandleValue objVal) = 0;
 
 	/// Deserialize a JSString
 	virtual void ScriptString(const char* name, JS::MutableHandleString out) = 0;

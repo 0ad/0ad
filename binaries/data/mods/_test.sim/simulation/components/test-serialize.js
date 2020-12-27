@@ -3,7 +3,7 @@ function TestScript1_values() {}
 TestScript1_values.prototype.Init = function() {
 	this.x = +this.template.x;
 	this.str = "this is a string";
-	this.things = { a: 1, b: "2", c: [3, "4", [5, []]] };
+	this.things = { "a": 1, "b": "2", "c": [3, "4", [5, []]] };
 };
 
 TestScript1_values.prototype.GetX = function() {
@@ -22,11 +22,11 @@ TestScript1_entity.prototype.GetX = function() {
 	try {
 		delete this.entity;
 		Engine.TS_FAIL("Missed exception");
-	} catch (e) { }
+	} catch (e) { /* OK */ }
 	try {
 		this.entity = -1;
 		Engine.TS_FAIL("Missed exception");
-	} catch (e) { }
+	} catch (e) { /* OK */ }
 
 	// and return the value
 	return this.entity;
@@ -40,7 +40,7 @@ function TestScript1_nontree() {}
 
 TestScript1_nontree.prototype.Init = function() {
 	var n = [1];
-	this.x = [n, n, null, { y: n }];
+	this.x = [n, n, null, { "y": n }];
 	this.x[2] = this.x;
 };
 
@@ -61,7 +61,11 @@ TestScript1_custom.prototype.Init = function() {
 };
 
 TestScript1_custom.prototype.Serialize = function() {
-	return {c:1};
+	return { "c": 1 };
+};
+
+TestScript1_custom.prototype.Deserialize = function(data) {
+	this.c = data.c;
 };
 
 Engine.RegisterComponentType(IID_Test1, "TestScript1_custom", TestScript1_custom);
@@ -72,7 +76,7 @@ function TestScript1_getter() {}
 
 TestScript1_getter.prototype.Init = function() {
 	this.x = 100;
-	this.__defineGetter__('x', function () { print("FAIL\n"); die(); return 200; });
+	this.__defineGetter__('x', function() { print("FAIL\n"); die(); return 200; });
 };
 
 Engine.RegisterComponentType(IID_Test1, "TestScript1_getter", TestScript1_getter);

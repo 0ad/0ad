@@ -19,13 +19,13 @@
 
 #include "StdDeserializer.h"
 
-#include "SerializedScriptTypes.h"
-#include "StdSerializer.h" // for DEBUG_SERIALIZER_ANNOTATE
-
+#include "lib/byte_order.h"
+#include "ps/CStr.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/ScriptExtraHeaders.h" // For typed arrays and ArrayBuffer
-
-#include "lib/byte_order.h"
+#include "simulation2/serialization/ISerializer.h"
+#include "simulation2/serialization/SerializedScriptTypes.h"
+#include "simulation2/serialization/StdSerializer.h" // for DEBUG_SERIALIZER_ANNOTATE
 
 CStdDeserializer::CStdDeserializer(const ScriptInterface& scriptInterface, std::istream& stream) :
 	m_ScriptInterface(scriptInterface), m_Stream(stream)
@@ -110,7 +110,7 @@ void CStdDeserializer::GetScriptBackref(size_t tag, JS::MutableHandleObject ret)
 
 ////////////////////////////////////////////////////////////////
 
-JS::Value CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleObject appendParent)
+JS::Value CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleObject preexistingObject)
 {
 	ScriptRequest rq(m_ScriptInterface);
 
@@ -126,21 +126,68 @@ JS::Value CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleOb
 
 	case SCRIPT_TYPE_ARRAY:
 	case SCRIPT_TYPE_OBJECT:
+	case SCRIPT_TYPE_OBJECT_PROTOTYPE:
 	{
 		JS::RootedObject obj(rq.cx);
-		if (appendParent)
-		{
-			obj.set(appendParent);
-		}
-		else if (type == SCRIPT_TYPE_ARRAY)
+		if (type == SCRIPT_TYPE_ARRAY)
 		{
 			u32 length;
 			NumberU32_Unbounded("array length", length);
 			obj.set(JS::NewArrayObject(rq.cx, length));
 		}
-		else // SCRIPT_TYPE_OBJECT
+		else if (type == SCRIPT_TYPE_OBJECT)
 		{
 			obj.set(JS_NewPlainObject(rq.cx));
+		}
+		else // SCRIPT_TYPE_OBJECT_PROTOTYPE
+		{
+			CStrW prototypeName;
+			String("proto", prototypeName, 0, 256);
+
+			// If an object was passed, no need to construct a new one.
+			if (preexistingObject != nullptr)
+				obj.set(preexistingObject);
+			else
+			{
+				JS::RootedValue constructor(rq.cx);
+				if (!ScriptInterface::GetGlobalProperty(rq, prototypeName.ToUTF8(), &constructor))
+					throw PSERROR_Deserialize_ScriptError("Deserializer failed to get constructor object");
+
+				JS::RootedObject newObj(rq.cx);
+				if (!JS::Construct(rq.cx, constructor, JS::HandleValueArray::empty(), &newObj))
+					throw PSERROR_Deserialize_ScriptError("Deserializer failed to construct object");
+				obj.set(newObj);
+			}
+
+			JS::RootedObject prototype(rq.cx);
+			JS_GetPrototype(rq.cx, obj, &prototype);
+			SPrototypeSerialization info = GetPrototypeInfo(rq, prototype);
+
+			if (preexistingObject != nullptr && prototypeName != wstring_from_utf8(info.name))
+				throw PSERROR_Deserialize_ScriptError("Deserializer failed: incorrect pre-existing object");
+
+
+			if (info.hasCustomDeserialize)
+			{
+				AddScriptBackref(obj);
+
+				// If Serialize is null, we'll still call Deserialize but with undefined argument
+				JS::RootedValue data(rq.cx);
+				if (!info.hasNullSerialize)
+					ScriptVal("data", &data);
+
+				JS::RootedValue objVal(rq.cx, JS::ObjectValue(*obj));
+				m_ScriptInterface.CallFunctionVoid(objVal, "Deserialize", data);
+
+				return JS::ObjectValue(*obj);
+			}
+			else if (info.hasNullSerialize)
+			{
+				// If we serialized null, this means we're pretty much a default-constructed object.
+				// Nothing to do.
+				AddScriptBackref(obj);
+				return JS::ObjectValue(*obj);
+			}
 		}
 
 		if (!obj)
@@ -431,7 +478,7 @@ void CStdDeserializer::ScriptVal(const char* name, JS::MutableHandleValue out)
 	out.set(ReadScriptVal(name, nullptr));
 }
 
-void CStdDeserializer::ScriptObjectAppend(const char* name, JS::HandleValue objVal)
+void CStdDeserializer::ScriptObjectAssign(const char* name, JS::HandleValue objVal)
 {
 	ScriptRequest rq(m_ScriptInterface);
 
