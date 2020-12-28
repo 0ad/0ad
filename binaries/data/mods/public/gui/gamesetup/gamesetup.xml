@@ -2,6 +2,7 @@
 <objects>
 
 	<script directory="gui/common/"/>
+	<script directory="gui/maps/"/>
 	<script directory="gui/gamesetup/"/>
 	<script directory="gui/gamesetup/Controls/"/>
 	<script directory="gui/gamesetup/NetMessages/"/>
@@ -15,6 +16,7 @@
 		<include file="gui/gamesetup/Pages/LoadingPage/LoadingPage.xml"/>
 		<include file="gui/gamesetup/Pages/GameSetupPage/GameSetupPage.xml"/>
 		<include file="gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml"/>
+		<include file="gui/gamesetup/Pages/MapBrowserPage/MapBrowserPage.xml"/>
 	</object>
 
 </objects>

@@ -669,12 +669,7 @@ public:
 
 		serializer.Bool("useSharedScript", m_HasSharedComponent);
 		if (m_HasSharedComponent)
-		{
-			JS::RootedValue sharedData(rq.cx);
-			if (!m_ScriptInterface->CallFunction(m_SharedAIObj, "Serialize", &sharedData))
-				LOGERROR("AI shared script Serialize call failed");
-			serializer.ScriptVal("sharedData", &sharedData);
-		}
+			serializer.ScriptVal("sharedData", &m_SharedAIObj);
 		for (size_t i = 0; i < m_Players.size(); ++i)
 		{
 			serializer.String("name", m_Players[i]->m_AIName, 1, 256);
@@ -690,18 +685,7 @@ public:
 				serializer.ScriptVal("command", &val);
 			}
 
-			bool hasCustomSerialize = m_ScriptInterface->HasProperty(m_Players[i]->m_Obj, "Serialize");
-			if (hasCustomSerialize)
-			{
-				JS::RootedValue scriptData(rq.cx);
-				if (!m_ScriptInterface->CallFunction(m_Players[i]->m_Obj, "Serialize", &scriptData))
-					LOGERROR("AI script Serialize call failed");
-				serializer.ScriptVal("data", &scriptData);
-			}
-			else
-			{
-				serializer.ScriptVal("data", &m_Players[i]->m_Obj);
-			}
+			serializer.ScriptVal("data", &m_Players[i]->m_Obj);
 		}
 
 		// AI pathfinder
@@ -739,10 +723,7 @@ public:
 		if (m_HasSharedComponent)
 		{
 			TryLoadSharedComponent();
-			JS::RootedValue sharedData(rq.cx);
-			deserializer.ScriptVal("sharedData", &sharedData);
-			if (!m_ScriptInterface->CallFunctionVoid(m_SharedAIObj, "Deserialize", sharedData))
-				LOGERROR("AI shared script Deserialize call failed");
+			deserializer.ScriptObjectAssign("sharedData", m_SharedAIObj);
 		}
 
 		for (size_t i = 0; i < numAis; ++i)
@@ -768,25 +749,7 @@ public:
 				m_Players.back()->m_Commands.push_back(m_ScriptInterface->WriteStructuredClone(val));
 			}
 
-			bool hasCustomDeserialize = m_ScriptInterface->HasProperty(m_Players.back()->m_Obj, "Deserialize");
-			if (hasCustomDeserialize)
-			{
-				JS::RootedValue scriptData(rq.cx);
-				deserializer.ScriptVal("data", &scriptData);
-				if (m_Players[i]->m_UseSharedComponent)
-				{
-					if (!m_ScriptInterface->CallFunctionVoid(m_Players.back()->m_Obj, "Deserialize", scriptData, m_SharedAIObj))
-						LOGERROR("AI script Deserialize call failed");
-				}
-				else if (!m_ScriptInterface->CallFunctionVoid(m_Players.back()->m_Obj, "Deserialize", scriptData))
-				{
-					LOGERROR("AI script deserialize() call failed");
-				}
-			}
-			else
-			{
-				deserializer.ScriptVal("data", &m_Players.back()->m_Obj);
-			}
+			deserializer.ScriptObjectAssign("data", m_Players.back()->m_Obj);
 		}
 
 		// AI pathfinder

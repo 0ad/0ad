@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object name="mapBrowserPage" z="300">
+
+	<script file="gui/maps/mapbrowser/MapBrowser.js"/>
+	<script directory="gui/maps/mapbrowser/controls/"/>
+	<script directory="gui/maps/mapbrowser/grid/"/>
+	<script directory="gui/maps/mapbrowser/utils/"/>
+
+	<object type="image" sprite="ModernFade"/>
+
+	<object name="mapBrowserPageDialog" type="image" style="ModernDialog" size="5% 5% 95% 95%">
+
+		<object style="ModernLabelText" type="text" size="50%-128 -18 50%+128 14" z="200">
+			<translatableAttribute id="caption">Map Browser</translatableAttribute>
+		</object>
+
+		<object name="mapBrowserTopPanel" size="15 15 100%-10 55">
+
+		</object>
+
+		<object name="mapBrowserLeftPanel" size="15 15 100%-400 100%-15">
+			<include file="gui/maps/mapbrowser/grid/MapGridBrowser.xml"/>
+		</object>
+
+		<object name="mapBrowserRightPanel" size="100%-390 15 100%-15 100%-15">
+			<include file="gui/maps/mapbrowser/controls/MapBrowserControls.xml"/>
+		</object>
+	</object>
+
+</object>

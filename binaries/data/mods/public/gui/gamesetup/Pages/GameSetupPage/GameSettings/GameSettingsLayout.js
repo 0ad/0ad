@@ -9,6 +9,7 @@ var g_GameSettingsLayout = [
 			"MapType",
 			"MapFilter",
 			"MapSelection",
+			"MapBrowser",
 			"MapSize",
 			"TeamPlacement",
 			"Landscape",

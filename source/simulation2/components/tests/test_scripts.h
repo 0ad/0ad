@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -16,6 +16,8 @@
  */
 
 #include "simulation2/system/ComponentTest.h"
+#include "simulation2/serialization/StdDeserializer.h"
+#include "simulation2/serialization/StdSerializer.h"
 
 #include "ps/Filesystem.h"
 
@@ -58,6 +60,21 @@ public:
 		TS_ASSERT(componentManager->LoadScript(VfsPath(L"simulation/helpers") / pathname));
 	}
 
+	static JS::Value Script_SerializationRoundTrip(ScriptInterface::CmptPrivate* pCmptPrivate, JS::HandleValue value)
+	{
+		ScriptInterface& scriptInterface = *(pCmptPrivate->pScriptInterface);
+		ScriptRequest rq(scriptInterface);
+
+		JS::RootedValue val(rq.cx);
+		val = value;
+		std::stringstream stream;
+		CStdSerializer serializer(scriptInterface, stream);
+		serializer.ScriptVal("", &val);
+		CStdDeserializer deserializer(scriptInterface, stream);
+		deserializer.ScriptVal("", &val);
+		return val;
+	}
+
 	void test_global_scripts()
 	{
 		if (!VfsDirectoryExists(L"globalscripts/tests/"))
@@ -73,6 +90,9 @@ public:
 			CSimContext context;
 			CComponentManager componentManager(context, g_ScriptContext, true);
 			ScriptTestSetup(componentManager.GetScriptInterface());
+
+			componentManager.GetScriptInterface().RegisterFunction<JS::Value, JS::HandleValue, Script_SerializationRoundTrip> ("SerializationRoundTrip");
+
 			load_script(componentManager.GetScriptInterface(), path);
 		}
 	}
@@ -100,6 +120,7 @@ public:
 
 			componentManager.GetScriptInterface().RegisterFunction<void, VfsPath, Script_LoadComponentScript> ("LoadComponentScript");
 			componentManager.GetScriptInterface().RegisterFunction<void, VfsPath, Script_LoadHelperScript> ("LoadHelperScript");
+			componentManager.GetScriptInterface().RegisterFunction<JS::Value, JS::HandleValue, Script_SerializationRoundTrip> ("SerializationRoundTrip");
 
 			componentManager.LoadComponentTypes();
 

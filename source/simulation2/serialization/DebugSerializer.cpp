@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -149,9 +149,23 @@ void CDebugSerializer::PutString(const char* name, const std::string& value)
 
 void CDebugSerializer::PutScriptVal(const char* name, JS::MutableHandleValue value)
 {
-	std::string source = m_ScriptInterface.ToString(value, true);
+	ScriptRequest rq(m_ScriptInterface);
 
-	m_Stream << INDENT << name << ": " << source << "\n";
+	JS::RootedValue serialize(rq.cx);
+	if (m_ScriptInterface.GetProperty(value, "Serialize", &serialize) && !serialize.isNullOrUndefined())
+	{
+		// If the value has a Serialize property, pretty-parse that and return the value as a raw string.
+		// This gives more debug data for components in case of OOS.
+		m_ScriptInterface.CallFunction(value, "Serialize", &serialize);
+		std::string serialized_source = m_ScriptInterface.ToString(&serialize, true);
+		std::string source = m_ScriptInterface.ToString(value, false);
+		m_Stream << INDENT << name << ": " << serialized_source << " (raw: " << source <<  ")\n";
+	}
+	else
+	{
+		std::string source = m_ScriptInterface.ToString(value, true);
+		m_Stream << INDENT << name << ": " << source << "\n";
+	}
 }
 
 void CDebugSerializer::PutRaw(const char* name, const u8* data, size_t len)

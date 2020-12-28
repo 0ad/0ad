@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object>
+	<object type="image" sprite="ModernFade" size="-5 0 100%+5 100%"/>
+
+	<!-- Page controls -->
+	<object>
+		<object name="mapBrowserPageStatus" type="text" style="ModernLabelText" size="0 0 180 30"/>
+
+		<object size="180 0 100%-60 30">
+			<object name="mapBrowserPreviousButton" type="button" style="ModernButtonRed" size="0 0 50% 100%"/>
+			<object name="mapBrowserNextButton" type="button" style="ModernButtonRed" size="50% 0 100% 100%"/>
+		</object>
+		<object size="100%-60 0 100% 30">
+			<object name="mapsZoomIn" type="button" style="ModernButtonRed" size="0 0 50% 100%">
+				<translatableAttribute id="caption" context="zoom in">+</translatableAttribute>
+			</object>
+			<object name="mapsZoomOut" type="button" style="ModernButtonRed" size="50% 0 100% 100%">
+				<translatableAttribute id="caption" context="zoom out">−</translatableAttribute>
+			</object>
+		</object>
+	</object>
+
+	<object size="0 35 100% 100%-60">
+		<object size="0 0 100% 40">
+			<object name="mapBrowserSearchBoxLabel" type="text" style="ModernLeftLabelText" size="2 0 0 35">
+				<translatableAttribute id="caption">Search Map:</translatableAttribute>
+			</object>
+			<object name="mapBrowserSearchBoxControl" type="input" size="0 5 100% 30" style="ModernInput" font="sans-16"/>
+		</object>
+		<object size="0 40 100% 80">
+			<object name="mapBrowserMapTypeLabel" type="text" size="2 0 0 35" style="ModernLeftLabelText">
+				<translatableAttribute id="caption">Map Type:</translatableAttribute>
+			</object>
+			<object name="mapBrowserMapTypeControl" type="dropdown" size="0 5 100% 30" style="ModernDropDown"/>
+		</object>
+		<object size="0 80 100% 120">
+			<object name="mapBrowserMapFilterLabel" type="text" size="2 0 0 35" style="ModernLeftLabelText">
+				<translatableAttribute id="caption">Map Filter:</translatableAttribute>
+			</object>
+			<object name="mapBrowserMapFilterControl" type="dropdown" size="0 5 100% 30" style="ModernDropDown"/>
+		</object>
+		<object size="0 120 100% 100%">
+			<include file="gui/maps/mapbrowser/controls/MapDescription.xml"/>
+		</object>
+	</object>
+
+	<object name="mapBrowserPagePickRandom" type="button" style="ModernButtonRed" size="0 100%-60 100% 100%-30">
+		<translatableAttribute id="caption">Pick Random Map</translatableAttribute>
+	</object>
+	<object name="mapBrowserPageClose" type="button" style="ModernButtonRed" hotkey="cancel" size="0 100%-30 50% 100%">
+		<translatableAttribute id="caption">Cancel</translatableAttribute>
+	</object>
+	<object name="mapBrowserPageSelect" type="button" style="ModernButtonRed" size="50% 100%-30 100% 100%">
+		<translatableAttribute id="caption" context="map selection dialog">Select</translatableAttribute>
+	</object>
+
+</object>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object name="mapBrowserContainer">
+	<repeat count="100" var="n">
+		<object
+			name="map[n]"
+			type="button"
+			size="0 0 0 0"
+			sprite_over="color: 255 0 0 100"
+			sprite_pressed="color: 255 0 0 150"
+		>
+			<object ghost="true" type="image" sprite="ModernDarkBoxGold" size="3 3 100%-3 100%-3">
+				<object
+					name="mapPreview[n]"
+					style="ModernLabelText"
+					type="button"
+					size="1 1 100%-1 100%-1"
+					text_align="center"
+					text_valign="bottom"
+					buffer_zone="10"
+				/>
+			</object>
+		</object>
+	</repeat>
+
+</object>

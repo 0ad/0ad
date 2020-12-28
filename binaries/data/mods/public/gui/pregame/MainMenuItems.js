@@ -43,6 +43,13 @@ var g_MainMenuItems = [
 					};
 					Engine.PushGuiPage("page_civinfo.xml", {}, callback);
 				}
+			},
+			{
+				"caption": translate("Map Overview"),
+				"tooltip": translate("View the different maps featured in 0 A.D."),
+				"onPress": () => {
+					Engine.PushGuiPage("page_mapbrowser.xml");
+				},
 			}
 		]
 	},

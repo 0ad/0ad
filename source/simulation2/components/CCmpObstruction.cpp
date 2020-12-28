@@ -17,6 +17,7 @@
 
 #include "precompiled.h"
 
+#include "simulation2/system/Component.h"
 #include "ICmpObstruction.h"
 
 #include "simulation2/MessageTypes.h"

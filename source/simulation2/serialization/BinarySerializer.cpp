@@ -219,8 +219,36 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 
 			if (protokey == JSProto_Object)
 			{
-				// Standard Object prototype
-				m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_OBJECT);
+				// Object class - check for user-defined prototype
+				JS::RootedObject proto(rq.cx);
+				if (!JS_GetPrototype(rq.cx, obj, &proto))
+					throw PSERROR_Serialize_ScriptError("JS_GetPrototype failed");
+
+				SPrototypeSerialization protoInfo = GetPrototypeInfo(rq, proto);
+
+				if (protoInfo.name == "Object")
+					m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_OBJECT);
+				else
+				{
+					m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_OBJECT_PROTOTYPE);
+					m_Serializer.String("proto", wstring_from_utf8(protoInfo.name), 0, 256);
+
+					// Does it have custom Serialize function?
+					// if so, we serialize the data it returns, rather than the object's properties directly
+					if (protoInfo.hasCustomSerialize)
+					{
+						// If serialize is null, don't serialize anything more
+						if (!protoInfo.hasNullSerialize)
+						{
+							JS::RootedValue data(rq.cx);
+							if (!m_ScriptInterface.CallFunction(val, "Serialize", &data))
+								throw PSERROR_Serialize_ScriptError("Prototype Serialize function failed");
+							m_Serializer.ScriptVal("data", &data);
+						}
+						// Break here to skip the custom object property serialization logic below.
+						break;
+					}
+				}
 			}
 			else if (protokey == JSProto_Number)
 			{
@@ -438,7 +466,14 @@ i32 CBinarySerializerScriptImpl::GetScriptBackrefTag(JS::HandleObject obj)
 	}
 
 	tagValue = JS::Int32Value(m_ScriptBackrefsNext);
-	JS_SetPropertyById(rq.cx, obj, symbolId, tagValue);
+	// TODO: this fails if the object cannot be written to.
+	// This means we could end up in an infinite loop...
+	if (!JS_DefinePropertyById(rq.cx, obj, symbolId, tagValue, JSPROP_READONLY))
+	{
+		// For now just warn, this should be user-fixable and may not actually error out.
+		JS::RootedValue objVal(rq.cx, JS::ObjectValue(*obj.get()));
+		LOGWARNING("Serialization symbol cannot be written on object %s", m_ScriptInterface.ToString(&objVal));
+	}
 
 	++m_ScriptBackrefsNext;
 	// Return a non-tag number so callers know they need to serialize the object

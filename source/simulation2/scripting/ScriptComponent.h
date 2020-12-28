@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -70,9 +70,6 @@ public:
 private:
 	const ScriptInterface& m_ScriptInterface;
 	JS::PersistentRootedValue m_Instance;
-	bool m_HasCustomSerialize;
-	bool m_HasCustomDeserialize;
-	bool m_HasNullSerialize;
 };
 
 #endif // INCLUDED_SCRIPTCOMPONENT
