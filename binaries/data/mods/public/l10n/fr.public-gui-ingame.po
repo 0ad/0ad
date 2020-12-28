@@ -72,8 +72,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-12-18 08:02+0000\n"
-"PO-Revision-Date: 2020-12-18 10:37+0000\n"
+"POT-Creation-Date: 2020-12-28 08:02+0000\n"
+"PO-Revision-Date: 2020-12-28 10:35+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -200,8 +200,8 @@ msgstr "Jeu en pause"
 msgid "Click to Resume Game"
 msgstr "Cliquer pour reprendre la partie"
 
-#: gui/session/ResearchProgress.js:108 gui/session/selection_details.js:271
-#: gui/session/selection_details.js:287 gui/session/selection_panels.js:600
+#: gui/session/ResearchProgress.js:108 gui/session/selection_details.js:272
+#: gui/session/selection_details.js:290 gui/session/selection_panels.js:600
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
@@ -964,7 +964,7 @@ msgid "∞"
 msgstr "∞"
 
 #: gui/session/selection_details.js:218 gui/session/selection_details.js:248
-#: gui/session/selection_details.js:276
+#: gui/session/selection_details.js:278
 #, javascript-format
 msgid "%(amount)s / %(max)s"
 msgstr "%(amount)s / %(max)s"
@@ -974,62 +974,69 @@ msgstr "%(amount)s / %(max)s"
 msgid "%(resource)s:"
 msgstr "%(resource)s :"
 
-#: gui/session/selection_details.js:261 gui/session/unit_actions.js:640
-#: gui/session/unit_actions.js:649 gui/session/unit_actions.js:667
-#: gui/session/unit_actions.js:998
+#: gui/session/selection_details.js:261 gui/session/unit_actions.js:609
+#: gui/session/unit_actions.js:618 gui/session/unit_actions.js:636
+#: gui/session/unit_actions.js:967
 #, javascript-format
 msgid "Gain: %(gain)s"
 msgstr "Gain : %(gain)s"
 
-#: gui/session/selection_details.js:280
+#: gui/session/selection_details.js:270 gui/session/selection_details.js:288
+#, javascript-format
+msgid ""
+"(%(number)s)\n"
+"%(time)s"
+msgstr ""
+
+#: gui/session/selection_details.js:282
 msgid "Current/max gatherers"
 msgstr "Ramasseurs actuels/max"
 
-#: gui/session/selection_details.js:302
+#: gui/session/selection_details.js:306
 #, javascript-format
 msgid "(%(genericName)s)"
 msgstr "(%(genericName)s)"
 
-#: gui/session/selection_details.js:433
+#: gui/session/selection_details.js:444
 msgid "Capture Points:"
 msgstr "Points de capture :"
 
-#: gui/session/selection_details.js:441
+#: gui/session/selection_details.js:452
 #, javascript-format
 msgid "%(label)s %(details)s\n"
 msgstr "%(label)s %(details)s\n"
 
-#: gui/session/selection_details.js:442
+#: gui/session/selection_details.js:453
 msgid "Carrying:"
 msgstr "Portant :"
 
-#: gui/session/selection_details.js:445 gui/session/selection_details.js:454
+#: gui/session/selection_details.js:456 gui/session/selection_details.js:465
 #, javascript-format
 msgid "%(type)s %(amount)s"
 msgstr "%(type)s %(amount)s"
 
-#: gui/session/selection_details.js:450
+#: gui/session/selection_details.js:461
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/session/selection_details.js:451
+#: gui/session/selection_details.js:462
 msgid "Loot:"
 msgstr "Butin :"
 
 #. Translation: Used in the trading gain tooltip
-#: gui/session/selection_details.js:512
+#: gui/session/selection_details.js:523
 #, javascript-format
 msgid "%(gain)s (%(player)s)"
 msgstr "%(gain)s (%(player)s)"
 
 #. Translation: Used in the trading gain tooltip to concatenate profits of
 #. different players
-#: gui/session/selection_details.js:536
+#: gui/session/selection_details.js:547
 msgid "+"
 msgstr "+"
 
-#: gui/session/selection_details.js:543
+#: gui/session/selection_details.js:554
 msgctxt "Separation mark in an enumeration"
 msgid ", "
 msgstr ","
@@ -1541,136 +1548,136 @@ msgstr "Il n'y a aucun navire marchand."
 msgid "Ready"
 msgstr "Prêt"
 
-#: gui/session/unit_actions.js:578
+#: gui/session/unit_actions.js:549
 msgid ""
 "This is the origin trade market.\n"
 "Right-click to cancel trade route."
 msgstr "C'est le marché du commerce d'origine.\nCliquer avec le bouton droit pour annuler la route commerciale."
 
-#: gui/session/unit_actions.js:638
+#: gui/session/unit_actions.js:607
 msgid "Origin trade market."
 msgstr "Marché d'origine."
 
-#: gui/session/unit_actions.js:648
+#: gui/session/unit_actions.js:617
 msgid "Destination trade market."
 msgstr "Marché de destination."
 
-#: gui/session/unit_actions.js:655
+#: gui/session/unit_actions.js:624
 msgid "Right-click to set as origin trade market"
 msgstr "Clic droit pour définir le marché d'origine"
 
-#: gui/session/unit_actions.js:662 gui/session/unit_actions.js:1004
+#: gui/session/unit_actions.js:631 gui/session/unit_actions.js:973
 msgid "This market is too close to the origin market."
 msgstr "Ce marché est trop proche du marché d'origine."
 
-#: gui/session/unit_actions.js:666
+#: gui/session/unit_actions.js:635
 msgid "Right-click to set as destination trade market."
 msgstr "Clic droit pour définir le marché de destination."
 
-#: gui/session/unit_actions.js:727 gui/session/unit_actions.js:942
+#: gui/session/unit_actions.js:693 gui/session/unit_actions.js:911
 #, javascript-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
 msgstr "Garnison actuelle : %(garrisoned)s/%(capacity)s"
 
-#: gui/session/unit_actions.js:995
+#: gui/session/unit_actions.js:964
 msgid "Right-click to establish a default route for new traders."
 msgstr "Clic droit pour établir une route par défaut pour les nouveaux commerçants."
 
-#: gui/session/unit_actions.js:999
+#: gui/session/unit_actions.js:968
 #, javascript-format
 msgid "Expected gain: %(gain)s"
 msgstr "Gain attendu : %(gain)s"
 
-#: gui/session/unit_actions.js:1129
+#: gui/session/unit_actions.js:1094
 msgid "This entity cannot be controlled."
 msgid_plural "These entities cannot be controlled."
 msgstr[0] "Cette entité ne peut pas être contrôlée."
 msgstr[1] "Ces entités ne peuvent pas être contrôlées."
 
-#: gui/session/unit_actions.js:1166 gui/session/unit_actions.js:1494
+#: gui/session/unit_actions.js:1131 gui/session/unit_actions.js:1459
 msgid "Unload All."
 msgstr "Tout décharger."
 
-#: gui/session/unit_actions.js:1184
+#: gui/session/unit_actions.js:1149
 msgid "Destroy the selected units or structures."
 msgstr "Détruire les unités ou structures sélectionnées."
 
-#: gui/session/unit_actions.js:1186
+#: gui/session/unit_actions.js:1151
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr "Utilisez %(hotkey)s pour éviter la fenêtre de confirmation."
 
-#: gui/session/unit_actions.js:1233
+#: gui/session/unit_actions.js:1198
 msgid "Abort the current order."
 msgstr "Abandonner l'ordre actuel."
 
-#: gui/session/unit_actions.js:1252
+#: gui/session/unit_actions.js:1217
 msgid "Order the selected units to garrison in a structure or unit."
 msgstr "Ordonner à l'unité de se mettre en garnison dans la structure ou unité"
 
-#: gui/session/unit_actions.js:1275
+#: gui/session/unit_actions.js:1240
 msgid "Unload"
 msgstr "Décharger"
 
-#: gui/session/unit_actions.js:1293
+#: gui/session/unit_actions.js:1258
 msgid "Order the selected units to repair a structure, ship, or siege engine."
 msgstr "Ordonner à l'unité sélectionné de réparer la structure, navire ou engin de siège?"
 
-#: gui/session/unit_actions.js:1312
+#: gui/session/unit_actions.js:1277
 msgid "Focus on Rally Point."
 msgstr "Centrer sur le point de ralliement."
 
-#: gui/session/unit_actions.js:1347
+#: gui/session/unit_actions.js:1312
 msgid "Back to Work"
 msgstr "Retour au travail"
 
-#: gui/session/unit_actions.js:1366
+#: gui/session/unit_actions.js:1331
 msgid "Order the selected units to guard a structure or unit."
 msgstr "Ordonner à l'unité sélectionné de garder la structure ou unité. "
 
-#: gui/session/unit_actions.js:1384
+#: gui/session/unit_actions.js:1349
 msgid "Remove guard"
 msgstr "Ne plus garder"
 
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
 #: gui/session/trade/TradeDialog.xml:(caption):9
-#: gui/session/unit_actions.js:1401
+#: gui/session/unit_actions.js:1366
 msgid "Barter & Trade"
 msgstr "Troquer et échanger"
 
-#: gui/session/unit_actions.js:1419
+#: gui/session/unit_actions.js:1384
 msgid "Patrol"
 msgstr "Patrouiller"
 
-#: gui/session/unit_actions.js:1420
+#: gui/session/unit_actions.js:1385
 msgid "Attack all encountered enemy units while avoiding structures."
 msgstr "Attaque toutes les unités ennemies rencontrées tout en évitant les structures."
 
-#: gui/session/unit_actions.js:1446
+#: gui/session/unit_actions.js:1411
 msgid "Press to allow allies to use this dropsite"
 msgstr "Cliquez pour autoriser vos alliés à utiliser ce dépôt"
 
-#: gui/session/unit_actions.js:1450
+#: gui/session/unit_actions.js:1415
 msgid "Press to prevent allies from using this dropsite"
 msgstr "Cliquez pour empêcher vos alliés d'utiliser ce dépôt"
 
-#: gui/session/unit_actions.js:1515
+#: gui/session/unit_actions.js:1480
 msgid "You are allowed to use this dropsite"
 msgstr "Vous avez le droit d'utiliser ce dépôt"
 
-#: gui/session/unit_actions.js:1520
+#: gui/session/unit_actions.js:1485
 msgid "The use of this dropsite is prohibited"
 msgstr "L'utilisation de ce dépôt vous est interdite"
 
-#: gui/session/unit_actions.js:1594
+#: gui/session/unit_actions.js:1524
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "L'entité doit être tuée avant de pouvoir en récolter des ressources"
 
-#: gui/session/unit_actions.js:1597
+#: gui/session/unit_actions.js:1527
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "Vous ne pouvez pas détruire cette entité tant que vous possédez moins de la moitié de ses points de capture"
 
-#: gui/session/unit_actions.js:1600
+#: gui/session/unit_actions.js:1530
 msgid "This entity is undeletable"
 msgstr "Cette entité ne peut pas être détruite"
