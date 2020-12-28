@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2020-12-18 17:24+0000\n"
+"POT-Creation-Date: 2020-12-26 15:10+0000\n"
+"PO-Revision-Date: 2020-12-27 17:16+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -26,6 +26,21 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: hu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: simulation/data/status_effects/burning.jsonapplierTooltip
+msgctxt "status effect"
+msgid "This unit causes fire damage."
+msgstr "Ez az egység tűzsebzést okoz."
+
+#: simulation/data/status_effects/burning.jsonreceiverTooltip
+msgctxt "status effect"
+msgid "This unit is burning."
+msgstr "Ez az egység ég."
+
+#: simulation/data/status_effects/burning.jsonstatusName
+msgctxt "status effect"
+msgid "Burning"
+msgstr "Égés"
 
 #: simulation/data/template_helpers/damage_types/crush.jsondescription
 msgctxt "damage type"
@@ -36,6 +51,16 @@ msgstr "Puszta erővel okozott sebzés, például buzogánnyal vagy taposással.
 msgctxt "damage type"
 msgid "Crush"
 msgstr "Zúzás"
+
+#: simulation/data/template_helpers/damage_types/fire.jsondescription
+msgctxt "damage type"
+msgid "Damage caused by burning objects, like a torch or a flaming arrow."
+msgstr "Égő tárgyakkal okozott sebzés, például fáklyával vagy tüzes nyíllal."
+
+#: simulation/data/template_helpers/damage_types/fire.jsonname
+msgctxt "damage type"
+msgid "Fire"
+msgstr "Tűz"
 
 #: simulation/data/template_helpers/damage_types/hack.jsondescription
 msgctxt "damage type"
@@ -951,7 +976,7 @@ msgstr "Ék"
 msgid "Player"
 msgstr "Játékos"
 
-#: simulation/templates/special/spy.xml:17
+#: simulation/templates/special/spy.xml:16
 msgid "Spy"
 msgstr "Kém"
 
@@ -1020,11 +1045,11 @@ msgstr "Fa"
 msgid "Chop trees for wood."
 msgstr "Fák kivágása fáért."
 
-#: simulation/templates/template_structure.xml:47
+#: simulation/templates/template_structure.xml:46
 msgid "Structure"
 msgstr "Épület"
 
-#: simulation/templates/template_unit.xml:38
+#: simulation/templates/template_unit.xml:37
 msgid "Unit"
 msgstr "Egység"
 

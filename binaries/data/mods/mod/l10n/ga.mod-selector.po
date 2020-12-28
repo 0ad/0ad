@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-28 10:01+0000\n"
+"POT-Creation-Date: 2020-12-26 15:10+0000\n"
 "PO-Revision-Date: 2020-07-13 13:20+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Irish (http://www.transifex.com/wildfire-games/0ad/language/ga/)\n"
@@ -205,7 +205,7 @@ msgstr "Túsaigh comhéadan mod.io."
 msgid "Initializing"
 msgstr "Ag túsú"
 
-#: gui/modio/modio.js:136 gui/modmod/modmod.xml:(caption):181
+#: gui/modio/modio.js:136 gui/modmod/modmod.xml:(caption):182
 msgid "Cancel"
 msgstr "Cealaigh"
 
@@ -272,7 +272,7 @@ msgstr "%(number)s %(unit)s/s"
 msgid "mod.io Mods"
 msgstr "Modhnuithe mod.io"
 
-#: gui/modio/modio.xml:(caption):25 gui/modmod/modmod.xml:(caption):55
+#: gui/modio/modio.xml:(caption):25 gui/modmod/modmod.xml:(caption):56
 msgid "Available Mods"
 msgstr "Modhnuithe Fáil"
 
@@ -292,18 +292,18 @@ msgstr "Athbheoigh Líosta"
 msgid "Download"
 msgstr "Íoslódail"
 
-#: gui/modio/modio.xml:(heading):53 gui/modmod/modmod.xml:(heading):75
-#: gui/modmod/modmod.xml:(heading):115
+#: gui/modio/modio.xml:(heading):53 gui/modmod/modmod.xml:(heading):76
+#: gui/modmod/modmod.xml:(heading):116
 msgid "Name"
 msgstr "Ainm"
 
-#: gui/modio/modio.xml:(heading):56 gui/modmod/modmod.xml:(heading):78
-#: gui/modmod/modmod.xml:(heading):118
+#: gui/modio/modio.xml:(heading):56 gui/modmod/modmod.xml:(heading):79
+#: gui/modmod/modmod.xml:(heading):119
 msgid "Version"
 msgstr "Leagan"
 
-#: gui/modio/modio.xml:(heading):59 gui/modmod/modmod.xml:(heading):84
-#: gui/modmod/modmod.xml:(heading):124
+#: gui/modio/modio.xml:(heading):59 gui/modmod/modmod.xml:(heading):85
+#: gui/modmod/modmod.xml:(heading):125
 msgid "Mod Label"
 msgstr "Lipéad Modhnaithe"
 
@@ -311,8 +311,8 @@ msgstr "Lipéad Modhnaithe"
 msgid "File Size"
 msgstr "Méid Comhaid"
 
-#: gui/modio/modio.xml:(heading):65 gui/modmod/modmod.xml:(heading):87
-#: gui/modmod/modmod.xml:(heading):127
+#: gui/modio/modio.xml:(heading):65 gui/modmod/modmod.xml:(heading):88
+#: gui/modmod/modmod.xml:(heading):128
 msgid "Dependencies"
 msgstr "Spleáchais"
 
@@ -363,30 +363,30 @@ msgstr "Treoir Modhnuithe"
 msgid "Visit mod.io"
 msgstr "Cuairt go dtí mod.io"
 
-#: gui/modmod/modmod.js:107 gui/modmod/modmod.js:254 gui/modmod/modmod.js:275
-msgid "Filter"
-msgstr "Scagaire"
-
-#: gui/modmod/modmod.js:118 gui/modmod/modmod.js:407
+#: gui/modmod/modmod.js:117 gui/modmod/modmod.js:405
 msgctxt "mod activation"
 msgid "Enable"
 msgstr "Cumasaigh"
 
-#: gui/modmod/modmod.js:317
+#: gui/modmod/modmod.js:273 gui/modmod/modmod.xml:(placeholder_text):24
+msgid "Filter"
+msgstr "Scagaire"
+
+#: gui/modmod/modmod.js:315
 #, javascript-format
 msgid "Dependency not met: %(dep)s"
 msgstr "Níor casadh leis an spleáchas: %(dep)s"
 
-#: gui/modmod/modmod.js:323
+#: gui/modmod/modmod.js:321
 msgid "All dependencies met"
 msgstr "Bhuail gach spleáchríocha"
 
-#: gui/modmod/modmod.js:408
+#: gui/modmod/modmod.js:406
 msgctxt "mod activation"
 msgid "Disable"
 msgstr "Díchumasaigh"
 
-#: gui/modmod/modmod.js:416
+#: gui/modmod/modmod.js:414
 msgid "No mod has been selected."
 msgstr "Níl aon mhodhnú roghnaithe."
 
@@ -394,51 +394,51 @@ msgstr "Níl aon mhodhnú roghnaithe."
 msgid "Modifications"
 msgstr "Athruithe"
 
-#: gui/modmod/modmod.xml:(caption):36
+#: gui/modmod/modmod.xml:(caption):37
 msgid "Negate"
 msgstr "Cealaigh"
 
-#: gui/modmod/modmod.xml:(caption):48
+#: gui/modmod/modmod.xml:(caption):49
 msgid "Description"
 msgstr "Tuairisc"
 
-#: gui/modmod/modmod.xml:(caption):99
+#: gui/modmod/modmod.xml:(caption):100
 msgid "Enabled Mods"
 msgstr "Modhnuithe Cumasaithe"
 
-#: gui/modmod/modmod.xml:(caption):167
+#: gui/modmod/modmod.xml:(caption):168
 msgid "Visit Website"
 msgstr "Cuairt ar an suíomh gréasáin"
 
-#: gui/modmod/modmod.xml:(caption):176
+#: gui/modmod/modmod.xml:(caption):177
 msgid "Quit"
 msgstr "Éirí as"
 
-#: gui/modmod/modmod.xml:(caption):186
+#: gui/modmod/modmod.xml:(caption):187
 msgid "Help"
 msgstr "Cabhrú"
 
-#: gui/modmod/modmod.xml:(caption):191
+#: gui/modmod/modmod.xml:(caption):192
 msgid "Download Mods"
 msgstr "Íoslódáil Modhnuithe"
 
-#: gui/modmod/modmod.xml:(caption):196
+#: gui/modmod/modmod.xml:(caption):197
 msgid "Save Configuration"
 msgstr "Sábháil Cumraíocht"
 
-#: gui/modmod/modmod.xml:(caption):201
+#: gui/modmod/modmod.xml:(caption):202
 msgid "Start Mods"
 msgstr "Tosaigh Modhnuithe"
 
-#: gui/modmod/modmod.xml:(heading):81 gui/modmod/modmod.xml:(heading):121
+#: gui/modmod/modmod.xml:(heading):82 gui/modmod/modmod.xml:(heading):122
 msgid "(Folder)"
 msgstr "(Fillteán)"
 
-#: gui/modmod/modmod.xml:(heading):90 gui/modmod/modmod.xml:(heading):130
+#: gui/modmod/modmod.xml:(heading):91 gui/modmod/modmod.xml:(heading):131
 msgid "Website"
 msgstr "Suíomh Gréasáin"
 
-#: gui/modmod/modmod.xml:(tooltip):145 gui/modmod/modmod.xml:(tooltip):159
+#: gui/modmod/modmod.xml:(tooltip):146 gui/modmod/modmod.xml:(tooltip):160
 msgid ""
 "Change the order in which mods are launched. This should match the mods "
 "dependencies."

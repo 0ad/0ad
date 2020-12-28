@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-28 10:01+0000\n"
+"POT-Creation-Date: 2020-12-26 15:10+0000\n"
 "PO-Revision-Date: 2020-07-13 13:20+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
@@ -204,7 +204,7 @@ msgstr "mod.ioインターフェースの初期化中。"
 msgid "Initializing"
 msgstr "初期化中"
 
-#: gui/modio/modio.js:136 gui/modmod/modmod.xml:(caption):181
+#: gui/modio/modio.js:136 gui/modmod/modmod.xml:(caption):182
 msgid "Cancel"
 msgstr "キャンセル"
 
@@ -271,7 +271,7 @@ msgstr "%(number)s %(unit)s/s"
 msgid "mod.io Mods"
 msgstr "mod.ioのMOD"
 
-#: gui/modio/modio.xml:(caption):25 gui/modmod/modmod.xml:(caption):55
+#: gui/modio/modio.xml:(caption):25 gui/modmod/modmod.xml:(caption):56
 msgid "Available Mods"
 msgstr "利用可能なMOD"
 
@@ -291,18 +291,18 @@ msgstr "リストの更新"
 msgid "Download"
 msgstr "ダウンロード"
 
-#: gui/modio/modio.xml:(heading):53 gui/modmod/modmod.xml:(heading):75
-#: gui/modmod/modmod.xml:(heading):115
+#: gui/modio/modio.xml:(heading):53 gui/modmod/modmod.xml:(heading):76
+#: gui/modmod/modmod.xml:(heading):116
 msgid "Name"
 msgstr "名前"
 
-#: gui/modio/modio.xml:(heading):56 gui/modmod/modmod.xml:(heading):78
-#: gui/modmod/modmod.xml:(heading):118
+#: gui/modio/modio.xml:(heading):56 gui/modmod/modmod.xml:(heading):79
+#: gui/modmod/modmod.xml:(heading):119
 msgid "Version"
 msgstr "バージョン"
 
-#: gui/modio/modio.xml:(heading):59 gui/modmod/modmod.xml:(heading):84
-#: gui/modmod/modmod.xml:(heading):124
+#: gui/modio/modio.xml:(heading):59 gui/modmod/modmod.xml:(heading):85
+#: gui/modmod/modmod.xml:(heading):125
 msgid "Mod Label"
 msgstr "MODラベル"
 
@@ -310,8 +310,8 @@ msgstr "MODラベル"
 msgid "File Size"
 msgstr "ファイルサイズ"
 
-#: gui/modio/modio.xml:(heading):65 gui/modmod/modmod.xml:(heading):87
-#: gui/modmod/modmod.xml:(heading):127
+#: gui/modio/modio.xml:(heading):65 gui/modmod/modmod.xml:(heading):88
+#: gui/modmod/modmod.xml:(heading):128
 msgid "Dependencies"
 msgstr "依存性"
 
@@ -362,30 +362,30 @@ msgstr "MOD導入ガイド"
 msgid "Visit mod.io"
 msgstr ""
 
-#: gui/modmod/modmod.js:107 gui/modmod/modmod.js:254 gui/modmod/modmod.js:275
-msgid "Filter"
-msgstr "絞込み"
-
-#: gui/modmod/modmod.js:118 gui/modmod/modmod.js:407
+#: gui/modmod/modmod.js:117 gui/modmod/modmod.js:405
 msgctxt "mod activation"
 msgid "Enable"
 msgstr "有効化"
 
-#: gui/modmod/modmod.js:317
+#: gui/modmod/modmod.js:273 gui/modmod/modmod.xml:(placeholder_text):24
+msgid "Filter"
+msgstr "絞込み"
+
+#: gui/modmod/modmod.js:315
 #, javascript-format
 msgid "Dependency not met: %(dep)s"
 msgstr "以下の依存性が解決されていません: %(dep)s"
 
-#: gui/modmod/modmod.js:323
+#: gui/modmod/modmod.js:321
 msgid "All dependencies met"
 msgstr "依存性をすべて解決しました。"
 
-#: gui/modmod/modmod.js:408
+#: gui/modmod/modmod.js:406
 msgctxt "mod activation"
 msgid "Disable"
 msgstr ""
 
-#: gui/modmod/modmod.js:416
+#: gui/modmod/modmod.js:414
 msgid "No mod has been selected."
 msgstr "MODが選択されていません。"
 
@@ -393,51 +393,51 @@ msgstr "MODが選択されていません。"
 msgid "Modifications"
 msgstr "MOD"
 
-#: gui/modmod/modmod.xml:(caption):36
+#: gui/modmod/modmod.xml:(caption):37
 msgid "Negate"
 msgstr "反転"
 
-#: gui/modmod/modmod.xml:(caption):48
+#: gui/modmod/modmod.xml:(caption):49
 msgid "Description"
 msgstr "説明"
 
-#: gui/modmod/modmod.xml:(caption):99
+#: gui/modmod/modmod.xml:(caption):100
 msgid "Enabled Mods"
 msgstr "有効なMOD"
 
-#: gui/modmod/modmod.xml:(caption):167
+#: gui/modmod/modmod.xml:(caption):168
 msgid "Visit Website"
 msgstr "ウェブサイトにアクセスする"
 
-#: gui/modmod/modmod.xml:(caption):176
+#: gui/modmod/modmod.xml:(caption):177
 msgid "Quit"
 msgstr "中止"
 
-#: gui/modmod/modmod.xml:(caption):186
+#: gui/modmod/modmod.xml:(caption):187
 msgid "Help"
 msgstr ""
 
-#: gui/modmod/modmod.xml:(caption):191
+#: gui/modmod/modmod.xml:(caption):192
 msgid "Download Mods"
 msgstr "MODのダウンロード"
 
-#: gui/modmod/modmod.xml:(caption):196
+#: gui/modmod/modmod.xml:(caption):197
 msgid "Save Configuration"
 msgstr "設定の保存"
 
-#: gui/modmod/modmod.xml:(caption):201
+#: gui/modmod/modmod.xml:(caption):202
 msgid "Start Mods"
 msgstr "MODの開始"
 
-#: gui/modmod/modmod.xml:(heading):81 gui/modmod/modmod.xml:(heading):121
+#: gui/modmod/modmod.xml:(heading):82 gui/modmod/modmod.xml:(heading):122
 msgid "(Folder)"
 msgstr "（フォルダー）"
 
-#: gui/modmod/modmod.xml:(heading):90 gui/modmod/modmod.xml:(heading):130
+#: gui/modmod/modmod.xml:(heading):91 gui/modmod/modmod.xml:(heading):131
 msgid "Website"
 msgstr "ウェブサイト"
 
-#: gui/modmod/modmod.xml:(tooltip):145 gui/modmod/modmod.xml:(tooltip):159
+#: gui/modmod/modmod.xml:(tooltip):146 gui/modmod/modmod.xml:(tooltip):160
 msgid ""
 "Change the order in which mods are launched. This should match the mods "
 "dependencies."

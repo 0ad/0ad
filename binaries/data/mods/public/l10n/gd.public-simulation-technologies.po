@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-12-07 08:42+0000\n"
-"PO-Revision-Date: 2020-12-24 07:08+0000\n"
+"POT-Creation-Date: 2020-12-26 15:10+0000\n"
+"PO-Revision-Date: 2020-12-26 17:19+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -91,8 +91,8 @@ msgstr "Ri fhaighinn ri linn nam bailtean."
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.ptol
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.sele
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.spart
-msgid "Prometōpídion"
-msgstr "Prometōpídion"
+msgid "Prometōpidion"
+msgstr ""
 
 #: simulation/data/technologies/armor_cav_01.jsontooltip
 #: simulation/data/technologies/armor_cav_02.jsontooltip
@@ -126,7 +126,6 @@ msgstr "Armachd meatailt airson bodhaig eich."
 #: simulation/data/technologies/hellenes/spartans_agoge.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenes/special_long_walls.jsonrequirementsTooltip
-#: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/immortals.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/special_equine_transports.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/training_conscription_cavalry.jsonrequirementsTooltip
@@ -145,7 +144,7 @@ msgstr "Armachd meatailt airson bodhaig eich."
 #: simulation/data/technologies/successors/unlock_reform_army.jsonrequirementsTooltip
 #: simulation/data/technologies/successors/unlock_traditional_army.jsonrequirementsTooltip
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsonrequirementsTooltip
-#: simulation/data/technologies/tower_armour.jsonrequirementsTooltip
+#: simulation/data/technologies/tower_health.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_murderholes.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_convoys_armor.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_gain_02.jsonrequirementsTooltip
@@ -170,8 +169,8 @@ msgstr "Armachd meatailt nan curaidhean"
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.ptol
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.sele
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.spart
-msgid "Sidḗrea Panoplía"
-msgstr "Sidḗrea Panoplía"
+msgid "Sidērea Panoplia"
+msgstr ""
 
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.rome
 msgid "Lorica Ferrea"
@@ -190,15 +189,9 @@ msgid "Quilted Body Armor"
 msgstr "Lùirich cuilt"
 
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.athen
-#: simulation/data/technologies/armor_infantry_01.jsonspecificName.brit
-#: simulation/data/technologies/armor_infantry_01.jsonspecificName.cart
-#: simulation/data/technologies/armor_infantry_01.jsonspecificName.gaul
-#: simulation/data/technologies/armor_infantry_01.jsonspecificName.generic
-#: simulation/data/technologies/armor_infantry_01.jsonspecificName.iber
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.mace
-#: simulation/data/technologies/armor_infantry_01.jsonspecificName.maur
-#: simulation/data/technologies/armor_infantry_01.jsonspecificName.pers
-#: simulation/data/technologies/armor_infantry_01.jsonspecificName.rome
+#: simulation/data/technologies/armor_infantry_01.jsonspecificName.ptol
+#: simulation/data/technologies/armor_infantry_01.jsonspecificName.sele
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.spart
 msgid "Spolas"
 msgstr "Spolas"
@@ -217,15 +210,12 @@ msgid "Laminated Linen Body Armor"
 msgstr "Lùirich anairt lannaichte"
 
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.athen
-#: simulation/data/technologies/armor_infantry_02.jsonspecificName.cart
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.mace
-#: simulation/data/technologies/armor_infantry_02.jsonspecificName.pers
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.ptol
-#: simulation/data/technologies/armor_infantry_02.jsonspecificName.rome
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.sele
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.spart
-msgid "Linothorakes"
-msgstr "Linothorakes"
+msgid "Linothōrax"
+msgstr ""
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsondescription
 msgid "Lead sheathing protects ship hulls."
@@ -275,23 +265,11 @@ msgstr "Oideachadh air sabaid dhlùth an eachraidh"
 #: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.ptol
 #: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.sele
 #: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.spart
-#: simulation/data/technologies/attack_cavalry_ranged_01.jsonspecificName.athen
-#: simulation/data/technologies/attack_cavalry_ranged_01.jsonspecificName.mace
-#: simulation/data/technologies/attack_cavalry_ranged_01.jsonspecificName.ptol
-#: simulation/data/technologies/attack_cavalry_ranged_01.jsonspecificName.sele
-#: simulation/data/technologies/attack_cavalry_ranged_01.jsonspecificName.spart
-#: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.athen
-#: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.mace
-#: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.ptol
-#: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.sele
-#: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.spart
 msgid "Xyston"
 msgstr "Xyston"
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.rome
 #: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.rome
-#: simulation/data/technologies/attack_cavalry_ranged_01.jsonspecificName.rome
-#: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.rome
 msgid "Hasta"
 msgstr "Hasta"
 
@@ -348,8 +326,8 @@ msgstr "Arm cliathaich"
 #: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.ptol
 #: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.sele
 #: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.spart
-msgid "Xíphos"
-msgstr "Xíphos"
+msgid "Xiphos"
+msgstr ""
 
 #: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.rome
 msgid "Pugio"
@@ -383,8 +361,8 @@ msgstr "Coisridh astair neo-riaghailteach"
 #: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.ptol
 #: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.sele
 #: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.spart
-msgid "Átaktoi"
-msgstr "Átaktoi"
+msgid "Ataktoi"
+msgstr ""
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsontooltip
 #: simulation/data/technologies/attack_infantry_ranged_02.jsontooltip
@@ -408,8 +386,8 @@ msgstr "Miann-còmhraig"
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.ptol
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.sele
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.spart
-msgid "Dýnamis"
-msgstr "Dýnamis"
+msgid "Dynamis"
+msgstr "Dynamis"
 
 #: simulation/data/technologies/attack_soldiers_will.jsontooltip
 msgid ""
@@ -774,11 +752,9 @@ msgstr "Thoir air ìochdarain cuideachadh le tochladh cloiche. Thèid clachan a 
 msgid "Serfs"
 msgstr "Ìochdarain"
 
-#: simulation/data/technologies/gather_mining_serfs.jsonspecificName.athen
-#: simulation/data/technologies/gather_mining_serfs.jsonspecificName.mace
 #: simulation/data/technologies/gather_mining_serfs.jsonspecificName.spart
-msgid "Heílōtes"
-msgstr "Heílōtes"
+msgid "Heilōtes"
+msgstr ""
 
 #: simulation/data/technologies/gather_mining_serfs.jsontooltip
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
@@ -796,9 +772,11 @@ msgstr "Sgalagan"
 
 #: simulation/data/technologies/gather_mining_servants.jsonspecificName.athen
 #: simulation/data/technologies/gather_mining_servants.jsonspecificName.mace
+#: simulation/data/technologies/gather_mining_servants.jsonspecificName.ptol
+#: simulation/data/technologies/gather_mining_servants.jsonspecificName.sele
 #: simulation/data/technologies/gather_mining_servants.jsonspecificName.spart
-msgid "Doûloi"
-msgstr "Doûloi"
+msgid "Douloi"
+msgstr "Douloi"
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsondescription
 msgid "Develop shaft mining. Increases metal gathering rates."
@@ -842,9 +820,15 @@ msgstr "Tràillean"
 
 #: simulation/data/technologies/gather_mining_slaves.jsonspecificName.athen
 #: simulation/data/technologies/gather_mining_slaves.jsonspecificName.mace
+#: simulation/data/technologies/gather_mining_slaves.jsonspecificName.ptol
+#: simulation/data/technologies/gather_mining_slaves.jsonspecificName.sele
 #: simulation/data/technologies/gather_mining_slaves.jsonspecificName.spart
-msgid "Andrápoda"
-msgstr "Andrápoda"
+msgid "Andrapoda"
+msgstr ""
+
+#: simulation/data/technologies/gather_mining_slaves.jsonspecificName.rome
+msgid "Servi"
+msgstr ""
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsondescription
 msgid ""
@@ -890,6 +874,8 @@ msgstr "Astar an t‑slànachaidh"
 
 #: simulation/data/technologies/heal_range.jsonspecificName.athen
 #: simulation/data/technologies/heal_range.jsonspecificName.mace
+#: simulation/data/technologies/heal_range.jsonspecificName.ptol
+#: simulation/data/technologies/heal_range.jsonspecificName.sele
 #: simulation/data/technologies/heal_range.jsonspecificName.spart
 msgid "Olympic Pantheon"
 msgstr "Pan-diadhachd Oilimpeach"
@@ -904,10 +890,8 @@ msgid "Healing Range 2"
 msgstr "Astar an t‑slànachaidh 2"
 
 #: simulation/data/technologies/heal_range_2.jsonspecificName.athen
-#: simulation/data/technologies/heal_range_2.jsonspecificName.mace
-#: simulation/data/technologies/heal_range_2.jsonspecificName.spart
-msgid "Akadḗmeia"
-msgstr "Akadḗmeia"
+msgid "Akadēmeia"
+msgstr ""
 
 #: simulation/data/technologies/heal_rate.jsondescription
 #: simulation/data/technologies/heal_rate_2.jsondescription
@@ -920,9 +904,11 @@ msgstr "Luaths an t‑slànachaidh"
 
 #: simulation/data/technologies/heal_rate.jsonspecificName.athen
 #: simulation/data/technologies/heal_rate.jsonspecificName.mace
+#: simulation/data/technologies/heal_rate.jsonspecificName.ptol
+#: simulation/data/technologies/heal_rate.jsonspecificName.sele
 #: simulation/data/technologies/heal_rate.jsonspecificName.spart
-msgid "Sphágia"
-msgstr "Sphágia"
+msgid "Sphagia"
+msgstr "Sphagia"
 
 #: simulation/data/technologies/heal_rate.jsontooltip
 #: simulation/data/technologies/heal_rate_2.jsontooltip
@@ -935,6 +921,8 @@ msgstr "Luaths an t‑slànachaidh 2"
 
 #: simulation/data/technologies/heal_rate_2.jsonspecificName.athen
 #: simulation/data/technologies/heal_rate_2.jsonspecificName.mace
+#: simulation/data/technologies/heal_rate_2.jsonspecificName.ptol
+#: simulation/data/technologies/heal_rate_2.jsonspecificName.sele
 #: simulation/data/technologies/heal_rate_2.jsonspecificName.spart
 msgid "Hippocratic Oath"
 msgstr "Bòid Iopocrais"
@@ -1039,20 +1027,6 @@ msgstr "Ailtireachd-laighe"
 msgid ""
 "Civic Structures +20% build time, +20% health, and +20% capture points."
 msgstr "Gheibh togalaichean sìobhalta +20% air an ùine togail, +20% air an slàinte agus +20% de phuingean glacaidh."
-
-#: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsondescription
-msgid ""
-"Have your priests instructed by the High Priest himself - may Amun bless "
-"him."
-msgstr "Thèid na sagartan agad oideachadh leis an àrd-shagart fhèin – beannachd Amun air."
-
-#: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsongenericName
-msgid "Divine Instruction"
-msgstr "Facal dhè"
-
-#: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsontooltip
-msgid "Train elite rank healers."
-msgstr "Oidich lighichean seann-ghaisgeach."
 
 #: simulation/data/technologies/persians/immortals.jsondescription
 msgid ""
@@ -1181,9 +1155,11 @@ msgstr "Feum air 4 togalaichean o linn nam bailtean."
 
 #: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
+#: simulation/data/technologies/phase_city_generic.jsonspecificName.ptol
+#: simulation/data/technologies/phase_city_generic.jsonspecificName.sele
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.spart
-msgid "Megalópolis"
-msgstr "Megalópolis"
+msgid "Megalopolis"
+msgstr "Megalopolis"
 
 #: simulation/data/technologies/phase_city_athen.jsontooltip
 msgid ""
@@ -1232,9 +1208,11 @@ msgstr "Feum air 5 togalaichean o linn nan clachan."
 
 #: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
+#: simulation/data/technologies/phase_town_generic.jsonspecificName.ptol
+#: simulation/data/technologies/phase_town_generic.jsonspecificName.sele
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.spart
-msgid "Kōmópolis"
-msgstr "Kōmópolis"
+msgid "Kōmopolis"
+msgstr ""
 
 #: simulation/data/technologies/phase_town_athen.jsontooltip
 msgid ""
@@ -1273,22 +1251,18 @@ msgstr "Liosan taighe"
 #: simulation/data/technologies/pop_house_01.jsonspecificName.athen
 #: simulation/data/technologies/pop_house_01.jsonspecificName.mace
 #: simulation/data/technologies/pop_house_01.jsonspecificName.ptol
-#: simulation/data/technologies/pop_house_01.jsonspecificName.rome
 #: simulation/data/technologies/pop_house_01.jsonspecificName.sele
 #: simulation/data/technologies/pop_house_01.jsonspecificName.spart
-#: simulation/data/technologies/pop_wonder.jsonspecificName.athen
-#: simulation/data/technologies/pop_wonder.jsonspecificName.mace
-#: simulation/data/technologies/pop_wonder.jsonspecificName.ptol
-#: simulation/data/technologies/pop_wonder.jsonspecificName.rome
-#: simulation/data/technologies/pop_wonder.jsonspecificName.sele
-#: simulation/data/technologies/pop_wonder.jsonspecificName.spart
-msgid "Peristyle"
-msgstr "Cuairt-stoidhle"
+msgid "Peristylon"
+msgstr ""
 
 #: simulation/data/technologies/pop_house_01.jsonspecificName.pers
-#: simulation/data/technologies/pop_wonder.jsonspecificName.pers
-msgid "Paradise"
-msgstr "Pàrras"
+msgid "Paradaidām"
+msgstr ""
+
+#: simulation/data/technologies/pop_house_01.jsonspecificName.rome
+msgid "Peristylium"
+msgstr ""
 
 #: simulation/data/technologies/pop_house_01.jsontooltip
 #: simulation/data/technologies/pop_house_02.jsontooltip
@@ -1315,6 +1289,14 @@ msgstr "Tarraingidh am mìorbhail barrachd dhaoine dhan t-sìobhaltas agad."
 #: simulation/data/technologies/pop_wonder.jsongenericName
 msgid "Glorious Expansion"
 msgstr "Leudachadh glòrmhor"
+
+#: simulation/data/technologies/pop_wonder.jsonspecificName.athen
+#: simulation/data/technologies/pop_wonder.jsonspecificName.mace
+#: simulation/data/technologies/pop_wonder.jsonspecificName.ptol
+#: simulation/data/technologies/pop_wonder.jsonspecificName.sele
+#: simulation/data/technologies/pop_wonder.jsonspecificName.spart
+msgid "Peristasis"
+msgstr ""
 
 #: simulation/data/technologies/pop_wonder.jsontooltip
 msgid ""
@@ -1510,18 +1492,6 @@ msgid ""
 "and attack damage."
 msgstr "Àrdaich laoich coisridh nan giùlanairean-sgèithe gu sgiathan airgid aig a bheil barrachd slàinte ’s dochann ionnsaighe."
 
-#: simulation/data/technologies/tower_armour.jsondescription
-msgid "Reinforce the foundations in preparation of an attack."
-msgstr "Neartaich na buinn gus ullachadh an aghaidh ionnsaighe."
-
-#: simulation/data/technologies/tower_armour.jsongenericName
-msgid "Sturdy Foundations"
-msgstr "Buinn threuna"
-
-#: simulation/data/technologies/tower_armour.jsontooltip
-msgid "Towers +2 armor."
-msgstr "Gheibh tùir +2 a dh’armachd."
-
 #: simulation/data/technologies/tower_crenellations.jsondescription
 msgid ""
 "Crenellations on the battlements allow soldiers wider range of fire in "
@@ -1535,6 +1505,18 @@ msgstr "Creanailean"
 #: simulation/data/technologies/tower_crenellations.jsontooltip
 msgid "Sentry and Stone Towers +40% more arrows per garrisoned Soldier."
 msgstr "Gheibh tùir freiceadain is cloiche +40% saighead a bharrachd air gach saighdear a tha ’na ghearastan annta."
+
+#: simulation/data/technologies/tower_health.jsondescription
+msgid "Reinforce the foundations in preparation of an attack."
+msgstr "Neartaich na buinn gus ullachadh an aghaidh ionnsaighe."
+
+#: simulation/data/technologies/tower_health.jsongenericName
+msgid "Sturdy Foundations"
+msgstr "Buinn threuna"
+
+#: simulation/data/technologies/tower_health.jsontooltip
+msgid "Towers +25% health."
+msgstr ""
 
 #: simulation/data/technologies/tower_murderholes.jsondescription
 msgid "Murder holes allow hitting enemies at the foot of the tower."
@@ -1573,8 +1555,8 @@ msgstr "Luchd-faire"
 #: simulation/data/technologies/tower_watch.jsonspecificName.ptol
 #: simulation/data/technologies/tower_watch.jsonspecificName.sele
 #: simulation/data/technologies/tower_watch.jsonspecificName.spart
-msgid "Nyktophýlakes"
-msgstr "Nyktophýlakes"
+msgid "Nyktophylakes"
+msgstr "Nyktophylakes"
 
 #: simulation/data/technologies/tower_watch.jsonspecificName.rome
 msgid "Vigiles"
@@ -1709,11 +1691,11 @@ msgstr "’S e saighdearan proifeiseanta a th’ anns na h-aonadan geàird (laoi
 msgid "Unlock Champion Units"
 msgstr "Thoir a’ ghlas far aonadan laoich"
 
-#: simulation/data/technologies/unlock_champion_units.jsonspecificName.athen
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.mace
-#: simulation/data/technologies/unlock_champion_units.jsonspecificName.spart
-msgid "Ágēma"
-msgstr "Ágēma"
+#: simulation/data/technologies/unlock_champion_units.jsonspecificName.ptol
+#: simulation/data/technologies/unlock_champion_units.jsonspecificName.sele
+msgid "Agēma"
+msgstr ""
 
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.rome
 msgid "Regio Cohors"
@@ -1733,9 +1715,11 @@ msgstr "Fèill torrachais"
 
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.athen
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.mace
+#: simulation/data/technologies/unlock_females_house.jsonspecificName.ptol
+#: simulation/data/technologies/unlock_females_house.jsonspecificName.sele
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.spart
-msgid "Thesmophória"
-msgstr "Thesmophória"
+msgid "Thesmophoria"
+msgstr "Thesmophoria"
 
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.rome
 msgid "Bona Dea"

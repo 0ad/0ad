@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2020-11-28 10:01+0000\n"
+"POT-Creation-Date: 2020-12-26 15:10+0000\n"
 "PO-Revision-Date: 2017-06-04 12:59+0000\n"
 "Last-Translator: Martin H <pilino@posteo.de>, 2020\n"
 "Language-Team: Swedish (https://www.transifex.com/wildfire-games/teams/17418/sv/)\n"
@@ -284,7 +284,7 @@ msgid "Introductory Tutorial"
 msgstr "Inledande Handledning"
 
 #: maps/tutorials/introductory_tutorial.xml:PlayerData[0].Name:39
-#: maps/tutorials/starting_economy_walkthrough.xml:PlayerData[0].Name:39
+#: maps/tutorials/starting_economy_walkthrough.xml:PlayerData[0].Name:40
 msgid "Player 1"
 msgstr "Spelare 1"
 
@@ -817,17 +817,11 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:314
 msgid ""
-"A field can have up to five farmers working on it. To add additional "
-"gatherers, select the Civic Center and setup a rally point on a field by "
-"right-clicking on it. As long as the field is not yet build, new workers "
-"sent by a rally point will help building it, while they will gather it when "
-"built."
+"Up to five Workers can gather from a Field. To add additional Workers, "
+"select the Civic Center and set a rally point on a Field by right-clicking "
+"on it. If the Field is not yet finished, new Workers sent by a rally point "
+"will help building it, and when built, they will gather food."
 msgstr ""
-"Upp till fem arbetare kan samla från en åker samtidigt. För att lägga till "
-"fler samlare, välj samhällscentret och placera en samlingspunkt på åkern "
-"genom att högerklicka på den. Så länge åkern inte är färdigbyggd kommer nya "
-"arbetare hjälpa med att bygga klart den, och kommer börja samla när åkern är"
-" färdig."
 
 #: maps/tutorials/starting_economy_walkthrough.js:322
 msgid "Select the Civic Center and right-click on the field."
@@ -986,7 +980,7 @@ msgstr ""
 "Detta är slutet av handledningen. Detta borde ge dig en god uppfattning om "
 "grunderna för att bygga upp din ekonomi."
 
-#: maps/tutorials/starting_economy_walkthrough.xml:Description:39
+#: maps/tutorials/starting_economy_walkthrough.xml:Description:40
 msgid ""
 "This map will give a rough guide for starting the game effectively.  Early "
 "in the game the most important thing is to gather resources as fast as "
@@ -996,6 +990,6 @@ msgstr ""
 "effektivt. Tidigt i spelet är det viktigast att samla resurser så snabbt som"
 " möjligt så att du senare kan bygga tillräckligt med trupper."
 
-#: maps/tutorials/starting_economy_walkthrough.xml:Name:39
+#: maps/tutorials/starting_economy_walkthrough.xml:Name:40
 msgid "Starting Economy Walkthrough"
 msgstr " Startekonomi Genomgång"

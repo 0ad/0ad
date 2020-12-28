@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-28 10:01+0000\n"
+"POT-Creation-Date: 2020-12-26 15:10+0000\n"
 "PO-Revision-Date: 2020-10-02 14:16+0000\n"
 "Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
@@ -208,7 +208,7 @@ msgstr "S'està inicialitzant la interfície de mod.io."
 msgid "Initializing"
 msgstr "S'està inicialitzant"
 
-#: gui/modio/modio.js:136 gui/modmod/modmod.xml:(caption):181
+#: gui/modio/modio.js:136 gui/modmod/modmod.xml:(caption):182
 msgid "Cancel"
 msgstr "Cancel·la"
 
@@ -275,7 +275,7 @@ msgstr "%(number)s %(unit)s/s"
 msgid "mod.io Mods"
 msgstr "Mods de mod.io"
 
-#: gui/modio/modio.xml:(caption):25 gui/modmod/modmod.xml:(caption):55
+#: gui/modio/modio.xml:(caption):25 gui/modmod/modmod.xml:(caption):56
 msgid "Available Mods"
 msgstr "Mods disponibles"
 
@@ -295,18 +295,18 @@ msgstr "Actualitza la llista"
 msgid "Download"
 msgstr "Baixa"
 
-#: gui/modio/modio.xml:(heading):53 gui/modmod/modmod.xml:(heading):75
-#: gui/modmod/modmod.xml:(heading):115
+#: gui/modio/modio.xml:(heading):53 gui/modmod/modmod.xml:(heading):76
+#: gui/modmod/modmod.xml:(heading):116
 msgid "Name"
 msgstr "Nom"
 
-#: gui/modio/modio.xml:(heading):56 gui/modmod/modmod.xml:(heading):78
-#: gui/modmod/modmod.xml:(heading):118
+#: gui/modio/modio.xml:(heading):56 gui/modmod/modmod.xml:(heading):79
+#: gui/modmod/modmod.xml:(heading):119
 msgid "Version"
 msgstr "Versió"
 
-#: gui/modio/modio.xml:(heading):59 gui/modmod/modmod.xml:(heading):84
-#: gui/modmod/modmod.xml:(heading):124
+#: gui/modio/modio.xml:(heading):59 gui/modmod/modmod.xml:(heading):85
+#: gui/modmod/modmod.xml:(heading):125
 msgid "Mod Label"
 msgstr "Etiqueta del mod"
 
@@ -314,8 +314,8 @@ msgstr "Etiqueta del mod"
 msgid "File Size"
 msgstr "Mida del fitxer"
 
-#: gui/modio/modio.xml:(heading):65 gui/modmod/modmod.xml:(heading):87
-#: gui/modmod/modmod.xml:(heading):127
+#: gui/modio/modio.xml:(heading):65 gui/modmod/modmod.xml:(heading):88
+#: gui/modmod/modmod.xml:(heading):128
 msgid "Dependencies"
 msgstr "Dependències"
 
@@ -366,30 +366,30 @@ msgstr "Guia de mods"
 msgid "Visit mod.io"
 msgstr "Visita mod.io"
 
-#: gui/modmod/modmod.js:107 gui/modmod/modmod.js:254 gui/modmod/modmod.js:275
-msgid "Filter"
-msgstr "Filtre"
-
-#: gui/modmod/modmod.js:118 gui/modmod/modmod.js:407
+#: gui/modmod/modmod.js:117 gui/modmod/modmod.js:405
 msgctxt "mod activation"
 msgid "Enable"
 msgstr "Activa"
 
-#: gui/modmod/modmod.js:317
+#: gui/modmod/modmod.js:273 gui/modmod/modmod.xml:(placeholder_text):24
+msgid "Filter"
+msgstr "Filtre"
+
+#: gui/modmod/modmod.js:315
 #, javascript-format
 msgid "Dependency not met: %(dep)s"
 msgstr "No es compleix la dependència: %(dep)s"
 
-#: gui/modmod/modmod.js:323
+#: gui/modmod/modmod.js:321
 msgid "All dependencies met"
 msgstr "S'han trobat totes les dependències"
 
-#: gui/modmod/modmod.js:408
+#: gui/modmod/modmod.js:406
 msgctxt "mod activation"
 msgid "Disable"
 msgstr "Desactiva"
 
-#: gui/modmod/modmod.js:416
+#: gui/modmod/modmod.js:414
 msgid "No mod has been selected."
 msgstr "No s'ha seleccionat cap mod."
 
@@ -397,51 +397,51 @@ msgstr "No s'ha seleccionat cap mod."
 msgid "Modifications"
 msgstr "Modificacions"
 
-#: gui/modmod/modmod.xml:(caption):36
+#: gui/modmod/modmod.xml:(caption):37
 msgid "Negate"
 msgstr "Nega"
 
-#: gui/modmod/modmod.xml:(caption):48
+#: gui/modmod/modmod.xml:(caption):49
 msgid "Description"
 msgstr "Descripció"
 
-#: gui/modmod/modmod.xml:(caption):99
+#: gui/modmod/modmod.xml:(caption):100
 msgid "Enabled Mods"
 msgstr "Mods activats"
 
-#: gui/modmod/modmod.xml:(caption):167
+#: gui/modmod/modmod.xml:(caption):168
 msgid "Visit Website"
 msgstr "Visita el lloc web"
 
-#: gui/modmod/modmod.xml:(caption):176
+#: gui/modmod/modmod.xml:(caption):177
 msgid "Quit"
 msgstr "Surt"
 
-#: gui/modmod/modmod.xml:(caption):186
+#: gui/modmod/modmod.xml:(caption):187
 msgid "Help"
 msgstr "Ajuda"
 
-#: gui/modmod/modmod.xml:(caption):191
+#: gui/modmod/modmod.xml:(caption):192
 msgid "Download Mods"
 msgstr "Baixa mods"
 
-#: gui/modmod/modmod.xml:(caption):196
+#: gui/modmod/modmod.xml:(caption):197
 msgid "Save Configuration"
 msgstr "Desa la configuració"
 
-#: gui/modmod/modmod.xml:(caption):201
+#: gui/modmod/modmod.xml:(caption):202
 msgid "Start Mods"
 msgstr "Inicia els mods"
 
-#: gui/modmod/modmod.xml:(heading):81 gui/modmod/modmod.xml:(heading):121
+#: gui/modmod/modmod.xml:(heading):82 gui/modmod/modmod.xml:(heading):122
 msgid "(Folder)"
 msgstr "(Carpeta)"
 
-#: gui/modmod/modmod.xml:(heading):90 gui/modmod/modmod.xml:(heading):130
+#: gui/modmod/modmod.xml:(heading):91 gui/modmod/modmod.xml:(heading):131
 msgid "Website"
 msgstr "Lloc web"
 
-#: gui/modmod/modmod.xml:(tooltip):145 gui/modmod/modmod.xml:(tooltip):159
+#: gui/modmod/modmod.xml:(tooltip):146 gui/modmod/modmod.xml:(tooltip):160
 msgid ""
 "Change the order in which mods are launched. This should match the mods "
 "dependencies."

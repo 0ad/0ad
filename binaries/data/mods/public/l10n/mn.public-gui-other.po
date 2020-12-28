@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-12-18 08:02+0000\n"
-"PO-Revision-Date: 2020-12-18 08:36+0000\n"
+"POT-Creation-Date: 2020-12-26 15:10+0000\n"
+"PO-Revision-Date: 2020-12-26 17:36+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Mongolian (http://www.transifex.com/wildfire-games/0ad/language/mn/)\n"
 "MIME-Version: 1.0\n"
@@ -382,8 +382,8 @@ msgstr ""
 #: gui/common/tooltips.js:210 gui/common/tooltips.js:231
 #: gui/common/tooltips.js:250 gui/common/tooltips.js:313
 #: gui/common/tooltips.js:597 gui/common/tooltips.js:619
-#: gui/common/tooltips.js:702 gui/common/tooltips.js:743
-#: gui/common/tooltips.js:1041
+#: gui/common/tooltips.js:704 gui/common/tooltips.js:745
+#: gui/common/tooltips.js:1043
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr ""
@@ -462,7 +462,7 @@ msgid "You have been banned."
 msgstr ""
 
 #: gui/common/network.js:73
-msgid "Playername in use. If you were disconnected, retry in few seconds."
+msgid "Player name in use. If you were disconnected, retry in few seconds."
 msgstr ""
 
 #: gui/common/network.js:74
@@ -519,8 +519,8 @@ msgstr ""
 #: gui/common/tooltips.js:406 gui/common/tooltips.js:420
 #: gui/common/tooltips.js:497 gui/common/tooltips.js:502
 #: gui/common/tooltips.js:559 gui/common/tooltips.js:592
-#: gui/common/tooltips.js:906 gui/common/tooltips.js:939
-#: gui/common/tooltips.js:1006 gui/loadgame/SavegameDetails.js:38
+#: gui/common/tooltips.js:908 gui/common/tooltips.js:941
+#: gui/common/tooltips.js:1008 gui/loadgame/SavegameDetails.js:38
 #: gui/reference/common/tooltips.js:13 gui/replaymenu/replay_menu.js:282
 msgid ", "
 msgstr ""
@@ -667,7 +667,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: gui/common/tooltips.js:92 gui/common/tooltips.js:555
-#: gui/common/tooltips.js:937
+#: gui/common/tooltips.js:939
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] ""
@@ -765,7 +765,7 @@ msgstr ""
 msgid "Garrison to fire arrows"
 msgstr ""
 
-#: gui/common/tooltips.js:297 gui/common/tooltips.js:935
+#: gui/common/tooltips.js:297 gui/common/tooltips.js:937
 msgid "Interval:"
 msgstr ""
 
@@ -817,7 +817,7 @@ msgstr ""
 msgid "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
 msgstr ""
 
-#: gui/common/tooltips.js:345 gui/common/tooltips.js:930
+#: gui/common/tooltips.js:345 gui/common/tooltips.js:932
 msgid "Range:"
 msgstr ""
 
@@ -832,8 +832,8 @@ msgstr ""
 msgid "meters"
 msgstr ""
 
-#: gui/common/tooltips.js:353 gui/common/tooltips.js:932
-#: gui/common/tooltips.js:962
+#: gui/common/tooltips.js:353 gui/common/tooltips.js:934
+#: gui/common/tooltips.js:964
 msgid "meter"
 msgid_plural "meters"
 msgstr[0] ""
@@ -953,11 +953,11 @@ msgstr ""
 msgid "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 msgstr ""
 
-#: gui/common/tooltips.js:552 gui/common/tooltips.js:925
+#: gui/common/tooltips.js:552 gui/common/tooltips.js:927
 msgid "Heal:"
 msgstr ""
 
-#: gui/common/tooltips.js:554 gui/common/tooltips.js:927
+#: gui/common/tooltips.js:554 gui/common/tooltips.js:929
 msgid "Health"
 msgstr ""
 
@@ -1019,16 +1019,16 @@ msgid_plural "Add a worker to finish the construction in %(second)s seconds."
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/common/tooltips.js:667 gui/common/tooltips.js:878
+#: gui/common/tooltips.js:669 gui/common/tooltips.js:880
 #, javascript-format
 msgid "%(component)s %(cost)s"
 msgstr ""
 
-#: gui/common/tooltips.js:703
+#: gui/common/tooltips.js:705
 msgid "Gather Rates:"
 msgstr ""
 
-#: gui/common/tooltips.js:706 gui/common/tooltips.js:748
+#: gui/common/tooltips.js:708 gui/common/tooltips.js:750
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
 msgstr ""
@@ -1036,170 +1036,170 @@ msgstr ""
 #. Translation: Label in tooltip showing the resource type and quantity of a
 #. given resource
 #. supply.
-#: gui/common/tooltips.js:726
+#: gui/common/tooltips.js:728
 #, javascript-format
 msgid "%(label)s %(component)s %(amount)s"
 msgstr ""
 
-#: gui/common/tooltips.js:727
+#: gui/common/tooltips.js:729
 msgid "Resource Supply:"
 msgstr ""
 
 #. Translation: Marks that a resource supply entity has an unending, infinite,
 #. supply of its
 #. resource.
-#: gui/common/tooltips.js:730 gui/summary/summary.js:111
+#: gui/common/tooltips.js:732 gui/summary/summary.js:111
 msgid "∞"
 msgstr ""
 
-#: gui/common/tooltips.js:744
+#: gui/common/tooltips.js:746
 msgid "Resource Trickle:"
 msgstr ""
 
-#: gui/common/tooltips.js:745
+#: gui/common/tooltips.js:747
 #, javascript-format
 msgid "%(resources)s / %(time)s"
 msgstr ""
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
-#: gui/common/tooltips.js:797
+#: gui/common/tooltips.js:799
 #, javascript-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
 msgstr ""
 
-#: gui/common/tooltips.js:826
+#: gui/common/tooltips.js:828
 #, javascript-format
 msgid "Walls:  %(costs)s"
 msgstr ""
 
-#: gui/common/tooltips.js:827
+#: gui/common/tooltips.js:829
 #, javascript-format
 msgid "Towers:  %(costs)s"
 msgstr ""
 
 #. Translation: Label in tooltip showing cost of a unit, structure or
 #. technology.
-#: gui/common/tooltips.js:835
+#: gui/common/tooltips.js:837
 #, javascript-format
 msgid "%(label)s %(costs)s"
 msgstr ""
 
-#: gui/common/tooltips.js:836
+#: gui/common/tooltips.js:838
 msgid "Cost:"
 msgstr ""
 
-#: gui/common/tooltips.js:849
+#: gui/common/tooltips.js:851
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr ""
 
-#: gui/common/tooltips.js:862
+#: gui/common/tooltips.js:864
 #, javascript-format
 msgid "%(label)s %(bonus)s"
 msgstr ""
 
-#: gui/common/tooltips.js:863
+#: gui/common/tooltips.js:865
 msgid "Population Bonus:"
 msgstr ""
 
-#: gui/common/tooltips.js:883
+#: gui/common/tooltips.js:885
 msgid "Insufficient resources:"
 msgstr ""
 
-#: gui/common/tooltips.js:899
+#: gui/common/tooltips.js:901
 #, javascript-format
 msgid "%(label)s %(speeds)s"
 msgstr ""
 
-#: gui/common/tooltips.js:900
+#: gui/common/tooltips.js:902
 msgid "Speed:"
 msgstr ""
 
-#: gui/common/tooltips.js:902 gui/common/tooltips.js:907
+#: gui/common/tooltips.js:904 gui/common/tooltips.js:909
 #, javascript-format
 msgid "%(speed)s %(movementType)s"
 msgstr ""
 
-#: gui/common/tooltips.js:904
+#: gui/common/tooltips.js:906
 msgid "Walk"
 msgstr ""
 
-#: gui/common/tooltips.js:909
+#: gui/common/tooltips.js:911
 msgid "Run"
 msgstr ""
 
-#: gui/common/tooltips.js:924 gui/common/tooltips.js:929
-#: gui/common/tooltips.js:934 gui/common/tooltips.js:959
+#: gui/common/tooltips.js:926 gui/common/tooltips.js:931
+#: gui/common/tooltips.js:936 gui/common/tooltips.js:961
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/common/tooltips.js:951
+#: gui/common/tooltips.js:953
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
 msgstr ""
 
-#: gui/common/tooltips.js:952
+#: gui/common/tooltips.js:954
 #, javascript-format
 msgid "%(auraname)s:"
 msgstr ""
 
-#: gui/common/tooltips.js:960
+#: gui/common/tooltips.js:962
 msgctxt "aura"
 msgid "Range:"
 msgstr ""
 
-#: gui/common/tooltips.js:977
+#: gui/common/tooltips.js:979
 #, javascript-format
 msgid "%(specificName)s (%(genericName)s)"
 msgstr ""
 
 #. Translation: Example: "Epibátēs Athēnaîos [font="sans-bold-16"](Athenian
 #. Marine)[/font]"
-#: gui/common/tooltips.js:990
+#: gui/common/tooltips.js:992
 #, javascript-format
 msgid "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 msgstr ""
 
-#: gui/common/tooltips.js:1005
+#: gui/common/tooltips.js:1007
 msgid "Classes:"
 msgstr ""
 
 #. Translation: %(component) will be the icon for the loot type and %(loot)
 #. will be the
 #. value.
-#: gui/common/tooltips.js:1032
+#: gui/common/tooltips.js:1034
 #, javascript-format
 msgid "%(component)s %(loot)s"
 msgstr ""
 
-#: gui/common/tooltips.js:1042
+#: gui/common/tooltips.js:1044
 msgid "Loot:"
 msgstr ""
 
-#: gui/common/tooltips.js:1052
+#: gui/common/tooltips.js:1054
 #, javascript-format
 msgid "%(label)s %(icons)s"
 msgstr ""
 
-#: gui/common/tooltips.js:1053
+#: gui/common/tooltips.js:1055
 msgid "Dropsite for:"
 msgstr ""
 
 #. Translation: Appears in a tooltip to indicate that right-clicking the
 #. corresponding GUI
 #. element will open the Template Details GUI page.
-#: gui/common/tooltips.js:1061
+#: gui/common/tooltips.js:1063
 msgid "Right-click to view more information."
 msgstr ""
 
 #. Translation: Appears in a tooltip to indicate that clicking the
 #. corresponding GUI element
 #. will open the Template Details GUI page.
-#: gui/common/tooltips.js:1067
+#: gui/common/tooltips.js:1069
 msgid "Click to view more information."
 msgstr ""
 
@@ -1516,7 +1516,7 @@ msgid "Cancel"
 msgstr ""
 
 #: gui/loadgame/load.xml:(caption):53
-#: gui/replaymenu/replay_menu.xml:(caption):231
+#: gui/replaymenu/replay_menu.xml:(caption):232
 msgid "Delete"
 msgstr ""
 
@@ -1533,22 +1533,22 @@ msgid "Played time:"
 msgstr ""
 
 #: gui/loadgame/load.xml:(caption):81
-#: gui/replaymenu/replay_menu.xml:(caption):150
+#: gui/replaymenu/replay_menu.xml:(caption):151
 msgid "Map Type:"
 msgstr ""
 
 #: gui/loadgame/load.xml:(caption):85
-#: gui/replaymenu/replay_menu.xml:(caption):165
+#: gui/replaymenu/replay_menu.xml:(caption):166
 msgid "Map Size:"
 msgstr ""
 
 #: gui/loadgame/load.xml:(caption):89
-#: gui/replaymenu/replay_menu.xml:(caption):180
+#: gui/replaymenu/replay_menu.xml:(caption):181
 msgid "Victory:"
 msgstr ""
 
 #: gui/loadgame/load.xml:(heading):26
-#: gui/replaymenu/replay_menu.xml:(heading):69
+#: gui/replaymenu/replay_menu.xml:(heading):70
 msgctxt "replay"
 msgid "Date / Time"
 msgstr ""
@@ -1559,7 +1559,7 @@ msgid "Map Type"
 msgstr ""
 
 #: gui/loadgame/load.xml:(heading):34
-#: gui/replaymenu/replay_menu.xml:(heading):77
+#: gui/replaymenu/replay_menu.xml:(heading):78
 msgctxt "replay"
 msgid "Map Name"
 msgstr ""
@@ -1626,7 +1626,7 @@ msgid ""
 msgstr ""
 
 #: gui/options/options.js:351
-msgid "Some setting values are invalid! Are you sure to save them?"
+msgid "Some setting values are invalid! Are you sure you want to save them?"
 msgstr ""
 
 #: gui/options/options.js:377
@@ -3166,52 +3166,56 @@ msgstr ""
 msgid "Replay Games"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.xml:(caption):109
+#: gui/replaymenu/replay_menu.xml:(caption):110
 msgid "Filter compatible replays"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.xml:(caption):213
+#: gui/replaymenu/replay_menu.xml:(caption):214
 msgid "Spoiler"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.xml:(caption):225
+#: gui/replaymenu/replay_menu.xml:(caption):226
 msgid "Main Menu"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.xml:(caption):237
+#: gui/replaymenu/replay_menu.xml:(caption):238
 msgid "Rebuild Cache"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.xml:(caption):244
+#: gui/replaymenu/replay_menu.xml:(caption):245
 #: gui/summary/summary.xml:(caption):26
 msgid "Summary"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.xml:(caption):250
+#: gui/replaymenu/replay_menu.xml:(caption):251
 msgid "Start Replay"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.xml:(heading):73
+#: gui/replaymenu/replay_menu.xml:(heading):74
 msgctxt "replay"
 msgid "Players"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.xml:(heading):81
+#: gui/replaymenu/replay_menu.xml:(heading):82
 msgctxt "replay"
 msgid "Size"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.xml:(heading):85
+#: gui/replaymenu/replay_menu.xml:(heading):86
 msgctxt "replay"
 msgid "Population"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.xml:(heading):89
+#: gui/replaymenu/replay_menu.xml:(heading):90
 msgctxt "replay"
 msgid "Duration"
 msgstr ""
 
-#: gui/replaymenu/replay_menu.xml:(tooltip):238
+#: gui/replaymenu/replay_menu.xml:(placeholder_text):31
+msgid "Search for Player"
+msgstr ""
+
+#: gui/replaymenu/replay_menu.xml:(tooltip):239
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
 msgstr ""
 
