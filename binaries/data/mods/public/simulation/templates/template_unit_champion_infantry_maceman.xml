@@ -6,11 +6,11 @@
       <Damage>
         <Hack>0</Hack>
         <Pierce>0</Pierce>
-        <Crush>10.5</Crush>
+        <Crush>14</Crush>
       </Damage>
-      <MaxRange>3.5</MaxRange>
-      <PrepareTime>375</PrepareTime>
-      <RepeatTime>750</RepeatTime>
+      <MaxRange>3</MaxRange>
+      <PrepareTime>500</PrepareTime>
+      <RepeatTime>1000</RepeatTime>
     </Melee>
   </Attack>
   <Health>
@@ -19,9 +19,6 @@
   <Identity>
     <VisibleClasses datatype="tokens">Melee Maceman</VisibleClasses>
     <GenericName>Champion Maceman</GenericName>
-    <Formations datatype="tokens">
-      special/formations/testudo
-    </Formations>
   </Identity>
   <Resistance>
     <Entity>

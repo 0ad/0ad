@@ -4,9 +4,13 @@
     <Melee>
       <AttackName>Mace</AttackName>
       <Damage>
-        <Hack>3.0</Hack>
-        <Crush>2.5</Crush>
+        <Hack>0</Hack>
+        <Pierce>0</Pierce>
+        <Crush>7</Crush>
       </Damage>
+      <MaxRange>3</MaxRange>
+      <PrepareTime>500</PrepareTime>
+      <RepeatTime>1000</RepeatTime>
     </Melee>
   </Attack>
   <Builder>

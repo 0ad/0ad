@@ -6,15 +6,26 @@
 	},
 	"description": "Secret steel working techniques give sword blades distinctive and beautiful markings. Not only that, but the steel's hardness is unparalleled.",
 	"cost": { "food": 0, "wood": 200, "stone": 0, "metal": 200 },
-	"requirements": { "all": [{ "tech": "phase_city" }, { "any": [{ "civ": "iber" }, { "civ": "maur" }] }] },
+	"requirements": {
+		"all": [
+			{ "tech": "phase_city" },
+			{
+				"any": [
+					{ "civ": "iber" },
+					{ "civ": "maur" }
+				]
+			}
+		]
+	},
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "metalworker.png",
 	"researchTime": 60,
-	"tooltip": "+20% Hack attack for all swordsmen and macemen.",
+	"tooltip": "Swordsmen +20% attack damage.",
 	"modifications": [
 		{ "value": "Attack/Melee/Damage/Hack", "multiply": 1.2 },
+		{ "value": "Attack/Melee/Damage/Pierce", "multiply": 1.2 },
 		{ "value": "Attack/Melee/Damage/Crush", "multiply": 1.2 }
 	],
-	"affects": ["Swordsman", "Maceman"],
+	"affects": ["Swordsman"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }
