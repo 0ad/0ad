@@ -15,14 +15,11 @@
   <ProductionQueue>
     <Entities datatype="tokens">
       units/{civ}/champion_infantry_pikeman
-      units/{civ}/champion_chariot
       units/{civ}/champion_infantry_swordsman
-      units/{civ}/champion_cavalry
       units/{civ}/champion_elephant
     </Entities>
     <Technologies datatype="tokens">
       successors/pair_unlock_champions
-      successors/special_war_horses
       successors/special_parade_of_daphne
     </Technologies>
   </ProductionQueue>

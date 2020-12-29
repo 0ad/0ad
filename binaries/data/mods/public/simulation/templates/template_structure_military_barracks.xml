@@ -25,9 +25,9 @@
   <Identity>
     <GenericName>Barracks</GenericName>
     <SelectionGroupName>template_structure_military_barracks</SelectionGroupName>
-    <Tooltip>Train Citizen Soldiers and research technologies.</Tooltip>
+    <Tooltip>Train Infantry and research Infantry technologies.</Tooltip>
     <VisibleClasses datatype="tokens">Village Barracks</VisibleClasses>
-    <Icon>structures/barracks.png</Icon>
+    <Icon>structures/pers_barracks.png</Icon>
     <RequiredTechnology>phase_village</RequiredTechnology>
   </Identity>
   <Loot>
@@ -47,23 +47,16 @@
       units/{civ}/infantry_javelineer_b
       units/{civ}/infantry_slinger_b
       units/{civ}/infantry_archer_b
-      units/{civ}/cavalry_axeman_b
-      units/{civ}/cavalry_swordsman_b
-      units/{civ}/cavalry_spearman_b
-      units/{civ}/cavalry_javelineer_b
-      units/{civ}/cavalry_archer_b
       units/{civ}/champion_infantry_barracks
       units/{civ}/champion_infantry_swordsman_barracks
       units/{civ}/champion_maiden_barracks
-      units/{civ}/champion_cavalry_barracks
-      units/{civ}/champion_chariot_barracks
-      units/{civ}/war_dog
     </Entities>
     <Technologies datatype="tokens">
       heal_barracks
+      persians/training_levy_infantry
+      persians/training_conscription_infantry
       training_conscription
       unlock_champion_units
-      archery_tradition
     </Technologies>
   </ProductionQueue>
   <Sound>
