@@ -257,6 +257,7 @@ g_SelectionPanels.Construction = {
 		let limits = getEntityLimitAndCount(data.playerState, data.item);
 		tooltips.push(
 			formatLimitString(limits.entLimit, limits.entCount, limits.entLimitChangers),
+			formatMatchLimitString(limits.matchLimit, limits.matchCount, limits.type),
 			getRequiredTechnologyTooltip(technologyEnabled, template.requiredTechnology, GetSimState().players[data.player].civ),
 			getNeededResourcesTooltip(neededResources));
 
@@ -998,7 +999,8 @@ g_SelectionPanels.Training = {
 			getEntityCostTooltip(template, data.player, unitIds[0], buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch)
 		];
 		let limits = getEntityLimitAndCount(data.playerState, data.item);
-		tooltips.push(formatLimitString(limits.entLimit, limits.entCount, limits.entLimitChangers));
+		tooltips.push(formatLimitString(limits.entLimit, limits.entCount, limits.entLimitChangers),
+			formatMatchLimitString(limits.matchLimit, limits.matchCount, limits.type));
 
 		if (Engine.ConfigDB_GetValue("user", "showdetailedtooltips") === "true")
 			tooltips = tooltips.concat([
@@ -1111,6 +1113,7 @@ g_SelectionPanels.Upgrade = {
 			tooltips.push(
 				getEntityCostTooltip(data.item, undefined, undefined, data.unitEntStates.length),
 				formatLimitString(limits.entLimit, limits.entCount, limits.entLimitChangers),
+				formatMatchLimitString(limits.matchLimit, limits.matchCount, limits.type),
 				getRequiredTechnologyTooltip(technologyEnabled, data.item.requiredTechnology, GetSimState().players[data.player].civ),
 				getNeededResourcesTooltip(neededResources),
 				showTemplateViewerOnRightClickTooltip());

@@ -116,6 +116,66 @@ function formatLimitString(trainEntLimit, trainEntCount, trainEntLimitChangers)
 }
 
 /**
+ * Format template match count/limit message for the tooltip.
+ *
+ * @param {number} matchEntLimit - The limit of the entity.
+ * @param {number} matchEntCount - The count of the entity.
+ * @param {string} type - The type of the action (i.e. "build" or "training").
+ *
+ * @return {string} - The string to show the user with information regarding the limit of this template.
+ */
+function formatMatchLimitString(matchEntLimit, matchEntCount, type)
+{
+	if (matchEntLimit == undefined)
+		return "";
+
+	let passedLimit = matchEntCount >= matchEntLimit;
+	let count = matchEntLimit - matchEntCount;
+	let text;
+	if (type == "build")
+	{
+		if (passedLimit)
+			text = sprintf(translatePlural("Could be constructed merely once.", "Could be constructed merely %(limit)s times.", matchEntLimit), {
+				"limit": matchEntLimit
+			});
+		else if (matchEntLimit == 1)
+			text = translate("Can be constructed only once.");
+		else
+			text = sprintf(translatePlural("Can be constructed %(count)s more time.", "Can be constructed %(count)s more times.", count), {
+				"count": count
+			});
+	}
+	else if (type == "training")
+	{
+		if (passedLimit)
+			text = sprintf(translatePlural("Could be trained merely once.", "Could be trained merely %(limit)s times.", matchEntLimit), {
+				"limit": matchEntLimit
+			});
+		else if (matchEntLimit == 1)
+			text = translate("Can be trained only once.");
+		else
+			text = sprintf(translatePlural("Can be trained %(count)s more time.", "Can be trained %(count)s more times.", count), {
+				"count": count
+			});
+	}
+	else
+	{
+		if (passedLimit)
+			text = sprintf(translatePlural("Could be created merely once.", "Could be created merely %(limit)s times.", matchEntLimit), {
+				"limit": matchEntLimit
+			});
+		else if (matchEntLimit == 1)
+			text = translate("Can be created only once.");
+		else
+			text = sprintf(translatePlural("Can be created %(count)s more time.", "Can be created %(count)s more times.", count), {
+				"count": count
+			});
+	}
+
+	return passedLimit ? coloredText(text, "red") : text;
+}
+
+/**
  * Format batch training string for the tooltip
  * Examples:
  * buildingsCountToTrainFullBatch = 1, fullBatchSize = 5, remainderBatch = 0:

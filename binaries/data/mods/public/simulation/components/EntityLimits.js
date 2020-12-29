@@ -72,6 +72,7 @@ EntityLimits.prototype.Init = function()
 	this.removers = {};
 	this.classCount = {};	// counts entities with the given class, used in the limit removal
 	this.removedLimit = {};
+	this.matchTemplateCount = {};
 	for (var category in this.template.Limits)
 	{
 		this.limit[category] = +this.template.Limits[category];
@@ -103,6 +104,14 @@ EntityLimits.prototype.ChangeCount = function(category, value)
 		this.count[category] += value;
 };
 
+EntityLimits.prototype.ChangeMatchCount = function(template, value)
+{
+	if (!this.matchTemplateCount[template])
+		this.matchTemplateCount[template] = 0;
+
+	this.matchTemplateCount[template] += value;
+};
+
 EntityLimits.prototype.GetLimits = function()
 {
 	return this.limit;
@@ -111,6 +120,11 @@ EntityLimits.prototype.GetLimits = function()
 EntityLimits.prototype.GetCounts = function()
 {
 	return this.count;
+};
+
+EntityLimits.prototype.GetMatchCounts = function()
+{
+	return this.matchTemplateCount;
 };
 
 EntityLimits.prototype.GetLimitChangers = function()
@@ -145,38 +159,46 @@ EntityLimits.prototype.UpdateLimitRemoval = function()
 	}
 };
 
-EntityLimits.prototype.AllowedToCreate = function(limitType, category, count)
+EntityLimits.prototype.AllowedToCreate = function(limitType, category, count, templateName, matchLimit)
 {
-	// Allow unspecified categories and those with no limit
-	if (this.count[category] === undefined || this.limit[category] === undefined)
-		return true;
-
-	if (this.count[category] + count > this.limit[category])
+	if (this.count[category] !== undefined && this.limit[category] !== undefined &&
+		this.count[category] + count > this.limit[category])
 	{
-		var cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
-		var notification = {
-			"players": [cmpPlayer.GetPlayerID()],
-			"translateMessage": true,
-			"translateParameters": ["category"],
-			"parameters": {"category": category, "limit": this.limit[category]},
-		};
+		this.NotifyLimit(limitType, category, this.limit[category]);
+		return false;
+	}
 
-		if (limitType == BUILD)
-			notification.message = markForTranslation("%(category)s build limit of %(limit)s reached");
-		else if (limitType == TRAINING)
-			notification.message = markForTranslation("%(category)s training limit of %(limit)s reached");
-		else
-		{
-			warn("EntityLimits.js: Unknown LimitType " + limitType);
-			notification.message = markForTranslation("%(category)s limit of %(limit)s reached");
-		}
-		var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-		cmpGUIInterface.PushNotification(notification);
-
+	if (this.matchTemplateCount[templateName] !== undefined && matchLimit !== undefined &&
+		this.matchTemplateCount[templateName] + count > matchLimit)
+	{
+		this.NotifyLimit(limitType, category, matchLimit);
 		return false;
 	}
 
 	return true;
+};
+
+EntityLimits.prototype.NotifyLimit = function(limitType, category, limit)
+{
+	let cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
+	let notification = {
+		"players": [cmpPlayer.GetPlayerID()],
+		"translateMessage": true,
+		"translateParameters": ["category"],
+		"parameters": { "category": category, "limit": limit },
+	};
+
+	if (limitType == BUILD)
+		notification.message = markForTranslation("%(category)s build limit of %(limit)s reached");
+	else if (limitType == TRAINING)
+		notification.message = markForTranslation("%(category)s training limit of %(limit)s reached");
+	else
+	{
+		warn("EntityLimits.js: Unknown LimitType " + limitType);
+		notification.message = markForTranslation("%(category)s limit of %(limit)s reached");
+	}
+	let cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+	cmpGUIInterface.PushNotification(notification);
 };
 
 EntityLimits.prototype.AllowedToBuild = function(category)
@@ -186,9 +208,9 @@ EntityLimits.prototype.AllowedToBuild = function(category)
 	return this.AllowedToCreate(BUILD, category, 0);
 };
 
-EntityLimits.prototype.AllowedToTrain = function(category, count)
+EntityLimits.prototype.AllowedToTrain = function(category, count, templateName, matchLimit)
 {
-	return this.AllowedToCreate(TRAINING, category, count);
+	return this.AllowedToCreate(TRAINING, category, count, templateName, matchLimit);
 };
 
 /**

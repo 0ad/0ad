@@ -34,6 +34,7 @@ let cmpEntityLimits = ConstructComponent(10, "EntityLimits", template);
 TS_ASSERT_UNEVAL_EQUALS(cmpEntityLimits.GetCounts(), { "Tower": 0, "Wonder": 0, "Hero": 0, "Champion": 0 });
 TS_ASSERT_UNEVAL_EQUALS(cmpEntityLimits.GetLimits(), { "Tower": 5, "Wonder": 1, "Hero": 2, "Champion": 1 });
 TS_ASSERT_UNEVAL_EQUALS(cmpEntityLimits.GetLimitChangers(), { "Tower": { "Monument": 1 } });
+TS_ASSERT_UNEVAL_EQUALS(cmpEntityLimits.GetMatchCounts(), {});
 
 // Test training restrictions
 TS_ASSERT(cmpEntityLimits.AllowedToTrain("Hero"));
@@ -44,7 +45,7 @@ for (let ent = 60; ent < 63; ++ent)
 {
 	AddMock(ent, IID_TrainingRestrictions, {
 		"GetCategory": () => "Hero"
-});
+	});
 }
 
 cmpEntityLimits.OnGlobalOwnershipChanged({ "entity": 60, "from": INVALID_PLAYER, "to": 1 });

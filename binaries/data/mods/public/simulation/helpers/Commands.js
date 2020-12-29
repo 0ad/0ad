@@ -296,7 +296,7 @@ var g_Commands = {
 			if (unitCategory)
 			{
 				var cmpPlayerEntityLimits = QueryOwnerInterface(ent, IID_EntityLimits);
-				if (cmpPlayerEntityLimits && !cmpPlayerEntityLimits.AllowedToTrain(unitCategory, cmd.count))
+				if (cmpPlayerEntityLimits && !cmpPlayerEntityLimits.AllowedToTrain(unitCategory, cmd.count, cmd.template, template.TrainingRestrictions.MatchLimit))
 				{
 					if (g_DebugCommands)
 						warn(unitCategory + " train limit is reached: " + uneval(cmd));

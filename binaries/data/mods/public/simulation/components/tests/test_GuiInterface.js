@@ -124,7 +124,8 @@ AddMock(100, IID_Player, {
 AddMock(100, IID_EntityLimits, {
 	"GetLimits": function() { return { "Foo": 10 }; },
 	"GetCounts": function() { return { "Foo": 5 }; },
-	"GetLimitChangers": function() {return { "Foo": {} }; }
+	"GetLimitChangers": function() { return { "Foo": {} }; },
+	"GetMatchCounts": function() { return { "Bar": 0 }; }
 });
 
 AddMock(100, IID_TechnologyManager, {
@@ -211,7 +212,8 @@ AddMock(101, IID_Player, {
 AddMock(101, IID_EntityLimits, {
 	"GetLimits": function() { return { "Bar": 20 }; },
 	"GetCounts": function() { return { "Bar": 0 }; },
-	"GetLimitChangers": function() {return { "Bar": {} }; }
+	"GetLimitChangers": function() { return { "Bar": {} }; },
+	"GetMatchCounts": function() { return { "Foo": 0 }; }
 });
 
 AddMock(101, IID_TechnologyManager, {
@@ -299,6 +301,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 			"isEnemy": [true, true],
 			"entityLimits": { "Foo": 10 },
 			"entityCounts": { "Foo": 5 },
+			"matchEntityCounts": { "Bar": 0 },
 			"entityLimitChangers": { "Foo": {} },
 			"researchQueued": new Map(),
 			"researchStarted": new Set(),
@@ -349,6 +352,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 			"isEnemy": [false, false],
 			"entityLimits": { "Bar": 20 },
 			"entityCounts": { "Bar": 0 },
+			"matchEntityCounts": { "Foo": 0 },
 			"entityLimitChangers": { "Bar": {} },
 			"researchQueued": new Map(),
 			"researchStarted": new Set(),
@@ -409,6 +413,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 			"isEnemy": [true, true],
 			"entityLimits": { "Foo": 10 },
 			"entityCounts": { "Foo": 5 },
+			"matchEntityCounts": { "Bar": 0 },
 			"entityLimitChangers": { "Foo": {} },
 			"researchQueued": new Map(),
 			"researchStarted": new Set(),
@@ -482,6 +487,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 			"isEnemy": [false, false],
 			"entityLimits": { "Bar": 20 },
 			"entityCounts": { "Bar": 0 },
+			"matchEntityCounts": { "Foo": 0 },
 			"entityLimitChangers": { "Bar": {} },
 			"researchQueued": new Map(),
 			"researchStarted": new Set(),
