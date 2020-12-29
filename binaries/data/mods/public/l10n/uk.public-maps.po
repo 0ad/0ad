@@ -18,9 +18,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2020-12-13 23:17+0000\n"
-"Last-Translator: Микола Франчук <thekolian1996@gmail.com>\n"
+"POT-Creation-Date: 2020-12-26 15:10+0000\n"
+"PO-Revision-Date: 2020-12-26 16:16+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -956,9 +956,9 @@ msgstr "Тропіки"
 #: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Description
 msgctxt "biome definition"
 msgid ""
-"Solidifying it's grip, the harsh cold has succeeded in freezing up the gulf."
-" The thick ice formed is capable of withstanding any weight."
-msgstr "Зміцнівши, суворий мороз зміг скувати затоку. Утворився товстий лід, що здатний витримати будь-яку вагу."
+"Solidifying its grip, the harsh cold has succeeded in freezing up the gulf. "
+"The thick ice formed is capable of withstanding any weight."
+msgstr ""
 
 #: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Title
 msgctxt "biome definition"
@@ -1450,6 +1450,7 @@ msgstr "Делоський союз"
 
 #: maps/scenarios/campaign_test_map.xml:PlayerData[1].Name:39
 #: maps/scenarios/peloponnese.xml:PlayerData[3].Name:39
+#: maps/skirmishes/egypt_3pv3p.xml:PlayerData[1].Name:40
 msgid "Thebes"
 msgstr "Фіви"
 
@@ -2283,7 +2284,7 @@ msgstr "Мультиплеерна карта. Тропічний рай."
 msgid "Tropical Island"
 msgstr "Тропічний острів"
 
-#: maps/scenarios/unit_motion_integration_test.xml:Description:41
+#: maps/scenarios/unit_motion_integration_test.xml:Description:40
 msgid ""
 "This map is designed to test some basic unit movement cases. It will involve"
 " unitAI, unitMotion and the relevant pathfinders and thus acts as an "
@@ -2291,7 +2292,7 @@ msgid ""
 "and weird pathing."
 msgstr "Ця карта створена для тестування основних випадків руху юнітів. Він включає в себе unitAI, unitMotion та відповідні методи пошуку шляху, і, таким чином, діє як карта для інтеграційного тесту. Звертай увагу на такі речі як: юніти, що застрягли, неправильна анімація та дивне прокладання шляху."
 
-#: maps/scenarios/unit_motion_integration_test.xml:Name:41
+#: maps/scenarios/unit_motion_integration_test.xml:Name:40
 msgid "Unit Motion Integration Test"
 msgstr "Інтеграційний тест руху юнітів"
 
@@ -2538,10 +2539,6 @@ msgstr "Єгипет (3на3)"
 #: maps/skirmishes/egypt_3pv3p.xml:PlayerData[0].Name:40
 msgid "Alexandria"
 msgstr "Александрія"
-
-#: maps/skirmishes/egypt_3pv3p.xml:PlayerData[1].Name:40
-msgid "Theben"
-msgstr "Фіви"
 
 #: maps/skirmishes/egypt_3pv3p.xml:PlayerData[2].Name:40
 msgid "Siwa"
@@ -2933,9 +2930,9 @@ msgstr "Два моря (6)"
 
 #: maps/skirmishes/vesuvius_6p.xml:Description:40
 msgid ""
-"Skirmish as ash lightly falls around this recently erupted volcano. the "
+"Skirmish as ash lightly falls around this recently erupted volcano. The "
 "scorched landscape offers little food, though the blasted forests are still "
-"laden with useful wood. "
+"laden with useful wood."
 msgstr ""
 
 #: maps/skirmishes/vesuvius_6p.xml:Name:40

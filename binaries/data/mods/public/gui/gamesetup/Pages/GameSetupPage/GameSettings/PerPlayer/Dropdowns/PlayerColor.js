@@ -48,7 +48,7 @@ PlayerSettingControls.PlayerColor = class extends GameSettingControlDropdown
 					smallestDistance = distance;
 				}
 			}
-			this.values.push(closestColor);
+			this.values.push(clone(closestColor));
 		}
 
 		this.dropdown.list = this.values.map(color => coloredText(this.ColorIcon, rgbToGuiColor(color)));

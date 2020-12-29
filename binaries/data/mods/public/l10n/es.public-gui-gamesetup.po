@@ -68,63 +68,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2020-12-23 13:51+0000\n"
-"Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>\n"
+"POT-Creation-Date: 2020-12-28 08:02+0000\n"
+"PO-Revision-Date: 2020-12-28 09:25+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#: gui/gamesetup/Controls/MapFilters.js:85
-msgid "Default"
-msgstr "Predeterminado"
-
-#: gui/gamesetup/Controls/MapFilters.js:86
-msgid "All maps except naval and demo maps."
-msgstr "Todos los mapas excepto los navales y de demostración."
-
-#: gui/gamesetup/Controls/MapFilters.js:91
-msgid "Naval Maps"
-msgstr "Escenarios navales"
-
-#: gui/gamesetup/Controls/MapFilters.js:92
-msgid "Maps where ships are needed to reach the enemy."
-msgstr "Mapas donde los barcos son necesarios para llegar al enemigo."
-
-#: gui/gamesetup/Controls/MapFilters.js:97
-msgid "Demo Maps"
-msgstr "Escenarios de ejemplo"
-
-#: gui/gamesetup/Controls/MapFilters.js:98
-msgid "These maps are not playable but for demonstration purposes only."
-msgstr "Estos mapas son sólo de prueba."
-
-#: gui/gamesetup/Controls/MapFilters.js:103
-msgid "New Maps"
-msgstr "Mapas nuevos"
-
-#: gui/gamesetup/Controls/MapFilters.js:104
-msgid "Maps that are brand new in this release of the game."
-msgstr "Mapas añadidos en la última versión del juego."
-
-#: gui/gamesetup/Controls/MapFilters.js:109
-msgid "Trigger Maps"
-msgstr "Mapas con eventos"
-
-#: gui/gamesetup/Controls/MapFilters.js:110
-msgid "Maps that come with scripted events and potentially spawn enemy units."
-msgstr "Mapas que vienen con eventos programados y potencialmente generen unidades enemigas."
-
-#: gui/gamesetup/Controls/MapFilters.js:115
-msgid "All Maps"
-msgstr "Todos los escenarios"
-
-#: gui/gamesetup/Controls/MapFilters.js:116
-msgid "Every map of the chosen maptype."
-msgstr "Todos los mapas del tipo seleccionado."
 
 #: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):13
 msgid "AI Configuration"
@@ -180,12 +132,12 @@ msgctxt "Match settings tab name"
 msgid "Map"
 msgstr "Mapa"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:26
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:27
 msgctxt "Match settings tab name"
 msgid "Player"
 msgstr "Jugador"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:38
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:39
 msgctxt "Match settings tab name"
 msgid "Game Type"
 msgstr "Tipo de juego"
@@ -258,6 +210,15 @@ msgstr "Civilización"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):25
 msgid "Team"
 msgstr "Equipo"
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:26
+msgid "Browse Maps"
+msgstr ""
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:29
+#, javascript-format
+msgid "Press %(hotkey)s to view the list of available maps."
+msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:40
 msgid "Cheats"
@@ -867,6 +828,10 @@ msgstr "Presiona %(hotkey)s para moverte a la siguiente pestaña de ajustes."
 msgid "Press %(hotkey)s to move to the previous settings tab."
 msgstr "Presiona %(hotkey)s para moverte a la pestaña de ajustes anterior. "
 
+#: gui/gamesetup/Pages/GameSetupPage/Panels/MapPreview.js:47
+msgid "Click to view the list of available maps."
+msgstr ""
+
 #: gui/gamesetup/Pages/GameSetupPage/Panels/TipsPanel.xml:(caption):9
 msgid "Show this message in the future."
 msgstr "Muestre este mensaje en el futuro."
@@ -879,7 +844,7 @@ msgstr "Cargando"
 msgid "Loading map data. Please wait…"
 msgstr "Cargando información del mapa. Por favor espere..."
 
-#: gui/gamesetup/gamesetup.xml:(caption):12
+#: gui/gamesetup/gamesetup.xml:(caption):13
 msgid "Match Setup"
 msgstr "Ajustes del enfrentamiento"
 
@@ -1992,8 +1957,8 @@ msgstr "“No guest is so welcome in a friend's house that he will not become a 
 #: gui/text/quotes.txt:143
 msgid ""
 "“You cannot eat your cake and have it too, unless you think your money is "
-"immortal.” \\n— Plautus (“Trinummus”, Act II, scene 4, 12)"
-msgstr "“You cannot eat your cake and have it too, unless you think your money is immortal.” \\n— Plautus (“Trinummus”, Act II, scene 4, 12)"
+"immortal.”\\n— Plautus (“Trinummus”, Act II, scene 4, 13–14)"
+msgstr ""
 
 #: gui/text/quotes.txt:144
 msgid ""
@@ -2192,10 +2157,10 @@ msgstr "“We accepted an empire that was offered to us and refused to give it u
 
 #: gui/text/quotes.txt:168
 msgid ""
-"“He could boast that he found a city of brick and left it a city of marble.”"
-" \\n— Suetonius, commenting on the many building projects of Augustus in "
-"Rome (“Divus Augustus”, sec 38)"
-msgstr "“He could boast that he found a city of brick and left it a city of marble.” \\n— Suetonius, commenting on the many building projects of Augustus in Rome (“Divus Augustus”, sec 38)"
+"“He could boast that he found a city of brick and left it a city of "
+"marble.”\\n— Suetonius, commenting on the many building projects of Augustus"
+" in Rome (“Divus Augustus”, 28.3)"
+msgstr ""
 
 #: gui/text/quotes.txt:169
 msgid "“Moderation in all things.” \\n— Terence (“The Girl from Andros”, 61)"
@@ -2288,23 +2253,23 @@ msgstr "“When the Lacedaemonians were no longer able to run after them, the sk
 
 #: gui/text/quotes.txt:181
 msgid ""
-"“The soldiers fight and die to support others in wealth and luxury and they "
-"are called masters of the world without owning a single piece of farmland of"
-" their own.” \\n— Tiberius Gracchus, advocating for land reform to the "
-"benefit of homeless and unemployed veterans whose lands had often been "
-"bought up why they were on campaign (Plutarch, “Parallel Lives”, “Tiberius "
-"Gracchus”, sec. 9)"
-msgstr "“The soldiers fight and die to support others in wealth and luxury and they are called masters of the world without owning a single piece of farmland of their own.” \\n— Tiberius Gracchus, advocating for land reform to the benefit of homeless and unemployed veterans whose lands had often been bought up why they were on campaign (Plutarch, “Parallel Lives”, “Tiberius Gracchus”, sec. 9)"
+"“The wild beasts of Italy have their caves to retire to, but the brave "
+"veterans who spilled their blood in her cause have nothing left but air and "
+"light. They wander around homeless with their wives and children.”\\n— "
+"Tiberius Gracchus, advocating for land reform to the benefit of homeless and"
+" unemployed veterans whose lands had often been bought up while they were on"
+" campaign. (Plutarch, “Parallel Lives”, “Tiberius Gracchus”, 9.4–5)"
+msgstr ""
 
 #: gui/text/quotes.txt:182
 msgid ""
-"“The wild beasts of Italy have their caves to retire to, but the brave "
-"veterans who spilled their blood in her cause have nothing left but air and "
-"light. They wander around homeless with their wives and children.” \\n— "
-"Tiberius Gracchus, advocating for land reform to the benefit of homeless and"
-" unemployed veterans whose lands had often been bought up why they were on "
-"campaign (Plutarch, “Parallel Lives”, “Tiberius Gracchus”, sec. 9)"
-msgstr "“The wild beasts of Italy have their caves to retire to, but the brave veterans who spilled their blood in her cause have nothing left but air and light. They wander around homeless with their wives and children.” \\n— Tiberius Gracchus, advocating for land reform to the benefit of homeless and unemployed veterans whose lands had often been bought up why they were on campaign (Plutarch, “Parallel Lives”, “Tiberius Gracchus”, sec. 9)"
+"“The soldiers fight and die to support others in wealth and luxury and they "
+"are called masters of the world without owning a single piece of farmland of"
+" their own.”\\n— Tiberius Gracchus, advocating for land reform to the "
+"benefit of homeless and unemployed veterans whose lands had often been "
+"bought up while they were on campaign. (Plutarch, “Parallel Lives”, "
+"“Tiberius Gracchus”, 9.5)"
+msgstr ""
 
 #: gui/text/quotes.txt:183
 msgid ""

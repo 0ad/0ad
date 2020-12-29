@@ -34,8 +34,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2020-11-14 20:42+0000\n"
+"POT-Creation-Date: 2020-12-26 15:10+0000\n"
+"PO-Revision-Date: 2020-12-26 21:57+0000\n"
 "Last-Translator: Przemysław Murach <moonshine133@vp.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -972,9 +972,9 @@ msgstr "Tropik"
 #: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Description
 msgctxt "biome definition"
 msgid ""
-"Solidifying it's grip, the harsh cold has succeeded in freezing up the gulf."
-" The thick ice formed is capable of withstanding any weight."
-msgstr "Ostry chłód zamrozić tę zatokę, utrwalając jej przyczepność. Utworzony gruby lód jest w stanie wytrzymać każdy ciężar."
+"Solidifying its grip, the harsh cold has succeeded in freezing up the gulf. "
+"The thick ice formed is capable of withstanding any weight."
+msgstr "Mroźna zima dopięła swego, skuwając lodem całą zatokę - jego gruba warstwa na niej jest w stanie utrzymać każdy ciężar."
 
 #: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Title
 msgctxt "biome definition"
@@ -1466,6 +1466,7 @@ msgstr "Symmachia Delijska"
 
 #: maps/scenarios/campaign_test_map.xml:PlayerData[1].Name:39
 #: maps/scenarios/peloponnese.xml:PlayerData[3].Name:39
+#: maps/skirmishes/egypt_3pv3p.xml:PlayerData[1].Name:40
 msgid "Thebes"
 msgstr "Teby"
 
@@ -2299,7 +2300,7 @@ msgstr "Mapa gry wieloosobowej. Tropikalny raj."
 msgid "Tropical Island"
 msgstr "Wyspa tropikalna"
 
-#: maps/scenarios/unit_motion_integration_test.xml:Description:41
+#: maps/scenarios/unit_motion_integration_test.xml:Description:40
 msgid ""
 "This map is designed to test some basic unit movement cases. It will involve"
 " unitAI, unitMotion and the relevant pathfinders and thus acts as an "
@@ -2307,7 +2308,7 @@ msgid ""
 "and weird pathing."
 msgstr "Ta mapa została zaprojektowana do testowania podstawowych ruchów jednostek. Wykorzystuje unitAI, unitMotion i ścieżki szukania ruchu, dzięki czemu służy za zintegrowaną mapę testową. Szukaj zablokowanych jednostek, niewłaściwych animacji i dziwnego wyszukiwania ścieżek ruchu."
 
-#: maps/scenarios/unit_motion_integration_test.xml:Name:41
+#: maps/scenarios/unit_motion_integration_test.xml:Name:40
 msgid "Unit Motion Integration Test"
 msgstr "Test integracji ruchu jednostki"
 
@@ -2554,10 +2555,6 @@ msgstr "Egipt (3v3)"
 #: maps/skirmishes/egypt_3pv3p.xml:PlayerData[0].Name:40
 msgid "Alexandria"
 msgstr "Aleksandria"
-
-#: maps/skirmishes/egypt_3pv3p.xml:PlayerData[1].Name:40
-msgid "Theben"
-msgstr "Teby"
 
 #: maps/skirmishes/egypt_3pv3p.xml:PlayerData[2].Name:40
 msgid "Siwa"
@@ -2949,10 +2946,10 @@ msgstr "Dwa Morza (6)"
 
 #: maps/skirmishes/vesuvius_6p.xml:Description:40
 msgid ""
-"Skirmish as ash lightly falls around this recently erupted volcano. the "
+"Skirmish as ash lightly falls around this recently erupted volcano. The "
 "scorched landscape offers little food, though the blasted forests are still "
-"laden with useful wood. "
-msgstr "Rozegraj potyczkę, gdy opada popiół po niedawnej erupcji wulkanu. Spalone tereny nie obfitują w jedzenie, jednakże zniszczone drzewa nadal można wykorzystać na drewno."
+"laden with useful wood."
+msgstr "Rozegraj potyczkę, gdy wokół opada popiół po niedawnej erupcji wulkanu. Spalone tereny nie obfitują w żywność, natomiast zniszczone drzewa nadal można przerobić na drewno."
 
 #: maps/skirmishes/vesuvius_6p.xml:Name:40
 msgid "Vesuvius (6)"

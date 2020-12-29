@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-28 10:01+0000\n"
+"POT-Creation-Date: 2020-12-26 15:10+0000\n"
 "PO-Revision-Date: 2020-10-20 09:29+0000\n"
 "Last-Translator: Yuan <daan0014119@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
@@ -208,7 +208,7 @@ msgstr "安裝 mod.io 介面。"
 msgid "Initializing"
 msgstr "正在安裝"
 
-#: gui/modio/modio.js:136 gui/modmod/modmod.xml:(caption):181
+#: gui/modio/modio.js:136 gui/modmod/modmod.xml:(caption):182
 msgid "Cancel"
 msgstr "取消"
 
@@ -275,7 +275,7 @@ msgstr "%(number)s%(unit)s/s"
 msgid "mod.io Mods"
 msgstr "mod.io 的模組"
 
-#: gui/modio/modio.xml:(caption):25 gui/modmod/modmod.xml:(caption):55
+#: gui/modio/modio.xml:(caption):25 gui/modmod/modmod.xml:(caption):56
 msgid "Available Mods"
 msgstr "可用的模組"
 
@@ -295,18 +295,18 @@ msgstr "更新列表"
 msgid "Download"
 msgstr "下載"
 
-#: gui/modio/modio.xml:(heading):53 gui/modmod/modmod.xml:(heading):75
-#: gui/modmod/modmod.xml:(heading):115
+#: gui/modio/modio.xml:(heading):53 gui/modmod/modmod.xml:(heading):76
+#: gui/modmod/modmod.xml:(heading):116
 msgid "Name"
 msgstr "名稱"
 
-#: gui/modio/modio.xml:(heading):56 gui/modmod/modmod.xml:(heading):78
-#: gui/modmod/modmod.xml:(heading):118
+#: gui/modio/modio.xml:(heading):56 gui/modmod/modmod.xml:(heading):79
+#: gui/modmod/modmod.xml:(heading):119
 msgid "Version"
 msgstr "版本"
 
-#: gui/modio/modio.xml:(heading):59 gui/modmod/modmod.xml:(heading):84
-#: gui/modmod/modmod.xml:(heading):124
+#: gui/modio/modio.xml:(heading):59 gui/modmod/modmod.xml:(heading):85
+#: gui/modmod/modmod.xml:(heading):125
 msgid "Mod Label"
 msgstr "Mod 標籤"
 
@@ -314,8 +314,8 @@ msgstr "Mod 標籤"
 msgid "File Size"
 msgstr "檔案大小"
 
-#: gui/modio/modio.xml:(heading):65 gui/modmod/modmod.xml:(heading):87
-#: gui/modmod/modmod.xml:(heading):127
+#: gui/modio/modio.xml:(heading):65 gui/modmod/modmod.xml:(heading):88
+#: gui/modmod/modmod.xml:(heading):128
 msgid "Dependencies"
 msgstr "相依性"
 
@@ -366,30 +366,30 @@ msgstr "模組指南"
 msgid "Visit mod.io"
 msgstr "拜訪 mod.io"
 
-#: gui/modmod/modmod.js:107 gui/modmod/modmod.js:254 gui/modmod/modmod.js:275
-msgid "Filter"
-msgstr "過濾器"
-
-#: gui/modmod/modmod.js:118 gui/modmod/modmod.js:407
+#: gui/modmod/modmod.js:117 gui/modmod/modmod.js:405
 msgctxt "mod activation"
 msgid "Enable"
 msgstr "啟用"
 
-#: gui/modmod/modmod.js:317
+#: gui/modmod/modmod.js:273 gui/modmod/modmod.xml:(placeholder_text):24
+msgid "Filter"
+msgstr "過濾器"
+
+#: gui/modmod/modmod.js:315
 #, javascript-format
 msgid "Dependency not met: %(dep)s"
 msgstr "無法相容:%(dep)s"
 
-#: gui/modmod/modmod.js:323
+#: gui/modmod/modmod.js:321
 msgid "All dependencies met"
 msgstr "所有相依性皆已滿足"
 
-#: gui/modmod/modmod.js:408
+#: gui/modmod/modmod.js:406
 msgctxt "mod activation"
 msgid "Disable"
 msgstr "停用"
 
-#: gui/modmod/modmod.js:416
+#: gui/modmod/modmod.js:414
 msgid "No mod has been selected."
 msgstr "沒有已被選取的 mod。"
 
@@ -397,51 +397,51 @@ msgstr "沒有已被選取的 mod。"
 msgid "Modifications"
 msgstr "修改"
 
-#: gui/modmod/modmod.xml:(caption):36
+#: gui/modmod/modmod.xml:(caption):37
 msgid "Negate"
 msgstr "取消"
 
-#: gui/modmod/modmod.xml:(caption):48
+#: gui/modmod/modmod.xml:(caption):49
 msgid "Description"
 msgstr "描述"
 
-#: gui/modmod/modmod.xml:(caption):99
+#: gui/modmod/modmod.xml:(caption):100
 msgid "Enabled Mods"
 msgstr "已啟用的模組"
 
-#: gui/modmod/modmod.xml:(caption):167
+#: gui/modmod/modmod.xml:(caption):168
 msgid "Visit Website"
 msgstr "拜訪網站"
 
-#: gui/modmod/modmod.xml:(caption):176
+#: gui/modmod/modmod.xml:(caption):177
 msgid "Quit"
 msgstr "離開"
 
-#: gui/modmod/modmod.xml:(caption):186
+#: gui/modmod/modmod.xml:(caption):187
 msgid "Help"
 msgstr "幫助"
 
-#: gui/modmod/modmod.xml:(caption):191
+#: gui/modmod/modmod.xml:(caption):192
 msgid "Download Mods"
 msgstr "下載模組"
 
-#: gui/modmod/modmod.xml:(caption):196
+#: gui/modmod/modmod.xml:(caption):197
 msgid "Save Configuration"
 msgstr "儲存設定"
 
-#: gui/modmod/modmod.xml:(caption):201
+#: gui/modmod/modmod.xml:(caption):202
 msgid "Start Mods"
 msgstr "啟動模組"
 
-#: gui/modmod/modmod.xml:(heading):81 gui/modmod/modmod.xml:(heading):121
+#: gui/modmod/modmod.xml:(heading):82 gui/modmod/modmod.xml:(heading):122
 msgid "(Folder)"
 msgstr "(資料夾)"
 
-#: gui/modmod/modmod.xml:(heading):90 gui/modmod/modmod.xml:(heading):130
+#: gui/modmod/modmod.xml:(heading):91 gui/modmod/modmod.xml:(heading):131
 msgid "Website"
 msgstr "網站"
 
-#: gui/modmod/modmod.xml:(tooltip):145 gui/modmod/modmod.xml:(tooltip):159
+#: gui/modmod/modmod.xml:(tooltip):146 gui/modmod/modmod.xml:(tooltip):160
 msgid ""
 "Change the order in which mods are launched. This should match the mods "
 "dependencies."

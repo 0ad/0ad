@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
-# Thadah D. Denyse <juchuf@gmail.com>, 2017
+# Gontzal M. Pujana <juchuf@gmail.com>, 2017
 # Osoitz <oelkoro@gmail.com>, 2020
 # Mielanjel Iraeta <pospolos@gmail.com>, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2020-11-28 10:01+0000\n"
+"POT-Creation-Date: 2020-12-26 15:10+0000\n"
 "PO-Revision-Date: 2017-06-04 12:59+0000\n"
 "Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>, 2020\n"
 "Language-Team: Basque (https://www.transifex.com/wildfire-games/teams/17418/eu/)\n"
@@ -288,7 +288,7 @@ msgid "Introductory Tutorial"
 msgstr "Oinarrizko Tutoretza"
 
 #: maps/tutorials/introductory_tutorial.xml:PlayerData[0].Name:39
-#: maps/tutorials/starting_economy_walkthrough.xml:PlayerData[0].Name:39
+#: maps/tutorials/starting_economy_walkthrough.xml:PlayerData[0].Name:40
 msgid "Player 1"
 msgstr "1. jokalaria"
 
@@ -834,17 +834,11 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:314
 msgid ""
-"A field can have up to five farmers working on it. To add additional "
-"gatherers, select the Civic Center and setup a rally point on a field by "
-"right-clicking on it. As long as the field is not yet build, new workers "
-"sent by a rally point will help building it, while they will gather it when "
-"built."
+"Up to five Workers can gather from a Field. To add additional Workers, "
+"select the Civic Center and set a rally point on a Field by right-clicking "
+"on it. If the Field is not yet finished, new Workers sent by a rally point "
+"will help building it, and when built, they will gather food."
 msgstr ""
-"Soro batek bost nekazari arte izan ditzake bertan lanean. Ustiatzaile "
-"gehiago gehitzeko, aukeratu Gizarte Zentroa eta ezarri elkartze puntu bat "
-"soro batean eskuin klika eginez. Soroa oraindik eraikitzear badago, elkartze"
-" puntura bidalitako langile berriek eraikitzen lagunduko dute, eta eraiki "
-"ondoren ustiatu egingo dute."
 
 #: maps/tutorials/starting_economy_walkthrough.js:322
 msgid "Select the Civic Center and right-click on the field."
@@ -1008,7 +1002,7 @@ msgstr ""
 "Hemen tutoretza bukatzen da. Jada jakin behar zenuke gutxi gorabehera zure "
 "ekonomiaren sorreraren oinarritaz."
 
-#: maps/tutorials/starting_economy_walkthrough.xml:Description:39
+#: maps/tutorials/starting_economy_walkthrough.xml:Description:40
 msgid ""
 "This map will give a rough guide for starting the game effectively.  Early "
 "in the game the most important thing is to gather resources as fast as "
@@ -1018,6 +1012,6 @@ msgstr ""
 "hasieran baliabideak ahalik eta lasterren biltzea da garrantzitsuena gerora "
 "nahiko tropa osatu ahal izateko."
 
-#: maps/tutorials/starting_economy_walkthrough.xml:Name:39
+#: maps/tutorials/starting_economy_walkthrough.xml:Name:40
 msgid "Starting Economy Walkthrough"
 msgstr "Hasierako Ekonomia Tutoretza"

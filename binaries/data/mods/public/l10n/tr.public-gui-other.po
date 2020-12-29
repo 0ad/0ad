@@ -26,24 +26,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-12-18 08:02+0000\n"
-"PO-Revision-Date: 2020-12-18 08:37+0000\n"
-"Last-Translator: Günay Yılmaz\n"
+"POT-Creation-Date: 2020-12-28 08:02+0000\n"
+"PO-Revision-Date: 2020-12-28 10:13+0000\n"
+"Last-Translator: Emre JILTA <jilta.e@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: tr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-
-#: gui/common/MapCache.js:52
-msgctxt "map selection"
-msgid "Random"
-msgstr "Rastgele"
-
-#: gui/common/MapCache.js:59
-msgid "A randomly selected map."
-msgstr "Rasgele seçilen harita."
 
 #. dennis-ignore: *
 #: gui/common/OverlayCounterFPS.js:28
@@ -401,9 +392,10 @@ msgstr "Hileler"
 #: gui/common/gamedescription.js:411 gui/common/tooltips.js:144
 #: gui/common/tooltips.js:210 gui/common/tooltips.js:231
 #: gui/common/tooltips.js:250 gui/common/tooltips.js:313
-#: gui/common/tooltips.js:597 gui/common/tooltips.js:619
-#: gui/common/tooltips.js:702 gui/common/tooltips.js:743
-#: gui/common/tooltips.js:1041
+#: gui/common/tooltips.js:598 gui/common/tooltips.js:604
+#: gui/common/tooltips.js:632 gui/common/tooltips.js:638
+#: gui/common/tooltips.js:728 gui/common/tooltips.js:769
+#: gui/common/tooltips.js:1067
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -482,8 +474,8 @@ msgid "You have been banned."
 msgstr "Banlandın."
 
 #: gui/common/network.js:73
-msgid "Playername in use. If you were disconnected, retry in few seconds."
-msgstr "Kullanıcı adı kullanımda. Bağlantınız kesildiyse, birkaç saniye içinde tekrar deneyin."
+msgid "Player name in use. If you were disconnected, retry in few seconds."
+msgstr ""
 
 #: gui/common/network.js:74
 msgid "Server full."
@@ -539,8 +531,8 @@ msgstr "Kullanıcılar (%(num)s): %(users)s"
 #: gui/common/tooltips.js:406 gui/common/tooltips.js:420
 #: gui/common/tooltips.js:497 gui/common/tooltips.js:502
 #: gui/common/tooltips.js:559 gui/common/tooltips.js:592
-#: gui/common/tooltips.js:906 gui/common/tooltips.js:939
-#: gui/common/tooltips.js:1006 gui/loadgame/SavegameDetails.js:38
+#: gui/common/tooltips.js:932 gui/common/tooltips.js:965
+#: gui/common/tooltips.js:1032 gui/loadgame/SavegameDetails.js:38
 #: gui/reference/common/tooltips.js:13 gui/replaymenu/replay_menu.js:282
 msgid ", "
 msgstr ","
@@ -687,7 +679,7 @@ msgstr[0] "%(time)s %(second)s"
 msgstr[1] "%(time)s %(second)s"
 
 #: gui/common/tooltips.js:92 gui/common/tooltips.js:555
-#: gui/common/tooltips.js:937
+#: gui/common/tooltips.js:963
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "saniye"
@@ -785,7 +777,7 @@ msgstr ""
 msgid "Garrison to fire arrows"
 msgstr "Ateş etmek için birim yerleştirin."
 
-#: gui/common/tooltips.js:297 gui/common/tooltips.js:935
+#: gui/common/tooltips.js:297 gui/common/tooltips.js:961
 msgid "Interval:"
 msgstr "Değer:"
 
@@ -837,7 +829,7 @@ msgstr "%(rangeLabel)s %(minRange)sden %(maxRange)s %(rangeUnit)s"
 msgid "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
 msgstr "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
 
-#: gui/common/tooltips.js:345 gui/common/tooltips.js:930
+#: gui/common/tooltips.js:345 gui/common/tooltips.js:956
 msgid "Range:"
 msgstr "Menzil:"
 
@@ -852,8 +844,8 @@ msgstr "+%(number)s"
 msgid "meters"
 msgstr "metre"
 
-#: gui/common/tooltips.js:353 gui/common/tooltips.js:932
-#: gui/common/tooltips.js:962
+#: gui/common/tooltips.js:353 gui/common/tooltips.js:958
+#: gui/common/tooltips.js:988
 msgid "meter"
 msgid_plural "meters"
 msgstr[0] "metre"
@@ -887,16 +879,16 @@ msgstr "Dost Ateşi: %(enabled)s"
 #: gui/common/tooltips.js:392 gui/loadgame/SavegameDeleter.js:55
 #: gui/loadgame/SavegameLoader.js:61 gui/loadgame/SavegameWriter.js:48
 #: gui/options/options.js:300 gui/options/options.js:353
-#: gui/options/options.js:379 gui/pregame/MainMenuItems.js:190
-#: gui/pregame/MainMenuItems.js:214 gui/replaymenu/replay_actions.js:169
+#: gui/options/options.js:379 gui/pregame/MainMenuItems.js:197
+#: gui/pregame/MainMenuItems.js:221 gui/replaymenu/replay_actions.js:169
 msgid "Yes"
 msgstr "Evet"
 
 #: gui/common/tooltips.js:392 gui/loadgame/SavegameDeleter.js:55
 #: gui/loadgame/SavegameLoader.js:61 gui/loadgame/SavegameWriter.js:48
 #: gui/options/options.js:300 gui/options/options.js:353
-#: gui/options/options.js:379 gui/pregame/MainMenuItems.js:190
-#: gui/pregame/MainMenuItems.js:214 gui/replaymenu/replay_actions.js:169
+#: gui/options/options.js:379 gui/pregame/MainMenuItems.js:197
+#: gui/pregame/MainMenuItems.js:221 gui/replaymenu/replay_actions.js:169
 msgid "No"
 msgstr "Hayır"
 
@@ -973,11 +965,11 @@ msgstr "Garnizon Limiti"
 msgid "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 msgstr "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 
-#: gui/common/tooltips.js:552 gui/common/tooltips.js:925
+#: gui/common/tooltips.js:552 gui/common/tooltips.js:951
 msgid "Heal:"
 msgstr "İyileşme:"
 
-#: gui/common/tooltips.js:554 gui/common/tooltips.js:927
+#: gui/common/tooltips.js:554 gui/common/tooltips.js:953
 msgid "Health"
 msgstr "Sağlık"
 
@@ -1001,11 +993,15 @@ msgctxt "projectiles"
 msgid "Per Unit"
 msgstr "Birim Başına"
 
-#: gui/common/tooltips.js:598
+#: gui/common/tooltips.js:599
 msgid "Number of repairers:"
 msgstr "Tamirci adedi:"
 
-#: gui/common/tooltips.js:604
+#: gui/common/tooltips.js:605
+msgid "Remaining repair time:"
+msgstr "Kalan tamir süresi:"
+
+#: gui/common/tooltips.js:609
 #, javascript-format
 msgid "Add another worker to speed up the repairs by %(second)s second."
 msgid_plural ""
@@ -1013,18 +1009,22 @@ msgid_plural ""
 msgstr[0] "%(second)s saniye daha hızlı tamir etmek için bir başka işçi daha ekle."
 msgstr[1] "%(second)s saniye daha hızlı tamir etmek için bir başka işçi daha ekle."
 
-#: gui/common/tooltips.js:611
+#: gui/common/tooltips.js:621
 #, javascript-format
 msgid "Add a worker to finish the repairs in %(second)s second."
 msgid_plural "Add a worker to finish the repairs in %(second)s seconds."
 msgstr[0] "%(second)s saniyede tamiratları tamamlamak için bir işçi ekle."
 msgstr[1] " %(second)s saniyede tamiratları tamamlamak için bir işçi ekle."
 
-#: gui/common/tooltips.js:620
+#: gui/common/tooltips.js:633
 msgid "Number of builders:"
 msgstr "İnşaatçıların sayısı:"
 
-#: gui/common/tooltips.js:626
+#: gui/common/tooltips.js:639
+msgid "Remaining build time:"
+msgstr "Kalan inşa süresi:"
+
+#: gui/common/tooltips.js:643
 #, javascript-format
 msgid "Add another worker to speed up the construction by %(second)s second."
 msgid_plural ""
@@ -1032,23 +1032,23 @@ msgid_plural ""
 msgstr[0] "Yapıları %(second)s saniyede bitirmek için bir başka işçi daha ekle."
 msgstr[1] "Yapıları %(second)s saniyede bitirmek için bir başka işçi daha ekle."
 
-#: gui/common/tooltips.js:633
+#: gui/common/tooltips.js:655
 #, javascript-format
 msgid "Add a worker to finish the construction in %(second)s second."
 msgid_plural "Add a worker to finish the construction in %(second)s seconds."
 msgstr[0] "%(second)s saniyede yapıyı tamamlamak için bir işçi daha ekle."
 msgstr[1] "%(second)s saniyede yapıyı tamamlamak için bir işçi daha ekle."
 
-#: gui/common/tooltips.js:667 gui/common/tooltips.js:878
+#: gui/common/tooltips.js:693 gui/common/tooltips.js:904
 #, javascript-format
 msgid "%(component)s %(cost)s"
 msgstr "%(component)s %(cost)s"
 
-#: gui/common/tooltips.js:703
+#: gui/common/tooltips.js:729
 msgid "Gather Rates:"
 msgstr "Toplama Oranları:"
 
-#: gui/common/tooltips.js:706 gui/common/tooltips.js:748
+#: gui/common/tooltips.js:732 gui/common/tooltips.js:774
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
 msgstr "%(resourceIcon)s %(rate)s"
@@ -1056,170 +1056,170 @@ msgstr "%(resourceIcon)s %(rate)s"
 #. Translation: Label in tooltip showing the resource type and quantity of a
 #. given resource
 #. supply.
-#: gui/common/tooltips.js:726
+#: gui/common/tooltips.js:752
 #, javascript-format
 msgid "%(label)s %(component)s %(amount)s"
 msgstr "%(label)s %(component)s %(amount)s"
 
-#: gui/common/tooltips.js:727
+#: gui/common/tooltips.js:753
 msgid "Resource Supply:"
 msgstr "Kaynak Desteği:"
 
 #. Translation: Marks that a resource supply entity has an unending, infinite,
 #. supply of its
 #. resource.
-#: gui/common/tooltips.js:730 gui/summary/summary.js:111
+#: gui/common/tooltips.js:756 gui/summary/summary.js:111
 msgid "∞"
 msgstr "∞"
 
-#: gui/common/tooltips.js:744
+#: gui/common/tooltips.js:770
 msgid "Resource Trickle:"
 msgstr "Kaynakları yavaş yavaş toplama:"
 
-#: gui/common/tooltips.js:745
+#: gui/common/tooltips.js:771
 #, javascript-format
 msgid "%(resources)s / %(time)s"
 msgstr "%(resources)s / %(time)s"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
-#: gui/common/tooltips.js:797
+#: gui/common/tooltips.js:823
 #, javascript-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
 msgstr "%(resourceIcon)s %(minimum)s e %(resourceIcon)s %(maximum)s"
 
-#: gui/common/tooltips.js:826
+#: gui/common/tooltips.js:852
 #, javascript-format
 msgid "Walls:  %(costs)s"
 msgstr "Duvar: %(costs)s"
 
-#: gui/common/tooltips.js:827
+#: gui/common/tooltips.js:853
 #, javascript-format
 msgid "Towers:  %(costs)s"
 msgstr "Kule: %(costs)s"
 
 #. Translation: Label in tooltip showing cost of a unit, structure or
 #. technology.
-#: gui/common/tooltips.js:835
+#: gui/common/tooltips.js:861
 #, javascript-format
 msgid "%(label)s %(costs)s"
 msgstr "%(label)s %(costs)s"
 
-#: gui/common/tooltips.js:836
+#: gui/common/tooltips.js:862
 msgid "Cost:"
 msgstr "Maliyet:"
 
-#: gui/common/tooltips.js:849
+#: gui/common/tooltips.js:875
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "%(technology)s gerekiyor"
 
-#: gui/common/tooltips.js:862
+#: gui/common/tooltips.js:888
 #, javascript-format
 msgid "%(label)s %(bonus)s"
 msgstr ""
 
-#: gui/common/tooltips.js:863
+#: gui/common/tooltips.js:889
 msgid "Population Bonus:"
 msgstr "Nüfus Ödülü:"
 
-#: gui/common/tooltips.js:883
+#: gui/common/tooltips.js:909
 msgid "Insufficient resources:"
 msgstr "Yetersiz kaynak:"
 
-#: gui/common/tooltips.js:899
+#: gui/common/tooltips.js:925
 #, javascript-format
 msgid "%(label)s %(speeds)s"
 msgstr "%(label)s %(speeds)s"
 
-#: gui/common/tooltips.js:900
+#: gui/common/tooltips.js:926
 msgid "Speed:"
 msgstr "Hız:"
 
-#: gui/common/tooltips.js:902 gui/common/tooltips.js:907
+#: gui/common/tooltips.js:928 gui/common/tooltips.js:933
 #, javascript-format
 msgid "%(speed)s %(movementType)s"
 msgstr "%(speed)s %(movementType)s"
 
-#: gui/common/tooltips.js:904
+#: gui/common/tooltips.js:930
 msgid "Walk"
 msgstr "Yürü"
 
-#: gui/common/tooltips.js:909
+#: gui/common/tooltips.js:935
 msgid "Run"
 msgstr "Koş"
 
-#: gui/common/tooltips.js:924 gui/common/tooltips.js:929
-#: gui/common/tooltips.js:934 gui/common/tooltips.js:959
+#: gui/common/tooltips.js:950 gui/common/tooltips.js:955
+#: gui/common/tooltips.js:960 gui/common/tooltips.js:985
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
 msgstr[0] "%(label)s %(val)s %(unit)s"
 msgstr[1] "%(label)s %(val)s %(unit)s"
 
-#: gui/common/tooltips.js:951
+#: gui/common/tooltips.js:977
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
 msgstr "%(auralabel)s %(aurainfo)s"
 
-#: gui/common/tooltips.js:952
+#: gui/common/tooltips.js:978
 #, javascript-format
 msgid "%(auraname)s:"
 msgstr "%(auraname)s:"
 
-#: gui/common/tooltips.js:960
+#: gui/common/tooltips.js:986
 msgctxt "aura"
 msgid "Range:"
 msgstr "Menzil:"
 
-#: gui/common/tooltips.js:977
+#: gui/common/tooltips.js:1003
 #, javascript-format
 msgid "%(specificName)s (%(genericName)s)"
 msgstr "%(specificName)s (%(genericName)s)"
 
 #. Translation: Example: "Epibátēs Athēnaîos [font="sans-bold-16"](Athenian
 #. Marine)[/font]"
-#: gui/common/tooltips.js:990
+#: gui/common/tooltips.js:1016
 #, javascript-format
 msgid "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 msgstr "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 
-#: gui/common/tooltips.js:1005
+#: gui/common/tooltips.js:1031
 msgid "Classes:"
 msgstr "Sınıflar:"
 
 #. Translation: %(component) will be the icon for the loot type and %(loot)
 #. will be the
 #. value.
-#: gui/common/tooltips.js:1032
+#: gui/common/tooltips.js:1058
 #, javascript-format
 msgid "%(component)s %(loot)s"
 msgstr "%(component)s %(loot)s"
 
-#: gui/common/tooltips.js:1042
+#: gui/common/tooltips.js:1068
 msgid "Loot:"
 msgstr "Yağma:"
 
-#: gui/common/tooltips.js:1052
+#: gui/common/tooltips.js:1078
 #, javascript-format
 msgid "%(label)s %(icons)s"
 msgstr "%(label)s %(icons)s"
 
-#: gui/common/tooltips.js:1053
+#: gui/common/tooltips.js:1079
 msgid "Dropsite for:"
 msgstr "Şunun için bırakma alanı : "
 
 #. Translation: Appears in a tooltip to indicate that right-clicking the
 #. corresponding GUI
 #. element will open the Template Details GUI page.
-#: gui/common/tooltips.js:1061
+#: gui/common/tooltips.js:1087
 msgid "Right-click to view more information."
 msgstr "Daha fazla bilgi için sağ tıklayın."
 
 #. Translation: Appears in a tooltip to indicate that clicking the
 #. corresponding GUI element
 #. will open the Template Details GUI page.
-#: gui/common/tooltips.js:1067
+#: gui/common/tooltips.js:1093
 msgid "Click to view more information."
 msgstr "Daha fazla bilgi için tıklayın."
 
@@ -1511,7 +1511,7 @@ msgstr "Uyarı"
 msgid "Save Game"
 msgstr "Oyunu Kaydet"
 
-#: gui/loadgame/SavegamePage.js:42 gui/pregame/MainMenuItems.js:66
+#: gui/loadgame/SavegamePage.js:42 gui/pregame/MainMenuItems.js:73
 msgid "Load Game"
 msgstr "Oyunu Yükle"
 
@@ -1527,64 +1527,64 @@ msgstr "Kayıtlı oyunun üzerine yazılacak, emin misiniz?"
 msgid "OVERWRITE SAVE"
 msgstr "ÜZERİNE YAZ KAYDET"
 
-#: gui/loadgame/load.xml:(caption):43
+#: gui/loadgame/load.xml:(caption):44
 msgid "No saved games found."
 msgstr "Kayıtlı oyun bulunamadı."
 
-#: gui/loadgame/load.xml:(caption):49 gui/locale/locale.xml:(caption):36
+#: gui/loadgame/load.xml:(caption):50 gui/locale/locale.xml:(caption):36
 msgid "Cancel"
 msgstr "İptal"
 
-#: gui/loadgame/load.xml:(caption):53
-#: gui/replaymenu/replay_menu.xml:(caption):231
+#: gui/loadgame/load.xml:(caption):54
+#: gui/replaymenu/replay_menu.xml:(caption):233
 msgid "Delete"
 msgstr "Sil"
 
-#: gui/loadgame/load.xml:(caption):63
+#: gui/loadgame/load.xml:(caption):64
 msgid "Filter compatible saved games"
 msgstr "Uyumlu kaydedilmiş oyunları filtreleyin"
 
-#: gui/loadgame/load.xml:(caption):73
+#: gui/loadgame/load.xml:(caption):74
 msgid "Players:"
 msgstr "Oyuncular:"
 
-#: gui/loadgame/load.xml:(caption):77
+#: gui/loadgame/load.xml:(caption):78
 msgid "Played time:"
 msgstr "Oynama süresi:"
 
-#: gui/loadgame/load.xml:(caption):81
-#: gui/replaymenu/replay_menu.xml:(caption):150
+#: gui/loadgame/load.xml:(caption):82
+#: gui/replaymenu/replay_menu.xml:(caption):152
 msgid "Map Type:"
 msgstr "Harita Türü:"
 
-#: gui/loadgame/load.xml:(caption):85
-#: gui/replaymenu/replay_menu.xml:(caption):165
+#: gui/loadgame/load.xml:(caption):86
+#: gui/replaymenu/replay_menu.xml:(caption):167
 msgid "Map Size:"
 msgstr "Harita Boyutu:"
 
-#: gui/loadgame/load.xml:(caption):89
-#: gui/replaymenu/replay_menu.xml:(caption):180
+#: gui/loadgame/load.xml:(caption):90
+#: gui/replaymenu/replay_menu.xml:(caption):182
 msgid "Victory:"
 msgstr "Zafer:"
 
-#: gui/loadgame/load.xml:(heading):26
-#: gui/replaymenu/replay_menu.xml:(heading):69
+#: gui/loadgame/load.xml:(heading):27
+#: gui/replaymenu/replay_menu.xml:(heading):71
 msgctxt "replay"
 msgid "Date / Time"
 msgstr "Tarih / Zaman"
 
-#: gui/loadgame/load.xml:(heading):30
+#: gui/loadgame/load.xml:(heading):31
 msgctxt "replay"
 msgid "Map Type"
 msgstr "Harita Türü"
 
-#: gui/loadgame/load.xml:(heading):34
-#: gui/replaymenu/replay_menu.xml:(heading):77
+#: gui/loadgame/load.xml:(heading):35
+#: gui/replaymenu/replay_menu.xml:(heading):79
 msgctxt "replay"
 msgid "Map Name"
 msgstr "Harita İsmi"
 
-#: gui/loadgame/load.xml:(heading):38
+#: gui/loadgame/load.xml:(heading):39
 msgctxt "replay"
 msgid "Description"
 msgstr "Açıklama"
@@ -1646,8 +1646,8 @@ msgid ""
 msgstr "Sıfırlama kaydedilmiş ayarları silecektir. Devam edilsin mi?"
 
 #: gui/options/options.js:351
-msgid "Some setting values are invalid! Are you sure to save them?"
-msgstr "Bazı ayarlar geçersiz. Kaydetmek istediğinizden emin misiniz?"
+msgid "Some setting values are invalid! Are you sure you want to save them?"
+msgstr ""
 
 #: gui/options/options.js:377
 msgid "You have unsaved changes, do you want to close this window?"
@@ -1920,7 +1920,7 @@ msgstr "Sis"
 
 #: gui/options/options.json[1].options[2].tooltip
 msgid "Enable fog."
-msgstr ""
+msgstr "Sisi etkinleştir"
 
 #: gui/options/options.json[1].options[3].label
 msgid "Post-processing"
@@ -2267,7 +2267,7 @@ msgstr "Bu ayarlar yalnızca çoklu oyuncuyu etkiler."
 
 #: gui/options/options.json[5].label
 msgid "Game Session"
-msgstr ""
+msgstr "Oyun Oturumu"
 
 #: gui/options/options.json[5].options[0].label
 msgid "Wounded unit health"
@@ -2591,177 +2591,185 @@ msgstr "Uygarlığa Genel Bakış"
 msgid "%(hotkey)s: Learn about the civilizations featured in 0 A.D."
 msgstr "%(hotkey)s : 0 A.D.'deki uygarlıklar hakkında öğren."
 
-#: gui/pregame/MainMenuItems.js:50 gui/replaymenu/replay_filters.js:144
+#: gui/pregame/MainMenuItems.js:48
+msgid "Map Overview"
+msgstr ""
+
+#: gui/pregame/MainMenuItems.js:49
+msgid "View the different maps featured in 0 A.D."
+msgstr ""
+
+#: gui/pregame/MainMenuItems.js:57 gui/replaymenu/replay_filters.js:144
 msgid "Single-player"
 msgstr "Tek oyunculu"
 
-#: gui/pregame/MainMenuItems.js:51
+#: gui/pregame/MainMenuItems.js:58
 msgid "Start, load, or replay a single-player game."
 msgstr "Tek oyunculu bir oyunu başlat, yükle ya da yeniden oynat."
 
-#: gui/pregame/MainMenuItems.js:54
+#: gui/pregame/MainMenuItems.js:61
 msgid "Matches"
 msgstr "Müsabakalar"
 
-#: gui/pregame/MainMenuItems.js:55
+#: gui/pregame/MainMenuItems.js:62
 msgid "Start a new single-player game."
 msgstr "Yeni bir tek oyunculu oyun başlat."
 
-#: gui/pregame/MainMenuItems.js:61
+#: gui/pregame/MainMenuItems.js:68
 msgid "Campaigns"
 msgstr "Mücadeleler "
 
-#: gui/pregame/MainMenuItems.js:62
+#: gui/pregame/MainMenuItems.js:69
 msgid ""
 "Relive history through historical military campaigns. \\[NOT YET "
 "IMPLEMENTED]"
 msgstr "Eski tarihi savaş kampanyaları. \\[NOT YET IMPLEMENTED]"
 
-#: gui/pregame/MainMenuItems.js:67
+#: gui/pregame/MainMenuItems.js:74
 msgid "Load a saved game."
 msgstr "Kayıtlı oyunu yükle."
 
-#: gui/pregame/MainMenuItems.js:73 gui/pregame/MainMenuItems.js:123
+#: gui/pregame/MainMenuItems.js:80 gui/pregame/MainMenuItems.js:130
 msgid "Replays"
 msgstr "Yeniden oynatma"
 
-#: gui/pregame/MainMenuItems.js:74 gui/pregame/MainMenuItems.js:124
+#: gui/pregame/MainMenuItems.js:81 gui/pregame/MainMenuItems.js:131
 msgid "Playback previous games."
 msgstr "Önceki oyunları oynatın."
 
-#: gui/pregame/MainMenuItems.js:88 gui/replaymenu/replay_filters.js:144
+#: gui/pregame/MainMenuItems.js:95 gui/replaymenu/replay_filters.js:144
 msgid "Multiplayer"
 msgstr "Çok Oyunculu"
 
-#: gui/pregame/MainMenuItems.js:89
+#: gui/pregame/MainMenuItems.js:96
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "Çoklu oyunda bir ya da daha fazla gerçek oyuncuya karşı savaşın"
 
 #. Translation: Join a game by specifying the host's IP address.
-#: gui/pregame/MainMenuItems.js:93
+#: gui/pregame/MainMenuItems.js:100
 msgid "Join Game"
 msgstr "Oyuna Katıl"
 
-#: gui/pregame/MainMenuItems.js:94
+#: gui/pregame/MainMenuItems.js:101
 msgid "Joining an existing multiplayer game."
 msgstr "Varolan bir çoklu oyuna katıl."
 
-#: gui/pregame/MainMenuItems.js:102
+#: gui/pregame/MainMenuItems.js:109
 msgid "Host Game"
 msgstr "Oyun Kur"
 
-#: gui/pregame/MainMenuItems.js:103
+#: gui/pregame/MainMenuItems.js:110
 msgid "Host a multiplayer game."
 msgstr "Çok oyunculu bir oyuna ev sahipliği yapın."
 
-#: gui/pregame/MainMenuItems.js:111
+#: gui/pregame/MainMenuItems.js:118
 msgid "Game Lobby"
 msgstr "Oyun Lobisi"
 
-#: gui/pregame/MainMenuItems.js:113
+#: gui/pregame/MainMenuItems.js:120
 #, javascript-format
 msgid ""
 "%(hotkey)s: Launch the multiplayer lobby to join and host publicly visible "
 "games and chat with other players."
 msgstr "%(hotkey)s: Herkese açık oyunlara katılmak ve ev sahipliği yapmak ve diğer oyuncularla sohbet etmek için çok oyunculu lobiyi açar."
 
-#: gui/pregame/MainMenuItems.js:114
+#: gui/pregame/MainMenuItems.js:121
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
 msgstr "Çoklu oyuncu lobisi başlat. \\[DISABLED BY BUILD]"
 
-#: gui/pregame/MainMenuItems.js:138
+#: gui/pregame/MainMenuItems.js:145
 msgid "Settings"
 msgstr "Ayarlar"
 
-#: gui/pregame/MainMenuItems.js:139
+#: gui/pregame/MainMenuItems.js:146
 msgid "Change game options."
 msgstr "Oyun ayarlarını değiştir."
 
-#: gui/pregame/MainMenuItems.js:142
+#: gui/pregame/MainMenuItems.js:149
 msgid "Options"
 msgstr "Ayarlar"
 
-#: gui/pregame/MainMenuItems.js:143
+#: gui/pregame/MainMenuItems.js:150
 msgid "Adjust game settings."
 msgstr "Oyun ayarlarını ayarla."
 
-#: gui/pregame/MainMenuItems.js:152
+#: gui/pregame/MainMenuItems.js:159
 msgid "Hotkeys"
 msgstr ""
 
-#: gui/pregame/MainMenuItems.js:153
+#: gui/pregame/MainMenuItems.js:160
 msgid "Adjust hotkeys."
 msgstr ""
 
-#: gui/locale/locale.xml:(caption):14 gui/pregame/MainMenuItems.js:159
+#: gui/locale/locale.xml:(caption):14 gui/pregame/MainMenuItems.js:166
 msgid "Language"
 msgstr "Dil"
 
-#: gui/pregame/MainMenuItems.js:160
+#: gui/pregame/MainMenuItems.js:167
 msgid "Choose the language of the game."
 msgstr "Oyun lisanı seç."
 
-#: gui/pregame/MainMenuItems.js:166
+#: gui/pregame/MainMenuItems.js:173
 msgid "Mod Selection"
 msgstr "Mod Seçimi"
 
-#: gui/pregame/MainMenuItems.js:167
+#: gui/pregame/MainMenuItems.js:174
 msgid "Select and download mods for the game."
 msgstr "Oyun için modları seçin ve yükleyin."
 
-#: gui/pregame/MainMenuItems.js:173
+#: gui/pregame/MainMenuItems.js:180
 msgid "Welcome Screen"
 msgstr "Karşılama Ekranı"
 
-#: gui/pregame/MainMenuItems.js:174
+#: gui/pregame/MainMenuItems.js:181
 msgid "Show the Welcome Screen again. Useful if you hid it by mistake."
 msgstr "Hoşgeldin Ekranını göster. Yanlışlıkla gizlediyseniz kullanışlı."
 
-#: gui/pregame/MainMenuItems.js:182
+#: gui/pregame/MainMenuItems.js:189
 msgid "Scenario Editor"
 msgstr "Senaryo Düzenleyicisi"
 
-#: gui/pregame/MainMenuItems.js:183
+#: gui/pregame/MainMenuItems.js:190
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "Atlas Senaryo Düzenleyicisi'ni yeni bir pencerede açın.  Oyunu komut-satırı argümanından \"-editor\" ile başlatarak, çok daha hatasızca çalıştırabilirsiniz."
 
-#: gui/pregame/MainMenuItems.js:188
+#: gui/pregame/MainMenuItems.js:195
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
 msgstr "0 A.D.'yi kapatıp Senaryo Editörünü açmak istediğinizden emin misiniz?"
 
-#: gui/pregame/MainMenuItems.js:189 gui/pregame/MainMenuItems.js:213
+#: gui/pregame/MainMenuItems.js:196 gui/pregame/MainMenuItems.js:220
 msgid "Confirmation"
 msgstr "Onay"
 
-#: gui/pregame/MainMenuItems.js:195
+#: gui/pregame/MainMenuItems.js:202
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "Senaryo editörü mevcut değil ya da yüklenmesi başarısız. Daha fazla bilgi için oyun günlük dosyasına bakınız."
 
-#: gui/pregame/MainMenuItems.js:196 gui/replaymenu/replay_actions.js:117
+#: gui/pregame/MainMenuItems.js:203 gui/replaymenu/replay_actions.js:117
 msgid "Error"
 msgstr "Hata"
 
-#: gui/pregame/MainMenuItems.js:200
+#: gui/pregame/MainMenuItems.js:207
 msgid "Credits"
 msgstr "Katkıcılar"
 
-#: gui/pregame/MainMenuItems.js:201
+#: gui/pregame/MainMenuItems.js:208
 msgid "Show the 0 A.D. credits."
 msgstr "0 A.D. kredisini göster."
 
-#: gui/pregame/MainMenuItems.js:207
+#: gui/pregame/MainMenuItems.js:214
 msgid "Exit"
 msgstr "Çıkış"
 
-#: gui/pregame/MainMenuItems.js:208
+#: gui/pregame/MainMenuItems.js:215
 msgid "Exit the game."
 msgstr "Oyundan çık."
 
-#: gui/pregame/MainMenuItems.js:212
+#: gui/pregame/MainMenuItems.js:219
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "0 A.D.'den çıkmak istediğinize emin misiniz?"
 
@@ -2901,7 +2909,7 @@ msgstr "Hataları düzeltmemize ve performansı ve uyumluluğu iyileştirmemize 
 msgid ""
 "\n"
 "     %(description)s"
-msgstr ""
+msgstr "\n%(description)s"
 
 #. Translation: An entry in the CivInfo Page. The newline and indentation of
 #. the description
@@ -3182,56 +3190,60 @@ msgstr "yyyy-AA-gg SS:dd"
 msgid "yyyy-MM"
 msgstr "yyyy-AA"
 
-#: gui/replaymenu/replay_menu.xml:(caption):13
+#: gui/replaymenu/replay_menu.xml:(caption):14
 msgid "Replay Games"
 msgstr "Yeniden oynatma Oyunlar"
 
-#: gui/replaymenu/replay_menu.xml:(caption):109
+#: gui/replaymenu/replay_menu.xml:(caption):111
 msgid "Filter compatible replays"
 msgstr "Tekrar oynatmaları uyuma filtrele"
 
-#: gui/replaymenu/replay_menu.xml:(caption):213
+#: gui/replaymenu/replay_menu.xml:(caption):215
 msgid "Spoiler"
 msgstr "Özet"
 
-#: gui/replaymenu/replay_menu.xml:(caption):225
+#: gui/replaymenu/replay_menu.xml:(caption):227
 msgid "Main Menu"
 msgstr "Ana Menü"
 
-#: gui/replaymenu/replay_menu.xml:(caption):237
+#: gui/replaymenu/replay_menu.xml:(caption):239
 msgid "Rebuild Cache"
 msgstr "Önbelleği Yeniden Oluştur"
 
-#: gui/replaymenu/replay_menu.xml:(caption):244
+#: gui/replaymenu/replay_menu.xml:(caption):246
 #: gui/summary/summary.xml:(caption):26
 msgid "Summary"
 msgstr "Özet"
 
-#: gui/replaymenu/replay_menu.xml:(caption):250
+#: gui/replaymenu/replay_menu.xml:(caption):252
 msgid "Start Replay"
 msgstr "Yeniden oynatmayı başlat"
 
-#: gui/replaymenu/replay_menu.xml:(heading):73
+#: gui/replaymenu/replay_menu.xml:(heading):75
 msgctxt "replay"
 msgid "Players"
 msgstr "Oyuncular"
 
-#: gui/replaymenu/replay_menu.xml:(heading):81
+#: gui/replaymenu/replay_menu.xml:(heading):83
 msgctxt "replay"
 msgid "Size"
 msgstr "Boyut"
 
-#: gui/replaymenu/replay_menu.xml:(heading):85
+#: gui/replaymenu/replay_menu.xml:(heading):87
 msgctxt "replay"
 msgid "Population"
 msgstr "Nüfus"
 
-#: gui/replaymenu/replay_menu.xml:(heading):89
+#: gui/replaymenu/replay_menu.xml:(heading):91
 msgctxt "replay"
 msgid "Duration"
 msgstr "Süre"
 
-#: gui/replaymenu/replay_menu.xml:(tooltip):238
+#: gui/replaymenu/replay_menu.xml:(placeholder_text):32
+msgid "Search for Player"
+msgstr "Oyuncuyu Arayın"
+
+#: gui/replaymenu/replay_menu.xml:(tooltip):240
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
 msgstr "Sıfırdan oynatma önbelleğini kurun. Potansiyel olarak yavaş!"
 

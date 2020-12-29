@@ -27,8 +27,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2020-11-13 10:15+0000\n"
+"POT-Creation-Date: 2020-12-26 15:10+0000\n"
+"PO-Revision-Date: 2020-12-26 16:16+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -965,9 +965,9 @@ msgstr "热带"
 #: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Description
 msgctxt "biome definition"
 msgid ""
-"Solidifying it's grip, the harsh cold has succeeded in freezing up the gulf."
-" The thick ice formed is capable of withstanding any weight."
-msgstr "严寒冻结了海湾，形成的厚冰能够承受任何重量。"
+"Solidifying its grip, the harsh cold has succeeded in freezing up the gulf. "
+"The thick ice formed is capable of withstanding any weight."
+msgstr ""
 
 #: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Title
 msgctxt "biome definition"
@@ -1459,6 +1459,7 @@ msgstr "提洛联盟"
 
 #: maps/scenarios/campaign_test_map.xml:PlayerData[1].Name:39
 #: maps/scenarios/peloponnese.xml:PlayerData[3].Name:39
+#: maps/skirmishes/egypt_3pv3p.xml:PlayerData[1].Name:40
 msgid "Thebes"
 msgstr "底比斯"
 
@@ -2286,7 +2287,7 @@ msgstr "多人地图。热带伊甸园"
 msgid "Tropical Island"
 msgstr "热带群岛"
 
-#: maps/scenarios/unit_motion_integration_test.xml:Description:41
+#: maps/scenarios/unit_motion_integration_test.xml:Description:40
 msgid ""
 "This map is designed to test some basic unit movement cases. It will involve"
 " unitAI, unitMotion and the relevant pathfinders and thus acts as an "
@@ -2294,7 +2295,7 @@ msgid ""
 "and weird pathing."
 msgstr "本地图旨在测试一些基本的单位运动案例。 涉及了 unitAI、unitMotion 和相关的探测器，因此可作为综合测试图。 寻找诸如卡单位，错误动画，和奇怪的路径。"
 
-#: maps/scenarios/unit_motion_integration_test.xml:Name:41
+#: maps/scenarios/unit_motion_integration_test.xml:Name:40
 msgid "Unit Motion Integration Test"
 msgstr "单元运动集成测试"
 
@@ -2541,10 +2542,6 @@ msgstr "埃及(3V3)"
 #: maps/skirmishes/egypt_3pv3p.xml:PlayerData[0].Name:40
 msgid "Alexandria"
 msgstr "亚历山大"
-
-#: maps/skirmishes/egypt_3pv3p.xml:PlayerData[1].Name:40
-msgid "Theben"
-msgstr "底比斯"
 
 #: maps/skirmishes/egypt_3pv3p.xml:PlayerData[2].Name:40
 msgid "Siwa"
@@ -2936,10 +2933,10 @@ msgstr "两海 (6)"
 
 #: maps/skirmishes/vesuvius_6p.xml:Description:40
 msgid ""
-"Skirmish as ash lightly falls around this recently erupted volcano. the "
+"Skirmish as ash lightly falls around this recently erupted volcano. The "
 "scorched landscape offers little food, though the blasted forests are still "
-"laden with useful wood. "
-msgstr "火山喷发的周围，森林烧焦，几乎没什么食物，不过还有不少木材。"
+"laden with useful wood."
+msgstr ""
 
 #: maps/skirmishes/vesuvius_6p.xml:Name:40
 msgid "Vesuvius (6)"

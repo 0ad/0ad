@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2020-11-28 10:01+0000\n"
+"POT-Creation-Date: 2020-12-26 15:10+0000\n"
 "PO-Revision-Date: 2017-06-04 12:59+0000\n"
 "Last-Translator: ks k, 2020\n"
 "Language-Team: Korean (https://www.transifex.com/wildfire-games/teams/17418/ko/)\n"
@@ -247,7 +247,7 @@ msgid "Introductory Tutorial"
 msgstr "초보 자습서"
 
 #: maps/tutorials/introductory_tutorial.xml:PlayerData[0].Name:39
-#: maps/tutorials/starting_economy_walkthrough.xml:PlayerData[0].Name:39
+#: maps/tutorials/starting_economy_walkthrough.xml:PlayerData[0].Name:40
 msgid "Player 1"
 msgstr "선수 1"
 
@@ -700,15 +700,11 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:314
 msgid ""
-"A field can have up to five farmers working on it. To add additional "
-"gatherers, select the Civic Center and setup a rally point on a field by "
-"right-clicking on it. As long as the field is not yet build, new workers "
-"sent by a rally point will help building it, while they will gather it when "
-"built."
+"Up to five Workers can gather from a Field. To add additional Workers, "
+"select the Civic Center and set a rally point on a Field by right-clicking "
+"on it. If the Field is not yet finished, new Workers sent by a rally point "
+"will help building it, and when built, they will gather food."
 msgstr ""
-"밭에는 5명의 농부들이 일할 수 있습니다. 채집하는 사람을 추가하려면 시민 회관을 선택하고 지역을 마우스 오른쪽 버튼으로 클릭하여 "
-"집결지를 밭으로 설정합니다. 밭이 아직 개간되지 않는 한, 선로 지점에서 보낸 새로운 일꾼들이 밭을 짓는 것을 도울 것이고, 그들은 밭을"
-" 지을 때 식량을 모을 것입니다."
 
 #: maps/tutorials/starting_economy_walkthrough.js:322
 msgid "Select the Civic Center and right-click on the field."
@@ -843,7 +839,7 @@ msgid ""
 "basics of setting up your economy."
 msgstr "이제, 이 예행 연습은 끝났습니다. 이 자습서는 당신에게 이 놀이의 기본 경제 개념에 대한 좋은 발상을 줄것입니다."
 
-#: maps/tutorials/starting_economy_walkthrough.xml:Description:39
+#: maps/tutorials/starting_economy_walkthrough.xml:Description:40
 msgid ""
 "This map will give a rough guide for starting the game effectively.  Early "
 "in the game the most important thing is to gather resources as fast as "
@@ -852,6 +848,6 @@ msgstr ""
 "이 지도는 놀이를 효과적으로 시작하기위한 대략적인 가이드를 제공합니다. 놀이의 초기 단계에서 가장 중요한 것은 자원을 최대한 빨리 "
 "채집하고 나중에 충분한 군대를 구축 할 것입니다."
 
-#: maps/tutorials/starting_economy_walkthrough.xml:Name:39
+#: maps/tutorials/starting_economy_walkthrough.xml:Name:40
 msgid "Starting Economy Walkthrough"
 msgstr "초반 경제 예행연습"

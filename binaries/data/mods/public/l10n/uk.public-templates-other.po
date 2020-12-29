@@ -21,8 +21,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2020-12-13 00:51+0000\n"
+"POT-Creation-Date: 2020-12-26 15:10+0000\n"
+"PO-Revision-Date: 2020-12-26 19:15+0000\n"
 "Last-Translator: Микола Франчук <thekolian1996@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -30,6 +30,21 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: uk\n"
 "Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
+
+#: simulation/data/status_effects/burning.jsonapplierTooltip
+msgctxt "status effect"
+msgid "This unit causes fire damage."
+msgstr "Цей юніт спричиняє шкоду вогнем."
+
+#: simulation/data/status_effects/burning.jsonreceiverTooltip
+msgctxt "status effect"
+msgid "This unit is burning."
+msgstr "Цей юніт горить."
+
+#: simulation/data/status_effects/burning.jsonstatusName
+msgctxt "status effect"
+msgid "Burning"
+msgstr "Горить"
 
 #: simulation/data/template_helpers/damage_types/crush.jsondescription
 msgctxt "damage type"
@@ -40,6 +55,16 @@ msgstr "Пошкодження, спричинені прямовисною си
 msgctxt "damage type"
 msgid "Crush"
 msgstr "Крушіння"
+
+#: simulation/data/template_helpers/damage_types/fire.jsondescription
+msgctxt "damage type"
+msgid "Damage caused by burning objects, like a torch or a flaming arrow."
+msgstr ""
+
+#: simulation/data/template_helpers/damage_types/fire.jsonname
+msgctxt "damage type"
+msgid "Fire"
+msgstr "Вогняна"
 
 #: simulation/data/template_helpers/damage_types/hack.jsondescription
 msgctxt "damage type"
@@ -955,7 +980,7 @@ msgstr "Клин"
 msgid "Player"
 msgstr "Гравець"
 
-#: simulation/templates/special/spy.xml:17
+#: simulation/templates/special/spy.xml:16
 msgid "Spy"
 msgstr "Шпигун"
 
@@ -1024,11 +1049,11 @@ msgstr "Дерево"
 msgid "Chop trees for wood."
 msgstr "Рубати дерева по деревину."
 
-#: simulation/templates/template_structure.xml:47
+#: simulation/templates/template_structure.xml:46
 msgid "Structure"
 msgstr "Споруда"
 
-#: simulation/templates/template_unit.xml:38
+#: simulation/templates/template_unit.xml:37
 msgid "Unit"
 msgstr "Одиниця"
 

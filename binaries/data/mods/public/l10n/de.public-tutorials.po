@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2020-11-28 10:01+0000\n"
+"POT-Creation-Date: 2020-12-26 15:10+0000\n"
 "PO-Revision-Date: 2017-06-04 12:59+0000\n"
 "Last-Translator: xtother90, 2020\n"
 "Language-Team: German (https://www.transifex.com/wildfire-games/teams/17418/de/)\n"
@@ -298,7 +298,7 @@ msgid "Introductory Tutorial"
 msgstr "Interaktive Einführung"
 
 #: maps/tutorials/introductory_tutorial.xml:PlayerData[0].Name:39
-#: maps/tutorials/starting_economy_walkthrough.xml:PlayerData[0].Name:39
+#: maps/tutorials/starting_economy_walkthrough.xml:PlayerData[0].Name:40
 msgid "Player 1"
 msgstr "Spieler 1"
 
@@ -844,14 +844,16 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:314
 msgid ""
-"A field can have up to five farmers working on it. To add additional "
-"gatherers, select the Civic Center and setup a rally point on a field by "
-"right-clicking on it. As long as the field is not yet build, new workers "
-"sent by a rally point will help building it, while they will gather it when "
-"built."
+"Up to five Workers can gather from a Field. To add additional Workers, "
+"select the Civic Center and set a rally point on a Field by right-clicking "
+"on it. If the Field is not yet finished, new Workers sent by a rally point "
+"will help building it, and when built, they will gather food."
 msgstr ""
-"Auf einem Feld können bis zu fünf Bauern arbeiten. Um weitere Farmer zum Feld hinzuzufügen, wählen sie das Verwaltungsgebäude aus und setzen sie einen Sammelpunkt per Rechtsklick auf das Feld.\n"
-"Solange das Feld sich noch im Bau befindet, werde die so zugewiesenen neuen Sammeleinheiten, zuerst helfen das Feld fertig zu errichten und nach Fertigstellung automatisch als Farmer dort arbeiten."
+"Bis zu fünf Arbeiter können ein Feld bestellen. Um zusätzliche Arbeiter "
+"hinzuzufügen, wähle den Verwaltungssitz aus und setze per Rechtsklick einen "
+"Sammelpunkt auf ein Feld. Falls das Feld noch nicht fertig gebaut ist, "
+"helfen neue Arbeiter am Sammelpunkt beim Bau und wenn es dann fertig ist, "
+"sammeln sie Nahrung."
 
 #: maps/tutorials/starting_economy_walkthrough.js:322
 msgid "Select the Civic Center and right-click on the field."
@@ -1016,7 +1018,7 @@ msgstr ""
 "Dies ist das Ende dieser Einführung. Sie sollte dir eine gute Idee geben, "
 "wie du die Grundlagen deiner Wirtschaft aufziehst."
 
-#: maps/tutorials/starting_economy_walkthrough.xml:Description:39
+#: maps/tutorials/starting_economy_walkthrough.xml:Description:40
 msgid ""
 "This map will give a rough guide for starting the game effectively.  Early "
 "in the game the most important thing is to gather resources as fast as "
@@ -1026,6 +1028,6 @@ msgstr ""
 "starten. Früh im Spiel ist es am wichtigsten, so schnell wie möglich "
 "Ressourcen zu sammeln, damit du später genügend Truppen ausbilden kannst."
 
-#: maps/tutorials/starting_economy_walkthrough.xml:Name:39
+#: maps/tutorials/starting_economy_walkthrough.xml:Name:40
 msgid "Starting Economy Walkthrough"
 msgstr "Einstiegstutorial Wirtschaft"

@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2020-11-28 10:01+0000\n"
+"POT-Creation-Date: 2020-12-26 15:10+0000\n"
 "PO-Revision-Date: 2017-06-04 12:59+0000\n"
 "Last-Translator: Pietro Zaccherini <pietrozak@libero.it>, 2020\n"
 "Language-Team: Italian (https://www.transifex.com/wildfire-games/teams/17418/it/)\n"
@@ -294,7 +294,7 @@ msgid "Introductory Tutorial"
 msgstr "Tutorial Introduttivo"
 
 #: maps/tutorials/introductory_tutorial.xml:PlayerData[0].Name:39
-#: maps/tutorials/starting_economy_walkthrough.xml:PlayerData[0].Name:39
+#: maps/tutorials/starting_economy_walkthrough.xml:PlayerData[0].Name:40
 msgid "Player 1"
 msgstr "Giocatore 1"
 
@@ -851,17 +851,11 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:314
 msgid ""
-"A field can have up to five farmers working on it. To add additional "
-"gatherers, select the Civic Center and setup a rally point on a field by "
-"right-clicking on it. As long as the field is not yet build, new workers "
-"sent by a rally point will help building it, while they will gather it when "
-"built."
+"Up to five Workers can gather from a Field. To add additional Workers, "
+"select the Civic Center and set a rally point on a Field by right-clicking "
+"on it. If the Field is not yet finished, new Workers sent by a rally point "
+"will help building it, and when built, they will gather food."
 msgstr ""
-"Un campo può essere lavorato da un massimo di cinque lavoratori. Per "
-"aggiungerne altri, seleziona il Centro Civico e imposta un punto di raccolta"
-" su un campo cliccandovi sopra col destro. Se il campo è ancora in fase di "
-"costruzione, i nuovi lavoratori si aggiungeranno alla sua costruzione, "
-"altrimenti lo sfrutteranno per raccogliere del cibo."
 
 #: maps/tutorials/starting_economy_walkthrough.js:322
 msgid "Select the Civic Center and right-click on the field."
@@ -1027,7 +1021,7 @@ msgstr ""
 "Questa è la fine della guida. Ora dovresti avere una buona idea sulle basi "
 "di come impostare la tua economia."
 
-#: maps/tutorials/starting_economy_walkthrough.xml:Description:39
+#: maps/tutorials/starting_economy_walkthrough.xml:Description:40
 msgid ""
 "This map will give a rough guide for starting the game effectively.  Early "
 "in the game the most important thing is to gather resources as fast as "
@@ -1037,6 +1031,6 @@ msgstr ""
 "All'inizio del gioco la cosa più importante è raccogliere risorse il più "
 "velocemente possibile in modo da poter creare più truppe più tardi."
 
-#: maps/tutorials/starting_economy_walkthrough.xml:Name:39
+#: maps/tutorials/starting_economy_walkthrough.xml:Name:40
 msgid "Starting Economy Walkthrough"
 msgstr "Guida su come Avviare un'Economia"

@@ -48,63 +48,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2020-09-17 00:28+0000\n"
-"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
+"POT-Creation-Date: 2020-12-28 08:02+0000\n"
+"PO-Revision-Date: 2020-12-28 09:25+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: zh\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-
-#: gui/gamesetup/Controls/MapFilters.js:85
-msgid "Default"
-msgstr "默认"
-
-#: gui/gamesetup/Controls/MapFilters.js:86
-msgid "All maps except naval and demo maps."
-msgstr "除海战和演示地图以外的所有地图。"
-
-#: gui/gamesetup/Controls/MapFilters.js:91
-msgid "Naval Maps"
-msgstr "海事地图"
-
-#: gui/gamesetup/Controls/MapFilters.js:92
-msgid "Maps where ships are needed to reach the enemy."
-msgstr "需要船只才能到达敌人的地图。"
-
-#: gui/gamesetup/Controls/MapFilters.js:97
-msgid "Demo Maps"
-msgstr "演示地图"
-
-#: gui/gamesetup/Controls/MapFilters.js:98
-msgid "These maps are not playable but for demonstration purposes only."
-msgstr "这些地图不是可玩的，只是出于演示目的。"
-
-#: gui/gamesetup/Controls/MapFilters.js:103
-msgid "New Maps"
-msgstr "新地图"
-
-#: gui/gamesetup/Controls/MapFilters.js:104
-msgid "Maps that are brand new in this release of the game."
-msgstr "在游戏发布的时候，地图是全新的。"
-
-#: gui/gamesetup/Controls/MapFilters.js:109
-msgid "Trigger Maps"
-msgstr "触发地图"
-
-#: gui/gamesetup/Controls/MapFilters.js:110
-msgid "Maps that come with scripted events and potentially spawn enemy units."
-msgstr "有脚本事件和潜在生成的敌人单位的地图。"
-
-#: gui/gamesetup/Controls/MapFilters.js:115
-msgid "All Maps"
-msgstr "所有地图"
-
-#: gui/gamesetup/Controls/MapFilters.js:116
-msgid "Every map of the chosen maptype."
-msgstr "选定地图类型的所有地图"
 
 #: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):13
 msgid "AI Configuration"
@@ -160,12 +112,12 @@ msgctxt "Match settings tab name"
 msgid "Map"
 msgstr "地图"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:26
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:27
 msgctxt "Match settings tab name"
 msgid "Player"
 msgstr "玩家"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:38
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:39
 msgctxt "Match settings tab name"
 msgid "Game Type"
 msgstr "游戏类型"
@@ -238,6 +190,15 @@ msgstr "文明"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):25
 msgid "Team"
 msgstr "组队"
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:26
+msgid "Browse Maps"
+msgstr ""
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:29
+#, javascript-format
+msgid "Press %(hotkey)s to view the list of available maps."
+msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:40
 msgid "Cheats"
@@ -843,6 +804,10 @@ msgstr "使用%(hotkey)s移至下一个选项卡。"
 msgid "Press %(hotkey)s to move to the previous settings tab."
 msgstr "使用%(hotkey)s移至上一个选项卡。"
 
+#: gui/gamesetup/Pages/GameSetupPage/Panels/MapPreview.js:47
+msgid "Click to view the list of available maps."
+msgstr ""
+
 #: gui/gamesetup/Pages/GameSetupPage/Panels/TipsPanel.xml:(caption):9
 msgid "Show this message in the future."
 msgstr "稍后显示此消息"
@@ -855,7 +820,7 @@ msgstr "加载中"
 msgid "Loading map data. Please wait…"
 msgstr "正在加载地图。请稍等..."
 
-#: gui/gamesetup/gamesetup.xml:(caption):12
+#: gui/gamesetup/gamesetup.xml:(caption):13
 msgid "Match Setup"
 msgstr "竞赛设置"
 
@@ -1968,8 +1933,8 @@ msgstr "客人住久了就是麻烦。——普劳图斯"
 #: gui/text/quotes.txt:143
 msgid ""
 "“You cannot eat your cake and have it too, unless you think your money is "
-"immortal.” \\n— Plautus (“Trinummus”, Act II, scene 4, 12)"
-msgstr "你不可能吃掉你的蛋糕，同时又保留它，除非你认为你的钱不会花光。——古罗马剧作家普劳图斯 (\"Trinummus\", Act II, scene 4, 12)"
+"immortal.”\\n— Plautus (“Trinummus”, Act II, scene 4, 13–14)"
+msgstr ""
 
 #: gui/text/quotes.txt:144
 msgid ""
@@ -2168,10 +2133,10 @@ msgstr " 我们接受这样一个帝国，拒绝在压力下放弃是因为三�
 
 #: gui/text/quotes.txt:168
 msgid ""
-"“He could boast that he found a city of brick and left it a city of marble.”"
-" \\n— Suetonius, commenting on the many building projects of Augustus in "
-"Rome (“Divus Augustus”, sec 38)"
-msgstr "他可以吹嘘自己找到了一座砖城，并留下了一座大理石城。“——苏埃多尼乌斯（古罗马历史学家），评论奥古斯都在罗马的建筑工程"
+"“He could boast that he found a city of brick and left it a city of "
+"marble.”\\n— Suetonius, commenting on the many building projects of Augustus"
+" in Rome (“Divus Augustus”, 28.3)"
+msgstr ""
 
 #: gui/text/quotes.txt:169
 msgid "“Moderation in all things.” \\n— Terence (“The Girl from Andros”, 61)"
@@ -2264,23 +2229,23 @@ msgstr "拉栖代梦人对这种作战方式不习惯，随着攻击而来的高
 
 #: gui/text/quotes.txt:181
 msgid ""
-"“The soldiers fight and die to support others in wealth and luxury and they "
-"are called masters of the world without owning a single piece of farmland of"
-" their own.” \\n— Tiberius Gracchus, advocating for land reform to the "
-"benefit of homeless and unemployed veterans whose lands had often been "
-"bought up why they were on campaign (Plutarch, “Parallel Lives”, “Tiberius "
-"Gracchus”, sec. 9)"
-msgstr "士兵们为了富人权贵战斗和死去，为那些被称为世界的主人的人，自己却没能拥有一块土地。——提比略·格拉库斯，主张对土地进行改革，以造福无家可归和失业的退伍军人，这些退伍军人的土地经常被美国政府收购，他们为什么要出征（普鲁塔克，《希腊罗马名人传之提比略·格拉库斯》，第 9 段）"
+"“The wild beasts of Italy have their caves to retire to, but the brave "
+"veterans who spilled their blood in her cause have nothing left but air and "
+"light. They wander around homeless with their wives and children.”\\n— "
+"Tiberius Gracchus, advocating for land reform to the benefit of homeless and"
+" unemployed veterans whose lands had often been bought up while they were on"
+" campaign. (Plutarch, “Parallel Lives”, “Tiberius Gracchus”, 9.4–5)"
+msgstr ""
 
 #: gui/text/quotes.txt:182
 msgid ""
-"“The wild beasts of Italy have their caves to retire to, but the brave "
-"veterans who spilled their blood in her cause have nothing left but air and "
-"light. They wander around homeless with their wives and children.” \\n— "
-"Tiberius Gracchus, advocating for land reform to the benefit of homeless and"
-" unemployed veterans whose lands had often been bought up why they were on "
-"campaign (Plutarch, “Parallel Lives”, “Tiberius Gracchus”, sec. 9)"
-msgstr "野兽到老了，还有洞穴可以栖身。而我们勇敢的退伍军人，在他们的事业中流血流汗，除了阳光和空气外，什么也没有得到。 他们与妻儿一道无家可归，四处游荡。 ——提比略·格拉库斯，倡导土地改革。退伍军人的土地经常被买下，他们为什么要冲锋陷阵不计将来（普鲁塔克，《希腊罗马名人传之提比略·格拉库斯》，第9段）"
+"“The soldiers fight and die to support others in wealth and luxury and they "
+"are called masters of the world without owning a single piece of farmland of"
+" their own.”\\n— Tiberius Gracchus, advocating for land reform to the "
+"benefit of homeless and unemployed veterans whose lands had often been "
+"bought up while they were on campaign. (Plutarch, “Parallel Lives”, "
+"“Tiberius Gracchus”, 9.5)"
+msgstr ""
 
 #: gui/text/quotes.txt:183
 msgid ""

@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2020-07-24 12:17+0000\n"
+"POT-Creation-Date: 2020-12-28 08:02+0000\n"
+"PO-Revision-Date: 2020-12-28 09:25+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Bengali (http://www.transifex.com/wildfire-games/0ad/language/bn/)\n"
 "MIME-Version: 1.0\n"
@@ -16,54 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: bn\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#: gui/gamesetup/Controls/MapFilters.js:85
-msgid "Default"
-msgstr "ডিফল্ট"
-
-#: gui/gamesetup/Controls/MapFilters.js:86
-msgid "All maps except naval and demo maps."
-msgstr "নৌ এবং ডেমো মানচিত্র বাদে সমস্ত মানচিত্র।"
-
-#: gui/gamesetup/Controls/MapFilters.js:91
-msgid "Naval Maps"
-msgstr "নৌ  মানচিত্র।"
-
-#: gui/gamesetup/Controls/MapFilters.js:92
-msgid "Maps where ships are needed to reach the enemy."
-msgstr "মানচিত্র যেখানে শত্রুতে পৌঁছানোর জন্য জাহাজের প্রয়োজন।"
-
-#: gui/gamesetup/Controls/MapFilters.js:97
-msgid "Demo Maps"
-msgstr "ডেমো মানচিত্র"
-
-#: gui/gamesetup/Controls/MapFilters.js:98
-msgid "These maps are not playable but for demonstration purposes only."
-msgstr "এই মানচিত্রগুলি খেলার উপযুক্ত নয় তবে কেবল প্রদর্শনের উদ্দেশ্যে তৈরী।"
-
-#: gui/gamesetup/Controls/MapFilters.js:103
-msgid "New Maps"
-msgstr "নতুন মানচিত্র"
-
-#: gui/gamesetup/Controls/MapFilters.js:104
-msgid "Maps that are brand new in this release of the game."
-msgstr "গেমের এই রিলিজে এই মানচিত্রগুলি একেবারে নতুন।"
-
-#: gui/gamesetup/Controls/MapFilters.js:109
-msgid "Trigger Maps"
-msgstr "ট্রিগার মানচিত্র"
-
-#: gui/gamesetup/Controls/MapFilters.js:110
-msgid "Maps that come with scripted events and potentially spawn enemy units."
-msgstr " এই মানচিত্রগুলি পূর্বনির্ধারিত ঘটনা এবং সম্ভাব্যভাবে শত্রু ইউনিটগুলি তৈরী করে আসে।"
-
-#: gui/gamesetup/Controls/MapFilters.js:115
-msgid "All Maps"
-msgstr "সমস্ত মানচিত্র"
-
-#: gui/gamesetup/Controls/MapFilters.js:116
-msgid "Every map of the chosen maptype."
-msgstr "নির্বাচিত প্রকারের প্রতিটি মানচিত্র।"
 
 #: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):13
 msgid "AI Configuration"
@@ -119,12 +71,12 @@ msgctxt "Match settings tab name"
 msgid "Map"
 msgstr "মানচিত্র"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:26
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:27
 msgctxt "Match settings tab name"
 msgid "Player"
 msgstr "খেলোয়াড়"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:38
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:39
 msgctxt "Match settings tab name"
 msgid "Game Type"
 msgstr "খেলার ধরণ"
@@ -196,6 +148,15 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):25
 msgid "Team"
+msgstr ""
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:26
+msgid "Browse Maps"
+msgstr ""
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:29
+#, javascript-format
+msgid "Press %(hotkey)s to view the list of available maps."
 msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:40
@@ -806,6 +767,10 @@ msgstr ""
 msgid "Press %(hotkey)s to move to the previous settings tab."
 msgstr ""
 
+#: gui/gamesetup/Pages/GameSetupPage/Panels/MapPreview.js:47
+msgid "Click to view the list of available maps."
+msgstr ""
+
 #: gui/gamesetup/Pages/GameSetupPage/Panels/TipsPanel.xml:(caption):9
 msgid "Show this message in the future."
 msgstr ""
@@ -818,7 +783,7 @@ msgstr ""
 msgid "Loading map data. Please wait…"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(caption):12
+#: gui/gamesetup/gamesetup.xml:(caption):13
 msgid "Match Setup"
 msgstr ""
 
@@ -1931,7 +1896,7 @@ msgstr ""
 #: gui/text/quotes.txt:143
 msgid ""
 "“You cannot eat your cake and have it too, unless you think your money is "
-"immortal.” \\n— Plautus (“Trinummus”, Act II, scene 4, 12)"
+"immortal.”\\n— Plautus (“Trinummus”, Act II, scene 4, 13–14)"
 msgstr ""
 
 #: gui/text/quotes.txt:144
@@ -2131,9 +2096,9 @@ msgstr ""
 
 #: gui/text/quotes.txt:168
 msgid ""
-"“He could boast that he found a city of brick and left it a city of marble.”"
-" \\n— Suetonius, commenting on the many building projects of Augustus in "
-"Rome (“Divus Augustus”, sec 38)"
+"“He could boast that he found a city of brick and left it a city of "
+"marble.”\\n— Suetonius, commenting on the many building projects of Augustus"
+" in Rome (“Divus Augustus”, 28.3)"
 msgstr ""
 
 #: gui/text/quotes.txt:169
@@ -2227,22 +2192,22 @@ msgstr ""
 
 #: gui/text/quotes.txt:181
 msgid ""
-"“The soldiers fight and die to support others in wealth and luxury and they "
-"are called masters of the world without owning a single piece of farmland of"
-" their own.” \\n— Tiberius Gracchus, advocating for land reform to the "
-"benefit of homeless and unemployed veterans whose lands had often been "
-"bought up why they were on campaign (Plutarch, “Parallel Lives”, “Tiberius "
-"Gracchus”, sec. 9)"
+"“The wild beasts of Italy have their caves to retire to, but the brave "
+"veterans who spilled their blood in her cause have nothing left but air and "
+"light. They wander around homeless with their wives and children.”\\n— "
+"Tiberius Gracchus, advocating for land reform to the benefit of homeless and"
+" unemployed veterans whose lands had often been bought up while they were on"
+" campaign. (Plutarch, “Parallel Lives”, “Tiberius Gracchus”, 9.4–5)"
 msgstr ""
 
 #: gui/text/quotes.txt:182
 msgid ""
-"“The wild beasts of Italy have their caves to retire to, but the brave "
-"veterans who spilled their blood in her cause have nothing left but air and "
-"light. They wander around homeless with their wives and children.” \\n— "
-"Tiberius Gracchus, advocating for land reform to the benefit of homeless and"
-" unemployed veterans whose lands had often been bought up why they were on "
-"campaign (Plutarch, “Parallel Lives”, “Tiberius Gracchus”, sec. 9)"
+"“The soldiers fight and die to support others in wealth and luxury and they "
+"are called masters of the world without owning a single piece of farmland of"
+" their own.”\\n— Tiberius Gracchus, advocating for land reform to the "
+"benefit of homeless and unemployed veterans whose lands had often been "
+"bought up while they were on campaign. (Plutarch, “Parallel Lives”, "
+"“Tiberius Gracchus”, 9.5)"
 msgstr ""
 
 #: gui/text/quotes.txt:183

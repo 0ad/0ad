@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-12-07 08:42+0000\n"
-"PO-Revision-Date: 2020-12-07 11:22+0000\n"
+"POT-Creation-Date: 2020-12-28 08:02+0000\n"
+"PO-Revision-Date: 2020-12-28 08:19+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Tamil (India) (http://www.transifex.com/wildfire-games/0ad/language/ta_IN/)\n"
 "MIME-Version: 1.0\n"
@@ -88,7 +88,7 @@ msgstr ""
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.ptol
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.sele
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.spart
-msgid "Prometōpídion"
+msgid "Prometōpidion"
 msgstr ""
 
 #: simulation/data/technologies/armor_cav_01.jsontooltip
@@ -123,7 +123,6 @@ msgstr ""
 #: simulation/data/technologies/hellenes/spartans_agoge.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenes/special_long_walls.jsonrequirementsTooltip
-#: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/immortals.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/special_equine_transports.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/training_conscription_cavalry.jsonrequirementsTooltip
@@ -142,7 +141,7 @@ msgstr ""
 #: simulation/data/technologies/successors/unlock_reform_army.jsonrequirementsTooltip
 #: simulation/data/technologies/successors/unlock_traditional_army.jsonrequirementsTooltip
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsonrequirementsTooltip
-#: simulation/data/technologies/tower_armour.jsonrequirementsTooltip
+#: simulation/data/technologies/tower_health.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_murderholes.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_convoys_armor.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_gain_02.jsonrequirementsTooltip
@@ -167,7 +166,7 @@ msgstr ""
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.ptol
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.sele
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.spart
-msgid "Sidḗrea Panoplía"
+msgid "Sidērea Panoplia"
 msgstr ""
 
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.rome
@@ -187,15 +186,9 @@ msgid "Quilted Body Armor"
 msgstr ""
 
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.athen
-#: simulation/data/technologies/armor_infantry_01.jsonspecificName.brit
-#: simulation/data/technologies/armor_infantry_01.jsonspecificName.cart
-#: simulation/data/technologies/armor_infantry_01.jsonspecificName.gaul
-#: simulation/data/technologies/armor_infantry_01.jsonspecificName.generic
-#: simulation/data/technologies/armor_infantry_01.jsonspecificName.iber
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.mace
-#: simulation/data/technologies/armor_infantry_01.jsonspecificName.maur
-#: simulation/data/technologies/armor_infantry_01.jsonspecificName.pers
-#: simulation/data/technologies/armor_infantry_01.jsonspecificName.rome
+#: simulation/data/technologies/armor_infantry_01.jsonspecificName.ptol
+#: simulation/data/technologies/armor_infantry_01.jsonspecificName.sele
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.spart
 msgid "Spolas"
 msgstr ""
@@ -214,14 +207,11 @@ msgid "Laminated Linen Body Armor"
 msgstr ""
 
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.athen
-#: simulation/data/technologies/armor_infantry_02.jsonspecificName.cart
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.mace
-#: simulation/data/technologies/armor_infantry_02.jsonspecificName.pers
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.ptol
-#: simulation/data/technologies/armor_infantry_02.jsonspecificName.rome
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.sele
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.spart
-msgid "Linothorakes"
+msgid "Linothōrax"
 msgstr ""
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsondescription
@@ -272,23 +262,11 @@ msgstr ""
 #: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.ptol
 #: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.sele
 #: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.spart
-#: simulation/data/technologies/attack_cavalry_ranged_01.jsonspecificName.athen
-#: simulation/data/technologies/attack_cavalry_ranged_01.jsonspecificName.mace
-#: simulation/data/technologies/attack_cavalry_ranged_01.jsonspecificName.ptol
-#: simulation/data/technologies/attack_cavalry_ranged_01.jsonspecificName.sele
-#: simulation/data/technologies/attack_cavalry_ranged_01.jsonspecificName.spart
-#: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.athen
-#: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.mace
-#: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.ptol
-#: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.sele
-#: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.spart
 msgid "Xyston"
 msgstr ""
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.rome
 #: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.rome
-#: simulation/data/technologies/attack_cavalry_ranged_01.jsonspecificName.rome
-#: simulation/data/technologies/attack_cavalry_ranged_02.jsonspecificName.rome
 msgid "Hasta"
 msgstr ""
 
@@ -345,7 +323,7 @@ msgstr ""
 #: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.ptol
 #: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.sele
 #: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.spart
-msgid "Xíphos"
+msgid "Xiphos"
 msgstr ""
 
 #: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.rome
@@ -380,7 +358,7 @@ msgstr ""
 #: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.ptol
 #: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.sele
 #: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.spart
-msgid "Átaktoi"
+msgid "Ataktoi"
 msgstr ""
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsontooltip
@@ -405,7 +383,7 @@ msgstr ""
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.ptol
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.sele
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.spart
-msgid "Dýnamis"
+msgid "Dynamis"
 msgstr ""
 
 #: simulation/data/technologies/attack_soldiers_will.jsontooltip
@@ -704,7 +682,7 @@ msgid "Harvesting Machine"
 msgstr ""
 
 #: simulation/data/technologies/gather_farming_harvester.jsontooltip
-msgid "Workers +15% grain gather rate."
+msgid "Workers +10% grain gather rate."
 msgstr ""
 
 #: simulation/data/technologies/gather_farming_plows.jsondescription
@@ -771,10 +749,8 @@ msgstr ""
 msgid "Serfs"
 msgstr ""
 
-#: simulation/data/technologies/gather_mining_serfs.jsonspecificName.athen
-#: simulation/data/technologies/gather_mining_serfs.jsonspecificName.mace
 #: simulation/data/technologies/gather_mining_serfs.jsonspecificName.spart
-msgid "Heílōtes"
+msgid "Heilōtes"
 msgstr ""
 
 #: simulation/data/technologies/gather_mining_serfs.jsontooltip
@@ -793,8 +769,10 @@ msgstr ""
 
 #: simulation/data/technologies/gather_mining_servants.jsonspecificName.athen
 #: simulation/data/technologies/gather_mining_servants.jsonspecificName.mace
+#: simulation/data/technologies/gather_mining_servants.jsonspecificName.ptol
+#: simulation/data/technologies/gather_mining_servants.jsonspecificName.sele
 #: simulation/data/technologies/gather_mining_servants.jsonspecificName.spart
-msgid "Doûloi"
+msgid "Douloi"
 msgstr ""
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsondescription
@@ -839,8 +817,14 @@ msgstr ""
 
 #: simulation/data/technologies/gather_mining_slaves.jsonspecificName.athen
 #: simulation/data/technologies/gather_mining_slaves.jsonspecificName.mace
+#: simulation/data/technologies/gather_mining_slaves.jsonspecificName.ptol
+#: simulation/data/technologies/gather_mining_slaves.jsonspecificName.sele
 #: simulation/data/technologies/gather_mining_slaves.jsonspecificName.spart
-msgid "Andrápoda"
+msgid "Andrapoda"
+msgstr ""
+
+#: simulation/data/technologies/gather_mining_slaves.jsonspecificName.rome
+msgid "Servi"
 msgstr ""
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsondescription
@@ -887,6 +871,8 @@ msgstr ""
 
 #: simulation/data/technologies/heal_range.jsonspecificName.athen
 #: simulation/data/technologies/heal_range.jsonspecificName.mace
+#: simulation/data/technologies/heal_range.jsonspecificName.ptol
+#: simulation/data/technologies/heal_range.jsonspecificName.sele
 #: simulation/data/technologies/heal_range.jsonspecificName.spart
 msgid "Olympic Pantheon"
 msgstr ""
@@ -901,9 +887,7 @@ msgid "Healing Range 2"
 msgstr ""
 
 #: simulation/data/technologies/heal_range_2.jsonspecificName.athen
-#: simulation/data/technologies/heal_range_2.jsonspecificName.mace
-#: simulation/data/technologies/heal_range_2.jsonspecificName.spart
-msgid "Akadḗmeia"
+msgid "Akadēmeia"
 msgstr ""
 
 #: simulation/data/technologies/heal_rate.jsondescription
@@ -917,8 +901,10 @@ msgstr ""
 
 #: simulation/data/technologies/heal_rate.jsonspecificName.athen
 #: simulation/data/technologies/heal_rate.jsonspecificName.mace
+#: simulation/data/technologies/heal_rate.jsonspecificName.ptol
+#: simulation/data/technologies/heal_rate.jsonspecificName.sele
 #: simulation/data/technologies/heal_rate.jsonspecificName.spart
-msgid "Sphágia"
+msgid "Sphagia"
 msgstr ""
 
 #: simulation/data/technologies/heal_rate.jsontooltip
@@ -932,6 +918,8 @@ msgstr ""
 
 #: simulation/data/technologies/heal_rate_2.jsonspecificName.athen
 #: simulation/data/technologies/heal_rate_2.jsonspecificName.mace
+#: simulation/data/technologies/heal_rate_2.jsonspecificName.ptol
+#: simulation/data/technologies/heal_rate_2.jsonspecificName.sele
 #: simulation/data/technologies/heal_rate_2.jsonspecificName.spart
 msgid "Hippocratic Oath"
 msgstr ""
@@ -1035,20 +1023,6 @@ msgstr ""
 #: simulation/data/technologies/kushites/monumental_architecture.jsontooltip
 msgid ""
 "Civic Structures +20% build time, +20% health, and +20% capture points."
-msgstr ""
-
-#: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsondescription
-msgid ""
-"Have your priests instructed by the High Priest himself - may Amun bless "
-"him."
-msgstr ""
-
-#: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsongenericName
-msgid "Divine Instruction"
-msgstr ""
-
-#: simulation/data/technologies/kushites/upgrade_rank_elite_healer.jsontooltip
-msgid "Train elite rank healers."
 msgstr ""
 
 #: simulation/data/technologies/persians/immortals.jsondescription
@@ -1178,8 +1152,10 @@ msgstr ""
 
 #: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
+#: simulation/data/technologies/phase_city_generic.jsonspecificName.ptol
+#: simulation/data/technologies/phase_city_generic.jsonspecificName.sele
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.spart
-msgid "Megalópolis"
+msgid "Megalopolis"
 msgstr ""
 
 #: simulation/data/technologies/phase_city_athen.jsontooltip
@@ -1229,8 +1205,10 @@ msgstr ""
 
 #: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
+#: simulation/data/technologies/phase_town_generic.jsonspecificName.ptol
+#: simulation/data/technologies/phase_town_generic.jsonspecificName.sele
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.spart
-msgid "Kōmópolis"
+msgid "Kōmopolis"
 msgstr ""
 
 #: simulation/data/technologies/phase_town_athen.jsontooltip
@@ -1270,21 +1248,17 @@ msgstr ""
 #: simulation/data/technologies/pop_house_01.jsonspecificName.athen
 #: simulation/data/technologies/pop_house_01.jsonspecificName.mace
 #: simulation/data/technologies/pop_house_01.jsonspecificName.ptol
-#: simulation/data/technologies/pop_house_01.jsonspecificName.rome
 #: simulation/data/technologies/pop_house_01.jsonspecificName.sele
 #: simulation/data/technologies/pop_house_01.jsonspecificName.spart
-#: simulation/data/technologies/pop_wonder.jsonspecificName.athen
-#: simulation/data/technologies/pop_wonder.jsonspecificName.mace
-#: simulation/data/technologies/pop_wonder.jsonspecificName.ptol
-#: simulation/data/technologies/pop_wonder.jsonspecificName.rome
-#: simulation/data/technologies/pop_wonder.jsonspecificName.sele
-#: simulation/data/technologies/pop_wonder.jsonspecificName.spart
-msgid "Peristyle"
+msgid "Peristylon"
 msgstr ""
 
 #: simulation/data/technologies/pop_house_01.jsonspecificName.pers
-#: simulation/data/technologies/pop_wonder.jsonspecificName.pers
-msgid "Paradise"
+msgid "Paradaidām"
+msgstr ""
+
+#: simulation/data/technologies/pop_house_01.jsonspecificName.rome
+msgid "Peristylium"
 msgstr ""
 
 #: simulation/data/technologies/pop_house_01.jsontooltip
@@ -1311,6 +1285,14 @@ msgstr ""
 
 #: simulation/data/technologies/pop_wonder.jsongenericName
 msgid "Glorious Expansion"
+msgstr ""
+
+#: simulation/data/technologies/pop_wonder.jsonspecificName.athen
+#: simulation/data/technologies/pop_wonder.jsonspecificName.mace
+#: simulation/data/technologies/pop_wonder.jsonspecificName.ptol
+#: simulation/data/technologies/pop_wonder.jsonspecificName.sele
+#: simulation/data/technologies/pop_wonder.jsonspecificName.spart
+msgid "Peristasis"
 msgstr ""
 
 #: simulation/data/technologies/pop_wonder.jsontooltip
@@ -1507,18 +1489,6 @@ msgid ""
 "and attack damage."
 msgstr ""
 
-#: simulation/data/technologies/tower_armour.jsondescription
-msgid "Reinforce the foundations in preparation of an attack."
-msgstr ""
-
-#: simulation/data/technologies/tower_armour.jsongenericName
-msgid "Sturdy Foundations"
-msgstr ""
-
-#: simulation/data/technologies/tower_armour.jsontooltip
-msgid "Towers +2 armor."
-msgstr ""
-
 #: simulation/data/technologies/tower_crenellations.jsondescription
 msgid ""
 "Crenellations on the battlements allow soldiers wider range of fire in "
@@ -1531,6 +1501,18 @@ msgstr ""
 
 #: simulation/data/technologies/tower_crenellations.jsontooltip
 msgid "Sentry and Stone Towers +40% more arrows per garrisoned Soldier."
+msgstr ""
+
+#: simulation/data/technologies/tower_health.jsondescription
+msgid "Reinforce the foundations in preparation of an attack."
+msgstr ""
+
+#: simulation/data/technologies/tower_health.jsongenericName
+msgid "Sturdy Foundations"
+msgstr ""
+
+#: simulation/data/technologies/tower_health.jsontooltip
+msgid "Towers +25% health."
 msgstr ""
 
 #: simulation/data/technologies/tower_murderholes.jsondescription
@@ -1570,7 +1552,7 @@ msgstr ""
 #: simulation/data/technologies/tower_watch.jsonspecificName.ptol
 #: simulation/data/technologies/tower_watch.jsonspecificName.sele
 #: simulation/data/technologies/tower_watch.jsonspecificName.spart
-msgid "Nyktophýlakes"
+msgid "Nyktophylakes"
 msgstr ""
 
 #: simulation/data/technologies/tower_watch.jsonspecificName.rome
@@ -1706,10 +1688,10 @@ msgstr ""
 msgid "Unlock Champion Units"
 msgstr ""
 
-#: simulation/data/technologies/unlock_champion_units.jsonspecificName.athen
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.mace
-#: simulation/data/technologies/unlock_champion_units.jsonspecificName.spart
-msgid "Ágēma"
+#: simulation/data/technologies/unlock_champion_units.jsonspecificName.ptol
+#: simulation/data/technologies/unlock_champion_units.jsonspecificName.sele
+msgid "Agēma"
 msgstr ""
 
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.rome
@@ -1730,8 +1712,10 @@ msgstr ""
 
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.athen
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.mace
+#: simulation/data/technologies/unlock_females_house.jsonspecificName.ptol
+#: simulation/data/technologies/unlock_females_house.jsonspecificName.sele
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.spart
-msgid "Thesmophória"
+msgid "Thesmophoria"
 msgstr ""
 
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.rome

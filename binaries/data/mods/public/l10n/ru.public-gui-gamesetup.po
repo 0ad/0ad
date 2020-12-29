@@ -84,8 +84,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2020-07-24 12:17+0000\n"
+"POT-Creation-Date: 2020-12-28 08:02+0000\n"
+"PO-Revision-Date: 2020-12-28 09:25+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -93,54 +93,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ru\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
-
-#: gui/gamesetup/Controls/MapFilters.js:85
-msgid "Default"
-msgstr "По умолчанию"
-
-#: gui/gamesetup/Controls/MapFilters.js:86
-msgid "All maps except naval and demo maps."
-msgstr "Все карты, кроме морских и демо карт."
-
-#: gui/gamesetup/Controls/MapFilters.js:91
-msgid "Naval Maps"
-msgstr "Морские карты"
-
-#: gui/gamesetup/Controls/MapFilters.js:92
-msgid "Maps where ships are needed to reach the enemy."
-msgstr "Карты, где нужны корабли, чтобы добраться до врага."
-
-#: gui/gamesetup/Controls/MapFilters.js:97
-msgid "Demo Maps"
-msgstr "Демонстрационные карты"
-
-#: gui/gamesetup/Controls/MapFilters.js:98
-msgid "These maps are not playable but for demonstration purposes only."
-msgstr "Эти карты предназначены только для демонстрации."
-
-#: gui/gamesetup/Controls/MapFilters.js:103
-msgid "New Maps"
-msgstr "Новые карты"
-
-#: gui/gamesetup/Controls/MapFilters.js:104
-msgid "Maps that are brand new in this release of the game."
-msgstr "Карты, появившиеся в этом релизе игры."
-
-#: gui/gamesetup/Controls/MapFilters.js:109
-msgid "Trigger Maps"
-msgstr "Триггер карты"
-
-#: gui/gamesetup/Controls/MapFilters.js:110
-msgid "Maps that come with scripted events and potentially spawn enemy units."
-msgstr "Карты, содержащие сценарии и потенциально создающие  вражеские юниты."
-
-#: gui/gamesetup/Controls/MapFilters.js:115
-msgid "All Maps"
-msgstr "Все карты"
-
-#: gui/gamesetup/Controls/MapFilters.js:116
-msgid "Every map of the chosen maptype."
-msgstr "Все карты выбранного типа."
 
 #: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):13
 msgid "AI Configuration"
@@ -196,12 +148,12 @@ msgctxt "Match settings tab name"
 msgid "Map"
 msgstr "Карта"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:26
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:27
 msgctxt "Match settings tab name"
 msgid "Player"
 msgstr "Игрок"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:38
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:39
 msgctxt "Match settings tab name"
 msgid "Game Type"
 msgstr "Тип игры"
@@ -274,6 +226,15 @@ msgstr "Цивилизация"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):25
 msgid "Team"
 msgstr "Команда"
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:26
+msgid "Browse Maps"
+msgstr ""
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:29
+#, javascript-format
+msgid "Press %(hotkey)s to view the list of available maps."
+msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:40
 msgid "Cheats"
@@ -891,6 +852,10 @@ msgstr "Нажмите %(hotkey)s для перемещения на следу�
 msgid "Press %(hotkey)s to move to the previous settings tab."
 msgstr "Нажмите %(hotkey)s для перемещения на предыдущую вкладку настроек."
 
+#: gui/gamesetup/Pages/GameSetupPage/Panels/MapPreview.js:47
+msgid "Click to view the list of available maps."
+msgstr ""
+
 #: gui/gamesetup/Pages/GameSetupPage/Panels/TipsPanel.xml:(caption):9
 msgid "Show this message in the future."
 msgstr "Показывать это сообщение в будущем."
@@ -903,7 +868,7 @@ msgstr "Загрузка"
 msgid "Loading map data. Please wait…"
 msgstr "Загрузка данных карты. Пожалуйста, подождите..."
 
-#: gui/gamesetup/gamesetup.xml:(caption):12
+#: gui/gamesetup/gamesetup.xml:(caption):13
 msgid "Match Setup"
 msgstr "Настройки сражения"
 
@@ -2016,8 +1981,8 @@ msgstr "«Нет такого гостя, чтобы, в дом приехав �
 #: gui/text/quotes.txt:143
 msgid ""
 "“You cannot eat your cake and have it too, unless you think your money is "
-"immortal.” \\n— Plautus (“Trinummus”, Act II, scene 4, 12)"
-msgstr "«Ты тратишь деньги, так откуда ж взяться им? Вот разве что считаешь их бессмертными». \\n— Тит Макций Плавт («Три монеты», Акт II, сцена 4, 12)"
+"immortal.”\\n— Plautus (“Trinummus”, Act II, scene 4, 13–14)"
+msgstr ""
 
 #: gui/text/quotes.txt:144
 msgid ""
@@ -2216,10 +2181,10 @@ msgstr "«Нет ничего странного или даже противо�
 
 #: gui/text/quotes.txt:168
 msgid ""
-"“He could boast that he found a city of brick and left it a city of marble.”"
-" \\n— Suetonius, commenting on the many building projects of Augustus in "
-"Rome (“Divus Augustus”, sec 38)"
-msgstr "«Он так отстро­ил город, что по пра­ву гор­дил­ся тем, что при­нял Рим кир­пич­ным, а остав­ля­ет мра­мор­ным». \\n— Светоний о строительных проектах Августа в Риме («Божественный Август», часть 38)"
+"“He could boast that he found a city of brick and left it a city of "
+"marble.”\\n— Suetonius, commenting on the many building projects of Augustus"
+" in Rome (“Divus Augustus”, 28.3)"
+msgstr ""
 
 #: gui/text/quotes.txt:169
 msgid "“Moderation in all things.” \\n— Terence (“The Girl from Andros”, 61)"
@@ -2312,23 +2277,23 @@ msgstr "«Проникшись презрением к лакедемоняна�
 
 #: gui/text/quotes.txt:181
 msgid ""
-"“The soldiers fight and die to support others in wealth and luxury and they "
-"are called masters of the world without owning a single piece of farmland of"
-" their own.” \\n— Tiberius Gracchus, advocating for land reform to the "
-"benefit of homeless and unemployed veterans whose lands had often been "
-"bought up why they were on campaign (Plutarch, “Parallel Lives”, “Tiberius "
-"Gracchus”, sec. 9)"
-msgstr "«Вою­ют и уми­ра­ют они за чужую рос­кошь и богат­ст­во, эти вла­ды­ки все­лен­ной, как их назы­ва­ют, кото­рые ни еди­но­го ком­ка зем­ли не могут назвать сво­им». \\n— Тиберий Гракх, выступая в защиту земельной реформы на благо бездомных и безработных ветеранов, чьи земли часто раскупались, вынуждая их служить в армии (Плутарх, «Сравнительные жизнеописания», «Тиберий Гракх», часть 9)"
+"“The wild beasts of Italy have their caves to retire to, but the brave "
+"veterans who spilled their blood in her cause have nothing left but air and "
+"light. They wander around homeless with their wives and children.”\\n— "
+"Tiberius Gracchus, advocating for land reform to the benefit of homeless and"
+" unemployed veterans whose lands had often been bought up while they were on"
+" campaign. (Plutarch, “Parallel Lives”, “Tiberius Gracchus”, 9.4–5)"
+msgstr ""
 
 #: gui/text/quotes.txt:182
 msgid ""
-"“The wild beasts of Italy have their caves to retire to, but the brave "
-"veterans who spilled their blood in her cause have nothing left but air and "
-"light. They wander around homeless with their wives and children.” \\n— "
-"Tiberius Gracchus, advocating for land reform to the benefit of homeless and"
-" unemployed veterans whose lands had often been bought up why they were on "
-"campaign (Plutarch, “Parallel Lives”, “Tiberius Gracchus”, sec. 9)"
-msgstr "«Дикие зве­ри, насе­ля­ю­щие Ита­лию, име­ют норы, у каж­до­го есть свое место и свое при­ста­ни­ще, а у тех, кто сра­жа­ет­ся и уми­ра­ет за Ита­лию, нет ниче­го, кро­ме возду­ха и све­та, без­дом­ны­ми ски­таль­ца­ми бро­дят они по стране вме­сте с жена­ми и детьми». \\n— Тиберий Гракх, выступая в защиту земельной реформы на благо бездомных и безработных ветеранов, чьи земли часто раскупались, вынуждая их служить в армии (Плутарх, «Сравнительные жизнеописания», «Тиберий Гракх», часть 9)"
+"“The soldiers fight and die to support others in wealth and luxury and they "
+"are called masters of the world without owning a single piece of farmland of"
+" their own.”\\n— Tiberius Gracchus, advocating for land reform to the "
+"benefit of homeless and unemployed veterans whose lands had often been "
+"bought up while they were on campaign. (Plutarch, “Parallel Lives”, "
+"“Tiberius Gracchus”, 9.5)"
+msgstr ""
 
 #: gui/text/quotes.txt:183
 msgid ""

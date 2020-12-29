@@ -28,8 +28,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2020-11-20 19:49+0000\n"
+"POT-Creation-Date: 2020-12-26 15:10+0000\n"
+"PO-Revision-Date: 2020-12-26 21:58+0000\n"
 "Last-Translator: Przemysław Murach <moonshine133@vp.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -37,6 +37,21 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pl\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+
+#: simulation/data/status_effects/burning.jsonapplierTooltip
+msgctxt "status effect"
+msgid "This unit causes fire damage."
+msgstr "Ta jednostka zadaje obrażenia od ognia."
+
+#: simulation/data/status_effects/burning.jsonreceiverTooltip
+msgctxt "status effect"
+msgid "This unit is burning."
+msgstr "Jednostka płonie."
+
+#: simulation/data/status_effects/burning.jsonstatusName
+msgctxt "status effect"
+msgid "Burning"
+msgstr "Płonie"
 
 #: simulation/data/template_helpers/damage_types/crush.jsondescription
 msgctxt "damage type"
@@ -47,6 +62,16 @@ msgstr "Obrażenia powodujące rany tępe, np. poprzez zdeptanie czy uderzenie o
 msgctxt "damage type"
 msgid "Crush"
 msgstr "Obuchowe"
+
+#: simulation/data/template_helpers/damage_types/fire.jsondescription
+msgctxt "damage type"
+msgid "Damage caused by burning objects, like a torch or a flaming arrow."
+msgstr "Obrażenia spowodowane płonącymi przedmiotami, takimi jak pochodnia lub płonąca strzała."
+
+#: simulation/data/template_helpers/damage_types/fire.jsonname
+msgctxt "damage type"
+msgid "Fire"
+msgstr "Ogień"
 
 #: simulation/data/template_helpers/damage_types/hack.jsondescription
 msgctxt "damage type"
@@ -962,7 +987,7 @@ msgstr "Klin"
 msgid "Player"
 msgstr "Gracz"
 
-#: simulation/templates/special/spy.xml:17
+#: simulation/templates/special/spy.xml:16
 msgid "Spy"
 msgstr "Szpieg"
 
@@ -1031,11 +1056,11 @@ msgstr "Drzewo"
 msgid "Chop trees for wood."
 msgstr "Rąb drzewa, by zdobyć drewno."
 
-#: simulation/templates/template_structure.xml:47
+#: simulation/templates/template_structure.xml:46
 msgid "Structure"
 msgstr "Struktura"
 
-#: simulation/templates/template_unit.xml:38
+#: simulation/templates/template_unit.xml:37
 msgid "Unit"
 msgstr "Jednostka"
 

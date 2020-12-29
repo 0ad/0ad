@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2020-11-20 19:36+0000\n"
+"POT-Creation-Date: 2020-12-26 15:10+0000\n"
+"PO-Revision-Date: 2020-12-26 16:23+0000\n"
 "Last-Translator: Bart <b.anthonisse@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -28,6 +28,21 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: simulation/data/status_effects/burning.jsonapplierTooltip
+msgctxt "status effect"
+msgid "This unit causes fire damage."
+msgstr ""
+
+#: simulation/data/status_effects/burning.jsonreceiverTooltip
+msgctxt "status effect"
+msgid "This unit is burning."
+msgstr ""
+
+#: simulation/data/status_effects/burning.jsonstatusName
+msgctxt "status effect"
+msgid "Burning"
+msgstr ""
 
 #: simulation/data/template_helpers/damage_types/crush.jsondescription
 msgctxt "damage type"
@@ -38,6 +53,16 @@ msgstr "Schade veroorzaakt door brute kracht, zoals met een knuppel of door vert
 msgctxt "damage type"
 msgid "Crush"
 msgstr "Verpletter"
+
+#: simulation/data/template_helpers/damage_types/fire.jsondescription
+msgctxt "damage type"
+msgid "Damage caused by burning objects, like a torch or a flaming arrow."
+msgstr ""
+
+#: simulation/data/template_helpers/damage_types/fire.jsonname
+msgctxt "damage type"
+msgid "Fire"
+msgstr "Vuur"
 
 #: simulation/data/template_helpers/damage_types/hack.jsondescription
 msgctxt "damage type"
@@ -953,7 +978,7 @@ msgstr "Hoek"
 msgid "Player"
 msgstr "Speler"
 
-#: simulation/templates/special/spy.xml:17
+#: simulation/templates/special/spy.xml:16
 msgid "Spy"
 msgstr "Spion"
 
@@ -1022,11 +1047,11 @@ msgstr "Boom"
 msgid "Chop trees for wood."
 msgstr "Verzamel hout door bomen om te hakken."
 
-#: simulation/templates/template_structure.xml:47
+#: simulation/templates/template_structure.xml:46
 msgid "Structure"
 msgstr "Gebouw"
 
-#: simulation/templates/template_unit.xml:38
+#: simulation/templates/template_unit.xml:37
 msgid "Unit"
 msgstr "Eenheid"
 

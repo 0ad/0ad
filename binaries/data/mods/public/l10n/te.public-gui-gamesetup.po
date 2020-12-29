@@ -9,63 +9,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2020-12-16 14:14+0000\n"
-"Last-Translator: Jagadeesh Vijay Varma B\n"
+"POT-Creation-Date: 2020-12-28 08:02+0000\n"
+"PO-Revision-Date: 2020-12-28 09:25+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Telugu (http://www.transifex.com/wildfire-games/0ad/language/te/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: te\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#: gui/gamesetup/Controls/MapFilters.js:85
-msgid "Default"
-msgstr "అప్రమేయం"
-
-#: gui/gamesetup/Controls/MapFilters.js:86
-msgid "All maps except naval and demo maps."
-msgstr "నావల్ మరియు డెమో పటాలు మినహా అన్ని పటాలు."
-
-#: gui/gamesetup/Controls/MapFilters.js:91
-msgid "Naval Maps"
-msgstr "నావికా పటాలు"
-
-#: gui/gamesetup/Controls/MapFilters.js:92
-msgid "Maps where ships are needed to reach the enemy."
-msgstr "శత్రువులను చేరుకోవడానికి ఓడలు అవసరమయ్యే పటాలు."
-
-#: gui/gamesetup/Controls/MapFilters.js:97
-msgid "Demo Maps"
-msgstr "ఉదాహరణా పటాలు"
-
-#: gui/gamesetup/Controls/MapFilters.js:98
-msgid "These maps are not playable but for demonstration purposes only."
-msgstr "ఈ పటాలు ఆడలేనివి కాని ప్రదర్శన ప్రయోజనాల కోసం మాత్రమే."
-
-#: gui/gamesetup/Controls/MapFilters.js:103
-msgid "New Maps"
-msgstr "కొత్త పటాలు"
-
-#: gui/gamesetup/Controls/MapFilters.js:104
-msgid "Maps that are brand new in this release of the game."
-msgstr "ఆట యొక్క ఈ విడుదలలో సరికొత్తగా ఉన్న పటాలు."
-
-#: gui/gamesetup/Controls/MapFilters.js:109
-msgid "Trigger Maps"
-msgstr "పటాలును ట్రిగ్గర్ చేయండి"
-
-#: gui/gamesetup/Controls/MapFilters.js:110
-msgid "Maps that come with scripted events and potentially spawn enemy units."
-msgstr "స్క్రిప్ట్ చేసిన సంఘటనలు మరియు శత్రు యూనిట్లతో సంభావ్యంగా వచ్చే పటాలు."
-
-#: gui/gamesetup/Controls/MapFilters.js:115
-msgid "All Maps"
-msgstr "అన్ని పటాలు"
-
-#: gui/gamesetup/Controls/MapFilters.js:116
-msgid "Every map of the chosen maptype."
-msgstr "ఎంచుకున్న పటం రకం యొక్క ప్రతి పటం."
 
 #: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):13
 msgid "AI Configuration"
@@ -121,12 +73,12 @@ msgctxt "Match settings tab name"
 msgid "Map"
 msgstr "పటం"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:26
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:27
 msgctxt "Match settings tab name"
 msgid "Player"
 msgstr "ఆటగాడు"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:38
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:39
 msgctxt "Match settings tab name"
 msgid "Game Type"
 msgstr "ఆట రకం"
@@ -199,6 +151,15 @@ msgstr "నాగరికత"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):25
 msgid "Team"
 msgstr "జట్టు"
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:26
+msgid "Browse Maps"
+msgstr ""
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:29
+#, javascript-format
+msgid "Press %(hotkey)s to view the list of available maps."
+msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:40
 msgid "Cheats"
@@ -808,6 +769,10 @@ msgstr ""
 msgid "Press %(hotkey)s to move to the previous settings tab."
 msgstr ""
 
+#: gui/gamesetup/Pages/GameSetupPage/Panels/MapPreview.js:47
+msgid "Click to view the list of available maps."
+msgstr ""
+
 #: gui/gamesetup/Pages/GameSetupPage/Panels/TipsPanel.xml:(caption):9
 msgid "Show this message in the future."
 msgstr "భవిష్యత్తులో ఈ సందేశాన్ని చూపించు."
@@ -820,7 +785,7 @@ msgstr "లోడవుచున్నది"
 msgid "Loading map data. Please wait…"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(caption):12
+#: gui/gamesetup/gamesetup.xml:(caption):13
 msgid "Match Setup"
 msgstr "మ్యాచ్ సెటప్"
 
@@ -1933,7 +1898,7 @@ msgstr ""
 #: gui/text/quotes.txt:143
 msgid ""
 "“You cannot eat your cake and have it too, unless you think your money is "
-"immortal.” \\n— Plautus (“Trinummus”, Act II, scene 4, 12)"
+"immortal.”\\n— Plautus (“Trinummus”, Act II, scene 4, 13–14)"
 msgstr ""
 
 #: gui/text/quotes.txt:144
@@ -2133,9 +2098,9 @@ msgstr ""
 
 #: gui/text/quotes.txt:168
 msgid ""
-"“He could boast that he found a city of brick and left it a city of marble.”"
-" \\n— Suetonius, commenting on the many building projects of Augustus in "
-"Rome (“Divus Augustus”, sec 38)"
+"“He could boast that he found a city of brick and left it a city of "
+"marble.”\\n— Suetonius, commenting on the many building projects of Augustus"
+" in Rome (“Divus Augustus”, 28.3)"
 msgstr ""
 
 #: gui/text/quotes.txt:169
@@ -2229,22 +2194,22 @@ msgstr ""
 
 #: gui/text/quotes.txt:181
 msgid ""
-"“The soldiers fight and die to support others in wealth and luxury and they "
-"are called masters of the world without owning a single piece of farmland of"
-" their own.” \\n— Tiberius Gracchus, advocating for land reform to the "
-"benefit of homeless and unemployed veterans whose lands had often been "
-"bought up why they were on campaign (Plutarch, “Parallel Lives”, “Tiberius "
-"Gracchus”, sec. 9)"
+"“The wild beasts of Italy have their caves to retire to, but the brave "
+"veterans who spilled their blood in her cause have nothing left but air and "
+"light. They wander around homeless with their wives and children.”\\n— "
+"Tiberius Gracchus, advocating for land reform to the benefit of homeless and"
+" unemployed veterans whose lands had often been bought up while they were on"
+" campaign. (Plutarch, “Parallel Lives”, “Tiberius Gracchus”, 9.4–5)"
 msgstr ""
 
 #: gui/text/quotes.txt:182
 msgid ""
-"“The wild beasts of Italy have their caves to retire to, but the brave "
-"veterans who spilled their blood in her cause have nothing left but air and "
-"light. They wander around homeless with their wives and children.” \\n— "
-"Tiberius Gracchus, advocating for land reform to the benefit of homeless and"
-" unemployed veterans whose lands had often been bought up why they were on "
-"campaign (Plutarch, “Parallel Lives”, “Tiberius Gracchus”, sec. 9)"
+"“The soldiers fight and die to support others in wealth and luxury and they "
+"are called masters of the world without owning a single piece of farmland of"
+" their own.”\\n— Tiberius Gracchus, advocating for land reform to the "
+"benefit of homeless and unemployed veterans whose lands had often been "
+"bought up while they were on campaign. (Plutarch, “Parallel Lives”, "
+"“Tiberius Gracchus”, 9.5)"
 msgstr ""
 
 #: gui/text/quotes.txt:183

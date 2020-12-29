@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2020-11-20 10:22+0000\n"
+"POT-Creation-Date: 2020-12-26 15:10+0000\n"
+"PO-Revision-Date: 2020-12-26 16:23+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Afrikaans (http://www.transifex.com/wildfire-games/0ad/language/af/)\n"
 "MIME-Version: 1.0\n"
@@ -16,6 +16,21 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: af\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: simulation/data/status_effects/burning.jsonapplierTooltip
+msgctxt "status effect"
+msgid "This unit causes fire damage."
+msgstr ""
+
+#: simulation/data/status_effects/burning.jsonreceiverTooltip
+msgctxt "status effect"
+msgid "This unit is burning."
+msgstr ""
+
+#: simulation/data/status_effects/burning.jsonstatusName
+msgctxt "status effect"
+msgid "Burning"
+msgstr ""
 
 #: simulation/data/template_helpers/damage_types/crush.jsondescription
 msgctxt "damage type"
@@ -25,6 +40,16 @@ msgstr ""
 #: simulation/data/template_helpers/damage_types/crush.jsonname
 msgctxt "damage type"
 msgid "Crush"
+msgstr ""
+
+#: simulation/data/template_helpers/damage_types/fire.jsondescription
+msgctxt "damage type"
+msgid "Damage caused by burning objects, like a torch or a flaming arrow."
+msgstr ""
+
+#: simulation/data/template_helpers/damage_types/fire.jsonname
+msgctxt "damage type"
+msgid "Fire"
 msgstr ""
 
 #: simulation/data/template_helpers/damage_types/hack.jsondescription
@@ -941,7 +966,7 @@ msgstr ""
 msgid "Player"
 msgstr "Speler"
 
-#: simulation/templates/special/spy.xml:17
+#: simulation/templates/special/spy.xml:16
 msgid "Spy"
 msgstr ""
 
@@ -1010,11 +1035,11 @@ msgstr "Boom"
 msgid "Chop trees for wood."
 msgstr ""
 
-#: simulation/templates/template_structure.xml:47
+#: simulation/templates/template_structure.xml:46
 msgid "Structure"
 msgstr "Struktuur"
 
-#: simulation/templates/template_unit.xml:38
+#: simulation/templates/template_unit.xml:37
 msgid "Unit"
 msgstr "Eenheid"
 

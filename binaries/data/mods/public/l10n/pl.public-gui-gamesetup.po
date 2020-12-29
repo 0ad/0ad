@@ -61,63 +61,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2020-07-25 22:16+0000\n"
-"Last-Translator: Przemysław Murach <moonshine133@vp.pl>\n"
+"POT-Creation-Date: 2020-12-28 08:02+0000\n"
+"PO-Revision-Date: 2020-12-28 09:25+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pl\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
-
-#: gui/gamesetup/Controls/MapFilters.js:85
-msgid "Default"
-msgstr "Domyślny"
-
-#: gui/gamesetup/Controls/MapFilters.js:86
-msgid "All maps except naval and demo maps."
-msgstr "Wszystkie mapy z wyjątkiem morskich i demonstracyjnych."
-
-#: gui/gamesetup/Controls/MapFilters.js:91
-msgid "Naval Maps"
-msgstr "Mapy morskie"
-
-#: gui/gamesetup/Controls/MapFilters.js:92
-msgid "Maps where ships are needed to reach the enemy."
-msgstr "Mapy, na których niezbędne są statki, aby dotrzeć do wroga."
-
-#: gui/gamesetup/Controls/MapFilters.js:97
-msgid "Demo Maps"
-msgstr "Mapy demonstracyjne"
-
-#: gui/gamesetup/Controls/MapFilters.js:98
-msgid "These maps are not playable but for demonstration purposes only."
-msgstr "Te mapy nie są grywalne, służą jedynie do celów demonstracyjnych."
-
-#: gui/gamesetup/Controls/MapFilters.js:103
-msgid "New Maps"
-msgstr "Nowe mapy"
-
-#: gui/gamesetup/Controls/MapFilters.js:104
-msgid "Maps that are brand new in this release of the game."
-msgstr "Nowe mapy z ostatniego wydania gry."
-
-#: gui/gamesetup/Controls/MapFilters.js:109
-msgid "Trigger Maps"
-msgstr "Mapa Wyzwalacz"
-
-#: gui/gamesetup/Controls/MapFilters.js:110
-msgid "Maps that come with scripted events and potentially spawn enemy units."
-msgstr "Mapy zawierające scenariusz i mogące tworzyć wrogie jednostki."
-
-#: gui/gamesetup/Controls/MapFilters.js:115
-msgid "All Maps"
-msgstr "Wszystkie mapy"
-
-#: gui/gamesetup/Controls/MapFilters.js:116
-msgid "Every map of the chosen maptype."
-msgstr "Wszystkie mapy dla wybranego typu mapy."
 
 #: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):13
 msgid "AI Configuration"
@@ -173,12 +125,12 @@ msgctxt "Match settings tab name"
 msgid "Map"
 msgstr "Mapa"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:26
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:27
 msgctxt "Match settings tab name"
 msgid "Player"
 msgstr "Gracz"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:38
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:39
 msgctxt "Match settings tab name"
 msgid "Game Type"
 msgstr "Rodzaj gry"
@@ -251,6 +203,15 @@ msgstr "Cywilizacja"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):25
 msgid "Team"
 msgstr "Drużyna"
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:26
+msgid "Browse Maps"
+msgstr ""
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:29
+#, javascript-format
+msgid "Press %(hotkey)s to view the list of available maps."
+msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:40
 msgid "Cheats"
@@ -868,6 +829,10 @@ msgstr "Kliknij %(hotkey)s, aby przejść do następnej karty ustawień."
 msgid "Press %(hotkey)s to move to the previous settings tab."
 msgstr "Kliknij %(hotkey)s, aby przejść do poprzedniej karty ustawień."
 
+#: gui/gamesetup/Pages/GameSetupPage/Panels/MapPreview.js:47
+msgid "Click to view the list of available maps."
+msgstr ""
+
 #: gui/gamesetup/Pages/GameSetupPage/Panels/TipsPanel.xml:(caption):9
 msgid "Show this message in the future."
 msgstr "Pokazuj powiadomienie w przyszłości."
@@ -880,7 +845,7 @@ msgstr "Wczytywanie"
 msgid "Loading map data. Please wait…"
 msgstr "Ładowanie mapy. Proszę czekać..."
 
-#: gui/gamesetup/gamesetup.xml:(caption):12
+#: gui/gamesetup/gamesetup.xml:(caption):13
 msgid "Match Setup"
 msgstr "Ustawienia rozgrywki"
 
@@ -1993,8 +1958,8 @@ msgstr "\"Żaden gość nie jest tak mile widziany w domu przyjaciela, żeby po 
 #: gui/text/quotes.txt:143
 msgid ""
 "“You cannot eat your cake and have it too, unless you think your money is "
-"immortal.” \\n— Plautus (“Trinummus”, Act II, scene 4, 12)"
-msgstr "\"Nie możesz zjeść ciasta i mieć ciasta, chyba że uważasz, że twoje pieniądze są nieśmiertelne.\" - Plaut (\"Trinummus\", akt II, scena 4, 12)"
+"immortal.”\\n— Plautus (“Trinummus”, Act II, scene 4, 13–14)"
+msgstr "\"Nie możesz zjeść ciasta i mieć ciasta, chyba że uważasz, że twoje pieniądze są nieśmiertelne.\" - Plaut (\"Trinummus\", akt II, scena 4, 13-14)"
 
 #: gui/text/quotes.txt:144
 msgid ""
@@ -2193,10 +2158,10 @@ msgstr "\"Przyjęliśmy zaproponowane nam imperium i nie poddaliśmy się pod na
 
 #: gui/text/quotes.txt:168
 msgid ""
-"“He could boast that he found a city of brick and left it a city of marble.”"
-" \\n— Suetonius, commenting on the many building projects of Augustus in "
-"Rome (“Divus Augustus”, sec 38)"
-msgstr "\"Mógł się pochwalić, że odkrył miasto ceglane, a zostawił marmurowe.\" - Swetoniusz, komentując wiele projektów budowlanych Augusta w Rzymie (\"Divus Augustus\", sekcja 38)"
+"“He could boast that he found a city of brick and left it a city of "
+"marble.”\\n— Suetonius, commenting on the many building projects of Augustus"
+" in Rome (“Divus Augustus”, 28.3)"
+msgstr "\"Mógł się pochwalić, że zastał miasto ceglane, a zostawił marmurowe.\" - Swetoniusz, komentując wiele projektów budowlanych Augusta w Rzymie (\"Divus Augustus\", 28.3)"
 
 #: gui/text/quotes.txt:169
 msgid "“Moderation in all things.” \\n— Terence (“The Girl from Andros”, 61)"
@@ -2289,23 +2254,23 @@ msgstr "\"Kiedy Lakedemańczycy nie mogli już ich gonić, wszyscy oszczepnicy \
 
 #: gui/text/quotes.txt:181
 msgid ""
-"“The soldiers fight and die to support others in wealth and luxury and they "
-"are called masters of the world without owning a single piece of farmland of"
-" their own.” \\n— Tiberius Gracchus, advocating for land reform to the "
-"benefit of homeless and unemployed veterans whose lands had often been "
-"bought up why they were on campaign (Plutarch, “Parallel Lives”, “Tiberius "
-"Gracchus”, sec. 9)"
-msgstr "\"Żołnierze walczą i umierają, aby wspierać innych w bogactwie i luksusie, i są nazywani władcami świata, bez możliwości posiadania nawet jednego kawałka ziemi.\" - Tyberiusz Grakchus promujący reformę rolną dla bezdomnych i bezrobotnych weteranów, których ziemia była często kupowana, podczas gdy oni walczyli na froncie (Plutarch, \"Żywoty równoległe\", \"Tyberiusz Grakchus\", sekcja 9)"
+"“The wild beasts of Italy have their caves to retire to, but the brave "
+"veterans who spilled their blood in her cause have nothing left but air and "
+"light. They wander around homeless with their wives and children.”\\n— "
+"Tiberius Gracchus, advocating for land reform to the benefit of homeless and"
+" unemployed veterans whose lands had often been bought up while they were on"
+" campaign. (Plutarch, “Parallel Lives”, “Tiberius Gracchus”, 9.4–5)"
+msgstr "\"Dzikie bestie we Włoszech mają swoje jaskinie, gdzie mogą odpocząć, ale dzielni weterani, którzy przelali swoją krew za sprawę, nie mają nic prócz powietrza i światła. Błąkają się bez dachu nad głową z żonami i dziećmi.\" - Tyberiusz Grakchus promujący reformę rolną dla bezdomnych i bezrobotnych weteranów, których ziemia była często kupowana, podczas gdy walczyli na froncie (Plutarch, \"Żywoty równoległe\", \"Tyberiusz Grakchus\", 9.4-5)"
 
 #: gui/text/quotes.txt:182
 msgid ""
-"“The wild beasts of Italy have their caves to retire to, but the brave "
-"veterans who spilled their blood in her cause have nothing left but air and "
-"light. They wander around homeless with their wives and children.” \\n— "
-"Tiberius Gracchus, advocating for land reform to the benefit of homeless and"
-" unemployed veterans whose lands had often been bought up why they were on "
-"campaign (Plutarch, “Parallel Lives”, “Tiberius Gracchus”, sec. 9)"
-msgstr "\"Dzikie bestie we Włoszech mają swoje jaskinie, gdzie mogą odpocząć, ale dzielni weterani, którzy przelali swoją krew za sprawę, nie mają nic prócz powietrza i światła. Błąkają się bez dachu nad głową z żonami i dziećmi.\" - Tyberiusz Grakchus promujący reformę rolną dla bezdomnych i bezrobotnych weteranów, których ziemia była często kupowana, podczas gdy walczyli na froncie (Plutarch, \"Żywoty równoległe\", \"Tyberiusz Grakchus\", sekcja 9)"
+"“The soldiers fight and die to support others in wealth and luxury and they "
+"are called masters of the world without owning a single piece of farmland of"
+" their own.”\\n— Tiberius Gracchus, advocating for land reform to the "
+"benefit of homeless and unemployed veterans whose lands had often been "
+"bought up while they were on campaign. (Plutarch, “Parallel Lives”, "
+"“Tiberius Gracchus”, 9.5)"
+msgstr "\"Żołnierze walczą i umierają, aby wspierać innych w bogactwie i luksusie, i są nazywani władcami świata, bez możliwości posiadania nawet jednego kawałka ziemi.\" - Tyberiusz Grakchus promujący reformę rolną dla bezdomnych i bezrobotnych weteranów, których ziemia była często kupowana, podczas gdy oni walczyli na froncie (Plutarch, \"Żywoty równoległe\", \"Tyberiusz Grakchus\", 9.5)"
 
 #: gui/text/quotes.txt:183
 msgid ""
