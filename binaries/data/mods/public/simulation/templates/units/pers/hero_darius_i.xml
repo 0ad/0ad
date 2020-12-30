@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_cavalry_archer">
   <Auras datatype="tokens">
-    units/heroes/pers_hero_xerxes
+    units/heroes/pers_hero_darius_i
   </Auras>
   <Footprint replace="">
     <Square width="11.0" depth="11.0"/>
@@ -10,10 +10,10 @@
   <Identity>
     <Civ>pers</Civ>
     <Lang>persian</Lang>
-    <GenericName>Xerxes I</GenericName>
-    <SpecificName>Xšayāršā</SpecificName>
+    <GenericName>Darius I the Great</GenericName>
+    <SpecificName>Dārayavahuš</SpecificName>
     <VisibleClasses datatype="tokens">Chariot</VisibleClasses>
-    <Icon>units/pers_hero_xerxes.png</Icon>
+    <Icon>units/pers_hero_darius.png</Icon>
   </Identity>
   <Selectable>
     <Overlay>
@@ -23,6 +23,6 @@
     </Overlay>
   </Selectable>
   <VisualActor>
-    <Actor>units/persians/hero_chariot_archer_xerxes_m.xml</Actor>
+    <Actor>units/persians/hero_chariot_archer_darius_m.xml</Actor>
   </VisualActor>
 </Entity>
