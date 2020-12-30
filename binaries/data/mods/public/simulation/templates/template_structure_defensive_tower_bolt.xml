@@ -67,6 +67,11 @@
   <Obstruction>
     <Static width="7.0" depth="7.0"/>
   </Obstruction>
+  <ProductionQueue>
+    <Technologies datatype="tokens">
+      tower_health
+    </Technologies>
+  </ProductionQueue>
   <Sound>
     <SoundGroups>
       <attack_ranged>attack/weapon/arrowfly.xml</attack_ranged>

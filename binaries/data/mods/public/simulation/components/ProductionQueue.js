@@ -397,6 +397,8 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 				let cmpPlayerEntityLimits = QueryOwnerInterface(this.entity, IID_EntityLimits);
 				if (cmpPlayerEntityLimits)
 					cmpPlayerEntityLimits.ChangeCount(unitCategory, count);
+				if (template.TrainingRestrictions.MatchLimit)
+					cmpPlayerEntityLimits.ChangeMatchCount(templateName, count);
 			}
 
 			let buildTime = ApplyValueModificationsToTemplate(
@@ -545,6 +547,8 @@ ProductionQueue.prototype.RemoveBatch = function(id)
 				let cmpPlayerEntityLimits = QueryPlayerIDInterface(item.player, IID_EntityLimits);
 				if (cmpPlayerEntityLimits)
 					cmpPlayerEntityLimits.ChangeCount(template.TrainingRestrictions.Category, -item.count);
+				if (template.TrainingRestrictions.MatchLimit)
+					cmpPlayerEntityLimits.ChangeMatchCount(item.unitTemplate, -item.count);
 			}
 		}
 

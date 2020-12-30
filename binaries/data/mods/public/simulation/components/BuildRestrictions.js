@@ -36,6 +36,11 @@ BuildRestrictions.prototype.Schema =
 		"<text/>" +
 	"</element>" +
 	"<optional>" +
+		"<element name='MatchLimit' a:help='Specifies how many times this entity can be created during a match.'>" +
+			"<data type='positiveInteger'/>" +
+		"</element>" +
+	"</optional>" +
+	"<optional>" +
 		"<element name='Distance' a:help='Specifies distance restrictions on this building, relative to buildings from the given category.'>" +
 			"<interleave>" +
 				"<element name='FromClass'>" +

@@ -5,11 +5,6 @@
     <SpecificName>Didā</SpecificName>
     <Tooltip>Research technologies. Garrison Soldiers for additional arrows.</Tooltip>
   </Identity>
-  <ProductionQueue>
-    <Entities datatype="tokens">
-      units/{civ}/champion_chariot
-    </Entities>
-  </ProductionQueue>
   <VisualActor>
     <Actor>structures/persians/fortress.xml</Actor>
   </VisualActor>

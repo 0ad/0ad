@@ -9,7 +9,12 @@ TrainingRestrictions.prototype.Schema =
 	"</a:example>" +
 	"<element name='Category' a:help='Specifies the category of this unit, for satisfying special constraints. Choices include: Hero, Juggernaut, WarDog'>" +
 		"<text/>" +
-	"</element>";
+	"</element>" +
+	"<optional>" +
+		"<element name='MatchLimit' a:help='Specifies how many times this entity can be trained during a match.'>" +
+			"<data type='positiveInteger'/>" +
+		"</element>" +
+	"</optional>";
 
 TrainingRestrictions.prototype.Init = function()
 {

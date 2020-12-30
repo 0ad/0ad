@@ -17,7 +17,6 @@
     <Civ>cart</Civ>
     <GenericName>Sacrificial Temple</GenericName>
     <SpecificName>Tophet</SpecificName>
-    <Tooltip>Train Healers and Champion Cavalry and research healing technologies.</Tooltip>
   </Identity>
   <Loot>
     <stone>40</stone>
@@ -26,11 +25,6 @@
   <Obstruction>
     <Static width="22.0" depth="24.0"/>
   </Obstruction>
-  <ProductionQueue>
-    <Entities datatype="tokens">
-      units/{civ}/champion_cavalry
-    </Entities>
-  </ProductionQueue>
   <TerritoryDecay disable=""/>
   <VisualActor>
     <FoundationActor>structures/fndn_6x6.xml</FoundationActor>

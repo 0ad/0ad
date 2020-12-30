@@ -291,9 +291,13 @@ function GetTemplateDataHelper(template, player, auraTemplates, modifiers = {})
 	}
 
 	if (template.TrainingRestrictions)
+	{
 		ret.trainingRestrictions = {
-			"category": template.TrainingRestrictions.Category,
+			"category": template.TrainingRestrictions.Category
 		};
+		if (template.TrainingRestrictions.MatchLimit)
+			ret.trainingRestrictions.matchLimit = +template.TrainingRestrictions.MatchLimit;
+	}
 
 	if (template.Cost)
 	{

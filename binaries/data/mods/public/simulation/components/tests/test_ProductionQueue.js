@@ -227,7 +227,8 @@ function regression_test_d1879()
 				"Resources": {}
 			},
 			"TrainingRestrictions": {
-				"Category": "some_limit"
+				"Category": "some_limit",
+				"MatchLimit": "7"
 			}
 		})
 	});
@@ -244,6 +245,7 @@ function regression_test_d1879()
 		"UnBlockTraining": () => {},
 		"UnReservePopulationSlots": () => {},
 		"TrySubtractResources": () => true,
+		"AddResources": () => true,
 		"TryReservePopulationSlots": () => false // Always have pop space.
 	});
 
@@ -259,6 +261,8 @@ function regression_test_d1879()
 	let cmpEntLimits = QueryOwnerInterface(testEntity, IID_EntityLimits);
 	TS_ASSERT(cmpEntLimits.AllowedToTrain("some_limit", 8));
 	TS_ASSERT(!cmpEntLimits.AllowedToTrain("some_limit", 9));
+	TS_ASSERT(cmpEntLimits.AllowedToTrain("some_limit", 5, "some_template", 8));
+	TS_ASSERT(!cmpEntLimits.AllowedToTrain("some_limit", 10, "some_template", 8));
 
 	// Check that the entity limits do get updated if the spawn succeeds.
 	AddMock(testEntity, IID_Footprint, {
@@ -268,10 +272,12 @@ function regression_test_d1879()
 	cmpProdQueue.AddBatch("some_template", "unit", 3);
 
 	TS_ASSERT_EQUALS(cmpEntLimits.GetCounts().some_limit, 3);
+	TS_ASSERT_EQUALS(cmpEntLimits.GetMatchCounts().some_template, 3);
 
-	Engine.QueryInterface(testEntity, IID_ProductionQueue).ProgressTimeout();
+	cmpProdQueue.ProgressTimeout();
 
 	TS_ASSERT_EQUALS(cmpEntLimits.GetCounts().some_limit, 3);
+	TS_ASSERT_EQUALS(cmpEntLimits.GetMatchCounts().some_template, 3);
 
 	// Now check that it doesn't get updated when the spawn doesn't succeed.
 	AddMock(testEntity, IID_Footprint, {
@@ -283,10 +289,16 @@ function regression_test_d1879()
 	});
 
 	cmpProdQueue.AddBatch("some_template", "unit", 3);
-	Engine.QueryInterface(testEntity, IID_ProductionQueue).ProgressTimeout();
+	cmpProdQueue.ProgressTimeout();
 
 	TS_ASSERT_EQUALS(cmpProdQueue.GetQueue().length, 1);
 	TS_ASSERT_EQUALS(cmpEntLimits.GetCounts().some_limit, 6);
+	TS_ASSERT_EQUALS(cmpEntLimits.GetMatchCounts().some_template, 6);
+
+	// Check that when the batch is removed the counts are subtracted again.
+	cmpProdQueue.RemoveBatch(cmpProdQueue.GetQueue()[0].id);
+	TS_ASSERT_EQUALS(cmpEntLimits.GetCounts().some_limit, 3);
+	TS_ASSERT_EQUALS(cmpEntLimits.GetMatchCounts().some_template, 3);
 }
 
 function test_batch_adding()

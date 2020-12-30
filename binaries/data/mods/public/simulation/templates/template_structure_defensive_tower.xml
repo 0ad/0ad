@@ -53,15 +53,6 @@
     <GenericName>Tower</GenericName>
     <VisibleClasses datatype="tokens">Tower</VisibleClasses>
   </Identity>
-  <ProductionQueue>
-    <Technologies datatype="tokens">
-      tower_watch
-      tower_crenellations
-      tower_range
-      tower_murderholes
-      tower_health
-    </Technologies>
-  </ProductionQueue>
   <Sound>
     <SoundGroups>
       <constructed>interface/complete/building/complete_tower.xml</constructed>

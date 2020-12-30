@@ -902,8 +902,29 @@ UnitAI.prototype.UnitFsmSpec = {
 
 		"IDLE": {
 			"enter": function(msg) {
+				// Turn rearrange off. Otherwise, if the formation is idle,
+				// but individual units go off to fight, any death
+				// will rearrange the formation, looking odd.
+				// Instead, move idle units in formation on a timer.
+				let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+				cmpFormation.SetRearrange(false);
+				this.StartTimer(0, 2000);
 				return false;
 			},
+
+			"leave": function() {
+				this.StopTimer();
+			},
+
+			"Timer": function(msg) {
+				let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+				if (!cmpFormation)
+					return;
+
+				if (this.TestAllMemberFunction("IsIdle"))
+					cmpFormation.MoveMembersIntoFormation(false, false);
+			},
+
 		},
 
 		"WALKING": {
@@ -6462,12 +6483,9 @@ UnitAI.prototype.CallPlayerOwnedEntitiesFunctionInRange = function(funcname, arg
  */
 UnitAI.prototype.TestAllMemberFunction = function(funcname, args)
 {
-	var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-	if (!cmpFormation)
-		return false;
-
-	return cmpFormation.GetMembers().every(ent => {
-		var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+	let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+	return cmpFormation && cmpFormation.GetMembers().every(ent => {
+		let cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 		return cmpUnitAI[funcname].apply(cmpUnitAI, args);
 	});
 };

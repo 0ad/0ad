@@ -1270,13 +1270,28 @@ function getEntityLimitAndCount(playerState, entType)
 		"entLimit": undefined,
 		"entCount": undefined,
 		"entLimitChangers": undefined,
-		"canBeAddedCount": undefined
+		"canBeAddedCount": undefined,
+		"matchLimit": undefined,
+		"matchCount": undefined,
+		"type": undefined
 	};
 	if (!playerState.entityLimits)
 		return ret;
 	let template = GetTemplateData(entType);
-	let entCategory = template.trainingRestrictions && template.trainingRestrictions.category ||
-	                  template.buildRestrictions && template.buildRestrictions.category;
+	let entCategory;
+	let matchLimit;
+	if (template.trainingRestrictions)
+	{
+		entCategory = template.trainingRestrictions.category;
+		matchLimit = template.trainingRestrictions.matchLimit;
+		ret.type = "training";
+	}
+	else if (template.buildRestrictions)
+	{
+		entCategory = template.buildRestrictions.category;
+		matchLimit = template.buildRestrictions.matchLimit;
+		ret.type = "build";
+	}
 
 	if (entCategory && playerState.entityLimits[entCategory] !== undefined)
 	{
@@ -1284,6 +1299,13 @@ function getEntityLimitAndCount(playerState, entType)
 		ret.entCount = playerState.entityCounts[entCategory] || 0;
 		ret.entLimitChangers = playerState.entityLimitChangers[entCategory];
 		ret.canBeAddedCount = Math.max(ret.entLimit - ret.entCount, 0);
+	}
+
+	if (matchLimit)
+	{
+		ret.matchLimit = matchLimit;
+		ret.matchCount = playerState.matchEntityCounts[entType] || 0;
+		ret.canBeAddedCount = Math.min(Math.max(ret.entLimit - ret.entCount, 0), Math.max(ret.matchLimit - ret.matchCount, 0));
 	}
 	return ret;
 }
