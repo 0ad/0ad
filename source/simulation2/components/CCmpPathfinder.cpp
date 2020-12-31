@@ -262,7 +262,7 @@ void CCmpPathfinder::GetPassabilityClasses(std::map<std::string, pass_class_t>& 
 
 void CCmpPathfinder::GetPassabilityClasses(std::map<std::string, pass_class_t>& nonPathfindingPassClasses, std::map<std::string, pass_class_t>& pathfindingPassClasses) const
 {
-	for (const std::pair<std::string, pass_class_t>& pair : m_PassClassMasks)
+	for (const std::pair<const std::string, pass_class_t>& pair : m_PassClassMasks)
 	{
 		if ((GetPassabilityFromMask(pair.second)->m_Obstructions == PathfinderPassability::PATHFINDING))
 			pathfindingPassClasses[pair.first] = pair.second;

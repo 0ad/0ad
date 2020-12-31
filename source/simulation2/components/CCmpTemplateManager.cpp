@@ -58,9 +58,9 @@ public:
 
 	virtual void Serialize(ISerializer& serialize)
 	{
-		std::map<CStr, std::vector<entity_id_t>> templateMap;
+		std::map<std::string, std::vector<entity_id_t>> templateMap;
 
-		for (const std::pair<entity_id_t, std::string>& templateEnt : m_LatestTemplates)
+		for (const std::pair<const entity_id_t, std::string>& templateEnt : m_LatestTemplates)
 			if (!ENTITY_IS_LOCAL(templateEnt.first))
 				templateMap[templateEnt.second].push_back(templateEnt.first);
 
@@ -71,9 +71,9 @@ public:
 	{
 		Init(paramNode);
 
-		std::map<CStr, std::vector<entity_id_t>> templateMap;
+		std::map<std::string, std::vector<entity_id_t>> templateMap;
 		Serializer(deserialize, "templates", templateMap);
-		for (const std::pair<CStr, std::vector<entity_id_t>>& mapEl : templateMap)
+		for (const std::pair<const std::string, std::vector<entity_id_t>>& mapEl : templateMap)
 			for (entity_id_t id : mapEl.second)
 				m_LatestTemplates[id] = mapEl.first;
 	}
@@ -218,7 +218,7 @@ std::vector<std::string> CCmpTemplateManager::FindAllTemplates(bool includeActor
 std::vector<std::string> CCmpTemplateManager::FindUsedTemplates() const
 {
 	std::vector<std::string> usedTemplates;
-	for (const std::pair<entity_id_t, std::string>& p : m_LatestTemplates)
+	for (const std::pair<const entity_id_t, std::string>& p : m_LatestTemplates)
 		if (std::find(usedTemplates.begin(), usedTemplates.end(), p.second) == usedTemplates.end())
 			usedTemplates.push_back(p.second);
 	return usedTemplates;
@@ -230,7 +230,7 @@ std::vector<std::string> CCmpTemplateManager::FindUsedTemplates() const
 std::vector<entity_id_t> CCmpTemplateManager::GetEntitiesUsingTemplate(const std::string& templateName) const
 {
 	std::vector<entity_id_t> entities;
-	for (const std::pair<entity_id_t, std::string>& p : m_LatestTemplates)
+	for (const std::pair<const entity_id_t, std::string>& p : m_LatestTemplates)
 		if (p.second == templateName)
 			entities.push_back(p.first);
 

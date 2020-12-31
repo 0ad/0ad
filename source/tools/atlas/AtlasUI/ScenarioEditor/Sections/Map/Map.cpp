@@ -239,7 +239,7 @@ void MapSettingsControl::ReadFromEngine()
 		m_MapSettingsVictoryConditions.insert(std::string(victoryCondition));
 
 	// Clear Checkboxes before loading data. We don't update victory condition just yet because it might reenable some of the checkboxes.
-	for (const std::pair<long, AtObj>& vc : m_VictoryConditions)
+	for (const std::pair<const long, AtObj>& vc : m_VictoryConditions)
 	{
 		wxCheckBox* checkBox = wxDynamicCast(FindWindow(vc.first), wxCheckBox);
 		if (!checkBox)
@@ -249,7 +249,7 @@ void MapSettingsControl::ReadFromEngine()
 		checkBox->Enable(true);
 	}
 
-	for (const std::pair<long, AtObj>& vc : m_VictoryConditions)
+	for (const std::pair<const long, AtObj>& vc : m_VictoryConditions)
 	{
 		std::string escapedTitle = wxString::FromUTF8(vc.second["Data"]["Title"]).Lower().ToStdString();
 		std::replace(escapedTitle.begin(), escapedTitle.end(), ' ', '_');
@@ -298,20 +298,20 @@ void MapSettingsControl::OnVictoryConditionChanged(long controlId)
 	AtObj victoryCondition;
 	wxCheckBox* modifiedCheckbox = wxDynamicCast(FindWindow(controlId), wxCheckBox);
 
-	for (const std::pair<long, AtObj>& vc : m_VictoryConditions)
+	for (const std::pair<const long, AtObj>& vc : m_VictoryConditions)
 	{
-		if(vc.first != controlId)
+		if (vc.first != controlId)
 			continue;
 
-	 	victoryCondition = vc.second;
+		victoryCondition = vc.second;
 		break;
 	}
 
-	if(modifiedCheckbox->GetValue())
+	if (modifiedCheckbox->GetValue())
 	{
 		for (AtIter victoryConditionPair = victoryCondition["Data"]["ChangeOnChecked"]; victoryConditionPair.defined(); ++victoryConditionPair)
 		{
-			for (const std::pair<long, AtObj>& vc : m_VictoryConditions)
+			for (const std::pair<const long, AtObj>& vc : m_VictoryConditions)
 			{
 				std::string escapedTitle = wxString::FromUTF8(vc.second["Data"]["Title"]).Lower().ToStdString();
 				std::replace(escapedTitle.begin(), escapedTitle.end(), ' ', '_');
@@ -325,7 +325,7 @@ void MapSettingsControl::OnVictoryConditionChanged(long controlId)
 		}
 	}
 
-	for (const std::pair<long, AtObj>& vc : m_VictoryConditions)
+	for (const std::pair<const long, AtObj>& vc : m_VictoryConditions)
 	{
 		if (vc.first == controlId)
 			continue;
@@ -333,7 +333,7 @@ void MapSettingsControl::OnVictoryConditionChanged(long controlId)
 		wxCheckBox* otherCheckbox = wxDynamicCast(FindWindow(vc.first), wxCheckBox);
 		otherCheckbox->Enable(true);
 
-		for (const std::pair<long, AtObj>& vc2 : m_VictoryConditions)
+		for (const std::pair<const long, AtObj>& vc2 : m_VictoryConditions)
 		{
 			for (AtIter victoryConditionTitle = vc2.second["Data"]["DisabledWhenChecked"]; victoryConditionTitle.defined(); ++victoryConditionTitle)
 			{
@@ -371,7 +371,7 @@ AtObj MapSettingsControl::UpdateSettingsObject()
 	else \
 		m_MapSettingsVictoryConditions.erase(name);
 
-	for (const std::pair<long, AtObj>& vc : m_VictoryConditions)
+	for (const std::pair<const long, AtObj>& vc : m_VictoryConditions)
 	{
 		std::string escapedTitle = wxString::FromUTF8(vc.second["Data"]["Title"]).Lower().ToStdString();
 		std::replace(escapedTitle.begin(), escapedTitle.end(), ' ', '_');

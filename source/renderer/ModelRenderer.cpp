@@ -314,10 +314,13 @@ struct SMRCompareSortByDistItem
 	}
 };
 
-struct SMRMaterialBucketKey
+class SMRMaterialBucketKey
 {
+public:
 	SMRMaterialBucketKey(CStrIntern effect, const CShaderDefines& defines)
 		: effect(effect), defines(defines) { }
+
+	SMRMaterialBucketKey(const SMRMaterialBucketKey& entity) = default;
 
 	CStrIntern effect;
 	CShaderDefines defines;

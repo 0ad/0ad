@@ -518,10 +518,9 @@ BEGIN_COMMAND(ResizeMap)
 		const CFixedVector3D offset = CFixedVector3D(fixed::FromInt(offsetX), fixed::FromInt(0), fixed::FromInt(offsetZ));
 
 		const CSimulation2::InterfaceListUnordered& ents = sim.GetEntitiesWithInterfaceUnordered(IID_Selectable);
-		for (const std::pair<entity_id_t, IComponent*>& ent : ents)
+		for (const std::pair<const entity_id_t, IComponent*>& ent : ents)
 		{
 			const entity_id_t entityId = ent.first;
-
 			CmpPtr<ICmpPosition> cmpPosition(sim, entityId);
 
 			if (cmpPosition && cmpPosition->IsInWorld() && Within(cmpPosition->GetPosition(), mapCenterX, mapCenterZ, radiusInTerrainUnits))

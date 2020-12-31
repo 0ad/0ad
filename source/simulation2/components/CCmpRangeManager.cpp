@@ -300,12 +300,15 @@ struct SerializeHelper<EntityData>
  * It must only be passed entities that are in 'entities'
  * and are currently in the world.
  */
-struct EntityDistanceOrdering
+class EntityDistanceOrdering
 {
+public:
 	EntityDistanceOrdering(const EntityMap<EntityData>& entities, const CFixedVector2D& source) :
 		m_EntityData(entities), m_Source(source)
 	{
 	}
+
+	EntityDistanceOrdering(const EntityDistanceOrdering& entity) = default;
 
 	bool operator()(entity_id_t a, entity_id_t b) const
 	{

@@ -17,10 +17,10 @@
 #include <cassert>
 #include <sstream>
 #include <stdexcept>
-#include <boost/config.hpp> 
-#include <boost/cstdint.hpp> 
-#include <boost/shared_ptr.hpp> 
-#include <boost/variant.hpp> 
+#include <boost/config.hpp>
+#include <boost/cstdint.hpp>
+#include <boost/shared_ptr.hpp>
+#include <boost/variant.hpp>
 
 // comment out the value types you don't need to reduce build times and intermediate file sizes
 #define JSON_SPIRIT_VALUE_ENABLED
@@ -32,10 +32,10 @@ namespace json_spirit
 {
     enum Value_type{ obj_type, array_type, str_type, bool_type, int_type, real_type, null_type };
 
-    static std::string value_type_to_string( Value_type vtype );
+    static inline std::string value_type_to_string(const Value_type vtype );
 
     struct Null{};
-    
+
     template< class Config >    // Config determines whether the value uses std::string or std::wstring and
                                 // whether JSON Objects are represented as vectors or maps
     class Value_impl
@@ -49,7 +49,7 @@ namespace json_spirit
         typedef typename String_type::const_pointer Const_str_ptr;  // eg const char*
 
         Value_impl();  // creates null value
-        Value_impl( Const_str_ptr      value ); 
+        Value_impl( Const_str_ptr      value );
         Value_impl( const String_type& value );
         Value_impl( const Object&      value );
         Value_impl( const Array&       value );
@@ -97,28 +97,28 @@ namespace json_spirit
 
         void check_type( const Value_type vtype ) const;
 
-        typedef boost::variant< boost::recursive_wrapper< Object >, boost::recursive_wrapper< Array >, 
+        typedef boost::variant< boost::recursive_wrapper< Object >, boost::recursive_wrapper< Array >,
                                 String_type, bool, boost::int64_t, double, Null, boost::uint64_t > Variant;
 
         Variant v_;
 
-        class Variant_converter_visitor : public boost::static_visitor< Variant > 
+        class Variant_converter_visitor : public boost::static_visitor< Variant >
         {
         public:
-         
+
               template< typename T, typename A, template< typename, typename > class Cont >
-              Variant operator()( const Cont< T, A >& cont ) const 
+              Variant operator()( const Cont< T, A >& cont ) const
               {
                   return Array( cont.begin(), cont.end() );
               }
-             
-              Variant operator()( int i ) const 
+
+              Variant operator()( int i ) const
               {
                   return static_cast< boost::int64_t >( i );
               }
-           
+
               template<class T>
-              Variant operator()( const T& t ) const 
+              Variant operator()( const T& t ) const
               {
                   return t;
               }
@@ -161,12 +161,12 @@ namespace json_spirit
 
             return obj.back().value_;
         }
-                
+
         static const String_type& get_name( const Pair_type& pair )
         {
             return pair.name_;
         }
-                
+
         static const Value_type& get_value( const Pair_type& pair )
         {
             return pair.value_;
@@ -212,12 +212,12 @@ namespace json_spirit
         {
             return obj[ name ] = value;
         }
-                
+
         static const String_type& get_name( const Pair_type& pair )
         {
             return pair.first;
         }
-                
+
         static const Value_type& get_value( const Pair_type& pair )
         {
             return pair.second;
@@ -354,7 +354,7 @@ namespace json_spirit
 
         if( type() != lhs.type() ) return false;
 
-        return v_ == lhs.v_; 
+        return v_ == lhs.v_;
     }
 
     template< class Config >
@@ -383,7 +383,7 @@ namespace json_spirit
     template< class Config >
     void Value_impl< Config >::check_type( const Value_type vtype ) const
     {
-        if( type() != vtype ) 
+        if( type() != vtype )
         {
             std::ostringstream os;
 
@@ -408,7 +408,7 @@ namespace json_spirit
 
         return *boost::get< Object >( &v_ );
     }
-     
+
     template< class Config >
     const typename Value_impl< Config >::Array& Value_impl< Config >::get_array() const
     {
@@ -416,7 +416,7 @@ namespace json_spirit
 
         return *boost::get< Array >( &v_ );
     }
-     
+
     template< class Config >
     bool Value_impl< Config >::get_bool() const
     {
@@ -424,7 +424,7 @@ namespace json_spirit
 
         return boost::get< bool >( v_ );
     }
-     
+
     template< class Config >
     int Value_impl< Config >::get_int() const
     {
@@ -432,7 +432,7 @@ namespace json_spirit
 
         return static_cast< int >( get_int64() );
     }
-    
+
     template< class Config >
     boost::int64_t Value_impl< Config >::get_int64() const
     {
@@ -445,7 +445,7 @@ namespace json_spirit
 
         return boost::get< boost::int64_t >( v_ );
     }
-    
+
     template< class Config >
     boost::uint64_t Value_impl< Config >::get_uint64() const
     {
@@ -528,49 +528,49 @@ namespace json_spirit
         {
         };
 
-        template< class Value > 
+        template< class Value >
         int get_value( const Value& value, Type_to_type< int > )
         {
             return value.get_int();
         }
-       
-        template< class Value > 
+
+        template< class Value >
         boost::int64_t get_value( const Value& value, Type_to_type< boost::int64_t > )
         {
             return value.get_int64();
         }
-       
-        template< class Value > 
+
+        template< class Value >
         boost::uint64_t get_value( const Value& value, Type_to_type< boost::uint64_t > )
         {
             return value.get_uint64();
         }
-       
-        template< class Value > 
+
+        template< class Value >
         double get_value( const Value& value, Type_to_type< double > )
         {
             return value.get_real();
         }
-       
-        template< class Value > 
+
+        template< class Value >
         typename Value::String_type get_value( const Value& value, Type_to_type< typename Value::String_type > )
         {
             return value.get_str();
         }
-       
-        template< class Value > 
+
+        template< class Value >
         typename Value::Array get_value( const Value& value, Type_to_type< typename Value::Array > )
         {
             return value.get_array();
         }
-       
-        template< class Value > 
+
+        template< class Value >
         typename Value::Object get_value( const Value& value, Type_to_type< typename Value::Object > )
         {
             return value.get_obj();
         }
-       
-        template< class Value > 
+
+        template< class Value >
         bool get_value( const Value& value, Type_to_type< bool > )
         {
             return value.get_bool();
@@ -578,13 +578,13 @@ namespace json_spirit
     }
 
     template< class Config >
-    template< typename T > 
+    template< typename T >
     T Value_impl< Config >::get_value() const
     {
         return internal_::get_value( *this, internal_::Type_to_type< T >() );
     }
 
-    static std::string value_type_to_string( const Value_type vtype )
+    static inline std::string value_type_to_string( const Value_type vtype )
     {
         switch( vtype )
         {

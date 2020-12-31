@@ -467,7 +467,7 @@ void HierarchicalPathfinder::Update(Grid<NavcellData>* grid, const Grid<u8>& dir
 			if (!dirtinessGrid.any_set_in_square(i0, j0, i1, j1))
 				continue;
 
-			for (const std::pair<std::string, pass_class_t>& passClassMask : m_PassClassMasks)
+			for (const std::pair<const std::string, pass_class_t>& passClassMask : m_PassClassMasks)
 			{
 				pass_class_t passClass = passClassMask.second;
 				Chunk& a = m_Chunks[passClass].at(ci + cj*m_ChunksW);
@@ -627,7 +627,8 @@ void HierarchicalPathfinder::UpdateGlobalRegions(const std::map<pass_class_t, st
 {
 	// Use FindReachableRegions because we cannot be sure, even if we find a non-dirty chunk nearby,
 	// that we weren't the only bridge connecting that chunk to the rest of the global region.
-	for (const std::pair<pass_class_t, std::vector<RegionID> >& regionsInNeed : needNewGlobalRegionMap)
+	for (const std::pair<const pass_class_t, std::vector<RegionID>>& regionsInNeed : needNewGlobalRegionMap)
+	{
 		for (const RegionID& reg : regionsInNeed.second)
 		{
 			std::map<RegionID, GlobalRegionID>& globalRegions = m_GlobalRegions[regionsInNeed.first];
@@ -643,6 +644,7 @@ void HierarchicalPathfinder::UpdateGlobalRegions(const std::map<pass_class_t, st
 			for (const RegionID& regionId : reachable)
 				globalRegions[regionId] = ID;
 		}
+	}
 }
 
 HierarchicalPathfinder::RegionID HierarchicalPathfinder::Get(u16 i, u16 j, pass_class_t passClass) const
