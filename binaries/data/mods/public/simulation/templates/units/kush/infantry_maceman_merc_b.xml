@@ -1,18 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_infantry_melee_swordsman">
-  <Attack>
-    <Melee>
-      <AttackName>Mace</AttackName>
-      <Damage>
-        <Hack>0</Hack>
-        <Pierce>0</Pierce>
-        <Crush>7</Crush>
-      </Damage>
-      <MaxRange>3</MaxRange>
-      <PrepareTime>500</PrepareTime>
-      <RepeatTime>1000</RepeatTime>
-    </Melee>
-  </Attack>
+<Entity parent="template_unit_infantry_melee_maceman">
   <Builder>
     <Entities datatype="tokens">
       structures/kush/pyramid_small
@@ -28,20 +15,13 @@
     <SelectionGroupName>units/kush/infantry_maceman_b</SelectionGroupName>
     <GenericName>Noba Maceman</GenericName>
     <SpecificName>nhw Noba</SpecificName>
-    <VisibleClasses datatype="tokens">-Swordsman Maceman Mercenary</VisibleClasses>
+    <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
     <Icon>units/kush_infantry_maceman.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <Promotion>
     <Entity>units/kush/infantry_maceman_merc_a</Entity>
   </Promotion>
-  <Resistance>
-    <Entity>
-      <Damage>
-        <Hack op="add">-1</Hack>
-      </Damage>
-    </Entity>
-  </Resistance>
   <VisualActor>
     <Actor>units/kushites/infantry_maceman_b.xml</Actor>
   </VisualActor>
