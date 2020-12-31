@@ -2,10 +2,12 @@
 <Entity parent="template_structure_defensive">
   <BuildRestrictions>
     <PlacementType>land-shore</PlacementType>
+    <Territory>own neutral</Territory>
     <Category>Wall</Category>
   </BuildRestrictions>
   <Capturable>
-    <CapturePoints>1200</CapturePoints>
+    <CapturePoints>300</CapturePoints>
+    <RegenRate>1.0</RegenRate>
   </Capturable>
   <Health>
     <Max>1000</Max>
@@ -14,7 +16,7 @@
   <Identity>
     <GenericName>Palisade</GenericName>
     <SelectionGroupName>template_structure_defensive_palisade</SelectionGroupName>
-    <Tooltip>Wall off an area.</Tooltip>
+    <Tooltip>Wall off an area. Build in own or neutral territory.</Tooltip>
     <VisibleClasses datatype="tokens">Palisade</VisibleClasses>
     <Icon>gaia/special_palisade.png</Icon>
   </Identity>
@@ -36,6 +38,6 @@
     </SoundGroups>
   </Sound>
   <TerritoryDecay>
-    <DecayRate>5.0</DecayRate>
+    <DecayRate>2.0</DecayRate>
   </TerritoryDecay>
 </Entity>
