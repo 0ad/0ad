@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -28,12 +28,12 @@ class DummyTool : public ITool
 	bool OnMouse(wxMouseEvent& WXUNUSED(evt)) { return false; }
 	bool OnKey(wxKeyEvent& WXUNUSED(evt), KeyEventType) { return false; }
 	void OnTick(float) {}
-    void OnCommand(const wxString& WXUNUSED(command), void* WXUNUSED(userData)) {}
-} dummy;
+	void OnCommand(const wxString& WXUNUSED(command), void* WXUNUSED(userData)) {}
+} defaultTool;
 
 struct ToolManagerImpl
 {
-	ToolManagerImpl() : CurrentTool(&dummy) {}
+	ToolManagerImpl() : CurrentTool(&defaultTool) {}
 
 	ObservablePtr<ITool> CurrentTool;
 	wxString CurrentToolName;
@@ -63,11 +63,11 @@ void SetActive(bool active, const wxString& name);
 
 void ToolManager::SetCurrentTool(const wxString& name, void* initData)
 {
-	if (*m->CurrentTool != &dummy)
+	if (*m->CurrentTool != &defaultTool)
 	{
 		m->CurrentTool->Shutdown();
-		delete *m->CurrentTool;
-		m->CurrentTool = &dummy;
+		delete* m->CurrentTool;
+		m->CurrentTool = &defaultTool;
 	}
 
 	SetActive(false, m->CurrentToolName);
@@ -145,7 +145,7 @@ void RegisterToolBarButton(wxToolBar* toolbar, int buttonId, const wxString& too
 IMPLEMENT_CLASS(WorldCommand, AtlasWindowCommand);
 
 WorldCommand::WorldCommand(AtlasMessage::mWorldCommand* command)
-: AtlasWindowCommand(true, wxString::FromAscii(command->GetName())), m_Command(command), m_AlreadyDone(false)
+	: AtlasWindowCommand(true, wxString::FromAscii(command->GetName())), m_Command(command), m_AlreadyDone(false)
 {
 }
 
@@ -180,13 +180,13 @@ bool WorldCommand::Merge(AtlasWindowCommand* p)
 {
 	WorldCommand* prev = wxDynamicCast(p, WorldCommand);
 
-	if (! prev)
+	if (!prev)
 		return false;
 
 	if (m_Command->GetName() != prev->m_Command->GetName()) // comparing char* pointers, because they're unique-per-class constants
 		return false;
 
-	if (! m_Command->IsMergeable())
+	if (!m_Command->IsMergeable())
 		return false;
 
 	POST_MESSAGE(MergeCommand, ());

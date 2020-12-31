@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -82,7 +82,6 @@ need only be renamed (e.g. _open, _stat).
 // provide C99 *snprintf functions if compiler doesn't already
 // (MinGW does, VC7.1 doesn't).
 #if MSC_VERSION
-# define snprintf _snprintf
 # define swprintf _snwprintf
 # define vsnprintf _vsnprintf
 # define vswprintf _vsnwprintf
