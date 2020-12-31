@@ -1,4 +1,4 @@
-/* Copyright (c) 2019 Wildfire Games.
+/* Copyright (c) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -97,23 +97,23 @@
 // Streaming SIMD Extensions (not supported by all GCC)
 // this only ascertains compiler support; use x86_x64::Cap to
 // check whether the instructions are supported by the CPU.
-#ifndef HAVE_SSE
+#ifndef COMPILER_HAS_SSE
 # if GCC_VERSION && defined(__SSE__)
-#  define HAVE_SSE 1
+#  define COMPILER_HAS_SSE 1
 # elif MSC_VERSION	// also includes ICC
-#  define HAVE_SSE 1
+#  define COMPILER_HAS_SSE 1
 # else
-#  define HAVE_SSE 0
+#  define COMPILER_HAS_SSE 0
 # endif
 #endif
 
-#ifndef HAVE_SSE2
+#ifndef COMPILER_HAS_SSE2
 # if GCC_VERSION && defined(__SSE2__)
-#  define HAVE_SSE2 1
+#  define COMPILER_HAS_SSE2 1
 # elif MSC_VERSION	// also includes ICC
-#  define HAVE_SSE2 1
+#  define COMPILER_HAS_SSE2 1
 # else
-#  define HAVE_SSE2 0
+#  define COMPILER_HAS_SSE2 0
 # endif
 #endif
 

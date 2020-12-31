@@ -210,6 +210,11 @@ function project_set_build_flags()
 
 		flags { "MultiProcessorCompile" }
 
+		-- Since KB4088875 Windows 7 has a soft requirement for SSE2.
+		-- Windows 8+ and Firefox ESR52 make it hard requirement.
+		-- Finally since VS2012 it's enabled implicitely when not set.
+		vectorextensions "SSE2"
+
 		-- use native wchar_t type (not typedef to unsigned short)
 		nativewchar "on"
 

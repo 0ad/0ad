@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,10 +23,11 @@
 
 #include "ModelDef.h"
 #include "graphics/SkeletonAnimDef.h"
+#include "lib/sse.h"
 #include "ps/FileIo.h"
 #include "maths/Vector4D.h"
 
-#if HAVE_SSE
+#if COMPILER_HAS_SSE
 # include <xmmintrin.h>
 #endif
 
@@ -87,7 +88,16 @@ CVector3D CModelDef::SkinNormal(const SModelVertex& vtx,
 	return result;
 }
 
-void CModelDef::SkinPointsAndNormals(
+void(*CModelDef::SkinPointsAndNormals)(
+	size_t numVertices,
+	const VertexArrayIterator<CVector3D>& Position,
+	const VertexArrayIterator<CVector3D>& Normal,
+	const SModelVertex* vertices,
+	const size_t* blendIndices,
+	const CMatrix3D newPoseMatrices[]) {};
+
+
+static void SkinPointsAndNormalsFallback(
 		size_t numVertices,
 		const VertexArrayIterator<CVector3D>& Position,
 		const VertexArrayIterator<CVector3D>& Normal,
@@ -121,8 +131,8 @@ void CModelDef::SkinPointsAndNormals(
 	}
 }
 
-#if HAVE_SSE
-void CModelDef::SkinPointsAndNormals_SSE(
+#if COMPILER_HAS_SSE
+static void SkinPointsAndNormalsSSE(
 		size_t numVertices,
 		const VertexArrayIterator<CVector3D>& Position,
 		const VertexArrayIterator<CVector3D>& Normal,
@@ -470,4 +480,16 @@ CModelDefRPrivate* CModelDef::GetRenderData(const void* key) const
 		return it->second;
 
 	return 0;
+}
+
+void ModelDefActivateFastImpl()
+{
+#if COMPILER_HAS_SSE
+	if (HostHasSSE())
+	{
+		CModelDef::SkinPointsAndNormals = SkinPointsAndNormalsSSE;
+		return;
+	}
+#endif
+	CModelDef::SkinPointsAndNormals = SkinPointsAndNormalsFallback;
 }

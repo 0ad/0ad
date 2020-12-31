@@ -28,10 +28,12 @@
 #include "lib/res/graphics/cursor.h"
 
 #include "graphics/CinemaManager.h"
+#include "graphics/Color.h"
 #include "graphics/FontMetrics.h"
 #include "graphics/GameView.h"
 #include "graphics/LightEnv.h"
 #include "graphics/MapReader.h"
+#include "graphics/ModelDef.h"
 #include "graphics/MaterialManager.h"
 #include "graphics/TerrainTextureManager.h"
 #include "gui/CGUI.h"
@@ -611,7 +613,7 @@ static void InitRenderer()
 	vp.m_Width = g_xres;
 	vp.m_Height = g_yres;
 	g_Renderer.SetViewport(vp);
-
+	ModelDefActivateFastImpl();
 	ColorActivateFastImpl();
 	ModelRenderer::Init();
 }

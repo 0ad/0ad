@@ -41,23 +41,11 @@
 #include "renderer/TimeManager.h"
 #include "renderer/WaterManager.h"
 
-#if ARCH_X86_X64
-# include "lib/sysdep/arch/x86_x64/x86_x64.h"
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // ModelRenderer implementation
 
-#if ARCH_X86_X64
-static bool g_EnableSSE = false;
-#endif
-
 void ModelRenderer::Init()
 {
-#if ARCH_X86_X64
-	if (x86_x64::Cap(x86_x64::CAP_SSE))
-		g_EnableSSE = true;
-#endif
 }
 
 // Helper function to copy object-space position and normal vectors into arrays.
@@ -98,16 +86,7 @@ void ModelRenderer::BuildPositionAndNormals(
 			return;
 		}
 
-#if HAVE_SSE
-		if (g_EnableSSE)
-		{
-			CModelDef::SkinPointsAndNormals_SSE(numVertices, Position, Normal, vertices, mdef->GetBlendIndices(), model->GetAnimatedBoneMatrices());
-		}
-		else
-#endif
-		{
-			CModelDef::SkinPointsAndNormals(numVertices, Position, Normal, vertices, mdef->GetBlendIndices(), model->GetAnimatedBoneMatrices());
-		}
+		CModelDef::SkinPointsAndNormals(numVertices, Position, Normal, vertices, mdef->GetBlendIndices(), model->GetAnimatedBoneMatrices());
 	}
 	else
 	{
