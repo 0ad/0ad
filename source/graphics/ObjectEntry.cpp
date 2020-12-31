@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -46,7 +46,7 @@ CObjectEntry::CObjectEntry(CObjectBase* base, CSimulation2& simulation) :
 
 CObjectEntry::~CObjectEntry()
 {
-	for (const std::pair<CStr, CSkeletonAnim*>& anim : m_Animations)
+	for (const std::pair<const CStr, CSkeletonAnim*>& anim : m_Animations)
 		delete anim.second;
 
 	delete m_Model;

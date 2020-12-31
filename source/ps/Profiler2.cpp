@@ -599,7 +599,7 @@ void rewriteBuffer(u8* buffer, u32& bufferSize)
 		curTime += 0.000001;
 	}
 	// sub-events, aggregated
-	for (const std::pair<std::string, infoPerType>& type : timeByType)
+	for (const std::pair<const std::string, infoPerType>& type : timeByType)
 	{
 		CProfiler2::SItem_dt_id item = { (float)curTime, std::get<0>(type.second) };
 		buffer[writePos] = (u8)CProfiler2::ITEM_ENTER;

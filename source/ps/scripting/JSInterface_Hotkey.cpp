@@ -75,7 +75,7 @@ JS::Value GetHotkeyMap(ScriptInterface::CmptPrivate* pCmptPrivate)
 	JS::RootedValue hotkeyMap(rq.cx);
 
 	std::unordered_map<std::string, std::vector<std::vector<std::string>>> hotkeys;
-	for (const std::pair<SDL_Scancode_, KeyMapping>& key : g_HotkeyMap)
+	for (const std::pair<const SDL_Scancode_, KeyMapping>& key : g_HotkeyMap)
 		for (const SHotkeyMapping& mapping : key.second)
 		{
 			std::vector<std::string> keymap;

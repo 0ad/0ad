@@ -304,11 +304,11 @@ InReaction CDropDown::ManuallyHandleKeys(const SDL_Event_* ev)
 			break;
 
 		default:
-			// If we have inputed a character try to get the closest element to it.
+			// If we have typed a character try to get the closest element to it.
 			// TODO: not too nice and doesn't deal with dashes.
 			if (m_Open && ((szChar >= SDLK_a && szChar <= SDLK_z) || szChar == SDLK_SPACE
 						   || (szChar >= SDLK_0 && szChar <= SDLK_9)
-						   || (szChar >= SDLK_KP_0 && szChar <= SDLK_KP_9)))
+						   || (szChar >= SDLK_KP_1 && szChar <= SDLK_KP_0)))
 			{
 				// arbitrary 1 second limit to add to string or start fresh.
 				// maximal amount of characters is 100, which imo is far more than enough.

@@ -738,7 +738,7 @@ void CNetServerWorker::AddPlayer(const CStr& guid, const CStrW& name)
 {
 	// Find all player IDs in active use; we mustn't give them to a second player (excluding the unassigned ID: -1)
 	std::set<i32> usedIDs;
-	for (const std::pair<CStr, PlayerAssignment>& p : m_PlayerAssignments)
+	for (const std::pair<const CStr, PlayerAssignment>& p : m_PlayerAssignments)
 		if (p.second.m_Enabled && p.second.m_PlayerID != -1)
 			usedIDs.insert(p.second.m_PlayerID);
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -170,11 +170,11 @@ void CObjectManager::DeleteObject(CObjectEntry* entry)
 
 void CObjectManager::UnloadObjects()
 {
-	for (const std::pair<ObjectKey, CObjectEntry*>& p : m_Objects)
+	for (const std::pair<const ObjectKey, CObjectEntry*>& p : m_Objects)
 		delete p.second;
 	m_Objects.clear();
 
-	for (const std::pair<CStrW, CObjectBase*>& p : m_ObjectBases)
+	for (const std::pair<const CStrW, CObjectBase*>& p : m_ObjectBases)
 		delete p.second;
 	m_ObjectBases.clear();
 }
