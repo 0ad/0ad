@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_structure_special">
+<Entity parent="template_structure">
   <Attack>
     <Ranged>
       <AttackName>Bow</AttackName>
@@ -58,6 +58,8 @@
   </Footprint>
   <GarrisonHolder>
     <Max>40</Max>
+    <EjectHealth>0.1</EjectHealth>
+    <EjectClassesOnDestroy datatype="tokens">Unit</EjectClassesOnDestroy>
     <List datatype="tokens">Support Infantry Cavalry Siege</List>
     <BuffHeal>1</BuffHeal>
     <LoadingRange>6</LoadingRange>
@@ -70,10 +72,11 @@
     <Civ>rome</Civ>
     <GenericName>Army Camp</GenericName>
     <SpecificName>Castra</SpecificName>
-    <Tooltip>Build in neutral or enemy territory. Train Citizen-Soldiers and construct Siege Engines. Garrison Soldiers for additional arrows.</Tooltip>
+    <Tooltip>Build in neutral or enemy territory. Train Melee Infantry. Garrison Soldiers for additional arrows.</Tooltip>
     <Classes datatype="tokens">ConquestCritical</Classes>
-    <VisibleClasses datatype="tokens">ArmyCamp</VisibleClasses>
+    <VisibleClasses datatype="tokens">City ArmyCamp</VisibleClasses>
     <Icon>structures/roman_camp.png</Icon>
+    <RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>
   <Loot>
     <wood>100</wood>
@@ -87,16 +90,10 @@
   <ProductionQueue>
     <BatchTimeModifier>0.7</BatchTimeModifier>
     <Entities datatype="tokens">
-      units/{civ}/infantry_swordsman_b
+      units/{civ}/infantry_axeman_a
+      units/{civ}/infantry_swordsman_a
       units/{civ}/infantry_spearman_a
-      units/{civ}/infantry_javelineer_b
-      units/{civ}/cavalry_spearman_b
-      units/{civ}/siege_ballista_packed
-      units/{civ}/siege_scorpio_packed
-      units/{civ}/siege_oxybeles_packed
-      units/{civ}/siege_lithobolos_packed
-      units/{civ}/siege_ram
-      units/{civ}/siege_tower
+      units/{civ}/infantry_pikeman_a
     </Entities>
   </ProductionQueue>
   <Resistance>
