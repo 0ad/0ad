@@ -732,13 +732,13 @@ function handleInputBeforeGui(ev, hoveredObject)
 			}
 
 			let snapData = Engine.GuiInterfaceCall("GetFoundationSnapData", {
- 				"template": placementSupport.template,
- 				"x": placementSupport.position.x,
+				"template": placementSupport.template,
+				"x": placementSupport.position.x,
 				"z": placementSupport.position.z,
 				"angle": placementSupport.angle,
 				"snapToEdges": isSnapToEdgesEnabled() && Engine.GetEdgesOfStaticObstructionsOnScreenNearTo(
 					placementSupport.position.x, placementSupport.position.z)
- 			});
+			});
 			if (snapData)
 			{
 				placementSupport.angle = snapData.angle;
@@ -1057,13 +1057,20 @@ function handleInputAfterGui(ev)
 					return true;
 				}
 
+				if (isSnapToEdgesEnabled())
+				{
+					// We need to reset the angle before the snapping to edges,
+					// because we want to get the angle near to the default one.
+					placementSupport.SetDefaultAngle();
+				}
 				let snapData = Engine.GuiInterfaceCall("GetFoundationSnapData", {
- 					"template": placementSupport.template,
- 					"x": placementSupport.position.x,
- 					"z": placementSupport.position.z,
+					"template": placementSupport.template,
+					"x": placementSupport.position.x,
+					"z": placementSupport.position.z,
+					"angle": placementSupport.angle,
 					"snapToEdges": isSnapToEdgesEnabled() && Engine.GetEdgesOfStaticObstructionsOnScreenNearTo(
 						placementSupport.position.x, placementSupport.position.z)
- 				});
+				});
 				if (snapData)
 				{
 					placementSupport.angle = snapData.angle;
@@ -1094,6 +1101,7 @@ function handleInputAfterGui(ev)
 							"template": placementSupport.template,
 							"x": placementSupport.position.x,
 							"z": placementSupport.position.z,
+							"angle": placementSupport.angle,
 							"snapToEdges": Engine.GetEdgesOfStaticObstructionsOnScreenNearTo(
 								placementSupport.position.x, placementSupport.position.z)
 						});
