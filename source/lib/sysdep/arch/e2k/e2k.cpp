@@ -20,27 +20,30 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+/**
+ * Routines specific to E2K (MCST Elbrus 2000)
+ */
+
 #include "precompiled.h"
 
-#include "lib/sse.h"
+#include "lib/sysdep/cpu.h"
 
-#if COMPILER_HAS_SSE
-#include "lib/code_generation.h"
-#include "lib/debug.h"
-#include "lib/sysdep/arch.h"
-
-#if ARCH_X86_X64
-#include "lib/sysdep/arch/x86_x64/x86_x64.h"
-#endif
-
-bool HostHasSSE()
+intptr_t cpu_AtomicAdd(volatile intptr_t* location, intptr_t increment)
 {
-#if ARCH_X86_X64
-	return x86_x64::Cap(x86_x64::CAP_SSE);
-#elif ARCH_E2K
-	return true;
-#else
-	return false;
-#endif
+	return __sync_fetch_and_add(location, increment);
 }
-#endif
+
+bool cpu_CAS(volatile intptr_t* location, intptr_t expected, intptr_t newValue)
+{
+	return __sync_bool_compare_and_swap(location, expected, newValue);
+}
+
+bool cpu_CAS64(volatile i64* location, i64 expected, i64 newValue)
+{
+	return __sync_bool_compare_and_swap(location, expected, newValue);
+}
+
+const char* cpu_IdentifierString()
+{
+	return __builtin_cpu_name();
+}

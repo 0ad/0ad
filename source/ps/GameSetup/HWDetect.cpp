@@ -181,6 +181,7 @@ void RunHardwareDetection()
 	scriptInterface.SetProperty(settings, "arch_amd64", ARCH_AMD64);
 	scriptInterface.SetProperty(settings, "arch_arm", ARCH_ARM);
 	scriptInterface.SetProperty(settings, "arch_aarch64", ARCH_AARCH64);
+	scriptInterface.SetProperty(settings, "arch_e2k", ARCH_E2K);
 
 #ifdef NDEBUG
 	scriptInterface.SetProperty(settings, "build_debug", 0);

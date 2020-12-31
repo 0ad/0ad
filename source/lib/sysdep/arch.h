@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -70,9 +70,15 @@
 #else
 # define ARCH_MIPS 0
 #endif
+// .. E2K (MCST Elbrus 2000)
+#if defined(__e2k__)
+# define ARCH_E2K 1
+#else
+# define ARCH_E2K 0
+#endif
 
 // ensure exactly one architecture has been detected
-#if (ARCH_IA32+ARCH_IA64+ARCH_AMD64+ARCH_ALPHA+ARCH_ARM+ARCH_AARCH64+ARCH_MIPS) != 1
+#if (ARCH_IA32+ARCH_IA64+ARCH_AMD64+ARCH_ALPHA+ARCH_ARM+ARCH_AARCH64+ARCH_MIPS+ARCH_E2K) != 1
 # error "architecture not correctly detected (either none or multiple ARCH_* defined)"
 #endif
 

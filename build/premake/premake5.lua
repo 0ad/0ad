@@ -83,6 +83,8 @@ else
 			arch = "arm"
 		elseif string.find(machine, "aarch64") == 1 then
 			arch = "aarch64"
+		elseif string.find(machine, "e2k") == 1 then
+			arch = "e2k"
 		else
 			print("WARNING: Cannot determine architecture from GCC, assuming x86")
 		end
@@ -858,6 +860,8 @@ function setup_all_libs ()
 		table.insert(source_dirs, "lib/sysdep/arch/arm");
 	elseif arch == "aarch64" then
 		table.insert(source_dirs, "lib/sysdep/arch/aarch64");
+	elseif arch == "e2k" then
+		table.insert(source_dirs, "lib/sysdep/arch/e2k");
 	end
 
 	-- OS-specific
