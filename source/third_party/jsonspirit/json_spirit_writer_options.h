@@ -1,10 +1,10 @@
 #ifndef JSON_SPIRIT_WRITER_OPTIONS
 #define JSON_SPIRIT_WRITER_OPTIONS
 
-//          Copyright John W. Wilkinson 2007 - 2013
+//          Copyright John W. Wilkinson 2007 - 2014
 // Distributed under the MIT License, see accompanying file LICENSE.txt
 
-// json spirit version 4.06
+// json spirit version 4.08
 
 #if defined(_MSC_VER) && (_MSC_VER >= 1020)
 # pragma once
@@ -12,7 +12,9 @@
 
 namespace json_spirit
 {
-    enum Output_options{ pretty_print = 0x01,   // Add whitespace to format the output nicely.
+    enum Output_options{ none = 0,              // default options
+
+                         pretty_print = 0x01,   // Add whitespace to format the output nicely.
 
                          raw_utf8 = 0x02,       // This prevents non-printable characters from being escapted using "\uNNNN" notation.
                                                 // Note, this is an extension to the JSON standard. It disables the escaping of
@@ -20,7 +22,7 @@ namespace json_spirit
                                                 // to pass through unaltered.
 
                          remove_trailing_zeros = 0x04,
-                                                // outputs e.g. "1.200000000000000" as "1.2"
+                                                // no longer used kept for backwards compatibility
                          single_line_arrays = 0x08,
                                                 // pretty printing except that arrays printed on single lines unless they contain
                                                 // composite elements, i.e. objects or arrays

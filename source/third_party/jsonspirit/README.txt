@@ -5,7 +5,7 @@ The SpiderMonkey API also changes frequently and we hope that the JSON parsing c
 Get the library from here:
 http://www.codeproject.com/Articles/20027/JSON-Spirit-A-C-JSON-Parser-Generator-Implemented
 
-The currently used version was released on the 23th of May 2013.
+The currently used version was released on the 10 of May 2014.
 
 Search for this comment in json_spirit_value.h and uncomment the lines we don't need:
 // comment out the value types you don't need to reduce build times and intermediate file sizes

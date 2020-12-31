@@ -1,10 +1,10 @@
 #ifndef JSON_SPIRIT_WRITER_TEMPLATE
 #define JSON_SPIRIT_WRITER_TEMPLATE
 
-//          Copyright John W. Wilkinson 2007 - 2013
+//          Copyright John W. Wilkinson 2007 - 2014
 // Distributed under the MIT License, see accompanying file LICENSE.txt
 
-// json spirit version 4.06
+// json spirit version 4.08
 
 #if defined(_MSC_VER) && (_MSC_VER >= 1020)
 # pragma once
@@ -103,58 +103,6 @@ namespace json_spirit
         return result;
     }
 
-    template< class Ostream >
-    void append_double( Ostream& os, const double d, const int precision )
-    {
-        os << std::showpoint << std::setprecision( precision ) << d;
-    }
-
-    template< class String_type >
-    void erase_and_extract_exponent( String_type& str, String_type& exp )
-    {
-        const typename String_type::size_type exp_start= str.find( 'e' );
-
-        if( exp_start != String_type::npos )
-        {
-            exp = str.substr( exp_start );
-            str.erase( exp_start );
-        }
-    }
-
-    template< class String_type >
-    typename String_type::size_type find_first_non_zero( const String_type& str )
-    {
-        typename String_type::size_type result = str.size() - 1;
-
-        for( ; result != 0; --result )
-        {
-            if( str[ result ] != '0' )
-            {
-                break;
-            }
-        }
-
-        return result;
-    }
-
-    template< class String_type >
-    void remove_trailing( String_type& str )
-    {
-        String_type exp;
-
-        erase_and_extract_exponent( str, exp );
-
-        const typename String_type::size_type first_non_zero = find_first_non_zero( str );
-
-        if( first_non_zero != 0 )
-        {
-            const int offset = str[first_non_zero] == '.' ? 2 : 1;  // note zero digits following a decimal point is non standard
-            str.erase( first_non_zero + offset );
-        }
-
-        str += exp;
-    }
-
     // this class generates the JSON text,
     // it keeps track of the indentation level etc.
     //
@@ -170,16 +118,24 @@ namespace json_spirit
 
     public:
 
-        Generator( const Value_type& value, Ostream_type& os, unsigned int options )
+        Generator( const Value_type& value, Ostream_type& os, int options, unsigned int precision_of_doubles )
         :   os_( os )
         ,   indentation_level_( 0 )
         ,   pretty_( ( options & pretty_print ) != 0 || ( options & single_line_arrays ) != 0 )
         ,   raw_utf8_( ( options & raw_utf8 ) != 0 )
         ,   esc_nonascii_( ( options & always_escape_nonascii ) != 0 )
-        ,   remove_trailing_zeros_( ( options & remove_trailing_zeros ) != 0 )
         ,   single_line_arrays_( ( options & single_line_arrays ) != 0 )
         ,   ios_saver_( os )
         {
+            if( precision_of_doubles > 0 )
+            {
+                precision_of_doubles_ = precision_of_doubles;
+            }
+            else
+            {
+                precision_of_doubles_ = ( options & remove_trailing_zeros ) != 0 ? 16 : 17;
+            }
+
             output( value );
         }
 
@@ -236,23 +192,7 @@ namespace json_spirit
 
         void output( double d )
         {
-            if( remove_trailing_zeros_ )
-            {
-                std::basic_ostringstream< Char_type > os;
-
-                append_double( os, d, 16 );  // note precision is 16 so that we get some trailing space that we can remove,
-                                             // otherwise, 0.1234 gets converted to "0.12399999..."
-
-                String_type str = os.str();
-
-                remove_trailing( str );
-
-                os_ << str;
-            }
-            else
-            {
-                append_double( os_, d, 17 );
-            }
+            os_ << std::setprecision( precision_of_doubles_ ) << d;
         }
 
         static bool contains_composite_elements( const Array_type& arr )
@@ -351,8 +291,8 @@ namespace json_spirit
         bool pretty_;
         bool raw_utf8_;
         bool esc_nonascii_;
-        bool remove_trailing_zeros_;
         bool single_line_arrays_;
+        int precision_of_doubles_;
         boost::io::basic_ios_all_saver< Char_type > ios_saver_;  // so that ostream state is reset after control is returned to the caller
     };
 
@@ -361,10 +301,10 @@ namespace json_spirit
     // write_stream( value, os, pretty_print );
     //
     template< class Value_type, class Ostream_type >
-    void write_stream( const Value_type& value, Ostream_type& os, unsigned int options = 0 )
+    void write_stream( const Value_type& value, Ostream_type& os, int options = none, unsigned int precision_of_doubles = 0 )
     {
         os << std::dec;
-        Generator< Value_type, Ostream_type >( value, os, options );
+        Generator< Value_type, Ostream_type >( value, os, options, precision_of_doubles );
     }
 
     // writes JSON Value to a stream, e.g.
@@ -372,13 +312,13 @@ namespace json_spirit
     // const string json_str = write( value, pretty_print );
     //
     template< class Value_type >
-    typename Value_type::String_type write_string( const Value_type& value, unsigned int options = 0 )
+    typename Value_type::String_type write_string( const Value_type& value, int options = none, unsigned int precision_of_doubles = 0 )
     {
         typedef typename Value_type::String_type::value_type Char_type;
 
         std::basic_ostringstream< Char_type > os;
 
-        write_stream( value, os, options );
+        write_stream( value, os, options, precision_of_doubles );
 
         return os.str();
     }
