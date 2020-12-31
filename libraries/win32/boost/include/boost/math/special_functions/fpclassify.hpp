@@ -77,7 +77,7 @@ is used.
 
 */
 
-#if defined(_MSC_VER) || defined(__BORLANDC__)
+#if defined(_MSC_VER) || defined(BOOST_BORLANDC)
 #include <float.h>
 #endif
 #ifdef BOOST_MATH_USE_FLOAT128
@@ -168,7 +168,7 @@ inline int fpclassify_imp BOOST_NO_MACRO_EXPAND(T t, const generic_tag<true>&)
 #elif defined(isnan)
    if(boost::math_detail::is_nan_helper(t, ::boost::is_floating_point<T>()))
       return FP_NAN;
-#elif defined(_MSC_VER) || defined(__BORLANDC__)
+#elif defined(_MSC_VER) || defined(BOOST_BORLANDC)
    if(::_isnan(boost::math::tools::real_cast<double>(t)))
       return FP_NAN;
 #endif

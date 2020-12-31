@@ -46,19 +46,34 @@ namespace next_prior_detail {
 // Since C++17 we can test for iterator_traits<T>::iterator_category presence instead as it is
 // required to be only present for iterators.
 template< typename T, typename Void = void >
-struct is_iterator
+struct is_iterator_class
 {
     static BOOST_CONSTEXPR_OR_CONST bool value = false;
 };
 
 template< typename T >
-struct is_iterator< T, typename enable_if_has_type< typename T::iterator_category >::type >
+struct is_iterator_class<
+    T,
+    typename enable_if_has_type<
+#if !defined(BOOST_NO_CXX17_ITERATOR_TRAITS)
+        typename std::iterator_traits< T >::iterator_category
+#else
+        typename T::iterator_category
+#endif
+    >::type
+>
 {
     static BOOST_CONSTEXPR_OR_CONST bool value = true;
 };
 
 template< typename T >
-struct is_iterator< T*, void >
+struct is_iterator :
+    public is_iterator_class< T >
+{
+};
+
+template< typename T >
+struct is_iterator< T* >
 {
     static BOOST_CONSTEXPR_OR_CONST bool value = true;
 };

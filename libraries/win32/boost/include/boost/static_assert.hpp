@@ -36,7 +36,7 @@
 #     define BOOST_STATIC_ASSERT_MSG( B, Msg ) BOOST_STATIC_ASSERT( B )
 #endif
 
-#ifdef __BORLANDC__
+#ifdef BOOST_BORLANDC
 //
 // workaround for buggy integral-constant expression support:
 #define BOOST_BUGGY_INTEGRAL_CONSTANT_EXPRESSIONS
@@ -53,9 +53,9 @@
 //
 #if defined(__GNUC__) && ((__GNUC__ > 3) || ((__GNUC__ == 3) && (__GNUC_MINOR__ >= 4)))
 #  ifndef BOOST_NO_CXX11_VARIADIC_MACROS
-#     define BOOST_STATIC_ASSERT_BOOL_CAST( ... ) ((__VA_ARGS__) == 0 ? false : true)
+#     define BOOST_STATIC_ASSERT_BOOL_CAST( ... ) ((__VA_ARGS__) != 0)
 #  else
-#     define BOOST_STATIC_ASSERT_BOOL_CAST( x ) ((x) == 0 ? false : true)
+#     define BOOST_STATIC_ASSERT_BOOL_CAST( x ) ((x) != 0)
 #  endif
 #else
 #  ifndef BOOST_NO_CXX11_VARIADIC_MACROS

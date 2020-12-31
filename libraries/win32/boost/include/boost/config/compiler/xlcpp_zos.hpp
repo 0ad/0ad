@@ -140,7 +140,9 @@
 #define BOOST_NO_CXX11_THREAD_LOCAL
 #define BOOST_NO_CXX11_REF_QUALIFIERS
 #define BOOST_NO_CXX11_FINAL
+#define BOOST_NO_CXX11_OVERRIDE
 #define BOOST_NO_CXX11_ALIGNAS
+#define BOOST_NO_CXX11_UNRESTRICTED_UNION
 #define BOOST_NO_CXX14_VARIABLE_TEMPLATES
 #define BOOST_NO_CXX14_RETURN_TYPE_DEDUCTION
 #define BOOST_NO_CXX14_AGGREGATE_NSDMI
@@ -153,12 +155,14 @@
 #define BOOST_NO_CXX17_STRUCTURED_BINDINGS
 #define BOOST_NO_CXX17_INLINE_VARIABLES
 #define BOOST_NO_CXX17_FOLD_EXPRESSIONS
+#define BOOST_NO_CXX17_IF_CONSTEXPR
 
 // -------------------------------------
 
 #if defined(__IBM_ATTRIBUTES)
 #  define BOOST_FORCEINLINE inline __attribute__ ((__always_inline__))
 #  define BOOST_NOINLINE __attribute__ ((__noinline__))
+#  define BOOST_MAY_ALIAS __attribute__((__may_alias__))
 // No BOOST_ALIGNMENT - explicit alignment support is broken (V2R1).
 #endif
 

@@ -324,7 +324,7 @@ namespace impl {
         >
         static typename parser_result<ParserT, ScannerT>::type
         parse(ParserT const &, ScannerT const& scan, ActionT const &action,
-            NestedT const& nested_d)
+            NestedT const& /*nested_d*/)
         {
             return action.parse(scan);
         }

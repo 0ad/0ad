@@ -16,6 +16,11 @@
 #include <boost/spirit/home/classic/core/composite/composite.hpp>
 #include <boost/spirit/home/classic/core/composite/no_actions.hpp>
 
+#if defined(BOOST_MSVC)
+# pragma warning(push)
+# pragma warning(disable: 4800) // forcing value to bool 'true' or 'false'
+#endif
+
 ////////////////////////////////////////////////////////////////////////////////
 namespace boost { namespace spirit {
 
@@ -25,7 +30,7 @@ BOOST_SPIRIT_CLASSIC_NAMESPACE_BEGIN
 //
 //  condition_parser class
 //
-//      handles expresions of the form
+//      handles expressions of the form
 //
 //          epsilon_p(cond)
 //
@@ -88,7 +93,7 @@ BOOST_SPIRIT_CLASSIC_NAMESPACE_BEGIN
 //
 //      handles expressions of the form
 //          epsilon_p(subject)
-//      where subject is a parser. The expresion returns a composite
+//      where subject is a parser. The expression returns a composite
 //      parser that returns an empty match if the subject parser matches.
 //
 ///////////////////////////////////////////////////////////////////////////////
@@ -272,5 +277,9 @@ BOOST_SPIRIT_CLASSIC_NAMESPACE_BEGIN
 BOOST_SPIRIT_CLASSIC_NAMESPACE_END
 
 }} // namespace BOOST_SPIRIT_CLASSIC_NS
+
+#ifdef BOOST_MSVC
+# pragma warning (pop)
+#endif
 
 #endif

@@ -23,8 +23,6 @@
 #include <boost/cstdint.hpp>
 #include <boost/limits.hpp>
 #include <boost/static_assert.hpp>
-#include <boost/integer/static_log2.hpp>
-#include <boost/mpl/if.hpp>
 #include <boost/type_traits/is_arithmetic.hpp>
 #include <boost/random/detail/config.hpp>
 #include <boost/random/detail/const_mod.hpp>
@@ -124,8 +122,12 @@ public:
      * distinct seeds in the range [1,m) will leave the generator in distinct
      * states. If c is not zero, the range is [0,m).
      */
-    BOOST_RANDOM_DETAIL_ARITHMETIC_SEED(linear_congruential_engine, IntType, x0)
+    BOOST_RANDOM_DETAIL_ARITHMETIC_SEED(linear_congruential_engine, IntType, x0_)
     {
+        // Work around a msvc 12/14 optimizer bug, which causes
+        // the line _x = 1 to run unconditionally sometimes.
+        // Creating a local copy seems to make it work.
+        IntType x0 = x0_;
         // wrap _x if it doesn't fit in the destination
         if(modulus == 0) {
             _x = x0;
@@ -133,7 +135,7 @@ public:
             _x = x0 % modulus;
         }
         // handle negative seeds
-        if(_x <= 0 && _x != 0) {
+        if(_x < 0) {
             _x += modulus;
         }
         // adjust to the correct range
@@ -166,13 +168,13 @@ public:
      * Returns the smallest value that the @c linear_congruential_engine
      * can produce.
      */
-    static result_type min BOOST_PREVENT_MACRO_SUBSTITUTION ()
+    static BOOST_CONSTEXPR result_type min BOOST_PREVENT_MACRO_SUBSTITUTION ()
     { return c == 0 ? 1 : 0; }
     /**
      * Returns the largest value that the @c linear_congruential_engine
      * can produce.
      */
-    static result_type max BOOST_PREVENT_MACRO_SUBSTITUTION ()
+    static BOOST_CONSTEXPR result_type max BOOST_PREVENT_MACRO_SUBSTITUTION ()
     { return modulus-1; }
 
     /** Returns the next value of the @c linear_congruential_engine. */
@@ -353,11 +355,11 @@ public:
     /**
      * Returns the smallest value that the generator can produce
      */
-    static uint32_t min BOOST_PREVENT_MACRO_SUBSTITUTION () { return 0; }
+    static BOOST_CONSTEXPR uint32_t min BOOST_PREVENT_MACRO_SUBSTITUTION () { return 0; }
     /**
      * Returns the largest value that the generator can produce
      */
-    static uint32_t max BOOST_PREVENT_MACRO_SUBSTITUTION ()
+    static BOOST_CONSTEXPR uint32_t max BOOST_PREVENT_MACRO_SUBSTITUTION ()
     { return 0x7FFFFFFF; }
   
     /** Seeds the generator with the default seed. */
