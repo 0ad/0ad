@@ -1037,6 +1037,8 @@ Formation.prototype.LoadFormation = function(newTemplate)
 		cmpNewUnitAI.MoveIntoFormation();
 
 	Engine.PostMessage(this.entity, MT_EntityRenamed, { "entity": this.entity, "newentity": newFormation });
+
+	return cmpNewUnitAI;
 };
 
 Engine.RegisterComponentType(IID_Formation, "Formation", Formation);

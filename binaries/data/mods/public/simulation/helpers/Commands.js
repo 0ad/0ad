@@ -16,6 +16,12 @@ function ProcessCommand(player, cmd)
 	if (cmd.entities)
 		data.entities = FilterEntityList(cmd.entities, player, data.controlAllUnits);
 
+	// TODO: queuing order and forcing formations doesn't really work.
+	// To play nice, we'll still no-formation queued order if units are in formation
+	// but the opposite perhaps ought to be implemented.
+	if (!cmd.queued || cmd.formation == NULL_FORMATION)
+		data.formation = cmd.formation || undefined;
+
 	// Allow focusing the camera on recent commands
 	let commandData = {
 		"type": "playercommand",
@@ -137,7 +143,7 @@ var g_Commands = {
 
 	"walk": function(player, cmd, data)
 	{
-		GetFormationUnitAIs(data.entities, player).forEach(cmpUnitAI => {
+		GetFormationUnitAIs(data.entities, player, cmd, data.formation).forEach(cmpUnitAI => {
 			cmpUnitAI.Walk(cmd.x, cmd.z, cmd.queued);
 		});
 	},
@@ -145,7 +151,7 @@ var g_Commands = {
 	"walk-custom": function(player, cmd, data)
 	{
 		for (let ent in data.entities)
-			GetFormationUnitAIs([data.entities[ent]], player).forEach(cmpUnitAI => {
+			GetFormationUnitAIs([data.entities[ent]], player, cmd, data.formation).forEach(cmpUnitAI => {
 				cmpUnitAI.Walk(cmd.targetPositions[ent].x, cmd.targetPositions[ent].y, cmd.queued);
 			});
 	},
@@ -165,7 +171,7 @@ var g_Commands = {
 	{
 		let allowCapture = cmd.allowCapture || cmd.allowCapture == null;
 
-		GetFormationUnitAIs(data.entities, player).forEach(cmpUnitAI => {
+		GetFormationUnitAIs(data.entities, player, cmd, data.formation).forEach(cmpUnitAI => {
 			cmpUnitAI.WalkAndFight(cmd.x, cmd.z, cmd.targetClasses, allowCapture, cmd.queued);
 		});
 	},
@@ -174,7 +180,7 @@ var g_Commands = {
 	{
 		let allowCapture = cmd.allowCapture || cmd.allowCapture == null;
 		for (let ent in data.entities)
-			GetFormationUnitAIs([data.entities[ent]], player).forEach(cmpUnitAI => {
+			GetFormationUnitAIs([data.entities[ent]], player, cmd, data.formation).forEach(cmpUnitAI => {
 				cmpUnitAI.WalkAndFight(cmd.targetPositions[ent].x, cmd.targetPositions[ent].y, cmd.targetClasses, allowCapture, cmd.queued);
 			});
 	},
@@ -187,7 +193,7 @@ var g_Commands = {
 		   !(IsOwnedByEnemyOfPlayer(player, cmd.target) || IsOwnedByNeutralOfPlayer(player, cmd.target)))
 			warn("Invalid command: attack target is not owned by enemy of player "+player+": "+uneval(cmd));
 
-		GetFormationUnitAIs(data.entities, player).forEach(cmpUnitAI => {
+		GetFormationUnitAIs(data.entities, player, cmd, data.formation).forEach(cmpUnitAI => {
 			cmpUnitAI.Attack(cmd.target, allowCapture, cmd.queued);
 		});
 	},
@@ -196,7 +202,7 @@ var g_Commands = {
 	{
 		let allowCapture = cmd.allowCapture || cmd.allowCapture == null;
 
-		GetFormationUnitAIs(data.entities, player).forEach(cmpUnitAI =>
+		GetFormationUnitAIs(data.entities, player, cmd, data.formation).forEach(cmpUnitAI =>
 			cmpUnitAI.Patrol(cmd.x, cmd.z, cmd.targetClasses, allowCapture, cmd.queued)
 		);
 	},
@@ -206,7 +212,7 @@ var g_Commands = {
 		if (g_DebugCommands && !(IsOwnedByPlayer(player, cmd.target) || IsOwnedByAllyOfPlayer(player, cmd.target)))
 			warn("Invalid command: heal target is not owned by player "+player+" or their ally: "+uneval(cmd));
 
-		GetFormationUnitAIs(data.entities, player).forEach(cmpUnitAI => {
+		GetFormationUnitAIs(data.entities, player, cmd, data.formation).forEach(cmpUnitAI => {
 			cmpUnitAI.Heal(cmd.target, cmd.queued);
 		});
 	},
@@ -217,7 +223,7 @@ var g_Commands = {
 		if (g_DebugCommands && !IsOwnedByAllyOfPlayer(player, cmd.target))
 			warn("Invalid command: repair target is not owned by ally of player "+player+": "+uneval(cmd));
 
-		GetFormationUnitAIs(data.entities, player).forEach(cmpUnitAI => {
+		GetFormationUnitAIs(data.entities, player, cmd, data.formation).forEach(cmpUnitAI => {
 			cmpUnitAI.Repair(cmd.target, cmd.autocontinue, cmd.queued);
 		});
 	},
@@ -227,14 +233,14 @@ var g_Commands = {
 		if (g_DebugCommands && !(IsOwnedByPlayer(player, cmd.target) || IsOwnedByGaia(cmd.target)))
 			warn("Invalid command: resource is not owned by gaia or player "+player+": "+uneval(cmd));
 
-		GetFormationUnitAIs(data.entities, player).forEach(cmpUnitAI => {
+		GetFormationUnitAIs(data.entities, player, cmd, data.formation).forEach(cmpUnitAI => {
 			cmpUnitAI.Gather(cmd.target, cmd.queued);
 		});
 	},
 
 	"gather-near-position": function(player, cmd, data)
 	{
-		GetFormationUnitAIs(data.entities, player).forEach(cmpUnitAI => {
+		GetFormationUnitAIs(data.entities, player, cmd, data.formation).forEach(cmpUnitAI => {
 			cmpUnitAI.GatherNearPosition(cmd.x, cmd.z, cmd.resourceType, cmd.resourceTemplate, cmd.queued);
 		});
 	},
@@ -244,7 +250,7 @@ var g_Commands = {
 		if (g_DebugCommands && !IsOwnedByPlayer(player, cmd.target))
 			warn("Invalid command: dropsite is not owned by player "+player+": "+uneval(cmd));
 
-		GetFormationUnitAIs(data.entities, player).forEach(cmpUnitAI => {
+		GetFormationUnitAIs(data.entities, player, cmd, data.formation).forEach(cmpUnitAI => {
 			cmpUnitAI.ReturnResource(cmd.target, cmd.queued);
 		});
 	},
@@ -451,7 +457,7 @@ var g_Commands = {
 			return;
 		}
 
-		GetFormationUnitAIs(data.entities, player).forEach(cmpUnitAI => {
+		GetFormationUnitAIs(data.entities, player, cmd, data.formation).forEach(cmpUnitAI => {
 			cmpUnitAI.Garrison(cmd.target, cmd.queued);
 		});
 	},
@@ -465,14 +471,14 @@ var g_Commands = {
 			return;
 		}
 
-		GetFormationUnitAIs(data.entities, player).forEach(cmpUnitAI => {
+		GetFormationUnitAIs(data.entities, player, cmd, data.formation).forEach(cmpUnitAI => {
 			cmpUnitAI.Guard(cmd.target, cmd.queued);
 		});
 	},
 
 	"stop": function(player, cmd, data)
 	{
-		GetFormationUnitAIs(data.entities, player).forEach(cmpUnitAI => {
+		GetFormationUnitAIs(data.entities, player, cmd, data.formation).forEach(cmpUnitAI => {
 			cmpUnitAI.Stop(cmd.queued);
 		});
 	},
@@ -564,7 +570,7 @@ var g_Commands = {
 
 	"formation": function(player, cmd, data)
 	{
-		GetFormationUnitAIs(data.entities, player, cmd.name).forEach(cmpUnitAI => {
+		GetFormationUnitAIs(data.entities, player, cmd, data.formation, true).forEach(cmpUnitAI => {
 			cmpUnitAI.MoveIntoFormation(cmd);
 		});
 	},
@@ -617,14 +623,14 @@ var g_Commands = {
 
 	"setup-trade-route": function(player, cmd, data)
 	{
-		GetFormationUnitAIs(data.entities, player).forEach(cmpUnitAI => {
+		GetFormationUnitAIs(data.entities, player, cmd, data.formation).forEach(cmpUnitAI => {
 			cmpUnitAI.SetupTradeRoute(cmd.target, cmd.source, cmd.route, cmd.queued);
 		});
 	},
 
 	"cancel-setup-trade-route": function(player, cmd, data)
 	{
-		GetFormationUnitAIs(data.entities, player).forEach(cmpUnitAI => {
+		GetFormationUnitAIs(data.entities, player, cmd, data.formation).forEach(cmpUnitAI => {
 			cmpUnitAI.CancelSetupTradeRoute(cmd.target);
 		});
 	},
@@ -885,8 +891,9 @@ function notifyOrderFailure(entity, player)
  */
 function ExtractFormations(ents)
 {
-	var entities = []; // subset of ents that have UnitAI
-	var members = {}; // { formationentity: [ent, ent, ...], ... }
+	let entities = []; // subset of ents that have UnitAI
+	let members = {}; // { formationentity: [ent, ent, ...], ... }
+	let templates = {};  // { formationentity: template }
 	for (let ent of ents)
 	{
 		var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
@@ -894,13 +901,16 @@ function ExtractFormations(ents)
 		if (fid != INVALID_ENTITY)
 		{
 			if (!members[fid])
+			{
 				members[fid] = [];
+				templates[fid] = cmpUnitAI.GetFormationTemplate();
+			}
 			members[fid].push(ent);
 		}
 		entities.push(ent);
 	}
 
-	return { "entities": entities, "members": members };
+	return { "entities": entities, "members": members, "templates": templates };
 }
 
 /**
@@ -1156,7 +1166,8 @@ function TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd)
 			"entities": entities,
 			"target": ent,
 			"autocontinue": cmd.autocontinue,
-			"queued": cmd.queued
+			"queued": cmd.queued,
+			"formation": cmd.formation || undefined
 		});
 	}
 
@@ -1421,14 +1432,13 @@ function RemoveFromFormation(ents)
  * Returns a list of UnitAI components, each belonging either to a
  * selected unit or to a formation entity for groups of the selected units.
  */
-function GetFormationUnitAIs(ents, player, formationTemplate)
+function GetFormationUnitAIs(ents, player, cmd, formationTemplate, forceTemplate)
 {
 	// If an individual was selected, remove it from any formation
-	// and command it individually
+	// and command it individually.
 	if (ents.length == 1)
 	{
-		// Skip unit if it has no UnitAI
-		var cmpUnitAI = Engine.QueryInterface(ents[0], IID_UnitAI);
+		let cmpUnitAI = Engine.QueryInterface(ents[0], IID_UnitAI);
 		if (!cmpUnitAI)
 			return [];
 
@@ -1437,101 +1447,97 @@ function GetFormationUnitAIs(ents, player, formationTemplate)
 		return [ cmpUnitAI ];
 	}
 
-	// Separate out the units that don't support the chosen formation
-	var formedEnts = [];
-	var nonformedUnitAIs = [];
+	let formationUnitAIs = [];
+	// Find what formations the selected entities are currently in,
+	// and default to that unless the formation is forced or it's the null formation
+	// (we want that to reset whatever formations units are in).
+	if (formationTemplate != NULL_FORMATION)
+	{
+		let formation = ExtractFormations(ents);
+		let formationIds = Object.keys(formation.members);
+		if (formationIds.length == 1)
+		{
+			// Selected units either belong to this formation or have no formation.
+			let fid = formationIds[0];
+			let cmpFormation = Engine.QueryInterface(+fid, IID_Formation);
+			if (cmpFormation && cmpFormation.GetMemberCount() == formation.members[fid].length &&
+			    cmpFormation.GetMemberCount() == formation.entities.length)
+			{
+				cmpFormation.DeleteTwinFormations();
+
+				// The whole formation was selected, so reuse its controller for this command.
+				if (!forceTemplate)
+				{
+					formationTemplate = formation.templates[fid];
+					formationUnitAIs = [Engine.QueryInterface(+fid, IID_UnitAI)];
+				}
+				else if (formationTemplate && CanMoveEntsIntoFormation(formation.entities, formationTemplate))
+					formationUnitAIs = [cmpFormation.LoadFormation(formationTemplate)];
+			}
+			else if (cmpFormation && !forceTemplate)
+			{
+				// Just reuse the template.
+				formationTemplate = formation.templates[fid];
+			}
+		}
+		else if (formationIds.length)
+		{
+			// Check if all entities share a common formation, if so reuse this template.
+			let template = formation.templates[formationIds[0]];
+			for (let i = 1; i < formationIds.length; ++i)
+				if (formation.templates[formationIds[i]] != template)
+				{
+					template = null;
+					break;
+				}
+			if (template && !forceTemplate)
+				formationTemplate = template;
+		}
+	}
+
+	// Separate out the units that don't support the chosen formation.
+	let formedUnits = [];
+	let nonformedUnitAIs = [];
 	for (let ent of ents)
 	{
-		// Skip units with no UnitAI or no position
-		var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
-		var cmpPosition = Engine.QueryInterface(ent, IID_Position);
+		let cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+		let cmpPosition = Engine.QueryInterface(ent, IID_Position);
 		if (!cmpUnitAI || !cmpPosition || !cmpPosition.IsInWorld())
 			continue;
 
-		var cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
+		let cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
 		// TODO: We only check if the formation is usable by some units
 		// if we move them to it. We should check if we can use formations
 		// for the other cases.
-		var nullFormation = (formationTemplate || cmpUnitAI.GetFormationTemplate()) == "special/formations/null";
-		if (!nullFormation && cmpIdentity && cmpIdentity.CanUseFormation(formationTemplate || "special/formations/null"))
-			formedEnts.push(ent);
-		else
+		let nullFormation = (formationTemplate || cmpUnitAI.GetFormationTemplate()) == NULL_FORMATION;
+		if (nullFormation || !cmpIdentity || !cmpIdentity.CanUseFormation(formationTemplate || NULL_FORMATION))
 		{
-			if (nullFormation)
-				RemoveFromFormation([ent]);
-
+			if (nullFormation && cmpUnitAI.GetFormationController())
+				cmpUnitAI.LeaveFormation(cmd.queued || false);
 			nonformedUnitAIs.push(cmpUnitAI);
 		}
+		else
+			formedUnits.push(ent);
 	}
-
-	if (formedEnts.length == 0)
+	if (nonformedUnitAIs.length == ents.length)
 	{
-		// No units support the formation - return all the others
+		// No units support the formation.
 		return nonformedUnitAIs;
-	}
-
-	// Find what formations the formationable selected entities are currently in
-	var formation = ExtractFormations(formedEnts);
-
-	var formationUnitAIs = [];
-	let formationIds = Object.keys(formation.members);
-	if (formationIds.length == 1)
-	{
-		// Selected units either belong to this formation or have no formation
-		// Check that all its members are selected
-		var fid = formationIds[0];
-		var cmpFormation = Engine.QueryInterface(+fid, IID_Formation);
-		if (cmpFormation && cmpFormation.GetMemberCount() == formation.members[fid].length
-			&& cmpFormation.GetMemberCount() == formation.entities.length)
-		{
-			cmpFormation.DeleteTwinFormations();
-			// The whole formation was selected, so reuse its controller for this command
-			formationUnitAIs = [Engine.QueryInterface(+fid, IID_UnitAI)];
-			if (formationTemplate && CanMoveEntsIntoFormation(formation.entities, formationTemplate))
-				cmpFormation.LoadFormation(formationTemplate);
-		}
 	}
 
 	if (!formationUnitAIs.length)
 	{
-		// We need to give the selected units a new formation controller
+		// We need to give the selected units a new formation controller.
 
 		// TODO replace the fixed 60 with something sensible, based on vision range f.e.
-		var formationSeparation = 60;
-		var clusters = ClusterEntities(formation.entities, formationSeparation);
-		var formationEnts = [];
+		let formationSeparation = 60;
+		let clusters = ClusterEntities(formedUnits, formationSeparation);
+		let formationEnts = [];
 		for (let cluster of clusters)
 		{
-			if (!formationTemplate || !CanMoveEntsIntoFormation(cluster, formationTemplate))
-			{
-				// Use the last formation template if everyone was using it
-				var lastFormationTemplate = undefined;
-				for (let ent of cluster)
-				{
-					var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
-					if (cmpUnitAI)
-					{
-						var template = cmpUnitAI.GetFormationTemplate();
-						if (lastFormationTemplate === undefined)
-						{
-							lastFormationTemplate = template;
-						}
-						else if (lastFormationTemplate != template)
-						{
-							lastFormationTemplate = undefined;
-							break;
-						}
-					}
-				}
-				if (lastFormationTemplate && CanMoveEntsIntoFormation(cluster, lastFormationTemplate))
-					formationTemplate = lastFormationTemplate;
-				else
-					formationTemplate = "special/formations/null";
-			}
-
 			RemoveFromFormation(cluster);
 
-			if (formationTemplate == "special/formations/null")
+			if (!formationTemplate || !CanMoveEntsIntoFormation(cluster, formationTemplate))
 			{
 				for (let ent of cluster)
 					nonformedUnitAIs.push(Engine.QueryInterface(ent, IID_UnitAI));
@@ -1539,9 +1545,9 @@ function GetFormationUnitAIs(ents, player, formationTemplate)
 				continue;
 			}
 
-			// Create the new controller
-			var formationEnt = Engine.AddEntity(formationTemplate);
-			var cmpFormation = Engine.QueryInterface(formationEnt, IID_Formation);
+			// Create the new controller.
+			let formationEnt = Engine.AddEntity(formationTemplate);
+			let cmpFormation = Engine.QueryInterface(formationEnt, IID_Formation);
 			formationUnitAIs.push(Engine.QueryInterface(formationEnt, IID_UnitAI));
 			cmpFormation.SetFormationSeparation(formationSeparation);
 			cmpFormation.SetMembers(cluster);
@@ -1550,7 +1556,7 @@ function GetFormationUnitAIs(ents, player, formationTemplate)
 				cmpFormation.RegisterTwinFormation(ent);
 
 			formationEnts.push(formationEnt);
-			var cmpOwnership = Engine.QueryInterface(formationEnt, IID_Ownership);
+			let cmpOwnership = Engine.QueryInterface(formationEnt, IID_Ownership);
 			cmpOwnership.SetOwner(player);
 		}
 	}

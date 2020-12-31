@@ -315,7 +315,8 @@ function tryPlaceBuilding(queued)
 		"entities": selection,
 		"autorepair": true,
 		"autocontinue": true,
-		"queued": queued
+		"queued": queued,
+		"formation": g_AutoFormation.getNull()
 	});
 	Engine.GuiInterfaceCall("PlaySound", { "name": "order_build", "entity": selection[0] });
 
@@ -358,6 +359,7 @@ function tryPlaceWall(queued)
 		"pieces": wallPlacementInfo.pieces,
 		"startSnappedEntity": wallPlacementInfo.startSnappedEnt,
 		"endSnappedEntity": wallPlacementInfo.endSnappedEnt,
+		"formation": g_AutoFormation.getNull()
 	};
 
 	// make sure that there's at least one non-tower entity getting built, to prevent silly edge cases where the start and end
@@ -1241,7 +1243,8 @@ function positionUnitsFreehandSelectionMouseUp(ev)
 		"entities": selection,
 		"targetPositions": entityDistribution.map(pos => pos.toFixed(2)),
 		"targetClasses": Engine.HotkeyIsPressed("session.attackmoveUnit") ? { "attack": ["Unit"] } : { "attack": ["Unit", "Structure"] },
-		"queued": Engine.HotkeyIsPressed("session.queue")
+		"queued": Engine.HotkeyIsPressed("session.queue"),
+		"formation": NULL_FORMATION,
 	});
 
 	// Add target markers with a minimum distance of 5 to each other.
