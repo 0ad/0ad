@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -41,7 +41,7 @@ class CSimulation2;
 #define MODELFLAG_SILHOUETTE_DISPLAY	(1<<2)
 #define MODELFLAG_SILHOUETTE_OCCLUDER	(1<<3)
 #define MODELFLAG_IGNORE_LOS		(1<<4)
-
+#define MODELFLAG_FLOATONWATER		(1<<5)
 ///////////////////////////////////////////////////////////////////////////////
 // CModel: basically, a mesh object - holds the texturing and skinning
 // information for a model in game

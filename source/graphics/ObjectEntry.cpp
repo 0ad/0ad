@@ -246,10 +246,15 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 			LOGERROR("Failed to find matching prop point called \"%s\" in model \"%s\" for actor \"%s\"", ppn, m_ModelName.string8(), utf8_from_wstring(m_Base->m_ShortName));
 	}
 
-	// setup flags
+	// Setup flags.
 	if (m_Base->m_Properties.m_CastShadows)
 	{
-		model->SetFlags(model->GetFlags()|MODELFLAG_CASTSHADOWS);
+		model->SetFlags(model->GetFlags() | MODELFLAG_CASTSHADOWS);
+	}
+
+	if (m_Base->m_Properties.m_FloatOnWater)
+	{
+		model->SetFlags(model->GetFlags() | MODELFLAG_FLOATONWATER);
 	}
 
 	return true;
