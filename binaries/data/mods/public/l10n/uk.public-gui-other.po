@@ -22,8 +22,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-12-28 08:02+0000\n"
-"PO-Revision-Date: 2020-12-28 08:36+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-12-31 15:55+0000\n"
+"Last-Translator: Микола Франчук <thekolian1996@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -478,7 +478,7 @@ msgstr "Вас було заблоковано."
 
 #: gui/common/network.js:73
 msgid "Player name in use. If you were disconnected, retry in few seconds."
-msgstr ""
+msgstr "Ім'я гравця уже використовується. Якщо ви були роз'єднані, спробуйте через декілька секунд."
 
 #: gui/common/network.js:74
 msgid "Server full."
@@ -599,7 +599,7 @@ msgstr "Зіткнення"
 msgid ""
 "A map with a predefined landscape and number of players. Freely select the "
 "other game settings."
-msgstr ""
+msgstr "Мапа із заздалегідь визначеним ландшафтом та кількістю гравців. Можете вільно вибрати інші налаштування гри."
 
 #: gui/common/settings.js:182
 msgctxt "map"
@@ -1012,7 +1012,7 @@ msgstr "Кількість ремонтників:"
 
 #: gui/common/tooltips.js:605
 msgid "Remaining repair time:"
-msgstr ""
+msgstr "Залишок часу ремонту:"
 
 #: gui/common/tooltips.js:609
 #, javascript-format
@@ -1039,7 +1039,7 @@ msgstr "Кількість будівельників:"
 
 #: gui/common/tooltips.js:639
 msgid "Remaining build time:"
-msgstr ""
+msgstr "Залишок часу будівництва:"
 
 #: gui/common/tooltips.js:643
 #, javascript-format
@@ -1277,7 +1277,7 @@ msgstr "Звукооператор"
 
 #: gui/credits/texts/audio.jsonContent[0].Content[1].Subtitle
 msgid "Lead Composer"
-msgstr ""
+msgstr "Ведучий композитор"
 
 #: gui/credits/texts/audio.jsonContent[0].Title
 msgid "Audio managers"
@@ -1670,7 +1670,7 @@ msgstr "Скидання налаштунків призведе до видал
 
 #: gui/options/options.js:351
 msgid "Some setting values are invalid! Are you sure you want to save them?"
-msgstr ""
+msgstr "Деякі значення налаштувань є невірними! Чи впевнені Ви, що хочете зберегти їх?"
 
 #: gui/options/options.js:377
 msgid "You have unsaved changes, do you want to close this window?"
@@ -1702,7 +1702,7 @@ msgstr "Час повідомлення у чаті"
 
 #: gui/options/options.json[0].options[11].tooltip
 msgid "Display the time at which a chat message was posted."
-msgstr ""
+msgstr "Відображає час, коли повідомлення у чаті було розміщено."
 
 #: gui/options/options.json[0].options[1].label
 msgid "Player name (multiplayer)"
@@ -1891,7 +1891,7 @@ msgstr ""
 
 #: gui/options/options.json[1].options[19].tooltip
 msgid "Lift darkness and fog of war smoothly."
-msgstr ""
+msgstr "Змінювати темряву і туман війни плавно."
 
 #: gui/options/options.json[1].options[1].label
 msgid "Prefer GLSL"
@@ -1943,7 +1943,7 @@ msgstr "Туман"
 
 #: gui/options/options.json[1].options[2].tooltip
 msgid "Enable fog."
-msgstr ""
+msgstr "Увімкнути туман."
 
 #: gui/options/options.json[1].options[3].label
 msgid "Post-processing"
@@ -1955,11 +1955,11 @@ msgstr "Використовувати екранні фільтри пост-о
 
 #: gui/options/options.json[1].options[4].label
 msgid "Antialiasing"
-msgstr ""
+msgstr "Згладжування"
 
 #: gui/options/options.json[1].options[4].list[0].tooltip
 msgid "Do not use antialiasing."
-msgstr ""
+msgstr "Не використовувати згладжування."
 
 #: gui/options/options.json[1].options[4].list[1].label
 msgid "FXAA"
@@ -1967,47 +1967,47 @@ msgstr "FXAA"
 
 #: gui/options/options.json[1].options[4].list[1].tooltip
 msgid "Fast, but simple antialiasing."
-msgstr ""
+msgstr "Швидке, але просте згладжування."
 
 #: gui/options/options.json[1].options[4].list[2].label
 msgid "MSAA (2×)"
-msgstr ""
+msgstr "MSAA (2×)"
 
 #: gui/options/options.json[1].options[4].list[2].tooltip
 msgid ""
 "Slow, but high-quality antialiasing, uses two samples per pixel. Supported "
 "for GL3.3+."
-msgstr ""
+msgstr "Повільне, але високоякісне згладжування, використовує два зразки на піксель. Підтримується для GL3.3+."
 
 #: gui/options/options.json[1].options[4].list[3].label
 msgid "MSAA (4×)"
-msgstr ""
+msgstr "MSAA (4×)"
 
 #: gui/options/options.json[1].options[4].list[3].tooltip
 msgid ""
 "Slow, but high-quality antialiasing, uses four samples per pixel. Supported "
 "for GL3.3+."
-msgstr ""
+msgstr "Повільне, але високоякісне згладжування, використовує чотири зразки на піксель. Підтримується для GL3.3+."
 
 #: gui/options/options.json[1].options[4].list[4].label
 msgid "MSAA (8×)"
-msgstr ""
+msgstr "MSAA (8×)"
 
 #: gui/options/options.json[1].options[4].list[4].tooltip
 msgid ""
 "Slow, but high-quality antialiasing, uses eight samples per pixel. Supported"
 " for GL3.3+."
-msgstr ""
+msgstr "Повільне, але високоякісне згладжування, використовує вісім зразків на піксель. Підтримується для GL3.3+."
 
 #: gui/options/options.json[1].options[4].list[5].label
 msgid "MSAA (16×)"
-msgstr ""
+msgstr "MSAA (16×)"
 
 #: gui/options/options.json[1].options[4].list[5].tooltip
 msgid ""
 "Slow, but high-quality antialiasing, uses sixteen samples per pixel. "
 "Supported for GL3.3+."
-msgstr ""
+msgstr "Повільне, але високоякісне згладжування, використовує шістнадцять зразків на піксель. Підтримується для GL3.3+."
 
 #: gui/options/options.json[1].options[4].tooltip
 msgid "Reduce aliasing effect on edges."
@@ -2235,7 +2235,7 @@ msgstr "Призначити гравців"
 
 #: gui/options/options.json[3].options[5].list[0].tooltip
 msgid "Players joining the match will be assigned if there is a free slot."
-msgstr ""
+msgstr "Гравці, які приєднуються до матчу, будуть призначені при наявності вільного слоту."
 
 #: gui/options/options.json[3].options[5].list[1].tooltip
 msgid ""
@@ -2245,7 +2245,7 @@ msgstr ""
 
 #: gui/options/options.json[3].options[5].list[2].tooltip
 msgid "Players only receive a slot when the host assigns them explicitly."
-msgstr ""
+msgstr "Гравці отримують слот тільки тоді, коли хост призначить їх явно."
 
 #: gui/options/options.json[3].options[5].tooltip
 msgid ""
@@ -2290,7 +2290,7 @@ msgstr "Ці налаштування впливають тільки на ба�
 
 #: gui/options/options.json[5].label
 msgid "Game Session"
-msgstr ""
+msgstr "Ігрова сесія"
 
 #: gui/options/options.json[5].options[0].label
 msgid "Wounded unit health"
@@ -2312,11 +2312,11 @@ msgstr "Відображати значки рангів над рядками �
 
 #: gui/options/options.json[5].options[11].label
 msgid "Experience status bar"
-msgstr ""
+msgstr "Рядок стану досвіду"
 
 #: gui/options/options.json[5].options[11].tooltip
 msgid "Show an experience status bar above each selected unit."
-msgstr ""
+msgstr "Показувати рядок стану досвіду над кожним вибраним юнітом."
 
 #: gui/options/options.json[5].options[12].label
 msgid "Detailed tooltips"
@@ -2413,7 +2413,7 @@ msgstr ""
 
 #: gui/options/options.json[5].options[19].list[0].label
 msgid "Single"
-msgstr ""
+msgstr "Одиночний"
 
 #: gui/options/options.json[5].options[19].list[0].tooltip
 msgid ""
@@ -2607,7 +2607,7 @@ msgstr "%(hotkey)s: Переглянути структурне дерево ц�
 #: gui/reference/civinfo/civinfo.xml:(caption):21
 #: gui/reference/common/Buttons/CivInfoButton.js:21
 msgid "Civilization Overview"
-msgstr ""
+msgstr "Огляд цивілізацій"
 
 #: gui/pregame/MainMenuItems.js:37
 #, javascript-format
@@ -2616,11 +2616,11 @@ msgstr "%(hotkey)s: Дізнатися про цивілізації, предс
 
 #: gui/pregame/MainMenuItems.js:48
 msgid "Map Overview"
-msgstr ""
+msgstr "Огляд мап"
 
 #: gui/pregame/MainMenuItems.js:49
 msgid "View the different maps featured in 0 A.D."
-msgstr ""
+msgstr "Переглянути різноманітні мапи, представлені в 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:57 gui/replaymenu/replay_filters.js:144
 msgid "Single-player"
@@ -2722,7 +2722,7 @@ msgstr "Гарячі клавіші"
 
 #: gui/pregame/MainMenuItems.js:160
 msgid "Adjust hotkeys."
-msgstr ""
+msgstr "Відрегулювати гарячі клавіші."
 
 #: gui/locale/locale.xml:(caption):14 gui/pregame/MainMenuItems.js:166
 msgid "Language"
@@ -2948,7 +2948,7 @@ msgstr "• %(name)s %(info_icon)s%(description)s"
 #: gui/reference/civinfo/CivInfoPage.js:119
 #, javascript-format
 msgid "%(hotkey)s: Close Civilization Overview."
-msgstr ""
+msgstr "%(hotkey)s: Закрити огляд цивілізацій."
 
 #: gui/reference/civinfo/Sections/GameplaySection.js:30
 #, javascript-format
@@ -3003,7 +3003,7 @@ msgstr[3] "Особливі технології"
 #: gui/reference/common/Buttons/CivInfoButton.js:27
 #, javascript-format
 msgid "%(hotkey)s: Switch to Civilization Overview."
-msgstr ""
+msgstr "%(hotkey)s: Перемкнутися до огляду цивілізацій."
 
 #: gui/credits/credits.xml:(caption):32 gui/options/options.xml:(caption):60
 #: gui/reference/common/Buttons/CloseButton.js:13
@@ -3190,7 +3190,7 @@ msgstr "Одиночна гра та багатокористувацька гр
 
 #: gui/replaymenu/replay_filters.js:157
 msgid "Any victory condition"
-msgstr ""
+msgstr "Будь-яка умова перемоги"
 
 #: gui/replaymenu/replay_filters.js:170
 msgid "Rated and unrated games"
@@ -3278,7 +3278,7 @@ msgstr "Тривалість"
 
 #: gui/replaymenu/replay_menu.xml:(placeholder_text):32
 msgid "Search for Player"
-msgstr ""
+msgstr "Шукати гравця"
 
 #: gui/replaymenu/replay_menu.xml:(tooltip):240
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
@@ -3664,17 +3664,17 @@ msgstr "%(hotkey)s: Перемкнути багатокористувацьке 
 #: gui/summary/summary.js:546
 #, javascript-format
 msgid "Toggle the %(name)s summary tab."
-msgstr ""
+msgstr "Перемкнути %(name)s вкладку підсумків."
 
 #: gui/summary/summary.js:547
 #, javascript-format
 msgid "Use %(hotkey)s to move a summary tab right."
-msgstr ""
+msgstr "Використайте %(hotkey)s, щоб перемістити вкладку підсумків праворуч."
 
 #: gui/summary/summary.js:548
 #, javascript-format
 msgid "Use %(hotkey)s to move a summary tab left."
-msgstr ""
+msgstr "Використайте %(hotkey)s, щоб перемістити вкладку підсумків ліворуч."
 
 #: gui/summary/summary.xml:(caption):120
 msgctxt "summary chart"
@@ -3768,19 +3768,19 @@ msgstr "КАРФАГЕНСЬКИЙ СВЯЩЕННИЙ ЗАГІН"
 
 #: gui/text/tips/carth_sacred_band.txt:2
 msgid "Champion Spearmen and Champion Cavalry Spearmen for Carthage."
-msgstr ""
+msgstr "Чемпіон пікінерів та чемпіон кавалерії зі списами у Карфагена."
 
 #: gui/text/tips/carth_sacred_band.txt:3
 msgid ""
 "Both are trainable from the Temple, instead of the Fortress like most other "
 "champions."
-msgstr ""
+msgstr "Тренування обох відбувається в храмі, а не у фортеці, як у більшості інших чемпіонів."
 
 #: gui/text/tips/carth_sacred_band.txt:4
 msgid ""
 "Use the Spearmen as heavy infantry against cavalry. Use the Cavalry as heavy"
 " shock against siege weapons and skirmishers."
-msgstr ""
+msgstr "Використовуйте пікінерів як важку піхоту проти кавалерії. Використовуйте кавалерію як ударну силу проти облогових машин та застрільників."
 
 #: gui/text/tips/catapults.txt:1
 msgid "CATAPULTS"
@@ -3981,7 +3981,7 @@ msgstr "ЗАСТАВИ"
 
 #: gui/text/tips/outposts.txt:2
 msgid "Build in neutral or own territory."
-msgstr ""
+msgstr "Спорудити на нейтральній чи своїй території."
 
 #: gui/text/tips/outposts.txt:3
 msgid "Cheap and quickly built, but weak."
@@ -4011,15 +4011,15 @@ msgstr "ПЕРІКЛ"
 
 #: gui/text/tips/pericles.txt:2
 msgid "The foremost Athenian politician of the 5th century BC."
-msgstr ""
+msgstr "Найвидатніший афінський політик 5 століття до н. е."
 
 #: gui/text/tips/pericles.txt:3
 msgid "Structures are built faster within his range."
-msgstr ""
+msgstr "Споруди зводяться швидше в полі його зору."
 
 #: gui/text/tips/pericles.txt:4
 msgid "Temples are cheaper while he lives."
-msgstr ""
+msgstr "Храми дешевші протягом його життя."
 
 #: gui/text/tips/persian_architecture.txt:1
 msgid "PERSIAN ARCHITECTURE"
@@ -4170,7 +4170,7 @@ msgstr ""
 
 #: gui/text/tips/stoa.txt:4
 msgid "Grants +10 Population."
-msgstr ""
+msgstr "Підвищує ліміт населення +10."
 
 #: gui/text/tips/storehouses.txt:1
 msgid "STOREHOUSES"

@@ -1,12 +1,12 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2020 Wildfire Games
+# Copyright (C) 2021 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2020-12-01 11:21+0000\n"
-"PO-Revision-Date: 2020-12-01 11:21+0000\n"
+"POT-Creation-Date: 2021-01-01 08:01+0000\n"
+"PO-Revision-Date: 2021-01-01 08:01+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -692,7 +692,7 @@ msgid "Swag"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/kush_hero_amanirenas.json:auraDescription
-#: simulation/data/auras/units/heroes/mace_hero_philip.json:auraDescription
+#: simulation/data/auras/units/heroes/mace_hero_philip_ii.json:auraDescription
 msgid "Champions +2 capture attack strength, +20% melee and ranged attack damage."
 msgstr ""
 
@@ -744,19 +744,19 @@ msgstr ""
 msgid "Gift of Warships"
 msgstr ""
 
-#: simulation/data/auras/units/heroes/mace_hero_alexander_1.json:auraDescription
+#: simulation/data/auras/units/heroes/mace_hero_alexander_iii_1.json:auraDescription
 msgid "Structures +10% territory influence radius."
 msgstr ""
 
-#: simulation/data/auras/units/heroes/mace_hero_alexander_1.json:auraName
+#: simulation/data/auras/units/heroes/mace_hero_alexander_iii_1.json:auraName
 msgid "Imperialism"
 msgstr ""
 
-#: simulation/data/auras/units/heroes/mace_hero_alexander_2.json:auraDescription
+#: simulation/data/auras/units/heroes/mace_hero_alexander_iii_2.json:auraDescription
 msgid "Enemy Civic Centres −50% capture points garrisoned regeneration rate."
 msgstr ""
 
-#: simulation/data/auras/units/heroes/mace_hero_alexander_2.json:auraName
+#: simulation/data/auras/units/heroes/mace_hero_alexander_iii_2.json:auraName
 msgid "Conqueror"
 msgstr ""
 
@@ -768,25 +768,25 @@ msgstr ""
 msgid "Taxiarchès"
 msgstr ""
 
-#: simulation/data/auras/units/heroes/mace_hero_demetrius.json:auraDescription
+#: simulation/data/auras/units/heroes/mace_hero_demetrius_i.json:auraDescription
 msgid ""
 "Siege Engines +1 armor, +20% melee and ranged attack damage, +10% ranged attack range, "
 "+10% vision range."
 msgstr ""
 
-#: simulation/data/auras/units/heroes/mace_hero_demetrius.json:auraName
+#: simulation/data/auras/units/heroes/mace_hero_demetrius_i.json:auraName
 msgid "Besieger"
 msgstr ""
 
-#: simulation/data/auras/units/heroes/mace_hero_philip.json:auraName
+#: simulation/data/auras/units/heroes/mace_hero_philip_ii.json:auraName
 msgid "Rise of Macedon"
 msgstr ""
 
-#: simulation/data/auras/units/heroes/mace_hero_pyrrhus.json:auraDescription
+#: simulation/data/auras/units/heroes/mace_hero_pyrrhus_i.json:auraDescription
 msgid "Soldiers +20% melee and ranged attack damage, −15% health."
 msgstr ""
 
-#: simulation/data/auras/units/heroes/mace_hero_pyrrhus.json:auraName
+#: simulation/data/auras/units/heroes/mace_hero_pyrrhus_i.json:auraName
 msgid "Pyrrhic Victory"
 msgstr ""
 
@@ -814,73 +814,73 @@ msgstr ""
 msgid "Regeneration"
 msgstr ""
 
-#: simulation/data/auras/units/heroes/pers_hero_cyrus.json:auraDescription
+#: simulation/data/auras/units/heroes/pers_hero_cyrus_ii.json:auraDescription
 msgid "Cavalry +1 capture attack strength, +20% melee and ranged attack damage."
 msgstr ""
 
-#: simulation/data/auras/units/heroes/pers_hero_cyrus.json:auraName
+#: simulation/data/auras/units/heroes/pers_hero_cyrus_ii.json:auraName
 msgid "Forefront Leader"
 msgstr ""
 
-#: simulation/data/auras/units/heroes/pers_hero_darius.json:auraDescription
+#: simulation/data/auras/units/heroes/pers_hero_darius_i.json:auraDescription
 msgid "Soldiers, Siege Engines, Traders, and Merchant Ships +15% movement speed."
 msgstr ""
 
-#: simulation/data/auras/units/heroes/pers_hero_darius.json:auraName
+#: simulation/data/auras/units/heroes/pers_hero_darius_i.json:auraName
 msgid "Leadership"
 msgstr ""
 
-#: simulation/data/auras/units/heroes/pers_hero_xerxes.json:auraDescription
+#: simulation/data/auras/units/heroes/pers_hero_xerxes_i.json:auraDescription
 msgid "Workers +15% build rate and gather speed."
 msgstr ""
 
-#: simulation/data/auras/units/heroes/pers_hero_xerxes.json:auraName
+#: simulation/data/auras/units/heroes/pers_hero_xerxes_i.json:auraName
 msgid "Administrator"
 msgstr ""
 
-#: simulation/data/auras/units/heroes/ptol_hero_cleopatra_1.json:auraDescription
+#: simulation/data/auras/units/heroes/ptol_hero_cleopatra_vii_1.json:auraDescription
 msgid "Soldiers and Siege Engines −20% melee and ranged attack repeat time."
 msgstr ""
 
-#: simulation/data/auras/units/heroes/ptol_hero_cleopatra_1.json:auraName
+#: simulation/data/auras/units/heroes/ptol_hero_cleopatra_vii_1.json:auraName
 msgid "Patriot"
 msgstr ""
 
-#: simulation/data/auras/units/heroes/ptol_hero_cleopatra_2.json:auraDescription
+#: simulation/data/auras/units/heroes/ptol_hero_cleopatra_vii_2.json:auraDescription
 msgid "Allied Heroes +10% health."
 msgstr ""
 
-#: simulation/data/auras/units/heroes/ptol_hero_cleopatra_2.json:auraName
-#: simulation/data/auras/units/heroes/ptol_hero_cleopatra_3.json:auraName
+#: simulation/data/auras/units/heroes/ptol_hero_cleopatra_vii_2.json:auraName
+#: simulation/data/auras/units/heroes/ptol_hero_cleopatra_vii_3.json:auraName
 msgid "Consort"
 msgstr ""
 
-#: simulation/data/auras/units/heroes/ptol_hero_cleopatra_3.json:auraDescription
+#: simulation/data/auras/units/heroes/ptol_hero_cleopatra_vii_3.json:auraDescription
 msgid "Enemy Heroes −10% health."
 msgstr ""
 
-#: simulation/data/auras/units/heroes/ptol_hero_ptolemy_IV.json:auraDescription
-msgid "Pikemen +40% health."
-msgstr ""
-
-#: simulation/data/auras/units/heroes/ptol_hero_ptolemy_IV.json:auraName
-msgid "Raphia"
-msgstr ""
-
-#: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_1.json:auraDescription
+#: simulation/data/auras/units/heroes/ptol_hero_ptolemy_i_1.json:auraDescription
 msgid "Workers +10% build rate."
 msgstr ""
 
-#: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_1.json:auraName
+#: simulation/data/auras/units/heroes/ptol_hero_ptolemy_i_1.json:auraName
 msgid "Patron of Construction"
 msgstr ""
 
-#: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_2.json:auraDescription
+#: simulation/data/auras/units/heroes/ptol_hero_ptolemy_i_2.json:auraDescription
 msgid "Mercenaries −35% resource costs."
 msgstr ""
 
-#: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_2.json:auraName
+#: simulation/data/auras/units/heroes/ptol_hero_ptolemy_i_2.json:auraName
 msgid "Mercenary Patron"
+msgstr ""
+
+#: simulation/data/auras/units/heroes/ptol_hero_ptolemy_iv.json:auraDescription
+msgid "Pikemen +40% health."
+msgstr ""
+
+#: simulation/data/auras/units/heroes/ptol_hero_ptolemy_iv.json:auraName
+msgid "Raphia"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_1.json:auraDescription
@@ -914,27 +914,27 @@ msgstr ""
 msgid "Triumph"
 msgstr ""
 
-#: simulation/data/auras/units/heroes/sele_hero_antiochus_great.json:auraDescription
+#: simulation/data/auras/units/heroes/sele_hero_antiochus_iii.json:auraDescription
 msgid "Cavalry +2 armor."
 msgstr ""
 
-#: simulation/data/auras/units/heroes/sele_hero_antiochus_great.json:auraName
+#: simulation/data/auras/units/heroes/sele_hero_antiochus_iii.json:auraName
 msgid "Ilarchès"
 msgstr ""
 
-#: simulation/data/auras/units/heroes/sele_hero_antiochus_righteous.json:auraDescription
+#: simulation/data/auras/units/heroes/sele_hero_antiochus_iv.json:auraDescription
 msgid "Enemy Structures, Ships, and Siege Engines -20% health."
 msgstr ""
 
-#: simulation/data/auras/units/heroes/sele_hero_antiochus_righteous.json:auraName
+#: simulation/data/auras/units/heroes/sele_hero_antiochus_iv.json:auraName
 msgid "Renowned Conqueror"
 msgstr ""
 
-#: simulation/data/auras/units/heroes/sele_hero_seleucus_victor.json:auraDescription
+#: simulation/data/auras/units/heroes/sele_hero_seleucus_i.json:auraDescription
 msgid "Champion Elephants +20% melee attack damage, +20% movement speed."
 msgstr ""
 
-#: simulation/data/auras/units/heroes/sele_hero_seleucus_victor.json:auraName
+#: simulation/data/auras/units/heroes/sele_hero_seleucus_i.json:auraName
 msgid "Zooiarchos"
 msgstr ""
 
