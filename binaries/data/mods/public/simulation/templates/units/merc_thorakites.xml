@@ -8,12 +8,11 @@
     </Melee>
   </Attack>
   <Identity>
-    <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
     <Lang>greek</Lang>
     <GenericName>Armored Swordsman</GenericName>
     <SpecificName>Thōrakitēs</SpecificName>
+    <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
     <Icon>units/mace_thorakites.png</Icon>
-    <RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>
   <Resistance>
     <Entity>

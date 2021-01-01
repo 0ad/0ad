@@ -1,4 +1,4 @@
-/* Copyright 2006-2014 Joaquin M Lopez Munoz.
+/* Copyright 2006-2018 Joaquin M Lopez Munoz.
  * Distributed under the Boost Software License, Version 1.0.
  * (See accompanying file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
@@ -215,11 +215,11 @@ struct regular_key_value:value_marker
 #undef BOOST_FLYWEIGHT_PERFECT_FWD_CTR_BODY
 
     rep_type(const rep_type& x):key(x.key),value_ptr(0){}
-    rep_type(const value_type& x):key(no_key_from_value_failure()){}
+    rep_type(const value_type&):key(no_key_from_value_failure()){}
 
 #if !defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
     rep_type(rep_type&& x):key(std::move(x.key)),value_ptr(0){}
-    rep_type(value_type&& x):key(no_key_from_value_failure()){}
+    rep_type(value_type&&):key(no_key_from_value_failure()){}
 #endif
 
     ~rep_type()

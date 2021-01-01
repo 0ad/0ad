@@ -149,21 +149,11 @@ namespace boost {
           {
             return;
           }
-          if(iter == end)
-          {
-            if(callable_iter != end)
-            {
-              lock_type lock(**callable_iter);
-              set_callable_iter(lock, end);
-              return;
-            }
-          }
-          // we're only locking the first connection body,
-          // but it doesn't matter they all use the same mutex
-          lock_type lock(**iter);
+  
           for(;iter != end; ++iter)
           {
             cache->tracked_ptrs.clear();
+            lock_type lock(**iter);
             (*iter)->nolock_grab_tracked_objects(lock, std::back_inserter(cache->tracked_ptrs));
             if((*iter)->nolock_nograb_connected())
             {
@@ -178,9 +168,14 @@ namespace boost {
               break;
             }
           }
+          
           if(iter == end)
           {
-            set_callable_iter(lock, end);
+            if(callable_iter != end)
+            {
+              lock_type lock(**callable_iter);
+              set_callable_iter(lock, end);
+            }
           }
         }
 

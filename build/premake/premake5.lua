@@ -83,6 +83,8 @@ else
 			arch = "arm"
 		elseif string.find(machine, "aarch64") == 1 then
 			arch = "aarch64"
+		elseif string.find(machine, "e2k") == 1 then
+			arch = "e2k"
 		else
 			print("WARNING: Cannot determine architecture from GCC, assuming x86")
 		end
@@ -209,6 +211,11 @@ function project_set_build_flags()
 	if os.istarget("windows") then
 
 		flags { "MultiProcessorCompile" }
+
+		-- Since KB4088875 Windows 7 has a soft requirement for SSE2.
+		-- Windows 8+ and Firefox ESR52 make it hard requirement.
+		-- Finally since VS2012 it's enabled implicitely when not set.
+		vectorextensions "SSE2"
 
 		-- use native wchar_t type (not typedef to unsigned short)
 		nativewchar "on"
@@ -853,6 +860,8 @@ function setup_all_libs ()
 		table.insert(source_dirs, "lib/sysdep/arch/arm");
 	elseif arch == "aarch64" then
 		table.insert(source_dirs, "lib/sysdep/arch/aarch64");
+	elseif arch == "e2k" then
+		table.insert(source_dirs, "lib/sysdep/arch/e2k");
 	end
 
 	-- OS-specific

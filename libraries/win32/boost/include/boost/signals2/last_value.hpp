@@ -52,7 +52,7 @@ namespace boost {
           ++first;
         }
         if(value) return value.get();
-        throw no_slots_error();
+        boost::throw_exception(no_slots_error());
       }
     };
 

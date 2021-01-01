@@ -2,6 +2,7 @@
 	"type": "global",
 	"affects": ["Temple"],
 	"affectedPlayers": ["ExclusiveMutualAlly"],
+	"civ": "maur",
 	"modifications": [
 		{ "value": "Cost/BuildTime", "multiply": 0.5 },
 		{ "value": "Cost/Resources/wood", "multiply": 0.5 },

@@ -6,12 +6,11 @@
     </Melee>
   </Attack>
   <Identity>
-    <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
     <Lang>greek</Lang>
     <GenericName>Thracian Black Cloak</GenericName>
-    <SpecificName>Rhomphaiaphoros</SpecificName>
+    <SpecificName>Rhomphaiophoros</SpecificName>
+    <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
     <Icon>units/sele_infantry_swordsman.png</Icon>
-    <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <VisualActor>
     <Actor>units/hellenes/infantry_swordsman_c_thracian_blackcloak.xml</Actor>

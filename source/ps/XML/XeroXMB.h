@@ -195,7 +195,7 @@ public:
 		typedef std::forward_iterator_tag iterator_category;
 
 		iterator(size_t size, const char* ptr, const char* endptr = NULL)
-			: m_Size(size), m_CurItemID(endptr ? size : 0), m_CurPointer(endptr ? endptr : ptr), m_Pointer(ptr) {}
+			: m_Size(size), m_CurItemID(endptr ? size : 0), m_CurPointer(endptr ? endptr : ptr) {}
 		XMBElement operator*() const { return XMBElement(m_CurPointer); }
 		XMBElement operator->() const { return **this; }
 		iterator& operator++();
@@ -211,7 +211,6 @@ public:
 		size_t m_Size;
 		size_t m_CurItemID;
 		const char* m_CurPointer;
-		const char* m_Pointer;
 	};
 	iterator begin() { return iterator(m_Size, m_Pointer); }
 	iterator end() { return iterator(m_Size, m_Pointer, m_EndPointer); }
@@ -264,7 +263,7 @@ public:
 		typedef std::forward_iterator_tag iterator_category;
 
 		iterator(size_t size, const char* ptr, const char* endptr = NULL)
-			: m_Size(size), m_CurItemID(endptr ? size : 0), m_CurPointer(endptr ? endptr : ptr), m_Pointer(ptr) {}
+			: m_Size(size), m_CurItemID(endptr ? size : 0), m_CurPointer(endptr ? endptr : ptr) {}
 		XMBAttribute operator*() const;
 		XMBAttribute operator->() const { return **this; }
 		iterator& operator++();
@@ -280,7 +279,6 @@ public:
 		size_t m_Size;
 		size_t m_CurItemID;
 		const char* m_CurPointer;
-		const char* m_Pointer;
 	};
 	iterator begin() const { return iterator(m_Size, m_Pointer); }
 	iterator end() const { return iterator(m_Size, m_Pointer, m_EndPointer); }

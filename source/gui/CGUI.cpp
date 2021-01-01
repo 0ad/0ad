@@ -79,10 +79,10 @@ CGUI::CGUI(const shared_ptr<ScriptContext>& context)
 
 CGUI::~CGUI()
 {
-	for (const std::pair<CStr, IGUIObject*>& p : m_pAllObjects)
+	for (const std::pair<const CStr, IGUIObject*>& p : m_pAllObjects)
 		delete p.second;
 
-	for (const std::pair<CStr, const CGUISprite*>& p : m_Sprites)
+	for (const std::pair<const CStr, const CGUISprite*>& p : m_Sprites)
 		delete p.second;
 }
 

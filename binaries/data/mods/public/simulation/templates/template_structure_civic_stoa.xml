@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_civic">
-  <BuildRestrictions>
-    <Category>Stoa</Category>
-  </BuildRestrictions>
   <Cost>
     <BuildTime>150</BuildTime>
     <Resources>
@@ -29,7 +26,7 @@
   <Identity>
     <GenericName>Stoa</GenericName>
     <SelectionGroupName>template_structure_civic_stoa</SelectionGroupName>
-    <Tooltip>Train Mercenary Champions.</Tooltip>
+    <Classes datatype="tokens">-ConquestCritical</Classes>
     <VisibleClasses datatype="tokens">Town Stoa</VisibleClasses>
     <Icon>gaia/special_stoa.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
@@ -41,17 +38,6 @@
   <Obstruction>
     <Static width="28.0" depth="20.0"/>
   </Obstruction>
-  <Population>
-    <Bonus>10</Bonus>
-  </Population>
-  <ProductionQueue>
-    <BatchTimeModifier>0.7</BatchTimeModifier>
-    <Entities datatype="tokens">
-      units/{civ}/black_cloak
-      units/{civ}/thureophoros
-      units/{civ}/thorakites
-    </Entities>
-  </ProductionQueue>
   <TerritoryInfluence>
     <Root>false</Root>
     <Radius>40</Radius>

@@ -43,12 +43,6 @@
 #  endif
 #endif
 
-#if !defined(BOOST_FALLTHOUGH)
-   #define BOOST_CONTAINER_FALLTHOUGH
-#else
-   #define BOOST_CONTAINER_FALLTHOUGH BOOST_FALLTHOUGH;
-#endif
-
 #if defined(BOOST_MSVC) && (_MSC_VER < 1400)
    #define BOOST_CONTAINER_TEMPLATED_CONVERSION_OPERATOR_BROKEN
 #endif
@@ -112,6 +106,37 @@
    #define BOOST_CONTAINER_FORCEINLINE inline
 #else
    #define BOOST_CONTAINER_FORCEINLINE BOOST_FORCEINLINE
+#endif
+
+//#define BOOST_CONTAINER_DISABLE_NOINLINE
+
+#if defined(BOOST_CONTAINER_DISABLE_NOINLINE)
+   #define BOOST_CONTAINER_NOINLINE
+#else
+   #define BOOST_CONTAINER_NOINLINE BOOST_NOINLINE
+#endif
+
+
+#if !defined(__has_feature)
+#define BOOST_CONTAINER_HAS_FEATURE(feature) 0
+#else
+#define BOOST_CONTAINER_HAS_FEATURE(feature) __has_feature(feature)
+#endif
+
+//Detect address sanitizer
+#if defined(__SANITIZE_ADDRESS__) || BOOST_CONTAINER_HAS_FEATURE(address_sanitizer)
+#define BOOST_CONTAINER_ASAN
+#endif
+
+
+#if (__cplusplus >= 201703L)
+   //CTAD supported
+   #ifdef __INTEL_COMPILER
+      //Intel compilers do not offer this feature yet
+      #define BOOST_CONTAINER_NO_CXX17_CTAD
+   #endif
+#else
+   #define BOOST_CONTAINER_NO_CXX17_CTAD
 #endif
 
 #endif   //#ifndef BOOST_CONTAINER_DETAIL_WORKAROUND_HPP

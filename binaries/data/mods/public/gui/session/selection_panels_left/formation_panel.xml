@@ -7,6 +7,7 @@
 			<object name="unitFormationButton[n]" hidden="true" style="iconButton" type="button" size="0 0 38 38" tooltip_style="sessionToolTipBottomBold" z="100">
 				<object name="unitFormationIcon[n]" type="image" ghost="true" size="3 3 35 35"/>
 				<object name="unitFormationSelection[n]" hidden="true" type="image" ghost="true" size="3 3 35 35" sprite="stretched:session/icons/corners.png"/>
+				<object name="unitFormationCount[n]" hidden="true" type="image" ghost="true" size="3 3 35 35" sprite="stretched:session/icons/upgrade.png"/>
 			</object>
 		</repeat>
 	</object>

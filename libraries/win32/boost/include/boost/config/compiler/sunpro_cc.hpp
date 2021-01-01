@@ -123,6 +123,8 @@
 #define BOOST_NO_CXX11_TRAILING_RESULT_TYPES
 #define BOOST_NO_CXX11_INLINE_NAMESPACES
 #define BOOST_NO_CXX11_FINAL
+#define BOOST_NO_CXX11_OVERRIDE
+#define BOOST_NO_CXX11_UNRESTRICTED_UNION
 #endif
 
 #if (__SUNPRO_CC < 0x5140) || (__cplusplus < 201103)
@@ -182,6 +184,9 @@
 #if !defined(__cpp_fold_expressions) || (__cpp_fold_expressions < 201603)
 #  define BOOST_NO_CXX17_FOLD_EXPRESSIONS
 #endif
+#if !defined(__cpp_if_constexpr) || (__cpp_if_constexpr < 201606)
+#  define BOOST_NO_CXX17_IF_CONSTEXPR
+#endif
 
 // Turn on threading support for Solaris 12.
 // Ticket #11972
@@ -202,9 +207,9 @@
 #error "Compiler not supported or configured - please reconfigure"
 #endif
 //
-// last known and checked version is 0x590:
-#if (__SUNPRO_CC > 0x590)
+// last known and checked version:
+#if (__SUNPRO_CC > 0x5150)
 #  if defined(BOOST_ASSERT_CONFIG)
-#     error "Unknown compiler version - please run the configure tests and report the results"
+#     error "Boost.Config is older than your compiler - please check for an updated Boost release."
 #  endif
 #endif

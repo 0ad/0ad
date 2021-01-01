@@ -35,7 +35,7 @@
 #endif
 
 //
-// ensure that visibility macros are always defined, thus symplifying use
+// ensure that visibility macros are always defined, thus simplifying use
 //
 #ifndef BOOST_SYMBOL_EXPORT
 # define BOOST_SYMBOL_EXPORT
@@ -54,7 +54,7 @@
 // no namespace issues from this.
 //
 #if !defined(BOOST_HAS_LONG_LONG) && !defined(BOOST_NO_LONG_LONG)                                              \
-   && !defined(BOOST_MSVC) && !defined(__BORLANDC__)
+   && !defined(BOOST_MSVC) && !defined(BOOST_BORLANDC)
 # include <limits.h>
 # if (defined(ULLONG_MAX) || defined(ULONG_LONG_MAX) || defined(ULONGLONG_MAX))
 #   define BOOST_HAS_LONG_LONG
@@ -529,33 +529,21 @@ namespace boost {
 #  define BOOST_APPEND_EXPLICIT_TEMPLATE_NON_TYPE_SPEC(t, v)
 
 // When BOOST_NO_STD_TYPEINFO is defined, we can just import
-// the global definition into std namespace:
-#if defined(BOOST_NO_STD_TYPEINFO) && defined(__cplusplus)
+// the global definition into std namespace, 
+// see https://svn.boost.org/trac10/ticket/4115
+#if defined(BOOST_NO_STD_TYPEINFO) && defined(__cplusplus) && defined(BOOST_MSVC)
 #include <typeinfo>
 namespace std{ using ::type_info; }
+// Since we do now have typeinfo, undef the macro:
+#undef BOOST_NO_STD_TYPEINFO
 #endif
 
 // ---------------------------------------------------------------------------//
 
-//
 // Helper macro BOOST_STRINGIZE:
-// Converts the parameter X to a string after macro replacement
-// on X has been performed.
-//
-#define BOOST_STRINGIZE(X) BOOST_DO_STRINGIZE(X)
-#define BOOST_DO_STRINGIZE(X) #X
-
-//
 // Helper macro BOOST_JOIN:
-// The following piece of macro magic joins the two
-// arguments together, even when one of the arguments is
-// itself a macro (see 16.3.1 in C++ standard).  The key
-// is that macro expansion of macro arguments does not
-// occur in BOOST_DO_JOIN2 but does in BOOST_DO_JOIN.
-//
-#define BOOST_JOIN( X, Y ) BOOST_DO_JOIN( X, Y )
-#define BOOST_DO_JOIN( X, Y ) BOOST_DO_JOIN2(X,Y)
-#define BOOST_DO_JOIN2( X, Y ) X##Y
+
+#include <boost/config/helper_macros.hpp>
 
 //
 // Set some default values for compiler/library/platform names.
@@ -602,6 +590,14 @@ namespace std{ using ::type_info; }
 #  endif
 #endif
 
+// BOOST_MAY_ALIAS -----------------------------------------------//
+// The macro expands to an attribute to mark a type that is allowed to alias other types.
+// The macro is defined in the compiler-specific headers.
+#if !defined(BOOST_MAY_ALIAS)
+#  define BOOST_NO_MAY_ALIAS
+#  define BOOST_MAY_ALIAS
+#endif
+
 // BOOST_FORCEINLINE ---------------------------------------------//
 // Macro to use in place of 'inline' to force a function to be inline
 #if !defined(BOOST_FORCEINLINE)
@@ -641,7 +637,7 @@ namespace std{ using ::type_info; }
 #if !defined(BOOST_NORETURN)
 #  if defined(_MSC_VER)
 #    define BOOST_NORETURN __declspec(noreturn)
-#  elif defined(__GNUC__)
+#  elif defined(__GNUC__) || defined(__CODEGEARC__) && defined(__clang__)
 #    define BOOST_NORETURN __attribute__ ((__noreturn__))
 #  elif defined(__has_attribute) && defined(__SUNPRO_CC) && (__SUNPRO_CC > 0x5130)
 #    if __has_attribute(noreturn)
@@ -674,6 +670,12 @@ namespace std{ using ::type_info; }
 #  define BOOST_UNLIKELY(x) x
 #endif
 
+#if !defined(BOOST_NO_CXX11_OVERRIDE)
+#  define BOOST_OVERRIDE override
+#else
+#  define BOOST_OVERRIDE
+#endif
+
 // Type and data alignment specification
 //
 #if !defined(BOOST_ALIGNMENT)
@@ -692,6 +694,11 @@ namespace std{ using ::type_info; }
 // Lack of non-public defaulted functions is implied by the lack of any defaulted functions
 #if !defined(BOOST_NO_CXX11_NON_PUBLIC_DEFAULTED_FUNCTIONS) && defined(BOOST_NO_CXX11_DEFAULTED_FUNCTIONS)
 #  define BOOST_NO_CXX11_NON_PUBLIC_DEFAULTED_FUNCTIONS
+#endif
+
+// Lack of defaulted moves is implied by the lack of either rvalue references or any defaulted functions
+#if !defined(BOOST_NO_CXX11_DEFAULTED_MOVES) && (defined(BOOST_NO_CXX11_DEFAULTED_FUNCTIONS) || defined(BOOST_NO_CXX11_RVALUE_REFERENCES))
+#  define BOOST_NO_CXX11_DEFAULTED_MOVES
 #endif
 
 // Defaulted and deleted function declaration helpers
@@ -945,6 +952,14 @@ namespace std{ using ::type_info; }
 //  ------------------ End of deprecated macros for 1.51 ---------------------------
 
 
+//
+// Helper macro for marking types and methods final
+//
+#if !defined(BOOST_NO_CXX11_FINAL)
+#  define BOOST_FINAL final
+#else
+#  define BOOST_FINAL
+#endif
 
 //
 // Helper macros BOOST_NOEXCEPT, BOOST_NOEXCEPT_IF, BOOST_NOEXCEPT_EXPR
@@ -989,10 +1004,54 @@ namespace std{ using ::type_info; }
 #endif
 
 //
+// C++17 inline variables
+//
+#if !defined(BOOST_NO_CXX17_INLINE_VARIABLES)
+#define BOOST_INLINE_VARIABLE inline
+#else
+#define BOOST_INLINE_VARIABLE
+#endif
+//
+// C++17 if constexpr
+//
+#if !defined(BOOST_NO_CXX17_IF_CONSTEXPR)
+#  define BOOST_IF_CONSTEXPR if constexpr
+#else
+#  define BOOST_IF_CONSTEXPR if
+#endif
+
+#define BOOST_INLINE_CONSTEXPR  BOOST_INLINE_VARIABLE BOOST_CONSTEXPR_OR_CONST
+
+//
 // Unused variable/typedef workarounds:
 //
 #ifndef BOOST_ATTRIBUTE_UNUSED
 #  define BOOST_ATTRIBUTE_UNUSED
+#endif
+//
+// [[nodiscard]]:
+//
+#if defined(__has_attribute) && defined(__SUNPRO_CC) && (__SUNPRO_CC > 0x5130)
+#if __has_attribute(nodiscard)
+# define BOOST_ATTRIBUTE_NODISCARD [[nodiscard]]
+#endif
+#if __has_attribute(no_unique_address)
+# define BOOST_ATTRIBUTE_NO_UNIQUE_ADDRESS [[no_unique_address]]
+#endif
+#elif defined(__has_cpp_attribute)
+// clang-6 accepts [[nodiscard]] with -std=c++14, but warns about it -pedantic
+#if __has_cpp_attribute(nodiscard) && !(defined(__clang__) && (__cplusplus < 201703L))
+# define BOOST_ATTRIBUTE_NODISCARD [[nodiscard]]
+#endif
+#if __has_cpp_attribute(no_unique_address) && !(defined(__GNUC__) && (__cplusplus < 201100))
+# define BOOST_ATTRIBUTE_NO_UNIQUE_ADDRESS [[no_unique_address]]
+#endif
+#endif
+#ifndef BOOST_ATTRIBUTE_NODISCARD
+# define BOOST_ATTRIBUTE_NODISCARD
+#endif
+#ifndef BOOST_ATTRIBUTE_NO_UNIQUE_ADDRESS
+# define BOOST_ATTRIBUTE_NO_UNIQUE_ADDRESS
 #endif
 
 #define BOOST_STATIC_CONSTEXPR  static BOOST_CONSTEXPR_OR_CONST
@@ -1023,6 +1082,25 @@ namespace std{ using ::type_info; }
 //
 #if defined(BOOST_NO_CXX11_VARIADIC_TEMPLATES) && !defined(BOOST_NO_CXX11_FIXED_LENGTH_VARIADIC_TEMPLATE_EXPANSION_PACKS)
 #  define BOOST_NO_CXX11_FIXED_LENGTH_VARIADIC_TEMPLATE_EXPANSION_PACKS
+#endif
+
+// This is a catch all case for obsolete compilers / std libs:
+#if !defined(_YVALS) && !defined(_CPPLIB_VER)  // msvc std lib already configured
+#if (!defined(__has_include) || (__cplusplus < 201700))
+#  define BOOST_NO_CXX17_HDR_OPTIONAL
+#  define BOOST_NO_CXX17_HDR_STRING_VIEW
+#  define BOOST_NO_CXX17_HDR_VARIANT
+#else
+#if !__has_include(<optional>)
+#  define BOOST_NO_CXX17_HDR_OPTIONAL
+#endif
+#if !__has_include(<string_view>)
+#  define BOOST_NO_CXX17_HDR_STRING_VIEW
+#endif
+#if !__has_include(<variant>)
+#  define BOOST_NO_CXX17_HDR_VARIANT
+#endif
+#endif
 #endif
 
 //

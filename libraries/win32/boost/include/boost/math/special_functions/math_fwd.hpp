@@ -263,6 +263,30 @@ namespace boost
    typename tools::promote_args<T1, T2, T3>::type
       hermite_next(unsigned n, T1 x, T2 Hn, T3 Hnm1);
 
+   template<class T1, class T2, class T3>
+   typename tools::promote_args<T1, T2, T3>::type chebyshev_next(T1 const & x, T2 const & Tn, T3 const & Tn_1);
+
+   template <class Real, class Policy>
+   typename tools::promote_args<Real>::type
+      chebyshev_t(unsigned n, Real const & x, const Policy&);
+   template<class Real>
+   typename tools::promote_args<Real>::type chebyshev_t(unsigned n, Real const & x);
+   
+   template <class Real, class Policy>
+   typename tools::promote_args<Real>::type
+      chebyshev_u(unsigned n, Real const & x, const Policy&);
+   template<class Real>
+   typename tools::promote_args<Real>::type chebyshev_u(unsigned n, Real const & x);
+
+   template <class Real, class Policy>
+   typename tools::promote_args<Real>::type
+      chebyshev_t_prime(unsigned n, Real const & x, const Policy&);
+   template<class Real>
+   typename tools::promote_args<Real>::type chebyshev_t_prime(unsigned n, Real const & x);
+
+   template<class Real, class T2>
+   Real chebyshev_clenshaw_recurrence(const Real* const c, size_t length, const T2& x);
+
    template <class T1, class T2>
    std::complex<typename tools::promote_args<T1, T2>::type>
          spherical_harmonic(unsigned n, int m, T1 theta, T2 phi);
@@ -615,9 +639,9 @@ namespace boost
 
    namespace detail{
 
-      typedef mpl::int_<0> bessel_no_int_tag;      // No integer optimisation possible.
-      typedef mpl::int_<1> bessel_maybe_int_tag;   // Maybe integer optimisation.
-      typedef mpl::int_<2> bessel_int_tag;         // Definite integer optimistaion.
+      typedef boost::integral_constant<int, 0> bessel_no_int_tag;      // No integer optimisation possible.
+      typedef boost::integral_constant<int, 1> bessel_maybe_int_tag;   // Maybe integer optimisation.
+      typedef boost::integral_constant<int, 2> bessel_int_tag;         // Definite integer optimisation.
 
       template <class T1, class T2, class Policy>
       struct bessel_traits
@@ -632,8 +656,8 @@ namespace boost
 
          typedef typename mpl::if_<
             mpl::or_<
-               mpl::less_equal<precision_type, mpl::int_<0> >,
-               mpl::greater<precision_type, mpl::int_<64> > >,
+               mpl::less_equal<precision_type, boost::integral_constant<int, 0> >,
+               mpl::greater<precision_type, boost::integral_constant<int, 64> > >,
             bessel_no_int_tag,
             typename mpl::if_<
                is_integral<T1>,
@@ -643,8 +667,8 @@ namespace boost
          >::type optimisation_tag;
          typedef typename mpl::if_<
             mpl::or_<
-               mpl::less_equal<precision_type, mpl::int_<0> >,
-               mpl::greater<precision_type, mpl::int_<113> > >,
+               mpl::less_equal<precision_type, boost::integral_constant<int, 0> >,
+               mpl::greater<precision_type, boost::integral_constant<int, 113> > >,
             bessel_no_int_tag,
             typename mpl::if_<
                is_integral<T1>,
@@ -989,16 +1013,89 @@ namespace boost
    template <class T, class U>
    typename tools::promote_args<T, U>::type jacobi_cs(T k, U theta);
 
+   // Jacobi Theta Functions:
+   template <class T, class U, class Policy>
+   typename tools::promote_args<T, U>::type jacobi_theta1(T z, U q, const Policy& pol);
+
+   template <class T, class U>
+   typename tools::promote_args<T, U>::type jacobi_theta1(T z, U q);
+
+   template <class T, class U, class Policy>
+   typename tools::promote_args<T, U>::type jacobi_theta2(T z, U q, const Policy& pol);
+
+   template <class T, class U>
+   typename tools::promote_args<T, U>::type jacobi_theta2(T z, U q);
+
+   template <class T, class U, class Policy>
+   typename tools::promote_args<T, U>::type jacobi_theta3(T z, U q, const Policy& pol);
+
+   template <class T, class U>
+   typename tools::promote_args<T, U>::type jacobi_theta3(T z, U q);
+
+   template <class T, class U, class Policy>
+   typename tools::promote_args<T, U>::type jacobi_theta4(T z, U q, const Policy& pol);
+
+   template <class T, class U>
+   typename tools::promote_args<T, U>::type jacobi_theta4(T z, U q);
+
+   template <class T, class U, class Policy>
+   typename tools::promote_args<T, U>::type jacobi_theta1tau(T z, U tau, const Policy& pol);
+
+   template <class T, class U>
+   typename tools::promote_args<T, U>::type jacobi_theta1tau(T z, U tau);
+
+   template <class T, class U, class Policy>
+   typename tools::promote_args<T, U>::type jacobi_theta2tau(T z, U tau, const Policy& pol);
+
+   template <class T, class U>
+   typename tools::promote_args<T, U>::type jacobi_theta2tau(T z, U tau);
+
+   template <class T, class U, class Policy>
+   typename tools::promote_args<T, U>::type jacobi_theta3tau(T z, U tau, const Policy& pol);
+
+   template <class T, class U>
+   typename tools::promote_args<T, U>::type jacobi_theta3tau(T z, U tau);
+
+   template <class T, class U, class Policy>
+   typename tools::promote_args<T, U>::type jacobi_theta4tau(T z, U tau, const Policy& pol);
+
+   template <class T, class U>
+   typename tools::promote_args<T, U>::type jacobi_theta4tau(T z, U tau);
+
+   template <class T, class U, class Policy>
+   typename tools::promote_args<T, U>::type jacobi_theta3m1(T z, U q, const Policy& pol);
+
+   template <class T, class U>
+   typename tools::promote_args<T, U>::type jacobi_theta3m1(T z, U q);
+
+   template <class T, class U, class Policy>
+   typename tools::promote_args<T, U>::type jacobi_theta4m1(T z, U q, const Policy& pol);
+
+   template <class T, class U>
+   typename tools::promote_args<T, U>::type jacobi_theta4m1(T z, U q);
+
+   template <class T, class U, class Policy>
+   typename tools::promote_args<T, U>::type jacobi_theta3m1tau(T z, U tau, const Policy& pol);
+
+   template <class T, class U>
+   typename tools::promote_args<T, U>::type jacobi_theta3m1tau(T z, U tau);
+
+   template <class T, class U, class Policy>
+   typename tools::promote_args<T, U>::type jacobi_theta4m1tau(T z, U tau, const Policy& pol);
+
+   template <class T, class U>
+   typename tools::promote_args<T, U>::type jacobi_theta4m1tau(T z, U tau);
+
 
    template <class T>
    typename tools::promote_args<T>::type zeta(T s);
 
    // pow:
    template <int N, typename T, class Policy>
-   typename tools::promote_args<T>::type pow(T base, const Policy& policy);
+   BOOST_CXX14_CONSTEXPR typename tools::promote_args<T>::type pow(T base, const Policy& policy);
 
    template <int N, typename T>
-   typename tools::promote_args<T>::type pow(T base);
+   BOOST_CXX14_CONSTEXPR typename tools::promote_args<T>::type pow(T base);
 
    // next:
    template <class T, class U, class Policy>
@@ -1033,7 +1130,7 @@ namespace boost
    typename tools::promote_args<T, U>::type epsilon_difference(const T&, const U&);
 
    template<class T>
-   T unchecked_bernoulli_b2n(const std::size_t n);
+   BOOST_MATH_CONSTEXPR_TABLE_FUNCTION T unchecked_bernoulli_b2n(const std::size_t n);
    template <class T, class Policy>
    T bernoulli_b2n(const int i, const Policy &pol);
    template <class T>
@@ -1061,6 +1158,38 @@ namespace boost
                                        const unsigned number_of_bernoullis_b2n,
                                        OutputIterator out_it);
 
+   // Lambert W:
+   template <class T, class Policy>
+   typename boost::math::tools::promote_args<T>::type lambert_w0(T z, const Policy& pol);
+   template <class T>
+   typename boost::math::tools::promote_args<T>::type lambert_w0(T z);
+   template <class T, class Policy>
+   typename boost::math::tools::promote_args<T>::type lambert_wm1(T z, const Policy& pol);
+   template <class T>
+   typename boost::math::tools::promote_args<T>::type lambert_wm1(T z);
+   template <class T, class Policy>
+   typename boost::math::tools::promote_args<T>::type lambert_w0_prime(T z, const Policy& pol);
+   template <class T>
+   typename boost::math::tools::promote_args<T>::type lambert_w0_prime(T z);
+   template <class T, class Policy>
+   typename boost::math::tools::promote_args<T>::type lambert_wm1_prime(T z, const Policy& pol);
+   template <class T>
+   typename boost::math::tools::promote_args<T>::type lambert_wm1_prime(T z);
+
+   // Hypergeometrics:
+   template <class T1, class T2> typename tools::promote_args<T1, T2>::type hypergeometric_1F0(T1 a, T2 z);
+   template <class T1, class T2, class Policy> typename tools::promote_args<T1, T2>::type hypergeometric_1F0(T1 a, T2 z, const Policy&);
+
+   template <class T1, class T2> typename tools::promote_args<T1, T2>::type hypergeometric_0F1(T1 b, T2 z);
+   template <class T1, class T2, class Policy> typename tools::promote_args<T1, T2>::type hypergeometric_0F1(T1 b, T2 z, const Policy&);
+
+   template <class T1, class T2, class T3> typename tools::promote_args<T1, T2, T3>::type hypergeometric_2F0(T1 a1, T2 a2, T3 z);
+   template <class T1, class T2, class T3, class Policy> typename tools::promote_args<T1, T2, T3>::type hypergeometric_2F0(T1 a1, T2 a2, T3 z, const Policy&);
+
+   template <class T1, class T2, class T3> typename tools::promote_args<T1, T2, T3>::type hypergeometric_1F1(T1 a, T2 b, T3 z);
+   template <class T1, class T2, class T3, class Policy> typename tools::promote_args<T1, T2, T3>::type hypergeometric_1F1(T1 a, T2 b, T3 z, const Policy&);
+
+
     } // namespace math
 } // namespace boost
 
@@ -1080,9 +1209,20 @@ namespace boost
 #define BOOST_MATH_DETAIL_LL_FUNC(Policy)
 #endif
 
+#if !defined(BOOST_NO_CXX11_DECLTYPE) && !defined(BOOST_NO_CXX11_AUTO_DECLARATIONS) && !defined(BOOST_NO_CXX11_HDR_ARRAY)
+#  define BOOST_MATH_DETAIL_11_FUNC(Policy)\
+   template <class T, class U, class V>\
+   inline typename boost::math::tools::promote_args<T, U>::type hypergeometric_1F1(const T& a, const U& b, const V& z)\
+   { return boost::math::hypergeometric_1F1(a, b, z, Policy()); }\
+
+#else
+#  define BOOST_MATH_DETAIL_11_FUNC(Policy)
+#endif
+
 #define BOOST_MATH_DECLARE_SPECIAL_FUNCTIONS(Policy)\
    \
    BOOST_MATH_DETAIL_LL_FUNC(Policy)\
+   BOOST_MATH_DETAIL_11_FUNC(Policy)\
    \
    template <class RT1, class RT2>\
    inline typename boost::math::tools::promote_args<RT1, RT2>::type \
@@ -1189,6 +1329,19 @@ namespace boost
    hermite(unsigned n, T x){ return ::boost::math::hermite(n, x, Policy()); }\
 \
    using boost::math::hermite_next;\
+\
+   using boost::math::chebyshev_next;\
+\
+  template<class Real>\
+  Real chebyshev_t(unsigned n, Real const & x){ return ::boost::math::chebyshev_t(n, x, Policy()); }\
+\
+  template<class Real>\
+  Real chebyshev_u(unsigned n, Real const & x){ return ::boost::math::chebyshev_u(n, x, Policy()); }\
+\
+  template<class Real>\
+  Real chebyshev_t_prime(unsigned n, Real const & x){ return ::boost::math::chebyshev_t_prime(n, x, Policy()); }\
+\
+  using ::boost::math::chebyshev_clenshaw_recurrence;\
 \
    template <class T1, class T2>\
    inline std::complex<typename boost::math::tools::promote_args<T1, T2>::type> \
@@ -1430,10 +1583,10 @@ template <class OutputIterator, class T>\
    { boost::math::cyl_neumann_zero(v, start_index, number_of_zeros, out_it, Policy()); }\
 \
    template <class T>\
-   inline typename boost::math::tools::promote_args<T>::type sin_pi(T x){ return boost::math::sin_pi(x); }\
+   inline typename boost::math::tools::promote_args<T>::type sin_pi(T x){ return boost::math::sin_pi(x, Policy()); }\
 \
    template <class T>\
-   inline typename boost::math::tools::promote_args<T>::type cos_pi(T x){ return boost::math::cos_pi(x); }\
+   inline typename boost::math::tools::promote_args<T>::type cos_pi(T x){ return boost::math::cos_pi(x, Policy()); }\
 \
    using boost::math::fpclassify;\
    using boost::math::isfinite;\
@@ -1562,6 +1715,54 @@ template <class OutputIterator, class T>\
    inline typename boost::math::tools::promote_args<T, U>::type jacobi_cs(T k, U theta)\
    { return boost::math::jacobi_cs(k, theta, Policy()); }\
    \
+   template <class T, class U>\
+   inline typename boost::math::tools::promote_args<T, U>::type jacobi_theta1(T z, U q)\
+   { return boost::math::jacobi_theta1(z, q, Policy()); }\
+   \
+   template <class T, class U>\
+   inline typename boost::math::tools::promote_args<T, U>::type jacobi_theta2(T z, U q)\
+   { return boost::math::jacobi_theta2(z, q, Policy()); }\
+   \
+   template <class T, class U>\
+   inline typename boost::math::tools::promote_args<T, U>::type jacobi_theta3(T z, U q)\
+   { return boost::math::jacobi_theta3(z, q, Policy()); }\
+   \
+   template <class T, class U>\
+   inline typename boost::math::tools::promote_args<T, U>::type jacobi_theta4(T z, U q)\
+   { return boost::math::jacobi_theta4(z, q, Policy()); }\
+   \
+   template <class T, class U>\
+   inline typename boost::math::tools::promote_args<T, U>::type jacobi_theta1tau(T z, U q)\
+   { return boost::math::jacobi_theta1tau(z, q, Policy()); }\
+   \
+   template <class T, class U>\
+   inline typename boost::math::tools::promote_args<T, U>::type jacobi_theta2tau(T z, U q)\
+   { return boost::math::jacobi_theta2tau(z, q, Policy()); }\
+   \
+   template <class T, class U>\
+   inline typename boost::math::tools::promote_args<T, U>::type jacobi_theta3tau(T z, U q)\
+   { return boost::math::jacobi_theta3tau(z, q, Policy()); }\
+   \
+   template <class T, class U>\
+   inline typename boost::math::tools::promote_args<T, U>::type jacobi_theta4tau(T z, U q)\
+   { return boost::math::jacobi_theta4tau(z, q, Policy()); }\
+   \
+   template <class T, class U>\
+   inline typename boost::math::tools::promote_args<T, U>::type jacobi_theta3m1(T z, U q)\
+   { return boost::math::jacobi_theta3m1(z, q, Policy()); }\
+   \
+   template <class T, class U>\
+   inline typename boost::math::tools::promote_args<T, U>::type jacobi_theta4m1(T z, U q)\
+   { return boost::math::jacobi_theta4m1(z, q, Policy()); }\
+   \
+   template <class T, class U>\
+   inline typename boost::math::tools::promote_args<T, U>::type jacobi_theta3m1tau(T z, U q)\
+   { return boost::math::jacobi_theta3m1tau(z, q, Policy()); }\
+   \
+   template <class T, class U>\
+   inline typename boost::math::tools::promote_args<T, U>::type jacobi_theta4m1tau(T z, U q)\
+   { return boost::math::jacobi_theta4m1tau(z, q, Policy()); }\
+   \
    template <class T>\
    inline typename boost::math::tools::promote_args<T>::type airy_ai(T x)\
    {  return boost::math::airy_ai(x, Policy());  }\
@@ -1606,6 +1807,24 @@ template <class OutputIterator, class T>\
    OutputIterator tangent_t2n(int start_index, unsigned number_of_bernoullis_b2n, OutputIterator out_it)\
    { return boost::math::tangent_t2n<T>(start_index, number_of_bernoullis_b2n, out_it, Policy()); }\
    \
+   template <class T> inline typename boost::math::tools::promote_args<T>::type lambert_w0(T z) { return boost::math::lambert_w0(z, Policy()); }\
+   template <class T> inline typename boost::math::tools::promote_args<T>::type lambert_wm1(T z) { return boost::math::lambert_w0(z, Policy()); }\
+   template <class T> inline typename boost::math::tools::promote_args<T>::type lambert_w0_prime(T z) { return boost::math::lambert_w0(z, Policy()); }\
+   template <class T> inline typename boost::math::tools::promote_args<T>::type lambert_wm1_prime(T z) { return boost::math::lambert_w0(z, Policy()); }\
+   \
+   template <class T, class U>\
+   inline typename boost::math::tools::promote_args<T, U>::type hypergeometric_1F0(const T& a, const U& z)\
+   { return boost::math::hypergeometric_1F0(a, z, Policy()); }\
+   \
+   template <class T, class U>\
+   inline typename boost::math::tools::promote_args<T, U>::type hypergeometric_0F1(const T& a, const U& z)\
+   { return boost::math::hypergeometric_0F1(a, z, Policy()); }\
+   \
+   template <class T, class U, class V>\
+   inline typename boost::math::tools::promote_args<T, U>::type hypergeometric_2F0(const T& a1, const U& a2, const V& z)\
+   { return boost::math::hypergeometric_2F0(a1, a2, z, Policy()); }\
+   \
+
 
 
 

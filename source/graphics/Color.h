@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -32,8 +32,9 @@ typedef CVector4D RGBAColor;
 // one of several implementations depending on CPU caps.
 extern SColor4ub (*ConvertRGBColorTo4ub)(const RGBColor& src);
 
-// call once ia32_Init has run; detects CPU caps and activates the best
-// possible codepath.
+/**
+ * Detects CPU caps and activates the best possible codepath.
+ */
 extern void ColorActivateFastImpl();
 
 class CStr8;

@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -188,11 +188,11 @@ std::map<CStr, CConfigValueSet> CConfigDB::GetValuesWithPrefix(EConfigNamespace 
 	// Loop upwards so that values in later namespaces can override
 	// values in earlier namespaces
 	for (int search_ns = 0; search_ns <= ns; ++search_ns)
-		for (const std::pair<CStr, CConfigValueSet>& p : m_Map[search_ns])
+		for (const std::pair<const CStr, CConfigValueSet>& p : m_Map[search_ns])
 			if (boost::algorithm::starts_with(p.first, prefix))
 				ret[p.first] = p.second;
 
-	for (const std::pair<CStr, CConfigValueSet>& p : m_Map[CFG_COMMAND])
+	for (const std::pair<const CStr, CConfigValueSet>& p : m_Map[CFG_COMMAND])
 		if (boost::algorithm::starts_with(p.first, prefix))
 			ret[p.first] = p.second;
 
@@ -431,7 +431,8 @@ bool CConfigDB::WriteFile(EConfigNamespace ns, const VfsPath& path) const
 	shared_ptr<u8> buf;
 	AllocateAligned(buf, 1*MiB, maxSectorSize);
 	char* pos = (char*)buf.get();
-	for (const std::pair<CStr, CConfigValueSet>& p : m_Map[ns])
+
+	for (const std::pair<const CStr, CConfigValueSet>& p : m_Map[ns])
 	{
 		size_t i;
 		pos += sprintf(pos, "%s = ", p.first.c_str());

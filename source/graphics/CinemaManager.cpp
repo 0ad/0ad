@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -76,7 +76,7 @@ void CCinemaManager::DrawPaths() const
 	if (!cmpCinemaManager)
 		return;
 
-	for (const std::pair<CStrW, CCinemaPath>& p : cmpCinemaManager->GetPaths())
+	for (const std::pair<const CStrW, CCinemaPath>& p : cmpCinemaManager->GetPaths())
 	{
 		DrawSpline(p.second, CColor(0.2f, 0.2f, 1.f, 0.9f), 128, true);
 		DrawNodes(p.second, CColor(0.1f, 1.f, 0.f, 1.f));

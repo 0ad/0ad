@@ -6,14 +6,12 @@ class TechnologiesSubsection extends Subsection
 		this.CivTechs = Engine.GetGUIObjectByName("civTechs");
 	}
 
-	update(civInfo)
+	update(civCode)
 	{
-		let techs = [];
-		for (let faction of civInfo.Factions)
-			Array.prototype.push.apply(
-				techs,
-				faction.Technologies.map(tech => this.page.formatEntry(tech))
-			);
+		let techs = this.getTechnologyCaptions(
+			this.page.TemplateLister.getTemplateLists(civCode).techs.keys(),
+			civCode
+		);
 
 		techs.unshift(
 			this.page.formatHeading(

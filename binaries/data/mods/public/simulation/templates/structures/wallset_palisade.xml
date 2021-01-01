@@ -2,6 +2,7 @@
 <Entity parent="template_wallset">
   <Identity>
     <GenericName>Palisade</GenericName>
+    <Tooltip>Wall off an area. Build in own or neutral territory.</Tooltip>
     <VisibleClasses datatype="tokens">-Wall Palisade</VisibleClasses>
     <Icon>structures/palisade_wall.png</Icon>
     <RequiredTechnology>phase_village</RequiredTechnology>

@@ -767,7 +767,7 @@ BEGIN_COMMAND(MoveObjects)
 
 	void SetPos(const std::map<entity_id_t, CVector3D>& map)
 	{
-		for (const std::pair<entity_id_t, CVector3D>& p : map)
+		for (const std::pair<const entity_id_t, CVector3D>& p : map)
 		{
 			CmpPtr<ICmpPosition> cmpPosition(*g_Game->GetSimulation2(), p.first);
 			if (!cmpPosition)
@@ -859,7 +859,7 @@ BEGIN_COMMAND(RotateObjectsFromCenterPoint)
 
 	void SetPos(const std::map<entity_id_t, CVector3D>& position, const std::map<entity_id_t, float>& angle)
 	{
-		for (const std::pair<entity_id_t, CVector3D>& p : position)
+		for (const std::pair<const entity_id_t, CVector3D>& p : position)
 		{
 			CmpPtr<ICmpPosition> cmpPosition(*g_Game->GetSimulation2(), p.first);
 			if (!cmpPosition)
@@ -873,7 +873,7 @@ BEGIN_COMMAND(RotateObjectsFromCenterPoint)
 
 		}
 
-		for (const std::pair<entity_id_t, CVector3D>& p: position)
+		for (const std::pair<const entity_id_t, CVector3D>& p : position)
 			CheckObstructionAndUpdateVisual(p.first);
 	}
 
@@ -963,7 +963,7 @@ BEGIN_COMMAND(RotateObject)
 
 	void SetAngle(const std::map<entity_id_t, float>& angles)
 	{
-		for (const std::pair<entity_id_t, float>& p : angles)
+		for (const std::pair<const entity_id_t, float>& p : angles)
 		{
 			CmpPtr<ICmpPosition> cmpPosition(*g_Game->GetSimulation2(), p.first);
 			if (!cmpPosition)

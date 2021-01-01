@@ -402,10 +402,11 @@ void CProfileViewer::AddRootTable(AbstractProfileTable* table, bool front)
 
 namespace
 {
-	struct WriteTable
+	class WriteTable
 	{
-		std::ofstream& f;
-		WriteTable(std::ofstream& f) : f(f) {}
+	public:
+		WriteTable(std::ofstream& outputStream) : m_OutputStream(outputStream) {}
+		WriteTable(const WriteTable& writeTable) = default;
 
 		void operator() (AbstractProfileTable* table)
 		{
@@ -435,7 +436,7 @@ namespace
 
 			// Output data as a formatted table:
 
-			f << "\n\n" << table->GetTitle() << "\n";
+			m_OutputStream << "\n\n" << table->GetTitle() << "\n";
 
 			if (cols == 0) // avoid divide-by-zero
 				return;
@@ -443,14 +444,14 @@ namespace
 			for (size_t r = 0; r < data.size()/cols; ++r)
 			{
 				for (size_t c = 0; c < cols; ++c)
-					f << (c ? " | " : "\n")
+					m_OutputStream << (c ? " | " : "\n")
 					  << data[r*cols + c].Pad(PS_TRIM_RIGHT, columnWidths[c]);
 
 				// Add dividers under some rows. (Currently only the first, since
 				// that contains the column headers.)
 				if (r == 0)
 					for (size_t c = 0; c < cols; ++c)
-						f << (c ? "-|-" : "\n")
+						m_OutputStream << (c ? "-|-" : "\n")
 						  << CStr::Repeat("-", columnWidths[c]);
 			}
 		}
@@ -480,6 +481,7 @@ namespace
 		}
 
 	private:
+		std::ofstream& m_OutputStream;
 		const WriteTable& operator=(const WriteTable&);
 	};
 

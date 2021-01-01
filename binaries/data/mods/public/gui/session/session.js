@@ -10,6 +10,7 @@ const g_StartingResources = prepareForDropdown(g_Settings && g_Settings.Starting
 const g_VictoryConditions = g_Settings && g_Settings.VictoryConditions;
 
 var g_Ambient;
+var g_AutoFormation;
 var g_Chat;
 var g_Cheats;
 var g_DeveloperOverlay;
@@ -277,6 +278,7 @@ function init(initData, hotloadData)
 	g_PlayerViewControl.registerViewedPlayerChangeHandler(resetTemplates);
 
 	g_Ambient = new Ambient();
+	g_AutoFormation = new AutoFormation();
 	g_Chat = new Chat(g_PlayerViewControl, g_Cheats);
 	g_DeveloperOverlay = new DeveloperOverlay(g_PlayerViewControl, g_Selection);
 	g_DiplomacyDialog = new DiplomacyDialog(g_PlayerViewControl, g_DiplomacyColors);

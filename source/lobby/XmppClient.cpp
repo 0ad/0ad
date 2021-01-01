@@ -545,7 +545,7 @@ void XmppClient::GUIGetPlayerList(const ScriptInterface& scriptInterface, JS::Mu
 	ScriptInterface::CreateArray(rq, ret);
 	int j = 0;
 
-	for (const std::pair<glooxwrapper::string, SPlayer>& p : m_PlayerMap)
+	for (const std::pair<const glooxwrapper::string, SPlayer>& p : m_PlayerMap)
 	{
 		JS::RootedValue player(rq.cx);
 

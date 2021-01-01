@@ -247,7 +247,23 @@ UnitAI.prototype.UnitFsmSpec = {
 	},
 
 	// Individual orders:
-	// (these will switch the unit out of formation mode)
+
+	"Order.LeaveFormation": function() {
+		if (!this.IsFormationMember())
+		{
+			this.FinishOrder();
+			return;
+		}
+
+		let cmpFormation = Engine.QueryInterface(this.formationController, IID_Formation);
+		if (cmpFormation)
+		{
+			cmpFormation.SetRearrange(false);
+			// Calls FinishOrder();
+			cmpFormation.RemoveMembers([this.entity]);
+			cmpFormation.SetRearrange(true);
+		}
+	},
 
 	"Order.Stop": function(msg) {
 		this.StopMoving();
@@ -5129,6 +5145,23 @@ UnitAI.prototype.ShouldChaseTargetedEntity = function(target, force)
 
 //// External interface functions ////
 
+/**
+ * Order a unit to leave the formation it is in.
+ * Used to handle queued no-formation orders for units in formation.
+ */
+UnitAI.prototype.LeaveFormation = function(queued = true)
+{
+	// If queued, add the order even if we're not in formation,
+	// maybe we will be later.
+	if (!queued && !this.IsFormationMember())
+		return;
+
+	if (queued)
+		this.AddOrder("LeaveFormation", { "force": true }, queued);
+	else
+		this.PushOrderFront("LeaveFormation", { "force": true });
+};
+
 UnitAI.prototype.SetFormationController = function(ent)
 {
 	this.formationController = ent;
@@ -5156,7 +5189,7 @@ UnitAI.prototype.GetFormationController = function()
 
 UnitAI.prototype.GetFormationTemplate = function()
 {
-	return Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager).GetCurrentTemplateName(this.formationController) || "special/formations/null";
+	return Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager).GetCurrentTemplateName(this.formationController) || NULL_FORMATION;
 };
 
 UnitAI.prototype.MoveIntoFormation = function(cmd)

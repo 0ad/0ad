@@ -10,12 +10,31 @@ class TemplateParser
 		/**
 		 * Parsed Data Stores
 		 */
+		this.auras = {};
 		this.entities = {};
 		this.techs = {};
 		this.phases = {};
 		this.modifiers = {};
 
 		this.phaseList = [];
+	}
+
+	getAura(auraName)
+	{
+		if (auraName in this.auras)
+			return this.auras[auraName];
+
+		if (!AuraTemplateExists(auraName))
+			return null;
+
+		let template = this.TemplateLoader.loadAuraTemplate(auraName);
+		let parsed = GetAuraDataHelper(template);
+
+		if (template.civ)
+			parsed.civ = template.civ;
+
+		this.auras[auraName] = parsed;
+		return this.auras[auraName];
 	}
 
 	/**

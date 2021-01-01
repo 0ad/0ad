@@ -459,14 +459,14 @@ void CCmpTerritoryManager::CalculateTerritories()
 	// store the root influences to mark territory as connected
 	std::vector<entity_id_t> rootInfluenceEntities;
 
-	for (const std::pair<player_id_t, std::vector<entity_id_t> >& pair : influenceEntities)
+	for (const std::pair<const player_id_t, std::vector<entity_id_t>>& pair : influenceEntities)
 	{
 		// entityGrid stores the weight for a single entity, and is reset per entity
 		Grid<u32> entityGrid(tilesW, tilesH);
 		// playerGrid stores the combined weight of all entities for this player
 		Grid<u32> playerGrid(tilesW, tilesH);
 
-		u8 owner = (u8)pair.first;
+		u8 owner = static_cast<u8>(pair.first);
 		const std::vector<entity_id_t>& ents = pair.second;
 		// With 2^16 entities, we're safe against overflows as the weight is also limited to 2^16
 		ENSURE(ents.size() < 1 << 16);

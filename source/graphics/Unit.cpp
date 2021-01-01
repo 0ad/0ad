@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -90,7 +90,7 @@ void CUnit::SetEntitySelection(const CStr& key, const CStr& selection)
 
 void CUnit::SetEntitySelection(const std::map<CStr, CStr>& selections)
 {
-	for (const std::pair<CStr, CStr>& s : selections)
+	for (const std::pair<const CStr, CStr>& s : selections)
 		m_EntitySelections[s.first] = s.second.LowerCase();
 
 	ReloadObject();
@@ -105,7 +105,7 @@ void CUnit::SetActorSelections(const std::set<CStr>& selections)
 void CUnit::ReloadObject()
 {
 	std::set<CStr> entitySelections;
-	for (const std::pair<CStr, CStr>& selection : m_EntitySelections)
+	for (const std::pair<const CStr, CStr>& selection : m_EntitySelections)
 		entitySelections.insert(selection.second);
 	std::vector<std::set<CStr> > selections;
 	selections.push_back(entitySelections);

@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -40,6 +40,7 @@
 #include "renderer/RenderingOptions.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpTerrain.h"
+#include "simulation2/components/ICmpWaterManager.h"
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -381,13 +382,27 @@ void CModel::ValidatePosition()
 	// that doing so will cause a revalidation of this model (see recursion above).
 	m_PositionValid = true;
 
-	// re-position and validate all props
-	for (size_t j = 0; j < m_Props.size(); ++j)
+	CMatrix3D translate;
+	CVector3D objTranslation = m_Transform.GetTranslation();
+	float objectHeight = 0.0f;
+
+	CmpPtr<ICmpTerrain> cmpTerrain(m_Simulation, SYSTEM_ENTITY);
+	if (cmpTerrain)
+		objectHeight = cmpTerrain->GetExactGroundLevel(objTranslation.X, objTranslation.Z);
+
+	// Object height is incorrect for floating objects. We use water height instead.
+	CmpPtr<ICmpWaterManager> cmpWaterManager(m_Simulation, SYSTEM_ENTITY);
+	if (cmpWaterManager)
 	{
-		const Prop& prop=m_Props[j];
+		float waterHeight = cmpWaterManager->GetExactWaterLevel(objTranslation.X, objTranslation.Z);
+		if (waterHeight >= objectHeight && m_Flags & MODELFLAG_FLOATONWATER)
+			objectHeight = waterHeight;
+	}
 
+	// re-position and validate all props
+	for (const Prop& prop : m_Props)
+	{
 		CMatrix3D proptransform = prop.m_Point->m_Transform;
-
 		if (prop.m_Point->m_BoneIndex != 0xff)
 		{
 			CMatrix3D boneMatrix = m_BoneMatrices[prop.m_Point->m_BoneIndex];
@@ -402,22 +417,13 @@ void CModel::ValidatePosition()
 		}
 
 		// Adjust prop height to terrain level when needed
-		if (prop.m_MaxHeight != 0.f || prop.m_MinHeight != 0.f)
+		if (cmpTerrain && (prop.m_MaxHeight != 0.f || prop.m_MinHeight != 0.f))
 		{
-			CVector3D propTranslation = proptransform.GetTranslation();
-			CVector3D objTranslation = m_Transform.GetTranslation();
-
-			CmpPtr<ICmpTerrain> cmpTerrain(m_Simulation, SYSTEM_ENTITY);
-			if (cmpTerrain)
-			{
-				float objTerrain = cmpTerrain->GetExactGroundLevel(objTranslation.X, objTranslation.Z);
-				float propTerrain = cmpTerrain->GetExactGroundLevel(propTranslation.X, propTranslation.Z);
-				float translateHeight = std::min(prop.m_MaxHeight,
-				                                 std::max(prop.m_MinHeight, propTerrain - objTerrain));
-				CMatrix3D translate = CMatrix3D();
-				translate.SetTranslation(0.f, translateHeight, 0.f);
-				proptransform.Concatenate(translate);
-			}
+			const CVector3D& propTranslation = proptransform.GetTranslation();
+			const float propTerrain = cmpTerrain->GetExactGroundLevel(propTranslation.X, propTranslation.Z);
+			const float translateHeight = std::min(prop.m_MaxHeight, std::max(prop.m_MinHeight, propTerrain - objectHeight));
+			translate.SetTranslation(0.f, translateHeight, 0.f);
+			proptransform.Concatenate(translate);
 		}
 
 		prop.m_Model->SetTransform(proptransform);

@@ -52,7 +52,8 @@ var g_UnitActions =
 				"entities": selection,
 				"x": target.x,
 				"z": target.z,
-				"queued": queued
+				"queued": queued,
+				"formation": g_AutoFormation.getDefault()
 			});
 
 			DrawTargetMarker(target);
@@ -102,7 +103,8 @@ var g_UnitActions =
 				"x": target.x,
 				"z": target.z,
 				"targetClasses": targetClasses,
-				"queued": queued
+				"queued": queued,
+				"formation": g_AutoFormation.getDefault()
 			});
 
 			DrawTargetMarker(target);
@@ -146,7 +148,8 @@ var g_UnitActions =
 				"entities": selection,
 				"target": action.target,
 				"allowCapture": true,
-				"queued": queued
+				"queued": queued,
+				"formation": g_AutoFormation.getDefault()
 			});
 
 			Engine.GuiInterfaceCall("PlaySound", {
@@ -191,7 +194,8 @@ var g_UnitActions =
 				"entities": selection,
 				"target": action.target,
 				"queued": queued,
-				"allowCapture": false
+				"allowCapture": false,
+				"formation": g_AutoFormation.getDefault()
 			});
 
 			Engine.GuiInterfaceCall("PlaySound", {
@@ -244,7 +248,8 @@ var g_UnitActions =
 				"target": action.target,
 				"targetClasses": { "attack": g_PatrolTargets },
 				"queued": queued,
-				"allowCapture": false
+				"allowCapture": false,
+				"formation": g_AutoFormation.getDefault()
 			});
 
 			DrawTargetMarker(target);
@@ -293,7 +298,8 @@ var g_UnitActions =
 				"type": "heal",
 				"entities": selection,
 				"target": action.target,
-				"queued": queued
+				"queued": queued,
+				"formation": g_AutoFormation.getNull()
 			});
 
 			Engine.GuiInterfaceCall("PlaySound", {
@@ -358,7 +364,8 @@ var g_UnitActions =
 				"entities": selection,
 				"target": action.target,
 				"autocontinue": true,
-				"queued": queued
+				"queued": queued,
+				"formation": g_AutoFormation.getNull()
 			});
 
 			Engine.GuiInterfaceCall("PlaySound", {
@@ -415,7 +422,8 @@ var g_UnitActions =
 				"type": "gather",
 				"entities": selection,
 				"target": action.target,
-				"queued": queued
+				"queued": queued,
+				"formation": g_AutoFormation.getNull()
 			});
 
 			Engine.GuiInterfaceCall("PlaySound", {
@@ -465,7 +473,8 @@ var g_UnitActions =
 				"type": "returnresource",
 				"entities": selection,
 				"target": action.target,
-				"queued": queued
+				"queued": queued,
+				"formation": g_AutoFormation.getNull()
 			});
 
 			Engine.GuiInterfaceCall("PlaySound", {
@@ -574,7 +583,8 @@ var g_UnitActions =
 				"target": action.target,
 				"source": null,
 				"route": null,
-				"queued": queued
+				"queued": queued,
+				"formation": g_AutoFormation.getNull()
 			});
 
 			Engine.GuiInterfaceCall("PlaySound", {
@@ -674,7 +684,8 @@ var g_UnitActions =
 				"type": "garrison",
 				"entities": selection,
 				"target": action.target,
-				"queued": queued
+				"queued": queued,
+				"formation": g_AutoFormation.getNull()
 			});
 
 			Engine.GuiInterfaceCall("PlaySound", {
@@ -746,7 +757,8 @@ var g_UnitActions =
 				"type": "guard",
 				"entities": selection,
 				"target": action.target,
-				"queued": queued
+				"queued": queued,
+				"formation": g_AutoFormation.getDefault()
 			});
 
 			Engine.GuiInterfaceCall("PlaySound", {

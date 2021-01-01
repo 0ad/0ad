@@ -99,7 +99,7 @@ JS::Value JSI_ModIo::GetMods(ScriptInterface::CmptPrivate* pCmptPrivate)
 		JS::RootedValue m(rq.cx);
 		ScriptInterface::CreateObject(rq, &m);
 
-		for (const std::pair<std::string, std::string>& prop : mod.properties)
+		for (const std::pair<const std::string, std::string>& prop : mod.properties)
 			scriptInterface->SetProperty(m, prop.first.c_str(), prop.second, true);
 
 		scriptInterface->SetProperty(m, "dependencies", mod.dependencies, true);

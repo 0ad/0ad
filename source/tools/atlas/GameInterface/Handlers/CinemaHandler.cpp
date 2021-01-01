@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -491,9 +491,9 @@ QUERYHANDLER(PickPathNode)
 	CVector2D cursor;
 	msg->pos->GetScreenSpace(cursor.X, cursor.Y);
 
-	for (const std::pair<CStrW, CCinemaPath>& p : cmpCinemaManager->GetPaths())
+	for (const std::pair<const CStrW, CCinemaPath>& p : cmpCinemaManager->GetPaths())
 	{
-		const CCinemaPath& path = p.second;		
+		const CCinemaPath& path = p.second;
 		if (isPathNodePicked(path, cursor, node, false) || isPathNodePicked(path.GetTargetSpline(), cursor, node, true))
 		{
 			node.name = path.GetName();

@@ -50,10 +50,8 @@ public: // typedefs
 protected: // for use as base class only
 #if !defined(BOOST_NO_CXX11_DEFAULTED_FUNCTIONS) && !defined(BOOST_NO_CXX11_NON_PUBLIC_DEFAULTED_FUNCTIONS)
     static_visitor() = default;
-    ~static_visitor() = default;
 #else
     static_visitor()  BOOST_NOEXCEPT { }
-    ~static_visitor()  BOOST_NOEXCEPT { }
 #endif
 };
 

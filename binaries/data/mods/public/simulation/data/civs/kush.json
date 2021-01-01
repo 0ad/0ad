@@ -22,80 +22,11 @@
 			"Type": "peace"
 		}
 	],
-	"Factions": [
-		{
-			"Name": "Kushite Africans",
-			"Description": "The great African kingdom that straddled the Nile River in Nubia, in the South of Egypt.",
-			"Technologies": [
-				{
-					"Name": "Archery Tradition",
-					"History": "The Kushites had a tradition of fine archery and a penchant for using massed archers in battle.",
-					"Description": "Archers −10% training time, +8 attack range, and −10% ranged attack spread."
-				},
-				{
-					"Name": "Monumental Architecture",
-					"Description": "Civic Structures +20% build time, +20% health, and +20% capture points."
-				}
-			],
-			"Heroes": [
-				{
-					"Name": "Nastasen",
-					"Class": "",
-					"Armament": "",
-					"Emblem": "",
-					"History": ""
-				},
-				{
-					"Name": "Arakamani",
-					"Class": "",
-					"Armament": "",
-					"Emblem": "",
-					"History": ""
-				},
-				{
-					"Name": "Amanirenas",
-					"Class": "",
-					"Armament": "",
-					"Emblem": "",
-					"History": ""
-				}
-			]
-		}
-	],
 	"CivBonuses": [],
 	"TeamBonuses": [
 		{
 			"Name": "Elephant Suppliers",
 			"Description": "Allied Elephants −20% resource costs and training time."
-		}
-	],
-	"Structures": [
-		{
-			"Name": "Temple of Amun",
-			"Class": "",
-			"Emblem": "",
-			"History": "",
-			"Requirements": "",
-			"Phase": "City",
-			"Special": "The Kushites can upgrade individual Temples to Temples of Amun, which can train Napatan Temple Guard champions and heal units faster."
-		},
-		{
-			"Name": "Temple of Apedemak",
-			"Class": "",
-			"Emblem": "",
-			"History": "",
-			"Requirements": "",
-			"Phase": "City",
-			"Special": "The Kushites can upgrade individual Temples to Temples of Apedemak, which can train Meroe Temple Guard champions and heal units faster."
-		},
-		{
-			"Name": "Kushite Pyramids",
-			"Class": "",
-			"Emblem": "",
-			"History": "The Kushites built over 200 pyramids in Nubia.",
-			"Requirements": "",
-			"Phase": "Village",
-			"Special": "Building a Small Kushite Pyramid unlocks the Town Phase. Building a Large Kushite Pyramid unlocks the City Phase. And each pyramid built adds +10% territory effect to Civic Centers."
 		}
 	],
 	"StartEntities": [

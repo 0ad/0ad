@@ -8,6 +8,8 @@ const UPGRADING_CHOSEN_OTHER = -1;
 
 function canMoveSelectionIntoFormation(formationTemplate)
 {
+	if (formationTemplate == NULL_FORMATION)
+		return true;
 	if (!(formationTemplate in g_canMoveIntoFormation))
 		g_canMoveIntoFormation[formationTemplate] = Engine.GuiInterfaceCall("CanMoveEntsIntoFormation", {
 			"ents": g_Selection.toList(),
@@ -332,7 +334,7 @@ function performFormation(entities, formationTemplate)
 	Engine.PostNetworkCommand({
 		"type": "formation",
 		"entities": entities,
-		"name": formationTemplate
+		"formation": formationTemplate
 	});
 }
 

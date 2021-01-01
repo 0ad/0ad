@@ -22,77 +22,12 @@
 			"Type": "peace"
 		}
 	],
-	"Factions": [
-		{
-			"Name": "Ptolemaic Egyptians",
-			"Description": "The great Greek-Macedonian dynastic rule over Ancient Egypt.",
-			"Technologies": [
-				{
-					"Name": "Hellenistic Metropolis",
-					"History": "Beginning with Alexander, the Hellenistic monarchs founded many cities throughout their empires, where Greek culture and art blended with local customs to create the motley Hellenistic civilization.",
-					"Description": "Civic Centers +100% health and capture points, double default arrows."
-				}
-			],
-			"Heroes": [
-				{
-					"Name": "Ptolemaios A' Soter",
-					"Class": "",
-					"Armament": "",
-					"Emblem": "",
-					"History": ""
-				},
-				{
-					"Name": "Ptolemaios D' Philopater",
-					"Class": "",
-					"Armament": "",
-					"Emblem": "",
-					"History": ""
-				},
-				{
-					"Name": "Kleopatra H' Philopater",
-					"Class": "",
-					"Armament": "",
-					"Emblem": "",
-					"History": ""
-				}
-			]
-		}
-	],
 	"CivBonuses": [],
 	"TeamBonuses": [
 		{
 			"Name": "Breadbasket of the Mediterranean",
 			"History": "Egypt was a net exporter of grain, so much so that large cities such as Athens, Antioch, and Rome came to rely upon Egyptian grain in order to feed their masses.",
 			"Description": "Allies +1.0 food trickle rate."
-		}
-	],
-	"Structures": [
-		{
-			"Name": "Library",
-			"Class": "",
-			"Emblem": "",
-			"History": "Alexander the Great founded libraries all over his new empire. These became a center of learning for an entirely new synthesized culture: the Hellenistic culture.",
-			"Requirements": "",
-			"Phase": "City",
-			"Special": "Maximum of 1 built. All Special Technologies and some regular city-phase technologies are researched here. Building one reduces the cost of all other remaining technologies by 10%."
-		},
-		{
-			"Name": "Stratópedo Misthophóron",
-			"Class": "",
-			"Emblem": "",
-			"History": "The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and foreign mercenaries for the bulk of its military force, mainly because the loyalty of native Egyptian units was often suspect. Indeed, during one native uprising, Upper Egypt was lost to the Ptolemies for decades. Mercenaries were often battle-hardened and their loyalty could be bought, sometimes cheaply, sometimes not cheaply. This was of no matter, since Egypt under the Ptolemies was so prosperous as to be the richest of Alexander's successor states.",
-			"Requirements": "",
-			"Phase": "Town",
-			"Special": "Must be constructed in neutral territory. Has no territory radius effect. Trains mercenaries."
-		},
-		{
-			"Name": "Lighthouse",
-			"Class": "",
-			"Emblem": "",
-			"History": "The Ptolemaic dynasty in Egypt built the magnificent Lighthouse of Alexandria near the harbor mouth of that Nile Delta city. This structure could be seen for many kilometers out to sea and was one of the Seven Wonders of the World.",
-			"Requirements": "",
-			"Phase": "City",
-			"Special": "When built along the shoreline, removes shroud of darkness over all the water, revealing all the coast lines on the map. Limit: 1."
 		}
 	],
 	"WallSets": [

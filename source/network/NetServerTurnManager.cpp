@@ -72,7 +72,7 @@ void CNetServerTurnManager::NotifyFinishedClientCommands(CNetServerSession& sess
 void CNetServerTurnManager::CheckClientsReady()
 {
 	// See if all clients (including self) are ready for a new turn
-	for (const std::pair<int, u32>& clientReady : m_ClientsReady)
+	for (const std::pair<const int, u32>& clientReady : m_ClientsReady)
 	{
 		NETSERVERTURN_LOG("  %d: %d <=? %d\n", clientReady.first, clientReady.second, m_ReadyTurn);
 		if (clientReady.second <= m_ReadyTurn)
@@ -122,7 +122,7 @@ void CNetServerTurnManager::NotifyFinishedClientUpdate(CNetServerSession& sessio
 
 	// Find the newest turn which we know all clients have simulated
 	u32 newest = std::numeric_limits<u32>::max();
-	for (const std::pair<int, u32>& clientSimulated : m_ClientsSimulated)
+	for (const std::pair<const int, u32>& clientSimulated : m_ClientsSimulated)
 		if (clientSimulated.second < newest)
 			newest = clientSimulated.second;
 
@@ -137,7 +137,7 @@ void CNetServerTurnManager::NotifyFinishedClientUpdate(CNetServerSession& sessio
 
 		// Find all players that are OOS on that turn
 		std::vector<CStrW> OOSPlayerNames;
-		for (const std::pair<int, std::string>& hashPair : clientStateHash.second)
+		for (const std::pair<const int, std::string>& hashPair : clientStateHash.second)
 		{
 			NETSERVERTURN_LOG("sync check %d: %d = %hs\n", it->first, cit->first, Hexify(cit->second).c_str());
 			if (hashPair.second != expected)

@@ -277,7 +277,7 @@ CSoundManager::~CSoundManager()
 	}
 	AL_CHECK;
 
-	for (const std::pair<std::wstring, CSoundGroup*>& p : m_SoundGroups)
+	for (const std::pair<const std::wstring, CSoundGroup*>& p : m_SoundGroups)
 		delete p.second;
 	m_SoundGroups.clear();
 

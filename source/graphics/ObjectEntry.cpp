@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -46,7 +46,7 @@ CObjectEntry::CObjectEntry(CObjectBase* base, CSimulation2& simulation) :
 
 CObjectEntry::~CObjectEntry()
 {
-	for (const std::pair<CStr, CSkeletonAnim*>& anim : m_Animations)
+	for (const std::pair<const CStr, CSkeletonAnim*>& anim : m_Animations)
 		delete anim.second;
 
 	delete m_Model;
@@ -246,10 +246,15 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 			LOGERROR("Failed to find matching prop point called \"%s\" in model \"%s\" for actor \"%s\"", ppn, m_ModelName.string8(), utf8_from_wstring(m_Base->m_ShortName));
 	}
 
-	// setup flags
+	// Setup flags.
 	if (m_Base->m_Properties.m_CastShadows)
 	{
-		model->SetFlags(model->GetFlags()|MODELFLAG_CASTSHADOWS);
+		model->SetFlags(model->GetFlags() | MODELFLAG_CASTSHADOWS);
+	}
+
+	if (m_Base->m_Properties.m_FloatOnWater)
+	{
+		model->SetFlags(model->GetFlags() | MODELFLAG_FLOATONWATER);
 	}
 
 	return true;

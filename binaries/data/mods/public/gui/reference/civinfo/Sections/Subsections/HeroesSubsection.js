@@ -6,14 +6,13 @@ class HeroesSubsection extends Subsection
 		this.CivHeroes = Engine.GetGUIObjectByName("civHeroes");
 	}
 
-	update(civInfo)
+	update(civCode)
 	{
-		let heroes = [];
-		for (let faction of civInfo.Factions)
-			Array.prototype.push.apply(
-				heroes,
-				faction.Heroes.map(hero => this.page.formatEntry(hero))
-			);
+		let heroes = this.getEntityCaptions(
+			this.page.TemplateLister.getTemplateLists(civCode).units.keys(),
+			this.IdentifyingClassList,
+			civCode
+		);
 
 		heroes.unshift(
 			this.page.formatHeading(
@@ -28,3 +27,6 @@ class HeroesSubsection extends Subsection
 
 HeroesSubsection.prototype.HeadingCaption =
 	count => translatePlural("Hero", "Heroes", count);
+
+HeroesSubsection.prototype.IdentifyingClassList =
+	["Hero"];

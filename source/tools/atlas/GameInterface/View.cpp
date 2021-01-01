@@ -179,7 +179,7 @@ AtlasViewGame::AtlasViewGame()
 
 AtlasViewGame::~AtlasViewGame()
 {
-	for (const std::pair<std::wstring, SimState*>& p : m_SavedStates)
+	for (const std::pair<const std::wstring, SimState*>& p : m_SavedStates)
 		delete p.second;
 }
 

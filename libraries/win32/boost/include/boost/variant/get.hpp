@@ -4,7 +4,7 @@
 //-----------------------------------------------------------------------------
 //
 // Copyright (c) 2003 Eric Friedman, Itay Maman
-// Copyright (c) 2014 Antony Polukhin
+// Copyright (c) 2014-2020 Antony Polukhin
 //
 // Distributed under the Boost Software License, Version 1.0. (See
 // accompanying file LICENSE_1_0.txt or copy at
@@ -44,7 +44,7 @@ class BOOST_SYMBOL_VISIBLE bad_get
 {
 public: // std::exception implementation
 
-    virtual const char * what() const BOOST_NOEXCEPT_OR_NOTHROW
+    const char * what() const BOOST_NOEXCEPT_OR_NOTHROW BOOST_OVERRIDE
     {
         return "boost::bad_get: "
                "failed value get using boost::get";
@@ -99,11 +99,16 @@ public: // visitor interfaces
 }} // namespace detail::variant
 
 #ifndef BOOST_VARIANT_AUX_GET_EXPLICIT_TEMPLATE_TYPE
-#   if !BOOST_WORKAROUND(__BORLANDC__, BOOST_TESTED_AT(0x0551))
+#   if !BOOST_WORKAROUND(BOOST_BORLANDC, BOOST_TESTED_AT(0x0551))
 #       define BOOST_VARIANT_AUX_GET_EXPLICIT_TEMPLATE_TYPE(t)
 #   else
-#       define BOOST_VARIANT_AUX_GET_EXPLICIT_TEMPLATE_TYPE(t)  \
-        , t* = 0
+#       if defined(BOOST_NO_NULLPTR)
+#           define BOOST_VARIANT_AUX_GET_EXPLICIT_TEMPLATE_TYPE(t)  \
+            , t* = 0
+#       else
+#           define BOOST_VARIANT_AUX_GET_EXPLICIT_TEMPLATE_TYPE(t)  \
+            , t* = nullptr
+#       endif
 #   endif
 #endif
 
@@ -173,6 +178,12 @@ relaxed_get(
 }
 
 #ifndef BOOST_NO_CXX11_RVALUE_REFERENCES
+
+#if defined(BOOST_MSVC) && (_MSC_VER < 1900) // MSVC-2014 has fixed the incorrect diagnostics.
+#   pragma warning(push)
+#   pragma warning(disable: 4172) // returning address of local variable or temporary
+#endif
+
 template <typename U, BOOST_VARIANT_ENUM_PARAMS(typename T) >
 inline
     U&&
@@ -188,6 +199,11 @@ relaxed_get(
         boost::throw_exception(bad_get());
     return static_cast<U&&>(*result);
 }
+
+#if defined(BOOST_MSVC) && (_MSC_VER < 1900)
+#   pragma warning(pop)
+#endif
+
 #endif
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////

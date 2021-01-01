@@ -22,47 +22,6 @@
 			"Type": "peace"
 		}
 	],
-	"Factions": [
-		{
-			"Name": "Mauryan Indians",
-			"Description": "",
-			"Technologies": [
-				{
-					"Name": "Archery Tradition",
-					"History": "The Indian peoples had a tradition of fine archery and a penchant for using massed archers in battle.",
-					"Description": "Archers −10% training time, +8 attack range, and −10% ranged attack spread."
-				},
-				{
-					"Name": "Wootz Steel",
-					"History": "Secret steel working techniques give sword blades distinctive and beautiful markings. Not only that, but the steel's hardness is unparalleled.",
-					"Description": "Swordsmen +20% attack damage."
-				}
-			],
-			"Heroes": [
-				{
-					"Name": "Chandragupta Maurya",
-					"Class": "",
-					"Armament": "",
-					"Emblem": "",
-					"History": "Founder of the Mauryan Empire."
-				},
-				{
-					"Name": "Ashoka the Great",
-					"Class": "",
-					"Armament": "",
-					"Emblem": "",
-					"History": "Last great emperor of the Mauryan dynasty."
-				},
-				{
-					"Name": "Acharya Chāṇakya",
-					"Class": "",
-					"Armament": "",
-					"Emblem": "",
-					"History": "Great teacher and advisor to Chandragupta Maurya."
-				}
-			]
-		}
-	],
 	"CivBonuses": [
 		{
 			"Name": "Emperor of Emperors.",
@@ -80,26 +39,6 @@
 			"Name": "Ashoka's Religious Support",
 			"History": "Ashoka the Great sent embassies West to spread knowledge of the Buddha.",
 			"Description": "Allied Temples −50% resource costs and building time; Temple technologies −50% resource costs and research time."
-		}
-	],
-	"Structures": [
-		{
-			"Name": "Elephant Stable",
-			"Class": "",
-			"Emblem": "",
-			"History": "",
-			"Phase": "Town",
-			"Requirements": "",
-			"Special": "Train Elephants and research Elephant technologies."
-		},
-		{
-			"Name": "Edict Pillar of Ashoka",
-			"Class": "",
-			"Emblem": "",
-			"History": "",
-			"Phase": "City",
-			"Requirements": "Ashoka Hero.",
-			"Special": "Contentment: +10% Health and +10% resource gathering rates for all citizens and allied citizens within its range. Can be built anywhere except in enemy territory. Max Built: 10."
 		}
 	],
 	"WallSets": [

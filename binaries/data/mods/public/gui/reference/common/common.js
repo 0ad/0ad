@@ -26,3 +26,8 @@ function TechnologyTemplateExists(templateName)
 {
 	return Engine.FileExists(g_Page.TemplateLoader.TechnologyPath + templateName + ".json");
 }
+
+function AuraTemplateExists(templateName)
+{
+	return Engine.FileExists(g_Page.TemplateLoader.AuraPath + templateName + ".json");
+}

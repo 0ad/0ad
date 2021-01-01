@@ -70,7 +70,7 @@ struct grammar_definition
         {   // Does _not_ copy the helpers member !
         }
 
-        grammar_helper_list& operator=(grammar_helper_list const& x)
+        grammar_helper_list& operator=(grammar_helper_list const& /*x*/)
         {   // Does _not_ copy the helpers member !
             return *this;
         }
@@ -170,7 +170,7 @@ struct grammar_definition
         }
 
         int
-        undefine(grammar_t* target_grammar)
+        undefine(grammar_t* target_grammar) BOOST_OVERRIDE
         {
             typename grammar_t::object_id id = target_grammar->get_object_id();
 

@@ -16,6 +16,7 @@ class TemplateLoader
 		 * Partly-composed data.
 		 */
 		this.autoResearchTechList = this.findAllAutoResearchedTechs();
+		this.teamBonusAuraList = this.findAllTeamBonusAuras();
 	}
 
 	/**
@@ -197,6 +198,33 @@ class TemplateLoader
 	}
 
 	/**
+	 * Iterates through and loads all team bonus auras.
+	 *
+	 * We make an assumption in this method: that all team bonus auras are
+	 * in a single folder.
+	 *
+	 * Team bonuses must have a "civ" attribute to indicate what civ they
+	 * belong to.
+	 *
+	 * @return {array} List of teambonus auras
+	 */
+	findAllTeamBonusAuras()
+	{
+		let auraList = [];
+		let path = this.AuraPath + TemplateLoader.prototype.AuraTeamBonusSubpath;
+		for (let templateName of listFiles(path, ".json", true))
+		{
+			let filename = TemplateLoader.prototype.AuraTeamBonusSubpath + templateName;
+			let data = this.loadAuraTemplate(filename);
+			if (!data || !data.civ)
+				continue;
+
+			auraList.push(filename);
+		}
+		return auraList;
+	}
+
+	/**
 	 * Returns the name of a template's base form (without `_house`, `_trireme`, or similar),
 	 * or the template's own name if the base is of a different promotion rank.
 	 */
@@ -252,6 +280,7 @@ class TemplateLoader
  * It might be nice if we could get these from somewhere, instead of having them hardcoded here.
  */
 TemplateLoader.prototype.AuraPath = "simulation/data/auras/";
+TemplateLoader.prototype.AuraTeamBonusSubpath = "teambonuses/";
 TemplateLoader.prototype.TechnologyPath = "simulation/data/technologies/";
 
 TemplateLoader.prototype.DefaultCiv = "gaia";

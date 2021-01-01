@@ -310,7 +310,7 @@ g_SelectionPanels.Formation = {
 		if (!g_FormationsInfo.has(data.item))
 			g_FormationsInfo.set(data.item, Engine.GuiInterfaceCall("GetFormationInfoFromTemplate", { "templateName": data.item }));
 
-		let formationOk = data.item == "special/formations/null" || canMoveSelectionIntoFormation(data.item);
+		let formationOk = canMoveSelectionIntoFormation(data.item);
 		let unitIds = data.unitEntStates.map(state => state.id);
 		let formationSelected = Engine.GuiInterfaceCall("IsFormationSelected", {
 			"ents": unitIds,
@@ -321,8 +321,21 @@ g_SelectionPanels.Formation = {
 			performFormation(unitIds, data.item);
 		};
 
+		data.button.onMouseRightPress = () => g_AutoFormation.setDefault(data.item);
+
 		let formationInfo = g_FormationsInfo.get(data.item);
 		let tooltip = translate(formationInfo.name);
+
+		let isDefaultFormation = g_AutoFormation.isDefault(data.item);
+		if (data.item === NULL_FORMATION)
+			tooltip += "\n" + (isDefaultFormation ?
+				translate("Default formation is disabled.") :
+				translate("Right-click to disable the default formation feature."));
+		else
+			tooltip += "\n" + (isDefaultFormation ?
+				translate("This is the default formation, used for movement orders.") :
+				translate("Right-click to set this as the default formation."));
+
 		if (!formationOk && formationInfo.tooltip)
 			tooltip += "\n" + coloredText(translate(formationInfo.tooltip), "red");
 		data.button.tooltip = tooltip;
@@ -330,6 +343,7 @@ g_SelectionPanels.Formation = {
 		data.button.enabled = formationOk && controlsPlayer(data.player);
 		let grayscale = formationOk ? "" : "grayscale:";
 		data.guiSelection.hidden = !formationSelected;
+		data.countDisplay.hidden = !isDefaultFormation;
 		data.icon.sprite = "stretched:" + grayscale + "session/icons/" + formationInfo.icon;
 
 		setPanelObjectPosition(data.button, data.i, data.rowLength);

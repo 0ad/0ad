@@ -277,7 +277,7 @@ void CNetClient::PostPlayerAssignmentsToScript()
 	JS::RootedValue newAssignments(rq.cx);
 	ScriptInterface::CreateObject(rq, &newAssignments);
 
-	for (const std::pair<CStr, PlayerAssignment>& p : m_PlayerAssignments)
+	for (const std::pair<const CStr, PlayerAssignment>& p : m_PlayerAssignments)
 	{
 		JS::RootedValue assignment(rq.cx);
 

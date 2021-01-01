@@ -40,7 +40,7 @@ static_assert(SDL_USEREVENT_ == SDL_USEREVENT, "SDL_USEREVENT_ is not the same t
 // all key combinations that trigger it.
 static void LoadConfigBindings()
 {
-	for (const std::pair<CStr, CConfigValueSet>& configPair : g_ConfigDB.GetValuesWithPrefix(CFG_COMMAND, "hotkey."))
+	for (const std::pair<const CStr, CConfigValueSet>& configPair : g_ConfigDB.GetValuesWithPrefix(CFG_COMMAND, "hotkey."))
 	{
 		std::string hotkeyName = configPair.first.substr(7); // strip the "hotkey." prefix
 		for (const CStr& hotkey : configPair.second)
@@ -93,7 +93,7 @@ void LoadHotkeys()
 	// Set up the state of the hotkeys given no key is down.
 	// i.e. find those hotkeys triggered by all negations.
 
-	for (const std::pair<int, KeyMapping>& p : g_HotkeyMap)
+	for (const std::pair<const int, KeyMapping>& p : g_HotkeyMap)
 		for (const SHotkeyMapping& hotkey : p.second)
 		{
 			if (!hotkey.negated)

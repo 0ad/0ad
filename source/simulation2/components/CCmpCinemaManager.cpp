@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -65,7 +65,7 @@ public:
 		serializer.Bool("MapRevealed", m_MapRevealed);
 
 		serializer.NumberU32_Unbounded("NumberOfPaths", m_Paths.size());
-		for (const std::pair<CStrW, CCinemaPath>& it : m_Paths)
+		for (const std::pair<const CStrW, CCinemaPath>& it : m_Paths)
 			SerializePath(it.second, serializer);
 
 		serializer.NumberU32_Unbounded("NumberOfQueuedPaths", m_PathQueue.size());

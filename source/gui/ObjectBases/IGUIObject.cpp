@@ -74,7 +74,7 @@ IGUIObject::IGUIObject(CGUI& pGUI)
 
 IGUIObject::~IGUIObject()
 {
-	for (const std::pair<CStr, IGUISetting*>& p : m_Settings)
+	for (const std::pair<const CStr, IGUISetting*>& p : m_Settings)
 		delete p.second;
 
 	if (!m_ScriptHandlers.empty())
@@ -282,7 +282,7 @@ bool IGUIObject::ApplyStyle(const CStr& StyleName)
 	// Other styles are reported if they specify a Setting that does not exist,
 	// so that the XML author is informed and can correct the style.
 
-	for (const std::pair<CStr, CStrW>& p : m_pGUI.GetStyle(StyleName).m_SettingsDefaults)
+	for (const std::pair<const CStr, CStrW>& p : m_pGUI.GetStyle(StyleName).m_SettingsDefaults)
 	{
 		if (SettingExists(p.first))
 			SetSettingFromString(p.first, p.second, true);

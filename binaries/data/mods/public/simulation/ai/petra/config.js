@@ -59,7 +59,6 @@ PETRA.Config = function(difficulty, behavior)
 		"athen": [
 			"structures/{civ}/gymnasium",
 			"structures/{civ}/prytaneion",
-			"structures/{civ}/royal_stoa",
 			"structures/{civ}/theater"
 		],
 		"brit": [],
@@ -89,8 +88,7 @@ PETRA.Config = function(difficulty, behavior)
 			"structures/{civ}/pillar_ashoka"
 		],
 		"pers": [
-			"structures/{civ}/apadana",
-			"structures/{civ}/hall"
+			"structures/{civ}/apadana"
 		],
 		"ptol": [
 			"structures/{civ}/library"
@@ -103,7 +101,6 @@ PETRA.Config = function(difficulty, behavior)
 			"structures/{civ}/library"
 		],
 		"spart": [
-			"structures/{civ}/royal_stoa",
 			"structures/{civ}/syssiton",
 			"structures/{civ}/theater"
 		]

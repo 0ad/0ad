@@ -288,7 +288,7 @@ private:
 	// annoying and inefficient. we allow either type of separators,
 	// appending whichever was first encountered. when modifying the path,
 	// we ensure the same separator is used.
-	wchar_t separator;
+	wchar_t separator = L'/';
 };
 
 static inline std::wostream& operator<<(std::wostream& s, const Path& path)

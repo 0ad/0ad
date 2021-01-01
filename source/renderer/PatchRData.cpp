@@ -1131,7 +1131,7 @@ void CPatchRData::RenderStreams(const std::vector<CPatchRData*>& patches, const 
 	ENSURE(!(streamflags & ~(STREAM_POS|STREAM_POSTOUV0|STREAM_POSTOUV1)));
 
  	// Render each batch
-	for (const std::pair<CVertexBuffer*, StreamIndexBufferBatches>& streamBatch : batches)
+	for (const std::pair<CVertexBuffer* const, StreamIndexBufferBatches>& streamBatch : batches)
 	{
 		GLsizei stride = sizeof(SBaseVertex);
 		SBaseVertex *base = (SBaseVertex *)streamBatch.first->Bind();
@@ -1144,7 +1144,7 @@ void CPatchRData::RenderStreams(const std::vector<CPatchRData*>& patches, const 
 
 		shader->AssertPointersBound();
 
-		for (const std::pair<CVertexBuffer*, StreamBatchElements>& batchIndexBuffer : streamBatch.second)
+		for (const std::pair<CVertexBuffer* const, StreamBatchElements>& batchIndexBuffer : streamBatch.second)
 		{
 			batchIndexBuffer.first->Bind();
 

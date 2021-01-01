@@ -1,4 +1,4 @@
-/* Copyright (c) 2019 Wildfire Games.
+/* Copyright (c) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -78,6 +78,9 @@ inline void ignore_result(const T&) {}
  * NOTHROW_DEFINE void function() {}
  **/
 #if GCC_VERSION
+# define NOTHROW_DECLARE __attribute__((nothrow))
+# define NOTHROW_DEFINE	// not supported for definitions
+#elif CLANG_VERSION
 # define NOTHROW_DECLARE __attribute__((nothrow))
 # define NOTHROW_DEFINE	// not supported for definitions
 #elif MSC_VERSION

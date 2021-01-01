@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,15 +21,15 @@
 
 #include "graphics/SColor.h"
 #include "maths/MathUtil.h"
+#include "lib/sse.h"
 #include "ps/CLogger.h"
 #include "ps/CStr.h"
 
-#if HAVE_SSE
-# include <xmmintrin.h>
-# include "lib/sysdep/arch/x86_x64/x86_x64.h"
+#if COMPILER_HAS_SSE
+#include <xmmintrin.h>
 #endif
 
-static SColor4ub fallback_ConvertRGBColorTo4ub(const RGBColor& src)
+static SColor4ub ConvertRGBColorTo4ubFallback(const RGBColor& src)
 {
 	SColor4ub result;
 	result.R = Clamp(static_cast<int>(src.X * 255), 0, 255);
@@ -40,12 +40,12 @@ static SColor4ub fallback_ConvertRGBColorTo4ub(const RGBColor& src)
 }
 
 // on IA32, this is replaced by an SSE assembly version in ia32.cpp
-SColor4ub (*ConvertRGBColorTo4ub)(const RGBColor& src) = fallback_ConvertRGBColorTo4ub;
+SColor4ub (*ConvertRGBColorTo4ub)(const RGBColor& src) = ConvertRGBColorTo4ubFallback;
 
 
 // Assembler-optimized function for color conversion
-#if HAVE_SSE
-static SColor4ub sse_ConvertRGBColorTo4ub(const RGBColor& src)
+#if COMPILER_HAS_SSE
+static SColor4ub ConvertRGBColorTo4ubSSE(const RGBColor& src)
 {
 	const __m128 zero = _mm_setzero_ps();
 	const __m128 _255 = _mm_set_ss(255.0f);
@@ -77,10 +77,10 @@ static SColor4ub sse_ConvertRGBColorTo4ub(const RGBColor& src)
 
 void ColorActivateFastImpl()
 {
-#if HAVE_SSE
-	if (x86_x64::Cap(x86_x64::CAP_SSE))
+#if COMPILER_HAS_SSE
+	if (HostHasSSE())
 	{
-		ConvertRGBColorTo4ub = sse_ConvertRGBColorTo4ub;
+		ConvertRGBColorTo4ub = ConvertRGBColorTo4ubSSE;
 		return;
 	}
 #endif
