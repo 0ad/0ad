@@ -11,7 +11,7 @@ class GameplaySection
 		this.TechnologiesSubsection = new TechnologiesSubsection(this.page);
 	}
 
-	update(civInfo)
+	update(civCode, civInfo)
 	{
 		this.CivGameplayHeading.caption =
 			this.page.formatHeading(
@@ -19,10 +19,10 @@ class GameplaySection
 				this.page.SectionHeaderSize
 			);
 
-		this.BonusesSubsection.update(civInfo);
-		this.TechnologiesSubsection.update(civInfo);
-		this.StructuresSubsection.update(civInfo);
-		this.HeroesSubsection.update(civInfo);
+		this.BonusesSubsection.update(civCode, civInfo);
+		this.TechnologiesSubsection.update(civCode);
+		this.StructuresSubsection.update(civCode);
+		this.HeroesSubsection.update(civCode);
 	}
 }
 

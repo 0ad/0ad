@@ -2,6 +2,7 @@
 	"type": "global",
 	"affects": ["Trader !Ship"],
 	"affectedPlayers": ["ExclusiveMutualAlly"],
+	"civ": "pers",
 	"modifications": [
 		{ "value": "Trader/GainMultiplier", "multiply": 1.15 }
 	],

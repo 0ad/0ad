@@ -6,9 +6,14 @@ class StructuresSubsection extends Subsection
 		this.CivStructures = Engine.GetGUIObjectByName("civStructures");
 	}
 
-	update(civInfo)
+	update(civCode)
 	{
-		let structures = civInfo.Structures.map(bonus => this.page.formatEntry(bonus));
+		let structures = this.getEntityCaptions(
+			this.page.TemplateLister.getTemplateLists(civCode).structures.keys(),
+			this.IdentifyingClassList,
+			civCode
+		);
+
 		structures.unshift(
 			this.page.formatHeading(
 				this.HeadingCaption(structures.length),
@@ -22,3 +27,6 @@ class StructuresSubsection extends Subsection
 
 StructuresSubsection.prototype.HeadingCaption =
 	count => translatePlural("Special Structure", "Special Structures", count);
+
+StructuresSubsection.prototype.IdentifyingClassList =
+	[["SpecialBuilding"], ["Wonder"]];

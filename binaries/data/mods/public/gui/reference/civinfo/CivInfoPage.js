@@ -40,7 +40,7 @@ class CivInfoPage extends ReferencePage
 			error(sprintf("Error loading civ data for \"%(code)s\"", { "code": civCode }));
 
 		// Update civ gameplay display
-		this.gameplaySection.update(civInfo);
+		this.gameplaySection.update(this.activeCiv, civInfo);
 
 		// Update civ history display
 		this.historySection.update(civInfo);
@@ -81,24 +81,18 @@ class CivInfoPage extends ReferencePage
 	}
 
 	/**
-	 * Returns a styled concatenation of the Name, History, and Description of the given object.
-	 *
-	 * @param obj {Object}
 	 * @returns {string}
 	 */
-	formatEntry(obj)
+	formatEntry(name, tooltip, description)
 	{
-		if (!obj.Name)
-			return "";
+		let tooltip_icon = "";
+		if (tooltip)
+			tooltip_icon = '[icon="iconInfo" tooltip="' + escapeQuotation(tooltip) + '" tooltip_style="civInfoTooltip"]';
 
-		let history_icon = "";
-		if (obj.History)
-			history_icon = '[icon="iconInfo" tooltip="' + escapeQuotation(obj.History) + '" tooltip_style="civInfoTooltip"]';
-
-		let description = "";
-		if (obj.Description)
+		let description_text = "";
+		if (description)
 			// Translation: Description of an item in the CivInfo page, on a new line and indented.
-			description = sprintf(translate('\n     %(description)s'), { "description": obj.Description, });
+			description_text = sprintf(translate('\n     %(description)s'), { "description": description, });
 
 		return sprintf(
 			// Translation: An entry in the CivInfo Page. The newline and indentation of the description is handled elsewhere.
@@ -107,9 +101,9 @@ class CivInfoPage extends ReferencePage
 			// >     A brief description of the aforementioned something.
 			translate("• %(name)s %(info_icon)s%(description)s"),
 			{
-				"name": setStringTags(obj.Name, { "font": "sans-bold-14" }),
-				"info_icon": history_icon,
-				"description": description,
+				"name": setStringTags(name, { "font": "sans-bold-14" }),
+				"info_icon": tooltip_icon,
+				"description": description_text,
 			}
 		);
 	}
