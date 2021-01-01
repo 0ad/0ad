@@ -18,78 +18,12 @@
 			"Type": "peace"
 		}
 	],
-	"Factions": [
-		{
-			"Name": "Seleucids",
-			"Description": "The Macedonian-Greek dynasty that ruled the Eastern part of Alexander's former empire.",
-			"Technologies": [
-				{
-					"Name": "Hellenistic Metropolis",
-					"History": "Beginning with Alexander, the Hellenistic monarchs founded many cities throughout their empires, where Greek culture and art blended with local customs to create the motley Hellenistic civilization.",
-					"Description": "Civic Centers +100% health and capture points, double default arrows."
-				},
-				{
-					"Name": "Nisean War Horses",
-					"History": "The beautiful and powerful breed of Nisean horses increases health for Seleucid cavalry.",
-					"Description": "+25% health for cavalry, but +10% train time."
-				},
-				{
-					"Name": "Traditional Army vs Reform Army",
-					"History": "Seleucid and indeed Successor warfare evolved over the course of the 3rd and 2nd centuries. Contact with Eastern upstarts such as the Parthians and constant revolts of peripheral satrapies such as Bactria caused the Seleucids to reform their military and change their tactics, specifically in the cavalry arm. War with the Romans from the West and invasions from the Galatians also forced the Seleucids to reform their infantry regiments to be more flexible.",
-					"Description": "Unlock either Champion Infantry Pikemen or Champion Infantry Swordsmen."
-				}
-			],
-			"Heroes": [
-				{
-					"Name": "Seleukos A' Nikator",
-					"Class": "",
-					"Armament": "",
-					"Emblem": "",
-					"History": "Always lying in wait for the neighboring nations, strong in arms and persuasive in council, he (Seleucus) acquired Mesopotamia, Armenia, 'Seleucid' Cappadocia, Persis, Parthia, Bactria, Arabia, Tapouria, Sogdia, Arachosia, Hyrcania, and other adjacent peoples that had been subdued by Alexander, as far as the river Indus, so that the boundaries of his empire were the most extensive in Asia after that of Alexander. The whole region from Phrygia to the Indus was subject to Seleucus. — Appian, 'The Syrian Wars'."
-				},
-				{
-					"Name": "Antiokhos G' Megas",
-					"Class": "",
-					"Armament": "",
-					"Emblem": "",
-					"History": "Antiochus inherited a troubled kingdom upon the beginning of his reign. From the verge of collapse he managed to weld back together the empire Seleucus I fought so hard to found. The rebellious eastern satraps of Bactria and Parthia were brought to heel, temporarily securing his eastern borders. He then turned his attention to mother Greece, attempting to fulfill the dreams of his fathers by invading Greece under the pretext of liberation. The Achaean League and the Kingdom of Pergamon banded together with the Romans to defeat him at the Battle of Magnesia, forever burying the dream of reuniting Alexander's empire."
-				},
-				{
-					"Name": "Antiokhos D' Epiphanes",
-					"Class": "",
-					"Armament": "",
-					"Emblem": "",
-					"History": "Antiochus IV Epiphanes was a son of Antiochus III the Great and brother of Seleucus IV Philopator. Originally named Mithridates, he assumed the name Antiochus either upon his accession to the throne or after the death of his elder brother Antiochus. Notable events during his reign include the near-conquest of Egypt (twice), which was halted by the threat of Roman intervention, and the beginning of the Jewish revolt of the Maccabees. He died of sudden illness while fighting off a Parthian invasion from the East."
-				}
-			]
-		}
-	],
 	"CivBonuses": [],
 	"TeamBonuses": [
 		{
 			"Name": "Syrian Tetrapolis",
 			"History": "The political core of the Seleucid Empire consisted of four 'sister' cities: Antioch (the capital), Seleucia Pieria, Apamea, and Laodicea.",
 			"Description": "Allied Civil Centers −20% resource costs."
-		}
-	],
-	"Structures": [
-		{
-			"Name": "Library",
-			"Class": "",
-			"Emblem": "",
-			"History": "Alexander the Great founded libraries all over his new empire. These became a center of learning for an entirely new synthesized culture: the Hellenistic culture.",
-			"Phase": "City",
-			"Requirements": "",
-			"Special": "Maximum of 1 built. All Special Technologies and some regular city-phase technologies are researched here. Building one reduces the cost of all other remaining technologies by 10%."
-		},
-		{
-			"Name": "Military Colony",
-			"Class": "",
-			"Emblem": "",
-			"History": "The Seleucid kings invited Greeks, Macedonians, Galatians (Gauls), Cretans, and Thracians alike to settle in within the vast territories of the empire. They settled in military colonies called cleruchies (klēroukhia). Under this arrangement, the settlers were given a plot of land, or a kleros, and in return were required to serve in the great king's army when called to duty. This created a upper-middle class of military settlers who owed their livelihoods and fortunes to the Syrian kings and helped grow the available manpower for the imperial Seleucid army. A side effect of this system was that it drained the Greek homeland of military-aged men, a contributing factor to Greece's eventual conquest by Rome.",
-			"Phase": "Town",
-			"Requirements": "",
-			"Special": "This is the Seleucid expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster."
 		}
 	],
 	"WallSets": [

@@ -22,42 +22,6 @@
 			"Type": "peace"
 		}
 	],
-	"Factions": [
-		{
-			"Name": "",
-			"Description": "",
-			"Technologies": [
-				{
-					"Name": "Divide et Impera",
-					"History": "'Divide and conquer' was the main principle in Rome's foreign politics throughout its long history. The Romans lured enemies or neutral factions to their side by offering them certain privileges. In due period of time, friends as well as foes were subjugated.",
-					"Description": "Roman heroes can convert enemy units with great cost."
-				}
-			],
-			"Heroes": [
-				{
-					"Name": "Quintus Fabius Maximus",
-					"Class": "",
-					"Armament": "",
-					"Emblem": "",
-					"History": "Dictator for six months during the Second Punic War. Instead of attacking the most powerful Hannibal, he started a very effective war of attrition against him."
-				},
-				{
-					"Name": "Marcus Claudius Marcellus",
-					"Class": "",
-					"Armament": "",
-					"Emblem": "",
-					"History": "A soldier of the first war with Carthage, a hero of the Second Punic War, and victor over the Gauls at Clastidium. Plutarch describes him as a man of war, strong in body and constitution, with an iron will to fight on. As a general he was immensely capable, standing alongside Scipio Africanus and Claudius Nero as the most effective Roman generals of the entire Second Punic War. In addition to his military achievements Marcellus was a fan of Greek culture and arts, which he enthusiastically promoted in Rome. He met his demise when his men were ambushed near Venusia. In honor of the respect the people held for him, Marcellus was granted the title of 'Sword of Rome.'"
-				},
-				{
-					"Name": "Scipio Africanus",
-					"Class": "",
-					"Armament": "",
-					"Emblem": "",
-					"History": "He was the first really successful Roman general against the Carthaginians. His campaigns in Spain and Africa helped to bring Carthage to its knees during the Second Punic War. He defeated Hannibal at the Battle of Zama in 202 B.C."
-				}
-			]
-		}
-	],
 	"CivBonuses": [
 		{
 			"Name": "Testudo Formation",
@@ -75,26 +39,6 @@
 			"Name": "Conscription",
 			"History": "Many Roman soldiers were conscripted into service. While volunteers were preferred, the Roman state did maintain an annual military draft. During an emergency the draft and the terms of service were enlarged. The importance of military service in Republican Rome was so great it was a prerequisite for a political career. Members of the Senate were called Conscript Fathers because of this, reflected in how the ordo equester was said to have been \"conscripted\" into the Senate.",
 			"Description": "Allied Citizen Infantry −10% training time."
-		}
-	],
-	"Structures": [
-		{
-			"Name": "Entrenched Camp",
-			"Class": "",
-			"Emblem": "",
-			"History": "Sometimes it was a temporary camp built facing the route by which the army is to march, other times a defensive or offensive (for sieges) structure. Within the Praetorian gate, which should either front the east or the enemy, the tents of the first centuries or cohorts are pitched, and the dracos (ensigns of cohorts) and other ensigns planted. The Decumane gate is directly opposite to the Praetorian in the rear of the camp, and through this the soldiers are conducted to the place appointed for punishment or execution. It has a turf wall, and it's surrounded by a canal filled with water whenever possible for extra defense. Many towns started up as bigger military camps to evolve to more complicated cities.",
-			"Requirements": "",
-			"Phase": "",
-			"Special": "Trains citizen-soldiers from neutral or enemy territory."
-		},
-		{
-			"Name": "Murus Latericius",
-			"Class": "",
-			"Emblem": "",
-			"History": "Turf walls built by legionaries during sieges.",
-			"Requirements": "",
-			"Phase": "",
-			"Special": "Can be built in neutral and enemy territory to strangle enemy towns."
 		}
 	],
 	"WallSets": [
