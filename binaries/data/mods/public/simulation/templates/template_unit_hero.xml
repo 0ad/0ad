@@ -13,8 +13,8 @@
     units/heroes/hero_garrison
   </Auras>
   <Cost>
-    <Population>2</Population>
-    <BuildTime>40</BuildTime>
+    <Population>0</Population>
+    <BuildTime>50</BuildTime>
     <Resources>
       <food>100</food>
       <metal>250</metal>
@@ -75,6 +75,7 @@
   </Sound>
   <TrainingRestrictions>
     <Category>Hero</Category>
+    <MatchLimit>1</MatchLimit>
   </TrainingRestrictions>
   <Vision>
     <Range>100</Range>
