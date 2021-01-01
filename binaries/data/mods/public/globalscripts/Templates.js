@@ -7,8 +7,8 @@
 function loadCivFiles(selectableOnly)
 {
 	let propertyNames = [
-		"Code", "Culture", "Name", "Emblem", "History", "Music", "CivBonuses", "TeamBonuses",
-		"StartEntities", "Formations", "AINames", "SkirmishReplacements", "SelectableInGameSetup"];
+		"Code", "Culture", "Name", "Emblem", "History", "Music", "CivBonuses", "StartEntities",
+		"Formations", "AINames", "SkirmishReplacements", "SelectableInGameSetup"];
 
 	let civData = {};
 
