@@ -49,4 +49,9 @@
       </Texture>
     </Overlay>
   </Selectable>
+  <Sound>
+    <SoundGroups>
+      <order_heal>voice/{lang}/civ/civ_{phenotype}_heal.xml</order_heal>
+    </SoundGroups>
+  </Sound>
 </Entity>

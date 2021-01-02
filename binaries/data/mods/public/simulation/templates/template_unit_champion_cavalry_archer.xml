@@ -32,7 +32,8 @@
   </Identity>
   <Sound>
     <SoundGroups>
-      <death>actor/fauna/death/death_horse.xml</death>
+      <attack_impact_ranged>attack/impact/arrow_impact.xml</attack_impact_ranged>
+      <attack_ranged>attack/weapon/bow_attack.xml</attack_ranged>
     </SoundGroups>
   </Sound>
 </Entity>

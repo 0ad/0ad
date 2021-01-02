@@ -30,4 +30,10 @@
     <VisibleClasses datatype="tokens">Archer</VisibleClasses>
     <GenericName>Cavalry Archer</GenericName>
   </Identity>
+  <Sound>
+    <SoundGroups>
+      <attack_impact_ranged>attack/impact/arrow_impact.xml</attack_impact_ranged>
+      <attack_ranged>attack/weapon/bow_attack.xml</attack_ranged>
+    </SoundGroups>
+  </Sound>
 </Entity>

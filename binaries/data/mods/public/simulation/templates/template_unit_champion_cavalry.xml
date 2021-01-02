@@ -43,14 +43,8 @@
   </Resistance>
   <Sound>
     <SoundGroups>
-      <select>voice/{lang}/civ/civ_{phenotype}_select.xml</select>
-      <order_walk>voice/{lang}/civ/civ_{phenotype}_walk.xml</order_walk>
-      <order_attack>voice/{lang}/civ/civ_{phenotype}_attack.xml</order_attack>
-      <order_gather>voice/{lang}/civ/civ_{phenotype}_gather.xml</order_gather>
-      <order_garrison>voice/{lang}/civ/civ_{phenotype}_garrison.xml</order_garrison>
       <walk>actor/mounted/movement/walk.xml</walk>
       <run>actor/mounted/movement/walk.xml</run>
-      <attack_melee>attack/weapon/sword_attack.xml</attack_melee>
       <death>actor/fauna/death/death_horse.xml</death>
       <trained>interface/alarm/alarm_create_cav.xml</trained>
     </SoundGroups>

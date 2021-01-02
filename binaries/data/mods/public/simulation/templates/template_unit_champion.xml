@@ -25,8 +25,11 @@
   </Selectable>
   <Sound>
     <SoundGroups>
-      <attack_impact_ranged>attack/impact/arrow_impact.xml</attack_impact_ranged>
-      <attack_ranged>attack/weapon/bow_attack.xml</attack_ranged>
+      <order_attack>voice/{lang}/civ/civ_{phenotype}_attack.xml</order_attack>
+      <order_garrison>voice/{lang}/civ/civ_{phenotype}_garrison.xml</order_garrison>
+      <order_gather>voice/{lang}/civ/civ_{phenotype}_gather.xml</order_gather>
+      <order_walk>voice/{lang}/civ/civ_{phenotype}_walk.xml</order_walk>
+      <select>voice/{lang}/civ/civ_{phenotype}_select.xml</select>
     </SoundGroups>
   </Sound>
 </Entity>

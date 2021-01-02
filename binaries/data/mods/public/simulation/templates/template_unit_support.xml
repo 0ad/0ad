@@ -29,7 +29,13 @@
   </Resistance>
   <Sound>
     <SoundGroups>
-      <trained>interface/alarm/alarm_create_worker.xml</trained>
+      <order_garrison>voice/{lang}/civ/civ_{phenotype}_garrison.xml</order_garrison>
+      <order_gather>voice/{lang}/civ/civ_{phenotype}_gather.xml</order_gather>
+      <order_walk>voice/{lang}/civ/civ_{phenotype}_walk.xml</order_walk>
+      <select>voice/{lang}/civ/civ_{phenotype}_select.xml</select>
+      <walk>actor/human/movement/walk.xml</walk>
+      <run>actor/human/movement/run.xml</run>
+      <death>actor/human/death/{phenotype}_death.xml</death>
     </SoundGroups>
   </Sound>
   <UnitAI>
