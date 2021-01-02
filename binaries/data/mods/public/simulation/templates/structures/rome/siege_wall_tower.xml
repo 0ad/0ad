@@ -1,18 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defensive_wall_tower">
+  <Attack disable=""/>
+  <Auras datatype="tokens">
+    structures/wall_garrisoned
+  </Auras>
+  <BuildingAI disable=""/>
   <BuildRestrictions>
     <Territory>own neutral enemy</Territory>
   </BuildRestrictions>
   <Cost>
+    <BuildTime>40</BuildTime>
     <Resources>
-      <wood>100</wood>
+      <wood>80</wood>
       <stone>0</stone>
     </Resources>
   </Cost>
   <Footprint>
-    <Square width="8" depth="8"/>
+    <Square width="7.0" depth="7.0"/>
     <Height>12.5</Height>
   </Footprint>
+  <GarrisonHolder>
+    <Max>4</Max>
+    <List datatype="tokens">-Support -Infantry</List>
+  </GarrisonHolder>
   <Health>
     <Max op="mul">0.75</Max>
   </Health>
@@ -20,15 +30,17 @@
     <Civ>rome</Civ>
     <GenericName>Siege Wall Tower</GenericName>
     <SpecificName>Turris Circummūnītiōnis</SpecificName>
+    <SelectionGroupName>structures/rome_siege_wall_tower</SelectionGroupName>
+    <Tooltip disable=""/>
     <VisibleClasses datatype="tokens">SiegeWall</VisibleClasses>
     <Icon>structures/siege_wall.png</Icon>
   </Identity>
   <Loot>
-    <wood>20</wood>
+    <wood>16</wood>
     <stone>0</stone>
   </Loot>
   <Obstruction>
-    <Static width="6" depth="6"/>
+    <Static width="6.0" depth="6.0"/>
   </Obstruction>
   <Resistance>
     <Entity>
@@ -50,8 +62,36 @@
     <HeightOffset>13.5</HeightOffset>
   </StatusBars>
   <TerritoryInfluence disable=""/>
+  <TurretHolder>
+    <TurretPoints>
+      <One>
+        <X>1.5</X>
+        <Y>11.5</Y>
+        <Z>1.5</Z>
+      </One>
+      <Two>
+        <X>-1.5</X>
+        <Y>11.5</Y>
+        <Z>1.5</Z>
+      </Two>
+      <Three>
+        <X>1.5</X>
+        <Y>11.5</Y>
+        <Z>-1.5</Z>
+      </Three>
+      <Four>
+        <X>-1.5</X>
+        <Y>11.5</Y>
+        <Z>-1.5</Z>
+      </Four>
+    </TurretPoints>
+  </TurretHolder>
+  <Vision>
+    <Range>4</Range>
+  </Vision>
   <VisualActor>
     <Actor>structures/romans/siege_wall_tower.xml</Actor>
+    <FoundationActor>structures/fndn_2x2.xml</FoundationActor>
   </VisualActor>
   <WallPiece>
     <Length>6</Length>
