@@ -1,3 +1,26 @@
+AttackEffects = class AttackEffects
+{
+	constructor() {}
+	Receivers()
+	{
+		return [{
+			"type": "Damage",
+			"IID": "IID_Health",
+			"method": "TakeDamage"
+		},
+		{
+			"type": "Capture",
+			"IID": "IID_Capturable",
+			"method": "Capture"
+		},
+		{
+			"type": "ApplyStatus",
+			"IID": "IID_StatusEffectsReceiver",
+			"method": "ApplyStatus"
+		}];
+	}
+};
+
 Engine.LoadHelperScript("Attacking.js");
 Engine.LoadHelperScript("Player.js");
 Engine.LoadHelperScript("ValueModification.js");

@@ -307,17 +307,16 @@ Attacking.prototype.HandleAttackEffects = function(target, attackType, attackDat
 	bonusMultiplier *= !attackData.Bonuses ? 1 : this.GetAttackBonus(attacker, target, attackType, attackData.Bonuses);
 
 	let targetState = {};
-	for (let effectType of g_EffectTypes)
+	for (let receiver of g_AttackEffects.Receivers())
 	{
-		if (!attackData[effectType])
+		if (!attackData[receiver.type])
 			continue;
 
-		let receiver = g_EffectReceiver[effectType];
 		let cmpReceiver = Engine.QueryInterface(target, global[receiver.IID]);
 		if (!cmpReceiver)
 			continue;
 
-		Object.assign(targetState, cmpReceiver[receiver.method](this.GetTotalAttackEffects(target, attackData, effectType, bonusMultiplier, cmpResistance), attacker, attackerOwner));
+		Object.assign(targetState, cmpReceiver[receiver.method](this.GetTotalAttackEffects(target, attackData, receiver.type, bonusMultiplier, cmpResistance), attacker, attackerOwner));
 	}
 
 	if (!Object.keys(targetState).length)
@@ -378,3 +377,5 @@ Attacking.prototype.GetAttackBonus = function(source, target, type, template)
 
 var AttackingInstance = new Attacking();
 Engine.RegisterGlobal("Attacking", AttackingInstance);
+
+Engine.RegisterGlobal("g_AttackEffects", new AttackEffects());
