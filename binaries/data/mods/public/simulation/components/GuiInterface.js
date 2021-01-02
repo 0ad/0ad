@@ -377,7 +377,11 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 			"turretPoints": cmpTurretHolder.GetTurretPoints()
 		};
 
-	ret.canGarrison = !!Engine.QueryInterface(ent, IID_Garrisonable);
+	let cmpGarrisonable = Engine.QueryInterface(ent, IID_Garrisonable);
+	if (cmpGarrisonable)
+		ret.garrisonable = {
+			"holder": cmpGarrisonable.HolderID()
+		};
 
 	let cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 	if (cmpUnitAI)

@@ -697,7 +697,7 @@ var g_UnitActions =
 		},
 		"getActionInfo": function(entState, targetState)
 		{
-			if (!entState.canGarrison || !targetState || !targetState.garrisonHolder ||
+			if (!entState.garrisonable || !targetState || !targetState.garrisonHolder ||
 			    !playerCheck(entState, targetState, ["Player", "MutualAlly"]))
 				return false;
 

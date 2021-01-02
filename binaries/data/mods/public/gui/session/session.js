@@ -409,14 +409,14 @@ function updatePlayerData()
 }
 
 /**
- * Returns the entity itself except when garrisoned where it returns its garrisonHolder
+ * @param {number} ent - The entity to get its ID for.
+ * @return {number} - The entity ID of the entity or of its garrisonHolder.
  */
 function getEntityOrHolder(ent)
 {
 	let entState = GetEntityState(ent);
-	if (entState && !entState.position && entState.unitAI && entState.unitAI.orders.length &&
-			entState.unitAI.orders[0].type == "Garrison")
-		return getEntityOrHolder(entState.unitAI.orders[0].data.target);
+	if (entState && !entState.position && entState.garrisonable && entState.garrisonable.holder != INVALID_ENTITY)
+		return getEntityOrHolder(entState.garrisonable.holder);
 
 	return ent;
 }
