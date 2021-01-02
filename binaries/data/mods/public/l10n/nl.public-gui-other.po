@@ -38,8 +38,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-12-28 08:02+0000\n"
-"PO-Revision-Date: 2020-12-28 08:36+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-12-30 12:26+0000\n"
+"Last-Translator: Bart <b.anthonisse@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -486,7 +486,7 @@ msgstr "U werd verbannen."
 
 #: gui/common/network.js:73
 msgid "Player name in use. If you were disconnected, retry in few seconds."
-msgstr ""
+msgstr "Naam al in gebruik. Als de verbinding werd verbroken, probeer het over enkele momenten nogmaals"
 
 #: gui/common/network.js:74
 msgid "Server full."
@@ -1010,7 +1010,7 @@ msgstr "Aantal reparateurs:"
 
 #: gui/common/tooltips.js:605
 msgid "Remaining repair time:"
-msgstr ""
+msgstr "Resterende reparatietijd:"
 
 #: gui/common/tooltips.js:609
 #, javascript-format
@@ -1033,7 +1033,7 @@ msgstr "Aantal werklieden:"
 
 #: gui/common/tooltips.js:639
 msgid "Remaining build time:"
-msgstr ""
+msgstr "Resterende bouwtijd:"
 
 #: gui/common/tooltips.js:643
 #, javascript-format
@@ -1658,7 +1658,7 @@ msgstr "Opties resetten zal de opgeslagen instellingen verwijderen. Bent u zeker
 
 #: gui/options/options.js:351
 msgid "Some setting values are invalid! Are you sure you want to save them?"
-msgstr ""
+msgstr "Sommige instellingen zijn niet geldig! Weet u zeker dat u deze wilt opslaan?"
 
 #: gui/options/options.js:377
 msgid "You have unsaved changes, do you want to close this window?"
@@ -1690,7 +1690,7 @@ msgstr "Chat tijdsweergave"
 
 #: gui/options/options.json[0].options[11].tooltip
 msgid "Display the time at which a chat message was posted."
-msgstr ""
+msgstr "Toon het tijdstip wanneer een chatbericht werd geplaatst."
 
 #: gui/options/options.json[0].options[1].label
 msgid "Player name (multiplayer)"
@@ -1965,7 +1965,7 @@ msgstr "MSAA (2×)"
 msgid ""
 "Slow, but high-quality antialiasing, uses two samples per pixel. Supported "
 "for GL3.3+."
-msgstr ""
+msgstr "Langzaam, maar hoge kwaliteit anti-aliasing. Gebruikt twee samples per pixel. Ondersteuning voor GL3.3+."
 
 #: gui/options/options.json[1].options[4].list[3].label
 msgid "MSAA (4×)"
@@ -1975,7 +1975,7 @@ msgstr "MSAA (4×)"
 msgid ""
 "Slow, but high-quality antialiasing, uses four samples per pixel. Supported "
 "for GL3.3+."
-msgstr ""
+msgstr "Langzaam, maar hoge kwaliteit anti-aliasing. Gebruikt vier samples per pixel. Ondersteuning voor GL3.3+."
 
 #: gui/options/options.json[1].options[4].list[4].label
 msgid "MSAA (8×)"
@@ -1985,7 +1985,7 @@ msgstr "MSAA (8×)"
 msgid ""
 "Slow, but high-quality antialiasing, uses eight samples per pixel. Supported"
 " for GL3.3+."
-msgstr ""
+msgstr "Langzaam, maar hoge kwaliteit anti-aliasing. Gebruikt acht samples per pixel. Ondersteuning voor GL3.3+."
 
 #: gui/options/options.json[1].options[4].list[5].label
 msgid "MSAA (16×)"
@@ -1995,7 +1995,7 @@ msgstr "MSAA (16×)"
 msgid ""
 "Slow, but high-quality antialiasing, uses sixteen samples per pixel. "
 "Supported for GL3.3+."
-msgstr ""
+msgstr "Langzaam, maar hoge kwaliteit anti-aliasing. Gebruikt 16 samples per pixel. Ondersteuning voor GL3.3+."
 
 #: gui/options/options.json[1].options[4].tooltip
 msgid "Reduce aliasing effect on edges."
@@ -2130,7 +2130,7 @@ msgstr "Ontvang een audiobericht wanneer iemand uw alias intypt."
 
 #: gui/options/options.json[2].options[6].label
 msgid "New player notification in game setup"
-msgstr ""
+msgstr "Melding van nieuwe speler in spel instellingen"
 
 #: gui/options/options.json[2].options[6].tooltip
 msgid "Receive audio notification when a new client joins the game setup."
@@ -2278,7 +2278,7 @@ msgstr "Deze instellingen hebben enkel betrekking tot het multiplayer spel."
 
 #: gui/options/options.json[5].label
 msgid "Game Session"
-msgstr ""
+msgstr "Spelsessie "
 
 #: gui/options/options.json[5].options[0].label
 msgid "Wounded unit health"
@@ -2397,7 +2397,7 @@ msgstr "Deze optie maakt het mogelijk om nieuwe gebouwen uit te lijnen met nabij
 
 #: gui/options/options.json[5].options[19].label
 msgid "Control group membership"
-msgstr ""
+msgstr "Stel groepssamenstelling in"
 
 #: gui/options/options.json[5].options[19].list[0].label
 msgid "Single"
@@ -2509,7 +2509,7 @@ msgstr "Zichtbaar aurabereik"
 msgid ""
 "Display the range of auras of selected units and structures. (It can also be"
 " toggled with the hotkey during a game)."
-msgstr ""
+msgstr "Laat het aurabereik van de geselecteerde eenheden en gebouwen zien (dit kan ook tijdens het spelen door de sneltoets aan/uit worden gezet)."
 
 #: gui/options/options.json[5].options[9].label
 msgid "Heal range visualization"
@@ -2519,7 +2519,7 @@ msgstr "Zichtbaar helersbereik"
 msgid ""
 "Display the healing range of selected units. (It can also be toggled with "
 "the hotkey during a game)."
-msgstr ""
+msgstr "Laat het genezingsbereik van de geselecteerde eenheden zien (dit kan ook tijdens het spelen door de sneltoets aan/uit worden gezet)."
 
 #: gui/options/options.json[5].tooltip
 msgid "Change options regarding the in-game settings."
@@ -2604,11 +2604,11 @@ msgstr "%(hotkey)s: Leer over de beschavingen van 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:48
 msgid "Map Overview"
-msgstr ""
+msgstr "Overzicht van kaarten"
 
 #: gui/pregame/MainMenuItems.js:49
 msgid "View the different maps featured in 0 A.D."
-msgstr ""
+msgstr "Bekijk de verschillende kaarten van 0.A.D."
 
 #: gui/pregame/MainMenuItems.js:57 gui/replaymenu/replay_filters.js:144
 msgid "Single-player"
@@ -3252,7 +3252,7 @@ msgstr "Duur"
 
 #: gui/replaymenu/replay_menu.xml:(placeholder_text):32
 msgid "Search for Player"
-msgstr ""
+msgstr "Zoek speler"
 
 #: gui/replaymenu/replay_menu.xml:(tooltip):240
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
