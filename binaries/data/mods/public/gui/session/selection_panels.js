@@ -112,7 +112,7 @@ g_SelectionPanels.Command = {
 
 		for (let command in g_EntityCommands)
 		{
-			let info = g_EntityCommands[command].getInfo(unitEntStates);
+			let info = getCommandInfo(command, unitEntStates);
 			if (info)
 			{
 				info.name = command;
@@ -134,10 +134,7 @@ g_SelectionPanels.Command = {
 
 		data.countDisplay.caption = data.item.count || "";
 
-		data.button.enabled =
-			g_IsObserver && data.item.name == "focus-rally" ||
-			controlsPlayer(data.player) && (data.item.name != "delete" ||
-				data.unitEntStates.some(state => !isUndeletable(state)));
+		data.button.enabled = data.item.enabled == true;
 
 		data.icon.sprite = "stretched:session/icons/" + data.item.icon;
 
@@ -149,59 +146,6 @@ g_SelectionPanels.Command = {
 		size.left = (data.i - data.numberOfItems / 2) * (size.bottom + 1);
 		size.right = size.left + size.bottom;
 		data.button.size = size;
-		return true;
-	}
-};
-
-g_SelectionPanels.AllyCommand = {
-	"getMaxNumberOfItems": function()
-	{
-		return 2;
-	},
-	"conflictsWith": ["Command"],
-	"getItems": function(unitEntStates)
-	{
-		let commands = [];
-		for (let command in g_AllyEntityCommands)
-			for (let state of unitEntStates)
-			{
-				let info = g_AllyEntityCommands[command].getInfo(state);
-				if (info)
-				{
-					info.name = command;
-					commands.push(info);
-					break;
-				}
-			}
-		return commands;
-	},
-	"setupButton": function(data)
-	{
-		data.button.tooltip = data.item.tooltip;
-
-		data.button.onPress = function() {
-			if (data.item.callback)
-				data.item.callback(data.item);
-			else
-				performAllyCommand(data.unitEntStates[0].id, data.item.name);
-		};
-
-		data.countDisplay.caption = data.item.count || "";
-
-		data.button.enabled = !!data.item.count;
-
-		let grayscale = data.button.enabled ? "" : "grayscale:";
-		data.icon.sprite = "stretched:" + grayscale + "session/icons/" + data.item.icon;
-
-		let size = data.button.size;
-		// relative to the center ( = 50%)
-		size.rleft = 50;
-		size.rright = 50;
-		// offset from the center calculation, count on square buttons, so size.bottom is the width too
-		size.left = (data.i - data.numberOfItems / 2) * (size.bottom + 1);
-		size.right = size.left + size.bottom;
-		data.button.size = size;
-
 		return true;
 	}
 };
@@ -1249,7 +1193,6 @@ let g_PanelsOrder = [
 
 	// UNIQUE PANES (importance doesn't matter)
 	"Command",
-	"AllyCommand",
 	"Queue",
 	"Selection",
 ];

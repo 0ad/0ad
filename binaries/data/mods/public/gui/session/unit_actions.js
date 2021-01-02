@@ -1132,8 +1132,17 @@ var g_EntityCommands =
 		{
 			let count = 0;
 			for (let entState of entStates)
-				if (entState.garrisonHolder)
+			{
+				if (!entState.garrisonHolder)
+					continue;
+
+				if (allowedPlayersCheck([entState], ["Player"]))
 					count += entState.garrisonHolder.entities.length;
+				else
+					for (let entity of entState.garrisonHolder.entities)
+						if (allowedPlayersCheck([GetEntityState(entity)], ["Player"]))
+							++count;
+			}
 
 			if (!count)
 				return false;
@@ -1143,12 +1152,14 @@ var g_EntityCommands =
 				           translate("Unload All."),
 				"icon": "garrison-out.png",
 				"count": count,
+				"enabled": true
 			};
 		},
 		"execute": function()
 		{
 			unloadAll();
 		},
+		"allowedPlayers": ["Player", "Ally"]
 	},
 
 	"delete": {
@@ -1163,7 +1174,8 @@ var g_EntityCommands =
 							translate("Use %(hotkey)s to avoid the confirmation dialog."),
 							"session.noconfirmation"
 						),
-					"icon": "kill_small.png"
+					"icon": "kill_small.png",
+					"enabled": true
 				} :
 				{
 					// Get all delete reasons and remove duplications
@@ -1171,7 +1183,8 @@ var g_EntityCommands =
 						.filter((reason, pos, self) =>
 							self.indexOf(reason) == pos && reason
 						).join("\n"),
-					"icon": "kill_small_disabled.png"
+					"icon": "kill_small_disabled.png",
+					"enabled": false
 				};
 		},
 		"execute": function(entStates)
@@ -1197,6 +1210,7 @@ var g_EntityCommands =
 			else
 				(new DeleteSelectionConfirmation(deleteSelection)).display();
 		},
+		"allowedPlayers": ["Player"]
 	},
 
 	"stop": {
@@ -1208,7 +1222,8 @@ var g_EntityCommands =
 			return {
 				"tooltip": colorizeHotkey("%(hotkey)s" + " ", "session.stop") +
 				           translate("Abort the current order."),
-				"icon": "stop.png"
+				"icon": "stop.png",
+				"enabled": true
 			};
 		},
 		"execute": function(entStates)
@@ -1216,6 +1231,7 @@ var g_EntityCommands =
 			if (entStates.length)
 				stopUnits(entStates.map(entState => entState.id));
 		},
+		"allowedPlayers": ["Player"]
 	},
 
 	"garrison": {
@@ -1227,7 +1243,8 @@ var g_EntityCommands =
 			return {
 				"tooltip": colorizeHotkey("%(hotkey)s" + " ", "session.garrison") +
 				           translate("Order the selected units to garrison in a structure or unit."),
-				"icon": "garrison.png"
+				"icon": "garrison.png",
+				"enabled": true
 			};
 		},
 		"execute": function()
@@ -1235,6 +1252,7 @@ var g_EntityCommands =
 			inputState = INPUT_PRESELECTEDACTION;
 			preSelectedAction = ACTION_GARRISON;
 		},
+		"allowedPlayers": ["Player"]
 	},
 
 	"unload": {
@@ -1250,13 +1268,15 @@ var g_EntityCommands =
 
 			return {
 				"tooltip": translate("Unload"),
-				"icon": "garrison-out.png"
+				"icon": "garrison-out.png",
+				"enabled": true
 			};
 		},
 		"execute": function()
 		{
 			unloadSelection();
 		},
+		"allowedPlayers": ["Player"]
 	},
 
 	"repair": {
@@ -1268,7 +1288,8 @@ var g_EntityCommands =
 			return {
 				"tooltip": colorizeHotkey("%(hotkey)s" + " ", "session.repair") +
 				           translate("Order the selected units to repair a structure, ship, or siege engine."),
-				"icon": "repair.png"
+				"icon": "repair.png",
+				"enabled": true
 			};
 		},
 		"execute": function()
@@ -1276,6 +1297,7 @@ var g_EntityCommands =
 			inputState = INPUT_PRESELECTEDACTION;
 			preSelectedAction = ACTION_REPAIR;
 		},
+		"allowedPlayers": ["Player"]
 	},
 
 	"focus-rally": {
@@ -1287,7 +1309,8 @@ var g_EntityCommands =
 			return {
 				"tooltip": colorizeHotkey("%(hotkey)s" + " ", "camera.rallypointfocus") +
 				           translate("Focus on Rally Point."),
-				"icon": "focus-rally.png"
+				"icon": "focus-rally.png",
+				"enabled": true
 			};
 		},
 		"execute": function(entStates)
@@ -1311,6 +1334,7 @@ var g_EntityCommands =
 			if (focusTarget)
 				Engine.CameraMoveTo(focusTarget.x, focusTarget.z);
 		},
+		"allowedPlayers": ["Player", "Observer"]
 	},
 
 	"back-to-work": {
@@ -1322,13 +1346,15 @@ var g_EntityCommands =
 			return {
 				"tooltip": colorizeHotkey("%(hotkey)s" + " ", "session.backtowork") +
 				           translate("Back to Work"),
-				"icon": "back-to-work.png"
+				"icon": "back-to-work.png",
+				"enabled": true
 			};
 		},
 		"execute": function()
 		{
 			backToWork();
 		},
+		"allowedPlayers": ["Player"]
 	},
 
 	"add-guard": {
@@ -1341,7 +1367,8 @@ var g_EntityCommands =
 			return {
 				"tooltip": colorizeHotkey("%(hotkey)s" + " ", "session.guard") +
 				           translate("Order the selected units to guard a structure or unit."),
-				"icon": "add-guard.png"
+				"icon": "add-guard.png",
+				"enabled": true
 			};
 		},
 		"execute": function()
@@ -1349,6 +1376,7 @@ var g_EntityCommands =
 			inputState = INPUT_PRESELECTEDACTION;
 			preSelectedAction = ACTION_GUARD;
 		},
+		"allowedPlayers": ["Player"]
 	},
 
 	"remove-guard": {
@@ -1359,13 +1387,15 @@ var g_EntityCommands =
 
 			return {
 				"tooltip": translate("Remove guard"),
-				"icon": "remove-guard.png"
+				"icon": "remove-guard.png",
+				"enabled": true
 			};
 		},
 		"execute": function()
 		{
 			removeGuard();
 		},
+		"allowedPlayers": ["Player"]
 	},
 
 	"select-trading-goods": {
@@ -1376,13 +1406,15 @@ var g_EntityCommands =
 
 			return {
 				"tooltip": translate("Barter & Trade"),
-				"icon": "economics.png"
+				"icon": "economics.png",
+				"enabled": true
 			};
 		},
 		"execute": function()
 		{
 			g_TradeDialog.toggle();
 		},
+		"allowedPlayers": ["Player"]
 	},
 
 	"patrol": {
@@ -1395,7 +1427,8 @@ var g_EntityCommands =
 				"tooltip": colorizeHotkey("%(hotkey)s" + " ", "session.patrol") +
 				           translate("Patrol") + "\n" +
 				           translate("Attack all encountered enemy units while avoiding structures."),
-				"icon": "patrol.png"
+				"icon": "patrol.png",
+				"enabled": true
 			};
 		},
 		"execute": function()
@@ -1403,6 +1436,7 @@ var g_EntityCommands =
 			inputState = INPUT_PRESELECTEDACTION;
 			preSelectedAction = ACTION_PATROL;
 		},
+		"allowedPlayers": ["Player"]
 	},
 
 	"share-dropsite": {
@@ -1413,7 +1447,7 @@ var g_EntityCommands =
 			if (!sharableEntities.length)
 				return false;
 
-			// Returns if none of the entities belong to a player with a mutual ally
+			// Returns if none of the entities belong to a player with a mutual ally.
 			if (entStates.every(entState => !GetSimState().players[entState.player].isMutualAlly.some(
 				(isAlly, playerId) => isAlly && playerId != entState.player)))
 				return false;
@@ -1421,87 +1455,62 @@ var g_EntityCommands =
 			return sharableEntities.some(entState => !entState.resourceDropsite.shared) ?
 				{
 					"tooltip": translate("Press to allow allies to use this dropsite"),
-					"icon": "locked_small.png"
+					"icon": "locked_small.png",
+					"enabled": true
 				} :
 				{
 					"tooltip": translate("Press to prevent allies from using this dropsite"),
-					"icon": "unlocked_small.png"
+					"icon": "unlocked_small.png",
+					"enabled": true
 				};
 		},
 		"execute": function(entStates)
 		{
 			let sharableEntities = entStates.filter(
 				entState => entState.resourceDropsite && entState.resourceDropsite.sharable);
-			Engine.PostNetworkCommand({
-				"type": "set-dropsite-sharing",
-				"entities": sharableEntities.map(entState => entState.id),
-				"shared": sharableEntities.some(entState => !entState.resourceDropsite.shared)
-			});
+			if (sharableEntities)
+				Engine.PostNetworkCommand({
+					"type": "set-dropsite-sharing",
+					"entities": sharableEntities.map(entState => entState.id),
+					"shared": sharableEntities.some(entState => !entState.resourceDropsite.shared)
+				});
 		},
-	}
-};
+		"allowedPlayers": ["Player"]
+	},
 
-var g_AllyEntityCommands =
-{
-	"unload-all": {
-		"getInfo": function(entState)
+	"is-dropsite-shared": {
+		"getInfo": function(entStates)
 		{
-			if (!entState.garrisonHolder)
+			let sharableEntities = entStates.filter(
+				entState => entState.resourceDropsite && entState.resourceDropsite.sharable);
+			if (!sharableEntities.length)
 				return false;
 
 			let player = Engine.GetPlayerID();
-
-			let count = 0;
-			for (let ent in g_Selection.selected)
-			{
-				let selectedEntState = GetEntityState(+ent);
-				if (!selectedEntState.garrisonHolder)
-					continue;
-
-				for (let entity of selectedEntState.garrisonHolder.entities)
-				{
-					let state = GetEntityState(entity);
-					if (state.player == player)
-						++count;
-				}
-			}
-
-			return {
-				"tooltip": colorizeHotkey("%(hotkey)s" + " ", "session.unload") +
-				           translate("Unload All."),
-				"icon": "garrison-out.png",
-				"count": count,
-			};
-		},
-		"execute": function(entState)
-		{
-			unloadAll();
-		},
-	},
-
-	"share-dropsite": {
-		"getInfo": function(entState)
-		{
-			if (Engine.GetPlayerID() == -1 ||
-			    !GetSimState().players[Engine.GetPlayerID()].hasSharedDropsites ||
-			    !entState.resourceDropsite || !entState.resourceDropsite.sharable)
+			let simState = GetSimState();
+			if (!g_IsObserver && !simState.players[player].hasSharedDropsites ||
+				entStates.every(entState => controlsPlayer(entState.player)))
 				return false;
 
-			if (entState.resourceDropsite.shared)
+			if (!entStates.every(entState => entState.resourceDropsite.shared))
 				return {
-					"tooltip": translate("You are allowed to use this dropsite"),
-					"icon": "unlocked_small.png"
+					"tooltip": translate("The use of this dropsite is prohibited"),
+					"icon": "locked_small.png",
+					"enabled": false
 				};
 
 			return {
-				"tooltip": translate("The use of this dropsite is prohibited"),
-				"icon": "locked_small.png"
+				"tooltip": g_IsObserver ? translate("Allies are allowed to use this dropsite.") :
+					translate("You are allowed to use this dropsite"),
+				"icon": "unlocked_small.png",
+				"enabled": false
 			};
 		},
 		"execute": function(entState)
 		{
-			// This command button is always disabled
+			// This command button is always disabled.
 		},
+		"allowedPlayers": ["Ally", "Observer"]
 	}
 };
 
@@ -1515,6 +1524,29 @@ function playerCheck(entState, targetState, validPlayers)
 			return true;
 
 	return false;
+}
+
+/**
+ * Checks whether the entities have the right diplomatic status
+ * with respect to the currently active player.
+ * Also "Observer" can be used.
+ *
+ * @param {Object[]} entStates - An array containing the entity states to check.
+ * @param {string[]} validPlayers - An array containing the diplomatic statuses.
+ *
+ * @return {boolean} - Whether the currently active player is allowed.
+ */
+function allowedPlayersCheck(entStates, validPlayers)
+{
+	// Assume we can only select entities from one player,
+	// or it does not matter (e.g. observer).
+	let targetState = entStates[0];
+	let playerState = GetSimState().players[Engine.GetPlayerID()];
+
+	return validPlayers.some(player =>
+		player == "Observer" && g_IsObserver ||
+		player == "Player" && controlsPlayer(targetState.player) ||
+		playerState && playerState["is" + player] && playerState["is" + player][targetState.player]);
 }
 
 function hasClass(entState, className)
@@ -1551,6 +1583,13 @@ function DrawTargetMarker(target)
 		"x": target.x,
 		"z": target.z
 	});
+}
+
+function getCommandInfo(command, entStates)
+{
+	return entStates && g_EntityCommands[command] &&
+		allowedPlayersCheck(entStates, g_EntityCommands[command].allowedPlayers) &&
+		g_EntityCommands[command].getInfo(entStates);
 }
 
 function getActionInfo(action, target, selection)
