@@ -302,28 +302,8 @@ function performCommand(entStates, commandName)
 	if (!entStates.length)
 		return;
 
-	// Don't check all entities, because we assume a player cannot
-	// select entities from more than one player
-	if (!controlsPlayer(entStates[0].player) &&
-	    !(g_IsObserver && commandName == "focus-rally"))
-		return;
-
-	if (g_EntityCommands[commandName])
+	if (getCommandInfo(commandName, entStates))
 		g_EntityCommands[commandName].execute(entStates);
-}
-
-function performAllyCommand(entity, commandName)
-{
-	if (!entity)
-		return;
-
-	let entState = GetEntityState(entity);
-	let playerState = GetSimState().players[Engine.GetPlayerID()];
-	if (!playerState.isMutualAlly[entState.player] || g_IsObserver)
-		return;
-
-	if (g_AllyEntityCommands[commandName])
-		g_AllyEntityCommands[commandName].execute(entState);
 }
 
 function performFormation(entities, formationTemplate)

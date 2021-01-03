@@ -3517,13 +3517,11 @@ UnitAI.prototype.SetGarrisoned = function()
 
 UnitAI.prototype.GetGarrisonHolder = function()
 {
-	if (this.IsGarrisoned())
-	{
-		for (let order of this.orderQueue)
-			if (order.type == "Garrison")
-				return order.data.target;
-	}
-	return INVALID_ENTITY;
+	if (!this.isGarrisoned)
+		return INVALID_ENTITY;
+
+	let cmpGarrisonable = Engine.QueryInterface(this.entity, IID_Garrisonable);
+	return cmpGarrisonable ? cmpGarrisonable.HolderID() : INVALID_ENTITY;
 };
 
 UnitAI.prototype.ShouldRespondToEndOfAlert = function()

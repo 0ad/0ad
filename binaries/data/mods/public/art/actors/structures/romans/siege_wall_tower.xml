@@ -20,13 +20,5 @@
       </textures>
     </variant>
   </group>
-  <group>
-    <variant name="ungarrisoned" frequency="1"/>
-    <variant name="garrisoned">
-      <props>
-        <prop actor="props/special/common/garrison_flag_rome.xml" attachpoint="garrisoned"/>
-      </props>
-    </variant>
-  </group>
   <material>no_trans_parallax_spec.xml</material>
 </actor>

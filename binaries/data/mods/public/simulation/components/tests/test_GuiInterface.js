@@ -603,7 +603,6 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetEntityState(-1, 10), {
 	"needsRepair": false,
 	"needsHeal": true,
 	"builder": true,
-	"canGarrison": false,
 	"visibility": "visible",
 	"isBarterMarket": true,
 	"resourceTrickle": {

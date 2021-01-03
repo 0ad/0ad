@@ -1,3 +1,7 @@
+AttackEffects = class AttackEffects
+{
+};
+
 Engine.LoadHelperScript("Attacking.js");
 Engine.LoadHelperScript("ValueModification.js");
 Engine.LoadComponentScript("interfaces/DeathDamage.js");

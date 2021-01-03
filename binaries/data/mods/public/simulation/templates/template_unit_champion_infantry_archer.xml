@@ -33,6 +33,12 @@
       special/formations/skirmish
     </Formations>
   </Identity>
+  <Sound>
+    <SoundGroups>
+      <attack_impact_ranged>attack/impact/arrow_impact.xml</attack_impact_ranged>
+      <attack_ranged>attack/weapon/bow_attack.xml</attack_ranged>
+    </SoundGroups>
+  </Sound>
   <UnitMotion>
     <WalkSpeed op="mul">1.2</WalkSpeed>
   </UnitMotion>

@@ -4,13 +4,14 @@
     <Territory>own neutral enemy</Territory>
   </BuildRestrictions>
   <Cost>
+    <BuildTime>10</BuildTime>
     <Resources>
       <wood>20</wood>
       <stone>0</stone>
     </Resources>
   </Cost>
   <Footprint>
-    <Square width="13" depth="5"/>
+    <Square width="13.0" depth="5.0"/>
     <Height>6.7</Height>
   </Footprint>
   <Health>
@@ -29,7 +30,7 @@
     <stone>0</stone>
   </Loot>
   <Obstruction>
-    <Static width="12" depth="4"/>
+    <Static width="12.0" depth="4.0"/>
   </Obstruction>
   <Resistance>
     <Entity>

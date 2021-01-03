@@ -540,6 +540,19 @@
                     ],
                     "context": "status effect"
                 }
+            },
+            {
+                "extractor": "json",
+                "filemasks": [
+                    "simulation/data/attack_effects/*.json"
+                ],
+                "options": {
+                    "keywords": [
+                        "name",
+                        "description"
+                    ],
+                    "context": "effect caused by an attack"
+                }
             }
         ]
     },

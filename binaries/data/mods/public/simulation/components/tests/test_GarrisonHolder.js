@@ -68,7 +68,10 @@ for (let i = 24; i <= 34; ++i)
 			"GetOwner": () => friendlyPlayer
 		});
 
-	AddMock(i, IID_Garrisonable, {});
+	AddMock(i, IID_Garrisonable, {
+		"Garrison": entity => true,
+		"UnGarrison": () => {}
+	});
 
 	AddMock(i, IID_Position, {
 		"GetHeightOffset": () => 0,
@@ -212,7 +215,10 @@ let currentSiegePlayer = player;
 AddMock(siegeEngineId, IID_Ownership, {
 	"GetOwner": () => currentSiegePlayer
 });
-AddMock(siegeEngineId, IID_Garrisonable, {});
+AddMock(siegeEngineId, IID_Garrisonable, {
+	"Garrison": entity => true,
+	"UnGarrison": () => {}
+});
 let cavalryId = 46;
 AddMock(cavalryId, IID_Identity, {
 	"GetClassesList": () => ["Infantry", "Ranged"]
@@ -230,7 +236,10 @@ let currentCavalryPlayer = player;
 AddMock(cavalryId, IID_Ownership, {
 	"GetOwner": () => currentCavalryPlayer
 });
-AddMock(cavalryId, IID_Garrisonable, {});
+AddMock(cavalryId, IID_Garrisonable, {
+	"Garrison": entity => true,
+	"UnGarrison": () => {}
+});
 TS_ASSERT(cmpGarrisonHolder.Garrison(siegeEngineId));
 TS_ASSERT_EQUALS(cmpGarrisonHolder.GetGarrisonedEntitiesCount(), 1);
 cmpGarrisonHolder.OnGlobalEntityRenamed({

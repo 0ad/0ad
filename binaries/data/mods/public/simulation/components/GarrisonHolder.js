@@ -150,11 +150,7 @@ GarrisonHolder.prototype.IsAllowedToGarrison = function(entity)
 		return false;
 
 	let cmpIdentity = Engine.QueryInterface(entity, IID_Identity);
-	if (!cmpIdentity)
-		return false;
-
-	let entityClasses = cmpIdentity.GetClassesList();
-	return MatchesClassList(entityClasses, this.allowedClasses) && !!Engine.QueryInterface(entity, IID_Garrisonable);
+	return cmpIdentity && MatchesClassList(cmpIdentity.GetClassesList(), this.allowedClasses);
 };
 
 /**
@@ -169,6 +165,10 @@ GarrisonHolder.prototype.Garrison = function(entity, renamed = false)
 		return false;
 
 	if (!this.HasEnoughHealth())
+		return false;
+
+	let cmpGarrisonable = Engine.QueryInterface(entity, IID_Garrisonable);
+	if (!cmpGarrisonable || !cmpGarrisonable.Garrison(this.entity))
 		return false;
 
 	if (!this.timer && this.GetHealRate() > 0)
@@ -263,6 +263,10 @@ GarrisonHolder.prototype.Eject = function(entity, forced, renamed = false)
 		if (cmpPosition)
 			cmpEntPosition.SetYRotation(cmpPosition.GetPosition().horizAngleTo(pos));
 	}
+
+	let cmpGarrisonable = Engine.QueryInterface(entity, IID_Garrisonable);
+	if (cmpGarrisonable)
+		cmpGarrisonable.UnGarrison();
 
 	Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, {
 		"added": [],
