@@ -1,7 +1,7 @@
 /**
  * Used to highlight hotkeys in tooltip descriptions.
  */
-var g_HotkeyTags = {"color": "255 251 131" };
+var g_HotkeyTags = { "color": "255 251 131" };
 
 /**
  * Concatenate integer color values to a string (for use in GUI objects)
@@ -172,12 +172,15 @@ function hslToRgb(h, s, l)
 
 function colorizeHotkey(text, hotkey)
 {
+	// TODO: use actual hotkey combinations.
 	let key = Engine.ConfigDB_GetValue("user", "hotkey." + hotkey);
 
 	if (!key || key.toLowerCase() == "unused")
 		key = sprintf(translate("Unassigned hotkey: %(hotkeyName)s"), {
 			"hotkeyName": hotkey
 		});
+	else
+		key = formatHotkeyCombination(key.split("+"));
 
 	return sprintf(text, {
 		"hotkey": setStringTags("\\[" + key + "]", g_HotkeyTags)
