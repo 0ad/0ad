@@ -329,13 +329,11 @@ g_SelectionPanels.Garrison = {
 
 		data.countDisplay.caption = data.item.ents.length || "";
 
-		let canUngarrison =
-			g_ViewedPlayer == data.player ||
-			g_ViewedPlayer == entState.player;
+		let canUngarrison = controlsPlayer(data.player) || controlsPlayer(entState.player);
 
-		data.button.enabled = canUngarrison && controlsPlayer(g_ViewedPlayer);
+		data.button.enabled = canUngarrison;
 
-		data.button.tooltip = (canUngarrison || g_IsObserver ?
+		data.button.tooltip = (canUngarrison ?
 			sprintf(translate("Unload %(name)s"), { "name": getEntityNames(template) }) + "\n" +
 			translate("Single-click to unload 1. Shift-click to unload all of this type.") :
 			getEntityNames(template)) + "\n" +
