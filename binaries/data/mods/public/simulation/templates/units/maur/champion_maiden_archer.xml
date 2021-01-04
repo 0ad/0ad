@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry_archer">
+  <Attack>
+    <Ranged>
+      <ApplyStatus>
+        <Poisoned>
+          <Interval>2000</Interval>
+          <Damage>
+            <Poison>1.0</Poison>
+          </Damage>
+          <Stackability>Extend</Stackability>
+          <Duration>10000</Duration>
+        </Poisoned>
+      </ApplyStatus>
+    </Ranged>
+  </Attack>
   <Identity>
     <Civ>maur</Civ>
     <Phenotype>female</Phenotype>
