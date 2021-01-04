@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2020 Wildfire Games
+# Copyright (C) 2021 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -20,8 +20,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-12-28 08:02+0000\n"
-"PO-Revision-Date: 2020-12-28 08:36+0000\n"
+"POT-Creation-Date: 2021-01-01 08:01+0000\n"
+"PO-Revision-Date: 2021-01-01 08:36+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -2898,7 +2898,7 @@ msgstr "Podeu enviar automàticament informes per ajudar a resoldre errors i mil
 
 #. Translation: Description of an item in the CivInfo page, on a new line and
 #. indented.
-#: gui/reference/civinfo/CivInfoPage.js:101
+#: gui/reference/civinfo/CivInfoPage.js:95
 #, javascript-format
 msgid ""
 "\n"
@@ -2911,12 +2911,12 @@ msgstr ""
 #. Example:
 #. > • Name of a Special Something (i)
 #. >     A brief description of the aforementioned something.
-#: gui/reference/civinfo/CivInfoPage.js:108
+#: gui/reference/civinfo/CivInfoPage.js:102
 #, javascript-format
 msgid "• %(name)s %(info_icon)s%(description)s"
 msgstr ""
 
-#: gui/reference/civinfo/CivInfoPage.js:119
+#: gui/reference/civinfo/CivInfoPage.js:113
 #, javascript-format
 msgid "%(hotkey)s: Close Civilization Overview."
 msgstr "%(hotkey)s: Tanca el resum de la civilització."
@@ -2931,31 +2931,31 @@ msgstr "%(civilization)s"
 msgid "History of the %(civilization)s"
 msgstr "%(civilization)s: la seva història"
 
-#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:32
+#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:47
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] "Bonificació de civilització"
 msgstr[1] "Bonificacions de civilització"
 
-#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:35
+#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:50
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
 msgstr[0] "Bonificació d'equip"
 msgstr[1] "Bonificacions d'equip"
 
-#: gui/reference/civinfo/Sections/Subsections/HeroesSubsection.js:30
+#: gui/reference/civinfo/Sections/Subsections/HeroesSubsection.js:29
 msgid "Hero"
 msgid_plural "Heroes"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/reference/civinfo/Sections/Subsections/StructuresSubsection.js:24
+#: gui/reference/civinfo/Sections/Subsections/StructuresSubsection.js:29
 msgid "Special Structure"
 msgid_plural "Special Structures"
 msgstr[0] "Estructura especial"
 msgstr[1] "Estructures especials"
 
-#: gui/reference/civinfo/Sections/Subsections/TechnologiesSubsection.js:30
+#: gui/reference/civinfo/Sections/Subsections/TechnologiesSubsection.js:28
 msgid "Special Technology"
 msgid_plural "Special Technologies"
 msgstr[0] ""
@@ -2980,7 +2980,7 @@ msgstr "%(hotkey)s: Canvia a l'arbre d'estructures."
 msgid "Civilization:"
 msgstr "Civilització:"
 
-#: gui/reference/common/TemplateParser.js:128
+#: gui/reference/common/TemplateParser.js:147
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
 msgstr "De %(health_min)s a %(health_max)s"
@@ -4112,22 +4112,6 @@ msgid ""
 "They are countered by ranged units and swordsmen, so support your spearmen "
 "with slingers or cavalry."
 msgstr "Els llancers són febles contra unitats a distància i soldats amb espasa, així que cal complementar-los amb foners o cavalleria."
-
-#: gui/text/tips/stoa.txt:1
-msgid "STOA"
-msgstr "STOÀ"
-
-#: gui/text/tips/stoa.txt:2
-msgid "A special structure for  Athenians, Macedonians, and Spartans."
-msgstr "Una estructura especial dels atenesos, macedonis i espartans."
-
-#: gui/text/tips/stoa.txt:3
-msgid "Trains Heavy Skirmishers and Sword Infantry Champions."
-msgstr "Recluta infanteria pesada i infanteria campiona amb espasa."
-
-#: gui/text/tips/stoa.txt:4
-msgid "Grants +10 Population."
-msgstr "Concedeix +10 al límit de població."
 
 #: gui/text/tips/storehouses.txt:1
 msgid "STOREHOUSES"

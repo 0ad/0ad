@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2020 Wildfire Games
+# Copyright (C) 2021 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -23,8 +23,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-12-28 08:02+0000\n"
-"PO-Revision-Date: 2020-12-28 08:36+0000\n"
+"POT-Creation-Date: 2021-01-01 08:01+0000\n"
+"PO-Revision-Date: 2021-01-01 08:36+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -2887,7 +2887,7 @@ msgstr "버그를 수정하고 성능과 호환성을 향상시키는 데 도움
 
 #. Translation: Description of an item in the CivInfo page, on a new line and
 #. indented.
-#: gui/reference/civinfo/CivInfoPage.js:101
+#: gui/reference/civinfo/CivInfoPage.js:95
 #, javascript-format
 msgid ""
 "\n"
@@ -2900,12 +2900,12 @@ msgstr "\n     %(description)s"
 #. Example:
 #. > • Name of a Special Something (i)
 #. >     A brief description of the aforementioned something.
-#: gui/reference/civinfo/CivInfoPage.js:108
+#: gui/reference/civinfo/CivInfoPage.js:102
 #, javascript-format
 msgid "• %(name)s %(info_icon)s%(description)s"
 msgstr "• %(name)s %(info_icon)s%(description)s"
 
-#: gui/reference/civinfo/CivInfoPage.js:119
+#: gui/reference/civinfo/CivInfoPage.js:113
 #, javascript-format
 msgid "%(hotkey)s: Close Civilization Overview."
 msgstr "%(hotkey)s: 문명 개요를 닫습니다."
@@ -2920,27 +2920,27 @@ msgstr "%(civilization)s 로 "
 msgid "History of the %(civilization)s"
 msgstr "%(civilization)s의 역사"
 
-#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:32
+#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:47
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] "문명 포상"
 
-#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:35
+#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:50
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
 msgstr[0] "편 포상"
 
-#: gui/reference/civinfo/Sections/Subsections/HeroesSubsection.js:30
+#: gui/reference/civinfo/Sections/Subsections/HeroesSubsection.js:29
 msgid "Hero"
 msgid_plural "Heroes"
 msgstr[0] "영웅"
 
-#: gui/reference/civinfo/Sections/Subsections/StructuresSubsection.js:24
+#: gui/reference/civinfo/Sections/Subsections/StructuresSubsection.js:29
 msgid "Special Structure"
 msgid_plural "Special Structures"
 msgstr[0] "특수 건축물"
 
-#: gui/reference/civinfo/Sections/Subsections/TechnologiesSubsection.js:30
+#: gui/reference/civinfo/Sections/Subsections/TechnologiesSubsection.js:28
 msgid "Special Technology"
 msgid_plural "Special Technologies"
 msgstr[0] "특수 기술"
@@ -2964,7 +2964,7 @@ msgstr "%(hotkey)s: 건축물 도감으로 바꿉니다."
 msgid "Civilization:"
 msgstr "문명:"
 
-#: gui/reference/common/TemplateParser.js:128
+#: gui/reference/common/TemplateParser.js:147
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
 msgstr "%(health_min)s 부터 %(health_max)s"
@@ -4094,22 +4094,6 @@ msgid ""
 "They are countered by ranged units and swordsmen, so support your spearmen "
 "with slingers or cavalry."
 msgstr "그들은 원거리 공격 유닛과 검병에 의해 대응되므로, 투척병 또는 기병으로 창병을 지원하십시오."
-
-#: gui/text/tips/stoa.txt:1
-msgid "STOA"
-msgstr "주랑"
-
-#: gui/text/tips/stoa.txt:2
-msgid "A special structure for  Athenians, Macedonians, and Spartans."
-msgstr "아테네, 마케도니아, 스파르타를 위한 특별한 건축물입니다."
-
-#: gui/text/tips/stoa.txt:3
-msgid "Trains Heavy Skirmishers and Sword Infantry Champions."
-msgstr "중갑 척후병과 검 보병 대표 전사를 훈련합니다."
-
-#: gui/text/tips/stoa.txt:4
-msgid "Grants +10 Population."
-msgstr "+10 인구를 부여합니다."
 
 #: gui/text/tips/storehouses.txt:1
 msgid "STOREHOUSES"

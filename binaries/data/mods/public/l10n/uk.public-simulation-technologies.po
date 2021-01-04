@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2020 Wildfire Games
+# Copyright (C) 2021 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -18,12 +18,12 @@
 # SkiDo <skidoster@gmail.com>, 2015
 # Vitalii Mostipaka <imprtat@gmail.com>, 2016
 # 85c91c3444bcf82d63b07801f727e341, 2020
-# Микола Франчук <thekolian1996@gmail.com>, 2018-2020
+# Микола Франчук <thekolian1996@gmail.com>, 2018-2021
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-12-28 08:02+0000\n"
-"PO-Revision-Date: 2020-12-31 00:33+0000\n"
+"POT-Creation-Date: 2021-01-01 08:01+0000\n"
+"PO-Revision-Date: 2021-01-01 19:51+0000\n"
 "Last-Translator: Микола Франчук <thekolian1996@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -426,8 +426,8 @@ msgid "Wootz Steel"
 msgstr "Булатна сталь"
 
 #: simulation/data/technologies/attack_steel_working.jsontooltip
-msgid "+20% Hack attack for all swordsmen and macemen."
-msgstr "+20% рубаючої атаки для всіх мечників та булавоносців."
+msgid "Swordsmen +20% attack damage."
+msgstr ""
 
 #: simulation/data/technologies/carthaginians/special_colonisation.jsondescription
 msgid ""
@@ -1701,22 +1701,22 @@ msgid ""
 msgstr "Охоронні підрозділи (чемпіони) — це професіонали, що володіють найкращою зброєю та мають найкраще тренування."
 
 #: simulation/data/technologies/unlock_champion_units.jsongenericName
-msgid "Unlock Champion Units"
-msgstr "Відкрити чемпіонські підрозділи"
+msgid "Unlock Champion Infantry"
+msgstr ""
 
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.mace
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.ptol
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.sele
 msgid "Agēma"
-msgstr ""
+msgstr "Агема"
 
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.rome
 msgid "Regio Cohors"
 msgstr "Регіо кохорс"
 
 #: simulation/data/technologies/unlock_champion_units.jsontooltip
-msgid "Unlock the ability to train Champions at the Barracks."
-msgstr "Відкрити спроможність тренувати чемпіонів у казармах."
+msgid "Unlock Champions Infantry at the Barracks."
+msgstr ""
 
 #: simulation/data/technologies/unlock_females_house.jsondescription
 msgid "A festival attended by women-only, to celebrate female fertility."
@@ -1732,7 +1732,7 @@ msgstr "Фестиваль родючості"
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.sele
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.spart
 msgid "Thesmophoria"
-msgstr ""
+msgstr "Тесмофорія"
 
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.rome
 msgid "Bona Dea"

@@ -11,7 +11,7 @@
 # Christof Verhoeven <christof.verhoeven@gmail.com>, 2016
 # Dig Dug <digdug3@zonnet.nl>, 2018
 # Ellen Roels, 2015
-# Freagarach . <freagarach@gmail.com>, 2019
+# Freagarach . <freagarach@gmail.com>, 2019,2021
 # Ismail Sahin <ismailsahin1994@hotmail.com>, 2017
 # Johannes Collosus <the_pc_pilot@live.nl>, 2015
 # Marijn Billiet <marijnbilliet@gmail.com>, 2018
@@ -27,8 +27,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2020-11-14 21:11+0000\n"
-"Last-Translator: Bart <b.anthonisse@gmail.com>\n"
+"PO-Revision-Date: 2021-01-04 08:14+0000\n"
+"Last-Translator: Freagarach . <freagarach@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -143,7 +143,7 @@ msgstr "Een nieuwe handelsroute is opgezet met %(_player_)s. Neem uw deel van de
 #: simulation/ai/petra/chatHelper.js:45
 #, javascript-format
 msgid "%(_player_)s and I are now allies."
-msgstr "%(_player_)s is nu bevriend met jou."
+msgstr "%(_player_)s en ik hebben een bondgenootschap gevormd."
 
 #: simulation/ai/petra/chatHelper.js:48
 #, javascript-format
@@ -158,7 +158,7 @@ msgstr "%(_player_)s is nu een vijand van jou."
 #: simulation/ai/petra/chatHelper.js:58
 #, javascript-format
 msgid "I cannot accept your offer to become allies, %(_player_)s."
-msgstr "Ik kan uw bod om vrienden te worden niet accepteren, %(_player_)s."
+msgstr "Ik kan je bod om bondgenoot te worden niet accepteren, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:61
 #, javascript-format
@@ -212,7 +212,7 @@ msgstr "Mijn antwoord voor uw herhaalde vredesverzoeken blijft oorlog, %(_player
 msgid ""
 "I will accept your offer to become allies, %(_player_)s. We will both "
 "benefit from this partnership."
-msgstr "Ik accepteer uw aanbod voor bondgenootschap, %(_player_)s. Beiden zullen we profiteren van onze samenwerking."
+msgstr "Ik accepteer je aanbod voor bondgenootschap, %(_player_)s. Beiden zullen we profiteren van onze samenwerking."
 
 #: simulation/ai/petra/chatHelper.js:74
 #, javascript-format
@@ -746,7 +746,7 @@ msgstr "Laag"
 #: simulation/data/settings/starting_resources.jsonData[2].Title
 msgctxt "startingResources"
 msgid "Medium"
-msgstr "Normaal"
+msgstr "Middelmatig"
 
 #: simulation/data/settings/starting_resources.jsonData[3].Title
 msgctxt "startingResources"

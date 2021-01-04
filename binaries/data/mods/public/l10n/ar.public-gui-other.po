@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2020 Wildfire Games
+# Copyright (C) 2021 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-12-28 08:02+0000\n"
-"PO-Revision-Date: 2020-12-28 08:36+0000\n"
+"POT-Creation-Date: 2021-01-01 08:01+0000\n"
+"PO-Revision-Date: 2021-01-01 08:36+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
@@ -2950,7 +2950,7 @@ msgstr "يمكن أن ترسل لنا معلومات بشكل تلقائي تس�
 
 #. Translation: Description of an item in the CivInfo page, on a new line and
 #. indented.
-#: gui/reference/civinfo/CivInfoPage.js:101
+#: gui/reference/civinfo/CivInfoPage.js:95
 #, javascript-format
 msgid ""
 "\n"
@@ -2963,12 +2963,12 @@ msgstr ""
 #. Example:
 #. > • Name of a Special Something (i)
 #. >     A brief description of the aforementioned something.
-#: gui/reference/civinfo/CivInfoPage.js:108
+#: gui/reference/civinfo/CivInfoPage.js:102
 #, javascript-format
 msgid "• %(name)s %(info_icon)s%(description)s"
 msgstr ""
 
-#: gui/reference/civinfo/CivInfoPage.js:119
+#: gui/reference/civinfo/CivInfoPage.js:113
 #, javascript-format
 msgid "%(hotkey)s: Close Civilization Overview."
 msgstr "%(hotkey)s: اغلق النظرة العامة للحضارة"
@@ -2983,7 +2983,7 @@ msgstr "أسلوب لعب %(civilization)s"
 msgid "History of the %(civilization)s"
 msgstr "تاريخ %(civilization)s"
 
-#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:32
+#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:47
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] "علاوة الحضارة"
@@ -2993,7 +2993,7 @@ msgstr[3] "علاوات الحضارة"
 msgstr[4] "علاوات الحضارة"
 msgstr[5] "علاوات الحضارة"
 
-#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:35
+#: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:50
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
 msgstr[0] "علاوة الفريق"
@@ -3003,7 +3003,7 @@ msgstr[3] "علاوات الفريق"
 msgstr[4] "علاوات الفريق"
 msgstr[5] "علاوات الفريق"
 
-#: gui/reference/civinfo/Sections/Subsections/HeroesSubsection.js:30
+#: gui/reference/civinfo/Sections/Subsections/HeroesSubsection.js:29
 msgid "Hero"
 msgid_plural "Heroes"
 msgstr[0] ""
@@ -3013,7 +3013,7 @@ msgstr[3] ""
 msgstr[4] ""
 msgstr[5] ""
 
-#: gui/reference/civinfo/Sections/Subsections/StructuresSubsection.js:24
+#: gui/reference/civinfo/Sections/Subsections/StructuresSubsection.js:29
 msgid "Special Structure"
 msgid_plural "Special Structures"
 msgstr[0] ""
@@ -3023,7 +3023,7 @@ msgstr[3] ""
 msgstr[4] ""
 msgstr[5] ""
 
-#: gui/reference/civinfo/Sections/Subsections/TechnologiesSubsection.js:30
+#: gui/reference/civinfo/Sections/Subsections/TechnologiesSubsection.js:28
 msgid "Special Technology"
 msgid_plural "Special Technologies"
 msgstr[0] ""
@@ -3052,7 +3052,7 @@ msgstr "%(hotkey)s: الانتقال للهيكل البنائي"
 msgid "Civilization:"
 msgstr "الحضارة:"
 
-#: gui/reference/common/TemplateParser.js:128
+#: gui/reference/common/TemplateParser.js:147
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
 msgstr ""
@@ -4191,22 +4191,6 @@ msgstr ""
 msgid ""
 "They are countered by ranged units and swordsmen, so support your spearmen "
 "with slingers or cavalry."
-msgstr ""
-
-#: gui/text/tips/stoa.txt:1
-msgid "STOA"
-msgstr ""
-
-#: gui/text/tips/stoa.txt:2
-msgid "A special structure for  Athenians, Macedonians, and Spartans."
-msgstr ""
-
-#: gui/text/tips/stoa.txt:3
-msgid "Trains Heavy Skirmishers and Sword Infantry Champions."
-msgstr ""
-
-#: gui/text/tips/stoa.txt:4
-msgid "Grants +10 Population."
 msgstr ""
 
 #: gui/text/tips/storehouses.txt:1

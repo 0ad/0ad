@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2020 Wildfire Games
+# Copyright (C) 2021 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -29,14 +29,14 @@
 # miragae <miragae@gmail.com>, 2014-2015
 # Night Shade <aleksandra.peter3590@gmail.com>, 2016
 # zyxist <nightstorm@tlen.pl>, 2014
-# Przemysław Murach <moonshine133@vp.pl>, 2018-2020
+# Przemysław Murach <moonshine133@vp.pl>, 2018-2021
 # Robert x <jankinowski11@gmail.com>, 2020
 # slodki12341 <slodki1234@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-12-26 15:10+0000\n"
-"PO-Revision-Date: 2020-12-26 21:55+0000\n"
+"POT-Creation-Date: 2021-01-01 08:01+0000\n"
+"PO-Revision-Date: 2021-01-01 13:56+0000\n"
 "Last-Translator: Przemysław Murach <moonshine133@vp.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -550,13 +550,13 @@ msgstr "Buduj nad brzegiem własnego, neutralnego lub sojuszniczego terytorium. 
 msgid "Shipyard"
 msgstr "Stocznia"
 
-#: simulation/templates/structures/cart/temple.xml:14
+#: simulation/templates/structures/cart/temple.xml:9
 msgid "Maqdaš"
 msgstr "Maqdaš"
 
-#: simulation/templates/structures/cart/temple.xml:15
-msgid "Train Healers and Champions and research healing technologies."
-msgstr "Szkoli uzdrowicieli i czempionów oraz opracowuje technologie lecznicze."
+#: simulation/templates/structures/cart/temple.xml:10
+msgid "Train Healers and Champion Infantry and research healing technologies."
+msgstr "Szkoli uzdrowicieli i elitarną piechotę oraz opracowuje technologie lecznicze."
 
 #: simulation/templates/structures/cart/tophet.xml:18
 msgid "Sacrificial Temple"
@@ -565,10 +565,6 @@ msgstr "Świątynia ofiarna"
 #: simulation/templates/structures/cart/tophet.xml:19
 msgid "Tophet"
 msgstr "Tophet"
-
-#: simulation/templates/structures/cart/tophet.xml:20
-msgid "Train Healers and Champion Cavalry and research healing technologies."
-msgstr "Szkoli uzdrowicieli i elitarną kawalerię oraz opracowuje technologie lecznicze."
 
 #: simulation/templates/structures/cart/wall_gate.xml:12
 msgid "Mijdil-šaʿar"
@@ -1173,10 +1169,6 @@ msgstr "Blok mieszkalny"
 msgid "Padgan"
 msgstr "Padgan"
 
-#: simulation/templates/structures/pers/barracks.xml:6
-msgid "Train Infantry."
-msgstr "Szkoli piechotę."
-
 #: simulation/templates/structures/pers/civil_centre.xml:8
 msgid "Provincial Governor"
 msgstr "Provincial Governor"
@@ -1359,22 +1351,22 @@ msgstr "Arcus Triumphālis"
 msgid "TriumphalArch"
 msgstr "Łuk triumfalny"
 
-#: simulation/templates/structures/rome/army_camp.xml:71
+#: simulation/templates/structures/rome/army_camp.xml:73
 msgid "Army Camp"
 msgstr "Obóz wojskowy"
 
-#: simulation/templates/structures/rome/army_camp.xml:72
+#: simulation/templates/structures/rome/army_camp.xml:74
 msgid "Castra"
 msgstr "Castra"
 
-#: simulation/templates/structures/rome/army_camp.xml:73
+#: simulation/templates/structures/rome/army_camp.xml:75
 msgid ""
-"Build in neutral or enemy territory. Train Citizen-Soldiers and construct "
-"Siege Engines. Garrison Soldiers for additional arrows."
-msgstr "Zbuduj na neutralnym lub wrogim terytorium. Szkoli wojowników i konstruuje machiny oblężnicze. Umieść żołnierzy w garnizonie, by wzmocnić ostrzał."
+"Build in neutral or enemy territory. Train Melee Infantry. Garrison Soldiers"
+" for additional arrows."
+msgstr "Zbuduj na neutralnym lub wrogim terytorium. Szkoli piechotę walczącą wręcz. Umieść żołnierzy w garnizonie, by wzmocnić ostrzał."
 
 #: simulation/templates/structures/rome/army_camp.xml:40
-#: simulation/templates/structures/rome/army_camp.xml:75
+#: simulation/templates/structures/rome/army_camp.xml:77
 msgid "ArmyCamp"
 msgstr "Obóz Armii"
 
@@ -1690,21 +1682,17 @@ msgstr "Osada"
 #: simulation/templates/structures/hellenic_stoa.xml:23
 #: simulation/templates/structures/mace/royal_stoa.xml:5
 #: simulation/templates/structures/spart/royal_stoa.xml:12
+#: simulation/templates/template_structure_civic_stoa.xml:27
 #: simulation/templates/template_structure_civic_stoa.xml:30
-#: simulation/templates/template_structure_civic_stoa.xml:33
 msgid "Stoa"
 msgstr "Stoa"
-
-#: simulation/templates/template_structure_civic_stoa.xml:32
-msgid "Train Mercenary Champions."
-msgstr "Trenuj mistrzów najemników"
 
 #: simulation/templates/structures/cart/super_dock.xml:43
 #: simulation/templates/structures/gaul/tavern.xml:23
 #: simulation/templates/structures/kush/pyramid_small.xml:29
 #: simulation/templates/structures/maur/elephant_stables.xml:7
 #: simulation/templates/structures/ptol/lighthouse.xml:28
-#: simulation/templates/template_structure_civic_stoa.xml:33
+#: simulation/templates/template_structure_civic_stoa.xml:30
 #: simulation/templates/template_structure_civic_temple.xml:32
 #: simulation/templates/template_structure_defensive_tower_stone.xml:34
 #: simulation/templates/template_structure_economic_market.xml:28
@@ -1740,15 +1728,16 @@ msgid ""
 msgstr "Buduj na swoim lub neutralnym terytorium. Budynki powoli przechodzą pod kontrolę Gai, gdy znajdują się na terytorium neutralnym."
 
 #: simulation/templates/structures/wallset_palisade.xml:4
-#: simulation/templates/structures/wallset_palisade.xml:5
-#: simulation/templates/template_structure_defensive_palisade.xml:15
-#: simulation/templates/template_structure_defensive_palisade.xml:18
+#: simulation/templates/structures/wallset_palisade.xml:6
+#: simulation/templates/template_structure_defensive_palisade.xml:17
+#: simulation/templates/template_structure_defensive_palisade.xml:20
 msgid "Palisade"
 msgstr "Palisada"
 
-#: simulation/templates/template_structure_defensive_palisade.xml:17
-msgid "Wall off an area."
-msgstr "Zamuruj obszar."
+#: simulation/templates/structures/wallset_palisade.xml:5
+#: simulation/templates/template_structure_defensive_palisade.xml:19
+msgid "Wall off an area. Build in own or neutral territory."
+msgstr "Zamuruj obszar. Zbuduj na własnym lub neutralnym terytorium."
 
 #: simulation/templates/template_structure_defensive_tower.xml:37
 #: simulation/templates/template_structure_defensive_tower.xml:53
@@ -1771,6 +1760,7 @@ msgstr "ArtilleryTower"
 
 #: simulation/templates/structures/kush/pyramid_large.xml:29
 #: simulation/templates/structures/kush/temple_amun.xml:30
+#: simulation/templates/structures/rome/army_camp.xml:77
 #: simulation/templates/structures/rome/temple_mars.xml:14
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:60
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:59
@@ -1810,7 +1800,7 @@ msgstr "Obsadź piechotą, by zwiększyć liczbę strzał. Wymaga wynalezienia m
 msgid "SentryTower"
 msgstr "Wieża strażnicza"
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:68
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:65
 msgid "Reinforce with stone and upgrade to a defense tower."
 msgstr "Wzmocnij kamieniem i zmodernizuj do wieży obronnej."
 
@@ -1922,8 +1912,8 @@ msgid "Barracks"
 msgstr "Koszary"
 
 #: simulation/templates/template_structure_military_barracks.xml:28
-msgid "Train Citizen Soldiers and research technologies."
-msgstr "Szkoli żołnierzy i opracowuje technologie."
+msgid "Train Infantry and research Infantry technologies."
+msgstr "Szkoli piechotę i opracowuje dla niej technologie."
 
 #: simulation/templates/template_structure_military_dock.xml:24
 #: simulation/templates/template_structure_military_dock.xml:27
@@ -1966,8 +1956,8 @@ msgid "Forge"
 msgstr "Kuźnia"
 
 #: simulation/templates/template_structure_military_forge.xml:24
-msgid "Research attack and armor technologies."
-msgstr "Odkrywa ulepszenia ataku i pancerza."
+msgid "Research attack and resistance technologies."
+msgstr "Opracowuje ulepszenia ataku i pancerza."
 
 #: simulation/templates/template_structure_military_fortress.xml:39
 #: simulation/templates/template_structure_military_fortress.xml:68

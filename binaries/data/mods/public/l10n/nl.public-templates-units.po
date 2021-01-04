@@ -1,18 +1,18 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2020 Wildfire Games
+# Copyright (C) 2021 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
 # Andreas I <andreasi@tutanota.com>, 2019
 # Anique van Berne <avanberne@gmail.com>, 2016
-# Bart <b.anthonisse@gmail.com>, 2020
+# Bart <b.anthonisse@gmail.com>, 2020-2021
 # bb <b.jansen5@students.uu.nl>, 2020
 # bb <b.jansen5@students.uu.nl>, 2018
 # Christof Verhoeven <christof.verhoeven@gmail.com>, 2016-2017
 # echotangoecho . <echotangoecho1@gmail.com>, 2017
 # Ellen Roels, 2015
 # Ellen Roels, 2015
-# Freagarach . <freagarach@gmail.com>, 2019
+# Freagarach . <freagarach@gmail.com>, 2019,2021
 # Johannes Collosus <the_pc_pilot@live.nl>, 2015
 # Luc Dekker <cosmoluc@gmail.com>, 2019
 # Mar, 2015
@@ -33,9 +33,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-12-11 08:01+0000\n"
-"PO-Revision-Date: 2020-12-11 18:02+0000\n"
-"Last-Translator: Bart <b.anthonisse@gmail.com>\n"
+"POT-Creation-Date: 2021-01-01 08:01+0000\n"
+"PO-Revision-Date: 2021-01-04 07:53+0000\n"
+"Last-Translator: Freagarach . <freagarach@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -70,33 +70,33 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Slaughter"
 msgstr "Afslachting"
 
-#: simulation/templates/template_unit_cavalry.xml:32
-#: simulation/templates/template_unit_cavalry.xml:35
+#: simulation/templates/template_unit_cavalry.xml:30
+#: simulation/templates/template_unit_cavalry.xml:33
 #: simulation/templates/template_unit_champion_cavalry.xml:20
-#: simulation/templates/template_unit_hero_cavalry.xml:20
+#: simulation/templates/template_unit_hero_cavalry.xml:19
 msgid "Cavalry"
 msgstr "Cavalerie"
 
-#: simulation/templates/template_unit_cavalry.xml:33
+#: simulation/templates/template_unit_cavalry.xml:31
 #: simulation/templates/template_unit_elephant.xml:9
-#: simulation/templates/template_unit_infantry.xml:64
+#: simulation/templates/template_unit_infantry.xml:63
 #: simulation/templates/template_unit_support_healer.xml:29
 msgctxt "Rank"
 msgid "Basic"
 msgstr "Basis"
 
-#: simulation/templates/template_unit_cavalry.xml:35
+#: simulation/templates/template_unit_cavalry.xml:33
 #: simulation/templates/template_unit_champion.xml:14
 #: simulation/templates/template_unit_elephant.xml:11
-#: simulation/templates/template_unit_hero.xml:28
-#: simulation/templates/template_unit_infantry.xml:62
+#: simulation/templates/template_unit_hero.xml:25
+#: simulation/templates/template_unit_infantry.xml:61
 msgid "Soldier"
 msgstr "Soldaat"
 
-#: simulation/templates/template_unit_cavalry.xml:35
+#: simulation/templates/template_unit_cavalry.xml:33
 #: simulation/templates/template_unit_elephant.xml:11
-#: simulation/templates/template_unit_infantry.xml:62
-#: simulation/templates/template_unit_support_female_citizen.xml:63
+#: simulation/templates/template_unit_infantry.xml:61
+#: simulation/templates/template_unit_support_female_citizen.xml:62
 msgid "Citizen"
 msgstr "Burger"
 
@@ -106,20 +106,23 @@ msgstr "Mêlee Ruiter"
 
 #: simulation/templates/template_unit_cavalry_melee.xml:8
 #: simulation/templates/template_unit_champion_cavalry_axeman.xml:21
+#: simulation/templates/template_unit_champion_cavalry_maceman.xml:21
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:29
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:21
 #: simulation/templates/template_unit_champion_elephant_melee.xml:17
 #: simulation/templates/template_unit_champion_infantry_axeman.xml:21
-#: simulation/templates/template_unit_champion_infantry_maceman.xml:20
+#: simulation/templates/template_unit_champion_infantry_maceman.xml:21
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:29
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:29
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:21
 #: simulation/templates/template_unit_dog.xml:35
 #: simulation/templates/template_unit_hero_cavalry_axeman.xml:18
+#: simulation/templates/template_unit_hero_cavalry_maceman.xml:18
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:26
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:24
-#: simulation/templates/template_unit_hero_elephant_melee.xml:32
+#: simulation/templates/template_unit_hero_elephant_melee.xml:30
 #: simulation/templates/template_unit_hero_infantry_axeman.xml:18
+#: simulation/templates/template_unit_hero_infantry_maceman.xml:18
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:26
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:26
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:24
@@ -152,6 +155,29 @@ msgstr "Cavalerie bijlvechter"
 #: simulation/templates/template_unit_infantry_melee_axeman.xml:21
 msgid "Axeman"
 msgstr "Bijlvechter"
+
+#: simulation/templates/template_unit_cavalry_melee_maceman.xml:5
+#: simulation/templates/template_unit_champion_cavalry_maceman.xml:5
+#: simulation/templates/template_unit_champion_infantry_maceman.xml:5
+#: simulation/templates/template_unit_hero_cavalry_maceman.xml:5
+#: simulation/templates/template_unit_hero_infantry_maceman.xml:5
+#: simulation/templates/template_unit_infantry_melee_maceman.xml:5
+msgctxt "Name of an attack, usually the weapon."
+msgid "Mace"
+msgstr "Knots"
+
+#: simulation/templates/template_unit_cavalry_melee_maceman.xml:22
+msgid "Cavalry Maceman"
+msgstr "Cavalerie knotsvechter"
+
+#: simulation/templates/template_unit_cavalry_melee_maceman.xml:23
+#: simulation/templates/template_unit_champion_cavalry_maceman.xml:21
+#: simulation/templates/template_unit_champion_infantry_maceman.xml:21
+#: simulation/templates/template_unit_hero_cavalry_maceman.xml:18
+#: simulation/templates/template_unit_hero_infantry_maceman.xml:18
+#: simulation/templates/template_unit_infantry_melee_maceman.xml:23
+msgid "Maceman"
+msgstr "Knotsvechter"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:5
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:5
@@ -214,7 +240,7 @@ msgstr "Zwaardvechter"
 #: simulation/templates/template_unit_champion_infantry_javelineer.xml:31
 #: simulation/templates/template_unit_elephant_archer.xml:38
 #: simulation/templates/template_unit_hero_cavalry_archer.xml:27
-#: simulation/templates/template_unit_hero_cavalry_javelineer.xml:31
+#: simulation/templates/template_unit_hero_cavalry_javelineer.xml:28
 #: simulation/templates/template_unit_hero_infantry_archer.xml:27
 #: simulation/templates/template_unit_hero_infantry_javelineer.xml:28
 #: simulation/templates/template_unit_infantry_ranged.xml:28
@@ -246,18 +272,18 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Bow"
 msgstr "Boog"
 
-#: simulation/templates/template_unit_cavalry_ranged_archer.xml:29
+#: simulation/templates/template_unit_cavalry_ranged_archer.xml:30
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:27
 #: simulation/templates/template_unit_champion_infantry_archer.xml:30
 #: simulation/templates/template_unit_elephant_archer.xml:38
 #: simulation/templates/template_unit_hero_cavalry_archer.xml:27
 #: simulation/templates/template_unit_hero_infantry_archer.xml:27
-#: simulation/templates/template_unit_infantry_ranged_archer.xml:30
 #: simulation/templates/template_unit_infantry_ranged_archer.xml:31
+#: simulation/templates/template_unit_infantry_ranged_archer.xml:32
 msgid "Archer"
 msgstr "Boogschutter"
 
-#: simulation/templates/template_unit_cavalry_ranged_archer.xml:30
+#: simulation/templates/template_unit_cavalry_ranged_archer.xml:31
 msgid "Cavalry Archer"
 msgstr "Ruiter Boogschutter"
 
@@ -278,7 +304,7 @@ msgstr "Cavalerie speerwerper"
 #: simulation/templates/template_unit_cavalry_ranged_javelineer.xml:30
 #: simulation/templates/template_unit_champion_cavalry_javelineer.xml:28
 #: simulation/templates/template_unit_champion_infantry_javelineer.xml:31
-#: simulation/templates/template_unit_hero_cavalry_javelineer.xml:31
+#: simulation/templates/template_unit_hero_cavalry_javelineer.xml:28
 #: simulation/templates/template_unit_hero_infantry_javelineer.xml:28
 #: simulation/templates/template_unit_infantry_ranged_javelineer.xml:30
 msgid "Javelineer"
@@ -308,6 +334,10 @@ msgstr "Kampioen cavalerie bijlvechter"
 msgid "Champion Cavalry Javelineer"
 msgstr "Kampioen cavalerie speerwerper"
 
+#: simulation/templates/template_unit_champion_cavalry_maceman.xml:20
+msgid "Champion Cavalry Maceman"
+msgstr "Kampioen cavalerie knotsvechter"
+
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:27
 msgid "Champion Cavalry Spearman"
 msgstr "Kampioen Ruiter Speervechter"
@@ -320,7 +350,7 @@ msgstr "Kampioen Ruiter Zwaardvechter"
 #: simulation/templates/template_unit_elephant.xml:11
 #: simulation/templates/template_unit_fauna_hunt_defensive_elephant.xml:25
 #: simulation/templates/template_unit_fauna_hunt_skittish_elephant_infant.xml:4
-#: simulation/templates/template_unit_hero_elephant_melee.xml:32
+#: simulation/templates/template_unit_hero_elephant_melee.xml:30
 #: simulation/templates/units/maur/support_elephant.xml:23
 msgid "Elephant"
 msgstr "Olifant"
@@ -338,9 +368,9 @@ msgid "Trunk"
 msgstr "Boomstam"
 
 #: simulation/templates/template_unit_champion_infantry.xml:15
-#: simulation/templates/template_unit_hero_infantry.xml:15
+#: simulation/templates/template_unit_hero_infantry.xml:14
+#: simulation/templates/template_unit_infantry.xml:61
 #: simulation/templates/template_unit_infantry.xml:62
-#: simulation/templates/template_unit_infantry.xml:63
 msgid "Infantry"
 msgstr "Infanterie"
 
@@ -360,20 +390,9 @@ msgstr "Kampioen bijlvechter"
 msgid "Champion Infantry Javelineer"
 msgstr "Kampioen infanterie speerwerper"
 
-#: simulation/templates/template_unit_champion_infantry_maceman.xml:5
-#: simulation/templates/units/kush/infantry_maceman_merc_b.xml:5
-msgctxt "Name of an attack, usually the weapon."
-msgid "Mace"
-msgstr "Knots"
-
 #: simulation/templates/template_unit_champion_infantry_maceman.xml:20
-#: simulation/templates/units/kush/infantry_maceman_merc_b.xml:27
-msgid "Maceman"
-msgstr "Knotsvechter"
-
-#: simulation/templates/template_unit_champion_infantry_maceman.xml:21
-msgid "Champion Maceman"
-msgstr "Kampioen Knotsvechter"
+msgid "Champion Infantry Maceman"
+msgstr "Kampioen infanterie knotsvechter"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:5
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:5
@@ -460,13 +479,13 @@ msgstr "1.5× voordeel tegen cavalerie. Kan geen gebouwen, schepen of belegering
 msgid "Kill to butcher for food."
 msgstr "Slacht dieren voor voedsel"
 
-#: simulation/templates/template_unit_hero.xml:28
-#: simulation/templates/template_unit_hero.xml:29
-#: simulation/templates/template_unit_hero_infantry.xml:16
+#: simulation/templates/template_unit_hero.xml:25
+#: simulation/templates/template_unit_hero.xml:26
+#: simulation/templates/template_unit_hero_infantry.xml:15
 msgid "Hero"
 msgstr "Held"
 
-#: simulation/templates/template_unit_hero_cavalry.xml:21
+#: simulation/templates/template_unit_hero_cavalry.xml:20
 msgid "Hero Cavalry"
 msgstr "Held Ruiter"
 
@@ -478,9 +497,13 @@ msgstr "Held Ruiter Boogschutter"
 msgid "Hero Cavalry Axeman"
 msgstr "Held cavalerie bijlvechter"
 
-#: simulation/templates/template_unit_hero_cavalry_javelineer.xml:30
+#: simulation/templates/template_unit_hero_cavalry_javelineer.xml:27
 msgid "Hero Cavalry Javelineer"
 msgstr "Held cavalerie speerwerper"
+
+#: simulation/templates/template_unit_hero_cavalry_maceman.xml:17
+msgid "Hero Cavalry Maceman"
+msgstr "Held cavalerie knotsvechter"
 
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:24
 msgid "Hero Cavalry Spearman"
@@ -514,6 +537,10 @@ msgstr "Held bijlvechter"
 msgid "Hero Infantry Javelineer"
 msgstr "Held infanterie speerwerper"
 
+#: simulation/templates/template_unit_hero_infantry_maceman.xml:17
+msgid "Hero Infantry Maceman"
+msgstr "Held infanterie knotsvechter"
+
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:24
 msgid "Hero Pikeman"
 msgstr "Held Piekenier"
@@ -526,15 +553,19 @@ msgstr "Held Speervechter"
 msgid "Hero Swordsman"
 msgstr "Held Zwaardvechter"
 
-#: simulation/templates/template_unit_infantry.xml:62
-#: simulation/templates/template_unit_support_female_citizen.xml:63
-#: simulation/templates/template_unit_support_slave.xml:42
+#: simulation/templates/template_unit_infantry.xml:61
+#: simulation/templates/template_unit_support_female_citizen.xml:62
+#: simulation/templates/template_unit_support_slave.xml:43
 msgid "Worker"
 msgstr "Arbeider"
 
 #: simulation/templates/template_unit_infantry_melee.xml:19
 msgid "Melee Infantry"
 msgstr "Mêlee Infanterie"
+
+#: simulation/templates/template_unit_infantry_melee_maceman.xml:22
+msgid "Infantry Maceman"
+msgstr "infanterie knotsvechter"
 
 #: simulation/templates/template_unit_infantry_ranged_javelineer.xml:29
 msgid "Infantry Javelineer"
@@ -719,7 +750,7 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Dagger"
 msgstr "Dolk"
 
-#: simulation/templates/template_unit_support_female_citizen.xml:64
+#: simulation/templates/template_unit_support_female_citizen.xml:63
 msgid "Female Citizen"
 msgstr "Vrouwelijke Burger"
 
@@ -727,19 +758,19 @@ msgstr "Vrouwelijke Burger"
 msgid "Heal units."
 msgstr "Genees eenheden."
 
-#: simulation/templates/template_unit_support_slave.xml:42
 #: simulation/templates/template_unit_support_slave.xml:43
+#: simulation/templates/template_unit_support_slave.xml:44
 #: simulation/templates/units/rome/infantry_swordsman_slave.xml:19
 msgid "Slave"
 msgstr "Slaaf"
 
-#: simulation/templates/template_unit_support_slave.xml:45
+#: simulation/templates/template_unit_support_slave.xml:46
 msgid "Gatherer with a finite life span. Bonused at mining and lumbering."
 msgstr "Werkkracht met een kort leven. Een mijn- en houthakkersbonus."
 
 #: simulation/templates/template_unit_support_trader.xml:18
 msgid "Trade resources between your own markets and those of your allies."
-msgstr "Verhandel grondstoffen tussen uw marktplaatsen en die van uw geallieerden."
+msgstr "Verhandel grondstoffen tussen uw marktplaatsen en die van uw bondgenoten."
 
 #: simulation/templates/units/athen/catafalque.xml:9
 msgid "Solon"
@@ -950,7 +981,7 @@ msgstr "Pródromos"
 #: simulation/templates/units/sele/support_healer_e.xml:4
 #: simulation/templates/units/spart/cavalry_javelineer_e.xml:4
 #: simulation/templates/units/spart/cavalry_spearman_e.xml:4
-#: simulation/templates/units/spart/champion_infantry_sword.xml:22
+#: simulation/templates/units/spart/champion_infantry_sword.xml:21
 #: simulation/templates/units/spart/infantry_javelineer_e.xml:4
 #: simulation/templates/units/spart/infantry_spearman_e.xml:4
 #: simulation/templates/units/spart/support_healer_e.xml:4
@@ -964,9 +995,9 @@ msgstr "Elite"
 #: simulation/templates/units/iber/champion_infantry.xml:5
 #: simulation/templates/units/iber/infantry_swordsman_b.xml:5
 #: simulation/templates/units/kush/champion_infantry_amun.xml:5
-#: simulation/templates/units/mace/hero_alexander.xml:5
+#: simulation/templates/units/mace/hero_alexander_iii.xml:5
 #: simulation/templates/units/mace/hero_craterus.xml:5
-#: simulation/templates/units/mace/hero_demetrius.xml:5
+#: simulation/templates/units/mace/hero_demetrius_i.xml:5
 #: simulation/templates/units/maur/infantry_swordsman_b.xml:5
 msgctxt "Name of an attack using a single-edged sword."
 msgid "Sword"
@@ -1036,39 +1067,39 @@ msgstr "Xenophon"
 msgid "Xenophōn"
 msgstr "Xenophon"
 
-#: simulation/templates/units/athen/infantry_javelineer_b.xml:15
+#: simulation/templates/units/athen/infantry_javelineer_b.xml:14
 msgid "Thracian Peltast"
 msgstr "Thracische speerwerper"
 
-#: simulation/templates/units/athen/infantry_javelineer_b.xml:16
+#: simulation/templates/units/athen/infantry_javelineer_b.xml:15
 msgid "Peltastḗs Thrâx"
 msgstr "Peltastḗs Thrâx"
 
-#: simulation/templates/units/athen/infantry_marine_archer_b.xml:15
+#: simulation/templates/units/athen/infantry_marine_archer_b.xml:14
 #: simulation/templates/units/mace/infantry_archer_b.xml:13
 #: simulation/templates/units/ptol/infantry_archer_b.xml:12
 msgid "Cretan Mercenary Archer"
 msgstr "Kretenzer huurlingboogschutter"
 
-#: simulation/templates/units/athen/infantry_marine_archer_b.xml:16
+#: simulation/templates/units/athen/infantry_marine_archer_b.xml:15
 #: simulation/templates/units/mace/infantry_archer_b.xml:14
 #: simulation/templates/units/ptol/infantry_archer_b.xml:13
 msgid "Toxótēs Krētikós"
 msgstr "Toxótēs Krētikós"
 
-#: simulation/templates/units/athen/infantry_slinger_b.xml:15
+#: simulation/templates/units/athen/infantry_slinger_b.xml:14
 msgid "Athenian Slinger Militia"
 msgstr "Atheense slinger militie"
 
-#: simulation/templates/units/athen/infantry_slinger_b.xml:16
+#: simulation/templates/units/athen/infantry_slinger_b.xml:15
 msgid "Psilòs Athēnaîos"
 msgstr "Psilòs Athēnaîos"
 
-#: simulation/templates/units/athen/infantry_spearman_b.xml:15
+#: simulation/templates/units/athen/infantry_spearman_b.xml:14
 msgid "Athenian Hoplite"
 msgstr "Atheense hopliet"
 
-#: simulation/templates/units/athen/infantry_spearman_b.xml:16
+#: simulation/templates/units/athen/infantry_spearman_b.xml:15
 msgid "Hoplítēs Athēnaîos"
 msgstr "Hoplítēs Athēnaîos"
 
@@ -1121,11 +1152,11 @@ msgstr "Lithobólos"
 msgid "Oxybelḗs"
 msgstr "Oxybelḗs"
 
-#: simulation/templates/units/athen/support_female_citizen.xml:13
+#: simulation/templates/units/athen/support_female_citizen.xml:12
 msgid "Gýnē Athēnaía"
 msgstr "Gýnē Athēnaía"
 
-#: simulation/templates/units/athen/support_female_citizen.xml:14
+#: simulation/templates/units/athen/support_female_citizen.xml:13
 msgid "Athenian Woman"
 msgstr "Atheense vrouw"
 
@@ -1180,7 +1211,7 @@ msgstr "Keltische cavalerie"
 
 #: simulation/templates/units/brit/champion_chariot.xml:9
 msgid "Celtic Chariot"
-msgstr "Keltische strijdwagen"
+msgstr "Keltische Strijdwagen"
 
 #: simulation/templates/units/brit/champion_chariot.xml:10
 msgid "Essedon"
@@ -1193,8 +1224,8 @@ msgstr "Essedon"
 #: simulation/templates/units/maur/hero_ashoka.xml:15
 #: simulation/templates/units/pers/cavalry_archer_b.xml:5
 #: simulation/templates/units/pers/champion_chariot.xml:12
-#: simulation/templates/units/pers/hero_darius.xml:15
-#: simulation/templates/units/pers/hero_xerxes_chariot.xml:15
+#: simulation/templates/units/pers/hero_darius_i.xml:15
+#: simulation/templates/units/pers/hero_xerxes_i_chariot.xml:15
 #: simulation/templates/units/sele/champion_chariot.xml:12
 msgid "Chariot"
 msgstr "Strijdwagen"
@@ -1555,7 +1586,7 @@ msgstr "Kantabriako Zaldun"
 msgid "Lantzari"
 msgstr "Lantzari"
 
-#: simulation/templates/units/iber/champion_cavalry.xml:13
+#: simulation/templates/units/iber/champion_cavalry.xml:19
 msgid "Leial Zalduneria"
 msgstr "Leial Zalduneria"
 
@@ -1755,11 +1786,11 @@ msgstr "Noba speerwerper"
 msgid "nhw ʿhȝw Noba"
 msgstr "nhw ʿhȝw Noba"
 
-#: simulation/templates/units/kush/infantry_maceman_merc_b.xml:25
+#: simulation/templates/units/kush/infantry_maceman_merc_b.xml:16
 msgid "Noba Maceman"
 msgstr "Noba knotsvechters"
 
-#: simulation/templates/units/kush/infantry_maceman_merc_b.xml:26
+#: simulation/templates/units/kush/infantry_maceman_merc_b.xml:17
 msgid "nhw Noba"
 msgstr "nhw Noba"
 
@@ -1904,15 +1935,19 @@ msgstr "Gastraphetophoros"
 msgid "Hypaspistḗs Argyraspídi"
 msgstr "Hypaspistḗs Argyraspídi"
 
-#: simulation/templates/units/mace/hero_alexander.xml:21
+#: simulation/templates/units/mace/champion_infantry_swordsman.xml:12
+msgid "Rhomphaiaphoros"
+msgstr "Rhomphaiaphoros"
+
+#: simulation/templates/units/mace/hero_alexander_iii.xml:21
 msgid "Alexander III the Great"
 msgstr "Alexander de Grote"
 
-#: simulation/templates/units/mace/hero_alexander.xml:22
+#: simulation/templates/units/mace/hero_alexander_iii.xml:22
 msgid "Alexandros ho Megas"
 msgstr "Alexander de Grote"
 
-#: simulation/templates/units/mace/hero_alexander.xml:23
+#: simulation/templates/units/mace/hero_alexander_iii.xml:23
 msgid "Counters: 1.2× vs Heroes."
 msgstr "1.2× voordeel tegen helden."
 
@@ -1924,29 +1959,29 @@ msgstr "Craterus"
 msgid "Krateros"
 msgstr "Krateros"
 
-#: simulation/templates/units/mace/hero_demetrius.xml:14
+#: simulation/templates/units/mace/hero_demetrius_i.xml:14
 msgid "Demetrius I the Besieger"
 msgstr "Demetrius I Stedenbelegeraar"
 
-#: simulation/templates/units/mace/hero_demetrius.xml:15
+#: simulation/templates/units/mace/hero_demetrius_i.xml:15
 msgid "Dēmētrios Poliorkētēs"
 msgstr "Demetrius Stedenbelegeraar"
 
-#: simulation/templates/units/mace/hero_philip.xml:9
-#: simulation/templates/units/mace/hero_philip_pike.xml:9
+#: simulation/templates/units/mace/hero_philip_ii.xml:9
+#: simulation/templates/units/mace/hero_philip_ii_pike.xml:9
 msgid "Philip II of Macedon"
 msgstr "Philippus II van Macedonië"
 
-#: simulation/templates/units/mace/hero_philip.xml:10
-#: simulation/templates/units/mace/hero_philip_pike.xml:10
+#: simulation/templates/units/mace/hero_philip_ii.xml:10
+#: simulation/templates/units/mace/hero_philip_ii_pike.xml:10
 msgid "Philippos B' ho Makedōn"
 msgstr "Philippus II van Macedoniê"
 
-#: simulation/templates/units/mace/hero_pyrrhus.xml:9
+#: simulation/templates/units/mace/hero_pyrrhus_i.xml:9
 msgid "Pyrrhus I of Epirus"
 msgstr "Pyrrhus I van Epirus"
 
-#: simulation/templates/units/mace/hero_pyrrhus.xml:10
+#: simulation/templates/units/mace/hero_pyrrhus_i.xml:10
 msgid "Pyrrhos ho Epeiros"
 msgstr "Pyrrhus I van Epirus"
 
@@ -2032,7 +2067,7 @@ msgstr "Rath"
 #: simulation/templates/units/maur/champion_elephant.xml:5
 #: simulation/templates/units/pers/champion_elephant.xml:6
 msgid "Indian War Elephant"
-msgstr "Indische krijgsolifant"
+msgstr "Indische Krijgsolifant"
 
 #: simulation/templates/units/maur/champion_elephant.xml:6
 msgid "Gajendra"
@@ -2174,8 +2209,17 @@ msgctxt ""
 msgid "Rhomphaia"
 msgstr "Rhomphaia"
 
-#: simulation/templates/units/athen/infantry_javelineer_b.xml:17
-#: simulation/templates/units/athen/infantry_marine_archer_b.xml:17
+#: simulation/templates/units/mace/champion_infantry_swordsman.xml:11
+#: simulation/templates/units/merc_black_cloak.xml:10
+msgid "Thracian Black Cloak"
+msgstr "Thracische zwarte mantel"
+
+#: simulation/templates/units/merc_black_cloak.xml:11
+msgid "Rhomphaiophoros"
+msgstr "Rhomphaiophoros"
+
+#: simulation/templates/units/athen/infantry_javelineer_b.xml:16
+#: simulation/templates/units/athen/infantry_marine_archer_b.xml:16
 #: simulation/templates/units/cart/cavalry_spearman_ital_b.xml:8
 #: simulation/templates/units/cart/cavalry_swordsman_gaul_b.xml:8
 #: simulation/templates/units/cart/cavalry_swordsman_iber_b.xml:13
@@ -2185,13 +2229,13 @@ msgstr "Rhomphaia"
 #: simulation/templates/units/cart/infantry_swordsman_ital_b.xml:16
 #: simulation/templates/units/kush/cavalry_javelineer_merc_b.xml:12
 #: simulation/templates/units/kush/infantry_javelineer_merc_b.xml:18
-#: simulation/templates/units/kush/infantry_maceman_merc_b.xml:27
+#: simulation/templates/units/kush/infantry_maceman_merc_b.xml:18
 #: simulation/templates/units/mace/cavalry_javelineer_b.xml:9
 #: simulation/templates/units/mace/infantry_archer_b.xml:15
 #: simulation/templates/units/mace/infantry_slinger_b.xml:15
-#: simulation/templates/units/merc_black_cloak.xml:9
-#: simulation/templates/units/merc_thorakites.xml:11
-#: simulation/templates/units/merc_thureophoros.xml:4
+#: simulation/templates/units/merc_black_cloak.xml:12
+#: simulation/templates/units/merc_thorakites.xml:14
+#: simulation/templates/units/merc_thureophoros.xml:7
 #: simulation/templates/units/pers/kardakes_hoplite.xml:5
 #: simulation/templates/units/pers/kardakes_skirmisher.xml:5
 #: simulation/templates/units/ptol/cavalry_javelineer_merc_b.xml:8
@@ -2207,33 +2251,23 @@ msgstr "Rhomphaia"
 #: simulation/templates/units/sele/infantry_archer_merc_b.xml:14
 #: simulation/templates/units/sele/infantry_swordsman_merc_b.xml:19
 msgid "Mercenary"
-msgstr "Huurlingen"
+msgstr "Huurling"
 
-#: simulation/templates/units/mace/champion_infantry_swordsman.xml:11
-#: simulation/templates/units/merc_black_cloak.xml:11
-msgid "Thracian Black Cloak"
-msgstr "Thracische zwarte mantel"
-
-#: simulation/templates/units/mace/champion_infantry_swordsman.xml:12
-#: simulation/templates/units/merc_black_cloak.xml:12
-msgid "Rhomphaiaphoros"
-msgstr "Rhomphaiaphoros"
-
-#: simulation/templates/units/merc_thorakites.xml:13
+#: simulation/templates/units/merc_thorakites.xml:12
 msgid "Armored Swordsman"
 msgstr "Gepantserde zwaardvechter"
 
-#: simulation/templates/units/merc_thorakites.xml:14
+#: simulation/templates/units/merc_thorakites.xml:13
 msgid "Thōrakitēs"
 msgstr "Thōrakitēs"
 
-#: simulation/templates/units/merc_thureophoros.xml:6
+#: simulation/templates/units/merc_thureophoros.xml:5
 msgid "Heavy Skirmisher"
 msgstr "Zware tirailleur"
 
-#: simulation/templates/units/merc_thureophoros.xml:7
-msgid "Thyreophóros"
-msgstr "Thyreophóros"
+#: simulation/templates/units/merc_thureophoros.xml:6
+msgid "Thyreophoros"
+msgstr "Thyreophoros"
 
 #: simulation/templates/units/noldor_ship_bireme.xml:8
 msgid "Mankar Cirya"
@@ -2316,53 +2350,53 @@ msgstr "Perzische onsterfelijke"
 msgid "Anušiya"
 msgstr "Anušiya"
 
-#: simulation/templates/units/pers/hero_cyrus.xml:9
+#: simulation/templates/units/pers/hero_cyrus_ii.xml:9
 msgid "Cyrus II The Great"
 msgstr "Cyrus II de Grote"
 
-#: simulation/templates/units/pers/hero_cyrus.xml:10
+#: simulation/templates/units/pers/hero_cyrus_ii.xml:10
 msgid "Kuruš"
 msgstr "Kuruš"
 
-#: simulation/templates/units/pers/hero_darius.xml:13
+#: simulation/templates/units/pers/hero_darius_i.xml:13
 msgid "Darius I the Great"
 msgstr "Darius I de Grote"
 
-#: simulation/templates/units/pers/hero_darius.xml:14
+#: simulation/templates/units/pers/hero_darius_i.xml:14
 msgid "Dārayavahuš"
 msgstr "Darius II"
 
-#: simulation/templates/units/pers/hero_xerxes.xml:9
-#: simulation/templates/units/pers/hero_xerxes_chariot.xml:13
+#: simulation/templates/units/pers/hero_xerxes_i.xml:9
+#: simulation/templates/units/pers/hero_xerxes_i_chariot.xml:13
 msgid "Xerxes I"
 msgstr "Xerxes I"
 
-#: simulation/templates/units/pers/hero_xerxes.xml:10
-#: simulation/templates/units/pers/hero_xerxes_chariot.xml:14
+#: simulation/templates/units/pers/hero_xerxes_i.xml:10
+#: simulation/templates/units/pers/hero_xerxes_i_chariot.xml:14
 msgid "Xšayāršā"
 msgstr "Xšayāršā"
 
-#: simulation/templates/units/pers/infantry_archer_b.xml:13
+#: simulation/templates/units/pers/infantry_archer_b.xml:12
 msgid "Sogdian Archer"
 msgstr "Sogdische boogschutter"
 
-#: simulation/templates/units/pers/infantry_archer_b.xml:14
+#: simulation/templates/units/pers/infantry_archer_b.xml:13
 msgid "Θanuvaniya Suguda"
 msgstr "Θanuvaniya Suguda"
 
-#: simulation/templates/units/pers/infantry_javelineer_b.xml:13
+#: simulation/templates/units/pers/infantry_javelineer_b.xml:12
 msgid "Lydian Auxiliary"
 msgstr "Lydische hulptroepen"
 
-#: simulation/templates/units/pers/infantry_javelineer_b.xml:14
+#: simulation/templates/units/pers/infantry_javelineer_b.xml:13
 msgid "Pastiš Spardiya"
 msgstr "Pastiš Spardiya"
 
-#: simulation/templates/units/pers/infantry_spearman_b.xml:13
+#: simulation/templates/units/pers/infantry_spearman_b.xml:12
 msgid "Shield Bearer"
 msgstr "Schilddrager"
 
-#: simulation/templates/units/pers/infantry_spearman_b.xml:14
+#: simulation/templates/units/pers/infantry_spearman_b.xml:13
 msgid "Sparabara"
 msgstr "Sparabara"
 
@@ -2418,11 +2452,11 @@ msgstr "Syrische stormram"
 msgid "Hamaranakuba Aθuriya"
 msgstr "Hamaranakuba Aθuriya"
 
-#: simulation/templates/units/pers/support_female_citizen.xml:12
+#: simulation/templates/units/pers/support_female_citizen.xml:11
 msgid "Banu Miyanrudani"
 msgstr "Banu Miyanrudani"
 
-#: simulation/templates/units/pers/support_female_citizen.xml:13
+#: simulation/templates/units/pers/support_female_citizen.xml:12
 msgid "Mesopotamian Woman"
 msgstr "Mesopotamische vrouw"
 
@@ -2446,7 +2480,7 @@ msgstr "Tamkarum Arami"
 msgid ""
 "Trade resources between your own markets and those of your allies. Persians "
 "have a +25% land trading bonus."
-msgstr "Verhandel grondstoffen tussen uw markten en deze van geallieerden. Perzen hebben een +25% handelsbonus over land."
+msgstr "Verhandel grondstoffen tussen uw markten en die van uw bondgenoten. Perzen hebben +25% handelsbonus over land."
 
 #: simulation/templates/units/plane.xml:5
 msgctxt "Name of an attack of a World War II fighter plane."
@@ -2521,27 +2555,27 @@ msgstr "Juggernaut"
 msgid "Tessarakonterēs"
 msgstr "Tessarakonterēs"
 
-#: simulation/templates/units/ptol/hero_cleopatra.xml:11
+#: simulation/templates/units/ptol/hero_cleopatra_vii.xml:11
 msgid "Cleopatra VII"
 msgstr "Cleopatra VII"
 
-#: simulation/templates/units/ptol/hero_cleopatra.xml:12
+#: simulation/templates/units/ptol/hero_cleopatra_vii.xml:12
 msgid "Kleopatra H' Philopatōr"
 msgstr "Cleopatra VII Philopator"
 
-#: simulation/templates/units/ptol/hero_ptolemy_I.xml:9
+#: simulation/templates/units/ptol/hero_ptolemy_i.xml:9
 msgid "Ptolemy I"
 msgstr "Ptolemaeus I Soter"
 
-#: simulation/templates/units/ptol/hero_ptolemy_I.xml:10
+#: simulation/templates/units/ptol/hero_ptolemy_i.xml:10
 msgid "Ptolemaios A' Sōter"
 msgstr "Ptolemaeus I Soter"
 
-#: simulation/templates/units/ptol/hero_ptolemy_IV.xml:9
+#: simulation/templates/units/ptol/hero_ptolemy_iv.xml:9
 msgid "Ptolemy IV"
 msgstr "Ptolemaeus IV Philopator"
 
-#: simulation/templates/units/ptol/hero_ptolemy_IV.xml:10
+#: simulation/templates/units/ptol/hero_ptolemy_iv.xml:10
 msgid "Ptolemaios D' Philopatōr"
 msgstr "Ptolemaeus IV Philopator"
 
@@ -2875,27 +2909,27 @@ msgstr "Romeinse zware zwaardvechter"
 msgid "Thorakitès Rhomaïkós"
 msgstr "Thorakitès Rhomaïkós"
 
-#: simulation/templates/units/sele/hero_antiochus_great.xml:9
+#: simulation/templates/units/sele/hero_antiochus_iii.xml:9
 msgid "Antiochus III the Great"
 msgstr "Antiochus III de Grote"
 
-#: simulation/templates/units/sele/hero_antiochus_great.xml:10
+#: simulation/templates/units/sele/hero_antiochus_iii.xml:10
 msgid "Antiokhos G' Megas"
 msgstr "Antiokhos G' Megas"
 
-#: simulation/templates/units/sele/hero_antiochus_righteous.xml:9
+#: simulation/templates/units/sele/hero_antiochus_iv.xml:9
 msgid "Antiochus IV"
 msgstr "Antiochus IV Epiphanes"
 
-#: simulation/templates/units/sele/hero_antiochus_righteous.xml:10
+#: simulation/templates/units/sele/hero_antiochus_iv.xml:10
 msgid "Antiokhos D' Epiphanēs"
 msgstr "Antiochus IV Epiphanes"
 
-#: simulation/templates/units/sele/hero_seleucus_victor.xml:9
+#: simulation/templates/units/sele/hero_seleucus_i.xml:9
 msgid "Seleucus I"
 msgstr "Seleucus I Nicator"
 
-#: simulation/templates/units/sele/hero_seleucus_victor.xml:10
+#: simulation/templates/units/sele/hero_seleucus_i.xml:10
 msgid "Seleukos A' Nikatōr"
 msgstr "Seleucus I Nicator"
 
@@ -2995,19 +3029,19 @@ msgstr "Spartaanse hopliet"
 msgid "Spartiátēs"
 msgstr "Spartiátēs"
 
-#: simulation/templates/units/spart/champion_infantry_sword.xml:20
+#: simulation/templates/units/spart/champion_infantry_sword.xml:19
 msgid "Skiritai Commando"
 msgstr "Skiritai Commando"
 
-#: simulation/templates/units/spart/champion_infantry_sword.xml:21
+#: simulation/templates/units/spart/champion_infantry_sword.xml:20
 msgid "Ékdromos Skirítēs"
 msgstr "Ékdromos Skirítēs"
 
-#: simulation/templates/units/spart/hero_agis.xml:9
+#: simulation/templates/units/spart/hero_agis.xml:6
 msgid "Agis III"
 msgstr "Agis III"
 
-#: simulation/templates/units/spart/hero_agis.xml:10
+#: simulation/templates/units/spart/hero_agis.xml:7
 msgid "Agis"
 msgstr "Agis"
 
@@ -3024,19 +3058,19 @@ msgstr "Leonidas I"
 msgid "Leōnidēs"
 msgstr "Leonidas"
 
-#: simulation/templates/units/spart/infantry_javelineer_b.xml:15
+#: simulation/templates/units/spart/infantry_javelineer_b.xml:14
 msgid "Helot Skirmisher"
 msgstr "Helotische tirailleur"
 
-#: simulation/templates/units/spart/infantry_javelineer_b.xml:16
+#: simulation/templates/units/spart/infantry_javelineer_b.xml:15
 msgid "Akontistḗs Heílōs"
 msgstr "Akontistḗs Heílōs"
 
-#: simulation/templates/units/spart/infantry_spearman_b.xml:15
+#: simulation/templates/units/spart/infantry_spearman_b.xml:14
 msgid "Perioikoi Hoplite"
 msgstr "Perioikoi Hoplite"
 
-#: simulation/templates/units/spart/infantry_spearman_b.xml:16
+#: simulation/templates/units/spart/infantry_spearman_b.xml:15
 msgid "Hoplítēs Períoikos"
 msgstr "Hoplítēs Períoikos"
 
@@ -3044,11 +3078,11 @@ msgstr "Hoplítēs Períoikos"
 msgid "Spartan Trireme"
 msgstr "Spartaanse Trireme"
 
-#: simulation/templates/units/spart/support_female_citizen.xml:24
+#: simulation/templates/units/spart/support_female_citizen.xml:23
 msgid "Spartan Woman"
 msgstr "Spartaanse vrouw"
 
-#: simulation/templates/units/spart/support_female_citizen.xml:25
+#: simulation/templates/units/spart/support_female_citizen.xml:24
 msgid "Spartiâtis"
 msgstr "Spartiâtis"
 

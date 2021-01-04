@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2020 Wildfire Games
+# Copyright (C) 2021 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -47,8 +47,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-12-26 15:10+0000\n"
-"PO-Revision-Date: 2020-12-26 17:27+0000\n"
+"POT-Creation-Date: 2021-01-01 08:01+0000\n"
+"PO-Revision-Date: 2021-01-01 08:36+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -56,6 +56,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: tr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: simulation/data/civs/athen.jsonAINames[0]
+msgid "Themistocles"
+msgstr "Temistoklis"
 
 #: simulation/data/civs/athen.jsonAINames[10]
 msgid "Cleon"
@@ -69,9 +73,17 @@ msgstr "Cleophon"
 msgid "Thrasybulus"
 msgstr "Thrasybulus"
 
+#: simulation/data/civs/athen.jsonAINames[13]
+msgid "Iphicrates"
+msgstr "İphikrates"
+
 #: simulation/data/civs/athen.jsonAINames[14]
 msgid "Demosthenes"
 msgstr "Demostenes"
+
+#: simulation/data/civs/athen.jsonAINames[1]
+msgid "Pericles"
+msgstr "Perikles"
 
 #: simulation/data/civs/athen.jsonAINames[2]
 msgid "Cimon"
@@ -106,114 +118,18 @@ msgid "Miltiades"
 msgstr "Miltiades"
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].Description
-#: simulation/data/civs/mace.jsonCivBonuses[0].Description
-#: simulation/data/civs/spart.jsonCivBonuses[0].Description
-msgid "Structures +10% health and +10% capture points."
-msgstr "Yapılar +%10 sağlık ve +%10 ele geçirme puanı."
-
-#: simulation/data/civs/athen.jsonCivBonuses[0].History
-#: simulation/data/civs/mace.jsonCivBonuses[0].History
-#: simulation/data/civs/spart.jsonCivBonuses[0].History
-msgid "The Greeks used stone construction from early Mycenaean times."
-msgstr "Miken zamanlarının başlarında Yunanlar inşaat için taş kullanırdı."
-
-#: simulation/data/civs/athen.jsonCivBonuses[0].Name
-#: simulation/data/civs/mace.jsonCivBonuses[0].Name
-#: simulation/data/civs/spart.jsonCivBonuses[0].Name
-msgid "Hellenic Architecture"
-msgstr "Eski Yunan Mimarisi"
-
-#: simulation/data/civs/athen.jsonCivBonuses[1].Description
 msgid "Metal mining gathering rates increased by +10% for each passing age."
 msgstr "Maden çıkarma oranı her geçen çağ için +%10 arttı."
 
-#: simulation/data/civs/athen.jsonCivBonuses[1].History
+#: simulation/data/civs/athen.jsonCivBonuses[0].History
 msgid ""
 "The mines at Laureion in Attica provided Athens with a wealth of silver from"
 " which to mint her famous and highly prized coin, The Athenian Owl."
 msgstr "Laureion, Attica'daki madenler Atina'ya ünlü ve değerli Atina sikkesinin, Atinalı Baykuş'un, basımı için yüksek miktarda gümüş sağlamıştır."
 
-#: simulation/data/civs/athen.jsonCivBonuses[1].Name
+#: simulation/data/civs/athen.jsonCivBonuses[0].Name
 msgid "Silver Owls"
 msgstr "Gümüş Baykuşlar"
-
-#: simulation/data/civs/athen.jsonFactions[0].Description
-msgid "A Hellenic people of the Ionian tribe."
-msgstr "Bir İyonyalı kabilenin Helenistik insanları."
-
-#: simulation/data/civs/athen.jsonFactions[0].Heroes[0].History
-msgid ""
-"The general who persuaded the Athenians to invest their income from silver "
-"mines in a war navy of 200 Triremes. A key figure during the Persian Wars, "
-"he commanded the victorious Athenian navy at the decisive battle of Salamis "
-"in 479 B.C. Later, he pursued an active policy against the Persians in the "
-"Aegean, thereby laying the foundations of future Athenian power. However, he"
-" was eventually ostracised by the Athenians and forced to flee to the "
-"protection of the Persians."
-msgstr "Atinalıları, gümüş madenlerinden kazandıklarını, 200 Trireme'lik savaş donanmasına yatırmalarına ikna eden general. Pers savaşlarındaki kilit isim, M.Ö. 479'daki belirleyici Salamis savaşında Atina donanmasına komuta etmiştir. Sonrasında Ege'de Perslere karşı aktif bir politika izlemiş, böylece gelecekteki Atina gücünün temellerini atmıştır. Ancak, sonunda Atinalılar tarafından dışlanmış ve Perslerin himayesine kaçmaya zorlanmıştır."
-
-#: simulation/data/civs/athen.jsonAINames[0]
-#: simulation/data/civs/athen.jsonFactions[0].Heroes[0].Name
-msgid "Themistocles"
-msgstr "Temistoklis"
-
-#: simulation/data/civs/athen.jsonFactions[0].Heroes[1].History
-msgid "Pericles was the foremost Athenian politician of the 5th Century B.C."
-msgstr "Perikles M.Ö 5. yüzyılda en önde gelen Atinalı politikacı idi."
-
-#: simulation/data/civs/athen.jsonAINames[1]
-#: simulation/data/civs/athen.jsonFactions[0].Heroes[1].Name
-msgid "Pericles"
-msgstr "Perikles"
-
-#: simulation/data/civs/athen.jsonAINames[13]
-#: simulation/data/civs/athen.jsonFactions[0].Heroes[2].Name
-msgid "Iphicrates"
-msgstr "İphikrates"
-
-#: simulation/data/civs/athen.jsonFactions[0].Technologies[0].Description
-msgid "Athenian triremes can train Marines (Epibastes Athenaikos)."
-msgstr "Atina Trireme'leri Deniz Piyadesi eğitebilirler. (Epibastes Athenaikos)."
-
-#: simulation/data/civs/athen.jsonFactions[0].Technologies[0].Name
-msgid "Iphicratean Reforms"
-msgstr "İphikrates Yenilikleri"
-
-#: simulation/data/civs/athen.jsonFactions[0].Technologies[1].Description
-msgid ""
-"Stone walls can be built in neutral territory. Construction time for walls "
-"is reduced by 50%."
-msgstr "Taş surlar tarafsız bölgede inşa edilebilir. Surların inşa süresi %50 düşürüldü."
-
-#: simulation/data/civs/athen.jsonFactions[0].Technologies[1].History
-msgid ""
-"The Long Walls of Athens were constructed under the auspices of the wily "
-"Themistocles and extended 6 km from the city to the port of Piraeus. This "
-"secured the city's sea supply routes and prevented an enemy from starving "
-"out the city during a siege."
-msgstr "Atina'nın uzun duvarları kurnaz Themistocles'in himayesi altında inşa edilmiştir ve şehir limanından Piraeus'a kadar 6 km uzunluğa ulaşmıştır. Bu bir kuşatma sırasında düşmanın tedarik yollarını kapatarak şehri açlığa mahkum etmesini engellemiştir."
-
-#: simulation/data/civs/athen.jsonFactions[0].Technologies[1].Name
-msgid "Long Walls"
-msgstr "Uzun Duvarlar"
-
-#: simulation/data/civs/athen.jsonFactions[0].Technologies[2].Description
-msgid ""
-"The player gains the ability to order spear-armed troops into Phalanx "
-"formation, providing greater attack and armor."
-msgstr "Oyuncu mızraklı birliklere daha fazla saldırı ve zırh veren Falanks dizilişine geçme emri verme özelliğini kazanır."
-
-#: simulation/data/civs/athen.jsonFactions[0].Technologies[2].History
-msgid ""
-"The classical phalanx formation was developed about VIII century BC. It was "
-"eight men deep and up to eight hundred men wide. The men within overlapped "
-"their shields, presenting a formidable shield wall brimming with 8 foot "
-"spears."
-msgstr "Klasik falanks düzeni M.Ö yaklaşık VIII. yüzyılda düzenlendi. Sekiz insan derinliğinde ve sekiz yüz insan genişliğindeydi. Birimler kalkanlarını birbirine geçirerek 2.5 metre mızraklarla sıkı bir kalkan duvarı oluşturuyordu."
-
-#: simulation/data/civs/athen.jsonFactions[0].Technologies[2].Name
-msgid "Othismos"
-msgstr "Othismos"
 
 #: simulation/data/civs/athen.jsonHistory
 msgid ""
@@ -223,81 +139,25 @@ msgid ""
 "Athens dominated a large part of the Hellenic world for several decades."
 msgstr "Batı medeniyetinin beşiği ve demokrasinin doğum yeri olan Atina, sanatın, öğrenmenin ve felsefenin merkezi olarak ün salmıştı. Atinalılar aynı zamanda, özellikle denizde olmak üzere, oldukça güçlü savaşçılardı. Yükseliş döneminde, Atinalılar Helenistik medeniyetin büyük bir bölümünü bir kaç yüzyıl boyunca kontrol altında tuttular. "
 
-#: simulation/data/civs/athen.jsonFactions[0].Name
 #: simulation/data/civs/athen.jsonName
 msgid "Athenians"
 msgstr "Atinalılar"
 
-#: simulation/data/civs/athen.jsonStructures[0].History
-#: simulation/data/civs/mace.jsonStructures[0].History
-#: simulation/data/civs/spart.jsonStructures[0].History
-msgid ""
-"Greek theatres were places where the immortal tragedies of Aeschylus, "
-"Sophocles and many other talented dramatists were staged to the delight of "
-"the populace. They were instrumental in enriching Hellenic culture."
-msgstr "Yunan tiyatroları, Eshilos, Sofokles ve daha bir çok yetenekli oyun yazarının ölümsüz eserlerinin halkın beğenisi için sahnelendiği yerlerdi. Bu tiyatrolar Helenistik kültürün zenginleşmesinde aracı olmuşlardır.  "
-
-#: simulation/data/civs/athen.jsonStructures[0].Name
-#: simulation/data/civs/mace.jsonStructures[0].Name
-#: simulation/data/civs/spart.jsonStructures[0].Name
-msgid "Theatron"
-msgstr "Theatron"
-
-#: simulation/data/civs/athen.jsonStructures[0].Special
-#: simulation/data/civs/spart.jsonStructures[0].Special
-msgid ""
-"The Hellenization civ bonus. Building a Theatron increases the territory "
-"effect of all buildings by 25%."
-msgstr "Bu Helenleştirme uygarlık ödülü. Bir Theatron yapısı bölgedeki diğer tüm binalara %25 etki eder."
-
-#: simulation/data/civs/athen.jsonStructures[1].History
-msgid ""
-"The Gymnasion was a vital place in Hellenic cities, where physical exercises"
-" were performed and social contacts established."
-msgstr "Gymnasion Helenik şehirlerde fiziksel egzersizlerin yapıldığı ve sosyal iletişim kurulan önemli yerlerdi. "
-
-#: simulation/data/civs/athen.jsonStructures[1].Name
-msgid "Gymnasion"
-msgstr "Gymnasion"
-
-#: simulation/data/civs/athen.jsonStructures[1].Special
-msgid ""
-"Train champion units and research technologies pertaining to champion units."
-msgstr "Şampiyon birimleri eğit ve şampiyon birliklere yönelik teknolojileri araştır."
-
-#: simulation/data/civs/athen.jsonStructures[2].History
-msgid ""
-"The Prytaneion is the meeting place for the city elders to dine and to make "
-"swift decisions."
-msgstr "Prytaneion şehir önde gelenleri için yemek ve hızlı kararlar vermek için bir toplanma yeridir."
-
-#: simulation/data/civs/athen.jsonStructures[2].Name
-msgid "Prytaneion"
-msgstr "Prytaneion"
-
-#: simulation/data/civs/athen.jsonStructures[2].Special
-msgid "Train heroes and research technology pertaining to heroes."
-msgstr "Kahramanları eğit ve kahramanlara yönelik teknolojileri araştır."
-
-#: simulation/data/civs/athen.jsonTeamBonuses[0].Description
-msgid "Allied Warships −25% construction time."
-msgstr "Müttefik Savaş Gemileri -%25 inşa süresi."
-
-#: simulation/data/civs/athen.jsonTeamBonuses[0].History
-msgid ""
-"Shortly after the great naval victories at Salamis and Mykale, the Greek "
-"city-states instituted the so-called Delian League in 478 B.C., whose "
-"purpose was to push the Persians out of the Aegean region. The allied states"
-" contributed ships and money, while the Athenians offered their entire navy."
-msgstr "Salamis ve Mycale'deki zaferlerden kısa süre sonra, Yunan şehir devletleri M.Ö. 478'de amacı Persleri Ege Bölgesi'nden atmak olan  Delian Ligini kurdular. Atinalılar bütün donanmalarını seferber ederken müttefik devletler gemiler ve para ile katkıda bulundular."
-
-#: simulation/data/civs/athen.jsonTeamBonuses[0].Name
-msgid "Delian League"
-msgstr "Delos Birliği"
+#: simulation/data/civs/brit.jsonAINames[0]
+msgid "Karatakos"
+msgstr "Karataklar"
 
 #: simulation/data/civs/brit.jsonAINames[10]
 msgid "Vosenius"
 msgstr "Vosenius"
+
+#: simulation/data/civs/brit.jsonAINames[1]
+msgid "Kunobelinos"
+msgstr "Kunobelinos"
+
+#: simulation/data/civs/brit.jsonAINames[2]
+msgid "Boudicca"
+msgstr "Boudika"
 
 #: simulation/data/civs/brit.jsonAINames[3]
 msgid "Prasutagus"
@@ -327,122 +187,6 @@ msgstr "Adminius"
 msgid "Dubnovellaunus"
 msgstr "Dubnovellaunus"
 
-#: simulation/data/civs/brit.jsonFactions[0].Description
-msgid "The Celts of the British Isles."
-msgstr "Britanya Keltleri"
-
-#: simulation/data/civs/brit.jsonFactions[0].Heroes[0].History
-msgid ""
-"Caractacus, the Roman form, is a simple change from Karatakos, his actual "
-"name, which was printed on his many, many coins. Under this name he is "
-"remembered as a fierce defender of Britain against the Romans after their "
-"invasion in 43 A.D. Son of King Cunobelin of the Catuvellauni tribal "
-"confederation, Karatakos fought for nine years against the Romans with "
-"little success, eventually fleeing to the tribes in Wales, where he was "
-"defeated decisively. Finally he entered Northern Britain, where was handed "
-"over to the Romans. Taken to Rome, Karatakos was allowed to live by the "
-"Emperor Claudius and died in Italy. Tradition states he converted to "
-"Christianity when his wife did, but there is nothing known of this as "
-"definite. Probably more notable is the matter that he was allowed to live "
-"once captured. Roman policy was typically to have such men killed in public "
-"displays to celebrate. Karatakos was brought before the Emperor and Senate "
-"at his request to explain himself. What he said is not known for certainty, "
-"but Tacitus applies to him a famous speech…"
-msgstr "Roma şekli Caractacus, çok sayıda sikke basılmış olan asıl adı Karatakos'tan gelen basit bir değişiklik. Bu isim altında, MS 43'te Catuvellauni kabilesi konfederasyonunun Kralı Cunobelin'in oğlu işgalinden sonra İngiltere'nin Romalılara karşı şiddetli bir savunucusu olarak hatırlanır, Karatakos, dokuz yıl boyunca Romalılara karşı az başarılı bir şekilde savaştı ve sonunda Galler'deki kabilelere kaçtı. nerede kararlı bir şekilde yenildi. Sonunda Romalılara teslim edilen Kuzey İngiltere'ye girdi. Roma'ya götürülen Karatakos, İmparator Claudius tarafından yaşamasına izin verildi ve İtalya'da öldü. Gelenek, karısı yaptığı zaman Hıristiyanlığa dönüştüğünü belirtir, ancak bunun kesin olarak bilinen bir şeyi yoktur. Muhtemelen daha dikkat çeken, yakalandığında yaşamasına izin verilen meseledir. Roma politikası tipik olarak, bu tür erkeklerin kutlamak için halka açık gösterimlerde öldürülmesini sağlamaktı. Karatakos, kendisini açıklama isteği üzerine İmparator ve Senato önüne getirildi. Ne söylediği kesin olarak bilinmemekle birlikte, Tacitus ünlü bir konuşma için ona başvuruyor…\n"
-
-#: simulation/data/civs/brit.jsonAINames[0]
-#: simulation/data/civs/brit.jsonFactions[0].Heroes[0].Name
-msgid "Karatakos"
-msgstr "Karataklar"
-
-#: simulation/data/civs/brit.jsonFactions[0].Heroes[1].History
-msgid ""
-"Kunobelinos (perhaps better known by the latinized form of Cunobelin) was a "
-"powerful ruler of the Catuvellauni. He was referred to by Romans as the King"
-" of the Britons. His domains extended around the city of Kamulodunon (known "
-"as Camulodunum), modern day Colchester. The Roman defeat in the battle of "
-"Teutoburg Forest (Germania) allowed Kunobelinos to conquer a neighboring "
-"tribe, the Trinovantes, who were Roman allies and couldn't receive Roman "
-"aid. Kunobelinos seems to have been indifferent to the Romans. He traded "
-"with them freely, but had few qualms subjugating known Roman allies, and "
-"even sent his youngest son Adminius as a fosterling to be educated in Roman "
-"Gaul. This accounted for Adminius's friendships among the Romans. Adminius "
-"was given lordship over the Cantaci, who inhabited Kent, by his father. This"
-" area was the prime area of Roman influence and trade in Britain, and "
-"Kunobelinos shrewdly observed his youngest son's friendship with powerful "
-"Roman and Gallo-Roman politicians and traders would be of use administrating"
-" the region. His other sons though had no love for the Romans. When "
-"Kunobelinos died of disease, he was replaced by his son Togdumnos, who "
-"arrested, executed, or expelled numerous Roman sympathizers. These included "
-"his own brother Adminius, and the deposed Atrebates king, Verica, who "
-"appealed to their connections in the Roman Empire for aide in recovering "
-"their lands. Togdumnos died in battle with the Romans, and was subsequently "
-"replaced by his brother, Karatakos. It is an irony that it was his third son"
-" that initially invited this Roman reprisal. Kunobelinos in his own time "
-"though was possibly one of the greatest of all British kings. He conquered "
-"the great majority of the southern half of Britain (his coins were being "
-"minted as far as the borders of what would become Wales). He started ruling "
-"over only four minor tribes in a confederation, the Catuvellauni, and ended "
-"up achieving recognition as king of Britain. This recognition was so great "
-"that tribes in Cambria even came to assist his sons against the Romans and "
-"their British allies, and Kunobelinos was held up by the post-Roman Britons "
-"as one of their great heroes; a conqueror and uniter of petty kingdoms, "
-"something the post-Roman Britons or Romano-British sorely needed."
-msgstr "Kunobelinos (belki de daha iyi Cunobelin olarak bilinir), Catuvellauni'nin güçlü bir yöneticisi idi. Romalılar tarafından İngilizlerin Kralı olarak anılıyordu. Etki alanları, modern gün Colchester olan Kamulodunon (Camulodunum) olarak bilinir. Teutoburg Ormanı (Almanya) savaşındaki Roma yenilgisi, Kunobelinos'un, Roma müttefiki olan ve Roma yardımı alamayan komşu bir kabileyi, Trinovantes'i ele geçirmesine izin verdi. Kunobelinos Romalılar için kayıtsız görünüyor. Onlarla özgürce ticaret yaptı, ancak bilinen Roma müttefiklerini boyun eğen birkaç niteliği vardı ve hatta en küçük oğlu Adminius'u Roman Galya'da eğitim görmesi için bir teşvik olarak gönderdi. Bu Adminius'un Romalılar arasındaki dostluğunu açıkladı. Adminius'a Kent'te yaşayan Cantaci'ye babası tarafından lordluk verildi. Bu bölge, İngiltere'de Roma'nın etki ve ticaretinin ana bölgesiydi ve Kunobelinos, en küçük oğlunun güçlü Roma ve Gallo-Romen politikacılarıyla olan dostluğunu ve tüccarların bölgeyi idare etmekte kullanılacağını açıkça gördü. Diğer oğulları da Romalılara sevgisizdi. Kunobelinos hastalıktan öldüğünde, yerini pek çok Roman sempatizanı tutuklayan, idam eden ya da kovan oğlu Togdumnos aldı. Bunların arasında, kendi kardeşi Adminius ve Roma İmparatorluğu'ndaki topraklarına kavuşmalarına yardım etmek için bağlantılarına itiraz eden sınırdışı Atrebates kralı Verica da vardı. Togdumnos, Romalılar ile savaşta öldü ve ardından kardeşi Karatakos yerini aldı. Başlangıçta bu Roma misillemesini davet eden üçüncü oğlu olduğu bir ironi. Kunobelinos kendi zamanında, muhtemelen tüm İngiliz krallarının en iyilerinden biriydi. İngiltere'nin güney yarısının büyük çoğunluğunu fethetti (madeni paraları Galler olacağı sınırlarına kadar basıldı). Bir konfederasyonda, Catuvellauni'de sadece dört küçük kabile üzerinde karar vermeye başladı ve İngiltere kralı olarak tanınmasını sağladı. Bu tanıma o kadar harikaydı ki Kambriya'daki kabileler, oğullarına Romalılara ve İngiliz müttefilerine karşı yardım etmeye bile geldiler ve Kunobelinos, Roma sonrası Britanyalılar tarafından büyük kahramanlarından biri olarak tutuldu; fatihi ve küçük krallıkların birimi, Roma sonrası Britanyalılar veya Romano-İngilizlerin şiddetle ihtiyaç duyduğu bir şey.\n"
-
-#: simulation/data/civs/brit.jsonAINames[1]
-#: simulation/data/civs/brit.jsonFactions[0].Heroes[1].Name
-msgid "Kunobelinos"
-msgstr "Kunobelinos"
-
-#: simulation/data/civs/brit.jsonFactions[0].Heroes[2].History
-msgid ""
-"Ammianus Marcellinus described how difficult it would be for a band of "
-"foreigners to deal with a Celt if he called in the help of his wife. For she"
-" was stronger than he was and could rain blows and kicks upon the assailants"
-" equal in force to the shots of a catapult. Boudicca, queen of the Iceni, "
-"was said to be 'very tall and terrifying in appearance; her voice was very "
-"harsh and a great mass of red hair fell over her shoulders. She wore a tunic"
-" of many colors over which a thick cloak was fastened by a brooch. Boudicca "
-"had actually at first been a Roman ally, along with her husband, Prasutagus,"
-" king of the Iceni. Prasutagus had been a close Roman ally after a brief "
-"uprising, respected as being forethinking even by his former enemies, now "
-"allied Romans, and free to rule his kingdom as their native tradition "
-"dictated, except in one case. Prasutagus, realizing he was going to die, "
-"agreed upon a will with his wife and subordinates; his daughters would "
-"inherit the physical running of the territory, under Boudicca's stewardship "
-"until they were adults, and the Emperor of Rome would have overlordship, "
-"collecting taxes and being allowed to request military aid. Much the same "
-"situation as he already held. The problem lay in that the Romans did not "
-"recognize female heirs, and thus asserted, upon Prasutagus's death, that "
-"only the Emperor's claim to the kingdom of Icenia was valid. They further "
-"noted it was regular Roman practice to only allow a client kingdom to be "
-"independent for the lifetime of the initial king, such as had occurred in "
-"Galatia. The Empire formally annexed the kingdom, and began extracting harsh"
-" taxes immediately, citing that Prasutagus was indebted to the Romans, "
-"having taken several loans during his lifetime that he had failed to repay. "
-"Boudicca's complaint about this treatment and the defiance of her deceased "
-"husband's will was met with brutality; Roman soldiers flogged her, and her "
-"daughters, only children, were raped. Boudicca and her subjects were "
-"infuriated at the disgrace done to their queen and the children. With the "
-"Roman governor of Britain engaged with the druids in Cambria, now Wales, "
-"Boudicca was able to attract more followers from outside the Iceni, as they "
-"were hardly the only British tribe growing rapidly disillusioned with the "
-"Romans. Boudicca and her army laid waste to three cities, routed a Roman "
-"legion, and called on the memory of Arminius, a German who had routed the "
-"Romans from his lands, and their own ancestors who had driven off Caesar "
-"near a century earlier. Boudicca was defeated by a major tactical blunder in"
-" the Battle of Watling Street, leading to much of her force being "
-"slaughtered as they could not withdraw to safety. Boudicca herself escaped, "
-"and then slew her daughters, and then herself, to avoid further shame at "
-"Roman hands."
-msgstr "Ammianus Marcellinus, bir grup yabancının bir Celt'le başa çıkması karısının yardımıyla çağırılmasının ne kadar zor olacağını anlattı. Çünkü o bundan daha güçlü ve yağmur yağabilir ve bir mancınıkın atışlarına eşit kuvvetli saldırganlara basar. Iceni'nin kraliçesi olan Boudicca'nın \"görünüşte çok uzun ve korkunç\" olduğu söyleniyordu; Sesi çok sertti ve omuzlarında büyük bir kırmızı saç kütlesi düştü. Üzerinde kalın bir pelerinin bir broş tarafından tutturulmuş birçok renkten bir tunik vardı. Boudicca, önce Iceni kralının kocası Prasutagus'la birlikte bir Roma müttefiki olmuştu. Kısa bir ayaklanma sonrasında Prasutagus, yakın düşmanları tarafından, şimdi müttefik Romalılar tarafından dahi düşünüldüğü saygı gören ve bir vakanın haricinde krallığını yerli geleneği uyarınca yönetmeye özgür sayan yakın bir Roma müttefiki olmuştu. Öleceğini anlayan Prasutagus, karısıyla ve astlarıyla bir rıza kabul etti; Kızları, Boudicca'nın gözetiminde, yetişkin olana kadar topraklarda fiziksel faaliyette bulunacak ve Roma İmparatoru, vergiler toplamak ve askeri yardım talebinde bulunma yetkisine sahip olacaktı. Zaten tuttuğu durumla çok benzer. Sorun, Romalıların kadın mirasçılarını tanımaması ve Prasutagus'un ölümüyle birlikte İmparator'un İcenia Krallığı'na yönelik iddiasının geçerli olduğunu iddia etmesiydi. Ayrıca, Galatia'da olduğu gibi, bir müşteri krallığının ilk kralın ömrü boyunca bağımsız olmasına izin vermenin düzenli Roma uygulaması olduğu belirtildi. İmparatorluk resmen krallığı ekledi ve övmekten ötürü sert vergileri derhal vermeye başladı. Prasutagus, Romalılara borçlu olduğunu ve ömrü boyunca birkaç ödünç aldığını ve geri ödemeyi başaramadığını belirtti. Boudicca'nın bu tedaviyle ilgili şikâyeti ve ölen kocasının iradesinin meydan okuması vahşetle karşılandı; Romalı askerler onu kırbaçladı ve kızlarına, yalnızca çocuklara tecavüz edildi. Boudicca ve mensupları, kraliçelerine ve çocuklarına yapılan rezalet karşısında kızdılar. İngiltere'nin Roman valisi Cambria, şu anda Galler'de bulunan druidlerle meşgul olan Boudicca, Iceni'nin dışından daha fazla takipçi çekebildi, çünkü Romalılar tarafından hızla büyülenen tek İngiliz kabilesi bunlardı. Boudicca ve ordusu üç şehre atık attılar, bir Roma lejyonunu yönlendirdiler ve Romalıları kendi topraklarından yönlendiren bir Alman olan Arminius'u ve bir asır önce Sezar'ı terk etmiş olan kendi atalarını anmaya çağırdılar. Boudicca, Watling Caddesi Savaşı'nda büyük bir taktiksel hata yüzünden yenildi, bu da, gücünün büyük bir kısmının emniyetten çekilemeyecek kadar kesilmesine yol açtı. Boudicca kendisi kaçtı ve sonra da Roma elinde daha fazla utanç duymamak için kızlarını ve sonra kendini öldürdü."
-
-#: simulation/data/civs/brit.jsonAINames[2]
-#: simulation/data/civs/brit.jsonFactions[0].Heroes[2].Name
-msgid "Boudicca"
-msgstr "Boudika"
-
 #: simulation/data/civs/brit.jsonHistory
 msgid ""
 "The Britons were the Celtic tribes of the British Isles. Using chariots, "
@@ -451,24 +195,13 @@ msgid ""
 "thousands of unique structures such as hill forts, crannogs and brochs."
 msgstr "Britanyalılar İngiliz Adaları'nın Kelt kabileleriydi. Savaş arabaları, uzun savaşçılar ve güçlü melee askerleri kullanarak, Roma'ya karşı geleneklerini ve çıkarlarını korumak için korkunç bir isyan başlattılar. Ayrıca, tepe kale, crannogs ve brochs gibi binlerce benzersiz yapı inşa ettiler."
 
-#: simulation/data/civs/brit.jsonFactions[0].Name
 #: simulation/data/civs/brit.jsonName
 msgid "Britons"
 msgstr "Britonlar"
 
-#: simulation/data/civs/brit.jsonTeamBonuses[0].Description
-msgid "Allied Healers −20% resource costs."
-msgstr "Müttefik Şifacılar -%20 kaynak maliyeti."
-
-#: simulation/data/civs/brit.jsonTeamBonuses[0].History
-msgid ""
-"The Druids of the Celts maintained an organized religion that advanced the "
-"technology of their people even during wartime."
-msgstr "Kelt medeniyetinin ruhban sınıfı olan Druidler, savaş zamanında bile toplumlarının teknolojisini geliştirmeyi başarmış düzenli bir dini muhafaza etmişlerdir."
-
-#: simulation/data/civs/brit.jsonTeamBonuses[0].Name
-msgid "Druids"
-msgstr "Druidler"
+#: simulation/data/civs/cart.jsonAINames[0]
+msgid "Hannibal Barca"
+msgstr "Hannibal Barca"
 
 #: simulation/data/civs/cart.jsonAINames[10]
 msgid "Hampsicora"
@@ -494,6 +227,10 @@ msgstr "Himilco Phameas"
 msgid "Hasdrubal the Boetharch"
 msgstr "Hasdrubal Boetharch"
 
+#: simulation/data/civs/cart.jsonAINames[1]
+msgid "Hamilcar Barca"
+msgstr "Hamilcar Barca"
+
 #: simulation/data/civs/cart.jsonAINames[2]
 msgid "Hasdrubal Barca"
 msgstr "Hasdrubal Barca"
@@ -505,6 +242,10 @@ msgstr "Hasdrubal Gisco"
 #: simulation/data/civs/cart.jsonAINames[4]
 msgid "Hanno the Elder"
 msgstr "İhtiyar Hanno"
+
+#: simulation/data/civs/cart.jsonAINames[5]
+msgid "Maharbal"
+msgstr "Maharbal"
 
 #: simulation/data/civs/cart.jsonAINames[6]
 msgid "Mago Barca"
@@ -522,90 +263,6 @@ msgstr "Hanno the Great"
 msgid "Himilco"
 msgstr "Himilko"
 
-#: simulation/data/civs/cart.jsonCivBonuses[0].Description
-msgid "Walls +100% build time, +100% stone cost, and +200% health."
-msgstr "Duvarlar +%100 inşa süresi, +%100 taş maliyeti ve +%200 sağlık."
-
-#: simulation/data/civs/cart.jsonCivBonuses[0].History
-msgid "Carthaginians built triple city walls."
-msgstr "Kartacalıların üç katlı şehir duvarları inşa etmesi."
-
-#: simulation/data/civs/cart.jsonCivBonuses[0].Name
-msgid "Triple Walls"
-msgstr "Üçlü Duvarlar"
-
-#: simulation/data/civs/cart.jsonFactions[0].Heroes[0].History
-msgid ""
-"Carthage's most famous son. Hannibal Barca was the eldest son of Hamilcar "
-"Barca and proved an even greater commander than his father. Lived 247-182 "
-"B.C. While he ultimately lost the Second Punic War his victories at Trebia, "
-"Lake Trasimene, and Cannae, and the feat of crossing the Alps have secured "
-"his position as among the best tacticians and strategists in history."
-msgstr "Kartaca'nın en ünlü evladı. Hannibal Bara Hamilcar Barca'nın en büyük oğluydu ve kendisini babasından bile büyük bir komutan olarak göstermiştir. Milattan önce 247-182 yılları arasında yaşadı. En sonunda İkinci Pön Savaşını kaybetmesine rağmen  Trebia, Trasimene Gölü ve Cannae'deki zaferleri ve Alp'leri geçme başarısı ona tarihteki en iyi taktikçi ve stratejistler arasındaki yerini kazandırdı."
-
-#: simulation/data/civs/cart.jsonAINames[0]
-#: simulation/data/civs/cart.jsonFactions[0].Heroes[0].Name
-msgid "Hannibal Barca"
-msgstr "Hannibal Barca"
-
-#: simulation/data/civs/cart.jsonFactions[0].Heroes[1].History
-msgid ""
-"Father of Hannibal and virtual military dictator. Hamilcar Barca was a "
-"soldier and politician who excelled along his entire career. Lived 275-228 "
-"B.C. While overshadowed by his sons, Hamilcar was great general in his own "
-"right, earning the nickname Baraq or Barca for the lightning speed of his "
-"advance."
-msgstr "Hannibal'ın babası ve tam anlamıyla askeri diktatör. Hamilcar Barca bütün kariyeri boyunca mükemmelleşmiş bir asker ve politikacıydı. 275-228 İ.Ö. yılları arasında yaşamıştır. Her ne kadar oğulları tarafından gölgede bırakılmış olsa da, Hamilcar oldukça başarılı bir generaldi ve ışık hızındaki hücumları yüzünden \"yıldırım\" anlamına gelen Baraq veya Barca lakabını kazanmıştı."
-
-#: simulation/data/civs/cart.jsonAINames[1]
-#: simulation/data/civs/cart.jsonFactions[0].Heroes[1].Name
-msgid "Hamilcar Barca"
-msgstr "Hamilcar Barca"
-
-#: simulation/data/civs/cart.jsonFactions[0].Heroes[2].History
-msgid ""
-"Maharbal was Hannibal Barca's 'brash young cavalry commander' during the 2nd"
-" Punic War. He is credited with turning the wing of the legions at Cannae "
-"resulting in defeat in which 30,000 of 50,000 Romans were lost, as well as "
-"significant contributions to the winning of many other battles during the "
-"2nd Punic War. He is known for having said, after the battle of Cannae, "
-"'Hannibal, you know how to win the victory; just not what to do with it.'"
-msgstr "Maharbal, Hannibal Barca'nın 2'nci Pör Savaşı boyunca 'atılgan genç süvari kumandanıydı'."
-
-#: simulation/data/civs/cart.jsonAINames[5]
-#: simulation/data/civs/cart.jsonFactions[0].Heroes[2].Name
-msgid "Maharbal"
-msgstr "Maharbal"
-
-#: simulation/data/civs/cart.jsonFactions[0].Technologies[0].Description
-msgid "All Traders and Ships +25% vision range."
-msgstr "Tüm Tüccar ve Gemiler (+25%) görüş mezili."
-
-#: simulation/data/civs/cart.jsonFactions[0].Technologies[0].History
-msgid ""
-"Nobody knew better than the Carthaginians where in the ancient world they "
-"were going and going to go; their merchant traders had missions to "
-"everywhere."
-msgstr "Hiç kimse tüccarlığı Kartacalılardan daha iyi bilmezdi. Antik dünyada onlar gider de giderlerdi, onların satış tüccarları her yere gitmekle görevliydiler."
-
-#: simulation/data/civs/cart.jsonFactions[0].Technologies[0].Name
-msgid "Exploration"
-msgstr "Keşif"
-
-#: simulation/data/civs/cart.jsonFactions[0].Technologies[1].Description
-msgid "Civic Centers, Temples, and Houses -25% build time."
-msgstr "Şehir Merkezi, Tapınaklar ve evler -25% oluşturma süresi."
-
-#: simulation/data/civs/cart.jsonFactions[0].Technologies[1].History
-msgid ""
-"Carthaginians established many trading centers as colonies and ultimately "
-"held dominion over 300 cities and towns in North Africa alone."
-msgstr "Kartacalılar koloniler olarak birçok ticari merkeze yerleşti ve en sonunda sadece Kuzey Afrika'da 300 den fazla şehir ve köye hakim oldular."
-
-#: simulation/data/civs/cart.jsonFactions[0].Technologies[1].Name
-msgid "Colonization"
-msgstr "Sömürgeleştirme"
-
 #: simulation/data/civs/cart.jsonHistory
 msgid ""
 "Carthage, a city-state in modern-day Tunisia, was a formidable force in the "
@@ -620,73 +277,13 @@ msgstr "Günümüz Tunus'unda bir şehir devleti olan Kartaca, batı Akdeniz'in 
 msgid "Carthaginians"
 msgstr "Kartacalılar"
 
-#: simulation/data/civs/cart.jsonStructures[0].History
-msgid ""
-"The structure is based upon the center island of the inner harbour "
-"constructed to house the war fleet of the Carthaginian navy at Carthage."
-msgstr "Yapı, kartacada yer alan iç limandaki merkez adada kartaca donanmasının savaş filosuna ev sahipliği yapar."
+#: simulation/data/civs/gaul.jsonAINames[0]
+msgid "Viridomarus"
+msgstr "Viridomarus"
 
-#: simulation/data/civs/cart.jsonStructures[0].Name
-msgid "Naval Shipyard"
-msgstr "Tersane"
-
-#: simulation/data/civs/cart.jsonStructures[0].Special
-msgid "Construct the powerful warships of the Carthaginian navy."
-msgstr "Kartaca donanmasının güçlü savaş gemilerini oluştur."
-
-#: simulation/data/civs/cart.jsonStructures[1].History
-msgid "The Celts supplied fierce warrior mercenaries for Carthaginian armies."
-msgstr "Keltler, kartaca orduları için sert savaşçı paralı askerler temin ederler."
-
-#: simulation/data/civs/cart.jsonStructures[1].Name
-msgid "Celtic Embassy"
-msgstr "Kelt Elçisi"
-
-#: simulation/data/civs/cart.jsonStructures[1].Special
-msgid "Train Celtic Mercenaries."
-msgstr "Kelt paralı askerler eğit."
-
-#: simulation/data/civs/cart.jsonStructures[2].History
-msgid ""
-"The Iberians were known as fierce mercenaries, loyal to their paymasters."
-msgstr "İberler, mutemetlerine sadık, sert paralı askerler olarak bilinirlerdi."
-
-#: simulation/data/civs/cart.jsonStructures[2].Name
-msgid "Iberian Embassy"
-msgstr "İber Elçisi"
-
-#: simulation/data/civs/cart.jsonStructures[2].Special
-msgid "Train Iberian Mercenaries."
-msgstr "İberyalı paralı askerler eğit."
-
-#: simulation/data/civs/cart.jsonStructures[3].History
-msgid ""
-"When Hannibal invaded Italy and defeated the Romans in a series of battles, "
-"many of the peoples subject to Rome, including the Greeks and Samnites, "
-"revolted and joined the Carthaginian cause."
-msgstr "Hannibal İtalya'yı işgal edip Romalıları bir dizi savaşta mağlup ettiğinde, Yunanlılar ve Samnitler de dahil olmak üzere Roma'ya tabi olan halkların çoğu ayaklandı ve Kartaca davasına katıldı."
-
-#: simulation/data/civs/cart.jsonStructures[3].Name
-msgid "Italic Embassy"
-msgstr "İtalik Elçiliği"
-
-#: simulation/data/civs/cart.jsonStructures[3].Special
-msgid "Train Italic Mercenaries."
-msgstr "İtalik paralı askerler eğit."
-
-#: simulation/data/civs/cart.jsonTeamBonuses[0].Description
-msgid "Allies +10% international trade bonus."
-msgstr "Müttefikler +%10 uluslararası ticaret bonusu."
-
-#: simulation/data/civs/cart.jsonTeamBonuses[0].History
-msgid ""
-"The Phoenicians and Carthaginians were broadly known as the greatest trading"
-" civilization of the ancient and classical world."
-msgstr "Fenikeliler ve Kartacalılar geniş antik ve klasik dünyanın en büyük ticaret medeniyetleri olarak bilinir."
-
-#: simulation/data/civs/cart.jsonTeamBonuses[0].Name
-msgid "Trademasters"
-msgstr "Ticaret Ustaları"
+#: simulation/data/civs/gaul.jsonAINames[1]
+msgid "Brennus"
+msgstr "Brennus"
 
 #: simulation/data/civs/gaul.jsonAINames[2]
 msgid "Cativolcus"
@@ -695,6 +292,10 @@ msgstr "Cativolcus"
 #: simulation/data/civs/gaul.jsonAINames[3]
 msgid "Cingetorix"
 msgstr "Cingetorix"
+
+#: simulation/data/civs/gaul.jsonAINames[4]
+msgid "Vercingetorix"
+msgstr "Vercingetorix"
 
 #: simulation/data/civs/gaul.jsonAINames[5]
 msgid "Divico"
@@ -740,126 +341,6 @@ msgstr "Kelt dini ve Druidlik onların savaşçı zihniyet ilham verir."
 msgid "Deas Celtica"
 msgstr "Deas Seltika"
 
-#: simulation/data/civs/gaul.jsonFactions[0].Description
-msgid "The Celts of mainland Europe."
-msgstr "Anakara Avrupasının Keltleri"
-
-#: simulation/data/civs/gaul.jsonFactions[0].Heroes[0].History
-msgid ""
-"When Celtic armies met the enemy, before the battle would start, the Celtic "
-"leader would go to the first line and challenge the bravest of the enemy "
-"warriors to a single combat. The story of how Marcus Claudius Marcellus "
-"killed a Gallic leader at Clastidium (222 B.C.) is typical of such "
-"encounters. Advancing with a small army, Marcellus met a combined force of "
-"Insubrian Gauls and Gaesatae at Clastidium. The Gallic army advanced with "
-"the usual rush and terrifying cries, and their king, Viridomarus, picking "
-"out Marcellus by means of his badges of rank, made for him, shouting a "
-"challenge and brandishing his spear. Viridomarus was an outstanding figure "
-"not only for his size but also for his adornments; for he was resplendent in"
-" bright colors and his armor shone with gold and silver. This armor, thought"
-" Marcellus, would be a fitting offering to the gods. He charged the Gaul, "
-"pierced his bright breastplate and cast him to the ground. It was an easy "
-"task to kill Viridomarus and strip him of his armor."
-msgstr "Kelt orduları savaşa başlamadan önce düşmana yetiştiğinde, Kelt lideri ilk hattına giderek düşman savaşçılarının cesaretini tek bir savaşa odaklayacaktı. Marcus Claudius Marcellus'un Clastidium'da (M.Ö. 222) Galyalı bir lideri nasıl öldürdüğünün öyküsü, bu tür karşılaşmaların tipik bir örneğidir. Küçük bir orduyla ilerleyen Marcellus, Clubidium'da Insubrian Gauls ve Gaesatae'nin bir araya geldi. Gallic ordusu her zamanki acele ve korkunç çığlıklarla ilerledi ve kralları Viridomarus, Marcellus'u rolü attığı sıralamayla kendisine yöneltti, bir meydan okuma başladı ve mızrağını attı. Viridomarus, sadece büyüklüğü için değil süslemelerinde olağanüstü figürler vardı; Zira parlak renklerle göz kamaştırmıştı ve zırhı altın ve gümüş ile parlıyordu. Bu zırh, Marcellus'un tanrılara uygun bir teklif olacağını düşündü. Galya'yı suçladı, parlak göğüs zırhını deldi ve onu yere attı. Viridomarus'u öldürüp zırhını çıkarmak kolay bir görevdi."
-
-#: simulation/data/civs/gaul.jsonAINames[0]
-#: simulation/data/civs/gaul.jsonFactions[0].Heroes[0].Name
-msgid "Viridomarus"
-msgstr "Viridomarus"
-
-#: simulation/data/civs/gaul.jsonFactions[0].Heroes[1].History
-msgid ""
-"Brennus is the name which the Roman historians give to the famous leader of "
-"the Gauls who took Rome in the time of Camillus. According to Geoffrey of "
-"Monmouth, the cleric who wrote “History of the Kings of Britain”, Brennus "
-"and his brother Belinus invaded Gaul and sacked Rome in 390 B.C., 'proving' "
-"that Britons had conquered Rome, the greatest civilization in the world, "
-"long before Rome conquered the Britons. We know from many ancient sources "
-"which predate Geoffrey that Rome was indeed sacked, but in 387 not 390, and "
-"that the raid was led by a man named Brennus, but he and his invading horde "
-"were Gallic Senones, not British. In this episode several features of "
-"Geoffrey's editing method can be seen: he modified the historical Brennus, "
-"created the brother Belinus, borrowed the Gallic invasion, but omitted the "
-"parts where the Celts seemed weak or foolish. His technique is both additive"
-" and subtractive. Like the tale of Trojan origin, the story of the sack of "
-"Rome is not pure fabrication; it is a creative rearrangement of the "
-"available facts, with details added as necessary. By virtue of their "
-"historical association, Beli and Bran are often muddled with the earlier "
-"brothers Belinus and Brennus (the sons of Dunvallo Molmutius) who contended "
-"for power in northern Britain in around 390 B.C., and were regarded as gods "
-"in old Celtic tradition."
-msgstr "Brennus, Roma tarihçilerinin Camillus zamanında Roma'yı ele geçiren ünlü Gauls liderine verdiği isimdir. Brennus ve kardeşi Belinus, Monmouth'un \"Britanya Kralılarının Tarihi\" adlı yazarına göre M.Ö. 390'da Galya'yı istila edip Roma'yı görevden almışlar ve Britanyanın dünyanın en büyük medeniyeti olduğunu Roma'yı fethederek \"kanıtladığını\" anlatıyordu. Roma Britanyayı fethedemeden önce. Geoffrey'den önce gelen birçok eski kaynaklardan biliyoruz ki, Roma gerçekten de görevden çöktü, ancak 387'de değil 390'da ve baskın Brennus adlı bir adam tarafından yönetildi, ancak işgalci kalabalık İngiliz değil Gallic Senones'tu. Bu bölümde Geoffrey'in düzenleme yönteminin birkaç özelliği görülebilir: tarihi Brennus'u değiştirdi, kardeşi Belinus'u yarattı, Galya istilasını yaptı, ancak Keltlerin zayıf ya da aptalca göründüğü şeyleri unuttu. Onun tekniği hem katkı hem de çıkarımcıdır. Truva kökenli bir masal gibi, Roma çuvalının hikayesi saf bir imalat değildir; Mevcut olguların yaratıcı bir şekilde düzenlenmesi, ayrıntılar da gerektiği gibi eklenmiştir. Tarihi birlikteliklerinden dolayı, Beli ve Kepek, çoğunlukla, M.Ö. 390 civarında İngiltere'nin kuzeyindeki iktidara itiraz eden ve eski Kelt geleneğinde tanrılar olarak görülen daha eski kardeşler Belinus ve Brennus'la (Dunvallo Molmutius oğulları) karıştırılırlar."
-
-#: simulation/data/civs/gaul.jsonAINames[1]
-#: simulation/data/civs/gaul.jsonFactions[0].Heroes[1].Name
-msgid "Brennus"
-msgstr "Brennus"
-
-#: simulation/data/civs/gaul.jsonFactions[0].Heroes[2].History
-msgid ""
-"Vercingetorix (Gaulish: Ver-Rix Cingetos) was the chieftain of the Arverni "
-"tribe in Gaul (modern France). Starting in 52 B.C. he led a revolt against "
-"the invading Romans under Julius Caesar, his actions during the revolt are "
-"remembered to this day. Vercingetorix was probably born near his tribes "
-"capital (Gergovia). From what little info we have Vercingetorix was probably"
-" born in 72 B.C., his father was Celtius and we don't know who his mother "
-"was. Because we only know of him from Roman sources we don't know much about"
-" Vercingetorix as a child or young man, except that perhaps he was probably "
-"very high spirited and probably gained some renown in deeds."
-msgstr "Vercingetorix (Gaulish: Ver-Rix Cingetos), Gaul'deki (modern Fransa) Arverni kabilesi şefiydi. 52'de başlayarak Julius Caesar'ın işgal ettiği Romalılara karşı bir ayaklanma başlattı; isyan sırasında yaşadığı eylemler bugüne kadar hatırlanıyor. Vercingetorix muhtemelen kabileleri başkentinin yakınında (Gergovia) doğdu. Verceletorix hangi bilgiden 72B.C'de doğdu, babası Celtius idi ve annesinin kim olduğunu bilmiyoruz. Onu sadece Romalı kaynaklardan tanıdığımız için, Vercingetorix'i çocuklu ya da genç bir erkek olarak tanımıyoruz, belki de muhtemelen çok yüksek ruhlu ve muhtemelen bir takım meşhur isimler elde etti."
-
-#: simulation/data/civs/gaul.jsonAINames[4]
-#: simulation/data/civs/gaul.jsonFactions[0].Heroes[2].Name
-msgid "Vercingetorix"
-msgstr "Vercingetorix"
-
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Description
-msgid "Workers +15% grain gather rate."
-msgstr "İşçiler +%15 tahıl üretim oranı."
-
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].History
-msgid ""
-"The Gauls invented an harvesting machine, making it much easier to harvest "
-"grain."
-msgstr "Galyalılar tahılı daha kolay hasat etmeyi sağlayan bir hasat makinesi icat ettiler."
-
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Name
-msgid "Harvesting Machine"
-msgstr "Hasat Makinesi"
-
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Description
-msgid ""
-"A set amount of metal and food from every structure destroyed or captured."
-msgstr "Yıkılan veya ele geçirilen her yapıdan metal ve gıda miktar ayarı"
-
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].History
-msgid ""
-"Woe to the Defeated! The Gallic chieftain Brennus seized Rome (with the "
-"exception of a garrison on Capitoline Hill). When Camillus besieged him with"
-" a relief force from Veii, he negotiated his surrender for 1000 pounds of "
-"gold, and adding the weight of his sword on the scale when the Romans "
-"complained that he used false weights he uttered those famous words."
-msgstr "\"Vah olsun Mağluplara\" Galyalı kabile reisi Brennus Roma'yı ele geçirmişti (Kapitoline Tepesindeki bir garnizon hariç). Camillus, Veii'den getirdiği yardım birlikleriyle kendisini kuşattığında, şehri teslim etmek için yarım ton altın talep eder, Romalılar tartıya hileli ağırlık koyulduğu için itiraz edince, ağırlıklara kendi kılıcını da koyar ve bu meşhur sözünü söyler."
-
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Name
-msgid "Vae Victis"
-msgstr "Vae Victis"
-
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[2].Description
-msgid "Gallic druids gain a small melee attack."
-msgstr "Galli rahipler bir miktar yakın dövüş becerisi kazandı."
-
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[2].History
-msgid ""
-"The Carnutes were druids from Aulercia. They fought when needed, and were "
-"largely responsible for turning back the Belgae incursions into Armorica and"
-" Aulercia."
-msgstr "Karnutelar Aulercia'dan druidlerdi. İhtiyaç duyduklarında savaşmışlardı ve Belgae saldırılarını Armorica ve Aulercia'ya geri çevirmekle büyük oranda sorumluyduk."
-
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[2].Name
-msgid "Carnutes"
-msgstr "Carnutes"
-
 #: simulation/data/civs/gaul.jsonHistory
 msgid ""
 "The Gauls were the Celtic tribes of continental Europe. Dominated by a "
@@ -869,24 +350,22 @@ msgid ""
 "of conquest and Rome's authoritarian rule."
 msgstr "Galyalılar kıta Avrupa'sının Kelt kabileleriydi. Bir tür rahip sınıfı olan Druidler tarafından yönetilmektelerdi ve ileri metal işçiliği, tarım, ticaret ve hatta yol mühendisliğini de içeren sofistike bir kültürleri vardı. Ağır piyade ve süvarileriyle, Galyalı askerler cesur bir şekilde Sezar'ın fetih seferini ve Roma'nın otoriter yönetimine engel oldular. "
 
-#: simulation/data/civs/gaul.jsonFactions[0].Name
 #: simulation/data/civs/gaul.jsonName
 msgid "Gauls"
 msgstr "Galyalılar"
 
-#: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
-msgid "Forges −15% technology resource costs and research time."
-msgstr "%-15 teknoloji maliyeti ve araştırma süresi meydana getirir."
+#: simulation/data/civs/iber.jsonAINames[0]
+#: simulation/data/civs/iber.jsonAINames[1]
+msgid "Viriato"
+msgstr "Viriato"
 
-#: simulation/data/civs/gaul.jsonTeamBonuses[0].History
-msgid ""
-"The Gauls produced and exported swords and scabbards, woolen and leather "
-"products, and other arms."
-msgstr "Galyalılar kılıç ve kın, yün ve deri ürünleri ve diğer silahları üretip ihraç ettiler."
+#: simulation/data/civs/iber.jsonAINames[2]
+msgid "Karos"
+msgstr "Karos"
 
-#: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
-msgid "Products from Gaul"
-msgstr "Galya Mahsülleri"
+#: simulation/data/civs/iber.jsonAINames[3]
+msgid "Indibil"
+msgstr "Indibil"
 
 #: simulation/data/civs/iber.jsonAINames[4]
 msgid "Audax"
@@ -919,106 +398,6 @@ msgstr "Alüvyonlu ovalar ve nehir vadileri hariç, İberya Yarımadasında taş
 msgid "Harritsu Leku"
 msgstr "Harritsu Leku"
 
-#: simulation/data/civs/iber.jsonFactions[0].Heroes[0].History
-msgid ""
-"Viriato, like Vercingetorix amongst the Gauls, was the most famous of the "
-"Iberian tribal war leaders, having conducted at least 7 campaigns against "
-"the Romans in the southern half of the peninsula during the 'Lusitani Wars' "
-"from 147-139 B.C. He surfaced as a survivor of the treacherous massacre of "
-"9,000 men and the selling into slavery of 21,000 elderly, women, and "
-"children of the Lusitani. They had signed a treaty of peace with the Romans,"
-" conducted by Servius Sulpicius Galba, governor of Hispania Ulterior, as the"
-" 'final solution' to the Lusitani problem. He emerged from humble beginnings"
-" in 151 B.C. to become war chief of the Lusitani. He was intelligent and a "
-"superior tactician, never really defeated in any encounter (though suffered "
-"losses in some requiring retreat). He succumbed instead to another treachery"
-" arranged by a later Roman commander, Q. Servilius Caepio, to have him "
-"assassinated by three comrades that were close to him."
-msgstr "Visiato, Galyalılar arasında Vercingetorix gibi, İber kavimleri savaş liderlerinin en ünlüsü ve 147-139 BC arası 'Lusitani Savaşları' sırasında yarımadanın güney yarısında Romalılara karşı en az 7 kampanya düzenledi. 9 bin erkek haince katliamının ve 21.000 yaşlı, kadın ve Lusitani'nin çocuklarının köleliğine satılmasının hayatta kalanı olarak ortaya çıktı. Romalılar ile barış antlaşması imzalamışlardı, Lusitani sorununun 'nihai çözümü' olan Hispania Ulterior valisi Servius Sulpicius Galba tarafından yürütülüyorlardı. M.Ö. 151 yılında mütevazi başlangıçlardan çıktı. Lusitani savaş şefi olmak için. Zeki ve üstün bir taktikçıydı, herhangi bir karşılaşmada hiçbir zaman gerçekten yenilmedi (bazılarında geri çekilmeyi gerektiren kayıplara maruz kalmıştı). Bunun yerine daha sonraki bir Roma komutanı Q. Servilius Caepio'nun kendisine yakın üç yoldaş tarafından öldürüldüğü bir ihanete yenildi."
-
-#: simulation/data/civs/iber.jsonAINames[0]
-#: simulation/data/civs/iber.jsonAINames[1]
-#: simulation/data/civs/iber.jsonFactions[0].Heroes[0].Name
-msgid "Viriato"
-msgstr "Viriato"
-
-#: simulation/data/civs/iber.jsonFactions[0].Heroes[1].History
-msgid ""
-"Karos was a chief of the Belli tribe located just east of the Celtiberi "
-"(Numantines at the center). Leading the confederated tribes of the meseta "
-"central (central upland plain) he concealed 20,000 foot and 5,000 mounted "
-"troops along a densely wooded track. Q. Fulvius Nobilior neglected proper "
-"reconnaissance and lead his army into the trap strung out in a long column. "
-"Some 10,000 of 15,000 Roman legionaries fell in the massive ambush that was "
-"sprung upon them. The date was 23 August of 153 B.C., the day when Rome "
-"celebrated the feast of Vulcan. By later Senatorial Decree it was ever "
-"thereafter known as dies ater, a 'sinister day', and Rome never again fought"
-" a battle on the 23rd of August. Karos was wounded in an after battle small "
-"cavalry action the same evening and soon died thereafter, but he had carried"
-" off one of the most humiliating defeats that Rome ever suffered."
-msgstr "Karos, Celtiberi'nin hemen doğusunda (Merkezdeki Numantines) bulunan Belli kabilesi şefiydi. Meseta orta kesiminde (merkez dağlık ova) birlik içindeki kavimlerin başında, yoğun bir ormanlık yol boyunca 20.000 ayak ve 5.000 askeri birliklerini gizledi. Q. Fulvius Nobilior uygun keşifleri ihmal ederek orduyu uzun bir sütunda süzülen tuzağa götürdü. 15.000 Roma lejyonerinden yaklaşık 10.000, büyük pusuya düştüler. Tarih, 23 Ağustos'ta Roma'nın Vulkan bayramını kutladığı günümüzde 153 BC'de gerçekleşti. Daha sonraki Senatoya Kararname gereğince, o zamandan beri ölüm, bir 'kötü gün' olarak biliniyordu ve Roma, 23 Ağustos'ta bir daha asla savaşa girmedi. Karos, aynı akşam savaş sonrası küçük süvari harekâtı sırasında yaralandı ve kısa süre sonra öldü, ancak Roma'nın şimdiye kadar uğradığı en aşağılayıcı yenilgilerden birini gerçekleştirdi."
-
-#: simulation/data/civs/iber.jsonAINames[2]
-#: simulation/data/civs/iber.jsonFactions[0].Heroes[1].Name
-msgid "Karos"
-msgstr "Karos"
-
-#: simulation/data/civs/iber.jsonFactions[0].Heroes[2].History
-msgid ""
-"Indibil was king of the Ilergetes, a large federation ranged principally "
-"along the Ebro River in the northwest of the Iberian Peninsula. During the "
-"Barcid expansion, from 212 B.C. he had initially been talked into allying "
-"himself with the Carthaginians who had taken control of a lot of territory "
-"to the south and west, however after loss and his capture in a major battle "
-"he was convinced, some say tricked, to switch to the Roman side by Scipio "
-"Africanus. But that alliance didn't last long, as Roman promises were hollow"
-" and the Romans acted more like conquerors than allies. So, while the Romans"
-" and their allies had ended Carthaginian presence in 'Hispania' in 206 B.C.,"
-" Indibil and another tribal prince by the name of Mandonio, who may have "
-"been his brother, rose up in rebellion against the Romans. They were "
-"defeated in battle, but rose up in a 2nd even larger rebellion that had "
-"unified all the Ilergetes again in 205 B.C. Outnumbered and outarmed they "
-"were again defeated, Indibil losing his life in the final battle and "
-"Mandonio being captured then later put to death. From that date onward the "
-"Ilergetes remained a pacified tribe under Roman rule."
-msgstr "Indibil, Ilergetes'in kralıydı, büyük bir federasyon İber Yarımadası'nın kuzeybatısında Ebro Nehri boyunca uzanırdı. Barcid'in genişlemesi sırasında, M.Ö. 212'den Başlangıçta kendisini güney ve batıda bir çok bölgeyi kontrol altına alan Kartacalılarla yakından konuşmaya başlamıştı, ancak kaybettiği ve büyük bir savaşta yakalandıktan sonra, bazılarının kandırdığı, Roma tarafına geçmek için kandırdığı söyleniyordu. Scipio Africanus. Ancak bu ittifak uzun sürmedi, çünkü Roma vaatleri içi boştu ve Romalılar müttefiklerden daha fatih gibi davrandılar. Romalılar ve onların müttefikleri, 206'da Kaliforniya'da Karpazyalıların varlığını \"Hispania\" ya bırakırken, Indibil ve kardeşi olan Mandonio adına bir başka aşiret prensi Romalılara karşı isyan etti. Savaşta yenildiler, fakat 205 I.C.'de tekrar tüm Ilergeteleri birleştiren 2. daha büyük bir isyanla yükseldi. Fazla sayı ve silahsızlar tekrar mağlup edildi, Indibil son savaşta hayatını kaybetti ve Mandonio yakalandı ve daha sonra ölümüne bırakıldı. O tarihten itibaren Ilergetes Roma egemenliğinde gergin bir kavim olarak kaldı."
-
-#: simulation/data/civs/iber.jsonAINames[3]
-#: simulation/data/civs/iber.jsonFactions[0].Heroes[2].Name
-msgid "Indibil"
-msgstr "Indibil"
-
-#: simulation/data/civs/iber.jsonFactions[0].Technologies[0].Description
-msgid ""
-"Causes targets struck to become inflamed and lose hitpoints at a constant "
-"rate until and if either healed or repaired, as appropriate."
-msgstr "Hedefin, uygun bir şekilde iyileşip veya tamir edilinceye kadar, yanmasına ve sabit bir hızda can kaybetmesine yol açar."
-
-#: simulation/data/civs/iber.jsonFactions[0].Technologies[0].History
-msgid ""
-"Iberian tribesmen were noted for wrapping bundles of grass about the shafts "
-"of their throwing spears, soaking that in some sort of flammable pitch, then"
-" setting it afire just before throwing."
-msgstr "İberyalı kabile üyeleri mızraklarının saplarına ot yumakları bağlamalarıyla biliniyorlardı, bunları önce bir tür yanabilir zifte batırıp, tam fırlatmdan önce ateşe veriyorlardı."
-
-#: simulation/data/civs/iber.jsonFactions[0].Technologies[0].Name
-msgid "Suzko Txabalina"
-msgstr "Suzko Txabalina"
-
-#: simulation/data/civs/iber.jsonFactions[0].Technologies[1].Description
-msgid "Metal costs for units and technologies reduced by 50%."
-msgstr "Teknoloji ve birim başına metal maliyetleri %50 azalır."
-
-#: simulation/data/civs/iber.jsonFactions[0].Technologies[1].History
-msgid ""
-"The Iberians were known to produce the finest iron and steel implements and "
-"weapons of the age. The famous 'Toledo Steel.'"
-msgstr "İberyalılar çağın silahları ve demir çelik edevatlarını iyi üretmeleriyle bilinirler. En meşhuru 'Toledo Çeliği.'"
-
-#: simulation/data/civs/iber.jsonFactions[0].Technologies[1].Name
-msgid "Maisu Burdina Langileak"
-msgstr "Maisu Burdina Langileak"
-
 #: simulation/data/civs/iber.jsonHistory
 msgid ""
 "The Iberians were a people of mysterious origins and language, with a strong"
@@ -1032,40 +411,6 @@ msgstr "İberyalılar, güçlü geleneksel atçılık ve metal işçiliği ile b
 #: simulation/data/civs/iber.jsonName
 msgid "Iberians"
 msgstr "İberyalılar"
-
-#: simulation/data/civs/iber.jsonStructures[0].History
-msgid ""
-"'Revered Monument' The Iberians were a religious people who built small "
-"monuments to their various gods. These monuments could also serve as family "
-"tombs."
-msgstr "'Kutsal Anıt' İberyalılar dindar insanlardı ve çeşitli tanrıları için pek çok anıt inşa ettiler. Bunlar ayrıca aile mezaları olarak da hizmet ederdi."
-
-#: simulation/data/civs/iber.jsonStructures[0].Name
-msgid "Gur Oroigarri"
-msgstr "Gur Oroigarri"
-
-#: simulation/data/civs/iber.jsonStructures[0].Special
-msgid ""
-"Defensive Aura - Gives all Iberian units and buildings within vision range "
-"of the monument a 10-15% attack boost. Build Limit: Only 5 may be built per "
-"map."
-msgstr "Savunma Gücü - Tüm İber birimler ve yapılar anıtın görüş alanı içinde %10-15 daha fazla saldırı sağlarlar. Yapı Limiti: Her haritada yalnız 5 yapı."
-
-#: simulation/data/civs/iber.jsonTeamBonuses[0].Description
-msgid "Allied Citizen Javelineers −10% resource costs."
-msgstr "Müttefik Ciritçi vatandaşlar -%10 kaynak maliyeti."
-
-#: simulation/data/civs/iber.jsonTeamBonuses[0].History
-msgid ""
-"The Iberians were long known to provide mercenaries to other nations to "
-"serve as auxiliaries to their armies in foreign wars. Carthage is the most "
-"well known example, and we have evidence of them serving in such a capacity "
-"in Aquitania."
-msgstr "İberyalıların, uzun zamandır askeri savaşlara dış savaşlarda ordularına yardımcı olmaları için diğer ülkelere para sağladıkları biliniyordu. Kartaca en bilinen örnektir ve Aquitania'da böyle bir kapasitede hizmet ettiklerini gösteren kanıtlarımız var."
-
-#: simulation/data/civs/iber.jsonTeamBonuses[0].Name
-msgid "Saripeko"
-msgstr "Saripeko"
 
 #: simulation/data/civs/kush.jsonAINames[0]
 msgid "Kashta"
@@ -1123,56 +468,6 @@ msgstr "Atlanersa"
 msgid "Nasalsa"
 msgstr "Nasalsa"
 
-#: simulation/data/civs/kush.jsonFactions[0].Description
-msgid ""
-"The great African kingdom that straddled the Nile River in Nubia, in the "
-"South of Egypt."
-msgstr "Mısır'ın güneydeki Nubia'daki Nil Nehri'ni tutan büyük Afrika Krallığı"
-
-#: simulation/data/civs/kush.jsonFactions[0].Heroes[0].Name
-msgid "Nastasen"
-msgstr "Nastasen"
-
-#: simulation/data/civs/kush.jsonFactions[0].Heroes[1].Name
-msgid "Arakamani"
-msgstr "Arakamani"
-
-#: simulation/data/civs/kush.jsonFactions[0].Heroes[2].Name
-msgid "Amanirenas"
-msgstr "Amanirenas"
-
-#: simulation/data/civs/kush.jsonFactions[0].Name
-msgid "Kushite Africans"
-msgstr "Kuşit Afrikalıları"
-
-#: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Description
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Description
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[0].Description
-msgid ""
-"Archers −10% training time, +8 attack range, and −10% ranged attack spread."
-msgstr "Okçular -%10 eğitim süresi, +8 saldırı menzili ve -%10 menzili saldırı sapması."
-
-#: simulation/data/civs/kush.jsonFactions[0].Technologies[0].History
-msgid ""
-"The Kushites had a tradition of fine archery and a penchant for using massed"
-" archers in battle."
-msgstr "Kushitlerin iyi okçuluk geleneği ve savaşta kitlesel okçular kullanma tutkusu vardı."
-
-#: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Name
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[0].Name
-msgid "Archery Tradition"
-msgstr "Geleneksel Okculuk"
-
-#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Description
-msgid ""
-"Civic Structures +20% build time, +20% health, and +20% capture points."
-msgstr "Yerleşim Yapıları +%20 inşa süresi, +%20 sağlık ve +%20 ele geçirme puanı."
-
-#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Name
-msgid "Monumental Architecture"
-msgstr "Anıtsal Yapı"
-
 #: simulation/data/civs/kush.jsonHistory
 msgid ""
 "The Kingdom of Kush was an ancient African kingdom situated on the "
@@ -1195,48 +490,9 @@ msgstr "Kush Krallığı, şu anda Sudan Cumhuriyeti'nde olan Mavi Nil, Beyaz Ni
 msgid "Kushites"
 msgstr "Kuşitler"
 
-#: simulation/data/civs/kush.jsonStructures[0].Name
-msgid "Temple of Amun"
-msgstr "Amun Tapınağı"
-
-#: simulation/data/civs/kush.jsonStructures[0].Special
-msgid ""
-"The Kushites can upgrade individual Temples to Temples of Amun, which can "
-"train Napatan Temple Guard champions and heal units faster."
-msgstr "Kushitler, tapınakları ayrı ayrı Napatan Tapınak Muhafızları eğitebilen ve birimleri daha hızlı iyileştiren Amun Tapınaklarına geliştirebilirler."
-
-#: simulation/data/civs/kush.jsonStructures[1].Name
-msgid "Temple of Apedemak"
-msgstr "Apedemak Tapınağı"
-
-#: simulation/data/civs/kush.jsonStructures[1].Special
-msgid ""
-"The Kushites can upgrade individual Temples to Temples of Apedemak, which "
-"can train Meroe Temple Guard champions and heal units faster."
-msgstr "Kushitler, tapınakları ayrı ayrı Meroe Tapınak Muhafızları eğitebilen ve birimleri daha hızlı iyileştiren Apedamak Tapınaklarına geliştirebilirler."
-
-#: simulation/data/civs/kush.jsonStructures[2].History
-msgid "The Kushites built over 200 pyramids in Nubia."
-msgstr "Kushitler Nubia'da 200'den fazla piramit inşa ettiler."
-
-#: simulation/data/civs/kush.jsonStructures[2].Name
-msgid "Kushite Pyramids"
-msgstr "Kuşit Piramitleri"
-
-#: simulation/data/civs/kush.jsonStructures[2].Special
-msgid ""
-"Building a Small Kushite Pyramid unlocks the Town Phase. Building a Large "
-"Kushite Pyramid unlocks the City Phase. And each pyramid built adds +10% "
-"territory effect to Civic Centers."
-msgstr "Küçük bir Kushite piramidi inşa etmek kasaba seviyesini, büyük bir Kushite piramidi inşa etmek şehir seviyesini açar. Kurulan her piramit Kent Merkezlerine +%10 bölge etkisi ekler."
-
-#: simulation/data/civs/kush.jsonTeamBonuses[0].Description
-msgid "Allied Elephants −20% resource costs and training time."
-msgstr "Müttefik Filler -%20 kaynak maliyeti ve eğitim süresi."
-
-#: simulation/data/civs/kush.jsonTeamBonuses[0].Name
-msgid "Elephant Suppliers"
-msgstr "Fil Tedarikçisi"
+#: simulation/data/civs/mace.jsonAINames[0]
+msgid "Alexander the Great"
+msgstr "Büyük İskender"
 
 #: simulation/data/civs/mace.jsonAINames[10]
 msgid "Perseus"
@@ -1287,93 +543,6 @@ msgstr "Demetrius II. Aetolicus"
 msgid "Philip V"
 msgstr "Philip V"
 
-#: simulation/data/civs/mace.jsonFactions[0].Description
-msgid "A Hellenistic kingdom bordering the Greek city-states."
-msgstr "Helenistik bir krallık Yunan şehir-devletleriyle sınır komşusu oldu."
-
-#: simulation/data/civs/mace.jsonFactions[0].Heroes[0].History
-msgid ""
-"The king of Macedonia (359-336 B.C.), he carried out vast monetary and "
-"military reforms in order to make his kingdom the most powerful force in the"
-" Greek world. Greatly enlarged the size of Macedonia by conquering much of "
-"Thrace and subduing the Greeks. Murdered in Aegae while planning a campaign "
-"against Persia."
-msgstr "Makedonya Kralı (359-336 yılları arasında), krallığını Yunan dünyasındaki en güçlü güç haline getirmek için geniş parasal ve askeri reformlar gerçekleştirdi. Trakyanın büyük kısmını fethederek ve Yunanlıları ezip Makedonya'nın büyüklüğünü büyük ölçüde genişletti. İran'a karşı bir kampanya planlarken Aegae'de öldürüldü."
-
-#: simulation/data/civs/mace.jsonFactions[0].Heroes[0].Name
-msgid "Philip II of Macedon"
-msgstr "Makedonyalı II. Philip"
-
-#: simulation/data/civs/mace.jsonFactions[0].Heroes[1].History
-msgid ""
-"The most powerful hero of them all - son of Philip II, king of Macedonia "
-"(336-323 B.C.). After conquering the rest of the Thracians and quelling the "
-"unrest of the Greeks, Alexander embarked on a world-conquest march. "
-"Defeating the Persian forces at Granicus (334 B.C.), Issus (333 B.C.) and "
-"Gaugamela (331 B.C.), he became master of the Persian Empire. Entering "
-"India, he defeated king Porus at Hydaspes (326 B.C.), but his weary troops "
-"made him halt. Died in Babylon at the age of 33 while planning a campaign "
-"against Arabia."
-msgstr "Makedonya Kralı II. Philip'in (336-323 yılları arasında) hepsinin en güçlü kahramanı. Trakyalıların geri kalanını fethedip Yunanlıların huzursuzluğunu iptal ettikten sonra, İskender dünyayı fetheden bir yürüyüşe başladı. Granicus'ta (334 C.C), Issus'ta (333 C.C.) ve Gaugamela'da (331 C.C) fars güçlerini yenerek, Pers İmparatorluğu'nun efendisi oldu. Hindistan'a girdiğinde, kral Porus'u Hydaspes'de (326.) yıktı, ancak yorgun askerleri onu durdurdu. Arabia'ya karşı bir kampanya planlarken Babylon'da 33 yaşında öldü."
-
-#: simulation/data/civs/mace.jsonAINames[0]
-#: simulation/data/civs/mace.jsonFactions[0].Heroes[1].Name
-msgid "Alexander the Great"
-msgstr "Büyük İskender"
-
-#: simulation/data/civs/mace.jsonFactions[0].Heroes[2].History
-msgid ""
-"One of the Diadochi, king of Macedonia (294-288 B.C.), Demetrios was "
-"renowned as one of the bravest and most able successors of Alexander. As the"
-" son of Antigonus I Monophthalmus, he fought and won many important battles "
-"early on and was proclaimed king, along with his father, in 306 B.C. Losing "
-"his Asian possessions after the battle of Ipsos, he later won the Macedonian"
-" throne. Fearing lest they should be overpowered by Demetrios, the other "
-"Diadochi united against him and defeated him."
-msgstr "Makedonya Kralı Diadochi'den (294-288), Demetrios, İskender'in en cesur ve en yetenekli haleflerinden biri olarak bilinirdi. Antigonos Ben Monophthalmus'un oğlu olarak erken dövüşüp savaşan birçok önemli savaşı kazandı ve 306 BC'de babasıyla birlikte kral ilan edildi. Ipsos savaşından sonra Asya mülklerini kaybeden Makedonya tahtını kazandı. Demetrios'un baskısı olmasın diye korktular, Diadochi diğeri ona karşı birleşti ve onu mağlup etti."
-
-#: simulation/data/civs/mace.jsonFactions[0].Heroes[2].Name
-msgid "Demetrios the Besieger"
-msgstr "Kuşatmacı Demetrios"
-
-#: simulation/data/civs/mace.jsonFactions[0].Technologies[0].Description
-#: simulation/data/civs/ptol.jsonFactions[0].Technologies[0].Description
-#: simulation/data/civs/sele.jsonFactions[0].Technologies[0].Description
-msgid "Civic Centers +100% health and capture points, double default arrows."
-msgstr "Kent Merkezleri +%100 sağlık ve ele geçirme puanı, iki kat öntanımlı ok."
-
-#: simulation/data/civs/mace.jsonFactions[0].Technologies[0].History
-#: simulation/data/civs/ptol.jsonFactions[0].Technologies[0].History
-#: simulation/data/civs/sele.jsonFactions[0].Technologies[0].History
-msgid ""
-"Beginning with Alexander, the Hellenistic monarchs founded many cities "
-"throughout their empires, where Greek culture and art blended with local "
-"customs to create the motley Hellenistic civilization."
-msgstr "İskender ile birlikte, Helenik hükümdarlar imparatorluk boyunca Yunan kültürü ile yerel geleneklerin karıştığı, mozaik Helenik medeniyetini oluşturan birçok şehir kurdular."
-
-#: simulation/data/civs/mace.jsonFactions[0].Technologies[0].Name
-#: simulation/data/civs/ptol.jsonFactions[0].Technologies[0].Name
-#: simulation/data/civs/sele.jsonFactions[0].Technologies[0].Name
-msgid "Hellenistic Metropolis"
-msgstr "Helenistik Büyükşehir"
-
-#: simulation/data/civs/mace.jsonFactions[0].Technologies[1].Description
-msgid ""
-"Upgrade Shield Bearer Champion Infantry to Silver Shields, with more health "
-"and attack damage."
-msgstr "Daha fazla sağlık ve saldırı hasarı ile Kalkan Taşıyan Şampiyonu Piyadelerini, Gümüş Kalkanlara yükseltin."
-
-#: simulation/data/civs/mace.jsonFactions[0].Technologies[1].History
-msgid ""
-"In India near the end of his long anabasis, Alexander gifted to the Royal "
-"Hypaspist corps shields of silver for their long and valiant service in his "
-"army."
-msgstr "Uzun tasvirinin bitimine yakın olan Hindistan'da, İskender ordudaki uzun ve cesur hizmetlerinden dolayı Kraliyet Hipaparkçı kolordu kalkanlarına gümüş hediye etti."
-
-#: simulation/data/civs/mace.jsonFactions[0].Technologies[1].Name
-msgid "Silver Shields"
-msgstr "Gümüş Kalkanlar"
-
 #: simulation/data/civs/mace.jsonHistory
 msgid ""
 "Macedonia was an ancient Greek kingdom, centered in the northeastern part of"
@@ -1383,57 +552,21 @@ msgid ""
 "diffusion of Hellenic and eastern cultures for years to come."
 msgstr "Makedonya, Yunan yarımadasının kuzeydoğu kesiminde yer alan eski bir Yunan krallığıydı. Büyük İskender önderliğindeki Makedon güçleri ve müttefikleri, bildikleri dünyanın çoğunu, Mısır, İran ve Hint kıtasının bir bölümünü devralarak, Helenik ve doğu kültürlerinin yıllarca yayılmasına izin verdi."
 
-#: simulation/data/civs/mace.jsonFactions[0].Name
 #: simulation/data/civs/mace.jsonName
 msgid "Macedonians"
 msgstr "Makedonyalılar"
 
-#: simulation/data/civs/mace.jsonStructures[0].Special
-msgid ""
-"The Hellenization civ bonus. Building a Theatron increases the territory "
-"effect of all buildings by 25%. Build limit: 1."
-msgstr "Bu Helenleştirme uygarlık ödülü Bir Theatron yapısı bölgedeki diğer tüm binalara %25 etki eder. Yapı limiti: 1."
-
-#: simulation/data/civs/mace.jsonStructures[1].History
-#: simulation/data/civs/ptol.jsonStructures[0].History
-#: simulation/data/civs/sele.jsonStructures[0].History
-msgid ""
-"Alexander the Great founded libraries all over his new empire. These became "
-"a center of learning for an entirely new synthesized culture: the "
-"Hellenistic culture."
-msgstr "Büyük İskender imparatorluğunun her yerine kütüphaneler kurdu. Bunlar tamamen yeni bir sentezlenmiş kültürün merkezi oldular: Helenistik kültür"
-
-#: simulation/data/civs/mace.jsonStructures[1].Name
-#: simulation/data/civs/ptol.jsonStructures[0].Name
-#: simulation/data/civs/sele.jsonStructures[0].Name
-msgid "Library"
-msgstr "Kütüphane"
-
-#: simulation/data/civs/mace.jsonStructures[1].Special
-msgid ""
-"All Special Technologies are researched here. Building one reduces the cost "
-"of all other remaining technologies by 10%. Build limit: 1."
-msgstr "Tüm Özel Teknolojiler burada araştırılmıştır. Bir yapı diğer tüm kalan teknolojilerin maliyetini  %10  azaltır. Yapı limiti: 1."
-
-#: simulation/data/civs/mace.jsonTeamBonuses[0].Description
-msgid "Allies +20% barter sell prices."
-msgstr "Müttefiklere takasta +%20 satış bedeli."
-
-#: simulation/data/civs/mace.jsonTeamBonuses[0].History
-msgid ""
-"The Macedonians and the Diadochi minted coins of very high quality. On their"
-" currency the Diadochi in particular frequently depicted themselves as the "
-"rightful successor to Alexander the Great, attempting to legitimize their "
-"rule."
-msgstr "Makedonlar ve Diadochi çok yüksek kalitede sikke vurdu. Para birimlerinde Diadochi, çoğunlukla, Büyük İskender'in kurallarını meşrulaştırmaya çalışan gerçek bir halefi olarak nitelendirildi."
-
-#: simulation/data/civs/mace.jsonTeamBonuses[0].Name
-msgid "Standardized Currency"
-msgstr "Tek Tip Para Birimi"
+#: simulation/data/civs/maur.jsonAINames[0]
+msgid "Chandragupta Maurya"
+msgstr "Chandragupta Maurya"
 
 #: simulation/data/civs/maur.jsonAINames[1]
 msgid "Bindusara Maurya"
 msgstr "Bindusara Maurya"
+
+#: simulation/data/civs/maur.jsonAINames[2]
+msgid "Ashoka the Great"
+msgstr "Büyük Asoka"
 
 #: simulation/data/civs/maur.jsonAINames[3]
 msgid "Dasharatha Maurya"
@@ -1459,78 +592,6 @@ msgstr "Shatadhanvan Maurya"
 msgid "Brihadratha Maurya"
 msgstr "Brihadratha Maurya"
 
-#: simulation/data/civs/maur.jsonCivBonuses[0].Description
-msgid ""
-"Mauryas have a +10% population cap bonus (e.g., 330 pop cap instead of the "
-"usual 300)."
-msgstr "Mauryalılar +%10 nüfus sınırı bonusuna sahipler (örn: 300 yerine 330 nüfus sınırı)"
-
-#: simulation/data/civs/maur.jsonCivBonuses[0].History
-msgid ""
-"The Mauryan Empire encompassed dozens of formerly independent kingdoms over "
-"an area of 5 million square kilometers, with a population of close to 60 "
-"million people. The Mauryan rulers held the title Emperor of Emperors and "
-"commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
-"chariots, and 30,000 cavalry, making it arguably the largest army of its "
-"time."
-msgstr "Mauryan İmparatorluğu, 5 milyon kilometrekarelik bir alanda, 60 milyona yakın nüfusu ile düzinelerce bağımsız krallığı kapsıyordu. Mauryan hükümdarları İmparator İmparatoru unvanını aldı ve 600.000 piyade, 9000 fil, 8000 savaş arabası ve 30.000 süvari ordusuna hakim oldu ve tartışmasız zamann en büyük ordusuna sahiptiler."
-
-#: simulation/data/civs/maur.jsonCivBonuses[0].Name
-msgid "Emperor of Emperors."
-msgstr "İmparatorlar İmparatoru."
-
-#: simulation/data/civs/maur.jsonCivBonuses[1].Description
-msgid "Elephants −30% training time."
-msgstr "Filer -%30 eğitim süresi."
-
-#: simulation/data/civs/maur.jsonCivBonuses[1].History
-msgid ""
-"India is the land of the elephants. Elephant warfare originated in India and"
-" continued for millennia. It was also the source of elephants for the "
-"eastern Mediterranean. Indian kings were able to field large numbers of war "
-"elephants."
-msgstr "Hindistan fillerin ülkesi. Fil savaşı Hindistan'da doğdu ve bin yıl boyunca devam etti. Aynı zamanda doğu Akdeniz için fillerin kaynağıydı. Hint kralları çok sayıda savaş fili beslediler."
-
-#: simulation/data/civs/maur.jsonCivBonuses[1].Name
-msgid "Elephant Tradition"
-msgstr "Fil Geleneği"
-
-#: simulation/data/civs/maur.jsonFactions[0].Heroes[0].History
-msgid "Founder of the Mauryan Empire."
-msgstr "Maurya İmparatorluğu'nun Kurucusu."
-
-#: simulation/data/civs/maur.jsonAINames[0]
-#: simulation/data/civs/maur.jsonFactions[0].Heroes[0].Name
-msgid "Chandragupta Maurya"
-msgstr "Chandragupta Maurya"
-
-#: simulation/data/civs/maur.jsonFactions[0].Heroes[1].History
-msgid "Last great emperor of the Mauryan dynasty."
-msgstr "Maurya hanedanlığın son büyük imparatoru."
-
-#: simulation/data/civs/maur.jsonAINames[2]
-#: simulation/data/civs/maur.jsonFactions[0].Heroes[1].Name
-msgid "Ashoka the Great"
-msgstr "Büyük Asoka"
-
-#: simulation/data/civs/maur.jsonFactions[0].Heroes[2].History
-msgid "Great teacher and advisor to Chandragupta Maurya."
-msgstr "Mauryalı Çandragupta büyük öğretmen ve danışman."
-
-#: simulation/data/civs/maur.jsonFactions[0].Heroes[2].Name
-msgid "Acharya Chāṇakya"
-msgstr "Acharya Chāṇakya"
-
-#: simulation/data/civs/maur.jsonFactions[0].Name
-msgid "Mauryan Indians"
-msgstr "Hindistanlı Mauryalılar"
-
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].History
-msgid ""
-"The Indian peoples had a tradition of fine archery and a penchant for using "
-"massed archers in battle."
-msgstr "Hint halkının iyi okçuluk geleneği ve savaşta kitlesel okçular kullanma tutkusu vardı."
-
 #: simulation/data/civs/maur.jsonHistory
 msgid ""
 "Founded in 322 B.C. by Chandragupta Maurya, the Mauryan Empire was the first"
@@ -1547,40 +608,6 @@ msgstr "322'de B.C'de kuruldu. Chandragupta Maurya tarafından Mauryan İmparato
 msgid "Mauryas"
 msgstr "Mauryalılar"
 
-#: simulation/data/civs/maur.jsonStructures[0].Name
-msgid "Elephant Stable"
-msgstr "Fil Ahırı"
-
-#: simulation/data/civs/maur.jsonStructures[0].Special
-msgid "Train Elephants and research Elephant technologies."
-msgstr "Filleri eğit ve fil teknolojileri araştır."
-
-#: simulation/data/civs/maur.jsonStructures[1].Name
-msgid "Edict Pillar of Ashoka"
-msgstr "Asoka'nın ferman sütunu"
-
-#: simulation/data/civs/maur.jsonStructures[1].Special
-msgid ""
-"Contentment: +10% Health and +10% resource gathering rates for all citizens "
-"and allied citizens within its range. Can be built anywhere except in enemy "
-"territory. Max Built: 10."
-msgstr "İçerik: Vatandaşları ve müttefik vatandaşları için yelpazesindeki + 10% Sağlık ve% +10 kaynak toplama oranları. Düşman toprakları dışında herhangi bir yere inşa edilebilir. Max Yapıldı: 10."
-
-#: simulation/data/civs/maur.jsonTeamBonuses[0].Description
-msgid ""
-"Allied Temples −50% resource costs and building time; Temple technologies "
-"−50% resource costs and research time."
-msgstr "Müttefik Tapınaklar -%50 kaynak maliyeti ve inşa süresi; Tapınak teknolojileri -%50 kaynak maliyeti ve araştırma süresi."
-
-#: simulation/data/civs/maur.jsonTeamBonuses[0].History
-msgid ""
-"Ashoka the Great sent embassies West to spread knowledge of the Buddha."
-msgstr "Ashoka the Great sent embassies West to spread knowledge of the Buddha."
-
-#: simulation/data/civs/maur.jsonTeamBonuses[0].Name
-msgid "Ashoka's Religious Support"
-msgstr "Ashoka'nın Dinsel Desteği"
-
 #: simulation/data/civs/pers.jsonAINames[0]
 msgid "Kurush II the Great"
 msgstr "Büyük II. Kurush"
@@ -1593,6 +620,10 @@ msgstr "Haksamanish"
 msgid "Xsayarsa II"
 msgstr "Xsayarsa II"
 
+#: simulation/data/civs/pers.jsonAINames[1]
+msgid "Darayavahush I"
+msgstr "Darayavahush I"
+
 #: simulation/data/civs/pers.jsonAINames[2]
 msgid "Cambyses II"
 msgstr "Cambyses II"
@@ -1600,6 +631,10 @@ msgstr "Cambyses II"
 #: simulation/data/civs/pers.jsonAINames[3]
 msgid "Bardiya"
 msgstr "Bardiya"
+
+#: simulation/data/civs/pers.jsonAINames[4]
+msgid "Xsayarsa I"
+msgstr "Xsayarsa I"
 
 #: simulation/data/civs/pers.jsonAINames[5]
 msgid "Artaxshacha I"
@@ -1621,140 +656,6 @@ msgstr "Artaxshacha II"
 msgid "Artaxshacha III"
 msgstr "Artaxshacha III"
 
-#: simulation/data/civs/pers.jsonCivBonuses[0].Description
-msgid ""
-"Persians have a +10% population cap bonus (e.g. 330 pop cap instead of the "
-"usual 300)."
-msgstr "Persler +%10 nüfus sınırı bonusuna sahip (Örn : Genelde 300 olan nüfus sınırı 330 olur)."
-
-#: simulation/data/civs/pers.jsonCivBonuses[0].History
-msgid ""
-"The Persians could and did levy a large number of infantry during wartime "
-"due to the sheer size of the Achaemenid Empire and the way in which it was "
-"set-up. In general the Persian infantry was well trained and fought with "
-"great tenacity. However while this was true the infantry were poor hand-to-"
-"hand, close combat fighters. Also, with the exception of the elite "
-"regiments, the Persian infantry was not a standing professional force."
-msgstr "Ahameniş Hanedanlığı imparatorluğun yapısı ve büyüklüğü sebebiyle savaş zamanları çok büyük miktarlarda askere alma imkanına sahipti ve öyle de yaptı. Genellikle Pers piyadeleri iyi eğitimliydi ve yüksek cesaretle savaşırlardı. Ancak, yine de yakın dövüşte zayıf kalıyorlardı. Ayrıca, seçkin birlikler haricinde, Pers piyadeleri sürekli silah altında tutulan kuvvetler değildi."
-
-#: simulation/data/civs/pers.jsonCivBonuses[0].Name
-msgid "Great King's Levy"
-msgstr "Great King'in Vergisi"
-
-#: simulation/data/civs/pers.jsonFactions[0].Heroes[0].History
-msgid ""
-"Cyrus (ruled 559-530 B.C.) The son of a Median princess and the ruler of "
-"Anshan; justly called the 'Father of the Empire', Cyrus the Great conquered "
-"Media, Lydia, Babylonia and Bactria, thereby establishing the Persian "
-"Empire. He was also renown as a benevolent conqueror. (OP - Kurush). "
-"Technically the second ruler of the Persians by that name, and so appears as"
-" Kurush II on his documents and coins. Kurush I was his grandfather."
-msgstr "Cyrus (559-530 yılları arasında hüküm sürdü) Medyan bir prensin oğlu ve Anshan'ın hükümdarı; Adil olarak \"İmparatorluğun Babası\" olarak adlandırılan Cyrus Büyük, Medya, Lydia, Babil ve Bactria'yı fethetti ve böylece Pers İmparatorluğu'nu kurdu. Ayrıca yardımsever bir fatih olarak tanınmıştır. (OP - Kurush). Teknik olarak Perslerin ikinci cetveli bu isme göre ve dolayısıyla belgelerinde ve madeni paralarda II. Kurru'ya benziyor. Kurush, büyükbabasıydım."
-
-#: simulation/data/civs/pers.jsonFactions[0].Heroes[0].Name
-msgid "Kurush II"
-msgstr "Kurush II"
-
-#: simulation/data/civs/pers.jsonFactions[0].Heroes[1].History
-msgid ""
-"Darius (ruled 522-486 B.C.) The son of Vishtaspa (Hystaspes), the satrap of "
-"Parthia and Hyrcania; a great administrator as well as a decent general, "
-"Darius introduced the division of the empire into satrapies and conquered NW"
-" India, Thrace and Macedonia. He was called the 'Merchant of the Empire'."
-msgstr "Darius (522-486 yılları arasında hüküm sürdü) Parthia ve Hyrcania'nın satrapı Vishtaspa'nın (Hystaspes) oğlu; Büyük bir yönetici ve iyi bir general olarak Darius, imparatorluğun bölünmelerini satraplara sokup Kuzey Hindistan, Trakya ve Makedonya'yı fethetti. O'na 'İmparatorluğun Taciri' deniyordu."
-
-#: simulation/data/civs/pers.jsonAINames[1]
-#: simulation/data/civs/pers.jsonFactions[0].Heroes[1].Name
-msgid "Darayavahush I"
-msgstr "Darayavahush I"
-
-#: simulation/data/civs/pers.jsonFactions[0].Heroes[2].History
-msgid ""
-"Xerxes (ruled 485-465 B.C.) The son of Darius the Great and Atoosa, a "
-"daughter of Cyrus the Great, Xerxes was an able administrator, who also "
-"extended Imperial rule into Chorasmia. Apart from his failed invasion of "
-"Greece, he was famous for his extensive building programme, especially at "
-"Persepolis."
-msgstr "Xerxes (485-465 yılları arasında hüküm sürdü) Büyük Darius oğlu ve Büyük Cyrus'un kızı Atoosa'nın oğlu olan Xerxes, İmparatorluk yönetimini Chorasmia'ya kadar genişleten güçlü bir yönetici idi. Başarısız olan Yunanistan istilasına rağmen, özellikle Persepolis'teki kapsamlı yapı programıyla ünlüdür."
-
-#: simulation/data/civs/pers.jsonAINames[4]
-#: simulation/data/civs/pers.jsonFactions[0].Heroes[2].Name
-msgid "Xsayarsa I"
-msgstr "Xsayarsa I"
-
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[0].History
-msgid ""
-"The Iranian peoples had a tradition of fine archery and a penchant for using"
-" massed archers in battle."
-msgstr "İran halklarının iyi okçuluk geleneği ve savaşta kitlesel okçular kullanma tutkusu vardı."
-
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[1].Description
-msgid "Phoenician triremes gain the unique ability to train cavalry."
-msgstr "Fenikeli Trireme'ler farklı olarak süvari eğitme yeteneği kazanır."
-
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[1].History
-msgid ""
-"Early Achaemenid rulers acted towards making Persia the first great Asian "
-"empire to rule the seas. The Great King behaved favourably towards the "
-"various sea peoples in order to secure their services, but also carried out "
-"various marine initiatives. During the reign of Darius the Great, for "
-"example, a canal was built in Egypt and a Persian navy was sent exploring "
-"the Indus river. According to Herodotus, some 300 ships in the Persian navy "
-"were retrofitted to carry horses and their riders."
-msgstr "Erken Ahameniş yöneticileri İran'ı Asya'nın denizlere hükmeden ilk imparatorluğu yapmak için çabaladılar. Büyük Kral çeşitli denizci halklara servislerini elde etmek için yakın davrandı ama ayrıca birçok denizcilik inisiyatifi de kullandı. Örneğin Büyük Darius zamanında Mısır'da Indus Nehri'ne Pers donanmasını keşfe göndermek için bir kanal inşa edilmiştir. Heredot'a göre Pers donanmasında 300 gemi süvarileri ve atlarını taşımak için yeniden düzenlenmiştir."
-
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[1].Name
-msgid "Naval Craftsmanship"
-msgstr "Donanma İşçilik birleştirme"
-
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[2].Description
-msgid ""
-"Increases hitpoints of all structures, but build time increased "
-"appropriately."
-msgstr "Bütün yapıların yaşam puanına artırır, ama inşa zamanında değişiklik yapmaz."
-
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[2].History
-msgid ""
-"The Persians built the wonderful 2700 kilometer-long Royal Highway from "
-"Sardis to Susa; Darius the Great and Xerxes also built the magnificent "
-"Persepolis; Cyrus the Great greatly improved Ecbatana and virtually "
-"'rebuilt' the old Elamite capital of Susa."
-msgstr "Persler, Sardis'ten Susa'ya kadar uzanan 2700 kilometrelik muhteşem Cennet yolunu inşa ettiler; Darius Büyük ve Kserkses de muhteşem Persepolis'i inşa etti; Büyük Cyrus, Ecbatana'yı büyük ölçüde geliştirdi ve eski Elazığ'in başkenti Susa'yı neredeyse 'yeniden inşa etti.Kserkses "
-
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[2].Name
-msgid "Persian Architecture"
-msgstr "Pers Mimarisi"
-
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[3].Description
-msgid "Anušiya Champion Infantry -50% train time, but also -10% health."
-msgstr "Anusiya Şampiyon Piyade -%50 eğitim süresi ama -%10 sağlık."
-
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[3].History
-msgid ""
-"The Achaemenids maintained a 10,000-strong elite corps, referred to as "
-"Athanatoi (“Immortals”) by Greek authors."
-msgstr "Akamenişler Yunan yazarlar tarafından Athanatoi (Ölümsüz) adı verilen 10 000 kişilik güçlü seçkin birlik bulunduruyordu."
-
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[3].Name
-msgid "Immortals"
-msgstr "Ölümsüzler"
-
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[4].Description
-#: simulation/data/civs/sele.jsonFactions[0].Technologies[1].Description
-msgid "+25% health for cavalry, but +10% train time."
-msgstr "Süvariler için +25% sağlık ikramiyesi, fakat +10% eğitim zamanı."
-
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[4].History
-msgid ""
-"The beautiful and powerful breed of Nisean horses increases health for "
-"Persian cavalry."
-msgstr "Bu güzel ve güçlü Nisean atları Pers süvarisinin sağlığını arttırır."
-
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[4].Name
-#: simulation/data/civs/sele.jsonFactions[0].Technologies[1].Name
-msgid "Nisean War Horses"
-msgstr "Nisean Savaş Atları"
-
 #: simulation/data/civs/pers.jsonHistory
 msgid ""
 "The Persian Empire, when ruled by the Achaemenid dynasty, was one of the "
@@ -1769,53 +670,6 @@ msgstr "Achaemenid hanedanı tarafından yönetilen Pers İmparatorluğu, doğud
 #: simulation/data/civs/pers.jsonName
 msgid "Persians"
 msgstr "Persler"
-
-#: simulation/data/civs/pers.jsonStructures[0].History
-msgid "The Persian Empire's best soldiers were Eastern horsemen."
-msgstr "Pers İmparatorluğunun en iyi askerleri Doğulu atlılardı."
-
-#: simulation/data/civs/pers.jsonStructures[0].Name
-msgid "Stable"
-msgstr "Ahır"
-
-#: simulation/data/civs/pers.jsonStructures[0].Special
-msgid "Train Cavalry and research Cavalry technologies."
-msgstr "Süvarileri eğitin ve Süvari teknolojilerini geliştirin."
-
-#: simulation/data/civs/pers.jsonStructures[1].History
-msgid ""
-"The term Apadana designates a large hypostyle palace found in Persia. The "
-"best known example, and by far the largest, was the great Apadana at "
-"Persepolis. Functioning as the empire's central audience hall, the palace is"
-" famous for the reliefs of the tribute-bearers and of the army, including "
-"the Immortals."
-msgstr "padana terimi, Pers'te bulunan büyük bir hipostil sarayı belirtir. Bilinen en iyi örnek ve en büyüğü, Persepolis'teki büyük Apadana idi. İmparatorluğun merkezi izleyici salonu olarak işlev gören saray, Ölümsüzler de dahil olmak üzere haraç taşıyıcılarının ve ordunun kabartmaları ile ünlüdür."
-
-#: simulation/data/civs/pers.jsonStructures[1].Name
-msgid "Apadana"
-msgstr "apadana"
-
-#: simulation/data/civs/pers.jsonStructures[1].Special
-msgid ""
-"Train heroes and Persian Immortals. Gives a slow trickle of all resources as"
-" 'Satrapy Tribute.'"
-msgstr "Kahramanları ve Pers Ölümsüzleri eğit. Tüm kaynakları yavaş yavaş  'Satrapy Ganimeti' olarak verecek."
-
-#: simulation/data/civs/pers.jsonTeamBonuses[0].Description
-msgid "Allied Land Traders +15% trade gain."
-msgstr "Müttefik Kara Tüccarları +%15 ticaret kazancı."
-
-#: simulation/data/civs/pers.jsonTeamBonuses[0].History
-msgid ""
-"Coinage was invented by the Lydians in 7th Century B.C., but it was not very"
-" common until the Persian period. Darius the Great standardized coined money"
-" and his golden coins (known as 'darics') became commonplace not only "
-"throughout his empire, but as far to the west as Central Europe."
-msgstr "Sikkeler, M.Ö. 7. Yüzyılda Lydyalılar tarafından icat edilmiştir, ancak Fars dönemine kadar yaygın değildir. Darius Büyük Standardize edilmiş para para ve onun altın paraları ( 'darikler' olarak bilinir) sadece imparatorluğunun genelinde değil, Orta Avrupa kadar batıda yaygınlaştı."
-
-#: simulation/data/civs/pers.jsonTeamBonuses[0].Name
-msgid "Royal Road"
-msgstr "Kraliyet Yolu"
 
 #: simulation/data/civs/ptol.jsonAINames[0]
 msgid "Ptolemy Soter"
@@ -1893,26 +747,6 @@ msgstr "Potelmy İskender"
 msgid "Ptolemy Neos Dionysos"
 msgstr "Ptolemy Neos Dionysos"
 
-#: simulation/data/civs/ptol.jsonFactions[0].Description
-msgid "The great Greek-Macedonian dynastic rule over Ancient Egypt."
-msgstr "Bu Eski Mısır üzerindeki büyük Yunan-Makedon hanedanlığıdır."
-
-#: simulation/data/civs/ptol.jsonFactions[0].Heroes[0].Name
-msgid "Ptolemaios A' Soter"
-msgstr "I. Ptolemaios Soter"
-
-#: simulation/data/civs/ptol.jsonFactions[0].Heroes[1].Name
-msgid "Ptolemaios D' Philopater"
-msgstr "IV. Ptolemaios Soter"
-
-#: simulation/data/civs/ptol.jsonFactions[0].Heroes[2].Name
-msgid "Kleopatra H' Philopater"
-msgstr "Kleopatra H' Philopater"
-
-#: simulation/data/civs/ptol.jsonFactions[0].Name
-msgid "Ptolemaic Egyptians"
-msgstr "Ptolemaioslu Mısırlılar"
-
 #: simulation/data/civs/ptol.jsonHistory
 msgid ""
 "The Ptolemaic dynasty was a Macedonian Greek royal family which ruled the "
@@ -1924,69 +758,6 @@ msgstr "Ptolema hanedanı, Haçlılık döneminde Ptolema İmparatorluğunu Mıs
 #: simulation/data/civs/ptol.jsonName
 msgid "Ptolemies"
 msgstr "Ptolemaioslar"
-
-#: simulation/data/civs/ptol.jsonStructures[0].Special
-#: simulation/data/civs/sele.jsonStructures[0].Special
-msgid ""
-"Maximum of 1 built. All Special Technologies and some regular city-phase "
-"technologies are researched here. Building one reduces the cost of all other"
-" remaining technologies by 10%."
-msgstr "En fazla 1 yapı. Tüm Özel Teknolojiler ve bazı düzenli şehir aşaması teknolojileri burada araştırılmıştır. Bir yapı diğer tüm kalan teknolojilerin maliyetini  %10  azaltır."
-
-#: simulation/data/civs/ptol.jsonStructures[1].History
-msgid ""
-"The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and "
-"foreign mercenaries for the bulk of its military force, mainly because the "
-"loyalty of native Egyptian units was often suspect. Indeed, during one "
-"native uprising, Upper Egypt was lost to the Ptolemies for decades. "
-"Mercenaries were often battle-hardened and their loyalty could be bought, "
-"sometimes cheaply, sometimes not cheaply. This was of no matter, since Egypt"
-" under the Ptolemies was so prosperous as to be the richest of Alexander's "
-"successor states."
-msgstr "Greko-Makedon Ptolemi Hanedanlığı, askeri gücünü büyük miktarda Yunan ve yabancı paralı asker kullanıyordu, zira başta yerli Mısır birliklerine olan bağlılık sıklıkla şüpheli idi. Nitekim, bir yerli ayaklanma sırasında Üst Mısır, on yıllardır Ptolemeioslar tarafından kaybedildi. Paralı askerler sık sık savaşa zorlandılar ve sadakati bazen ucuza, bazen de ucuza satılmamalıydı. Bu, sorun değildi, çünkü Ptolemeios altındaki Mısır, İskender'in halefi devletlerinin en zengin olması için çok müreffehti."
-
-#: simulation/data/civs/ptol.jsonStructures[1].Name
-msgid "Stratópedo Misthophóron"
-msgstr "Stratópedo Misthophóron"
-
-#: simulation/data/civs/ptol.jsonStructures[1].Special
-msgid ""
-"Must be constructed in neutral territory. Has no territory radius effect. "
-"Trains mercenaries."
-msgstr "Tarafsız bölgede inşa edilmelidir. Bölge yarıçapı etkisi yoktur. Paralı askerleri eğitiyor."
-
-#: simulation/data/civs/ptol.jsonStructures[2].History
-msgid ""
-"The Ptolemaic dynasty in Egypt built the magnificent Lighthouse of "
-"Alexandria near the harbor mouth of that Nile Delta city. This structure "
-"could be seen for many kilometers out to sea and was one of the Seven "
-"Wonders of the World."
-msgstr "Mısır'daki Ptolemaik hanedanı İskenderiye'nin muhteşem Fenerini bu Nil Deltası şehrinin liman ağzının yakınında inşa etti. Bu yapı, denize çok uzakta görülebilir ve Dünyanın Yedi Harikasından biri olmuştur."
-
-#: simulation/data/civs/ptol.jsonStructures[2].Name
-msgid "Lighthouse"
-msgstr "Deniz Feneri"
-
-#: simulation/data/civs/ptol.jsonStructures[2].Special
-msgid ""
-"When built along the shoreline, removes shroud of darkness over all the "
-"water, revealing all the coast lines on the map. Limit: 1."
-msgstr "Kıyı boyunca inşa ettiğinizde, tüm sulardaki karanlık örtü kalkar, haritada kıyı hatları daha açık ve anlamlı olur. Limit: 1."
-
-#: simulation/data/civs/ptol.jsonTeamBonuses[0].Description
-msgid "Allies +1.0 food trickle rate."
-msgstr "Müttefiklere saniyede +1.0 besin geliri."
-
-#: simulation/data/civs/ptol.jsonTeamBonuses[0].History
-msgid ""
-"Egypt was a net exporter of grain, so much so that large cities such as "
-"Athens, Antioch, and Rome came to rely upon Egyptian grain in order to feed "
-"their masses."
-msgstr "Mısır, net bir tahıl ihracatçısıydı, o kadar ki Atina, Antakya ve Roma gibi büyük şehirlerin kitlelerini beslemek için Mısır tohumuna güvenmeye başladı."
-
-#: simulation/data/civs/ptol.jsonTeamBonuses[0].Name
-msgid "Breadbasket of the Mediterranean"
-msgstr "Akdeniz'in Tahıl ambarı"
 
 #: simulation/data/civs/rome.jsonAINames[0]
 msgid "Lucius Junius Brutus"
@@ -2078,62 +849,6 @@ msgstr "Roma vatandaşlığı antik dünyada çok değerlidir. Temel haklar ve a
 msgid "Citizenship"
 msgstr "Yurttaşlık"
 
-#: simulation/data/civs/rome.jsonFactions[0].Heroes[0].History
-msgid ""
-"Dictator for six months during the Second Punic War. Instead of attacking "
-"the most powerful Hannibal, he started a very effective war of attrition "
-"against him."
-msgstr "İkinci Punik Savaşı'nda altı ay boyunca diktatördü. En güçlü olan Hannibal'a saldırmak yerine ona karşı çok verimli bir yıpratma savaşı başlatmıştı."
-
-#: simulation/data/civs/rome.jsonFactions[0].Heroes[0].Name
-msgid "Quintus Fabius Maximus"
-msgstr "Quintus Fabius Maximus"
-
-#: simulation/data/civs/rome.jsonFactions[0].Heroes[1].History
-msgid ""
-"A soldier of the first war with Carthage, a hero of the Second Punic War, "
-"and victor over the Gauls at Clastidium. Plutarch describes him as a man of "
-"war, strong in body and constitution, with an iron will to fight on. As a "
-"general he was immensely capable, standing alongside Scipio Africanus and "
-"Claudius Nero as the most effective Roman generals of the entire Second "
-"Punic War. In addition to his military achievements Marcellus was a fan of "
-"Greek culture and arts, which he enthusiastically promoted in Rome. He met "
-"his demise when his men were ambushed near Venusia. In honor of the respect "
-"the people held for him, Marcellus was granted the title of 'Sword of Rome.'"
-msgstr "İkinci Peşin Savaşı'nın kahramanı Carthage'la olan ilk savaşın bir askeri ve Clastidium'un Gaulleri üzerindeki galibi. Plutarch onu, savaş için güçlü bir iradeye sahip, vücuda ve anayasa güçlü bir savaş adamı olarak tanımlıyor. Genel olarak, son derece yetenekli, Scipio Africanus ve Claudius Nero'nun yanında, İkinci Peşin Savaş'ın en etkili Roma generalleri olarak duruyordu. Askeri başarılarına ek olarak Marcellus, Roma'da heyecanla terfi ettirdiği Yunan kültürü ve sanatının hayranıydı. Adamları Venusia yakınlarında pusuya düştüklerinde ölümüne son verdi. Halkın kendisi için tuttuğu saygıya onur duyan Marcellus'a 'Kılıç Roma' unvanı verilmiştir."
-
-#: simulation/data/civs/rome.jsonFactions[0].Heroes[1].Name
-msgid "Marcus Claudius Marcellus"
-msgstr "Marcus Claudius Marcellus"
-
-#: simulation/data/civs/rome.jsonFactions[0].Heroes[2].History
-msgid ""
-"He was the first really successful Roman general against the Carthaginians. "
-"His campaigns in Spain and Africa helped to bring Carthage to its knees "
-"during the Second Punic War. He defeated Hannibal at the Battle of Zama in "
-"202 B.C."
-msgstr "Kartacalılara karşı gerçekten başaralı olan ilk Romalı generaldir. İspanya ve Afrika'ya yaptığı seferler II. Pön Savaşı'nda Kartaca'nın diz çöktürülmesine yardımcı olmuştur. Hannibal'ı M.Ö. 202'deki Zama Savaşı'nda yenmiştir. "
-
-#: simulation/data/civs/rome.jsonFactions[0].Heroes[2].Name
-msgid "Scipio Africanus"
-msgstr "Afrikalı Scipio"
-
-#: simulation/data/civs/rome.jsonFactions[0].Technologies[0].Description
-msgid "Roman heroes can convert enemy units with great cost."
-msgstr "Romalı kahramanlar yüksek ücretle düşman birimlerine dönüşebilir"
-
-#: simulation/data/civs/rome.jsonFactions[0].Technologies[0].History
-msgid ""
-"'Divide and conquer' was the main principle in Rome's foreign politics "
-"throughout its long history. The Romans lured enemies or neutral factions to"
-" their side by offering them certain privileges. In due period of time, "
-"friends as well as foes were subjugated."
-msgstr "\"Bölüm ve fetih\" uzun zaman boyunca Roma'nın dışişler politikasıydı. Romalılar düşmanları ve dost olmayan nifakları kendi yanlarına çekmek için onlara çeşitli ayrıcalıklar verdi. Bunun sayesinde zaman için hem dostları hemde düşmanları boyundurluk altına almıştır."
-
-#: simulation/data/civs/rome.jsonFactions[0].Technologies[0].Name
-msgid "Divide et Impera"
-msgstr "Böl ve Yönet"
-
 #: simulation/data/civs/rome.jsonHistory
 msgid ""
 "The Romans controlled one of the largest empires of the ancient world, "
@@ -2148,59 +863,6 @@ msgstr "Romalılar antik dünyanın en büyük imparatorluklarından birini kont
 #: simulation/data/civs/rome.jsonName
 msgid "Romans"
 msgstr "Romalılar"
-
-#: simulation/data/civs/rome.jsonStructures[0].History
-msgid ""
-"Sometimes it was a temporary camp built facing the route by which the army "
-"is to march, other times a defensive or offensive (for sieges) structure. "
-"Within the Praetorian gate, which should either front the east or the enemy,"
-" the tents of the first centuries or cohorts are pitched, and the dracos "
-"(ensigns of cohorts) and other ensigns planted. The Decumane gate is "
-"directly opposite to the Praetorian in the rear of the camp, and through "
-"this the soldiers are conducted to the place appointed for punishment or "
-"execution. It has a turf wall, and it's surrounded by a canal filled with "
-"water whenever possible for extra defense. Many towns started up as bigger "
-"military camps to evolve to more complicated cities."
-msgstr "Bazen, ordu yürüyüşüne giden yola bakan, diğer zamanlarda savunma amaçlı veya saldırgan (sieges için) bir kuşatma yapısı olan geçici bir kampdı. Doğunun ya da düşmanın önünde duran Praetorian kapısında, ilk yüzyılların ya da kohortların çadırları döşenmiştir ve drazonlar (kohortların hükümdarlığı) ve diğer boynuzlar dikilmiştir. Decumane kapısı, kampın arka tarafındaki Praetorian'ın tam karşısındadır ve bu suretle askerler ceza veya infaz için atanan yere taşınır. Bir çim duvarı vardır ve ek savunma için mümkün olduğunca su dolu bir kanalla çevrilidir. Birçok kasaba, daha karmaşık kentlere doğru ilerlemek için daha büyük askeri kamplar olarak başladı."
-
-#: simulation/data/civs/rome.jsonStructures[0].Name
-msgid "Entrenched Camp"
-msgstr "Yerleşik Kamp"
-
-#: simulation/data/civs/rome.jsonStructures[0].Special
-msgid "Trains citizen-soldiers from neutral or enemy territory."
-msgstr "Düşman topraklarından asker-yurttaşlar yetiştirin."
-
-#: simulation/data/civs/rome.jsonStructures[1].History
-msgid "Turf walls built by legionaries during sieges."
-msgstr "Turba duvarlar kuşatmalar sırasında lejyonerler tarafından inşa edilir."
-
-#: simulation/data/civs/rome.jsonStructures[1].Name
-msgid "Murus Latericius"
-msgstr "Tuğla Duvar"
-
-#: simulation/data/civs/rome.jsonStructures[1].Special
-msgid "Can be built in neutral and enemy territory to strangle enemy towns."
-msgstr "Düşman şehirlerin gelişimini engellemek maksadıyla  tarafsız  ve düşman topraklarında inşa edilebilir."
-
-#: simulation/data/civs/rome.jsonTeamBonuses[0].Description
-msgid "Allied Citizen Infantry −10% training time."
-msgstr "Müttefik Piyade Vatandaş -%10 eğitim zamanına mâl olur."
-
-#: simulation/data/civs/rome.jsonTeamBonuses[0].History
-msgid ""
-"Many Roman soldiers were conscripted into service. While volunteers were "
-"preferred, the Roman state did maintain an annual military draft. During an "
-"emergency the draft and the terms of service were enlarged. The importance "
-"of military service in Republican Rome was so great it was a prerequisite "
-"for a political career. Members of the Senate were called Conscript Fathers "
-"because of this, reflected in how the ordo equester was said to have been "
-"\"conscripted\" into the Senate."
-msgstr "Çoğu Romalı asker görevden alındı. Gönüllüler tercih edilirken, Roma devleti yıllık bir askeri taslak hazırladı. Acil durumlarda taslak ve hizmet şartları genişletildi. Cumhuriyet Roma'sında askerlik hizmetinin önemi o kadar büyüktü ki, siyasi bir kariyer için bir ön şarttı. Senato üyelerine Conscript Babalar denirdi, bunun sebebi, ordo talebinin Senatoda \"askere alındığı\" şeklinde yansıyan bir ifadeydi."
-
-#: simulation/data/civs/rome.jsonTeamBonuses[0].Name
-msgid "Conscription"
-msgstr "Zorunlu Hizmet"
 
 #: simulation/data/civs/sele.jsonAINames[0]
 msgid "Seleucus I Nicator"
@@ -2319,134 +981,14 @@ msgstr "Antiochus V. Eupator"
 msgid "Demetrius I Soter"
 msgstr "Demetrius I. Soter"
 
-#: simulation/data/civs/sele.jsonFactions[0].Description
-msgid ""
-"The Macedonian-Greek dynasty that ruled the Eastern part of Alexander's "
-"former empire."
-msgstr "Bu Makedon-Yunan hanedanlığı İskender'in yönettiği en eski imparatorluğunun doğu parçasıdır."
-
-#: simulation/data/civs/sele.jsonFactions[0].Heroes[0].History
-msgid ""
-"Always lying in wait for the neighboring nations, strong in arms and "
-"persuasive in council, he (Seleucus) acquired Mesopotamia, Armenia, "
-"'Seleucid' Cappadocia, Persis, Parthia, Bactria, Arabia, Tapouria, Sogdia, "
-"Arachosia, Hyrcania, and other adjacent peoples that had been subdued by "
-"Alexander, as far as the river Indus, so that the boundaries of his empire "
-"were the most extensive in Asia after that of Alexander. The whole region "
-"from Phrygia to the Indus was subject to Seleucus. — Appian, 'The Syrian "
-"Wars'."
-msgstr "Mezopotamya, Ermenistan, Seleukid Kapadokya, Persis, Parthia, Baktriya, Arabistan, Tapuria, Sogdia, Arachosia, Hyrcania ve diğer komşu ülkeleri (Selevkasya) satın alarak komşu ülkelere, güçlü silahlara ve konseye inanan komşu ülkelere her zaman beklemektedir. İskender'in bastırdığı halklar, yani Endus Nehri kadar imparatorluğun sınırları, Asya'dan sonra İskender'in en geniş bölgelerindendir. Phrygia'dan İndus'a kadar tüm bölge Seleucus'a tabidir. — Appian, 'Suriye Savaşları'."
-
-#: simulation/data/civs/sele.jsonFactions[0].Heroes[0].Name
-msgid "Seleukos A' Nikator"
-msgstr "Selevkos I. Nikator"
-
-#: simulation/data/civs/sele.jsonFactions[0].Heroes[1].History
-msgid ""
-"Antiochus inherited a troubled kingdom upon the beginning of his reign. From"
-" the verge of collapse he managed to weld back together the empire Seleucus "
-"I fought so hard to found. The rebellious eastern satraps of Bactria and "
-"Parthia were brought to heel, temporarily securing his eastern borders. He "
-"then turned his attention to mother Greece, attempting to fulfill the dreams"
-" of his fathers by invading Greece under the pretext of liberation. The "
-"Achaean League and the Kingdom of Pergamon banded together with the Romans "
-"to defeat him at the Battle of Magnesia, forever burying the dream of "
-"reuniting Alexander's empire."
-msgstr "Antiochus saltanatının başlangıcında sıkıntılı bir krallığı devraldı. Çöküşün eşiğinden, yeniden kurmak için savaştığım imparator Seleucus'u bir araya getirmeyi başardı. İsyankar doğu Bactria ve Parthia satrapları, geçici olarak doğu sınırlarını güvence altına alarak topuklara getirildi. Daha sonra dikkatini, Yunanistan'a kurtuluş bahanesi altında istila ederek babalarının hayallerini gerçekleştirmeye çalışan anne Yunanistan'a yöneltti. Achaean League ve Pergamon Krallığı, onu İskender'in imparatorluğunu yeniden birleştirme hayalini sonsuza dek gömen Magnesia Muharebesi'nde onu yenmek için Romalılarla bir araya geldi.\n"
-
-#: simulation/data/civs/sele.jsonFactions[0].Heroes[1].Name
-msgid "Antiokhos G' Megas"
-msgstr "Antiokhos G' Megas"
-
-#: simulation/data/civs/sele.jsonFactions[0].Heroes[2].History
-msgid ""
-"Antiochus IV Epiphanes was a son of Antiochus III the Great and brother of "
-"Seleucus IV Philopator. Originally named Mithridates, he assumed the name "
-"Antiochus either upon his accession to the throne or after the death of his "
-"elder brother Antiochus. Notable events during his reign include the near-"
-"conquest of Egypt (twice), which was halted by the threat of Roman "
-"intervention, and the beginning of the Jewish revolt of the Maccabees. He "
-"died of sudden illness while fighting off a Parthian invasion from the East."
-msgstr "Antiochus IV Epiphanes, Antiochus III Büyük Oğlu ve Seleucus IV Philopator'ın erkek kardeşidir. Başlangıçta Mithridates olarak adlandırılmış, tahta geçişi veya ağabeyi Antiochus'un ölümünden sonra Antiochus adını almıştır. Hükümdarlığı sırasında göze çarpan olaylar arasında Mısır'ın fethi (iki kez), Roma müdahalesinin tehdidi ve Maccabees'in Yahudi ayaklanmasının başlamasıyla durduruldu. Doğu'dan bir Parthian istilasına karşı savaşırken ani bir hastalıktan öldü."
-
-#: simulation/data/civs/sele.jsonFactions[0].Heroes[2].Name
-msgid "Antiokhos D' Epiphanes"
-msgstr "Antiochus IV. Epiphanes"
-
-#: simulation/data/civs/sele.jsonFactions[0].Technologies[1].History
-msgid ""
-"The beautiful and powerful breed of Nisean horses increases health for "
-"Seleucid cavalry."
-msgstr "Bu güzel ve güçlü Nisean atları Selevkos süvarisinin sağlığını arttırır."
-
-#: simulation/data/civs/sele.jsonFactions[0].Technologies[2].Description
-msgid ""
-"Unlock either Champion Infantry Pikemen or Champion Infantry Swordsmen."
-msgstr "Şampiyon Piyade Kargıcı ya da Şampiyon Piyade Kılıçlı aç."
-
-#: simulation/data/civs/sele.jsonFactions[0].Technologies[2].History
-msgid ""
-"Seleucid and indeed Successor warfare evolved over the course of the 3rd and"
-" 2nd centuries. Contact with Eastern upstarts such as the Parthians and "
-"constant revolts of peripheral satrapies such as Bactria caused the "
-"Seleucids to reform their military and change their tactics, specifically in"
-" the cavalry arm. War with the Romans from the West and invasions from the "
-"Galatians also forced the Seleucids to reform their infantry regiments to be"
-" more flexible."
-msgstr "3. ve 2. yüzyıl boyunca Seleukid ve Gerçekten Başarıyla savaş gelişti. Parthians ve Bactria gibi periferik satrapies sürekli isyanlar gibi Doğu upstarts ile İletişim, Seleukids kendi askeri reform ve taktiklerini değiştirmeye, özellikle süvari kolu neden oldu. Batı'dan Romalılarla savaş ve Galatyalı istilalar da Seleukids'i piyade alaylarını daha esnek olmak için değiştirmeye zorladı."
-
-#: simulation/data/civs/sele.jsonFactions[0].Technologies[2].Name
-msgid "Traditional Army vs Reform Army"
-msgstr "Geleneksel Ordu vs Reform Ordusu"
-
 #: simulation/data/civs/sele.jsonHistory
 msgid ""
 "The Macedonian-Greek dynasty that ruled most of Alexander's former empire."
 msgstr "Bu Makedon-Yunan hanedanlığı İskender'in yönettiği en eski imparatorluktur."
 
-#: simulation/data/civs/sele.jsonFactions[0].Name
 #: simulation/data/civs/sele.jsonName
 msgid "Seleucids"
 msgstr "Selevkoslar"
-
-#: simulation/data/civs/sele.jsonStructures[1].History
-msgid ""
-"The Seleucid kings invited Greeks, Macedonians, Galatians (Gauls), Cretans, "
-"and Thracians alike to settle in within the vast territories of the empire. "
-"They settled in military colonies called cleruchies (klēroukhia). Under this"
-" arrangement, the settlers were given a plot of land, or a kleros, and in "
-"return were required to serve in the great king's army when called to duty. "
-"This created a upper-middle class of military settlers who owed their "
-"livelihoods and fortunes to the Syrian kings and helped grow the available "
-"manpower for the imperial Seleucid army. A side effect of this system was "
-"that it drained the Greek homeland of military-aged men, a contributing "
-"factor to Greece's eventual conquest by Rome."
-msgstr "Seleukos kralları, imparatorluğun engin topraklarında yerleşmek için Yunanlılar, Makedonlar, Galatlar (Galyalılar), Giritliler ve Trakyalıları davet etti. Asker kolonilerine cleruchies (klēroukhia) adı verdiler. Bu düzenleme uyarınca, yerleşimcilere arazi veya kleros arsa verildi ve buna karşılık, göreve çağırıldığında büyük kralın ordusunda hizmet etmek istendi. Bu, geçim ve servetlerini Suriye krallarına borçlu olan ve emperyal Seleukos ordusu için mevcut insan gücünü artırmaya yardımcı olan bir üst orta sınıf askeri yerleşimciyi yarattı. Bu sistemin bir yan etkisi Yunanistan'ın Roma tarafından fethine katkıda bulunan bir unsur olan Yunan vatanını askere alınmış olmasıydı."
-
-#: simulation/data/civs/sele.jsonStructures[1].Name
-msgid "Military Colony"
-msgstr "Askeri Koloni"
-
-#: simulation/data/civs/sele.jsonStructures[1].Special
-msgid ""
-"This is the Seleucid expansion building, similar to Civic Centers for other "
-"factions. It is weaker and carries a smaller territory influence, but is "
-"cheaper and built faster."
-msgstr "Bu bir Seleukos genişleme binasıdır, Diğer gruplar için Kent Merkezlerine benzer. Bu daha zayıftır ve daha küçük bir bölge etkisi taşır,ancak daha hızlı ve daha ucuza  inşa edilebilir."
-
-#: simulation/data/civs/sele.jsonTeamBonuses[0].Description
-msgid "Allied Civil Centers −20% resource costs."
-msgstr "Müttefik Kent Merkezleri -%20 kaynak maliyeti."
-
-#: simulation/data/civs/sele.jsonTeamBonuses[0].History
-msgid ""
-"The political core of the Seleucid Empire consisted of four 'sister' cities:"
-" Antioch (the capital), Seleucia Pieria, Apamea, and Laodicea."
-msgstr "Selevkos İmparatorluğu'nun politik çekirdeği dört kardeş şehirden oluşmaktadır; Antakya(Başkent), Seleukia, Apameia ve Laodikeia."
-
-#: simulation/data/civs/sele.jsonTeamBonuses[0].Name
-msgid "Syrian Tetrapolis"
-msgstr "Suriye Tetrapolisi"
 
 #: simulation/data/civs/spart.jsonAINames[0]
 msgid "Leonidas"
@@ -2463,6 +1005,10 @@ msgstr "Agesipolis"
 #: simulation/data/civs/spart.jsonAINames[1]
 msgid "Dienekes"
 msgstr "Dienekes"
+
+#: simulation/data/civs/spart.jsonAINames[2]
+msgid "Brasidas"
+msgstr "Brasidas"
 
 #: simulation/data/civs/spart.jsonAINames[3]
 msgid "Agis"
@@ -2488,99 +1034,6 @@ msgstr "Ekhestratus"
 msgid "Eurycrates"
 msgstr "Eurykrates"
 
-#: simulation/data/civs/spart.jsonFactions[0].Heroes[0].History
-msgid ""
-"The king of Sparta, who fought and died at the battle of Thermopylae in 480 "
-"B.C. He successfully blocked the way of the huge Persian army through the "
-"narrow passage with his 7000 men, until Xerxes was made aware of a secret "
-"unobstructed path. Finding the enemy at his rear, Leonidas sent home most of"
-" his troops, choosing to stay behind with 300 hand-picked hoplites and win "
-"time for the others to withdraw."
-msgstr "480'de B. Thermophylae savaşında savaşan ve öldü Sparta Kralı Xerxes gizli bir engellenmemiş yoldan haberdar edilene kadar, 7000 erkeği ile dar geçitten büyük İran ordusunun yolunu başarılı bir şekilde engelledi. Arkasındaki düşmanı bulmak için olan Leonidas, birliklerinin çoğunu eve göndererek, 300 elle seçilen hoplit ile geride kalmayı ve diğerleri için çekilme zamanını seçti."
-
-#: simulation/data/civs/spart.jsonFactions[0].Heroes[0].Name
-msgid "Leonidas I"
-msgstr "I. Leonidas"
-
-#: simulation/data/civs/spart.jsonFactions[0].Heroes[1].History
-msgid ""
-"Because Brasidas has sponsored their citizenship in return for service, "
-"Helot Skirmishers fight longer and harder for Sparta while within range of "
-"him."
-msgstr "Brasidas hizmetlerinin karşılığında vatandaşlık sözü verdiğinden, Helot Öncü birlikleri onun menzili içerisinde Sparta için daha uzun ve istekle savaşırlar."
-
-#: simulation/data/civs/spart.jsonAINames[2]
-#: simulation/data/civs/spart.jsonFactions[0].Heroes[1].Name
-msgid "Brasidas"
-msgstr "Brasidas"
-
-#: simulation/data/civs/spart.jsonFactions[0].Heroes[2].History
-msgid ""
-"Agis III was the 20th Spartan king of the Eurypontid lineage. Agis cobbled "
-"together an alliance of Southern Greek states to fight off Macedonian "
-"hegemony while Alexander the Great was away in Asia on his conquest march. "
-"After securing Crete as a Spartan tributary, Agis then moved to besiege the "
-"city of Megalopolis in the Peloponnese, who was an ally of Macedon. "
-"Antipater, the Macedonian regent, lead an army to stop this new uprising. In"
-" the Battle of Megalopolis, the Macedonians prevailed in a long and bloody "
-"battle. Much like Leonidas 150 years earlier, instead of surrendering, Agis "
-"made a heroic final stand in order to buy time for his troops to retreat."
-msgstr "Agis III, Eurypontid soyunun 20. Spartalı kralıydı. Agis, Büyük İskender'in fethi sırasında Asya'da yokken Makedon hegemonyasından çekilmek için Güney Yunan devletlerinin bir ittifakını hazırladı. Girit'i bir Spartalı kolu olarak güvence altına aldıktan sonra Agis daha sonra Makedonya'nın bir müttefiki olan Kafkasya'daki Megalopolis kentini kuşatmaya başladı. Makedon rahip olan Antipater, bu yeni ayaklanmayı durdurmak için bir ordu kuruyor. Megalopolis Savaşı'nda Makedonlar uzun ve kanlı bir savaşa girdiler. 150 yıl önce teslim olmak yerine, Leonidas'a benzeyen Agis, birliklerinin geri çekilmesi için zaman ayırmak için kahramanca bir nihai stand yaptı."
-
-#: simulation/data/civs/spart.jsonFactions[0].Heroes[2].Name
-msgid "Agis III"
-msgstr "III. Agis"
-
-#: simulation/data/civs/spart.jsonFactions[0].Technologies[0].Description
-msgid ""
-"Spartan female citizens cannot be captured and will doggedly fight back "
-"against any attackers."
-msgstr "Spartalı kadın vatandaşlar yakalanamaz ve saldırganlara karşı şiddetle savaşacaklardır."
-
-#: simulation/data/civs/spart.jsonFactions[0].Technologies[0].History
-msgid ""
-"Spartan women were some of the freest in the ancient world. They could own "
-"land and slaves and even exercise naked like Spartan men. It is said that "
-"only Spartan women gave birth to real men. Such tough-as-nails women more "
-"than once helped save their city from disaster, for example when after a "
-"lost battle against Pyrrhus of Epirus they overnight built an earthen "
-"rampart to protect the city while their men slept in preparation for the "
-"next day's siege."
-msgstr "Spartalı kadınlar antik dünyada en serbestlerdi. Toprağa ve kölelere sahip olabilirler, hatta Spartalı erkekler gibi çıplak egzersiz yapabilirler. Sadece Spartalı kadınların gerçek erkek doğurduğu söyleniyor. Örneğin tırnak tırnakları gibi çetin kadınlar, şehirlerini felaketten kurtarmak için yardım ettiler; örneğin Epir Pyrrhus'a karşı kaybedilen bir savaşın ardından, ertesi gün kuşatılmaya hazır olan insanlar adamlarını uyurken, gece boyunca şehri korumak için toprak bir sur inşa ettiler."
-
-#: simulation/data/civs/spart.jsonFactions[0].Technologies[0].Name
-msgid "Feminine Mystique"
-msgstr "Dişi Mistik"
-
-#: simulation/data/civs/spart.jsonFactions[0].Technologies[1].Description
-msgid "Units in phalanx formation move faster."
-msgstr "Falanks tertibindeki birimler daha hızlı hareket eder."
-
-#: simulation/data/civs/spart.jsonFactions[0].Technologies[1].History
-msgid ""
-"Paeans were battle hymns that were sung by the hoplites when they charged "
-"the enemy lines. One of the first known Paeans were composed by Tirteus, a "
-"warrior poet of Sparta, during the First Messenian War."
-msgstr "Paeanlar, düşman hattını doldururken, hoplitler tarafından söylenen savaş ilahileriydi. Bilinen ilk Paeanlardan biri, İlk Messenian Savaşı sırasında Sparta'nın savaşçı bir şairi Tirteus tarafından bestelenmiştir."
-
-#: simulation/data/civs/spart.jsonFactions[0].Technologies[1].Name
-msgid "Tyrtean Paeans"
-msgstr "Tyrtean Paeans"
-
-#: simulation/data/civs/spart.jsonFactions[0].Technologies[2].Description
-msgid "Champion Infantry Spearmen +25% health, but +5% training time."
-msgstr "Şampiyon Mızrakçı Piyadeler +%25 sağlık ama +%5 eğitim süresi."
-
-#: simulation/data/civs/spart.jsonFactions[0].Technologies[2].History
-msgid ""
-"Spartans were housed and trained from a young age to be superlative warriors"
-" and to endure any hardship a military life can give them."
-msgstr "Spartalılar askeri hayatın doğurabileceği tüm zorluklara göğüs gerebilmeleri için küçük yaştan itibaren üstün savaşçılar olarak yetiştirilirlerdi."
-
-#: simulation/data/civs/spart.jsonFactions[0].Technologies[2].Name
-msgid "The Agoge"
-msgstr "The Agoge"
-
 #: simulation/data/civs/spart.jsonHistory
 msgid ""
 "Sparta was a prominent city-state in ancient Greece, and its dominant "
@@ -2591,37 +1044,6 @@ msgid ""
 "Peloponnesian Wars, though at great cost."
 msgstr "Sparta antik Yunanda belirgin bir şehirdi, ve tahmini M.Ö. 650 yılında adada egemen güçtü. Sparta kültüründe 7 yaşına gelmiş erkek çocuklarına askeri eğitimin verilmesi bir saplantı haline gelmişti. Bundan dolayı yapılan çeşitli Sparta-Pers savaşlarında çok maliyetlide olsada askeri başarılar kazandırmıştır."
 
-#: simulation/data/civs/spart.jsonFactions[0].Name
 #: simulation/data/civs/spart.jsonName
 msgid "Spartans"
 msgstr "Spartalılar"
-
-#: simulation/data/civs/spart.jsonStructures[1].History
-msgid ""
-"The Syssition was the Mess Hall for full-blooded Spartiates. Every Spartan "
-"peer, even kings, belonged to one."
-msgstr "Syssition Spartalıların kanlarıyla kurulmuştu. Her spartalının en az bir bağı krallarınında birine aittir."
-
-#: simulation/data/civs/spart.jsonStructures[1].Name
-msgid "Syssition"
-msgstr "Syssition"
-
-#: simulation/data/civs/spart.jsonStructures[1].Special
-msgid "Train heroes and Spartiates and research technologies related to them."
-msgstr "Kahramanlar ve Spartalılar yetiştir ve onlarla ilgili teknolojileri araştır."
-
-#: simulation/data/civs/spart.jsonTeamBonuses[0].Description
-msgid "Allied Citizen Infantry Spearmen +10% health."
-msgstr "Müttefik Mızrakçı Piyade +%10 sağlık."
-
-#: simulation/data/civs/spart.jsonTeamBonuses[0].History
-msgid ""
-"Much of the Peloponnese was subject to Sparta in one way or another. This "
-"loose confederation, with Sparta as its leader, was later dubbed the "
-"Peloponnesian League by historians, but in ancient times was called 'The "
-"Lacedaemonians and their allies.'"
-msgstr "Mora'nın çoğunluğu bir şekilde Sparta'ya bağlıydı. Bu gevşek konfederasyon, lideri Sparta olmak üzere daha sonra tarihçiler tarafından Mora Birliği olarak isimlendirildi, ama ilk çağlarda 'Lakedemonyalılar ve müttefikleri' olarak biliniyordu."
-
-#: simulation/data/civs/spart.jsonTeamBonuses[0].Name
-msgid "Peloponnesian League"
-msgstr "Peloponez Birliği"

@@ -1,16 +1,16 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2020 Wildfire Games
+# Copyright (C) 2021 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
-# Bart <b.anthonisse@gmail.com>, 2020
+# Bart <b.anthonisse@gmail.com>, 2020-2021
 # Bart Groeneveld, 2017
 # bb <b.jansen5@students.uu.nl>, 2020
 # bb <b.jansen5@students.uu.nl>, 2018
 # Christof Verhoeven <christof.verhoeven@gmail.com>, 2016-2017
 # Ellen Roels, 2015
 # Floretta <florisjan.gerrits@gmail.com>, 2014
-# Freagarach . <freagarach@gmail.com>, 2019-2020
+# Freagarach . <freagarach@gmail.com>, 2019-2021
 # Jan Jasper de Kroon <jajadekroon@gmail.com>, 2019
 # Marijn Billiet <marijnbilliet@gmail.com>, 2018
 # 477f07d437f0da0e33ec4ecd7b8e2b62, 2017
@@ -26,9 +26,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-12-28 08:02+0000\n"
-"PO-Revision-Date: 2020-12-29 16:23+0000\n"
-"Last-Translator: Bart <b.anthonisse@gmail.com>\n"
+"POT-Creation-Date: 2021-01-01 08:01+0000\n"
+"PO-Revision-Date: 2021-01-04 08:13+0000\n"
+"Last-Translator: Freagarach . <freagarach@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -430,8 +430,8 @@ msgid "Wootz Steel"
 msgstr "Wootzstaal"
 
 #: simulation/data/technologies/attack_steel_working.jsontooltip
-msgid "+20% Hack attack for all swordsmen and macemen."
-msgstr "+20% slagschade voor alle zwaardvechters en knotsmannen."
+msgid "Swordsmen +20% attack damage."
+msgstr "Zwaardvechters +20% aanvalsschade."
 
 #: simulation/data/technologies/carthaginians/special_colonisation.jsondescription
 msgid ""
@@ -467,7 +467,7 @@ msgstr "Carthagers waren verkenners. Alle handelaars en koopmansschepen +25% zic
 #: simulation/data/technologies/carthaginians/training_phoenician_naval_architects.jsondescription
 msgid ""
 "Significantly increase build speed of batches of ships at the Shipyard."
-msgstr "Verhoog de bouwsnelheid van in serie geproduceerde schepen op de scheepswerf."
+msgstr "Verhoog de bouwsnelheid van in groepen geproduceerde schepen op de Scheepswerf."
 
 #: simulation/data/technologies/carthaginians/training_phoenician_naval_architects.jsongenericName
 msgid "Phoenician Naval Architects"
@@ -753,11 +753,11 @@ msgstr "Arbeiders verzamelen +25% sneller hout."
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsongenericName
 msgid "Sharp Ax Heads"
-msgstr "Scherpere bijlen"
+msgstr "Scherpere Bijlen"
 
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsongenericName
 msgid "Stronger Ax"
-msgstr "Sterkere bijl"
+msgstr "Sterkere Bijl"
 
 #: simulation/data/technologies/gather_mining_serfs.jsondescription
 msgid ""
@@ -1128,7 +1128,7 @@ msgstr "Cavaleriewerving"
 msgid ""
 "All cavalry -20% train time, but also -5% health. Unlocks Cavalry "
 "Conscription."
-msgstr "-20% trainingsduur voor alle ruiters, maar ook -5% gezondheid. Ontgrendelt dienstplicht voor ruiters."
+msgstr "-20% trainingsduur voor alle ruiters, maar ook -5% gezondheid. Activeert dienstplicht voor ruiters."
 
 #: simulation/data/technologies/persians/training_levy_infantry.jsondescription
 msgid ""
@@ -1144,7 +1144,7 @@ msgstr "Infanterie recruteringen"
 msgid ""
 "All infantry -20% train time, but also -5% health. Unlocks Infantry "
 "Conscription."
-msgstr "-20% trainingsduur voor alle infanterie, maar ook -5% gezondheid. Ontgrendelt dienstplicht voor infanterie."
+msgstr "-20% trainingsduur voor alle infanterie, maar ook -5% gezondheid. Activeert dienstplicht voor infanterie."
 
 #: simulation/data/technologies/phase_city.jsondescription
 msgid ""
@@ -1301,7 +1301,7 @@ msgstr "Insulae"
 
 #: simulation/data/technologies/pop_wonder.jsondescription
 msgid "The wonder attracts many more people to your civilization."
-msgstr "Het wonder lokt meer mensen naar je beschaving."
+msgstr "Het wonder trekt meer mensen naar je beschaving."
 
 #: simulation/data/technologies/pop_wonder.jsongenericName
 msgid "Glorious Expansion"
@@ -1479,7 +1479,7 @@ msgstr "Gereformeerd leger"
 
 #: simulation/data/technologies/successors/unlock_reform_army.jsontooltip
 msgid "Unlock the Champion Infantry Swordsman."
-msgstr "Ontsluit de kampioen infanterie zwaardvechters."
+msgstr "Activeer de kampioen infanterie zwaardvechters."
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsondescription
 msgid "The Macedonian-style core of the Seleucid army."
@@ -1491,7 +1491,7 @@ msgstr "Traditioneel leger"
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsontooltip
 msgid "Unlock the Champion Infantry Pikeman."
-msgstr "Ontsluit de kampioen infanterie piekeniers."
+msgstr "Activeer de kampioen infanterie piekeniers."
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsondescription
 msgid ""
@@ -1620,7 +1620,7 @@ msgstr "Handelaars +25% wandelsnelheid. Dit zorgt voor een sneller inkomen."
 #: simulation/data/technologies/trade_gain_01.jsondescription
 #: simulation/data/technologies/trade_gain_02.jsondescription
 msgid "The progress in handicraft improves the trading profit."
-msgstr "De vooruitgang in handvaardigheid verhoogt je handelswinst."
+msgstr "De vooruitgang in handvaardigheid verhoogt uw handelswinst."
 
 #: simulation/data/technologies/trade_gain_01.jsongenericName
 msgid "Handicraft"
@@ -1705,8 +1705,8 @@ msgid ""
 msgstr "Wachters (kampioenen) zijn professionele vechters met de beste wapens en de beste training."
 
 #: simulation/data/technologies/unlock_champion_units.jsongenericName
-msgid "Unlock Champion Units"
-msgstr "Activeer de kampioenen"
+msgid "Unlock Champion Infantry"
+msgstr "Activeer de infanterie kampioenen"
 
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.mace
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.ptol
@@ -1719,8 +1719,8 @@ msgid "Regio Cohors"
 msgstr "Regio Cohors"
 
 #: simulation/data/technologies/unlock_champion_units.jsontooltip
-msgid "Unlock the ability to train Champions at the Barracks."
-msgstr "Ontgrendel de mogelijkheid om Kampioenen te rekruteren in de Kazerne."
+msgid "Unlock Champions Infantry at the Barracks."
+msgstr "Activeer de infanterie kampioenen in de kazerne."
 
 #: simulation/data/technologies/unlock_females_house.jsondescription
 msgid "A festival attended by women-only, to celebrate female fertility."
@@ -1780,7 +1780,7 @@ msgstr "Cartografie"
 msgid ""
 "See what your allies see, browse their summary and check their resources and"
 " population count in the top panel."
-msgstr "Zie wat uw alliantie ziet, blader door hun samenvatting en check hun bronnen en bevolkingslimiet in het bovenpaneel."
+msgstr "Zie wat uw alliantie ziet, blader door hun samenvatting en bekijk hun grondstoffen en bevolkingslimiet in het bovenpaneel."
 
 #: simulation/data/technologies/unlock_spies.jsondescription
 msgid ""

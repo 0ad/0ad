@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2020 Wildfire Games
+# Copyright (C) 2021 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -24,8 +24,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-12-26 15:10+0000\n"
-"PO-Revision-Date: 2020-12-26 16:35+0000\n"
+"POT-Creation-Date: 2021-01-01 08:01+0000\n"
+"PO-Revision-Date: 2021-01-01 10:35+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
@@ -539,13 +539,13 @@ msgstr ""
 msgid "Shipyard"
 msgstr "Galangan Kapal"
 
-#: simulation/templates/structures/cart/temple.xml:14
+#: simulation/templates/structures/cart/temple.xml:9
 msgid "Maqdaš"
 msgstr "Maqdaš"
 
-#: simulation/templates/structures/cart/temple.xml:15
-msgid "Train Healers and Champions and research healing technologies."
-msgstr "Latih Penyembuh dan Jawara dan riset teknologi penyembuh."
+#: simulation/templates/structures/cart/temple.xml:10
+msgid "Train Healers and Champion Infantry and research healing technologies."
+msgstr ""
 
 #: simulation/templates/structures/cart/tophet.xml:18
 msgid "Sacrificial Temple"
@@ -554,10 +554,6 @@ msgstr "Candi Persembahan"
 #: simulation/templates/structures/cart/tophet.xml:19
 msgid "Tophet"
 msgstr "Tophet"
-
-#: simulation/templates/structures/cart/tophet.xml:20
-msgid "Train Healers and Champion Cavalry and research healing technologies."
-msgstr "Latih Penyembuh dan Jawara berkuda dan riset teknologi penyembuh."
 
 #: simulation/templates/structures/cart/wall_gate.xml:12
 msgid "Mijdil-šaʿar"
@@ -1162,10 +1158,6 @@ msgstr "Blok Apartemen"
 msgid "Padgan"
 msgstr "Padgan"
 
-#: simulation/templates/structures/pers/barracks.xml:6
-msgid "Train Infantry."
-msgstr "Latih Infanteri."
-
 #: simulation/templates/structures/pers/civil_centre.xml:8
 msgid "Provincial Governor"
 msgstr "Gubernur Propinsi"
@@ -1348,22 +1340,22 @@ msgstr ""
 msgid "TriumphalArch"
 msgstr ""
 
-#: simulation/templates/structures/rome/army_camp.xml:71
+#: simulation/templates/structures/rome/army_camp.xml:73
 msgid "Army Camp"
 msgstr "Kamp Prajurit"
 
-#: simulation/templates/structures/rome/army_camp.xml:72
+#: simulation/templates/structures/rome/army_camp.xml:74
 msgid "Castra"
 msgstr ""
 
-#: simulation/templates/structures/rome/army_camp.xml:73
+#: simulation/templates/structures/rome/army_camp.xml:75
 msgid ""
-"Build in neutral or enemy territory. Train Citizen-Soldiers and construct "
-"Siege Engines. Garrison Soldiers for additional arrows."
-msgstr "Bangun di wilayah netral atau musuh. Melatih Prajurit-Rakyat dan membangun Mesin Pengepungan. Tempatkan prajurit di dalamnya untuk panah lebih banyak."
+"Build in neutral or enemy territory. Train Melee Infantry. Garrison Soldiers"
+" for additional arrows."
+msgstr ""
 
 #: simulation/templates/structures/rome/army_camp.xml:40
-#: simulation/templates/structures/rome/army_camp.xml:75
+#: simulation/templates/structures/rome/army_camp.xml:77
 msgid "ArmyCamp"
 msgstr "KampPrajurit"
 
@@ -1679,21 +1671,17 @@ msgstr "Desa"
 #: simulation/templates/structures/hellenic_stoa.xml:23
 #: simulation/templates/structures/mace/royal_stoa.xml:5
 #: simulation/templates/structures/spart/royal_stoa.xml:12
+#: simulation/templates/template_structure_civic_stoa.xml:27
 #: simulation/templates/template_structure_civic_stoa.xml:30
-#: simulation/templates/template_structure_civic_stoa.xml:33
 msgid "Stoa"
 msgstr "Stoa"
-
-#: simulation/templates/template_structure_civic_stoa.xml:32
-msgid "Train Mercenary Champions."
-msgstr "Latih Prajurit Jawara."
 
 #: simulation/templates/structures/cart/super_dock.xml:43
 #: simulation/templates/structures/gaul/tavern.xml:23
 #: simulation/templates/structures/kush/pyramid_small.xml:29
 #: simulation/templates/structures/maur/elephant_stables.xml:7
 #: simulation/templates/structures/ptol/lighthouse.xml:28
-#: simulation/templates/template_structure_civic_stoa.xml:33
+#: simulation/templates/template_structure_civic_stoa.xml:30
 #: simulation/templates/template_structure_civic_temple.xml:32
 #: simulation/templates/template_structure_defensive_tower_stone.xml:34
 #: simulation/templates/template_structure_economic_market.xml:28
@@ -1729,15 +1717,16 @@ msgid ""
 msgstr ""
 
 #: simulation/templates/structures/wallset_palisade.xml:4
-#: simulation/templates/structures/wallset_palisade.xml:5
-#: simulation/templates/template_structure_defensive_palisade.xml:15
-#: simulation/templates/template_structure_defensive_palisade.xml:18
+#: simulation/templates/structures/wallset_palisade.xml:6
+#: simulation/templates/template_structure_defensive_palisade.xml:17
+#: simulation/templates/template_structure_defensive_palisade.xml:20
 msgid "Palisade"
 msgstr "Palisade"
 
-#: simulation/templates/template_structure_defensive_palisade.xml:17
-msgid "Wall off an area."
-msgstr "Membentengi suatu area."
+#: simulation/templates/structures/wallset_palisade.xml:5
+#: simulation/templates/template_structure_defensive_palisade.xml:19
+msgid "Wall off an area. Build in own or neutral territory."
+msgstr ""
 
 #: simulation/templates/template_structure_defensive_tower.xml:37
 #: simulation/templates/template_structure_defensive_tower.xml:53
@@ -1760,6 +1749,7 @@ msgstr "MenaraArtileri"
 
 #: simulation/templates/structures/kush/pyramid_large.xml:29
 #: simulation/templates/structures/kush/temple_amun.xml:30
+#: simulation/templates/structures/rome/army_camp.xml:77
 #: simulation/templates/structures/rome/temple_mars.xml:14
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:60
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:59
@@ -1799,7 +1789,7 @@ msgstr "Tempatkan Prajurit untuk panah tambahan. Membutuhkan teknologi \"Jurang 
 msgid "SentryTower"
 msgstr "MenaraJaga"
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:68
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:65
 msgid "Reinforce with stone and upgrade to a defense tower."
 msgstr "Perkuat dengan batu dan tingkatkan ke menara defensif."
 
@@ -1911,8 +1901,8 @@ msgid "Barracks"
 msgstr "Barak"
 
 #: simulation/templates/template_structure_military_barracks.xml:28
-msgid "Train Citizen Soldiers and research technologies."
-msgstr "Latih milisi dan riset teknologi."
+msgid "Train Infantry and research Infantry technologies."
+msgstr ""
 
 #: simulation/templates/template_structure_military_dock.xml:24
 #: simulation/templates/template_structure_military_dock.xml:27
@@ -1955,8 +1945,8 @@ msgid "Forge"
 msgstr "Pandai Besi"
 
 #: simulation/templates/template_structure_military_forge.xml:24
-msgid "Research attack and armor technologies."
-msgstr "Riset teknologi penyerangan dan perlindungan."
+msgid "Research attack and resistance technologies."
+msgstr ""
 
 #: simulation/templates/template_structure_military_fortress.xml:39
 #: simulation/templates/template_structure_military_fortress.xml:68
