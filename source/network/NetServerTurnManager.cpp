@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -127,7 +127,7 @@ void CNetServerTurnManager::NotifyFinishedClientUpdate(CNetServerSession& sessio
 			newest = clientSimulated.second;
 
 	// For every set of state hashes that all clients have simulated, check for OOS
-	for (const std::pair<u32, std::map<int, std::string>>& clientStateHash : m_ClientStateHashes)
+	for (const std::pair<const u32, std::map<int, std::string>>& clientStateHash : m_ClientStateHashes)
 	{
 		if (clientStateHash.first > newest)
 			break;

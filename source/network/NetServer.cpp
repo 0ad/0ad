@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -850,7 +850,7 @@ void CNetServerWorker::AssignPlayer(int playerID, const CStr& guid)
 
 void CNetServerWorker::ConstructPlayerAssignmentMessage(CPlayerAssignmentMessage& message)
 {
-	for (const std::pair<CStr, PlayerAssignment>& p : m_PlayerAssignments)
+	for (const std::pair<const CStr, PlayerAssignment>& p : m_PlayerAssignments)
 	{
 		if (!p.second.m_Enabled)
 			continue;
@@ -1022,7 +1022,7 @@ bool CNetServerWorker::OnAuthenticate(void* context, CFsmEvent* event)
 		int disconnectedPlayers = 0;
 		int connectedPlayers = 0;
 		// (TODO: if GUIDs were stable, we should use them instead)
-		for (const std::pair<CStr, PlayerAssignment>& p : server.m_PlayerAssignments)
+		for (const std::pair<const CStr, PlayerAssignment>& p : server.m_PlayerAssignments)
 		{
 			const PlayerAssignment& assignment = p.second;
 
