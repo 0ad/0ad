@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2020 Wildfire Games
+# Copyright (C) 2021 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-12-26 15:10+0000\n"
-"PO-Revision-Date: 2020-12-26 17:27+0000\n"
+"POT-Creation-Date: 2021-01-01 08:01+0000\n"
+"PO-Revision-Date: 2021-01-01 08:36+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -20,6 +20,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: gd\n"
 "Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : (n > 2 && n < 20) ? 2 : 3;\n"
+
+#: simulation/data/civs/athen.jsonAINames[0]
+msgid "Themistocles"
+msgstr "Themistocles"
 
 #: simulation/data/civs/athen.jsonAINames[10]
 msgid "Cleon"
@@ -33,9 +37,17 @@ msgstr "Cleophon"
 msgid "Thrasybulus"
 msgstr "Thrasybulus"
 
+#: simulation/data/civs/athen.jsonAINames[13]
+msgid "Iphicrates"
+msgstr "Iphicrates"
+
 #: simulation/data/civs/athen.jsonAINames[14]
 msgid "Demosthenes"
 msgstr "Demosthenes"
+
+#: simulation/data/civs/athen.jsonAINames[1]
+msgid "Pericles"
+msgstr "Pericles"
 
 #: simulation/data/civs/athen.jsonAINames[2]
 msgid "Cimon"
@@ -70,114 +82,18 @@ msgid "Miltiades"
 msgstr "Miltiades"
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].Description
-#: simulation/data/civs/mace.jsonCivBonuses[0].Description
-#: simulation/data/civs/spart.jsonCivBonuses[0].Description
-msgid "Structures +10% health and +10% capture points."
-msgstr "Gheibh togalaichean +10% air an slàinte agus +10% de phuingean glacaidh."
-
-#: simulation/data/civs/athen.jsonCivBonuses[0].History
-#: simulation/data/civs/mace.jsonCivBonuses[0].History
-#: simulation/data/civs/spart.jsonCivBonuses[0].History
-msgid "The Greeks used stone construction from early Mycenaean times."
-msgstr "Cleachdadh na Greugaich togail le clach o chionn tràth ann an linn Mhycenae."
-
-#: simulation/data/civs/athen.jsonCivBonuses[0].Name
-#: simulation/data/civs/mace.jsonCivBonuses[0].Name
-#: simulation/data/civs/spart.jsonCivBonuses[0].Name
-msgid "Hellenic Architecture"
-msgstr "Ailtireachd Greugach"
-
-#: simulation/data/civs/athen.jsonCivBonuses[1].Description
 msgid "Metal mining gathering rates increased by +10% for each passing age."
 msgstr "Cruinneachadh meatailt nas luaithe le +10% airson gach linn a dh’fhalbhas."
 
-#: simulation/data/civs/athen.jsonCivBonuses[1].History
+#: simulation/data/civs/athen.jsonCivBonuses[0].History
 msgid ""
 "The mines at Laureion in Attica provided Athens with a wealth of silver from"
 " which to mint her famous and highly prized coin, The Athenian Owl."
 msgstr "Thug na mèinnean aig Laureion ann an Attica saoibhreas de dh’airgead do Bhaile na h‑Àithne às a rinneadh Cailleach-oidhche na h‑Àithne, am bonn luachmhor cliùiteach aca."
 
-#: simulation/data/civs/athen.jsonCivBonuses[1].Name
+#: simulation/data/civs/athen.jsonCivBonuses[0].Name
 msgid "Silver Owls"
 msgstr "Cailleachan-oidhche airgid"
-
-#: simulation/data/civs/athen.jsonFactions[0].Description
-msgid "A Hellenic people of the Ionian tribe."
-msgstr "Sluagh Greugach an threubha Iònaich."
-
-#: simulation/data/civs/athen.jsonFactions[0].Heroes[0].History
-msgid ""
-"The general who persuaded the Athenians to invest their income from silver "
-"mines in a war navy of 200 Triremes. A key figure during the Persian Wars, "
-"he commanded the victorious Athenian navy at the decisive battle of Salamis "
-"in 479 B.C. Later, he pursued an active policy against the Persians in the "
-"Aegean, thereby laying the foundations of future Athenian power. However, he"
-" was eventually ostracised by the Athenians and forced to flee to the "
-"protection of the Persians."
-msgstr "Seo an ceann-feachd a thug air muinntir na h-Àithne gun coiseadh iad an teachd a-steach aca o na mèinnean airgid air cabhlach dhe 200 thrì-ràmhaich. ’S e duine cudromach a bh’ ann rè nan cogaidhean Pearsaich agus stiùirich e cabhlach na h-Àithne sa bhlàr cudromach Shalamis ann an 479 R.C. ’s chaidh an latha leotha. Bha poileasaidh aige an uairsin an aghaidh nam Pearsach sa mhuir Àigeanach a stèidhich cumhachd na h-Àithne an uairsin. Air deireadh na sgeòil, chaidh fhògradh le muinntir na h-Àithne agus bha aige ri teicheadh ach an dìonadh na Pearsaich e."
-
-#: simulation/data/civs/athen.jsonAINames[0]
-#: simulation/data/civs/athen.jsonFactions[0].Heroes[0].Name
-msgid "Themistocles"
-msgstr "Themistocles"
-
-#: simulation/data/civs/athen.jsonFactions[0].Heroes[1].History
-msgid "Pericles was the foremost Athenian politician of the 5th Century B.C."
-msgstr "’B e Pericles am prìomh neach-polataigs aig Baile na h-Àithne ron 5mh linn RC."
-
-#: simulation/data/civs/athen.jsonAINames[1]
-#: simulation/data/civs/athen.jsonFactions[0].Heroes[1].Name
-msgid "Pericles"
-msgstr "Pericles"
-
-#: simulation/data/civs/athen.jsonAINames[13]
-#: simulation/data/civs/athen.jsonFactions[0].Heroes[2].Name
-msgid "Iphicrates"
-msgstr "Iphicrates"
-
-#: simulation/data/civs/athen.jsonFactions[0].Technologies[0].Description
-msgid "Athenian triremes can train Marines (Epibastes Athenaikos)."
-msgstr "’S urrainn do thrì-ràmhaich na h-Àithne saighdearan-mara (Epibastes Athenaikos) oideachadh."
-
-#: simulation/data/civs/athen.jsonFactions[0].Technologies[0].Name
-msgid "Iphicratean Reforms"
-msgstr "Ath-leasachaidhean Iphiocratas"
-
-#: simulation/data/civs/athen.jsonFactions[0].Technologies[1].Description
-msgid ""
-"Stone walls can be built in neutral territory. Construction time for walls "
-"is reduced by 50%."
-msgstr "Gabhaidh ballachan cloiche a thogail air ranntair neo-phàirteach. Thèid ballachan a thogail 50% nas luaithe."
-
-#: simulation/data/civs/athen.jsonFactions[0].Technologies[1].History
-msgid ""
-"The Long Walls of Athens were constructed under the auspices of the wily "
-"Themistocles and extended 6 km from the city to the port of Piraeus. This "
-"secured the city's sea supply routes and prevented an enemy from starving "
-"out the city during a siege."
-msgstr "Chaidh ballachan fada na h-Àithne an togail fo stiùireadh Themistocles seòlta agus ruig iad on bhaile gu port Phiraeus a bha 6 km air falbh. Dhaingnich seo slighean solar a’ bhaile on mhuir ’s cha b’ urrainn do nàmhaid am baile a ghortachadh rè sèiste."
-
-#: simulation/data/civs/athen.jsonFactions[0].Technologies[1].Name
-msgid "Long Walls"
-msgstr "Ballachan fada"
-
-#: simulation/data/civs/athen.jsonFactions[0].Technologies[2].Description
-msgid ""
-"The player gains the ability to order spear-armed troops into Phalanx "
-"formation, providing greater attack and armor."
-msgstr "Buannaichidh an cluicheadair an comas gus saighdearan-sleagha òrdachadh gun tèid iad ann an cumadh falangais a bheir ionnsaigh ’s armachd nas treasa dhaibh."
-
-#: simulation/data/civs/athen.jsonFactions[0].Technologies[2].History
-msgid ""
-"The classical phalanx formation was developed about VIII century BC. It was "
-"eight men deep and up to eight hundred men wide. The men within overlapped "
-"their shields, presenting a formidable shield wall brimming with 8 foot "
-"spears."
-msgstr "Chaidh cumadh falangais clasaigeach a leasachadh mun 8mh linn RC. Bhiodh ochdnar air cùl càch a chèile agus suas ri ochd ceud fear taobh ri taobh. Chuireadh na daoine na sgiathan an tar-laighe gus balla treun a dhèanamh dhiubh làn sleaghan 8 troigh a dh’fhaid."
-
-#: simulation/data/civs/athen.jsonFactions[0].Technologies[2].Name
-msgid "Othismos"
-msgstr "Othismos"
 
 #: simulation/data/civs/athen.jsonHistory
 msgid ""
@@ -187,81 +103,25 @@ msgid ""
 "Athens dominated a large part of the Hellenic world for several decades."
 msgstr "Mar thùs an t-sìobhaltais Shiaraich agus àite-breith an deamocrasaidh, bhiodh Baile na h-Àithne cliùiteach mar ionad nan ealan, an fhoghlaim ’s an fheallsanachd. ’S e gaisgich thapaidh a bh’ ann am muinntir na h-Àithne cuideachd, gu h-àraidh air a’ mhuir. Thug Baile na h-Àithne làmh an uachdar air cnap mòr dhe shaoghal nan Greugach rè dheicheadan."
 
-#: simulation/data/civs/athen.jsonFactions[0].Name
 #: simulation/data/civs/athen.jsonName
 msgid "Athenians"
 msgstr "Muinntir na h‑Àithne"
 
-#: simulation/data/civs/athen.jsonStructures[0].History
-#: simulation/data/civs/mace.jsonStructures[0].History
-#: simulation/data/civs/spart.jsonStructures[0].History
-msgid ""
-"Greek theatres were places where the immortal tragedies of Aeschylus, "
-"Sophocles and many other talented dramatists were staged to the delight of "
-"the populace. They were instrumental in enriching Hellenic culture."
-msgstr "’S e àiteachan a bh’ anns na taighean-cluich Greugach far an deach na bròn-chluichean maireannach aig Aischulos, Sophocles is mòran sgrìobhaichean tàlantach eile a chur air an àrd-ùrlar agus ghabh a’ mhuinntir tlachd asta. Chuir iad gu mòr ri beartas cultarach nan Greugach."
-
-#: simulation/data/civs/athen.jsonStructures[0].Name
-#: simulation/data/civs/mace.jsonStructures[0].Name
-#: simulation/data/civs/spart.jsonStructures[0].Name
-msgid "Theatron"
-msgstr "Tèatron"
-
-#: simulation/data/civs/athen.jsonStructures[0].Special
-#: simulation/data/civs/spart.jsonStructures[0].Special
-msgid ""
-"The Hellenization civ bonus. Building a Theatron increases the territory "
-"effect of all buildings by 25%."
-msgstr "Buannachd sìobhaltas a’ Ghreugachais. Thèid a’ bhuaidh ranntair air na h-uile togalach a mheudachadh le 25% ma thogas tu tèatron."
-
-#: simulation/data/civs/athen.jsonStructures[1].History
-msgid ""
-"The Gymnasion was a vital place in Hellenic cities, where physical exercises"
-" were performed and social contacts established."
-msgstr "’S e àite cudromach a bh’ anns an taigh-sunntais sna bailtean Greugach far an dèante eacarsaich na bodhaige agus far an stèidhichte dàimhean sòisealta."
-
-#: simulation/data/civs/athen.jsonStructures[1].Name
-msgid "Gymnasion"
-msgstr "Taigh-sunntais"
-
-#: simulation/data/civs/athen.jsonStructures[1].Special
-msgid ""
-"Train champion units and research technologies pertaining to champion units."
-msgstr "Oidich laoich is rannsaich teicneolasan co-cheangailte riutha."
-
-#: simulation/data/civs/athen.jsonStructures[2].History
-msgid ""
-"The Prytaneion is the meeting place for the city elders to dine and to make "
-"swift decisions."
-msgstr "’S e ionad coinneimh airson seanairean a’ bhaile a th’ anns a’ Prytaneìon fad an gabhadh iad biadh ’s a rinneadh iad co-dhùnaidhean luatha."
-
-#: simulation/data/civs/athen.jsonStructures[2].Name
-msgid "Prytaneion"
-msgstr "Prytaneìon"
-
-#: simulation/data/civs/athen.jsonStructures[2].Special
-msgid "Train heroes and research technology pertaining to heroes."
-msgstr "Oidich curaidhean is rannsaich teicneolasan co-cheangailte riutha."
-
-#: simulation/data/civs/athen.jsonTeamBonuses[0].Description
-msgid "Allied Warships −25% construction time."
-msgstr "−25% air ùine togail nan longan-cogaidh caidreabhach."
-
-#: simulation/data/civs/athen.jsonTeamBonuses[0].History
-msgid ""
-"Shortly after the great naval victories at Salamis and Mykale, the Greek "
-"city-states instituted the so-called Delian League in 478 B.C., whose "
-"purpose was to push the Persians out of the Aegean region. The allied states"
-" contributed ships and money, while the Athenians offered their entire navy."
-msgstr "Stèidhich na stàit-bhailtean Greugach an Lìg Dhealos 478 RC beagan às dèidh mòr-bhuannachdan a’ chabhlaich aig Salamis agus Mycale. Bha fainear dhaibh cuidhteas fhaighinn dhe na Pearsaich san sgìre Àigeanach. Chuir na bailtean caidreabhach airgead ’s longan fad ’s a chuir Muinntir na h-Àithne an cabhlach gu lèir a bh’ aca dhan ghnothach."
-
-#: simulation/data/civs/athen.jsonTeamBonuses[0].Name
-msgid "Delian League"
-msgstr "Lìg Dhealos"
+#: simulation/data/civs/brit.jsonAINames[0]
+msgid "Karatakos"
+msgstr "Caratacos"
 
 #: simulation/data/civs/brit.jsonAINames[10]
 msgid "Vosenius"
 msgstr "Vosenius"
+
+#: simulation/data/civs/brit.jsonAINames[1]
+msgid "Kunobelinos"
+msgstr "Kunobelinos"
+
+#: simulation/data/civs/brit.jsonAINames[2]
+msgid "Boudicca"
+msgstr "Boudicca"
 
 #: simulation/data/civs/brit.jsonAINames[3]
 msgid "Prasutagus"
@@ -291,122 +151,6 @@ msgstr "Adminius"
 msgid "Dubnovellaunus"
 msgstr "Dubnovellaunus"
 
-#: simulation/data/civs/brit.jsonFactions[0].Description
-msgid "The Celts of the British Isles."
-msgstr "Ceiltich nan Eileanan Breatannach."
-
-#: simulation/data/civs/brit.jsonFactions[0].Heroes[0].History
-msgid ""
-"Caractacus, the Roman form, is a simple change from Karatakos, his actual "
-"name, which was printed on his many, many coins. Under this name he is "
-"remembered as a fierce defender of Britain against the Romans after their "
-"invasion in 43 A.D. Son of King Cunobelin of the Catuvellauni tribal "
-"confederation, Karatakos fought for nine years against the Romans with "
-"little success, eventually fleeing to the tribes in Wales, where he was "
-"defeated decisively. Finally he entered Northern Britain, where was handed "
-"over to the Romans. Taken to Rome, Karatakos was allowed to live by the "
-"Emperor Claudius and died in Italy. Tradition states he converted to "
-"Christianity when his wife did, but there is nothing known of this as "
-"definite. Probably more notable is the matter that he was allowed to live "
-"once captured. Roman policy was typically to have such men killed in public "
-"displays to celebrate. Karatakos was brought before the Emperor and Senate "
-"at his request to explain himself. What he said is not known for certainty, "
-"but Tacitus applies to him a famous speech…"
-msgstr "Is Caractacus dreach Ròmanach den ainm Karatakos, a bh’ air an duine an da-rìreadh, agus a chaidh a ghràbhaladh air an uabhas de bhuinn a bh' aige. 'S ann leis an ainm sin a tha e fhathast air cuimhne mar ghaisgeach dìorrasach Bhreatainn a dhìon i an aghaidh nan Ròmanach an dèidh dhaibh tighinn ga gabhail sa bhliadhna 43 BC. B’ e Mac Cunobelin, rìgh co-chaidreabh nan cinnidhean Catuvellauni a bh’ ann an Karatakos agus shabaid e fad naoi bliadhna an aghaidh nan Ròmanach gun mhòran soirbheachais. Air deireadh na sgeòil, theich e do chinnidhean na Cuimrigh far an tugadh buaidh dheireannach air. Chaidh e gu ceann a tuath Bhreatainn aig a' cheann thall far an deach a lìbhrigeadh do na Ròmanaich. Air a thoirt dhan Ròimh, fhuair e cead mairsinn beò bhon Impire Claudius agus chaochail e san Eadailt. Tha e air aithris gun do dh'iompaich e dhan Chrìostaidheachd nuair a rinn a bhean a leithid ceudna ach chan eil fianais le cinnt againn dha thaobh sin. ’S e tha nas sònraichte buileach mu dheidhinn ach gun d’fhuair e cead mairsinn beò às dèidh a ghlacadh. B’ e poileasaidh àbhaisteach nan Ròmanach daoine mar sin a mharbhadh ann am fèill phoblach. Chaidh Karatakos a thoirt gun impire ’s an t-seanaidh a-rèir iarrtais fhèin gus inntinn is a ghiùlan a mhìneachadh dhaibh. Chan eil sinn cinnteach gu dè thuirt e, ach thug Tacitus seachad òraid chliùiteach às a leth…"
-
-#: simulation/data/civs/brit.jsonAINames[0]
-#: simulation/data/civs/brit.jsonFactions[0].Heroes[0].Name
-msgid "Karatakos"
-msgstr "Caratacos"
-
-#: simulation/data/civs/brit.jsonFactions[0].Heroes[1].History
-msgid ""
-"Kunobelinos (perhaps better known by the latinized form of Cunobelin) was a "
-"powerful ruler of the Catuvellauni. He was referred to by Romans as the King"
-" of the Britons. His domains extended around the city of Kamulodunon (known "
-"as Camulodunum), modern day Colchester. The Roman defeat in the battle of "
-"Teutoburg Forest (Germania) allowed Kunobelinos to conquer a neighboring "
-"tribe, the Trinovantes, who were Roman allies and couldn't receive Roman "
-"aid. Kunobelinos seems to have been indifferent to the Romans. He traded "
-"with them freely, but had few qualms subjugating known Roman allies, and "
-"even sent his youngest son Adminius as a fosterling to be educated in Roman "
-"Gaul. This accounted for Adminius's friendships among the Romans. Adminius "
-"was given lordship over the Cantaci, who inhabited Kent, by his father. This"
-" area was the prime area of Roman influence and trade in Britain, and "
-"Kunobelinos shrewdly observed his youngest son's friendship with powerful "
-"Roman and Gallo-Roman politicians and traders would be of use administrating"
-" the region. His other sons though had no love for the Romans. When "
-"Kunobelinos died of disease, he was replaced by his son Togdumnos, who "
-"arrested, executed, or expelled numerous Roman sympathizers. These included "
-"his own brother Adminius, and the deposed Atrebates king, Verica, who "
-"appealed to their connections in the Roman Empire for aide in recovering "
-"their lands. Togdumnos died in battle with the Romans, and was subsequently "
-"replaced by his brother, Karatakos. It is an irony that it was his third son"
-" that initially invited this Roman reprisal. Kunobelinos in his own time "
-"though was possibly one of the greatest of all British kings. He conquered "
-"the great majority of the southern half of Britain (his coins were being "
-"minted as far as the borders of what would become Wales). He started ruling "
-"over only four minor tribes in a confederation, the Catuvellauni, and ended "
-"up achieving recognition as king of Britain. This recognition was so great "
-"that tribes in Cambria even came to assist his sons against the Romans and "
-"their British allies, and Kunobelinos was held up by the post-Roman Britons "
-"as one of their great heroes; a conqueror and uniter of petty kingdoms, "
-"something the post-Roman Britons or Romano-British sorely needed."
-msgstr "’S e rìgh cumhachdach nan Catuvellauni a bh’ ann an Kunobelinos (tha mòran nas eòlaiche air dreach Laideann ainm, Cunobelin). Chuireadh na Ròmanach “Rìgh Bhreatainn” air. Bhiodh e a’ riaghladh an sgìre timcheall air baile Kamulodunon (air a bheil Camulodunum againn cuideachd), seo Colchester san latha an-diugh. Air sàilleabh na ruaige air na Ròmanaich aig blàr Choille Teutoburg (Germania), chaidh le Kunobelinos cinneadh faisg air a cheannsachadh, sin na Trinovantes a bha ’nan caidreabhach dha na Ròmanaich agus nach d’fhuair taic uapasan. Tha coltas gun robh Kunobelinos coma a thaobh nan Ròmanach. Rinn e malart riutha gu saor ach ’s ann le beag amharas a chuir e caidreabhach ainmichte nan Ròmanach fo cheannsal agus chuir e eadhon Adminius a mhac as òige ’na dhalta dhan Ghall Ròmanach ach am faigheadh e foghlam ann. Seo as adhbhar gun robh iomadh caraid Ròmanach aig Adminius. Thug athair rìoghachd nan Cantaci a bha a’ fuireach ann an Kent dha dh’Adminius. B’ e siud an sgìre fo bhuaidh agus le malart Ròmanach as àirde ann am Breatann agus mhothaich Kunobelinos gu seòlta gum biodh càirdeas a mhac as òige le luchd-poileataigs is luchd-malairt Ròmanaich agus Galla-Ròmanaich chumhachdach gu feum gus an sgìre a riaghladh. Cha robh a mhic eile measail air na Ròmanaich. Nuair a chaochail Kunobelinos ri linn tinneis, fhuair a mhac Togdumnos an rìoghachd aige agus chuir greim air, mharbh no fhuadaich e iomadh neach-taic nan Ròmanach. Ghabh iad a-steach a dhearbh-bhràthair Adminius, agus rìgh nan Atrebates, Verica a chaill a chathair ’s a dh’iarr taic air na caraidean aca san Impireachd Ròmanach ach am faigheadh iad na tìrean aca air ais. Fhuair Togdumnos bàs a’ sabaid an aghaidh nan Ròmanach agus fhuair a bhràthair Karatakos àite an uairsin. Is ìoranta gum b’ e an treas mac aige a dh’adhbharaich aicheamhal nan Ròmanach sa chiad dol a-mach. Co-dhiù no co-dheth, b’ e Kunobelinos fear dhe na rìghrean Breatannach as motha a-riamh ri a linn-sa. Cheannsaich e a’ mhòrchuid dhe thaobh deas Bhreatainn (bhualadh na buinn aige cho farsaing ri far a bheil crìoch na Cuimrigh san latha an-diugh). Cha robh e a’ riaghlach ach caidreachas dhe cheithir cinneadh bheag nan Catuvellauni aig an toiseach agus chaidh aithneachadh mar rìgh nam Breatannach air dheireadh a bheatha. Bha e cho cliùiteach agus a thàinig fiù cinnidhean à Cambria gus taic a thoirt dha mhic an aghaidh nan Ròmanach ’s nan caidreabhach Breatannach-san agus fhuair Kunobelinos urram mar fhear dhe shàr-ghaisgich nam Breatannach às dèid an Ròimh falbh; bha e ’na cheannsaiche a dh’aontaich rìoghachdan beaga ri cèile agus siud na bha cruaidh-fheum aig na Breatannaich agus na Ròmanaich Breatannach air às dèidh nan Ròmanach falbh."
-
-#: simulation/data/civs/brit.jsonAINames[1]
-#: simulation/data/civs/brit.jsonFactions[0].Heroes[1].Name
-msgid "Kunobelinos"
-msgstr "Kunobelinos"
-
-#: simulation/data/civs/brit.jsonFactions[0].Heroes[2].History
-msgid ""
-"Ammianus Marcellinus described how difficult it would be for a band of "
-"foreigners to deal with a Celt if he called in the help of his wife. For she"
-" was stronger than he was and could rain blows and kicks upon the assailants"
-" equal in force to the shots of a catapult. Boudicca, queen of the Iceni, "
-"was said to be 'very tall and terrifying in appearance; her voice was very "
-"harsh and a great mass of red hair fell over her shoulders. She wore a tunic"
-" of many colors over which a thick cloak was fastened by a brooch. Boudicca "
-"had actually at first been a Roman ally, along with her husband, Prasutagus,"
-" king of the Iceni. Prasutagus had been a close Roman ally after a brief "
-"uprising, respected as being forethinking even by his former enemies, now "
-"allied Romans, and free to rule his kingdom as their native tradition "
-"dictated, except in one case. Prasutagus, realizing he was going to die, "
-"agreed upon a will with his wife and subordinates; his daughters would "
-"inherit the physical running of the territory, under Boudicca's stewardship "
-"until they were adults, and the Emperor of Rome would have overlordship, "
-"collecting taxes and being allowed to request military aid. Much the same "
-"situation as he already held. The problem lay in that the Romans did not "
-"recognize female heirs, and thus asserted, upon Prasutagus's death, that "
-"only the Emperor's claim to the kingdom of Icenia was valid. They further "
-"noted it was regular Roman practice to only allow a client kingdom to be "
-"independent for the lifetime of the initial king, such as had occurred in "
-"Galatia. The Empire formally annexed the kingdom, and began extracting harsh"
-" taxes immediately, citing that Prasutagus was indebted to the Romans, "
-"having taken several loans during his lifetime that he had failed to repay. "
-"Boudicca's complaint about this treatment and the defiance of her deceased "
-"husband's will was met with brutality; Roman soldiers flogged her, and her "
-"daughters, only children, were raped. Boudicca and her subjects were "
-"infuriated at the disgrace done to their queen and the children. With the "
-"Roman governor of Britain engaged with the druids in Cambria, now Wales, "
-"Boudicca was able to attract more followers from outside the Iceni, as they "
-"were hardly the only British tribe growing rapidly disillusioned with the "
-"Romans. Boudicca and her army laid waste to three cities, routed a Roman "
-"legion, and called on the memory of Arminius, a German who had routed the "
-"Romans from his lands, and their own ancestors who had driven off Caesar "
-"near a century earlier. Boudicca was defeated by a major tactical blunder in"
-" the Battle of Watling Street, leading to much of her force being "
-"slaughtered as they could not withdraw to safety. Boudicca herself escaped, "
-"and then slew her daughters, and then herself, to avoid further shame at "
-"Roman hands."
-msgstr "Mhìnich Ammianus Marcellinus dè cho doirbh agus a bhiodh e dha bhuidheann dhe choigrich an gnothach a dhèanamh air Ceilteach nan iarradh easan taic a bhean. B’ e siud on a bhiodh i nas treuna na esan agus comasach air bualadh is breabadh an luchd-ionnsaigh cho làidir ri crann-tabhaill. B’ e Boudicca banrigh nan Iceni agus bhathar ag ràdh gun robh i “glè àrd agus coltas oillteil oirre; bha a guth glè gharbh agus mòr-thomad fhuilt ruaidh fhada thar a guailnean. Bhiodh i a’ caitheamh lèine ioma-dathte agus cleoca tiugh teannaichte le bràist os a cionn. Ag innse na fìrinn, b’ e caidreabhach aig na Ròmanaich a bh’ ann am Boudicca agus an duine aige, Prasutagus, rìgh nan Iceni an toiseach. ’S e dlùth-chaidreabhach nan Ròmanach a bh’ ann am Prasutagus às dèidh aramach goirid agus bha meas fiù ’s aig na nàimhdean aige a bha nan Ròmanach caidreabhach dhà an uairsin mar dhuine ghlic adhartach, agus bha cead aige an rìoghachd aige a riaghladh mar a thogradh e a-rèir an dualchais ach a thaobh aon chùis. Nuair a bha Prasutagus an uchd a’ bhàis, rèitich e tiomnadh le a bhean agus na h-ìochdarain aige gum faigheadh a nigheanan stiùireadh na rìoghachd mar oighreachd fo ban-stiùbhardachd Bhoudicca gus am biodh iad ’nan inbheach agus gum biodh Impire na Ròimhe ’na àrd-uachdaran a bhiodh a chruinnicheadh cìsean agus a dh’fhaodadh taic an airm iarraidh. Seo cha mhòr an t-aon suidheachadh a bha aige-san mar-thà. ’S e an trioblaid a bh’ ann nach aithnicheadh na Ròmanaich oighrean boireann agus gun do dhearbh iad le bàs Phrasutaguis nach robh ach tagradh an impire air rìoghachd Icenia dligheach. Bha iad dhen bheachd cuideachd mar bu dual dha na Ròmanaich nach maireadh fo-rìoghachd neo-eisimeileach ach ri beò an rìgh thùsail mar a thachair ann an Galatia. Chuir an impireachd an rìoghachd ris fhèin gu foirmeil agus thòisich iad air cìsean cursa a thogail sa bhad, ag aithris gun robh fiachan aig Prasutagus air na Ròmanaich on a fhuair e iasadan nach do phàigh e air ais. Cha do choisinn gearan Boudicca mun làimhseachadh seo agus mu leigeil seachad tiomnadh an duine aice nach bu mhaireann ach brùidealachd; chuip saighdearan Ròmanach i agus dh’èignich iad a h-ighnean nach robh ach ’nan clann. Bha an dearg-bhoile air Boudicca agus a h-ìochdaran mun mhasladh a fhuair a’ bhanrigh aca agus a cuid cloinne. On a bha aig riaghladair Ròmanach Bhreatainn ri dèiligeadh ri draoidhean Chambria (a’ Chuimrigh), chaidh le Boudicca barrachd luchd-leantainn fhaighinn o thaobh a-muigh nan Iceni on a bha iomadh cinneadh Breatannach air briseadh-dùil fhaighinn o na Ròmanaich mar-thà. Mhill Boudicca agus an t-airm aice trì bailtean, chuir iar ruaig air lèigiun  Ròmanach agus chuimhnich iad Arminius Gearmailteach a fhuadaich na Ròmanaich on dùthaich aige agus an sinnsearan fhèin a chuir ruaig air Cèasar mu linn air ais. Chaidh Boudicca a ruaig ri linn mearachd ro-innleachd mòir air Blàr Sràid Watling far an d’fhuair a’ mhòrchuid dhen fheachd aige am bàs air sgàth ’s nach b’ urrainn dhaibh cùlachadh. Chaidh le Boudicca fhèin teicheadh agus mharbh i a h-ighnean agus i fhèin an uairsin gus barrachd mhasladh leis na Ròmanaich a sheachnadh."
-
-#: simulation/data/civs/brit.jsonAINames[2]
-#: simulation/data/civs/brit.jsonFactions[0].Heroes[2].Name
-msgid "Boudicca"
-msgstr "Boudicca"
-
 #: simulation/data/civs/brit.jsonHistory
 msgid ""
 "The Britons were the Celtic tribes of the British Isles. Using chariots, "
@@ -415,24 +159,13 @@ msgid ""
 "thousands of unique structures such as hill forts, crannogs and brochs."
 msgstr "’S e treubhan Ceilteach nan eileanan Breatannach a bh’ anns na Breatannaich. Chleachd iad feunan, claidheamhan mòra agus saighdearan dlùtha cumhachdach gus aramach eagalach a dhèanamh an aghaidh na Ròimhe ach an dìonadh iad an dualchas agus an leas aca. Thog iad mìltean de thogalaichean àraid mar dhùin-chnuic, crannagan agus bruighean."
 
-#: simulation/data/civs/brit.jsonFactions[0].Name
 #: simulation/data/civs/brit.jsonName
 msgid "Britons"
 msgstr "Na Breatannaich"
 
-#: simulation/data/civs/brit.jsonTeamBonuses[0].Description
-msgid "Allied Healers −20% resource costs."
-msgstr "−20% air cosgaisean stòrais nan lighichean caidreabhach."
-
-#: simulation/data/civs/brit.jsonTeamBonuses[0].History
-msgid ""
-"The Druids of the Celts maintained an organized religion that advanced the "
-"technology of their people even during wartime."
-msgstr "Ghlèidh draoidhean nan Ceilteach creideamh eagraichte a dh’adhartaich teicneolas an sluaigh fiù ’s rè amannan cogaidh."
-
-#: simulation/data/civs/brit.jsonTeamBonuses[0].Name
-msgid "Druids"
-msgstr "Draoidhean"
+#: simulation/data/civs/cart.jsonAINames[0]
+msgid "Hannibal Barca"
+msgstr "Hannibal Barca"
 
 #: simulation/data/civs/cart.jsonAINames[10]
 msgid "Hampsicora"
@@ -458,6 +191,10 @@ msgstr "Himilco Phameas"
 msgid "Hasdrubal the Boetharch"
 msgstr "Hasdrubal am Boetharch"
 
+#: simulation/data/civs/cart.jsonAINames[1]
+msgid "Hamilcar Barca"
+msgstr "Hamilcar Barca"
+
 #: simulation/data/civs/cart.jsonAINames[2]
 msgid "Hasdrubal Barca"
 msgstr "Hasdrubal Barca"
@@ -469,6 +206,10 @@ msgstr "Hasdrubal Gisco"
 #: simulation/data/civs/cart.jsonAINames[4]
 msgid "Hanno the Elder"
 msgstr "An seanair Hanno"
+
+#: simulation/data/civs/cart.jsonAINames[5]
+msgid "Maharbal"
+msgstr "Maharbal"
 
 #: simulation/data/civs/cart.jsonAINames[6]
 msgid "Mago Barca"
@@ -486,90 +227,6 @@ msgstr "Hanno Mòr"
 msgid "Himilco"
 msgstr "Himilco"
 
-#: simulation/data/civs/cart.jsonCivBonuses[0].Description
-msgid "Walls +100% build time, +100% stone cost, and +200% health."
-msgstr "Gheibh ballachan +100% air an ùine togail, +100% air cosgais cloiche agus +200% air an slàinte."
-
-#: simulation/data/civs/cart.jsonCivBonuses[0].History
-msgid "Carthaginians built triple city walls."
-msgstr "Thogadh na Cartagaich ballachan trìoblaichte."
-
-#: simulation/data/civs/cart.jsonCivBonuses[0].Name
-msgid "Triple Walls"
-msgstr "Ballachan trìoblaichte"
-
-#: simulation/data/civs/cart.jsonFactions[0].Heroes[0].History
-msgid ""
-"Carthage's most famous son. Hannibal Barca was the eldest son of Hamilcar "
-"Barca and proved an even greater commander than his father. Lived 247-182 "
-"B.C. While he ultimately lost the Second Punic War his victories at Trebia, "
-"Lake Trasimene, and Cannae, and the feat of crossing the Alps have secured "
-"his position as among the best tacticians and strategists in history."
-msgstr "Mac Chartago as cliùitiche. ’S e am mac as sine aig Hamilcar Barca a bh’ ann an Hannibal Barca agus bha e na b’ fheàrr buileach air stiùireadh an fheachd na athair. Bha e beò 247-182 RC. Ged a chaill e an dàrna Cogadh Pùnach aig deireadh na sgeòil, thug na buannachdan aige aig Trebia, Loch Trasumennus agus Cannae agus an euchd gun deach e thar nan Alpannan cliù dha mar fhear dhen luchd-innleachd as fheàrr san eachdraidh."
-
-#: simulation/data/civs/cart.jsonAINames[0]
-#: simulation/data/civs/cart.jsonFactions[0].Heroes[0].Name
-msgid "Hannibal Barca"
-msgstr "Hannibal Barca"
-
-#: simulation/data/civs/cart.jsonFactions[0].Heroes[1].History
-msgid ""
-"Father of Hannibal and virtual military dictator. Hamilcar Barca was a "
-"soldier and politician who excelled along his entire career. Lived 275-228 "
-"B.C. While overshadowed by his sons, Hamilcar was great general in his own "
-"right, earning the nickname Baraq or Barca for the lightning speed of his "
-"advance."
-msgstr "Athair Hannibal agus cha mhòr deachdair airm. ’S e sàr-shaighdear is sàr-fhear poileataigs a bh’ ann an Hamilcar Barca rè a dhreuchd. Bha e beò 275-228 RC. Ged a tha a mhic mòran nas cliùitiche, ’s e ceann-feachd glè mhath a bh’ ann an Hamilcar agus choisinn e am far-ainm Baraq no Barca on a bhiodh e ag adhartachadh cho luath ris na luinn."
-
-#: simulation/data/civs/cart.jsonAINames[1]
-#: simulation/data/civs/cart.jsonFactions[0].Heroes[1].Name
-msgid "Hamilcar Barca"
-msgstr "Hamilcar Barca"
-
-#: simulation/data/civs/cart.jsonFactions[0].Heroes[2].History
-msgid ""
-"Maharbal was Hannibal Barca's 'brash young cavalry commander' during the 2nd"
-" Punic War. He is credited with turning the wing of the legions at Cannae "
-"resulting in defeat in which 30,000 of 50,000 Romans were lost, as well as "
-"significant contributions to the winning of many other battles during the "
-"2nd Punic War. He is known for having said, after the battle of Cannae, "
-"'Hannibal, you know how to win the victory; just not what to do with it.'"
-msgstr "’S e “ceannard eachraidh òg dàna” aig Hannibal a bh’ ann am Maharbal rè an dàrna Cogadh Phùnach. Thathar dhen bheachd gum b’ esan a thionndaidh cliathach nan lèigiun aig Cannae a dh’adhbharaich ruaig far an deach 30,000 dhen 50,000 Ròmanach a chall agus gun co chuir e gu mòr ri buannachd iomadh blàir eile rè an dàrna Chogaidh Phùnaich. Tha fios againn gur ann às dèidh blàr Channae a thuirt e, “A Hannibal, tha thu eòlach air mar a bheir thu buaidh ach chan ann dè nì thu leatha.”"
-
-#: simulation/data/civs/cart.jsonAINames[5]
-#: simulation/data/civs/cart.jsonFactions[0].Heroes[2].Name
-msgid "Maharbal"
-msgstr "Maharbal"
-
-#: simulation/data/civs/cart.jsonFactions[0].Technologies[0].Description
-msgid "All Traders and Ships +25% vision range."
-msgstr "Gheibh na h-uile neach-malairt ’s long +25% de dh’astar lèirsinne."
-
-#: simulation/data/civs/cart.jsonFactions[0].Technologies[0].History
-msgid ""
-"Nobody knew better than the Carthaginians where in the ancient world they "
-"were going and going to go; their merchant traders had missions to "
-"everywhere."
-msgstr "Cha bhiodh duine san t-saoghal àrsaidh cho eòlach air càite an rachadh iad ’s dè rinneadh iad ann ’s a bhiodh na Cartagaich; chuireadh iad na marsantan aca air feadh an àite."
-
-#: simulation/data/civs/cart.jsonFactions[0].Technologies[0].Name
-msgid "Exploration"
-msgstr "Rùrachadh"
-
-#: simulation/data/civs/cart.jsonFactions[0].Technologies[1].Description
-msgid "Civic Centers, Temples, and Houses -25% build time."
-msgstr "Thèid ionadan sìobhalta, teampaill is taighean a thogail nas luaithe le −25%."
-
-#: simulation/data/civs/cart.jsonFactions[0].Technologies[1].History
-msgid ""
-"Carthaginians established many trading centers as colonies and ultimately "
-"held dominion over 300 cities and towns in North Africa alone."
-msgstr "Stèidhich na Cartagaich iomadh ionad-malairt mar tuineachaidhean agus aig deireadh na sgeòil, bha smachd aca air 300 bailtean ann an taobh tuath Afraga ’s an corr."
-
-#: simulation/data/civs/cart.jsonFactions[0].Technologies[1].Name
-msgid "Colonization"
-msgstr "Tuineachadh"
-
 #: simulation/data/civs/cart.jsonHistory
 msgid ""
 "Carthage, a city-state in modern-day Tunisia, was a formidable force in the "
@@ -584,73 +241,13 @@ msgstr "’S e stàit-bhaile a bh’ ann an Cartago far a bheil Tuinisea san lat
 msgid "Carthaginians"
 msgstr "Na Cartagaich"
 
-#: simulation/data/civs/cart.jsonStructures[0].History
-msgid ""
-"The structure is based upon the center island of the inner harbour "
-"constructed to house the war fleet of the Carthaginian navy at Carthage."
-msgstr "Tha an structar stèidhichte air an eilean meadhanach aig a’ chala taobh a-staigh a chaidh a thogail gus cabhlach cogaidh nan Cartagach a chumail aig Cartago."
+#: simulation/data/civs/gaul.jsonAINames[0]
+msgid "Viridomarus"
+msgstr "Viridomarus"
 
-#: simulation/data/civs/cart.jsonStructures[0].Name
-msgid "Naval Shipyard"
-msgstr "Doca a’ chabhlaich"
-
-#: simulation/data/civs/cart.jsonStructures[0].Special
-msgid "Construct the powerful warships of the Carthaginian navy."
-msgstr "Tog na longan-cogaidh neartmhor aig cabhlach nan Cartagach."
-
-#: simulation/data/civs/cart.jsonStructures[1].History
-msgid "The Celts supplied fierce warrior mercenaries for Carthaginian armies."
-msgstr "Sholair na Ceiltich saighdearan-duaise fiadhaich airson airm nan Cartagach."
-
-#: simulation/data/civs/cart.jsonStructures[1].Name
-msgid "Celtic Embassy"
-msgstr "Ambasaid Ceilteach"
-
-#: simulation/data/civs/cart.jsonStructures[1].Special
-msgid "Train Celtic Mercenaries."
-msgstr ""
-
-#: simulation/data/civs/cart.jsonStructures[2].History
-msgid ""
-"The Iberians were known as fierce mercenaries, loyal to their paymasters."
-msgstr "Bhiodh na h‑Ibèirich cliùiteach mar shaighdearan-duaise fiadhaich is dìleas do am pàigh-mhaighstirean."
-
-#: simulation/data/civs/cart.jsonStructures[2].Name
-msgid "Iberian Embassy"
-msgstr "Ambasaid Ibèireach"
-
-#: simulation/data/civs/cart.jsonStructures[2].Special
-msgid "Train Iberian Mercenaries."
-msgstr ""
-
-#: simulation/data/civs/cart.jsonStructures[3].History
-msgid ""
-"When Hannibal invaded Italy and defeated the Romans in a series of battles, "
-"many of the peoples subject to Rome, including the Greeks and Samnites, "
-"revolted and joined the Carthaginian cause."
-msgstr ""
-
-#: simulation/data/civs/cart.jsonStructures[3].Name
-msgid "Italic Embassy"
-msgstr "Ambasaid Eadailteach"
-
-#: simulation/data/civs/cart.jsonStructures[3].Special
-msgid "Train Italic Mercenaries."
-msgstr ""
-
-#: simulation/data/civs/cart.jsonTeamBonuses[0].Description
-msgid "Allies +10% international trade bonus."
-msgstr "+10% air buannachd malairt eadar-nàiseanta do chaidreabhaich."
-
-#: simulation/data/civs/cart.jsonTeamBonuses[0].History
-msgid ""
-"The Phoenicians and Carthaginians were broadly known as the greatest trading"
-" civilization of the ancient and classical world."
-msgstr "Bha na Phenicich is na Cartagaich cliùiteach mar na sìobhaltasan malairt as motha air an t‑saoghal àrsaidh is chlasaigeach."
-
-#: simulation/data/civs/cart.jsonTeamBonuses[0].Name
-msgid "Trademasters"
-msgstr "Maighstirean malairt"
+#: simulation/data/civs/gaul.jsonAINames[1]
+msgid "Brennus"
+msgstr "Brennus"
 
 #: simulation/data/civs/gaul.jsonAINames[2]
 msgid "Cativolcus"
@@ -659,6 +256,10 @@ msgstr "Catuvolcus"
 #: simulation/data/civs/gaul.jsonAINames[3]
 msgid "Cingetorix"
 msgstr "Cingetorix"
+
+#: simulation/data/civs/gaul.jsonAINames[4]
+msgid "Vercingetorix"
+msgstr "Vercingetorix"
 
 #: simulation/data/civs/gaul.jsonAINames[5]
 msgid "Divico"
@@ -704,126 +305,6 @@ msgstr "Bhrosnaich creideamh ’s draoidhean nan Ceilteach an cumadh-inntinn cog
 msgid "Deas Celtica"
 msgstr "Diathan Ceiltich"
 
-#: simulation/data/civs/gaul.jsonFactions[0].Description
-msgid "The Celts of mainland Europe."
-msgstr "Ceiltich air tìr-mòr na Roinn-Eòrpa."
-
-#: simulation/data/civs/gaul.jsonFactions[0].Heroes[0].History
-msgid ""
-"When Celtic armies met the enemy, before the battle would start, the Celtic "
-"leader would go to the first line and challenge the bravest of the enemy "
-"warriors to a single combat. The story of how Marcus Claudius Marcellus "
-"killed a Gallic leader at Clastidium (222 B.C.) is typical of such "
-"encounters. Advancing with a small army, Marcellus met a combined force of "
-"Insubrian Gauls and Gaesatae at Clastidium. The Gallic army advanced with "
-"the usual rush and terrifying cries, and their king, Viridomarus, picking "
-"out Marcellus by means of his badges of rank, made for him, shouting a "
-"challenge and brandishing his spear. Viridomarus was an outstanding figure "
-"not only for his size but also for his adornments; for he was resplendent in"
-" bright colors and his armor shone with gold and silver. This armor, thought"
-" Marcellus, would be a fitting offering to the gods. He charged the Gaul, "
-"pierced his bright breastplate and cast him to the ground. It was an easy "
-"task to kill Viridomarus and strip him of his armor."
-msgstr "Nuair a thachradh feachdan nan Ceilteach ri nàmhaid is mus tòisicheadh am blàr, rachadh ceannard nan Ceilteach dhan t-sreath toisich gus dùbhlan a thoirt air gaisgeach as dàna an nàmhad ach an dèanadh iad còmhrag-dhithis. Tha an sgeul air mar a mharbh Marcus Claudius Marcellus ceannard cinnidh Ghallaich ann an Clastidium (222 RC) ’na shamhla air tachartas dhen leithid. Nuair a bha e a’ dol air aghaidh le feachd caran beag, thachair Marcellus ri feachd nan Gallach Insubrach agus nan Gaesatae ann an Clastidium. Chaidh feachd muinntir na Gaille air aghaidh le gairmean geilteachaidh mar a bu dual dhaibh agus dh’aithnich rìgh Viridomarus Marcellus air suaicheantasan a rangachd ’s ghabh e air ag èigheachd dùbhlain ’s a’ crathadh na slèigh aige. ’S e sàr-ghaisgeach àrd le sgeadachadh dhathan loinnreach air a chuid aodaich agus armachd ghleansach òir ’s airgid a bh’ ann an Viridomarus. Shaoil Marcellus gur e ìobairt iomchaidh dha na diathan a bhiodh san armachd sin. Ghabh e air a’ Ghallach, shàth e a lùireach loinnreach agus thilg e dhan làr e. ’S ann gun robh e furasta dha an uairsin Viridomarus a mharbhadh agus an armachd aige a thoirt uaithe."
-
-#: simulation/data/civs/gaul.jsonAINames[0]
-#: simulation/data/civs/gaul.jsonFactions[0].Heroes[0].Name
-msgid "Viridomarus"
-msgstr "Viridomarus"
-
-#: simulation/data/civs/gaul.jsonFactions[0].Heroes[1].History
-msgid ""
-"Brennus is the name which the Roman historians give to the famous leader of "
-"the Gauls who took Rome in the time of Camillus. According to Geoffrey of "
-"Monmouth, the cleric who wrote “History of the Kings of Britain”, Brennus "
-"and his brother Belinus invaded Gaul and sacked Rome in 390 B.C., 'proving' "
-"that Britons had conquered Rome, the greatest civilization in the world, "
-"long before Rome conquered the Britons. We know from many ancient sources "
-"which predate Geoffrey that Rome was indeed sacked, but in 387 not 390, and "
-"that the raid was led by a man named Brennus, but he and his invading horde "
-"were Gallic Senones, not British. In this episode several features of "
-"Geoffrey's editing method can be seen: he modified the historical Brennus, "
-"created the brother Belinus, borrowed the Gallic invasion, but omitted the "
-"parts where the Celts seemed weak or foolish. His technique is both additive"
-" and subtractive. Like the tale of Trojan origin, the story of the sack of "
-"Rome is not pure fabrication; it is a creative rearrangement of the "
-"available facts, with details added as necessary. By virtue of their "
-"historical association, Beli and Bran are often muddled with the earlier "
-"brothers Belinus and Brennus (the sons of Dunvallo Molmutius) who contended "
-"for power in northern Britain in around 390 B.C., and were regarded as gods "
-"in old Celtic tradition."
-msgstr "Is Brennus an t-ainm a chuir eachdraichean nan Ròmanach air ceannard cliùiteach na Gaille a ghabh an Ròimh ri linn Camillus. Tha Geoffrey of Monmouth, a chlèirich a sgrìobh “Historia Regum Britanniae” (Eachdraidh rìghrean na Breatainn), ag innse dhuinn gun do lunn Brennus ’s a bhràthair Belinus air a’ Ghall agus gun do chreach iad an Ròimh ann an 390 RC, feuch an dearbhadh e gun do cheannsaich na Breatannaich an Ròimh a bha ’na phrìomh-shìobhaltas an t-saoghail mus do cheannsaich an Ròimh fhèin na Breatannaich. Tha tùsan aosmhor a tha nas sine na leabhar Geoffrey ag innse dhuinn co-dhiù gun deach an Ròimh a chreachadh dha-rìribh ach ann an 387 seach 390 agus gun deach an creach a stiùireadh le duine air a bha Brennus ach ’s e Senones Gallach a bh’ ann e fhèin ’s a shluagh seach Breatannaich. Tha an sgeulachd seo a’ sealltainn nan dòighean deasachaidh aig Geoffrey dhuinn: rinn e atharrachadh air Brennus fìrinneach, chruthaich e a bhràthair Belinus, rinn e iasad air briseadh a-steach nan Gallach ach dh’fhàg e na tachartasan a-mach a chuireadh coltas lag no gòrach air na Ceiltich. Mar sin, tha e an dà chuid a chur ris an fhìrinn agus a’ falach fiosrachadh. Mar a tha am faoinsgeul mun tùs Tròidheach, chan eil an sgeulachd mu chreach na Ròimhe gur tur mas fhìor ach ’s e atharrachadh cruthachail a th’ ann air an fhiosrachadh a bha ri làimh dha le rud no dhà air a chur ris mar a bha feum air. Ri linn an co-cheangal eachdraidheil aca, thèid Beli is Bran a chuir troimh-chèile leis na bràithrean Belinus is Brennus (mic Dunvallo Molmutius) nas aosmhoire a rinn strì airson na cumhachd taobh tuath Breatainn mu 390 RC agus bhiodhte a’ beachdachadh orrasan mar dhiathan ann an dualchas nan seann-Cheilteach."
-
-#: simulation/data/civs/gaul.jsonAINames[1]
-#: simulation/data/civs/gaul.jsonFactions[0].Heroes[1].Name
-msgid "Brennus"
-msgstr "Brennus"
-
-#: simulation/data/civs/gaul.jsonFactions[0].Heroes[2].History
-msgid ""
-"Vercingetorix (Gaulish: Ver-Rix Cingetos) was the chieftain of the Arverni "
-"tribe in Gaul (modern France). Starting in 52 B.C. he led a revolt against "
-"the invading Romans under Julius Caesar, his actions during the revolt are "
-"remembered to this day. Vercingetorix was probably born near his tribes "
-"capital (Gergovia). From what little info we have Vercingetorix was probably"
-" born in 72 B.C., his father was Celtius and we don't know who his mother "
-"was. Because we only know of him from Roman sources we don't know much about"
-" Vercingetorix as a child or young man, except that perhaps he was probably "
-"very high spirited and probably gained some renown in deeds."
-msgstr "’S e ceannard aig treubh nan Arverni sa Ghall (far a bheil an Fhraing san latha an-diugh) a bh’ ann an Vercingetorix (Ver-Rix Cingetos ann an cànan muinntir na Gaille). O 52 RC a-mach, stiùirich e ar-a-mach an aghaidh nan Ròmanach a bha a’ briseadh a-steach orra fo Iulius Cèasar agus thathar a’ cuimhneachadh air na gnìomhan aige rè an ar-a-mach sin san latha an-diugh fhathast. Thathar a’ meas gun rugadh Vercingetorix faisg air cathair-bhaile a threubha (Gergovia). Chan eil ach glè bheag a dh’fhiosrachadh againn mu Vercingetorix ach tha e coltach gun rugadh e ann an 72 RC ’s gur e Celtius a bha air athair ach chan eil fios againn idir cò a mhàthair. Air sgàth ’s nach eil fiosrachadh sam bith againn air ach o thùsan Ròmanach, chan eil fiosrachadh againn air òige Vercingetorix ach gun robh e aigneach agus gun do choisinn e cliù leis na h-euchdan aige gun teagamh."
-
-#: simulation/data/civs/gaul.jsonAINames[4]
-#: simulation/data/civs/gaul.jsonFactions[0].Heroes[2].Name
-msgid "Vercingetorix"
-msgstr "Vercingetorix"
-
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Description
-msgid "Workers +15% grain gather rate."
-msgstr "+15% air astar buain gràin an luchd-obrach."
-
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].History
-msgid ""
-"The Gauls invented an harvesting machine, making it much easier to harvest "
-"grain."
-msgstr "Thionnsgnaich Muinntir na Gaille inneal buana a rinn e mòran nas fhasa dhaibh gràn a bhuain."
-
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[0].Name
-msgid "Harvesting Machine"
-msgstr "Inneal-buana"
-
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Description
-msgid ""
-"A set amount of metal and food from every structure destroyed or captured."
-msgstr "Uiread socraichte de mheatailt is biadh aig gach togalach air a sgrios no a ghlacadh."
-
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].History
-msgid ""
-"Woe to the Defeated! The Gallic chieftain Brennus seized Rome (with the "
-"exception of a garrison on Capitoline Hill). When Camillus besieged him with"
-" a relief force from Veii, he negotiated his surrender for 1000 pounds of "
-"gold, and adding the weight of his sword on the scale when the Romans "
-"complained that he used false weights he uttered those famous words."
-msgstr "'S mairg na claoidhte! Ghlac an triath Gallach Brennus an Ròimh (ach a-mhàin an gearastan air Cnoc a' Chinn). Nuair a chuir Camillus sèist ris le cùl-taic o Veii, rèitich iad gun strìochdadh Brennus airson 1000 punnd de dh'òr. Air do na Ròmanaich gearan gun robh e a' cleachdadh chuideaman-brèige, dh'aithris e na briathran ainmeil ud."
-
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[1].Name
-msgid "Vae Victis"
-msgstr "Vae Victis"
-
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[2].Description
-msgid "Gallic druids gain a small melee attack."
-msgstr "Gheibh draoidhean Gallach comas ionnsaighe dlùithe beag."
-
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[2].History
-msgid ""
-"The Carnutes were druids from Aulercia. They fought when needed, and were "
-"largely responsible for turning back the Belgae incursions into Armorica and"
-" Aulercia."
-msgstr "’S e draoidhean à Aulercia a bh’ anns na Carnutes. Bhiodh iad a’ sabaid nan robh feum air agus chuir iad gu mòr ri tilleadh foghailean nam Belgae dha Armorica is Aulercia."
-
-#: simulation/data/civs/gaul.jsonFactions[0].Technologies[2].Name
-msgid "Carnutes"
-msgstr "Carnutes"
-
 #: simulation/data/civs/gaul.jsonHistory
 msgid ""
 "The Gauls were the Celtic tribes of continental Europe. Dominated by a "
@@ -833,24 +314,22 @@ msgid ""
 "of conquest and Rome's authoritarian rule."
 msgstr "’S e treubhan Ceilteach mòr-thir na Roinn-Eòrpa a bh’ ann am muinntir na Gaille. ’S ann aig clas sagartail nan draoidhean a bhiodh an smachd agus bha cultar ionnsaichte aca le obair-mheatailt, àrachas is malart adhartach agus eadhon innleadaireachd rathaid. Chuir gaisgich na Gaille ceann air iomairt ceannsachadh Cèasair agus ceannas na Ròimhe le coisridh is eachraidh trom."
 
-#: simulation/data/civs/gaul.jsonFactions[0].Name
 #: simulation/data/civs/gaul.jsonName
 msgid "Gauls"
 msgstr "Muinntir na Gaille"
 
-#: simulation/data/civs/gaul.jsonTeamBonuses[0].Description
-msgid "Forges −15% technology resource costs and research time."
-msgstr "Gheibh ceàrdaich −15% air cosgaisean stòrais agus ùine rannsachaidh nan teicneolasan."
+#: simulation/data/civs/iber.jsonAINames[0]
+#: simulation/data/civs/iber.jsonAINames[1]
+msgid "Viriato"
+msgstr "Viriato"
 
-#: simulation/data/civs/gaul.jsonTeamBonuses[0].History
-msgid ""
-"The Gauls produced and exported swords and scabbards, woolen and leather "
-"products, and other arms."
-msgstr ""
+#: simulation/data/civs/iber.jsonAINames[2]
+msgid "Karos"
+msgstr "Caros"
 
-#: simulation/data/civs/gaul.jsonTeamBonuses[0].Name
-msgid "Products from Gaul"
-msgstr "Batharan na Gaille"
+#: simulation/data/civs/iber.jsonAINames[3]
+msgid "Indibil"
+msgstr "Indibil"
 
 #: simulation/data/civs/iber.jsonAINames[4]
 msgid "Audax"
@@ -883,106 +362,6 @@ msgstr "Seach air tìr far a bheil ’s far an robh aibhnean ann, tha clach pail
 msgid "Harritsu Leku"
 msgstr "Harritsu Leku"
 
-#: simulation/data/civs/iber.jsonFactions[0].Heroes[0].History
-msgid ""
-"Viriato, like Vercingetorix amongst the Gauls, was the most famous of the "
-"Iberian tribal war leaders, having conducted at least 7 campaigns against "
-"the Romans in the southern half of the peninsula during the 'Lusitani Wars' "
-"from 147-139 B.C. He surfaced as a survivor of the treacherous massacre of "
-"9,000 men and the selling into slavery of 21,000 elderly, women, and "
-"children of the Lusitani. They had signed a treaty of peace with the Romans,"
-" conducted by Servius Sulpicius Galba, governor of Hispania Ulterior, as the"
-" 'final solution' to the Lusitani problem. He emerged from humble beginnings"
-" in 151 B.C. to become war chief of the Lusitani. He was intelligent and a "
-"superior tactician, never really defeated in any encounter (though suffered "
-"losses in some requiring retreat). He succumbed instead to another treachery"
-" arranged by a later Roman commander, Q. Servilius Caepio, to have him "
-"assassinated by three comrades that were close to him."
-msgstr "B' e Viriato, cleas Vercingetorix am measg nan Gall, an triath-catha a b' iomraitiche am measg nan cinnidhean Ibèireach, 's e air co-dhiù seachd iomairtean-cogaidh a thoirt an aghaidh nan Ròmanach an ceann a deas na leth-innse rè nan \"Cogaidhean Lusitani\" eadar 147-139 RC. Thog e cheann an toiseach mar neach a thàinig beò tro chasgradh cealgach 9,000 fireannach agus tràilleachadh 21,000 seann-duine, boireannach is pàiste de na Lusitani. Bha iad air cùmhnant-sìthe ris na Ròmanaich a shoidhnigeadh, a thugadh gu buil le Servius Sulpicius Galba, riaghladair Hispania Ulterior, mar \"fhuasgladh deireannach\" do thrioblaid nan Lusitani. Ged a bha tòiseachadh ìosal aige, dh'èirich e ann an 151 RC gu bhith na thriath-chatha air na Lusitani. Bha e tapaidh is na b' fheàrr air innleachdan, is cha tugadh fìor-bhuaidh air ann an teugmhail sam bith (ged a thàinig air cùlachadh turas neo dhà le call dhaoine). Ach leagadh e mu dheireadh thall le cealg eile bha air a dealbhadh le comanndair Ròmanach na b' ùire, Q. Servilius Caepio. B' ann mar phàirt dhen cheilg sin a mharbhadh e le triùir chompanach a bha sònraichte dlùth dha."
-
-#: simulation/data/civs/iber.jsonAINames[0]
-#: simulation/data/civs/iber.jsonAINames[1]
-#: simulation/data/civs/iber.jsonFactions[0].Heroes[0].Name
-msgid "Viriato"
-msgstr "Viriato"
-
-#: simulation/data/civs/iber.jsonFactions[0].Heroes[1].History
-msgid ""
-"Karos was a chief of the Belli tribe located just east of the Celtiberi "
-"(Numantines at the center). Leading the confederated tribes of the meseta "
-"central (central upland plain) he concealed 20,000 foot and 5,000 mounted "
-"troops along a densely wooded track. Q. Fulvius Nobilior neglected proper "
-"reconnaissance and lead his army into the trap strung out in a long column. "
-"Some 10,000 of 15,000 Roman legionaries fell in the massive ambush that was "
-"sprung upon them. The date was 23 August of 153 B.C., the day when Rome "
-"celebrated the feast of Vulcan. By later Senatorial Decree it was ever "
-"thereafter known as dies ater, a 'sinister day', and Rome never again fought"
-" a battle on the 23rd of August. Karos was wounded in an after battle small "
-"cavalry action the same evening and soon died thereafter, but he had carried"
-" off one of the most humiliating defeats that Rome ever suffered."
-msgstr "Bha Karos na thriath air cinneadh nam Belli a bha a' còmhnaidh air taobh sear nan Ceiltibèireach (Numantaich sa mheadhan). Ann an ceannas co-chaidreabh cinnidhean a' mheasata mheadhanaich (magh meadhanach uachdrach), fhuair e air 20,000 de choisridh agus 5,000 de dh'eachraidh a chleith air slighe dhlùth-chraobhach. Rinn Q. Fulvius Novilior dearmad air ro-fhiosrachadh ceart a dhèanamh is threòraich e an t-arm aige fhèin, 's e na cholbh fhada shìnte san àm, a-steach dhan ribe. Leagadh mu 10,000 de 15,000 lèigiunach Ròmanach san fhàth-fheitheamh a thugadh orra. B' e an latha sin an 23mh den Lùnastal, 153 RC, an dearbh latha a chomharraicheadh an Ròimh fèill Bhulcain. A rèir reachd an t-seanaidh a dh'achdaicheadh na dhèidh, b' e dies ater, 'latha ciotach' a chante ris gu bràth, agus cha do chuir an Ròimh riamh a-rithist cath air an 23mh den Lùnastal. Leònadh Karos ann an gnìomhachd bheag eachraidh an dèidh a' bhlàir fhèin, agus chaochail e tiotan na dhèidh sin. Ach, bha e air fear de na h-ìsleachaidhean a bu mhotha rinneadh riamh air an Ròimh a thoirt gu buil."
-
-#: simulation/data/civs/iber.jsonAINames[2]
-#: simulation/data/civs/iber.jsonFactions[0].Heroes[1].Name
-msgid "Karos"
-msgstr "Caros"
-
-#: simulation/data/civs/iber.jsonFactions[0].Heroes[2].History
-msgid ""
-"Indibil was king of the Ilergetes, a large federation ranged principally "
-"along the Ebro River in the northwest of the Iberian Peninsula. During the "
-"Barcid expansion, from 212 B.C. he had initially been talked into allying "
-"himself with the Carthaginians who had taken control of a lot of territory "
-"to the south and west, however after loss and his capture in a major battle "
-"he was convinced, some say tricked, to switch to the Roman side by Scipio "
-"Africanus. But that alliance didn't last long, as Roman promises were hollow"
-" and the Romans acted more like conquerors than allies. So, while the Romans"
-" and their allies had ended Carthaginian presence in 'Hispania' in 206 B.C.,"
-" Indibil and another tribal prince by the name of Mandonio, who may have "
-"been his brother, rose up in rebellion against the Romans. They were "
-"defeated in battle, but rose up in a 2nd even larger rebellion that had "
-"unified all the Ilergetes again in 205 B.C. Outnumbered and outarmed they "
-"were again defeated, Indibil losing his life in the final battle and "
-"Mandonio being captured then later put to death. From that date onward the "
-"Ilergetes remained a pacified tribe under Roman rule."
-msgstr "B' e Indibil rìgh nan Ilergeatach, co-chaidreabh mòr a bha a' mhòr-chuid dheth sìnte ris an abhainn Ebro sa cheann an iar-thuath den leth-innse Ibèirich. Rè an atachaidh Bharcid, dhearbhadh air gum b' fheàrr dha bhith caidreabhach ris na Cartagaich o 212 RC, leis gun robh iad air smachd fhaighinn air cuid mhòr fearainn mu dheas is san iar. Ach an dèidh challaidhean is a ghlacadh fhèin ann am blàr cudromach, dhearbh Scipio Africanus air Indibil a chleòca thionndadh gu dath nan Ròmanach, ged a chanas cuid nach b' e dearbhadh ach foill a rinn e air. Cha do mhair an caidreabh ud ge-tà, oir bha geallaidhean nan Ròmanach gun stàth is bha an giùlan na bu choltaiche ri ceannsaichean na caidreabhaich. Mar sin, ged a chuir na Ròmanaich 's an cuid chaidreabhach às do làthaireachd nan Cartagach ann an Hispania sa bhliadhna 206 RC, thòisich Indibil is triath eile dham b' ainm Mandonia (a bha, ma dh'fhaoidte, na bhràthair do dh'Indibil), ar-a-mach an aghaidh nan Ròmanach. Thugadh buaidh air an dithist, ach dh'èirich iad a-rithist ann an ar-a-mach eile, a bha na bu mhotha is a dh'aon na Ilergeataich uile ri chèile, ann an 205 RC. Leis gun robh iad na bu laige a thaobh àireamh is armachd an t-sluaigh aca, thugadh buaidh orra a-rithist is chailleadh Indibil sa chath mu dheireadh. Ghlacadh Mandonia san aon àm is chaidh e fhèin a chur gu bàs. On uair sin a-mach, dh'fhan na Ilergeataich mar chinneadh sìthichte fo riaghladh nan Ròmanach."
-
-#: simulation/data/civs/iber.jsonAINames[3]
-#: simulation/data/civs/iber.jsonFactions[0].Heroes[2].Name
-msgid "Indibil"
-msgstr "Indibil"
-
-#: simulation/data/civs/iber.jsonFactions[0].Technologies[0].Description
-msgid ""
-"Causes targets struck to become inflamed and lose hitpoints at a constant "
-"rate until and if either healed or repaired, as appropriate."
-msgstr "Thèid na bhuailear ’na theine agus caillidh e slàinte gu cunbhalach gus an tèid a shlànachadh no a chàradh mar as iomchaidh."
-
-#: simulation/data/civs/iber.jsonFactions[0].Technologies[0].History
-msgid ""
-"Iberian tribesmen were noted for wrapping bundles of grass about the shafts "
-"of their throwing spears, soaking that in some sort of flammable pitch, then"
-" setting it afire just before throwing."
-msgstr "Bhiodh na h-Ibèirich a’ pasgadh crainn nan sleaghan tilgeil aca le feur ’s am bogadh ann an seòrsa de thearra a loisgeadh iad ron tilgeil."
-
-#: simulation/data/civs/iber.jsonFactions[0].Technologies[0].Name
-msgid "Suzko Txabalina"
-msgstr "Suzko Txabalina"
-
-#: simulation/data/civs/iber.jsonFactions[0].Technologies[1].Description
-msgid "Metal costs for units and technologies reduced by 50%."
-msgstr "Lùghdachadh air cosgaisean meatailt airson aonadan ’s teicneolasan le 50%."
-
-#: simulation/data/civs/iber.jsonFactions[0].Technologies[1].History
-msgid ""
-"The Iberians were known to produce the finest iron and steel implements and "
-"weapons of the age. The famous 'Toledo Steel.'"
-msgstr "Rinneadh na h-Ibèirich an iarainn is na h-acainnean ’s airm stàilinn as fheàrr ri an linn. Bu siud an “Stàilinn Spàinnteach” cliùiteach."
-
-#: simulation/data/civs/iber.jsonFactions[0].Technologies[1].Name
-msgid "Maisu Burdina Langileak"
-msgstr "Maisu Burdina Langileak"
-
 #: simulation/data/civs/iber.jsonHistory
 msgid ""
 "The Iberians were a people of mysterious origins and language, with a strong"
@@ -996,40 +375,6 @@ msgstr "Chan eil fhios cò às a thàinig na h-Ibèirich ’s an cànan aca agus
 #: simulation/data/civs/iber.jsonName
 msgid "Iberians"
 msgstr "Na h-Ibèirich"
-
-#: simulation/data/civs/iber.jsonStructures[0].History
-msgid ""
-"'Revered Monument' The Iberians were a religious people who built small "
-"monuments to their various gods. These monuments could also serve as family "
-"tombs."
-msgstr "“Clach-chuimhne urramach” - ’S e sluagh cràbhach a bhiodh sna h-Ibèirich a thogadh clachan-cuimhne beaga do na diathan aca. Dh’fhaodadh na clachan seo a bhith ’nan uaighean teaghlaich cuideachd."
-
-#: simulation/data/civs/iber.jsonStructures[0].Name
-msgid "Gur Oroigarri"
-msgstr "Gur Oroigarri"
-
-#: simulation/data/civs/iber.jsonStructures[0].Special
-msgid ""
-"Defensive Aura - Gives all Iberian units and buildings within vision range "
-"of the monument a 10-15% attack boost. Build Limit: Only 5 may be built per "
-"map."
-msgstr "Aura dìonach – Bheir e ionnsaigh de 10-15% a bharrachd do na h-uile aonad no togalach Ibèireach am broinn astar lèirsinne na cloiche-cuimhne. Cuingeachadh togail: 5 air a’ mapa gu lèir."
-
-#: simulation/data/civs/iber.jsonTeamBonuses[0].Description
-msgid "Allied Citizen Javelineers −10% resource costs."
-msgstr "−10% a chosgaisean stòrais air gathadairean-dùthcha caidreabhach."
-
-#: simulation/data/civs/iber.jsonTeamBonuses[0].History
-msgid ""
-"The Iberians were long known to provide mercenaries to other nations to "
-"serve as auxiliaries to their armies in foreign wars. Carthage is the most "
-"well known example, and we have evidence of them serving in such a capacity "
-"in Aquitania."
-msgstr "Bhiodh na h-Ibèirich a sholar saighdearan-duaise do dhùthchannan eile àm fhada ach an cuireadh iad taic do na feachdan aca ann an cogaidhean cèine. Is Cartago am ball-eisimpleir as ainmeile agus tha fianais againn gum frithealaich iad ann an Aquitàinia."
-
-#: simulation/data/civs/iber.jsonTeamBonuses[0].Name
-msgid "Saripeko"
-msgstr "Saripeko"
 
 #: simulation/data/civs/kush.jsonAINames[0]
 msgid "Kashta"
@@ -1087,56 +432,6 @@ msgstr "Atlanersa"
 msgid "Nasalsa"
 msgstr "Nasalsa"
 
-#: simulation/data/civs/kush.jsonFactions[0].Description
-msgid ""
-"The great African kingdom that straddled the Nile River in Nubia, in the "
-"South of Egypt."
-msgstr "An rìoghachd mhòr Afraganach a thuinich mun Nìl ann an Nubia, an ceann a deas na h-Èipheit."
-
-#: simulation/data/civs/kush.jsonFactions[0].Heroes[0].Name
-msgid "Nastasen"
-msgstr "Nastasen"
-
-#: simulation/data/civs/kush.jsonFactions[0].Heroes[1].Name
-msgid "Arakamani"
-msgstr "Arakamani"
-
-#: simulation/data/civs/kush.jsonFactions[0].Heroes[2].Name
-msgid "Amanirenas"
-msgstr "Amanirenas"
-
-#: simulation/data/civs/kush.jsonFactions[0].Name
-msgid "Kushite Africans"
-msgstr "Afraganaich Kulušach"
-
-#: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Description
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Description
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[0].Description
-msgid ""
-"Archers −10% training time, +8 attack range, and −10% ranged attack spread."
-msgstr "Gheibh boghadairean −10% air an ùine oideachaidh, +8 air astar an ionnsaighean ’s −10% air sgapadh an ionnsaighean astair."
-
-#: simulation/data/civs/kush.jsonFactions[0].Technologies[0].History
-msgid ""
-"The Kushites had a tradition of fine archery and a penchant for using massed"
-" archers in battle."
-msgstr ""
-
-#: simulation/data/civs/kush.jsonFactions[0].Technologies[0].Name
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].Name
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[0].Name
-msgid "Archery Tradition"
-msgstr "Gnàth nam boghadairean"
-
-#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Description
-msgid ""
-"Civic Structures +20% build time, +20% health, and +20% capture points."
-msgstr "Gheibh togalaichean sìobhalta +20% air an ùine togail, +20% air an slàinte agus +20% de phuingean glacaidh."
-
-#: simulation/data/civs/kush.jsonFactions[0].Technologies[1].Name
-msgid "Monumental Architecture"
-msgstr "Ailtireachd-laighe"
-
 #: simulation/data/civs/kush.jsonHistory
 msgid ""
 "The Kingdom of Kush was an ancient African kingdom situated on the "
@@ -1159,48 +454,9 @@ msgstr "B' e rìoghachd àrsaidh Afraganach a bh' ann an Kuluš, a bha air a sui
 msgid "Kushites"
 msgstr "Kuluš"
 
-#: simulation/data/civs/kush.jsonStructures[0].Name
-msgid "Temple of Amun"
-msgstr "Teampull Amuin"
-
-#: simulation/data/civs/kush.jsonStructures[0].Special
-msgid ""
-"The Kushites can upgrade individual Temples to Temples of Amun, which can "
-"train Napatan Temple Guard champions and heal units faster."
-msgstr "’S urrainn dha na Kulušaich tempaill àrdachadh ’nan Teampaill Amuin a nì oideachadh air laoich geàird teampaill Napataich ’s a shlànaicheas aonadan nas luaithe."
-
-#: simulation/data/civs/kush.jsonStructures[1].Name
-msgid "Temple of Apedemak"
-msgstr "Teampall Apedemak"
-
-#: simulation/data/civs/kush.jsonStructures[1].Special
-msgid ""
-"The Kushites can upgrade individual Temples to Temples of Apedemak, which "
-"can train Meroe Temple Guard champions and heal units faster."
-msgstr "'S urrainn do na Kulušaich teampallan fa leth àrdachadh gu bhith nan teampallan Apedemak, dhan urrainn laoich geàrdan-teampaill Mheroë oideachadh agus aonadan a shlànachadh nas luaithe."
-
-#: simulation/data/civs/kush.jsonStructures[2].History
-msgid "The Kushites built over 200 pyramids in Nubia."
-msgstr "Thog muinntir Kuluša corr is 200 pioramaid ann an Nubia."
-
-#: simulation/data/civs/kush.jsonStructures[2].Name
-msgid "Kushite Pyramids"
-msgstr "Pioramaidean Kuluš"
-
-#: simulation/data/civs/kush.jsonStructures[2].Special
-msgid ""
-"Building a Small Kushite Pyramid unlocks the Town Phase. Building a Large "
-"Kushite Pyramid unlocks the City Phase. And each pyramid built adds +10% "
-"territory effect to Civic Centers."
-msgstr "Bheir togail pioramaid Kulušach bheag a’ ghlas far linn nam bailtean. Bheir togail pioramaid Kulušach mhòir a’ ghlas far linn nam mòr-bhailtean. A bharrachd air sin, cuiridh gach pioramaid a thogas tu +10% a bhuaidh ranntair ris na h-ionadan sìobhalta."
-
-#: simulation/data/civs/kush.jsonTeamBonuses[0].Description
-msgid "Allied Elephants −20% resource costs and training time."
-msgstr "−20% air cosgaisean stòrais ’s ùine oideachaidh nan ailbheanan caidreabhach."
-
-#: simulation/data/civs/kush.jsonTeamBonuses[0].Name
-msgid "Elephant Suppliers"
-msgstr "Solaraichean ailbheanan"
+#: simulation/data/civs/mace.jsonAINames[0]
+msgid "Alexander the Great"
+msgstr "Alasdair Mòr"
 
 #: simulation/data/civs/mace.jsonAINames[10]
 msgid "Perseus"
@@ -1251,93 +507,6 @@ msgstr "Demetrius II Aetolicus"
 msgid "Philip V"
 msgstr "Filip V"
 
-#: simulation/data/civs/mace.jsonFactions[0].Description
-msgid "A Hellenistic kingdom bordering the Greek city-states."
-msgstr "Rìoghachd Ghreugach ri taobh nam stàit-bhailtean Greugach."
-
-#: simulation/data/civs/mace.jsonFactions[0].Heroes[0].History
-msgid ""
-"The king of Macedonia (359-336 B.C.), he carried out vast monetary and "
-"military reforms in order to make his kingdom the most powerful force in the"
-" Greek world. Greatly enlarged the size of Macedonia by conquering much of "
-"Thrace and subduing the Greeks. Murdered in Aegae while planning a campaign "
-"against Persia."
-msgstr "B’ e rìgh na Masadoine (359-336 RC) a bh’ ann agus rinn e ath-leasachadh farsaing air cùisean airgid ’s an fheachd gus am biodh e nas cumhachdaiche na rìoghachd sam bith eile ann an saoghal nan Greugach. Chuir e gu mòr ri ranntair na Masadoine on a cheannsaich e cnap mòr dhe Thràicea ’s na Greugaich. Chaidh a mhurt ann an Aegae fhad ’s a bha e ag ullachadh iomairt an aghaidh nam Pearsach."
-
-#: simulation/data/civs/mace.jsonFactions[0].Heroes[0].Name
-msgid "Philip II of Macedon"
-msgstr "Filip II na Masadoine"
-
-#: simulation/data/civs/mace.jsonFactions[0].Heroes[1].History
-msgid ""
-"The most powerful hero of them all - son of Philip II, king of Macedonia "
-"(336-323 B.C.). After conquering the rest of the Thracians and quelling the "
-"unrest of the Greeks, Alexander embarked on a world-conquest march. "
-"Defeating the Persian forces at Granicus (334 B.C.), Issus (333 B.C.) and "
-"Gaugamela (331 B.C.), he became master of the Persian Empire. Entering "
-"India, he defeated king Porus at Hydaspes (326 B.C.), but his weary troops "
-"made him halt. Died in Babylon at the age of 33 while planning a campaign "
-"against Arabia."
-msgstr "An curaidh a bu chumhachdaiche dhiubh uile - mac Fhilip II, rìgh na Masadoine (336-323 RC). An dèidh dha an corr dhe na Tràiceanaich a cheannsachadh agus aimhreit nan Greugach a mhùchadh, dh'fhalbh Alasdair air iomairt a cheannsachadh an t-saoghail uile. Le buaidh a thoirt air na Pearsaich aig Granicus (334 RC), Issus (333 RC) agus Gaugamela (331 RC), fhuair e ceannas air an Impireachd Phearsaich. Dh'inntrig e an uair sin a-steach do na h-Innsean, agus thug e buaidh air an rìgh Porus aig Hydaspes (326 RC), ach thug a shaighdearan fhèin air stad, agus iad claoidhte. Bha e 33 bliadhna dh'aois nuair a chaochail e ann am Bàbalon fhad 's a bha e a' cur an òrdugh iomairt an aghaidh Aràibia."
-
-#: simulation/data/civs/mace.jsonAINames[0]
-#: simulation/data/civs/mace.jsonFactions[0].Heroes[1].Name
-msgid "Alexander the Great"
-msgstr "Alasdair Mòr"
-
-#: simulation/data/civs/mace.jsonFactions[0].Heroes[2].History
-msgid ""
-"One of the Diadochi, king of Macedonia (294-288 B.C.), Demetrios was "
-"renowned as one of the bravest and most able successors of Alexander. As the"
-" son of Antigonus I Monophthalmus, he fought and won many important battles "
-"early on and was proclaimed king, along with his father, in 306 B.C. Losing "
-"his Asian possessions after the battle of Ipsos, he later won the Macedonian"
-" throne. Fearing lest they should be overpowered by Demetrios, the other "
-"Diadochi united against him and defeated him."
-msgstr "B' ann de na Diadochi a bha Demetrios, rìgh na Masadoine (294-288 RC). Bha e iomraiteach mar fhear de na rìghrean as curanta agus as comasaiche a lean Alasdair. Mar mhac Antigonus I Monopthalmus, chuir e iomadh cath cudromach tràth na bheatha, bhuannaich e annta, agus mar thoradh air a sin chaidh e fhèin is athair a chrùnadh sa bhliadhna 306 RC. Ged a chaill e na bh' aige de dh'Àisia an dèidh na teugmhail aig Ipsos, mu dheireadh choisinn e rìgh-cathair na Masadoine.  Ghabh an corr dhe na Diadochi eagal an uair sin gun rachadh an ceannsachadh aig Demetrios, agus chruinnich iad còmhla na aghaidh, is thug iad buaidh air."
-
-#: simulation/data/civs/mace.jsonFactions[0].Heroes[2].Name
-msgid "Demetrios the Besieger"
-msgstr "Demetrios nan Sèist"
-
-#: simulation/data/civs/mace.jsonFactions[0].Technologies[0].Description
-#: simulation/data/civs/ptol.jsonFactions[0].Technologies[0].Description
-#: simulation/data/civs/sele.jsonFactions[0].Technologies[0].Description
-msgid "Civic Centers +100% health and capture points, double default arrows."
-msgstr "Gheibh ionadan sìobhalta +100% de shlàinte is puingean glacaidh is dà uiread dhe shaighdean tùsail."
-
-#: simulation/data/civs/mace.jsonFactions[0].Technologies[0].History
-#: simulation/data/civs/ptol.jsonFactions[0].Technologies[0].History
-#: simulation/data/civs/sele.jsonFactions[0].Technologies[0].History
-msgid ""
-"Beginning with Alexander, the Hellenistic monarchs founded many cities "
-"throughout their empires, where Greek culture and art blended with local "
-"customs to create the motley Hellenistic civilization."
-msgstr "Stèidhich na rìghrean Greugach iomadh baile sna h-impireachdan aca o Alasdair a-mach far an deach cultar ’s ealan nan Greugach a mheasgachadh leis an dualchas ionadail agus chruthaich seo sìobhaltas Greugach measgaichte ’s farsaing."
-
-#: simulation/data/civs/mace.jsonFactions[0].Technologies[0].Name
-#: simulation/data/civs/ptol.jsonFactions[0].Technologies[0].Name
-#: simulation/data/civs/sele.jsonFactions[0].Technologies[0].Name
-msgid "Hellenistic Metropolis"
-msgstr "Mòr-bhaile Greugach"
-
-#: simulation/data/civs/mace.jsonFactions[0].Technologies[1].Description
-msgid ""
-"Upgrade Shield Bearer Champion Infantry to Silver Shields, with more health "
-"and attack damage."
-msgstr "Àrdaich laoich coisridh nan giùlanairean-sgèithe gu sgiathan airgid aig a bheil barrachd slàinte ’s dochann ionnsaighe."
-
-#: simulation/data/civs/mace.jsonFactions[0].Technologies[1].History
-msgid ""
-"In India near the end of his long anabasis, Alexander gifted to the Royal "
-"Hypaspist corps shields of silver for their long and valiant service in his "
-"army."
-msgstr "Sna Innseachan faisg air deireadh anabasis fada aige, thìodhlaic Alasdair sgiathan airgid dha bhuidheann nan Hypaspistes riaghail aige mar thaing airson an seirbheis dhàna fhada san airm aige."
-
-#: simulation/data/civs/mace.jsonFactions[0].Technologies[1].Name
-msgid "Silver Shields"
-msgstr "Sgiathan airgid"
-
 #: simulation/data/civs/mace.jsonHistory
 msgid ""
 "Macedonia was an ancient Greek kingdom, centered in the northeastern part of"
@@ -1347,57 +516,21 @@ msgid ""
 "diffusion of Hellenic and eastern cultures for years to come."
 msgstr "’S e seann-rìoghachd Ghreugach a bha sa Mhasadon ann am meadhan ceann ear-thuath na rubha Greugaich. Fo stiùireadh Alasdair Mòir, cheannsaich feachd na Masadoine agus a caidreabhaich a’ mhòrchuid dhen t-saoghal air an robh iad eòlach, a’ gabhail a-steach na h-Èipheite, na Peirse agus pàirt dhe na h-Innseachan, ag adhbharachadh measgachadh cultaran na Grèige is taobh an ear."
 
-#: simulation/data/civs/mace.jsonFactions[0].Name
 #: simulation/data/civs/mace.jsonName
 msgid "Macedonians"
 msgstr "Na Masadonaich"
 
-#: simulation/data/civs/mace.jsonStructures[0].Special
-msgid ""
-"The Hellenization civ bonus. Building a Theatron increases the territory "
-"effect of all buildings by 25%. Build limit: 1."
-msgstr "Buannachd sìobhaltas a’ Ghreugachais. Thèid a’ bhuaidh ranntair air gach togalach a mheudachadh le 25% ma thogas tu tèatron. Cuingeachadh togail: 1."
-
-#: simulation/data/civs/mace.jsonStructures[1].History
-#: simulation/data/civs/ptol.jsonStructures[0].History
-#: simulation/data/civs/sele.jsonStructures[0].History
-msgid ""
-"Alexander the Great founded libraries all over his new empire. These became "
-"a center of learning for an entirely new synthesized culture: the "
-"Hellenistic culture."
-msgstr "Stèidhich Alasdair Mòr leabharlannan air feadh na h-impireachd ùire aige. Chaidh iad ’nan ionadan ionnsachaidh do cho-chultar ùr: A’ Ghreugachas."
-
-#: simulation/data/civs/mace.jsonStructures[1].Name
-#: simulation/data/civs/ptol.jsonStructures[0].Name
-#: simulation/data/civs/sele.jsonStructures[0].Name
-msgid "Library"
-msgstr "Leabhar-lann"
-
-#: simulation/data/civs/mace.jsonStructures[1].Special
-msgid ""
-"All Special Technologies are researched here. Building one reduces the cost "
-"of all other remaining technologies by 10%. Build limit: 1."
-msgstr "Thèid gach teicneolas sònraichte a rannsachadh an-seo. Nuair a thogas tu fear, bidh na teicneolasan eile uile nas saoire le 10%. Cuingeachadh togail: 1."
-
-#: simulation/data/civs/mace.jsonTeamBonuses[0].Description
-msgid "Allies +20% barter sell prices."
-msgstr "+20% air prìsean reic iomlaideachaidh nan caidreabhach."
-
-#: simulation/data/civs/mace.jsonTeamBonuses[0].History
-msgid ""
-"The Macedonians and the Diadochi minted coins of very high quality. On their"
-" currency the Diadochi in particular frequently depicted themselves as the "
-"rightful successor to Alexander the Great, attempting to legitimize their "
-"rule."
-msgstr "Rinneadh na Masadonaich agus na Diadochi buinn às àirde càileachd. Riochdaicheadh gu h-àraidh na Diadochi iad fhèin air an airgeadra aca mar shliochd Alasdair Mhòir feuch am beachdaichte orra mar rìghrean dligheil."
-
-#: simulation/data/civs/mace.jsonTeamBonuses[0].Name
-msgid "Standardized Currency"
-msgstr "Airgeadra stannardach"
+#: simulation/data/civs/maur.jsonAINames[0]
+msgid "Chandragupta Maurya"
+msgstr "Chandragupta Mauraidhea"
 
 #: simulation/data/civs/maur.jsonAINames[1]
 msgid "Bindusara Maurya"
 msgstr "Bindusara Mauraidhea"
+
+#: simulation/data/civs/maur.jsonAINames[2]
+msgid "Ashoka the Great"
+msgstr "Aśoka Mòr"
 
 #: simulation/data/civs/maur.jsonAINames[3]
 msgid "Dasharatha Maurya"
@@ -1423,78 +556,6 @@ msgstr "Shatadhanvan Mauraidhea"
 msgid "Brihadratha Maurya"
 msgstr "Brihadratha Mauraidhea"
 
-#: simulation/data/civs/maur.jsonCivBonuses[0].Description
-msgid ""
-"Mauryas have a +10% population cap bonus (e.g., 330 pop cap instead of the "
-"usual 300)."
-msgstr "Tha +10% dhe sluagh as motha ceadaichte dha na Mauraidhich (’s e seo tomhas-sluaigh dhe 330 an àite an 300 àbhaisteach)."
-
-#: simulation/data/civs/maur.jsonCivBonuses[0].History
-msgid ""
-"The Mauryan Empire encompassed dozens of formerly independent kingdoms over "
-"an area of 5 million square kilometers, with a population of close to 60 "
-"million people. The Mauryan rulers held the title Emperor of Emperors and "
-"commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
-"chariots, and 30,000 cavalry, making it arguably the largest army of its "
-"time."
-msgstr "Ghabh impireachd nam Mauraidheach a-steach dusanan de rìoghachdan a bhiodh neo-eisimeileach roimhe thar ranntair de 5 mhillean cilemeatair ceàrnagach agus sluagh de faisg air 60 millean. Chante “Impire nan Impire” ris na rìghrean Mauraidheach agus bhiodh smachd aca air feachd seasmhach de 600,000 coisridh, 9000 ailbhean, 8000 feun ’s 30,000 eachraidh. Thathar dhen bheachd gur e am feachd as motha a bh’ ann aig an àm."
-
-#: simulation/data/civs/maur.jsonCivBonuses[0].Name
-msgid "Emperor of Emperors."
-msgstr "Impire nan impirean."
-
-#: simulation/data/civs/maur.jsonCivBonuses[1].Description
-msgid "Elephants −30% training time."
-msgstr "Thèid ailbheanan oideachadh −30% nas luaithe."
-
-#: simulation/data/civs/maur.jsonCivBonuses[1].History
-msgid ""
-"India is the land of the elephants. Elephant warfare originated in India and"
-" continued for millennia. It was also the source of elephants for the "
-"eastern Mediterranean. Indian kings were able to field large numbers of war "
-"elephants."
-msgstr "’S e dùthaich nan ailbheanan a th’ anns na h-Innseachan. Tha tùs cogadh le ailbheanan sna h-Innseachan agus chleachdte iad fad linntean. ’S ann às an àite seo a thàinig ailbheanan gu taobh an ear na Mara Meadhanaiche. Bhiodh grunn ailbheanan cogaidh aig rìghrean nan Innseachan."
-
-#: simulation/data/civs/maur.jsonCivBonuses[1].Name
-msgid "Elephant Tradition"
-msgstr "Dualchas ailbheanan"
-
-#: simulation/data/civs/maur.jsonFactions[0].Heroes[0].History
-msgid "Founder of the Mauryan Empire."
-msgstr "Am fear a stèidhich an impireachd Mhauraidheach."
-
-#: simulation/data/civs/maur.jsonAINames[0]
-#: simulation/data/civs/maur.jsonFactions[0].Heroes[0].Name
-msgid "Chandragupta Maurya"
-msgstr "Chandragupta Mauraidhea"
-
-#: simulation/data/civs/maur.jsonFactions[0].Heroes[1].History
-msgid "Last great emperor of the Mauryan dynasty."
-msgstr "An t‑impire mòr mu dheireadh aig an tànaisteachd Mhauraidheach."
-
-#: simulation/data/civs/maur.jsonAINames[2]
-#: simulation/data/civs/maur.jsonFactions[0].Heroes[1].Name
-msgid "Ashoka the Great"
-msgstr "Aśoka Mòr"
-
-#: simulation/data/civs/maur.jsonFactions[0].Heroes[2].History
-msgid "Great teacher and advisor to Chandragupta Maurya."
-msgstr "Sàr-thidsear agus comhairle do Chandragupta Mauraidhea."
-
-#: simulation/data/civs/maur.jsonFactions[0].Heroes[2].Name
-msgid "Acharya Chāṇakya"
-msgstr "Acharya Chāṇakya"
-
-#: simulation/data/civs/maur.jsonFactions[0].Name
-msgid "Mauryan Indians"
-msgstr "Innseanaich Mauraidheach"
-
-#: simulation/data/civs/maur.jsonFactions[0].Technologies[0].History
-msgid ""
-"The Indian peoples had a tradition of fine archery and a penchant for using "
-"massed archers in battle."
-msgstr ""
-
 #: simulation/data/civs/maur.jsonHistory
 msgid ""
 "Founded in 322 B.C. by Chandragupta Maurya, the Mauryan Empire was the first"
@@ -1511,40 +572,6 @@ msgstr "Air a stèidheachadh ann an 322 RC le Chandragupta Mauraidhea, ’s e a�
 msgid "Mauryas"
 msgstr "Na Mauraidhich"
 
-#: simulation/data/civs/maur.jsonStructures[0].Name
-msgid "Elephant Stable"
-msgstr "Stàball ailbheanan"
-
-#: simulation/data/civs/maur.jsonStructures[0].Special
-msgid "Train Elephants and research Elephant technologies."
-msgstr "Oidich ailbheanan is rannsaich teicneolasan ailbheanan."
-
-#: simulation/data/civs/maur.jsonStructures[1].Name
-msgid "Edict Pillar of Ashoka"
-msgstr "Carragh fuagraidh Aśoka"
-
-#: simulation/data/civs/maur.jsonStructures[1].Special
-msgid ""
-"Contentment: +10% Health and +10% resource gathering rates for all citizens "
-"and allied citizens within its range. Can be built anywhere except in enemy "
-"territory. Max Built: 10."
-msgstr "Sonas: gheibh gach saoranach is saighdear-dùthcha agadsa ’s nan caidreabhach a bhios am broinn na rainse +10% de shlàinte is cruinnichidh iad stòras +10% nas luaithe. ’s urrainn dhut a thogail àite sam bith ach air ranntair no nàimhdean. Cuingeachadh togail: 10."
-
-#: simulation/data/civs/maur.jsonTeamBonuses[0].Description
-msgid ""
-"Allied Temples −50% resource costs and building time; Temple technologies "
-"−50% resource costs and research time."
-msgstr "−50% air cosgaisean stòrais is ùine togail nan teampall caidreabhach; −50% air cosgaisean stòrais is ùine rannsachaidh nan teicneolasan annta."
-
-#: simulation/data/civs/maur.jsonTeamBonuses[0].History
-msgid ""
-"Ashoka the Great sent embassies West to spread knowledge of the Buddha."
-msgstr "Chuir Aśoka tosgairean gu siar gus eòlas air a’ Bhuda a sgaoileadh."
-
-#: simulation/data/civs/maur.jsonTeamBonuses[0].Name
-msgid "Ashoka's Religious Support"
-msgstr "Taic cràbhach Aśoka"
-
 #: simulation/data/civs/pers.jsonAINames[0]
 msgid "Kurush II the Great"
 msgstr "Kùrois II Mòr"
@@ -1557,6 +584,10 @@ msgstr "Haxamanish"
 msgid "Xsayarsa II"
 msgstr "Xsayarsa II"
 
+#: simulation/data/civs/pers.jsonAINames[1]
+msgid "Darayavahush I"
+msgstr "Darayavahush I"
+
 #: simulation/data/civs/pers.jsonAINames[2]
 msgid "Cambyses II"
 msgstr "Cambyses II"
@@ -1564,6 +595,10 @@ msgstr "Cambyses II"
 #: simulation/data/civs/pers.jsonAINames[3]
 msgid "Bardiya"
 msgstr "Bardiya"
+
+#: simulation/data/civs/pers.jsonAINames[4]
+msgid "Xsayarsa I"
+msgstr "Xsayarsa I"
 
 #: simulation/data/civs/pers.jsonAINames[5]
 msgid "Artaxshacha I"
@@ -1585,140 +620,6 @@ msgstr "Artaxshacha II"
 msgid "Artaxshacha III"
 msgstr "Artaxshacha III"
 
-#: simulation/data/civs/pers.jsonCivBonuses[0].Description
-msgid ""
-"Persians have a +10% population cap bonus (e.g. 330 pop cap instead of the "
-"usual 300)."
-msgstr "Tha +10% dhe sluagh as motha ceadaichte dha na Pearsaich (’s e seo tomhas-sluaigh dhe 330 an àite an 300 àbhaisteach)."
-
-#: simulation/data/civs/pers.jsonCivBonuses[0].History
-msgid ""
-"The Persians could and did levy a large number of infantry during wartime "
-"due to the sheer size of the Achaemenid Empire and the way in which it was "
-"set-up. In general the Persian infantry was well trained and fought with "
-"great tenacity. However while this was true the infantry were poor hand-to-"
-"hand, close combat fighters. Also, with the exception of the elite "
-"regiments, the Persian infantry was not a standing professional force."
-msgstr "Thogadh na Pearsaich mòran choisridh rè àm a’ chogaidh ’s b’ urrainn dhaibh seo a dhèanamh air sàilleibh meud is rian na h-impireachd Achaemeanach. Fhuaireadh coisridh nam Pearsach deagh oideachadh san fharsaingeachd ’s rinneadh iad sabaid le righneas mòr. Ged a bha seo fìor, cha robh iad math air sabaid glè dhlùth. Cuideachd, cha bhiodh coisridh nam Pearsach ’nam feachd seasmhachd ’s proifeiseanta ach rèisimeidean nan seann-ghaisgeach."
-
-#: simulation/data/civs/pers.jsonCivBonuses[0].Name
-msgid "Great King's Levy"
-msgstr "Togail airm mòr an Rìgh"
-
-#: simulation/data/civs/pers.jsonFactions[0].Heroes[0].History
-msgid ""
-"Cyrus (ruled 559-530 B.C.) The son of a Median princess and the ruler of "
-"Anshan; justly called the 'Father of the Empire', Cyrus the Great conquered "
-"Media, Lydia, Babylonia and Bactria, thereby establishing the Persian "
-"Empire. He was also renown as a benevolent conqueror. (OP - Kurush). "
-"Technically the second ruler of the Persians by that name, and so appears as"
-" Kurush II on his documents and coins. Kurush I was his grandfather."
-msgstr "Cìrus, a riaghlaich 559-530 RC. Bu mhac e do bhana-phrionnsa Mheadach agus do riaghladair Ainseain. Bu ro-airidh e air an tiotal \"Athair na h-Impireachd,\" leis gun do chìosnaich Cìrus Mòr dùthaich nam Meadach, Lydia, Bàbalon is Bactria, agus gun do stèidhich e mar sin an Impireachd Phearsach.  Choisinn e cliù dha fhèin cuideachd mar cheannsaiche mathasach. (OP - Kurush). B' esan an da-rìreadh dàrna riaghladair nam Pearsach air an robh an t-ainm sin, agus nochdadh e uime sin mar Kurush II air sgrìobhainnean agus buinn. Bu Kurush I a sheanair."
-
-#: simulation/data/civs/pers.jsonFactions[0].Heroes[0].Name
-msgid "Kurush II"
-msgstr "Kurush II"
-
-#: simulation/data/civs/pers.jsonFactions[0].Heroes[1].History
-msgid ""
-"Darius (ruled 522-486 B.C.) The son of Vishtaspa (Hystaspes), the satrap of "
-"Parthia and Hyrcania; a great administrator as well as a decent general, "
-"Darius introduced the division of the empire into satrapies and conquered NW"
-" India, Thrace and Macedonia. He was called the 'Merchant of the Empire'."
-msgstr "Darius (’na rìgh 522-486 RC) mac Vishtaspa (Hystaspes), satrap Phartia ’s Hyrcania; sàr-rianaire ’s ceann-armailt comasach. Stèidhich Darius roinneadh na h-impireachd ’na satrapachdan agus cheannsaich e ceann iar-thuath nan Innseachan, Tràicea ’s a’ Mhasadon. Chainte “Marsanta na h-Impireachd” ris."
-
-#: simulation/data/civs/pers.jsonAINames[1]
-#: simulation/data/civs/pers.jsonFactions[0].Heroes[1].Name
-msgid "Darayavahush I"
-msgstr "Darayavahush I"
-
-#: simulation/data/civs/pers.jsonFactions[0].Heroes[2].History
-msgid ""
-"Xerxes (ruled 485-465 B.C.) The son of Darius the Great and Atoosa, a "
-"daughter of Cyrus the Great, Xerxes was an able administrator, who also "
-"extended Imperial rule into Chorasmia. Apart from his failed invasion of "
-"Greece, he was famous for his extensive building programme, especially at "
-"Persepolis."
-msgstr "Xerxes (’na rìgh 485-465 RC) . ’S e mac Dhariuis Mhòir ’s Atòsa nighean Chìruis Mhòir a bh’ ann an Xerxes ’s rianaire comasach a leudaich Impireachd gu Khwarazm. A thuilleadh air a bhriseadh a-steach dhan Ghreug nach deach leis, tha e ainmeil airson a phrògram togail fharsaing, gu h-àraidh ann am Persepolis."
-
-#: simulation/data/civs/pers.jsonAINames[4]
-#: simulation/data/civs/pers.jsonFactions[0].Heroes[2].Name
-msgid "Xsayarsa I"
-msgstr "Xsayarsa I"
-
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[0].History
-msgid ""
-"The Iranian peoples had a tradition of fine archery and a penchant for using"
-" massed archers in battle."
-msgstr ""
-
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[1].Description
-msgid "Phoenician triremes gain the unique ability to train cavalry."
-msgstr "Buannaichidh longan trì-ràmhach nam Pheniceach an comas sònraichte gun gabh eachraidh oideachadh annta."
-
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[1].History
-msgid ""
-"Early Achaemenid rulers acted towards making Persia the first great Asian "
-"empire to rule the seas. The Great King behaved favourably towards the "
-"various sea peoples in order to secure their services, but also carried out "
-"various marine initiatives. During the reign of Darius the Great, for "
-"example, a canal was built in Egypt and a Persian navy was sent exploring "
-"the Indus river. According to Herodotus, some 300 ships in the Persian navy "
-"were retrofitted to carry horses and their riders."
-msgstr "Le gnìomhan nan rìghrean Achaimeneach tràtha, chaidh a’ Pheirse ’na chiad impireachd Àiseanach mhòr aig an robh smachd air a’ mhuir. Bha giùlan an Rìgh Mhòir fàbharach do shluaghan na mara ach an doireadh iad taic dha ach rinn e leasachaidhean-mara cuideachd. Mar eisimpleir, thogadh canal san Èipheit agus rùraich cabhlach Pearsach abhainn Indus ri linn Darius Mhòir. A-rèir Herodotus, chaidh mu 300 long aig cabhlach nam Pearsach uidheamachadh gus eich agus am marcaichean a ghiùlan."
-
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[1].Name
-msgid "Naval Craftsmanship"
-msgstr "Ceàrd a’ chabhlaich"
-
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[2].Description
-msgid ""
-"Increases hitpoints of all structures, but build time increased "
-"appropriately."
-msgstr "Bidh barrachd phuingean slàinte aig gach togalach ach bheir e barrachd ùine gus a thogail le sin."
-
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[2].History
-msgid ""
-"The Persians built the wonderful 2700 kilometer-long Royal Highway from "
-"Sardis to Susa; Darius the Great and Xerxes also built the magnificent "
-"Persepolis; Cyrus the Great greatly improved Ecbatana and virtually "
-"'rebuilt' the old Elamite capital of Susa."
-msgstr "Thog na Pearsaich an rathad mòr rìoghail mìorbhaileach o Shardis gu Susa a bha 1677 mìle a dh’fhaid; thog Darius Mòr ’s Xerxes Persepolis greadhnach cuideachd; rinn Kùrois Mòr leasachadh mòr air Ecbatana agus ath-thog e Susa, seann chathair-bhaile nan Ealamach."
-
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[2].Name
-msgid "Persian Architecture"
-msgstr "Ailtireachd Phearsach"
-
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[3].Description
-msgid "Anušiya Champion Infantry -50% train time, but also -10% health."
-msgstr "Thèid laoich coisridh Anušiya oideachadh nas luaithe le −50% ach caillidh iad slàinte cuideachd le −10%."
-
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[3].History
-msgid ""
-"The Achaemenids maintained a 10,000-strong elite corps, referred to as "
-"Athanatoi (“Immortals”) by Greek authors."
-msgstr "Bhiodh grunn de 10,000 seann-ghaisgeach aig na h-Achaimenich is chuir ùghdaran na Grèige Athanatoi (“an fheadhainn neo-bhàsmhor”) orra."
-
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[3].Name
-msgid "Immortals"
-msgstr "Lèintean-crios neo-bhàsmhor"
-
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[4].Description
-#: simulation/data/civs/sele.jsonFactions[0].Technologies[1].Description
-msgid "+25% health for cavalry, but +10% train time."
-msgstr "Gheibh eachraidh +25% de shlàinte ach bheir iad +10% nas faide gus an oideachadh."
-
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[4].History
-msgid ""
-"The beautiful and powerful breed of Nisean horses increases health for "
-"Persian cavalry."
-msgstr "An sìol eireachdail is cumhachdach de dh’eich Niseanach a bheir barrachd slàinte do dh’eachdraidh nam Pearsach."
-
-#: simulation/data/civs/pers.jsonFactions[0].Technologies[4].Name
-#: simulation/data/civs/sele.jsonFactions[0].Technologies[1].Name
-msgid "Nisean War Horses"
-msgstr "Eich-chogaidh Niseanach"
-
 #: simulation/data/civs/pers.jsonHistory
 msgid ""
 "The Persian Empire, when ruled by the Achaemenid dynasty, was one of the "
@@ -1733,53 +634,6 @@ msgstr "’S e tè dhe na h-Impireachdan as motha a bh’ ann an impireachd nam 
 #: simulation/data/civs/pers.jsonName
 msgid "Persians"
 msgstr "Na Pearsaich"
-
-#: simulation/data/civs/pers.jsonStructures[0].History
-msgid "The Persian Empire's best soldiers were Eastern horsemen."
-msgstr "B’ e marcaichean on taobh an ear a bh’ anns na saighdearan a b’ fheàrr aig impireachd nam Pearsach."
-
-#: simulation/data/civs/pers.jsonStructures[0].Name
-msgid "Stable"
-msgstr "Stàball"
-
-#: simulation/data/civs/pers.jsonStructures[0].Special
-msgid "Train Cavalry and research Cavalry technologies."
-msgstr "Oidich eachraidh is rannsaich teicneolasan eachraidh."
-
-#: simulation/data/civs/pers.jsonStructures[1].History
-msgid ""
-"The term Apadana designates a large hypostyle palace found in Persia. The "
-"best known example, and by far the largest, was the great Apadana at "
-"Persepolis. Functioning as the empire's central audience hall, the palace is"
-" famous for the reliefs of the tribute-bearers and of the army, including "
-"the Immortals."
-msgstr "Mìnichidh am briathar “apadana” lùchairt hiopostoidhle mòr a chaidh a lorg sna Peirse. ’S e an  apadana mòr Phersepolis a th’ anns a’ bhall-eisimpleir as cliùitiche ’s as motha. ’S e prìomh thalla-èisteachd na h-impireachd a bh’ anns an lùchairt sin agus tha e cliùiteach ri linn nan rilifean dhe ghiùlanairean-cìse is dhen airm, a’ gabhail a-steach nan lèintean-crios neo-bhàsmhor."
-
-#: simulation/data/civs/pers.jsonStructures[1].Name
-msgid "Apadana"
-msgstr "Apadana"
-
-#: simulation/data/civs/pers.jsonStructures[1].Special
-msgid ""
-"Train heroes and Persian Immortals. Gives a slow trickle of all resources as"
-" 'Satrapy Tribute.'"
-msgstr "Oidich curaidhean ’s lèintean-crios neo-bhàsmhor. Bheir seo beagan stòrais dhut gu cunbhalach mar “chìos satrapachd.”"
-
-#: simulation/data/civs/pers.jsonTeamBonuses[0].Description
-msgid "Allied Land Traders +15% trade gain."
-msgstr "Buannaichidh luchd-malairt tìre caidreabhach +15% air a’ mhalart."
-
-#: simulation/data/civs/pers.jsonTeamBonuses[0].History
-msgid ""
-"Coinage was invented by the Lydians in 7th Century B.C., but it was not very"
-" common until the Persian period. Darius the Great standardized coined money"
-" and his golden coins (known as 'darics') became commonplace not only "
-"throughout his empire, but as far to the west as Central Europe."
-msgstr "Chaidh an cùinneadh a thionnsgal leis na Lydaich san 7mh linn RC ach cha robh e pailt ro linn nam Pearsach. Chuir Darius Mòr stannard air a’ chùinneadh agus dh’fhàs na buinn òir aige (ris a chante “darich”) àbhaisteach chan ann a-mhàin san impireachd aige fhèin ach cho fada gu iar ri meadhan na Roinn-Eòrpa."
-
-#: simulation/data/civs/pers.jsonTeamBonuses[0].Name
-msgid "Royal Road"
-msgstr "Rathad rìoghail"
 
 #: simulation/data/civs/ptol.jsonAINames[0]
 msgid "Ptolemy Soter"
@@ -1857,26 +711,6 @@ msgstr "Ptolemaios Alasdair"
 msgid "Ptolemy Neos Dionysos"
 msgstr "Ptolemaios Neos Dionysos"
 
-#: simulation/data/civs/ptol.jsonFactions[0].Description
-msgid "The great Greek-Macedonian dynastic rule over Ancient Egypt."
-msgstr "A’ mhòr-riaghailt Ghreugach Mhasadonach thànaisteach air an Èipheit àrsaidh."
-
-#: simulation/data/civs/ptol.jsonFactions[0].Heroes[0].Name
-msgid "Ptolemaios A' Soter"
-msgstr "Ptolemaios A’ Soter"
-
-#: simulation/data/civs/ptol.jsonFactions[0].Heroes[1].Name
-msgid "Ptolemaios D' Philopater"
-msgstr "Ptolemaios D’ Philopater"
-
-#: simulation/data/civs/ptol.jsonFactions[0].Heroes[2].Name
-msgid "Kleopatra H' Philopater"
-msgstr "Kleopatra H’ Philopater"
-
-#: simulation/data/civs/ptol.jsonFactions[0].Name
-msgid "Ptolemaic Egyptians"
-msgstr "Èipheitich Phtolemaidheach"
-
 #: simulation/data/civs/ptol.jsonHistory
 msgid ""
 "The Ptolemaic dynasty was a Macedonian Greek royal family which ruled the "
@@ -1888,69 +722,6 @@ msgstr "’S e teaghlach rìoghail Greugach a bh’ anns na Ptolemaidhich a riag
 #: simulation/data/civs/ptol.jsonName
 msgid "Ptolemies"
 msgstr "Na Ptolemaidhich"
-
-#: simulation/data/civs/ptol.jsonStructures[0].Special
-#: simulation/data/civs/sele.jsonStructures[0].Special
-msgid ""
-"Maximum of 1 built. All Special Technologies and some regular city-phase "
-"technologies are researched here. Building one reduces the cost of all other"
-" remaining technologies by 10%."
-msgstr "Thèid gach teicneolas sònraichte ’s cuid a theicneolasan àbhaisteach aig linn nam mòr-bhailtean a rannsachadh an-seo. Nuair a thogas tu fear, bidh na teicneolasan eile uile nas saoire le 10%. Cuingeachadh togail: 1."
-
-#: simulation/data/civs/ptol.jsonStructures[1].History
-msgid ""
-"The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and "
-"foreign mercenaries for the bulk of its military force, mainly because the "
-"loyalty of native Egyptian units was often suspect. Indeed, during one "
-"native uprising, Upper Egypt was lost to the Ptolemies for decades. "
-"Mercenaries were often battle-hardened and their loyalty could be bought, "
-"sometimes cheaply, sometimes not cheaply. This was of no matter, since Egypt"
-" under the Ptolemies was so prosperous as to be the richest of Alexander's "
-"successor states."
-msgstr "Bhiodh an rìoghrachas Ptolemaidheach Greugach-Ròmanach an eisimeil air grunn shaighdearan-duaise Greugach ’s cèine agus iadsan a’ mhòrchuid de dh’fheachd an rìoghrachais o nach robh earbsa aige ann an dìlseachd nan aonadan Èipheiteach tùsanach tric. Gu dearbha, chaill na Ptolemaidhich an Èipheit Uachdarach fad deicheadan ri linn aramach tùsanach. Bhiodh saighdearan-duaise cruaidh eòlach gu tric agus is daor a cheannaicheadh an dìlseachd aig amannan. Cha robh sin gu diofar co-dhiù oir b’ e Èipheit nam Ptolemaidheach a bha cho soirbheachail ’s gum b’ e an stàit iar-theachdach Alasdair a bu bheartaiche a bh’ ann."
-
-#: simulation/data/civs/ptol.jsonStructures[1].Name
-msgid "Stratópedo Misthophóron"
-msgstr "Stratópedo Misthophóron"
-
-#: simulation/data/civs/ptol.jsonStructures[1].Special
-msgid ""
-"Must be constructed in neutral territory. Has no territory radius effect. "
-"Trains mercenaries."
-msgstr "Chan fhaod thu a thogail ach air ranntair neo-phàirteach. Chan eil buaidh aige air leud do ranntair. Oidichidh e saighdearan-duaise."
-
-#: simulation/data/civs/ptol.jsonStructures[2].History
-msgid ""
-"The Ptolemaic dynasty in Egypt built the magnificent Lighthouse of "
-"Alexandria near the harbor mouth of that Nile Delta city. This structure "
-"could be seen for many kilometers out to sea and was one of the Seven "
-"Wonders of the World."
-msgstr "Thog rìoghrachas Ptolemaidheach na h-Èipheite taigh-solais Alecsandria faisg air beul cala a’ bhaile seo aig gòbhlan an Nìl. Chìte an togalach seo thar iomadh mìle air a’ chuan agus b’ esan fear dhe na seachd culaidhean-iongantais an t-saoghail."
-
-#: simulation/data/civs/ptol.jsonStructures[2].Name
-msgid "Lighthouse"
-msgstr "Taigh-solais"
-
-#: simulation/data/civs/ptol.jsonStructures[2].Special
-msgid ""
-"When built along the shoreline, removes shroud of darkness over all the "
-"water, revealing all the coast lines on the map. Limit: 1."
-msgstr "Ma thogas tu tè air an oirthir, bheir seo air falbh an dorchadas air an uisge ach am faic thu far a bheil an costa air feadh a’ mhapa. Cuingeachadh togail: 1."
-
-#: simulation/data/civs/ptol.jsonTeamBonuses[0].Description
-msgid "Allies +1.0 food trickle rate."
-msgstr "Gheibh caidreabhaich +1.0 air a’ bhiadh chunbhalach."
-
-#: simulation/data/civs/ptol.jsonTeamBonuses[0].History
-msgid ""
-"Egypt was a net exporter of grain, so much so that large cities such as "
-"Athens, Antioch, and Rome came to rely upon Egyptian grain in order to feed "
-"their masses."
-msgstr "Bhiodh an Èipheit ag às-mhalart gràn an ìre cho mòr ’s gum biodh bailtean mòra a leithid Baile na h-Àithne, Antioch ’s an Ròimh gu tur an eisimeil gràn na h-Èipheite ach an doireadh iad biadh dhan mhòr-shluagh."
-
-#: simulation/data/civs/ptol.jsonTeamBonuses[0].Name
-msgid "Breadbasket of the Mediterranean"
-msgstr "Basgaid-arain na Mara Meadhanaich"
 
 #: simulation/data/civs/rome.jsonAINames[0]
 msgid "Lucius Junius Brutus"
@@ -2042,62 +813,6 @@ msgstr "Bhiod saoranachd Ròmanach prìseil do mhuinntir an t-saoghail àrsaidh.
 msgid "Citizenship"
 msgstr "Saoranachd"
 
-#: simulation/data/civs/rome.jsonFactions[0].Heroes[0].History
-msgid ""
-"Dictator for six months during the Second Punic War. Instead of attacking "
-"the most powerful Hannibal, he started a very effective war of attrition "
-"against him."
-msgstr "Bha e ’na dheachdaire fad sia mìosan rè an dàrna Chogaidh Phùnaich. Seach ionnsaigh a thoirt air Hannibal a bha na bu chumhachdaiche, thòisich e air cogadh caitheimh glè èifeachdach ’na aghaidh."
-
-#: simulation/data/civs/rome.jsonFactions[0].Heroes[0].Name
-msgid "Quintus Fabius Maximus"
-msgstr "Quintus Fabius Maximus"
-
-#: simulation/data/civs/rome.jsonFactions[0].Heroes[1].History
-msgid ""
-"A soldier of the first war with Carthage, a hero of the Second Punic War, "
-"and victor over the Gauls at Clastidium. Plutarch describes him as a man of "
-"war, strong in body and constitution, with an iron will to fight on. As a "
-"general he was immensely capable, standing alongside Scipio Africanus and "
-"Claudius Nero as the most effective Roman generals of the entire Second "
-"Punic War. In addition to his military achievements Marcellus was a fan of "
-"Greek culture and arts, which he enthusiastically promoted in Rome. He met "
-"his demise when his men were ambushed near Venusia. In honor of the respect "
-"the people held for him, Marcellus was granted the title of 'Sword of Rome.'"
-msgstr "Bha e ’na shaighdear sa chiad chogadh an aghaidh Chartago ’s ’na ghaisgeach san an dàrna Chogadh Phùnach agus cheannsaich e muinntir na Gaille aig Clastidium. Tha Plutarch ’ga mhìneachadh mar fhear-cogaidh le bodhaig is creabhag threun agus miann làidir air cumail a’ dol a shabaid. Bha e uabhasach comasach mar cheann-airm agus esan am measg nan ceann-airm as èifeachdaiche dhen dàrna Chogadh Phùnach a leithid Scipio Africanus agus Claudius Nero. A bharrachd air na buaidhean aige san arm, bha ùidh mhòr aig Marcellus ann an dualchas is obair-ealain Ghreugach a bhiod e a’ brosnachadh gu dèidheil san Ròimh. Fhuair e bàs nuair a thàinig a chuideachd fo fheall-fhalach faisg air Venusia. Ri linn na spèise a bheirte dha, fhuair Marcellus urram leis an tiotal “Claidheamh na Ròimhe”."
-
-#: simulation/data/civs/rome.jsonFactions[0].Heroes[1].Name
-msgid "Marcus Claudius Marcellus"
-msgstr "Marcus Claudius Marcellus"
-
-#: simulation/data/civs/rome.jsonFactions[0].Heroes[2].History
-msgid ""
-"He was the first really successful Roman general against the Carthaginians. "
-"His campaigns in Spain and Africa helped to bring Carthage to its knees "
-"during the Second Punic War. He defeated Hannibal at the Battle of Zama in "
-"202 B.C."
-msgstr "B’ esan a’ chiad cheann-airm Ròmanach leis an deach an latha an aghaidh muinntir Chartago. Chuidich na h-iomairtean aige san Spàinnt agus ann an Afraga gun do ghèill Cartago rè an dàrna Chogaidh Phùnaich. Chuir e ruaig air Hannibal ann am Blàr Zama 202 RC."
-
-#: simulation/data/civs/rome.jsonFactions[0].Heroes[2].Name
-msgid "Scipio Africanus"
-msgstr "Scipio Africanus"
-
-#: simulation/data/civs/rome.jsonFactions[0].Technologies[0].Description
-msgid "Roman heroes can convert enemy units with great cost."
-msgstr "’S urrainn dha chuiridhean Ròmanach aonadan an nàmhad iompachadh le cosgais àrd."
-
-#: simulation/data/civs/rome.jsonFactions[0].Technologies[0].History
-msgid ""
-"'Divide and conquer' was the main principle in Rome's foreign politics "
-"throughout its long history. The Romans lured enemies or neutral factions to"
-" their side by offering them certain privileges. In due period of time, "
-"friends as well as foes were subjugated."
-msgstr "B’ e “dealaich is ceannsaich” a bh’ ann am prìomh-phrionnsabal poileataigs chèin na Ròimhe rè a h-eachdraidh faide. Mhealladh na Ròmanaich nàimhdean no sluaghan neo-phàirteach dhan taobh acasan le tairgse air sochairean. Air a cheann thall, rachadh an dà chuid caraidean agus nàimhdean a chur fo cheannas."
-
-#: simulation/data/civs/rome.jsonFactions[0].Technologies[0].Name
-msgid "Divide et Impera"
-msgstr "Divide et Impera"
-
 #: simulation/data/civs/rome.jsonHistory
 msgid ""
 "The Romans controlled one of the largest empires of the ancient world, "
@@ -2112,59 +827,6 @@ msgstr "Stiùirich na Ròmanaich tè dhe na h-impireachdan as motha sa chian-aim
 #: simulation/data/civs/rome.jsonName
 msgid "Romans"
 msgstr "Na Ròmanaich"
-
-#: simulation/data/civs/rome.jsonStructures[0].History
-msgid ""
-"Sometimes it was a temporary camp built facing the route by which the army "
-"is to march, other times a defensive or offensive (for sieges) structure. "
-"Within the Praetorian gate, which should either front the east or the enemy,"
-" the tents of the first centuries or cohorts are pitched, and the dracos "
-"(ensigns of cohorts) and other ensigns planted. The Decumane gate is "
-"directly opposite to the Praetorian in the rear of the camp, and through "
-"this the soldiers are conducted to the place appointed for punishment or "
-"execution. It has a turf wall, and it's surrounded by a canal filled with "
-"water whenever possible for extra defense. Many towns started up as bigger "
-"military camps to evolve to more complicated cities."
-msgstr "’S e campa sealadach a bhiodh ann aig amannan ’s mu choinneamh an rathaid a bhiodh am feachd a thoirt air no ’s e togalach ionnsaigheach (ri sèist) no dìonach a bhiodh ann aig amannan eile. Taobh a-staigh an dorais Phraetoraich mu choinneamh an ear no an nàmhad, thogte teantaichean nan ciad cheann-cheud no cohorsaichean agus cuirte na dracothan (brataich nan cohorsaichean) agus brataich eile ann. Bhiodh an doras Decumanach aig cùl a’ champa taobh mu choinneamh an dorais Phraetoraich agus chaidh saighdearan a thoirt troimhe dhan àite pheanasachaidh no bàs-lag. Bhiodh balla mòine aig a’ champa agus staing uisge timcheall air far an robh e comasach sin a dhèanamh a chùm dìona na b’ fheàrr. Chaidh iomadh baile a stèidheachadh mar champa airm mòr a chaidh ’na bhaile mhòr iom-fhillte rè àm."
-
-#: simulation/data/civs/rome.jsonStructures[0].Name
-msgid "Entrenched Camp"
-msgstr "Campa daingeann"
-
-#: simulation/data/civs/rome.jsonStructures[0].Special
-msgid "Trains citizen-soldiers from neutral or enemy territory."
-msgstr "Oidich saighdearan-dùthcha o ranntair nàmhad no neo-phàirteach."
-
-#: simulation/data/civs/rome.jsonStructures[1].History
-msgid "Turf walls built by legionaries during sieges."
-msgstr "Ballachan-sgratha air an togail le lèigiunaich rè shèistean."
-
-#: simulation/data/civs/rome.jsonStructures[1].Name
-msgid "Murus Latericius"
-msgstr "Murus Latericius"
-
-#: simulation/data/civs/rome.jsonStructures[1].Special
-msgid "Can be built in neutral and enemy territory to strangle enemy towns."
-msgstr "Gabhaidh an togail air ranntair nàmhad no neo-phàirteach gus bailtean an nàmhad a mhùchadh."
-
-#: simulation/data/civs/rome.jsonTeamBonuses[0].Description
-msgid "Allied Citizen Infantry −10% training time."
-msgstr "Gheibh coisridh-dhùthcha caidreabhach −10% air an ùine oideachaidh."
-
-#: simulation/data/civs/rome.jsonTeamBonuses[0].History
-msgid ""
-"Many Roman soldiers were conscripted into service. While volunteers were "
-"preferred, the Roman state did maintain an annual military draft. During an "
-"emergency the draft and the terms of service were enlarged. The importance "
-"of military service in Republican Rome was so great it was a prerequisite "
-"for a political career. Members of the Senate were called Conscript Fathers "
-"because of this, reflected in how the ordo equester was said to have been "
-"\"conscripted\" into the Senate."
-msgstr "Chaidh iomadh saighdear Ròmanach a thogail dhan arm. Ged a bhiodh prìomhachas air saighdearan saor-thoileach, thogadh stàite na Ròimhe daoine dhan arm gach bliadhna. Bhiodh an togail agus ùine na seirbheise gan leudachadh dè amannan èiginneach. Bhiodh an t-seirbheis san arm cho chudromach sa Phoblachd Ròmanach nach fhaighte dreachd phoilitigeach às a h-aonais. Chante “athraichean an dleastanais-airm” ri buill an t-seanaidh ri linn seo on a bheachdaicheadh na daoine air an ordo equester mar gun deach an “togail” dhan t-seanadh."
-
-#: simulation/data/civs/rome.jsonTeamBonuses[0].Name
-msgid "Conscription"
-msgstr "Dleastanas-airm"
 
 #: simulation/data/civs/sele.jsonAINames[0]
 msgid "Seleucus I Nicator"
@@ -2283,134 +945,14 @@ msgstr "Antiochus V Eupator"
 msgid "Demetrius I Soter"
 msgstr "Demetrius I Soter"
 
-#: simulation/data/civs/sele.jsonFactions[0].Description
-msgid ""
-"The Macedonian-Greek dynasty that ruled the Eastern part of Alexander's "
-"former empire."
-msgstr "An sliochd Greugach is Masadonach a riaghlaich an impireachd a bha aig Alastair san ear roimhe."
-
-#: simulation/data/civs/sele.jsonFactions[0].Heroes[0].History
-msgid ""
-"Always lying in wait for the neighboring nations, strong in arms and "
-"persuasive in council, he (Seleucus) acquired Mesopotamia, Armenia, "
-"'Seleucid' Cappadocia, Persis, Parthia, Bactria, Arabia, Tapouria, Sogdia, "
-"Arachosia, Hyrcania, and other adjacent peoples that had been subdued by "
-"Alexander, as far as the river Indus, so that the boundaries of his empire "
-"were the most extensive in Asia after that of Alexander. The whole region "
-"from Phrygia to the Indus was subject to Seleucus. — Appian, 'The Syrian "
-"Wars'."
-msgstr "A’ feitheamh air na nàiseanan nàbaidh an-còmhnaidh, le airm threun agus comhairle ìmpidheach, ghabh e (Seleucus) Mesopotamia, Airmeinea, Capadòcia “Seleucach”, Persas, Parthia, Bactria, Aràibia, Tapouria, Sogdia, Arachosia, Hyrcania agus sluaghan dlùtha eile a cheannsaich Alasdair roimhe gu ruige abhainn Indus gus an robh crìochan ìmpireachd a b’ fharsainge ann an Àisia na bhiodh aig Alasdair fèin. Cha an sgìre gu lèir o Phrygia gu ruige an Indus fo Sheleucus. – Appianós, “Na cogaidhean Siridheach”."
-
-#: simulation/data/civs/sele.jsonFactions[0].Heroes[0].Name
-msgid "Seleukos A' Nikator"
-msgstr "Seleukos A’ Nikator"
-
-#: simulation/data/civs/sele.jsonFactions[0].Heroes[1].History
-msgid ""
-"Antiochus inherited a troubled kingdom upon the beginning of his reign. From"
-" the verge of collapse he managed to weld back together the empire Seleucus "
-"I fought so hard to found. The rebellious eastern satraps of Bactria and "
-"Parthia were brought to heel, temporarily securing his eastern borders. He "
-"then turned his attention to mother Greece, attempting to fulfill the dreams"
-" of his fathers by invading Greece under the pretext of liberation. The "
-"Achaean League and the Kingdom of Pergamon banded together with the Romans "
-"to defeat him at the Battle of Magnesia, forever burying the dream of "
-"reuniting Alexander's empire."
-msgstr "Fuair Antiochus rìoghachd shàraichte mar dhìleab aig toiseach a rìoghachaidh. Chaidh leis an ìmpireachd a bhuannaich Seleucus I le strì mhòr ach a bha air thuar tuiteam aontachadh a-rithist. Ghabh e smachd a-rithist air satrapan Bhactria is Parthia reubalach an ear, a’ daingneachadh nan crìochan aige gu ear rè seal. Chuir e aire air a’ Ghreug mhàthaireil an uairsin ann an oidhirp air bruadairean a shinnsirean a choileanadh agus e a’ lunnadh air a’ Ghreug le fann-leisgeul an t-saoraidh. Chaidh Lìg nan Achaeach agus Rìoghachd Phergamon còmhla leis na Ròmanaich agus chuir iad ruaig air air blàr Mhagnesia, ag adhlacadh a bhruadair air aontachadh ìmpireachd Alasdair a-rithist."
-
-#: simulation/data/civs/sele.jsonFactions[0].Heroes[1].Name
-msgid "Antiokhos G' Megas"
-msgstr "Antiokhos G’ Megas"
-
-#: simulation/data/civs/sele.jsonFactions[0].Heroes[2].History
-msgid ""
-"Antiochus IV Epiphanes was a son of Antiochus III the Great and brother of "
-"Seleucus IV Philopator. Originally named Mithridates, he assumed the name "
-"Antiochus either upon his accession to the throne or after the death of his "
-"elder brother Antiochus. Notable events during his reign include the near-"
-"conquest of Egypt (twice), which was halted by the threat of Roman "
-"intervention, and the beginning of the Jewish revolt of the Maccabees. He "
-"died of sudden illness while fighting off a Parthian invasion from the East."
-msgstr ""
-
-#: simulation/data/civs/sele.jsonFactions[0].Heroes[2].Name
-msgid "Antiokhos D' Epiphanes"
-msgstr "Antiokhos D’ Epiphanes"
-
-#: simulation/data/civs/sele.jsonFactions[0].Technologies[1].History
-msgid ""
-"The beautiful and powerful breed of Nisean horses increases health for "
-"Seleucid cavalry."
-msgstr "An sìol eireachdail is cumhachdach de dh’eich Niseanach a bheir barrachd slàinte do dh’eachdraidh nan Seleucach."
-
-#: simulation/data/civs/sele.jsonFactions[0].Technologies[2].Description
-msgid ""
-"Unlock either Champion Infantry Pikemen or Champion Infantry Swordsmen."
-msgstr ""
-
-#: simulation/data/civs/sele.jsonFactions[0].Technologies[2].History
-msgid ""
-"Seleucid and indeed Successor warfare evolved over the course of the 3rd and"
-" 2nd centuries. Contact with Eastern upstarts such as the Parthians and "
-"constant revolts of peripheral satrapies such as Bactria caused the "
-"Seleucids to reform their military and change their tactics, specifically in"
-" the cavalry arm. War with the Romans from the West and invasions from the "
-"Galatians also forced the Seleucids to reform their infantry regiments to be"
-" more flexible."
-msgstr "Chaidh cleasan-cogaidh nan Seleucaich ’s an iar-theachdaichean a leasachadh rè nan 3s is 2na linntean. On a thachair iad ri sluaghan ùra o thaobh an ear mar muinntir Phartia agus ri linn ar-a-mach cunbhalach nan satrap iomallach mar Bactria, rinn na Seleucaich ath-leasachadh air an airm aca agus dh’atharraich iad an innleachd aca, gu h-àraidh a thaobh an eachraidh. Thug cogadh an aghaidh nan Ròmanach o thaobh an iar agus briseadh a-steach nan Galatach air na Seleucaich gun ath-leasaicheadh iad a’ choisridh aca cuideachd ach am bhiodh i na bu shùbailte."
-
-#: simulation/data/civs/sele.jsonFactions[0].Technologies[2].Name
-msgid "Traditional Army vs Reform Army"
-msgstr "Feachd tradaiseanta no feachd an ath-leasachaidh"
-
 #: simulation/data/civs/sele.jsonHistory
 msgid ""
 "The Macedonian-Greek dynasty that ruled most of Alexander's former empire."
 msgstr "An sliochd Greugach is Masadonach a riaghlaich cuid mhòr dhen impireachd a bha aig Alastair roimhe."
 
-#: simulation/data/civs/sele.jsonFactions[0].Name
 #: simulation/data/civs/sele.jsonName
 msgid "Seleucids"
 msgstr "Na Seleucaich"
-
-#: simulation/data/civs/sele.jsonStructures[1].History
-msgid ""
-"The Seleucid kings invited Greeks, Macedonians, Galatians (Gauls), Cretans, "
-"and Thracians alike to settle in within the vast territories of the empire. "
-"They settled in military colonies called cleruchies (klēroukhia). Under this"
-" arrangement, the settlers were given a plot of land, or a kleros, and in "
-"return were required to serve in the great king's army when called to duty. "
-"This created a upper-middle class of military settlers who owed their "
-"livelihoods and fortunes to the Syrian kings and helped grow the available "
-"manpower for the imperial Seleucid army. A side effect of this system was "
-"that it drained the Greek homeland of military-aged men, a contributing "
-"factor to Greece's eventual conquest by Rome."
-msgstr ""
-
-#: simulation/data/civs/sele.jsonStructures[1].Name
-msgid "Military Colony"
-msgstr "Tuineachas an airm"
-
-#: simulation/data/civs/sele.jsonStructures[1].Special
-msgid ""
-"This is the Seleucid expansion building, similar to Civic Centers for other "
-"factions. It is weaker and carries a smaller territory influence, but is "
-"cheaper and built faster."
-msgstr "Seo togalach leudachaidh nan Seleucach a tha coltach ris an ionad shìobhalta aig sìobhaltasan eile. Tha e nas laige agus tha a bhuaidh air an ranntair as lugha, ach tha e nas saoire is togaidh tu nas luaithe e."
-
-#: simulation/data/civs/sele.jsonTeamBonuses[0].Description
-msgid "Allied Civil Centers −20% resource costs."
-msgstr "−20% air cosgaisean stòrais nan ionadan sìobhalta caidreabhach."
-
-#: simulation/data/civs/sele.jsonTeamBonuses[0].History
-msgid ""
-"The political core of the Seleucid Empire consisted of four 'sister' cities:"
-" Antioch (the capital), Seleucia Pieria, Apamea, and Laodicea."
-msgstr "Bhiodh ceithir bailtean ann an co-dhàimh air cridhe impireachd nan Seleucach: Antioch (an cathair-bhaile), Seleucia Pieria, Apamea ’s Laodicea."
-
-#: simulation/data/civs/sele.jsonTeamBonuses[0].Name
-msgid "Syrian Tetrapolis"
-msgstr "Ceithir-bhaile Siridheach"
 
 #: simulation/data/civs/spart.jsonAINames[0]
 msgid "Leonidas"
@@ -2427,6 +969,10 @@ msgstr "Agesipolis"
 #: simulation/data/civs/spart.jsonAINames[1]
 msgid "Dienekes"
 msgstr "Dienekes"
+
+#: simulation/data/civs/spart.jsonAINames[2]
+msgid "Brasidas"
+msgstr "Brasidas"
 
 #: simulation/data/civs/spart.jsonAINames[3]
 msgid "Agis"
@@ -2452,99 +998,6 @@ msgstr "Echestratus"
 msgid "Eurycrates"
 msgstr "Eurycrates"
 
-#: simulation/data/civs/spart.jsonFactions[0].Heroes[0].History
-msgid ""
-"The king of Sparta, who fought and died at the battle of Thermopylae in 480 "
-"B.C. He successfully blocked the way of the huge Persian army through the "
-"narrow passage with his 7000 men, until Xerxes was made aware of a secret "
-"unobstructed path. Finding the enemy at his rear, Leonidas sent home most of"
-" his troops, choosing to stay behind with 300 hand-picked hoplites and win "
-"time for the others to withdraw."
-msgstr ""
-
-#: simulation/data/civs/spart.jsonFactions[0].Heroes[0].Name
-msgid "Leonidas I"
-msgstr "Leonidas I"
-
-#: simulation/data/civs/spart.jsonFactions[0].Heroes[1].History
-msgid ""
-"Because Brasidas has sponsored their citizenship in return for service, "
-"Helot Skirmishers fight longer and harder for Sparta while within range of "
-"him."
-msgstr "On a thug Brasidas saoranachd dhaibh mar dhuais air an seirbheis, nì streupairean Heileotais sabaid nas fhaide ’s nas cruaidhe às leth Sparta fhad ’s a bhios iad faisg air."
-
-#: simulation/data/civs/spart.jsonAINames[2]
-#: simulation/data/civs/spart.jsonFactions[0].Heroes[1].Name
-msgid "Brasidas"
-msgstr "Brasidas"
-
-#: simulation/data/civs/spart.jsonFactions[0].Heroes[2].History
-msgid ""
-"Agis III was the 20th Spartan king of the Eurypontid lineage. Agis cobbled "
-"together an alliance of Southern Greek states to fight off Macedonian "
-"hegemony while Alexander the Great was away in Asia on his conquest march. "
-"After securing Crete as a Spartan tributary, Agis then moved to besiege the "
-"city of Megalopolis in the Peloponnese, who was an ally of Macedon. "
-"Antipater, the Macedonian regent, lead an army to stop this new uprising. In"
-" the Battle of Megalopolis, the Macedonians prevailed in a long and bloody "
-"battle. Much like Leonidas 150 years earlier, instead of surrendering, Agis "
-"made a heroic final stand in order to buy time for his troops to retreat."
-msgstr ""
-
-#: simulation/data/civs/spart.jsonFactions[0].Heroes[2].Name
-msgid "Agis III"
-msgstr "Agis III"
-
-#: simulation/data/civs/spart.jsonFactions[0].Technologies[0].Description
-msgid ""
-"Spartan female citizens cannot be captured and will doggedly fight back "
-"against any attackers."
-msgstr ""
-
-#: simulation/data/civs/spart.jsonFactions[0].Technologies[0].History
-msgid ""
-"Spartan women were some of the freest in the ancient world. They could own "
-"land and slaves and even exercise naked like Spartan men. It is said that "
-"only Spartan women gave birth to real men. Such tough-as-nails women more "
-"than once helped save their city from disaster, for example when after a "
-"lost battle against Pyrrhus of Epirus they overnight built an earthen "
-"rampart to protect the city while their men slept in preparation for the "
-"next day's siege."
-msgstr ""
-
-#: simulation/data/civs/spart.jsonFactions[0].Technologies[0].Name
-msgid "Feminine Mystique"
-msgstr "Meas air boireannaich"
-
-#: simulation/data/civs/spart.jsonFactions[0].Technologies[1].Description
-msgid "Units in phalanx formation move faster."
-msgstr "Gluaisidh aonadan ann an cumadh falangais nas luaithe."
-
-#: simulation/data/civs/spart.jsonFactions[0].Technologies[1].History
-msgid ""
-"Paeans were battle hymns that were sung by the hoplites when they charged "
-"the enemy lines. One of the first known Paeans were composed by Tirteus, a "
-"warrior poet of Sparta, during the First Messenian War."
-msgstr ""
-
-#: simulation/data/civs/spart.jsonFactions[0].Technologies[1].Name
-msgid "Tyrtean Paeans"
-msgstr "Laoidhean Thirteus"
-
-#: simulation/data/civs/spart.jsonFactions[0].Technologies[2].Description
-msgid "Champion Infantry Spearmen +25% health, but +5% training time."
-msgstr "Gheibh laoich sleaghair coisridh +25% de shlàinte ach bheir iad +5% nas faide gus an oideachadh."
-
-#: simulation/data/civs/spart.jsonFactions[0].Technologies[2].History
-msgid ""
-"Spartans were housed and trained from a young age to be superlative warriors"
-" and to endure any hardship a military life can give them."
-msgstr "Chaidh na Spartaich oideachadh ann an ionadan sònraichte on òige ach am bhiodh iad nan sàr-ghaisgeach ’s gun seasadh iad ri cruadal a’ bheatha san arm."
-
-#: simulation/data/civs/spart.jsonFactions[0].Technologies[2].Name
-msgid "The Agoge"
-msgstr "An t‑Agoga"
-
 #: simulation/data/civs/spart.jsonHistory
 msgid ""
 "Sparta was a prominent city-state in ancient Greece, and its dominant "
@@ -2555,37 +1008,6 @@ msgid ""
 "Peloponnesian Wars, though at great cost."
 msgstr "’S e stàit-bhaile cudromach a b’ ann an Sparta sa Ghreug cian-aimriseil agus bhiodh smachd aca air an tìr o mu 650 RC a-mach. Bha cultar nam Spartach air a bheò-ghlacadh le oideachadh an airm agus sàr-mhaitheas, le dian-oideachadh nam balach on a bhiodh iad seachd bliadhna a dh’aois. Ri linn cumhachd a h-airm, ’s e Sparta a stiùiricheadh co-bhanntachd feachdan na Grèige rè nan cogaidhean Greugach-Pearsach agus shoirbhich leatha an aghaidh Baile na h-Àithne sna cogaidhean Peoloponnasach ged a bu daor a choisinn iad e."
 
-#: simulation/data/civs/spart.jsonFactions[0].Name
 #: simulation/data/civs/spart.jsonName
 msgid "Spartans"
 msgstr "Na Spartaich"
-
-#: simulation/data/civs/spart.jsonStructures[1].History
-msgid ""
-"The Syssition was the Mess Hall for full-blooded Spartiates. Every Spartan "
-"peer, even kings, belonged to one."
-msgstr "’S e seòmar-comaidh nan Spartach fuileach a bh’ anns an t-Syssítion. Bhiodh gach morair Spartach ’s eadhon na rìghrean ’nam ball ann am fear dhiubh."
-
-#: simulation/data/civs/spart.jsonStructures[1].Name
-msgid "Syssition"
-msgstr "Syssítion"
-
-#: simulation/data/civs/spart.jsonStructures[1].Special
-msgid "Train heroes and Spartiates and research technologies related to them."
-msgstr "Oidich curaidhean is Homoioi is rannsaich teicneolasan co-cheangailte riutha."
-
-#: simulation/data/civs/spart.jsonTeamBonuses[0].Description
-msgid "Allied Citizen Infantry Spearmen +10% health."
-msgstr "+10% a shlàinte airson sleaghairean coisridh-dùthcha nan caidreabhach."
-
-#: simulation/data/civs/spart.jsonTeamBonuses[0].History
-msgid ""
-"Much of the Peloponnese was subject to Sparta in one way or another. This "
-"loose confederation, with Sparta as its leader, was later dubbed the "
-"Peloponnesian League by historians, but in ancient times was called 'The "
-"Lacedaemonians and their allies.'"
-msgstr ""
-
-#: simulation/data/civs/spart.jsonTeamBonuses[0].Name
-msgid "Peloponnesian League"
-msgstr "An Lìg Pheoloponnasach"

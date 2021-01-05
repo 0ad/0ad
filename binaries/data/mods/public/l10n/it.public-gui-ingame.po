@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2020 Wildfire Games
+# Copyright (C) 2021 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -14,6 +14,7 @@
 # Daniele Tricoli <eriol@mornie.org>, 2014
 # 1b30062e9d429a46e49833e2057eed9c_2fbdf92, 2014
 # SecondCloud500 <eddieven2000@gmail.com>, 2014-2015
+# Elia Argentieri <elia@elinvention.ovh>, 2021
 # Emanuele Ricci <stermi@gmail.com>, 2013
 # Fabio Pedretti <pedretti.fabio@gmail.com>, 2013,2015-2016
 # Fabrizio Morotti <famorot@tin.it>, 2016-2017
@@ -44,9 +45,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-12-28 08:02+0000\n"
-"PO-Revision-Date: 2020-12-28 10:35+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-01-01 08:01+0000\n"
+"PO-Revision-Date: 2021-01-02 21:35+0000\n"
+"Last-Translator: Elia Argentieri <elia@elinvention.ovh>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -97,7 +98,7 @@ msgstr "Opzioni"
 
 #: gui/session/MenuButtons.js:182
 msgid "Hotkeys"
-msgstr ""
+msgstr "Scorciatoie da tastiera"
 
 #: gui/session/MenuButtons.js:217
 msgid "Resume"
@@ -173,7 +174,7 @@ msgid "Click to Resume Game"
 msgstr "Clic per Continuare la Partita"
 
 #: gui/session/ResearchProgress.js:108 gui/session/selection_details.js:272
-#: gui/session/selection_details.js:290 gui/session/selection_panels.js:600
+#: gui/session/selection_details.js:290 gui/session/selection_panels.js:615
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
@@ -379,7 +380,7 @@ msgstr "Sei stato attaccato da %(attacker)s!"
 #: gui/session/chat/ChatMessageFormatSimulation.js:38
 #, javascript-format
 msgid "%(player)s bartered %(amountGiven)s for %(amountGained)s."
-msgstr ""
+msgstr "%(player)s ha barattato %(amountGiven)s per %(amountGained)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:70
 #, javascript-format
@@ -559,7 +560,7 @@ msgstr "Attiva distorsione temporale"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:214
 msgid "Activate Rejoin Test"
-msgstr ""
+msgstr "Attiva il Test di Rientro"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:248
 msgid "Promote selected units"
@@ -567,19 +568,19 @@ msgstr "Promuovi unità selezionate"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:269
 msgid "Enable culling"
-msgstr ""
+msgstr "Abilita determinazione della superficie nascosta"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:287
 msgid "Lock cull camera"
-msgstr ""
+msgstr "Blocca determinazione della superficie nascosta della telecamera"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:305
 msgid "Display camera frustum"
-msgstr ""
+msgstr "Mostra il tronco della telecamera."
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:323
 msgid "Display shadows frustum"
-msgstr ""
+msgstr "Mostra il tronco delle ombre."
 
 #: gui/session/developer_overlay/TimeWarp.js:65
 msgid "Time warp mode"
@@ -710,7 +711,7 @@ msgid_plural "Average bonus range: %(range)s meters"
 msgstr[0] "Bonus raggio medio: %(range)s metro"
 msgstr[1] "Bonus raggio medio: %(range)s metri"
 
-#: gui/session/input.js:700
+#: gui/session/input.js:702
 msgid "Cannot build wall here!"
 msgstr "Non puoi costruire muri qui!"
 
@@ -946,9 +947,9 @@ msgstr "%(amount)s / %(max)s"
 msgid "%(resource)s:"
 msgstr "%(resource)s:"
 
-#: gui/session/selection_details.js:261 gui/session/unit_actions.js:609
-#: gui/session/unit_actions.js:618 gui/session/unit_actions.js:636
-#: gui/session/unit_actions.js:967
+#: gui/session/selection_details.js:261 gui/session/unit_actions.js:619
+#: gui/session/unit_actions.js:628 gui/session/unit_actions.js:646
+#: gui/session/unit_actions.js:979
 #, javascript-format
 msgid "Gain: %(gain)s"
 msgstr "Guadagno: %(gain)s"
@@ -958,7 +959,7 @@ msgstr "Guadagno: %(gain)s"
 msgid ""
 "(%(number)s)\n"
 "%(time)s"
-msgstr ""
+msgstr "(%(number)s)\n%(time)s"
 
 #: gui/session/selection_details.js:282
 msgid "Current/max gatherers"
@@ -1021,190 +1022,257 @@ msgstr "Lancia un Allarme!"
 msgid "End of alert."
 msgstr "Fine dell'allerta."
 
-#: gui/session/selection_panels.js:380
+#: gui/session/selection_panels.js:332
+msgid "Default formation is disabled."
+msgstr "Formazione predefinita disabilitata."
+
+#: gui/session/selection_panels.js:333
+msgid "Right-click to disable the default formation feature."
+msgstr "Premi il tasto destro per disabilitare la formazione predefinita."
+
+#: gui/session/selection_panels.js:336
+msgid "This is the default formation, used for movement orders."
+msgstr "Questa è la formazione predefinita, usata per gli ordini di spostamento."
+
+#: gui/session/selection_panels.js:337
+msgid "Right-click to set this as the default formation."
+msgstr "Premi il tasto destro per impostare questa come formazione predefinita."
+
+#: gui/session/selection_panels.js:395
 #, javascript-format
 msgid "Unload %(name)s"
 msgstr "Scaricare %(name)s"
 
-#: gui/session/selection_panels.js:381
+#: gui/session/selection_panels.js:396
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "Un singolo clic per scaricarne 1. Maiusc+Clic per scaricare tutte le unità di un tipo."
 
-#: gui/session/selection_panels.js:383 gui/session/selection_panels.js:893
+#: gui/session/selection_panels.js:398 gui/session/selection_panels.js:908
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr "Giocatore: %(playername)s"
 
-#: gui/session/selection_panels.js:419
+#: gui/session/selection_panels.js:434
 msgid "Lock Gate"
 msgstr "Blocca Cancello"
 
-#: gui/session/selection_panels.js:425
+#: gui/session/selection_panels.js:440
 msgid "Unlock Gate"
 msgstr "Sblocca Cancello"
 
-#: gui/session/selection_panels.js:476
+#: gui/session/selection_panels.js:491
 msgid "Pack"
 msgstr "Raggruppa"
 
-#: gui/session/selection_panels.js:484
+#: gui/session/selection_panels.js:499
 msgid "Unpack"
 msgstr "Separa"
 
-#: gui/session/selection_panels.js:492
+#: gui/session/selection_panels.js:507
 msgid "Cancel Packing"
 msgstr "Annulla Raggruppamento"
 
-#: gui/session/selection_panels.js:500
+#: gui/session/selection_panels.js:515
 msgid "Cancel Unpacking"
 msgstr "Annulla Separazione"
 
-#: gui/session/selection_panels.js:587
+#: gui/session/selection_panels.js:602
 msgid "Insufficient population capacity:"
 msgstr "Popolazione Insufficiente:"
 
-#: gui/session/selection_panels.js:588
+#: gui/session/selection_panels.js:603
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:758
+#: gui/session/selection_panels.js:773
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
 msgstr[0] "%(number)s entità della classe %(class)s"
 msgstr[1] "%(number)s entità delle classi %(class)s"
 
-#: gui/session/selection_panels.js:764
+#: gui/session/selection_panels.js:779
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
 msgstr "Rimanenti: %(entityCounts)s"
 
-#: gui/session/selection_panels.js:765
+#: gui/session/selection_panels.js:780
 msgctxt "Separator for a list of entity counts"
 msgid ", "
 msgstr ", "
 
-#: gui/session/selection_panels.js:817
+#: gui/session/selection_panels.js:832
 msgid "Cannot research while upgrading."
-msgstr ""
+msgstr "Impossibile ricercare mentre si migliora."
 
-#: gui/session/selection_panels.js:1040
+#: gui/session/selection_panels.js:1056
 msgid "Cannot train while upgrading."
-msgstr ""
+msgstr "Impossibile addestrare mentre si migliora."
 
-#: gui/session/selection_panels.js:1102
+#: gui/session/selection_panels.js:1118
 #, javascript-format
 msgid "Upgrade to %(name)s. %(tooltip)s"
 msgstr "Aggiorna a %(name)s. %(tooltip)s"
 
-#: gui/session/selection_panels.js:1107
+#: gui/session/selection_panels.js:1123
 #, javascript-format
 msgid "Upgrade to %(name)s."
 msgstr "Aggiorna a%(name)s."
 
-#: gui/session/selection_panels.js:1142
+#: gui/session/selection_panels.js:1159
 msgid "Cancel Upgrading"
 msgstr "Annulla Miglioramento"
 
-#: gui/session/selection_panels.js:1157
+#: gui/session/selection_panels.js:1174
 msgid ""
 "Cannot upgrade when the entity is training, researching or already "
 "upgrading."
 msgid_plural ""
 "Cannot upgrade when all entities are training, researching or already "
 "upgrading."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Non si può migliorare quando l'entità è in addestramento, ricerca o già in miglioramento."
+msgstr[1] "Non si può migliorare quando tutte le entità sono in addestramento, ricerca o già in miglioramento."
 
-#: gui/session/selection_panels_helpers.js:51
+#: gui/session/selection_panels_helpers.js:53
 msgctxt "stance"
 msgid "Violent"
 msgstr "Violento"
 
-#: gui/session/selection_panels_helpers.js:53
+#: gui/session/selection_panels_helpers.js:55
 msgctxt "stance"
 msgid "Aggressive"
 msgstr "Aggressivo"
 
-#: gui/session/selection_panels_helpers.js:55
+#: gui/session/selection_panels_helpers.js:57
 msgctxt "stance"
 msgid "Defensive"
 msgstr "Difensivo"
 
-#: gui/session/selection_panels_helpers.js:57
+#: gui/session/selection_panels_helpers.js:59
 msgctxt "stance"
 msgid "Passive"
 msgstr "Passivo"
 
-#: gui/session/selection_panels_helpers.js:59
+#: gui/session/selection_panels_helpers.js:61
 msgctxt "stance"
 msgid "Standground"
 msgstr "Mantiene la posizione"
 
-#: gui/session/selection_panels_helpers.js:71
+#: gui/session/selection_panels_helpers.js:73
 msgctxt "stance"
 msgid "Attack nearby opponents, focus on attackers and chase while visible"
 msgstr "Attacca gli avversari nelle vicinanze, attacca e insegue finché sono visibili"
 
-#: gui/session/selection_panels_helpers.js:73
+#: gui/session/selection_panels_helpers.js:75
 msgctxt "stance"
 msgid "Attack nearby opponents"
 msgstr "Attacca gli avversari nelle vicinanze"
 
-#: gui/session/selection_panels_helpers.js:75
+#: gui/session/selection_panels_helpers.js:77
 msgctxt "stance"
 msgid ""
 "Attack nearby opponents, chase a short distance and return to the original "
 "location"
 msgstr "Attacca gli avversari nelle vicinanze, insegue per breve distanza e torna in posizione"
 
-#: gui/session/selection_panels_helpers.js:77
+#: gui/session/selection_panels_helpers.js:79
 msgctxt "stance"
 msgid "Flee if attacked"
 msgstr "Fugge se attaccato"
 
-#: gui/session/selection_panels_helpers.js:79
+#: gui/session/selection_panels_helpers.js:81
 msgctxt "stance"
 msgid "Attack opponents in range, but don't move"
 msgstr "Attacca avversari entro una certa distanza, ma non si sposta"
 
-#: gui/session/selection_panels_helpers.js:93
+#: gui/session/selection_panels_helpers.js:95
 #, javascript-format
 msgid "Current Count: %(count)s, Limit: %(limit)s."
 msgstr "Conteggio corrente: %(count)s, Limite: %(limit)s."
 
-#: gui/session/selection_panels_helpers.js:107
+#: gui/session/selection_panels_helpers.js:109
 #, javascript-format
 msgid "%(changer)s enlarges the limit with %(change)s."
 msgstr "%(changer)s aumenta il limite a %(change)s."
 
-#: gui/session/selection_panels_helpers.js:108
+#: gui/session/selection_panels_helpers.js:110
 #, javascript-format
 msgid "%(changer)s lessens the limit with %(change)s."
 msgstr "%(changer)s diminuisce il limite a %(change)s."
 
-#: gui/session/selection_panels_helpers.js:139
+#: gui/session/selection_panels_helpers.js:140
+msgid "Could be constructed merely once."
+msgid_plural "Could be constructed merely %(limit)s times."
+msgstr[0] "Può essere costruito solo una volta."
+msgstr[1] "Può essere costruito solo %(limit)s volte."
+
+#: gui/session/selection_panels_helpers.js:144
+msgid "Can be constructed only once."
+msgstr "Può essere costruito solo una volta."
+
+#: gui/session/selection_panels_helpers.js:146
+#, javascript-format
+msgid "Can be constructed %(count)s more time."
+msgid_plural "Can be constructed %(count)s more times."
+msgstr[0] "Può essere costruito %(count)s altra volta."
+msgstr[1] "Può essere costruito %(count)s altre volte."
+
+#: gui/session/selection_panels_helpers.js:153
+msgid "Could be trained merely once."
+msgid_plural "Could be trained merely %(limit)s times."
+msgstr[0] "Può essere addestrato solo una volta."
+msgstr[1] "Può essere addestrato solo %(limit)s volte."
+
+#: gui/session/selection_panels_helpers.js:157
+msgid "Can be trained only once."
+msgstr "Può essere addestrato solo una volta."
+
+#: gui/session/selection_panels_helpers.js:159
+#, javascript-format
+msgid "Can be trained %(count)s more time."
+msgid_plural "Can be trained %(count)s more times."
+msgstr[0] "Può essere addestrato %(count)s altra volta."
+msgstr[1] "Può essere addestrato altre %(count)s volte."
+
+#: gui/session/selection_panels_helpers.js:166
+msgid "Could be created merely once."
+msgid_plural "Could be created merely %(limit)s times."
+msgstr[0] "Può essere creato una sola volta."
+msgstr[1] "Può essere creato soltanto %(limit)s volte."
+
+#: gui/session/selection_panels_helpers.js:170
+msgid "Can be created only once."
+msgstr "Può essere creato una sola volta."
+
+#: gui/session/selection_panels_helpers.js:172
+#, javascript-format
+msgid "Can be created %(count)s more time."
+msgid_plural "Can be created %(count)s more times."
+msgstr[0] "Può essere creato %(count)s altra volta."
+msgstr[1] "Può essere creato altre %(count)s volte."
+
+#: gui/session/selection_panels_helpers.js:201
 #, javascript-format
 msgid "%(buildings)s*%(batchSize)s"
 msgstr "%(buildings)s*%(batchSize)s"
 
-#: gui/session/selection_panels_helpers.js:153
+#: gui/session/selection_panels_helpers.js:215
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s + %(remainderBatch)s)."
 msgstr "%(action)s per addestrare %(number)s (%(fullBatch)s + %(remainderBatch)s)."
 
-#: gui/session/selection_panels_helpers.js:155
+#: gui/session/selection_panels_helpers.js:217
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s)."
 msgstr "%(action)s per addestrare %(number)s (%(fullBatch)s)."
 
-#: gui/session/selection_panels_helpers.js:157
+#: gui/session/selection_panels_helpers.js:219
 #, javascript-format
 msgid "%(action)s to train %(number)s."
 msgstr "%(action)s per addestrare %(number)s."
 
-#: gui/session/selection_panels_helpers.js:162
+#: gui/session/selection_panels_helpers.js:224
 msgid "Shift-click"
 msgstr "Maiusc-Clic"
 
@@ -1219,7 +1287,7 @@ msgstr "Punti cattura"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):62
 msgid "Attack and Resistance"
-msgstr ""
+msgstr "Attacco e Resistenza"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):77
 msgid "Experience"
@@ -1249,7 +1317,7 @@ msgid ""
 "%(civ)s\n"
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr ""
+msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: Visualizza Anteprima Civiltà / Albero delle Costruzioni\nL'ultimo aperto verrà riaperto con un click."
 
 #: gui/session/top_panel/CounterManager.js:101
 #, javascript-format
@@ -1276,7 +1344,7 @@ msgstr "%(playername)s: %(statValue)s"
 #: gui/session/top_panel/CounterPopulation.js:34
 #, javascript-format
 msgid "Current gatherers: %(amount)s"
-msgstr ""
+msgstr "Raccoglitori correnti: %(amount)s"
 
 #: gui/session/top_panel/CounterPopulation.js:63
 #, javascript-format
@@ -1300,7 +1368,7 @@ msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 #: gui/session/top_panel/CounterResource.js:32
 #, javascript-format
 msgid "Gatherers: %(amount)s"
-msgstr ""
+msgstr "Raccoglitori: %(amount)s"
 
 #: gui/session/top_panel/FollowPlayer.xml:(caption):15
 #: gui/session/top_panel/FollowPlayer.xml:(tooltip):11
@@ -1520,136 +1588,136 @@ msgstr "Non ci sono navi mercantili."
 msgid "Ready"
 msgstr "Pronto"
 
-#: gui/session/unit_actions.js:549
+#: gui/session/unit_actions.js:558
 msgid ""
 "This is the origin trade market.\n"
 "Right-click to cancel trade route."
 msgstr "Questo è il mercato di origine.\nClicca col destro per cancellare la rotta commerciale."
 
-#: gui/session/unit_actions.js:607
+#: gui/session/unit_actions.js:617
 msgid "Origin trade market."
 msgstr "Mercato d'origine."
 
-#: gui/session/unit_actions.js:617
+#: gui/session/unit_actions.js:627
 msgid "Destination trade market."
 msgstr "Mercato di destinazione."
 
-#: gui/session/unit_actions.js:624
+#: gui/session/unit_actions.js:634
 msgid "Right-click to set as origin trade market"
 msgstr "Clic destro per impostare come mercato d'origine"
 
-#: gui/session/unit_actions.js:631 gui/session/unit_actions.js:973
+#: gui/session/unit_actions.js:641 gui/session/unit_actions.js:985
 msgid "This market is too close to the origin market."
 msgstr "Questo mercato è troppo vicino al mercato di origine."
 
-#: gui/session/unit_actions.js:635
+#: gui/session/unit_actions.js:645
 msgid "Right-click to set as destination trade market."
 msgstr "Clic destro per impostare come mercato di destinazione."
 
-#: gui/session/unit_actions.js:693 gui/session/unit_actions.js:911
+#: gui/session/unit_actions.js:704 gui/session/unit_actions.js:923
 #, javascript-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
 msgstr "Acquartierati: %(garrisoned)s/%(capacity)s"
 
-#: gui/session/unit_actions.js:964
+#: gui/session/unit_actions.js:976
 msgid "Right-click to establish a default route for new traders."
 msgstr "Clic destro per stabilire una rotta predefinita per i nuovi commercianti."
 
-#: gui/session/unit_actions.js:968
+#: gui/session/unit_actions.js:980
 #, javascript-format
 msgid "Expected gain: %(gain)s"
 msgstr "Guadagno atteso: %(gain)s"
 
-#: gui/session/unit_actions.js:1094
+#: gui/session/unit_actions.js:1106
 msgid "This entity cannot be controlled."
 msgid_plural "These entities cannot be controlled."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Questa entità non può essere controllata."
+msgstr[1] "Queste entità non possono essere controllate."
 
-#: gui/session/unit_actions.js:1131 gui/session/unit_actions.js:1459
+#: gui/session/unit_actions.js:1143 gui/session/unit_actions.js:1471
 msgid "Unload All."
 msgstr "Rilascia tutti"
 
-#: gui/session/unit_actions.js:1149
+#: gui/session/unit_actions.js:1161
 msgid "Destroy the selected units or structures."
 msgstr "Distruggi le unità o gli edifici selezionati."
 
-#: gui/session/unit_actions.js:1151
+#: gui/session/unit_actions.js:1163
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr "Usa %(hotkey)s per saltare la richiesta di conferma."
 
-#: gui/session/unit_actions.js:1198
+#: gui/session/unit_actions.js:1210
 msgid "Abort the current order."
 msgstr "Annulla l'ordine corrente."
 
-#: gui/session/unit_actions.js:1217
+#: gui/session/unit_actions.js:1229
 msgid "Order the selected units to garrison in a structure or unit."
-msgstr ""
+msgstr "Ordina alle unità selezionate di presidiare una struttura o unità."
 
-#: gui/session/unit_actions.js:1240
+#: gui/session/unit_actions.js:1252
 msgid "Unload"
 msgstr "Sbarca"
 
-#: gui/session/unit_actions.js:1258
+#: gui/session/unit_actions.js:1270
 msgid "Order the selected units to repair a structure, ship, or siege engine."
-msgstr ""
+msgstr "Ordina alle unità selezionate di riparare una struttura, nave o arma da assedio."
 
-#: gui/session/unit_actions.js:1277
+#: gui/session/unit_actions.js:1289
 msgid "Focus on Rally Point."
 msgstr "Vai ai punti di raccolta"
 
-#: gui/session/unit_actions.js:1312
+#: gui/session/unit_actions.js:1324
 msgid "Back to Work"
 msgstr "Torna al Lavoro"
 
-#: gui/session/unit_actions.js:1331
+#: gui/session/unit_actions.js:1343
 msgid "Order the selected units to guard a structure or unit."
-msgstr ""
+msgstr "Ordina alle unità selezionate di proteggere una struttura o unità."
 
-#: gui/session/unit_actions.js:1349
+#: gui/session/unit_actions.js:1361
 msgid "Remove guard"
 msgstr "Rimuovi Difesa"
 
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
 #: gui/session/trade/TradeDialog.xml:(caption):9
-#: gui/session/unit_actions.js:1366
+#: gui/session/unit_actions.js:1378
 msgid "Barter & Trade"
 msgstr "Baratto & Commercio"
 
-#: gui/session/unit_actions.js:1384
+#: gui/session/unit_actions.js:1396
 msgid "Patrol"
 msgstr "Pattuglia"
 
-#: gui/session/unit_actions.js:1385
+#: gui/session/unit_actions.js:1397
 msgid "Attack all encountered enemy units while avoiding structures."
-msgstr ""
+msgstr "Attacca tutti i nemici incontrati evitando le strutture."
 
-#: gui/session/unit_actions.js:1411
+#: gui/session/unit_actions.js:1423
 msgid "Press to allow allies to use this dropsite"
 msgstr "Premi per consentire agli alleati di usare questo punto di scarico."
 
-#: gui/session/unit_actions.js:1415
+#: gui/session/unit_actions.js:1427
 msgid "Press to prevent allies from using this dropsite"
 msgstr "Premi per evitare che gli alleati utilizzino questo punto di scarico"
 
-#: gui/session/unit_actions.js:1480
+#: gui/session/unit_actions.js:1492
 msgid "You are allowed to use this dropsite"
 msgstr "Hai il permesso di usare questo punto di scarico"
 
-#: gui/session/unit_actions.js:1485
+#: gui/session/unit_actions.js:1497
 msgid "The use of this dropsite is prohibited"
 msgstr "L'uso di questo punto di scarico è vietato"
 
-#: gui/session/unit_actions.js:1524
+#: gui/session/unit_actions.js:1536
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "L'unità è stata uccisa prima di poter essere acquartierata."
 
-#: gui/session/unit_actions.js:1527
+#: gui/session/unit_actions.js:1539
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "Non puoi distruggere questa entità poichè hai meno della metà dei punti di cattura"
 
-#: gui/session/unit_actions.js:1530
+#: gui/session/unit_actions.js:1542
 msgid "This entity is undeletable"
 msgstr "Questo elemento non è cancellabile."

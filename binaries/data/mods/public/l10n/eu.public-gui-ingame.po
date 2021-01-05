@@ -1,20 +1,20 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2020 Wildfire Games
+# Copyright (C) 2021 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
 # Ibai Oihanguren Sala <ibai@oihanguren.com>, 2014,2016
 # Gontzal M. Pujana <juchuf@gmail.com>, 2015-2016
-# Mielanjel Iraeta <pospolos@gmail.com>, 2017-2020
+# Mielanjel Iraeta <pospolos@gmail.com>, 2017-2021
 # Nicolas Auvray <na.itms76@gmail.com>, 2017
 # Osoitz <oelkoro@gmail.com>, 2015-2016,2019-2020
 # Gontzal M. Pujana <juchuf@gmail.com>, 2016-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-12-28 08:02+0000\n"
-"PO-Revision-Date: 2020-12-28 10:35+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-01-01 08:01+0000\n"
+"PO-Revision-Date: 2021-01-03 11:17+0000\n"
+"Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -141,7 +141,7 @@ msgid "Click to Resume Game"
 msgstr "Egin klik jokora itzultzeko"
 
 #: gui/session/ResearchProgress.js:108 gui/session/selection_details.js:272
-#: gui/session/selection_details.js:290 gui/session/selection_panels.js:600
+#: gui/session/selection_details.js:290 gui/session/selection_panels.js:615
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
@@ -527,7 +527,7 @@ msgstr "Aldi bateko eraldaketa gaitu"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:214
 msgid "Activate Rejoin Test"
-msgstr ""
+msgstr "Gaitu birsartze froga"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:248
 msgid "Promote selected units"
@@ -678,7 +678,7 @@ msgid_plural "Average bonus range: %(range)s meters"
 msgstr[0] "Batez besteko irismen hobaria: metro %(range)s"
 msgstr[1] "Batez besteko irismen hobaria: %(range)s metro"
 
-#: gui/session/input.js:700
+#: gui/session/input.js:702
 msgid "Cannot build wall here!"
 msgstr "Ezin duzu hesia eraiki hemen!"
 
@@ -914,9 +914,9 @@ msgstr "%(amount)s / %(max)s"
 msgid "%(resource)s:"
 msgstr "%(resource)s:"
 
-#: gui/session/selection_details.js:261 gui/session/unit_actions.js:609
-#: gui/session/unit_actions.js:618 gui/session/unit_actions.js:636
-#: gui/session/unit_actions.js:967
+#: gui/session/selection_details.js:261 gui/session/unit_actions.js:619
+#: gui/session/unit_actions.js:628 gui/session/unit_actions.js:646
+#: gui/session/unit_actions.js:979
 #, javascript-format
 msgid "Gain: %(gain)s"
 msgstr "Irabazia: %(gain)s"
@@ -926,7 +926,7 @@ msgstr "Irabazia: %(gain)s"
 msgid ""
 "(%(number)s)\n"
 "%(time)s"
-msgstr ""
+msgstr "(%(number)s)\n%(time)s"
 
 #: gui/session/selection_details.js:282
 msgid "Current/max gatherers"
@@ -989,93 +989,109 @@ msgstr "Jo alarma!"
 msgid "End of alert."
 msgstr "Alarmaren bukaera."
 
-#: gui/session/selection_panels.js:380
+#: gui/session/selection_panels.js:332
+msgid "Default formation is disabled."
+msgstr "Lehenetsitako eraketa desgaituta dago."
+
+#: gui/session/selection_panels.js:333
+msgid "Right-click to disable the default formation feature."
+msgstr "Eskuin klika lehenetsitako eraketa eginbidea desgaitzeko."
+
+#: gui/session/selection_panels.js:336
+msgid "This is the default formation, used for movement orders."
+msgstr "Hau lehenetsitako eraketa da, mugimendu-aginduak egiteko erabilia."
+
+#: gui/session/selection_panels.js:337
+msgid "Right-click to set this as the default formation."
+msgstr "Eskuin klika eraketa hau lehenetsi gisa ezartzeko."
+
+#: gui/session/selection_panels.js:395
 #, javascript-format
 msgid "Unload %(name)s"
 msgstr "Hustu %(name)s"
 
-#: gui/session/selection_panels.js:381
+#: gui/session/selection_panels.js:396
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "Klik bakarra unitate 1 irtenarazteko. Maius-klik mota bereko denak irtenarazteko."
 
-#: gui/session/selection_panels.js:383 gui/session/selection_panels.js:893
+#: gui/session/selection_panels.js:398 gui/session/selection_panels.js:908
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr "Jokalaria: %(playername)s"
 
-#: gui/session/selection_panels.js:419
+#: gui/session/selection_panels.js:434
 msgid "Lock Gate"
 msgstr "Blokeatu atea"
 
-#: gui/session/selection_panels.js:425
+#: gui/session/selection_panels.js:440
 msgid "Unlock Gate"
 msgstr "Desblokeatu atea"
 
-#: gui/session/selection_panels.js:476
+#: gui/session/selection_panels.js:491
 msgid "Pack"
 msgstr "Multzokatu"
 
-#: gui/session/selection_panels.js:484
+#: gui/session/selection_panels.js:499
 msgid "Unpack"
 msgstr "Banandu"
 
-#: gui/session/selection_panels.js:492
+#: gui/session/selection_panels.js:507
 msgid "Cancel Packing"
 msgstr "Multzokatzea ezeztatu"
 
-#: gui/session/selection_panels.js:500
+#: gui/session/selection_panels.js:515
 msgid "Cancel Unpacking"
 msgstr "Banaketa ezeztatu"
 
-#: gui/session/selection_panels.js:587
+#: gui/session/selection_panels.js:602
 msgid "Insufficient population capacity:"
 msgstr "Biztanleria edukiera eskasa:"
 
-#: gui/session/selection_panels.js:588
+#: gui/session/selection_panels.js:603
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:758
+#: gui/session/selection_panels.js:773
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
 msgstr[0] "%(class)s klaseko entitate %(number)s"
 msgstr[1] "%(class)s klaseko %(number)s entitate"
 
-#: gui/session/selection_panels.js:764
+#: gui/session/selection_panels.js:779
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
 msgstr "Falta da: %(entityCounts)s"
 
-#: gui/session/selection_panels.js:765
+#: gui/session/selection_panels.js:780
 msgctxt "Separator for a list of entity counts"
 msgid ", "
 msgstr ","
 
-#: gui/session/selection_panels.js:817
+#: gui/session/selection_panels.js:832
 msgid "Cannot research while upgrading."
 msgstr "Ezin da ikertu eguneratu bitartean."
 
-#: gui/session/selection_panels.js:1040
+#: gui/session/selection_panels.js:1056
 msgid "Cannot train while upgrading."
 msgstr "Ezin da trebatu eguneratu bitartean."
 
-#: gui/session/selection_panels.js:1102
+#: gui/session/selection_panels.js:1118
 #, javascript-format
 msgid "Upgrade to %(name)s. %(tooltip)s"
 msgstr "Sustatu %(name)s(e)ra. %(tooltip)s"
 
-#: gui/session/selection_panels.js:1107
+#: gui/session/selection_panels.js:1123
 #, javascript-format
 msgid "Upgrade to %(name)s."
 msgstr "Sustatu %(name)s(e)ra"
 
-#: gui/session/selection_panels.js:1142
+#: gui/session/selection_panels.js:1159
 msgid "Cancel Upgrading"
 msgstr "Eguneraketa ezeztatu"
 
-#: gui/session/selection_panels.js:1157
+#: gui/session/selection_panels.js:1174
 msgid ""
 "Cannot upgrade when the entity is training, researching or already "
 "upgrading."
@@ -1085,94 +1101,145 @@ msgid_plural ""
 msgstr[0] "Ezin da eguneratu entitate guztiak trebatzen, ikertzen edo dagoeneko eguneratzen ari direnean."
 msgstr[1] "Ezin da eguneratu entitate guztiak trebatzen, ikertzen edo dagoeneko eguneratzen ari direnean."
 
-#: gui/session/selection_panels_helpers.js:51
+#: gui/session/selection_panels_helpers.js:53
 msgctxt "stance"
 msgid "Violent"
 msgstr "Bortitza"
 
-#: gui/session/selection_panels_helpers.js:53
+#: gui/session/selection_panels_helpers.js:55
 msgctxt "stance"
 msgid "Aggressive"
 msgstr "Erasokorra"
 
-#: gui/session/selection_panels_helpers.js:55
+#: gui/session/selection_panels_helpers.js:57
 msgctxt "stance"
 msgid "Defensive"
 msgstr "Defentsiboa"
 
-#: gui/session/selection_panels_helpers.js:57
+#: gui/session/selection_panels_helpers.js:59
 msgctxt "stance"
 msgid "Passive"
 msgstr "Pasiboa"
 
-#: gui/session/selection_panels_helpers.js:59
+#: gui/session/selection_panels_helpers.js:61
 msgctxt "stance"
 msgid "Standground"
 msgstr "Posizioa mantendu"
 
-#: gui/session/selection_panels_helpers.js:71
+#: gui/session/selection_panels_helpers.js:73
 msgctxt "stance"
 msgid "Attack nearby opponents, focus on attackers and chase while visible"
 msgstr "Eraso hurbil dauden etsaiak, eta segitu ikusi ahal dituen bitartean"
 
-#: gui/session/selection_panels_helpers.js:73
+#: gui/session/selection_panels_helpers.js:75
 msgctxt "stance"
 msgid "Attack nearby opponents"
 msgstr "Eraso hurbil dauden etsaiak"
 
-#: gui/session/selection_panels_helpers.js:75
+#: gui/session/selection_panels_helpers.js:77
 msgctxt "stance"
 msgid ""
 "Attack nearby opponents, chase a short distance and return to the original "
 "location"
 msgstr "Eraso hurbil dauden etsaiak, distantzia txiki bat segitu eta bueltatu hasierako lekura"
 
-#: gui/session/selection_panels_helpers.js:77
+#: gui/session/selection_panels_helpers.js:79
 msgctxt "stance"
 msgid "Flee if attacked"
 msgstr "Ihes egin erasoa bada"
 
-#: gui/session/selection_panels_helpers.js:79
+#: gui/session/selection_panels_helpers.js:81
 msgctxt "stance"
 msgid "Attack opponents in range, but don't move"
 msgstr "Eraso eskura dauden etsaiak, baina ez mugitu"
 
-#: gui/session/selection_panels_helpers.js:93
+#: gui/session/selection_panels_helpers.js:95
 #, javascript-format
 msgid "Current Count: %(count)s, Limit: %(limit)s."
 msgstr "Uneko kontua: %(count)s, Muga: %(limit)s."
 
-#: gui/session/selection_panels_helpers.js:107
+#: gui/session/selection_panels_helpers.js:109
 #, javascript-format
 msgid "%(changer)s enlarges the limit with %(change)s."
 msgstr "%(changer)s %(change)s-ekin handitzen du limitea."
 
-#: gui/session/selection_panels_helpers.js:108
+#: gui/session/selection_panels_helpers.js:110
 #, javascript-format
 msgid "%(changer)s lessens the limit with %(change)s."
 msgstr "%(changer)s %(change)s-ekin txikitzen du limitea."
 
-#: gui/session/selection_panels_helpers.js:139
+#: gui/session/selection_panels_helpers.js:140
+msgid "Could be constructed merely once."
+msgid_plural "Could be constructed merely %(limit)s times."
+msgstr[0] "Behin baino ezin da eraiki."
+msgstr[1] "%(limit)s aldiz soilik eraiki liteke."
+
+#: gui/session/selection_panels_helpers.js:144
+msgid "Can be constructed only once."
+msgstr "Behin bakarrik eraiki daiteke."
+
+#: gui/session/selection_panels_helpers.js:146
+#, javascript-format
+msgid "Can be constructed %(count)s more time."
+msgid_plural "Can be constructed %(count)s more times."
+msgstr[0] "%(count)s baino ezin da eraiki."
+msgstr[1] "%(count)s aldiz gehiagoetan baino ezin da eraiki."
+
+#: gui/session/selection_panels_helpers.js:153
+msgid "Could be trained merely once."
+msgid_plural "Could be trained merely %(limit)s times."
+msgstr[0] "Behin bakarrik trebatu liteke."
+msgstr[1] "%(limit)s aldiz soilik trebatu liteke."
+
+#: gui/session/selection_panels_helpers.js:157
+msgid "Can be trained only once."
+msgstr "Behin bakarrik trebatu liteke."
+
+#: gui/session/selection_panels_helpers.js:159
+#, javascript-format
+msgid "Can be trained %(count)s more time."
+msgid_plural "Can be trained %(count)s more times."
+msgstr[0] "%(count)s baino ezin da trebatu."
+msgstr[1] "%(count)s aldi gehiagoetan trebatu liteke."
+
+#: gui/session/selection_panels_helpers.js:166
+msgid "Could be created merely once."
+msgid_plural "Could be created merely %(limit)s times."
+msgstr[0] "Behin baino ezin da sortu."
+msgstr[1] "%(limit)s aldiz soilik sor liteke.."
+
+#: gui/session/selection_panels_helpers.js:170
+msgid "Can be created only once."
+msgstr "Behin bakarrik sortu liteke."
+
+#: gui/session/selection_panels_helpers.js:172
+#, javascript-format
+msgid "Can be created %(count)s more time."
+msgid_plural "Can be created %(count)s more times."
+msgstr[0] "%(count)s baino ezin da sortu."
+msgstr[1] "%(count)s aldi gehiagoetan sortu liteke."
+
+#: gui/session/selection_panels_helpers.js:201
 #, javascript-format
 msgid "%(buildings)s*%(batchSize)s"
 msgstr "%(buildings)s*%(batchSize)s"
 
-#: gui/session/selection_panels_helpers.js:153
+#: gui/session/selection_panels_helpers.js:215
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s + %(remainderBatch)s)."
 msgstr "%(action)s %(number)s trebatzeko (%(fullBatch)s + %(remainderBatch)s)."
 
-#: gui/session/selection_panels_helpers.js:155
+#: gui/session/selection_panels_helpers.js:217
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s)."
 msgstr "%(action)s %(number)s trebatzeko (%(fullBatch)s)."
 
-#: gui/session/selection_panels_helpers.js:157
+#: gui/session/selection_panels_helpers.js:219
 #, javascript-format
 msgid "%(action)s to train %(number)s."
 msgstr "%(action)s %(number)s trebatzeko."
 
-#: gui/session/selection_panels_helpers.js:162
+#: gui/session/selection_panels_helpers.js:224
 msgid "Shift-click"
 msgstr "Maius-klik"
 
@@ -1244,7 +1311,7 @@ msgstr "%(playername)s: %(statValue)s"
 #: gui/session/top_panel/CounterPopulation.js:34
 #, javascript-format
 msgid "Current gatherers: %(amount)s"
-msgstr ""
+msgstr "Oraingo ustiatzaileak: %(amount)s"
 
 #: gui/session/top_panel/CounterPopulation.js:63
 #, javascript-format
@@ -1268,7 +1335,7 @@ msgstr "%(popCount)s/ %(popLimit)s/ %(popMax)s"
 #: gui/session/top_panel/CounterResource.js:32
 #, javascript-format
 msgid "Gatherers: %(amount)s"
-msgstr ""
+msgstr "Ustiatzaileak: %(amount)s"
 
 #: gui/session/top_panel/FollowPlayer.xml:(caption):15
 #: gui/session/top_panel/FollowPlayer.xml:(tooltip):11
@@ -1488,136 +1555,136 @@ msgstr "Ez dago merkantzia ontzirik"
 msgid "Ready"
 msgstr "Prest"
 
-#: gui/session/unit_actions.js:549
+#: gui/session/unit_actions.js:558
 msgid ""
 "This is the origin trade market.\n"
 "Right-click to cancel trade route."
 msgstr "Hau da jatorrizko merkatua.\nEgin klik eskuinean ibilbide komertziala bertan behera uzteko."
 
-#: gui/session/unit_actions.js:607
+#: gui/session/unit_actions.js:617
 msgid "Origin trade market."
 msgstr "Merkatari hartu-emanen iturburua."
 
-#: gui/session/unit_actions.js:617
+#: gui/session/unit_actions.js:627
 msgid "Destination trade market."
 msgstr "Merkatari hartu-emanen helburua."
 
-#: gui/session/unit_actions.js:624
+#: gui/session/unit_actions.js:634
 msgid "Right-click to set as origin trade market"
 msgstr "Eskuin klika merkatu iturburu gisa zehazteko."
 
-#: gui/session/unit_actions.js:631 gui/session/unit_actions.js:973
+#: gui/session/unit_actions.js:641 gui/session/unit_actions.js:985
 msgid "This market is too close to the origin market."
 msgstr "Merkatu hori jatorrizko merkatutik gertuegi dago."
 
-#: gui/session/unit_actions.js:635
+#: gui/session/unit_actions.js:645
 msgid "Right-click to set as destination trade market."
 msgstr "Eskuin klika merkatu helburu gisa zehazteko."
 
-#: gui/session/unit_actions.js:693 gui/session/unit_actions.js:911
+#: gui/session/unit_actions.js:704 gui/session/unit_actions.js:923
 #, javascript-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
 msgstr "Oraingo garnizioa:  %(garrisoned)s/ %(capacity)s"
 
-#: gui/session/unit_actions.js:964
+#: gui/session/unit_actions.js:976
 msgid "Right-click to establish a default route for new traders."
 msgstr "Eskuin klika gure merkatarientzako berezko ibilbide bat zehazteko."
 
-#: gui/session/unit_actions.js:968
+#: gui/session/unit_actions.js:980
 #, javascript-format
 msgid "Expected gain: %(gain)s"
 msgstr "Itxarondako irabazia: %(gain)s"
 
-#: gui/session/unit_actions.js:1094
+#: gui/session/unit_actions.js:1106
 msgid "This entity cannot be controlled."
 msgid_plural "These entities cannot be controlled."
 msgstr[0] "Entitate hori ezin da kontrolatu."
 msgstr[1] "Entitate horiek ezin dira kontrolatu."
 
-#: gui/session/unit_actions.js:1131 gui/session/unit_actions.js:1459
+#: gui/session/unit_actions.js:1143 gui/session/unit_actions.js:1471
 msgid "Unload All."
 msgstr "Hustu guztia."
 
-#: gui/session/unit_actions.js:1149
+#: gui/session/unit_actions.js:1161
 msgid "Destroy the selected units or structures."
 msgstr "Aukeratutako egitura edo unitateak eraisten ditu."
 
-#: gui/session/unit_actions.js:1151
+#: gui/session/unit_actions.js:1163
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr "Sakatu  %(hotkey)s baieztapen elkarrizketa ekiditeko."
 
-#: gui/session/unit_actions.js:1198
+#: gui/session/unit_actions.js:1210
 msgid "Abort the current order."
 msgstr "Ezeztatu oraingo agindua."
 
-#: gui/session/unit_actions.js:1217
+#: gui/session/unit_actions.js:1229
 msgid "Order the selected units to garrison in a structure or unit."
 msgstr "Agindu aukeratutako unitateei egitura edo unitate batean guardan sartzea."
 
-#: gui/session/unit_actions.js:1240
+#: gui/session/unit_actions.js:1252
 msgid "Unload"
 msgstr "Hustu"
 
-#: gui/session/unit_actions.js:1258
+#: gui/session/unit_actions.js:1270
 msgid "Order the selected units to repair a structure, ship, or siege engine."
 msgstr "Aukeratutako unitateei agindu egitura, itsasontzi edo setio makina konpontzea."
 
-#: gui/session/unit_actions.js:1277
+#: gui/session/unit_actions.js:1289
 msgid "Focus on Rally Point."
 msgstr "Joan elkartzen puntura."
 
-#: gui/session/unit_actions.js:1312
+#: gui/session/unit_actions.js:1324
 msgid "Back to Work"
 msgstr "Bueltan lanera"
 
-#: gui/session/unit_actions.js:1331
+#: gui/session/unit_actions.js:1343
 msgid "Order the selected units to guard a structure or unit."
 msgstr "Aukeratutako unitateei agindu egitura edo unitate bat babestea."
 
-#: gui/session/unit_actions.js:1349
+#: gui/session/unit_actions.js:1361
 msgid "Remove guard"
 msgstr "Kendu zaindaria"
 
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
 #: gui/session/trade/TradeDialog.xml:(caption):9
-#: gui/session/unit_actions.js:1366
+#: gui/session/unit_actions.js:1378
 msgid "Barter & Trade"
 msgstr "Merkataritza eta Trukeak"
 
-#: gui/session/unit_actions.js:1384
+#: gui/session/unit_actions.js:1396
 msgid "Patrol"
 msgstr "Patruilatu"
 
-#: gui/session/unit_actions.js:1385
+#: gui/session/unit_actions.js:1397
 msgid "Attack all encountered enemy units while avoiding structures."
 msgstr "Bidean aurkituko diren etsaiak eraso egiturak saihestuz."
 
-#: gui/session/unit_actions.js:1411
+#: gui/session/unit_actions.js:1423
 msgid "Press to allow allies to use this dropsite"
 msgstr "Sakatu aliatuek deskarga puntu hau erabil dezaten"
 
-#: gui/session/unit_actions.js:1415
+#: gui/session/unit_actions.js:1427
 msgid "Press to prevent allies from using this dropsite"
 msgstr "Sakatu aliatuek deskarga puntu hau erabil dezaten ekiditeko"
 
-#: gui/session/unit_actions.js:1480
+#: gui/session/unit_actions.js:1492
 msgid "You are allowed to use this dropsite"
 msgstr "Deskarga puntu hau erabil dezakezu"
 
-#: gui/session/unit_actions.js:1485
+#: gui/session/unit_actions.js:1497
 msgid "The use of this dropsite is prohibited"
 msgstr "Ezin duzu deskarga puntu hau erabili"
 
-#: gui/session/unit_actions.js:1524
+#: gui/session/unit_actions.js:1536
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "Entitate honekin bukatu behar da bere baliabideez jabetzeko"
 
-#: gui/session/unit_actions.js:1527
+#: gui/session/unit_actions.js:1539
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "Ezin duzu entitate hau birrindu ez bai duzu atzitze puntu erdiak baino gehiago kontrolatzen "
 
-#: gui/session/unit_actions.js:1530
+#: gui/session/unit_actions.js:1542
 msgid "This entity is undeletable"
 msgstr "Ezinezkoa da entitate hau ezabatzea"

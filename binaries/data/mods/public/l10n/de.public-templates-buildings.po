@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2020 Wildfire Games
+# Copyright (C) 2021 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -13,6 +13,7 @@
 # ... ... <jon12@gmx.de>, 2017
 # Kjell, 2019
 # Larson März <larson@protonmail.ch>, 2014
+# Latein Lebt, 2021
 # Leonard König <leonard.r.koenig@gmail.com>, 2014-2015
 # leper <leper@wildfiregames.com>, 2014-2015
 # Luis W. <windgans@protonmail.com>, 2019
@@ -46,9 +47,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-12-26 15:10+0000\n"
-"PO-Revision-Date: 2020-12-27 11:07+0000\n"
-"Last-Translator: xtother90\n"
+"POT-Creation-Date: 2021-01-01 08:01+0000\n"
+"PO-Revision-Date: 2021-01-01 23:20+0000\n"
+"Last-Translator: Latein Lebt\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -561,13 +562,13 @@ msgstr "An der Küste in eigenem, neutralem oder alliiertem Territorium bauen. E
 msgid "Shipyard"
 msgstr "Schiffswerft"
 
-#: simulation/templates/structures/cart/temple.xml:14
+#: simulation/templates/structures/cart/temple.xml:9
 msgid "Maqdaš"
 msgstr "Maqdaš"
 
-#: simulation/templates/structures/cart/temple.xml:15
-msgid "Train Healers and Champions and research healing technologies."
-msgstr "Bilde Heiler und Gardisten und erforsche Heilungstechnologien."
+#: simulation/templates/structures/cart/temple.xml:10
+msgid "Train Healers and Champion Infantry and research healing technologies."
+msgstr "Bilde Heiler und Gardeninfanterie aus und erforsche Heilungstechnologien."
 
 #: simulation/templates/structures/cart/tophet.xml:18
 msgid "Sacrificial Temple"
@@ -576,10 +577,6 @@ msgstr "Opfertempel"
 #: simulation/templates/structures/cart/tophet.xml:19
 msgid "Tophet"
 msgstr "Tofet"
-
-#: simulation/templates/structures/cart/tophet.xml:20
-msgid "Train Healers and Champion Cavalry and research healing technologies."
-msgstr "Bilde Heiler und Kavalleriegardisten und erforsche Heilungstechnologien."
 
 #: simulation/templates/structures/cart/wall_gate.xml:12
 msgid "Mijdil-šaʿar"
@@ -1184,10 +1181,6 @@ msgstr "Wohnblock"
 msgid "Padgan"
 msgstr "Padgan"
 
-#: simulation/templates/structures/pers/barracks.xml:6
-msgid "Train Infantry."
-msgstr "Bilde Infanterie aus."
-
 #: simulation/templates/structures/pers/civil_centre.xml:8
 msgid "Provincial Governor"
 msgstr "Provinzstatthalter"
@@ -1370,22 +1363,22 @@ msgstr "Arcus Triumphālis"
 msgid "TriumphalArch"
 msgstr "Thriumphbogen"
 
-#: simulation/templates/structures/rome/army_camp.xml:71
+#: simulation/templates/structures/rome/army_camp.xml:73
 msgid "Army Camp"
 msgstr "Armeelager"
 
-#: simulation/templates/structures/rome/army_camp.xml:72
+#: simulation/templates/structures/rome/army_camp.xml:74
 msgid "Castra"
 msgstr "Castra"
 
-#: simulation/templates/structures/rome/army_camp.xml:73
+#: simulation/templates/structures/rome/army_camp.xml:75
 msgid ""
-"Build in neutral or enemy territory. Train Citizen-Soldiers and construct "
-"Siege Engines. Garrison Soldiers for additional arrows."
-msgstr "In neutralem oder gegnerischem Territorium bauen. Bilde Bürgersoldaten aus und baue Belagerungswaffen. Quartiere Soldaten für zusätzliche Pfeile ein."
+"Build in neutral or enemy territory. Train Melee Infantry. Garrison Soldiers"
+" for additional arrows."
+msgstr "In neutralem oder gegnerischen Territorium bauen. Bilde Nahkampfgardisten aus. Quartiere Soldaten für zusätzliche Pfeile ein."
 
 #: simulation/templates/structures/rome/army_camp.xml:40
-#: simulation/templates/structures/rome/army_camp.xml:75
+#: simulation/templates/structures/rome/army_camp.xml:77
 msgid "ArmyCamp"
 msgstr "Armeelager"
 
@@ -1701,21 +1694,17 @@ msgstr "Dorf"
 #: simulation/templates/structures/hellenic_stoa.xml:23
 #: simulation/templates/structures/mace/royal_stoa.xml:5
 #: simulation/templates/structures/spart/royal_stoa.xml:12
+#: simulation/templates/template_structure_civic_stoa.xml:27
 #: simulation/templates/template_structure_civic_stoa.xml:30
-#: simulation/templates/template_structure_civic_stoa.xml:33
 msgid "Stoa"
 msgstr "Stoa"
-
-#: simulation/templates/template_structure_civic_stoa.xml:32
-msgid "Train Mercenary Champions."
-msgstr "Bilde Söldnergardisten aus."
 
 #: simulation/templates/structures/cart/super_dock.xml:43
 #: simulation/templates/structures/gaul/tavern.xml:23
 #: simulation/templates/structures/kush/pyramid_small.xml:29
 #: simulation/templates/structures/maur/elephant_stables.xml:7
 #: simulation/templates/structures/ptol/lighthouse.xml:28
-#: simulation/templates/template_structure_civic_stoa.xml:33
+#: simulation/templates/template_structure_civic_stoa.xml:30
 #: simulation/templates/template_structure_civic_temple.xml:32
 #: simulation/templates/template_structure_defensive_tower_stone.xml:34
 #: simulation/templates/template_structure_economic_market.xml:28
@@ -1751,15 +1740,16 @@ msgid ""
 msgstr "In neutralem oder eigenem Territorium bauen. Wird langsam wieder zu Gaia, wenn es im neutralen Territoritum liegt."
 
 #: simulation/templates/structures/wallset_palisade.xml:4
-#: simulation/templates/structures/wallset_palisade.xml:5
-#: simulation/templates/template_structure_defensive_palisade.xml:15
-#: simulation/templates/template_structure_defensive_palisade.xml:18
+#: simulation/templates/structures/wallset_palisade.xml:6
+#: simulation/templates/template_structure_defensive_palisade.xml:17
+#: simulation/templates/template_structure_defensive_palisade.xml:20
 msgid "Palisade"
 msgstr "Palisade"
 
-#: simulation/templates/template_structure_defensive_palisade.xml:17
-msgid "Wall off an area."
-msgstr "Ummauere ein Gebiet."
+#: simulation/templates/structures/wallset_palisade.xml:5
+#: simulation/templates/template_structure_defensive_palisade.xml:19
+msgid "Wall off an area. Build in own or neutral territory."
+msgstr "Ummauere ein Gebiet. Baue in eigenem oder neutralem Territorium."
 
 #: simulation/templates/template_structure_defensive_tower.xml:37
 #: simulation/templates/template_structure_defensive_tower.xml:53
@@ -1782,6 +1772,7 @@ msgstr "Artillerieturm"
 
 #: simulation/templates/structures/kush/pyramid_large.xml:29
 #: simulation/templates/structures/kush/temple_amun.xml:30
+#: simulation/templates/structures/rome/army_camp.xml:77
 #: simulation/templates/structures/rome/temple_mars.xml:14
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:60
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:59
@@ -1821,7 +1812,7 @@ msgstr "Quartiere Infanterie für mehr Pfeile ein. Braucht die Mörderlöchertec
 msgid "SentryTower"
 msgstr "Wachturm"
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:68
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:65
 msgid "Reinforce with stone and upgrade to a defense tower."
 msgstr "Mit Stein verstärken und zu einem Verteidigungsturm aufwerten."
 
@@ -1933,8 +1924,8 @@ msgid "Barracks"
 msgstr "Kaserne"
 
 #: simulation/templates/template_structure_military_barracks.xml:28
-msgid "Train Citizen Soldiers and research technologies."
-msgstr "Bilde Bürgersoldaten und erforsche Technologien."
+msgid "Train Infantry and research Infantry technologies."
+msgstr "Bilde Infanterie aus und erforsche Infanterietechnologien."
 
 #: simulation/templates/template_structure_military_dock.xml:24
 #: simulation/templates/template_structure_military_dock.xml:27
@@ -1977,8 +1968,8 @@ msgid "Forge"
 msgstr "Schmiede"
 
 #: simulation/templates/template_structure_military_forge.xml:24
-msgid "Research attack and armor technologies."
-msgstr "Erforsche Angriff- und Rüstungstechnologien."
+msgid "Research attack and resistance technologies."
+msgstr "Erforsche Angriffs- und Abwehrtechnologien"
 
 #: simulation/templates/template_structure_military_fortress.xml:39
 #: simulation/templates/template_structure_military_fortress.xml:68

@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2020 Wildfire Games
+# Copyright (C) 2021 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -23,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-12-01 11:21+0000\n"
+"POT-Creation-Date: 2021-01-01 08:01+0000\n"
 "PO-Revision-Date: 2020-12-01 14:32+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
@@ -693,7 +693,7 @@ msgid "Swag"
 msgstr "Здобич"
 
 #: simulation/data/auras/units/heroes/kush_hero_amanirenas.jsonauraDescription
-#: simulation/data/auras/units/heroes/mace_hero_philip.jsonauraDescription
+#: simulation/data/auras/units/heroes/mace_hero_philip_ii.jsonauraDescription
 msgid ""
 "Champions +2 capture attack strength, +20% melee and ranged attack damage."
 msgstr "Чемпіони мають +2 ефективності захоплення, +20% нанесення ближнього та дистанційного пошкодження."
@@ -746,19 +746,19 @@ msgstr "Кушитські триреми потребують -50 вартос�
 msgid "Gift of Warships"
 msgstr "Дар військових кораблів"
 
-#: simulation/data/auras/units/heroes/mace_hero_alexander_1.jsonauraDescription
+#: simulation/data/auras/units/heroes/mace_hero_alexander_iii_1.jsonauraDescription
 msgid "Structures +10% territory influence radius."
 msgstr "Споруди мають +10% радіусу территоріального впливу."
 
-#: simulation/data/auras/units/heroes/mace_hero_alexander_1.jsonauraName
+#: simulation/data/auras/units/heroes/mace_hero_alexander_iii_1.jsonauraName
 msgid "Imperialism"
 msgstr "Імперіалізм"
 
-#: simulation/data/auras/units/heroes/mace_hero_alexander_2.jsonauraDescription
+#: simulation/data/auras/units/heroes/mace_hero_alexander_iii_2.jsonauraDescription
 msgid "Enemy Civic Centres −50% capture points garrisoned regeneration rate."
 msgstr "Ворожі громадські центри мають -50% темпу відновлення очків захоплення гарнізону."
 
-#: simulation/data/auras/units/heroes/mace_hero_alexander_2.jsonauraName
+#: simulation/data/auras/units/heroes/mace_hero_alexander_iii_2.jsonauraName
 msgid "Conqueror"
 msgstr "Завойовник"
 
@@ -771,25 +771,25 @@ msgstr "Піхотні пікінери мають +20% ефективності
 msgid "Taxiarchès"
 msgstr "Таксіархес"
 
-#: simulation/data/auras/units/heroes/mace_hero_demetrius.jsonauraDescription
+#: simulation/data/auras/units/heroes/mace_hero_demetrius_i.jsonauraDescription
 msgid ""
 "Siege Engines +1 armor, +20% melee and ranged attack damage, +10% ranged "
 "attack range, +10% vision range."
 msgstr "Облогові знаряддя мають +1 броні, +20% нанесення ближнього та дистанційного пошкодження, +10% дистанції дистанційної атаки, +10% дистанції зору."
 
-#: simulation/data/auras/units/heroes/mace_hero_demetrius.jsonauraName
+#: simulation/data/auras/units/heroes/mace_hero_demetrius_i.jsonauraName
 msgid "Besieger"
 msgstr "Обложник"
 
-#: simulation/data/auras/units/heroes/mace_hero_philip.jsonauraName
+#: simulation/data/auras/units/heroes/mace_hero_philip_ii.jsonauraName
 msgid "Rise of Macedon"
 msgstr "Підйом Македону"
 
-#: simulation/data/auras/units/heroes/mace_hero_pyrrhus.jsonauraDescription
+#: simulation/data/auras/units/heroes/mace_hero_pyrrhus_i.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage, −15% health."
 msgstr "Солдати мають +20% нанесення ближнього та дистанційного пошкодження, -15% здоров'я."
 
-#: simulation/data/auras/units/heroes/mace_hero_pyrrhus.jsonauraName
+#: simulation/data/auras/units/heroes/mace_hero_pyrrhus_i.jsonauraName
 msgid "Pyrrhic Victory"
 msgstr "Піррова перемога"
 
@@ -817,76 +817,76 @@ msgstr "Наставник"
 msgid "Regeneration"
 msgstr "Регенерація"
 
-#: simulation/data/auras/units/heroes/pers_hero_cyrus.jsonauraDescription
+#: simulation/data/auras/units/heroes/pers_hero_cyrus_ii.jsonauraDescription
 msgid ""
 "Cavalry +1 capture attack strength, +20% melee and ranged attack damage."
 msgstr "Кавалерія має +1 ефективності захоплення, +20% нанесення ближнього та дистанційного пошкодження."
 
-#: simulation/data/auras/units/heroes/pers_hero_cyrus.jsonauraName
+#: simulation/data/auras/units/heroes/pers_hero_cyrus_ii.jsonauraName
 msgid "Forefront Leader"
 msgstr "Лідер авангарду"
 
-#: simulation/data/auras/units/heroes/pers_hero_darius.jsonauraDescription
+#: simulation/data/auras/units/heroes/pers_hero_darius_i.jsonauraDescription
 msgid ""
 "Soldiers, Siege Engines, Traders, and Merchant Ships +15% movement speed."
 msgstr "Солдати, облогові знаряддя, торговці та торгові судна мають +15% швидкості руху."
 
-#: simulation/data/auras/units/heroes/pers_hero_darius.jsonauraName
+#: simulation/data/auras/units/heroes/pers_hero_darius_i.jsonauraName
 msgid "Leadership"
 msgstr "Лідерство"
 
-#: simulation/data/auras/units/heroes/pers_hero_xerxes.jsonauraDescription
+#: simulation/data/auras/units/heroes/pers_hero_xerxes_i.jsonauraDescription
 msgid "Workers +15% build rate and gather speed."
 msgstr "Працівники мають +15% темпу спорудження та швидкості збору."
 
-#: simulation/data/auras/units/heroes/pers_hero_xerxes.jsonauraName
+#: simulation/data/auras/units/heroes/pers_hero_xerxes_i.jsonauraName
 msgid "Administrator"
 msgstr "Завідатель"
 
-#: simulation/data/auras/units/heroes/ptol_hero_cleopatra_1.jsonauraDescription
+#: simulation/data/auras/units/heroes/ptol_hero_cleopatra_vii_1.jsonauraDescription
 msgid "Soldiers and Siege Engines −20% melee and ranged attack repeat time."
 msgstr "Солдати та облогові знаряддя потребують -20% часу повторення ближньої та дистанційної атаки."
 
-#: simulation/data/auras/units/heroes/ptol_hero_cleopatra_1.jsonauraName
+#: simulation/data/auras/units/heroes/ptol_hero_cleopatra_vii_1.jsonauraName
 msgid "Patriot"
 msgstr "Патріот"
 
-#: simulation/data/auras/units/heroes/ptol_hero_cleopatra_2.jsonauraDescription
+#: simulation/data/auras/units/heroes/ptol_hero_cleopatra_vii_2.jsonauraDescription
 msgid "Allied Heroes +10% health."
 msgstr "Союзні герої мають +10% здоров'я."
 
-#: simulation/data/auras/units/heroes/ptol_hero_cleopatra_2.jsonauraName
-#: simulation/data/auras/units/heroes/ptol_hero_cleopatra_3.jsonauraName
+#: simulation/data/auras/units/heroes/ptol_hero_cleopatra_vii_2.jsonauraName
+#: simulation/data/auras/units/heroes/ptol_hero_cleopatra_vii_3.jsonauraName
 msgid "Consort"
 msgstr "Консорт"
 
-#: simulation/data/auras/units/heroes/ptol_hero_cleopatra_3.jsonauraDescription
+#: simulation/data/auras/units/heroes/ptol_hero_cleopatra_vii_3.jsonauraDescription
 msgid "Enemy Heroes −10% health."
 msgstr "Ворожі герої мають -10% здоров'я."
 
-#: simulation/data/auras/units/heroes/ptol_hero_ptolemy_IV.jsonauraDescription
-msgid "Pikemen +40% health."
-msgstr "Пікінери мають +40% здоров'я."
-
-#: simulation/data/auras/units/heroes/ptol_hero_ptolemy_IV.jsonauraName
-msgid "Raphia"
-msgstr "Рафія"
-
-#: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_1.jsonauraDescription
+#: simulation/data/auras/units/heroes/ptol_hero_ptolemy_i_1.jsonauraDescription
 msgid "Workers +10% build rate."
 msgstr "Працівники мають +10% темпу спорудження."
 
-#: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_1.jsonauraName
+#: simulation/data/auras/units/heroes/ptol_hero_ptolemy_i_1.jsonauraName
 msgid "Patron of Construction"
 msgstr "Покровитель будівництва"
 
-#: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_2.jsonauraDescription
+#: simulation/data/auras/units/heroes/ptol_hero_ptolemy_i_2.jsonauraDescription
 msgid "Mercenaries −35% resource costs."
 msgstr "Найманці потребують -35% ресурсних витрат."
 
-#: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_2.jsonauraName
+#: simulation/data/auras/units/heroes/ptol_hero_ptolemy_i_2.jsonauraName
 msgid "Mercenary Patron"
 msgstr "Покровитель найманців"
+
+#: simulation/data/auras/units/heroes/ptol_hero_ptolemy_iv.jsonauraDescription
+msgid "Pikemen +40% health."
+msgstr "Пікінери мають +40% здоров'я."
+
+#: simulation/data/auras/units/heroes/ptol_hero_ptolemy_iv.jsonauraName
+msgid "Raphia"
+msgstr "Рафія"
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_1.jsonauraDescription
 msgid "Cavalry +15% melee and ranged attack damage."
@@ -919,27 +919,27 @@ msgstr "Солдати та облогові знаряддя мають +2 еф
 msgid "Triumph"
 msgstr "Тріумф"
 
-#: simulation/data/auras/units/heroes/sele_hero_antiochus_great.jsonauraDescription
+#: simulation/data/auras/units/heroes/sele_hero_antiochus_iii.jsonauraDescription
 msgid "Cavalry +2 armor."
 msgstr "Кавалерія має +2 броні."
 
-#: simulation/data/auras/units/heroes/sele_hero_antiochus_great.jsonauraName
+#: simulation/data/auras/units/heroes/sele_hero_antiochus_iii.jsonauraName
 msgid "Ilarchès"
 msgstr "Ілархес"
 
-#: simulation/data/auras/units/heroes/sele_hero_antiochus_righteous.jsonauraDescription
+#: simulation/data/auras/units/heroes/sele_hero_antiochus_iv.jsonauraDescription
 msgid "Enemy Structures, Ships, and Siege Engines -20% health."
 msgstr "Ворожі споруди, кораблі та облогові знаряддя мають -20% здоров'я."
 
-#: simulation/data/auras/units/heroes/sele_hero_antiochus_righteous.jsonauraName
+#: simulation/data/auras/units/heroes/sele_hero_antiochus_iv.jsonauraName
 msgid "Renowned Conqueror"
 msgstr "Прославлений завойовник"
 
-#: simulation/data/auras/units/heroes/sele_hero_seleucus_victor.jsonauraDescription
+#: simulation/data/auras/units/heroes/sele_hero_seleucus_i.jsonauraDescription
 msgid "Champion Elephants +20% melee attack damage, +20% movement speed."
 msgstr "Чемпіонські слони мають +20% нанесення ближнього пошкодження, +20% швидкості руху."
 
-#: simulation/data/auras/units/heroes/sele_hero_seleucus_victor.jsonauraName
+#: simulation/data/auras/units/heroes/sele_hero_seleucus_i.jsonauraName
 msgid "Zooiarchos"
 msgstr "Зооіархос"
 

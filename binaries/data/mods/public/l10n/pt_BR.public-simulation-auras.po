@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2020 Wildfire Games
+# Copyright (C) 2021 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -25,15 +25,15 @@
 # Rafael Monteiro <rafaelimabsb2@hotmail.com>, 2016
 # Renato Cirino <renatimpirei@gmail.com>, 2019
 # Rui <xymarior@yandex.com>, 2018-2019
-# Tiago Melo <tiago.henrique.cco@gmail.com>, 2020
-# Tiago Melo <tiago.henrique.cco@gmail.com>, 2020
-# Tiago Melo <tiago.henrique.cco@gmail.com>, 2018-2020
+# Tiago <tiago.henrique.cco@gmail.com>, 2020
+# Tiago <tiago.henrique.cco@gmail.com>, 2020
+# Tiago <tiago.henrique.cco@gmail.com>, 2018-2020
 # victoJ <vfriedrichj@gmail.com>, 2020
 # Victor Gregório <vt_marv@hotmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-12-01 11:21+0000\n"
+"POT-Creation-Date: 2021-01-01 08:01+0000\n"
 "PO-Revision-Date: 2020-12-01 14:32+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
@@ -703,7 +703,7 @@ msgid "Swag"
 msgstr "Pilhagem"
 
 #: simulation/data/auras/units/heroes/kush_hero_amanirenas.jsonauraDescription
-#: simulation/data/auras/units/heroes/mace_hero_philip.jsonauraDescription
+#: simulation/data/auras/units/heroes/mace_hero_philip_ii.jsonauraDescription
 msgid ""
 "Champions +2 capture attack strength, +20% melee and ranged attack damage."
 msgstr "Campeões têm +2 de poder de captura e +20% de dano de ataque à distância e de corpo-a-corpo."
@@ -756,19 +756,19 @@ msgstr "Trirremes Cuchitas custam -50% de madeira e metal."
 msgid "Gift of Warships"
 msgstr "Presente de Navios de Guerra"
 
-#: simulation/data/auras/units/heroes/mace_hero_alexander_1.jsonauraDescription
+#: simulation/data/auras/units/heroes/mace_hero_alexander_iii_1.jsonauraDescription
 msgid "Structures +10% territory influence radius."
 msgstr "Estruturas têm +10% no raio de influência de território."
 
-#: simulation/data/auras/units/heroes/mace_hero_alexander_1.jsonauraName
+#: simulation/data/auras/units/heroes/mace_hero_alexander_iii_1.jsonauraName
 msgid "Imperialism"
 msgstr "Imperialismo"
 
-#: simulation/data/auras/units/heroes/mace_hero_alexander_2.jsonauraDescription
+#: simulation/data/auras/units/heroes/mace_hero_alexander_iii_2.jsonauraDescription
 msgid "Enemy Civic Centres −50% capture points garrisoned regeneration rate."
 msgstr "Centros Cívicos Inimigos possúem -50% na taxa de pontos de captura de unidades aquarteladas."
 
-#: simulation/data/auras/units/heroes/mace_hero_alexander_2.jsonauraName
+#: simulation/data/auras/units/heroes/mace_hero_alexander_iii_2.jsonauraName
 msgid "Conqueror"
 msgstr "Conquistador"
 
@@ -781,25 +781,25 @@ msgstr "Piqueiros têm +20% de poder de captura e +20% de dano de ataque corpo-a
 msgid "Taxiarchès"
 msgstr "Taxiarchès"
 
-#: simulation/data/auras/units/heroes/mace_hero_demetrius.jsonauraDescription
+#: simulation/data/auras/units/heroes/mace_hero_demetrius_i.jsonauraDescription
 msgid ""
 "Siege Engines +1 armor, +20% melee and ranged attack damage, +10% ranged "
 "attack range, +10% vision range."
 msgstr "Armas de Cerco têm +1 de armadura, +20% de dano de ataque à distância e de corpo-a-corpo, +10% de alcance de ataque e +10% de campo de visão."
 
-#: simulation/data/auras/units/heroes/mace_hero_demetrius.jsonauraName
+#: simulation/data/auras/units/heroes/mace_hero_demetrius_i.jsonauraName
 msgid "Besieger"
 msgstr "Sitiante"
 
-#: simulation/data/auras/units/heroes/mace_hero_philip.jsonauraName
+#: simulation/data/auras/units/heroes/mace_hero_philip_ii.jsonauraName
 msgid "Rise of Macedon"
 msgstr "Ascensão da Macedônia"
 
-#: simulation/data/auras/units/heroes/mace_hero_pyrrhus.jsonauraDescription
+#: simulation/data/auras/units/heroes/mace_hero_pyrrhus_i.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage, −15% health."
 msgstr "Soldados têm +20% de dano de ataque à distância e de corpo-a-corpo e -15% de saúde."
 
-#: simulation/data/auras/units/heroes/mace_hero_pyrrhus.jsonauraName
+#: simulation/data/auras/units/heroes/mace_hero_pyrrhus_i.jsonauraName
 msgid "Pyrrhic Victory"
 msgstr "Vitória Pírrica"
 
@@ -827,76 +827,76 @@ msgstr "Professor"
 msgid "Regeneration"
 msgstr "Regeneração"
 
-#: simulation/data/auras/units/heroes/pers_hero_cyrus.jsonauraDescription
+#: simulation/data/auras/units/heroes/pers_hero_cyrus_ii.jsonauraDescription
 msgid ""
 "Cavalry +1 capture attack strength, +20% melee and ranged attack damage."
 msgstr "Cavalaria tem +1 de poder de captura e +20% de dano de ataque à distância e de corpo-a-corpo."
 
-#: simulation/data/auras/units/heroes/pers_hero_cyrus.jsonauraName
+#: simulation/data/auras/units/heroes/pers_hero_cyrus_ii.jsonauraName
 msgid "Forefront Leader"
 msgstr "Líder de Frente"
 
-#: simulation/data/auras/units/heroes/pers_hero_darius.jsonauraDescription
+#: simulation/data/auras/units/heroes/pers_hero_darius_i.jsonauraDescription
 msgid ""
 "Soldiers, Siege Engines, Traders, and Merchant Ships +15% movement speed."
 msgstr "Soldados, Armas de Cerco, Comerciantes e Navios Mercantes têm +15% de velocidade de movimento."
 
-#: simulation/data/auras/units/heroes/pers_hero_darius.jsonauraName
+#: simulation/data/auras/units/heroes/pers_hero_darius_i.jsonauraName
 msgid "Leadership"
 msgstr "Liderança"
 
-#: simulation/data/auras/units/heroes/pers_hero_xerxes.jsonauraDescription
+#: simulation/data/auras/units/heroes/pers_hero_xerxes_i.jsonauraDescription
 msgid "Workers +15% build rate and gather speed."
 msgstr "Trabalhadores têm +15% de taxa de construção e de velocidade de coleta."
 
-#: simulation/data/auras/units/heroes/pers_hero_xerxes.jsonauraName
+#: simulation/data/auras/units/heroes/pers_hero_xerxes_i.jsonauraName
 msgid "Administrator"
 msgstr "Administrador"
 
-#: simulation/data/auras/units/heroes/ptol_hero_cleopatra_1.jsonauraDescription
+#: simulation/data/auras/units/heroes/ptol_hero_cleopatra_vii_1.jsonauraDescription
 msgid "Soldiers and Siege Engines −20% melee and ranged attack repeat time."
 msgstr "Soldados e Armas de Cerco têm -20% no tempo de repetição de ataque à distância e de corpo-a-corpo."
 
-#: simulation/data/auras/units/heroes/ptol_hero_cleopatra_1.jsonauraName
+#: simulation/data/auras/units/heroes/ptol_hero_cleopatra_vii_1.jsonauraName
 msgid "Patriot"
 msgstr "Patriota"
 
-#: simulation/data/auras/units/heroes/ptol_hero_cleopatra_2.jsonauraDescription
+#: simulation/data/auras/units/heroes/ptol_hero_cleopatra_vii_2.jsonauraDescription
 msgid "Allied Heroes +10% health."
 msgstr "Heróis Aliados têm +10% de vida."
 
-#: simulation/data/auras/units/heroes/ptol_hero_cleopatra_2.jsonauraName
-#: simulation/data/auras/units/heroes/ptol_hero_cleopatra_3.jsonauraName
+#: simulation/data/auras/units/heroes/ptol_hero_cleopatra_vii_2.jsonauraName
+#: simulation/data/auras/units/heroes/ptol_hero_cleopatra_vii_3.jsonauraName
 msgid "Consort"
 msgstr "Consorte"
 
-#: simulation/data/auras/units/heroes/ptol_hero_cleopatra_3.jsonauraDescription
+#: simulation/data/auras/units/heroes/ptol_hero_cleopatra_vii_3.jsonauraDescription
 msgid "Enemy Heroes −10% health."
 msgstr "Heróis Inimigos têm -10% de vida."
 
-#: simulation/data/auras/units/heroes/ptol_hero_ptolemy_IV.jsonauraDescription
-msgid "Pikemen +40% health."
-msgstr "Piqueiros têm +40% de vida."
-
-#: simulation/data/auras/units/heroes/ptol_hero_ptolemy_IV.jsonauraName
-msgid "Raphia"
-msgstr "Ráfia"
-
-#: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_1.jsonauraDescription
+#: simulation/data/auras/units/heroes/ptol_hero_ptolemy_i_1.jsonauraDescription
 msgid "Workers +10% build rate."
 msgstr "Trabalhadores têm +10% de taxa de construção."
 
-#: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_1.jsonauraName
+#: simulation/data/auras/units/heroes/ptol_hero_ptolemy_i_1.jsonauraName
 msgid "Patron of Construction"
 msgstr "Patrono da Construção"
 
-#: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_2.jsonauraDescription
+#: simulation/data/auras/units/heroes/ptol_hero_ptolemy_i_2.jsonauraDescription
 msgid "Mercenaries −35% resource costs."
 msgstr "Mercenários têm -35% de custo de recursos."
 
-#: simulation/data/auras/units/heroes/ptol_hero_ptolemy_I_2.jsonauraName
+#: simulation/data/auras/units/heroes/ptol_hero_ptolemy_i_2.jsonauraName
 msgid "Mercenary Patron"
 msgstr "Patrono dos Mercenários"
+
+#: simulation/data/auras/units/heroes/ptol_hero_ptolemy_iv.jsonauraDescription
+msgid "Pikemen +40% health."
+msgstr "Piqueiros têm +40% de vida."
+
+#: simulation/data/auras/units/heroes/ptol_hero_ptolemy_iv.jsonauraName
+msgid "Raphia"
+msgstr "Ráfia"
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_1.jsonauraDescription
 msgid "Cavalry +15% melee and ranged attack damage."
@@ -929,27 +929,27 @@ msgstr "Soldados e Armas de Cerco têm +2 de força de ataque de captura, +20% d
 msgid "Triumph"
 msgstr "Triunfo"
 
-#: simulation/data/auras/units/heroes/sele_hero_antiochus_great.jsonauraDescription
+#: simulation/data/auras/units/heroes/sele_hero_antiochus_iii.jsonauraDescription
 msgid "Cavalry +2 armor."
 msgstr "Cavalaria têm +2 de armadura."
 
-#: simulation/data/auras/units/heroes/sele_hero_antiochus_great.jsonauraName
+#: simulation/data/auras/units/heroes/sele_hero_antiochus_iii.jsonauraName
 msgid "Ilarchès"
 msgstr "Ilarchès"
 
-#: simulation/data/auras/units/heroes/sele_hero_antiochus_righteous.jsonauraDescription
+#: simulation/data/auras/units/heroes/sele_hero_antiochus_iv.jsonauraDescription
 msgid "Enemy Structures, Ships, and Siege Engines -20% health."
 msgstr "Estruturas Inimigas, Navios e Armas de Cerco têm -20% de vida."
 
-#: simulation/data/auras/units/heroes/sele_hero_antiochus_righteous.jsonauraName
+#: simulation/data/auras/units/heroes/sele_hero_antiochus_iv.jsonauraName
 msgid "Renowned Conqueror"
 msgstr "Conquistador Renomado"
 
-#: simulation/data/auras/units/heroes/sele_hero_seleucus_victor.jsonauraDescription
+#: simulation/data/auras/units/heroes/sele_hero_seleucus_i.jsonauraDescription
 msgid "Champion Elephants +20% melee attack damage, +20% movement speed."
 msgstr "Elefantes Campeões têm +20% de dano de ataque corpo-a-corpo e +20% de velocidade de movimento."
 
-#: simulation/data/auras/units/heroes/sele_hero_seleucus_victor.jsonauraName
+#: simulation/data/auras/units/heroes/sele_hero_seleucus_i.jsonauraName
 msgid "Zooiarchos"
 msgstr "Zooiarchos"
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -85,7 +85,7 @@ static Status InitResolution()
 	resolution = 1.0 / static_cast<double>(frequency.QuadPart);
 #elif HAVE_CLOCK_GETTIME
 	struct timespec ts;
-	if (clock_getres(CLOCK_REALTIME, &ts) == 0)
+	if (clock_getres(CLOCK_MONOTONIC, &ts) == 0)
 		resolution = ts.tv_nsec * 1e-9;
 	else
 		resolution = 1e-9;
@@ -106,9 +106,9 @@ void timer_Init()
 #if OS_WIN
 	ENSURE(QueryPerformanceCounter(&start));
 #elif HAVE_CLOCK_GETTIME
-	(void)clock_gettime(CLOCK_REALTIME, &start);
+	ENSURE(clock_gettime(CLOCK_MONOTONIC, &start) == 0);
 #elif HAVE_GETTIMEOFDAY
-	gettimeofday(&start, 0);
+	ENSURE(gettimeofday(&start, 0) == 0);
 #endif
 
 	static ModuleInitState initState;
@@ -139,12 +139,12 @@ double timer_Time()
 #elif HAVE_CLOCK_GETTIME
 	ENSURE(start.tv_sec || start.tv_nsec);	// must have called timer_LatchStartTime first
 	struct timespec cur;
-	(void)clock_gettime(CLOCK_REALTIME, &cur);
+	ENSURE(clock_gettime(CLOCK_MONOTONIC, &cur) == 0);
 	t = (cur.tv_sec - start.tv_sec) + (cur.tv_nsec - start.tv_nsec) * resolution;
 #elif HAVE_GETTIMEOFDAY
 	ENSURE(start.tv_sec || start.tv_usec);	// must have called timer_LatchStartTime first
 	struct timeval cur;
-	gettimeofday(&cur, 0);
+	ENSURE(gettimeofday(&cur, 0) == 0);
 	t = (cur.tv_sec - start.tv_sec) + (cur.tv_usec - start.tv_usec) * resolution;
 #else
 # error "timer_Time: add timer implementation for this platform!"

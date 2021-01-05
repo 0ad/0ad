@@ -1,15 +1,15 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2020 Wildfire Games
+# Copyright (C) 2021 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
-# David Sowa <isithere2@yahoo.com>, 2017-2020
+# David Sowa <isithere2@yahoo.com>, 2017-2021
 # enolp <enolp@softastur.org>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-12-26 15:10+0000\n"
-"PO-Revision-Date: 2020-12-27 16:32+0000\n"
+"POT-Creation-Date: 2021-01-01 08:01+0000\n"
+"PO-Revision-Date: 2021-01-01 17:54+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -523,13 +523,13 @@ msgstr "Failu a la vera l'agua en terrenu propiu, aliáu o n'abertal. Pósiate d
 msgid "Shipyard"
 msgstr "Castru"
 
-#: simulation/templates/structures/cart/temple.xml:14
+#: simulation/templates/structures/cart/temple.xml:9
 msgid "Maqdaš"
 msgstr "Maqdaš"
 
-#: simulation/templates/structures/cart/temple.xml:15
-msgid "Train Healers and Champions and research healing technologies."
-msgstr "Allista curanderos ya campeones ya desendolca la medicina."
+#: simulation/templates/structures/cart/temple.xml:10
+msgid "Train Healers and Champion Infantry and research healing technologies."
+msgstr "Allista los curanderos ya campeones d'a pie ya desendolca'l curamientu."
 
 #: simulation/templates/structures/cart/tophet.xml:18
 msgid "Sacrificial Temple"
@@ -538,10 +538,6 @@ msgstr "Ara del holocaustu"
 #: simulation/templates/structures/cart/tophet.xml:19
 msgid "Tophet"
 msgstr "Topheth"
-
-#: simulation/templates/structures/cart/tophet.xml:20
-msgid "Train Healers and Champion Cavalry and research healing technologies."
-msgstr "Allista curanderos ya campeones d'a caballu y ameyora'l curamientu."
 
 #: simulation/templates/structures/cart/wall_gate.xml:12
 msgid "Mijdil-šaʿar"
@@ -1146,10 +1142,6 @@ msgstr "Bloque"
 msgid "Padgan"
 msgstr "Padgan"
 
-#: simulation/templates/structures/pers/barracks.xml:6
-msgid "Train Infantry."
-msgstr "Allista soldaos."
-
 #: simulation/templates/structures/pers/civil_centre.xml:8
 msgid "Provincial Governor"
 msgstr "Gobernador provincial"
@@ -1332,22 +1324,22 @@ msgstr "Arcus Triumphālis"
 msgid "TriumphalArch"
 msgstr "ArcuTrunfal"
 
-#: simulation/templates/structures/rome/army_camp.xml:71
+#: simulation/templates/structures/rome/army_camp.xml:73
 msgid "Army Camp"
 msgstr "Campamentu militar"
 
-#: simulation/templates/structures/rome/army_camp.xml:72
+#: simulation/templates/structures/rome/army_camp.xml:74
 msgid "Castra"
 msgstr "Castra"
 
-#: simulation/templates/structures/rome/army_camp.xml:73
+#: simulation/templates/structures/rome/army_camp.xml:75
 msgid ""
-"Build in neutral or enemy territory. Train Citizen-Soldiers and construct "
-"Siege Engines. Garrison Soldiers for additional arrows."
-msgstr "Llevántalu en tierra abertal o enemigo. Allista milicianos ya fai máquines. Guarez soldaos nelli pa tirar más fleches."
+"Build in neutral or enemy territory. Train Melee Infantry. Garrison Soldiers"
+" for additional arrows."
+msgstr "Llevántase n'abertal o en terrén enemigu. Allista los soldaos d'a pie. Guarez soldaos nelli pa tirar más fleches."
 
 #: simulation/templates/structures/rome/army_camp.xml:40
-#: simulation/templates/structures/rome/army_camp.xml:75
+#: simulation/templates/structures/rome/army_camp.xml:77
 msgid "ArmyCamp"
 msgstr "Campamentu"
 
@@ -1663,21 +1655,17 @@ msgstr "Llugar"
 #: simulation/templates/structures/hellenic_stoa.xml:23
 #: simulation/templates/structures/mace/royal_stoa.xml:5
 #: simulation/templates/structures/spart/royal_stoa.xml:12
+#: simulation/templates/template_structure_civic_stoa.xml:27
 #: simulation/templates/template_structure_civic_stoa.xml:30
-#: simulation/templates/template_structure_civic_stoa.xml:33
 msgid "Stoa"
 msgstr "Stoá"
-
-#: simulation/templates/template_structure_civic_stoa.xml:32
-msgid "Train Mercenary Champions."
-msgstr "Allista campeones mercenarios."
 
 #: simulation/templates/structures/cart/super_dock.xml:43
 #: simulation/templates/structures/gaul/tavern.xml:23
 #: simulation/templates/structures/kush/pyramid_small.xml:29
 #: simulation/templates/structures/maur/elephant_stables.xml:7
 #: simulation/templates/structures/ptol/lighthouse.xml:28
-#: simulation/templates/template_structure_civic_stoa.xml:33
+#: simulation/templates/template_structure_civic_stoa.xml:30
 #: simulation/templates/template_structure_civic_temple.xml:32
 #: simulation/templates/template_structure_defensive_tower_stone.xml:34
 #: simulation/templates/template_structure_economic_market.xml:28
@@ -1713,15 +1701,16 @@ msgid ""
 msgstr "Llevántalu en terrenu propiu o n'abertal. En tierra abertal, col tiempu, pasa a formar parte de la Gaia."
 
 #: simulation/templates/structures/wallset_palisade.xml:4
-#: simulation/templates/structures/wallset_palisade.xml:5
-#: simulation/templates/template_structure_defensive_palisade.xml:15
-#: simulation/templates/template_structure_defensive_palisade.xml:18
+#: simulation/templates/structures/wallset_palisade.xml:6
+#: simulation/templates/template_structure_defensive_palisade.xml:17
+#: simulation/templates/template_structure_defensive_palisade.xml:20
 msgid "Palisade"
 msgstr "Estacada"
 
-#: simulation/templates/template_structure_defensive_palisade.xml:17
-msgid "Wall off an area."
-msgstr "Zarra un terrén."
+#: simulation/templates/structures/wallset_palisade.xml:5
+#: simulation/templates/template_structure_defensive_palisade.xml:19
+msgid "Wall off an area. Build in own or neutral territory."
+msgstr "Zarra un terrén. Llevántase en terrén propiu o n'abertal."
 
 #: simulation/templates/template_structure_defensive_tower.xml:37
 #: simulation/templates/template_structure_defensive_tower.xml:53
@@ -1744,6 +1733,7 @@ msgstr "Morriyera"
 
 #: simulation/templates/structures/kush/pyramid_large.xml:29
 #: simulation/templates/structures/kush/temple_amun.xml:30
+#: simulation/templates/structures/rome/army_camp.xml:77
 #: simulation/templates/structures/rome/temple_mars.xml:14
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:60
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:59
@@ -1783,7 +1773,7 @@ msgstr "Guarez soldaos nella pa tirar más fleches. Precisa de «matacanes» pa 
 msgid "SentryTower"
 msgstr "Talaya"
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:68
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:65
 msgid "Reinforce with stone and upgrade to a defense tower."
 msgstr "Refuérciala con piedra ya camúdala en torrexón."
 
@@ -1895,8 +1885,8 @@ msgid "Barracks"
 msgstr "Barracón"
 
 #: simulation/templates/template_structure_military_barracks.xml:28
-msgid "Train Citizen Soldiers and research technologies."
-msgstr "Allista milicianos ya desendolca la teunoloxía."
+msgid "Train Infantry and research Infantry technologies."
+msgstr "Allista y ameyora los soldaos d'a pie."
 
 #: simulation/templates/template_structure_military_dock.xml:24
 #: simulation/templates/template_structure_military_dock.xml:27
@@ -1939,8 +1929,8 @@ msgid "Forge"
 msgstr "Fragua"
 
 #: simulation/templates/template_structure_military_forge.xml:24
-msgid "Research attack and armor technologies."
-msgstr "Desendolca meyores armes y armadura."
+msgid "Research attack and resistance technologies."
+msgstr "Desendolca les teunoloxíes ofensiva ya defensiva."
 
 #: simulation/templates/template_structure_military_fortress.xml:39
 #: simulation/templates/template_structure_military_fortress.xml:68
