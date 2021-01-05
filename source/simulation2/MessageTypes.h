@@ -327,7 +327,8 @@ public:
 	enum UpdateType {
 		LIKELY_SUCCESS, // UnitMotion considers it is arrived at destination.
 		LIKELY_FAILURE, // UnitMotion says it cannot reach the destination.
-		OBSTRUCTED, // UitMotion was obstructed. This does not mean stuck, but can be a hint to run range checks.
+		OBSTRUCTED, // UnitMotion was obstructed. This does not mean stuck, but can be a hint to run range checks.
+		VERY_OBSTRUCTED, // Sent when obstructed several time in a row.
 		LENGTH
 	};
 

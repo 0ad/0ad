@@ -105,6 +105,12 @@ static const u8 MAX_FAILED_MOVEMENTS = 40;
 static const u8 ALTERNATE_PATH_TYPE_DELAY = 3;
 static const u8 ALTERNATE_PATH_TYPE_EVERY = 6;
 
+/**
+ * After this many failed computations, start sending "VERY_OBSTRUCTED" messages instead.
+ * Should probably be larger than ALTERNATE_PATH_TYPE_DELAY.
+ */
+static const u8 VERY_OBSTRUCTED_THRESHOLD = 10;
+
 static const CColor OVERLAY_COLOR_LONG_PATH(1, 1, 1, 1);
 static const CColor OVERLAY_COLOR_SHORT_PATH(1, 0, 0, 1);
 
@@ -557,7 +563,8 @@ private:
 		if (IsFormationMember() && IsFormationControllerMoving())
 			return;
 
-		CMessageMotionUpdate msg(CMessageMotionUpdate::OBSTRUCTED);
+		CMessageMotionUpdate msg(m_FailedMovements >= VERY_OBSTRUCTED_THRESHOLD ?
+			CMessageMotionUpdate::VERY_OBSTRUCTED : CMessageMotionUpdate::OBSTRUCTED);
 		GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
 	}
 

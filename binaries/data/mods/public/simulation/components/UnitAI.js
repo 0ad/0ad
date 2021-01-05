@@ -957,13 +957,30 @@ UnitAI.prototype.UnitFsmSpec = {
 			},
 
 			"leave": function() {
+				this.StopTimer();
 				this.StopMoving();
 			},
 
 			"MovementUpdate": function(msg) {
+				if (msg.veryObstructed && !this.timer)
+				{
+					// It's possible that the controller (with large clearance)
+					// is stuck, but not the individual units.
+					// Ask them to move individually for a little while.
+					this.CallMemberFunction("MoveTo", [this.order.data]);
+					this.StartTimer(3000);
+					return;
+				}
+				else if (this.timer)
+					return;
 				if (msg.likelyFailure || this.CheckRange(this.order.data))
 					this.FinishOrder();
 			},
+
+			"Timer": function() {
+				// Reenter to reset the pathfinder state.
+				this.SetNextState("WALKING");
+			}
 		},
 
 		"WALKINGANDFIGHTING": {
@@ -1240,8 +1257,8 @@ UnitAI.prototype.UnitFsmSpec = {
 		"MEMBER": {
 			"OrderTargetRenamed": function(msg) {
 				// In general, don't react - we don't want to send spurious messages to members.
-				// This looks odd for hunting hwoever because we wait for all
-				// entities to ahve clumped around the dead resource before proceeding
+				// This looks odd for hunting however because we wait for all
+				// entities to have clumped around the dead resource before proceeding
 				// so explicitly handle this case.
 				if (this.order && this.order.data && this.order.data.hunting &&
 				     this.order.data.target == msg.data.newentity &&
@@ -4222,6 +4239,8 @@ UnitAI.prototype.StopTimer = function()
 
 UnitAI.prototype.OnMotionUpdate = function(msg)
 {
+	if (msg.veryObstructed)
+		msg.obstructed = true;
 	this.UnitFsm.ProcessMessage(this, Object.assign({ "type": "MovementUpdate" }, msg));
 };
 

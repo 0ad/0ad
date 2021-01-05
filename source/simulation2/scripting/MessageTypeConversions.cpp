@@ -265,7 +265,7 @@ CMessage* CMessageTerritoryPositionChanged::FromJSVal(const ScriptInterface& scr
 ////////////////////////////////
 
 const std::array<const char*, CMessageMotionUpdate::UpdateType::LENGTH> CMessageMotionUpdate::UpdateTypeStr = { {
-	"likelySuccess", "likelyFailure", "obstructed"
+	"likelySuccess", "likelyFailure", "obstructed", "veryObstructed"
 } };
 
 JS::Value CMessageMotionUpdate::ToJSVal(const ScriptInterface& scriptInterface) const
@@ -290,6 +290,8 @@ CMessage* CMessageMotionUpdate::FromJSVal(const ScriptInterface& scriptInterface
 		return new CMessageMotionUpdate(CMessageMotionUpdate::LIKELY_FAILURE);
 	if (updateString == L"obstructed")
 		return new CMessageMotionUpdate(CMessageMotionUpdate::OBSTRUCTED);
+	if (updateString == L"veryObstructed")
+		return new CMessageMotionUpdate(CMessageMotionUpdate::VERY_OBSTRUCTED);
 
 	LOGWARNING("CMessageMotionUpdate::FromJSVal passed wrong updateString");
 	return NULL;
