@@ -28,7 +28,7 @@
 #define ALLOCATOR_POLICIES
 
 #include "lib/alignment.h"	// pageSize
-#include "lib/allocators/allocator_adapters.h"
+#include "lib/allocators/stateless_allocators.h"
 #include "lib/allocators/freelist.h"
 
 #include <cstring>

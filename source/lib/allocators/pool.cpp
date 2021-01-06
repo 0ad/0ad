@@ -29,7 +29,6 @@
 
 #include "lib/alignment.h"
 #include "lib/allocators/freelist.h"
-#include "lib/allocators/allocator_adapters.h"
 
 #include "lib/timer.h"
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,8 +24,8 @@
 #include "graphics/ModelDef.h"
 #include "graphics/ShaderManager.h"
 #include "graphics/TextureManager.h"
-#include "lib/allocators/allocator_adapters.h"
-#include "lib/allocators/arena.h"
+#include "lib/allocators/DynamicArena.h"
+#include "lib/allocators/STLAllocators.h"
 #include "lib/hash.h"
 #include "lib/ogl.h"
 #include "maths/Vector3D.h"
@@ -403,8 +403,10 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 	 * list in each, rebinding the GL state whenever it changes.
 	 */
 
-	Allocators::DynamicArena arena(256 * KiB);
-	using ModelListAllocator = ProxyAllocator<CModel*, Allocators::DynamicArena>;
+	using Arena = Allocators::DynamicArena<256 * KiB>;
+
+	Arena arena;
+	using ModelListAllocator = ProxyAllocator<CModel*, Arena>;
 	using ModelList_t = std::vector<CModel*, ModelListAllocator>;
 	using MaterialBuckets_t = std::unordered_map<
 		SMRMaterialBucketKey,
@@ -413,7 +415,7 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 		std::equal_to<SMRMaterialBucketKey>,
 		ProxyAllocator<
 			std::pair<const SMRMaterialBucketKey, ModelList_t>,
-			Allocators::DynamicArena> >;
+			Arena> >;
 
 	MaterialBuckets_t materialBuckets((MaterialBuckets_t::allocator_type(arena)));
 
@@ -467,10 +469,10 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 		}
 	}
 
-	typedef ProxyAllocator<SMRSortByDistItem, Allocators::DynamicArena> SortByDistItemsAllocator;
+	using SortByDistItemsAllocator = ProxyAllocator<SMRSortByDistItem, Arena>;
 	std::vector<SMRSortByDistItem, SortByDistItemsAllocator> sortByDistItems((SortByDistItemsAllocator(arena)));
 
-	typedef ProxyAllocator<CShaderTechniquePtr, Allocators::DynamicArena> SortByTechItemsAllocator;
+	using SortByTechItemsAllocator = ProxyAllocator<CShaderTechniquePtr, Arena>;
 	std::vector<CShaderTechniquePtr, SortByTechItemsAllocator> sortByDistTechs((SortByTechItemsAllocator(arena)));
 		// indexed by sortByDistItems[i].techIdx
 		// (which stores indexes instead of CShaderTechniquePtr directly
@@ -478,7 +480,7 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 		// if we just stored raw CShaderTechnique* and assumed the shader manager
 		// will keep it alive long enough)
 
-	typedef ProxyAllocator<SMRTechBucket, Allocators::DynamicArena> TechBucketsAllocator;
+	using TechBucketsAllocator =  ProxyAllocator<SMRTechBucket, Arena>;
 	std::vector<SMRTechBucket, TechBucketsAllocator> techBuckets((TechBucketsAllocator(arena)));
 
 	{
@@ -588,18 +590,18 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 		// This vector keeps track of texture changes during rendering. It is kept outside the
 		// loops to avoid excessive reallocations. The token allocation of 64 elements
 		// should be plenty, though it is reallocated below (at a cost) if necessary.
-		typedef ProxyAllocator<CTexture*, Allocators::DynamicArena> TextureListAllocator;
+		using TextureListAllocator = ProxyAllocator<CTexture*, Arena>;
 		std::vector<CTexture*, TextureListAllocator> currentTexs((TextureListAllocator(arena)));
 		currentTexs.reserve(64);
 
 		// texBindings holds the identifier bindings in the shader, which can no longer be defined
 		// statically in the ShaderRenderModifier class. texBindingNames uses interned strings to
 		// keep track of when bindings need to be reevaluated.
-		typedef ProxyAllocator<CShaderProgram::Binding, Allocators::DynamicArena> BindingListAllocator;
+		using BindingListAllocator = ProxyAllocator<CShaderProgram::Binding, Arena>;
 		std::vector<CShaderProgram::Binding, BindingListAllocator> texBindings((BindingListAllocator(arena)));
 		texBindings.reserve(64);
 
-		typedef ProxyAllocator<CStrIntern, Allocators::DynamicArena> BindingNamesListAllocator;
+		using BindingNamesListAllocator = ProxyAllocator<CStrIntern, Arena>;
 		std::vector<CStrIntern, BindingNamesListAllocator> texBindingNames((BindingNamesListAllocator(arena)));
 		texBindingNames.reserve(64);
 
