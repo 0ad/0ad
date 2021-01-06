@@ -1,15 +1,20 @@
 {
 	"genericName": "Parade of Daphne",
-	"description": "Significantly increase training speed of champions and siege engines at the fortress when training them in large batches.",
-	"cost": { "food": 500, "wood": 0, "stone": 0, "metal": 500 },
-	"requirements": { "all": [{ "tech": "phase_city" }, { "civ": "sele" }] },
+	"description": "The festival at Daphne was a major event of the Seleucid Empire: tens of thousands of well-equipped troops participated in the opening procession.",
+	"cost": { "food": 500, "wood": 0, "stone": 0, "metal": 300 },
+	"requirements": {
+		"all": [
+			{ "tech": "phase_city" },
+			{ "civ": "sele" }
+		]
+	},
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "parade_of_daphne.png",
 	"researchTime": 60,
-	"tooltip": "Faster batch training speed for the Fortress.",
+	"tooltip": "Champions −20% training time.",
 	"modifications": [
-		{ "value": "ProductionQueue/BatchTimeModifier", "add": -0.2 }
+		{ "value": "Cost/BuildTime", "multiply": 0.8 }
 	],
-	"affects": ["Fortress"],
+	"affects": ["Champion"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }
