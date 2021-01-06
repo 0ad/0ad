@@ -22,9 +22,8 @@
     <Max>2000</Max>
   </Health>
   <Identity>
-    <Civ>pers</Civ>
     <GenericName>Ishtar Gate of Babylon</GenericName>
-    <VisibleClasses datatype="tokens">IshtarGate</VisibleClasses>
+    <Tooltip>Territory root.</Tooltip>
     <Icon>structures/pers_gate.png</Icon>
   </Identity>
   <Loot>
@@ -56,6 +55,6 @@
   </Vision>
   <VisualActor>
     <Actor>special/pers_ishtar_gate.xml</Actor>
-    <FoundationActor>structures/fndn_9x3_wall.xml</FoundationActor>
+    <FoundationActor>structures/fndn_9x4.xml</FoundationActor>
   </VisualActor>
 </Entity>
