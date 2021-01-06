@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -27,6 +27,11 @@
 # include "lib/sysdep/os/win/wposix/wmman.h"
 #else
 # include <sys/mman.h>
+# if defined(__FreeBSD__)
+ // The MAP_NORESERVE define has been removed in FreeBSD 11.x (https://reviews.freebsd.org/rS273250).
+ // Even before that, it was never implemented. So just define it to zero.
+# define MAP_NORESERVE 0 
+# endif
 #endif
 
 #include "lib/posix/posix_errno.h"	// for user convenience
