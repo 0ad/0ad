@@ -16,49 +16,32 @@
  */
 
 #include "precompiled.h"
+
 #include "NetSession.h"
+
 #include "NetClient.h"
-#include "NetServer.h"
 #include "NetMessage.h"
+#include "NetServer.h"
 #include "NetStats.h"
-#include "lib/external_libraries/enet.h"
 #include "ps/CLogger.h"
-#include "ps/ConfigDB.h"
 #include "ps/Profile.h"
 #include "scriptinterface/ScriptInterface.h"
 
-const u32 NETWORK_WARNING_TIMEOUT = 2000;
+constexpr int NETCLIENT_POLL_TIMEOUT = 50;
 
-const u32 MAXIMUM_HOST_TIMEOUT = std::numeric_limits<u32>::max();
-
-static const int CHANNEL_COUNT = 1;
-
-// Only disable long timeouts after a packet from the remote enet peer has been processed.
-// Otherwise a long timeout can still be in progress when disabling it here.
-void SetEnetLongTimeout(ENetPeer* peer, bool isLocalClient, bool enabled)
-{
-#if (ENET_VERSION >= ENET_VERSION_CREATE(1, 3, 4))
-	if (!peer || isLocalClient)
-		return;
-
-	if (enabled)
-	{
-		u32 timeout;
-		CFG_GET_VAL("network.gamestarttimeout", timeout);
-		enet_peer_timeout(peer, 0, timeout, timeout);
-	}
-	else
-		enet_peer_timeout(peer, 0, 0, 0);
-#endif
-}
+constexpr int CHANNEL_COUNT = 1;
 
 CNetClientSession::CNetClientSession(CNetClient& client) :
-	m_Client(client), m_FileTransferer(this), m_Host(nullptr), m_Server(nullptr), m_Stats(nullptr), m_IsLocalClient(false)
+	m_Client(client), m_FileTransferer(this), m_Host(nullptr), m_Server(nullptr),
+	m_Stats(nullptr), m_IsLocalClient(false), m_IncomingMessages(16), m_OutgoingMessages(16),
+	m_LoopRunning(false), m_ShouldShutdown(false), m_MeanRTT(0), m_LastReceivedTime(0)
 {
 }
 
 CNetClientSession::~CNetClientSession()
 {
+	ENSURE(!m_LoopRunning);
+
 	delete m_Stats;
 
 	if (m_Host && m_Server)
@@ -74,6 +57,7 @@ CNetClientSession::~CNetClientSession()
 
 bool CNetClientSession::Connect(const CStr& server, const u16 port, const bool isLocalClient, ENetHost* enetClient)
 {
+	ENSURE(!m_LoopRunning);
 	ENSURE(!m_Host);
 	ENSURE(!m_Server);
 
@@ -102,12 +86,6 @@ bool CNetClientSession::Connect(const CStr& server, const u16 port, const bool i
 	m_Server = peer;
 	m_IsLocalClient = isLocalClient;
 
-	// Prevent the local client of the host from timing out too quickly.
-#if (ENET_VERSION >= ENET_VERSION_CREATE(1, 3, 4))
-	if (isLocalClient)
-		enet_peer_timeout(peer, 1, MAXIMUM_HOST_TIMEOUT, MAXIMUM_HOST_TIMEOUT);
-#endif
-
 	m_Stats = new CNetStatsTable(m_Server);
 	if (CProfileViewer::IsInitialised())
 		g_ProfileViewer.AddRootTable(m_Stats);
@@ -115,60 +93,92 @@ bool CNetClientSession::Connect(const CStr& server, const u16 port, const bool i
 	return true;
 }
 
-void CNetClientSession::Disconnect(NetDisconnectReason reason)
+void CNetClientSession::RunNetLoop(CNetClientSession* session)
 {
-	if (reason == NDR_UNKNOWN)
-		LOGWARNING("Disconnecting from the server without communicating the disconnect reason!");
+	ENSURE(!session->m_LoopRunning);
+	session->m_LoopRunning = true;
 
-	ENSURE(m_Host && m_Server);
+	debug_SetThreadName("NetClientSession loop");
 
-	// TODO: ought to do reliable async disconnects, probably
-	enet_peer_disconnect_now(m_Server, static_cast<enet_uint32>(reason));
-	enet_host_destroy(m_Host);
+	while (!session->m_ShouldShutdown)
+	{
+		ENSURE(session->m_Host && session->m_Server);
 
-	m_Host = NULL;
-	m_Server = NULL;
+		session->m_FileTransferer.Poll();
+		session->Poll();
+		session->Flush();
 
-	SAFE_DELETE(m_Stats);
+		session->m_LastReceivedTime = enet_time_get() - session->m_Server->lastReceiveTime;
+		session->m_MeanRTT = session->m_Server->roundTripTime;
+	}
+
+	session->m_LoopRunning = false;
+
+	// Deleting the session is handled in this thread as it might outlive the CNetClient.
+	SAFE_DELETE(session);
+}
+
+void CNetClientSession::Shutdown()
+{
+	m_ShouldShutdown = true;
 }
 
 void CNetClientSession::Poll()
 {
-	PROFILE3("net client poll");
-
-	ENSURE(m_Host && m_Server);
-
-	m_FileTransferer.Poll();
-
 	ENetEvent event;
-	while (enet_host_service(m_Host, &event, 0) > 0)
+
+	// Use the timeout to make the thread wait and save CPU time.
+	if (enet_host_service(m_Host, &event, NETCLIENT_POLL_TIMEOUT) <= 0)
+		return;
+
+	if (event.type == ENET_EVENT_TYPE_CONNECT)
 	{
-		switch (event.type)
-		{
-		case ENET_EVENT_TYPE_CONNECT:
-		{
-			ENSURE(event.peer == m_Server);
+		ENSURE(event.peer == m_Server);
 
-			// Report the server address
-			char hostname[256] = "(error)";
-			enet_address_get_host_ip(&event.peer->address, hostname, ARRAY_SIZE(hostname));
-			LOGMESSAGE("Net client: Connected to %s:%u", hostname, (unsigned int)event.peer->address.port);
+		// Report the server address immediately.
+		char hostname[256] = "(error)";
+		enet_address_get_host_ip(&event.peer->address, hostname, ARRAY_SIZE(hostname));
+		LOGMESSAGE("Net client: Connected to %s:%u", hostname, (unsigned int)event.peer->address.port);
 
+		m_IncomingMessages.push(event);
+	}
+	else if (event.type == ENET_EVENT_TYPE_DISCONNECT)
+	{
+		ENSURE(event.peer == m_Server);
+
+		// Report immediately.
+		LOGMESSAGE("Net client: Disconnected");
+
+		m_IncomingMessages.push(event);
+	}
+	else if (event.type == ENET_EVENT_TYPE_RECEIVE)
+		m_IncomingMessages.push(event);
+}
+
+void CNetClientSession::Flush()
+{
+	ENetPacket* packet;
+	while (m_OutgoingMessages.pop(packet))
+		if (enet_peer_send(m_Server, CNetHost::DEFAULT_CHANNEL, packet) < 0)
+			LOGERROR("NetClient: Failed to send packet to server");
+
+	enet_host_flush(m_Host);
+}
+
+void CNetClientSession::ProcessPolledMessages()
+{
+	ENetEvent event;
+	while(m_IncomingMessages.pop(event))
+	{
+		if (event.type == ENET_EVENT_TYPE_CONNECT)
 			m_Client.HandleConnect();
-
+		else if (event.type == ENET_EVENT_TYPE_DISCONNECT)
+		{
+			// This deletes the session, so we must break;
+			m_Client.HandleDisconnect(event.data);
 			break;
 		}
-
-		case ENET_EVENT_TYPE_DISCONNECT:
-		{
-			ENSURE(event.peer == m_Server);
-
-			LOGMESSAGE("Net client: Disconnected");
-			m_Client.HandleDisconnect(event.data);
-			return;
-		}
-
-		case ENET_EVENT_TYPE_RECEIVE:
+		else if (event.type == ENET_EVENT_TYPE_RECEIVE)
 		{
 			CNetMessage* msg = CNetMessageFactory::CreateMessage(event.packet->data, event.packet->dataLength, m_Client.GetScriptInterface());
 			if (msg)
@@ -176,36 +186,29 @@ void CNetClientSession::Poll()
 				LOGMESSAGE("Net client: Received message %s of size %lu from server", msg->ToString().c_str(), (unsigned long)msg->GetSerializedLength());
 
 				m_Client.HandleMessage(msg);
-
-				delete msg;
 			}
-
+			// Thread-safe
 			enet_packet_destroy(event.packet);
-
-			break;
-		}
-
-		case ENET_EVENT_TYPE_NONE:
-			break;
 		}
 	}
-
-}
-
-void CNetClientSession::Flush()
-{
-	PROFILE3("net client flush");
-
-	ENSURE(m_Host && m_Server);
-
-	enet_host_flush(m_Host);
 }
 
 bool CNetClientSession::SendMessage(const CNetMessage* message)
 {
 	ENSURE(m_Host && m_Server);
 
-	return CNetHost::SendMessage(message, m_Server, "server");
+	// Thread-safe.
+	ENetPacket* packet = CNetHost::CreatePacket(message);
+	if (!packet)
+		return false;
+
+	if (!m_OutgoingMessages.push(packet))
+	{
+		LOGERROR("NetClient: Failed to push message on the outgoing queue.");
+		return false;
+	}
+
+	return true;
 }
 
 u32 CNetClientSession::GetLastReceivedTime() const
@@ -213,7 +216,7 @@ u32 CNetClientSession::GetLastReceivedTime() const
 	if (!m_Server)
 		return 0;
 
-	return enet_time_get() - m_Server->lastReceiveTime;
+	return m_LastReceivedTime;
 }
 
 u32 CNetClientSession::GetMeanRTT() const
@@ -221,12 +224,7 @@ u32 CNetClientSession::GetMeanRTT() const
 	if (!m_Server)
 		return 0;
 
-	return m_Server->roundTripTime;
-}
-
-void CNetClientSession::SetLongTimeout(bool enabled)
-{
-	SetEnetLongTimeout(m_Server, m_IsLocalClient, enabled);
+	return m_MeanRTT;
 }
 
 CNetServerSession::CNetServerSession(CNetServerWorker& server, ENetPeer* peer) :
@@ -289,14 +287,4 @@ void CNetServerSession::SetLocalClient(bool isLocalClient)
 
 	if (!isLocalClient)
 		return;
-
-	// Prevent the local client of the host from timing out too quickly
-#if (ENET_VERSION >= ENET_VERSION_CREATE(1, 3, 4))
-	enet_peer_timeout(m_Peer, 0, MAXIMUM_HOST_TIMEOUT, MAXIMUM_HOST_TIMEOUT);
-#endif
-}
-
-void CNetServerSession::SetLongTimeout(bool enabled)
-{
-	SetEnetLongTimeout(m_Peer, m_IsLocalClient, enabled);
 }

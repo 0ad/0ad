@@ -592,7 +592,7 @@ function setup_all_libs ()
 	extern_libs = {
 		"spidermonkey",
 		"enet",
-		"boost",	-- dragged in via server->simulation.h->random
+		"boost",	-- dragged in via server->simulation.h->random and NetSession.h->lockfree
 		"fmt",
 	}
 	if not _OPTIONS["without-miniupnpc"] then
