@@ -3119,8 +3119,17 @@ UnitAI.prototype.UnitFsmSpec = {
 						return true;
 					}
 
-					if (this.IsGarrisoned())
+					// Called when autogarrisoning.
+					if (this.isGarrisoned)
+					{
+						this.SetImmobile(true);
+						if (this.IsTurret())
+						{
+							this.SetNextState("IDLE");
+							return true;
+						}
 						return false;
+					}
 
 					if (this.CanGarrison(target))
 						if (this.CheckGarrisonRange(target))
