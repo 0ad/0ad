@@ -2,7 +2,12 @@
 	"genericName": "Wooden Construction",
 	"autoResearch": true,
 	"description": "Celtic structures were mostly made of wood with rubble foundations.",
-	"requirements": { "any": [{ "civ": "brit" }, { "civ": "gaul" }] },
+	"requirements": {
+		"any": [
+			{ "civ": "brit" },
+			{ "civ": "gaul" }
+		]
+	},
 	"icon": "wooden_buildings.png",
 	"tooltip": "Briton and Gaulish Structures −20% build time, −20% health, and −20% capture points.",
 	"modifications": [

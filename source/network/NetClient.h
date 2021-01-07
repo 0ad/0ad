@@ -25,8 +25,10 @@
 
 #include "ps/CStr.h"
 
+#include <atomic>
 #include <ctime>
 #include <deque>
+#include <thread>
 
 class CGame;
 class CNetClientSession;
@@ -129,12 +131,6 @@ public:
 	void CheckServerConnection();
 
 	/**
-	 * Flush any queued outgoing network messages.
-	 * This should be called soon after sending a group of messages that may be batched together.
-	 */
-	void Flush();
-
-	/**
 	 * Retrieves the next queued GUI message, and removes it from the queue.
 	 * The returned value is in the GetScriptInterface() JS context.
 	 *
@@ -232,6 +228,10 @@ public:
 	 */
 	void SendPausedMessage(bool pause);
 
+	/**
+	 * @return Whether the NetClient is shutting down.
+	 */
+	bool ShouldShutdown() const;
 private:
 
 	void SendAuthenticateMessage();
@@ -274,6 +274,8 @@ private:
 
 	/// Current network session (or NULL if not connected)
 	CNetClientSession* m_Session;
+
+	std::thread m_PollingThread;
 
 	/// Turn manager associated with the current game (or NULL if we haven't started the game yet)
 	CNetClientTurnManager* m_ClientTurnManager;

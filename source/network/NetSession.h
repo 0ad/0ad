@@ -18,20 +18,20 @@
 #ifndef NETSESSION_H
 #define NETSESSION_H
 
+#include "lib/external_libraries/enet.h"
 #include "network/fsm.h"
 #include "network/NetFileTransfer.h"
 #include "network/NetHost.h"
 #include "ps/CStr.h"
 
+#include <boost/lockfree/queue.hpp>
+
+#include <atomic>
+
 /**
  * Report the peer if we didn't receive a packet after this time (milliseconds).
  */
-extern const u32 NETWORK_WARNING_TIMEOUT;
-
-/**
- *  Maximum timeout of the local client of the host (milliseconds).
- */
-extern const u32 MAXIMUM_HOST_TIMEOUT;
+inline constexpr u32 NETWORK_WARNING_TIMEOUT = 2000;
 
 class CNetClient;
 class CNetServerWorker;
@@ -62,6 +62,7 @@ public:
 /**
  * The client end of a network session.
  * Provides an abstraction of the network interface, allowing communication with the server.
+ * The NetClientSession is threaded, so all calls to the public interface must be thread-safe.
  */
 class CNetClientSession : public INetSession
 {
@@ -74,25 +75,25 @@ public:
 	bool Connect(const CStr& server, const u16 port, const bool isLocalClient, ENetHost* enetClient);
 
 	/**
-	 * Process queued incoming messages.
+	 * The client NetSession is threaded to avoid getting timeouts if the main thread hangs.
+	 * Call Connect() before starting this loop.
 	 */
-	void Poll();
+	static void RunNetLoop(CNetClientSession* session);
 
 	/**
-	 * Flush queued outgoing network messages.
+	 * Shut down the net session.
 	 */
-	void Flush();
+	void Shutdown();
 
 	/**
-	 * Disconnect from the server.
-	 * Sends a disconnection notification to the server.
+	 * Processes pending messages.
 	 */
-	void Disconnect(NetDisconnectReason reason);
+	void ProcessPolledMessages();
 
 	/**
-	 * Send a message to the server.
+	 * Queue up a message to send to the server on the next Loop() call.
 	 */
-	virtual bool SendMessage(const CNetMessage* message);
+	virtual bool SendMessage(const CNetMessage* message) override;
 
 	/**
 	 * Number of milliseconds since the most recent packet of the server was received.
@@ -104,18 +105,34 @@ public:
 	 */
 	u32 GetMeanRTT() const;
 
-	/**
-	 * Allows increasing the timeout to prevent drops during an expensive operation,
-	 * and decreasing it back to normal afterwards.
-	 */
-	void SetLongTimeout(bool longTimeout);
-
 	CNetFileTransferer& GetFileTransferer() { return m_FileTransferer; }
-
 private:
+	/**
+	 * Process queued incoming messages.
+	 */
+	void Poll();
+
+	/**
+	 * Flush queued outgoing network messages.
+	 */
+	void Flush();
+
 	CNetClient& m_Client;
 
 	CNetFileTransferer m_FileTransferer;
+
+	// Net messages received and waiting for fetching.
+	boost::lockfree::queue<ENetEvent> m_IncomingMessages;
+	// Net messages to send on the next flush() call.
+	boost::lockfree::queue<ENetPacket*> m_OutgoingMessages;
+
+	// Wrapper around enet stats - those are atomic as the code is lock-free.
+	std::atomic<u32> m_LastReceivedTime;
+	std::atomic<u32> m_MeanRTT;
+
+	// If this is true, calling Connect() or deleting the session is an error.
+	std::atomic<bool> m_LoopRunning;
+	std::atomic<bool> m_ShouldShutdown;
 
 	ENetHost* m_Host;
 	ENetPeer* m_Server;
@@ -187,12 +204,6 @@ public:
 	 * Prevent timeouts for the client running in the same process as the server.
 	 */
 	void SetLocalClient(bool isLocalClient);
-
-	/**
-	 * Allows increasing the timeout to prevent drops during an expensive operation,
-	 * and decreasing it back to normal afterwards.
-	 */
-	void SetLongTimeout(bool longTimeout);
 
 	/**
 	 * Send a message to the client.

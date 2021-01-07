@@ -421,10 +421,6 @@ static void Frame()
 		g_Game->GetView()->Update(float(realTimeSinceLastFrame));
 	}
 
-	// Immediately flush any messages produced by simulation code
-	if (g_NetClient)
-		g_NetClient->Flush();
-
 	// Keep us connected to any XMPP servers
 	if (g_XmppClient)
 		g_XmppClient->recv();

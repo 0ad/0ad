@@ -33,6 +33,7 @@
 #include "ps/CStr.h"
 #include "ps/Game.h"
 #include "ps/Loader.h"
+#include "ps/Profile.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
 
@@ -143,6 +144,10 @@ CNetClient::CNetClient(CGame* game, bool isLocalClient) :
 
 CNetClient::~CNetClient()
 {
+	// Try to flush messages before dying (probably fails).
+	if (m_ClientTurnManager)
+		m_ClientTurnManager->OnDestroyConnection();
+
 	DestroyConnection();
 	JS_RemoveExtraGCRootsTracer(GetScriptInterface().GetGeneralJSContext(), CNetClient::Trace, this);
 }
@@ -170,6 +175,7 @@ bool CNetClient::SetupConnection(const CStr& server, const u16 port, ENetHost* e
 	CNetClientSession* session = new CNetClientSession(*this);
 	bool ok = session->Connect(server, port, m_IsLocalClient, enetClient);
 	SetAndOwnSession(session);
+	m_PollingThread = std::thread(CNetClientSession::RunNetLoop, m_Session);
 	return ok;
 }
 
@@ -181,13 +187,17 @@ void CNetClient::SetAndOwnSession(CNetClientSession* session)
 
 void CNetClient::DestroyConnection()
 {
-	// Attempt to send network messages from the current frame before connection is destroyed.
-	if (m_ClientTurnManager)
-	{
-		m_ClientTurnManager->OnDestroyConnection();
-		Flush();
-	}
-	SAFE_DELETE(m_Session);
+	if (m_Session)
+		m_Session->Shutdown();
+
+	if (m_PollingThread.joinable())
+		// Use detach() over join() because we don't want to wait for the session
+		// (which may be polling or trying to send messages).
+		m_PollingThread.detach();
+
+	// The polling thread will cleanup the session on its own,
+	// mark it as nullptr here so we know we're done using it.
+	m_Session = nullptr;
 }
 
 void CNetClient::Poll()
@@ -195,8 +205,10 @@ void CNetClient::Poll()
 	if (!m_Session)
 		return;
 
+	PROFILE3("NetClient::poll");
+
 	CheckServerConnection();
-	m_Session->Poll();
+	m_Session->ProcessPolledMessages();
 }
 
 void CNetClient::CheckServerConnection()
@@ -229,12 +241,6 @@ void CNetClient::CheckServerConnection()
 			"warntype", "server-latency",
 			"meanRTT", meanRTT);
 	}
-}
-
-void CNetClient::Flush()
-{
-	if (m_Session)
-		m_Session->Flush();
 }
 
 void CNetClient::GuiPoll(JS::MutableHandleValue ret)
@@ -316,7 +322,7 @@ void CNetClient::HandleDisconnect(u32 reason)
 		"status", "disconnected",
 		"reason", reason);
 
-	SAFE_DELETE(m_Session);
+	DestroyConnection();
 
 	// Update the state immediately to UNCONNECTED (don't bother with FSM transitions since
 	// we'd need one for every single state, and we don't need to use per-state actions)
@@ -643,8 +649,6 @@ bool CNetClient::OnGameStart(void* context, CFsmEvent* event)
 
 	CNetClient* client = static_cast<CNetClient*>(context);
 
-	client->m_Session->SetLongTimeout(true);
-
 	// Find the player assigned to our GUID
 	int player = -1;
 	if (client->m_PlayerAssignments.find(client->m_GUID) != client->m_PlayerAssignments.end())
@@ -770,21 +774,10 @@ bool CNetClient::OnClientsLoading(void *context, CFsmEvent *event)
 	CNetClient* client = static_cast<CNetClient*>(context);
 	CClientsLoadingMessage* message = static_cast<CClientsLoadingMessage*>(event->GetParamRef());
 
-	bool finished = true;
 	std::vector<CStr> guids;
 	guids.reserve(message->m_Clients.size());
 	for (const CClientsLoadingMessage::S_m_Clients& mClient : message->m_Clients)
-	{
-		if (client->m_GUID == mClient.m_GUID)
-			finished = false;
-
 		guids.push_back(mClient.m_GUID);
-	}
-
-	// Disable the timeout here after processing the enet message, so as to ensure that the connection isn't currently
-	// timing out (as it is when just leaving the loading screen in LoadFinished).
-	if (finished)
-		client->m_Session->SetLongTimeout(false);
 
 	client->PushGuiMessage(
 		"type", "clients-loading",
@@ -824,9 +817,6 @@ bool CNetClient::OnLoadedGame(void* context, CFsmEvent* event)
 	// If we have rejoined an in progress game, send the rejoined message to the server.
 	if (client->m_Rejoin)
 		client->SendRejoinedMessage();
-
-	// The last client to leave the loading screen didn't receive the CClientsLoadingMessage, so disable here.
-	client->m_Session->SetLongTimeout(false);
 
 	return true;
 }
