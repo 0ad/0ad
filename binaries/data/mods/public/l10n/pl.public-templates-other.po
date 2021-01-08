@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2020 Wildfire Games
+# Copyright (C) 2021 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -22,14 +22,14 @@
 # miragae <miragae@gmail.com>, 2014
 # zyxist <nightstorm@tlen.pl>, 2014
 # Paweł Stopa <pawcio980@gmail.com>, 2018
-# Przemysław Murach <moonshine133@vp.pl>, 2019-2020
+# Przemysław Murach <moonshine133@vp.pl>, 2019-2021
 # Robert Wolniak <robert.wolniak@gmail.com>, 2014
 # slodki12341 <slodki1234@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-12-26 15:10+0000\n"
-"PO-Revision-Date: 2020-12-26 21:58+0000\n"
+"POT-Creation-Date: 2021-01-04 08:09+0000\n"
+"PO-Revision-Date: 2021-01-04 14:43+0000\n"
 "Last-Translator: Przemysław Murach <moonshine133@vp.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -37,6 +37,36 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pl\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+
+#: simulation/data/attack_effects/applystatus.jsondescription
+msgctxt "effect caused by an attack"
+msgid "Various (timed) effects."
+msgstr "Różne (czasowe) efekty."
+
+#: simulation/data/attack_effects/applystatus.jsonname
+msgctxt "effect caused by an attack"
+msgid "Apply Status"
+msgstr "Zastosuj status"
+
+#: simulation/data/attack_effects/capture.jsondescription
+msgctxt "effect caused by an attack"
+msgid "Reduces capture points of a target."
+msgstr "Zmniejsza punkty przejęcia celu."
+
+#: simulation/data/attack_effects/capture.jsonname
+msgctxt "effect caused by an attack"
+msgid "Capture"
+msgstr "Przejęcie"
+
+#: simulation/data/attack_effects/damage.jsondescription
+msgctxt "effect caused by an attack"
+msgid "Reduces the health of a target."
+msgstr "Zmniejsza zdrowie celu."
+
+#: simulation/data/attack_effects/damage.jsonname
+msgctxt "effect caused by an attack"
+msgid "Damage"
+msgstr "Obrażenia"
 
 #: simulation/data/status_effects/burning.jsonapplierTooltip
 msgctxt "status effect"
@@ -983,7 +1013,7 @@ msgstr "Tylko kawaleria, wymaga przynajmniej 6."
 msgid "Wedge"
 msgstr "Klin"
 
-#: simulation/templates/special/player/player.xml:59
+#: simulation/templates/special/player/player.xml:58
 msgid "Player"
 msgstr "Gracz"
 
