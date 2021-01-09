@@ -17,6 +17,7 @@
 # Daniele Tricoli <eriol@mornie.org>, 2014
 # 1b30062e9d429a46e49833e2057eed9c_2fbdf92, 2014
 # SecondCloud500 <eddieven2000@gmail.com>, 2014
+# Elia Argentieri <elia@elinvention.ovh>, 2021
 # Emanuele Ricci <stermi@gmail.com>, 2013
 # Enrico Mungai <h3.mguy@gmail.com>, 2016
 # Fabio Pedretti <pedretti.fabio@gmail.com>, 2013,2015-2016
@@ -50,8 +51,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-12-28 08:02+0000\n"
-"PO-Revision-Date: 2020-12-28 09:25+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-01-06 12:02+0000\n"
+"Last-Translator: Elia Argentieri <elia@elinvention.ovh>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -194,12 +195,12 @@ msgstr "Squadra"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:26
 msgid "Browse Maps"
-msgstr ""
+msgstr "Sfoglia Mappe"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:29
 #, javascript-format
 msgid "Press %(hotkey)s to view the list of available maps."
-msgstr ""
+msgstr "Premi %(hotkey)s per vedere la lista delle mappe disponibili."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:40
 msgid "Cheats"
@@ -305,7 +306,7 @@ msgstr "Popolazione del mondo"
 msgid ""
 "When checked the Population Cap will be evenly distributed over all living "
 "players."
-msgstr ""
+msgstr "Quando selezionato il limite di popolazione verrà distribuito tra tutti i giocatori rimasti in vita."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:128
 msgid "Biome"
@@ -376,7 +377,7 @@ msgstr "Mappa Casuale"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:153
 msgctxt "landscape selection"
 msgid "Select a random land map generation."
-msgstr ""
+msgstr "Seleziona una mappa terrestre generata casualmente."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:157
 msgctxt "landscape selection"
@@ -386,7 +387,7 @@ msgstr "Mappa navale casuale"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:158
 msgctxt "landscape selection"
 msgid "Select a random naval map generation."
-msgstr ""
+msgstr "Seleziona una mappa navale generata casualmente."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:89
 msgid "Map Filter"
@@ -477,11 +478,11 @@ msgstr "Per Giocatore"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:91
 msgid "Team Placement"
-msgstr ""
+msgstr "Posizionamento Squadra"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:94
 msgid "Select one of the starting position patterns of this map."
-msgstr ""
+msgstr "Seleziona un modello di posizioni di partenza di questa mappa."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:98
 msgctxt "team placement"
@@ -491,7 +492,7 @@ msgstr "Casuale"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:99
 msgctxt "team placement"
 msgid "Select a random team placement pattern when starting the game."
-msgstr ""
+msgstr "Seleziona un modello di posizionamento iniziale casuale all'inizio del gioco."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:105
 msgctxt "team placement"
@@ -502,7 +503,7 @@ msgstr "Cerchio"
 msgid ""
 "Allied players are grouped and placed with opposing players on one circle "
 "spanning the map."
-msgstr ""
+msgstr "I giocatori alleati sono raggruppati e posizionati con i giocatori nemici su di un cerchio che attraversa la mappa."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:110
 msgctxt "team placement"
@@ -511,7 +512,7 @@ msgstr "Linea"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:111
 msgid "Allied players are placed in a linear pattern."
-msgstr ""
+msgstr "I giocatori alleati sono posizionati su di un modello lineare."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:115
 msgctxt "team placement"
@@ -520,7 +521,7 @@ msgstr "Gruppo casuale"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:116
 msgid "Allied players are grouped, but otherwise placed randomly on the map."
-msgstr ""
+msgstr "I giocatori alleati sono raggruppati, ma posizionati a caso sulla mappa."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:120
 msgctxt "team placement"
@@ -541,18 +542,18 @@ msgstr "Seleziona la difficoltà del scenario"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:77
 msgid "World Population Cap"
-msgstr ""
+msgstr "Limite Globale di Popolazione"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:80
 msgid "Select world population limit."
-msgstr ""
+msgstr "Seleziona il limite globale di popolazione."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:83
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if %(popCap)s population is "
 "reached."
-msgstr ""
+msgstr "Attenzione: potrebbero esserci problemi di prestazioni se %(popCap)s di popolazione viene raggiunto."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:62
 msgid "Ceasefire"
@@ -572,8 +573,8 @@ msgstr "Nessuna tregua"
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(minutes)s minuto"
+msgstr[1] "%(minutes)s minuti"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:87
 msgid "Relic Count"
@@ -583,8 +584,8 @@ msgstr "Totale Reliquie"
 #, javascript-format
 msgid "%(number)s relic"
 msgid_plural "%(number)s relics"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(number)s reliquia"
+msgstr[1] "%(number)s reliquie"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:93
 msgid ""
@@ -607,8 +608,8 @@ msgstr "Minuti con cui il giocatore raggiunge la Vittoria con Reliquia."
 msgctxt "victory duration"
 msgid "%(min)s minute"
 msgid_plural "%(min)s minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(min)s minuto"
+msgstr[1] "%(min)s minuti"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:99
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:100
@@ -618,7 +619,7 @@ msgstr "Vittoria immediata"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:73
 msgid "Sea Level Rise Time"
-msgstr ""
+msgstr "Tempo di Innalzamento del Livello del Mare"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:76
 msgid "Set the time when the water will start to rise."
@@ -629,8 +630,8 @@ msgstr "Imposta il momento in cui l'acqua inizierà a salire."
 msgctxt "sea level rise time"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(minutes)s minuto"
+msgstr[1] "%(minutes)s minuti"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:88
 msgid "Wonder Duration"

@@ -55,8 +55,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-01 08:01+0000\n"
-"PO-Revision-Date: 2021-01-01 10:35+0000\n"
+"POT-Creation-Date: 2021-01-04 08:09+0000\n"
+"PO-Revision-Date: 2021-01-04 10:36+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -184,7 +184,7 @@ msgid "Click to Resume Game"
 msgstr "继续游戏"
 
 #: gui/session/ResearchProgress.js:108 gui/session/selection_details.js:272
-#: gui/session/selection_details.js:290 gui/session/selection_panels.js:615
+#: gui/session/selection_details.js:290 gui/session/selection_panels.js:557
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
@@ -1030,108 +1030,108 @@ msgstr "引发警报!"
 msgid "End of alert."
 msgstr "警报终止。"
 
-#: gui/session/selection_panels.js:332
+#: gui/session/selection_panels.js:276
 msgid "Default formation is disabled."
 msgstr ""
 
-#: gui/session/selection_panels.js:333
+#: gui/session/selection_panels.js:277
 msgid "Right-click to disable the default formation feature."
 msgstr ""
 
-#: gui/session/selection_panels.js:336
+#: gui/session/selection_panels.js:280
 msgid "This is the default formation, used for movement orders."
 msgstr ""
 
-#: gui/session/selection_panels.js:337
+#: gui/session/selection_panels.js:281
 msgid "Right-click to set this as the default formation."
 msgstr ""
 
-#: gui/session/selection_panels.js:395
+#: gui/session/selection_panels.js:337
 #, javascript-format
 msgid "Unload %(name)s"
 msgstr "卸下%(name)s"
 
-#: gui/session/selection_panels.js:396
+#: gui/session/selection_panels.js:338
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "单击 撤销 1。Shift+单击 撤销该类所有单位。"
 
-#: gui/session/selection_panels.js:398 gui/session/selection_panels.js:908
+#: gui/session/selection_panels.js:340 gui/session/selection_panels.js:850
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr "玩家 : %(playername)s"
 
-#: gui/session/selection_panels.js:434
+#: gui/session/selection_panels.js:376
 msgid "Lock Gate"
 msgstr "关闭大门"
 
-#: gui/session/selection_panels.js:440
+#: gui/session/selection_panels.js:382
 msgid "Unlock Gate"
 msgstr "打开大门"
 
-#: gui/session/selection_panels.js:491
+#: gui/session/selection_panels.js:433
 msgid "Pack"
 msgstr "打包"
 
-#: gui/session/selection_panels.js:499
+#: gui/session/selection_panels.js:441
 msgid "Unpack"
 msgstr "解压"
 
-#: gui/session/selection_panels.js:507
+#: gui/session/selection_panels.js:449
 msgid "Cancel Packing"
 msgstr "取消打包"
 
-#: gui/session/selection_panels.js:515
+#: gui/session/selection_panels.js:457
 msgid "Cancel Unpacking"
 msgstr "取消展开"
 
-#: gui/session/selection_panels.js:602
+#: gui/session/selection_panels.js:544
 msgid "Insufficient population capacity:"
 msgstr "人口容量不足"
 
-#: gui/session/selection_panels.js:603
+#: gui/session/selection_panels.js:545
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:773
+#: gui/session/selection_panels.js:715
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
 msgstr[0] "%(number)s 进入  %(class)s "
 
-#: gui/session/selection_panels.js:779
+#: gui/session/selection_panels.js:721
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
 msgstr "剩余：%(entityCounts)s "
 
-#: gui/session/selection_panels.js:780
+#: gui/session/selection_panels.js:722
 msgctxt "Separator for a list of entity counts"
 msgid ", "
 msgstr "，"
 
-#: gui/session/selection_panels.js:832
+#: gui/session/selection_panels.js:774
 msgid "Cannot research while upgrading."
 msgstr "升级期间无法研发。"
 
-#: gui/session/selection_panels.js:1056
+#: gui/session/selection_panels.js:998
 msgid "Cannot train while upgrading."
 msgstr "升级期间无法训练。"
 
-#: gui/session/selection_panels.js:1118
+#: gui/session/selection_panels.js:1060
 #, javascript-format
 msgid "Upgrade to %(name)s. %(tooltip)s"
 msgstr "升级至 %(name)s.%(tooltip)s"
 
-#: gui/session/selection_panels.js:1123
+#: gui/session/selection_panels.js:1065
 #, javascript-format
 msgid "Upgrade to %(name)s."
 msgstr "升级至 %(name)s 。"
 
-#: gui/session/selection_panels.js:1159
+#: gui/session/selection_panels.js:1101
 msgid "Cancel Upgrading"
 msgstr "取消升级"
 
-#: gui/session/selection_panels.js:1174
+#: gui/session/selection_panels.js:1116
 msgid ""
 "Cannot upgrade when the entity is training, researching or already "
 "upgrading."
@@ -1624,90 +1624,94 @@ msgid "This entity cannot be controlled."
 msgid_plural "These entities cannot be controlled."
 msgstr[0] ""
 
-#: gui/session/unit_actions.js:1143 gui/session/unit_actions.js:1471
+#: gui/session/unit_actions.js:1152
 msgid "Unload All."
 msgstr "卸载全部。"
 
-#: gui/session/unit_actions.js:1161
+#: gui/session/unit_actions.js:1172
 msgid "Destroy the selected units or structures."
 msgstr "摧毁选定的单位或建筑。"
 
-#: gui/session/unit_actions.js:1163
+#: gui/session/unit_actions.js:1174
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr "使用 %(hotkey)s 以忽略确认对话。"
 
-#: gui/session/unit_actions.js:1210
+#: gui/session/unit_actions.js:1224
 msgid "Abort the current order."
 msgstr "中止当前的命令。"
 
-#: gui/session/unit_actions.js:1229
+#: gui/session/unit_actions.js:1245
 msgid "Order the selected units to garrison in a structure or unit."
 msgstr "让选取的单位驻守于建筑物或单位内。"
 
-#: gui/session/unit_actions.js:1252
+#: gui/session/unit_actions.js:1270
 msgid "Unload"
 msgstr "卸载"
 
-#: gui/session/unit_actions.js:1270
+#: gui/session/unit_actions.js:1290
 msgid "Order the selected units to repair a structure, ship, or siege engine."
 msgstr "让所选单位修复建筑、船只或工程器械。"
 
-#: gui/session/unit_actions.js:1289
+#: gui/session/unit_actions.js:1311
 msgid "Focus on Rally Point."
 msgstr "关注集合点。"
 
-#: gui/session/unit_actions.js:1324
+#: gui/session/unit_actions.js:1348
 msgid "Back to Work"
 msgstr "返回工作"
 
-#: gui/session/unit_actions.js:1343
+#: gui/session/unit_actions.js:1369
 msgid "Order the selected units to guard a structure or unit."
 msgstr "让选取的单位守卫建筑物或单位。"
 
-#: gui/session/unit_actions.js:1361
+#: gui/session/unit_actions.js:1389
 msgid "Remove guard"
 msgstr "移除守卫"
 
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
 #: gui/session/trade/TradeDialog.xml:(caption):9
-#: gui/session/unit_actions.js:1378
+#: gui/session/unit_actions.js:1408
 msgid "Barter & Trade"
 msgstr "贸易"
 
-#: gui/session/unit_actions.js:1396
+#: gui/session/unit_actions.js:1428
 msgid "Patrol"
 msgstr "巡逻"
 
-#: gui/session/unit_actions.js:1397
+#: gui/session/unit_actions.js:1429
 msgid "Attack all encountered enemy units while avoiding structures."
 msgstr "攻击敌方所有的非建筑单位。"
 
-#: gui/session/unit_actions.js:1423
+#: gui/session/unit_actions.js:1457
 msgid "Press to allow allies to use this dropsite"
 msgstr "按下以允许盟友使用此资源回收点"
 
-#: gui/session/unit_actions.js:1427
+#: gui/session/unit_actions.js:1462
 msgid "Press to prevent allies from using this dropsite"
 msgstr "按下以防止盟友使用此资源回收点"
-
-#: gui/session/unit_actions.js:1492
-msgid "You are allowed to use this dropsite"
-msgstr "已允许你使用此资源回收点"
 
 #: gui/session/unit_actions.js:1497
 msgid "The use of this dropsite is prohibited"
 msgstr "已禁止使用此资源回收点"
 
-#: gui/session/unit_actions.js:1536
+#: gui/session/unit_actions.js:1503
+msgid "Allies are allowed to use this dropsite."
+msgstr ""
+
+#: gui/session/unit_actions.js:1504
+msgid "You are allowed to use this dropsite"
+msgstr "已允许你使用此资源回收点"
+
+#: gui/session/unit_actions.js:1568
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "该独立存在的实体必须在其可以被搜集之前杀死"
 
-#: gui/session/unit_actions.js:1539
+#: gui/session/unit_actions.js:1571
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "你无法破坏此建筑，因为你的占领点数不到一半。"
 
-#: gui/session/unit_actions.js:1542
+#: gui/session/unit_actions.js:1574
 msgid "This entity is undeletable"
 msgstr "该独立存在的实体是不可删除的"

@@ -11,7 +11,7 @@
 # Martin H <pilino@posteo.de>, 2016
 # Martin H <pilino@posteo.de>, 2015-2016
 # Martin H <pilino@posteo.de>, 2016-2017
-# Nescio, 2020
+# Nescio, 2020-2021
 # Nescio, 2020
 # Martin H <pilino@posteo.de>, 2017
 # s0600204, 2017
@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-01 08:01+0000\n"
-"PO-Revision-Date: 2021-01-01 08:36+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-01-04 16:28+0000\n"
+"Last-Translator: Nescio\n"
 "Language-Team: English (United Kingdom) (http://www.transifex.com/wildfire-games/0ad/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -467,7 +467,7 @@ msgstr "You have been banned."
 
 #: gui/common/network.js:73
 msgid "Player name in use. If you were disconnected, retry in few seconds."
-msgstr ""
+msgstr "Player name in use. If you were disconnected, retry in few seconds."
 
 #: gui/common/network.js:74
 msgid "Server full."
@@ -588,7 +588,7 @@ msgstr "Skirmish"
 msgid ""
 "A map with a predefined landscape and number of players. Freely select the "
 "other game settings."
-msgstr ""
+msgstr "A map with a predefined landscape and number of players. Freely select the other game settings."
 
 #: gui/common/settings.js:182
 msgctxt "map"
@@ -991,7 +991,7 @@ msgstr "Number of repairers:"
 
 #: gui/common/tooltips.js:605
 msgid "Remaining repair time:"
-msgstr ""
+msgstr "Remaining repair time:"
 
 #: gui/common/tooltips.js:609
 #, javascript-format
@@ -1014,7 +1014,7 @@ msgstr "Number of builders:"
 
 #: gui/common/tooltips.js:639
 msgid "Remaining build time:"
-msgstr ""
+msgstr "Remaining build time:"
 
 #: gui/common/tooltips.js:643
 #, javascript-format
@@ -1109,7 +1109,7 @@ msgstr "Requires %(technology)s"
 #: gui/common/tooltips.js:888
 #, javascript-format
 msgid "%(label)s %(bonus)s"
-msgstr ""
+msgstr "%(label)s %(bonus)s"
 
 #: gui/common/tooltips.js:889
 msgid "Population Bonus:"
@@ -1639,7 +1639,7 @@ msgstr "Resetting the options will erase your saved settings. Do you want to con
 
 #: gui/options/options.js:351
 msgid "Some setting values are invalid! Are you sure you want to save them?"
-msgstr ""
+msgstr "Some setting values are invalid! Are you sure you want to save them?"
 
 #: gui/options/options.js:377
 msgid "You have unsaved changes, do you want to close this window?"
@@ -1671,7 +1671,7 @@ msgstr "Chat timestamp"
 
 #: gui/options/options.json[0].options[11].tooltip
 msgid "Display the time at which a chat message was posted."
-msgstr ""
+msgstr "Display the time at which a chat message was posted."
 
 #: gui/options/options.json[0].options[1].label
 msgid "Player name (multiplayer)"
@@ -1860,7 +1860,7 @@ msgstr "Smooth vision"
 
 #: gui/options/options.json[1].options[19].tooltip
 msgid "Lift darkness and fog of war smoothly."
-msgstr ""
+msgstr "Lift darkness and fog of war smoothly."
 
 #: gui/options/options.json[1].options[1].label
 msgid "Prefer GLSL"
@@ -1912,7 +1912,7 @@ msgstr "Fog"
 
 #: gui/options/options.json[1].options[2].tooltip
 msgid "Enable fog."
-msgstr ""
+msgstr "Enable fog."
 
 #: gui/options/options.json[1].options[3].label
 msgid "Post-processing"
@@ -1924,11 +1924,11 @@ msgstr "Use screen-space post-processing filters (HDR, Bloom, DOF, etc.)."
 
 #: gui/options/options.json[1].options[4].label
 msgid "Antialiasing"
-msgstr ""
+msgstr "Antialiasing"
 
 #: gui/options/options.json[1].options[4].list[0].tooltip
 msgid "Do not use antialiasing."
-msgstr ""
+msgstr "Do not use antialiasing."
 
 #: gui/options/options.json[1].options[4].list[1].label
 msgid "FXAA"
@@ -1936,47 +1936,47 @@ msgstr "FXAA"
 
 #: gui/options/options.json[1].options[4].list[1].tooltip
 msgid "Fast, but simple antialiasing."
-msgstr ""
+msgstr "Fast, but simple antialiasing."
 
 #: gui/options/options.json[1].options[4].list[2].label
 msgid "MSAA (2×)"
-msgstr ""
+msgstr "MSAA (2×)"
 
 #: gui/options/options.json[1].options[4].list[2].tooltip
 msgid ""
 "Slow, but high-quality antialiasing, uses two samples per pixel. Supported "
 "for GL3.3+."
-msgstr ""
+msgstr "Slow, but high-quality antialiasing, uses two samples per pixel. Supported for GL3.3+."
 
 #: gui/options/options.json[1].options[4].list[3].label
 msgid "MSAA (4×)"
-msgstr ""
+msgstr "MSAA (4×)"
 
 #: gui/options/options.json[1].options[4].list[3].tooltip
 msgid ""
 "Slow, but high-quality antialiasing, uses four samples per pixel. Supported "
 "for GL3.3+."
-msgstr ""
+msgstr "Slow, but high-quality antialiasing, uses four samples per pixel. Supported for GL3.3+."
 
 #: gui/options/options.json[1].options[4].list[4].label
 msgid "MSAA (8×)"
-msgstr ""
+msgstr "MSAA (8×)"
 
 #: gui/options/options.json[1].options[4].list[4].tooltip
 msgid ""
 "Slow, but high-quality antialiasing, uses eight samples per pixel. Supported"
 " for GL3.3+."
-msgstr ""
+msgstr "Slow, but high-quality antialiasing, uses eight samples per pixel. Supported for GL3.3+."
 
 #: gui/options/options.json[1].options[4].list[5].label
 msgid "MSAA (16×)"
-msgstr ""
+msgstr "MSAA (16×)"
 
 #: gui/options/options.json[1].options[4].list[5].tooltip
 msgid ""
 "Slow, but high-quality antialiasing, uses sixteen samples per pixel. "
 "Supported for GL3.3+."
-msgstr ""
+msgstr "Slow, but high-quality antialiasing, uses sixteen samples per pixel. Supported for GL3.3+."
 
 #: gui/options/options.json[1].options[4].tooltip
 msgid "Reduce aliasing effect on edges."
@@ -2111,7 +2111,7 @@ msgstr "Receive audio notification when someone types your nick."
 
 #: gui/options/options.json[2].options[6].label
 msgid "New player notification in game setup"
-msgstr ""
+msgstr "New player notification in game set-up"
 
 #: gui/options/options.json[2].options[6].tooltip
 msgid "Receive audio notification when a new client joins the game setup."
@@ -2259,7 +2259,7 @@ msgstr "These settings only affect the multiplayer."
 
 #: gui/options/options.json[5].label
 msgid "Game Session"
-msgstr ""
+msgstr "Game Session"
 
 #: gui/options/options.json[5].options[0].label
 msgid "Wounded unit health"
@@ -2378,7 +2378,7 @@ msgstr "This option allows to align new structures with nearby structures."
 
 #: gui/options/options.json[5].options[19].label
 msgid "Control group membership"
-msgstr ""
+msgstr "Control group membership"
 
 #: gui/options/options.json[5].options[19].list[0].label
 msgid "Single"
@@ -2480,7 +2480,7 @@ msgstr "Attack range visualisation"
 msgid ""
 "Display the attack range of selected defensive structures. (It can also be "
 "toggled with the hotkey during a game)."
-msgstr ""
+msgstr "Display the attack range of selected defensive structures. (It can also be toggled with the hotkey during a game)."
 
 #: gui/options/options.json[5].options[8].label
 msgid "Aura range visualization"
@@ -2490,7 +2490,7 @@ msgstr "Aura range visualisation"
 msgid ""
 "Display the range of auras of selected units and structures. (It can also be"
 " toggled with the hotkey during a game)."
-msgstr ""
+msgstr "Display the range of auras of selected units and structures. (It can also be toggled with the hotkey during a game)."
 
 #: gui/options/options.json[5].options[9].label
 msgid "Heal range visualization"
@@ -2500,7 +2500,7 @@ msgstr "Heal range visualisation"
 msgid ""
 "Display the healing range of selected units. (It can also be toggled with "
 "the hotkey during a game)."
-msgstr ""
+msgstr "Display the healing range of selected units. (It can also be toggled with the hotkey during a game)."
 
 #: gui/options/options.json[5].tooltip
 msgid "Change options regarding the in-game settings."
@@ -2585,11 +2585,11 @@ msgstr "%(hotkey)s: Learn about the civilisations featured in 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:48
 msgid "Map Overview"
-msgstr ""
+msgstr "Map Overview"
 
 #: gui/pregame/MainMenuItems.js:49
 msgid "View the different maps featured in 0 A.D."
-msgstr ""
+msgstr "View the different maps featured in 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:57 gui/replaymenu/replay_filters.js:144
 msgid "Single-player"
@@ -3145,7 +3145,7 @@ msgstr "Single-player and multiplayer"
 
 #: gui/replaymenu/replay_filters.js:157
 msgid "Any victory condition"
-msgstr ""
+msgstr "Any victory condition"
 
 #: gui/replaymenu/replay_filters.js:170
 msgid "Rated and unrated games"
@@ -3233,7 +3233,7 @@ msgstr "Duration"
 
 #: gui/replaymenu/replay_menu.xml:(placeholder_text):32
 msgid "Search for Player"
-msgstr ""
+msgstr "Search for Player"
 
 #: gui/replaymenu/replay_menu.xml:(tooltip):240
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
