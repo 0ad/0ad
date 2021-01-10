@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -438,7 +438,7 @@ static _CRT_ALLOC_HOOK prev_hook;
 static int crt_alloc_hook(int allocType, void* userData, size_t size, int blockType,
 	long requestNumber, const unsigned char* filename, int lineNumber)
 {
-	if (allocType == _HOOK_ALLOC && ThreadUtil::IsMainThread())
+	if (allocType == _HOOK_ALLOC && Threading::IsMainThread())
 		++malloc_count;
 
 	if (prev_hook)
@@ -760,7 +760,7 @@ CProfileSample::CProfileSample(const char* name)
 	if (CProfileManager::IsInitialised())
 	{
 		// The profiler is only safe to use on the main thread
-		if(ThreadUtil::IsMainThread())
+		if(Threading::IsMainThread())
 			g_Profiler.Start(name);
 	}
 }
@@ -768,6 +768,6 @@ CProfileSample::CProfileSample(const char* name)
 CProfileSample::~CProfileSample()
 {
 	if (CProfileManager::IsInitialised())
-		if(ThreadUtil::IsMainThread())
+		if(Threading::IsMainThread())
 			g_Profiler.Stop();
 }

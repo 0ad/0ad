@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -32,6 +32,7 @@
 #include "ps/ConfigDB.h"
 #include "ps/Filesystem.h"
 #include "ps/Game.h"
+#include "ps/Pyrogenesis.h"
 #include "ps/GameSetup/Config.h"
 #include "renderer/Renderer.h"
 
@@ -82,7 +83,7 @@ bool CVideoMode::SetVideoMode(int w, int h, int bpp, bool fullscreen)
 		flags |= SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE;
 		m_WindowedX = m_WindowedY = SDL_WINDOWPOS_CENTERED_DISPLAY(m_ConfigDisplay);
 
-		m_Window = SDL_CreateWindow("0 A.D.", m_WindowedX, m_WindowedY, w, h, flags);
+		m_Window = SDL_CreateWindow(main_window_name, m_WindowedX, m_WindowedY, w, h, flags);
 		if (!m_Window)
 		{
 			// If fullscreen fails, try windowed mode

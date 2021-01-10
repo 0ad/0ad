@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -17,14 +17,14 @@
 
 #include "precompiled.h"
 
-#include <thread>
+#include "Threading.h"
 
-#include "ThreadUtil.h"
+#include <thread>
 
 static bool g_MainThreadSet;
 static std::thread::id g_MainThread;
 
-bool ThreadUtil::IsMainThread()
+bool Threading::IsMainThread()
 {
 	// If SetMainThread hasn't been called yet, this is probably being
 	// called at static initialisation time, so it must be the main thread
@@ -34,7 +34,7 @@ bool ThreadUtil::IsMainThread()
 	return g_MainThread == std::this_thread::get_id();
 }
 
-void ThreadUtil::SetMainThread()
+void Threading::SetMainThread()
 {
 	g_MainThread = std::this_thread::get_id();
 	g_MainThreadSet = true;

@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -38,13 +38,13 @@ void GCSliceCallbackHook(JSContext* UNUSED(cx), JS::GCProgress progress, const J
 
 	if (progress == JS::GC_SLICE_BEGIN)
 	{
-		if (CProfileManager::IsInitialised() && ThreadUtil::IsMainThread())
+		if (CProfileManager::IsInitialised() && Threading::IsMainThread())
 			g_Profiler.Start("GCSlice");
 		g_Profiler2.RecordRegionEnter("GCSlice");
 	}
 	else if (progress == JS::GC_SLICE_END)
 	{
-		if (CProfileManager::IsInitialised() && ThreadUtil::IsMainThread())
+		if (CProfileManager::IsInitialised() && Threading::IsMainThread())
 			g_Profiler.Stop();
 		g_Profiler2.RecordRegionLeave();
 	}

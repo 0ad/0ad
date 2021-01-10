@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -30,6 +30,7 @@
 #include "ps/CLogger.h"
 #include "ps/FileIo.h"
 #include "ps/Profile.h"
+#include "ps/Threading.h"
 #include "ps/scripting/JSInterface_VFS.h"
 #include "scriptinterface/ScriptContext.h"
 #include "scriptinterface/ScriptConversions.h"
@@ -81,10 +82,10 @@ void CMapGeneratorWorker::Initialize(const VfsPath& scriptFile, const std::strin
 	m_Settings = settings;
 
 	// Launch the worker thread
-	m_WorkerThread = std::thread(RunThread, this);
+	m_WorkerThread = std::thread(Threading::HandleExceptions<RunThread>::Wrapper, this);
 }
 
-void* CMapGeneratorWorker::RunThread(CMapGeneratorWorker* self)
+void CMapGeneratorWorker::RunThread(CMapGeneratorWorker* self)
 {
 	debug_SetThreadName("MapGenerator");
 	g_Profiler2.RegisterCurrentThread("MapGenerator");
@@ -109,8 +110,6 @@ void* CMapGeneratorWorker::RunThread(CMapGeneratorWorker* self)
 	// At this point the random map scripts are done running, so the thread has no further purpose
 	//	and can die. The data will be stored in m_MapData already if successful, or m_Progress
 	//	will contain an error value on failure.
-
-	return NULL;
 }
 
 bool CMapGeneratorWorker::Run()

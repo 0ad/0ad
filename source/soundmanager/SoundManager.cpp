@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -30,6 +30,7 @@
 #include "ps/ConfigDB.h"
 #include "ps/Filesystem.h"
 #include "ps/Profiler2.h"
+#include "ps/Threading.h"
 #include "ps/XML/Xeromyces.h"
 
 #include <thread>
@@ -51,7 +52,7 @@ public:
 		m_DeadItems = new ItemsList;
 		m_Shutdown = false;
 
-		m_WorkerThread = std::thread(RunThread, this);
+		m_WorkerThread = std::thread(Threading::HandleExceptions<RunThread>::Wrapper, this);
 	}
 
 	~CSoundManagerWorker()

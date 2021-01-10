@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -30,6 +30,7 @@
 #include "ps/Filesystem.h"
 #include "ps/Profiler2.h"
 #include "ps/Pyrogenesis.h"
+#include "ps/Threading.h"
 
 #include <condition_variable>
 #include <deque>
@@ -138,7 +139,7 @@ public:
 		m_Headers = curl_slist_append(m_Headers, "Accept: ");
 		curl_easy_setopt(m_Curl, CURLOPT_HTTPHEADER, m_Headers);
 
-		m_WorkerThread = std::thread(RunThread, this);
+		m_WorkerThread = std::thread(Threading::HandleExceptions<RunThread>::Wrapper, this);
 	}
 
 	~CUserReporterWorker()

@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -77,7 +77,7 @@ class MiscSetup : public CxxTest::GlobalFixture
 		setlocale(LC_CTYPE, "UTF-8");
 #endif
 
-		ThreadUtil::SetMainThread();
+		Threading::SetMainThread();
 
 		g_Profiler2.Initialise();
 		m_ScriptEngine = new ScriptEngine;
