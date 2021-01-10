@@ -1,15 +1,15 @@
 {
 	"genericName": "Living Conditions",
-	"description": "Units garrisoned in Barracks heal over time.",
+	"description": "Units regain health over time while garrisoned.",
 	"cost": { "food": 500, "wood": 0, "stone": 0, "metal": 250 },
 	"requirements": { "tech": "phase_town" },
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "bandage.png",
 	"researchTime": 40,
-	"tooltip": "Units gain health over time while garrisoned in Barracks.",
+	"tooltip": "Structures +1 garrison heal rate.",
 	"modifications": [
 		{ "value": "GarrisonHolder/BuffHeal", "add": 1 }
 	],
-	"affects": ["Barracks"],
+	"affects": ["Structure !Outpost !Wall"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }
