@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_siege_ram">
   <Footprint replace="">
-    <Square width="8.0" depth="12.0"/>
+    <Square width="7.0" depth="15.0"/>
     <Height>3.0</Height>
   </Footprint>
   <Identity>
-    <Civ>spart</Civ>
-    <SpecificName>Krios</SpecificName>
-    <Icon>units/spart_siege_ram.png</Icon>
+    <Civ>kush</Civ>
+    <Icon>units/pers_siege_ram.png</Icon>
   </Identity>
   <VisualActor>
-    <Actor>structures/spartans/siege_ram.xml</Actor>
+    <Actor>structures/persians/siege_ram.xml</Actor>
   </VisualActor>
 </Entity>
