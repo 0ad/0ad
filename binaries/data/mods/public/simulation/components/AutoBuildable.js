@@ -2,9 +2,7 @@ class AutoBuildable
 {
 	Init()
 	{
-		this.rate = ApplyValueModificationsToEntity("AutoBuildable/Rate", +this.template.Rate, this.entity);
-		if (this.rate)
-			this.StartTimer();
+		this.UpdateRate();
 	}
 
 	/**
@@ -18,7 +16,6 @@ class AutoBuildable
 	UpdateRate()
 	{
 		this.rate = ApplyValueModificationsToEntity("AutoBuildable/Rate", +this.template.Rate, this.entity);
-
 		if (this.rate)
 			this.StartTimer();
 	}
