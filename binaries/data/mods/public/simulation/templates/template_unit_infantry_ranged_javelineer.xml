@@ -5,17 +5,20 @@
       <AttackName>Javelin</AttackName>
       <Damage>
         <Hack>0</Hack>
-        <Pierce>16.0</Pierce>
+        <Pierce>16</Pierce>
         <Crush>0</Crush>
       </Damage>
-      <MaxRange>24.0</MaxRange>
-      <MinRange>0.0</MinRange>
+      <MaxRange>30</MaxRange>
+      <MinRange>0</MinRange>
       <PrepareTime>750</PrepareTime>
       <RepeatTime>1250</RepeatTime>
+      <Delay>0</Delay>
       <Projectile>
         <Speed>70</Speed>
         <Gravity>39.81</Gravity>
         <Spread>4.0</Spread>
+        <FriendlyFire>false</FriendlyFire>
+        <LaunchPoint y="3"/>
       </Projectile>
       <PreferredClasses datatype="tokens">Human</PreferredClasses>
     </Ranged>

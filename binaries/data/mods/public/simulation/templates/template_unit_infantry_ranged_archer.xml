@@ -8,7 +8,7 @@
         <Pierce>6.7</Pierce>
         <Crush>0</Crush>
       </Damage>
-      <MaxRange>72</MaxRange>
+      <MaxRange>70</MaxRange>
       <MinRange>0</MinRange>
       <PrepareTime>500</PrepareTime>
       <RepeatTime>1000</RepeatTime>
@@ -17,6 +17,8 @@
         <Speed>100.0</Speed>
         <Gravity>39.81</Gravity>
         <Spread>3.0</Spread>
+        <FriendlyFire>false</FriendlyFire>
+        <LaunchPoint y="3"/>
       </Projectile>
       <PreferredClasses datatype="tokens">Human</PreferredClasses>
     </Ranged>
