@@ -25,4 +25,4 @@ class TechnologiesSubsection extends Subsection
 }
 
 TechnologiesSubsection.prototype.HeadingCaption =
-	count => translatePlural("Special Technology", "Special Technologies", count);
+	count => translatePlural("Specific Technology", "Specific Technologies", count);
