@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_siege_ram">
+  <Footprint replace="">
+    <Square width="8.0" depth="12.0"/>
+    <Height>3.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>sele</Civ>
+    <SpecificName>Krios</SpecificName>
+    <Icon>units/mace_siege_ram.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>structures/macedonians/siege_ram.xml</Actor>
+  </VisualActor>
+</Entity>

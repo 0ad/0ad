@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -254,7 +254,7 @@ void CProfiler2::Shutdown()
 
 	// the destructor is not called for the main thread
 	// we have to call it manually to avoid memory leaks
-	ENSURE(ThreadUtil::IsMainThread());
+	ENSURE(Threading::IsMainThread());
 	m_Initialised = false;
 }
 

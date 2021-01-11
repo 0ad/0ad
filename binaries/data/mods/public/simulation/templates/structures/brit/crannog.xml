@@ -13,6 +13,7 @@
     <GenericName>Island Settlement</GenericName>
     <SpecificName>Cranogion</SpecificName>
     <Tooltip>Build upon a shoreline in own, neutral, or allied territory. Acquire large tracts of territory. Territory root. Train Citizens, construct Ships, and research technologies. Garrison Soldiers for additional arrows.</Tooltip>
+    <Classes datatype="tokens">CivSpecific</Classes>
     <VisibleClasses datatype="tokens">Naval</VisibleClasses>
     <Icon>structures/crannog.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>

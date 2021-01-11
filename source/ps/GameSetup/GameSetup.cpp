@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -355,7 +355,7 @@ ErrorReactionInternal psDisplayError(const wchar_t* UNUSED(text), size_t UNUSED(
 	// displaying the error dialog hangs the desktop since the dialog box is behind the
 	// fullscreen window. So we just force the game to windowed mode before displaying the dialog.
 	// (But only if we're in the main thread, and not if we're being reentrant.)
-	if (ThreadUtil::IsMainThread())
+	if (Threading::IsMainThread())
 	{
 		static bool reentering = false;
 		if (!reentering)
@@ -828,7 +828,7 @@ void EarlyInit()
 	// If you ever want to catch a particular allocation:
 	//_CrtSetBreakAlloc(232647);
 
-	ThreadUtil::SetMainThread();
+	Threading::SetMainThread();
 
 	debug_SetThreadName("main");
 	// add all debug_printf "tags" that we are interested in:

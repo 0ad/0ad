@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_fauna_herd_domestic_cattle">
+  <Cost>
+    <BuildTime>60</BuildTime>
+    <Resources>
+      <food>150</food>
+    </Resources>
+  </Cost>
   <Footprint>
     <Square width="2.0" depth="4.0"/>
     <Height>3.5</Height>
   </Footprint>
+  <Health>
+    <Max>150</Max>
+  </Health>
   <Identity>
     <GenericName>Sanga Cattle</GenericName>
     <SpecificName>Bos taurus africanus</SpecificName>
     <Icon>gaia/fauna_sanga.png</Icon>
   </Identity>
+  <ResourceSupply>
+    <Amount>300</Amount>
+    <MaxGatherers>5</MaxGatherers>
+  </ResourceSupply>
   <StatusBars>
     <HeightOffset>4.5</HeightOffset>
   </StatusBars>

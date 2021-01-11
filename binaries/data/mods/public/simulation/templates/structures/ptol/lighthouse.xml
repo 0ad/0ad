@@ -25,6 +25,7 @@
     <GenericName>Lighthouse</GenericName>
     <SpecificName>Pharos</SpecificName>
     <Tooltip>Build upon a shoreline in own, neutral, or allied territory. Reveal the shorelines over the entire map. Very large vision range.</Tooltip>
+    <Classes datatype="tokens">CivSpecific</Classes>
     <VisibleClasses datatype="tokens">-City Town Lighthouse</VisibleClasses>
     <Icon>structures/lighthouse.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>

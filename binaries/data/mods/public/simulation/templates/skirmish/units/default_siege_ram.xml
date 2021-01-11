@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_siege_ram">
+  <Footprint replace="">
+    <Square width="8.0" depth="15.0"/>
+    <Height>3.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>skirm</Civ>
+  </Identity>
+  <SkirmishReplacer>
+    <general>units/{civ}/siege_ram</general>
+  </SkirmishReplacer>
+  <VisualActor>
+    <Actor>structures/spartans/siege_ram.xml</Actor>
+  </VisualActor>
+</Entity>

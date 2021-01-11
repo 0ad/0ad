@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -28,6 +28,7 @@ class Path;
 using OsPath = Path;
 
 extern const char* engine_version;
+extern const char* main_window_name;
 
 extern void psBundleLogs(FILE* f); // set during InitVfs
 extern void psSetLogDir(const OsPath& logDir);	// set during InitVfs

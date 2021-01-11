@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -43,6 +43,9 @@
 WINIT_REGISTER_EARLY_INIT(wutil_Init);
 WINIT_REGISTER_LATE_SHUTDOWN(wutil_Shutdown);
 
+
+// Defined in ps/Pyrogenesis.h
+extern const char* main_window_name;
 
 //-----------------------------------------------------------------------------
 // safe allocator
@@ -528,7 +531,12 @@ static BOOL CALLBACK FindAppWindowByPid(HWND hWnd, LPARAM UNUSED(lParam))
 	UNUSED2(tid);
 
 	if(pid == GetCurrentProcessId())
-		hAppWindow = hWnd;
+	{
+		char windowName[100];
+		GetWindowTextA(hWnd, windowName, 99);
+		if (strcmp(windowName, main_window_name) == 0)
+			hAppWindow = hWnd;
+	}
 
 	return TRUE;	// keep calling
 }

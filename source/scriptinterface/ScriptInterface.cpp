@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -231,7 +231,7 @@ bool ProfileStart(JSContext* cx, uint argc, JS::Value* vp)
 		name = StringFlyweight(str).get().c_str();
 	}
 
-	if (CProfileManager::IsInitialised() && ThreadUtil::IsMainThread())
+	if (CProfileManager::IsInitialised() && Threading::IsMainThread())
 		g_Profiler.StartScript(name);
 
 	g_Profiler2.RecordRegionEnter(name);
@@ -243,7 +243,7 @@ bool ProfileStart(JSContext* cx, uint argc, JS::Value* vp)
 bool ProfileStop(JSContext* UNUSED(cx), uint argc, JS::Value* vp)
 {
 	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
-	if (CProfileManager::IsInitialised() && ThreadUtil::IsMainThread())
+	if (CProfileManager::IsInitialised() && Threading::IsMainThread())
 		g_Profiler.Stop();
 
 	g_Profiler2.RecordRegionLeave();
@@ -368,7 +368,7 @@ ScriptInterface::ScriptInterface(const char* nativeScopeName, const char* debugN
 	m(new ScriptInterface_impl(nativeScopeName, context))
 {
 	// Profiler stats table isn't thread-safe, so only enable this on the main thread
-	if (ThreadUtil::IsMainThread())
+	if (Threading::IsMainThread())
 	{
 		if (g_ScriptStatsTable)
 			g_ScriptStatsTable->Add(this, debugName);
@@ -381,7 +381,7 @@ ScriptInterface::ScriptInterface(const char* nativeScopeName, const char* debugN
 
 ScriptInterface::~ScriptInterface()
 {
-	if (ThreadUtil::IsMainThread())
+	if (Threading::IsMainThread())
 	{
 		if (g_ScriptStatsTable)
 			g_ScriptStatsTable->Remove(this);

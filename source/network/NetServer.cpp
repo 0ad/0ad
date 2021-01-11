@@ -32,6 +32,7 @@
 #include "ps/ConfigDB.h"
 #include "ps/GUID.h"
 #include "ps/Profile.h"
+#include "ps/Threading.h"
 #include "scriptinterface/ScriptContext.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
@@ -205,11 +206,11 @@ bool CNetServerWorker::SetupConnection(const u16 port)
 	m_State = SERVER_STATE_PREGAME;
 
 	// Launch the worker thread
-	m_WorkerThread = std::thread(RunThread, this);
+	m_WorkerThread = std::thread(Threading::HandleExceptions<RunThread>::Wrapper, this);
 
 #if CONFIG2_MINIUPNPC
 	// Launch the UPnP thread
-	m_UPnPThread = std::thread(SetupUPnP);
+	m_UPnPThread = std::thread(Threading::HandleExceptions<SetupUPnP>::Wrapper);
 #endif
 
 	return true;

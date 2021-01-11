@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -26,6 +26,8 @@
 
 #ifndef INCLUDED_WSEH
 #define INCLUDED_WSEH
+
+#include <excpt.h>
 
 struct _EXCEPTION_POINTERS;
 extern long __stdcall wseh_ExceptionFilter(_EXCEPTION_POINTERS* ep);

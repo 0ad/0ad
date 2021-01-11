@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -98,7 +98,7 @@ static CStrInternInternals* GetString(const char* str, size_t len)
 	// g_Strings is not thread-safe, so complain if anyone is using this
 	// type in non-main threads. (If that's desired, g_Strings should be changed
 	// to be thread-safe, preferably without sacrificing performance.)
-	ENSURE(ThreadUtil::IsMainThread());
+	ENSURE(Threading::IsMainThread());
 
 	std::unordered_map<StringsKey, shared_ptr<CStrInternInternals> >::iterator it = g_Strings.find(str);
 

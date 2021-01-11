@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -34,6 +34,7 @@
 #include "ps/Game.h"
 #include "ps/Loader.h"
 #include "ps/Profile.h"
+#include "ps/Threading.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
 
@@ -175,7 +176,7 @@ bool CNetClient::SetupConnection(const CStr& server, const u16 port, ENetHost* e
 	CNetClientSession* session = new CNetClientSession(*this);
 	bool ok = session->Connect(server, port, m_IsLocalClient, enetClient);
 	SetAndOwnSession(session);
-	m_PollingThread = std::thread(CNetClientSession::RunNetLoop, m_Session);
+	m_PollingThread = std::thread(Threading::HandleExceptions<CNetClientSession::RunNetLoop>::Wrapper, m_Session);
 	return ok;
 }
 

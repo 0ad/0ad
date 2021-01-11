@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_fauna_herd_domestic">
+  <Cost>
+    <BuildTime>50</BuildTime>
+    <Resources>
+      <food>75</food>
+    </Resources>
+  </Cost>
   <Footprint>
     <Square width="2.0" depth="4.0"/>
     <Height>1.5</Height>
   </Footprint>
+  <Health>
+    <Max>75</Max>
+  </Health>
   <Identity>
     <GenericName>Pig</GenericName>
     <SpecificName>Sus scrofa domesticus</SpecificName>
     <Icon>gaia/fauna_pig.png</Icon>
   </Identity>
+  <ResourceSupply>
+    <Amount>150</Amount>
+    <MaxGatherers>4</MaxGatherers>
+  </ResourceSupply>
   <Sound>
     <SoundGroups>
       <select>actor/fauna/animal/pig_select.xml</select>

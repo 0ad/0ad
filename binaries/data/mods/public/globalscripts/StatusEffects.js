@@ -1,6 +1,5 @@
 /**
  * This class provides a cache for accessing status effects metadata stored in JSON files.
- * Note that status effects need not be defined in JSON files to be handled in-game.
  * This class must be initialised before using, as initialising it directly in globalscripts would
  * introduce disk I/O every time e.g. a GUI page is loaded.
  */
@@ -27,10 +26,12 @@ class StatusEffectsMetadata
 				"applierTooltip": data.applierTooltip || "",
 				"code": data.code,
 				"icon": data.icon || "default",
-				"statusName": data.statusName || "data.code",
+				"statusName": data.statusName || data.code,
 				"receiverTooltip": data.receiverTooltip || ""
 			};
 		}
+
+		deepfreeze(this.statusEffectData);
 	}
 
 	/**

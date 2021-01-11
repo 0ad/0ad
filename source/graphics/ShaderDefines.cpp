@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -80,7 +80,7 @@ struct ItemNameGeq
 template<typename value_t>
 typename CShaderParams<value_t>::SItems* CShaderParams<value_t>::GetInterned(const SItems& items)
 {
-	ENSURE(ThreadUtil::IsMainThread()); // s_InternedItems is not thread-safe
+	ENSURE(Threading::IsMainThread()); // s_InternedItems is not thread-safe
 
 	typename InternedItems_t::iterator it = s_InternedItems.find(items);
 	if (it != s_InternedItems.end())

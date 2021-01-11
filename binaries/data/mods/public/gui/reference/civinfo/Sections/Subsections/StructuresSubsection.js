@@ -26,7 +26,7 @@ class StructuresSubsection extends Subsection
 }
 
 StructuresSubsection.prototype.HeadingCaption =
-	count => translatePlural("Special Structure", "Special Structures", count);
+	count => translatePlural("Specific Structure", "Specific Structures", count);
 
 StructuresSubsection.prototype.IdentifyingClassList =
-	[["SpecialBuilding"], ["Wonder"]];
+	["CivSpecific Structure"];

@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -27,6 +27,7 @@
 #include "ps/CLogger.h"
 #include "ps/CStr.h"
 #include "ps/Profiler2.h"
+#include "ps/Threading.h"
 #include "ps/XML/Xeromyces.h"
 
 #if CONFIG2_NVTT
@@ -298,7 +299,7 @@ CTextureConverter::CTextureConverter(PIVFS vfs, bool highQuality) :
 	ENSURE(nvtt::version() >= NVTT_VERSION);
 #endif
 
-	m_WorkerThread = std::thread(RunThread, this);
+	m_WorkerThread = std::thread(Threading::HandleExceptions<RunThread>::Wrapper, this);
 
 	// Maybe we should share some centralised pool of worker threads?
 	// For now we'll just stick with a single thread for this specific use.
