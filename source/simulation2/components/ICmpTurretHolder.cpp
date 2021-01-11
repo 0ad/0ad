@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
 * This file is part of 0 A.D.
 *
 * 0 A.D. is free software: you can redistribute it and/or modify
@@ -37,7 +37,7 @@ public:
 	virtual std::vector<std::pair<std::string, entity_id_t> > GetTurrets() const
 	{
 		std::vector<std::pair<std::string, entity_id_t> > turrets;
-		std::vector<entity_id_t> entities = m_Script.Call<std::vector<entity_id_t> >("GetEntities");
+		std::vector<entity_id_t> entities = m_Script.Call<std::vector<entity_id_t>>("GetEntities");
 		for (entity_id_t entity : entities)
 			turrets.push_back(std::make_pair(
 				m_Script.Call<std::string>("GetOccupiedTurretName", entity),
@@ -50,7 +50,7 @@ public:
 	/**
 	 * Correlation between entities (ID) and the turret point they ought to occupy (name).
 	 */
-	virtual void SetInitEntities(std::vector<std::pair<std::string, entity_id_t> > entities)
+	virtual void SetInitEntities(std::vector<std::pair<std::string, entity_id_t>>&& entities)
 	{
 		for (const std::pair<std::string, entity_id_t>& p : entities)
 			m_Script.CallVoid("SetInitEntity", p.first, p.second);

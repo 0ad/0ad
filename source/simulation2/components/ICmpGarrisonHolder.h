@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
 * This file is part of 0 A.D.
 *
 * 0 A.D. is free software: you can redistribute it and/or modify
@@ -27,7 +27,7 @@ class ICmpGarrisonHolder : public IComponent
 public:
 	virtual std::vector<entity_id_t> GetEntities() const = 0;
 
-	virtual void SetInitEntities(const std::vector<entity_id_t> entities) = 0;
+	virtual void SetInitEntities(std::vector<entity_id_t>&& entities) = 0;
 
 	DECLARE_INTERFACE_TYPE(GarrisonHolder)
 };

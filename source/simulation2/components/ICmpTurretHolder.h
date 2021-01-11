@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
 * This file is part of 0 A.D.
 *
 * 0 A.D. is free software: you can redistribute it and/or modify
@@ -29,12 +29,12 @@ public:
 	 * Returns the correlation between garrisoned turrets (their ID) and which
 	 *	turret point they occupy (name).
 	 */
-	virtual std::vector<std::pair<std::string, entity_id_t> > GetTurrets() const = 0;
+	virtual std::vector<std::pair<std::string, entity_id_t>> GetTurrets() const = 0;
 
 	/**
 	 * Correlation between entities (ID) and the turret point they ought to occupy (name).
 	 */
-	virtual void SetInitEntities(const std::vector<std::pair<std::string, entity_id_t> > entities) = 0;
+	virtual void SetInitEntities(std::vector<std::pair<std::string, entity_id_t>>&& entities) = 0;
 
 	DECLARE_INTERFACE_TYPE(TurretHolder)
 };
