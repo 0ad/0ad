@@ -143,7 +143,7 @@ ResourceGatherer.prototype.GetGatherRate = function(resourceType)
 
 ResourceGatherer.prototype.GetCapacity = function(resourceType)
 {
-	if(!this.template.Capacities[resourceType])
+	if (!this.template.Capacities[resourceType])
 		return 0;
 	return this.capacities[resourceType];
 };
@@ -305,18 +305,15 @@ ResourceGatherer.prototype.CommitResources = function(target)
 	if (!cmpResourceDropsite)
 		return;
 
-	let cmpPlayer = QueryOwnerInterface(this.entity);
-	if (!cmpPlayer)
-		return;
-
+	let change = cmpResourceDropsite.ReceiveResources(this.carrying, this.entity)
 	let changed = false;
-	for (let type in this.carrying)
-		if (cmpResourceDropsite.AcceptsType(type))
-		{
-			cmpPlayer.AddResource(type, this.carrying[type]);
+	for (let type in change)
+	{
+		this.carrying[type] -= change[type];
+		if (this.carrying[type] == 0)
 			delete this.carrying[type];
-			changed = true;
-		}
+		changed = true;
+	}
 
 	if (changed)
 		Engine.PostMessage(this.entity, MT_ResourceCarryingChanged, { "to": this.GetCarryingStatus() });
