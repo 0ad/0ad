@@ -21,7 +21,7 @@
  */
 
 /*
- * detection of CPU and cache topology
+ * Detection of CPU topology
  */
 
 #include "precompiled.h"
@@ -33,7 +33,6 @@
 #include "lib/sysdep/os_cpu.h"
 #include "lib/sysdep/numa.h"
 #include "lib/sysdep/arch/x86_x64/x86_x64.h"
-#include "lib/sysdep/arch/x86_x64/cache.h"
 #include "lib/sysdep/arch/x86_x64/apic.h"
 
 #include <bitset>
@@ -42,7 +41,7 @@
 namespace topology {
 
 //---------------------------------------------------------------------------------------------------------------------
-// detect *maximum* number of cores/packages/caches.
+// detect *maximum* number of cores/packages.
 // note: some of them may be disabled by the OS or BIOS.
 // note: Intel Appnote 485 assures us that they are uniform across packages.
 
@@ -110,13 +109,6 @@ static size_t MaxLogicalPerCore()
 	else
 		return 1;
 }
-
-
-static size_t MaxLogicalPerCache()
-{
-	return x86_x64::Caches(x86_x64::L2D)->m_SharedBy;
-}
-
 
 //---------------------------------------------------------------------------------------------------------------------
 // CPU topology interface
@@ -297,179 +289,6 @@ ApicId ApicIdFromIndices(size_t idxLogical, size_t idxCore, size_t idxPackage)
 
 	ENSURE(contiguousId < cpuTopology.numProcessors);
 	return ApicIdFromContiguousId(contiguousId);
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------
-// cache topology
-
-// note: Windows 2003 GetLogicalProcessorInformation provides similar
-// functionality but returns incorrect results. (it claims all cores in
-// an Intel Core2 Quad processor share a single L2 cache.)
-
-class CacheRelations
-{
-public:
-	/**
-	 * add processor to the processor mask owned by cache identified by \<id\>
-	 **/
-	void Add(u8 cacheId, size_t processor)
-	{
-		SharedCache* cache = Find(cacheId);
-		if(!cache)
-		{
-			m_caches.push_back(cacheId);
-			cache = &m_caches.back();
-		}
-		cache->Add(processor);
-	}
-
-	size_t NumCaches() const
-	{
-		return m_caches.size();
-	}
-
-	/**
-	 * store topology in an array (one entry per cache) of masks
-	 * representing the processors that share a cache.
-	 **/
-	void StoreProcessorMasks(uintptr_t* cachesProcessorMask)
-	{
-		for(size_t i = 0; i < NumCaches(); i++)
-			cachesProcessorMask[i] = m_caches[i].ProcessorMask();
-	}
-
-private:
-	/**
-	 * stores ID and tracks which processors share this cache
-	 **/
-	class SharedCache
-	{
-	public:
-		SharedCache(u8 cacheId)
-			: m_cacheId(cacheId), m_processorMask(0)
-		{
-		}
-
-		bool Matches(u8 cacheId) const
-		{
-			return m_cacheId == cacheId;
-		}
-
-		void Add(size_t processor)
-		{
-			m_processorMask |= uintptr_t(1) << processor;
-		}
-
-		uintptr_t ProcessorMask() const
-		{
-			return m_processorMask;
-		}
-
-	private:
-		u8 m_cacheId;
-		uintptr_t m_processorMask;
-	};
-
-	SharedCache* Find(u8 cacheId)
-	{
-		for(size_t i = 0; i < m_caches.size(); i++)
-		{
-			if(m_caches[i].Matches(cacheId))
-				return &m_caches[i];
-		}
-
-		return 0;
-	}
-
-	std::vector<SharedCache> m_caches;
-};
-
-static void DetermineCachesProcessorMask(uintptr_t* cachesProcessorMask, size_t& numCaches)
-{
-	CacheRelations cacheRelations;
-	if(AreApicIdsReliable())
-	{
-		const size_t numBits = ceil_log2(MaxLogicalPerCache());
-		const u8 cacheIdMask = u8((0xFF << numBits) & 0xFF);
-		for(size_t processor = 0; processor < os_cpu_NumProcessors(); processor++)
-		{
-			const ApicId apicId = ApicIdFromProcessor(processor);
-			const u8 cacheId = u8(apicId & cacheIdMask);
-			cacheRelations.Add(cacheId, processor);
-		}
-	}
-	else
-	{
-		for(size_t processor = 0; processor < os_cpu_NumProcessors(); processor++)
-		{
-			// assume each processor has exactly one cache with matching IDs
-			const u8 cacheId = (u8)processor;
-			cacheRelations.Add(cacheId, processor);
-		}
-	}
-
-	numCaches = cacheRelations.NumCaches();
-	cacheRelations.StoreProcessorMasks(cachesProcessorMask);
-}
-
-
-static void DetermineProcessorsCache(const uintptr_t* cachesProcessorMask, size_t numCaches, size_t* processorsCache, size_t numProcessors)
-{
-	for(size_t cache = 0; cache < numCaches; cache++)
-	{
-		// write to all entries that share this cache
-		const uintptr_t processorMask = cachesProcessorMask[cache];
-		for(size_t processor = 0; processor < numProcessors; processor++)
-		{
-			if(IsBitSet(processorMask, processor))
-			{
-				ENSURE(processorsCache[processor] == 0);
-				processorsCache[processor] = cache;
-			}
-		}
-	}
-}
-
-
-//---------------------------------------------------------------------------------------------------------------------
-// cache topology interface
-
-struct CacheTopology	// POD
-{
-	size_t numCaches;
-	size_t processorsCache[os_cpu_MaxProcessors];
-	uintptr_t cachesProcessorMask[os_cpu_MaxProcessors];
-};
-static CacheTopology cacheTopology;
-static ModuleInitState cacheInitState;
-
-static Status InitCacheTopology()
-{
-	ModuleInit(&cpuInitState, InitCpuTopology);
-	DetermineCachesProcessorMask(cacheTopology.cachesProcessorMask, cacheTopology.numCaches);
-	DetermineProcessorsCache(cacheTopology.cachesProcessorMask, cacheTopology.numCaches, cacheTopology.processorsCache, os_cpu_NumProcessors());
-	return INFO::OK;
-}
-
-size_t NumCaches()
-{
-	ModuleInit(&cacheInitState, InitCacheTopology);
-	return cacheTopology.numCaches;
-}
-
-size_t CacheFromProcessor(size_t processor)
-{
-	ModuleInit(&cacheInitState, InitCacheTopology);
-	ENSURE(processor < os_cpu_NumProcessors());
-	return cacheTopology.processorsCache[processor];
-}
-
-uintptr_t ProcessorMaskFromCache(size_t cache)
-{
-	ModuleInit(&cacheInitState, InitCacheTopology);
-	ENSURE(cache < cacheTopology.numCaches);
-	return cacheTopology.cachesProcessorMask[cache];
 }
 
 }	// namespace topology

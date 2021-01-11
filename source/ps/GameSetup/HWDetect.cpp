@@ -31,7 +31,6 @@
 #include "lib/sysdep/numa.h"
 #include "lib/sysdep/os_cpu.h"
 #if ARCH_X86_X64
-# include "lib/sysdep/arch/x86_x64/cache.h"
 # include "lib/sysdep/arch/x86_x64/topology.h"
 #endif
 #if CONFIG2_AUDIO
@@ -74,63 +73,6 @@
 
 static void ReportSDL(const ScriptInterface& scriptInterface, JS::HandleValue settings);
 static void ReportGLLimits(const ScriptInterface& scriptInterface, JS::HandleValue settings);
-
-#if ARCH_X86_X64
-void ConvertCaches(const ScriptInterface& scriptInterface, x86_x64::IdxCache idxCache, JS::MutableHandleValue ret)
-{
-	ScriptRequest rq(scriptInterface);
-
-	ScriptInterface::CreateArray(rq, ret);
-
-	for (size_t idxLevel = 0; idxLevel < x86_x64::Cache::maxLevels; ++idxLevel)
-	{
-		const x86_x64::Cache* pcache = x86_x64::Caches(idxCache+idxLevel);
-		if (pcache->m_Type == x86_x64::Cache::kNull || pcache->m_NumEntries == 0)
-			continue;
-
-		JS::RootedValue cache(rq.cx);
-
-		ScriptInterface::CreateObject(
-			rq,
-			&cache,
-			"type", static_cast<u32>(pcache->m_Type),
-			"level", static_cast<u32>(pcache->m_Level),
-			"associativity", static_cast<u32>(pcache->m_Associativity),
-			"linesize", static_cast<u32>(pcache->m_EntrySize),
-			"sharedby", static_cast<u32>(pcache->m_SharedBy),
-			"totalsize", static_cast<u32>(pcache->TotalSize()));
-
-		scriptInterface.SetPropertyInt(ret, idxLevel, cache);
-	}
-}
-
-void ConvertTLBs(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret)
-{
-	ScriptRequest rq(scriptInterface);
-
-	ScriptInterface::CreateArray(rq, ret);
-
-	for(size_t i = 0; ; i++)
-	{
-		const x86_x64::Cache* ptlb = x86_x64::Caches(x86_x64::TLB+i);
-		if (!ptlb)
-			break;
-
-		JS::RootedValue tlb(rq.cx);
-
-		ScriptInterface::CreateObject(
-			rq,
-			&tlb,
-			"type", static_cast<u32>(ptlb->m_Type),
-			"level", static_cast<u32>(ptlb->m_Level),
-			"associativity", static_cast<u32>(ptlb->m_Associativity),
-			"pagesize", static_cast<u32>(ptlb->m_EntrySize),
-			"entries", static_cast<u32>(ptlb->m_NumEntries));
-
-		scriptInterface.SetPropertyInt(ret, i, tlb);
-	}
-}
-#endif
 
 void SetDisableAudio(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), bool disabled)
 {
@@ -240,7 +182,6 @@ void RunHardwareDetection()
 	scriptInterface.SetProperty(settings, "cpu_numpackages", (u32)topology::NumPackages());
 	scriptInterface.SetProperty(settings, "cpu_coresperpackage", (u32)topology::CoresPerPackage());
 	scriptInterface.SetProperty(settings, "cpu_logicalpercore", (u32)topology::LogicalPerCore());
-	scriptInterface.SetProperty(settings, "cpu_numcaches", (u32)topology::NumCaches());
 #endif
 
 	scriptInterface.SetProperty(settings, "numa_numnodes", (u32)numa_NumNodes());
@@ -261,20 +202,12 @@ void RunHardwareDetection()
 	scriptInterface.SetProperty(settings, "x86_caps[1]", caps1);
 	scriptInterface.SetProperty(settings, "x86_caps[2]", caps2);
 	scriptInterface.SetProperty(settings, "x86_caps[3]", caps3);
-
-	JS::RootedValue tmpVal(rq.cx);
-	ConvertCaches(scriptInterface, x86_x64::L1I, &tmpVal);
-	scriptInterface.SetProperty(settings, "x86_icaches", tmpVal);
-	ConvertCaches(scriptInterface, x86_x64::L1D, &tmpVal);
-	scriptInterface.SetProperty(settings, "x86_dcaches", tmpVal);
-	ConvertTLBs(scriptInterface, &tmpVal);
-	scriptInterface.SetProperty(settings, "x86_tlbs", tmpVal);
 #endif
 
 	scriptInterface.SetProperty(settings, "timer_resolution", timer_Resolution());
 
 	// The version should be increased for every meaningful change.
-	const int reportVersion = 13;
+	const int reportVersion = 14;
 
 	// Send the same data to the reporting system
 	g_UserReporter.SubmitReport(
