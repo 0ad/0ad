@@ -1,12 +1,12 @@
 {
 	"genericName": "Conscription",
-	"description": "Significantly increase training speed of soldiers at the Barracks by training them in large batches or battalions.",
+	"description": "Significantly increase training speed of infantry by training them in large batches or companies.",
 	"cost": { "food": 500, "wood": 0, "stone": 0, "metal": 0 },
-	"requirements": { "all": [{ "tech": "phase_city" }, { "notciv": "pers" }] },
+	"requirements": { "tech": "phase_city" },
 	"requirementsTooltip": "Unlocked in City Phase.",
-	"icon": "fist_spear.png",
+	"icon": "fist_spear_fire.png",
 	"researchTime": 40,
-	"tooltip": "Faster batch training speed for the Barracks.",
+	"tooltip": "Barracks −10% batch training time.",
 	"modifications": [
 		{ "value": "ProductionQueue/BatchTimeModifier", "add": -0.1 }
 	],
