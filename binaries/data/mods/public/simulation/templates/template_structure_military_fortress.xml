@@ -45,9 +45,10 @@
     <RegenRate>10.0</RegenRate>
   </Capturable>
   <Cost>
-    <BuildTime>500</BuildTime>
+    <BuildTime>450</BuildTime>
     <Resources>
-      <stone>1000</stone>
+      <wood>300</wood>
+      <stone>600</stone>
     </Resources>
   </Cost>
   <Footprint>
@@ -61,7 +62,7 @@
     <LoadingRange>6</LoadingRange>
   </GarrisonHolder>
   <Health>
-    <Max>4200</Max>
+    <Max>5200</Max>
     <SpawnEntityOnDeath>decay|rubble/rubble_stone_6x6</SpawnEntityOnDeath>
   </Health>
   <Identity>
@@ -74,7 +75,8 @@
     <RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>
   <Loot>
-    <stone>200</stone>
+    <wood>60</wood>
+    <stone>120</stone>
   </Loot>
   <Obstruction>
     <Static width="25.0" depth="25.0"/>
@@ -88,15 +90,6 @@
       attack_soldiers_will
     </Technologies>
   </ProductionQueue>
-  <Resistance>
-    <Entity>
-      <Damage>
-        <Hack op="add">5</Hack>
-        <Pierce op="add">5</Pierce>
-        <Crush op="add">3</Crush>
-      </Damage>
-    </Entity>
-  </Resistance>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_fortress.xml</select>
