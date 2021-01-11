@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -111,6 +111,11 @@ public:
 
 	virtual void Uniform(Binding UNUSED(id), size_t UNUSED(count), const CMatrix3D* UNUSED(v))
 	{
+	}
+
+	virtual std::vector<VfsPath> GetFileDependencies() const
+	{
+		return {};
 	}
 
 protected:
