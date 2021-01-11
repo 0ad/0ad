@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -143,8 +143,11 @@ void RunHardwareDetection()
 	scriptInterface.SetProperty(settings, "gfx_card", gfx::CardName());
 	scriptInterface.SetProperty(settings, "gfx_drv_ver", gfx::DriverInfo());
 #if CONFIG2_AUDIO
-	scriptInterface.SetProperty(settings, "snd_card", g_SoundManager->GetSoundCardNames());
-	scriptInterface.SetProperty(settings, "snd_drv_ver", g_SoundManager->GetOpenALVersion());
+	if (g_SoundManager)
+	{
+		scriptInterface.SetProperty(settings, "snd_card", g_SoundManager->GetSoundCardNames());
+		scriptInterface.SetProperty(settings, "snd_drv_ver", g_SoundManager->GetOpenALVersion());
+	}
 #endif
 	ReportSDL(scriptInterface, settings);
 

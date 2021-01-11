@@ -915,7 +915,7 @@ bool Init(const CmdLineArgs& args, int flags)
 	CNetHost::Initialize();
 
 #if CONFIG2_AUDIO
-	if (!args.Has("autostart-nonvisual"))
+	if (!args.Has("autostart-nonvisual") && !g_DisableAudio)
 		ISoundManager::CreateSoundManager();
 #endif
 

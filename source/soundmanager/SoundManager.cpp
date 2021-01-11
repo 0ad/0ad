@@ -184,11 +184,18 @@ private:
 
 void ISoundManager::CreateSoundManager()
 {
-	if (!g_SoundManager)
+	if (g_SoundManager)
+		return;
+
+	ALCdevice* device = alcOpenDevice(nullptr);
+	if (!device)
 	{
-		g_SoundManager = new CSoundManager();
-		g_SoundManager->StartWorker();
+		LOGWARNING("No audio device was found.");
+		return;
 	}
+
+	g_SoundManager = new CSoundManager(device);
+	g_SoundManager->StartWorker();
 }
 
 void ISoundManager::SetEnabled(bool doEnable)
@@ -227,8 +234,8 @@ Status CSoundManager::ReloadChangedFiles(const VfsPath& UNUSED(path))
 	return static_cast<CSoundManager*>(param)->ReloadChangedFiles(path);
 }
 
-CSoundManager::CSoundManager()
-	: m_Context(nullptr), m_Device(nullptr), m_ALSourceBuffer(nullptr),
+CSoundManager::CSoundManager(ALCdevice* device)
+	: m_Context(nullptr), m_Device(device), m_ALSourceBuffer(nullptr),
 	m_CurrentTune(nullptr), m_CurrentEnvirons(nullptr),
 	m_Worker(nullptr), m_DistressMutex(), m_PlayListItems(nullptr), m_SoundGroups(),
 	m_Gain(.5f), m_MusicGain(.5f), m_AmbientGain(.5f), m_ActionGain(.5f), m_UIGain(.5f),
@@ -305,7 +312,9 @@ Status CSoundManager::AlcInit()
 {
 	Status ret = INFO::OK;
 
-	m_Device = alcOpenDevice(NULL);
+	if(!m_Device)
+		m_Device = alcOpenDevice(nullptr);
+
 	if (m_Device)
 	{
 		ALCint attribs[] = {ALC_STEREO_SOURCES, 16, 0};
