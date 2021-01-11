@@ -4,17 +4,18 @@
 # project.
 # Translators:
 # 이민학, 2019
+# Bruce Lee <daemul72@gmail.com>, 2019,2021
 # moolow <copyhyeon@gmail.com>, 2019
-# JungHee Lee <daemul72@gmail.com>, 2019
+# Bruce Lee <daemul72@gmail.com>, 2019
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
 # Hong Won Gi <timmy080736@gmail.com>, 2016
 # Hong Won Gi <timmy080736@gmail.com>, 2016
 # jjj <triplej03@nate.com>, 2014
-# JungHee Lee <daemul72@gmail.com>, 2019
+# Bruce Lee <daemul72@gmail.com>, 2019
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
 # ks k, 2019
 # ks k, 2019-2020
-# JungHee Lee <daemul72@gmail.com>, 2019
+# Bruce Lee <daemul72@gmail.com>, 2019
 # Minhak Lee, 2019
 # 이민학, 2019
 # moolow <copyhyeon@gmail.com>, 2019
@@ -23,9 +24,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-01 08:01+0000\n"
-"PO-Revision-Date: 2021-01-01 08:19+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-01-08 08:08+0000\n"
+"PO-Revision-Date: 2021-01-11 07:46+0000\n"
+"Last-Translator: Bruce Lee <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -53,7 +54,7 @@ msgstr "전통 궁술"
 #: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_watch.jsonrequirementsTooltip
 msgid "Unlocked in Village Phase."
-msgstr "마을 단계에서 사용할 수 있습니다."
+msgstr "부락 단계에서 잠금 해제됩니다."
 
 #: simulation/data/technologies/archery_tradition.jsontooltip
 msgid ""
@@ -67,7 +68,7 @@ msgstr "말의 얼굴을 보호하기 위한 금속 방어구 투구."
 #: simulation/data/technologies/armor_cav_01.jsongenericName
 #: simulation/data/technologies/armor_cav_02.jsongenericName
 msgid "Chamfron"
-msgstr "군마용 안면 투구"
+msgstr "샹프론"
 
 #: simulation/data/technologies/armor_cav_01.jsonrequirementsTooltip
 #: simulation/data/technologies/armor_infantry_01.jsonrequirementsTooltip
@@ -98,7 +99,7 @@ msgstr "군마용 안면 투구"
 #: simulation/data/technologies/trade_gain_01.jsonrequirementsTooltip
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase."
-msgstr "작은 도시 단계부터 이용가능합니다."
+msgstr "소도시 단계부터 이용가능합니다."
 
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.athen
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.mace
@@ -106,7 +107,7 @@ msgstr "작은 도시 단계부터 이용가능합니다."
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.sele
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.spart
 msgid "Prometōpidion"
-msgstr ""
+msgstr "프로메토피디온"
 
 #: simulation/data/technologies/armor_cav_01.jsontooltip
 #: simulation/data/technologies/armor_cav_02.jsontooltip
@@ -166,7 +167,7 @@ msgstr "말의 몸통을 위한 철 갑옷."
 #: simulation/data/technologies/training_naval_architects.jsonrequirementsTooltip
 #: simulation/data/technologies/unlock_champion_units.jsonrequirementsTooltip
 msgid "Unlocked in City Phase."
-msgstr "큰 도시 단계부터 이용가능합니다."
+msgstr "도시 단계에서 잠금해제합니다."
 
 #: simulation/data/technologies/armor_hero_01.jsondescription
 msgid ""
@@ -184,7 +185,7 @@ msgstr "철제 영웅 갑옷"
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.sele
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.spart
 msgid "Sidērea Panoplia"
-msgstr ""
+msgstr "시드레아 파노플리아"
 
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.rome
 msgid "Lorica Ferrea"
@@ -196,11 +197,11 @@ msgstr "영웅들의 금속 소비가 +50 증가, 타격과 방어력 관통이 
 
 #: simulation/data/technologies/armor_infantry_01.jsondescription
 msgid "Quilted linen or leather body armor for infantrymen."
-msgstr "보병용 누비 가공된 아마포 또는 가죽 갑옷."
+msgstr "보병용 누비질된 린넨 또는 가죽 갑옷."
 
 #: simulation/data/technologies/armor_infantry_01.jsongenericName
 msgid "Quilted Body Armor"
-msgstr "누비 가공된 갑옷"
+msgstr "누비질된 갑옷"
 
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.athen
 #: simulation/data/technologies/armor_infantry_01.jsonspecificName.mace
@@ -217,11 +218,11 @@ msgstr "보병의 타격과 방어력 관통이 +1 증가합니다."
 
 #: simulation/data/technologies/armor_infantry_02.jsondescription
 msgid "Laminated linen body armor for infantrymen."
-msgstr "보병용 적층 아마포 갑옷."
+msgstr "보병용 적층 린넨 갑옷."
 
 #: simulation/data/technologies/armor_infantry_02.jsongenericName
 msgid "Laminated Linen Body Armor"
-msgstr "적층 아마포 갑옷"
+msgstr "적층 린넨 갑옷"
 
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.athen
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.mace
@@ -229,7 +230,7 @@ msgstr "적층 아마포 갑옷"
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.sele
 #: simulation/data/technologies/armor_infantry_02.jsonspecificName.spart
 msgid "Linothōrax"
-msgstr ""
+msgstr "리노호락스"
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsondescription
 msgid "Lead sheathing protects ship hulls."
@@ -285,7 +286,7 @@ msgstr "크시스톤"
 #: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.rome
 #: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.rome
 msgid "Hasta"
-msgstr "하스타ehsms창"
+msgstr "하스타"
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsontooltip
 msgid "+20% melee cavalry attack."
@@ -341,7 +342,7 @@ msgstr "휴대 무기"
 #: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.sele
 #: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.spart
 msgid "Xiphos"
-msgstr ""
+msgstr "사이포스"
 
 #: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.rome
 msgid "Pugio"
@@ -376,7 +377,7 @@ msgstr "비정규 원거리 보병"
 #: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.sele
 #: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.spart
 msgid "Ataktoi"
-msgstr ""
+msgstr "아타토이"
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsontooltip
 #: simulation/data/technologies/attack_infantry_ranged_02.jsontooltip
@@ -401,7 +402,7 @@ msgstr "전투의지"
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.sele
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.spart
 msgid "Dynamis"
-msgstr ""
+msgstr "다이너마이스"
 
 #: simulation/data/technologies/attack_soldiers_will.jsontooltip
 msgid ""
@@ -428,7 +429,7 @@ msgstr "인도제 철강"
 
 #: simulation/data/technologies/attack_steel_working.jsontooltip
 msgid "Swordsmen +20% attack damage."
-msgstr ""
+msgstr "검객 공격력이 +20%증가합니다"
 
 #: simulation/data/technologies/carthaginians/special_colonisation.jsondescription
 msgid ""
@@ -484,14 +485,14 @@ msgstr "경마"
 
 #: simulation/data/technologies/cavalry_movement_speed.jsontooltip
 msgid "Cavalry +10% walk speed."
-msgstr "기마의 이동 속도가 +10% 빨라집니다."
+msgstr "기마의 보행 속도가 +10% 빨라집니다."
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsondescription
 msgid ""
 "Carthaginians built their city walls in three concentric circuits. These "
 "walls were never breached. Even when the city was taken by the Romans, it "
 "was via the city's harbor, not by storming its walls."
-msgstr "카르타고는 삼중 성벽을 쌓았습니다. 이 성벽은 절때로 뚫리지 않았습니다. 이 도시는 로마에게 점령 당했을때도 성벽을 습격당해서가 아니라 도시의 항구를 통해서 점령당했기 때문입니다."
+msgstr "카르타고인들은 그들의 도시 벽을 세 개의 중심이 같은 원형으로 지었습니다. 이 벽은 결코 뚫리지 않았습니다. 로마인들이 도시를 점령했을 때도 성벽을 습격한 것이 아니라 항구를 경유했습니다."
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsongenericName
 msgid "Triple Walls"
@@ -607,7 +608,7 @@ msgstr "스파르타의 육군은 당시 세계 최대는 아니었지만 세계
 
 #: simulation/data/technologies/civbonuses/spart_population.jsongenericName
 msgid "Underdogs"
-msgstr "약체??"
+msgstr "약자"
 
 #: simulation/data/technologies/civbonuses/spart_population.jsontooltip
 msgid "Spartans −10% maximum population limit."
@@ -627,7 +628,7 @@ msgstr "가축의 번식 시간이 -25% 감소합니다."
 
 #: simulation/data/technologies/gather_capacity_basket.jsondescription
 msgid "Workers use baskets. Increases shuttling capacity for all resources."
-msgstr "노동자가 바구니를 사용합니다. 실어 나르는 자원 용량이 증가합니다."
+msgstr "일꾼이 바구니를 사용합니다. 실어 나르는 자원 용량이 증가합니다."
 
 #: simulation/data/technologies/gather_capacity_basket.jsongenericName
 msgid "Baskets"
@@ -637,13 +638,13 @@ msgstr "바구니"
 #: simulation/data/technologies/gather_capacity_carts.jsontooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsontooltip
 msgid "Workers +5 resource capacity."
-msgstr "노동자의 자원 용량이 +5 증가합니다."
+msgstr "일꾼의 자원 용량이 +5 증가합니다."
 
 #: simulation/data/technologies/gather_capacity_carts.jsondescription
 msgid ""
 "Workers use horse-drawn carts. Increases shuttling capacity for all "
 "resources."
-msgstr "노동자들이 마차를 이용합니다. 모든 자원의 실어 나르는 용량이 증가합니다."
+msgstr "일꾼이 마차를 이용합니다. 모든 자원의 실어 나르는 용량이 증가합니다."
 
 #: simulation/data/technologies/gather_capacity_carts.jsongenericName
 msgid "Horse-drawn Carts"
@@ -659,7 +660,7 @@ msgstr "물고기를 소금에 절이기"
 
 #: simulation/data/technologies/gather_capacity_fishing.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase. Requires Fishing Net."
-msgstr "＂작은 도시 단계＂를 잠금해제합니다. 그럴려면 낚시 그물이 필요합니다."
+msgstr "＂소도시 단계＂를 잠금해제합니다. 그럴려면 낚시 그물이 필요합니다."
 
 #: simulation/data/technologies/gather_capacity_fishing.jsontooltip
 msgid "Fishing Boats +20 food capacity."
@@ -668,7 +669,7 @@ msgstr "고기잡이 배가 잡아들이는 물고기양이 +20 증가합니다.
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsondescription
 msgid ""
 "Workers use wheelbarrows. Increases shuttling capacity for all resources."
-msgstr "노동자는 한바퀴 수레를 사용합니다. 모든 자원의 실어나르는 용량이 증가합니다."
+msgstr "일꾼이 한바퀴 수레를 사용합니다. 모든 자원의 실어나르는 용량이 증가합니다."
 
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsongenericName
 msgid "Wheelbarrow"
@@ -686,7 +687,7 @@ msgstr "비료"
 #: simulation/data/technologies/gather_farming_plows.jsontooltip
 #: simulation/data/technologies/gather_farming_training.jsontooltip
 msgid "Workers +20% grain gather rate."
-msgstr "노동자의 곡물 수확률이 +20% 증가합니다."
+msgstr "일꾼의 곡물 수확률이 +20% 증가합니다."
 
 #: simulation/data/technologies/gather_farming_harvester.jsondescription
 msgid ""
@@ -700,13 +701,13 @@ msgstr "수확기"
 
 #: simulation/data/technologies/gather_farming_harvester.jsontooltip
 msgid "Workers +10% grain gather rate."
-msgstr ""
+msgstr "일꾼의 곡물 수확률이 +10% 증가합니다."
 
 #: simulation/data/technologies/gather_farming_plows.jsondescription
 msgid ""
 "Equip your workers with iron plows, animal-drawn instruments to turn the "
 "sod."
-msgstr "밭을 갈기위해 동물이 끄는 철 쟁기를 노동자가 장착합니다."
+msgstr "밭을 갈기위해 동물이 끄는 철 쟁기를 일꾼이 장착합니다."
 
 #: simulation/data/technologies/gather_farming_plows.jsongenericName
 msgid "Iron Plow"
@@ -746,7 +747,7 @@ msgstr "쇠 도끼날"
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsontooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsontooltip
 msgid "Workers +25% wood gather rate."
-msgstr "노동자의 목재 채집률이 +25% 증가합니다."
+msgstr "일꾼의 목재 채집률이 +25% 증가합니다."
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsongenericName
 msgid "Sharp Ax Heads"
@@ -768,13 +769,13 @@ msgstr "농노"
 
 #: simulation/data/technologies/gather_mining_serfs.jsonspecificName.spart
 msgid "Heilōtes"
-msgstr ""
+msgstr "힐로테스"
 
 #: simulation/data/technologies/gather_mining_serfs.jsontooltip
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
 #: simulation/data/technologies/gather_mining_slaves.jsontooltip
 msgid "Workers +25% stone gather rate."
-msgstr "노동자의 석재 채집률이 +25% 증가합니다."
+msgstr "일꾼의 석재 채집률이 +25% 증가합니다."
 
 #: simulation/data/technologies/gather_mining_servants.jsondescription
 msgid "Hire servants to help quarry stone. Increases stone gathering rates."
@@ -790,7 +791,7 @@ msgstr "하인"
 #: simulation/data/technologies/gather_mining_servants.jsonspecificName.sele
 #: simulation/data/technologies/gather_mining_servants.jsonspecificName.spart
 msgid "Douloi"
-msgstr ""
+msgstr "둘로이"
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsondescription
 msgid "Develop shaft mining. Increases metal gathering rates."
@@ -804,7 +805,7 @@ msgstr "수직 갱도 광산"
 #: simulation/data/technologies/gather_mining_silvermining.jsontooltip
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
 msgid "Workers +25% metal gather rate."
-msgstr "노동자의 금속 채집률이 +25% 증가합니다."
+msgstr "일꾼의 금속 채집률이 +25% 증가합니다."
 
 #: simulation/data/technologies/gather_mining_silvermining.jsondescription
 msgid "Strike a vein of precious silver. Increases metal gathering rates."
@@ -826,7 +827,7 @@ msgstr "크레니데스 광산"
 msgid ""
 "Buy slaves to help your workers quarry stone. Increases stone gathering "
 "rates."
-msgstr "노동자들이 석재를 채석하는 것을 돕기 위해 노예를 구입합니다. 석재 채집 속도가 증가합니다."
+msgstr "일꾼이 석재를 채석하는 것을 돕기 위해 노예를 구입합니다. 석재 채집 속도가 증가합니다."
 
 #: simulation/data/technologies/gather_mining_slaves.jsongenericName
 msgid "Slaves"
@@ -838,16 +839,16 @@ msgstr "노예들"
 #: simulation/data/technologies/gather_mining_slaves.jsonspecificName.sele
 #: simulation/data/technologies/gather_mining_slaves.jsonspecificName.spart
 msgid "Andrapoda"
-msgstr ""
+msgstr "안드라포다"
 
 #: simulation/data/technologies/gather_mining_slaves.jsonspecificName.rome
 msgid "Servi"
-msgstr ""
+msgstr "서버비"
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsondescription
 msgid ""
 "Equip your workers with helpful tools. Increases metal gathering rates."
-msgstr "노동자들이 도움이되는 도구를 장착합니다. 금속 채집량이 증가합니다."
+msgstr "일꾼이 도움이 되는 도구를 장착합니다. 금속 채집량이 증가합니다."
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsongenericName
 msgid "Wedge and Mallet"
@@ -863,7 +864,7 @@ msgstr "고리버들 바구니"
 
 #: simulation/data/technologies/gather_wicker_baskets.jsontooltip
 msgid "Workers +50% fruit gather rate."
-msgstr "노동자의 과일 수확률이 +15% 증가합니다."
+msgstr "일꾼의 과일 수확률이 +15% 증가합니다."
 
 #: simulation/data/technologies/heal_barracks.jsondescription
 msgid "Units garrisoned in Barracks heal over time."
@@ -905,7 +906,7 @@ msgstr "회복 범위 2"
 
 #: simulation/data/technologies/heal_range_2.jsonspecificName.athen
 msgid "Akadēmeia"
-msgstr ""
+msgstr "아카데메이아"
 
 #: simulation/data/technologies/heal_rate.jsondescription
 #: simulation/data/technologies/heal_rate_2.jsondescription
@@ -922,7 +923,7 @@ msgstr "치유속도"
 #: simulation/data/technologies/heal_rate.jsonspecificName.sele
 #: simulation/data/technologies/heal_rate.jsonspecificName.spart
 msgid "Sphagia"
-msgstr ""
+msgstr "스파지아"
 
 #: simulation/data/technologies/heal_rate.jsontooltip
 #: simulation/data/technologies/heal_rate_2.jsontooltip
@@ -1153,7 +1154,7 @@ msgstr "phase_city_generic 또는 phase_city_{civ}로 대체된 서식 요구 �
 #: simulation/data/technologies/phase_city_athen.jsongenericName
 #: simulation/data/technologies/phase_city_generic.jsongenericName
 msgid "City Phase"
-msgstr "큰 도시 단계"
+msgstr "도시 단계"
 
 #: simulation/data/technologies/phase_city_athen.jsondescription
 msgid ""
@@ -1165,7 +1166,7 @@ msgstr "번화한 도시에서 현재 기술의 경이로움으로 가득찬 진
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
 msgid "Requires 4 Town Structures."
-msgstr "4개의 작은 도시 건축물이 필요합니다."
+msgstr "4개의 소도시 건축물이 필요합니다."
 
 #: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
@@ -1181,7 +1182,7 @@ msgid ""
 "radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
 "grants an extra +10% metal gather rate to all workers. Citizen Soldiers +10%"
 " health. All structures +9 garrisoned regeneration rate."
-msgstr "더 많은 건축물과 유닛을 열수있는 대도시 단계로 나갑니다. 시민회관의 영토 반경이 +50% 더 증가합니다. 올빼미 은화 문명 보너스는 모든 근로자에게 +10% 금속 채집 비율을 추가로 부여합니다. 시민 군인의 체력이 +10% 증가합니다. 모든 건축물의 수비형 재생률 +9 증가합니다."
+msgstr "더 많은 건축물과 유닛을 열수있는 대도시 단계로 나갑니다. 시민회관의 영토 반경이 +50% 더 증가합니다. 올빼미 은화 문명 보너스는 모든 일꾼에게 +10% 금속 채집 비율을 추가로 부여합니다. 시민 군인의 체력이 +10% 증가합니다. 모든 건축물의 수비형 재생률 +9 증가합니다."
 
 #: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
@@ -1206,19 +1207,19 @@ msgstr "서식 요구사항에 사용하기 위한 더미 기술이며, phase_to
 #: simulation/data/technologies/phase_town_athen.jsongenericName
 #: simulation/data/technologies/phase_town_generic.jsongenericName
 msgid "Town Phase"
-msgstr "작은 도시 단계"
+msgstr "소도시 단계"
 
 #: simulation/data/technologies/phase_town_athen.jsondescription
 msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly. "
 "This is the Athenian town phase, where metal gathering rates are boosted "
 "because of the 'Silver Owls' bonus."
-msgstr "작은 마을에서 번화한 작은 도시로 빠르게 확장 할 준비가 되었습니다. 이것은 '은 올빼미' 보너스로 인해 금속 채집률이 상승하는 아테네 작은 도시 단계입니다."
+msgstr "작은 부락에서 번화한 소도시로 빠르게 확장 할 준비가 되었습니다. 이것은 '은 올빼미' 보너스로 인해 금속 채집률이 상승하는 아테네 소도시 단계입니다."
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
 msgid "Requires 5 Village Structures."
-msgstr "5개의 마을 건축물이 필요합니다."
+msgstr "5개의 부락 건축물이 필요합니다."
 
 #: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
@@ -1226,7 +1227,7 @@ msgstr "5개의 마을 건축물이 필요합니다."
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.sele
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.spart
 msgid "Kōmopolis"
-msgstr ""
+msgstr "코모폴리스"
 
 #: simulation/data/technologies/phase_town_athen.jsontooltip
 msgid ""
@@ -1234,23 +1235,23 @@ msgid ""
 "radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants "
 "an extra +10% metal gather rate to all workers. Citizen Soldiers +20% "
 "health. All structures +7 garrisoned regeneration rate."
-msgstr "다양한 건축물과 유닛을 열 수 있는 작은도시 단계로 발전합니다. 시민 회관의 영토 반경이 +30% 증가했습니다. '은 올빼미' 문명 보너스는 모든 노동자에게 +10% 의 추가 금속 채집률을 부여합니다. 시민 군인의 건강이 +20% 증가됩니다. 모든 건축물에 주둔시 복구율이 +7 증가합니다."
+msgstr "다양한 건축물과 유닛을 열 수 있는 작은도시 단계로 발전합니다. 시민 회관의 영토 반경이 +30% 증가했습니다. '은 올빼미' 문명 보너스는 모든 일꾼에게 +10% 의 추가 금속 채집률을 부여합니다. 시민 군인의 건강이 +20% 증가됩니다. 모든 건축물에 주둔시 복구율이 +7 증가합니다."
 
 #: simulation/data/technologies/phase_town_generic.jsondescription
 msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly."
-msgstr "작은 마을에서 번화한 작은 도시로 빠르게 확장할 준비가 되었습니다."
+msgstr "작은 부락에서 번화한 소도시로 빠르게 확장할 준비가 되었습니다."
 
 #: simulation/data/technologies/phase_town_generic.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by +30%. Citizen Soldiers +20% health. "
 "All structures +7 garrisoned regeneration rate."
-msgstr "작은 도시의 단계로 진행되면 더 다양한 건축물과 유닛을 사용할 수 있습니다. 시민회관의 영지 반경 또한 +30% 증가합니다. 시민 군인의 체력이 +20% 상승합니다. 모든 건축물에 주둔시 수리율이 +7 증가합니다."
+msgstr "소도시의 단계로 진행되면 더 다양한 건축물과 유닛을 사용할 수 있습니다. 시민회관의 영지 반경 또한 +30% 증가합니다. 시민 군인의 체력이 +20% 상승합니다. 모든 건축물에 주둔시 수리율이 +7 증가합니다."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
-msgstr "마을 단계"
+msgstr "부락 단계"
 
 #: simulation/data/technologies/pop_house_01.jsondescription
 msgid ""
@@ -1268,15 +1269,15 @@ msgstr "집 정원"
 #: simulation/data/technologies/pop_house_01.jsonspecificName.sele
 #: simulation/data/technologies/pop_house_01.jsonspecificName.spart
 msgid "Peristylon"
-msgstr ""
+msgstr "페리스티일론"
 
 #: simulation/data/technologies/pop_house_01.jsonspecificName.pers
 msgid "Paradaidām"
-msgstr ""
+msgstr "파라다이다움"
 
 #: simulation/data/technologies/pop_house_01.jsonspecificName.rome
 msgid "Peristylium"
-msgstr ""
+msgstr "페리스타틸륨"
 
 #: simulation/data/technologies/pop_house_01.jsontooltip
 #: simulation/data/technologies/pop_house_02.jsontooltip
@@ -1310,7 +1311,7 @@ msgstr "명성 전파"
 #: simulation/data/technologies/pop_wonder.jsonspecificName.sele
 #: simulation/data/technologies/pop_wonder.jsonspecificName.spart
 msgid "Peristasis"
-msgstr ""
+msgstr "페리스타시스"
 
 #: simulation/data/technologies/pop_wonder.jsontooltip
 msgid ""
@@ -1412,7 +1413,7 @@ msgstr "방첩 활동"
 
 #: simulation/data/technologies/spy_counter.jsontooltip
 msgid "Make your units 50% more expensive to bribe."
-msgstr "뇌물로 유닛이 50% 더 비싸게 만듭니다."
+msgstr "뇌물로 유닛을 50 % 더 비싸게 만듭니다."
 
 #: simulation/data/technologies/successors/pair_unlock_champions.jsongenericName
 msgid "Traditional Army vs Reform Army"
@@ -1435,17 +1436,17 @@ msgstr "시민 회관의 내구성이 +100% 증가하고 점유 점수, 기본 �
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsondescription
 msgid ""
-"Significantly increase training speed of champions and siege engines at the "
-"fortress when training them in large batches."
-msgstr "대규모 양성할때 요새에서 대표 전사와 공성 무기의 양성 속도를 크게 향상합니다."
+"The festival at Daphne was a major event of the Seleucid Empire: tens of "
+"thousands of well-equipped troops participated in the opening procession."
+msgstr "다프네에서 열리는 축제는 셀레우치드 제국의 주요 행사였으며, 수만 명의 잘 갖추어진 군대가 개회 행렬에 참여했습니다."
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsongenericName
 msgid "Parade of Daphne"
 msgstr "다프네의 퍼레이드"
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsontooltip
-msgid "Faster batch training speed for the Fortress."
-msgstr "요새에서의 일괄 양성의 속도가 더 빨라집니다."
+msgid "Champions −20% training time."
+msgstr "대표 전사 훈련 시간이 −20% 줄어듭니다."
 
 #: simulation/data/technologies/successors/special_war_horses.jsondescription
 msgid ""
@@ -1488,7 +1489,7 @@ msgstr "전통적 군대"
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsontooltip
 msgid "Unlock the Champion Infantry Pikeman."
-msgstr "대표 전사 장창 보병을 잠금해제합니다."
+msgstr "대표 전사 보병대 단창병을 잠금해제합니다."
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsondescription
 msgid ""
@@ -1530,7 +1531,7 @@ msgstr "튼튼한 토대"
 
 #: simulation/data/technologies/tower_health.jsontooltip
 msgid "Towers +25% health."
-msgstr ""
+msgstr "탑의 내구력이 +25% 증가합니다."
 
 #: simulation/data/technologies/tower_murderholes.jsondescription
 msgid "Murder holes allow hitting enemies at the foot of the tower."
@@ -1570,7 +1571,7 @@ msgstr "보초병"
 #: simulation/data/technologies/tower_watch.jsonspecificName.sele
 #: simulation/data/technologies/tower_watch.jsonspecificName.spart
 msgid "Nyktophylakes"
-msgstr ""
+msgstr "니크토피레이크스"
 
 #: simulation/data/technologies/tower_watch.jsonspecificName.rome
 msgid "Vigiles"
@@ -1703,13 +1704,13 @@ msgstr "호위 유닛(대표 전사)은 최고의 무기를 휘두르며 최고�
 
 #: simulation/data/technologies/unlock_champion_units.jsongenericName
 msgid "Unlock Champion Infantry"
-msgstr ""
+msgstr "대표 전사 보병 잠금해제"
 
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.mace
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.ptol
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.sele
 msgid "Agēma"
-msgstr ""
+msgstr "아게마"
 
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.rome
 msgid "Regio Cohors"
@@ -1717,7 +1718,7 @@ msgstr "레기오 코호로스"
 
 #: simulation/data/technologies/unlock_champion_units.jsontooltip
 msgid "Unlock Champions Infantry at the Barracks."
-msgstr ""
+msgstr "병영에서 대표 전사 보병의 잠금을 해제합니다."
 
 #: simulation/data/technologies/unlock_females_house.jsondescription
 msgid "A festival attended by women-only, to celebrate female fertility."
@@ -1733,7 +1734,7 @@ msgstr "다산 축제"
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.sele
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.spart
 msgid "Thesmophoria"
-msgstr ""
+msgstr "테스모피리아"
 
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.rome
 msgid "Bona Dea"

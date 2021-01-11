@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2021-01-08 08:08+0000\n"
-"PO-Revision-Date: 2021-01-08 08:08+0000\n"
+"POT-Creation-Date: 2021-01-11 08:08+0000\n"
+"PO-Revision-Date: 2021-01-11 08:08+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -56,13 +56,13 @@ msgstr ""
 #: simulation/data/technologies/attack_infantry_ranged_01.json:requirementsTooltip
 #: simulation/data/technologies/carthaginians/special_colonisation.json:requirementsTooltip
 #: simulation/data/technologies/carthaginians/special_exploration.json:requirementsTooltip
+#: simulation/data/technologies/garrison_heal.json:requirementsTooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.json:requirementsTooltip
 #: simulation/data/technologies/gather_farming_harvester.json:requirementsTooltip
 #: simulation/data/technologies/gather_farming_training.json:requirementsTooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.json:requirementsTooltip
 #: simulation/data/technologies/gather_mining_serfs.json:requirementsTooltip
 #: simulation/data/technologies/gather_mining_shaftmining.json:requirementsTooltip
-#: simulation/data/technologies/heal_barracks.json:requirementsTooltip
 #: simulation/data/technologies/heal_range.json:requirementsTooltip
 #: simulation/data/technologies/heal_rate.json:requirementsTooltip
 #: simulation/data/technologies/kushites/monumental_architecture.json:requirementsTooltip
@@ -113,7 +113,6 @@ msgstr ""
 #: simulation/data/technologies/gather_mining_slaves.json:requirementsTooltip
 #: simulation/data/technologies/heal_range_2.json:requirementsTooltip
 #: simulation/data/technologies/heal_rate_2.json:requirementsTooltip
-#: simulation/data/technologies/heal_temple.json:requirementsTooltip
 #: simulation/data/technologies/health_regen_units.json:requirementsTooltip
 #: simulation/data/technologies/hellenes/spartans_agoge.json:requirementsTooltip
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.json:requirementsTooltip
@@ -577,6 +576,18 @@ msgstr ""
 msgid "Spartans −10% maximum population limit."
 msgstr ""
 
+#: simulation/data/technologies/garrison_heal.json:description
+msgid "Units regain health over time while garrisoned."
+msgstr ""
+
+#: simulation/data/technologies/garrison_heal.json:genericName
+msgid "Living Conditions"
+msgstr ""
+
+#: simulation/data/technologies/garrison_heal.json:tooltip
+msgid "Structures +1 garrison heal rate."
+msgstr ""
+
 #: simulation/data/technologies/gather_animals_stockbreeding.json:description
 msgid "Breed livestock (sheep, goats, cattle, etc.) for food."
 msgstr ""
@@ -817,18 +828,6 @@ msgstr ""
 msgid "Workers +50% fruit gather rate."
 msgstr ""
 
-#: simulation/data/technologies/heal_barracks.json:description
-msgid "Units garrisoned in Barracks heal over time."
-msgstr ""
-
-#: simulation/data/technologies/heal_barracks.json:genericName
-msgid "Living Conditions"
-msgstr ""
-
-#: simulation/data/technologies/heal_barracks.json:tooltip
-msgid "Units gain health over time while garrisoned in Barracks."
-msgstr ""
-
 #: simulation/data/technologies/heal_range.json:description
 #: simulation/data/technologies/heal_range_2.json:description
 msgid "Increases the healing and vision range of all healers."
@@ -891,27 +890,6 @@ msgstr ""
 #: simulation/data/technologies/heal_rate_2.json:specificName.sele
 #: simulation/data/technologies/heal_rate_2.json:specificName.spart
 msgid "Hippocratic Oath"
-msgstr ""
-
-#: simulation/data/technologies/heal_temple.json:description
-msgid "Units garrisoned in a temple are healed faster."
-msgstr ""
-
-#: simulation/data/technologies/heal_temple.json:genericName
-msgid "Divine Offerings"
-msgstr ""
-
-#: simulation/data/technologies/heal_temple.json:specificName.athen
-msgid "Eleusian Mysteries"
-msgstr ""
-
-#: simulation/data/technologies/heal_temple.json:specificName.mace
-#: simulation/data/technologies/heal_temple.json:specificName.spart
-msgid "Olympic Games"
-msgstr ""
-
-#: simulation/data/technologies/heal_temple.json:tooltip
-msgid "Temples +50% garrisoned healing rate."
 msgstr ""
 
 #: simulation/data/technologies/health_females_01.json:description

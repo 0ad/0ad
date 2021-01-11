@@ -5,14 +5,15 @@
 # Translators:
 # 9d55e3ee15627ad1d8f4f40620dcb50d, 2018
 # Asakura, 2017
-# JungHee Lee <daemul72@gmail.com>, 2019
-# JungHee Lee <daemul72@gmail.com>, 2019
+# Bruce Lee <daemul72@gmail.com>, 2019,2021
+# Bruce Lee <daemul72@gmail.com>, 2019
+# Bruce Lee <daemul72@gmail.com>, 2019
 # karubabu <karubabu@protonmail.com>, 2018
 # karubabu <karubabu@protonmail.com>, 2018
 # ks k, 2019
 # ks k, 2019-2020
 # 9d55e3ee15627ad1d8f4f40620dcb50d, 2018
-# JungHee Lee <daemul72@gmail.com>, 2019
+# Bruce Lee <daemul72@gmail.com>, 2019
 # Muk Myung-Hee MyungHee <exploration@ponp.be>, 2018
 # red hare <www3@hotmail.co.jp>, 2017
 # Takaki IEKURA <tacostea@gmail.com>, 2018
@@ -20,8 +21,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-01 08:01+0000\n"
-"PO-Revision-Date: 2020-12-01 14:32+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-01-11 07:46+0000\n"
+"Last-Translator: Bruce Lee <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,7 +36,7 @@ msgstr "공성 무기에 주둔시 체력 회복률이 +3 증가합니다."
 
 #: simulation/data/auras/structures/arsenal_repair.jsonauraName
 msgid "Arsenal Repairs"
-msgstr "병기공장 수리"
+msgstr "무기고 수리"
 
 #: simulation/data/auras/structures/barracks_xp_trickle.jsonauraDescription
 msgid "Units gain experience while garrisoned in barracks."
@@ -55,7 +56,7 @@ msgstr "조선소 수리"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage."
-msgstr "군인의 근접 및 범위 공격 피해가 +20% 증가합니다."
+msgstr "병사의 근접 및 범위 공격 피해가 +20% 증가합니다."
 
 #: simulation/data/auras/structures/iber_monument.jsonauraName
 msgid "Religious Fervor"
@@ -64,7 +65,7 @@ msgstr "종교적 열정"
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraDescription
 #: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraDescription
 msgid "Workers +15% gather speed."
-msgstr "노동자의 수집속도가 +15% 증가합니다."
+msgstr "일꾼의 수집속도가 +15% 증가합니다."
 
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraName
 msgid "Patriotism"
@@ -72,11 +73,11 @@ msgstr "애국심"
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraDescription
 msgid "Soldiers +1 armor level and +10% melee and ranged attack damage."
-msgstr "군인의 방어 수준이 +1 증가하고 근접 및 범위 공격 피해가 +10% 증가합니다."
+msgstr "병사의 방어 수준이 +1 증가하고 근접 및 범위 공격 피해가 +10% 증가합니다."
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraName
 msgid "Exhortative Presence"
-msgstr "권고적인 주둔군ehsms 현혹적인 존재"
+msgstr "훈계적인 존재"
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraDescription
 msgid "Heroes −5% health."
@@ -112,7 +113,7 @@ msgstr "아소카의 칙령"
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraDescription
 msgid "Workers +25% grain gather rate."
-msgstr "노동자의 곡물 수확률이 +25% 증가합니다."
+msgstr "일꾼의 곡물 수확률이 +25% 증가합니다."
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraName
 msgid "Farming bonus"
@@ -136,11 +137,11 @@ msgstr "헬레니즘(그리스)화"
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraDescription
 msgid "Garrisoned Soldiers +3 armor and +20 vision range."
-msgstr "군인이 주둔시 방어력 +3 시야 범위가 +20 증가합니다."
+msgstr "주둔한 병사 방어력 +3 및 시야 범위가 +20 증가합니다."
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraName
 msgid "Wall Protection"
-msgstr "성벽 보호"
+msgstr "벽 보호"
 
 #: simulation/data/auras/structures/wonder_pop_1.jsonauraDescription
 msgid "+10 maximum population limit."
@@ -269,7 +270,7 @@ msgstr "펠로폰네소스 동맹"
 msgid ""
 "Solon instituted several economic reforms encouraging commerce and agriculture.\n"
 "Workers +15% gather speed."
-msgstr "솔론이 상업과 농업을 장려하는 몇 가지 경제 개혁을 도입합니다.\n노동자의 수집 속도가 +15% 증가합니다."
+msgstr "솔론이 상업과 농업을 장려하는 몇 가지 경제 개혁을 도입합니다.\n일꾼의 수집 속도가 +15% 증가합니다."
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_1.jsonauraName
 msgid "Economic Reforms"
@@ -283,7 +284,7 @@ msgstr "솔론은 새로운 무게와 측정 시스템을 도입했고, 아버�
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_2.jsonauraName
 msgid "Economic Fortune"
-msgstr "경제 재산"
+msgstr "경제적 재산"
 
 #: simulation/data/auras/units/catafalques/brit_catafalque_1.jsonauraDescription
 msgid ""
@@ -304,7 +305,7 @@ msgstr "카시벨라누스는 로마 군대와 약탈자들을 괴롭히기 위�
 
 #: simulation/data/auras/units/catafalques/brit_catafalque_2.jsonauraName
 msgid "Skirmisher Harassment"
-msgstr "척후병의 고민거리"
+msgstr "척후병 괴롭힘"
 
 #: simulation/data/auras/units/catafalques/cart_catafalque.jsonauraDescription
 msgid ""
@@ -314,13 +315,13 @@ msgstr "트레비아와 칸나에에 있는 카르타고의 중무장 기병대�
 
 #: simulation/data/auras/units/catafalques/cart_catafalque.jsonauraName
 msgid "Commander of Heavy Cavalry"
-msgstr "중갑 기마 사령관"
+msgstr "중기병 사령관"
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_1.jsonauraDescription
 msgid ""
 "Warring with the Romans, Ambiorix realized the futility of open warfare and instead resorted to ambush tactics. The Gauls quickly learned where and when to execute surprise attacks.\n"
 "Soldiers +5% melee and ranged attack damage and −25% promotion experience."
-msgstr "로마인들과 전쟁을 벌이던 암비오릭스는 공공연한 전투의 무의미함을 깨닫고 대신 매복 전술에 의지했습니다. 가울은 언제, 어디서 기습 공격을 시도해야 하는지를 빨리 알게되었습니다.\n군인의 근접 및 범위 공격 피해가 +5% 증가하고 진급은 -25% 적은 경험치만으로 할 수 있습니다."
+msgstr "로마인들과 전쟁을 벌이던 암비오릭스는 공공연한 전투의 무의미함을 깨닫고 대신 매복 전술에 의지했습니다. 가울은 언제, 어디서 기습 공격을 시도해야 하는지를 빨리 알게되었습니다.\n병사의 근접 및 범위 공격 피해가 +5% 증가하고 진급은 -25% 적은 경험치만으로 할 수 있습니다."
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_1.jsonauraName
 msgid "Ambush Slaughter"
@@ -330,7 +331,7 @@ msgstr "매복 학살"
 msgid ""
 "When the Roman army fell short of food supplies, the Gallic tribes were ordered to give up a part of their already meagre harvest. The Eburones under Ambiorix were reluctant to do so, therefore Caesar sent troops to take them by force.\n"
 "Workers −10% grain gather rate."
-msgstr "로마군이 식량공급이 부족해지자, 갈리아 부족은 빈약한 수확의 일부를 포기하라는 명령을 받았습니다. 암비오릭스 휘하 에부로네스는 그렇게 하는것을 주저했고, 그러자 카이사르는 군대를 보내어 무력으로 점령했습니다.\n노동자의 곡물 수확률이 -10% 감소합니다."
+msgstr "로마군이 식량공급이 부족해지자, 갈리아 부족은 빈약한 수확의 일부를 포기하라는 명령을 받았습니다. 암비오릭스 휘하 에부로네스는 그렇게 하는것을 주저했고, 그러자 카이사르는 군대를 보내어 무력으로 점령했습니다.\n일꾼의 곡물 수확률이 -10% 감소합니다."
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_2.jsonauraName
 msgid "Tribute to Rome"
@@ -350,7 +351,7 @@ msgstr "용병 사령관"
 msgid ""
 "Following the fall of Indibil in battle, Mandonius led the survivors to safety.\n"
 "Soldiers +10% health."
-msgstr "전투에서 인디빌이 전사한후 만도니우스는 그를 따르는 생존자들을 안전하게 이끌었습니다.\n군인의 체력이 +10% 증가합니다."
+msgstr "전투에서 인디빌이 전사한후 만도니우스는 그를 따르는 생존자들을 안전하게 이끌었습니다.\n병사의 체력이 +10% 증가합니다."
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_2.jsonauraName
 msgid "Saver of Lives"
@@ -400,7 +401,7 @@ msgstr "제국의 통합자"
 msgid ""
 "Bindusara is said to have conquered lands to the south of the empire.\n"
 "Soldiers +15% capture attack strength."
-msgstr "빈두사라는 제국의 남쪽 땅을 정복했다고 합니다.\n군인의 점령 공격력이 +15% 증가합니다."
+msgstr "빈두사라는 제국의 남쪽 땅을 정복했다고 합니다.\n병사의 점령 공격력이 +15% 증가합니다."
 
 #: simulation/data/auras/units/catafalques/maur_catafalque_2.jsonauraName
 msgid "Vamba Moriyar"
@@ -485,7 +486,7 @@ msgstr "리쿠르고스는 여러가지 군사개혁을 단행했기 때문에 �
 #: simulation/data/auras/units/catafalques/spart_catafalque_1.jsonauraName
 #: simulation/data/auras/units/catafalques/spart_catafalque_2.jsonauraName
 msgid "Lycurgan Military Reforms"
-msgstr "심각한 군사 개혁"
+msgstr "리쿠르간 군대 개편"
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_2.jsonauraDescription
 msgid "Champion Infantry Spearmen −5% resource costs."
@@ -495,7 +496,7 @@ msgstr "대표 전사 창 보병의 양성 자원 비용이 -5% 감소합니다.
 msgid ""
 "To further support equality, Lycurgus forbade the use of gold and silver, introducing a new iron currency called pelanors.\n"
 "Workers +15% metal gather rate."
-msgstr "평등을 더욱 뒷받침하기 위해 리쿠르고스는 펠라노르스라는 새로운 철제 통화를 도입하면서 금과 은의 사용을 금지했습니다.\n노동자의 금속 채취율이 +15% 증가합니다."
+msgstr "평등을 더욱 뒷받침하기 위해 리쿠르고스는 펠라노르스라는 새로운 철제 통화를 도입하면서 금과 은의 사용을 금지했습니다.\n일꾼의 금속 채취율이 +15% 증가합니다."
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_3.jsonauraName
 msgid "Iron Pelanors"
@@ -503,7 +504,7 @@ msgstr "철제 펠라노르스"
 
 #: simulation/data/auras/units/elephant_worker.jsonauraDescription
 msgid "Workers +25% build rate."
-msgstr "작업자의 건설 속도가 +25% 증가합니다."
+msgstr "일꾼의 건설 속도가 +25% 증가합니다."
 
 #: simulation/data/auras/units/elephant_worker.jsonauraName
 msgid "Elephant Workers"
@@ -523,15 +524,15 @@ msgstr "투창 보병들의 이동 속도가 +15% 증가합니다."
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_2.jsonauraName
 msgid "Peltast Reforms"
-msgstr "투창 병사 개편"
+msgstr "작은 방패병 개편"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraDescription
 msgid "Workers +15% build rate."
-msgstr "노동자의 건설 속도가 +15% 증가합니다."
+msgstr "일꾼의 건설 속도가 +15% 증가합니다."
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraName
 msgid "Periclean Building Program"
-msgstr "페리클레안 or 페라클린 or 페라클란 건설 계획"
+msgstr "페리클레스의 건설 계획"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraDescription
 msgid "Temples −25% stone cost, +2 garrisoned heal rate."
@@ -571,11 +572,11 @@ msgstr "대표 전사 육군"
 
 #: simulation/data/auras/units/heroes/brit_hero_caratacos.jsonauraDescription
 msgid "Soldiers and Siege Engines +1 armor, +15% movement speed."
-msgstr "군인과 공성 무기의 방어력이 +1 증가하고, 이동 속도가 +15% 증가합니다."
+msgstr "병사과 공성 무기의 방어력이 +1 증가하고, 이동 속도가 +15% 증가합니다."
 
 #: simulation/data/auras/units/heroes/brit_hero_caratacos.jsonauraName
 msgid "Guerrilla Chief"
-msgstr "게릴라 우두머리"
+msgstr "게릴라 족장"
 
 #: simulation/data/auras/units/heroes/brit_hero_cunobelin.jsonauraDescription
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraDescription
@@ -588,7 +589,7 @@ msgstr "브리타니아 국왕or 브리탄노룸 렉스(브리탄 왕)"
 
 #: simulation/data/auras/units/heroes/cart_hero_hamilcar_1.jsonauraDescription
 msgid "Soldiers and Siege Engines +15% movement speed."
-msgstr "군인과 공성 무기의 이동 속도가 +15% 증가합니다."
+msgstr "병사과 공성 무기의 이동 속도가 +15% 증가합니다."
 
 #: simulation/data/auras/units/heroes/cart_hero_hamilcar_1.jsonauraName
 msgid "Lightning General"
@@ -618,7 +619,7 @@ msgstr "근접 기병의 근접 공격 피해가 +30% 증가합니다."
 
 #: simulation/data/auras/units/heroes/cart_hero_maharbal.jsonauraName
 msgid "Cavalry Commander"
-msgstr "기병 지휘관"
+msgstr "기병 사령관"
 
 #: simulation/data/auras/units/heroes/gaul_hero_brennus.jsonauraDescription
 msgid "Humans, Siege Engines, and Ships gain +15 metal loot."
@@ -632,11 +633,11 @@ msgstr "로마의 약탈자"
 msgid ""
 "Soldiers and Siege Engines +1 capture attack strength, +20% melee and ranged"
 " attack damage."
-msgstr "군인과 공성 무기의 점령 공격력이 +1 증가하고, 근접 및 범위 공격 피해가 +20% 증가합니다."
+msgstr "병사과 공성 무기의 점령 공격력이 +1 증가하고, 근접 및 범위 공격 피해가 +20% 증가합니다."
 
 #: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.jsonauraName
 msgid "Celtic Warlord"
-msgstr "켈트 군 지도자"
+msgstr "셀틱 전쟁 군주"
 
 #: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraName
 msgid "Preparation for War"
@@ -662,7 +663,7 @@ msgstr "용맹한 수비군"
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_2.jsonauraDescription
 msgid "Soldiers +1 armor."
-msgstr "군인의 방어력이 +1 증가합니다."
+msgstr "병사의 방어력이 +1 증가합니다."
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_2.jsonauraName
 msgid "Battle Fervor"
@@ -670,7 +671,7 @@ msgstr "전쟁의 열정"
 
 #: simulation/data/auras/units/heroes/iber_hero_indibil.jsonauraDescription
 msgid "Soldiers −15% resources costs, −20% training time."
-msgstr "군인의 자원 비용이 -15% 감소하고, 양성 시간이 -20% 감소합니다."
+msgstr "병사의 자원 비용이 -15% 감소하고, 양성 시간이 -20% 감소합니다."
 
 #: simulation/data/auras/units/heroes/iber_hero_indibil.jsonauraName
 msgid "Mobilization"
@@ -678,11 +679,11 @@ msgstr "동원"
 
 #: simulation/data/auras/units/heroes/iber_hero_viriato_1.jsonauraDescription
 msgid "Soldiers +20% movement speed."
-msgstr "군인의 이동 속도가 +20% 증가합니다."
+msgstr "병사의 이동 속도가 +20% 증가합니다."
 
 #: simulation/data/auras/units/heroes/iber_hero_viriato_2.jsonauraDescription
 msgid "Soldiers and Siege Engines gain +100% resource loot."
-msgstr "군인과 공성 무기의 약탈물의 이익이 +100% 증가합니다."
+msgstr "병사과 공성 무기의 약탈물의 이익이 +100% 증가합니다."
 
 #: simulation/data/auras/units/heroes/iber_hero_viriato_2.jsonauraName
 msgid "Swag"
@@ -728,7 +729,7 @@ msgstr "신앙의 학살"
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_1.jsonauraDescription
 msgid "Soldiers +10 melee and ranged attack damage, gain +50% resource loot."
-msgstr "군인의 근접 및 범위 공격 피해가 +10 증가하고, 자원 약탈의 이익이 +50% 증가합니다."
+msgstr "병사의 근접 및 범위 공격 피해가 +10 증가하고, 자원 약탈의 이익이 +50% 증가합니다."
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_1.jsonauraName
 msgid "Savior of Kush"
@@ -761,7 +762,7 @@ msgstr "정복자"
 #: simulation/data/auras/units/heroes/mace_hero_craterus.jsonauraDescription
 msgid ""
 "Infantry Pikemen +20% capture attack strength, +20% melee attack damage."
-msgstr "보병 장창병의 점령 공격력이 +20% 증가하고, 근접 공격 피해가 +20% 증가합니다."
+msgstr "보병대 단창병의 점령 공격력이 +20% 증가하고, 근접 공격 피해가 +20% 증가합니다."
 
 #: simulation/data/auras/units/heroes/mace_hero_craterus.jsonauraName
 msgid "Taxiarchès"
@@ -783,11 +784,11 @@ msgstr "마케도니아의 부활"
 
 #: simulation/data/auras/units/heroes/mace_hero_pyrrhus_i.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage, −15% health."
-msgstr "군인의 근접 및 범위 공격 피해가 +20% 증가하고, 체력은 -15% 감소합니다."
+msgstr "병사의 근접 및 범위 공격 피해가 +20% 증가하고, 체력은 -15% 감소합니다."
 
 #: simulation/data/auras/units/heroes/mace_hero_pyrrhus_i.jsonauraName
 msgid "Pyrrhic Victory"
-msgstr "피로스의 승리ehsms 희생을 많이 치른 승리??"
+msgstr "피르리스 승리"
 
 #: simulation/data/auras/units/heroes/maur_hero_ashoka.jsonauraDescription
 msgid ""
@@ -825,7 +826,7 @@ msgstr "선두 지도자ehsms 주자"
 #: simulation/data/auras/units/heroes/pers_hero_darius_i.jsonauraDescription
 msgid ""
 "Soldiers, Siege Engines, Traders, and Merchant Ships +15% movement speed."
-msgstr "군인, 공성 무기, 교역상, 상선의 속도가 +15% 증가합니다."
+msgstr "병사, 공성 무기, 교역상, 상선의 속도가 +15% 증가합니다."
 
 #: simulation/data/auras/units/heroes/pers_hero_darius_i.jsonauraName
 msgid "Leadership"
@@ -833,7 +834,7 @@ msgstr "통솔력"
 
 #: simulation/data/auras/units/heroes/pers_hero_xerxes_i.jsonauraDescription
 msgid "Workers +15% build rate and gather speed."
-msgstr "노동자의 짓는 속도와 수집 속도가 +15% 증가합니다."
+msgstr "일꾼의 짓는 속도와 수집 속도가 +15% 증가합니다."
 
 #: simulation/data/auras/units/heroes/pers_hero_xerxes_i.jsonauraName
 msgid "Administrator"
@@ -841,7 +842,7 @@ msgstr "관리자"
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_vii_1.jsonauraDescription
 msgid "Soldiers and Siege Engines −20% melee and ranged attack repeat time."
-msgstr "군인과 공성 무기의 근접 및 범위 공격의 반복시간이 -20% 짧아집니다."
+msgstr "병사과 공성 무기의 근접 및 범위 공격의 반복시간이 -20% 짧아집니다."
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_vii_1.jsonauraName
 msgid "Patriot"
@@ -854,7 +855,7 @@ msgstr "동맹 영웅의 체력을 +10% 증가합니다."
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_vii_2.jsonauraName
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_vii_3.jsonauraName
 msgid "Consort"
-msgstr "배우자ehsms연합??"
+msgstr "합주단"
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_vii_3.jsonauraDescription
 msgid "Enemy Heroes −10% health."
@@ -862,11 +863,11 @@ msgstr "적 영웅의 체력을 -10% 감소합니다."
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_i_1.jsonauraDescription
 msgid "Workers +10% build rate."
-msgstr "노동자의 짓는 속도가 +10% 증가합니다."
+msgstr "일꾼의 짓는 속도가 +10% 증가합니다."
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_i_1.jsonauraName
 msgid "Patron of Construction"
-msgstr "건축의 수호성인"
+msgstr "건설의 후원자"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_i_2.jsonauraDescription
 msgid "Mercenaries −35% resource costs."
@@ -874,7 +875,7 @@ msgstr "용병의 자원 비용이 -35% 감소합니다."
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_i_2.jsonauraName
 msgid "Mercenary Patron"
-msgstr "용병 수호성인"
+msgstr "용병 후원자"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_iv.jsonauraDescription
 msgid "Pikemen +40% health."
@@ -891,7 +892,7 @@ msgstr "기병의 근접 및 범위 공격 피해가 +15% 증가합니다."
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_1.jsonauraName
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_2.jsonauraName
 msgid "Sword of Rome"
-msgstr "로마의 칼"
+msgstr "로마의 검"
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_2.jsonauraDescription
 msgid "Enemy Infantry −10% melee and ranged attack damage."
@@ -909,7 +910,7 @@ msgstr "로마의 방패"
 msgid ""
 "Soldiers and Siege Engines +2 capture attack strength, +20% melee and ranged"
 " attack damage."
-msgstr "군인과 공성 무기의 점령 공격력이 +2 증가하고, 근접 및 범위 공격 피해가 +20% 증가합니다."
+msgstr "병사과 공성 무기의 점령 공격력이 +2 증가하고, 근접 및 범위 공격 피해가 +20% 증가합니다."
 
 #: simulation/data/auras/units/heroes/rome_hero_scipio.jsonauraName
 msgid "Triumph"
@@ -921,7 +922,7 @@ msgstr "기병의 방어력이 +2 증가합니다."
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_iii.jsonauraName
 msgid "Ilarchès"
-msgstr "이라르체스(기병 장교)"
+msgstr "일르카테스"
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_iv.jsonauraDescription
 msgid "Enemy Structures, Ships, and Siege Engines -20% health."
@@ -946,7 +947,7 @@ msgstr "시민 투창 보병의 방어력이 +1 증가하고, 사거리 관통 �
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraName
 msgid "Helot Reforms"
-msgstr "스파르타의 노예 개혁"
+msgstr "헬롯 개편"
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraDescription
 msgid "Spearmen +1 capture attack strength, +25% melee attack damage."
