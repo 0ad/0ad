@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_infantry_ranged_slinger">
-  <Builder>
-    <Entities datatype="tokens">
-      structures/gaul/tavern
-    </Entities>
-  </Builder>
   <Identity>
     <Civ>gaul</Civ>
     <SelectionGroupName>units/gaul/infantry_slinger_b</SelectionGroupName>
-    <GenericName>Celtic Slinger</GenericName>
     <SpecificName>Talmoris</SpecificName>
     <Icon>units/gaul_infantry_slinger.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>

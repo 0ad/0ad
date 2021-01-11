@@ -24,6 +24,11 @@
   <Obstruction>
     <Static width="22.5" depth="22.5"/>
   </Obstruction>
+  <ProductionQueue>
+    <Entities datatype="tokens">
+      units/{civ}/champion_fanatic
+    </Entities>
+  </ProductionQueue>
   <VisualActor>
     <Actor>structures/celts/temple.xml</Actor>
     <FoundationActor>structures/fndn_7x7.xml</FoundationActor>

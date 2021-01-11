@@ -19,8 +19,6 @@
     <Civ>gaul</Civ>
     <GenericName>Tavern</GenericName>
     <SpecificName>Taberna</SpecificName>
-    <Tooltip>Recruit Naked Fanatics.</Tooltip>
-    <Classes datatype="tokens">CivSpecific</Classes>
     <VisibleClasses datatype="tokens">-Village Town</VisibleClasses>
     <Icon>structures/embassy_celtic.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
@@ -35,12 +33,6 @@
   <Population>
     <Bonus>10</Bonus>
   </Population>
-  <ProductionQueue>
-    <BatchTimeModifier>0.7</BatchTimeModifier>
-    <Entities datatype="tokens">
-      units/{civ}/champion_fanatic
-    </Entities>
-  </ProductionQueue>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_broch.xml</select>
@@ -48,8 +40,7 @@
     </SoundGroups>
   </Sound>
   <TerritoryInfluence>
-    <Radius>32</Radius>
-    <Weight>65535</Weight>
+    <Radius>30</Radius>
   </TerritoryInfluence>
   <VisualActor>
     <Actor>structures/celts/tavern.xml</Actor>
