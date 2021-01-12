@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -137,8 +137,15 @@ void WriteSystemInfo()
 	fprintf(f, "Video Mode     : %dx%d:%d\n", g_VideoMode.GetXRes(), g_VideoMode.GetYRes(), g_VideoMode.GetBPP());
 
 #if CONFIG2_AUDIO
-	fprintf(f, "Sound Card     : %s\n", g_SoundManager->GetSoundCardNames().c_str());
-	fprintf(f, "Sound Drivers  : %s\n", g_SoundManager->GetOpenALVersion().c_str());
+	if (g_SoundManager)
+	{
+		fprintf(f, "Sound Card     : %s\n", g_SoundManager->GetSoundCardNames().c_str());
+		fprintf(f, "Sound Drivers  : %s\n", g_SoundManager->GetOpenALVersion().c_str());
+	}
+	else if(g_DisableAudio)
+		fprintf(f, "Sound          : Game was ran without audio\n");
+	else
+		fprintf(f, "Sound          : No audio device was found\n");
 #else
 	fprintf(f, "Sound          : Game was compiled without audio\n");
 #endif

@@ -4,15 +4,15 @@
 # project.
 # Translators:
 # moolow <copyhyeon@gmail.com>, 2018
-# JungHee Lee <daemul72@gmail.com>, 2019
 # ks k, 2020
+# Bruce Lee <daemul72@gmail.com>, 2021
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "POT-Creation-Date: 2020-12-26 15:10+0000\n"
 "PO-Revision-Date: 2017-06-04 12:59+0000\n"
-"Last-Translator: ks k, 2020\n"
+"Last-Translator: Bruce Lee <daemul72@gmail.com>, 2021\n"
 "Language-Team: Korean (https://www.transifex.com/wildfire-games/teams/17418/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #: maps/tutorials/introductory_tutorial.js:3
 msgid "Welcome to the 0 A.D. tutorial."
-msgstr "0 A.D. 자습서에 오신 것을 환영합니다."
+msgstr "0 A.D. 사용 지침서에 오신 것을 환영합니다."
 
 #: maps/tutorials/introductory_tutorial.js:6
 msgid ""
@@ -142,8 +142,8 @@ msgid ""
 " of your territory.  This will be the fifth Village Phase structure that you"
 " have built, allowing you to advance to the Town Phase."
 msgstr ""
-"대기중인 척후병에게 당신의 영토 북동쪽에 전초기지를 건설하도록 명령하십시오. 그러면 당신은 '마을 단계'에 속하는 건물을 5곳을 소유하게"
-" 되므로, '작은 도시 단계'로 향상 시키는 것이 가능합니다."
+"대기중인 척후병에게 당신의 영토 북동쪽에 전초기지를 건설하도록 명령하십시오. 그러면 당신은 부락 단계에 속하는 건물을 5곳을 소유하게 "
+"되므로, 소도시 단계로 향상시키는 것이 가능합니다."
 
 #: maps/tutorials/introductory_tutorial.js:193
 msgid ""
@@ -158,7 +158,7 @@ msgstr ""
 msgid ""
 "While waiting for the phasing up, you may reassign your idle workers to "
 "gathering the resources you are short of."
-msgstr "‘작은 도시 단계’로 향상하고 있는 동안, 대기중인 노동자에게 부족한 자원을 채집하도록 다시 명령을 내리십시오."
+msgstr "‘작은 도시 단계’로 향상하고 있는 동안, 대기중인 일꾼에게 부족한 자원을 채집하도록 다시 명령을 내리십시오."
 
 #: maps/tutorials/introductory_tutorial.js:220
 msgid ""
@@ -181,6 +181,7 @@ msgid ""
 "Prepare for an attack by an enemy player. Train more soldiers using the "
 "Barracks, and get idle soldiers to build a Tower near your Outpost."
 msgstr ""
+"적 플레이어의 공격에 대비하십시오. 병영을 사용하여 더 많은 병사를 훈련하고 유휴 병사를 확보하여 전초 기지 근처에 타워를 건설하십시오."
 
 #: maps/tutorials/introductory_tutorial.js:274
 msgid ""
@@ -236,24 +237,24 @@ msgstr "여성 시민은 계속해서 자원을 채집해야합니다."
 
 #: maps/tutorials/introductory_tutorial.js:371
 msgid "The enemy has been defeated. These tutorial tasks are now completed."
-msgstr "적국을 물리쳤습니다. 이제 이 자습서 임무는 완료되었습니다."
+msgstr "적이 패배했습니다. 이제 다음 사용 지침서 작업이 완료되었습니다."
 
 #: maps/tutorials/introductory_tutorial.xml:Description:39
 msgid "This is a basic tutorial to get you started playing 0 A.D."
-msgstr "0 A.D. 놀이 방법을 이해하기 위한 기초 자습서입니다."
+msgstr "0 A.D. 게임을 시작하기 위한 기본 사용 지침서입니다."
 
 #: maps/tutorials/introductory_tutorial.xml:Name:39
 msgid "Introductory Tutorial"
-msgstr "초보 자습서"
+msgstr "입문자들을 위한 사용 지침서"
 
 #: maps/tutorials/introductory_tutorial.xml:PlayerData[0].Name:39
 #: maps/tutorials/starting_economy_walkthrough.xml:PlayerData[0].Name:40
 msgid "Player 1"
-msgstr "선수 1"
+msgstr "플레이어 1"
 
 #: maps/tutorials/introductory_tutorial.xml:PlayerData[1].Name:39
 msgid "Player 2"
-msgstr "선수 2"
+msgstr "플레이어 2"
 
 #: maps/tutorials/starting_economy_walkthrough.js:4
 msgid ""
@@ -262,8 +263,8 @@ msgid ""
 "ultimately, your goal will be to develop and expand your empire, often by "
 "evolving to Town Phase and City Phase afterward.\n"
 msgstr ""
-"이 자습서는 경제 발전의 기초를 가르쳐 줄 것입니다. 일반적으로 시민 회관과 한 쌍의 '마을 단계'로 시작하여 궁극적으로 당신의 목표는 "
-"이후에 '작은 도시 단계'와 '큰 도시 단계'로 발전하여 제국을 개발하고 확장하는 것입니다.\n"
+"이 사용 지침서는 경제 발전의 기본 사항을 설명합니다. 일반적으로 부락 단계에서 시민 회관과 몇 개의 유닛으로 시작하고 궁극적으로 목표는"
+" 나중에 소도시 단계 및 도시 단계로 발전하여 제국을 개발하고 확장하는 것입니다.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:6
 #, javascript-format
@@ -282,7 +283,7 @@ msgstr "마우스 휠을 사용하여 확대/축소를 조정할 수 있고 키�
 
 #: maps/tutorials/starting_economy_walkthrough.js:10
 msgid "Adjust the game window to your preferences.\n"
-msgstr "놀이 창을 원하는대로 조정하십시오.\n"
+msgstr "게임 창을 원하는대로 조정하십시오.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:12
 #, javascript-format
@@ -291,7 +292,7 @@ msgid ""
 "You may also toggle between showing and hiding this tutorial panel at any moment using %(hotkey)s.\n"
 msgstr ""
 "\n"
-"%(hotkey)s 키로 언제든지 이 자습서 패널을 표시하거나 숨길 수 있습니다.\n"
+"%(hotkey)s 키로 언제든지 이 사용 지침서 패널을 표시하거나 숨길 수 있습니다.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:19
 msgid ""
@@ -337,7 +338,7 @@ msgid ""
 "soldiers can only gather meat from hunted animals.\n"
 msgstr ""
 "당신은 두 가지 주요한 기본 유닛을 가지고 있습니다: 여성 시민과 시민 군인입니다. 여성 시민은 순전히 경제적인 유닛입니다. 여성 시민은"
-" 낮은 체력과 갑옷이 없고 그리고 거의 공격 하지 않습니다. 시민 군인은 기본적으로 노동자이지만 필요할 때는 무기를 이용해 싸울 수 "
+" 낮은 체력과 갑옷이 없고 그리고 거의 공격 하지 않습니다. 시민 군인은 기본적으로일꾼이지만 필요할 때는 무기를 이용해 싸울 수 "
 "있습니다. 그리고 보병과 기병 두 종류의 시민 병사가 있습니다. 여성 시민과 보병은 땅에서 어떠한 자원이든 채집할 수 있고 기병 시민 "
 "군인은 사냥한 동물의 고기만 채집할 수 있습니다.\n"
 
@@ -426,14 +427,14 @@ msgid ""
 "select the Civic Center by clicking on it and then right-click on one of the"
 " trees.\n"
 msgstr ""
-"먼저 집결지를 설정해 보겠습니다. 건물을 훈련시킬 수있는 건물의 집결지를 설정하면 훈련이 끝나면 새로운 유닛으로 작업이 자동 지정됩니다."
-" 우리는 새로 훈련 된 유닛을 보내 시민 회관의 남쪽에 있는 숲에서 목재를 채집하고 싶습니다. 그렇게 하려면 시민 회관을 클릭하고 나무 "
-"중 하나를 마우스 오른쪽 버튼으로 클릭하여 선택하십시오.\n"
+"먼저 집결 지점을 지정해 보겠습니다. 건물을 훈련시킬 수있는 건물의 집결 지점을 지정하면 훈련이 끝나면 새로운 유닛으로 작업이 자동 "
+"지정됩니다. 우리는 새로 훈련된 유닛을 보내 시민 회관의 남쪽에 있는 숲에서 목재를 채집하고 싶습니다. 그렇게 하려면 시민 회관을 "
+"클릭하고 나무 중 하나를 마우스 오른쪽 버튼으로 클릭합니다.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:80
 msgid ""
 "Rally points are indicated by a small flag at the end of the blue line."
-msgstr "집결지는 파란 색 줄에 끝은 작은 깃발로 표시됩니다."
+msgstr "집결 지점은 파란 색 줄에 끝은 작은 깃발로 표시됩니다."
 
 #: maps/tutorials/starting_economy_walkthrough.js:88
 msgid ""
@@ -445,7 +446,7 @@ msgstr "시민 회관을 선택하고 커서를 나무 위에 올려놓고 커�
 msgid ""
 "Now that the rally point is set, we can produce additional units and they "
 "will do their assigned task automatically.\n"
-msgstr "이제 집결지가 설정되었으므로 추가 유닛을 생성할 수 있고 그들은 할당된 작업을 자동으로 수행합니다.\n"
+msgstr "이제 집결 지점이 지정되었으므로 추가 유닛을 생산할 수 있으며 할당된 작업을 자동으로 수행합니다.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:98
 msgid ""
@@ -481,7 +482,7 @@ msgid ""
 " increase.\n"
 msgstr ""
 "기다리는 동안 화면 위쪽 패널을 확인해 주십시오. 왼쪽 위에는 현재 공급되는 자원(식량, 목재, 석재, 금속)이 표시되어 있습니다. 각 "
-"노동자가 시민 회관 (또는 자원 회수 시설)으로 자원을 가져오면 해당 자원의 양이 증가하는 것을 볼 수 있습니다.\n"
+"일꾼이 시민회관 (또는 자원 회수 시설)으로 자원을 가져오면 해당 자원의 양이 증가하는 것을 볼 수 있습니다.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:120
 msgid ""
@@ -556,8 +557,8 @@ msgid ""
 " For that purpose, right-click on the Civic Center when it is selected (and "
 "the flag icon indicating the rally point is crossed out)."
 msgstr ""
-"그러는 동안, 우리는 목재를 채집하는 데 충분한 인력이 있는 것 같습니다. 우리는 시민 회관의 현재 집결지를 목재를 채집하는 일에서 "
-"벗어나야 합니다. 이를 위해, 시민 회관을 선택하였을때 (그러면 집결지를 나타내는 깃발 아이콘이 겹쳐 집니다.) 오른쪽 클릭하십시오."
+"그러는 동안, 우리는 목재를 모으는 일꾼이 충분한 것 같습니다. 우리는 시민 회관의 현재 집결지를 목재를 채집하는 일에서 벗어나야 "
+"합니다. 이를 위해, 시민 회관을 선택되면 마우스 오른쪽 버튼으로 클릭합니다(그리고 집회 지점을 나타내는 플래그 아이콘이 표시됨)."
 
 #: maps/tutorials/starting_economy_walkthrough.js:192
 msgid "The units should be ready soon.\n"
@@ -705,6 +706,9 @@ msgid ""
 "on it. If the Field is not yet finished, new Workers sent by a rally point "
 "will help building it, and when built, they will gather food."
 msgstr ""
+"하나의 밭에 최대 5명의 일꾼을 모을 수 있습니다. 일꾼을 추가하려면 시민 회관을 선택하고 밭을 마우스 오른쪽 단추로 클릭하여 집결 "
+"지점을 지정합니다. 아직 밭이 완성되지 않은 경우, 집결 지점에서 보낸 새로운 일꾼들이 밭을 건설하는데 도움을 줄 것이고, 건설되면 "
+"식량을 모을 것입니다."
 
 #: maps/tutorials/starting_economy_walkthrough.js:322
 msgid "Select the Civic Center and right-click on the field."
@@ -756,8 +760,8 @@ msgid ""
 " an economic tutorial, it is nonetheless useful to be prepared for defense "
 "in case of attack, so let's build Barracks.\n"
 msgstr ""
-"지금은 충분한 자원을 가지고 있지만 하나의 건물이 부족합니다. 이것은 기초 경제 자습서지만, 적국의 공격시에 방어 준비를 하는것이 "
-"유용하기 때문에 병영을 지으십시오.\n"
+"이제 충분한 자원이 있지만 하나의 건축물이 부족합니다. 이것은 경제 사용 지침서지만, 공격 시 방어 태세를 갖추는 것이 유용하니, 병영을"
+" 건설해 봅시다.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:373
 msgid ""
@@ -778,8 +782,8 @@ msgid ""
 "clicking on the hoplite icon twice."
 msgstr ""
 "병영이 지어질때까지 기다리십시오. 짓는 시간이 길기 때문에 군인 2명을 추가하면 더 빨리 지을 수 있습니다. 그러려면 시민 회관을 "
-"선택하고 병영 기반을 마우스 오른쪽 버튼으로 클릭하여 집결지를 설정합니다 (망치 아이콘이 보일 것입니다). 그런 다음 중갑 보병 아이콘을"
-" 두 번 클릭하여 2명의 건설 노동자를 더 생산합니다. 그런 다음 중갑 보병 아이콘을 두 번 클릭하여 2명의 건설 노동자를 더 "
+"선택하고 병영 기반을 마우스 오른쪽 버튼으로 클릭하여 집결 지점을 지정합니다 (망치 아이콘이 보일 것입니다). 그런 다음 중갑 보병 "
+"아이콘을 두 번 클릭하여 2명의 건설 노동자를 더 생산합니다. 그런 다음 중갑 보병 아이콘을 두 번 클릭하여 2명의 건설 일꾼을 더 "
 "생산하십시오."
 
 #: maps/tutorials/starting_economy_walkthrough.js:394
@@ -837,7 +841,7 @@ msgstr "남아있는 군인들과 서쪽의 금속 광산과 비슷한 명령 �
 msgid ""
 "This is the end of the walkthrough. This should give you a good idea of the "
 "basics of setting up your economy."
-msgstr "이제, 이 예행 연습은 끝났습니다. 이 자습서는 당신에게 이 놀이의 기본 경제 개념에 대한 좋은 발상을 줄것입니다."
+msgstr "이제, 이 예행 연습은 끝났습니다. 이 자습서는 당신에게 이 게임의 기본 경제 개념에 대한 좋은 발상을 줄것입니다."
 
 #: maps/tutorials/starting_economy_walkthrough.xml:Description:40
 msgid ""
@@ -845,9 +849,9 @@ msgid ""
 "in the game the most important thing is to gather resources as fast as "
 "possible so you are able to build enough troops later."
 msgstr ""
-"이 지도는 놀이를 효과적으로 시작하기위한 대략적인 가이드를 제공합니다. 놀이의 초기 단계에서 가장 중요한 것은 자원을 최대한 빨리 "
+"이 지도는 게임을 효과적으로 시작하기위한 대략적인 가이드를 제공합니다. 게임의 초기 단계에서 가장 중요한 것은 자원을 최대한 빨리 "
 "채집하고 나중에 충분한 군대를 구축 할 것입니다."
 
 #: maps/tutorials/starting_economy_walkthrough.xml:Name:40
 msgid "Starting Economy Walkthrough"
-msgstr "초반 경제 예행연습"
+msgstr "경제 연습 시작"

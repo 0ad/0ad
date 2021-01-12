@@ -52,9 +52,8 @@
       units/{civ}/champion_maiden_barracks
     </Entities>
     <Technologies datatype="tokens">
-      persians/training_levy_infantry
-      persians/training_conscription_infantry
-      training_conscription
+      barracks_batch_training
+      infantry_cost_time
       unlock_champion_units
     </Technologies>
   </ProductionQueue>

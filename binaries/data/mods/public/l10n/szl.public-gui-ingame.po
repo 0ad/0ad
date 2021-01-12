@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
-# Marcin S <dzidek1003@o2.pl>, 2020
+# Marcin S <dzidek1003@o2.pl>, 2020-2021
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-04 08:09+0000\n"
-"PO-Revision-Date: 2021-01-04 10:36+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-01-10 12:21+0000\n"
+"Last-Translator: Marcin S <dzidek1003@o2.pl>\n"
 "Language-Team: Silesian (http://www.transifex.com/wildfire-games/0ad/language/szl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,7 +28,7 @@ msgstr ""
 
 #: gui/session/MenuButtons.js:32
 msgid "Chat"
-msgstr "Godka"
+msgstr "Gŏdka"
 
 #: gui/session/MenuButtons.js:53
 msgid "Save"
@@ -94,7 +94,7 @@ msgstr "Podłōnczo do serwera."
 
 #: gui/session/NetworkStatusOverlay.js:40
 msgid "Connection to the server has been lost."
-msgstr "Podłōnczyni do serwera sie straciło."
+msgstr "Podłōnczyni do serwera ôstało stracōne."
 
 #: gui/session/NetworkStatusOverlay.js:42
 msgid "Waiting for players to connect:"
@@ -102,7 +102,7 @@ msgstr "Czekanie na inkszych groczy:"
 
 #: gui/session/NetworkStatusOverlay.js:43
 msgid "Synchronizing gameplay with other players…"
-msgstr "Synchronizuja szpil z inkszymi groczami"
+msgstr "Synchrōnizujã szpil z inkszymi groczami"
 
 #: gui/session/NetworkStatusOverlay.js:47
 msgctxt "Separator for a list of client loading messages"
@@ -159,12 +159,12 @@ msgstr "Kamrot"
 #: gui/session/chat/ChatAddressees.js:105
 msgctxt "chat addressee"
 msgid "Enemies"
-msgstr "Gorole"
+msgstr "Wrōgowie"
 
 #: gui/session/chat/ChatAddressees.js:106
 msgctxt "chat message context"
 msgid "Enemy"
-msgstr "Gorol"
+msgstr "Wrōg"
 
 #: gui/session/chat/ChatAddressees.js:116
 msgctxt "chat addressee"
@@ -179,7 +179,7 @@ msgstr "Ôbserwator"
 #: gui/session/chat/ChatAddressees.js:124
 msgctxt "chat message context"
 msgid "Private"
-msgstr "Ino mój"
+msgstr "Ino mōj"
 
 #: gui/session/chat/ChatHistory.js:49
 #, javascript-format
@@ -213,12 +213,12 @@ msgstr "Godka groczy"
 #: gui/session/chat/ChatHistory.js:99
 msgctxt "chat history filter"
 msgid "Ally chat"
-msgstr "Naszo godka"
+msgstr "Naszŏ godka"
 
 #: gui/session/chat/ChatHistory.js:106
 msgctxt "chat history filter"
 msgid "Enemy chat"
-msgstr "Godka goroli"
+msgstr "Godka wrōgōw"
 
 #: gui/session/chat/ChatHistory.js:113
 msgctxt "chat history filter"
@@ -337,7 +337,7 @@ msgstr ""
 #: gui/session/chat/ChatMessageFormatSimulation.js:17
 #, javascript-format
 msgid "You have been attacked by %(attacker)s!"
-msgstr "Zaatakowoł Cie %(attacker)s!"
+msgstr "Napŏdł Cie %(attacker)s!"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:38
 #, javascript-format
@@ -347,7 +347,7 @@ msgstr ""
 #: gui/session/chat/ChatMessageFormatSimulation.js:70
 #, javascript-format
 msgid "You are now allied with %(player)s."
-msgstr "Teroz żeś je kamrot ze %(player)s."
+msgstr "Terŏz żeś je kamrot ze %(player)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:71
 #, javascript-format
@@ -357,22 +357,22 @@ msgstr "Wadzisz sie z %(player)s."
 #: gui/session/chat/ChatMessageFormatSimulation.js:72
 #, javascript-format
 msgid "You are now neutral with %(player)s."
-msgstr "Niy mosz nic do %(player)s."
+msgstr "Niy mŏsz nic do %(player)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:75
 #, javascript-format
 msgid "%(player)s is now allied with you."
-msgstr "%(player)s je teroz Twoim kamrotem."
+msgstr "%(player)s je terŏz Twoim kamrotem."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:76
 #, javascript-format
 msgid "%(player)s is now at war with you."
-msgstr "%(player)s wadzi sie z Tobom."
+msgstr "%(player)s wadzi sie z Tobōm."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:77
 #, javascript-format
 msgid "%(player)s is now neutral with you."
-msgstr "%(player)s niy mo nic do Ciybie."
+msgstr "%(player)s niy mŏ nic do Ciybie."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:80
 #, javascript-format
@@ -382,12 +382,12 @@ msgstr "%(player)s je teroz kamrotem ze %(player2)s."
 #: gui/session/chat/ChatMessageFormatSimulation.js:81
 #, javascript-format
 msgid "%(player)s is now at war with %(player2)s."
-msgstr "%(player)s wadzi sie teroz z %(player2)s."
+msgstr "%(player)s wadzi sie terŏz z %(player2)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:82
 #, javascript-format
 msgid "%(player)s is now neutral with %(player2)s."
-msgstr "%(player)s niy mo teroz nic do %(player2)s."
+msgstr "%(player)s niy mŏ terŏz nic do %(player2)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:98
 #, javascript-format

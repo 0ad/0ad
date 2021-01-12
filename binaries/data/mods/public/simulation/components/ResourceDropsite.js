@@ -36,6 +36,27 @@ ResourceDropsite.prototype.AcceptsType = function(type)
 	return this.GetTypes().indexOf(type) != -1;
 };
 
+/**
+ * @param {Object} resources - The resources to drop here in the form of { "resource": amount }.
+ * @param {number} entity - The entity that tries to drop their resources here.
+ *
+ * @return {Object} - Which resources could be dropped off here.
+ */
+ResourceDropsite.prototype.ReceiveResources = function(resources, entity)
+{
+	let cmpPlayer = QueryOwnerInterface(entity);
+	if (!cmpPlayer)
+		return {};
+
+	let taken = {};
+	for (let type in resources)
+		if (this.AcceptsType(type))
+			taken[type] = resources[type];
+
+	cmpPlayer.AddResources(taken);
+	return taken;
+};
+
 ResourceDropsite.prototype.IsSharable = function()
 {
 	return this.sharable;

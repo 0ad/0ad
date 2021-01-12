@@ -1,22 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_military_fortress">
-  <Cost>
-    <BuildTime op="mul">1.5</BuildTime>
-    <Resources>
-      <stone>1200</stone>
-    </Resources>
-  </Cost>
-  <Health>
-    <Max>6000</Max>
-  </Health>
   <Identity>
     <Civ>iber</Civ>
     <SpecificName>Castro</SpecificName>
     <Tooltip>Territory root. Train Champion Infantry and Heroes. Garrison Soldiers for additional arrows.</Tooltip>
   </Identity>
-  <Loot>
-    <stone>240</stone>
-  </Loot>
   <Obstruction>
     <Static width="27.0" depth="27.0"/>
   </Obstruction>

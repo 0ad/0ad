@@ -47,10 +47,11 @@
       units/{civ}/war_dog
     </Entities>
     <Technologies datatype="tokens">
+      stable_batch_training
+      cavalry_cost_time
       cavalry_movement_speed
-      persians/training_levy_cavalry
-      persians/training_conscription_cavalry
-      successors/special_war_horses
+      cavalry_health
+      nisean_horses
     </Technologies>
   </ProductionQueue>
   <Sound>

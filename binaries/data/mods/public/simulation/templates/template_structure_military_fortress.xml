@@ -4,12 +4,12 @@
     <Ranged>
       <AttackName>Bow</AttackName>
       <Damage>
-        <Hack>0.0</Hack>
-        <Pierce>16.0</Pierce>
-        <Crush>0.0</Crush>
+        <Hack>0</Hack>
+        <Pierce>16</Pierce>
+        <Crush>0</Crush>
       </Damage>
-      <MaxRange>72.0</MaxRange>
-      <MinRange>0.0</MinRange>
+      <MaxRange>70</MaxRange>
+      <MinRange>0</MinRange>
       <PrepareTime>1200</PrepareTime>
       <RepeatTime>2000</RepeatTime>
       <Delay>0</Delay>
@@ -45,9 +45,10 @@
     <RegenRate>10.0</RegenRate>
   </Capturable>
   <Cost>
-    <BuildTime>500</BuildTime>
+    <BuildTime>450</BuildTime>
     <Resources>
-      <stone>1000</stone>
+      <wood>300</wood>
+      <stone>600</stone>
     </Resources>
   </Cost>
   <Footprint>
@@ -61,7 +62,7 @@
     <LoadingRange>6</LoadingRange>
   </GarrisonHolder>
   <Health>
-    <Max>4200</Max>
+    <Max>5200</Max>
     <SpawnEntityOnDeath>decay|rubble/rubble_stone_6x6</SpawnEntityOnDeath>
   </Health>
   <Identity>
@@ -74,7 +75,8 @@
     <RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>
   <Loot>
-    <stone>200</stone>
+    <wood>60</wood>
+    <stone>120</stone>
   </Loot>
   <Obstruction>
     <Static width="25.0" depth="25.0"/>
@@ -88,15 +90,6 @@
       attack_soldiers_will
     </Technologies>
   </ProductionQueue>
-  <Resistance>
-    <Entity>
-      <Damage>
-        <Hack op="add">5</Hack>
-        <Pierce op="add">5</Pierce>
-        <Crush op="add">3</Crush>
-      </Damage>
-    </Entity>
-  </Resistance>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_fortress.xml</select>
@@ -111,7 +104,7 @@
     <Weight>40000</Weight>
   </TerritoryInfluence>
   <Vision>
-    <Range>80</Range>
+    <Range>100</Range>
   </Vision>
   <VisualActor>
     <FoundationActor>structures/fndn_8x8.xml</FoundationActor>

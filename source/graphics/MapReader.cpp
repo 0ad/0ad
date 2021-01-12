@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -961,7 +961,7 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 		CStrW TemplateName;
 		int PlayerID = 0;
 		std::vector<entity_id_t> Garrison;
-		std::vector<std::pair<std::string, entity_id_t> > Turrets;
+		std::vector<std::pair<std::string, entity_id_t>> Turrets;
 		CFixedVector3D Position;
 		CFixedVector3D Orientation;
 		long Seed = -1;
@@ -1029,10 +1029,10 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 				for (const XMBElement& turretPoint : turrets)
 				{
 					XMBAttributeList turretAttrs = turretPoint.GetAttributes();
-					Turrets.push_back(std::make_pair(
+					Turrets.emplace_back(
 						turretAttrs.GetNamedItem(at_turret),
 						turretAttrs.GetNamedItem(at_uid).ToInt()
-					));
+					);
 				}
 			}
 			// <actor>
@@ -1074,20 +1074,18 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 			{
 				CmpPtr<ICmpGarrisonHolder> cmpGarrisonHolder(sim, ent);
 				if (cmpGarrisonHolder)
-					cmpGarrisonHolder->SetInitEntities(Garrison);
+					cmpGarrisonHolder->SetInitEntities(std::move(Garrison));
 				else
 					LOGERROR("CXMLMapReader::ReadEntities() entity '%d' of player '%d' has no GarrisonHolder component and thus cannot garrison units.", ent, PlayerID);
-				Garrison.clear();
 			}
 
 			if (!Turrets.empty())
 			{
 				CmpPtr<ICmpTurretHolder> cmpTurretHolder(sim, ent);
 				if (cmpTurretHolder)
-					cmpTurretHolder->SetInitEntities(Turrets);
+					cmpTurretHolder->SetInitEntities(std::move(Turrets));
 				else
 					LOGERROR("CXMLMapReader::ReadEntities() entity '%d' of player '%d' has no TurretHolder component and thus cannot use turrets.", ent, PlayerID);
-				Turrets.clear();
 			}
 
 			CmpPtr<ICmpObstruction> cmpObstruction(sim, ent);

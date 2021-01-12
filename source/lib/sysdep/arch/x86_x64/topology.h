@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -79,32 +79,6 @@ LIB_API size_t LogicalFromApicId(ApicId apicId);
  * @return APIC ID (see note at AreApicIdsReliable)
  **/
 LIB_API ApicId ApicIdFromIndices(size_t idxPackage, size_t idxCore, size_t idxLogical);
-
-
-//-----------------------------------------------------------------------------
-// L2 cache
-
-// knowledge of the cache topology, i.e. which processors share which caches,
-// can be used to reduce contention and increase effective capacity by
-// assigning the partner processors to work on the same dataset.
-//
-// example: Intel Core2 micro-architectures feature L2 caches shared by
-// two cores.
-
-/**
- * @return number of distinct L2 caches.
- **/
-LIB_API size_t NumCaches();
-
-/**
- * @return L2 cache number (zero-based) to which the given processor belongs.
- **/
-LIB_API size_t CacheFromProcessor(size_t processor);
-
-/**
- * @return bit-mask of all processors sharing the given cache.
- **/
-LIB_API uintptr_t ProcessorMaskFromCache(size_t cache);
 
 }	// namespace topology
 

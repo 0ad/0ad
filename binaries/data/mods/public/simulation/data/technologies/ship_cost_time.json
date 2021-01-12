@@ -1,0 +1,15 @@
+{
+	"genericName": "Naval Architects",
+	"description": "Employ skilled shipwrights with specialized tools to speed up ship construction.",
+	"cost": { "food": 200, "wood": 200, "stone": 0, "metal": 0 },
+	"requirements": { "tech": "phase_city" },
+	"requirementsTooltip": "Unlocked in City Phase.",
+	"icon": "calipers.png",
+	"researchTime": 60,
+	"tooltip": "Ships −20% construction time.",
+	"modifications": [
+		{ "value": "Cost/BuildTime", "multiply": 0.8 }
+	],
+	"affects": ["Ship"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}

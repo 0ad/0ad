@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -269,8 +269,8 @@ bool CShaderManager::NewProgram(const char* name, const CShaderDefines& baseDefi
 	program->Reload();
 
 //	m_HotloadFiles[xmlFilename].insert(program); // TODO: should reload somehow when the XML changes
-	m_HotloadFiles[vertexFile].insert(program);
-	m_HotloadFiles[fragmentFile].insert(program);
+	for (const VfsPath& path : program->GetFileDependencies())
+		AddProgramFileDependency(program, path);
 
 	return true;
 }
@@ -566,17 +566,20 @@ Status CShaderManager::ReloadChangedFile(const VfsPath& path)
 {
 	// Find all shaders using this file
 	HotloadFilesMap::iterator files = m_HotloadFiles.find(path);
-	if (files != m_HotloadFiles.end())
-	{
-		// Reload all shaders using this file
-		for (std::set<std::weak_ptr<CShaderProgram> >::iterator it = files->second.begin(); it != files->second.end(); ++it)
-		{
-			if (std::shared_ptr<CShaderProgram> program = it->lock())
-				program->Reload();
-		}
-	}
+	if (files == m_HotloadFiles.end())
+		return INFO::OK;
+
+	// Reload all shaders using this file
+	for (const std::weak_ptr<CShaderProgram>& ptr : files->second)
+		if (std::shared_ptr<CShaderProgram> program = ptr.lock())
+			program->Reload();
 
 	// TODO: hotloading changes to shader XML files and effect XML files would be nice
 
 	return INFO::OK;
+}
+
+void CShaderManager::AddProgramFileDependency(const CShaderProgramPtr& program, const VfsPath& path)
+{
+	m_HotloadFiles[path].insert(program);
 }

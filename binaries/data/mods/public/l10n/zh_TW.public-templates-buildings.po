@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-01 08:01+0000\n"
-"PO-Revision-Date: 2021-01-01 10:35+0000\n"
+"POT-Creation-Date: 2021-01-08 08:08+0000\n"
+"PO-Revision-Date: 2021-01-08 10:37+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -111,11 +111,6 @@ msgstr ""
 #: simulation/templates/structures/spart/fortress.xml:9
 msgid "Phrourion"
 msgstr "Phrourion"
-
-#: simulation/templates/structures/athen/fortress.xml:10
-#: simulation/templates/structures/spart/fortress.xml:10
-msgid "Garrison Soldiers for additional arrows."
-msgstr "駐紮士兵以增加箭數"
 
 #: simulation/templates/structures/athen/gymnasium.xml:22
 #: simulation/templates/structures/athen/gymnasium.xml:26
@@ -355,6 +350,17 @@ msgstr ""
 msgid "Dunon"
 msgstr ""
 
+#: simulation/templates/structures/brit/fortress.xml:13
+#: simulation/templates/structures/gaul/fortress.xml:6
+#: simulation/templates/structures/iber/fortress.xml:15
+#: simulation/templates/structures/mace/fortress.xml:10
+#: simulation/templates/structures/maur/fortress.xml:6
+#: simulation/templates/structures/rome/fortress.xml:6
+msgid ""
+"Territory root. Train Champion Infantry and Heroes. Garrison Soldiers for "
+"additional arrows."
+msgstr ""
+
 #: simulation/templates/structures/brit/house.xml:9
 #: simulation/templates/structures/gaul/house.xml:5
 msgid "Tegia"
@@ -490,6 +496,12 @@ msgstr "Šadd"
 #: simulation/templates/structures/cart/fortress.xml:9
 msgid "Ḥamet"
 msgstr "Ḥamet"
+
+#: simulation/templates/structures/cart/fortress.xml:10
+msgid ""
+"Territory root. Train Champion Elephants and Heroes. Garrison Soldiers for "
+"additional arrows."
+msgstr ""
 
 #: simulation/templates/structures/cart/house.xml:8
 msgid "Bet"
@@ -770,6 +782,14 @@ msgstr "Zabal Horma"
 msgid "Cancho Roano"
 msgstr "Cancho Roano"
 
+#: simulation/templates/structures/ishtar_gate.xml:25
+msgid "Ishtar Gate of Babylon"
+msgstr "巴比倫的伊什塔爾城門"
+
+#: simulation/templates/structures/ishtar_gate.xml:26
+msgid "Territory root."
+msgstr ""
+
 #: simulation/templates/structures/kush/arsenal.xml:5
 msgid "Pr-ỉwn n ms﻿"
 msgstr ""
@@ -829,6 +849,12 @@ msgstr ""
 #: simulation/templates/structures/kush/fortress.xml:9
 msgid "Htm"
 msgstr "Htm"
+
+#: simulation/templates/structures/kush/fortress.xml:10
+msgid ""
+"Territory root. Train Champion Infantry and Elephants and Heroes. Garrison "
+"Soldiers for additional arrows."
+msgstr ""
 
 #: simulation/templates/structures/kush/house.xml:5
 msgid "Pr"
@@ -1194,10 +1220,6 @@ msgstr "Arštišta"
 msgid "Didā"
 msgstr "Didā"
 
-#: simulation/templates/structures/pers/fortress.xml:6
-msgid "Research technologies. Garrison Soldiers for additional arrows."
-msgstr ""
-
 #: simulation/templates/structures/pers/hall.xml:23
 msgid "Gate of All Nations"
 msgstr ""
@@ -1218,14 +1240,6 @@ msgstr "Huvādā"
 #: simulation/templates/structures/pers/inn.xml:12
 msgid "Inn"
 msgstr "客棧"
-
-#: simulation/templates/structures/pers/ishtar_gate.xml:26
-msgid "Ishtar Gate of Babylon"
-msgstr "巴比倫的伊什塔爾城門"
-
-#: simulation/templates/structures/pers/ishtar_gate.xml:27
-msgid "IshtarGate"
-msgstr ""
 
 #: simulation/templates/structures/pers/outpost.xml:5
 msgid "Didebani"
@@ -1274,8 +1288,8 @@ msgstr ""
 #: simulation/templates/structures/ptol/fortress.xml:10
 #: simulation/templates/structures/sele/fortress.xml:10
 msgid ""
-"Train Champions and research technologies. Garrison Soldiers for additional "
-"arrows."
+"Territory root. Train Champion Infantry and Elephants. Garrison Soldiers for"
+" additional arrows."
 msgstr ""
 
 #: simulation/templates/structures/ptol/house.xml:19
@@ -1415,42 +1429,42 @@ msgstr ""
 msgid "Turris Līgnea"
 msgstr ""
 
-#: simulation/templates/structures/rome/siege_wall_gate.xml:24
+#: simulation/templates/structures/rome/siege_wall_gate.xml:25
 msgid "Siege Wall Gate"
 msgstr "城門"
 
-#: simulation/templates/structures/rome/siege_wall_gate.xml:25
+#: simulation/templates/structures/rome/siege_wall_gate.xml:26
 msgid "Porta Circummūnītiōnis"
 msgstr ""
 
-#: simulation/templates/structures/rome/siege_wall_gate.xml:26
-#: simulation/templates/structures/rome/siege_wall_long.xml:27
-#: simulation/templates/structures/rome/siege_wall_medium.xml:24
-#: simulation/templates/structures/rome/siege_wall_short.xml:24
-#: simulation/templates/structures/rome/siege_wall_tower.xml:23
+#: simulation/templates/structures/rome/siege_wall_gate.xml:27
+#: simulation/templates/structures/rome/siege_wall_long.xml:28
+#: simulation/templates/structures/rome/siege_wall_medium.xml:25
+#: simulation/templates/structures/rome/siege_wall_short.xml:25
+#: simulation/templates/structures/rome/siege_wall_tower.xml:35
 #: simulation/templates/structures/rome/wallset_siege.xml:8
 msgid "SiegeWall"
 msgstr ""
 
-#: simulation/templates/structures/rome/siege_wall_long.xml:25
-#: simulation/templates/structures/rome/siege_wall_medium.xml:22
-#: simulation/templates/structures/rome/siege_wall_short.xml:22
+#: simulation/templates/structures/rome/siege_wall_long.xml:26
+#: simulation/templates/structures/rome/siege_wall_medium.xml:23
+#: simulation/templates/structures/rome/siege_wall_short.xml:23
 #: simulation/templates/structures/rome/wallset_siege.xml:5
 msgid "Siege Wall"
 msgstr "兵工城牆"
 
-#: simulation/templates/structures/rome/siege_wall_long.xml:26
-#: simulation/templates/structures/rome/siege_wall_medium.xml:23
-#: simulation/templates/structures/rome/siege_wall_short.xml:23
+#: simulation/templates/structures/rome/siege_wall_long.xml:27
+#: simulation/templates/structures/rome/siege_wall_medium.xml:24
+#: simulation/templates/structures/rome/siege_wall_short.xml:24
 #: simulation/templates/structures/rome/wallset_siege.xml:6
 msgid "Mūrus Circummūnītiōnis"
 msgstr ""
 
-#: simulation/templates/structures/rome/siege_wall_tower.xml:21
+#: simulation/templates/structures/rome/siege_wall_tower.xml:31
 msgid "Siege Wall Tower"
 msgstr "兵工牆塔"
 
-#: simulation/templates/structures/rome/siege_wall_tower.xml:22
+#: simulation/templates/structures/rome/siege_wall_tower.xml:32
 msgid "Turris Circummūnītiōnis"
 msgstr ""
 
@@ -1953,10 +1967,8 @@ msgid "Fortress"
 msgstr "堡壘"
 
 #: simulation/templates/template_structure_military_fortress.xml:70
-msgid ""
-"Train Champions and Heroes and research technologies. Garrison Soldiers for "
-"additional arrows."
-msgstr "訓練精銳部隊與英雄以及研發科技。駐紮士兵以增加箭數"
+msgid "Territory root. Garrison Soldiers for additional arrows."
+msgstr ""
 
 #: simulation/templates/template_structure_military_range.xml:22
 msgid "Practice Range"

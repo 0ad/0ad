@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,6 +22,88 @@
 #include "graphics/ShaderDefines.h"
 #include "ps/CLogger.h"
 
+#include <cctype>
+
+namespace
+{
+
+struct MatchIncludeResult
+{
+	bool found;
+	bool error;
+	size_t nextLineStart;
+	size_t pathFirst, pathLast;
+
+	static MatchIncludeResult MakeNotFound(const CStr& source, size_t pos)
+	{
+		while (pos < source.size() && source[pos] != '\n')
+			++pos;
+		return MatchIncludeResult{
+			false, false, pos < source.size() ? pos + 1 : source.size(), 0, 0};
+	}
+
+	static MatchIncludeResult MakeError(
+		const char* message, const CStr& source, const size_t lineStart, const size_t currentPos)
+	{
+		ENSURE(currentPos >= lineStart);
+		size_t lineEnd = currentPos;
+		while (lineEnd < source.size() && source[lineEnd] != '\n' && source[lineEnd] != '\r')
+			++lineEnd;
+		const CStr line = source.substr(lineStart, lineEnd - lineStart);
+		while (lineEnd < source.size() && source[lineEnd] != '\n')
+			++lineEnd;
+		const size_t nextLineStart = lineEnd < source.size() ? lineEnd + 1 : source.size();
+		LOGERROR("Preprocessor error: %s: '%s'\n", message, line.c_str());
+		return MatchIncludeResult{false, true, nextLineStart, 0, 0};
+	}
+};
+
+MatchIncludeResult MatchIncludeUntilEOLorEOS(const CStr& source, const size_t lineStart)
+{
+	// We need to match a line like this:
+	// ^[ \t]*#[ \t]*include[ \t]*"[^"]+".*$
+	//  ^     ^^     ^      ^     ^^    ^
+	//  1     23     4      5     67    8    <- steps
+	const CStr INCLUDE = "include";
+	size_t pos = lineStart;
+	// Matching step #1.
+	while (pos < source.size() && std::isblank(source[pos]))
+		++pos;
+	// Matching step #2.
+	if (pos == source.size() || source[pos] != '#')
+		return MatchIncludeResult::MakeNotFound(source, pos);
+	++pos;
+	// Matching step #3.
+	while (pos < source.size() && std::isblank(source[pos]))
+		++pos;
+	// Matching step #4.
+	if (pos + INCLUDE.size() >= source.size() || source.substr(pos, INCLUDE.size()) != INCLUDE)
+		return MatchIncludeResult::MakeNotFound(source, pos);
+	pos += INCLUDE.size();
+	// Matching step #5.
+	while (pos < source.size() && std::isblank(source[pos]))
+		++pos;
+	// Matching step #6.
+	if (pos == source.size() || source[pos] != '"')
+		return MatchIncludeResult::MakeError("#include should be followed by quote", source, lineStart, pos);
+	++pos;
+	// Matching step #7.
+	const size_t pathFirst = pos;
+	while (pos < source.size() && source[pos] != '"' && source[pos] != '\n')
+		++pos;
+	const size_t pathLast = pos;
+	// Matching step #8.
+	if (pos == source.size() || source[pos] != '"')
+		return MatchIncludeResult::MakeError("#include has invalid quote pair", source, lineStart, pos);
+	if (pathLast - pathFirst <= 1)
+		return MatchIncludeResult::MakeError("#include path shouldn't be empty", source, lineStart, pos);
+	while (pos < source.size() && source[pos] != '\n')
+		++pos;
+	return MatchIncludeResult{true, false, pos < source.size() ? pos + 1 : source.size(), pathFirst, pathLast};
+}
+
+} // anonymous namespace
+
 void CPreprocessorWrapper::PyrogenesisShaderError(int iLine, const char* iError, const Ogre::CPreprocessor::Token* iToken)
 {
 	if (iToken)
@@ -31,6 +113,12 @@ void CPreprocessorWrapper::PyrogenesisShaderError(int iLine, const char* iError,
 }
 
 CPreprocessorWrapper::CPreprocessorWrapper()
+	: CPreprocessorWrapper(IncludeRetrieverCallback{})
+{
+}
+
+CPreprocessorWrapper::CPreprocessorWrapper(const IncludeRetrieverCallback& includeCallback)
+	: m_IncludeCallback(includeCallback)
 {
 	Ogre::CPreprocessor::ErrorHandler = CPreprocessorWrapper::PyrogenesisShaderError;
 }
@@ -78,10 +166,63 @@ bool CPreprocessorWrapper::TestConditional(const CStr& expr)
 
 }
 
+CStr CPreprocessorWrapper::ResolveIncludes(CStr source)
+{
+	const CStr lineDirective = "#line ";
+	for (size_t lineStart = 0, line = 1; lineStart < source.size(); ++line)
+	{
+		MatchIncludeResult match = MatchIncludeUntilEOLorEOS(source, lineStart);
+		if (match.error)
+			return {};
+		else if (!match.found)
+		{
+			if (lineStart + lineDirective.size() < source.size() &&
+			    source.substr(lineStart, lineDirective.size()) == lineDirective)
+			{
+				size_t newLineNumber = 0;
+				size_t pos = lineStart + lineDirective.size();
+				while (pos < match.nextLineStart && std::isdigit(source[pos]))
+				{
+					newLineNumber = newLineNumber * 10 + (source[pos] - '0');
+					++pos;
+				}
+				if (newLineNumber > 0)
+					line = newLineNumber - 1;
+			}
+
+			lineStart = match.nextLineStart;
+			continue;
+		}
+		const CStr path = source.substr(match.pathFirst, match.pathLast - match.pathFirst);
+		auto it = m_IncludeCache.find(path);
+		if (it == m_IncludeCache.end())
+		{
+			CStr includeContent;
+			if (!m_IncludeCallback(path, includeContent))
+			{
+				LOGERROR("Preprocessor error: line %zu: Can't load #include file: '%s'", line, path.c_str());
+				return {};
+			}
+			it = m_IncludeCache.emplace(path, std::move(includeContent)).first;
+		}
+		// We need to insert #line directives to have correct line numbers in errors.
+		source =
+			source.substr(0, lineStart) +
+			lineDirective + "1\n" + it->second + "\n" + lineDirective + CStr::FromUInt(line + 1) + "\n" +
+			source.substr(match.nextLineStart);
+		--line;
+	}
+	return source;
+}
+
 CStr CPreprocessorWrapper::Preprocess(const CStr& input)
 {
+	PROFILE("Preprocess shader source");
+
+	CStr source = ResolveIncludes(input);
+
 	size_t len = 0;
-	char* output = m_Preprocessor.Parse(input.c_str(), input.size(), len);
+	char* output = m_Preprocessor.Parse(source.c_str(), source.size(), len);
 
 	if (!output)
 	{
@@ -92,7 +233,7 @@ CStr CPreprocessorWrapper::Preprocess(const CStr& input)
 	CStr ret(output, len);
 
 	// Free output if it's not inside the source string
-	if (!(output >= input.c_str() && output < input.c_str() + input.size()))
+	if (!(output >= source.c_str() && output < source.c_str() + source.size()))
 		free(output);
 
 	return ret;

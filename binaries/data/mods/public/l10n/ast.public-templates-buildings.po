@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-01 08:01+0000\n"
-"PO-Revision-Date: 2021-01-01 17:54+0000\n"
+"POT-Creation-Date: 2021-01-08 08:08+0000\n"
+"PO-Revision-Date: 2021-01-08 18:21+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -97,11 +97,6 @@ msgstr "Chalkeṓn"
 #: simulation/templates/structures/spart/fortress.xml:9
 msgid "Phrourion"
 msgstr "Phroúrion"
-
-#: simulation/templates/structures/athen/fortress.xml:10
-#: simulation/templates/structures/spart/fortress.xml:10
-msgid "Garrison Soldiers for additional arrows."
-msgstr "Guarez soldaos nella pa tirar más fleches."
 
 #: simulation/templates/structures/athen/gymnasium.xml:22
 #: simulation/templates/structures/athen/gymnasium.xml:26
@@ -341,6 +336,17 @@ msgstr "Gobanion"
 msgid "Dunon"
 msgstr "Dunon"
 
+#: simulation/templates/structures/brit/fortress.xml:13
+#: simulation/templates/structures/gaul/fortress.xml:6
+#: simulation/templates/structures/iber/fortress.xml:15
+#: simulation/templates/structures/mace/fortress.xml:10
+#: simulation/templates/structures/maur/fortress.xml:6
+#: simulation/templates/structures/rome/fortress.xml:6
+msgid ""
+"Territory root. Train Champion Infantry and Heroes. Garrison Soldiers for "
+"additional arrows."
+msgstr "Arraigona'l territoriu. Allista campeones d'a pie y héroes. Guarez soldaos pa tirar más fleches."
+
 #: simulation/templates/structures/brit/house.xml:9
 #: simulation/templates/structures/gaul/house.xml:5
 msgid "Tegia"
@@ -476,6 +482,12 @@ msgstr "Šadd"
 #: simulation/templates/structures/cart/fortress.xml:9
 msgid "Ḥamet"
 msgstr "Ḥamet"
+
+#: simulation/templates/structures/cart/fortress.xml:10
+msgid ""
+"Territory root. Train Champion Elephants and Heroes. Garrison Soldiers for "
+"additional arrows."
+msgstr "Arraigona'l territoriu. Allista campeones n'elefante y héroes. Guarez soldaos pa tirar más fleches."
 
 #: simulation/templates/structures/cart/house.xml:8
 msgid "Bet"
@@ -756,6 +768,14 @@ msgstr "Harhesi"
 msgid "Cancho Roano"
 msgstr "Cancho Roano"
 
+#: simulation/templates/structures/ishtar_gate.xml:25
+msgid "Ishtar Gate of Babylon"
+msgstr "Puerta d'Ixtar"
+
+#: simulation/templates/structures/ishtar_gate.xml:26
+msgid "Territory root."
+msgstr "Arraigona'l territoriu."
+
 #: simulation/templates/structures/kush/arsenal.xml:5
 msgid "Pr-ỉwn n ms﻿"
 msgstr "Pr-ỉwn n ms"
@@ -815,6 +835,12 @@ msgstr "hmw hʿy n rȝ-ʿ"
 #: simulation/templates/structures/kush/fortress.xml:9
 msgid "Htm"
 msgstr "Htm"
+
+#: simulation/templates/structures/kush/fortress.xml:10
+msgid ""
+"Territory root. Train Champion Infantry and Elephants and Heroes. Garrison "
+"Soldiers for additional arrows."
+msgstr "Arraigona'l territoriu. Allista campeones d'a pie, elefantes y héroes. Guarez soldaos pa tirar más fleches."
 
 #: simulation/templates/structures/kush/house.xml:5
 msgid "Pr"
@@ -1180,10 +1206,6 @@ msgstr "Arštišta"
 msgid "Didā"
 msgstr "Didā"
 
-#: simulation/templates/structures/pers/fortress.xml:6
-msgid "Research technologies. Garrison Soldiers for additional arrows."
-msgstr "Desendolca la teunoloxía. Guarez soldaos nella pa tirar más fleches."
-
 #: simulation/templates/structures/pers/hall.xml:23
 msgid "Gate of All Nations"
 msgstr "Puerta de tolos países"
@@ -1204,14 +1226,6 @@ msgstr "Huvādā"
 #: simulation/templates/structures/pers/inn.xml:12
 msgid "Inn"
 msgstr "Posada"
-
-#: simulation/templates/structures/pers/ishtar_gate.xml:26
-msgid "Ishtar Gate of Babylon"
-msgstr "Puerta d'Ixtar"
-
-#: simulation/templates/structures/pers/ishtar_gate.xml:27
-msgid "IshtarGate"
-msgstr "PuertaIxtar"
 
 #: simulation/templates/structures/pers/outpost.xml:5
 msgid "Didebani"
@@ -1260,9 +1274,9 @@ msgstr "Stathmós tôn Elephántōn"
 #: simulation/templates/structures/ptol/fortress.xml:10
 #: simulation/templates/structures/sele/fortress.xml:10
 msgid ""
-"Train Champions and research technologies. Garrison Soldiers for additional "
-"arrows."
-msgstr "Allista campeones ya desendolca la teunoloxía. Guarez soldaos nella pa tirar más fleches."
+"Territory root. Train Champion Infantry and Elephants. Garrison Soldiers for"
+" additional arrows."
+msgstr "Arraigona'l territoriu. Allista campeones d'a pie y elefantes. Guarez soldaos pa tirar más fleches."
 
 #: simulation/templates/structures/ptol/house.xml:19
 msgid ""
@@ -1401,42 +1415,42 @@ msgstr "Vigilārium"
 msgid "Turris Līgnea"
 msgstr "Turris Līgnea"
 
-#: simulation/templates/structures/rome/siege_wall_gate.xml:24
+#: simulation/templates/structures/rome/siege_wall_gate.xml:25
 msgid "Siege Wall Gate"
 msgstr "Puerta improvisada"
 
-#: simulation/templates/structures/rome/siege_wall_gate.xml:25
+#: simulation/templates/structures/rome/siege_wall_gate.xml:26
 msgid "Porta Circummūnītiōnis"
 msgstr "Porta Circummūnītiōnis"
 
-#: simulation/templates/structures/rome/siege_wall_gate.xml:26
-#: simulation/templates/structures/rome/siege_wall_long.xml:27
-#: simulation/templates/structures/rome/siege_wall_medium.xml:24
-#: simulation/templates/structures/rome/siege_wall_short.xml:24
-#: simulation/templates/structures/rome/siege_wall_tower.xml:23
+#: simulation/templates/structures/rome/siege_wall_gate.xml:27
+#: simulation/templates/structures/rome/siege_wall_long.xml:28
+#: simulation/templates/structures/rome/siege_wall_medium.xml:25
+#: simulation/templates/structures/rome/siege_wall_short.xml:25
+#: simulation/templates/structures/rome/siege_wall_tower.xml:35
 #: simulation/templates/structures/rome/wallset_siege.xml:8
 msgid "SiegeWall"
-msgstr "Cercu"
-
-#: simulation/templates/structures/rome/siege_wall_long.xml:25
-#: simulation/templates/structures/rome/siege_wall_medium.xml:22
-#: simulation/templates/structures/rome/siege_wall_short.xml:22
-#: simulation/templates/structures/rome/wallset_siege.xml:5
-msgid "Siege Wall"
 msgstr "Cercu"
 
 #: simulation/templates/structures/rome/siege_wall_long.xml:26
 #: simulation/templates/structures/rome/siege_wall_medium.xml:23
 #: simulation/templates/structures/rome/siege_wall_short.xml:23
+#: simulation/templates/structures/rome/wallset_siege.xml:5
+msgid "Siege Wall"
+msgstr "Cercu"
+
+#: simulation/templates/structures/rome/siege_wall_long.xml:27
+#: simulation/templates/structures/rome/siege_wall_medium.xml:24
+#: simulation/templates/structures/rome/siege_wall_short.xml:24
 #: simulation/templates/structures/rome/wallset_siege.xml:6
 msgid "Mūrus Circummūnītiōnis"
 msgstr "Mūrus Circummūnītiōnis"
 
-#: simulation/templates/structures/rome/siege_wall_tower.xml:21
+#: simulation/templates/structures/rome/siege_wall_tower.xml:31
 msgid "Siege Wall Tower"
 msgstr "Torre"
 
-#: simulation/templates/structures/rome/siege_wall_tower.xml:22
+#: simulation/templates/structures/rome/siege_wall_tower.xml:32
 msgid "Turris Circummūnītiōnis"
 msgstr "Turris Circummūnītiōnis"
 
@@ -1939,10 +1953,8 @@ msgid "Fortress"
 msgstr "Fortaleza"
 
 #: simulation/templates/template_structure_military_fortress.xml:70
-msgid ""
-"Train Champions and Heroes and research technologies. Garrison Soldiers for "
-"additional arrows."
-msgstr "Allista campeones y héroes ya desendolca la teunoloxía. Guarez soldaos nella pa tirar más fleches."
+msgid "Territory root. Garrison Soldiers for additional arrows."
+msgstr "Arraigona'l territoriu. Guarez soldaos pa tirar más fleches."
 
 #: simulation/templates/template_structure_military_range.xml:22
 msgid "Practice Range"

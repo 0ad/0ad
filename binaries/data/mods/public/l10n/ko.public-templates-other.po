@@ -7,6 +7,7 @@
 # Aksidion Kreimben <aksidionkreimben@gmail.com>, 2016
 # Aksidion Kreimben <aksidionkreimben@gmail.com>, 2016
 # Asakura, 2017
+# Bruce Lee <daemul72@gmail.com>, 2021
 # 미워하지 않아 <eustaph7725@gmail.com>, 2017
 # 미워하지 않아 <eustaph7725@gmail.com>, 2017
 # 76407af6b051a571d67c2577de2183db_7380deb <7a4a088c8c60986e924b802e46370579_512231>, 2016
@@ -28,9 +29,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-04 08:09+0000\n"
-"PO-Revision-Date: 2021-01-04 10:24+0000\n"
-"Last-Translator: ks k\n"
+"POT-Creation-Date: 2021-01-08 08:08+0000\n"
+"PO-Revision-Date: 2021-01-11 07:46+0000\n"
+"Last-Translator: Bruce Lee <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -41,17 +42,17 @@ msgstr ""
 #: simulation/data/attack_effects/applystatus.jsondescription
 msgctxt "effect caused by an attack"
 msgid "Various (timed) effects."
-msgstr ""
+msgstr "다양한 (시간 지정) 효과."
 
 #: simulation/data/attack_effects/applystatus.jsonname
 msgctxt "effect caused by an attack"
 msgid "Apply Status"
-msgstr ""
+msgstr "상태 적용"
 
 #: simulation/data/attack_effects/capture.jsondescription
 msgctxt "effect caused by an attack"
 msgid "Reduces capture points of a target."
-msgstr ""
+msgstr "대상의 점령 지점을 줄입니다."
 
 #: simulation/data/attack_effects/capture.jsonname
 msgctxt "effect caused by an attack"
@@ -61,69 +62,42 @@ msgstr "점령"
 #: simulation/data/attack_effects/damage.jsondescription
 msgctxt "effect caused by an attack"
 msgid "Reduces the health of a target."
-msgstr ""
+msgstr "대상의 체력을 감소시킵니다."
 
 #: simulation/data/attack_effects/damage.jsonname
 msgctxt "effect caused by an attack"
 msgid "Damage"
-msgstr ""
+msgstr "피해"
 
 #: simulation/data/status_effects/burning.jsonapplierTooltip
 msgctxt "status effect"
 msgid "This unit causes fire damage."
-msgstr ""
+msgstr "이 유닛은 화재 피해를 입힙니다."
 
 #: simulation/data/status_effects/burning.jsonreceiverTooltip
 msgctxt "status effect"
 msgid "This unit is burning."
-msgstr ""
+msgstr "이 유닛은 불타는 중입니다."
 
 #: simulation/data/status_effects/burning.jsonstatusName
 msgctxt "status effect"
 msgid "Burning"
-msgstr ""
+msgstr "불타는 중"
 
-#: simulation/data/template_helpers/damage_types/crush.jsondescription
-msgctxt "damage type"
-msgid "Damage caused by sheer force, like with a club or by trampling."
-msgstr "몽둥이나 짓밟는 것과 같은 순수한 힘에 의한 피해입니다."
+#: simulation/data/status_effects/poisoned.jsonapplierTooltip
+msgctxt "status effect"
+msgid "This unit causes poison damage."
+msgstr "이 유닛은 독 피해를 일으킵니다."
 
-#: simulation/data/template_helpers/damage_types/crush.jsonname
-msgctxt "damage type"
-msgid "Crush"
-msgstr "때리기"
+#: simulation/data/status_effects/poisoned.jsonreceiverTooltip
+msgctxt "status effect"
+msgid "This unit is poisoned."
+msgstr "이 유닛은 중독되었습니다."
 
-#: simulation/data/template_helpers/damage_types/fire.jsondescription
-msgctxt "damage type"
-msgid "Damage caused by burning objects, like a torch or a flaming arrow."
-msgstr ""
-
-#: simulation/data/template_helpers/damage_types/fire.jsonname
-msgctxt "damage type"
-msgid "Fire"
-msgstr ""
-
-#: simulation/data/template_helpers/damage_types/hack.jsondescription
-msgctxt "damage type"
-msgid ""
-"Damage caused by sharp objects cutting or chopping, like with a sword or an "
-"axe."
-msgstr "칼이나 도끼처럼 날카로운 물체에의한 베거나 찍히는 피해입니다."
-
-#: simulation/data/template_helpers/damage_types/hack.jsonname
-msgctxt "damage type"
-msgid "Hack"
-msgstr "베기"
-
-#: simulation/data/template_helpers/damage_types/pierce.jsondescription
-msgctxt "damage type"
-msgid "Damage caused by sharp pointy objects, like arrows or spears."
-msgstr "화살이나 창과 같은 뾰족한 물체로 인한 피해입니다."
-
-#: simulation/data/template_helpers/damage_types/pierce.jsonname
-msgctxt "damage type"
-msgid "Pierce"
-msgstr "뚫기"
+#: simulation/data/status_effects/poisoned.jsonstatusName
+msgctxt "status effect"
+msgid "Poisoned"
+msgstr "중독됨"
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:24
 msgid "Army of Alexander the Great."
@@ -199,7 +173,7 @@ msgstr "우루수스 아메리카누스"
 
 #: simulation/templates/gaia/fauna_bear_brown.xml:8
 msgid "Brown Bear"
-msgstr "갈색곰(불곰)"
+msgstr "갈색곰"
 
 #: simulation/templates/gaia/fauna_bear_brown.xml:9
 msgid "Ursus arctos"
@@ -207,7 +181,7 @@ msgstr "우루수스 아르크토스"
 
 #: simulation/templates/gaia/fauna_bear_polar.xml:8
 msgid "Polar Bear"
-msgstr "흰곰(북극곰)"
+msgstr "북극곰"
 
 #: simulation/templates/gaia/fauna_bear_polar.xml:9
 msgid "Ursus maritimus"
@@ -418,7 +392,7 @@ msgstr "조랑말"
 #: simulation/templates/gaia/fauna_tiger.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Paws"
-msgstr "앞발"
+msgstr "갈퀴"
 
 #: simulation/templates/gaia/fauna_lion.xml:20
 msgid "Lion"
@@ -713,7 +687,7 @@ msgstr "대마죽"
 
 #: simulation/templates/gaia/tree/banyan.xml:8
 msgid "Banyan"
-msgstr "반얀나무ehsms 바얀나무"
+msgstr "반얀나무"
 
 #: simulation/templates/gaia/tree/baobab.xml:8
 #: simulation/templates/gaia/tree/baobab_3_mature.xml:8
@@ -780,7 +754,7 @@ msgstr "느릅나무"
 #: simulation/templates/gaia/tree/euro_beech.xml:4
 #: simulation/templates/gaia/tree/euro_beech_aut.xml:4
 msgid "European Beech"
-msgstr "유럽너도밤나무 "
+msgstr "유럽산 너도밤나무"
 
 #: simulation/templates/gaia/tree/euro_birch.xml:4
 msgid "Silver Birch"
@@ -821,7 +795,7 @@ msgstr "떡갈나무"
 
 #: simulation/templates/gaia/tree/oak_holly.xml:4
 msgid "Holly Oak"
-msgstr "사철가시나무ehsms떡갈나무"
+msgstr "사철가시나무"
 
 #: simulation/templates/gaia/tree/oak_hungarian.xml:4
 #: simulation/templates/gaia/tree/oak_hungarian_autumn.xml:4
@@ -888,7 +862,7 @@ msgstr "교살 무화과"
 
 #: simulation/templates/gaia/tree/tamarix.xml:4
 msgid "Tamarix"
-msgstr "위성류"
+msgstr "타마릭스"
 
 #: simulation/templates/gaia/tree/teak.xml:8
 msgid "Teak"
@@ -917,7 +891,7 @@ msgstr "인구수를 5명으로 만드는 것은 다른 문명에서는 삭제�
 #: simulation/templates/skirmish/units/default_infantry_melee_b.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Melee"
-msgstr "근접전투"
+msgstr "근접대형"
 
 #: simulation/templates/skirmish/units/default_infantry_ranged_b.xml:5
 msgctxt "Name of an attack, usually the weapon."
@@ -931,11 +905,11 @@ msgstr "근접 보병만, 최소 16명이 필요합니다."
 
 #: simulation/templates/special/formations/anti_cavalry.xml:7
 msgid "Anti Cavalry"
-msgstr "반 기병대??"
+msgstr "대 기병대"
 
 #: simulation/templates/special/formations/battle_line.xml:5
 msgid "Battle Line"
-msgstr "전선"
+msgstr "전투대형"
 
 #: simulation/templates/special/formations/box.xml:6
 msgid "Requires at least 4 Soldiers or Siege engines."
@@ -943,15 +917,15 @@ msgstr "최소 4명의 병사나 공성 무기가 필요합니다."
 
 #: simulation/templates/special/formations/box.xml:7
 msgid "Box"
-msgstr "방진 - 사각대형"
+msgstr "사각대형"
 
 #: simulation/templates/special/formations/column_closed.xml:5
 msgid "Forced March"
-msgstr "강행군"
+msgstr "행군대형"
 
 #: simulation/templates/special/formations/column_open.xml:5
 msgid "Column Open"
-msgstr "개열진EHSMS산개 종대"
+msgstr "산개 종대"
 
 #: simulation/templates/special/formations/flank.xml:6
 msgid "Requires at least 8 Soldiers or Siege engines."
@@ -959,7 +933,7 @@ msgstr "최소 8명의 군인이나 공성 무기가 필요합니다."
 
 #: simulation/templates/special/formations/flank.xml:7
 msgid "Flank"
-msgstr "측면"
+msgstr "양옆대형"
 
 #: simulation/templates/special/formations/line_closed.xml:5
 msgid "Close Order"
@@ -991,19 +965,19 @@ msgstr "원거리 공격 병사만, 최소 2명이 필요합니다."
 
 #: simulation/templates/special/formations/skirmish.xml:6
 msgid "Skirmish"
-msgstr "접전지역"
+msgstr "교전대형"
 
 #: simulation/templates/special/formations/syntagma.xml:6
 msgid "Infantry Pikemen only, requires at least 16."
-msgstr "장창 보병만, 최소 16명이 필요합니다."
+msgstr "보병대 단창병만, 최소 16명이 필요합니다."
 
 #: simulation/templates/special/formations/syntagma.xml:8
 msgid "Syntagma"
-msgstr "산테그마ehsms구성"
+msgstr "산테그마"
 
 #: simulation/templates/special/formations/testudo.xml:8
 msgid "Testudo"
-msgstr "바다거북이EHSMS귀갑(龜甲)모양의 큰 방패"
+msgstr "테스도"
 
 #: simulation/templates/special/formations/wedge.xml:6
 msgid "Cavalry only, requires at least 6."
@@ -1027,7 +1001,7 @@ msgstr "적어도 2명의 병사 또는 공성 전차가 필요합니다."
 
 #: simulation/templates/template_gaia.xml:7
 msgid "Gaia"
-msgstr "가이아ehsms 자연"
+msgstr "가이아"
 
 #: simulation/templates/gaia/fish/generic.xml:4
 #: simulation/templates/template_gaia_fish.xml:8

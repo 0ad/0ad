@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,6 +25,7 @@
 #include "lib/res/handle.h"
 
 #include <map>
+#include <vector>
 
 struct CColor;
 class CMatrix3D;
@@ -192,6 +193,8 @@ public:
 	 * Call this before calling glDrawArrays/glDrawElements etc to avoid potential crashes.
 	 */
 	void AssertPointersBound();
+
+	virtual std::vector<VfsPath> GetFileDependencies() const = 0;
 
 protected:
 	CShaderProgram(int streamflags);

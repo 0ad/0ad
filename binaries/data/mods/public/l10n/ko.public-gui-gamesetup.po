@@ -5,7 +5,8 @@
 # Translators:
 # 76407af6b051a571d67c2577de2183db_7380deb <7a4a088c8c60986e924b802e46370579_512231>, 2016
 # Aksidion Kreimben <aksidionkreimben@gmail.com>, 2016
-# JungHee Lee <daemul72@gmail.com>, 2019-2020
+# Bruce Lee <daemul72@gmail.com>, 2019,2021
+# Bruce Lee <daemul72@gmail.com>, 2019-2020
 # Dalrae Jin <lovely.serotonin@gmail.com>, 2014
 # 76407af6b051a571d67c2577de2183db_7380deb <7a4a088c8c60986e924b802e46370579_512231>, 2016
 # 76407af6b051a571d67c2577de2183db_7380deb <7a4a088c8c60986e924b802e46370579_512231>, 2016
@@ -15,11 +16,11 @@
 # moolow <copyhyeon@gmail.com>, 2018
 # jasonkimik <jasonkim@linux.com>, 2014
 # jjj <triplej03@nate.com>, 2014
-# JungHee Lee <daemul72@gmail.com>, 2019
+# Bruce Lee <daemul72@gmail.com>, 2019
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
 # ks k, 2019
 # ks k, 2019-2020
-# JungHee Lee <daemul72@gmail.com>, 2019
+# Bruce Lee <daemul72@gmail.com>, 2019
 # moolow <copyhyeon@gmail.com>, 2018
 # Suhyeon Park <qkr5145@gmail.com>, 2018
 # Taejin Kim <manowar72@gmail.com>, 2015
@@ -32,8 +33,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-12-28 08:02+0000\n"
-"PO-Revision-Date: 2020-12-28 09:25+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-01-10 13:56+0000\n"
+"Last-Translator: Bruce Lee <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -43,7 +44,7 @@ msgstr ""
 
 #: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):13
 msgid "AI Configuration"
-msgstr "인공지능 설정"
+msgstr "인공지능 환경설정"
 
 #: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):29
 msgid "OK"
@@ -51,15 +52,15 @@ msgstr "확인"
 
 #: gui/gamesetup/Pages/AIConfigPage/AIDescription.js:37
 msgid "AI will be disabled for this player."
-msgstr "이 선수에게는 인공지능을 사용하지 않습니다."
+msgstr "이 플레이어에 대해 인공지능이 비활성화됩니다."
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIBehavior.js:95
 msgid "AI Behavior"
-msgstr "인공지능 행동"
+msgstr "인공지능 행동방식"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIDifficulty.js:89
 msgid "AI Difficulty"
-msgstr "AI 난이도"
+msgstr "인공지능 난이도"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AISelection.js:86
 msgctxt "ai"
@@ -68,7 +69,7 @@ msgstr "없음"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AISelection.js:91
 msgid "AI Player"
-msgstr "AI 플레이어"
+msgstr "인공지능 플레이어"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingControl.js:172
 #, javascript-format
@@ -98,12 +99,12 @@ msgstr "지도"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:27
 msgctxt "Match settings tab name"
 msgid "Player"
-msgstr "선수"
+msgstr "플레이어"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:39
 msgctxt "Match settings tab name"
 msgid "Game Type"
-msgstr "놀이 유형"
+msgstr "게임 유형"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/AIConfigButton.js:32
 #, javascript-format
@@ -112,7 +113,7 @@ msgstr "인공지능 환경설정: %(description)s."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:153
 msgid "Select player."
-msgstr "선수를 선택합니다."
+msgstr "플레이어를 선택합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:230
 #, javascript-format
@@ -125,24 +126,24 @@ msgstr "지정되지 않음"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:131
 msgid "Choose the civilization for this player."
-msgstr "이 선수의 문명을 선택합니다."
+msgstr "이 플레이어의 문명을 선택합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:134
 msgctxt "civilization"
 msgid "Random"
-msgstr "아무거나"
+msgstr "무작위"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:140
 msgid "Picks one civilization at random when the game starts."
-msgstr "놀이를 시작할 때 임의로 한 문명을 선택합니다."
+msgstr "게임을 시작할 때 임의로 한 문명을 선택합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerColor.js:172
 msgid "Pick a color."
-msgstr "색을 고릅니다."
+msgstr "색상을 선택합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerTeam.js:73
 msgid "Select player's team."
-msgstr "편을 선택합니다."
+msgstr "플레이어의 팀을 선택합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerTeam.js:76
 msgctxt "team"
@@ -152,11 +153,11 @@ msgstr "없음"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayerName.js:114
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
-msgstr "%(playerName)s 님 %(romanNumber)s"
+msgstr "%(playerName)s님 %(romanNumber)s"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):6
 msgid "Player Name"
-msgstr "선수 이름"
+msgstr "플레이어 이름"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):10
 msgid "Color"
@@ -164,7 +165,7 @@ msgstr "색상"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):14
 msgid "Player Placement"
-msgstr "선수 배치"
+msgstr "플레이어 배치"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):18
 msgid "Civilization"
@@ -172,16 +173,16 @@ msgstr "문명"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):25
 msgid "Team"
-msgstr "편"
+msgstr "팀"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:26
 msgid "Browse Maps"
-msgstr ""
+msgstr "지도 찾아보기"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:29
 #, javascript-format
 msgid "Press %(hotkey)s to view the list of available maps."
-msgstr ""
+msgstr "사용 가능한 지도 목록을 보려면 %(hotkey)s 키를 누르십시오."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:40
 msgid "Cheats"
@@ -189,7 +190,7 @@ msgstr "치트"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:43
 msgid "Toggle the usability of cheats."
-msgstr "치트의 사용할지 여부를 토글합니다."
+msgstr "치트의 편리함을 전환합니다."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map
@@ -203,25 +204,25 @@ msgstr "탐색된 지도"
 #. settings!
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/ExploredMap.js:59
 msgid "Toggle explored map (see initial map)."
-msgstr "지도 탐험 여부를 토글합니다.(초기지도 참조)"
+msgstr "탐색된 지도를 전환합니다.(초기지도 참조)"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:59
 msgid "Last Man Standing"
-msgstr "마지막 생존"
+msgstr "최후의 생존자"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:62
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
-msgstr "마지막 남은 선수 또는 마지막 남은 동맹군이 승리할지 여부를 토글합니다."
+msgstr "마지막 남은 플레이어 또는 마지막 남은 동맹군의 승리 여부를 전환합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:53
 msgid "Teams Locked"
-msgstr "편을 고정"
+msgstr "팀 고정됨"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:56
 msgid "Toggle locked teams."
-msgstr "편의 고정 여부를 토글합니다."
+msgstr "잠긴 팀을 전환합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Nomad.js:61
 msgid "Nomad"
@@ -231,15 +232,15 @@ msgstr "유목민"
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
-msgstr "유목민 모드에서 선수는 소수 유닛으로 시작하여 도시 건설에 적합한 장소를 찾아야 합니다. 휴전을 권장합니다."
+msgstr "유목민 모드에서 플레이어는 소수 유닛으로 시작하여 도시 건설에 적합한 장소를 찾아야 합니다. 휴전을 권장합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Rating.js:51
 msgid "Rated Game"
-msgstr "놀이 순위 등급"
+msgstr "게임 순위 등급"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Rating.js:54
 msgid "Toggle if this game will be rated for the leaderboard."
-msgstr "이 놀이가 순위표에 등급이 기록될지 여부를 토글합니다."
+msgstr "이 게임의 순위표 등급이 지정되는지 여부를 전환합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:62
 msgid "Hero Garrison"
@@ -247,14 +248,14 @@ msgstr "영웅 주둔지"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:65
 msgid "Toggle whether heroes can be garrisoned."
-msgstr "영웅 배치 여부를 토글합니다."
+msgstr "영웅 배치 여부를 전환합니다."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map
 #. settings!
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RevealedMap.js:50
 msgid "Revealed Map"
-msgstr "지도 공개"
+msgstr "공개된 지도"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map
@@ -265,19 +266,19 @@ msgstr "지도 공개 여부를 토글합니다 (모두 보기)."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Spies.js:43
 msgid "Disable Spies"
-msgstr "첩자 활동 비활성화"
+msgstr "첩자 사용안함"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Spies.js:46
 msgid "Disable spies during the game."
-msgstr "놀이중에 첩자 활동을 비활성화 합니다."
+msgstr "게임 중에 첩자를 사용하지 않도록 설정합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js:43
 msgid "Disable Treasures"
-msgstr "보물 비활성화"
+msgstr "보물 사용안함"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js:46
 msgid "Do not add treasures to the map."
-msgstr "지도에 보물을 추가 하지 않습니다."
+msgstr "지도에 보물을 추가하지 않습니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:49
 msgid "World population"
@@ -287,7 +288,7 @@ msgstr "세계 인구"
 msgid ""
 "When checked the Population Cap will be evenly distributed over all living "
 "players."
-msgstr "체크하면 인구 상한이 모든 살아있는 선수들에게 균등하게 분배됩니다."
+msgstr "이 항목을 선택하면 인구 한도가 살아있는 모든 플레이어들에게 고르게 분배됩니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:128
 msgid "Biome"
@@ -295,12 +296,12 @@ msgstr "생물군계"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:134
 msgid "Select the flora and fauna."
-msgstr "동식물을 선택합니다."
+msgstr "식물군과 동물군을 선택합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:137
 msgctxt "biome"
 msgid "Random"
-msgstr "아무거나"
+msgstr "무작위"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:140
 msgid "Pick a biome at random."
@@ -308,29 +309,29 @@ msgstr "무작위로 생물군집을 선택합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:101
 msgid "Daytime"
-msgstr "대낮"
+msgstr "주간"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:104
 msgid "Select whether the match takes place at daylight or night."
-msgstr "경기가 대낮 또는 밤중 언제 수행되는지 선택합니다."
+msgstr "시합가 주간 또는 야간에 진행되는지 여부를 선택합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:107
 msgctxt "daytime selection"
 msgid "Random"
-msgstr "아무거나"
+msgstr "무작위"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:110
 msgctxt "daytime selection"
 msgid "Randomly pick a time of the day."
-msgstr "하루 중 시간을 아무거나 선택한다."
+msgstr "하루 중 시간을 무작위 선택한다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:75
 msgid "Game Speed"
-msgstr "놀이 속도"
+msgstr "게임 속도"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:78
 msgid "Select game speed."
-msgstr "놀이 속도를 선택합니다."
+msgstr "게임 속도를 선택합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:138
 msgid "Landscape"
@@ -343,27 +344,27 @@ msgstr "이 지도의 풍경 중 하나를 선택합니다."
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:147
 msgctxt "landscape selection"
 msgid "Random Land or Naval"
-msgstr "아무 육지 또는 해군"
+msgstr "무작위 영토 또는 해군"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:148
 msgctxt "landscape selection"
 msgid "Select a random land or naval map generation."
-msgstr "아무렇게 생성된 육지 또는 해군 지도를 선택합니다."
+msgstr "무작위 육지 또는 해군지도 생성을 선택합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:152
 msgctxt "landscape selection"
 msgid "Random Land"
-msgstr "아무 육지"
+msgstr "무작위 육지"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:153
 msgctxt "landscape selection"
 msgid "Select a random land map generation."
-msgstr "아무렇게 만들어진 육지 지도를 선택합니다."
+msgstr "무작위 육지 지도 생성을 선택합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:157
 msgctxt "landscape selection"
 msgid "Random Naval"
-msgstr "아무 해군"
+msgstr "무작위 해군"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:158
 msgctxt "landscape selection"
@@ -372,11 +373,11 @@ msgstr "아무렇게 만들어진 해군 지도를 선택합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:89
 msgid "Map Filter"
-msgstr "지도 거르개"
+msgstr "지도 필터"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:92
 msgid "Select a map filter."
-msgstr "지도 거르개를 선택합니다."
+msgstr "지도 필터를 선택합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:143
 msgid "Select Map"
@@ -384,12 +385,12 @@ msgstr "지도 선택"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:146
 msgid "Select a map to play on."
-msgstr "놀이 지도를 선택합니다."
+msgstr "게임 지도를 선택합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:152
 msgctxt "map selection"
 msgid "Random"
-msgstr "아무거나"
+msgstr "무작위"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:155
 msgid "Pick any of the given maps at random."
@@ -401,7 +402,7 @@ msgstr "지도 크기"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:78
 msgid "Select map size. (Larger sizes may reduce performance.)"
-msgstr "지도 크기를 선택하십시오. (큰 크기의 지도는 성능을 저하시킬수 있습니다.)"
+msgstr "지도 크기를 선택합니다. (크기가 클수록 성능이 저하될 수 있습니다)"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapType.js:61
 msgid "Map Type"
@@ -409,19 +410,19 @@ msgstr "지도 유형"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapType.js:64
 msgid "Select a map type."
-msgstr "지도 유형을 선택하십시오."
+msgstr "지도 유형을 선택합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PlayerCount.js:49
 msgid "Number of Players"
-msgstr "선수 인원"
+msgstr "플레이어 인원"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PlayerCount.js:52
 msgid "Select number of players."
-msgstr "선수의 인원을 선택하십시오."
+msgstr "플레이어의 인원을 선택합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:92
 msgid "Population Cap"
-msgstr "인구 제한"
+msgstr "인구 상한"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:95
 msgid "Select population limit."
@@ -430,22 +431,22 @@ msgstr "인구 제한을 선택하세요."
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:98
 msgctxt "population limit"
 msgid "Per Player"
-msgstr "/ 선수당"
+msgstr "/ 플레이어"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:101
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
 "%(popCap)s population."
-msgstr "경고: %(players)s 명의 모든 선수가 %(popCap)s 명의 인구에 도달하면 성능 문제가 있을 수 있습니다."
+msgstr "경고: %(players)s명의 모든 플레이어가 %(popCap)s명의 인구에 도달하면 성능 문제가 있을 수 있습니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:82
 msgid "Starting Resources"
-msgstr "시작시 기본 자원"
+msgstr "시작시 자원"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:85
 msgid "Select the game's starting resources."
-msgstr "시작시 받은 기본 자원의 양을 선택하십시오."
+msgstr "게임의 시작시 자원을 선택합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:88
 #, javascript-format
@@ -455,25 +456,25 @@ msgstr "각 자원의 초기 양: %(resources)s."
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:91
 msgctxt "starting resources"
 msgid "Per Player"
-msgstr "/ 선수"
+msgstr "/ 플레이어"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:91
 msgid "Team Placement"
-msgstr "편 자리"
+msgstr "팀 배치"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:94
 msgid "Select one of the starting position patterns of this map."
-msgstr "이 지도의 시작 위치 무늬 중 하나를 선택하십시오."
+msgstr "이 지도의 시작 위치 패턴 중 하나를 선택합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:98
 msgctxt "team placement"
 msgid "Random"
-msgstr "아무거나"
+msgstr "무작위"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:99
 msgctxt "team placement"
 msgid "Select a random team placement pattern when starting the game."
-msgstr "놀이 시작할 때 아무 편으로 짜이고 무늬를 선택합니다."
+msgstr "게임을 시작할 때 임의의 팀 배치 패턴을 선택합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:105
 msgctxt "team placement"
@@ -484,7 +485,7 @@ msgstr "동그라미"
 msgid ""
 "Allied players are grouped and placed with opposing players on one circle "
 "spanning the map."
-msgstr "동맹 선수는 지도에 걸쳐 있는 하나의 동그라미에 묶이게되고 상대 선수와 함께 배치됩니다."
+msgstr "동맹 플레이어는 지도에 걸쳐 있는 하나의 동그라미에 묶이게되고 상대 플레이어와 함께 배치됩니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:110
 msgctxt "team placement"
@@ -493,25 +494,25 @@ msgstr "선"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:111
 msgid "Allied players are placed in a linear pattern."
-msgstr "동맹 선수는 줄 무늬로 배치됩니다."
+msgstr "동맹 플레이어는 줄 무늬로 배치됩니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:115
 msgctxt "team placement"
 msgid "Random Group"
-msgstr "아무 묶음"
+msgstr "무작위 그룹"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:116
 msgid "Allied players are grouped, but otherwise placed randomly on the map."
-msgstr "동맹 선수는 한 무리가 되지만, 그렇지 않으면 아무곳에 배치됩니다."
+msgstr "동맹 플레이어는 한 무리가 되지만, 그렇지 않으면 아무곳에 배치됩니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:120
 msgctxt "team placement"
 msgid "Stronghold"
-msgstr "요새"
+msgstr "거점"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:121
 msgid "Allied players are grouped in one random place of the map."
-msgstr "동맹 선수는 지도의 아무곳에 한 무리가 됩니다."
+msgstr "동맹이 된 플레이어는 지도에서 무작위로 한 곳에 그룹화됩니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TriggerDifficulty.js:81
 msgid "Difficulty"
@@ -519,7 +520,7 @@ msgstr "난이도"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TriggerDifficulty.js:84
 msgid "Select the difficulty of this scenario."
-msgstr "이 시나리오의 난이도를 선택하십시오."
+msgstr "이 시나리오의 난이도를 선택합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:77
 msgid "World Population Cap"
@@ -534,7 +535,7 @@ msgstr "세계 인구 제한을 선택합니다."
 msgid ""
 "Warning: There might be performance issues if %(popCap)s population is "
 "reached."
-msgstr "경고: %(popCap)s 인구가 상한에 도달하면 성능 문제가 발생할 수 있습니다."
+msgstr "경고: %(popCap)s인구가 상한에 도달하면 성능 문제가 발생할 수 있습니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:62
 msgid "Ceasefire"
@@ -542,7 +543,7 @@ msgstr "휴전"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:65
 msgid "Set time where no attacks are possible."
-msgstr "공격이 불가능한 시간을 설정합니다."
+msgstr "공격이 불가능한 시간을 지정합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:68
 msgctxt "ceasefire"
@@ -554,7 +555,7 @@ msgstr "휴전 없음"
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
-msgstr[0] "%(minutes)s 분 남음"
+msgstr[0] "%(minutes)s분 남음"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:87
 msgid "Relic Count"
@@ -564,7 +565,7 @@ msgstr "유물 개수"
 #, javascript-format
 msgid "%(number)s relic"
 msgid_plural "%(number)s relics"
-msgstr[0] "유물 %(number)s 개"
+msgstr[0] "유물 %(number)s개"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:93
 msgid ""
@@ -579,7 +580,7 @@ msgstr "유물 지속시간"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:90
 msgid "Minutes until the player has achieved Relic Victory."
-msgstr "선수가 유물 승리를 획득 할 때까지의 시간."
+msgstr "플레이어가 유물 승리를 획득 할 때까지의 시간."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:96
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:97
@@ -587,13 +588,13 @@ msgstr "선수가 유물 승리를 획득 할 때까지의 시간."
 msgctxt "victory duration"
 msgid "%(min)s minute"
 msgid_plural "%(min)s minutes"
-msgstr[0] "%(min)s 분"
+msgstr[0] "%(min)s분"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:99
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:100
 msgctxt "victory duration"
 msgid "Immediate Victory."
-msgstr "곧바로 승리했습니다."
+msgstr "즉각적인 승리."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:73
 msgid "Sea Level Rise Time"
@@ -601,14 +602,14 @@ msgstr "해수면 상승 시간"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:76
 msgid "Set the time when the water will start to rise."
-msgstr "물이 상승하기 시작하는 시간을 설정하십시오. (만조 시간 설정)"
+msgstr "물이 상승하기 시작하는 시간을 지정합니다. (만조 시간 설정)"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:79
 #, javascript-format
 msgctxt "sea level rise time"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
-msgstr[0] "%(minutes)s 분 남음"
+msgstr[0] "%(minutes)s분 남음"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:88
 msgid "Wonder Duration"
@@ -616,7 +617,7 @@ msgstr "불가사의 지속시간"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:91
 msgid "Minutes until the player has achieved Wonder Victory"
-msgstr "선수가 불가사의 승리를 달성할 때까지의 시간"
+msgstr "플레이어가 불가사의 승리를 달성할 때까지의 시간"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/CancelButton.js:36
 msgid "Back"
@@ -624,122 +625,122 @@ msgstr "뒤로"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/CancelButton.js:39
 msgid "Return to the lobby."
-msgstr "앞마당으로 돌아갑니다."
+msgstr "로비로 돌아갑니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/CancelButton.js:42
 msgid "Return to the main menu."
-msgstr "기본 차림표로 돌아갑니다."
+msgstr "기본 메뉴로 돌아갑니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/CivInfoButton.js:48
 #, javascript-format
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: 문명 개요 / 건축물 도감을 보기\n클릭하면 마지막으로 열린 항목이 다시 열립니다."
+msgstr "%(hotkey_civinfo)s/ %(hotkey_structree)s: 문명 개요 / 건축물 도감 보기\n클릭하면 마지막으로 열린 항목이 다시 열립니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/LobbyButton.js:19
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr "함께 놀기 앞마당을 대화창으로 표시합니다."
+msgstr "대화 창에 멀티 플레이어 로비를 표시합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:79
 msgid "I'm ready"
-msgstr "준비 되었습니다"
+msgstr "준비됐어요"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:80
 msgid "Stay ready"
-msgstr "준비 상태 유지"
+msgstr "준비하세요"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:81
 msgid "I'm not ready!"
-msgstr "준비가 안 되었습니다!"
+msgstr "준비가 안 됐어요!"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:85
 msgid "State that you are ready to play."
-msgstr "시작할 준비가 된 상태입니다."
+msgstr "플레이할 준비가 되었다고 명시합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:86
 msgid "Stay ready even when the game settings change."
-msgstr "놀이 설정이 변경되더라도 준비 상태를 유지합니다."
+msgstr "게임 설정이 변경되더라도 준비 상태를 유지하십시오."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:87
 msgid "State that you are not ready to play."
-msgstr "진행할 준비가 되지 않은 상태입니다."
+msgstr "플레이할 준비가 되지 않았다고 명시합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ResetCivsButton.js:33
 msgid ""
 "Reset any civilizations that have been selected to the default (random)."
-msgstr "기본값으로 선택된 모든 문명을 다시 설정합니다 (아무거나)."
+msgstr "선택한 문명을 기본값(무작위)으로 재설정합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ResetTeamsButton.js:35
 msgid "Reset all teams to the default."
-msgstr "모든 편을 기본값으로 다시 설정합니다."
+msgstr "모든 팀을 기본값으로 재설정합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/StartGameButton.js:65
 msgid "Start Game!"
-msgstr "놀이 시작!"
+msgstr "게임 시작!"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/StartGameButton.js:68
 msgid "Start a new game with the current settings."
-msgstr "현재 설정으로 새로운 놀이를 시작합니다."
+msgstr "현재 설정으로 새로운 게임을 시작합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/StartGameButton.js:71
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)."
-msgstr "현재 설정으로 새 놀이를 시작합니다 (모든 선수가 준비될 때까지 사용안함)."
+msgstr "현재 설정으로 새로운 게임을 시작합니다 (모든 플레이어가 준비될 때까지 사용안함)."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatInputPanel.js:55
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete player names or settings."
-msgstr "%(hotkey)s 키를 누르면 선수 이름이나 설정이 자동 완성됩니다."
+msgstr "%(hotkey)s 키를 누르면 플레이어 이름이나 설정이 자동 완성합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientChat.js:27
 msgid "Unknown Player"
-msgstr "알 수 없는 선수"
+msgstr "알 수 없는 플레이어"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientChat.js:47
 #, javascript-format
 msgid "<%(username)s>"
-msgstr "<%(username)s> 님"
+msgstr "<%(username)s>님"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientChat.js:50
 #, javascript-format
 msgid "%(username)s %(message)s"
-msgstr "%(username)s 님 %(message)s"
+msgstr "%(username)s님 %(message)s"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientConnection.js:27
 #, javascript-format
 msgid "%(username)s has joined"
-msgstr "%(username)s 님이 들어왔습니다"
+msgstr "%(username)s님이 들어왔습니다"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientConnection.js:30
 #, javascript-format
 msgid "%(username)s has left"
-msgstr "%(username)s 님이 나갔습니다"
+msgstr "%(username)s님이 나갔습니다"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientKicked.js:22
 #, javascript-format
 msgid "%(username)s has been kicked"
-msgstr "%(username)s 님이 쫓겨났습니다(킥)"
+msgstr "%(username)s님이 쫓겨났습니다(킥)"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientKicked.js:25
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr "%(username)s 님이 접근금지 당했습니다(밴)"
+msgstr "%(username)s님이 접근금지 당했습니다(밴)"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientReady.js:28
 #, javascript-format
 msgid "* %(username)s is not ready."
-msgstr "* %(username)s 님은 준비되지 않았습니다."
+msgstr "* %(username)s님은 준비되지 않았습니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientReady.js:29
 #, javascript-format
 msgid "* %(username)s is ready!"
-msgstr "* %(username)s 님은 준비되었습니다!"
+msgstr "* %(username)s님은 준비되었습니다!"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/GameSettingsChanged.js:22
 msgid "Game settings have been changed"
-msgstr "놀이 설정이 바뀌었습니다"
+msgstr "게임 설정이 변경되었습니다"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatPanel.xml:(caption):9
 msgid "Send"
@@ -753,7 +754,7 @@ msgstr "== %(message)s"
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/TimestampWrapper.js:25
 #, javascript-format
 msgid "%(time)s %(message)s"
-msgstr "%(time)s %(message)s"
+msgstr "%(time)s%(message)s"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/TimestampWrapper.js:28
 #, javascript-format
@@ -766,11 +767,11 @@ msgstr "HH:mm"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.js:38
 msgid "Cheats enabled."
-msgstr "치트를 사용합니다."
+msgstr "치트 사용가능."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.js:41
 msgid "Rated game."
-msgstr "등급 놀이입니다."
+msgstr "등급 게임입니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:77
 #, javascript-format
@@ -780,20 +781,20 @@ msgstr "%(name)s설정 탭을 전환하려면 클릭하십시오."
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:80
 #, javascript-format
 msgid "Press %(hotkey)s to move to the next settings tab."
-msgstr "다음 설정 탭으로 이동하려면 %(hotkey)s 를 누르십시오."
+msgstr "다음 설정 탭으로 이동하려면 %(hotkey)s를 누르십시오."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:83
 #, javascript-format
 msgid "Press %(hotkey)s to move to the previous settings tab."
-msgstr "이전 설정 탭으로 이동하려면 %(hotkey)s 를 누르십시오."
+msgstr "이전 설정 탭으로 이동하려면 %(hotkey)s를 누르십시오."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/MapPreview.js:47
 msgid "Click to view the list of available maps."
-msgstr ""
+msgstr "사용 가능한 지도 목록을 보려면 클릭하십시오."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/TipsPanel.xml:(caption):9
 msgid "Show this message in the future."
-msgstr "이 메시지를 계속 표시합니다."
+msgstr "나중에 이 메시지를 표시합니다."
 
 #: gui/gamesetup/Pages/LoadingPage/LoadingPage.xml:(caption):7
 msgid "Loading"
@@ -801,25 +802,25 @@ msgstr "불러오는 중"
 
 #: gui/gamesetup/Pages/LoadingPage/LoadingPage.xml:(caption):11
 msgid "Loading map data. Please wait…"
-msgstr "지도 자료를 불러오는 중입니다. 잠시만 기다려주십시오…"
+msgstr "지도 데이터를 불러오는 중입니다. 잠시만 기다려주십시오…"
 
 #: gui/gamesetup/gamesetup.xml:(caption):13
 msgid "Match Setup"
-msgstr "경기 설정"
+msgstr "시합 설정"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:55
 #, javascript-format
 msgid "%(name)s's game"
-msgstr "%(name)s 님의 놀이"
+msgstr "%(name)s님의 게임"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:114
 msgid "Please enter a valid server name."
-msgstr "올바른 서버 이름을 입력하십시오."
+msgstr "유효한 서버 이름을 입력하십시오."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:121
 #, javascript-format
 msgid "Server port number must be between %(min)s and %(max)s."
-msgstr "서버 포트 번호는 %(min)s 부터 %(max)s 사이 여야합니다."
+msgstr "서버 포트 번호는 %(min)s부터 %(max)s사이 여야합니다."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:138
 msgid "Connecting to server..."
@@ -836,11 +837,11 @@ msgstr "서버에 등록하는 중..."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:229
 msgid "Game has already started, rejoining..."
-msgstr "놀이가 이미 시작되었습니다. 다시 합류 중..."
+msgstr "게임이 이미 시작되었습니다. 다시 합류 중..."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:300
 msgid "Game name already in use."
-msgstr "놀이 이름이 이미 사용되고 있습니다."
+msgstr "게임 이름이 이미 사용되고 있습니다."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:310
 msgid "Failed to host via STUN."
@@ -849,7 +850,7 @@ msgstr "STUN을 통해 호스트하지 못함."
 #: gui/gamesetup_mp/gamesetup_mp.js:324
 #, javascript-format
 msgid "Cannot host game: %(message)s."
-msgstr "놀이를 호스트할 수 없음: %(message)s."
+msgstr "게임을 호스트할 수 없음: %(message)s."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:325 gui/gamesetup_mp/gamesetup_mp.js:354
 msgid "Error"
@@ -858,25 +859,25 @@ msgstr "오류"
 #: gui/gamesetup_mp/gamesetup_mp.js:353
 #, javascript-format
 msgid "Cannot join game: %(message)s."
-msgstr "놀이에 참여할 수 없음: %(message)s."
+msgstr "게임에 참여할 수 없음: %(message)s."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:375
 #, javascript-format
 msgid "%(playername)s's game"
-msgstr "%(playername)s 의 놀이"
+msgstr "%(playername)s의 게임"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):18
 msgid "Multiplayer"
-msgstr "함께 놀기"
+msgstr "멀티플레이어"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):24
 msgid "Joining an existing game."
-msgstr "있는 놀이에 참여하는 중입니다."
+msgstr "기존 게임에 참여합니다."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):28
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):70
 msgid "Player Name:"
-msgstr "선수 이름:"
+msgstr "플레이어 이름:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):38
 msgid "Server Hostname or IP:"
@@ -889,7 +890,7 @@ msgstr "서버 포트:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):65
 msgid "Set up your server to host."
-msgstr "서버를 초대할 수 있도록 설정하십시오."
+msgstr "호스트할 서버를 지정합니다."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):83
 msgid "Server Name:"
@@ -897,7 +898,7 @@ msgstr "서버 이름:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):114
 msgid "Use STUN to work around firewalls"
-msgstr "STUN을 사용하여 방화벽 해결"
+msgstr "STUN을 사용하여 방화벽 우회"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):122
 msgid "Continue"
@@ -910,7 +911,7 @@ msgstr "취소"
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):52
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):99
 msgid "Leave blank to use the default port."
-msgstr "기본 포트를 사용하려면 비워 둡니다."
+msgstr "기본 포트를 사용하려면 공백으로 두십시오."
 
 #: gui/loading/ProgressBar.js:48
 #, javascript-format
@@ -929,12 +930,12 @@ msgstr "• %(tiptext)s"
 #: gui/loading/TitleDisplay.js:15
 #, javascript-format
 msgid "Generating “%(map)s”"
-msgstr "“%(map)s” 의 지도를 만드는 중"
+msgstr "“%(map)s” 지도 생성 중"
 
 #: gui/loading/TitleDisplay.js:17
 #, javascript-format
 msgid "Loading “%(map)s”"
-msgstr "“%(map)s” 의 지도를 불러오는 중"
+msgstr "“%(map)s” 지도 불러오는 중"
 
 #: gui/text/quotes.txt:1
 msgid ""
@@ -1539,7 +1540,7 @@ msgid ""
 "“I'd rather be the first man here than the second man in Rome.” \\n— Caesar,"
 " when passing through a barbarian village in the Alps (Plutarch, “Parallel "
 "Lives”, “Caesar”, sec. 11)"
-msgstr "“나는 로마에서 두 번째 남자보다 차라리 여기서 첫 번째 남자가 되는 것이 더 낫다.” \\n— 카이사르, 알프스의 야만인 마을을 지날 때 (플루타르크, “플루타르코스 영웅전”, “카이사르”, 11항)"
+msgstr "“나는 로마에서 두 번째 남자보다 차라리 여기서 첫 번째 남자가 되는 것이 더 낫다.” \\n— 카이사르, 알프스의 야만인 부락을 지날 때 (플루타르크, “플루타르코스 영웅전”, “카이사르”, 11항)"
 
 #: gui/text/quotes.txt:89
 msgid ""
@@ -1843,7 +1844,7 @@ msgid ""
 "nothing, we think he is good for nothing.” \\n— Pericles in his Funeral "
 "Oration for Athenians that died in the first year of the war (Thucydides, "
 "“History of the Peloponnesian War”, II. 40.2)"
-msgstr "“우리는 혼자 정치에 무지한 사람이 아무것도 방해하지 않는다고 생각하지 않으며, 그가 아무 것도 좋지 않다고 생각한다.” \\n— 전쟁 첫해에 사망한 아테네 인을위한 장례식 연설의 페리클레스 (투키디데스, “펠로폰네소스 전쟁사”, II. 40.2)"
+msgstr "“우리는 혼자 정치에 무지한 사람이 아무것도 방해하지 않는다고 생각하지 않으며, 그가 무작위 것도 좋지 않다고 생각한다.” \\n— 전쟁 첫해에 사망한 아테네 인을위한 장례식 연설의 페리클레스 (투키디데스, “펠로폰네소스 전쟁사”, II. 40.2)"
 
 #: gui/text/quotes.txt:134
 msgid ""
@@ -1917,7 +1918,7 @@ msgstr "“친구의 집에 손님이 너무 반가워서 3일 후에도 귀찮�
 msgid ""
 "“You cannot eat your cake and have it too, unless you think your money is "
 "immortal.”\\n— Plautus (“Trinummus”, Act II, scene 4, 13–14)"
-msgstr ""
+msgstr "“돈이 불멸이라고 생각하지 않는 한 케이크도 먹을 수 없습니다.”\\n— Plautus (“Trinummus”, Act II, scene 4, 13–14)"
 
 #: gui/text/quotes.txt:144
 msgid ""
@@ -2119,7 +2120,7 @@ msgid ""
 "“He could boast that he found a city of brick and left it a city of "
 "marble.”\\n— Suetonius, commenting on the many building projects of Augustus"
 " in Rome (“Divus Augustus”, 28.3)"
-msgstr ""
+msgstr "“그는 벽돌로 된 도시를 발견하여, 그 도시를 대리석으로 만든 도시라고 자랑할 수 있었습니다.”\\n— 수토니우스, 로마의 아우구스투스의 많은 건축 프로젝트에 대한 논평 (“Divus Augustus”, 28.3)"
 
 #: gui/text/quotes.txt:169
 msgid "“Moderation in all things.” \\n— Terence (“The Girl from Andros”, 61)"
@@ -2218,7 +2219,7 @@ msgid ""
 "Tiberius Gracchus, advocating for land reform to the benefit of homeless and"
 " unemployed veterans whose lands had often been bought up while they were on"
 " campaign. (Plutarch, “Parallel Lives”, “Tiberius Gracchus”, 9.4–5)"
-msgstr ""
+msgstr "“이탈리아의 야수들은 퇴각해야 할 동굴이 있지만, 그녀의 명분에 그들의 피를 흘린 용감한 퇴역군인들은 공기와 빛 밖에 남지 않았다. 그들은 아내와 아이들과 함께 노숙자들을 배회한다.”\\n— 티베리우스 그라쿠스, 그들이 선거운동을 하는 동안 종종 땅을 사들인 노숙자와 실업자 퇴역군인들의 이익을 위해 토지개혁을 지지했다. (Plutarch, “Parallel Lives”, “Tiberius Gracchus”, 9.4–5)"
 
 #: gui/text/quotes.txt:182
 msgid ""
@@ -2228,7 +2229,7 @@ msgid ""
 "benefit of homeless and unemployed veterans whose lands had often been "
 "bought up while they were on campaign. (Plutarch, “Parallel Lives”, "
 "“Tiberius Gracchus”, 9.5)"
-msgstr ""
+msgstr "“군인들은 부와 사치로 남을 지원하기 위해 싸우고 죽는데, 그들은 한 점의 농지도 소유하지 않고 세계의 주인이라고 불린다.”\\n— 티베리우스 그라쿠스, 그들이 선거운동을 하는 동안 종종 땅을 사들인 노숙자와 실업자 퇴역군인들의 이익을 위해 토지개혁을 지지했다. (Plutarch, “Parallel Lives”, “Tiberius Gracchus”, 9.5)"
 
 #: gui/text/quotes.txt:183
 msgid ""

@@ -11,6 +11,7 @@
       <MaxRange>8.0</MaxRange>
       <PrepareTime>50</PrepareTime>
       <RepeatTime>100</RepeatTime>
+      <RestrictedClasses datatype="tokens">!Ship</RestrictedClasses>
     </Melee>
   </Attack>
   <Cost>
@@ -41,7 +42,7 @@
   </Health>
   <Identity>
     <GenericName>Fire Ship</GenericName>
-    <Tooltip>Rapidly drain the health of enemy ships. Slowly loses health due to being on fire, so use the Fire Ship quickly.</Tooltip>
+    <Tooltip>Unrepairable. Gradually loses health. Can only attack Ships.</Tooltip>
     <VisibleClasses datatype="tokens">Melee Warship Fireship</VisibleClasses>
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>

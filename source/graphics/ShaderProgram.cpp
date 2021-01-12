@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -236,6 +236,11 @@ public:
 		Uniform(id, v[0]);
 	}
 
+	virtual std::vector<VfsPath> GetFileDependencies() const override
+	{
+		return {m_VertexFile, m_FragmentFile};
+	}
+
 private:
 	VfsPath m_VertexFile;
 	VfsPath m_FragmentFile;
@@ -272,6 +277,7 @@ public:
 		m_Program = 0;
 		m_VertexShader = pglCreateShaderObjectARB(GL_VERTEX_SHADER);
 		m_FragmentShader = pglCreateShaderObjectARB(GL_FRAGMENT_SHADER);
+		m_FileDependencies = {m_VertexFile, m_FragmentFile};
 	}
 
 	~CShaderProgramGLSL()
@@ -431,7 +437,17 @@ public:
 		if (fragmentFile.Load(g_VFS, m_FragmentFile) != PSRETURN_OK)
 			return;
 
-		CPreprocessorWrapper preprocessor;
+		std::vector<VfsPath> newFileDependencies = {m_VertexFile, m_FragmentFile};
+
+		CPreprocessorWrapper preprocessor([&newFileDependencies](const CStr& includePath, CStr& out) -> bool {
+			const VfsPath includeFilePath(L"shaders/glsl/" + wstring_from_utf8(includePath));
+			CVFSFile includeFile;
+			if (includeFile.Load(g_VFS, includeFilePath) != PSRETURN_OK)
+				return false;
+			out = includeFile.GetAsString();
+			newFileDependencies.push_back(includeFilePath);
+			return true;
+		});
 		preprocessor.AddDefines(m_Defines);
 
 #if CONFIG2_GLES
@@ -443,6 +459,8 @@ public:
 
 		CStr vertexCode = preprocessor.Preprocess(vertexFile.GetAsString());
 		CStr fragmentCode = preprocessor.Preprocess(fragmentFile.GetAsString());
+
+		m_FileDependencies = std::move(newFileDependencies);
 
 #if CONFIG2_GLES
 		// Ugly hack to replace desktop GLSL 1.10/1.20 with GLSL ES 1.00,
@@ -637,9 +655,15 @@ public:
 		}
 	}
 
+	virtual std::vector<VfsPath> GetFileDependencies() const
+	{
+		return m_FileDependencies;
+	}
+
 private:
 	VfsPath m_VertexFile;
 	VfsPath m_FragmentFile;
+	std::vector<VfsPath> m_FileDependencies;
 	CShaderDefines m_Defines;
 	std::map<CStrIntern, int> m_VertexAttribs;
 

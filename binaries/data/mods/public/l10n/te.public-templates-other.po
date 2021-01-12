@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-04 08:09+0000\n"
-"PO-Revision-Date: 2021-01-04 10:23+0000\n"
+"POT-Creation-Date: 2021-01-08 08:08+0000\n"
+"PO-Revision-Date: 2021-01-08 10:24+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Telugu (http://www.transifex.com/wildfire-games/0ad/language/te/)\n"
 "MIME-Version: 1.0\n"
@@ -64,47 +64,20 @@ msgctxt "status effect"
 msgid "Burning"
 msgstr ""
 
-#: simulation/data/template_helpers/damage_types/crush.jsondescription
-msgctxt "damage type"
-msgid "Damage caused by sheer force, like with a club or by trampling."
-msgstr "కర్రతో లేదా తొక్కడం వల్ల పరిపూర్ణ శక్తి వల్ల నష్టం కలిగింది."
-
-#: simulation/data/template_helpers/damage_types/crush.jsonname
-msgctxt "damage type"
-msgid "Crush"
-msgstr "అనిచివెయ్యు"
-
-#: simulation/data/template_helpers/damage_types/fire.jsondescription
-msgctxt "damage type"
-msgid "Damage caused by burning objects, like a torch or a flaming arrow."
+#: simulation/data/status_effects/poisoned.jsonapplierTooltip
+msgctxt "status effect"
+msgid "This unit causes poison damage."
 msgstr ""
 
-#: simulation/data/template_helpers/damage_types/fire.jsonname
-msgctxt "damage type"
-msgid "Fire"
+#: simulation/data/status_effects/poisoned.jsonreceiverTooltip
+msgctxt "status effect"
+msgid "This unit is poisoned."
 msgstr ""
 
-#: simulation/data/template_helpers/damage_types/hack.jsondescription
-msgctxt "damage type"
-msgid ""
-"Damage caused by sharp objects cutting or chopping, like with a sword or an "
-"axe."
+#: simulation/data/status_effects/poisoned.jsonstatusName
+msgctxt "status effect"
+msgid "Poisoned"
 msgstr ""
-
-#: simulation/data/template_helpers/damage_types/hack.jsonname
-msgctxt "damage type"
-msgid "Hack"
-msgstr "ముక్కలుగా నరుకు"
-
-#: simulation/data/template_helpers/damage_types/pierce.jsondescription
-msgctxt "damage type"
-msgid "Damage caused by sharp pointy objects, like arrows or spears."
-msgstr ""
-
-#: simulation/data/template_helpers/damage_types/pierce.jsonname
-msgctxt "damage type"
-msgid "Pierce"
-msgstr "రంధ్రము చేయు"
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:24
 msgid "Army of Alexander the Great."

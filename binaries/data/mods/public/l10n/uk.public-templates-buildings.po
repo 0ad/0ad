@@ -25,9 +25,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-01 08:01+0000\n"
-"PO-Revision-Date: 2021-01-01 19:55+0000\n"
-"Last-Translator: Микола Франчук <thekolian1996@gmail.com>\n"
+"POT-Creation-Date: 2021-01-08 08:08+0000\n"
+"PO-Revision-Date: 2021-01-08 10:37+0000\n"
+"Last-Translator: Halyna Bondar\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -114,11 +114,6 @@ msgstr "Халкеон"
 #: simulation/templates/structures/spart/fortress.xml:9
 msgid "Phrourion"
 msgstr "Фроуріон"
-
-#: simulation/templates/structures/athen/fortress.xml:10
-#: simulation/templates/structures/spart/fortress.xml:10
-msgid "Garrison Soldiers for additional arrows."
-msgstr "Розмістити солдатів у гарнізоні для додаткових стріл."
 
 #: simulation/templates/structures/athen/gymnasium.xml:22
 #: simulation/templates/structures/athen/gymnasium.xml:26
@@ -358,6 +353,17 @@ msgstr "Ґобаніон"
 msgid "Dunon"
 msgstr "Дунон"
 
+#: simulation/templates/structures/brit/fortress.xml:13
+#: simulation/templates/structures/gaul/fortress.xml:6
+#: simulation/templates/structures/iber/fortress.xml:15
+#: simulation/templates/structures/mace/fortress.xml:10
+#: simulation/templates/structures/maur/fortress.xml:6
+#: simulation/templates/structures/rome/fortress.xml:6
+msgid ""
+"Territory root. Train Champion Infantry and Heroes. Garrison Soldiers for "
+"additional arrows."
+msgstr ""
+
 #: simulation/templates/structures/brit/house.xml:9
 #: simulation/templates/structures/gaul/house.xml:5
 msgid "Tegia"
@@ -493,6 +499,12 @@ msgstr "Шадд"
 #: simulation/templates/structures/cart/fortress.xml:9
 msgid "Ḥamet"
 msgstr "Хамет"
+
+#: simulation/templates/structures/cart/fortress.xml:10
+msgid ""
+"Territory root. Train Champion Elephants and Heroes. Garrison Soldiers for "
+"additional arrows."
+msgstr ""
 
 #: simulation/templates/structures/cart/house.xml:8
 msgid "Bet"
@@ -773,6 +785,14 @@ msgstr "Сабаль орма"
 msgid "Cancho Roano"
 msgstr "Канчо Роано"
 
+#: simulation/templates/structures/ishtar_gate.xml:25
+msgid "Ishtar Gate of Babylon"
+msgstr "Брама Іштар з Вавилону"
+
+#: simulation/templates/structures/ishtar_gate.xml:26
+msgid "Territory root."
+msgstr "Територіальна підтримка."
+
 #: simulation/templates/structures/kush/arsenal.xml:5
 msgid "Pr-ỉwn n ms﻿"
 msgstr "Пер-іун ні мес"
@@ -832,6 +852,12 @@ msgstr "Хему хаі ні ра-а"
 #: simulation/templates/structures/kush/fortress.xml:9
 msgid "Htm"
 msgstr "Хетем"
+
+#: simulation/templates/structures/kush/fortress.xml:10
+msgid ""
+"Territory root. Train Champion Infantry and Elephants and Heroes. Garrison "
+"Soldiers for additional arrows."
+msgstr ""
 
 #: simulation/templates/structures/kush/house.xml:5
 msgid "Pr"
@@ -1197,10 +1223,6 @@ msgstr "Арштішта"
 msgid "Didā"
 msgstr "Діда"
 
-#: simulation/templates/structures/pers/fortress.xml:6
-msgid "Research technologies. Garrison Soldiers for additional arrows."
-msgstr "Досліджувати технології. Розмістити солдатів у гарнізоні для додаткових стріл."
-
 #: simulation/templates/structures/pers/hall.xml:23
 msgid "Gate of All Nations"
 msgstr "Брама всіх народів"
@@ -1221,14 +1243,6 @@ msgstr "Хувада"
 #: simulation/templates/structures/pers/inn.xml:12
 msgid "Inn"
 msgstr "Готель"
-
-#: simulation/templates/structures/pers/ishtar_gate.xml:26
-msgid "Ishtar Gate of Babylon"
-msgstr "Брама Іштар з Вавилону"
-
-#: simulation/templates/structures/pers/ishtar_gate.xml:27
-msgid "IshtarGate"
-msgstr "Брама Іштар"
 
 #: simulation/templates/structures/pers/outpost.xml:5
 msgid "Didebani"
@@ -1277,9 +1291,9 @@ msgstr "Статмос тон елепантон"
 #: simulation/templates/structures/ptol/fortress.xml:10
 #: simulation/templates/structures/sele/fortress.xml:10
 msgid ""
-"Train Champions and research technologies. Garrison Soldiers for additional "
-"arrows."
-msgstr "Тренувати чемпіонів та досліджувати технології. Розмістити солдатів у гарнізоні для додаткових стріл."
+"Territory root. Train Champion Infantry and Elephants. Garrison Soldiers for"
+" additional arrows."
+msgstr ""
 
 #: simulation/templates/structures/ptol/house.xml:19
 msgid ""
@@ -1418,42 +1432,42 @@ msgstr "Вігіларіум"
 msgid "Turris Līgnea"
 msgstr "Турріс лігнеа"
 
-#: simulation/templates/structures/rome/siege_wall_gate.xml:24
+#: simulation/templates/structures/rome/siege_wall_gate.xml:25
 msgid "Siege Wall Gate"
 msgstr "Брама облогового муру"
 
-#: simulation/templates/structures/rome/siege_wall_gate.xml:25
+#: simulation/templates/structures/rome/siege_wall_gate.xml:26
 msgid "Porta Circummūnītiōnis"
 msgstr "Порта ціркуммунітіоніс"
 
-#: simulation/templates/structures/rome/siege_wall_gate.xml:26
-#: simulation/templates/structures/rome/siege_wall_long.xml:27
-#: simulation/templates/structures/rome/siege_wall_medium.xml:24
-#: simulation/templates/structures/rome/siege_wall_short.xml:24
-#: simulation/templates/structures/rome/siege_wall_tower.xml:23
+#: simulation/templates/structures/rome/siege_wall_gate.xml:27
+#: simulation/templates/structures/rome/siege_wall_long.xml:28
+#: simulation/templates/structures/rome/siege_wall_medium.xml:25
+#: simulation/templates/structures/rome/siege_wall_short.xml:25
+#: simulation/templates/structures/rome/siege_wall_tower.xml:35
 #: simulation/templates/structures/rome/wallset_siege.xml:8
 msgid "SiegeWall"
-msgstr "Облоговий мур"
-
-#: simulation/templates/structures/rome/siege_wall_long.xml:25
-#: simulation/templates/structures/rome/siege_wall_medium.xml:22
-#: simulation/templates/structures/rome/siege_wall_short.xml:22
-#: simulation/templates/structures/rome/wallset_siege.xml:5
-msgid "Siege Wall"
 msgstr "Облоговий мур"
 
 #: simulation/templates/structures/rome/siege_wall_long.xml:26
 #: simulation/templates/structures/rome/siege_wall_medium.xml:23
 #: simulation/templates/structures/rome/siege_wall_short.xml:23
+#: simulation/templates/structures/rome/wallset_siege.xml:5
+msgid "Siege Wall"
+msgstr "Облоговий мур"
+
+#: simulation/templates/structures/rome/siege_wall_long.xml:27
+#: simulation/templates/structures/rome/siege_wall_medium.xml:24
+#: simulation/templates/structures/rome/siege_wall_short.xml:24
 #: simulation/templates/structures/rome/wallset_siege.xml:6
 msgid "Mūrus Circummūnītiōnis"
 msgstr "Мурус ціркуммунітіоніс"
 
-#: simulation/templates/structures/rome/siege_wall_tower.xml:21
+#: simulation/templates/structures/rome/siege_wall_tower.xml:31
 msgid "Siege Wall Tower"
 msgstr "Вежа облогового муру"
 
-#: simulation/templates/structures/rome/siege_wall_tower.xml:22
+#: simulation/templates/structures/rome/siege_wall_tower.xml:32
 msgid "Turris Circummūnītiōnis"
 msgstr "Турріс ціркуммунітіоніс"
 
@@ -1956,10 +1970,8 @@ msgid "Fortress"
 msgstr "Фортеця"
 
 #: simulation/templates/template_structure_military_fortress.xml:70
-msgid ""
-"Train Champions and Heroes and research technologies. Garrison Soldiers for "
-"additional arrows."
-msgstr "Тренувати чемпіонів та героїв, та досліджувати технології. Розмістити солдатів у гарнізоні для додаткових стріл."
+msgid "Territory root. Garrison Soldiers for additional arrows."
+msgstr ""
 
 #: simulation/templates/template_structure_military_range.xml:22
 msgid "Practice Range"

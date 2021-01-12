@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -125,6 +125,11 @@ private:
 
 	static Status ReloadChangedFileCB(void* param, const VfsPath& path);
 	Status ReloadChangedFile(const VfsPath& path);
+
+	/**
+	 * Associates the file with the program to be reloaded if the file has changed.
+	 */
+	void AddProgramFileDependency(const CShaderProgramPtr& program, const VfsPath& path);
 };
 
 #endif // INCLUDED_SHADERMANAGER
