@@ -31,6 +31,8 @@ CStdDeserializer::CStdDeserializer(const ScriptInterface& scriptInterface, std::
 	m_ScriptInterface(scriptInterface), m_Stream(stream)
 {
 	JS_AddExtraGCRootsTracer(m_ScriptInterface.GetGeneralJSContext(), CStdDeserializer::Trace, this);
+	// Insert a dummy object in front, as valid tags start at 1.
+	m_ScriptBackrefs.emplace_back(nullptr);
 }
 
 CStdDeserializer::~CStdDeserializer()

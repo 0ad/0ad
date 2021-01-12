@@ -22,6 +22,9 @@
 
 #include "lib/byte_order.h"
 
+#include "js/AllocPolicy.h"
+#include "js/GCHashTable.h"
+
 #include <iostream>
 #include <map>
 #include <streambuf>
@@ -83,16 +86,20 @@ class CBinarySerializerScriptImpl
 {
 public:
 	CBinarySerializerScriptImpl(const ScriptInterface& scriptInterface, ISerializer& serializer);
+	~CBinarySerializerScriptImpl();
 
 	void ScriptString(const char* name, JS::HandleString string);
 	void HandleScriptVal(JS::HandleValue val);
 private:
+	static void Trace(JSTracer* trc, void* data);
+
 	const ScriptInterface& m_ScriptInterface;
 	ISerializer& m_Serializer;
 
-	JS::PersistentRootedSymbol m_ScriptBackrefSymbol;
-	i32 m_ScriptBackrefsNext;
-	i32 GetScriptBackrefTag(JS::HandleObject obj);
+	using ObjectTagMap = JS::GCHashMap<JS::Heap<JSObject*>, u32, js::PointerHasher<JSObject*>, js::SystemAllocPolicy>;
+	ObjectTagMap m_ScriptBackrefTags;
+	u32 m_ScriptBackrefsNext;
+	u32 GetScriptBackrefTag(JS::HandleObject obj);
 };
 
 /**
