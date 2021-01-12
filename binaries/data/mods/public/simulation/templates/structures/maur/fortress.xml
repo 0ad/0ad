@@ -3,20 +3,7 @@
   <Identity>
     <Civ>maur</Civ>
     <SpecificName>Durg</SpecificName>
-    <Tooltip>Territory root. Train Champion Infantry and Heroes. Garrison Soldiers for additional arrows.</Tooltip>
   </Identity>
-  <ProductionQueue>
-    <Entities datatype="tokens">
-      units/{civ}/champion_infantry
-      units/{civ}/champion_maiden
-      units/{civ}/hero_chanakya
-      units/{civ}/hero_chandragupta
-      units/{civ}/hero_ashoka
-    </Entities>
-    <Technologies datatype="tokens">
-      attack_soldiers_will
-    </Technologies>
-  </ProductionQueue>
   <VisualActor>
     <Actor>structures/mauryas/fortress.xml</Actor>
   </VisualActor>

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_special">
+  <BuildRestrictions>
+    <Category>Palace</Category>
+  </BuildRestrictions>
   <Cost>
     <BuildTime>200</BuildTime>
     <Resources>
@@ -16,9 +19,10 @@
   </Health>
   <Identity>
     <Civ>maur</Civ>
+    <GenericName>Palace</GenericName>
     <SpecificName>Harmya</SpecificName>
-    <Tooltip>Train Female Citizens, Champions, and Heroes.</Tooltip>
-    <Classes datatype="tokens">ConquestCritical</Classes>
+    <Tooltip>Territory root. Train Maiden Guards and Heroes.</Tooltip>
+    <Classes datatype="tokens">ConquestCritical CivSpecific</Classes>
     <VisibleClasses datatype="tokens">Palace</VisibleClasses>
     <Icon>gaia/special_stoa.png</Icon>
   </Identity>
@@ -35,7 +39,7 @@
   <ProductionQueue>
     <BatchTimeModifier>0.7</BatchTimeModifier>
     <Entities datatype="tokens">
-      units/{civ}/support_female_citizen
+      units/{civ}/champion_maiden
       units/{civ}/champion_maiden_archer
       units/{civ}/hero_chanakya
       units/{civ}/hero_chandragupta
@@ -49,14 +53,15 @@
     </SoundGroups>
   </Sound>
   <TerritoryInfluence>
-    <Root>false</Root>
-    <Radius>38</Radius>
-    <Weight>65535</Weight>
+    <Root>true</Root>
+    <Radius>48</Radius>
+    <Weight>40000</Weight>
   </TerritoryInfluence>
   <Vision>
     <Range>40</Range>
   </Vision>
   <VisualActor>
     <Actor>structures/mauryas/misc_structure_01.xml</Actor>
+    <FoundationActor>structures/fndn_9x4.xml</FoundationActor>
   </VisualActor>
 </Entity>
