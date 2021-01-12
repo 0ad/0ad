@@ -767,11 +767,8 @@ void CRenderer::RenderPatches(const CShaderDefines& context, int cullGroup)
 #endif
 
 	// render all the patches, including blend pass
-	if (g_RenderingOptions.GetRenderPath() == RenderPath::SHADER)
-		m->terrainRenderer.RenderTerrainShader(context, cullGroup, (m_Caps.m_Shadows && g_RenderingOptions.GetShadows()) ? &m->shadow : 0);
-	else
-		m->terrainRenderer.RenderTerrainFixed(cullGroup);
-
+	ENSURE(g_RenderingOptions.GetRenderPath() != RenderPath::FIXED);
+	m->terrainRenderer.RenderTerrainShader(context, cullGroup, (m_Caps.m_Shadows && g_RenderingOptions.GetShadows()) ? &m->shadow : 0);
 
 #if !CONFIG2_GLES
 	if (m_TerrainRenderMode == WIREFRAME)
