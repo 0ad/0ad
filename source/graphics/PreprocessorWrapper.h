@@ -22,7 +22,7 @@
 #include "third_party/ogre3d_preprocessor/OgreGLSLPreprocessor.h"
 
 #include <functional>
-#include <map>
+#include <unordered_map>
 
 class CShaderDefines;
 
