@@ -7,8 +7,11 @@
 		"sele": "Sphagia",
 		"spart": "Sphagia"
 	},
-	"description": "Increases the Healing Rate of all healers.",
-	"cost": { "food": 500, "wood": 0, "stone": 0, "metal": 250 },
+	"description": "Increases the healing rate of all healers.",
+	"cost": {
+		"food": 500,
+		"metal": 250
+	},
 	"requirements": { "tech": "phase_town" },
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "healing_rate.png",

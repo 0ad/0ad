@@ -7,7 +7,10 @@
 		"spart": "Megalopolis"
 	},
 	"description": "Advances from a bustling town to a veritable metropolis, full of the wonders of modern technology.",
-	"cost": { "food": 0, "wood": 0, "stone": 750, "metal": 750 },
+	"cost": {
+		"stone": 750,
+		"metal": 750
+	},
 	"requirements": {
 		"entity": {
 			"class": "Town",
@@ -19,7 +22,7 @@
 	"replaces": ["phase_city"],
 	"icon": "city_phase.png",
 	"researchTime": 60,
-	"tooltip": "Advance to City Phase, which unlocks more entities and technologies. Civic Centers +50% territory influence radius. Structures +9 capture points regeneration rate per garrisoned unit. Workers +10% metal gather rate.",
+	"tooltip": "Advance to City Phase, which unlocks more entities and technologies. Civic Centers +50% territory influence radius. Structures +9 capture points regeneration rate per garrisoned unit.",
 	"modifications": [
 		{ "value": "Capturable/GarrisonRegenRate", "add": 9, "affects": "Structure" },
 		{ "value": "TerritoryInfluence/Radius", "multiply": 1.5, "affects": "CivCentre" }

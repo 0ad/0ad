@@ -1,18 +1,22 @@
 {
 	"genericName": "Iron Weapons",
 	"description": "Replaces bronze weapons with iron.",
-	"cost": { "food": 500, "wood": 500, "stone": 0, "metal": 500 },
+	"cost": {
+		"food": 500,
+		"wood": 500,
+		"metal": 500
+	},
 	"supersedes": "attack_cavalry_ranged_01",
 	"requirements": { "tech": "phase_city" },
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "horse_rider.png",
 	"researchTime": 40,
-	"tooltip": "Equip your ranged cavalry with better weapons. +20% ranged cavalry attack.",
+	"tooltip": "Cavalry +20% ranged attack damage.",
 	"modifications": [
 		{ "value": "Attack/Ranged/Damage/Hack", "multiply": 1.2 },
 		{ "value": "Attack/Ranged/Damage/Pierce", "multiply": 1.2 },
 		{ "value": "Attack/Ranged/Damage/Crush", "multiply": 1.2 }
 	],
-	"affects": ["Cavalry Ranged"],
+	"affects": ["Cavalry"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

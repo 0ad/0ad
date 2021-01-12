@@ -1,7 +1,10 @@
 {
-	"genericName": "Iron Ax Heads",
+	"genericName": "Iron Axe Heads",
 	"description": "Increases wood gathering rates for trees.",
-	"cost": { "food": 0, "wood": 200, "stone": 0, "metal": 100 },
+	"cost": {
+		"wood": 200,
+		"metal": 100
+	},
 	"requirements": { "tech": "phase_village" },
 	"requirementsTooltip": "Unlocked in Village Phase.",
 	"icon": "wood_axe.png",

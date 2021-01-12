@@ -1,5 +1,5 @@
 {
-	"genericName": "Will to fight",
+	"genericName": "Will to Fight",
 	"specificName": {
 		"athen": "Dynamis",
 		"mace": "Dynamis",
@@ -7,13 +7,18 @@
 		"sele": "Dynamis",
 		"spart": "Dynamis"
 	},
-	"description": "The will to fight is crucial to victory.",
-	"cost": { "food": 1500, "wood": 1500, "stone": 1500, "metal": 1500 },
+	"description": "The will to fight is crucial to victory. Inspire your troops with higher pay.",
+	"cost": {
+		"food": 1500,
+		"wood": 1500,
+		"stone": 1500,
+		"metal": 1500
+	},
 	"requirements": { "tech": "phase_city" },
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "clenched_fist.png",
 	"researchTime": 40,
-	"tooltip": "Inspire your troops with higher pay. All land and naval army +25% attack.",
+	"tooltip": "Soldiers, Siege Engines, and Ships +25% attack damage.",
 	"modifications": [
 		{ "value": "Attack/Melee/Damage/Hack", "multiply": 1.25 },
 		{ "value": "Attack/Melee/Damage/Pierce", "multiply": 1.25 },
@@ -22,6 +27,6 @@
 		{ "value": "Attack/Ranged/Damage/Pierce", "multiply": 1.25 },
 		{ "value": "Attack/Ranged/Damage/Crush", "multiply": 1.25 }
  	],
-	"affects": ["Melee", "Ranged"],
+	"affects": ["Ship", "Siege", "Soldier"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

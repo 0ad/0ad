@@ -1,7 +1,10 @@
 {
 	"genericName": "Harvesting Machine",
 	"description": "The Gauls invented an harvesting machine, making it much easier to harvest grain.",
-	"cost": { "food": 0, "wood": 200, "stone": 0, "metal": 100 },
+	"cost": {
+		"wood": 200,
+		"metal": 100
+	},
 	"requirements": {
 		"all": [
 			{ "tech": "phase_town" },

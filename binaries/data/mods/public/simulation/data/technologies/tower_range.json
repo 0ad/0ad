@@ -1,7 +1,10 @@
 {
 	"genericName": "Arrow Shooters",
 	"description": "Arrow shooters increase the maximum range of the fire arrows.",
-	"cost": { "food": 0, "wood": 500, "stone": 0, "metal": 250 },
+	"cost": {
+		"wood": 500,
+		"metal": 250
+	},
 	"requirements": { "tech": "phase_town" },
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "arrow.png",

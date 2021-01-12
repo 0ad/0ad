@@ -9,18 +9,22 @@
 		"spart": "Xyston"
 	},
 	"description": "Replaces bronze weapons with iron.",
-	"cost": { "food": 500, "wood": 500, "stone": 0, "metal": 500 },
+	"cost": {
+		"food": 500,
+		"wood": 500,
+		"metal": 500
+	},
 	"supersedes": "attack_cavalry_melee_01",
 	"requirements": { "tech": "phase_city" },
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "spear_cavalry.png",
 	"researchTime": 40,
-	"tooltip": "Equip your melee cavalry with better weapons. +20% melee cavalry attack.",
+	"tooltip": "Cavalry +20% melee attack damage.",
 	"modifications": [
 		{ "value": "Attack/Melee/Damage/Hack", "multiply": 1.2 },
 		{ "value": "Attack/Melee/Damage/Pierce", "multiply": 1.2 },
 		{ "value": "Attack/Melee/Damage/Crush", "multiply": 1.2 }
 	],
-	"affects": ["Cavalry Melee"],
+	"affects": ["Cavalry"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

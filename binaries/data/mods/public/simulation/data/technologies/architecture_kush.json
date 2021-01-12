@@ -1,6 +1,8 @@
 {
 	"genericName": "Monumental Architecture",
-	"cost": { "food": 0, "wood": 0, "stone": 600, "metal": 0 },
+	"cost": {
+		"stone": 600
+	},
 	"requirements": {
 		"all": [
 			{ "tech": "phase_town" },

@@ -1,8 +1,17 @@
 {
 	"genericName": "Artillery Instructors",
 	"description": "Siege engines require less wood.",
-	"cost": { "food": 500, "wood": 0, "stone": 250, "metal": 500 },
-	"requirements": { "all": [{ "tech": "phase_city" }, { "notciv": "maur" }] },
+	"cost": {
+		"food": 500,
+		"stone": 250,
+		"metal": 500
+	},
+	"requirements": {
+		"all": [
+			{ "tech": "phase_city" },
+			{ "notciv": "maur" }
+		]
+	},
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "anvil.png",
 	"researchTime": 40,

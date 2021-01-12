@@ -1,7 +1,9 @@
 {
 	"genericName": "Wicker Baskets",
 	"description": "Equip your foragers with wicker baskets for foraging.",
-	"cost": { "food": 0, "wood": 100, "stone": 0, "metal": 0 },
+	"cost": {
+		"wood": 100
+	},
 	"requirements": { "tech": "phase_village" },
 	"icon": "gather_basket.png",
 	"researchTime": 40,

@@ -1,7 +1,10 @@
 {
 	"genericName": "Hellenistic Metropolis",
 	"description": "Beginning with Alexander, the Hellenistic monarchs founded many cities throughout their empires, where Greek culture and art blended with local customs to create the motley Hellenistic civilization.",
-	"cost": { "food": 0, "wood": 0, "stone": 500, "metal": 500 },
+	"cost": {
+		"stone": 500,
+		"metal": 500
+	},
 	"requirements": {
 		"all": [
 			{ "tech": "phase_city" },

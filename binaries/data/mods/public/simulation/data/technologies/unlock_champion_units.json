@@ -7,7 +7,9 @@
 		"sele": "Agēma"
 	},
 	"description": "Guard units (Champions) are professionals who wield the best weapons and have the best training.",
-	"cost": { "food": 0, "wood": 0, "stone": 0, "metal": 700 },
+	"cost": {
+		"metal": 700
+	},
 	"requirements": {
 		"all": [
 			{ "tech": "phase_city" },

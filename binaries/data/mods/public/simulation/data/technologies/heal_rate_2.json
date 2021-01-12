@@ -7,8 +7,11 @@
 		"sele": "Hippocratic Oath",
 		"spart": "Hippocratic Oath"
 	},
-	"description": "Increases the Healing Rate of all healers.",
-	"cost": { "food": 1000, "wood": 0, "stone": 0, "metal": 500 },
+	"description": "Increases the healing rate of all healers.",
+	"cost": {
+		"food": 1000,
+		"metal": 500
+	},
 	"supersedes": "heal_rate",
 	"requirements": { "tech": "phase_city" },
 	"requirementsTooltip": "Unlocked in City Phase.",

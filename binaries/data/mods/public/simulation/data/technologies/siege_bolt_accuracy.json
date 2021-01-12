@@ -1,7 +1,10 @@
 {
 	"genericName": "Bolt Accuracy",
 	"description": "Improvement to projectile accuracy.",
-	"cost": { "food": 0, "wood": 250, "stone": 0, "metal": 250 },
+	"cost": {
+		"wood": 250,
+		"metal": 250
+	},
 	"requirements": {
 		"all": [
 			{ "tech": "phase_city" },

@@ -1,7 +1,10 @@
 {
-	"genericName": "Stronger Ax",
+	"genericName": "Stronger Axe",
 	"description": "Increases wood gathering rates for trees.",
-	"cost": { "food": 0, "wood": 400, "stone": 0, "metal": 200 },
+	"cost": {
+		"wood": 400,
+		"metal": 200
+	},
 	"supersedes": "gather_lumbering_ironaxes",
 	"requirements": { "tech": "phase_town" },
 	"requirementsTooltip": "Unlocked in Town Phase.",
