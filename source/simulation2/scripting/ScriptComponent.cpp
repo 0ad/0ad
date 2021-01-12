@@ -62,9 +62,8 @@ void CComponentTypeScript::Deserialize(const CParamNode& paramNode, IDeserialize
 {
 	ScriptRequest rq(m_ScriptInterface);
 
-	deserialize.ScriptObjectAssign("comp", m_Instance);
-
 	m_ScriptInterface.SetProperty(m_Instance, "entity", (int)ent, true, false);
 	m_ScriptInterface.SetProperty(m_Instance, "template", paramNode, true, false);
 
+	deserialize.ScriptObjectAssign("comp", m_Instance);
 }
