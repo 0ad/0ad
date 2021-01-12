@@ -8,7 +8,7 @@ class ChatOverlay
 		/**
 		 * Maximum number of lines to display simultaneously.
 		 */
-		this.chatLines = 20;
+		this.chatLinesNumber = 20;
 
 		/**
 		 * Number of seconds after which chatmessages will disappear.
@@ -26,6 +26,41 @@ class ChatOverlay
 		this.chatMessages = [];
 
 		this.chatText = Engine.GetGUIObjectByName("chatText");
+		this.chatLines = Engine.GetGUIObjectByName("chatLines").children;
+		this.chatLinesNumber = Math.min(this.chatLinesNumber, this.chatLines.length);
+	}
+
+	displayChatMessages()
+	{
+		for (let i = 0; i < this.chatLinesNumber; ++i)
+		{
+			let chatMessage = this.chatMessages[i];
+			if (chatMessage && chatMessage.text)
+			{
+				// First scale line width to maximum size.
+				let lineSize = this.chatLines[i].size;
+				let height = lineSize.bottom - lineSize.top;
+				lineSize.top = i * height;
+				lineSize.bottom = lineSize.top + height;
+				lineSize.rright = 100;
+				this.chatLines[i].size = lineSize;
+
+				this.chatLines[i].caption = chatMessage.text;
+
+				// Now read the actual text width and scale the line width accordingly.
+				lineSize.rright = 0;
+				lineSize.right = lineSize.left + this.chatLines[i].getTextSize().width;
+				this.chatLines[i].size = lineSize;
+
+				if (chatMessage.callback)
+					this.chatLines[i].onPress = chatMessage.callback;
+
+				if (chatMessage.tooltip)
+					this.chatLines[i].tooltip = chatMessage.tooltip;
+			}
+			this.chatLines[i].hidden = !chatMessage || !chatMessage.text;
+			this.chatLines[i].ghost = !chatMessage || !chatMessage.callback;
+		}
 	}
 
 	/**
@@ -36,10 +71,10 @@ class ChatOverlay
 		this.chatMessages.push(chatMessage);
 		this.chatTimers.push(setTimeout(this.removeOldChatMessage.bind(this), this.chatTimeout * 1000));
 
-		if (this.chatMessages.length > this.chatLines)
+		if (this.chatMessages.length > this.chatLinesNumber)
 			this.removeOldChatMessage();
 		else
-			this.chatText.caption = this.chatMessages.join("\n");
+			this.displayChatMessages();
 	}
 
 	/**
@@ -48,7 +83,7 @@ class ChatOverlay
 	clearChatMessages()
 	{
 		this.chatMessages = [];
-		this.chatText.caption = "";
+		this.displayChatMessages();
 
 		for (let timer of this.chatTimers)
 			clearTimeout(timer);
@@ -64,6 +99,6 @@ class ChatOverlay
 		clearTimeout(this.chatTimers[0]);
 		this.chatTimers.shift();
 		this.chatMessages.shift();
-		this.chatText.caption = this.chatMessages.join("\n");
+		this.displayChatMessages();
 	}
 }

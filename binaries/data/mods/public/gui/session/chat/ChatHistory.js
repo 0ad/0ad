@@ -57,7 +57,7 @@ class ChatHistory
 	{
 		// Save to chat history
 		let historical = {
-			"txt": formatted,
+			"txt": formatted.text,
 			"timePrefix": sprintf(translate("\\[%(time)s]"), {
 				"time": Engine.FormatMillisecondsIntoDateStringLocal(Date.now(), translate("HH:mm"))
 			}),

@@ -40,8 +40,12 @@
 	<include file="gui/session/TimeNotificationOverlay.xml"/>
 
 	<!-- Chat messages -->
-	<object name="chatPanel" size="0 130 100% 100%-240" type="image" ghost="true" z="0" absolute="true">
-		<object name="chatText" size="3 1 100%-1 100%-1" type="text" style="chatPanelOverlay" ghost="true"/>
+	<object name="chatPanel" size="0 131 100% 100%-240" z="0" absolute="true">
+		<object name="chatLines">
+			<repeat count="20">
+				<object name="chatLine[n]" size="3 0 100% 17" type="button" style="chatPanelOverlay" tooltip_style="sessionToolTipBottomBold" ghost="true" hidden="true"/>
+			</repeat>
+		</object>
 	</object>
 
 	<include directory="gui/session/chat/"/>
