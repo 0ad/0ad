@@ -887,30 +887,37 @@ function notifyOrderFailure(entity, player)
 
 /**
  * Get some information about the formations used by entities.
- * The entities must have a UnitAI component.
  */
 function ExtractFormations(ents)
 {
-	let entities = []; // subset of ents that have UnitAI
+	let entities = []; // Entities with UnitAI.
 	let members = {}; // { formationentity: [ent, ent, ...], ... }
 	let templates = {};  // { formationentity: template }
 	for (let ent of ents)
 	{
-		var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
-		var fid = cmpUnitAI.GetFormationController();
-		if (fid != INVALID_ENTITY)
-		{
-			if (!members[fid])
-			{
-				members[fid] = [];
-				templates[fid] = cmpUnitAI.GetFormationTemplate();
-			}
-			members[fid].push(ent);
-		}
+		let cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+		if (!cmpUnitAI)
+			continue;
+
 		entities.push(ent);
+
+		let fid = cmpUnitAI.GetFormationController();
+		if (fid == INVALID_ENTITY)
+			continue;
+
+		if (!members[fid])
+		{
+			members[fid] = [];
+			templates[fid] = cmpUnitAI.GetFormationTemplate();
+		}
+		members[fid].push(ent);
 	}
 
-	return { "entities": entities, "members": members, "templates": templates };
+	return {
+		"entities": entities,
+		"members": members,
+		"templates": templates
+	};
 }
 
 /**
@@ -1419,10 +1426,10 @@ function TryConstructWall(player, cmpPlayer, controlAllUnits, cmd)
  */
 function RemoveFromFormation(ents)
 {
-	var formation = ExtractFormations(ents);
-	for (var fid in formation.members)
+	let formation = ExtractFormations(ents);
+	for (let fid in formation.members)
 	{
-		var cmpFormation = Engine.QueryInterface(+fid, IID_Formation);
+		let cmpFormation = Engine.QueryInterface(+fid, IID_Formation);
 		if (cmpFormation)
 			cmpFormation.RemoveMembers(formation.members[fid]);
 	}
