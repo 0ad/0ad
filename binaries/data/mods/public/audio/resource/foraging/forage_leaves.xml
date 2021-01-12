@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <SoundGroup>
-	<Gain>1</Gain>
+	<Gain>0.3</Gain>
 	<ConeGain>1</ConeGain>
-	<Looping>0</Looping>
+	<Looping>1</Looping>
 	<RandOrder>1</RandOrder>
 	<RandGain>1</RandGain>
+	<GainUpper>0.3</GainUpper>
+	<GainLower>0.2</GainLower>
 	<RandPitch>0</RandPitch>
 	<Threshold>10</Threshold>
 	<Path>audio/resource/foraging/</Path>
-	<Sound>leaves_19.ogg</Sound>
-	<Sound>leaves_1a.ogg</Sound>
+	<Sound>leaves_01.ogg</Sound>
+	<Sound>leaves_02.ogg</Sound>
+	<Sound>leaves_03.ogg</Sound>
+	<Sound>leaves_04.ogg</Sound>
+	<Sound>leaves_05.ogg</Sound>
+	<Sound>leaves_06.ogg</Sound>
+	<Sound>leaves_07.ogg</Sound>
+	<Sound>leaves_08.ogg</Sound>
+	<Sound>leaves_09.ogg</Sound>
 	<Sound>leaves_10.ogg</Sound>
 	<Sound>leaves_11.ogg</Sound>
-	<Sound>leaves_12.ogg</Sound>
-	<Sound>leaves_13.ogg</Sound>
-	<Sound>leaves_14.ogg</Sound>
-	<Sound>leaves_15.ogg</Sound>
-	<Sound>leaves_16.ogg</Sound>
-	<Sound>leaves_17.ogg</Sound>
-	<Sound>leaves_18.ogg</Sound>
 </SoundGroup>
