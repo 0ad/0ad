@@ -85,6 +85,7 @@ PETRA.Config = function(difficulty, behavior)
 			"structures/{civ}/theater"
 		],
 		"maur": [
+			"structures/{civ}/palace",
 			"structures/{civ}/pillar_ashoka"
 		],
 		"pers": [

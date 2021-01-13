@@ -719,13 +719,13 @@ public:
 		);
 
 		helper_script_roundtrip("Nested maps using backrefs",
-			"var a = new Map(); var b = new Map(); a.set(1, b); a.set(2, b); a",
+			"var a = new Map(); var b = new Map(); a.set(1, b); a.set(2, b); a.set(3, b); a",
 		/* expected: */
 			"({})",
 		/* expected stream: */
-			25,
+			35,
 			"\x0f" // SCRIPT_TYPE_MAP
-			"\x02\0\0\0" // size
+			"\x03\0\0\0" // size
 
 			"\x05" // SCRIPT_TYPE_INT
 			"\x01\0\0\0" // 1
@@ -735,7 +735,12 @@ public:
 			"\x05" // SCRIPT_TYPE_INT
 			"\x02\0\0\0" // 2
 			"\x08" // SCRIPT_TYPE_BACKREF
-			"\x01\0\0\0" // ref. to object #1, i.e. "b", with #0 being "a"
+			"\x02\0\0\0" // ref. to object #2, i.e. "b", with #1 being "a"
+
+			"\x05" // SCRIPT_TYPE_INT
+			"\x03\0\0\0" // 3
+			"\x08" // SCRIPT_TYPE_BACKREF
+			"\x02\0\0\0" // ref. to object #2, i.e. "b", with #1 being "a"
 		);
 	}
 
@@ -757,7 +762,7 @@ public:
 			"\x01\0\0\0" // num props
 				"\x01\x03\0\0\0" "bar" // "bar"
 				"\x08" // SCRIPT_TYPE_BACKREF
-				"\x01\0\0\0" // ref to object #1, i.e. "b", with #0 being "a"
+				"\x02\0\0\0" // ref to object #2, i.e. "b", with #1 being "a"
 		);
 	}
 

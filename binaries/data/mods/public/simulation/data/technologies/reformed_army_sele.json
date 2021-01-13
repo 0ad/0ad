@@ -1,0 +1,15 @@
+{
+	"pair": "pair_unlock_champions_sele",
+	"genericName": "Reform Army",
+	"description": "The Roman-style core of the Seleucid army.",
+	"requirements": {
+		"all": [
+			{ "tech": "phase_city" },
+			{ "civ": "sele" }
+		]
+	},
+	"requirementsTooltip": "Unlocked in City Phase.",
+	"icon": "helmet_corinthian_crest.png",
+	"tooltip": "Unlock the Champion Infantry Swordsman.",
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}

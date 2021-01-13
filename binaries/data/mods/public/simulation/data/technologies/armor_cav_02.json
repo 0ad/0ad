@@ -1,13 +1,16 @@
 {
 	"genericName": "Chamfron",
 	"description": "Metal armor for a horse's body.",
-	"cost": { "food": 0, "wood": 1000, "stone": 0, "metal": 450 },
+	"cost": {
+		"wood": 1000,
+		"metal": 450
+	},
 	"supersedes": "armor_cav_01",
 	"requirements": { "tech": "phase_city" },
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "armor_plates_cavalry.png",
 	"researchTime": 40,
-	"tooltip": "Cavalry +1 hack and pierce armor.",
+	"tooltip": "Cavalry +1 hack and pierce resistance.",
 	"modifications": [
 		{ "value": "Resistance/Entity/Damage/Hack", "add": 1 },
 		{ "value": "Resistance/Entity/Damage/Pierce", "add": 1 }

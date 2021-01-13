@@ -13,12 +13,22 @@ ChatMessageFormatSimulation.attack = class
 			return "";
 
 		let message = msg.targetIsDomesticAnimal ?
-			translate("Your livestock has been attacked by %(attacker)s!") :
-			translate("You have been attacked by %(attacker)s!");
+			translate("%(icon)sYour livestock has been attacked by %(attacker)s!") :
+			translate("%(icon)sYou have been attacked by %(attacker)s!");
 
-		return sprintf(message, {
-			"attacker": colorizePlayernameByID(msg.attacker)
-		});
+		return {
+			"text": sprintf(message, {
+				"icon": '[icon="icon_focusattacked"]',
+				"attacker": colorizePlayernameByID(msg.attacker)
+			}),
+			"callback": ((entityId, position) => function() {
+				if (GetEntityState(entityId))
+					setCameraFollow(entityId);
+				else
+					Engine.SetCameraTarget(position.x, position.y, position.z);
+			})(msg.target, msg.position),
+			"tooltip": translate("Click to focus on the attacked unit.")
+		};
 	}
 };
 
@@ -35,11 +45,13 @@ ChatMessageFormatSimulation.barter = class
 		let amountGained = {};
 		amountGained[msg.resourceGained] = msg.amountGained;
 
-		return sprintf(translate("%(player)s bartered %(amountGiven)s for %(amountGained)s."), {
-			"player": colorizePlayernameByID(msg.player),
-			"amountGiven": getLocalizedResourceAmounts(amountGiven),
-			"amountGained": getLocalizedResourceAmounts(amountGained)
-		});
+		return {
+			"text": sprintf(translate("%(player)s bartered %(amountGiven)s for %(amountGained)s."), {
+				"player": colorizePlayernameByID(msg.player),
+				"amountGiven": getLocalizedResourceAmounts(amountGiven),
+				"amountGained": getLocalizedResourceAmounts(amountGained)
+			})
+		};
 	}
 };
 
@@ -58,10 +70,12 @@ ChatMessageFormatSimulation.diplomacy = class
 		else
 			return "";
 
-		return sprintf(translate(this.strings[messageType][msg.status]), {
-			"player": colorizePlayernameByID(messageType == "active" ? msg.targetPlayer : msg.sourcePlayer),
-			"player2": colorizePlayernameByID(messageType == "active" ? msg.sourcePlayer : msg.targetPlayer)
-		});
+		return {
+			"text": sprintf(translate(this.strings[messageType][msg.status]), {
+				"player": colorizePlayernameByID(messageType == "active" ? msg.targetPlayer : msg.sourcePlayer),
+				"player2": colorizePlayernameByID(messageType == "active" ? msg.sourcePlayer : msg.targetPlayer)
+			})
+		};
 	}
 };
 
@@ -102,10 +116,12 @@ ChatMessageFormatSimulation.phase = class
 		if (msg.phaseState == "completed")
 			message = translate("%(player)s has reached the %(phaseName)s.");
 
-		return sprintf(message, {
-			"player": colorizePlayernameByID(msg.player),
-			"phaseName": getEntityNames(GetTechnologyData(msg.phaseName, g_Players[msg.player].civ))
-		});
+		return {
+			"text": sprintf(message, {
+				"player": colorizePlayernameByID(msg.player),
+				"phaseName": getEntityNames(GetTechnologyData(msg.phaseName, g_Players[msg.player].civ))
+			})
+		};
 	}
 };
 
@@ -114,18 +130,22 @@ ChatMessageFormatSimulation.playerstate = class
 	parse(msg)
 	{
 		if (!msg.message.pluralMessage)
-			return sprintf(translate(msg.message), {
-				"player": colorizePlayernameByID(msg.players[0])
-			});
+			return {
+				"text": sprintf(translate(msg.message), {
+					"player": colorizePlayernameByID(msg.players[0])
+				})
+			};
 
 		let mPlayers = msg.players.map(playerID => colorizePlayernameByID(playerID));
 		let lastPlayer = mPlayers.pop();
 
-		return sprintf(translatePlural(msg.message.message, msg.message.pluralMessage, msg.message.pluralCount), {
-			// Translation: This comma is used for separating first to penultimate elements in an enumeration.
-			"players": mPlayers.join(translate(", ")),
-			"lastPlayer": lastPlayer
-		});
+		return {
+			"text": sprintf(translatePlural(msg.message.message, msg.message.pluralMessage, msg.message.pluralCount), {
+				// Translation: This comma is used for separating first to penultimate elements in an enumeration.
+				"players": mPlayers.join(translate(", ")),
+				"lastPlayer": lastPlayer
+			})
+		};
 	}
 };
 
@@ -148,10 +168,12 @@ ChatMessageFormatSimulation.tribute = class
 		           g_Players[msg.targetPlayer].isMutualAlly[Engine.GetPlayerID()]))
 			message = translate("%(player)s has sent %(player2)s %(amounts)s.");
 
-		return sprintf(message, {
-			"player": colorizePlayernameByID(msg.sourcePlayer),
-			"player2": colorizePlayernameByID(msg.targetPlayer),
-			"amounts": getLocalizedResourceAmounts(msg.amounts)
-		});
+		return {
+			"text": sprintf(message, {
+				"player": colorizePlayernameByID(msg.sourcePlayer),
+				"player2": colorizePlayernameByID(msg.targetPlayer),
+				"amounts": getLocalizedResourceAmounts(msg.amounts)
+			})
+		};
 	}
 };

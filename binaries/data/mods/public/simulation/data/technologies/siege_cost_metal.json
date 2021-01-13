@@ -1,8 +1,17 @@
 {
 	"genericName": "Metalworker",
 	"description": "Siege engines require less metal.",
-	"cost": { "food": 500, "wood": 500, "stone": 250, "metal": 0 },
-	"requirements": { "all": [{ "tech": "phase_city" }, { "notciv": "maur" }] },
+	"cost": {
+		"food": 500,
+		"wood": 500,
+		"stone": 250
+	},
+	"requirements": {
+		"all": [
+			{ "tech": "phase_city" },
+			{ "notciv": "maur" }
+		]
+	},
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "metalworker.png",
 	"researchTime": 40,

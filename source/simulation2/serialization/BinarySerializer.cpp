@@ -59,7 +59,12 @@ CBinarySerializerScriptImpl::CBinarySerializerScriptImpl(const ScriptInterface& 
 {
 	ScriptRequest rq(m_ScriptInterface);
 
-	m_ScriptBackrefSymbol.init(rq.cx, JS::NewSymbol(rq.cx, nullptr));
+	JS_AddExtraGCRootsTracer(m_ScriptInterface.GetGeneralJSContext(), Trace, this);
+}
+
+CBinarySerializerScriptImpl::~CBinarySerializerScriptImpl()
+{
+	JS_RemoveExtraGCRootsTracer(m_ScriptInterface.GetGeneralJSContext(), Trace, this);
 }
 
 void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
@@ -89,11 +94,11 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 		JS::RootedObject obj(rq.cx, &val.toObject());
 
 		// If we've already serialized this object, just output a reference to it
-		i32 tag = GetScriptBackrefTag(obj);
-		if (tag != -1)
+		u32 tag = GetScriptBackrefTag(obj);
+		if (tag != 0)
 		{
 			m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_BACKREF);
-			m_Serializer.NumberI32("tag", tag, 0, JSVAL_INT_MAX);
+			m_Serializer.NumberU32("tag", tag, 0, JSVAL_INT_MAX);
 			break;
 		}
 
@@ -437,7 +442,13 @@ void CBinarySerializerScriptImpl::ScriptString(const char* name, JS::HandleStrin
 	}
 }
 
-i32 CBinarySerializerScriptImpl::GetScriptBackrefTag(JS::HandleObject obj)
+void CBinarySerializerScriptImpl::Trace(JSTracer *trc, void *data)
+{
+	CBinarySerializerScriptImpl* serializer = static_cast<CBinarySerializerScriptImpl*>(data);
+	serializer->m_ScriptBackrefTags.trace(trc);
+}
+
+u32 CBinarySerializerScriptImpl::GetScriptBackrefTag(JS::HandleObject obj)
 {
 	// To support non-tree structures (e.g. "var x = []; var y = [x, x];"), we need a way
 	// to indicate multiple references to one object(/array). So every time we serialize a
@@ -449,33 +460,13 @@ i32 CBinarySerializerScriptImpl::GetScriptBackrefTag(JS::HandleObject obj)
 
 	ScriptRequest rq(m_ScriptInterface);
 
-	JS::RootedValue symbolValue(rq.cx, JS::SymbolValue(m_ScriptBackrefSymbol));
-	JS::RootedId symbolId(rq.cx);
-	ENSURE(JS_ValueToId(rq.cx, symbolValue, &symbolId));
-
-	JS::RootedValue tagValue(rq.cx);
-
-	// If it was already there, return the tag
-	bool tagFound;
-	ENSURE(JS_HasPropertyById(rq.cx, obj, symbolId, &tagFound));
-	if (tagFound)
+	ObjectTagMap::Ptr ptr = m_ScriptBackrefTags.lookup(JS::Heap<JSObject*>(obj.get()));
+	if (!ptr.found())
 	{
-		ENSURE(JS_GetPropertyById(rq.cx, obj, symbolId, &tagValue));
-		ENSURE(tagValue.isInt32());
-		return tagValue.toInt32();
+		ENSURE(m_ScriptBackrefTags.put(JS::Heap<JSObject*>(obj.get()), ++m_ScriptBackrefsNext));
+		// Return 0 to mean "you have to serialize this object";
+		return 0;
 	}
-
-	tagValue = JS::Int32Value(m_ScriptBackrefsNext);
-	// TODO: this fails if the object cannot be written to.
-	// This means we could end up in an infinite loop...
-	if (!JS_DefinePropertyById(rq.cx, obj, symbolId, tagValue, JSPROP_READONLY))
-	{
-		// For now just warn, this should be user-fixable and may not actually error out.
-		JS::RootedValue objVal(rq.cx, JS::ObjectValue(*obj.get()));
-		LOGWARNING("Serialization symbol cannot be written on object %s", m_ScriptInterface.ToString(&objVal));
-	}
-
-	++m_ScriptBackrefsNext;
-	// Return a non-tag number so callers know they need to serialize the object
-	return -1;
+	else
+		return ptr->value();
 }

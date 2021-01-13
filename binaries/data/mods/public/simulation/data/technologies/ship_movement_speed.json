@@ -1,7 +1,9 @@
 {
 	"genericName": "Experienced Crews",
 	"description": "Train your oarsmen and sailors to move more efficiently and speed up your ships.",
-	"cost": { "food": 500, "wood": 0, "stone": 0, "metal": 0 },
+	"cost": {
+		"food": 500
+	},
 	"requirements": { "tech": "phase_city" },
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "armor_ship_silver.png",

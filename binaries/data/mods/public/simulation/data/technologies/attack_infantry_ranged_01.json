@@ -8,17 +8,22 @@
 		"spart": "Ataktoi"
 	},
 	"description": "Training increases damage of ranged infantry.",
-	"cost": { "food": 500, "wood": 500, "stone": 250, "metal": 250 },
+	"cost": {
+		"food": 500,
+		"wood": 500,
+		"stone": 250,
+		"metal": 250
+	},
 	"requirements": { "tech": "phase_town" },
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "arrow.png",
 	"researchTime": 40,
-	"tooltip": "+20% ranged infantry attack.",
+	"tooltip": "Infantry +20% ranged attack damage.",
 	"modifications": [
 		{ "value": "Attack/Ranged/Damage/Hack", "multiply": 1.2 },
 		{ "value": "Attack/Ranged/Damage/Pierce", "multiply": 1.2 },
 		{ "value": "Attack/Ranged/Damage/Crush", "multiply": 1.2 }
 	],
-	"affects": ["Infantry Ranged"],
+	"affects": ["Infantry"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

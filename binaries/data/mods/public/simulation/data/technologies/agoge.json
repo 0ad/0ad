@@ -1,0 +1,24 @@
+{
+	"genericName": "The Agoge",
+	"description": "Spartans were housed and trained from a young age to be superlative warriors and to endure any hardship a military life can give them.",
+	"cost": {
+		"food": 500,
+		"metal": 200
+	},
+	"requirements": {
+		"all": [
+			{ "tech": "phase_city" },
+			{ "civ": "spart" }
+		]
+	},
+	"requirementsTooltip": "Unlocked in City Phase.",
+	"icon": "agoge.png",
+	"researchTime": 60,
+	"tooltip": "Champion Infantry Spearmen +25% health, but +5% training time.",
+	"modifications": [
+		{ "value": "Cost/BuildTime", "multiply": 1.05 },
+		{ "value": "Health/Max", "multiply": 1.25 }
+	],
+	"affects": ["Champion Infantry Spearman"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}

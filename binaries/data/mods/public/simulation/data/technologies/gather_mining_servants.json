@@ -8,7 +8,10 @@
 		"spart": "Douloi"
 	},
 	"description": "Hire servants to help quarry stone. Increases stone gathering rates.",
-	"cost": { "food": 0, "wood": 200, "stone": 0, "metal": 100 },
+	"cost": {
+		"wood": 200,
+		"metal": 100
+	},
 	"requirements": { "tech": "phase_village" },
 	"icon": "mining_stone.png",
 	"researchTime": 40,

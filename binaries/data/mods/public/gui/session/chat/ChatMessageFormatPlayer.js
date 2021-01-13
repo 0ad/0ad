@@ -54,12 +54,14 @@ class ChatMessageFormatPlayer
 		// GUID for players, playerID for AIs
 		let coloredUsername = msg.guid != -1 ? colorizePlayernameByGUID(msg.guid) : colorizePlayernameByID(msg.player);
 
-		return sprintf(translate(this.strings[isMe ? "me" : "regular"][msg.context ? "context" : "no-context"]), {
-			"message": msg.text,
-			"context": msg.context ? translateWithContext("chat message context", msg.context) : "",
-			"user": coloredUsername,
-			"userTag": sprintf(translate("<%(user)s>"), { "user": coloredUsername })
-		});
+		return {
+			"text": sprintf(translate(this.strings[isMe ? "me" : "regular"][msg.context ? "context" : "no-context"]), {
+				"message": msg.text,
+				"context": msg.context ? translateWithContext("chat message context", msg.context) : "",
+				"user": coloredUsername,
+				"userTag": sprintf(translate("<%(user)s>"), { "user": coloredUsername })
+			})
+		};
 	}
 
 	/**

@@ -9,7 +9,11 @@
 		"spart": "Thesmophoria"
 	},
 	"description": "A festival attended by women-only, to celebrate female fertility.",
-	"cost": { "food": 250, "wood": 100, "stone": 0, "metal": 100 },
+	"cost": {
+		"food": 250,
+		"wood": 100,
+		"metal": 100
+	},
 	"requirements": { "tech": "phase_village" },
 	"icon": "wives_festival.png",
 	"researchTime": 60,

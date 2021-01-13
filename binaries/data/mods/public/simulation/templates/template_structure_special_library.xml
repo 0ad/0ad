@@ -36,13 +36,13 @@
   </Obstruction>
   <ProductionQueue>
     <Technologies datatype="tokens">
-      successors/special_hellenistic_metropolis
+      hellenistic_metropolis
     </Technologies>
   </ProductionQueue>
   <Sound>
     <SoundGroups>
-      <select>interface/select/building/sel_temple.xml</select>
-      <constructed>interface/complete/building/complete_temple.xml</constructed>
+      <select>interface/select/building/sel_library.xml</select>
+      <constructed>interface/complete/building/complete_library.xml</constructed>
     </SoundGroups>
   </Sound>
   <TerritoryInfluence>

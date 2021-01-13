@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -341,12 +341,6 @@ void GUIRenderer::Draw(DrawCalls& Calls, float Z)
 
 	glDisable(GL_BLEND);
 
-#if !CONFIG2_GLES
-	// Set LOD bias so mipmapped textures are prettier in FFP mode.
-	if (g_RenderingOptions.GetRenderPath() == RenderPath::FIXED)
-		glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, -1.f);
-#endif
-
 	// Iterate through each DrawCall, and execute whatever drawing code is being called
 	for (DrawCalls::const_iterator cit = Calls.begin(); cit != Calls.end(); ++cit)
 	{
@@ -445,9 +439,4 @@ void GUIRenderer::Draw(DrawCalls& Calls, float Z)
 
 		glDisable(GL_BLEND);
 	}
-
-#if !CONFIG2_GLES
-	if (g_RenderingOptions.GetRenderPath() == RenderPath::FIXED)
-		glTexEnvf(GL_TEXTURE_FILTER_CONTROL, GL_TEXTURE_LOD_BIAS, 0.f);
-#endif
 }

@@ -1,0 +1,23 @@
+{
+	"genericName": "Parade of Daphne",
+	"description": "The festival at Daphne was a major event of the Seleucid Empire: tens of thousands of well-equipped troops participated in the opening procession.",
+	"cost": {
+		"food": 500,
+		"metal": 300
+	},
+	"requirements": {
+		"all": [
+			{ "tech": "phase_city" },
+			{ "civ": "sele" }
+		]
+	},
+	"requirementsTooltip": "Unlocked in City Phase.",
+	"icon": "parade_of_daphne.png",
+	"researchTime": 60,
+	"tooltip": "Champions −20% training time.",
+	"modifications": [
+		{ "value": "Cost/BuildTime", "multiply": 0.8 }
+	],
+	"affects": ["Champion"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}

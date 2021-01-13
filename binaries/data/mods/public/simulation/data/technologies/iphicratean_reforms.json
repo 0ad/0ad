@@ -1,0 +1,19 @@
+{
+	"genericName": "Iphicratean Reforms",
+	"description": "Athenian triremes can train Marines (Epibates Athenaikos) and Cretan Mercenary Archers (Toxotes Kretikos).",
+	"cost": {
+		"food": 300,
+		"metal": 300
+	},
+	"requirements": {
+		"all": [
+			{ "tech": "phase_city" },
+			{ "civ": "athen" }
+		]
+	},
+	"requirementsTooltip": "Unlocked in City Phase.",
+	"icon": "helmet_corinthian_crest.png",
+	"researchTime": 60,
+	"tooltip": "Athenian Triremes can train Marines and Cretan Mercenary Archers.",
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}

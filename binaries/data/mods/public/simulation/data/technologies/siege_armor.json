@@ -1,12 +1,20 @@
 {
 	"genericName": "Armor plating",
 	"description": "Increased armor on siege engines.",
-	"cost": { "food": 0, "wood": 500, "stone": 0, "metal": 250 },
-	"requirements": { "all": [{ "tech": "phase_city" }, { "notciv": "maur" }] },
+	"cost": {
+		"wood": 500,
+		"metal": 250
+	},
+	"requirements": {
+		"all": [
+			{ "tech": "phase_city" },
+			{ "notciv": "maur" }
+		]
+	},
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "armor_plates_gold.png",
 	"researchTime": 40,
-	"tooltip": "Siege Engines +2 hack armor.",
+	"tooltip": "Siege Engines +2 hack resistance.",
 	"modifications": [
 		{ "value": "Resistance/Entity/Damage/Hack", "add": 2 }
 	],

@@ -87,8 +87,18 @@ function TestScript1_consts() {}
 
 TestScript1_consts.prototype.Schema = "<ref name='anything'/>";
 
+TestScript1_consts.prototype.Init = function() {
+	this.cached = (+this.entity) + (+this.template.x);
+};
+
+TestScript1_consts.prototype.Serialize = null;
+
+TestScript1_consts.prototype.Deserialize = function(data) {
+	this.Init();
+};
+
 TestScript1_consts.prototype.GetX = function() {
-	return (+this.entity) + (+this.template.x);
+	return this.cached;
 };
 
 Engine.RegisterComponentType(IID_Test1, "TestScript1_consts", TestScript1_consts);

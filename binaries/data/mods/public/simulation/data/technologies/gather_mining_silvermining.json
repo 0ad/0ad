@@ -5,7 +5,10 @@
 		"mace": "Mines of Krenides"
 	},
 	"description": "Strike a vein of precious silver. Increases metal gathering rates.",
-	"cost": { "food": 0, "wood": 600, "stone": 0, "metal": 300 },
+	"cost": {
+		"wood": 600,
+		"metal": 300
+	},
 	"supersedes": "gather_mining_shaftmining",
 	"requirements": { "tech": "phase_city" },
 	"requirementsTooltip": "Unlocked in City Phase.",

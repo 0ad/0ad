@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -767,11 +767,8 @@ void CRenderer::RenderPatches(const CShaderDefines& context, int cullGroup)
 #endif
 
 	// render all the patches, including blend pass
-	if (g_RenderingOptions.GetRenderPath() == RenderPath::SHADER)
-		m->terrainRenderer.RenderTerrainShader(context, cullGroup, (m_Caps.m_Shadows && g_RenderingOptions.GetShadows()) ? &m->shadow : 0);
-	else
-		m->terrainRenderer.RenderTerrainFixed(cullGroup);
-
+	ENSURE(g_RenderingOptions.GetRenderPath() != RenderPath::FIXED);
+	m->terrainRenderer.RenderTerrainShader(context, cullGroup, (m_Caps.m_Shadows && g_RenderingOptions.GetShadows()) ? &m->shadow : 0);
 
 #if !CONFIG2_GLES
 	if (m_TerrainRenderMode == WIREFRAME)
@@ -1415,13 +1412,6 @@ void CRenderer::RenderSubmissions(const CBoundingBoxAligned& waterScissor)
 	{
 		RenderSilhouettes(context);
 	}
-
-#if !CONFIG2_GLES
-	// Clean up texture blend mode so particles and other things render OK
-	// (really this should be cleaned up by whoever set it)
-	if (g_RenderingOptions.GetRenderPath() == RenderPath::FIXED)
-		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-#endif
 
 	// render debug lines
 	if (g_RenderingOptions.GetDisplayFrustum())

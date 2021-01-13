@@ -30,6 +30,10 @@
     <RequiredTechnology>phase_town</RequiredTechnology>
     <Tooltip>Heal units.</Tooltip>
   </Identity>
+  <Loot>
+    <xp>8</xp>
+    <food>25</food>
+  </Loot>
   <Promotion>
     <RequiredXp>150</RequiredXp>
   </Promotion>
@@ -44,7 +48,7 @@
   <Sound>
     <SoundGroups>
       <order_heal>voice/{lang}/civ/civ_{phenotype}_heal.xml</order_heal>
-      <trained>interface/alarm/alarm_create_infantry.xml</trained>
+      <trained>interface/alarm/alarm_create_priest.xml</trained>
     </SoundGroups>
   </Sound>
   <Vision>

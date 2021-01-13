@@ -5,7 +5,10 @@
 		"iber": "Toledo Steel"
 	},
 	"description": "Secret steel working techniques give sword blades distinctive and beautiful markings. Not only that, but the steel's hardness is unparalleled.",
-	"cost": { "food": 0, "wood": 200, "stone": 0, "metal": 200 },
+	"cost": {
+		"wood": 200,
+		"metal": 200
+	},
 	"requirements": {
 		"all": [
 			{ "tech": "phase_city" },

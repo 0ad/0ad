@@ -1,0 +1,24 @@
+{
+	"genericName": "Immortals",
+	"description": "The Achaemenids maintained a 10,000-strong elite corps, referred to as Athanatoi (“Immortals”) by Greek authors.",
+	"cost": {
+		"food": 200,
+		"metal": 200
+	},
+	"requirements": {
+		"all": [
+			{ "tech": "phase_city" },
+			{ "civ": "pers" }
+		]
+	},
+	"requirementsTooltip": "Unlocked in City Phase.",
+	"icon": "fist_spear.png",
+	"researchTime": 60,
+	"tooltip": "Immortals −50% training time, but −10% health.",
+	"modifications": [
+		{ "value": "Cost/BuildTime", "multiply": 0.5 },
+		{ "value": "Health/Max", "multiply": 0.9 }
+	],
+	"affects": ["Immortal"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}

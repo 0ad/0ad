@@ -1,7 +1,12 @@
 {
 	"genericName": "Espionage",
 	"description": "Merchants' first goal was trading, but they also gathered information about the countries they crossed.",
-	"cost": { "food": 500, "wood": 500, "stone": 300, "metal": 300 },
+	"cost": {
+		"food": 500,
+		"wood": 500,
+		"stone": 300,
+		"metal": 300
+	},
 	"requirements": { "tech": "phase_city" },
 	"icon": "spy_trader.png",
 	"researchTime": 80,

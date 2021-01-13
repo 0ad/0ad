@@ -1,0 +1,19 @@
+{
+	"genericName": "Equine Transports",
+	"description": "Early Achaemenid rulers acted towards making Persia the first great Asian empire to rule the seas. The Great King behaved favourably towards the various sea peoples in order to secure their services, but also carried out various marine initiatives. During the reign of Darius the Great, for example, a canal was built in Egypt and a Persian navy was sent exploring the Indus river. According to Herodotus, some 300 ships in the Persian navy were retrofitted to carry horses and their riders.",
+	"cost": {
+		"wood": 300,
+		"metal": 300
+	},
+	"requirements": {
+		"all": [
+			{ "tech": "phase_city" },
+			{ "civ": "pers" }
+		]
+	},
+	"requirementsTooltip": "Unlocked in City Phase.",
+	"icon": "horse_rider.png",
+	"researchTime": 60,
+	"tooltip": "Phoenician Triremes gain the ability to train Cavalry.",
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}
