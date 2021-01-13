@@ -1,18 +1,17 @@
 #version 110
 
+#if USE_SHADOWS_ON_WATER
+#include "common/shadows_vertex.h"
+#endif
+
 uniform mat4 reflectionMatrix;
 uniform mat4 refractionMatrix;
 uniform mat4 losMatrix;
-uniform mat4 shadowTransform;
 uniform float repeatScale;
 uniform float windAngle;
 // "Wildness" of the reflections and refractions; choose based on texture
 uniform float waviness;
 uniform vec3 sunDir;
-
-#if USE_SHADOW_SAMPLER && USE_SHADOW_PCF
-	uniform vec4 shadowScale;
-#endif
 
 uniform float time;
 
@@ -38,10 +37,6 @@ varying vec2 losCoords;
 
 varying float fwaviness;
 varying vec2 WindCosSin;
-
-#if USE_SHADOW && USE_SHADOWS_ON_WATER
-	varying vec4 v_shadow;
-#endif
 
 attribute vec3 a_vertex;
 attribute vec2 a_waterInfo;
@@ -69,11 +64,8 @@ void main()
 #endif
 	losCoords = (losMatrix * vec4(a_vertex, 1.0)).rg;
 
-#if USE_SHADOW && USE_SHADOWS_ON_WATER
-	v_shadow = shadowTransform * vec4(a_vertex, 1.0);
-#if USE_SHADOW_SAMPLER && USE_SHADOW_PCF
-	v_shadow.xy *= shadowScale.xy;
-#endif
+#if USE_SHADOWS_ON_WATER
+	calculatePositionInShadowSpace(vec4(a_vertex, 1.0));
 #endif
 
 	v_eyeVec = normalize(cameraPos - worldPos);

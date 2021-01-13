@@ -1,5 +1,7 @@
 #version 120
 
+#include "common/shadows_vertex.h"
+
 uniform mat4 transform;
 uniform vec3 cameraPos;
 #ifdef GL_ES
@@ -11,17 +13,8 @@ uniform vec3 sunColor;
 #endif
 uniform vec2 textureTransform;
 uniform vec2 losTransform;
-uniform mat4 shadowTransform;
-
-#if USE_SHADOW_SAMPLER && USE_SHADOW_PCF
-  uniform vec4 shadowScale;
-#endif
 
 varying vec3 v_lighting;
-
-#if USE_SHADOW
-  varying vec4 v_shadow;
-#endif
 
 varying vec2 v_los;
 varying vec2 v_blend;
@@ -43,7 +36,6 @@ varying vec3 v_normal;
     varying vec3 v_half;
   #endif
 #endif
-
 
 attribute vec3 a_vertex;
 attribute vec3 a_normal;
@@ -89,12 +81,7 @@ void main()
     v_blend = a_uv1;
   #endif
 
-  #if USE_SHADOW
-    v_shadow = shadowTransform * vec4(a_vertex, 1.0);
-    #if USE_SHADOW_SAMPLER && USE_SHADOW_PCF
-      v_shadow.xy *= shadowScale.xy;
-    #endif
-  #endif
+  calculatePositionInShadowSpace(vec4(a_vertex, 1.0));
 
   v_normal = a_normal;
 

@@ -1,5 +1,7 @@
 #version 120
 
+#include "common/shadows_fragment.h"
+
 uniform sampler2D baseTex;
 uniform sampler2D losTex;
 uniform sampler2D aoTex;
@@ -8,17 +10,6 @@ uniform sampler2D specTex;
 
 uniform sampler2D waterTex;
 uniform samplerCube skyCube;
-
-#if USE_SHADOW
-  #if USE_SHADOW_SAMPLER
-    uniform sampler2DShadow shadowTex;
-    #if USE_SHADOW_PCF
-      uniform vec4 shadowScale;
-    #endif
-  #else
-    uniform sampler2D shadowTex;
-  #endif
-#endif
 
 #if USE_OBJECTCOLOR
   uniform vec3 objectColor;
@@ -41,43 +32,13 @@ uniform float murkiness;
 uniform vec3 reflectionTint;
 uniform float reflectionTintStrength;
 
-
 float waterDepth = 4.0;		
 float fullDepth = 5.0;		// Depth at which to use full murkiness (shallower water will be clearer)
-
 
 varying vec4 worldPos;
 varying vec4 v_tex;
 varying vec4 v_shadow;
 varying vec2 v_los;
-
-
-float get_shadow(vec4 coords)
-{
-  #if USE_SHADOW && !DISABLE_RECEIVE_SHADOWS
-    #if USE_SHADOW_SAMPLER
-      #if USE_SHADOW_PCF
-        vec2 offset = fract(coords.xy - 0.5);
-        vec4 size = vec4(offset + 1.0, 2.0 - offset);
-		vec4 weight = (vec4(1.0, 1.0, -0.5, -0.5) + (coords.xy - 0.5*offset).xyxy) * shadowScale.zwzw;
-        return (1.0/9.0)*dot(size.zxzx*size.wwyy,
-          vec4(shadow2D(shadowTex, vec3(weight.zw, coords.z)).r,
-               shadow2D(shadowTex, vec3(weight.xw, coords.z)).r,
-               shadow2D(shadowTex, vec3(weight.zy, coords.z)).r,
-               shadow2D(shadowTex, vec3(weight.xy, coords.z)).r));
-      #else
-        return shadow2D(shadowTex, coords.xyz).r;
-      #endif
-    #else
-      if (coords.z >= 1.0)
-        return 1.0;
-      return (coords.z <= texture2D(shadowTex, coords.xy).x ? 1.0 : 0.0);
-    #endif
-  #else
-    return 1.0;
-  #endif
-}
-
 
 void main()
 {
