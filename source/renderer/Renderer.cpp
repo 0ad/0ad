@@ -550,8 +550,8 @@ void CRenderer::ReloadShaders()
 
 	m->Model.ModShader = LitRenderModifierPtr(new ShaderRenderModifier());
 
-	bool cpuLighting = (g_RenderingOptions.GetRenderPath() == RenderPath::FIXED);
-	m->Model.VertexRendererShader = ModelVertexRendererPtr(new ShaderModelVertexRenderer(cpuLighting));
+	ENSURE(g_RenderingOptions.GetRenderPath() != RenderPath::FIXED);
+	m->Model.VertexRendererShader = ModelVertexRendererPtr(new ShaderModelVertexRenderer());
 	m->Model.VertexInstancingShader = ModelVertexRendererPtr(new InstancingModelRenderer(false, g_RenderingOptions.GetPreferGLSL()));
 
 	if (g_RenderingOptions.GetRenderPath() == RenderPath::SHADER && g_RenderingOptions.GetGPUSkinning()) // TODO: should check caps and GLSL etc too
