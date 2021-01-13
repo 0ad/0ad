@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<variant name="Base" frequency="1">
+  <animations>
+    <animation file="biped/infantry/standard_bearer/carnyx_idle_ready_01.dae" name="idle" id="idle1" frequency="2" speed="75"/>
+    <animation file="biped/infantry/standard_bearer/carnyx_idle_ready_02.dae" name="idle" id="idle2" speed="75"/>
+    <animation file="biped/infantry/standard_bearer/carnyx_idle_ready_03.dae" name="idle" id="idle3" speed="75"/>
+    <animation file="biped/infantry/standard_bearer/carnyx_jog_relax.dae" name="Walk" speed="10"/>
+    <animation file="biped/infantry/standard_bearer/carnyx_jog_ready.dae" name="Run" speed="8"/>
+    <animation event="0.5" file="biped/infantry/standard_bearer/carnyx_attack_melee_01.dae" name="attack_melee" id="attack1" speed="120"/>
+    <animation event="0.5" file="biped/infantry/standard_bearer/carnyx_attack_melee_02.dae" name="attack_melee" id="attack2" speed="100"/>
+    <animation event="0.5" file="biped/infantry/standard_bearer/carnyx_attack_melee_03.dae" name="attack_melee" id="attack3" speed="80"/>
+    <animation event="0.5" file="biped/infantry/standard_bearer/carnyx_attack_melee_04.dae" name="attack_melee" id="attack3" speed="80"/>
+    <animation file="biped/infantry/promotion.dae" name="promotion" speed="80"/>
+  </animations>
+</variant>

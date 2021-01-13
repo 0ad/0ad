@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="biped/base_carnyx.xml">
+      <props>
+        <prop actor="props/units/heads/new/head_celt.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/csword.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/weapons/sheath_celt_iron_e.xml" attachpoint="sheath_01_L"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Carnyx 01">
+      <props>
+        <prop actor="props/units/celt_carnyx_01.xml" attachpoint="weapon_L"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Carnyx 02">
+      <props>
+        <prop actor="props/units/celt_carnyx_02.xml" attachpoint="weapon_L"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Celtic Alesia-01">
+      <props>
+        <prop actor="props/units/helmets/celt_helmet_alesia_01.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Celtic Alesia-02">
+      <props>
+        <prop actor="props/units/helmets/celt_helmet_alesia_02.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Celtic Alesia-03">
+      <props>
+        <prop actor="props/units/helmets/celt_helmet_alesia_03.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="chainmail-2a">
+      <mesh>skeletal/new/m_armor_pants.dae</mesh>
+      <textures>
+        <texture file="skeletal/celt_chainmail_2_a.png" name="baseTex"/>
+        <texture file="skeletal/celt_chainmail_2_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="chainmail-2b">
+      <mesh>skeletal/new/m_armor_pants.dae</mesh>
+      <textures>
+        <texture file="skeletal/celt_chainmail_2_b.png" name="baseTex"/>
+        <texture file="skeletal/celt_chainmail_2_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="chainmail-2c">
+      <mesh>skeletal/new/m_armor_pants.dae</mesh>
+      <textures>
+        <texture file="skeletal/celt_chainmail_2_c.png" name="baseTex"/>
+        <texture file="skeletal/celt_chainmail_2_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="chainmail-3a">
+      <mesh>skeletal/new/m_armor_pants_tunic_long.dae</mesh>
+      <textures>
+        <texture file="skeletal/celt_chainmail_3_a.png" name="baseTex"/>
+        <texture file="skeletal/celt_chainmail_3_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="chainmail-3b">
+      <mesh>skeletal/new/m_armor_pants_tunic_long.dae</mesh>
+      <textures>
+        <texture file="skeletal/celt_chainmail_3_b.png" name="baseTex"/>
+        <texture file="skeletal/celt_chainmail_3_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="chainmail-3c">
+      <mesh>skeletal/new/m_armor_pants_tunic_long.dae</mesh>
+      <textures>
+        <texture file="skeletal/celt_chainmail_3_c.png" name="baseTex"/>
+        <texture file="skeletal/celt_chainmail_3_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/carry_food.xml"/>
+    <variant file="biped/carry_meat.xml"/>
+    <variant file="biped/carry_wood.xml"/>
+    <variant file="biped/carry_stone.xml"/>
+    <variant file="biped/carry_metal.xml"/>
+    <variant file="biped/approach_tree.xml"/>
+    <variant file="biped/approach_grain.xml"/>
+    <variant file="biped/approach_fruit.xml"/>
+    <variant file="biped/approach_meat.xml"/>
+    <variant file="biped/approach_rock.xml"/>
+    <variant file="biped/approach_ore.xml"/>
+    <variant file="biped/approach_ruins.xml"/>
+    <variant file="biped/approach_praise.xml"/>
+    <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/attack_slaughter.xml"/>
+    <variant file="biped/death_infantry.xml"/>
+  </group>
+  <material>player_trans_spec.xml</material>
+</actor>
