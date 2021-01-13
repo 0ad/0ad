@@ -925,10 +925,13 @@ UnitAI.prototype.UnitFsmSpec = {
 				let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
 				cmpFormation.SetRearrange(false);
 				this.StartTimer(0, 2000);
+				this.isIdle = true;
+				this.CallMemberFunction("ResetIdle");
 				return false;
 			},
 
 			"leave": function() {
+				this.isIdle = false;
 				this.StopTimer();
 			},
 
@@ -1610,6 +1613,13 @@ UnitAI.prototype.UnitFsmSpec = {
 					     !this.CheckPointRangeExplicit(this.heldPosition.x, this.heldPosition.z, 0, 10) &&
 					     this.WalkToHeldPosition())
 						return;
+
+					if (this.IsFormationMember())
+					{
+						let cmpFormationAI = Engine.QueryInterface(this.formationController, IID_UnitAI);
+						if (!cmpFormationAI || !cmpFormationAI.IsIdle())
+							return;
+					}
 
 					this.isIdle = true;
 					Engine.PostMessage(this.entity, MT_UnitIdleChanged, { "idle": this.isIdle });
@@ -3529,6 +3539,18 @@ UnitAI.prototype.IsHealer = function()
 UnitAI.prototype.IsIdle = function()
 {
 	return this.isIdle;
+};
+
+/**
+ * Used by formation controllers to toggle the idleness of their members.
+ */
+UnitAI.prototype.ResetIdle = function()
+{
+	let shouldBeIdle = this.GetCurrentState().endsWith(".IDLE");
+	if (this.isIdle == shouldBeIdle)
+		return;
+	this.isIdle = shouldBeIdle;
+	Engine.PostMessage(this.entity, MT_UnitIdleChanged, { "idle": this.isIdle });
 };
 
 UnitAI.prototype.IsGarrisoned = function()
