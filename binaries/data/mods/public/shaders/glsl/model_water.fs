@@ -37,7 +37,6 @@ float fullDepth = 5.0;		// Depth at which to use full murkiness (shallower water
 
 varying vec4 worldPos;
 varying vec4 v_tex;
-varying vec4 v_shadow;
 varying vec2 v_los;
 
 void main()
@@ -88,7 +87,7 @@ void main()
 	losMod = texture2D(losTex, v_los).a;
 
 #if USE_SHADOW
-	float shadow = get_shadow(vec4(v_shadow.xy - 8*waviness*n.xz, v_shadow.zw));
+	float shadow = get_shadow();
 	float fresShadow = mix(fresnel, fresnel*shadow, dot(sunColor, vec3(0.16666)));
 #else
 	float fresShadow = fresnel;

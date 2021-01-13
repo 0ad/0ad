@@ -15,7 +15,6 @@ uniform float specularPower;
 uniform vec3 specularColor;
 
 varying vec4 v_tex;
-varying vec4 v_shadow;
 varying vec2 v_los;
 varying vec3 v_half;
 varying vec3 v_normal;
@@ -35,7 +34,7 @@ void main()
 	vec3 specular = sunColor * specularColor * pow(max(0.0, dot(normalize(v_normal), v_half)), specularPower);
 
 	vec3 color = (texdiffuse.rgb * v_lighting + specular) * get_shadow();
-        color += texdiffuse.rgb * ambient;
+	color += texdiffuse.rgb * ambient;
 
 	#if !IGNORE_LOS
 		float los = texture2D(losTex, v_los).a;
@@ -46,4 +45,3 @@ void main()
 	gl_FragColor.rgb = color;
 	gl_FragColor.a = texdiffuse.a;
 }
-
