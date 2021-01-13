@@ -1,25 +1,29 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <SoundGroup>
-	<Gain>1</Gain>
-	<Priority>100</Priority>
+	<Gain>0.4</Gain>
+	<Priority>80</Priority>
 	<ConeGain>1</ConeGain>
 	<Looping>0</Looping>
 	<RandOrder>1</RandOrder>
 	<RandGain>1</RandGain>
+	<GainUpper>0.5</GainUpper>
+	<GainLower>0.2</GainLower>
 	<RandPitch>1</RandPitch>
+	<PitchUpper>1.3</PitchUpper>
+	<PitchLower>0.7</PitchLower>
 	<Threshold>1</Threshold>
 	<Path>audio/attack/impact/</Path>
-	<Sound>arrowimpmetal_21.ogg</Sound>
-	<Sound>arrowimpmetal_22.ogg</Sound>
-	<Sound>arrowimpmetal_23.ogg</Sound>
-	<Sound>arrowimpmetal_24.ogg</Sound>
-	<Sound>arrowimpmetal_25.ogg</Sound>
-	<Sound>arrowimpmetal_26.ogg</Sound>
-	<Sound>arrowimpmetal_27.ogg</Sound>
-	<Sound>arrowimpmetal_28.ogg</Sound>
-	<Sound>arrowimpmetal_29.ogg</Sound>
-	<Sound>arrowimpmetal_210.ogg</Sound>
-	<Sound>arrowimpmetal_211.ogg</Sound>
-	<Sound>arrowimpmetal_212.ogg</Sound>
-	<Sound>arrowimpmetal_213.ogg</Sound>
+	<Sound>arrow_metal_01.ogg</Sound>
+	<Sound>arrow_metal_02.ogg</Sound>
+	<Sound>arrow_metal_03.ogg</Sound>
+	<Sound>arrow_metal_04.ogg</Sound>
+	<Sound>arrow_metal_05.ogg</Sound>
+	<Sound>arrow_metal_06.ogg</Sound>
+	<Sound>arrow_metal_07.ogg</Sound>
+	<Sound>arrow_metal_08.ogg</Sound>
+	<Sound>arrow_metal_09.ogg</Sound>
+	<Sound>arrow_metal_10.ogg</Sound>
+	<Sound>arrow_metal_11.ogg</Sound>
+	<Sound>arrow_metal_12.ogg</Sound>
+	<Sound>arrow_metal_13.ogg</Sound>
 </SoundGroup>
