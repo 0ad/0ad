@@ -1,0 +1,18 @@
+{
+	"genericName": "Sun-dried Mud Bricks",
+	"autoResearch": true,
+	"description": "Sun-dried mud bricks were a common building material in hot and dry areas, especially where wood was scarce. Although not as strong and durable as fired bricks or natural stone and vulnerable to constant rains and heavy floods, mud bricks have the advantage they are cheap and easy to produce.",
+	"requirements": {
+		"any": [
+			{ "civ": "ptol" }
+		]
+	},
+	"icon": "stone_blocks_brown.png",
+	"tooltip": "Houses and Economic Structures −50% wood cost, but +50% build time.",
+	"modifications": [
+		{ "value": "Cost/BuildTime", "multiply": 1.5},
+		{ "value": "Cost/Resources/wood", "multiply": 0.5 },
+		{ "value": "Loot/wood", "multiply": 0.5 }
+	],
+	"affects": ["Economic !CivCentre !Naval", "House"]
+}
