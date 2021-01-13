@@ -5,27 +5,29 @@
 	},
 	"description": "The now-extinct Nisian breed of horse was one of the largest and robust horses of ancient times. They were highly sought after by the Seleucids and Persians as both rider and mount gained heavier armor as time progressed.",
 	"cost": {
-		"food": 200,
+		"food": 400,
 		"metal": 200
 	},
+	"supersedes": "cavalry_health",
 	"requirements": {
 		"all": [
 			{ "tech": "phase_city" },
 			{
 				"any": [
-					{ "civ": "sele" },
-					{ "civ": "pers" }
+					{ "civ": "pers" },
+					{ "civ": "sele" }
 				]
 			}
 		]
 	},
 	"requirementsTooltip": "Unlocked in City Phase.",
-	"icon": "nisean_war_horses.png",
+	"icon": "chamfrom.png",
 	"researchTime": 60,
-	"tooltip": "Cavalry +20% health.",
+	"tooltip": "Champion Cavalry Spearmen +20% health, but +10% training time.",
 	"modifications": [
+		{ "value": "Cost/BuildTime", "multiply": 1.1 },
 		{ "value": "Health/Max", "multiply": 1.2 }
 	],
-	"affects": ["Cavalry"],
+	"affects": ["Champion Cavalry Spearman"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }
