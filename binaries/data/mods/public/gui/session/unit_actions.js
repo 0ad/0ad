@@ -1481,18 +1481,18 @@ var g_EntityCommands =
 	"is-dropsite-shared": {
 		"getInfo": function(entStates)
 		{
-			let sharableEntities = entStates.filter(
+			let shareableEntities = entStates.filter(
 				entState => entState.resourceDropsite && entState.resourceDropsite.sharable);
-			if (!sharableEntities.length)
+			if (!shareableEntities.length)
 				return false;
 
 			let player = Engine.GetPlayerID();
 			let simState = GetSimState();
 			if (!g_IsObserver && !simState.players[player].hasSharedDropsites ||
-				entStates.every(entState => controlsPlayer(entState.player)))
+				shareableEntities.every(entState => controlsPlayer(entState.player)))
 				return false;
 
-			if (!entStates.every(entState => entState.resourceDropsite.shared))
+			if (!shareableEntities.every(entState => entState.resourceDropsite.shared))
 				return {
 					"tooltip": translate("The use of this dropsite is prohibited"),
 					"icon": "locked_small.png",
