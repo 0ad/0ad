@@ -68,7 +68,7 @@ PETRA.Config = function(difficulty, behavior)
 			"structures/{civ}/embassy_italic"
 		],
 		"gaul": [
-			"structures/{civ}/tavern"
+			"structures/{civ}/assembly"
 		],
 		"iber": [
 			"structures/{civ}/monument"

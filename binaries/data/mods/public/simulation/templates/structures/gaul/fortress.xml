@@ -3,7 +3,7 @@
   <Identity>
     <Civ>gaul</Civ>
     <SpecificName>Dunon</SpecificName>
-    <Tooltip>Territory root. Train Champion Infantry and Heroes. Garrison Soldiers for additional arrows.</Tooltip>
+    <Tooltip>Territory root. Train Champion Infantry. Garrison Soldiers for additional arrows.</Tooltip>
   </Identity>
   <Population>
     <Bonus>12</Bonus>
@@ -11,9 +11,6 @@
   <ProductionQueue>
     <Entities datatype="tokens">
       units/{civ}/champion_infantry
-      units/{civ}/hero_brennus
-      units/{civ}/hero_viridomarus
-      units/{civ}/hero_vercingetorix
     </Entities>
   </ProductionQueue>
   <Sound>

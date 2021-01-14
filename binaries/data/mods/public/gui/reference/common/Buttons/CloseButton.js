@@ -13,4 +13,4 @@ CloseButton.prototype.Caption =
 	translate("Close");
 
 CloseButton.prototype.Hotkey =
-	"close";
+	"cancel";

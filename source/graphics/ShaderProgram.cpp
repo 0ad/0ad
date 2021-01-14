@@ -101,9 +101,6 @@ public:
 		CStr vertexCode = preprocessor.Preprocess(vertexFile.GetAsString());
 		CStr fragmentCode = preprocessor.Preprocess(fragmentFile.GetAsString());
 
-//		printf(">>>\n%s<<<\n", vertexCode.c_str());
-//		printf(">>>\n%s<<<\n", fragmentCode.c_str());
-
 		if (!Compile(GL_VERTEX_PROGRAM_ARB, "vertex", m_VertexProgram, m_VertexFile, vertexCode))
 			return;
 

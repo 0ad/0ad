@@ -1,5 +1,11 @@
 #version 110
 
+#include "common/fog.h"
+
+#if USE_SHADOWS_ON_WATER
+#include "common/shadows_fragment.h"
+#endif
+
 // Environment settings
 uniform vec3 ambient;
 uniform vec3 sunDir;
@@ -17,9 +23,6 @@ uniform float murkiness;		// Amount of tint to blend in with the refracted color
 
 uniform float windAngle;
 varying vec2 WindCosSin;
-
-uniform vec3 fogColor;
-uniform vec2 fogParams;
 
 uniform vec2 screenSize;
 varying float moddedTime;
@@ -66,43 +69,6 @@ uniform vec4 waveParams2; // Smallintensity, Smallbase, Bigmovement, Smallmoveme
 #endif
 #endif
 
-#if USE_SHADOWS_ON_WATER && USE_SHADOW
-	varying vec4 v_shadow;
-	#if USE_SHADOW_SAMPLER
-		uniform sampler2DShadow shadowTex;
-		#if USE_SHADOW_PCF
-			uniform vec4 shadowScale;
-		#endif
-	#else
-		uniform sampler2D shadowTex;
-	#endif
-	float get_shadow(vec4 coords)
-	{
-		#if USE_SHADOWS_ON_WATER && !DISABLE_RECEIVE_SHADOWS
-			#if USE_SHADOW_SAMPLER
-				#if USE_SHADOW_PCF
-					vec2 offset = fract(coords.xy - 0.5);
-					vec4 size = vec4(offset + 1.0, 2.0 - offset);
-					vec4 weight = (vec4(1.0, 1.0, -0.5, -0.5) + (coords.xy - 0.5 * offset).xyxy) * shadowScale.zwzw;
-					return (1.0 / 9.0) * dot(size.zxzx * size.wwyy,
-										 vec4(shadow2D(shadowTex, vec3(weight.zw, coords.z)).r,
-											  shadow2D(shadowTex, vec3(weight.xw, coords.z)).r,
-											  shadow2D(shadowTex, vec3(weight.zy, coords.z)).r,
-											  shadow2D(shadowTex, vec3(weight.xy, coords.z)).r));
-				#else
-					return shadow2D(shadowTex, coords.xyz).r;
-				#endif
-			#else
-				if (coords.z >= 1.0)
-					return 1.0;
-				return (coords.z <= texture2D(shadowTex, coords.xy).x ? 1.0 : 0.0);
-			#endif
-		#else
-			return 1.0;
-		#endif
-	}
-#endif
-
 // TODO: convert this to something not only for AABBs
 struct Ray {
     vec3 Origin;
@@ -115,22 +81,6 @@ float IntersectBox (in Ray ray, in vec3 minimum, in vec3 maximum)
     vec3 OMAX = ( maximum - ray.Origin ) / ray.Direction;
     vec3 MAX = max ( OMAX, OMIN );
     return min ( MAX.x, min ( MAX.y, MAX.z ) );
-}
-
-vec3 get_fog(vec3 color)
-{
-	float density = fogParams.x;
-	float maxFog = fogParams.y;
-
-	const float LOG2 = 1.442695;
-	float z = gl_FragCoord.z / gl_FragCoord.w;
-	float fogFactor = exp2(-density * density * z * z * LOG2);
-
-	fogFactor = fogFactor * (1.0 - maxFog) + maxFog;
-
-	fogFactor = clamp(fogFactor, 0.0, 1.0);
-
-	return mix(fogColor, color, fogFactor);
 }
 
 vec3 getNormal(vec4 fancyeffects)
@@ -365,7 +315,7 @@ void main()
 	vec3 specular = getSpecular(normal, eyeVec);
 
 #if USE_SHADOWS_ON_WATER && USE_SHADOW
-	float shadow = get_shadow(vec4(v_shadow.xy, v_shadow.zw));
+	float shadow = get_shadow();
 	float fresShadow = mix(fresnel, fresnel * shadow, 0.05 + murkiness * 0.2);
 	vec3 color = mix(refrColor.rgb, reflColor.rgb, fresShadow * reflColor.a);
 	color += shadow * specular;
@@ -378,9 +328,7 @@ void main()
 
 	color = clamp(mix(color, foam.rgb, foam.a), 0.0, 1.0);
 
-#if USE_FOG
-	color = get_fog(color);
-#endif
+	color = applyFog(color);
 
 	float alpha = refrColor.a;
 	float losMod = texture2D(losTex, losCoords.st).a;

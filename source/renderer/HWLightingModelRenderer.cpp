@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -89,8 +89,7 @@ struct ShaderModel : public CModelRData
 
 	/// Position and normals/lighting are recalculated on CPU every frame
 	VertexArray::Attribute m_Position;
-	VertexArray::Attribute m_Normal; // valid iff cpuLighting == false
-	VertexArray::Attribute m_Color; // valid iff cpuLighting == true
+	VertexArray::Attribute m_Normal;
 
 	ShaderModel(const void* key) : CModelRData(key), m_Array(GL_DYNAMIC_DRAW) { }
 };
@@ -98,36 +97,20 @@ struct ShaderModel : public CModelRData
 
 struct ShaderModelVertexRenderer::ShaderModelRendererInternals
 {
-	bool cpuLighting;
-
-	/**
-	 * Scratch space for normal vector calculation.
-	 * Only used if cpuLighting == true.
-	 * Space is reserved so we don't have to do frequent reallocations.
-	 * Allocated with rtl_AllocateAligned(normalsNumVertices*16, 16) for SSE writes.
-	 */
-	char* normals;
-	size_t normalsNumVertices;
-
 	/// Previously prepared modeldef
 	ShaderModelDef* shadermodeldef;
 };
 
 
 // Construction and Destruction
-ShaderModelVertexRenderer::ShaderModelVertexRenderer(bool cpuLighting)
+ShaderModelVertexRenderer::ShaderModelVertexRenderer()
 {
 	m = new ShaderModelRendererInternals;
-	m->cpuLighting = cpuLighting;
-	m->normals = NULL;
-	m->normalsNumVertices = 0;
-	m->shadermodeldef = NULL;
+	m->shadermodeldef = nullptr;
 }
 
 ShaderModelVertexRenderer::~ShaderModelVertexRenderer()
 {
-	rtl_FreeAligned(m->normals);
-
 	delete m;
 }
 
@@ -147,41 +130,22 @@ CModelRData* ShaderModelVertexRenderer::CreateModelData(const void* key, CModel*
 	// Build the per-model data
 	ShaderModel* shadermodel = new ShaderModel(key);
 
-	if (m->cpuLighting)
-	{
-		// Positions must be 16-byte aligned for SSE writes.
-		// We can pack the color after the position; it will be corrupted by
-		// BuildPositionAndNormals, but that's okay since we'll recompute the
-		// colors afterwards.
+	// Positions and normals must be 16-byte aligned for SSE writes.
 
-		shadermodel->m_Color.type = GL_UNSIGNED_BYTE;
-		shadermodel->m_Color.elems = 4;
-		shadermodel->m_Array.AddAttribute(&shadermodel->m_Color);
+	shadermodel->m_Position.type = GL_FLOAT;
+	shadermodel->m_Position.elems = 4;
+	shadermodel->m_Array.AddAttribute(&shadermodel->m_Position);
 
-		shadermodel->m_Position.type = GL_FLOAT;
-		shadermodel->m_Position.elems = 3;
-		shadermodel->m_Array.AddAttribute(&shadermodel->m_Position);
-	}
-	else
-	{
-		// Positions and normals must be 16-byte aligned for SSE writes.
-
-		shadermodel->m_Position.type = GL_FLOAT;
-		shadermodel->m_Position.elems = 4;
-		shadermodel->m_Array.AddAttribute(&shadermodel->m_Position);
-
-		shadermodel->m_Normal.type = GL_FLOAT;
-		shadermodel->m_Normal.elems = 4;
-		shadermodel->m_Array.AddAttribute(&shadermodel->m_Normal);
-	}
+	shadermodel->m_Normal.type = GL_FLOAT;
+	shadermodel->m_Normal.elems = 4;
+	shadermodel->m_Array.AddAttribute(&shadermodel->m_Normal);
 
 	shadermodel->m_Array.SetNumVertices(mdef->GetNumVertices());
 	shadermodel->m_Array.Layout();
 
 	// Verify alignment
 	ENSURE(shadermodel->m_Position.offset % 16 == 0);
-	if (!m->cpuLighting)
-		ENSURE(shadermodel->m_Normal.offset % 16 == 0);
+	ENSURE(shadermodel->m_Normal.offset % 16 == 0);
 	ENSURE(shadermodel->m_Array.GetStride() % 16 == 0);
 
 	return shadermodel;
@@ -193,41 +157,13 @@ void ShaderModelVertexRenderer::UpdateModelData(CModel* model, CModelRData* data
 {
 	ShaderModel* shadermodel = static_cast<ShaderModel*>(data);
 
-	if (!m->cpuLighting && (updateflags & RENDERDATA_UPDATE_VERTICES))
+	if (updateflags & RENDERDATA_UPDATE_VERTICES)
 	{
 		// build vertices
 		VertexArrayIterator<CVector3D> Position = shadermodel->m_Position.GetIterator<CVector3D>();
 		VertexArrayIterator<CVector3D> Normal = shadermodel->m_Normal.GetIterator<CVector3D>();
 
 		ModelRenderer::BuildPositionAndNormals(model, Position, Normal);
-
-		// upload everything to vertex buffer
-		shadermodel->m_Array.Upload();
-	}
-
-	if (m->cpuLighting && (updateflags & (RENDERDATA_UPDATE_VERTICES|RENDERDATA_UPDATE_COLOR)))
-	{
-		CModelDefPtr mdef = model->GetModelDef();
-		size_t numVertices = mdef->GetNumVertices();
-
-		// allocate working space for computing normals
-		if (numVertices > m->normalsNumVertices)
-		{
-			rtl_FreeAligned(m->normals);
-
-			size_t newSize = round_up_to_pow2(numVertices);
-			m->normals = (char*)rtl_AllocateAligned(newSize*16, 16);
-			m->normalsNumVertices = newSize;
-		}
-
-		VertexArrayIterator<CVector3D> Position = shadermodel->m_Position.GetIterator<CVector3D>();
-		VertexArrayIterator<CVector3D> Normal = VertexArrayIterator<CVector3D>(m->normals, 16);
-
-		ModelRenderer::BuildPositionAndNormals(model, Position, Normal);
-
-		VertexArrayIterator<SColor4ub> Color = shadermodel->m_Color.GetIterator<SColor4ub>();
-
-		ModelRenderer::BuildColor4ub(model, Normal, Color);
 
 		// upload everything to vertex buffer
 		shadermodel->m_Array.Upload();
@@ -240,10 +176,7 @@ void ShaderModelVertexRenderer::UpdateModelData(CModel* model, CModelRData* data
 // Setup one rendering pass
 void ShaderModelVertexRenderer::BeginPass(int streamflags)
 {
-	if (m->cpuLighting)
-		ENSURE(streamflags == (streamflags & (STREAM_POS | STREAM_UV0 | STREAM_UV1 | STREAM_COLOR)));
-	else
-		ENSURE(streamflags == (streamflags & (STREAM_POS | STREAM_UV0 | STREAM_UV1 | STREAM_NORMAL)));
+	ENSURE(streamflags == (streamflags & (STREAM_POS | STREAM_UV0 | STREAM_UV1 | STREAM_NORMAL)));
 }
 
 // Cleanup one rendering pass
@@ -287,9 +220,6 @@ void ShaderModelVertexRenderer::RenderModel(const CShaderProgramPtr& shader, int
 
 	if (streamflags & STREAM_NORMAL)
 		shader->NormalPointer(GL_FLOAT, stride, base + shadermodel->m_Normal.offset);
-
-	if (streamflags & STREAM_COLOR)
-		shader->ColorPointer(3, GL_UNSIGNED_BYTE, stride, base + shadermodel->m_Color.offset);
 
 	shader->AssertPointersBound();
 

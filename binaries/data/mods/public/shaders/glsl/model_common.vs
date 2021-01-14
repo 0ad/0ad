@@ -1,5 +1,7 @@
 #version 120
 
+#include "common/shadows_vertex.h"
+
 uniform mat4 transform;
 uniform vec3 cameraPos;
 #ifdef GL_ES
@@ -10,12 +12,7 @@ uniform vec3 sunDir;
 uniform vec3 sunColor;
 #endif
 uniform vec2 losTransform;
-uniform mat4 shadowTransform;
 uniform mat4 instancingTransform;
-
-#if USE_SHADOW_SAMPLER && USE_SHADOW_PCF
-  uniform vec4 shadowScale;
-#endif
 
 #if USE_WIND
   uniform vec4 sim_time;
@@ -25,10 +22,6 @@ uniform mat4 instancingTransform;
 varying vec4 v_lighting;
 varying vec2 v_tex;
 varying vec2 v_los;
-
-#if USE_SHADOW
-  varying vec4 v_shadow;
-#endif
 
 #if (USE_INSTANCING || USE_GPU_SKINNING) && USE_AO
   varying vec2 v_tex2;
@@ -173,12 +166,7 @@ void main()
     v_tex2 = a_uv1;
   #endif
 
-  #if USE_SHADOW
-    v_shadow = shadowTransform * position;
-    #if USE_SHADOW_SAMPLER && USE_SHADOW_PCF
-      v_shadow.xy *= shadowScale.xy;
-    #endif  
-  #endif
+  calculatePositionInShadowSpace(position);
 
   v_los = position.xz * losTransform.x + losTransform.y;
 }
