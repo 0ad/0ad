@@ -2,20 +2,13 @@
 <Entity parent="template_unit_siege_stonethrower">
   <Attack>
     <Ranged>
-      <MaxRange>76</MaxRange>
-      <MinRange>26.0</MinRange>
+      <Damage>
+        <Crush>150</Crush>
+      </Damage>
+      <MaxRange>75</MaxRange>
+      <MinRange>25</MinRange>
       <PrepareTime>3700</PrepareTime>
       <RepeatTime>5000</RepeatTime>
-      <Splash>
-        <Shape>Circular</Shape>
-        <Range>10</Range>
-        <FriendlyFire>false</FriendlyFire>
-        <Damage>
-          <Hack>40.0</Hack>
-          <Pierce>0.0</Pierce>
-          <Crush>40.0</Crush>
-        </Damage>
-      </Splash>
       <Projectile>
         <Speed>37.5</Speed>
         <Gravity>9.81</Gravity>

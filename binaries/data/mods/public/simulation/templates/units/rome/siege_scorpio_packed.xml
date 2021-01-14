@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_siege_boltshooter">
-  <Attack>
-    <Ranged>
-      <Damage>
-        <Pierce op="mul">1.2</Pierce>
-        <Crush op="mul">0.5</Crush>
-      </Damage>
-      <MaxRange op="add">8</MaxRange>
-    </Ranged>
-  </Attack>
   <Footprint replace="">
     <Square width="5.0" depth="5.0"/>
     <Height>3.0</Height>

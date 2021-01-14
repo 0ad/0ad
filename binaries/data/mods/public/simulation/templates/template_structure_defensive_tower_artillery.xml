@@ -4,38 +4,29 @@
     <Ranged>
       <AttackName>Stone</AttackName>
       <Damage>
-        <Pierce>35</Pierce>
-        <Crush>25</Crush>
+        <Crush>90</Crush>
       </Damage>
-      <MaxRange>78</MaxRange>
-      <MinRange>20</MinRange>
+      <MaxRange>80</MaxRange>
+      <MinRange>40</MinRange>
       <ElevationBonus>15</ElevationBonus>
       <PrepareTime>4500</PrepareTime>
       <RepeatTime>5000</RepeatTime>
       <Projectile>
         <Speed>40.0</Speed>
-        <Spread>2.5</Spread>
-        <Gravity>19.81</Gravity>
-        <LaunchPoint y="3.2"/>
+        <Spread>6.0</Spread>
+        <Gravity>9.81</Gravity>
+        <FriendlyFire>false</FriendlyFire>
+        <LaunchPoint y="3"/>
         <ActorName>props/units/weapons/tower_artillery_projectile.xml</ActorName>
         <ImpactActorName>props/units/weapons/tower_artillery_projectile_impact.xml</ImpactActorName>
         <ImpactAnimationLifetime>0.3</ImpactAnimationLifetime>
       </Projectile>
-      <Splash>
-        <Shape>Circular</Shape>
-        <Range>7</Range>
-        <FriendlyFire>false</FriendlyFire>
-        <Damage>
-          <Hack>0.0</Hack>
-          <Pierce>25.0</Pierce>
-          <Crush>5.0</Crush>
-        </Damage>
-      </Splash>
+      <PreferredClasses datatype="tokens">-Human !Organic</PreferredClasses>
     </Ranged>
   </Attack>
   <BuildingAI>
     <DefaultArrowCount>1</DefaultArrowCount>
-    <GarrisonArrowMultiplier>0.2</GarrisonArrowMultiplier>
+    <GarrisonArrowMultiplier>0</GarrisonArrowMultiplier>
   </BuildingAI>
   <Cost>
     <BuildTime>200</BuildTime>

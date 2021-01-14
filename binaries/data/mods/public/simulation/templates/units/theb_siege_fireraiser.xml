@@ -4,12 +4,10 @@
     <Ranged>
       <AttackName>Fire</AttackName>
       <Damage>
-        <Hack>50.0</Hack>
-        <Pierce>0.0</Pierce>
-        <Crush>50.0</Crush>
+        <Fire>100</Fire>
       </Damage>
-      <MaxRange>12</MaxRange>
-      <MinRange>8.0</MinRange>
+      <MaxRange>15</MaxRange>
+      <MinRange>10</MinRange>
       <PrepareTime>2000</PrepareTime>
       <RepeatTime>2000</RepeatTime>
       <Delay>0</Delay>
@@ -34,9 +32,7 @@
     <Range>20</Range>
     <FriendlyFire>true</FriendlyFire>
     <Damage>
-      <Hack>200.0</Hack>
-      <Pierce>200.0</Pierce>
-      <Crush>200.0</Crush>
+      <Fire>600</Fire>
     </Damage>
   </DeathDamage>
   <Footprint replace="">
