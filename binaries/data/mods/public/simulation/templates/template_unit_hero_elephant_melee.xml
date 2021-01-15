@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero">
-  <Attack replace="">
+  <Attack>
+    <Capture disable=""/>
     <Melee>
       <AttackName>Trunk</AttackName>
       <Damage>
-        <Hack>20.0</Hack>
+        <Hack>40</Hack>
         <Pierce>0</Pierce>
-        <Crush>50.0</Crush>
+        <Crush>300</Crush>
       </Damage>
       <MaxRange>5.0</MaxRange>
-      <PrepareTime>500</PrepareTime>
-      <RepeatTime>1000</RepeatTime>
+      <PrepareTime>750</PrepareTime>
+      <RepeatTime>1500</RepeatTime>
     </Melee>
   </Attack>
   <Cost>
     <Resources>
-      <food>500</food>
-      <metal>500</metal>
+      <food>600</food>
+      <metal>400</metal>
     </Resources>
   </Cost>
   <Footprint replace="">
@@ -27,8 +28,13 @@
     <Max>1500</Max>
   </Health>
   <Identity>
+    <GenericName>Hero Elephant</GenericName>
     <VisibleClasses datatype="tokens">Elephant Melee</VisibleClasses>
   </Identity>
+  <Loot>
+    <food>60</food>
+    <metal>40</metal>
+  </Loot>
   <Position>
     <TurnRate>3</TurnRate>
   </Position>
@@ -67,6 +73,5 @@
   </StatusBars>
   <UnitMotion>
     <PassabilityClass>large</PassabilityClass>
-    <WalkSpeed op="mul">0.95</WalkSpeed>
   </UnitMotion>
 </Entity>

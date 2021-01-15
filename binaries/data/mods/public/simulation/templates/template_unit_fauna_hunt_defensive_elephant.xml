@@ -11,17 +11,10 @@
       <MaxRange>6.0</MaxRange>
       <PrepareTime>500</PrepareTime>
       <RepeatTime>1000</RepeatTime>
-      <Bonuses>
-        <BonusCav>
-          <Classes>Cavalry</Classes>
-          <Multiplier>1.5</Multiplier>
-        </BonusCav>
-      </Bonuses>
       <RestrictedClasses datatype="tokens">Structure Ship Siege</RestrictedClasses>
     </Melee>
   </Attack>
   <Identity>
-    <Tooltip>Counters: 1.5× vs Cavalry. Cannot attack Structures, Ships, or Siege Engines.</Tooltip>
     <VisibleClasses datatype="tokens">Elephant</VisibleClasses>
   </Identity>
   <Loot>
