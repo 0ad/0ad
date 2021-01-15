@@ -18,6 +18,7 @@
 #include "lib/self_test.h"
 
 #include "graphics/PreprocessorWrapper.h"
+#include "lib/timer.h"
 #include "ps/CStr.h"
 #include "third_party/ogre3d_preprocessor/OgreGLSLPreprocessor.h"
 
@@ -200,7 +201,7 @@ public:
 	{
 		int includeRetrievedCounter = 0;
 		CPreprocessorWrapper::IncludeRetrieverCallback includeCallback = [&includeRetrievedCounter](
-				const CStr& includePath, CStr& out) {
+				const CStr& UNUSED(includePath), CStr& out) {
 			out = "42";
 			++includeRetrievedCounter;
 			return true;
@@ -217,7 +218,7 @@ public:
 	void test_include_invalid_file()
 	{
 		CPreprocessorWrapper::IncludeRetrieverCallback includeCallback = [](
-				const CStr& includePath, CStr& out) {
+				const CStr& UNUSED(includePath), CStr& UNUSED(out)) {
 			return false;
 		};
 
@@ -231,7 +232,7 @@ public:
 	void test_include_with_defines()
 	{
 		CPreprocessorWrapper::IncludeRetrieverCallback includeCallback = [](
-				const CStr& includePath, CStr& out) {
+				const CStr& UNUSED(includePath), CStr& out) {
 			out = R"(
 				#if defined(A)
 					#define X 41
