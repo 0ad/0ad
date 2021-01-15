@@ -665,7 +665,7 @@ Engine.SetProgress(60);
 // The city is a circle segment of this maximum size
 g_Map.log("Computing city grid");
 var gridCenter = new Vector2D(0, fractionToTiles(0.3)).rotate(-riverAngle).add(mapCenter).round();
-var gridMaxAngle = scaleByMapSize(Math.PI / 3, Math.PI);
+var gridMaxAngle = Math.min(scaleByMapSize(1/3, 1), 2/3) * Math.PI;
 var gridStartAngle = -Math.PI / 2 -gridMaxAngle / 2 + riverAngle;
 var gridRadius = y => hillRadius + 18 * y;
 
@@ -976,7 +976,7 @@ var areaCityPaths = new Area(areasCityPaths.reduce((points, area) => points.conc
 var areaRoads = [];
 for (let roadStart of roadStartLocations)
 {
-	if (areaRoads.length >= scaleByMapSize(2, 4))
+	if (areaRoads.length >= scaleByMapSize(2, 5))
 		break;
 
 	let closestPoint = areaCityPaths.getClosestPointTo(roadStart);
@@ -987,7 +987,7 @@ for (let roadStart of roadStartLocations)
 			new PathPlacer(
 				Vector2D.add(closestPoint, new Vector2D(0, 3/4 * mapSize).rotate(closestPoint.angleTo(roadStart))),
 				roadStart,
-				4,
+				scaleByMapSize(5, 3),
 				0.1,
 				5,
 				0.5,
