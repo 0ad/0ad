@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -29,6 +29,9 @@
 #include "ps/Game.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpSoundManager.h"
+
+#include <cstdlib>
+#include <cmath>
 
 // Randomly modify the speed, so that units won't stay perfectly
 // synchronised if they're playing animations of the same length
@@ -161,18 +164,21 @@ void CUnitAnimation::Update(float time)
 	if (m_AnimStatesAreStatic)
 		return;
 
+	bool shouldPlaySound = false;
+
 	// Advance all of the prop models independently
 	for (std::vector<SModelAnimState>::iterator it = m_AnimStates.begin(); it != m_AnimStates.end(); ++it)
 	{
 		CSkeletonAnimDef* animDef = it->anim->m_AnimDef;
-		if (animDef == NULL)
+		if (!animDef)
 			continue; // ignore static animations
 
 		float duration = animDef->GetDuration();
-
 		float actionPos = it->anim->m_ActionPos;
 		float loadPos = it->anim->m_ActionPos2;
-		float soundPos = it->anim->m_SoundPos;
+		// SoundPos is either the m_SoundPos when available, or m_ActionPos. Else no sound is played.
+		// TODO: Should they be totally independent?
+		float soundPos = it->anim->m_SoundPos != -1.f ? it->anim->m_SoundPos : actionPos;
 		bool hasActionPos = (actionPos != -1.f);
 		bool hasLoadPos = (loadPos != -1.f);
 		bool hasSoundPos = (soundPos != -1.f);
@@ -186,42 +192,32 @@ void CUnitAnimation::Update(float time)
 
 		// Convert from real time to scaled animation time
 		float advance = time * speed;
+		float nextPos = it->time + advance;
 
 		// If we're going to advance past the load point in this update, then load the ammo
-		if (hasLoadPos && !it->pastLoadPos && it->time + advance >= loadPos)
+		if (hasLoadPos && !it->pastLoadPos && nextPos >= loadPos)
 		{
 			it->model->ShowAmmoProp();
 			it->pastLoadPos = true;
 		}
 
-		// If we're going to advance past the action point in this update, then perform the action
-		if (hasActionPos && !it->pastActionPos && it->time + advance >= actionPos)
+		// If we're going to advance past the action point in this update, then perform the action.
+		if (hasActionPos && !it->pastActionPos && nextPos >= actionPos)
 		{
 			if (hasLoadPos)
 				it->model->HideAmmoProp();
 
-			if ( !hasSoundPos && !m_ActionSound.empty() )
-			{
-				CmpPtr<ICmpSoundManager> cmpSoundManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
-				if (cmpSoundManager)
-					cmpSoundManager->PlaySoundGroup(m_ActionSound, m_Entity);
-			}
-
 			it->pastActionPos = true;
 		}
-		if (hasSoundPos && !it->pastSoundPos && it->time + advance >= soundPos)
-		{
-			if (!m_ActionSound.empty() )
-			{
-				CmpPtr<ICmpSoundManager> cmpSoundManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
-				if (cmpSoundManager)
-					cmpSoundManager->PlaySoundGroup(m_ActionSound, m_Entity);
-			}
 
+		// If we're going to advance past the sound point in this update, then play the sound.
+		if (hasSoundPos && !it->pastSoundPos && nextPos >= soundPos && !m_ActionSound.empty())
+		{
+			shouldPlaySound = true;
 			it->pastSoundPos = true;
 		}
 
-		if (it->time + advance < duration)
+		if (nextPos < duration)
 		{
 			// If we're still within the current animation, then simply update it
 			it->time += advance;
@@ -232,7 +228,7 @@ void CUnitAnimation::Update(float time)
 			// If we've finished the current animation and want to loop...
 
 			// Wrap the timer around
-			it->time = fmod(it->time + advance, duration);
+			it->time = std::fmod(nextPos, duration);
 
 			// Pick a new random animation
 			CSkeletonAnim* anim;
@@ -270,13 +266,20 @@ void CUnitAnimation::Update(float time)
 
 			// Update to very nearly the end of the last frame (but not quite the end else we'll wrap around when skinning)
 			float nearlyEnd = duration - 1.f;
-			if (fabs(it->time - nearlyEnd) > 1.f)
+			if (std::abs(it->time - nearlyEnd) > 1.f)
 			{
 				it->time = nearlyEnd;
 				it->model->UpdateTo(it->time);
 			}
 		}
 	}
+
+	if (!shouldPlaySound)
+		return;
+
+	CmpPtr<ICmpSoundManager> cmpSoundManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
+	if (cmpSoundManager)
+		cmpSoundManager->PlaySoundGroup(m_ActionSound, m_Entity);
 }
 
 void CUnitAnimation::UpdateAnimationID()
