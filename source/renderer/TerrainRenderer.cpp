@@ -457,8 +457,6 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 			defines.Add(str_USE_REFRACTION, str_1);
 		if (WaterMgr->m_WaterReflection)
 			defines.Add(str_USE_REFLECTION, str_1);
-		if (shadow && WaterMgr->m_WaterShadows)
-			defines.Add(str_USE_SHADOWS_ON_WATER, str_1);
 
 		// haven't updated the ARB shader yet so I'll always load the GLSL
 		/*if (!g_RenderingOptions.GetPreferGLSL() && !superFancy)
@@ -605,7 +603,7 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 		m->fancyWaterShader->Uniform(str_waveParams2, 0.3f,0.0f,0.1f,0.3f);
 	}
 
-	if (shadow && WaterMgr->m_WaterShadows)
+	if (shadow)
 	{
 		m->fancyWaterShader->BindTexture(str_shadowTex, shadow->GetTexture());
 		m->fancyWaterShader->Uniform(str_shadowTransform, shadow->GetTextureMatrix());

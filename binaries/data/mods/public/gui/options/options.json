@@ -232,13 +232,6 @@
 			},
 			{
 				"type": "boolean",
-				"label": "Shadows on water",
-				"tooltip": "Cast shadows on water.",
-				"dependencies": ["watereffects"],
-				"config": "watershadows"
-			},
-			{
-				"type": "boolean",
 				"label": "Smooth vision",
 				"tooltip": "Lift darkness and fog of war smoothly.",
 				"config": "smoothlos"

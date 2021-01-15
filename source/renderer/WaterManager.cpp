@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,30 +25,22 @@
 #include "graphics/TextureManager.h"
 #include "graphics/ShaderManager.h"
 #include "graphics/ShaderProgram.h"
-
 #include "lib/bits.h"
 #include "lib/timer.h"
 #include "lib/tex/tex.h"
 #include "lib/res/graphics/ogl_tex.h"
-
 #include "maths/MathUtil.h"
 #include "maths/Vector2D.h"
-
 #include "ps/CLogger.h"
 #include "ps/Game.h"
 #include "ps/World.h"
-
 #include "renderer/WaterManager.h"
 #include "renderer/Renderer.h"
 #include "renderer/RenderingOptions.h"
-
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpWaterManager.h"
 #include "simulation2/components/ICmpRangeManager.h"
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////
-// WaterManager implementation
 
 struct CoastalPoint
 {
@@ -80,8 +72,6 @@ struct WaveObject
 	float m_TimeDiff;
 };
 
-///////////////////////////////////////////////////////////////////
-// Construction/Destruction
 WaterManager::WaterManager()
 {
 	// water
@@ -118,7 +108,6 @@ WaterManager::WaterManager()
 	m_WaterRealDepth = false;
 	m_WaterRefraction = false;
 	m_WaterReflection = false;
-	m_WaterShadows = false;
 	m_WaterType = L"ocean";
 
 	m_NeedsReloading = false;
@@ -875,15 +864,15 @@ void WaterManager::RenderWaves(const CFrustum& frustrum)
 	glDepthFunc(GL_ALWAYS);
 
 	CShaderDefines none;
-	CShaderProgramPtr shad = g_Renderer.GetShaderManager().LoadProgram("glsl/waves", none);
+	CShaderProgramPtr shader = g_Renderer.GetShaderManager().LoadProgram("glsl/waves", none);
 
-	shad->Bind();
+	shader->Bind();
 
-	shad->BindTexture(str_waveTex, m_WaveTex);
-	shad->BindTexture(str_foamTex, m_FoamTex);
+	shader->BindTexture(str_waveTex, m_WaveTex);
+	shader->BindTexture(str_foamTex, m_FoamTex);
 
-	shad->Uniform(str_time, (float)m_WaterTexTimer);
-	shad->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
+	shader->Uniform(str_time, (float)m_WaterTexTimer);
+	shader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
 
 	for (size_t a = 0; a < m_ShoreWaves.size(); ++a)
 	{
@@ -895,24 +884,24 @@ void WaterManager::RenderWaves(const CFrustum& frustrum)
 
 		// setup data pointers
 		GLsizei stride = sizeof(SWavesVertex);
-		shad->VertexPointer(3, GL_FLOAT, stride, &base[VBchunk->m_Index].m_BasePosition);
-		shad->TexCoordPointer(GL_TEXTURE0, 2, GL_UNSIGNED_BYTE, stride, &base[VBchunk->m_Index].m_UV);
+		shader->VertexPointer(3, GL_FLOAT, stride, &base[VBchunk->m_Index].m_BasePosition);
+		shader->TexCoordPointer(GL_TEXTURE0, 2, GL_UNSIGNED_BYTE, stride, &base[VBchunk->m_Index].m_UV);
 		//	NormalPointer(gl_FLOAT, stride, &base[m_VBWater->m_Index].m_UV)
 		pglVertexAttribPointerARB(2, 2, GL_FLOAT, GL_TRUE, stride, &base[VBchunk->m_Index].m_PerpVect);	// replaces commented above because my normal is vec2
-		shad->VertexAttribPointer(str_a_apexPosition, 3, GL_FLOAT, false, stride, &base[VBchunk->m_Index].m_ApexPosition);
-		shad->VertexAttribPointer(str_a_splashPosition, 3, GL_FLOAT, false, stride, &base[VBchunk->m_Index].m_SplashPosition);
-		shad->VertexAttribPointer(str_a_retreatPosition, 3, GL_FLOAT, false, stride, &base[VBchunk->m_Index].m_RetreatPosition);
+		shader->VertexAttribPointer(str_a_apexPosition, 3, GL_FLOAT, false, stride, &base[VBchunk->m_Index].m_ApexPosition);
+		shader->VertexAttribPointer(str_a_splashPosition, 3, GL_FLOAT, false, stride, &base[VBchunk->m_Index].m_SplashPosition);
+		shader->VertexAttribPointer(str_a_retreatPosition, 3, GL_FLOAT, false, stride, &base[VBchunk->m_Index].m_RetreatPosition);
 
-		shad->AssertPointersBound();
+		shader->AssertPointersBound();
 
-		shad->Uniform(str_translation, m_ShoreWaves[a]->m_TimeDiff);
-		shad->Uniform(str_width, (int)m_ShoreWaves[a]->m_Width);
+		shader->Uniform(str_translation, m_ShoreWaves[a]->m_TimeDiff);
+		shader->Uniform(str_width, (int)m_ShoreWaves[a]->m_Width);
 
 		u8* indexBase = m_ShoreWaves_VBIndices->m_Owner->Bind();
 		glDrawElements(GL_TRIANGLES, (GLsizei) (m_ShoreWaves[a]->m_Width-1)*(7*6),
 					   GL_UNSIGNED_SHORT, indexBase + sizeof(u16)*(m_ShoreWaves_VBIndices->m_Index));
 
-		shad->Uniform(str_translation, m_ShoreWaves[a]->m_TimeDiff + 6.0f);
+		shader->Uniform(str_translation, m_ShoreWaves[a]->m_TimeDiff + 6.0f);
 
 		// TODO: figure out why this doesn't work.
 		//g_Renderer.m_Stats.m_DrawCalls++;
@@ -920,7 +909,7 @@ void WaterManager::RenderWaves(const CFrustum& frustrum)
 
 		CVertexBuffer::Unbind();
 	}
-	shad->Unbind();
+	shader->Unbind();
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 
 	glDisable(GL_BLEND);
@@ -1079,24 +1068,24 @@ void WaterManager::UpdateQuality()
 		m_WaterEffects = g_RenderingOptions.GetWaterEffects();
 		m_NeedsReloading = true;
 	}
-	if (g_RenderingOptions.GetWaterFancyEffects() != m_WaterFancyEffects) {
+	if (g_RenderingOptions.GetWaterFancyEffects() != m_WaterFancyEffects)
+	{
 		m_WaterFancyEffects = g_RenderingOptions.GetWaterFancyEffects();
 		m_NeedsReloading = true;
 	}
-	if (g_RenderingOptions.GetWaterRealDepth() != m_WaterRealDepth) {
+	if (g_RenderingOptions.GetWaterRealDepth() != m_WaterRealDepth)
+	{
 		m_WaterRealDepth = g_RenderingOptions.GetWaterRealDepth();
 		m_NeedsReloading = true;
 	}
-	if (g_RenderingOptions.GetWaterRefraction() != m_WaterRefraction) {
+	if (g_RenderingOptions.GetWaterRefraction() != m_WaterRefraction)
+	{
 		m_WaterRefraction = g_RenderingOptions.GetWaterRefraction();
 		m_NeedsReloading = true;
 	}
-	if (g_RenderingOptions.GetWaterReflection() != m_WaterReflection) {
+	if (g_RenderingOptions.GetWaterReflection() != m_WaterReflection)
+	{
 		m_WaterReflection = g_RenderingOptions.GetWaterReflection();
-		m_NeedsReloading = true;
-	}
-	if (g_RenderingOptions.GetWaterShadows() != m_WaterShadows) {
-		m_WaterShadows = g_RenderingOptions.GetWaterShadows();
 		m_NeedsReloading = true;
 	}
 }

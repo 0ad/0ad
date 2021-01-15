@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -86,8 +86,6 @@ public:
 	bool m_WaterRefraction;
 	// Use complete reflections instead of showing merely the sky.
 	bool m_WaterReflection;
-	// Show shadows on the water.
-	bool m_WaterShadows;
 
 	bool m_NeedsReloading;
 	// requires also recreating the super fancy information.
