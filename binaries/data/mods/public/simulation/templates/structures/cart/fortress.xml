@@ -7,14 +7,13 @@
   <Identity>
     <Civ>cart</Civ>
     <SpecificName>Ḥamet</SpecificName>
-    <Tooltip>Territory root. Train Champion Elephants and Heroes. Garrison Soldiers for additional arrows.</Tooltip>
+    <Tooltip>Territory root. Train Heroes. Garrison Soldiers for additional arrows.</Tooltip>
   </Identity>
   <Obstruction>
     <Static width="26.0" depth="28.0"/>
   </Obstruction>
   <ProductionQueue>
     <Entities datatype="tokens">
-      units/{civ}/champion_elephant
       units/{civ}/hero_hamilcar
       units/{civ}/hero_hannibal
       units/{civ}/hero_maharbal
