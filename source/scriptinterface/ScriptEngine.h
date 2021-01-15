@@ -23,6 +23,8 @@
 
 #include "js/Initialization.h"
 
+#include <list>
+
 /**
  * A class using the RAII (Resource Acquisition Is Initialization) idiom to manage initialization
  * and shutdown of the SpiderMonkey script engine. It also keeps a count of active script contexts

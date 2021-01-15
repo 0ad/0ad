@@ -14,64 +14,145 @@
  * You should have received a copy of the GNU General Public License
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #ifndef INCLUDED_RLINTERFACE
 #define INCLUDED_RLINTERFACE
 
 #include "simulation2/helpers/Player.h"
+#include "third_party/mongoose/mongoose.h"
 
 #include <condition_variable>
 #include <mutex>
-#include <string>
 #include <vector>
 
-struct ScenarioConfig {
+namespace RL
+{
+struct ScenarioConfig
+{
 	bool saveReplay;
 	player_id_t playerID;
 	std::string content;
 };
-struct Command {
+
+struct GameCommand
+{
 	int playerID;
 	std::string json_cmd;
 };
 
-enum GameMessageType { Reset, Commands };
-struct GameMessage {
-	GameMessageType type;
-	std::vector<Command> commands;
-};
-
-extern void EndGame();
-
-struct mg_context;
-const static std::string EMPTY_STATE;
-
-class RLInterface
+enum class GameMessageType
 {
-
-	public:
-
-		std::string Step(const std::vector<Command> commands);
-		std::string Reset(const ScenarioConfig* scenario);
-		std::vector<std::string> GetTemplates(const std::vector<std::string> names) const;
-
-		void EnableHTTP(const char* server_address);
-		std::string SendGameMessage(const GameMessage msg);
-		bool TryGetGameMessage(GameMessage& msg);
-		void TryApplyMessage();
-		std::string GetGameState();
-		bool IsGameRunning();
-
-	private:
-		mg_context* m_MgContext = nullptr;
-		const GameMessage* m_GameMessage = nullptr;
-		std::string m_GameState;
-		bool m_NeedsGameState = false;
-		mutable std::mutex m_lock;
-		std::mutex m_msgLock;
-		std::condition_variable m_msgApplied;
-		ScenarioConfig m_ScenarioConfig;
+	None,
+	Reset,
+	Commands,
 };
 
-extern RLInterface* g_RLInterface;
+/**
+ * Holds messages from the RL client to the game.
+ */
+struct GameMessage
+{
+	GameMessageType type;
+	std::vector<GameCommand> commands;
+};
+
+/**
+ * Implements an interface providing fundamental capabilities required for reinforcement
+ * learning (over HTTP).
+ *
+ * This consists of enabling an external script to configure the scenario (via Reset) and
+ * then step the game engine manually and apply player actions (via Step). The interface
+ * also supports querying unit templates to provide information about max health and other
+ * potentially relevant game state information.
+ *
+ * See source/tools/rlclient/ for the external client code.
+ *
+ * The HTTP server is threaded.
+ * Flow of data (with the interface active):
+ *  0. The game/main thread calls TryApplyMessage()
+ *    - If no messages are pending, GOTO 0 (the simulation is not advanced).
+ *  1. TryApplyMessage locks m_MsgLock, pulls the message, processes it, advances the simulation, and sets m_GameState.
+ *  2. TryApplyMessage notifies the RL thread that it can carry on and unlocks m_MsgLock. The main thread carries on frame rendering and goes back to 0.
+ *  3. The RL thread locks m_MsgLock, reads m_GameState, unlocks m_MsgLock, and sends the gamestate as HTTP Response to the RL client.
+ *	4. The client processes the response and ultimately sends a new HTTP message to the RL Interface.
+ *  5. The RL thread locks m_MsgLock, pushes the message, and starts waiting on the game/main thread to notify it (step 2).
+ *   - GOTO 0.
+ */
+class Interface
+{
+	NONCOPYABLE(Interface);
+public:
+	Interface(const char* server_address);
+
+	/**
+	 * Non-blocking call to process any pending messages from the RL client.
+	 * Updates m_GameState to the gamestate after messages have been processed.
+	 */
+	void TryApplyMessage();
+
+private:
+	static void* MgCallback(mg_event event, struct mg_connection *conn, const struct mg_request_info *request_info);
+
+	/**
+	 * Process commands, update the simulation by one turn.
+	 * @return the gamestate after processing commands.
+	 */
+	std::string Step(std::vector<GameCommand>&& commands);
+
+	/**
+	 * Reset the game state according to scenario, cleaning up existing games if required.
+	 * @return the gamestate after resetting.
+	 */
+	std::string Reset(ScenarioConfig&& scenario);
+
+	/**
+	 * @return template data for all templates of @param names.
+	 */
+	std::vector<std::string> GetTemplates(const std::vector<std::string>& names) const;
+
+	/**
+	 * @return true if a game is currently running.
+	 */
+	bool IsGameRunning() const;
+
+	/**
+	 * Internal helper. Move @param msg into m_GameMessage, wait until it has been processed by the main thread,
+	 * and @return the gamestate after that message is processed.
+	 * It is invalid to call this if m_GameMessage is not currently empty.
+	 */
+	std::string SendGameMessage(GameMessage&& msg);
+
+	/**
+	 * Internal helper.
+	 * @return true if m_GameMessage is not empty, and updates @param msg, false otherwise (msg is then unchanged).
+	 */
+	bool TryGetGameMessage(GameMessage& msg);
+
+	/**
+	 * Process any pending messages from the RL client.
+	 * Updates m_GameState to the gamestate after messages have been processed.
+	 */
+	void ApplyMessage(const GameMessage& msg);
+
+	/**
+	 * @return the full gamestate as a JSON strong.
+	 * This uses the AI representation since it is readily available in the JS Engine.
+	 */
+	std::string GetGameState() const;
+
+private:
+	GameMessage m_GameMessage;
+	ScenarioConfig m_ScenarioConfig;
+	std::string m_GameState;
+	bool m_NeedsGameState = false;
+
+	mutable std::mutex m_Lock;
+	std::mutex m_MsgLock;
+	std::condition_variable m_MsgApplied;
+};
+
+}
+
+extern std::unique_ptr<RL::Interface> g_RLInterface;
 
 #endif // INCLUDED_RLINTERFACE
