@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -79,11 +79,13 @@ JS::Value GetHotkeyMap(ScriptInterface::CmptPrivate* pCmptPrivate)
 		for (const SHotkeyMapping& mapping : key.second)
 		{
 			std::vector<std::string> keymap;
-			keymap.push_back(FindScancodeName(static_cast<SDL_Scancode>(key.first)));
+			if (key.first != UNUSED_HOTKEY_CODE)
+				keymap.push_back(FindScancodeName(static_cast<SDL_Scancode>(key.first)));
 			for (const SKey& secondary_key : mapping.requires)
 				keymap.push_back(FindScancodeName(static_cast<SDL_Scancode>(secondary_key.code)));
-			// All hotkey permutations are present so only push one (arbitrarily).
-			if (keymap.size() == 1 || keymap[0] < keymap[1])
+			// If keymap is empty (== unused) or size 1, push the combination.
+			// Otherwise, all permutations of the combination will exist, so pick one using an arbitrary order.
+			if (keymap.size() < 2 || keymap[0] < keymap[1])
 				hotkeys[mapping.name].emplace_back(keymap);
 		}
 	pCmptPrivate->pScriptInterface->ToJSVal(rq, &hotkeyMap, hotkeys);
