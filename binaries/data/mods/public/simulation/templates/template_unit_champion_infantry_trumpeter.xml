@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_champion_infantry">
+  <Attack>
+    <Melee>
+      <AttackName context="Name of an attack using a double-edged sword.">Sword</AttackName>
+      <Damage>
+        <Hack>10</Hack>
+      </Damage>
+      <MaxRange>3</MaxRange>
+      <PrepareTime>500</PrepareTime>
+      <RepeatTime>1000</RepeatTime>
+      <PreferredClasses datatype="tokens">Unit+!Ship</PreferredClasses>
+    </Melee>
+  </Attack>
+  <Cost>
+    <BuildTime op="mul">1.2</BuildTime>
+    <Resources>
+      <food op="add">100</food>
+      <wood>0</wood>
+      <metal>120</metal>
+    </Resources>
+  </Cost>
+  <Health>
+    <Max>200</Max>
+  </Health>
+  <Identity>
+    <VisibleClasses datatype="tokens">Melee Trumpeter</VisibleClasses>
+    <GenericName>Champion Infantry Trumpeter</GenericName>
+  </Identity>
+  <Loot>
+    <food op="add">10</food>
+    <wood>0</wood>
+    <metal>12</metal>
+  </Loot>
+  <Resistance>
+    <Entity>
+      <Damage>
+        <Hack op="add">1</Hack>
+        <Pierce op="add">1</Pierce>
+      </Damage>
+    </Entity>
+  </Resistance>
+  <Sound>
+    <SoundGroups>
+      <attack_melee>attack/weapon/sword_attack.xml</attack_melee>
+    </SoundGroups>
+  </Sound>
+</Entity>

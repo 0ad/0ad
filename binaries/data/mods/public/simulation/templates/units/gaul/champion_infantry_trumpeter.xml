@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_champion_infantry_trumpeter">
+  <Auras datatype="tokens">
+    units/carnyx
+  </Auras>
+  <Identity>
+    <Civ>gaul</Civ>
+    <SpecificName>Carnucos</SpecificName>
+    <Icon>units/gaul_champion_swordsman_carnyx.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>units/gauls/infantry_carnyx_c.xml</Actor>
+  </VisualActor>
+</Entity>
