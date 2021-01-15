@@ -57,7 +57,7 @@ Identity.prototype.Schema =
 		"</element>" +
 	"</optional>" +
 	"<optional>" +
-		"<element name='Classes' a:help='Optional list of space-separated classes applying to this entity. Choices include: AfricanElephant, AmunGuard, Animal, ApedemakGuard, Ashoka, Barter, CitizenSoldier, CivCentre, CivSpecific, ConquestCritical, Domestic, DropsiteFood, DropsiteMetal, DropsiteStone, DropsiteWood, FastMoving, FemaleCitizen, GarrisonFortress, Human, IndianElephant, Juggernaut, KushTrireme, MercenaryCamp, Organic, Player, PtolemyIV, SeaCreature, Spy, Structure, Unit, WallLong, WallMedium, WallShort, WallTower.'>" +
+		"<element name='Classes' a:help='Optional list of space-separated classes applying to this entity. Choices include: AfricanElephant, AmunGuard, Animal, ApedemakGuard, Ashoka, Barter, CitizenSoldier, CivCentre, CivSpecific, ConquestCritical, Domestic, DropsiteFood, DropsiteMetal, DropsiteStone, DropsiteWood, FastMoving, FemaleCitizen, Foundation, GarrisonFortress, Human, IndianElephant, Juggernaut, KushTrireme, MercenaryCamp, Organic, Player, PtolemyIV, SeaCreature, Spy, Structure, Unit, WallLong, WallMedium, WallShort, WallTower.'>" +
 			"<attribute name='datatype'>" +
 				"<value>tokens</value>" +
 			"</attribute>" +

@@ -7,15 +7,17 @@
   <Decay merge=""/>
   <Fogging merge=""/>
   <Footprint merge=""/>
-  <!-- Add the Foundation component, to deal with the construction process -->
+  <!-- Add the Foundation component, to deal with the construction process. -->
   <Foundation replace=""/>
   <Health>
     <Initial>1</Initial>
   </Health>
-  <Identity merge=""/>
+  <Identity merge="">
+    <Classes datatype="tokens">Foundation</Classes>
+  </Identity>
   <Market merge=""/>
   <Minimap merge=""/>
-  <!-- Foundations shouldn't initially block unit movement -->
+  <!-- Foundations shouldn't initially block unit movement. -->
   <Obstruction merge="">
     <DisableBlockMovement>true</DisableBlockMovement>
     <DisableBlockPathfinding>true</DisableBlockPathfinding>
@@ -35,12 +37,12 @@
   <StatusBars merge=""/>
   <Visibility merge=""/>
   <!-- Foundations should be visible themselves in fog-of-war if their base template is,
-       but shouldn't have any vision range -->
+       but shouldn't have any vision range. -->
   <Vision merge="">
     <Range>0</Range>
     <RevealShore>false</RevealShore>
   </Vision>
-  <!-- Switch the actor to foundation mode -->
+  <!-- Switch the actor to foundation mode. -->
   <VisualActor>
     <Foundation/>
   </VisualActor>
