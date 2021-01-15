@@ -4,28 +4,18 @@
     <Ranged>
       <AttackName>Stone</AttackName>
       <Damage>
-        <Hack>0.0</Hack>
-        <Pierce>10.0</Pierce>
-        <Crush>100.0</Crush>
+        <Hack>0</Hack>
+        <Pierce>0</Pierce>
+        <Crush>150</Crush>
       </Damage>
-      <MaxRange>72.0</MaxRange>
-      <MinRange>10.0</MinRange>
+      <MaxRange>80</MaxRange>
+      <MinRange>40</MinRange>
       <PrepareTime>2000</PrepareTime>
       <RepeatTime>5000</RepeatTime>
       <Delay>0</Delay>
-      <Splash>
-        <Shape>Circular</Shape>
-        <Range>10</Range>
-        <FriendlyFire>false</FriendlyFire>
-        <Damage>
-          <Hack>0.0</Hack>
-          <Pierce>15.0</Pierce>
-          <Crush>35.0</Crush>
-        </Damage>
-      </Splash>
       <Projectile>
-        <Speed>37.5</Speed>
-        <Spread>4.0</Spread>
+        <Speed>40.0</Speed>
+        <Spread>6.0</Spread>
         <Gravity>9.81</Gravity>
         <FriendlyFire>false</FriendlyFire>
         <LaunchPoint y="3"/>

@@ -19,7 +19,7 @@ ChatMessageEvents.PlayerChat = class
 	onPrivateMessage(message)
 	{
 		// We intend to not support private messages between users
-		if (!message.from || Engine.LobbyGetPlayerRole(message.from) == "moderator")
+		if ((!message.from && message.text.length > 0) || Engine.LobbyGetPlayerRole(message.from) == "moderator")
 			// some XMPP clients send trailing whitespace
 			this.chatMessagesPanel.addText(message.time, this.chatMessageFormat.format(message));
 	}

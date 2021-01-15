@@ -43,8 +43,8 @@
     </Resources>
   </Cost>
   <Footprint replace="">
-    <Square width="15.0" depth="15.0"/>
-    <Height>20.0</Height>
+    <Square width="12.0" depth="12.0"/>
+    <Height>30.0</Height>
   </Footprint>
   <GarrisonHolder>
     <Max>20</Max>
@@ -62,6 +62,11 @@
     <GenericName>Siege Tower</GenericName>
     <Tooltip>Garrison units for transport and to increase firepower.</Tooltip>
   </Identity>
+  <Loot>
+    <xp>250</xp>
+    <wood>100</wood>
+    <metal>60</metal>
+  </Loot>
   <Selectable>
     <Overlay>
       <Texture>

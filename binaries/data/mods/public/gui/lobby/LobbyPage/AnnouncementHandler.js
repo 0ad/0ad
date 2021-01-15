@@ -11,7 +11,7 @@ class AnnouncementHandler
 	onPrivateMessage(message)
 	{
 		// Announcements and the Message of the Day are sent by the server directly
-		if (!message.from)
+		if (!message.from && message.text.length > 0)
 			messageBox(
 				400, 250,
 				message.text.trim(),

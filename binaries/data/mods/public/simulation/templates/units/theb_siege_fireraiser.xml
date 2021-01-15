@@ -4,12 +4,10 @@
     <Ranged>
       <AttackName>Fire</AttackName>
       <Damage>
-        <Hack>50.0</Hack>
-        <Pierce>0.0</Pierce>
-        <Crush>50.0</Crush>
+        <Fire>100</Fire>
       </Damage>
-      <MaxRange>12</MaxRange>
-      <MinRange>8.0</MinRange>
+      <MaxRange>15</MaxRange>
+      <MinRange>10</MinRange>
       <PrepareTime>2000</PrepareTime>
       <RepeatTime>2000</RepeatTime>
       <Delay>0</Delay>
@@ -22,25 +20,38 @@
       </Projectile>
     </Ranged>
   </Attack>
+  <Cost>
+    <BuildTime>30</BuildTime>
+    <Resources>
+      <wood>300</wood>
+      <metal>150</metal>
+    </Resources>
+  </Cost>
   <DeathDamage>
     <Shape>Circular</Shape>
     <Range>20</Range>
     <FriendlyFire>true</FriendlyFire>
     <Damage>
-      <Hack>200.0</Hack>
-      <Pierce>200.0</Pierce>
-      <Crush>200.0</Crush>
+      <Fire>600</Fire>
     </Damage>
   </DeathDamage>
   <Footprint replace="">
     <Square width="6.0" depth="20.0"/>
     <Height>4.5</Height>
   </Footprint>
+  <Health>
+    <Max>300</Max>
+  </Health>
   <Identity>
     <GenericName>Fire Raiser</GenericName>
     <SpecificName>Pyrobolos</SpecificName>
     <Icon>units/hele_siege_lithobolos.png</Icon>
   </Identity>
+  <Loot>
+    <xp>150</xp>
+    <wood>60</wood>
+    <metal>30</metal>
+  </Loot>
   <Selectable>
     <Overlay>
       <Texture>

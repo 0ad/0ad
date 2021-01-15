@@ -4,11 +4,9 @@
     <Melee>
       <AttackName>Fire</AttackName>
       <Damage>
-        <Hack>10.0</Hack>
-        <Pierce>10.0</Pierce>
-        <Crush>10.0</Crush>
+        <Fire>30</Fire>
       </Damage>
-      <MaxRange>8.0</MaxRange>
+      <MaxRange>12</MaxRange>
       <PrepareTime>50</PrepareTime>
       <RepeatTime>100</RepeatTime>
       <RestrictedClasses datatype="tokens">!Ship</RestrictedClasses>
@@ -25,9 +23,7 @@
     <Range>30</Range>
     <FriendlyFire>true</FriendlyFire>
     <Damage>
-      <Hack>300.0</Hack>
-      <Pierce>300.0</Pierce>
-      <Crush>300.0</Crush>
+      <Fire>900</Fire>
     </Damage>
   </DeathDamage>
   <GarrisonHolder disable=""/>

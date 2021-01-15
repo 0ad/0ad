@@ -4,37 +4,27 @@
     <Ranged>
       <AttackName>Bolt</AttackName>
       <Damage>
-        <Pierce>55</Pierce>
-        <Crush>5</Crush>
+        <Pierce>100</Pierce>
       </Damage>
-      <MaxRange>84</MaxRange>
-      <MinRange>15</MinRange>
+      <MaxRange>90</MaxRange>
+      <MinRange>30</MinRange>
       <ElevationBonus>15</ElevationBonus>
       <PrepareTime>500</PrepareTime>
       <RepeatTime>4000</RepeatTime>
       <Projectile>
-        <Speed>125.0</Speed>
-        <Spread>0.5</Spread>
-        <Gravity>49.81</Gravity>
-        <LaunchPoint y="3.2"/>
+        <Speed>150.0</Speed>
+        <Spread>1.0</Spread>
+        <Gravity>9.81</Gravity>
+        <FriendlyFire>false</FriendlyFire>
+        <LaunchPoint y="3"/>
         <ImpactActorName>props/units/weapons/tower_artillery_projectile_impact.xml</ImpactActorName>
         <ImpactAnimationLifetime>0.1</ImpactAnimationLifetime>
       </Projectile>
-      <Splash>
-        <Shape>Linear</Shape>
-        <Range>4</Range>
-        <FriendlyFire>false</FriendlyFire>
-        <Damage>
-          <Hack>0.0</Hack>
-          <Pierce>12.0</Pierce>
-          <Crush>0.0</Crush>
-        </Damage>
-      </Splash>
     </Ranged>
   </Attack>
   <BuildingAI>
     <DefaultArrowCount>1</DefaultArrowCount>
-    <GarrisonArrowMultiplier>0.2</GarrisonArrowMultiplier>
+    <GarrisonArrowMultiplier>0</GarrisonArrowMultiplier>
   </BuildingAI>
   <Cost>
     <BuildTime>200</BuildTime>

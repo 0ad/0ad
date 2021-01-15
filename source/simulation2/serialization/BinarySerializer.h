@@ -96,7 +96,7 @@ private:
 	const ScriptInterface& m_ScriptInterface;
 	ISerializer& m_Serializer;
 
-	using ObjectTagMap = JS::GCHashMap<JS::Heap<JSObject*>, u32, js::PointerHasher<JSObject*>, js::SystemAllocPolicy>;
+	using ObjectTagMap = JS::GCHashMap<JS::Heap<JSObject*>, u32, js::MovableCellHasher<JSObject*>, js::SystemAllocPolicy>;
 	ObjectTagMap m_ScriptBackrefTags;
 	u32 m_ScriptBackrefsNext;
 	u32 GetScriptBackrefTag(JS::HandleObject obj);

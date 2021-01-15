@@ -19,8 +19,8 @@
   <Cost>
     <BuildTime>30</BuildTime>
     <Resources>
-      <wood>350</wood>
-      <metal>200</metal>
+      <wood>300</wood>
+      <metal>150</metal>
     </Resources>
   </Cost>
   <GarrisonHolder>
@@ -39,6 +39,11 @@
     <GenericName>Battering Ram</GenericName>
     <Tooltip>Cannot attack Fields or Organic Units.</Tooltip>
   </Identity>
+  <Loot>
+    <xp>200</xp>
+    <wood>60</wood>
+    <metal>30</metal>
+  </Loot>
   <Sound>
     <SoundGroups>
       <select>attack/siege/siege_select.xml</select>
