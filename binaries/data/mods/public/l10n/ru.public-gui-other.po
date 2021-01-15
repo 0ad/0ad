@@ -31,7 +31,7 @@
 # Vic Grin <aliented@mail.ru>, 2016
 # _Arkan0ID_ <vinnikf24@gmail.com>, 2016
 # Vladislav Belov <vladislavbelovdev@gmail.com>, 2015
-# Vladislav Belov <vladislavbelovdev@gmail.com>, 2016-2018
+# Vladislav Belov <vladislavbelovdev@gmail.com>, 2016-2018,2021
 # webslavic <webslavic@yahoo.com>, 2014-2015
 # Woratiklis, 2015,2020
 # Алексей72 <Alteza.72ru@mail.ru>, 2014
@@ -45,9 +45,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-01 08:01+0000\n"
-"PO-Revision-Date: 2021-01-01 08:36+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-01-11 08:08+0000\n"
+"PO-Revision-Date: 2021-01-14 12:09+0000\n"
+"Last-Translator: Vladislav Belov <vladislavbelovdev@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -61,17 +61,17 @@ msgstr ""
 msgid "FPS: %(fps)4s"
 msgstr "FPS: %(fps)4s"
 
-#: gui/common/color.js:178
+#: gui/common/color.js:179
 #, javascript-format
 msgid "Unassigned hotkey: %(hotkeyName)s"
 msgstr "Неназначенная горячая клавиша: %(hotkeyName)s"
 
-#: gui/common/color.js:193
+#: gui/common/color.js:196
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete player names."
 msgstr "Нажмите %(hotkey)s для автодополнения имён игроков."
 
-#: gui/common/color.js:195
+#: gui/common/color.js:198
 msgctxt "hotkey"
 msgid "Tab"
 msgstr "Tab"
@@ -388,7 +388,7 @@ msgstr "На игрока"
 
 #: gui/common/gamedescription.js:382
 msgid "World Population Cap"
-msgstr ""
+msgstr "Предел мирового населения"
 
 #: gui/common/gamedescription.js:390
 msgid "Treasures"
@@ -1722,7 +1722,7 @@ msgstr "Предотвращение дальейшего подключение
 
 #: gui/options/options.json[0].options[11].label
 msgid "Chat timestamp"
-msgstr ""
+msgstr "Время сообщения в чате"
 
 #: gui/options/options.json[0].options[11].tooltip
 msgid "Display the time at which a chat message was posted."
@@ -1764,7 +1764,7 @@ msgstr "Показать игрока с плохим соединением в 
 
 #: gui/options/options.json[0].options[5].label
 msgid "FPS overlay"
-msgstr ""
+msgstr "Частота кадров"
 
 #: gui/options/options.json[0].options[5].tooltip
 msgid "Show frames per second in top right corner."
@@ -1772,7 +1772,7 @@ msgstr "Показать количество кадров в секунду в 
 
 #: gui/options/options.json[0].options[6].label
 msgid "Real time overlay"
-msgstr ""
+msgstr "Время"
 
 #: gui/options/options.json[0].options[6].tooltip
 msgid "Show current system time in top right corner."
@@ -1780,7 +1780,7 @@ msgstr "Показать текущее системное время в пра�
 
 #: gui/options/options.json[0].options[7].label
 msgid "Game time overlay"
-msgstr ""
+msgstr "Продолжительность игры"
 
 #: gui/options/options.json[0].options[7].tooltip
 msgid "Show current simulation time in top right corner."
@@ -1788,7 +1788,7 @@ msgstr "Показать продолжительность игры в прав
 
 #: gui/options/options.json[0].options[8].label
 msgid "Ceasefire time overlay"
-msgstr ""
+msgstr "Продолжительность перемирия"
 
 #: gui/options/options.json[0].options[8].tooltip
 msgid "Always show the remaining ceasefire time."
@@ -1827,7 +1827,7 @@ msgstr "Графика"
 
 #: gui/options/options.json[1].options[0].label
 msgid "Windowed mode"
-msgstr " Оконный режим"
+msgstr "Оконный режим"
 
 #: gui/options/options.json[1].options[0].tooltip
 msgid "Start 0 A.D. in a window."
@@ -1835,7 +1835,7 @@ msgstr "Запускать 0 A.D. в окне."
 
 #: gui/options/options.json[1].options[10].label
 msgid "Shadow filtering"
-msgstr ""
+msgstr "Фильтрация теней"
 
 #: gui/options/options.json[1].options[10].tooltip
 msgid "Smooth shadows."
@@ -1843,11 +1843,11 @@ msgstr "Мягкие тени."
 
 #: gui/options/options.json[1].options[11].label
 msgid "Unit silhouettes"
-msgstr ""
+msgstr "Силуэты юнитов"
 
 #: gui/options/options.json[1].options[11].tooltip
 msgid "Show outlines of units behind structures."
-msgstr ""
+msgstr "Отображать контур юнитов, находящихся за зданиями."
 
 #: gui/options/options.json[1].options[12].label
 msgid "Particles"
@@ -1859,7 +1859,7 @@ msgstr "Включить частицы."
 
 #: gui/options/options.json[1].options[13].label
 msgid "Water effects"
-msgstr ""
+msgstr "Водные эффекты"
 
 #: gui/options/options.json[1].options[13].tooltip
 msgid ""
@@ -1895,7 +1895,7 @@ msgstr "Использовать натуральную карту прелом�
 
 #: gui/options/options.json[1].options[17].label
 msgid "Real water depth"
-msgstr ""
+msgstr "Фактическая глубина воды"
 
 #: gui/options/options.json[1].options[17].tooltip
 msgid "Use actual water depth in rendering calculations."
@@ -1903,7 +1903,7 @@ msgstr "Использовать реальную глубину воды при
 
 #: gui/options/options.json[1].options[18].label
 msgid "Shadows on water"
-msgstr ""
+msgstr "Тени на воде"
 
 #: gui/options/options.json[1].options[18].tooltip
 msgid "Cast shadows on water."
@@ -1911,11 +1911,11 @@ msgstr "Отбрасывать тени на воду."
 
 #: gui/options/options.json[1].options[19].label
 msgid "Smooth vision"
-msgstr ""
+msgstr "Размытая линия пределов видимости"
 
 #: gui/options/options.json[1].options[19].tooltip
 msgid "Lift darkness and fog of war smoothly."
-msgstr ""
+msgstr "Изменять темноту и туман войны плавно."
 
 #: gui/options/options.json[1].options[1].label
 msgid "Prefer GLSL"
@@ -1927,7 +1927,7 @@ msgstr "Использовать шейдеры OpenGL 2.0 (рекомендуе
 
 #: gui/options/options.json[1].options[20].label
 msgid "Show sky"
-msgstr ""
+msgstr "Показывать небо"
 
 #: gui/options/options.json[1].options[20].tooltip
 msgid "Render Sky."
@@ -1967,107 +1967,107 @@ msgstr "Туман"
 
 #: gui/options/options.json[1].options[2].tooltip
 msgid "Enable fog."
-msgstr ""
+msgstr "Включить туман."
 
 #: gui/options/options.json[1].options[3].label
 msgid "Post-processing"
-msgstr ""
+msgstr "Постобработка"
 
 #: gui/options/options.json[1].options[3].tooltip
 msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
-msgstr ""
+msgstr "Использовать экранные фильтры постобработки (HDR, Bloom, DOF и др.)."
 
 #: gui/options/options.json[1].options[4].label
 msgid "Antialiasing"
-msgstr ""
+msgstr "Сглаживание"
 
 #: gui/options/options.json[1].options[4].list[0].tooltip
 msgid "Do not use antialiasing."
-msgstr ""
+msgstr "Не использовать сглаживание."
 
 #: gui/options/options.json[1].options[4].list[1].label
 msgid "FXAA"
-msgstr ""
+msgstr "FXAA"
 
 #: gui/options/options.json[1].options[4].list[1].tooltip
 msgid "Fast, but simple antialiasing."
-msgstr ""
+msgstr "Быстрое, но простое сглаживание."
 
 #: gui/options/options.json[1].options[4].list[2].label
 msgid "MSAA (2×)"
-msgstr ""
+msgstr "MSAA (2×)"
 
 #: gui/options/options.json[1].options[4].list[2].tooltip
 msgid ""
 "Slow, but high-quality antialiasing, uses two samples per pixel. Supported "
 "for GL3.3+."
-msgstr ""
+msgstr "Медленное, но качественное сглаживание, использует 2 выборки на пиксель. Совместимо с OpenGL версии 3.3 и выше."
 
 #: gui/options/options.json[1].options[4].list[3].label
 msgid "MSAA (4×)"
-msgstr ""
+msgstr "MSAA (4×)"
 
 #: gui/options/options.json[1].options[4].list[3].tooltip
 msgid ""
 "Slow, but high-quality antialiasing, uses four samples per pixel. Supported "
 "for GL3.3+."
-msgstr ""
+msgstr "Медленное, но качественное сглаживание, использует 4 выборки на пиксель. Совместимо с OpenGL версии 3.3 и выше."
 
 #: gui/options/options.json[1].options[4].list[4].label
 msgid "MSAA (8×)"
-msgstr ""
+msgstr "MSAA (8×)"
 
 #: gui/options/options.json[1].options[4].list[4].tooltip
 msgid ""
 "Slow, but high-quality antialiasing, uses eight samples per pixel. Supported"
 " for GL3.3+."
-msgstr ""
+msgstr "Медленное, но качественное сглаживание, использует 8 выборок на пиксель. Совместимо с OpenGL версии 3.3 и выше."
 
 #: gui/options/options.json[1].options[4].list[5].label
 msgid "MSAA (16×)"
-msgstr ""
+msgstr "MSAA (16×)"
 
 #: gui/options/options.json[1].options[4].list[5].tooltip
 msgid ""
 "Slow, but high-quality antialiasing, uses sixteen samples per pixel. "
 "Supported for GL3.3+."
-msgstr ""
+msgstr "Медленное, но качественное сглаживание, использует 16 выборок на пиксель. Совместимо с OpenGL версии 3.3 и выше."
 
 #: gui/options/options.json[1].options[4].tooltip
 msgid "Reduce aliasing effect on edges."
-msgstr ""
+msgstr "Уменьшает ступенчатость изображения на границах объектов."
 
 #: gui/options/options.json[1].options[5].label
 msgid "Sharpening"
-msgstr ""
+msgstr "Резкость изображения"
 
 #: gui/options/options.json[1].options[5].list[0].tooltip
 msgid "Do not use sharpening."
-msgstr ""
+msgstr "Не использовать повышение резкости."
 
 #: gui/options/options.json[1].options[5].list[1].label
 msgid "FidelityFX CAS"
-msgstr ""
+msgstr "FidelityFX CAS"
 
 #: gui/options/options.json[1].options[5].list[1].tooltip
 msgid "Contrast adaptive sharpening, a fast, contrast based sharpening pass."
-msgstr ""
+msgstr "Быстрое и адаптивное повышение резкости, основанное на контрасте."
 
 #: gui/options/options.json[1].options[5].tooltip
 msgid "Reduce blurry effects."
-msgstr ""
+msgstr "Уменьшает эффект размытия, в том числе после сглаживания."
 
 #: gui/options/options.json[1].options[6].label
 msgid "Sharpness factor"
-msgstr ""
+msgstr "Степень резкости"
 
 #: gui/options/options.json[1].options[6].tooltip
 msgid "The sharpness of the choosen pass."
-msgstr ""
+msgstr "Степень повышения резкости выбранного алгоритма."
 
 #: gui/options/options.json[1].options[7].label
 msgid "Shader effects"
-msgstr ""
+msgstr "Шейдерные эффекты"
 
 #: gui/options/options.json[1].options[7].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
@@ -2083,7 +2083,7 @@ msgstr "Включить тени."
 
 #: gui/options/options.json[1].options[9].label
 msgid "Shadow quality"
-msgstr ""
+msgstr "Качество теней"
 
 #: gui/options/options.json[1].options[9].list[0].label
 msgid "Very Low"
@@ -2142,7 +2142,7 @@ msgstr "Уровень громкости фоновых звуков в игр�
 
 #: gui/options/options.json[2].options[3].label
 msgid "Action volume"
-msgstr ""
+msgstr "Громкость действий"
 
 #: gui/options/options.json[2].options[3].tooltip
 msgid "In game unit action sound gain."
@@ -2158,7 +2158,7 @@ msgstr "Громкость звуков интерфейса."
 
 #: gui/options/options.json[2].options[5].label
 msgid "Nick notification"
-msgstr ""
+msgstr "Именное уведомление"
 
 #: gui/options/options.json[2].options[5].tooltip
 msgid "Receive audio notification when someone types your nick."
@@ -2255,7 +2255,7 @@ msgstr "Поведение ИИ по умолчанию."
 
 #: gui/options/options.json[3].options[5].label
 msgid "Assign players"
-msgstr ""
+msgstr "Назначение игроков"
 
 #: gui/options/options.json[3].options[5].list[0].tooltip
 msgid "Players joining the match will be assigned if there is a free slot."
@@ -2283,7 +2283,7 @@ msgstr "Комната"
 
 #: gui/options/options.json[4].options[0].label
 msgid "TLS encryption"
-msgstr ""
+msgstr "TLS шифрование"
 
 #: gui/options/options.json[4].options[0].tooltip
 msgid ""
@@ -2742,7 +2742,7 @@ msgstr "Настроить параметры игры."
 
 #: gui/pregame/MainMenuItems.js:159
 msgid "Hotkeys"
-msgstr ""
+msgstr "Горячие клавиши"
 
 #: gui/pregame/MainMenuItems.js:160
 msgid "Adjust hotkeys."
@@ -3009,16 +3009,16 @@ msgstr[2] ""
 msgstr[3] ""
 
 #: gui/reference/civinfo/Sections/Subsections/StructuresSubsection.js:29
-msgid "Special Structure"
-msgid_plural "Special Structures"
-msgstr[0] "Особая постройка"
-msgstr[1] "Особых постройки"
-msgstr[2] "Особых построек"
-msgstr[3] "Особые постройки "
+msgid "Specific Structure"
+msgid_plural "Specific Structures"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: gui/reference/civinfo/Sections/Subsections/TechnologiesSubsection.js:28
-msgid "Special Technology"
-msgid_plural "Special Technologies"
+msgid "Specific Technology"
+msgid_plural "Specific Technologies"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""

@@ -24,8 +24,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-08 08:08+0000\n"
-"PO-Revision-Date: 2021-01-11 07:46+0000\n"
+"POT-Creation-Date: 2021-01-11 08:08+0000\n"
+"PO-Revision-Date: 2021-01-11 12:33+0000\n"
 "Last-Translator: Bruce Lee <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -79,13 +79,13 @@ msgstr "샹프론"
 #: simulation/data/technologies/attack_infantry_ranged_01.jsonrequirementsTooltip
 #: simulation/data/technologies/carthaginians/special_colonisation.jsonrequirementsTooltip
 #: simulation/data/technologies/carthaginians/special_exploration.jsonrequirementsTooltip
+#: simulation/data/technologies/garrison_heal.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_harvester.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_training.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_mining_serfs.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_mining_shaftmining.jsonrequirementsTooltip
-#: simulation/data/technologies/heal_barracks.jsonrequirementsTooltip
 #: simulation/data/technologies/heal_range.jsonrequirementsTooltip
 #: simulation/data/technologies/heal_rate.jsonrequirementsTooltip
 #: simulation/data/technologies/kushites/monumental_architecture.jsonrequirementsTooltip
@@ -136,7 +136,6 @@ msgstr "말의 몸통을 위한 철 갑옷."
 #: simulation/data/technologies/gather_mining_slaves.jsonrequirementsTooltip
 #: simulation/data/technologies/heal_range_2.jsonrequirementsTooltip
 #: simulation/data/technologies/heal_rate_2.jsonrequirementsTooltip
-#: simulation/data/technologies/heal_temple.jsonrequirementsTooltip
 #: simulation/data/technologies/health_regen_units.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenes/spartans_agoge.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsonrequirementsTooltip
@@ -614,6 +613,18 @@ msgstr "약자"
 msgid "Spartans −10% maximum population limit."
 msgstr "스파르타의 최대 인구 한도가 -10% 감소합니다."
 
+#: simulation/data/technologies/garrison_heal.jsondescription
+msgid "Units regain health over time while garrisoned."
+msgstr "유닛은 주둔하는 동안 시간이 지남에 따라 체력을 회복합니다."
+
+#: simulation/data/technologies/garrison_heal.jsongenericName
+msgid "Living Conditions"
+msgstr "생존 조건"
+
+#: simulation/data/technologies/garrison_heal.jsontooltip
+msgid "Structures +1 garrison heal rate."
+msgstr "건축물은 주둔지의 치유율이 +1 증가합니다."
+
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breed livestock (sheep, goats, cattle, etc.) for food."
 msgstr "식량용 가축(양, 염소, 소, 등)을 기릅니다."
@@ -866,18 +877,6 @@ msgstr "고리버들 바구니"
 msgid "Workers +50% fruit gather rate."
 msgstr "일꾼의 과일 수확률이 +15% 증가합니다."
 
-#: simulation/data/technologies/heal_barracks.jsondescription
-msgid "Units garrisoned in Barracks heal over time."
-msgstr "병영에 주둔한 유닛은 시간이 흐르면 체력이 회복됩니다."
-
-#: simulation/data/technologies/heal_barracks.jsongenericName
-msgid "Living Conditions"
-msgstr "생존 조건"
-
-#: simulation/data/technologies/heal_barracks.jsontooltip
-msgid "Units gain health over time while garrisoned in Barracks."
-msgstr "병영에 주둔하고 있는 유닛은 시간이 흐르면 체력이 회복됩니다."
-
 #: simulation/data/technologies/heal_range.jsondescription
 #: simulation/data/technologies/heal_range_2.jsondescription
 msgid "Increases the healing and vision range of all healers."
@@ -942,27 +941,6 @@ msgstr "치유속도 2"
 msgid "Hippocratic Oath"
 msgstr "히포크라테스 선서"
 
-#: simulation/data/technologies/heal_temple.jsondescription
-msgid "Units garrisoned in a temple are healed faster."
-msgstr "사원에 주둔하고 있는 유닛들은 더 빠르게 치유됩니다."
-
-#: simulation/data/technologies/heal_temple.jsongenericName
-msgid "Divine Offerings"
-msgstr "신성한 공물"
-
-#: simulation/data/technologies/heal_temple.jsonspecificName.athen
-msgid "Eleusian Mysteries"
-msgstr "엘리우시스 신비"
-
-#: simulation/data/technologies/heal_temple.jsonspecificName.mace
-#: simulation/data/technologies/heal_temple.jsonspecificName.spart
-msgid "Olympic Games"
-msgstr "올림픽 경기들"
-
-#: simulation/data/technologies/heal_temple.jsontooltip
-msgid "Temples +50% garrisoned healing rate."
-msgstr "사원에 주둔하는 유닛 치유속도가 +50% 증가합니다."
-
 #: simulation/data/technologies/health_females_01.jsondescription
 msgid ""
 "The loom allowed the creation of finer clothing for settlers. Women of the "
@@ -1002,7 +980,7 @@ msgstr "아고게"
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsontooltip
 msgid "Champion Infantry Spearmen +25% health, but +5% training time."
-msgstr "대표 전사 창 보병의 체력이 +25% 증가하지만, 양성 시간이 +5% 증가합니다."
+msgstr "대표 전사 창보병의 체력이 +25% 증가하지만, 양성 시간이 +5% 증가합니다."
 
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsondescription
 msgid ""
@@ -1120,7 +1098,7 @@ msgstr "전쟁시에 기병을 소집하여 왕의 군대를 보강하는데 도
 
 #: simulation/data/technologies/persians/training_levy_cavalry.jsongenericName
 msgid "Levy Cavalry"
-msgstr "기병 소집"
+msgstr "소집기병"
 
 #: simulation/data/technologies/persians/training_levy_cavalry.jsontooltip
 msgid ""
@@ -1136,7 +1114,7 @@ msgstr "전쟁시에 보병을 소집하여 왕의 군대를 보강하는 데 �
 
 #: simulation/data/technologies/persians/training_levy_infantry.jsongenericName
 msgid "Levy Infantry"
-msgstr "보병대 징수"
+msgstr "소집보병"
 
 #: simulation/data/technologies/persians/training_levy_infantry.jsontooltip
 msgid ""
@@ -1489,7 +1467,7 @@ msgstr "전통적 군대"
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsontooltip
 msgid "Unlock the Champion Infantry Pikeman."
-msgstr "대표 전사 보병대 단창병을 잠금해제합니다."
+msgstr "대표 전사 단창보병을 잠금해제합니다."
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsondescription
 msgid ""
@@ -1793,7 +1771,7 @@ msgstr "첩자"
 #: simulation/data/technologies/unlock_spies.jsontooltip
 msgid ""
 "Allows bribing the units of other players in order to share their vision."
-msgstr "시야를 공유받기 위해 다른 선수의 유닛에게 뇌물을 줄 수 있습니다."
+msgstr "시야를 공유받기 위해 다른 플레이어의 유닛에게 뇌물을 줄 수 있습니다."
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsondescription
 msgid "Hire professional mercenaries to fight in your army."

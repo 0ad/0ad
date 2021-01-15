@@ -37,8 +37,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-08 08:08+0000\n"
-"PO-Revision-Date: 2021-01-09 10:00+0000\n"
+"POT-Creation-Date: 2021-01-11 08:08+0000\n"
+"PO-Revision-Date: 2021-01-12 18:12+0000\n"
 "Last-Translator: xtother90\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -92,13 +92,13 @@ msgstr "Rossstirn"
 #: simulation/data/technologies/attack_infantry_ranged_01.jsonrequirementsTooltip
 #: simulation/data/technologies/carthaginians/special_colonisation.jsonrequirementsTooltip
 #: simulation/data/technologies/carthaginians/special_exploration.jsonrequirementsTooltip
+#: simulation/data/technologies/garrison_heal.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_harvester.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_training.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_mining_serfs.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_mining_shaftmining.jsonrequirementsTooltip
-#: simulation/data/technologies/heal_barracks.jsonrequirementsTooltip
 #: simulation/data/technologies/heal_range.jsonrequirementsTooltip
 #: simulation/data/technologies/heal_rate.jsonrequirementsTooltip
 #: simulation/data/technologies/kushites/monumental_architecture.jsonrequirementsTooltip
@@ -149,7 +149,6 @@ msgstr "Metallrüstung für den Pferdekörper."
 #: simulation/data/technologies/gather_mining_slaves.jsonrequirementsTooltip
 #: simulation/data/technologies/heal_range_2.jsonrequirementsTooltip
 #: simulation/data/technologies/heal_rate_2.jsonrequirementsTooltip
-#: simulation/data/technologies/heal_temple.jsonrequirementsTooltip
 #: simulation/data/technologies/health_regen_units.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenes/spartans_agoge.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsonrequirementsTooltip
@@ -627,6 +626,18 @@ msgstr "Underdogs"
 msgid "Spartans −10% maximum population limit."
 msgstr "Spartaner haben 10% höheres Bevölkerungslimit."
 
+#: simulation/data/technologies/garrison_heal.jsondescription
+msgid "Units regain health over time while garrisoned."
+msgstr "Einheiten werden mit der Zeit geheilt, wenn sie einquartiert sind."
+
+#: simulation/data/technologies/garrison_heal.jsongenericName
+msgid "Living Conditions"
+msgstr "Wohnverhältnisse"
+
+#: simulation/data/technologies/garrison_heal.jsontooltip
+msgid "Structures +1 garrison heal rate."
+msgstr "Strukturen +1 einquartierte Heilrate"
+
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breed livestock (sheep, goats, cattle, etc.) for food."
 msgstr "Züchte Vieh (Schafe, Ziegen, Rinder etc.) für Nahrung."
@@ -879,18 +890,6 @@ msgstr "Korbflechterei"
 msgid "Workers +50% fruit gather rate."
 msgstr "Arbeiter +50 % Sammelrate für Früchte."
 
-#: simulation/data/technologies/heal_barracks.jsondescription
-msgid "Units garrisoned in Barracks heal over time."
-msgstr "In einer Kaserne einquartierte Einheiten werden im Laufe der Zeit geheilt."
-
-#: simulation/data/technologies/heal_barracks.jsongenericName
-msgid "Living Conditions"
-msgstr "Wohnverhältnisse"
-
-#: simulation/data/technologies/heal_barracks.jsontooltip
-msgid "Units gain health over time while garrisoned in Barracks."
-msgstr "In einer Kaserne einquartierte Einheiten werden im Laufe der Zeit geheilt."
-
 #: simulation/data/technologies/heal_range.jsondescription
 #: simulation/data/technologies/heal_range_2.jsondescription
 msgid "Increases the healing and vision range of all healers."
@@ -954,27 +953,6 @@ msgstr "Heilrate 2"
 #: simulation/data/technologies/heal_rate_2.jsonspecificName.spart
 msgid "Hippocratic Oath"
 msgstr "Hippokratischer Eid"
-
-#: simulation/data/technologies/heal_temple.jsondescription
-msgid "Units garrisoned in a temple are healed faster."
-msgstr "Einheiten in einem Tempel werden schneller geheilt."
-
-#: simulation/data/technologies/heal_temple.jsongenericName
-msgid "Divine Offerings"
-msgstr "Göttliches Angebot"
-
-#: simulation/data/technologies/heal_temple.jsonspecificName.athen
-msgid "Eleusian Mysteries"
-msgstr "Mysterien von Eleusis"
-
-#: simulation/data/technologies/heal_temple.jsonspecificName.mace
-#: simulation/data/technologies/heal_temple.jsonspecificName.spart
-msgid "Olympic Games"
-msgstr "Olympische Spiele"
-
-#: simulation/data/technologies/heal_temple.jsontooltip
-msgid "Temples +50% garrisoned healing rate."
-msgstr "+50% Heilrate für im Tempel einquartierte Einheiten."
 
 #: simulation/data/technologies/health_females_01.jsondescription
 msgid ""

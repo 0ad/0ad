@@ -6,7 +6,7 @@
 # Wuzzy <almikes@aol.com>, 2015-2018
 # d00eb365ebaf2be82942fe248b3f88f3, 2015
 # d00eb365ebaf2be82942fe248b3f88f3, 2015
-# xtother90, 2018-2020
+# xtother90, 2018-2021
 # Maximilian Wagenbach <foaly@posteo.de>, 2016
 # Jakob Raidt <jakob.raidt@hotmail.com>, 2019
 # ... ... <jon12@gmx.de>, 2017
@@ -31,8 +31,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2021-01-02 00:06+0000\n"
-"Last-Translator: Latein Lebt\n"
+"PO-Revision-Date: 2021-01-13 19:03+0000\n"
+"Last-Translator: xtother90\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -384,19 +384,19 @@ msgstr " hotkey.session.unload – Alle Einheiten aus dem gewählten Gebäude au
 msgid ""
 "  hotkey.selection.group.save.1 – Create control group 1 (by default, "
 "respectively 2,3, ...) from the selected unit(s)/structure(s)"
-msgstr "  hotkey.selection.group.save.1 – Erstelle Kontrollgruppe 1 (standardmäßi, bzw. 2, 3,...) aus den ausgewählten Einheit(en)/Gebäud(en)"
+msgstr "  hotkey.selection.group.save.1 – Erstelle Kontrollgruppe 1 (standardmäßig, bzw. 2, 3,...) aus den ausgewählten Einheit(en)/Gebäud(en)"
 
 #: gui/manual/intro.txt:81
 msgid ""
 "  hotkey.selection.group.select.1 - Select the unit(s)/structure(s) in "
 "control group 1"
-msgstr ""
+msgstr "  hotkey.selection.group.select.1 - Die Einheiten/Gebäude aus Kontrollgruppe 1 auswählen"
 
 #: gui/manual/intro.txt:82
 msgid ""
 "  hotkey.selection.group.add.1 – Add control group 1 (to 0) to the selected "
 "unit(s)/structure(s)"
-msgstr ""
+msgstr "  hotkey.selection.group.add.1 – Kontrollgruppe 1 (bis 0) zu den ansgewählten Einheiten/Strukturen hinzufügen"
 
 #: gui/manual/intro.txt:83
 msgid ""
@@ -408,7 +408,7 @@ msgstr "  hotkey.camera.jump.set.1 – Speichere die aktuelle Kameraposition, um
 msgid ""
 "  hotkey.camera.jump.1 – Move the camera to a marked position. Jump back to "
 "the last location if the camera is already over the marked position"
-msgstr ""
+msgstr "  hotkey.camera.jump.1 – Die Kamera zu einer gespeicherten Position bewegen. Zurückspringen, falls die Kamera bereits auf dieser Position ist"
 
 #: gui/manual/intro.txt:85
 msgid ""
@@ -435,29 +435,29 @@ msgstr "  hotkey.session.highlightguarding mit ausgewählten Einheit(en)/Gebäud
 msgid ""
 "  highlightguarding.showstatusbars – See all status bars (which would also "
 "show the building progress)"
-msgstr ""
+msgstr "  highlightguarding.showstatusbars – Alle Statusleisten anzeigen (inklusive Baufortschritt)"
 
 #: gui/manual/intro.txt:89
 msgid "  hotkey.summary – Toggle summary window"
-msgstr ""
+msgstr "  hotkey.summary – Übersichtsfenster umschalten"
 
 #: gui/manual/intro.txt:90
 msgid "  hotkey.lobby – Show the multiplayer lobby in a dialog window"
-msgstr ""
+msgstr "  hotkey.lobby – Multiplayer-Lobby in einem Dialogfenster zeigen"
 
 #: gui/manual/intro.txt:91
 msgid "  hotkey.session.gui.diplomacy.toggle – Toggle in-game diplomacy panel"
-msgstr ""
+msgstr "  hotkey.session.gui.diplomacy.toggle – Diplomatiefenster im Spiel umschalten"
 
 #: gui/manual/intro.txt:92
 msgid ""
 "  hotkey.session.gui.barter.toggle – Toggle in-game barter and trade panel"
-msgstr ""
+msgstr "  hotkey.session.gui.barter.toggle – Tausch- und Handelsfenster im Spiel umschalten"
 
 #: gui/manual/intro.txt:93
 msgid ""
 "  hotkey.session.gui.objectives.toggle – Toggle in-game objectives panel"
-msgstr ""
+msgstr "  hotkey.session.gui.objectives.toggle – Spielziel-Fenster im Spiel umschalten"
 
 #: gui/manual/intro.txt:94
 msgid "  hotkey.session.gui.tutorial.toggle – Toggle in-game tutorial panel"
@@ -481,11 +481,11 @@ msgstr "  hotkey.session.garrison + Rechtsklick auf Gebäude – Einquartieren"
 
 #: gui/manual/intro.txt:100
 msgid "  hotkey.session.repair + Right Click on structure – Repair"
-msgstr ""
+msgstr "  hotkey.session.repair + Rechtsklick auf Gebäude – Reparieren"
 
 #: gui/manual/intro.txt:101
 msgid "  hotkey.session.patrol + Right Click – Patrol"
-msgstr ""
+msgstr "  hotkey.session.patrol + Rechtsklick – Patrouillieren"
 
 #: gui/manual/intro.txt:102
 msgid ""
@@ -504,25 +504,25 @@ msgstr " hotkey.session.orderone + Rechtsklick – Einer Einheit aus der momenta
 msgid ""
 "  hotkey.session.batchtrain + Left Click when training units – Add units in "
 "batches (the batch size is 5 by default and can be changed in the options)"
-msgstr ""
+msgstr "  hotkey.session.batchtrain + Linksklick bei Ausbildung von Einheiten – Einheiten in Stapeln hinzufügen (die Stapelgröße ist standardmäßig 5 und kann in den Einstellungen geändert werden)"
 
 #: gui/manual/intro.txt:105
 msgid ""
 "  hotkey.selection.add + Left Click or Left Drag over unit on map – Add unit"
 " to selection"
-msgstr ""
+msgstr "  hotkey.selection.add + Linksklick oder Linksziehen über Einheit auf Karte – Einheiten zur Auswahl hinzufügen"
 
 #: gui/manual/intro.txt:106
 msgid ""
 "  hotkey.selection.remove + Left Click or Left Drag over unit on map – "
 "Remove unit from selection"
-msgstr ""
+msgstr "  hotkey.selection.remove + Linksklick oder Linksziehen über Einheit auf Karte – Einheit von Auswahl entfernen"
 
 #: gui/manual/intro.txt:107
 msgid ""
 "  hotkey.selection.militaryonly + Left Drag over units on map – Only select "
 "military units"
-msgstr ""
+msgstr "  hotkey.selection.militaryonly + Linksziehen über Einheiten auf der Karte – Nur militärische Einheiten auswählen"
 
 #: gui/manual/intro.txt:108
 msgid ""
@@ -534,7 +534,7 @@ msgstr "  hotkey.selection.nonmilitaryonly + Linksziehen über Einheiten auf de
 msgid ""
 "  hotkey.selection.idleonly + Left Drag over units on map – Only select idle"
 " units"
-msgstr ""
+msgstr "  hotkey.selection.idleonly + Linksziehen über Einheiten auf der Karte – Nur inaktive Einheiten auswählen"
 
 #: gui/manual/intro.txt:110
 msgid ""
@@ -570,7 +570,7 @@ msgstr "  hotkey.session.attackmove + Rechtsklick mit ausgewählten Einheit(en) 
 msgid ""
 "  hotkey.session.attackmoveUnit + Right Click with unit(s) selected - Attack"
 " move, only units along the way are targeted"
-msgstr ""
+msgstr "  hotkey.session.attackmoveUnit + Rechtsklick mit ausgewählten Einheit(en) - Angriffsmanöver, nur Einheiten auf dem Weg werden anvisiert"
 
 #: gui/manual/intro.txt:116
 msgid ""
@@ -584,7 +584,7 @@ msgstr "[font=\"sans-bold-14\"]Overlays[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:119
 msgid "  hotkey.session.gui.toggle – Toggle the GUI"
-msgstr ""
+msgstr "  hotkey.session.gui.toggle – GUI umschalten"
 
 #: gui/manual/intro.txt:120
 msgid ""
@@ -611,13 +611,13 @@ msgstr " hotkey.showsky – Himmel umschalten"
 
 #: gui/manual/intro.txt:124
 msgid "  hotkey.session.diplomacycolors – Toggle diplomacy colors"
-msgstr ""
+msgstr "  hotkey.session.diplomacycolors – Diplomatiefarben umschalten"
 
 #: gui/manual/intro.txt:125
 msgid ""
 "  hotkey.session.toggleattackrange – Toggle attack range visualizations of "
 "selected units and structures"
-msgstr ""
+msgstr "  hotkey.session.toggleattackrange – Aurareichweitenvisualisierungen der gewählten Einheiten und Strukturen umschalten"
 
 #: gui/manual/intro.txt:126
 msgid ""
@@ -629,7 +629,7 @@ msgstr "  hotkey.session.toggleaurasrange – Aurareichweitenvisualisierungen de
 msgid ""
 "  hotkey.session.togglehealrange – Toggle heal range visualizations of "
 "selected units"
-msgstr ""
+msgstr "  hotkey.session.togglehealrange – Heilungsradiusvisualisierungen der gewählten Einheiten umschalten"
 
 #: gui/manual/intro.txt:129
 msgid "[font=\"sans-bold-14\"]Camera manipulation[font=\"sans-14\"]"
@@ -693,7 +693,7 @@ msgstr "  hotkey.camera.reset – Kamerazoom und -ausrichtung zurücksetzen"
 msgid ""
 "  hotkey.camera.zoom.in, hotkey.camera.zoom.wheel.in – Zoom in (keep pressed"
 " for continuous zoom)"
-msgstr ""
+msgstr "  hotkey.camera.zoom.in, hotkey.camera.zoom.wheel.in – Einzoomen (gedrückt halten zum durchgängigen Zoomen)"
 
 #: gui/manual/intro.txt:143
 msgid ""
@@ -703,7 +703,7 @@ msgstr "  hotkey.camera.zoom.out, hotkey.camera.zoom.wheel.out – Auszoomen (ge
 
 #: gui/manual/intro.txt:144
 msgid "  hotkey.camera.pan – Keep pressed and move the mouse to pan"
-msgstr ""
+msgstr "  hotkey.camera.pan – Gedrückt halten und Maus bewegen, um Ansicht zu verschieben"
 
 #: gui/manual/intro.txt:146
 msgid "[font=\"sans-bold-14\"]During Structure Placement[font=\"sans-14\"]"
@@ -736,13 +736,13 @@ msgstr "hotkey.cancel – Abbrechen"
 msgid ""
 "  hotkey.session.savedgames.delete – Delete the selected saved game, ask for"
 " confirmation"
-msgstr ""
+msgstr "  hotkey.session.savedgames.delete – Gewählten Spielstand löschen, nach Bestätigung fragen"
 
 #: gui/manual/intro.txt:154
 msgid ""
 "    • With hotkey.session.savedgames.noconfirmation – Don't ask for "
 "confirmation"
-msgstr ""
+msgstr "    • With hotkey.session.savedgames.noconfirmation – Ausgewählte Einheit(en)/Gebäude sofort und ohne weitere Bestätigung löschen"
 
 #: gui/manual/manual.xml:(caption):13
 msgid "Manual"

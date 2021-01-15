@@ -14,9 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-08 08:08+0000\n"
-"PO-Revision-Date: 2021-01-08 10:37+0000\n"
-"Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
+"POT-Creation-Date: 2021-01-11 08:08+0000\n"
+"PO-Revision-Date: 2021-01-11 10:36+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -747,7 +747,7 @@ msgid "Gur Oroigarri"
 msgstr "Gur Oroigarria"
 
 #: simulation/templates/structures/iber/monument.xml:9
-#: simulation/templates/structures/iber/monument.xml:34
+#: simulation/templates/structures/iber/monument.xml:35
 msgid "Monument"
 msgstr "Oroigaria"
 
@@ -783,8 +783,8 @@ msgid "Territory root."
 msgstr "Lurraldearen sustraia."
 
 #: simulation/templates/structures/kush/arsenal.xml:5
-msgid "Pr-ỉwn n ms﻿"
-msgstr "Pr-ỉwn n ms"
+msgid "Pr-ỉwn n ms"
+msgstr ""
 
 #: simulation/templates/structures/kush/barracks.xml:9
 msgid "pr-msʿyw"
@@ -934,7 +934,7 @@ msgstr "Pr-ʿImn"
 msgid "Train Healers and Amun Champions and research healing technologies."
 msgstr "Trebatu aztiak eta Amun txapeldunak eta ikertu sendatzeko teknologiak."
 
-#: simulation/templates/structures/kush/temple_amun.xml:30
+#: simulation/templates/structures/kush/temple_amun.xml:31
 msgid "TempleOfAmun"
 msgstr "Amonen Tenplua"
 
@@ -1044,7 +1044,7 @@ msgid "Śāsana Stambha Aśokā"
 msgstr "Śāsana Stambha Aśokā"
 
 #: simulation/templates/structures/maur/pillar_ashoka.xml:9
-#: simulation/templates/structures/maur/pillar_ashoka.xml:34
+#: simulation/templates/structures/maur/pillar_ashoka.xml:35
 msgid "Pillar"
 msgstr "Pilarea"
 
@@ -1291,7 +1291,7 @@ msgid ""
 msgstr "Biztanleria muga handitu. Adobez eginak izanik, egiptoar etxeak ez dute apenas kosturik, baina oso ahulak dira."
 
 #: simulation/templates/structures/ptol/lighthouse.xml:25
-#: simulation/templates/structures/ptol/lighthouse.xml:28
+#: simulation/templates/structures/ptol/lighthouse.xml:29
 msgid "Lighthouse"
 msgstr "Itsasargia"
 
@@ -1434,7 +1434,7 @@ msgstr "Porta Circummūnītiōnis"
 #: simulation/templates/structures/rome/siege_wall_medium.xml:25
 #: simulation/templates/structures/rome/siege_wall_short.xml:25
 #: simulation/templates/structures/rome/siege_wall_tower.xml:35
-#: simulation/templates/structures/rome/wallset_siege.xml:8
+#: simulation/templates/structures/rome/wallset_siege.xml:9
 msgid "SiegeWall"
 msgstr "Hesitura"
 
@@ -1492,19 +1492,19 @@ msgstr "Vestaren Templua"
 msgid "Aedēs Vestālis"
 msgstr "Aedēs Vestālis"
 
-#: simulation/templates/structures/rome/temple_vesta.xml:20
+#: simulation/templates/structures/rome/temple_vesta.xml:21
 msgid "TempleOfVesta"
 msgstr "Vestaren tenplua"
 
-#: simulation/templates/structures/rome/tent.xml:29
+#: simulation/templates/structures/rome/tent.xml:24
 msgid "Tent"
 msgstr "Denda"
 
-#: simulation/templates/structures/rome/tent.xml:30
+#: simulation/templates/structures/rome/tent.xml:25
 msgid "Tabernāculum"
 msgstr "Tabernāculum"
 
-#: simulation/templates/structures/rome/tent.xml:32
+#: simulation/templates/structures/rome/tent.xml:27
 msgid "A temporary shelter for soldiers."
 msgstr "Gudariak aldi baterako babestu."
 
@@ -1681,15 +1681,15 @@ msgid "Stoa"
 msgstr "Estoa"
 
 #: simulation/templates/structures/cart/super_dock.xml:43
-#: simulation/templates/structures/gaul/tavern.xml:23
+#: simulation/templates/structures/gaul/tavern.xml:24
 #: simulation/templates/structures/kush/pyramid_small.xml:29
-#: simulation/templates/structures/maur/elephant_stables.xml:7
-#: simulation/templates/structures/ptol/lighthouse.xml:28
+#: simulation/templates/structures/maur/elephant_stables.xml:8
+#: simulation/templates/structures/ptol/lighthouse.xml:29
 #: simulation/templates/template_structure_civic_stoa.xml:30
 #: simulation/templates/template_structure_civic_temple.xml:32
 #: simulation/templates/template_structure_defensive_tower_stone.xml:34
 #: simulation/templates/template_structure_economic_market.xml:28
-#: simulation/templates/template_structure_military_embassy.xml:25
+#: simulation/templates/template_structure_military_embassy.xml:24
 #: simulation/templates/template_structure_military_forge.xml:26
 msgid "Town"
 msgstr "Herria"
@@ -1752,13 +1752,13 @@ msgid "ArtilleryTower"
 msgstr "Artilleria dorrea"
 
 #: simulation/templates/structures/kush/pyramid_large.xml:29
-#: simulation/templates/structures/kush/temple_amun.xml:30
+#: simulation/templates/structures/kush/temple_amun.xml:31
 #: simulation/templates/structures/rome/army_camp.xml:77
 #: simulation/templates/structures/rome/temple_mars.xml:14
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:60
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:59
 #: simulation/templates/template_structure_military_arsenal.xml:28
-#: simulation/templates/template_structure_military_elephant_stables.xml:27
+#: simulation/templates/template_structure_military_elephant_stables.xml:26
 #: simulation/templates/template_structure_military_fortress.xml:72
 #: simulation/templates/template_structure_special.xml:20
 #: simulation/templates/template_structure_wonder.xml:43
@@ -1919,27 +1919,27 @@ msgid ""
 " routes. Construct Ships and research Ship technologies."
 msgstr " Lurralde propioan, neutralean edo aliatuan, kostalde baten gainean eraiki. Merkataritza-bideak ezarri. Itsasontziak eraiki eta itsasontzien teknologiak ikertu.\n"
 
-#: simulation/templates/structures/brit/crannog.xml:16
+#: simulation/templates/structures/brit/crannog.xml:17
 #: simulation/templates/structures/cart/super_dock.xml:43
 #: simulation/templates/template_structure_military_dock.xml:27
 msgid "Naval"
 msgstr "Ontzigintza"
 
-#: simulation/templates/template_structure_military_elephant_stables.xml:24
+#: simulation/templates/template_structure_military_elephant_stables.xml:23
 msgid "Elephant Stable"
 msgstr "Elefanteentzako ukuilua"
 
-#: simulation/templates/template_structure_military_elephant_stables.xml:26
+#: simulation/templates/template_structure_military_elephant_stables.xml:25
 msgid "Train Elephants and research Elephant technologies."
 msgstr "Trebatu elefanteak eta ikertu elefanteen teknologiak."
 
-#: simulation/templates/template_structure_military_elephant_stables.xml:27
+#: simulation/templates/template_structure_military_elephant_stables.xml:26
 msgid "ElephantStable"
 msgstr "Elefanteen ukuiluak"
 
 #: simulation/templates/structures/cart/embassy.xml:18
-#: simulation/templates/template_structure_military_embassy.xml:23
-#: simulation/templates/template_structure_military_embassy.xml:25
+#: simulation/templates/template_structure_military_embassy.xml:22
+#: simulation/templates/template_structure_military_embassy.xml:24
 msgid "Embassy"
 msgstr "Enbaxada"
 

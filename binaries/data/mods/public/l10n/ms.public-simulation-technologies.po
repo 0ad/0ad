@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-08 08:08+0000\n"
-"PO-Revision-Date: 2021-01-08 11:19+0000\n"
+"POT-Creation-Date: 2021-01-11 08:08+0000\n"
+"PO-Revision-Date: 2021-01-11 11:19+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Malay (http://www.transifex.com/wildfire-games/0ad/language/ms/)\n"
 "MIME-Version: 1.0\n"
@@ -62,13 +62,13 @@ msgstr "Chamfron"
 #: simulation/data/technologies/attack_infantry_ranged_01.jsonrequirementsTooltip
 #: simulation/data/technologies/carthaginians/special_colonisation.jsonrequirementsTooltip
 #: simulation/data/technologies/carthaginians/special_exploration.jsonrequirementsTooltip
+#: simulation/data/technologies/garrison_heal.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_harvester.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_training.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_mining_serfs.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_mining_shaftmining.jsonrequirementsTooltip
-#: simulation/data/technologies/heal_barracks.jsonrequirementsTooltip
 #: simulation/data/technologies/heal_range.jsonrequirementsTooltip
 #: simulation/data/technologies/heal_rate.jsonrequirementsTooltip
 #: simulation/data/technologies/kushites/monumental_architecture.jsonrequirementsTooltip
@@ -119,7 +119,6 @@ msgstr "Perisai logam untuk badan kuda,"
 #: simulation/data/technologies/gather_mining_slaves.jsonrequirementsTooltip
 #: simulation/data/technologies/heal_range_2.jsonrequirementsTooltip
 #: simulation/data/technologies/heal_rate_2.jsonrequirementsTooltip
-#: simulation/data/technologies/heal_temple.jsonrequirementsTooltip
 #: simulation/data/technologies/health_regen_units.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenes/spartans_agoge.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsonrequirementsTooltip
@@ -597,6 +596,18 @@ msgstr "Orang Tertindas"
 msgid "Spartans −10% maximum population limit."
 msgstr ""
 
+#: simulation/data/technologies/garrison_heal.jsondescription
+msgid "Units regain health over time while garrisoned."
+msgstr ""
+
+#: simulation/data/technologies/garrison_heal.jsongenericName
+msgid "Living Conditions"
+msgstr "Syarat Hidup"
+
+#: simulation/data/technologies/garrison_heal.jsontooltip
+msgid "Structures +1 garrison heal rate."
+msgstr ""
+
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breed livestock (sheep, goats, cattle, etc.) for food."
 msgstr ""
@@ -849,18 +860,6 @@ msgstr "Bakul Anyaman"
 msgid "Workers +50% fruit gather rate."
 msgstr ""
 
-#: simulation/data/technologies/heal_barracks.jsondescription
-msgid "Units garrisoned in Barracks heal over time."
-msgstr "Unit bergarison di dalam Berek sembuh mengikut masa."
-
-#: simulation/data/technologies/heal_barracks.jsongenericName
-msgid "Living Conditions"
-msgstr "Syarat Hidup"
-
-#: simulation/data/technologies/heal_barracks.jsontooltip
-msgid "Units gain health over time while garrisoned in Barracks."
-msgstr "Unit semakin sembuh dalam satu tempoh ketika bergarison di dalam Berek."
-
 #: simulation/data/technologies/heal_range.jsondescription
 #: simulation/data/technologies/heal_range_2.jsondescription
 msgid "Increases the healing and vision range of all healers."
@@ -924,27 +923,6 @@ msgstr "Kadar Penyembuhan 2"
 #: simulation/data/technologies/heal_rate_2.jsonspecificName.spart
 msgid "Hippocratic Oath"
 msgstr "Ikrar Hippocratic"
-
-#: simulation/data/technologies/heal_temple.jsondescription
-msgid "Units garrisoned in a temple are healed faster."
-msgstr "Unit bergarison di dalam kuil sembuh lebih pantas."
-
-#: simulation/data/technologies/heal_temple.jsongenericName
-msgid "Divine Offerings"
-msgstr "Sajian Ketuhanan"
-
-#: simulation/data/technologies/heal_temple.jsonspecificName.athen
-msgid "Eleusian Mysteries"
-msgstr "Misteri Eleusian"
-
-#: simulation/data/technologies/heal_temple.jsonspecificName.mace
-#: simulation/data/technologies/heal_temple.jsonspecificName.spart
-msgid "Olympic Games"
-msgstr "Permainan Olimpik"
-
-#: simulation/data/technologies/heal_temple.jsontooltip
-msgid "Temples +50% garrisoned healing rate."
-msgstr "Kuil +50% kadar penyembuhan bergarison."
 
 #: simulation/data/technologies/health_females_01.jsondescription
 msgid ""

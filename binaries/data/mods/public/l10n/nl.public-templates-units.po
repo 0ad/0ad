@@ -33,9 +33,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-01 08:01+0000\n"
-"PO-Revision-Date: 2021-01-04 07:53+0000\n"
-"Last-Translator: Freagarach . <freagarach@gmail.com>\n"
+"POT-Creation-Date: 2021-01-11 08:08+0000\n"
+"PO-Revision-Date: 2021-01-12 08:27+0000\n"
+"Last-Translator: Bart <b.anthonisse@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1152,6 +1152,14 @@ msgstr "Lithobólos"
 msgid "Oxybelḗs"
 msgstr "Oxybelḗs"
 
+#: simulation/templates/units/athen/siege_ram.xml:9
+#: simulation/templates/units/mace/siege_ram.xml:9
+#: simulation/templates/units/ptol/siege_ram.xml:9
+#: simulation/templates/units/sele/siege_ram.xml:9
+#: simulation/templates/units/spart/siege_ram.xml:9
+msgid "Krios"
+msgstr "Krios"
+
 #: simulation/templates/units/athen/support_female_citizen.xml:12
 msgid "Gýnē Athēnaía"
 msgstr "Gýnē Athēnaía"
@@ -2017,11 +2025,6 @@ msgstr "Hemiolos"
 msgid "Macedonian Trireme"
 msgstr "Macedonische trireem"
 
-#: simulation/templates/units/mace/siege_ram.xml:9
-#: simulation/templates/units/spart/siege_ram.xml:9
-msgid "Poliorkitikós Kriós"
-msgstr "Poliorkitikós Kriós"
-
 #: simulation/templates/units/mace/siege_tower.xml:5
 #: simulation/templates/units/ptol/siege_tower.xml:5
 #: simulation/templates/units/sele/siege_tower.xml:5
@@ -2086,11 +2089,11 @@ msgid "Maiden Guard"
 msgstr "Maagdelijke wachter"
 
 #: simulation/templates/units/maur/champion_maiden.xml:7
-#: simulation/templates/units/maur/champion_maiden_archer.xml:7
+#: simulation/templates/units/maur/champion_maiden_archer.xml:21
 msgid "Visha Kanya"
 msgstr "Visha Kanya"
 
-#: simulation/templates/units/maur/champion_maiden_archer.xml:6
+#: simulation/templates/units/maur/champion_maiden_archer.xml:20
 msgid "Maiden Guard Archer"
 msgstr "Maagdelijke boogschutster"
 

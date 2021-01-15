@@ -29,8 +29,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-01 08:01+0000\n"
-"PO-Revision-Date: 2021-01-11 07:54+0000\n"
+"POT-Creation-Date: 2021-01-11 08:08+0000\n"
+"PO-Revision-Date: 2021-01-11 12:19+0000\n"
 "Last-Translator: Bruce Lee <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -1148,6 +1148,14 @@ msgstr "리토보로스"
 msgid "Oxybelḗs"
 msgstr "오시베레스"
 
+#: simulation/templates/units/athen/siege_ram.xml:9
+#: simulation/templates/units/mace/siege_ram.xml:9
+#: simulation/templates/units/ptol/siege_ram.xml:9
+#: simulation/templates/units/sele/siege_ram.xml:9
+#: simulation/templates/units/spart/siege_ram.xml:9
+msgid "Krios"
+msgstr "크리오스"
+
 #: simulation/templates/units/athen/support_female_citizen.xml:12
 msgid "Gýnē Athēnaía"
 msgstr "기네 아테나이아"
@@ -1385,7 +1393,7 @@ msgstr "필 말하미트"
 
 #: simulation/templates/units/cart/champion_infantry.xml:5
 msgid "Sacred Band Infantry"
-msgstr "신성 보병대"
+msgstr "신성보병"
 
 #: simulation/templates/units/cart/champion_infantry.xml:6
 msgid "Sacred Band of Ba'al"
@@ -2013,11 +2021,6 @@ msgstr "헤미오로스"
 msgid "Macedonian Trireme"
 msgstr "마케도니아 트리에레스"
 
-#: simulation/templates/units/mace/siege_ram.xml:9
-#: simulation/templates/units/spart/siege_ram.xml:9
-msgid "Poliorkitikós Kriós"
-msgstr "폴리오르키티코스 크리오스"
-
 #: simulation/templates/units/mace/siege_tower.xml:5
 #: simulation/templates/units/ptol/siege_tower.xml:5
 #: simulation/templates/units/sele/siege_tower.xml:5
@@ -2082,11 +2085,11 @@ msgid "Maiden Guard"
 msgstr "처녀 수비대"
 
 #: simulation/templates/units/maur/champion_maiden.xml:7
-#: simulation/templates/units/maur/champion_maiden_archer.xml:7
+#: simulation/templates/units/maur/champion_maiden_archer.xml:21
 msgid "Visha Kanya"
 msgstr "비샤 카냐"
 
-#: simulation/templates/units/maur/champion_maiden_archer.xml:6
+#: simulation/templates/units/maur/champion_maiden_archer.xml:20
 msgid "Maiden Guard Archer"
 msgstr "처녀 수비 궁병"
 
@@ -2947,7 +2950,7 @@ msgstr "페자콘티스테스 아라비코스"
 
 #: simulation/templates/units/sele/infantry_pikeman_b.xml:12
 msgid "Phalangite"
-msgstr "팔랑가이트"
+msgstr "풸농지"
 
 #: simulation/templates/units/sele/infantry_pikeman_b.xml:13
 msgid "Phalangitēs"
@@ -3015,7 +3018,7 @@ msgstr "스파르타 단창병"
 
 #: simulation/templates/units/spart/champion_infantry_pike.xml:7
 msgid "Phalangites Spartiatis"
-msgstr "파란기테스 스파르티아티스"
+msgstr "풸농지 스파르키아티"
 
 #: simulation/templates/units/spart/champion_infantry_spear.xml:6
 msgid "Spartan Hoplite"

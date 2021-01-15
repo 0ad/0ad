@@ -7,7 +7,7 @@
 # Wuzzy <almikes@aol.com>, 2015-2018
 # Benny <benediktwindolph@posteo.de>, 2014
 # Benny <benediktwindolph@posteo.de>, 2014
-# xtother90, 2017-2020
+# xtother90, 2017-2021
 # 9b1afd800f2c3857a0efc186538fe589_4ecff18 <2889cf57732ac93eb6d2c5f4cd789ca0_564032>, 2017
 # Maximilian Wagenbach <foaly@posteo.de>, 2016
 # SteinQuadrat, 2017
@@ -52,9 +52,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-01 08:01+0000\n"
-"PO-Revision-Date: 2021-01-01 08:36+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-01-11 08:08+0000\n"
+"PO-Revision-Date: 2021-01-12 18:13+0000\n"
+"Last-Translator: xtother90\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -68,17 +68,17 @@ msgstr ""
 msgid "FPS: %(fps)4s"
 msgstr "FPS: %(fps)4s"
 
-#: gui/common/color.js:178
+#: gui/common/color.js:179
 #, javascript-format
 msgid "Unassigned hotkey: %(hotkeyName)s"
 msgstr "Unbenutzter Hotkey:%(hotkeyName)s"
 
-#: gui/common/color.js:193
+#: gui/common/color.js:196
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete player names."
 msgstr "Drücke %(hotkey)s um Spielernamen zu vervollständigen."
 
-#: gui/common/color.js:195
+#: gui/common/color.js:198
 msgctxt "hotkey"
 msgid "Tab"
 msgstr "Tab"
@@ -2982,16 +2982,16 @@ msgstr[0] "Held"
 msgstr[1] "Helden"
 
 #: gui/reference/civinfo/Sections/Subsections/StructuresSubsection.js:29
-msgid "Special Structure"
-msgid_plural "Special Structures"
-msgstr[0] "Spezialgebäude"
-msgstr[1] "Spezialgebäude"
+msgid "Specific Structure"
+msgid_plural "Specific Structures"
+msgstr[0] "Spezifische Struktur"
+msgstr[1] "Spezifische Strukturen"
 
 #: gui/reference/civinfo/Sections/Subsections/TechnologiesSubsection.js:28
-msgid "Special Technology"
-msgid_plural "Special Technologies"
-msgstr[0] "Spezielle Technologie"
-msgstr[1] "Spezielle Technologien"
+msgid "Specific Technology"
+msgid_plural "Specific Technologies"
+msgstr[0] "Spezifische Technologie"
+msgstr[1] "Spezifische Technologien"
 
 #: gui/reference/common/Buttons/CivInfoButton.js:27
 #, javascript-format
