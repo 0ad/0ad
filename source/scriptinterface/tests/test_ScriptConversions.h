@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -254,8 +254,8 @@ public:
 		TS_ASSERT(script.LoadGlobalScripts());
 		ScriptRequest rq(script);
 
-		std::string in_utf8("éè!§$-aezi134900°°©©¢¢ÇÇ‘{¶«¡Ç’[å»ÛÁØ");
-		std::wstring in_utf16(L"éè!§$-aezi134900°°©©¢¢ÇÇ‘{¶«¡Ç’[å»ÛÁØ");
+		std::string in_utf8("éè!§$-aezi134900°°©©¢¢ÇÇ'{¶«¡Ç'[å»ÛÁØ");
+		std::wstring in_utf16(L"éè!§$-aezi134900°°©©¢¢ÇÇ'{¶«¡Ç'[å»ÛÁØ");
 
 		JS::RootedValue v1(rq.cx);
 		ScriptInterface::ToJSVal(rq, &v1, in_utf8);

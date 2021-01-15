@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -129,8 +129,8 @@ public:
 	 *
 	 * A locale code is a string such as "de" or "pt_BR".
 	 *
-	 * If yours is a development copy (the ‘config/dev.cfg’ file is found in the
-	 * virtual filesystem), the output array may include the special “long”
+	 * If yours is a development copy (the 'config/dev.cfg' file is found in the
+	 * virtual filesystem), the output array may include the special "long"
 	 * locale code.
 	 *
 	 * @return Array of supported locale codes.
@@ -149,9 +149,9 @@ public:
 	 *
 	 * A locale code is a string such as "de" or "pt_BR".
 	 *
-	 * If yours is a development copy (the ‘config/dev.cfg’ file is found in the
-	 * virtual filesystem), the output array may include the special “Long
-	 * Strings” locale name.
+	 * If yours is a development copy (the 'config/dev.cfg' file is found in the
+	 * virtual filesystem), the output array may include the special "Long
+	 * Strings" locale name.
 	 *
 	 * @return Array of supported locale codes.
 	 *
@@ -164,7 +164,7 @@ public:
 	/**
 	 * Returns the ISO-639 language code of the specified locale code.
 	 *
-	 * For example, if you specify the ‘en_US’ locate, it returns ‘en’.
+	 * For example, if you specify the 'en_US' locate, it returns 'en'.
 	 *
 	 * @param locale Locale code.
 	 * @return Language code.
@@ -186,7 +186,7 @@ public:
 	/**
 	 * Returns the ISO-3166 country code of the specified locale code.
 	 *
-	 * For example, if you specify the ‘en_US’ locate, it returns ‘US’.
+	 * For example, if you specify the 'en_US' locate, it returns 'US'.
 	 *
 	 * @param locale Locale code.
 	 * @return Country code.
@@ -206,10 +206,10 @@ public:
 	std::string GetLocaleScript(const std::string& locale) const;
 
 	/**
-	 * Returns @c true if the current locale is the special “Long Strings”
+	 * Returns @c true if the current locale is the special "Long Strings"
 	 * locale. It returns @c false otherwise.
 	 *
-	 * @return Whether the current locale is the special “Long Strings”
+	 * @return Whether the current locale is the special "Long Strings"
 	 *         (@c true) or not (@c false).
 	 */
 	bool UseLongStrings() const;
@@ -232,16 +232,16 @@ public:
 	 * Returns the code of the recommended locale for the current user that the
 	 * game supports.
 	 *
-	 * “That the game supports” means both that a translation file is available
+	 * "That the game supports" means both that a translation file is available
 	 * for that locale and that the locale code is either supported by ICU or
-	 * the special “long” locale code.
+	 * the special "long" locale code.
 	 *
 	 * The mechanism to select a recommended locale follows this logic:
 	 *     1. First see if the game supports the specified locale,\n
 	 *       @p configLocale.
 	 *     2. Otherwise, check the system locale and see if the game supports\n
 	 *       that locale.
-	 *     3. Else, return the default locale, ‘en_US’.
+	 *     3. Else, return the default locale, 'en_US'.
 	 *
 	 * @param configLocaleString Locale to check for support first. Pass an
 	 *        empty string to check the system locale directly.
@@ -255,16 +255,16 @@ public:
 	 * Saves an instance of the recommended locale for the current user that the
 	 * game supports in the specified variable.
 	 *
-	 * “That the game supports” means both that a translation file is available
+	 * "That the game supports" means both that a translation file is available
 	 * for that locale and that the locale code is either supported by ICU or
-	 * the special “long” locale code.
+	 * the special "long" locale code.
 	 *
 	 * The mechanism to select a recommended locale follows this logic:
 	 *     1. First see if the game supports the specified locale,\n
 	 *       @p configLocale.
 	 *     2. Otherwise, check the system locale and see if the game supports\n
 	 *       that locale.
-	 *     3. Else, return the default locale, ‘en_US’.
+	 *     3. Else, return the default locale, 'en_US'.
 	 *
 	 * @param configLocaleString Locale to check for support first. Pass an
 	 *        empty string to check the system locale directly.
@@ -283,7 +283,7 @@ public:
 	 *     1. Checks the user game configuration.
 	 *     2. If the locale is not defined there, it checks the system locale.
 	 *     3. If none of those locales are supported by the game, the default\n
-	 *       locale, ‘en_US’, is used.
+	 *       locale, 'en_US', is used.
 	 *
 	 * @sa GetCurrentLocale()
 	 */
@@ -294,7 +294,7 @@ public:
 	 * returns @c false otherwise.
 	 *
 	 * It returns @c true if both of these conditions are true:
-	 *     1. ICU has resources for that locale (which also ensures it’s a valid\n
+	 *     1. ICU has resources for that locale (which also ensures it's a valid\n
 	 *       locale string).
 	 *     2. Either a dictionary for language_country or for language is\n
 	 *       available.
@@ -337,9 +337,9 @@ public:
 	 * specified number.
 	 *
 	 * @param singularSourceString String to translate to the current locale,
-	 *        in English’ singular form.
+	 *        in English' singular form.
 	 * @param pluralSourceString String to translate to the current locale, in
-	 *        English’ plural form.
+	 *        English' plural form.
 	 * @param number Number that determines the required form of the translation
 	 *        (or the English string if no translation is available).
 	 * @return Translation of the source string to the current locale for the
@@ -357,9 +357,9 @@ public:
 	 * @param context Context where the string is used. See
 	 *        http://www.gnu.org/software/gettext/manual/html_node/Contexts.html
 	 * @param singularSourceString String to translate to the current locale,
-	 *        in English’ singular form.
+	 *        in English' singular form.
 	 * @param pluralSourceString String to translate to the current locale, in
-	 *        English’ plural form.
+	 *        English' plural form.
 	 * @param number Number that determines the required form of the translation
 	 *        (or the English string if no translation is available).	 *
 	 * @return Translation of the source string to the current locale in the
@@ -453,9 +453,9 @@ public:
 	 * If there is no localized version of the specified path, it returns the
 	 * specified path.
 	 *
-	 * For example, if the code of the current locale is ‘de_DE’, LocalizePath()
+	 * For example, if the code of the current locale is 'de_DE', LocalizePath()
 	 * splits the input path into folder path and file name, and checks whether
-	 * the ‘<folder>/l10n/de/<file>’ file exists. If it does, it returns that
+	 * the '<folder>/l10n/de/<file>' file exists. If it does, it returns that
 	 * path. Otherwise, it returns the input path, verbatim.
 	 *
 	 * This function is used for file localization (for example, image
@@ -511,7 +511,7 @@ private:
 	std::vector<std::unique_ptr<icu::Locale>> availableLocales;
 
 	/**
-	 * Whether the game is using the default game locale (@c true), ‘en_US’, or
+	 * Whether the game is using the default game locale (@c true), 'en_US', or
 	 * not (@c false).
 	 *
 	 * This variable is used in the L10n implementation for performance reasons.
@@ -531,13 +531,13 @@ private:
 	 * Loads the translation files for the
 	 * @link L10n::GetCurrentLocale() current locale@endlink.
 	 *
-	 * This method loads every file in the ‘l10n’ folder of the game virtual
+	 * This method loads every file in the 'l10n' folder of the game virtual
 	 * filesystem that is prefixed with the code of the current locale followed
 	 * by a dot.
 	 *
-	 * For example, if the code of the current locale code is ‘de’,
-	 * LoadDictionaryForCurrentLocale() loads the ‘l10n/de.engine.po’ and
-	 * ‘l10n/de.public.po’ translation files.
+	 * For example, if the code of the current locale code is 'de',
+	 * LoadDictionaryForCurrentLocale() loads the 'l10n/de.engine.po' and
+	 * 'l10n/de.public.po' translation files.
 	 *
 	 * @sa dictionary
 	 * @sa ReadPoIntoDictionary()
@@ -548,7 +548,7 @@ private:
 	 * Determines the list of locales that the game supports.
 	 *
 	 * LoadListOfAvailableLocales() checks the locale codes of the translation
-	 * files in the ‘l10n’ folder of the virtual filesystem. If it finds a
+	 * files in the 'l10n' folder of the virtual filesystem. If it finds a
 	 * translation file prefixed with a locale code followed by a dot, it
 	 * determines that the game supports that locale.
 	 *

@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -156,9 +156,9 @@ Status debug_ResolveSymbol(void* ptr_of_interest, wchar_t* sym_name, wchar_t* fi
  * used.
  *
  * The thread name limit is 16 (including the terminating null byte) on Linux,
- * so we have to cut the provided name at 15 bytes.
+ * so we have to cut the provided name at 15 bytes.
  *
- * This API exists since Linux 2.6.33, on older kernels the user will just not
+ * This API exists since Linux 2.6.33, on older kernels the user will just not
  * get thread names.
  */
 void debug_SetThreadName(const char* name)

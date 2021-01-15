@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -711,7 +711,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 					else if (grandchild.GetNodeName() == elmt_keep)
 						code += grandchild.GetText();
 				}
-			else // It’s pure JavaScript code.
+			else // It's pure JavaScript code.
 				// Read the inline code (concatenating to the file code, if both are specified)
 				code += CStr(child.GetText());
 
@@ -728,11 +728,11 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 		}
 		else if (element_name == elmt_translatableAttribute)
 		{
-			// This is an element in the form “<translatableAttribute id="attributeName">attributeValue</translatableAttribute>”.
+			// This is an element in the form "<translatableAttribute id="attributeName">attributeValue</translatableAttribute>".
 			CStr attributeName(child.GetAttributes().GetNamedItem(attr_id)); // Read the attribute name.
 			if (attributeName.empty())
 			{
-				LOGERROR("GUI: ‘translatableAttribute’ XML element with empty ‘id’ XML attribute found. (object: %s)", object->GetPresentableName().c_str());
+				LOGERROR("GUI: 'translatableAttribute' XML element with empty 'id' XML attribute found. (object: %s)", object->GetPresentableName().c_str());
 				continue;
 			}
 
@@ -750,12 +750,12 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 		}
 		else if (element_name == elmt_attribute)
 		{
-			// This is an element in the form “<attribute id="attributeName"><keep>Don’t translate this part
-			// </keep><translate>but translate this one.</translate></attribute>”.
+			// This is an element in the form "<attribute id="attributeName"><keep>Don't translate this part
+			// </keep><translate>but translate this one.</translate></attribute>".
 			CStr attributeName(child.GetAttributes().GetNamedItem(attr_id)); // Read the attribute name.
 			if (attributeName.empty())
 			{
-				LOGERROR("GUI: ‘attribute’ XML element with empty ‘id’ XML attribute found. (object: %s)", object->GetPresentableName().c_str());
+				LOGERROR("GUI: 'attribute' XML element with empty 'id' XML attribute found. (object: %s)", object->GetPresentableName().c_str());
 				continue;
 			}
 

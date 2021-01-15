@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -46,7 +46,7 @@ L10n::L10n()
 	: m_Dictionary(new tinygettext::Dictionary()), currentLocaleIsOriginalGameLocale(false), useLongStrings(false)
 {
 	// Determine whether or not to print tinygettext messages to the standard
-	// error output, which it tinygettext’s default behavior, but not ours.
+	// error output, which it tinygettext's default behavior, but not ours.
 	bool tinygettext_debug = false;
 	CFG_GET_VAL("tinygettext.debug", tinygettext_debug);
 	if (!tinygettext_debug)
@@ -503,7 +503,7 @@ void L10n::LoadListOfAvailableLocales()
 
 	for (const VfsPath& path : filenames)
 	{
-		// Note: PO files follow this naming convention: “l10n/<locale code>.<mod name>.po”. For example: “l10n/gl.public.po”.
+		// Note: PO files follow this naming convention: "l10n/<locale code>.<mod name>.po". For example: "l10n/gl.public.po".
 		std::string filename = utf8_from_wstring(path.string()).substr(strlen("l10n/"));
 		size_t lengthToFirstDot = filename.find('.');
 		std::string localeCode = filename.substr(0, lengthToFirstDot);

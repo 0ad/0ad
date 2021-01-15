@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -160,7 +160,7 @@ struct Query
  * The highest point of the paraboloid is (0,range/2,0)
  * and the circle of distance 'range' around (0,0,0) on height y=0 is part of the paraboloid
  * This equates to computing f(x, z) = y = -(xx + zz)/(2*range) + range/2 > 0,
- * or alternatively √(xx+zz) <= √(range^2 - 2range*y).
+ * or alternatively sqrt(xx+zz) <= sqrt(range^2 - 2range*y).
  *
  * Avoids sqrting and overflowing.
  */

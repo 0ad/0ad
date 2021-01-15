@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -83,9 +83,9 @@ namespace JSI_L10n
 	 *
 	 * @param pCmptPrivate JavaScript context.
 	 * @param singularSourceString String to translate to the current locale,
-	 *        in English’ singular form.
+	 *        in English' singular form.
 	 * @param pluralSourceString String to translate to the current locale, in
-	 *        English’ plural form.
+	 *        English' plural form.
 	 * @param number Number that determines the required form of the translation
 	 *        (or the English string if no translation is available).
 	 * @return Translation of the source string to the current locale for the
@@ -106,9 +106,9 @@ namespace JSI_L10n
 	 * @param context Context where the string is used. See
 	 *        http://www.gnu.org/software/gettext/manual/html_node/Contexts.html
 	 * @param singularSourceString String to translate to the current locale,
-	 *        in English’ singular form.
+	 *        in English' singular form.
 	 * @param pluralSourceString String to translate to the current locale, in
-	 *        English’ plural form.
+	 *        English' plural form.
 	 * @param number Number that determines the required form of the translation
 	 *        (or the English string if no translation is available).	 *
 	 * @return Translation of the source string to the current locale in the
@@ -160,8 +160,8 @@ namespace JSI_L10n
 	 *
 	 * @param pCmptPrivate JavaScript context.
 	 * @param milliseconds Date specified as a UNIX timestamp in milliseconds
-	 *        (not seconds). If you have a JavaScript @c ​Date object, you can
-	 *        use @c ​Date.getTime() to obtain the UNIX time in milliseconds.
+	 *        (not seconds). If you have a JavaScript @c Date object, you can
+	 *        use @c Date.getTime() to obtain the UNIX time in milliseconds.
 	 * @param formatString Date format string defined using ICU date formatting
 	 *        symbols. Usually, you internationalize the format string and
 	 *        get it translated before you pass it to
@@ -182,8 +182,8 @@ namespace JSI_L10n
 	*
 	* @param pCmptPrivate JavaScript context.
 	* @param milliseconds Date specified as a UNIX timestamp in milliseconds
-	*        (not seconds). If you have a JavaScript @c ​Date object, you can
-	*        use @c ​Date.getTime() to obtain the UNIX time in milliseconds.
+	*        (not seconds). If you have a JavaScript @c Date object, you can
+	*        use @c Date.getTime() to obtain the UNIX time in milliseconds.
 	* @param formatString Date format string defined using ICU date formatting
 	*        symbols. Usually, you internationalize the format string and
 	*        get it translated before you pass it to
@@ -214,8 +214,8 @@ namespace JSI_L10n
 	 *
 	 * A locale code is a string such as "de" or "pt_BR".
 	 *
-	 * If yours is a development copy (the ‘config/dev.cfg’ file is found in the
-	 * virtual filesystem), the output array may include the special “long”
+	 * If yours is a development copy (the 'config/dev.cfg' file is found in the
+	 * virtual filesystem), the output array may include the special "long"
 	 * locale code.
 	 *
 	 * This is a JavaScript interface to L10n::GetSupportedLocaleBaseNames().
@@ -237,9 +237,9 @@ namespace JSI_L10n
 	 *
 	 * A locale code is a string such as "de" or "pt_BR".
 	 *
-	 * If yours is a development copy (the ‘config/dev.cfg’ file is found in the
-	 * virtual filesystem), the output array may include the special “Long
-	 * Strings” locale name.
+	 * If yours is a development copy (the 'config/dev.cfg' file is found in the
+	 * virtual filesystem), the output array may include the special "Long
+	 * Strings" locale name.
 	 *
 	 * This is a JavaScript interface to L10n::GetSupportedLocaleDisplayNames().
 	 *
@@ -288,16 +288,16 @@ namespace JSI_L10n
 	 * Returns the code of the recommended locale for the current user that the
 	 * game supports.
 	 *
-	 * “That the game supports” means both that a translation file is available
+	 * "That the game supports" means both that a translation file is available
 	 * for that locale and that the locale code is either supported by ICU or
-	 * the special “long” locale code.
+	 * the special "long" locale code.
 	 *
 	 * The mechanism to select a recommended locale follows this logic:
 	 *     1. First see if the game supports the specified locale,\n
 	 *       @p configLocale.
 	 *     2. Otherwise, check the system locale and see if the game supports\n
 	 *       that locale.
-	 *     3. Else, return the default locale, ‘en_US’.
+	 *     3. Else, return the default locale, 'en_US'.
 	 *
 	 * This is a JavaScript interface to L10n::GetDictionaryLocale(std::string).
 	 *
@@ -326,7 +326,7 @@ namespace JSI_L10n
 	/**
 	 * Returns the ISO-639 language code of the specified locale code.
 	 *
-	 * For example, if you specify the ‘en_US’ locate, it returns ‘en’.
+	 * For example, if you specify the 'en_US' locate, it returns 'en'.
 	 *
 	 * This is a JavaScript interface to L10n::GetLocaleLanguage().
 	 *
@@ -354,7 +354,7 @@ namespace JSI_L10n
 	/**
 	 * Returns the ISO-3166 country code of the specified locale code.
 	 *
-	 * For example, if you specify the ‘en_US’ locate, it returns ‘US’.
+	 * For example, if you specify the 'en_US' locate, it returns 'US'.
 	 *
 	 * This is a JavaScript interface to L10n::GetLocaleCountry().
 	 *
@@ -383,13 +383,13 @@ namespace JSI_L10n
 	std::wstring GetFallbackToAvailableDictLocale(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::string& locale);
 
 	/**
-	 * Returns @c true if the current locale is the special “Long Strings”
+	 * Returns @c true if the current locale is the special "Long Strings"
 	 * locale. It returns @c false otherwise.
 	 *
 	 * This is a JavaScript interface to L10n::UseLongStrings().
 	 *
 	 * @param pCmptPrivate JavaScript context.	 *
-	 * @return Whether the current locale is the special “Long Strings”
+	 * @return Whether the current locale is the special "Long Strings"
 	 *         (@c true) or not (@c false).
 	 */
 	bool UseLongStrings(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate));
@@ -399,7 +399,7 @@ namespace JSI_L10n
 	 * returns @c false otherwise.
 	 *
 	 * It returns @c true if both of these conditions are true:
-	 *     1. ICU has resources for that locale (which also ensures it’s a valid\n
+	 *     1. ICU has resources for that locale (which also ensures it's a valid\n
 	 *       locale string).
 	 *     2. Either a dictionary for language_country or for language is\n
 	 *       available.
@@ -441,7 +441,7 @@ namespace JSI_L10n
 	 *     1. Checks the user game configuration.
 	 *     2. If the locale is not defined there, it checks the system locale.
 	 *     3. If none of those locales are supported by the game, the default\n
-	 *       locale, ‘en_US’, is used.
+	 *       locale, 'en_US', is used.
 	 *
 	 * This is a JavaScript interface to L10n::ReevaluateCurrentLocaleAndReload().
 	 *

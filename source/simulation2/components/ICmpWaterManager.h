@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -26,7 +26,7 @@ class ICmpWaterManager : public IComponent
 {
 public:
 	/**
-	 * Recompute all the water information (foam…)
+	 * Recompute all the water information (foam...)
 	 */
 	virtual void RecomputeWaterData() = 0;
 
