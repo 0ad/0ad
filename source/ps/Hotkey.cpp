@@ -109,14 +109,15 @@ bool isPressed(const SKey& key)
 	// Normal keycodes are below EXTRA_KEYS_BASE
 	if ((int)key.code < EXTRA_KEYS_BASE)
 		return g_scancodes[key.code];
-
 	// Mouse 'keycodes' are after the modifier keys
 	else if ((int)key.code < MOUSE_LAST && (int)key.code > MOUSE_BASE)
 		return g_mouse_buttons[key.code - MOUSE_BASE];
-
 	// Modifier keycodes are between the normal keys and the mouse 'keys'
 	else if ((int)key.code < UNIFIED_LAST && (int)key.code > SDL_NUM_SCANCODES)
 		return unified[key.code - UNIFIED_SHIFT];
+	// This codepath shouldn't be taken, but not having it triggers warnings.
+	else
+		return false;
 }
 
 InReaction HotkeyStateChange(const SDL_Event_* ev)
