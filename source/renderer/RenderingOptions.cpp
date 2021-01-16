@@ -95,7 +95,6 @@ CRenderingOptions::CRenderingOptions() : m_ConfigHooks(new ConfigHooks())
 	m_GPUSkinning = false;
 	m_SmoothLOS = false;
 	m_PostProc = false;
-	m_ShowSky = false;
 	m_DisplayFrustum = false;
 	m_DisplayShadowsFrustum = false;
 	m_RenderActors = true;
@@ -168,7 +167,6 @@ void CRenderingOptions::ReadConfigAndSetupHooks()
 		SetFog(enabled);
 	});
 	m_ConfigHooks->Setup("silhouettes", m_Silhouettes);
-	m_ConfigHooks->Setup("showsky", m_ShowSky);
 
 	m_ConfigHooks->Setup("novbo", m_NoVBO);
 
