@@ -11,3 +11,14 @@
              if c_compiler.type == 'clang-cl':
                  flags.append('-Xclang')
                  js_flags.append('-Xclang')
+--- a/build/moz.configure/toolchain.configure
++++ b/build/moz.configure/toolchain.configure
+@@ -141,7 +141,7 @@
+     @imports(_from='biplist', _import='readPlist')
+     def macos_sdk(sdk, host):
+         sdk_min_version = Version('10.11')
+-        sdk_max_version = Version('10.15.4')
++        sdk_max_version = Version('11.99')
+ 
+         if sdk:
+             sdk = sdk[0]
