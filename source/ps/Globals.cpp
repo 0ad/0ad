@@ -25,7 +25,8 @@
 bool g_app_minimized = false;
 bool g_app_has_focus = true;
 
-std::map<int32_t, bool> g_keys;
+std::unordered_map<int32_t, bool> g_scancodes;
+
 int g_mouse_x = 50, g_mouse_y = 50;
 bool g_mouse_active = true;
 
@@ -85,7 +86,7 @@ InReaction GlobalsInputHandler(const SDL_Event_* ev)
 
 	case SDL_KEYDOWN:
 	case SDL_KEYUP:
-		g_keys[ev->ev.key.keysym.sym] = (ev->ev.type == SDL_KEYDOWN);
+		g_scancodes[ev->ev.key.keysym.scancode] = (ev->ev.type == SDL_KEYDOWN);
 		return IN_PASS;
 
 	default:

@@ -50,7 +50,6 @@ static void LoadConfigBindings()
 			// Unused hotkeys must still be registered in the map to appear in the hotkey editor.
 			SHotkeyMapping unusedCode;
 			unusedCode.name = hotkeyName;
-			unusedCode.negated = false;
 			g_HotkeyMap[UNUSED_HOTKEY_CODE].push_back(unusedCode);
 			continue;
 		}
@@ -73,7 +72,7 @@ static void LoadConfigBindings()
 					continue;
 				}
 
-				SKey key = { scancode, false };
+				SKey key = { scancode };
 				keyCombination.push_back(key);
 			}
 
@@ -83,7 +82,6 @@ static void LoadConfigBindings()
 				SHotkeyMapping bindCode;
 
 				bindCode.name = hotkeyName;
-				bindCode.negated = itKey->negated;
 
 				for (itKey2 = keyCombination.begin(); itKey2 != keyCombination.end(); ++itKey2)
 					if (itKey != itKey2) // Push any auxiliary keys
@@ -98,25 +96,6 @@ static void LoadConfigBindings()
 void LoadHotkeys()
 {
 	LoadConfigBindings();
-
-	// Set up the state of the hotkeys given no key is down.
-	// i.e. find those hotkeys triggered by all negations.
-
-	for (const std::pair<const int, KeyMapping>& p : g_HotkeyMap)
-		for (const SHotkeyMapping& hotkey : p.second)
-		{
-			if (!hotkey.negated)
-				continue;
-
-			bool allNegated = true;
-
-			for (const SKey& k : hotkey.requires)
-				if (!k.negated)
-					allNegated = false;
-
-			if (allNegated)
-				g_HotkeyStatus[hotkey.name] = true;
-		}
 }
 
 void UnloadHotkeys()
@@ -125,19 +104,19 @@ void UnloadHotkeys()
 	g_HotkeyStatus.clear();
 }
 
-bool isNegated(const SKey& key)
+bool isPressed(const SKey& key)
 {
 	// Normal keycodes are below EXTRA_KEYS_BASE
-	if ((int)key.code < EXTRA_KEYS_BASE && g_keys[key.code] == key.negated)
-		return false;
+	if ((int)key.code < EXTRA_KEYS_BASE)
+		return g_scancodes[key.code];
+
 	// Mouse 'keycodes' are after the modifier keys
-	else if ((int)key.code < MOUSE_LAST && (int)key.code > MOUSE_BASE && g_mouse_buttons[key.code - MOUSE_BASE] == key.negated)
-		return false;
+	else if ((int)key.code < MOUSE_LAST && (int)key.code > MOUSE_BASE)
+		return g_mouse_buttons[key.code - MOUSE_BASE];
+
 	// Modifier keycodes are between the normal keys and the mouse 'keys'
-	else if ((int)key.code < UNIFIED_LAST && (int)key.code > SDL_NUM_SCANCODES && unified[key.code - UNIFIED_SHIFT] == key.negated)
-		return false;
-	else
-		return true;
+	else if ((int)key.code < UNIFIED_LAST && (int)key.code > SDL_NUM_SCANCODES)
+		return unified[key.code - UNIFIED_SHIFT];
 }
 
 InReaction HotkeyStateChange(const SDL_Event_* ev)
@@ -256,23 +235,17 @@ InReaction HotkeyInputHandler(const SDL_Event_* ev)
 
 	bool typeKeyDown = ( ev->ev.type == SDL_KEYDOWN ) || ( ev->ev.type == SDL_MOUSEBUTTONDOWN ) || (ev->ev.type == SDL_MOUSEWHEEL);
 
-	// -- KEYDOWN SECTION --
-
-	std::vector<const char*> closestMapNames;
+	std::vector<const char*> pressedHotkeys;
+	std::vector<const char*> releasedHotkeys;
 	size_t closestMapMatch = 0;
 
 	for (const SHotkeyMapping& hotkey : g_HotkeyMap[scancode])
 	{
-		// If a key has been pressed, and this event triggers on its release, skip it.
-		// Similarly, if the key's been released and the event triggers on a keypress, skip it.
-		if (hotkey.negated == typeKeyDown)
-			continue;
-
 		// Check for no unpermitted keys
 		bool accept = true;
 		for (const SKey& k : hotkey.requires)
 		{
-			accept = isNegated(k);
+			accept = isPressed(k);
 			if (!accept)
 				break;
 		}
@@ -286,23 +259,26 @@ InReaction HotkeyInputHandler(const SDL_Event_* ev)
 				if (hotkey.requires.size() + 1 > closestMapMatch)
 				{
 					// Throw away the old less-precise matches
-					closestMapNames.clear();
+					pressedHotkeys.clear();
+					releasedHotkeys.clear();
 					closestMapMatch = hotkey.requires.size() + 1;
 				}
-
-				closestMapNames.push_back(hotkey.name.c_str());
+				if (typeKeyDown)
+					pressedHotkeys.push_back(hotkey.name.c_str());
+				else
+					releasedHotkeys.push_back(hotkey.name.c_str());
 			}
 		}
 	}
 
-	for (size_t i = 0; i < closestMapNames.size(); ++i)
+	for (const char* hotkeyName : pressedHotkeys)
 	{
-		// Send a KeyPress event when a key is pressed initially and on mouseButton and mouseWheel events.
+		// Send a KeyPress event when a hotkey is pressed initially and on mouseButton and mouseWheel events.
 		if (ev->ev.type != SDL_KEYDOWN || ev->ev.key.repeat == 0)
 		{
 			SDL_Event_ hotkeyPressNotification;
 			hotkeyPressNotification.ev.type = SDL_HOTKEYPRESS;
-			hotkeyPressNotification.ev.user.data1 = const_cast<char*>(closestMapNames[i]);
+			hotkeyPressNotification.ev.user.data1 = const_cast<char*>(hotkeyName);
 			in_push_priority_event(&hotkeyPressNotification);
 		}
 
@@ -311,37 +287,16 @@ InReaction HotkeyInputHandler(const SDL_Event_* ev)
 		// On linux, modifier keys (shift, alt, ctrl) are not repeated, see https://github.com/SFML/SFML/issues/122.
 		SDL_Event_ hotkeyDownNotification;
 		hotkeyDownNotification.ev.type = SDL_HOTKEYDOWN;
-		hotkeyDownNotification.ev.user.data1 = const_cast<char*>(closestMapNames[i]);
+		hotkeyDownNotification.ev.user.data1 = const_cast<char*>(hotkeyName);
 		in_push_priority_event(&hotkeyDownNotification);
 	}
 
-	// -- KEYUP SECTION --
-
-	for (const SHotkeyMapping& hotkey : g_HotkeyMap[scancode])
+	for (const char* hotkeyName : releasedHotkeys)
 	{
-		// If it's a keydown event, won't cause HotKeyUps in anything that doesn't
-		// use this key negated => skip them
-		// If it's a keyup event, won't cause HotKeyUps in anything that does use
-		// this key negated => skip them too.
-		if (hotkey.negated != typeKeyDown)
-			continue;
-
-		// Check for no unpermitted keys
-		bool accept = true;
-		for (const SKey& k : hotkey.requires)
-		{
-			accept = isNegated(k);
-			if (!accept)
-				break;
-		}
-
-		if (accept)
-		{
-			SDL_Event_ hotkeyNotification;
-			hotkeyNotification.ev.type = SDL_HOTKEYUP;
-			hotkeyNotification.ev.user.data1 = const_cast<char*>(hotkey.name.c_str());
-			in_push_priority_event(&hotkeyNotification);
-		}
+		SDL_Event_ hotkeyNotification;
+		hotkeyNotification.ev.type = SDL_HOTKEYUP;
+		hotkeyNotification.ev.user.data1 = const_cast<char*>(hotkeyName);
+		in_push_priority_event(&hotkeyNotification);
 	}
 
 	return IN_PASS;

@@ -360,7 +360,7 @@ void CConsole::InsertChar(const int szChar, const wchar_t cooked)
 		}
 		else
 		{
-			if (g_keys[SDLK_RCTRL] || g_keys[SDLK_LCTRL])
+			if (g_scancodes[SDL_SCANCODE_LCTRL] || g_scancodes[SDL_SCANCODE_LCTRL])
 			{
 				// Make Ctrl-Delete delete up to end of line
 				m_szBuffer[m_iBufferPos] = '\0';
@@ -379,7 +379,7 @@ void CConsole::InsertChar(const int szChar, const wchar_t cooked)
 		return;
 
 	case SDLK_HOME:
-		if (g_keys[SDLK_RCTRL] || g_keys[SDLK_LCTRL])
+		if (g_scancodes[SDL_SCANCODE_LCTRL] || g_scancodes[SDL_SCANCODE_LCTRL])
 		{
 			std::lock_guard<std::mutex> lock(m_Mutex); // needed for safe access to m_deqMsgHistory
 
@@ -393,7 +393,7 @@ void CConsole::InsertChar(const int szChar, const wchar_t cooked)
 		return;
 
 	case SDLK_END:
-		if (g_keys[SDLK_RCTRL] || g_keys[SDLK_LCTRL])
+		if (g_scancodes[SDL_SCANCODE_LCTRL] || g_scancodes[SDL_SCANCODE_LCTRL])
 		{
 			m_iMsgHistPos = 1;
 		}

@@ -231,9 +231,9 @@ InReaction CInput::ManuallyHandleKeys(const SDL_Event_* ev)
 		// TODO: there are probably other keys that we could ignore, but recognizing "non-glyph" keys isn't that trivial.
 		// Further, don't input text if modifiers other than shift are pressed (the user is presumably trying to perform a hotkey).
 		if (keyCode == SDLK_ESCAPE ||
-		     g_keys[SDLK_LCTRL] || g_keys[SDLK_RCTRL] ||
-		     g_keys[SDLK_LALT] || g_keys[SDLK_RALT] ||
-		     g_keys[SDLK_LGUI] || g_keys[SDLK_RGUI])
+		     g_scancodes[SDL_SCANCODE_LCTRL] || g_scancodes[SDL_SCANCODE_LCTRL] ||
+		     g_scancodes[SDL_SCANCODE_LALT] || g_scancodes[SDL_SCANCODE_RALT] ||
+		     g_scancodes[SDL_SCANCODE_LGUI] || g_scancodes[SDL_SCANCODE_RGUI])
 			return IN_PASS;
 
 		if (m_ComposingText)
@@ -369,7 +369,7 @@ void CInput::ManuallyMutableHandleKeyDownEvent(const SDL_Keycode keyCode)
 
 void CInput::ManuallyImmutableHandleKeyDownEvent(const SDL_Keycode keyCode)
 {
-	bool shiftKeyPressed = g_keys[SDLK_RSHIFT] || g_keys[SDLK_LSHIFT];
+	bool shiftKeyPressed = g_scancodes[SDL_SCANCODE_LSHIFT] || g_scancodes[SDL_SCANCODE_RSHIFT];
 
 	switch (keyCode)
 	{
@@ -609,7 +609,7 @@ void CInput::SetupGeneratedPlaceholderText()
 
 InReaction CInput::ManuallyHandleHotkeyEvent(const SDL_Event_* ev)
 {
-	bool shiftKeyPressed = g_keys[SDLK_RSHIFT] || g_keys[SDLK_LSHIFT];
+	bool shiftKeyPressed = g_scancodes[SDL_SCANCODE_LSHIFT] || g_scancodes[SDL_SCANCODE_RSHIFT];
 
 	std::string hotkey = static_cast<const char*>(ev->ev.user.data1);
 
@@ -962,7 +962,7 @@ void CInput::HandleMessage(SGUIMessage& Message)
 		//  instance, if we press between a and b, the point
 		//  should of course be placed accordingly. Other
 		//  special cases are handled like the input box norms.
-		if (g_keys[SDLK_RSHIFT] || g_keys[SDLK_LSHIFT])
+		if (g_scancodes[SDL_SCANCODE_LSHIFT] || g_scancodes[SDL_SCANCODE_RSHIFT])
 			m_iBufferPos = GetMouseHoveringTextPosition();
 		else
 			m_iBufferPos = m_iBufferPos_Tail = GetMouseHoveringTextPosition();
