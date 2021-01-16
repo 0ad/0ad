@@ -40,7 +40,7 @@
 			"Count": 2
 		},
 		{
-			"Template": "units/ptol/infantry_javelineer_b",
+			"Template": "units/ptol/infantry_slinger_b",
 			"Count": 2
 		},
 		{
@@ -84,6 +84,7 @@
 	],
 	"SkirmishReplacements": {
 		"skirmish/units/default_infantry_melee_b": "units/ptol/infantry_pikeman_b",
+		"skirmish/units/default_infantry_ranged_b": "units/ptol/infantry_slinger_b",
 		"skirmish/units/default_cavalry": "units/ptol/cavalry_archer_b",
 		"skirmish/structures/default_house_5": "structures/{civ}/house"
 	},
