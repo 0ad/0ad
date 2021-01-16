@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -35,6 +35,7 @@ std::unordered_map<std::string, bool> g_HotkeyStatus;
 
 static_assert(std::is_integral<std::underlying_type<SDL_Scancode>::type>::value, "SDL_Scancode is not an integral enum.");
 static_assert(SDL_USEREVENT_ == SDL_USEREVENT, "SDL_USEREVENT_ is not the same type as the real SDL_USEREVENT");
+static_assert(UNUSED_HOTKEY_CODE == SDL_SCANCODE_UNKNOWN);
 
 // Look up each key binding in the config file and set the mappings for
 // all key combinations that trigger it.
@@ -43,11 +44,19 @@ static void LoadConfigBindings()
 	for (const std::pair<const CStr, CConfigValueSet>& configPair : g_ConfigDB.GetValuesWithPrefix(CFG_COMMAND, "hotkey."))
 	{
 		std::string hotkeyName = configPair.first.substr(7); // strip the "hotkey." prefix
+
+		if (configPair.second.empty())
+		{
+			// Unused hotkeys must still be registered in the map to appear in the hotkey editor.
+			SHotkeyMapping unusedCode;
+			unusedCode.name = hotkeyName;
+			unusedCode.negated = false;
+			g_HotkeyMap[UNUSED_HOTKEY_CODE].push_back(unusedCode);
+			continue;
+		}
+
 		for (const CStr& hotkey : configPair.second)
 		{
-			if (hotkey.LowerCase() == "unused")
-				continue;
-
 			std::vector<SKey> keyCombination;
 
 			// Iterate through multiple-key bindings (e.g. Ctrl+I)

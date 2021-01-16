@@ -46,7 +46,7 @@
 #include "ps/UserReport.h"
 #include "ps/VideoMode.h"
 
-// TODO: Support OpenGL platforms which don’t use GLX as well.
+// TODO: Support OpenGL platforms which don't use GLX as well.
 #if defined(SDL_VIDEO_DRIVER_X11) && !CONFIG2_GLES
 #include <GL/glx.h>
 #include <SDL_syswm.h>
@@ -588,7 +588,7 @@ static void ReportGLLimits(const ScriptInterface& scriptInterface, JS::HandleVal
 #endif // CONFIG2_GLES
 
 
-// TODO: Support OpenGL platforms which don’t use GLX as well.
+// TODO: Support OpenGL platforms which don't use GLX as well.
 #if defined(SDL_VIDEO_DRIVER_X11) && !CONFIG2_GLES
 
 #define GLXQCR_INTEGER(id) do { \

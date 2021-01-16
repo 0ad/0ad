@@ -16,8 +16,8 @@
     <Max>750</Max>
   </Health>
   <Identity>
-    <VisibleClasses datatype="tokens">Elephant</VisibleClasses>
     <GenericName>War Elephant</GenericName>
+    <VisibleClasses datatype="tokens">Elephant</VisibleClasses>
   </Identity>
   <Loot>
     <xp>300</xp>
@@ -32,7 +32,7 @@
       <Damage>
         <Hack>10</Hack>
         <Pierce>10</Pierce>
-        <Crush>25</Crush>
+        <Crush>20</Crush>
       </Damage>
     </Entity>
   </Resistance>
@@ -55,7 +55,6 @@
   </StatusBars>
   <UnitMotion>
     <PassabilityClass>large</PassabilityClass>
-    <WalkSpeed op="mul">0.95</WalkSpeed>
   </UnitMotion>
   <Vision>
     <Range>100</Range>

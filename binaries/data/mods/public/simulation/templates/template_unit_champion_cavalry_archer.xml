@@ -30,6 +30,14 @@
       special/formations/skirmish
     </Formations>
   </Identity>
+  <Resistance>
+    <Entity>
+      <Damage>
+        <Hack op="add">-2</Hack>
+        <Pierce op="add">-2</Pierce>
+      </Damage>
+    </Entity>
+  </Resistance>
   <Sound>
     <SoundGroups>
       <attack_impact_ranged>attack/impact/arrow_impact.xml</attack_impact_ranged>

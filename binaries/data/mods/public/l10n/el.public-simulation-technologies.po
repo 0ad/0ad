@@ -8,6 +8,7 @@
 # Christo Keller <christoniancoder@gmail.com>, 2014
 # Dimitrios Pappas <dvpappas@msn.com>, 2015
 # crippledmoon <domas392@in.gr>, 2016
+# Hahahaha kala <b55dkvlk4c-test2-@jl4c4.nixdaanonbox.blummnet>, 2021
 # 77960155d0a4db79ed901e7c2ee242e7_4b8c532, 2015
 # LOUKAS SKOUROLIAKOS, 2015-2016
 # LOUKAS SKOUROLIAKOS, 2020
@@ -19,9 +20,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-08 08:08+0000\n"
-"PO-Revision-Date: 2021-01-08 11:19+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-01-11 08:08+0000\n"
+"PO-Revision-Date: 2021-01-11 23:17+0000\n"
+"Last-Translator: Hahahaha kala <b55dkvlk4c-test2-@jl4c4.nixdaanonbox.blummnet>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -74,13 +75,13 @@ msgstr "Περικεφαλαία αλόγου"
 #: simulation/data/technologies/attack_infantry_ranged_01.jsonrequirementsTooltip
 #: simulation/data/technologies/carthaginians/special_colonisation.jsonrequirementsTooltip
 #: simulation/data/technologies/carthaginians/special_exploration.jsonrequirementsTooltip
+#: simulation/data/technologies/garrison_heal.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_harvester.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_training.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_mining_serfs.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_mining_shaftmining.jsonrequirementsTooltip
-#: simulation/data/technologies/heal_barracks.jsonrequirementsTooltip
 #: simulation/data/technologies/heal_range.jsonrequirementsTooltip
 #: simulation/data/technologies/heal_rate.jsonrequirementsTooltip
 #: simulation/data/technologies/kushites/monumental_architecture.jsonrequirementsTooltip
@@ -102,7 +103,7 @@ msgstr "Ξεκλειδωνεί στην Φάση Κωμόπολη."
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.sele
 #: simulation/data/technologies/armor_cav_01.jsonspecificName.spart
 msgid "Prometōpidion"
-msgstr ""
+msgstr "Προμετωπίδιον"
 
 #: simulation/data/technologies/armor_cav_01.jsontooltip
 #: simulation/data/technologies/armor_cav_02.jsontooltip
@@ -131,7 +132,6 @@ msgstr "Μεταλλική πανοπλία για το σώμα του αλόγ
 #: simulation/data/technologies/gather_mining_slaves.jsonrequirementsTooltip
 #: simulation/data/technologies/heal_range_2.jsonrequirementsTooltip
 #: simulation/data/technologies/heal_rate_2.jsonrequirementsTooltip
-#: simulation/data/technologies/heal_temple.jsonrequirementsTooltip
 #: simulation/data/technologies/health_regen_units.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenes/spartans_agoge.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsonrequirementsTooltip
@@ -180,7 +180,7 @@ msgstr "Σιδερένια Πανοπλία Ηρώων"
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.sele
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.spart
 msgid "Sidērea Panoplia"
-msgstr ""
+msgstr "Σιδερένια Πανοπλία"
 
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.rome
 msgid "Lorica Ferrea"
@@ -337,7 +337,7 @@ msgstr "Πλευρικοί βραχίονες"
 #: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.sele
 #: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.spart
 msgid "Xiphos"
-msgstr ""
+msgstr "Ξίφος"
 
 #: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.rome
 msgid "Pugio"
@@ -372,7 +372,7 @@ msgstr "Εξ Αποστάσεως Πεζικό Ατάκτων"
 #: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.sele
 #: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.spart
 msgid "Ataktoi"
-msgstr ""
+msgstr "Άτακτοι"
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsontooltip
 #: simulation/data/technologies/attack_infantry_ranged_02.jsontooltip
@@ -533,7 +533,7 @@ msgstr ""
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsongenericName
 msgid "Elephant Tradition"
-msgstr ""
+msgstr "Παράδοση Ελεφάντων"
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsontooltip
 msgid "Elephants −30% training time."
@@ -608,6 +608,18 @@ msgstr "Ασθενέστεροι"
 #: simulation/data/technologies/civbonuses/spart_population.jsontooltip
 msgid "Spartans −10% maximum population limit."
 msgstr "Σπαρτιάτες -10% στο μέγιστο όριο του πληθυσμού."
+
+#: simulation/data/technologies/garrison_heal.jsondescription
+msgid "Units regain health over time while garrisoned."
+msgstr ""
+
+#: simulation/data/technologies/garrison_heal.jsongenericName
+msgid "Living Conditions"
+msgstr "Συνθήκες Διαβίωσης"
+
+#: simulation/data/technologies/garrison_heal.jsontooltip
+msgid "Structures +1 garrison heal rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breed livestock (sheep, goats, cattle, etc.) for food."
@@ -861,18 +873,6 @@ msgstr "Ψάθινα Καλάθια"
 msgid "Workers +50% fruit gather rate."
 msgstr "Εργάτες +50% στο ρυθμό συγκομιδής φρούτων."
 
-#: simulation/data/technologies/heal_barracks.jsondescription
-msgid "Units garrisoned in Barracks heal over time."
-msgstr "Οι μονάδες που έχουν οχυρωθεί στους Στρατώνες θεραπεύονται συνέχεια."
-
-#: simulation/data/technologies/heal_barracks.jsongenericName
-msgid "Living Conditions"
-msgstr "Συνθήκες Διαβίωσης"
-
-#: simulation/data/technologies/heal_barracks.jsontooltip
-msgid "Units gain health over time while garrisoned in Barracks."
-msgstr "Οι μονάδες θεραπεύονται συνεχώς όσο είναι οχυρωμένες στους Στρατώνες."
-
 #: simulation/data/technologies/heal_range.jsondescription
 #: simulation/data/technologies/heal_range_2.jsondescription
 msgid "Increases the healing and vision range of all healers."
@@ -936,27 +936,6 @@ msgstr "Ρυθμός Θεραπείας 2"
 #: simulation/data/technologies/heal_rate_2.jsonspecificName.spart
 msgid "Hippocratic Oath"
 msgstr "Όρκος του Υποκράτη"
-
-#: simulation/data/technologies/heal_temple.jsondescription
-msgid "Units garrisoned in a temple are healed faster."
-msgstr "Οι μονάδες φρουρών στον ναό θεραπεύωνται γρηγορότερα."
-
-#: simulation/data/technologies/heal_temple.jsongenericName
-msgid "Divine Offerings"
-msgstr "Θεϊκές Προσφορές"
-
-#: simulation/data/technologies/heal_temple.jsonspecificName.athen
-msgid "Eleusian Mysteries"
-msgstr "Ελευσίνεια Μυστήρια"
-
-#: simulation/data/technologies/heal_temple.jsonspecificName.mace
-#: simulation/data/technologies/heal_temple.jsonspecificName.spart
-msgid "Olympic Games"
-msgstr "Ολυμπιακοί Αγώνες"
-
-#: simulation/data/technologies/heal_temple.jsontooltip
-msgid "Temples +50% garrisoned healing rate."
-msgstr "Ναοί +50% στο ρυθμό θεραπείας."
 
 #: simulation/data/technologies/health_females_01.jsondescription
 msgid ""

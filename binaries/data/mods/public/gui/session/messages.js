@@ -6,7 +6,7 @@ var g_TutorialMessages = [];
 /**
  * GUI tags applied to the most recent tutorial message.
  */
-var g_TutorialNewMessageTags = { "color": "yellow" };
+var g_TutorialNewMessageTags = { "color": "255 226 149" };
 
 /**
  * These handlers are called everytime a client joins or disconnects.

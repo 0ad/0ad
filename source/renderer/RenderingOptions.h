@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -93,7 +93,6 @@ OPTION_CUSTOM_SETTER(NAME, TYPE); OPTION_GETTER(NAME, TYPE); OPTION_DEF(NAME, TY
 	OPTION(WaterRealDepth, bool);
 	OPTION(WaterRefraction, bool);
 	OPTION(WaterReflection, bool);
-	OPTION(WaterShadows, bool);
 
 	OPTION(ShadowAlphaFix, bool);
 	OPTION(ARBProgramShadow, bool);

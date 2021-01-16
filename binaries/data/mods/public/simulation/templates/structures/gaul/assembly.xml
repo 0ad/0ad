@@ -29,7 +29,7 @@
     <Civ>gaul</Civ>
     <GenericName>Assembly of Princes</GenericName>
     <SpecificName>Remogantion</SpecificName>
-    <Tooltip>Train Heroes.</Tooltip>
+    <Tooltip>Train Champion Trumpeters and Heroes.</Tooltip>
     <Classes datatype="tokens">ConquestCritical CivSpecific</Classes>
     <VisibleClasses datatype="tokens">City Council</VisibleClasses>
     <Icon>structures/tholos.png</Icon>
@@ -44,6 +44,7 @@
   <ProductionQueue>
     <BatchTimeModifier>0.7</BatchTimeModifier>
     <Entities datatype="tokens">
+      units/{civ}/champion_infantry_trumpeter
       units/{civ}/hero_brennus
       units/{civ}/hero_viridomarus
       units/{civ}/hero_vercingetorix

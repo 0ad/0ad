@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -743,7 +743,7 @@ void HierarchicalPathfinder::FindNearestNavcellInRegions(const std::set<RegionID
 	u32 bestDist = std::numeric_limits<u32>::max();
 
 	// Because regions are sorted by increasing distance, we can ignore regions that are obviously farther than the current best point.
-	// Since regions are squares, that happens when the center of a region is at least √2 * CHUNK_SIZE farther than the current best point.
+	// Since regions are squares, that happens when the center of a region is at least sqrt(2) * CHUNK_SIZE farther than the current best point.
 	// Add one to avoid cases where the center navcell is actually slightly off-center (= CHUNK_SIZE is even)
 	u32 maxDistFromBest = (fixed::FromInt(3) / 2 * CHUNK_SIZE).ToInt_RoundToInfinity() + 1;
 	// TODO: update to static_assert with constexpr

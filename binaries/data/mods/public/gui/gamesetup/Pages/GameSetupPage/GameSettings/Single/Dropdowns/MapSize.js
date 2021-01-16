@@ -4,8 +4,6 @@ GameSettingControls.MapSize = class extends GameSettingControlDropdown
 	{
 		super(...args);
 
-		this.previousMapType = undefined;
-
 		this.dropdown.list = g_MapSizes.Name;
 		this.dropdown.list_data = g_MapSizes.Tiles;
 	}
@@ -33,11 +31,8 @@ GameSettingControls.MapSize = class extends GameSettingControlDropdown
 	onGameAttributesChange()
 	{
 		if (!g_GameAttributes.mapType ||
-			!g_GameAttributes.settings ||
-			this.previousMapType == g_GameAttributes.mapType)
+			!g_GameAttributes.settings)
 			return;
-
-		this.previousMapType = g_GameAttributes.mapType;
 
 		let available = g_GameAttributes.mapType == "random";
 		this.setHidden(!available);

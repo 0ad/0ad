@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -161,10 +161,10 @@ static const std::unordered_map<SDL_Keycode, CStr> keyNames {{
 	{ SDLK_KP_8, "Num8" },
 	{ SDLK_KP_9, "Num9" },
 
-	{ SDLK_UP, "↑" },
-	{ SDLK_DOWN, "↓" },
-	{ SDLK_LEFT, "←" },
-	{ SDLK_RIGHT, "→" },
+	{ SDLK_UP, "\xe2\x86\x91" },
+	{ SDLK_DOWN, "\xe2\x86\x93" },
+	{ SDLK_LEFT, "\xe2\x86\x90" },
+	{ SDLK_RIGHT, "\xe2\x86\x92" },
 }};
 
 CStr FindKeyName(SDL_Scancode scancode)

@@ -6,7 +6,7 @@
 # Ács Zoltán <acszoltan111@gmail.com>, 2019-2020
 # Balázs Meskó <meskobalazs@mailbox.org>, 2020
 # Balázs Meskó <meskobalazs@mailbox.org>, 2016-2020
-# Balázs Meskó <meskobalazs@mailbox.org>, 2020
+# Balázs Meskó <meskobalazs@mailbox.org>, 2020-2021
 # Balázs Úr, 2015-2017
 # Boross Péter <borosspet@web.de>, 2015
 # Gyuris Gellért <jobel@ujevangelizacio.hu>, 2014
@@ -23,9 +23,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-01 08:01+0000\n"
-"PO-Revision-Date: 2021-01-01 09:35+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-01-11 08:08+0000\n"
+"PO-Revision-Date: 2021-01-11 13:59+0000\n"
+"Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -158,7 +158,7 @@ msgstr "Buzogány"
 
 #: simulation/templates/template_unit_cavalry_melee_maceman.xml:22
 msgid "Cavalry Maceman"
-msgstr ""
+msgstr "Buzogányos lovas"
 
 #: simulation/templates/template_unit_cavalry_melee_maceman.xml:23
 #: simulation/templates/template_unit_champion_cavalry_maceman.xml:21
@@ -326,7 +326,7 @@ msgstr "Bajnok gerelyes lovas"
 
 #: simulation/templates/template_unit_champion_cavalry_maceman.xml:20
 msgid "Champion Cavalry Maceman"
-msgstr ""
+msgstr "Bajnok buzogányos lovas"
 
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:27
 msgid "Champion Cavalry Spearman"
@@ -382,7 +382,7 @@ msgstr "Bajnok gerelyes gyalogos"
 
 #: simulation/templates/template_unit_champion_infantry_maceman.xml:20
 msgid "Champion Infantry Maceman"
-msgstr ""
+msgstr "Bajnok buzogányos gyalogos"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:5
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:5
@@ -493,7 +493,7 @@ msgstr "Hős gerelyes lovas"
 
 #: simulation/templates/template_unit_hero_cavalry_maceman.xml:17
 msgid "Hero Cavalry Maceman"
-msgstr ""
+msgstr "Hős buzogányos lovas"
 
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:24
 msgid "Hero Cavalry Spearman"
@@ -529,7 +529,7 @@ msgstr "Hős gerelyes gyalogos"
 
 #: simulation/templates/template_unit_hero_infantry_maceman.xml:17
 msgid "Hero Infantry Maceman"
-msgstr ""
+msgstr "Hős buzogányos gyalogos"
 
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:24
 msgid "Hero Pikeman"
@@ -555,7 +555,7 @@ msgstr "Közelharci gyalogos"
 
 #: simulation/templates/template_unit_infantry_melee_maceman.xml:22
 msgid "Infantry Maceman"
-msgstr ""
+msgstr "Buzogányos gyalogos"
 
 #: simulation/templates/template_unit_infantry_ranged_javelineer.xml:29
 msgid "Infantry Javelineer"
@@ -1141,6 +1141,14 @@ msgstr "Lithobólos"
 #: simulation/templates/units/spart/siege_oxybeles_packed.xml:5
 msgid "Oxybelḗs"
 msgstr "Oxybelḗs"
+
+#: simulation/templates/units/athen/siege_ram.xml:9
+#: simulation/templates/units/mace/siege_ram.xml:9
+#: simulation/templates/units/ptol/siege_ram.xml:9
+#: simulation/templates/units/sele/siege_ram.xml:9
+#: simulation/templates/units/spart/siege_ram.xml:9
+msgid "Krios"
+msgstr "Krios"
 
 #: simulation/templates/units/athen/support_female_citizen.xml:12
 msgid "Gýnē Athēnaía"
@@ -2007,11 +2015,6 @@ msgstr "Hemiolos"
 msgid "Macedonian Trireme"
 msgstr "Makedón triérész"
 
-#: simulation/templates/units/mace/siege_ram.xml:9
-#: simulation/templates/units/spart/siege_ram.xml:9
-msgid "Poliorkitikós Kriós"
-msgstr "Poliorkitikós Kriós"
-
 #: simulation/templates/units/mace/siege_tower.xml:5
 #: simulation/templates/units/ptol/siege_tower.xml:5
 #: simulation/templates/units/sele/siege_tower.xml:5
@@ -2076,11 +2079,11 @@ msgid "Maiden Guard"
 msgstr "Leányőr"
 
 #: simulation/templates/units/maur/champion_maiden.xml:7
-#: simulation/templates/units/maur/champion_maiden_archer.xml:7
+#: simulation/templates/units/maur/champion_maiden_archer.xml:21
 msgid "Visha Kanya"
 msgstr "Visha Kanya"
 
-#: simulation/templates/units/maur/champion_maiden_archer.xml:6
+#: simulation/templates/units/maur/champion_maiden_archer.xml:20
 msgid "Maiden Guard Archer"
 msgstr "Leányőr íjász"
 
@@ -2206,7 +2209,7 @@ msgstr "Trák fekete köpenyes"
 
 #: simulation/templates/units/merc_black_cloak.xml:11
 msgid "Rhomphaiophoros"
-msgstr ""
+msgstr "Rhomphaiophoros"
 
 #: simulation/templates/units/athen/infantry_javelineer_b.xml:16
 #: simulation/templates/units/athen/infantry_marine_archer_b.xml:16
@@ -2257,7 +2260,7 @@ msgstr "Nehéz csatár"
 
 #: simulation/templates/units/merc_thureophoros.xml:6
 msgid "Thyreophoros"
-msgstr ""
+msgstr "Thyreophoros"
 
 #: simulation/templates/units/noldor_ship_bireme.xml:8
 msgid "Mankar Cirya"

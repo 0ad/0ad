@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -84,7 +84,6 @@ CRenderingOptions::CRenderingOptions() : m_ConfigHooks(new ConfigHooks())
 	m_WaterRealDepth = false;
 	m_WaterRefraction = false;
 	m_WaterReflection = false;
-	m_WaterShadows = false;
 	m_ShadowAlphaFix = true;
 	m_ARBProgramShadow = true;
 	m_ShadowPCF = false;
@@ -161,7 +160,6 @@ void CRenderingOptions::ReadConfigAndSetupHooks()
 	m_ConfigHooks->Setup("waterrealdepth", m_WaterRealDepth);
 	m_ConfigHooks->Setup("waterrefraction", m_WaterRefraction);
 	m_ConfigHooks->Setup("waterreflection", m_WaterReflection);
-	m_ConfigHooks->Setup("watershadows", m_WaterShadows);
 
 	m_ConfigHooks->Setup("particles", m_Particles);
 	m_ConfigHooks->Setup("fog", [this]() {

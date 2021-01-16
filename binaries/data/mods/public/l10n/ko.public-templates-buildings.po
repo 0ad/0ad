@@ -23,8 +23,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-08 08:08+0000\n"
-"PO-Revision-Date: 2021-01-10 21:06+0000\n"
+"POT-Creation-Date: 2021-01-11 08:08+0000\n"
+"PO-Revision-Date: 2021-01-11 11:10+0000\n"
 "Last-Translator: Bruce Lee <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -756,7 +756,7 @@ msgid "Gur Oroigarri"
 msgstr "구르 오로이가르리"
 
 #: simulation/templates/structures/iber/monument.xml:9
-#: simulation/templates/structures/iber/monument.xml:34
+#: simulation/templates/structures/iber/monument.xml:35
 msgid "Monument"
 msgstr "기념비"
 
@@ -792,8 +792,8 @@ msgid "Territory root."
 msgstr "영역 루트."
 
 #: simulation/templates/structures/kush/arsenal.xml:5
-msgid "Pr-ỉwn n ms﻿"
-msgstr "Pr-ỉwn n ms﻿"
+msgid "Pr-ỉwn n ms"
+msgstr "Pr-ỉwn n ms"
 
 #: simulation/templates/structures/kush/barracks.xml:9
 msgid "pr-msʿyw"
@@ -943,7 +943,7 @@ msgstr "Pr-ʿImn"
 msgid "Train Healers and Amun Champions and research healing technologies."
 msgstr "치료사와 아문 대표 전사를 훈련하고 치료 기술을 연구합니다."
 
-#: simulation/templates/structures/kush/temple_amun.xml:30
+#: simulation/templates/structures/kush/temple_amun.xml:31
 msgid "TempleOfAmun"
 msgstr "아문 사원"
 
@@ -1053,7 +1053,7 @@ msgid "Śāsana Stambha Aśokā"
 msgstr "사사나 스탐브하 아소카"
 
 #: simulation/templates/structures/maur/pillar_ashoka.xml:9
-#: simulation/templates/structures/maur/pillar_ashoka.xml:34
+#: simulation/templates/structures/maur/pillar_ashoka.xml:35
 msgid "Pillar"
 msgstr "기둥"
 
@@ -1300,7 +1300,7 @@ msgid ""
 msgstr "인구 제한을 늘립니다. 이집트 민가는 무료로 건설할 수 있지만 진흙 벽돌로 만들어졌기 때문에 매우 약하십시오."
 
 #: simulation/templates/structures/ptol/lighthouse.xml:25
-#: simulation/templates/structures/ptol/lighthouse.xml:28
+#: simulation/templates/structures/ptol/lighthouse.xml:29
 msgid "Lighthouse"
 msgstr "등대"
 
@@ -1443,7 +1443,7 @@ msgstr "포르타 시르쿰무니티오니스"
 #: simulation/templates/structures/rome/siege_wall_medium.xml:25
 #: simulation/templates/structures/rome/siege_wall_short.xml:25
 #: simulation/templates/structures/rome/siege_wall_tower.xml:35
-#: simulation/templates/structures/rome/wallset_siege.xml:8
+#: simulation/templates/structures/rome/wallset_siege.xml:9
 msgid "SiegeWall"
 msgstr "방어벽"
 
@@ -1501,19 +1501,19 @@ msgstr "불의 신전"
 msgid "Aedēs Vestālis"
 msgstr "아에데스 베스타리스"
 
-#: simulation/templates/structures/rome/temple_vesta.xml:20
+#: simulation/templates/structures/rome/temple_vesta.xml:21
 msgid "TempleOfVesta"
 msgstr "베스타 사원"
 
-#: simulation/templates/structures/rome/tent.xml:29
+#: simulation/templates/structures/rome/tent.xml:24
 msgid "Tent"
 msgstr "천막"
 
-#: simulation/templates/structures/rome/tent.xml:30
+#: simulation/templates/structures/rome/tent.xml:25
 msgid "Tabernāculum"
 msgstr "타베르나쿠룸"
 
-#: simulation/templates/structures/rome/tent.xml:32
+#: simulation/templates/structures/rome/tent.xml:27
 msgid "A temporary shelter for soldiers."
 msgstr "군인들을 위한 임시 거처 입니다."
 
@@ -1690,15 +1690,15 @@ msgid "Stoa"
 msgstr "스토아"
 
 #: simulation/templates/structures/cart/super_dock.xml:43
-#: simulation/templates/structures/gaul/tavern.xml:23
+#: simulation/templates/structures/gaul/tavern.xml:24
 #: simulation/templates/structures/kush/pyramid_small.xml:29
-#: simulation/templates/structures/maur/elephant_stables.xml:7
-#: simulation/templates/structures/ptol/lighthouse.xml:28
+#: simulation/templates/structures/maur/elephant_stables.xml:8
+#: simulation/templates/structures/ptol/lighthouse.xml:29
 #: simulation/templates/template_structure_civic_stoa.xml:30
 #: simulation/templates/template_structure_civic_temple.xml:32
 #: simulation/templates/template_structure_defensive_tower_stone.xml:34
 #: simulation/templates/template_structure_economic_market.xml:28
-#: simulation/templates/template_structure_military_embassy.xml:25
+#: simulation/templates/template_structure_military_embassy.xml:24
 #: simulation/templates/template_structure_military_forge.xml:26
 msgid "Town"
 msgstr "소도시"
@@ -1761,13 +1761,13 @@ msgid "ArtilleryTower"
 msgstr "대포탑"
 
 #: simulation/templates/structures/kush/pyramid_large.xml:29
-#: simulation/templates/structures/kush/temple_amun.xml:30
+#: simulation/templates/structures/kush/temple_amun.xml:31
 #: simulation/templates/structures/rome/army_camp.xml:77
 #: simulation/templates/structures/rome/temple_mars.xml:14
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:60
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:59
 #: simulation/templates/template_structure_military_arsenal.xml:28
-#: simulation/templates/template_structure_military_elephant_stables.xml:27
+#: simulation/templates/template_structure_military_elephant_stables.xml:26
 #: simulation/templates/template_structure_military_fortress.xml:72
 #: simulation/templates/template_structure_special.xml:20
 #: simulation/templates/template_structure_wonder.xml:43
@@ -1928,27 +1928,27 @@ msgid ""
 " routes. Construct Ships and research Ship technologies."
 msgstr "자신의 영토, 중립 지역 또는 동맹 영토의 해안선에 짓습니다. 교역로를 설정하십시오. 배를 만들고  배 기술을 연구합니다."
 
-#: simulation/templates/structures/brit/crannog.xml:16
+#: simulation/templates/structures/brit/crannog.xml:17
 #: simulation/templates/structures/cart/super_dock.xml:43
 #: simulation/templates/template_structure_military_dock.xml:27
 msgid "Naval"
 msgstr "해군"
 
-#: simulation/templates/template_structure_military_elephant_stables.xml:24
+#: simulation/templates/template_structure_military_elephant_stables.xml:23
 msgid "Elephant Stable"
 msgstr "코끼리 사육장"
 
-#: simulation/templates/template_structure_military_elephant_stables.xml:26
+#: simulation/templates/template_structure_military_elephant_stables.xml:25
 msgid "Train Elephants and research Elephant technologies."
 msgstr "코끼리를 훈련시키고 코끼리 기술을 연구합니다."
 
-#: simulation/templates/template_structure_military_elephant_stables.xml:27
+#: simulation/templates/template_structure_military_elephant_stables.xml:26
 msgid "ElephantStable"
 msgstr "코끼리 사육장"
 
 #: simulation/templates/structures/cart/embassy.xml:18
-#: simulation/templates/template_structure_military_embassy.xml:23
-#: simulation/templates/template_structure_military_embassy.xml:25
+#: simulation/templates/template_structure_military_embassy.xml:22
+#: simulation/templates/template_structure_military_embassy.xml:24
 msgid "Embassy"
 msgstr "대사관"
 

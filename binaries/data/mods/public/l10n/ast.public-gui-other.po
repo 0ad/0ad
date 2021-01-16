@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
-# David Sowa <isithere2@yahoo.com>, 2017-2020
+# David Sowa <isithere2@yahoo.com>, 2017-2021
 # enolp <enolp@softastur.org>, 2017
 # Nicolas Auvray <na.itms76@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-01 08:01+0000\n"
-"PO-Revision-Date: 2021-01-01 08:36+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-01-11 08:08+0000\n"
+"PO-Revision-Date: 2021-01-11 16:15+0000\n"
+"Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,17 +25,17 @@ msgstr ""
 msgid "FPS: %(fps)4s"
 msgstr "FPS: %(fps)4s"
 
-#: gui/common/color.js:178
+#: gui/common/color.js:179
 #, javascript-format
 msgid "Unassigned hotkey: %(hotkeyName)s"
 msgstr "Atayu de tecláu ensin asignar: %(hotkeyName)s"
 
-#: gui/common/color.js:193
+#: gui/common/color.js:196
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete player names."
 msgstr "Primi %(hotkey)s p'autocompletar nomes de xugadores."
 
-#: gui/common/color.js:195
+#: gui/common/color.js:198
 msgctxt "hotkey"
 msgid "Tab"
 msgstr "Tabulador"
@@ -2939,16 +2939,16 @@ msgstr[0] "Héroe"
 msgstr[1] "Héroes"
 
 #: gui/reference/civinfo/Sections/Subsections/StructuresSubsection.js:29
-msgid "Special Structure"
-msgid_plural "Special Structures"
-msgstr[0] "Construcción especial"
-msgstr[1] "Construcciones especiales"
+msgid "Specific Structure"
+msgid_plural "Specific Structures"
+msgstr[0] "Construcción específica"
+msgstr[1] "Construcciones específiques"
 
 #: gui/reference/civinfo/Sections/Subsections/TechnologiesSubsection.js:28
-msgid "Special Technology"
-msgid_plural "Special Technologies"
-msgstr[0] "Teunoloxía especial"
-msgstr[1] "Teunoloxíes especiales"
+msgid "Specific Technology"
+msgid_plural "Specific Technologies"
+msgstr[0] "Teunoloxía específica"
+msgstr[1] "Teunoloxíes específiques"
 
 #: gui/reference/common/Buttons/CivInfoButton.js:27
 #, javascript-format

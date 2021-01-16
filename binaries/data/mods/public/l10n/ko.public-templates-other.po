@@ -30,7 +30,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-08 08:08+0000\n"
-"PO-Revision-Date: 2021-01-11 07:46+0000\n"
+"PO-Revision-Date: 2021-01-11 12:33+0000\n"
 "Last-Translator: Bruce Lee <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -917,7 +917,7 @@ msgstr "최소 4명의 병사나 공성 무기가 필요합니다."
 
 #: simulation/templates/special/formations/box.xml:7
 msgid "Box"
-msgstr "사각대형"
+msgstr "경비대형"
 
 #: simulation/templates/special/formations/column_closed.xml:5
 msgid "Forced March"
@@ -925,7 +925,7 @@ msgstr "행군대형"
 
 #: simulation/templates/special/formations/column_open.xml:5
 msgid "Column Open"
-msgstr "산개 종대"
+msgstr "산개종대"
 
 #: simulation/templates/special/formations/flank.xml:6
 msgid "Requires at least 8 Soldiers or Siege engines."
@@ -953,11 +953,11 @@ msgstr "장갑 보병만, 최소 10명이 필요합니다."
 
 #: simulation/templates/special/formations/phalanx.xml:7
 msgid "Phalanx"
-msgstr "팔랑스-밀집 창대형"
+msgstr "방진대형"
 
 #: simulation/templates/special/formations/scatter.xml:5
 msgid "Scatter"
-msgstr "흩뜨림"
+msgstr "분산대형"
 
 #: simulation/templates/special/formations/skirmish.xml:5
 msgid "Ranged Soldiers only, requires at least 2."
@@ -969,15 +969,15 @@ msgstr "교전대형"
 
 #: simulation/templates/special/formations/syntagma.xml:6
 msgid "Infantry Pikemen only, requires at least 16."
-msgstr "보병대 단창병만, 최소 16명이 필요합니다."
+msgstr "단창보병만, 최소 16명이 필요합니다."
 
 #: simulation/templates/special/formations/syntagma.xml:8
 msgid "Syntagma"
-msgstr "산테그마"
+msgstr "통합대형"
 
 #: simulation/templates/special/formations/testudo.xml:8
 msgid "Testudo"
-msgstr "테스도"
+msgstr "귀갑대형"
 
 #: simulation/templates/special/formations/wedge.xml:6
 msgid "Cavalry only, requires at least 6."
@@ -985,11 +985,11 @@ msgstr "기병만, 최소 6명이 필요합니다."
 
 #: simulation/templates/special/formations/wedge.xml:7
 msgid "Wedge"
-msgstr "쐐기"
+msgstr "쐐기대형"
 
 #: simulation/templates/special/player/player.xml:58
 msgid "Player"
-msgstr "선수"
+msgstr "플레이어"
 
 #: simulation/templates/special/spy.xml:16
 msgid "Spy"

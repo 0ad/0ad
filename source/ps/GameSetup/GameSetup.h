@@ -35,6 +35,8 @@ extern bool ShouldRender();
  **/
 extern void EarlyInit();
 
+extern void EndGame();
+
 enum InitFlags
 {
 	// avoid setting a video mode / initializing OpenGL; assume that has

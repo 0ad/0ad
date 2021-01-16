@@ -126,6 +126,9 @@ private:
 	// Net messages to send on the next flush() call.
 	boost::lockfree::queue<ENetPacket*> m_OutgoingMessages;
 
+	// Last know state. If false, flushing errors are silenced.
+	bool m_Connected = false;
+
 	// Wrapper around enet stats - those are atomic as the code is lock-free.
 	std::atomic<u32> m_LastReceivedTime;
 	std::atomic<u32> m_MeanRTT;

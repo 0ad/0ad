@@ -21,6 +21,7 @@
 
 #include "graphics/ShaderDefines.h"
 #include "ps/CLogger.h"
+#include "ps/Profile.h"
 
 #include <cctype>
 

@@ -2,9 +2,7 @@
 
 #include "common/fog.h"
 
-#if USE_SHADOWS_ON_WATER
 #include "common/shadows_fragment.h"
-#endif
 
 // Environment settings
 uniform vec3 ambient;
@@ -314,7 +312,7 @@ void main()
 
 	vec3 specular = getSpecular(normal, eyeVec);
 
-#if USE_SHADOWS_ON_WATER && USE_SHADOW
+#if USE_SHADOW
 	float shadow = get_shadow();
 	float fresShadow = mix(fresnel, fresnel * shadow, 0.05 + murkiness * 0.2);
 	vec3 color = mix(refrColor.rgb, reflColor.rgb, fresShadow * reflColor.a);

@@ -1,8 +1,6 @@
 #version 110
 
-#if USE_SHADOWS_ON_WATER
 #include "common/shadows_vertex.h"
-#endif
 
 uniform mat4 reflectionMatrix;
 uniform mat4 refractionMatrix;
@@ -64,9 +62,7 @@ void main()
 #endif
 	losCoords = (losMatrix * vec4(a_vertex, 1.0)).rg;
 
-#if USE_SHADOWS_ON_WATER
 	calculatePositionInShadowSpace(vec4(a_vertex, 1.0));
-#endif
 
 	v_eyeVec = normalize(cameraPos - worldPos);
 

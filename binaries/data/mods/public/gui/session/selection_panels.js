@@ -660,6 +660,16 @@ g_SelectionPanels.Research = {
 			if (!template)
 				return false;
 
+			// Not allowed by civ.
+			if (!template.reqs)
+			{
+				// One of the pair may still be researchable by the current civ,
+				// hence don't hide everything.
+				Engine.GetGUIObjectByName("unitResearchButton[" + data.i + "]").hidden = true;
+				pair.hidden = true;
+				continue;
+			}
+
 			for (let res in template.cost)
 				template.cost[res] *= data.item.techCostMultiplier[res];
 

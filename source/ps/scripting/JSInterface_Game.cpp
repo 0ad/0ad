@@ -26,12 +26,11 @@
 #include "ps/Game.h"
 #include "ps/Replay.h"
 #include "ps/World.h"
+#include "ps/GameSetup/GameSetup.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/system/TurnManager.h"
 #include "simulation2/Simulation2.h"
 #include "soundmanager/SoundManager.h"
-
-extern void EndGame();
 
 bool JSI_Game::IsGameStarted(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {

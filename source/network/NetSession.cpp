@@ -139,6 +139,7 @@ void CNetClientSession::Poll()
 		char hostname[256] = "(error)";
 		enet_address_get_host_ip(&event.peer->address, hostname, ARRAY_SIZE(hostname));
 		LOGMESSAGE("Net client: Connected to %s:%u", hostname, (unsigned int)event.peer->address.port);
+		m_Connected = true;
 
 		m_IncomingMessages.push(event);
 	}
@@ -148,6 +149,7 @@ void CNetClientSession::Poll()
 
 		// Report immediately.
 		LOGMESSAGE("Net client: Disconnected");
+		m_Connected = false;
 
 		m_IncomingMessages.push(event);
 	}
@@ -160,7 +162,13 @@ void CNetClientSession::Flush()
 	ENetPacket* packet;
 	while (m_OutgoingMessages.pop(packet))
 		if (enet_peer_send(m_Server, CNetHost::DEFAULT_CHANNEL, packet) < 0)
-			LOGERROR("NetClient: Failed to send packet to server");
+		{
+			// Report the error, but do so silently if we know we are disconnected.
+			if (m_Connected)
+				LOGERROR("NetClient: Failed to send packet to server");
+			else
+				LOGMESSAGE("NetClient: Failed to send packet to server");
+		}
 
 	enet_host_flush(m_Host);
 }

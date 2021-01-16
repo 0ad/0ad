@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -105,7 +105,7 @@ actually supported).
 #define pglDeleteBuffersARB glDeleteBuffers
 #define pglGenBuffersARB glGenBuffers
 
-// Those EXT symbols don’t exist in GLES 2.0, since it imported the ARB version instead.
+// Those EXT symbols don't exist in GLES 2.0, since it imported the ARB version instead.
 #define pglBindFramebufferEXT glBindFramebuffer
 #define pglCheckFramebufferStatusEXT glCheckFramebufferStatus
 #define pglDeleteFramebuffersEXT glDeleteFramebuffers
@@ -115,7 +115,7 @@ actually supported).
 #define GL_FRAMEBUFFER_COMPLETE_EXT GL_FRAMEBUFFER_COMPLETE
 #define GL_FRAMEBUFFER_EXT GL_FRAMEBUFFER
 
-// Those should come from GLES 2.0 core, not from GL_EXT_draw_buffers.
+// Those should come from GLES 2.0 core, not from GL_EXT_draw_buffers.
 #ifndef GL_COLOR_ATTACHMENT0_EXT
 #define GL_COLOR_ATTACHMENT0_EXT GL_COLOR_ATTACHMENT0
 #define GL_COLOR_ATTACHMENT1_EXT GL_COLOR_ATTACHMENT1

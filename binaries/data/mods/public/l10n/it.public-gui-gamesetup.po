@@ -51,7 +51,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-12-28 08:02+0000\n"
-"PO-Revision-Date: 2021-01-06 12:02+0000\n"
+"PO-Revision-Date: 2021-01-11 19:14+0000\n"
 "Last-Translator: Elia Argentieri <elia@elinvention.ovh>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -639,7 +639,7 @@ msgstr "Durata Meraviglia"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:91
 msgid "Minutes until the player has achieved Wonder Victory"
-msgstr ""
+msgstr "Minuti dopo i quali un giocatore raggiunge la vittoria per Meraviglia."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/CancelButton.js:36
 msgid "Back"
@@ -658,7 +658,7 @@ msgstr "Ritorna al menù principale"
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr ""
+msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: Visualizza Anteprima Civiltà / Albero delle Costruzioni\nL'ultimo aperto verrà aperto la prossima volta."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/LobbyButton.js:19
 msgid "Show the multiplayer lobby in a dialog window."
@@ -714,7 +714,7 @@ msgstr "Inizia una nuova partita con le impostazioni correnti (disabilitato finc
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatInputPanel.js:55
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete player names or settings."
-msgstr ""
+msgstr "Premi %(hotkey)s per auto-completare i nomi dei giocatori o impostazioni."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientChat.js:27
 msgid "Unknown Player"
@@ -798,21 +798,21 @@ msgstr "Partita classificata."
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:77
 #, javascript-format
 msgid "Click to toggle the %(name)s settings tab."
-msgstr ""
+msgstr "Premi per azionare la scheda delle impostazioni %(name)s."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:80
 #, javascript-format
 msgid "Press %(hotkey)s to move to the next settings tab."
-msgstr ""
+msgstr "Premi %(hotkey)s per spostarti alla prossima scheda delle impostazioni."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:83
 #, javascript-format
 msgid "Press %(hotkey)s to move to the previous settings tab."
-msgstr ""
+msgstr "Premi %(hotkey)s per spostarti alla precedente scheda delle impostazioni."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/MapPreview.js:47
 msgid "Click to view the list of available maps."
-msgstr ""
+msgstr "Premi per vedere la lista delle mappe disponibili."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/TipsPanel.xml:(caption):9
 msgid "Show this message in the future."
@@ -842,7 +842,7 @@ msgstr "Per favore inserisci un nome server valido."
 #: gui/gamesetup_mp/gamesetup_mp.js:121
 #, javascript-format
 msgid "Server port number must be between %(min)s and %(max)s."
-msgstr ""
+msgstr "Il numero di porta del server deve essere compreso tra %(min)s e %(max)s."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:138
 msgid "Connecting to server..."
@@ -867,7 +867,7 @@ msgstr "Nome del Gioco già in uso."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:310
 msgid "Failed to host via STUN."
-msgstr ""
+msgstr "Impossibile ospitare tramite STUN."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:324
 #, javascript-format
@@ -964,7 +964,7 @@ msgid ""
 "“Zeus \\[…] established his law: wisdom comes through suffering. \\[…] So "
 "men against their will learn to practice moderation. \\[…] Such grace is "
 "harsh and violent.” \\n— Aeschylus (“Agamemnon”, 176–183)"
-msgstr ""
+msgstr "“Zeus \\[…] stabilì la sua legge: la saggezza arriva attraverso la sofferenza. \\[…] Quindi l'uomo, contro la propria volontà, impara a praticare la moderazione. \\[…] Tale grazia è dura e violenta.” \\n— Eschilo (“Agamennone”, 176–183)"
 
 #: gui/text/quotes.txt:2
 msgid ""

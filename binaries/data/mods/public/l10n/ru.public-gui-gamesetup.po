@@ -29,6 +29,7 @@
 # 4435baa6199ac215530476fd5704813e_135056b <9849f67473aff5558ade9bb65f4c4942_118217>, 2013
 # Ilya Andreev, 2018
 # Mike Manturov, 2014
+# Ivan Levin <spite39169@gmail.com>, 2021
 # Ivan <lis84@mail.ru>, 2013
 # Ivan, 2014-2015
 # John Smith <mae_mbllo@mail.ru>, 2016
@@ -85,8 +86,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-12-28 08:02+0000\n"
-"PO-Revision-Date: 2020-12-28 09:25+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-01-11 16:53+0000\n"
+"Last-Translator: Ivan Levin <spite39169@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -234,7 +235,7 @@ msgstr ""
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:29
 #, javascript-format
 msgid "Press %(hotkey)s to view the list of available maps."
-msgstr ""
+msgstr "Нажмите %(hotkey)s, чтобы  посмотреть список доступных карт"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:40
 msgid "Cheats"
@@ -334,7 +335,7 @@ msgstr "Не добавлять сокровища на карте."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:49
 msgid "World population"
-msgstr ""
+msgstr "Мировое население"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:52
 msgid ""
@@ -576,11 +577,11 @@ msgstr "Выберите уровень сложности этого сцена
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:77
 msgid "World Population Cap"
-msgstr ""
+msgstr "Предел мирового населения"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:80
 msgid "Select world population limit."
-msgstr ""
+msgstr "Выберите лимит мирового населения"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:83
 #, javascript-format
@@ -854,7 +855,7 @@ msgstr "Нажмите %(hotkey)s для перемещения на преды�
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/MapPreview.js:47
 msgid "Click to view the list of available maps."
-msgstr ""
+msgstr "Нажмите, чтобы  посмотреть список доступных карт."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/TipsPanel.xml:(caption):9
 msgid "Show this message in the future."

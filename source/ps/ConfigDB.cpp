@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -99,7 +99,8 @@ std::string EscapeString(const CStr& str)
 		TConfigMap::iterator it = m_Map[CFG_COMMAND].find(name);\
 		if (it != m_Map[CFG_COMMAND].end())\
 		{\
-			Get(it->second[0], value);\
+			if (!it->second.empty())\
+				Get(it->second[0], value);\
 			return;\
 		}\
 		for (int search_ns = ns; search_ns >= 0; --search_ns)\
@@ -107,7 +108,8 @@ std::string EscapeString(const CStr& str)
 			it = m_Map[search_ns].find(name);\
 			if (it != m_Map[search_ns].end())\
 			{\
-				Get(it->second[0], value);\
+				if (!it->second.empty())\
+					Get(it->second[0], value);\
 				return;\
 			}\
 		}\
@@ -384,23 +386,23 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 		while (pos < filebufend && *pos != '\n')
 			++pos;
 		// Store the setting
-		if (!name.empty() && !values.empty())
+		if (!name.empty())
 		{
 			CStr key(header + name);
 			newMap[key] = values;
 			if (g_UnloggedEntries.find(key) != g_UnloggedEntries.end())
 				LOGMESSAGE("Loaded config string \"%s\"", key);
+			else if (values.empty())
+				LOGMESSAGE("Loaded config string \"%s\" = (empty)", key);
 			else
 			{
 				std::string vals;
-				for (size_t i = 0; i < newMap[key].size() - 1; ++i)
+				for (size_t i = 0; i + 1 < newMap[key].size(); ++i)
 					vals += "\"" + EscapeString(newMap[key][i]) + "\", ";
 				vals += "\"" + EscapeString(newMap[key][values.size()-1]) + "\"";
 				LOGMESSAGE("Loaded config string \"%s\" = %s", key, vals);
 			}
 		}
-		else if (!name.empty())
-			LOGERROR("Encountered config setting '%s' without value while parsing '%s' on line %d", name, m_ConfigFile[ns].string8(), line);
 
 		name.clear();
 		values.clear();
@@ -436,9 +438,12 @@ bool CConfigDB::WriteFile(EConfigNamespace ns, const VfsPath& path) const
 	{
 		size_t i;
 		pos += sprintf(pos, "%s = ", p.first.c_str());
-		for (i = 0; i < p.second.size() - 1; ++i)
+		for (i = 0; i + 1 < p.second.size(); ++i)
 			pos += sprintf(pos, "\"%s\", ", EscapeString(p.second[i]).c_str());
-		pos += sprintf(pos, "\"%s\"\n", EscapeString(p.second[i]).c_str());
+		if (!p.second.empty())
+			pos += sprintf(pos, "\"%s\"\n", EscapeString(p.second[i]).c_str());
+		else
+			pos += sprintf(pos, "\"\"\n");
 	}
 	const size_t len = pos - (char*)buf.get();
 
