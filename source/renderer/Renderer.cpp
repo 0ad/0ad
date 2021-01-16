@@ -515,10 +515,10 @@ void CRenderer::RecomputeSystemShaderDefines()
 {
 	CShaderDefines defines;
 
-	if (g_RenderingOptions.GetRenderPath() == RenderPath::SHADER && m_Caps.m_ARBProgram)
+	if (m_Caps.m_ARBProgram)
 		defines.Add(str_SYS_HAS_ARB, str_1);
 
-	if (g_RenderingOptions.GetRenderPath() == RenderPath::SHADER && m_Caps.m_VertexShader && m_Caps.m_FragmentShader)
+	if (m_Caps.m_VertexShader && m_Caps.m_FragmentShader)
 		defines.Add(str_SYS_HAS_GLSL, str_1);
 
 	if (g_RenderingOptions.GetPreferGLSL())
@@ -554,7 +554,7 @@ void CRenderer::ReloadShaders()
 	m->Model.VertexRendererShader = ModelVertexRendererPtr(new ShaderModelVertexRenderer());
 	m->Model.VertexInstancingShader = ModelVertexRendererPtr(new InstancingModelRenderer(false, g_RenderingOptions.GetPreferGLSL()));
 
-	if (g_RenderingOptions.GetRenderPath() == RenderPath::SHADER && g_RenderingOptions.GetGPUSkinning()) // TODO: should check caps and GLSL etc too
+	if (g_RenderingOptions.GetGPUSkinning()) // TODO: should check caps and GLSL etc too
 	{
 		m->Model.VertexGPUSkinningShader = ModelVertexRendererPtr(new InstancingModelRenderer(true, g_RenderingOptions.GetPreferGLSL()));
 		m->Model.NormalSkinned = ModelRendererPtr(new ShaderModelRenderer(m->Model.VertexGPUSkinningShader));
@@ -567,17 +567,8 @@ void CRenderer::ReloadShaders()
 		m->Model.TranspSkinned = ModelRendererPtr(new ShaderModelRenderer(m->Model.VertexRendererShader));
 	}
 
-	// Use instancing renderers in shader mode
-	if (g_RenderingOptions.GetRenderPath() == RenderPath::SHADER)
-	{
-		m->Model.NormalUnskinned = ModelRendererPtr(new ShaderModelRenderer(m->Model.VertexInstancingShader));
-		m->Model.TranspUnskinned = ModelRendererPtr(new ShaderModelRenderer(m->Model.VertexInstancingShader));
-	}
-	else
-	{
-		m->Model.NormalUnskinned = m->Model.NormalSkinned;
-		m->Model.TranspUnskinned = m->Model.TranspSkinned;
-	}
+	m->Model.NormalUnskinned = ModelRendererPtr(new ShaderModelRenderer(m->Model.VertexInstancingShader));
+	m->Model.TranspUnskinned = ModelRendererPtr(new ShaderModelRenderer(m->Model.VertexInstancingShader));
 
 	m->ShadersDirty = false;
 }
@@ -1240,10 +1231,6 @@ void CRenderer::RenderSilhouettes(const CShaderDefines& context)
 
 void CRenderer::RenderParticles(int cullGroup)
 {
-	// Only supported in shader modes
-	if (g_RenderingOptions.GetRenderPath() != RenderPath::SHADER)
-		return;
-
 	PROFILE3_GPU("particles");
 
 	m->particleRenderer.RenderParticles(cullGroup);
@@ -1307,7 +1294,7 @@ void CRenderer::RenderSubmissions(const CBoundingBoxAligned& waterScissor)
 
 	m->particleRenderer.PrepareForRendering(context);
 
-	if (m_Caps.m_Shadows && g_RenderingOptions.GetShadows() && g_RenderingOptions.GetRenderPath() == RenderPath::SHADER)
+	if (m_Caps.m_Shadows && g_RenderingOptions.GetShadows())
 	{
 		RenderShadowMap(context);
 	}
@@ -1512,7 +1499,7 @@ void CRenderer::SetSceneCamera(const CCamera& viewCamera, const CCamera& cullCam
 	m_ViewCamera = viewCamera;
 	m_CullCamera = cullCamera;
 
-	if (m_Caps.m_Shadows && g_RenderingOptions.GetShadows() && g_RenderingOptions.GetRenderPath() == RenderPath::SHADER)
+	if (m_Caps.m_Shadows && g_RenderingOptions.GetShadows())
 		m->shadow.SetupFrame(m_CullCamera, m_LightEnv->GetSunDir());
 }
 
@@ -1658,7 +1645,7 @@ void CRenderer::RenderScene(Scene& scene)
 		m->silhouetteRenderer.RenderSubmitCasters(*this);
 	}
 
-	if (m_Caps.m_Shadows && g_RenderingOptions.GetShadows() && g_RenderingOptions.GetRenderPath() == RenderPath::SHADER)
+	if (m_Caps.m_Shadows && g_RenderingOptions.GetShadows())
 	{
 		m_CurrentCullGroup = CULL_SHADOWS;
 

@@ -65,15 +65,10 @@ namespace
 CShaderProgramPtr GetDummyShader()
 {
 	const char* shaderName;
-	if (g_RenderingOptions.GetRenderPath() == RenderPath::SHADER)
-	{
-		if (g_RenderingOptions.GetPreferGLSL())
-			shaderName = "glsl/dummy";
-		else
-			shaderName = "arb/dummy";
-	}
+	if (g_RenderingOptions.GetPreferGLSL())
+		shaderName = "glsl/dummy";
 	else
-		shaderName = "fixed:dummy";
+		shaderName = "arb/dummy";
 	return g_Renderer.GetShaderManager().LoadProgram(shaderName, CShaderDefines());
 }
 

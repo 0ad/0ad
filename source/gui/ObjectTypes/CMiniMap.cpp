@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -607,8 +607,7 @@ void CMiniMap::Draw()
 	if (m_EntitiesDrawn > 0)
 	{
 #if !CONFIG2_GLES
-		if (g_RenderingOptions.GetRenderPath() == RenderPath::SHADER)
-			glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
+		glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
 #endif
 
 		u8* indexBase = m_IndexArray.Bind();
@@ -626,8 +625,7 @@ void CMiniMap::Draw()
 		CVertexBuffer::Unbind();
 
 #if !CONFIG2_GLES
-		if (g_RenderingOptions.GetRenderPath() == RenderPath::SHADER)
-			glDisable(GL_VERTEX_PROGRAM_POINT_SIZE);
+		glDisable(GL_VERTEX_PROGRAM_POINT_SIZE);
 #endif
 	}
 
