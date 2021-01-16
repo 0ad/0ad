@@ -802,7 +802,7 @@ entities:\n\
   TestScript1_custom:\n\
     comp: {\n\
   \"c\": 1\n\
-} (raw: ({y:2}))\n\
+}\n\
 \n"
 		);
 
