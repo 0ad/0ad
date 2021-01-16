@@ -231,7 +231,7 @@ InReaction CInput::ManuallyHandleKeys(const SDL_Event_* ev)
 		// TODO: there are probably other keys that we could ignore, but recognizing "non-glyph" keys isn't that trivial.
 		// Further, don't input text if modifiers other than shift are pressed (the user is presumably trying to perform a hotkey).
 		if (keyCode == SDLK_ESCAPE ||
-		     g_scancodes[SDL_SCANCODE_LCTRL] || g_scancodes[SDL_SCANCODE_LCTRL] ||
+		     g_scancodes[SDL_SCANCODE_LCTRL] || g_scancodes[SDL_SCANCODE_RCTRL] ||
 		     g_scancodes[SDL_SCANCODE_LALT] || g_scancodes[SDL_SCANCODE_RALT] ||
 		     g_scancodes[SDL_SCANCODE_LGUI] || g_scancodes[SDL_SCANCODE_RGUI])
 			return IN_PASS;
