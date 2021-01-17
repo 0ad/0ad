@@ -373,7 +373,7 @@ sub add_maps_pmp
 
         read $fh, $buf, 4;
         my $version = unpack 'V', $buf;
-        die "Invalid PMP version ($version) in '$f'" unless $version == 6;
+        die "Invalid PMP version ($version) in '$f'" unless $version == 7;
 
         read $fh, $buf, 4;
         my $datasize = unpack 'V', $buf;
