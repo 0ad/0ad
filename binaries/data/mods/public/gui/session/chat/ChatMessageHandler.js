@@ -69,7 +69,7 @@ class ChatMessageHandler
 		for (let messageFormat of this.messageFormats[msg.type])
 		{
 			let formatted = messageFormat.parse(msg);
-			if (formatted)
+			if (formatted && formatted.text)
 				return formatted;
 		}
 
