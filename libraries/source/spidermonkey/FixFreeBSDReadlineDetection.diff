@@ -1,0 +1,15 @@
+diff --git a/js/moz.configure b/js/moz.configure
+index b1c9685..018ffc3 100644
+--- a/js/moz.configure
++++ b/js/moz.configure
+@@ -696,8 +696,8 @@ def editline(js_shell, is_windows, compile_environment):
+ js_option('--enable-readline', help='Link js shell to system readline library',
+           when=editline)
+ 
+-has_readline = check_symbol('readline', flags=['-lreadline'], when='--enable-readline',
+-                            onerror=lambda: die('No system readline library found'))
++has_readline = check_symbol('readline', flags=['-lreadline', '-L%%LOCALBASE%%/lib'], when='--enable-readline',
++                             onerror=lambda: die('No system readline library found'))
+ 
+ set_config('EDITLINE_LIBS', ['-lreadline'], when=has_readline)
+ 
