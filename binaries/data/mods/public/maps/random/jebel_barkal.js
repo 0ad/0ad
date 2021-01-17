@@ -86,7 +86,7 @@ const oPalisadeGate = "structures/palisades_gate";
 const oPalisadeTower = "structures/palisades_tower";
 const oKushCitizenArcher = "units/kush/infantry_archer_b";
 const oKushHealer = "units/kush/support_healer_b";
-const oKushChampionArcher = "units/kush/champion_infantry";
+const oKushChampionArcher = "units/kush/champion_infantry_archer";
 const oKushChampions = [
 	oKushChampionArcher,
 	"units/kush/champion_infantry_amun",

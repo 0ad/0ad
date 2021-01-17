@@ -7,15 +7,13 @@
   <Identity>
     <Civ>mace</Civ>
     <SpecificName>Phrourion</SpecificName>
-    <Tooltip>Territory root. Train Champion Infantry and Heroes. Garrison Soldiers for additional arrows.</Tooltip>
+    <Tooltip>Territory root. Train Heroes. Garrison Soldiers for additional arrows.</Tooltip>
   </Identity>
   <Obstruction>
     <Static width="24.0" depth="26.0"/>
   </Obstruction>
   <ProductionQueue>
     <Entities datatype="tokens">
-      units/{civ}/champion_infantry_a
-      units/{civ}/champion_infantry_swordsman
       units/{civ}/hero_philip_ii
       units/{civ}/hero_alexander_iii
       units/{civ}/hero_demetrius_i

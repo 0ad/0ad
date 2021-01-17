@@ -3,11 +3,10 @@
   <Identity>
     <Civ>rome</Civ>
     <SpecificName>Castellum</SpecificName>
-    <Tooltip>Territory root. Train Champion Infantry and Heroes. Garrison Soldiers for additional arrows.</Tooltip>
+    <Tooltip>Territory root. Train Heroes. Garrison Soldiers for additional arrows.</Tooltip>
   </Identity>
   <ProductionQueue>
     <Entities datatype="tokens">
-      units/{civ}/champion_infantry
       units/{civ}/hero_marcellus
       units/{civ}/hero_maximus
       units/{civ}/hero_scipio

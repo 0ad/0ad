@@ -7,16 +7,10 @@
   <Identity>
     <Civ>ptol</Civ>
     <SpecificName>Phrourion</SpecificName>
-    <Tooltip>Territory root. Train Champion Infantry Pikemen. Garrison Soldiers for additional arrows.</Tooltip>
   </Identity>
   <Obstruction>
     <Static width="24.0" depth="26.0"/>
   </Obstruction>
-  <ProductionQueue>
-    <Entities datatype="tokens">
-      units/{civ}/champion_infantry_pikeman
-    </Entities>
-  </ProductionQueue>
   <VisualActor>
     <Actor>structures/ptolemies/fortress.xml</Actor>
   </VisualActor>

@@ -3,8 +3,7 @@
 	"specificName": {
 		"mace": "Agēma",
 		"ptol": "Agēma",
-		"rome": "Regio Cohors",
-		"sele": "Agēma"
+		"rome": "Regio Cohors"
 	},
 	"description": "Guard units (Champions) are professionals who wield the best weapons and have the best training.",
 	"cost": {
@@ -13,15 +12,11 @@
 	"requirements": {
 		"all": [
 			{ "tech": "phase_city" },
-			{
-				"any": [
-					{ "civ": "brit" },
-					{ "civ": "gaul" },
-					{ "civ": "iber" },
-					{ "civ": "mace" },
-					{ "civ": "rome" }
-				]
-			}
+			{ "notciv": "athen" },
+			{ "notciv": "cart" },
+			{ "notciv": "pers" },
+			{ "notciv": "sele" },
+			{ "notciv": "spart" }
 		]
 	},
 	"requirementsTooltip": "Unlocked in City Phase.",

@@ -9,7 +9,7 @@
     <Civ>iber</Civ>
     <SpecificName>Leial Ezpatari</SpecificName>
     <Icon>units/iber_champion_infantry.png</Icon>
-    <SelectionGroupName>units/iber/champion_infantry</SelectionGroupName>
+    <RequiredTechnology>unlock_champion_infantry</RequiredTechnology>
   </Identity>
   <VisualActor>
     <Actor>units/iberians/infantry_swordsman_c.xml</Actor>
