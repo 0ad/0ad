@@ -22,7 +22,7 @@
 #include "lib/frequency_filter.h"
 #include "ps/KeyName.h"
 
-#include <map>
+#include <unordered_map>
 
 // thin abstraction layer on top of SDL.
 // game code should use it instead of SDL_GetMouseState etc. because
@@ -40,11 +40,11 @@ extern int g_mouse_x, g_mouse_y;
 extern bool g_mouse_active;
 
 /**
- * g_keys: Key states, indexed by SDLK* constants. If an entry is true,
+ * g_scancodes: Key states, indexed by SDL_Scancode constants. If an entry is true,
  * it represents a pressed key.
  * Updated by GlobalsInputHandler in response to key press/release events.
  */
-extern std::map<int32_t, bool> g_keys;
+extern std::unordered_map<int32_t, bool> g_scancodes;
 
 /**
  * g_mouse_buttons: Mouse buttons states, indexed by SDL_BUTTON_* constants.

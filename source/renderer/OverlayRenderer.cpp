@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -39,6 +39,21 @@
 #include "simulation2/system/SimContext.h"
 
 #include <unordered_map>
+
+namespace
+{
+
+CShaderProgramPtr GetOverlayLineShader(const CShaderDefines& defines)
+{
+	const char* shaderName;
+	if (g_RenderingOptions.GetPreferGLSL())
+		shaderName = "glsl/overlayline";
+	else
+		shaderName = "arb/overlayline";
+	return g_Renderer.GetShaderManager().LoadProgram(shaderName, defines);
+}
+
+} // anonymous namespace
 
 /**
  * Key used to group quads into batches for more efficient rendering. Currently groups by the combination
@@ -427,22 +442,10 @@ void OverlayRenderer::RenderTexturedOverlayLines()
 	glEnable(GL_BLEND);
 	glDepthMask(0);
 
-	const char* shaderName;
-	if (g_RenderingOptions.GetRenderPath() == RenderPath::SHADER)
-	{
-		if (g_RenderingOptions.GetPreferGLSL())
-			shaderName = "glsl/overlayline";
-		else
-			shaderName = "arb/overlayline";
-	}
-	else
-		shaderName = "fixed:overlayline";
-
 	CLOSTexture& los = g_Renderer.GetScene().GetLOSTexture();
 
-	CShaderManager& shaderManager = g_Renderer.GetShaderManager();
-	CShaderProgramPtr shaderTexLineNormal(shaderManager.LoadProgram(shaderName, m->defsOverlayLineNormal));
-	CShaderProgramPtr shaderTexLineAlwaysVisible(shaderManager.LoadProgram(shaderName, m->defsOverlayLineAlwaysVisible));
+	CShaderProgramPtr shaderTexLineNormal = GetOverlayLineShader(m->defsOverlayLineNormal);
+	CShaderProgramPtr shaderTexLineAlwaysVisible = GetOverlayLineShader(m->defsOverlayLineAlwaysVisible);
 
 	// ----------------------------------------------------------------------------------------
 
@@ -517,19 +520,7 @@ void OverlayRenderer::RenderQuadOverlays()
 	if (m->quadBatchMap.empty())
 		return;
 
-	const char* shaderName;
-	if (g_RenderingOptions.GetRenderPath() == RenderPath::SHADER)
-	{
-		if (g_RenderingOptions.GetPreferGLSL())
-			shaderName = "glsl/overlayline";
-		else
-			shaderName = "arb/overlayline";
-	}
-	else
-		shaderName = "fixed:overlayline";
-
-	CShaderManager& shaderManager = g_Renderer.GetShaderManager();
-	CShaderProgramPtr shader(shaderManager.LoadProgram(shaderName, m->defsQuadOverlay));
+	CShaderProgramPtr shader = GetOverlayLineShader(m->defsQuadOverlay);
 
 	if (!shader)
 		return;
@@ -631,31 +622,19 @@ void OverlayRenderer::RenderForegroundOverlays(const CCamera& viewCamera)
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
-	CShaderProgramPtr shader;
-	CShaderTechniquePtr tech;
-
-	if (g_RenderingOptions.GetRenderPath() == RenderPath::SHADER)
-	{
-		tech = g_Renderer.GetShaderManager().LoadEffect(str_foreground_overlay);
-		tech->BeginPass();
-		shader = tech->GetShader();
-	}
+	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_foreground_overlay);
+	tech->BeginPass();
+	CShaderProgramPtr shader = tech->GetShader();
 
 	float uvs[8] = { 0,1, 1,1, 1,0, 0,0 };
 
-	if (g_RenderingOptions.GetRenderPath() == RenderPath::SHADER)
-		shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, sizeof(float)*2, &uvs[0]);
-	else
-		glTexCoordPointer(2, GL_FLOAT, sizeof(float)*2, &uvs);
+	shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, sizeof(float)*2, &uvs[0]);
 
 	for (size_t i = 0; i < m->sprites.size(); ++i)
 	{
 		SOverlaySprite* sprite = m->sprites[i];
 
-		if (g_RenderingOptions.GetRenderPath() == RenderPath::SHADER)
-			shader->BindTexture(str_baseTex, sprite->m_Texture);
-		else
-			sprite->m_Texture->Bind();
+		shader->BindTexture(str_baseTex, sprite->m_Texture);
 
 		if (shader)
 			shader->Uniform(str_colorMul, sprite->m_Color);
@@ -667,10 +646,7 @@ void OverlayRenderer::RenderForegroundOverlays(const CCamera& viewCamera)
 			sprite->m_Position + right*sprite->m_X0 + up*sprite->m_Y1
 		};
 
-		if (g_RenderingOptions.GetRenderPath() == RenderPath::SHADER)
-			shader->VertexPointer(3, GL_FLOAT, sizeof(float)*3, &pos[0].X);
-		else
-			glVertexPointer(3, GL_FLOAT, sizeof(float)*3, &pos[0].X);
+		shader->VertexPointer(3, GL_FLOAT, sizeof(float)*3, &pos[0].X);
 
 		glDrawArrays(GL_QUADS, 0, (GLsizei)4);
 
@@ -678,8 +654,7 @@ void OverlayRenderer::RenderForegroundOverlays(const CCamera& viewCamera)
 		g_Renderer.GetStats().m_OverlayTris += 2;
 	}
 
-	if (g_RenderingOptions.GetRenderPath() == RenderPath::SHADER)
-		tech->EndPass();
+	tech->EndPass();
 
 	glDisableClientState(GL_VERTEX_ARRAY);
 	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
@@ -761,9 +736,6 @@ void OverlayRenderer::RenderSphereOverlays()
 #if CONFIG2_GLES
 #warning TODO: implement OverlayRenderer::RenderSphereOverlays for GLES
 #else
-	if (g_RenderingOptions.GetRenderPath() != RenderPath::SHADER)
-		return;
-
 	if (m->spheres.empty())
 		return;
 

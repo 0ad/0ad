@@ -4,18 +4,18 @@
     <Melee>
       <AttackName>Spear</AttackName>
       <Damage>
-        <Hack>6.0</Hack>
-        <Pierce>5.0</Pierce>
-        <Crush>0.0</Crush>
+        <Hack>6</Hack>
+        <Pierce>5</Pierce>
+        <Crush>0</Crush>
       </Damage>
-      <MaxRange>4.5</MaxRange>
+      <MaxRange>4</MaxRange>
       <PrepareTime>500</PrepareTime>
       <RepeatTime>900</RepeatTime>
       <Bonuses>
-          <BonusCavMelee>
-            <Classes>Cavalry</Classes>
-            <Multiplier>3.0</Multiplier>
-          </BonusCavMelee>
+        <BonusCavMelee>
+          <Classes>Cavalry</Classes>
+          <Multiplier>3.0</Multiplier>
+        </BonusCavMelee>
       </Bonuses>
       <PreferredClasses datatype="tokens">Human</PreferredClasses>
     </Melee>

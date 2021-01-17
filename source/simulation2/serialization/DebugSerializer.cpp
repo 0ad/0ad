@@ -154,12 +154,11 @@ void CDebugSerializer::PutScriptVal(const char* name, JS::MutableHandleValue val
 	JS::RootedValue serialize(rq.cx);
 	if (m_ScriptInterface.GetProperty(value, "Serialize", &serialize) && !serialize.isNullOrUndefined())
 	{
-		// If the value has a Serialize property, pretty-parse that and return the value as a raw string.
-		// This gives more debug data for components in case of OOS.
+		// If the value has a Serialize property, pretty-parse that instead.
+		// (this gives more accurate OOS reports).
 		m_ScriptInterface.CallFunction(value, "Serialize", &serialize);
 		std::string serialized_source = m_ScriptInterface.ToString(&serialize, true);
-		std::string source = m_ScriptInterface.ToString(value, false);
-		m_Stream << INDENT << name << ": " << serialized_source << " (raw: " << source <<  ")\n";
+		m_Stream << INDENT << name << ": " << serialized_source << "\n";
 	}
 	else
 	{

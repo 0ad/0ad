@@ -145,7 +145,7 @@ JS::Value GetConflicts(ScriptInterface::CmptPrivate* pCmptPrivate, JS::HandleVal
 
 	std::set<SKey> codes;
 	for (const std::string& key : keys)
-		codes.insert(SKey{ FindScancode(key), false });
+		codes.insert(SKey{ FindScancode(key) });
 
 	std::vector<CStr> conflicts;
 	// This isn't very efficient, but we shouldn't iterate too many hotkeys

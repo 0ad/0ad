@@ -1,11 +1,5 @@
 {
-	"genericName": "Unlock Champion Infantry",
-	"specificName": {
-		"mace": "Agēma",
-		"ptol": "Agēma",
-		"rome": "Regio Cohors",
-		"sele": "Agēma"
-	},
+	"genericName": "Unlock Champion Chariots",
 	"description": "Guard units (Champions) are professionals who wield the best weapons and have the best training.",
 	"cost": {
 		"food": 600
@@ -16,10 +10,8 @@
 			{
 				"any": [
 					{ "civ": "brit" },
-					{ "civ": "gaul" },
-					{ "civ": "iber" },
-					{ "civ": "mace" },
-					{ "civ": "rome" }
+					{ "civ": "maur" },
+					{ "civ": "pers" }
 				]
 			}
 		]
@@ -27,6 +19,6 @@
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "helmet_corinthian_crest.png",
 	"researchTime": 60,
-	"tooltip": "Unlock Champions Infantry at the Barracks.",
+	"tooltip": "Unlock Champion Chariots at the Stable.",
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

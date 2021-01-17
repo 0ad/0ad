@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -29,19 +29,19 @@ Status LoadHeightmapImageOs(const OsPath& filepath, std::vector<u16>& heightmap)
 class CMapIO
 {
 public:
-	// current file version given to saved maps
-	enum { FILE_VERSION = 6 };
-	// supported file read version - file with version less than this will be reject
-	enum { FILE_READ_VERSION = 6 };
+	// Current file version given to saved maps.
+	enum { FILE_VERSION = 7 };
+	// Supported file read version - file with version less than this will be rejected.
+	enum { FILE_READ_VERSION = 7 };
 
 #pragma pack(push, 1)
-	// description of a tile for I/O purposes
-	struct STileDesc {
-		// index into the texture array of first texture on tile
+	// Description of a tile for I/O purposes.
+	struct STileDesc
+	{
+		// Index into the texture array of first texture on tile.
 		u16 m_Tex1Index;
-		// index into the texture array of second texture; (0xFFFF) if none
+		// Index into the texture array of second texture; (0xFFFF) if none.
 		u16 m_Tex2Index;
-		// priority
 		u32 m_Priority;
 	};
 #pragma pack(pop)

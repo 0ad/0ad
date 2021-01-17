@@ -24,10 +24,15 @@ patch -p1 < ../FixPublicExport.diff
 # (Landed in 85)
 patch -p1 < ../FixMSVCRootedVoid.diff
 
+# Two SDK-related issues.
 # -ftrivial-auto-var-init is clang 8,
 # but apple-clang 10.0.0 (the maximum in 10.13)
 # doesn't actually have it, so patch it out.
-patch -p1 < ../FixMac10.13.diff
+# Secondly, there is a 'max SDK version' in SM,
+# which is set to 10.15.4 in SM78.
+# Upstream has changed this to 10.11 at the moment,
+# so this patches it to an arbitrarily high Mac OS 11
+patch -p1 < ../FixMacBuild.diff
 
 # Fix FP access breaking compilation on RPI3+
 # https://bugzilla.mozilla.org/show_bug.cgi?id=1526653

@@ -52,17 +52,14 @@ constexpr SDL_Scancode_ UNUSED_HOTKEY_CODE = 0; // == SDL_SCANCODE_UNKNOWN
 struct SKey
 {
 	SDL_Scancode_ code; // scancode or MOUSE_ or UNIFIED_ value
-	bool negated; // whether the key must be pressed (false) or unpressed (true)
-
-	bool operator<(const SKey& o) const { return code < o.code && negated < o.negated; }
-	bool operator==(const SKey& o) const { return code == o.code && negated == o.negated; }
+	bool operator<(const SKey& o) const { return code < o.code; }
+	bool operator==(const SKey& o) const { return code == o.code; }
 };
 
 // Hotkey data associated with an externally-specified 'primary' keycode
 struct SHotkeyMapping
 {
 	CStr name; // name of the hotkey
-	bool negated; // whether the primary key must be pressed (false) or unpressed (true)
 	std::vector<SKey> requires; // list of non-primary keys that must also be active
 };
 

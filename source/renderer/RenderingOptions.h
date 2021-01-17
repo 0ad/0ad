@@ -101,7 +101,6 @@ OPTION_CUSTOM_SETTER(NAME, TYPE); OPTION_GETTER(NAME, TYPE); OPTION_DEF(NAME, TY
 	OPTION(GPUSkinning, bool);
 	OPTION(Silhouettes, bool);
 	OPTION(SmoothLOS, bool);
-	OPTION(ShowSky, bool);
 	OPTION(PostProc, bool);
 	OPTION(DisplayFrustum, bool);
 	OPTION(DisplayShadowsFrustum, bool);

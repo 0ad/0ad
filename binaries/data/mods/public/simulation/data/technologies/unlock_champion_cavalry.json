@@ -1,11 +1,5 @@
 {
-	"genericName": "Unlock Champion Infantry",
-	"specificName": {
-		"mace": "Agēma",
-		"ptol": "Agēma",
-		"rome": "Regio Cohors",
-		"sele": "Agēma"
-	},
+	"genericName": "Unlock Champion Cavalry",
 	"description": "Guard units (Champions) are professionals who wield the best weapons and have the best training.",
 	"cost": {
 		"food": 600
@@ -13,20 +7,15 @@
 	"requirements": {
 		"all": [
 			{ "tech": "phase_city" },
-			{
-				"any": [
-					{ "civ": "brit" },
-					{ "civ": "gaul" },
-					{ "civ": "iber" },
-					{ "civ": "mace" },
-					{ "civ": "rome" }
-				]
-			}
+			{ "notciv": "athen" },
+			{ "notciv": "brit" },
+			{ "notciv": "maur" },
+			{ "notciv": "spart" }
 		]
 	},
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "helmet_corinthian_crest.png",
 	"researchTime": 60,
-	"tooltip": "Unlock Champions Infantry at the Barracks.",
+	"tooltip": "Unlock Champion Cavalry at the Stable.",
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

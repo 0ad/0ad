@@ -2,8 +2,16 @@
 <Entity parent="template_unit_siege_boltshooter">
   <Attack>
     <Ranged>
+      <Damage>
+        <Pierce>160</Pierce>
+      </Damage>
       <PrepareTime>3000</PrepareTime>
       <RepeatTime>4000</RepeatTime>
+      <Splash>
+        <Damage>
+          <Pierce>50</Pierce>
+        </Damage>
+      </Splash>
     </Ranged>
   </Attack>
   <Footprint replace="">

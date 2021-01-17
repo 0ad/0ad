@@ -90,10 +90,9 @@ PETRA.createObstructionMap = function(gameState, accessIndex, template)
 		{
 			let obstructionRadius = template.obstructionRadius();
 			if (obstructionRadius)
-				minDist -= obstructionRadius.min;
+				minDist += obstructionRadius.max;
 			let fromClass = distance.FromClass;
 			let cellSize = passabilityMap.cellSize;
-			let cellDist = 1 + minDist / cellSize;
 			let structures = gameState.getOwnStructures().filter(API3.Filters.byClass(fromClass));
 			for (let ent of structures.values())
 			{
@@ -102,7 +101,9 @@ PETRA.createObstructionMap = function(gameState, accessIndex, template)
 				let pos = ent.position();
 				let x = Math.round(pos[0] / cellSize);
 				let z = Math.round(pos[1] / cellSize);
-				map.addInfluence(x, z, cellDist, -255, "constant");
+				let entRadius = ent.obstructionRadius();
+				let dist = 1 + (minDist + (entRadius ? entRadius.max : 0)) / cellSize;
+				map.addInfluence(x, z, dist, -255, "constant");
 			}
 		}
 	}
