@@ -124,7 +124,7 @@ PETRA.Config = function(difficulty, behavior)
 		"defenseBuilding": 70,
 		"civilCentre": 950,
 		"majorTech": 700,
-		"minorTech": 40,
+		"minorTech": 250,
 		"wonder": 1000,
 		"emergency": 1000    // used only in emergency situations, should be the highest one
 	};

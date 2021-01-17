@@ -2719,7 +2719,7 @@ PETRA.HQ.prototype.update = function(gameState, queues, events)
 		if (this.needCorral && gameState.ai.playedTurn % 4 == 3)
 			this.manageCorral(gameState, queues);
 
-		if (!queues.minorTech.hasQueuedUnits() && gameState.ai.playedTurn % 5 == 1)
+		if (gameState.ai.playedTurn % 5 == 1)
 			this.researchManager.update(gameState, queues);
 	}
 
