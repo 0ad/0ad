@@ -825,8 +825,7 @@ else
 	setSunElevation(0.13499);
 	setSunRotation(-2.5);
 
-	setTerrainAmbientColor(0.25, 0.3, 0.45);
-	setUnitsAmbientColor(0.25, 0.3, 0.45);
+	setAmbientColor(0.25, 0.3, 0.45);
 
 	setFogFactor(0.004);
 	setFogThickness(0.25);

@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -87,7 +87,7 @@ void ShaderRenderModifier::BeginPass(const CShaderProgramPtr& shader)
 
 	if (GetLightEnv())
 	{
-		shader->Uniform(str_ambient, GetLightEnv()->m_UnitsAmbientColor);
+		shader->Uniform(str_ambient, GetLightEnv()->m_AmbientColor);
 		shader->Uniform(str_sunDir, GetLightEnv()->GetSunDir());
 		shader->Uniform(str_sunColor, GetLightEnv()->m_SunColor);
 

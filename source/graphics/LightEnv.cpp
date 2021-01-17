@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -26,8 +26,7 @@ CLightEnv::CLightEnv()
 	: m_Elevation(DEGTORAD(45)),
 	m_Rotation(DEGTORAD(315)),
 	m_SunColor(1.5, 1.5, 1.5),
-	m_TerrainAmbientColor(0x50/255.f, 0x60/255.f, 0x85/255.f),
-	m_UnitsAmbientColor(0x80/255.f, 0x80/255.f, 0x80/255.f),
+	m_AmbientColor(0x50/255.f, 0x60/255.f, 0x85/255.f),
 	m_FogColor(0xCC/255.f, 0xCC/255.f, 0xE5/255.f),
 	m_FogFactor(0.000f),
 	m_FogMax(0.5f),

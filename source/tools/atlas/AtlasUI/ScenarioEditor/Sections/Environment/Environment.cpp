@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -244,8 +244,7 @@ EnvironmentSidebar::EnvironmentSidebar(ScenarioEditor& scenarioEditor, wxWindow*
 	sunSizer->Add(new VariableSliderBox(scrolledWindow, _("Fog Factor"), g_EnvironmentSettings.fogfactor, 0.0f, 0.01f), wxSizerFlags().Expand());
 	sunSizer->Add(new VariableSliderBox(scrolledWindow, _("Fog Thickness"), g_EnvironmentSettings.fogmax, 0.5f, 0.0f), wxSizerFlags().Expand());
 	sunSizer->Add(new VariableColorBox(scrolledWindow, _("Fog color"), g_EnvironmentSettings.fogcolor), wxSizerFlags().Expand());
-	sunSizer->Add(new VariableColorBox(scrolledWindow, _("Terrain ambient color"), g_EnvironmentSettings.terraincolor), wxSizerFlags().Expand());
-	sunSizer->Add(new VariableColorBox(scrolledWindow, _("Object ambient color"), g_EnvironmentSettings.unitcolor), wxSizerFlags().Expand());
+	sunSizer->Add(new VariableColorBox(scrolledWindow, _("Ambient color"), g_EnvironmentSettings.ambientcolor), wxSizerFlags().Expand());
 
 	wxSizer* postProcSizer = new wxStaticBoxSizer(wxVERTICAL, scrolledWindow, _T("Post-processing settings"));
 	scrollSizer->Add(postProcSizer, wxSizerFlags().Expand().Border(wxTOP, 8));

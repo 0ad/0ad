@@ -554,13 +554,12 @@ g_Environment = {
 	},
 	"SunElevation": 0.908117,
 	"SunRotation": -0.558369,
-	"TerrainAmbientColor": {
+	"AmbientColor": {
 		"r": 0.54902,
 		"g": 0.419608,
 		"b": 0.352941,
 		"a": 0
 	},
-	"UnitsAmbientColor": { "r": 0.54902, "g": 0.419608, "b": 0.352941, "a": 0 },
 	"Fog": {
 		"FogFactor": 0.00195313,
 		"FogThickness": 0,

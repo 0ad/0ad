@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -85,8 +85,7 @@ sEnvironmentSettings GetSettings()
 	else
 		s.sunoverbrightness = 1.0f;
 	COLOR(s.suncolor, g_LightEnv.m_SunColor);
-	COLOR(s.terraincolor, g_LightEnv.m_TerrainAmbientColor);
-	COLOR(s.unitcolor, g_LightEnv.m_UnitsAmbientColor);
+	COLOR(s.ambientcolor, g_LightEnv.m_AmbientColor);
 	COLOR(s.fogcolor, g_LightEnv.m_FogColor);
 #undef COLOR
 
@@ -139,8 +138,7 @@ void SetSettings(const sEnvironmentSettings& s)
 #define COLOR(A, B) B = RGBColor(A->r/255.f, A->g/255.f, A->b/255.f)
 	COLOR(s.suncolor, g_LightEnv.m_SunColor);
 	g_LightEnv.m_SunColor *= s.sunoverbrightness;
-	COLOR(s.terraincolor, g_LightEnv.m_TerrainAmbientColor);
-	COLOR(s.unitcolor, g_LightEnv.m_UnitsAmbientColor);
+	COLOR(s.ambientcolor, g_LightEnv.m_AmbientColor);
 	COLOR(s.fogcolor, g_LightEnv.m_FogColor);
 #undef COLOR
 

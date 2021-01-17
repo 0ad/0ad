@@ -273,7 +273,7 @@ void TerrainRenderer::PrepareShader(const CShaderProgramPtr& shader, ShadowMap* 
 	shader->BindTexture(str_losTex, los.GetTextureSmooth());
 	shader->Uniform(str_losTransform, los.GetTextureMatrix()[0], los.GetTextureMatrix()[12], 0.f, 0.f);
 
-	shader->Uniform(str_ambient, lightEnv.m_TerrainAmbientColor);
+	shader->Uniform(str_ambient, lightEnv.m_AmbientColor);
 	shader->Uniform(str_sunColor, lightEnv.m_SunColor);
 	shader->Uniform(str_sunDir, lightEnv.GetSunDir());
 
@@ -564,7 +564,7 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 		if (WaterMgr->m_WaterReflection)
 			m->fancyWaterShader->Uniform(str_reflectionMatrix, WaterMgr->m_ReflectionMatrix);
 	}
-	m->fancyWaterShader->Uniform(str_ambient, lightEnv.m_TerrainAmbientColor);
+	m->fancyWaterShader->Uniform(str_ambient, lightEnv.m_AmbientColor);
 	m->fancyWaterShader->Uniform(str_sunDir, lightEnv.GetSunDir());
 	m->fancyWaterShader->Uniform(str_sunColor, lightEnv.m_SunColor);
 	m->fancyWaterShader->Uniform(str_color, WaterMgr->m_WaterColor);

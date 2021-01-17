@@ -1487,7 +1487,7 @@ setWaterWaviness(8);
 setWaterMurkiness(0.87);
 setWaterType("lake");
 
-setTerrainAmbientColor(0.58, 0.443, 0.353);
+setAmbientColor(0.58, 0.443, 0.353);
 
 setSunColor(0.733, 0.746, 0.574);
 setSunRotation(Math.PI / 2 * randFloat(-1, 1));
