@@ -172,15 +172,15 @@ function hslToRgb(h, s, l)
 
 function colorizeHotkey(text, hotkey)
 {
-	// TODO: use actual hotkey combinations.
-	let key = Engine.ConfigDB_GetValue("user", "hotkey." + hotkey);
+	// TODO: Be more efficient in retrieving the mapping(s) for a specific hotkey
+	let key = Engine.GetHotkeyMap()[hotkey];
 
-	if (!key || key.toLowerCase() == "unused")
+	if (!key)
 		key = sprintf(translate("Unassigned hotkey: %(hotkeyName)s"), {
 			"hotkeyName": hotkey
 		});
 	else
-		key = formatHotkeyCombination(key.split("+"));
+		key = formatHotkeyCombinations(key);
 
 	return sprintf(text, {
 		"hotkey": setStringTags("\\[" + key + "]", g_HotkeyTags)

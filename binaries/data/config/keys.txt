@@ -24,10 +24,10 @@ Backspace
 Tab
 Space
 -, Minus
-=, Plus, Equals
+=, Plus         ## Appears as "Equals" in-game, but "Equals" is not a recognised keyname
 [, LeftBracket
 ], RightBracket
-\\, Backslash   ## You do need the espacing in the first case.
+\\, Backslash   ## You do need the escaping in the first case.
 ;, Semicolon
 ', Quote        ## Maps to the quote/doubleQuote key on QWERTY.
 `, BackQuote
@@ -60,10 +60,11 @@ Left, LeftArrow
 Down, DownArrow
 Up, UpArrow
 Numlock
+NumPlus         ## "Keypad +" is not a recognised keyname
 Keypad /, NumDivide
 Keypad *, NumMultiply
 Keypad -, NumMinus
-Keypad +, NumPlus
+Keypad =, NumEquals
 Keypad Enter, NumEnter
 Keypad 1, Num1
 Keypad 2, Num2
@@ -78,7 +79,6 @@ Keypad 0, Num0
 Keypad ., NumDecimal
 Application
 Power
-Keypad =
 F13
 F14
 F15
