@@ -104,7 +104,7 @@ ResourceGatherer.prototype.SetLastCarriedType = function(lastCarriedType)
 };
 
 // Since this code is very performancecritical and applying technologies quite slow, cache it.
-ResourceGatherer.prototype.RecalculateGatherRatesAndCapacities = function()
+ResourceGatherer.prototype.RecalculateGatherRates = function()
 {
 	this.baseSpeed = ApplyValueModificationsToEntity("ResourceGatherer/BaseSpeed", +this.template.BaseSpeed, this.entity);
 
@@ -122,10 +122,19 @@ ResourceGatherer.prototype.RecalculateGatherRatesAndCapacities = function()
 		let rate = ApplyValueModificationsToEntity("ResourceGatherer/Rates/" + r, +this.template.Rates[r], this.entity);
 		this.rates[r] = rate * this.baseSpeed;
 	}
+};
 
+ResourceGatherer.prototype.RecalculateCapacities = function()
+{
 	this.capacities = {};
 	for (let r in this.template.Capacities)
 		this.capacities[r] = ApplyValueModificationsToEntity("ResourceGatherer/Capacities/" + r, +this.template.Capacities[r], this.entity);
+};
+
+ResourceGatherer.prototype.RecalculateCapacity = function(type)
+{
+	if (type in this.capacities)
+		this.capacities[type] = ApplyValueModificationsToEntity("ResourceGatherer/Capacities/" + type, +this.template.Capacities[type], this.entity);
 };
 
 ResourceGatherer.prototype.GetGatherRates = function()
@@ -305,7 +314,7 @@ ResourceGatherer.prototype.CommitResources = function(target)
 	if (!cmpResourceDropsite)
 		return;
 
-	let change = cmpResourceDropsite.ReceiveResources(this.carrying, this.entity)
+	let change = cmpResourceDropsite.ReceiveResources(this.carrying, this.entity);
 	let changed = false;
 	for (let type in change)
 	{
@@ -373,7 +382,19 @@ ResourceGatherer.prototype.OnValueModification = function(msg)
 	if (msg.component != "ResourceGatherer")
 		return;
 
-	this.RecalculateGatherRatesAndCapacities();
+	// NB: at the moment, 0 A.D. always uses the fast path, the other is mod support.
+	if (msg.valueNames.length === 1)
+	{
+		if (msg.valueNames[0].indexOf("Capacities") !== -1)
+			this.RecalculateCapacity(msg.valueNames[0].substr(28));
+		else
+			this.RecalculateGatherRates();
+	}
+	else
+	{
+		this.RecalculateGatherRates();
+		this.RecalculateCapacities();
+	}
 };
 
 ResourceGatherer.prototype.OnOwnershipChanged = function(msg)
@@ -384,19 +405,21 @@ ResourceGatherer.prototype.OnOwnershipChanged = function(msg)
 		return;
 	}
 
-	this.RecalculateGatherRatesAndCapacities();
+	this.RecalculateGatherRates();
+	this.RecalculateCapacities();
 };
 
 ResourceGatherer.prototype.OnGlobalInitGame = function(msg)
 {
-	this.RecalculateGatherRatesAndCapacities();
+	this.RecalculateGatherRates();
+	this.RecalculateCapacities();
 };
 
 ResourceGatherer.prototype.OnMultiplierChanged = function(msg)
 {
 	let cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
 	if (cmpPlayer && msg.player == cmpPlayer.GetPlayerID())
-		this.RecalculateGatherRatesAndCapacities();
+		this.RecalculateGatherRates();
 };
 
 Engine.RegisterComponentType(IID_ResourceGatherer, "ResourceGatherer", ResourceGatherer);
