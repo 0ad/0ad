@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -30,6 +30,8 @@
 #include "scriptinterface/ScriptExtraHeaders.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "soundmanager/ISoundManager.h"
+
+#include <unordered_map>
 
 const CStr IGUIObject::EventNameMouseEnter = "MouseEnter";
 const CStr IGUIObject::EventNameMouseMove = "MouseMove";
@@ -347,11 +349,7 @@ void IGUIObject::SetScriptHandler(const CStr& eventName, JS::HandleObject Functi
 
 	m_ScriptHandlers[eventName] = JS::Heap<JSObject*>(Function);
 
-	auto it = m_pGUI.m_EventIGUIObjects.find(eventName);
-	if (it == m_pGUI.m_EventIGUIObjects.end())
-		m_pGUI.m_EventIGUIObjects.emplace(eventName, std::set<IGUIObject*>{this});
-	else
-		it->second.insert(this);
+	m_pGUI.m_EventObjects[eventName].push_back(this);
 }
 
 void IGUIObject::UnsetScriptHandler(const CStr& eventName)
@@ -365,15 +363,16 @@ void IGUIObject::UnsetScriptHandler(const CStr& eventName)
 
 	if (m_ScriptHandlers.empty())
 		JS_RemoveExtraGCRootsTracer(m_pGUI.GetScriptInterface()->GetGeneralJSContext(), Trace, this);
-	{
-		auto it = m_pGUI.m_EventIGUIObjects.find(eventName);
-		if (it != m_pGUI.m_EventIGUIObjects.end())
-		{
-			it->second.erase(this);
-			if (!it->second.size())
-				m_pGUI.m_EventIGUIObjects.erase(eventName);
-		}
-	}
+
+	std::unordered_map<CStr, std::vector<IGUIObject*>>::iterator it2 = m_pGUI.m_EventObjects.find(eventName);
+	if (it2 == m_pGUI.m_EventObjects.end())
+		return;
+
+	std::vector<IGUIObject*>& handlers = it2->second;
+	handlers.erase(std::remove(handlers.begin(), handlers.end(), this), handlers.end());
+
+	if (handlers.empty())
+		m_pGUI.m_EventObjects.erase(it2);
 }
 
 InReaction IGUIObject::SendEvent(EGUIMessageType type, const CStr& eventName)

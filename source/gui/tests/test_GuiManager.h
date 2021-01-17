@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -51,6 +51,65 @@ public:
 		delete configDB;
 		g_VFS.reset();
 		DeleteDirectory(DataDir()/"_testcache");
+	}
+
+	void test_EventObject()
+	{
+		// Load up a test page.
+		const ScriptInterface& scriptInterface = *(g_GUI->GetScriptInterface());
+		ScriptRequest rq(scriptInterface);
+		JS::RootedValue val(rq.cx);
+		scriptInterface.CreateObject(rq, &val);
+
+		ScriptInterface::StructuredClone data = scriptInterface.WriteStructuredClone(JS::NullHandleValue);
+		g_GUI->PushPage(L"event/page_event.xml", data, JS::UndefinedHandleValue);
+
+		const ScriptInterface& pageScriptInterface = *(g_GUI->GetActiveGUI()->GetScriptInterface());
+		ScriptRequest prq(pageScriptInterface);
+		JS::RootedValue global(prq.cx, prq.globalValue());
+
+		int called_value = 0;
+		JS::RootedValue js_called_value(prq.cx);
+
+		// Ticking will call the onTick handlers of all object. The second
+		// onTick is configured to disable the onTick handlers of the first and
+		// third and enable the fourth. So ticking once will only call the
+		// first and second object. We don't want the fourth object to be
+		// called, to avoid infinite additions of objects.
+		g_GUI->TickObjects();
+		pageScriptInterface.GetProperty(global, "called1", &js_called_value);
+		ScriptInterface::FromJSVal(prq, js_called_value, called_value);
+		TS_ASSERT_EQUALS(called_value, 1);
+
+		pageScriptInterface.GetProperty(global, "called2", &js_called_value);
+		ScriptInterface::FromJSVal(prq, js_called_value, called_value);
+		TS_ASSERT_EQUALS(called_value, 1);
+
+		pageScriptInterface.GetProperty(global, "called3", &js_called_value);
+		ScriptInterface::FromJSVal(prq, js_called_value, called_value);
+		TS_ASSERT_EQUALS(called_value, 0);
+
+		pageScriptInterface.GetProperty(global, "called4", &js_called_value);
+		ScriptInterface::FromJSVal(prq, js_called_value, called_value);
+		TS_ASSERT_EQUALS(called_value, 0);
+
+		// Ticking again will still call the second object, but also the fourth.
+		g_GUI->TickObjects();
+		pageScriptInterface.GetProperty(global, "called1", &js_called_value);
+		ScriptInterface::FromJSVal(prq, js_called_value, called_value);
+		TS_ASSERT_EQUALS(called_value, 1);
+
+		pageScriptInterface.GetProperty(global, "called2", &js_called_value);
+		ScriptInterface::FromJSVal(prq, js_called_value, called_value);
+		TS_ASSERT_EQUALS(called_value, 2);
+
+		pageScriptInterface.GetProperty(global, "called3", &js_called_value);
+		ScriptInterface::FromJSVal(prq, js_called_value, called_value);
+		TS_ASSERT_EQUALS(called_value, 0);
+
+		pageScriptInterface.GetProperty(global, "called4", &js_called_value);
+		ScriptInterface::FromJSVal(prq, js_called_value, called_value);
+		TS_ASSERT_EQUALS(called_value, 1);
 	}
 
 	void test_hotkeysState()
