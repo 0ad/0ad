@@ -4,13 +4,13 @@
     <Melee>
       <AttackName>Tusks</AttackName>
       <Damage>
-        <Hack>15.0</Hack>
-        <Pierce>10.0</Pierce>
-        <Crush>0.0</Crush>
+        <Hack>15</Hack>
+        <Pierce>10</Pierce>
+        <Crush>0</Crush>
       </Damage>
-      <MaxRange>4.0</MaxRange>
-      <PrepareTime>500</PrepareTime>
-      <RepeatTime>1000</RepeatTime>
+      <MaxRange>5</MaxRange>
+      <PrepareTime>1000</PrepareTime>
+      <RepeatTime>2000</RepeatTime>
       <RestrictedClasses datatype="tokens">Structure Ship Siege</RestrictedClasses>
     </Melee>
   </Attack>
@@ -18,20 +18,14 @@
     <Square width="4.0" depth="8.0"/>
     <Height>3.0</Height>
   </Footprint>
+  <Health>
+    <Max>120</Max>
+  </Health>
   <Identity>
     <GenericName>Walrus</GenericName>
     <SpecificName>Odobenus rosmarus</SpecificName>
     <Icon>gaia/fauna_walrus.png</Icon>
   </Identity>
-  <Resistance>
-    <Entity>
-      <Damage>
-        <Hack>3</Hack>
-        <Pierce>4</Pierce>
-        <Crush>5</Crush>
-      </Damage>
-    </Entity>
-  </Resistance>
   <ResourceSupply>
     <Amount>300</Amount>
   </ResourceSupply>

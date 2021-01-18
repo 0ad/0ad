@@ -1,9 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_fauna_wild_aggressive_wolf">
+<Entity parent="template_unit_fauna_wild_aggressive">
+  <Attack>
+    <Melee>
+      <AttackName>Fangs</AttackName>
+      <Damage>
+        <Hack>10</Hack>
+        <Pierce>10</Pierce>
+        <Crush>0</Crush>
+      </Damage>
+      <MaxRange>3</MaxRange>
+      <PrepareTime>1000</PrepareTime>
+      <RepeatTime>2000</RepeatTime>
+    </Melee>
+  </Attack>
   <Footprint>
     <Square width="1.5" depth="3.0"/>
     <Height>2.0</Height>
   </Footprint>
+  <Health>
+    <Max>40</Max>
+  </Health>
   <Identity>
     <GenericName>Wolf</GenericName>
     <SpecificName>Canis lupus</SpecificName>
