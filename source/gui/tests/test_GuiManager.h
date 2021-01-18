@@ -116,8 +116,8 @@ public:
 	{
 		// Load up a fake test hotkey when pressing 'a'.
 		const char* test_hotkey_name = "hotkey.test";
-		g_ConfigDB.SetValueString(CFG_USER, test_hotkey_name, "A");
-		LoadHotkeys();
+		configDB->SetValueString(CFG_USER, test_hotkey_name, "A");
+		LoadHotkeys(*configDB);
 
 		// Load up a test page.
 		const ScriptInterface& scriptInterface = *(g_GUI->GetScriptInterface());
@@ -189,5 +189,6 @@ public:
 		ScriptInterface::FromJSVal(prq, js_hotkey_pressed_value, hotkey_pressed_value);
 		TS_ASSERT_EQUALS(hotkey_pressed_value, false);
 
+		UnloadHotkeys();
 	}
 };
