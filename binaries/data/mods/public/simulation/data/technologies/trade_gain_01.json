@@ -7,11 +7,11 @@
 	},
 	"requirements": { "tech": "phase_town" },
 	"requirementsTooltip": "Unlocked in Town Phase.",
-	"icon": "metal_pot.png",
+	"icon": "amphore.png",
 	"researchTime": 40,
-	"tooltip": "Traders +10% trade gain.",
+	"tooltip": "Traders +15% trade gain.",
 	"modifications": [
-		{ "value": "Trader/GainMultiplier", "multiply": 1.1 }
+		{ "value": "Trader/GainMultiplier", "multiply": 1.15 }
 	],
 	"affects": ["Trader"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"

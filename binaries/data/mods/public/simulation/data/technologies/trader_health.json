@@ -1,0 +1,17 @@
+{
+	"genericName": "Trade Caravan",
+	"description": "Traders traveling together in caravans are less vulnerable.",
+	"cost": {
+		"food": 300
+	},
+	"requirements": { "tech": "phase_town" },
+	"requirementsTooltip": "Unlocked in Town Phase.",
+	"icon": "wheel.png",
+	"researchTime": 40,
+	"tooltip": "Land Traders +50% health.",
+	"modifications": [
+		{ "value": "Health/Max", "multiply": 1.5 }
+	],
+	"affects": ["Trader !Ship"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}
