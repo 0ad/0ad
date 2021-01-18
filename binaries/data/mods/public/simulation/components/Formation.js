@@ -459,6 +459,9 @@ Formation.prototype.Disband = function()
 	this.formationMembersWithAura = [];
 	this.offsets = undefined;
 
+	let cmpUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
+	// Hack: switch to a clean state to stop timers.
+	cmpUnitAI.UnitFsm.SwitchToNextState(cmpUnitAI, "");
 	Engine.DestroyEntity(this.entity);
 };
 
