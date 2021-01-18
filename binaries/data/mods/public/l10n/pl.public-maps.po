@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2020 Wildfire Games
+# Copyright (C) 2021 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -27,15 +27,15 @@
 # zyxist <nightstorm@tlen.pl>, 2014-2015
 # Piotr <joda17@wp.pl>, 2015
 # Piotr Lehmann <lejmus@o2.pl>, 2017
-# Przemysław Murach <moonshine133@vp.pl>, 2019-2020
+# Przemysław Murach <moonshine133@vp.pl>, 2019-2021
 # slodki12341 <slodki1234@gmail.com>, 2014
 # tombox <wptom@wp.pl>, 2016,2018
 # Voltinus <voltinusmail@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-12-26 15:10+0000\n"
-"PO-Revision-Date: 2020-12-26 21:57+0000\n"
+"POT-Creation-Date: 2021-01-15 08:53+0000\n"
+"PO-Revision-Date: 2021-01-17 14:10+0000\n"
 "Last-Translator: Przemysław Murach <moonshine133@vp.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -2299,6 +2299,14 @@ msgstr "Mapa gry wieloosobowej. Tropikalny raj."
 #: maps/scenarios/tropical_island.xml:Name:39
 msgid "Tropical Island"
 msgstr "Wyspa tropikalna"
+
+#: maps/scenarios/unit_dancing_test.xml:Description:41
+msgid "This map is designed to test a few different cases of 'Dancing'."
+msgstr "Na tej mapie testuje się różne rodzaje \"tańca\"."
+
+#: maps/scenarios/unit_dancing_test.xml:Name:41
+msgid "Unit Dancing test"
+msgstr "Test tańczącej jednostki"
 
 #: maps/scenarios/unit_motion_integration_test.xml:Description:40
 msgid ""

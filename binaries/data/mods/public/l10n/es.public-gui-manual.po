@@ -26,7 +26,7 @@
 # Mihai Pantazi <malexandru_70@hotmail.com>, 2017-2018
 # Nicolas Auvray <na.itms76@gmail.com>, 2018
 # Rafael López Reyes <rafalopezreyes@gmail.com>, 2018
-# Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>, 2018,2020
+# Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>, 2018,2020-2021
 # soloooy0 fg <juanjo.fg@hotmail.com>, 2017
 # Swyter <Swyterzone@gmail.com>, 2014-2018
 # Swyter <Swyterzone@gmail.com>, 2020
@@ -34,7 +34,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2020-12-23 19:25+0000\n"
+"PO-Revision-Date: 2021-01-16 19:08+0000\n"
 "Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -330,7 +330,7 @@ msgstr ""
 msgid ""
 "    • With hotkey.session.noconfirmation – Immediately delete currently "
 "selected unit(s)/structure(s), without asking for confirmation"
-msgstr ""
+msgstr "    • Con hotkey.session.noconfirmation – Elimina al instante las unidades/estructuras seleccionadas sin pedir confirmación"
 
 #: gui/manual/intro.txt:70
 msgid ""
@@ -381,7 +381,7 @@ msgstr ""
 msgid ""
 "  hotkey.session.unload – Unload the garrisoned units of the selected "
 "structure(s)"
-msgstr ""
+msgstr "  hotkey.session.unload – Despliega las unidades guarnecidas en las estructuras seleccionadas"
 
 #: gui/manual/intro.txt:80
 msgid ""
@@ -480,7 +480,7 @@ msgstr "[font=\"sans-bold-14\"]Modify mouse action[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:99
 msgid "  hotkey.session.garrison + Right Click on structure – Garrison"
-msgstr ""
+msgstr "  hotkey.session.garrison + Clic derecho sobre  estructuras – Guarnecer"
 
 #: gui/manual/intro.txt:100
 msgid "  hotkey.session.repair + Right Click on structure – Repair"
@@ -501,7 +501,7 @@ msgid ""
 "  hotkey.session.orderone + Right Click – Order one unit from the current "
 "selection to move/build/gather/etc. and unselect it. Used to quickly "
 "dispatch units with specific tasks"
-msgstr ""
+msgstr "  hotkey.session.orderone + Clic derecho – Ordena a una de las unidades seleccionadas que se mueva/construya/recolecte/etc. y sacarla de la selección. Se utiliza para dar ordenes rápidas a las unidades asignando tareas específicas"
 
 #: gui/manual/intro.txt:104
 msgid ""
@@ -555,7 +555,7 @@ msgstr "  Right Click with a structure(s) selected – Set a rally point for uni
 msgid ""
 "  hotkey.session.garrison + Right Click with unit(s) selected - Garrison (If"
 " the cursor is over an own or allied structure)"
-msgstr ""
+msgstr "  hotkey.session.garrison + Clic derecho con unidades seleccionadas - Guarnecer (el cursor debe estar sobre una estructura propia o aliada)"
 
 #: gui/manual/intro.txt:113
 msgid ""
@@ -600,7 +600,7 @@ msgid ""
 "  hotkey.wireframe – Toggle wireframe mode (press once to get wireframes "
 "overlaid over the textured models, twice to get just the wireframes colored "
 "by the textures, thrice to get back to normal textured mode)"
-msgstr ""
+msgstr "  hotkey.wireframe – Activa la vista de alambre (pulsando una vez la vista de alambre se superpone a los modelos texturizados, pulsando dos veces se mostrarán solo las siluetas coloreadas con las texturas, y finalmente pulsando tres veces volveremos al modo normal con texturas)"
 
 #: gui/manual/intro.txt:122
 msgid ""
@@ -664,7 +664,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:136
 msgid "  hotkey.camera.rotate.cw – Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "  hotkey.camera.rotate.cw – Rota la cámara en sentido horiario sobre el terreno"
 
 #: gui/manual/intro.txt:137
 msgid ""

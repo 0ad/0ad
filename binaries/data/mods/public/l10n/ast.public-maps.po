@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2020 Wildfire Games
+# Copyright (C) 2021 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-12-26 15:10+0000\n"
-"PO-Revision-Date: 2021-01-15 02:55+0000\n"
+"POT-Creation-Date: 2021-01-15 08:53+0000\n"
+"PO-Revision-Date: 2021-01-17 22:30+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -374,7 +374,7 @@ msgstr "Bastiones"
 
 #: maps/random/frontier.jsonsettings.Description
 msgid "A wild, unknown landscape awaits rival explorers."
-msgstr "Una tierra montesa ya desconocida aguarda esploradores."
+msgstr "Una tierra montesa ya descoñocida aguarda esploradores."
 
 #: maps/random/frontier.jsonsettings.Name
 msgid "Frontier"
@@ -802,7 +802,7 @@ msgstr "Les víes navegables dixebren la tierra en faces, dexando dellos pontigo
 
 #: maps/random/river_archipelago.jsonsettings.Name
 msgid "River Archipelago"
-msgstr "L'archipiélagu fluvial"
+msgstr "Enterríos"
 
 #: maps/random/rivers.jsonsettings.Description
 msgid ""
@@ -1070,7 +1070,7 @@ msgid ""
 "Teams start off with nearly adjacent civic centers, offering easy military "
 "and construction cooperation. With slivers of personal territory, teammates "
 "must rely on each other to defend their rear."
-msgstr "Cada equipu entama coles places cuasi xuntes, facilitando la collaboración n'asuntos militares ya de construcción. Con perpocu territoriu personal, los compañeros tienen d'enfotase ún a otru pa defender la retaguardia."
+msgstr "Cada equipu entama coles places cuasi xuntes, facilitando la collaboración n'asuntos militares ya internos. Con perpocu territoriu personal, los compañeros tienen d'enfotase ún a otru pa defender la retaguardia."
 
 #: maps/random/stronghold.jsonsettings.Name
 msgid "Stronghold"
@@ -1099,11 +1099,11 @@ msgstr "¡Una onda d'enemigos ta atacando!"
 #: maps/random/survivalofthefittest_triggers.js:292
 #, javascript-format
 msgid "%(player)s has been defeated (lost civic center)."
-msgstr "Vencieron a %(player)s (perdió la plaza)."
+msgstr "Vencióse a %(player)s (perdió la plaza)."
 
 #: maps/random/syria.jsonsettings.Description
 msgid "Players start in a plains with slightly rolling highlands."
-msgstr "Los xugadores entamen nuna llanada con dalguna llombera rasizo."
+msgstr "Los xugadores entamen nuna llanada con delles llombes."
 
 #: maps/random/syria.jsonsettings.Name
 msgid "Syria"
@@ -1113,7 +1113,7 @@ msgstr "Siria"
 msgid ""
 "A calm wide river, representing the Nile River in Egypt, divides the map "
 "into western and eastern parts."
-msgstr "Un ríu anchu ya sele, que representa'l Nilu n'Exiptu, parte'l mapa en dos estayes: la occidental ya la oriental."
+msgstr "Un ríu anchu ya sele, que representa'l Nilu n'Exiptu, parte'l mapa en dos."
 
 #: maps/random/the_nile.jsonsettings.Name
 msgid "The Nile"
@@ -1129,21 +1129,21 @@ msgstr "Ismu"
 
 #: maps/random/unknown.jsonsettings.Landscapes.land[2].Description
 msgid "A small central river."
-msgstr "Un riucu central"
+msgstr "Un riucu central."
 
 #: maps/random/unknown.jsonsettings.Landscapes.land[2].Name
 msgid "Central River"
-msgstr "Ríu central"
+msgstr "El ríu del mediu"
 
 #: maps/random/unknown.jsonsettings.Landscapes.land[3].Description
 msgid ""
 "Players are aligned on a strip of land with seas bordering on one or both "
 "sides that may hold islands."
-msgstr "Los xugadores tán alliniaos nuna faza de tierra. A un llau d'ella o dambos, hai mares que puen contener islles."
+msgstr "Los xugadores atópense alliniaos nuna faza de tierra al pie d'una mar que podría contener islles."
 
 #: maps/random/unknown.jsonsettings.Landscapes.land[3].Name
 msgid "Edge Seas"
-msgstr "Mares estremeres"
+msgstr "Mar confinante"
 
 #: maps/random/unknown.jsonsettings.Landscapes.land[4].Description
 msgid "Land shaped like a concrescent moon around a central lake."
@@ -1151,11 +1151,11 @@ msgstr "Tierra en forma de lluna creciente al rodiu d'un llagu central."
 
 #: maps/random/unknown.jsonsettings.Landscapes.land[4].Name
 msgid "Gulf"
-msgstr "Golfu"
+msgstr "El golfu lluniegu"
 
 #: maps/random/unknown.jsonsettings.Landscapes.land[5].Description
 msgid "Mainland style with some small random lakes."
-msgstr "Estilu continental con delles llagunes aisllaes."
+msgstr "Un continente con delles llagunes aisllaes."
 
 #: maps/random/unknown.jsonsettings.Landscapes.land[5].Name
 msgid "Lakes"
@@ -1165,49 +1165,49 @@ msgstr "Llagos"
 msgid ""
 "A large hill encompasses the map and leaves players only a small passage to "
 "the two neighboring players."
-msgstr "Una llomba grande arrodia'l mapa ya dexa a los xugadores un únicu pasín a los dos xugadores vecinos."
+msgstr "Una llomba cerca'l mapa dexando namái una estrecha que da pasu a los dos xugadores vecinos."
 
 #: maps/random/unknown.jsonsettings.Landscapes.land[6].Name
 msgid "Passes"
-msgstr "Caleyones"
+msgstr "Congostos"
 
 #: maps/random/unknown.jsonsettings.Landscapes.land[7].Description
 msgid ""
 "The land is enclosed by a hill that leaves a small area per player connected"
 " to the large central place."
-msgstr "La tierra zárralo una llomba que dexa a cada xugador un sitiucu xunto a la gran zona central."
+msgstr "Una llomba zarra la tierra dexando a cada xugador una estayina xunto a la gran fastera central."
 
 #: maps/random/unknown.jsonsettings.Landscapes.land[7].Name
 msgid "Lowlands"
-msgstr "Tierres baxes"
+msgstr "La fondalada"
 
 #: maps/random/unknown.jsonsettings.Landscapes.naval[0].Description
 msgid "A huge sea is dividing the map into two halves."
-msgstr "Una mar escomanada parte'l mapa en dos metaes."
+msgstr "Una mar escomanada parte'l mapa en dos."
 
 #: maps/random/unknown.jsonsettings.Landscapes.naval[0].Name
 msgid "Naval: Central Sea"
-msgstr "Naval: Mar central"
+msgstr "Naval: La mar central"
 
 #: maps/random/unknown.jsonsettings.Landscapes.naval[1].Description
 msgid "Players are scattered across island chains and disconnected islands."
-msgstr "Los xugadores tán espreganciaos per cadenes d'islles ya islles aisllaes."
+msgstr "Los xugadores atópense espreganciaos per munches islles, encadenaes y aisllaes."
 
 #: maps/random/unknown.jsonsettings.Landscapes.naval[1].Name
 msgid "Naval: Archipelago"
-msgstr "Naval: Archipiélagu"
+msgstr "Naval: L'archipiélagu"
 
 #: maps/random/unknown.jsonsettings.Landscapes.naval[2].Description
 msgid "A central lake with rivers possibly separating neighboring players."
-msgstr "Un llagu central con ríos que podríen tar dixebrando xugadores vecinos."
+msgstr "Un llagu central onde nacen ríos que podríen dixebrar los xugadores vecinos."
 
 #: maps/random/unknown.jsonsettings.Landscapes.naval[2].Name
 msgid "Naval: Lake and rivers"
-msgstr "Naval: Llagu ya ríos"
+msgstr "Naval: El naciente"
 
 #: maps/random/unknown.jsonsettings.Name
 msgid "Unknown"
-msgstr "Descoñozse"
+msgstr "Lo descoñocío"
 
 #: maps/random/volcanic_lands.jsonsettings.Description
 msgid "A charred dead land where players start around a smoking volcano."
@@ -2271,6 +2271,14 @@ msgstr "Mapa multixugador. Un paraísu tropical."
 msgid "Tropical Island"
 msgstr "Islla tropical"
 
+#: maps/scenarios/unit_dancing_test.xml:Description:41
+msgid "This map is designed to test a few different cases of 'Dancing'."
+msgstr "Esti mapa ta diseñáu pa probar dellos casos de «baillarada» nel movimientu de les unidaes."
+
+#: maps/scenarios/unit_dancing_test.xml:Name:41
+msgid "Unit Dancing test"
+msgstr "Prueba de baillarada"
+
 #: maps/scenarios/unit_motion_integration_test.xml:Description:40
 msgid ""
 "This map is designed to test some basic unit movement cases. It will involve"
@@ -2442,7 +2450,7 @@ msgstr "Un mapa d'islluques ambientáu en Mar Exéu."
 
 #: maps/skirmishes/cycladic_archipelago_2p.xml:Name:39
 msgid "Cycladic Archipelago (2)"
-msgstr "Archipiélagu de les Cíclades (2)"
+msgstr "Les Cíclades (2)"
 
 #: maps/skirmishes/cycladic_archipelago_3p.xml:Description:39
 msgid ""
@@ -2453,7 +2461,7 @@ msgstr "Un mapa d'islluques ambientáu en Mar Exéu.\n\nTamañu del mapa: Grand�
 
 #: maps/skirmishes/cycladic_archipelago_3p.xml:Name:39
 msgid "Cycladic Archipelago (3)"
-msgstr "Archipiélagu de les Cíclades (3)"
+msgstr "Les Cíclades (3)"
 
 #: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[0].Name:39
 msgid "Samos"
@@ -2583,7 +2591,7 @@ msgstr "Tolos xugadores entamen a una vera del ríu con perpocu metal acollechab
 
 #: maps/skirmishes/gambia_river_3p.xml:Name:39
 msgid "Gambia River (3)"
-msgstr "Ríu Gambia (3)"
+msgstr "El Gambia (3)"
 
 #: maps/skirmishes/golden_island_2p.xml:Description:40
 msgid ""
@@ -2722,7 +2730,7 @@ msgstr "Un mapa del desiertu expiciu permédialu'l ríu Nilu. Los recursos orgá
 
 #: maps/skirmishes/nile_river_4p.xml:Name:39
 msgid "Nile River (4)"
-msgstr "Ríu Nilu (4)"
+msgstr "El Nilu (4)"
 
 #: maps/skirmishes/northern_island_2p.xml:Description:40
 msgid ""
@@ -2821,7 +2829,7 @@ msgstr "Una gran sabana permédiala un regatu de la xungla."
 
 #: maps/skirmishes/savanna_river.xml:Name:39
 msgid "Savanna River (2)"
-msgstr "Ríu la sabana (2)"
+msgstr "La reguera la sabana (2)"
 
 #: maps/skirmishes/sicilia_2p.xml:Description:39
 msgid "The large Mediterranean island of Sicily is open for conquest."

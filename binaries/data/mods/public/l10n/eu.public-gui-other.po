@@ -5,14 +5,15 @@
 # Translators:
 # Mielanjel Iraeta <pospolos@gmail.com>, 2017-2021
 # Osoitz <oelkoro@gmail.com>, 2015,2019-2020
+# Porrumentzio <porrumentzio@riseup.net>, 2021
 # Mielanjel Iraeta <pospolos@gmail.com>, 2020
 # Gontzal M. Pujana <juchuf@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-11 08:08+0000\n"
-"PO-Revision-Date: 2021-01-11 08:36+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-01-15 08:53+0000\n"
+"PO-Revision-Date: 2021-01-17 10:47+0000\n"
+"Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -378,8 +379,8 @@ msgstr "Amarruak"
 #: gui/common/tooltips.js:250 gui/common/tooltips.js:313
 #: gui/common/tooltips.js:598 gui/common/tooltips.js:604
 #: gui/common/tooltips.js:632 gui/common/tooltips.js:638
-#: gui/common/tooltips.js:728 gui/common/tooltips.js:769
-#: gui/common/tooltips.js:1067
+#: gui/common/tooltips.js:725 gui/common/tooltips.js:766
+#: gui/common/tooltips.js:1064
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -515,8 +516,8 @@ msgstr "Erabiltzaileak (%(num)s): %(users)s"
 #: gui/common/tooltips.js:406 gui/common/tooltips.js:420
 #: gui/common/tooltips.js:497 gui/common/tooltips.js:502
 #: gui/common/tooltips.js:559 gui/common/tooltips.js:592
-#: gui/common/tooltips.js:932 gui/common/tooltips.js:965
-#: gui/common/tooltips.js:1032 gui/loadgame/SavegameDetails.js:38
+#: gui/common/tooltips.js:929 gui/common/tooltips.js:962
+#: gui/common/tooltips.js:1029 gui/loadgame/SavegameDetails.js:38
 #: gui/reference/common/tooltips.js:13 gui/replaymenu/replay_menu.js:282
 msgid ", "
 msgstr ", "
@@ -663,7 +664,7 @@ msgstr[0] "%(time)s %(second)s"
 msgstr[1] "%(time)s %(second)s"
 
 #: gui/common/tooltips.js:92 gui/common/tooltips.js:555
-#: gui/common/tooltips.js:963
+#: gui/common/tooltips.js:960
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "segundo"
@@ -761,7 +762,7 @@ msgstr "Blokeak: %(blockPercentage)s%%, Iraupenaren murriztea: %(durationReducti
 msgid "Garrison to fire arrows"
 msgstr "Sartu guardan geziak jaurtitzeko"
 
-#: gui/common/tooltips.js:297 gui/common/tooltips.js:961
+#: gui/common/tooltips.js:297 gui/common/tooltips.js:958
 msgid "Interval:"
 msgstr "Tartea:"
 
@@ -813,7 +814,7 @@ msgstr "%(rangeLabel)s %(minRange)s - %(maxRange)s %(rangeUnit)s"
 msgid "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
 msgstr "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
 
-#: gui/common/tooltips.js:345 gui/common/tooltips.js:956
+#: gui/common/tooltips.js:345 gui/common/tooltips.js:953
 msgid "Range:"
 msgstr "Irismena:"
 
@@ -828,8 +829,8 @@ msgstr "+%(number)s"
 msgid "meters"
 msgstr "metro"
 
-#: gui/common/tooltips.js:353 gui/common/tooltips.js:958
-#: gui/common/tooltips.js:988
+#: gui/common/tooltips.js:353 gui/common/tooltips.js:955
+#: gui/common/tooltips.js:985
 msgid "meter"
 msgid_plural "meters"
 msgstr[0] "metro"
@@ -949,11 +950,11 @@ msgstr "Guarda edukiera"
 msgid "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 msgstr "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 
-#: gui/common/tooltips.js:552 gui/common/tooltips.js:951
+#: gui/common/tooltips.js:552 gui/common/tooltips.js:948
 msgid "Heal:"
 msgstr "Sendatzea:"
 
-#: gui/common/tooltips.js:554 gui/common/tooltips.js:953
+#: gui/common/tooltips.js:554 gui/common/tooltips.js:950
 msgid "Health"
 msgstr "Osasuna"
 
@@ -983,7 +984,7 @@ msgstr "Konpontzaile kopurua:"
 
 #: gui/common/tooltips.js:605
 msgid "Remaining repair time:"
-msgstr ""
+msgstr "Konpontzeko falta den denbora:"
 
 #: gui/common/tooltips.js:609
 #, javascript-format
@@ -1006,7 +1007,7 @@ msgstr "Eraikitzaile kopurua:"
 
 #: gui/common/tooltips.js:639
 msgid "Remaining build time:"
-msgstr ""
+msgstr "Eraikitzeko falta den denbora:"
 
 #: gui/common/tooltips.js:643
 #, javascript-format
@@ -1023,16 +1024,16 @@ msgid_plural "Add a worker to finish the construction in %(second)s seconds."
 msgstr[0] "Gehitu langilea eraikuntza amaitzeko %(second)s segundoan."
 msgstr[1] "Gehitu langilea eraikuntza amaitzeko %(second)s segundotan."
 
-#: gui/common/tooltips.js:693 gui/common/tooltips.js:904
+#: gui/common/tooltips.js:693 gui/common/tooltips.js:901
 #, javascript-format
 msgid "%(component)s %(cost)s"
 msgstr "%(component)s %(cost)s"
 
-#: gui/common/tooltips.js:729
+#: gui/common/tooltips.js:726
 msgid "Gather Rates:"
 msgstr "Ustiaketa tasak:"
 
-#: gui/common/tooltips.js:732 gui/common/tooltips.js:774
+#: gui/common/tooltips.js:729 gui/common/tooltips.js:771
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
 msgstr "%(resourceIcon)s %(rate)s"
@@ -1040,170 +1041,170 @@ msgstr "%(resourceIcon)s %(rate)s"
 #. Translation: Label in tooltip showing the resource type and quantity of a
 #. given resource
 #. supply.
-#: gui/common/tooltips.js:752
+#: gui/common/tooltips.js:749
 #, javascript-format
 msgid "%(label)s %(component)s %(amount)s"
 msgstr "%(label)s %(component)s %(amount)s"
 
-#: gui/common/tooltips.js:753
+#: gui/common/tooltips.js:750
 msgid "Resource Supply:"
 msgstr "Baliabideen hornikuntza:"
 
 #. Translation: Marks that a resource supply entity has an unending, infinite,
 #. supply of its
 #. resource.
-#: gui/common/tooltips.js:756 gui/summary/summary.js:111
+#: gui/common/tooltips.js:753 gui/summary/summary.js:111
 msgid "∞"
 msgstr "∞"
 
-#: gui/common/tooltips.js:770
+#: gui/common/tooltips.js:767
 msgid "Resource Trickle:"
 msgstr "Baliabide Jarioa:"
 
-#: gui/common/tooltips.js:771
+#: gui/common/tooltips.js:768
 #, javascript-format
 msgid "%(resources)s / %(time)s"
 msgstr "%(resources)s / %(time)s"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
-#: gui/common/tooltips.js:823
+#: gui/common/tooltips.js:820
 #, javascript-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
 msgstr "%(resourceIcon)s %(minimum)s - %(resourceIcon)s %(maximum)s"
 
-#: gui/common/tooltips.js:852
+#: gui/common/tooltips.js:849
 #, javascript-format
 msgid "Walls:  %(costs)s"
 msgstr "Hesiak:  %(costs)s"
 
-#: gui/common/tooltips.js:853
+#: gui/common/tooltips.js:850
 #, javascript-format
 msgid "Towers:  %(costs)s"
 msgstr "Dorreak:  %(costs)s"
 
 #. Translation: Label in tooltip showing cost of a unit, structure or
 #. technology.
-#: gui/common/tooltips.js:861
+#: gui/common/tooltips.js:858
 #, javascript-format
 msgid "%(label)s %(costs)s"
 msgstr "%(label)s %(costs)s"
 
-#: gui/common/tooltips.js:862
+#: gui/common/tooltips.js:859
 msgid "Cost:"
 msgstr "Kostua:"
 
-#: gui/common/tooltips.js:875
+#: gui/common/tooltips.js:872
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "%(technology)s behar du"
 
-#: gui/common/tooltips.js:888
+#: gui/common/tooltips.js:885
 #, javascript-format
 msgid "%(label)s %(bonus)s"
-msgstr ""
+msgstr "%(label)s %(bonus)s"
 
-#: gui/common/tooltips.js:889
+#: gui/common/tooltips.js:886
 msgid "Population Bonus:"
 msgstr "Biztanleria hobaria:"
 
-#: gui/common/tooltips.js:909
+#: gui/common/tooltips.js:906
 msgid "Insufficient resources:"
 msgstr "Baliabide gutxiegi:"
 
-#: gui/common/tooltips.js:925
+#: gui/common/tooltips.js:922
 #, javascript-format
 msgid "%(label)s %(speeds)s"
 msgstr "%(label)s %(speeds)s"
 
-#: gui/common/tooltips.js:926
+#: gui/common/tooltips.js:923
 msgid "Speed:"
 msgstr "Abiadura:"
 
-#: gui/common/tooltips.js:928 gui/common/tooltips.js:933
+#: gui/common/tooltips.js:925 gui/common/tooltips.js:930
 #, javascript-format
 msgid "%(speed)s %(movementType)s"
 msgstr "%(speed)s %(movementType)s"
 
-#: gui/common/tooltips.js:930
+#: gui/common/tooltips.js:927
 msgid "Walk"
 msgstr "Oinez"
 
-#: gui/common/tooltips.js:935
+#: gui/common/tooltips.js:932
 msgid "Run"
 msgstr "Korrika"
 
-#: gui/common/tooltips.js:950 gui/common/tooltips.js:955
-#: gui/common/tooltips.js:960 gui/common/tooltips.js:985
+#: gui/common/tooltips.js:947 gui/common/tooltips.js:952
+#: gui/common/tooltips.js:957 gui/common/tooltips.js:982
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
 msgstr[0] "%(label)s %(val)s %(unit)s"
 msgstr[1] "%(label)s %(val)s %(unit)s"
 
-#: gui/common/tooltips.js:977
+#: gui/common/tooltips.js:974
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
 msgstr "%(auralabel)s %(aurainfo)s"
 
-#: gui/common/tooltips.js:978
+#: gui/common/tooltips.js:975
 #, javascript-format
 msgid "%(auraname)s:"
 msgstr "%(auraname)s:"
 
-#: gui/common/tooltips.js:986
+#: gui/common/tooltips.js:983
 msgctxt "aura"
 msgid "Range:"
 msgstr "Irismena:"
 
-#: gui/common/tooltips.js:1003
+#: gui/common/tooltips.js:1000
 #, javascript-format
 msgid "%(specificName)s (%(genericName)s)"
 msgstr "%(specificName)s (%(genericName)s)"
 
 #. Translation: Example: "Epibátēs Athēnaîos [font="sans-bold-16"](Athenian
 #. Marine)[/font]"
-#: gui/common/tooltips.js:1016
+#: gui/common/tooltips.js:1013
 #, javascript-format
 msgid "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 msgstr "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 
-#: gui/common/tooltips.js:1031
+#: gui/common/tooltips.js:1028
 msgid "Classes:"
 msgstr "Klaseak:"
 
 #. Translation: %(component) will be the icon for the loot type and %(loot)
 #. will be the
 #. value.
-#: gui/common/tooltips.js:1058
+#: gui/common/tooltips.js:1055
 #, javascript-format
 msgid "%(component)s %(loot)s"
 msgstr "%(component)s %(loot)s"
 
-#: gui/common/tooltips.js:1068
+#: gui/common/tooltips.js:1065
 msgid "Loot:"
 msgstr "Harrapakina:"
 
-#: gui/common/tooltips.js:1078
+#: gui/common/tooltips.js:1075
 #, javascript-format
 msgid "%(label)s %(icons)s"
 msgstr "%(label)s %(icons)s"
 
-#: gui/common/tooltips.js:1079
+#: gui/common/tooltips.js:1076
 msgid "Dropsite for:"
 msgstr "Honetarako biltegia:"
 
 #. Translation: Appears in a tooltip to indicate that right-clicking the
 #. corresponding GUI
 #. element will open the Template Details GUI page.
-#: gui/common/tooltips.js:1087
+#: gui/common/tooltips.js:1084
 msgid "Right-click to view more information."
 msgstr "Eskuin klika informazio gehiago ikusteko."
 
 #. Translation: Appears in a tooltip to indicate that clicking the
 #. corresponding GUI element
 #. will open the Template Details GUI page.
-#: gui/common/tooltips.js:1093
+#: gui/common/tooltips.js:1090
 msgid "Click to view more information."
 msgstr "Klikatu informazio gehiago ikusteko."
 
@@ -1631,7 +1632,7 @@ msgstr "Hasierako egoerara bueltatzeak zure ezarpenak ezabatuko ditu. Jarraitu n
 
 #: gui/options/options.js:351
 msgid "Some setting values are invalid! Are you sure you want to save them?"
-msgstr ""
+msgstr "Ezarpen balio batzuk baliogabeak dira! Ziur al zaude gorde nahi dituzula?"
 
 #: gui/options/options.js:377
 msgid "You have unsaved changes, do you want to close this window?"
@@ -1663,7 +1664,7 @@ msgstr "Txataren denbora-zigilua"
 
 #: gui/options/options.json[0].options[11].tooltip
 msgid "Display the time at which a chat message was posted."
-msgstr ""
+msgstr "Erakutsi txat mezu bat noiz argitaratu den."
 
 #: gui/options/options.json[0].options[1].label
 msgid "Player name (multiplayer)"
@@ -1852,7 +1853,7 @@ msgstr "Ikusmen leuna"
 
 #: gui/options/options.json[1].options[19].tooltip
 msgid "Lift darkness and fog of war smoothly."
-msgstr ""
+msgstr "Altxatu leunki iluntasuna eta gatazka lainoa."
 
 #: gui/options/options.json[1].options[1].label
 msgid "Prefer GLSL"
@@ -1904,7 +1905,7 @@ msgstr "Lainoa"
 
 #: gui/options/options.json[1].options[2].tooltip
 msgid "Enable fog."
-msgstr ""
+msgstr "Gaitu lainoa."
 
 #: gui/options/options.json[1].options[3].label
 msgid "Post-processing"
@@ -1916,11 +1917,11 @@ msgstr "Erabili post prozesatze iragazkiak (HDR, Bloom, DOF, eta abar)."
 
 #: gui/options/options.json[1].options[4].label
 msgid "Antialiasing"
-msgstr ""
+msgstr "Antialiasing-a"
 
 #: gui/options/options.json[1].options[4].list[0].tooltip
 msgid "Do not use antialiasing."
-msgstr ""
+msgstr "Ez erabili antialiasing."
 
 #: gui/options/options.json[1].options[4].list[1].label
 msgid "FXAA"
@@ -1928,47 +1929,47 @@ msgstr "FXAA"
 
 #: gui/options/options.json[1].options[4].list[1].tooltip
 msgid "Fast, but simple antialiasing."
-msgstr ""
+msgstr "Antialiasing azkarra, baina xinplea."
 
 #: gui/options/options.json[1].options[4].list[2].label
 msgid "MSAA (2×)"
-msgstr ""
+msgstr "MSAA (2×)"
 
 #: gui/options/options.json[1].options[4].list[2].tooltip
 msgid ""
 "Slow, but high-quality antialiasing, uses two samples per pixel. Supported "
 "for GL3.3+."
-msgstr ""
+msgstr "Antialiasing motelak baina kalitate handikoak, pixel bakoitzeko bi lagin erabiltzen ditu. GL3.3 + bertsiorako onartzen da."
 
 #: gui/options/options.json[1].options[4].list[3].label
 msgid "MSAA (4×)"
-msgstr ""
+msgstr "MSAA (x4)"
 
 #: gui/options/options.json[1].options[4].list[3].tooltip
 msgid ""
 "Slow, but high-quality antialiasing, uses four samples per pixel. Supported "
 "for GL3.3+."
-msgstr ""
+msgstr "Antialiasing motelak baina kalitate handikoak, pixel bakoitzeko lau lagin erabiltzen ditu. GL3.3 + bertsiorako onartzen da."
 
 #: gui/options/options.json[1].options[4].list[4].label
 msgid "MSAA (8×)"
-msgstr ""
+msgstr "MSAA (8×)"
 
 #: gui/options/options.json[1].options[4].list[4].tooltip
 msgid ""
 "Slow, but high-quality antialiasing, uses eight samples per pixel. Supported"
 " for GL3.3+."
-msgstr ""
+msgstr "Antialiasing motelak baina kalitate handikoak, pixel bakoitzeko zortzi lagin erabiltzen ditu. GL3.3 + bertsiorako onartzen da."
 
 #: gui/options/options.json[1].options[4].list[5].label
 msgid "MSAA (16×)"
-msgstr ""
+msgstr "MSAA (16×)"
 
 #: gui/options/options.json[1].options[4].list[5].tooltip
 msgid ""
 "Slow, but high-quality antialiasing, uses sixteen samples per pixel. "
 "Supported for GL3.3+."
-msgstr ""
+msgstr "Antialiasing motelak baina kalitate handikoak, pixel bakoitzeko hamasei lagin erabiltzen ditu. GL3.3 + bertsiorako onartzen da."
 
 #: gui/options/options.json[1].options[4].tooltip
 msgid "Reduce aliasing effect on edges."
@@ -2103,7 +2104,7 @@ msgstr "Norbaitek zure izena aipatzen den bakoitzean soinu bat entzungo duzu."
 
 #: gui/options/options.json[2].options[6].label
 msgid "New player notification in game setup"
-msgstr ""
+msgstr "Jakinarazi jokalari berriak jokoaren ezarpenetan"
 
 #: gui/options/options.json[2].options[6].tooltip
 msgid "Receive audio notification when a new client joins the game setup."
@@ -2251,7 +2252,7 @@ msgstr "Ezarpen hauek hainbat jokalarien moduari baino ez diote eragiten."
 
 #: gui/options/options.json[5].label
 msgid "Game Session"
-msgstr ""
+msgstr "Joko saioa"
 
 #: gui/options/options.json[5].options[0].label
 msgid "Wounded unit health"
@@ -2370,7 +2371,7 @@ msgstr "Aukera honek aukera ematen du egitura berriak hurbileko egiturekin lerro
 
 #: gui/options/options.json[5].options[19].label
 msgid "Control group membership"
-msgstr ""
+msgstr "Kontrol taldearen partaidea"
 
 #: gui/options/options.json[5].options[19].list[0].label
 msgid "Single"
@@ -2472,7 +2473,7 @@ msgstr "Erasoaren irismena bistaratzea"
 msgid ""
 "Display the attack range of selected defensive structures. (It can also be "
 "toggled with the hotkey during a game)."
-msgstr ""
+msgstr "Aukeratutako babes egituren eraso maila erakusten du. (Jokoan zehar sarbide azkarreko teklarekin ere txandakatu daiteke)."
 
 #: gui/options/options.json[5].options[8].label
 msgid "Aura range visualization"
@@ -2482,7 +2483,7 @@ msgstr "Auraren irismena bistaratzea"
 msgid ""
 "Display the range of auras of selected units and structures. (It can also be"
 " toggled with the hotkey during a game)."
-msgstr ""
+msgstr "Aukeratutako unitate eta egituren auraren maila erakusten du. (Jokoan zehar sarbide azkarreko teklarekin ere txandakatu daiteke)"
 
 #: gui/options/options.json[5].options[9].label
 msgid "Heal range visualization"
@@ -2492,7 +2493,7 @@ msgstr "Sendatze-irismena bistaratzea"
 msgid ""
 "Display the healing range of selected units. (It can also be toggled with "
 "the hotkey during a game)."
-msgstr ""
+msgstr "Bistaratu hautatutako unitateen sendatze-barrutia. (Jokoan zehar sarbide azkarreko teklarekin ere txandakatu daiteke)."
 
 #: gui/options/options.json[5].tooltip
 msgid "Change options regarding the in-game settings."
@@ -2577,11 +2578,11 @@ msgstr "%(hotkey)s: Ezagutu hobeto 0 A.D.-n azaltzen diren zibilizazio desberdin
 
 #: gui/pregame/MainMenuItems.js:48
 msgid "Map Overview"
-msgstr ""
+msgstr "Maparen ikuspegi orokorra"
 
 #: gui/pregame/MainMenuItems.js:49
 msgid "View the different maps featured in 0 A.D."
-msgstr ""
+msgstr "Ikusi 0 A.D.-n agertzen diren mapa desberdinak"
 
 #: gui/pregame/MainMenuItems.js:57 gui/replaymenu/replay_filters.js:144
 msgid "Single-player"
@@ -2893,7 +2894,7 @@ msgstr "Automatikoki bidal diezagukezu informazioa, honela erroreak konpontzen e
 msgid ""
 "\n"
 "     %(description)s"
-msgstr ""
+msgstr "\n     %(description)s"
 
 #. Translation: An entry in the CivInfo Page. The newline and indentation of
 #. the description
@@ -2904,7 +2905,7 @@ msgstr ""
 #: gui/reference/civinfo/CivInfoPage.js:102
 #, javascript-format
 msgid "• %(name)s %(info_icon)s%(description)s"
-msgstr ""
+msgstr "• %(name)s %(info_icon)s%(description)s"
 
 #: gui/reference/civinfo/CivInfoPage.js:113
 #, javascript-format
@@ -2936,20 +2937,20 @@ msgstr[1] "Taldearen hobariak"
 #: gui/reference/civinfo/Sections/Subsections/HeroesSubsection.js:29
 msgid "Hero"
 msgid_plural "Heroes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Heroia"
+msgstr[1] "Heroiak"
 
 #: gui/reference/civinfo/Sections/Subsections/StructuresSubsection.js:29
 msgid "Specific Structure"
 msgid_plural "Specific Structures"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Egitura espezifikoa"
+msgstr[1] "Egitura espezifikoak"
 
 #: gui/reference/civinfo/Sections/Subsections/TechnologiesSubsection.js:28
 msgid "Specific Technology"
 msgid_plural "Specific Technologies"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Teknologia espezifikoa"
+msgstr[1] "Teknologia espezifikoak"
 
 #: gui/reference/common/Buttons/CivInfoButton.js:27
 #, javascript-format
@@ -3137,7 +3138,7 @@ msgstr "Jokalari bakarra edo hainbat jokalari"
 
 #: gui/replaymenu/replay_filters.js:157
 msgid "Any victory condition"
-msgstr ""
+msgstr "Edozein Irabazteko Baldintza"
 
 #: gui/replaymenu/replay_filters.js:170
 msgid "Rated and unrated games"
@@ -3225,7 +3226,7 @@ msgstr "Iraupena"
 
 #: gui/replaymenu/replay_menu.xml:(placeholder_text):32
 msgid "Search for Player"
-msgstr ""
+msgstr "Bilatu jokalaria"
 
 #: gui/replaymenu/replay_menu.xml:(tooltip):240
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
@@ -3904,6 +3905,28 @@ msgid ""
 "fights, but the less efficient he is at gathering resources."
 msgstr "Hiritar-soldaduaren maila zenbat eta gorago egon (aurreratua, elite), hobe borrokatzen da, baina baliabideak ustiatzen kaskarragoa izango da."
 
+#: gui/text/tips/heroes.txt:1
+msgid "HEROES"
+msgstr "HEROIAK"
+
+#: gui/text/tips/heroes.txt:2
+msgid ""
+"Historical characters, such as Xerxes, Leonidas, Pericles, Hannibal, Scipio,"
+" and Boudicca."
+msgstr "Xerxes, Leonidas, Pericles, Hannibal, Scipio, eta Boudicca moduko pertsonai historikoak."
+
+#: gui/text/tips/heroes.txt:3
+msgid "A lot of health and very strong attacks."
+msgstr "Osasun handia eta eraso gogorrak."
+
+#: gui/text/tips/heroes.txt:4
+msgid "Have auras which alter the stats of other units or structures."
+msgstr "Beste unitate edo egitura batzuetako estatistikak aldatzen dituzten aurak ditu."
+
+#: gui/text/tips/heroes.txt:5
+msgid "Caution: Each hero can be recruited only once per match!"
+msgstr "Kontuz: heroi bakoitza partida bakoitzean behin bakarrik errekrutatu daiteke!"
+
 #: gui/text/tips/iphicrates.txt:1
 msgid "IPHICRATES"
 msgstr "IPHICRATES"
@@ -4062,6 +4085,26 @@ msgstr "Gehienetan 100 egurretan eta 100 harrian dute kostua. Iberiarren babes d
 #: gui/text/tips/scout_towers.txt:4
 msgid "Has a ranged attack that increases for each garrisoned unit."
 msgstr "Urrutirako erasoa du, bere barnean guardan sartutako unitate bakoitzarekin hobetzen dena."
+
+#: gui/text/tips/snapping.txt:1
+msgid "SNAPPING"
+msgstr "HARRAPAKETA"
+
+#: gui/text/tips/snapping.txt:2
+msgid ""
+"Structures can be aligned by keeping the snap hotkey pressed during "
+"placement."
+msgstr "Egiturak lerrokatzeko, sarbide bizkorreko tekla sakatuta eduki behar da."
+
+#: gui/text/tips/snapping.txt:3
+msgid "Aligning structures allows to conserve space for future construction."
+msgstr "Egiturak lerrokatzeak espazioa kontserbatzea ahalbidetzen du, etorkizunean eraikitzeko."
+
+#: gui/text/tips/snapping.txt:4
+msgid ""
+"Tightly packed groups of structures can also be used for obstructing raiding"
+" enemies."
+msgstr "Egitura multzo estuak ere erabil daitezke etsaien erasoak eragozteko."
 
 #: gui/text/tips/spartan_hoplites.txt:1
 msgid "SPARTIATES"

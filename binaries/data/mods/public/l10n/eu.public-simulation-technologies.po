@@ -12,15 +12,78 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-11 08:08+0000\n"
-"PO-Revision-Date: 2021-01-11 11:19+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-01-15 08:53+0000\n"
+"PO-Revision-Date: 2021-01-17 12:17+0000\n"
+"Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: eu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: simulation/data/technologies/agoge.jsondescription
+msgid ""
+"Spartans were housed and trained from a young age to be superlative warriors"
+" and to endure any hardship a military life can give them."
+msgstr "Espartarrak txikitatik izan ziren etxekotu eta erakutsiak goreneko gudariak bihurtzeko eta militar bizitzaren gorabehera guztiak jasan ahal izateko."
+
+#: simulation/data/technologies/agoge.jsongenericName
+msgid "The Agoge"
+msgstr "Agogea"
+
+#: simulation/data/technologies/agoge.jsonrequirementsTooltip
+#: simulation/data/technologies/armor_hero_01.jsonrequirementsTooltip
+#: simulation/data/technologies/attack_cavalry_melee_02.jsonrequirementsTooltip
+#: simulation/data/technologies/attack_cavalry_ranged_02.jsonrequirementsTooltip
+#: simulation/data/technologies/attack_infantry_melee_02.jsonrequirementsTooltip
+#: simulation/data/technologies/attack_infantry_ranged_02.jsonrequirementsTooltip
+#: simulation/data/technologies/attack_soldiers_will.jsonrequirementsTooltip
+#: simulation/data/technologies/attack_steel_working.jsonrequirementsTooltip
+#: simulation/data/technologies/barracks_batch_training.jsonrequirementsTooltip
+#: simulation/data/technologies/equine_transports.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_capacity_carts.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_farming_fertilizer.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_lumbering_sharpaxes.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_mining_silvermining.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_mining_slaves.jsonrequirementsTooltip
+#: simulation/data/technologies/heal_range_2.jsonrequirementsTooltip
+#: simulation/data/technologies/heal_rate_2.jsonrequirementsTooltip
+#: simulation/data/technologies/health_regen_units.jsonrequirementsTooltip
+#: simulation/data/technologies/hellenistic_metropolis.jsonrequirementsTooltip
+#: simulation/data/technologies/immortals.jsonrequirementsTooltip
+#: simulation/data/technologies/iphicratean_reforms.jsonrequirementsTooltip
+#: simulation/data/technologies/long_walls.jsonrequirementsTooltip
+#: simulation/data/technologies/nisean_horses.jsonrequirementsTooltip
+#: simulation/data/technologies/parade_of_daphne.jsonrequirementsTooltip
+#: simulation/data/technologies/pop_house_02.jsonrequirementsTooltip
+#: simulation/data/technologies/pop_wonder.jsonrequirementsTooltip
+#: simulation/data/technologies/reformed_army_sele.jsonrequirementsTooltip
+#: simulation/data/technologies/ship_cost_time.jsonrequirementsTooltip
+#: simulation/data/technologies/ship_health.jsonrequirementsTooltip
+#: simulation/data/technologies/ship_movement_speed.jsonrequirementsTooltip
+#: simulation/data/technologies/sibylline_books.jsonrequirementsTooltip
+#: simulation/data/technologies/siege_armor.jsonrequirementsTooltip
+#: simulation/data/technologies/siege_attack.jsonrequirementsTooltip
+#: simulation/data/technologies/siege_bolt_accuracy.jsonrequirementsTooltip
+#: simulation/data/technologies/siege_cost_metal.jsonrequirementsTooltip
+#: simulation/data/technologies/siege_cost_wood.jsonrequirementsTooltip
+#: simulation/data/technologies/silvershields.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_resistance_hack_02.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_resistance_pierce_02.jsonrequirementsTooltip
+#: simulation/data/technologies/stable_batch_training.jsonrequirementsTooltip
+#: simulation/data/technologies/tower_health.jsonrequirementsTooltip
+#: simulation/data/technologies/tower_murderholes.jsonrequirementsTooltip
+#: simulation/data/technologies/trade_convoys_armor.jsonrequirementsTooltip
+#: simulation/data/technologies/trade_gain_02.jsonrequirementsTooltip
+#: simulation/data/technologies/traditional_army_sele.jsonrequirementsTooltip
+#: simulation/data/technologies/unlock_champion_units.jsonrequirementsTooltip
+msgid "Unlocked in City Phase."
+msgstr "Hiri aroan desblokeatuta."
+
+#: simulation/data/technologies/agoge.jsontooltip
+msgid "Champion Infantry Spearmen +25% health, but +5% training time."
+msgstr "Infanteriako lantzari aldezkariak 25%+ osasunean, %5+ trebatze denboran."
 
 #: simulation/data/technologies/archery_tradition.jsondescription
 msgid ""
@@ -33,11 +96,10 @@ msgid "Archery Tradition"
 msgstr "Arkulari Usadioa"
 
 #: simulation/data/technologies/archery_tradition.jsonrequirementsTooltip
-#: simulation/data/technologies/armor_ship_reinforcedhull.jsonrequirementsTooltip
 #: simulation/data/technologies/cavalry_movement_speed.jsonrequirementsTooltip
+#: simulation/data/technologies/fishing_boat_gather_rate.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_basket.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_plows.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_fishing_net.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsonrequirementsTooltip
 #: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_watch.jsonrequirementsTooltip
@@ -46,27 +108,23 @@ msgstr "Herrixka aroan desblokeatuta."
 
 #: simulation/data/technologies/archery_tradition.jsontooltip
 msgid ""
-"Archers −10% training time, +8 attack range, and −10% ranged attack spread."
-msgstr "Arkulariak %10- trebatze denboran, 8+ erasoan, eta %10- erasoa zabaltzean."
+"Archers −10% training time, +10 attack range, and −10% ranged attack spread."
+msgstr "Arkulariak %10- trebatze denboran, 10+ erasoan, eta %10- erasoa zabaltzean."
 
-#: simulation/data/technologies/armor_cav_01.jsondescription
-msgid "Metal armor for a horse's face."
-msgstr "Metalezko armadura zaldiaren bururako."
+#: simulation/data/technologies/architecture_kush.jsongenericName
+msgid "Monumental Architecture"
+msgstr "Arkitektura Monumentala"
 
-#: simulation/data/technologies/armor_cav_01.jsongenericName
-#: simulation/data/technologies/armor_cav_02.jsongenericName
-msgid "Chamfron"
-msgstr "Zaldi armadura"
-
-#: simulation/data/technologies/armor_cav_01.jsonrequirementsTooltip
-#: simulation/data/technologies/armor_infantry_01.jsonrequirementsTooltip
-#: simulation/data/technologies/armor_ship_hypozomata.jsonrequirementsTooltip
+#: simulation/data/technologies/architecture_kush.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_cavalry_melee_01.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_infantry_melee_01.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_infantry_ranged_01.jsonrequirementsTooltip
-#: simulation/data/technologies/carthaginians/special_colonisation.jsonrequirementsTooltip
-#: simulation/data/technologies/carthaginians/special_exploration.jsonrequirementsTooltip
+#: simulation/data/technologies/cavalry_cost_time.jsonrequirementsTooltip
+#: simulation/data/technologies/cavalry_health.jsonrequirementsTooltip
+#: simulation/data/technologies/colonization.jsonrequirementsTooltip
+#: simulation/data/technologies/exploration.jsonrequirementsTooltip
+#: simulation/data/technologies/fishing_boat_gather_capacity.jsonrequirementsTooltip
 #: simulation/data/technologies/garrison_heal.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_harvester.jsonrequirementsTooltip
@@ -76,10 +134,10 @@ msgstr "Zaldi armadura"
 #: simulation/data/technologies/gather_mining_shaftmining.jsonrequirementsTooltip
 #: simulation/data/technologies/heal_range.jsonrequirementsTooltip
 #: simulation/data/technologies/heal_rate.jsonrequirementsTooltip
-#: simulation/data/technologies/kushites/monumental_architecture.jsonrequirementsTooltip
-#: simulation/data/technologies/persians/training_levy_cavalry.jsonrequirementsTooltip
-#: simulation/data/technologies/persians/training_levy_infantry.jsonrequirementsTooltip
+#: simulation/data/technologies/infantry_cost_time.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_resistance_hack_01.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_resistance_pierce_01.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_crenellations.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_range.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
@@ -89,72 +147,26 @@ msgstr "Zaldi armadura"
 msgid "Unlocked in Town Phase."
 msgstr "Herri Aroan desblokeatuta."
 
-#: simulation/data/technologies/armor_cav_01.jsonspecificName.athen
-#: simulation/data/technologies/armor_cav_01.jsonspecificName.mace
-#: simulation/data/technologies/armor_cav_01.jsonspecificName.ptol
-#: simulation/data/technologies/armor_cav_01.jsonspecificName.sele
-#: simulation/data/technologies/armor_cav_01.jsonspecificName.spart
-msgid "Prometōpidion"
-msgstr "Prometōpidion"
+#: simulation/data/technologies/architecture_kush.jsontooltip
+msgid ""
+"Civic Structures +20% build time, +20% health, and +20% capture points."
+msgstr "Egitura zibilak %20+ eraikitze denboran, %20+ osasunean, eta %20+ atzemate puntu."
 
-#: simulation/data/technologies/armor_cav_01.jsontooltip
-#: simulation/data/technologies/armor_cav_02.jsontooltip
-msgid "Cavalry +1 hack and pierce armor."
-msgstr "Zalditeriak +1 mozte eta zulatze babesa."
+#: simulation/data/technologies/architecture_pers.jsondescription
+msgid ""
+"The Persians built the wonderful 1677 mile-long Royal Highway from Sardis to"
+" Susa; Darius the Great and Xerxes also built the magnificent Persepolis; "
+"Cyrus the Great greatly improved Ecbatana and virtually 'rebuilt' the old "
+"Elamite capital of Susa."
+msgstr "Persiarrek 2700 kilometroetan zehar eraiki zuten sinistu ezinezko Errege Bidea, Sardestik Susaraino; Dario Handiak eta Jerjesek ere Persepolis ikaragarria eraiki zuten; Ziro Handiak Ekbatana asko aurreratu zuen eta Susako Elamita Kapitala berreraiki zuen."
 
-#: simulation/data/technologies/armor_cav_02.jsondescription
-msgid "Metal armor for a horse's body."
-msgstr "Metalezko armadura zaldiaren gorputzerako."
+#: simulation/data/technologies/architecture_pers.jsongenericName
+msgid "Persian Architecture"
+msgstr "Persiar Arkitektura"
 
-#: simulation/data/technologies/armor_cav_02.jsonrequirementsTooltip
-#: simulation/data/technologies/armor_hero_01.jsonrequirementsTooltip
-#: simulation/data/technologies/armor_infantry_02.jsonrequirementsTooltip
-#: simulation/data/technologies/armor_ship_hullsheathing.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_cavalry_melee_02.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_cavalry_ranged_02.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_infantry_melee_02.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_infantry_ranged_02.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_soldiers_will.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_steel_working.jsonrequirementsTooltip
-#: simulation/data/technologies/carthaginians/training_phoenician_naval_architects.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_capacity_carts.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_farming_fertilizer.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_lumbering_sharpaxes.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_mining_silvermining.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_mining_slaves.jsonrequirementsTooltip
-#: simulation/data/technologies/heal_range_2.jsonrequirementsTooltip
-#: simulation/data/technologies/heal_rate_2.jsonrequirementsTooltip
-#: simulation/data/technologies/health_regen_units.jsonrequirementsTooltip
-#: simulation/data/technologies/hellenes/spartans_agoge.jsonrequirementsTooltip
-#: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsonrequirementsTooltip
-#: simulation/data/technologies/hellenes/special_long_walls.jsonrequirementsTooltip
-#: simulation/data/technologies/persians/immortals.jsonrequirementsTooltip
-#: simulation/data/technologies/persians/special_equine_transports.jsonrequirementsTooltip
-#: simulation/data/technologies/persians/training_conscription_cavalry.jsonrequirementsTooltip
-#: simulation/data/technologies/persians/training_conscription_infantry.jsonrequirementsTooltip
-#: simulation/data/technologies/pop_house_02.jsonrequirementsTooltip
-#: simulation/data/technologies/pop_wonder.jsonrequirementsTooltip
-#: simulation/data/technologies/romans/vision_sibylline.jsonrequirementsTooltip
-#: simulation/data/technologies/siege_armor.jsonrequirementsTooltip
-#: simulation/data/technologies/siege_attack.jsonrequirementsTooltip
-#: simulation/data/technologies/siege_bolt_accuracy.jsonrequirementsTooltip
-#: simulation/data/technologies/siege_cost_metal.jsonrequirementsTooltip
-#: simulation/data/technologies/siege_cost_wood.jsonrequirementsTooltip
-#: simulation/data/technologies/successors/special_hellenistic_metropolis.jsonrequirementsTooltip
-#: simulation/data/technologies/successors/special_parade_of_daphne.jsonrequirementsTooltip
-#: simulation/data/technologies/successors/special_war_horses.jsonrequirementsTooltip
-#: simulation/data/technologies/successors/unlock_reform_army.jsonrequirementsTooltip
-#: simulation/data/technologies/successors/unlock_traditional_army.jsonrequirementsTooltip
-#: simulation/data/technologies/successors/upgrade_mace_silvershields.jsonrequirementsTooltip
-#: simulation/data/technologies/tower_health.jsonrequirementsTooltip
-#: simulation/data/technologies/tower_murderholes.jsonrequirementsTooltip
-#: simulation/data/technologies/trade_convoys_armor.jsonrequirementsTooltip
-#: simulation/data/technologies/trade_gain_02.jsonrequirementsTooltip
-#: simulation/data/technologies/training_conscription.jsonrequirementsTooltip
-#: simulation/data/technologies/training_naval_architects.jsonrequirementsTooltip
-#: simulation/data/technologies/unlock_champion_units.jsonrequirementsTooltip
-msgid "Unlocked in City Phase."
-msgstr "Hiri aroan desblokeatuta."
+#: simulation/data/technologies/architecture_pers.jsontooltip
+msgid "Structures +25% health and capture points, but also +20% build time."
+msgstr "Egiturek %25+ gehiago dute osasunean eta atzitze puntuetan, baina %20+  gehiago behar dute eraikitzean."
 
 #: simulation/data/technologies/armor_hero_01.jsondescription
 msgid ""
@@ -179,75 +191,8 @@ msgid "Lorica Ferrea"
 msgstr "Lorica Ferrea"
 
 #: simulation/data/technologies/armor_hero_01.jsontooltip
-msgid "Heroes +50 metal cost, +2 hack and pierce armor."
-msgstr "Heroiak +50 metal kostua, +2 mozte eta zulatze babesa."
-
-#: simulation/data/technologies/armor_infantry_01.jsondescription
-msgid "Quilted linen or leather body armor for infantrymen."
-msgstr "Infanteriarentzako liho barrubiguna edo larruzko armadura. "
-
-#: simulation/data/technologies/armor_infantry_01.jsongenericName
-msgid "Quilted Body Armor"
-msgstr "Armadura Barrubiguna"
-
-#: simulation/data/technologies/armor_infantry_01.jsonspecificName.athen
-#: simulation/data/technologies/armor_infantry_01.jsonspecificName.mace
-#: simulation/data/technologies/armor_infantry_01.jsonspecificName.ptol
-#: simulation/data/technologies/armor_infantry_01.jsonspecificName.sele
-#: simulation/data/technologies/armor_infantry_01.jsonspecificName.spart
-msgid "Spolas"
-msgstr "Spolas"
-
-#: simulation/data/technologies/armor_infantry_01.jsontooltip
-#: simulation/data/technologies/armor_infantry_02.jsontooltip
-msgid "Infantry +1 hack and pierce armor."
-msgstr "Infanteriak +1 mozte eta zulatze babesa."
-
-#: simulation/data/technologies/armor_infantry_02.jsondescription
-msgid "Laminated linen body armor for infantrymen."
-msgstr "Infanteriarentzako liho ijeztu gorputz armadura. "
-
-#: simulation/data/technologies/armor_infantry_02.jsongenericName
-msgid "Laminated Linen Body Armor"
-msgstr "Liho ijeztu armadura"
-
-#: simulation/data/technologies/armor_infantry_02.jsonspecificName.athen
-#: simulation/data/technologies/armor_infantry_02.jsonspecificName.mace
-#: simulation/data/technologies/armor_infantry_02.jsonspecificName.ptol
-#: simulation/data/technologies/armor_infantry_02.jsonspecificName.sele
-#: simulation/data/technologies/armor_infantry_02.jsonspecificName.spart
-msgid "Linothōrax"
-msgstr "Linothōrax"
-
-#: simulation/data/technologies/armor_ship_hullsheathing.jsondescription
-msgid "Lead sheathing protects ship hulls."
-msgstr "Berunezko estaldurak itsasontzien kroskoak babesten ditu."
-
-#: simulation/data/technologies/armor_ship_hullsheathing.jsongenericName
-msgid "Lead hull sheathing"
-msgstr "Berunezko estaldura."
-
-#: simulation/data/technologies/armor_ship_hullsheathing.jsontooltip
-#: simulation/data/technologies/armor_ship_hypozomata.jsontooltip
-#: simulation/data/technologies/armor_ship_reinforcedhull.jsontooltip
-msgid "Ships +2 armor."
-msgstr "Itsasontziak +2 armadura."
-
-#: simulation/data/technologies/armor_ship_hypozomata.jsondescription
-msgid "The hypozomata braces the structure of a ship."
-msgstr "Hypozomatak itsasontzi baten egitura eusten du."
-
-#: simulation/data/technologies/armor_ship_hypozomata.jsongenericName
-msgid "Hypozomata undergirding"
-msgstr "Hypozomataz eutsi."
-
-#: simulation/data/technologies/armor_ship_reinforcedhull.jsondescription
-msgid "Wooden reinforcement beams for ship hulls."
-msgstr "Zure itsasontzientzako egurrezko kostila indargarriak."
-
-#: simulation/data/technologies/armor_ship_reinforcedhull.jsongenericName
-msgid "Reinforced hull"
-msgstr "Itsasontzi krosko indartuak."
+msgid "Heroes +50 metal cost, +2 hack and pierce resistance."
+msgstr "Heroiak +50 metal kostua, +2 mozte eta zulatze erresistentzia."
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsondescription
 msgid "Training increases melee attack."
@@ -276,8 +221,9 @@ msgid "Hasta"
 msgstr "Hasta"
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsontooltip
-msgid "+20% melee cavalry attack."
-msgstr "+20% buruz-buruko zalditeriaren erasoa."
+#: simulation/data/technologies/attack_cavalry_melee_02.jsontooltip
+msgid "Cavalry +20% melee attack damage."
+msgstr "Zalditeria %20+ buruz-burko eraso kaltean."
 
 #: simulation/data/technologies/attack_cavalry_melee_02.jsondescription
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsondescription
@@ -290,11 +236,6 @@ msgstr "Brontzezko armak burdinazkoengatik aldatu."
 msgid "Iron Weapons"
 msgstr "Burdinezko Armak"
 
-#: simulation/data/technologies/attack_cavalry_melee_02.jsontooltip
-msgid ""
-"Equip your melee cavalry with better weapons. +20% melee cavalry attack."
-msgstr "Hornitu zure buruz-buruko zalditeria arma hobeekin. Aurrez-aurreko zalditeriaren erasoa +20 mingarriagoa da."
-
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsondescription
 msgid "Training increases ranged attack."
 msgstr "Trebatzeak urrutiko erasoa areagotzen du."
@@ -304,13 +245,9 @@ msgid "Ranged Combat Cavalry Training"
 msgstr "Zalditeria urrutiko borrokan trebatzea"
 
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsontooltip
-msgid "+20% ranged cavalry attack."
-msgstr "+20% urrutirako zalditeriaren erasoa."
-
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsontooltip
-msgid ""
-"Equip your ranged cavalry with better weapons. +20% ranged cavalry attack."
-msgstr "Hornitu zure urrutirako zalditeria arma hobeekin. Urrutirako zalditeriak +%20i irabazten du erasoan."
+msgid "Cavalry +20% ranged attack damage."
+msgstr "Zalditeria %20+ urrutiko eraso kaltean."
 
 #: simulation/data/technologies/attack_infantry_melee_01.jsondescription
 msgid ""
@@ -337,8 +274,8 @@ msgstr "Pugio"
 
 #: simulation/data/technologies/attack_infantry_melee_01.jsontooltip
 #: simulation/data/technologies/attack_infantry_melee_02.jsontooltip
-msgid "+20% melee infantry attack."
-msgstr "+20% buruz-buruko infanteriaren erasoa."
+msgid "Infantry +20% melee attack damage."
+msgstr "Infanteria %20+ buruz-burko eraso kaltean."
 
 #: simulation/data/technologies/attack_infantry_melee_02.jsondescription
 msgid "Using iron instead of bronze gave weapons additional power."
@@ -368,19 +305,21 @@ msgstr "Ataktoi"
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsontooltip
 #: simulation/data/technologies/attack_infantry_ranged_02.jsontooltip
-msgid "+20% ranged infantry attack."
-msgstr "+20% urrutiko infanteriaren eraso bortitzagoa."
+msgid "Infantry +20% ranged attack damage."
+msgstr "Infanteria %20+ urrutiko eraso kaltean."
 
 #: simulation/data/technologies/attack_infantry_ranged_02.jsongenericName
 msgid "Ranged Infantry Masterclass"
 msgstr "Urrutirako infanteriarako masterra."
 
 #: simulation/data/technologies/attack_soldiers_will.jsondescription
-msgid "The will to fight is crucial to victory."
-msgstr "Borrokarako gogoa ezinbestekoa da irabazteko."
+msgid ""
+"The will to fight is crucial to victory. Inspire your troops with higher "
+"pay."
+msgstr "Borrokarako gogoa ezinbestekoa da irabazteko. Inspiratu zure soldaduak soldata altuagoekin."
 
 #: simulation/data/technologies/attack_soldiers_will.jsongenericName
-msgid "Will to fight"
+msgid "Will to Fight"
 msgstr "Borrokatzeko nahia"
 
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.athen
@@ -392,9 +331,8 @@ msgid "Dynamis"
 msgstr "Dynamis"
 
 #: simulation/data/technologies/attack_soldiers_will.jsontooltip
-msgid ""
-"Inspire your troops with higher pay. All land and naval army +25% attack."
-msgstr "Igo asko soldata zure tropei hauspotu daitezen. Lur eta itsasoko tropei %25+ ematen die erasoan."
+msgid "Soldiers, Siege Engines, and Ships +25% attack damage."
+msgstr "Soldaduak, setio makinak eta itsasontziak %25+ erasoen kaltean."
 
 #: simulation/data/technologies/attack_steel_working.jsondescription
 msgid ""
@@ -418,49 +356,46 @@ msgstr "Wootz Altzairua"
 msgid "Swordsmen +20% attack damage."
 msgstr "Ezpatariak +% 20 erasoen kaltean."
 
-#: simulation/data/technologies/carthaginians/special_colonisation.jsondescription
+#: simulation/data/technologies/barracks_batch_training.jsondescription
 msgid ""
-"Carthaginians established many trading centers as colonies and ultimately "
-"held dominion over 300 cities and towns in North Africa alone."
-msgstr "Kartagotarrek komertzio gune ugari ezarri zituzten kolonia gisara, eta azkenean, Ipar Afrika soilik kontuan hartuz, 300 hiri eta herri zituzten kontrolpean."
+"Significantly increase training speed of infantry by training them in large "
+"batches or companies."
+msgstr "Infanteriako trebatze abiadura nabarmen handitzen da, talde handi edo konpainietan trebatuz. "
 
-#: simulation/data/technologies/carthaginians/special_colonisation.jsongenericName
-msgid "Colonization"
-msgstr "Kolonizazioa"
+#: simulation/data/technologies/barracks_batch_training.jsongenericName
+#: simulation/data/technologies/stable_batch_training.jsongenericName
+msgid "Conscription"
+msgstr "Derrigorrezko erreklutatzea"
 
-#: simulation/data/technologies/carthaginians/special_colonisation.jsontooltip
+#: simulation/data/technologies/barracks_batch_training.jsontooltip
+msgid "Barracks −10% batch training time."
+msgstr "Kuartelak % 10- taldekako trebatze denboran."
+
+#: simulation/data/technologies/cavalry_cost_time.jsondescription
 msgid ""
-"Carthaginians were colonizers. Civic Centers, Temples, and Houses -25% build"
-" time."
-msgstr "Kartagotarrak kolonizatzaileak izan ziren. Hiriguneak, Tenpluak eta Etxeak %25- eraikitze denboran."
+"Calling up cavalry levies in time of war helps bolster the ranks of a king's"
+" army."
+msgstr "Gerra garaiko derrigorrezko erreklutatzeak errege baten armada indartzen laguntzen du."
 
-#: simulation/data/technologies/carthaginians/special_exploration.jsondescription
-msgid ""
-"Nobody knew better than the Carthaginians where in the ancient world they "
-"were going and going to go; their merchant traders had missions to "
-"everywhere."
-msgstr "Antzinako munduan inork ez zekien kartagotarrek baino hobeto norantz eta noraino zoazen; haien merkatariek alde guztietan zituzten misioak."
+#: simulation/data/technologies/cavalry_cost_time.jsongenericName
+msgid "Levy Cavalry"
+msgstr "Zalditeria erreklutatzea"
 
-#: simulation/data/technologies/carthaginians/special_exploration.jsongenericName
-msgid "Exploration"
-msgstr "Esplorazioa"
+#: simulation/data/technologies/cavalry_cost_time.jsontooltip
+msgid "Cavalry −10% training time."
+msgstr "Zalditeria: % 10- trebatze denboran."
 
-#: simulation/data/technologies/carthaginians/special_exploration.jsontooltip
-msgid "Carthaginians were explorers. All Traders and Ships +25% vision range."
-msgstr "Kartagotarrak esploratzaileak izan ziren. Merkatari eta itsasontzi guztiek %25+ ikusmen-irismenean."
+#: simulation/data/technologies/cavalry_health.jsondescription
+msgid "Selectively breed better war horses."
+msgstr "Gerrako zaldi hobeak selektiboki hazi."
 
-#: simulation/data/technologies/carthaginians/training_phoenician_naval_architects.jsondescription
-msgid ""
-"Significantly increase build speed of batches of ships at the Shipyard."
-msgstr "Nabarmen handitzen da itsasontzien eraikuntza untziolan."
+#: simulation/data/technologies/cavalry_health.jsongenericName
+msgid "Horse Breeding"
+msgstr "Zaldi hazkuntza"
 
-#: simulation/data/technologies/carthaginians/training_phoenician_naval_architects.jsongenericName
-msgid "Phoenician Naval Architects"
-msgstr "Feniziar Itsasontzi Arkitektura"
-
-#: simulation/data/technologies/carthaginians/training_phoenician_naval_architects.jsontooltip
-msgid "Shipyard increased batch construction speed bonus."
-msgstr "Ontziolek taldeka eraikitzeko abiadura hobaria dute."
+#: simulation/data/technologies/cavalry_health.jsontooltip
+msgid "Cavalry +10% health."
+msgstr "Zalditeria %+ 10 osasunean."
 
 #: simulation/data/technologies/cavalry_movement_speed.jsondescription
 msgid "Train your horses to move faster."
@@ -486,8 +421,8 @@ msgid "Triple Walls"
 msgstr "Hesi hirukoitza"
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
-msgid "Walls +100% build time, +100% stone cost, and +200% health."
-msgstr "Hesiak %100+ eraikuntza denbora, %100+ harri kostua, eta %200+ osasuna"
+msgid "City Walls +100% build time, +100% stone cost, and +200% health."
+msgstr "Hiri hesiak %100+ eraikuntza denbora, %100+ harri kostua, eta %200+ osasuna."
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsondescription
 msgid "Celtic structures were mostly made of wood with rubble foundations."
@@ -498,10 +433,22 @@ msgid "Wooden Construction"
 msgstr "Egurrezko Eraikinak"
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
+msgid "Structures −20% build time, −20% health, and −20% capture points."
+msgstr "Egiturak %20- eraikitze denboran, %20- osasunean, eta %20- atzemate puntu."
+
+#: simulation/data/technologies/civbonuses/gaul_cavalry.jsondescription
 msgid ""
-"Briton and Gaulish Structures −20% build time, −20% health, and −20% capture"
-" points."
-msgstr "Britaniar eta Galiar egiturak %20- eraikitze denboran, %20- osasunean, eta %20- atzemate puntu."
+"The Gauls were well-known for their effective cavalry. Celtic mercenaries "
+"were in demand throughout the Mediterranean."
+msgstr "Galiarrak oso ezagunak ziren zalditeria eraginkorragatik. Mertzenario zelten eskaera zegoen Mediterraneo osoan."
+
+#: simulation/data/technologies/civbonuses/gaul_cavalry.jsongenericName
+msgid "Superior Cavalry"
+msgstr "Zalditeria gorena"
+
+#: simulation/data/technologies/civbonuses/gaul_cavalry.jsontooltip
+msgid "Cavalry +10% melee attack damage."
+msgstr "Zalditeria %10+ buruz-burko eraso kaltean."
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsondescription
 msgid "The Greeks used stone construction from early Mycenaean times."
@@ -550,8 +497,9 @@ msgid "Chakravarti Samrāt"
 msgstr "Chakravarti Samrāt"
 
 #: simulation/data/technologies/civbonuses/maur_population.jsontooltip
-msgid "Mauryas +10% maximum population limit."
-msgstr "+ % 10 gehieneko biztanleria muga Mauryarrentzat."
+#: simulation/data/technologies/civbonuses/pers_population.jsontooltip
+msgid "+10% maximum population limit."
+msgstr "%10+ gehieneko biztanleria muga."
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsondescription
 msgid ""
@@ -564,8 +512,8 @@ msgid "Wooden Walls"
 msgstr "Egurrezko Hesiak"
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsontooltip
-msgid "Mauryan City Walls −20% build time and −20% health."
-msgstr "Mauryar hiri hesiak %20- eraikitze denboran eta %20- osasunean."
+msgid "City Walls −20% build time and −20% health."
+msgstr "Hiri hesiak %20- eraikitze denboran eta %20- osasunean."
 
 #: simulation/data/technologies/civbonuses/pers_population.jsondescription
 msgid ""
@@ -581,9 +529,21 @@ msgstr "Persiarrek infanteriako derrigorrezko erreklutatzeak egin ahal izan zitu
 msgid "Great King's Levy"
 msgstr "Errege Handiaren Erreklutatzea"
 
-#: simulation/data/technologies/civbonuses/pers_population.jsontooltip
-msgid "Persians +10% maximum population limit."
-msgstr "Persiarrak %10+ gehieneko biztanleria muga."
+#: simulation/data/technologies/civbonuses/ptol_structures.jsondescription
+msgid ""
+"Sun-dried mud bricks were a common building material in hot and dry areas, "
+"especially where wood was scarce. Although not as strong and durable as "
+"fired bricks or natural stone and vulnerable to constant rains and heavy "
+"floods, mud bricks have the advantage they are cheap and easy to produce."
+msgstr "Eguzkiak lehortutako adobe-adreiluak eraikuntzako material arrunta ziren eremu bero eta lehorretan, batez ere zura urria zen lekuetan. Kaleratutako adreiluak edo harri naturala bezain indartsua eta iraunkorra ez den arren eta euri asko eta uholde handiak jasateko arriskua duen arren, lokatz-adreiluak merkeak eta ekoizteko errazak dira."
+
+#: simulation/data/technologies/civbonuses/ptol_structures.jsongenericName
+msgid "Sun-dried Mud Bricks"
+msgstr "Adobea"
+
+#: simulation/data/technologies/civbonuses/ptol_structures.jsontooltip
+msgid "Houses and Economic Structures −50% wood cost, but +50% build time."
+msgstr "Etxe eta egitura merkeak %50- egur kostuan, baino %50+ eraikitze denbora."
 
 #: simulation/data/technologies/civbonuses/spart_population.jsondescription
 msgid ""
@@ -598,12 +558,84 @@ msgid "Underdogs"
 msgstr "Zapalduak"
 
 #: simulation/data/technologies/civbonuses/spart_population.jsontooltip
-msgid "Spartans −10% maximum population limit."
-msgstr "Espartarrak %10- gehieneko biztanleria muga."
+msgid "−10% maximum population limit."
+msgstr "%10- gehieneko biztanleria muga."
+
+#: simulation/data/technologies/colonization.jsondescription
+msgid ""
+"Carthaginians established many trading centers as colonies and ultimately "
+"held dominion over 300 cities and towns in North Africa alone."
+msgstr "Kartagotarrek komertzio gune ugari ezarri zituzten kolonia gisara, eta azkenean, Ipar Afrika soilik kontuan hartuz, 300 hiri eta herri zituzten kontrolpean."
+
+#: simulation/data/technologies/colonization.jsongenericName
+msgid "Colonization"
+msgstr "Kolonizazioa"
+
+#: simulation/data/technologies/colonization.jsontooltip
+msgid "Civic Structures −25% build time."
+msgstr "Egitura zibilak %25- eraikitze denboran."
+
+#: simulation/data/technologies/equine_transports.jsondescription
+msgid ""
+"Early Achaemenid rulers acted towards making Persia the first great Asian "
+"empire to rule the seas. The Great King behaved favourably towards the "
+"various sea peoples in order to secure their services, but also carried out "
+"various marine initiatives. During the reign of Darius the Great, for "
+"example, a canal was built in Egypt and a Persian navy was sent exploring "
+"the Indus river. According to Herodotus, some 300 ships in the Persian navy "
+"were retrofitted to carry horses and their riders."
+msgstr "Arkemenidetar lehen agintariak saiatu ziren Persia izan zedin itsasoak menperatuko zituen lehen inperio handia. Errege Handiak itsas inguruko jendea lagundu zuen beren kidetza lortu asmoz, eta beste itsas eginkizun asko ere aurrera eraman zituen. Dario Handia erregearen garaian, adibidez, kanal handia eraiki zuen Egipton eta ontziteria bidali zuen Indo erreka esploratzeko. Herodotoren arabera, persiar ontziteriako 300 bat itsasontzi  zaldiak eta beren zaldunak eramateko ."
+
+#: simulation/data/technologies/equine_transports.jsongenericName
+msgid "Equine Transports"
+msgstr "Zaldi-garraioak"
+
+#: simulation/data/technologies/equine_transports.jsontooltip
+msgid "Phoenician Triremes gain the ability to train Cavalry."
+msgstr "Feniziar Trirremeek zalditeria unitateak trebatzeko abilezia eskuratzen dute."
+
+#: simulation/data/technologies/exploration.jsondescription
+msgid ""
+"Nobody knew better than the Carthaginians where in the ancient world they "
+"were going and going to go; their merchant traders had missions to "
+"everywhere."
+msgstr "Antzinako munduan inork ez zekien kartagotarrek baino hobeto norantz eta noraino zoazen; haien merkatariek alde guztietan zituzten misioak."
+
+#: simulation/data/technologies/exploration.jsongenericName
+msgid "Exploration"
+msgstr "Esplorazioa"
+
+#: simulation/data/technologies/exploration.jsontooltip
+msgid "Traders and Ships +25% vision range."
+msgstr "Merkatari eta itsasontziek %25+ ikusmen mailan."
+
+#: simulation/data/technologies/fishing_boat_gather_capacity.jsondescription
+msgid "Salting allows to preserve fish longer."
+msgstr "Gatzatuak arraia luzaroan mantentzeko aukera ematen du."
+
+#: simulation/data/technologies/fishing_boat_gather_capacity.jsongenericName
+msgid "Salting Fish"
+msgstr "Arrai Gatzatua"
+
+#: simulation/data/technologies/fishing_boat_gather_capacity.jsontooltip
+msgid "Fishing Boats +20 food capacity."
+msgstr "Arrantzontziek janari edukiera 20+ handitzen dute."
+
+#: simulation/data/technologies/fishing_boat_gather_rate.jsondescription
+msgid "Use nets to improve the productivity of fishing boats."
+msgstr "Erabili sareak arrantzontzien produktibitatea hobetzeko."
+
+#: simulation/data/technologies/fishing_boat_gather_rate.jsongenericName
+msgid "Fishing Net"
+msgstr "Arrantza Sarea"
+
+#: simulation/data/technologies/fishing_boat_gather_rate.jsontooltip
+msgid "Fishing Boats +30% fish gather rate."
+msgstr "Arrantzontziek 30%+ hobetzen dute arrain atzemate tasa."
 
 #: simulation/data/technologies/garrison_heal.jsondescription
 msgid "Units regain health over time while garrisoned."
-msgstr ""
+msgstr "Gordeta dauden bitartean, unitateek osasuna berreskuratzen dute denborarekin."
 
 #: simulation/data/technologies/garrison_heal.jsongenericName
 msgid "Living Conditions"
@@ -611,11 +643,11 @@ msgstr "Bizi baldintzak"
 
 #: simulation/data/technologies/garrison_heal.jsontooltip
 msgid "Structures +1 garrison heal rate."
-msgstr ""
+msgstr "Egiturak + 1 goarnizio sendatze tasa."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
-msgid "Breed livestock (sheep, goats, cattle, etc.) for food."
-msgstr "Hezi abereak (ardiak, ahuntzak, behiak, eta abar) janaria lortzeko."
+msgid "Breed livestock to slaughter for meat."
+msgstr "Hiltzeko ganadua heztea."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsongenericName
 msgid "Stockbreeding"
@@ -648,22 +680,6 @@ msgstr "Langileek zalgurdiak erabiltzen dituzte. Garraiatzeko edukiera areagotze
 #: simulation/data/technologies/gather_capacity_carts.jsongenericName
 msgid "Horse-drawn Carts"
 msgstr "Zalgurdiak"
-
-#: simulation/data/technologies/gather_capacity_fishing.jsondescription
-msgid "Salting allows to preserve fish longer."
-msgstr "Gatzatuak arraia luzaroan mantentzeko aukera ematen du."
-
-#: simulation/data/technologies/gather_capacity_fishing.jsongenericName
-msgid "Salting Fish"
-msgstr "Arrai Gatzatua"
-
-#: simulation/data/technologies/gather_capacity_fishing.jsonrequirementsTooltip
-msgid "Unlocked in Town Phase. Requires Fishing Net."
-msgstr "Herri Aroan desblokeatzen da. Arrantzarako sarea behar du."
-
-#: simulation/data/technologies/gather_capacity_fishing.jsontooltip
-msgid "Fishing Boats +20 food capacity."
-msgstr "Arrantzontziek janari edukiera 20+ handitzen dute."
 
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsondescription
 msgid ""
@@ -720,18 +736,6 @@ msgstr "Langileak nekazaritzan ustiaketa abiadura azkartzeko trebatzea."
 msgid "Gather Training"
 msgstr "Ustiaketarako trebatzea."
 
-#: simulation/data/technologies/gather_fishing_net.jsondescription
-msgid "Use nets to improve the productivity of fishing boats."
-msgstr "Erabili sareak arrantzontzien produktibitatea hobetzeko."
-
-#: simulation/data/technologies/gather_fishing_net.jsongenericName
-msgid "Fishing Net"
-msgstr "Arrantza Sarea"
-
-#: simulation/data/technologies/gather_fishing_net.jsontooltip
-msgid "Fishing Boats +30% fish gather rate."
-msgstr "Arrantzontziek 30%+ hobetzen dute arrain atzemate tasa."
-
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsondescription
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsondescription
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsondescription
@@ -739,7 +743,7 @@ msgid "Increases wood gathering rates for trees."
 msgstr "Zuhaitzetako egur ustiaketa abiadura hobetzen du."
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsongenericName
-msgid "Iron Ax Heads"
+msgid "Iron Axe Heads"
 msgstr "Burdin Aizkorak"
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsontooltip
@@ -749,12 +753,12 @@ msgid "Workers +25% wood gather rate."
 msgstr "Langileek %25+ egur ustiatze tasan."
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsongenericName
-msgid "Sharp Ax Heads"
+msgid "Sharp Axe Heads"
 msgstr "Aizkora Buru Zorroztuak"
 
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsongenericName
-msgid "Stronger Ax"
-msgstr "Aizkora Indartsuagoak"
+msgid "Stronger Axe"
+msgstr "Ardatz Indartsuagoak"
 
 #: simulation/data/technologies/gather_mining_serfs.jsondescription
 msgid ""
@@ -884,8 +888,8 @@ msgstr "Panteoi Olinpikoa"
 
 #: simulation/data/technologies/heal_range.jsontooltip
 #: simulation/data/technologies/heal_range_2.jsontooltip
-msgid "Healers +5 Healing and Vision Range."
-msgstr "Sendalariek +5 handitzen dute sendatze eta ikusmen irismena."
+msgid "Healers +5 healing range."
+msgstr "Sendalariek %5+ sendatze-abiadura."
 
 #: simulation/data/technologies/heal_range_2.jsongenericName
 msgid "Healing Range 2"
@@ -897,7 +901,7 @@ msgstr "Akadēmeia"
 
 #: simulation/data/technologies/heal_rate.jsondescription
 #: simulation/data/technologies/heal_rate_2.jsondescription
-msgid "Increases the Healing Rate of all healers."
+msgid "Increases the healing rate of all healers."
 msgstr "Sendalari guztien sendatze-abiadura hobetzen du."
 
 #: simulation/data/technologies/heal_rate.jsongenericName
@@ -941,50 +945,79 @@ msgid "The Loom"
 msgstr "Ehungailua"
 
 #: simulation/data/technologies/health_females_01.jsontooltip
-msgid "+100% health for female citizens."
-msgstr "%100+ hiritar emakumeen osasunean."
+msgid "Female Citizens +100% health."
+msgstr "Emakume hiritarrak %100+ osasunean."
 
 #: simulation/data/technologies/health_regen_units.jsondescription
-msgid "Unlock health regeneration for your units."
-msgstr "Zure unitateen osasun berrosatzea gaitzen du."
+msgid "Organic units will slowly regenerate health over time when idle."
+msgstr "Unitate organikoek bere osasuna apurka berrosatuko dute denborarekin egonean badaude."
 
 #: simulation/data/technologies/health_regen_units.jsongenericName
 msgid "Battlefield Medicine"
 msgstr "Kanpainako medikuntza"
 
 #: simulation/data/technologies/health_regen_units.jsontooltip
-msgid "Organic units will slowly regenerate health over time when idle."
-msgstr "Unitate organikoek bere osasuna apurka berrosatuko dute denborarekin egonean badaude."
+msgid "Idle Organic units +0.5 health regeneration rate."
+msgstr "Unitate organiko inaktiboak +0.5 osasun berrosatze tasan."
 
-#: simulation/data/technologies/hellenes/spartans_agoge.jsondescription
+#: simulation/data/technologies/hellenistic_metropolis.jsondescription
 msgid ""
-"Spartans were housed and trained from a young age to be superlative warriors"
-" and to endure any hardship a military life can give them."
-msgstr "Espartarrak txikitatik izan ziren etxekotu eta erakutsiak goreneko gudariak bihurtzeko eta militar bizitzaren gorabehera guztiak jasan ahal izateko."
+"Beginning with Alexander, the Hellenistic monarchs founded many cities "
+"throughout their empires, where Greek culture and art blended with local "
+"customs to create the motley Hellenistic civilization."
+msgstr "Alejandro aitzindari, heleniar erregeek hiri asko sortu zituzten beren inperioen zehar, eta han grekoen kultura eta artea bertakoen ohiturekin nahastu ziren heleniar zibilizazio anitza osatuz."
 
-#: simulation/data/technologies/hellenes/spartans_agoge.jsongenericName
-msgid "The Agoge"
-msgstr "Agogea"
+#: simulation/data/technologies/hellenistic_metropolis.jsongenericName
+msgid "Hellenistic Metropolis"
+msgstr "Metropoli helenistikoak"
 
-#: simulation/data/technologies/hellenes/spartans_agoge.jsontooltip
-msgid "Champion Infantry Spearmen +25% health, but +5% training time."
-msgstr "Infanteriako lantzari aldezkariak 25%+ osasunean, %5+ trebatze denboran."
+#: simulation/data/technologies/hellenistic_metropolis.jsontooltip
+msgid "Civic Centers +100% health and capture points, double default arrows."
+msgstr "Hiriguneek %100+ irabazten dute osasunean eta atzitze puntuetan, berezko gezien kopurua bikoiztuz."
 
-#: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsondescription
+#: simulation/data/technologies/immortals.jsondescription
+msgid ""
+"The Achaemenids maintained a 10,000-strong elite corps, referred to as "
+"Athanatoi (“Immortals”) by Greek authors."
+msgstr "Akemenidarrek 10.000 soldaduko eliteko gorputz bat mantendu zuten, Athanatoi (hilezkorrak) bezala ezagutua egile greziarren aldetik."
+
+#: simulation/data/technologies/immortals.jsongenericName
+msgid "Immortals"
+msgstr "Hilezkorrak"
+
+#: simulation/data/technologies/immortals.jsontooltip
+msgid "Immortals −50% training time, but −10% health."
+msgstr "Hilezkorrak %50- entrenatzeko denboran, baina %10- osasunean."
+
+#: simulation/data/technologies/infantry_cost_time.jsondescription
+msgid ""
+"Calling up infantry levies in time of war helps bolster the ranks of a "
+"king's army."
+msgstr "Gerra garaiko derrigorrezko erreklutatzeak errege baten armada indartzen laguntzen du."
+
+#: simulation/data/technologies/infantry_cost_time.jsongenericName
+msgid "Levy Infantry"
+msgstr "Infanteria erreklutatzea"
+
+#: simulation/data/technologies/infantry_cost_time.jsontooltip
+msgid "Infantry −10% training time."
+msgstr "Infanteriak %10- trebatze denboran."
+
+#: simulation/data/technologies/iphicratean_reforms.jsondescription
 msgid ""
 "Athenian triremes can train Marines (Epibates Athenaikos) and Cretan "
 "Mercenary Archers (Toxotes Kretikos)."
 msgstr "Trirreme atenastarrek itsasgizonak (Epibates Athenaikos) eta Kretar arkulari mertzenarioak (Toxotes Kretikos) trebatu ditzakete."
 
-#: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsongenericName
+#: simulation/data/technologies/iphicratean_reforms.jsongenericName
 msgid "Iphicratean Reforms"
 msgstr "Ifikratesen erreformak"
 
-#: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsontooltip
-msgid "Athenian triremes can train Marines and Cretan Mercenary Archers."
+#: simulation/data/technologies/iphicratean_reforms.jsontooltip
+msgid "Athenian Triremes can train Marines and Cretan Mercenary Archers."
 msgstr "Trirreme atenastarrek itsasgizonak eta Kretar arkulari mertzenarioak trebatu ditzakete ."
 
-#: simulation/data/technologies/hellenes/special_long_walls.jsondescription
+#: simulation/data/technologies/long_walls.jsondescription
 msgid ""
 "The Long Walls of Athens were constructed under the auspices of the wily "
 "Themistocles and extended 6 km from the city to the port of Piraeus. This "
@@ -992,123 +1025,50 @@ msgid ""
 "out the city during a siege."
 msgstr "Atenasko Harresi Luzeak Temistokles azkarraren agindu pean eraiki ziren, hiritik Pireo kairaino 6 kilometroz luzatzen ziren. Horrek hornitzeko itsas bideak ziurtatzen zituen eta etsaiari hiria setioan zuenean janaririk gabe uztea eragozten zion."
 
-#: simulation/data/technologies/hellenes/special_long_walls.jsongenericName
+#: simulation/data/technologies/long_walls.jsongenericName
 msgid "Athenian Long Walls"
 msgstr "Atenastar hesi luzeak"
 
-#: simulation/data/technologies/hellenes/special_long_walls.jsontooltip
+#: simulation/data/technologies/long_walls.jsontooltip
 msgid "Build Walls in own or neutral territory."
 msgstr "Eraiki harresiak eremu propio edo neutralean."
 
-#: simulation/data/technologies/kushites/monumental_architecture.jsongenericName
-msgid "Monumental Architecture"
-msgstr "Arkitektura Monumentala"
-
-#: simulation/data/technologies/kushites/monumental_architecture.jsontooltip
+#: simulation/data/technologies/nisean_horses.jsondescription
 msgid ""
-"Civic Structures +20% build time, +20% health, and +20% capture points."
-msgstr "Egitura zibilak %20+ eraikitze denboran, %20+ osasunean, eta %20+ atzemate puntu."
+"The now-extinct Nisian breed of horse was one of the largest and robust "
+"horses of ancient times. They were highly sought after by the Seleucids and "
+"Persians as both rider and mount gained heavier armor as time progressed."
+msgstr "Gaur egun desagertutako nisear zaldien arraza antzinako handi eta indartsuenetakoa izan zen. Zaldi hauek oso preziatuak ziren seleuziar eta presentzat piztia eta gizonaren armadura osagarriak hartzen zuen karga astuna zela eta."
 
-#: simulation/data/technologies/persians/immortals.jsondescription
+#: simulation/data/technologies/nisean_horses.jsongenericName
+msgid "Nisean War Horses"
+msgstr "Nisear Gerra Zaldiak"
+
+#: simulation/data/technologies/nisean_horses.jsonspecificName.sele
+msgid "Nisioi"
+msgstr "Nisioi"
+
+#: simulation/data/technologies/nisean_horses.jsontooltip
+msgid "Champion Cavalry Spearmen +20% health, but +10% training time."
+msgstr "Zalditeriako lantzari aldezkariak 20%+ osasunean, %10+ trebatze denboran."
+
+#: simulation/data/technologies/pair_unlock_champions_sele.jsongenericName
+msgid "Traditional Army vs Reform Army"
+msgstr "Ohiko Armada vs Erreformaren Armada"
+
+#: simulation/data/technologies/parade_of_daphne.jsondescription
 msgid ""
-"The Achaemenids maintained a 10,000-strong elite corps, referred to as "
-"Athanatoi (“Immortals”) by Greek authors."
-msgstr "Akemenidarrek 10.000 soldaduko eliteko gorputz bat mantendu zuten, Athanatoi (hilezkorrak) bezala ezagutua egile greziarren aldetik."
+"The festival at Daphne was a major event of the Seleucid Empire: tens of "
+"thousands of well-equipped troops participated in the opening procession."
+msgstr "Daphneko jaialdia Seleuciden Inperioko gertaera garrantzitsua izan zen: ondo hornitutako milaka soldaduk parte hartu zuten irekiera-prozesioan."
 
-#: simulation/data/technologies/persians/immortals.jsongenericName
-msgid "Immortals"
-msgstr "Hilezkorrak"
+#: simulation/data/technologies/parade_of_daphne.jsongenericName
+msgid "Parade of Daphne"
+msgstr "Dafneren Paradisua"
 
-#: simulation/data/technologies/persians/immortals.jsontooltip
-msgid "Anušiya Champion Infantry -50% train time, but also -10% health."
-msgstr "Anušiya infanteria aldezkaria %50- entrenatzeko denboran, baina %20- osasunean."
-
-#: simulation/data/technologies/persians/persian_architecture.jsondescription
-msgid ""
-"The Persians built the wonderful 1677 mile-long Royal Highway from Sardis to"
-" Susa; Darius the Great and Xerxes also built the magnificent Persepolis; "
-"Cyrus the Great greatly improved Ecbatana and virtually 'rebuilt' the old "
-"Elamite capital of Susa."
-msgstr "Persiarrek 2700 kilometroetan zehar eraiki zuten sinistu ezinezko Errege Bidea, Sardestik Susaraino; Dario Handiak eta Jerjesek ere Persepolis ikaragarria eraiki zuten; Ziro Handiak Ekbatana asko aurreratu zuen eta Susako Elamita Kapitala berreraiki zuen."
-
-#: simulation/data/technologies/persians/persian_architecture.jsongenericName
-msgid "Persian Architecture"
-msgstr "Persiar Arkitektura"
-
-#: simulation/data/technologies/persians/persian_architecture.jsontooltip
-msgid ""
-"All Persian structures +25% health and capture points, but also +20% build "
-"time."
-msgstr "Egitura guztiek %25+ gehiago dute osasunean eta atzitze puntuetan, baina %20+  gehiago behar dute eraikitzean."
-
-#: simulation/data/technologies/persians/special_equine_transports.jsondescription
-msgid ""
-"Early Achaemenid rulers acted towards making Persia the first great Asian "
-"empire to rule the seas. The Great King behaved favourably towards the "
-"various sea peoples in order to secure their services, but also carried out "
-"various marine initiatives. During the reign of Darius the Great, for "
-"example, a canal was built in Egypt and a Persian navy was sent exploring "
-"the Indus river. According to Herodotus, some 300 ships in the Persian navy "
-"were retrofitted to carry horses and their riders."
-msgstr "Arkemenidetar lehen agintariak saiatu ziren Persia izan zedin itsasoak menperatuko zituen lehen inperio handia. Errege Handiak itsas inguruko jendea lagundu zuen beren kidetza lortu asmoz, eta beste itsas eginkizun asko ere aurrera eraman zituen. Dario Handia erregearen garaian, adibidez, kanal handia eraiki zuen Egipton eta ontziteria bidali zuen Indo erreka esploratzeko. Herodotoren arabera, persiar ontziteriako 300 bat itsasontzi  zaldiak eta beren zaldunak eramateko ."
-
-#: simulation/data/technologies/persians/special_equine_transports.jsongenericName
-msgid "Equine Transports"
-msgstr "Zaldi-garraioak"
-
-#: simulation/data/technologies/persians/special_equine_transports.jsontooltip
-msgid "Phoenician Triremes gain the ability to train cavalry."
-msgstr "Feniziar Trirremeek zalditeria unitateak trebatzeko abilezia eskuratzen dute."
-
-#: simulation/data/technologies/persians/training_conscription_cavalry.jsondescription
-msgid ""
-"Significantly increase training speed of cavalry at the stables by training "
-"them in large batches or battalions."
-msgstr "Azkartu nabarmen zalditeria ukuiluetan trebatzeko abiadura, talde handi edo batailoietan trebatuz. "
-
-#: simulation/data/technologies/persians/training_conscription_cavalry.jsongenericName
-msgid "Cavalry Conscription"
-msgstr "Zalditeria Erreklutatzea"
-
-#: simulation/data/technologies/persians/training_conscription_cavalry.jsontooltip
-msgid "Faster batch training speed for the Stables."
-msgstr "Ukuiluek talde trebatze abiadura azkartzen dute."
-
-#: simulation/data/technologies/persians/training_conscription_infantry.jsongenericName
-msgid "Infantry Conscription"
-msgstr "Infanteria Erreklutatzea"
-
-#: simulation/data/technologies/persians/training_levy_cavalry.jsondescription
-msgid ""
-"Calling up cavalry levies in time of war helps bolster the ranks of a king's"
-" army."
-msgstr "Gerra garaiko derrigorrezko erreklutatzeak errege baten armada indartzen laguntzen du."
-
-#: simulation/data/technologies/persians/training_levy_cavalry.jsongenericName
-msgid "Levy Cavalry"
-msgstr "Zalditeria erreklutatzea"
-
-#: simulation/data/technologies/persians/training_levy_cavalry.jsontooltip
-msgid ""
-"All cavalry -20% train time, but also -5% health. Unlocks Cavalry "
-"Conscription."
-msgstr "Zalditeriak %20- gutxitzen du bere erreklutatze denbora, baina %5- galtzen du osasunean. Derrigorrezko zalditeria soldadutza desblokeatzen du."
-
-#: simulation/data/technologies/persians/training_levy_infantry.jsondescription
-msgid ""
-"Calling up infantry levies in time of war helps bolster the ranks of a "
-"king's army."
-msgstr "Gerra garaiko derrigorrezko erreklutatzeak errege baten armada indartzen laguntzen du."
-
-#: simulation/data/technologies/persians/training_levy_infantry.jsongenericName
-msgid "Levy Infantry"
-msgstr "Infanteria erreklutatzea"
-
-#: simulation/data/technologies/persians/training_levy_infantry.jsontooltip
-msgid ""
-"All infantry -20% train time, but also -5% health. Unlocks Infantry "
-"Conscription."
-msgstr "Infanteriak %20- gutxitzen du bere erreklutatze denbora, baina %5- galtzen du osasunean. Derrigorrezko infanteria soldadutza desblokeatzen du."
+#: simulation/data/technologies/parade_of_daphne.jsontooltip
+msgid "Champions −20% training time."
+msgstr "Aldezkariak %20- trebatze denboran."
 
 #: simulation/data/technologies/phase_city.jsondescription
 msgid ""
@@ -1131,8 +1091,8 @@ msgstr "Herri zaratatsu batetik benetako metropoli batera aurreratzen du, teknol
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
-msgid "Requires 4 Town Structures."
-msgstr "4 hiri egitura behar ditu."
+msgid "Requires four Town Structures."
+msgstr "Lau hiri egitura behar ditu."
 
 #: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
@@ -1144,11 +1104,10 @@ msgstr "Megalopolis"
 
 #: simulation/data/technologies/phase_city_athen.jsontooltip
 msgid ""
-"Advance to City Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
-"grants an extra +10% metal gather rate to all workers. Citizen Soldiers +10%"
-" health. All structures +9 garrisoned regeneration rate."
-msgstr "Aurreratu Hiri Arora, eraikin eta unitate gehiago gaitzen dituena. Gizarte zentroen lur erradioa %50+ handitzen da. Zilarrezko hontzaren hobariak %10+ gehiago ematen die langileei metala ustiatzeko abiaduran. Hiritar soldaduei %10+ gehitzen zaie osasunean. Eraikinetan gordetako unitateek +9 puntu lortzen dute berrosatze abiaduran."
+"Advance to City Phase, which unlocks more entities and technologies. Civic "
+"Centers +50% territory influence radius. Structures +9 capture points "
+"regeneration rate per garrisoned unit. Workers +10% metal gather rate."
+msgstr "Aurrera egin hiri fasean, entitate eta teknologia gehiago desblokeatzen dituena. Giza zentroak % 50+ lurraldearen eragina erradioan. Egiturak +9 harrapaketa-puntu birsortzeko abantailak unitate bakoitzeko. Langileak % 10+ metal bilketa tasa."
 
 #: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
@@ -1158,10 +1117,10 @@ msgstr "Herri zaratatsu batetik benetako metropoli batera aurreratzen du, teknol
 
 #: simulation/data/technologies/phase_city_generic.jsontooltip
 msgid ""
-"Advance to City Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by another +50%. Citizen Soldiers +10% "
-"health. All structures +9 garrisoned regeneration rate."
-msgstr "Aurreratu Hiri Arora, egitura eta unitate gehiago gaitzen dituena. Hiriaren erdigunea %50+ handitzen da. Hiritar soldaduei %10+ gehitzen zaie osasunean. Egitura guztiek +9 guardan sartutako berrosatze abiaduran."
+"Advance to City Phase, which unlocks more entities and technologies. Civic "
+"Centers +50% territory influence radius. Structures +9 capture points "
+"regeneration rate per garrisoned unit."
+msgstr "Aurrera egin hiri fasean, entitate eta teknologia gehiago desblokeatzen dituena. Giza zentroak % 50+ lurraldearen eragina erradioan. Egiturak +9 harrapaketa-puntu birsortzeko abantailak unitate bakoitzeko."
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -1184,8 +1143,8 @@ msgstr "Aurreratu herrixka txiki batetik herri zaratatsu batera, azkar zabaltzek
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
-msgid "Requires 5 Village Structures."
-msgstr "5 herri egitura behar ditu."
+msgid "Requires five Village Structures."
+msgstr "Bost herri egitura behar ditu."
 
 #: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
@@ -1197,11 +1156,10 @@ msgstr "Kōmopolis"
 
 #: simulation/data/technologies/phase_town_athen.jsontooltip
 msgid ""
-"Advance to Town Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants "
-"an extra +10% metal gather rate to all workers. Citizen Soldiers +20% "
-"health. All structures +7 garrisoned regeneration rate."
-msgstr "Aurreratu Herri Arora, egitura eta unitate gehiago gaitzen dituena. Hiriaren erdigunea %30+ handitzen da. Atenastarren  «zilarrezko hontza»ren hobariak %10+ gehiago ematen die langileei metala ustiatzeko abiaduran. Hiritar soldaduei %20+ gehitzen zaie osasunean. Egitura guztiek +7 guardan sartutako berrosatze abiaduran."
+"Advance to Town Phase, which unlocks more entities and technologies. Civic "
+"Centers +30% territory influence radius. Structures +7 capture points "
+"regeneration rate per garrisoned unit. Workers +10% metal gather rate."
+msgstr "Aurrera egin herri fasean, entitate eta teknologia gehiago desblokeatzen dituena. Giza zentroak % 30+ lurraldearen eragina erradioan. Egiturak +7 harrapaketa-puntu birsortzeko abantailak unitate bakoitzeko. Langileak % 10+ metal bilketa tasa."
 
 #: simulation/data/technologies/phase_town_generic.jsondescription
 msgid ""
@@ -1210,10 +1168,10 @@ msgstr "Aurreratu herrixka txiki batetik herri zaratatsu batera, azkar zabaltzek
 
 #: simulation/data/technologies/phase_town_generic.jsontooltip
 msgid ""
-"Advance to Town Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by +30%. Citizen Soldiers +20% health. "
-"All structures +7 garrisoned regeneration rate."
-msgstr "Aurreratu Herri Arora, egitura eta unitate gehiago gaitzen dituena. Hiriaren erdigunea %30+ handitzen da. Hiritar soldaduei %20+ gehitzen zaie osasunean. Egitura guztiek +7 guardan sartutakoen berrosatze abiaduran."
+"Advance to Town Phase, which unlocks more entities and technologies. Civic "
+"Centers +30% territory influence radius. Structures +7 capture points "
+"regeneration rate per garrisoned unit."
+msgstr "Aurrera egin herri fasean, entitate eta teknologia gehiago desblokeatzen dituena. Giza zentroak % 30+ lurraldearen eragina erradioan. Egiturak +7 harrapaketa-puntu birsortzeko abantailak unitate bakoitzeko."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1247,8 +1205,8 @@ msgstr "Peristylium"
 
 #: simulation/data/technologies/pop_house_01.jsontooltip
 #: simulation/data/technologies/pop_house_02.jsontooltip
-msgid "Houses +20% population cap bonus."
-msgstr "Etxeek %20+  hobaria jasotzen dute biztanleriaren gehienezkoari."
+msgid "Houses +20% population bonus."
+msgstr "Etxeak 20%+ biztanleria hobariak."
 
 #: simulation/data/technologies/pop_house_02.jsondescription
 msgid ""
@@ -1281,11 +1239,63 @@ msgstr "Peristasis"
 
 #: simulation/data/technologies/pop_wonder.jsontooltip
 msgid ""
-"Enable Glorious Expansion. Further increase the population limit by 40 per "
+"Enable the “Glorious Expansion” aura: +40 maximum population limit per "
 "Wonder owned."
-msgstr "Zabaltze Loriatsua gaitzen du. Biztanleria muga +40 handitzen du eskuratutako miragarri bakoitzeko."
+msgstr "Gaitu “Zabaltze Loriatsua“ aura. +40 biztanle gehienez miragarri bakoitzeko."
 
-#: simulation/data/technologies/romans/vision_sibylline.jsondescription
+#: simulation/data/technologies/reformed_army_sele.jsondescription
+msgid "The Roman-style core of the Seleucid army."
+msgstr "Armada Seleuzidaren erromatar estiloaren muina."
+
+#: simulation/data/technologies/reformed_army_sele.jsongenericName
+msgid "Reform Army"
+msgstr "Erreformaren Armada"
+
+#: simulation/data/technologies/reformed_army_sele.jsontooltip
+msgid "Unlock the Champion Infantry Swordsman."
+msgstr "Desblokeatu infanteriako ezpatari txapelduna."
+
+#: simulation/data/technologies/ship_cost_time.jsondescription
+msgid ""
+"Employ skilled shipwrights with specialized tools to speed up ship "
+"construction."
+msgstr "Ontzigile trebeak tresna espezializatuekin enplegatu itsasontzien eraikuntza azkartzeko."
+
+#: simulation/data/technologies/ship_cost_time.jsongenericName
+msgid "Naval Architects"
+msgstr "Itsasontzi Arkitektura"
+
+#: simulation/data/technologies/ship_cost_time.jsontooltip
+msgid "Ships −20% construction time."
+msgstr "Itsasontziak %20- gutxiago eraikitze-denboran."
+
+#: simulation/data/technologies/ship_health.jsondescription
+msgid "Wooden reinforcement beams for ship hulls."
+msgstr "Zure itsasontzientzako egurrezko kostila indargarriak."
+
+#: simulation/data/technologies/ship_health.jsongenericName
+msgid "Reinforced hull"
+msgstr "Itsasontzi krosko indartuak."
+
+#: simulation/data/technologies/ship_health.jsontooltip
+msgid "Ships +25% health."
+msgstr "Itsasontziek %25+ osasunean"
+
+#: simulation/data/technologies/ship_movement_speed.jsondescription
+msgid ""
+"Train your oarsmen and sailors to move more efficiently and speed up your "
+"ships."
+msgstr "Trebatu arraunlariak eta marinelak eraginkorrago mugitzeko eta zure ontziak azkartzeko."
+
+#: simulation/data/technologies/ship_movement_speed.jsongenericName
+msgid "Experienced Crews"
+msgstr "Eskarmentu handiko tripulazioak"
+
+#: simulation/data/technologies/ship_movement_speed.jsontooltip
+msgid "Ships +10% movement speed."
+msgstr "Itsasontziak %10- mugitze abiaduran."
+
+#: simulation/data/technologies/sibylline_books.jsondescription
 msgid ""
 "The Sibylline Books or 'Libri Sibyllini' were a collection of oracular "
 "utterances, set out in Greek hexameters, purchased from a sibyl by the last "
@@ -1293,17 +1303,17 @@ msgid ""
 " the history of the Republic and the Empire."
 msgstr "Sibiliar liburuak greziar hexametroko igarkizun idatzien bilduma izan ziren. Erromako erregeak, Terquinius Superbusek, sibila bati erosi zizkion eta inperioaren eta errepublikaren historian zehar askotan begiratu ziren."
 
-#: simulation/data/technologies/romans/vision_sibylline.jsongenericName
+#: simulation/data/technologies/sibylline_books.jsongenericName
 msgid "Sibylline Books"
 msgstr "Sibiliar Liburuak"
 
-#: simulation/data/technologies/romans/vision_sibylline.jsonspecificName
+#: simulation/data/technologies/sibylline_books.jsonspecificName
 msgid "Libri Sibyllini"
 msgstr "Libri Sibyllini"
 
-#: simulation/data/technologies/romans/vision_sibylline.jsontooltip
-msgid "+25% Vision range for all units."
-msgstr "Unitate guztien ikusmen-irismena %25+ handitzen da."
+#: simulation/data/technologies/sibylline_books.jsontooltip
+msgid "Units +25% vision range."
+msgstr "Unitateak %25- ikusmen mailan."
 
 #: simulation/data/technologies/siege_armor.jsondescription
 msgid "Increased armor on siege engines."
@@ -1314,8 +1324,8 @@ msgid "Armor plating"
 msgstr "Plaka Armadura"
 
 #: simulation/data/technologies/siege_armor.jsontooltip
-msgid "Siege Engines +2 hack armor."
-msgstr "Setio makinak +2 mozte babesa."
+msgid "Siege Engines +2 hack resistance."
+msgstr "Setio makinak +2 mozte erresistentzia."
 
 #: simulation/data/technologies/siege_attack.jsondescription
 msgid "Advanced technologies improve siege efficiency."
@@ -1365,9 +1375,85 @@ msgstr "Artilleria Instruktoreak"
 msgid "Siege Engines −20% wood cost."
 msgstr "Setio makinak -%20 egur kostuan."
 
+#: simulation/data/technologies/silvershields.jsondescription
+msgid ""
+"The Silver Shields, or Argyraspidai, were the elite heavy infantry arm of "
+"the Macedonian army."
+msgstr "Zilarrezko Ezkutuak, edo Argyraspidai, mazedoniar armadako eliteko infanteria astuna izan ziren."
+
+#: simulation/data/technologies/silvershields.jsongenericName
+msgid "Silver Shields Regiment"
+msgstr "Zilarrezko Ezkutuko Erregimendua "
+
+#: simulation/data/technologies/silvershields.jsontooltip
+msgid ""
+"Upgrade Shield Bearer Champion Infantry to Silver Shields, with more health "
+"and attack damage."
+msgstr "Sustatu Infanteria ezkutu eroale aldezkaria Zilarrezko Ezkutuetara, osasun eta eraso kalte gehiagorekin."
+
 #: simulation/data/technologies/soldier_ranged_experience.jsontooltip
 msgid "Ranged Soldiers +25% promotion experience."
 msgstr "Armadako soldaduak %25+ promozio esperientzia."
+
+#: simulation/data/technologies/soldier_resistance_hack_01.jsondescription
+msgid "Body armor made from quilted wool, linen, cotton, or leather."
+msgstr "Artile bigundu, liho, kotoi edo larruz egindako gorputz-armadura."
+
+#: simulation/data/technologies/soldier_resistance_hack_01.jsongenericName
+msgid "Quilted Body Armor"
+msgstr "Armadura Barrubiguna"
+
+#: simulation/data/technologies/soldier_resistance_hack_01.jsonspecificName.athen
+#: simulation/data/technologies/soldier_resistance_hack_01.jsonspecificName.mace
+#: simulation/data/technologies/soldier_resistance_hack_01.jsonspecificName.ptol
+#: simulation/data/technologies/soldier_resistance_hack_01.jsonspecificName.sele
+#: simulation/data/technologies/soldier_resistance_hack_01.jsonspecificName.spart
+msgid "Spolas"
+msgstr "Spolas"
+
+#: simulation/data/technologies/soldier_resistance_hack_01.jsontooltip
+#: simulation/data/technologies/soldier_resistance_hack_02.jsontooltip
+msgid "Soldiers +1 hack resistance."
+msgstr "Soldaduak +1 mozte erresistentzia."
+
+#: simulation/data/technologies/soldier_resistance_hack_02.jsondescription
+msgid "Body armor made from laminated linen."
+msgstr "Liho geruzez egindako gorputz-armadura."
+
+#: simulation/data/technologies/soldier_resistance_hack_02.jsongenericName
+msgid "Laminated Linen Body Armor"
+msgstr "Liho ijeztu armadura"
+
+#: simulation/data/technologies/soldier_resistance_hack_02.jsonspecificName.athen
+#: simulation/data/technologies/soldier_resistance_hack_02.jsonspecificName.mace
+#: simulation/data/technologies/soldier_resistance_hack_02.jsonspecificName.ptol
+#: simulation/data/technologies/soldier_resistance_hack_02.jsonspecificName.sele
+#: simulation/data/technologies/soldier_resistance_hack_02.jsonspecificName.spart
+msgid "Linothōrax"
+msgstr "Linothōrax"
+
+#: simulation/data/technologies/soldier_resistance_pierce_01.jsondescription
+msgid ""
+"Wooden shields are heavier but much better able to resist projectiles and "
+"blows than wicker-frame shields."
+msgstr "Zurezko armarriak astunagoak dira, baina hobeto jasan ditzakete jaurtigaiak eta kolpeak zumezko egitura duten armarriek baino."
+
+#: simulation/data/technologies/soldier_resistance_pierce_01.jsongenericName
+msgid "Wooden Shield"
+msgstr "Zurezko ezkutua"
+
+#: simulation/data/technologies/soldier_resistance_pierce_01.jsontooltip
+#: simulation/data/technologies/soldier_resistance_pierce_02.jsontooltip
+msgid "Soldiers +1 pierce resistance."
+msgstr "Soldaduak +1 zulatze erresistentzia."
+
+#: simulation/data/technologies/soldier_resistance_pierce_02.jsondescription
+msgid "Strengthen shields with a metal rim or spine."
+msgstr "Indartu ezkutuak metalezko ertzeekin."
+
+#: simulation/data/technologies/soldier_resistance_pierce_02.jsongenericName
+msgid "Metal Shield"
+msgstr "Metalezko ezkutua"
 
 #: simulation/data/technologies/spy_counter.jsondescription
 msgid "Recruit a network of informants to watch over your people."
@@ -1381,97 +1467,15 @@ msgstr "Kontraespioitza"
 msgid "Make your units 50% more expensive to bribe."
 msgstr "Egin zure soldaduak %50 erosgaitzagoak."
 
-#: simulation/data/technologies/successors/pair_unlock_champions.jsongenericName
-msgid "Traditional Army vs Reform Army"
-msgstr "Ohiko Armada vs Erreformaren Armada"
-
-#: simulation/data/technologies/successors/special_hellenistic_metropolis.jsondescription
+#: simulation/data/technologies/stable_batch_training.jsondescription
 msgid ""
-"Beginning with Alexander, the Hellenistic monarchs founded many cities "
-"throughout their empires, where Greek culture and art blended with local "
-"customs to create the motley Hellenistic civilization."
-msgstr "Alejandro aitzindari, heleniar erregeek hiri asko sortu zituzten beren inperioen zehar, eta han grekoen kultura eta artea bertakoen ohiturekin nahastu ziren heleniar zibilizazio anitza osatuz."
+"Significantly increase training speed of cavalry by training them in large "
+"batches or squadrons."
+msgstr "Zalditeriako trebatze abiadura nabarmen handitzen da, talde handi edo eskuadroietan trebatuz. "
 
-#: simulation/data/technologies/successors/special_hellenistic_metropolis.jsongenericName
-msgid "Hellenistic Metropolis"
-msgstr "Metropoli helenistikoak"
-
-#: simulation/data/technologies/successors/special_hellenistic_metropolis.jsontooltip
-msgid "Civic Centers +100% health and capture points, double default arrows."
-msgstr "Hiriguneek %100+ irabazten dute osasunean eta atzitze puntuetan, berezko gezien kopurua bikoiztuz."
-
-#: simulation/data/technologies/successors/special_parade_of_daphne.jsondescription
-msgid ""
-"The festival at Daphne was a major event of the Seleucid Empire: tens of "
-"thousands of well-equipped troops participated in the opening procession."
-msgstr ""
-
-#: simulation/data/technologies/successors/special_parade_of_daphne.jsongenericName
-msgid "Parade of Daphne"
-msgstr "Dafneren Paradisua"
-
-#: simulation/data/technologies/successors/special_parade_of_daphne.jsontooltip
-msgid "Champions −20% training time."
-msgstr ""
-
-#: simulation/data/technologies/successors/special_war_horses.jsondescription
-msgid ""
-"The now-extinct Nisian breed of horse was one of the largest and robust "
-"horses of ancient times. They were highly sought after by the Seleucids and "
-"Persians as both rider and mount gained heavier armor as time progressed."
-msgstr "Gaur egun desagertutako nisear zaldien arraza antzinako handi eta indartsuenetakoa izan zen. Zaldi hauek oso preziatuak ziren seleuziar eta presentzat piztia eta gizonaren armadura osagarriak hartzen zuen karga astuna zela eta."
-
-#: simulation/data/technologies/successors/special_war_horses.jsongenericName
-msgid "Nisean War Horses"
-msgstr "Nisear Gerra Zaldiak"
-
-#: simulation/data/technologies/successors/special_war_horses.jsonspecificName.sele
-msgid "Nisioi"
-msgstr "Nisioi"
-
-#: simulation/data/technologies/successors/special_war_horses.jsontooltip
-msgid "All cavalry +20% health."
-msgstr "Zalditeria guztiak %20+ lortzen du osasunean."
-
-#: simulation/data/technologies/successors/unlock_reform_army.jsondescription
-msgid "The Roman-style core of the Seleucid army."
-msgstr "Armada Seleuzidaren erromatar estiloaren muina."
-
-#: simulation/data/technologies/successors/unlock_reform_army.jsongenericName
-msgid "Reform Army"
-msgstr "Erreformaren Armada"
-
-#: simulation/data/technologies/successors/unlock_reform_army.jsontooltip
-msgid "Unlock the Champion Infantry Swordsman."
-msgstr "Desblokeatu infanteriako ezpatari txapelduna."
-
-#: simulation/data/technologies/successors/unlock_traditional_army.jsondescription
-msgid "The Macedonian-style core of the Seleucid army."
-msgstr "Armada Seleuzidaren Mazedoniar estiloaren muina."
-
-#: simulation/data/technologies/successors/unlock_traditional_army.jsongenericName
-msgid "Traditional Army"
-msgstr "Ohiko Armada"
-
-#: simulation/data/technologies/successors/unlock_traditional_army.jsontooltip
-msgid "Unlock the Champion Infantry Pikeman."
-msgstr "Desblokeatu infanteriako pikari txapelduna."
-
-#: simulation/data/technologies/successors/upgrade_mace_silvershields.jsondescription
-msgid ""
-"The Silver Shields, or Argyraspidai, were the elite heavy infantry arm of "
-"the Macedonian army."
-msgstr "Zilarrezko Ezkutuak, edo Argyraspidai, mazedoniar armadako eliteko infanteria astuna izan ziren."
-
-#: simulation/data/technologies/successors/upgrade_mace_silvershields.jsongenericName
-msgid "Silver Shields Regiment"
-msgstr "Zilarrezko Ezkutuko Erregimendua "
-
-#: simulation/data/technologies/successors/upgrade_mace_silvershields.jsontooltip
-msgid ""
-"Upgrade Shield Bearer Champion Infantry to Silver Shields, with more health "
-"and attack damage."
-msgstr "Sustatu Infanteria ezkutu eroale aldezkaria Zilarrezko Ezkutuetara, osasun eta eraso kalte gehiagorekin."
+#: simulation/data/technologies/stable_batch_training.jsontooltip
+msgid "Stables −10% batch training time."
+msgstr "Ukuiluak % 10- taldekako trebatze denboran."
 
 #: simulation/data/technologies/tower_crenellations.jsondescription
 msgid ""
@@ -1569,17 +1573,16 @@ msgid "Trade Convoys"
 msgstr "Merkataritza Karabana"
 
 #: simulation/data/technologies/trade_convoys_armor.jsontooltip
-msgid "Traders +2 hack and pierce armor."
-msgstr "Merkatariek +2 mozte eta zulatze babesa."
+msgid "Traders +2 hack and pierce resistance."
+msgstr "Merkatariek +2 mozte eta zulatze erresistentzia."
 
 #: simulation/data/technologies/trade_convoys_speed.jsondescription
-msgid ""
-"Increases movement rate of traders, which in turn increases trade income."
-msgstr "Merkatarien mugitze abiadura handitzen du, eta horrek merkatu irabaziak handitzen ditu."
+msgid "Increases movement rate of traders in order to increase trade income."
+msgstr "Merkatarien mugitze abiadura handitzen du merkataritzako diru sarrerak handitzeko."
 
 #: simulation/data/technologies/trade_convoys_speed.jsontooltip
-msgid "Traders +25% Walk Speed, which quickly increases trade income."
-msgstr "Merkatariak %25+ azkarrago dabiltz, eta horrek merkatu irabaziak azkar handitzen ditu."
+msgid "Traders +25% movement speed."
+msgstr "Merkatariek %25+ mugitze abiaduran."
 
 #: simulation/data/technologies/trade_gain_01.jsondescription
 #: simulation/data/technologies/trade_gain_02.jsondescription
@@ -1591,52 +1594,36 @@ msgid "Handicraft"
 msgstr "Artisautza"
 
 #: simulation/data/technologies/trade_gain_01.jsontooltip
-msgid "Traders +10% gain."
-msgstr "Merkatariek %10+ irabazten dute."
+msgid "Traders +10% trade gain."
+msgstr "Merkatariek %10+ irabaziak."
 
 #: simulation/data/technologies/trade_gain_02.jsongenericName
 msgid "Advanced Handicraft"
 msgstr "Artisautza aurreratua"
 
 #: simulation/data/technologies/trade_gain_02.jsontooltip
-msgid "Traders +15% gain."
-msgstr "Merkatariek %15+ irabazten dute."
+msgid "Traders +15% trade gain."
+msgstr "Merkatariek %15+ irabaziak."
 
-#: simulation/data/technologies/persians/training_conscription_infantry.jsondescription
-#: simulation/data/technologies/training_conscription.jsondescription
-msgid ""
-"Significantly increase training speed of soldiers at the Barracks by "
-"training them in large batches or battalions."
-msgstr "Kasernako trebatze abiadura nabarmen handitzen da, talde handi edo batailoietan trebatuz. "
+#: simulation/data/technologies/traditional_army_sele.jsondescription
+msgid "The Macedonian-style core of the Seleucid army."
+msgstr "Armada Seleuzidaren Mazedoniar estiloaren muina."
 
-#: simulation/data/technologies/training_conscription.jsongenericName
-msgid "Conscription"
-msgstr "Derrigorrezko erreklutatzea"
+#: simulation/data/technologies/traditional_army_sele.jsongenericName
+msgid "Traditional Army"
+msgstr "Ohiko Armada"
 
-#: simulation/data/technologies/persians/training_conscription_infantry.jsontooltip
-#: simulation/data/technologies/training_conscription.jsontooltip
-msgid "Faster batch training speed for the Barracks."
-msgstr "Kasernek talde trebatze abiadura handitzen dute."
-
-#: simulation/data/technologies/training_naval_architects.jsondescription
-msgid "Significantly increase build speed of batches of ships at the Dock."
-msgstr "Nabarmen handitzen da itsasontzien eraikuntza untziolan."
-
-#: simulation/data/technologies/training_naval_architects.jsongenericName
-msgid "Naval Architects"
-msgstr "Itsasontzi Arkitektura"
-
-#: simulation/data/technologies/training_naval_architects.jsontooltip
-msgid "Docks increased batch construction speed bonus."
-msgstr "Kaiek taldeka eraikitzeko abiadura hobaria dute."
+#: simulation/data/technologies/traditional_army_sele.jsontooltip
+msgid "Unlock the Champion Infantry Pikeman."
+msgstr "Desblokeatu infanteriako pikari txapelduna."
 
 #: simulation/data/technologies/unit_advanced.jsontooltip
 msgid ""
-"Advanced and Elite units +20% training time, +1 armor, +10% health, +0.7 "
-"capture attack strength, +20% loot, and −30% gather speed; Healers +5 "
+"Advanced and Elite units +20% training time, +25% health, +1 resistance, "
+"+0.7 capture attack strength, +20% loot, and −30% gather speed; Healers +5 "
 "healing strength and +3 healing range; Melee units +20% attack damage; "
-"Ranged units +4 attack range and −10% spread."
-msgstr "Maila altu eta eliteko unitateak %20+ trebatze denbora, +1 armadura, %10 osasuna, +0.7 atzematean, %20+ botina, eta %30-Abiadura; Sendatzaileak +5 sendatzeko indarra eta +3 osasun maila; Aurrez aurreko unitateak %20+ eraso kaltea; Urrutirako unitateak +4 eraso maila eta %10- abiadura."
+"Ranged units −10% spread."
+msgstr "Maila altu eta eliteko unitateak %20+ trebatze denbora, %25+ osasuna, +1 erresistentzia, +0.7 atzematean, %20+ botina, eta %30-Abiadura; Sendatzaileak +5 sendatzeko indarra eta +3 osasun maila; Aurrez aurreko unitateak %20+ eraso kaltea; Urrutirako unitateak %10- abiadura."
 
 #: simulation/data/technologies/unit_elephant_african.jsontooltip
 msgid ""
@@ -1652,11 +1639,11 @@ msgstr "Elefante indiarrak %10 gutxiago baliabide kostu, trebatze denbora, osasu
 
 #: simulation/data/technologies/unit_elite.jsontooltip
 msgid ""
-"Elite units +20% training time, +1 armor, +10% health, +0.8 capture attack "
-"strength, +20% loot, and −30% gather speed; Healers +5 healing strength and "
-"+3 healing range; Melee units +20% attack damage; Ranged units +4 attack "
-"range and −10% spread."
-msgstr "Eliteko unitateak %20+ trebatze denbora, +1 armadura, %10 osasuna, +0.7 atzematean, %20+ botina, eta %30-Abiadura; Sendatzaileak +5 sendatzeko indarra eta +3 osasun maila; Aurrez aurreko unitateak %20+ eraso kaltea; Urrutirako unitateak +4 eraso maila eta %10- abiadura."
+"Elite units +20% training time, +25% health, +1 resistance, +0.8 capture "
+"attack strength, +20% loot, and −30% gather speed; Healers +5 healing "
+"strength and +3 healing range; Melee units +20% attack damage; Ranged units "
+"−10% spread."
+msgstr "Eliteko unitateak %20+ trebatze denbora, %25+ osasuna, +1 erresistentzia, +0.8 atzematean, %20+ botina, eta %30-Abiadura; Sendatzaileak +5 sendatzeko indarra eta +3 osasun maila; Aurrez aurreko unitateak %20+ eraso kaltea; Urrutirako unitateak %10- abiadura."
 
 #: simulation/data/technologies/unit_mercenary.jsontooltip
 msgid "Non-Champion Mercenaries cost −25 food, +25 metal."
@@ -1722,8 +1709,8 @@ msgid "Diaspora"
 msgstr "Diaspora"
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsonrequirementsTooltip
-msgid "Requires 3 Traders"
-msgstr "3 merkatari behar ditu"
+msgid "Requires three Traders"
+msgstr "Hiru merkatari behar ditu"
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsontooltip
 msgid "Allows using allied dropsites."
