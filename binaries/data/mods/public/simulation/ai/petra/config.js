@@ -81,7 +81,6 @@ PETRA.Config = function(difficulty, behavior)
 			"structures/{civ}/temple_amun"
 		],
 		"mace": [
-			"structures/{civ}/library",
 			"structures/{civ}/theater"
 		],
 		"maur": [
@@ -92,14 +91,15 @@ PETRA.Config = function(difficulty, behavior)
 			"structures/{civ}/apadana"
 		],
 		"ptol": [
-			"structures/{civ}/library"
+			"structures/{civ}/library",
+			"structures/{civ}/theater"
 		],
 		"rome": [
 			"structures/{civ}/army_camp",
 			"structures/{civ}/temple_vesta"
 		],
 		"sele": [
-			"structures/{civ}/library"
+			"structures/{civ}/theater"
 		],
 		"spart": [
 			"structures/{civ}/syssiton",

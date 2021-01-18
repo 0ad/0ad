@@ -40,9 +40,8 @@
     <SpecificName>Cothon</SpecificName>
     <Tooltip>Build upon a shoreline in own, neutral, or allied territory. Acquire large tracts of territory. Territory root. Construct Warships and research technologies.</Tooltip>
     <Classes datatype="tokens">ConquestCritical CivSpecific</Classes>
-    <VisibleClasses datatype="tokens">Naval -City Town Shipyard</VisibleClasses>
+    <VisibleClasses datatype="tokens">Naval Shipyard</VisibleClasses>
     <Icon>structures/uber_dock.png</Icon>
-    <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <Loot>
     <wood>60</wood>

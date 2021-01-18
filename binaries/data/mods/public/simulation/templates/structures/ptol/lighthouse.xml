@@ -24,11 +24,10 @@
     <Civ>ptol</Civ>
     <GenericName>Lighthouse</GenericName>
     <SpecificName>Pharos</SpecificName>
-    <Tooltip>Build upon a shoreline in own, neutral, or allied territory. Reveal the shorelines over the entire map. Very large vision range.</Tooltip>
+    <Tooltip>Build upon a shoreline in own, neutral, or allied territory. Very large vision range.</Tooltip>
     <Classes datatype="tokens">CivSpecific</Classes>
-    <VisibleClasses datatype="tokens">-City Town Lighthouse</VisibleClasses>
+    <VisibleClasses datatype="tokens">Lighthouse</VisibleClasses>
     <Icon>structures/lighthouse.png</Icon>
-    <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <Loot>
     <stone>40</stone>
@@ -50,8 +49,7 @@
   </Sound>
   <TerritoryDecay disable=""/>
   <Vision>
-    <Range>180</Range>
-    <RevealShore>true</RevealShore>
+    <Range>200</Range>
   </Vision>
   <VisualActor>
     <Actor>structures/ptolemies/lighthouse.xml</Actor>

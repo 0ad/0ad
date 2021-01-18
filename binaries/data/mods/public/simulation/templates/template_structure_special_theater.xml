@@ -9,8 +9,9 @@
   <Cost>
     <BuildTime>500</BuildTime>
     <Resources>
-      <stone>500</stone>
-      <metal>500</metal>
+      <wood>200</wood>
+      <stone>600</stone>
+      <metal>200</metal>
     </Resources>
   </Cost>
   <Footprint replace="">
@@ -18,7 +19,7 @@
     <Height>10.0</Height>
   </Footprint>
   <Health>
-    <Max>2000</Max>
+    <Max>3000</Max>
   </Health>
   <Identity>
     <GenericName>Theater</GenericName>
@@ -27,8 +28,9 @@
     <Icon>structures/theater.png</Icon>
   </Identity>
   <Loot>
-    <stone>100</stone>
-    <metal>100</metal>
+    <wood>40</wood>
+    <stone>120</stone>
+    <metal>40</metal>
   </Loot>
   <Obstruction>
     <Static width="40" depth="46"/>
