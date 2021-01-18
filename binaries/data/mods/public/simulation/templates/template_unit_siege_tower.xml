@@ -88,6 +88,13 @@
   <StatusBars>
     <HeightOffset>12.0</HeightOffset>
   </StatusBars>
+  <Resistance>
+    <Entity>
+      <Damage>
+        <Pierce>50</Pierce>
+      </Damage>
+    </Entity>
+  </Resistance>
   <UnitMotion>
     <WalkSpeed op="mul">0.7</WalkSpeed>
   </UnitMotion>
