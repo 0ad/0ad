@@ -147,7 +147,7 @@ var mercenaryCampGuards = {
 		{ "Template" : "units/mace/infantry_javelineer_b", "Count" : 4 },
 		{ "Template" : "units/mace/cavalry_spearman_e", "Count" : 3 },
 		{ "Template" : "units/mace/infantry_archer_a", "Count" : 4 },
-		{ "Template" : "units/mace/champion_infantry_a", "Count" : 3 }
+		{ "Template" : "units/mace/champion_infantry_spearman", "Count" : 3 }
 	],
 	"generic/snowy": [
 		{ "Template" : "structures/ptol/mercenary_camp" },

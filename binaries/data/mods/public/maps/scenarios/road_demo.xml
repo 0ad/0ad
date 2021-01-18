@@ -6,8 +6,7 @@
 		<SunColor r="1.08585" g="1.04746" b="0.806158"/>
 		<SunElevation angle="0.469398"/>
 		<SunRotation angle="0.294524"/>
-		<TerrainAmbientColor r="0.396078" g="0.47451" b="0.654902"/>
-		<UnitsAmbientColor r="0.396078" g="0.47451" b="0.654902"/>
+		<AmbientColor r="0.396078" g="0.47451" b="0.654902"/>
 		<Water>
 			<WaterBody>
 				<Type>lake</Type>
@@ -557,7 +556,7 @@
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="136">
-			<Template>units/rome/champion_infantry</Template>
+			<Template>units/rome/champion_infantry_swordsman</Template>
 			<Player>1</Player>
 			<Position x="305.20514" z="373.64271"/>
 			<Orientation y="2.35621"/>

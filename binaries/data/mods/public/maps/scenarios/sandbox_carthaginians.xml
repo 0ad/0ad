@@ -6,8 +6,7 @@
 		<SunColor r="0.737255" g="0.721569" b="0.639216"/>
 		<SunElevation angle="0.825282"/>
 		<SunRotation angle="-0.374291"/>
-		<TerrainAmbientColor r="0.384314" g="0.411765" b="0.454902"/>
-		<UnitsAmbientColor r="0.384314" g="0.411765" b="0.454902"/>
+		<AmbientColor r="0.384314" g="0.411765" b="0.454902"/>
 		<Fog>
 			<FogFactor>0.00273437</FogFactor>
 			<FogThickness>0</FogThickness>
@@ -1324,49 +1323,49 @@
 			<Orientation y="0.79787"/>
 		</Entity>
 		<Entity uid="264">
-			<Template>units/rome/champion_infantry</Template>
+			<Template>units/rome/champion_infantry_swordsman</Template>
 			<Player>2</Player>
 			<Position x="585.09205" z="294.44172"/>
 			<Orientation y="-2.5559"/>
 		</Entity>
 		<Entity uid="265">
-			<Template>units/rome/champion_infantry</Template>
+			<Template>units/rome/champion_infantry_swordsman</Template>
 			<Player>2</Player>
 			<Position x="580.51606" z="294.71726"/>
 			<Orientation y="-2.50855"/>
 		</Entity>
 		<Entity uid="266">
-			<Template>units/rome/champion_infantry</Template>
+			<Template>units/rome/champion_infantry_swordsman</Template>
 			<Player>2</Player>
 			<Position x="576.73066" z="296.58393"/>
 			<Orientation y="-2.55755"/>
 		</Entity>
 		<Entity uid="267">
-			<Template>units/rome/champion_infantry</Template>
+			<Template>units/rome/champion_infantry_swordsman</Template>
 			<Player>2</Player>
 			<Position x="574.72999" z="303.13392"/>
 			<Orientation y="-2.72352"/>
 		</Entity>
 		<Entity uid="268">
-			<Template>units/rome/champion_infantry</Template>
+			<Template>units/rome/champion_infantry_swordsman</Template>
 			<Player>2</Player>
 			<Position x="577.15271" z="303.76105"/>
 			<Orientation y="-2.8909"/>
 		</Entity>
 		<Entity uid="269">
-			<Template>units/rome/champion_infantry</Template>
+			<Template>units/rome/champion_infantry_swordsman</Template>
 			<Player>2</Player>
 			<Position x="579.17469" z="300.88099"/>
 			<Orientation y="-2.76958"/>
 		</Entity>
 		<Entity uid="270">
-			<Template>units/rome/champion_infantry</Template>
+			<Template>units/rome/champion_infantry_swordsman</Template>
 			<Player>2</Player>
 			<Position x="581.11658" z="298.21232"/>
 			<Orientation y="-2.89113"/>
 		</Entity>
 		<Entity uid="271">
-			<Template>units/rome/champion_infantry</Template>
+			<Template>units/rome/champion_infantry_swordsman</Template>
 			<Player>2</Player>
 			<Position x="583.425" z="298.69874"/>
 			<Orientation y="-2.87711"/>

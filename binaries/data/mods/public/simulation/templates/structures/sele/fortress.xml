@@ -7,18 +7,12 @@
   <Identity>
     <Civ>sele</Civ>
     <SpecificName>Phrourion</SpecificName>
-    <Tooltip>Territory root. Train Champion Infantry. Garrison Soldiers for additional arrows.</Tooltip>
   </Identity>
   <Obstruction>
     <Static width="24.0" depth="26.0"/>
   </Obstruction>
   <ProductionQueue>
-    <Entities datatype="tokens">
-      units/{civ}/champion_infantry_pikeman
-      units/{civ}/champion_infantry_swordsman
-    </Entities>
     <Technologies datatype="tokens">
-      pair_unlock_champions_sele
       parade_of_daphne
     </Technologies>
   </ProductionQueue>

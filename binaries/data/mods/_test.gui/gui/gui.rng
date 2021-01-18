@@ -9,6 +9,7 @@
     <a:documentation/>
     <choice>
       <ref name="objects"/>
+      <ref name="styles"/>
     </choice>
   </start>
   <define name="objects">
@@ -16,6 +17,7 @@
       <zeroOrMore>
         <choice>
           <ref name="script"/>
+          <ref name="object"/>
         </choice>
       </zeroOrMore>
     </element>
@@ -31,6 +33,25 @@
           <attribute name="directory"/>
         </optional>
       </interleave>
+    </element>
+  </define>
+  <define name="object">
+    <element name="object">
+      <optional>
+        <attribute name="name"/>
+      </optional>
+    </element>
+  </define>
+  <define name="styles">
+    <element name="styles">
+      <zeroOrMore>
+        <ref name="style"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="style">
+    <element name="style">
+      <attribute name="name"/>
     </element>
   </define>
 </grammar>

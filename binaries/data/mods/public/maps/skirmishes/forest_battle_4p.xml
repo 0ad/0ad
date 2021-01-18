@@ -6,8 +6,7 @@
 		<SunColor r="1" g="1" b="0.501961"/>
 		<SunElevation angle="0.357117"/>
 		<SunRotation angle="-1.16024"/>
-		<TerrainAmbientColor r="0.501961" g="0.501961" b="0.501961"/>
-		<UnitsAmbientColor r="0.501961" g="0.501961" b="0.501961"/>
+		<AmbientColor r="0.501961" g="0.501961" b="0.501961"/>
 		<Fog>
 			<FogFactor>0</FogFactor>
 			<FogThickness>0.203125</FogThickness>
@@ -2249,7 +2248,7 @@
 			<Actor seed="64856"/>
 		</Entity>
 		<Entity uid="620">
-			<Template>units/brit/champion_infantry</Template>
+			<Template>units/brit/champion_infantry_swordsman</Template>
 			<Player>0</Player>
 			<Position x="378.47928" z="308.23377"/>
 			<Orientation y="2.35621"/>

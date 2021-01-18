@@ -223,16 +223,10 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 				sunRotationTag.Attribute("angle", pLightEnv->m_Rotation);
 			}
 			{
-				XMLWriter_Element terrainAmbientColorTag(xmlMapFile, "TerrainAmbientColor");
-				terrainAmbientColorTag.Attribute("r", pLightEnv->m_TerrainAmbientColor.X);
-				terrainAmbientColorTag.Attribute("g", pLightEnv->m_TerrainAmbientColor.Y);
-				terrainAmbientColorTag.Attribute("b", pLightEnv->m_TerrainAmbientColor.Z);
-			}
-			{
-				XMLWriter_Element unitsAmbientColorTag(xmlMapFile, "UnitsAmbientColor");
-				unitsAmbientColorTag.Attribute("r", pLightEnv->m_UnitsAmbientColor.X);
-				unitsAmbientColorTag.Attribute("g", pLightEnv->m_UnitsAmbientColor.Y);
-				unitsAmbientColorTag.Attribute("b", pLightEnv->m_UnitsAmbientColor.Z);
+				XMLWriter_Element ambientColorTag(xmlMapFile, "AmbientColor");
+				ambientColorTag.Attribute("r", pLightEnv->m_AmbientColor.X);
+				ambientColorTag.Attribute("g", pLightEnv->m_AmbientColor.Y);
+				ambientColorTag.Attribute("b", pLightEnv->m_AmbientColor.Z);
 			}
 			{
 				XMLWriter_Element fogTag(xmlMapFile, "Fog");
@@ -361,7 +355,7 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 				CmpPtr<ICmpTurretHolder> cmpTurretHolder(sim, ent);
 				if (cmpTurretHolder)
 				{
-					std::vector<std::pair<std::string, entity_id_t>> turrets = cmpTurretHolder->GetTurrets();
+					std::vector<std::pair<std::string, entity_id_t> > turrets = cmpTurretHolder->GetTurrets();
 					if (!turrets.empty())
 					{
 						XMLWriter_Element turretTag(xmlMapFile, "Turrets");

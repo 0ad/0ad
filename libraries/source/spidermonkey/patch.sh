@@ -36,5 +36,16 @@ patch -p1 < ../FixMacBuild.diff
 
 # Fix FP access breaking compilation on RPI3+
 # https://bugzilla.mozilla.org/show_bug.cgi?id=1526653
-# https://bugzilla.mozilla.org/show_bug.cgi?id=1536491 
+# https://bugzilla.mozilla.org/show_bug.cgi?id=1536491
 patch -p1 < ../FixRpiUnalignedFpAccess.diff
+
+# Patch those separately, as they might interfere with normal behaviour.
+if [ "$(uname -s)" = "FreeBSD" ];
+then
+    # https://svnweb.freebsd.org/ports/head/lang/spidermonkey78/files/patch-js_moz.configure?view=log
+    patch -p1 < ../FixFreeBSDReadlineDetection.diff
+    # https://svnweb.freebsd.org/ports/head/lang/spidermonkey78/files/patch-third__party_rust_cc_.cargo-checksum.json?view=log
+    patch -p1 < ../FixFreeBSDCargoChecksum.diff
+    # https://svnweb.freebsd.org/ports/head/lang/spidermonkey78/files/patch-third__party_rust_cc_src_lib.rs?view=log
+    patch -p1 < ../FixFreeBSDRustThirdPartyOSDetection.diff
+fi

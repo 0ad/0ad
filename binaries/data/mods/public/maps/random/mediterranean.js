@@ -449,7 +449,7 @@ setWaterWaviness(8);
 setWaterMurkiness(0.87);
 setWaterType("ocean");
 
-setTerrainAmbientColor(0.72, 0.72, 0.82);
+setAmbientColor(0.72, 0.72, 0.82);
 
 setSunColor(0.733, 0.746, 0.574);
 setSunRotation(Math.PI * 0.95);

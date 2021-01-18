@@ -312,8 +312,7 @@ placePlayersNomad(clPlayer, avoidClasses(clForest, 1, clWater, 4, clMetal, 4, cl
 setSkySet("sunset 1");
 setSunRotation(randomAngle());
 setSunColor(0.8, 0.7, 0.6);
-setTerrainAmbientColor(0.6, 0.5, 0.6);
-setUnitsAmbientColor(0.6, 0.5, 0.6);
+setAmbientColor(0.6, 0.5, 0.6);
 setSunElevation(Math.PI * randFloat(1/12, 1/7));
 setWaterColor(0, 0.047, 0.286);
 setWaterTint(0.462, 0.756, 0.866);

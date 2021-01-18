@@ -7,14 +7,13 @@
   <Identity>
     <Civ>kush</Civ>
     <SpecificName>Htm</SpecificName>
-    <Tooltip>Territory root. Train Champion Infantry and Heroes. Garrison Soldiers for additional arrows.</Tooltip>
+    <Tooltip>Territory root. Train Heroes. Garrison Soldiers for additional arrows.</Tooltip>
   </Identity>
   <Obstruction>
     <Static width="28.0" depth="28.0"/>
   </Obstruction>
   <ProductionQueue>
     <Entities datatype="tokens">
-      units/{civ}/champion_infantry
       units/{civ}/hero_nastasen
       units/{civ}/hero_amanirenas
       units/{civ}/hero_arakamani

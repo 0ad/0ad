@@ -8,11 +8,11 @@
 		]
 	},
 	"icon": "stone_blocks_brown.png",
-	"tooltip": "Houses and Economic Structures −50% wood cost, but +50% build time.",
+	"tooltip": "Houses and Economic Structures −40% wood cost and health.",
 	"modifications": [
-		{ "value": "Cost/BuildTime", "multiply": 1.5},
-		{ "value": "Cost/Resources/wood", "multiply": 0.5 },
-		{ "value": "Loot/wood", "multiply": 0.5 }
+		{ "value": "Cost/Resources/wood", "multiply": 0.6 },
+		{ "value": "Health/Max", "multiply": 0.6},
+		{ "value": "Loot/wood", "multiply": 0.6 }
 	],
 	"affects": ["Economic !CivCentre !Naval", "House"]
 }

@@ -5,11 +5,12 @@
     <Lang>greek</Lang>
     <GenericName>Macedonian Shield Bearer</GenericName>
     <SpecificName>Hypaspistḗs</SpecificName>
+    <SelectionGroupName>units/mace/champion_infantry_spearman</SelectionGroupName>
     <Icon>units/mace_hypaspist.png</Icon>
-    <SelectionGroupName>units/mace/champion_infantry_a</SelectionGroupName>
+    <RequiredTechnology>unlock_champion_infantry</RequiredTechnology>
   </Identity>
   <Promotion>
-    <Entity>units/mace/champion_infantry_e</Entity>
+    <Entity>units/mace/champion_infantry_spearman_02</Entity>
     <RequiredXp>2000</RequiredXp>
   </Promotion>
   <VisualActor>

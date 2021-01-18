@@ -556,7 +556,7 @@ placePlayersNomad(
 			g_TileClasses.mountain, 2)
 	]);
 
-setTerrainAmbientColor(0.521, 0.475, 0.322);
+setAmbientColor(0.521, 0.475, 0.322);
 
 setSunColor(0.733, 0.746, 0.574);
 setSunRotation(Math.PI);

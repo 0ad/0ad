@@ -509,8 +509,7 @@ setSunColor(0.8, 0.66, 0.48);
 setSunElevation(0.828932);
 setSunRotation((swapAngle ? 0.288 : 0.788) * Math.PI);
 
-setTerrainAmbientColor(0.564706,0.543726,0.419608);
-setUnitsAmbientColor(0.564706,0.543726,0.419608);
+setAmbientColor(0.564706,0.543726,0.419608);
 setWaterColor(0.2,0.294,0.49);
 setWaterTint(0.208, 0.659, 0.925);
 setWaterMurkiness(0.72);

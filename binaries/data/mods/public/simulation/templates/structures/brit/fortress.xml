@@ -10,14 +10,13 @@
   <Identity>
     <Civ>brit</Civ>
     <SpecificName>Dunon</SpecificName>
-    <Tooltip>Territory root. Train Champion Infantry and Heroes. Garrison Soldiers for additional arrows.</Tooltip>
+    <Tooltip>Territory root. Train Heroes. Garrison Soldiers for additional arrows.</Tooltip>
   </Identity>
   <Obstruction>
     <Static width="29.0" depth="29.0"/>
   </Obstruction>
   <ProductionQueue>
     <Entities datatype="tokens">
-      units/{civ}/champion_infantry
       units/{civ}/hero_boudicca
       units/{civ}/hero_caratacos
       units/{civ}/hero_cunobelin

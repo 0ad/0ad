@@ -594,8 +594,7 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 	EL(suncolor);
 	EL(sunelevation);
 	EL(sunrotation);
-	EL(terrainambientcolor);
-	EL(unitsambientcolor);
+	EL(ambientcolor);
 	EL(water);
 	EL(waterbody);
 	EL(type);
@@ -644,16 +643,9 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 		{
 			m_MapReader.m_LightEnv.m_Rotation = attrs.GetNamedItem(at_angle).ToFloat();
 		}
-		else if (element_name == el_terrainambientcolor)
+		else if (element_name == el_ambientcolor)
 		{
-			m_MapReader.m_LightEnv.m_TerrainAmbientColor = RGBColor(
-				attrs.GetNamedItem(at_r).ToFloat(),
-				attrs.GetNamedItem(at_g).ToFloat(),
-				attrs.GetNamedItem(at_b).ToFloat());
-		}
-		else if (element_name == el_unitsambientcolor)
-		{
-			m_MapReader.m_LightEnv.m_UnitsAmbientColor = RGBColor(
+			m_MapReader.m_LightEnv.m_AmbientColor = RGBColor(
 				attrs.GetNamedItem(at_r).ToFloat(),
 				attrs.GetNamedItem(at_g).ToFloat(),
 				attrs.GetNamedItem(at_b).ToFloat());
@@ -1502,13 +1494,9 @@ int CMapReader::ParseEnvironment()
 	GET_ENVIRONMENT_PROPERTY(envObj, SunElevation, m_LightEnv.m_Elevation)
 	GET_ENVIRONMENT_PROPERTY(envObj, SunRotation, m_LightEnv.m_Rotation)
 
-	CColor terrainAmbientColor;
-	GET_ENVIRONMENT_PROPERTY(envObj, TerrainAmbientColor, terrainAmbientColor)
-	m_LightEnv.m_TerrainAmbientColor = RGBColor(terrainAmbientColor.r, terrainAmbientColor.g, terrainAmbientColor.b);
-
-	CColor unitsAmbientColor;
-	GET_ENVIRONMENT_PROPERTY(envObj, UnitsAmbientColor, unitsAmbientColor)
-	m_LightEnv.m_UnitsAmbientColor = RGBColor(unitsAmbientColor.r, unitsAmbientColor.g, unitsAmbientColor.b);
+	CColor ambientColor;
+	GET_ENVIRONMENT_PROPERTY(envObj, AmbientColor, ambientColor)
+	m_LightEnv.m_AmbientColor = RGBColor(ambientColor.r, ambientColor.g, ambientColor.b);
 
 	// Water properties
 	JS::RootedValue waterObj(rq.cx);

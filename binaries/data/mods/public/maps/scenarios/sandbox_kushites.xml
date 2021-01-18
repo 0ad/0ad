@@ -6,8 +6,7 @@
 		<SunColor r="1" g="0.964706" b="0.909804"/>
 		<SunElevation angle="0.971135"/>
 		<SunRotation angle="-0.785398"/>
-		<TerrainAmbientColor r="0.364706" g="0.356863" b="0.329412"/>
-		<UnitsAmbientColor r="0.364706" g="0.356863" b="0.329412"/>
+		<AmbientColor r="0.364706" g="0.356863" b="0.329412"/>
 		<Fog>
 			<FogFactor>0.00195313</FogFactor>
 			<FogThickness>0</FogThickness>
@@ -12769,21 +12768,21 @@
 			<Actor seed="47118"/>
 		</Entity>
 		<Entity uid="2458">
-			<Template>units/kush/champion_infantry</Template>
+			<Template>units/kush/champion_infantry_archer</Template>
 			<Player>1</Player>
 			<Position x="373.88907" z="400.40192"/>
 			<Orientation y="-2.86306"/>
 			<Actor seed="53872"/>
 		</Entity>
 		<Entity uid="2459">
-			<Template>units/kush/champion_infantry</Template>
+			<Template>units/kush/champion_infantry_archer</Template>
 			<Player>1</Player>
 			<Position x="375.97223" z="400.66855"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="65136"/>
 		</Entity>
 		<Entity uid="2460">
-			<Template>units/kush/champion_infantry</Template>
+			<Template>units/kush/champion_infantry_archer</Template>
 			<Player>1</Player>
 			<Position x="377.7963" z="403.54255"/>
 			<Orientation y="-0.7307"/>

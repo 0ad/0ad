@@ -21,29 +21,32 @@
 
 #include "precompiled.h"
 
-#include <algorithm>
+#include "renderer/SkyManager.h"
 
 #include "graphics/LightEnv.h"
 #include "graphics/ShaderManager.h"
 #include "graphics/Terrain.h"
 #include "graphics/TextureManager.h"
-#include "lib/timer.h"
 #include "lib/tex/tex.h"
+#include "lib/timer.h"
 #include "lib/res/graphics/ogl_tex.h"
 #include "maths/MathUtil.h"
-#include "ps/CStr.h"
 #include "ps/CLogger.h"
+#include "ps/ConfigDB.h"
+#include "ps/CStr.h"
+#include "ps/Filesystem.h"
 #include "ps/Game.h"
 #include "ps/Loader.h"
-#include "ps/Filesystem.h"
 #include "ps/World.h"
-#include "renderer/SkyManager.h"
 #include "renderer/Renderer.h"
 #include "renderer/RenderingOptions.h"
+
+#include <algorithm>
 
 SkyManager::SkyManager()
 	: m_RenderSky(true), m_SkyCubeMap(0)
 {
+	CFG_GET_VAL("showsky", m_RenderSky);
 }
 
 ///////////////////////////////////////////////////////////////////
@@ -196,6 +199,8 @@ void SkyManager::RenderSky()
 #if CONFIG2_GLES
 #warning TODO: implement SkyManager::RenderSky for GLES
 #else
+	if (!m_RenderSky)
+		return;
 
 	// Draw the sky as a small box around the map, with depth write enabled.
 	// This will be done before anything else is drawn so we'll be overlapped by

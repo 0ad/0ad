@@ -5,7 +5,7 @@ set -e
 # This should match the version in config/milestone.txt
 FOLDER="mozjs-78.6.0"
 # If same-version changes are needed, increment this.
-LIB_VERSION="78.6.0+1"
+LIB_VERSION="78.6.0+2"
 LIB_NAME="mozjs78-ps"
 
 # Since this script is called by update-workspaces.sh, we want to quickly
@@ -113,19 +113,22 @@ else
   cd "$FOLDER"
 fi
 
-mkdir -p build-debug
-cd build-debug
-# SM configure checks for autoconf, but we don't actually need it.
-# To avoid a dependency, pass something arbitrary (it does need to be an actual program).
-# llvm-objdump is searched for with the complete name, not simply 'objdump', account for that.
-CXXFLAGS="${CXXFLAGS}" ../js/src/configure AUTOCONF="ls" \
-  LLVM_OBJDUMP="${LLVM_OBJDUMP}" \
-  ${CONF_OPTS} \
-  --enable-debug \
-  --disable-optimize \
-  --enable-gczeal
-${MAKE} ${MAKE_OPTS}
-cd ..
+# Debug version of SM is broken on FreeBSD.
+if [ "$(uname -s)" != "FreeBSD" ]; then
+  mkdir -p build-debug
+  cd build-debug
+  # SM configure checks for autoconf, but we don't actually need it.
+  # To avoid a dependency, pass something arbitrary (it does need to be an actual program).
+  # llvm-objdump is searched for with the complete name, not simply 'objdump', account for that.
+  CXXFLAGS="${CXXFLAGS}" ../js/src/configure AUTOCONF="ls" \
+    LLVM_OBJDUMP="${LLVM_OBJDUMP}" \
+    ${CONF_OPTS} \
+    --enable-debug \
+    --disable-optimize \
+    --enable-gczeal
+  ${MAKE} ${MAKE_OPTS}
+  cd ..
+fi
 
 mkdir -p build-release
 cd build-release
@@ -176,10 +179,13 @@ fi
 # Copy files into the necessary locations for building and running the game
 
 # js-config.h is different for debug and release builds, so we need different include directories for both
-mkdir -p "${INCLUDE_DIR_DEBUG}"
 mkdir -p "${INCLUDE_DIR_RELEASE}"
 cp -R -L "${FOLDER}"/build-release/dist/include/* "${INCLUDE_DIR_RELEASE}/"
-cp -R -L "${FOLDER}"/build-debug/dist/include/* "${INCLUDE_DIR_DEBUG}/"
+
+if [ "$(uname -s)" != "FreeBSD" ]; then
+  mkdir -p "${INCLUDE_DIR_DEBUG}"
+  cp -R -L "${FOLDER}"/build-debug/dist/include/* "${INCLUDE_DIR_DEBUG}/"
+fi
 
 # These align the ligns below, making it easier to check for mistakes.
 DEB="debug"
@@ -215,10 +221,12 @@ then
   cp -L "${FOLDER}/build-release/dist/bin/${LIB_PREFIX}plds4.dll" "../../../binaries/system/${LIB_PREFIX}plds4.dll"
 else
   # Copy shared libs to both lib/ and binaries/ so the compiler and executable (resp.) can find them.
-  cp -L "${FOLDER}/build-${DEB}/js/src/build/${LIB_PREFIX}${LIB_NAME}-${DEB}${LIB_SUFFIX}" "lib/${LIB_PREFIX}${LIB_NAME}-${DEB}${LIB_SUFFIX}"
   cp -L "${FOLDER}/build-${REL}/js/src/build/${LIB_PREFIX}${LIB_NAME}-${REL}${LIB_SUFFIX}" "lib/${LIB_PREFIX}${LIB_NAME}-${REL}${LIB_SUFFIX}"
-  cp -L "${FOLDER}/build-${DEB}/js/src/build/${LIB_PREFIX}${LIB_NAME}-${DEB}${LIB_SUFFIX}" "../../../binaries/system/${LIB_PREFIX}${LIB_NAME}-${DEB}${LIB_SUFFIX}"
   cp -L "${FOLDER}/build-${REL}/js/src/build/${LIB_PREFIX}${LIB_NAME}-${REL}${LIB_SUFFIX}" "../../../binaries/system/${LIB_PREFIX}${LIB_NAME}-${REL}${LIB_SUFFIX}"
+  if [ "$(uname -s)" != "FreeBSD" ]; then
+    cp -L "${FOLDER}/build-${DEB}/js/src/build/${LIB_PREFIX}${LIB_NAME}-${DEB}${LIB_SUFFIX}" "../../../binaries/system/${LIB_PREFIX}${LIB_NAME}-${DEB}${LIB_SUFFIX}"
+    cp -L "${FOLDER}/build-${DEB}/js/src/build/${LIB_PREFIX}${LIB_NAME}-${DEB}${LIB_SUFFIX}" "lib/${LIB_PREFIX}${LIB_NAME}-${DEB}${LIB_SUFFIX}"
+  fi
 fi
 
 # Flag that it's already been built successfully so we can skip it next time

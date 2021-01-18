@@ -82,6 +82,11 @@ PETRA.ResearchManager.prototype.researchWantedTechs = function(gameState, techs)
 	let numWorkers = phase1 ? gameState.getOwnEntitiesByRole("worker", true).length : 0;
 	for (let tech of techs)
 	{
+		if (tech[0].indexOf("unlock_champion") == 0)
+			return { "name": tech[0], "increasePriority": true };
+		if (tech[0] == "traditional_army_sele" || tech[0] == "reformed_army_sele")
+			return { "name": pickRandom(["traditional_army_sele", "reformed_army_sele"]), "increasePriority": true };
+
 		if (!tech[1]._template.modifications)
 			continue;
 		let template = tech[1]._template;

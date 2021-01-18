@@ -6,8 +6,7 @@
 		<SunColor r="0.811765" g="0.784314" b="0.592157"/>
 		<SunElevation angle="0.785398"/>
 		<SunRotation angle="-0.404971"/>
-		<TerrainAmbientColor r="0.501961" g="0.501961" b="0.501961"/>
-		<UnitsAmbientColor r="0.501961" g="0.501961" b="0.501961"/>
+		<AmbientColor r="0.501961" g="0.501961" b="0.501961"/>
 		<Fog>
 			<FogFactor>0.000585937</FogFactor>
 			<FogThickness>0.490234</FogThickness>
@@ -104115,28 +104114,28 @@
 			<Actor seed="20798"/>
 		</Entity>
 		<Entity uid="21784">
-			<Template>units/kush/champion_infantry</Template>
+			<Template>units/kush/champion_infantry_archer</Template>
 			<Player>2</Player>
 			<Position x="1513.30323" z="496.16877"/>
 			<Orientation y="-0.5436"/>
 			<Actor seed="36424"/>
 		</Entity>
 		<Entity uid="21785">
-			<Template>units/kush/champion_infantry</Template>
+			<Template>units/kush/champion_infantry_archer</Template>
 			<Player>2</Player>
 			<Position x="1514.90857" z="497.25016"/>
 			<Orientation y="-0.634"/>
 			<Actor seed="37102"/>
 		</Entity>
 		<Entity uid="21786">
-			<Template>units/kush/champion_infantry</Template>
+			<Template>units/kush/champion_infantry_archer</Template>
 			<Player>2</Player>
 			<Position x="1514.47522" z="494.40168"/>
 			<Orientation y="-0.5474"/>
 			<Actor seed="16464"/>
 		</Entity>
 		<Entity uid="21787">
-			<Template>units/kush/champion_infantry</Template>
+			<Template>units/kush/champion_infantry_archer</Template>
 			<Player>2</Player>
 			<Position x="1516.34046" z="495.5716"/>
 			<Orientation y="-0.64074"/>
@@ -109983,42 +109982,42 @@
 			<Actor seed="8094"/>
 		</Entity>
 		<Entity uid="22821">
-			<Template>units/kush/champion_infantry</Template>
+			<Template>units/kush/champion_infantry_archer</Template>
 			<Player>2</Player>
 			<Position x="1519.09498" z="492.34775"/>
 			<Orientation y="-0.64075"/>
 			<Actor seed="48924"/>
 		</Entity>
 		<Entity uid="22822">
-			<Template>units/kush/champion_infantry</Template>
+			<Template>units/kush/champion_infantry_archer</Template>
 			<Player>2</Player>
 			<Position x="1517.22974" z="491.17783"/>
 			<Orientation y="-0.5474"/>
 			<Actor seed="16464"/>
 		</Entity>
 		<Entity uid="22823">
-			<Template>units/kush/champion_infantry</Template>
+			<Template>units/kush/champion_infantry_archer</Template>
 			<Player>2</Player>
 			<Position x="1517.6631" z="494.02631"/>
 			<Orientation y="-0.63401"/>
 			<Actor seed="37102"/>
 		</Entity>
 		<Entity uid="22824">
-			<Template>units/kush/champion_infantry</Template>
+			<Template>units/kush/champion_infantry_archer</Template>
 			<Player>2</Player>
 			<Position x="1516.05774" z="492.94492"/>
 			<Orientation y="-0.5436"/>
 			<Actor seed="36424"/>
 		</Entity>
 		<Entity uid="22825">
-			<Template>units/kush/champion_infantry</Template>
+			<Template>units/kush/champion_infantry_archer</Template>
 			<Player>2</Player>
 			<Position x="1518.29139" z="489.66334"/>
 			<Orientation y="-0.5474"/>
 			<Actor seed="16464"/>
 		</Entity>
 		<Entity uid="22826">
-			<Template>units/kush/champion_infantry</Template>
+			<Template>units/kush/champion_infantry_archer</Template>
 			<Player>2</Player>
 			<Position x="1520.15662" z="490.83326"/>
 			<Orientation y="-0.64075"/>

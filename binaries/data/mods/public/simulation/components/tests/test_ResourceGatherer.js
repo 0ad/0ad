@@ -43,7 +43,8 @@ let template = {
 };
 
 let cmpResourceGatherer = ConstructComponent(entity, "ResourceGatherer", template);
-cmpResourceGatherer.RecalculateGatherRatesAndCapacities();
+cmpResourceGatherer.RecalculateGatherRates();
+cmpResourceGatherer.RecalculateCapacities();
 
 TS_ASSERT_UNEVAL_EQUALS(cmpResourceGatherer.GetCarryingStatus(), []);
 cmpResourceGatherer.GiveResources([{ "type": "food", "amount": 11 }]);

@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -37,8 +37,7 @@ class CLightEnv
 {
 public:
 	RGBColor m_SunColor;
-	RGBColor m_TerrainAmbientColor;
-	RGBColor m_UnitsAmbientColor;
+	RGBColor m_AmbientColor;
 	RGBColor m_FogColor;
 
 	float m_FogFactor;
@@ -67,7 +66,7 @@ public:
 	{
 		float dot = -normal.Dot(m_SunDir);
 
-		RGBColor color = m_UnitsAmbientColor;
+		RGBColor color = m_AmbientColor;
 		if (dot > 0)
 			color += m_SunColor * dot;
 
@@ -80,8 +79,7 @@ public:
 		return m_Elevation == o.m_Elevation &&
 			m_Rotation == o.m_Rotation &&
 			m_SunColor == o.m_SunColor &&
-			m_TerrainAmbientColor == o.m_TerrainAmbientColor &&
-			m_UnitsAmbientColor == o.m_UnitsAmbientColor &&
+			m_AmbientColor == o.m_AmbientColor &&
 			m_FogColor == o.m_FogColor &&
 			m_FogFactor == o.m_FogFactor &&
 			m_FogMax == o.m_FogMax &&

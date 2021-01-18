@@ -6,8 +6,7 @@
 		<SunColor r="0.956863" g="0.929412" b="0.721569"/>
 		<SunElevation angle="0.506214"/>
 		<SunRotation angle="-0.693359"/>
-		<TerrainAmbientColor r="0.337255" g="0.411765" b="0.501961"/>
-		<UnitsAmbientColor r="0.337255" g="0.411765" b="0.501961"/>
+		<AmbientColor r="0.337255" g="0.411765" b="0.501961"/>
 		<Fog>
 			<FogFactor>0</FogFactor>
 			<FogThickness>0.5</FogThickness>
@@ -577,37 +576,37 @@
 			<Orientation y="-2.29711"/>
 		</Entity>
 		<Entity uid="93">
-			<Template>units/iber/champion_infantry</Template>
+			<Template>units/iber/champion_infantry_swordsman</Template>
 			<Player>1</Player>
 			<Position x="394.85737" z="217.73746"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="94">
-			<Template>units/iber/champion_infantry</Template>
+			<Template>units/iber/champion_infantry_swordsman</Template>
 			<Player>1</Player>
 			<Position x="391.71393" z="215.42203"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="95">
-			<Template>units/iber/champion_infantry</Template>
+			<Template>units/iber/champion_infantry_swordsman</Template>
 			<Player>1</Player>
 			<Position x="388.45798" z="212.30677"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="96">
-			<Template>units/iber/champion_infantry</Template>
+			<Template>units/iber/champion_infantry_swordsman</Template>
 			<Player>1</Player>
 			<Position x="383.38788" z="216.03916"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="97">
-			<Template>units/iber/champion_infantry</Template>
+			<Template>units/iber/champion_infantry_swordsman</Template>
 			<Player>1</Player>
 			<Position x="387.70328" z="218.49207"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="98">
-			<Template>units/iber/champion_infantry</Template>
+			<Template>units/iber/champion_infantry_swordsman</Template>
 			<Player>1</Player>
 			<Position x="391.31684" z="221.64954"/>
 			<Orientation y="2.35621"/>

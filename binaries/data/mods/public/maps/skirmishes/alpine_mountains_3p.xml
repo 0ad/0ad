@@ -6,8 +6,7 @@
 		<SunColor r="1" g="0.87451" b="0.611765"/>
 		<SunElevation angle="0.524621"/>
 		<SunRotation angle="-0.785396"/>
-		<TerrainAmbientColor r="0.501961" g="0.501961" b="0.501961"/>
-		<UnitsAmbientColor r="0.501961" g="0.501961" b="0.501961"/>
+		<AmbientColor r="0.501961" g="0.501961" b="0.501961"/>
 		<Fog>
 			<FogFactor>0.00046875</FogFactor>
 			<FogThickness>0.14</FogThickness>
@@ -2952,21 +2951,21 @@
 			<Actor seed="43932"/>
 		</Entity>
 		<Entity uid="3400">
-			<Template>units/gaul/champion_infantry</Template>
+			<Template>units/gaul/champion_infantry_swordsman</Template>
 			<Player>0</Player>
 			<Position x="776.43134" z="231.45167"/>
 			<Orientation y="-1.44887"/>
 			<Actor seed="41296"/>
 		</Entity>
 		<Entity uid="3401">
-			<Template>units/gaul/champion_infantry</Template>
+			<Template>units/gaul/champion_infantry_swordsman</Template>
 			<Player>0</Player>
 			<Position x="775.92957" z="226.9015"/>
 			<Orientation y="-1.31069"/>
 			<Actor seed="27960"/>
 		</Entity>
 		<Entity uid="3402">
-			<Template>units/gaul/champion_infantry</Template>
+			<Template>units/gaul/champion_infantry_swordsman</Template>
 			<Player>0</Player>
 			<Position x="777.64295" z="234.8532"/>
 			<Orientation y="-1.20908"/>

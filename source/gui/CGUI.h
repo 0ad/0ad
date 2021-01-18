@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -679,9 +679,9 @@ private:
 
 public:
 	/**
-	 * Stores all the IGUIObject which listen to a given event.
+	 * Map from event names to object which listen to a given event.
 	 */
-	std::map<CStr, std::set<IGUIObject*>> m_EventIGUIObjects;
+	std::unordered_map<CStr, std::vector<IGUIObject*>> m_EventObjects;
 };
 
 #endif // INCLUDED_CGUI

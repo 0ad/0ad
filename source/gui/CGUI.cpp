@@ -43,6 +43,7 @@
 #include "scriptinterface/ScriptInterface.h"
 
 #include <string>
+#include <unordered_map>
 #include <unordered_set>
 
 extern int g_yres;
@@ -275,24 +276,24 @@ void CGUI::TickObjects()
 
 void CGUI::SendEventToAll(const CStr& eventName)
 {
-	auto it = m_EventIGUIObjects.find(eventName);
-	if (it == m_EventIGUIObjects.end())
+	std::unordered_map<CStr, std::vector<IGUIObject*>>::iterator it = m_EventObjects.find(eventName);
+	if (it == m_EventObjects.end())
 		return;
 
-	std::set<IGUIObject*> copy = it->second;
-	for (IGUIObject* pIGUIObject : copy)
-		pIGUIObject->ScriptEvent(eventName);
+	std::vector<IGUIObject*> copy = it->second;
+	for (IGUIObject* object : copy)
+		object->ScriptEvent(eventName);
 }
 
 void CGUI::SendEventToAll(const CStr& eventName, const JS::HandleValueArray& paramData)
 {
-	auto it = m_EventIGUIObjects.find(eventName);
-	if (it == m_EventIGUIObjects.end())
+	std::unordered_map<CStr, std::vector<IGUIObject*>>::iterator it = m_EventObjects.find(eventName);
+	if (it == m_EventObjects.end())
 		return;
 
-	std::set<IGUIObject*> copy = it->second;
-	for (IGUIObject* pIGUIObject : copy)
-		pIGUIObject->ScriptEvent(eventName, paramData);
+	std::vector<IGUIObject*> copy = it->second;
+	for (IGUIObject* object : copy)
+		object->ScriptEvent(eventName, paramData);
 }
 
 void CGUI::Draw()

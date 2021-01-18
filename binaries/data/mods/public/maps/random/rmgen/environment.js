@@ -7,8 +7,7 @@ var g_Environment = {
 	"SunColor": { "r": 0.749020, "g": 0.749020, "b": 0.749020, "a": 0 }, // all rgb from 0 to 1
 	"SunElevation": 0.785398, // 0 to 2pi
 	"SunRotation": 5.49779, // 0 to 2pi
-	"TerrainAmbientColor": { "r": 0.501961, "g": 0.501961, "b": 0.501961, "a": 0 },
-	"UnitsAmbientColor": { "r": 0.501961, "g": 0.501961, "b": 0.501961, "a": 0 },
+	"AmbientColor": { "r": 0.501961, "g": 0.501961, "b": 0.501961, "a": 0 },
 	"Water": {
 		"WaterBody": {
 			"Type": "ocean", // Subdirectory name of art/textures/animated/water
@@ -67,14 +66,9 @@ function setSunRotation(r)
 	g_Environment.SunRotation = r;
 }
 
-function setTerrainAmbientColor(r, g, b)
+function setAmbientColor(r, g, b)
 {
-	g_Environment.TerrainAmbientColor = { "r" : r, "g" : g, "b" : b, "a" : 0 };
-}
-
-function setUnitsAmbientColor(r, g, b)
-{
-	g_Environment.UnitsAmbientColor = { "r" : r, "g" : g, "b" : b, "a" : 0 };
+	g_Environment.AmbientColor = { "r" : r, "g" : g, "b" : b, "a" : 0 };
 }
 
 ////////////////////////////////////////////////////////////////////////////

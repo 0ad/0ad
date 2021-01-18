@@ -86,7 +86,7 @@ const oPalisadeGate = "structures/palisades_gate";
 const oPalisadeTower = "structures/palisades_tower";
 const oKushCitizenArcher = "units/kush/infantry_archer_b";
 const oKushHealer = "units/kush/support_healer_b";
-const oKushChampionArcher = "units/kush/champion_infantry";
+const oKushChampionArcher = "units/kush/champion_infantry_archer";
 const oKushChampions = [
 	oKushChampionArcher,
 	"units/kush/champion_infantry_amun",
@@ -1487,7 +1487,7 @@ setWaterWaviness(8);
 setWaterMurkiness(0.87);
 setWaterType("lake");
 
-setTerrainAmbientColor(0.58, 0.443, 0.353);
+setAmbientColor(0.58, 0.443, 0.353);
 
 setSunColor(0.733, 0.746, 0.574);
 setSunRotation(Math.PI / 2 * randFloat(-1, 1));

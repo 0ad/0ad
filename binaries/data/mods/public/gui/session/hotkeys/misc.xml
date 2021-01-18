@@ -16,13 +16,6 @@
 		<action on="Press">toggleConfigBool("silhouettes");</action>
 	</object>
 
-	<object hotkey="showsky">
-		<action on="Press">
-			var newSetting = !Engine.Renderer_GetShowSkyEnabled();
-			Engine.Renderer_SetShowSkyEnabled(newSetting);
-		</action>
-	</object>
-
 	<object hotkey="quicksave">
 		<action on="Press">if (!g_IsNetworked) Engine.QuickSave(getSavedGameData());</action>
 	</object>

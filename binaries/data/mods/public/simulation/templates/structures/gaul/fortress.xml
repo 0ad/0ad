@@ -3,13 +3,7 @@
   <Identity>
     <Civ>gaul</Civ>
     <SpecificName>Dunon</SpecificName>
-    <Tooltip>Territory root. Train Champion Infantry. Garrison Soldiers for additional arrows.</Tooltip>
   </Identity>
-  <ProductionQueue>
-    <Entities datatype="tokens">
-      units/{civ}/champion_infantry
-    </Entities>
-  </ProductionQueue>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_fortress.xml</select>
