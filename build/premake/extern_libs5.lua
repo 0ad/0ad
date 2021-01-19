@@ -351,8 +351,8 @@ extern_lib_defs = {
 				add_default_include_paths("iconv")
 				defines { "LIBICONV_STATIC" }
 			elseif os.getversion().description == "FreeBSD" then
-				defines { "HAVE_ICONV_CONST" }
-				defines { "ICONV_CONST=const" }
+				-- On FreeBSD you need this flag to tell it to use the BSD libc iconv
+				defines { "LIBICONV_PLUG" }
 			end
 		end,
 		link_settings = function()
@@ -366,14 +366,6 @@ extern_lib_defs = {
 				no_delayload = 1,
 			})
 			-- glibc (used on Linux and GNU/kFreeBSD) has iconv
-			-- FreeBSD 10+ has iconv as a part of libc
-			if os.istarget("bsd")
-			   and not (os.getversion().description == "FreeBSD" and os.getversion().majorversion >= 10
-			            or os.getversion().description == "GNU/kFreeBSD") then
-				add_default_links({
-					bsd_names = { "iconv" },
-				})
-			end
 		end,
 	},
 	icu = {

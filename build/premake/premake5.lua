@@ -42,6 +42,8 @@ if os.istarget("macosx") then
 	cc = "clang"
 elseif os.istarget("linux") and _OPTIONS["icc"] then
 	cc = "icc"
+elseif os.istarget("bsd") and os.getversion().description == "FreeBSD" then
+	cc = "clang"
 elseif not os.istarget("windows") then
 	cc = os.getenv("CC")
 	if cc == nil or cc == "" then
@@ -1103,8 +1105,13 @@ function setup_atlas_project(project_name, target_type, rel_source_dirs, rel_inc
 		links { "winmm", "delayimp" }
 
 	elseif os.istarget("linux") or os.istarget("bsd") then
-		buildoptions { "-rdynamic", "-fPIC" }
-		linkoptions { "-fPIC", "-rdynamic" }
+		if os.getversion().description == "FreeBSD" then
+			buildoptions { "-fPIC" }
+			linkoptions { "-fPIC" }
+		else
+			buildoptions { "-rdynamic", "-fPIC" }
+			linkoptions { "-fPIC", "-rdynamic" }
+		end
 
 		-- warnings triggered by wxWidgets
 		buildoptions { "-Wno-unused-local-typedefs" }
@@ -1252,9 +1259,10 @@ function setup_collada_project(project_name, target_type, rel_source_dirs, rel_i
 		-- FCollada is not aliasing-safe, so disallow dangerous optimisations
 		-- (TODO: It'd be nice to fix FCollada, but that looks hard)
 		buildoptions { "-fno-strict-aliasing" }
-
-		buildoptions { "-rdynamic" }
-		linkoptions { "-rdynamic" }
+		if os.getversion().description ~= "FreeBSD" then
+			buildoptions { "-rdynamic" }
+			linkoptions { "-rdynamic" }
+		end
 
 	elseif os.istarget("bsd") then
 		if os.getversion().description == "OpenBSD" then
