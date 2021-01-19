@@ -15,10 +15,10 @@
       <Delay>0</Delay>
       <Projectile>
         <Speed>100.0</Speed>
-        <Spread>0.5</Spread>
-        <Gravity>39.81</Gravity>
+        <Spread>0.4</Spread>
+        <Gravity>50.0</Gravity>
         <FriendlyFire>false</FriendlyFire>
-        <LaunchPoint y="3"/>
+        <LaunchPoint y="5"/>
       </Projectile>
       <PreferredClasses datatype="tokens">Human</PreferredClasses>
     </Ranged>
