@@ -76,14 +76,8 @@ void ShaderRenderModifier::BeginPass(const CShaderProgramPtr& shader)
 	shader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
 	shader->Uniform(str_cameraPos, g_Renderer.GetViewCamera().GetOrientation().GetTranslation());
 
-	if (GetShadowMap() && shader->GetTextureBinding(str_shadowTex).Active())
-	{
-		shader->BindTexture(str_shadowTex, GetShadowMap()->GetTexture());
-		shader->Uniform(str_shadowTransform, GetShadowMap()->GetTextureMatrix());
-		int width = GetShadowMap()->GetWidth();
-		int height = GetShadowMap()->GetHeight();
-		shader->Uniform(str_shadowScale, width, height, 1.0f / width, 1.0f / height);
-	}
+	if (GetShadowMap())
+		GetShadowMap()->BindTo(shader);
 
 	if (GetLightEnv())
 	{
