@@ -113,6 +113,10 @@ public:
 	{
 	}
 
+	virtual void Uniform(Binding UNUSED(id), size_t UNUSED(count), const float* UNUSED(v))
+	{
+	}
+
 	virtual std::vector<VfsPath> GetFileDependencies() const
 	{
 		return {};

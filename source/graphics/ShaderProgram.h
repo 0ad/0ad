@@ -161,6 +161,7 @@ public:
 	virtual void Uniform(Binding id, float v0, float v1, float v2, float v3) = 0;
 	virtual void Uniform(Binding id, const CMatrix3D& v) = 0;
 	virtual void Uniform(Binding id, size_t count, const CMatrix3D* v) = 0;
+	virtual void Uniform(Binding id, size_t count, const float* v) = 0;
 
 	// Convenient uniform-setting wrappers:
 
@@ -178,6 +179,7 @@ public:
 	void Uniform(uniform_id_t id, float v0, float v1, float v2, float v3);
 	void Uniform(uniform_id_t id, const CMatrix3D& v);
 	void Uniform(uniform_id_t id, size_t count, const CMatrix3D* v);
+	void Uniform(uniform_id_t id, size_t count, const float* v);
 
 	// Vertex attribute pointers (equivalent to glVertexPointer etc):
 
