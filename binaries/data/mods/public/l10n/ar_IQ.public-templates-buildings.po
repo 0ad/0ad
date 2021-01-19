@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-11 08:08+0000\n"
-"PO-Revision-Date: 2021-01-11 10:36+0000\n"
+"POT-Creation-Date: 2021-01-15 08:53+0000\n"
+"PO-Revision-Date: 2021-01-15 10:36+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Arabic (Iraq) (http://www.transifex.com/wildfire-games/0ad/language/ar_IQ/)\n"
 "MIME-Version: 1.0\n"
@@ -42,7 +42,7 @@ msgstr ""
 
 #: simulation/templates/structures/athen/corral.xml:5
 #: simulation/templates/structures/mace/corral.xml:5
-#: simulation/templates/structures/ptol/corral.xml:17
+#: simulation/templates/structures/ptol/corral.xml:8
 #: simulation/templates/structures/sele/corral.xml:5
 #: simulation/templates/structures/spart/corral.xml:5
 msgid "Epaulos"
@@ -66,7 +66,7 @@ msgstr ""
 
 #: simulation/templates/structures/athen/farmstead.xml:11
 #: simulation/templates/structures/mace/farmstead.xml:11
-#: simulation/templates/structures/ptol/farmstead.xml:17
+#: simulation/templates/structures/ptol/farmstead.xml:8
 #: simulation/templates/structures/sele/farmstead.xml:8
 #: simulation/templates/structures/spart/farmstead.xml:11
 msgid "Epoikion"
@@ -111,7 +111,7 @@ msgstr ""
 
 #: simulation/templates/structures/athen/house.xml:5
 #: simulation/templates/structures/mace/house.xml:5
-#: simulation/templates/structures/ptol/house.xml:18
+#: simulation/templates/structures/ptol/house.xml:11
 #: simulation/templates/structures/sele/house.xml:8
 #: simulation/templates/structures/spart/house.xml:5
 msgid "Oikos"
@@ -146,6 +146,7 @@ msgid "Train Heroes and research technologies."
 msgstr ""
 
 #: simulation/templates/structures/athen/prytaneion.xml:26
+#: simulation/templates/structures/gaul/assembly.xml:34
 #: simulation/templates/structures/spart/gerousia.xml:26
 msgid "Council"
 msgstr ""
@@ -176,7 +177,7 @@ msgstr ""
 
 #: simulation/templates/structures/athen/storehouse.xml:8
 #: simulation/templates/structures/mace/storehouse.xml:8
-#: simulation/templates/structures/ptol/storehouse.xml:18
+#: simulation/templates/structures/ptol/storehouse.xml:11
 #: simulation/templates/structures/sele/storehouse.xml:8
 #: simulation/templates/structures/spart/storehouse.xml:8
 msgid "Apothēkē"
@@ -246,7 +247,7 @@ msgid "Pyrgos"
 msgstr ""
 
 #: simulation/templates/structures/athen/wonder.xml:9
-msgid "Parthenōn﻿﻿"
+msgid "Parthenōn"
 msgstr ""
 
 #: simulation/templates/structures/bench.xml:11
@@ -335,10 +336,9 @@ msgid "Dunon"
 msgstr ""
 
 #: simulation/templates/structures/brit/fortress.xml:13
-#: simulation/templates/structures/gaul/fortress.xml:6
-#: simulation/templates/structures/iber/fortress.xml:15
+#: simulation/templates/structures/iber/fortress.xml:6
+#: simulation/templates/structures/kush/fortress.xml:10
 #: simulation/templates/structures/mace/fortress.xml:10
-#: simulation/templates/structures/maur/fortress.xml:6
 #: simulation/templates/structures/rome/fortress.xml:6
 msgid ""
 "Territory root. Train Champion Infantry and Heroes. Garrison Soldiers for "
@@ -435,12 +435,6 @@ msgstr ""
 msgid "Namel"
 msgstr ""
 
-#: simulation/templates/structures/cart/dock.xml:19
-msgid ""
-"Construct fishing boats to gather meat and merchant ships to trade with "
-"other docks."
-msgstr ""
-
 #: simulation/templates/structures/cart/embassy.xml:19
 msgid "Train Mercenaries and research Mercenary technologies."
 msgstr ""
@@ -482,9 +476,7 @@ msgid "Ḥamet"
 msgstr ""
 
 #: simulation/templates/structures/cart/fortress.xml:10
-msgid ""
-"Territory root. Train Champion Elephants and Heroes. Garrison Soldiers for "
-"additional arrows."
+msgid "Territory root. Train Heroes. Garrison Soldiers for additional arrows."
 msgstr ""
 
 #: simulation/templates/structures/cart/house.xml:8
@@ -617,12 +609,32 @@ msgstr ""
 msgid "Stone Fence"
 msgstr ""
 
+#: simulation/templates/structures/gaul/assembly.xml:30
+msgid "Assembly of Princes"
+msgstr ""
+
+#: simulation/templates/structures/gaul/assembly.xml:31
+msgid "Remogantion"
+msgstr ""
+
+#: simulation/templates/structures/gaul/assembly.xml:32
+#: simulation/templates/structures/spart/gerousia.xml:24
+msgid "Train Heroes."
+msgstr ""
+
 #: simulation/templates/structures/gaul/barracks.xml:18
 msgid "Coriosedlon"
 msgstr ""
 
 #: simulation/templates/structures/gaul/civil_centre.xml:12
 msgid "Lissos"
+msgstr ""
+
+#: simulation/templates/structures/gaul/fortress.xml:6
+#: simulation/templates/structures/sele/fortress.xml:10
+msgid ""
+"Territory root. Train Champion Infantry. Garrison Soldiers for additional "
+"arrows."
 msgstr ""
 
 #: simulation/templates/structures/gaul/rotarymill.xml:5
@@ -635,18 +647,6 @@ msgstr ""
 
 #: simulation/templates/structures/gaul/tavern.xml:21
 msgid "Taberna"
-msgstr ""
-
-#: simulation/templates/structures/gaul/tavern.xml:22
-msgid "Recruit Naked Fanatics."
-msgstr ""
-
-#: simulation/templates/structures/gaul/theater.xml:10
-msgid "Assembly of Princes"
-msgstr ""
-
-#: simulation/templates/structures/gaul/theater.xml:11
-msgid "Remogantion"
 msgstr ""
 
 #: simulation/templates/structures/gaul/wonder.xml:9
@@ -718,7 +718,7 @@ msgstr ""
 msgid "Harotz"
 msgstr ""
 
-#: simulation/templates/structures/iber/fortress.xml:14
+#: simulation/templates/structures/iber/fortress.xml:5
 msgid "Castro"
 msgstr ""
 
@@ -815,7 +815,7 @@ msgid "Mryt"
 msgstr ""
 
 #: simulation/templates/structures/kush/elephant_stables.xml:5
-msgid "Ỉ﻿ḥ Abu"
+msgid "Ỉḥ Abu"
 msgstr ""
 
 #: simulation/templates/structures/kush/farmstead.xml:9
@@ -832,12 +832,6 @@ msgstr ""
 
 #: simulation/templates/structures/kush/fortress.xml:9
 msgid "Htm"
-msgstr ""
-
-#: simulation/templates/structures/kush/fortress.xml:10
-msgid ""
-"Territory root. Train Champion Infantry and Elephants and Heroes. Garrison "
-"Soldiers for additional arrows."
 msgstr ""
 
 #: simulation/templates/structures/kush/house.xml:5
@@ -1012,19 +1006,20 @@ msgstr ""
 msgid "Uparaksana"
 msgstr ""
 
-#: simulation/templates/structures/maur/palace.xml:19
-msgid "Harmya"
-msgstr ""
-
-#: simulation/templates/structures/maur/palace.xml:20
-msgid "Train Female Citizens, Champions, and Heroes."
-msgstr ""
-
 #: simulation/templates/structures/maur/palace.xml:22
+#: simulation/templates/structures/maur/palace.xml:26
 #: simulation/templates/structures/pers/apadana.xml:30
 #: simulation/templates/structures/pers/tacara.xml:23
 #: simulation/templates/structures/pers/tacara.xml:26
 msgid "Palace"
+msgstr ""
+
+#: simulation/templates/structures/maur/palace.xml:23
+msgid "Harmya"
+msgstr ""
+
+#: simulation/templates/structures/maur/palace.xml:24
+msgid "Territory root. Train Maiden Guards and Heroes."
 msgstr ""
 
 #: simulation/templates/structures/maur/pillar_ashoka.xml:32
@@ -1270,16 +1265,9 @@ msgid "Stathmos tōn Elepantōn"
 msgstr ""
 
 #: simulation/templates/structures/ptol/fortress.xml:10
-#: simulation/templates/structures/sele/fortress.xml:10
 msgid ""
-"Territory root. Train Champion Infantry and Elephants. Garrison Soldiers for"
-" additional arrows."
-msgstr ""
-
-#: simulation/templates/structures/ptol/house.xml:19
-msgid ""
-"Increase the population limit. Since they are made of mud brick, Egyptian "
-"houses are free of cost, but are very weak."
+"Territory root. Train Champion Infantry Pikemen. Garrison Soldiers for "
+"additional arrows."
 msgstr ""
 
 #: simulation/templates/structures/ptol/lighthouse.xml:25
@@ -1543,10 +1531,6 @@ msgstr ""
 msgid "Gerousia"
 msgstr ""
 
-#: simulation/templates/structures/spart/gerousia.xml:24
-msgid "Train Heroes."
-msgstr ""
-
 #: simulation/templates/structures/spart/syssiton.xml:23
 msgid "Military Mess Hall"
 msgstr ""
@@ -1633,7 +1617,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:83
 #: simulation/templates/template_structure_defensive.xml:5
-#: simulation/templates/template_structure_military_fortress.xml:72
+#: simulation/templates/template_structure_military_fortress.xml:73
 msgid "Defensive"
 msgstr ""
 
@@ -1652,7 +1636,7 @@ msgid "House"
 msgstr ""
 
 #: simulation/templates/template_structure_civic_house.xml:32
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:33
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:31
 #: simulation/templates/template_structure_economic_farmstead.xml:30
 #: simulation/templates/template_structure_economic_storehouse.xml:31
 #: simulation/templates/template_structure_military_barracks.xml:29
@@ -1673,13 +1657,13 @@ msgid "Stoa"
 msgstr ""
 
 #: simulation/templates/structures/cart/super_dock.xml:43
-#: simulation/templates/structures/gaul/tavern.xml:24
+#: simulation/templates/structures/gaul/tavern.xml:22
 #: simulation/templates/structures/kush/pyramid_small.xml:29
 #: simulation/templates/structures/maur/elephant_stables.xml:8
 #: simulation/templates/structures/ptol/lighthouse.xml:29
 #: simulation/templates/template_structure_civic_stoa.xml:30
 #: simulation/templates/template_structure_civic_temple.xml:32
-#: simulation/templates/template_structure_defensive_tower_stone.xml:34
+#: simulation/templates/template_structure_defensive_tower_stone.xml:32
 #: simulation/templates/template_structure_economic_market.xml:28
 #: simulation/templates/template_structure_military_embassy.xml:24
 #: simulation/templates/template_structure_military_forge.xml:26
@@ -1724,9 +1708,9 @@ msgstr ""
 msgid "Wall off an area. Build in own or neutral territory."
 msgstr ""
 
-#: simulation/templates/template_structure_defensive_tower.xml:37
-#: simulation/templates/template_structure_defensive_tower.xml:53
-#: simulation/templates/template_structure_defensive_tower.xml:54
+#: simulation/templates/template_structure_defensive_tower.xml:39
+#: simulation/templates/template_structure_defensive_tower.xml:55
+#: simulation/templates/template_structure_defensive_tower.xml:56
 msgid "Tower"
 msgstr ""
 
@@ -1735,23 +1719,24 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Stone"
 msgstr ""
 
-#: simulation/templates/template_structure_defensive_tower_artillery.xml:58
+#: simulation/templates/template_structure_defensive_tower_artillery.xml:49
 msgid "Artillery Tower"
 msgstr ""
 
-#: simulation/templates/template_structure_defensive_tower_artillery.xml:60
+#: simulation/templates/template_structure_defensive_tower_artillery.xml:51
 msgid "ArtilleryTower"
 msgstr ""
 
+#: simulation/templates/structures/gaul/assembly.xml:34
 #: simulation/templates/structures/kush/pyramid_large.xml:29
 #: simulation/templates/structures/kush/temple_amun.xml:31
 #: simulation/templates/structures/rome/army_camp.xml:77
 #: simulation/templates/structures/rome/temple_mars.xml:14
-#: simulation/templates/template_structure_defensive_tower_artillery.xml:60
-#: simulation/templates/template_structure_defensive_tower_bolt.xml:59
+#: simulation/templates/template_structure_defensive_tower_artillery.xml:51
+#: simulation/templates/template_structure_defensive_tower_bolt.xml:49
 #: simulation/templates/template_structure_military_arsenal.xml:28
 #: simulation/templates/template_structure_military_elephant_stables.xml:26
-#: simulation/templates/template_structure_military_fortress.xml:72
+#: simulation/templates/template_structure_military_fortress.xml:73
 #: simulation/templates/template_structure_special.xml:20
 #: simulation/templates/template_structure_wonder.xml:43
 msgid "City"
@@ -1762,38 +1747,38 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Bolt"
 msgstr ""
 
-#: simulation/templates/template_structure_defensive_tower_bolt.xml:57
+#: simulation/templates/template_structure_defensive_tower_bolt.xml:47
 msgid "Bolt Tower"
 msgstr ""
 
-#: simulation/templates/template_structure_defensive_tower_bolt.xml:59
+#: simulation/templates/template_structure_defensive_tower_bolt.xml:49
 msgid "BoltTower"
 msgstr ""
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:30
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:28
 msgid "Sentry Tower"
 msgstr ""
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:32
-#: simulation/templates/template_structure_defensive_tower_stone.xml:33
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:30
+#: simulation/templates/template_structure_defensive_tower_stone.xml:31
 msgid ""
 "Garrison Infantry for additional arrows. Needs the “Murder Holes” technology"
 " to protect its foot."
 msgstr ""
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:33
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:31
 msgid "SentryTower"
 msgstr ""
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:65
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:63
 msgid "Reinforce with stone and upgrade to a defense tower."
 msgstr ""
 
-#: simulation/templates/template_structure_defensive_tower_stone.xml:31
+#: simulation/templates/template_structure_defensive_tower_stone.xml:29
 msgid "Stone Tower"
 msgstr ""
 
-#: simulation/templates/template_structure_defensive_tower_stone.xml:34
+#: simulation/templates/template_structure_defensive_tower_stone.xml:32
 msgid "StoneTower"
 msgstr ""
 
@@ -1835,6 +1820,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_economic.xml:5
 #: simulation/templates/template_structure_military_dock.xml:27
+#: simulation/templates/template_structure_resource_corral.xml:21
 msgid "Economic"
 msgstr ""
 
@@ -1945,12 +1931,12 @@ msgid "Research attack and resistance technologies."
 msgstr ""
 
 #: simulation/templates/template_structure_military_fortress.xml:39
-#: simulation/templates/template_structure_military_fortress.xml:68
-#: simulation/templates/template_structure_military_fortress.xml:72
+#: simulation/templates/template_structure_military_fortress.xml:69
+#: simulation/templates/template_structure_military_fortress.xml:73
 msgid "Fortress"
 msgstr ""
 
-#: simulation/templates/template_structure_military_fortress.xml:70
+#: simulation/templates/template_structure_military_fortress.xml:71
 msgid "Territory root. Garrison Soldiers for additional arrows."
 msgstr ""
 

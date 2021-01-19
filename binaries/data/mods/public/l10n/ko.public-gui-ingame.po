@@ -29,9 +29,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-04 08:09+0000\n"
-"PO-Revision-Date: 2021-01-11 09:41+0000\n"
-"Last-Translator: Bruce Lee <daemul72@gmail.com>\n"
+"POT-Creation-Date: 2021-01-15 08:53+0000\n"
+"PO-Revision-Date: 2021-01-15 10:36+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -288,140 +288,144 @@ msgid "Press %(hotkey)s to open the previously selected private chat."
 msgstr "이전에 선택한 비공개 대화를 열려면 %(hotkey)s 키를 누르십시오."
 
 #. Translation: A player that left the game joins again
-#: gui/session/chat/ChatMessageFormatNetwork.js:23
+#: gui/session/chat/ChatMessageFormatNetwork.js:24
 #, javascript-format
 msgid "%(player)s is starting to rejoin the game."
 msgstr "%(player)s님이 게임에 다시 들어오고 있습니다."
 
 #. Translation: A player joins the game for the first time
-#: gui/session/chat/ChatMessageFormatNetwork.js:25
+#: gui/session/chat/ChatMessageFormatNetwork.js:26
 #, javascript-format
 msgid "%(player)s is starting to join the game."
 msgstr "%(player)s님이 게임에 참가하고 있습니다."
 
-#: gui/session/chat/ChatMessageFormatNetwork.js:34
+#: gui/session/chat/ChatMessageFormatNetwork.js:37
 #, javascript-format
 msgid "%(player)s has left the game."
 msgstr "%(player)s님이 게임을 떠났습니다."
 
-#: gui/session/chat/ChatMessageFormatNetwork.js:46
+#: gui/session/chat/ChatMessageFormatNetwork.js:51
 #, javascript-format
 msgid "%(username)s has been banned"
 msgstr "%(username)s님이 접근금지 당했습니다(밴)"
 
-#: gui/session/chat/ChatMessageFormatNetwork.js:47
+#: gui/session/chat/ChatMessageFormatNetwork.js:52
 #, javascript-format
 msgid "%(username)s has been kicked"
 msgstr "%(username)s님이 쫓겨났습니다(킥)"
 
 #. Translation: A player that left the game joins again
-#: gui/session/chat/ChatMessageFormatNetwork.js:64
+#: gui/session/chat/ChatMessageFormatNetwork.js:71
 #, javascript-format
 msgid "%(player)s has rejoined the game."
 msgstr "%(player)s님이 다시 게임에 들어왔습니다."
 
 #. Translation: A player joins the game for the first time
-#: gui/session/chat/ChatMessageFormatNetwork.js:66
+#: gui/session/chat/ChatMessageFormatNetwork.js:73
 #, javascript-format
 msgid "%(player)s has joined the game."
 msgstr "%(player)s님이 게임에 참가했습니다."
 
-#: gui/session/chat/ChatMessageFormatPlayer.js:61
+#: gui/session/chat/ChatMessageFormatPlayer.js:62
 #, javascript-format
 msgid "<%(user)s>"
 msgstr "<%(user)s>님"
 
-#: gui/session/chat/ChatMessageFormatPlayer.js:159
+#: gui/session/chat/ChatMessageFormatPlayer.js:161
 #, javascript-format
 msgid "(%(context)s) %(userTag)s %(message)s"
 msgstr "(%(context)s) %(userTag)s %(message)s"
 
-#: gui/session/chat/ChatMessageFormatPlayer.js:160
+#: gui/session/chat/ChatMessageFormatPlayer.js:162
 #, javascript-format
 msgid "%(userTag)s %(message)s"
 msgstr "%(userTag)s %(message)s"
 
-#: gui/session/chat/ChatMessageFormatPlayer.js:163
+#: gui/session/chat/ChatMessageFormatPlayer.js:165
 #, javascript-format
 msgid "(%(context)s) * %(user)s %(message)s"
 msgstr "(%(context)s) * %(user)s %(message)s"
 
-#: gui/session/chat/ChatMessageFormatPlayer.js:164
+#: gui/session/chat/ChatMessageFormatPlayer.js:166
 #, javascript-format
 msgid "* %(user)s %(message)s"
 msgstr "* %(user)s %(message)s"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:16
 #, javascript-format
-msgid "Your livestock has been attacked by %(attacker)s!"
-msgstr "당신의 가축이 %(attacker)s에게 공격받고 있습니다!"
+msgid "%(icon)sYour livestock has been attacked by %(attacker)s!"
+msgstr ""
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:17
 #, javascript-format
-msgid "You have been attacked by %(attacker)s!"
-msgstr "%(attacker)s에게 공격받고 있습니다!"
+msgid "%(icon)sYou have been attacked by %(attacker)s!"
+msgstr ""
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:38
+#: gui/session/chat/ChatMessageFormatSimulation.js:30
+msgid "Click to focus on the attacked unit."
+msgstr ""
+
+#: gui/session/chat/ChatMessageFormatSimulation.js:49
 #, javascript-format
 msgid "%(player)s bartered %(amountGiven)s for %(amountGained)s."
 msgstr "%(player)s님이 %(amountGiven)s을(를) %(amountGained)s와(과) 맞바꾸었습니다."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:70
+#: gui/session/chat/ChatMessageFormatSimulation.js:84
 #, javascript-format
 msgid "You are now allied with %(player)s."
 msgstr "당신은 %(player)s님과 동맹을 맺었습니다."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:71
+#: gui/session/chat/ChatMessageFormatSimulation.js:85
 #, javascript-format
 msgid "You are now at war with %(player)s."
 msgstr "당신은 %(player)s님에게 선전포고를 했습니다."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:72
+#: gui/session/chat/ChatMessageFormatSimulation.js:86
 #, javascript-format
 msgid "You are now neutral with %(player)s."
 msgstr "%(player)s님과(과) 중립이 되었습니다."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:75
+#: gui/session/chat/ChatMessageFormatSimulation.js:89
 #, javascript-format
 msgid "%(player)s is now allied with you."
 msgstr "%(player)s님이 동맹이 되었습니다."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:76
+#: gui/session/chat/ChatMessageFormatSimulation.js:90
 #, javascript-format
 msgid "%(player)s is now at war with you."
 msgstr "%(player)s님이 당신에게 선전포고를 했습니다."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:77
+#: gui/session/chat/ChatMessageFormatSimulation.js:91
 #, javascript-format
 msgid "%(player)s is now neutral with you."
 msgstr "%(player)s님이 당신과 중립이 되었습니다."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:80
+#: gui/session/chat/ChatMessageFormatSimulation.js:94
 #, javascript-format
 msgid "%(player)s is now allied with %(player2)s."
 msgstr "%(player)s님이 이제 %(player2)s님과 동맹입니다."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:81
+#: gui/session/chat/ChatMessageFormatSimulation.js:95
 #, javascript-format
 msgid "%(player)s is now at war with %(player2)s."
 msgstr "%(player)s님이 %(player2)s님에게 선전포고를 했습니다."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:82
+#: gui/session/chat/ChatMessageFormatSimulation.js:96
 #, javascript-format
 msgid "%(player)s is now neutral with %(player2)s."
 msgstr "%(player)s님이 %(player2)s님과 중립이 되었습니다."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:98
+#: gui/session/chat/ChatMessageFormatSimulation.js:112
 #, javascript-format
 msgid "%(player)s is advancing to the %(phaseName)s."
 msgstr "%(player)s님이 %(phaseName)s(으)로 발전하는 중입니다."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:100
+#: gui/session/chat/ChatMessageFormatSimulation.js:114
 #, javascript-format
 msgid "The %(phaseName)s of %(player)s has been aborted."
 msgstr "%(player)s님이 %(phaseName)s(으)로 발전을 중단 했습니다."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:103
+#: gui/session/chat/ChatMessageFormatSimulation.js:117
 #, javascript-format
 msgid "%(player)s has reached the %(phaseName)s."
 msgstr "%(player)s님이 %(phaseName)s(으)로 발전했습니다."
@@ -429,21 +433,21 @@ msgstr "%(player)s님이 %(phaseName)s(으)로 발전했습니다."
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an
 #. enumeration.
-#: gui/session/chat/ChatMessageFormatSimulation.js:126
+#: gui/session/chat/ChatMessageFormatSimulation.js:145
 msgid ", "
 msgstr ", "
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:142
+#: gui/session/chat/ChatMessageFormatSimulation.js:162
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr "%(player)s님이 당신에게 %(amounts)s개의 자원을 보냈습니다."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:144
+#: gui/session/chat/ChatMessageFormatSimulation.js:164
 #, javascript-format
 msgid "You have sent %(player2)s %(amounts)s."
 msgstr "당신은 %(player2)s에게 %(amounts)s개의 자원을 보냈습니다."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:149
+#: gui/session/chat/ChatMessageFormatSimulation.js:169
 #, javascript-format
 msgid "%(player)s has sent %(player2)s %(amounts)s."
 msgstr "%(player)s님이 %(player2)s님에게 %(amounts)s개의 자원을 보냈습니다."
@@ -681,19 +685,19 @@ msgid ""
 "to tribute %(greaterAmount)s."
 msgstr "%(resourceAmount)s개의 %(resourceType)s을(를) %(playerName)s에게 바칩니다. %(greaterAmount)s개를 조공하려면 Shift 키를 누른 채 클릭하십시오"
 
-#: gui/session/input.js:176
+#: gui/session/input.js:173
 #, javascript-format
 msgid "Basic range: %(range)s meter"
 msgid_plural "Basic range: %(range)s meters"
 msgstr[0] "기본 사정 거리: %(range)s 미터"
 
-#: gui/session/input.js:177
+#: gui/session/input.js:174
 #, javascript-format
 msgid "Average bonus range: %(range)s meter"
 msgid_plural "Average bonus range: %(range)s meters"
 msgstr[0] "추가 사정 거리: %(range)s 미터"
 
-#: gui/session/input.js:702
+#: gui/session/input.js:677
 msgid "Cannot build wall here!"
 msgstr "여기에는 성벽을 세울 수 없습니다!"
 
@@ -851,23 +855,23 @@ msgstr "이겼습니다!"
 msgid "You have been defeated!"
 msgstr "패배했습니다!"
 
-#: gui/session/messages.js:352
+#: gui/session/messages.js:355
 msgid "Click to quit this tutorial."
 msgstr "이 사용 지침서를 종료하려면 클릭하십시오."
 
-#: gui/session/messages.js:353
+#: gui/session/messages.js:356
 msgid "Quit"
 msgstr "종료"
 
-#: gui/session/messages.js:357
+#: gui/session/messages.js:360
 msgid "Click when ready."
 msgstr "준비가 되면 클릭하십시오."
 
-#: gui/session/messages.js:361
+#: gui/session/messages.js:364
 msgid "Follow the instructions."
 msgstr "지시를 따르십시오."
 
-#: gui/session/messages.js:486
+#: gui/session/messages.js:489
 msgid "Unknown Player"
 msgstr "알 수 없는 플레이어"
 

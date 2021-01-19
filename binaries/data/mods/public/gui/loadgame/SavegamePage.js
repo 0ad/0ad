@@ -31,6 +31,9 @@ class SavegamePage
 		{
 			this.savegameWriter = new SavegameWriter(data && data.savedGameData || {});
 			this.savegameList.registerSelectionChangeHandler(this.savegameWriter);
+			let size = this.savegameList.gameSelection.size;
+			size.bottom -= 24;
+			this.savegameList.gameSelection.size = size;
 		}
 		else
 		{

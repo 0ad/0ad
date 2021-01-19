@@ -1,8 +1,9 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2020 Wildfire Games
+# Copyright (C) 2021 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
+# Angelica Buonaurio <angydna2@yahoo.it>, 2021
 # Antonio Buonomo <hyd.antonio@gmail.com>, 2017
 # Christian Bellagamba <christiandes00@gmail.com>, 2017-2018
 # Claudio <claudiudurneac97@yahoo.it>, 2015
@@ -29,9 +30,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-12-26 15:10+0000\n"
-"PO-Revision-Date: 2020-12-26 16:16+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-01-15 08:53+0000\n"
+"PO-Revision-Date: 2021-01-17 10:48+0000\n"
+"Last-Translator: Angelica Buonaurio <angydna2@yahoo.it>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1159,11 +1160,11 @@ msgstr "Fiume centrale"
 msgid ""
 "Players are aligned on a strip of land with seas bordering on one or both "
 "sides that may hold islands."
-msgstr ""
+msgstr "I giocatori sono allineati su una striscia di terra costeggiata su uno o entrambi i lati dal mare, in cui potrebbero trovarsi delle isole."
 
 #: maps/random/unknown.jsonsettings.Landscapes.land[3].Name
 msgid "Edge Seas"
-msgstr ""
+msgstr "Mari di confine"
 
 #: maps/random/unknown.jsonsettings.Landscapes.land[4].Description
 msgid "Land shaped like a concrescent moon around a central lake."
@@ -1175,7 +1176,7 @@ msgstr "Golfo"
 
 #: maps/random/unknown.jsonsettings.Landscapes.land[5].Description
 msgid "Mainland style with some small random lakes."
-msgstr ""
+msgstr "Modalità terraferma con piccoli laghetti sparsi."
 
 #: maps/random/unknown.jsonsettings.Landscapes.land[5].Name
 msgid "Lakes"
@@ -1185,7 +1186,7 @@ msgstr "Laghi"
 msgid ""
 "A large hill encompasses the map and leaves players only a small passage to "
 "the two neighboring players."
-msgstr ""
+msgstr "Una grande collina ricopre la mappa, lasciando ai giocatori solo un piccolo passaggio verso i territori dei giocatori vicini."
 
 #: maps/random/unknown.jsonsettings.Landscapes.land[6].Name
 msgid "Passes"
@@ -2291,6 +2292,14 @@ msgstr "Mappa per più giocatori. Un paradiso tropicale."
 msgid "Tropical Island"
 msgstr "Isola Tropicale"
 
+#: maps/scenarios/unit_dancing_test.xml:Description:41
+msgid "This map is designed to test a few different cases of 'Dancing'."
+msgstr ""
+
+#: maps/scenarios/unit_dancing_test.xml:Name:41
+msgid "Unit Dancing test"
+msgstr ""
+
 #: maps/scenarios/unit_motion_integration_test.xml:Description:40
 msgid ""
 "This map is designed to test some basic unit movement cases. It will involve"
@@ -2671,7 +2680,7 @@ msgid ""
 "This represents the Libyan Desert, part of the Saharan Desert, West of the Nile River in Egypt.\n"
 "\n"
 "Iberians do not receive their circuit walls here. Instead, all factions receive four free Stone Towers."
-msgstr ""
+msgstr "Un classico. Un'altrimenti sconfinata e piana mappa desertica è interrotta al centro da un'oasi lussureggiante.\n\nRappresenta il Deserto Libico, parte del deserto del Sahara, a ovest del fiume Nilo, in Egitto.\n\nGli Iberi non ricevono le proprie mura circolari qui. Al contrario, tutte le fazioni ricevono quattro Torri di pietra gratis."
 
 #: maps/skirmishes/libyan_oasis_2p.xml:Name:39
 msgid "Libyan Oasis (2)"

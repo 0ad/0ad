@@ -33,23 +33,31 @@ static bool unified[UNIFIED_LAST - UNIFIED_SHIFT];
 std::unordered_map<int, KeyMapping> g_HotkeyMap;
 std::unordered_map<std::string, bool> g_HotkeyStatus;
 
+namespace {
+// List of currently pressed hotkeys. This is used to quickly reset hotkeys.
+// NB: this points to one of g_HotkeyMap's mappings. It works because that map is stable once constructed.
+std::vector<const SHotkeyMapping*> pressedHotkeys;
+}
+
 static_assert(std::is_integral<std::underlying_type<SDL_Scancode>::type>::value, "SDL_Scancode is not an integral enum.");
 static_assert(SDL_USEREVENT_ == SDL_USEREVENT, "SDL_USEREVENT_ is not the same type as the real SDL_USEREVENT");
 static_assert(UNUSED_HOTKEY_CODE == SDL_SCANCODE_UNKNOWN);
 
 // Look up each key binding in the config file and set the mappings for
 // all key combinations that trigger it.
-static void LoadConfigBindings()
+static void LoadConfigBindings(CConfigDB& configDB)
 {
-	for (const std::pair<const CStr, CConfigValueSet>& configPair : g_ConfigDB.GetValuesWithPrefix(CFG_COMMAND, "hotkey."))
+	for (const std::pair<const CStr, CConfigValueSet>& configPair : configDB.GetValuesWithPrefix(CFG_COMMAND, "hotkey."))
 	{
 		std::string hotkeyName = configPair.first.substr(7); // strip the "hotkey." prefix
 
-		if (configPair.second.empty())
+		// "unused" is kept or the A23->24 migration, this can likely be removed in A25.
+		if (configPair.second.empty() || (configPair.second.size() == 1 && configPair.second.front() == "unused"))
 		{
 			// Unused hotkeys must still be registered in the map to appear in the hotkey editor.
 			SHotkeyMapping unusedCode;
 			unusedCode.name = hotkeyName;
+			unusedCode.primary = SKey{ UNUSED_HOTKEY_CODE };
 			g_HotkeyMap[UNUSED_HOTKEY_CODE].push_back(unusedCode);
 			continue;
 		}
@@ -82,6 +90,7 @@ static void LoadConfigBindings()
 				SHotkeyMapping bindCode;
 
 				bindCode.name = hotkeyName;
+				bindCode.primary = SKey{ itKey->code };
 
 				for (itKey2 = keyCombination.begin(); itKey2 != keyCombination.end(); ++itKey2)
 					if (itKey != itKey2) // Push any auxiliary keys
@@ -93,13 +102,15 @@ static void LoadConfigBindings()
 	}
 }
 
-void LoadHotkeys()
+void LoadHotkeys(CConfigDB& configDB)
 {
-	LoadConfigBindings();
+	pressedHotkeys.clear();
+	LoadConfigBindings(configDB);
 }
 
 void UnloadHotkeys()
 {
+	pressedHotkeys.clear();
 	g_HotkeyMap.clear();
 	g_HotkeyStatus.clear();
 }
@@ -234,14 +245,39 @@ InReaction HotkeyInputHandler(const SDL_Event_* ev)
 	// matching the conditions (i.e. the event with the highest number of auxiliary
 	// keys, providing they're all down)
 
-	bool typeKeyDown = ( ev->ev.type == SDL_KEYDOWN ) || ( ev->ev.type == SDL_MOUSEBUTTONDOWN ) || (ev->ev.type == SDL_MOUSEWHEEL);
+	// Furthermore, we need to support non-conflicting hotkeys triggering at the same time.
+	// This is much more complex code than you might expect. A refactoring could be used.
 
-	std::vector<const char*> pressedHotkeys;
+	std::vector<const SHotkeyMapping*> newPressedHotkeys;
 	std::vector<const char*> releasedHotkeys;
 	size_t closestMapMatch = 0;
 
+	bool release = (ev->ev.type == SDL_KEYUP) || (ev->ev.type == SDL_MOUSEBUTTONUP);
+
+	SKey retrigger = { UNUSED_HOTKEY_CODE };
 	for (const SHotkeyMapping& hotkey : g_HotkeyMap[scancode])
 	{
+		// If the key is being released, any active hotkey is released.
+		if (release)
+		{
+			if (g_HotkeyStatus[hotkey.name])
+			{
+				releasedHotkeys.push_back(hotkey.name.c_str());
+
+				// If we are releasing a key, we possibly need to retrigger less precise hotkeys
+				// (e.g. 'Ctrl + D', if releasing D, we need to retrigger Ctrl hotkeys).
+				// To do this simply, we'll just re-trigger any of the additional required key.
+				if (!hotkey.requires.empty() && retrigger.code == UNUSED_HOTKEY_CODE)
+					for (const SKey& k : hotkey.requires)
+						if (isPressed(k))
+						{
+							retrigger.code = hotkey.requires.front().code;
+							break;
+						}
+			}
+			continue;
+		}
+
 		// Check for no unpermitted keys
 		bool accept = true;
 		for (const SKey& k : hotkey.requires)
@@ -260,26 +296,49 @@ InReaction HotkeyInputHandler(const SDL_Event_* ev)
 				if (hotkey.requires.size() + 1 > closestMapMatch)
 				{
 					// Throw away the old less-precise matches
-					pressedHotkeys.clear();
-					releasedHotkeys.clear();
+					newPressedHotkeys.clear();
 					closestMapMatch = hotkey.requires.size() + 1;
 				}
-				if (typeKeyDown)
-					pressedHotkeys.push_back(hotkey.name.c_str());
-				else
-					releasedHotkeys.push_back(hotkey.name.c_str());
+				newPressedHotkeys.push_back(&hotkey);
 			}
 		}
 	}
 
-	for (const char* hotkeyName : pressedHotkeys)
+	// If this is a new key, check if we need to unset any previous hotkey.
+	// NB: this uses unsorted vectors because there are usually very few elements to go through
+	// (and thus it is presumably faster than std::set).
+	if ((ev->ev.type == SDL_KEYDOWN) || (ev->ev.type == SDL_MOUSEBUTTONDOWN))
+		for (const SHotkeyMapping* hotkey : pressedHotkeys)
+		{
+			if (hotkey->requires.size() + 1 < closestMapMatch)
+				releasedHotkeys.push_back(hotkey->name.c_str());
+			else if (std::find(newPressedHotkeys.begin(), newPressedHotkeys.end(), hotkey) == newPressedHotkeys.end())
+			{
+				// We need to check that all 'keys' are still pressed (because of mouse buttons).
+				if (!isPressed(hotkey->primary))
+					continue;
+				for (const SKey& key : hotkey->requires)
+					if (!isPressed(key))
+						continue;
+				newPressedHotkeys.push_back(hotkey);
+			}
+		}
+
+	pressedHotkeys.swap(newPressedHotkeys);
+
+	// Mouse wheel events are released instantly.
+	if (ev->ev.type == SDL_MOUSEWHEEL)
+		for (const SHotkeyMapping* hotkey : pressedHotkeys)
+			releasedHotkeys.push_back(hotkey->name.c_str());
+
+	for (const SHotkeyMapping* hotkey : pressedHotkeys)
 	{
 		// Send a KeyPress event when a hotkey is pressed initially and on mouseButton and mouseWheel events.
 		if (ev->ev.type != SDL_KEYDOWN || ev->ev.key.repeat == 0)
 		{
 			SDL_Event_ hotkeyPressNotification;
 			hotkeyPressNotification.ev.type = SDL_HOTKEYPRESS;
-			hotkeyPressNotification.ev.user.data1 = const_cast<char*>(hotkeyName);
+			hotkeyPressNotification.ev.user.data1 = const_cast<char*>(hotkey->name.c_str());
 			in_push_priority_event(&hotkeyPressNotification);
 		}
 
@@ -288,7 +347,7 @@ InReaction HotkeyInputHandler(const SDL_Event_* ev)
 		// On linux, modifier keys (shift, alt, ctrl) are not repeated, see https://github.com/SFML/SFML/issues/122.
 		SDL_Event_ hotkeyDownNotification;
 		hotkeyDownNotification.ev.type = SDL_HOTKEYDOWN;
-		hotkeyDownNotification.ev.user.data1 = const_cast<char*>(hotkeyName);
+		hotkeyDownNotification.ev.user.data1 = const_cast<char*>(hotkey->name.c_str());
 		in_push_priority_event(&hotkeyDownNotification);
 	}
 
@@ -298,6 +357,15 @@ InReaction HotkeyInputHandler(const SDL_Event_* ev)
 		hotkeyNotification.ev.type = SDL_HOTKEYUP;
 		hotkeyNotification.ev.user.data1 = const_cast<char*>(hotkeyName);
 		in_push_priority_event(&hotkeyNotification);
+	}
+
+	if (retrigger.code != UNUSED_HOTKEY_CODE)
+	{
+		SDL_Event_ phantomKey;
+		phantomKey.ev.type = SDL_KEYDOWN;
+		phantomKey.ev.key.repeat = 0;
+		phantomKey.ev.key.keysym.scancode = static_cast<SDL_Scancode>(retrigger.code);
+		HotkeyInputHandler(&phantomKey);
 	}
 
 	return IN_PASS;

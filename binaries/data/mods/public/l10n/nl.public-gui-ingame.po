@@ -15,7 +15,7 @@
 # Christof Verhoeven <christof.verhoeven@gmail.com>, 2016-2017
 # ClementL <lewis@lewisclement.nl>, 2014
 # Ellen Roels, 2015
-# Freagarach . <freagarach@gmail.com>, 2019,2021
+# Freagarach, 2019,2021
 # Ilya <ilya.crols@gmail.com>, 2014
 # Ismail Sahin <ismailsahin1994@hotmail.com>, 2017
 # Jana Valcke <jana.valcke93@gmail.com>, 2016
@@ -47,8 +47,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-04 08:09+0000\n"
-"PO-Revision-Date: 2021-01-05 16:28+0000\n"
+"POT-Creation-Date: 2021-01-15 08:53+0000\n"
+"PO-Revision-Date: 2021-01-15 13:32+0000\n"
 "Last-Translator: Bart <b.anthonisse@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -306,140 +306,144 @@ msgid "Press %(hotkey)s to open the previously selected private chat."
 msgstr "Druk %(hotkey)s om de vorige geselecteerd privé-chat te openen."
 
 #. Translation: A player that left the game joins again
-#: gui/session/chat/ChatMessageFormatNetwork.js:23
+#: gui/session/chat/ChatMessageFormatNetwork.js:24
 #, javascript-format
 msgid "%(player)s is starting to rejoin the game."
 msgstr "%(player)s is verbinding aan het maken met het spel."
 
 #. Translation: A player joins the game for the first time
-#: gui/session/chat/ChatMessageFormatNetwork.js:25
+#: gui/session/chat/ChatMessageFormatNetwork.js:26
 #, javascript-format
 msgid "%(player)s is starting to join the game."
 msgstr "%(player)s is verbinding aan het maken met het spel."
 
-#: gui/session/chat/ChatMessageFormatNetwork.js:34
+#: gui/session/chat/ChatMessageFormatNetwork.js:37
 #, javascript-format
 msgid "%(player)s has left the game."
 msgstr "%(player)s heeft het spel verlaten."
 
-#: gui/session/chat/ChatMessageFormatNetwork.js:46
+#: gui/session/chat/ChatMessageFormatNetwork.js:51
 #, javascript-format
 msgid "%(username)s has been banned"
 msgstr "%(username)s is verbannen"
 
-#: gui/session/chat/ChatMessageFormatNetwork.js:47
+#: gui/session/chat/ChatMessageFormatNetwork.js:52
 #, javascript-format
 msgid "%(username)s has been kicked"
 msgstr "%(username)s werd uitgesloten"
 
 #. Translation: A player that left the game joins again
-#: gui/session/chat/ChatMessageFormatNetwork.js:64
+#: gui/session/chat/ChatMessageFormatNetwork.js:71
 #, javascript-format
 msgid "%(player)s has rejoined the game."
 msgstr "%(player)s heeft zich opnieuw bij het spel aangesloten."
 
 #. Translation: A player joins the game for the first time
-#: gui/session/chat/ChatMessageFormatNetwork.js:66
+#: gui/session/chat/ChatMessageFormatNetwork.js:73
 #, javascript-format
 msgid "%(player)s has joined the game."
 msgstr "%(player)s heeft zich bij het spel aangesloten."
 
-#: gui/session/chat/ChatMessageFormatPlayer.js:61
+#: gui/session/chat/ChatMessageFormatPlayer.js:62
 #, javascript-format
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
-#: gui/session/chat/ChatMessageFormatPlayer.js:159
+#: gui/session/chat/ChatMessageFormatPlayer.js:161
 #, javascript-format
 msgid "(%(context)s) %(userTag)s %(message)s"
 msgstr "(%(context)s) %(userTag)s %(message)s"
 
-#: gui/session/chat/ChatMessageFormatPlayer.js:160
+#: gui/session/chat/ChatMessageFormatPlayer.js:162
 #, javascript-format
 msgid "%(userTag)s %(message)s"
 msgstr "%(userTag)s %(message)s"
 
-#: gui/session/chat/ChatMessageFormatPlayer.js:163
+#: gui/session/chat/ChatMessageFormatPlayer.js:165
 #, javascript-format
 msgid "(%(context)s) * %(user)s %(message)s"
 msgstr "(%(context)s) * %(user)s %(message)s"
 
-#: gui/session/chat/ChatMessageFormatPlayer.js:164
+#: gui/session/chat/ChatMessageFormatPlayer.js:166
 #, javascript-format
 msgid "* %(user)s %(message)s"
 msgstr "* %(user)s %(message)s"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:16
 #, javascript-format
-msgid "Your livestock has been attacked by %(attacker)s!"
-msgstr "Uw vee werd aangevallen door %(attacker)s!"
+msgid "%(icon)sYour livestock has been attacked by %(attacker)s!"
+msgstr "%(icon)sUw vee werd aangevallen door %(attacker)s!"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:17
 #, javascript-format
-msgid "You have been attacked by %(attacker)s!"
-msgstr "U bent aangevallen door %(attacker)s!"
+msgid "%(icon)sYou have been attacked by %(attacker)s!"
+msgstr "%(icon)sU werd aangevallen door %(attacker)s!"
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:38
+#: gui/session/chat/ChatMessageFormatSimulation.js:30
+msgid "Click to focus on the attacked unit."
+msgstr "Klik om de aangevallen eenheid naar de voorgrond te halen."
+
+#: gui/session/chat/ChatMessageFormatSimulation.js:49
 #, javascript-format
 msgid "%(player)s bartered %(amountGiven)s for %(amountGained)s."
 msgstr "%(player)sruilden %(amountGiven)s voor %(amountGained)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:70
+#: gui/session/chat/ChatMessageFormatSimulation.js:84
 #, javascript-format
 msgid "You are now allied with %(player)s."
 msgstr "U bent nu geallieerd met %(player)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:71
+#: gui/session/chat/ChatMessageFormatSimulation.js:85
 #, javascript-format
 msgid "You are now at war with %(player)s."
 msgstr "U bent nu in staat van oorlog met %(player)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:72
+#: gui/session/chat/ChatMessageFormatSimulation.js:86
 #, javascript-format
 msgid "You are now neutral with %(player)s."
 msgstr "U bent nu neutraal met %(player)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:75
+#: gui/session/chat/ChatMessageFormatSimulation.js:89
 #, javascript-format
 msgid "%(player)s is now allied with you."
 msgstr "%(player)s is nu bondgenoot van u."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:76
+#: gui/session/chat/ChatMessageFormatSimulation.js:90
 #, javascript-format
 msgid "%(player)s is now at war with you."
 msgstr "%(player)s is nu in staat van oorlog met u."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:77
+#: gui/session/chat/ChatMessageFormatSimulation.js:91
 #, javascript-format
 msgid "%(player)s is now neutral with you."
 msgstr "%(player)s is nu neutraal met u."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:80
+#: gui/session/chat/ChatMessageFormatSimulation.js:94
 #, javascript-format
 msgid "%(player)s is now allied with %(player2)s."
 msgstr "%(player)s is nu geallieerd met %(player2)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:81
+#: gui/session/chat/ChatMessageFormatSimulation.js:95
 #, javascript-format
 msgid "%(player)s is now at war with %(player2)s."
 msgstr "%(player)s is nu in staat van oorlog met %(player2)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:82
+#: gui/session/chat/ChatMessageFormatSimulation.js:96
 #, javascript-format
 msgid "%(player)s is now neutral with %(player2)s."
 msgstr "%(player)s is nu neutraal ten opzichte van %(player2)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:98
+#: gui/session/chat/ChatMessageFormatSimulation.js:112
 #, javascript-format
 msgid "%(player)s is advancing to the %(phaseName)s."
 msgstr "%(player)s is in overgang naar de %(phaseName)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:100
+#: gui/session/chat/ChatMessageFormatSimulation.js:114
 #, javascript-format
 msgid "The %(phaseName)s of %(player)s has been aborted."
 msgstr "De %(phaseName)s van %(player)s is stopgezet."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:103
+#: gui/session/chat/ChatMessageFormatSimulation.js:117
 #, javascript-format
 msgid "%(player)s has reached the %(phaseName)s."
 msgstr "%(player)s heeft de %(phaseName)s bereikt."
@@ -447,21 +451,21 @@ msgstr "%(player)s heeft de %(phaseName)s bereikt."
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an
 #. enumeration.
-#: gui/session/chat/ChatMessageFormatSimulation.js:126
+#: gui/session/chat/ChatMessageFormatSimulation.js:145
 msgid ", "
 msgstr ","
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:142
+#: gui/session/chat/ChatMessageFormatSimulation.js:162
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr "%(player)s heeft u %(amounts)s gestuurd."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:144
+#: gui/session/chat/ChatMessageFormatSimulation.js:164
 #, javascript-format
 msgid "You have sent %(player2)s %(amounts)s."
 msgstr "U hebt %(player2)s %(amounts)s gestuurd."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:149
+#: gui/session/chat/ChatMessageFormatSimulation.js:169
 #, javascript-format
 msgid "%(player)s has sent %(player2)s %(amounts)s."
 msgstr "%(player)s heeft %(player2)s %(amounts)s gestuurd."
@@ -699,21 +703,21 @@ msgid ""
 "to tribute %(greaterAmount)s."
 msgstr "Schenk %(resourceAmount)s %(resourceType)s aan %(playerName)s. Shift+klik om %(greaterAmount)s te schenken."
 
-#: gui/session/input.js:176
+#: gui/session/input.js:173
 #, javascript-format
 msgid "Basic range: %(range)s meter"
 msgid_plural "Basic range: %(range)s meters"
 msgstr[0] "Basisbereik: %(range)s meter"
 msgstr[1] "Basisbereik: %(range)s meter"
 
-#: gui/session/input.js:177
+#: gui/session/input.js:174
 #, javascript-format
 msgid "Average bonus range: %(range)s meter"
 msgid_plural "Average bonus range: %(range)s meters"
 msgstr[0] "Gemiddelde bereikbonus: %(range)s meter"
 msgstr[1] "Gemiddelde bereikbonus: %(range)s meter"
 
-#: gui/session/input.js:702
+#: gui/session/input.js:677
 msgid "Cannot build wall here!"
 msgstr "Kan hier geen muur bouwen!"
 
@@ -871,23 +875,23 @@ msgstr "U hebt gewonnen!"
 msgid "You have been defeated!"
 msgstr "U bent verslagen!"
 
-#: gui/session/messages.js:352
+#: gui/session/messages.js:355
 msgid "Click to quit this tutorial."
 msgstr "Klik om de tutorial af te sluiten."
 
-#: gui/session/messages.js:353
+#: gui/session/messages.js:356
 msgid "Quit"
 msgstr "Afsluiten"
 
-#: gui/session/messages.js:357
+#: gui/session/messages.js:360
 msgid "Click when ready."
 msgstr "Klik wanneer u klaar bent."
 
-#: gui/session/messages.js:361
+#: gui/session/messages.js:364
 msgid "Follow the instructions."
 msgstr "Volg de instructies."
 
-#: gui/session/messages.js:486
+#: gui/session/messages.js:489
 msgid "Unknown Player"
 msgstr "Onbekende Speler"
 

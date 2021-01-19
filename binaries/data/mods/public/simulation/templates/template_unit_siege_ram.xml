@@ -15,7 +15,6 @@
       <RestrictedClasses datatype="tokens">Field Organic</RestrictedClasses>
     </Melee>
   </Attack>
-  <Capturable disable=""/>
   <Cost>
     <BuildTime>30</BuildTime>
     <Resources>
@@ -44,6 +43,13 @@
     <wood>60</wood>
     <metal>30</metal>
   </Loot>
+  <Resistance>
+    <Entity>
+      <Damage>
+        <Pierce>50</Pierce>
+      </Damage>
+    </Entity>
+  </Resistance>
   <Sound>
     <SoundGroups>
       <select>attack/siege/siege_select.xml</select>

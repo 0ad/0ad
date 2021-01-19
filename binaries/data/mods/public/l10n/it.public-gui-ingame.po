@@ -8,6 +8,7 @@
 # Andrea Balzarotti <balzarotti.andrea@gmail.com>, 2013
 # andreac <supercarrer1989@hotmail.it>, 2013
 # Angela <angelapellegrino@hotmail.it>, 2014
+# Angelica Buonaurio <angydna2@yahoo.it>, 2021
 # chavo, 2014
 # Christian Bellagamba <christiandes00@gmail.com>, 2017
 # Damiano, 2013
@@ -45,9 +46,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-04 08:09+0000\n"
-"PO-Revision-Date: 2021-01-04 10:36+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-01-15 08:53+0000\n"
+"PO-Revision-Date: 2021-01-17 18:11+0000\n"
+"Last-Translator: Angelica Buonaurio <angydna2@yahoo.it>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -304,140 +305,144 @@ msgid "Press %(hotkey)s to open the previously selected private chat."
 msgstr "Premi %(hotkey)s per aprire la chat privata precedentemente selezionata."
 
 #. Translation: A player that left the game joins again
-#: gui/session/chat/ChatMessageFormatNetwork.js:23
+#: gui/session/chat/ChatMessageFormatNetwork.js:24
 #, javascript-format
 msgid "%(player)s is starting to rejoin the game."
 msgstr "%(player)s sta rientrando in partita."
 
 #. Translation: A player joins the game for the first time
-#: gui/session/chat/ChatMessageFormatNetwork.js:25
+#: gui/session/chat/ChatMessageFormatNetwork.js:26
 #, javascript-format
 msgid "%(player)s is starting to join the game."
 msgstr "%(player)s sta per entrare nella partita"
 
-#: gui/session/chat/ChatMessageFormatNetwork.js:34
+#: gui/session/chat/ChatMessageFormatNetwork.js:37
 #, javascript-format
 msgid "%(player)s has left the game."
 msgstr "%(player)s ha abbandonato la partita."
 
-#: gui/session/chat/ChatMessageFormatNetwork.js:46
+#: gui/session/chat/ChatMessageFormatNetwork.js:51
 #, javascript-format
 msgid "%(username)s has been banned"
 msgstr "%(username)s è stato bandito"
 
-#: gui/session/chat/ChatMessageFormatNetwork.js:47
+#: gui/session/chat/ChatMessageFormatNetwork.js:52
 #, javascript-format
 msgid "%(username)s has been kicked"
 msgstr "%(username)s è stato espulso"
 
 #. Translation: A player that left the game joins again
-#: gui/session/chat/ChatMessageFormatNetwork.js:64
+#: gui/session/chat/ChatMessageFormatNetwork.js:71
 #, javascript-format
 msgid "%(player)s has rejoined the game."
 msgstr "%(player)s è rientrato in partita."
 
 #. Translation: A player joins the game for the first time
-#: gui/session/chat/ChatMessageFormatNetwork.js:66
+#: gui/session/chat/ChatMessageFormatNetwork.js:73
 #, javascript-format
 msgid "%(player)s has joined the game."
 msgstr "%(player)s si è unito alla partita."
 
-#: gui/session/chat/ChatMessageFormatPlayer.js:61
+#: gui/session/chat/ChatMessageFormatPlayer.js:62
 #, javascript-format
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
-#: gui/session/chat/ChatMessageFormatPlayer.js:159
+#: gui/session/chat/ChatMessageFormatPlayer.js:161
 #, javascript-format
 msgid "(%(context)s) %(userTag)s %(message)s"
 msgstr "(%(context)s) %(userTag)s %(message)s"
 
-#: gui/session/chat/ChatMessageFormatPlayer.js:160
+#: gui/session/chat/ChatMessageFormatPlayer.js:162
 #, javascript-format
 msgid "%(userTag)s %(message)s"
 msgstr "%(userTag)s %(message)s"
 
-#: gui/session/chat/ChatMessageFormatPlayer.js:163
+#: gui/session/chat/ChatMessageFormatPlayer.js:165
 #, javascript-format
 msgid "(%(context)s) * %(user)s %(message)s"
 msgstr "(%(context)s) * %(user)s %(message)s"
 
-#: gui/session/chat/ChatMessageFormatPlayer.js:164
+#: gui/session/chat/ChatMessageFormatPlayer.js:166
 #, javascript-format
 msgid "* %(user)s %(message)s"
 msgstr "* %(user)s %(message)s"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:16
 #, javascript-format
-msgid "Your livestock has been attacked by %(attacker)s!"
-msgstr "Il tuo bestiame è stato attaccato da %(attacker)s!"
+msgid "%(icon)sYour livestock has been attacked by %(attacker)s!"
+msgstr "%(icon)sIl bestiame è stato attaccato da %(attacker)s!"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:17
 #, javascript-format
-msgid "You have been attacked by %(attacker)s!"
-msgstr "Sei stato attaccato da %(attacker)s!"
+msgid "%(icon)sYou have been attacked by %(attacker)s!"
+msgstr "%(icon)sSei stato attaccato da %(attacker)s!"
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:38
+#: gui/session/chat/ChatMessageFormatSimulation.js:30
+msgid "Click to focus on the attacked unit."
+msgstr "Clicca per visualizzare l'unità attaccata."
+
+#: gui/session/chat/ChatMessageFormatSimulation.js:49
 #, javascript-format
 msgid "%(player)s bartered %(amountGiven)s for %(amountGained)s."
 msgstr "%(player)s ha barattato %(amountGiven)s per %(amountGained)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:70
+#: gui/session/chat/ChatMessageFormatSimulation.js:84
 #, javascript-format
 msgid "You are now allied with %(player)s."
 msgstr "Hai stretto una alleanza con %(player)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:71
+#: gui/session/chat/ChatMessageFormatSimulation.js:85
 #, javascript-format
 msgid "You are now at war with %(player)s."
 msgstr "Hai dichiarato guerra a %(player)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:72
+#: gui/session/chat/ChatMessageFormatSimulation.js:86
 #, javascript-format
 msgid "You are now neutral with %(player)s."
 msgstr "Hai stretto un patto di neutralità con %(player)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:75
+#: gui/session/chat/ChatMessageFormatSimulation.js:89
 #, javascript-format
 msgid "%(player)s is now allied with you."
 msgstr "%(player)s è ora un tuo alleato."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:76
+#: gui/session/chat/ChatMessageFormatSimulation.js:90
 #, javascript-format
 msgid "%(player)s is now at war with you."
 msgstr "%(player)s ti ha dichiarato guerra."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:77
+#: gui/session/chat/ChatMessageFormatSimulation.js:91
 #, javascript-format
 msgid "%(player)s is now neutral with you."
 msgstr "%(player)s è neutrale."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:80
+#: gui/session/chat/ChatMessageFormatSimulation.js:94
 #, javascript-format
 msgid "%(player)s is now allied with %(player2)s."
 msgstr "%(player)s si è ora alleato con %(player2)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:81
+#: gui/session/chat/ChatMessageFormatSimulation.js:95
 #, javascript-format
 msgid "%(player)s is now at war with %(player2)s."
 msgstr "%(player)s è ora nemico di %(player2)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:82
+#: gui/session/chat/ChatMessageFormatSimulation.js:96
 #, javascript-format
 msgid "%(player)s is now neutral with %(player2)s."
 msgstr "%(player)s è ora neutrale con %(player2)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:98
+#: gui/session/chat/ChatMessageFormatSimulation.js:112
 #, javascript-format
 msgid "%(player)s is advancing to the %(phaseName)s."
 msgstr "%(player)s sta avanzando verso la %(phaseName)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:100
+#: gui/session/chat/ChatMessageFormatSimulation.js:114
 #, javascript-format
 msgid "The %(phaseName)s of %(player)s has been aborted."
 msgstr "La %(phaseName)s di %(player)s è stata annullata."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:103
+#: gui/session/chat/ChatMessageFormatSimulation.js:117
 #, javascript-format
 msgid "%(player)s has reached the %(phaseName)s."
 msgstr "%(player)s ha raggiunto la %(phaseName)s."
@@ -445,21 +450,21 @@ msgstr "%(player)s ha raggiunto la %(phaseName)s."
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an
 #. enumeration.
-#: gui/session/chat/ChatMessageFormatSimulation.js:126
+#: gui/session/chat/ChatMessageFormatSimulation.js:145
 msgid ", "
 msgstr ", "
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:142
+#: gui/session/chat/ChatMessageFormatSimulation.js:162
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr "%(player)s ti ha inviato %(amounts)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:144
+#: gui/session/chat/ChatMessageFormatSimulation.js:164
 #, javascript-format
 msgid "You have sent %(player2)s %(amounts)s."
 msgstr "Hai inviato a %(player2)s %(amounts)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:149
+#: gui/session/chat/ChatMessageFormatSimulation.js:169
 #, javascript-format
 msgid "%(player)s has sent %(player2)s %(amounts)s."
 msgstr "%(player)s ha mandato a %(player2)s %(amounts)s."
@@ -697,21 +702,21 @@ msgid ""
 "to tribute %(greaterAmount)s."
 msgstr "Tributa %(resourceAmount)s %(resourceType)s a %(playerName)s. Maiusc-clic per tributare %(greaterAmount)s."
 
-#: gui/session/input.js:176
+#: gui/session/input.js:173
 #, javascript-format
 msgid "Basic range: %(range)s meter"
 msgid_plural "Basic range: %(range)s meters"
 msgstr[0] "Raggio di base: %(range)s metro"
 msgstr[1] "Raggio di base: %(range)s metri"
 
-#: gui/session/input.js:177
+#: gui/session/input.js:174
 #, javascript-format
 msgid "Average bonus range: %(range)s meter"
 msgid_plural "Average bonus range: %(range)s meters"
 msgstr[0] "Bonus raggio medio: %(range)s metro"
 msgstr[1] "Bonus raggio medio: %(range)s metri"
 
-#: gui/session/input.js:702
+#: gui/session/input.js:677
 msgid "Cannot build wall here!"
 msgstr "Non puoi costruire muri qui!"
 
@@ -869,23 +874,23 @@ msgstr "Hai vinto !"
 msgid "You have been defeated!"
 msgstr "Sei stato sconfitto !"
 
-#: gui/session/messages.js:352
+#: gui/session/messages.js:355
 msgid "Click to quit this tutorial."
 msgstr "Clicca per uscire da questo tutorial."
 
-#: gui/session/messages.js:353
+#: gui/session/messages.js:356
 msgid "Quit"
 msgstr "Chiudi"
 
-#: gui/session/messages.js:357
+#: gui/session/messages.js:360
 msgid "Click when ready."
 msgstr "Clicca quando pronto."
 
-#: gui/session/messages.js:361
+#: gui/session/messages.js:364
 msgid "Follow the instructions."
 msgstr "Segui le istruzioni."
 
-#: gui/session/messages.js:486
+#: gui/session/messages.js:489
 msgid "Unknown Player"
 msgstr "Giocatore sconosciuto"
 
@@ -1707,7 +1712,7 @@ msgstr "L'uso di questo punto di scarico è vietato"
 
 #: gui/session/unit_actions.js:1503
 msgid "Allies are allowed to use this dropsite."
-msgstr ""
+msgstr "Gli alleati possono utilizzare questo punto di raccolta."
 
 #: gui/session/unit_actions.js:1504
 msgid "You are allowed to use this dropsite"

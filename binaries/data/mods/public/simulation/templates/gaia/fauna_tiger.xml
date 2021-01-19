@@ -4,11 +4,12 @@
     <Melee>
       <AttackName>Paws</AttackName>
       <Damage>
-        <Hack>30.0</Hack>
-        <Pierce>20.0</Pierce>
-        <Crush>0.0</Crush>
+        <Hack>30</Hack>
+        <Pierce>0</Pierce>
+        <Crush>0</Crush>
       </Damage>
-      <MaxRange>4.0</MaxRange>
+      <MaxRange>3</MaxRange>
+      <PrepareTime>1000</PrepareTime>
       <RepeatTime>2000</RepeatTime>
     </Melee>
   </Attack>
@@ -16,6 +17,9 @@
     <Square width="2.0" depth="4.0"/>
     <Height>2.5</Height>
   </Footprint>
+  <Health>
+    <Max>50</Max>
+  </Health>
   <Identity>
     <GenericName>Tiger</GenericName>
     <SpecificName>Panthera tigris</SpecificName>

@@ -21,8 +21,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-11 08:08+0000\n"
-"PO-Revision-Date: 2021-01-11 09:36+0000\n"
+"POT-Creation-Date: 2021-01-15 08:53+0000\n"
+"PO-Revision-Date: 2021-01-15 09:34+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -67,7 +67,7 @@ msgstr "騎兵"
 
 #: simulation/templates/template_unit_cavalry.xml:31
 #: simulation/templates/template_unit_elephant.xml:9
-#: simulation/templates/template_unit_infantry.xml:63
+#: simulation/templates/template_unit_infantry.xml:64
 #: simulation/templates/template_unit_support_healer.xml:29
 msgctxt "Rank"
 msgid "Basic"
@@ -77,14 +77,14 @@ msgstr "基本"
 #: simulation/templates/template_unit_champion.xml:14
 #: simulation/templates/template_unit_elephant.xml:11
 #: simulation/templates/template_unit_hero.xml:25
-#: simulation/templates/template_unit_infantry.xml:61
+#: simulation/templates/template_unit_infantry.xml:62
 msgid "Soldier"
 msgstr "士兵"
 
 #: simulation/templates/template_unit_cavalry.xml:33
 #: simulation/templates/template_unit_elephant.xml:11
-#: simulation/templates/template_unit_infantry.xml:61
-#: simulation/templates/template_unit_support_female_citizen.xml:62
+#: simulation/templates/template_unit_infantry.xml:62
+#: simulation/templates/template_unit_support_female_citizen.xml:63
 msgid "Citizen"
 msgstr "公民"
 
@@ -97,7 +97,7 @@ msgstr "近戰騎兵"
 #: simulation/templates/template_unit_champion_cavalry_maceman.xml:21
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:29
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:21
-#: simulation/templates/template_unit_champion_elephant_melee.xml:17
+#: simulation/templates/template_unit_champion_elephant_melee.xml:18
 #: simulation/templates/template_unit_champion_infantry_axeman.xml:21
 #: simulation/templates/template_unit_champion_infantry_maceman.xml:21
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:29
@@ -108,14 +108,14 @@ msgstr "近戰騎兵"
 #: simulation/templates/template_unit_hero_cavalry_maceman.xml:18
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:26
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:24
-#: simulation/templates/template_unit_hero_elephant_melee.xml:30
+#: simulation/templates/template_unit_hero_elephant_melee.xml:32
 #: simulation/templates/template_unit_hero_infantry_axeman.xml:18
 #: simulation/templates/template_unit_hero_infantry_maceman.xml:18
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:26
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:26
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:24
 #: simulation/templates/template_unit_infantry_melee.xml:20
-#: simulation/templates/template_unit_ship_fire.xml:45
+#: simulation/templates/template_unit_ship_fire.xml:42
 #: simulation/templates/template_unit_siege_ram.xml:38
 msgid "Melee"
 msgstr "近戰"
@@ -234,10 +234,10 @@ msgstr "劍士"
 #: simulation/templates/template_unit_infantry_ranged.xml:28
 #: simulation/templates/template_unit_infantry_ranged.xml:29
 #: simulation/templates/template_unit_ship_bireme.xml:50
-#: simulation/templates/template_unit_ship_quinquereme.xml:61
+#: simulation/templates/template_unit_ship_quinquereme.xml:51
 #: simulation/templates/template_unit_ship_trireme.xml:50
-#: simulation/templates/template_unit_siege_boltshooter.xml:55
-#: simulation/templates/template_unit_siege_stonethrower.xml:56
+#: simulation/templates/template_unit_siege_boltshooter.xml:53
+#: simulation/templates/template_unit_siege_stonethrower.xml:46
 #: simulation/templates/template_unit_siege_tower.xml:61
 msgid "Ranged"
 msgstr "遠距離"
@@ -260,18 +260,18 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Bow"
 msgstr "弓"
 
-#: simulation/templates/template_unit_cavalry_ranged_archer.xml:30
+#: simulation/templates/template_unit_cavalry_ranged_archer.xml:32
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:27
 #: simulation/templates/template_unit_champion_infantry_archer.xml:30
 #: simulation/templates/template_unit_elephant_archer.xml:38
 #: simulation/templates/template_unit_hero_cavalry_archer.xml:27
 #: simulation/templates/template_unit_hero_infantry_archer.xml:27
-#: simulation/templates/template_unit_infantry_ranged_archer.xml:31
-#: simulation/templates/template_unit_infantry_ranged_archer.xml:32
+#: simulation/templates/template_unit_infantry_ranged_archer.xml:33
+#: simulation/templates/template_unit_infantry_ranged_archer.xml:34
 msgid "Archer"
 msgstr "弓箭手"
 
-#: simulation/templates/template_unit_cavalry_ranged_archer.xml:31
+#: simulation/templates/template_unit_cavalry_ranged_archer.xml:33
 msgid "Cavalry Archer"
 msgstr "弓騎兵"
 
@@ -285,16 +285,16 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Javelin"
 msgstr "標槍"
 
-#: simulation/templates/template_unit_cavalry_ranged_javelineer.xml:29
+#: simulation/templates/template_unit_cavalry_ranged_javelineer.xml:32
 msgid "Cavalry Javelineer"
 msgstr ""
 
-#: simulation/templates/template_unit_cavalry_ranged_javelineer.xml:30
+#: simulation/templates/template_unit_cavalry_ranged_javelineer.xml:33
 #: simulation/templates/template_unit_champion_cavalry_javelineer.xml:28
 #: simulation/templates/template_unit_champion_infantry_javelineer.xml:31
 #: simulation/templates/template_unit_hero_cavalry_javelineer.xml:28
 #: simulation/templates/template_unit_hero_infantry_javelineer.xml:28
-#: simulation/templates/template_unit_infantry_ranged_javelineer.xml:30
+#: simulation/templates/template_unit_infantry_ranged_javelineer.xml:33
 msgid "Javelineer"
 msgstr ""
 
@@ -335,30 +335,30 @@ msgid "Champion Cavalry Swordsman"
 msgstr "精英騎兵劍士"
 
 #: simulation/templates/template_unit_champion_elephant.xml:19
-#: simulation/templates/template_unit_elephant.xml:11
-#: simulation/templates/template_unit_fauna_hunt_defensive_elephant.xml:25
-#: simulation/templates/template_unit_fauna_hunt_skittish_elephant_infant.xml:4
-#: simulation/templates/template_unit_hero_elephant_melee.xml:30
-#: simulation/templates/units/maur/support_elephant.xml:23
-msgid "Elephant"
-msgstr "大象"
-
-#: simulation/templates/template_unit_champion_elephant.xml:20
 #: simulation/templates/template_unit_elephant.xml:8
 msgid "War Elephant"
 msgstr "戰象"
 
-#: simulation/templates/template_unit_champion_elephant_melee.xml:5
+#: simulation/templates/template_unit_champion_elephant.xml:20
+#: simulation/templates/template_unit_elephant.xml:11
+#: simulation/templates/template_unit_fauna_hunt_defensive_elephant.xml:18
+#: simulation/templates/template_unit_fauna_hunt_skittish_elephant_infant.xml:4
+#: simulation/templates/template_unit_hero_elephant_melee.xml:32
+#: simulation/templates/units/maur/support_elephant.xml:23
+msgid "Elephant"
+msgstr "大象"
+
+#: simulation/templates/template_unit_champion_elephant_melee.xml:6
 #: simulation/templates/template_unit_fauna_hunt_defensive_elephant.xml:5
-#: simulation/templates/template_unit_hero_elephant_melee.xml:5
+#: simulation/templates/template_unit_hero_elephant_melee.xml:6
 msgctxt "Name of an attack, usually the weapon."
 msgid "Trunk"
 msgstr ""
 
 #: simulation/templates/template_unit_champion_infantry.xml:15
 #: simulation/templates/template_unit_hero_infantry.xml:14
-#: simulation/templates/template_unit_infantry.xml:61
 #: simulation/templates/template_unit_infantry.xml:62
+#: simulation/templates/template_unit_infantry.xml:63
 msgid "Infantry"
 msgstr "步兵"
 
@@ -457,12 +457,6 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Horns"
 msgstr ""
 
-#: simulation/templates/template_unit_fauna_hunt_defensive_elephant.xml:24
-msgid ""
-"Counters: 1.5× vs Cavalry. Cannot attack Structures, Ships, or Siege "
-"Engines."
-msgstr ""
-
 #: simulation/templates/template_unit_fauna_hunt_whale.xml:8
 msgid "Kill to butcher for food."
 msgstr ""
@@ -500,6 +494,10 @@ msgstr "英雄矛騎兵"
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:25
 msgid "Hero Cavalry Swordsman"
 msgstr "英雄騎兵劍士"
+
+#: simulation/templates/template_unit_hero_elephant_melee.xml:31
+msgid "Hero Elephant"
+msgstr ""
 
 #: simulation/templates/template_unit_hero_healer.xml:27
 #: simulation/templates/template_unit_support.xml:5
@@ -541,9 +539,9 @@ msgstr "英雄矛兵"
 msgid "Hero Swordsman"
 msgstr "英雄劍士"
 
-#: simulation/templates/template_unit_infantry.xml:61
-#: simulation/templates/template_unit_support_female_citizen.xml:62
-#: simulation/templates/template_unit_support_slave.xml:43
+#: simulation/templates/template_unit_infantry.xml:62
+#: simulation/templates/template_unit_support_female_citizen.xml:63
+#: simulation/templates/template_unit_support_slave.xml:44
 msgid "Worker"
 msgstr "工人"
 
@@ -555,7 +553,7 @@ msgstr "近戰步兵"
 msgid "Infantry Maceman"
 msgstr ""
 
-#: simulation/templates/template_unit_infantry_ranged_javelineer.xml:29
+#: simulation/templates/template_unit_infantry_ranged_javelineer.xml:32
 msgid "Infantry Javelineer"
 msgstr ""
 
@@ -564,8 +562,8 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Sling"
 msgstr "投石"
 
-#: simulation/templates/template_unit_infantry_ranged_slinger.xml:30
-#: simulation/templates/template_unit_infantry_ranged_slinger.xml:31
+#: simulation/templates/template_unit_infantry_ranged_slinger.xml:33
+#: simulation/templates/template_unit_infantry_ranged_slinger.xml:34
 msgid "Slinger"
 msgstr "投石兵"
 
@@ -579,15 +577,15 @@ msgid "Light Warship"
 msgstr "輕型軍艦"
 
 #: simulation/templates/template_unit_ship_bireme.xml:49
-#: simulation/templates/template_unit_ship_quinquereme.xml:60
+#: simulation/templates/template_unit_ship_quinquereme.xml:50
 #: simulation/templates/template_unit_ship_trireme.xml:49
 #: simulation/templates/template_unit_siege_tower.xml:63
 msgid "Garrison units for transport and to increase firepower."
 msgstr "進駐單位來運輸並增強火力。"
 
 #: simulation/templates/template_unit_ship_bireme.xml:50
-#: simulation/templates/template_unit_ship_fire.xml:45
-#: simulation/templates/template_unit_ship_quinquereme.xml:61
+#: simulation/templates/template_unit_ship_fire.xml:42
+#: simulation/templates/template_unit_ship_quinquereme.xml:51
 #: simulation/templates/template_unit_ship_trireme.xml:50
 msgid "Warship"
 msgstr "軍艦"
@@ -605,17 +603,15 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Fire"
 msgstr ""
 
-#: simulation/templates/template_unit_ship_fire.xml:43
+#: simulation/templates/template_unit_ship_fire.xml:40
 msgid "Fire Ship"
 msgstr "火船"
 
-#: simulation/templates/template_unit_ship_fire.xml:44
-msgid ""
-"Rapidly drain the health of enemy ships. Slowly loses health due to being on"
-" fire, so use the Fire Ship quickly."
-msgstr "快速減少敵方船隻的生命值。因為著火了，所以會緩慢損失生命值，所以火戰船要儘快使用。"
+#: simulation/templates/template_unit_ship_fire.xml:41
+msgid "Unrepairable. Gradually loses health. Can only attack Ships."
+msgstr ""
 
-#: simulation/templates/template_unit_ship_fire.xml:45
+#: simulation/templates/template_unit_ship_fire.xml:42
 msgid "Fireship"
 msgstr "火船"
 
@@ -664,11 +660,11 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Stone"
 msgstr "石頭"
 
-#: simulation/templates/template_unit_ship_quinquereme.xml:59
+#: simulation/templates/template_unit_ship_quinquereme.xml:49
 msgid "Heavy Warship"
 msgstr "重型軍艦"
 
-#: simulation/templates/template_unit_ship_quinquereme.xml:61
+#: simulation/templates/template_unit_ship_quinquereme.xml:51
 #: simulation/templates/units/cart/ship_quinquereme.xml:9
 msgid "Quinquereme"
 msgstr "Quinquereme"
@@ -692,11 +688,11 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Bolt"
 msgstr ""
 
-#: simulation/templates/template_unit_siege_boltshooter.xml:55
+#: simulation/templates/template_unit_siege_boltshooter.xml:53
 msgid "BoltShooter"
 msgstr "弩炮"
 
-#: simulation/templates/template_unit_siege_boltshooter.xml:56
+#: simulation/templates/template_unit_siege_boltshooter.xml:54
 msgid "Bolt Shooter"
 msgstr "弩炮"
 
@@ -717,11 +713,11 @@ msgstr "衝撞車"
 msgid "Cannot attack Fields or Organic Units."
 msgstr ""
 
-#: simulation/templates/template_unit_siege_stonethrower.xml:56
+#: simulation/templates/template_unit_siege_stonethrower.xml:46
 msgid "StoneThrower"
 msgstr ""
 
-#: simulation/templates/template_unit_siege_stonethrower.xml:57
+#: simulation/templates/template_unit_siege_stonethrower.xml:47
 msgid "Siege Catapult"
 msgstr "攻城投石車"
 
@@ -738,7 +734,7 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Dagger"
 msgstr ""
 
-#: simulation/templates/template_unit_support_female_citizen.xml:63
+#: simulation/templates/template_unit_support_female_citizen.xml:64
 msgid "Female Citizen"
 msgstr "女性公民"
 
@@ -746,13 +742,13 @@ msgstr "女性公民"
 msgid "Heal units."
 msgstr "治療單位。"
 
-#: simulation/templates/template_unit_support_slave.xml:43
 #: simulation/templates/template_unit_support_slave.xml:44
+#: simulation/templates/template_unit_support_slave.xml:45
 #: simulation/templates/units/rome/infantry_swordsman_slave.xml:19
 msgid "Slave"
 msgstr "奴隸"
 
-#: simulation/templates/template_unit_support_slave.xml:46
+#: simulation/templates/template_unit_support_slave.xml:47
 msgid "Gatherer with a finite life span. Bonused at mining and lumbering."
 msgstr "在有限的生命內進行採集。在採礦及伐木上有速度獎勵。"
 
@@ -1270,12 +1266,11 @@ msgid "Adretos"
 msgstr ""
 
 #: simulation/templates/units/brit/infantry_slinger_b.xml:6
-#: simulation/templates/units/gaul/infantry_slinger_b.xml:11
 msgid "Celtic Slinger"
 msgstr "塞爾特投石兵"
 
 #: simulation/templates/units/brit/infantry_slinger_b.xml:7
-#: simulation/templates/units/gaul/infantry_slinger_b.xml:12
+#: simulation/templates/units/gaul/infantry_slinger_b.xml:11
 msgid "Talmoris"
 msgstr ""
 
@@ -1496,7 +1491,7 @@ msgid "Tlat-Mašōt"
 msgstr "Tlat-Mašōt"
 
 #: simulation/templates/units/cart/siege_ballista_packed.xml:5
-#: simulation/templates/units/rome/siege_ballista_packed.xml:24
+#: simulation/templates/units/rome/siege_ballista_packed.xml:16
 msgid "Ballista"
 msgstr "扭力弩砲"
 
@@ -1915,15 +1910,15 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Crossbow"
 msgstr ""
 
-#: simulation/templates/units/mace/champion_infantry_crossbowman.xml:23
+#: simulation/templates/units/mace/champion_infantry_crossbowman.xml:24
 msgid "Crossbowman"
 msgstr ""
 
-#: simulation/templates/units/mace/champion_infantry_crossbowman.xml:25
+#: simulation/templates/units/mace/champion_infantry_crossbowman.xml:26
 msgid "Champion Crossbowman"
 msgstr ""
 
-#: simulation/templates/units/mace/champion_infantry_crossbowman.xml:26
+#: simulation/templates/units/mace/champion_infantry_crossbowman.xml:27
 msgid "Gastraphetophoros"
 msgstr ""
 
@@ -2064,11 +2059,11 @@ msgstr "印度戰象"
 msgid "Gajendra"
 msgstr "Gajendra"
 
-#: simulation/templates/units/maur/champion_infantry.xml:5
+#: simulation/templates/units/maur/champion_infantry_maceman.xml:5
 msgid "Warrior"
 msgstr "武士"
 
-#: simulation/templates/units/maur/champion_infantry.xml:6
+#: simulation/templates/units/maur/champion_infantry_maceman.xml:6
 msgid "Yōddha"
 msgstr "Yōddha"
 
@@ -2333,12 +2328,16 @@ msgstr ""
 msgid "Pila Hinduya"
 msgstr ""
 
-#: simulation/templates/units/pers/champion_infantry.xml:7
+#: simulation/templates/units/pers/champion_infantry.xml:6
 msgid "Persian Immortal"
 msgstr "波斯長生軍"
 
-#: simulation/templates/units/pers/champion_infantry.xml:8
+#: simulation/templates/units/pers/champion_infantry.xml:7
 msgid "Anušiya"
+msgstr ""
+
+#: simulation/templates/units/pers/champion_infantry.xml:8
+msgid "Immortal"
 msgstr ""
 
 #: simulation/templates/units/pers/hero_cyrus_ii.xml:9
@@ -2784,7 +2783,7 @@ msgstr ""
 msgid "Roman Trireme"
 msgstr "羅馬三列槳戰船"
 
-#: simulation/templates/units/rome/siege_onager.xml:37
+#: simulation/templates/units/rome/siege_onager.xml:30
 msgid "Onager"
 msgstr "Onager"
 
@@ -2792,7 +2791,7 @@ msgstr "Onager"
 msgid "Ariēs"
 msgstr ""
 
-#: simulation/templates/units/rome/siege_scorpio_packed.xml:18
+#: simulation/templates/units/rome/siege_scorpio_packed.xml:9
 msgid "Scorpiō"
 msgstr ""
 
@@ -3069,11 +3068,11 @@ msgstr "Hoplítēs Períoikos"
 msgid "Spartan Trireme"
 msgstr ""
 
-#: simulation/templates/units/spart/support_female_citizen.xml:23
+#: simulation/templates/units/spart/support_female_citizen.xml:26
 msgid "Spartan Woman"
 msgstr "斯巴達女性"
 
-#: simulation/templates/units/spart/support_female_citizen.xml:24
+#: simulation/templates/units/spart/support_female_citizen.xml:27
 msgid "Spartiâtis"
 msgstr "Spartiâtis"
 
@@ -3081,11 +3080,11 @@ msgstr "Spartiâtis"
 msgid "Émporos Períoikos"
 msgstr "Émporos Períoikos"
 
-#: simulation/templates/units/theb_siege_fireraiser.xml:40
+#: simulation/templates/units/theb_siege_fireraiser.xml:46
 msgid "Fire Raiser"
 msgstr "火燄噴射器"
 
-#: simulation/templates/units/theb_siege_fireraiser.xml:41
+#: simulation/templates/units/theb_siege_fireraiser.xml:47
 msgid "Pyrobolos"
 msgstr "Pyrobolos"
 

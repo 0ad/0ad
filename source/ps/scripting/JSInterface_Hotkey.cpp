@@ -21,6 +21,7 @@
 
 #include "lib/external_libraries/libsdl.h"
 #include "ps/CLogger.h"
+#include "ps/ConfigDB.h"
 #include "ps/Hotkey.h"
 #include "ps/KeyName.h"
 #include "scriptinterface/ScriptConversions.h"
@@ -115,7 +116,7 @@ JS::Value GetScancodeKeyNames(ScriptInterface::CmptPrivate* pCmptPrivate)
 void ReloadHotkeys(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
 	UnloadHotkeys();
-	LoadHotkeys();
+	LoadHotkeys(g_ConfigDB);
 }
 
 JS::Value GetConflicts(ScriptInterface::CmptPrivate* pCmptPrivate, JS::HandleValue combination)

@@ -9,15 +9,78 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-11 08:08+0000\n"
-"PO-Revision-Date: 2021-01-11 11:19+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-01-15 08:53+0000\n"
+"PO-Revision-Date: 2021-01-17 11:01+0000\n"
+"Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: gd\n"
 "Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : (n > 2 && n < 20) ? 2 : 3;\n"
+
+#: simulation/data/technologies/agoge.jsondescription
+msgid ""
+"Spartans were housed and trained from a young age to be superlative warriors"
+" and to endure any hardship a military life can give them."
+msgstr "Chaidh na Spartaich oideachadh ann an ionadan sònraichte on òige ach am bhiodh iad nan sàr-ghaisgeach ’s gun seasadh iad ri cruadal a’ bheatha san arm."
+
+#: simulation/data/technologies/agoge.jsongenericName
+msgid "The Agoge"
+msgstr "An t‑Agoga"
+
+#: simulation/data/technologies/agoge.jsonrequirementsTooltip
+#: simulation/data/technologies/armor_hero_01.jsonrequirementsTooltip
+#: simulation/data/technologies/attack_cavalry_melee_02.jsonrequirementsTooltip
+#: simulation/data/technologies/attack_cavalry_ranged_02.jsonrequirementsTooltip
+#: simulation/data/technologies/attack_infantry_melee_02.jsonrequirementsTooltip
+#: simulation/data/technologies/attack_infantry_ranged_02.jsonrequirementsTooltip
+#: simulation/data/technologies/attack_soldiers_will.jsonrequirementsTooltip
+#: simulation/data/technologies/attack_steel_working.jsonrequirementsTooltip
+#: simulation/data/technologies/barracks_batch_training.jsonrequirementsTooltip
+#: simulation/data/technologies/equine_transports.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_capacity_carts.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_farming_fertilizer.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_lumbering_sharpaxes.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_mining_silvermining.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_mining_slaves.jsonrequirementsTooltip
+#: simulation/data/technologies/heal_range_2.jsonrequirementsTooltip
+#: simulation/data/technologies/heal_rate_2.jsonrequirementsTooltip
+#: simulation/data/technologies/health_regen_units.jsonrequirementsTooltip
+#: simulation/data/technologies/hellenistic_metropolis.jsonrequirementsTooltip
+#: simulation/data/technologies/immortals.jsonrequirementsTooltip
+#: simulation/data/technologies/iphicratean_reforms.jsonrequirementsTooltip
+#: simulation/data/technologies/long_walls.jsonrequirementsTooltip
+#: simulation/data/technologies/nisean_horses.jsonrequirementsTooltip
+#: simulation/data/technologies/parade_of_daphne.jsonrequirementsTooltip
+#: simulation/data/technologies/pop_house_02.jsonrequirementsTooltip
+#: simulation/data/technologies/pop_wonder.jsonrequirementsTooltip
+#: simulation/data/technologies/reformed_army_sele.jsonrequirementsTooltip
+#: simulation/data/technologies/ship_cost_time.jsonrequirementsTooltip
+#: simulation/data/technologies/ship_health.jsonrequirementsTooltip
+#: simulation/data/technologies/ship_movement_speed.jsonrequirementsTooltip
+#: simulation/data/technologies/sibylline_books.jsonrequirementsTooltip
+#: simulation/data/technologies/siege_armor.jsonrequirementsTooltip
+#: simulation/data/technologies/siege_attack.jsonrequirementsTooltip
+#: simulation/data/technologies/siege_bolt_accuracy.jsonrequirementsTooltip
+#: simulation/data/technologies/siege_cost_metal.jsonrequirementsTooltip
+#: simulation/data/technologies/siege_cost_wood.jsonrequirementsTooltip
+#: simulation/data/technologies/silvershields.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_resistance_hack_02.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_resistance_pierce_02.jsonrequirementsTooltip
+#: simulation/data/technologies/stable_batch_training.jsonrequirementsTooltip
+#: simulation/data/technologies/tower_health.jsonrequirementsTooltip
+#: simulation/data/technologies/tower_murderholes.jsonrequirementsTooltip
+#: simulation/data/technologies/trade_convoys_armor.jsonrequirementsTooltip
+#: simulation/data/technologies/trade_gain_02.jsonrequirementsTooltip
+#: simulation/data/technologies/traditional_army_sele.jsonrequirementsTooltip
+#: simulation/data/technologies/unlock_champion_units.jsonrequirementsTooltip
+msgid "Unlocked in City Phase."
+msgstr "Ri fhaighinn ri linn nam mòr-bhailtean."
+
+#: simulation/data/technologies/agoge.jsontooltip
+msgid "Champion Infantry Spearmen +25% health, but +5% training time."
+msgstr "Gheibh laoich sleaghair coisridh +25% de shlàinte ach bheir iad +5% nas faide gus an oideachadh."
 
 #: simulation/data/technologies/archery_tradition.jsondescription
 msgid ""
@@ -30,11 +93,10 @@ msgid "Archery Tradition"
 msgstr "Gnàth nam boghadairean"
 
 #: simulation/data/technologies/archery_tradition.jsonrequirementsTooltip
-#: simulation/data/technologies/armor_ship_reinforcedhull.jsonrequirementsTooltip
 #: simulation/data/technologies/cavalry_movement_speed.jsonrequirementsTooltip
+#: simulation/data/technologies/fishing_boat_gather_rate.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_basket.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_plows.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_fishing_net.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsonrequirementsTooltip
 #: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_watch.jsonrequirementsTooltip
@@ -43,27 +105,23 @@ msgstr "Ri fhaighinn ri linn nan clachan."
 
 #: simulation/data/technologies/archery_tradition.jsontooltip
 msgid ""
-"Archers −10% training time, +8 attack range, and −10% ranged attack spread."
-msgstr "Gheibh boghadairean −10% air an ùine oideachaidh, +8 air astar an ionnsaighean ’s −10% air sgapadh an ionnsaighean astair."
+"Archers −10% training time, +10 attack range, and −10% ranged attack spread."
+msgstr ""
 
-#: simulation/data/technologies/armor_cav_01.jsondescription
-msgid "Metal armor for a horse's face."
-msgstr "Armachd meatailt airson aodann eich."
+#: simulation/data/technologies/architecture_kush.jsongenericName
+msgid "Monumental Architecture"
+msgstr "Ailtireachd-laighe"
 
-#: simulation/data/technologies/armor_cav_01.jsongenericName
-#: simulation/data/technologies/armor_cav_02.jsongenericName
-msgid "Chamfron"
-msgstr "Seampron"
-
-#: simulation/data/technologies/armor_cav_01.jsonrequirementsTooltip
-#: simulation/data/technologies/armor_infantry_01.jsonrequirementsTooltip
-#: simulation/data/technologies/armor_ship_hypozomata.jsonrequirementsTooltip
+#: simulation/data/technologies/architecture_kush.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_cavalry_melee_01.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_infantry_melee_01.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_infantry_ranged_01.jsonrequirementsTooltip
-#: simulation/data/technologies/carthaginians/special_colonisation.jsonrequirementsTooltip
-#: simulation/data/technologies/carthaginians/special_exploration.jsonrequirementsTooltip
+#: simulation/data/technologies/cavalry_cost_time.jsonrequirementsTooltip
+#: simulation/data/technologies/cavalry_health.jsonrequirementsTooltip
+#: simulation/data/technologies/colonization.jsonrequirementsTooltip
+#: simulation/data/technologies/exploration.jsonrequirementsTooltip
+#: simulation/data/technologies/fishing_boat_gather_capacity.jsonrequirementsTooltip
 #: simulation/data/technologies/garrison_heal.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_harvester.jsonrequirementsTooltip
@@ -73,10 +131,10 @@ msgstr "Seampron"
 #: simulation/data/technologies/gather_mining_shaftmining.jsonrequirementsTooltip
 #: simulation/data/technologies/heal_range.jsonrequirementsTooltip
 #: simulation/data/technologies/heal_rate.jsonrequirementsTooltip
-#: simulation/data/technologies/kushites/monumental_architecture.jsonrequirementsTooltip
-#: simulation/data/technologies/persians/training_levy_cavalry.jsonrequirementsTooltip
-#: simulation/data/technologies/persians/training_levy_infantry.jsonrequirementsTooltip
+#: simulation/data/technologies/infantry_cost_time.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_resistance_hack_01.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_resistance_pierce_01.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_crenellations.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_range.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
@@ -86,72 +144,26 @@ msgstr "Seampron"
 msgid "Unlocked in Town Phase."
 msgstr "Ri fhaighinn ri linn nam bailtean."
 
-#: simulation/data/technologies/armor_cav_01.jsonspecificName.athen
-#: simulation/data/technologies/armor_cav_01.jsonspecificName.mace
-#: simulation/data/technologies/armor_cav_01.jsonspecificName.ptol
-#: simulation/data/technologies/armor_cav_01.jsonspecificName.sele
-#: simulation/data/technologies/armor_cav_01.jsonspecificName.spart
-msgid "Prometōpidion"
+#: simulation/data/technologies/architecture_kush.jsontooltip
+msgid ""
+"Civic Structures +20% build time, +20% health, and +20% capture points."
+msgstr "Gheibh togalaichean sìobhalta +20% air an ùine togail, +20% air an slàinte agus +20% de phuingean glacaidh."
+
+#: simulation/data/technologies/architecture_pers.jsondescription
+msgid ""
+"The Persians built the wonderful 1677 mile-long Royal Highway from Sardis to"
+" Susa; Darius the Great and Xerxes also built the magnificent Persepolis; "
+"Cyrus the Great greatly improved Ecbatana and virtually 'rebuilt' the old "
+"Elamite capital of Susa."
+msgstr "Thog na Pearsaich an rathad mòr rìoghail mìorbhaileach o Shardis gu Susa a bha 1677 mìle a dh’fhaid; thog Darius Mòr ’s Xerxes Persepolis greadhnach cuideachd; rinn Kùrois Mòr leasachadh mòr air Ecbatana agus ath-thog e Susa, seann chathair-bhaile nan Ealamach."
+
+#: simulation/data/technologies/architecture_pers.jsongenericName
+msgid "Persian Architecture"
+msgstr "Ailtireachd Phearsach"
+
+#: simulation/data/technologies/architecture_pers.jsontooltip
+msgid "Structures +25% health and capture points, but also +20% build time."
 msgstr ""
-
-#: simulation/data/technologies/armor_cav_01.jsontooltip
-#: simulation/data/technologies/armor_cav_02.jsontooltip
-msgid "Cavalry +1 hack and pierce armor."
-msgstr "+1 de dh’armachd an aghaidh spealgaidh ’s bioraidh airson eachraidh."
-
-#: simulation/data/technologies/armor_cav_02.jsondescription
-msgid "Metal armor for a horse's body."
-msgstr "Armachd meatailt airson bodhaig eich."
-
-#: simulation/data/technologies/armor_cav_02.jsonrequirementsTooltip
-#: simulation/data/technologies/armor_hero_01.jsonrequirementsTooltip
-#: simulation/data/technologies/armor_infantry_02.jsonrequirementsTooltip
-#: simulation/data/technologies/armor_ship_hullsheathing.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_cavalry_melee_02.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_cavalry_ranged_02.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_infantry_melee_02.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_infantry_ranged_02.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_soldiers_will.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_steel_working.jsonrequirementsTooltip
-#: simulation/data/technologies/carthaginians/training_phoenician_naval_architects.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_capacity_carts.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_farming_fertilizer.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_lumbering_sharpaxes.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_mining_silvermining.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_mining_slaves.jsonrequirementsTooltip
-#: simulation/data/technologies/heal_range_2.jsonrequirementsTooltip
-#: simulation/data/technologies/heal_rate_2.jsonrequirementsTooltip
-#: simulation/data/technologies/health_regen_units.jsonrequirementsTooltip
-#: simulation/data/technologies/hellenes/spartans_agoge.jsonrequirementsTooltip
-#: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsonrequirementsTooltip
-#: simulation/data/technologies/hellenes/special_long_walls.jsonrequirementsTooltip
-#: simulation/data/technologies/persians/immortals.jsonrequirementsTooltip
-#: simulation/data/technologies/persians/special_equine_transports.jsonrequirementsTooltip
-#: simulation/data/technologies/persians/training_conscription_cavalry.jsonrequirementsTooltip
-#: simulation/data/technologies/persians/training_conscription_infantry.jsonrequirementsTooltip
-#: simulation/data/technologies/pop_house_02.jsonrequirementsTooltip
-#: simulation/data/technologies/pop_wonder.jsonrequirementsTooltip
-#: simulation/data/technologies/romans/vision_sibylline.jsonrequirementsTooltip
-#: simulation/data/technologies/siege_armor.jsonrequirementsTooltip
-#: simulation/data/technologies/siege_attack.jsonrequirementsTooltip
-#: simulation/data/technologies/siege_bolt_accuracy.jsonrequirementsTooltip
-#: simulation/data/technologies/siege_cost_metal.jsonrequirementsTooltip
-#: simulation/data/technologies/siege_cost_wood.jsonrequirementsTooltip
-#: simulation/data/technologies/successors/special_hellenistic_metropolis.jsonrequirementsTooltip
-#: simulation/data/technologies/successors/special_parade_of_daphne.jsonrequirementsTooltip
-#: simulation/data/technologies/successors/special_war_horses.jsonrequirementsTooltip
-#: simulation/data/technologies/successors/unlock_reform_army.jsonrequirementsTooltip
-#: simulation/data/technologies/successors/unlock_traditional_army.jsonrequirementsTooltip
-#: simulation/data/technologies/successors/upgrade_mace_silvershields.jsonrequirementsTooltip
-#: simulation/data/technologies/tower_health.jsonrequirementsTooltip
-#: simulation/data/technologies/tower_murderholes.jsonrequirementsTooltip
-#: simulation/data/technologies/trade_convoys_armor.jsonrequirementsTooltip
-#: simulation/data/technologies/trade_gain_02.jsonrequirementsTooltip
-#: simulation/data/technologies/training_conscription.jsonrequirementsTooltip
-#: simulation/data/technologies/training_naval_architects.jsonrequirementsTooltip
-#: simulation/data/technologies/unlock_champion_units.jsonrequirementsTooltip
-msgid "Unlocked in City Phase."
-msgstr "Ri fhaighinn ri linn nam mòr-bhailtean."
 
 #: simulation/data/technologies/armor_hero_01.jsondescription
 msgid ""
@@ -176,75 +188,8 @@ msgid "Lorica Ferrea"
 msgstr "Lorica Ferrea"
 
 #: simulation/data/technologies/armor_hero_01.jsontooltip
-msgid "Heroes +50 metal cost, +2 hack and pierce armor."
-msgstr "+50 de chosgais meatailte, +2 de dh’armachd an aghaidh spealgaidh ’s bioraidh airson curaidhean."
-
-#: simulation/data/technologies/armor_infantry_01.jsondescription
-msgid "Quilted linen or leather body armor for infantrymen."
-msgstr "Lùirich anart cuilt no leathair airson na coisridh."
-
-#: simulation/data/technologies/armor_infantry_01.jsongenericName
-msgid "Quilted Body Armor"
-msgstr "Lùirich cuilt"
-
-#: simulation/data/technologies/armor_infantry_01.jsonspecificName.athen
-#: simulation/data/technologies/armor_infantry_01.jsonspecificName.mace
-#: simulation/data/technologies/armor_infantry_01.jsonspecificName.ptol
-#: simulation/data/technologies/armor_infantry_01.jsonspecificName.sele
-#: simulation/data/technologies/armor_infantry_01.jsonspecificName.spart
-msgid "Spolas"
-msgstr "Spolas"
-
-#: simulation/data/technologies/armor_infantry_01.jsontooltip
-#: simulation/data/technologies/armor_infantry_02.jsontooltip
-msgid "Infantry +1 hack and pierce armor."
-msgstr "+1 de dh’armachd an aghaidh spealgaidh ’s bioraidh airson coisridh."
-
-#: simulation/data/technologies/armor_infantry_02.jsondescription
-msgid "Laminated linen body armor for infantrymen."
-msgstr "Lùirich anairt lannaichte airson a’ choisridh."
-
-#: simulation/data/technologies/armor_infantry_02.jsongenericName
-msgid "Laminated Linen Body Armor"
-msgstr "Lùirich anairt lannaichte"
-
-#: simulation/data/technologies/armor_infantry_02.jsonspecificName.athen
-#: simulation/data/technologies/armor_infantry_02.jsonspecificName.mace
-#: simulation/data/technologies/armor_infantry_02.jsonspecificName.ptol
-#: simulation/data/technologies/armor_infantry_02.jsonspecificName.sele
-#: simulation/data/technologies/armor_infantry_02.jsonspecificName.spart
-msgid "Linothōrax"
+msgid "Heroes +50 metal cost, +2 hack and pierce resistance."
 msgstr ""
-
-#: simulation/data/technologies/armor_ship_hullsheathing.jsondescription
-msgid "Lead sheathing protects ship hulls."
-msgstr "Dìonaidh lìnig luaidhe sligean nan long."
-
-#: simulation/data/technologies/armor_ship_hullsheathing.jsongenericName
-msgid "Lead hull sheathing"
-msgstr "Lìnigean luaidhe nan long"
-
-#: simulation/data/technologies/armor_ship_hullsheathing.jsontooltip
-#: simulation/data/technologies/armor_ship_hypozomata.jsontooltip
-#: simulation/data/technologies/armor_ship_reinforcedhull.jsontooltip
-msgid "Ships +2 armor."
-msgstr "Gheibh longan +2 a dh’armachd."
-
-#: simulation/data/technologies/armor_ship_hypozomata.jsondescription
-msgid "The hypozomata braces the structure of a ship."
-msgstr "’S e ròpan teannachaidh a tha sna Hioposomata a chuireas taic ri structar luinge."
-
-#: simulation/data/technologies/armor_ship_hypozomata.jsongenericName
-msgid "Hypozomata undergirding"
-msgstr "Crioslachadh Hioposomata"
-
-#: simulation/data/technologies/armor_ship_reinforcedhull.jsondescription
-msgid "Wooden reinforcement beams for ship hulls."
-msgstr "Sparran neartachaidh fiodha airson sligean luinge."
-
-#: simulation/data/technologies/armor_ship_reinforcedhull.jsongenericName
-msgid "Reinforced hull"
-msgstr "Neartachadh air sligean luinge"
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsondescription
 msgid "Training increases melee attack."
@@ -273,8 +218,9 @@ msgid "Hasta"
 msgstr "Hasta"
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsontooltip
-msgid "+20% melee cavalry attack."
-msgstr "+20% air ionnsaighean dlùtha le eachraidh."
+#: simulation/data/technologies/attack_cavalry_melee_02.jsontooltip
+msgid "Cavalry +20% melee attack damage."
+msgstr ""
 
 #: simulation/data/technologies/attack_cavalry_melee_02.jsondescription
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsondescription
@@ -287,11 +233,6 @@ msgstr "Cuiridh seo airm iarainn an àite arm umha."
 msgid "Iron Weapons"
 msgstr "Airm iarainn"
 
-#: simulation/data/technologies/attack_cavalry_melee_02.jsontooltip
-msgid ""
-"Equip your melee cavalry with better weapons. +20% melee cavalry attack."
-msgstr "Thoir airm nas fheàrr dhan eachraidh dhlùth agad. +20% air ionnsaighean dlùtha le eachraidh."
-
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsondescription
 msgid "Training increases ranged attack."
 msgstr "Meudaichidh oideachadh na h-ionnsaighean astair."
@@ -301,13 +242,9 @@ msgid "Ranged Combat Cavalry Training"
 msgstr "Oideachadh air sabaid astair an eachraidh"
 
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsontooltip
-msgid "+20% ranged cavalry attack."
-msgstr "+20% air ionnsaighean astair le eachraidh."
-
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsontooltip
-msgid ""
-"Equip your ranged cavalry with better weapons. +20% ranged cavalry attack."
-msgstr "Thoir airm nas fheàrr dhan eachraidh astair agad. +20% air ionnsaighean astair le eachraidh."
+msgid "Cavalry +20% ranged attack damage."
+msgstr ""
 
 #: simulation/data/technologies/attack_infantry_melee_01.jsondescription
 msgid ""
@@ -334,8 +271,8 @@ msgstr "Pugio"
 
 #: simulation/data/technologies/attack_infantry_melee_01.jsontooltip
 #: simulation/data/technologies/attack_infantry_melee_02.jsontooltip
-msgid "+20% melee infantry attack."
-msgstr "+20% air ionnsaighean dlùtha le coisridh."
+msgid "Infantry +20% melee attack damage."
+msgstr ""
 
 #: simulation/data/technologies/attack_infantry_melee_02.jsondescription
 msgid "Using iron instead of bronze gave weapons additional power."
@@ -365,20 +302,22 @@ msgstr ""
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsontooltip
 #: simulation/data/technologies/attack_infantry_ranged_02.jsontooltip
-msgid "+20% ranged infantry attack."
-msgstr "+20% air ionnsaighean dlùtha le coisridh."
+msgid "Infantry +20% ranged attack damage."
+msgstr ""
 
 #: simulation/data/technologies/attack_infantry_ranged_02.jsongenericName
 msgid "Ranged Infantry Masterclass"
 msgstr "Oideachadh na coisridh astair le maighstir"
 
 #: simulation/data/technologies/attack_soldiers_will.jsondescription
-msgid "The will to fight is crucial to victory."
-msgstr "Tha miann-còmhraig deatamach buaidhe."
+msgid ""
+"The will to fight is crucial to victory. Inspire your troops with higher "
+"pay."
+msgstr ""
 
 #: simulation/data/technologies/attack_soldiers_will.jsongenericName
-msgid "Will to fight"
-msgstr "Miann-còmhraig"
+msgid "Will to Fight"
+msgstr ""
 
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.athen
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.mace
@@ -389,9 +328,8 @@ msgid "Dynamis"
 msgstr "Dynamis"
 
 #: simulation/data/technologies/attack_soldiers_will.jsontooltip
-msgid ""
-"Inspire your troops with higher pay. All land and naval army +25% attack."
-msgstr "Brosnaich an t-arm agad le barrachd pàighidh. Gheibh am feachd ’s an cabhlach +25% air na h‑ionnsaighean aca."
+msgid "Soldiers, Siege Engines, and Ships +25% attack damage."
+msgstr ""
 
 #: simulation/data/technologies/attack_steel_working.jsondescription
 msgid ""
@@ -415,49 +353,46 @@ msgstr "Stàilinn urukku"
 msgid "Swordsmen +20% attack damage."
 msgstr ""
 
-#: simulation/data/technologies/carthaginians/special_colonisation.jsondescription
+#: simulation/data/technologies/barracks_batch_training.jsondescription
 msgid ""
-"Carthaginians established many trading centers as colonies and ultimately "
-"held dominion over 300 cities and towns in North Africa alone."
-msgstr "Stèidhich na Cartagaich iomadh ionad-malairt mar tuineachaidhean agus aig deireadh na sgeòil, bha smachd aca air 300 bailtean ann an taobh tuath Afraga ’s an corr."
+"Significantly increase training speed of infantry by training them in large "
+"batches or companies."
+msgstr ""
 
-#: simulation/data/technologies/carthaginians/special_colonisation.jsongenericName
-msgid "Colonization"
-msgstr "Tuineachadh"
+#: simulation/data/technologies/barracks_batch_training.jsongenericName
+#: simulation/data/technologies/stable_batch_training.jsongenericName
+msgid "Conscription"
+msgstr "Dleastanas-airm"
 
-#: simulation/data/technologies/carthaginians/special_colonisation.jsontooltip
+#: simulation/data/technologies/barracks_batch_training.jsontooltip
+msgid "Barracks −10% batch training time."
+msgstr ""
+
+#: simulation/data/technologies/cavalry_cost_time.jsondescription
 msgid ""
-"Carthaginians were colonizers. Civic Centers, Temples, and Houses -25% build"
-" time."
-msgstr "Bhiodh na Cartagaich ri tuineachadh. Togaidh tu ionadan sìobhalta, teampaill agus taighean nas luaithe le −25%."
+"Calling up cavalry levies in time of war helps bolster the ranks of a king's"
+" army."
+msgstr "Cuiridh eachraidh a thogas tu o na saoranaich rè amannan cogaidh ri neart airm an rìgh."
 
-#: simulation/data/technologies/carthaginians/special_exploration.jsondescription
-msgid ""
-"Nobody knew better than the Carthaginians where in the ancient world they "
-"were going and going to go; their merchant traders had missions to "
-"everywhere."
-msgstr "Cha bhiodh duine san t-saoghal àrsaidh cho eòlach air càite an rachadh iad ’s dè rinneadh iad ann ’s a bhiodh na Cartagaich; chuireadh iad na marsantan aca air feadh an àite."
+#: simulation/data/technologies/cavalry_cost_time.jsongenericName
+msgid "Levy Cavalry"
+msgstr "Tog eachraidh"
 
-#: simulation/data/technologies/carthaginians/special_exploration.jsongenericName
-msgid "Exploration"
-msgstr "Rùrachadh"
+#: simulation/data/technologies/cavalry_cost_time.jsontooltip
+msgid "Cavalry −10% training time."
+msgstr ""
 
-#: simulation/data/technologies/carthaginians/special_exploration.jsontooltip
-msgid "Carthaginians were explorers. All Traders and Ships +25% vision range."
-msgstr "Bhiodh na Cartagaich ri rùrachadh. Gheibh gach neach-malairt is long +25% de dh’astar lèirsinne."
+#: simulation/data/technologies/cavalry_health.jsondescription
+msgid "Selectively breed better war horses."
+msgstr ""
 
-#: simulation/data/technologies/carthaginians/training_phoenician_naval_architects.jsondescription
-msgid ""
-"Significantly increase build speed of batches of ships at the Shipyard."
-msgstr "Dèan togail ghrunnan de longan nas luaithe aig an doca."
+#: simulation/data/technologies/cavalry_health.jsongenericName
+msgid "Horse Breeding"
+msgstr ""
 
-#: simulation/data/technologies/carthaginians/training_phoenician_naval_architects.jsongenericName
-msgid "Phoenician Naval Architects"
-msgstr "Ailtirean-mara Pheniceach"
-
-#: simulation/data/technologies/carthaginians/training_phoenician_naval_architects.jsontooltip
-msgid "Shipyard increased batch construction speed bonus."
-msgstr "Thèid grunnan a thogail nas luaithe ann an doca."
+#: simulation/data/technologies/cavalry_health.jsontooltip
+msgid "Cavalry +10% health."
+msgstr ""
 
 #: simulation/data/technologies/cavalry_movement_speed.jsondescription
 msgid "Train your horses to move faster."
@@ -483,8 +418,8 @@ msgid "Triple Walls"
 msgstr "Ballachan trìoblaichte"
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
-msgid "Walls +100% build time, +100% stone cost, and +200% health."
-msgstr "Gheibh ballachan +100% air an ùine togail, +100% air cosgais cloiche agus +200% air an slàinte."
+msgid "City Walls +100% build time, +100% stone cost, and +200% health."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsondescription
 msgid "Celtic structures were mostly made of wood with rubble foundations."
@@ -495,10 +430,22 @@ msgid "Wooden Construction"
 msgstr "Togalaichean fiodha"
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
+msgid "Structures −20% build time, −20% health, and −20% capture points."
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/gaul_cavalry.jsondescription
 msgid ""
-"Briton and Gaulish Structures −20% build time, −20% health, and −20% capture"
-" points."
-msgstr "Gheibh togalaichean Breatannach is Gallach −20% air an ùine togail, −20% air an slàinte agus –20% de phuingean glacaidh."
+"The Gauls were well-known for their effective cavalry. Celtic mercenaries "
+"were in demand throughout the Mediterranean."
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/gaul_cavalry.jsongenericName
+msgid "Superior Cavalry"
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/gaul_cavalry.jsontooltip
+msgid "Cavalry +10% melee attack damage."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsondescription
 msgid "The Greeks used stone construction from early Mycenaean times."
@@ -547,8 +494,9 @@ msgid "Chakravarti Samrāt"
 msgstr "Chakravarti Samrāt"
 
 #: simulation/data/technologies/civbonuses/maur_population.jsontooltip
-msgid "Mauryas +10% maximum population limit."
-msgstr "Gheibh na Mauraidhich +10% air an tomhas-sluaigh as motha."
+#: simulation/data/technologies/civbonuses/pers_population.jsontooltip
+msgid "+10% maximum population limit."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsondescription
 msgid ""
@@ -561,8 +509,8 @@ msgid "Wooden Walls"
 msgstr "Ballachan fiodha"
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsontooltip
-msgid "Mauryan City Walls −20% build time and −20% health."
-msgstr "Gheibh ballachan baile nam Mauraidheach −20% air an ùine togail agus −20% air an slàinte."
+msgid "City Walls −20% build time and −20% health."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/pers_population.jsondescription
 msgid ""
@@ -578,9 +526,21 @@ msgstr "Thogadh na Pearsaich mòran choisridh rè àm a’ chogaidh ’s b’ ur
 msgid "Great King's Levy"
 msgstr "Togail airm mòr an Rìgh"
 
-#: simulation/data/technologies/civbonuses/pers_population.jsontooltip
-msgid "Persians +10% maximum population limit."
-msgstr "Gheibh na Pearsaich +10% air an tomhas-sluaigh as motha."
+#: simulation/data/technologies/civbonuses/ptol_structures.jsondescription
+msgid ""
+"Sun-dried mud bricks were a common building material in hot and dry areas, "
+"especially where wood was scarce. Although not as strong and durable as "
+"fired bricks or natural stone and vulnerable to constant rains and heavy "
+"floods, mud bricks have the advantage they are cheap and easy to produce."
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/ptol_structures.jsongenericName
+msgid "Sun-dried Mud Bricks"
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/ptol_structures.jsontooltip
+msgid "Houses and Economic Structures −50% wood cost, but +50% build time."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/spart_population.jsondescription
 msgid ""
@@ -595,8 +555,80 @@ msgid "Underdogs"
 msgstr "Uireasbhaidh"
 
 #: simulation/data/technologies/civbonuses/spart_population.jsontooltip
-msgid "Spartans −10% maximum population limit."
-msgstr "Gheibh na Spartaich −10% air an tomhas-sluaigh as motha."
+msgid "−10% maximum population limit."
+msgstr ""
+
+#: simulation/data/technologies/colonization.jsondescription
+msgid ""
+"Carthaginians established many trading centers as colonies and ultimately "
+"held dominion over 300 cities and towns in North Africa alone."
+msgstr "Stèidhich na Cartagaich iomadh ionad-malairt mar tuineachaidhean agus aig deireadh na sgeòil, bha smachd aca air 300 bailtean ann an taobh tuath Afraga ’s an corr."
+
+#: simulation/data/technologies/colonization.jsongenericName
+msgid "Colonization"
+msgstr "Tuineachadh"
+
+#: simulation/data/technologies/colonization.jsontooltip
+msgid "Civic Structures −25% build time."
+msgstr ""
+
+#: simulation/data/technologies/equine_transports.jsondescription
+msgid ""
+"Early Achaemenid rulers acted towards making Persia the first great Asian "
+"empire to rule the seas. The Great King behaved favourably towards the "
+"various sea peoples in order to secure their services, but also carried out "
+"various marine initiatives. During the reign of Darius the Great, for "
+"example, a canal was built in Egypt and a Persian navy was sent exploring "
+"the Indus river. According to Herodotus, some 300 ships in the Persian navy "
+"were retrofitted to carry horses and their riders."
+msgstr "Le gnìomhan nan rìghrean Achaimeneach tràtha, chaidh a’ Pheirse ’na chiad impireachd Àiseanach mhòr aig an robh smachd air a’ mhuir. Bha giùlan an Rìgh Mhòir fàbharach do shluaghan na mara ach an doireadh iad taic dha ach rinn e leasachaidhean-mara cuideachd. Mar eisimpleir, thogadh canal san Èipheit agus rùraich cabhlach Pearsach abhainn Indus ri linn Darius Mhòir. A-rèir Herodotus, chaidh mu 300 long aig cabhlach nam Pearsach uidheamachadh gus eich agus am marcaichean a ghiùlan."
+
+#: simulation/data/technologies/equine_transports.jsongenericName
+msgid "Equine Transports"
+msgstr "Giùlan each"
+
+#: simulation/data/technologies/equine_transports.jsontooltip
+msgid "Phoenician Triremes gain the ability to train Cavalry."
+msgstr ""
+
+#: simulation/data/technologies/exploration.jsondescription
+msgid ""
+"Nobody knew better than the Carthaginians where in the ancient world they "
+"were going and going to go; their merchant traders had missions to "
+"everywhere."
+msgstr "Cha bhiodh duine san t-saoghal àrsaidh cho eòlach air càite an rachadh iad ’s dè rinneadh iad ann ’s a bhiodh na Cartagaich; chuireadh iad na marsantan aca air feadh an àite."
+
+#: simulation/data/technologies/exploration.jsongenericName
+msgid "Exploration"
+msgstr "Rùrachadh"
+
+#: simulation/data/technologies/exploration.jsontooltip
+msgid "Traders and Ships +25% vision range."
+msgstr ""
+
+#: simulation/data/technologies/fishing_boat_gather_capacity.jsondescription
+msgid "Salting allows to preserve fish longer."
+msgstr "Mairidh an t-iasg nas fhaide ma bhios sailleadh agad."
+
+#: simulation/data/technologies/fishing_boat_gather_capacity.jsongenericName
+msgid "Salting Fish"
+msgstr "Sailleadh èisg"
+
+#: simulation/data/technologies/fishing_boat_gather_capacity.jsontooltip
+msgid "Fishing Boats +20 food capacity."
+msgstr "Gheibh bàtaichean-iasgaich +20 de rum airson biadh."
+
+#: simulation/data/technologies/fishing_boat_gather_rate.jsondescription
+msgid "Use nets to improve the productivity of fishing boats."
+msgstr "Cleachd lìontan airson piseach a chur air dèanadas nam bàtaichean-iasgaich."
+
+#: simulation/data/technologies/fishing_boat_gather_rate.jsongenericName
+msgid "Fishing Net"
+msgstr "Lìon-èisg"
+
+#: simulation/data/technologies/fishing_boat_gather_rate.jsontooltip
+msgid "Fishing Boats +30% fish gather rate."
+msgstr "Cruinnichidh na bàtaichean-iasgaich iasg +30% nas luaithe."
 
 #: simulation/data/technologies/garrison_heal.jsondescription
 msgid "Units regain health over time while garrisoned."
@@ -611,8 +643,8 @@ msgid "Structures +1 garrison heal rate."
 msgstr ""
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
-msgid "Breed livestock (sheep, goats, cattle, etc.) for food."
-msgstr "Tog sprèidh (caoraich, gobhraichean, bà is msaa.) a chùm bìdh."
+msgid "Breed livestock to slaughter for meat."
+msgstr ""
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsongenericName
 msgid "Stockbreeding"
@@ -645,22 +677,6 @@ msgstr "Cleachdaidh na h‑obraichean cairtean-each. Beiridh na h‑aonadan eall
 #: simulation/data/technologies/gather_capacity_carts.jsongenericName
 msgid "Horse-drawn Carts"
 msgstr "Cairtean-each"
-
-#: simulation/data/technologies/gather_capacity_fishing.jsondescription
-msgid "Salting allows to preserve fish longer."
-msgstr "Mairidh an t-iasg nas fhaide ma bhios sailleadh agad."
-
-#: simulation/data/technologies/gather_capacity_fishing.jsongenericName
-msgid "Salting Fish"
-msgstr "Sailleadh èisg"
-
-#: simulation/data/technologies/gather_capacity_fishing.jsonrequirementsTooltip
-msgid "Unlocked in Town Phase. Requires Fishing Net."
-msgstr "Ri fhaighinn ri linn nam bailtean. Feum air lìon-èisg."
-
-#: simulation/data/technologies/gather_capacity_fishing.jsontooltip
-msgid "Fishing Boats +20 food capacity."
-msgstr "Gheibh bàtaichean-iasgaich +20 de rum airson biadh."
 
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsondescription
 msgid ""
@@ -717,18 +733,6 @@ msgstr "Oideachadh nan tuathanaich ach an cruinnich iad biadh nas luaithe."
 msgid "Gather Training"
 msgstr "Oideachadh air cruinneachadh"
 
-#: simulation/data/technologies/gather_fishing_net.jsondescription
-msgid "Use nets to improve the productivity of fishing boats."
-msgstr "Cleachd lìontan airson piseach a chur air dèanadas nam bàtaichean-iasgaich."
-
-#: simulation/data/technologies/gather_fishing_net.jsongenericName
-msgid "Fishing Net"
-msgstr "Lìon-èisg"
-
-#: simulation/data/technologies/gather_fishing_net.jsontooltip
-msgid "Fishing Boats +30% fish gather rate."
-msgstr "Cruinnichidh na bàtaichean-iasgaich iasg +30% nas luaithe."
-
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsondescription
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsondescription
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsondescription
@@ -736,8 +740,8 @@ msgid "Increases wood gathering rates for trees."
 msgstr "Thèid fiodh a chruinneachadh nas luaithe o na craobhan."
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsongenericName
-msgid "Iron Ax Heads"
-msgstr "An ceann tuaighe iarainn"
+msgid "Iron Axe Heads"
+msgstr ""
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsontooltip
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsontooltip
@@ -746,12 +750,12 @@ msgid "Workers +25% wood gather rate."
 msgstr "Cruinnichidh an luchd-obrach fiodh +25% nas luaithe."
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsongenericName
-msgid "Sharp Ax Heads"
-msgstr "Cinn tuaighe geura"
+msgid "Sharp Axe Heads"
+msgstr ""
 
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsongenericName
-msgid "Stronger Ax"
-msgstr "Tuagh as treuna"
+msgid "Stronger Axe"
+msgstr ""
 
 #: simulation/data/technologies/gather_mining_serfs.jsondescription
 msgid ""
@@ -881,8 +885,8 @@ msgstr "Pan-diadhachd Oilimpeach"
 
 #: simulation/data/technologies/heal_range.jsontooltip
 #: simulation/data/technologies/heal_range_2.jsontooltip
-msgid "Healers +5 Healing and Vision Range."
-msgstr "+5 air astar slànachaidh is lèirsinne nan lighichean."
+msgid "Healers +5 healing range."
+msgstr ""
 
 #: simulation/data/technologies/heal_range_2.jsongenericName
 msgid "Healing Range 2"
@@ -894,8 +898,8 @@ msgstr ""
 
 #: simulation/data/technologies/heal_rate.jsondescription
 #: simulation/data/technologies/heal_rate_2.jsondescription
-msgid "Increases the Healing Rate of all healers."
-msgstr "Meudaichidh seo luaths slànachaidh nan lighichean uile."
+msgid "Increases the healing rate of all healers."
+msgstr ""
 
 #: simulation/data/technologies/heal_rate.jsongenericName
 msgid "Healing Rate"
@@ -938,50 +942,79 @@ msgid "The Loom"
 msgstr "Am beart"
 
 #: simulation/data/technologies/health_females_01.jsontooltip
-msgid "+100% health for female citizens."
-msgstr "+100% de shlàinte airson shaoranach boireann."
+msgid "Female Citizens +100% health."
+msgstr ""
 
 #: simulation/data/technologies/health_regen_units.jsondescription
-msgid "Unlock health regeneration for your units."
-msgstr "Thoir a’ ghlas far ath-ghintinn slàinte nan aonadan agad."
+msgid "Organic units will slowly regenerate health over time when idle."
+msgstr "Gheibh aonadan nàdarra an slàinte air ais beag air bheag nuair a bhios iad ’nan tàmh."
 
 #: simulation/data/technologies/health_regen_units.jsongenericName
 msgid "Battlefield Medicine"
 msgstr "Leigheas a’ bhlàir"
 
 #: simulation/data/technologies/health_regen_units.jsontooltip
-msgid "Organic units will slowly regenerate health over time when idle."
-msgstr "Gheibh aonadan nàdarra an slàinte air ais beag air bheag nuair a bhios iad ’nan tàmh."
+msgid "Idle Organic units +0.5 health regeneration rate."
+msgstr ""
 
-#: simulation/data/technologies/hellenes/spartans_agoge.jsondescription
+#: simulation/data/technologies/hellenistic_metropolis.jsondescription
 msgid ""
-"Spartans were housed and trained from a young age to be superlative warriors"
-" and to endure any hardship a military life can give them."
-msgstr "Chaidh na Spartaich oideachadh ann an ionadan sònraichte on òige ach am bhiodh iad nan sàr-ghaisgeach ’s gun seasadh iad ri cruadal a’ bheatha san arm."
+"Beginning with Alexander, the Hellenistic monarchs founded many cities "
+"throughout their empires, where Greek culture and art blended with local "
+"customs to create the motley Hellenistic civilization."
+msgstr "Stèidhich na rìghrean Greugach iomadh baile sna h-impireachdan aca o Alasdair a-mach far an deach cultar ’s ealan nan Greugach a mheasgachadh leis an dualchas ionadail agus chruthaich seo sìobhaltas Greugach measgaichte ’s farsaing."
 
-#: simulation/data/technologies/hellenes/spartans_agoge.jsongenericName
-msgid "The Agoge"
-msgstr "An t‑Agoga"
+#: simulation/data/technologies/hellenistic_metropolis.jsongenericName
+msgid "Hellenistic Metropolis"
+msgstr "Mòr-bhaile Greugach"
 
-#: simulation/data/technologies/hellenes/spartans_agoge.jsontooltip
-msgid "Champion Infantry Spearmen +25% health, but +5% training time."
-msgstr "Gheibh laoich sleaghair coisridh +25% de shlàinte ach bheir iad +5% nas faide gus an oideachadh."
+#: simulation/data/technologies/hellenistic_metropolis.jsontooltip
+msgid "Civic Centers +100% health and capture points, double default arrows."
+msgstr "Gheibh ionadan sìobhalta +100% de shlàinte is puingean glacaidh is dà uiread dhe shaighdean tùsail."
 
-#: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsondescription
+#: simulation/data/technologies/immortals.jsondescription
+msgid ""
+"The Achaemenids maintained a 10,000-strong elite corps, referred to as "
+"Athanatoi (“Immortals”) by Greek authors."
+msgstr "Bhiodh grunn de 10,000 seann-ghaisgeach aig na h-Achaimenich is chuir ùghdaran na Grèige Athanatoi (“an fheadhainn neo-bhàsmhor”) orra."
+
+#: simulation/data/technologies/immortals.jsongenericName
+msgid "Immortals"
+msgstr "Lèintean-crios neo-bhàsmhor"
+
+#: simulation/data/technologies/immortals.jsontooltip
+msgid "Immortals −50% training time, but −10% health."
+msgstr ""
+
+#: simulation/data/technologies/infantry_cost_time.jsondescription
+msgid ""
+"Calling up infantry levies in time of war helps bolster the ranks of a "
+"king's army."
+msgstr "Cuiridh coisridh a thogas tu o na saoranaich rè amannan cogaidh ri neart airm an rìgh."
+
+#: simulation/data/technologies/infantry_cost_time.jsongenericName
+msgid "Levy Infantry"
+msgstr "Tog coisridh"
+
+#: simulation/data/technologies/infantry_cost_time.jsontooltip
+msgid "Infantry −10% training time."
+msgstr ""
+
+#: simulation/data/technologies/iphicratean_reforms.jsondescription
 msgid ""
 "Athenian triremes can train Marines (Epibates Athenaikos) and Cretan "
 "Mercenary Archers (Toxotes Kretikos)."
 msgstr "’S urrainn dha trì-ràmhaich na h-Àithne saighdearan-mara (Epibates Athenaikos) ’s boghadairean-duaise Criteach (Toxotes Kretikos) oideachadh."
 
-#: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsongenericName
+#: simulation/data/technologies/iphicratean_reforms.jsongenericName
 msgid "Iphicratean Reforms"
 msgstr "Ath-leasachaidhean Iphiocratas"
 
-#: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsontooltip
-msgid "Athenian triremes can train Marines and Cretan Mercenary Archers."
-msgstr "’S urrainn dha trì-ràmhaich na h-Àithne saighdearan-mara ’s boghadairean-duaise Criteach oideachadh."
+#: simulation/data/technologies/iphicratean_reforms.jsontooltip
+msgid "Athenian Triremes can train Marines and Cretan Mercenary Archers."
+msgstr ""
 
-#: simulation/data/technologies/hellenes/special_long_walls.jsondescription
+#: simulation/data/technologies/long_walls.jsondescription
 msgid ""
 "The Long Walls of Athens were constructed under the auspices of the wily "
 "Themistocles and extended 6 km from the city to the port of Piraeus. This "
@@ -989,123 +1022,50 @@ msgid ""
 "out the city during a siege."
 msgstr "Chaidh ballachan fada na h-Àithne an togail fo stiùireadh Themistocles seòlta agus ruig iad on bhaile gu port Phiraeus a bha 6 km air falbh. Dhaingnich seo slighean solar a’ bhaile on mhuir ’s cha b’ urrainn do nàmhaid am baile a ghortachadh rè sèiste."
 
-#: simulation/data/technologies/hellenes/special_long_walls.jsongenericName
+#: simulation/data/technologies/long_walls.jsongenericName
 msgid "Athenian Long Walls"
 msgstr "Ballachan fada na h-Àithne"
 
-#: simulation/data/technologies/hellenes/special_long_walls.jsontooltip
+#: simulation/data/technologies/long_walls.jsontooltip
 msgid "Build Walls in own or neutral territory."
 msgstr "Tog ballachan air ranntair neo-phàirteach no air an ranntair agad fhèin."
 
-#: simulation/data/technologies/kushites/monumental_architecture.jsongenericName
-msgid "Monumental Architecture"
-msgstr "Ailtireachd-laighe"
-
-#: simulation/data/technologies/kushites/monumental_architecture.jsontooltip
+#: simulation/data/technologies/nisean_horses.jsondescription
 msgid ""
-"Civic Structures +20% build time, +20% health, and +20% capture points."
-msgstr "Gheibh togalaichean sìobhalta +20% air an ùine togail, +20% air an slàinte agus +20% de phuingean glacaidh."
+"The now-extinct Nisian breed of horse was one of the largest and robust "
+"horses of ancient times. They were highly sought after by the Seleucids and "
+"Persians as both rider and mount gained heavier armor as time progressed."
+msgstr "’S e gnè Niseanach nan each a chaidh a-mach à bith a bhiodh sna h-eich as motha ’s seasmhaiche rè nan linntean àrsaidh. Bhiodh na Seleucach ’s na Pearsaich uabhasach measail orra on a dh’fhàs an armachd an dà chuid air a’ mharcaiche ’s an each nas truime rè àm."
 
-#: simulation/data/technologies/persians/immortals.jsondescription
+#: simulation/data/technologies/nisean_horses.jsongenericName
+msgid "Nisean War Horses"
+msgstr "Eich-chogaidh Niseanach"
+
+#: simulation/data/technologies/nisean_horses.jsonspecificName.sele
+msgid "Nisioi"
+msgstr "Nisioi"
+
+#: simulation/data/technologies/nisean_horses.jsontooltip
+msgid "Champion Cavalry Spearmen +20% health, but +10% training time."
+msgstr ""
+
+#: simulation/data/technologies/pair_unlock_champions_sele.jsongenericName
+msgid "Traditional Army vs Reform Army"
+msgstr "Feachd tradaiseanta no feachd an ath-leasachaidh"
+
+#: simulation/data/technologies/parade_of_daphne.jsondescription
 msgid ""
-"The Achaemenids maintained a 10,000-strong elite corps, referred to as "
-"Athanatoi (“Immortals”) by Greek authors."
-msgstr "Bhiodh grunn de 10,000 seann-ghaisgeach aig na h-Achaimenich is chuir ùghdaran na Grèige Athanatoi (“an fheadhainn neo-bhàsmhor”) orra."
+"The festival at Daphne was a major event of the Seleucid Empire: tens of "
+"thousands of well-equipped troops participated in the opening procession."
+msgstr ""
 
-#: simulation/data/technologies/persians/immortals.jsongenericName
-msgid "Immortals"
-msgstr "Lèintean-crios neo-bhàsmhor"
+#: simulation/data/technologies/parade_of_daphne.jsongenericName
+msgid "Parade of Daphne"
+msgstr "Pairèid Daphnaidh"
 
-#: simulation/data/technologies/persians/immortals.jsontooltip
-msgid "Anušiya Champion Infantry -50% train time, but also -10% health."
-msgstr "Thèid laoich coisridh Anušiya oideachadh nas luaithe le −50% ach caillidh iad slàinte cuideachd le −10%."
-
-#: simulation/data/technologies/persians/persian_architecture.jsondescription
-msgid ""
-"The Persians built the wonderful 1677 mile-long Royal Highway from Sardis to"
-" Susa; Darius the Great and Xerxes also built the magnificent Persepolis; "
-"Cyrus the Great greatly improved Ecbatana and virtually 'rebuilt' the old "
-"Elamite capital of Susa."
-msgstr "Thog na Pearsaich an rathad mòr rìoghail mìorbhaileach o Shardis gu Susa a bha 1677 mìle a dh’fhaid; thog Darius Mòr ’s Xerxes Persepolis greadhnach cuideachd; rinn Kùrois Mòr leasachadh mòr air Ecbatana agus ath-thog e Susa, seann chathair-bhaile nan Ealamach."
-
-#: simulation/data/technologies/persians/persian_architecture.jsongenericName
-msgid "Persian Architecture"
-msgstr "Ailtireachd Phearsach"
-
-#: simulation/data/technologies/persians/persian_architecture.jsontooltip
-msgid ""
-"All Persian structures +25% health and capture points, but also +20% build "
-"time."
-msgstr "Buannaichidh na h-uile togalach Pearsach +25% de shlàinte is puingean glacaidh ach bheir e +20% a bharrachd de dh’ùine cuideachd."
-
-#: simulation/data/technologies/persians/special_equine_transports.jsondescription
-msgid ""
-"Early Achaemenid rulers acted towards making Persia the first great Asian "
-"empire to rule the seas. The Great King behaved favourably towards the "
-"various sea peoples in order to secure their services, but also carried out "
-"various marine initiatives. During the reign of Darius the Great, for "
-"example, a canal was built in Egypt and a Persian navy was sent exploring "
-"the Indus river. According to Herodotus, some 300 ships in the Persian navy "
-"were retrofitted to carry horses and their riders."
-msgstr "Le gnìomhan nan rìghrean Achaimeneach tràtha, chaidh a’ Pheirse ’na chiad impireachd Àiseanach mhòr aig an robh smachd air a’ mhuir. Bha giùlan an Rìgh Mhòir fàbharach do shluaghan na mara ach an doireadh iad taic dha ach rinn e leasachaidhean-mara cuideachd. Mar eisimpleir, thogadh canal san Èipheit agus rùraich cabhlach Pearsach abhainn Indus ri linn Darius Mhòir. A-rèir Herodotus, chaidh mu 300 long aig cabhlach nam Pearsach uidheamachadh gus eich agus am marcaichean a ghiùlan."
-
-#: simulation/data/technologies/persians/special_equine_transports.jsongenericName
-msgid "Equine Transports"
-msgstr "Giùlan each"
-
-#: simulation/data/technologies/persians/special_equine_transports.jsontooltip
-msgid "Phoenician Triremes gain the ability to train cavalry."
-msgstr "Buannaichidh na trì-ràmhaich Pheniceach an comas gus eachraidh oideachadh."
-
-#: simulation/data/technologies/persians/training_conscription_cavalry.jsondescription
-msgid ""
-"Significantly increase training speed of cavalry at the stables by training "
-"them in large batches or battalions."
-msgstr "Meudaichidh seo luaths oideachaidh an eachraidh aig an stàball gu mòr nuair a thèid an oideachadh ann an grunn mòr no còrachadh."
-
-#: simulation/data/technologies/persians/training_conscription_cavalry.jsongenericName
-msgid "Cavalry Conscription"
-msgstr "Dleastanas-airm eachraidh"
-
-#: simulation/data/technologies/persians/training_conscription_cavalry.jsontooltip
-msgid "Faster batch training speed for the Stables."
-msgstr "Luaths as àirde air oideachadh ghrunnan aig an stàball."
-
-#: simulation/data/technologies/persians/training_conscription_infantry.jsongenericName
-msgid "Infantry Conscription"
-msgstr "Dleastanas-airm coirsidh"
-
-#: simulation/data/technologies/persians/training_levy_cavalry.jsondescription
-msgid ""
-"Calling up cavalry levies in time of war helps bolster the ranks of a king's"
-" army."
-msgstr "Cuiridh eachraidh a thogas tu o na saoranaich rè amannan cogaidh ri neart airm an rìgh."
-
-#: simulation/data/technologies/persians/training_levy_cavalry.jsongenericName
-msgid "Levy Cavalry"
-msgstr "Tog eachraidh"
-
-#: simulation/data/technologies/persians/training_levy_cavalry.jsontooltip
-msgid ""
-"All cavalry -20% train time, but also -5% health. Unlocks Cavalry "
-"Conscription."
-msgstr "Thèid eachraidh oideachadh nas luaithe le −20% ach ach caillidh iad slàinte cuideachd le −5%. Bheir seo a’ ghlas far dleastanas-airm eachraidh."
-
-#: simulation/data/technologies/persians/training_levy_infantry.jsondescription
-msgid ""
-"Calling up infantry levies in time of war helps bolster the ranks of a "
-"king's army."
-msgstr "Cuiridh coisridh a thogas tu o na saoranaich rè amannan cogaidh ri neart airm an rìgh."
-
-#: simulation/data/technologies/persians/training_levy_infantry.jsongenericName
-msgid "Levy Infantry"
-msgstr "Tog coisridh"
-
-#: simulation/data/technologies/persians/training_levy_infantry.jsontooltip
-msgid ""
-"All infantry -20% train time, but also -5% health. Unlocks Infantry "
-"Conscription."
-msgstr "Thèid coisridh oideachadh nas luaithe le −20% ach caillidh iad slàinte cuideachd le −5%. Bheir seo a’ ghlas far dleastanas-airm coisridh."
+#: simulation/data/technologies/parade_of_daphne.jsontooltip
+msgid "Champions −20% training time."
+msgstr ""
 
 #: simulation/data/technologies/phase_city.jsondescription
 msgid ""
@@ -1128,8 +1088,8 @@ msgstr "Adhartaich o bhaile iomairteach gu mòr-bhaile, làn chulaidhean-iongant
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
-msgid "Requires 4 Town Structures."
-msgstr "Feum air 4 togalaichean o linn nam bailtean."
+msgid "Requires four Town Structures."
+msgstr ""
 
 #: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
@@ -1141,11 +1101,10 @@ msgstr "Megalopolis"
 
 #: simulation/data/technologies/phase_city_athen.jsontooltip
 msgid ""
-"Advance to City Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
-"grants an extra +10% metal gather rate to all workers. Citizen Soldiers +10%"
-" health. All structures +9 garrisoned regeneration rate."
-msgstr "Adhartaich gu linn nam mòr-bhailtean a bheir barrachd thogalaichean is aonadan dhut. Bidh leudachadh de +50% a bharrachd aig ranntair nan ionadan sìobhalta. Cruinnichidh gach obraiche meatailt +10% nas luaithe le buannachd an t-sìobhaltais “Cailleachan-oidhche airgid.” Gheibh saighdearan-dùthcha +10% air an slàinte. Gheibh a h-uile togalach buannachd dhe +9 air ath-ghintinn gearastain."
+"Advance to City Phase, which unlocks more entities and technologies. Civic "
+"Centers +50% territory influence radius. Structures +9 capture points "
+"regeneration rate per garrisoned unit. Workers +10% metal gather rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
@@ -1155,10 +1114,10 @@ msgstr "Adhartaich o bhaile iomairteach gu mòr-bhaile, làn chulaidhean-iongant
 
 #: simulation/data/technologies/phase_city_generic.jsontooltip
 msgid ""
-"Advance to City Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by another +50%. Citizen Soldiers +10% "
-"health. All structures +9 garrisoned regeneration rate."
-msgstr "Adhartaich gu linn nam mòr-bhailtean a bheir barrachd thogalaichean is aonadan dhut. Bidh leudachadh de +50% a bharrachd aig ranntair nan ionadan sìobhalta. Gheibh saighdearan-dùthcha +10% air an slàinte. Gheibh a h-uile togalach buannachd dhe +9 air ath-ghintinn gearastain."
+"Advance to City Phase, which unlocks more entities and technologies. Civic "
+"Centers +50% territory influence radius. Structures +9 capture points "
+"regeneration rate per garrisoned unit."
+msgstr ""
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -1181,8 +1140,8 @@ msgstr "Adhartaich o chlachan bheag gu baile iomairteach, ullamh airson leudacha
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
-msgid "Requires 5 Village Structures."
-msgstr "Feum air 5 togalaichean o linn nan clachan."
+msgid "Requires five Village Structures."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
@@ -1194,11 +1153,10 @@ msgstr ""
 
 #: simulation/data/technologies/phase_town_athen.jsontooltip
 msgid ""
-"Advance to Town Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants "
-"an extra +10% metal gather rate to all workers. Citizen Soldiers +20% "
-"health. All structures +7 garrisoned regeneration rate."
-msgstr "Adhartaich gu linn bailtean a bheir barrachd thogalaichean is aonadan dhut. Bidh leudachadh de +30% aig ranntair nan ionadan sìobhalta. Cruinnichidh gach obraiche meatailt +10% nas luaithe le buannachd an t-sìobhaltais “Cailleachan-oidhche airgid.” Gheibh saighdearan-dùthcha +20% air an slàinte. Gheibh a h-uile togalach buannachd dhe +7 air ath-ghintinn gearastain."
+"Advance to Town Phase, which unlocks more entities and technologies. Civic "
+"Centers +30% territory influence radius. Structures +7 capture points "
+"regeneration rate per garrisoned unit. Workers +10% metal gather rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_generic.jsondescription
 msgid ""
@@ -1207,10 +1165,10 @@ msgstr "Adhartaich o chlachan bheag gu baile iomairteach, ullamh airson leudacha
 
 #: simulation/data/technologies/phase_town_generic.jsontooltip
 msgid ""
-"Advance to Town Phase, which unlocks more structures and units. Territory "
-"radius for Civic Centers increased by +30%. Citizen Soldiers +20% health. "
-"All structures +7 garrisoned regeneration rate."
-msgstr "Adhartaich gu linn nam bailtean a bheir barrachd thogalaichean is aonadan dhut. Bidh leudachadh de +30% aig ranntair nan ionadan sìobhalta. Gheibh saighdearan-dùthcha +20% air an slàinte. Gheibh a h-uile togalach buannachd dhe +7 air ath-ghintinn gearastain."
+"Advance to Town Phase, which unlocks more entities and technologies. Civic "
+"Centers +30% territory influence radius. Structures +7 capture points "
+"regeneration rate per garrisoned unit."
+msgstr ""
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1244,8 +1202,8 @@ msgstr ""
 
 #: simulation/data/technologies/pop_house_01.jsontooltip
 #: simulation/data/technologies/pop_house_02.jsontooltip
-msgid "Houses +20% population cap bonus."
-msgstr "Gheibh thu buannachd dhe +20% air an tomhas-shluaigh le gach taigh."
+msgid "Houses +20% population bonus."
+msgstr ""
 
 #: simulation/data/technologies/pop_house_02.jsondescription
 msgid ""
@@ -1278,11 +1236,63 @@ msgstr ""
 
 #: simulation/data/technologies/pop_wonder.jsontooltip
 msgid ""
-"Enable Glorious Expansion. Further increase the population limit by 40 per "
+"Enable the “Glorious Expansion” aura: +40 maximum population limit per "
 "Wonder owned."
-msgstr "Cuir an leudachadh glòrmhor an comas. Cuir 40 a bharrachd ris an tomhas-shluaigh agad leis gach mìorbhail a th’ agad."
+msgstr ""
 
-#: simulation/data/technologies/romans/vision_sibylline.jsondescription
+#: simulation/data/technologies/reformed_army_sele.jsondescription
+msgid "The Roman-style core of the Seleucid army."
+msgstr "Seo bun le stoidhle Ròmanach aig feachd nan Seleucach."
+
+#: simulation/data/technologies/reformed_army_sele.jsongenericName
+msgid "Reform Army"
+msgstr "Feachd an ath-leasachaidh"
+
+#: simulation/data/technologies/reformed_army_sele.jsontooltip
+msgid "Unlock the Champion Infantry Swordsman."
+msgstr "Thoir a’ ghlas far laoich claidheamhair coisridh."
+
+#: simulation/data/technologies/ship_cost_time.jsondescription
+msgid ""
+"Employ skilled shipwrights with specialized tools to speed up ship "
+"construction."
+msgstr ""
+
+#: simulation/data/technologies/ship_cost_time.jsongenericName
+msgid "Naval Architects"
+msgstr "Ailtireachd cabhlaich"
+
+#: simulation/data/technologies/ship_cost_time.jsontooltip
+msgid "Ships −20% construction time."
+msgstr ""
+
+#: simulation/data/technologies/ship_health.jsondescription
+msgid "Wooden reinforcement beams for ship hulls."
+msgstr "Sparran neartachaidh fiodha airson sligean luinge."
+
+#: simulation/data/technologies/ship_health.jsongenericName
+msgid "Reinforced hull"
+msgstr "Neartachadh air sligean luinge"
+
+#: simulation/data/technologies/ship_health.jsontooltip
+msgid "Ships +25% health."
+msgstr ""
+
+#: simulation/data/technologies/ship_movement_speed.jsondescription
+msgid ""
+"Train your oarsmen and sailors to move more efficiently and speed up your "
+"ships."
+msgstr ""
+
+#: simulation/data/technologies/ship_movement_speed.jsongenericName
+msgid "Experienced Crews"
+msgstr ""
+
+#: simulation/data/technologies/ship_movement_speed.jsontooltip
+msgid "Ships +10% movement speed."
+msgstr ""
+
+#: simulation/data/technologies/sibylline_books.jsondescription
 msgid ""
 "The Sibylline Books or 'Libri Sibyllini' were a collection of oracular "
 "utterances, set out in Greek hexameters, purchased from a sibyl by the last "
@@ -1290,17 +1300,17 @@ msgid ""
 " the history of the Republic and the Empire."
 msgstr "’S e cruinneachadh de dh’fhàisneachd a bhann an leabhraichean nan sibylla no ’Libri Sibyllini’ ann an cruth sia-mheadarachd Greugach a chaidh a cheannach o shibylla le Tarquinius Superbus, rìgh mu dheireadh na Ròimhe. Fhuaireadh comhairle asta ann an suidheachaidhean èiginneach rè eachdraidh na poblachd ’s na h-impireachd."
 
-#: simulation/data/technologies/romans/vision_sibylline.jsongenericName
+#: simulation/data/technologies/sibylline_books.jsongenericName
 msgid "Sibylline Books"
 msgstr "Leabhraichean nan sibylla"
 
-#: simulation/data/technologies/romans/vision_sibylline.jsonspecificName
+#: simulation/data/technologies/sibylline_books.jsonspecificName
 msgid "Libri Sibyllini"
 msgstr "Libri Sibyllini"
 
-#: simulation/data/technologies/romans/vision_sibylline.jsontooltip
-msgid "+25% Vision range for all units."
-msgstr "+25% a dh’astar lèirsinne airson a h-uile aonad."
+#: simulation/data/technologies/sibylline_books.jsontooltip
+msgid "Units +25% vision range."
+msgstr ""
 
 #: simulation/data/technologies/siege_armor.jsondescription
 msgid "Increased armor on siege engines."
@@ -1311,8 +1321,8 @@ msgid "Armor plating"
 msgstr "Armachd meatailt"
 
 #: simulation/data/technologies/siege_armor.jsontooltip
-msgid "Siege Engines +2 hack armor."
-msgstr "Gheibh innealan-sèiste +2 de dh’armachd an aghaidh spealgaidh."
+msgid "Siege Engines +2 hack resistance."
+msgstr ""
 
 #: simulation/data/technologies/siege_attack.jsondescription
 msgid "Advanced technologies improve siege efficiency."
@@ -1362,9 +1372,85 @@ msgstr "Oidean làmhachais"
 msgid "Siege Engines −20% wood cost."
 msgstr "−20% a chosgais fiodha airson innealan-sèiste."
 
+#: simulation/data/technologies/silvershields.jsondescription
+msgid ""
+"The Silver Shields, or Argyraspidai, were the elite heavy infantry arm of "
+"the Macedonian army."
+msgstr "’S e an coisridh throm sheann-ghaisgeach san fheachd Mhasadonach a bha sna sgiathan airgid no Argyraspidai."
+
+#: simulation/data/technologies/silvershields.jsongenericName
+msgid "Silver Shields Regiment"
+msgstr "Rèiseamaid nan sgiathan airgid"
+
+#: simulation/data/technologies/silvershields.jsontooltip
+msgid ""
+"Upgrade Shield Bearer Champion Infantry to Silver Shields, with more health "
+"and attack damage."
+msgstr "Àrdaich laoich coisridh nan giùlanairean-sgèithe gu sgiathan airgid aig a bheil barrachd slàinte ’s dochann ionnsaighe."
+
 #: simulation/data/technologies/soldier_ranged_experience.jsontooltip
 msgid "Ranged Soldiers +25% promotion experience."
 msgstr "Gheibh saighdearan astair +25% air an eòlas àrdachaidh."
+
+#: simulation/data/technologies/soldier_resistance_hack_01.jsondescription
+msgid "Body armor made from quilted wool, linen, cotton, or leather."
+msgstr ""
+
+#: simulation/data/technologies/soldier_resistance_hack_01.jsongenericName
+msgid "Quilted Body Armor"
+msgstr "Lùirich cuilt"
+
+#: simulation/data/technologies/soldier_resistance_hack_01.jsonspecificName.athen
+#: simulation/data/technologies/soldier_resistance_hack_01.jsonspecificName.mace
+#: simulation/data/technologies/soldier_resistance_hack_01.jsonspecificName.ptol
+#: simulation/data/technologies/soldier_resistance_hack_01.jsonspecificName.sele
+#: simulation/data/technologies/soldier_resistance_hack_01.jsonspecificName.spart
+msgid "Spolas"
+msgstr "Spolas"
+
+#: simulation/data/technologies/soldier_resistance_hack_01.jsontooltip
+#: simulation/data/technologies/soldier_resistance_hack_02.jsontooltip
+msgid "Soldiers +1 hack resistance."
+msgstr ""
+
+#: simulation/data/technologies/soldier_resistance_hack_02.jsondescription
+msgid "Body armor made from laminated linen."
+msgstr ""
+
+#: simulation/data/technologies/soldier_resistance_hack_02.jsongenericName
+msgid "Laminated Linen Body Armor"
+msgstr "Lùirich anairt lannaichte"
+
+#: simulation/data/technologies/soldier_resistance_hack_02.jsonspecificName.athen
+#: simulation/data/technologies/soldier_resistance_hack_02.jsonspecificName.mace
+#: simulation/data/technologies/soldier_resistance_hack_02.jsonspecificName.ptol
+#: simulation/data/technologies/soldier_resistance_hack_02.jsonspecificName.sele
+#: simulation/data/technologies/soldier_resistance_hack_02.jsonspecificName.spart
+msgid "Linothōrax"
+msgstr ""
+
+#: simulation/data/technologies/soldier_resistance_pierce_01.jsondescription
+msgid ""
+"Wooden shields are heavier but much better able to resist projectiles and "
+"blows than wicker-frame shields."
+msgstr ""
+
+#: simulation/data/technologies/soldier_resistance_pierce_01.jsongenericName
+msgid "Wooden Shield"
+msgstr ""
+
+#: simulation/data/technologies/soldier_resistance_pierce_01.jsontooltip
+#: simulation/data/technologies/soldier_resistance_pierce_02.jsontooltip
+msgid "Soldiers +1 pierce resistance."
+msgstr ""
+
+#: simulation/data/technologies/soldier_resistance_pierce_02.jsondescription
+msgid "Strengthen shields with a metal rim or spine."
+msgstr ""
+
+#: simulation/data/technologies/soldier_resistance_pierce_02.jsongenericName
+msgid "Metal Shield"
+msgstr ""
 
 #: simulation/data/technologies/spy_counter.jsondescription
 msgid "Recruit a network of informants to watch over your people."
@@ -1378,97 +1464,15 @@ msgstr "Frith-bheachdaireachd"
 msgid "Make your units 50% more expensive to bribe."
 msgstr "Dèan ceannach nan aonadan agad le càch nas dorra le 50%."
 
-#: simulation/data/technologies/successors/pair_unlock_champions.jsongenericName
-msgid "Traditional Army vs Reform Army"
-msgstr "Feachd tradaiseanta no feachd an ath-leasachaidh"
-
-#: simulation/data/technologies/successors/special_hellenistic_metropolis.jsondescription
+#: simulation/data/technologies/stable_batch_training.jsondescription
 msgid ""
-"Beginning with Alexander, the Hellenistic monarchs founded many cities "
-"throughout their empires, where Greek culture and art blended with local "
-"customs to create the motley Hellenistic civilization."
-msgstr "Stèidhich na rìghrean Greugach iomadh baile sna h-impireachdan aca o Alasdair a-mach far an deach cultar ’s ealan nan Greugach a mheasgachadh leis an dualchas ionadail agus chruthaich seo sìobhaltas Greugach measgaichte ’s farsaing."
-
-#: simulation/data/technologies/successors/special_hellenistic_metropolis.jsongenericName
-msgid "Hellenistic Metropolis"
-msgstr "Mòr-bhaile Greugach"
-
-#: simulation/data/technologies/successors/special_hellenistic_metropolis.jsontooltip
-msgid "Civic Centers +100% health and capture points, double default arrows."
-msgstr "Gheibh ionadan sìobhalta +100% de shlàinte is puingean glacaidh is dà uiread dhe shaighdean tùsail."
-
-#: simulation/data/technologies/successors/special_parade_of_daphne.jsondescription
-msgid ""
-"The festival at Daphne was a major event of the Seleucid Empire: tens of "
-"thousands of well-equipped troops participated in the opening procession."
+"Significantly increase training speed of cavalry by training them in large "
+"batches or squadrons."
 msgstr ""
 
-#: simulation/data/technologies/successors/special_parade_of_daphne.jsongenericName
-msgid "Parade of Daphne"
-msgstr "Pairèid Daphnaidh"
-
-#: simulation/data/technologies/successors/special_parade_of_daphne.jsontooltip
-msgid "Champions −20% training time."
+#: simulation/data/technologies/stable_batch_training.jsontooltip
+msgid "Stables −10% batch training time."
 msgstr ""
-
-#: simulation/data/technologies/successors/special_war_horses.jsondescription
-msgid ""
-"The now-extinct Nisian breed of horse was one of the largest and robust "
-"horses of ancient times. They were highly sought after by the Seleucids and "
-"Persians as both rider and mount gained heavier armor as time progressed."
-msgstr "’S e gnè Niseanach nan each a chaidh a-mach à bith a bhiodh sna h-eich as motha ’s seasmhaiche rè nan linntean àrsaidh. Bhiodh na Seleucach ’s na Pearsaich uabhasach measail orra on a dh’fhàs an armachd an dà chuid air a’ mharcaiche ’s an each nas truime rè àm."
-
-#: simulation/data/technologies/successors/special_war_horses.jsongenericName
-msgid "Nisean War Horses"
-msgstr "Eich-chogaidh Niseanach"
-
-#: simulation/data/technologies/successors/special_war_horses.jsonspecificName.sele
-msgid "Nisioi"
-msgstr "Nisioi"
-
-#: simulation/data/technologies/successors/special_war_horses.jsontooltip
-msgid "All cavalry +20% health."
-msgstr "Gheibh a h-uile eachraidh +20% de shlàinte."
-
-#: simulation/data/technologies/successors/unlock_reform_army.jsondescription
-msgid "The Roman-style core of the Seleucid army."
-msgstr "Seo bun le stoidhle Ròmanach aig feachd nan Seleucach."
-
-#: simulation/data/technologies/successors/unlock_reform_army.jsongenericName
-msgid "Reform Army"
-msgstr "Feachd an ath-leasachaidh"
-
-#: simulation/data/technologies/successors/unlock_reform_army.jsontooltip
-msgid "Unlock the Champion Infantry Swordsman."
-msgstr "Thoir a’ ghlas far laoich claidheamhair coisridh."
-
-#: simulation/data/technologies/successors/unlock_traditional_army.jsondescription
-msgid "The Macedonian-style core of the Seleucid army."
-msgstr "Seo bun le stoidhle Mhasadonach aig feachd nan Seleucach."
-
-#: simulation/data/technologies/successors/unlock_traditional_army.jsongenericName
-msgid "Traditional Army"
-msgstr "Feachd tradaiseanta"
-
-#: simulation/data/technologies/successors/unlock_traditional_army.jsontooltip
-msgid "Unlock the Champion Infantry Pikeman."
-msgstr "Thoir a’ ghlas far laoich pìcear coisridh."
-
-#: simulation/data/technologies/successors/upgrade_mace_silvershields.jsondescription
-msgid ""
-"The Silver Shields, or Argyraspidai, were the elite heavy infantry arm of "
-"the Macedonian army."
-msgstr "’S e an coisridh throm sheann-ghaisgeach san fheachd Mhasadonach a bha sna sgiathan airgid no Argyraspidai."
-
-#: simulation/data/technologies/successors/upgrade_mace_silvershields.jsongenericName
-msgid "Silver Shields Regiment"
-msgstr "Rèiseamaid nan sgiathan airgid"
-
-#: simulation/data/technologies/successors/upgrade_mace_silvershields.jsontooltip
-msgid ""
-"Upgrade Shield Bearer Champion Infantry to Silver Shields, with more health "
-"and attack damage."
-msgstr "Àrdaich laoich coisridh nan giùlanairean-sgèithe gu sgiathan airgid aig a bheil barrachd slàinte ’s dochann ionnsaighe."
 
 #: simulation/data/technologies/tower_crenellations.jsondescription
 msgid ""
@@ -1566,17 +1570,16 @@ msgid "Trade Convoys"
 msgstr "Coimheadachdan malairt"
 
 #: simulation/data/technologies/trade_convoys_armor.jsontooltip
-msgid "Traders +2 hack and pierce armor."
-msgstr "Gheibh an luchd-mhalairt +2 de dh’armachd an aghaidh spealgaidh ’s bioraidh."
+msgid "Traders +2 hack and pierce resistance."
+msgstr ""
 
 #: simulation/data/technologies/trade_convoys_speed.jsondescription
-msgid ""
-"Increases movement rate of traders, which in turn increases trade income."
-msgstr "Cuiridh seo ri astar gluasaid an luchd-mhalairt na chuireas ri teachd a-steach on mhalart."
+msgid "Increases movement rate of traders in order to increase trade income."
+msgstr ""
 
 #: simulation/data/technologies/trade_convoys_speed.jsontooltip
-msgid "Traders +25% Walk Speed, which quickly increases trade income."
-msgstr "Coisichidh luchd-malairt +25% nas luaithe na chuireas ri teachd a-steach on mhalart."
+msgid "Traders +25% movement speed."
+msgstr ""
 
 #: simulation/data/technologies/trade_gain_01.jsondescription
 #: simulation/data/technologies/trade_gain_02.jsondescription
@@ -1588,52 +1591,36 @@ msgid "Handicraft"
 msgstr "Làimh-cheàrd"
 
 #: simulation/data/technologies/trade_gain_01.jsontooltip
-msgid "Traders +10% gain."
-msgstr "Buannaichidh luchd-malairt +10%."
+msgid "Traders +10% trade gain."
+msgstr ""
 
 #: simulation/data/technologies/trade_gain_02.jsongenericName
 msgid "Advanced Handicraft"
 msgstr "Làimh-cheàrd adhartach"
 
 #: simulation/data/technologies/trade_gain_02.jsontooltip
-msgid "Traders +15% gain."
-msgstr "Buannaichidh luchd-malairt +15%."
+msgid "Traders +15% trade gain."
+msgstr ""
 
-#: simulation/data/technologies/persians/training_conscription_infantry.jsondescription
-#: simulation/data/technologies/training_conscription.jsondescription
-msgid ""
-"Significantly increase training speed of soldiers at the Barracks by "
-"training them in large batches or battalions."
-msgstr "Meudaichidh seo luaths oideachaidh nan saighdearan aig na taighean-feachd gu mòr nuair a thèid an oideachadh ann an grunn mòr no còrachadh."
+#: simulation/data/technologies/traditional_army_sele.jsondescription
+msgid "The Macedonian-style core of the Seleucid army."
+msgstr "Seo bun le stoidhle Mhasadonach aig feachd nan Seleucach."
 
-#: simulation/data/technologies/training_conscription.jsongenericName
-msgid "Conscription"
-msgstr "Dleastanas-airm"
+#: simulation/data/technologies/traditional_army_sele.jsongenericName
+msgid "Traditional Army"
+msgstr "Feachd tradaiseanta"
 
-#: simulation/data/technologies/persians/training_conscription_infantry.jsontooltip
-#: simulation/data/technologies/training_conscription.jsontooltip
-msgid "Faster batch training speed for the Barracks."
-msgstr "Luaths as àirde air oideachadh ghrunnan aig na taighean-feachd."
-
-#: simulation/data/technologies/training_naval_architects.jsondescription
-msgid "Significantly increase build speed of batches of ships at the Dock."
-msgstr "Dèan togail ghrunnan de longan nas luaithe aig a’ chala."
-
-#: simulation/data/technologies/training_naval_architects.jsongenericName
-msgid "Naval Architects"
-msgstr "Ailtireachd cabhlaich"
-
-#: simulation/data/technologies/training_naval_architects.jsontooltip
-msgid "Docks increased batch construction speed bonus."
-msgstr "Thèid grunnan a thogail nas luaithe ann an cala."
+#: simulation/data/technologies/traditional_army_sele.jsontooltip
+msgid "Unlock the Champion Infantry Pikeman."
+msgstr "Thoir a’ ghlas far laoich pìcear coisridh."
 
 #: simulation/data/technologies/unit_advanced.jsontooltip
 msgid ""
-"Advanced and Elite units +20% training time, +1 armor, +10% health, +0.7 "
-"capture attack strength, +20% loot, and −30% gather speed; Healers +5 "
+"Advanced and Elite units +20% training time, +25% health, +1 resistance, "
+"+0.7 capture attack strength, +20% loot, and −30% gather speed; Healers +5 "
 "healing strength and +3 healing range; Melee units +20% attack damage; "
-"Ranged units +4 attack range and −10% spread."
-msgstr "Gheibh aonadan adhartach is seann-ghaisgeach +20% air an ùine oideachaidh, +1 air an armachd, +10% de shlàinte, +0.7 air neart an ionnsaighean glacaidh, +20% de spuinn agus cruinnichidh iad −30% nas luaithe; gheibh lighichean +5 air neart agus +3 air astar an t‑slànachaidh; gheibh aonadan dlùtha +20% de dhochann ionnsaighe; gheibh aonadan astair +4 air astar agus −10% air sgapadh an ionnsaighean."
+"Ranged units −10% spread."
+msgstr ""
 
 #: simulation/data/technologies/unit_elephant_african.jsontooltip
 msgid ""
@@ -1649,11 +1636,11 @@ msgstr "Gheibh ailbheanan Innseanach +10% air an cosgais stòrasan, ùine oideac
 
 #: simulation/data/technologies/unit_elite.jsontooltip
 msgid ""
-"Elite units +20% training time, +1 armor, +10% health, +0.8 capture attack "
-"strength, +20% loot, and −30% gather speed; Healers +5 healing strength and "
-"+3 healing range; Melee units +20% attack damage; Ranged units +4 attack "
-"range and −10% spread."
-msgstr "Gheibh aonadan seann-ghaisgeach +20% air an ùine oideachaidh, +1 air an armachd, +10% de shlàinte, +0.8 air neart an ionnsaighean glacaidh, +20% de spuinn agus cruinnichidh iad −30% nas luaithe; gheibh lighichean +5 air neart agus +3 air astar an t‑slànachaidh; gheibh aonadan dlùtha +20% de dhochann ionnsaighe; gheibh aonadan astair +4 air astar agus −10% air sgapadh an ionnsaighean."
+"Elite units +20% training time, +25% health, +1 resistance, +0.8 capture "
+"attack strength, +20% loot, and −30% gather speed; Healers +5 healing "
+"strength and +3 healing range; Melee units +20% attack damage; Ranged units "
+"−10% spread."
+msgstr ""
 
 #: simulation/data/technologies/unit_mercenary.jsontooltip
 msgid "Non-Champion Mercenaries cost −25 food, +25 metal."
@@ -1719,8 +1706,8 @@ msgid "Diaspora"
 msgstr "Eilthireachd"
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsonrequirementsTooltip
-msgid "Requires 3 Traders"
-msgstr "Feum air 3 luchd-mhalairt"
+msgid "Requires three Traders"
+msgstr ""
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsontooltip
 msgid "Allows using allied dropsites."

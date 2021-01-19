@@ -45,9 +45,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-11 08:08+0000\n"
-"PO-Revision-Date: 2021-01-14 12:09+0000\n"
-"Last-Translator: Vladislav Belov <vladislavbelovdev@gmail.com>\n"
+"POT-Creation-Date: 2021-01-15 08:53+0000\n"
+"PO-Revision-Date: 2021-01-15 11:37+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -421,8 +421,8 @@ msgstr "Читы"
 #: gui/common/tooltips.js:250 gui/common/tooltips.js:313
 #: gui/common/tooltips.js:598 gui/common/tooltips.js:604
 #: gui/common/tooltips.js:632 gui/common/tooltips.js:638
-#: gui/common/tooltips.js:728 gui/common/tooltips.js:769
-#: gui/common/tooltips.js:1067
+#: gui/common/tooltips.js:725 gui/common/tooltips.js:766
+#: gui/common/tooltips.js:1064
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -558,8 +558,8 @@ msgstr "Пользователи (%(num)s): %(users)s"
 #: gui/common/tooltips.js:406 gui/common/tooltips.js:420
 #: gui/common/tooltips.js:497 gui/common/tooltips.js:502
 #: gui/common/tooltips.js:559 gui/common/tooltips.js:592
-#: gui/common/tooltips.js:932 gui/common/tooltips.js:965
-#: gui/common/tooltips.js:1032 gui/loadgame/SavegameDetails.js:38
+#: gui/common/tooltips.js:929 gui/common/tooltips.js:962
+#: gui/common/tooltips.js:1029 gui/loadgame/SavegameDetails.js:38
 #: gui/reference/common/tooltips.js:13 gui/replaymenu/replay_menu.js:282
 msgid ", "
 msgstr ", "
@@ -708,7 +708,7 @@ msgstr[2] "%(time)s %(second)s"
 msgstr[3] "%(time)s %(second)s"
 
 #: gui/common/tooltips.js:92 gui/common/tooltips.js:555
-#: gui/common/tooltips.js:963
+#: gui/common/tooltips.js:960
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "сек."
@@ -808,7 +808,7 @@ msgstr ""
 msgid "Garrison to fire arrows"
 msgstr ""
 
-#: gui/common/tooltips.js:297 gui/common/tooltips.js:961
+#: gui/common/tooltips.js:297 gui/common/tooltips.js:958
 msgid "Interval:"
 msgstr "Интервал: "
 
@@ -864,7 +864,7 @@ msgstr "%(rangeLabel)s от %(minRange)s до %(maxRange)s %(rangeUnit)s"
 msgid "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
 msgstr "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
 
-#: gui/common/tooltips.js:345 gui/common/tooltips.js:956
+#: gui/common/tooltips.js:345 gui/common/tooltips.js:953
 msgid "Range:"
 msgstr "Дальность:"
 
@@ -879,8 +879,8 @@ msgstr "+%(number)s"
 msgid "meters"
 msgstr "м."
 
-#: gui/common/tooltips.js:353 gui/common/tooltips.js:958
-#: gui/common/tooltips.js:988
+#: gui/common/tooltips.js:353 gui/common/tooltips.js:955
+#: gui/common/tooltips.js:985
 msgid "meter"
 msgid_plural "meters"
 msgstr[0] "м."
@@ -1002,11 +1002,11 @@ msgstr "Предел численности гарнизона"
 msgid "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 msgstr "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 
-#: gui/common/tooltips.js:552 gui/common/tooltips.js:951
+#: gui/common/tooltips.js:552 gui/common/tooltips.js:948
 msgid "Heal:"
 msgstr "Лечение:"
 
-#: gui/common/tooltips.js:554 gui/common/tooltips.js:953
+#: gui/common/tooltips.js:554 gui/common/tooltips.js:950
 msgid "Health"
 msgstr "Здоровье"
 
@@ -1084,16 +1084,16 @@ msgstr[1] "Добавить ещё одного рабочего для окон
 msgstr[2] "Добавить ещё одного рабочего для окончания строительства через %(second)s сек."
 msgstr[3] "Добавить ещё одного рабочего для окончания строительства через %(second)s сек."
 
-#: gui/common/tooltips.js:693 gui/common/tooltips.js:904
+#: gui/common/tooltips.js:693 gui/common/tooltips.js:901
 #, javascript-format
 msgid "%(component)s %(cost)s"
 msgstr "%(component)s %(cost)s"
 
-#: gui/common/tooltips.js:729
+#: gui/common/tooltips.js:726
 msgid "Gather Rates:"
 msgstr "Сбор ресурсов:"
 
-#: gui/common/tooltips.js:732 gui/common/tooltips.js:774
+#: gui/common/tooltips.js:729 gui/common/tooltips.js:771
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
 msgstr "%(resourceIcon)s %(rate)s"
@@ -1101,101 +1101,101 @@ msgstr "%(resourceIcon)s %(rate)s"
 #. Translation: Label in tooltip showing the resource type and quantity of a
 #. given resource
 #. supply.
-#: gui/common/tooltips.js:752
+#: gui/common/tooltips.js:749
 #, javascript-format
 msgid "%(label)s %(component)s %(amount)s"
 msgstr "%(label)s %(component)s %(amount)s"
 
-#: gui/common/tooltips.js:753
+#: gui/common/tooltips.js:750
 msgid "Resource Supply:"
 msgstr "Запас ресурсов:"
 
 #. Translation: Marks that a resource supply entity has an unending, infinite,
 #. supply of its
 #. resource.
-#: gui/common/tooltips.js:756 gui/summary/summary.js:111
+#: gui/common/tooltips.js:753 gui/summary/summary.js:111
 msgid "∞"
 msgstr "∞"
 
-#: gui/common/tooltips.js:770
+#: gui/common/tooltips.js:767
 msgid "Resource Trickle:"
 msgstr "Поступления ресурсов"
 
-#: gui/common/tooltips.js:771
+#: gui/common/tooltips.js:768
 #, javascript-format
 msgid "%(resources)s / %(time)s"
 msgstr "%(resources)s / %(time)s"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
-#: gui/common/tooltips.js:823
+#: gui/common/tooltips.js:820
 #, javascript-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
 msgstr "%(resourceIcon)s %(minimum)s из %(resourceIcon)s %(maximum)s"
 
-#: gui/common/tooltips.js:852
+#: gui/common/tooltips.js:849
 #, javascript-format
 msgid "Walls:  %(costs)s"
 msgstr "Стены:  %(costs)s"
 
-#: gui/common/tooltips.js:853
+#: gui/common/tooltips.js:850
 #, javascript-format
 msgid "Towers:  %(costs)s"
 msgstr "Башни:  %(costs)s"
 
 #. Translation: Label in tooltip showing cost of a unit, structure or
 #. technology.
-#: gui/common/tooltips.js:861
+#: gui/common/tooltips.js:858
 #, javascript-format
 msgid "%(label)s %(costs)s"
 msgstr "%(label)s %(costs)s"
 
-#: gui/common/tooltips.js:862
+#: gui/common/tooltips.js:859
 msgid "Cost:"
 msgstr "Стоимость:"
 
-#: gui/common/tooltips.js:875
+#: gui/common/tooltips.js:872
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "Требуется технология: %(technology)s"
 
-#: gui/common/tooltips.js:888
+#: gui/common/tooltips.js:885
 #, javascript-format
 msgid "%(label)s %(bonus)s"
 msgstr ""
 
-#: gui/common/tooltips.js:889
+#: gui/common/tooltips.js:886
 msgid "Population Bonus:"
 msgstr "Прирост населения:"
 
-#: gui/common/tooltips.js:909
+#: gui/common/tooltips.js:906
 msgid "Insufficient resources:"
 msgstr "Недостаточно ресурсов:"
 
-#: gui/common/tooltips.js:925
+#: gui/common/tooltips.js:922
 #, javascript-format
 msgid "%(label)s %(speeds)s"
 msgstr "%(label)s %(speeds)s"
 
-#: gui/common/tooltips.js:926
+#: gui/common/tooltips.js:923
 msgid "Speed:"
 msgstr "Скорость:"
 
-#: gui/common/tooltips.js:928 gui/common/tooltips.js:933
+#: gui/common/tooltips.js:925 gui/common/tooltips.js:930
 #, javascript-format
 msgid "%(speed)s %(movementType)s"
 msgstr "%(speed)s %(movementType)s"
 
-#: gui/common/tooltips.js:930
+#: gui/common/tooltips.js:927
 msgid "Walk"
 msgstr "Ходьба"
 
-#: gui/common/tooltips.js:935
+#: gui/common/tooltips.js:932
 msgid "Run"
 msgstr "Бег"
 
-#: gui/common/tooltips.js:950 gui/common/tooltips.js:955
-#: gui/common/tooltips.js:960 gui/common/tooltips.js:985
+#: gui/common/tooltips.js:947 gui/common/tooltips.js:952
+#: gui/common/tooltips.js:957 gui/common/tooltips.js:982
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
@@ -1204,69 +1204,69 @@ msgstr[1] "%(label)s %(val)s %(unit)s"
 msgstr[2] "%(label)s %(val)s %(unit)s"
 msgstr[3] "%(label)s %(val)s %(unit)s"
 
-#: gui/common/tooltips.js:977
+#: gui/common/tooltips.js:974
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
 msgstr "%(auralabel)s %(aurainfo)s"
 
-#: gui/common/tooltips.js:978
+#: gui/common/tooltips.js:975
 #, javascript-format
 msgid "%(auraname)s:"
 msgstr "%(auraname)s:"
 
-#: gui/common/tooltips.js:986
+#: gui/common/tooltips.js:983
 msgctxt "aura"
 msgid "Range:"
 msgstr "Радиус действия:"
 
-#: gui/common/tooltips.js:1003
+#: gui/common/tooltips.js:1000
 #, javascript-format
 msgid "%(specificName)s (%(genericName)s)"
 msgstr "%(specificName)s (%(genericName)s)"
 
 #. Translation: Example: "Epibátēs Athēnaîos [font="sans-bold-16"](Athenian
 #. Marine)[/font]"
-#: gui/common/tooltips.js:1016
+#: gui/common/tooltips.js:1013
 #, javascript-format
 msgid "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 msgstr "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 
-#: gui/common/tooltips.js:1031
+#: gui/common/tooltips.js:1028
 msgid "Classes:"
 msgstr "Классы:"
 
 #. Translation: %(component) will be the icon for the loot type and %(loot)
 #. will be the
 #. value.
-#: gui/common/tooltips.js:1058
+#: gui/common/tooltips.js:1055
 #, javascript-format
 msgid "%(component)s %(loot)s"
 msgstr "%(component)s %(loot)s"
 
-#: gui/common/tooltips.js:1068
+#: gui/common/tooltips.js:1065
 msgid "Loot:"
 msgstr "Трофеи:"
 
-#: gui/common/tooltips.js:1078
+#: gui/common/tooltips.js:1075
 #, javascript-format
 msgid "%(label)s %(icons)s"
 msgstr "%(label)s %(icons)s"
 
-#: gui/common/tooltips.js:1079
+#: gui/common/tooltips.js:1076
 msgid "Dropsite for:"
 msgstr "Точка сбора для:"
 
 #. Translation: Appears in a tooltip to indicate that right-clicking the
 #. corresponding GUI
 #. element will open the Template Details GUI page.
-#: gui/common/tooltips.js:1087
+#: gui/common/tooltips.js:1084
 msgid "Right-click to view more information."
 msgstr "Щёлкните правой кнопкой для дополнительной информации."
 
 #. Translation: Appears in a tooltip to indicate that clicking the
 #. corresponding GUI element
 #. will open the Template Details GUI page.
-#: gui/common/tooltips.js:1093
+#: gui/common/tooltips.js:1090
 msgid "Click to view more information."
 msgstr "Нажмите, чтобы посмотреть дополнительную информацию. "
 
@@ -1387,7 +1387,7 @@ msgstr "Руководитель"
 
 #: gui/credits/texts/balancing.jsonTitle
 msgid "Balancing"
-msgstr ""
+msgstr "Расчёт баланса"
 
 #: gui/credits/texts/community.jsonTitle
 msgid "Community and Management"
@@ -3981,6 +3981,28 @@ msgid ""
 "fights, but the less efficient he is at gathering resources."
 msgstr "Чем выше уровень воинов-граждан (улучшенный, элитный), тем лучше они сражаются, но хуже добывают ресурсы."
 
+#: gui/text/tips/heroes.txt:1
+msgid "HEROES"
+msgstr ""
+
+#: gui/text/tips/heroes.txt:2
+msgid ""
+"Historical characters, such as Xerxes, Leonidas, Pericles, Hannibal, Scipio,"
+" and Boudicca."
+msgstr ""
+
+#: gui/text/tips/heroes.txt:3
+msgid "A lot of health and very strong attacks."
+msgstr ""
+
+#: gui/text/tips/heroes.txt:4
+msgid "Have auras which alter the stats of other units or structures."
+msgstr ""
+
+#: gui/text/tips/heroes.txt:5
+msgid "Caution: Each hero can be recruited only once per match!"
+msgstr ""
+
 #: gui/text/tips/iphicrates.txt:1
 msgid "IPHICRATES"
 msgstr "ИФИКРАТ"
@@ -4139,6 +4161,26 @@ msgstr "Обычная стоимость строительства 100 дре�
 #: gui/text/tips/scout_towers.txt:4
 msgid "Has a ranged attack that increases for each garrisoned unit."
 msgstr "Атакует на расстоянии, которое увеличивается с каждым размещённым внутри юнитом."
+
+#: gui/text/tips/snapping.txt:1
+msgid "SNAPPING"
+msgstr ""
+
+#: gui/text/tips/snapping.txt:2
+msgid ""
+"Structures can be aligned by keeping the snap hotkey pressed during "
+"placement."
+msgstr ""
+
+#: gui/text/tips/snapping.txt:3
+msgid "Aligning structures allows to conserve space for future construction."
+msgstr ""
+
+#: gui/text/tips/snapping.txt:4
+msgid ""
+"Tightly packed groups of structures can also be used for obstructing raiding"
+" enemies."
+msgstr ""
 
 #: gui/text/tips/spartan_hoplites.txt:1
 msgid "SPARTIATES"

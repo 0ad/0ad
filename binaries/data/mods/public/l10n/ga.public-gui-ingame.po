@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-04 08:09+0000\n"
-"PO-Revision-Date: 2021-01-04 10:36+0000\n"
+"POT-Creation-Date: 2021-01-15 08:53+0000\n"
+"PO-Revision-Date: 2021-01-15 10:36+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Irish (http://www.transifex.com/wildfire-games/0ad/language/ga/)\n"
 "MIME-Version: 1.0\n"
@@ -269,140 +269,144 @@ msgid "Press %(hotkey)s to open the previously selected private chat."
 msgstr "Brúigh %(hotkey)s agus an comhrá príobháideach atá oscailte roimhe sin a oscailt."
 
 #. Translation: A player that left the game joins again
-#: gui/session/chat/ChatMessageFormatNetwork.js:23
+#: gui/session/chat/ChatMessageFormatNetwork.js:24
 #, javascript-format
 msgid "%(player)s is starting to rejoin the game."
 msgstr "Tosaíonn %(player)s a dul ar ais chuig an gcluiche,"
 
 #. Translation: A player joins the game for the first time
-#: gui/session/chat/ChatMessageFormatNetwork.js:25
+#: gui/session/chat/ChatMessageFormatNetwork.js:26
 #, javascript-format
 msgid "%(player)s is starting to join the game."
 msgstr "Tosaíonn %(player)s ag dul isteach sa chluiche."
 
-#: gui/session/chat/ChatMessageFormatNetwork.js:34
+#: gui/session/chat/ChatMessageFormatNetwork.js:37
 #, javascript-format
 msgid "%(player)s has left the game."
 msgstr "Bhí %(player)s ag éirí as an cluiche."
 
-#: gui/session/chat/ChatMessageFormatNetwork.js:46
+#: gui/session/chat/ChatMessageFormatNetwork.js:51
 #, javascript-format
 msgid "%(username)s has been banned"
 msgstr "Tá cosc a chur ar %(username)s"
 
-#: gui/session/chat/ChatMessageFormatNetwork.js:47
+#: gui/session/chat/ChatMessageFormatNetwork.js:52
 #, javascript-format
 msgid "%(username)s has been kicked"
 msgstr "Tá %(username)s ciceáilte"
 
 #. Translation: A player that left the game joins again
-#: gui/session/chat/ChatMessageFormatNetwork.js:64
+#: gui/session/chat/ChatMessageFormatNetwork.js:71
 #, javascript-format
 msgid "%(player)s has rejoined the game."
 msgstr "Chuaigh %(player)s ar ais chuig an gcluiche."
 
 #. Translation: A player joins the game for the first time
-#: gui/session/chat/ChatMessageFormatNetwork.js:66
+#: gui/session/chat/ChatMessageFormatNetwork.js:73
 #, javascript-format
 msgid "%(player)s has joined the game."
 msgstr "Chuaigh %(player)s isteach sa chluiche."
 
-#: gui/session/chat/ChatMessageFormatPlayer.js:61
+#: gui/session/chat/ChatMessageFormatPlayer.js:62
 #, javascript-format
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
-#: gui/session/chat/ChatMessageFormatPlayer.js:159
+#: gui/session/chat/ChatMessageFormatPlayer.js:161
 #, javascript-format
 msgid "(%(context)s) %(userTag)s %(message)s"
 msgstr "(%(context)s) %(userTag)s %(message)s"
 
-#: gui/session/chat/ChatMessageFormatPlayer.js:160
+#: gui/session/chat/ChatMessageFormatPlayer.js:162
 #, javascript-format
 msgid "%(userTag)s %(message)s"
 msgstr "%(userTag)s %(message)s"
 
-#: gui/session/chat/ChatMessageFormatPlayer.js:163
+#: gui/session/chat/ChatMessageFormatPlayer.js:165
 #, javascript-format
 msgid "(%(context)s) * %(user)s %(message)s"
 msgstr "(%(context)s) * %(user)s %(message)s"
 
-#: gui/session/chat/ChatMessageFormatPlayer.js:164
+#: gui/session/chat/ChatMessageFormatPlayer.js:166
 #, javascript-format
 msgid "* %(user)s %(message)s"
 msgstr "* %(user)s %(message)s"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:16
 #, javascript-format
-msgid "Your livestock has been attacked by %(attacker)s!"
-msgstr "Tá do bheostoc ionsaithe le %(attacker)s!"
+msgid "%(icon)sYour livestock has been attacked by %(attacker)s!"
+msgstr ""
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:17
 #, javascript-format
-msgid "You have been attacked by %(attacker)s!"
-msgstr "Tá tú ionsaithe le %(attacker)s!"
+msgid "%(icon)sYou have been attacked by %(attacker)s!"
+msgstr ""
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:38
+#: gui/session/chat/ChatMessageFormatSimulation.js:30
+msgid "Click to focus on the attacked unit."
+msgstr ""
+
+#: gui/session/chat/ChatMessageFormatSimulation.js:49
 #, javascript-format
 msgid "%(player)s bartered %(amountGiven)s for %(amountGained)s."
 msgstr ""
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:70
+#: gui/session/chat/ChatMessageFormatSimulation.js:84
 #, javascript-format
 msgid "You are now allied with %(player)s."
 msgstr "Tá tú anois i do chomhghuaillí le %(player)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:71
+#: gui/session/chat/ChatMessageFormatSimulation.js:85
 #, javascript-format
 msgid "You are now at war with %(player)s."
 msgstr "Tá tú anois i gcogadh le %(player)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:72
+#: gui/session/chat/ChatMessageFormatSimulation.js:86
 #, javascript-format
 msgid "You are now neutral with %(player)s."
 msgstr "Tá tú i do neodrach le %(player)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:75
+#: gui/session/chat/ChatMessageFormatSimulation.js:89
 #, javascript-format
 msgid "%(player)s is now allied with you."
 msgstr "Tá %(player)s anois ina gcomhghuaillí leat."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:76
+#: gui/session/chat/ChatMessageFormatSimulation.js:90
 #, javascript-format
 msgid "%(player)s is now at war with you."
 msgstr "Tá %(player)s anois i gcogadh leat."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:77
+#: gui/session/chat/ChatMessageFormatSimulation.js:91
 #, javascript-format
 msgid "%(player)s is now neutral with you."
 msgstr "Tá %(player)s anois ina neodrach leat."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:80
+#: gui/session/chat/ChatMessageFormatSimulation.js:94
 #, javascript-format
 msgid "%(player)s is now allied with %(player2)s."
 msgstr "Tá %(player)s anois ina gcomhghuaillí le %(player2)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:81
+#: gui/session/chat/ChatMessageFormatSimulation.js:95
 #, javascript-format
 msgid "%(player)s is now at war with %(player2)s."
 msgstr "Tá %(player)s anois i gcogadh le %(player2)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:82
+#: gui/session/chat/ChatMessageFormatSimulation.js:96
 #, javascript-format
 msgid "%(player)s is now neutral with %(player2)s."
 msgstr "Tá %(player)s anois ina neodrach le %(player2)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:98
+#: gui/session/chat/ChatMessageFormatSimulation.js:112
 #, javascript-format
 msgid "%(player)s is advancing to the %(phaseName)s."
 msgstr "Ardaíonn %(player)s go dtí an %(phaseName)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:100
+#: gui/session/chat/ChatMessageFormatSimulation.js:114
 #, javascript-format
 msgid "The %(phaseName)s of %(player)s has been aborted."
 msgstr "Tá stop a chur leis an %(phaseName)s do %(player)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:103
+#: gui/session/chat/ChatMessageFormatSimulation.js:117
 #, javascript-format
 msgid "%(player)s has reached the %(phaseName)s."
 msgstr "D'ardaigh %(player)s go dtí an %(phaseName)s."
@@ -410,21 +414,21 @@ msgstr "D'ardaigh %(player)s go dtí an %(phaseName)s."
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an
 #. enumeration.
-#: gui/session/chat/ChatMessageFormatSimulation.js:126
+#: gui/session/chat/ChatMessageFormatSimulation.js:145
 msgid ", "
 msgstr ","
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:142
+#: gui/session/chat/ChatMessageFormatSimulation.js:162
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr "Sheol %(player)s %(amounts)schugat."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:144
+#: gui/session/chat/ChatMessageFormatSimulation.js:164
 #, javascript-format
 msgid "You have sent %(player2)s %(amounts)s."
 msgstr "Sheol tú %(amounts)s chuig %(player2)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:149
+#: gui/session/chat/ChatMessageFormatSimulation.js:169
 #, javascript-format
 msgid "%(player)s has sent %(player2)s %(amounts)s."
 msgstr "Sheol %(player)s %(amounts)s chuig %(player2)s."
@@ -662,7 +666,7 @@ msgid ""
 "to tribute %(greaterAmount)s."
 msgstr "Gabh %(resourceAmount)s %(resourceType)s do %(playerName)s. Iomlaidchliceáil %(greaterAmount)s a chur mar do chíos féin."
 
-#: gui/session/input.js:176
+#: gui/session/input.js:173
 #, javascript-format
 msgid "Basic range: %(range)s meter"
 msgid_plural "Basic range: %(range)s meters"
@@ -672,7 +676,7 @@ msgstr[2] "Raon búnusach: %(range)s méadar"
 msgstr[3] "Raon búnusach: %(range)s méadar"
 msgstr[4] "Raon búnusach: %(range)s méadar"
 
-#: gui/session/input.js:177
+#: gui/session/input.js:174
 #, javascript-format
 msgid "Average bonus range: %(range)s meter"
 msgid_plural "Average bonus range: %(range)s meters"
@@ -682,7 +686,7 @@ msgstr[2] "Meánbhónas raoin: %(range)s meádar"
 msgstr[3] "Meánbhónas raoin: %(range)s meádar"
 msgstr[4] "Meánbhónas raoin: %(range)s meádar"
 
-#: gui/session/input.js:702
+#: gui/session/input.js:677
 msgid "Cannot build wall here!"
 msgstr "Ní féidir leat balla a thógáil anseo!"
 
@@ -840,23 +844,23 @@ msgstr "Tá tú buacach!"
 msgid "You have been defeated!"
 msgstr "Tá tú cloíte!"
 
-#: gui/session/messages.js:352
+#: gui/session/messages.js:355
 msgid "Click to quit this tutorial."
 msgstr "Cliceáil agus an cluiche teagaisc ag éirí as."
 
-#: gui/session/messages.js:353
+#: gui/session/messages.js:356
 msgid "Quit"
 msgstr "Éirí as"
 
-#: gui/session/messages.js:357
+#: gui/session/messages.js:360
 msgid "Click when ready."
 msgstr "Cliceáil nuair atá tú i do réidh."
 
-#: gui/session/messages.js:361
+#: gui/session/messages.js:364
 msgid "Follow the instructions."
 msgstr "Cloígh leis na horduithe,"
 
-#: gui/session/messages.js:486
+#: gui/session/messages.js:489
 msgid "Unknown Player"
 msgstr "Imreoir Anaithnid"
 

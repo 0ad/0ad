@@ -92,6 +92,7 @@ class MapGridBrowser extends GridBrowser
 			this.mapBrowserPage.controls.MapFiltering.getSelectedMapFilter();
 		g_GameAttributes.map = map.file;
 		this.setupWindow.controls.gameSettingsControl.updateGameAttributes();
+		this.setupWindow.controls.gameSettingsControl.setNetworkGameAttributes();
 	}
 }
 

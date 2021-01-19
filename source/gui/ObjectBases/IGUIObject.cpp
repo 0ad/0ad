@@ -31,6 +31,7 @@
 #include "scriptinterface/ScriptInterface.h"
 #include "soundmanager/ISoundManager.h"
 
+#include <algorithm>
 #include <unordered_map>
 
 const CStr IGUIObject::EventNameMouseEnter = "MouseEnter";
@@ -349,7 +350,8 @@ void IGUIObject::SetScriptHandler(const CStr& eventName, JS::HandleObject Functi
 
 	m_ScriptHandlers[eventName] = JS::Heap<JSObject*>(Function);
 
-	m_pGUI.m_EventObjects[eventName].push_back(this);
+	if (std::find(m_pGUI.m_EventObjects[eventName].begin(), m_pGUI.m_EventObjects[eventName].end(), this) == m_pGUI.m_EventObjects[eventName].end())
+		m_pGUI.m_EventObjects[eventName].emplace_back(this);
 }
 
 void IGUIObject::UnsetScriptHandler(const CStr& eventName)

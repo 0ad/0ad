@@ -26,6 +26,6 @@
 		{ "value": "Capturable/CapturePoints", "multiply": 2 },
 		{ "value": "Health/Max", "multiply": 2 }
 	],
-	"affects": ["CivCentre"],
+	"affects": ["CivCentre !Colony !Naval"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

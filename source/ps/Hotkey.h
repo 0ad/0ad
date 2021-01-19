@@ -60,6 +60,7 @@ struct SKey
 struct SHotkeyMapping
 {
 	CStr name; // name of the hotkey
+	SKey primary; // the primary key
 	std::vector<SKey> requires; // list of non-primary keys that must also be active
 };
 
@@ -73,7 +74,8 @@ extern std::unordered_map<SDL_Scancode_, KeyMapping> g_HotkeyMap;
 // The current pressed status of hotkeys
 extern std::unordered_map<std::string, bool> g_HotkeyStatus;
 
-extern void LoadHotkeys();
+class CConfigDB;
+extern void LoadHotkeys(CConfigDB& configDB);
 extern void UnloadHotkeys();
 
 extern InReaction HotkeyStateChange(const SDL_Event_* ev);

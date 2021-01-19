@@ -499,7 +499,7 @@ static void InitPs(bool setup_gui, const CStrW& gui_page, ScriptInterface* srcSc
 	// hotkeys
 	{
 		TIMER(L"ps_lang_hotkeys");
-		LoadHotkeys();
+		LoadHotkeys(g_ConfigDB);
 	}
 
 	if (!setup_gui)

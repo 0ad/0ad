@@ -5,7 +5,7 @@
  */
 class GameRegisterStanza
 {
-	constructor(initData, setupWindow, netMessages, gameSettingsControl, playerAssignmentsControl, mapCache)
+	constructor(initData, setupWindow, netMessages, gameSettingsControl, mapCache)
 	{
 		this.mapCache = mapCache;
 
@@ -20,10 +20,6 @@ class GameRegisterStanza
 		this.lastStanza = undefined;
 
 		// Events
-		let sendImmediately = this.sendImmediately.bind(this);
-		playerAssignmentsControl.registerClientJoinHandler(sendImmediately);
-		playerAssignmentsControl.registerClientLeaveHandler(sendImmediately);
-
 		setupWindow.registerClosePageHandler(this.onClosePage.bind(this));
 		gameSettingsControl.registerGameAttributesBatchChangeHandler(this.onGameAttributesBatchChange.bind(this));
 		netMessages.registerNetMessageHandler("start", this.onGameStart.bind(this));

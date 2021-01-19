@@ -27,7 +27,9 @@ class SetupWindow
 		let mapCache = new MapCache();
 		let mapFilters = new MapFilters(mapCache);
 		let gameSettingsControl = new GameSettingsControl(this, netMessages, startGameControl, mapCache);
-		let playerAssignmentsControl = new PlayerAssignmentsControl(this, netMessages);
+		let gameRegisterStanza = Engine.HasXmppClient() && 
+			new GameRegisterStanza(initData, this, netMessages, gameSettingsControl, mapCache);
+		let playerAssignmentsControl = new PlayerAssignmentsControl(this, netMessages, gameRegisterStanza);
 		let readyControl = new ReadyControl(netMessages, gameSettingsControl, startGameControl, playerAssignmentsControl);
 
 		// These class instances control central data and do not manage any GUI Object.
@@ -39,10 +41,7 @@ class SetupWindow
 			"readyControl": readyControl,
 			"startGameControl": startGameControl,
 			"netMessages": netMessages,
-			"gameRegisterStanza":
-				Engine.HasXmppClient() &&
-				new GameRegisterStanza(
-					initData, this, netMessages, gameSettingsControl, playerAssignmentsControl, mapCache)
+			"gameRegisterStanza": gameRegisterStanza				
 		};
 
 		// These are the pages within the setup window that may use the controls defined above

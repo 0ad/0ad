@@ -190,8 +190,12 @@ function clearModList()
 {
 	let modsAvailableList = Engine.GetGUIObjectByName("modsAvailableList");
 	modsAvailableList.selected = -1;
-	for (let listIdx of Object.keys(modsAvailableList).filter(key => key.startsWith("list")))
-		modsAvailableList[listIdx] = [];
+	modsAvailableList.list_name = [];
+	modsAvailableList.list_name_id = [];
+	modsAvailableList.list_version = [];
+	modsAvailableList.list_filesize = [];
+	modsAvailableList.list_dependencies = [];
+	modsAvailableList.list = [];
 }
 
 function selectedModIndex()

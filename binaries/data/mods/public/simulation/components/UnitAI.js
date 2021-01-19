@@ -608,8 +608,7 @@ UnitAI.prototype.UnitFsmSpec = {
 			return;
 		}
 
-		// TODO find the nearest way-point from our position, and start with it
-		this.waypoints = undefined;
+		this.waypoints = [];
 		this.SetNextState("TRADE.APPROACHINGMARKET");
 	},
 
@@ -2873,9 +2872,8 @@ UnitAI.prototype.UnitFsmSpec = {
 				},
 
 				"MovementUpdate": function(msg) {
-					if (!msg.likelyFailure && !this.CheckTargetRange(this.order.data.target, IID_Trader))
+					if (!msg.likelyFailure && !this.CheckRange(this.order.data.nextTarget, IID_Trader))
 						return;
-
 					if (this.waypoints && this.waypoints.length)
 					{
 						if (!this.MoveToMarket(this.order.data.target))
@@ -5690,7 +5688,8 @@ UnitAI.prototype.CancelSetupTradeRoute = function(target)
 
 	if (this.IsFormationController())
 		this.CallMemberFunction("CancelSetupTradeRoute", [target]);
-}
+};
+
 /**
  * Adds trade order to the queue. Either walk to the first market, or
  * start a new route. Not forced, so it can be interrupted by attacks.
@@ -5781,14 +5780,13 @@ UnitAI.prototype.SwitchMarketOrder = function(oldMarket, newMarket)
 
 UnitAI.prototype.MoveToMarket = function(targetMarket)
 {
-	if (this.waypoints && this.waypoints.length > 1)
-	{
-		let point = this.waypoints.pop();
-		return this.MoveToPoint(point.x, point.z) || this.MoveToMarket(targetMarket);
-	}
-
-	this.waypoints = undefined;
-	return this.MoveToTargetRange(targetMarket, IID_Trader);
+	let nextTarget;
+	if (this.waypoints && this.waypoints.length >= 1)
+		nextTarget = this.waypoints.pop();
+	else
+		nextTarget = { "target": targetMarket };
+	this.order.data.nextTarget = nextTarget;
+	return this.MoveTo(this.order.data.nextTarget, IID_Trader);
 };
 
 UnitAI.prototype.PerformTradeAndMoveToNextMarket = function(currentMarket)
@@ -5822,13 +5820,9 @@ UnitAI.prototype.PerformTradeAndMoveToNextMarket = function(currentMarket)
 		this.waypoints = this.order.data.route.slice();
 		if (this.order.data.target == cmpTrader.GetSecondMarket())
 			this.waypoints.reverse();
-		this.waypoints.unshift(null);  // additionnal dummy point for the market
 	}
 
-	if (this.MoveToMarket(nextMarket))
-		this.SetNextState("APPROACHINGMARKET");
-	else
-		this.StopTrading();
+	this.SetNextState("APPROACHINGMARKET");
 };
 
 UnitAI.prototype.MarketRemoved = function(market)
