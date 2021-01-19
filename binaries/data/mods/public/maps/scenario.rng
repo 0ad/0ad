@@ -98,10 +98,7 @@
             <element name="SunRotation">
               <ref name="angle"/>
             </element>
-            <element name="TerrainAmbientColor">
-              <ref name="color_rgb"/>
-            </element>
-            <element name="UnitsAmbientColor">
+            <element name="AmbientColor">
               <ref name="color_rgb"/>
             </element>
             <optional>
