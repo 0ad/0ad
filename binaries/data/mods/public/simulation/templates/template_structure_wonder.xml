@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure">
   <Auras datatype="tokens">
-    structures/wonder_pop_1
-    structures/wonder_pop_2
+    structures/wonder_population_cap
   </Auras>
   <BuildRestrictions>
     <Category>Wonder</Category>
@@ -54,7 +53,7 @@
   </Obstruction>
   <ProductionQueue>
     <Technologies datatype="tokens">
-      pop_wonder
+      wonder_population_cap
     </Technologies>
   </ProductionQueue>
   <Resistance>
