@@ -113,7 +113,7 @@ public:
 		return m_Script.Call<fixed>("GetSpeedMultiplier");
 	}
 
-	virtual CFixedVector2D EstimateFuturePosition(fixed dt) const
+	virtual CFixedVector2D EstimateFuturePosition(const fixed dt) const
 	{
 		return m_Script.Call<CFixedVector2D>("EstimateFuturePosition", dt);
 	}
