@@ -640,6 +640,11 @@ static void InitSDL()
 	// Text input is active by default, disable it until it is actually needed.
 	SDL_StopTextInput();
 
+#if SDL_VERSION_ATLEAST(2, 0, 9)
+	// SDL2 >= 2.0.9 defaults to 32 pixels (to support touch screens) but that can break our double-clicking.
+	SDL_SetHint(SDL_HINT_MOUSE_DOUBLE_CLICK_RADIUS, "1");
+#endif
+
 #if OS_MACOSX
 	// Some Mac mice only have one button, so they can't right-click
 	// but SDL2 can emulate that with Ctrl+Click
