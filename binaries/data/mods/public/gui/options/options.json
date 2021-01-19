@@ -586,6 +586,24 @@
 						"tooltip": "Units and Structures can be part of multiple control groups. This is useful to keep control groups for distinct armies and a control group for the entire army simultaneously."
 					}
 				]
+			},
+			{
+				"type": "dropdown",
+				"label": "Formation control",
+				"tooltip": "Decide whether formations are enabled for all orders or only 'Walk' and 'Patrol'.",
+				"config": "gui.session.formationwalkonly",
+				"list": [
+					{
+						"value": "true",
+						"label": "Walk/Patrol Only",
+						"tooltip": "Other orders will disband existing formations."
+					},
+					{
+						"value": "false",
+						"label": "No Override",
+						"tooltip": "Units in formations stay in formations."
+					}
+				]
 			}
 		]
 	}
