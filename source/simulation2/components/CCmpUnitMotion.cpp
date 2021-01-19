@@ -69,7 +69,7 @@ static const entity_pos_t LONG_PATH_MIN_DIST = entity_pos_t::FromInt(TERRAIN_TIL
  * If we are this close to our target entity/point, then think about heading
  * for it in a straight line instead of pathfinding.
  */
-static const entity_pos_t DIRECT_PATH_RANGE = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*4);
+static const entity_pos_t DIRECT_PATH_RANGE = entity_pos_t::FromInt(TERRAIN_TILE_SIZE*6);
 
 /**
  * To avoid recomputing paths too often, have some leeway for target range checks
@@ -731,8 +731,9 @@ private:
 
 	/**
 	 * Start an asynchronous short path query.
+	 * @param extendRange - if true, extend the search range to at least the distance to the goal.
 	 */
-	void RequestShortPath(const CFixedVector2D& from, const PathGoal& goal, bool avoidMovingUnits);
+	void RequestShortPath(const CFixedVector2D& from, const PathGoal& goal, bool extendRange);
 
 	/**
 	 * General handler for MoveTo interface functions.
@@ -1028,7 +1029,8 @@ bool CCmpUnitMotion::PerformMove(fixed dt, const fixed& turnRate, WaypointPath& 
 				}
 				// Rotate towards the next waypoint and continue moving.
 				angle = atan2_approx(offset.X, offset.Y);
-				timeLeft = (maxRotation - absoluteAngleDiff) / turnRate;
+				// Give some 'free' rotation for angles below 0.5 radians.
+				timeLeft = (std::min(maxRotation, maxRotation - absoluteAngleDiff + fixed::FromInt(1)/2)) / turnRate;
 			}
 		}
 
@@ -1159,7 +1161,7 @@ bool CCmpUnitMotion::HandleObstructedMove(bool moved)
 		// The goal here is to manage to move in the general direction of our target, not to be super accurate.
 		fixed radius = Clamp(skipbeyond/3, fixed::FromInt(TERRAIN_TILE_SIZE), fixed::FromInt(TERRAIN_TILE_SIZE*3));
 		PathGoal subgoal = { PathGoal::CIRCLE, m_LongPath.m_Waypoints.back().x, m_LongPath.m_Waypoints.back().z, radius };
-		RequestShortPath(pos, subgoal, true);
+		RequestShortPath(pos, subgoal, false);
 		return true;
 	}()) return true;
 
@@ -1529,6 +1531,7 @@ void CCmpUnitMotion::ComputePathToGoal(const CFixedVector2D& from, const PathGoa
 	if (shortPath)
 	{
 		m_LongPath.m_Waypoints.clear();
+		// Extend the range so that our first path is probably valid.
 		RequestShortPath(from, goal, true);
 	}
 	else
@@ -1555,16 +1558,22 @@ void CCmpUnitMotion::RequestLongPath(const CFixedVector2D& from, const PathGoal&
 	m_ExpectedPathTicket.m_Ticket = cmpPathfinder->ComputePathAsync(from.X, from.Y, improvedGoal, m_PassClass, GetEntityId());
 }
 
-void CCmpUnitMotion::RequestShortPath(const CFixedVector2D &from, const PathGoal& goal, bool avoidMovingUnits)
+void CCmpUnitMotion::RequestShortPath(const CFixedVector2D &from, const PathGoal& goal, bool extendRange)
 {
 	CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
 	if (!cmpPathfinder)
 		return;
 
 	entity_pos_t searchRange = ShortPathSearchRange();
+	if (extendRange)
+	{
+		CFixedVector2D dist(from.X - goal.x, from.Y - goal.z);
+		if (dist.CompareLength(searchRange - entity_pos_t::FromInt(1)) >= 0)
+			searchRange = dist.Length() + fixed::FromInt(1);
+	}
 
 	m_ExpectedPathTicket.m_Type = Ticket::SHORT_PATH;
-	m_ExpectedPathTicket.m_Ticket = cmpPathfinder->ComputeShortPathAsync(from.X, from.Y, m_Clearance, searchRange, goal, m_PassClass, avoidMovingUnits, GetGroup(), GetEntityId());
+	m_ExpectedPathTicket.m_Ticket = cmpPathfinder->ComputeShortPathAsync(from.X, from.Y, m_Clearance, searchRange, goal, m_PassClass, true, GetGroup(), GetEntityId());
 }
 
 bool CCmpUnitMotion::MoveTo(MoveRequest request)

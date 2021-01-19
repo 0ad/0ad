@@ -3,6 +3,7 @@ const JAV_TEMPLATE = "units/mace/infantry_javelineer_b";
 
 const REG_UNIT_TEMPLATE = "units/athen/infantry_spearman_b";
 const FAST_UNIT_TEMPLATE = "units/athen/cavalry_swordsman_b";
+const FAST_UNIT_TEMPLATE_2 = "units/athen/cavalry_javelineer_b";
 
 const ATTACKER = 2;
 
@@ -180,6 +181,27 @@ var manual_formation_dance = function(attacker, target, dance_distance, att_dist
 };
 
 
+/**
+ * This isn't really dancing, but it can still fail.
+ */
+var avoidance = function(attacker, target, att_distance = 10)
+{
+	return () => {
+		let dancer = QuickSpawn(200, 300, target);
+		for (let i = 0; i < 5; ++i)
+		{
+			WalkTo(300, 400, true, dancer);
+			WalkTo(400, 300, true, dancer);
+			WalkTo(300, 200, true, dancer);
+			WalkTo(200, 300, true, dancer);
+		}
+
+		let attackers = [];
+		attackers.push(Attack(dancer, QuickSpawn(200, 290, attacker, ATTACKER), ATTACKER));
+		return [[dancer], attackers];
+	};
+};
+
 experiments.unit_manual_dance_archer = {
 	"spawn": manual_dance(ARCHER_TEMPLATE, REG_UNIT_TEMPLATE, 5)
 };
@@ -278,6 +300,10 @@ experiments.formation_bad_dance_slow_archer = {
 
 experiments.formation_bad_dance_fast_archer = {
 	"spawn": manual_formation_dance(ARCHER_TEMPLATE, FAST_UNIT_TEMPLATE, 50, 50, 5)
+};
+
+experiments.fast_on_fast = {
+	"spawn": avoidance(FAST_UNIT_TEMPLATE, FAST_UNIT_TEMPLATE_2)
 };
 
 var cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);

@@ -8,7 +8,7 @@
         <Pierce>0</Pierce>
         <Crush>9.2</Crush>
       </Damage>
-     <MaxRange>3.5</MaxRange>
+     <MaxRange>4</MaxRange>
      <PrepareTime>500</PrepareTime>
      <RepeatTime>1000</RepeatTime>
      <PreferredClasses datatype="tokens">Unit+!Ship</PreferredClasses>
@@ -30,4 +30,7 @@
       <attack_melee>attack/weapon/sword_attack.xml</attack_melee>
     </SoundGroups>
   </Sound>
+  <UnitMotion>
+    <WalkSpeed op="mul">1.1</WalkSpeed>
+  </UnitMotion>
 </Entity>

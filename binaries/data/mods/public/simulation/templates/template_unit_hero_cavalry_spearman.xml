@@ -8,7 +8,7 @@
         <Pierce>12</Pierce>
         <Crush>0</Crush>
       </Damage>
-      <MaxRange>4.5</MaxRange>
+      <MaxRange>4</MaxRange>
       <Bonuses>
         <BonusCavMelee>
           <Classes>Cavalry</Classes>
@@ -38,4 +38,7 @@
       <attack_melee>attack/weapon/spear_attack.xml</attack_melee>
     </SoundGroups>
   </Sound>
+  <UnitMotion>
+    <WalkSpeed op="mul">1.1</WalkSpeed>
+  </UnitMotion>
 </Entity>
