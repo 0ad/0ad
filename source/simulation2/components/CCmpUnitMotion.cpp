@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -404,6 +404,25 @@ public:
 	virtual fixed GetRunMultiplier() const
 	{
 		return m_RunMultiplier;
+	}
+
+	virtual CFixedVector2D EstimateFuturePosition(const fixed dt) const
+	{
+		CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
+		if (!cmpPosition || !cmpPosition->IsInWorld())
+			return CFixedVector2D();
+
+		// TODO: formation members should perhaps try to use the controller's position.
+
+		CFixedVector2D pos = cmpPosition->GetPosition2D();
+		entity_angle_t angle = cmpPosition->GetRotation().Y;
+
+		// Copy the path so we don't change it.
+		WaypointPath shortPath = m_ShortPath;
+		WaypointPath longPath = m_LongPath;
+
+		PerformMove(dt, cmpPosition->GetTurnRate(), shortPath, longPath, pos, angle);
+		return pos;
 	}
 
 	virtual pass_class_t GetPassabilityClass() const

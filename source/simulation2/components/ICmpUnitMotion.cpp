@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -34,6 +34,7 @@ DEFINE_INTERFACE_METHOD_CONST_0("IsMoveRequested", bool, ICmpUnitMotion, IsMoveR
 DEFINE_INTERFACE_METHOD_CONST_0("GetSpeed", fixed, ICmpUnitMotion, GetSpeed)
 DEFINE_INTERFACE_METHOD_CONST_0("GetWalkSpeed", fixed, ICmpUnitMotion, GetWalkSpeed)
 DEFINE_INTERFACE_METHOD_CONST_0("GetRunMultiplier", fixed, ICmpUnitMotion, GetRunMultiplier)
+DEFINE_INTERFACE_METHOD_CONST_1("EstimateFuturePosition", CFixedVector2D, ICmpUnitMotion, EstimateFuturePosition, fixed)
 DEFINE_INTERFACE_METHOD_1("SetSpeedMultiplier", void, ICmpUnitMotion, SetSpeedMultiplier, fixed)
 DEFINE_INTERFACE_METHOD_CONST_0("GetPassabilityClassName", std::string, ICmpUnitMotion, GetPassabilityClassName)
 DEFINE_INTERFACE_METHOD_CONST_0("GetUnitClearance", entity_pos_t, ICmpUnitMotion, GetUnitClearance)
@@ -110,6 +111,11 @@ public:
 	virtual fixed GetSpeedMultiplier() const
 	{
 		return m_Script.Call<fixed>("GetSpeedMultiplier");
+	}
+
+	virtual CFixedVector2D EstimateFuturePosition(fixed dt) const
+	{
+		return m_Script.Call<CFixedVector2D>("EstimateFuturePosition", dt);
 	}
 
 	virtual void SetFacePointAfterMove(bool facePointAfterMove)

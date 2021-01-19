@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -115,6 +115,12 @@ public:
 	 * (regardless of whether the unit is moving or not right now).
 	 */
 	virtual fixed GetSpeed() const = 0;
+
+	/**
+	 * @return the estimated position of the unit in @param dt seconds,
+	 * following current paths. This is allowed to 'look into the future'.
+	 */
+	virtual CFixedVector2D EstimateFuturePosition(const fixed dt) const = 0;
 
 	/**
 	 * Set whether the unit will turn to face the target point after finishing moving.
