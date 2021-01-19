@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -39,8 +39,8 @@ extern CGame *g_Game;
 
 #if CONFIG2_AUDIO
 
-constexpr ALfloat DEFAULT_ROLLOFF = 0.7f;
-constexpr ALfloat MAX_ROLLOFF = 0.9f;
+constexpr ALfloat DEFAULT_ROLLOFF = 0.5f;
+constexpr ALfloat MAX_ROLLOFF = 0.7f;
 
 /**
  * Low randomness, quite-a-lot-faster-than-std::mt19937 random number generator.
