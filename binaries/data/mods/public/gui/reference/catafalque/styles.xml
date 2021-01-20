@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<styles>
+	<style name="Emblem"
+		size="0 0 160 128"
+		hidden="true"
+	/>
+
+	<style name="EmblemImage"
+		size="50%-64 50%-64 50%+64 50%+64"
+		tooltip_style="referenceTooltip"
+	/>
+
+	<style name="EmblemText"
+		size="0 50%-18 100% 50%+18"
+		sprite="EmblemMask"
+		textcolor="white"
+		text_align="center"
+		text_valign="center"
+		ghost="true"
+	/>
+</styles>
