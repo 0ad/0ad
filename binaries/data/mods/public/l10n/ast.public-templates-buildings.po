@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-15 08:53+0000\n"
-"PO-Revision-Date: 2021-01-15 21:23+0000\n"
+"POT-Creation-Date: 2021-01-18 08:15+0000\n"
+"PO-Revision-Date: 2021-01-20 01:04+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -109,7 +109,7 @@ msgstr "Gymnásion"
 
 #: simulation/templates/structures/athen/gymnasium.xml:24
 msgid "Train Champions."
-msgstr "Allista Campeones."
+msgstr "Allista los campeones."
 
 #: simulation/templates/structures/athen/house.xml:5
 #: simulation/templates/structures/mace/house.xml:5
@@ -145,7 +145,7 @@ msgstr "Prytaneîon"
 
 #: simulation/templates/structures/athen/prytaneion.xml:24
 msgid "Train Heroes and research technologies."
-msgstr "Allista héroes ya desendolca la teunoloxía."
+msgstr "Allista los héroes ya desendolca la teunoloxía."
 
 #: simulation/templates/structures/athen/prytaneion.xml:26
 #: simulation/templates/structures/gaul/assembly.xml:34
@@ -301,7 +301,7 @@ msgid ""
 "Build upon a shoreline in own, neutral, or allied territory. Acquire large "
 "tracts of territory. Territory root. Train Citizens, construct Ships, and "
 "research technologies. Garrison Soldiers for additional arrows."
-msgstr "Faila a la vera l'agua en terrenu propiu, aliáu o n'abertal. Pósiate de terrén. Arraigona'l territoriu. Allista ciudadanos, constrúi barcos ya desendolca la teunoloxía. Guarez soldaos nella pa tirar más fleches."
+msgstr "Faise a la vera l'agua en campu amigu o n'abertal. Enanta o arraigona'l territoriu. Allista los ciudadanos, constrúi los barcos ya desendolca la teunoloxía. Guarecida, tira más fleches."
 
 #: simulation/templates/structures/brit/defense_tower.xml:9
 #: simulation/templates/structures/brit/sentry_tower.xml:5
@@ -338,14 +338,13 @@ msgid "Dunon"
 msgstr "Dunon"
 
 #: simulation/templates/structures/brit/fortress.xml:13
+#: simulation/templates/structures/cart/fortress.xml:10
 #: simulation/templates/structures/iber/fortress.xml:6
 #: simulation/templates/structures/kush/fortress.xml:10
 #: simulation/templates/structures/mace/fortress.xml:10
 #: simulation/templates/structures/rome/fortress.xml:6
-msgid ""
-"Territory root. Train Champion Infantry and Heroes. Garrison Soldiers for "
-"additional arrows."
-msgstr "Arraigona'l territoriu. Allista campeones d'a pie y héroes. Guarez soldaos pa tirar más fleches."
+msgid "Territory root. Train Heroes. Garrison Soldiers for additional arrows."
+msgstr "Arraigona'l territoriu. Allista los héroes. Guarecíu, tira más fleches."
 
 #: simulation/templates/structures/brit/house.xml:9
 #: simulation/templates/structures/gaul/house.xml:5
@@ -439,7 +438,7 @@ msgstr "Namel"
 
 #: simulation/templates/structures/cart/embassy.xml:19
 msgid "Train Mercenaries and research Mercenary technologies."
-msgstr "Allista mercenarios ya desendolca la teunoloxía venceyao."
+msgstr "Allista los mercenarios ya desendolca la so teunoloxía."
 
 #: simulation/templates/structures/cart/embassy_celtic.xml:17
 msgid "Celtic Embassy"
@@ -447,7 +446,7 @@ msgstr "Embaxada celta"
 
 #: simulation/templates/structures/cart/embassy_celtic.xml:18
 msgid "Train Celtic Mercenaries and research Mercenary technologies."
-msgstr "Allista mercenarios celtes ya desendolca la teunoloxía venceyao."
+msgstr "Allista los mercenarios celtes ya desendolca la so teunoloxía."
 
 #: simulation/templates/structures/cart/embassy_iberian.xml:10
 msgid "Iberian Embassy"
@@ -455,7 +454,7 @@ msgstr "Embaxada íbera"
 
 #: simulation/templates/structures/cart/embassy_iberian.xml:11
 msgid "Train Iberian Mercenaries and research Mercenary technologies."
-msgstr "Allista mercenarios íberos ya desendolca la teunoloxía venceyao."
+msgstr "Allista los mercenarios íberos ya desendolca la so teunoloxía."
 
 #: simulation/templates/structures/cart/embassy_italic.xml:17
 msgid "Italic Embassy"
@@ -463,7 +462,7 @@ msgstr "Embaxada itálica"
 
 #: simulation/templates/structures/cart/embassy_italic.xml:18
 msgid "Train Italic Mercenaries and research Mercenary technologies."
-msgstr "Allista mercenarios itálicos ya desendolca la teunoloxía venceyao."
+msgstr "Allista los mercenarios itálicos ya desendolca la so teunoloxía."
 
 #: simulation/templates/structures/cart/farmstead.xml:8
 msgid "Aḥuzāh"
@@ -476,10 +475,6 @@ msgstr "Šadd"
 #: simulation/templates/structures/cart/fortress.xml:9
 msgid "Ḥamet"
 msgstr "Ḥamet"
-
-#: simulation/templates/structures/cart/fortress.xml:10
-msgid "Territory root. Train Heroes. Garrison Soldiers for additional arrows."
-msgstr "Arraigona'l territoriu. Allista héroes. Guarez soldaos pa tirar más fleches."
 
 #: simulation/templates/structures/cart/house.xml:8
 msgid "Bet"
@@ -521,7 +516,7 @@ msgid ""
 "Build upon a shoreline in own, neutral, or allied territory. Acquire large "
 "tracts of territory. Territory root. Construct Warships and research "
 "technologies."
-msgstr "Failu a la vera l'agua en terrenu propiu, aliáu o n'abertal. Pósiate de terrén. Arraigona'l territoriu. Constrúi barcos ya desendolca la teunoloxía."
+msgstr "Faise a la vera l'agua en campu amigu o n'abertal. Enanta o arraigona'l territoriu. Constrúi los barcos ya desendolca la teunoloxía."
 
 #: simulation/templates/structures/cart/super_dock.xml:43
 msgid "Shipyard"
@@ -533,7 +528,7 @@ msgstr "Maqdaš"
 
 #: simulation/templates/structures/cart/temple.xml:10
 msgid "Train Healers and Champion Infantry and research healing technologies."
-msgstr "Allista los curanderos ya campeones d'a pie ya desendolca'l curamientu."
+msgstr "Allista los curanderos, campeones d'a pie ya desendolca'l sanamientu."
 
 #: simulation/templates/structures/cart/tophet.xml:18
 msgid "Sacrificial Temple"
@@ -586,7 +581,7 @@ msgstr "Columna dórica cayida"
 
 #: simulation/templates/structures/desert_trading_post.xml:14
 msgid "Desert Trading Post"
-msgstr "Puestu comercial del ermu"
+msgstr "Factoría remota"
 
 #: simulation/templates/structures/desert_trading_post.xml:15
 #: simulation/templates/structures/pers/market.xml:12
@@ -620,9 +615,8 @@ msgid "Remogantion"
 msgstr "Remogantion"
 
 #: simulation/templates/structures/gaul/assembly.xml:32
-#: simulation/templates/structures/spart/gerousia.xml:24
-msgid "Train Heroes."
-msgstr "Allista héroes."
+msgid "Train Champion Trumpeters and Heroes."
+msgstr "Allista los aturulladores campeones, héroes."
 
 #: simulation/templates/structures/gaul/barracks.xml:18
 msgid "Coriosedlon"
@@ -631,13 +625,6 @@ msgstr "Coriosedlon"
 #: simulation/templates/structures/gaul/civil_centre.xml:12
 msgid "Lissos"
 msgstr "Lissos"
-
-#: simulation/templates/structures/gaul/fortress.xml:6
-#: simulation/templates/structures/sele/fortress.xml:10
-msgid ""
-"Territory root. Train Champion Infantry. Garrison Soldiers for additional "
-"arrows."
-msgstr "Arraigona'l territoriu. Allista campeones d'a pie. Guarez soldaos pa tirar más fleches."
 
 #: simulation/templates/structures/gaul/rotarymill.xml:5
 msgid "Brauon"
@@ -673,7 +660,7 @@ msgstr "Naos Parthenos"
 
 #: simulation/templates/structures/hellenic_epic_temple.xml:25
 msgid "Garrison units to heal them at a quick rate."
-msgstr "Guarez unidaes pa curales rápido."
+msgstr "Guarez les unidaes pa sanales rápido."
 
 #: simulation/templates/structures/hellenic_propylaea.xml:20
 msgid "Portico"
@@ -790,7 +777,7 @@ msgstr "Campamentu blemiu"
 
 #: simulation/templates/structures/kush/camp_blemmye.xml:23
 msgid "Train Blemmye Mercenaries."
-msgstr "Allista mercenarios blemios."
+msgstr "Allista los mercenarios blemios."
 
 #: simulation/templates/structures/kush/camp_noba.xml:22
 msgid "Noba Village"
@@ -798,7 +785,7 @@ msgstr "Villarín noba"
 
 #: simulation/templates/structures/kush/camp_noba.xml:23
 msgid "Train Noba Mercenaries."
-msgstr "Allista mercenarios noba."
+msgstr "Allista los mercenarios noba."
 
 #: simulation/templates/structures/kush/civil_centre.xml:9
 msgid "Pr-nsw"
@@ -904,7 +891,7 @@ msgstr "Pr-ʿIprmk"
 #: simulation/templates/structures/kush/temple.xml:10
 msgid ""
 "Train Healers and Apedemak Champions and research healing technologies."
-msgstr "Allista curanderos ya campeones d'Apedemak ya desendolca la medicina."
+msgstr "Allista los curanderos, campeones d'Apedemak ya desendolca'l sanamientu."
 
 #: simulation/templates/structures/kush/temple.xml:11
 msgid "TempleOfApedemak"
@@ -920,7 +907,7 @@ msgstr "Pr-ʿImn"
 
 #: simulation/templates/structures/kush/temple_amun.xml:29
 msgid "Train Healers and Amun Champions and research healing technologies."
-msgstr "Allista curanderos ya campeones d'Amón ya desendolca la medicina."
+msgstr "Allista los curanderos, campeones d'Amón ya desendolca'l sanamientu."
 
 #: simulation/templates/structures/kush/temple_amun.xml:31
 msgid "TempleOfAmun"
@@ -1022,7 +1009,7 @@ msgstr "Harmya"
 
 #: simulation/templates/structures/maur/palace.xml:24
 msgid "Territory root. Train Maiden Guards and Heroes."
-msgstr "Arraigona'l territoriu. Allista velenoses y héroes."
+msgstr "Arraigona'l territoriu. Allista les velenoses, héroes."
 
 #: simulation/templates/structures/maur/pillar_ashoka.xml:32
 msgid "Edict Pillar of Ashoka"
@@ -1099,7 +1086,7 @@ msgstr "Stratopedeía Misthophórōn"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:31
 msgid "Capture this structure to train mercenaries from Hellenistic Egypt."
-msgstr "Toma'l campamentu p'allistar los mercenarios del Exiptu helenísticu."
+msgstr "Si tomes el campamentu, pues allistar los mercenarios del Exiptu helenísticu."
 
 #: simulation/templates/structures/obelisk.xml:11
 msgid "Obelisk"
@@ -1120,11 +1107,11 @@ msgstr "Puerta de madera"
 #: simulation/templates/structures/palisades_gate.xml:22
 #: simulation/templates/structures/palisades_long.xml:31
 msgid "Allow units access through Palisades. Can be locked to prevent access."
-msgstr "Dexa les unidaes trespasar la estacada. Pues pesllala pa torgar la entrada."
+msgstr "Dexa trespasar la estacada. Pues pesllala pa torgar la entrada."
 
 #: simulation/templates/structures/palisades_long.xml:17
 msgid "Can be converted into a Palisade Gate."
-msgstr "Pues camudala en puerta."
+msgstr "Pues convertila en puerta."
 
 #: simulation/templates/structures/palisades_spike_angle.xml:17
 msgid "Angle Spike"
@@ -1153,7 +1140,7 @@ msgstr "Apadāna"
 #: simulation/templates/structures/pers/apadana.xml:28
 #: simulation/templates/structures/spart/syssiton.xml:25
 msgid "Train Champions and Heroes."
-msgstr "Allista campeones y héroes."
+msgstr "Allista los campeones, héroes."
 
 #: simulation/templates/structures/pers/apartment_block.xml:12
 msgid "Apartment Block"
@@ -1266,12 +1253,6 @@ msgstr "Xardinos Colgantes de Babilonia"
 msgid "Stathmos tōn Elepantōn"
 msgstr "Stathmós tôn Elephántōn"
 
-#: simulation/templates/structures/ptol/fortress.xml:10
-msgid ""
-"Territory root. Train Champion Infantry Pikemen. Garrison Soldiers for "
-"additional arrows."
-msgstr "Arraigona'l territoriu. Allista piqueros campeones d'a pie. Guarez soldaos pa tirar más fleches."
-
 #: simulation/templates/structures/ptol/lighthouse.xml:25
 #: simulation/templates/structures/ptol/lighthouse.xml:29
 msgid "Lighthouse"
@@ -1285,7 +1266,7 @@ msgstr "Pháros"
 msgid ""
 "Build upon a shoreline in own, neutral, or allied territory. Reveal the "
 "shorelines over the entire map. Very large vision range."
-msgstr "Failu a la vera l'agua en terrenu propiu, aliáu o n'abertal. Descubri tola mariña del mapa. Tien muncha visión."
+msgstr "Faise a la vera l'agua en campu amigu o n'abertal. Descubre tola mariña del mapa. Tien muncha visión."
 
 #: simulation/templates/structures/ptol/mercenary_camp.xml:27
 msgid "Mercenary Camp"
@@ -1295,7 +1276,7 @@ msgstr "Campamentu de mercenarios"
 msgid ""
 "Cheap Barracks-like structure that is buildable in neutral territory, but "
 "casts no territory influence. Train Mercenaries."
-msgstr "Barraca barata que pue montase en tierra abertal, pero que nun afeuta'l territoriu. Allista mercenarios."
+msgstr "Barraca barata que pue montase en tierra abertal, anque sin estender el territoriu. Allista los mercenarios."
 
 #: simulation/templates/structures/ptol/military_colony.xml:9
 #: simulation/templates/structures/sele/military_colony.xml:9
@@ -1338,7 +1319,7 @@ msgstr "Castra"
 msgid ""
 "Build in neutral or enemy territory. Train Melee Infantry. Garrison Soldiers"
 " for additional arrows."
-msgstr "Llevántase n'abertal o en terrén enemigu. Allista los soldaos d'a pie. Guarez soldaos nelli pa tirar más fleches."
+msgstr "Ármase en campu enemigu o n'abertal. Allista la infantería. Guarecíu, tira más fleches."
 
 #: simulation/templates/structures/rome/army_camp.xml:40
 #: simulation/templates/structures/rome/army_camp.xml:77
@@ -1507,7 +1488,7 @@ msgstr "Turris Lapidea"
 
 #: simulation/templates/structures/rome/wallset_siege.xml:7
 msgid "Wall off an area. Build in own, neutral, or enemy territory."
-msgstr "Zarra un terrén.  Llevántala en terrenu propiu, enemigu o n'abertal."
+msgstr "Zarra terrenes.  Llevántase en campu propiu, enemigu o n'abertal."
 
 #: simulation/templates/structures/rome/wonder.xml:9
 msgid "Aedēs Iovis Optimi Maximi"
@@ -1532,6 +1513,10 @@ msgstr "Senáu espartanu"
 #: simulation/templates/structures/spart/gerousia.xml:23
 msgid "Gerousia"
 msgstr "Gerousía"
+
+#: simulation/templates/structures/spart/gerousia.xml:24
+msgid "Train Heroes."
+msgstr "Allista héroes."
 
 #: simulation/templates/structures/spart/syssiton.xml:23
 msgid "Military Mess Hall"
@@ -1609,7 +1594,7 @@ msgid ""
 "Build in own or neutral territory. Acquire large tracts of territory. "
 "Territory root. Train Citizens and research technologies. Garrison Soldiers "
 "for additional arrows."
-msgstr "Llevántala en terrenu propiu o n'abertal. Pósiate de terrén. Arraigona'l territoriu. Allista ciudadanos ya desendolca la teunoloxía. Guarez soldaos nella pa tirar más fleches."
+msgstr "Llevántase en campu propiu o n'abertal. Enanta o arraigona'l territoriu. Allista los ciudadanos ya desendolca la teunoloxía. Guarecida, tira más fleches."
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:46
 #: simulation/templates/template_structure_civic_civil_centre.xml:83
@@ -1679,7 +1664,7 @@ msgstr "Templu"
 
 #: simulation/templates/template_structure_civic_temple.xml:31
 msgid "Train Healers and research healing technologies."
-msgstr "Allista curanderos ya desendolca la teunoloxía venceyao."
+msgstr "Allista los curanderos ya desendolca'l sanamientu."
 
 #: simulation/templates/template_structure_defensive.xml:4
 msgid "Defensive Structure"
@@ -1696,7 +1681,7 @@ msgstr "Miradoriu"
 msgid ""
 "Build in own or neutral territory. Slowly converts to Gaia while in neutral "
 "territory."
-msgstr "Llevántalu en terrenu propiu o n'abertal. En tierra abertal, col tiempu, pasa a formar parte de la Gaia."
+msgstr "Llevántase en campu propiu o n'abertal, onde col tiempu pasa a formar parte de la Gaia."
 
 #: simulation/templates/structures/wallset_palisade.xml:4
 #: simulation/templates/structures/wallset_palisade.xml:6
@@ -1708,7 +1693,7 @@ msgstr "Estacada"
 #: simulation/templates/structures/wallset_palisade.xml:5
 #: simulation/templates/template_structure_defensive_palisade.xml:19
 msgid "Wall off an area. Build in own or neutral territory."
-msgstr "Zarra un terrén. Llevántase en terrén propiu o n'abertal."
+msgstr "Zarra terrenes. Llevántase en campu propiu o n'abertal."
 
 #: simulation/templates/template_structure_defensive_tower.xml:39
 #: simulation/templates/template_structure_defensive_tower.xml:55
@@ -1766,7 +1751,7 @@ msgstr "Talaya"
 msgid ""
 "Garrison Infantry for additional arrows. Needs the “Murder Holes” technology"
 " to protect its foot."
-msgstr "Guarez soldaos nella pa tirar más fleches. Precisa de «matacanes» pa protexer el pie."
+msgstr "Guarecida, tira más fleches. Precisa de «matacanes» pa protexer el pie."
 
 #: simulation/templates/template_structure_defensive_tower_sentry.xml:31
 msgid "SentryTower"
@@ -1774,7 +1759,7 @@ msgstr "Talaya"
 
 #: simulation/templates/template_structure_defensive_tower_sentry.xml:63
 msgid "Reinforce with stone and upgrade to a defense tower."
-msgstr "Refuérciala con piedra ya camúdala en torrexón."
+msgstr "Pues reforciala, camudándola nuna torre de piedra."
 
 #: simulation/templates/template_structure_defensive_tower_stone.xml:29
 msgid "Stone Tower"
@@ -1802,11 +1787,11 @@ msgstr "Puerta"
 #: simulation/templates/template_structure_defensive_wall_gate.xml:24
 #: simulation/templates/template_structure_defensive_wall_long.xml:29
 msgid "Allow units access through Walls. Can be locked to prevent access."
-msgstr "Dexa les unidaes trespasar la muralla. Pues pesllala pa torgar la entrada."
+msgstr "Dexa trespasar la muralla. Pues pesllala pa torgar la entrada."
 
 #: simulation/templates/template_structure_defensive_wall_long.xml:20
 msgid "Can be converted into a Gate."
-msgstr "Pues camudala en puerta."
+msgstr "Pues convertila en puerta."
 
 #: simulation/templates/template_structure_defensive_wall_tower.xml:51
 msgid "Wall Turret"
@@ -1814,7 +1799,7 @@ msgstr "Torreta"
 
 #: simulation/templates/template_structure_defensive_wall_tower.xml:53
 msgid "Garrison Infantry for additional arrows."
-msgstr "Guarez infantería nella pa tirar más fleches."
+msgstr "Guarecida, tira más fleches."
 
 #: simulation/templates/template_structure_economic.xml:4
 msgid "Economic Structure"
@@ -1833,7 +1818,7 @@ msgstr "Celleru"
 
 #: simulation/templates/template_structure_economic_farmstead.xml:28
 msgid "Research food gathering technologies."
-msgstr "Desendolca téuniques pañadores/cazadores."
+msgstr "Desendolca la teunoloxía de la caza, collecha."
 
 #: simulation/templates/template_structure_economic_market.xml:24
 #: simulation/templates/template_structure_economic_market.xml:28
@@ -1844,7 +1829,7 @@ msgstr "Mercáu"
 msgid ""
 "Barter resources. Establish trade routes. Train Traders and research trade "
 "and barter technologies."
-msgstr "Troca recursos. Afita'l comerciu. Allista comerciantes ya desendolca'l comerciu y el troquéu."
+msgstr "Troca recursos. Afita'l comerciu. Allista los comerciantes ya desendolca'l comerciu y el troquéu."
 
 #: simulation/templates/template_structure_economic_market.xml:28
 #: simulation/templates/template_structure_military_dock.xml:27
@@ -1858,7 +1843,7 @@ msgstr "Metedoriu"
 
 #: simulation/templates/template_structure_economic_storehouse.xml:29
 msgid "Research gathering technologies."
-msgstr "Desendolca téuniques percanciadores."
+msgstr "Desendolca la teunoloxía económica."
 
 #: simulation/templates/template_structure_military.xml:10
 msgid "Military Structure"
@@ -1877,7 +1862,7 @@ msgstr "Arsenal"
 msgid ""
 "Train Champion Infantry Crossbowmen, construct Siege Engines, and research "
 "Siege Engine technologies."
-msgstr "Allista ballesteros campeones d'a pie, constrúi máquines ya desendolca la teunoloxía mecánica."
+msgstr "Allista los ballesteros campeones d'a pie, constrúi les máquines ya desendolca la teunoloxía mecánica."
 
 #: simulation/templates/template_structure_military_barracks.xml:26
 #: simulation/templates/template_structure_military_barracks.xml:29
@@ -1897,7 +1882,7 @@ msgstr "Cai"
 msgid ""
 "Build upon a shoreline in own, neutral, or allied territory. Establish trade"
 " routes. Construct Ships and research Ship technologies."
-msgstr "Failu a la vera l'agua en terrenu propiu, aliáu o n'abertal. Afita'l comerciu. Constrúi barcos ya desendolca la teunoloxía naval."
+msgstr "Faise a la vera l'agua en campu amigu o n'abertal. Afita'l comerciu. Constrúi los barcos ya desendolca la teunoloxía naval."
 
 #: simulation/templates/structures/brit/crannog.xml:17
 #: simulation/templates/structures/cart/super_dock.xml:43
@@ -1911,7 +1896,7 @@ msgstr "Corte del elefante"
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:25
 msgid "Train Elephants and research Elephant technologies."
-msgstr "Allista elefantes ya desendolca la teunoloxía venceyao."
+msgstr "Allista los elefantes y ameyóralos."
 
 #: simulation/templates/template_structure_military_elephant_stables.xml:26
 msgid "ElephantStable"
@@ -1940,7 +1925,7 @@ msgstr "Fortaleza"
 
 #: simulation/templates/template_structure_military_fortress.xml:71
 msgid "Territory root. Garrison Soldiers for additional arrows."
-msgstr "Arraigona'l territoriu. Guarez soldaos pa tirar más fleches."
+msgstr "Arraigona'l territoriu. Guarecida, tira más fleches."
 
 #: simulation/templates/template_structure_military_range.xml:22
 msgid "Practice Range"
@@ -1948,7 +1933,7 @@ msgstr "Campu de tiru"
 
 #: simulation/templates/template_structure_military_range.xml:24
 msgid "Train Ranged Infantry and research technologies."
-msgstr "Allista soldaos d'algame ya desendolca la teunoloxía."
+msgstr "Allista los soldaos de proxectiles ya desendolca la teunoloxía."
 
 #: simulation/templates/template_structure_military_range.xml:25
 msgid "Range"
@@ -1961,7 +1946,7 @@ msgstr "Corte"
 
 #: simulation/templates/template_structure_military_stable.xml:25
 msgid "Train Cavalry and research Cavalry technologies."
-msgstr "Allista caballería ya desendolca la teunoloxía venceyao."
+msgstr "Allista la caballería y ameyóralo."
 
 #: simulation/templates/template_structure_resource.xml:4
 msgid "Resource Structure"
@@ -1988,7 +1973,7 @@ msgstr "Eru"
 #: simulation/templates/template_structure_resource_field.xml:21
 msgid ""
 "Harvest grain for food. Each subsequent gatherer works less efficiently."
-msgstr "Cueyi cebera. Cada coyedor nuevu rinde menos que l'anterior."
+msgstr "Da cebera. Cada coyedor nuevu rinde menos que l'anterior."
 
 #: simulation/templates/template_structure_special.xml:19
 msgid "Special Structure"

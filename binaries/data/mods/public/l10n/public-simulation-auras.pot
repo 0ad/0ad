@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2021-01-18 08:15+0000\n"
-"PO-Revision-Date: 2021-01-18 08:15+0000\n"
+"POT-Creation-Date: 2021-01-20 00:57+0000\n"
+"PO-Revision-Date: 2021-01-20 00:57+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -70,11 +70,11 @@ msgid "Powerful Priesthood"
 msgstr ""
 
 #: simulation/data/auras/structures/library.json:auraDescription
-msgid "Structures −10% technology resource costs and research time."
+msgid "Structures −15% technology resource costs and research time."
 msgstr ""
 
 #: simulation/data/auras/structures/library.json:auraName
-msgid "Power of Knowledge"
+msgid "Centre of Scholarship"
 msgstr ""
 
 #: simulation/data/auras/structures/loyalty_regen.json:auraDescription
@@ -125,19 +125,11 @@ msgstr ""
 msgid "Wall Protection"
 msgstr ""
 
-#: simulation/data/auras/structures/wonder_pop_1.json:auraDescription
-msgid "+10 maximum population limit."
+#: simulation/data/auras/structures/wonder_population_cap.json:auraDescription
+msgid "+20% maximum population limit (requires the “Glorious Expansion” technology)."
 msgstr ""
 
-#: simulation/data/auras/structures/wonder_pop_1.json:auraName
-msgid "Symbol of Greatness"
-msgstr ""
-
-#: simulation/data/auras/structures/wonder_pop_2.json:auraDescription
-msgid "+40 maximum population limit (requires the “Glorious Expansion” technology)."
-msgstr ""
-
-#: simulation/data/auras/structures/wonder_pop_2.json:auraName
+#: simulation/data/auras/structures/wonder_population_cap.json:auraName
 msgid "Glorious Expansion"
 msgstr ""
 

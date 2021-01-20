@@ -23,8 +23,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-15 08:53+0000\n"
-"PO-Revision-Date: 2021-01-15 09:34+0000\n"
+"POT-Creation-Date: 2021-01-18 08:15+0000\n"
+"PO-Revision-Date: 2021-01-18 09:36+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -105,6 +105,7 @@ msgstr "Közelharci lovas"
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:29
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:29
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:21
+#: simulation/templates/template_unit_champion_infantry_trumpeter.xml:27
 #: simulation/templates/template_unit_dog.xml:35
 #: simulation/templates/template_unit_hero_cavalry_axeman.xml:18
 #: simulation/templates/template_unit_hero_cavalry_maceman.xml:18
@@ -141,8 +142,8 @@ msgstr "Baltás lovass"
 #: simulation/templates/template_unit_champion_infantry_axeman.xml:21
 #: simulation/templates/template_unit_hero_cavalry_axeman.xml:18
 #: simulation/templates/template_unit_hero_infantry_axeman.xml:18
-#: simulation/templates/template_unit_infantry_melee_axeman.xml:20
-#: simulation/templates/template_unit_infantry_melee_axeman.xml:21
+#: simulation/templates/template_unit_infantry_melee_axeman.xml:24
+#: simulation/templates/template_unit_infantry_melee_axeman.xml:25
 msgid "Axeman"
 msgstr "Baltás"
 
@@ -185,23 +186,23 @@ msgstr "Lándzsás lovas"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:30
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:28
-#: simulation/templates/template_unit_hero_cavalry_spearman.xml:25
-msgid "Counters: 1.5× vs Cavalry."
-msgstr "Elhárítás: 1,5× a lovasság ellen."
+msgid "Counters: 1.75× vs Cavalry."
+msgstr ""
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:31
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:29
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:29
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:26
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:26
-#: simulation/templates/template_unit_infantry_melee_spearman.xml:26
-#: simulation/templates/template_unit_infantry_melee_spearman.xml:28
+#: simulation/templates/template_unit_infantry_melee_spearman.xml:29
+#: simulation/templates/template_unit_infantry_melee_spearman.xml:31
 msgid "Spearman"
 msgstr "Lándzsás"
 
 #: simulation/templates/template_unit_cavalry_melee_swordsman.xml:5
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:5
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:5
+#: simulation/templates/template_unit_champion_infantry_trumpeter.xml:5
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:5
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:5
 #: simulation/templates/template_unit_infantry_melee_swordsman.xml:5
@@ -218,8 +219,8 @@ msgstr "Lovas kardforgató"
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:21
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:24
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:24
-#: simulation/templates/template_unit_infantry_melee_swordsman.xml:21
-#: simulation/templates/template_unit_infantry_melee_swordsman.xml:22
+#: simulation/templates/template_unit_infantry_melee_swordsman.xml:24
+#: simulation/templates/template_unit_infantry_melee_swordsman.xml:25
 msgid "Swordsman"
 msgstr "Kardforgató"
 
@@ -400,7 +401,7 @@ msgstr "Bajnok pikás"
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:25
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:30
-#: simulation/templates/template_unit_infantry_melee_spearman.xml:27
+#: simulation/templates/template_unit_infantry_melee_spearman.xml:30
 msgid "Counters: 3× vs Cavalry."
 msgstr "Elhárítás: 3× a lovasság ellen."
 
@@ -418,6 +419,14 @@ msgstr "Bajnok lándzsás"
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:22
 msgid "Champion Swordsman"
 msgstr "Bajnok kardforgató"
+
+#: simulation/templates/template_unit_champion_infantry_trumpeter.xml:27
+msgid "Trumpeter"
+msgstr ""
+
+#: simulation/templates/template_unit_champion_infantry_trumpeter.xml:28
+msgid "Champion Infantry Trumpeter"
+msgstr ""
 
 #: simulation/templates/template_unit_dog.xml:5
 #: simulation/templates/template_unit_fauna_wild_aggressive_dog.xml:5
@@ -492,6 +501,10 @@ msgstr "Hős buzogányos lovas"
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:24
 msgid "Hero Cavalry Spearman"
 msgstr "Hős lándzsás lovas"
+
+#: simulation/templates/template_unit_hero_cavalry_spearman.xml:25
+msgid "Counters: 1.5× vs Cavalry."
+msgstr "Elhárítás: 1,5× a lovasság ellen."
 
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:25
 msgid "Hero Cavalry Swordsman"
@@ -967,7 +980,7 @@ msgstr "Pródromos"
 #: simulation/templates/units/sele/support_healer_e.xml:4
 #: simulation/templates/units/spart/cavalry_javelineer_e.xml:4
 #: simulation/templates/units/spart/cavalry_spearman_e.xml:4
-#: simulation/templates/units/spart/champion_infantry_sword.xml:21
+#: simulation/templates/units/spart/champion_infantry_swordsman.xml:21
 #: simulation/templates/units/spart/infantry_javelineer_e.xml:4
 #: simulation/templates/units/spart/infantry_spearman_e.xml:4
 #: simulation/templates/units/spart/support_healer_e.xml:4
@@ -978,7 +991,7 @@ msgstr "Elit"
 #: simulation/templates/units/athen/cavalry_swordsman_b.xml:5
 #: simulation/templates/units/cart/cavalry_swordsman_iber_b.xml:5
 #: simulation/templates/units/cart/hero_hamilcar.xml:5
-#: simulation/templates/units/iber/champion_infantry.xml:5
+#: simulation/templates/units/iber/champion_infantry_swordsman.xml:5
 #: simulation/templates/units/iber/infantry_swordsman_b.xml:5
 #: simulation/templates/units/kush/champion_infantry_amun.xml:5
 #: simulation/templates/units/mace/hero_alexander_iii.xml:5
@@ -1224,11 +1237,11 @@ msgstr "Essedon"
 msgid "Chariot"
 msgstr "Harci szekér"
 
-#: simulation/templates/units/brit/champion_infantry.xml:5
+#: simulation/templates/units/brit/champion_infantry_swordsman.xml:5
 msgid "Brythonic Champion"
 msgstr "Briton bajnok"
 
-#: simulation/templates/units/brit/champion_infantry.xml:6
+#: simulation/templates/units/brit/champion_infantry_swordsman.xml:6
 msgid "Argos"
 msgstr "Argos"
 
@@ -1533,13 +1546,13 @@ msgstr "Meztelen fanatikus"
 msgid "Bariogaisatos"
 msgstr "Bariogaisatos"
 
-#: simulation/templates/units/gaul/champion_infantry.xml:5
-msgid "Gallic Champion"
-msgstr "Gall bajnok"
-
-#: simulation/templates/units/gaul/champion_infantry.xml:6
+#: simulation/templates/units/gaul/champion_infantry_swordsman.xml:5
 msgid "Soliduros"
 msgstr "Soliduros"
+
+#: simulation/templates/units/gaul/champion_infantry_trumpeter.xml:8
+msgid "Carnucos"
+msgstr ""
 
 #: simulation/templates/units/gaul/hero_brennus.xml:8
 msgid "Brennus"
@@ -1583,7 +1596,7 @@ msgstr "Lantzari"
 msgid "Leial Zalduneria"
 msgstr "Leial Zalduneria"
 
-#: simulation/templates/units/iber/champion_infantry.xml:10
+#: simulation/templates/units/iber/champion_infantry_swordsman.xml:10
 msgid "Leial Ezpatari"
 msgstr "Leial Ezpatari"
 
@@ -1709,14 +1722,6 @@ msgstr "Meriota harci elefánt"
 msgid "Abore ʿhȝ"
 msgstr "Abore ʿhȝ"
 
-#: simulation/templates/units/kush/champion_infantry.xml:6
-msgid "Noble Archer"
-msgstr "Nemes íjász"
-
-#: simulation/templates/units/kush/champion_infantry.xml:7
-msgid "Hry pdty"
-msgstr "Hry pdty"
-
 #: simulation/templates/units/kush/champion_infantry_amun.xml:12
 msgid "Napatan Temple Guard"
 msgstr "Napatai templomőr"
@@ -1732,6 +1737,14 @@ msgstr "Meriota templomőr"
 #: simulation/templates/units/kush/champion_infantry_apedemak.xml:7
 msgid "rs ʿIprmk"
 msgstr "rs ʿIprmk"
+
+#: simulation/templates/units/kush/champion_infantry_archer.xml:6
+msgid "Noble Archer"
+msgstr "Nemes íjász"
+
+#: simulation/templates/units/kush/champion_infantry_archer.xml:7
+msgid "Hry pdty"
+msgstr "Hry pdty"
 
 #: simulation/templates/units/kush/hero_amanirenas.xml:14
 #: simulation/templates/units/kush/hero_amanirenas_infantry.xml:9
@@ -1899,14 +1912,6 @@ msgstr "Kísérő lovas"
 msgid "Hetaîros"
 msgstr "Hetaîros"
 
-#: simulation/templates/units/mace/champion_infantry_a.xml:6
-msgid "Macedonian Shield Bearer"
-msgstr "Makedón pajzshordozó"
-
-#: simulation/templates/units/mace/champion_infantry_a.xml:7
-msgid "Hypaspistḗs"
-msgstr "Hypaspistḗs"
-
 #: simulation/templates/units/mace/champion_infantry_crossbowman.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Crossbow"
@@ -1924,7 +1929,15 @@ msgstr "Bajnok íjpuskás"
 msgid "Gastraphetophoros"
 msgstr "Gastraphetophoros"
 
-#: simulation/templates/units/mace/champion_infantry_e.xml:15
+#: simulation/templates/units/mace/champion_infantry_spearman.xml:6
+msgid "Macedonian Shield Bearer"
+msgstr "Makedón pajzshordozó"
+
+#: simulation/templates/units/mace/champion_infantry_spearman.xml:7
+msgid "Hypaspistḗs"
+msgstr "Hypaspistḗs"
+
+#: simulation/templates/units/mace/champion_infantry_spearman_02.xml:15
 msgid "Hypaspistḗs Argyraspídi"
 msgstr "Hypaspistḗs Argyraspídi"
 
@@ -2628,7 +2641,7 @@ msgstr "Octḗrēs"
 msgid "Pentḗrēs"
 msgstr "Pentḗrēs"
 
-#: simulation/templates/units/ptol/siege_polybolos_packed.xml:15
+#: simulation/templates/units/ptol/siege_polybolos_packed.xml:23
 msgid "Polybolos"
 msgstr "Polybolos"
 
@@ -2668,14 +2681,6 @@ msgstr "Eques Cōnsulāris"
 msgid "Consular Bodyguard"
 msgstr "Konzuli testőr"
 
-#: simulation/templates/units/rome/champion_infantry.xml:12
-msgid "Italic Heavy Infantry"
-msgstr "Itáliai nehézgyalogos"
-
-#: simulation/templates/units/rome/champion_infantry.xml:13
-msgid "Extrāōrdinārius"
-msgstr "Extrāōrdinārius"
-
 #: simulation/templates/units/rome/champion_infantry_spear_gladiator.xml:17
 #: simulation/templates/units/rome/champion_infantry_sword_gladiator.xml:17
 msgid "Gladiator"
@@ -2696,6 +2701,14 @@ msgstr "Gladiátor kardforgató"
 #: simulation/templates/units/rome/champion_infantry_sword_gladiator.xml:21
 msgid "Murmillo"
 msgstr "Murmillo"
+
+#: simulation/templates/units/rome/champion_infantry_swordsman.xml:12
+msgid "Italic Heavy Infantry"
+msgstr "Itáliai nehézgyalogos"
+
+#: simulation/templates/units/rome/champion_infantry_swordsman.xml:13
+msgid "Extrāōrdinārius"
+msgstr "Extrāōrdinārius"
 
 #: simulation/templates/units/rome/champion_infantry_swordsman_02.xml:4
 #: simulation/templates/units/rome/champion_infantry_swordsman_03.xml:11
@@ -3021,11 +3034,11 @@ msgstr "Spártai hoplita"
 msgid "Spartiátēs"
 msgstr "Spartiátēs"
 
-#: simulation/templates/units/spart/champion_infantry_sword.xml:19
+#: simulation/templates/units/spart/champion_infantry_swordsman.xml:19
 msgid "Skiritai Commando"
 msgstr "Szkiritész elit könnyűgyalogos"
 
-#: simulation/templates/units/spart/champion_infantry_sword.xml:20
+#: simulation/templates/units/spart/champion_infantry_swordsman.xml:20
 msgid "Ékdromos Skirítēs"
 msgstr "Ékdromos Skirítēs"
 

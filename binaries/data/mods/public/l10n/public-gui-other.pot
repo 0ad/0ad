@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2021-01-18 08:15+0000\n"
-"PO-Revision-Date: 2021-01-18 08:15+0000\n"
+"POT-Creation-Date: 2021-01-20 00:57+0000\n"
+"PO-Revision-Date: 2021-01-20 00:57+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -1442,11 +1442,11 @@ msgstr ""
 msgid "Warning"
 msgstr ""
 
-#: gui/loadgame/SavegamePage.js:42
+#: gui/loadgame/SavegamePage.js:45
 msgid "Save Game"
 msgstr ""
 
-#: gui/loadgame/SavegamePage.js:42 gui/pregame/MainMenuItems.js:73
+#: gui/loadgame/SavegamePage.js:45 gui/pregame/MainMenuItems.js:73
 msgid "Load Game"
 msgstr ""
 
@@ -2309,6 +2309,30 @@ msgstr ""
 
 #: gui/options/options.json:[5].options[1].tooltip
 msgid "Number of units trained per batch by default."
+msgstr ""
+
+#: gui/options/options.json:[5].options[20].label
+msgid "Formation control"
+msgstr ""
+
+#: gui/options/options.json:[5].options[20].list[0].label
+msgid "Walk/Patrol Only"
+msgstr ""
+
+#: gui/options/options.json:[5].options[20].list[0].tooltip
+msgid "Other orders will disband existing formations."
+msgstr ""
+
+#: gui/options/options.json:[5].options[20].list[1].label
+msgid "No Override"
+msgstr ""
+
+#: gui/options/options.json:[5].options[20].list[1].tooltip
+msgid "Units in formations stay in formations."
+msgstr ""
+
+#: gui/options/options.json:[5].options[20].tooltip
+msgid "Decide whether formations are enabled for all orders or only 'Walk' and 'Patrol'."
 msgstr ""
 
 #: gui/options/options.json:[5].options[2].label

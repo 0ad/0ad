@@ -26,8 +26,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-15 08:53+0000\n"
-"PO-Revision-Date: 2021-01-15 09:34+0000\n"
+"POT-Creation-Date: 2021-01-18 08:15+0000\n"
+"PO-Revision-Date: 2021-01-18 09:36+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -108,6 +108,7 @@ msgstr "Cavalleria da Mischia"
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:29
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:29
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:21
+#: simulation/templates/template_unit_champion_infantry_trumpeter.xml:27
 #: simulation/templates/template_unit_dog.xml:35
 #: simulation/templates/template_unit_hero_cavalry_axeman.xml:18
 #: simulation/templates/template_unit_hero_cavalry_maceman.xml:18
@@ -144,8 +145,8 @@ msgstr "Cavaliere con ascia"
 #: simulation/templates/template_unit_champion_infantry_axeman.xml:21
 #: simulation/templates/template_unit_hero_cavalry_axeman.xml:18
 #: simulation/templates/template_unit_hero_infantry_axeman.xml:18
-#: simulation/templates/template_unit_infantry_melee_axeman.xml:20
-#: simulation/templates/template_unit_infantry_melee_axeman.xml:21
+#: simulation/templates/template_unit_infantry_melee_axeman.xml:24
+#: simulation/templates/template_unit_infantry_melee_axeman.xml:25
 msgid "Axeman"
 msgstr "Guerriero con ascia"
 
@@ -188,8 +189,7 @@ msgstr "Lanciere a Cavallo"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:30
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:28
-#: simulation/templates/template_unit_hero_cavalry_spearman.xml:25
-msgid "Counters: 1.5× vs Cavalry."
+msgid "Counters: 1.75× vs Cavalry."
 msgstr ""
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:31
@@ -197,14 +197,15 @@ msgstr ""
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:29
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:26
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:26
-#: simulation/templates/template_unit_infantry_melee_spearman.xml:26
-#: simulation/templates/template_unit_infantry_melee_spearman.xml:28
+#: simulation/templates/template_unit_infantry_melee_spearman.xml:29
+#: simulation/templates/template_unit_infantry_melee_spearman.xml:31
 msgid "Spearman"
 msgstr "Lanciere"
 
 #: simulation/templates/template_unit_cavalry_melee_swordsman.xml:5
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:5
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:5
+#: simulation/templates/template_unit_champion_infantry_trumpeter.xml:5
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:5
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:5
 #: simulation/templates/template_unit_infantry_melee_swordsman.xml:5
@@ -221,8 +222,8 @@ msgstr "Cavaliere con Spada"
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:21
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:24
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:24
-#: simulation/templates/template_unit_infantry_melee_swordsman.xml:21
-#: simulation/templates/template_unit_infantry_melee_swordsman.xml:22
+#: simulation/templates/template_unit_infantry_melee_swordsman.xml:24
+#: simulation/templates/template_unit_infantry_melee_swordsman.xml:25
 msgid "Swordsman"
 msgstr "Spadaccino"
 
@@ -403,7 +404,7 @@ msgstr "Picchiere Campione"
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:25
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:30
-#: simulation/templates/template_unit_infantry_melee_spearman.xml:27
+#: simulation/templates/template_unit_infantry_melee_spearman.xml:30
 msgid "Counters: 3× vs Cavalry."
 msgstr ""
 
@@ -421,6 +422,14 @@ msgstr "Lanciere Campione"
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:22
 msgid "Champion Swordsman"
 msgstr "Spadaccino Campione"
+
+#: simulation/templates/template_unit_champion_infantry_trumpeter.xml:27
+msgid "Trumpeter"
+msgstr ""
+
+#: simulation/templates/template_unit_champion_infantry_trumpeter.xml:28
+msgid "Champion Infantry Trumpeter"
+msgstr ""
 
 #: simulation/templates/template_unit_dog.xml:5
 #: simulation/templates/template_unit_fauna_wild_aggressive_dog.xml:5
@@ -495,6 +504,10 @@ msgstr ""
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:24
 msgid "Hero Cavalry Spearman"
 msgstr "Cavalleria con Lancia Eroe "
+
+#: simulation/templates/template_unit_hero_cavalry_spearman.xml:25
+msgid "Counters: 1.5× vs Cavalry."
+msgstr ""
 
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:25
 msgid "Hero Cavalry Swordsman"
@@ -970,7 +983,7 @@ msgstr "Pródromos"
 #: simulation/templates/units/sele/support_healer_e.xml:4
 #: simulation/templates/units/spart/cavalry_javelineer_e.xml:4
 #: simulation/templates/units/spart/cavalry_spearman_e.xml:4
-#: simulation/templates/units/spart/champion_infantry_sword.xml:21
+#: simulation/templates/units/spart/champion_infantry_swordsman.xml:21
 #: simulation/templates/units/spart/infantry_javelineer_e.xml:4
 #: simulation/templates/units/spart/infantry_spearman_e.xml:4
 #: simulation/templates/units/spart/support_healer_e.xml:4
@@ -981,7 +994,7 @@ msgstr "Elite"
 #: simulation/templates/units/athen/cavalry_swordsman_b.xml:5
 #: simulation/templates/units/cart/cavalry_swordsman_iber_b.xml:5
 #: simulation/templates/units/cart/hero_hamilcar.xml:5
-#: simulation/templates/units/iber/champion_infantry.xml:5
+#: simulation/templates/units/iber/champion_infantry_swordsman.xml:5
 #: simulation/templates/units/iber/infantry_swordsman_b.xml:5
 #: simulation/templates/units/kush/champion_infantry_amun.xml:5
 #: simulation/templates/units/mace/hero_alexander_iii.xml:5
@@ -1227,11 +1240,11 @@ msgstr ""
 msgid "Chariot"
 msgstr "Carro"
 
-#: simulation/templates/units/brit/champion_infantry.xml:5
+#: simulation/templates/units/brit/champion_infantry_swordsman.xml:5
 msgid "Brythonic Champion"
 msgstr ""
 
-#: simulation/templates/units/brit/champion_infantry.xml:6
+#: simulation/templates/units/brit/champion_infantry_swordsman.xml:6
 msgid "Argos"
 msgstr "Argo"
 
@@ -1536,12 +1549,12 @@ msgstr "Fanatico nudo"
 msgid "Bariogaisatos"
 msgstr ""
 
-#: simulation/templates/units/gaul/champion_infantry.xml:5
-msgid "Gallic Champion"
-msgstr "Campione Gallico"
-
-#: simulation/templates/units/gaul/champion_infantry.xml:6
+#: simulation/templates/units/gaul/champion_infantry_swordsman.xml:5
 msgid "Soliduros"
+msgstr ""
+
+#: simulation/templates/units/gaul/champion_infantry_trumpeter.xml:8
+msgid "Carnucos"
 msgstr ""
 
 #: simulation/templates/units/gaul/hero_brennus.xml:8
@@ -1586,7 +1599,7 @@ msgstr "Lantzari"
 msgid "Leial Zalduneria"
 msgstr "Leial Zalduneria"
 
-#: simulation/templates/units/iber/champion_infantry.xml:10
+#: simulation/templates/units/iber/champion_infantry_swordsman.xml:10
 msgid "Leial Ezpatari"
 msgstr "Leial Ezpatari"
 
@@ -1712,14 +1725,6 @@ msgstr "Elefante da Guerra di Meroe"
 msgid "Abore ʿhȝ"
 msgstr ""
 
-#: simulation/templates/units/kush/champion_infantry.xml:6
-msgid "Noble Archer"
-msgstr "Arciere Nobile"
-
-#: simulation/templates/units/kush/champion_infantry.xml:7
-msgid "Hry pdty"
-msgstr "Hry pdty"
-
 #: simulation/templates/units/kush/champion_infantry_amun.xml:12
 msgid "Napatan Temple Guard"
 msgstr "Guardia del Tempio di Napata"
@@ -1735,6 +1740,14 @@ msgstr "Guardia del Tempio di Meroe"
 #: simulation/templates/units/kush/champion_infantry_apedemak.xml:7
 msgid "rs ʿIprmk"
 msgstr ""
+
+#: simulation/templates/units/kush/champion_infantry_archer.xml:6
+msgid "Noble Archer"
+msgstr "Arciere Nobile"
+
+#: simulation/templates/units/kush/champion_infantry_archer.xml:7
+msgid "Hry pdty"
+msgstr "Hry pdty"
 
 #: simulation/templates/units/kush/hero_amanirenas.xml:14
 #: simulation/templates/units/kush/hero_amanirenas_infantry.xml:9
@@ -1902,14 +1915,6 @@ msgstr "Cavalleria degli Etèri"
 msgid "Hetaîros"
 msgstr "Hetaîros"
 
-#: simulation/templates/units/mace/champion_infantry_a.xml:6
-msgid "Macedonian Shield Bearer"
-msgstr "Portatore di Scudo Macedone"
-
-#: simulation/templates/units/mace/champion_infantry_a.xml:7
-msgid "Hypaspistḗs"
-msgstr "Hypaspistḗs"
-
 #: simulation/templates/units/mace/champion_infantry_crossbowman.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Crossbow"
@@ -1927,7 +1932,15 @@ msgstr "Balestriere Campione"
 msgid "Gastraphetophoros"
 msgstr "Gastrafete"
 
-#: simulation/templates/units/mace/champion_infantry_e.xml:15
+#: simulation/templates/units/mace/champion_infantry_spearman.xml:6
+msgid "Macedonian Shield Bearer"
+msgstr "Portatore di Scudo Macedone"
+
+#: simulation/templates/units/mace/champion_infantry_spearman.xml:7
+msgid "Hypaspistḗs"
+msgstr "Hypaspistḗs"
+
+#: simulation/templates/units/mace/champion_infantry_spearman_02.xml:15
 msgid "Hypaspistḗs Argyraspídi"
 msgstr "Hypaspistḗs Argyraspídi"
 
@@ -2631,7 +2644,7 @@ msgstr "Octḗrēs"
 msgid "Pentḗrēs"
 msgstr "Pentḗrēs"
 
-#: simulation/templates/units/ptol/siege_polybolos_packed.xml:15
+#: simulation/templates/units/ptol/siege_polybolos_packed.xml:23
 msgid "Polybolos"
 msgstr "Polybolos"
 
@@ -2671,14 +2684,6 @@ msgstr "Eques Cōnsulāris"
 msgid "Consular Bodyguard"
 msgstr "Guardia Consolare"
 
-#: simulation/templates/units/rome/champion_infantry.xml:12
-msgid "Italic Heavy Infantry"
-msgstr "Fanteria Pesante Italica"
-
-#: simulation/templates/units/rome/champion_infantry.xml:13
-msgid "Extrāōrdinārius"
-msgstr "Extrāōrdinārius"
-
 #: simulation/templates/units/rome/champion_infantry_spear_gladiator.xml:17
 #: simulation/templates/units/rome/champion_infantry_sword_gladiator.xml:17
 msgid "Gladiator"
@@ -2699,6 +2704,14 @@ msgstr "Gladiatore spadaccino"
 #: simulation/templates/units/rome/champion_infantry_sword_gladiator.xml:21
 msgid "Murmillo"
 msgstr "Mirmillone"
+
+#: simulation/templates/units/rome/champion_infantry_swordsman.xml:12
+msgid "Italic Heavy Infantry"
+msgstr "Fanteria Pesante Italica"
+
+#: simulation/templates/units/rome/champion_infantry_swordsman.xml:13
+msgid "Extrāōrdinārius"
+msgstr "Extrāōrdinārius"
 
 #: simulation/templates/units/rome/champion_infantry_swordsman_02.xml:4
 #: simulation/templates/units/rome/champion_infantry_swordsman_03.xml:11
@@ -3024,11 +3037,11 @@ msgstr "Oplite Spartano"
 msgid "Spartiátēs"
 msgstr "Spartiátēs"
 
-#: simulation/templates/units/spart/champion_infantry_sword.xml:19
+#: simulation/templates/units/spart/champion_infantry_swordsman.xml:19
 msgid "Skiritai Commando"
 msgstr "Commando Skiritai"
 
-#: simulation/templates/units/spart/champion_infantry_sword.xml:20
+#: simulation/templates/units/spart/champion_infantry_swordsman.xml:20
 msgid "Ékdromos Skirítēs"
 msgstr "Assaltatore skiritai"
 

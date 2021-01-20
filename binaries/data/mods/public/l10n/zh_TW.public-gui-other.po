@@ -20,8 +20,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-15 08:53+0000\n"
-"PO-Revision-Date: 2021-01-15 11:37+0000\n"
+"POT-Creation-Date: 2021-01-18 08:15+0000\n"
+"PO-Revision-Date: 2021-01-18 08:36+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -1835,20 +1835,20 @@ msgid "Use actual water depth in rendering calculations."
 msgstr "使用真實水深進行算圖"
 
 #: gui/options/options.json[1].options[18].label
-msgid "Shadows on water"
-msgstr "水中倒影"
-
-#: gui/options/options.json[1].options[18].tooltip
-msgid "Cast shadows on water."
-msgstr "投射水中倒影"
-
-#: gui/options/options.json[1].options[19].label
 msgid "Smooth vision"
 msgstr "柔和視覺"
 
-#: gui/options/options.json[1].options[19].tooltip
+#: gui/options/options.json[1].options[18].tooltip
 msgid "Lift darkness and fog of war smoothly."
 msgstr ""
+
+#: gui/options/options.json[1].options[19].label
+msgid "VSync"
+msgstr "垂直同步"
+
+#: gui/options/options.json[1].options[19].tooltip
+msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
+msgstr "使用垂直同步以修復螢幕撕裂。需要重新啟動遊戲"
 
 #: gui/options/options.json[1].options[1].label
 msgid "Prefer GLSL"
@@ -1859,36 +1859,20 @@ msgid "Use OpenGL 2.0 shaders (recommended)."
 msgstr "使用 OpenGL 2.0 著色器（推薦）"
 
 #: gui/options/options.json[1].options[20].label
-msgid "Show sky"
-msgstr "顯示天空"
-
-#: gui/options/options.json[1].options[20].tooltip
-msgid "Render Sky."
-msgstr "算繪天空"
-
-#: gui/options/options.json[1].options[21].label
-msgid "VSync"
-msgstr "垂直同步"
-
-#: gui/options/options.json[1].options[21].tooltip
-msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
-msgstr "使用垂直同步以修復螢幕撕裂。需要重新啟動遊戲"
-
-#: gui/options/options.json[1].options[22].label
 msgid "FPS throttling in menus"
 msgstr "在選單中限制 FPS"
 
-#: gui/options/options.json[1].options[22].tooltip
+#: gui/options/options.json[1].options[20].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in all menus. Set to maximum"
 " to disable throttling."
 msgstr "為了降低 CPU 負載，在所有選單中限制算繪頻率。設定為最大值以停用限制。"
 
-#: gui/options/options.json[1].options[23].label
+#: gui/options/options.json[1].options[21].label
 msgid "FPS throttling in games"
 msgstr "在遊戲中限制 FPS"
 
-#: gui/options/options.json[1].options[23].tooltip
+#: gui/options/options.json[1].options[21].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."

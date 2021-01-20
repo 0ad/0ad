@@ -25,8 +25,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-15 08:53+0000\n"
-"PO-Revision-Date: 2021-01-15 11:37+0000\n"
+"POT-Creation-Date: 2021-01-18 08:15+0000\n"
+"PO-Revision-Date: 2021-01-18 08:36+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -1854,20 +1854,20 @@ msgid "Use actual water depth in rendering calculations."
 msgstr "Tényleges vízmélység használata renderelési számításoknál."
 
 #: gui/options/options.json[1].options[18].label
-msgid "Shadows on water"
-msgstr "Árnyékok a vízen"
-
-#: gui/options/options.json[1].options[18].tooltip
-msgid "Cast shadows on water."
-msgstr "Árnyékok vetése a vízre."
-
-#: gui/options/options.json[1].options[19].label
 msgid "Smooth vision"
 msgstr "Finom látás"
 
-#: gui/options/options.json[1].options[19].tooltip
+#: gui/options/options.json[1].options[18].tooltip
 msgid "Lift darkness and fog of war smoothly."
 msgstr " A sötétség és a háború ködének finom feltárása."
+
+#: gui/options/options.json[1].options[19].label
+msgid "VSync"
+msgstr "Függőleges szinkron"
+
+#: gui/options/options.json[1].options[19].tooltip
+msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
+msgstr "Függőleges szinkronizáció futtatása a képtörés javítására. A JÁTÉK ÚJRAINDÍTÁSÁT IGÉNYLI"
 
 #: gui/options/options.json[1].options[1].label
 msgid "Prefer GLSL"
@@ -1878,36 +1878,20 @@ msgid "Use OpenGL 2.0 shaders (recommended)."
 msgstr "OpenGL 2.0 árnyalók használata (ajánlott)."
 
 #: gui/options/options.json[1].options[20].label
-msgid "Show sky"
-msgstr "Ég megjelenítése"
-
-#: gui/options/options.json[1].options[20].tooltip
-msgid "Render Sky."
-msgstr "Ég megjelenítése."
-
-#: gui/options/options.json[1].options[21].label
-msgid "VSync"
-msgstr "Függőleges szinkron"
-
-#: gui/options/options.json[1].options[21].tooltip
-msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
-msgstr "Függőleges szinkronizáció futtatása a képtörés javítására. A JÁTÉK ÚJRAINDÍTÁSÁT IGÉNYLI"
-
-#: gui/options/options.json[1].options[22].label
 msgid "FPS throttling in menus"
 msgstr "FPS korlátozás a menükben"
 
-#: gui/options/options.json[1].options[22].tooltip
+#: gui/options/options.json[1].options[20].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in all menus. Set to maximum"
 " to disable throttling."
 msgstr "A CPU terhelés csökkentése érdekében, a renderelés gyakoriságának korlátozása a menükben. Állítsd maximumra a kikapcsoláshoz."
 
-#: gui/options/options.json[1].options[23].label
+#: gui/options/options.json[1].options[21].label
 msgid "FPS throttling in games"
 msgstr "FPS korlátozás a játékokban"
 
-#: gui/options/options.json[1].options[23].tooltip
+#: gui/options/options.json[1].options[21].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."

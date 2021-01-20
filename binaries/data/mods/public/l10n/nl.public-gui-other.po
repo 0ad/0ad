@@ -37,9 +37,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-15 08:53+0000\n"
-"PO-Revision-Date: 2021-01-16 11:56+0000\n"
-"Last-Translator: Bart <b.anthonisse@gmail.com>\n"
+"POT-Creation-Date: 2021-01-18 08:15+0000\n"
+"PO-Revision-Date: 2021-01-18 08:36+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1866,20 +1866,20 @@ msgid "Use actual water depth in rendering calculations."
 msgstr "Gebruik de echte diepte van het water bij de weergaveberekeningen."
 
 #: gui/options/options.json[1].options[18].label
-msgid "Shadows on water"
-msgstr "Schaduwen op het water"
-
-#: gui/options/options.json[1].options[18].tooltip
-msgid "Cast shadows on water."
-msgstr "Toon schaduwen op het water."
-
-#: gui/options/options.json[1].options[19].label
 msgid "Smooth vision"
 msgstr "Zachte randen"
 
-#: gui/options/options.json[1].options[19].tooltip
+#: gui/options/options.json[1].options[18].tooltip
 msgid "Lift darkness and fog of war smoothly."
 msgstr "Maak de overgang van donkere stukken naar lichtere stukken zachter."
+
+#: gui/options/options.json[1].options[19].label
+msgid "VSync"
+msgstr "VSync"
+
+#: gui/options/options.json[1].options[19].tooltip
+msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
+msgstr "Gebruik verticale synchronisatie om een scherm dat \"scheurt\" te voorkomen. HET SPEL MOET HERSTART WORDEN"
 
 #: gui/options/options.json[1].options[1].label
 msgid "Prefer GLSL"
@@ -1890,36 +1890,20 @@ msgid "Use OpenGL 2.0 shaders (recommended)."
 msgstr "Gebruik OpenGL 2.0 shaders (aangeraden)"
 
 #: gui/options/options.json[1].options[20].label
-msgid "Show sky"
-msgstr "Toon lucht"
-
-#: gui/options/options.json[1].options[20].tooltip
-msgid "Render Sky."
-msgstr "Toon de lucht."
-
-#: gui/options/options.json[1].options[21].label
-msgid "VSync"
-msgstr "VSync"
-
-#: gui/options/options.json[1].options[21].tooltip
-msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
-msgstr "Gebruik verticale synchronisatie om een scherm dat \"scheurt\" te voorkomen. HET SPEL MOET HERSTART WORDEN"
-
-#: gui/options/options.json[1].options[22].label
 msgid "FPS throttling in menus"
 msgstr "Limiteer beelden per seconde (FPS) in het menu."
 
-#: gui/options/options.json[1].options[22].tooltip
+#: gui/options/options.json[1].options[20].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in all menus. Set to maximum"
 " to disable throttling."
 msgstr "Beperk de renderfrequentie in alle menus voor een lager processorgebruik. Stel in op maximaal om beperking uit te schakelen."
 
-#: gui/options/options.json[1].options[23].label
+#: gui/options/options.json[1].options[21].label
 msgid "FPS throttling in games"
 msgstr "Limiteer beelden per seconde (FPS) tijdens het spelen"
 
-#: gui/options/options.json[1].options[23].tooltip
+#: gui/options/options.json[1].options[21].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."

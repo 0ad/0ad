@@ -18,9 +18,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-15 08:53+0000\n"
-"PO-Revision-Date: 2021-01-15 11:37+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-01-18 08:15+0000\n"
+"PO-Revision-Date: 2021-01-18 16:16+0000\n"
+"Last-Translator: Nescio\n"
 "Language-Team: English (United Kingdom) (http://www.transifex.com/wildfire-games/0ad/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1847,20 +1847,20 @@ msgid "Use actual water depth in rendering calculations."
 msgstr "Use actual water depth in rendering calculations."
 
 #: gui/options/options.json[1].options[18].label
-msgid "Shadows on water"
-msgstr "Shadows on water"
-
-#: gui/options/options.json[1].options[18].tooltip
-msgid "Cast shadows on water."
-msgstr "Cast shadows on water."
-
-#: gui/options/options.json[1].options[19].label
 msgid "Smooth vision"
 msgstr "Smooth vision"
 
-#: gui/options/options.json[1].options[19].tooltip
+#: gui/options/options.json[1].options[18].tooltip
 msgid "Lift darkness and fog of war smoothly."
 msgstr "Lift darkness and fog of war smoothly."
+
+#: gui/options/options.json[1].options[19].label
+msgid "VSync"
+msgstr "VSync"
+
+#: gui/options/options.json[1].options[19].tooltip
+msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
+msgstr "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
 
 #: gui/options/options.json[1].options[1].label
 msgid "Prefer GLSL"
@@ -1871,36 +1871,20 @@ msgid "Use OpenGL 2.0 shaders (recommended)."
 msgstr "Use OpenGL 2.0 shaders (recommended)."
 
 #: gui/options/options.json[1].options[20].label
-msgid "Show sky"
-msgstr "Show sky"
-
-#: gui/options/options.json[1].options[20].tooltip
-msgid "Render Sky."
-msgstr "Render Sky."
-
-#: gui/options/options.json[1].options[21].label
-msgid "VSync"
-msgstr "VSync"
-
-#: gui/options/options.json[1].options[21].tooltip
-msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
-msgstr "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
-
-#: gui/options/options.json[1].options[22].label
 msgid "FPS throttling in menus"
 msgstr "FPS throttling in menus"
 
-#: gui/options/options.json[1].options[22].tooltip
+#: gui/options/options.json[1].options[20].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in all menus. Set to maximum"
 " to disable throttling."
 msgstr "To save CPU workload, throttle render frequency in all menus. Set to maximum to disable throttling."
 
-#: gui/options/options.json[1].options[23].label
+#: gui/options/options.json[1].options[21].label
 msgid "FPS throttling in games"
 msgstr "FPS throttling in games"
 
-#: gui/options/options.json[1].options[23].tooltip
+#: gui/options/options.json[1].options[21].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."
@@ -2950,14 +2934,14 @@ msgstr[1] "Heroes"
 #: gui/reference/civinfo/Sections/Subsections/StructuresSubsection.js:29
 msgid "Specific Structure"
 msgid_plural "Specific Structures"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Specific Structure"
+msgstr[1] "Specific Structures"
 
 #: gui/reference/civinfo/Sections/Subsections/TechnologiesSubsection.js:28
 msgid "Specific Technology"
 msgid_plural "Specific Technologies"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Specific Technology"
+msgstr[1] "Specific Technologies"
 
 #: gui/reference/common/Buttons/CivInfoButton.js:27
 #, javascript-format
@@ -3914,25 +3898,25 @@ msgstr "The higher the level of a citizen soldier (advanced, elite), the better 
 
 #: gui/text/tips/heroes.txt:1
 msgid "HEROES"
-msgstr ""
+msgstr "HEROES"
 
 #: gui/text/tips/heroes.txt:2
 msgid ""
 "Historical characters, such as Xerxes, Leonidas, Pericles, Hannibal, Scipio,"
 " and Boudicca."
-msgstr ""
+msgstr "Historical characters, such as Xerxes, Leonidas, Pericles, Hannibal, Scipio, and Boudicca."
 
 #: gui/text/tips/heroes.txt:3
 msgid "A lot of health and very strong attacks."
-msgstr ""
+msgstr "A lot of health and very strong attacks."
 
 #: gui/text/tips/heroes.txt:4
 msgid "Have auras which alter the stats of other units or structures."
-msgstr ""
+msgstr "Have auras which alter the stats of other units or structures."
 
 #: gui/text/tips/heroes.txt:5
 msgid "Caution: Each hero can be recruited only once per match!"
-msgstr ""
+msgstr "Caution: Each hero can be recruited only once per match!"
 
 #: gui/text/tips/iphicrates.txt:1
 msgid "IPHICRATES"
@@ -4095,23 +4079,23 @@ msgstr "Has a ranged attack that increases for each garrisoned unit."
 
 #: gui/text/tips/snapping.txt:1
 msgid "SNAPPING"
-msgstr ""
+msgstr "SNAPPING"
 
 #: gui/text/tips/snapping.txt:2
 msgid ""
 "Structures can be aligned by keeping the snap hotkey pressed during "
 "placement."
-msgstr ""
+msgstr "Structures can be aligned by keeping the snap hot key pressed during placement."
 
 #: gui/text/tips/snapping.txt:3
 msgid "Aligning structures allows to conserve space for future construction."
-msgstr ""
+msgstr "Aligning Structures allows to conserve space for future construction."
 
 #: gui/text/tips/snapping.txt:4
 msgid ""
 "Tightly packed groups of structures can also be used for obstructing raiding"
 " enemies."
-msgstr ""
+msgstr "Tightly packed groups of Structures can also be used for obstructing raiding enemies."
 
 #: gui/text/tips/spartan_hoplites.txt:1
 msgid "SPARTIATES"

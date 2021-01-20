@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-15 08:53+0000\n"
-"PO-Revision-Date: 2021-01-15 11:37+0000\n"
+"POT-Creation-Date: 2021-01-18 08:15+0000\n"
+"PO-Revision-Date: 2021-01-18 08:36+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -1845,20 +1845,20 @@ msgid "Use actual water depth in rendering calculations."
 msgstr "Използване на истинската дълбочина на водата по време на изчисленията за изчертаването."
 
 #: gui/options/options.json[1].options[18].label
-msgid "Shadows on water"
-msgstr ""
-
-#: gui/options/options.json[1].options[18].tooltip
-msgid "Cast shadows on water."
-msgstr "Хвърляне на сенки върху водата."
-
-#: gui/options/options.json[1].options[19].label
 msgid "Smooth vision"
 msgstr ""
 
-#: gui/options/options.json[1].options[19].tooltip
+#: gui/options/options.json[1].options[18].tooltip
 msgid "Lift darkness and fog of war smoothly."
 msgstr ""
+
+#: gui/options/options.json[1].options[19].label
+msgid "VSync"
+msgstr "Вертикална синхронизация"
+
+#: gui/options/options.json[1].options[19].tooltip
+msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
+msgstr "Вертикалната синхронизация предотвратява разкъсването на картината. ИЗИСКВА РЕСТАРТИРАНЕ НА ИГРАТА"
 
 #: gui/options/options.json[1].options[1].label
 msgid "Prefer GLSL"
@@ -1869,36 +1869,20 @@ msgid "Use OpenGL 2.0 shaders (recommended)."
 msgstr "Използване на шейдъри за OpenGL 2.0 (препоръчително)."
 
 #: gui/options/options.json[1].options[20].label
-msgid "Show sky"
-msgstr ""
-
-#: gui/options/options.json[1].options[20].tooltip
-msgid "Render Sky."
-msgstr "Изчертаване на небето."
-
-#: gui/options/options.json[1].options[21].label
-msgid "VSync"
-msgstr "Вертикална синхронизация"
-
-#: gui/options/options.json[1].options[21].tooltip
-msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
-msgstr "Вертикалната синхронизация предотвратява разкъсването на картината. ИЗИСКВА РЕСТАРТИРАНЕ НА ИГРАТА"
-
-#: gui/options/options.json[1].options[22].label
 msgid "FPS throttling in menus"
 msgstr "Ограничаване на кадрите/сек в менютата"
 
-#: gui/options/options.json[1].options[22].tooltip
+#: gui/options/options.json[1].options[20].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in all menus. Set to maximum"
 " to disable throttling."
 msgstr "Намаляване на натоварването на процесора чрез ограничаване на честотата на изчертаване, когато сте из менютата на играта. Задайте на максимум, за да изключите ограничението."
 
-#: gui/options/options.json[1].options[23].label
+#: gui/options/options.json[1].options[21].label
 msgid "FPS throttling in games"
 msgstr "Ограничаване на кадрите/сек в игра"
 
-#: gui/options/options.json[1].options[23].tooltip
+#: gui/options/options.json[1].options[21].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."
