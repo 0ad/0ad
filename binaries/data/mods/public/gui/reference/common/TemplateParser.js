@@ -220,7 +220,7 @@ class TemplateParser
 		{
 			upgrade.entity = upgrade.entity.replace(/\{(civ|native)\}/g, civCode);
 
-			let data = GetTemplateDataHelper(this.TemplateLoader.loadEntityTemplate(upgrade.entity, civCode), null, this.TemplateLoader.auraData);
+			let data = GetTemplateDataHelper(this.TemplateLoader.loadEntityTemplate(upgrade.entity, civCode), null, this.TemplateLoader.auraData, this.modifiers[civCode] || {});
 			data.name.internal = upgrade.entity;
 			data.cost = upgrade.cost;
 			data.icon = upgrade.icon || data.icon;
