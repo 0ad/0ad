@@ -40,6 +40,10 @@ var g_SummaryTypes = {
 		"caption": translate("Gathered"),
 		"postfix": " / "
 	},
+	"count": {
+		"caption": translate("Count"),
+		"hideInSummary": true
+	},
 	"sent": {
 		"color": g_TypeColors.green,
 		"caption": translate("Sent"),
@@ -88,6 +92,11 @@ var g_SummaryTypes = {
 	"received": {
 		"color": g_TypeColors.red,
 		"caption": translate("Received"),
+		"postfix": ""
+	},
+	"population": {
+		"color": g_TypeColors.red,
+		"caption": translate("Population"),
 		"postfix": ""
 	},
 	"sold": {

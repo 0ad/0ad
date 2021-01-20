@@ -131,6 +131,7 @@ StatisticsTracker.prototype.GetStatistics = function()
 		"enemyBuildingsDestroyedValue": this.enemyBuildingsDestroyedValue,
 		"buildingsCaptured": this.buildingsCaptured,
 		"buildingsCapturedValue": this.buildingsCapturedValue,
+		"resourcesCount": this.GetResourceCounts(),
 		"resourcesGathered": this.resourcesGathered,
 		"resourcesUsed": this.resourcesUsed,
 		"resourcesSold": this.resourcesSold,
@@ -140,6 +141,7 @@ StatisticsTracker.prototype.GetStatistics = function()
 		"tradeIncome": this.tradeIncome,
 		"treasuresCollected": this.treasuresCollected,
 		"lootCollected": this.lootCollected,
+		"populationCount": this.GetPopulationCount(),
 		"percentMapExplored": this.GetPercentMapExplored(),
 		"teamPercentMapExplored": this.GetTeamPercentMapExplored(),
 		"percentMapControlled": this.GetPercentMapControlled(),
@@ -346,6 +348,17 @@ StatisticsTracker.prototype.CapturedEntity = function(capturedEntity)
 };
 
 /**
+ * @return {Object} - The amount of available resources.
+ */
+StatisticsTracker.prototype.GetResourceCounts = function()
+{
+	let cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
+	return cmpPlayer ?
+		cmpPlayer.GetResourceCounts() :
+		Object.fromEntries(Resources.GetCodes().map(res => [res, 0]));
+};
+
+/**
  * @param {string} type - generic type of resource.
  * @param {number} amount - amount of resource, whick should be added.
  * @param {string} specificType - specific type of resource.
@@ -401,6 +414,12 @@ StatisticsTracker.prototype.IncreaseTributesReceivedCounter = function(amount)
 StatisticsTracker.prototype.IncreaseTradeIncomeCounter = function(amount)
 {
 	this.tradeIncome += amount;
+};
+
+StatisticsTracker.prototype.GetPopulationCount = function()
+{
+	let cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
+	return cmpPlayer ? cmpPlayer.GetPopulationCount() : 0;
 };
 
 StatisticsTracker.prototype.IncreaseSuccessfulBribesCounter = function()
