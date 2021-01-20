@@ -1,0 +1,20 @@
+{
+	"genericName": "Iron Arrowheads",
+	"description": "Projectile points made of iron enable missiles to penetrate deeper.",
+	"cost": {
+		"wood": 600,
+		"metal": 400
+	},
+	"requirements": { "tech": "phase_town" },
+	"requirementsTooltip": "Unlocked in Town Phase.",
+	"icon": "arrow.png",
+	"researchTime": 40,
+	"tooltip": "Soldiers +15% ranged attack damage.",
+	"modifications": [
+		{ "value": "Attack/Ranged/Damage/Hack", "multiply": 1.15 },
+		{ "value": "Attack/Ranged/Damage/Pierce", "multiply": 1.15 },
+		{ "value": "Attack/Ranged/Damage/Crush", "multiply": 1.15 }
+	],
+	"affects": ["Soldier"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}
