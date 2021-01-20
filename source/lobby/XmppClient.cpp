@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -28,6 +28,7 @@
 #include "lib/external_libraries/enet.h"
 #include "lib/utf8.h"
 #include "network/NetServer.h"
+#include "network/NetClient.h"
 #include "network/StunClient.h"
 #include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
@@ -94,7 +95,9 @@ XmppClient::XmppClient(const ScriptInterface* scriptInterface, const std::string
 	  m_isConnected(false),
 	  m_sessionManager(nullptr),
 	  m_certStatus(gloox::CertStatus::CertOk),
-	  m_PlayerMapUpdate(false)
+	  m_PlayerMapUpdate(false),
+	  m_connectionDataJid(),
+	  m_connectionDataIqId()
 {
 	if (m_ScriptInterface)
 		JS_AddExtraGCRootsTracer(m_ScriptInterface->GetGeneralJSContext(), XmppClient::Trace, this);
@@ -147,6 +150,9 @@ XmppClient::XmppClient(const ScriptInterface* scriptInterface, const std::string
 
 	m_client->registerStanzaExtension(new LobbyAuth());
 	m_client->registerIqHandler(this, EXTLOBBYAUTH);
+
+	m_client->registerStanzaExtension(new ConnectionData());
+	m_client->registerIqHandler(this, EXTCONNECTIONDATA);
 
 	m_client->registerMessageHandler(this);
 
@@ -362,6 +368,23 @@ void XmppClient::SendIqGetProfile(const std::string& player)
 }
 
 /**
+ * Request the Connection data (ip, port...) from the server.
+ */
+void XmppClient::SendIqGetConnectionData(const std::string& jid, const std::string& password)
+{
+	glooxwrapper::JID targetJID(jid);
+
+	ConnectionData* connectionData = new ConnectionData();
+	connectionData->m_Password = password;
+	glooxwrapper::IQ iq(gloox::IQ::Get, targetJID, m_client->getID());
+	iq.addExtension(connectionData);
+	m_connectionDataJid = jid;
+	m_connectionDataIqId = iq.id().to_string();
+	DbgXMPP("SendIqGetConnectionData [" << tag_xml(iq) << "]");
+	m_client->send(iq);
+}
+
+/**
  * Send game report containing numerous game properties to the server.
  *
  * @param data A JS array of game statistics
@@ -573,7 +596,7 @@ void XmppClient::GUIGetGameList(const ScriptInterface& scriptInterface, JS::Muta
 	ScriptInterface::CreateArray(rq, ret);
 	int j = 0;
 
-	const char* stats[] = { "name", "ip", "port", "stunIP", "stunPort", "hostUsername", "state",
+	const char* stats[] = { "name", "hostUsername", "state", "hasPassword",
 		"nbp", "maxnbp", "players", "mapName", "niceMapName", "mapSize", "mapType",
 		"victoryConditions", "startTime", "mods" };
 
@@ -811,6 +834,27 @@ bool XmppClient::handleIq(const glooxwrapper::IQ& iq)
 		const GameListQuery* gq = iq.findExtension<GameListQuery>(EXTGAMELISTQUERY);
 		const BoardListQuery* bq = iq.findExtension<BoardListQuery>(EXTBOARDLISTQUERY);
 		const ProfileQuery* pq = iq.findExtension<ProfileQuery>(EXTPROFILEQUERY);
+		const ConnectionData* cd = iq.findExtension<ConnectionData>(EXTCONNECTIONDATA);
+		if (cd)
+		{
+			if (g_NetServer || !g_NetClient)
+				return true;
+
+			if (!m_connectionDataJid.empty() && m_connectionDataJid.compare(iq.from().full()) != 0)
+				return true;
+
+			if (!m_connectionDataIqId.empty() && m_connectionDataIqId.compare(iq.id().to_string()) != 0)
+				return true;
+
+			if (!cd->m_Error.empty())
+			{
+				g_NetClient->HandleGetServerDataFailed(cd->m_Error.c_str());
+				return true;
+			}
+
+			g_NetClient->SetupServerData(cd->m_Ip.to_string(), stoi(cd->m_Port.to_string()), !cd->m_UseSTUN.empty());
+			g_NetClient->TryToConnect(iq.from().full());
+		}
 		if (gq)
 		{
 			for (const glooxwrapper::Tag* const& t : m_GameList)
@@ -876,6 +920,47 @@ bool XmppClient::handleIq(const glooxwrapper::IQ& iq)
 			else
 				LOGERROR("Received lobby authentication request, but not hosting currently!");
 		}
+	}
+	else if (iq.subtype() == gloox::IQ::Get)
+	{
+		const ConnectionData* cd = iq.findExtension<ConnectionData>(EXTCONNECTIONDATA);
+		if (cd)
+		{
+			LOGMESSAGE("XmppClient: Recieved request for connection data from %s", iq.from().username());
+			if (!g_NetServer)
+			{
+				glooxwrapper::IQ response(gloox::IQ::Result, iq.from(), iq.id());
+				ConnectionData* connectionData = new ConnectionData();
+				connectionData->m_Error = "not_server";
+
+				response.addExtension(connectionData);
+
+				m_client->send(response);
+				return true;
+			}
+			if (!g_NetServer->CheckPassword(CStr(cd->m_Password.c_str())))
+			{
+				glooxwrapper::IQ response(gloox::IQ::Result, iq.from(), iq.id());
+				ConnectionData* connectionData = new ConnectionData();
+				connectionData->m_Error = "invalid_password";
+
+				response.addExtension(connectionData);
+
+				m_client->send(response);
+				return true;
+			}
+
+			glooxwrapper::IQ response(gloox::IQ::Result, iq.from(), iq.id());
+			ConnectionData* connectionData = new ConnectionData();
+			connectionData->m_Ip = g_NetServer->GetPublicIp();;
+			connectionData->m_Port = std::to_string(g_NetServer->GetPublicPort());
+			connectionData->m_UseSTUN = g_NetServer->GetUseSTUN() ? "true" : "";
+
+			response.addExtension(connectionData);
+
+			m_client->send(response);
+		}
+
 	}
 	else if (iq.subtype() == gloox::IQ::Error)
 		CreateGUIMessage("system", "error", std::time(nullptr), "text", iq.error_error());

@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -106,11 +106,24 @@ public:
 	CStr GetGUID() const { return m_GUID; }
 
 	/**
+	 * Set connection data to the remote networked server.
+	 * @param address IP address or host name to connect to
+	 */
+	void SetupServerData(CStr address, u16 port, bool stun);
+
+	/**
 	 * Set up a connection to the remote networked server.
-	 * @param server IP address or host name to connect to
+	 * Must call SetupServerData first.
 	 * @return true on success, false on connection failure
 	 */
-	bool SetupConnection(const CStr& server, const u16 port, ENetHost* enetClient);
+	bool SetupConnection(ENetHost* enetClient);
+
+	/**
+	 * Connect to the remote networked server using lobby.
+	 * Push netstatus messages on failure.
+	 * @return true on success, false on connection failure
+	 */
+	bool TryToConnect(const CStr& hostJID);
 
 	/**
 	 * Destroy the connection to the server.
@@ -232,6 +245,11 @@ public:
 	 * @return Whether the NetClient is shutting down.
 	 */
 	bool ShouldShutdown() const;
+
+	/**
+	 * Called when fetching connection data from the host failed, to inform JS code.
+	 */
+	void HandleGetServerDataFailed(const CStr& error);
 private:
 
 	void SendAuthenticateMessage();
@@ -271,6 +289,9 @@ private:
 	CGame *m_Game;
 	CStrW m_UserName;
 	CStr m_HostingPlayerName;
+	CStr m_ServerAddress;
+	u16 m_ServerPort;
+	bool m_UseSTUN;
 
 	/// Current network session (or NULL if not connected)
 	CNetClientSession* m_Session;

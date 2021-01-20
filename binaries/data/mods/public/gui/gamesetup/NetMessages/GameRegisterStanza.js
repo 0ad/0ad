@@ -10,8 +10,7 @@ class GameRegisterStanza
 		this.mapCache = mapCache;
 
 		this.serverName = initData.serverName;
-		this.serverPort = initData.serverPort;
-		this.stunEndpoint = initData.stunEndpoint;
+		this.hasPassword = initData.hasPassword;
 
 		this.mods = JSON.stringify(Engine.GetEngineInfo().mods);
 		this.timer = undefined;
@@ -83,7 +82,6 @@ class GameRegisterStanza
 
 		let stanza = {
 			"name": this.serverName,
-			"port": this.serverPort,
 			"hostUsername": Engine.LobbyGetNick(),
 			"mapName": g_GameAttributes.map,
 			"niceMapName": this.mapCache.getTranslatableMapName(g_GameAttributes.mapType, g_GameAttributes.map),
@@ -93,9 +91,8 @@ class GameRegisterStanza
 			"nbp": clients.connectedPlayers,
 			"maxnbp": g_GameAttributes.settings.PlayerData.length,
 			"players": clients.list,
-			"stunIP": this.stunEndpoint ? this.stunEndpoint.ip : "",
-			"stunPort": this.stunEndpoint ? this.stunEndpoint.port : "",
-			"mods": this.mods
+			"mods": this.mods,
+			"hasPassword": this.hasPassword || ""
 		};
 
 		// Only send the stanza if one of these properties changed

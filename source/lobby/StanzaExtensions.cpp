@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -282,4 +282,72 @@ glooxwrapper::Tag* LobbyAuth::tag() const
 glooxwrapper::StanzaExtension* LobbyAuth::clone() const
 {
 	return new LobbyAuth();
+}
+
+/******************************************************
+ * ConnectionData, a custom IQ Stanza, used to send and
+ * receive a ip and port of the server.
+ */
+ConnectionData::ConnectionData(const glooxwrapper::Tag* tag)
+	: StanzaExtension(EXTCONNECTIONDATA)
+{
+	if (!tag || tag->name() != "connectiondata" || tag->xmlns() != XMLNS_CONNECTIONDATA)
+		return;
+
+	const glooxwrapper::Tag* c = tag->findTag_clone("connectiondata/ip");
+	if (c)
+		m_Ip = c->cdata();
+	const glooxwrapper::Tag* p= tag->findTag_clone("connectiondata/port");
+	if (p)
+		m_Port = p->cdata();
+	const glooxwrapper::Tag* s = tag->findTag_clone("connectiondata/useSTUN");
+	if (s)
+		m_UseSTUN = s->cdata();
+	const glooxwrapper::Tag* pw = tag->findTag_clone("connectiondata/password");
+	if (pw)
+		m_Password = pw->cdata();
+	const glooxwrapper::Tag* e = tag->findTag_clone("connectiondata/error");
+	if (e)
+		m_Error= e->cdata();
+
+	glooxwrapper::Tag::free(c);
+	glooxwrapper::Tag::free(p);
+	glooxwrapper::Tag::free(s);
+	glooxwrapper::Tag::free(pw);
+	glooxwrapper::Tag::free(e);
+}
+
+/**
+ * Required by gloox, used to find the LobbyAuth element in a received IQ.
+ */
+const glooxwrapper::string& ConnectionData::filterString() const
+{
+	static const glooxwrapper::string filter = "/iq/connectiondata[@xmlns='" XMLNS_CONNECTIONDATA "']";
+	return filter;
+}
+
+/**
+ * Required by gloox, used to serialize the auth object into XML for sending.
+ */
+glooxwrapper::Tag* ConnectionData::tag() const
+{
+	glooxwrapper::Tag* t = glooxwrapper::Tag::allocate("connectiondata");
+	t->setXmlns(XMLNS_CONNECTIONDATA);
+
+	if (!m_Ip.empty())
+		t->addChild(glooxwrapper::Tag::allocate("ip", m_Ip));
+	if (!m_Port.empty())
+		t->addChild(glooxwrapper::Tag::allocate("port", m_Port));
+	if (!m_UseSTUN.empty())
+		t->addChild(glooxwrapper::Tag::allocate("useSTUN", m_UseSTUN));
+	if (!m_Password.empty())
+		t->addChild(glooxwrapper::Tag::allocate("password", m_Password));
+	if (!m_Error.empty())
+		t->addChild(glooxwrapper::Tag::allocate("error", m_Error));
+	return t;
+}
+
+glooxwrapper::StanzaExtension* ConnectionData::clone() const
+{
+	return new ConnectionData();
 }

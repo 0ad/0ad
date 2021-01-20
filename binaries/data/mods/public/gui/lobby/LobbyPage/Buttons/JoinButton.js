@@ -67,38 +67,12 @@ class JoinButton
 		if (!game)
 			return;
 
-		let ip;
-		let port;
 		let stanza = game.stanza;
-		if (stanza.stunIP)
-		{
-			ip = stanza.stunIP;
-			port = stanza.stunPort;
-		}
-		else
-		{
-			ip = stanza.ip;
-			port = stanza.port;
-		}
-
-		if (ip.split('.').length != 4)
-		{
-			messageBox(
-				400, 250,
-				sprintf(
-					translate("This game's address '%(ip)s' does not appear to be valid."),
-					{ "ip": escapeText(stanza.ip) }),
-				translate("Error"));
-			return;
-		}
-
 		Engine.PushGuiPage("page_gamesetup_mp.xml", {
 			"multiplayerGameType": "join",
-			"ip": ip,
-			"port": port,
 			"name": g_Nickname,
 			"rating": this.getRejoinRating(stanza),
-			"useSTUN": !!stanza.stunIP,
+			"hasPassword": !!stanza.hasPassword,
 			"hostJID": stanza.hostUsername + "@" + Engine.ConfigDB_GetValue("user", "lobby.server") + "/0ad"
 		});
 	}

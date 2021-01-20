@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -39,6 +39,7 @@ public:
 	virtual void SendIqGetProfile(const std::string& player) = 0;
 	virtual void SendIqGameReport(const ScriptInterface& scriptInterface, JS::HandleValue data) = 0;
 	virtual void SendIqRegisterGame(const ScriptInterface& scriptInterface, JS::HandleValue data) = 0;
+	virtual void SendIqGetConnectionData(const std::string& jid, const std::string& password) = 0;
 	virtual void SendIqUnregisterGame() = 0;
 	virtual void SendIqChangeStateGame(const std::string& nbp, const std::string& players) = 0;
 	virtual void SendIqLobbyAuth(const std::string& to, const std::string& token) = 0;

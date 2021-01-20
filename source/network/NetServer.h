@@ -147,9 +147,25 @@ public:
 
 	void SendHolePunchingMessage(const CStr& ip, u16 port);
 
+	void SetConnectionData(const CStr& ip, u16 port, bool useSTUN);
+
+	bool GetUseSTUN() const;
+
+	CStr GetPublicIp() const;
+
+	u16 GetPublicPort() const;
+
+	bool CheckPassword(const CStr& password) const;
+
+	void SetPassword(const CStr& password);
+
 private:
 	CNetServerWorker* m_Worker;
 	const bool m_LobbyAuth;
+	bool m_UseSTUN;
+	u16 m_PublicPort;
+	CStr m_PublicIp;
+	CStr m_Password;
 };
 
 /**

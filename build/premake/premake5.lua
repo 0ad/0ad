@@ -594,6 +594,7 @@ function setup_all_libs ()
 	extern_libs = {
 		"spidermonkey",
 		"enet",
+		"sdl",
 		"boost",	-- dragged in via server->simulation.h->random and NetSession.h->lockfree
 		"fmt",
 	}
