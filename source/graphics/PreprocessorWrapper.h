@@ -47,7 +47,7 @@ public:
 	// by a file content from the directive's argument. Parsing is strict
 	// and simple. The directive will be expanded in comments and multiline
 	// strings.
-	CStr ResolveIncludes(CStr source);
+	CStr ResolveIncludes(const CStr& source);
 
 	CStr Preprocess(const CStr& input);
 
