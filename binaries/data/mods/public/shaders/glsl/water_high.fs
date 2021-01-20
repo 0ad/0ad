@@ -297,18 +297,15 @@ void main()
 
 #if USE_SHADOW
 	float shadow = get_shadow();
-	float fresShadow = mix(fresnel, fresnel * shadow, 0.05 + 10.0 * murkiness * 0.2);
-	fresShadow = fresnel;
-	vec3 color = mix(refrColor.rgb, reflColor.rgb, fresShadow * reflColor.a);
-	color += shadow * specular;
-	//color = vec3(fresShadow);
-	vec4 foam = getFoam(fancyeffects, shadow);
+	fresnel = mix(fresnel, fresnel * shadow, 0.05 + murkiness * 0.2);
 #else
-	vec3 color = mix(refrColor.rgb, reflColor.rgb, fresnel * reflColor.a);
-	color += specular;
-	vec4 foam = getFoam(fancyeffects, 1.0);
+	float shadow = 1.0;
 #endif
 
+	vec3 color = mix(refrColor.rgb, reflColor.rgb, fresnel * reflColor.a);
+	color += shadow * specular;
+
+	vec4 foam = getFoam(fancyeffects, shadow);
 	color = clamp(mix(color, foam.rgb, foam.a), 0.0, 1.0);
 
 	color = applyFog(color);
