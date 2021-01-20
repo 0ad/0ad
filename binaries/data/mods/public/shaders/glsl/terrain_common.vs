@@ -1,5 +1,6 @@
 #version 120
 
+#include "common/los_vertex.h"
 #include "common/shadows_vertex.h"
 
 uniform mat4 transform;
@@ -12,11 +13,9 @@ uniform vec3 sunDir;
 uniform vec3 sunColor;
 #endif
 uniform vec2 textureTransform;
-uniform vec2 losTransform;
 
 varying vec3 v_lighting;
 
-varying vec2 v_los;
 varying vec2 v_blend;
 
 #if USE_TRIPLANAR
@@ -102,5 +101,5 @@ void main()
     #endif
   #endif
 
-  v_los = a_vertex.xz * losTransform.x + losTransform.yy;
+  calculateLOSCoordinates(a_vertex.xz);
 }

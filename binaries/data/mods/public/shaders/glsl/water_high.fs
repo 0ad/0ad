@@ -1,7 +1,7 @@
 #version 110
 
 #include "common/fog.h"
-
+#include "common/los_fragment.h"
 #include "common/shadows_fragment.h"
 
 // Environment settings
@@ -11,8 +11,6 @@ uniform vec3 sunColor;
 uniform mat4 skyBoxRot;
 
 uniform vec3 cameraPos;
-
-uniform sampler2D losTex;
 
 uniform float waviness;			// "Wildness" of the reflections and refractions; choose based on texture
 uniform vec3 color;				// color of the water
@@ -38,7 +36,6 @@ varying vec3 reflectionCoords;
 #if USE_REFRACTION
 varying vec3 refractionCoords;
 #endif
-varying vec2 losCoords;
 
 varying float fwaviness;
 
@@ -66,20 +63,6 @@ uniform vec4 waveParams2; // Smallintensity, Smallbase, Bigmovement, Smallmoveme
 	uniform mat4 viewInvTransform;
 #endif
 #endif
-
-// TODO: convert this to something not only for AABBs
-struct Ray {
-    vec3 Origin;
-    vec3 Direction;
-};
-
-float IntersectBox (in Ray ray, in vec3 minimum, in vec3 maximum)
-{
-    vec3 OMIN = ( minimum - ray.Origin ) / ray.Direction;
-    vec3 OMAX = ( maximum - ray.Origin ) / ray.Direction;
-    vec3 MAX = max ( OMAX, OMIN );
-    return min ( MAX.x, min ( MAX.y, MAX.z ) );
-}
 
 vec3 getNormal(vec4 fancyeffects)
 {
@@ -314,9 +297,11 @@ void main()
 
 #if USE_SHADOW
 	float shadow = get_shadow();
-	float fresShadow = mix(fresnel, fresnel * shadow, 0.05 + murkiness * 0.2);
+	float fresShadow = mix(fresnel, fresnel * shadow, 0.05 + 10.0 * murkiness * 0.2);
+	fresShadow = fresnel;
 	vec3 color = mix(refrColor.rgb, reflColor.rgb, fresShadow * reflColor.a);
 	color += shadow * specular;
+	//color = vec3(fresShadow);
 	vec4 foam = getFoam(fancyeffects, shadow);
 #else
 	vec3 color = mix(refrColor.rgb, reflColor.rgb, fresnel * reflColor.a);
@@ -328,8 +313,5 @@ void main()
 
 	color = applyFog(color);
 
-	float alpha = refrColor.a;
-	float losMod = texture2D(losTex, losCoords.st).a;
-	losMod = losMod < 0.03 ? 0.0 : losMod;
-	gl_FragColor = vec4(color * losMod, alpha);
+	gl_FragColor = vec4(color * getLOS(), refrColor.a);
 }

@@ -1,5 +1,6 @@
 #version 120
 
+#include "common/los_vertex.h"
 #include "common/shadows_vertex.h"
 
 uniform mat4 transform;
@@ -11,7 +12,6 @@ uniform mediump vec3 sunColor;
 uniform vec3 sunDir;
 uniform vec3 sunColor;
 #endif
-uniform vec2 losTransform;
 uniform mat4 instancingTransform;
 
 #if USE_WIND
@@ -21,7 +21,6 @@ uniform mat4 instancingTransform;
 
 varying vec4 v_lighting;
 varying vec2 v_tex;
-varying vec2 v_los;
 
 #if (USE_INSTANCING || USE_GPU_SKINNING) && USE_AO
   varying vec2 v_tex2;
@@ -61,7 +60,7 @@ attribute vec2 a_uv1;
 vec4 fakeCos(vec4 x)
 {
 	vec4 tri = abs(fract(x + 0.5) * 2.0 - 1.0);
-	return tri * tri *(3.0 - 2.0 * tri);  
+	return tri * tri *(3.0 - 2.0 * tri);
 }
 
 
@@ -122,7 +121,7 @@ void main()
 
     float limit = clamp((a_vertex.x * a_vertex.z * a_vertex.y) / 3000.0, 0.0, 0.2);
 
-    float diff = cosVec.x * limit; 
+    float diff = cosVec.x * limit;
     float diff2 = cosVec.y * clamp(a_vertex.y / 60.0, 0.0, 0.25);
 
     // fluttering of model parts based on distance from model center (ie longer branches)
@@ -148,7 +147,7 @@ void main()
 
     #if USE_SPECULAR || USE_SPECULAR_MAP || USE_PARALLAX
       vec3 eyeVec = cameraPos.xyz - position.xyz;
-      #if USE_SPECULAR || USE_SPECULAR_MAP     
+      #if USE_SPECULAR || USE_SPECULAR_MAP
         vec3 sunVec = -sunDir;
         v_half = normalize(sunVec + normalize(eyeVec));
       #endif
@@ -157,7 +156,7 @@ void main()
       #endif
     #endif
   #endif
-  
+
   v_lighting.xyz = max(0.0, dot(normal, -sunDir)) * sunColor;
 
   v_tex = a_uv0;
@@ -168,5 +167,5 @@ void main()
 
   calculatePositionInShadowSpace(position);
 
-  v_los = position.xz * losTransform.x + losTransform.y;
+  calculateLOSCoordinates(position.xz);
 }

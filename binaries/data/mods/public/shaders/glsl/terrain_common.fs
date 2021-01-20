@@ -1,11 +1,11 @@
 #version 120
 
 #include "common/fog.h"
+#include "common/los_fragment.h"
 #include "common/shadows_fragment.h"
 
 uniform sampler2D baseTex;
 uniform sampler2D blendTex;
-uniform sampler2D losTex;
 uniform sampler2D normTex;
 uniform sampler2D specTex;
 
@@ -18,7 +18,6 @@ uniform vec2 textureTransform;
 
 varying vec3 v_lighting;
 
-varying vec2 v_los;
 varying vec2 v_blend;
 
 #if USE_TRIPLANAR
@@ -178,9 +177,7 @@ void main()
 
   color = applyFog(color);
 
-  float los = texture2D(losTex, v_los).a;
-  los = los < 0.03 ? 0.0 : los;
-  color *= los;
+  color *= getLOS();
 
   #if DECAL
     color *= shadingColor;

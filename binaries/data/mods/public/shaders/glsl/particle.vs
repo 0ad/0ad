@@ -1,11 +1,11 @@
 #version 110
 
+#include "common/los_vertex.h"
+
 uniform mat4 transform;
 uniform mat4 modelViewMatrix;
-uniform vec2 losTransform;
 
 varying vec2 v_tex;
-varying vec2 v_los;
 varying vec4 v_color;
 
 attribute vec3 a_vertex;
@@ -20,10 +20,11 @@ void main()
   vec2 offset = a_uv1;
 
   vec3 position = axis1*offset.x + axis1*offset.y + axis2*offset.x + axis2*-offset.y + a_vertex;
-  
+
   gl_Position = transform * vec4(position, 1.0);
-	
-  v_los = position.xz * losTransform.x + losTransform.y;
+
+  calculateLOSCoordinates(position.xz);
+
   v_tex = a_uv0;
   v_color = a_color;
 }

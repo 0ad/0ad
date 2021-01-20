@@ -567,7 +567,7 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 	m->fancyWaterShader->Uniform(str_murkiness, WaterMgr->m_Murkiness);
 	m->fancyWaterShader->Uniform(str_windAngle, WaterMgr->m_WindAngle);
 	m->fancyWaterShader->Uniform(str_repeatScale, 1.0f / repeatPeriod);
-	m->fancyWaterShader->Uniform(str_losMatrix, losTexture.GetTextureMatrix());
+	m->fancyWaterShader->Uniform(str_losTransform, losTexture.GetTextureMatrix()[0], losTexture.GetTextureMatrix()[12], 0.f, 0.f);
 
 	m->fancyWaterShader->Uniform(str_cameraPos, camera.GetOrientation().GetTranslation());
 
@@ -635,7 +635,7 @@ void TerrainRenderer::RenderSimpleWater(int cullGroup)
 	waterSimpleShader->BindTexture(str_baseTex, WaterMgr->m_WaterTexture[curTex]);
 	waterSimpleShader->BindTexture(str_losTex, losTexture.GetTextureSmooth());
 	waterSimpleShader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
-	waterSimpleShader->Uniform(str_losMatrix, losTexture.GetTextureMatrix());
+	waterSimpleShader->Uniform(str_losTransform, losTexture.GetTextureMatrix()[0], losTexture.GetTextureMatrix()[12], 0.f, 0.f);
 	waterSimpleShader->Uniform(str_time, static_cast<float>(time));
 	waterSimpleShader->Uniform(str_color, WaterMgr->m_WaterColor);
 

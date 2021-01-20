@@ -1,9 +1,9 @@
 #version 120
 
+#include "common/los_fragment.h"
 #include "common/shadows_fragment.h"
 
 uniform sampler2D baseTex;
-uniform sampler2D losTex;
 
 uniform vec3 shadingColor;
 uniform vec3 ambient;
@@ -15,7 +15,6 @@ uniform float specularPower;
 uniform vec3 specularColor;
 
 varying vec4 v_tex;
-varying vec2 v_los;
 varying vec3 v_half;
 varying vec3 v_normal;
 varying float v_transp;
@@ -36,11 +35,7 @@ void main()
 	vec3 color = (texdiffuse.rgb * v_lighting + specular) * get_shadow();
 	color += texdiffuse.rgb * ambient;
 
-	#if !IGNORE_LOS
-		float los = texture2D(losTex, v_los).a;
-		los = los < 0.03 ? 0.0 : los;
-		color *= los;
-	#endif
+	color *= getLOS();
 
 	gl_FragColor.rgb = color;
 	gl_FragColor.a = texdiffuse.a;
