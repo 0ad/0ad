@@ -378,7 +378,7 @@ void XmppClient::SendIqGetConnectionData(const std::string& jid, const std::stri
 	connectionData->m_Password = password;
 	glooxwrapper::IQ iq(gloox::IQ::Get, targetJID, m_client->getID());
 	iq.addExtension(connectionData);
-	m_connectionDataJid = jid;
+	m_connectionDataJid = iq.from().full();
 	m_connectionDataIqId = iq.id().to_string();
 	DbgXMPP("SendIqGetConnectionData [" << tag_xml(iq) << "]");
 	m_client->send(iq);
@@ -840,11 +840,15 @@ bool XmppClient::handleIq(const glooxwrapper::IQ& iq)
 			if (g_NetServer || !g_NetClient)
 				return true;
 
-			if (!m_connectionDataJid.empty() && m_connectionDataJid.compare(iq.from().full()) != 0)
+			if (!m_connectionDataJid.empty() && m_connectionDataJid.compare(iq.from().full()) != 0) {
+				LOGMESSAGE("XmppClient: Received connection data from invalid host: %s", iq.from().username());
 				return true;
+			}
 
-			if (!m_connectionDataIqId.empty() && m_connectionDataIqId.compare(iq.id().to_string()) != 0)
+			if (!m_connectionDataIqId.empty() && m_connectionDataIqId.compare(iq.id().to_string()) != 0) {
+				LOGWARNING("XmppClient: Received connection data with invalid id");
 				return true;
+			}
 
 			if (!cd->m_Error.empty())
 			{
