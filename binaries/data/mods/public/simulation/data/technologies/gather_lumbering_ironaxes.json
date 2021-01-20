@@ -9,9 +9,9 @@
 	"requirementsTooltip": "Unlocked in Village Phase.",
 	"icon": "wood_axe_01.png",
 	"researchTime": 40,
-	"tooltip": "Workers +25% wood gather rate.",
+	"tooltip": "Workers +20% wood gather rate.",
 	"modifications": [
-		{ "value": "ResourceGatherer/Rates/wood.tree", "multiply": 1.25 }
+		{ "value": "ResourceGatherer/Rates/wood.tree", "multiply": 1.2 }
 	],
 	"affects": ["Worker"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"

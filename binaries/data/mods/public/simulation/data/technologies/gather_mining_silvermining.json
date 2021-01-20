@@ -14,9 +14,9 @@
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "mining_metal_03.png",
 	"researchTime": 60,
-	"tooltip": "Workers +25% metal gather rate.",
+	"tooltip": "Workers +20% metal gather rate.",
 	"modifications": [
-		{ "value": "ResourceGatherer/Rates/metal.ore", "multiply": 1.25 }
+		{ "value": "ResourceGatherer/Rates/metal.ore", "multiply": 1.2 }
 	],
 	"affects": ["Worker"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
