@@ -137,7 +137,7 @@ function formatMatchLimitString(matchEntLimit, matchEntCount, type)
 	if (type == "build")
 	{
 		if (passedLimit)
-			text = sprintf(translatePlural("Could be constructed merely once.", "Could be constructed merely %(limit)s times.", matchEntLimit), {
+			text = sprintf(translatePlural("Could only be constructed once.", "Could only be constructed %(limit)s times.", matchEntLimit), {
 				"limit": matchEntLimit
 			});
 		else if (matchEntLimit == 1)
@@ -150,7 +150,7 @@ function formatMatchLimitString(matchEntLimit, matchEntCount, type)
 	else if (type == "training")
 	{
 		if (passedLimit)
-			text = sprintf(translatePlural("Could be trained merely once.", "Could be trained merely %(limit)s times.", matchEntLimit), {
+			text = sprintf(translatePlural("Could only be trained once.", "Could only be trained %(limit)s times.", matchEntLimit), {
 				"limit": matchEntLimit
 			});
 		else if (matchEntLimit == 1)
@@ -163,7 +163,7 @@ function formatMatchLimitString(matchEntLimit, matchEntCount, type)
 	else
 	{
 		if (passedLimit)
-			text = sprintf(translatePlural("Could be created merely once.", "Could be created merely %(limit)s times.", matchEntLimit), {
+			text = sprintf(translatePlural("Could only be created once.", "Could only be created %(limit)s times.", matchEntLimit), {
 				"limit": matchEntLimit
 			});
 		else if (matchEntLimit == 1)
