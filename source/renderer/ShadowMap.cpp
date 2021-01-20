@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -664,19 +664,15 @@ void ShadowMap::EndRender()
 	glColorMask(1,1,1,1);
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// Retrieve the texture handle and texture matrix for shadowing
-GLuint ShadowMap::GetTexture() const
+void ShadowMap::BindTo(const CShaderProgramPtr& shader) const
 {
-	return m->Texture;
-}
+	if (!shader->GetTextureBinding(str_shadowTex).Active())
+		return;
 
-const CMatrix3D& ShadowMap::GetTextureMatrix() const
-{
-	return m->TextureMatrix;
+	shader->BindTexture(str_shadowTex, m->Texture);
+	shader->Uniform(str_shadowTransform, m->TextureMatrix);
+	shader->Uniform(str_shadowScale, m->Width, m->Height, 1.0f / m->Width, 1.0f / m->Height);
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Depth texture bits
@@ -698,18 +694,6 @@ void ShadowMap::SetDepthTextureBits(int bits)
 
 		m->DepthTextureBits = bits;
 	}
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// Depth texture size
-int ShadowMap::GetWidth() const
-{
-	return m->Width;
-}
-
-int ShadowMap::GetHeight() const
-{
-	return m->Height;
 }
 
 //////////////////////////////////////////////////////////////////////////////

@@ -515,6 +515,9 @@ Attack.prototype.PerformAttack = function(type, target)
 		let gravity = +this.template[type].Projectile.Gravity;
 		// horizSpeed /= 2; gravity /= 2; // slow it down for testing
 
+		// We will try to estimate the position of the target, where we can hit it.
+		// We first estimate the time-till-hit by extrapolating linearly the movement
+		// of the last turn. We compute the time till an arrow will intersect the target.
 		let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 		if (!cmpPosition || !cmpPosition.IsInWorld())
 			return;
@@ -524,11 +527,36 @@ Attack.prototype.PerformAttack = function(type, target)
 			return;
 		let targetPosition = cmpTargetPosition.GetPosition();
 
-		let previousTargetPosition = Engine.QueryInterface(target, IID_Position).GetPreviousPosition();
-		let targetVelocity = Vector3D.sub(targetPosition, previousTargetPosition).div(turnLength);
+		let targetVelocity = Vector3D.sub(targetPosition, cmpTargetPosition.GetPreviousPosition()).div(turnLength);
 
 		let timeToTarget = PositionHelper.PredictTimeToTarget(selfPosition, horizSpeed, targetPosition, targetVelocity);
-		let predictedPosition = (timeToTarget !== false) ? Vector3D.mult(targetVelocity, timeToTarget).add(targetPosition) : targetPosition;
+
+		// 'Cheat' and use UnitMotion to predict the position in the near-future.
+		// This avoids 'dancing' issues with units zigzagging over very short distances.
+		// However, this could fail if the player gives several short move orders, so
+		// occasionally fall back to basic interpolation.
+		let predictedPosition = targetPosition;
+		if (timeToTarget !== false)
+		{
+			// Don't predict too far in the future, but avoid threshold effects.
+			// After 1 second, always use the 'dumb' interpolated past-motion prediction.
+			let useUnitMotion = randBool(Math.max(0, 0.75 - timeToTarget / 1.333));
+			if (useUnitMotion)
+			{
+				let cmpTargetUnitMotion = Engine.QueryInterface(target, IID_UnitMotion);
+				let cmpTargetUnitAI = Engine.QueryInterface(target, IID_UnitAI);
+				if (cmpTargetUnitMotion && (!cmpTargetUnitAI || !cmpTargetUnitAI.IsFormationMember()))
+				{
+					let pos2D = cmpTargetUnitMotion.EstimateFuturePosition(timeToTarget);
+					predictedPosition.x = pos2D.x;
+					predictedPosition.z = pos2D.y;
+				}
+				else
+					predictedPosition = Vector3D.mult(targetVelocity, timeToTarget).add(targetPosition);
+			}
+			else
+				predictedPosition = Vector3D.mult(targetVelocity, timeToTarget).add(targetPosition);
+		}
 
 		// Add inaccuracy based on spread.
 		let distanceModifiedSpread = ApplyValueModificationsToEntity("Attack/Ranged/Spread", +this.template[type].Projectile.Spread, this.entity) *

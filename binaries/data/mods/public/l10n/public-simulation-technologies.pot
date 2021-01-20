@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2021-01-18 08:15+0000\n"
-"PO-Revision-Date: 2021-01-18 08:15+0000\n"
+"POT-Creation-Date: 2021-01-20 00:57+0000\n"
+"PO-Revision-Date: 2021-01-20 00:57+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -23,7 +23,6 @@ msgid "The Agoge"
 msgstr ""
 
 #: simulation/data/technologies/agoge.json:requirementsTooltip
-#: simulation/data/technologies/armor_hero_01.json:requirementsTooltip
 #: simulation/data/technologies/attack_cavalry_melee_02.json:requirementsTooltip
 #: simulation/data/technologies/attack_cavalry_ranged_02.json:requirementsTooltip
 #: simulation/data/technologies/attack_infantry_melee_02.json:requirementsTooltip
@@ -47,7 +46,6 @@ msgstr ""
 #: simulation/data/technologies/nisean_horses.json:requirementsTooltip
 #: simulation/data/technologies/parade_of_daphne.json:requirementsTooltip
 #: simulation/data/technologies/pop_house_02.json:requirementsTooltip
-#: simulation/data/technologies/pop_wonder.json:requirementsTooltip
 #: simulation/data/technologies/reformed_army_sele.json:requirementsTooltip
 #: simulation/data/technologies/ship_cost_time.json:requirementsTooltip
 #: simulation/data/technologies/ship_health.json:requirementsTooltip
@@ -63,12 +61,12 @@ msgstr ""
 #: simulation/data/technologies/stable_batch_training.json:requirementsTooltip
 #: simulation/data/technologies/tower_health.json:requirementsTooltip
 #: simulation/data/technologies/tower_murderholes.json:requirementsTooltip
-#: simulation/data/technologies/trade_convoys_armor.json:requirementsTooltip
 #: simulation/data/technologies/trade_gain_02.json:requirementsTooltip
 #: simulation/data/technologies/traditional_army_sele.json:requirementsTooltip
 #: simulation/data/technologies/unlock_champion_cavalry.json:requirementsTooltip
 #: simulation/data/technologies/unlock_champion_chariots.json:requirementsTooltip
 #: simulation/data/technologies/unlock_champion_infantry.json:requirementsTooltip
+#: simulation/data/technologies/wonder_population_cap.json:requirementsTooltip
 msgid "Unlocked in City Phase."
 msgstr ""
 
@@ -98,7 +96,7 @@ msgid "Unlocked in Village Phase."
 msgstr ""
 
 #: simulation/data/technologies/archery_tradition.json:tooltip
-msgid "Archers −10% training time, +10 attack range, and −10% ranged attack spread."
+msgid "Archers −10% training time and +10 attack range."
 msgstr ""
 
 #: simulation/data/technologies/architecture_kush.json:genericName
@@ -130,8 +128,8 @@ msgstr ""
 #: simulation/data/technologies/tower_crenellations.json:requirementsTooltip
 #: simulation/data/technologies/tower_range.json:requirementsTooltip
 #: simulation/data/technologies/trade_commercial_treaty.json:requirementsTooltip
-#: simulation/data/technologies/trade_convoys_speed.json:requirementsTooltip
 #: simulation/data/technologies/trade_gain_01.json:requirementsTooltip
+#: simulation/data/technologies/trader_health.json:requirementsTooltip
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.json:requirementsTooltip
 msgid "Unlocked in Town Phase."
 msgstr ""
@@ -153,32 +151,6 @@ msgstr ""
 
 #: simulation/data/technologies/architecture_pers.json:tooltip
 msgid "Structures +25% health and capture points, but also +20% build time."
-msgstr ""
-
-#: simulation/data/technologies/armor_hero_01.json:description
-msgid ""
-"Body armor fashioned completely of iron, the hardest workable metal known to the "
-"ancients."
-msgstr ""
-
-#: simulation/data/technologies/armor_hero_01.json:genericName
-msgid "Iron Hero Armor"
-msgstr ""
-
-#: simulation/data/technologies/armor_hero_01.json:specificName.athen
-#: simulation/data/technologies/armor_hero_01.json:specificName.mace
-#: simulation/data/technologies/armor_hero_01.json:specificName.ptol
-#: simulation/data/technologies/armor_hero_01.json:specificName.sele
-#: simulation/data/technologies/armor_hero_01.json:specificName.spart
-msgid "Sidērea Panoplia"
-msgstr ""
-
-#: simulation/data/technologies/armor_hero_01.json:specificName.rome
-msgid "Lorica Ferrea"
-msgstr ""
-
-#: simulation/data/technologies/armor_hero_01.json:tooltip
-msgid "Heroes +50 metal cost, +2 hack and pierce resistance."
 msgstr ""
 
 #: simulation/data/technologies/attack_cavalry_melee_01.json:description
@@ -1150,26 +1122,6 @@ msgstr ""
 msgid "Insulae"
 msgstr ""
 
-#: simulation/data/technologies/pop_wonder.json:description
-msgid "The wonder attracts many more people to your civilization."
-msgstr ""
-
-#: simulation/data/technologies/pop_wonder.json:genericName
-msgid "Glorious Expansion"
-msgstr ""
-
-#: simulation/data/technologies/pop_wonder.json:specificName.athen
-#: simulation/data/technologies/pop_wonder.json:specificName.mace
-#: simulation/data/technologies/pop_wonder.json:specificName.ptol
-#: simulation/data/technologies/pop_wonder.json:specificName.sele
-#: simulation/data/technologies/pop_wonder.json:specificName.spart
-msgid "Peristasis"
-msgstr ""
-
-#: simulation/data/technologies/pop_wonder.json:tooltip
-msgid "Enable the “Glorious Expansion” aura: +40 maximum population limit per Wonder owned."
-msgstr ""
-
 #: simulation/data/technologies/reformed_army_sele.json:description
 msgid "The Roman-style core of the Seleucid army."
 msgstr ""
@@ -1464,27 +1416,6 @@ msgstr ""
 msgid "+10% international trade bonus."
 msgstr ""
 
-#: simulation/data/technologies/trade_convoys_armor.json:description
-msgid "Increases defensive capability of traders."
-msgstr ""
-
-#: simulation/data/technologies/trade_convoys_armor.json:genericName
-#: simulation/data/technologies/trade_convoys_speed.json:genericName
-msgid "Trade Convoys"
-msgstr ""
-
-#: simulation/data/technologies/trade_convoys_armor.json:tooltip
-msgid "Traders +2 hack and pierce resistance."
-msgstr ""
-
-#: simulation/data/technologies/trade_convoys_speed.json:description
-msgid "Increases movement rate of traders in order to increase trade income."
-msgstr ""
-
-#: simulation/data/technologies/trade_convoys_speed.json:tooltip
-msgid "Traders +25% movement speed."
-msgstr ""
-
 #: simulation/data/technologies/trade_gain_01.json:description
 #: simulation/data/technologies/trade_gain_02.json:description
 msgid "The progress in handicraft improves the trading profit."
@@ -1495,15 +1426,24 @@ msgid "Handicraft"
 msgstr ""
 
 #: simulation/data/technologies/trade_gain_01.json:tooltip
-msgid "Traders +10% trade gain."
+#: simulation/data/technologies/trade_gain_02.json:tooltip
+msgid "Traders +15% trade gain."
 msgstr ""
 
 #: simulation/data/technologies/trade_gain_02.json:genericName
 msgid "Advanced Handicraft"
 msgstr ""
 
-#: simulation/data/technologies/trade_gain_02.json:tooltip
-msgid "Traders +15% trade gain."
+#: simulation/data/technologies/trader_health.json:description
+msgid "Traders traveling together in caravans are less vulnerable."
+msgstr ""
+
+#: simulation/data/technologies/trader_health.json:genericName
+msgid "Trade Caravan"
+msgstr ""
+
+#: simulation/data/technologies/trader_health.json:tooltip
+msgid "Land Traders +50% health."
 msgstr ""
 
 #: simulation/data/technologies/traditional_army_sele.json:description
@@ -1522,7 +1462,7 @@ msgstr ""
 msgid ""
 "Advanced and Elite units +20% training time, +25% health, +0.7 capture attack strength,"
 " +20% loot, and −30% gather speed; Healers +5 healing strength and +3 healing range; "
-"Melee units +1 resistance and +20% attack damage; Ranged units −10% spread."
+"Melee units +1 resistance and +20% attack damage; Ranged units −20% spread."
 msgstr ""
 
 #: simulation/data/technologies/unit_elephant_african.json:tooltip
@@ -1537,7 +1477,7 @@ msgstr ""
 msgid ""
 "Elite units +20% training time, +25% health, +0.8 capture attack strength, +20% loot, "
 "and −30% gather speed; Healers +5 healing strength and +3 healing range; Melee units +1"
-" resistance and +20% attack damage; Ranged units −10% spread."
+" resistance and +20% attack damage; Ranged units −20% spread."
 msgstr ""
 
 #: simulation/data/technologies/unit_mercenary.json:tooltip
@@ -1670,5 +1610,25 @@ msgstr ""
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.json:tooltip
 msgid "Mercenaries are promoted to Advanced rank."
+msgstr ""
+
+#: simulation/data/technologies/wonder_population_cap.json:description
+msgid "The wonder attracts many more people to your civilization."
+msgstr ""
+
+#: simulation/data/technologies/wonder_population_cap.json:genericName
+msgid "Glorious Expansion"
+msgstr ""
+
+#: simulation/data/technologies/wonder_population_cap.json:specificName.athen
+#: simulation/data/technologies/wonder_population_cap.json:specificName.mace
+#: simulation/data/technologies/wonder_population_cap.json:specificName.ptol
+#: simulation/data/technologies/wonder_population_cap.json:specificName.sele
+#: simulation/data/technologies/wonder_population_cap.json:specificName.spart
+msgid "Peristasis"
+msgstr ""
+
+#: simulation/data/technologies/wonder_population_cap.json:tooltip
+msgid "Enable the “Glorious Expansion” aura: +20% maximum population limit per Wonder owned."
 msgstr ""
 

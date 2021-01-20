@@ -37,9 +37,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-15 08:53+0000\n"
-"PO-Revision-Date: 2021-01-16 00:54+0000\n"
-"Last-Translator: Latein Lebt\n"
+"POT-Creation-Date: 2021-01-18 08:15+0000\n"
+"PO-Revision-Date: 2021-01-18 11:21+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -87,7 +87,6 @@ msgstr "Die Agoge"
 #: simulation/data/technologies/ship_cost_time.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_health.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_movement_speed.jsonrequirementsTooltip
-#: simulation/data/technologies/sibylline_books.jsonrequirementsTooltip
 #: simulation/data/technologies/siege_armor.jsonrequirementsTooltip
 #: simulation/data/technologies/siege_attack.jsonrequirementsTooltip
 #: simulation/data/technologies/siege_bolt_accuracy.jsonrequirementsTooltip
@@ -102,7 +101,9 @@ msgstr "Die Agoge"
 #: simulation/data/technologies/trade_convoys_armor.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_gain_02.jsonrequirementsTooltip
 #: simulation/data/technologies/traditional_army_sele.jsonrequirementsTooltip
-#: simulation/data/technologies/unlock_champion_units.jsonrequirementsTooltip
+#: simulation/data/technologies/unlock_champion_cavalry.jsonrequirementsTooltip
+#: simulation/data/technologies/unlock_champion_chariots.jsonrequirementsTooltip
+#: simulation/data/technologies/unlock_champion_infantry.jsonrequirementsTooltip
 msgid "Unlocked in City Phase."
 msgstr "Freigeschaltet in der Großstadtphase."
 
@@ -148,7 +149,6 @@ msgstr "Monumentale Architektur"
 #: simulation/data/technologies/cavalry_cost_time.jsonrequirementsTooltip
 #: simulation/data/technologies/cavalry_health.jsonrequirementsTooltip
 #: simulation/data/technologies/colonization.jsonrequirementsTooltip
-#: simulation/data/technologies/exploration.jsonrequirementsTooltip
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsonrequirementsTooltip
 #: simulation/data/technologies/garrison_heal.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsonrequirementsTooltip
@@ -567,24 +567,8 @@ msgid "Sun-dried Mud Bricks"
 msgstr "Sonnengetrocknete Lehmziegel"
 
 #: simulation/data/technologies/civbonuses/ptol_structures.jsontooltip
-msgid "Houses and Economic Structures −50% wood cost, but +50% build time."
-msgstr "Häuser und Wirtschaftsgebäude −50% Holzkosten, aber +50% Bauzeit."
-
-#: simulation/data/technologies/civbonuses/spart_population.jsondescription
-msgid ""
-"The Spartans did not have the largest army in the world, but they did have "
-"the best army in the world for their time. What they didn't have in "
-"quantity, they made up with quality. It was said that Sparta did not need "
-"strong city walls, for its men were its walls."
-msgstr "Die Spartaner hatten nicht die größte Armee der Welt, aber sie hatten die beste Armee ihrer Zeit. Was sie nicht an Quantität hatten, machten sie mit Qualität wett. Es heißt, das Sparta keine starken Stadtmauern brauche, da seine Männer die Mauern bilden."
-
-#: simulation/data/technologies/civbonuses/spart_population.jsongenericName
-msgid "Underdogs"
-msgstr "Underdogs"
-
-#: simulation/data/technologies/civbonuses/spart_population.jsontooltip
-msgid "−10% maximum population limit."
-msgstr "−10% maximales Bevölkerungslimit."
+msgid "Houses and Economic Structures −40% wood cost and health."
+msgstr ""
 
 #: simulation/data/technologies/colonization.jsondescription
 msgid ""
@@ -618,21 +602,6 @@ msgstr "Pferdetransporte"
 #: simulation/data/technologies/equine_transports.jsontooltip
 msgid "Phoenician Triremes gain the ability to train Cavalry."
 msgstr "Phönizische Trieren erhalten die einzigartige Fähigkeit Kavallerieeinheiten auszubilden."
-
-#: simulation/data/technologies/exploration.jsondescription
-msgid ""
-"Nobody knew better than the Carthaginians where in the ancient world they "
-"were going and going to go; their merchant traders had missions to "
-"everywhere."
-msgstr "Keiner in der antiken Welt wusste besser, wohin es galt zu gehen, als die Karthager; ihre Händler unternahmen Missionen nach überall hin."
-
-#: simulation/data/technologies/exploration.jsongenericName
-msgid "Exploration"
-msgstr "Erkundung"
-
-#: simulation/data/technologies/exploration.jsontooltip
-msgid "Traders and Ships +25% vision range."
-msgstr "Händler und Schiffe +25% Sichtweite."
 
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsondescription
 msgid "Salting allows to preserve fish longer."
@@ -1320,26 +1289,6 @@ msgstr "Erfahrene Mannschaften"
 msgid "Ships +10% movement speed."
 msgstr "Schiffe +10% Bewegungsgeschwindigkeit."
 
-#: simulation/data/technologies/sibylline_books.jsondescription
-msgid ""
-"The Sibylline Books or 'Libri Sibyllini' were a collection of oracular "
-"utterances, set out in Greek hexameters, purchased from a sibyl by the last "
-"king of Rome, Tarquinius Superbus, and consulted at momentous crises through"
-" the history of the Republic and the Empire."
-msgstr "Die sibyllinischen Bücher oder „Libri Sibyllini“ waren eine Sammlung von Orakelsprüchen, die in griechischen Hexametern gesetzt, von einer Sibylle von dem letzten König von Rom, Tarquinius Superbus gekauft und bei bedeutsamen Krisen durch die Geschichte der Republik und dem Imperium konsultiert wurden."
-
-#: simulation/data/technologies/sibylline_books.jsongenericName
-msgid "Sibylline Books"
-msgstr "Sibyllinische Bücher"
-
-#: simulation/data/technologies/sibylline_books.jsonspecificName
-msgid "Libri Sibyllini"
-msgstr "Libri Sibyllini"
-
-#: simulation/data/technologies/sibylline_books.jsontooltip
-msgid "Units +25% vision range."
-msgstr "Einheiten +25% Sichtweite."
-
 #: simulation/data/technologies/siege_armor.jsondescription
 msgid "Increased armor on siege engines."
 msgstr "Erhöhte Rüstung für Belagerungsmaschinen."
@@ -1477,8 +1426,8 @@ msgid "Strengthen shields with a metal rim or spine."
 msgstr "Verstärke Schilde mit einem Metallrand oder einem Stachel."
 
 #: simulation/data/technologies/soldier_resistance_pierce_02.jsongenericName
-msgid "Metal Shield"
-msgstr "Metallschild"
+msgid "Metal Rim"
+msgstr ""
 
 #: simulation/data/technologies/spy_counter.jsondescription
 msgid "Recruit a network of informants to watch over your people."
@@ -1644,10 +1593,10 @@ msgstr "Gardisten-Infanterie-Pikenier freischalten."
 
 #: simulation/data/technologies/unit_advanced.jsontooltip
 msgid ""
-"Advanced and Elite units +20% training time, +25% health, +1 resistance, "
-"+0.7 capture attack strength, +20% loot, and −30% gather speed; Healers +5 "
-"healing strength and +3 healing range; Melee units +20% attack damage; "
-"Ranged units −10% spread."
+"Advanced and Elite units +20% training time, +25% health, +0.7 capture "
+"attack strength, +20% loot, and −30% gather speed; Healers +5 healing "
+"strength and +3 healing range; Melee units +1 resistance and +20% attack "
+"damage; Ranged units −10% spread."
 msgstr ""
 
 #: simulation/data/technologies/unit_elephant_african.jsontooltip
@@ -1664,37 +1613,57 @@ msgstr "Indische Elefanten +10% Rohstoffkosten, Ausbildungszeit, Gesundheit, Sch
 
 #: simulation/data/technologies/unit_elite.jsontooltip
 msgid ""
-"Elite units +20% training time, +25% health, +1 resistance, +0.8 capture "
-"attack strength, +20% loot, and −30% gather speed; Healers +5 healing "
-"strength and +3 healing range; Melee units +20% attack damage; Ranged units "
-"−10% spread."
+"Elite units +20% training time, +25% health, +0.8 capture attack strength, "
+"+20% loot, and −30% gather speed; Healers +5 healing strength and +3 healing"
+" range; Melee units +1 resistance and +20% attack damage; Ranged units −10% "
+"spread."
 msgstr ""
 
 #: simulation/data/technologies/unit_mercenary.jsontooltip
-msgid "Non-Champion Mercenaries cost −25 food, +25 metal."
-msgstr "Nicht-Garde-Söldner kosten −25 Nahrung, +25 Metall."
+msgid ""
+"Non-Champion Mercenaries −60% food cost, no wood or stone costs, −30% "
+"training time, and unable to gather resources; Infantry costs 60 metal, "
+"Cavalry 80 metal, Elephants 120 metal."
+msgstr ""
 
-#: simulation/data/technologies/unlock_champion_units.jsondescription
+#: simulation/data/technologies/unlock_champion_cavalry.jsondescription
+#: simulation/data/technologies/unlock_champion_chariots.jsondescription
+#: simulation/data/technologies/unlock_champion_infantry.jsondescription
 msgid ""
 "Guard units (Champions) are professionals who wield the best weapons and "
 "have the best training."
 msgstr "Gardisten sind Berufssoldaten, welche die besten Waffen tragen und die beste Ausbildung bekommen."
 
-#: simulation/data/technologies/unlock_champion_units.jsongenericName
+#: simulation/data/technologies/unlock_champion_cavalry.jsongenericName
+msgid "Unlock Champion Cavalry"
+msgstr ""
+
+#: simulation/data/technologies/unlock_champion_cavalry.jsontooltip
+msgid "Unlock Champion Cavalry at the Stable."
+msgstr ""
+
+#: simulation/data/technologies/unlock_champion_chariots.jsongenericName
+msgid "Unlock Champion Chariots"
+msgstr ""
+
+#: simulation/data/technologies/unlock_champion_chariots.jsontooltip
+msgid "Unlock Champion Chariots at the Stable."
+msgstr ""
+
+#: simulation/data/technologies/unlock_champion_infantry.jsongenericName
 msgid "Unlock Champion Infantry"
 msgstr "Schalte Gardeninfanterie frei"
 
-#: simulation/data/technologies/unlock_champion_units.jsonspecificName.mace
-#: simulation/data/technologies/unlock_champion_units.jsonspecificName.ptol
-#: simulation/data/technologies/unlock_champion_units.jsonspecificName.sele
+#: simulation/data/technologies/unlock_champion_infantry.jsonspecificName.mace
+#: simulation/data/technologies/unlock_champion_infantry.jsonspecificName.ptol
 msgid "Agēma"
 msgstr "Agēma"
 
-#: simulation/data/technologies/unlock_champion_units.jsonspecificName.rome
+#: simulation/data/technologies/unlock_champion_infantry.jsonspecificName.rome
 msgid "Regio Cohors"
 msgstr "Regio Cohors"
 
-#: simulation/data/technologies/unlock_champion_units.jsontooltip
+#: simulation/data/technologies/unlock_champion_infantry.jsontooltip
 msgid "Unlock Champions Infantry at the Barracks."
 msgstr "Schalte die Gardeninfanterie in den Kasernen frei."
 

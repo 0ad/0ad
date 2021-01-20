@@ -24,8 +24,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-15 08:53+0000\n"
-"PO-Revision-Date: 2021-01-15 11:37+0000\n"
+"POT-Creation-Date: 2021-01-18 08:15+0000\n"
+"PO-Revision-Date: 2021-01-18 08:36+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -1839,20 +1839,20 @@ msgid "Use actual water depth in rendering calculations."
 msgstr "렌더링 계산에 실제 수심을 사용합니다."
 
 #: gui/options/options.json[1].options[18].label
-msgid "Shadows on water"
-msgstr "물 위의 그림자"
-
-#: gui/options/options.json[1].options[18].tooltip
-msgid "Cast shadows on water."
-msgstr "물 위에 그림자를 드립니다."
-
-#: gui/options/options.json[1].options[19].label
 msgid "Smooth vision"
 msgstr "부드러운 시야 이동"
 
-#: gui/options/options.json[1].options[19].tooltip
+#: gui/options/options.json[1].options[18].tooltip
 msgid "Lift darkness and fog of war smoothly."
 msgstr "전쟁의 어둠과 안개가 부드럽게 걷힙니다."
+
+#: gui/options/options.json[1].options[19].label
+msgid "VSync"
+msgstr "수직 동기화"
+
+#: gui/options/options.json[1].options[19].tooltip
+msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
+msgstr "수직 동기화를 실행하여 화면 찢김 문제를 해결하십시오. 게임을 다시 시작해야합니다"
 
 #: gui/options/options.json[1].options[1].label
 msgid "Prefer GLSL"
@@ -1863,36 +1863,20 @@ msgid "Use OpenGL 2.0 shaders (recommended)."
 msgstr "OpenGL 2.0 그림자를 사용합니다(권장)."
 
 #: gui/options/options.json[1].options[20].label
-msgid "Show sky"
-msgstr "하늘 표시"
-
-#: gui/options/options.json[1].options[20].tooltip
-msgid "Render Sky."
-msgstr "하늘을 렌더링합니다."
-
-#: gui/options/options.json[1].options[21].label
-msgid "VSync"
-msgstr "수직 동기화"
-
-#: gui/options/options.json[1].options[21].tooltip
-msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
-msgstr "수직 동기화를 실행하여 화면 찢김 문제를 해결하십시오. 게임을 다시 시작해야합니다"
-
-#: gui/options/options.json[1].options[22].label
 msgid "FPS throttling in menus"
 msgstr "메뉴에서 FPS 조절"
 
-#: gui/options/options.json[1].options[22].tooltip
+#: gui/options/options.json[1].options[20].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in all menus. Set to maximum"
 " to disable throttling."
 msgstr "CPU 작업량을 절약하려면 모든 메뉴에서 렌더링 빈도를 조절하십시오. 조절을 사용하지 않으려면 최대 값으로 설정하십시오."
 
-#: gui/options/options.json[1].options[23].label
+#: gui/options/options.json[1].options[21].label
 msgid "FPS throttling in games"
 msgstr "게임에서 FPS 조절"
 
-#: gui/options/options.json[1].options[23].tooltip
+#: gui/options/options.json[1].options[21].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."

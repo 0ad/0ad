@@ -25,6 +25,7 @@
 # Nicolas Auvray <na.itms76@gmail.com>, 2014-2017
 # nicolas t <deux718281@yahoo.fr>, 2016
 # oiseauroch <tobollive@aol.com>, 2018
+# Stanislas Dolcini <stan@wildfiregames.com>, 2021
 # Polakrity <sxk-fr@live.fr>, 2017-2019
 # oiseauroch <tobollive@aol.com>, 2018
 # Toto AD <ad@imw.fr>, 2014
@@ -33,8 +34,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2020-11-20 09:17+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-01-20 00:01+0000\n"
+"Last-Translator: Stanislas Dolcini <stan@wildfiregames.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -75,7 +76,7 @@ msgid ""
 "time strategy (RTS) games. There are currently a lot of missing features and"
 " poorly-balanced stats – you will probably have to wait until a beta release"
 " for it to work well."
-msgstr "Les contrôles et la prise en main devraient être familiers aux joueurs de jeux de stratégie en temps réel (RTS) traditionnels. Il y a actuellement beaucoup de fonctionnalités manquantes et les statistiques sont très peu équilibrées – vous devrez certainement attendre jusqu'à la sortie d'une version beta pour que cela fonctionne bien. "
+msgstr "Les contrôles et la prise en main devraient être familiers aux joueurs de jeux de stratégie en temps réel (RTS) traditionnels. Il y a actuellement beaucoup de fonctionnalités manquantes et les statistiques sont très peu équilibrées – vous devrez certainement attendre jusqu'à la sortie d'une version bêta pour que cela fonctionne bien. "
 
 #: gui/manual/intro.txt:10
 msgid "Basic controls (by default):"
@@ -95,17 +96,17 @@ msgstr "• Clic droit pour donner une cible aux unités"
 
 #: gui/manual/intro.txt:14
 msgid "• Arrow keys or WASD keys to move the camera"
-msgstr "• Touches fléchées ou touches \"WASD\" pour déplacer la caméra"
+msgstr "• Touches fléchées ou touches « ZQSD » pour déplacer la caméra"
 
 #: gui/manual/intro.txt:15
 msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera"
-msgstr "•Pour tourner la camera, utilisez les touches Ctrl + touches directionnelles, ou Maj + Molette de souris"
+msgstr "• Pour tourner la caméra, utilisez les touches Ctrl + touches fléchées, ou Maj + Molette de souris"
 
 #: gui/manual/intro.txt:16
 msgid ""
 "• Mouse wheel, or “hotkey.camera.zoom.in” and ““hotkey.camera.zoom.out” "
 "keys, to zoom"
-msgstr ""
+msgstr "• Molette de souris, ou les touches « hotkey.camera.zoom.in » et « hotkey.camera.zoom.out  », pour zoomer"
 
 #: gui/manual/intro.txt:18
 msgid "[font=\"sans-bold-16\"]Modes[font=\"sans-14\"]"
@@ -121,13 +122,13 @@ msgid ""
 "game or against one or more computer players (AI). The default AI (Petra) is"
 " under development and may not always be up to date on the new features, but"
 " you can play the game with or against it nonetheless."
-msgstr "• [font = \"sans-bold-14\"] Solo [font = \"sans-14\"] - Jouez un jeu bac à sable ou contre un ou plusieurs joueurs ordinateur (AI). L'IA par défaut (Petra) est en cours de développement et n'est peut-être pas toujours à jour sur les nouvelles fonctionnalités, mais vous pouvez néanmoins jouer avec ou contre."
+msgstr "• [font=\"sans-bold-14\"] Solo [font=\"sans-14\"] – Jouez un jeu bac à sable ou contre un ou plusieurs joueurs ordinateur (AI). L'IA par défaut (Petra) est en cours de développement et n'est peut-être pas toujours à jour sur les nouvelles fonctionnalités, mais vous pouvez néanmoins jouer avec ou contre."
 
 #: gui/manual/intro.txt:21
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – Play against human "
 "opponents over the internet."
-msgstr "• [font = \"sans-bold-14\"] Multijoueur [font = \"sans-14\"] - Jouez contre des ennemis humains sur Internet."
+msgstr "• [font=\"sans-bold-14\"] Multijoueur [font=\"sans-14\"] – Jouez contre des ennemis humains sur Internet."
 
 #: gui/manual/intro.txt:23
 msgid ""
@@ -135,7 +136,7 @@ msgid ""
 " The game uses UDP port 20595, so the host must configure their "
 "NAT/firewall/etc. to allow this. Other players can then select “Join game” "
 "and enter the host's IP address."
-msgstr "Pour configurer une partie multijoueur, un joueur doit sélectionner l'option «Partie hébergé». Le jeu utilise le port UDP 20595, donc l'hôte doit configurer son NAT/pare-feu/ etc. pour permettre cela. Les autres joueurs peuvent ensuite sélectionner «Rejoindre le jeu» et entrer l'adresse IP de l'hôte."
+msgstr "Pour configurer une partie multijoueur, un joueur doit sélectionner l'option «Partie hébergée». Le jeu utilise le port UDP 20595, donc l'hôte doit configurer son NAT/pare-feu/ etc. pour permettre cela. Les autres joueurs peuvent ensuite sélectionner «Rejoindre le jeu» et entrer l'adresse IP de l'hôte."
 
 #: gui/manual/intro.txt:25
 msgid "[font=\"sans-bold-16\"]Game setup[font=\"sans-14\"]"
@@ -165,7 +166,7 @@ msgstr "• [font=\"sans-bold-14\"]Scénario[font=\"sans-14\"] – Une carte cr�
 msgid ""
 "• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] – A map created by "
 "map designers but where the civilizations can be chosen"
-msgstr "• [font = \"sans-bold-14\"] Carte d'escarmouche [font = \"sans-14\"] - Une carte créée par des concepteurs de cartes mais où les civilisations peuvent être choisies"
+msgstr "• [font=\"sans-bold-14\"] Carte d'escarmouche [font=\"sans-14\"] – Une carte créée par des concepteurs de cartes mais où les civilisations peuvent être choisies"
 
 #: gui/manual/intro.txt:33
 msgid ""
@@ -174,7 +175,7 @@ msgid ""
 "over land and demo maps are maps used for testing purposes (generally not "
 "useful to play on). The “All Maps” filter shows all maps together in one "
 "list."
-msgstr "Ensuite, les cartes peuvent être filtrées davantage. Les cartes par défaut sont généralement des cartes jouables. Les cartes navales sont des cartes où tous les ennemis ne peuvent pas être atteints sur terre et les cartes de démo sont des cartes utilisées à des fins de test (généralement pas utilisés pour jouer). Le filtre «Toutes les cartes» affiche toutes les cartes ensemble dans une seule liste.\n "
+msgstr "Ensuite, les cartes peuvent être filtrées davantage. Les cartes par défaut sont généralement des cartes jouables. Les cartes navales sont des cartes où certains ennemis ne peuvent pas être atteints sur terre et les cartes de démo sont des cartes utilisées à des fins de test (généralement pas utilisés pour jouer). Le filtre «Toutes les cartes» affiche toutes les cartes ensemble dans une seule liste.\n "
 
 #: gui/manual/intro.txt:35
 msgid ""
@@ -187,17 +188,17 @@ msgstr "Enfin, modifiez les réglages. Pour les cartes aléatoires, cela inclut 
 
 #: gui/manual/intro.txt:37
 msgid "When you are ready to start, click the “Start game” button."
-msgstr "Lorsque vous êtes prêt à commencer, cliquer sur le bouton «Démarrer le jeu»."
+msgstr "Lorsque vous êtes prêt à commencer, cliquer sur le bouton « Démarrer le jeu »."
 
 #: gui/manual/intro.txt:39
 msgid "[font=\"sans-bold-16\"]Hotkeys[font=\"sans-14\"]"
-msgstr "[font = \"sans-bold-16\"] Raccourcis clavier [font = \"sans-14\"]"
+msgstr "[font=\"sans-bold-16\"] Raccourcis clavier [font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:40
 msgid ""
 "You may change hotkeys in [font=\"sans-bold-14\"]Options > "
 "Hotkeys[font=\"sans-14\"] to suit your liking."
-msgstr ""
+msgstr "Vous pouvez changer les raccourcis dans [font=\"sans-bold-14\"]Options > Raccourcis[font=\"sans-14\"] selon vos préférences."
 
 #: gui/manual/intro.txt:42
 msgid "[font=\"sans-bold-14\"]Program-wide[font=\"sans-14\"]"
@@ -689,7 +690,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:141
 msgid "  hotkey.camera.reset – Reset camera zoom and orientation"
-msgstr ""
+msgstr " hotkey.camera.reset – Réinitialiser le zoom et l'orientation de la caméra."
 
 #: gui/manual/intro.txt:142
 msgid ""
@@ -709,7 +710,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:146
 msgid "[font=\"sans-bold-14\"]During Structure Placement[font=\"sans-14\"]"
-msgstr "[font = \"sans-bold-14\"] pendant le placement de la structure [font = \"sans-14\"]\n "
+msgstr "[font = \"sans-bold-14\"]Pendant le placement de la structure [font = \"sans-14\"]\n "
 
 #: gui/manual/intro.txt:147
 msgid ""
@@ -732,7 +733,7 @@ msgstr "[font=\"sans-bold-14\"]Lors du chargement d'une partie sauvegardée[font
 
 #: gui/manual/intro.txt:152
 msgid "  hotkey.cancel – Cancel"
-msgstr ""
+msgstr " hotkey.cancel – Annuler"
 
 #: gui/manual/intro.txt:153
 msgid ""

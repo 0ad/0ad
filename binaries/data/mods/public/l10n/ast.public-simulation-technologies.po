@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-15 08:53+0000\n"
-"PO-Revision-Date: 2021-01-16 03:47+0000\n"
+"POT-Creation-Date: 2021-01-18 08:15+0000\n"
+"PO-Revision-Date: 2021-01-19 21:35+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -58,7 +58,6 @@ msgstr "L'agogá"
 #: simulation/data/technologies/ship_cost_time.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_health.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_movement_speed.jsonrequirementsTooltip
-#: simulation/data/technologies/sibylline_books.jsonrequirementsTooltip
 #: simulation/data/technologies/siege_armor.jsonrequirementsTooltip
 #: simulation/data/technologies/siege_attack.jsonrequirementsTooltip
 #: simulation/data/technologies/siege_bolt_accuracy.jsonrequirementsTooltip
@@ -73,13 +72,15 @@ msgstr "L'agogá"
 #: simulation/data/technologies/trade_convoys_armor.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_gain_02.jsonrequirementsTooltip
 #: simulation/data/technologies/traditional_army_sele.jsonrequirementsTooltip
-#: simulation/data/technologies/unlock_champion_units.jsonrequirementsTooltip
+#: simulation/data/technologies/unlock_champion_cavalry.jsonrequirementsTooltip
+#: simulation/data/technologies/unlock_champion_chariots.jsonrequirementsTooltip
+#: simulation/data/technologies/unlock_champion_infantry.jsonrequirementsTooltip
 msgid "Unlocked in City Phase."
 msgstr "Desblóquiase na fas de la urbe."
 
 #: simulation/data/technologies/agoge.jsontooltip
 msgid "Champion Infantry Spearmen +25% health, but +5% training time."
-msgstr "Llanceros campeones: vida +25%, muera d'allistamientu +5%."
+msgstr "Llanceros campeones: vida +25%, tiempu d'entrenamientu +5%."
 
 #: simulation/data/technologies/archery_tradition.jsondescription
 msgid ""
@@ -105,7 +106,7 @@ msgstr "Desblóquiase na fas del llugar."
 #: simulation/data/technologies/archery_tradition.jsontooltip
 msgid ""
 "Archers −10% training time, +10 attack range, and −10% ranged attack spread."
-msgstr "Arqueros: muera d'allistamientu −10%, algame +10, esviación de tiru −10%."
+msgstr "Arqueros: tiempu d'entrenamientu −10%, algame +10, imprecisión −10%."
 
 #: simulation/data/technologies/architecture_kush.jsongenericName
 msgid "Monumental Architecture"
@@ -119,7 +120,6 @@ msgstr "Arquiteutura monumental"
 #: simulation/data/technologies/cavalry_cost_time.jsonrequirementsTooltip
 #: simulation/data/technologies/cavalry_health.jsonrequirementsTooltip
 #: simulation/data/technologies/colonization.jsonrequirementsTooltip
-#: simulation/data/technologies/exploration.jsonrequirementsTooltip
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsonrequirementsTooltip
 #: simulation/data/technologies/garrison_heal.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsonrequirementsTooltip
@@ -146,7 +146,7 @@ msgstr "Desblóquiase na fas de la villa."
 #: simulation/data/technologies/architecture_kush.jsontooltip
 msgid ""
 "Civic Structures +20% build time, +20% health, and +20% capture points."
-msgstr "Construcciones civiles: muera de construcción +20%, vida +20%, llealtá +20%."
+msgstr "Construcciones civiles: tiempu de construcción +20%, vida +20%, llealtá +20%."
 
 #: simulation/data/technologies/architecture_pers.jsondescription
 msgid ""
@@ -162,7 +162,7 @@ msgstr "Arquiteutura"
 
 #: simulation/data/technologies/architecture_pers.jsontooltip
 msgid "Structures +25% health and capture points, but also +20% build time."
-msgstr "Construcciones: vida ya llealtá +25%, muera de construcción +20%."
+msgstr "Construcciones: vida ya llealtá +25%, tiempu de construcción +20%."
 
 #: simulation/data/technologies/armor_hero_01.jsondescription
 msgid ""
@@ -356,7 +356,7 @@ msgstr "Espaes: ataque +20%."
 msgid ""
 "Significantly increase training speed of infantry by training them in large "
 "batches or companies."
-msgstr "Entaína enforma la producción de la infantería allistándolo en garapiellos o compañíes."
+msgstr "Entaína enforma la producción de la infantería entrenándolo en garapiellos o compañíes."
 
 #: simulation/data/technologies/barracks_batch_training.jsongenericName
 #: simulation/data/technologies/stable_batch_training.jsongenericName
@@ -365,7 +365,7 @@ msgstr "Serviciu militar"
 
 #: simulation/data/technologies/barracks_batch_training.jsontooltip
 msgid "Barracks −10% batch training time."
-msgstr "Barracón: muera del allistamientu coleutivu −10%."
+msgstr "Barracón: duranza del entrenamientu coleutivu −10%."
 
 #: simulation/data/technologies/cavalry_cost_time.jsondescription
 msgid ""
@@ -379,7 +379,7 @@ msgstr "Lleva de caballería"
 
 #: simulation/data/technologies/cavalry_cost_time.jsontooltip
 msgid "Cavalry −10% training time."
-msgstr "Caballería: muera d'allistamientu −10%."
+msgstr "Caballería: tiempu d'entrenamientu −10%."
 
 #: simulation/data/technologies/cavalry_health.jsondescription
 msgid "Selectively breed better war horses."
@@ -418,7 +418,7 @@ msgstr "Muralles triples"
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
 msgid "City Walls +100% build time, +100% stone cost, and +200% health."
-msgstr "Muralles: muera de construcción +100%, costu en piedra +100%, vida +200%."
+msgstr "Muralles: tiempu de construcción +100%, costu en piedra +100%, vida +200%."
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsondescription
 msgid "Celtic structures were mostly made of wood with rubble foundations."
@@ -430,7 +430,7 @@ msgstr "Construcción con madera"
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
 msgid "Structures −20% build time, −20% health, and −20% capture points."
-msgstr "Construcciones: muera de construcción −20%, vida −20%, llealtá −20%."
+msgstr "Construcciones: tiempu de construcción −20%, vida −20%, llealtá −20%."
 
 #: simulation/data/technologies/civbonuses/gaul_cavalry.jsondescription
 msgid ""
@@ -472,7 +472,7 @@ msgstr "Tradición elefantina"
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsontooltip
 msgid "Elephants −30% training time."
-msgstr "Elefantes: mueres d'allistamientu −20%."
+msgstr "Elefantes: mueres d'entrenamientu −20%."
 
 #: simulation/data/technologies/civbonuses/maur_population.jsondescription
 msgid ""
@@ -509,7 +509,7 @@ msgstr "Muralles de madera"
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsontooltip
 msgid "City Walls −20% build time and −20% health."
-msgstr "Muralles: muera de construcción −20%, vida −20%."
+msgstr "Muralles: tiempu de construcción −20%, vida −20%."
 
 #: simulation/data/technologies/civbonuses/pers_population.jsondescription
 msgid ""
@@ -538,24 +538,8 @@ msgid "Sun-dried Mud Bricks"
 msgstr "Adobe"
 
 #: simulation/data/technologies/civbonuses/ptol_structures.jsontooltip
-msgid "Houses and Economic Structures −50% wood cost, but +50% build time."
-msgstr "Cases ya construcciones económiques: costu en madera −50%, muera de construcción +50%."
-
-#: simulation/data/technologies/civbonuses/spart_population.jsondescription
-msgid ""
-"The Spartans did not have the largest army in the world, but they did have "
-"the best army in the world for their time. What they didn't have in "
-"quantity, they made up with quality. It was said that Sparta did not need "
-"strong city walls, for its men were its walls."
-msgstr "L'exércitu espartanu nun yera'l más numberosu, pero sí el meyor del mundiu daquella. Lo qu'escarecíen en cantidá compensábenlo en calidá. Dicíase d'Esparta que nun precisaba de muralles fuertes, porque les muralles yérenlo los paisanos."
-
-#: simulation/data/technologies/civbonuses/spart_population.jsongenericName
-msgid "Underdogs"
-msgstr "Desventaya numbérica"
-
-#: simulation/data/technologies/civbonuses/spart_population.jsontooltip
-msgid "−10% maximum population limit."
-msgstr "Población máxima −10%."
+msgid "Houses and Economic Structures −40% wood cost and health."
+msgstr "Cases, construcciones económiques: vida ya costu en madera −40%."
 
 #: simulation/data/technologies/colonization.jsondescription
 msgid ""
@@ -569,7 +553,7 @@ msgstr "Colonización"
 
 #: simulation/data/technologies/colonization.jsontooltip
 msgid "Civic Structures −25% build time."
-msgstr "Construcciones civiles: muera de construcción −25%."
+msgstr "Construcciones civiles: tiempu de construcción −25%."
 
 #: simulation/data/technologies/equine_transports.jsondescription
 msgid ""
@@ -589,21 +573,6 @@ msgstr "Tresportes equinos"
 #: simulation/data/technologies/equine_transports.jsontooltip
 msgid "Phoenician Triremes gain the ability to train Cavalry."
 msgstr "Les trirremes fenicies puen allistar caballería."
-
-#: simulation/data/technologies/exploration.jsondescription
-msgid ""
-"Nobody knew better than the Carthaginians where in the ancient world they "
-"were going and going to go; their merchant traders had missions to "
-"everywhere."
-msgstr "Los cartaxineses coñocíen meyor que naide'l mundiu antiguu; comerciaben per dayuri."
-
-#: simulation/data/technologies/exploration.jsongenericName
-msgid "Exploration"
-msgstr "Esploración"
-
-#: simulation/data/technologies/exploration.jsontooltip
-msgid "Traders and Ships +25% vision range."
-msgstr "Comerciantes ya barcos: visión +25%."
 
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsondescription
 msgid "Salting allows to preserve fish longer."
@@ -651,7 +620,7 @@ msgstr "Ganadería"
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsontooltip
 msgid "Domestic Animals −25% breeding time."
-msgstr "Animales domésticos: muera de criación −25%."
+msgstr "Animales domésticos: tiempu de criación −25%."
 
 #: simulation/data/technologies/gather_capacity_basket.jsondescription
 msgid "Workers use baskets. Increases shuttling capacity for all resources."
@@ -872,7 +841,7 @@ msgstr "Amonta la visión y algame de tolos curanderos."
 
 #: simulation/data/technologies/heal_range.jsongenericName
 msgid "Healing Range"
-msgstr "Algame de curamientu"
+msgstr "Rezos de sanamientu"
 
 #: simulation/data/technologies/heal_range.jsonspecificName.athen
 #: simulation/data/technologies/heal_range.jsonspecificName.mace
@@ -889,7 +858,7 @@ msgstr "Curanderos: algame +5."
 
 #: simulation/data/technologies/heal_range_2.jsongenericName
 msgid "Healing Range 2"
-msgstr "Algame de curamientu II"
+msgstr "Preces de sanamientu"
 
 #: simulation/data/technologies/heal_range_2.jsonspecificName.athen
 msgid "Akadēmeia"
@@ -898,11 +867,11 @@ msgstr "Akadēmeia"
 #: simulation/data/technologies/heal_rate.jsondescription
 #: simulation/data/technologies/heal_rate_2.jsondescription
 msgid "Increases the healing rate of all healers."
-msgstr "Entaína'l curamientu de tolos curanderos."
+msgstr "Entaína'l sanamientu de tolos curanderos."
 
 #: simulation/data/technologies/heal_rate.jsongenericName
 msgid "Healing Rate"
-msgstr "Tasa de curamientu"
+msgstr "Tasa de sanamientu"
 
 #: simulation/data/technologies/heal_rate.jsonspecificName.athen
 #: simulation/data/technologies/heal_rate.jsonspecificName.mace
@@ -915,11 +884,11 @@ msgstr "Sphagia"
 #: simulation/data/technologies/heal_rate.jsontooltip
 #: simulation/data/technologies/heal_rate_2.jsontooltip
 msgid "Healers −20% healing time."
-msgstr "Curanderos: muera de curamientu −20%."
+msgstr "Curanderos: tiempu de sanamientu −20%."
 
 #: simulation/data/technologies/heal_rate_2.jsongenericName
 msgid "Healing Rate 2"
-msgstr "Tasa de curamientu II"
+msgstr "Tasa de sanamientu II"
 
 #: simulation/data/technologies/heal_rate_2.jsonspecificName.athen
 #: simulation/data/technologies/heal_rate_2.jsonspecificName.mace
@@ -983,7 +952,7 @@ msgstr "Inmortales"
 
 #: simulation/data/technologies/immortals.jsontooltip
 msgid "Immortals −50% training time, but −10% health."
-msgstr "Inmortales: muera d'allistamientu −50%, vida −10%."
+msgstr "Inmortales: tiempu d'entrenamientu −50%, vida −10%."
 
 #: simulation/data/technologies/infantry_cost_time.jsondescription
 msgid ""
@@ -997,7 +966,7 @@ msgstr "Lleva d'infantería"
 
 #: simulation/data/technologies/infantry_cost_time.jsontooltip
 msgid "Infantry −10% training time."
-msgstr "Infantería: muera d'allistamientu −10%."
+msgstr "Infantería: tiempu d'entrenamientu −10%."
 
 #: simulation/data/technologies/iphicratean_reforms.jsondescription
 msgid ""
@@ -1046,7 +1015,7 @@ msgstr "Nisioi"
 
 #: simulation/data/technologies/nisean_horses.jsontooltip
 msgid "Champion Cavalry Spearmen +20% health, but +10% training time."
-msgstr "Llanceros campeones d'a caballu: vida +20%, muera d'allistamientu +10%."
+msgstr "Llanceros campeones d'a caballu: vida +20%, tiempu d'entrenamientu +10%."
 
 #: simulation/data/technologies/pair_unlock_champions_sele.jsongenericName
 msgid "Traditional Army vs Reform Army"
@@ -1064,7 +1033,7 @@ msgstr "Desfile de Dafne"
 
 #: simulation/data/technologies/parade_of_daphne.jsontooltip
 msgid "Champions −20% training time."
-msgstr "Campeones: muera d'allistamientu −20%."
+msgstr "Campeones: tiempu d'entrenamientu −20%."
 
 #: simulation/data/technologies/phase_city.jsondescription
 msgid ""
@@ -1263,7 +1232,7 @@ msgstr "Arquiteutos navales"
 
 #: simulation/data/technologies/ship_cost_time.jsontooltip
 msgid "Ships −20% construction time."
-msgstr "Barcos: muera de construcción −20%."
+msgstr "Barcos: tiempu de construcción −20%."
 
 #: simulation/data/technologies/ship_health.jsondescription
 msgid "Wooden reinforcement beams for ship hulls."
@@ -1290,26 +1259,6 @@ msgstr "Tripulaciones aduechaes"
 #: simulation/data/technologies/ship_movement_speed.jsontooltip
 msgid "Ships +10% movement speed."
 msgstr "Barcos: velocidá +10%."
-
-#: simulation/data/technologies/sibylline_books.jsondescription
-msgid ""
-"The Sibylline Books or 'Libri Sibyllini' were a collection of oracular "
-"utterances, set out in Greek hexameters, purchased from a sibyl by the last "
-"king of Rome, Tarquinius Superbus, and consulted at momentous crises through"
-" the history of the Republic and the Empire."
-msgstr "Los llibros sibilinos o «Libri Sibyllini» yeren una escoyeta d'enunciaos oraculares, compuestos n'hexámetru griegu, que'l rei de Roma caberu, Tarquiniu'l Soberbiu, pescanció d'una sibila. Consultóse-yos en crisis graves demientres tola historia de la República & l'Imperiu."
-
-#: simulation/data/technologies/sibylline_books.jsongenericName
-msgid "Sibylline Books"
-msgstr "Llibros sibilinos"
-
-#: simulation/data/technologies/sibylline_books.jsonspecificName
-msgid "Libri Sibyllini"
-msgstr "Libri Sibyllini"
-
-#: simulation/data/technologies/sibylline_books.jsontooltip
-msgid "Units +25% vision range."
-msgstr "Unidaes: visión +25%."
 
 #: simulation/data/technologies/siege_armor.jsondescription
 msgid "Increased armor on siege engines."
@@ -1345,7 +1294,7 @@ msgstr "Fleches precises"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
 msgid "Bolt Shooters −20% ranged attack spread."
-msgstr "Ballestes: esviación de tiru −20%."
+msgstr "Ballestes: imprecisión −20%."
 
 #: simulation/data/technologies/siege_cost_metal.jsondescription
 msgid "Siege engines require less metal."
@@ -1448,8 +1397,8 @@ msgid "Strengthen shields with a metal rim or spine."
 msgstr "Refuercia los escudos con metal."
 
 #: simulation/data/technologies/soldier_resistance_pierce_02.jsongenericName
-msgid "Metal Shield"
-msgstr "Escudu de metal"
+msgid "Metal Rim"
+msgstr "Cantu de metal"
 
 #: simulation/data/technologies/spy_counter.jsondescription
 msgid "Recruit a network of informants to watch over your people."
@@ -1467,11 +1416,11 @@ msgstr "Aumenta un 50% el costu de sobornar les tos unidaes."
 msgid ""
 "Significantly increase training speed of cavalry by training them in large "
 "batches or squadrons."
-msgstr "Entaína enforma la producción de la caballería allistándolo en garapiellos o escuadrones."
+msgstr "Entaína enforma la producción de la caballería entrenándolo en garapiellos o escuadrones."
 
 #: simulation/data/technologies/stable_batch_training.jsontooltip
 msgid "Stables −10% batch training time."
-msgstr "Corte: muera del allistamientu coleutivu −10%."
+msgstr "Corte: duranza del entrenamientu coleutivu −10%."
 
 #: simulation/data/technologies/tower_crenellations.jsondescription
 msgid ""
@@ -1615,57 +1564,77 @@ msgstr "Desbloquia'l piqueru campeón."
 
 #: simulation/data/technologies/unit_advanced.jsontooltip
 msgid ""
-"Advanced and Elite units +20% training time, +25% health, +1 resistance, "
-"+0.7 capture attack strength, +20% loot, and −30% gather speed; Healers +5 "
-"healing strength and +3 healing range; Melee units +20% attack damage; "
-"Ranged units −10% spread."
-msgstr "Unidaes avanzaes y escoyíes: muera d'allistamientu +20%, vida +25%, resistencia +1, captura +0.7, saquéu +20%, arremangu pa recoyer −30%; Curanderos: curamientu +5, algame +3; Unidaes d'amarrada: ataque +20%; Unidaes de proxectiles: esviación de tiru −10%."
+"Advanced and Elite units +20% training time, +25% health, +0.7 capture "
+"attack strength, +20% loot, and −30% gather speed; Healers +5 healing "
+"strength and +3 healing range; Melee units +1 resistance and +20% attack "
+"damage; Ranged units −10% spread."
+msgstr "Unidaes avanzaes, escoyíes: tiempu d'entrenamientu +20%, vida +25%, captura +0.7, saquéu +20%, arremangu −30%; Curanderos: sanamientu +5, algame +3; Unidaes d'amarrada: resistencia +1, ataque +20%; Unidaes de proxectiles: imprecisión −10%."
 
 #: simulation/data/technologies/unit_elephant_african.jsontooltip
 msgid ""
 "African Elephants −10% resource costs, training time, health, attack damage,"
 " and loot."
-msgstr "Elefantes africanos: costu, muera d'allistamientu, vida, ataque ya cacida −10%."
+msgstr "Elefantes africanos: costu, tiempu d'entrenamientu, vida, ataque ya saquéu −10%."
 
 #: simulation/data/technologies/unit_elephant_indian.jsontooltip
 msgid ""
 "Indian Elephants +10% resource costs, training time, health, attack damage, "
 "and loot."
-msgstr " Elefantes indios: costu, muera d'allistamientu, vida, ataque ya cacida +10%."
+msgstr " Elefantes indios: costu, tiempu d'entrenamientu, vida, ataque ya saquéu +10%."
 
 #: simulation/data/technologies/unit_elite.jsontooltip
 msgid ""
-"Elite units +20% training time, +25% health, +1 resistance, +0.8 capture "
-"attack strength, +20% loot, and −30% gather speed; Healers +5 healing "
-"strength and +3 healing range; Melee units +20% attack damage; Ranged units "
-"−10% spread."
-msgstr "Unidaes del rangu escoyíu: muera d'allistamientu +20%, vida +25%, resistencia +1, captura +0.8, saquéu +20%, arremangu pa recoyer −30%; Curanderos: curamientu +5, algame +3; Unidaes d'amarrada: ataque +20%; Unidaes de proxectiles: esviación de tiru −10%."
+"Elite units +20% training time, +25% health, +0.8 capture attack strength, "
+"+20% loot, and −30% gather speed; Healers +5 healing strength and +3 healing"
+" range; Melee units +1 resistance and +20% attack damage; Ranged units −10% "
+"spread."
+msgstr "Unidaes escoyíes: tiempu d'entrenamientu +20%, vida +25%, captura +0.8, saquéu +20%, arremangu −30%; Curanderos: sanamientu +5, algame +3; Unidaes d'amarrada: resistencia +1, ataque +20%; Unidaes de proxectiles: imprecisión −10%."
 
 #: simulation/data/technologies/unit_mercenary.jsontooltip
-msgid "Non-Champion Mercenaries cost −25 food, +25 metal."
-msgstr "Mercenarios non campeones: costu en comida −25, en metal +25."
+msgid ""
+"Non-Champion Mercenaries −60% food cost, no wood or stone costs, −30% "
+"training time, and unable to gather resources; Infantry costs 60 metal, "
+"Cavalry 80 metal, Elephants 120 metal."
+msgstr "Mercenarios non campeones: costu en comida −60%, dal costu en madera nin piedra, tiempu d'entrenamientu −30%; los d'a pie cuesten 60 de metal, los d'a caballu 80, los n'elefante 120."
 
-#: simulation/data/technologies/unlock_champion_units.jsondescription
+#: simulation/data/technologies/unlock_champion_cavalry.jsondescription
+#: simulation/data/technologies/unlock_champion_chariots.jsondescription
+#: simulation/data/technologies/unlock_champion_infantry.jsondescription
 msgid ""
 "Guard units (Champions) are professionals who wield the best weapons and "
 "have the best training."
 msgstr "Los campeones son profesionales que remanen les meyores armes ya tienen el meyor entrenamientu."
 
-#: simulation/data/technologies/unlock_champion_units.jsongenericName
+#: simulation/data/technologies/unlock_champion_cavalry.jsongenericName
+msgid "Unlock Champion Cavalry"
+msgstr "Desbloquiar la caballería campeón"
+
+#: simulation/data/technologies/unlock_champion_cavalry.jsontooltip
+msgid "Unlock Champion Cavalry at the Stable."
+msgstr "Desbloquia la caballería campeón na corte."
+
+#: simulation/data/technologies/unlock_champion_chariots.jsongenericName
+msgid "Unlock Champion Chariots"
+msgstr "Desbloquiar los carros campeones"
+
+#: simulation/data/technologies/unlock_champion_chariots.jsontooltip
+msgid "Unlock Champion Chariots at the Stable."
+msgstr "Desbloquia los carros campeones na corte."
+
+#: simulation/data/technologies/unlock_champion_infantry.jsongenericName
 msgid "Unlock Champion Infantry"
 msgstr "Desbloquiar los campeones d'a pie."
 
-#: simulation/data/technologies/unlock_champion_units.jsonspecificName.mace
-#: simulation/data/technologies/unlock_champion_units.jsonspecificName.ptol
-#: simulation/data/technologies/unlock_champion_units.jsonspecificName.sele
+#: simulation/data/technologies/unlock_champion_infantry.jsonspecificName.mace
+#: simulation/data/technologies/unlock_champion_infantry.jsonspecificName.ptol
 msgid "Agēma"
 msgstr "Agēma"
 
-#: simulation/data/technologies/unlock_champion_units.jsonspecificName.rome
+#: simulation/data/technologies/unlock_champion_infantry.jsonspecificName.rome
 msgid "Regio Cohors"
 msgstr "Regio Cohors"
 
-#: simulation/data/technologies/unlock_champion_units.jsontooltip
+#: simulation/data/technologies/unlock_champion_infantry.jsontooltip
 msgid "Unlock Champions Infantry at the Barracks."
 msgstr "Desbloquia los campeones d'a pie en barracón."
 

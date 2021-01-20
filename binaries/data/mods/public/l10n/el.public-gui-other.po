@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-15 08:53+0000\n"
-"PO-Revision-Date: 2021-01-15 11:37+0000\n"
+"POT-Creation-Date: 2021-01-18 08:15+0000\n"
+"PO-Revision-Date: 2021-01-18 08:36+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -1848,20 +1848,20 @@ msgid "Use actual water depth in rendering calculations."
 msgstr "Χρησιμοποιήστε το πραγματικό βάθος νερού στους υπολογισμούς απεικόνισης."
 
 #: gui/options/options.json[1].options[18].label
-msgid "Shadows on water"
-msgstr "Σκιές στο νερό"
-
-#: gui/options/options.json[1].options[18].tooltip
-msgid "Cast shadows on water."
-msgstr "Ρίξε σκιές στο νερό."
-
-#: gui/options/options.json[1].options[19].label
 msgid "Smooth vision"
 msgstr ""
 
-#: gui/options/options.json[1].options[19].tooltip
+#: gui/options/options.json[1].options[18].tooltip
 msgid "Lift darkness and fog of war smoothly."
 msgstr ""
+
+#: gui/options/options.json[1].options[19].label
+msgid "VSync"
+msgstr "VSync"
+
+#: gui/options/options.json[1].options[19].tooltip
+msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
+msgstr "Εκτέλεση κάθετου συγχρονισμού για να αποφευχθεί το \"σχίσιμο\" της οθόνης. ΑΠΑΙΤΕΙΤΑΙ ΕΠΑΝΕΚΚΙΝΗΣΗ ΤΟΥ ΠΑΙΧΝΙΔΙΟΥ"
 
 #: gui/options/options.json[1].options[1].label
 msgid "Prefer GLSL"
@@ -1872,36 +1872,20 @@ msgid "Use OpenGL 2.0 shaders (recommended)."
 msgstr "Χρήση του OpenGL 2.0 για τους ανταυγαστήρες (προτείνετε)."
 
 #: gui/options/options.json[1].options[20].label
-msgid "Show sky"
-msgstr ""
-
-#: gui/options/options.json[1].options[20].tooltip
-msgid "Render Sky."
-msgstr "Απόδοση Ουρανού."
-
-#: gui/options/options.json[1].options[21].label
-msgid "VSync"
-msgstr "VSync"
-
-#: gui/options/options.json[1].options[21].tooltip
-msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
-msgstr "Εκτέλεση κάθετου συγχρονισμού για να αποφευχθεί το \"σχίσιμο\" της οθόνης. ΑΠΑΙΤΕΙΤΑΙ ΕΠΑΝΕΚΚΙΝΗΣΗ ΤΟΥ ΠΑΙΧΝΙΔΙΟΥ"
-
-#: gui/options/options.json[1].options[22].label
 msgid "FPS throttling in menus"
 msgstr "Επιτάχυνση ρυθμού ανανέωσης γραφικών στα μενού"
 
-#: gui/options/options.json[1].options[22].tooltip
+#: gui/options/options.json[1].options[20].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in all menus. Set to maximum"
 " to disable throttling."
 msgstr "Για να περιορίσεις το φόρτο εργασίας του Επεξεργαστή, ελάττωσε το ρυθμό ανανέωσης σε όλα τα μενού. Ρύθμισέ το στο μέγιστο για να απενεργοποιήσετε τον περιορισμό."
 
-#: gui/options/options.json[1].options[23].label
+#: gui/options/options.json[1].options[21].label
 msgid "FPS throttling in games"
 msgstr "Επιτάχυνση ρυθμού ανανέωσης γραφικών στα παιχνίδια"
 
-#: gui/options/options.json[1].options[23].tooltip
+#: gui/options/options.json[1].options[21].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."

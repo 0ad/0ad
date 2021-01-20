@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-15 08:53+0000\n"
-"PO-Revision-Date: 2021-01-17 11:40+0000\n"
-"Last-Translator: GunChleoc\n"
+"POT-Creation-Date: 2021-01-18 08:15+0000\n"
+"PO-Revision-Date: 2021-01-18 08:36+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1866,20 +1866,20 @@ msgid "Use actual water depth in rendering calculations."
 msgstr "Cleachd fìor-dhoimhne uisge ann an àireamhachadh an reandaraidh."
 
 #: gui/options/options.json[1].options[18].label
-msgid "Shadows on water"
-msgstr "Sgàilean air an uisge"
-
-#: gui/options/options.json[1].options[18].tooltip
-msgid "Cast shadows on water."
-msgstr "Tilg sgàilean air uisge."
-
-#: gui/options/options.json[1].options[19].label
 msgid "Smooth vision"
 msgstr "Lèirsinn rèidh"
 
-#: gui/options/options.json[1].options[19].tooltip
+#: gui/options/options.json[1].options[18].tooltip
 msgid "Lift darkness and fog of war smoothly."
 msgstr "Tog an sgleò agus ceò cogaidh gu rèidh."
+
+#: gui/options/options.json[1].options[19].label
+msgid "VSync"
+msgstr "Sioncronachadh-V"
+
+#: gui/options/options.json[1].options[19].tooltip
+msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
+msgstr "Ruith sioncronachadh inghearach gus sracadh na sgrìn a chàradh. FEUMAIDH TU AN GEAMA A THÒISEACHADH ÀS ÙR"
 
 #: gui/options/options.json[1].options[1].label
 msgid "Prefer GLSL"
@@ -1890,36 +1890,20 @@ msgid "Use OpenGL 2.0 shaders (recommended)."
 msgstr "Cleachd sgàileadairean OpenGL 2.0 (mholamaid seo)."
 
 #: gui/options/options.json[1].options[20].label
-msgid "Show sky"
-msgstr "Seall na speuran"
-
-#: gui/options/options.json[1].options[20].tooltip
-msgid "Render Sky."
-msgstr "Reandaraich na speuran."
-
-#: gui/options/options.json[1].options[21].label
-msgid "VSync"
-msgstr "Sioncronachadh-V"
-
-#: gui/options/options.json[1].options[21].tooltip
-msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
-msgstr "Ruith sioncronachadh inghearach gus sracadh na sgrìn a chàradh. FEUMAIDH TU AN GEAMA A THÒISEACHADH ÀS ÙR"
-
-#: gui/options/options.json[1].options[22].label
 msgid "FPS throttling in menus"
 msgstr "Tachdadh an FPS sna clàra-taice"
 
-#: gui/options/options.json[1].options[22].tooltip
+#: gui/options/options.json[1].options[20].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in all menus. Set to maximum"
 " to disable throttling."
 msgstr "Gus an eallach air a’ CPU ìsleachadh, tachd dè cho tric ’s a thèid na clàran-taice a reandaradh. Suidhich air an luach as motha gus an tachdadh a chur às comas."
 
-#: gui/options/options.json[1].options[23].label
+#: gui/options/options.json[1].options[21].label
 msgid "FPS throttling in games"
 msgstr "Tachdadh an FPS sna geamannan"
 
-#: gui/options/options.json[1].options[23].tooltip
+#: gui/options/options.json[1].options[21].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."

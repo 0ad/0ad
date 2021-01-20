@@ -40,8 +40,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-15 08:53+0000\n"
-"PO-Revision-Date: 2021-01-15 11:37+0000\n"
+"POT-Creation-Date: 2021-01-18 08:15+0000\n"
+"PO-Revision-Date: 2021-01-18 08:36+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -1869,20 +1869,20 @@ msgid "Use actual water depth in rendering calculations."
 msgstr "Usar la verdadera profundidad del agua en los cálculos de representación."
 
 #: gui/options/options.json[1].options[18].label
-msgid "Shadows on water"
-msgstr "Sombras en el agua"
-
-#: gui/options/options.json[1].options[18].tooltip
-msgid "Cast shadows on water."
-msgstr "Proyectar sombras en agua."
-
-#: gui/options/options.json[1].options[19].label
 msgid "Smooth vision"
 msgstr "Visión suave"
 
-#: gui/options/options.json[1].options[19].tooltip
+#: gui/options/options.json[1].options[18].tooltip
 msgid "Lift darkness and fog of war smoothly."
 msgstr ""
+
+#: gui/options/options.json[1].options[19].label
+msgid "VSync"
+msgstr "Sincronización vertical"
+
+#: gui/options/options.json[1].options[19].tooltip
+msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
+msgstr "Mantener la sincronización vertical de la pantalla para evitar el llamado «screen tearing». ES NECESARIO REINICIAR EL JUEGO"
 
 #: gui/options/options.json[1].options[1].label
 msgid "Prefer GLSL"
@@ -1893,36 +1893,20 @@ msgid "Use OpenGL 2.0 shaders (recommended)."
 msgstr "Utilizar sombreadores OpenGL 2.0 (recomendado)."
 
 #: gui/options/options.json[1].options[20].label
-msgid "Show sky"
-msgstr "Mostrar cielo"
-
-#: gui/options/options.json[1].options[20].tooltip
-msgid "Render Sky."
-msgstr "Renderizar cielo."
-
-#: gui/options/options.json[1].options[21].label
-msgid "VSync"
-msgstr "Sincronización vertical"
-
-#: gui/options/options.json[1].options[21].tooltip
-msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
-msgstr "Mantener la sincronización vertical de la pantalla para evitar el llamado «screen tearing». ES NECESARIO REINICIAR EL JUEGO"
-
-#: gui/options/options.json[1].options[22].label
 msgid "FPS throttling in menus"
 msgstr "Limitar FPS en los menús"
 
-#: gui/options/options.json[1].options[22].tooltip
+#: gui/options/options.json[1].options[20].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in all menus. Set to maximum"
 " to disable throttling."
 msgstr "Puedes limitar la velocidad de dibujado en los menús para gastar menos recursos del procesador y reducir la temperatura y el gasto energético. Ponlo al máximo para desactivar el limitador."
 
-#: gui/options/options.json[1].options[23].label
+#: gui/options/options.json[1].options[21].label
 msgid "FPS throttling in games"
 msgstr "Limitar FPS en la partida"
 
-#: gui/options/options.json[1].options[23].tooltip
+#: gui/options/options.json[1].options[21].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."

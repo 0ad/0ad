@@ -18,6 +18,14 @@ class AutoFormation
 		this.defaultFormation = Engine.ConfigDB_GetValue("user", "gui.session.defaultformation");
 		if (!this.defaultFormation)
 			this.setDefault(NULL_FORMATION);
+		this.lastDefault = this.defaultFormation === NULL_FORMATION ?
+			"special/formations/box" : this.defaultFormation;
+		Engine.SetGlobalHotkey("session.toggledefaultformation", "Press", () => {
+			if (this.defaultFormation === NULL_FORMATION)
+				this.setDefault(this.lastDefault);
+			else
+				this.setDefault(NULL_FORMATION);
+		});
 	}
 
 	/**
@@ -28,6 +36,8 @@ class AutoFormation
 	setDefault(formation)
 	{
 		this.defaultFormation = formation;
+		if (formation !== NULL_FORMATION)
+			this.lastDefault = this.defaultFormation;
 		Engine.ConfigDB_CreateValue("user", "gui.session.defaultformation", this.defaultFormation);
 		// TODO: It's extremely terrible that we have to explicitly flush the config...
 		Engine.ConfigDB_SetChanges("user", true);
@@ -50,10 +60,11 @@ class AutoFormation
 	}
 
 	/**
-	 * @return the null formation, or "undefined" if the null formation is the default.
+	 * @return the null formation, or "undefined", depending on "walkOnly" preference.
 	 */
 	getNull()
 	{
-		return this.defaultFormation == NULL_FORMATION ? undefined : NULL_FORMATION;
+		let walkOnly = Engine.ConfigDB_GetValue("user", "gui.session.formationwalkonly") === "true";
+		return walkOnly ? NULL_FORMATION : undefined;
 	}
 }

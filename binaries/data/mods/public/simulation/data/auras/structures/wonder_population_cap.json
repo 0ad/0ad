@@ -1,0 +1,11 @@
+{
+	"type": "player",
+	"affects": ["Player"],
+	"modifications": [
+		{ "value": "Player/MaxPopulation", "multiply": 1.2 }
+	],
+	"auraName": "Glorious Expansion",
+	"auraDescription": "+20% maximum population limit (requires the “Glorious Expansion” technology).",
+	"requiredTechnology": "wonder_population_cap",
+	"stackable": true
+}

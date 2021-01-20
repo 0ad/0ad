@@ -21,8 +21,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-15 08:53+0000\n"
-"PO-Revision-Date: 2021-01-15 11:37+0000\n"
+"POT-Creation-Date: 2021-01-18 08:15+0000\n"
+"PO-Revision-Date: 2021-01-18 08:36+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -1878,20 +1878,20 @@ msgid "Use actual water depth in rendering calculations."
 msgstr "Використати справжню глибину води в обчисленнях рендерингу."
 
 #: gui/options/options.json[1].options[18].label
-msgid "Shadows on water"
-msgstr "Тіні на воді"
-
-#: gui/options/options.json[1].options[18].tooltip
-msgid "Cast shadows on water."
-msgstr "Кидати тіні на воду."
-
-#: gui/options/options.json[1].options[19].label
 msgid "Smooth vision"
 msgstr ""
 
-#: gui/options/options.json[1].options[19].tooltip
+#: gui/options/options.json[1].options[18].tooltip
 msgid "Lift darkness and fog of war smoothly."
 msgstr "Змінювати темряву і туман війни плавно."
+
+#: gui/options/options.json[1].options[19].label
+msgid "VSync"
+msgstr "Вертикальна синхронізація"
+
+#: gui/options/options.json[1].options[19].tooltip
+msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
+msgstr "Увімкнути покадрову синхронізацію для коригування зміщення зображення. ВИМАГАЄ ПЕРЕЗАПУСК ГРИ"
 
 #: gui/options/options.json[1].options[1].label
 msgid "Prefer GLSL"
@@ -1902,36 +1902,20 @@ msgid "Use OpenGL 2.0 shaders (recommended)."
 msgstr "Використати шейдери OpenGL 2.0 (рекомендовано)."
 
 #: gui/options/options.json[1].options[20].label
-msgid "Show sky"
-msgstr "Показувати небо"
-
-#: gui/options/options.json[1].options[20].tooltip
-msgid "Render Sky."
-msgstr "Рендерити небо."
-
-#: gui/options/options.json[1].options[21].label
-msgid "VSync"
-msgstr "Вертикальна синхронізація"
-
-#: gui/options/options.json[1].options[21].tooltip
-msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
-msgstr "Увімкнути покадрову синхронізацію для коригування зміщення зображення. ВИМАГАЄ ПЕРЕЗАПУСК ГРИ"
-
-#: gui/options/options.json[1].options[22].label
 msgid "FPS throttling in menus"
 msgstr "Приглушування FPS у меню"
 
-#: gui/options/options.json[1].options[22].tooltip
+#: gui/options/options.json[1].options[20].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in all menus. Set to maximum"
 " to disable throttling."
 msgstr "Щоб зберегти навантаження на процесор, приглушіть частоту візуалізації у всіх меню. Встановіть максимум щоб вимкнути приглушування."
 
-#: gui/options/options.json[1].options[23].label
+#: gui/options/options.json[1].options[21].label
 msgid "FPS throttling in games"
 msgstr "Приглушування FPS в іграх"
 
-#: gui/options/options.json[1].options[23].tooltip
+#: gui/options/options.json[1].options[21].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."

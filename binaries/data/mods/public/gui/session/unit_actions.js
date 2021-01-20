@@ -104,7 +104,7 @@ var g_UnitActions =
 				"z": target.z,
 				"targetClasses": targetClasses,
 				"queued": queued,
-				"formation": g_AutoFormation.getDefault()
+				"formation": g_AutoFormation.getNull()
 			});
 
 			DrawTargetMarker(target);
@@ -149,7 +149,7 @@ var g_UnitActions =
 				"target": action.target,
 				"allowCapture": true,
 				"queued": queued,
-				"formation": g_AutoFormation.getDefault()
+				"formation": g_AutoFormation.getNull()
 			});
 
 			Engine.GuiInterfaceCall("PlaySound", {
@@ -195,7 +195,7 @@ var g_UnitActions =
 				"target": action.target,
 				"queued": queued,
 				"allowCapture": false,
-				"formation": g_AutoFormation.getDefault()
+				"formation": g_AutoFormation.getNull()
 			});
 
 			Engine.GuiInterfaceCall("PlaySound", {
@@ -758,7 +758,7 @@ var g_UnitActions =
 				"entities": selection,
 				"target": action.target,
 				"queued": queued,
-				"formation": g_AutoFormation.getDefault()
+				"formation": g_AutoFormation.getNull()
 			});
 
 			Engine.GuiInterfaceCall("PlaySound", {

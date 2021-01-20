@@ -14,10 +14,14 @@ class HotkeysPage
 
 		Engine.GetGUIObjectByName("hotkeyTextFilter").onTextEdit = () => this.setupHotkeyList();
 
+		this.saveButton = Engine.GetGUIObjectByName("hotkeySave");
+		this.saveButton.enabled = false;
+
 		Engine.GetGUIObjectByName("hotkeyClose").onPress = () => Engine.PopGuiPage();
 		Engine.GetGUIObjectByName("hotkeyReset").onPress = () => this.resetUserHotkeys();
-		Engine.GetGUIObjectByName("hotkeySave").onPress = () => {
+		this.saveButton.onPress = () => {
 			this.saveUserHotkeys();
+			this.saveButton.enabled = false;
 		};
 
 		this.setupHotkeyData();
@@ -86,6 +90,7 @@ class HotkeysPage
 			this.categories[cat].hotkeys[idx][1] = picker.combinations;
 		}
 
+		this.saveButton.enabled = true;
 		this.setupHotkeyList();
 	}
 
@@ -135,7 +140,7 @@ class HotkeysPage
 	{
 		messageBox(
 			400, 200,
-			translate("Reset all hotkeys to default values?"),
+			translate("Reset all hotkeys to default values?\nWARNING: this cannot be reversed."),
 			translate("Confirmation"),
 			[translate("No"), translate("Yes")],
 			[
@@ -147,6 +152,7 @@ class HotkeysPage
 						});
 					Engine.ConfigDB_WriteFile("user", "config/user.cfg");
 					Engine.ReloadHotkeys();
+					this.saveButton.enabled = false;
 					this.setupHotkeyData();
 					this.setupHotkeyList();
 				}

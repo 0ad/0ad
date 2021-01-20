@@ -7,7 +7,6 @@ class AttackEffects
 	{
 		let effectsDataObj = {};
 		this.effectReceivers = [];
-		this.effectSounds = {};
 
 		for (let filename of Engine.ListDirectoryFiles("simulation/data/attack_effects", "*.json", false))
 		{
@@ -28,7 +27,6 @@ class AttackEffects
 				"IID": data.IID,
 				"method": data.method
 			});
-			this.effectSounds[data.code] = data.sound || "";
 		}
 
 		let effDataSort = (a, b) => a.order < b.order ? -1 : a.order > b.order ? 1 : 0;
@@ -39,7 +37,6 @@ class AttackEffects
 		this.effectReceivers.sort(effSort);
 
 		deepfreeze(this.effectReceivers);
-		deepfreeze(this.effectSounds);
 	}
 
 	/**
@@ -48,14 +45,5 @@ class AttackEffects
 	Receivers()
 	{
 		return this.effectReceivers;
-	}
-
-	/**
-	 * @param {string} type - The type of effect to get the receiving sound for.
-	 * @return {string} - The name of the soundgroup to play.
-	 */
-	GetSound(type)
-	{
-		return this.effectSounds[type] || "";
 	}
 }

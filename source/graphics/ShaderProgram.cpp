@@ -233,6 +233,12 @@ public:
 		Uniform(id, v[0]);
 	}
 
+	virtual void Uniform(Binding id, size_t count, const float* v)
+	{
+		ENSURE(count == 4);
+		Uniform(id, v[0], v[1], v[2], v[3]);
+	}
+
 	virtual std::vector<VfsPath> GetFileDependencies() const override
 	{
 		return {m_VertexFile, m_FragmentFile};
@@ -603,6 +609,17 @@ public:
 		}
 	}
 
+	virtual void Uniform(Binding id, size_t count, const float* v)
+	{
+		if (id.first != -1)
+		{
+			if (id.second == GL_FLOAT)
+				pglUniform1fvARB(id.first, count, v);
+			else
+				LOGERROR("CShaderProgramGLSL::Uniform(): Invalid uniform type (expected float)");
+		}
+	}
+
 	// Map the various fixed-function Pointer functions onto generic vertex attributes
 	// (matching the attribute indexes from ShaderManager's ParseAttribSemantics):
 
@@ -783,6 +800,11 @@ void CShaderProgram::Uniform(uniform_id_t id, const CMatrix3D& v)
 }
 
 void CShaderProgram::Uniform(uniform_id_t id, size_t count, const CMatrix3D* v)
+{
+	Uniform(GetUniformBinding(id), count, v);
+}
+
+void CShaderProgram::Uniform(uniform_id_t id, size_t count, const float* v)
 {
 	Uniform(GetUniformBinding(id), count, v);
 }

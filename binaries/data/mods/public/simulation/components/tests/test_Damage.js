@@ -22,6 +22,7 @@ Engine.LoadComponentScript("interfaces/Promotion.js");
 Engine.LoadComponentScript("interfaces/ModifiersManager.js");
 Engine.LoadComponentScript("interfaces/Resistance.js");
 Engine.LoadComponentScript("interfaces/Timer.js");
+Engine.LoadComponentScript("interfaces/UnitAI.js");
 Engine.LoadComponentScript("Attack.js");
 Engine.LoadComponentScript("DelayedDamage.js");
 Engine.LoadComponentScript("Timer.js");

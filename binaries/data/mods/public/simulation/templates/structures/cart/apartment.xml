@@ -1,27 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="structures/cart/house">
+<Entity parent="template_structure_civic_house_big">
+  <Capturable>
+    <CapturePoints op="mul">2</CapturePoints>
+  </Capturable>
   <Cost>
-    <BuildTime>75</BuildTime>
+    <BuildTime op="mul">1.5</BuildTime>
     <Resources>
-      <wood>225</wood>
+      <wood op="add">50</wood>
+      <stone op="add">50</stone>
     </Resources>
   </Cost>
+  <Footprint>
+    <Square width="15.0" depth="15.0"/>
+  </Footprint>
   <GarrisonHolder>
-    <Max>9</Max>
+    <Max op="mul">2</Max>
   </GarrisonHolder>
   <Health>
-    <Max>1500</Max>
+    <Max op="mul">1.5</Max>
   </Health>
   <Identity>
     <GenericName>Apartment Building</GenericName>
+    <SpecificName>Bet</SpecificName>
+    <Classes datatype="tokens">CivSpecific</Classes>
+    <VisibleClasses datatype="tokens">-Village Town</VisibleClasses>
+    <Icon>structures/apartment.png</Icon>
+    <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <Loot>
-    <wood>45</wood>
+    <wood op="add">10</wood>
+    <stone op="add">10</stone>
   </Loot>
+  <Obstruction>
+    <Static width="13.0" depth="13.0"/>
+  </Obstruction>
   <Population>
-    <Bonus>15</Bonus>
+    <Bonus op="add">10</Bonus>
   </Population>
   <VisualActor>
+    <FoundationActor>structures/carthaginians/fndn_house.xml</FoundationActor>
     <Actor>structures/carthaginians/apartment.xml</Actor>
   </VisualActor>
 </Entity>

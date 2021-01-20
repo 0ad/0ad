@@ -261,13 +261,7 @@ void TerrainRenderer::PrepareShader(const CShaderProgramPtr& shader, ShadowMap* 
 	const CLightEnv& lightEnv = g_Renderer.GetLightEnv();
 
 	if (shadow)
-	{
-		shader->BindTexture(str_shadowTex, shadow->GetTexture());
-		shader->Uniform(str_shadowTransform, shadow->GetTextureMatrix());
-		int width = shadow->GetWidth();
-		int height = shadow->GetHeight();
-		shader->Uniform(str_shadowScale, width, height, 1.0f / width, 1.0f / height);
-	}
+		shadow->BindTo(shader);
 
 	CLOSTexture& los = g_Renderer.GetScene().GetLOSTexture();
 	shader->BindTexture(str_losTex, los.GetTextureSmooth());
@@ -599,13 +593,7 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 	}
 
 	if (shadow)
-	{
-		m->fancyWaterShader->BindTexture(str_shadowTex, shadow->GetTexture());
-		m->fancyWaterShader->Uniform(str_shadowTransform, shadow->GetTextureMatrix());
-		int width = shadow->GetWidth();
-		int height = shadow->GetHeight();
-		m->fancyWaterShader->Uniform(str_shadowScale, width, height, 1.0f / width, 1.0f / height);
-	}
+		shadow->BindTo(m->fancyWaterShader);
 
 	std::vector<CPatchRData*>& visiblePatches = m->visiblePatches[cullGroup];
 	for (size_t i = 0; i < visiblePatches.size(); ++i)

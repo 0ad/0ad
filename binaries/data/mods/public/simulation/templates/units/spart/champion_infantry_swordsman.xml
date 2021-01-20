@@ -8,8 +8,7 @@
   </Builder>
   <Cost>
     <Resources>
-      <food op="add">-10</food>
-      <metal op="add">20</metal>
+      <metal op="add">25</metal>
     </Resources>
   </Cost>
   <Identity>
@@ -21,6 +20,9 @@
     <Icon>units/spart_champion_infantry_sword.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
+  <Loot>
+    <metal op="add">3</metal>
+  </Loot>
   <Promotion disable=""/>
   <VisualActor>
     <Actor>units/spartans/infantry_swordsman_c.xml</Actor>

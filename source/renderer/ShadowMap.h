@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,6 +22,7 @@
 #ifndef INCLUDED_SHADOWMAP
 #define INCLUDED_SHADOWMAP
 
+#include "graphics/ShaderProgramPtr.h"
 #include "lib/ogl.h"
 
 class CBoundingBoxAligned;
@@ -67,20 +68,6 @@ public:
 	 * @param bits number of bits
 	 */
 	void SetDepthTextureBits(int bits);
-
-	/**
-	 * GetWidth: Return the width of the depth texture.
-	 *
-	 * @return depth texture width
-	 */
-	int GetWidth() const;
-
-	/**
-	 * GetHeight: Return the height of the depth texture
-	 *
-	 * @return depth texture height
-	 */
-	int GetHeight() const;
 
 	/**
 	 * SetupFrame: Configure light space for the given camera and light direction,
@@ -132,20 +119,9 @@ public:
 	void EndRender();
 
 	/**
-	 * GetTexture: Retrieve the OpenGL texture object name that contains the shadow map.
-	 *
-	 * @return the texture name of the shadow map texture
+	 * Binds all needed resources and uniforms to draw shadows using the shader.
 	 */
-	GLuint GetTexture() const;
-
-	/**
-	 * GetTextureMatrix: Retrieve the world-space to shadow map texture coordinates
-	 * transformation matrix.
-	 *
-	 * @return the matrix that transforms world-space coordinates into homogenous
-	 * shadow map texture coordinates
-	 */
-	const CMatrix3D& GetTextureMatrix() const;
+	void BindTo(const CShaderProgramPtr& shader) const;
 
 	/**
 	 * Visualize shadow mapping calculations to help in

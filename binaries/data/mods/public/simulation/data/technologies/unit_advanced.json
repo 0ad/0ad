@@ -1,13 +1,13 @@
 {
 	"autoResearch": true,
 	"icon": "upgrade_advanced.png",
-	"tooltip": "Advanced and Elite units +20% training time, +25% health, +0.7 capture attack strength, +20% loot, and −30% gather speed; Healers +5 healing strength and +3 healing range; Melee units +1 resistance and +20% attack damage; Ranged units −10% spread.",
+	"tooltip": "Advanced and Elite units +20% training time, +25% health, +0.7 capture attack strength, +20% loot, and −30% gather speed; Healers +5 healing strength and +3 healing range; Melee units +1 resistance and +20% attack damage; Ranged units −20% spread.",
 	"modifications": [
 		{ "value": "Attack/Capture/Capture", "add": 0.7 },
 		{ "value": "Attack/Melee/Damage/Hack", "multiply": 1.2, "affects": "Melee" },
 		{ "value": "Attack/Melee/Damage/Pierce", "multiply": 1.2, "affects": "Melee" },
 		{ "value": "Attack/Melee/Damage/Crush", "multiply": 1.2, "affects": "Melee" },
-		{ "value": "Attack/Ranged/Spread", "multiply": 0.9, "affects": "Ranged" },
+		{ "value": "Attack/Ranged/Spread", "multiply": 0.8, "affects": "Ranged" },
 		{ "value": "Cost/BuildTime", "multiply": 1.2 },
 		{ "value": "Health/Max", "multiply": 1.25 },
 		{ "value": "Heal/Range", "add": 3, "affects": "Healer" },

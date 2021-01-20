@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-15 08:53+0000\n"
-"PO-Revision-Date: 2021-01-15 10:36+0000\n"
+"POT-Creation-Date: 2021-01-18 08:15+0000\n"
+"PO-Revision-Date: 2021-01-18 10:36+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -352,13 +352,12 @@ msgid "Dunon"
 msgstr ""
 
 #: simulation/templates/structures/brit/fortress.xml:13
+#: simulation/templates/structures/cart/fortress.xml:10
 #: simulation/templates/structures/iber/fortress.xml:6
 #: simulation/templates/structures/kush/fortress.xml:10
 #: simulation/templates/structures/mace/fortress.xml:10
 #: simulation/templates/structures/rome/fortress.xml:6
-msgid ""
-"Territory root. Train Champion Infantry and Heroes. Garrison Soldiers for "
-"additional arrows."
+msgid "Territory root. Train Heroes. Garrison Soldiers for additional arrows."
 msgstr ""
 
 #: simulation/templates/structures/brit/house.xml:9
@@ -490,10 +489,6 @@ msgstr "Šadd"
 #: simulation/templates/structures/cart/fortress.xml:9
 msgid "Ḥamet"
 msgstr "Ḥamet"
-
-#: simulation/templates/structures/cart/fortress.xml:10
-msgid "Territory root. Train Heroes. Garrison Soldiers for additional arrows."
-msgstr ""
 
 #: simulation/templates/structures/cart/house.xml:8
 msgid "Bet"
@@ -634,9 +629,8 @@ msgid "Remogantion"
 msgstr ""
 
 #: simulation/templates/structures/gaul/assembly.xml:32
-#: simulation/templates/structures/spart/gerousia.xml:24
-msgid "Train Heroes."
-msgstr "訓練英雄"
+msgid "Train Champion Trumpeters and Heroes."
+msgstr ""
 
 #: simulation/templates/structures/gaul/barracks.xml:18
 msgid "Coriosedlon"
@@ -644,13 +638,6 @@ msgstr ""
 
 #: simulation/templates/structures/gaul/civil_centre.xml:12
 msgid "Lissos"
-msgstr ""
-
-#: simulation/templates/structures/gaul/fortress.xml:6
-#: simulation/templates/structures/sele/fortress.xml:10
-msgid ""
-"Territory root. Train Champion Infantry. Garrison Soldiers for additional "
-"arrows."
 msgstr ""
 
 #: simulation/templates/structures/gaul/rotarymill.xml:5
@@ -1280,12 +1267,6 @@ msgstr "巴比倫空中花園"
 msgid "Stathmos tōn Elepantōn"
 msgstr ""
 
-#: simulation/templates/structures/ptol/fortress.xml:10
-msgid ""
-"Territory root. Train Champion Infantry Pikemen. Garrison Soldiers for "
-"additional arrows."
-msgstr ""
-
 #: simulation/templates/structures/ptol/lighthouse.xml:25
 #: simulation/templates/structures/ptol/lighthouse.xml:29
 msgid "Lighthouse"
@@ -1546,6 +1527,10 @@ msgstr "斯巴達元老院"
 #: simulation/templates/structures/spart/gerousia.xml:23
 msgid "Gerousia"
 msgstr "Gerousia"
+
+#: simulation/templates/structures/spart/gerousia.xml:24
+msgid "Train Heroes."
+msgstr "訓練英雄"
 
 #: simulation/templates/structures/spart/syssiton.xml:23
 msgid "Military Mess Hall"

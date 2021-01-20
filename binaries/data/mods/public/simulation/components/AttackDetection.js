@@ -128,7 +128,10 @@ AttackDetection.prototype.AttackAlert = function(target, attacker, type, attacke
 		"targetIsDomesticAnimal": targetIsDomesticAnimal
 	});
 
-	let soundGroup = g_AttackEffects.GetSound(type);
+	let soundGroup = "attacked";
+	if (type == "capture")
+		soundGroup += "_capture";
+
 	if (attackerOwner === 0)
 		soundGroup += "_gaia";
 

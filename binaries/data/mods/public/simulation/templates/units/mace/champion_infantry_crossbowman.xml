@@ -14,7 +14,11 @@
       <RepeatTime>3000</RepeatTime>
       <Delay>0</Delay>
       <Projectile>
-        <Speed>100.0</Speed>
+        <Speed>120.0</Speed>
+        <Spread>0.8</Spread>
+        <Gravity>30.0</Gravity>
+        <FriendlyFire>false</FriendlyFire>
+        <LaunchPoint y="3"/>
       </Projectile>
       <PreferredClasses datatype="tokens">Human</PreferredClasses>
     </Ranged>

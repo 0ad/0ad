@@ -311,6 +311,20 @@ UnitMotionFlying.prototype.GetRunMultiplier = function()
 	return 1;
 };
 
+/**
+ * Estimate the next position of the unit. Just linearly extrapolate.
+ * TODO: Reuse the movement code for a better estimate.
+ */
+UnitMotionFlying.prototype.EstimateNextPosition = function(dt)
+{
+	let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+	if (!cmpPosition || !cmpPosition.IsInWorld())
+		return Vector2D();
+	let position = cmpPosition.GetPosition2D();
+
+	return Vector2D.add(position, Vector2D.sub(position, cmpPosition.GetPreviousPosition2D()).mult(dt/Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer).GetLatestTurnLength()));
+};
+
 UnitMotionFlying.prototype.IsMoveRequested = function()
 {
 	return this.hasTarget;

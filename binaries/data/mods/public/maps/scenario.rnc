@@ -41,8 +41,7 @@ Scenario = element Scenario {
         element SunColor { suncolor_rgb } &
         element SunElevation { angle } &
         element SunRotation { angle } &
-        element TerrainAmbientColor { color_rgb } &
-        element UnitsAmbientColor { color_rgb } &
+        element AmbientColor { color_rgb } &
         element Fog {
             element FogFactor {
                 xsd:decimal { minInclusive = "0" } # TODO: what is the max?

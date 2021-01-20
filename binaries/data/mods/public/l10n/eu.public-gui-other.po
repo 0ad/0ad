@@ -11,9 +11,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-15 08:53+0000\n"
-"PO-Revision-Date: 2021-01-17 10:47+0000\n"
-"Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
+"POT-Creation-Date: 2021-01-18 08:15+0000\n"
+"PO-Revision-Date: 2021-01-18 08:36+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1840,20 +1840,20 @@ msgid "Use actual water depth in rendering calculations."
 msgstr "Erabili uraren egiazko sakontasuna errendatze kalkuluetan."
 
 #: gui/options/options.json[1].options[18].label
-msgid "Shadows on water"
-msgstr "Itzalak uretan"
-
-#: gui/options/options.json[1].options[18].tooltip
-msgid "Cast shadows on water."
-msgstr "Sortu itzalak uretan."
-
-#: gui/options/options.json[1].options[19].label
 msgid "Smooth vision"
 msgstr "Ikusmen leuna"
 
-#: gui/options/options.json[1].options[19].tooltip
+#: gui/options/options.json[1].options[18].tooltip
 msgid "Lift darkness and fog of war smoothly."
 msgstr "Altxatu leunki iluntasuna eta gatazka lainoa."
+
+#: gui/options/options.json[1].options[19].label
+msgid "VSync"
+msgstr "VSync"
+
+#: gui/options/options.json[1].options[19].tooltip
+msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
+msgstr "Pantailako zutikako sinkronizazioa mantendu «screen tearing» deituriko ekiditeko. JOKOA BERRABIARAZI BEHAR DA"
 
 #: gui/options/options.json[1].options[1].label
 msgid "Prefer GLSL"
@@ -1864,36 +1864,20 @@ msgid "Use OpenGL 2.0 shaders (recommended)."
 msgstr "Erabili OpenGL 2.0 shaderrak (gomendatua)."
 
 #: gui/options/options.json[1].options[20].label
-msgid "Show sky"
-msgstr "Bistaratu zerua"
-
-#: gui/options/options.json[1].options[20].tooltip
-msgid "Render Sky."
-msgstr "Errendatu zerua."
-
-#: gui/options/options.json[1].options[21].label
-msgid "VSync"
-msgstr "VSync"
-
-#: gui/options/options.json[1].options[21].tooltip
-msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
-msgstr "Pantailako zutikako sinkronizazioa mantendu «screen tearing» deituriko ekiditeko. JOKOA BERRABIARAZI BEHAR DA"
-
-#: gui/options/options.json[1].options[22].label
 msgid "FPS throttling in menus"
 msgstr "FPSa menuetan mugatu"
 
-#: gui/options/options.json[1].options[22].tooltip
+#: gui/options/options.json[1].options[20].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in all menus. Set to maximum"
 " to disable throttling."
 msgstr "Marrazte abiadura mugatu dezakezu menuan prozesatzailean baliabide gutxiago jateko eta tenperatura eta energia gastua murrizteko. Gehienezko tamainan jarri mugatzailea ezgaitzeko."
 
-#: gui/options/options.json[1].options[23].label
+#: gui/options/options.json[1].options[21].label
 msgid "FPS throttling in games"
 msgstr "FPSa partidan mugatu"
 
-#: gui/options/options.json[1].options[23].tooltip
+#: gui/options/options.json[1].options[21].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."
