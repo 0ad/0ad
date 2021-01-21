@@ -12,8 +12,8 @@ class OverlayCounterManager
 		this.counters = [];
 		this.enabledCounters = [];
 		this.lastTick = undefined;
-		this.lastLineCount = undefined;
 		this.resizeHandlers = [];
+		this.initSize = this.dataCounter.size;
 
 		for (let name of this.availableCounterNames())
 		{
@@ -61,7 +61,7 @@ class OverlayCounterManager
 	}
 
 	/**
-	 * Handlers subscribed here will be informed then the dimension of the overlay changed.
+	 * Handlers subscribed here will be informed when the dimension of the overlay changed.
 	 * This allows placing the buttons away from the counter.
 	 */
 	registerResizeHandler(handler)
@@ -92,17 +92,12 @@ class OverlayCounterManager
 		}
 
 		if (lineCount)
-			this.dataCounter.caption = txt;
-
-		// The caption changes more often than not,
-		// but adding or removing lines happens rarely.
-		if (this.lastLineCount == lineCount)
-			return;
-
-		this.lastLineCount = lineCount;
-
-		if (lineCount)
 		{
+			this.dataCounter.caption = txt;
+			// Just using the previous size for getting the size of the new text
+			// could lead to unneeded linebreaks.
+			// Therefore we set the overlay to the maximum size before reading the text size.
+			this.dataCounter.size = this.initSize;
 			let textSize = this.dataCounter.getTextSize();
 			let size = this.dataCounter.size;
 			size.bottom = size.top + textSize.height;
