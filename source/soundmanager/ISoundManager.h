@@ -38,6 +38,9 @@ public:
 
 	virtual void IdleTask() = 0;
 	virtual void Pause(bool pauseIt) = 0;
+	virtual void PauseMusic(bool pauseIt) = 0;
+	virtual void PauseAmbient(bool pauseIt) = 0;
+	virtual void PauseAction(bool pauseIt) = 0;
 
 	virtual void SetMasterGain(float gain) = 0;
 	virtual void SetMusicGain(float gain) = 0;
