@@ -39,8 +39,34 @@
   "Name": "Sicilia Nomad (2)",
   "Preview": "sicilia.png",
   "PlayerData": [
-    {},
-    {}
+    {
+      "StartingCamera": {
+        "Position": {
+          "x": 639,
+          "y": 80,
+          "z": 43
+        },
+        "Rotation": {
+          "x": 35,
+          "y": 0,
+          "z": 0
+        }
+      }
+    },
+    {
+      "StartingCamera": {
+        "Position": {
+          "x": 652,
+          "y": 80,
+          "z": 951
+        },
+        "Rotation": {
+          "x": 35,
+          "y": 0,
+          "z": 0
+        }
+      }
+    }
   ],
   "VictoryConditions": [
     "conquest"
