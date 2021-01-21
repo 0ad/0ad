@@ -310,9 +310,12 @@ InReaction HotkeyInputHandler(const SDL_Event_* ev)
 	if ((ev->ev.type == SDL_KEYDOWN) || (ev->ev.type == SDL_MOUSEBUTTONDOWN))
 		for (const SHotkeyMapping* hotkey : pressedHotkeys)
 		{
-			if (hotkey->requires.size() + 1 < closestMapMatch)
+			if (std::find_if(newPressedHotkeys.begin(), newPressedHotkeys.end(),
+							 [&hotkey](const SHotkeyMapping* v){ return v->name == hotkey->name; }) != newPressedHotkeys.end())
+				continue;
+			else if (hotkey->requires.size() + 1 < closestMapMatch)
 				releasedHotkeys.push_back(hotkey->name.c_str());
-			else if (std::find(newPressedHotkeys.begin(), newPressedHotkeys.end(), hotkey) == newPressedHotkeys.end())
+			else
 			{
 				// We need to check that all 'keys' are still pressed (because of mouse buttons).
 				if (!isPressed(hotkey->primary))
