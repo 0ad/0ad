@@ -18,9 +18,9 @@
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "mining_stone_03.png",
 	"researchTime": 60,
-	"tooltip": "Workers +25% stone gather rate.",
+	"tooltip": "Workers +20% stone gather rate.",
 	"modifications": [
-		{ "value": "ResourceGatherer/Rates/stone.rock", "multiply": 1.25 }
+		{ "value": "ResourceGatherer/Rates/stone.rock", "multiply": 1.2 }
 	],
 	"affects": ["Worker"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"

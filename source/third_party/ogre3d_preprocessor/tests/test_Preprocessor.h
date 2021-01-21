@@ -273,7 +273,7 @@ public:
 			if (depth < 4)
 			{
 				std::stringstream nextIncludes;
-				for (int idx = 0; idx < 8; ++idx)
+				for (int idx = 0; idx < 16; ++idx)
 					nextIncludes << "#include \"" << depth + 1 << ".h\"\n";
 				out = nextIncludes.str();
 			}
@@ -292,6 +292,6 @@ public:
 		)", includeCallback);
 		const double finish = timer_Time();
 		printf("Total: %lfs\n", finish - start);
-		TS_ASSERT_EQUALS(result.output.Trim(PS_TRIM_BOTH).size(), 132824u);
+		TS_ASSERT_EQUALS(result.output.Trim(PS_TRIM_BOTH).size(), 2075304u);
 	}
 };

@@ -125,6 +125,7 @@ AttackDetection.prototype.AttackAlert = function(target, attacker, type, attacke
 		"target": target,
 		"players": [playerID],
 		"attacker": atkOwner,
+		"position": event.position,
 		"targetIsDomesticAnimal": targetIsDomesticAnimal
 	});
 

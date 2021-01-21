@@ -74,8 +74,11 @@ public:
 	void connect(CNetServer& server, const std::vector<CNetClient*>& clients)
 	{
 		TS_ASSERT(server.SetupConnection(PS_DEFAULT_PORT));
-		for (size_t j = 0; j < clients.size(); ++j)
-			TS_ASSERT(clients[j]->SetupConnection("127.0.0.1", PS_DEFAULT_PORT, nullptr));
+		for (CNetClient* client: clients)
+		{
+			client->SetupServerData("127.0.0.1", PS_DEFAULT_PORT, false);
+			TS_ASSERT(client->SetupConnection(nullptr));
+		}
 
 		for (size_t i = 0; ; ++i)
 		{
@@ -304,7 +307,8 @@ public:
 		client2B.SetUserName(L"bob");
 		clients.push_back(&client2B);
 
-		TS_ASSERT(client2B.SetupConnection("127.0.0.1", PS_DEFAULT_PORT, nullptr));
+		client2B.SetupServerData("127.0.0.1", PS_DEFAULT_PORT, false);
+		TS_ASSERT(client2B.SetupConnection(nullptr));
 
 		for (size_t i = 0; ; ++i)
 		{

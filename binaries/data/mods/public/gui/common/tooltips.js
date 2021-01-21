@@ -1011,13 +1011,20 @@ function getEntityNamesFormatted(template)
 
 	// Translation: Example: "Epibátēs Athēnaîos [font="sans-bold-16"](Athenian Marine)[/font]"
 	return sprintf(translate("%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"), {
-		"specificName":
-			setStringTags(template.name.specific[0], g_TooltipTextFormats.nameSpecificBig) +
-			setStringTags(template.name.specific.slice(1).toUpperCase(), g_TooltipTextFormats.nameSpecificSmall),
+		"specificName": getEntitySpecificNameFormatted(template),
 		"genericName": template.name.generic,
 		"fontStart": '[font="' + g_TooltipTextFormats.nameGeneric.font + '"]',
 		"fontEnd": '[/font]'
 	});
+}
+
+function getEntitySpecificNameFormatted(template)
+{
+	if (!template.name.specific)
+		return setStringTags(template.name.generic, g_TooltipTextFormats.nameSpecificBig);
+
+	return setStringTags(template.name.specific[0], g_TooltipTextFormats.nameSpecificBig) +
+		setStringTags(template.name.specific.slice(1).toUpperCase(), g_TooltipTextFormats.nameSpecificSmall);
 }
 
 function getVisibleEntityClassesFormatted(template)

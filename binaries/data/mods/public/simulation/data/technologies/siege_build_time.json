@@ -1,0 +1,17 @@
+{
+	"genericName": "Siegecraft",
+	"description": "The science or craft of laying or carrying out sieges.",
+	"cost": {
+		"wood": 600
+	},
+	"requirements": { "tech": "phase_city" },
+	"requirementsTooltip": "Unlocked in City Phase.",
+	"icon": "engineering.png",
+	"researchTime": 40,
+	"tooltip": "Siege Weapons −40% construction time.",
+	"modifications": [
+		{ "value": "Cost/BuildTime", "multiply": 0.8 }
+	],
+	"affects": ["Siege"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}

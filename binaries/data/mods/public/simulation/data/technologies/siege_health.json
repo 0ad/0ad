@@ -1,0 +1,17 @@
+{
+	"genericName": "Armor plating",
+	"description": "Cover the exterior with iron plates to protect against fire and projectiles.",
+	"cost": {
+		"metal": 600
+	},
+	"requirements": { "tech": "phase_city" },
+	"requirementsTooltip": "Unlocked in City Phase.",
+	"icon": "armor_plates_gold.png",
+	"researchTime": 40,
+	"tooltip": "Siege Towers and Battering Rams +25% health.",
+	"modifications": [
+		{ "value": "Health/Max", "multiply": 1.25 }
+	],
+	"affects": ["Ram", "SiegeTower"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}

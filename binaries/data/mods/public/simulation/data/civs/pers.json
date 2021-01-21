@@ -22,7 +22,18 @@
 			"Type": "peace"
 		}
 	],
-	"CivBonuses": [],
+	"CivBonuses": [
+		{
+			"Name": "Darics",
+			"History": "",
+			"Description": "Land Traders +25% trade gain."
+		},
+		{
+			"Name": "Large Rams",
+			"History": "",
+			"Description": "Battering Rams +20% attack damage and +2 garrison capacity."
+		}
+	],
 	"WallSets": [
 		"structures/wallset_palisade",
 		"structures/pers/wallset_stone"

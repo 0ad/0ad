@@ -270,10 +270,7 @@ class Game
  */
 Game.prototype.StanzaKeys = [
 	"name",
-	"ip",
-	"port",
-	"stunIP",
-	"stunPort",
+	"hasPassword",
 	"hostUsername",
 	"state",
 	"nbp",

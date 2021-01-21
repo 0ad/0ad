@@ -193,13 +193,12 @@ var g_NotificationsTypes =
 		if (Engine.ConfigDB_GetValue("user", "gui.session.notifications.attack") !== "true")
 			return;
 
-		let entState = GetEntityState(notification.target);
 		addChatMessage({
 			"type": "attack",
 			"player": player,
 			"attacker": notification.attacker,
 			"target": notification.target,
-			"position": entState && entState.position,
+			"position": notification.position,
 			"targetIsDomesticAnimal": notification.targetIsDomesticAnimal
 		});
 	},

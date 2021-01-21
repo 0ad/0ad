@@ -22,7 +22,13 @@
 			"Type": "peace"
 		}
 	],
-	"CivBonuses": [],
+	"CivBonuses": [
+		{
+			"Name": "Spartan Women",
+			"History": "",
+			"Description": "Female Citizens +40% health and +50% melee attack hack damage."
+		}
+	],
 	"WallSets": [
 		"structures/wallset_palisade",
 		"structures/spart/wallset_stone"
@@ -45,9 +51,6 @@
 		},
 		{
 			"Template": "units/spart/cavalry_javelineer_b"
-		},
-		{
-			"Template": "units/spart/champion_infantry_spear"
 		}
 	],
 	"Formations": [
@@ -78,7 +81,6 @@
 		"Agesipolis"
 	],
 	"SkirmishReplacements": {
-		"skirmish/units/special_starting_unit": "units/spart/champion_infantry_spear",
 		"skirmish/structures/default_house_10": "structures/{civ}/house",
 		"skirmish/structures/default_wall_tower": "",
 		"skirmish/structures/default_wall_gate": "",

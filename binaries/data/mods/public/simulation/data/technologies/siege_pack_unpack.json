@@ -1,0 +1,27 @@
+{
+	"genericName": "Military Engineers",
+	"description": "Military engineers are responsible for improvements in siege weapons",
+	"cost": {
+		"food": 800
+	},
+	"requirements": {
+		"all": [
+			{ "tech": "phase_city" },
+			{ "notciv": "brit" },
+			{ "notciv": "gaul" },
+			{ "notciv": "iber" },
+			{ "notciv": "maur" },
+			{ "notciv": "kush" },
+			{ "notciv": "pers" }
+		]
+	},
+	"requirementsTooltip": "Unlocked in City Phase.",
+	"icon": "military_engineers.png",
+	"researchTime": 40,
+	"tooltip": "Siege Weapons –40% pack and unpack time.",
+	"modifications": [
+		{ "value": "Pack/Time", "multiply": 0.6 }
+	],
+	"affects": ["Siege"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}

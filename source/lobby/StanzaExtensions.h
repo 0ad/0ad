@@ -41,6 +41,30 @@
 #define EXTLOBBYAUTH 1407
 #define XMLNS_LOBBYAUTH "jabber:iq:lobbyauth"
 
+#define EXTCONNECTIONDATA 1408
+#define XMLNS_CONNECTIONDATA "jabber:iq:connectiondata"
+
+class ConnectionData : public glooxwrapper::StanzaExtension
+{
+public:
+	ConnectionData(const glooxwrapper::Tag* tag = 0);
+
+	// Following four methods are all required by gloox
+	virtual StanzaExtension* newInstance(const glooxwrapper::Tag* tag) const
+	{
+		return new ConnectionData(tag);
+	}
+	virtual const glooxwrapper::string& filterString() const;
+	virtual glooxwrapper::Tag* tag() const;
+	virtual glooxwrapper::StanzaExtension* clone() const;
+
+	glooxwrapper::string m_Ip;
+	glooxwrapper::string m_Port;
+	glooxwrapper::string m_UseSTUN;
+	glooxwrapper::string m_Password;
+	glooxwrapper::string m_Error;
+};
+
 class GameReport : public glooxwrapper::StanzaExtension
 {
 public:

@@ -1,10 +1,10 @@
 #version 110
 
+#include "common/los_vertex.h"
 #include "common/shadows_vertex.h"
 
 uniform mat4 reflectionMatrix;
 uniform mat4 refractionMatrix;
-uniform mat4 losMatrix;
 uniform float repeatScale;
 uniform float windAngle;
 // "Wildness" of the reflections and refractions; choose based on texture
@@ -31,7 +31,6 @@ varying vec3 reflectionCoords;
 #if USE_REFRACTION
 varying vec3 refractionCoords;
 #endif
-varying vec2 losCoords;
 
 varying float fwaviness;
 varying vec2 WindCosSin;
@@ -60,7 +59,7 @@ void main()
 #if USE_REFRACTION
 	refractionCoords = (refractionMatrix * vec4(a_vertex, 1.0)).rga;
 #endif
-	losCoords = (losMatrix * vec4(a_vertex, 1.0)).rg;
+	calculateLOSCoordinates(a_vertex.xz);
 
 	calculatePositionInShadowSpace(vec4(a_vertex, 1.0));
 

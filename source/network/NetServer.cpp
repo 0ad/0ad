@@ -1573,13 +1573,18 @@ void CNetServerWorker::SendHolePunchingMessage(const CStr& ipStr, u16 port)
 
 CNetServer::CNetServer(bool useLobbyAuth, int autostartPlayers) :
 	m_Worker(new CNetServerWorker(useLobbyAuth, autostartPlayers)),
-	m_LobbyAuth(useLobbyAuth)
+	m_LobbyAuth(useLobbyAuth), m_UseSTUN(false), m_PublicIp(""), m_PublicPort(20595), m_Password()
 {
 }
 
 CNetServer::~CNetServer()
 {
 	delete m_Worker;
+}
+
+bool CNetServer::GetUseSTUN() const
+{
+	return m_UseSTUN;
 }
 
 bool CNetServer::UseLobbyAuth() const
@@ -1590,6 +1595,33 @@ bool CNetServer::UseLobbyAuth() const
 bool CNetServer::SetupConnection(const u16 port)
 {
 	return m_Worker->SetupConnection(port);
+}
+
+u16 CNetServer::GetPublicPort() const
+{
+	return m_PublicPort;
+}
+
+CStr CNetServer::GetPublicIp() const
+{
+	return m_PublicIp;
+}
+
+void CNetServer::SetConnectionData(const CStr& ip, const u16 port, bool useSTUN)
+{
+	m_PublicIp = ip;
+	m_PublicPort = port;
+	m_UseSTUN = useSTUN;
+}
+
+bool CNetServer::CheckPassword(const CStr& password) const
+{
+	return m_Password == password;
+}
+
+void CNetServer::SetPassword(const CStr& password)
+{
+	m_Password = password;
 }
 
 void CNetServer::StartGame()

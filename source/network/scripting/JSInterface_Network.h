@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -29,9 +29,14 @@ namespace JSI_Network
 	bool HasNetClient(ScriptInterface::CmptPrivate* pCmptPrivate);
 	void StartNetworkGame(ScriptInterface::CmptPrivate* pCmptPrivate);
 	void SetNetworkGameAttributes(ScriptInterface::CmptPrivate* pCmptPrivate, JS::HandleValue attribs1);
-	void StartNetworkHost(ScriptInterface::CmptPrivate* pCmptPrivate, const CStrW& playerName, const u16 serverPort, const CStr& hostLobbyName);
+	void StartNetworkHost(ScriptInterface::CmptPrivate* pCmptPrivate, const CStrW& playerName, const u16 serverPort, const CStr& hostLobbyName, bool useSTUN, const CStr& password);
 	void StartNetworkJoin(ScriptInterface::CmptPrivate* pCmptPrivate, const CStrW& playerName, const CStr& serverAddress, u16 serverPort, bool useSTUN, const CStr& hostJID);
-	JS::Value FindStunEndpoint(ScriptInterface::CmptPrivate* pCmptPrivate, int port);
+	/**
+	* Requires XmppClient to send iq request to the server to get server's ip and port based on passed password.
+	* This is needed to not force server to share it's public ip with all potential clients in the lobby.
+	* XmppClient will also handle logic after receiving the answer.
+	*/
+	void StartNetworkJoinLobby(ScriptInterface::CmptPrivate* pCmptPrivate, const CStrW& playerName, const CStr& hostJID, const CStr& password);
 	void DisconnectNetworkGame(ScriptInterface::CmptPrivate* pCmptPrivate);
 	JS::Value PollNetworkClient(ScriptInterface::CmptPrivate* pCmptPrivate);
 	CStr GetPlayerGUID(ScriptInterface::CmptPrivate* pCmptPrivate);
@@ -42,6 +47,7 @@ namespace JSI_Network
 	void SendNetworkReady(ScriptInterface::CmptPrivate* pCmptPrivate, int message);
 	void SetTurnLength(ScriptInterface::CmptPrivate* pCmptPrivate, int length);
 
+	CStr HashPassword(const CStr& password);
 	void RegisterScriptFunctions(const ScriptInterface& scriptInterface);
 }
 

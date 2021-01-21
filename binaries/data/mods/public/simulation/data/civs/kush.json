@@ -22,7 +22,13 @@
 			"Type": "peace"
 		}
 	],
-	"CivBonuses": [],
+	"CivBonuses": [
+		{
+			"Name": "Large Rams",
+			"History": "",
+			"Description": "Battering Rams +20% attack damage and +2 garrison capacity."
+		}
+	],
 	"StartEntities": [
 		{
 			"Template": "structures/kush/civil_centre"

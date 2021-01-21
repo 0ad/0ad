@@ -1,10 +1,10 @@
 #version 120
 
 #include "common/fog.h"
+#include "common/los_fragment.h"
 #include "common/shadows_fragment.h"
 
 uniform sampler2D baseTex;
-uniform sampler2D losTex;
 uniform sampler2D aoTex;
 uniform sampler2D normTex;
 uniform sampler2D specTex;
@@ -24,7 +24,6 @@ uniform vec3 sunDir;
 
 varying vec4 v_lighting;
 varying vec2 v_tex;
-varying vec2 v_los;
 
 #if (USE_INSTANCING || USE_GPU_SKINNING) && USE_AO
   varying vec2 v_tex2;
@@ -171,11 +170,7 @@ void main()
 
   color = applyFog(color);
 
-  #if !IGNORE_LOS
-    float los = texture2D(losTex, v_los).a;
-    los = los < 0.03 ? 0.0 : los;
-    color *= los;
-  #endif
+  color *= getLOS();
 
   color *= shadingColor;
 

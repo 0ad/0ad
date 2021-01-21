@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -86,7 +86,10 @@ inline SPrototypeSerialization GetPrototypeInfo(const ScriptRequest& rq, JS::Han
 		if (serialize.isNull())
 			ret.hasNullSerialize = true;
 		else if (!ret.hasCustomDeserialize)
-			throw PSERROR_Serialize_ScriptError("Cannot serialize script with non-null Serialize but no Deserialize.");
+		{
+			// Don't throw for this error: mods might need updating and this crashes as exceptions are not correctly handled.
+			LOGERROR("Error serializing object '%s': non-null Serialize() but no matching Deserialize().", ret.name);
+		}
 	}
 	return ret;
 }

@@ -1,8 +1,9 @@
 #version 120
 
+#include "common/los_fragment.h"
+
 uniform sampler2D baseTex;
 uniform sampler2D maskTex;
-uniform sampler2D losTex;
 
 #if USE_OBJECTCOLOR
 uniform vec4 objectColor;
@@ -11,10 +12,6 @@ varying vec4 v_color;
 #endif
 
 varying vec2 v_tex;
-
-#if !IGNORE_LOS
-varying vec2 v_los;
-#endif
 
 void main()
 {
@@ -30,11 +27,7 @@ void main()
     vec4 mask = texture2D(maskTex, v_tex);
     color = mix(base.rgb, color, mask.r);
 
-#if !IGNORE_LOS
-    float los = texture2D(losTex, v_los).a;
-    los = los < 0.03 ? 0.0 : los;
-    color *= los;
-#endif
+    color *= getLOS();
 
     gl_FragColor = vec4(color, alpha * base.a);
 }

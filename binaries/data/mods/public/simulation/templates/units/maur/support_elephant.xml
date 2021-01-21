@@ -6,7 +6,7 @@
   <Cost>
     <BuildTime>15</BuildTime>
     <Resources>
-      <food>150</food>
+      <food>100</food>
     </Resources>
   </Cost>
   <Footprint replace="">
@@ -25,8 +25,7 @@
     <Formations disable=""/>
   </Identity>
   <Loot>
-    <xp>30</xp>
-    <food>15</food>
+    <food>10</food>
   </Loot>
   <Position>
     <Anchor>pitch</Anchor>
@@ -35,8 +34,8 @@
   <Resistance>
     <Entity>
       <Damage>
-        <Hack>5</Hack>
-        <Pierce>8</Pierce>
+        <Hack>2</Hack>
+        <Pierce>2</Pierce>
         <Crush>10</Crush>
       </Damage>
     </Entity>

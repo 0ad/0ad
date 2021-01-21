@@ -1,13 +1,13 @@
 #version 110
 
+#include "common/los_vertex.h"
+
 attribute vec3 a_vertex;
 
 uniform mat4 transform;
-uniform mat4 losMatrix;
 uniform float time;
 
 varying vec2 v_coords;
-varying vec2 v_losCoords;
 
 void main()
 {
@@ -17,6 +17,6 @@ void main()
 	float repeatPeriod = 16.0;
 
 	v_coords = a_vertex.xz / repeatPeriod + vec2(tx, tz);
-	v_losCoords = (losMatrix * vec4(a_vertex, 1.0)).rg;
+	calculateLOSCoordinates(a_vertex.xz);
 	gl_Position = transform * vec4(a_vertex, 1.0);
 }

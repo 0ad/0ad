@@ -13,6 +13,7 @@ class FollowPlayer
 		this.followPlayer.onPress = this.onPress.bind(this);
 		this.followPlayer.onWindowResized = this.onWindowResized.bind(this);
 		playerViewControl.registerViewedPlayerChangeHandler(this.onViewedPlayerChange.bind(this));
+		this.onWindowResized();
 	}
 
 	onPress()

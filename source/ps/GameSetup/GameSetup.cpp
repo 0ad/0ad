@@ -1565,7 +1565,8 @@ bool Autostart(const CmdLineArgs& args)
 
 		g_NetClient = new CNetClient(g_Game, true);
 		g_NetClient->SetUserName(userName);
-		g_NetClient->SetupConnection("127.0.0.1", PS_DEFAULT_PORT, nullptr);
+		g_NetClient->SetupServerData("127.0.0.1", PS_DEFAULT_PORT, false);
+		g_NetClient->SetupConnection(nullptr);
 	}
 	else if (args.Has("autostart-client"))
 	{
@@ -1578,8 +1579,8 @@ bool Autostart(const CmdLineArgs& args)
 		if (ip.empty())
 			ip = "127.0.0.1";
 
-		bool ok = g_NetClient->SetupConnection(ip, PS_DEFAULT_PORT, nullptr);
-		ENSURE(ok);
+		g_NetClient->SetupServerData(ip, PS_DEFAULT_PORT, false);
+		ENSURE(g_NetClient->SetupConnection(nullptr));
 	}
 	else
 	{

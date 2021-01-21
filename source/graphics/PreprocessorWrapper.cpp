@@ -24,6 +24,9 @@
 #include "ps/Profile.h"
 
 #include <cctype>
+#include <string>
+#include <string_view>
+#include <vector>
 
 namespace
 {
@@ -35,7 +38,7 @@ struct MatchIncludeResult
 	size_t nextLineStart;
 	size_t pathFirst, pathLast;
 
-	static MatchIncludeResult MakeNotFound(const CStr& source, size_t pos)
+	static MatchIncludeResult MakeNotFound(const std::string_view& source, size_t pos)
 	{
 		while (pos < source.size() && source[pos] != '\n')
 			++pos;
@@ -44,22 +47,22 @@ struct MatchIncludeResult
 	}
 
 	static MatchIncludeResult MakeError(
-		const char* message, const CStr& source, const size_t lineStart, const size_t currentPos)
+		const char* message, const std::string_view& source, const size_t lineStart, const size_t currentPos)
 	{
 		ENSURE(currentPos >= lineStart);
 		size_t lineEnd = currentPos;
 		while (lineEnd < source.size() && source[lineEnd] != '\n' && source[lineEnd] != '\r')
 			++lineEnd;
-		const CStr line = source.substr(lineStart, lineEnd - lineStart);
+		const std::string_view line = source.substr(lineStart, lineEnd - lineStart);
 		while (lineEnd < source.size() && source[lineEnd] != '\n')
 			++lineEnd;
 		const size_t nextLineStart = lineEnd < source.size() ? lineEnd + 1 : source.size();
-		LOGERROR("Preprocessor error: %s: '%s'\n", message, line.c_str());
+		LOGERROR("Preprocessor error: %s: '%s'\n", message, std::string(line).c_str());
 		return MatchIncludeResult{false, true, nextLineStart, 0, 0};
 	}
 };
 
-MatchIncludeResult MatchIncludeUntilEOLorEOS(const CStr& source, const size_t lineStart)
+MatchIncludeResult MatchIncludeUntilEOLorEOS(const std::string_view& source, const size_t lineStart)
 {
 	// We need to match a line like this:
 	// ^[ \t]*#[ \t]*include[ \t]*"[^"]+".*$
@@ -101,6 +104,60 @@ MatchIncludeResult MatchIncludeUntilEOLorEOS(const CStr& source, const size_t li
 	while (pos < source.size() && source[pos] != '\n')
 		++pos;
 	return MatchIncludeResult{true, false, pos < source.size() ? pos + 1 : source.size(), pathFirst, pathLast};
+}
+
+bool ResolveIncludesImpl(
+	std::string_view currentPart,
+	std::unordered_map<CStr, CStr>& includeCache, const CPreprocessorWrapper::IncludeRetrieverCallback& includeCallback,
+	std::vector<std::string>& chunks, std::vector<std::string_view>& processedParts)
+{
+	static const CStr lineDirective = "#line ";
+	for (size_t lineStart = 0, line = 1; lineStart < currentPart.size(); ++line)
+	{
+		MatchIncludeResult match = MatchIncludeUntilEOLorEOS(currentPart, lineStart);
+		if (match.error)
+			return {};
+		else if (!match.found)
+		{
+			if (lineStart + lineDirective.size() < currentPart.size() &&
+				currentPart.substr(lineStart, lineDirective.size()) == lineDirective)
+			{
+				size_t newLineNumber = 0;
+				size_t pos = lineStart + lineDirective.size();
+				while (pos < match.nextLineStart && std::isdigit(currentPart[pos]))
+				{
+					newLineNumber = newLineNumber * 10 + (currentPart[pos] - '0');
+					++pos;
+				}
+				if (newLineNumber > 0)
+					line = newLineNumber - 1;
+			}
+
+			lineStart = match.nextLineStart;
+			continue;
+		}
+		const std::string path(currentPart.substr(match.pathFirst, match.pathLast - match.pathFirst));
+		auto it = includeCache.find(path);
+		if (it == includeCache.end())
+		{
+			CStr includeContent;
+			if (!includeCallback(path, includeContent))
+			{
+				LOGERROR("Preprocessor error: line %zu: Can't load #include file: '%s'", line, path.c_str());
+				return false;
+			}
+			it = includeCache.emplace(path, std::move(includeContent)).first;
+		}
+		// We need to insert #line directives to have correct line numbers in errors.
+		chunks.emplace_back(lineDirective + "1\n" + it->second + "\n" + lineDirective + CStr::FromUInt(line + 1) + "\n");
+		processedParts.emplace_back(currentPart.substr(0, lineStart));
+		ResolveIncludesImpl(chunks.back(), includeCache, includeCallback, chunks, processedParts);
+		currentPart = currentPart.substr(match.nextLineStart);
+		lineStart = 0;
+	}
+	if (!currentPart.empty())
+		processedParts.emplace_back(currentPart);
+	return true;
 }
 
 } // anonymous namespace
@@ -167,53 +224,24 @@ bool CPreprocessorWrapper::TestConditional(const CStr& expr)
 
 }
 
-CStr CPreprocessorWrapper::ResolveIncludes(CStr source)
+CStr CPreprocessorWrapper::ResolveIncludes(const CStr& source)
 {
-	const CStr lineDirective = "#line ";
-	for (size_t lineStart = 0, line = 1; lineStart < source.size(); ++line)
-	{
-		MatchIncludeResult match = MatchIncludeUntilEOLorEOS(source, lineStart);
-		if (match.error)
-			return {};
-		else if (!match.found)
-		{
-			if (lineStart + lineDirective.size() < source.size() &&
-			    source.substr(lineStart, lineDirective.size()) == lineDirective)
-			{
-				size_t newLineNumber = 0;
-				size_t pos = lineStart + lineDirective.size();
-				while (pos < match.nextLineStart && std::isdigit(source[pos]))
-				{
-					newLineNumber = newLineNumber * 10 + (source[pos] - '0');
-					++pos;
-				}
-				if (newLineNumber > 0)
-					line = newLineNumber - 1;
-			}
-
-			lineStart = match.nextLineStart;
-			continue;
-		}
-		const CStr path = source.substr(match.pathFirst, match.pathLast - match.pathFirst);
-		auto it = m_IncludeCache.find(path);
-		if (it == m_IncludeCache.end())
-		{
-			CStr includeContent;
-			if (!m_IncludeCallback(path, includeContent))
-			{
-				LOGERROR("Preprocessor error: line %zu: Can't load #include file: '%s'", line, path.c_str());
-				return {};
-			}
-			it = m_IncludeCache.emplace(path, std::move(includeContent)).first;
-		}
-		// We need to insert #line directives to have correct line numbers in errors.
-		source =
-			source.substr(0, lineStart) +
-			lineDirective + "1\n" + it->second + "\n" + lineDirective + CStr::FromUInt(line + 1) + "\n" +
-			source.substr(match.nextLineStart);
-		--line;
-	}
-	return source;
+	// Stores intermediate blocks of text to avoid additional copying. Should
+	// be constructed before views and destroyed after (currently guaranteed
+	// by stack).
+	std::vector<std::string> chunks;
+	// After resolving the following vector should contain a complete list
+	// to concatenate.
+	std::vector<std::string_view> processedParts;
+	ResolveIncludesImpl(source, m_IncludeCache, m_IncludeCallback, chunks, processedParts);
+	std::size_t totalSize = 0;
+	for (const std::string_view& part : processedParts)
+		totalSize += part.size();
+	std::string processedSource;
+	processedSource.reserve(totalSize);
+	for (const std::string_view& part : processedParts)
+		processedSource.append(part);
+	return processedSource;
 }
 
 CStr CPreprocessorWrapper::Preprocess(const CStr& input)

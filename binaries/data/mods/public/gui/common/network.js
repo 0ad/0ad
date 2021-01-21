@@ -76,6 +76,9 @@ function getDisconnectReason(id, wasConnected)
 	case 10: return translate("Error: Server failed to allocate a unique client identifier.");
 	case 11: return translate("Error: Client commands were ready for an unexpected game turn.");
 	case 12: return translate("Error: Client simulated an unexpected game turn.");
+	case 13: return translate("Password is invalid.");
+	case 14: return translate("Could not find an unused port for the enet STUN client.");
+	case 15: return translate("Could not find the STUN endpoint.");
 	default:
 		warn("Unknown disconnect-reason ID received: " + id);
 		return sprintf(translate("\\[Invalid value %(id)s]"), { "id": id });

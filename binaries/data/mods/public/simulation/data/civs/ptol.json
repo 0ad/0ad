@@ -22,7 +22,13 @@
 			"Type": "peace"
 		}
 	],
-	"CivBonuses": [],
+	"CivBonuses": [
+		{
+			"Name": "Polybolos",
+			"History": "",
+			"Description": "Bolt Shooters −33% attack damage and −33% attack time."
+		}
+	],
 	"WallSets": [
 		"structures/wallset_palisade",
 		"structures/ptol/wallset_stone"

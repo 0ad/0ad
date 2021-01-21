@@ -14,19 +14,16 @@ var g_GameType;
 var g_ServerName = "";
 
 /**
- * Cached to pass it to the game setup of the controller to report the game to the lobby.
+ * Identifier if server is using password.
  */
-var g_ServerPort;
+var g_ServerHasPassword = false;
+
+var g_ServerId;
 
 var g_IsRejoining = false;
 var g_GameAttributes; // used when rejoining
 var g_PlayerAssignments; // used when rejoining
 var g_UserRating;
-
-/**
- * Object containing the IP address and port of the STUN server.
- */
-var g_StunEndpoint;
 
 function init(attribs)
 {
@@ -36,19 +33,27 @@ function init(attribs)
 	{
 	case "join":
 	{
-		if (Engine.HasXmppClient())
+		if (!Engine.HasXmppClient())
 		{
-			if (startJoin(attribs.name, attribs.ip, getValidPort(attribs.port), attribs.useSTUN, attribs.hostJID))
-				switchSetupPage("pageConnecting");
-		}
-		else
 			switchSetupPage("pageJoin");
+			break;
+		}
+		if (attribs.hasPassword)
+		{
+			g_ServerName = attribs.name;
+			g_ServerId = attribs.hostJID;
+			switchSetupPage("pagePassword");
+		}
+		else if (startJoinFromLobby(attribs.name, attribs.hostJID, ""))
+			switchSetupPage("pageConnecting");
 		break;
 	}
 	case "host":
 	{
-		Engine.GetGUIObjectByName("hostSTUNWrapper").hidden = !Engine.HasXmppClient();
-		if (Engine.HasXmppClient())
+		let hasXmppClient = Engine.HasXmppClient();
+		Engine.GetGUIObjectByName("hostSTUNWrapper").hidden = !hasXmppClient;
+		Engine.GetGUIObjectByName("hostPasswordWrapper").hidden = !hasXmppClient;
+		if (hasXmppClient)
 		{
 			Engine.GetGUIObjectByName("hostPlayerName").caption = attribs.name;
 			Engine.GetGUIObjectByName("hostServerName").caption =
@@ -92,6 +97,14 @@ function cancelSetup()
 		error("cancelSetup: Unrecognised multiplayer game type: " + g_GameType);
 }
 
+function confirmPassword()
+{
+	if (Engine.GetGUIObjectByName("pagePassword").hidden)
+		return;
+	if (startJoinFromLobby(g_ServerName, g_ServerId, Engine.GetGUIObjectByName("clientPassword").caption))
+		switchSetupPage("pageConnecting");
+}
+
 function confirmSetup()
 {
 	if (!Engine.GetGUIObjectByName("pageJoin").hidden)
@@ -105,16 +118,14 @@ function confirmSetup()
 	}
 	else if (!Engine.GetGUIObjectByName("pageHost").hidden)
 	{
-		let hostPlayerName = Engine.GetGUIObjectByName("hostPlayerName").caption;
 		let hostServerName = Engine.GetGUIObjectByName("hostServerName").caption;
-		let hostPort = Engine.GetGUIObjectByName("hostPort").caption;
-
 		if (!hostServerName)
 		{
 			Engine.GetGUIObjectByName("hostFeedback").caption = translate("Please enter a valid server name.");
 			return;
 		}
 
+		let hostPort = Engine.GetGUIObjectByName("hostPort").caption;
 		if (getValidPort(hostPort) != +hostPort)
 		{
 			Engine.GetGUIObjectByName("hostFeedback").caption = sprintf(
@@ -125,7 +136,9 @@ function confirmSetup()
 			return;
 		}
 
-		if (startHost(hostPlayerName, hostServerName, getValidPort(hostPort)))
+		let hostPlayerName = Engine.GetGUIObjectByName("hostPlayerName").caption;
+		let hostPassword = Engine.GetGUIObjectByName("hostPassword").caption;
+		if (startHost(hostPlayerName, hostServerName, getValidPort(hostPort), hostPassword))
 			switchSetupPage("pageConnecting");
 	}
 }
@@ -146,6 +159,28 @@ function onTick()
 	pollAndHandleNetworkClient();
 }
 
+function getConnectionFailReason(reason)
+{
+	switch (reason)
+	{
+	case "not_server": return translate("Server is not running.");
+	case "invalid_password": return translate("Password is invalid.");
+	default:
+		warn("Unknown connection failure reason: " + reason);
+		return sprintf(translate("\\[Invalid value %(reason)s]"), { "reason": id });
+	}
+}
+
+function reportConnectionFail(reason)
+{
+	messageBox(
+		400, 200,
+		(translate("Failed to connect to the server.")
+		) + "\n\n" + getConnectionFailReason(reason),
+		translate("Connection failed")
+	);
+}
+
 function pollAndHandleNetworkClient()
 {
 	while (true)
@@ -155,13 +190,27 @@ function pollAndHandleNetworkClient()
 			break;
 
 		log(sprintf(translate("Net message: %(message)s"), { "message": uneval(message) }));
-
 		// If we're rejoining an active game, we don't want to actually display
 		// the game setup screen, so perform similar processing to gamesetup.js
 		// in this screen
 		if (g_IsRejoining)
+		{
 			switch (message.type)
 			{
+			case "serverdata":
+				switch (message.status)
+				{
+				case "failed":
+					cancelSetup();
+					reportConnectionFail(message.reason, false);
+					return;
+
+				default:
+					error("Unrecognised netstatus type: " + message.status);
+					break;
+				}
+				break;
+
 			case "netstatus":
 				switch (message.status)
 				{
@@ -211,11 +260,26 @@ function pollAndHandleNetworkClient()
 			default:
 				error("Unrecognised net message type: " + message.type);
 			}
+		}
 		else
-			// Not rejoining - just trying to connect to server
-
+		// Not rejoining - just trying to connect to server.
+		{
 			switch (message.type)
 			{
+			case "serverdata":
+				switch (message.status)
+				{
+				case "failed":
+					cancelSetup();
+					reportConnectionFail(message.reason, false);
+					return;
+
+				default:
+					error("Unrecognised netstatus type: " + message.status);
+					break;
+				}
+				break;
+
 			case "netstatus":
 				switch (message.status)
 				{
@@ -232,8 +296,7 @@ function pollAndHandleNetworkClient()
 					}
 					Engine.SwitchGuiPage("page_gamesetup.xml", {
 						"serverName": g_ServerName,
-						"serverPort": g_ServerPort,
-						"stunEndpoint": g_StunEndpoint
+						"hasPassword": g_ServerHasPassword
 					});
 					return; // don't process any more messages - leave them for the game GUI loop
 
@@ -255,6 +318,7 @@ function pollAndHandleNetworkClient()
 				error("Unrecognised net message type: " + message.type);
 				break;
 			}
+		}
 	}
 }
 
@@ -273,16 +337,24 @@ function switchSetupPage(newPage)
 		pageSize.bottom = halfHeight;
 		multiplayerPages.size = pageSize;
 	}
+	else if (newPage == "pagePassword")
+	{
+		let pageSize = multiplayerPages.size;
+		let halfHeight = 60;
+		pageSize.top = -halfHeight;
+		pageSize.bottom = halfHeight;
+		multiplayerPages.size = pageSize;
+	}
 
 	Engine.GetGUIObjectByName(newPage).hidden = false;
 
 	Engine.GetGUIObjectByName("hostPlayerNameWrapper").hidden = Engine.HasXmppClient();
 	Engine.GetGUIObjectByName("hostServerNameWrapper").hidden = !Engine.HasXmppClient();
 
-	Engine.GetGUIObjectByName("continueButton").hidden = newPage == "pageConnecting";
+	Engine.GetGUIObjectByName("continueButton").hidden = newPage == "pageConnecting" || newPage == "pagePassword";
 }
 
-function startHost(playername, servername, port)
+function startHost(playername, servername, port, password)
 {
 	startConnectionStatus("server");
 
@@ -301,20 +373,11 @@ function startHost(playername, servername, port)
 		return false;
 	}
 
-	if (Engine.HasXmppClient() && Engine.GetGUIObjectByName("useSTUN").checked)
-	{
-		g_StunEndpoint = Engine.FindStunEndpoint(port);
-		if (!g_StunEndpoint)
-		{
-			cancelSetup();
-			hostFeedback.caption = translate("Failed to host via STUN.");
-			return false;
-		}
-	}
+	let useSTUN = Engine.HasXmppClient() && Engine.GetGUIObjectByName("useSTUN").checked;
 
 	try
 	{
-		Engine.StartNetworkHost(playername + (g_UserRating ? " (" + g_UserRating + ")" : ""), port, playername);
+		Engine.StartNetworkHost(playername + (g_UserRating ? " (" + g_UserRating + ")" : ""), port, playername, useSTUN, password);
 	}
 	catch (e)
 	{
@@ -328,7 +391,7 @@ function startHost(playername, servername, port)
 	}
 
 	g_ServerName = servername;
-	g_ServerPort = port;
+	g_ServerHasPassword = !!password;
 
 	if (Engine.HasXmppClient())
 		Engine.LobbySetPlayerPresence("playing");
@@ -370,9 +433,49 @@ function startJoin(playername, ip, port, useSTUN, hostJID)
 	return true;
 }
 
+function startJoinFromLobby(playername, hostJID, password)
+{
+	if (!Engine.HasXmppClient())
+	{
+		cancelSetup();
+		messageBox(
+			400, 200,
+			sprintf("You cannot join a lobby game without logging in to the lobby."),
+			translate("Error")
+		);
+		return false;
+	}
+
+	try
+	{
+		Engine.StartNetworkJoinLobby(playername + (g_UserRating ? " (" + g_UserRating + ")" : ""), hostJID, password);
+	}
+	catch (e)
+	{
+		cancelSetup();
+		messageBox(
+			400, 200,
+			sprintf(translate("Cannot join game: %(message)s."), { "message": e.message }),
+			translate("Error")
+		);
+		return false;
+	}
+
+	startConnectionStatus("client");
+
+	Engine.LobbySetPlayerPresence("playing");
+
+	return true;
+}
+
 function getDefaultGameName()
 {
 	return sprintf(translate("%(playername)s's game"), {
 		"playername": multiplayerName()
 	});
+}
+
+function getDefaultPassword()
+{
+	return "";
 }

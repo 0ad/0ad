@@ -106,7 +106,21 @@
 				</object>
 			</object>
 
-			<object name="hostSTUNWrapper" size="120 106 100% 146">
+			<!-- Host password is only used on games started through the lobby. -->
+			<object name="hostPasswordWrapper" size="0 116 100% 126" hidden="true">
+				<object type="text" size="20 0 50% 22" style="ModernRightLabelText">
+					<translatableAttribute id="caption">Server Password:</translatableAttribute>
+					<translatableAttribute id="tooltip">Leave blank to not require it.</translatableAttribute>
+				</object>
+
+				<object name="hostPassword" type="input" size="50%+10 0 100%-20 22" style="ModernInput" mask="true" mask_char="*" max_length="256">
+					<action on="Load">
+						this.caption = getDefaultPassword();
+					</action>
+				</object>
+			</object>
+
+			<object name="hostSTUNWrapper" size="120 136 100% 180">
 				<object name="useSTUN" size="0 10 32 100%" type="checkbox" style="ModernTickBox">
 					<action on="Press">Engine.ConfigDB_CreateAndWriteValueToFile("user", "lobby.stun.enabled", String(this.checked), "config/user.cfg");</action>
 				</object>
@@ -129,9 +143,26 @@
 		</object>
 
 		<object name="pageConnecting" hidden="true">
-			<object name="connectionStatus" type="text" style="ModernLabelText" size="0 100 100% 120"/>
+			<object name="connectionStatus" type="text" style="ModernLabelText" size="0 50%-10 100% 50%+10"/>
 		</object>
 
+		<object name="pagePassword" size="0 32 100% 100%" hidden="true">
+			<object name="clientPasswordWrapper" size="0 0 100% 40">
+				<object type="text" size="20 0 50% 22" style="ModernRightLabelText">
+					<translatableAttribute id="caption">Password:</translatableAttribute>
+				</object>
+
+				<object name="clientPassword" type="input" size="50%+10 0 100%-20 22" style="ModernInput" mask="true" mask_char="*" max_length="256">
+					<action on="Load">
+						this.caption = getDefaultPassword();
+					</action>
+				</object>
+			</object>
+			<object name="confirmPasswordButton" hotkey="confirm" type="button" size="50%+5 100%-45 100%-18 100%-17" style="ModernButtonRed">
+				<translatableAttribute id="caption">Confirm</translatableAttribute>
+				<action on="Press">confirmPassword();</action>
+			</object>
+		</object>
 	</object>
 
 </objects>

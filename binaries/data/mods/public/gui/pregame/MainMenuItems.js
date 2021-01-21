@@ -45,6 +45,13 @@ var g_MainMenuItems = [
 				}
 			},
 			{
+				"caption": translate("Catafalque Overview"),
+				"tooltip": translate("Compare the bonuses of catafalques featured in 0 A.D."),
+				"onPress": () => {
+					Engine.PushGuiPage("page_catafalque.xml");
+				}
+			},
+			{
 				"caption": translate("Map Overview"),
 				"tooltip": translate("View the different maps featured in 0 A.D."),
 				"onPress": () => {

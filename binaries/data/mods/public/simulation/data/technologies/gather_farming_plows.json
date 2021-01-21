@@ -9,9 +9,9 @@
 	"requirementsTooltip": "Unlocked in Village Phase.",
 	"icon": "plow.png",
 	"researchTime": 40,
-	"tooltip": "Workers +20% grain gather rate.",
+	"tooltip": "Workers +15% grain gather rate.",
 	"modifications": [
-		{ "value": "ResourceGatherer/Rates/food.grain", "multiply": 1.2 }
+		{ "value": "ResourceGatherer/Rates/food.grain", "multiply": 1.15 }
 	],
 	"affects": ["Worker"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"

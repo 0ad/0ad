@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<objects>
+
+	<script directory="gui/common/"/>
+
+	<script directory="gui/reference/common/"/>
+	<script directory="gui/reference/common/Buttons/"/>
+
+	<script directory="gui/reference/catafalque/"/>
+
+	<!-- Add a translucent black background to fade out the menu page -->
+	<object type="image" sprite="BackgroundTranslucent"/>
+
+	<object type="image" style="ModernDialog" size="50%-368 50%-368 50%+368 50%+370">
+
+		<object style="TitleText" type="text" size="50%-128 -18 50%+128 14">
+			<translatableAttribute id="caption">Catafalque Bonuses</translatableAttribute>
+		</object>
+
+		<object name="canvas" size="8 8 100%-8 100%-8">
+			<repeat count="16" var="e">
+				<object name="emblem[e]" style="Emblem">
+					<object type="image" style="EmblemImage"/>
+					<object type="text" style="EmblemText"/>
+				</object>
+			</repeat>
+		</object>
+
+		<!-- Central image -->
+		<object type="image" size="50%-128 50%-128 50%+128 50%+128" sprite="stretched:reference/portraits/catafalque.png"/>
+
+		<include file="gui/reference/common/Buttons/CloseButton.xml"/>
+
+	</object>
+
+</objects>

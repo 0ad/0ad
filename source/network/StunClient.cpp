@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * Copyright (C) 2013-2016 SuperTuxKart-Team.
  * This file is part of 0 A.D.
  *
@@ -19,6 +19,7 @@
 #include "precompiled.h"
 
 #include "StunClient.h"
+#include "scriptinterface/ScriptInterface.h"
 
 #include <chrono>
 #include <cstdio>
@@ -46,6 +47,7 @@
 #include "scriptinterface/ScriptInterface.h"
 #include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
+#include "ps/CStr.h"
 
 unsigned int m_StunServerIP;
 int m_StunServerPort;
@@ -369,32 +371,32 @@ bool STUNRequestAndResponse(ENetHost& transactionHost)
 	       ParseStunResponse(buffer);
 }
 
-JS::Value StunClient::FindStunEndpointHost(const ScriptInterface& scriptInterface, int port)
+bool StunClient::GetPublicIp(CStr8& ip, u16 port)
+{
+	return FindStunEndpointHost(ip, port);
+}
+
+bool StunClient::FindStunEndpointHost(CStr8& ip, u16& port)
 {
 	ENetAddress hostAddr{ENET_HOST_ANY, static_cast<u16>(port)};
 	ENetHost* transactionHost = enet_host_create(&hostAddr, 1, 1, 0, 0);
 	if (!transactionHost)
-	{
-		LOGERROR("FindStunEndpointHost: Failed to create enet host");
-		return JS::UndefinedValue();
-	}
+		return false;
 
 	bool success = STUNRequestAndResponse(*transactionHost);
 	enet_host_destroy(transactionHost);
 	if (!success)
-		return JS::UndefinedValue();
+		return false;
 
 	// Convert m_IP to string
 	char ipStr[256] = "(error)";
 	ENetAddress addr;
 	addr.host = ntohl(m_IP);
-	enet_address_get_host_ip(&addr, ipStr, ARRAY_SIZE(ipStr));
+	int result = enet_address_get_host_ip(&addr, ipStr, ARRAY_SIZE(ipStr));
 
-	ScriptRequest rq(scriptInterface);
-
-	JS::RootedValue stunEndpoint(rq.cx);
-	ScriptInterface::CreateObject(rq, &stunEndpoint, "ip", ipStr, "port", m_Port);
-	return stunEndpoint;
+	ip = ipStr;
+	port = m_Port;
+	return result == 0;
 }
 
 bool StunClient::FindStunEndpointJoin(ENetHost& transactionHost, StunClient::StunEndpoint& stunEndpoint)

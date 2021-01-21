@@ -25,6 +25,7 @@
 
 #include "lib/byte_order.h"
 #include "lib/external_libraries/enet.h"
+#include "lib/external_libraries/libsdl.h"
 #include "lib/sysdep/sysdep.h"
 #include "lobby/IXmppClient.h"
 #include "ps/CConsole.h"
@@ -37,6 +38,7 @@
 #include "ps/Threading.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
+#include "network/StunClient.h"
 
 CNetClient *g_NetClient = NULL;
 
@@ -76,6 +78,8 @@ CNetClient::CNetClient(CGame* game, bool isLocalClient) :
 	m_GameAttributes(game->GetSimulation2()->GetScriptInterface().GetGeneralJSContext()),
 	m_IsLocalClient(isLocalClient),
 	m_LastConnectionCheck(0),
+	m_ServerAddress(),
+	m_ServerPort(0),
 	m_Rejoin(false)
 {
 	m_Game->SetTurnManager(NULL); // delete the old local turn manager so we don't accidentally use it
@@ -171,14 +175,101 @@ void CNetClient::SetHostingPlayerName(const CStr& hostingPlayerName)
 	m_HostingPlayerName = hostingPlayerName;
 }
 
-bool CNetClient::SetupConnection(const CStr& server, const u16 port, ENetHost* enetClient)
+bool CNetClient::SetupConnection(ENetHost* enetClient)
 {
 	CNetClientSession* session = new CNetClientSession(*this);
-	bool ok = session->Connect(server, port, m_IsLocalClient, enetClient);
+	bool ok = session->Connect(m_ServerAddress, m_ServerPort, m_IsLocalClient, enetClient);
 	SetAndOwnSession(session);
 	m_PollingThread = std::thread(Threading::HandleExceptions<CNetClientSession::RunNetLoop>::Wrapper, m_Session);
 	return ok;
 }
+
+void CNetClient::SetupServerData(CStr address, u16 port, bool stun)
+{
+	ENSURE(!m_Session);
+
+	m_ServerAddress = address;
+	m_ServerPort = port;
+	m_UseSTUN = stun;
+}
+
+void CNetClient::HandleGetServerDataFailed(const CStr& error)
+{
+	if (m_Session)
+		return;
+
+	PushGuiMessage(
+		"type", "serverdata",
+		"status", "failed",
+		"reason", error
+	);
+}
+
+bool CNetClient::TryToConnect(const CStr& hostJID)
+{
+	if (m_Session)
+		return false;
+
+	if (m_ServerAddress.empty())
+	{
+		PushGuiMessage(
+			"type", "netstatus",
+			"status", "disconnected",
+			"reason", static_cast<i32>(NDR_SERVER_REFUSED));
+		return false;
+	}
+
+	ENetHost* enetClient = nullptr;
+	if (g_XmppClient && m_UseSTUN)
+	{
+		// Find an unused port
+		for (int i = 0; i < 5 && !enetClient; ++i)
+		{
+			// Ports below 1024 are privileged on unix
+			u16 port = 1024 + rand() % (UINT16_MAX - 1024);
+			ENetAddress hostAddr{ ENET_HOST_ANY, port };
+			enetClient = enet_host_create(&hostAddr, 1, 1, 0, 0);
+			++hostAddr.port;
+		}
+
+		if (!enetClient)
+		{
+			PushGuiMessage(
+				"type", "netstatus",
+				"status", "disconnected",
+				"reason", static_cast<i32>(NDR_STUN_PORT_FAILED));
+			return false;
+		}
+
+		StunClient::StunEndpoint stunEndpoint;
+		if (!StunClient::FindStunEndpointJoin(*enetClient, stunEndpoint))
+		{
+			PushGuiMessage(
+				"type", "netstatus",
+				"status", "disconnected",
+				"reason", static_cast<i32>(NDR_STUN_ENDPOINT_FAILED));
+			return false;
+		}
+
+		g_XmppClient->SendStunEndpointToHost(stunEndpoint, hostJID);
+
+		SDL_Delay(1000);
+
+		StunClient::SendHolePunchingMessages(*enetClient, m_ServerAddress, m_ServerPort);
+	}
+
+	if (!g_NetClient->SetupConnection(enetClient))
+	{
+		PushGuiMessage(
+			"type", "netstatus",
+			"status", "disconnected",
+			"reason", static_cast<i32>(NDR_UNKNOWN));
+		return false;
+	}
+
+	return true;
+}
+
 
 void CNetClient::SetAndOwnSession(CNetClientSession* session)
 {
