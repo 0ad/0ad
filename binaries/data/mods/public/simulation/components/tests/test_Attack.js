@@ -357,3 +357,47 @@ testGetBestAttackAgainst("Archer", "Ranged", undefined);
 testGetBestAttackAgainst("Domestic", "Slaughter", "Slaughter");
 testGetBestAttackAgainst("Structure", "Capture", "Capture", true);
 testGetBestAttackAgainst("Structure", "Ranged", undefined, false);
+
+
+function testAttackPreference()
+{
+	const attacker = 5;
+
+	let cmpAttack = ConstructComponent(attacker, "Attack", {
+		"Melee": {
+			"Damage": {
+				"Crush": 0
+			},
+			"MinRange": 3,
+			"MaxRange": 5,
+			"PreferredClasses": {
+				"_string": "FemaleCitizen Unit+!Ship"
+			},
+			"RestrictedClasses": {
+				"_string": "Elephant Archer"
+			},
+		}
+	});
+
+	AddMock(attacker+1, IID_Identity, {
+		"GetClassesList": () => ["FemaleCitizen", "Unit"]
+	});
+
+	AddMock(attacker+2, IID_Identity, {
+		"GetClassesList": () => ["Unit"]
+	});
+
+	AddMock(attacker+3, IID_Identity, {
+		"GetClassesList": () => ["Unit", "Ship"]
+	});
+
+	AddMock(attacker+4, IID_Identity, {
+		"GetClassesList": () => ["SomethingElse"]
+	});
+
+	TS_ASSERT_EQUALS(cmpAttack.GetPreference(attacker+1), 0);
+	TS_ASSERT_EQUALS(cmpAttack.GetPreference(attacker+2), 1);
+	TS_ASSERT_EQUALS(cmpAttack.GetPreference(attacker+3), null);
+	TS_ASSERT_EQUALS(cmpAttack.GetPreference(attacker+4), null);
+}
+testAttackPreference();
