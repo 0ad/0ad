@@ -3,8 +3,8 @@
 ATTRIB position = vertex.position;
 
 PARAM transform[4] = { program.local[0..3] };
-PARAM losMatrix[4] = { program.local[4..7] };
-PARAM time = program.local[8];
+PARAM losTransform = program.local[4];
+PARAM time = program.local[5];
 
 OUTPUT v_coords = result.texcoord[0];
 OUTPUT v_losCoords = result.texcoord[1];
@@ -31,8 +31,9 @@ ADD coords, coords, offset;
 MOV v_coords, coords.xzxz;
 
 TEMP losCoords;
-DP4 losCoords.x, losMatrix[0], position;
-DP4 losCoords.y, losMatrix[1], position;
+MOV losCoords, position.xzxz;
+MUL losCoords, losCoords, losTransform.xxxx;
+ADD losCoords, losCoords, losTransform.yyyy;
 MOV v_losCoords, losCoords.xyxy;
 
 END
