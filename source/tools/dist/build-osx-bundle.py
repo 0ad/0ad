@@ -28,7 +28,11 @@ parser.add_argument('--dev', help='Turn on dev mode, which isn\'t fit for releas
     action="store_true")
 args = parser.parse_args()
 
-BUNDLE_DMG_NAME = "0 A.D."
+BUNDLE_IDENTIFIER = args.bundle_identifier
+BUNDLE_VERSION = args.bundle_version
+BUNDLE_MIN_OSX_VERSION = args.min_osx
+
+BUNDLE_DMG_NAME = f"0ad-{BUNDLE_VERSION}-alpha-osx64"
 BUNDLE_OUTPUT = "0 A.D..app"
 BUNDLE_CONTENTS = BUNDLE_OUTPUT + "/Contents"
 BUNDLE_BIN = BUNDLE_CONTENTS + "/MacOS"
@@ -36,10 +40,6 @@ BUNDLE_RESOURCES = BUNDLE_CONTENTS + "/Resources"
 BUNDLE_FRAMEWORKS = BUNDLE_CONTENTS + "/Frameworks"
 BUNDLE_PLUGINS = BUNDLE_CONTENTS + "/PlugIns"
 BUNDLE_SHAREDSUPPORT = BUNDLE_CONTENTS + "/SharedSupport"
-
-BUNDLE_IDENTIFIER = args.bundle_identifier
-BUNDLE_VERSION = args.bundle_version
-BUNDLE_MIN_OSX_VERSION = args.min_osx
 
 print("Creating bundle directories")
 

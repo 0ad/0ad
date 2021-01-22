@@ -29,6 +29,9 @@ if [ ! -d "$SYSROOT" ]; then
 fi
 
 # Assume this is called from trunk/
+SVN_REV=$(svnversion -n .)
+echo "L\"${SVN_REV}-release\"" > build/svn_revision/svn_revision.txt
+
 cd "build/workspaces/"
 
 JOBS=${JOBS:="-j5"}
