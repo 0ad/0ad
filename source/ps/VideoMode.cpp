@@ -30,6 +30,7 @@
 #include "ps/CConsole.h"
 #include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
+#include "ps/CStr.h"
 #include "ps/Filesystem.h"
 #include "ps/Game.h"
 #include "ps/Pyrogenesis.h"
@@ -222,6 +223,37 @@ bool CVideoMode::InitSDL()
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
 #endif
+
+	bool forceGLVersion = false;
+	CFG_GET_VAL("forceglversion", forceGLVersion);
+	if (forceGLVersion)
+	{
+		CStr forceGLProfile = "compatibility";
+		int forceGLMajorVersion = 3;
+		int forceGLMinorVersion = 0;
+		CFG_GET_VAL("forceglprofile", forceGLProfile);
+		CFG_GET_VAL("forceglmajorversion", forceGLMajorVersion);
+		CFG_GET_VAL("forceglminorversion", forceGLMinorVersion);
+
+		int profile = SDL_GL_CONTEXT_PROFILE_COMPATIBILITY;
+		if (forceGLProfile == "es")
+			profile = SDL_GL_CONTEXT_PROFILE_ES;
+		else if (forceGLProfile == "core")
+			profile = SDL_GL_CONTEXT_PROFILE_CORE;
+		else if (forceGLProfile != "compatibility")
+			LOGWARNING("Unknown force GL profile '%s', compatibility profile is used", forceGLProfile.c_str());
+
+		if (forceGLMajorVersion < 1 || forceGLMinorVersion < 0)
+		{
+			LOGERROR("Unsupported force GL version: %d.%d", forceGLMajorVersion, forceGLMinorVersion);
+		}
+		else
+		{
+			SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, profile);
+			SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, forceGLMajorVersion);
+			SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, forceGLMinorVersion);
+		}
+	}
 
 	if (!SetVideoMode(w, h, bpp, m_ConfigFullscreen))
 	{
