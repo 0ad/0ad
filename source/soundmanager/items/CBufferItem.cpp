@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -79,8 +79,8 @@ bool CBufferItem::IdleTask()
 		int proc_state;
 		alGetSourcei(m_ALSource, AL_SOURCE_STATE, &proc_state);
 		AL_CHECK;
-		m_ShouldBePlaying = (proc_state != AL_STOPPED);
-		return (proc_state != AL_STOPPED);
+		m_ShouldBePlaying = (proc_state != AL_STOPPED && proc_state != AL_INITIAL && proc_state != AL_PAUSED);
+		return m_ShouldBePlaying;
 	}
 
 	if (GetLooping())
