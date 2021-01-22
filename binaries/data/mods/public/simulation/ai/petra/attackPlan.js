@@ -1308,7 +1308,7 @@ PETRA.AttackPlan.prototype.update = function(gameState, events)
 				continue;
 			let attacker = gameState.getEntityById(evt.attacker);
 			let ourUnit = gameState.getEntityById(evt.target);
-			if (!ourUnit || !attacker || !attacker.position())
+			if (!ourUnit || !ourUnit.position() || !attacker || !attacker.position())
 				continue;
 			if (!attacker.hasClass("Unit"))
 			{
