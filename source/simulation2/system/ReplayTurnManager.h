@@ -37,7 +37,7 @@ public:
 	void StoreFinalReplayTurn(u32 turn);
 
 private:
-	void NotifyFinishedOwnCommands(u32 turn) override;
+	void NotifyFinishedUpdate(u32 turn) override;
 
 	void DoTurn(u32 turn);
 
