@@ -52,6 +52,7 @@ public:
 	virtual entity_pos_t GetHeightOffset() const { return entity_pos_t::Zero(); }
 	virtual void SetHeightFixed(entity_pos_t UNUSED(y)) { }
 	virtual entity_pos_t GetHeightFixed() const { return entity_pos_t::Zero(); }
+	virtual entity_pos_t GetHeightAtFixed(entity_pos_t, entity_pos_t) const { return entity_pos_t::Zero(); }
 	virtual bool IsHeightRelative() const { return true; }
 	virtual void SetHeightRelative(bool UNUSED(relative)) { }
 	virtual bool CanFloat() const { return false; }

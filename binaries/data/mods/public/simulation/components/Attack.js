@@ -560,6 +560,8 @@ Attack.prototype.PerformAttack = function(type, target)
 				predictedPosition = Vector3D.mult(targetVelocity, timeToTarget).add(targetPosition);
 		}
 
+		let predictedHeight = cmpTargetPosition.GetHeightAt(predictedPosition.x, predictedPosition.z);
+
 		// Add inaccuracy based on spread.
 		let distanceModifiedSpread = ApplyValueModificationsToEntity("Attack/Ranged/Spread", +this.template[type].Projectile.Spread, this.entity) *
 			predictedPosition.horizDistanceTo(selfPosition) / 100;
@@ -568,7 +570,7 @@ Attack.prototype.PerformAttack = function(type, target)
 		let offsetX = randNorm[0] * distanceModifiedSpread;
 		let offsetZ = randNorm[1] * distanceModifiedSpread;
 
-		let realTargetPosition = new Vector3D(predictedPosition.x + offsetX, targetPosition.y, predictedPosition.z + offsetZ);
+		let realTargetPosition = new Vector3D(predictedPosition.x + offsetX, predictedHeight, predictedPosition.z + offsetZ);
 
 		// Recalculate when the missile will hit the target position.
 		let realHorizDistance = realTargetPosition.horizDistanceTo(selfPosition);

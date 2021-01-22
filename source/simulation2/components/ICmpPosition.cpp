@@ -32,7 +32,7 @@ DEFINE_INTERFACE_METHOD_2("JumpTo", void, ICmpPosition, JumpTo, entity_pos_t, en
 DEFINE_INTERFACE_METHOD_1("SetHeightOffset", void, ICmpPosition, SetHeightOffset, entity_pos_t)
 DEFINE_INTERFACE_METHOD_CONST_0("GetHeightOffset", entity_pos_t, ICmpPosition, GetHeightOffset)
 DEFINE_INTERFACE_METHOD_1("SetHeightFixed", void, ICmpPosition, SetHeightFixed, entity_pos_t)
-DEFINE_INTERFACE_METHOD_CONST_0("GetHeightFixed", entity_pos_t, ICmpPosition, GetHeightFixed)
+DEFINE_INTERFACE_METHOD_CONST_2("GetHeightAt", entity_pos_t, ICmpPosition, GetHeightAtFixed, entity_pos_t, entity_pos_t)
 DEFINE_INTERFACE_METHOD_CONST_0("IsHeightRelative", bool, ICmpPosition, IsHeightRelative)
 DEFINE_INTERFACE_METHOD_1("SetHeightRelative", void, ICmpPosition, SetHeightRelative, bool)
 DEFINE_INTERFACE_METHOD_CONST_0("CanFloat", bool, ICmpPosition, CanFloat)
