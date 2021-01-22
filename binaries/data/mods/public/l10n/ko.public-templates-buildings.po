@@ -23,8 +23,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-18 08:15+0000\n"
-"PO-Revision-Date: 2021-01-18 10:36+0000\n"
+"POT-Creation-Date: 2021-01-20 00:57+0000\n"
+"PO-Revision-Date: 2021-01-20 01:35+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -210,6 +210,8 @@ msgstr "나오스"
 
 #: simulation/templates/structures/athen/theater.xml:5
 #: simulation/templates/structures/mace/theater.xml:5
+#: simulation/templates/structures/ptol/theater.xml:5
+#: simulation/templates/structures/sele/theater.xml:5
 #: simulation/templates/structures/spart/theater.xml:5
 msgid "Theatron"
 msgstr "테아트론"
@@ -420,9 +422,14 @@ msgstr "라테"
 msgid "Emain Macha"
 msgstr "에번 바허"
 
-#: simulation/templates/structures/cart/apartment.xml:16
+#: simulation/templates/structures/cart/apartment.xml:23
 msgid "Apartment Building"
 msgstr "공동주거 건물"
+
+#: simulation/templates/structures/cart/apartment.xml:24
+#: simulation/templates/structures/cart/house.xml:8
+msgid "Bet"
+msgstr "베트"
 
 #: simulation/templates/structures/cart/barracks.xml:12
 msgid "Maḥanēt"
@@ -490,10 +497,6 @@ msgstr "사뜨"
 #: simulation/templates/structures/cart/fortress.xml:9
 msgid "Ḥamet"
 msgstr "하멧"
-
-#: simulation/templates/structures/cart/house.xml:8
-msgid "Bet"
-msgstr "베트"
 
 #: simulation/templates/structures/cart/market.xml:12
 msgid "Šūq"
@@ -1279,9 +1282,9 @@ msgstr "파로스"
 
 #: simulation/templates/structures/ptol/lighthouse.xml:27
 msgid ""
-"Build upon a shoreline in own, neutral, or allied territory. Reveal the "
-"shorelines over the entire map. Very large vision range."
-msgstr "자신의 영토, 중립 지역 또는 동맹 영토의 해안선에 짓습니다. 전체 지도에서 해안선을 표시하십시오. 시야가 매우 넓습니다."
+"Build upon a shoreline in own, neutral, or allied territory. Very large "
+"vision range."
+msgstr ""
 
 #: simulation/templates/structures/ptol/mercenary_camp.xml:27
 msgid "Mercenary Camp"
@@ -1658,11 +1661,10 @@ msgstr "부락"
 msgid "Stoa"
 msgstr "스토아"
 
-#: simulation/templates/structures/cart/super_dock.xml:43
+#: simulation/templates/structures/cart/apartment.xml:26
 #: simulation/templates/structures/gaul/tavern.xml:22
 #: simulation/templates/structures/kush/pyramid_small.xml:29
 #: simulation/templates/structures/maur/elephant_stables.xml:8
-#: simulation/templates/structures/ptol/lighthouse.xml:29
 #: simulation/templates/template_structure_civic_stoa.xml:30
 #: simulation/templates/template_structure_civic_temple.xml:32
 #: simulation/templates/template_structure_defensive_tower_stone.xml:32
@@ -1740,7 +1742,7 @@ msgstr "대포탑"
 #: simulation/templates/template_structure_military_elephant_stables.xml:26
 #: simulation/templates/template_structure_military_fortress.xml:73
 #: simulation/templates/template_structure_special.xml:20
-#: simulation/templates/template_structure_wonder.xml:43
+#: simulation/templates/template_structure_wonder.xml:42
 msgid "City"
 msgstr "도시"
 
@@ -2013,17 +2015,17 @@ msgstr "물레 방앗간"
 msgid "RotaryMill"
 msgstr "물레 방앗간"
 
-#: simulation/templates/template_structure_special_theater.xml:24
-#: simulation/templates/template_structure_special_theater.xml:26
+#: simulation/templates/template_structure_special_theater.xml:25
+#: simulation/templates/template_structure_special_theater.xml:27
 msgid "Theater"
 msgstr "극장"
 
-#: simulation/templates/template_structure_wonder.xml:39
-#: simulation/templates/template_structure_wonder.xml:43
+#: simulation/templates/template_structure_wonder.xml:38
+#: simulation/templates/template_structure_wonder.xml:42
 msgid "Wonder"
 msgstr "불가사의"
 
-#: simulation/templates/template_structure_wonder.xml:41
+#: simulation/templates/template_structure_wonder.xml:40
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."

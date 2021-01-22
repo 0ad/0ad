@@ -19,7 +19,7 @@
 # gab tes, 2020
 # Glorfindel Of Gondolin, 2019
 # gorius <gorius05@gmail.com>, 2014
-# Hakim Benzakour <hakim.benz67@gmail.com>, 2020
+# Hakim Benzakour <hakim.benz67@gmail.com>, 2020-2021
 # Jo Du <jojo337@live.fr>, 2018
 # Julien Piron <traducteur@jpiron.eu>, 2020
 # jy jrts <lucashavard35@hotmail.fr>, 2017
@@ -30,15 +30,16 @@
 # Nicolas Auvray <na.itms76@gmail.com>, 2014-2017
 # nicolas t <deux718281@yahoo.fr>, 2016
 # Romain Mesnil <bnb6avekk6@protonmail.com>, 2016
+# Stanislas Dolcini <stan@wildfiregames.com>, 2021
 # Polakrity <sxk-fr@live.fr>, 2014,2017
 # Thierry Vignaud <thierry.vignaud@gmail.com>, 2017
 # Yannick Heintz, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-18 08:15+0000\n"
-"PO-Revision-Date: 2021-01-18 11:21+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-01-20 00:57+0000\n"
+"PO-Revision-Date: 2021-01-21 23:59+0000\n"
+"Last-Translator: Stanislas Dolcini <stan@wildfiregames.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -50,14 +51,13 @@ msgstr ""
 msgid ""
 "Spartans were housed and trained from a young age to be superlative warriors"
 " and to endure any hardship a military life can give them."
-msgstr "Les Spartiates étaient abrités et formés à partir du plus jeune âge à être des guerriers hors normes et supporter n'importe quelle épreuve qu'une vie militaire peut leur apporter."
+msgstr "Les Spartiates étaient élevés et formés dès le plus jeune âge à devenir des guerriers hors normes et à supporter n'importe quelle épreuve qu'une vie militaire peut leur faire encourir."
 
 #: simulation/data/technologies/agoge.jsongenericName
 msgid "The Agoge"
 msgstr "L'agogé"
 
 #: simulation/data/technologies/agoge.jsonrequirementsTooltip
-#: simulation/data/technologies/armor_hero_01.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_cavalry_melee_02.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_infantry_melee_02.jsonrequirementsTooltip
@@ -81,7 +81,6 @@ msgstr "L'agogé"
 #: simulation/data/technologies/nisean_horses.jsonrequirementsTooltip
 #: simulation/data/technologies/parade_of_daphne.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_02.jsonrequirementsTooltip
-#: simulation/data/technologies/pop_wonder.jsonrequirementsTooltip
 #: simulation/data/technologies/reformed_army_sele.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_cost_time.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_health.jsonrequirementsTooltip
@@ -97,12 +96,12 @@ msgstr "L'agogé"
 #: simulation/data/technologies/stable_batch_training.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_health.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_murderholes.jsonrequirementsTooltip
-#: simulation/data/technologies/trade_convoys_armor.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_gain_02.jsonrequirementsTooltip
 #: simulation/data/technologies/traditional_army_sele.jsonrequirementsTooltip
 #: simulation/data/technologies/unlock_champion_cavalry.jsonrequirementsTooltip
 #: simulation/data/technologies/unlock_champion_chariots.jsonrequirementsTooltip
 #: simulation/data/technologies/unlock_champion_infantry.jsonrequirementsTooltip
+#: simulation/data/technologies/wonder_population_cap.jsonrequirementsTooltip
 msgid "Unlocked in City Phase."
 msgstr "Débloqué dans la Phase des Cités."
 
@@ -132,9 +131,8 @@ msgid "Unlocked in Village Phase."
 msgstr "Débloqué dans la Phase des Villages."
 
 #: simulation/data/technologies/archery_tradition.jsontooltip
-msgid ""
-"Archers −10% training time, +10 attack range, and −10% ranged attack spread."
-msgstr "Archers : -10% de temps d'entrainement, +10% de portée, -10% d'éparpillement"
+msgid "Archers −10% training time and +10 attack range."
+msgstr "Archers : -10% de temps d'entrainement et +10 de portée."
 
 #: simulation/data/technologies/architecture_kush.jsongenericName
 msgid "Monumental Architecture"
@@ -165,8 +163,8 @@ msgstr "Monument d'architecture"
 #: simulation/data/technologies/tower_crenellations.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_range.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
-#: simulation/data/technologies/trade_convoys_speed.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_gain_01.jsonrequirementsTooltip
+#: simulation/data/technologies/trader_health.jsonrequirementsTooltip
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase."
 msgstr "Débloqué dans la Phase des Villes."
@@ -190,33 +188,7 @@ msgstr "Architecture persane"
 
 #: simulation/data/technologies/architecture_pers.jsontooltip
 msgid "Structures +25% health and capture points, but also +20% build time."
-msgstr ""
-
-#: simulation/data/technologies/armor_hero_01.jsondescription
-msgid ""
-"Body armor fashioned completely of iron, the hardest workable metal known to"
-" the ancients."
-msgstr "Armure entièrement façonnée en fer, le métal exploitable le plus dur connu des anciens."
-
-#: simulation/data/technologies/armor_hero_01.jsongenericName
-msgid "Iron Hero Armor"
-msgstr "Armure de héros en fer"
-
-#: simulation/data/technologies/armor_hero_01.jsonspecificName.athen
-#: simulation/data/technologies/armor_hero_01.jsonspecificName.mace
-#: simulation/data/technologies/armor_hero_01.jsonspecificName.ptol
-#: simulation/data/technologies/armor_hero_01.jsonspecificName.sele
-#: simulation/data/technologies/armor_hero_01.jsonspecificName.spart
-msgid "Sidērea Panoplia"
-msgstr ""
-
-#: simulation/data/technologies/armor_hero_01.jsonspecificName.rome
-msgid "Lorica Ferrea"
-msgstr "Lorica Ferrea"
-
-#: simulation/data/technologies/armor_hero_01.jsontooltip
-msgid "Heroes +50 metal cost, +2 hack and pierce resistance."
-msgstr ""
+msgstr "Structures : +25% de points de vie, mais +20 de temps de construction."
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsondescription
 msgid "Training increases melee attack."
@@ -290,7 +262,7 @@ msgstr "Arme de poing"
 #: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.sele
 #: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.spart
 msgid "Xiphos"
-msgstr ""
+msgstr "Xiphos"
 
 #: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.rome
 msgid "Pugio"
@@ -325,7 +297,7 @@ msgstr "Infanterie à distance irrégulière"
 #: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.sele
 #: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.spart
 msgid "Ataktoi"
-msgstr ""
+msgstr "Ataktoi"
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsontooltip
 #: simulation/data/technologies/attack_infantry_ranged_02.jsontooltip
@@ -411,11 +383,11 @@ msgstr "Cavalerie : -10% de temps d'entrainement."
 
 #: simulation/data/technologies/cavalry_health.jsondescription
 msgid "Selectively breed better war horses."
-msgstr ""
+msgstr "Élever des chevaux dont la seule fin est la guerre."
 
 #: simulation/data/technologies/cavalry_health.jsongenericName
 msgid "Horse Breeding"
-msgstr ""
+msgstr "Élevage de chevaux"
 
 #: simulation/data/technologies/cavalry_health.jsontooltip
 msgid "Cavalry +10% health."
@@ -427,7 +399,7 @@ msgstr "Entraîne vos chevaux à se déplacer plus rapidement."
 
 #: simulation/data/technologies/cavalry_movement_speed.jsongenericName
 msgid "Horse Racing"
-msgstr ""
+msgstr "Course de chevaux"
 
 #: simulation/data/technologies/cavalry_movement_speed.jsontooltip
 msgid "Cavalry +10% walk speed."
@@ -446,7 +418,7 @@ msgstr "Remparts triples"
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
 msgid "City Walls +100% build time, +100% stone cost, and +200% health."
-msgstr ""
+msgstr "Mur d'enceinte : +100% de temps de construction, +100% de coût en pierre et +200% points de vie."
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsondescription
 msgid "Celtic structures were mostly made of wood with rubble foundations."
@@ -458,7 +430,7 @@ msgstr "Construction en bois"
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
 msgid "Structures −20% build time, −20% health, and −20% capture points."
-msgstr ""
+msgstr "Bâtiments : -20% de temps de construction, -20% de points de vie et -20% de points de capture."
 
 #: simulation/data/technologies/civbonuses/gaul_cavalry.jsondescription
 msgid ""
@@ -537,7 +509,7 @@ msgstr "Murs en bois"
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsontooltip
 msgid "City Walls −20% build time and −20% health."
-msgstr ""
+msgstr "Mur d'enceinte : -20% de temps de construction et -20% de points de vie."
 
 #: simulation/data/technologies/civbonuses/pers_population.jsondescription
 msgid ""
@@ -547,7 +519,7 @@ msgid ""
 "great tenacity. However while this was true the infantry were poor hand-to-"
 "hand, close combat fighters. Also, with the exception of the elite "
 "regiments, the Persian infantry was not a standing professional force."
-msgstr "Les Perses durent et ont prélevé un grand nombre d'infanterie pendant la guerre à cause de l'étendue de l'Empire Achéménide et la façon dont il était réparti. En général l'infanterie Perse était bien formée et se battait avec une grande ténacité. Cependant même si c'était vrai, l'infanterie était faible au corps-à-corps ou en combat rapproché. Enfin, à l'exception des régiments d'élite, l'infanterie Perse n'était pas une force professionnelle permanente."
+msgstr "Les Perses achéménides purent lever de grandes armées d'infanterie durant la guerre grâce à un territoire immense et une organisation efficace. En général, l'infanterie perse était bien formée et se battait avec une grande ténacité. Quoi qu'il en soit, elle n'était toutefois par réputée pour ses aptitudes au combat de corps-à-corps. Enfin, à l'exception des troupes d'élite, l'infanterie perse n'était pas une force professionnelle et permanente."
 
 #: simulation/data/technologies/civbonuses/pers_population.jsongenericName
 msgid "Great King's Levy"
@@ -559,15 +531,15 @@ msgid ""
 "especially where wood was scarce. Although not as strong and durable as "
 "fired bricks or natural stone and vulnerable to constant rains and heavy "
 "floods, mud bricks have the advantage they are cheap and easy to produce."
-msgstr ""
+msgstr "Les briques de terre crue étaient un matériau de construction courant dans les régions au climat désertique, surtout lorsqu'il n'y avait qu'un accès limité au bois."
 
 #: simulation/data/technologies/civbonuses/ptol_structures.jsongenericName
 msgid "Sun-dried Mud Bricks"
-msgstr ""
+msgstr "Briques de terre crue"
 
 #: simulation/data/technologies/civbonuses/ptol_structures.jsontooltip
 msgid "Houses and Economic Structures −40% wood cost and health."
-msgstr ""
+msgstr "Habitations et bâtiments économiques : -40% de coûts en bois et de points de vie."
 
 #: simulation/data/technologies/colonization.jsondescription
 msgid ""
@@ -581,7 +553,7 @@ msgstr "Colonisation"
 
 #: simulation/data/technologies/colonization.jsontooltip
 msgid "Civic Structures −25% build time."
-msgstr ""
+msgstr "Bâtiments civils : -25% de temps de constructions."
 
 #: simulation/data/technologies/equine_transports.jsondescription
 msgid ""
@@ -636,11 +608,11 @@ msgstr "Conditions de vie"
 
 #: simulation/data/technologies/garrison_heal.jsontooltip
 msgid "Structures +1 garrison heal rate."
-msgstr ""
+msgstr "Bâtiments : +1 au taux de soin pour les unités en garnison."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breed livestock to slaughter for meat."
-msgstr ""
+msgstr "Élever du bétail afin de l'abattre pour sa viande."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsongenericName
 msgid "Stockbreeding"
@@ -765,7 +737,7 @@ msgstr "Serfs"
 
 #: simulation/data/technologies/gather_mining_serfs.jsonspecificName.spart
 msgid "Heilōtes"
-msgstr ""
+msgstr "Heilōtes"
 
 #: simulation/data/technologies/gather_mining_serfs.jsontooltip
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
@@ -835,11 +807,11 @@ msgstr "Esclaves"
 #: simulation/data/technologies/gather_mining_slaves.jsonspecificName.sele
 #: simulation/data/technologies/gather_mining_slaves.jsonspecificName.spart
 msgid "Andrapoda"
-msgstr ""
+msgstr "Andrapoda"
 
 #: simulation/data/technologies/gather_mining_slaves.jsonspecificName.rome
 msgid "Servi"
-msgstr ""
+msgstr "Servi"
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsondescription
 msgid ""
@@ -890,7 +862,7 @@ msgstr "Portée de guérison 2"
 
 #: simulation/data/technologies/heal_range_2.jsonspecificName.athen
 msgid "Akadēmeia"
-msgstr ""
+msgstr "Akadēmeia"
 
 #: simulation/data/technologies/heal_rate.jsondescription
 #: simulation/data/technologies/heal_rate_2.jsondescription
@@ -912,7 +884,7 @@ msgstr "Sphagia"
 #: simulation/data/technologies/heal_rate.jsontooltip
 #: simulation/data/technologies/heal_rate_2.jsontooltip
 msgid "Healers −20% healing time."
-msgstr ""
+msgstr "Guérisseurs : -20% de temps de guérison."
 
 #: simulation/data/technologies/heal_rate_2.jsongenericName
 msgid "Healing Rate 2"
@@ -951,7 +923,7 @@ msgstr "Médecine de champ de bataille"
 
 #: simulation/data/technologies/health_regen_units.jsontooltip
 msgid "Idle Organic units +0.5 health regeneration rate."
-msgstr ""
+msgstr "Unités vivantes au repos : +0,5 au taux de guérison."
 
 #: simulation/data/technologies/hellenistic_metropolis.jsondescription
 msgid ""
@@ -966,13 +938,13 @@ msgstr "Métropole hellénistique"
 
 #: simulation/data/technologies/hellenistic_metropolis.jsontooltip
 msgid "Civic Centers +100% health and capture points, double default arrows."
-msgstr ""
+msgstr "Centre-villes : +100 de points de vie et de capture, tirs par défaut doublés."
 
 #: simulation/data/technologies/immortals.jsondescription
 msgid ""
 "The Achaemenids maintained a 10,000-strong elite corps, referred to as "
 "Athanatoi (“Immortals”) by Greek authors."
-msgstr "Les Achéménides détenaient une force armée d'élite de 10.000 soldats que certains auteurs grecques nommèrent Athanatoi, les Immortels."
+msgstr "Les Perses achéménides entretenaient une force armée d'élite de 10 000 soldats que certains auteurs grecs nommèrent Athanatoi (“les Immortels”)."
 
 #: simulation/data/technologies/immortals.jsongenericName
 msgid "Immortals"
@@ -980,7 +952,7 @@ msgstr "Immortels"
 
 #: simulation/data/technologies/immortals.jsontooltip
 msgid "Immortals −50% training time, but −10% health."
-msgstr ""
+msgstr "Immortels : -50% du temps d'entrainement, mais -10% des points de vie."
 
 #: simulation/data/technologies/infantry_cost_time.jsondescription
 msgid ""
@@ -994,7 +966,7 @@ msgstr "Levée d'infanterie"
 
 #: simulation/data/technologies/infantry_cost_time.jsontooltip
 msgid "Infantry −10% training time."
-msgstr ""
+msgstr "Infanterie : -10% du temps d'entraînment."
 
 #: simulation/data/technologies/iphicratean_reforms.jsondescription
 msgid ""
@@ -1008,7 +980,7 @@ msgstr "Réformes d'Iphicrate"
 
 #: simulation/data/technologies/iphicratean_reforms.jsontooltip
 msgid "Athenian Triremes can train Marines and Cretan Mercenary Archers."
-msgstr ""
+msgstr "Les trirèmes athéniens peuvent produire des soldats de marine et des archers mercenaires crétois."
 
 #: simulation/data/technologies/long_walls.jsondescription
 msgid ""
@@ -1024,7 +996,7 @@ msgstr "Longs murs athéniens"
 
 #: simulation/data/technologies/long_walls.jsontooltip
 msgid "Build Walls in own or neutral territory."
-msgstr ""
+msgstr "Construisez des murs dans votre propre territoire ou dans le territoire neutre."
 
 #: simulation/data/technologies/nisean_horses.jsondescription
 msgid ""
@@ -1043,7 +1015,7 @@ msgstr "Nisioi"
 
 #: simulation/data/technologies/nisean_horses.jsontooltip
 msgid "Champion Cavalry Spearmen +20% health, but +10% training time."
-msgstr ""
+msgstr "Lancier monté champion : +20% de points de vie, mais +10% de temps d'entraînement."
 
 #: simulation/data/technologies/pair_unlock_champions_sele.jsongenericName
 msgid "Traditional Army vs Reform Army"
@@ -1053,7 +1025,7 @@ msgstr "Armée traditionnelle vs. Armée réformée"
 msgid ""
 "The festival at Daphne was a major event of the Seleucid Empire: tens of "
 "thousands of well-equipped troops participated in the opening procession."
-msgstr ""
+msgstr "Les parades de Daphnè constituaient un événement important dans l'empire séleucide : des dizaines de milliers de soldats en apparat y défilaient à titre de cortège d'inauguration."
 
 #: simulation/data/technologies/parade_of_daphne.jsongenericName
 msgid "Parade of Daphne"
@@ -1061,7 +1033,7 @@ msgstr "Parade de Daphné"
 
 #: simulation/data/technologies/parade_of_daphne.jsontooltip
 msgid "Champions −20% training time."
-msgstr ""
+msgstr "Unités championnes : -20% de temps d'entrainement."
 
 #: simulation/data/technologies/phase_city.jsondescription
 msgid ""
@@ -1085,7 +1057,7 @@ msgstr "Amélioration d'une ville animée en une véritable métropole, pleine d
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
 msgid "Requires four Town Structures."
-msgstr ""
+msgstr "Requiert quatre bâtiments de la phase Ville."
 
 #: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
@@ -1100,7 +1072,7 @@ msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +50% territory influence radius. Structures +9 capture points "
 "regeneration rate per garrisoned unit. Workers +10% metal gather rate."
-msgstr ""
+msgstr "Avancez à la phase des Cités, ce qui vous permettra de débloquer plusieurs unités et technologies. Centre-ville : +50% à la zone d'influence territoriale. Bâtiments : +9 au taux de régénération des points de capture pour chaque unité en garnison. Ouvrier : +10% au taux de récolte du métal."
 
 #: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
@@ -1113,7 +1085,7 @@ msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +50% territory influence radius. Structures +9 capture points "
 "regeneration rate per garrisoned unit."
-msgstr ""
+msgstr "Avancez à la phase des Cités, ce qui vous permettra de débloquer plusieurs unités et technologies. Centre-ville : +50% à la zone d'influence territoriale. Bâtiments : +9 au taux de régénération des points de capture pour chaque unité en garnison."
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -1137,7 +1109,7 @@ msgstr "Amélioration d'un petit village en une ville animée, prête à s'éten
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
 msgid "Requires five Village Structures."
-msgstr ""
+msgstr "Requiert cinq bâtiments de la phase Village"
 
 #: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
@@ -1145,14 +1117,14 @@ msgstr ""
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.sele
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.spart
 msgid "Kōmopolis"
-msgstr ""
+msgstr "Kōmopolis"
 
 #: simulation/data/technologies/phase_town_athen.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
 "Centers +30% territory influence radius. Structures +7 capture points "
 "regeneration rate per garrisoned unit. Workers +10% metal gather rate."
-msgstr ""
+msgstr "Avancez à la phase des Villes, ce qui vous permettra de débloquer plusieurs unités et technologies. Centre-ville : +30% à la zone d'influence territoriale. Bâtiments : +7 au taux de régénération des points de capture pour chaque unité en garnison. Ouvriers : +10% au taux de récolte du métal."
 
 #: simulation/data/technologies/phase_town_generic.jsondescription
 msgid ""
@@ -1164,7 +1136,7 @@ msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
 "Centers +30% territory influence radius. Structures +7 capture points "
 "regeneration rate per garrisoned unit."
-msgstr ""
+msgstr "Avancez à la phase des Villes, ce qui vous permettra de débloquer plusieurs unités et technologies. Centre-ville : +30% à la zone d'influence territoriale. Bâtiments : +7 au taux de régénération des points de capture pour chaque unité en garnison."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1186,20 +1158,20 @@ msgstr "Jardin"
 #: simulation/data/technologies/pop_house_01.jsonspecificName.sele
 #: simulation/data/technologies/pop_house_01.jsonspecificName.spart
 msgid "Peristylon"
-msgstr ""
+msgstr "Peristylon"
 
 #: simulation/data/technologies/pop_house_01.jsonspecificName.pers
 msgid "Paradaidām"
-msgstr ""
+msgstr "Paradaidām"
 
 #: simulation/data/technologies/pop_house_01.jsonspecificName.rome
 msgid "Peristylium"
-msgstr ""
+msgstr "Peristylium"
 
 #: simulation/data/technologies/pop_house_01.jsontooltip
 #: simulation/data/technologies/pop_house_02.jsontooltip
 msgid "Houses +20% population bonus."
-msgstr ""
+msgstr "Habitations : bonus de +20% de population."
 
 #: simulation/data/technologies/pop_house_02.jsondescription
 msgid ""
@@ -1214,31 +1186,9 @@ msgstr "Manoirs"
 msgid "Insulae"
 msgstr "Insulae"
 
-#: simulation/data/technologies/pop_wonder.jsondescription
-msgid "The wonder attracts many more people to your civilization."
-msgstr "La merveille attire beaucoup plus de personnes vers votre civilisation."
-
-#: simulation/data/technologies/pop_wonder.jsongenericName
-msgid "Glorious Expansion"
-msgstr "Expansion glorieuse"
-
-#: simulation/data/technologies/pop_wonder.jsonspecificName.athen
-#: simulation/data/technologies/pop_wonder.jsonspecificName.mace
-#: simulation/data/technologies/pop_wonder.jsonspecificName.ptol
-#: simulation/data/technologies/pop_wonder.jsonspecificName.sele
-#: simulation/data/technologies/pop_wonder.jsonspecificName.spart
-msgid "Peristasis"
-msgstr ""
-
-#: simulation/data/technologies/pop_wonder.jsontooltip
-msgid ""
-"Enable the “Glorious Expansion” aura: +40 maximum population limit per "
-"Wonder owned."
-msgstr ""
-
 #: simulation/data/technologies/reformed_army_sele.jsondescription
 msgid "The Roman-style core of the Seleucid army."
-msgstr ""
+msgstr "Le noyau de l'armée séleucide inspirée des troupes romaines."
 
 #: simulation/data/technologies/reformed_army_sele.jsongenericName
 msgid "Reform Army"
@@ -1246,7 +1196,7 @@ msgstr "Réforme militaire"
 
 #: simulation/data/technologies/reformed_army_sele.jsontooltip
 msgid "Unlock the Champion Infantry Swordsman."
-msgstr ""
+msgstr "Déverrouille l'unité Fantassin Épéiste Champion"
 
 #: simulation/data/technologies/ship_cost_time.jsondescription
 msgid ""
@@ -1260,7 +1210,7 @@ msgstr "Architectes navals"
 
 #: simulation/data/technologies/ship_cost_time.jsontooltip
 msgid "Ships −20% construction time."
-msgstr ""
+msgstr "Navires -20% de temps de construction."
 
 #: simulation/data/technologies/ship_health.jsondescription
 msgid "Wooden reinforcement beams for ship hulls."
@@ -1272,21 +1222,21 @@ msgstr "Coque renforcée"
 
 #: simulation/data/technologies/ship_health.jsontooltip
 msgid "Ships +25% health."
-msgstr ""
+msgstr "Navires +25% de santé."
 
 #: simulation/data/technologies/ship_movement_speed.jsondescription
 msgid ""
 "Train your oarsmen and sailors to move more efficiently and speed up your "
 "ships."
-msgstr ""
+msgstr "Entraînez vos rameurs et vos marins à se déplacer de manière plus efficace et d'accélérer vos navires."
 
 #: simulation/data/technologies/ship_movement_speed.jsongenericName
 msgid "Experienced Crews"
-msgstr ""
+msgstr "Équipages Experimentés"
 
 #: simulation/data/technologies/ship_movement_speed.jsontooltip
 msgid "Ships +10% movement speed."
-msgstr ""
+msgstr "+10% de vitesse de déplacement pour les navires."
 
 #: simulation/data/technologies/siege_armor.jsondescription
 msgid "Increased armor on siege engines."
@@ -1298,7 +1248,7 @@ msgstr "Plaque de blindage"
 
 #: simulation/data/technologies/siege_armor.jsontooltip
 msgid "Siege Engines +2 hack resistance."
-msgstr ""
+msgstr "Les engins de siège gagnent +2 points d'armure contre les attaques tranchantes. "
 
 #: simulation/data/technologies/siege_attack.jsondescription
 msgid "Advanced technologies improve siege efficiency."
@@ -1362,7 +1312,7 @@ msgstr "Régiment des Boucliers d'argent"
 msgid ""
 "Upgrade Shield Bearer Champion Infantry to Silver Shields, with more health "
 "and attack damage."
-msgstr ""
+msgstr "Améliore l'infanterie à bouclier championne en «Boucliers d'argent», possédant une meilleure santé et armure."
 
 #: simulation/data/technologies/soldier_ranged_experience.jsontooltip
 msgid "Ranged Soldiers +25% promotion experience."
@@ -1387,11 +1337,11 @@ msgstr "Spolas"
 #: simulation/data/technologies/soldier_resistance_hack_01.jsontooltip
 #: simulation/data/technologies/soldier_resistance_hack_02.jsontooltip
 msgid "Soldiers +1 hack resistance."
-msgstr ""
+msgstr "Les soldats gagnent +1 d'armure contre les attaques tranchantes ."
 
 #: simulation/data/technologies/soldier_resistance_hack_02.jsondescription
 msgid "Body armor made from laminated linen."
-msgstr ""
+msgstr "Armure faite de lin laminé."
 
 #: simulation/data/technologies/soldier_resistance_hack_02.jsongenericName
 msgid "Laminated Linen Body Armor"
@@ -1403,30 +1353,30 @@ msgstr "Armure de lin laminé"
 #: simulation/data/technologies/soldier_resistance_hack_02.jsonspecificName.sele
 #: simulation/data/technologies/soldier_resistance_hack_02.jsonspecificName.spart
 msgid "Linothōrax"
-msgstr ""
+msgstr "Linothōrax"
 
 #: simulation/data/technologies/soldier_resistance_pierce_01.jsondescription
 msgid ""
 "Wooden shields are heavier but much better able to resist projectiles and "
 "blows than wicker-frame shields."
-msgstr ""
+msgstr "Les boucliers en bois sont plus lourds, mais plus à même de résister aux projectiles et au coups que les boucliers en osier."
 
 #: simulation/data/technologies/soldier_resistance_pierce_01.jsongenericName
 msgid "Wooden Shield"
-msgstr ""
+msgstr "Boucliers en bois"
 
 #: simulation/data/technologies/soldier_resistance_pierce_01.jsontooltip
 #: simulation/data/technologies/soldier_resistance_pierce_02.jsontooltip
 msgid "Soldiers +1 pierce resistance."
-msgstr ""
+msgstr "Les soldats gagnent +1 d'armure contre les attaques perçantes."
 
 #: simulation/data/technologies/soldier_resistance_pierce_02.jsondescription
 msgid "Strengthen shields with a metal rim or spine."
-msgstr ""
+msgstr "Renforce les boucliers avec un cerclage métallique et une bosse."
 
 #: simulation/data/technologies/soldier_resistance_pierce_02.jsongenericName
 msgid "Metal Rim"
-msgstr ""
+msgstr "Bord métallique."
 
 #: simulation/data/technologies/spy_counter.jsondescription
 msgid "Recruit a network of informants to watch over your people."
@@ -1444,7 +1394,7 @@ msgstr "Faire en sorte que vos unités soient 50% plus chère à soudoyer."
 msgid ""
 "Significantly increase training speed of cavalry by training them in large "
 "batches or squadrons."
-msgstr ""
+msgstr "Augmente significativement la vitesse d'entraînement de la cavalerie en les formant par grands groupes ou bataillons."
 
 #: simulation/data/technologies/stable_batch_training.jsontooltip
 msgid "Stables −10% batch training time."
@@ -1536,27 +1486,6 @@ msgstr "Traité commercial"
 msgid "+10% international trade bonus."
 msgstr ""
 
-#: simulation/data/technologies/trade_convoys_armor.jsondescription
-msgid "Increases defensive capability of traders."
-msgstr "Améliore les capacités défensives des commerçants."
-
-#: simulation/data/technologies/trade_convoys_armor.jsongenericName
-#: simulation/data/technologies/trade_convoys_speed.jsongenericName
-msgid "Trade Convoys"
-msgstr "Convois de commerce"
-
-#: simulation/data/technologies/trade_convoys_armor.jsontooltip
-msgid "Traders +2 hack and pierce resistance."
-msgstr ""
-
-#: simulation/data/technologies/trade_convoys_speed.jsondescription
-msgid "Increases movement rate of traders in order to increase trade income."
-msgstr ""
-
-#: simulation/data/technologies/trade_convoys_speed.jsontooltip
-msgid "Traders +25% movement speed."
-msgstr ""
-
 #: simulation/data/technologies/trade_gain_01.jsondescription
 #: simulation/data/technologies/trade_gain_02.jsondescription
 msgid "The progress in handicraft improves the trading profit."
@@ -1567,16 +1496,25 @@ msgid "Handicraft"
 msgstr "Artisanat"
 
 #: simulation/data/technologies/trade_gain_01.jsontooltip
-msgid "Traders +10% trade gain."
+#: simulation/data/technologies/trade_gain_02.jsontooltip
+msgid "Traders +15% trade gain."
 msgstr ""
 
 #: simulation/data/technologies/trade_gain_02.jsongenericName
 msgid "Advanced Handicraft"
 msgstr "Artisanat avancé"
 
-#: simulation/data/technologies/trade_gain_02.jsontooltip
-msgid "Traders +15% trade gain."
+#: simulation/data/technologies/trader_health.jsondescription
+msgid "Traders traveling together in caravans are less vulnerable."
 msgstr ""
+
+#: simulation/data/technologies/trader_health.jsongenericName
+msgid "Trade Caravan"
+msgstr "Caravane Marchande"
+
+#: simulation/data/technologies/trader_health.jsontooltip
+msgid "Land Traders +50% health."
+msgstr "Les Marchands de terrains +50% de santé."
 
 #: simulation/data/technologies/traditional_army_sele.jsondescription
 msgid "The Macedonian-style core of the Seleucid army."
@@ -1595,7 +1533,7 @@ msgid ""
 "Advanced and Elite units +20% training time, +25% health, +0.7 capture "
 "attack strength, +20% loot, and −30% gather speed; Healers +5 healing "
 "strength and +3 healing range; Melee units +1 resistance and +20% attack "
-"damage; Ranged units −10% spread."
+"damage; Ranged units −20% spread."
 msgstr ""
 
 #: simulation/data/technologies/unit_elephant_african.jsontooltip
@@ -1614,7 +1552,7 @@ msgstr "Augmente de +10% le coût des ressources, le temps d'entraînement, les 
 msgid ""
 "Elite units +20% training time, +25% health, +0.8 capture attack strength, "
 "+20% loot, and −30% gather speed; Healers +5 healing strength and +3 healing"
-" range; Melee units +1 resistance and +20% attack damage; Ranged units −10% "
+" range; Melee units +1 resistance and +20% attack damage; Ranged units −20% "
 "spread."
 msgstr ""
 
@@ -1635,19 +1573,19 @@ msgstr "Les unités de la Garde (Champions) sont des professionnels détenant le
 
 #: simulation/data/technologies/unlock_champion_cavalry.jsongenericName
 msgid "Unlock Champion Cavalry"
-msgstr ""
+msgstr "Débloque la cavalerie championne"
 
 #: simulation/data/technologies/unlock_champion_cavalry.jsontooltip
 msgid "Unlock Champion Cavalry at the Stable."
-msgstr ""
+msgstr "Débloque la cavalerie championne dans les étables."
 
 #: simulation/data/technologies/unlock_champion_chariots.jsongenericName
 msgid "Unlock Champion Chariots"
-msgstr ""
+msgstr "Débloque les chariots champions."
 
 #: simulation/data/technologies/unlock_champion_chariots.jsontooltip
 msgid "Unlock Champion Chariots at the Stable."
-msgstr ""
+msgstr "Débloque les chariots champions dans les étables."
 
 #: simulation/data/technologies/unlock_champion_infantry.jsongenericName
 msgid "Unlock Champion Infantry"
@@ -1656,7 +1594,7 @@ msgstr "Débloque l'Infanterie championne"
 #: simulation/data/technologies/unlock_champion_infantry.jsonspecificName.mace
 #: simulation/data/technologies/unlock_champion_infantry.jsonspecificName.ptol
 msgid "Agēma"
-msgstr ""
+msgstr "Agēma"
 
 #: simulation/data/technologies/unlock_champion_infantry.jsonspecificName.rome
 msgid "Regio Cohors"
@@ -1664,7 +1602,7 @@ msgstr "Regio Cohors"
 
 #: simulation/data/technologies/unlock_champion_infantry.jsontooltip
 msgid "Unlock Champions Infantry at the Barracks."
-msgstr ""
+msgstr "Débloque l'Infanterie championne dans les casernes."
 
 #: simulation/data/technologies/unlock_females_house.jsondescription
 msgid "A festival attended by women-only, to celebrate female fertility."
@@ -1703,7 +1641,7 @@ msgstr "Diaspora"
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsonrequirementsTooltip
 msgid "Requires three Traders"
-msgstr ""
+msgstr "Nécessite 3 commerçants"
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsontooltip
 msgid "Allows using allied dropsites."
@@ -1752,3 +1690,25 @@ msgstr "Savoir-faire guerrier"
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
 msgid "Mercenaries are promoted to Advanced rank."
 msgstr "Les mercenaires obtiennent la promotion Rang supérieur."
+
+#: simulation/data/technologies/wonder_population_cap.jsondescription
+msgid "The wonder attracts many more people to your civilization."
+msgstr "La merveille attire beaucoup plus de personnes vers votre civilisation."
+
+#: simulation/data/technologies/wonder_population_cap.jsongenericName
+msgid "Glorious Expansion"
+msgstr "Expansion glorieuse"
+
+#: simulation/data/technologies/wonder_population_cap.jsonspecificName.athen
+#: simulation/data/technologies/wonder_population_cap.jsonspecificName.mace
+#: simulation/data/technologies/wonder_population_cap.jsonspecificName.ptol
+#: simulation/data/technologies/wonder_population_cap.jsonspecificName.sele
+#: simulation/data/technologies/wonder_population_cap.jsonspecificName.spart
+msgid "Peristasis"
+msgstr "Peristasis"
+
+#: simulation/data/technologies/wonder_population_cap.jsontooltip
+msgid ""
+"Enable the “Glorious Expansion” aura: +20% maximum population limit per "
+"Wonder owned."
+msgstr ""

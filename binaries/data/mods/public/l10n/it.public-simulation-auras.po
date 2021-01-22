@@ -32,8 +32,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-18 08:15+0000\n"
-"PO-Revision-Date: 2021-01-18 08:37+0000\n"
+"POT-Creation-Date: 2021-01-20 00:57+0000\n"
+"PO-Revision-Date: 2021-01-20 02:36+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -100,12 +100,12 @@ msgid "Powerful Priesthood"
 msgstr "Sacerdozio potente"
 
 #: simulation/data/auras/structures/library.jsonauraDescription
-msgid "Structures −10% technology resource costs and research time."
-msgstr "−10% costi e tempi di ricerca per le tecnologie in tutte le strutture."
+msgid "Structures −15% technology resource costs and research time."
+msgstr ""
 
 #: simulation/data/auras/structures/library.jsonauraName
-msgid "Power of Knowledge"
-msgstr "Potere della Conoscenza"
+msgid "Centre of Scholarship"
+msgstr ""
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraDescription
 msgid "Structures +50% capture points garrison regeneration rate."
@@ -155,20 +155,13 @@ msgstr "Le unità presidiate ottengono +3 armatura e +20 visione,"
 msgid "Wall Protection"
 msgstr "Protezione delle Mura"
 
-#: simulation/data/auras/structures/wonder_pop_1.jsonauraDescription
-msgid "+10 maximum population limit."
-msgstr "+10 limite massimo di popolazione."
-
-#: simulation/data/auras/structures/wonder_pop_1.jsonauraName
-msgid "Symbol of Greatness"
-msgstr "Simbolo di gratitudine"
-
-#: simulation/data/auras/structures/wonder_pop_2.jsonauraDescription
+#: simulation/data/auras/structures/wonder_population_cap.jsonauraDescription
 msgid ""
-"+40 maximum population limit (requires the “Glorious Expansion” technology)."
-msgstr "+40 limite massimo di popolazione (richiede Espansione Gloriosa)."
+"+20% maximum population limit (requires the “Glorious Expansion” "
+"technology)."
+msgstr ""
 
-#: simulation/data/auras/structures/wonder_pop_2.jsonauraName
+#: simulation/data/auras/structures/wonder_population_cap.jsonauraName
 msgid "Glorious Expansion"
 msgstr "Espansione Gloriosa"
 

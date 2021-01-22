@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-15 08:53+0000\n"
-"PO-Revision-Date: 2021-01-16 17:11+0000\n"
+"PO-Revision-Date: 2021-01-20 18:26+0000\n"
 "Last-Translator: Микола Франчук <thekolian1996@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -1197,10 +1197,10 @@ msgstr "%(changer)s зменшує ліміт за допомогою %(change)s
 #: gui/session/selection_panels_helpers.js:140
 msgid "Could be constructed merely once."
 msgid_plural "Could be constructed merely %(limit)s times."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Може бути споруджено тільки один раз."
+msgstr[1] "Може бути споруджено тільки %(limit)s рази."
+msgstr[2] "Може бути споруджено тільки %(limit)s разів."
+msgstr[3] "Може бути споруджено тільки %(limit)s разів."
 
 #: gui/session/selection_panels_helpers.js:144
 msgid "Can be constructed only once."
@@ -1231,18 +1231,18 @@ msgstr "Може бути треновано тільки один раз."
 #, javascript-format
 msgid "Can be trained %(count)s more time."
 msgid_plural "Can be trained %(count)s more times."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Може бути треновано ще %(count)s раз."
+msgstr[1] "Може бути треновано ще %(count)s рази."
+msgstr[2] "Може бути треновано ще %(count)s разів."
+msgstr[3] "Може бути треновано ще %(count)s разів."
 
 #: gui/session/selection_panels_helpers.js:166
 msgid "Could be created merely once."
 msgid_plural "Could be created merely %(limit)s times."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Може бути створено тільки один раз."
+msgstr[1] "Може бути створено тільки %(limit)s рази."
+msgstr[2] "Може бути створено тільки %(limit)s разів."
+msgstr[3] "Може бути створено тільки %(limit)s разів."
 
 #: gui/session/selection_panels_helpers.js:170
 msgid "Can be created only once."
@@ -1732,7 +1732,7 @@ msgstr "Використовувати це місце збору заборон
 
 #: gui/session/unit_actions.js:1503
 msgid "Allies are allowed to use this dropsite."
-msgstr ""
+msgstr "Союзникам дозволено використовувати це місце збору."
 
 #: gui/session/unit_actions.js:1504
 msgid "You are allowed to use this dropsite"

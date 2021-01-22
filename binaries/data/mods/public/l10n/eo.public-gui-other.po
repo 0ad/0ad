@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-18 08:15+0000\n"
-"PO-Revision-Date: 2021-01-18 08:36+0000\n"
+"POT-Creation-Date: 2021-01-20 00:57+0000\n"
+"PO-Revision-Date: 2021-01-20 02:36+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Esperanto (http://www.transifex.com/wildfire-games/0ad/language/eo/)\n"
 "MIME-Version: 1.0\n"
@@ -1495,11 +1495,11 @@ msgstr "Ĉu vi ankoraŭ volas daŭrigi?"
 msgid "Warning"
 msgstr "Averto"
 
-#: gui/loadgame/SavegamePage.js:42
+#: gui/loadgame/SavegamePage.js:45
 msgid "Save Game"
 msgstr "Ŝargi ludon"
 
-#: gui/loadgame/SavegamePage.js:42 gui/pregame/MainMenuItems.js:73
+#: gui/loadgame/SavegamePage.js:45 gui/pregame/MainMenuItems.js:73
 msgid "Load Game"
 msgstr "Ŝargi ludon"
 
@@ -2392,6 +2392,32 @@ msgstr ""
 
 #: gui/options/options.json[5].options[1].tooltip
 msgid "Number of units trained per batch by default."
+msgstr ""
+
+#: gui/options/options.json[5].options[20].label
+msgid "Formation control"
+msgstr ""
+
+#: gui/options/options.json[5].options[20].list[0].label
+msgid "Walk/Patrol Only"
+msgstr ""
+
+#: gui/options/options.json[5].options[20].list[0].tooltip
+msgid "Other orders will disband existing formations."
+msgstr ""
+
+#: gui/options/options.json[5].options[20].list[1].label
+msgid "No Override"
+msgstr ""
+
+#: gui/options/options.json[5].options[20].list[1].tooltip
+msgid "Units in formations stay in formations."
+msgstr ""
+
+#: gui/options/options.json[5].options[20].tooltip
+msgid ""
+"Decide whether formations are enabled for all orders or only 'Walk' and "
+"'Patrol'."
 msgstr ""
 
 #: gui/options/options.json[5].options[2].label

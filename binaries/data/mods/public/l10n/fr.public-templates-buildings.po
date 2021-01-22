@@ -16,6 +16,7 @@
 # Cyril Mercier, 2018
 # Dhia Eddine Chouchane <dhiachouchane@gmail.com>, 2020
 # Requin <dylanroux34@gmail.com>, 2018
+# Edouard Dwaarf <edouarddwarf@gmail.com>, 2021
 # François Magimel, 2018
 # François Magimel, 2018-2019
 # François Poirotte <clicky@erebot.net>, 2016
@@ -54,9 +55,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-18 08:15+0000\n"
-"PO-Revision-Date: 2021-01-20 00:45+0000\n"
-"Last-Translator: Stanislas Dolcini <stan@wildfiregames.com>\n"
+"POT-Creation-Date: 2021-01-20 00:57+0000\n"
+"PO-Revision-Date: 2021-01-20 18:33+0000\n"
+"Last-Translator: Edouard Dwaarf <edouarddwarf@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -241,6 +242,8 @@ msgstr "Naos"
 
 #: simulation/templates/structures/athen/theater.xml:5
 #: simulation/templates/structures/mace/theater.xml:5
+#: simulation/templates/structures/ptol/theater.xml:5
+#: simulation/templates/structures/sele/theater.xml:5
 #: simulation/templates/structures/spart/theater.xml:5
 msgid "Theatron"
 msgstr "Theatron"
@@ -390,7 +393,7 @@ msgstr "Dunon"
 #: simulation/templates/structures/mace/fortress.xml:10
 #: simulation/templates/structures/rome/fortress.xml:6
 msgid "Territory root. Train Heroes. Garrison Soldiers for additional arrows."
-msgstr ""
+msgstr "Ancrage territorial. Entraîne des Héros. Mettre des soldats en garnison pour tirer des flèches supplémentaires."
 
 #: simulation/templates/structures/brit/house.xml:9
 #: simulation/templates/structures/gaul/house.xml:5
@@ -451,9 +454,14 @@ msgstr "Taux"
 msgid "Emain Macha"
 msgstr "Emain Macha"
 
-#: simulation/templates/structures/cart/apartment.xml:16
+#: simulation/templates/structures/cart/apartment.xml:23
 msgid "Apartment Building"
 msgstr "Immeuble"
+
+#: simulation/templates/structures/cart/apartment.xml:24
+#: simulation/templates/structures/cart/house.xml:8
+msgid "Bet"
+msgstr "Bet"
 
 #: simulation/templates/structures/cart/barracks.xml:12
 msgid "Maḥanēt"
@@ -521,10 +529,6 @@ msgstr "Šadd"
 #: simulation/templates/structures/cart/fortress.xml:9
 msgid "Ḥamet"
 msgstr "Ḥamet"
-
-#: simulation/templates/structures/cart/house.xml:8
-msgid "Bet"
-msgstr "Bet"
 
 #: simulation/templates/structures/cart/market.xml:12
 msgid "Šūq"
@@ -662,7 +666,7 @@ msgstr "Remogantion"
 
 #: simulation/templates/structures/gaul/assembly.xml:32
 msgid "Train Champion Trumpeters and Heroes."
-msgstr ""
+msgstr "Entraîne des Champions Trompettistes et des Héros."
 
 #: simulation/templates/structures/gaul/barracks.xml:18
 msgid "Coriosedlon"
@@ -807,7 +811,7 @@ msgstr "Porte d'Ishtar de Babylone"
 
 #: simulation/templates/structures/ishtar_gate.xml:26
 msgid "Territory root."
-msgstr ""
+msgstr "Ancrage territorial."
 
 #: simulation/templates/structures/kush/arsenal.xml:5
 msgid "Pr-ỉwn n ms"
@@ -1055,7 +1059,7 @@ msgstr "Harmya"
 
 #: simulation/templates/structures/maur/palace.xml:24
 msgid "Territory root. Train Maiden Guards and Heroes."
-msgstr ""
+msgstr "Ancrage territorial. Entraîne des Gardes Jeunes Filles et des Héros."
 
 #: simulation/templates/structures/maur/pillar_ashoka.xml:32
 msgid "Edict Pillar of Ashoka"
@@ -1310,9 +1314,9 @@ msgstr "Pharos"
 
 #: simulation/templates/structures/ptol/lighthouse.xml:27
 msgid ""
-"Build upon a shoreline in own, neutral, or allied territory. Reveal the "
-"shorelines over the entire map. Very large vision range."
-msgstr "Construire sur un littoral d'un territoire neutre, allié ou vous appartenant. Révéler les littoraux de toute la carte. Large champs de vision."
+"Build upon a shoreline in own, neutral, or allied territory. Very large "
+"vision range."
+msgstr "Construisible sur son propre littoral, neutre ou allié. Très grand champ de vision."
 
 #: simulation/templates/structures/ptol/mercenary_camp.xml:27
 msgid "Mercenary Camp"
@@ -1365,7 +1369,7 @@ msgstr "Castra"
 msgid ""
 "Build in neutral or enemy territory. Train Melee Infantry. Garrison Soldiers"
 " for additional arrows."
-msgstr ""
+msgstr "Construisible en territoire neutre ou ennemie. Entraîne de l'infanterie de mêlée. Mettre des Soldats en garnison pour tirer des flèches supplémentaires."
 
 #: simulation/templates/structures/rome/army_camp.xml:40
 #: simulation/templates/structures/rome/army_camp.xml:77
@@ -1640,7 +1644,7 @@ msgid ""
 "Build in own or neutral territory. Acquire large tracts of territory. "
 "Territory root. Train Citizens and research technologies. Garrison Soldiers "
 "for additional arrows."
-msgstr "Construire dans un neutre ou vous appartenant. Acquérir une large étendue de territoire. Centre du territoire. Entraîner des citoyens et rechercher des technologies. Soldats en garnison pour des tirs de flèches supplémentaires."
+msgstr "Construire dans un territoire neutre ou vous appartenant. Acquérir une large étendue de territoire. Centre du territoire. Entraîner des citoyens et rechercher des technologies. Soldats en garnison pour des tirs de flèches supplémentaires."
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:46
 #: simulation/templates/template_structure_civic_civil_centre.xml:83
@@ -1689,11 +1693,10 @@ msgstr "Village"
 msgid "Stoa"
 msgstr "Stoa"
 
-#: simulation/templates/structures/cart/super_dock.xml:43
+#: simulation/templates/structures/cart/apartment.xml:26
 #: simulation/templates/structures/gaul/tavern.xml:22
 #: simulation/templates/structures/kush/pyramid_small.xml:29
 #: simulation/templates/structures/maur/elephant_stables.xml:8
-#: simulation/templates/structures/ptol/lighthouse.xml:29
 #: simulation/templates/template_structure_civic_stoa.xml:30
 #: simulation/templates/template_structure_civic_temple.xml:32
 #: simulation/templates/template_structure_defensive_tower_stone.xml:32
@@ -1771,7 +1774,7 @@ msgstr "Tour d'artillerie"
 #: simulation/templates/template_structure_military_elephant_stables.xml:26
 #: simulation/templates/template_structure_military_fortress.xml:73
 #: simulation/templates/template_structure_special.xml:20
-#: simulation/templates/template_structure_wonder.xml:43
+#: simulation/templates/template_structure_wonder.xml:42
 msgid "City"
 msgstr "Cité"
 
@@ -2044,17 +2047,17 @@ msgstr "Moulin rotatif"
 msgid "RotaryMill"
 msgstr "Baritel"
 
-#: simulation/templates/template_structure_special_theater.xml:24
-#: simulation/templates/template_structure_special_theater.xml:26
+#: simulation/templates/template_structure_special_theater.xml:25
+#: simulation/templates/template_structure_special_theater.xml:27
 msgid "Theater"
 msgstr "Théâtre "
 
-#: simulation/templates/template_structure_wonder.xml:39
-#: simulation/templates/template_structure_wonder.xml:43
+#: simulation/templates/template_structure_wonder.xml:38
+#: simulation/templates/template_structure_wonder.xml:42
 msgid "Wonder"
 msgstr "Merveille"
 
-#: simulation/templates/template_structure_wonder.xml:41
+#: simulation/templates/template_structure_wonder.xml:40
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."

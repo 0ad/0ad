@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-18 08:15+0000\n"
-"PO-Revision-Date: 2021-01-19 16:08+0000\n"
+"POT-Creation-Date: 2021-01-20 00:57+0000\n"
+"PO-Revision-Date: 2021-01-21 11:10+0000\n"
 "Last-Translator: Beñat Irazabal <birazabal@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -34,7 +34,6 @@ msgid "The Agoge"
 msgstr "Agogea"
 
 #: simulation/data/technologies/agoge.jsonrequirementsTooltip
-#: simulation/data/technologies/armor_hero_01.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_cavalry_melee_02.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_infantry_melee_02.jsonrequirementsTooltip
@@ -58,7 +57,6 @@ msgstr "Agogea"
 #: simulation/data/technologies/nisean_horses.jsonrequirementsTooltip
 #: simulation/data/technologies/parade_of_daphne.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_02.jsonrequirementsTooltip
-#: simulation/data/technologies/pop_wonder.jsonrequirementsTooltip
 #: simulation/data/technologies/reformed_army_sele.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_cost_time.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_health.jsonrequirementsTooltip
@@ -74,12 +72,12 @@ msgstr "Agogea"
 #: simulation/data/technologies/stable_batch_training.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_health.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_murderholes.jsonrequirementsTooltip
-#: simulation/data/technologies/trade_convoys_armor.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_gain_02.jsonrequirementsTooltip
 #: simulation/data/technologies/traditional_army_sele.jsonrequirementsTooltip
 #: simulation/data/technologies/unlock_champion_cavalry.jsonrequirementsTooltip
 #: simulation/data/technologies/unlock_champion_chariots.jsonrequirementsTooltip
 #: simulation/data/technologies/unlock_champion_infantry.jsonrequirementsTooltip
+#: simulation/data/technologies/wonder_population_cap.jsonrequirementsTooltip
 msgid "Unlocked in City Phase."
 msgstr "Hiri aroan desblokeatuta."
 
@@ -109,9 +107,8 @@ msgid "Unlocked in Village Phase."
 msgstr "Herrixka aroan desblokeatuta."
 
 #: simulation/data/technologies/archery_tradition.jsontooltip
-msgid ""
-"Archers −10% training time, +10 attack range, and −10% ranged attack spread."
-msgstr "Arkulariak %10- trebatze denboran, 10+ erasoan, eta %10- erasoa zabaltzean."
+msgid "Archers −10% training time and +10 attack range."
+msgstr "Arkulariak -%10 entrenatze debora eta +%10 eraso zabalera."
 
 #: simulation/data/technologies/architecture_kush.jsongenericName
 msgid "Monumental Architecture"
@@ -142,8 +139,8 @@ msgstr "Arkitektura Monumentala"
 #: simulation/data/technologies/tower_crenellations.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_range.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
-#: simulation/data/technologies/trade_convoys_speed.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_gain_01.jsonrequirementsTooltip
+#: simulation/data/technologies/trader_health.jsonrequirementsTooltip
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase."
 msgstr "Herri Aroan desblokeatuta."
@@ -168,32 +165,6 @@ msgstr "Persiar Arkitektura"
 #: simulation/data/technologies/architecture_pers.jsontooltip
 msgid "Structures +25% health and capture points, but also +20% build time."
 msgstr "Egiturek %25+ gehiago dute osasunean eta atzitze puntuetan, baina %20+  gehiago behar dute eraikitzean."
-
-#: simulation/data/technologies/armor_hero_01.jsondescription
-msgid ""
-"Body armor fashioned completely of iron, the hardest workable metal known to"
-" the ancients."
-msgstr "Gorputz armadura erabat metalez egina, antzinen ezagutzen zen metalerik gogorrenean."
-
-#: simulation/data/technologies/armor_hero_01.jsongenericName
-msgid "Iron Hero Armor"
-msgstr "Burdinezko Heroi Armadura"
-
-#: simulation/data/technologies/armor_hero_01.jsonspecificName.athen
-#: simulation/data/technologies/armor_hero_01.jsonspecificName.mace
-#: simulation/data/technologies/armor_hero_01.jsonspecificName.ptol
-#: simulation/data/technologies/armor_hero_01.jsonspecificName.sele
-#: simulation/data/technologies/armor_hero_01.jsonspecificName.spart
-msgid "Sidērea Panoplia"
-msgstr "Sidērea Panoplia"
-
-#: simulation/data/technologies/armor_hero_01.jsonspecificName.rome
-msgid "Lorica Ferrea"
-msgstr "Lorica Ferrea"
-
-#: simulation/data/technologies/armor_hero_01.jsontooltip
-msgid "Heroes +50 metal cost, +2 hack and pierce resistance."
-msgstr "Heroiak +50 metal kostua, +2 mozte eta zulatze erresistentzia."
 
 #: simulation/data/technologies/attack_cavalry_melee_01.jsondescription
 msgid "Training increases melee attack."
@@ -1191,28 +1162,6 @@ msgstr "Finkak"
 msgid "Insulae"
 msgstr "Insulae"
 
-#: simulation/data/technologies/pop_wonder.jsondescription
-msgid "The wonder attracts many more people to your civilization."
-msgstr "Miragarriak askoz ere jende gehiago dakar zure zibilizaziora."
-
-#: simulation/data/technologies/pop_wonder.jsongenericName
-msgid "Glorious Expansion"
-msgstr "Zabaltze Loriatsua"
-
-#: simulation/data/technologies/pop_wonder.jsonspecificName.athen
-#: simulation/data/technologies/pop_wonder.jsonspecificName.mace
-#: simulation/data/technologies/pop_wonder.jsonspecificName.ptol
-#: simulation/data/technologies/pop_wonder.jsonspecificName.sele
-#: simulation/data/technologies/pop_wonder.jsonspecificName.spart
-msgid "Peristasis"
-msgstr "Peristasis"
-
-#: simulation/data/technologies/pop_wonder.jsontooltip
-msgid ""
-"Enable the “Glorious Expansion” aura: +40 maximum population limit per "
-"Wonder owned."
-msgstr "Gaitu “Zabaltze Loriatsua“ aura. +40 biztanle gehienez miragarri bakoitzeko."
-
 #: simulation/data/technologies/reformed_army_sele.jsondescription
 msgid "The Roman-style core of the Seleucid army."
 msgstr "Armada Seleuzidaren erromatar estiloaren muina."
@@ -1513,27 +1462,6 @@ msgstr "Merkataritza Hitzarmena"
 msgid "+10% international trade bonus."
 msgstr "+%10 gehiago nazioarteko merkataritzan."
 
-#: simulation/data/technologies/trade_convoys_armor.jsondescription
-msgid "Increases defensive capability of traders."
-msgstr "Merkatarien babes gaitasunak handitzen ditu."
-
-#: simulation/data/technologies/trade_convoys_armor.jsongenericName
-#: simulation/data/technologies/trade_convoys_speed.jsongenericName
-msgid "Trade Convoys"
-msgstr "Merkataritza Karabana"
-
-#: simulation/data/technologies/trade_convoys_armor.jsontooltip
-msgid "Traders +2 hack and pierce resistance."
-msgstr "Merkatariek +2 mozte eta zulatze erresistentzia."
-
-#: simulation/data/technologies/trade_convoys_speed.jsondescription
-msgid "Increases movement rate of traders in order to increase trade income."
-msgstr "Merkatarien mugitze abiadura handitzen du merkataritzako diru sarrerak handitzeko."
-
-#: simulation/data/technologies/trade_convoys_speed.jsontooltip
-msgid "Traders +25% movement speed."
-msgstr "Merkatariek %25+ mugitze abiaduran."
-
 #: simulation/data/technologies/trade_gain_01.jsondescription
 #: simulation/data/technologies/trade_gain_02.jsondescription
 msgid "The progress in handicraft improves the trading profit."
@@ -1544,16 +1472,25 @@ msgid "Handicraft"
 msgstr "Artisautza"
 
 #: simulation/data/technologies/trade_gain_01.jsontooltip
-msgid "Traders +10% trade gain."
-msgstr "Merkatariek %10+ irabaziak."
+#: simulation/data/technologies/trade_gain_02.jsontooltip
+msgid "Traders +15% trade gain."
+msgstr "Merkatariek %15+ irabaziak."
 
 #: simulation/data/technologies/trade_gain_02.jsongenericName
 msgid "Advanced Handicraft"
 msgstr "Artisautza aurreratua"
 
-#: simulation/data/technologies/trade_gain_02.jsontooltip
-msgid "Traders +15% trade gain."
-msgstr "Merkatariek %15+ irabaziak."
+#: simulation/data/technologies/trader_health.jsondescription
+msgid "Traders traveling together in caravans are less vulnerable."
+msgstr "Taldean karabanetan bidaiatzen duten merkatariak zaurgarritasun txikiagoa dute."
+
+#: simulation/data/technologies/trader_health.jsongenericName
+msgid "Trade Caravan"
+msgstr "Merkataritza Karabana"
+
+#: simulation/data/technologies/trader_health.jsontooltip
+msgid "Land Traders +50% health."
+msgstr "Lurreko merkatariek +50% osasuna."
 
 #: simulation/data/technologies/traditional_army_sele.jsondescription
 msgid "The Macedonian-style core of the Seleucid army."
@@ -1572,8 +1509,8 @@ msgid ""
 "Advanced and Elite units +20% training time, +25% health, +0.7 capture "
 "attack strength, +20% loot, and −30% gather speed; Healers +5 healing "
 "strength and +3 healing range; Melee units +1 resistance and +20% attack "
-"damage; Ranged units −10% spread."
-msgstr "Unitate aurreratuak eta Eliteak +% 20 entrenamendu denbora, +% 25 osasuna, +0,7 harrapatzeko eraso indarra, +% 20 arpilaketa, eta% −30 biltzeko abiadura; Sendatzaileek +5 sendatze-indarra eta +3 sendatze-eremua; Buruz buruko unitateak +1 erresistentzia eta +% 20 eraso kalteak; Urrutirako unitateak -% 10eko hedapena."
+"damage; Ranged units −20% spread."
+msgstr ""
 
 #: simulation/data/technologies/unit_elephant_african.jsontooltip
 msgid ""
@@ -1591,9 +1528,9 @@ msgstr "Elefante indiarrak %10 gutxiago baliabide kostu, trebatze denbora, osasu
 msgid ""
 "Elite units +20% training time, +25% health, +0.8 capture attack strength, "
 "+20% loot, and −30% gather speed; Healers +5 healing strength and +3 healing"
-" range; Melee units +1 resistance and +20% attack damage; Ranged units −10% "
+" range; Melee units +1 resistance and +20% attack damage; Ranged units −20% "
 "spread."
-msgstr "Elite unitateak +% 20 entrenamendu denbora, +% 25 osasuna, +0.8 harrapaketa erasoaren indarra +% 20 arpilaketa, eta% -30 abiadura biltzeko; Sendatzaileek +5 sendatze-indarra eta +3 sendatze-eremua; Buruz buruko unitateak +1 erresistentzia eta +% 20 erasoko kalteak; Urrutirako unitateak -% 10eko hedapena."
+msgstr ""
 
 #: simulation/data/technologies/unit_mercenary.jsontooltip
 msgid ""
@@ -1729,3 +1666,25 @@ msgstr "Gudan eskarmentua"
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
 msgid "Mercenaries are promoted to Advanced rank."
 msgstr "Mertzenarioak maila aurreratura igoak dira."
+
+#: simulation/data/technologies/wonder_population_cap.jsondescription
+msgid "The wonder attracts many more people to your civilization."
+msgstr "Miragarriak askoz ere jende gehiago dakar zure zibilizaziora."
+
+#: simulation/data/technologies/wonder_population_cap.jsongenericName
+msgid "Glorious Expansion"
+msgstr "Zabaltze Loriatsua"
+
+#: simulation/data/technologies/wonder_population_cap.jsonspecificName.athen
+#: simulation/data/technologies/wonder_population_cap.jsonspecificName.mace
+#: simulation/data/technologies/wonder_population_cap.jsonspecificName.ptol
+#: simulation/data/technologies/wonder_population_cap.jsonspecificName.sele
+#: simulation/data/technologies/wonder_population_cap.jsonspecificName.spart
+msgid "Peristasis"
+msgstr "Peristasis"
+
+#: simulation/data/technologies/wonder_population_cap.jsontooltip
+msgid ""
+"Enable the “Glorious Expansion” aura: +20% maximum population limit per "
+"Wonder owned."
+msgstr "Gaitu “Zabaltze Loriatsua” aura. +20% biztanle muga eskuratutako miragarri bakoitzeko."

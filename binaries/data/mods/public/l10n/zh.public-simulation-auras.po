@@ -81,8 +81,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-18 08:15+0000\n"
-"PO-Revision-Date: 2021-01-18 08:37+0000\n"
+"POT-Creation-Date: 2021-01-20 00:57+0000\n"
+"PO-Revision-Date: 2021-01-20 02:36+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -149,12 +149,12 @@ msgid "Powerful Priesthood"
 msgstr "强大的祭司"
 
 #: simulation/data/auras/structures/library.jsonauraDescription
-msgid "Structures −10% technology resource costs and research time."
-msgstr "建筑物中的科研花费及时间 -10% 。"
+msgid "Structures −15% technology resource costs and research time."
+msgstr ""
 
 #: simulation/data/auras/structures/library.jsonauraName
-msgid "Power of Knowledge"
-msgstr "知识的力量"
+msgid "Centre of Scholarship"
+msgstr ""
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraDescription
 msgid "Structures +50% capture points garrison regeneration rate."
@@ -204,20 +204,13 @@ msgstr "驻军后护甲 +3，视野 +20 。"
 msgid "Wall Protection"
 msgstr "护城墙"
 
-#: simulation/data/auras/structures/wonder_pop_1.jsonauraDescription
-msgid "+10 maximum population limit."
-msgstr "人口数量 +10 。"
-
-#: simulation/data/auras/structures/wonder_pop_1.jsonauraName
-msgid "Symbol of Greatness"
-msgstr "伟大的象征"
-
-#: simulation/data/auras/structures/wonder_pop_2.jsonauraDescription
+#: simulation/data/auras/structures/wonder_population_cap.jsonauraDescription
 msgid ""
-"+40 maximum population limit (requires the “Glorious Expansion” technology)."
-msgstr "人口数量限制 +40（需要“荣耀扩张”科技）。"
+"+20% maximum population limit (requires the “Glorious Expansion” "
+"technology)."
+msgstr ""
 
-#: simulation/data/auras/structures/wonder_pop_2.jsonauraName
+#: simulation/data/auras/structures/wonder_population_cap.jsonauraName
 msgid "Glorious Expansion"
 msgstr "光荣扩张"
 

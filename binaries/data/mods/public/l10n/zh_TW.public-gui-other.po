@@ -20,8 +20,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-18 08:15+0000\n"
-"PO-Revision-Date: 2021-01-18 08:36+0000\n"
+"POT-Creation-Date: 2021-01-20 00:57+0000\n"
+"PO-Revision-Date: 2021-01-20 02:36+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -1487,11 +1487,11 @@ msgstr "您仍要繼續嗎？"
 msgid "Warning"
 msgstr "警告"
 
-#: gui/loadgame/SavegamePage.js:42
+#: gui/loadgame/SavegamePage.js:45
 msgid "Save Game"
 msgstr "儲存遊戲"
 
-#: gui/loadgame/SavegamePage.js:42 gui/pregame/MainMenuItems.js:73
+#: gui/loadgame/SavegamePage.js:45 gui/pregame/MainMenuItems.js:73
 msgid "Load Game"
 msgstr "載入遊戲"
 
@@ -2385,6 +2385,32 @@ msgstr "批次訓練數量"
 #: gui/options/options.json[5].options[1].tooltip
 msgid "Number of units trained per batch by default."
 msgstr "預設一批訓練多少單位。"
+
+#: gui/options/options.json[5].options[20].label
+msgid "Formation control"
+msgstr ""
+
+#: gui/options/options.json[5].options[20].list[0].label
+msgid "Walk/Patrol Only"
+msgstr ""
+
+#: gui/options/options.json[5].options[20].list[0].tooltip
+msgid "Other orders will disband existing formations."
+msgstr ""
+
+#: gui/options/options.json[5].options[20].list[1].label
+msgid "No Override"
+msgstr ""
+
+#: gui/options/options.json[5].options[20].list[1].tooltip
+msgid "Units in formations stay in formations."
+msgstr ""
+
+#: gui/options/options.json[5].options[20].tooltip
+msgid ""
+"Decide whether formations are enabled for all orders or only 'Walk' and "
+"'Patrol'."
+msgstr ""
 
 #: gui/options/options.json[5].options[2].label
 msgid "Scroll batch increment ratio"

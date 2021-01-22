@@ -1,15 +1,15 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2020 Wildfire Games
+# Copyright (C) 2021 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
-# David Sowa <isithere2@yahoo.com>, 2017-2020
+# David Sowa <isithere2@yahoo.com>, 2017-2021
 # enolp <enolp@softastur.org>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2020-11-24 22:16+0000\n"
+"POT-Creation-Date: 2021-01-20 00:57+0000\n"
+"PO-Revision-Date: 2021-01-20 22:08+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -79,8 +79,8 @@ msgstr "• Ctrl + les fleches, o Mayús + la rueda del mur, voltien la cámara"
 
 #: gui/manual/intro.txt:16
 msgid ""
-"• Mouse wheel, or “hotkey.camera.zoom.in” and ““hotkey.camera.zoom.out” "
-"keys, to zoom"
+"• Mouse wheel, or “hotkey.camera.zoom.in” and “hotkey.camera.zoom.out” keys,"
+" to zoom"
 msgstr "• La rueda del mur, o les tecles «hotkey.camera.zoom.in» ya «hotkey.camera.zoom.out», avera y allonxa la vista"
 
 #: gui/manual/intro.txt:18
@@ -584,139 +584,135 @@ msgid ""
 msgstr "  hotkey.silhouettes – Amosar, anubrir los contornos de les unidaes (quiciabes ameyore'l rindimientu)"
 
 #: gui/manual/intro.txt:123
-msgid "  hotkey.showsky – Toggle sky"
-msgstr "  hotkey.showsky – Amosar, anubrir el cielu"
-
-#: gui/manual/intro.txt:124
 msgid "  hotkey.session.diplomacycolors – Toggle diplomacy colors"
 msgstr "  hotkey.session.diplomacycolors – Amosar, anubrir les colores diplomátiques"
 
-#: gui/manual/intro.txt:125
+#: gui/manual/intro.txt:124
 msgid ""
 "  hotkey.session.toggleattackrange – Toggle attack range visualizations of "
 "selected units and structures"
 msgstr "  hotkey.session.toggleattackrange – Amosar, anubrir l'algame de les unidaes ya construcciones esbillaes"
 
-#: gui/manual/intro.txt:126
+#: gui/manual/intro.txt:125
 msgid ""
 "  hotkey.session.toggleaurasrange – Toggle aura range visualizations of "
 "selected units and structures"
 msgstr "  hotkey.session.toggleaurasrange – Amosar, anubrir l'algame de les aures de les unidaes ya construcciones esbillaes"
 
-#: gui/manual/intro.txt:127
+#: gui/manual/intro.txt:126
 msgid ""
 "  hotkey.session.togglehealrange – Toggle heal range visualizations of "
 "selected units"
 msgstr "  hotkey.session.togglehealrange – Amosar, anubrir l'algame del curamientu de les unidaes esbillaes"
 
-#: gui/manual/intro.txt:129
+#: gui/manual/intro.txt:128
 msgid "[font=\"sans-bold-14\"]Camera manipulation[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]Pa remanar la cámara[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:130
+#: gui/manual/intro.txt:129
 msgid "  hotkey.camera.up – Pan screen up"
 msgstr "  hotkey.camera.up – Mover la vista p'arriba"
 
-#: gui/manual/intro.txt:131
+#: gui/manual/intro.txt:130
 msgid "  hotkey.camera.down – Pan screen down"
 msgstr "  hotkey.camera.down – Mover la vista p'abaxo"
 
-#: gui/manual/intro.txt:132
+#: gui/manual/intro.txt:131
 msgid "  hotkey.camera.left – Pan screen left"
 msgstr "  hotkey.camera.left – Mover la vista a manzorga"
 
-#: gui/manual/intro.txt:133
+#: gui/manual/intro.txt:132
 msgid "  hotkey.camera.right – Pan screen right"
 msgstr "  hotkey.camera.right – Mover la vista a mandrecha"
 
-#: gui/manual/intro.txt:134
+#: gui/manual/intro.txt:133
 msgid "  hotkey.camera.rotate.up – Rotate camera to look upward"
 msgstr "  hotkey.camera.rotate.up – Entornar la cámara p'arriba"
 
-#: gui/manual/intro.txt:135
+#: gui/manual/intro.txt:134
 msgid "  hotkey.camera.rotate.down – Rotate camera to look downward"
 msgstr "  hotkey.camera.rotate.down – Entornar la cámara p'abaxo"
 
-#: gui/manual/intro.txt:136
+#: gui/manual/intro.txt:135
 msgid "  hotkey.camera.rotate.cw – Rotate camera clockwise around terrain"
 msgstr "  hotkey.camera.rotate.wheel.cw – Voltiar la cámara en sen horariu"
 
-#: gui/manual/intro.txt:137
+#: gui/manual/intro.txt:136
 msgid ""
 "  hotkey.camera.rotate.ccw – Rotate camera counter-clockwise around terrain"
 msgstr "  hotkey.camera.rotate.ccw – Voltiar la cámara en sen antihorariu"
 
-#: gui/manual/intro.txt:138
+#: gui/manual/intro.txt:137
 msgid ""
 "  hotkey.camera.rotate.wheel.cw – Rotate camera clockwise around terrain"
 msgstr "  hotkey.camera.rotate.wheel.cw – Voltiar la cámara en sen horariu"
 
-#: gui/manual/intro.txt:139
+#: gui/manual/intro.txt:138
 msgid ""
 "  hotkey.camera.rotate.wheel.ccw – Rotate camera counter-clockwise around "
 "terrain"
 msgstr "  hotkey.camera.rotate.wheel.ccw – Voltiar la cámara en sen antihorariu"
 
-#: gui/manual/intro.txt:140
+#: gui/manual/intro.txt:139
 msgid ""
 "  hotkey.camera.follow – Follow the selected unit (move the camera to stop "
 "following the unit)"
 msgstr "  hotkey.camera.follow – Siguir la unidá esbillada (movi la cámara pa dexar de siguila)"
 
-#: gui/manual/intro.txt:141
+#: gui/manual/intro.txt:140
 msgid "  hotkey.camera.reset – Reset camera zoom and orientation"
 msgstr "  hotkey.camera.reset – Reafitar la orientación, averamientu de la cámara"
 
-#: gui/manual/intro.txt:142
+#: gui/manual/intro.txt:141
 msgid ""
 "  hotkey.camera.zoom.in, hotkey.camera.zoom.wheel.in – Zoom in (keep pressed"
 " for continuous zoom)"
 msgstr "  hotkey.camera.zoom.in, hotkey.camera.zoom.wheel.in – Averar (calténlu primíu p'averar de contino)"
 
-#: gui/manual/intro.txt:143
+#: gui/manual/intro.txt:142
 msgid ""
 "  hotkey.camera.zoom.out, hotkey.camera.zoom.wheel.out – Zoom out (keep "
 "pressed for continuous zoom)"
 msgstr "  hotkey.camera.zoom.out, hotkey.camera.zoom.wheel.out – Allonxar (calténlu primíu p'allonxar de contino)"
 
-#: gui/manual/intro.txt:144
+#: gui/manual/intro.txt:143
 msgid "  hotkey.camera.pan – Keep pressed and move the mouse to pan"
 msgstr "  hotkey.camera.pan – Calténlu primíu ya movi'l mur pa desplazar la vista."
 
-#: gui/manual/intro.txt:146
+#: gui/manual/intro.txt:145
 msgid "[font=\"sans-bold-14\"]During Structure Placement[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]Pa la cimentación[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:147
+#: gui/manual/intro.txt:146
 msgid ""
 "  hotkey.session.rotate.ccw – Rotate structure 15 degrees counter-clockwise"
 msgstr "  hotkey.session.rotate.ccw – Voltiar la construcción 15 graos en sen antihorariu"
 
-#: gui/manual/intro.txt:148
+#: gui/manual/intro.txt:147
 msgid "  hotkey.session.rotate.cw – Rotate structure 15 degrees clockwise"
 msgstr "  hotkey.session.rotate.cw – Voltiar la construcción 15 graos en sen horariu"
 
-#: gui/manual/intro.txt:149
+#: gui/manual/intro.txt:148
 msgid ""
 "  Left Drag – Rotate structure using mouse (foundation will be placed on "
 "mouse release)"
 msgstr "  Botón esq. + Arrastre del mur – Voltiar la construcción (pónense les murueques en soltando'l mur)"
 
-#: gui/manual/intro.txt:151
+#: gui/manual/intro.txt:150
 msgid "[font=\"sans-bold-14\"]When loading a saved game[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]Pa les partíes guardaes[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:152
+#: gui/manual/intro.txt:151
 msgid "  hotkey.cancel – Cancel"
 msgstr "  hotkey.cancel – Encaboxar"
 
-#: gui/manual/intro.txt:153
+#: gui/manual/intro.txt:152
 msgid ""
 "  hotkey.session.savedgames.delete – Delete the selected saved game, ask for"
 " confirmation"
 msgstr "  hotkey.session.savedgames.delete – Desaniciar la partida guardada esbillada con confirmanza"
 
-#: gui/manual/intro.txt:154
+#: gui/manual/intro.txt:153
 msgid ""
 "    • With hotkey.session.savedgames.noconfirmation – Don't ask for "
 "confirmation"

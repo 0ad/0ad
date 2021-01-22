@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2020 Wildfire Games
+# Copyright (C) 2021 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -18,12 +18,12 @@
 # miragae <miragae@gmail.com>, 2014
 # Nicolas Auvray <na.itms76@gmail.com>, 2016
 # Paweł Stopa <pawcio980@gmail.com>, 2018
-# Przemysław Murach <moonshine133@vp.pl>, 2019-2020
+# Przemysław Murach <moonshine133@vp.pl>, 2019-2021
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2020-11-30 17:34+0000\n"
+"POT-Creation-Date: 2021-01-20 00:57+0000\n"
+"PO-Revision-Date: 2021-01-20 15:46+0000\n"
 "Last-Translator: Przemysław Murach <moonshine133@vp.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -93,8 +93,8 @@ msgstr "• CTRL + strzałki lub SHIFT + kółko myszki obracają kamerę"
 
 #: gui/manual/intro.txt:16
 msgid ""
-"• Mouse wheel, or “hotkey.camera.zoom.in” and ““hotkey.camera.zoom.out” "
-"keys, to zoom"
+"• Mouse wheel, or “hotkey.camera.zoom.in” and “hotkey.camera.zoom.out” keys,"
+" to zoom"
 msgstr "• Kółko myszki lub \"hotkey.camera.zoom.in\" i \"hotkey.camera.zoom.out\" służą do przybliżania i oddalania kamery"
 
 #: gui/manual/intro.txt:18
@@ -598,139 +598,135 @@ msgid ""
 msgstr "hotkey.silhouettes – przełącz sylwetki jednostek (może odrobinę podnieść wydajność)"
 
 #: gui/manual/intro.txt:123
-msgid "  hotkey.showsky – Toggle sky"
-msgstr "hotkey.showsky – przełącza niebo"
-
-#: gui/manual/intro.txt:124
 msgid "  hotkey.session.diplomacycolors – Toggle diplomacy colors"
 msgstr "hotkey.session.diplomacycolors – przełącza kolory dyplomacji"
 
-#: gui/manual/intro.txt:125
+#: gui/manual/intro.txt:124
 msgid ""
 "  hotkey.session.toggleattackrange – Toggle attack range visualizations of "
 "selected units and structures"
 msgstr "hotkey.session.toggleattackrange – przełącza wizualizacje zasięgu ataku zaznaczonych jednostek i budowli"
 
-#: gui/manual/intro.txt:126
+#: gui/manual/intro.txt:125
 msgid ""
 "  hotkey.session.toggleaurasrange – Toggle aura range visualizations of "
 "selected units and structures"
 msgstr "hotkey.session.toggleaurasrange – przełącza wizualizacje zasięgu aur zaznaczonych jednostek i budowli"
 
-#: gui/manual/intro.txt:127
+#: gui/manual/intro.txt:126
 msgid ""
 "  hotkey.session.togglehealrange – Toggle heal range visualizations of "
 "selected units"
 msgstr "hotkey.session.togglehealrange – przełącza wizualizacje zasięgu leczenia zaznaczonych jednostek"
 
-#: gui/manual/intro.txt:129
+#: gui/manual/intro.txt:128
 msgid "[font=\"sans-bold-14\"]Camera manipulation[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]Operowanie kamerą[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:130
+#: gui/manual/intro.txt:129
 msgid "  hotkey.camera.up – Pan screen up"
 msgstr "hotkey.camera.up – przesuń ekran w górę"
 
-#: gui/manual/intro.txt:131
+#: gui/manual/intro.txt:130
 msgid "  hotkey.camera.down – Pan screen down"
 msgstr "hotkey.camera.down – przesuń ekran w dół"
 
-#: gui/manual/intro.txt:132
+#: gui/manual/intro.txt:131
 msgid "  hotkey.camera.left – Pan screen left"
 msgstr "hotkey.camera.left – przesuń ekran w lewo"
 
-#: gui/manual/intro.txt:133
+#: gui/manual/intro.txt:132
 msgid "  hotkey.camera.right – Pan screen right"
 msgstr "hotkey.camera.right – przesuń ekran w prawo"
 
-#: gui/manual/intro.txt:134
+#: gui/manual/intro.txt:133
 msgid "  hotkey.camera.rotate.up – Rotate camera to look upward"
 msgstr "hotkey.camera.rotate.up – obróć kamerę w górę"
 
-#: gui/manual/intro.txt:135
+#: gui/manual/intro.txt:134
 msgid "  hotkey.camera.rotate.down – Rotate camera to look downward"
 msgstr "hotkey.camera.rotate.down – obróć kamerę w dół"
 
-#: gui/manual/intro.txt:136
+#: gui/manual/intro.txt:135
 msgid "  hotkey.camera.rotate.cw – Rotate camera clockwise around terrain"
 msgstr "hotkey.camera.rotate.cw – obróć kamerę zgodnie z ruchem wskazówek zegara"
 
-#: gui/manual/intro.txt:137
+#: gui/manual/intro.txt:136
 msgid ""
 "  hotkey.camera.rotate.ccw – Rotate camera counter-clockwise around terrain"
 msgstr "hotkey.camera.rotate.ccw – obróć kamerę przeciwnie do ruchu wskazówek zegara"
 
-#: gui/manual/intro.txt:138
+#: gui/manual/intro.txt:137
 msgid ""
 "  hotkey.camera.rotate.wheel.cw – Rotate camera clockwise around terrain"
 msgstr "hotkey.camera.rotate.wheel.cw – obróć kamerę zgodnie z ruchem wskazówek zegara"
 
-#: gui/manual/intro.txt:139
+#: gui/manual/intro.txt:138
 msgid ""
 "  hotkey.camera.rotate.wheel.ccw – Rotate camera counter-clockwise around "
 "terrain"
 msgstr "hotkey.camera.rotate.wheel.ccw – obróć kamerę przeciwnie do ruchu wskazówek zegara"
 
-#: gui/manual/intro.txt:140
+#: gui/manual/intro.txt:139
 msgid ""
 "  hotkey.camera.follow – Follow the selected unit (move the camera to stop "
 "following the unit)"
 msgstr "hotkey.camera.follow – podążaj za zaznaczoną jednostką (porusz kamerą, aby przestać)"
 
-#: gui/manual/intro.txt:141
+#: gui/manual/intro.txt:140
 msgid "  hotkey.camera.reset – Reset camera zoom and orientation"
 msgstr "hotkey.camera.reset – resetuje poziom przybliżenia/orientację"
 
-#: gui/manual/intro.txt:142
+#: gui/manual/intro.txt:141
 msgid ""
 "  hotkey.camera.zoom.in, hotkey.camera.zoom.wheel.in – Zoom in (keep pressed"
 " for continuous zoom)"
 msgstr "hotkey.camera.zoom.in, hotkey.camera.zoom.wheel.in – przybliż (przytrzymaj, aby ciągle powiększać)"
 
-#: gui/manual/intro.txt:143
+#: gui/manual/intro.txt:142
 msgid ""
 "  hotkey.camera.zoom.out, hotkey.camera.zoom.wheel.out – Zoom out (keep "
 "pressed for continuous zoom)"
 msgstr "hotkey.camera.zoom.out, hotkey.camera.zoom.wheel.out – oddal (przytrzymaj, aby ciągle oddalać)"
 
-#: gui/manual/intro.txt:144
+#: gui/manual/intro.txt:143
 msgid "  hotkey.camera.pan – Keep pressed and move the mouse to pan"
 msgstr "hotkey.camera.pan – przytrzymaj i ruszaj myszką, aby poruszać ekran"
 
-#: gui/manual/intro.txt:146
+#: gui/manual/intro.txt:145
 msgid "[font=\"sans-bold-14\"]During Structure Placement[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]Podczas stawiania budowli[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:147
+#: gui/manual/intro.txt:146
 msgid ""
 "  hotkey.session.rotate.ccw – Rotate structure 15 degrees counter-clockwise"
 msgstr "hotkey.session.rotate.ccw – obróć budynek o 15 stopni przeciwnie do ruchu wskazówek zegara"
 
-#: gui/manual/intro.txt:148
+#: gui/manual/intro.txt:147
 msgid "  hotkey.session.rotate.cw – Rotate structure 15 degrees clockwise"
 msgstr "hotkey.session.rotate.cw – obróć budynek o 15 stopni zgodnie z ruchem wskazówek zegara"
 
-#: gui/manual/intro.txt:149
+#: gui/manual/intro.txt:148
 msgid ""
 "  Left Drag – Rotate structure using mouse (foundation will be placed on "
 "mouse release)"
 msgstr "  LPM i przeciągnij – obróć budynek przy pomocy myszki (fundamenty zostaną postawione, gdy puścisz przycisk)"
 
-#: gui/manual/intro.txt:151
+#: gui/manual/intro.txt:150
 msgid "[font=\"sans-bold-14\"]When loading a saved game[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]Podczas ładowania zapisanej gry[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:152
+#: gui/manual/intro.txt:151
 msgid "  hotkey.cancel – Cancel"
 msgstr "hotkey.cancel – anuluj"
 
-#: gui/manual/intro.txt:153
+#: gui/manual/intro.txt:152
 msgid ""
 "  hotkey.session.savedgames.delete – Delete the selected saved game, ask for"
 " confirmation"
 msgstr "hotkey.session.savedgames.delete – usuwa zapisaną grę, pyta o potwierdzenie"
 
-#: gui/manual/intro.txt:154
+#: gui/manual/intro.txt:153
 msgid ""
 "    • With hotkey.session.savedgames.noconfirmation – Don't ask for "
 "confirmation"

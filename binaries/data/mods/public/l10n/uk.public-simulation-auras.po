@@ -18,14 +18,14 @@
 # Viktor Hrechaninov <hrechaninovvf@gmail.com>, 2016
 # 85c91c3444bcf82d63b07801f727e341, 2020
 # Антон Курило, 2017
-# Микола Франчук <thekolian1996@gmail.com>, 2018-2019
+# Микола Франчук <thekolian1996@gmail.com>, 2018-2019,2021
 # Назарій Високінський <n.vysokinskyi@gmail.com>, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-18 08:15+0000\n"
-"PO-Revision-Date: 2021-01-18 08:37+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-01-20 00:57+0000\n"
+"PO-Revision-Date: 2021-01-20 09:14+0000\n"
+"Last-Translator: Микола Франчук <thekolian1996@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -91,12 +91,12 @@ msgid "Powerful Priesthood"
 msgstr "Могутнє жрецтво"
 
 #: simulation/data/auras/structures/library.jsonauraDescription
-msgid "Structures −10% technology resource costs and research time."
-msgstr "Споруди потребують -10% технологічних ресурсних витрат та часу дослідження."
+msgid "Structures −15% technology resource costs and research time."
+msgstr ""
 
 #: simulation/data/auras/structures/library.jsonauraName
-msgid "Power of Knowledge"
-msgstr "Сила знання"
+msgid "Centre of Scholarship"
+msgstr ""
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraDescription
 msgid "Structures +50% capture points garrison regeneration rate."
@@ -146,20 +146,13 @@ msgstr "Гарнізовані солдати мають +3 броні та +20 
 msgid "Wall Protection"
 msgstr "Захищеність муром"
 
-#: simulation/data/auras/structures/wonder_pop_1.jsonauraDescription
-msgid "+10 maximum population limit."
-msgstr "+10 максимального ліміту населення."
-
-#: simulation/data/auras/structures/wonder_pop_1.jsonauraName
-msgid "Symbol of Greatness"
-msgstr "Символ шляхетності"
-
-#: simulation/data/auras/structures/wonder_pop_2.jsonauraDescription
+#: simulation/data/auras/structures/wonder_population_cap.jsonauraDescription
 msgid ""
-"+40 maximum population limit (requires the “Glorious Expansion” technology)."
-msgstr "+40 максимального ліміту населення (потребує технологію “Славетної експансії”)."
+"+20% maximum population limit (requires the “Glorious Expansion” "
+"technology)."
+msgstr ""
 
-#: simulation/data/auras/structures/wonder_pop_2.jsonauraName
+#: simulation/data/auras/structures/wonder_population_cap.jsonauraName
 msgid "Glorious Expansion"
 msgstr "Славетна експансія"
 
@@ -275,7 +268,7 @@ msgstr ""
 
 #: simulation/data/auras/units/carnyx.jsonauraName
 msgid "Intimidating Sound"
-msgstr ""
+msgstr "Залякуючий звук"
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_1.jsonauraDescription
 msgid ""
