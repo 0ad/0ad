@@ -4,13 +4,13 @@
 	<vertex file="arb/water_simple.vp">
 		<stream name="pos"/>
 		<uniform name="transform" loc="0" type="mat4"/>
-		<uniform name="losMatrix" loc="4" type="mat4"/>
-		<uniform name="time" loc="8" type="float"/>
+		<uniform name="losTransform" loc="4" type="vec4"/>
+		<uniform name="time" loc="5" type="float"/>
 	</vertex>
 
 	<fragment file="arb/water_simple.fp">
-	        <uniform name="baseTex" loc="0" type="sampler2D"/>
-	        <uniform name="losTex" loc="1" type="sampler2D"/>
+		<uniform name="baseTex" loc="0" type="sampler2D"/>
+		<uniform name="losTex" loc="1" type="sampler2D"/>
 		<uniform name="color" loc="2" type="vec4"/>
 	</fragment>
 

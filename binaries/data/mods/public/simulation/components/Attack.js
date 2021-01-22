@@ -348,13 +348,15 @@ Attack.prototype.GetPreference = function(target)
 	for (let type of this.GetAttackTypes())
 	{
 		let preferredClasses = this.GetPreferredClasses(type);
-		for (let targetClass of targetClasses)
+		for (let pref = 0; pref < preferredClasses.length; ++pref)
 		{
-			let pref = preferredClasses.indexOf(targetClass);
-			if (pref === 0)
-				return pref;
-			if (pref != -1 && (minPref === null || minPref > pref))
-				minPref = pref;
+			if (MatchesClassList(targetClasses, preferredClasses[pref]))
+			{
+				if (pref === 0)
+					return pref;
+				if ((minPref === null || minPref > pref))
+					minPref = pref;
+			}
 		}
 	}
 	return minPref;

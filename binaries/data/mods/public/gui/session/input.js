@@ -268,6 +268,12 @@ function ownsEntity(ent)
 	return entState && entState.player == g_ViewedPlayer;
 }
 
+function isAttackMovePressed()
+{
+	return Engine.HotkeyIsPressed("session.attackmove") ||
+		Engine.HotkeyIsPressed("session.attackmoveUnit");
+}
+
 function isSnapToEdgesEnabled()
 {
 	let config = Engine.ConfigDB_GetValue("user", "gui.session.snaptoedges");
@@ -1194,7 +1200,7 @@ function positionUnitsFreehandSelectionMouseUp(ev)
 		entityDistribution.reverse();
 
 	Engine.PostNetworkCommand({
-		"type": Engine.HotkeyIsPressed("session.attackmove") ? "attack-walk-custom" : "walk-custom",
+		"type": isAttackMovePressed() ? "attack-walk-custom" : "walk-custom",
 		"entities": selection,
 		"targetPositions": entityDistribution.map(pos => pos.toFixed(2)),
 		"targetClasses": Engine.HotkeyIsPressed("session.attackmoveUnit") ? { "attack": ["Unit"] } : { "attack": ["Unit", "Structure"] },

@@ -1,6 +1,6 @@
 {
 	"genericName": "Military Engineers",
-	"description": "Military engineers are responsible for improvements in siege weapons",
+	"description": "Military engineers are responsible for improvements in siege engines.",
 	"cost": {
 		"food": 800
 	},
@@ -18,7 +18,7 @@
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "military_engineers.png",
 	"researchTime": 40,
-	"tooltip": "Siege Weapons –40% pack and unpack time.",
+	"tooltip": "Siege Engines –40% pack and unpack time.",
 	"modifications": [
 		{ "value": "Pack/Time", "multiply": 0.6 }
 	],

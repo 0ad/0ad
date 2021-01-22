@@ -24,6 +24,7 @@
 #include "ps/Profile.h"
 
 #include <cctype>
+#include <deque>
 #include <string>
 #include <string_view>
 #include <vector>
@@ -109,7 +110,7 @@ MatchIncludeResult MatchIncludeUntilEOLorEOS(const std::string_view& source, con
 bool ResolveIncludesImpl(
 	std::string_view currentPart,
 	std::unordered_map<CStr, CStr>& includeCache, const CPreprocessorWrapper::IncludeRetrieverCallback& includeCallback,
-	std::vector<std::string>& chunks, std::vector<std::string_view>& processedParts)
+	std::deque<std::string>& chunks, std::vector<std::string_view>& processedParts)
 {
 	static const CStr lineDirective = "#line ";
 	for (size_t lineStart = 0, line = 1; lineStart < currentPart.size(); ++line)
@@ -229,7 +230,9 @@ CStr CPreprocessorWrapper::ResolveIncludes(const CStr& source)
 	// Stores intermediate blocks of text to avoid additional copying. Should
 	// be constructed before views and destroyed after (currently guaranteed
 	// by stack).
-	std::vector<std::string> chunks;
+	// Short String Optimisation can make views point to container-managed data,
+	// so push_back must not invalidate pointers (std::deque guarantees that).
+	std::deque<std::string> chunks;
 	// After resolving the following vector should contain a complete list
 	// to concatenate.
 	std::vector<std::string_view> processedParts;

@@ -55,6 +55,8 @@ public:
 		TS_ASSERT_OK(g_VFS->Mount(L"cache", DataDir()/"_testcache"));
 
 		configDB = new CConfigDB;
+
+		g_scancodes = {};
 	}
 
 	void tearDown()
@@ -70,7 +72,7 @@ public:
 		configDB->SetValueString(CFG_SYSTEM, "hotkey.A", "A");
 		configDB->SetValueString(CFG_SYSTEM, "hotkey.AB", "A+B");
 		configDB->SetValueString(CFG_SYSTEM, "hotkey.ABC", "A+B+C");
-		configDB->SetValueString(CFG_SYSTEM, "hotkey.D", "D");
+		configDB->SetValueList(CFG_SYSTEM, "hotkey.D", { "D", "D+E" });
 		configDB->WriteFile(CFG_SYSTEM, "config/conf.cfg");
 		configDB->Reload(CFG_SYSTEM);
 
@@ -115,6 +117,7 @@ public:
 
 		fakeInput("B", true);
 		fakeInput("A", true);
+		// Activating the more precise hotkey AB untriggers "A"
 		TS_ASSERT_EQUALS(HotkeyIsPressed("A"), false);
 		TS_ASSERT_EQUALS(HotkeyIsPressed("AB"), true);
 		TS_ASSERT_EQUALS(HotkeyIsPressed("ABC"), false);
@@ -134,6 +137,36 @@ public:
 		TS_ASSERT_EQUALS(HotkeyIsPressed("AB"), false);
 		TS_ASSERT_EQUALS(HotkeyIsPressed("ABC"), false);
 		TS_ASSERT_EQUALS(HotkeyIsPressed("D"), false);
+
+		fakeInput("A", false);
+		fakeInput("D", true);
+		TS_ASSERT_EQUALS(HotkeyIsPressed("A"), false);
+		TS_ASSERT_EQUALS(HotkeyIsPressed("AB"), false);
+		TS_ASSERT_EQUALS(HotkeyIsPressed("ABC"), false);
+		TS_ASSERT_EQUALS(HotkeyIsPressed("D"), true);
+
+		fakeInput("E", true);
+		// Changing from one hotkey to another more specific combination of the same hotkey keeps it active
+		TS_ASSERT_EQUALS(HotkeyIsPressed("A"), false);
+		TS_ASSERT_EQUALS(HotkeyIsPressed("AB"), false);
+		TS_ASSERT_EQUALS(HotkeyIsPressed("ABC"), false);
+		TS_ASSERT_EQUALS(HotkeyIsPressed("D"), true);
+		fakeInput("E", false);
+		// Likewise going the other way.
+		TS_ASSERT_EQUALS(HotkeyIsPressed("D"), true);
+	}
+
+	void test_quirk()
+	{
+		configDB->SetValueString(CFG_SYSTEM, "hotkey.A", "A");
+		configDB->SetValueString(CFG_SYSTEM, "hotkey.AB", "A+B");
+		configDB->SetValueString(CFG_SYSTEM, "hotkey.ABC", "A+B+C");
+		configDB->SetValueList(CFG_SYSTEM, "hotkey.D", { "D", "D+E" });
+		configDB->WriteFile(CFG_SYSTEM, "config/conf.cfg");
+		configDB->Reload(CFG_SYSTEM);
+
+		UnloadHotkeys();
+		LoadHotkeys(*configDB);
 
 		/**
 		 * Quirk of the implementation: hotkeys are allowed to fire with too many keys.

@@ -120,7 +120,10 @@ void JSI_Game::SetPaused(ScriptInterface::CmptPrivate* pCmptPrivate, bool pause,
 
 #if CONFIG2_AUDIO
 	if (g_SoundManager)
-		g_SoundManager->Pause(pause);
+	{
+		g_SoundManager->PauseAmbient(pause);
+		g_SoundManager->PauseAction(pause);
+	}
 #endif
 
 	if (g_NetClient && sendMessage)

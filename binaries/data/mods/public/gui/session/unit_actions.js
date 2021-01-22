@@ -124,7 +124,7 @@ var g_UnitActions =
 		},
 		"hotkeyActionCheck": function(target, selection)
 		{
-			return Engine.HotkeyIsPressed("session.attackmove") &&
+			return isAttackMovePressed() &&
 				this.actionCheck(target, selection);
 		},
 		"actionCheck": function(target, selection)
@@ -892,7 +892,7 @@ var g_UnitActions =
 			let data = { "command": "walk" };
 			let cursor = "";
 
-			if (Engine.HotkeyIsPressed("session.attackmove"))
+			if (isAttackMovePressed())
 			{
 				let targetClasses;
 				if (Engine.HotkeyIsPressed("session.attackmoveUnit"))

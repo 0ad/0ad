@@ -30,8 +30,10 @@ function getPlayerValuesPerTeam(team, index, type, counters, headings)
 	return g_Teams[team].map(player => fn(g_GameData.sim.playerStates[player], index, type));
 }
 
-function updateCountersPlayer(playerState, counters, headings, idGUI, index)
+function updateCountersPlayer(playerState, allCounters, allHeadings, idGUI, index)
 {
+	let counters = allCounters.filter(counter => !counter.hideInSummary);
+	let headings = allHeadings.filter(heading => !heading.hideInSummary);
 	for (let n in counters)
 	{
 		let fn = counters[n].fn;
@@ -40,8 +42,10 @@ function updateCountersPlayer(playerState, counters, headings, idGUI, index)
 	}
 }
 
-function updateCountersTeam(teamFn, counters, headings, index)
+function updateCountersTeam(teamFn, allCounters, allHeadings, index)
 {
+	let counters = allCounters.filter(counter => !counter.hideInSummary);
+	let headings = allHeadings.filter(heading => !heading.hideInSummary);
 	for (let team in g_Teams)
 	{
 		if (team == -1)
