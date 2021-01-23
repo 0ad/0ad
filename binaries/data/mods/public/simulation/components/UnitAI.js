@@ -213,7 +213,12 @@ UnitAI.prototype.UnitFsmSpec = {
 	// Formation handlers:
 
 	"FormationLeave": function(msg) {
-		// ignore when we're not in FORMATIONMEMBER
+		// Overloaded by FORMATIONMEMBER
+		// We end up here if LeaveFormation was called when the entity
+		// was executing an order in an individual state, so we must
+		// discard the order now that it has been executed.
+		if (this.order && this.order.type === "LeaveFormation")
+			this.FinishOrder();
 	},
 
 	// Called when being told to walk as part of a formation
@@ -259,7 +264,8 @@ UnitAI.prototype.UnitFsmSpec = {
 		if (cmpFormation)
 		{
 			cmpFormation.SetRearrange(false);
-			// Calls FinishOrder();
+			// Triggers FormationLeave, which ultimately will FinishOrder,
+			// discarding this order.
 			cmpFormation.RemoveMembers([this.entity]);
 			cmpFormation.SetRearrange(true);
 		}
