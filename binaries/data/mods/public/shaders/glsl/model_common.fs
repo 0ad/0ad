@@ -153,7 +153,7 @@ void main()
     specular.rgb = sunColor * specCol * pow(max(0.0, dot(normalize(normal), v_half)), specPow);
   #endif
 
-  vec3 color = (texdiffuse * sundiffuse + specular.rgb) * get_shadow();
+  vec3 color = (texdiffuse * sundiffuse + specular.rgb) * getShadow();
   vec3 ambColor = texdiffuse * ambient;
 
   #if (USE_INSTANCING || USE_GPU_SKINNING) && USE_AO

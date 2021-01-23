@@ -32,7 +32,7 @@ void main()
 
 	vec3 specular = sunColor * specularColor * pow(max(0.0, dot(normalize(v_normal), v_half)), specularPower);
 
-	vec3 color = (texdiffuse.rgb * v_lighting + specular) * get_shadow();
+	vec3 color = (texdiffuse.rgb * v_lighting + specular) * getShadowOnLandscape();
 	color += texdiffuse.rgb * ambient;
 
 	color *= getLOS();

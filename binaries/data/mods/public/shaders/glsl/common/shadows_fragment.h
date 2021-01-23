@@ -13,9 +13,8 @@
   #endif
 #endif
 
-float get_shadow()
+float getShadowImpl(float shadowBias)
 {
-  float shadowBias = 0.003;
   #if USE_SHADOW && !DISABLE_RECEIVE_SHADOWS
     float biasedShdwZ = v_shadow.z - shadowBias;
     #if USE_SHADOW_SAMPLER
@@ -39,6 +38,18 @@ float get_shadow()
   #else
     return 1.0;
   #endif
+}
+
+float getShadow()
+{
+  float shadowBias = 0.003;
+  return getShadowImpl(shadowBias);
+}
+
+float getShadowOnLandscape()
+{
+  float shadowBias = 0.0005;
+  return getShadowImpl(shadowBias);
 }
 
 #endif // INCLUDED_SHADOWS_FRAGMENT
