@@ -100,6 +100,11 @@ public:
 	void SetHostingPlayerName(const CStr& hostingPlayerName);
 
 	/**
+	 * Set the game password.
+	 */
+	void SetGamePassword(const CStr& hashedPassword);
+
+	/**
 	 * Returns the GUID of the local client.
 	 * Used for distinguishing observers.
 	 */
@@ -292,6 +297,11 @@ private:
 	CStr m_ServerAddress;
 	u16 m_ServerPort;
 	bool m_UseSTUN;
+
+	/**
+	 * Password to join the game.
+	 */
+	CStr m_Password;
 
 	/// Current network session (or NULL if not connected)
 	CNetClientSession* m_Session;
