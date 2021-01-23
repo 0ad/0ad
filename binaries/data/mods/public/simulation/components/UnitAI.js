@@ -1523,8 +1523,8 @@ UnitAI.prototype.UnitFsmSpec = {
 
 		"IDLE": {
 			"Order.Cheer": function() {
-				// Do not cheer if there is no cheering time.
-				if (!this.cheeringTime)
+				// Do not cheer if there is no cheering time and we are not idle yet.
+				if (!this.cheeringTime || !this.isIdle)
 					return { "discardOrder": true };
 
 				this.SetNextState("CHEERING");
