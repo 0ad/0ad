@@ -24,8 +24,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-18 08:15+0000\n"
-"PO-Revision-Date: 2021-01-18 08:36+0000\n"
+"POT-Creation-Date: 2021-01-20 00:57+0000\n"
+"PO-Revision-Date: 2021-01-20 02:36+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -1491,11 +1491,11 @@ msgstr "계속 진행하시겠습니까?"
 msgid "Warning"
 msgstr "경고"
 
-#: gui/loadgame/SavegamePage.js:42
+#: gui/loadgame/SavegamePage.js:45
 msgid "Save Game"
 msgstr "게임 저장"
 
-#: gui/loadgame/SavegamePage.js:42 gui/pregame/MainMenuItems.js:73
+#: gui/loadgame/SavegamePage.js:45 gui/pregame/MainMenuItems.js:73
 msgid "Load Game"
 msgstr "게임 불러오기"
 
@@ -2389,6 +2389,32 @@ msgstr "한꺼번에 훈련할 수 있는 유닛 수"
 #: gui/options/options.json[5].options[1].tooltip
 msgid "Number of units trained per batch by default."
 msgstr "기본적으로 한꺼번에 훈련되는 유닛 수입니다."
+
+#: gui/options/options.json[5].options[20].label
+msgid "Formation control"
+msgstr ""
+
+#: gui/options/options.json[5].options[20].list[0].label
+msgid "Walk/Patrol Only"
+msgstr ""
+
+#: gui/options/options.json[5].options[20].list[0].tooltip
+msgid "Other orders will disband existing formations."
+msgstr ""
+
+#: gui/options/options.json[5].options[20].list[1].label
+msgid "No Override"
+msgstr ""
+
+#: gui/options/options.json[5].options[20].list[1].tooltip
+msgid "Units in formations stay in formations."
+msgstr ""
+
+#: gui/options/options.json[5].options[20].tooltip
+msgid ""
+"Decide whether formations are enabled for all orders or only 'Walk' and "
+"'Patrol'."
+msgstr ""
 
 #: gui/options/options.json[5].options[2].label
 msgid "Scroll batch increment ratio"

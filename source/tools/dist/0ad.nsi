@@ -125,7 +125,7 @@ Section "!Game and data files" GameSection
 
   ; Binaries: exclude debug DLLs and related files
   SetOutPath "$INSTDIR\binaries\data"
-  File /r /x "public" /x "mod" /x "dev.cfg" "${CHECKOUTPATH}\binaries\data\"
+  File /r /x "public" /x "mod" /x "fontbuilder" /x "tests" /x "_test.*" /x "dev.cfg" "${CHECKOUTPATH}\binaries\data\"
 
   ; Warning: libraries that end in 'd' need to be added explicitly.
   ; There are currently none.
@@ -136,12 +136,9 @@ Section "!Game and data files" GameSection
   File /r "${CHECKOUTPATH}\binaries\system\*.bat"
   File /r "${CHECKOUTPATH}\binaries\system\*.txt"
 
-  ; Create shortcuts in the root installation folder.
-  ; Keep synched with the start menu shortcuts.
-  SetOutPath "$INSTDIR"
-  CreateShortCut "$INSTDIR\0 A.D..lnk" "$INSTDIR\binaries\system\pyrogenesis.exe" ""
-  CreateShortCut "$INSTDIR\Map editor.lnk" "$INSTDIR\binaries\system\pyrogenesis.exe" "-editor" "$INSTDIR\binaries\data\tools\atlas\icons\ScenarioEditor.ico"
-  WriteINIStr "$INSTDIR\Web site.url" "InternetShortcut" "URL" "http://play0ad.com/"
+  ; Copy logs for writable root
+  SetOutPath "$INSTDIR\binaries\logs"
+  File /r "${CHECKOUTPATH}\binaries\logs"
 
   !ifdef ARCHIVE_PATH
     SetOutPath "$INSTDIR\binaries\data\mods\"
@@ -153,6 +150,13 @@ Section "!Game and data files" GameSection
     SetOutPath "$INSTDIR\binaries\data\mods\mod"
     File "${CHECKOUTPATH}\binaries\data\mods\mod\mod.zip"
   !endif
+
+  ; Create shortcuts in the root installation folder.
+  ; Keep synched with the start menu shortcuts.
+  SetOutPath "$INSTDIR"
+  CreateShortCut "$INSTDIR\0 A.D..lnk" "$INSTDIR\binaries\system\pyrogenesis.exe" ""
+  CreateShortCut "$INSTDIR\Map editor.lnk" "$INSTDIR\binaries\system\pyrogenesis.exe" "-editor" "$INSTDIR\binaries\data\tools\atlas\icons\ScenarioEditor.ico"
+  WriteINIStr "$INSTDIR\Web site.url" "InternetShortcut" "URL" "http://play0ad.com/"
 
   ;Store installation folder
   WriteRegStr SHCTX "Software\0 A.D." "" $INSTDIR

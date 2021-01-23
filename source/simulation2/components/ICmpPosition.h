@@ -121,9 +121,15 @@ public:
 	virtual void SetHeightFixed(entity_pos_t y) = 0;
 
 	/**
-	 * Returns the vertical offset above the map zero point
+	 * Returns the current vertical offset above above the map zero point.
 	 */
 	virtual entity_pos_t GetHeightFixed() const = 0;
+
+	/**
+	 * Returns the vertical offset above above the map zero point
+	 * the unit would have at the given position.
+	 */
+	virtual entity_pos_t GetHeightAtFixed(entity_pos_t x, entity_pos_t z) const = 0;
 
 	/**
 	 * Returns true iff the entity will follow the terrain height (possibly with an offset)

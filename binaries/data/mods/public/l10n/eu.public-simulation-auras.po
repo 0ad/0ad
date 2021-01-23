@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-18 08:15+0000\n"
-"PO-Revision-Date: 2021-01-18 15:30+0000\n"
+"POT-Creation-Date: 2021-01-20 00:57+0000\n"
+"PO-Revision-Date: 2021-01-21 11:06+0000\n"
 "Last-Translator: Beñat Irazabal <birazabal@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -80,12 +80,12 @@ msgid "Powerful Priesthood"
 msgstr "Apaiztegi Boteretsua"
 
 #: simulation/data/auras/structures/library.jsonauraDescription
-msgid "Structures −10% technology resource costs and research time."
-msgstr "Egiturak %10- merkagoak eta teknologietan denbora gutxiago"
+msgid "Structures −15% technology resource costs and research time."
+msgstr "Egiturek -%15 kostua eta teknologia garapen denbora. "
 
 #: simulation/data/auras/structures/library.jsonauraName
-msgid "Power of Knowledge"
-msgstr "Jakintza Boterea da"
+msgid "Centre of Scholarship"
+msgstr "Ikaskuntza zentrua"
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraDescription
 msgid "Structures +50% capture points garrison regeneration rate."
@@ -135,20 +135,13 @@ msgstr "Guardan sartutako soldaduak +3 armadura eta +20 ikusmen-irismena."
 msgid "Wall Protection"
 msgstr "Harresiaren babesa"
 
-#: simulation/data/auras/structures/wonder_pop_1.jsonauraDescription
-msgid "+10 maximum population limit."
-msgstr "+10 gehieneko biztanleria muga."
-
-#: simulation/data/auras/structures/wonder_pop_1.jsonauraName
-msgid "Symbol of Greatness"
-msgstr "Handitasunaren Ikurra"
-
-#: simulation/data/auras/structures/wonder_pop_2.jsonauraDescription
+#: simulation/data/auras/structures/wonder_population_cap.jsonauraDescription
 msgid ""
-"+40 maximum population limit (requires the “Glorious Expansion” technology)."
-msgstr "Gehieneko biztanleria muga +40 handitzen du. (\"Zabalketa Loriatsua\" teknologia behar du)."
+"+20% maximum population limit (requires the “Glorious Expansion” "
+"technology)."
+msgstr "Gehieneko biztanleria muga +20% handitzen du. (“Zabalketa Loriatsua” teknologia behar du)."
 
-#: simulation/data/auras/structures/wonder_pop_2.jsonauraName
+#: simulation/data/auras/structures/wonder_population_cap.jsonauraName
 msgid "Glorious Expansion"
 msgstr "Zabaltze Loriatsua"
 

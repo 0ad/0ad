@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -67,49 +67,47 @@ bool CStreamItem::IdleTask()
 	HandleFade();
 	AL_CHECK;
 
-	if (m_ALSource != 0)
+	if (m_ALSource == 0)
+		return true;
+
+	int proc_state;
+	alGetSourcei(m_ALSource, AL_SOURCE_STATE, &proc_state);
+	AL_CHECK;
+
+	if (proc_state == AL_STOPPED || proc_state == AL_PAUSED)
+		return !m_LastPlay;
+
+	if (m_SoundData == nullptr)
+		return true;
+
+	COggData* theData = (COggData*)m_SoundData;
+
+	if (!theData->IsFileFinished())
 	{
-		int proc_state;
-		alGetSourcei(m_ALSource, AL_SOURCE_STATE, &proc_state);
+		int num_processed;
+		alGetSourcei(m_ALSource, AL_BUFFERS_PROCESSED, &num_processed);
 		AL_CHECK;
 
-		if (proc_state == AL_STOPPED)
+		if (num_processed > 0)
 		{
-			if (m_LastPlay)
-				return (proc_state != AL_STOPPED);
+			ALuint* al_buf = new ALuint[num_processed];
+			alSourceUnqueueBuffers(m_ALSource, num_processed, al_buf);
+			AL_CHECK;
+			int didWrite = theData->FetchDataIntoBuffer(num_processed, al_buf);
+			alSourceQueueBuffers(m_ALSource, didWrite, al_buf);
+			AL_CHECK;
+			delete[] al_buf;
 		}
-		else if (m_SoundData != NULL)
-		{
-			COggData* theData = (COggData*)m_SoundData;
-
-			if (! theData->IsFileFinished())
-			{
-				int num_processed;
-				alGetSourcei(m_ALSource, AL_BUFFERS_PROCESSED, &num_processed);
-				AL_CHECK;
-
-				if (num_processed > 0)
-				{
-					ALuint* al_buf = new ALuint[num_processed];
-					alSourceUnqueueBuffers(m_ALSource, num_processed, al_buf);
-					AL_CHECK;
-					int didWrite = theData->FetchDataIntoBuffer(num_processed, al_buf);
-					alSourceQueueBuffers(m_ALSource, didWrite, al_buf);
-					AL_CHECK;
-					delete[] al_buf;
-				}
-			}
-			else if (GetLooping())
-			{
-				theData->ResetFile();
-			}
-			else
-			{
-				int num_processed;
-				alGetSourcei(m_ALSource, AL_BUFFERS_QUEUED, &num_processed);
-				m_ShouldBePlaying = ( num_processed == 0 );
-			}
-		}
+	}
+	else if (GetLooping())
+	{
+		theData->ResetFile();
+	}
+	else
+	{
+		int num_processed;
+		alGetSourcei(m_ALSource, AL_BUFFERS_QUEUED, &num_processed);
+		m_ShouldBePlaying = ( num_processed == 0 );
 	}
 	AL_CHECK;
 	return true;

@@ -106,7 +106,7 @@ m.Template = m.Class({
 
 	"cost": function(productionQueue) {
 		if (!this.get("Cost"))
-			return undefined;
+			return {};
 
 		let ret = {};
 		for (let type in this.get("Cost/Resources"))
@@ -117,7 +117,7 @@ m.Template = m.Class({
 	"costSum": function(productionQueue) {
 		let cost = this.cost(productionQueue);
 		if (!cost)
-			return undefined;
+			return 0;
 		let ret = 0;
 		for (let type in cost)
 			ret += cost[type];

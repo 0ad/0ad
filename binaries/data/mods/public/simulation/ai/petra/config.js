@@ -22,11 +22,11 @@ PETRA.Config = function(difficulty, behavior)
 		"numSentryTowers": 1
 	};
 
-	// Define damage type importance factors here.
 	this.DamageTypeImportance = {
 		"Hack": 0.085,
 		"Pierce": 0.075,
-		"Crush": 0.065
+		"Crush": 0.065,
+		"Fire": 0.095
 	};
 
 	this.Economy = {

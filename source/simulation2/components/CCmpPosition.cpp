@@ -440,6 +440,11 @@ public:
 
 	virtual entity_pos_t GetHeightFixed() const
 	{
+		return GetHeightAtFixed(m_X, m_Z);
+	}
+
+	virtual entity_pos_t GetHeightAtFixed(entity_pos_t x, entity_pos_t z) const
+	{
 		if (!m_RelativeToGround)
 			return m_Y;
 		// relative to the ground, so the fixed height = ground height + m_Y
@@ -447,13 +452,13 @@ public:
 		entity_pos_t baseY;
 		CmpPtr<ICmpTerrain> cmpTerrain(GetSystemEntity());
 		if (cmpTerrain)
-			baseY = cmpTerrain->GetGroundLevel(m_X, m_Z);
+			baseY = cmpTerrain->GetGroundLevel(x, z);
 
 		if (m_Floating)
 		{
 			CmpPtr<ICmpWaterManager> cmpWaterManager(GetSystemEntity());
 			if (cmpWaterManager)
-				baseY = std::max(baseY, cmpWaterManager->GetWaterLevel(m_X, m_Z) - m_FloatDepth);
+				baseY = std::max(baseY, cmpWaterManager->GetWaterLevel(x, z) - m_FloatDepth);
 		}
 		return m_Y + baseY;
 	}
@@ -525,7 +530,7 @@ public:
 			return CFixedVector3D();
 		}
 
-		return CFixedVector3D(m_PrevX, GetHeightFixed(), m_PrevZ);
+		return CFixedVector3D(m_PrevX, GetHeightAtFixed(m_PrevX, m_PrevZ), m_PrevZ);
 	}
 
 	virtual CFixedVector2D GetPreviousPosition2D() const

@@ -44,9 +44,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-18 08:15+0000\n"
-"PO-Revision-Date: 2021-01-18 08:36+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-01-20 00:57+0000\n"
+"PO-Revision-Date: 2021-01-20 15:49+0000\n"
+"Last-Translator: Przemysław Murach <moonshine133@vp.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1553,11 +1553,11 @@ msgstr "Czy mimo wszystko chcesz kontynuować?"
 msgid "Warning"
 msgstr "Uwaga"
 
-#: gui/loadgame/SavegamePage.js:42
+#: gui/loadgame/SavegamePage.js:45
 msgid "Save Game"
 msgstr "Zapisz grę"
 
-#: gui/loadgame/SavegamePage.js:42 gui/pregame/MainMenuItems.js:73
+#: gui/loadgame/SavegamePage.js:45 gui/pregame/MainMenuItems.js:73
 msgid "Load Game"
 msgstr "Wczytaj grę"
 
@@ -2451,6 +2451,32 @@ msgstr "Rozmiar szkolenia grupowego"
 #: gui/options/options.json[5].options[1].tooltip
 msgid "Number of units trained per batch by default."
 msgstr "Domyślna liczba jednostek trenowanych na partię"
+
+#: gui/options/options.json[5].options[20].label
+msgid "Formation control"
+msgstr "Kontrola formacji"
+
+#: gui/options/options.json[5].options[20].list[0].label
+msgid "Walk/Patrol Only"
+msgstr "Tylko idź/patroluj"
+
+#: gui/options/options.json[5].options[20].list[0].tooltip
+msgid "Other orders will disband existing formations."
+msgstr "Inne rozkazy rozwiążą istniejące formacje."
+
+#: gui/options/options.json[5].options[20].list[1].label
+msgid "No Override"
+msgstr "Bez nadpisania"
+
+#: gui/options/options.json[5].options[20].list[1].tooltip
+msgid "Units in formations stay in formations."
+msgstr "Jednostki w formacji w niej zostają."
+
+#: gui/options/options.json[5].options[20].tooltip
+msgid ""
+"Decide whether formations are enabled for all orders or only 'Walk' and "
+"'Patrol'."
+msgstr "Zdecyduj, czy formacje mogą istnieć dla wszystkich poleceń, czy tylko dla \"idź\" i \"patroluj\"."
 
 #: gui/options/options.json[5].options[2].label
 msgid "Scroll batch increment ratio"

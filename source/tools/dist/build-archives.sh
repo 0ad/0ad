@@ -22,9 +22,6 @@ REGEX=".*/\("${REGEX:2}"\)\.[-A-Za-z0-9_.]\+\.po"
 
 find binaries/ -name "*.po" | grep -v "$REGEX" | xargs rm -v || die "Error filtering languages."
 
-SVN_REV=$(svnversion -n ../..)
-echo "${SVN_REV}-release" > build/svn_revision/svn_revision.txt
-
 # Build archive(s) - don't archive the _test.* mods
 pushd binaries/data/mods > /dev/null
 archives=""

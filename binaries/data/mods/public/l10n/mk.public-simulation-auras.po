@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-18 08:15+0000\n"
-"PO-Revision-Date: 2021-01-18 08:37+0000\n"
+"POT-Creation-Date: 2021-01-20 00:57+0000\n"
+"PO-Revision-Date: 2021-01-20 02:36+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Macedonian (http://www.transifex.com/wildfire-games/0ad/language/mk/)\n"
 "MIME-Version: 1.0\n"
@@ -77,12 +77,12 @@ msgid "Powerful Priesthood"
 msgstr "Моќно Свештениство."
 
 #: simulation/data/auras/structures/library.jsonauraDescription
-msgid "Structures −10% technology resource costs and research time."
-msgstr "Структури − 10% трошоци за ресурси на технологија и време на истражување."
+msgid "Structures −15% technology resource costs and research time."
+msgstr ""
 
 #: simulation/data/auras/structures/library.jsonauraName
-msgid "Power of Knowledge"
-msgstr "Моќта на Знаењето."
+msgid "Centre of Scholarship"
+msgstr ""
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraDescription
 msgid "Structures +50% capture points garrison regeneration rate."
@@ -132,20 +132,13 @@ msgstr "Гарисонираните Војници ке имаат +3 армо�
 msgid "Wall Protection"
 msgstr "Штит од Ѕид"
 
-#: simulation/data/auras/structures/wonder_pop_1.jsonauraDescription
-msgid "+10 maximum population limit."
-msgstr "+10 максимална популација"
-
-#: simulation/data/auras/structures/wonder_pop_1.jsonauraName
-msgid "Symbol of Greatness"
-msgstr "Симбол на Величина"
-
-#: simulation/data/auras/structures/wonder_pop_2.jsonauraDescription
+#: simulation/data/auras/structures/wonder_population_cap.jsonauraDescription
 msgid ""
-"+40 maximum population limit (requires the “Glorious Expansion” technology)."
-msgstr "+40 максимун популација (потребно е “Експанција на Слава ”технологија)."
+"+20% maximum population limit (requires the “Glorious Expansion” "
+"technology)."
+msgstr ""
 
-#: simulation/data/auras/structures/wonder_pop_2.jsonauraName
+#: simulation/data/auras/structures/wonder_population_cap.jsonauraName
 msgid "Glorious Expansion"
 msgstr "Експанција на Слава"
 

@@ -61,8 +61,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-18 08:15+0000\n"
-"PO-Revision-Date: 2021-01-20 00:38+0000\n"
+"POT-Creation-Date: 2021-01-20 00:57+0000\n"
+"PO-Revision-Date: 2021-01-21 21:56+0000\n"
 "Last-Translator: Stanislas Dolcini <stan@wildfiregames.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -779,7 +779,7 @@ msgstr "Capturer"
 
 #: gui/common/tooltips.js:251
 msgid "Status Effects:"
-msgstr ""
+msgstr "Effets de statut"
 
 #: gui/common/tooltips.js:256
 #, javascript-format
@@ -1034,7 +1034,7 @@ msgstr "Nombre de réparateurs:"
 
 #: gui/common/tooltips.js:605
 msgid "Remaining repair time:"
-msgstr ""
+msgstr "Temps de réparation restant:"
 
 #: gui/common/tooltips.js:609
 #, javascript-format
@@ -1057,7 +1057,7 @@ msgstr "Nombre de constructeurs:"
 
 #: gui/common/tooltips.js:639
 msgid "Remaining build time:"
-msgstr ""
+msgstr "Temps de construction restant:"
 
 #: gui/common/tooltips.js:643
 #, javascript-format
@@ -1293,7 +1293,7 @@ msgstr "Directeur du son"
 
 #: gui/credits/texts/audio.jsonContent[0].Title
 msgid "Audio managers"
-msgstr ""
+msgstr "Responsables Audio"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[10].Subtitle
 msgid "Viola, violin"
@@ -1542,11 +1542,11 @@ msgstr "Voulez-vous toujours continuer ?"
 msgid "Warning"
 msgstr "Avertissement"
 
-#: gui/loadgame/SavegamePage.js:42
+#: gui/loadgame/SavegamePage.js:45
 msgid "Save Game"
 msgstr "Sauvegarder"
 
-#: gui/loadgame/SavegamePage.js:42 gui/pregame/MainMenuItems.js:73
+#: gui/loadgame/SavegamePage.js:45 gui/pregame/MainMenuItems.js:73
 msgid "Load Game"
 msgstr "Charger une partie"
 
@@ -1714,7 +1714,7 @@ msgstr "Horodatage du chat"
 
 #: gui/options/options.json[0].options[11].tooltip
 msgid "Display the time at which a chat message was posted."
-msgstr ""
+msgstr "Affiche l'heure à laquelle un message de discussion à été posté."
 
 #: gui/options/options.json[0].options[1].label
 msgid "Player name (multiplayer)"
@@ -1895,7 +1895,7 @@ msgstr "Vision fluide"
 
 #: gui/options/options.json[1].options[18].tooltip
 msgid "Lift darkness and fog of war smoothly."
-msgstr ""
+msgstr "Adoucit la révélation du brouillard de guerre."
 
 #: gui/options/options.json[1].options[19].label
 msgid "VSync"
@@ -2011,11 +2011,11 @@ msgstr "Réduisez l'effet \"aliasing\" sur les bords."
 
 #: gui/options/options.json[1].options[5].label
 msgid "Sharpening"
-msgstr ""
+msgstr "Accentuation"
 
 #: gui/options/options.json[1].options[5].list[0].tooltip
 msgid "Do not use sharpening."
-msgstr ""
+msgstr "Ne pas utiliser d'accentuation."
 
 #: gui/options/options.json[1].options[5].list[1].label
 msgid "FidelityFX CAS"
@@ -2023,7 +2023,7 @@ msgstr "FidelityFX CAS"
 
 #: gui/options/options.json[1].options[5].list[1].tooltip
 msgid "Contrast adaptive sharpening, a fast, contrast based sharpening pass."
-msgstr ""
+msgstr "Accentuation adaptative au contraste, un filtre rapide d'accentuation basée sur le contraste."
 
 #: gui/options/options.json[1].options[5].tooltip
 msgid "Reduce blurry effects."
@@ -2031,11 +2031,11 @@ msgstr "Améliore la netteté."
 
 #: gui/options/options.json[1].options[6].label
 msgid "Sharpness factor"
-msgstr ""
+msgstr "Facteur d'accentuation"
 
 #: gui/options/options.json[1].options[6].tooltip
 msgid "The sharpness of the choosen pass."
-msgstr ""
+msgstr "Le niveau d'accentuation du filtre choisi."
 
 #: gui/options/options.json[1].options[7].label
 msgid "Shader effects"
@@ -2440,6 +2440,32 @@ msgstr "Taille du groupe d'unités entraînées."
 #: gui/options/options.json[5].options[1].tooltip
 msgid "Number of units trained per batch by default."
 msgstr "Nombre d’unités entraînées par groupe, par défaut."
+
+#: gui/options/options.json[5].options[20].label
+msgid "Formation control"
+msgstr "Gestion des formations"
+
+#: gui/options/options.json[5].options[20].list[0].label
+msgid "Walk/Patrol Only"
+msgstr "Marche / Patrouille seulement"
+
+#: gui/options/options.json[5].options[20].list[0].tooltip
+msgid "Other orders will disband existing formations."
+msgstr "Les autres ordres dissoudront les formations existantes."
+
+#: gui/options/options.json[5].options[20].list[1].label
+msgid "No Override"
+msgstr "Aucune"
+
+#: gui/options/options.json[5].options[20].list[1].tooltip
+msgid "Units in formations stay in formations."
+msgstr "Les unités en formation restent en formation."
+
+#: gui/options/options.json[5].options[20].tooltip
+msgid ""
+"Decide whether formations are enabled for all orders or only 'Walk' and "
+"'Patrol'."
+msgstr "Rend les formations actives pour tous les ordres ou seulement pour « Marche » et patrouille."
 
 #: gui/options/options.json[5].options[2].label
 msgid "Scroll batch increment ratio"
@@ -3995,7 +4021,7 @@ msgstr "Construits rapidement, mais faibles."
 msgid ""
 "Garrison infantry for extensive vision, and to prevent losing control of the"
 " outpost due to territory decay."
-msgstr ""
+msgstr "Mettez de l'infantrie en garnison pour augmenter le champ de vision, et éviter de perdre le contrôle de l'avant poste à cause du changement d'allégeance."
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"

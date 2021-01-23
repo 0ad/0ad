@@ -83,7 +83,7 @@ m.Technology.prototype.costSum = function(productionQueue)
 {
 	let cost = this.cost(productionQueue);
 	if (!cost)
-		return undefined;
+		return 0;
 	let ret = 0;
 	for (let type in cost)
 		ret += cost[type];
@@ -92,9 +92,7 @@ m.Technology.prototype.costSum = function(productionQueue)
 
 m.Technology.prototype.researchTime = function()
 {
-	if (!this._template.researchTime)
-		return undefined;
-	return this._template.researchTime;
+	return this._template.researchTime || 0;
 };
 
 m.Technology.prototype.requirements = function(civ)

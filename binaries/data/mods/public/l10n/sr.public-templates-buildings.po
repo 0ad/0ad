@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-18 08:15+0000\n"
-"PO-Revision-Date: 2021-01-18 10:36+0000\n"
+"POT-Creation-Date: 2021-01-20 00:57+0000\n"
+"PO-Revision-Date: 2021-01-20 01:35+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Serbian (http://www.transifex.com/wildfire-games/0ad/language/sr/)\n"
 "MIME-Version: 1.0\n"
@@ -200,6 +200,8 @@ msgstr ""
 
 #: simulation/templates/structures/athen/theater.xml:5
 #: simulation/templates/structures/mace/theater.xml:5
+#: simulation/templates/structures/ptol/theater.xml:5
+#: simulation/templates/structures/sele/theater.xml:5
 #: simulation/templates/structures/spart/theater.xml:5
 msgid "Theatron"
 msgstr "Театрон"
@@ -410,9 +412,14 @@ msgstr ""
 msgid "Emain Macha"
 msgstr ""
 
-#: simulation/templates/structures/cart/apartment.xml:16
+#: simulation/templates/structures/cart/apartment.xml:23
 msgid "Apartment Building"
 msgstr ""
+
+#: simulation/templates/structures/cart/apartment.xml:24
+#: simulation/templates/structures/cart/house.xml:8
+msgid "Bet"
+msgstr "Bet"
 
 #: simulation/templates/structures/cart/barracks.xml:12
 msgid "Maḥanēt"
@@ -480,10 +487,6 @@ msgstr "Šadd"
 #: simulation/templates/structures/cart/fortress.xml:9
 msgid "Ḥamet"
 msgstr "Ḥamet"
-
-#: simulation/templates/structures/cart/house.xml:8
-msgid "Bet"
-msgstr "Bet"
 
 #: simulation/templates/structures/cart/market.xml:12
 msgid "Šūq"
@@ -1269,8 +1272,8 @@ msgstr ""
 
 #: simulation/templates/structures/ptol/lighthouse.xml:27
 msgid ""
-"Build upon a shoreline in own, neutral, or allied territory. Reveal the "
-"shorelines over the entire map. Very large vision range."
+"Build upon a shoreline in own, neutral, or allied territory. Very large "
+"vision range."
 msgstr ""
 
 #: simulation/templates/structures/ptol/mercenary_camp.xml:27
@@ -1648,11 +1651,10 @@ msgstr "село"
 msgid "Stoa"
 msgstr "Поплочани пут"
 
-#: simulation/templates/structures/cart/super_dock.xml:43
+#: simulation/templates/structures/cart/apartment.xml:26
 #: simulation/templates/structures/gaul/tavern.xml:22
 #: simulation/templates/structures/kush/pyramid_small.xml:29
 #: simulation/templates/structures/maur/elephant_stables.xml:8
-#: simulation/templates/structures/ptol/lighthouse.xml:29
 #: simulation/templates/template_structure_civic_stoa.xml:30
 #: simulation/templates/template_structure_civic_temple.xml:32
 #: simulation/templates/template_structure_defensive_tower_stone.xml:32
@@ -1730,7 +1732,7 @@ msgstr ""
 #: simulation/templates/template_structure_military_elephant_stables.xml:26
 #: simulation/templates/template_structure_military_fortress.xml:73
 #: simulation/templates/template_structure_special.xml:20
-#: simulation/templates/template_structure_wonder.xml:43
+#: simulation/templates/template_structure_wonder.xml:42
 msgid "City"
 msgstr "град"
 
@@ -2003,17 +2005,17 @@ msgstr "Ротирајући Млин"
 msgid "RotaryMill"
 msgstr ""
 
-#: simulation/templates/template_structure_special_theater.xml:24
-#: simulation/templates/template_structure_special_theater.xml:26
+#: simulation/templates/template_structure_special_theater.xml:25
+#: simulation/templates/template_structure_special_theater.xml:27
 msgid "Theater"
 msgstr "Позориште"
 
-#: simulation/templates/template_structure_wonder.xml:39
-#: simulation/templates/template_structure_wonder.xml:43
+#: simulation/templates/template_structure_wonder.xml:38
+#: simulation/templates/template_structure_wonder.xml:42
 msgid "Wonder"
 msgstr "чудо"
 
-#: simulation/templates/template_structure_wonder.xml:41
+#: simulation/templates/template_structure_wonder.xml:40
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."

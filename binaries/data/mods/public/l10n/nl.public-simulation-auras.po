@@ -25,8 +25,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-18 08:15+0000\n"
-"PO-Revision-Date: 2021-01-18 17:11+0000\n"
+"POT-Creation-Date: 2021-01-20 00:57+0000\n"
+"PO-Revision-Date: 2021-01-20 21:38+0000\n"
 "Last-Translator: Bart <b.anthonisse@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -37,7 +37,7 @@ msgstr ""
 
 #: simulation/data/auras/structures/arsenal_repair.jsonauraDescription
 msgid "Garrisoned Siege Engines +3 health regeneration rate."
-msgstr "Bemande belegeringswapens +3 genezing."
+msgstr "Bemande belegeringswapens +3 genezingssnelheid."
 
 #: simulation/data/auras/structures/arsenal_repair.jsonauraName
 msgid "Arsenal Repairs"
@@ -53,7 +53,7 @@ msgstr "Genadeloze training"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Garrisoned Ships +10 health regeneration rate."
-msgstr "Bemande schepen +10 genezing."
+msgstr "Bemande schepen +10 genezingssnelheid."
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraName
 msgid "Dockyard Repairs"
@@ -93,12 +93,12 @@ msgid "Powerful Priesthood"
 msgstr "Krachtig Priesterschap"
 
 #: simulation/data/auras/structures/library.jsonauraDescription
-msgid "Structures −10% technology resource costs and research time."
-msgstr "-10% grondstoffen en onderzoekstijd voor gebouwtechnologieên."
+msgid "Structures −15% technology resource costs and research time."
+msgstr "Gebouwen -15% grondstoffen en onderzoekstijd voor technologieên."
 
 #: simulation/data/auras/structures/library.jsonauraName
-msgid "Power of Knowledge"
-msgstr "Kracht van Kennis"
+msgid "Centre of Scholarship"
+msgstr "Centrum van geleerdheid"
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraDescription
 msgid "Structures +50% capture points garrison regeneration rate."
@@ -126,7 +126,7 @@ msgstr "Landbouw bonus"
 
 #: simulation/data/auras/structures/temple_heal.jsonauraDescription
 msgid "Humans +1 health regeneration rate."
-msgstr "Mensen +1 genezing."
+msgstr "Mensen +1 genezingssnelheid."
 
 #: simulation/data/auras/structures/temple_heal.jsonauraName
 msgid "Medical Treatment"
@@ -148,20 +148,13 @@ msgstr "Gelegerde soldaten +3 pantser en +20 gezichtsveld."
 msgid "Wall Protection"
 msgstr "Muurbescherming"
 
-#: simulation/data/auras/structures/wonder_pop_1.jsonauraDescription
-msgid "+10 maximum population limit."
-msgstr "+10 % maximale bevolkingslimiet."
-
-#: simulation/data/auras/structures/wonder_pop_1.jsonauraName
-msgid "Symbol of Greatness"
-msgstr "Symbool van Grootsheid"
-
-#: simulation/data/auras/structures/wonder_pop_2.jsonauraDescription
+#: simulation/data/auras/structures/wonder_population_cap.jsonauraDescription
 msgid ""
-"+40 maximum population limit (requires the “Glorious Expansion” technology)."
-msgstr "+40 maximale bevolkingslimiet (vereist \"Glorieuze Expansie\" technologie)."
+"+20% maximum population limit (requires the “Glorious Expansion” "
+"technology)."
+msgstr "+20% maximale bevolkingslimiet (vereist \"Glorieuze Expansie\" technologie)."
 
-#: simulation/data/auras/structures/wonder_pop_2.jsonauraName
+#: simulation/data/auras/structures/wonder_population_cap.jsonauraName
 msgid "Glorious Expansion"
 msgstr "Glorieuze Expansie"
 
@@ -549,7 +542,7 @@ msgstr "Periclean's Gebouwen Programma"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraDescription
 msgid "Temples −25% stone cost, +2 garrisoned heal rate."
-msgstr "Tempels kosten -25% steen en +2 genezing voor gelegerden."
+msgstr "Tempels kosten -25% steen en +2 genezingssnelheid voor gelegerden."
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraName
 msgid "Temple of Athena Nike"
@@ -594,7 +587,7 @@ msgstr "Guerrilla Krijgsheer"
 #: simulation/data/auras/units/heroes/brit_hero_cunobelin.jsonauraDescription
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraDescription
 msgid "Humans +0.8 health regeneration rate."
-msgstr "Mensen +0.8 genezing."
+msgstr "Mensen +0.8 genezingssnelheid."
 
 #: simulation/data/auras/units/heroes/brit_hero_cunobelin.jsonauraName
 msgid "Britannorum Rex"

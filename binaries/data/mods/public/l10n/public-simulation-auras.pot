@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2021-01-20 00:57+0000\n"
-"PO-Revision-Date: 2021-01-20 00:57+0000\n"
+"POT-Creation-Date: 2021-01-22 08:09+0000\n"
+"PO-Revision-Date: 2021-01-22 08:09+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -54,7 +54,7 @@ msgid "Patriotism"
 msgstr ""
 
 #: simulation/data/auras/structures/kush_pyramids_military.json:auraDescription
-msgid "Soldiers +1 armor level and +10% melee and ranged attack damage."
+msgid "Soldiers +1 crush, hack, pierce resistance and +10% melee and ranged attack damage."
 msgstr ""
 
 #: simulation/data/auras/structures/kush_pyramids_military.json:auraName
@@ -118,7 +118,7 @@ msgid "Hellenization"
 msgstr ""
 
 #: simulation/data/auras/structures/wall_garrisoned.json:auraDescription
-msgid "Garrisoned Soldiers +3 armor and +20 vision range."
+msgid "Garrisoned Soldiers +3 crush, hack, pierce resistance and +20 vision range."
 msgstr ""
 
 #: simulation/data/auras/structures/wall_garrisoned.json:auraName
@@ -294,7 +294,7 @@ msgstr ""
 msgid ""
 "Leader of the Carthaginian heavy cavalry at Trebia and Cannae, where his triple charge "
 "had devastating effects on the enemy.\n"
-"Melee Cavalry +1 armor and +10% health."
+"Melee Cavalry +1 crush, hack, pierce resistance and +10% health."
 msgstr ""
 
 #: simulation/data/auras/units/catafalques/cart_catafalque.json:auraName
@@ -439,7 +439,7 @@ msgid ""
 "Brutus was one of the key figures in the overthrow of the monarchy and the founding of "
 "the Roman Republic. Later, as consul he led a Roman army to victory against the "
 "Etruscan King Tarquinius who sought to retake the throne.\n"
-"Humans and Siege Engines +1 armor."
+"Humans and Siege Engines +1 crush, hack, pierce resistance."
 msgstr ""
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_2.json:auraName
@@ -515,7 +515,7 @@ msgid "Elephant Workers"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.json:auraDescription
-msgid "Soldiers in his formation +3 armor, +15% movement speed."
+msgid "Soldiers in his formation +3 crush, hack, pierce resistance, +15% movement speed."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.json:auraName
@@ -573,7 +573,7 @@ msgid "Champion Army"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/brit_hero_caratacos.json:auraDescription
-msgid "Soldiers and Siege Engines +1 armor, +15% movement speed."
+msgid "Soldiers and Siege Engines +1 crush, hack, pierce resistance, +15% movement speed."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/brit_hero_caratacos.json:auraName
@@ -664,7 +664,7 @@ msgid "Valiant Defender"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_2.json:auraDescription
-msgid "Soldiers +1 armor."
+msgid "Soldiers +1 crush, hack, pierce resistance."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_2.json:auraName
@@ -729,7 +729,7 @@ msgid "Slaughter of the Faithful"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_1.json:auraDescription
-msgid "Soldiers +10 melee and ranged attack damage, gain +50% resource loot."
+msgid "Soldiers +10% melee and ranged attack damage, gain +50% resource loot."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_1.json:auraName
@@ -770,8 +770,8 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_demetrius_i.json:auraDescription
 msgid ""
-"Siege Engines +1 armor, +20% melee and ranged attack damage, +10% ranged attack range, "
-"+10% vision range."
+"Siege Engines +1 crush, hack, pierce resistance, +20% melee and ranged attack damage, "
+"+10% ranged attack range, +10% vision range."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_demetrius_i.json:auraName
@@ -897,7 +897,7 @@ msgid "Enemy Infantry −10% melee and ranged attack damage."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.json:auraDescription
-msgid "Humans and Structures +1 armor."
+msgid "Humans and Structures +1 crush, hack, pierce resistance."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.json:auraName
@@ -915,7 +915,7 @@ msgid "Triumph"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_iii.json:auraDescription
-msgid "Cavalry +2 armor."
+msgid "Cavalry +2 crush, hack, pierce resistance."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_iii.json:auraName
@@ -939,7 +939,9 @@ msgid "Zooiarchos"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.json:auraDescription
-msgid "Citizen Infantry Javelineers +1 armor, +25% ranged attack pierce damage."
+msgid ""
+"Citizen Infantry Javelineers +1 crush, hack, pierce resistance, +25% ranged attack "
+"pierce damage."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.json:auraName

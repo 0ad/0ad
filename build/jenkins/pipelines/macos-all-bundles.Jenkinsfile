@@ -25,13 +25,14 @@ pipeline {
 
 	parameters {
 		string(name: 'BUNDLE_VERSION', defaultValue: '0.0.24dev', description: 'Bundle Version')
+		string(name: 'SVN_REV', defaultValue: 'HEAD', description: 'For instance 21000')
 		booleanParam(name: 'ONLY_MOD', defaultValue: true, description: 'Only archive the mod mod.')
 	}
 
 	stages {
 		stage("Checkout") {
 			steps {
-				svn "https://svn.wildfiregames.com/public/ps/trunk"
+				svn "https://svn.wildfiregames.com/public/ps/trunk@${params.SVN_REV}"
 				sh "svn cleanup"
 				sh "svn revert . -R"
 				sh "svn st --no-ignore | cut -c 9- | xargs rm -rfv"

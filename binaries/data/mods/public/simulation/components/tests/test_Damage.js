@@ -95,6 +95,7 @@ function Test_Generic()
 		"GetPosition": () => targetPos,
 		"GetPreviousPosition": () => targetPos,
 		"GetPosition2D": () => Vector2D.From(targetPos),
+		"GetHeightAt": () => 0,
 		"IsInWorld": () => true,
 	});
 
