@@ -139,6 +139,7 @@ BuildingAI.prototype.SetupRangeQuery = function()
 		return;
 
 	var range = cmpAttack.GetRange(attackType);
+	// This takes entity sizes into accounts, so no need to compensate for structure size.
 	this.enemyUnitsQuery = cmpRangeManager.CreateActiveParabolicQuery(
 		this.entity, range.min, range.max, range.elevationBonus,
 		enemies, IID_Resistance, cmpRangeManager.GetEntityFlagMask("normal"));
@@ -168,6 +169,7 @@ BuildingAI.prototype.SetupGaiaRangeQuery = function()
 	var range = cmpAttack.GetRange(attackType);
 
 	// This query is only interested in Gaia entities that can attack.
+	// This takes entity sizes into accounts, so no need to compensate for structure size.
 	this.gaiaUnitsQuery = cmpRangeManager.CreateActiveParabolicQuery(
 		this.entity, range.min, range.max, range.elevationBonus,
 		[0], IID_Attack, cmpRangeManager.GetEntityFlagMask("normal"));

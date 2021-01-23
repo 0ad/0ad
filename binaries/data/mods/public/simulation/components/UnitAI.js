@@ -3791,7 +3791,10 @@ UnitAI.prototype.SetupLOSRangeQuery = function(enable = true)
 		return;
 
 	let range = this.GetQueryRange(IID_Vision);
-	this.losRangeQuery = cmpRangeManager.CreateActiveQuery(this.entity, range.min, range.max, players, IID_Identity, cmpRangeManager.GetEntityFlagMask("normal"));
+	// Do not compensate for entity sizes: LOS doesn't, and UnitAI relies on that.
+	this.losRangeQuery = cmpRangeManager.CreateActiveQuery(this.entity,
+		range.min, range.max, players, IID_Identity,
+		cmpRangeManager.GetEntityFlagMask("normal"), false);
 
 	if (enable)
 		cmpRangeManager.EnableActiveQuery(this.losRangeQuery);
@@ -3820,7 +3823,10 @@ UnitAI.prototype.SetupHealRangeQuery = function(enable = true)
 	let players = cmpPlayer.GetAllies();
 	let range = this.GetQueryRange(IID_Heal);
 
-	this.losHealRangeQuery = cmpRangeManager.CreateActiveQuery(this.entity, range.min, range.max, players, IID_Health, cmpRangeManager.GetEntityFlagMask("injured"));
+	// Do not compensate for entity sizes: LOS doesn't, and UnitAI relies on that.
+	this.losHealRangeQuery = cmpRangeManager.CreateActiveQuery(this.entity,
+		range.min, range.max, players, IID_Health,
+		cmpRangeManager.GetEntityFlagMask("injured"), false);
 
 	if (enable)
 		cmpRangeManager.EnableActiveQuery(this.losHealRangeQuery);
@@ -3852,7 +3858,10 @@ UnitAI.prototype.SetupAttackRangeQuery = function(enable = true)
 		return;
 
 	let range = this.GetQueryRange(IID_Attack);
-	this.losAttackRangeQuery = cmpRangeManager.CreateActiveQuery(this.entity, range.min, range.max, players, IID_Resistance, cmpRangeManager.GetEntityFlagMask("normal"));
+	// Do not compensate for entity sizes: LOS doesn't, and UnitAI relies on that.
+	this.losAttackRangeQuery = cmpRangeManager.CreateActiveQuery(this.entity,
+		range.min, range.max, players, IID_Resistance,
+		cmpRangeManager.GetEntityFlagMask("normal"), false);
 
 	if (enable)
 		cmpRangeManager.EnableActiveQuery(this.losAttackRangeQuery);
@@ -4437,7 +4446,8 @@ UnitAI.prototype.FindNearbyResource = function(position, filter)
 
 	let cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	let nearby = cmpRangeManager.ExecuteQueryAroundPos(position, 0, range, players, IID_ResourceSupply);
+	// Don't account for entity size, we need to match LOS visibility.
+	let nearby = cmpRangeManager.ExecuteQueryAroundPos(position, 0, range, players, IID_ResourceSupply, false);
 	return nearby.find(ent => {
 		if (!this.CanGather(ent) || !this.CheckTargetVisible(ent))
 			return false;
@@ -4476,7 +4486,7 @@ UnitAI.prototype.FindNearestDropsite = function(genericType)
 	let owner = cmpOwnership.GetOwner();
 	let cmpPlayer = QueryOwnerInterface(this.entity);
 	let players = cmpPlayer && cmpPlayer.HasSharedDropsites() ? cmpPlayer.GetMutualAllies() : [owner];
-	let nearestDropsites = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager).ExecuteQuery(this.entity, 0, -1, players, IID_ResourceDropsite);
+	let nearestDropsites = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager).ExecuteQuery(this.entity, 0, -1, players, IID_ResourceDropsite, false);
 
 	let isShip = Engine.QueryInterface(this.entity, IID_Identity).HasClass("Ship");
 	let cmpObstructionManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ObstructionManager);
@@ -4526,7 +4536,8 @@ UnitAI.prototype.FindNearbyFoundation = function(position)
 
 	let range = 64; // TODO: what's a sensible number?
 	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	let nearby = cmpRangeManager.ExecuteQueryAroundPos(position, 0, range, players, IID_Foundation);
+	// Don't account for entity size, we need to match LOS visibility.
+	let nearby = cmpRangeManager.ExecuteQueryAroundPos(position, 0, range, players, IID_Foundation, false);
 
 	// Skip foundations that are already complete. (This matters since
 	// we process the ConstructionFinished message before the foundation
@@ -6556,7 +6567,7 @@ UnitAI.prototype.CallPlayerOwnedEntitiesFunctionInRange = function(funcname, arg
 	if (owner == INVALID_PLAYER)
 		return;
 	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	let nearby = cmpRangeManager.ExecuteQuery(this.entity, 0, range, [owner], IID_UnitAI);
+	let nearby = cmpRangeManager.ExecuteQuery(this.entity, 0, range, [owner], IID_UnitAI, true);
 	for (let i = 0; i < nearby.length; ++i)
 	{
 		let cmpUnitAI = Engine.QueryInterface(nearby[i], IID_UnitAI);

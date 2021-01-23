@@ -122,7 +122,7 @@ function TestFormationExiting(mode)
 	});
 
 	AddMock(SYSTEM_ENTITY, IID_RangeManager, {
-		CreateActiveQuery: function(ent, minRange, maxRange, players, iid, flags) {
+		CreateActiveQuery: function(ent, minRange, maxRange, players, iid, flags, accountForSize) {
 			return 1;
 		},
 		EnableActiveQuery: function(id) { },
@@ -293,7 +293,7 @@ function TestMoveIntoFormationWhileAttacking()
 
 
 	AddMock(SYSTEM_ENTITY, IID_RangeManager, {
-		CreateActiveQuery: function(ent, minRange, maxRange, players, iid, flags) {
+		CreateActiveQuery: function(ent, minRange, maxRange, players, iid, flags, accountForSize) {
 			return 1;
 		},
 		EnableActiveQuery: function(id) { },

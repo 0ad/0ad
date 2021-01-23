@@ -44,12 +44,12 @@ AlertRaiser.prototype.RaiseAlert = function()
 	// Store the number of available garrison spots so that units don't try to garrison in buildings that will be full
 	let reserved = new Map();
 
-	let units = cmpRangeManager.ExecuteQuery(this.entity, 0, +this.template.RaiseAlertRange, [owner], IID_UnitAI).filter(ent => this.UnitFilter(ent));
+	let units = cmpRangeManager.ExecuteQuery(this.entity, 0, +this.template.RaiseAlertRange, [owner], IID_UnitAI, true).filter(ent => this.UnitFilter(ent));
 	for (let unit of units)
 	{
 		let cmpUnitAI = Engine.QueryInterface(unit, IID_UnitAI);
 
-		let holder = cmpRangeManager.ExecuteQuery(unit, 0, +this.template.SearchRange, mutualAllies, IID_GarrisonHolder).find(ent => {
+		let holder = cmpRangeManager.ExecuteQuery(unit, 0, +this.template.SearchRange, mutualAllies, IID_GarrisonHolder, true).find(ent => {
 			// Ignore moving garrison holders
 			if (Engine.QueryInterface(ent, IID_UnitAI))
 				return false;
@@ -98,7 +98,7 @@ AlertRaiser.prototype.EndOfAlert = function()
 	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 
 	// Units that are not garrisoned should go back to work
-	let units = cmpRangeManager.ExecuteQuery(this.entity, 0, +this.template.EndOfAlertRange, [owner], IID_UnitAI).filter(ent => this.UnitFilter(ent));
+	let units = cmpRangeManager.ExecuteQuery(this.entity, 0, +this.template.EndOfAlertRange, [owner], IID_UnitAI, true).filter(ent => this.UnitFilter(ent));
 	for (let unit of units)
 	{
 		let cmpUnitAI = Engine.QueryInterface(unit, IID_UnitAI);
@@ -110,7 +110,7 @@ AlertRaiser.prototype.EndOfAlert = function()
 	}
 
 	// Units that are garrisoned should ungarrison and go back to work
-	let holders = cmpRangeManager.ExecuteQuery(this.entity, 0, +this.template.EndOfAlertRange, mutualAllies, IID_GarrisonHolder);
+	let holders = cmpRangeManager.ExecuteQuery(this.entity, 0, +this.template.EndOfAlertRange, mutualAllies, IID_GarrisonHolder, true);
 	if (Engine.QueryInterface(this.entity, IID_GarrisonHolder))
 		holders.push(this.entity);
 

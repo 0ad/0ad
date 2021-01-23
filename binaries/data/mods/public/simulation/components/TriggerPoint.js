@@ -45,7 +45,7 @@ TriggerPoint.prototype.RegisterRangeTrigger = function(action, data)
 	var cid = data.requiredComponent || -1;
 
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	var tag = cmpRangeManager.CreateActiveQuery(this.entity, minRange, maxRange, players, cid, cmpRangeManager.GetEntityFlagMask("normal"));
+	var tag = cmpRangeManager.CreateActiveQuery(this.entity, minRange, maxRange, players, cid, cmpRangeManager.GetEntityFlagMask("normal"), true);
 
 	this.currentCollections[tag] = [];
 	this.actions[tag] = action;

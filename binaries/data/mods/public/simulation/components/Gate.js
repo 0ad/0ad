@@ -78,7 +78,7 @@ Gate.prototype.SetupRangeQuery = function(owner)
 	if (range > 0)
 	{
 		// Only find entities with IID_UnitAI interface
-		this.unitsQuery = cmpRangeManager.CreateActiveQuery(this.entity, 0, range, players, IID_UnitAI, cmpRangeManager.GetEntityFlagMask("normal"));
+		this.unitsQuery = cmpRangeManager.CreateActiveQuery(this.entity, 0, range, players, IID_UnitAI, cmpRangeManager.GetEntityFlagMask("normal"), true);
 		cmpRangeManager.EnableActiveQuery(this.unitsQuery);
 	}
 };
