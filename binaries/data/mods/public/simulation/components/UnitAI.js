@@ -3224,6 +3224,12 @@ UnitAI.prototype.UnitFsmSpec = {
 			},
 
 			"leave": function() {
+				// PushOrderFront preserves the cheering order,
+				// which can lead to very bad behaviour, so make
+				// sure to delete any queued ones.
+				for (let i = 1; i < this.orderQueue.length; ++i)
+					if (this.orderQueue[i].type == "Cheer")
+						this.orderQueue.splice(i--, 1);
 				this.StopTimer();
 				this.ResetAnimation();
 			},
