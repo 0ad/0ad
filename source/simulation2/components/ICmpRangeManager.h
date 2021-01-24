@@ -73,7 +73,8 @@ class CLosQuerier;
  *
  * In most cases the users are event-based and want notifications when something
  * has entered or left the range, and the query can be set up once and rarely changed.
- * These queries have to be fast. Entities are approximated as circles.
+ * These queries have to be fast. Entities are approximated as points or circles
+ * (queries can be set up to ignore sizes because LOS currently ignores it, and mismatches are problematic).
  *
  * Current design:
  *
@@ -116,10 +117,11 @@ public:
 	 * @param maxRange non-negative maximum distance in metres (inclusive); or -1.0 to ignore distance.
 	 * @param owners list of player IDs that matching entities may have; -1 matches entities with no owner.
 	 * @param requiredInterface if non-zero, an interface ID that matching entities must implement.
+	 * @param accountForSize if true, compensate for source/target entity sizes.
 	 * @return list of entities matching the query, ordered by increasing distance from the source entity.
 	 */
-	virtual std::vector<entity_id_t> ExecuteQuery(entity_id_t source,
-		entity_pos_t minRange, entity_pos_t maxRange, const std::vector<int>& owners, int requiredInterface) = 0;
+	virtual std::vector<entity_id_t> ExecuteQuery(entity_id_t source, entity_pos_t minRange, entity_pos_t maxRange,
+		const std::vector<int>& owners, int requiredInterface, bool accountForSize) = 0;
 
 	/**
 	 * Execute a passive query.
@@ -128,10 +130,11 @@ public:
 	 * @param maxRange non-negative maximum distance in metres (inclusive); or -1.0 to ignore distance.
 	 * @param owners list of player IDs that matching entities may have; -1 matches entities with no owner.
 	 * @param requiredInterface if non-zero, an interface ID that matching entities must implement.
+	 * @param accountForSize if true, compensate for source/target entity sizes.
 	 * @return list of entities matching the query, ordered by increasing distance from the source entity.
 	 */
-	virtual std::vector<entity_id_t> ExecuteQueryAroundPos(const CFixedVector2D& pos,
-		entity_pos_t minRange, entity_pos_t maxRange, const std::vector<int>& owners, int requiredInterface) = 0;
+	virtual std::vector<entity_id_t> ExecuteQueryAroundPos(const CFixedVector2D& pos, entity_pos_t minRange, entity_pos_t maxRange,
+		const std::vector<int>& owners, int requiredInterface, bool accountForSize) = 0;
 
 	/**
 	 * Construct an active query. The query will be disabled by default.
@@ -141,10 +144,11 @@ public:
 	 * @param owners list of player IDs that matching entities may have; -1 matches entities with no owner.
 	 * @param requiredInterface if non-zero, an interface ID that matching entities must implement.
 	 * @param flags if a entity in range has one of the flags set it will show up.
+	 * @param accountForSize if true, compensate for source/target entity sizes.
 	 * @return unique non-zero identifier of query.
 	 */
-	virtual tag_t CreateActiveQuery(entity_id_t source,
-		entity_pos_t minRange, entity_pos_t maxRange, const std::vector<int>& owners, int requiredInterface, u8 flags) = 0;
+	virtual tag_t CreateActiveQuery(entity_id_t source, entity_pos_t minRange, entity_pos_t maxRange,
+		const std::vector<int>& owners, int requiredInterface, u8 flags, bool accountForSize) = 0;
 
     /**
 	 * Construct an active query of a paraboloic form around the unit.
@@ -158,10 +162,11 @@ public:
 	 * @param owners list of player IDs that matching entities may have; -1 matches entities with no owner.
 	 * @param requiredInterface if non-zero, an interface ID that matching entities must implement.
 	 * @param flags if a entity in range has one of the flags set it will show up.
+	 * NB: this one has no accountForSize parameter (assumed true), because we currently can only have 7 arguments for JS functions.
 	 * @return unique non-zero identifier of query.
 	 */
-	virtual tag_t CreateActiveParabolicQuery(entity_id_t source,
-		entity_pos_t minRange, entity_pos_t maxRange, entity_pos_t elevationBonus, const std::vector<int>& owners, int requiredInterface, u8 flags) = 0;
+	virtual tag_t CreateActiveParabolicQuery(entity_id_t source, entity_pos_t minRange, entity_pos_t maxRange, entity_pos_t elevationBonus,
+		const std::vector<int>& owners, int requiredInterface, u8 flags) = 0;
 
 
 	/**

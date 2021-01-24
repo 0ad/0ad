@@ -45,9 +45,9 @@ std::string ICmpRangeManager::GetLosVisibilityPosition_wrapper(entity_pos_t x, e
 }
 
 BEGIN_INTERFACE_WRAPPER(RangeManager)
-DEFINE_INTERFACE_METHOD_5("ExecuteQuery", std::vector<entity_id_t>, ICmpRangeManager, ExecuteQuery, entity_id_t, entity_pos_t, entity_pos_t, std::vector<int>, int)
-DEFINE_INTERFACE_METHOD_5("ExecuteQueryAroundPos", std::vector<entity_id_t>, ICmpRangeManager, ExecuteQueryAroundPos, CFixedVector2D, entity_pos_t, entity_pos_t, std::vector<int>, int)
-DEFINE_INTERFACE_METHOD_6("CreateActiveQuery", ICmpRangeManager::tag_t, ICmpRangeManager, CreateActiveQuery, entity_id_t, entity_pos_t, entity_pos_t, std::vector<int>, int, u8)
+DEFINE_INTERFACE_METHOD_6("ExecuteQuery", std::vector<entity_id_t>, ICmpRangeManager, ExecuteQuery, entity_id_t, entity_pos_t, entity_pos_t, std::vector<int>, int, bool)
+DEFINE_INTERFACE_METHOD_6("ExecuteQueryAroundPos", std::vector<entity_id_t>, ICmpRangeManager, ExecuteQueryAroundPos, CFixedVector2D, entity_pos_t, entity_pos_t, std::vector<int>, int, bool)
+DEFINE_INTERFACE_METHOD_7("CreateActiveQuery", ICmpRangeManager::tag_t, ICmpRangeManager, CreateActiveQuery, entity_id_t, entity_pos_t, entity_pos_t, std::vector<int>, int, u8, bool)
 DEFINE_INTERFACE_METHOD_7("CreateActiveParabolicQuery", ICmpRangeManager::tag_t, ICmpRangeManager, CreateActiveParabolicQuery, entity_id_t, entity_pos_t, entity_pos_t, entity_pos_t, std::vector<int>, int, u8)
 DEFINE_INTERFACE_METHOD_1("DestroyActiveQuery", void, ICmpRangeManager, DestroyActiveQuery, ICmpRangeManager::tag_t)
 DEFINE_INTERFACE_METHOD_1("EnableActiveQuery", void, ICmpRangeManager, EnableActiveQuery, ICmpRangeManager::tag_t)

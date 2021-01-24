@@ -444,11 +444,13 @@ public:
 
 		CPreprocessorWrapper preprocessor([&newFileDependencies](const CStr& includePath, CStr& out) -> bool {
 			const VfsPath includeFilePath(L"shaders/glsl/" + wstring_from_utf8(includePath));
+			// Add dependencies anyway to reload the shader when the file is
+			// appeared.
+			newFileDependencies.push_back(includeFilePath);
 			CVFSFile includeFile;
 			if (includeFile.Load(g_VFS, includeFilePath) != PSRETURN_OK)
 				return false;
 			out = includeFile.GetAsString();
-			newFileDependencies.push_back(includeFilePath);
 			return true;
 		});
 		preprocessor.AddDefines(m_Defines);

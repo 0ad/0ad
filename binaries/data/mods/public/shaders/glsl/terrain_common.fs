@@ -169,7 +169,7 @@ void main()
     specular.rgb = sunColor * specCol * pow(max(0.0, dot(normalize(normal), v_half)), specPow);
   #endif
 
-  vec3 color = (texdiffuse * sundiffuse + specular.rgb) * get_shadow() + texdiffuse * ambient;
+  vec3 color = (texdiffuse * sundiffuse + specular.rgb) * getShadowOnLandscape() + texdiffuse * ambient;
 
   #if USE_SPECULAR_MAP && USE_SELF_LIGHT
     color = mix(texdiffuse, color, specular.a);

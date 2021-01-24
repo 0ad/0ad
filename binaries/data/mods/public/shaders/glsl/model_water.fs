@@ -83,7 +83,7 @@ void main()
 	specular = pow(max(0.0, ndoth), 150.0f) * sunColor * specularStrength;
 
 #if USE_SHADOW
-	float shadow = get_shadow();
+	float shadow = getShadowOnLandscape();
 	float fresShadow = mix(fresnel, fresnel*shadow, dot(sunColor, vec3(0.16666)));
 #else
 	float fresShadow = fresnel;

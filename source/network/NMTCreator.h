@@ -29,6 +29,7 @@
 #undef START_NMT_CLASS_DERIVED
 #undef NMT_FIELD_INT
 #undef NMT_FIELD
+#undef NMT_FIELD_SECRET
 #undef NMT_START_ARRAY
 #undef NMT_END_ARRAY
 #undef END_NMT_CLASS
@@ -106,6 +107,13 @@ public: \
 #define NMT_FIELD(_tp, _nm) \
 	_tp _nm;
 
+/**
+ * Likewise, but the string representation is hidden.
+ * NB: the data length is not hidden, so make sure to use fixed-length data if confidentiality is desirable.
+ */
+#define NMT_FIELD_SECRET(_tp, _nm) \
+	_tp _nm;
+
 #define NMT_START_ARRAY(_nm) \
 	struct ARRAY_STRUCT_PREFIX(_nm); \
 	std::vector <ARRAY_STRUCT_PREFIX(_nm)> _nm; \
@@ -155,6 +163,9 @@ size_t _nm::GetSerializedLength() const \
 #define NMT_FIELD(_tp, _nm) \
 	ret += thiz->_nm.GetSerializedLength();
 
+#define NMT_FIELD_SECRET(_tp, _nm) \
+	ret += thiz->_nm.GetSerializedLength();
+
 #define END_NMT_CLASS() \
 	return ret; \
 };
@@ -195,6 +206,9 @@ u8 *_nm::Serialize(u8 *buffer) const \
 	Serialize_int_##_netsz(pos, thiz->_nm); \
 
 #define NMT_FIELD(_tp, _nm) \
+	pos=thiz->_nm.Serialize(pos);
+
+#define NMT_FIELD_SECRET(_tp, _nm) \
 	pos=thiz->_nm.Serialize(pos);
 
 #define END_NMT_CLASS() \
@@ -242,6 +256,9 @@ const u8 *_nm::Deserialize(const u8 *pos, const u8 *end) \
 	/*printf("\t" #_nm " == 0x%x\n", thiz->_nm);*/
 
 #define NMT_FIELD(_tp, _nm) \
+	if ((pos=thiz->_nm.Deserialize(pos, end)) == NULL) BAIL_DESERIALIZER;
+
+#define NMT_FIELD_SECRET(_tp, _nm) \
 	if ((pos=thiz->_nm.Deserialize(pos, end)) == NULL) BAIL_DESERIALIZER;
 
 #define END_NMT_CLASS() \
@@ -308,6 +325,9 @@ CStr _nm::ToStringRaw() const \
 	ret += #_nm ": "; \
 	ret += NetMessageStringConvert(thiz->_nm); \
 	ret += ", ";
+
+#define NMT_FIELD_SECRET(_tp, _nm) \
+	ret += #_nm ": [secret], ";
 
 #define END_NMT_CLASS() \
 	return ret.substr(0, ret.length()-2); \

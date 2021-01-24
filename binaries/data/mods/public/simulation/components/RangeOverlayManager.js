@@ -48,15 +48,12 @@ RangeOverlayManager.prototype.RegenerateRangeOverlays = function(forceUpdate)
 	if (!this.enabled && !forceUpdate)
 		return;
 
-	let cmpObstruction = Engine.QueryInterface(this.entity, IID_Obstruction);
-	let rangeBonus = cmpObstruction ? cmpObstruction.GetSize() : 0;
-
 	// Only render individual range types that have been enabled
 	for (let rangeOverlayType of this.rangeVisualizations.keys())
 		if (this.enabledRangeTypes[rangeOverlayType])
 			for (let rangeOverlay of this.rangeVisualizations.get(rangeOverlayType))
 				cmpRangeOverlayRenderer.AddRangeOverlay(
-					rangeOverlay.radius + rangeBonus,
+					rangeOverlay.radius,
 					rangeOverlay.texture,
 					rangeOverlay.textureMask,
 					rangeOverlay.thickness);

@@ -225,6 +225,7 @@ private:
 	CStr m_GUID;
 	CStrW m_UserName;
 	u32 m_HostID;
+	CStr m_Password;
 
 	bool m_IsLocalClient;
 };

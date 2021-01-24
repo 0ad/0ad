@@ -153,6 +153,7 @@ struct Query
 	u8 flagsMask;
 	bool enabled;
 	bool parabolic;
+	bool accountForSize; // If true, the query accounts for unit sizes, otherwise it treats all entities as points.
 };
 
 /**
@@ -244,8 +245,6 @@ struct SerializeHelper<Query>
 	template<typename S>
 	void Common(S& serialize, const char* UNUSED(name), Serialize::qualify<S, Query> value)
 	{
-		serialize.Bool("enabled", value.enabled);
-		serialize.Bool("parabolic",value.parabolic);
 		serialize.NumberFixed_Unbounded("min range", value.minRange);
 		serialize.NumberFixed_Unbounded("max range", value.maxRange);
 		serialize.NumberFixed_Unbounded("elevation bonus", value.elevationBonus);
@@ -253,6 +252,9 @@ struct SerializeHelper<Query>
 		serialize.NumberI32_Unbounded("interface", value.interface);
 		Serializer(serialize, "last match", value.lastMatch);
 		serialize.NumberU8_Unbounded("flagsMask", value.flagsMask);
+		serialize.Bool("enabled", value.enabled);
+		serialize.Bool("parabolic",value.parabolic);
+		serialize.Bool("account for size",value.accountForSize);
 	}
 
 	void operator()(ISerializer& serialize, const char* name, Query& value, const CSimContext& UNUSED(context))
@@ -907,10 +909,10 @@ public:
 
 	virtual tag_t CreateActiveQuery(entity_id_t source,
 		entity_pos_t minRange, entity_pos_t maxRange,
-		const std::vector<int>& owners, int requiredInterface, u8 flags)
+		const std::vector<int>& owners, int requiredInterface, u8 flags, bool accountForSize)
 	{
 		tag_t id = m_QueryNext++;
-		m_Queries[id] = ConstructQuery(source, minRange, maxRange, owners, requiredInterface, flags);
+		m_Queries[id] = ConstructQuery(source, minRange, maxRange, owners, requiredInterface, flags, accountForSize);
 
 		return id;
 	}
@@ -920,7 +922,7 @@ public:
 		const std::vector<int>& owners, int requiredInterface, u8 flags)
 	{
 		tag_t id = m_QueryNext++;
-		m_Queries[id] = ConstructParabolicQuery(source, minRange, maxRange, elevationBonus, owners, requiredInterface, flags);
+		m_Queries[id] = ConstructParabolicQuery(source, minRange, maxRange, elevationBonus, owners, requiredInterface, flags, true);
 
 		return id;
 	}
@@ -977,9 +979,9 @@ public:
 
 	virtual std::vector<entity_id_t> ExecuteQueryAroundPos(const CFixedVector2D& pos,
 		entity_pos_t minRange, entity_pos_t maxRange,
-		const std::vector<int>& owners, int requiredInterface)
+		const std::vector<int>& owners, int requiredInterface, bool accountForSize)
 	{
-		Query q = ConstructQuery(INVALID_ENTITY, minRange, maxRange, owners, requiredInterface, GetEntityFlagMask("normal"));
+		Query q = ConstructQuery(INVALID_ENTITY, minRange, maxRange, owners, requiredInterface, GetEntityFlagMask("normal"), accountForSize);
 		std::vector<entity_id_t> r;
 		PerformQuery(q, r, pos);
 
@@ -991,11 +993,11 @@ public:
 
 	virtual std::vector<entity_id_t> ExecuteQuery(entity_id_t source,
 		entity_pos_t minRange, entity_pos_t maxRange,
-		const std::vector<int>& owners, int requiredInterface)
+		const std::vector<int>& owners, int requiredInterface, bool accountForSize)
 	{
 		PROFILE("ExecuteQuery");
 
-		Query q = ConstructQuery(source, minRange, maxRange, owners, requiredInterface, GetEntityFlagMask("normal"));
+		Query q = ConstructQuery(source, minRange, maxRange, owners, requiredInterface, GetEntityFlagMask("normal"), accountForSize);
 
 		std::vector<entity_id_t> r;
 
@@ -1221,8 +1223,8 @@ public:
 				// they have an intersection after which the former grows slower, and then use that to prove the above.
 				// Note that this is only true because we do not account for vertical size here,
 				// if we did, we would also need to artificially 'raise' the source over the target.
-				if (!InParabolicRange(CFixedVector3D(it->second.x, secondPosition.Y, it->second.z) - pos3d,
-									  q.maxRange + fixed::FromInt(it->second.size)))
+				entity_pos_t range = q.maxRange + (q.accountForSize ? fixed::FromInt(it->second.size) : fixed::Zero());
+				if (!InParabolicRange(CFixedVector3D(it->second.x, secondPosition.Y, it->second.z) - pos3d, range))
 					continue;
 
 				if (!q.minRange.IsZero())
@@ -1249,7 +1251,8 @@ public:
 					continue;
 
 				// Restrict based on approximate circle-circle distance.
-				if ((CFixedVector2D(it->second.x, it->second.z) - pos).CompareLength(q.maxRange + fixed::FromInt(it->second.size)) > 0)
+				entity_pos_t range = q.maxRange + (q.accountForSize ? fixed::FromInt(it->second.size) : fixed::Zero());
+				if ((CFixedVector2D(it->second.x, it->second.z) - pos).CompareLength(range) > 0)
 					continue;
 
 				if (!q.minRange.IsZero())
@@ -1364,7 +1367,7 @@ public:
 
 	Query ConstructQuery(entity_id_t source,
 		entity_pos_t minRange, entity_pos_t maxRange,
-		const std::vector<int>& owners, int requiredInterface, u8 flagsMask) const
+		const std::vector<int>& owners, int requiredInterface, u8 flagsMask, bool accountForSize) const
 	{
 		// Min range must be non-negative
 		if (minRange < entity_pos_t::Zero())
@@ -1381,8 +1384,9 @@ public:
 		q.minRange = minRange;
 		q.maxRange = maxRange;
 		q.elevationBonus = entity_pos_t::Zero();
+		q.accountForSize = accountForSize;
 
-		if (q.source.GetId() != INVALID_ENTITY && q.maxRange != entity_pos_t::FromInt(-1))
+		if (q.accountForSize && q.source.GetId() != INVALID_ENTITY && q.maxRange != entity_pos_t::FromInt(-1))
 		{
 			u32 size = 0;
 			if (ENTITY_IS_LOCAL(q.source.GetId()))
@@ -1418,9 +1422,9 @@ public:
 
 	Query ConstructParabolicQuery(entity_id_t source,
 		entity_pos_t minRange, entity_pos_t maxRange, entity_pos_t elevationBonus,
-		const std::vector<int>& owners, int requiredInterface, u8 flagsMask) const
+		const std::vector<int>& owners, int requiredInterface, u8 flagsMask, bool accountForSize) const
 	{
-		Query q = ConstructQuery(source,minRange,maxRange,owners,requiredInterface,flagsMask);
+		Query q = ConstructQuery(source, minRange, maxRange, owners, requiredInterface, flagsMask, accountForSize);
 		q.parabolic = true;
 		q.elevationBonus = elevationBonus;
 		return q;

@@ -128,12 +128,14 @@ void JSI_Network::StartNetworkHost(ScriptInterface::CmptPrivate* pCmptPrivate, c
 	}
 
 	// We will get hashed password from clients, so hash it once for server
-	g_NetServer->SetPassword(HashPassword(password));
+	CStr hashedPass = HashPassword(password);
+	g_NetServer->SetPassword(hashedPass);
 
 	g_Game = new CGame(true);
 	g_NetClient = new CNetClient(g_Game, true);
 	g_NetClient->SetUserName(playerName);
 	g_NetClient->SetHostingPlayerName(hostLobbyName);
+	g_NetClient->SetGamePassword(hashedPass);
 	g_NetClient->SetupServerData("127.0.0.1", serverPort, false);
 
 	if (!g_NetClient->SetupConnection(nullptr))
@@ -173,11 +175,13 @@ void JSI_Network::StartNetworkJoinLobby(ScriptInterface::CmptPrivate* pCmptPriva
 	ENSURE(!g_NetServer);
 	ENSURE(!g_Game);
 
+	CStr hashedPass = HashPassword(password);
 	g_Game = new CGame(true);
 	g_NetClient = new CNetClient(g_Game, false);
 	g_NetClient->SetUserName(playerName);
 	g_NetClient->SetHostingPlayerName(hostJID.substr(0, hostJID.find("@")));
-	g_XmppClient->SendIqGetConnectionData(hostJID, HashPassword(password).c_str());
+	g_NetClient->SetGamePassword(hashedPass);
+	g_XmppClient->SendIqGetConnectionData(hostJID, hashedPass.c_str());
 }
 
 void JSI_Network::DisconnectNetworkGame(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))

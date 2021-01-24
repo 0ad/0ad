@@ -230,41 +230,41 @@ public:
 		move(100, position, fixed::FromInt(10), fixed::FromInt(10));
 		move(101, position2, fixed::FromInt(10), fixed::FromInt(20));
 
-		std::vector<entity_id_t> nearby = cmp->ExecuteQuery(100, fixed::FromInt(0), fixed::FromInt(4), {1}, 0);
+		std::vector<entity_id_t> nearby = cmp->ExecuteQuery(100, fixed::FromInt(0), fixed::FromInt(4), {1}, 0, true);
 		TS_ASSERT_EQUALS(nearby, std::vector<entity_id_t>{});
-		nearby = cmp->ExecuteQuery(100, fixed::FromInt(4), fixed::FromInt(50), {1}, 0);
+		nearby = cmp->ExecuteQuery(100, fixed::FromInt(4), fixed::FromInt(50), {1}, 0, true);
 		TS_ASSERT_EQUALS(nearby, std::vector<entity_id_t>{101});
 
 		move(101, position2, fixed::FromInt(10), fixed::FromInt(10));
-		nearby = cmp->ExecuteQuery(100, fixed::FromInt(0), fixed::FromInt(4), {1}, 0);
+		nearby = cmp->ExecuteQuery(100, fixed::FromInt(0), fixed::FromInt(4), {1}, 0, true);
 		TS_ASSERT_EQUALS(nearby, std::vector<entity_id_t>{101});
-		nearby = cmp->ExecuteQuery(100, fixed::FromInt(4), fixed::FromInt(50), {1}, 0);
+		nearby = cmp->ExecuteQuery(100, fixed::FromInt(4), fixed::FromInt(50), {1}, 0, true);
 		TS_ASSERT_EQUALS(nearby, std::vector<entity_id_t>{});
 
 		move(101, position2, fixed::FromInt(10), fixed::FromInt(13));
-		nearby = cmp->ExecuteQuery(100, fixed::FromInt(0), fixed::FromInt(4), {1}, 0);
+		nearby = cmp->ExecuteQuery(100, fixed::FromInt(0), fixed::FromInt(4), {1}, 0, true);
 		TS_ASSERT_EQUALS(nearby, std::vector<entity_id_t>{101});
-		nearby = cmp->ExecuteQuery(100, fixed::FromInt(4), fixed::FromInt(50), {1}, 0);
+		nearby = cmp->ExecuteQuery(100, fixed::FromInt(4), fixed::FromInt(50), {1}, 0, true);
 		TS_ASSERT_EQUALS(nearby, std::vector<entity_id_t>{});
 
 		move(101, position2, fixed::FromInt(10), fixed::FromInt(15));
 		// In range thanks to self obstruction size.
-		nearby = cmp->ExecuteQuery(100, fixed::FromInt(0), fixed::FromInt(4), {1}, 0);
+		nearby = cmp->ExecuteQuery(100, fixed::FromInt(0), fixed::FromInt(4), {1}, 0, true);
 		TS_ASSERT_EQUALS(nearby, std::vector<entity_id_t>{101});
 		// In range thanks to target obstruction size.
-		nearby = cmp->ExecuteQuery(101, fixed::FromInt(0), fixed::FromInt(4), {1}, 0);
+		nearby = cmp->ExecuteQuery(101, fixed::FromInt(0), fixed::FromInt(4), {1}, 0, true);
 		TS_ASSERT_EQUALS(nearby, std::vector<entity_id_t>{100});
 
 		// Trickier: min-range is closest-to-closest, but rotation may change the real distance.
-		nearby = cmp->ExecuteQuery(100, fixed::FromInt(2), fixed::FromInt(50), {1}, 0);
+		nearby = cmp->ExecuteQuery(100, fixed::FromInt(2), fixed::FromInt(50), {1}, 0, true);
 		TS_ASSERT_EQUALS(nearby, std::vector<entity_id_t>{101});
-		nearby = cmp->ExecuteQuery(100, fixed::FromInt(5), fixed::FromInt(50), {1}, 0);
+		nearby = cmp->ExecuteQuery(100, fixed::FromInt(5), fixed::FromInt(50), {1}, 0, true);
 		TS_ASSERT_EQUALS(nearby, std::vector<entity_id_t>{101});
-		nearby = cmp->ExecuteQuery(100, fixed::FromInt(6), fixed::FromInt(50), {1}, 0);
+		nearby = cmp->ExecuteQuery(100, fixed::FromInt(6), fixed::FromInt(50), {1}, 0, true);
 		TS_ASSERT_EQUALS(nearby, std::vector<entity_id_t>{});
-		nearby = cmp->ExecuteQuery(101, fixed::FromInt(5), fixed::FromInt(50), {1}, 0);
+		nearby = cmp->ExecuteQuery(101, fixed::FromInt(5), fixed::FromInt(50), {1}, 0, true);
 		TS_ASSERT_EQUALS(nearby, std::vector<entity_id_t>{100});
-		nearby = cmp->ExecuteQuery(101, fixed::FromInt(6), fixed::FromInt(50), {1}, 0);
+		nearby = cmp->ExecuteQuery(101, fixed::FromInt(6), fixed::FromInt(50), {1}, 0, true);
 		TS_ASSERT_EQUALS(nearby, std::vector<entity_id_t>{});
 
 	}

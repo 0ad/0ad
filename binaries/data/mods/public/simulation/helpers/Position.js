@@ -34,7 +34,7 @@ PositionHelper.prototype.EntitiesNearPoint = function(origin, radius, players, i
 		return [];
 
 	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	return cmpRangeManager.ExecuteQueryAroundPos(origin, 0, radius, players, iid);
+	return cmpRangeManager.ExecuteQueryAroundPos(origin, 0, radius, players, iid, true);
 };
 
 /**

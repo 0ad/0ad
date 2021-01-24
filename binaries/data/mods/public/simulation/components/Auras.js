@@ -267,13 +267,17 @@ Auras.prototype.Clean = function()
 
 		if (this[name].isApplied && (this.IsRangeAura(name) || this.IsGlobalAura(name) && !!this.GetOverlayIcon(name)))
 		{
+			// Do not account for entity sizes: structures can have various sizes
+			// and we currently prefer auras to not depend on the source size
+			// (this is generally irrelevant for units).
 			this[name].rangeQuery = cmpRangeManager.CreateActiveQuery(
 				this.entity,
 				0,
 				this.GetRange(name),
 				affectedPlayers,
 				IID_Identity,
-				cmpRangeManager.GetEntityFlagMask("normal")
+				cmpRangeManager.GetEntityFlagMask("normal"),
+				false
 			);
 			cmpRangeManager.EnableActiveQuery(this[name].rangeQuery);
 		}

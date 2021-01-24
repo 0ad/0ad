@@ -175,6 +175,11 @@ void CNetClient::SetHostingPlayerName(const CStr& hostingPlayerName)
 	m_HostingPlayerName = hostingPlayerName;
 }
 
+void CNetClient::SetGamePassword(const CStr& hashedPassword)
+{
+	m_Password = hashedPassword;
+}
+
 bool CNetClient::SetupConnection(ENetHost* enetClient)
 {
 	CNetClientSession* session = new CNetClientSession(*this);
@@ -570,7 +575,7 @@ void CNetClient::SendAuthenticateMessage()
 {
 	CAuthenticateMessage authenticate;
 	authenticate.m_Name = m_UserName;
-	authenticate.m_Password = L""; // TODO
+	authenticate.m_Password = m_Password;
 	authenticate.m_IsLocalClient = m_IsLocalClient;
 	SendMessage(&authenticate);
 }

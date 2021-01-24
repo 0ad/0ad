@@ -2,7 +2,7 @@
 <Entity parent="template_structure_economic">
   <AlertRaiser>
     <List datatype="tokens">FemaleCitizen</List>
-    <RaiseAlertRange>60</RaiseAlertRange>
+    <RaiseAlertRange>50</RaiseAlertRange>
     <EndOfAlertRange>100</EndOfAlertRange>
     <SearchRange>100</SearchRange>
   </AlertRaiser>

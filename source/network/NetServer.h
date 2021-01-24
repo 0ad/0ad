@@ -209,6 +209,8 @@ private:
 	CNetServerWorker(bool useLobbyAuth, int autostartPlayers);
 	~CNetServerWorker();
 
+	void SetPassword(const CStr& hashedPassword);
+
 	/**
 	 * Begin listening for network connections.
 	 * @return true on success, false on error (e.g. port already in use)
@@ -340,6 +342,8 @@ private:
 
 	std::vector<u32> m_BannedIPs;
 	std::vector<CStrW> m_BannedPlayers;
+
+	CStr m_Password;
 
 	/**
 	 * Holds the GUIDs of all currently paused players.

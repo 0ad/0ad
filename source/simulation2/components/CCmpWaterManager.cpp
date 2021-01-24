@@ -71,6 +71,9 @@ public:
 
 		deserialize.NumberFixed_Unbounded("height", m_WaterHeight);
 
+		if (CRenderer::IsInitialised())
+			g_Renderer.GetWaterManager()->SetMapSize(GetSimContext().GetTerrain().GetVerticesPerSide());
+
 		RecomputeWaterData();
 	}
 

@@ -296,7 +296,7 @@ void main()
 	vec3 specular = getSpecular(normal, eyeVec);
 
 #if USE_SHADOW
-	float shadow = get_shadow();
+	float shadow = getShadowOnLandscape();
 	fresnel = mix(fresnel, fresnel * shadow, 0.05 + murkiness * 0.2);
 #else
 	float shadow = 1.0;

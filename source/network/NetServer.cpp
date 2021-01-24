@@ -181,6 +181,11 @@ CNetServerWorker::~CNetServerWorker()
 	delete m_ServerTurnManager;
 }
 
+void CNetServerWorker::SetPassword(const CStr& hashedPassword)
+{
+	m_Password = hashedPassword;
+}
+
 bool CNetServerWorker::SetupConnection(const u16 port)
 {
 	ENSURE(m_State == SERVER_STATE_UNCONNECTED);
@@ -979,6 +984,18 @@ bool CNetServerWorker::OnAuthenticate(void* context, CFsmEvent* event)
 		return true;
 	}
 
+	// Check the password before anything else.
+	if (server.m_Password != message->m_Password)
+	{
+		// Noisy logerror because players are not supposed to be able to get the IP,
+		// so this might be someone targeting the host for some reason
+		// (or TODO a dedicated server and we do want to log anyways)
+		LOGERROR("Net server: user %s tried joining with the wrong password",
+				 session->GetUserName().ToUTF8());
+		session->Disconnect(NDR_SERVER_REFUSED);
+		return true;
+	}
+
 	// Either deduplicate or prohibit join if name is in use
 	bool duplicatePlayernames = false;
 	CFG_GET_VAL("network.duplicateplayernames", duplicatePlayernames);
@@ -1087,8 +1104,6 @@ bool CNetServerWorker::OnAuthenticate(void* context, CFsmEvent* event)
 		session->Disconnect(NDR_SERVER_FULL);
 		return true;
 	}
-
-	// TODO: check server password etc?
 
 	u32 newHostID = server.m_NextHostID++;
 
@@ -1622,6 +1637,8 @@ bool CNetServer::CheckPassword(const CStr& password) const
 void CNetServer::SetPassword(const CStr& password)
 {
 	m_Password = password;
+	std::lock_guard<std::mutex> lock(m_Worker->m_WorkerMutex);
+	m_Worker->SetPassword(password);
 }
 
 void CNetServer::StartGame()
