@@ -728,7 +728,7 @@ function getGatherTooltip(template)
 			Object.keys(rates).map(
 				type => sprintf(translate("%(resourceIcon)s %(rate)s"), {
 					"resourceIcon": resourceIcon(type),
-					"rate": rates[type]
+					"rate": rates[type].toFixed(2)
 				})
 			).join("  ")
 	});
