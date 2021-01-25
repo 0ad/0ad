@@ -27,9 +27,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-01 08:01+0000\n"
-"PO-Revision-Date: 2021-01-11 05:41+0000\n"
-"Last-Translator: Bruce Lee <daemul72@gmail.com>\n"
+"POT-Creation-Date: 2021-01-22 08:09+0000\n"
+"PO-Revision-Date: 2021-01-22 08:36+0000\n"
+"Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -98,8 +98,8 @@ msgid "Miltiades"
 msgstr "밀티아데스"
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].Description
-msgid "Metal mining gathering rates increased by +10% for each passing age."
-msgstr "금속 채굴 속도가 시대 경과할마다 10% 증가합니다."
+msgid "Workers +10% metal gather rate per phase advance."
+msgstr ""
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].History
 msgid ""
@@ -243,6 +243,22 @@ msgstr "한노 대왕"
 msgid "Himilco"
 msgstr "히밀코"
 
+#: simulation/data/civs/cart.jsonCivBonuses[0].Description
+msgid "Merchant Ships +25% trade gain."
+msgstr ""
+
+#: simulation/data/civs/cart.jsonCivBonuses[0].Name
+msgid "Commercial Acumen"
+msgstr ""
+
+#: simulation/data/civs/cart.jsonCivBonuses[1].Description
+msgid "Docks and Markets +10% international trade bonus."
+msgstr ""
+
+#: simulation/data/civs/cart.jsonCivBonuses[1].Name
+msgid "Desirable Products"
+msgstr ""
+
 #: simulation/data/civs/cart.jsonHistory
 msgid ""
 "Carthage, a city-state in modern-day Tunisia, was a formidable force in the "
@@ -297,30 +313,6 @@ msgstr "바레티아쿠스"
 msgid "Viridovix"
 msgstr "비리도비스"
 
-#: simulation/data/civs/gaul.jsonCivBonuses[0].Description
-msgid "Enhanced food gained from ranching and farming. "
-msgstr "가축이나 밭에서 얻는 식량이 증가합니다. "
-
-#: simulation/data/civs/gaul.jsonCivBonuses[0].History
-msgid "Represents Celtic farming methods. "
-msgstr "켈트의 농사 방법을 대표합니다. "
-
-#: simulation/data/civs/gaul.jsonCivBonuses[0].Name
-msgid "Ardiosmanae"
-msgstr "아르디오스마나에"
-
-#: simulation/data/civs/gaul.jsonCivBonuses[1].Description
-msgid "Druids increase attack rates of soldiers near them slightly."
-msgstr "사제는 근처의 병사의 공격력을 조금 강화합니다."
-
-#: simulation/data/civs/gaul.jsonCivBonuses[1].History
-msgid "Celtic religion and druidry inspired their warlike mindset. "
-msgstr "켈트 종교와 드루이드 교는 그들의 호전적 사고 방식을 불어넣었습니다. "
-
-#: simulation/data/civs/gaul.jsonCivBonuses[1].Name
-msgid "Deas Celtica"
-msgstr "켈트 여신"
-
 #: simulation/data/civs/gaul.jsonHistory
 msgid ""
 "The Gauls were the Celtic tribes of continental Europe. Dominated by a "
@@ -364,8 +356,8 @@ msgid "Tautalus"
 msgstr "타우타루스"
 
 #: simulation/data/civs/iber.jsonCivBonuses[0].Description
-msgid "Iberians start with a powerful prefabricated circuit of stone walls."
-msgstr "이베리아인들은 강력한 조립식 원형의 돌담으로 시작합니다."
+msgid "Iberians start with City Walls around their base on most maps."
+msgstr ""
 
 #: simulation/data/civs/iber.jsonCivBonuses[0].History
 msgid ""
@@ -375,8 +367,18 @@ msgid ""
 msgstr "충적 평야와 강 계곡을 제외하면, 이베리아 반도는 석재가 풍부하여 다양한 종류의 건축물에 많이 사용됩니다."
 
 #: simulation/data/civs/iber.jsonCivBonuses[0].Name
-msgid "Harritsu Leku"
-msgstr "하리츄 레쿠"
+msgid "Starting Walls"
+msgstr ""
+
+#: simulation/data/civs/iber.jsonCivBonuses[1].Description
+msgid ""
+"Stone Towers −50% wood cost, +150% stone cost, +33% build time, +60% health,"
+" +3 garrison capacity, and +1 default arrow count."
+msgstr ""
+
+#: simulation/data/civs/iber.jsonCivBonuses[1].Name
+msgid "Massive Towers"
+msgstr ""
 
 #: simulation/data/civs/iber.jsonHistory
 msgid ""
@@ -447,6 +449,16 @@ msgstr "아트라네르사"
 #: simulation/data/civs/kush.jsonAINames[9]
 msgid "Nasalsa"
 msgstr "나살사"
+
+#: simulation/data/civs/kush.jsonCivBonuses[0].Description
+#: simulation/data/civs/pers.jsonCivBonuses[1].Description
+msgid "Battering Rams +20% attack damage and +2 garrison capacity."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonCivBonuses[0].Name
+#: simulation/data/civs/pers.jsonCivBonuses[1].Name
+msgid "Large Rams"
+msgstr ""
 
 #: simulation/data/civs/kush.jsonHistory
 msgid ""
@@ -636,6 +648,14 @@ msgstr "아르타크세르크세스 2세"
 msgid "Artaxshacha III"
 msgstr "아르타크세르크세스 3세"
 
+#: simulation/data/civs/pers.jsonCivBonuses[0].Description
+msgid "Land Traders +25% trade gain."
+msgstr ""
+
+#: simulation/data/civs/pers.jsonCivBonuses[0].Name
+msgid "Darics"
+msgstr ""
+
 #: simulation/data/civs/pers.jsonHistory
 msgid ""
 "The Persian Empire, when ruled by the Achaemenid dynasty, was one of the "
@@ -727,6 +747,14 @@ msgstr "프톨레마이오스 알렉산드르"
 msgid "Ptolemy Neos Dionysos"
 msgstr "프톨레마이오스 네오스 필로파토르"
 
+#: simulation/data/civs/ptol.jsonCivBonuses[0].Description
+msgid "Bolt Shooters −33% attack damage and −33% attack time."
+msgstr ""
+
+#: simulation/data/civs/ptol.jsonCivBonuses[0].Name
+msgid "Polybolos"
+msgstr "연사형 석궁"
+
 #: simulation/data/civs/ptol.jsonHistory
 msgid ""
 "The Ptolemaic dynasty was a Macedonian Greek royal family which ruled the "
@@ -811,23 +839,12 @@ msgid "Testudo Formation"
 msgstr "귀갑진형"
 
 #: simulation/data/civs/rome.jsonCivBonuses[1].Description
-msgid ""
-"Any Roman citizen-soldier fighting within Roman territory gains a non-"
-"permanent +10% bonus in armor."
-msgstr "로마 영토 내에서 싸우는 로마 시민 군인은 방어력이 영구적이지 않지만 +10% 보너스를 받습니다."
-
-#: simulation/data/civs/rome.jsonCivBonuses[1].History
-msgid ""
-"Roman Citizenship was highly prized in the ancient world. Basic rights and "
-"privileges were afforded Roman citizens that were denied other conquered "
-"peoples. It is said that harming a Roman citizen was akin to harming Rome "
-"herself, and would cause the entire might of Rome to fall upon the "
-"perpetrator."
-msgstr "로마 시민권을 고대 세계에서 매우 가치가 높았습니다. 로마 시민들의 기본 권리와 특권들은 다른 점령 주민들에게는 제공되지 않는 것이였습니다. 심지어 로마 시민을 해하는 일은 로마를 해하는것과 같으며, 로마 전체가 그 해친자를 잡으러 올수 있게 할 수 있다고 하는 말도 있었습니다."
+msgid "Battering Rams +20% attack damage. Stone Throwers +10% attack damage."
+msgstr ""
 
 #: simulation/data/civs/rome.jsonCivBonuses[1].Name
-msgid "Citizenship"
-msgstr "시민권"
+msgid "Legionary Engineers"
+msgstr ""
 
 #: simulation/data/civs/rome.jsonHistory
 msgid ""
@@ -1013,6 +1030,14 @@ msgstr "에케스트라토스"
 #: simulation/data/civs/spart.jsonAINames[9]
 msgid "Eurycrates"
 msgstr "에우리크라테스"
+
+#: simulation/data/civs/spart.jsonCivBonuses[0].Description
+msgid "Female Citizens +40% health and +50% melee attack hack damage."
+msgstr ""
+
+#: simulation/data/civs/spart.jsonCivBonuses[0].Name
+msgid "Spartan Women"
+msgstr ""
 
 #: simulation/data/civs/spart.jsonHistory
 msgid ""

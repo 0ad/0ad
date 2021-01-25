@@ -5,16 +5,16 @@
 # Translators:
 # Beñat Irazabal <birazabal@gmail.com>, 2021
 # Inaxio Lopes <inaxio.lopes@gmail.com>, 2019
-# Mielanjel Iraeta <pospolos@gmail.com>, 2017-2020
+# Mielanjel Iraeta <pospolos@gmail.com>, 2017-2021
 # Osoitz <oelkoro@gmail.com>, 2017,2019-2020
 # Mielanjel Iraeta <pospolos@gmail.com>, 2020
 # Gontzal M. Pujana <juchuf@gmail.com>, 2016-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-20 00:57+0000\n"
-"PO-Revision-Date: 2021-01-21 11:06+0000\n"
-"Last-Translator: Beñat Irazabal <birazabal@gmail.com>\n"
+"POT-Creation-Date: 2021-01-22 08:09+0000\n"
+"PO-Revision-Date: 2021-01-24 10:17+0000\n"
+"Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -64,8 +64,10 @@ msgid "Patriotism"
 msgstr "Abertzaletasuna"
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraDescription
-msgid "Soldiers +1 armor level and +10% melee and ranged attack damage."
-msgstr "Soldaduek: armadura +1, %10+ kalte buruz-buruko eta urrutiko erasoetan."
+msgid ""
+"Soldiers +1 crush, hack, pierce resistance and +10% melee and ranged attack "
+"damage."
+msgstr "Soldaduek: erresistentzia zapaldu, hautsi, zulatu +1 eta %10+ kaltea buruz-buruko eta urrutiko erasoetan."
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraName
 msgid "Exhortative Presence"
@@ -128,8 +130,9 @@ msgid "Hellenization"
 msgstr "Helenizazioa"
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraDescription
-msgid "Garrisoned Soldiers +3 armor and +20 vision range."
-msgstr "Guardan sartutako soldaduak +3 armadura eta +20 ikusmen-irismena."
+msgid ""
+"Garrisoned Soldiers +3 crush, hack, pierce resistance and +20 vision range."
+msgstr "Guardan sartutako soldaduak +3 erresistentzia zapaldu, hautsi eta zulatzean, eta +20 ikusmen-irismena."
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraName
 msgid "Wall Protection"
@@ -303,8 +306,8 @@ msgstr "Xaxatzailearen jazarpena"
 #: simulation/data/auras/units/catafalques/cart_catafalque.jsonauraDescription
 msgid ""
 "Leader of the Carthaginian heavy cavalry at Trebia and Cannae, where his triple charge had devastating effects on the enemy.\n"
-"Melee Cavalry +1 armor and +10% health."
-msgstr "Trebian eta Cannaen Kartagotarren Zalditeria astunaren liderra, non bere eraso hirukoitzak eragin suntsitzaileak izan zituen etsaietan.\nBuruz-buruko zalditeria +1 armaduran, + %10 osasunean."
+"Melee Cavalry +1 crush, hack, pierce resistance and +10% health."
+msgstr "Trebian eta Cannaen Kartagotarren Zalditeria astunaren liderra, non bere eraso hirukoitzak eragin suntsitzaileak izan zituen etsaietan.\nBuruz-buruko zalditeria +1 erresistentzia zapaldu, hautsi eta zulatzean, eta + %10 osasunean."
 
 #: simulation/data/auras/units/catafalques/cart_catafalque.jsonauraName
 msgid "Commander of Heavy Cavalry"
@@ -433,8 +436,8 @@ msgstr "Lucreciaren Mendekatzailea"
 #: simulation/data/auras/units/catafalques/rome_catafalque_2.jsonauraDescription
 msgid ""
 "Brutus was one of the key figures in the overthrow of the monarchy and the founding of the Roman Republic. Later, as consul he led a Roman army to victory against the Etruscan King Tarquinius who sought to retake the throne.\n"
-"Humans and Siege Engines +1 armor."
-msgstr "Bruto monarkia eraistearen eta Erromako Errepublika sortzearen ikurretako bat izan zen. Aurrerago, kontsul zelarik tronua berreskuratu nahi zuen Tarquinius errege Etruskoaren kontra osatu zuen armada garaipenera eraman zuen.\nGizaki eta setio makinak +1 armaduran."
+"Humans and Siege Engines +1 crush, hack, pierce resistance."
+msgstr "Bruto monarkia eraistearen eta Erromako Errepublika sortzearen ikurretako bat izan zen. Aurrerago, kontsul zelarik tronua berreskuratu nahi zuen Tarquinius errege Etruskoaren kontra osatu zuen armada garaipenera eraman zuen.\nGizaki eta setio makinak +1 erresistentzia zapaldu, hautsi eta zulatzean."
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_2.jsonauraName
 msgid "Founder and Defender of the Republic"
@@ -504,8 +507,10 @@ msgid "Elephant Workers"
 msgstr "Lanerako elefanteak"
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraDescription
-msgid "Soldiers in his formation +3 armor, +15% movement speed."
-msgstr "Formazio honetako soldaduek +3 armadura, %15+ mugitze abiaduran."
+msgid ""
+"Soldiers in his formation +3 crush, hack, pierce resistance, +15% movement "
+"speed."
+msgstr "Formazio honetako soldaduek +3 erresistentzia zapaldu, hautsi eta zulatzean, %15+ mugitze abiaduran."
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraName
 msgid "Formation Reforms"
@@ -564,8 +569,10 @@ msgid "Champion Army"
 msgstr "Armada Aldezkaria"
 
 #: simulation/data/auras/units/heroes/brit_hero_caratacos.jsonauraDescription
-msgid "Soldiers and Siege Engines +1 armor, +15% movement speed."
-msgstr "Soldadu eta setio makinek +1 armadura, %15+ mugimendu abiaduran."
+msgid ""
+"Soldiers and Siege Engines +1 crush, hack, pierce resistance, +15% movement "
+"speed."
+msgstr "Soldaduek  eta setio motorrak +1 erresistentzia zapaldu, hautsi eta zulatzean, %15+ mugitze abiaduran."
 
 #: simulation/data/auras/units/heroes/brit_hero_caratacos.jsonauraName
 msgid "Guerrilla Chief"
@@ -655,8 +662,8 @@ msgid "Valiant Defender"
 msgstr "Valiant Defendatzailea"
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_2.jsonauraDescription
-msgid "Soldiers +1 armor."
-msgstr "Soldaduek +1 armadura."
+msgid "Soldiers +1 crush, hack, pierce resistance."
+msgstr "Soldaduak +1 erresistentzia zapaldu, hautsi eta zulatzean."
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_2.jsonauraName
 msgid "Battle Fervor"
@@ -721,8 +728,8 @@ msgid "Slaughter of the Faithful"
 msgstr "Fededunaren hilketa"
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_1.jsonauraDescription
-msgid "Soldiers +10 melee and ranged attack damage, gain +50% resource loot."
-msgstr "Soldaduek 10+ kalte buruz-buruko eta urrutiko eraso kaltean, %50+ baliabide harrapakin gehiago."
+msgid "Soldiers +10% melee and ranged attack damage, gain +50% resource loot."
+msgstr "Soldaduek %10+ buruz-buruko eta urrutiko eraso kaltean, %50+ baliabide harrapakinetan."
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_1.jsonauraName
 msgid "Savior of Kush"
@@ -763,9 +770,9 @@ msgstr "Taxiarchès"
 
 #: simulation/data/auras/units/heroes/mace_hero_demetrius_i.jsonauraDescription
 msgid ""
-"Siege Engines +1 armor, +20% melee and ranged attack damage, +10% ranged "
-"attack range, +10% vision range."
-msgstr "Setio makinek +1 armadura, %20+ buruz-buruko eta urrutiko eraso kaltea, %10+ urrutiko eraso irismena, %10+ ikusmen-irismena."
+"Siege Engines +1 crush, hack, pierce resistance, +20% melee and ranged "
+"attack damage, +10% ranged attack range, +10% vision range."
+msgstr "Setio makinek +1 erresistentzia zapaldu, hautsi eta zulatzean, %20+ buruz-buruko eta urrutiko eraso kaltea, %10+ urrutiko eraso irismena, %10+ ikusmen-irismena."
 
 #: simulation/data/auras/units/heroes/mace_hero_demetrius_i.jsonauraName
 msgid "Besieger"
@@ -892,8 +899,8 @@ msgid "Enemy Infantry −10% melee and ranged attack damage."
 msgstr "Etsaien infanteria %10- buruz-buruko eta urrutiko eraso kaltean."
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraDescription
-msgid "Humans and Structures +1 armor."
-msgstr "Gizakiak eta egiturak +1 armadura."
+msgid "Humans and Structures +1 crush, hack, pierce resistance."
+msgstr "Gizaki eta egiturak +1 erresistentzia zapaldu, hautsi eta zulatzean."
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraName
 msgid "Shield of Rome"
@@ -910,8 +917,8 @@ msgid "Triumph"
 msgstr "Erabateko garaipena"
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_iii.jsonauraDescription
-msgid "Cavalry +2 armor."
-msgstr "Zalditeria +2 armadura."
+msgid "Cavalry +2 crush, hack, pierce resistance."
+msgstr "Zalditeria +1 erresistentzia zapaldu, hautsi eta zulatzean."
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_iii.jsonauraName
 msgid "Ilarchès"
@@ -935,8 +942,9 @@ msgstr "Elefanteen Nagusia"
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraDescription
 msgid ""
-"Citizen Infantry Javelineers +1 armor, +25% ranged attack pierce damage."
-msgstr "Hiritar infanteria lantzariak +1 armadura, %25+ urrutirako erasoen zulatze kaltean."
+"Citizen Infantry Javelineers +1 crush, hack, pierce resistance, +25% ranged "
+"attack pierce damage."
+msgstr "Hiritar infanteria lantzariak +1 erresistentzia zapaldu, hautsi eta zulatzean, %25+ urrutirako erasoen zulatze kaltean."
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraName
 msgid "Helot Reforms"

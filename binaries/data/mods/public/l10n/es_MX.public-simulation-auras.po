@@ -18,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-20 00:57+0000\n"
-"PO-Revision-Date: 2021-01-20 02:36+0000\n"
+"POT-Creation-Date: 2021-01-22 08:09+0000\n"
+"PO-Revision-Date: 2021-01-22 08:37+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Spanish (Mexico) (http://www.transifex.com/wildfire-games/0ad/language/es_MX/)\n"
 "MIME-Version: 1.0\n"
@@ -70,8 +70,10 @@ msgid "Patriotism"
 msgstr "Patriotismo"
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraDescription
-msgid "Soldiers +1 armor level and +10% melee and ranged attack damage."
-msgstr "Soldados +1 de nivel de armadura y +10% de ataque cuerpo a cuerpo y a distancia"
+msgid ""
+"Soldiers +1 crush, hack, pierce resistance and +10% melee and ranged attack "
+"damage."
+msgstr ""
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraName
 msgid "Exhortative Presence"
@@ -134,7 +136,8 @@ msgid "Hellenization"
 msgstr "Helenización "
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraDescription
-msgid "Garrisoned Soldiers +3 armor and +20 vision range."
+msgid ""
+"Garrisoned Soldiers +3 crush, hack, pierce resistance and +20 vision range."
 msgstr ""
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraName
@@ -309,7 +312,7 @@ msgstr "Hostigamiento de tirador"
 #: simulation/data/auras/units/catafalques/cart_catafalque.jsonauraDescription
 msgid ""
 "Leader of the Carthaginian heavy cavalry at Trebia and Cannae, where his triple charge had devastating effects on the enemy.\n"
-"Melee Cavalry +1 armor and +10% health."
+"Melee Cavalry +1 crush, hack, pierce resistance and +10% health."
 msgstr ""
 
 #: simulation/data/auras/units/catafalques/cart_catafalque.jsonauraName
@@ -439,8 +442,8 @@ msgstr "Vengador de Lucrecia."
 #: simulation/data/auras/units/catafalques/rome_catafalque_2.jsonauraDescription
 msgid ""
 "Brutus was one of the key figures in the overthrow of the monarchy and the founding of the Roman Republic. Later, as consul he led a Roman army to victory against the Etruscan King Tarquinius who sought to retake the throne.\n"
-"Humans and Siege Engines +1 armor."
-msgstr "Bruto fue una de las figuras clave en el derrocamiento de la monarquía y la fundación de la República romana. Más tarde, como cónsul, dirigió un ejército romano a la victoria contra el rey etrusco Tarquinius, que buscaba recuperar el trono\nHumanos y motores de asedio +1 armadura."
+"Humans and Siege Engines +1 crush, hack, pierce resistance."
+msgstr ""
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_2.jsonauraName
 msgid "Founder and Defender of the Republic"
@@ -510,7 +513,9 @@ msgid "Elephant Workers"
 msgstr "Elefantes Obreros"
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraDescription
-msgid "Soldiers in his formation +3 armor, +15% movement speed."
+msgid ""
+"Soldiers in his formation +3 crush, hack, pierce resistance, +15% movement "
+"speed."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraName
@@ -570,7 +575,9 @@ msgid "Champion Army"
 msgstr "Ejército campeón"
 
 #: simulation/data/auras/units/heroes/brit_hero_caratacos.jsonauraDescription
-msgid "Soldiers and Siege Engines +1 armor, +15% movement speed."
+msgid ""
+"Soldiers and Siege Engines +1 crush, hack, pierce resistance, +15% movement "
+"speed."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/brit_hero_caratacos.jsonauraName
@@ -661,7 +668,7 @@ msgid "Valiant Defender"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_2.jsonauraDescription
-msgid "Soldiers +1 armor."
+msgid "Soldiers +1 crush, hack, pierce resistance."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_2.jsonauraName
@@ -727,7 +734,7 @@ msgid "Slaughter of the Faithful"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_1.jsonauraDescription
-msgid "Soldiers +10 melee and ranged attack damage, gain +50% resource loot."
+msgid "Soldiers +10% melee and ranged attack damage, gain +50% resource loot."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_1.jsonauraName
@@ -769,9 +776,9 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_demetrius_i.jsonauraDescription
 msgid ""
-"Siege Engines +1 armor, +20% melee and ranged attack damage, +10% ranged "
-"attack range, +10% vision range."
-msgstr "Máquinas de asedio +1 armadura, +20% daño al ataque cuerpo a cuerpo y a distancia, +10% rango de ataque a distancia, +10% rango de visión."
+"Siege Engines +1 crush, hack, pierce resistance, +20% melee and ranged "
+"attack damage, +10% ranged attack range, +10% vision range."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_demetrius_i.jsonauraName
 msgid "Besieger"
@@ -898,8 +905,8 @@ msgid "Enemy Infantry −10% melee and ranged attack damage."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraDescription
-msgid "Humans and Structures +1 armor."
-msgstr "Humanos y Estructuras +1 de Armadura."
+msgid "Humans and Structures +1 crush, hack, pierce resistance."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraName
 msgid "Shield of Rome"
@@ -916,8 +923,8 @@ msgid "Triumph"
 msgstr "Triunfo"
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_iii.jsonauraDescription
-msgid "Cavalry +2 armor."
-msgstr "Caballería +2 de armadura."
+msgid "Cavalry +2 crush, hack, pierce resistance."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_iii.jsonauraName
 msgid "Ilarchès"
@@ -941,7 +948,8 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraDescription
 msgid ""
-"Citizen Infantry Javelineers +1 armor, +25% ranged attack pierce damage."
+"Citizen Infantry Javelineers +1 crush, hack, pierce resistance, +25% ranged "
+"attack pierce damage."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraName

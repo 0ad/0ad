@@ -17,7 +17,7 @@
 # chaosville <m.hammel@gmail.com>, 2013
 # cledge <christiankletsch@gmx.de>, 2014
 # 473a26a63eabb3943530c47ac45cdd62_5ad55e0, 2015
-# xtother90, 2019-2020
+# xtother90, 2019-2021
 # 0783ceb0abad32bf6a5d397ceffe5799, 2014
 # Enrico <TheEyeGer@web.de>, 2013
 # Fabian Gref <fabian.gref@gmail.com>, 2017
@@ -66,9 +66,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-01 08:01+0000\n"
-"PO-Revision-Date: 2021-01-01 08:36+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-01-22 08:09+0000\n"
+"PO-Revision-Date: 2021-01-23 20:18+0000\n"
+"Last-Translator: xtother90\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -137,8 +137,8 @@ msgid "Miltiades"
 msgstr "Miltiades"
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].Description
-msgid "Metal mining gathering rates increased by +10% for each passing age."
-msgstr "Die Metallabbaurate wird in jeder Phase um +10% erhöht."
+msgid "Workers +10% metal gather rate per phase advance."
+msgstr "Arbeiter +10% Metallsammelrate pro Phasenaufstieg."
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].History
 msgid ""
@@ -282,6 +282,22 @@ msgstr "Hanno der Große"
 msgid "Himilco"
 msgstr "Himilkon"
 
+#: simulation/data/civs/cart.jsonCivBonuses[0].Description
+msgid "Merchant Ships +25% trade gain."
+msgstr "Handelsschiffe +25 % Handelsertrag."
+
+#: simulation/data/civs/cart.jsonCivBonuses[0].Name
+msgid "Commercial Acumen"
+msgstr "Geschäftstüchtigkeit"
+
+#: simulation/data/civs/cart.jsonCivBonuses[1].Description
+msgid "Docks and Markets +10% international trade bonus."
+msgstr "Häfen und Märkte +10% internationaler Handelsbonus."
+
+#: simulation/data/civs/cart.jsonCivBonuses[1].Name
+msgid "Desirable Products"
+msgstr "Begehrenswerte Waren"
+
 #: simulation/data/civs/cart.jsonHistory
 msgid ""
 "Carthage, a city-state in modern-day Tunisia, was a formidable force in the "
@@ -336,30 +352,6 @@ msgstr "Valetiacus"
 msgid "Viridovix"
 msgstr "Viridovix"
 
-#: simulation/data/civs/gaul.jsonCivBonuses[0].Description
-msgid "Enhanced food gained from ranching and farming. "
-msgstr "Viehhaltung und Ackerbau bringen mehr Nahrung."
-
-#: simulation/data/civs/gaul.jsonCivBonuses[0].History
-msgid "Represents Celtic farming methods. "
-msgstr "Steht für keltische Ackerbaumethoden."
-
-#: simulation/data/civs/gaul.jsonCivBonuses[0].Name
-msgid "Ardiosmanae"
-msgstr "Ardiosmanae"
-
-#: simulation/data/civs/gaul.jsonCivBonuses[1].Description
-msgid "Druids increase attack rates of soldiers near them slightly."
-msgstr "Druiden erhöhen die Angriffsgeschwindigkeit naher Soldaten leicht."
-
-#: simulation/data/civs/gaul.jsonCivBonuses[1].History
-msgid "Celtic religion and druidry inspired their warlike mindset. "
-msgstr "Die keltische Religion und das Druidentum inspirierten ihre kriegerische Mentalität."
-
-#: simulation/data/civs/gaul.jsonCivBonuses[1].Name
-msgid "Deas Celtica"
-msgstr "Deas Celtica"
-
 #: simulation/data/civs/gaul.jsonHistory
 msgid ""
 "The Gauls were the Celtic tribes of continental Europe. Dominated by a "
@@ -403,8 +395,8 @@ msgid "Tautalus"
 msgstr "Tautalus"
 
 #: simulation/data/civs/iber.jsonCivBonuses[0].Description
-msgid "Iberians start with a powerful prefabricated circuit of stone walls."
-msgstr "Iberer starten mit einer mächtigen, bereits errichteten Stadtmauer."
+msgid "Iberians start with City Walls around their base on most maps."
+msgstr "Iberer beginnen auf den meisten Karten mit Stadtmauern rund um ihre Basis"
 
 #: simulation/data/civs/iber.jsonCivBonuses[0].History
 msgid ""
@@ -414,8 +406,18 @@ msgid ""
 msgstr "Auf der iberischen Halbinsel gibt es mit Ausnahme von Schwemmgebieten und Flusstälern überall reiche Vorkommen an Naturstein, welcher bei der Errichtung von Bauwerken jeglicher Art Verwendung fand."
 
 #: simulation/data/civs/iber.jsonCivBonuses[0].Name
-msgid "Harritsu Leku"
-msgstr "Harritsu Leku"
+msgid "Starting Walls"
+msgstr "Mauern beim Start"
+
+#: simulation/data/civs/iber.jsonCivBonuses[1].Description
+msgid ""
+"Stone Towers −50% wood cost, +150% stone cost, +33% build time, +60% health,"
+" +3 garrison capacity, and +1 default arrow count."
+msgstr "Steintürme −50% Holzkosten, +150% Steinkosten, +33 Bauzeit, +60% Gesundheit, +3 Garnison und +1 Pfeil standardmäßig."
+
+#: simulation/data/civs/iber.jsonCivBonuses[1].Name
+msgid "Massive Towers"
+msgstr "Massive Türme"
 
 #: simulation/data/civs/iber.jsonHistory
 msgid ""
@@ -487,6 +489,16 @@ msgstr "Atlanersa"
 msgid "Nasalsa"
 msgstr "Nasalsa"
 
+#: simulation/data/civs/kush.jsonCivBonuses[0].Description
+#: simulation/data/civs/pers.jsonCivBonuses[1].Description
+msgid "Battering Rams +20% attack damage and +2 garrison capacity."
+msgstr "Rammböcke +20% Schaden und +2 Garnison."
+
+#: simulation/data/civs/kush.jsonCivBonuses[0].Name
+#: simulation/data/civs/pers.jsonCivBonuses[1].Name
+msgid "Large Rams"
+msgstr "Große Rammen"
+
 #: simulation/data/civs/kush.jsonHistory
 msgid ""
 "The Kingdom of Kush was an ancient African kingdom situated on the "
@@ -503,7 +515,7 @@ msgid ""
 "Meroitic kingdom was known as Aethiopia. The Kushite kingdom persisted until"
 " the 4th century AD, when it weakened and disintegrated due to internal "
 "rebellion, eventually succumbing to the rising power of Axum."
-msgstr "Das Reich von Kusch war ein altes afrikanisches Königreich, welches am Zusammenfluss des blauen Nils, des weißen Nils und des schwarzen Nils, dem Gebiet des heutigen Sudan, gelegen war. Die kuschitische Era in dieser Region begann nach der Bronzezeit mit dem Zusammenbruch des neuen Königreiches von Ägypten und hatte in früher Phase sein Zentrum in der Stadt Napata. Im 8 Jahrhundert v. Chr. fielen Sie in Ägypten ein. Dort regierten die kuschitischen Kaiser ein Jahrhundert lang als Pharaonen der fünfundzwanzigsten Dynastie, bis sie von den Assyrern wieder vertrieben wurden. Die Kultur der Kusch wurde stark von den Ägyptern beeinflusst aber durch eigene monumentale Bauwerke, wie Pyramiden oder Tempel, noch erweitert. Die Bewohner des Reiches Kusch verehrten sogar viele ägyptische Götter, einschließlich Amun. Während der klassischen Antike war ihre Reichshauptstadt Meroe, wobei in frühgriechischer Geschichte das merotische Königreich auch als Aethiopien bekannt war. Das kuschitische Reich bestand bis ins 4Jh. hinein, bis es, durch interne Rebellionen geschwächt, schließlich der wachsenden Macht von Axum erlag."
+msgstr "Das Reich von Kusch war ein altes afrikanisches Königreich, welches am Zusammenfluss des blauen Nils, des weißen Nils und des schwarzen Nils, dem Gebiet des heutigen Sudan, gelegen war. Die kuschitische Era in dieser Region begann nach der Bronzezeit mit dem Zusammenbruch des neuen Königreiches von Ägypten und hatte in früher Phase sein Zentrum in der Stadt Napata. Im 8 Jahrhundert v. Chr. fielen Sie in Ägypten ein. Dort regierten die kuschitischen Kaiser ein Jahrhundert lang als Pharaonen der fünfundzwanzigsten Dynastie, bis sie von den Assyrern wieder vertrieben wurden. Die Kultur der Kusch wurde stark von den Ägyptern beeinflusst aber durch eigene monumentale Bauwerke, wie Pyramiden oder Tempel, noch erweitert. Die Bewohner des Reiches Kusch verehrten sogar viele ägyptische Götter, einschließlich Amun. Während der klassischen Antike war ihre Reichshauptstadt Meroe, wobei in frühgriechischer Geschichte das merotische Königreich auch als Aethiopien bekannt war. Das kuschitische Reich bestand bis ins 4Jh. hinein, bis es, durch interne Rebellionen geschwächt, schließlich der wachsenden Macht von Aksum erlag."
 
 #: simulation/data/civs/kush.jsonName
 msgid "Kushites"
@@ -675,6 +687,14 @@ msgstr "Artaxerxes II. Mnemon"
 msgid "Artaxshacha III"
 msgstr "Artaxerxes III. Ochos"
 
+#: simulation/data/civs/pers.jsonCivBonuses[0].Description
+msgid "Land Traders +25% trade gain."
+msgstr "Händler +25% Handelsbonus"
+
+#: simulation/data/civs/pers.jsonCivBonuses[0].Name
+msgid "Darics"
+msgstr "Dareikoi"
+
 #: simulation/data/civs/pers.jsonHistory
 msgid ""
 "The Persian Empire, when ruled by the Achaemenid dynasty, was one of the "
@@ -766,6 +786,14 @@ msgstr "Ptolemaios X. Alexander I."
 msgid "Ptolemy Neos Dionysos"
 msgstr "Ptolemaios XII. Neos Dionysos"
 
+#: simulation/data/civs/ptol.jsonCivBonuses[0].Description
+msgid "Bolt Shooters −33% attack damage and −33% attack time."
+msgstr "Bolzengeschütze −33% Schaden und −33% Angriffszeit."
+
+#: simulation/data/civs/ptol.jsonCivBonuses[0].Name
+msgid "Polybolos"
+msgstr "Polybolos"
+
 #: simulation/data/civs/ptol.jsonHistory
 msgid ""
 "The Ptolemaic dynasty was a Macedonian Greek royal family which ruled the "
@@ -850,23 +878,12 @@ msgid "Testudo Formation"
 msgstr "Schildkrötenformation"
 
 #: simulation/data/civs/rome.jsonCivBonuses[1].Description
-msgid ""
-"Any Roman citizen-soldier fighting within Roman territory gains a non-"
-"permanent +10% bonus in armor."
-msgstr "Jeder römische Bürgersoldat, der auf römischem Territorium kämpft, erhält vorübergehend einen Bonus von +10% auf Rüstung."
-
-#: simulation/data/civs/rome.jsonCivBonuses[1].History
-msgid ""
-"Roman Citizenship was highly prized in the ancient world. Basic rights and "
-"privileges were afforded Roman citizens that were denied other conquered "
-"peoples. It is said that harming a Roman citizen was akin to harming Rome "
-"herself, and would cause the entire might of Rome to fall upon the "
-"perpetrator."
-msgstr "Die Römische Bürgerschaft wurde in der Antike hoch geschätzt. Römischen Bürgern wurden grundlegende Rechte und Privilegien geboten, die anderen, unterworfenen Völkern vorenthalten wurden. Man sagte, einem Römer zu schaden sei so wie Rom selbst zu schaden und das würde die gesamte Macht Roms gegen den Täter aufbringen."
+msgid "Battering Rams +20% attack damage. Stone Throwers +10% attack damage."
+msgstr "Rammböcke +20% Schaden. Steinwerfer +10% Schaden."
 
 #: simulation/data/civs/rome.jsonCivBonuses[1].Name
-msgid "Citizenship"
-msgstr "Bürgerschaft"
+msgid "Legionary Engineers"
+msgstr "Legionsingenieure"
 
 #: simulation/data/civs/rome.jsonHistory
 msgid ""
@@ -1052,6 +1069,14 @@ msgstr "Echestratos"
 #: simulation/data/civs/spart.jsonAINames[9]
 msgid "Eurycrates"
 msgstr "Eurykrates"
+
+#: simulation/data/civs/spart.jsonCivBonuses[0].Description
+msgid "Female Citizens +40% health and +50% melee attack hack damage."
+msgstr "Bürgerinnen +40% Gesundheit und +50% Nahkampfhiebschaden."
+
+#: simulation/data/civs/spart.jsonCivBonuses[0].Name
+msgid "Spartan Women"
+msgstr "Spartanerin"
 
 #: simulation/data/civs/spart.jsonHistory
 msgid ""

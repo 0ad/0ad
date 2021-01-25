@@ -51,8 +51,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-20 00:57+0000\n"
-"PO-Revision-Date: 2021-01-20 16:07+0000\n"
+"POT-Creation-Date: 2021-01-22 08:09+0000\n"
+"PO-Revision-Date: 2021-01-24 02:29+0000\n"
 "Last-Translator: Stanislas Dolcini <stan@wildfiregames.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -103,8 +103,10 @@ msgid "Patriotism"
 msgstr "Patriotisme"
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraDescription
-msgid "Soldiers +1 armor level and +10% melee and ranged attack damage."
-msgstr "Soldats +1 niveau d'ramure et +10% de dommage pour les attaques de mélée et à distance"
+msgid ""
+"Soldiers +1 crush, hack, pierce resistance and +10% melee and ranged attack "
+"damage."
+msgstr "Soldats +1 niveau d'armure et +10% de dommage pour les attaques de mêlée et à distance"
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraName
 msgid "Exhortative Presence"
@@ -167,7 +169,8 @@ msgid "Hellenization"
 msgstr "Hellénisation"
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraDescription
-msgid "Garrisoned Soldiers +3 armor and +20 vision range."
+msgid ""
+"Garrisoned Soldiers +3 crush, hack, pierce resistance and +20 vision range."
 msgstr "Augmente l'armure de +3 et le champs de vision de +20 des soldats en garnison."
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraName
@@ -342,7 +345,7 @@ msgstr "Harcèlement de tirailleurs"
 #: simulation/data/auras/units/catafalques/cart_catafalque.jsonauraDescription
 msgid ""
 "Leader of the Carthaginian heavy cavalry at Trebia and Cannae, where his triple charge had devastating effects on the enemy.\n"
-"Melee Cavalry +1 armor and +10% health."
+"Melee Cavalry +1 crush, hack, pierce resistance and +10% health."
 msgstr "Leader de la cavalerie lourde Carthaginoise à Trébie et Cannes , où sa triple charge avait eu un effet dévastateurs sur l'ennemie.\nLa Cavalerie mêlée gagne +1 d'armure et +10% de santé supplémentaire."
 
 #: simulation/data/auras/units/catafalques/cart_catafalque.jsonauraName
@@ -472,7 +475,7 @@ msgstr "Vengeur de Lucrèce"
 #: simulation/data/auras/units/catafalques/rome_catafalque_2.jsonauraDescription
 msgid ""
 "Brutus was one of the key figures in the overthrow of the monarchy and the founding of the Roman Republic. Later, as consul he led a Roman army to victory against the Etruscan King Tarquinius who sought to retake the throne.\n"
-"Humans and Siege Engines +1 armor."
+"Humans and Siege Engines +1 crush, hack, pierce resistance."
 msgstr "Brutus était un des personnages clé dans le renversement de la monarchie et dans la fondation de la république romaine. Par la suite, comme consul il mena l'armée romaine à la victoire contre le Roi étrusque Tarquin qui cherchait à reprendre le trône.\nLes Humains et les Engins de Sièges gagnent +1 d'armure."
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_2.jsonauraName
@@ -543,7 +546,9 @@ msgid "Elephant Workers"
 msgstr "Éléphants Ouvriers"
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraDescription
-msgid "Soldiers in his formation +3 armor, +15% movement speed."
+msgid ""
+"Soldiers in his formation +3 crush, hack, pierce resistance, +15% movement "
+"speed."
 msgstr "Les Soldats dans leurs formations gagnent +3 d'armure, et 15% de vitesse de déplacement."
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraName
@@ -603,8 +608,10 @@ msgid "Champion Army"
 msgstr "Armée championne"
 
 #: simulation/data/auras/units/heroes/brit_hero_caratacos.jsonauraDescription
-msgid "Soldiers and Siege Engines +1 armor, +15% movement speed."
-msgstr "Les Soldats et les Engins de Sièges gagnent 1 d'armure, et 15% vitesse de déplacement."
+msgid ""
+"Soldiers and Siege Engines +1 crush, hack, pierce resistance, +15% movement "
+"speed."
+msgstr "Les Soldats dans leurs formations gagnent +3 d'armure, et 15% de vitesse de déplacement."
 
 #: simulation/data/auras/units/heroes/brit_hero_caratacos.jsonauraName
 msgid "Guerrilla Chief"
@@ -694,8 +701,8 @@ msgid "Valiant Defender"
 msgstr "Vaillant défenseur"
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_2.jsonauraDescription
-msgid "Soldiers +1 armor."
-msgstr "Les soldats gagnent +1 d'armure ."
+msgid "Soldiers +1 crush, hack, pierce resistance."
+msgstr "Les Soldats  gagnent +1 dégât écrasant, tranchant, perçant."
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_2.jsonauraName
 msgid "Battle Fervor"
@@ -760,7 +767,7 @@ msgid "Slaughter of the Faithful"
 msgstr "Massacre des Fidèles"
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_1.jsonauraDescription
-msgid "Soldiers +10 melee and ranged attack damage, gain +50% resource loot."
+msgid "Soldiers +10% melee and ranged attack damage, gain +50% resource loot."
 msgstr "Les Soldats gagnent +10 de dégât mêlée et distance , et gagnent 50% de butin de ressources."
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_1.jsonauraName
@@ -802,8 +809,8 @@ msgstr "Taxiarque"
 
 #: simulation/data/auras/units/heroes/mace_hero_demetrius_i.jsonauraDescription
 msgid ""
-"Siege Engines +1 armor, +20% melee and ranged attack damage, +10% ranged "
-"attack range, +10% vision range."
+"Siege Engines +1 crush, hack, pierce resistance, +20% melee and ranged "
+"attack damage, +10% ranged attack range, +10% vision range."
 msgstr "Les Engins de sièges gagnent +1 d'armure, 20% dégât mêlée et distance, 10% de portée d'attaque distance, et 10% de champs de vision."
 
 #: simulation/data/auras/units/heroes/mace_hero_demetrius_i.jsonauraName
@@ -931,8 +938,8 @@ msgid "Enemy Infantry −10% melee and ranged attack damage."
 msgstr "L'infanterie ennemie perds 10% de dégâts mêlée et à distance."
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraDescription
-msgid "Humans and Structures +1 armor."
-msgstr "Les humains et les Structures gagnent +1 d'armure."
+msgid "Humans and Structures +1 crush, hack, pierce resistance."
+msgstr "Humains et Structures +1 de résistance écrasante, tranchante, perçante."
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraName
 msgid "Shield of Rome"
@@ -949,8 +956,8 @@ msgid "Triumph"
 msgstr "Triomphe"
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_iii.jsonauraDescription
-msgid "Cavalry +2 armor."
-msgstr "La Cavalerie gagne +2 d'armure."
+msgid "Cavalry +2 crush, hack, pierce resistance."
+msgstr "Cavalrie +2 dégâts d'attaque écrasante, tranchante, perçante."
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_iii.jsonauraName
 msgid "Ilarchès"
@@ -974,8 +981,9 @@ msgstr "Zooiarque"
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraDescription
 msgid ""
-"Citizen Infantry Javelineers +1 armor, +25% ranged attack pierce damage."
-msgstr "+1 d'armure, +25% d'attaque à distance pour les infanteries javeliniers"
+"Citizen Infantry Javelineers +1 crush, hack, pierce resistance, +25% ranged "
+"attack pierce damage."
+msgstr "Les citoyens Javelinistes d'infanterie gagnent +1 d'armure, et 25% de dégâts distance perforant. "
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraName
 msgid "Helot Reforms"

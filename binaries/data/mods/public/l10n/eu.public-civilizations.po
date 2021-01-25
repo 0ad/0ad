@@ -5,16 +5,16 @@
 # Translators:
 # Ibai Oihanguren Sala <ibai@oihanguren.com>, 2014
 # Gontzal M. Pujana <juchuf@gmail.com>, 2016
-# Mielanjel Iraeta <pospolos@gmail.com>, 2017-2020
+# Mielanjel Iraeta <pospolos@gmail.com>, 2017-2021
 # Osoitz <oelkoro@gmail.com>, 2015,2019-2020
 # Mielanjel Iraeta <pospolos@gmail.com>, 2020
 # Quintana Salazar <quintana.salazar.unai@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-01 08:01+0000\n"
-"PO-Revision-Date: 2021-01-01 08:36+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-01-22 08:09+0000\n"
+"PO-Revision-Date: 2021-01-24 10:46+0000\n"
+"Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -83,8 +83,8 @@ msgid "Miltiades"
 msgstr "Miltiades"
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].Description
-msgid "Metal mining gathering rates increased by +10% for each passing age."
-msgstr "Metalaren ustiaketa-tasa %10ean handitzen da aro bakoitzeko."
+msgid "Workers +10% metal gather rate per phase advance."
+msgstr "Langileek %10+ metal ustiatze tasan fase aurrerapen bakoitzeko.."
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].History
 msgid ""
@@ -228,6 +228,22 @@ msgstr "Hannon el Handia"
 msgid "Himilco"
 msgstr "Himilcon"
 
+#: simulation/data/civs/cart.jsonCivBonuses[0].Description
+msgid "Merchant Ships +25% trade gain."
+msgstr "Merkatari ontziek %25+ irabaziak."
+
+#: simulation/data/civs/cart.jsonCivBonuses[0].Name
+msgid "Commercial Acumen"
+msgstr "Merkataritzarako gaitasuna"
+
+#: simulation/data/civs/cart.jsonCivBonuses[1].Description
+msgid "Docks and Markets +10% international trade bonus."
+msgstr "Kaiak eta merkatuak %10 gehiago nazioarteko merkataritzan."
+
+#: simulation/data/civs/cart.jsonCivBonuses[1].Name
+msgid "Desirable Products"
+msgstr "Produktu desiragarriak"
+
 #: simulation/data/civs/cart.jsonHistory
 msgid ""
 "Carthage, a city-state in modern-day Tunisia, was a formidable force in the "
@@ -282,30 +298,6 @@ msgstr "Valetiacus"
 msgid "Viridovix"
 msgstr "Viridovix"
 
-#: simulation/data/civs/gaul.jsonCivBonuses[0].Description
-msgid "Enhanced food gained from ranching and farming. "
-msgstr "Janari hobea eskuratuta abeltzaintza eta nekazaritzatik."
-
-#: simulation/data/civs/gaul.jsonCivBonuses[0].History
-msgid "Represents Celtic farming methods. "
-msgstr "Zelten nekazaritza metodoak adierazten ditu."
-
-#: simulation/data/civs/gaul.jsonCivBonuses[0].Name
-msgid "Ardiosmanae"
-msgstr "Ardiosmanae"
-
-#: simulation/data/civs/gaul.jsonCivBonuses[1].Description
-msgid "Druids increase attack rates of soldiers near them slightly."
-msgstr "Druidek soldaduen eraso tasa apur bat hobetzen dute inguruetan."
-
-#: simulation/data/civs/gaul.jsonCivBonuses[1].History
-msgid "Celtic religion and druidry inspired their warlike mindset. "
-msgstr "Zelta erlijioak eta druiden egiteak bere borroka izpiritua pizten zuten"
-
-#: simulation/data/civs/gaul.jsonCivBonuses[1].Name
-msgid "Deas Celtica"
-msgstr "Deas Celtica "
-
 #: simulation/data/civs/gaul.jsonHistory
 msgid ""
 "The Gauls were the Celtic tribes of continental Europe. Dominated by a "
@@ -349,8 +341,8 @@ msgid "Tautalus"
 msgstr "Tautalus"
 
 #: simulation/data/civs/iber.jsonCivBonuses[0].Description
-msgid "Iberians start with a powerful prefabricated circuit of stone walls."
-msgstr "Iberiarrak aurrez prestaturiko harresi uztai batez hasiko dira."
+msgid "Iberians start with City Walls around their base on most maps."
+msgstr "Iberiarrak hasten dira, mapa gehienetan, basearen inguruko hiri harresiaz."
 
 #: simulation/data/civs/iber.jsonCivBonuses[0].History
 msgid ""
@@ -360,8 +352,18 @@ msgid ""
 msgstr "Alubial lautada eta ibai haranetan salbu, harria oparoa da Iberiar Penintsulan eta mota guztietako egituretako eraikuntzetan asko erabili zen."
 
 #: simulation/data/civs/iber.jsonCivBonuses[0].Name
-msgid "Harritsu Leku"
-msgstr "Leku Harritsua"
+msgid "Starting Walls"
+msgstr "Hasierako hesiak"
+
+#: simulation/data/civs/iber.jsonCivBonuses[1].Description
+msgid ""
+"Stone Towers −50% wood cost, +150% stone cost, +33% build time, +60% health,"
+" +3 garrison capacity, and +1 default arrow count."
+msgstr "Harrizko dorreak: %50- egurretan, %150+ harritan, %33 eraikitzean, %60+ osasunean, +3 goarnizio gaitasunean, eta +1 gezien zenbateko lehenetsian."
+
+#: simulation/data/civs/iber.jsonCivBonuses[1].Name
+msgid "Massive Towers"
+msgstr "Dorre Masiboak"
 
 #: simulation/data/civs/iber.jsonHistory
 msgid ""
@@ -432,6 +434,16 @@ msgstr "Atlanersa"
 #: simulation/data/civs/kush.jsonAINames[9]
 msgid "Nasalsa"
 msgstr "Nasalsa"
+
+#: simulation/data/civs/kush.jsonCivBonuses[0].Description
+#: simulation/data/civs/pers.jsonCivBonuses[1].Description
+msgid "Battering Rams +20% attack damage and +2 garrison capacity."
+msgstr "Arieteak: %20+ eraso minan, +2 goarnizio gaitasuna.."
+
+#: simulation/data/civs/kush.jsonCivBonuses[0].Name
+#: simulation/data/civs/pers.jsonCivBonuses[1].Name
+msgid "Large Rams"
+msgstr "Ariete handiak"
 
 #: simulation/data/civs/kush.jsonHistory
 msgid ""
@@ -621,6 +633,14 @@ msgstr "Artaxshacha II"
 msgid "Artaxshacha III"
 msgstr "Artaxshacha III"
 
+#: simulation/data/civs/pers.jsonCivBonuses[0].Description
+msgid "Land Traders +25% trade gain."
+msgstr "Eskualdeko merkatariek %25+ irabazian."
+
+#: simulation/data/civs/pers.jsonCivBonuses[0].Name
+msgid "Darics"
+msgstr "Darics"
+
 #: simulation/data/civs/pers.jsonHistory
 msgid ""
 "The Persian Empire, when ruled by the Achaemenid dynasty, was one of the "
@@ -712,6 +732,14 @@ msgstr "Ptolomeo Alejandro "
 msgid "Ptolemy Neos Dionysos"
 msgstr "Ptolomeo Neos Dioniso "
 
+#: simulation/data/civs/ptol.jsonCivBonuses[0].Description
+msgid "Bolt Shooters −33% attack damage and −33% attack time."
+msgstr "Balaztak %33- eraso kaltean eta %33- erasoen arteko denboran."
+
+#: simulation/data/civs/ptol.jsonCivBonuses[0].Name
+msgid "Polybolos"
+msgstr "Polybolos"
+
 #: simulation/data/civs/ptol.jsonHistory
 msgid ""
 "The Ptolemaic dynasty was a Macedonian Greek royal family which ruled the "
@@ -796,23 +824,12 @@ msgid "Testudo Formation"
 msgstr "Dortoka Formazioa"
 
 #: simulation/data/civs/rome.jsonCivBonuses[1].Description
-msgid ""
-"Any Roman citizen-soldier fighting within Roman territory gains a non-"
-"permanent +10% bonus in armor."
-msgstr "Erromatarren lurretan borrokan dagoen edozein Erromatar hiritar-soldaduak aldi baterako armadurako % 10+ hobaria lortzen du."
-
-#: simulation/data/civs/rome.jsonCivBonuses[1].History
-msgid ""
-"Roman Citizenship was highly prized in the ancient world. Basic rights and "
-"privileges were afforded Roman citizens that were denied other conquered "
-"peoples. It is said that harming a Roman citizen was akin to harming Rome "
-"herself, and would cause the entire might of Rome to fall upon the "
-"perpetrator."
-msgstr "Antzinen Erromatar hiritarrak oso estimatuak ziren. Erromatarrek zituzten oinarrizko eskubide eta abantailak konkistatutako beste herriei ukatzen zitzaizkien. Erromako hiritar bat zauritzea Erroma bera zauritzea zela esaten zen, eta Erromako botere dena jaso zezakeen arau hausleak. "
+msgid "Battering Rams +20% attack damage. Stone Throwers +10% attack damage."
+msgstr "Arieteak: %20+ eraso minan. Harri jaurtitzaileak %10+ erasoko minan.."
 
 #: simulation/data/civs/rome.jsonCivBonuses[1].Name
-msgid "Citizenship"
-msgstr "Hiritartasuna"
+msgid "Legionary Engineers"
+msgstr "Legio ingeniariak"
 
 #: simulation/data/civs/rome.jsonHistory
 msgid ""
@@ -998,6 +1015,14 @@ msgstr "Echestratus"
 #: simulation/data/civs/spart.jsonAINames[9]
 msgid "Eurycrates"
 msgstr "Eurycrates"
+
+#: simulation/data/civs/spart.jsonCivBonuses[0].Description
+msgid "Female Citizens +40% health and +50% melee attack hack damage."
+msgstr "Emakumezko hiritarrak %40+ osasunean eta +50% buruz buruko erasoan."
+
+#: simulation/data/civs/spart.jsonCivBonuses[0].Name
+msgid "Spartan Women"
+msgstr "Espartiar emakumeak"
 
 #: simulation/data/civs/spart.jsonHistory
 msgid ""

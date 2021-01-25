@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2020 Wildfire Games
+# Copyright (C) 2021 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -22,9 +22,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-12-28 08:02+0000\n"
-"PO-Revision-Date: 2021-01-13 15:10+0000\n"
-"Last-Translator: Adam Adam <villa2billel@live.com>\n"
+"POT-Creation-Date: 2021-01-22 08:09+0000\n"
+"PO-Revision-Date: 2021-01-22 09:25+0000\n"
+"Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -386,11 +386,11 @@ msgstr "عشوائيّة"
 msgid "Pick any of the given maps at random."
 msgstr "انتقِ أيًّا من الخرائط عشوائيًّا."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:75
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:70
 msgid "Map Size"
 msgstr "مقاس الخريطة"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:78
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:73
 msgid "Select map size. (Larger sizes may reduce performance.)"
 msgstr "اختر مقاس الخريطة. (الخرائط الكبيرة قد تقلّل الأداء.)"
 
@@ -818,60 +818,78 @@ msgstr "يحمّل بيانات الخريطة، رجاءً انتظر…"
 msgid "Match Setup"
 msgstr "إعداد المبارزة"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:55
+#: gui/gamesetup_mp/gamesetup_mp.js:60
 #, javascript-format
 msgid "%(name)s's game"
 msgstr "لعبة %(name)s"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:114
+#: gui/gamesetup_mp/gamesetup_mp.js:124
 msgid "Please enter a valid server name."
 msgstr "رجاءً أدخل اسم خادوم صالح."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:121
+#: gui/gamesetup_mp/gamesetup_mp.js:132
 #, javascript-format
 msgid "Server port number must be between %(min)s and %(max)s."
 msgstr "يجب أن يكون منفذ الخادوم بين %(min)s و%(max)s."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:138
+#: gui/gamesetup_mp/gamesetup_mp.js:151
 msgid "Connecting to server..."
 msgstr "يتّصل بالخادوم..."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:157
+#: gui/gamesetup_mp/gamesetup_mp.js:166
+msgid "Server is not running."
+msgstr ""
+
+#: gui/gamesetup_mp/gamesetup_mp.js:167
+msgid "Password is invalid."
+msgstr ""
+
+#: gui/gamesetup_mp/gamesetup_mp.js:170
+#, javascript-format
+msgid "\\[Invalid value %(reason)s]"
+msgstr ""
+
+#: gui/gamesetup_mp/gamesetup_mp.js:178
+msgid "Failed to connect to the server."
+msgstr "فشل الاتّصال مع الخادوم."
+
+#: gui/gamesetup_mp/gamesetup_mp.js:180
+msgid "Connection failed"
+msgstr ""
+
+#: gui/gamesetup_mp/gamesetup_mp.js:192
 #, javascript-format
 msgid "Net message: %(message)s"
 msgstr "رسالة شبكيّة: %(message)s"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:223
+#: gui/gamesetup_mp/gamesetup_mp.js:287
 msgid "Registering with server..."
 msgstr "يسجّل مع الخادوم..."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:229
+#: gui/gamesetup_mp/gamesetup_mp.js:293
 msgid "Game has already started, rejoining..."
 msgstr "اللعبة بدأت بالفعل، يعيد الانضمام..."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:300
+#: gui/gamesetup_mp/gamesetup_mp.js:372
 msgid "Game name already in use."
 msgstr "اسم اللعبة مُستخدم بالفعل."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:310
-msgid "Failed to host via STUN."
-msgstr ""
-
-#: gui/gamesetup_mp/gamesetup_mp.js:324
+#: gui/gamesetup_mp/gamesetup_mp.js:387
 #, javascript-format
 msgid "Cannot host game: %(message)s."
 msgstr "تعذّرت استضافة اللعبة: %(message)s"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:325 gui/gamesetup_mp/gamesetup_mp.js:354
+#: gui/gamesetup_mp/gamesetup_mp.js:388 gui/gamesetup_mp/gamesetup_mp.js:417
+#: gui/gamesetup_mp/gamesetup_mp.js:444 gui/gamesetup_mp/gamesetup_mp.js:459
 msgid "Error"
 msgstr "خطأ"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:353
+#: gui/gamesetup_mp/gamesetup_mp.js:416 gui/gamesetup_mp/gamesetup_mp.js:458
 #, javascript-format
 msgid "Cannot join game: %(message)s."
 msgstr "لايمكن الدخول للعبة: %(message)s."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:375
+#: gui/gamesetup_mp/gamesetup_mp.js:473
 #, javascript-format
 msgid "%(playername)s's game"
 msgstr "لعبة %(playername)s"
@@ -906,22 +924,38 @@ msgstr "اضبط خادومك المضيف."
 msgid "Server Name:"
 msgstr "إسم السرفر:"
 
-#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):114
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):112
+msgid "Server Password:"
+msgstr ""
+
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):128
 msgid "Use STUN to work around firewalls"
 msgstr ""
 
-#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):122
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):136
 msgid "Continue"
 msgstr "تابع"
 
-#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):127
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):141
 msgid "Cancel"
 msgstr "ألغِ"
+
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):152
+msgid "Password:"
+msgstr "كلمة السّرّ:"
+
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):162
+msgid "Confirm"
+msgstr ""
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):52
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):99
 msgid "Leave blank to use the default port."
 msgstr "أتركها فارغة لكي تستعمل المنفذ الافتراضي."
+
+#: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):113
+msgid "Leave blank to not require it."
+msgstr ""
 
 #: gui/loading/ProgressBar.js:48
 #, javascript-format

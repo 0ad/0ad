@@ -24,9 +24,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-20 00:57+0000\n"
-"PO-Revision-Date: 2021-01-20 02:21+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-01-22 08:09+0000\n"
+"PO-Revision-Date: 2021-01-22 11:22+0000\n"
+"Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -45,10 +45,6 @@ msgid "The Agoge"
 msgstr "아고게"
 
 #: simulation/data/technologies/agoge.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_cavalry_melee_02.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_cavalry_ranged_02.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_infantry_melee_02.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_infantry_ranged_02.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_soldiers_will.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_steel_working.jsonrequirementsTooltip
 #: simulation/data/technologies/barracks_batch_training.jsonrequirementsTooltip
@@ -72,12 +68,14 @@ msgstr "아고게"
 #: simulation/data/technologies/ship_cost_time.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_health.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_movement_speed.jsonrequirementsTooltip
-#: simulation/data/technologies/siege_armor.jsonrequirementsTooltip
 #: simulation/data/technologies/siege_attack.jsonrequirementsTooltip
 #: simulation/data/technologies/siege_bolt_accuracy.jsonrequirementsTooltip
-#: simulation/data/technologies/siege_cost_metal.jsonrequirementsTooltip
-#: simulation/data/technologies/siege_cost_wood.jsonrequirementsTooltip
+#: simulation/data/technologies/siege_cost_time.jsonrequirementsTooltip
+#: simulation/data/technologies/siege_health.jsonrequirementsTooltip
+#: simulation/data/technologies/siege_pack_unpack.jsonrequirementsTooltip
 #: simulation/data/technologies/silvershields.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_attack_melee_02.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_attack_ranged_02.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_hack_02.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_pierce_02.jsonrequirementsTooltip
 #: simulation/data/technologies/stable_batch_training.jsonrequirementsTooltip
@@ -126,10 +124,6 @@ msgid "Monumental Architecture"
 msgstr "기념비적 건축 양식"
 
 #: simulation/data/technologies/architecture_kush.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_cavalry_melee_01.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_cavalry_ranged_01.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_infantry_melee_01.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_infantry_ranged_01.jsonrequirementsTooltip
 #: simulation/data/technologies/cavalry_cost_time.jsonrequirementsTooltip
 #: simulation/data/technologies/cavalry_health.jsonrequirementsTooltip
 #: simulation/data/technologies/colonization.jsonrequirementsTooltip
@@ -145,6 +139,8 @@ msgstr "기념비적 건축 양식"
 #: simulation/data/technologies/heal_rate.jsonrequirementsTooltip
 #: simulation/data/technologies/infantry_cost_time.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_attack_melee_01.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_attack_ranged_01.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_hack_01.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_pierce_01.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_crenellations.jsonrequirementsTooltip
@@ -176,124 +172,6 @@ msgstr "페르시아 건축양법"
 #: simulation/data/technologies/architecture_pers.jsontooltip
 msgid "Structures +25% health and capture points, but also +20% build time."
 msgstr ""
-
-#: simulation/data/technologies/attack_cavalry_melee_01.jsondescription
-msgid "Training increases melee attack."
-msgstr "이 훈련은 근접 공격력이 증가합니다."
-
-#: simulation/data/technologies/attack_cavalry_melee_01.jsongenericName
-msgid "Close Combat Cavalry Training"
-msgstr "근접 전투 기병 훈련"
-
-#: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.athen
-#: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.mace
-#: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.ptol
-#: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.sele
-#: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.spart
-#: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.athen
-#: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.mace
-#: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.ptol
-#: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.sele
-#: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.spart
-msgid "Xyston"
-msgstr "크시스톤"
-
-#: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.rome
-#: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.rome
-msgid "Hasta"
-msgstr "하스타"
-
-#: simulation/data/technologies/attack_cavalry_melee_01.jsontooltip
-#: simulation/data/technologies/attack_cavalry_melee_02.jsontooltip
-msgid "Cavalry +20% melee attack damage."
-msgstr ""
-
-#: simulation/data/technologies/attack_cavalry_melee_02.jsondescription
-#: simulation/data/technologies/attack_cavalry_ranged_02.jsondescription
-msgid "Replaces bronze weapons with iron."
-msgstr "청동무기를 철로 바꿉니다."
-
-#: simulation/data/technologies/attack_cavalry_melee_02.jsongenericName
-#: simulation/data/technologies/attack_cavalry_ranged_02.jsongenericName
-#: simulation/data/technologies/attack_infantry_melee_02.jsongenericName
-msgid "Iron Weapons"
-msgstr "철제 무기"
-
-#: simulation/data/technologies/attack_cavalry_ranged_01.jsondescription
-msgid "Training increases ranged attack."
-msgstr "이 훈련은 원거리 공격력이 증가합니다."
-
-#: simulation/data/technologies/attack_cavalry_ranged_01.jsongenericName
-msgid "Ranged Combat Cavalry Training"
-msgstr "원거리 전투 기병 훈련"
-
-#: simulation/data/technologies/attack_cavalry_ranged_01.jsontooltip
-#: simulation/data/technologies/attack_cavalry_ranged_02.jsontooltip
-msgid "Cavalry +20% ranged attack damage."
-msgstr ""
-
-#: simulation/data/technologies/attack_infantry_melee_01.jsondescription
-msgid ""
-"Often, an infantryman would carry a secondary weapon in addition to his "
-"primary weapon of choice, to be drawn when the primary weapon has failed or "
-"been broken."
-msgstr "종종, 보병은 주로 주무기가 고장나거나 부러졌을때 이끌어야 할 주무기 외에도 보조무기도 가지고 있습니다."
-
-#: simulation/data/technologies/attack_infantry_melee_01.jsongenericName
-msgid "Side Arms"
-msgstr "휴대 무기"
-
-#: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.athen
-#: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.mace
-#: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.ptol
-#: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.sele
-#: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.spart
-msgid "Xiphos"
-msgstr "사이포스"
-
-#: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.rome
-msgid "Pugio"
-msgstr "푸기오"
-
-#: simulation/data/technologies/attack_infantry_melee_01.jsontooltip
-#: simulation/data/technologies/attack_infantry_melee_02.jsontooltip
-msgid "Infantry +20% melee attack damage."
-msgstr ""
-
-#: simulation/data/technologies/attack_infantry_melee_02.jsondescription
-msgid "Using iron instead of bronze gave weapons additional power."
-msgstr "청동 대신 철을 사용하는 것은 무기에 추가적인 힘을 주었습니다."
-
-#: simulation/data/technologies/attack_infantry_ranged_01.jsondescription
-#: simulation/data/technologies/attack_infantry_ranged_02.jsondescription
-msgid "Training increases damage of ranged infantry."
-msgstr "원거리 보병의 공격력을 강화하는 훈련입니다."
-
-#: simulation/data/technologies/attack_infantry_ranged_01.jsongenericName
-msgid "Ranged Infantry Irregulars"
-msgstr "비정규 원거리 보병"
-
-#: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.athen
-#: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.mace
-#: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.ptol
-#: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.sele
-#: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.spart
-#: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.athen
-#: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.mace
-#: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.ptol
-#: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.sele
-#: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.spart
-msgid "Ataktoi"
-msgstr "아타토이"
-
-#: simulation/data/technologies/attack_infantry_ranged_01.jsontooltip
-#: simulation/data/technologies/attack_infantry_ranged_02.jsontooltip
-msgid "Infantry +20% ranged attack damage."
-msgstr ""
-
-#: simulation/data/technologies/attack_infantry_ranged_02.jsongenericName
-msgid "Ranged Infantry Masterclass"
-msgstr "원거리 보병 상급 훈련"
 
 #: simulation/data/technologies/attack_soldiers_will.jsondescription
 msgid ""
@@ -653,8 +531,8 @@ msgstr "비료"
 #: simulation/data/technologies/gather_farming_fertilizer.jsontooltip
 #: simulation/data/technologies/gather_farming_plows.jsontooltip
 #: simulation/data/technologies/gather_farming_training.jsontooltip
-msgid "Workers +20% grain gather rate."
-msgstr "일꾼의 곡물 수확률이 +20% 증가합니다."
+msgid "Workers +15% grain gather rate."
+msgstr "노동자의 곡물 수확률이 +15% 증가합니다."
 
 #: simulation/data/technologies/gather_farming_harvester.jsondescription
 msgid ""
@@ -701,8 +579,8 @@ msgstr ""
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsontooltip
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsontooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsontooltip
-msgid "Workers +25% wood gather rate."
-msgstr "일꾼의 목재 채집률이 +25% 증가합니다."
+msgid "Workers +20% wood gather rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsongenericName
 msgid "Sharp Axe Heads"
@@ -729,8 +607,8 @@ msgstr "힐로테스"
 #: simulation/data/technologies/gather_mining_serfs.jsontooltip
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
 #: simulation/data/technologies/gather_mining_slaves.jsontooltip
-msgid "Workers +25% stone gather rate."
-msgstr "일꾼의 석재 채집률이 +25% 증가합니다."
+msgid "Workers +20% stone gather rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_mining_servants.jsondescription
 msgid "Hire servants to help quarry stone. Increases stone gathering rates."
@@ -759,8 +637,8 @@ msgstr "수직 갱도 광산"
 #: simulation/data/technologies/gather_mining_shaftmining.jsontooltip
 #: simulation/data/technologies/gather_mining_silvermining.jsontooltip
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
-msgid "Workers +25% metal gather rate."
-msgstr "일꾼의 금속 채집률이 +25% 증가합니다."
+msgid "Workers +20% metal gather rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_mining_silvermining.jsondescription
 msgid "Strike a vein of precious silver. Increases metal gathering rates."
@@ -1225,18 +1103,6 @@ msgstr ""
 msgid "Ships +10% movement speed."
 msgstr ""
 
-#: simulation/data/technologies/siege_armor.jsondescription
-msgid "Increased armor on siege engines."
-msgstr "공성 무기의 방어력이 증가합니다."
-
-#: simulation/data/technologies/siege_armor.jsongenericName
-msgid "Armor plating"
-msgstr "장갑 갑옷"
-
-#: simulation/data/technologies/siege_armor.jsontooltip
-msgid "Siege Engines +2 hack resistance."
-msgstr ""
-
 #: simulation/data/technologies/siege_attack.jsondescription
 msgid "Advanced technologies improve siege efficiency."
 msgstr "첨단 기술은 공성 효율성을 향상합니다."
@@ -1261,29 +1127,42 @@ msgstr "노포의 명중률"
 msgid "Bolt Shooters −20% ranged attack spread."
 msgstr "노포의 장거리 범위 공격력이 -20% 감소합니다."
 
-#: simulation/data/technologies/siege_cost_metal.jsondescription
-msgid "Siege engines require less metal."
-msgstr "공성 무기에 필요한 금속이 덜 필요합니다."
+#: simulation/data/technologies/siege_cost_time.jsondescription
+msgid "The science or craft of laying or carrying out sieges."
+msgstr ""
 
-#: simulation/data/technologies/siege_cost_metal.jsongenericName
-msgid "Metalworker"
-msgstr "금속 세공사"
+#: simulation/data/technologies/siege_cost_time.jsongenericName
+msgid "Siegecraft"
+msgstr ""
 
-#: simulation/data/technologies/siege_cost_metal.jsontooltip
-msgid "Siege Engines −20% metal cost."
-msgstr "공성 무기의 금속 비용이 -20% 감소합니다."
+#: simulation/data/technologies/siege_cost_time.jsontooltip
+msgid "Siege Engines −20% construction time."
+msgstr ""
 
-#: simulation/data/technologies/siege_cost_wood.jsondescription
-msgid "Siege engines require less wood."
-msgstr "공성 무기의 목재가 덜 필요합니다."
+#: simulation/data/technologies/siege_health.jsondescription
+msgid ""
+"Cover the exterior with iron plates to protect against fire and projectiles."
+msgstr ""
 
-#: simulation/data/technologies/siege_cost_wood.jsongenericName
-msgid "Artillery Instructors"
-msgstr "포병 교관"
+#: simulation/data/technologies/siege_health.jsongenericName
+msgid "Armor Plating"
+msgstr ""
 
-#: simulation/data/technologies/siege_cost_wood.jsontooltip
-msgid "Siege Engines −20% wood cost."
-msgstr "공성 무기의 목재 비용이 -20% 줄어듭니다."
+#: simulation/data/technologies/siege_health.jsontooltip
+msgid "Battering Rams and Siege Towers +25% health."
+msgstr ""
+
+#: simulation/data/technologies/siege_pack_unpack.jsondescription
+msgid "Military engineers are responsible for improvements in siege engines."
+msgstr ""
+
+#: simulation/data/technologies/siege_pack_unpack.jsongenericName
+msgid "Military Engineers"
+msgstr "공병"
+
+#: simulation/data/technologies/siege_pack_unpack.jsontooltip
+msgid "Siege Engines –40% pack and unpack time."
+msgstr ""
 
 #: simulation/data/technologies/silvershields.jsondescription
 msgid ""
@@ -1300,6 +1179,63 @@ msgid ""
 "Upgrade Shield Bearer Champion Infantry to Silver Shields, with more health "
 "and attack damage."
 msgstr "방패지기 대표 전사 보병을 더 많은 체력과 공격력을 주는 은방패로 향상합니다."
+
+#: simulation/data/technologies/soldier_attack_melee_01.jsondescription
+msgid ""
+"Often, a soldier would carry a secondary weapon in addition to his primary "
+"weapon of choice, to be drawn when the primary weapon has failed or been "
+"broken."
+msgstr ""
+
+#: simulation/data/technologies/soldier_attack_melee_01.jsongenericName
+msgid "Side Arms"
+msgstr "휴대 무기"
+
+#: simulation/data/technologies/soldier_attack_melee_01.jsonspecificName.athen
+#: simulation/data/technologies/soldier_attack_melee_01.jsonspecificName.mace
+#: simulation/data/technologies/soldier_attack_melee_01.jsonspecificName.ptol
+#: simulation/data/technologies/soldier_attack_melee_01.jsonspecificName.sele
+#: simulation/data/technologies/soldier_attack_melee_01.jsonspecificName.spart
+msgid "Xiphos"
+msgstr "사이포스"
+
+#: simulation/data/technologies/soldier_attack_melee_01.jsonspecificName.rome
+msgid "Pugio"
+msgstr "푸기오"
+
+#: simulation/data/technologies/soldier_attack_melee_01.jsontooltip
+#: simulation/data/technologies/soldier_attack_melee_02.jsontooltip
+msgid "Soldiers +15% melee attack damage."
+msgstr ""
+
+#: simulation/data/technologies/soldier_attack_melee_02.jsondescription
+msgid "Using iron instead of bronze gave weapons additional power."
+msgstr "청동 대신 철을 사용하는 것은 무기에 추가적인 힘을 주었습니다."
+
+#: simulation/data/technologies/soldier_attack_melee_02.jsongenericName
+msgid "Iron Weapons"
+msgstr "철제 무기"
+
+#: simulation/data/technologies/soldier_attack_ranged_01.jsondescription
+msgid "Projectile points made of iron enable missiles to penetrate deeper."
+msgstr ""
+
+#: simulation/data/technologies/soldier_attack_ranged_01.jsongenericName
+msgid "Iron Arrowheads"
+msgstr ""
+
+#: simulation/data/technologies/soldier_attack_ranged_01.jsontooltip
+#: simulation/data/technologies/soldier_attack_ranged_02.jsontooltip
+msgid "Soldiers +15% ranged attack damage."
+msgstr ""
+
+#: simulation/data/technologies/soldier_attack_ranged_02.jsondescription
+msgid "Arrowheads with three lobes instead of two inflict larger wounds."
+msgstr ""
+
+#: simulation/data/technologies/soldier_attack_ranged_02.jsongenericName
+msgid "Trilobate Arrowheads"
+msgstr ""
 
 #: simulation/data/technologies/soldier_ranged_experience.jsontooltip
 msgid "Ranged Soldiers +25% promotion experience."

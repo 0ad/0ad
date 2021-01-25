@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2020 Wildfire Games
+# Copyright (C) 2021 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -8,9 +8,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-12-28 08:02+0000\n"
-"PO-Revision-Date: 2020-12-28 09:25+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-01-22 08:09+0000\n"
+"PO-Revision-Date: 2021-01-22 09:25+0000\n"
+"Last-Translator: Vahe Avagyan <vahe-a@outlook.fr>\n"
 "Language-Team: Armenian (http://www.transifex.com/wildfire-games/0ad/language/hy/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -372,11 +372,11 @@ msgstr "Պատահական"
 msgid "Pick any of the given maps at random."
 msgstr "Ընտրել տրված քարտեզներից պատահական որևէ մեկը։"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:75
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:70
 msgid "Map Size"
 msgstr "Քարտեզի չափ"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:78
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:73
 msgid "Select map size. (Larger sizes may reduce performance.)"
 msgstr "Ընտրեք քարտեզի չափը: (Մեծ քարտեզները կարող են նվազեցնել արագագործությունը։)"
 
@@ -788,60 +788,78 @@ msgstr "Բեռնվում են քարտեզի տվյալները։ Խնդրում
 msgid "Match Setup"
 msgstr "Խաղի կարգաբերում"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:55
+#: gui/gamesetup_mp/gamesetup_mp.js:60
 #, javascript-format
 msgid "%(name)s's game"
 msgstr "%(name)sի խաղը"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:114
+#: gui/gamesetup_mp/gamesetup_mp.js:124
 msgid "Please enter a valid server name."
 msgstr "Խնդրում ենք ներմուծել սերվերի վավեր անվանում։"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:121
+#: gui/gamesetup_mp/gamesetup_mp.js:132
 #, javascript-format
 msgid "Server port number must be between %(min)s and %(max)s."
 msgstr "Սերվերի պորտի համարը պետք է լինի %(min)s-ի և %(max)s-ի միջև։"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:138
+#: gui/gamesetup_mp/gamesetup_mp.js:151
 msgid "Connecting to server..."
 msgstr "Միացում սերվերին․․․"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:157
+#: gui/gamesetup_mp/gamesetup_mp.js:166
+msgid "Server is not running."
+msgstr ""
+
+#: gui/gamesetup_mp/gamesetup_mp.js:167
+msgid "Password is invalid."
+msgstr ""
+
+#: gui/gamesetup_mp/gamesetup_mp.js:170
+#, javascript-format
+msgid "\\[Invalid value %(reason)s]"
+msgstr ""
+
+#: gui/gamesetup_mp/gamesetup_mp.js:178
+msgid "Failed to connect to the server."
+msgstr ""
+
+#: gui/gamesetup_mp/gamesetup_mp.js:180
+msgid "Connection failed"
+msgstr ""
+
+#: gui/gamesetup_mp/gamesetup_mp.js:192
 #, javascript-format
 msgid "Net message: %(message)s"
 msgstr "Ցանցային հաղորդագրություն․ %(message)s"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:223
+#: gui/gamesetup_mp/gamesetup_mp.js:287
 msgid "Registering with server..."
 msgstr "Գրանցում սերվերում․․․"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:229
+#: gui/gamesetup_mp/gamesetup_mp.js:293
 msgid "Game has already started, rejoining..."
 msgstr "Խաղն արդեն սկսվել է, միացում․․․"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:300
+#: gui/gamesetup_mp/gamesetup_mp.js:372
 msgid "Game name already in use."
 msgstr "Խաղի անվանումն արդեն օգտագործվում է։"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:310
-msgid "Failed to host via STUN."
-msgstr "STUN-ի օգնությամբ ստեղծումը ձախողվեց։"
-
-#: gui/gamesetup_mp/gamesetup_mp.js:324
+#: gui/gamesetup_mp/gamesetup_mp.js:387
 #, javascript-format
 msgid "Cannot host game: %(message)s."
 msgstr "Անհնար է ստեղծել խաղը․ %(message)s։"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:325 gui/gamesetup_mp/gamesetup_mp.js:354
+#: gui/gamesetup_mp/gamesetup_mp.js:388 gui/gamesetup_mp/gamesetup_mp.js:417
+#: gui/gamesetup_mp/gamesetup_mp.js:444 gui/gamesetup_mp/gamesetup_mp.js:459
 msgid "Error"
 msgstr "Սխալ"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:353
+#: gui/gamesetup_mp/gamesetup_mp.js:416 gui/gamesetup_mp/gamesetup_mp.js:458
 #, javascript-format
 msgid "Cannot join game: %(message)s."
 msgstr "Անհնար է միանալ խաղին․ %(message)s:"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:375
+#: gui/gamesetup_mp/gamesetup_mp.js:473
 #, javascript-format
 msgid "%(playername)s's game"
 msgstr "%(playername)sի խաղը"
@@ -876,22 +894,38 @@ msgstr "Կարգաբերեք ձեր սերվերը խաղի ստեղծման հ�
 msgid "Server Name:"
 msgstr "Սերվերի անվանումը․"
 
-#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):114
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):112
+msgid "Server Password:"
+msgstr ""
+
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):128
 msgid "Use STUN to work around firewalls"
 msgstr "Օգտագործել STUN firewall-ների շրջանցման համար։"
 
-#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):122
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):136
 msgid "Continue"
 msgstr "Շարունակել"
 
-#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):127
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):141
 msgid "Cancel"
 msgstr "Չեղարկել"
+
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):152
+msgid "Password:"
+msgstr "Գաղտնաբառ."
+
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):162
+msgid "Confirm"
+msgstr ""
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):52
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):99
 msgid "Leave blank to use the default port."
 msgstr "Թողեք դատարկ՝ նախնական պորտն օգտագործելու համար։"
+
+#: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):113
+msgid "Leave blank to not require it."
+msgstr ""
 
 #: gui/loading/ProgressBar.js:48
 #, javascript-format

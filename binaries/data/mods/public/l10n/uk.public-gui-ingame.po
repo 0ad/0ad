@@ -26,9 +26,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-15 08:53+0000\n"
-"PO-Revision-Date: 2021-01-20 18:26+0000\n"
-"Last-Translator: Микола Франчук <thekolian1996@gmail.com>\n"
+"POT-Creation-Date: 2021-01-22 08:09+0000\n"
+"PO-Revision-Date: 2021-01-22 10:35+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -700,7 +700,7 @@ msgstr[1] "Середня бонусна дистанція: %(range)s метр�
 msgstr[2] "Середня бонусна дистанція: %(range)s метрів"
 msgstr[3] "Середня бонусна дистанція: %(range)s метрів"
 
-#: gui/session/input.js:677
+#: gui/session/input.js:683
 msgid "Cannot build wall here!"
 msgstr "Неможливо побудувати стіну тут!"
 
@@ -858,23 +858,23 @@ msgstr "Ви здобули перемогу!"
 msgid "You have been defeated!"
 msgstr "Ви отримали поразку!"
 
-#: gui/session/messages.js:355
+#: gui/session/messages.js:354
 msgid "Click to quit this tutorial."
 msgstr "Клацнути, щоб закрити це навчальне керівництво."
 
-#: gui/session/messages.js:356
+#: gui/session/messages.js:355
 msgid "Quit"
 msgstr "Завершити"
 
-#: gui/session/messages.js:360
+#: gui/session/messages.js:359
 msgid "Click when ready."
 msgstr "Клацнути, коли будете готові."
 
-#: gui/session/messages.js:364
+#: gui/session/messages.js:363
 msgid "Follow the instructions."
 msgstr "Дотримуйтесь інструкцій."
 
-#: gui/session/messages.js:489
+#: gui/session/messages.js:488
 msgid "Unknown Player"
 msgstr "Невідомий гравець"
 
@@ -1036,7 +1036,7 @@ msgstr "Вивести %(name)s"
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "Клацнути один раз, щоб вивести одиницю. Клацнути, утримуючи Shift, щоб вивести всі одиниці цього типу."
 
-#: gui/session/selection_panels.js:340 gui/session/selection_panels.js:850
+#: gui/session/selection_panels.js:340 gui/session/selection_panels.js:860
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr "Гравець: %(playername)s"
@@ -1074,7 +1074,7 @@ msgstr "Недостатня місткість населення:"
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:715
+#: gui/session/selection_panels.js:725
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
@@ -1083,39 +1083,39 @@ msgstr[1] "%(number)s об'єктів категорії %(class)s"
 msgstr[2] "%(number)s об'єктів категорії %(class)s"
 msgstr[3] "%(number)s об'єктів категорії %(class)s"
 
-#: gui/session/selection_panels.js:721
+#: gui/session/selection_panels.js:731
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
 msgstr "Залишилось: %(entityCounts)s"
 
-#: gui/session/selection_panels.js:722
+#: gui/session/selection_panels.js:732
 msgctxt "Separator for a list of entity counts"
 msgid ", "
 msgstr ", "
 
-#: gui/session/selection_panels.js:774
+#: gui/session/selection_panels.js:784
 msgid "Cannot research while upgrading."
 msgstr "Не можливо провести дослідження під час удосконалення."
 
-#: gui/session/selection_panels.js:998
+#: gui/session/selection_panels.js:1008
 msgid "Cannot train while upgrading."
 msgstr "Не можливо провести тренування під час удосконалення."
 
-#: gui/session/selection_panels.js:1060
+#: gui/session/selection_panels.js:1070
 #, javascript-format
 msgid "Upgrade to %(name)s. %(tooltip)s"
 msgstr "Удосконалити до %(name)s. %(tooltip)s"
 
-#: gui/session/selection_panels.js:1065
+#: gui/session/selection_panels.js:1075
 #, javascript-format
 msgid "Upgrade to %(name)s."
 msgstr "Удосконалити до %(name)s."
 
-#: gui/session/selection_panels.js:1101
+#: gui/session/selection_panels.js:1111
 msgid "Cancel Upgrading"
 msgstr "Скасувати вдосконалення"
 
-#: gui/session/selection_panels.js:1116
+#: gui/session/selection_panels.js:1126
 msgid ""
 "Cannot upgrade when the entity is training, researching or already "
 "upgrading."
@@ -1195,12 +1195,12 @@ msgid "%(changer)s lessens the limit with %(change)s."
 msgstr "%(changer)s зменшує ліміт за допомогою %(change)s."
 
 #: gui/session/selection_panels_helpers.js:140
-msgid "Could be constructed merely once."
-msgid_plural "Could be constructed merely %(limit)s times."
-msgstr[0] "Може бути споруджено тільки один раз."
-msgstr[1] "Може бути споруджено тільки %(limit)s рази."
-msgstr[2] "Може бути споруджено тільки %(limit)s разів."
-msgstr[3] "Може бути споруджено тільки %(limit)s разів."
+msgid "Could only be constructed once."
+msgid_plural "Could only be constructed %(limit)s times."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: gui/session/selection_panels_helpers.js:144
 msgid "Can be constructed only once."
@@ -1216,12 +1216,12 @@ msgstr[2] "Може бути споруджено ще %(count)s разів."
 msgstr[3] "Може бути споруджено ще %(count)s разів."
 
 #: gui/session/selection_panels_helpers.js:153
-msgid "Could be trained merely once."
-msgid_plural "Could be trained merely %(limit)s times."
-msgstr[0] "Може бути треновано тільки один раз."
-msgstr[1] "Може бути треновано тільки %(limit)s рази."
-msgstr[2] "Може бути треновано тільки %(limit)s разів."
-msgstr[3] "Може бути треновано тільки %(limit)s разів."
+msgid "Could only be trained once."
+msgid_plural "Could only be trained %(limit)s times."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: gui/session/selection_panels_helpers.js:157
 msgid "Can be trained only once."
@@ -1237,12 +1237,12 @@ msgstr[2] "Може бути треновано ще %(count)s разів."
 msgstr[3] "Може бути треновано ще %(count)s разів."
 
 #: gui/session/selection_panels_helpers.js:166
-msgid "Could be created merely once."
-msgid_plural "Could be created merely %(limit)s times."
-msgstr[0] "Може бути створено тільки один раз."
-msgstr[1] "Може бути створено тільки %(limit)s рази."
-msgstr[2] "Може бути створено тільки %(limit)s разів."
-msgstr[3] "Може бути створено тільки %(limit)s разів."
+msgid "Could only be created once."
+msgid_plural "Could only be created %(limit)s times."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: gui/session/selection_panels_helpers.js:170
 msgid "Can be created only once."
@@ -1316,7 +1316,7 @@ msgstr "Клацнути, щоб вибрати згруповані підро�
 msgid "ALPHA XXIV"
 msgstr "ALPHA XXIV"
 
-#: gui/session/top_panel/CivIcon.js:77
+#: gui/session/top_panel/CivIcon.js:80
 #, javascript-format
 msgid ""
 "%(civ)s\n"
