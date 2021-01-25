@@ -20,6 +20,7 @@
 #include "StdDeserializer.h"
 
 #include "lib/byte_order.h"
+#include "ps/CLogger.h"
 #include "ps/CStr.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/ScriptExtraHeaders.h" // For typed arrays and ArrayBuffer
