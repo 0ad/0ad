@@ -15,7 +15,7 @@ var g_ProjectInformation = {
 		"caption": getBuildString()
 	},
 	"productDescription": {
-		"caption": setStringTags(translate("Alpha XXIV"), { "font": "sans-bold-16" }) + "\n\n" +
+		"caption": setStringTags(translate("Alpha XXIV: Xšayaṛša"), { "font": "sans-bold-16" }) + "\n\n" +
 			translate("Notice: This game is under development and many features have not been added yet.")
 	}
 };
