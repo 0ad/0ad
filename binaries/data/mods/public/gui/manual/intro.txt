@@ -67,9 +67,9 @@ You may change hotkeys in [font="sans-bold-14"]Options > Hotkeys[font="sans-14"]
   hotkey.pause – Pause or resume the game
   hotkey.session.kill – Delete currently selected unit(s)/structure(s), ask for confirmation
     • With hotkey.session.noconfirmation – Immediately delete currently selected unit(s)/structure(s), without asking for confirmation
-  hotkey.selection.add – Modifier - add to selection (works with clicking and hotkeys, e.g. the idle hotkeys)
-  hotkey.selection.remove – Modifier - remove from selection (works with clicking and hotkeys, e.g. the idle hotkeys)
-  hotkey.selection.offscreen - Modifier - add all units, including offscreen units, to selection.
+  hotkey.selection.add – Modifier – add to selection (works with clicking and hotkeys, e.g. the idle hotkeys)
+  hotkey.selection.remove – Modifier – remove from selection (works with clicking and hotkeys, e.g. the idle hotkeys)
+  hotkey.selection.offscreen – Modifier – add all units, including offscreen units, to selection.
   hotkey.selection.cancel – Unselect all units, cancel building placement.
   hotkey.selection.idlewarrior – Select idle fighter
   hotkey.selection.idleworker – Select idle worker (including citizen-soldiers)
@@ -78,7 +78,7 @@ You may change hotkeys in [font="sans-bold-14"]Options > Hotkeys[font="sans-14"]
   hotkey.session.backtowork – The unit will go back to work
   hotkey.session.unload – Unload the garrisoned units of the selected structure(s)
   hotkey.selection.group.save.1 – Create control group 1 (by default, respectively 2,3, ...) from the selected unit(s)/structure(s)
-  hotkey.selection.group.select.1 - Select the unit(s)/structure(s) in control group 1
+  hotkey.selection.group.select.1 – Select the unit(s)/structure(s) in control group 1
   hotkey.selection.group.add.1 – Add control group 1 (to 0) to the selected unit(s)/structure(s)
   hotkey.camera.jump.set.1 – Mark the current camera position, for jumping back to later (by default, there are 4 possible positions)
   hotkey.camera.jump.1 – Move the camera to a marked position. Jump back to the last location if the camera is already over the marked position
@@ -109,10 +109,10 @@ You may change hotkeys in [font="sans-bold-14"]Options > Hotkeys[font="sans-14"]
   hotkey.selection.idleonly + Left Drag over units on map – Only select idle units
   hotkey.selection.woundedonly + Left Drag over units on map – Only select wounded units
   Right Click with a structure(s) selected – Set a rally point for units created/ungarrisoned from that structure
-  hotkey.session.garrison + Right Click with unit(s) selected - Garrison (If the cursor is over an own or allied structure)
-  hotkey.session.attack + Right Click with unit(s) selected - Attack (instead of capture or gather)
-  hotkey.session.attackmove + Right Click with unit(s) selected - Attack move (by default all enemy units and structures along the way are targeted)
-  hotkey.session.attackmoveUnit + Right Click with unit(s) selected - Attack move, only units along the way are targeted
+  hotkey.session.garrison + Right Click with unit(s) selected – Garrison (If the cursor is over an own or allied structure)
+  hotkey.session.attack + Right Click with unit(s) selected – Attack (instead of capture or gather)
+  hotkey.session.attackmove + Right Click with unit(s) selected – Attack move (by default all enemy units and structures along the way are targeted)
+  hotkey.session.attackmoveUnit + Right Click with unit(s) selected – Attack move, only units along the way are targeted
   hotkey.session.snaptoedges + Mouse Move near structures – Align the new structure with an existing nearby structure
 
 [font="sans-bold-14"]Overlays[font="sans-14"]

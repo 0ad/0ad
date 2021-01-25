@@ -167,7 +167,7 @@ function getConnectionFailReason(reason)
 	case "invalid_password": return translate("Password is invalid.");
 	default:
 		warn("Unknown connection failure reason: " + reason);
-		return sprintf(translate("\\[Invalid value %(reason)s]"), { "reason": id });
+		return sprintf(translate("\\[Invalid value %(reason)s]"), { "reason": reason });
 	}
 }
 
