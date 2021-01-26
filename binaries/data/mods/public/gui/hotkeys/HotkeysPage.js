@@ -7,7 +7,7 @@ class HotkeysPage
 			let picker = new HotkeyPicker(
 				this.onHotkeyPicked.bind(this),
 				Engine.GetGUIObjectByName("hotkeyList").list_data[idx],
-				this.hotkeys[Engine.GetGUIObjectByName("hotkeyList").list_data[idx]]
+				clone(this.hotkeys[Engine.GetGUIObjectByName("hotkeyList").list_data[idx]])
 			);
 		};
 		Engine.GetGUIObjectByName("hotkeyFilter").onSelectionChange = () => this.setupHotkeyList();
