@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -28,6 +28,7 @@
 #include <mutex>
 #include <string>
 #include <utility>
+#include <unordered_map>
 #include <vector>
 #include <thread>
 
@@ -155,7 +156,20 @@ public:
 
 	u16 GetPublicPort() const;
 
-	bool CheckPassword(const CStr& password) const;
+	/**
+	 * Check if password is valid. If is not, increase number of failed attempts of the lobby user.
+	 * This is used without established direct session with the client, to prevent brute force attacks
+	 * when guessing password trying to get connection data from the host.
+	 * @return true iff password is valid
+	 */
+	bool CheckPasswordAndIncrement(const CStr& password, const std::string& username);
+
+	/**
+	 * Check if user reached certain number of failed attempts.
+	 * @see m_BanAfterNumberOfTries
+	 * @see CheckPasswordAndBan
+	 */
+	bool IsBanned(const std::string& username) const;
 
 	void SetPassword(const CStr& password);
 
@@ -166,6 +180,7 @@ private:
 	u16 m_PublicPort;
 	CStr m_PublicIp;
 	CStr m_Password;
+	std::unordered_map<std::string, int> m_FailedAttempts;
 };
 
 /**

@@ -165,6 +165,7 @@ function getConnectionFailReason(reason)
 	{
 	case "not_server": return translate("Server is not running.");
 	case "invalid_password": return translate("Password is invalid.");
+	case "banned": return translate("You have been banned.");
 	default:
 		warn("Unknown connection failure reason: " + reason);
 		return sprintf(translate("\\[Invalid value %(reason)s]"), { "reason": reason });

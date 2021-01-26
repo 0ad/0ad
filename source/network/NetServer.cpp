@@ -58,6 +58,7 @@
 #define	DEFAULT_SERVER_NAME			L"Unnamed Server"
 
 constexpr int CHANNEL_COUNT = 1;
+constexpr int FAILED_PASSWORD_TRIES_BEFORE_BAN = 3;
 
 /**
  * enet_host_service timeout (msecs).
@@ -1629,9 +1630,26 @@ void CNetServer::SetConnectionData(const CStr& ip, const u16 port, bool useSTUN)
 	m_UseSTUN = useSTUN;
 }
 
-bool CNetServer::CheckPassword(const CStr& password) const
+bool CNetServer::CheckPasswordAndIncrement(const CStr& password, const std::string& username)
 {
-	return m_Password == password;
+	std::unordered_map<std::string, int>::iterator it = m_FailedAttempts.find(username);
+	if (m_Password == password)
+	{
+		if (it != m_FailedAttempts.end())
+			it->second = 0;
+		return true;
+	}
+	if (it == m_FailedAttempts.end())
+		m_FailedAttempts.emplace(username, 1);
+	else
+		it->second++;
+	return false;
+}
+
+bool CNetServer::IsBanned(const std::string& username) const
+{
+	std::unordered_map<std::string, int>::const_iterator it = m_FailedAttempts.find(username);
+	return it != m_FailedAttempts.end() && it->second >= FAILED_PASSWORD_TRIES_BEFORE_BAN;
 }
 
 void CNetServer::SetPassword(const CStr& password)

@@ -168,7 +168,7 @@ void JSI_Network::StartNetworkJoin(ScriptInterface::CmptPrivate* pCmptPrivate, c
 	}
 }
 
-void JSI_Network::StartNetworkJoinLobby(ScriptInterface::CmptPrivate* pCmptPrivate, const CStrW& playerName, const CStr& hostJID, const CStr& password)
+void JSI_Network::StartNetworkJoinLobby(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const CStrW& playerName, const CStr& hostJID, const CStr& password)
 {
 	ENSURE(!!g_XmppClient);
 	ENSURE(!g_NetClient);

@@ -942,7 +942,18 @@ bool XmppClient::handleIq(const glooxwrapper::IQ& iq)
 				m_client->send(response);
 				return true;
 			}
-			if (!g_NetServer->CheckPassword(CStr(cd->m_Password.c_str())))
+			if (g_NetServer->IsBanned(iq.from().username()))
+			{
+				glooxwrapper::IQ response(gloox::IQ::Result, iq.from(), iq.id());
+				ConnectionData* connectionData = new ConnectionData();
+				connectionData->m_Error = "banned";
+
+				response.addExtension(connectionData);
+
+				m_client->send(response);
+				return true;
+			}
+			if (!g_NetServer->CheckPasswordAndIncrement(CStr(cd->m_Password.c_str()), iq.from().username()))
 			{
 				glooxwrapper::IQ response(gloox::IQ::Result, iq.from(), iq.id());
 				ConnectionData* connectionData = new ConnectionData();
