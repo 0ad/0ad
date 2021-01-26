@@ -5937,10 +5937,6 @@ UnitAI.prototype.SwitchToStance = function(stance)
 	this.SetHeldPosition(pos.x, pos.z);
 
 	this.SetStance(stance);
-	// Stop moving if switching to stand ground
-	// TODO: Also stop existing orders in a sensible way
-	if (stance == "standground")
-		this.StopMoving();
 
 	// Reset the range queries, since the range depends on stance.
 	this.SetupRangeQueries();
