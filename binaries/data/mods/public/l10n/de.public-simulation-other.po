@@ -4,7 +4,7 @@
 # project.
 # Translators:
 # Wuzzy <almikes@aol.com>, 2015-2017
-# xtother90, 2017-2018,2020
+# xtother90, 2017-2018,2020-2021
 # Fabian Gref <fabian.gref@gmail.com>, 2017
 # Florian Graefe <fgraefe@colegioaleman.net>, 2017
 # Jakob Raidt <jakob.raidt@hotmail.com>, 2019
@@ -29,7 +29,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2020-11-21 12:59+0000\n"
+"PO-Revision-Date: 2021-01-23 20:23+0000\n"
 "Last-Translator: xtother90\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -108,7 +108,7 @@ msgstr "Ich sehe, du bist in einer schlimmen Situation, %(_player_)s. Ich hoffe 
 msgid ""
 "I can help you this time, %(_player_)s, but you should manage your resources"
 " more carefully in the future."
-msgstr "Ich kann dir dieses mal helfen, %(_player_)s, aber du solltest zukünftig vorsichtiger mit deinen Rohstoffen umgehen. "
+msgstr "Ich kann dir dieses mal helfen, %(_player_)s, aber du solltest zukünftig vorsichtiger mit deinen Ressourcen umgehen. "
 
 #: simulation/ai/petra/chatHelper.js:33
 #, javascript-format
@@ -556,21 +556,21 @@ msgstr "%(category)s Limit von %(limit)s erreicht"
 #: simulation/components/Player.js:319
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
-msgstr "Nicht genug Rohstoffe – %(resourceAmount1)s %(resourceType1)s"
+msgstr "Nicht genügend Ressourcen – %(resourceAmount1)s %(resourceType1)s"
 
 #: simulation/components/Player.js:321
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
-msgstr "Nicht genug Rohstoffe – %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
+msgstr "Nicht genügend Ressourcen – %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
 
 #: simulation/components/Player.js:323
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
-msgstr "Nicht genug Rohstoffe – %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
+msgstr "Nicht genügend Ressourcen – %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 
 #: simulation/components/Player.js:325
 #, javascript-format
@@ -578,7 +578,7 @@ msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s "
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
-msgstr "Nicht genug Rohstoffe – %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
+msgstr "Nicht genügend Ressourcen – %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
 #: simulation/components/ProductionQueue.js:339
 msgid "Entity is being upgraded. Cannot start production."
@@ -646,7 +646,7 @@ msgstr "Winzig"
 
 #: simulation/data/settings/map_sizes.jsonData[0].Tooltip
 msgid "This map size has barely any room for even the most basic resources."
-msgstr "Diese Kartengröße hat fast keinen Platz für sogar die grundlegendsten Rohstoffe."
+msgstr "Diese Kartengröße hat fast keinen Platz für sogar die grundlegendsten Ressourcen."
 
 #: simulation/data/settings/map_sizes.jsonData[1].Name
 msgid "Small"

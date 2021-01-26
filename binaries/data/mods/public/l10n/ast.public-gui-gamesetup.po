@@ -1,15 +1,15 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2020 Wildfire Games
+# Copyright (C) 2021 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
-# David Sowa <isithere2@yahoo.com>, 2017-2020
+# David Sowa <isithere2@yahoo.com>, 2017-2021
 # enolp <enolp@softastur.org>, 2017-2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-12-28 08:02+0000\n"
-"PO-Revision-Date: 2020-12-28 18:33+0000\n"
+"POT-Creation-Date: 2021-01-22 08:09+0000\n"
+"PO-Revision-Date: 2021-01-25 01:03+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -208,7 +208,7 @@ msgstr "Nómada"
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
-msgstr "En mou nómada, los xugadores entamen con un puñáu d'unidaes ya tienen qu'atopar un sitiu afayadizu onde llevantar una ciudá. Encamiéntase l'altu'l fueu."
+msgstr "En mou nómada, los xugadores entamen con un puñáu d'unidaes y tienen qu'atopar un sitiu afayadizu onde llevantar una ciudá. Encamiéntase l'altu'l fueu."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Rating.js:51
 msgid "Rated Game"
@@ -272,7 +272,7 @@ msgstr "Bioma"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:134
 msgid "Select the flora and fauna."
-msgstr "Esbilla la flora ya la fauna."
+msgstr "Esbilla la flora y la fauna."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:137
 msgctxt "biome"
@@ -372,11 +372,11 @@ msgstr "Al debalu"
 msgid "Pick any of the given maps at random."
 msgstr "Escueyi un mapa al debalu."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:75
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:70
 msgid "Map Size"
 msgstr "Tamañu del mapa"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:78
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:73
 msgid "Select map size. (Larger sizes may reduce performance.)"
 msgstr "Esbilla'l tamañu del mapa. (Los más grandes cincarán el rindimientu)."
 
@@ -461,7 +461,7 @@ msgstr "Redondel"
 msgid ""
 "Allied players are grouped and placed with opposing players on one circle "
 "spanning the map."
-msgstr "Los xugadores, aliaos ya rivales, tán axuntaos y asitiaos nun círculu qu'abarca'l mapa."
+msgstr "Los xugadores, aliaos y rivales, tán axuntaos y asitiaos nun círculu qu'abarca'l mapa."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:110
 msgctxt "team placement"
@@ -788,60 +788,78 @@ msgstr "Cargando los datos del mapa. Espera por favor..."
 msgid "Match Setup"
 msgstr "Configuración del alcuentru"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:55
+#: gui/gamesetup_mp/gamesetup_mp.js:60
 #, javascript-format
 msgid "%(name)s's game"
 msgstr "La partida de %(name)s"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:114
+#: gui/gamesetup_mp/gamesetup_mp.js:124
 msgid "Please enter a valid server name."
 msgstr "Introduz el nome d'un sirvidor válidu, por favor."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:121
+#: gui/gamesetup_mp/gamesetup_mp.js:132
 #, javascript-format
 msgid "Server port number must be between %(min)s and %(max)s."
-msgstr "El númberu del puertu'l sirvidor tien de tar ente %(min)s ya %(max)s."
+msgstr "El númberu del puertu'l sirvidor tien de tar ente %(min)s y %(max)s."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:138
+#: gui/gamesetup_mp/gamesetup_mp.js:151
 msgid "Connecting to server..."
 msgstr "Coneutando col sirvidor..."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:157
+#: gui/gamesetup_mp/gamesetup_mp.js:166
+msgid "Server is not running."
+msgstr "El sirvidor nun ta n'execución."
+
+#: gui/gamesetup_mp/gamesetup_mp.js:167
+msgid "Password is invalid."
+msgstr "La clave nun ye válida."
+
+#: gui/gamesetup_mp/gamesetup_mp.js:170
+#, javascript-format
+msgid "\\[Invalid value %(reason)s]"
+msgstr "\\[valor non válidu %(reason)s]"
+
+#: gui/gamesetup_mp/gamesetup_mp.js:178
+msgid "Failed to connect to the server."
+msgstr "Falló al coneutar col sirvidor."
+
+#: gui/gamesetup_mp/gamesetup_mp.js:180
+msgid "Connection failed"
+msgstr "La conexón falló"
+
+#: gui/gamesetup_mp/gamesetup_mp.js:192
 #, javascript-format
 msgid "Net message: %(message)s"
 msgstr "Mensaxe net: %(message)s"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:223
+#: gui/gamesetup_mp/gamesetup_mp.js:287
 msgid "Registering with server..."
 msgstr "Rexistrándose en sirvidor..."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:229
+#: gui/gamesetup_mp/gamesetup_mp.js:293
 msgid "Game has already started, rejoining..."
 msgstr "Yá entamó la partida, rexuniéndose..."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:300
+#: gui/gamesetup_mp/gamesetup_mp.js:372
 msgid "Game name already in use."
 msgstr "Nomatu yá n'usu."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:310
-msgid "Failed to host via STUN."
-msgstr "Falló al agospiar per STUN."
-
-#: gui/gamesetup_mp/gamesetup_mp.js:324
+#: gui/gamesetup_mp/gamesetup_mp.js:387
 #, javascript-format
 msgid "Cannot host game: %(message)s."
 msgstr "Nun pue agospiase la partida: %(message)s."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:325 gui/gamesetup_mp/gamesetup_mp.js:354
+#: gui/gamesetup_mp/gamesetup_mp.js:388 gui/gamesetup_mp/gamesetup_mp.js:417
+#: gui/gamesetup_mp/gamesetup_mp.js:444 gui/gamesetup_mp/gamesetup_mp.js:459
 msgid "Error"
 msgstr "Fallu"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:353
+#: gui/gamesetup_mp/gamesetup_mp.js:416 gui/gamesetup_mp/gamesetup_mp.js:458
 #, javascript-format
 msgid "Cannot join game: %(message)s."
 msgstr " Nun pue xunise a la partida: %(message)s."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:375
+#: gui/gamesetup_mp/gamesetup_mp.js:473
 #, javascript-format
 msgid "%(playername)s's game"
 msgstr "La partida de %(playername)s"
@@ -876,22 +894,38 @@ msgstr "Configura'l sirvidor p'agospiar."
 msgid "Server Name:"
 msgstr "Nome del sirvidor:"
 
-#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):114
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):112
+msgid "Server Password:"
+msgstr "Clave del sirvidor:"
+
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):128
 msgid "Use STUN to work around firewalls"
 msgstr "Emplega STUN pa dexar de llau los tornafueos."
 
-#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):122
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):136
 msgid "Continue"
 msgstr "Siguir"
 
-#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):127
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):141
 msgid "Cancel"
 msgstr "Encaboxar"
+
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):152
+msgid "Password:"
+msgstr "Clave:"
+
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):162
+msgid "Confirm"
+msgstr "Confimar"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):52
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):99
 msgid "Leave blank to use the default port."
 msgstr "Dexa en blanco pa usar el puertu por defeutu."
+
+#: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):113
+msgid "Leave blank to not require it."
+msgstr "Dexa en blanco pa nun la pidir."
 
 #: gui/loading/ProgressBar.js:48
 #, javascript-format

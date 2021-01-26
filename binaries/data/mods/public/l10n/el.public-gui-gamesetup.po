@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2020 Wildfire Games
+# Copyright (C) 2021 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -35,9 +35,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-12-28 08:02+0000\n"
-"PO-Revision-Date: 2020-12-28 09:25+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-01-22 08:09+0000\n"
+"PO-Revision-Date: 2021-01-22 09:25+0000\n"
+"Last-Translator: firespin\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -399,11 +399,11 @@ msgstr "Τυχαίο"
 msgid "Pick any of the given maps at random."
 msgstr "Επιλέξτε τυχαία οποιονδήποτε από τους χάρτες."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:75
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:70
 msgid "Map Size"
 msgstr "Μέγεθος Χάρτη"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:78
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:73
 msgid "Select map size. (Larger sizes may reduce performance.)"
 msgstr "Επιλογή μεγέθους χάρτη. (τα μεγαλύτερα μεγέθη ίσως επηρεάσουν αρνητικά τις επιδόσεις)."
 
@@ -815,60 +815,78 @@ msgstr "Φόρτωση δεδομένων χάρτη. Παρακαλώ περι�
 msgid "Match Setup"
 msgstr "Διαμόρφωση αναμέτρησης"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:55
+#: gui/gamesetup_mp/gamesetup_mp.js:60
 #, javascript-format
 msgid "%(name)s's game"
 msgstr "Παιχνίδι του %(name)s"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:114
+#: gui/gamesetup_mp/gamesetup_mp.js:124
 msgid "Please enter a valid server name."
 msgstr "Παρακαλώ πληκτρολογήστε ένα έγκυρο όνομα διακομιστή."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:121
+#: gui/gamesetup_mp/gamesetup_mp.js:132
 #, javascript-format
 msgid "Server port number must be between %(min)s and %(max)s."
 msgstr "Ο αριθμός της θύρας του διακομιστή πρέπει να είναι μεταξύ %(min)s και %(max)s."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:138
+#: gui/gamesetup_mp/gamesetup_mp.js:151
 msgid "Connecting to server..."
 msgstr "Σύνδεση με διακομιστή..."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:157
+#: gui/gamesetup_mp/gamesetup_mp.js:166
+msgid "Server is not running."
+msgstr ""
+
+#: gui/gamesetup_mp/gamesetup_mp.js:167
+msgid "Password is invalid."
+msgstr ""
+
+#: gui/gamesetup_mp/gamesetup_mp.js:170
+#, javascript-format
+msgid "\\[Invalid value %(reason)s]"
+msgstr ""
+
+#: gui/gamesetup_mp/gamesetup_mp.js:178
+msgid "Failed to connect to the server."
+msgstr "Αποτυχία σύνδεσης με τον εξυπηρετητή."
+
+#: gui/gamesetup_mp/gamesetup_mp.js:180
+msgid "Connection failed"
+msgstr ""
+
+#: gui/gamesetup_mp/gamesetup_mp.js:192
 #, javascript-format
 msgid "Net message: %(message)s"
 msgstr "Μήνυμα διαδικτύου: %(message)s"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:223
+#: gui/gamesetup_mp/gamesetup_mp.js:287
 msgid "Registering with server..."
 msgstr "Εγγραφή με τον διακομιστή ..."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:229
+#: gui/gamesetup_mp/gamesetup_mp.js:293
 msgid "Game has already started, rejoining..."
 msgstr "Το παιχνίδι έχει ήδη ξεκινήσει , επανασύνδεση ..."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:300
+#: gui/gamesetup_mp/gamesetup_mp.js:372
 msgid "Game name already in use."
 msgstr "Το όνομα παιχνιδιού είναι ήδη σε χρήση."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:310
-msgid "Failed to host via STUN."
-msgstr "Αποτυχία φιλοξενίας μέσω STUN."
-
-#: gui/gamesetup_mp/gamesetup_mp.js:324
+#: gui/gamesetup_mp/gamesetup_mp.js:387
 #, javascript-format
 msgid "Cannot host game: %(message)s."
 msgstr "Δεν μπορεί να φιλοξενήσει παιχνίδι: %(message)s."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:325 gui/gamesetup_mp/gamesetup_mp.js:354
+#: gui/gamesetup_mp/gamesetup_mp.js:388 gui/gamesetup_mp/gamesetup_mp.js:417
+#: gui/gamesetup_mp/gamesetup_mp.js:444 gui/gamesetup_mp/gamesetup_mp.js:459
 msgid "Error"
 msgstr "Σφάλμα"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:353
+#: gui/gamesetup_mp/gamesetup_mp.js:416 gui/gamesetup_mp/gamesetup_mp.js:458
 #, javascript-format
 msgid "Cannot join game: %(message)s."
 msgstr "Δεν μπορεί να συνδεθεί στο παιχνίδι: %(message)s."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:375
+#: gui/gamesetup_mp/gamesetup_mp.js:473
 #, javascript-format
 msgid "%(playername)s's game"
 msgstr "Το παιχνίδι του/ων %(playername)s"
@@ -903,22 +921,38 @@ msgstr "Διαμόρφωση διακομιστή ως host."
 msgid "Server Name:"
 msgstr "Όνομα Διακομιστή:"
 
-#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):114
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):112
+msgid "Server Password:"
+msgstr ""
+
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):128
 msgid "Use STUN to work around firewalls"
 msgstr "Χρησιμοποίησε το STUN για να λειτουργήσει με τα τείχη προστασίας"
 
-#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):122
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):136
 msgid "Continue"
 msgstr "Συνέχεια"
 
-#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):127
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):141
 msgid "Cancel"
 msgstr "Ακύρωση"
+
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):152
+msgid "Password:"
+msgstr "Κωδικός:"
+
+#: gui/gamesetup_mp/gamesetup_mp.xml:(caption):162
+msgid "Confirm"
+msgstr ""
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):52
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):99
 msgid "Leave blank to use the default port."
 msgstr "Αφήστε κενό για να χρησιμοποιηθεί η προκαθορισμένη θύρα."
+
+#: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):113
+msgid "Leave blank to not require it."
+msgstr ""
 
 #: gui/loading/ProgressBar.js:48
 #, javascript-format

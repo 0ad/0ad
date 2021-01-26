@@ -51,6 +51,7 @@
 # Sander Deryckere, 2014
 # slimkhan, 2014
 # Slim Khan, 2014
+# Stanislas Dolcini <stan@wildfiregames.com>, 2021
 # Polakrity <sxk-fr@live.fr>, 2014,2017,2019
 # tavariz <guipoi@yahoo.fr>, 2014
 # Thedemos <thekingadn@gmail.com>, 2014
@@ -65,9 +66,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-01 08:01+0000\n"
-"PO-Revision-Date: 2021-01-01 08:36+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-01-22 08:09+0000\n"
+"PO-Revision-Date: 2021-01-24 18:08+0000\n"
+"Last-Translator: Stanislas Dolcini <stan@wildfiregames.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -136,8 +137,8 @@ msgid "Miltiades"
 msgstr "Miltiade"
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].Description
-msgid "Metal mining gathering rates increased by +10% for each passing age."
-msgstr "Le taux d'exploitation du métal augmente de +10% à chaque nouvelle phase."
+msgid "Workers +10% metal gather rate per phase advance."
+msgstr "Les ouvriers ont +10% de taux de récolte du métal par phase."
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].History
 msgid ""
@@ -281,6 +282,22 @@ msgstr "Hannon le Grand"
 msgid "Himilco"
 msgstr "Himilcon"
 
+#: simulation/data/civs/cart.jsonCivBonuses[0].Description
+msgid "Merchant Ships +25% trade gain."
+msgstr "Les Marchands marins obtiennent 25% de gains commerciaux."
+
+#: simulation/data/civs/cart.jsonCivBonuses[0].Name
+msgid "Commercial Acumen"
+msgstr "Talent Commercial"
+
+#: simulation/data/civs/cart.jsonCivBonuses[1].Description
+msgid "Docks and Markets +10% international trade bonus."
+msgstr "Augmente le bonus d'échange international des marchés et ports de +10%."
+
+#: simulation/data/civs/cart.jsonCivBonuses[1].Name
+msgid "Desirable Products"
+msgstr "Produits Rares"
+
 #: simulation/data/civs/cart.jsonHistory
 msgid ""
 "Carthage, a city-state in modern-day Tunisia, was a formidable force in the "
@@ -335,30 +352,6 @@ msgstr "Valetiacus"
 msgid "Viridovix"
 msgstr "Viridovix"
 
-#: simulation/data/civs/gaul.jsonCivBonuses[0].Description
-msgid "Enhanced food gained from ranching and farming. "
-msgstr "Accroît la nourriture collectée dans l’élevage et l'agriculture."
-
-#: simulation/data/civs/gaul.jsonCivBonuses[0].History
-msgid "Represents Celtic farming methods. "
-msgstr "Représente les méthodes de l'agriculture celte."
-
-#: simulation/data/civs/gaul.jsonCivBonuses[0].Name
-msgid "Ardiosmanae"
-msgstr "Ardiosmanae"
-
-#: simulation/data/civs/gaul.jsonCivBonuses[1].Description
-msgid "Druids increase attack rates of soldiers near them slightly."
-msgstr "Les druides augmentent légèrement la vitesse d'attaque des soldats à proximité."
-
-#: simulation/data/civs/gaul.jsonCivBonuses[1].History
-msgid "Celtic religion and druidry inspired their warlike mindset. "
-msgstr "La religion et le druidisme celtes ont inspiré leur mentalité guerrière."
-
-#: simulation/data/civs/gaul.jsonCivBonuses[1].Name
-msgid "Deas Celtica"
-msgstr "Deas Celtica"
-
 #: simulation/data/civs/gaul.jsonHistory
 msgid ""
 "The Gauls were the Celtic tribes of continental Europe. Dominated by a "
@@ -402,8 +395,8 @@ msgid "Tautalus"
 msgstr "Tantale"
 
 #: simulation/data/civs/iber.jsonCivBonuses[0].Description
-msgid "Iberians start with a powerful prefabricated circuit of stone walls."
-msgstr "Les Ibères commencent avec un puissant mur d'enceinte en pierre."
+msgid "Iberians start with City Walls around their base on most maps."
+msgstr "Les Ibères commencent avec des murs de ville autour de leur base sur la plupart des cartes."
 
 #: simulation/data/civs/iber.jsonCivBonuses[0].History
 msgid ""
@@ -413,8 +406,18 @@ msgid ""
 msgstr "A l'exception des plaines alluviales et des vallées fluviales, la pierre est abondante dans la Péninsule Ibérique et a été grandement utilisée dans la construction des structures de tous les types."
 
 #: simulation/data/civs/iber.jsonCivBonuses[0].Name
-msgid "Harritsu Leku"
-msgstr "Endroits pierreux"
+msgid "Starting Walls"
+msgstr "Murs de départ"
+
+#: simulation/data/civs/iber.jsonCivBonuses[1].Description
+msgid ""
+"Stone Towers −50% wood cost, +150% stone cost, +33% build time, +60% health,"
+" +3 garrison capacity, and +1 default arrow count."
+msgstr "Les tours de pierre ont −50% de coût de bois,  +150% de cout en pierre, +33% de temps de construction, +60% de vie, +3 emplacements de garnison, et +1 flèche par défaut."
+
+#: simulation/data/civs/iber.jsonCivBonuses[1].Name
+msgid "Massive Towers"
+msgstr "Tours massives"
 
 #: simulation/data/civs/iber.jsonHistory
 msgid ""
@@ -485,6 +488,16 @@ msgstr "Atlanersa"
 #: simulation/data/civs/kush.jsonAINames[9]
 msgid "Nasalsa"
 msgstr "Nasalsa "
+
+#: simulation/data/civs/kush.jsonCivBonuses[0].Description
+#: simulation/data/civs/pers.jsonCivBonuses[1].Description
+msgid "Battering Rams +20% attack damage and +2 garrison capacity."
+msgstr "Les béliers gagnent +20% de dégâts d'attaque et +2 emplacement de garnison."
+
+#: simulation/data/civs/kush.jsonCivBonuses[0].Name
+#: simulation/data/civs/pers.jsonCivBonuses[1].Name
+msgid "Large Rams"
+msgstr "Grand Béliers"
 
 #: simulation/data/civs/kush.jsonHistory
 msgid ""
@@ -674,6 +687,14 @@ msgstr "Artaxata II"
 msgid "Artaxshacha III"
 msgstr "Artaxata III"
 
+#: simulation/data/civs/pers.jsonCivBonuses[0].Description
+msgid "Land Traders +25% trade gain."
+msgstr "Les Marchands de terrains gagnent 25% de gains commerciaux."
+
+#: simulation/data/civs/pers.jsonCivBonuses[0].Name
+msgid "Darics"
+msgstr "Darique"
+
 #: simulation/data/civs/pers.jsonHistory
 msgid ""
 "The Persian Empire, when ruled by the Achaemenid dynasty, was one of the "
@@ -765,6 +786,14 @@ msgstr "Ptolémée Alexandre"
 msgid "Ptolemy Neos Dionysos"
 msgstr "Ptolémée Néos Dionysos"
 
+#: simulation/data/civs/ptol.jsonCivBonuses[0].Description
+msgid "Bolt Shooters −33% attack damage and −33% attack time."
+msgstr "Les balistes ont  −33% de dégâts d'attaque et -33% de temps d'attaque."
+
+#: simulation/data/civs/ptol.jsonCivBonuses[0].Name
+msgid "Polybolos"
+msgstr "Polybolos"
+
 #: simulation/data/civs/ptol.jsonHistory
 msgid ""
 "The Ptolemaic dynasty was a Macedonian Greek royal family which ruled the "
@@ -849,23 +878,12 @@ msgid "Testudo Formation"
 msgstr "Formation tortue"
 
 #: simulation/data/civs/rome.jsonCivBonuses[1].Description
-msgid ""
-"Any Roman citizen-soldier fighting within Roman territory gains a non-"
-"permanent +10% bonus in armor."
-msgstr "Tous les citoyens-soldats romains combattant sur le territoire romain bénéficient d'un bonus non-permanent de +10% d'armure."
-
-#: simulation/data/civs/rome.jsonCivBonuses[1].History
-msgid ""
-"Roman Citizenship was highly prized in the ancient world. Basic rights and "
-"privileges were afforded Roman citizens that were denied other conquered "
-"peoples. It is said that harming a Roman citizen was akin to harming Rome "
-"herself, and would cause the entire might of Rome to fall upon the "
-"perpetrator."
-msgstr "La citoyenneté romaine était très prisée dans le monde antique. Les droits et privilèges accordés aux citoyens romains étaient refusés aux peuples conquis. On dit que blesser un citoyen romain était presque comme blesser Rome elle-même, et ferait s'abattre sur le coupable la puissance entière de Rome."
+msgid "Battering Rams +20% attack damage. Stone Throwers +10% attack damage."
+msgstr "Les béliers gagnent +20% de dégâts d'attaque. Les lanceurs de pierres gagnent +10% de dégâts d'attaque."
 
 #: simulation/data/civs/rome.jsonCivBonuses[1].Name
-msgid "Citizenship"
-msgstr "Citoyenneté"
+msgid "Legionary Engineers"
+msgstr "Ingénieurs légionnaires"
 
 #: simulation/data/civs/rome.jsonHistory
 msgid ""
@@ -1051,6 +1069,14 @@ msgstr "Échestrate"
 #: simulation/data/civs/spart.jsonAINames[9]
 msgid "Eurycrates"
 msgstr "Eurycrates"
+
+#: simulation/data/civs/spart.jsonCivBonuses[0].Description
+msgid "Female Citizens +40% health and +50% melee attack hack damage."
+msgstr "Les Citoyennes gagnent +40% de santé et +50% de dommages d'attaque tranchante de mêlée."
+
+#: simulation/data/civs/spart.jsonCivBonuses[0].Name
+msgid "Spartan Women"
+msgstr "Femmes Spartiates"
 
 #: simulation/data/civs/spart.jsonHistory
 msgid ""

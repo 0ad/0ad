@@ -15,6 +15,7 @@
 # Camille Edouard <camille.l.edouard@gmail.com>, 2021
 # Cyril Mercier, 2019
 # David D, 2018
+# Edouard Dwaarf <edouarddwarf@gmail.com>, 2021
 # François Poirotte <clicky@erebot.net>, 2016
 # gab tes, 2020
 # Glorfindel Of Gondolin, 2019
@@ -37,8 +38,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-20 00:57+0000\n"
-"PO-Revision-Date: 2021-01-21 23:59+0000\n"
+"POT-Creation-Date: 2021-01-22 08:09+0000\n"
+"PO-Revision-Date: 2021-01-24 17:28+0000\n"
 "Last-Translator: Stanislas Dolcini <stan@wildfiregames.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -58,10 +59,6 @@ msgid "The Agoge"
 msgstr "L'agogé"
 
 #: simulation/data/technologies/agoge.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_cavalry_melee_02.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_cavalry_ranged_02.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_infantry_melee_02.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_infantry_ranged_02.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_soldiers_will.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_steel_working.jsonrequirementsTooltip
 #: simulation/data/technologies/barracks_batch_training.jsonrequirementsTooltip
@@ -85,12 +82,14 @@ msgstr "L'agogé"
 #: simulation/data/technologies/ship_cost_time.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_health.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_movement_speed.jsonrequirementsTooltip
-#: simulation/data/technologies/siege_armor.jsonrequirementsTooltip
 #: simulation/data/technologies/siege_attack.jsonrequirementsTooltip
 #: simulation/data/technologies/siege_bolt_accuracy.jsonrequirementsTooltip
-#: simulation/data/technologies/siege_cost_metal.jsonrequirementsTooltip
-#: simulation/data/technologies/siege_cost_wood.jsonrequirementsTooltip
+#: simulation/data/technologies/siege_cost_time.jsonrequirementsTooltip
+#: simulation/data/technologies/siege_health.jsonrequirementsTooltip
+#: simulation/data/technologies/siege_pack_unpack.jsonrequirementsTooltip
 #: simulation/data/technologies/silvershields.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_attack_melee_02.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_attack_ranged_02.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_hack_02.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_pierce_02.jsonrequirementsTooltip
 #: simulation/data/technologies/stable_batch_training.jsonrequirementsTooltip
@@ -139,10 +138,6 @@ msgid "Monumental Architecture"
 msgstr "Monument d'architecture"
 
 #: simulation/data/technologies/architecture_kush.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_cavalry_melee_01.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_cavalry_ranged_01.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_infantry_melee_01.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_infantry_ranged_01.jsonrequirementsTooltip
 #: simulation/data/technologies/cavalry_cost_time.jsonrequirementsTooltip
 #: simulation/data/technologies/cavalry_health.jsonrequirementsTooltip
 #: simulation/data/technologies/colonization.jsonrequirementsTooltip
@@ -158,6 +153,8 @@ msgstr "Monument d'architecture"
 #: simulation/data/technologies/heal_rate.jsonrequirementsTooltip
 #: simulation/data/technologies/infantry_cost_time.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_attack_melee_01.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_attack_ranged_01.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_hack_01.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_pierce_01.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_crenellations.jsonrequirementsTooltip
@@ -189,124 +186,6 @@ msgstr "Architecture persane"
 #: simulation/data/technologies/architecture_pers.jsontooltip
 msgid "Structures +25% health and capture points, but also +20% build time."
 msgstr "Structures : +25% de points de vie, mais +20 de temps de construction."
-
-#: simulation/data/technologies/attack_cavalry_melee_01.jsondescription
-msgid "Training increases melee attack."
-msgstr "L'entraînement augmente les attaques de mêlée."
-
-#: simulation/data/technologies/attack_cavalry_melee_01.jsongenericName
-msgid "Close Combat Cavalry Training"
-msgstr "Entraînement de la cavalerie au combat rapproché "
-
-#: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.athen
-#: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.mace
-#: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.ptol
-#: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.sele
-#: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.spart
-#: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.athen
-#: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.mace
-#: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.ptol
-#: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.sele
-#: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.spart
-msgid "Xyston"
-msgstr "Xyston"
-
-#: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.rome
-#: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.rome
-msgid "Hasta"
-msgstr "Hasta"
-
-#: simulation/data/technologies/attack_cavalry_melee_01.jsontooltip
-#: simulation/data/technologies/attack_cavalry_melee_02.jsontooltip
-msgid "Cavalry +20% melee attack damage."
-msgstr "Cavalerie : +20% de dégâts de mêlée."
-
-#: simulation/data/technologies/attack_cavalry_melee_02.jsondescription
-#: simulation/data/technologies/attack_cavalry_ranged_02.jsondescription
-msgid "Replaces bronze weapons with iron."
-msgstr "Remplace les armes en bronze par du fer."
-
-#: simulation/data/technologies/attack_cavalry_melee_02.jsongenericName
-#: simulation/data/technologies/attack_cavalry_ranged_02.jsongenericName
-#: simulation/data/technologies/attack_infantry_melee_02.jsongenericName
-msgid "Iron Weapons"
-msgstr "Armes en fer"
-
-#: simulation/data/technologies/attack_cavalry_ranged_01.jsondescription
-msgid "Training increases ranged attack."
-msgstr "L'entraînement augmente les attaques à distance."
-
-#: simulation/data/technologies/attack_cavalry_ranged_01.jsongenericName
-msgid "Ranged Combat Cavalry Training"
-msgstr "Entraînement de la cavalerie au combat à distance"
-
-#: simulation/data/technologies/attack_cavalry_ranged_01.jsontooltip
-#: simulation/data/technologies/attack_cavalry_ranged_02.jsontooltip
-msgid "Cavalry +20% ranged attack damage."
-msgstr "Cavalerie : +20% de dégâts à distance."
-
-#: simulation/data/technologies/attack_infantry_melee_01.jsondescription
-msgid ""
-"Often, an infantryman would carry a secondary weapon in addition to his "
-"primary weapon of choice, to be drawn when the primary weapon has failed or "
-"been broken."
-msgstr "La plupart, un soldat d'infanterie portait avec lui une arme secondaire en complément de son arme principale. Il l'utilisait lorsque son arme principale était défaillante ou était brisée."
-
-#: simulation/data/technologies/attack_infantry_melee_01.jsongenericName
-msgid "Side Arms"
-msgstr "Arme de poing"
-
-#: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.athen
-#: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.mace
-#: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.ptol
-#: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.sele
-#: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.spart
-msgid "Xiphos"
-msgstr "Xiphos"
-
-#: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.rome
-msgid "Pugio"
-msgstr "Pugio"
-
-#: simulation/data/technologies/attack_infantry_melee_01.jsontooltip
-#: simulation/data/technologies/attack_infantry_melee_02.jsontooltip
-msgid "Infantry +20% melee attack damage."
-msgstr "Infanterie : +20% de dégâts de mêlée."
-
-#: simulation/data/technologies/attack_infantry_melee_02.jsondescription
-msgid "Using iron instead of bronze gave weapons additional power."
-msgstr "Utilisation du fer au lieu du bronze procurant une puissance supplémentaire aux armes."
-
-#: simulation/data/technologies/attack_infantry_ranged_01.jsondescription
-#: simulation/data/technologies/attack_infantry_ranged_02.jsondescription
-msgid "Training increases damage of ranged infantry."
-msgstr "L'entrainement augmente les dégâts des unités à distance."
-
-#: simulation/data/technologies/attack_infantry_ranged_01.jsongenericName
-msgid "Ranged Infantry Irregulars"
-msgstr "Infanterie à distance irrégulière"
-
-#: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.athen
-#: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.mace
-#: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.ptol
-#: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.sele
-#: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.spart
-#: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.athen
-#: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.mace
-#: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.ptol
-#: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.sele
-#: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.spart
-msgid "Ataktoi"
-msgstr "Ataktoi"
-
-#: simulation/data/technologies/attack_infantry_ranged_01.jsontooltip
-#: simulation/data/technologies/attack_infantry_ranged_02.jsontooltip
-msgid "Infantry +20% ranged attack damage."
-msgstr "Cavalerie : +20% de dégâts à distance."
-
-#: simulation/data/technologies/attack_infantry_ranged_02.jsongenericName
-msgid "Ranged Infantry Masterclass"
-msgstr "Classe de maître: Infanterie à distance"
 
 #: simulation/data/technologies/attack_soldiers_will.jsondescription
 msgid ""
@@ -666,8 +545,8 @@ msgstr "Engrais"
 #: simulation/data/technologies/gather_farming_fertilizer.jsontooltip
 #: simulation/data/technologies/gather_farming_plows.jsontooltip
 #: simulation/data/technologies/gather_farming_training.jsontooltip
-msgid "Workers +20% grain gather rate."
-msgstr "Augmente le taux de récolte des ouvriers de +20%."
+msgid "Workers +15% grain gather rate."
+msgstr "Les ouvriers ont +15% de taux de récolte du grain."
 
 #: simulation/data/technologies/gather_farming_harvester.jsondescription
 msgid ""
@@ -714,8 +593,8 @@ msgstr "Têtes de haches en fer"
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsontooltip
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsontooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsontooltip
-msgid "Workers +25% wood gather rate."
-msgstr "Augmente le taux de récolte du bois par les ouvriers de +25%."
+msgid "Workers +20% wood gather rate."
+msgstr "Les ouvriers ont +20% de taux de récolte du bois."
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsongenericName
 msgid "Sharp Axe Heads"
@@ -742,8 +621,8 @@ msgstr "Heilōtes"
 #: simulation/data/technologies/gather_mining_serfs.jsontooltip
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
 #: simulation/data/technologies/gather_mining_slaves.jsontooltip
-msgid "Workers +25% stone gather rate."
-msgstr "Augmente le taux de récolte de la pierre par les ouvriers de +25%."
+msgid "Workers +20% stone gather rate."
+msgstr "Les ouvriers ont +20% de taux de récolte de la pierre."
 
 #: simulation/data/technologies/gather_mining_servants.jsondescription
 msgid "Hire servants to help quarry stone. Increases stone gathering rates."
@@ -772,8 +651,8 @@ msgstr "Exploitation minière"
 #: simulation/data/technologies/gather_mining_shaftmining.jsontooltip
 #: simulation/data/technologies/gather_mining_silvermining.jsontooltip
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
-msgid "Workers +25% metal gather rate."
-msgstr "Augmente le taux de récolte du métal par les ouvriers de +25%."
+msgid "Workers +20% metal gather rate."
+msgstr "Les ouvriers ont +20% de taux de récolte du métal."
 
 #: simulation/data/technologies/gather_mining_silvermining.jsondescription
 msgid "Strike a vein of precious silver. Increases metal gathering rates."
@@ -1202,7 +1081,7 @@ msgstr "Déverrouille l'unité Fantassin Épéiste Champion"
 msgid ""
 "Employ skilled shipwrights with specialized tools to speed up ship "
 "construction."
-msgstr ""
+msgstr "Employer des charpentiers compétents avec des outils spécialisés pour accélérer la construction de navires."
 
 #: simulation/data/technologies/ship_cost_time.jsongenericName
 msgid "Naval Architects"
@@ -1238,18 +1117,6 @@ msgstr "Équipages Experimentés"
 msgid "Ships +10% movement speed."
 msgstr "+10% de vitesse de déplacement pour les navires."
 
-#: simulation/data/technologies/siege_armor.jsondescription
-msgid "Increased armor on siege engines."
-msgstr "Augmente l'armure des engins de siège."
-
-#: simulation/data/technologies/siege_armor.jsongenericName
-msgid "Armor plating"
-msgstr "Plaque de blindage"
-
-#: simulation/data/technologies/siege_armor.jsontooltip
-msgid "Siege Engines +2 hack resistance."
-msgstr "Les engins de siège gagnent +2 points d'armure contre les attaques tranchantes. "
-
 #: simulation/data/technologies/siege_attack.jsondescription
 msgid "Advanced technologies improve siege efficiency."
 msgstr "Les technologies avancées améliorent l'efficacité du siège."
@@ -1274,29 +1141,42 @@ msgstr "Précision des balistes"
 msgid "Bolt Shooters −20% ranged attack spread."
 msgstr "Les balistes ont -20% de dispersion lors des attaques a distance."
 
-#: simulation/data/technologies/siege_cost_metal.jsondescription
-msgid "Siege engines require less metal."
-msgstr "Les engins de siège requièrent moins de métal."
+#: simulation/data/technologies/siege_cost_time.jsondescription
+msgid "The science or craft of laying or carrying out sieges."
+msgstr "La science ou l'art de subir ou de faire subir des sièges."
 
-#: simulation/data/technologies/siege_cost_metal.jsongenericName
-msgid "Metalworker"
-msgstr "Métallurgiste"
+#: simulation/data/technologies/siege_cost_time.jsongenericName
+msgid "Siegecraft"
+msgstr "Art du siège"
 
-#: simulation/data/technologies/siege_cost_metal.jsontooltip
-msgid "Siege Engines −20% metal cost."
-msgstr "Les engins de siège coutent -20% de métal."
+#: simulation/data/technologies/siege_cost_time.jsontooltip
+msgid "Siege Engines −20% construction time."
+msgstr "les engins de siège ont -20% de temps de construction."
 
-#: simulation/data/technologies/siege_cost_wood.jsondescription
-msgid "Siege engines require less wood."
-msgstr "Les engins de siège requièrent moins de bois."
+#: simulation/data/technologies/siege_health.jsondescription
+msgid ""
+"Cover the exterior with iron plates to protect against fire and projectiles."
+msgstr "Couvre l'extérieur avec des plaques de fer pour protéger du feu et des projectiles."
 
-#: simulation/data/technologies/siege_cost_wood.jsongenericName
-msgid "Artillery Instructors"
-msgstr "Instructeurs d'artillerie"
+#: simulation/data/technologies/siege_health.jsongenericName
+msgid "Armor Plating"
+msgstr "Plaque de blindage"
 
-#: simulation/data/technologies/siege_cost_wood.jsontooltip
-msgid "Siege Engines −20% wood cost."
-msgstr "Les engins de siège coutent -20% de bois."
+#: simulation/data/technologies/siege_health.jsontooltip
+msgid "Battering Rams and Siege Towers +25% health."
+msgstr "Les béliers et les tours de siège ont +25% de santé."
+
+#: simulation/data/technologies/siege_pack_unpack.jsondescription
+msgid "Military engineers are responsible for improvements in siege engines."
+msgstr "Les ingénieurs militaires sont responsables des améliorations des engins de siège."
+
+#: simulation/data/technologies/siege_pack_unpack.jsongenericName
+msgid "Military Engineers"
+msgstr "Génie militaire"
+
+#: simulation/data/technologies/siege_pack_unpack.jsontooltip
+msgid "Siege Engines –40% pack and unpack time."
+msgstr "les engins de siège ont -20% de temps de déploiement."
 
 #: simulation/data/technologies/silvershields.jsondescription
 msgid ""
@@ -1314,13 +1194,70 @@ msgid ""
 "and attack damage."
 msgstr "Améliore l'infanterie à bouclier championne en «Boucliers d'argent», possédant une meilleure santé et armure."
 
+#: simulation/data/technologies/soldier_attack_melee_01.jsondescription
+msgid ""
+"Often, a soldier would carry a secondary weapon in addition to his primary "
+"weapon of choice, to be drawn when the primary weapon has failed or been "
+"broken."
+msgstr "Souvent, un soldat d'infanterie portait avec lui une arme secondaire en supplément de son arme principale, qu'il utilisait lorsque son arme principale défaillait ou se brisait."
+
+#: simulation/data/technologies/soldier_attack_melee_01.jsongenericName
+msgid "Side Arms"
+msgstr "Arme de poing"
+
+#: simulation/data/technologies/soldier_attack_melee_01.jsonspecificName.athen
+#: simulation/data/technologies/soldier_attack_melee_01.jsonspecificName.mace
+#: simulation/data/technologies/soldier_attack_melee_01.jsonspecificName.ptol
+#: simulation/data/technologies/soldier_attack_melee_01.jsonspecificName.sele
+#: simulation/data/technologies/soldier_attack_melee_01.jsonspecificName.spart
+msgid "Xiphos"
+msgstr "Xiphos"
+
+#: simulation/data/technologies/soldier_attack_melee_01.jsonspecificName.rome
+msgid "Pugio"
+msgstr "Pugio"
+
+#: simulation/data/technologies/soldier_attack_melee_01.jsontooltip
+#: simulation/data/technologies/soldier_attack_melee_02.jsontooltip
+msgid "Soldiers +15% melee attack damage."
+msgstr "Les soldats ont +15% de dégâts d'attaque de mêlée."
+
+#: simulation/data/technologies/soldier_attack_melee_02.jsondescription
+msgid "Using iron instead of bronze gave weapons additional power."
+msgstr "Utilisation du fer au lieu du bronze procurant une puissance supplémentaire aux armes."
+
+#: simulation/data/technologies/soldier_attack_melee_02.jsongenericName
+msgid "Iron Weapons"
+msgstr "Armes en fer"
+
+#: simulation/data/technologies/soldier_attack_ranged_01.jsondescription
+msgid "Projectile points made of iron enable missiles to penetrate deeper."
+msgstr "Les projectiles avec des pointes en fer permettent de pénétrer plus profondément."
+
+#: simulation/data/technologies/soldier_attack_ranged_01.jsongenericName
+msgid "Iron Arrowheads"
+msgstr "Pointes en fer."
+
+#: simulation/data/technologies/soldier_attack_ranged_01.jsontooltip
+#: simulation/data/technologies/soldier_attack_ranged_02.jsontooltip
+msgid "Soldiers +15% ranged attack damage."
+msgstr "Les Soldats ont +15% dégâts d'attaque à distance.\n "
+
+#: simulation/data/technologies/soldier_attack_ranged_02.jsondescription
+msgid "Arrowheads with three lobes instead of two inflict larger wounds."
+msgstr "Les têtes de flèches avec trois lobes au lieu de deux infligent de plus larges blessures."
+
+#: simulation/data/technologies/soldier_attack_ranged_02.jsongenericName
+msgid "Trilobate Arrowheads"
+msgstr "Pointes de flèches à trois côtés."
+
 #: simulation/data/technologies/soldier_ranged_experience.jsontooltip
 msgid "Ranged Soldiers +25% promotion experience."
-msgstr ""
+msgstr "Les soldats à distance ont +25% d'expérience de promotion."
 
 #: simulation/data/technologies/soldier_resistance_hack_01.jsondescription
 msgid "Body armor made from quilted wool, linen, cotton, or leather."
-msgstr ""
+msgstr "Armure en laine matelassée, en lin, en coton ou en cuir."
 
 #: simulation/data/technologies/soldier_resistance_hack_01.jsongenericName
 msgid "Quilted Body Armor"
@@ -1398,7 +1335,7 @@ msgstr "Augmente significativement la vitesse d'entraînement de la cavalerie en
 
 #: simulation/data/technologies/stable_batch_training.jsontooltip
 msgid "Stables −10% batch training time."
-msgstr ""
+msgstr "Les étables ont −10% de temps d'entraînement de groupe."
 
 #: simulation/data/technologies/tower_crenellations.jsondescription
 msgid ""
@@ -1412,7 +1349,7 @@ msgstr "Créneaux"
 
 #: simulation/data/technologies/tower_crenellations.jsontooltip
 msgid "Sentry and Stone Towers +40% more arrows per garrisoned Soldier."
-msgstr ""
+msgstr "Les tours sentinelles et les tours de pierre ont +40% de flèches par Soldats en garnison."
 
 #: simulation/data/technologies/tower_health.jsondescription
 msgid "Reinforce the foundations in preparation of an attack."
@@ -1424,7 +1361,7 @@ msgstr "Fondations solides"
 
 #: simulation/data/technologies/tower_health.jsontooltip
 msgid "Towers +25% health."
-msgstr ""
+msgstr "Les Tours ont +25% de santé."
 
 #: simulation/data/technologies/tower_murderholes.jsondescription
 msgid "Murder holes allow hitting enemies at the foot of the tower."
@@ -1436,7 +1373,7 @@ msgstr "Meurtrières"
 
 #: simulation/data/technologies/tower_murderholes.jsontooltip
 msgid "Sentry and Stone Towers have 0 minimum attack range."
-msgstr ""
+msgstr "Les tours sentinelles et les tours de pierre n'ont pas de portée d'attaque minimum."
 
 #: simulation/data/technologies/tower_range.jsondescription
 msgid "Arrow shooters increase the maximum range of the fire arrows."
@@ -1448,7 +1385,7 @@ msgstr "Tireurs de flèche"
 
 #: simulation/data/technologies/tower_range.jsontooltip
 msgid "Sentry and Stone Towers +8 attack range."
-msgstr ""
+msgstr "Les tours sentinelles et les tours de pierre ont +8 de portée d'attaque."
 
 #: simulation/data/technologies/tower_watch.jsondescription
 msgid "A night's watch increases vigilance."
@@ -1472,7 +1409,7 @@ msgstr "Vigiles"
 
 #: simulation/data/technologies/tower_watch.jsontooltip
 msgid "Sentry and Stone Towers +1 default arrow count."
-msgstr ""
+msgstr "Les tours sentinelles et les tours de pierre ont +1 flèche par défaut."
 
 #: simulation/data/technologies/trade_commercial_treaty.jsondescription
 msgid "Improve the international trading profit."
@@ -1484,7 +1421,7 @@ msgstr "Traité commercial"
 
 #: simulation/data/technologies/trade_commercial_treaty.jsontooltip
 msgid "+10% international trade bonus."
-msgstr ""
+msgstr "+10% de bonus commercial avec les alliés."
 
 #: simulation/data/technologies/trade_gain_01.jsondescription
 #: simulation/data/technologies/trade_gain_02.jsondescription
@@ -1498,7 +1435,7 @@ msgstr "Artisanat"
 #: simulation/data/technologies/trade_gain_01.jsontooltip
 #: simulation/data/technologies/trade_gain_02.jsontooltip
 msgid "Traders +15% trade gain."
-msgstr ""
+msgstr "Les Marchands ont +15% de gains commerciaux."
 
 #: simulation/data/technologies/trade_gain_02.jsongenericName
 msgid "Advanced Handicraft"
@@ -1506,7 +1443,7 @@ msgstr "Artisanat avancé"
 
 #: simulation/data/technologies/trader_health.jsondescription
 msgid "Traders traveling together in caravans are less vulnerable."
-msgstr ""
+msgstr "Les Marchands voyageant ensemble en convois sont moins vulnérables aux attaques."
 
 #: simulation/data/technologies/trader_health.jsongenericName
 msgid "Trade Caravan"
@@ -1518,7 +1455,7 @@ msgstr "Les Marchands de terrains +50% de santé."
 
 #: simulation/data/technologies/traditional_army_sele.jsondescription
 msgid "The Macedonian-style core of the Seleucid army."
-msgstr ""
+msgstr "Le noyau de l'armée séleucide inspirée des troupes macédoniennes."
 
 #: simulation/data/technologies/traditional_army_sele.jsongenericName
 msgid "Traditional Army"
@@ -1534,7 +1471,7 @@ msgid ""
 "attack strength, +20% loot, and −30% gather speed; Healers +5 healing "
 "strength and +3 healing range; Melee units +1 resistance and +20% attack "
 "damage; Ranged units −20% spread."
-msgstr ""
+msgstr "Les unités avancées et élite ont +20% de temps d'entraînement, +25% de santé, +0.7 de force d'attaque de capture, +20% de butin et -30% de vitesse de récolte. Les Guérisseurs ont +5% de soin et +3 en portée. Les unités de Mêlée ont +1% de résistance et +20% de dégâts d'attaque. Les unités à Distance ont -20% de dispersion des attaques"
 
 #: simulation/data/technologies/unit_elephant_african.jsontooltip
 msgid ""
@@ -1554,14 +1491,14 @@ msgid ""
 "+20% loot, and −30% gather speed; Healers +5 healing strength and +3 healing"
 " range; Melee units +1 resistance and +20% attack damage; Ranged units −20% "
 "spread."
-msgstr ""
+msgstr "Les unités d'Élite ont +20% de temps d'entraînement, +25% de santé, +0.8 de force d'attaque de capture, +20% de butin et -30% de vitesse de récolte. Les Guérisseurs ont +5% de soin et +3 en portée. Les unités de Mêlée ont +1 de résistance et +20% de dégâts d'attaque. Les unités à Distance ont -20% de dispersion des attaques"
 
 #: simulation/data/technologies/unit_mercenary.jsontooltip
 msgid ""
 "Non-Champion Mercenaries −60% food cost, no wood or stone costs, −30% "
 "training time, and unable to gather resources; Infantry costs 60 metal, "
 "Cavalry 80 metal, Elephants 120 metal."
-msgstr ""
+msgstr "Les Mercenaires non Champion ont −60% de coût de nourriture, pas de coût de bois ni de pierre, −30% de temps d'entraînement, et ne peuvent pas récolter de ressources; L'Infantrie coûte 60 de métal, la cavalerie 80 de métal, les Éléphants 120 de métal."
 
 #: simulation/data/technologies/unlock_champion_cavalry.jsondescription
 #: simulation/data/technologies/unlock_champion_chariots.jsondescription
@@ -1711,4 +1648,4 @@ msgstr "Peristasis"
 msgid ""
 "Enable the “Glorious Expansion” aura: +20% maximum population limit per "
 "Wonder owned."
-msgstr ""
+msgstr "Active l'aura d'expansion glorieuse. Accorde un supplément de +20% à la limite de population pour chaque Merveille détenue."

@@ -39,9 +39,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-01 08:01+0000\n"
-"PO-Revision-Date: 2021-01-01 08:36+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-01-22 08:09+0000\n"
+"PO-Revision-Date: 2021-01-22 08:36+0000\n"
+"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -110,8 +110,8 @@ msgid "Miltiades"
 msgstr "米太亚德"
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].Description
-msgid "Metal mining gathering rates increased by +10% for each passing age."
-msgstr "采矿速度 +10%"
+msgid "Workers +10% metal gather rate per phase advance."
+msgstr ""
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].History
 msgid ""
@@ -255,6 +255,22 @@ msgstr "汉诺大帝"
 msgid "Himilco"
 msgstr "希米尔科"
 
+#: simulation/data/civs/cart.jsonCivBonuses[0].Description
+msgid "Merchant Ships +25% trade gain."
+msgstr ""
+
+#: simulation/data/civs/cart.jsonCivBonuses[0].Name
+msgid "Commercial Acumen"
+msgstr ""
+
+#: simulation/data/civs/cart.jsonCivBonuses[1].Description
+msgid "Docks and Markets +10% international trade bonus."
+msgstr ""
+
+#: simulation/data/civs/cart.jsonCivBonuses[1].Name
+msgid "Desirable Products"
+msgstr ""
+
 #: simulation/data/civs/cart.jsonHistory
 msgid ""
 "Carthage, a city-state in modern-day Tunisia, was a formidable force in the "
@@ -309,30 +325,6 @@ msgstr "瓦勒良"
 msgid "Viridovix"
 msgstr "Virdovix"
 
-#: simulation/data/civs/gaul.jsonCivBonuses[0].Description
-msgid "Enhanced food gained from ranching and farming. "
-msgstr "来通过放牧和农耕来加强粮食的获得。"
-
-#: simulation/data/civs/gaul.jsonCivBonuses[0].History
-msgid "Represents Celtic farming methods. "
-msgstr "展示凯尔特人的耕作方法。"
-
-#: simulation/data/civs/gaul.jsonCivBonuses[0].Name
-msgid "Ardiosmanae"
-msgstr "凯尔特农业"
-
-#: simulation/data/civs/gaul.jsonCivBonuses[1].Description
-msgid "Druids increase attack rates of soldiers near them slightly."
-msgstr "德鲁伊增加其周围士兵的攻击率。"
-
-#: simulation/data/civs/gaul.jsonCivBonuses[1].History
-msgid "Celtic religion and druidry inspired their warlike mindset. "
-msgstr "凯尔特人的宗教信仰和德鲁伊人激发了他们好战心态。"
-
-#: simulation/data/civs/gaul.jsonCivBonuses[1].Name
-msgid "Deas Celtica"
-msgstr "凯尔特人迪斯"
-
 #: simulation/data/civs/gaul.jsonHistory
 msgid ""
 "The Gauls were the Celtic tribes of continental Europe. Dominated by a "
@@ -376,8 +368,8 @@ msgid "Tautalus"
 msgstr "Tautalus"
 
 #: simulation/data/civs/iber.jsonCivBonuses[0].Description
-msgid "Iberians start with a powerful prefabricated circuit of stone walls."
-msgstr "伊比利亚文明在开始的时候，会有一圈预先建造好的强大的石墙。"
+msgid "Iberians start with City Walls around their base on most maps."
+msgstr ""
 
 #: simulation/data/civs/iber.jsonCivBonuses[0].History
 msgid ""
@@ -387,8 +379,18 @@ msgid ""
 msgstr "与一般的冲积平原和河谷不同的是，在伊比利亚半岛有丰富的石头用来建造各种各样的建筑。"
 
 #: simulation/data/civs/iber.jsonCivBonuses[0].Name
-msgid "Harritsu Leku"
-msgstr "岩石之地"
+msgid "Starting Walls"
+msgstr ""
+
+#: simulation/data/civs/iber.jsonCivBonuses[1].Description
+msgid ""
+"Stone Towers −50% wood cost, +150% stone cost, +33% build time, +60% health,"
+" +3 garrison capacity, and +1 default arrow count."
+msgstr ""
+
+#: simulation/data/civs/iber.jsonCivBonuses[1].Name
+msgid "Massive Towers"
+msgstr ""
 
 #: simulation/data/civs/iber.jsonHistory
 msgid ""
@@ -459,6 +461,16 @@ msgstr "亚特兰蒂斯"
 #: simulation/data/civs/kush.jsonAINames[9]
 msgid "Nasalsa"
 msgstr "纳萨尔萨"
+
+#: simulation/data/civs/kush.jsonCivBonuses[0].Description
+#: simulation/data/civs/pers.jsonCivBonuses[1].Description
+msgid "Battering Rams +20% attack damage and +2 garrison capacity."
+msgstr ""
+
+#: simulation/data/civs/kush.jsonCivBonuses[0].Name
+#: simulation/data/civs/pers.jsonCivBonuses[1].Name
+msgid "Large Rams"
+msgstr ""
 
 #: simulation/data/civs/kush.jsonHistory
 msgid ""
@@ -648,6 +660,14 @@ msgstr "阿尔塔薛西斯二世"
 msgid "Artaxshacha III"
 msgstr "阿尔塔薛西斯三世"
 
+#: simulation/data/civs/pers.jsonCivBonuses[0].Description
+msgid "Land Traders +25% trade gain."
+msgstr ""
+
+#: simulation/data/civs/pers.jsonCivBonuses[0].Name
+msgid "Darics"
+msgstr ""
+
 #: simulation/data/civs/pers.jsonHistory
 msgid ""
 "The Persian Empire, when ruled by the Achaemenid dynasty, was one of the "
@@ -739,6 +759,14 @@ msgstr "托勒密一世·亚历山大一世"
 msgid "Ptolemy Neos Dionysos"
 msgstr "托勒密十二世·吹笛者"
 
+#: simulation/data/civs/ptol.jsonCivBonuses[0].Description
+msgid "Bolt Shooters −33% attack damage and −33% attack time."
+msgstr ""
+
+#: simulation/data/civs/ptol.jsonCivBonuses[0].Name
+msgid "Polybolos"
+msgstr "希腊重弩砲"
+
 #: simulation/data/civs/ptol.jsonHistory
 msgid ""
 "The Ptolemaic dynasty was a Macedonian Greek royal family which ruled the "
@@ -823,23 +851,12 @@ msgid "Testudo Formation"
 msgstr "龟甲形大盾阵型"
 
 #: simulation/data/civs/rome.jsonCivBonuses[1].Description
-msgid ""
-"Any Roman citizen-soldier fighting within Roman territory gains a non-"
-"permanent +10% bonus in armor."
-msgstr "在罗马境内作战的任何罗马公民兵，将临时性的获得额外+10％的防御加成。"
-
-#: simulation/data/civs/rome.jsonCivBonuses[1].History
-msgid ""
-"Roman Citizenship was highly prized in the ancient world. Basic rights and "
-"privileges were afforded Roman citizens that were denied other conquered "
-"peoples. It is said that harming a Roman citizen was akin to harming Rome "
-"herself, and would cause the entire might of Rome to fall upon the "
-"perpetrator."
-msgstr "在古时的世界罗马国籍很受尊重。罗马公民被赋予了其他被征服的民族没有的基本权利和特权。据说，伤害一个罗马公民就是以罗马为敌，整个罗马都会团结在一起来制住施暴者。"
+msgid "Battering Rams +20% attack damage. Stone Throwers +10% attack damage."
+msgstr ""
 
 #: simulation/data/civs/rome.jsonCivBonuses[1].Name
-msgid "Citizenship"
-msgstr "国籍"
+msgid "Legionary Engineers"
+msgstr ""
 
 #: simulation/data/civs/rome.jsonHistory
 msgid ""
@@ -1025,6 +1042,14 @@ msgstr "埃凯司特拉托司"
 #: simulation/data/civs/spart.jsonAINames[9]
 msgid "Eurycrates"
 msgstr "欧里克拉铁斯"
+
+#: simulation/data/civs/spart.jsonCivBonuses[0].Description
+msgid "Female Citizens +40% health and +50% melee attack hack damage."
+msgstr ""
+
+#: simulation/data/civs/spart.jsonCivBonuses[0].Name
+msgid "Spartan Women"
+msgstr ""
 
 #: simulation/data/civs/spart.jsonHistory
 msgid ""

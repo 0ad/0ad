@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
-# David Sowa <isithere2@yahoo.com>, 2016-2020
+# David Sowa <isithere2@yahoo.com>, 2016-2021
 # enolp <enolp@softastur.org>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-01 08:01+0000\n"
-"PO-Revision-Date: 2021-01-01 08:36+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-01-22 08:09+0000\n"
+"PO-Revision-Date: 2021-01-25 01:03+0000\n"
+"Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -79,8 +79,8 @@ msgid "Miltiades"
 msgstr "Milcíades"
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].Description
-msgid "Metal mining gathering rates increased by +10% for each passing age."
-msgstr "Cada fas que pasa, la tasa d'estraición del metal medra un +10%."
+msgid "Workers +10% metal gather rate per phase advance."
+msgstr "Obreros: tasa d'estraición del metal +10% cada avance de fas."
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].History
 msgid ""
@@ -98,7 +98,7 @@ msgid ""
 "Athens was famed as a center for the arts, learning and philosophy. The "
 "Athenians were also powerful warriors, particularly at sea. At its peak, "
 "Athens dominated a large part of the Hellenic world for several decades."
-msgstr "Darréu que yera la madre de la democracia y el berciu de la civilización occidental, Atenes tenía sonadía d'axixar les artes, el deprendimientu ya la filosofía. Tamién sabía engarrar, sobre too na mar. Nel so cumal, Atenes apoderó una parte grande del mundu griegu demientres delles décades."
+msgstr "Darréu que yera la madre de la democracia y el berciu de la civilización occidental, Atenes tenía sonadía d'axixar les artes, el deprendimientu y la filosofía. Tamién sabía engarrar, sobre too na mar. Nel so cumal, Atenes apoderó una parte grande del mundu griegu demientres delles décades."
 
 #: simulation/data/civs/athen.jsonName
 msgid "Athenians"
@@ -154,7 +154,7 @@ msgid ""
 "longswordsmen and powerful melee soldiers, they staged fearsome revolts "
 "against Rome to protect their customs and interests. Also, they built "
 "thousands of unique structures such as hill forts, crannogs and brochs."
-msgstr "Los britanos yeren los celtes de Gran Bretaña. Con carros, espadones ya guerreros robezos, embelláronse a Roma pa defender los sos costumes ya porgüeyos. D'otra miente, facíen miles de construcciones úniques como'l «cagron», la «inis» y el «dunos»."
+msgstr "Los britanos yeren los celtes de Gran Bretaña. Con carros, espadones y guerreros robezos, embelláronse a Roma pa defender los sos costumes y porgüeyos. D'otra miente, facíen miles de construcciones úniques como'l «cagron», la «inis» y el «dunos»."
 
 #: simulation/data/civs/brit.jsonName
 msgid "Britons"
@@ -224,6 +224,22 @@ msgstr "Hanón el Grande"
 msgid "Himilco"
 msgstr "Himilcón"
 
+#: simulation/data/civs/cart.jsonCivBonuses[0].Description
+msgid "Merchant Ships +25% trade gain."
+msgstr "Mercantes: ganancies +25%."
+
+#: simulation/data/civs/cart.jsonCivBonuses[0].Name
+msgid "Commercial Acumen"
+msgstr "Xeitu pal comerciu"
+
+#: simulation/data/civs/cart.jsonCivBonuses[1].Description
+msgid "Docks and Markets +10% international trade bonus."
+msgstr "Cais, mercaos: ganancies del comerciu internacional +10%."
+
+#: simulation/data/civs/cart.jsonCivBonuses[1].Name
+msgid "Desirable Products"
+msgstr "Productos calidables"
+
 #: simulation/data/civs/cart.jsonHistory
 msgid ""
 "Carthage, a city-state in modern-day Tunisia, was a formidable force in the "
@@ -232,7 +248,7 @@ msgid ""
 "among the fiercest contenders on the high seas, and masters of naval trade. "
 "They deployed towered War Elephants on the battlefield to fearsome effect, "
 "and had defensive walls so strong, they were never breached."
-msgstr "Cartagu, una urbe no qu'anguaño ye Tunicia, apoderaba'l mediterraneu occidental ya, nel III a.C., conquistó muncha de l'África del Norte ya la Península Ibérica. Afayábase na mar, comerciando y engardiando. Desplegaba elefantes qu'afaraben na batalla y aposiaba muralles tan macices que nunca naide les franquió."
+msgstr "Cartagu, una urbe no qu'anguaño ye Tunicia, apoderaba'l mediterraneu occidental y, nel III a.C., conquistó muncha de l'África del Norte y la Península Ibérica. Afayábase na mar, comerciando y engardiando. Desplegaba elefantes qu'afaraben na batalla y aposiaba muralles tan macices que nunca naide les franquió."
 
 #: simulation/data/civs/cart.jsonName
 msgid "Carthaginians"
@@ -278,30 +294,6 @@ msgstr "Valetiacos"
 msgid "Viridovix"
 msgstr "Viridovix"
 
-#: simulation/data/civs/gaul.jsonCivBonuses[0].Description
-msgid "Enhanced food gained from ranching and farming. "
-msgstr "Percánciase más comida del ganáu ya la collecha."
-
-#: simulation/data/civs/gaul.jsonCivBonuses[0].History
-msgid "Represents Celtic farming methods. "
-msgstr "L'agricultura celta."
-
-#: simulation/data/civs/gaul.jsonCivBonuses[0].Name
-msgid "Ardiosmanae"
-msgstr "Ardiosmanae"
-
-#: simulation/data/civs/gaul.jsonCivBonuses[1].Description
-msgid "Druids increase attack rates of soldiers near them slightly."
-msgstr "Los druides entaínen un pocoñín l'ataque de soldaos averaos."
-
-#: simulation/data/civs/gaul.jsonCivBonuses[1].History
-msgid "Celtic religion and druidry inspired their warlike mindset. "
-msgstr "El paganismu celta ya los druides emponderaben la guerra."
-
-#: simulation/data/civs/gaul.jsonCivBonuses[1].Name
-msgid "Deas Celtica"
-msgstr "Deas celtica"
-
 #: simulation/data/civs/gaul.jsonHistory
 msgid ""
 "The Gauls were the Celtic tribes of continental Europe. Dominated by a "
@@ -345,19 +337,29 @@ msgid "Tautalus"
 msgstr "Táutalos"
 
 #: simulation/data/civs/iber.jsonCivBonuses[0].Description
-msgid "Iberians start with a powerful prefabricated circuit of stone walls."
-msgstr "Los íberos entamen amurallaos."
+msgid "Iberians start with City Walls around their base on most maps."
+msgstr "Los íberos entamen amurallaos nos más de los mapes."
 
 #: simulation/data/civs/iber.jsonCivBonuses[0].History
 msgid ""
 "With exception to alluvial plains and river valleys, stone is abundant in "
 "the Iberian Peninsula and was greatly used in construction of structures of "
 "all types."
-msgstr "Sacante nes vegues, la Península Ibérica tien bien de piedres ya los antiguos aprovechábenles pa facer construcciones de toles menes."
+msgstr "La Península Ibérica tien mui bien de piedra y los antiguos aprovechábenlo pa facer construcciones de toles menes."
 
 #: simulation/data/civs/iber.jsonCivBonuses[0].Name
-msgid "Harritsu Leku"
-msgstr "Hardui"
+msgid "Starting Walls"
+msgstr "Muralles iniciales"
+
+#: simulation/data/civs/iber.jsonCivBonuses[1].Description
+msgid ""
+"Stone Towers −50% wood cost, +150% stone cost, +33% build time, +60% health,"
+" +3 garrison capacity, and +1 default arrow count."
+msgstr "Torres de piedra: costu en madera −50%, en piedra +150%, tiempu de construcción +33%, vida +60%, capacidá +3, fleches por defeutu +1."
+
+#: simulation/data/civs/iber.jsonCivBonuses[1].Name
+msgid "Massive Towers"
+msgstr "Torres escomanaes"
 
 #: simulation/data/civs/iber.jsonHistory
 msgid ""
@@ -367,7 +369,7 @@ msgid ""
 "proved tenacious when Rome sought to take their land and freedom from them, "
 "and employed pioneering guerrilla tactics and flaming javelins as they "
 "fought back."
-msgstr "La xente d'Iberia, de veniencies ya llingües escures, criare caballos ya fundiere metal dende peronia. Si bien se contrataben como mercenarios, enclinábense a la paz. Sicasí, énte l'amenaza de Roma, amosáronse aportunantes ya valiéronse d'una guerra de guerrines ya venablos flamíxeros."
+msgstr "La xente d'Iberia, de veniencies y llingües escures, criare caballos y fundiere metal dende peronia. Si bien se contrataben como mercenarios, enclinábense a la paz. Sicasí, énte l'amenaza de Roma, amosáronse aportunantes y valiéronse d'una guerra de guerrines y venablos flamíxeros."
 
 #: simulation/data/civs/iber.jsonName
 msgid "Iberians"
@@ -429,6 +431,16 @@ msgstr "Atlanersa"
 msgid "Nasalsa"
 msgstr "Nasalsa"
 
+#: simulation/data/civs/kush.jsonCivBonuses[0].Description
+#: simulation/data/civs/pers.jsonCivBonuses[1].Description
+msgid "Battering Rams +20% attack damage and +2 garrison capacity."
+msgstr "Arietes: ataque +20%, capacidá +2."
+
+#: simulation/data/civs/kush.jsonCivBonuses[0].Name
+#: simulation/data/civs/pers.jsonCivBonuses[1].Name
+msgid "Large Rams"
+msgstr "Arietes grandes"
+
 #: simulation/data/civs/kush.jsonHistory
 msgid ""
 "The Kingdom of Kush was an ancient African kingdom situated on the "
@@ -445,7 +457,7 @@ msgid ""
 "Meroitic kingdom was known as Aethiopia. The Kushite kingdom persisted until"
 " the 4th century AD, when it weakened and disintegrated due to internal "
 "rebellion, eventually succumbing to the rising power of Axum."
-msgstr "Cux yera un reinu de l'África antigua asitiáu nes miestes del Nilu Azul, Nilu Blancu ya Ríu Atbara no qu'anguaño ye la República del Sudán. Ñació en Napata tres l'esbarrumbu del Imperiu Nuevu d'Exiptu a la fin de la Edá del Bronce. Nel VIII a.C. los reis cuxinos conquistaron Exiptu ya gobernáronlu demientres un sieglu como faraones de la dinastía XXV, fasta que los asirios los espuxaron. La cultura cuxina bebía de la de los exipcios. Ello pervése nes sos munches pirámides, templos ya monumentos. Tamién adoraben a munchos dioses exipcios, como Amón. Yá na antigüedá clásica, la cabeza del reinu treslladárase a Meroe y al país los griegos llamábenlu Etiopía. El reinu duró fasta'l IV d.C., cuando decayó, s'esbrugó ya finalmente agachó énte'l poder xorreciente d'Aksum."
+msgstr "Cux yera un reinu de l'África antigua asitiáu nes miestes del Nilu Azul, Nilu Blancu y Ríu Atbara no qu'anguaño ye la República del Sudán. Ñació en Napata tres l'esbarrumbu del Imperiu Nuevu d'Exiptu a la fin de la Edá del Bronce. Nel VIII a.C. los reis cuxinos conquistaron Exiptu y gobernáronlu demientres un sieglu como faraones de la dinastía XXV, fasta que los asirios los espuxaron. La cultura cuxina bebía de la de los exipcios. Ello pervése nes sos munches pirámides, templos y monumentos. Tamién adoraben a munchos dioses exipcios, como Amón. Yá na antigüedá clásica, la cabeza del reinu treslladárase a Meroe y al país los griegos llamábenlu Etiopía. El reinu duró fasta'l IV d.C., cuando decayó, s'esbrugó y finalmente agachó énte'l poder xorreciente d'Aksum."
 
 #: simulation/data/civs/kush.jsonName
 msgid "Kushites"
@@ -511,7 +523,7 @@ msgid ""
 "Macedonian forces and allies took over most of the world they knew, "
 "including Egypt, Persia and parts of the Indian subcontinent, allowing a "
 "diffusion of Hellenic and eastern cultures for years to come."
-msgstr "Na antigüedá, Macedonia yera un reinu que s'allugaba nel nordeste de la península griega. Sol mandu d'Alexandru'l Grande, ella ya los sos aliaos apoderáronse de la mayor parte del mundiu que coñocíen—Exiptu, Persia y estayes del socontinente indiu—y asina dieron llugar a la difusión de les cultures heléniques ya orientales demientres munchos años."
+msgstr "Na antigüedá, Macedonia yera un reinu nel nordeste de la península griega. Sol mandu d'Alexandru'l Grande, ella apoderóse de la mayor parte del mundiu coñocíu—Exiptu, Persia y estayes del socontinente indiu—y asina dio llugar a la difusión de les cultures heléniques y orientales."
 
 #: simulation/data/civs/mace.jsonName
 msgid "Macedonians"
@@ -563,7 +575,7 @@ msgid ""
 "Acharya Chanakya, contributed to such varied fields such as economics, "
 "religion, diplomacy, warfare, and good governance. Under the rule of Ashoka "
 "the Great, the empire saw 40 years of peace, harmony, and prosperity."
-msgstr "Fundáu nel 322 a.C. por Chandragupta Maurya, el maurián foi'l primer imperiu en controlar la mayoría del socontinente indiu, ya ún de los más grandes ya poblaos de l'antigüedá. Na guerra enfotóse n'arcos llargos de bambú, guerreres, carros ya miles d'elefantes acorazaos. Los sos filósofos, especialmente Acharya Chanakya, avanzaron permunchos campos, talos como la económica, la relixón, la diplomacia, la milicia y el bon gobiernu. Sol mandáu d'Aśoka'l Grande, l'Imperiu vivió 40 años de paz, harmonía ya prosperidá."
+msgstr "Fundáu nel 322 a.C. por Chandragupta Maurya, el maurián foi'l primer imperiu en controlar la mayoría del socontinente indiu, y ún de los más grandes y poblaos de l'antigüedá. Na guerra enfotóse n'arcos llargos de bambú, guerreres, carros y miles d'elefantes acorazaos. Los sos filósofos, especialmente Acharya Chanakya, avanzaron permunchos campos, talos como la económica, la relixón, la diplomacia, la milicia y el bon gobiernu. Sol mandáu d'Aśoka'l Grande, l'Imperiu vivió 40 años de paz, harmonía y prosperidá."
 
 #: simulation/data/civs/maur.jsonName
 msgid "Mauryas"
@@ -617,6 +629,14 @@ msgstr "Artaxšaça II"
 msgid "Artaxshacha III"
 msgstr "Artaxšaça III"
 
+#: simulation/data/civs/pers.jsonCivBonuses[0].Description
+msgid "Land Traders +25% trade gain."
+msgstr "Comerciantes terrestres: ganancies +25%."
+
+#: simulation/data/civs/pers.jsonCivBonuses[0].Name
+msgid "Darics"
+msgstr "El dáricu"
+
 #: simulation/data/civs/pers.jsonHistory
 msgid ""
 "The Persian Empire, when ruled by the Achaemenid dynasty, was one of the "
@@ -626,7 +646,7 @@ msgid ""
 "rule over various peoples with different customs, laws, religions and "
 "languages, and building a cosmopolitan army made up of contingents from each"
 " of these nations."
-msgstr "L'Imperiu persa, sol gobiernu de la dinastía aqueménida, yera ún de los imperios más grandes de l'antigüedá. Nel so cumal espurríase del valle del Indu fasta Grecia. Los perses yeren ente los primeros del mundu antiguu en faer imperiu. Llograron imponer un gobiernu centralizáu sobro países d'estremaes costumes, lleis, relixones ya llingües, ya de les lleves de caún d'ellos formaron un exércitu cosmopolita."
+msgstr "L'Imperiu persa, sol gobiernu de la dinastía aqueménida, yera ún de los imperios más grandes de l'antigüedá. Nel so cumal espurríase del valle del Indu fasta Grecia. Los perses yeren ente los primeros del mundu antiguu en faer imperiu. Llograron imponer un gobiernu centralizáu sobro países d'estremaes costumes, lleis, relixones y llingües, y de les lleves de caún d'ellos formaron un exércitu cosmopolita."
 
 #: simulation/data/civs/pers.jsonName
 msgid "Persians"
@@ -708,13 +728,21 @@ msgstr "Ptoleméu Alexandru"
 msgid "Ptolemy Neos Dionysos"
 msgstr "Ptoleméu Neu Dionisu"
 
+#: simulation/data/civs/ptol.jsonCivBonuses[0].Description
+msgid "Bolt Shooters −33% attack damage and −33% attack time."
+msgstr "Ballestes: ataque −33%, tiempu ente ataques −33%."
+
+#: simulation/data/civs/ptol.jsonCivBonuses[0].Name
+msgid "Polybolos"
+msgstr "Polybolos"
+
 #: simulation/data/civs/ptol.jsonHistory
 msgid ""
 "The Ptolemaic dynasty was a Macedonian Greek royal family which ruled the "
 "Ptolemaic Empire in Egypt during the Hellenistic period. Their rule lasted "
 "for 275 years, from 305 BC to 30 BC. They were the last dynasty of ancient "
 "Egypt."
-msgstr "La dinastía griego-macedonia que fundó ya rixó l'Imperiu ptolemaicu n'Exiptu demientres l'helenismu. El so gobiernu duró 275 años, del 305 a.C. al 30 a.C. Foi la dinastía cabera del Exiptu antiguu."
+msgstr "La dinastía griego-macedonia que fundó y rixó l'Imperiu ptolemaicu n'Exiptu demientres l'helenismu. El so gobiernu duró 275 años, del 305 a.C. al 30 a.C. Foi la dinastía cabera del Exiptu antiguu."
 
 #: simulation/data/civs/ptol.jsonName
 msgid "Ptolemies"
@@ -792,23 +820,12 @@ msgid "Testudo Formation"
 msgstr "Formación del testudo"
 
 #: simulation/data/civs/rome.jsonCivBonuses[1].Description
-msgid ""
-"Any Roman citizen-soldier fighting within Roman territory gains a non-"
-"permanent +10% bonus in armor."
-msgstr "Tou milicianu romanu que s'engarda en territoriu propio recibe una ventaya temporal del +10% na armadura. "
-
-#: simulation/data/civs/rome.jsonCivBonuses[1].History
-msgid ""
-"Roman Citizenship was highly prized in the ancient world. Basic rights and "
-"privileges were afforded Roman citizens that were denied other conquered "
-"peoples. It is said that harming a Roman citizen was akin to harming Rome "
-"herself, and would cause the entire might of Rome to fall upon the "
-"perpetrator."
-msgstr "Los antiguos cobiciaben la ciudadanía romana, pos los ciudadanos gociaben de derechos ya privilexos qu'a otra xente se-y ñegaba. Dicíase que dañar a un romanu yera dañar a Roma, ya qu'ella se vengaría. "
+msgid "Battering Rams +20% attack damage. Stone Throwers +10% attack damage."
+msgstr "Arietes: ataque +20%. Onagros: ataque +10%."
 
 #: simulation/data/civs/rome.jsonCivBonuses[1].Name
-msgid "Citizenship"
-msgstr "Ciudadanía"
+msgid "Legionary Engineers"
+msgstr "Inxenieros lexonarios"
 
 #: simulation/data/civs/rome.jsonHistory
 msgid ""
@@ -819,7 +836,7 @@ msgid ""
 "nations on earth for almost 800 years. The Romans were the supreme builders "
 "of the ancient world, excelled at siege warfare and had an exquisite "
 "infantry and navy."
-msgstr "Los romanos gobernaron ún de los imperios más grandes de l'antigüedá. Nel so cumal, les sos fronteres espurríense de la Escocia meridional al desiertu del Sáḥara, ya tenía ente 60 ya 80 millones d'habitantes, un cuartu de la población de la Tierra d'aquella dómina. Amás, siguió siendo una potencia mundial cuasimente 800 años. Los romanos yeren constructores ensin oldéu. Teníen arte pal asediu ya xeitu pal combate terrestre ya naval."
+msgstr "Los romanos gobernaron ún de los imperios más grandes de l'antigüedá. Nel so cumal, les sos fronteres espurríense de la Escocia meridional al desiertu del Sáḥara, y tenía ente 60 y 80 millones d'habitantes, un cuartu de la población de la Tierra d'aquella dómina. Amás, siguió siendo una potencia mundial cuasimente 800 años. Los romanos yeren constructores ensin oldéu. Teníen arte pal asediu y xeitu pal combate terrestre y naval."
 
 #: simulation/data/civs/rome.jsonName
 msgid "Romans"
@@ -995,6 +1012,14 @@ msgstr "Equéstratu"
 msgid "Eurycrates"
 msgstr "Eurícrates"
 
+#: simulation/data/civs/spart.jsonCivBonuses[0].Description
+msgid "Female Citizens +40% health and +50% melee attack hack damage."
+msgstr "Ciudadanes: vida +40%, corte del ataque cuerpu a cuerpu +50%."
+
+#: simulation/data/civs/spart.jsonCivBonuses[0].Name
+msgid "Spartan Women"
+msgstr "Espartanes"
+
 #: simulation/data/civs/spart.jsonHistory
 msgid ""
 "Sparta was a prominent city-state in ancient Greece, and its dominant "
@@ -1003,7 +1028,7 @@ msgid ""
 " at age seven. Thanks to its military might, Sparta led a coalition of Greek"
 " forces during the Greco-Persian Wars, and won over Athens in the "
 "Peloponnesian Wars, though at great cost."
-msgstr "Esparta yera una polis de nomada que la mayor potencia militar de la Hélade dende alredor de 650 a.C. Los espartanos encegolábense cola milicia; los sos rapacinos entrenábense dende los siete años. Gracies al puxu del so exércitu, Esparta mandó un colligamientu griegu nes guerres médiques ya venció a Atenes na guerra del Peloponesu, si bien-yos costó enforma."
+msgstr "Esparta yera una polis de nomada que la mayor potencia militar de la Hélade dende alredor de 650 a.C. Los espartanos encegolábense cola milicia; los sos rapacinos entrenábense dende los siete años. Gracies al puxu del so exércitu, Esparta mandó un colligamientu griegu nes guerres médiques y venció a Atenes na guerra del Peloponesu, si bien-yos costó enforma."
 
 #: simulation/data/civs/spart.jsonName
 msgid "Spartans"

@@ -27,8 +27,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-15 08:53+0000\n"
-"PO-Revision-Date: 2021-01-15 10:36+0000\n"
+"POT-Creation-Date: 2021-01-22 08:09+0000\n"
+"PO-Revision-Date: 2021-01-22 10:35+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
@@ -697,7 +697,7 @@ msgid_plural "Average bonus range: %(range)s meters"
 msgstr[0] "Bónus de alcance médio: %(range)s meter"
 msgstr[1] "Bónus de alcance médio: %(range)s metros"
 
-#: gui/session/input.js:677
+#: gui/session/input.js:683
 msgid "Cannot build wall here!"
 msgstr "Não se pode construir uma muralha aqui!"
 
@@ -855,23 +855,23 @@ msgstr "Ganhaste!"
 msgid "You have been defeated!"
 msgstr "Foste derrotado!"
 
-#: gui/session/messages.js:355
+#: gui/session/messages.js:354
 msgid "Click to quit this tutorial."
 msgstr "Clica para sair deste tutorial."
 
-#: gui/session/messages.js:356
+#: gui/session/messages.js:355
 msgid "Quit"
 msgstr "Sair"
 
-#: gui/session/messages.js:360
+#: gui/session/messages.js:359
 msgid "Click when ready."
 msgstr "Clica quando estiveres pronto."
 
-#: gui/session/messages.js:364
+#: gui/session/messages.js:363
 msgid "Follow the instructions."
 msgstr "Segue as instruções."
 
-#: gui/session/messages.js:489
+#: gui/session/messages.js:488
 msgid "Unknown Player"
 msgstr "Jogador desconhecido"
 
@@ -1033,7 +1033,7 @@ msgstr "Desalojar %(name)s"
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "Clique esquerdo para desalojar 1 unidade. Shift + clique para desalojar todas as unidades deste tipo."
 
-#: gui/session/selection_panels.js:340 gui/session/selection_panels.js:850
+#: gui/session/selection_panels.js:340 gui/session/selection_panels.js:860
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr "Jogador: %(playername)s"
@@ -1071,46 +1071,46 @@ msgstr "Capacidade populacional insuficiente:"
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:715
+#: gui/session/selection_panels.js:725
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
 msgstr[0] "%(number)s entidade da classe %(class)s"
 msgstr[1] "%(number)s entidades da classe %(class)s"
 
-#: gui/session/selection_panels.js:721
+#: gui/session/selection_panels.js:731
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
 msgstr "Restante: %(entityCounts)s"
 
-#: gui/session/selection_panels.js:722
+#: gui/session/selection_panels.js:732
 msgctxt "Separator for a list of entity counts"
 msgid ", "
 msgstr ", "
 
-#: gui/session/selection_panels.js:774
+#: gui/session/selection_panels.js:784
 msgid "Cannot research while upgrading."
 msgstr ""
 
-#: gui/session/selection_panels.js:998
+#: gui/session/selection_panels.js:1008
 msgid "Cannot train while upgrading."
 msgstr ""
 
-#: gui/session/selection_panels.js:1060
+#: gui/session/selection_panels.js:1070
 #, javascript-format
 msgid "Upgrade to %(name)s. %(tooltip)s"
 msgstr "Promover para %(name)s. %(tooltip)s"
 
-#: gui/session/selection_panels.js:1065
+#: gui/session/selection_panels.js:1075
 #, javascript-format
 msgid "Upgrade to %(name)s."
 msgstr "Promover para %(name)s."
 
-#: gui/session/selection_panels.js:1101
+#: gui/session/selection_panels.js:1111
 msgid "Cancel Upgrading"
 msgstr "Cancelar promoção"
 
-#: gui/session/selection_panels.js:1116
+#: gui/session/selection_panels.js:1126
 msgid ""
 "Cannot upgrade when the entity is training, researching or already "
 "upgrading."
@@ -1188,8 +1188,8 @@ msgid "%(changer)s lessens the limit with %(change)s."
 msgstr "%(changer)s restringe o limite com %(change)s."
 
 #: gui/session/selection_panels_helpers.js:140
-msgid "Could be constructed merely once."
-msgid_plural "Could be constructed merely %(limit)s times."
+msgid "Could only be constructed once."
+msgid_plural "Could only be constructed %(limit)s times."
 msgstr[0] ""
 msgstr[1] ""
 
@@ -1205,8 +1205,8 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: gui/session/selection_panels_helpers.js:153
-msgid "Could be trained merely once."
-msgid_plural "Could be trained merely %(limit)s times."
+msgid "Could only be trained once."
+msgid_plural "Could only be trained %(limit)s times."
 msgstr[0] ""
 msgstr[1] ""
 
@@ -1222,8 +1222,8 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: gui/session/selection_panels_helpers.js:166
-msgid "Could be created merely once."
-msgid_plural "Could be created merely %(limit)s times."
+msgid "Could only be created once."
+msgid_plural "Could only be created %(limit)s times."
 msgstr[0] ""
 msgstr[1] ""
 
@@ -1297,7 +1297,7 @@ msgstr "Clica para selecionar as unidades agrupadas, clica duas vezes para junta
 msgid "ALPHA XXIV"
 msgstr "ALFA XXIV"
 
-#: gui/session/top_panel/CivIcon.js:77
+#: gui/session/top_panel/CivIcon.js:80
 #, javascript-format
 msgid ""
 "%(civ)s\n"

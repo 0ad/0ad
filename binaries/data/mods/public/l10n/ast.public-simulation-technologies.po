@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-20 00:57+0000\n"
-"PO-Revision-Date: 2021-01-20 23:05+0000\n"
+"POT-Creation-Date: 2021-01-22 08:09+0000\n"
+"PO-Revision-Date: 2021-01-25 00:28+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -22,17 +22,13 @@ msgstr ""
 msgid ""
 "Spartans were housed and trained from a young age to be superlative warriors"
 " and to endure any hardship a military life can give them."
-msgstr "Los espartanos entrenábense dende pequeños a engarrar ya soportar cualquier desafíu que la milicia-yos presentare."
+msgstr "Los espartanos entrenábense dende pequeños a engarrar y soportar cualquier desafíu que la milicia-yos presentare."
 
 #: simulation/data/technologies/agoge.jsongenericName
 msgid "The Agoge"
 msgstr "L'agogá"
 
 #: simulation/data/technologies/agoge.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_cavalry_melee_02.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_cavalry_ranged_02.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_infantry_melee_02.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_infantry_ranged_02.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_soldiers_will.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_steel_working.jsonrequirementsTooltip
 #: simulation/data/technologies/barracks_batch_training.jsonrequirementsTooltip
@@ -56,12 +52,14 @@ msgstr "L'agogá"
 #: simulation/data/technologies/ship_cost_time.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_health.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_movement_speed.jsonrequirementsTooltip
-#: simulation/data/technologies/siege_armor.jsonrequirementsTooltip
 #: simulation/data/technologies/siege_attack.jsonrequirementsTooltip
 #: simulation/data/technologies/siege_bolt_accuracy.jsonrequirementsTooltip
-#: simulation/data/technologies/siege_cost_metal.jsonrequirementsTooltip
-#: simulation/data/technologies/siege_cost_wood.jsonrequirementsTooltip
+#: simulation/data/technologies/siege_cost_time.jsonrequirementsTooltip
+#: simulation/data/technologies/siege_health.jsonrequirementsTooltip
+#: simulation/data/technologies/siege_pack_unpack.jsonrequirementsTooltip
 #: simulation/data/technologies/silvershields.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_attack_melee_02.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_attack_ranged_02.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_hack_02.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_pierce_02.jsonrequirementsTooltip
 #: simulation/data/technologies/stable_batch_training.jsonrequirementsTooltip
@@ -84,7 +82,7 @@ msgstr "Llanceros campeones: vida +25%, tiempu de preparación +5%."
 msgid ""
 "The Indian, Iranian, and Kushite peoples had a tradition of fine archery and"
 " a penchant for using massed archers in battle."
-msgstr "Los indios, iraninos ya cuxinos teníen xeitu pal arcu ya un enclín a emplegar mases d'arqueros na batalla."
+msgstr "Los indios, iraninos y cuxinos teníen xeitu pal arcu y un enclín a emplegar mases d'arqueros na batalla."
 
 #: simulation/data/technologies/archery_tradition.jsongenericName
 msgid "Archery Tradition"
@@ -110,10 +108,6 @@ msgid "Monumental Architecture"
 msgstr "Arquiteutura monumental"
 
 #: simulation/data/technologies/architecture_kush.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_cavalry_melee_01.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_cavalry_ranged_01.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_infantry_melee_01.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_infantry_ranged_01.jsonrequirementsTooltip
 #: simulation/data/technologies/cavalry_cost_time.jsonrequirementsTooltip
 #: simulation/data/technologies/cavalry_health.jsonrequirementsTooltip
 #: simulation/data/technologies/colonization.jsonrequirementsTooltip
@@ -129,6 +123,8 @@ msgstr "Arquiteutura monumental"
 #: simulation/data/technologies/heal_rate.jsonrequirementsTooltip
 #: simulation/data/technologies/infantry_cost_time.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_attack_melee_01.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_attack_ranged_01.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_hack_01.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_pierce_01.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_crenellations.jsonrequirementsTooltip
@@ -151,7 +147,7 @@ msgid ""
 " Susa; Darius the Great and Xerxes also built the magnificent Persepolis; "
 "Cyrus the Great greatly improved Ecbatana and virtually 'rebuilt' the old "
 "Elamite capital of Susa."
-msgstr "Los perses ficieron la Ruta Real, una maravía de 2.700 quilómetros de llargu ente Sardes ya Susa. Daríu'l Grande ya Xerxes llevantaron la ciudadela de Persépolis. Ciru'l Grande perameyoró Ecbatana ya práuticamente «reconstruyó» Susa, la cabeza d'Elam."
+msgstr "Los perses ficieron la Ruta Real, una maravía de 2.700 quilómetros de llargu ente Sardes y Susa. Daríu'l Grande y Xerxes llevantaron la ciudadela de Persépolis. Ciru'l Grande perameyoró Ecbatana y práuticamente «reconstruyó» Susa, la cabeza d'Elam."
 
 #: simulation/data/technologies/architecture_pers.jsongenericName
 msgid "Persian Architecture"
@@ -159,125 +155,7 @@ msgstr "Arquiteutura"
 
 #: simulation/data/technologies/architecture_pers.jsontooltip
 msgid "Structures +25% health and capture points, but also +20% build time."
-msgstr "Construcciones: vida ya llealtá +25%, tiempu de construcción +20%."
-
-#: simulation/data/technologies/attack_cavalry_melee_01.jsondescription
-msgid "Training increases melee attack."
-msgstr "Los exercicios amonten l'ataque cuerpu a cuerpu."
-
-#: simulation/data/technologies/attack_cavalry_melee_01.jsongenericName
-msgid "Close Combat Cavalry Training"
-msgstr "Maniobres de caballería"
-
-#: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.athen
-#: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.mace
-#: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.ptol
-#: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.sele
-#: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.spart
-#: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.athen
-#: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.mace
-#: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.ptol
-#: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.sele
-#: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.spart
-msgid "Xyston"
-msgstr "Xystón"
-
-#: simulation/data/technologies/attack_cavalry_melee_01.jsonspecificName.rome
-#: simulation/data/technologies/attack_cavalry_melee_02.jsonspecificName.rome
-msgid "Hasta"
-msgstr "Hasta"
-
-#: simulation/data/technologies/attack_cavalry_melee_01.jsontooltip
-#: simulation/data/technologies/attack_cavalry_melee_02.jsontooltip
-msgid "Cavalry +20% melee attack damage."
-msgstr "Caballería: ataque cuerpu a cuerpu +20%."
-
-#: simulation/data/technologies/attack_cavalry_melee_02.jsondescription
-#: simulation/data/technologies/attack_cavalry_ranged_02.jsondescription
-msgid "Replaces bronze weapons with iron."
-msgstr "Reemplaza les armes de bronce coles de fierro."
-
-#: simulation/data/technologies/attack_cavalry_melee_02.jsongenericName
-#: simulation/data/technologies/attack_cavalry_ranged_02.jsongenericName
-#: simulation/data/technologies/attack_infantry_melee_02.jsongenericName
-msgid "Iron Weapons"
-msgstr "Armes de fierro"
-
-#: simulation/data/technologies/attack_cavalry_ranged_01.jsondescription
-msgid "Training increases ranged attack."
-msgstr "Los exercicios amonten el dañu de los tiros."
-
-#: simulation/data/technologies/attack_cavalry_ranged_01.jsongenericName
-msgid "Ranged Combat Cavalry Training"
-msgstr "Exercicios de tiru a caballu"
-
-#: simulation/data/technologies/attack_cavalry_ranged_01.jsontooltip
-#: simulation/data/technologies/attack_cavalry_ranged_02.jsontooltip
-msgid "Cavalry +20% ranged attack damage."
-msgstr "Caballería: dañu de los tiros +20%."
-
-#: simulation/data/technologies/attack_infantry_melee_01.jsondescription
-msgid ""
-"Often, an infantryman would carry a secondary weapon in addition to his "
-"primary weapon of choice, to be drawn when the primary weapon has failed or "
-"been broken."
-msgstr "Munches vegaes, los soldaos d'a pie llevaben otra arma, por si un acasu la principal fallare o rompiere."
-
-#: simulation/data/technologies/attack_infantry_melee_01.jsongenericName
-msgid "Side Arms"
-msgstr "Arma auxiliar"
-
-#: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.athen
-#: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.mace
-#: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.ptol
-#: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.sele
-#: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.spart
-msgid "Xiphos"
-msgstr "Xiphos"
-
-#: simulation/data/technologies/attack_infantry_melee_01.jsonspecificName.rome
-msgid "Pugio"
-msgstr "Pūgiō"
-
-#: simulation/data/technologies/attack_infantry_melee_01.jsontooltip
-#: simulation/data/technologies/attack_infantry_melee_02.jsontooltip
-msgid "Infantry +20% melee attack damage."
-msgstr "Infantería: ataque cuerpu a cuerpu +20%."
-
-#: simulation/data/technologies/attack_infantry_melee_02.jsondescription
-msgid "Using iron instead of bronze gave weapons additional power."
-msgstr "L'usu del fierro en cuenta del bronce daba más resistencia a les armes."
-
-#: simulation/data/technologies/attack_infantry_ranged_01.jsondescription
-#: simulation/data/technologies/attack_infantry_ranged_02.jsondescription
-msgid "Training increases damage of ranged infantry."
-msgstr "Los exercicios amonten l'ataque de la infantería tirador."
-
-#: simulation/data/technologies/attack_infantry_ranged_01.jsongenericName
-msgid "Ranged Infantry Irregulars"
-msgstr "Tiradores irregulares"
-
-#: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.athen
-#: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.mace
-#: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.ptol
-#: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.sele
-#: simulation/data/technologies/attack_infantry_ranged_01.jsonspecificName.spart
-#: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.athen
-#: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.mace
-#: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.ptol
-#: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.sele
-#: simulation/data/technologies/attack_infantry_ranged_02.jsonspecificName.spart
-msgid "Ataktoi"
-msgstr "Ataktoi"
-
-#: simulation/data/technologies/attack_infantry_ranged_01.jsontooltip
-#: simulation/data/technologies/attack_infantry_ranged_02.jsontooltip
-msgid "Infantry +20% ranged attack damage."
-msgstr "Infantería: dañu de los tiros +20%."
-
-#: simulation/data/technologies/attack_infantry_ranged_02.jsongenericName
-msgid "Ranged Infantry Masterclass"
-msgstr "Tiradores de primera"
+msgstr "Construcciones: vida y llealtá +25%, tiempu de construcción +20%."
 
 #: simulation/data/technologies/attack_soldiers_will.jsondescription
 msgid ""
@@ -299,13 +177,13 @@ msgstr "Dynamis"
 
 #: simulation/data/technologies/attack_soldiers_will.jsontooltip
 msgid "Soldiers, Siege Engines, and Ships +25% attack damage."
-msgstr "Soldaos, máquines ya barcos: ataque +25%."
+msgstr "Soldaos, máquines, barcos: ataque +25%."
 
 #: simulation/data/technologies/attack_steel_working.jsondescription
 msgid ""
 "Secret steel working techniques give sword blades distinctive and beautiful "
 "markings. Not only that, but the steel's hardness is unparalleled."
-msgstr "Les téuniques secretes pa trabayar l'aceru dexa les cuchielles con marques distintives ya formoses. Amás, la so durez nun tien comparanza."
+msgstr "Les téuniques secretes pa trabayar l'aceru dexa les cuchielles con marques distintives y formoses. Amás, la so durez nun tien comparanza."
 
 #: simulation/data/technologies/attack_steel_working.jsongenericName
 msgid "Steel Working"
@@ -407,7 +285,7 @@ msgstr "Construcciones: tiempu de construcción −20%, vida −20%, llealtá �
 msgid ""
 "The Gauls were well-known for their effective cavalry. Celtic mercenaries "
 "were in demand throughout the Mediterranean."
-msgstr "Los galos teníen fama de caballeros ya los mercenarios celtes taben solicitaos a lo llargo'l Mediterraneu."
+msgstr "Los galos teníen fama de caballeros y los mercenarios celtes taben solicitaos a lo llargo'l Mediterraneu."
 
 #: simulation/data/technologies/civbonuses/gaul_cavalry.jsongenericName
 msgid "Superior Cavalry"
@@ -453,7 +331,7 @@ msgid ""
 "commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
 "chariots, and 30,000 cavalry, making it arguably the largest army of its "
 "time."
-msgstr "L'imperiu maurián gobernaba docenes de reinos conquistaos, abarcaba un área de 5 millones de quilómetros cuadraos y ablugaba una población d'aproximao 60 millones de persones. Los soberanos maurianos ostentaben el títulu d'emperador d'emperadores ya mandaben un exércitu de 600.000 soldaos d'a pie, 9.000 elefantes, 8.000 carros ya 30.000 xinetes—al meyor, el más grande de la dómina."
+msgstr "L'imperiu maurián gobernaba docenes de reinos conquistaos, abarcaba un área de 5 millones de quilómetros cuadraos y ablugaba una población d'aproximao 60 millones de persones. Los soberanos maurianos ostentaben el títulu d'emperador d'emperadores y mandaben un exércitu de 600.000 soldaos d'a pie, 9.000 elefantes, 8.000 carros y 30.000 xinetes—al meyor, el más grande de la dómina."
 
 #: simulation/data/technologies/civbonuses/maur_population.jsongenericName
 msgid "Emperor of Emperors"
@@ -490,7 +368,7 @@ msgid ""
 "great tenacity. However while this was true the infantry were poor hand-to-"
 "hand, close combat fighters. Also, with the exception of the elite "
 "regiments, the Persian infantry was not a standing professional force."
-msgstr "Por mor del tamañu ya la organización del Imperiu aqueménida, había enforma xente pa llevantar en tiempos de guerra ya, al endefechu, sacante'l cuerpu escoyíu, nun calteníen nengún exércitu. La lleva taba bien entrenada ya mui aportunante, pero nun se-y daba lluchar cuerpu a cuerpu."
+msgstr "Por mor del tamañu y la organización del Imperiu aqueménida, había enforma xente pa llevantar en tiempos de guerra y, al endefechu, sacante'l cuerpu escoyíu, nun calteníen nengún exércitu. La lleva taba bien entrenada y mui aportunante, pero nun se-y daba lluchar cuerpu a cuerpu."
 
 #: simulation/data/technologies/civbonuses/pers_population.jsongenericName
 msgid "Great King's Levy"
@@ -502,7 +380,7 @@ msgid ""
 "especially where wood was scarce. Although not as strong and durable as "
 "fired bricks or natural stone and vulnerable to constant rains and heavy "
 "floods, mud bricks have the advantage they are cheap and easy to produce."
-msgstr "L'adobe emplegábase de cutiu nes fasteres caldes ya seques, sobre manera si la madera yera escasa. Magar que nun dura como'l lladriyu o la piedra, ya nin tanto na agua, ye baratu ya fácil de producir."
+msgstr "L'adobe emplegábase de cutiu nes fasteres caldes y seques, sobre manera si la madera yera escasa. Magar que nun dura como'l lladriyu o la piedra, y nin tanto na agua, ye baratu y fácil de producir."
 
 #: simulation/data/technologies/civbonuses/ptol_structures.jsongenericName
 msgid "Sun-dried Mud Bricks"
@@ -510,7 +388,7 @@ msgstr "Adobe"
 
 #: simulation/data/technologies/civbonuses/ptol_structures.jsontooltip
 msgid "Houses and Economic Structures −40% wood cost and health."
-msgstr "Cases, construcciones económiques: vida ya costu en madera −40%."
+msgstr "Cases, construcciones económiques: vida y costu en madera −40%."
 
 #: simulation/data/technologies/colonization.jsondescription
 msgid ""
@@ -535,7 +413,7 @@ msgid ""
 "example, a canal was built in Egypt and a Persian navy was sent exploring "
 "the Indus river. According to Herodotus, some 300 ships in the Persian navy "
 "were retrofitted to carry horses and their riders."
-msgstr "Los aqueménides tomaron determín pa facer de Persia el primer imperiu d'Asia que dominare la mar. Pa ello, amás de tratar bien a los mariñanos, llevaron alantre estremaes iniciatives marítimes. Por casu, nel reináu de Daríu'l Grande, fixeron una canal n'Exiptu ya unviaron una flota pa esplorar el ríu Indu. Según Heródotu, remocicaron unos 300 barcos pa llevar xinetes ya montures."
+msgstr "Los aqueménides tomaron determín pa facer de Persia el primer imperiu d'Asia que dominare la mar. Pa ello, amás de tratar bien a los mariñanos, llevaron alantre estremaes iniciatives marítimes. Por casu, nel reináu de Daríu'l Grande, fixeron una canal n'Exiptu y unviaron una flota pa esplorar el ríu Indu. Según Heródotu, remocicaron unos 300 barcos pa llevar xinetes y montures."
 
 #: simulation/data/technologies/equine_transports.jsongenericName
 msgid "Equine Transports"
@@ -583,7 +461,7 @@ msgstr "Construcciones: tasa de sanamientu +1."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breed livestock to slaughter for meat."
-msgstr "Cría ya mata ganáu pa la carne."
+msgstr "Cría y mata ganáu pa carne."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsongenericName
 msgid "Stockbreeding"
@@ -637,8 +515,8 @@ msgstr "Fertilizante"
 #: simulation/data/technologies/gather_farming_fertilizer.jsontooltip
 #: simulation/data/technologies/gather_farming_plows.jsontooltip
 #: simulation/data/technologies/gather_farming_training.jsontooltip
-msgid "Workers +20% grain gather rate."
-msgstr "Obreros: tasa de cueya de cebera +20%."
+msgid "Workers +15% grain gather rate."
+msgstr "Obreros: tasa de cueya de cebera +15%."
 
 #: simulation/data/technologies/gather_farming_harvester.jsondescription
 msgid ""
@@ -685,8 +563,8 @@ msgstr "Azaes de fierro"
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsontooltip
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsontooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsontooltip
-msgid "Workers +25% wood gather rate."
-msgstr "Obreros: tasa de corta +25%."
+msgid "Workers +20% wood gather rate."
+msgstr "Obreros: tasa de corta +20%."
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsongenericName
 msgid "Sharp Axe Heads"
@@ -713,8 +591,8 @@ msgstr "Heilōtes"
 #: simulation/data/technologies/gather_mining_serfs.jsontooltip
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
 #: simulation/data/technologies/gather_mining_slaves.jsontooltip
-msgid "Workers +25% stone gather rate."
-msgstr "Obreros: tasa d'estraición de piedra +25%."
+msgid "Workers +20% stone gather rate."
+msgstr "Obreros: tasa d'estraición de piedra +20%."
 
 #: simulation/data/technologies/gather_mining_servants.jsondescription
 msgid "Hire servants to help quarry stone. Increases stone gathering rates."
@@ -734,7 +612,7 @@ msgstr "Douloi"
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsondescription
 msgid "Develop shaft mining. Increases metal gathering rates."
-msgstr "Desendolca pozos mineros. Entaína la estraición de metal."
+msgstr "Desendolca'l pozu mineru. Entaína la estraición de metal."
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsongenericName
 msgid "Shaft Mining"
@@ -743,8 +621,8 @@ msgstr "Pozos mineros"
 #: simulation/data/technologies/gather_mining_shaftmining.jsontooltip
 #: simulation/data/technologies/gather_mining_silvermining.jsontooltip
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
-msgid "Workers +25% metal gather rate."
-msgstr "Obreros: tasa d'estraición de metal +25%."
+msgid "Workers +20% metal gather rate."
+msgstr "Obreros: tasa d'estraición de metal +20%."
 
 #: simulation/data/technologies/gather_mining_silvermining.jsondescription
 msgid "Strike a vein of precious silver. Increases metal gathering rates."
@@ -791,7 +669,7 @@ msgstr "Forni los obreros d'aperios. Entaína la estraición de metal."
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsongenericName
 msgid "Wedge and Mallet"
-msgstr "Martiellos ya punteros"
+msgstr "Martiellos y punteros"
 
 #: simulation/data/technologies/gather_wicker_baskets.jsondescription
 msgid "Equip your foragers with wicker baskets for foraging."
@@ -874,7 +752,7 @@ msgid ""
 "The loom allowed the creation of finer clothing for settlers. Women of the "
 "household were taught from a young age how to weave on the loom, and "
 "subsequently spent a large share of their lives working with it."
-msgstr "El telar permitó a los colonos facer ropa calidable. Les muyeres deprendíen a remanalu dende neñes ya pasaben una parte grande de la so vida texendo."
+msgstr "El telar permitó a los colonos facer ropa calidable. Les muyeres deprendíen a remanalu dende neñes y pasaben una parte grande de la so vida texendo."
 
 #: simulation/data/technologies/health_females_01.jsongenericName
 msgid "The Loom"
@@ -901,7 +779,7 @@ msgid ""
 "Beginning with Alexander, the Hellenistic monarchs founded many cities "
 "throughout their empires, where Greek culture and art blended with local "
 "customs to create the motley Hellenistic civilization."
-msgstr "Como Alexandru nel so día, los monarques socesores fundaron munches ciudaes, u lo griego ya lo local entemecíen pa criar la cultura propia del helenismu."
+msgstr "Como Alexandru nel so día, los monarques socesores fundaron munches ciudaes, u lo griego y lo local entemecíen pa criar la cultura propia del helenismu."
 
 #: simulation/data/technologies/hellenistic_metropolis.jsongenericName
 msgid "Hellenistic Metropolis"
@@ -909,7 +787,7 @@ msgstr "Metrópolis helenista"
 
 #: simulation/data/technologies/hellenistic_metropolis.jsontooltip
 msgid "Civic Centers +100% health and capture points, double default arrows."
-msgstr "Places: vida ya llealtá +100%, fleches por defeutu ×2."
+msgstr "Places: vida y llealtá +100%, fleches por defeutu ×2."
 
 #: simulation/data/technologies/immortals.jsondescription
 msgid ""
@@ -951,7 +829,7 @@ msgstr "Reformes d'Ifícrates"
 
 #: simulation/data/technologies/iphicratean_reforms.jsontooltip
 msgid "Athenian Triremes can train Marines and Cretan Mercenary Archers."
-msgstr "Les trirremes atenienses puen allistar los marinos ya los arqueros cretenses."
+msgstr "Les trirremes atenienses puen allistar los marinos y los arqueros cretenses."
 
 #: simulation/data/technologies/long_walls.jsondescription
 msgid ""
@@ -959,7 +837,7 @@ msgid ""
 "Themistocles and extended 6 km from the city to the port of Piraeus. This "
 "secured the city's sea supply routes and prevented an enemy from starving "
 "out the city during a siege."
-msgstr "Les muralles llongues d'Atenes llevantáronles por aciu de Temístocles. Estendíense 6 km de la polis al puertu'l Piréu, asegurando la comunicación cola mariña ya torgando que'l pueblu esfamiare asediao."
+msgstr "Les muralles llongues d'Atenes llevantáronles por aciu de Temístocles. Estendíense 6 km de la polis al puertu'l Piréu, asegurando la comunicación cola mariña y torgando que'l pueblu esfamiare asediao."
 
 #: simulation/data/technologies/long_walls.jsongenericName
 msgid "Athenian Long Walls"
@@ -974,7 +852,7 @@ msgid ""
 "The now-extinct Nisian breed of horse was one of the largest and robust "
 "horses of ancient times. They were highly sought after by the Seleucids and "
 "Persians as both rider and mount gained heavier armor as time progressed."
-msgstr "El caballu niséu, yá desaniciáu, yera ún de los burros más grandes ya robezos de l'antigüedá. Los perses ya los seléucides cobiciábenlu ya, col correr del tiempu, aperpillábenlu con más ya más armadura."
+msgstr "El caballu niséu, yá desaniciáu, yera ún de los burros más grandes y robezos de l'antigüedá. Los perses y los seléucides cobiciábenlu y, col correr del tiempu, aperpillábenlu con más y más armadura."
 
 #: simulation/data/technologies/nisean_horses.jsongenericName
 msgid "Nisean War Horses"
@@ -1043,7 +921,7 @@ msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +50% territory influence radius. Structures +9 capture points "
 "regeneration rate per garrisoned unit. Workers +10% metal gather rate."
-msgstr "Avanza a la fas de la ciudá, que desbloquia más entidaes ya teunoloxíes. Places: territoriu +50%. Construcciones: tasa de recobramientu de la llealtá por unidá guarecida +9. Obreros: tasa d'estraición de metal +10%."
+msgstr "Avanza a la fas de la ciudá, que desbloquia más entidaes y teunoloxíes. Places: territoriu +50%. Construcciones: tasa de recobramientu de la llealtá por unidá guarecida +9. Obreros: tasa d'estraición de metal +10%."
 
 #: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
@@ -1056,7 +934,7 @@ msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +50% territory influence radius. Structures +9 capture points "
 "regeneration rate per garrisoned unit."
-msgstr "Avanza a la fas de la ciudá, que desbloquia más entidaes ya teunoloxíes. Places: territoriu +50%. Construcciones: tasa de recobramientu de la llealtá por unidá guarecida +9."
+msgstr "Avanza a la fas de la ciudá, que desbloquia más entidaes y teunoloxíes. Places: territoriu +50%. Construcciones: tasa de recobramientu de la llealtá por unidá guarecida +9."
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -1075,7 +953,7 @@ msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly. "
 "This is the Athenian town phase, where metal gathering rates are boosted "
 "because of the 'Silver Owls' bonus."
-msgstr "El llugarín tórnase una villa bullindiega ya preparada pa crecer. Na fas de la villa, los atenienses saquen más rápido'l metal gracies a la ventaya «curuxes de plata». "
+msgstr "El llugarín tórnase una villa bullindiega y preparada pa crecer. Na fas de la villa, los atenienses saquen más rápido'l metal gracies a la ventaya «curuxes de plata». "
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
@@ -1095,19 +973,19 @@ msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
 "Centers +30% territory influence radius. Structures +7 capture points "
 "regeneration rate per garrisoned unit. Workers +10% metal gather rate."
-msgstr "Avanza a la fas de la villa, que desbloquia más entidaes ya teunoloxíes. Places: territoriu +30%. Construcciones: tasa de recobramientu de la llealtá por unidá guarecida +7. Obreros: tasa d'estraición de metal +10%."
+msgstr "Avanza a la fas de la villa, que desbloquia más entidaes y teunoloxíes. Places: territoriu +30%. Construcciones: tasa de recobramientu de la llealtá por unidá guarecida +7. Obreros: tasa d'estraición de metal +10%."
 
 #: simulation/data/technologies/phase_town_generic.jsondescription
 msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly."
-msgstr "El llugarín tórnase una villa bullindiega ya preparada pa crecer."
+msgstr "El llugarín tórnase una villa bullindiega y preparada pa crecer."
 
 #: simulation/data/technologies/phase_town_generic.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
 "Centers +30% territory influence radius. Structures +7 capture points "
 "regeneration rate per garrisoned unit."
-msgstr "Avanza a la fas de la villa, que desbloquia más entidaes ya teunoloxíes. Places: territoriu +30%. Construcciones: tasa de recobramientu de la llealtá por unidá guarecida +7."
+msgstr "Avanza a la fas de la villa, que desbloquia más entidaes y teunoloxíes. Places: territoriu +30%. Construcciones: tasa de recobramientu de la llealtá por unidá guarecida +7."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1117,7 +995,7 @@ msgstr "Fas del llugar"
 msgid ""
 "Home gardens ranged from simple fenced-in areas to large manicured and "
 "colonnaded enclosures."
-msgstr "Los güertos variaben de baragañes cencielles a lloses engalanaes con sebes ya columnata."
+msgstr "Los güertos variaben de baragañes cencielles a lloses engalanaes con sebes y columnata."
 
 #: simulation/data/technologies/pop_house_01.jsongenericName
 msgid "Home Garden"
@@ -1199,7 +1077,7 @@ msgstr "Barcos: vida +25%."
 msgid ""
 "Train your oarsmen and sailors to move more efficiently and speed up your "
 "ships."
-msgstr "Entrena los remeros ya marineros pa llaborar con xeitu y entainar los barcos."
+msgstr "Entrena los remeros y marineros pa llaborar con xeitu y entainar los barcos."
 
 #: simulation/data/technologies/ship_movement_speed.jsongenericName
 msgid "Experienced Crews"
@@ -1208,18 +1086,6 @@ msgstr "Tripulaciones aduechaes"
 #: simulation/data/technologies/ship_movement_speed.jsontooltip
 msgid "Ships +10% movement speed."
 msgstr "Barcos: velocidá +10%."
-
-#: simulation/data/technologies/siege_armor.jsondescription
-msgid "Increased armor on siege engines."
-msgstr "Les máquines son más resistentes."
-
-#: simulation/data/technologies/siege_armor.jsongenericName
-msgid "Armor plating"
-msgstr "Blindaxe"
-
-#: simulation/data/technologies/siege_armor.jsontooltip
-msgid "Siege Engines +2 hack resistance."
-msgstr "Máquines: resistencia al corte +2."
 
 #: simulation/data/technologies/siege_attack.jsondescription
 msgid "Advanced technologies improve siege efficiency."
@@ -1245,29 +1111,42 @@ msgstr "Fleches precises"
 msgid "Bolt Shooters −20% ranged attack spread."
 msgstr "Ballestes: imprecisión −20%."
 
-#: simulation/data/technologies/siege_cost_metal.jsondescription
-msgid "Siege engines require less metal."
-msgstr "Les máquines riquen menos metal."
+#: simulation/data/technologies/siege_cost_time.jsondescription
+msgid "The science or craft of laying or carrying out sieges."
+msgstr "L'arte de cercar fortificaciones."
 
-#: simulation/data/technologies/siege_cost_metal.jsongenericName
-msgid "Metalworker"
-msgstr "Metalúrxicos"
+#: simulation/data/technologies/siege_cost_time.jsongenericName
+msgid "Siegecraft"
+msgstr "La poliorcética"
 
-#: simulation/data/technologies/siege_cost_metal.jsontooltip
-msgid "Siege Engines −20% metal cost."
-msgstr "Máquines: costu en metal −20%."
+#: simulation/data/technologies/siege_cost_time.jsontooltip
+msgid "Siege Engines −20% construction time."
+msgstr "Máquines: tiempu de construcción −20%."
 
-#: simulation/data/technologies/siege_cost_wood.jsondescription
-msgid "Siege engines require less wood."
-msgstr "Les máquines riquen menos madera."
+#: simulation/data/technologies/siege_health.jsondescription
+msgid ""
+"Cover the exterior with iron plates to protect against fire and projectiles."
+msgstr "El revistimientu de fierro protexe del fueu y de los proxectiles."
 
-#: simulation/data/technologies/siege_cost_wood.jsongenericName
-msgid "Artillery Instructors"
-msgstr "Instructores artilleros"
+#: simulation/data/technologies/siege_health.jsongenericName
+msgid "Armor Plating"
+msgstr "Blindaxe"
 
-#: simulation/data/technologies/siege_cost_wood.jsontooltip
-msgid "Siege Engines −20% wood cost."
-msgstr "Máquines: costu en madera −20%."
+#: simulation/data/technologies/siege_health.jsontooltip
+msgid "Battering Rams and Siege Towers +25% health."
+msgstr "Arietes, bastíes: vida +25%."
+
+#: simulation/data/technologies/siege_pack_unpack.jsondescription
+msgid "Military engineers are responsible for improvements in siege engines."
+msgstr "Los inxenieros militares yeren los encargaos d'ameyorar les armes d'asediu."
+
+#: simulation/data/technologies/siege_pack_unpack.jsongenericName
+msgid "Military Engineers"
+msgstr "Inxenieros militares"
+
+#: simulation/data/technologies/siege_pack_unpack.jsontooltip
+msgid "Siege Engines –40% pack and unpack time."
+msgstr "Máquines: tiempu d'armadura, desarme –40%."
 
 #: simulation/data/technologies/silvershields.jsondescription
 msgid ""
@@ -1284,6 +1163,63 @@ msgid ""
 "Upgrade Shield Bearer Champion Infantry to Silver Shields, with more health "
 "and attack damage."
 msgstr "Ascendi l'escuderu al escudu de plata, que tien más PV y ataque."
+
+#: simulation/data/technologies/soldier_attack_melee_01.jsondescription
+msgid ""
+"Often, a soldier would carry a secondary weapon in addition to his primary "
+"weapon of choice, to be drawn when the primary weapon has failed or been "
+"broken."
+msgstr "Munches vegaes los soldaos llevaben otra arma por si un acasu la principal fallare o rompiere."
+
+#: simulation/data/technologies/soldier_attack_melee_01.jsongenericName
+msgid "Side Arms"
+msgstr "Arma auxiliar"
+
+#: simulation/data/technologies/soldier_attack_melee_01.jsonspecificName.athen
+#: simulation/data/technologies/soldier_attack_melee_01.jsonspecificName.mace
+#: simulation/data/technologies/soldier_attack_melee_01.jsonspecificName.ptol
+#: simulation/data/technologies/soldier_attack_melee_01.jsonspecificName.sele
+#: simulation/data/technologies/soldier_attack_melee_01.jsonspecificName.spart
+msgid "Xiphos"
+msgstr "Xiphos"
+
+#: simulation/data/technologies/soldier_attack_melee_01.jsonspecificName.rome
+msgid "Pugio"
+msgstr "Pūgiō"
+
+#: simulation/data/technologies/soldier_attack_melee_01.jsontooltip
+#: simulation/data/technologies/soldier_attack_melee_02.jsontooltip
+msgid "Soldiers +15% melee attack damage."
+msgstr "Soldaos: ataque cuerpu a cuerpu +15%."
+
+#: simulation/data/technologies/soldier_attack_melee_02.jsondescription
+msgid "Using iron instead of bronze gave weapons additional power."
+msgstr "L'usu del fierro en cuenta del bronce daba más resistencia a les armes."
+
+#: simulation/data/technologies/soldier_attack_melee_02.jsongenericName
+msgid "Iron Weapons"
+msgstr "Armes de fierro"
+
+#: simulation/data/technologies/soldier_attack_ranged_01.jsondescription
+msgid "Projectile points made of iron enable missiles to penetrate deeper."
+msgstr "Les puntes de fierro aumenten la furadura de los proxectiles."
+
+#: simulation/data/technologies/soldier_attack_ranged_01.jsongenericName
+msgid "Iron Arrowheads"
+msgstr "Puntes de fierro"
+
+#: simulation/data/technologies/soldier_attack_ranged_01.jsontooltip
+#: simulation/data/technologies/soldier_attack_ranged_02.jsontooltip
+msgid "Soldiers +15% ranged attack damage."
+msgstr "Soldaos: ataque a distancia +15%."
+
+#: simulation/data/technologies/soldier_attack_ranged_02.jsondescription
+msgid "Arrowheads with three lobes instead of two inflict larger wounds."
+msgstr "Les puntes de tres fueyes agranden les llagues que faen les fleches."
+
+#: simulation/data/technologies/soldier_attack_ranged_02.jsongenericName
+msgid "Trilobate Arrowheads"
+msgstr "Puntes de tres fueyes"
 
 #: simulation/data/technologies/soldier_ranged_experience.jsontooltip
 msgid "Ranged Soldiers +25% promotion experience."
@@ -1330,7 +1266,7 @@ msgstr "Linothōrax"
 msgid ""
 "Wooden shields are heavier but much better able to resist projectiles and "
 "blows than wicker-frame shields."
-msgstr "Si bien los escudos de madera son pesaos, resisten los proyeutiles ya los güelpes meyor que los de blima."
+msgstr "Si bien los escudos de madera son pesaos, resisten los proyeutiles y los güelpes meyor que los de blima."
 
 #: simulation/data/technologies/soldier_resistance_pierce_01.jsongenericName
 msgid "Wooden Shield"
@@ -1383,7 +1319,7 @@ msgstr "Almenáu"
 
 #: simulation/data/technologies/tower_crenellations.jsontooltip
 msgid "Sentry and Stone Towers +40% more arrows per garrisoned Soldier."
-msgstr "Torrexones ya talayes: fleches por soldáu guarecíu +40%."
+msgstr "Torrexones y talayes: fleches por soldáu guarecíu +40%."
 
 #: simulation/data/technologies/tower_health.jsondescription
 msgid "Reinforce the foundations in preparation of an attack."
@@ -1407,7 +1343,7 @@ msgstr "Matacanes"
 
 #: simulation/data/technologies/tower_murderholes.jsontooltip
 msgid "Sentry and Stone Towers have 0 minimum attack range."
-msgstr "Los torrexones ya talayes tienen un algame mínimu de 0."
+msgstr "Los torrexones y talayes tienen un algame mínimu de 0."
 
 #: simulation/data/technologies/tower_range.jsondescription
 msgid "Arrow shooters increase the maximum range of the fire arrows."
@@ -1419,7 +1355,7 @@ msgstr "Flecheres"
 
 #: simulation/data/technologies/tower_range.jsontooltip
 msgid "Sentry and Stone Towers +8 attack range."
-msgstr "Torrexones ya talayes: algame +8."
+msgstr "Torrexones y talayes: algame +8."
 
 #: simulation/data/technologies/tower_watch.jsondescription
 msgid "A night's watch increases vigilance."
@@ -1443,7 +1379,7 @@ msgstr "Vigiles"
 
 #: simulation/data/technologies/tower_watch.jsontooltip
 msgid "Sentry and Stone Towers +1 default arrow count."
-msgstr "Torrexones ya talayes: fleches por defeutu +1."
+msgstr "Torrexones y talayes: fleches por defeutu +1."
 
 #: simulation/data/technologies/trade_commercial_treaty.jsondescription
 msgid "Improve the international trading profit."
@@ -1511,13 +1447,13 @@ msgstr "Unidaes avanzaes, escoyíes: tiempu de preparación +20%, vida +25%, cap
 msgid ""
 "African Elephants −10% resource costs, training time, health, attack damage,"
 " and loot."
-msgstr "Elefantes africanos: costu, tiempu de preparación, vida, ataque ya saquéu −10%."
+msgstr "Elefantes africanos: costu, tiempu de preparación, vida, ataque y saquéu −10%."
 
 #: simulation/data/technologies/unit_elephant_indian.jsontooltip
 msgid ""
 "Indian Elephants +10% resource costs, training time, health, attack damage, "
 "and loot."
-msgstr " Elefantes indios: costu, tiempu de preparación, vida, ataque ya saquéu +10%."
+msgstr " Elefantes indios: costu, tiempu de preparación, vida, ataque y saquéu +10%."
 
 #: simulation/data/technologies/unit_elite.jsontooltip
 msgid ""
@@ -1540,7 +1476,7 @@ msgstr "Mercenarios non campeones: costu en comida −60%, dal costu en madera n
 msgid ""
 "Guard units (Champions) are professionals who wield the best weapons and "
 "have the best training."
-msgstr "Los campeones son profesionales que remanen les meyores armes ya tienen la meyor preparación."
+msgstr "Los campeones son profesionales que remanen les meyores armes y tienen la meyor preparación."
 
 #: simulation/data/technologies/unlock_champion_cavalry.jsongenericName
 msgid "Unlock Champion Cavalry"
@@ -1604,7 +1540,7 @@ msgid ""
 "The extension of trade leads to the permanent establishment of storekeepers "
 "and their families in foreign countries, allowing them to exploit the wealth"
 " of these countries."
-msgstr "L'espardimientu del comerciu lleva al asitiamientu de tenderos n'estranxeru ya permite sacar baza de la infraestructura local."
+msgstr "L'espardimientu del comerciu lleva al asitiamientu de tenderos n'estranxeru y permite sacar baza de la infraestructura local."
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsongenericName
 msgid "Diaspora"
@@ -1623,7 +1559,7 @@ msgid ""
 "By means of trading and travelling people explored beyond the boundaries of "
 "their lands and drew maps of it in order to share and memorize their "
 "discoveries."
-msgstr "Viaxando ya comerciando, los paisanos esploren l'estranxeru ya trazen mapes d'elli col envís de recordalu y asoleyar los sos descubrimientos."
+msgstr "Viaxando y comerciando, los paisanos esploren l'estranxeru y trazen mapes d'elli col envís de recordalu y asoleyar los sos descubrimientos."
 
 #: simulation/data/technologies/unlock_shared_los.jsongenericName
 msgid "Cartography"
@@ -1633,7 +1569,7 @@ msgstr "Cartografía"
 msgid ""
 "See what your allies see, browse their summary and check their resources and"
 " population count in the top panel."
-msgstr "Ve lo que ven los tos aliaos, restola'l so resume ya revisa en panel cimeru cuántos recursos ya población tienen."
+msgstr "Ve lo que ven los tos aliaos, restola'l so resume y revisa en panel cimeru cuántos recursos y población tienen."
 
 #: simulation/data/technologies/unlock_spies.jsondescription
 msgid ""
