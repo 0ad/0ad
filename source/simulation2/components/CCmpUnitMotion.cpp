@@ -717,7 +717,17 @@ private:
 	/**
 	 * Returns an appropriate obstruction filter for use with path requests.
 	 */
-	ControlGroupMovementObstructionFilter GetObstructionFilter() const;
+	ControlGroupMovementObstructionFilter GetObstructionFilter() const
+	{
+		return ControlGroupMovementObstructionFilter(ShouldAvoidMovingUnits(), GetGroup());
+	}
+	/**
+	 * Filter a specific tag on top of the existing control groups.
+	 */
+	SkipMovingTagAndControlGroupObstructionFilter GetObstructionFilter(const ICmpObstructionManager::tag_t& tag) const
+	{
+		return SkipMovingTagAndControlGroupObstructionFilter(tag, GetGroup());
+	}
 
 	/**
 	 * Decide whether to approximate the given range from a square target as a circle,
@@ -1009,6 +1019,14 @@ bool CCmpUnitMotion::PerformMove(fixed dt, const fixed& turnRate, WaypointPath& 
 	fixed timeLeft = dt;
 	fixed zero = fixed::Zero();
 
+	ICmpObstructionManager::tag_t specificIgnore;
+	if (m_MoveRequest.m_Type == MoveRequest::ENTITY)
+	{
+		CmpPtr<ICmpObstruction> cmpTargetObstruction(GetSimContext(), m_MoveRequest.m_Entity);
+		if (cmpTargetObstruction)
+			specificIgnore = cmpTargetObstruction->GetObstruction();
+	}
+
 	while (timeLeft > zero)
 	{
 		// If we ran out of path, we have to stop.
@@ -1057,7 +1075,7 @@ bool CCmpUnitMotion::PerformMove(fixed dt, const fixed& turnRate, WaypointPath& 
 		fixed offsetLength = offset.Length();
 		if (offsetLength <= maxdist)
 		{
-			if (cmpPathfinder->CheckMovement(GetObstructionFilter(), pos.X, pos.Y, target.X, target.Y, m_Clearance, m_PassClass))
+			if (cmpPathfinder->CheckMovement(GetObstructionFilter(specificIgnore), pos.X, pos.Y, target.X, target.Y, m_Clearance, m_PassClass))
 			{
 				pos = target;
 
@@ -1083,7 +1101,7 @@ bool CCmpUnitMotion::PerformMove(fixed dt, const fixed& turnRate, WaypointPath& 
 			offset.Normalize(maxdist);
 			target = pos + offset;
 
-			if (cmpPathfinder->CheckMovement(GetObstructionFilter(), pos.X, pos.Y, target.X, target.Y, m_Clearance, m_PassClass))
+			if (cmpPathfinder->CheckMovement(GetObstructionFilter(specificIgnore), pos.X, pos.Y, target.X, target.Y, m_Clearance, m_PassClass))
 				pos = target;
 			else
 				return true;
@@ -1225,15 +1243,33 @@ bool CCmpUnitMotion::ComputeTargetPosition(CFixedVector2D& out, const MoveReques
 		CmpPtr<ICmpUnitMotion> cmpUnitMotion(GetSimContext(), moveRequest.m_Entity);
 		if (cmpUnitMotion && cmpUnitMotion->IsMoveRequested() && GetEntityId() < moveRequest.m_Entity)
 		{
+			// Add predicted movement.
+			CFixedVector2D tempPos = out + (out - cmpTargetPosition->GetPreviousPosition2D());
+
 			CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
 			if (!cmpPosition || !cmpPosition->IsInWorld())
 				return true; // Still return true since we don't need a position for the target to have one.
 
-			CFixedVector2D tempPos = out + (out - cmpTargetPosition->GetPreviousPosition2D());
+			// Fleeing fix: if we anticipate the target to go through us, we'll suddenly turn around, which is bad.
+			// Pretend that the target is still behind us in those cases.
+			if (m_MoveRequest.m_MinRange > fixed::Zero())
+			{
+				if ((out - cmpPosition->GetPosition2D()).RelativeOrientation(tempPos - cmpPosition->GetPosition2D()) >= 0)
+					out = tempPos;
+			}
+			else
+				out = tempPos;
+		}
+		else if (cmpUnitMotion && cmpUnitMotion->IsMoveRequested() && GetEntityId() > moveRequest.m_Entity)
+		{
+			CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
+			if (!cmpPosition || !cmpPosition->IsInWorld())
+				return true; // Still return true since we don't need a position for the target to have one.
 
-			// Check if we anticipate the target to go through us, in which case we shouldn't anticipate
-			// (or e.g. units fleeing might suddenly turn around towards their attacker).
-			if ((out - cmpPosition->GetPosition2D()).RelativeOrientation(tempPos - cmpPosition->GetPosition2D()) >= 0)
+			// Fleeing fix: opposite to above, check if our target has travelled through us already this turn.
+			CFixedVector2D tempPos = out - (out - cmpTargetPosition->GetPreviousPosition2D());
+			if (m_MoveRequest.m_MinRange > fixed::Zero() &&
+				(out - cmpPosition->GetPosition2D()).RelativeOrientation(tempPos - cmpPosition->GetPosition2D()) < 0)
 				out = tempPos;
 		}
 	}
@@ -1379,11 +1415,6 @@ void CCmpUnitMotion::FaceTowardsPointFromPos(const CFixedVector2D& pos, entity_p
 			return;
 		cmpPosition->TurnTo(angle);
 	}
-}
-
-ControlGroupMovementObstructionFilter CCmpUnitMotion::GetObstructionFilter() const
-{
-	return ControlGroupMovementObstructionFilter(ShouldAvoidMovingUnits(), GetGroup());
 }
 
 // The pathfinder cannot go to "rounded rectangles" goals, which are what happens with square targets and a non-null range.
