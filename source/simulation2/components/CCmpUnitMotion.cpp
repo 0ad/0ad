@@ -1316,10 +1316,6 @@ bool CCmpUnitMotion::TryGoingStraightToTarget(const CFixedVector2D& from)
 	if (!ComputeTargetPosition(targetPos))
 		return false;
 
-	// Fail if the target is too far away
-	if ((targetPos - from).CompareLength(DIRECT_PATH_RANGE) > 0)
-		return false;
-
 	CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
 	if (!cmpPathfinder)
 		return false;
@@ -1335,6 +1331,10 @@ bool CCmpUnitMotion::TryGoingStraightToTarget(const CFixedVector2D& from)
 
 	// Find the point on the goal shape that we should head towards
 	CFixedVector2D goalPos = goal.NearestPointOnGoal(from);
+
+	// Fail if the target is too far away
+	if ((goalPos - from).CompareLength(DIRECT_PATH_RANGE) > 0)
+		return false;
 
 	// Check if there's any collisions on that route.
 	// For entity goals, skip only the specific obstruction tag or with e.g. walls we might ignore too many entities.
