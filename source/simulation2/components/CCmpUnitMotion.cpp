@@ -119,6 +119,7 @@ class CCmpUnitMotion : public ICmpUnitMotion
 public:
 	static void ClassInit(CComponentManager& componentManager)
 	{
+		componentManager.SubscribeToMessageType(MT_TurnStart);
 		componentManager.SubscribeToMessageType(MT_Update_MotionFormation);
 		componentManager.SubscribeToMessageType(MT_Update_MotionUnit);
 		componentManager.SubscribeToMessageType(MT_PathResult);
@@ -311,6 +312,11 @@ public:
 	{
 		switch (msg.GetType())
 		{
+		case MT_TurnStart:
+		{
+			TurnStart();
+			break;
+		}
 		case MT_Update_MotionFormation:
 		{
 			if (m_FormationController)
@@ -633,6 +639,13 @@ private:
 	void PathResult(u32 ticket, const WaypointPath& path);
 
 	/**
+	 * Check if we are at destination early in the turn, this both lets units react faster
+	 * and ensure that distance comparisons are done while units are not being moved
+	 * (otherwise they won't be commutative).
+	 */
+	void TurnStart();
+
+	/**
 	 * Do the per-turn movement and other updates.
 	 */
 	void Move(fixed dt);
@@ -853,15 +866,8 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 	}
 }
 
-void CCmpUnitMotion::Move(fixed dt)
+void CCmpUnitMotion::TurnStart()
 {
-	PROFILE("Move");
-
-	// If we were idle and will still be, we can return.
-	// TODO: this will need to be removed if pushing is implemented.
-	if (m_CurSpeed == fixed::Zero() && m_MoveRequest.m_Type == MoveRequest::NONE)
-		return;
-
 	if (PossiblyAtDestination())
 		MoveSucceeded();
 	else if (!TargetHasValidPosition())
@@ -876,6 +882,16 @@ void CCmpUnitMotion::Move(fixed dt)
 
 		MoveFailed();
 	}
+}
+
+void CCmpUnitMotion::Move(fixed dt)
+{
+	PROFILE("Move");
+
+	// If we were idle and will still be, we can return.
+	// TODO: this will need to be removed if pushing is implemented.
+	if (m_CurSpeed == fixed::Zero() && m_MoveRequest.m_Type == MoveRequest::NONE)
+		return;
 
 	CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
 	if (!cmpPosition || !cmpPosition->IsInWorld())
@@ -1006,7 +1022,7 @@ bool CCmpUnitMotion::PerformMove(fixed dt, const fixed& turnRate, WaypointPath& 
 			target = CFixedVector2D(shortPath.m_Waypoints.back().x, shortPath.m_Waypoints.back().z);
 
 		CFixedVector2D offset = target - pos;
-		if (turnRate > zero)
+		if (turnRate > zero && !offset.IsZero())
 		{
 			fixed maxRotation = turnRate.Multiply(timeLeft);
 			fixed angleDiff = angle - atan2_approx(offset.X, offset.Y);
@@ -1202,20 +1218,18 @@ bool CCmpUnitMotion::ComputeTargetPosition(CFixedVector2D& out, const MoveReques
 	else
 	{
 		out = cmpTargetPosition->GetPosition2D();
-		// If the target is moving, we might never get in range if we just try to reach its current position,
-		// so we have to try and move to a position where we will be in-range, including their movement.
-		// Since we request paths asynchronously a the end of our turn and the order in which two units move is uncertain,
-		// we need to account for twice the movement speed to be sure that we're targeting the correct point.
-		// TODO: be cleverer about this. It fixes fleeing nicely currently, but orthogonal movement should be considered,
-		// and the overall logic could be improved upon.
+		// Because units move one-at-a-time and pathing is asynchronous, we need to account for target movement.
+		// If our entity ID is lower, we move first, and so we need to add a predicted movement to compute a path for next turn.
+		// If our entity ID is higher, the target has already moved, so we can just use the position directly.
+		// TODO: This does not really aim many turns in advance, with orthogonal trajectories it probably should.
 		CmpPtr<ICmpUnitMotion> cmpUnitMotion(GetSimContext(), moveRequest.m_Entity);
-		if (cmpUnitMotion && cmpUnitMotion->IsMoveRequested())
+		if (cmpUnitMotion && cmpUnitMotion->IsMoveRequested() && GetEntityId() < moveRequest.m_Entity)
 		{
 			CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
 			if (!cmpPosition || !cmpPosition->IsInWorld())
 				return true; // Still return true since we don't need a position for the target to have one.
 
-			CFixedVector2D tempPos = out + (out - cmpTargetPosition->GetPreviousPosition2D()) * 2;
+			CFixedVector2D tempPos = out + (out - cmpTargetPosition->GetPreviousPosition2D());
 
 			// Check if we anticipate the target to go through us, in which case we shouldn't anticipate
 			// (or e.g. units fleeing might suddenly turn around towards their attacker).
