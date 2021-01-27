@@ -207,6 +207,15 @@ public:
 	WaypointPath m_LongPath;
 	WaypointPath m_ShortPath;
 
+	// Hack - units move one-at-a-time, so they may need to interplate their target position.
+	// However, some computations are not doing during the motion messages, and those shouldn't (e.g. turn start).
+	// This is true if and only if the calls take place during handling of the entity's MT_Motion* messages.
+	// NB: this won't be true if we end up in UnitMotion because of another entity's motion messages,
+	// but I think it fixes the issue of interpolating target position OK for current needs,
+	// without having to add parameters everywhere.
+	// No need for serialisation, it's just a transient boolean.
+	bool m_InMotionMessage = false;
+
 	static std::string GetSchema()
 	{
 		return
@@ -321,8 +330,10 @@ public:
 		{
 			if (m_FormationController)
 			{
+				m_InMotionMessage = true;
 				fixed dt = static_cast<const CMessageUpdate_MotionFormation&> (msg).turnLength;
 				Move(dt);
+				m_InMotionMessage = false;
 			}
 			break;
 		}
@@ -330,8 +341,10 @@ public:
 		{
 			if (!m_FormationController)
 			{
+				m_InMotionMessage = true;
 				fixed dt = static_cast<const CMessageUpdate_MotionUnit&> (msg).turnLength;
 				Move(dt);
+				m_InMotionMessage = false;
 			}
 			break;
 		}
@@ -847,7 +860,26 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 	}
 
 	if (ticketType == Ticket::LONG_PATH)
+	{
 		m_LongPath = path;
+		// Long paths don't properly follow diagonals because of JPS/the grid. Since units now take time turning,
+		// they can actually slow down substantially if they have to do a one navcell diagonal movement,
+		// which is somewhat common at the beginning of a new path.
+		// For that reason, if the first waypoint is really close, check if we can't go directly to the second.
+		if (m_LongPath.m_Waypoints.size() >= 2)
+		{
+			const Waypoint& firstWpt = m_LongPath.m_Waypoints.back();
+			if (CFixedVector2D(firstWpt.x - pos.X, firstWpt.z - pos.Y).CompareLength(fixed::FromInt(TERRAIN_TILE_SIZE)) <= 0)
+			{
+				CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
+				ENSURE(cmpPathfinder);
+				const Waypoint& secondWpt = m_LongPath.m_Waypoints[m_LongPath.m_Waypoints.size() - 2];
+				if (cmpPathfinder->CheckMovement(GetObstructionFilter(), pos.X, pos.Y, secondWpt.x, secondWpt.z, m_Clearance, m_PassClass))
+					m_LongPath.m_Waypoints.pop_back();
+			}
+
+		}
+	}
 	else
 		m_ShortPath = path;
 
@@ -1236,12 +1268,14 @@ bool CCmpUnitMotion::ComputeTargetPosition(CFixedVector2D& out, const MoveReques
 	else
 	{
 		out = cmpTargetPosition->GetPosition2D();
-		// Because units move one-at-a-time and pathing is asynchronous, we need to account for target movement.
+		// Because units move one-at-a-time and pathing is asynchronous, we need to account for target movement,
+		// if we are computing this during the MT_Motion* part of the turn.
 		// If our entity ID is lower, we move first, and so we need to add a predicted movement to compute a path for next turn.
 		// If our entity ID is higher, the target has already moved, so we can just use the position directly.
 		// TODO: This does not really aim many turns in advance, with orthogonal trajectories it probably should.
 		CmpPtr<ICmpUnitMotion> cmpUnitMotion(GetSimContext(), moveRequest.m_Entity);
-		if (cmpUnitMotion && cmpUnitMotion->IsMoveRequested() && GetEntityId() < moveRequest.m_Entity)
+		bool needInterpolation = cmpUnitMotion && cmpUnitMotion->IsMoveRequested() && m_InMotionMessage;
+		if (needInterpolation && GetEntityId() < moveRequest.m_Entity)
 		{
 			// Add predicted movement.
 			CFixedVector2D tempPos = out + (out - cmpTargetPosition->GetPreviousPosition2D());
@@ -1260,7 +1294,7 @@ bool CCmpUnitMotion::ComputeTargetPosition(CFixedVector2D& out, const MoveReques
 			else
 				out = tempPos;
 		}
-		else if (cmpUnitMotion && cmpUnitMotion->IsMoveRequested() && GetEntityId() > moveRequest.m_Entity)
+		else if (needInterpolation && GetEntityId() > moveRequest.m_Entity)
 		{
 			CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
 			if (!cmpPosition || !cmpPosition->IsInWorld())
@@ -1337,7 +1371,7 @@ bool CCmpUnitMotion::PathingUpdateNeeded(const CFixedVector2D& from) const
 	if (!ComputeTargetPosition(targetPos))
 		return false;
 
-	if (m_FollowKnownImperfectPathCountdown > 0)
+	if (m_FollowKnownImperfectPathCountdown > 0 && (!m_LongPath.m_Waypoints.empty() || !m_ShortPath.m_Waypoints.empty()))
 		return false;
 
 	if (PossiblyAtDestination())
@@ -1378,8 +1412,6 @@ bool CCmpUnitMotion::PathingUpdateNeeded(const CFixedVector2D& from) const
 
 	// Increase the ranges with distance, to avoid recomputing every turn against units that are moving and far-away for example.
 	entity_pos_t distance = (from - CFixedVector2D(estimatedTargetShape.x, estimatedTargetShape.z)).Length();
-	// When in straight-path distance, we want perfect detection.
-	distance = std::max(distance - DIRECT_PATH_RANGE, entity_pos_t::Zero());
 
 	// TODO: it could be worth computing this based on time to collision instead of linear distance.
 	entity_pos_t minRange = std::max(m_MoveRequest.m_MinRange - distance / TARGET_UNCERTAINTY_MULTIPLIER, entity_pos_t::Zero());
