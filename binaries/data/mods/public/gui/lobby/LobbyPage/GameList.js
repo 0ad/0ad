@@ -32,6 +32,7 @@ class GameList
 
 		// Avoid repeated array construction
 		this.list_buddy = [];
+		this.list_private = [];
 		this.list_gameName = [];
 		this.list_mapName = [];
 		this.list_mapSize = [];
@@ -138,6 +139,7 @@ class GameList
 			Engine.ProfileStart("setupGameList");
 			let length = this.gameList.length;
 			this.list_buddy.length = length;
+			this.list_private.length = length;
 			this.list_gameName.length = length;
 			this.list_mapName.length = length;
 			this.list_mapSize.length = length;
@@ -150,6 +152,7 @@ class GameList
 
 				let displayData = game.displayData;
 				this.list_buddy[i] = displayData.buddy;
+				this.list_private[i] = displayData.private;
 				this.list_gameName[i] = displayData.gameName;
 				this.list_mapName[i] = displayData.mapName;
 				this.list_mapSize[i] = displayData.mapSize;
@@ -166,6 +169,7 @@ class GameList
 		{
 			Engine.ProfileStart("copyToGUI");
 			let gamesBox = this.gamesBox;
+			gamesBox.list_private = this.list_private;
 			gamesBox.list_buddy = this.list_buddy;
 			gamesBox.list_gameName = this.list_gameName;
 			gamesBox.list_mapName = this.list_mapName;

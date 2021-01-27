@@ -146,6 +146,8 @@ class Game
 			Engine.ProfileStop();
 		}
 
+		displayData.private = newStanza.hasPassword ? '[icon="icon_private"]' : '[icon="icon_public"]';
+
 		this.stanza = newStanza;
 		this.sortValue = this.sortValues[sortKey];
 	}
