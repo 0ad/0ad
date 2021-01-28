@@ -631,7 +631,8 @@ UnitAI.prototype.UnitFsmSpec = {
 			this.SetNextState("IDLE");
 			return;
 		}
-		else if (this.IsGarrisoned())
+
+		if (this.IsGarrisoned())
 		{
 			if (this.IsAnimal())
 				this.SetNextState("ANIMAL.GARRISON.GARRISONED");
@@ -640,9 +641,19 @@ UnitAI.prototype.UnitFsmSpec = {
 			return;
 		}
 
+		// Also pack when we are in range.
 		if (this.CanPack())
 		{
 			this.PushOrderFront("Pack", { "force": true });
+			return;
+		}
+
+		if (this.CheckGarrisonRange(this.order.data.target))
+		{
+			if (this.IsAnimal())
+				this.SetNextState("ANIMAL.GARRISON.GARRISONED");
+			else
+				this.SetNextState("INDIVIDUAL.GARRISON.GARRISONED");
 			return;
 		}
 

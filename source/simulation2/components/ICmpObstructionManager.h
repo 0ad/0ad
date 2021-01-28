@@ -530,6 +530,36 @@ public:
 };
 
 /**
+ * Obstruction test filter that reject shapes in a given control group or with the given tag (if that tag is moving),
+ * and rejects shapes that don't block unit movement. See D3482 for why this exists.
+ */
+class SkipMovingTagAndControlGroupObstructionFilter : public IObstructionTestFilter
+{
+	entity_id_t m_Group;
+	tag_t m_Tag;
+
+public:
+	SkipMovingTagAndControlGroupObstructionFilter(tag_t tag, entity_id_t group) :
+	m_Tag(tag), m_Group(group)
+	{}
+
+	virtual bool TestShape(tag_t tag, flags_t flags, entity_id_t group, entity_id_t group2) const
+	{
+		if (tag.n == m_Tag.n && (flags & ICmpObstructionManager::FLAG_MOVING))
+			return false;
+
+		if (group == m_Group || (group2 != INVALID_ENTITY && group2 == m_Group))
+			return false;
+
+		if (!(flags & ICmpObstructionManager::FLAG_BLOCK_MOVEMENT))
+			return false;
+
+		return true;
+	}
+};
+
+
+/**
  * Obstruction test filter that will test only against shapes that:
  *    - do not have the specified tag
  *    - AND have at least one of the specified flags set.

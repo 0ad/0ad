@@ -119,6 +119,7 @@ class CCmpUnitMotion : public ICmpUnitMotion
 public:
 	static void ClassInit(CComponentManager& componentManager)
 	{
+		componentManager.SubscribeToMessageType(MT_TurnStart);
 		componentManager.SubscribeToMessageType(MT_Update_MotionFormation);
 		componentManager.SubscribeToMessageType(MT_Update_MotionUnit);
 		componentManager.SubscribeToMessageType(MT_PathResult);
@@ -205,6 +206,15 @@ public:
 	// The last item in each path is the point we're currently heading towards.
 	WaypointPath m_LongPath;
 	WaypointPath m_ShortPath;
+
+	// Hack - units move one-at-a-time, so they may need to interplate their target position.
+	// However, some computations are not doing during the motion messages, and those shouldn't (e.g. turn start).
+	// This is true if and only if the calls take place during handling of the entity's MT_Motion* messages.
+	// NB: this won't be true if we end up in UnitMotion because of another entity's motion messages,
+	// but I think it fixes the issue of interpolating target position OK for current needs,
+	// without having to add parameters everywhere.
+	// No need for serialisation, it's just a transient boolean.
+	bool m_InMotionMessage = false;
 
 	static std::string GetSchema()
 	{
@@ -311,12 +321,19 @@ public:
 	{
 		switch (msg.GetType())
 		{
+		case MT_TurnStart:
+		{
+			TurnStart();
+			break;
+		}
 		case MT_Update_MotionFormation:
 		{
 			if (m_FormationController)
 			{
+				m_InMotionMessage = true;
 				fixed dt = static_cast<const CMessageUpdate_MotionFormation&> (msg).turnLength;
 				Move(dt);
+				m_InMotionMessage = false;
 			}
 			break;
 		}
@@ -324,8 +341,10 @@ public:
 		{
 			if (!m_FormationController)
 			{
+				m_InMotionMessage = true;
 				fixed dt = static_cast<const CMessageUpdate_MotionUnit&> (msg).turnLength;
 				Move(dt);
+				m_InMotionMessage = false;
 			}
 			break;
 		}
@@ -633,6 +652,13 @@ private:
 	void PathResult(u32 ticket, const WaypointPath& path);
 
 	/**
+	 * Check if we are at destination early in the turn, this both lets units react faster
+	 * and ensure that distance comparisons are done while units are not being moved
+	 * (otherwise they won't be commutative).
+	 */
+	void TurnStart();
+
+	/**
 	 * Do the per-turn movement and other updates.
 	 */
 	void Move(fixed dt);
@@ -704,7 +730,17 @@ private:
 	/**
 	 * Returns an appropriate obstruction filter for use with path requests.
 	 */
-	ControlGroupMovementObstructionFilter GetObstructionFilter() const;
+	ControlGroupMovementObstructionFilter GetObstructionFilter() const
+	{
+		return ControlGroupMovementObstructionFilter(ShouldAvoidMovingUnits(), GetGroup());
+	}
+	/**
+	 * Filter a specific tag on top of the existing control groups.
+	 */
+	SkipMovingTagAndControlGroupObstructionFilter GetObstructionFilter(const ICmpObstructionManager::tag_t& tag) const
+	{
+		return SkipMovingTagAndControlGroupObstructionFilter(tag, GetGroup());
+	}
 
 	/**
 	 * Decide whether to approximate the given range from a square target as a circle,
@@ -824,7 +860,26 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 	}
 
 	if (ticketType == Ticket::LONG_PATH)
+	{
 		m_LongPath = path;
+		// Long paths don't properly follow diagonals because of JPS/the grid. Since units now take time turning,
+		// they can actually slow down substantially if they have to do a one navcell diagonal movement,
+		// which is somewhat common at the beginning of a new path.
+		// For that reason, if the first waypoint is really close, check if we can't go directly to the second.
+		if (m_LongPath.m_Waypoints.size() >= 2)
+		{
+			const Waypoint& firstWpt = m_LongPath.m_Waypoints.back();
+			if (CFixedVector2D(firstWpt.x - pos.X, firstWpt.z - pos.Y).CompareLength(fixed::FromInt(TERRAIN_TILE_SIZE)) <= 0)
+			{
+				CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
+				ENSURE(cmpPathfinder);
+				const Waypoint& secondWpt = m_LongPath.m_Waypoints[m_LongPath.m_Waypoints.size() - 2];
+				if (cmpPathfinder->CheckMovement(GetObstructionFilter(), pos.X, pos.Y, secondWpt.x, secondWpt.z, m_Clearance, m_PassClass))
+					m_LongPath.m_Waypoints.pop_back();
+			}
+
+		}
+	}
 	else
 		m_ShortPath = path;
 
@@ -853,15 +908,8 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 	}
 }
 
-void CCmpUnitMotion::Move(fixed dt)
+void CCmpUnitMotion::TurnStart()
 {
-	PROFILE("Move");
-
-	// If we were idle and will still be, we can return.
-	// TODO: this will need to be removed if pushing is implemented.
-	if (m_CurSpeed == fixed::Zero() && m_MoveRequest.m_Type == MoveRequest::NONE)
-		return;
-
 	if (PossiblyAtDestination())
 		MoveSucceeded();
 	else if (!TargetHasValidPosition())
@@ -876,6 +924,16 @@ void CCmpUnitMotion::Move(fixed dt)
 
 		MoveFailed();
 	}
+}
+
+void CCmpUnitMotion::Move(fixed dt)
+{
+	PROFILE("Move");
+
+	// If we were idle and will still be, we can return.
+	// TODO: this will need to be removed if pushing is implemented.
+	if (m_CurSpeed == fixed::Zero() && m_MoveRequest.m_Type == MoveRequest::NONE)
+		return;
 
 	CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
 	if (!cmpPosition || !cmpPosition->IsInWorld())
@@ -993,6 +1051,14 @@ bool CCmpUnitMotion::PerformMove(fixed dt, const fixed& turnRate, WaypointPath& 
 	fixed timeLeft = dt;
 	fixed zero = fixed::Zero();
 
+	ICmpObstructionManager::tag_t specificIgnore;
+	if (m_MoveRequest.m_Type == MoveRequest::ENTITY)
+	{
+		CmpPtr<ICmpObstruction> cmpTargetObstruction(GetSimContext(), m_MoveRequest.m_Entity);
+		if (cmpTargetObstruction)
+			specificIgnore = cmpTargetObstruction->GetObstruction();
+	}
+
 	while (timeLeft > zero)
 	{
 		// If we ran out of path, we have to stop.
@@ -1006,7 +1072,7 @@ bool CCmpUnitMotion::PerformMove(fixed dt, const fixed& turnRate, WaypointPath& 
 			target = CFixedVector2D(shortPath.m_Waypoints.back().x, shortPath.m_Waypoints.back().z);
 
 		CFixedVector2D offset = target - pos;
-		if (turnRate > zero)
+		if (turnRate > zero && !offset.IsZero())
 		{
 			fixed maxRotation = turnRate.Multiply(timeLeft);
 			fixed angleDiff = angle - atan2_approx(offset.X, offset.Y);
@@ -1041,7 +1107,7 @@ bool CCmpUnitMotion::PerformMove(fixed dt, const fixed& turnRate, WaypointPath& 
 		fixed offsetLength = offset.Length();
 		if (offsetLength <= maxdist)
 		{
-			if (cmpPathfinder->CheckMovement(GetObstructionFilter(), pos.X, pos.Y, target.X, target.Y, m_Clearance, m_PassClass))
+			if (cmpPathfinder->CheckMovement(GetObstructionFilter(specificIgnore), pos.X, pos.Y, target.X, target.Y, m_Clearance, m_PassClass))
 			{
 				pos = target;
 
@@ -1067,7 +1133,7 @@ bool CCmpUnitMotion::PerformMove(fixed dt, const fixed& turnRate, WaypointPath& 
 			offset.Normalize(maxdist);
 			target = pos + offset;
 
-			if (cmpPathfinder->CheckMovement(GetObstructionFilter(), pos.X, pos.Y, target.X, target.Y, m_Clearance, m_PassClass))
+			if (cmpPathfinder->CheckMovement(GetObstructionFilter(specificIgnore), pos.X, pos.Y, target.X, target.Y, m_Clearance, m_PassClass))
 				pos = target;
 			else
 				return true;
@@ -1202,24 +1268,42 @@ bool CCmpUnitMotion::ComputeTargetPosition(CFixedVector2D& out, const MoveReques
 	else
 	{
 		out = cmpTargetPosition->GetPosition2D();
-		// If the target is moving, we might never get in range if we just try to reach its current position,
-		// so we have to try and move to a position where we will be in-range, including their movement.
-		// Since we request paths asynchronously a the end of our turn and the order in which two units move is uncertain,
-		// we need to account for twice the movement speed to be sure that we're targeting the correct point.
-		// TODO: be cleverer about this. It fixes fleeing nicely currently, but orthogonal movement should be considered,
-		// and the overall logic could be improved upon.
+		// Because units move one-at-a-time and pathing is asynchronous, we need to account for target movement,
+		// if we are computing this during the MT_Motion* part of the turn.
+		// If our entity ID is lower, we move first, and so we need to add a predicted movement to compute a path for next turn.
+		// If our entity ID is higher, the target has already moved, so we can just use the position directly.
+		// TODO: This does not really aim many turns in advance, with orthogonal trajectories it probably should.
 		CmpPtr<ICmpUnitMotion> cmpUnitMotion(GetSimContext(), moveRequest.m_Entity);
-		if (cmpUnitMotion && cmpUnitMotion->IsMoveRequested())
+		bool needInterpolation = cmpUnitMotion && cmpUnitMotion->IsMoveRequested() && m_InMotionMessage;
+		if (needInterpolation && GetEntityId() < moveRequest.m_Entity)
+		{
+			// Add predicted movement.
+			CFixedVector2D tempPos = out + (out - cmpTargetPosition->GetPreviousPosition2D());
+
+			CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
+			if (!cmpPosition || !cmpPosition->IsInWorld())
+				return true; // Still return true since we don't need a position for the target to have one.
+
+			// Fleeing fix: if we anticipate the target to go through us, we'll suddenly turn around, which is bad.
+			// Pretend that the target is still behind us in those cases.
+			if (m_MoveRequest.m_MinRange > fixed::Zero())
+			{
+				if ((out - cmpPosition->GetPosition2D()).RelativeOrientation(tempPos - cmpPosition->GetPosition2D()) >= 0)
+					out = tempPos;
+			}
+			else
+				out = tempPos;
+		}
+		else if (needInterpolation && GetEntityId() > moveRequest.m_Entity)
 		{
 			CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
 			if (!cmpPosition || !cmpPosition->IsInWorld())
 				return true; // Still return true since we don't need a position for the target to have one.
 
-			CFixedVector2D tempPos = out + (out - cmpTargetPosition->GetPreviousPosition2D()) * 2;
-
-			// Check if we anticipate the target to go through us, in which case we shouldn't anticipate
-			// (or e.g. units fleeing might suddenly turn around towards their attacker).
-			if ((out - cmpPosition->GetPosition2D()).RelativeOrientation(tempPos - cmpPosition->GetPosition2D()) >= 0)
+			// Fleeing fix: opposite to above, check if our target has travelled through us already this turn.
+			CFixedVector2D tempPos = out - (out - cmpTargetPosition->GetPreviousPosition2D());
+			if (m_MoveRequest.m_MinRange > fixed::Zero() &&
+				(out - cmpPosition->GetPosition2D()).RelativeOrientation(tempPos - cmpPosition->GetPosition2D()) < 0)
 				out = tempPos;
 		}
 	}
@@ -1230,10 +1314,6 @@ bool CCmpUnitMotion::TryGoingStraightToTarget(const CFixedVector2D& from)
 {
 	CFixedVector2D targetPos;
 	if (!ComputeTargetPosition(targetPos))
-		return false;
-
-	// Fail if the target is too far away
-	if ((targetPos - from).CompareLength(DIRECT_PATH_RANGE) > 0)
 		return false;
 
 	CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
@@ -1251,6 +1331,10 @@ bool CCmpUnitMotion::TryGoingStraightToTarget(const CFixedVector2D& from)
 
 	// Find the point on the goal shape that we should head towards
 	CFixedVector2D goalPos = goal.NearestPointOnGoal(from);
+
+	// Fail if the target is too far away
+	if ((goalPos - from).CompareLength(DIRECT_PATH_RANGE) > 0)
+		return false;
 
 	// Check if there's any collisions on that route.
 	// For entity goals, skip only the specific obstruction tag or with e.g. walls we might ignore too many entities.
@@ -1287,7 +1371,7 @@ bool CCmpUnitMotion::PathingUpdateNeeded(const CFixedVector2D& from) const
 	if (!ComputeTargetPosition(targetPos))
 		return false;
 
-	if (m_FollowKnownImperfectPathCountdown > 0)
+	if (m_FollowKnownImperfectPathCountdown > 0 && (!m_LongPath.m_Waypoints.empty() || !m_ShortPath.m_Waypoints.empty()))
 		return false;
 
 	if (PossiblyAtDestination())
@@ -1328,8 +1412,6 @@ bool CCmpUnitMotion::PathingUpdateNeeded(const CFixedVector2D& from) const
 
 	// Increase the ranges with distance, to avoid recomputing every turn against units that are moving and far-away for example.
 	entity_pos_t distance = (from - CFixedVector2D(estimatedTargetShape.x, estimatedTargetShape.z)).Length();
-	// When in straight-path distance, we want perfect detection.
-	distance = std::max(distance - DIRECT_PATH_RANGE, entity_pos_t::Zero());
 
 	// TODO: it could be worth computing this based on time to collision instead of linear distance.
 	entity_pos_t minRange = std::max(m_MoveRequest.m_MinRange - distance / TARGET_UNCERTAINTY_MULTIPLIER, entity_pos_t::Zero());
@@ -1365,11 +1447,6 @@ void CCmpUnitMotion::FaceTowardsPointFromPos(const CFixedVector2D& pos, entity_p
 			return;
 		cmpPosition->TurnTo(angle);
 	}
-}
-
-ControlGroupMovementObstructionFilter CCmpUnitMotion::GetObstructionFilter() const
-{
-	return ControlGroupMovementObstructionFilter(ShouldAvoidMovingUnits(), GetGroup());
 }
 
 // The pathfinder cannot go to "rounded rectangles" goals, which are what happens with square targets and a non-null range.

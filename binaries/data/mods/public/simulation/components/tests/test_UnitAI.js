@@ -63,6 +63,7 @@ TestTargetEntityRenaming(
 		unitAI.AbleToMove = () => true;
 
 		AddMock(target_ent, IID_GarrisonHolder, {
+			"GetLoadingRange": () => ({ "max": 100, "min": 0 }),
 			"CanPickup": () => false
 		});
 
