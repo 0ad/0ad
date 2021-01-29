@@ -32,9 +32,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-01-26 18:31+0000\n"
-"Last-Translator: Bruce Lee <daemul72@gmail.com>\n"
+"POT-Creation-Date: 2021-01-29 08:08+0000\n"
+"PO-Revision-Date: 2021-01-29 09:16+0000\n"
+"Last-Translator: ks k\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -834,52 +834,56 @@ msgstr ""
 msgid "Password is invalid."
 msgstr ""
 
-#: gui/gamesetup_mp/gamesetup_mp.js:170
+#: gui/gamesetup_mp/gamesetup_mp.js:168
+msgid "You have been banned."
+msgstr "당신은 차단당했습니다."
+
+#: gui/gamesetup_mp/gamesetup_mp.js:171
 #, javascript-format
 msgid "\\[Invalid value %(reason)s]"
 msgstr ""
 
-#: gui/gamesetup_mp/gamesetup_mp.js:178
+#: gui/gamesetup_mp/gamesetup_mp.js:179
 msgid "Failed to connect to the server."
 msgstr "서버에 연결하는 데 실패했습니다."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:180
+#: gui/gamesetup_mp/gamesetup_mp.js:181
 msgid "Connection failed"
 msgstr ""
 
-#: gui/gamesetup_mp/gamesetup_mp.js:192
+#: gui/gamesetup_mp/gamesetup_mp.js:193
 #, javascript-format
 msgid "Net message: %(message)s"
 msgstr "총 메시지 수: %(message)s"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:287
+#: gui/gamesetup_mp/gamesetup_mp.js:288
 msgid "Registering with server..."
 msgstr "서버에 등록하는 중..."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:293
+#: gui/gamesetup_mp/gamesetup_mp.js:294
 msgid "Game has already started, rejoining..."
 msgstr "게임이 이미 시작되었습니다. 다시 합류 중..."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:372
+#: gui/gamesetup_mp/gamesetup_mp.js:373
 msgid "Game name already in use."
 msgstr "게임 이름이 이미 사용되고 있습니다."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:387
+#: gui/gamesetup_mp/gamesetup_mp.js:388
 #, javascript-format
 msgid "Cannot host game: %(message)s."
 msgstr "게임을 호스트할 수 없음: %(message)s."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:388 gui/gamesetup_mp/gamesetup_mp.js:417
-#: gui/gamesetup_mp/gamesetup_mp.js:444 gui/gamesetup_mp/gamesetup_mp.js:459
+#: gui/gamesetup_mp/gamesetup_mp.js:389 gui/gamesetup_mp/gamesetup_mp.js:418
+#: gui/gamesetup_mp/gamesetup_mp.js:445 gui/gamesetup_mp/gamesetup_mp.js:460
 msgid "Error"
 msgstr "오류"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:416 gui/gamesetup_mp/gamesetup_mp.js:458
+#: gui/gamesetup_mp/gamesetup_mp.js:417 gui/gamesetup_mp/gamesetup_mp.js:459
 #, javascript-format
 msgid "Cannot join game: %(message)s."
 msgstr "게임에 참여할 수 없음: %(message)s."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:473
+#: gui/gamesetup_mp/gamesetup_mp.js:474
 #, javascript-format
 msgid "%(playername)s's game"
 msgstr "%(playername)s의 게임"

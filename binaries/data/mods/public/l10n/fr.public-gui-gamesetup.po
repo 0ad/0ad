@@ -90,9 +90,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-01-22 09:49+0000\n"
-"Last-Translator: Stanislas Dolcini <stan@wildfiregames.com>\n"
+"POT-Creation-Date: 2021-01-29 08:08+0000\n"
+"PO-Revision-Date: 2021-01-29 09:16+0000\n"
+"Last-Translator: Jérémi Mapas <jeremi.mapas@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -896,52 +896,56 @@ msgstr "Le serveur est éteint."
 msgid "Password is invalid."
 msgstr "Le mot de passe est invalide."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:170
+#: gui/gamesetup_mp/gamesetup_mp.js:168
+msgid "You have been banned."
+msgstr "Vous avez été banni."
+
+#: gui/gamesetup_mp/gamesetup_mp.js:171
 #, javascript-format
 msgid "\\[Invalid value %(reason)s]"
 msgstr "\\[Valeur invalide %(reason)s]"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:178
+#: gui/gamesetup_mp/gamesetup_mp.js:179
 msgid "Failed to connect to the server."
 msgstr "Échec de connexion au serveur."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:180
+#: gui/gamesetup_mp/gamesetup_mp.js:181
 msgid "Connection failed"
 msgstr "La connexion a échoué"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:192
+#: gui/gamesetup_mp/gamesetup_mp.js:193
 #, javascript-format
 msgid "Net message: %(message)s"
 msgstr "Message réseau : %(message)s"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:287
+#: gui/gamesetup_mp/gamesetup_mp.js:288
 msgid "Registering with server..."
 msgstr "Enregistrement sur le serveur..."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:293
+#: gui/gamesetup_mp/gamesetup_mp.js:294
 msgid "Game has already started, rejoining..."
 msgstr "La partie a déjà commencé, connexion..."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:372
+#: gui/gamesetup_mp/gamesetup_mp.js:373
 msgid "Game name already in use."
 msgstr "Nom de partie déjà utilisé."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:387
+#: gui/gamesetup_mp/gamesetup_mp.js:388
 #, javascript-format
 msgid "Cannot host game: %(message)s."
 msgstr "Impossible d'héberger la partie : %(message)s."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:388 gui/gamesetup_mp/gamesetup_mp.js:417
-#: gui/gamesetup_mp/gamesetup_mp.js:444 gui/gamesetup_mp/gamesetup_mp.js:459
+#: gui/gamesetup_mp/gamesetup_mp.js:389 gui/gamesetup_mp/gamesetup_mp.js:418
+#: gui/gamesetup_mp/gamesetup_mp.js:445 gui/gamesetup_mp/gamesetup_mp.js:460
 msgid "Error"
 msgstr "Erreur"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:416 gui/gamesetup_mp/gamesetup_mp.js:458
+#: gui/gamesetup_mp/gamesetup_mp.js:417 gui/gamesetup_mp/gamesetup_mp.js:459
 #, javascript-format
 msgid "Cannot join game: %(message)s."
 msgstr "Impossible de rejoindre la partie : %(message)s"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:473
+#: gui/gamesetup_mp/gamesetup_mp.js:474
 #, javascript-format
 msgid "%(playername)s's game"
 msgstr "Partie de %(playername)s"

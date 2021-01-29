@@ -35,9 +35,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-01-22 09:25+0000\n"
-"Last-Translator: firespin\n"
+"POT-Creation-Date: 2021-01-29 08:08+0000\n"
+"PO-Revision-Date: 2021-01-29 09:16+0000\n"
+"Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -841,52 +841,56 @@ msgstr ""
 msgid "Password is invalid."
 msgstr ""
 
-#: gui/gamesetup_mp/gamesetup_mp.js:170
+#: gui/gamesetup_mp/gamesetup_mp.js:168
+msgid "You have been banned."
+msgstr "Σου απαγορεύτηκε η πρόσβαση."
+
+#: gui/gamesetup_mp/gamesetup_mp.js:171
 #, javascript-format
 msgid "\\[Invalid value %(reason)s]"
 msgstr ""
 
-#: gui/gamesetup_mp/gamesetup_mp.js:178
+#: gui/gamesetup_mp/gamesetup_mp.js:179
 msgid "Failed to connect to the server."
 msgstr "Αποτυχία σύνδεσης με τον εξυπηρετητή."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:180
+#: gui/gamesetup_mp/gamesetup_mp.js:181
 msgid "Connection failed"
 msgstr ""
 
-#: gui/gamesetup_mp/gamesetup_mp.js:192
+#: gui/gamesetup_mp/gamesetup_mp.js:193
 #, javascript-format
 msgid "Net message: %(message)s"
 msgstr "Μήνυμα διαδικτύου: %(message)s"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:287
+#: gui/gamesetup_mp/gamesetup_mp.js:288
 msgid "Registering with server..."
 msgstr "Εγγραφή με τον διακομιστή ..."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:293
+#: gui/gamesetup_mp/gamesetup_mp.js:294
 msgid "Game has already started, rejoining..."
 msgstr "Το παιχνίδι έχει ήδη ξεκινήσει , επανασύνδεση ..."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:372
+#: gui/gamesetup_mp/gamesetup_mp.js:373
 msgid "Game name already in use."
 msgstr "Το όνομα παιχνιδιού είναι ήδη σε χρήση."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:387
+#: gui/gamesetup_mp/gamesetup_mp.js:388
 #, javascript-format
 msgid "Cannot host game: %(message)s."
 msgstr "Δεν μπορεί να φιλοξενήσει παιχνίδι: %(message)s."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:388 gui/gamesetup_mp/gamesetup_mp.js:417
-#: gui/gamesetup_mp/gamesetup_mp.js:444 gui/gamesetup_mp/gamesetup_mp.js:459
+#: gui/gamesetup_mp/gamesetup_mp.js:389 gui/gamesetup_mp/gamesetup_mp.js:418
+#: gui/gamesetup_mp/gamesetup_mp.js:445 gui/gamesetup_mp/gamesetup_mp.js:460
 msgid "Error"
 msgstr "Σφάλμα"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:416 gui/gamesetup_mp/gamesetup_mp.js:458
+#: gui/gamesetup_mp/gamesetup_mp.js:417 gui/gamesetup_mp/gamesetup_mp.js:459
 #, javascript-format
 msgid "Cannot join game: %(message)s."
 msgstr "Δεν μπορεί να συνδεθεί στο παιχνίδι: %(message)s."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:473
+#: gui/gamesetup_mp/gamesetup_mp.js:474
 #, javascript-format
 msgid "%(playername)s's game"
 msgstr "Το παιχνίδι του/ων %(playername)s"
