@@ -6,7 +6,7 @@
 # Alexander Olkhovskiy, 2016
 # Alexander Serov <sekachinsky@gmail.com>, 2014
 # Artur Miller <director.mill@yandex.ru>, 2019
-# Boris Karalnik <eyesucker@gmail.com>, 2015,2018-2020
+# Boris Karalnik <eyesucker@gmail.com>, 2015,2018-2021
 # Christo Keller <christoniancoder@gmail.com>, 2014
 # Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2015-2018
 # Максим Дронь <dronmax@gmail.com>, 2014-2015
@@ -30,8 +30,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-18 08:15+0000\n"
-"PO-Revision-Date: 2021-01-18 10:36+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-01-26 16:48+0000\n"
+"Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -251,7 +251,7 @@ msgstr "Кикладские острова"
 
 #: maps/random/danubius.jsonsettings.Daytime[0].Description
 msgid "Bright daylight illuminates the scene."
-msgstr ""
+msgstr "Яркий день освещает местность."
 
 #: maps/random/danubius.jsonsettings.Daytime[0].Name
 msgid "Day"
@@ -725,7 +725,7 @@ msgstr "Финикийский Левант"
 
 #: maps/random/polar_sea.jsonsettings.Daytime[0].Description
 msgid "Scattered sunlight illuminates the scenery in a vivid red tone."
-msgstr ""
+msgstr "Рассеянный солнечный свет расцвечивает пейзаж в живописных красных тонах."
 
 #: maps/random/polar_sea.jsonsettings.Daytime[0].Name
 msgid "Dawn"
@@ -733,7 +733,7 @@ msgstr "Рассвет"
 
 #: maps/random/polar_sea.jsonsettings.Daytime[1].Description
 msgid "The scenery is illuminated by direct or indirect sunlight."
-msgstr ""
+msgstr "Пейзаж освещается прямыми или рассеянными солнечными лучами."
 
 #: maps/random/polar_sea.jsonsettings.Daytime[1].Name
 msgid "Daylight"
@@ -969,7 +969,7 @@ msgctxt "biome definition"
 msgid ""
 "Solidifying its grip, the harsh cold has succeeded in freezing up the gulf. "
 "The thick ice formed is capable of withstanding any weight."
-msgstr ""
+msgstr "Суровый мороз усилил свою хватку и сковал воды залива. Образовавшийся толстый лёд способен выдержать любой вес."
 
 #: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Title
 msgctxt "biome definition"
@@ -1159,15 +1159,15 @@ msgstr "Центральная река"
 msgid ""
 "Players are aligned on a strip of land with seas bordering on one or both "
 "sides that may hold islands."
-msgstr ""
+msgstr "Игроки располагаются на полосе суши, омываемой с одной или двух сторон морем, в котором могут быть разбросаны острова."
 
 #: maps/random/unknown.jsonsettings.Landscapes.land[3].Name
 msgid "Edge Seas"
-msgstr ""
+msgstr "Окаймляющие моря"
 
 #: maps/random/unknown.jsonsettings.Landscapes.land[4].Description
 msgid "Land shaped like a concrescent moon around a central lake."
-msgstr ""
+msgstr "Суша в форме полумесяца вокруг центрального озера."
 
 #: maps/random/unknown.jsonsettings.Landscapes.land[4].Name
 msgid "Gulf"
@@ -1175,7 +1175,7 @@ msgstr "Залив"
 
 #: maps/random/unknown.jsonsettings.Landscapes.land[5].Description
 msgid "Mainland style with some small random lakes."
-msgstr ""
+msgstr "Материк и небольшие случайные озёра."
 
 #: maps/random/unknown.jsonsettings.Landscapes.land[5].Name
 msgid "Lakes"
@@ -1185,7 +1185,7 @@ msgstr "Озёра"
 msgid ""
 "A large hill encompasses the map and leaves players only a small passage to "
 "the two neighboring players."
-msgstr ""
+msgstr "Большой холм занимает карту и оставляет игрокам только небольшие проходы к двум соседям."
 
 #: maps/random/unknown.jsonsettings.Landscapes.land[6].Name
 msgid "Passes"
@@ -1195,19 +1195,19 @@ msgstr "Перевалы"
 msgid ""
 "The land is enclosed by a hill that leaves a small area per player connected"
 " to the large central place."
-msgstr ""
+msgstr "Территория ограничена холмом, который оставляет небольшую площадку для каждого игрока, соединенную с большим центральным пространством."
 
 #: maps/random/unknown.jsonsettings.Landscapes.land[7].Name
 msgid "Lowlands"
-msgstr ""
+msgstr "Низменности"
 
 #: maps/random/unknown.jsonsettings.Landscapes.naval[0].Description
 msgid "A huge sea is dividing the map into two halves."
-msgstr ""
+msgstr "Огромное море делит карту на две половины."
 
 #: maps/random/unknown.jsonsettings.Landscapes.naval[0].Name
 msgid "Naval: Central Sea"
-msgstr ""
+msgstr "Морская: Центральное море"
 
 #: maps/random/unknown.jsonsettings.Landscapes.naval[1].Description
 msgid "Players are scattered across island chains and disconnected islands."
@@ -1742,11 +1742,11 @@ msgstr "Коринф"
 msgid ""
 "Test map for picking units up, with sea and two islands. Trigger points are "
 "placed."
-msgstr ""
+msgstr "Тестовая карта для сбора юнитов, с морем и двумя островами. Установлены триггерные точки."
 
 #: maps/scenarios/pickup_test_map.xml:Name:39
 msgid "Pickup test map"
-msgstr ""
+msgstr "Тестовая карта сбора"
 
 #: maps/scenarios/polynesia.xml:Description:38
 msgid "Demo map for new fancy water effects."
@@ -2268,11 +2268,11 @@ msgstr "Тропический Остров"
 
 #: maps/scenarios/unit_dancing_test.xml:Description:40
 msgid "This map is designed to test a few different cases of 'Dancing'."
-msgstr ""
+msgstr "Эта карта предназначена для тестирования нескольких различных вариантов «танцев»."
 
 #: maps/scenarios/unit_dancing_test.xml:Name:40
 msgid "Unit Dancing test"
-msgstr ""
+msgstr "Тест танцующих юнитов"
 
 #: maps/scenarios/unit_motion_integration_test.xml:Description:39
 msgid ""
@@ -2351,11 +2351,11 @@ msgid ""
 "Skirmish high in the Atlas mountains, where snowcapped mountains loom over "
 "desert oases. A wild landscape awaits; every player will experience "
 "different advantages and challenges based on their location."
-msgstr ""
+msgstr "Схватка высоко в Атласских горах, где заснеженные вершины нависают над оазисами пустыни. Дикий пейзаж ждёт; у каждого игрока будет свои преимущества и сложности, проистекающие из расположения."
 
 #: maps/skirmishes/atlas_valleys_8p.xml:Name:39
 msgid "Atlas Valleys (8)"
-msgstr ""
+msgstr "Атласские долины (8)"
 
 #: maps/skirmishes/bactria_2p.xml:Description:38
 msgid ""
@@ -2654,7 +2654,7 @@ msgid ""
 "This represents the Libyan Desert, part of the Saharan Desert, West of the Nile River in Egypt.\n"
 "\n"
 "Iberians do not receive their circuit walls here. Instead, all factions receive four free Stone Towers."
-msgstr ""
+msgstr "Старая добрая карта. Широко раскинувшаяся пустыня пронизана в середине пышным оазисом. \n \nЭто Ливийская пустыня, часть пустыни Сахара, западнее реки Нил в Египте.\n\nИберийцы не получают здесь своих кольцевых стен. Вместо этого, все цивилизации получают по четыре оборонительные башни."
 
 #: maps/skirmishes/libyan_oasis_2p.xml:Name:38
 msgid "Libyan Oasis (2)"
@@ -2744,15 +2744,15 @@ msgid ""
 "A lazy river meanders through these Serbian wetlands. Stone is scarce, but many lumps of bog iron sit waiting to be found.\n"
 "\n"
 "*This map makes heavy use of grass actors which may adversely affect performance."
-msgstr ""
+msgstr "Неспешная река протекает через эти сербские заболоченные земли. Камня мало, но многочисленные залежи болотного железа ждут того, кто их найдёт.\n\n*Эта карта интенсивно использует эффекты травы, что может отрицательно сказаться на производительности."
 
 #: maps/skirmishes/obedska_bog_4p.xml:Name:39
 msgid "Obedska Bog (4)"
-msgstr ""
+msgstr "Обедское болото (4)"
 
 #: maps/skirmishes/obedska_bog_night_4p.xml:Name:39
 msgid "Obedska Bog Night (4)"
-msgstr ""
+msgstr "Ночь на Обедском болоте (4)"
 
 #: maps/skirmishes/oceanside_2p.xml:Description:39
 msgid "A Lush temperate biome along an ocean. "
@@ -2812,11 +2812,11 @@ msgid ""
 "Iberian players do not get full circuit walls, but 5 strategically placed wall towers.\n"
 "\n"
 "WARNING: This map uses a lot of floral actors on account of being a rainforest. Expect a drop in framerate, this is taxing on most mid range computers."
-msgstr ""
+msgstr "Многообразные тропические леса уютно расположились в горной цепи Сахьядри на западном побережье Индии. Само собой разумеется, что леса весьма богаты.\n\nИберийцы получают 5 выгодно расположенных опорных башен вместо привычных кольцевых стен.\n\nВНИМАНИЕ: На этой карте используется множество цветочных элементов для отображения тропического леса. Можно ожидать заметного падения производительности на слабых компьютерах."
 
 #: maps/skirmishes/sahyadri_buttes_5.xml:Name:39
 msgid "Sahyadri Buttes (5)"
-msgstr ""
+msgstr "Столбы Сахьядри́ (5)"
 
 #: maps/skirmishes/savanna_river.xml:Description:38
 msgid "A large savanna is bisected by a narrow jungle stream."
@@ -2923,7 +2923,7 @@ msgid ""
 "Skirmish as ash lightly falls around this recently erupted volcano. The "
 "scorched landscape offers little food, though the blasted forests are still "
 "laden with useful wood."
-msgstr ""
+msgstr "Схватка под лёгких пеплом, падающим вокруг недавно извергнувшегося вулкана. Выжженный пейзаж предлагает мало пищи, но обгоревшие леса всё ещё изобилуют полезной древесиной."
 
 #: maps/skirmishes/vesuvius_6p.xml:Name:39
 msgid "Vesuvius (6)"

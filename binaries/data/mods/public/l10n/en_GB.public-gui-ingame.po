@@ -11,6 +11,7 @@
 # Laurene Albrand, 2015
 # leper <leper@wildfiregames.com>, 2014
 # leper <leper@wildfiregames.com>, 2014-2016
+# Martin H <pilino@posteo.de>, 2021
 # Martin H <pilino@posteo.de>, 2016
 # Martin H <pilino@posteo.de>, 2016
 # Martin H <pilino@posteo.de>, 2016-2017
@@ -21,8 +22,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-01-22 10:35+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-01-25 13:07+0000\n"
+"Last-Translator: Martin H <pilino@posteo.de>\n"
 "Language-Team: English (United Kingdom) (http://www.transifex.com/wildfire-games/0ad/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1183,8 +1184,8 @@ msgstr "%(changer)s lessens the limit with %(change)s."
 #: gui/session/selection_panels_helpers.js:140
 msgid "Could only be constructed once."
 msgid_plural "Could only be constructed %(limit)s times."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Could only be constructed once."
+msgstr[1] "Could only be constructed %(limit)s times."
 
 #: gui/session/selection_panels_helpers.js:144
 msgid "Can be constructed only once."
@@ -1200,8 +1201,8 @@ msgstr[1] "Can be constructed %(count)s more times."
 #: gui/session/selection_panels_helpers.js:153
 msgid "Could only be trained once."
 msgid_plural "Could only be trained %(limit)s times."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Could only be trained once."
+msgstr[1] "Could only be trained %(limit)s times."
 
 #: gui/session/selection_panels_helpers.js:157
 msgid "Can be trained only once."
@@ -1217,8 +1218,8 @@ msgstr[1] "Can be trained %(count)s more times."
 #: gui/session/selection_panels_helpers.js:166
 msgid "Could only be created once."
 msgid_plural "Could only be created %(limit)s times."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Could only be created once."
+msgstr[1] "Could only be created %(limit)s times."
 
 #: gui/session/selection_panels_helpers.js:170
 msgid "Can be created only once."

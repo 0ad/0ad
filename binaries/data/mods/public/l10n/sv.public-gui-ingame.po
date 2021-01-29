@@ -14,6 +14,7 @@
 # liothe <lucy@liothe.se>, 2013
 # magicae, 2014
 # Martin H <pilino@posteo.de>, 2020
+# Martin H <pilino@posteo.de>, 2021
 # Martin H <pilino@posteo.de>, 2016
 # Martin H <pilino@posteo.de>, 2015-2016
 # Mattias Münster <mattiasmun@gmail.com>, 2019
@@ -27,8 +28,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-01-22 10:35+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-01-25 21:50+0000\n"
+"Last-Translator: Martin H <pilino@posteo.de>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -79,7 +80,7 @@ msgstr "Inställningar"
 
 #: gui/session/MenuButtons.js:182
 msgid "Hotkeys"
-msgstr ""
+msgstr "Snabbtangenter"
 
 #: gui/session/MenuButtons.js:217
 msgid "Resume"
@@ -217,7 +218,7 @@ msgstr "HH:mm"
 #: gui/session/chat/ChatHistory.js:82
 msgctxt "chat history filter"
 msgid "Chat and notifications"
-msgstr "Chatt och meddelanden"
+msgstr "Chatt och notifikationer"
 
 #: gui/session/chat/ChatHistory.js:87
 msgctxt "chat history filter"
@@ -252,12 +253,12 @@ msgstr "Privat chatt"
 #: gui/session/chat/ChatHistory.js:125
 msgctxt "chat history filter"
 msgid "Game notifications"
-msgstr "Spelmeddelanden"
+msgstr "Spelnotifikationer"
 
 #: gui/session/chat/ChatHistory.js:130
 msgctxt "chat history filter"
 msgid "Network notifications"
-msgstr "Nätverksmeddelanden"
+msgstr "Nätverksnotifikationer"
 
 #: gui/session/chat/ChatInput.js:31
 msgctxt "chat input"
@@ -351,21 +352,21 @@ msgstr "* %(user)s %(message)s"
 #: gui/session/chat/ChatMessageFormatSimulation.js:16
 #, javascript-format
 msgid "%(icon)sYour livestock has been attacked by %(attacker)s!"
-msgstr ""
+msgstr "%(icon)sDitt boskap har attackerats av %(attacker)s!"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:17
 #, javascript-format
 msgid "%(icon)sYou have been attacked by %(attacker)s!"
-msgstr ""
+msgstr "%(icon)sDu har attackerats av %(attacker)s!"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:30
 msgid "Click to focus on the attacked unit."
-msgstr ""
+msgstr "Klicka för att fokusera på den attackerade enheten."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:49
 #, javascript-format
 msgid "%(player)s bartered %(amountGiven)s for %(amountGained)s."
-msgstr ""
+msgstr "%(player)s bytte %(amountGiven)s för %(amountGained)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:84
 #, javascript-format
@@ -545,7 +546,7 @@ msgstr "Aktivera Tidsböjning"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:214
 msgid "Activate Rejoin Test"
-msgstr ""
+msgstr "Aktivera återanslutningstest"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:248
 msgid "Promote selected units"
@@ -944,7 +945,7 @@ msgstr "Vinst: %(gain)s"
 msgid ""
 "(%(number)s)\n"
 "%(time)s"
-msgstr ""
+msgstr "(%(number)s)\n%(time)s"
 
 #: gui/session/selection_details.js:282
 msgid "Current/max gatherers"
@@ -1009,19 +1010,19 @@ msgstr "Slut på larmet."
 
 #: gui/session/selection_panels.js:276
 msgid "Default formation is disabled."
-msgstr ""
+msgstr "Standardformation är deaktiverad."
 
 #: gui/session/selection_panels.js:277
 msgid "Right-click to disable the default formation feature."
-msgstr ""
+msgstr "Högerklicka för att deaktivera funktionen standardformation."
 
 #: gui/session/selection_panels.js:280
 msgid "This is the default formation, used for movement orders."
-msgstr ""
+msgstr "Detta är standardformationen som används för rörelseorder."
 
 #: gui/session/selection_panels.js:281
 msgid "Right-click to set this as the default formation."
-msgstr ""
+msgstr "Högerklicka för att sätta denna som standardformation."
 
 #: gui/session/selection_panels.js:337
 #, javascript-format
@@ -1089,11 +1090,11 @@ msgstr ", "
 
 #: gui/session/selection_panels.js:784
 msgid "Cannot research while upgrading."
-msgstr ""
+msgstr "Kan inte forska under pågående uppgradering."
 
 #: gui/session/selection_panels.js:1008
 msgid "Cannot train while upgrading."
-msgstr ""
+msgstr "Kan inte träna under pågående uppgradering."
 
 #: gui/session/selection_panels.js:1070
 #, javascript-format
@@ -1116,8 +1117,8 @@ msgid ""
 msgid_plural ""
 "Cannot upgrade when all entities are training, researching or already "
 "upgrading."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Kan inte uppgradera medans entiteten tränar, forskar eller redan uppgraderas."
+msgstr[1] "Kan inte uppgradera medans alla entiteter tränar, forskar eller redan uppgraderas."
 
 #: gui/session/selection_panels_helpers.js:53
 msgctxt "stance"
@@ -1189,53 +1190,53 @@ msgstr "%(changer)s sänker begränsningen med %(change)s."
 #: gui/session/selection_panels_helpers.js:140
 msgid "Could only be constructed once."
 msgid_plural "Could only be constructed %(limit)s times."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Kunde bara konstrueras en gång."
+msgstr[1] "Kunde bara konstrueras %(limit)s gånger."
 
 #: gui/session/selection_panels_helpers.js:144
 msgid "Can be constructed only once."
-msgstr ""
+msgstr "Kan bara konstrueras en gång."
 
 #: gui/session/selection_panels_helpers.js:146
 #, javascript-format
 msgid "Can be constructed %(count)s more time."
 msgid_plural "Can be constructed %(count)s more times."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Kan konstrueras %(count)s gång till."
+msgstr[1] "Kan konstrueras %(count)s gånger till."
 
 #: gui/session/selection_panels_helpers.js:153
 msgid "Could only be trained once."
 msgid_plural "Could only be trained %(limit)s times."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Kan bara tränas en gång."
+msgstr[1] "Kan bara tränas %(limit)s gånger."
 
 #: gui/session/selection_panels_helpers.js:157
 msgid "Can be trained only once."
-msgstr ""
+msgstr "Kan bara tränas en gång."
 
 #: gui/session/selection_panels_helpers.js:159
 #, javascript-format
 msgid "Can be trained %(count)s more time."
 msgid_plural "Can be trained %(count)s more times."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Kan tränas %(count)s gång till."
+msgstr[1] "Kan tränas %(count)s gånger till."
 
 #: gui/session/selection_panels_helpers.js:166
 msgid "Could only be created once."
 msgid_plural "Could only be created %(limit)s times."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Kan bara skapas en gång."
+msgstr[1] "Kan bara skapas %(limit)s gånger."
 
 #: gui/session/selection_panels_helpers.js:170
 msgid "Can be created only once."
-msgstr ""
+msgstr "Kan bara skapas en gång."
 
 #: gui/session/selection_panels_helpers.js:172
 #, javascript-format
 msgid "Can be created %(count)s more time."
 msgid_plural "Can be created %(count)s more times."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Kan skapas %(count)s gång till."
+msgstr[1] "Kan skapas %(count)s gånger till."
 
 #: gui/session/selection_panels_helpers.js:201
 #, javascript-format
@@ -1272,7 +1273,7 @@ msgstr "Erövringspoäng"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):62
 msgid "Attack and Resistance"
-msgstr ""
+msgstr "Attack och Motstånd"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):77
 msgid "Experience"
@@ -1329,7 +1330,7 @@ msgstr "%(playername)s: %(statValue)s"
 #: gui/session/top_panel/CounterPopulation.js:34
 #, javascript-format
 msgid "Current gatherers: %(amount)s"
-msgstr ""
+msgstr "Aktuella samlare: %(amount)s"
 
 #: gui/session/top_panel/CounterPopulation.js:63
 #, javascript-format
@@ -1353,7 +1354,7 @@ msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 #: gui/session/top_panel/CounterResource.js:32
 #, javascript-format
 msgid "Gatherers: %(amount)s"
-msgstr ""
+msgstr "Samlare: %(amount)s"
 
 #: gui/session/top_panel/FollowPlayer.xml:(caption):15
 #: gui/session/top_panel/FollowPlayer.xml:(tooltip):11
@@ -1616,8 +1617,8 @@ msgstr "Du förväntas få: %(gain)s"
 #: gui/session/unit_actions.js:1106
 msgid "This entity cannot be controlled."
 msgid_plural "These entities cannot be controlled."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Denna entitet kan inte kontrolleras."
+msgstr[1] "Dessa entiteter kan inte kontrolleras."
 
 #: gui/session/unit_actions.js:1152
 msgid "Unload All."
@@ -1692,7 +1693,7 @@ msgstr "Det är förbjudet att använda detta lager"
 
 #: gui/session/unit_actions.js:1503
 msgid "Allies are allowed to use this dropsite."
-msgstr ""
+msgstr "Allierade får använda det här lagret."
 
 #: gui/session/unit_actions.js:1504
 msgid "You are allowed to use this dropsite"

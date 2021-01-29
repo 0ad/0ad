@@ -6,7 +6,7 @@
 # Andreas I <andreasi@tutanota.com>, 2019
 # Anique van Berne <avanberne@gmail.com>, 2016
 # Bart <b.anthonisse@gmail.com>, 2020
-# Bart <b.anthonisse@gmail.com>, 2020
+# Bart <b.anthonisse@gmail.com>, 2020-2021
 # Bart Groeneveld, 2017
 # Bart R <bartvrijn@gmail.com>, 2017
 # bb <b.jansen5@students.uu.nl>, 2020
@@ -14,6 +14,7 @@
 # BoucheDag <bouche4dag@gmail.com>, 2014
 # Christof Verhoeven <christof.verhoeven@gmail.com>, 2016-2017
 # ClementL <lewis@lewisclement.nl>, 2014
+# Freagarach, 2021
 # Freagarach, 2019-2021
 # Ilya <ilya.crols@gmail.com>, 2014
 # Ismail Sahin <ismailsahin1994@hotmail.com>, 2017
@@ -40,8 +41,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-01-22 08:36+0000\n"
-"Last-Translator: Robin van der Kruit <Robin.Kruit@hotmail.com>\n"
+"PO-Revision-Date: 2021-01-26 21:51+0000\n"
+"Last-Translator: Bart <b.anthonisse@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -111,7 +112,7 @@ msgstr "Miltiades"
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].Description
 msgid "Workers +10% metal gather rate per phase advance."
-msgstr ""
+msgstr "Arbeiders verzamelen +10% sneller metaal per ontwikkelfase."
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].History
 msgid ""
@@ -257,19 +258,19 @@ msgstr "Himilco"
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].Description
 msgid "Merchant Ships +25% trade gain."
-msgstr ""
+msgstr "Handelsschepen +25% winst."
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].Name
 msgid "Commercial Acumen"
-msgstr ""
+msgstr "Commercieel inzicht"
 
 #: simulation/data/civs/cart.jsonCivBonuses[1].Description
 msgid "Docks and Markets +10% international trade bonus."
-msgstr ""
+msgstr "Dokken en markten +10% internationale handelsbonus."
 
 #: simulation/data/civs/cart.jsonCivBonuses[1].Name
 msgid "Desirable Products"
-msgstr ""
+msgstr "Begerenswaardige producten"
 
 #: simulation/data/civs/cart.jsonHistory
 msgid ""
@@ -369,7 +370,7 @@ msgstr "Tautalus"
 
 #: simulation/data/civs/iber.jsonCivBonuses[0].Description
 msgid "Iberians start with City Walls around their base on most maps."
-msgstr ""
+msgstr "Iberiërs beginnen met ommuurde stadscentra op de meeste kaarten."
 
 #: simulation/data/civs/iber.jsonCivBonuses[0].History
 msgid ""
@@ -380,17 +381,17 @@ msgstr "Met uitzondering van de slibgebieden en riviervalleien is er steen in ov
 
 #: simulation/data/civs/iber.jsonCivBonuses[0].Name
 msgid "Starting Walls"
-msgstr ""
+msgstr "Muren bij aanvang"
 
 #: simulation/data/civs/iber.jsonCivBonuses[1].Description
 msgid ""
 "Stone Towers −50% wood cost, +150% stone cost, +33% build time, +60% health,"
 " +3 garrison capacity, and +1 default arrow count."
-msgstr ""
+msgstr "Stenen torens kosten −50% hout en +150% steen, hebben +33% bouwtijd, +60 sterkte, +3 bemanning en +1 standaard hoeveelheid pijlen."
 
 #: simulation/data/civs/iber.jsonCivBonuses[1].Name
 msgid "Massive Towers"
-msgstr ""
+msgstr "Enorme torens"
 
 #: simulation/data/civs/iber.jsonHistory
 msgid ""
@@ -465,12 +466,12 @@ msgstr "Nasalsa"
 #: simulation/data/civs/kush.jsonCivBonuses[0].Description
 #: simulation/data/civs/pers.jsonCivBonuses[1].Description
 msgid "Battering Rams +20% attack damage and +2 garrison capacity."
-msgstr ""
+msgstr "Stormrammen +20% aanvalsschade en +2 bemanning."
 
 #: simulation/data/civs/kush.jsonCivBonuses[0].Name
 #: simulation/data/civs/pers.jsonCivBonuses[1].Name
 msgid "Large Rams"
-msgstr ""
+msgstr "Grote rammen"
 
 #: simulation/data/civs/kush.jsonHistory
 msgid ""
@@ -662,11 +663,11 @@ msgstr "Artaxshacha III"
 
 #: simulation/data/civs/pers.jsonCivBonuses[0].Description
 msgid "Land Traders +25% trade gain."
-msgstr ""
+msgstr "Handelaren te land +25% winst."
 
 #: simulation/data/civs/pers.jsonCivBonuses[0].Name
 msgid "Darics"
-msgstr ""
+msgstr "Darieken"
 
 #: simulation/data/civs/pers.jsonHistory
 msgid ""
@@ -761,7 +762,7 @@ msgstr "Ptolemeus Neos Dionysos"
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].Description
 msgid "Bolt Shooters −33% attack damage and −33% attack time."
-msgstr ""
+msgstr "Pijlschieters −33% schade en −33% aanvalstijd."
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].Name
 msgid "Polybolos"
@@ -852,11 +853,11 @@ msgstr "Testudo formatie"
 
 #: simulation/data/civs/rome.jsonCivBonuses[1].Description
 msgid "Battering Rams +20% attack damage. Stone Throwers +10% attack damage."
-msgstr ""
+msgstr "Stormrammen +20% aanvalsschade. Steenwerpers +10% aanvalsschade."
 
 #: simulation/data/civs/rome.jsonCivBonuses[1].Name
 msgid "Legionary Engineers"
-msgstr ""
+msgstr "Legionair ingenieurs"
 
 #: simulation/data/civs/rome.jsonHistory
 msgid ""
@@ -1045,11 +1046,11 @@ msgstr "Eurycrates"
 
 #: simulation/data/civs/spart.jsonCivBonuses[0].Description
 msgid "Female Citizens +40% health and +50% melee attack hack damage."
-msgstr ""
+msgstr "Vrouwelijke burgers +40% gezondheid en +50% mêlee aanval slagschade."
 
 #: simulation/data/civs/spart.jsonCivBonuses[0].Name
 msgid "Spartan Women"
-msgstr ""
+msgstr "Spartaanse vrouwen"
 
 #: simulation/data/civs/spart.jsonHistory
 msgid ""

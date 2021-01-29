@@ -6,6 +6,7 @@
 # Cheng-Chia Tseng <pswo10680@gmail.com>, 2014
 # chianyu chen <cagd.lulofun@gmail.com>, 2019
 # Cirro Yuan, 2013
+# helen, 2021
 # Hiunn-hué <hiunnhue108@ymail.com>, 2018
 # HybridGlucose <a07051226@gmail.com>, 2018
 # 黃柏諺 <s8321414@gmail.com>, 2013-2017
@@ -24,8 +25,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-01-22 09:25+0000\n"
-"Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
+"PO-Revision-Date: 2021-01-28 03:14+0000\n"
+"Last-Translator: helen\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -168,12 +169,12 @@ msgstr "隊伍"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:26
 msgid "Browse Maps"
-msgstr ""
+msgstr "瀏覽地圖"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:29
 #, javascript-format
 msgid "Press %(hotkey)s to view the list of available maps."
-msgstr ""
+msgstr "按%(hotkey)s 以查看可用的地圖列表。"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:40
 msgid "Cheats"
@@ -589,11 +590,11 @@ msgstr "立即勝利。"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:73
 msgid "Sea Level Rise Time"
-msgstr ""
+msgstr "海平面上升時間"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:76
 msgid "Set the time when the water will start to rise."
-msgstr ""
+msgstr "設置水面開始上升的時間。"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:79
 #, javascript-format
@@ -627,7 +628,7 @@ msgstr "返回主選單。"
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr ""
+msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s ：檢視文明總覽 / 科技樹\n點擊將開啟上次開啟的地方"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/LobbyButton.js:19
 msgid "Show the multiplayer lobby in a dialog window."
@@ -772,16 +773,16 @@ msgstr "點擊來切換%(name)s設定標籤。"
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:80
 #, javascript-format
 msgid "Press %(hotkey)s to move to the next settings tab."
-msgstr ""
+msgstr "按%(hotkey)s以移到下一個設置選項分頁。"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:83
 #, javascript-format
 msgid "Press %(hotkey)s to move to the previous settings tab."
-msgstr ""
+msgstr "按%(hotkey)s以移到上一個設置選項分頁。"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/MapPreview.js:47
 msgid "Click to view the list of available maps."
-msgstr ""
+msgstr "點擊單擊以查看可用地圖的列表。"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/TipsPanel.xml:(caption):9
 msgid "Show this message in the future."
@@ -819,16 +820,16 @@ msgstr "正在連線到伺服器..."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:166
 msgid "Server is not running."
-msgstr ""
+msgstr "服務器未運行。"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:167
 msgid "Password is invalid."
-msgstr ""
+msgstr "密碼無效。"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:170
 #, javascript-format
 msgid "\\[Invalid value %(reason)s]"
-msgstr ""
+msgstr "\\[無效的值 %(reason)s]"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:178
 msgid "Failed to connect to the server."
@@ -836,7 +837,7 @@ msgstr "連線至伺服器失敗。"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:180
 msgid "Connection failed"
-msgstr ""
+msgstr "連接失敗"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:192
 #, javascript-format
@@ -907,7 +908,7 @@ msgstr "伺服器名稱："
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):112
 msgid "Server Password:"
-msgstr ""
+msgstr "伺服器密碼:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):128
 msgid "Use STUN to work around firewalls"
@@ -927,7 +928,7 @@ msgstr "密碼："
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):162
 msgid "Confirm"
-msgstr ""
+msgstr "確認"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):52
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):99
@@ -967,7 +968,7 @@ msgid ""
 "“Zeus \\[…] established his law: wisdom comes through suffering. \\[…] So "
 "men against their will learn to practice moderation. \\[…] Such grace is "
 "harsh and violent.” \\n— Aeschylus (“Agamemnon”, 176–183)"
-msgstr ""
+msgstr "「宙斯 \\[…] 確立了他的律法: 智慧來自痛苦。 \\[…] 所以控制自己意志的人學會中庸。 \\[…] 這種恩典是嚴格又狂暴的。」 \\n— 埃斯庫羅斯 (《阿伽門農》， 176–183)"
 
 #: gui/text/quotes.txt:2
 msgid ""
@@ -1046,11 +1047,11 @@ msgstr ""
 msgid ""
 "“Enemies' promises were made to be broken.” \\n— Aesop (“The Nurse and the "
 "Wolf”)"
-msgstr ""
+msgstr "「敵人的話言而無信。」\\n— 伊索寓言(《褓姆和狼》)"
 
 #: gui/text/quotes.txt:16
 msgid "“Any excuse will serve a tyrant.” \\n— Aesop (“The Wolf and the Lamb”)"
-msgstr ""
+msgstr "「對於暴君來說，欲加之罪，何患無辭？」\\n— 伊索寓言(《狼和羔羊》)"
 
 #: gui/text/quotes.txt:17
 msgid ""
@@ -1186,13 +1187,13 @@ msgstr ""
 msgid ""
 "“Man is by nature a political animal.” \\n— Aristotle (“Politics”, I. "
 "1253a.2)"
-msgstr ""
+msgstr "「人天生就是政治動物。」 \\n— 亞里斯多德(《政治學》，I. 1253a.2)"
 
 #: gui/text/quotes.txt:37
 msgid ""
 "“Both oligarch and tyrant mistrust the people, and therefore deprive them of"
 " their arms.” \\n— Aristotle (“Politics, V. 1311a.11)"
-msgstr ""
+msgstr "「因為政治寡頭與獨裁者都不信任人民，他們就剝奪了人民的武器。」 \\n— 亞里斯多德(《政治學》， V. 1311a.11)"
 
 #: gui/text/quotes.txt:38
 msgid ""

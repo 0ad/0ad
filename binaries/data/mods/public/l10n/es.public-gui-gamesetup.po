@@ -33,7 +33,8 @@
 # Ignacio Casal <nacho_casal_i@outlook.com>, 2019
 # itmeansnothing <x30caos@gmail.com>, 2014
 # Javier Rojas <hekeine@gmail.com>, 2017
-# Jesus A <jasenjot@gmail.com>, 2017
+# Jesús Asenjo <jasenjot@gmail.com>, 2017
+# Jesús Asenjo <jasenjot@gmail.com>, 2021
 # Jesus Covo <jurdikd@gmail.com>, 2019
 # Jesús Martínez <pakitochus@gmail.com>, 2014
 # Jhon Valencia <jhonvalencia314@gmail.com>, 2017
@@ -70,8 +71,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-01-22 09:25+0000\n"
-"Last-Translator: Swyter <Swyterzone@gmail.com>\n"
+"PO-Revision-Date: 2021-01-25 20:52+0000\n"
+"Last-Translator: Jesús Asenjo <jasenjot@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -869,16 +870,16 @@ msgstr "Conectando al servidor..."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:166
 msgid "Server is not running."
-msgstr ""
+msgstr "El servidor no funciona."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:167
 msgid "Password is invalid."
-msgstr ""
+msgstr "Contraseña incorrecta."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:170
 #, javascript-format
 msgid "\\[Invalid value %(reason)s]"
-msgstr ""
+msgstr "\\[Valor inválido %(reason)s]"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:178
 msgid "Failed to connect to the server."
@@ -886,7 +887,7 @@ msgstr "No ha sido posible conectarse al servidor."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:180
 msgid "Connection failed"
-msgstr ""
+msgstr "Conexión fallida"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:192
 #, javascript-format
@@ -957,7 +958,7 @@ msgstr "Nombre del Servidor:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):112
 msgid "Server Password:"
-msgstr ""
+msgstr "Contraseña del servidor:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):128
 msgid "Use STUN to work around firewalls"
@@ -977,7 +978,7 @@ msgstr "Contraseña:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):162
 msgid "Confirm"
-msgstr ""
+msgstr "Confirmar"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):52
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):99
@@ -986,7 +987,7 @@ msgstr "Déjalo en blanco para utilizar el puerto estándar."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):113
 msgid "Leave blank to not require it."
-msgstr ""
+msgstr "Dejar en blanco para no requerirlo."
 
 #: gui/loading/ProgressBar.js:48
 #, javascript-format
@@ -1993,7 +1994,7 @@ msgstr "“No guest is so welcome in a friend's house that he will not become a 
 msgid ""
 "“You cannot eat your cake and have it too, unless you think your money is "
 "immortal.”\\n— Plautus (“Trinummus”, Act II, scene 4, 13–14)"
-msgstr ""
+msgstr "“El dinero está comido y bebido [...] pues es que si lo gastas, es imposible que aparezca, a no ser que creas que tu dinero es inmortal”\\n— Plautus (“Trinummus”, Acto II, escena 4, 13–14)"
 
 #: gui/text/quotes.txt:144
 msgid ""
@@ -2195,7 +2196,7 @@ msgid ""
 "“He could boast that he found a city of brick and left it a city of "
 "marble.”\\n— Suetonius, commenting on the many building projects of Augustus"
 " in Rome (“Divus Augustus”, 28.3)"
-msgstr ""
+msgstr "“Podía jactarse de que encontró una ciudad de ladrillo y la dejó como una ciudad de mármol.” \\n— Suetonio, comentando sobre los muchos proyectos de construcción de Augusto en Roma (“Divus Augustus”, 28.3)"
 
 #: gui/text/quotes.txt:169
 msgid "“Moderation in all things.” \\n— Terence (“The Girl from Andros”, 61)"
@@ -2294,7 +2295,7 @@ msgid ""
 "Tiberius Gracchus, advocating for land reform to the benefit of homeless and"
 " unemployed veterans whose lands had often been bought up while they were on"
 " campaign. (Plutarch, “Parallel Lives”, “Tiberius Gracchus”, 9.4–5)"
-msgstr ""
+msgstr "“Las bestias salvajes de Italia podrán descansar en sus cuevas, pero a los valientes veteranos que derramaron su sangre por su causa no les queda nada más que aire y luz. Vagan sin hogar con sus esposas e hijos.”\\n— Tiberio Graco, abogando por la reforma agraria en beneficio de los veteranos sin hogar y desempleados cuyas tierras a menudo se habían comprado porque estaban en campaña (Plutarco, “Vidas Paralelas”, “Tiberio Graco”, 9.4–5)"
 
 #: gui/text/quotes.txt:182
 msgid ""
@@ -2304,7 +2305,7 @@ msgid ""
 "benefit of homeless and unemployed veterans whose lands had often been "
 "bought up while they were on campaign. (Plutarch, “Parallel Lives”, "
 "“Tiberius Gracchus”, 9.5)"
-msgstr ""
+msgstr "“Los soldados luchan y mueren para mantener a los demás en la riqueza y el lujo, y se les llama dueños del mundo sin tener una sola tierra de cultivo propia.”\\n— Tiberio Graco, abogando por la reforma agraria en beneficio de los veteranos sin hogar y desempleados cuyas tierras a menudo se habían comprado porque estaban en campaña (Plutarco, “Vidas Paralelas”, “Tiberio Graco”, sec. 9.5)"
 
 #: gui/text/quotes.txt:183
 msgid ""

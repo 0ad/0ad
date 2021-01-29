@@ -8,13 +8,13 @@
 # Joe Hansen <joedalton2@yahoo.dk>, 2019
 # Mads Dyrmann <madsdyrmannlarsen@gmail.com>, 2015
 # Nicolai Nystrup-Eriksen <nicolain-e@hotmail.dk>, 2014-2015
-# Thomas Thomsen <tcthomsen@gmail.com>, 2015,2017
+# Thomas Thomsen <tcthomsen@gmail.com>, 2015,2017,2021
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-18 08:15+0000\n"
-"PO-Revision-Date: 2021-01-18 10:36+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-01-25 16:25+0000\n"
+"Last-Translator: Thomas Thomsen <tcthomsen@gmail.com>\n"
 "Language-Team: Danish (http://www.transifex.com/wildfire-games/0ad/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -62,7 +62,7 @@ msgstr "Alpedal"
 msgid ""
 "High bluffs overlook the terrain below. Bountiful resources await on the "
 "cliffs, but beware of enemies planning an ambush."
-msgstr ""
+msgstr "Høje skrænter tårner sig op over det nedenliggende landskab. Klipperne venter med rigelige materialer, men tag dig i agt for bagholdsangreb fra dine modstandere."
 
 #: maps/random/ambush.jsonsettings.Name
 msgid "Ambush"
@@ -94,7 +94,7 @@ msgid ""
 "animals, profiting from its milder climate. Wolves, ever present, have shed "
 "their winter clothes; deer, hares and muskox populate the plains. The last "
 "traces of winter are rapidly disappearing, only to reappear very soon."
-msgstr ""
+msgstr "Sommeren er kommet til de kolde områder i nord fulgt af et rigt dyreliv, der har glæde af det mildere vejr. De allestedsnærværende ulve har smidt deres vinterpels, mens rådyr, harer og muskusokser befolker sletterne. Vinteren slipper hurtigt sit tag, selvom den snart vil være tilbage igen. "
 
 #: maps/random/arctic_summer.jsonsettings.Name
 msgid "Arctic Summer"
@@ -238,7 +238,7 @@ msgstr ""
 
 #: maps/random/danubius.jsonsettings.Daytime[0].Name
 msgid "Day"
-msgstr ""
+msgstr "Dag"
 
 #: maps/random/danubius.jsonsettings.Daytime[1].Description
 msgid "Attackers are covered by the darkness of the night."
@@ -246,7 +246,7 @@ msgstr ""
 
 #: maps/random/danubius.jsonsettings.Daytime[1].Name
 msgid "Night"
-msgstr ""
+msgstr "Nat"
 
 #: maps/random/danubius.jsonsettings.Description
 msgid ""
@@ -577,7 +577,7 @@ msgstr ""
 
 #: maps/random/lower_nubia.jsonsettings.Name
 msgid "Lower Nubia"
-msgstr ""
+msgstr "Nedre Nubien"
 
 #: maps/random/mainland.jsonsettings.Description
 #: maps/random/unknown.jsonsettings.Landscapes.land[8].Description
@@ -603,7 +603,7 @@ msgstr ""
 
 #: maps/random/marmara.jsonsettings.Name
 msgid "Marmara"
-msgstr ""
+msgstr "Marmara"
 
 #: maps/random/mediterranean.jsonsettings.Description
 msgid ""
@@ -712,7 +712,7 @@ msgstr ""
 
 #: maps/random/polar_sea.jsonsettings.Daytime[0].Name
 msgid "Dawn"
-msgstr ""
+msgstr "Morgengry"
 
 #: maps/random/polar_sea.jsonsettings.Daytime[1].Description
 msgid "The scenery is illuminated by direct or indirect sunlight."
@@ -720,7 +720,7 @@ msgstr ""
 
 #: maps/random/polar_sea.jsonsettings.Daytime[1].Name
 msgid "Daylight"
-msgstr ""
+msgstr "Dagslys"
 
 #: maps/random/polar_sea.jsonsettings.Description
 msgid ""
@@ -826,7 +826,7 @@ msgstr ""
 #: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Dry Season"
-msgstr ""
+msgstr "Tørkeperiode"
 
 #: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Description
 msgctxt "biome definition"
@@ -904,7 +904,7 @@ msgstr ""
 #: maps/random/rmbiome/generic/savanna.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Savanna"
-msgstr ""
+msgstr "Savanne"
 
 #: maps/random/rmbiome/generic/snowy.jsonDescription.Description
 msgctxt "biome definition"
@@ -917,7 +917,7 @@ msgstr ""
 #: maps/random/rmbiome/generic/snowy.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Snowy"
-msgstr ""
+msgstr "Snefuldt"
 
 #: maps/random/rmbiome/generic/temperate.jsonDescription.Description
 msgctxt "biome definition"
@@ -931,7 +931,7 @@ msgstr ""
 #: maps/random/rmbiome/generic/temperate.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Temperate"
-msgstr ""
+msgstr "Tempereret"
 
 #: maps/random/rmbiome/generic/tropic.jsonDescription.Description
 msgctxt "biome definition"
@@ -957,7 +957,7 @@ msgstr ""
 #: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Frozen Lake"
-msgstr ""
+msgstr "Tilfrossen sø"
 
 #: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Description
 msgctxt "biome definition"
@@ -1007,7 +1007,7 @@ msgstr ""
 #: maps/random/rmbiome/persian_highlands/summer.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Summer"
-msgstr ""
+msgstr "Sommer"
 
 #: maps/random/saharan_oases.jsonsettings.Description
 msgid "Each players starts near a lush oasis in a large, desolate desert."
@@ -1882,15 +1882,15 @@ msgstr ""
 
 #: maps/scenarios/sandbox_kushites.xml:Name:39
 msgid "Sandbox - The Kushites"
-msgstr ""
+msgstr "Sandkasse - Kushitterne"
 
 #: maps/scenarios/sandbox_kushites.xml:PlayerData[1].Name:39
 msgid "Kushites"
-msgstr ""
+msgstr "Kushitter"
 
 #: maps/scenarios/sandbox_kushites.xml:PlayerData[2].Name:39
 msgid "Egyptians"
-msgstr ""
+msgstr "Egyptere"
 
 #: maps/scenarios/sandbox_macedonians.xml:Description:38
 msgid ""
@@ -2507,7 +2507,7 @@ msgstr ""
 
 #: maps/skirmishes/egypt_3pv3p.xml:PlayerData[0].Name:39
 msgid "Alexandria"
-msgstr ""
+msgstr "Alexandria"
 
 #: maps/skirmishes/egypt_3pv3p.xml:PlayerData[2].Name:39
 msgid "Siwa"
@@ -2515,7 +2515,7 @@ msgstr ""
 
 #: maps/skirmishes/egypt_3pv3p.xml:PlayerData[3].Name:39
 msgid "Sinai"
-msgstr ""
+msgstr "Sinai"
 
 #: maps/skirmishes/egypt_3pv3p.xml:PlayerData[4].Name:39
 msgid "Memphis"

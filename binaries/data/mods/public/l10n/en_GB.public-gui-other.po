@@ -8,6 +8,7 @@
 # Laurene Albrand, 2015
 # leper <leper@wildfiregames.com>, 2014-2017
 # Martin H <pilino@posteo.de>, 2020
+# Martin H <pilino@posteo.de>, 2021
 # Martin H <pilino@posteo.de>, 2016
 # Martin H <pilino@posteo.de>, 2015-2016
 # Martin H <pilino@posteo.de>, 2016-2017
@@ -19,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-01-22 08:36+0000\n"
-"Last-Translator: leper <leper@wildfiregames.com>\n"
+"PO-Revision-Date: 2021-01-25 13:07+0000\n"
+"Last-Translator: Martin H <pilino@posteo.de>\n"
 "Language-Team: English (United Kingdom) (http://www.transifex.com/wildfire-games/0ad/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -491,15 +492,15 @@ msgstr "Error: Client simulated an unexpected game turn."
 
 #: gui/common/network.js:79
 msgid "Password is invalid."
-msgstr ""
+msgstr "Password is invalid."
 
 #: gui/common/network.js:80
 msgid "Could not find an unused port for the enet STUN client."
-msgstr ""
+msgstr "Could not find an unused port for the enet STUN client."
 
 #: gui/common/network.js:81
 msgid "Could not find the STUN endpoint."
-msgstr ""
+msgstr "Could not find the STUN endpoint."
 
 #: gui/common/network.js:84
 #, javascript-format
@@ -2412,29 +2413,29 @@ msgstr "Number of units trained per batch by default."
 
 #: gui/options/options.json[5].options[20].label
 msgid "Formation control"
-msgstr ""
+msgstr "Formation control"
 
 #: gui/options/options.json[5].options[20].list[0].label
 msgid "Walk/Patrol Only"
-msgstr ""
+msgstr "Walk/Patrol Only"
 
 #: gui/options/options.json[5].options[20].list[0].tooltip
 msgid "Other orders will disband existing formations."
-msgstr ""
+msgstr "Other orders will disband existing formations."
 
 #: gui/options/options.json[5].options[20].list[1].label
 msgid "No Override"
-msgstr ""
+msgstr "No Override"
 
 #: gui/options/options.json[5].options[20].list[1].tooltip
 msgid "Units in formations stay in formations."
-msgstr ""
+msgstr "Units in formations stay in formations."
 
 #: gui/options/options.json[5].options[20].tooltip
 msgid ""
 "Decide whether formations are enabled for all orders or only 'Walk' and "
 "'Patrol'."
-msgstr ""
+msgstr "Decide whether formations are enabled for all orders or only 'Walk' and 'Patrol'."
 
 #: gui/options/options.json[5].options[2].label
 msgid "Scroll batch increment ratio"
@@ -2607,11 +2608,11 @@ msgstr "%(hotkey)s: Learn about the civilisations featured in 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:48
 msgid "Catafalque Overview"
-msgstr ""
+msgstr "Catafalque Overview"
 
 #: gui/pregame/MainMenuItems.js:49
 msgid "Compare the bonuses of catafalques featured in 0 A.D."
-msgstr ""
+msgstr "Compare the bonuses of catafalques featured in 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:55
 msgid "Map Overview"
@@ -3537,7 +3538,7 @@ msgstr "Gathered"
 
 #: gui/summary/summary.js:44
 msgid "Count"
-msgstr ""
+msgstr "Count"
 
 #: gui/summary/summary.js:49
 msgid "Sent"

@@ -15,6 +15,7 @@
 # liothe <lucy@liothe.se>, 2013
 # magicae, 2014
 # Martin H <pilino@posteo.de>, 2020
+# Martin H <pilino@posteo.de>, 2021
 # Martin H <pilino@posteo.de>, 2016
 # Martin H <pilino@posteo.de>, 2015
 # Mattias Münster <mattiasmun@gmail.com>, 2019
@@ -29,8 +30,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-01-22 09:25+0000\n"
-"Last-Translator: efef6ec5b435a041fce803c7f8af77d2_2341d43\n"
+"PO-Revision-Date: 2021-01-25 13:39+0000\n"
+"Last-Translator: Martin H <pilino@posteo.de>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -52,11 +53,11 @@ msgstr "AI kommer att vara inaktiverad för den här spelaren."
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIBehavior.js:95
 msgid "AI Behavior"
-msgstr "AI beteende"
+msgstr "AI-beteende"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIDifficulty.js:89
 msgid "AI Difficulty"
-msgstr "AI-Svårighetsgrad"
+msgstr "AI-svårighetsgrad"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AISelection.js:86
 msgctxt "ai"
@@ -173,12 +174,12 @@ msgstr "Lag"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:26
 msgid "Browse Maps"
-msgstr ""
+msgstr "Se kartor"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:29
 #, javascript-format
 msgid "Press %(hotkey)s to view the list of available maps."
-msgstr ""
+msgstr "Tryck %(hotkey)s för att se en lista med alla tillgängliga kartor."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:40
 msgid "Cheats"
@@ -790,7 +791,7 @@ msgstr "Tryck %(hotkey)s för att gå tillbaka till förra inställningsfliken."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/MapPreview.js:47
 msgid "Click to view the list of available maps."
-msgstr ""
+msgstr "Klicka för att se listan med tillgängliga kartor."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/TipsPanel.xml:(caption):9
 msgid "Show this message in the future."
@@ -828,16 +829,16 @@ msgstr "Ansluter till server..."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:166
 msgid "Server is not running."
-msgstr ""
+msgstr "Servern är inte igång."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:167
 msgid "Password is invalid."
-msgstr ""
+msgstr "Lösenordet är ogiltigt."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:170
 #, javascript-format
 msgid "\\[Invalid value %(reason)s]"
-msgstr ""
+msgstr "\\[Ogiltigt värde %(reason)s]"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:178
 msgid "Failed to connect to the server."
@@ -845,7 +846,7 @@ msgstr "Det gick inte att ansluta till servern."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:180
 msgid "Connection failed"
-msgstr ""
+msgstr "Anslutning misslyckades"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:192
 #, javascript-format
@@ -916,7 +917,7 @@ msgstr "Servernamn:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):112
 msgid "Server Password:"
-msgstr ""
+msgstr "Serverlösenord:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):128
 msgid "Use STUN to work around firewalls"
@@ -936,7 +937,7 @@ msgstr "Lösenord:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):162
 msgid "Confirm"
-msgstr ""
+msgstr "Bekräfta"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):52
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):99
@@ -945,7 +946,7 @@ msgstr "Lämna tom för att använda standardporten."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):113
 msgid "Leave blank to not require it."
-msgstr ""
+msgstr "Lämna tomt för att inte kräva ett"
 
 #: gui/loading/ProgressBar.js:48
 #, javascript-format

@@ -10,6 +10,7 @@
 # Christof Verhoeven <christof.verhoeven@gmail.com>, 2016-2017
 # Ellen Roels, 2015
 # Floretta <florisjan.gerrits@gmail.com>, 2014
+# Freagarach, 2021
 # Freagarach, 2019-2021
 # Jan Jasper de Kroon <jajadekroon@gmail.com>, 2019
 # Marijn Billiet <marijnbilliet@gmail.com>, 2018
@@ -27,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-01-23 19:49+0000\n"
+"PO-Revision-Date: 2021-01-26 22:18+0000\n"
 "Last-Translator: Bart <b.anthonisse@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -1164,7 +1165,7 @@ msgstr "Militaire ingenieurs"
 
 #: simulation/data/technologies/siege_pack_unpack.jsontooltip
 msgid "Siege Engines –40% pack and unpack time."
-msgstr ""
+msgstr "Belegeringswerktuigen –40% in- en uitlaadtijd."
 
 #: simulation/data/technologies/silvershields.jsondescription
 msgid ""
@@ -1187,7 +1188,7 @@ msgid ""
 "Often, a soldier would carry a secondary weapon in addition to his primary "
 "weapon of choice, to be drawn when the primary weapon has failed or been "
 "broken."
-msgstr ""
+msgstr "Vaak had een soldaat een tweede wapen bij zich, naast zijn wapen van eerste keuze, zodat hij dat kon gebruiken als zijn eerste wapen faalde of kapot was."
 
 #: simulation/data/technologies/soldier_attack_melee_01.jsongenericName
 msgid "Side Arms"
@@ -1208,7 +1209,7 @@ msgstr "Pugio"
 #: simulation/data/technologies/soldier_attack_melee_01.jsontooltip
 #: simulation/data/technologies/soldier_attack_melee_02.jsontooltip
 msgid "Soldiers +15% melee attack damage."
-msgstr ""
+msgstr "Soldaten +15% schade bij mêlee aanval."
 
 #: simulation/data/technologies/soldier_attack_melee_02.jsondescription
 msgid "Using iron instead of bronze gave weapons additional power."
@@ -1220,24 +1221,24 @@ msgstr "IJzeren wapens"
 
 #: simulation/data/technologies/soldier_attack_ranged_01.jsondescription
 msgid "Projectile points made of iron enable missiles to penetrate deeper."
-msgstr ""
+msgstr "Met ijzeren punten aan projectielen drongen deze dieper door."
 
 #: simulation/data/technologies/soldier_attack_ranged_01.jsongenericName
 msgid "Iron Arrowheads"
-msgstr ""
+msgstr "IJzeren pijlpunten"
 
 #: simulation/data/technologies/soldier_attack_ranged_01.jsontooltip
 #: simulation/data/technologies/soldier_attack_ranged_02.jsontooltip
 msgid "Soldiers +15% ranged attack damage."
-msgstr ""
+msgstr "Soldaten +15% schade bij afstandsaanval."
 
 #: simulation/data/technologies/soldier_attack_ranged_02.jsondescription
 msgid "Arrowheads with three lobes instead of two inflict larger wounds."
-msgstr ""
+msgstr "Pijlpunten met drie snijkanten in plaats van twee brengen grotere wonden toe."
 
 #: simulation/data/technologies/soldier_attack_ranged_02.jsongenericName
 msgid "Trilobate Arrowheads"
-msgstr ""
+msgstr "Drievoudige pijlpunten"
 
 #: simulation/data/technologies/soldier_ranged_experience.jsontooltip
 msgid "Ranged Soldiers +25% promotion experience."
@@ -1245,11 +1246,11 @@ msgstr "Afstandssoldaten promoveren met +25% ervaring."
 
 #: simulation/data/technologies/soldier_resistance_hack_01.jsondescription
 msgid "Body armor made from quilted wool, linen, cotton, or leather."
-msgstr ""
+msgstr "Harnas gemaakt van gewatteerde wol, linnen, katoen of leer."
 
 #: simulation/data/technologies/soldier_resistance_hack_01.jsongenericName
 msgid "Quilted Body Armor"
-msgstr "Gewatteerd pantser"
+msgstr "Gewatteerd harnas"
 
 #: simulation/data/technologies/soldier_resistance_hack_01.jsonspecificName.athen
 #: simulation/data/technologies/soldier_resistance_hack_01.jsonspecificName.mace
@@ -1262,11 +1263,11 @@ msgstr "Spolas"
 #: simulation/data/technologies/soldier_resistance_hack_01.jsontooltip
 #: simulation/data/technologies/soldier_resistance_hack_02.jsontooltip
 msgid "Soldiers +1 hack resistance."
-msgstr ""
+msgstr "Soldaten +1 slagweerstand."
 
 #: simulation/data/technologies/soldier_resistance_hack_02.jsondescription
 msgid "Body armor made from laminated linen."
-msgstr ""
+msgstr "Harnas gemaakt van gelaagd linnen."
 
 #: simulation/data/technologies/soldier_resistance_hack_02.jsongenericName
 msgid "Laminated Linen Body Armor"
@@ -1284,24 +1285,24 @@ msgstr "Linothōrax"
 msgid ""
 "Wooden shields are heavier but much better able to resist projectiles and "
 "blows than wicker-frame shields."
-msgstr ""
+msgstr "Houten schilden zijn zwaarder maar veel beter bestand tegen projectielen en klappen dan schilden van gevlochten riet."
 
 #: simulation/data/technologies/soldier_resistance_pierce_01.jsongenericName
 msgid "Wooden Shield"
-msgstr ""
+msgstr "Houten schild"
 
 #: simulation/data/technologies/soldier_resistance_pierce_01.jsontooltip
 #: simulation/data/technologies/soldier_resistance_pierce_02.jsontooltip
 msgid "Soldiers +1 pierce resistance."
-msgstr ""
+msgstr "Soldaten +1 steekweerstand."
 
 #: simulation/data/technologies/soldier_resistance_pierce_02.jsondescription
 msgid "Strengthen shields with a metal rim or spine."
-msgstr ""
+msgstr "Versterk schilden met een metalen rand of rug."
 
 #: simulation/data/technologies/soldier_resistance_pierce_02.jsongenericName
 msgid "Metal Rim"
-msgstr ""
+msgstr "Metalen rand"
 
 #: simulation/data/technologies/spy_counter.jsondescription
 msgid "Recruit a network of informants to watch over your people."
@@ -1319,11 +1320,11 @@ msgstr "Maak uw eenheden 50% duurder voor omkoperij."
 msgid ""
 "Significantly increase training speed of cavalry by training them in large "
 "batches or squadrons."
-msgstr ""
+msgstr "Verbeter de rekruteersnelheid van cavalerie fors door hen in grote groepen of eskaders tegelijk te rekruteren."
 
 #: simulation/data/technologies/stable_batch_training.jsontooltip
 msgid "Stables −10% batch training time."
-msgstr ""
+msgstr "Stallen −10% rekruteringstijd voor groepen."
 
 #: simulation/data/technologies/tower_crenellations.jsondescription
 msgid ""
@@ -1423,7 +1424,7 @@ msgstr "Handvaardigheid"
 #: simulation/data/technologies/trade_gain_01.jsontooltip
 #: simulation/data/technologies/trade_gain_02.jsontooltip
 msgid "Traders +15% trade gain."
-msgstr ""
+msgstr "Handelaren +15% winst."
 
 #: simulation/data/technologies/trade_gain_02.jsongenericName
 msgid "Advanced Handicraft"
@@ -1431,15 +1432,15 @@ msgstr "Geavanceerde Handvaardigheid"
 
 #: simulation/data/technologies/trader_health.jsondescription
 msgid "Traders traveling together in caravans are less vulnerable."
-msgstr ""
+msgstr "Handelaren die gezamenlijk in karavanen reizen zijn minder kwetsbaar."
 
 #: simulation/data/technologies/trader_health.jsongenericName
 msgid "Trade Caravan"
-msgstr ""
+msgstr "Handelskaravaan"
 
 #: simulation/data/technologies/trader_health.jsontooltip
 msgid "Land Traders +50% health."
-msgstr ""
+msgstr "Handelaren te land +50% gezondheid."
 
 #: simulation/data/technologies/traditional_army_sele.jsondescription
 msgid "The Macedonian-style core of the Seleucid army."
@@ -1459,7 +1460,7 @@ msgid ""
 "attack strength, +20% loot, and −30% gather speed; Healers +5 healing "
 "strength and +3 healing range; Melee units +1 resistance and +20% attack "
 "damage; Ranged units −20% spread."
-msgstr ""
+msgstr "Geavanceerde en elite eenheden +20% rekruteringstijd, +25% gezondheid, +0.7 veroveringskracht, +20% buit en −30% verzamelsnelheid; Helers +5 genezingskracht en +3 genezingsbereik; Mêlee eenheden +1 weerstand en +20% aanvalsschade; Afstandseenheden −20% spreiding."
 
 #: simulation/data/technologies/unit_elephant_african.jsontooltip
 msgid ""
@@ -1479,14 +1480,14 @@ msgid ""
 "+20% loot, and −30% gather speed; Healers +5 healing strength and +3 healing"
 " range; Melee units +1 resistance and +20% attack damage; Ranged units −20% "
 "spread."
-msgstr ""
+msgstr "Elite eenheden +20% rekruteringstijd, +25% gezondheid, +0.8 veroveringskracht, +20% buit en −30% verzamelsnelheid; Helers +5 genezingskracht en +3 genezingsbereik; Mêlee eenheden +1 weerstand en +20% aanvalsschade; Afstandseenheden −20% spreiding."
 
 #: simulation/data/technologies/unit_mercenary.jsontooltip
 msgid ""
 "Non-Champion Mercenaries −60% food cost, no wood or stone costs, −30% "
 "training time, and unable to gather resources; Infantry costs 60 metal, "
 "Cavalry 80 metal, Elephants 120 metal."
-msgstr ""
+msgstr "Niet-kampioen huurlingen kosten −60% voedsel en geen hout of steen, −30% rekruteringstijd en ze kunnen geen grondstoffen verzamelen; Infanterie kost 60 metaal, Cavalerie 80 metaal en Olifanten 120 metaal."
 
 #: simulation/data/technologies/unlock_champion_cavalry.jsondescription
 #: simulation/data/technologies/unlock_champion_chariots.jsondescription
@@ -1498,19 +1499,19 @@ msgstr "Wachters (kampioenen) zijn professionele vechters met de beste wapens en
 
 #: simulation/data/technologies/unlock_champion_cavalry.jsongenericName
 msgid "Unlock Champion Cavalry"
-msgstr ""
+msgstr "Activeer de Kampioen cavalerie"
 
 #: simulation/data/technologies/unlock_champion_cavalry.jsontooltip
 msgid "Unlock Champion Cavalry at the Stable."
-msgstr ""
+msgstr "Activeer de cavalerie kampioenen in de stallen."
 
 #: simulation/data/technologies/unlock_champion_chariots.jsongenericName
 msgid "Unlock Champion Chariots"
-msgstr ""
+msgstr "Activeer Kampioen strijdwagens"
 
 #: simulation/data/technologies/unlock_champion_chariots.jsontooltip
 msgid "Unlock Champion Chariots at the Stable."
-msgstr ""
+msgstr "Activeer de Kampioen strijdwagens in de stallen."
 
 #: simulation/data/technologies/unlock_champion_infantry.jsongenericName
 msgid "Unlock Champion Infantry"
@@ -1636,4 +1637,4 @@ msgstr "Peristasis"
 msgid ""
 "Enable the “Glorious Expansion” aura: +20% maximum population limit per "
 "Wonder owned."
-msgstr ""
+msgstr "Activeer de Glorieuze Expansie: +20% maximale bevolkingslimiet per wonder."

@@ -22,9 +22,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-20 00:57+0000\n"
-"PO-Revision-Date: 2021-01-20 17:00+0000\n"
-"Last-Translator: Bart <b.anthonisse@gmail.com>\n"
+"POT-Creation-Date: 2021-01-25 08:08+0000\n"
+"PO-Revision-Date: 2021-01-28 07:41+0000\n"
+"Last-Translator: Freagarach\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -323,21 +323,21 @@ msgstr "    • Met sneltoets.session.noconfirmation – Vernietig de geselectee
 
 #: gui/manual/intro.txt:70
 msgid ""
-"  hotkey.selection.add – Modifier - add to selection (works with clicking "
+"  hotkey.selection.add – Modifier – add to selection (works with clicking "
 "and hotkeys, e.g. the idle hotkeys)"
-msgstr "  sneltoets.selection.add – Pas aan - voeg toe aan selectie (werkt met klikken en sneltoetsen, bijvoorbeeld de )"
+msgstr "  sneltoets.selection.add – Pas aan – voeg toe aan selectie (werkt met klikken en sneltoetsen, bijvoorbeeld de inactief sneltoetsen)"
 
 #: gui/manual/intro.txt:71
 msgid ""
-"  hotkey.selection.remove – Modifier - remove from selection (works with "
+"  hotkey.selection.remove – Modifier – remove from selection (works with "
 "clicking and hotkeys, e.g. the idle hotkeys)"
-msgstr "  sneltoets.selection.remove – Pas aan - verwijder uit selectie (werkt met klikken en sneltoetsen)"
+msgstr "  sneltoets.selection.remove – Pas aan – verwijder uit selectie (werkt met klikken en sneltoetsen, bijvoorbeeld de inactief sneltoetsen)"
 
 #: gui/manual/intro.txt:72
 msgid ""
-"  hotkey.selection.offscreen - Modifier - add all units, including offscreen"
+"  hotkey.selection.offscreen – Modifier – add all units, including offscreen"
 " units, to selection."
-msgstr "  sneltoets.selection.offscreen - Pas aan - voeg alle eenheden toe aan selectie, ook als ze net in beeld zijn."
+msgstr "  sneltoets.selection.offscreen - Pas aan – voeg alle eenheden toe aan selectie, ook als ze niet in beeld zijn."
 
 #: gui/manual/intro.txt:73
 msgid ""
@@ -380,9 +380,9 @@ msgstr "  sneltoets.selection.group.save.1 – Stel controlgroep 1 (t/m 0) in me
 
 #: gui/manual/intro.txt:81
 msgid ""
-"  hotkey.selection.group.select.1 - Select the unit(s)/structure(s) in "
+"  hotkey.selection.group.select.1 – Select the unit(s)/structure(s) in "
 "control group 1"
-msgstr "  sneltoets.selection.group.select.1 - Selecteer de eenheid (eenheden) / gebouw(en) in controlegroep 1 (t/m 0)"
+msgstr "  sneltoets.selection.group.select.1 – Selecteer de eenheid (eenheden) / gebouw(en) in controlegroep 1"
 
 #: gui/manual/intro.txt:82
 msgid ""
@@ -542,27 +542,27 @@ msgstr "  Rechtsklik met geselecteerde gebouw(en) – Stel een verzamelpunt in v
 
 #: gui/manual/intro.txt:112
 msgid ""
-"  hotkey.session.garrison + Right Click with unit(s) selected - Garrison (If"
+"  hotkey.session.garrison + Right Click with unit(s) selected – Garrison (If"
 " the cursor is over an own or allied structure)"
-msgstr "  sneltoets.session.garrison + rechtsklik met geselecteerde eenheid (eenheden) - Beman gebouw (als de cursor op een eigen of geallieerd gebouw staat)"
+msgstr "  sneltoets.session.garrison + rechtsklik met geselecteerde eenheid (eenheden) – Beman gebouw (als de cursor op een eigen of geallieerd gebouw staat)"
 
 #: gui/manual/intro.txt:113
 msgid ""
-"  hotkey.session.attack + Right Click with unit(s) selected - Attack "
+"  hotkey.session.attack + Right Click with unit(s) selected – Attack "
 "(instead of capture or gather)"
-msgstr "  sneltoets.session.attack + rechtsklik met geselecteerde eenheid (eenheden) - Aanvallen (in plaats van veroveren of verzamelen)"
+msgstr "  sneltoets.session.attack + rechtsklik met geselecteerde eenheid (eenheden) – Aanvallen (in plaats van veroveren of verzamelen)"
 
 #: gui/manual/intro.txt:114
 msgid ""
-"  hotkey.session.attackmove + Right Click with unit(s) selected - Attack "
+"  hotkey.session.attackmove + Right Click with unit(s) selected – Attack "
 "move (by default all enemy units and structures along the way are targeted)"
-msgstr "  sneltoets.session.attackmove + rechtsklik met geselecteerde eenheid (eenheden) - Aanvallen (standaard worden alle vijandelijke eenheden en gebouwen onderweg een doelwit)"
+msgstr "  sneltoets.session.attackmove + rechtsklik met geselecteerde eenheid (eenheden) – Aanvallen (standaard worden alle vijandelijke eenheden en gebouwen onderweg een doelwit)"
 
 #: gui/manual/intro.txt:115
 msgid ""
-"  hotkey.session.attackmoveUnit + Right Click with unit(s) selected - Attack"
+"  hotkey.session.attackmoveUnit + Right Click with unit(s) selected – Attack"
 " move, only units along the way are targeted"
-msgstr "  hotkey.session.attackmoveUnit + rechtsklik met geselecteerde eenheid (eenheden) - Aanvallen, onderweg worden alleen eenheden een doelwit"
+msgstr "  hotkey.session.attackmoveUnit + rechtsklik met geselecteerde eenheid (eenheden) – Aanvallen, onderweg worden alleen eenheden een doelwit"
 
 #: gui/manual/intro.txt:116
 msgid ""

@@ -10,7 +10,7 @@
 # Alexey Solodovnikov <sklent@outlook.com>, 2017
 # anton.tsyganenko <anton-tsyganenko@yandex.ru>, 2015
 # Artjom Onoprijev <artem.onopriev@gmail.com>, 2020
-# Boris Karalnik <eyesucker@gmail.com>, 2015,2018-2020
+# Boris Karalnik <eyesucker@gmail.com>, 2015,2018-2021
 # Check Tester <registruser@yandex.com>, 2018
 # Dmitriy Kulikov <kulikov@dima.perm.ru>, 2019
 # Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2015-2018
@@ -35,9 +35,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-20 00:57+0000\n"
-"PO-Revision-Date: 2021-01-20 03:17+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-01-25 08:08+0000\n"
+"PO-Revision-Date: 2021-01-28 14:37+0000\n"
+"Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -130,7 +130,7 @@ msgstr "• [font=\"sans-bold-14\"]Одиночная игра[font=\"sans-14\"]
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – Play against human "
 "opponents over the internet."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Сетевая игра[font=\"sans-bold-14\"] — игра с соперниками в интернете."
 
 #: gui/manual/intro.txt:23
 msgid ""
@@ -138,7 +138,7 @@ msgid ""
 " The game uses UDP port 20595, so the host must configure their "
 "NAT/firewall/etc. to allow this. Other players can then select “Join game” "
 "and enter the host's IP address."
-msgstr ""
+msgstr "Чтобы создать сетевую игру, выберите «Создать игру». Другие игроки должны выбрать «Присоединиться к игре» и ввести ваш IP-адрес. Игра использует UDP-порт 20595, поэтому убедитесь, что он доступен из сети. Возможно вам потребуется настройка NAT, сетевого экрана и т. д."
 
 #: gui/manual/intro.txt:25
 msgid "[font=\"sans-bold-16\"]Game setup[font=\"sans-14\"]"
@@ -177,7 +177,7 @@ msgid ""
 "over land and demo maps are maps used for testing purposes (generally not "
 "useful to play on). The “All Maps” filter shows all maps together in one "
 "list."
-msgstr ""
+msgstr "После этого карты могут быть отфильтрованы дальше. Обычно карты по умолчанию лучше всего подходят для игры. К морским относятся карты, на которых, по крайней мере, часть оппонентов нельзя достичь исключительно по суше; демо-карты предназначены для тестовых целей (и обычно не подходят для нормальной игры). Фильтр «Все карты» показывает все виды карт в общем списке."
 
 #: gui/manual/intro.txt:35
 msgid ""
@@ -186,7 +186,7 @@ msgid ""
 "controls which player (decides where you start on the map etc.). The options"
 " are either a human player, an AI or no player at all (the opponent will "
 "just be idle)."
-msgstr ""
+msgstr "В заключение измените настройки. При игре на случайной карте можно указать количество игроков, размер карты и т.д. Для сценариев можно только выбрать за какого игрока играть (от этого зависит позиция на карте). В качестве игрока может быть назначен человек, ИИ или вообще никто (игрок в этом случае не будет ничего делать)."
 
 #: gui/manual/intro.txt:37
 msgid "When you are ready to start, click the “Start game” button."
@@ -264,7 +264,7 @@ msgstr "[font=\"sans-bold-14\"]В Игре[font=\"sans-14\"]"
 msgid ""
 "  Double Left Click \\[on unit] – Select all of your units of the same kind "
 "on the screen (even if they're different ranks)"
-msgstr "Двойной клик ЛКМ \\[по юниту]: Выбрать всех юнитов того же типа на экране (даже если они разного ранга)"
+msgstr "Двойной левый щелчок по юниту выбирает всех юнитов того же типа на экране (даже если они разного ранга)"
 
 #: gui/manual/intro.txt:56
 msgid ""
@@ -276,7 +276,7 @@ msgstr "Тройной клик ЛКМ \\[по юниту] – Выбрать в
 msgid ""
 "  Alt + Double Left Click \\[on unit] – Select all your units of the same "
 "kind on the entire map (even if they have different ranks)"
-msgstr "Alt + Двойной клик ЛКМ \\[по юниту]: Выбрать всех юнитов того же типа на всей карте (даже если они разного ранга)"
+msgstr "Alt + двойной левый щелчок по юниту выбирает всех юнитов того же типа на всей карте (даже если они разного ранга)"
 
 #: gui/manual/intro.txt:58
 msgid ""
@@ -336,19 +336,19 @@ msgstr ""
 
 #: gui/manual/intro.txt:70
 msgid ""
-"  hotkey.selection.add – Modifier - add to selection (works with clicking "
+"  hotkey.selection.add – Modifier – add to selection (works with clicking "
 "and hotkeys, e.g. the idle hotkeys)"
 msgstr ""
 
 #: gui/manual/intro.txt:71
 msgid ""
-"  hotkey.selection.remove – Modifier - remove from selection (works with "
+"  hotkey.selection.remove – Modifier – remove from selection (works with "
 "clicking and hotkeys, e.g. the idle hotkeys)"
 msgstr ""
 
 #: gui/manual/intro.txt:72
 msgid ""
-"  hotkey.selection.offscreen - Modifier - add all units, including offscreen"
+"  hotkey.selection.offscreen – Modifier – add all units, including offscreen"
 " units, to selection."
 msgstr ""
 
@@ -383,7 +383,7 @@ msgstr ""
 msgid ""
 "  hotkey.session.unload – Unload the garrisoned units of the selected "
 "structure(s)"
-msgstr ""
+msgstr "  hotkey.session.unload — высадить гарнизон из выбранных объектов"
 
 #: gui/manual/intro.txt:80
 msgid ""
@@ -393,7 +393,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:81
 msgid ""
-"  hotkey.selection.group.select.1 - Select the unit(s)/structure(s) in "
+"  hotkey.selection.group.select.1 – Select the unit(s)/structure(s) in "
 "control group 1"
 msgstr ""
 
@@ -551,29 +551,29 @@ msgstr ""
 msgid ""
 "  Right Click with a structure(s) selected – Set a rally point for units "
 "created/ungarrisoned from that structure"
-msgstr ""
+msgstr "Правый щелчок при выбранном здании (зданиях) устанавливает точку сбора для юнитов, обученных или выведенных из здания. "
 
 #: gui/manual/intro.txt:112
 msgid ""
-"  hotkey.session.garrison + Right Click with unit(s) selected - Garrison (If"
+"  hotkey.session.garrison + Right Click with unit(s) selected – Garrison (If"
 " the cursor is over an own or allied structure)"
 msgstr ""
 
 #: gui/manual/intro.txt:113
 msgid ""
-"  hotkey.session.attack + Right Click with unit(s) selected - Attack "
+"  hotkey.session.attack + Right Click with unit(s) selected – Attack "
 "(instead of capture or gather)"
 msgstr ""
 
 #: gui/manual/intro.txt:114
 msgid ""
-"  hotkey.session.attackmove + Right Click with unit(s) selected - Attack "
+"  hotkey.session.attackmove + Right Click with unit(s) selected – Attack "
 "move (by default all enemy units and structures along the way are targeted)"
 msgstr ""
 
 #: gui/manual/intro.txt:115
 msgid ""
-"  hotkey.session.attackmoveUnit + Right Click with unit(s) selected - Attack"
+"  hotkey.session.attackmoveUnit + Right Click with unit(s) selected – Attack"
 " move, only units along the way are targeted"
 msgstr ""
 
@@ -708,7 +708,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:145
 msgid "[font=\"sans-bold-14\"]During Structure Placement[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]При размещении здания[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:146
 msgid ""
@@ -723,7 +723,7 @@ msgstr ""
 msgid ""
 "  Left Drag – Rotate structure using mouse (foundation will be placed on "
 "mouse release)"
-msgstr ""
+msgstr "Перемещение мыши при зажатой левой кнопке — вращение здания (фундамент будет заложен в момент отпускания кнопки)"
 
 #: gui/manual/intro.txt:150
 msgid "[font=\"sans-bold-14\"]When loading a saved game[font=\"sans-14\"]"

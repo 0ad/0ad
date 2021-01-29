@@ -19,6 +19,7 @@
 # Luis W. <windgans@protonmail.com>, 2019
 # nautilusx, 2016
 # Martin H <pilino@posteo.de>, 2020
+# Martin H <pilino@posteo.de>, 2021
 # MartinusMagnus <martinkleemann@web.de>, 2014
 # Matthias Kerk <matthias@tuxlife.de>, 2016
 # Maximilian von Lindern <hobbituhukai@live.de>, 2017
@@ -47,9 +48,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-01-23 20:24+0000\n"
-"Last-Translator: xtother90\n"
+"POT-Creation-Date: 2021-01-25 08:08+0000\n"
+"PO-Revision-Date: 2021-01-25 13:14+0000\n"
+"Last-Translator: Martin H <pilino@posteo.de>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1720,9 +1721,9 @@ msgstr "Außenposten"
 
 #: simulation/templates/template_structure_defensive_outpost.xml:38
 msgid ""
-"Build in own or neutral territory. Slowly converts to Gaia while in neutral "
-"territory."
-msgstr "In neutralem oder eigenem Territorium bauen. Wird langsam wieder zu Gaia, wenn es im neutralen Territoritum liegt."
+"Build in own or neutral territory. No vision range unless garrisoned. Slowly"
+" converts to Gaia while in neutral territory."
+msgstr "In neutralem oder eigenem Territorium bauen. Keinerlei Sichtweite, es sei denn Einheiten sind einquartiert. Wird langsam wieder zu Gaia, wenn es im neutralen Territorium liegt."
 
 #: simulation/templates/structures/wallset_palisade.xml:4
 #: simulation/templates/structures/wallset_palisade.xml:6
