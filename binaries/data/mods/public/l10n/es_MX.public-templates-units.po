@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-20 00:57+0000\n"
-"PO-Revision-Date: 2021-01-20 03:35+0000\n"
+"POT-Creation-Date: 2021-01-25 08:08+0000\n"
+"PO-Revision-Date: 2021-01-25 09:36+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Spanish (Mexico) (http://www.transifex.com/wildfire-games/0ad/language/es_MX/)\n"
 "MIME-Version: 1.0\n"
@@ -83,24 +83,24 @@ msgstr "Caballeria Cuerpo a cuerpo"
 
 #: simulation/templates/template_unit_cavalry_melee.xml:8
 #: simulation/templates/template_unit_champion_cavalry_axeman.xml:21
-#: simulation/templates/template_unit_champion_cavalry_maceman.xml:21
+#: simulation/templates/template_unit_champion_cavalry_maceman.xml:22
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:29
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:21
-#: simulation/templates/template_unit_champion_elephant_melee.xml:18
+#: simulation/templates/template_unit_champion_elephant_melee.xml:19
 #: simulation/templates/template_unit_champion_infantry_axeman.xml:21
-#: simulation/templates/template_unit_champion_infantry_maceman.xml:21
+#: simulation/templates/template_unit_champion_infantry_maceman.xml:22
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:29
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:29
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:21
 #: simulation/templates/template_unit_champion_infantry_trumpeter.xml:27
 #: simulation/templates/template_unit_dog.xml:35
 #: simulation/templates/template_unit_hero_cavalry_axeman.xml:18
-#: simulation/templates/template_unit_hero_cavalry_maceman.xml:18
+#: simulation/templates/template_unit_hero_cavalry_maceman.xml:19
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:26
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:24
-#: simulation/templates/template_unit_hero_elephant_melee.xml:32
+#: simulation/templates/template_unit_hero_elephant_melee.xml:33
 #: simulation/templates/template_unit_hero_infantry_axeman.xml:18
-#: simulation/templates/template_unit_hero_infantry_maceman.xml:18
+#: simulation/templates/template_unit_hero_infantry_maceman.xml:19
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:26
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:26
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:24
@@ -144,16 +144,16 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Mace"
 msgstr ""
 
-#: simulation/templates/template_unit_cavalry_melee_maceman.xml:22
+#: simulation/templates/template_unit_cavalry_melee_maceman.xml:23
 msgid "Cavalry Maceman"
 msgstr ""
 
-#: simulation/templates/template_unit_cavalry_melee_maceman.xml:23
-#: simulation/templates/template_unit_champion_cavalry_maceman.xml:21
-#: simulation/templates/template_unit_champion_infantry_maceman.xml:21
-#: simulation/templates/template_unit_hero_cavalry_maceman.xml:18
-#: simulation/templates/template_unit_hero_infantry_maceman.xml:18
-#: simulation/templates/template_unit_infantry_melee_maceman.xml:23
+#: simulation/templates/template_unit_cavalry_melee_maceman.xml:24
+#: simulation/templates/template_unit_champion_cavalry_maceman.xml:22
+#: simulation/templates/template_unit_champion_infantry_maceman.xml:22
+#: simulation/templates/template_unit_hero_cavalry_maceman.xml:19
+#: simulation/templates/template_unit_hero_infantry_maceman.xml:19
+#: simulation/templates/template_unit_infantry_melee_maceman.xml:24
 msgid "Maceman"
 msgstr "Macero"
 
@@ -173,6 +173,7 @@ msgstr "Lancero a caballo"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:30
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:28
+#: simulation/templates/template_unit_hero_cavalry_spearman.xml:25
 msgid "Counters: 1.75× vs Cavalry."
 msgstr ""
 
@@ -312,7 +313,7 @@ msgstr ""
 msgid "Champion Cavalry Javelineer"
 msgstr ""
 
-#: simulation/templates/template_unit_champion_cavalry_maceman.xml:20
+#: simulation/templates/template_unit_champion_cavalry_maceman.xml:21
 msgid "Champion Cavalry Maceman"
 msgstr ""
 
@@ -333,7 +334,7 @@ msgstr "Elefante de guerra"
 #: simulation/templates/template_unit_elephant.xml:11
 #: simulation/templates/template_unit_fauna_hunt_defensive_elephant.xml:18
 #: simulation/templates/template_unit_fauna_hunt_skittish_elephant_infant.xml:4
-#: simulation/templates/template_unit_hero_elephant_melee.xml:32
+#: simulation/templates/template_unit_hero_elephant_melee.xml:33
 #: simulation/templates/units/maur/support_elephant.xml:23
 msgid "Elephant"
 msgstr "Elefante"
@@ -368,7 +369,7 @@ msgstr ""
 msgid "Champion Infantry Javelineer"
 msgstr ""
 
-#: simulation/templates/template_unit_champion_infantry_maceman.xml:20
+#: simulation/templates/template_unit_champion_infantry_maceman.xml:21
 msgid "Champion Infantry Maceman"
 msgstr ""
 
@@ -480,7 +481,7 @@ msgstr ""
 msgid "Hero Cavalry Javelineer"
 msgstr ""
 
-#: simulation/templates/template_unit_hero_cavalry_maceman.xml:17
+#: simulation/templates/template_unit_hero_cavalry_maceman.xml:18
 msgid "Hero Cavalry Maceman"
 msgstr ""
 
@@ -488,15 +489,11 @@ msgstr ""
 msgid "Hero Cavalry Spearman"
 msgstr "Lancero Heroico a Caballo"
 
-#: simulation/templates/template_unit_hero_cavalry_spearman.xml:25
-msgid "Counters: 1.5× vs Cavalry."
-msgstr ""
-
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:25
 msgid "Hero Cavalry Swordsman"
 msgstr "Espadachín Heroico a Caballo"
 
-#: simulation/templates/template_unit_hero_elephant_melee.xml:31
+#: simulation/templates/template_unit_hero_elephant_melee.xml:32
 msgid "Hero Elephant"
 msgstr ""
 
@@ -524,7 +521,7 @@ msgstr ""
 msgid "Hero Infantry Javelineer"
 msgstr ""
 
-#: simulation/templates/template_unit_hero_infantry_maceman.xml:17
+#: simulation/templates/template_unit_hero_infantry_maceman.xml:18
 msgid "Hero Infantry Maceman"
 msgstr ""
 
@@ -550,7 +547,7 @@ msgstr "Obrero"
 msgid "Melee Infantry"
 msgstr "Infanteria Cuerpo a Cuerpo"
 
-#: simulation/templates/template_unit_infantry_melee_maceman.xml:22
+#: simulation/templates/template_unit_infantry_melee_maceman.xml:23
 msgid "Infantry Maceman"
 msgstr ""
 

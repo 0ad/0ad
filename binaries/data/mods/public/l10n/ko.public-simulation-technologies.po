@@ -25,8 +25,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-01-22 11:22+0000\n"
-"Last-Translator: ks k\n"
+"PO-Revision-Date: 2021-01-26 18:09+0000\n"
+"Last-Translator: Bruce Lee <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -240,11 +240,11 @@ msgstr "전쟁시에 기병을 소집하여 왕의 군대를 보강하는데 도
 
 #: simulation/data/technologies/cavalry_cost_time.jsongenericName
 msgid "Levy Cavalry"
-msgstr "소집기병"
+msgstr "소집 기병"
 
 #: simulation/data/technologies/cavalry_cost_time.jsontooltip
 msgid "Cavalry −10% training time."
-msgstr ""
+msgstr "기병의 훈련 시간이 -10% 감소합니다."
 
 #: simulation/data/technologies/cavalry_health.jsondescription
 msgid "Selectively breed better war horses."
@@ -809,7 +809,7 @@ msgstr "시민 회관의 내구성이 +100% 증가하고 점유 점수, 기본 �
 msgid ""
 "The Achaemenids maintained a 10,000-strong elite corps, referred to as "
 "Athanatoi (“Immortals”) by Greek authors."
-msgstr "아케메네스는 그리스 작가들에 의해 아타나토이(“불사군단”)라고 불리는 10,000 명의 정예 군단을 유지했습니다."
+msgstr "아케메네스는 그리스 작가들에 의해 아타나토이(“이모탈”)라고 불리는 10,000 명의 정예 군단을 유지했습니다."
 
 #: simulation/data/technologies/immortals.jsongenericName
 msgid "Immortals"
@@ -817,7 +817,7 @@ msgstr "이모탈"
 
 #: simulation/data/technologies/immortals.jsontooltip
 msgid "Immortals −50% training time, but −10% health."
-msgstr ""
+msgstr "이모탈의 훈련시간이 -50% 감소하지만, 체력이 -10% 감소합니다."
 
 #: simulation/data/technologies/infantry_cost_time.jsondescription
 msgid ""
@@ -827,7 +827,7 @@ msgstr "전쟁시에 보병을 소집하여 왕의 군대를 보강하는 데 �
 
 #: simulation/data/technologies/infantry_cost_time.jsongenericName
 msgid "Levy Infantry"
-msgstr "소집보병"
+msgstr "소집 보병"
 
 #: simulation/data/technologies/infantry_cost_time.jsontooltip
 msgid "Infantry −10% training time."

@@ -8,6 +8,7 @@
 # Etienne Beguin <eti.beguin@gmail.com>, 2017
 # leper <leper@wildfiregames.com>, 2014-2016
 # Martin H <pilino@posteo.de>, 2020
+# Martin H <pilino@posteo.de>, 2021
 # Martin H <pilino@posteo.de>, 2016
 # Martin H <pilino@posteo.de>, 2016-2017
 # Nescio, 2020-2021
@@ -16,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-01-22 10:36+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-01-25 08:08+0000\n"
+"PO-Revision-Date: 2021-01-29 15:56+0000\n"
+"Last-Translator: Nescio\n"
 "Language-Team: English (United Kingdom) (http://www.transifex.com/wildfire-games/0ad/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1097,7 +1098,7 @@ msgstr "Stratopedeia Misthophorōn"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:31
 msgid "Capture this structure to train mercenaries from Hellenistic Egypt."
-msgstr "Capture this structure to train mercenaries from Hellenistic Egypt."
+msgstr "Capture this Structure to train Mercenaries from Hellenistic Egypt."
 
 #: simulation/templates/structures/obelisk.xml:11
 msgid "Obelisk"
@@ -1277,7 +1278,7 @@ msgstr "Pharos"
 msgid ""
 "Build upon a shoreline in own, neutral, or allied territory. Very large "
 "vision range."
-msgstr ""
+msgstr "Build upon a shoreline in own, neutral, or allied territory. Very large vision range."
 
 #: simulation/templates/structures/ptol/mercenary_camp.xml:27
 msgid "Mercenary Camp"
@@ -1689,9 +1690,9 @@ msgstr "Lookout"
 
 #: simulation/templates/template_structure_defensive_outpost.xml:38
 msgid ""
-"Build in own or neutral territory. Slowly converts to Gaia while in neutral "
-"territory."
-msgstr "Build in own or neutral territory. Slowly converts to Gaia while in neutral territory."
+"Build in own or neutral territory. No vision range unless garrisoned. Slowly"
+" converts to Gaia while in neutral territory."
+msgstr "Build in own or neutral territory. No vision range unless garrisoned. Slowly converts to Gaia while in neutral territory."
 
 #: simulation/templates/structures/wallset_palisade.xml:4
 #: simulation/templates/structures/wallset_palisade.xml:6
@@ -1925,7 +1926,7 @@ msgstr "Forge"
 
 #: simulation/templates/template_structure_military_forge.xml:24
 msgid "Research attack damage and damage resistance technologies."
-msgstr ""
+msgstr "Research attack damage and damage resistance technologies."
 
 #: simulation/templates/template_structure_military_fortress.xml:39
 #: simulation/templates/template_structure_military_fortress.xml:69

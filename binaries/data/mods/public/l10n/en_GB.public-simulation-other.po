@@ -11,14 +11,14 @@
 # Martin H <pilino@posteo.de>, 2016
 # Martin H <pilino@posteo.de>, 2016
 # Martin H <pilino@posteo.de>, 2016-2017
-# Nescio, 2020
+# Nescio, 2020-2021
 # Nescio, 2020
 # Martin H <pilino@posteo.de>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2020-11-20 09:13+0000\n"
+"PO-Revision-Date: 2021-01-29 15:52+0000\n"
 "Last-Translator: Nescio\n"
 "Language-Team: English (United Kingdom) (http://www.transifex.com/wildfire-games/0ad/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
@@ -388,7 +388,7 @@ msgstr "%(name)s cannot be built in unexplored area"
 #: simulation/components/BuildRestrictions.js:158
 #, javascript-format
 msgid "%(name)s cannot be built on another building or resource"
-msgstr "%(name)s cannot be built on another building or resource"
+msgstr "%(name)s cannot be built on another Structure or resource."
 
 #: simulation/components/BuildRestrictions.js:162
 #, javascript-format
@@ -912,4 +912,4 @@ msgstr "%(unit)s can't be controlled."
 
 #: simulation/helpers/Commands.js:1115
 msgid "The building's technology requirements are not met."
-msgstr "The building's technology requirements are not met."
+msgstr "The Structure's technology requirements are not met."

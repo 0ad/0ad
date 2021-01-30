@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-01-25 00:28+0000\n"
+"PO-Revision-Date: 2021-01-27 04:52+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -76,7 +76,7 @@ msgstr "Desblóquiase na fas de la urbe."
 
 #: simulation/data/technologies/agoge.jsontooltip
 msgid "Champion Infantry Spearmen +25% health, but +5% training time."
-msgstr "Llanceros campeones: vida +25%, tiempu de preparación +5%."
+msgstr "Llanceros campeones: vida +25% tiempu de preparación +5%."
 
 #: simulation/data/technologies/archery_tradition.jsondescription
 msgid ""
@@ -101,7 +101,7 @@ msgstr "Desblóquiase na fas del llugar."
 
 #: simulation/data/technologies/archery_tradition.jsontooltip
 msgid "Archers −10% training time and +10 attack range."
-msgstr "Arqueros: tiempu de preparación −10%, algame +10."
+msgstr "Arqueros: tiempu de preparación −10% algame +10."
 
 #: simulation/data/technologies/architecture_kush.jsongenericName
 msgid "Monumental Architecture"
@@ -139,7 +139,7 @@ msgstr "Desblóquiase na fas de la villa."
 #: simulation/data/technologies/architecture_kush.jsontooltip
 msgid ""
 "Civic Structures +20% build time, +20% health, and +20% capture points."
-msgstr "Construcciones civiles: tiempu de construcción +20%, vida +20%, llealtá +20%."
+msgstr "Construcciones civiles: tiempu de construcción +20% vida +20% puntos de resistencia +20%."
 
 #: simulation/data/technologies/architecture_pers.jsondescription
 msgid ""
@@ -155,7 +155,7 @@ msgstr "Arquiteutura"
 
 #: simulation/data/technologies/architecture_pers.jsontooltip
 msgid "Structures +25% health and capture points, but also +20% build time."
-msgstr "Construcciones: vida y llealtá +25%, tiempu de construcción +20%."
+msgstr "Construcciones: vida y puntos de resistencia +25% tiempu de construcción +20%."
 
 #: simulation/data/technologies/attack_soldiers_will.jsondescription
 msgid ""
@@ -214,7 +214,7 @@ msgstr "Serviciu militar"
 
 #: simulation/data/technologies/barracks_batch_training.jsontooltip
 msgid "Barracks −10% batch training time."
-msgstr "Barracón: duranza del entrenamientu coleutivu −10%."
+msgstr "Barracón: tiempu de preparación coleutiva −10%."
 
 #: simulation/data/technologies/cavalry_cost_time.jsondescription
 msgid ""
@@ -267,7 +267,7 @@ msgstr "Muralles triples"
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
 msgid "City Walls +100% build time, +100% stone cost, and +200% health."
-msgstr "Muralles: tiempu de construcción +100%, costu en piedra +100%, vida +200%."
+msgstr "Muralles: tiempu de construcción +100% costu en piedra +100% vida +200%."
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsondescription
 msgid "Celtic structures were mostly made of wood with rubble foundations."
@@ -279,7 +279,7 @@ msgstr "Construcción con madera"
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
 msgid "Structures −20% build time, −20% health, and −20% capture points."
-msgstr "Construcciones: tiempu de construcción −20%, vida −20%, llealtá −20%."
+msgstr "Construcciones: tiempu de construcción −20% vida −20% puntos de resistencia −20%."
 
 #: simulation/data/technologies/civbonuses/gaul_cavalry.jsondescription
 msgid ""
@@ -305,7 +305,7 @@ msgstr "Arquiteutura helénica"
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
 msgid "Structures +10% health and +10% capture points."
-msgstr "Construcciones: vida +10%, llealtá +10%."
+msgstr "Construcciones: vida +10% puntos de resistencia +10%."
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsondescription
 msgid ""
@@ -358,7 +358,7 @@ msgstr "Muralles de madera"
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsontooltip
 msgid "City Walls −20% build time and −20% health."
-msgstr "Muralles: tiempu de construcción −20%, vida −20%."
+msgstr "Muralles: tiempu de construcción −20% vida −20%."
 
 #: simulation/data/technologies/civbonuses/pers_population.jsondescription
 msgid ""
@@ -516,7 +516,7 @@ msgstr "Fertilizante"
 #: simulation/data/technologies/gather_farming_plows.jsontooltip
 #: simulation/data/technologies/gather_farming_training.jsontooltip
 msgid "Workers +15% grain gather rate."
-msgstr "Obreros: tasa de cueya de cebera +15%."
+msgstr "Obreros: tasa de coyedura +15%."
 
 #: simulation/data/technologies/gather_farming_harvester.jsondescription
 msgid ""
@@ -530,7 +530,7 @@ msgstr "Coyedora"
 
 #: simulation/data/technologies/gather_farming_harvester.jsontooltip
 msgid "Workers +10% grain gather rate."
-msgstr "Obreros: tasa de cueya de cebera +10%."
+msgstr "Obreros: tasa de coyedura +10%."
 
 #: simulation/data/technologies/gather_farming_plows.jsondescription
 msgid ""
@@ -544,7 +544,7 @@ msgstr "Aladru de fierro"
 
 #: simulation/data/technologies/gather_farming_training.jsondescription
 msgid "Training for workers to increase farm gathering speed."
-msgstr "Fai que los obreros pañen más rápido la collecha."
+msgstr "Fai que los obreros cueyan más rápido."
 
 #: simulation/data/technologies/gather_farming_training.jsongenericName
 msgid "Gather Training"
@@ -681,7 +681,7 @@ msgstr "Goxes"
 
 #: simulation/data/technologies/gather_wicker_baskets.jsontooltip
 msgid "Workers +50% fruit gather rate."
-msgstr "Obreros: tasa de cueya de fruta +50%."
+msgstr "Obreros: tasa de pañadura +50%."
 
 #: simulation/data/technologies/heal_range.jsondescription
 #: simulation/data/technologies/heal_range_2.jsondescription
@@ -787,7 +787,7 @@ msgstr "Metrópolis helenista"
 
 #: simulation/data/technologies/hellenistic_metropolis.jsontooltip
 msgid "Civic Centers +100% health and capture points, double default arrows."
-msgstr "Places: vida y llealtá +100%, fleches por defeutu ×2."
+msgstr "Places: vida y puntos de resistencia +100% fleches por defeutu ×2."
 
 #: simulation/data/technologies/immortals.jsondescription
 msgid ""
@@ -801,7 +801,7 @@ msgstr "Inmortales"
 
 #: simulation/data/technologies/immortals.jsontooltip
 msgid "Immortals −50% training time, but −10% health."
-msgstr "Inmortales: tiempu de preparación −50%, vida −10%."
+msgstr "Inmortales: tiempu de preparación −50% vida −10%."
 
 #: simulation/data/technologies/infantry_cost_time.jsondescription
 msgid ""
@@ -864,7 +864,7 @@ msgstr "Nisioi"
 
 #: simulation/data/technologies/nisean_horses.jsontooltip
 msgid "Champion Cavalry Spearmen +20% health, but +10% training time."
-msgstr "Llanceros campeones d'a caballu: vida +20%, tiempu de preparación +10%."
+msgstr "Llanceros campeones d'a caballu: vida +20% tiempu de preparación +10%."
 
 #: simulation/data/technologies/pair_unlock_champions_sele.jsongenericName
 msgid "Traditional Army vs Reform Army"
@@ -921,7 +921,7 @@ msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +50% territory influence radius. Structures +9 capture points "
 "regeneration rate per garrisoned unit. Workers +10% metal gather rate."
-msgstr "Avanza a la fas de la ciudá, que desbloquia más entidaes y teunoloxíes. Places: territoriu +50%. Construcciones: tasa de recobramientu de la llealtá por unidá guarecida +9. Obreros: tasa d'estraición de metal +10%."
+msgstr "Avanza a la fas de la ciudá, que desbloquia más unidaes y teunoloxía. Places: territoriu +50%. Construcciones: tasa de resistencia a la conquista por unidá guarecida +9. Obreros: tasa d'estraición de metal +10%."
 
 #: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
@@ -934,7 +934,7 @@ msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +50% territory influence radius. Structures +9 capture points "
 "regeneration rate per garrisoned unit."
-msgstr "Avanza a la fas de la ciudá, que desbloquia más entidaes y teunoloxíes. Places: territoriu +50%. Construcciones: tasa de recobramientu de la llealtá por unidá guarecida +9."
+msgstr "Avanza a la fas de la ciudá, que desbloquia más entidaes y teunoloxíes. Places: territoriu +50%. Construcciones: tasa de resistencia a la conquista por unidá guarecida +9."
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -973,7 +973,7 @@ msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
 "Centers +30% territory influence radius. Structures +7 capture points "
 "regeneration rate per garrisoned unit. Workers +10% metal gather rate."
-msgstr "Avanza a la fas de la villa, que desbloquia más entidaes y teunoloxíes. Places: territoriu +30%. Construcciones: tasa de recobramientu de la llealtá por unidá guarecida +7. Obreros: tasa d'estraición de metal +10%."
+msgstr "Avanza a la fas de la villa, que desbloquia más entidaes y teunoloxíes. Places: territoriu +30%. Construcciones: tasa de resistencia a la conquista por unidá guarecida +7. Obreros: tasa d'estraición de metal +10%."
 
 #: simulation/data/technologies/phase_town_generic.jsondescription
 msgid ""
@@ -985,7 +985,7 @@ msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
 "Centers +30% territory influence radius. Structures +7 capture points "
 "regeneration rate per garrisoned unit."
-msgstr "Avanza a la fas de la villa, que desbloquia más entidaes y teunoloxíes. Places: territoriu +30%. Construcciones: tasa de recobramientu de la llealtá por unidá guarecida +7."
+msgstr "Avanza a la fas de la villa, que desbloquia más entidaes y teunoloxíes. Places: territoriu +30%. Construcciones: tasa de resistencia a la conquista por unidá guarecida +7."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1117,7 +1117,7 @@ msgstr "L'arte de cercar fortificaciones."
 
 #: simulation/data/technologies/siege_cost_time.jsongenericName
 msgid "Siegecraft"
-msgstr "La poliorcética"
+msgstr "Poliorcética"
 
 #: simulation/data/technologies/siege_cost_time.jsontooltip
 msgid "Siege Engines −20% construction time."
@@ -1305,7 +1305,7 @@ msgstr "Entaína enforma la producción de la caballería entrenándolo en garap
 
 #: simulation/data/technologies/stable_batch_training.jsontooltip
 msgid "Stables −10% batch training time."
-msgstr "Corte: duranza del entrenamientu coleutivu −10%."
+msgstr "Corte: tiempu de preparación coleutiva −10%."
 
 #: simulation/data/technologies/tower_crenellations.jsondescription
 msgid ""
@@ -1441,7 +1441,7 @@ msgid ""
 "attack strength, +20% loot, and −30% gather speed; Healers +5 healing "
 "strength and +3 healing range; Melee units +1 resistance and +20% attack "
 "damage; Ranged units −20% spread."
-msgstr "Unidaes avanzaes, escoyíes: tiempu de preparación +20%, vida +25%, captura +0.7, saquéu +20%, arremangu pal llabor −30%; Curanderos: sanamientu +5, algame +3; Unidaes de choque: tiez +1, ataque +20%; Unidaes de tiru: mal pulsu −20%."
+msgstr "Unidaes avanzaes, escoyíes: tiempu de preparación +20% vida +25% captura +0.7 saquéu +20% arremangu pal llabor −30%; Curanderos: sanamientu +5 algame +3; Unidaes de choque: tiez +1 ataque +20%; Unidaes de tiru: imprecisión −20%."
 
 #: simulation/data/technologies/unit_elephant_african.jsontooltip
 msgid ""
@@ -1461,7 +1461,7 @@ msgid ""
 "+20% loot, and −30% gather speed; Healers +5 healing strength and +3 healing"
 " range; Melee units +1 resistance and +20% attack damage; Ranged units −20% "
 "spread."
-msgstr "Unidaes escoyíes: tiempu de preparación +20%, vida +25%, captura +0.8, saquéu +20%, arremangu pal llabor −30%; Curanderos: sanamientu +5, algame +3; Unidaes de choque: tiez +1, ataque +20%; Unidaes de tiru: mal pulsu −20%."
+msgstr "Unidaes escoyíes: tiempu de preparación +20% vida +25% captura +0.8 saquéu +20% arremangu pal llabor −30%; Curanderos: sanamientu +5 algame +3; Unidaes de choque: tiez +1 ataque +20%; Unidaes de tiru: imprecisión −20%."
 
 #: simulation/data/technologies/unit_mercenary.jsontooltip
 msgid ""

@@ -13,7 +13,7 @@
 # Armen Dzhagaryan <kdar1987@gmail.com>, 2014
 # bigaltum <bigaltum@gmail.com>, 2014
 # Bogdan Artemyev <bogarto@mail.ru>, 2014
-# Boris Karalnik <eyesucker@gmail.com>, 2018-2020
+# Boris Karalnik <eyesucker@gmail.com>, 2018-2021
 # Check Tester <registruser@yandex.com>, 2018
 # 009ee41e4c490a944b98e20dd0cc29dd_e31b370 <3a1cdc1a7c52cc59f91bdc5fed0a3a77_882482>, 2020
 # Cергей Исаченко <vortexius@gmail.com>, 2014
@@ -57,8 +57,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-01-22 08:36+0000\n"
-"Last-Translator: Дмитрий Ошкало <dmitry.oshkalo@gmail.com>\n"
+"PO-Revision-Date: 2021-01-27 12:33+0000\n"
+"Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -128,7 +128,7 @@ msgstr "Мильтиад"
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].Description
 msgid "Workers +10% metal gather rate per phase advance."
-msgstr ""
+msgstr "Работники добывают металл на 10% быстрее на каждом этапе развития."
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].History
 msgid ""
@@ -274,19 +274,19 @@ msgstr "Гимилькон"
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].Description
 msgid "Merchant Ships +25% trade gain."
-msgstr ""
+msgstr "Торговые суда приносят на 25% больше прибыли."
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].Name
 msgid "Commercial Acumen"
-msgstr ""
+msgstr "Торговая хватка"
 
 #: simulation/data/civs/cart.jsonCivBonuses[1].Description
 msgid "Docks and Markets +10% international trade bonus."
-msgstr ""
+msgstr "Порты и рынки получают на 10% больше выгоды от международной торговли."
 
 #: simulation/data/civs/cart.jsonCivBonuses[1].Name
 msgid "Desirable Products"
-msgstr ""
+msgstr "Желанные товары"
 
 #: simulation/data/civs/cart.jsonHistory
 msgid ""
@@ -386,7 +386,7 @@ msgstr "Таутал"
 
 #: simulation/data/civs/iber.jsonCivBonuses[0].Description
 msgid "Iberians start with City Walls around their base on most maps."
-msgstr ""
+msgstr "Иберийские поселения изначально окружены стеной на большинстве карт."
 
 #: simulation/data/civs/iber.jsonCivBonuses[0].History
 msgid ""
@@ -397,17 +397,17 @@ msgstr "За исключением аллювиальных равнин и р�
 
 #: simulation/data/civs/iber.jsonCivBonuses[0].Name
 msgid "Starting Walls"
-msgstr ""
+msgstr "Изначальные стены"
 
 #: simulation/data/civs/iber.jsonCivBonuses[1].Description
 msgid ""
 "Stone Towers −50% wood cost, +150% stone cost, +33% build time, +60% health,"
 " +3 garrison capacity, and +1 default arrow count."
-msgstr ""
+msgstr "Каменные башни стоят на 50% меньше древесины, на 150% больше камня, строятся на 33% дольше, на 60% прочнее, вмещают 3 дополнительных юнита и выстреливают на одну стрелу больше."
 
 #: simulation/data/civs/iber.jsonCivBonuses[1].Name
 msgid "Massive Towers"
-msgstr ""
+msgstr "Массивные башни"
 
 #: simulation/data/civs/iber.jsonHistory
 msgid ""
@@ -482,12 +482,12 @@ msgstr "Насалса"
 #: simulation/data/civs/kush.jsonCivBonuses[0].Description
 #: simulation/data/civs/pers.jsonCivBonuses[1].Description
 msgid "Battering Rams +20% attack damage and +2 garrison capacity."
-msgstr ""
+msgstr "Стенобитные орудия наносят на 20% больше разрушений и вмещают 2 дополнительных юнита."
 
 #: simulation/data/civs/kush.jsonCivBonuses[0].Name
 #: simulation/data/civs/pers.jsonCivBonuses[1].Name
 msgid "Large Rams"
-msgstr ""
+msgstr "Большие стенобитные орудия"
 
 #: simulation/data/civs/kush.jsonHistory
 msgid ""
@@ -679,11 +679,11 @@ msgstr "Артаксеркс III"
 
 #: simulation/data/civs/pers.jsonCivBonuses[0].Description
 msgid "Land Traders +25% trade gain."
-msgstr ""
+msgstr "Сухопутные торговцы приносят на 25% больше прибыли."
 
 #: simulation/data/civs/pers.jsonCivBonuses[0].Name
 msgid "Darics"
-msgstr ""
+msgstr "Дарики"
 
 #: simulation/data/civs/pers.jsonHistory
 msgid ""
@@ -778,7 +778,7 @@ msgstr "Птолемей Неос Дионис"
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].Description
 msgid "Bolt Shooters −33% attack damage and −33% attack time."
-msgstr ""
+msgstr "Стреломёты наносят на 33 меньше урона, но перезаряжаются на 33% меньше времени."
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].Name
 msgid "Polybolos"
@@ -869,11 +869,11 @@ msgstr "Боевой порядок «черепаха»"
 
 #: simulation/data/civs/rome.jsonCivBonuses[1].Description
 msgid "Battering Rams +20% attack damage. Stone Throwers +10% attack damage."
-msgstr ""
+msgstr "Стенобитные орудия наносят на 20% больше разрушений. Камнемёты наносят на 10% больше разрушений. "
 
 #: simulation/data/civs/rome.jsonCivBonuses[1].Name
 msgid "Legionary Engineers"
-msgstr ""
+msgstr "Легионные инженеры"
 
 #: simulation/data/civs/rome.jsonHistory
 msgid ""
@@ -1062,11 +1062,11 @@ msgstr "Еврикрат"
 
 #: simulation/data/civs/spart.jsonCivBonuses[0].Description
 msgid "Female Citizens +40% health and +50% melee attack hack damage."
-msgstr ""
+msgstr "Женщины получают на 40% больше здоровья и наносят на 50% больше рубящего урона. "
 
 #: simulation/data/civs/spart.jsonCivBonuses[0].Name
 msgid "Spartan Women"
-msgstr ""
+msgstr "Спартанки"
 
 #: simulation/data/civs/spart.jsonHistory
 msgid ""
@@ -1076,7 +1076,7 @@ msgid ""
 " at age seven. Thanks to its military might, Sparta led a coalition of Greek"
 " forces during the Greco-Persian Wars, and won over Athens in the "
 "Peloponnesian Wars, though at great cost."
-msgstr "Спарта была выдающимся городом-государством Древней Греции и её доминирующей военной силой на суше примерно с 650 г. до н.э. Спартанцы возводили в культ военную подготовку и мастерство, достигаемое безжалостными тренировками мальчиков, начиная с семилетнего возраста. Благодаря своей военной мощи Спарта возглавила коалицию греческих сил в Греко-Персидских войнах и одержала победу над Афинами в Пелопоннесских Войнах, хотя и заплатила за это большую цену."
+msgstr "Спарта была выдающимся городом-государством Древней Греции и её доминирующей военной силой на суше примерно с 650 г. до н.э. Спартанцы возводили в культ военную подготовку и мастерство, достигаемое безжалостными тренировками мальчиков, начиная с семилетнего возраста. Благодаря своей военной мощи Спарта возглавила коалицию греческих сил в Греко-Персидских войнах и одержала победу над Афинами в Пелопоннесских войнах, хотя и заплатила за это большую цену."
 
 #: simulation/data/civs/spart.jsonName
 msgid "Spartans"

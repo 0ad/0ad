@@ -16,6 +16,7 @@
 # ClementL <lewis@lewisclement.nl>, 2014
 # Damion Wolters <firewallscape@gmail.com>, 2016
 # Ellen Roels, 2015
+# Freagarach, 2021
 # Freagarach, 2019,2021
 # Ilya <ilya.crols@gmail.com>, 2014
 # Ingvo Van de Stadt <penningmeester@metius.nl>, 2020
@@ -45,9 +46,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-01-22 18:12+0000\n"
-"Last-Translator: Bart <b.anthonisse@gmail.com>\n"
+"POT-Creation-Date: 2021-01-29 08:08+0000\n"
+"PO-Revision-Date: 2021-01-29 09:16+0000\n"
+"Last-Translator: bb <b.jansen5@students.uu.nl>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -203,7 +204,7 @@ msgstr "Cheats"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:43
 msgid "Toggle the usability of cheats."
-msgstr "Valsspelen is mogelijk."
+msgstr "Zet de mogelijkheid om vals te spelen."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map
@@ -713,7 +714,7 @@ msgstr "Druk op %(hotkey)s om spelersnamen of instellingen automatisch aan te vu
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientChat.js:27
 msgid "Unknown Player"
-msgstr "Onbekende Ppeler"
+msgstr "Onbekende Speler"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientChat.js:47
 #, javascript-format
@@ -851,52 +852,56 @@ msgstr "Server is niet actief."
 msgid "Password is invalid."
 msgstr "Ongeldig wachtwoord."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:170
+#: gui/gamesetup_mp/gamesetup_mp.js:168
+msgid "You have been banned."
+msgstr "U werd verbannen."
+
+#: gui/gamesetup_mp/gamesetup_mp.js:171
 #, javascript-format
 msgid "\\[Invalid value %(reason)s]"
 msgstr "\\[Ongeldige waarde %(reason)s]"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:178
+#: gui/gamesetup_mp/gamesetup_mp.js:179
 msgid "Failed to connect to the server."
 msgstr "Verbinden met de server mislukt."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:180
+#: gui/gamesetup_mp/gamesetup_mp.js:181
 msgid "Connection failed"
 msgstr "Verbindingsfout"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:192
+#: gui/gamesetup_mp/gamesetup_mp.js:193
 #, javascript-format
 msgid "Net message: %(message)s"
 msgstr "Netwerkbericht: %(message)s"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:287
+#: gui/gamesetup_mp/gamesetup_mp.js:288
 msgid "Registering with server..."
 msgstr "Registreren op de server..."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:293
+#: gui/gamesetup_mp/gamesetup_mp.js:294
 msgid "Game has already started, rejoining..."
 msgstr "Het spel is al begonnen, weer meedoen..."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:372
+#: gui/gamesetup_mp/gamesetup_mp.js:373
 msgid "Game name already in use."
 msgstr "Spelnaam wordt al gebruikt."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:387
+#: gui/gamesetup_mp/gamesetup_mp.js:388
 #, javascript-format
 msgid "Cannot host game: %(message)s."
 msgstr "Kan het spel niet hosten: %(message)s."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:388 gui/gamesetup_mp/gamesetup_mp.js:417
-#: gui/gamesetup_mp/gamesetup_mp.js:444 gui/gamesetup_mp/gamesetup_mp.js:459
+#: gui/gamesetup_mp/gamesetup_mp.js:389 gui/gamesetup_mp/gamesetup_mp.js:418
+#: gui/gamesetup_mp/gamesetup_mp.js:445 gui/gamesetup_mp/gamesetup_mp.js:460
 msgid "Error"
 msgstr "Fout"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:416 gui/gamesetup_mp/gamesetup_mp.js:458
+#: gui/gamesetup_mp/gamesetup_mp.js:417 gui/gamesetup_mp/gamesetup_mp.js:459
 #, javascript-format
 msgid "Cannot join game: %(message)s."
 msgstr "Kan niet verbinden met spel: %(message)s."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:473
+#: gui/gamesetup_mp/gamesetup_mp.js:474
 #, javascript-format
 msgid "%(playername)s's game"
 msgstr "%(playername)s's spel"

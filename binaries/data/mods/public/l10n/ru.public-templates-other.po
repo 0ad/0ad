@@ -4,7 +4,7 @@
 # project.
 # Translators:
 # Alexander Olkhovskiy, 2016
-# Boris Karalnik <eyesucker@gmail.com>, 2019
+# Boris Karalnik <eyesucker@gmail.com>, 2019,2021
 # Dmitriy Kulikov <kulikov@dima.perm.ru>, 2019
 # Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2015-2018
 # Максим Дронь <dronmax@gmail.com>, 2014
@@ -23,8 +23,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-20 00:57+0000\n"
-"PO-Revision-Date: 2021-01-20 01:22+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-01-28 12:24+0000\n"
+"Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,17 +35,17 @@ msgstr ""
 #: simulation/data/attack_effects/applystatus.jsondescription
 msgctxt "effect caused by an attack"
 msgid "Various (timed) effects."
-msgstr ""
+msgstr "Различные (временные) эффекты."
 
 #: simulation/data/attack_effects/applystatus.jsonname
 msgctxt "effect caused by an attack"
 msgid "Apply Status"
-msgstr ""
+msgstr "Статус применения"
 
 #: simulation/data/attack_effects/capture.jsondescription
 msgctxt "effect caused by an attack"
 msgid "Reduces capture points of a target."
-msgstr ""
+msgstr "Уменьшает очки захвата цели."
 
 #: simulation/data/attack_effects/capture.jsonname
 msgctxt "effect caused by an attack"
@@ -55,42 +55,42 @@ msgstr "Захват"
 #: simulation/data/attack_effects/damage.jsondescription
 msgctxt "effect caused by an attack"
 msgid "Reduces the health of a target."
-msgstr ""
+msgstr "Уменьшает здоровье цели."
 
 #: simulation/data/attack_effects/damage.jsonname
 msgctxt "effect caused by an attack"
 msgid "Damage"
-msgstr ""
+msgstr "Урон"
 
 #: simulation/data/status_effects/burning.jsonapplierTooltip
 msgctxt "status effect"
 msgid "This unit causes fire damage."
-msgstr ""
+msgstr "Этот юнит наносит урон огнём."
 
 #: simulation/data/status_effects/burning.jsonreceiverTooltip
 msgctxt "status effect"
 msgid "This unit is burning."
-msgstr ""
+msgstr "Этот юнит горит."
 
 #: simulation/data/status_effects/burning.jsonstatusName
 msgctxt "status effect"
 msgid "Burning"
-msgstr ""
+msgstr "Горящий"
 
 #: simulation/data/status_effects/poisoned.jsonapplierTooltip
 msgctxt "status effect"
 msgid "This unit causes poison damage."
-msgstr ""
+msgstr "Этот юнит наносит урон ядом."
 
 #: simulation/data/status_effects/poisoned.jsonreceiverTooltip
 msgctxt "status effect"
 msgid "This unit is poisoned."
-msgstr ""
+msgstr "Этот юнит отравлен."
 
 #: simulation/data/status_effects/poisoned.jsonstatusName
 msgctxt "status effect"
 msgid "Poisoned"
-msgstr ""
+msgstr "Отравлен"
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:24
 msgid "Army of Alexander the Great."
@@ -185,7 +185,7 @@ msgstr "Урсус маритимус"
 #: simulation/templates/gaia/fauna_walrus.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Tusks"
-msgstr ""
+msgstr "Бивни"
 
 #: simulation/templates/gaia/fauna_boar.xml:23
 msgid "Wild Boar"
@@ -243,7 +243,7 @@ msgstr "Галлус галлус доместикус"
 #: simulation/templates/gaia/fauna_crocodile_nile.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Teeth"
-msgstr ""
+msgstr "Зубы"
 
 #: simulation/templates/gaia/fauna_crocodile_nile.xml:23
 msgid "Nile Crocodile"
@@ -385,7 +385,7 @@ msgstr "Пони"
 #: simulation/templates/gaia/fauna_tiger.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Paws"
-msgstr ""
+msgstr "Лапы"
 
 #: simulation/templates/gaia/fauna_lion.xml:24
 msgid "Lion"
@@ -442,7 +442,7 @@ msgstr "Ориклолагус циникулус"
 #: simulation/templates/gaia/fauna_rhinoceros_white.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Horn"
-msgstr ""
+msgstr "Рог"
 
 #: simulation/templates/gaia/fauna_rhinoceros_white.xml:23
 msgid "White Rhinoceros"
@@ -511,7 +511,7 @@ msgstr "Коннохаетес тауринус"
 #: simulation/templates/gaia/fauna_wolf.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Fangs"
-msgstr ""
+msgstr "Клыки"
 
 #: simulation/templates/gaia/fauna_wolf.xml:24
 msgid "Wolf"
@@ -573,7 +573,7 @@ msgstr "Виноград"
 
 #: simulation/templates/gaia/fruit/olive.xml:4
 msgid "Olive"
-msgstr ""
+msgstr "Маслина"
 
 #: simulation/templates/gaia/ruins/column_doric.xml:8
 msgid "Ancient Ruins"
@@ -668,11 +668,11 @@ msgstr "Лесное сокровище"
 
 #: simulation/templates/gaia/tree/acacia.xml:4
 msgid "Acacia"
-msgstr ""
+msgstr "Акация"
 
 #: simulation/templates/gaia/tree/aleppo_pine.xml:4
 msgid "Aleppo Pine"
-msgstr ""
+msgstr "Алеппская сосна"
 
 #: simulation/templates/gaia/tree/bamboo.xml:4
 #: simulation/templates/gaia/tree/bamboo_single.xml:4
@@ -713,7 +713,7 @@ msgstr "Кустарник"
 
 #: simulation/templates/gaia/tree/carob.xml:4
 msgid "Carob"
-msgstr ""
+msgstr "Рожковое дерево"
 
 #: simulation/templates/gaia/tree/cedar_atlas_1_sapling.xml:4
 msgid "Atlas Cedar Sapling"
@@ -735,7 +735,7 @@ msgstr "Финик Теофраста"
 #: simulation/templates/gaia/tree/cypress_wild.xml:4
 #: simulation/templates/gaia/tree/cypress_windswept.xml:4
 msgid "Cypress"
-msgstr ""
+msgstr "Кипарис"
 
 #: simulation/templates/gaia/tree/dead.xml:4
 #: simulation/templates/gaia/tree/temperate.xml:4
@@ -747,12 +747,12 @@ msgstr "Листопадное дерево"
 #: simulation/templates/gaia/tree/elm.xml:4
 #: simulation/templates/gaia/tree/elm_dead.xml:4
 msgid "Elm"
-msgstr ""
+msgstr "Вяз"
 
 #: simulation/templates/gaia/tree/euro_beech.xml:4
 #: simulation/templates/gaia/tree/euro_beech_aut.xml:4
 msgid "European Beech"
-msgstr ""
+msgstr "Европейский бук"
 
 #: simulation/templates/gaia/tree/euro_birch.xml:4
 msgid "Silver Birch"
@@ -761,7 +761,7 @@ msgstr "Плакучая берёза"
 #: simulation/templates/gaia/tree/fir.xml:4
 #: simulation/templates/gaia/tree/fir_winter.xml:4
 msgid "Fir"
-msgstr ""
+msgstr "Пихта"
 
 #: simulation/templates/gaia/tree/fir_sapling.xml:4
 msgid "Fir Sapling"
@@ -802,7 +802,7 @@ msgstr "Венгерский дуб"
 
 #: simulation/templates/gaia/tree/oak_large.xml:4
 msgid "Large Oak"
-msgstr ""
+msgstr "Большой дуб"
 
 #: simulation/templates/gaia/tree/palm_areca.xml:4
 msgid "Areca Palm"
@@ -827,7 +827,7 @@ msgstr "Тропическая пальма"
 #: simulation/templates/gaia/tree/pine.xml:4
 #: simulation/templates/gaia/tree/pine_w.xml:4
 msgid "Pine"
-msgstr ""
+msgstr "Сосна"
 
 #: simulation/templates/gaia/tree/pine_black.xml:4
 #: simulation/templates/gaia/tree/pine_black_dead.xml:4
@@ -848,7 +848,7 @@ msgstr "Тополь"
 #: simulation/templates/gaia/tree/poplar_lombardy.xml:4
 #: simulation/templates/gaia/tree/poplar_lombardy_dead.xml:4
 msgid "Black Poplar"
-msgstr ""
+msgstr "Чёрный тополь"
 
 #: simulation/templates/gaia/tree/senegal_date_palm.xml:4
 msgid "Senegal Date Palm"
@@ -860,7 +860,7 @@ msgstr "Фикус-душитель"
 
 #: simulation/templates/gaia/tree/tamarix.xml:4
 msgid "Tamarix"
-msgstr ""
+msgstr "Гребенщик"
 
 #: simulation/templates/gaia/tree/teak.xml:8
 msgid "Teak"
@@ -868,7 +868,7 @@ msgstr "Тик"
 
 #: simulation/templates/gaia/tree/toona.xml:4
 msgid "Toona"
-msgstr ""
+msgstr "Туна"
 
 #: simulation/templates/gaia/tree/tropic_rainforest.xml:4
 msgid "Rainforest Tree"
@@ -899,7 +899,7 @@ msgstr "Стрелки"
 #: simulation/templates/special/formations/anti_cavalry.xml:6
 #: simulation/templates/special/formations/testudo.xml:6
 msgid "Melee Infantry only, requires at least 16."
-msgstr "Только пехота ближнего боя, требуется не менее 16."
+msgstr "Только тяжёлая пехота, не менее 16."
 
 #: simulation/templates/special/formations/anti_cavalry.xml:7
 msgid "Anti Cavalry"
@@ -911,7 +911,7 @@ msgstr "Линия фронта"
 
 #: simulation/templates/special/formations/box.xml:6
 msgid "Requires at least 4 Soldiers or Siege engines."
-msgstr "Требует не менее 4 воинов или осадных орудий."
+msgstr "Не менее четырёх воинов или осадных орудий."
 
 #: simulation/templates/special/formations/box.xml:7
 msgid "Box"
@@ -927,7 +927,7 @@ msgstr "Колонна открыта"
 
 #: simulation/templates/special/formations/flank.xml:6
 msgid "Requires at least 8 Soldiers or Siege engines."
-msgstr "Требует не менее 8 воинов или осадных орудий."
+msgstr "Не менее восьми воинов или осадных орудий."
 
 #: simulation/templates/special/formations/flank.xml:7
 msgid "Flank"
@@ -947,7 +947,7 @@ msgstr "Нет"
 
 #: simulation/templates/special/formations/phalanx.xml:6
 msgid "Infantry Hoplites only, requires at least 10."
-msgstr "Только пехота гоплитов, требуется не менее 10."
+msgstr "Только пешие гоплиты, не менее десяти."
 
 #: simulation/templates/special/formations/phalanx.xml:7
 msgid "Phalanx"
@@ -959,7 +959,7 @@ msgstr "Рассредоточить"
 
 #: simulation/templates/special/formations/skirmish.xml:5
 msgid "Ranged Soldiers only, requires at least 2."
-msgstr "Только солдаты дальнего боя, требуется не менее 2-х."
+msgstr "Только стрелки, не менее двух."
 
 #: simulation/templates/special/formations/skirmish.xml:6
 msgid "Skirmish"
@@ -967,7 +967,7 @@ msgstr "Схватка"
 
 #: simulation/templates/special/formations/syntagma.xml:6
 msgid "Infantry Pikemen only, requires at least 16."
-msgstr "Только пехота пикинеров, требуется не менее 16."
+msgstr "Только пешие пикинёры, не менее 16."
 
 #: simulation/templates/special/formations/syntagma.xml:8
 msgid "Syntagma"
@@ -979,7 +979,7 @@ msgstr "Черепаха"
 
 #: simulation/templates/special/formations/wedge.xml:6
 msgid "Cavalry only, requires at least 6."
-msgstr "Только кавалерия, требуется не менее 6."
+msgstr "Только конница, не менее 6."
 
 #: simulation/templates/special/formations/wedge.xml:7
 msgid "Wedge"
@@ -995,7 +995,7 @@ msgstr "Шпион"
 
 #: simulation/templates/template_formation.xml:26
 msgid "Requires at least 2 Soldiers or Siege Engines."
-msgstr ""
+msgstr "Не менее двух воинов или осадных орудий."
 
 #: simulation/templates/template_gaia.xml:7
 msgid "Gaia"

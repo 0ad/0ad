@@ -7,7 +7,7 @@
 # Alexander Olkhovskiy, 2016
 # Alexander Serov <sekachinsky@gmail.com>, 2014
 # Alex <yanebotan@ngs.ru>, 2015
-# Boris Karalnik <eyesucker@gmail.com>, 2015,2018-2020
+# Boris Karalnik <eyesucker@gmail.com>, 2015,2018-2021
 # Christo Keller <christoniancoder@gmail.com>, 2014
 # Dmitriy Kulikov <kulikov@dima.perm.ru>, 2019
 # Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2015-2018
@@ -50,7 +50,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-01-22 11:22+0000\n"
+"PO-Revision-Date: 2021-01-28 15:33+0000\n"
 "Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -385,7 +385,7 @@ msgstr "Чакраварти самрат"
 #: simulation/data/technologies/civbonuses/maur_population.jsontooltip
 #: simulation/data/technologies/civbonuses/pers_population.jsontooltip
 msgid "+10% maximum population limit."
-msgstr ""
+msgstr "+10 к предельной численности населения."
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsondescription
 msgid ""
@@ -490,7 +490,7 @@ msgstr "Рыбацкие лодки ловят рыбу на 30% быстрее.
 
 #: simulation/data/technologies/garrison_heal.jsondescription
 msgid "Units regain health over time while garrisoned."
-msgstr ""
+msgstr "При размещении в гарнизонах юниты постепенно восстанавливают здоровье."
 
 #: simulation/data/technologies/garrison_heal.jsongenericName
 msgid "Living Conditions"
@@ -909,7 +909,7 @@ msgstr ""
 
 #: simulation/data/technologies/pair_unlock_champions_sele.jsongenericName
 msgid "Traditional Army vs Reform Army"
-msgstr ""
+msgstr "Традиционная армия и реформированная армия"
 
 #: simulation/data/technologies/parade_of_daphne.jsondescription
 msgid ""
@@ -962,7 +962,7 @@ msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +50% territory influence radius. Structures +9 capture points "
 "regeneration rate per garrisoned unit. Workers +10% metal gather rate."
-msgstr ""
+msgstr "Перейдите на этап города, открывающий новые объекты и технологии. Радиус контроля территории городскими Центрами увеличивается на 50%. Скорость восстановления очков захвата зданиями увеличивается на 9 на душу гарнизона. Работники добывают металл на 10% быстрее."
 
 #: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
@@ -975,7 +975,7 @@ msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +50% territory influence radius. Structures +9 capture points "
 "regeneration rate per garrisoned unit."
-msgstr ""
+msgstr "Перейдите на этап города, открывающий новые объекты и технологии. Радиус контроля территории городскими Центрами увеличивается на 50%. Скорость восстановления очков захвата зданиями увеличивается на 9 на душу гарнизона."
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -1014,7 +1014,7 @@ msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
 "Centers +30% territory influence radius. Structures +7 capture points "
 "regeneration rate per garrisoned unit. Workers +10% metal gather rate."
-msgstr ""
+msgstr "Перейдите на этап небольшого города, открывающий новые объекты и технологии. Радиус контроля территории городскими Центрами увеличивается на 30%. Скорость восстановления очков захвата зданиями увеличивается на 7 на душу гарнизона. Работники добывают металл на 10% быстрее."
 
 #: simulation/data/technologies/phase_town_generic.jsondescription
 msgid ""
@@ -1026,7 +1026,7 @@ msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
 "Centers +30% territory influence radius. Structures +7 capture points "
 "regeneration rate per garrisoned unit."
-msgstr ""
+msgstr "Перейдите на этап небольшого города, открывающий новые объекты и технологии. Радиус контроля территории городскими Центрами увеличивается на 30%. Скорость восстановления очков захвата зданиями увеличивается на 7 на душу гарнизона."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1078,7 +1078,7 @@ msgstr "Инсулэ"
 
 #: simulation/data/technologies/reformed_army_sele.jsondescription
 msgid "The Roman-style core of the Seleucid army."
-msgstr ""
+msgstr "Костяк римского образца для армии селевкидов."
 
 #: simulation/data/technologies/reformed_army_sele.jsongenericName
 msgid "Reform Army"
@@ -1086,7 +1086,7 @@ msgstr "Реформированная армия"
 
 #: simulation/data/technologies/reformed_army_sele.jsontooltip
 msgid "Unlock the Champion Infantry Swordsman."
-msgstr ""
+msgstr "Откройте пешего мечника-чемпиона."
 
 #: simulation/data/technologies/ship_cost_time.jsondescription
 msgid ""
@@ -1360,7 +1360,7 @@ msgstr "Бойницы"
 
 #: simulation/data/technologies/tower_crenellations.jsontooltip
 msgid "Sentry and Stone Towers +40% more arrows per garrisoned Soldier."
-msgstr ""
+msgstr "Сторожевые и каменные башни выпускают на 40% больше стрел на каждого гарнизонного воина."
 
 #: simulation/data/technologies/tower_health.jsondescription
 msgid "Reinforce the foundations in preparation of an attack."
@@ -1466,7 +1466,7 @@ msgstr ""
 
 #: simulation/data/technologies/traditional_army_sele.jsondescription
 msgid "The Macedonian-style core of the Seleucid army."
-msgstr ""
+msgstr "Костяк македонского образца для армии селевкидов."
 
 #: simulation/data/technologies/traditional_army_sele.jsongenericName
 msgid "Traditional Army"
@@ -1474,7 +1474,7 @@ msgstr "Традиционная армия"
 
 #: simulation/data/technologies/traditional_army_sele.jsontooltip
 msgid "Unlock the Champion Infantry Pikeman."
-msgstr ""
+msgstr "Откройте пешего пикинёра-чемпиона."
 
 #: simulation/data/technologies/unit_advanced.jsontooltip
 msgid ""
@@ -1521,23 +1521,23 @@ msgstr "Гвардейцы (чемпионы) являются професси�
 
 #: simulation/data/technologies/unlock_champion_cavalry.jsongenericName
 msgid "Unlock Champion Cavalry"
-msgstr ""
+msgstr "Откройте конных чемпионов."
 
 #: simulation/data/technologies/unlock_champion_cavalry.jsontooltip
 msgid "Unlock Champion Cavalry at the Stable."
-msgstr ""
+msgstr "Откройте конных чемпионов в конюшне."
 
 #: simulation/data/technologies/unlock_champion_chariots.jsongenericName
 msgid "Unlock Champion Chariots"
-msgstr ""
+msgstr "Откройте колесничных чемпионов."
 
 #: simulation/data/technologies/unlock_champion_chariots.jsontooltip
 msgid "Unlock Champion Chariots at the Stable."
-msgstr ""
+msgstr "Откройте колесничных чемпионов в конюшне."
 
 #: simulation/data/technologies/unlock_champion_infantry.jsongenericName
 msgid "Unlock Champion Infantry"
-msgstr ""
+msgstr "Откройте пеших чемпионов."
 
 #: simulation/data/technologies/unlock_champion_infantry.jsonspecificName.mace
 #: simulation/data/technologies/unlock_champion_infantry.jsonspecificName.ptol
@@ -1550,7 +1550,7 @@ msgstr "Когорта региа"
 
 #: simulation/data/technologies/unlock_champion_infantry.jsontooltip
 msgid "Unlock Champions Infantry at the Barracks."
-msgstr ""
+msgstr "Откройте пеших чемпионов в казарме."
 
 #: simulation/data/technologies/unlock_females_house.jsondescription
 msgid "A festival attended by women-only, to celebrate female fertility."
@@ -1637,11 +1637,11 @@ msgstr "Опыт ведения войны"
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
 msgid "Mercenaries are promoted to Advanced rank."
-msgstr ""
+msgstr "Наёмники получают улучшенный уровень."
 
 #: simulation/data/technologies/wonder_population_cap.jsondescription
 msgid "The wonder attracts many more people to your civilization."
-msgstr "Чудо привлекает гораздо больше людей в вашу цивилизацию."
+msgstr "Чудо привлекает гораздо больше людей к вашей цивилизации."
 
 #: simulation/data/technologies/wonder_population_cap.jsongenericName
 msgid "Glorious Expansion"
@@ -1659,4 +1659,4 @@ msgstr ""
 msgid ""
 "Enable the “Glorious Expansion” aura: +20% maximum population limit per "
 "Wonder owned."
-msgstr ""
+msgstr "Активация ауры «Славной экспансии»: увеличение предельной численности населения на 20% за каждое чудо."

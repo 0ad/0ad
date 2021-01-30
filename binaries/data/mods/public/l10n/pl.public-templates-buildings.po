@@ -35,9 +35,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-01-22 10:36+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-01-25 08:08+0000\n"
+"PO-Revision-Date: 2021-01-26 10:29+0000\n"
+"Last-Translator: Przemysław Murach <moonshine133@vp.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1708,9 +1708,9 @@ msgstr "Posterunek"
 
 #: simulation/templates/template_structure_defensive_outpost.xml:38
 msgid ""
-"Build in own or neutral territory. Slowly converts to Gaia while in neutral "
-"territory."
-msgstr "Buduj na swoim lub neutralnym terytorium. Budynki powoli przechodzą pod kontrolę Gai, gdy znajdują się na terytorium neutralnym."
+"Build in own or neutral territory. No vision range unless garrisoned. Slowly"
+" converts to Gaia while in neutral territory."
+msgstr "Buduj na własnym lub neutralnym terytorium. Brak zasięgu widzenia, dopóki nie zostanie obsadzony. Powoli przechodzi pod kontrolę Gai, gdy znajduje się na terytorium neutralnym."
 
 #: simulation/templates/structures/wallset_palisade.xml:4
 #: simulation/templates/structures/wallset_palisade.xml:6
@@ -1944,7 +1944,7 @@ msgstr "Kuźnia"
 
 #: simulation/templates/template_structure_military_forge.xml:24
 msgid "Research attack damage and damage resistance technologies."
-msgstr ""
+msgstr "Opracowuje ulepszenia ataku i pancerza."
 
 #: simulation/templates/template_structure_military_fortress.xml:39
 #: simulation/templates/template_structure_military_fortress.xml:69

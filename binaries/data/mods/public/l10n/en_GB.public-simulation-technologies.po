@@ -10,18 +10,20 @@
 # Laurene Albrand, 2015
 # leper <leper@wildfiregames.com>, 2014-2016
 # Martin H <pilino@posteo.de>, 2020
+# Martin H <pilino@posteo.de>, 2021
 # Martin H <pilino@posteo.de>, 2016
 # Martin H <pilino@posteo.de>, 2015
 # Martin H <pilino@posteo.de>, 2016-2017
 # Nescio, 2020-2021
 # Nescio, 2020
 # Martin H <pilino@posteo.de>, 2017
+# s0600204, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-01-22 11:22+0000\n"
-"Last-Translator: Tanksy <jake_anderson_007@hotmail.com>\n"
+"PO-Revision-Date: 2021-01-29 15:56+0000\n"
+"Last-Translator: Nescio\n"
 "Language-Team: English (United Kingdom) (http://www.transifex.com/wildfire-games/0ad/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -112,7 +114,7 @@ msgstr "Unlocked in Village Phase."
 
 #: simulation/data/technologies/archery_tradition.jsontooltip
 msgid "Archers −10% training time and +10 attack range."
-msgstr ""
+msgstr "Archers −10% training time and +10 attack range."
 
 #: simulation/data/technologies/architecture_kush.jsongenericName
 msgid "Monumental Architecture"
@@ -282,7 +284,7 @@ msgstr "City Walls +100% stone cost, +100% build time, and +200% health."
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsondescription
 msgid "Celtic structures were mostly made of wood with rubble foundations."
-msgstr "Celtic structures were mostly made of wood with rubble foundations."
+msgstr "Celtic Structures were mostly made of wood with rubble foundations."
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsongenericName
 msgid "Wooden Construction"
@@ -575,7 +577,7 @@ msgstr "Iron Axe Heads"
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsontooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsontooltip
 msgid "Workers +20% wood gather rate."
-msgstr ""
+msgstr "Workers +20% wood gather rate."
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsongenericName
 msgid "Sharp Axe Heads"
@@ -603,7 +605,7 @@ msgstr "Heilōtes"
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
 #: simulation/data/technologies/gather_mining_slaves.jsontooltip
 msgid "Workers +20% stone gather rate."
-msgstr ""
+msgstr "Workers +20% stone gather rate."
 
 #: simulation/data/technologies/gather_mining_servants.jsondescription
 msgid "Hire servants to help quarry stone. Increases stone gathering rates."
@@ -633,7 +635,7 @@ msgstr "Shaft Mining"
 #: simulation/data/technologies/gather_mining_silvermining.jsontooltip
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
 msgid "Workers +20% metal gather rate."
-msgstr ""
+msgstr "Workers +20% metal gather rate."
 
 #: simulation/data/technologies/gather_mining_silvermining.jsondescription
 msgid "Strike a vein of precious silver. Increases metal gathering rates."
@@ -1124,32 +1126,32 @@ msgstr "Bolt Shooters −20% ranged attack spread."
 
 #: simulation/data/technologies/siege_cost_time.jsondescription
 msgid "The science or craft of laying or carrying out sieges."
-msgstr ""
+msgstr "The science or craft of laying or carrying out sieges."
 
 #: simulation/data/technologies/siege_cost_time.jsongenericName
 msgid "Siegecraft"
-msgstr ""
+msgstr "Siegecraft"
 
 #: simulation/data/technologies/siege_cost_time.jsontooltip
 msgid "Siege Engines −20% construction time."
-msgstr ""
+msgstr "Siege Engines −20% construction time."
 
 #: simulation/data/technologies/siege_health.jsondescription
 msgid ""
 "Cover the exterior with iron plates to protect against fire and projectiles."
-msgstr ""
+msgstr "Cover the exterior with iron plates to protect against fire and projectiles."
 
 #: simulation/data/technologies/siege_health.jsongenericName
 msgid "Armor Plating"
-msgstr ""
+msgstr "Armour Plating"
 
 #: simulation/data/technologies/siege_health.jsontooltip
 msgid "Battering Rams and Siege Towers +25% health."
-msgstr ""
+msgstr "Battering Rams and Siege Towers +25% health."
 
 #: simulation/data/technologies/siege_pack_unpack.jsondescription
 msgid "Military engineers are responsible for improvements in siege engines."
-msgstr ""
+msgstr "Military engineers are responsible for improvements in siege engines."
 
 #: simulation/data/technologies/siege_pack_unpack.jsongenericName
 msgid "Military Engineers"
@@ -1157,7 +1159,7 @@ msgstr "Military Engineers"
 
 #: simulation/data/technologies/siege_pack_unpack.jsontooltip
 msgid "Siege Engines –40% pack and unpack time."
-msgstr ""
+msgstr "Siege Engines –40% pack and unpack time."
 
 #: simulation/data/technologies/silvershields.jsondescription
 msgid ""
@@ -1180,7 +1182,7 @@ msgid ""
 "Often, a soldier would carry a secondary weapon in addition to his primary "
 "weapon of choice, to be drawn when the primary weapon has failed or been "
 "broken."
-msgstr ""
+msgstr "Often, a soldier would carry a secondary weapon in addition to his primary weapon of choice, to be drawn when the primary weapon has failed or been broken."
 
 #: simulation/data/technologies/soldier_attack_melee_01.jsongenericName
 msgid "Side Arms"
@@ -1201,7 +1203,7 @@ msgstr "Pugio"
 #: simulation/data/technologies/soldier_attack_melee_01.jsontooltip
 #: simulation/data/technologies/soldier_attack_melee_02.jsontooltip
 msgid "Soldiers +15% melee attack damage."
-msgstr ""
+msgstr "Soldiers +15% melee attack damage."
 
 #: simulation/data/technologies/soldier_attack_melee_02.jsondescription
 msgid "Using iron instead of bronze gave weapons additional power."
@@ -1213,24 +1215,24 @@ msgstr "Iron Weapons"
 
 #: simulation/data/technologies/soldier_attack_ranged_01.jsondescription
 msgid "Projectile points made of iron enable missiles to penetrate deeper."
-msgstr ""
+msgstr "Projectile points made of iron enable missiles to penetrate deeper."
 
 #: simulation/data/technologies/soldier_attack_ranged_01.jsongenericName
 msgid "Iron Arrowheads"
-msgstr ""
+msgstr "Iron Arrowheads"
 
 #: simulation/data/technologies/soldier_attack_ranged_01.jsontooltip
 #: simulation/data/technologies/soldier_attack_ranged_02.jsontooltip
 msgid "Soldiers +15% ranged attack damage."
-msgstr ""
+msgstr "Soldiers +15% ranged attack damage."
 
 #: simulation/data/technologies/soldier_attack_ranged_02.jsondescription
 msgid "Arrowheads with three lobes instead of two inflict larger wounds."
-msgstr ""
+msgstr "Arrowheads with three lobes instead of two inflict larger wounds."
 
 #: simulation/data/technologies/soldier_attack_ranged_02.jsongenericName
 msgid "Trilobate Arrowheads"
-msgstr ""
+msgstr "Trilobate Arrowheads"
 
 #: simulation/data/technologies/soldier_ranged_experience.jsontooltip
 msgid "Ranged Soldiers +25% promotion experience."
@@ -1424,15 +1426,15 @@ msgstr "Advanced Handicraft"
 
 #: simulation/data/technologies/trader_health.jsondescription
 msgid "Traders traveling together in caravans are less vulnerable."
-msgstr ""
+msgstr "Traders traveling together in caravans are less vulnerable."
 
 #: simulation/data/technologies/trader_health.jsongenericName
 msgid "Trade Caravan"
-msgstr ""
+msgstr "Trade Caravan"
 
 #: simulation/data/technologies/trader_health.jsontooltip
 msgid "Land Traders +50% health."
-msgstr ""
+msgstr "Land Traders +50% health."
 
 #: simulation/data/technologies/traditional_army_sele.jsondescription
 msgid "The Macedonian-style core of the Seleucid army."
@@ -1452,7 +1454,7 @@ msgid ""
 "attack strength, +20% loot, and −30% gather speed; Healers +5 healing "
 "strength and +3 healing range; Melee units +1 resistance and +20% attack "
 "damage; Ranged units −20% spread."
-msgstr ""
+msgstr "Advanced and Elite units +20% training time, +25% health, +0.7 capture attack strength, +20% loot, and −30% gather speed; Healers +5 healing strength and +3 healing range; Melee units +1 resistance and +20% attack damage; Ranged units −20% spread."
 
 #: simulation/data/technologies/unit_elephant_african.jsontooltip
 msgid ""
@@ -1472,7 +1474,7 @@ msgid ""
 "+20% loot, and −30% gather speed; Healers +5 healing strength and +3 healing"
 " range; Melee units +1 resistance and +20% attack damage; Ranged units −20% "
 "spread."
-msgstr ""
+msgstr "Elite units +20% training time, +25% health, +0.8 capture attack strength, +20% loot, and −30% gather speed; Healers +5 healing strength and +3 healing range; Melee units +1 resistance and +20% attack damage; Ranged units −20% spread."
 
 #: simulation/data/technologies/unit_mercenary.jsontooltip
 msgid ""
@@ -1629,4 +1631,4 @@ msgstr "Peristasis"
 msgid ""
 "Enable the “Glorious Expansion” aura: +20% maximum population limit per "
 "Wonder owned."
-msgstr ""
+msgstr "Enable the “Glorious Expansion” aura: +20% maximum population limit per Wonder owned."

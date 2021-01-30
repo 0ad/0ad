@@ -7,6 +7,7 @@
 # efef6ec5b435a041fce803c7f8af77d2_2341d43, 2020
 # Kristoffer Grundström <lovaren@gmail.com>, 2015-2016
 # Martin H <pilino@posteo.de>, 2020
+# Martin H <pilino@posteo.de>, 2021
 # Martin H <pilino@posteo.de>, 2016
 # Martin H <pilino@posteo.de>, 2015-2016
 # Mattias Münster <mattiasmun@gmail.com>, 2019
@@ -18,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-20 00:57+0000\n"
-"PO-Revision-Date: 2021-01-20 01:22+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-01-26 09:15+0000\n"
+"Last-Translator: Martin H <pilino@posteo.de>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,17 +31,17 @@ msgstr ""
 #: simulation/data/attack_effects/applystatus.jsondescription
 msgctxt "effect caused by an attack"
 msgid "Various (timed) effects."
-msgstr ""
+msgstr "Olika (tidsbaserade) effekter."
 
 #: simulation/data/attack_effects/applystatus.jsonname
 msgctxt "effect caused by an attack"
 msgid "Apply Status"
-msgstr ""
+msgstr "Applicera status"
 
 #: simulation/data/attack_effects/capture.jsondescription
 msgctxt "effect caused by an attack"
 msgid "Reduces capture points of a target."
-msgstr ""
+msgstr "Reducerar målets erövringspoäng."
 
 #: simulation/data/attack_effects/capture.jsonname
 msgctxt "effect caused by an attack"
@@ -50,42 +51,42 @@ msgstr "Fånga"
 #: simulation/data/attack_effects/damage.jsondescription
 msgctxt "effect caused by an attack"
 msgid "Reduces the health of a target."
-msgstr ""
+msgstr "Reducerar målets hälsa."
 
 #: simulation/data/attack_effects/damage.jsonname
 msgctxt "effect caused by an attack"
 msgid "Damage"
-msgstr ""
+msgstr "Skada"
 
 #: simulation/data/status_effects/burning.jsonapplierTooltip
 msgctxt "status effect"
 msgid "This unit causes fire damage."
-msgstr ""
+msgstr "Enheten orsakar eldskada."
 
 #: simulation/data/status_effects/burning.jsonreceiverTooltip
 msgctxt "status effect"
 msgid "This unit is burning."
-msgstr ""
+msgstr "Enheten brinner."
 
 #: simulation/data/status_effects/burning.jsonstatusName
 msgctxt "status effect"
 msgid "Burning"
-msgstr ""
+msgstr "Brinner"
 
 #: simulation/data/status_effects/poisoned.jsonapplierTooltip
 msgctxt "status effect"
 msgid "This unit causes poison damage."
-msgstr ""
+msgstr "Enheten orsakar giftskada."
 
 #: simulation/data/status_effects/poisoned.jsonreceiverTooltip
 msgctxt "status effect"
 msgid "This unit is poisoned."
-msgstr ""
+msgstr "Enheten är förgiftad."
 
 #: simulation/data/status_effects/poisoned.jsonstatusName
 msgctxt "status effect"
 msgid "Poisoned"
-msgstr ""
+msgstr "Förgiftad"
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:24
 msgid "Army of Alexander the Great."
@@ -180,7 +181,7 @@ msgstr "Ursus maritimus"
 #: simulation/templates/gaia/fauna_walrus.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Tusks"
-msgstr ""
+msgstr "Betar"
 
 #: simulation/templates/gaia/fauna_boar.xml:23
 msgid "Wild Boar"
@@ -238,7 +239,7 @@ msgstr "Gallus gallus domesticus"
 #: simulation/templates/gaia/fauna_crocodile_nile.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Teeth"
-msgstr ""
+msgstr "Tänder"
 
 #: simulation/templates/gaia/fauna_crocodile_nile.xml:23
 msgid "Nile Crocodile"
@@ -380,7 +381,7 @@ msgstr "Ponny"
 #: simulation/templates/gaia/fauna_tiger.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Paws"
-msgstr ""
+msgstr "Tassar"
 
 #: simulation/templates/gaia/fauna_lion.xml:24
 msgid "Lion"
@@ -437,7 +438,7 @@ msgstr "Oryctolagus cuniculus"
 #: simulation/templates/gaia/fauna_rhinoceros_white.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Horn"
-msgstr ""
+msgstr "Horn"
 
 #: simulation/templates/gaia/fauna_rhinoceros_white.xml:23
 msgid "White Rhinoceros"
@@ -506,7 +507,7 @@ msgstr "Connochaetes taurinus"
 #: simulation/templates/gaia/fauna_wolf.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Fangs"
-msgstr ""
+msgstr "Gaddar"
 
 #: simulation/templates/gaia/fauna_wolf.xml:24
 msgid "Wolf"
@@ -538,7 +539,7 @@ msgstr "Tonfisk"
 
 #: simulation/templates/gaia/fruit/apple.xml:4
 msgid "Apple"
-msgstr ""
+msgstr "Äpple"
 
 #: simulation/templates/gaia/fruit/banana.xml:4
 msgid "Banana"
@@ -568,7 +569,7 @@ msgstr "Druvor"
 
 #: simulation/templates/gaia/fruit/olive.xml:4
 msgid "Olive"
-msgstr ""
+msgstr "Oliv"
 
 #: simulation/templates/gaia/ruins/column_doric.xml:8
 msgid "Ancient Ruins"
@@ -663,11 +664,11 @@ msgstr "Träskatt"
 
 #: simulation/templates/gaia/tree/acacia.xml:4
 msgid "Acacia"
-msgstr ""
+msgstr "Akacia"
 
 #: simulation/templates/gaia/tree/aleppo_pine.xml:4
 msgid "Aleppo Pine"
-msgstr ""
+msgstr "Aleppotall"
 
 #: simulation/templates/gaia/tree/bamboo.xml:4
 #: simulation/templates/gaia/tree/bamboo_single.xml:4
@@ -708,7 +709,7 @@ msgstr "Buske"
 
 #: simulation/templates/gaia/tree/carob.xml:4
 msgid "Carob"
-msgstr ""
+msgstr "Johannesbröd"
 
 #: simulation/templates/gaia/tree/cedar_atlas_1_sapling.xml:4
 msgid "Atlas Cedar Sapling"
@@ -730,7 +731,7 @@ msgstr "Kretensk Dadelpalm"
 #: simulation/templates/gaia/tree/cypress_wild.xml:4
 #: simulation/templates/gaia/tree/cypress_windswept.xml:4
 msgid "Cypress"
-msgstr ""
+msgstr "Cypress"
 
 #: simulation/templates/gaia/tree/dead.xml:4
 #: simulation/templates/gaia/tree/temperate.xml:4
@@ -742,12 +743,12 @@ msgstr "Lövträd"
 #: simulation/templates/gaia/tree/elm.xml:4
 #: simulation/templates/gaia/tree/elm_dead.xml:4
 msgid "Elm"
-msgstr ""
+msgstr "Alm"
 
 #: simulation/templates/gaia/tree/euro_beech.xml:4
 #: simulation/templates/gaia/tree/euro_beech_aut.xml:4
 msgid "European Beech"
-msgstr ""
+msgstr "Europeisk bok"
 
 #: simulation/templates/gaia/tree/euro_birch.xml:4
 msgid "Silver Birch"
@@ -756,7 +757,7 @@ msgstr "Vårtbjörk"
 #: simulation/templates/gaia/tree/fir.xml:4
 #: simulation/templates/gaia/tree/fir_winter.xml:4
 msgid "Fir"
-msgstr ""
+msgstr "Ädelgran"
 
 #: simulation/templates/gaia/tree/fir_sapling.xml:4
 msgid "Fir Sapling"
@@ -784,7 +785,7 @@ msgstr "Europeisk Dvärgpalm"
 #: simulation/templates/gaia/tree/oak_dead.xml:4
 #: simulation/templates/gaia/tree/oak_new.xml:4
 msgid "Oak"
-msgstr ""
+msgstr "Ek"
 
 #: simulation/templates/gaia/tree/oak_holly.xml:4
 msgid "Holly Oak"
@@ -797,7 +798,7 @@ msgstr "Ungersk ek"
 
 #: simulation/templates/gaia/tree/oak_large.xml:4
 msgid "Large Oak"
-msgstr ""
+msgstr "Stor ek"
 
 #: simulation/templates/gaia/tree/palm_areca.xml:4
 msgid "Areca Palm"
@@ -822,7 +823,7 @@ msgstr "Tropisk Palm"
 #: simulation/templates/gaia/tree/pine.xml:4
 #: simulation/templates/gaia/tree/pine_w.xml:4
 msgid "Pine"
-msgstr ""
+msgstr "Tall"
 
 #: simulation/templates/gaia/tree/pine_black.xml:4
 #: simulation/templates/gaia/tree/pine_black_dead.xml:4
@@ -843,7 +844,7 @@ msgstr "Poppel"
 #: simulation/templates/gaia/tree/poplar_lombardy.xml:4
 #: simulation/templates/gaia/tree/poplar_lombardy_dead.xml:4
 msgid "Black Poplar"
-msgstr ""
+msgstr "Svartpoppel"
 
 #: simulation/templates/gaia/tree/senegal_date_palm.xml:4
 msgid "Senegal Date Palm"
@@ -855,7 +856,7 @@ msgstr "Strypfikus"
 
 #: simulation/templates/gaia/tree/tamarix.xml:4
 msgid "Tamarix"
-msgstr ""
+msgstr "Tamarisk"
 
 #: simulation/templates/gaia/tree/teak.xml:8
 msgid "Teak"
@@ -863,7 +864,7 @@ msgstr "Teak"
 
 #: simulation/templates/gaia/tree/toona.xml:4
 msgid "Toona"
-msgstr ""
+msgstr "Toona"
 
 #: simulation/templates/gaia/tree/tropic_rainforest.xml:4
 msgid "Rainforest Tree"
@@ -990,7 +991,7 @@ msgstr "Spion"
 
 #: simulation/templates/template_formation.xml:26
 msgid "Requires at least 2 Soldiers or Siege Engines."
-msgstr ""
+msgstr "Kräver minst 2 soldater eller belägringsvapen."
 
 #: simulation/templates/template_gaia.xml:7
 msgid "Gaia"

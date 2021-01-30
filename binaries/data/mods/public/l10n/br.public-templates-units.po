@@ -9,15 +9,16 @@
 # Irriep Nala Novram <allannkorh@yahoo.fr>, 2016-2018
 # Jojo Bob <fblogiou@gmail.com>, 2020
 # Mael Bogaer <leogami.pidouf@gmail.com>, 2020
+# Stanislas Dolcini <stan@wildfiregames.com>, 2021
 # Thierry Vignaud <thierry.vignaud@gmail.com>, 2016-2017
 # Irriep Nala Novram <allannkorh@yahoo.fr>, 2016
 # Goulven, 2017-2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-20 00:57+0000\n"
-"PO-Revision-Date: 2021-01-20 03:35+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-01-25 08:08+0000\n"
+"PO-Revision-Date: 2021-01-29 13:43+0000\n"
+"Last-Translator: Stanislas Dolcini <stan@wildfiregames.com>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -88,24 +89,24 @@ msgstr "Marc'hegerezh meskadeg"
 
 #: simulation/templates/template_unit_cavalry_melee.xml:8
 #: simulation/templates/template_unit_champion_cavalry_axeman.xml:21
-#: simulation/templates/template_unit_champion_cavalry_maceman.xml:21
+#: simulation/templates/template_unit_champion_cavalry_maceman.xml:22
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:29
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:21
-#: simulation/templates/template_unit_champion_elephant_melee.xml:18
+#: simulation/templates/template_unit_champion_elephant_melee.xml:19
 #: simulation/templates/template_unit_champion_infantry_axeman.xml:21
-#: simulation/templates/template_unit_champion_infantry_maceman.xml:21
+#: simulation/templates/template_unit_champion_infantry_maceman.xml:22
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:29
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:29
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:21
 #: simulation/templates/template_unit_champion_infantry_trumpeter.xml:27
 #: simulation/templates/template_unit_dog.xml:35
 #: simulation/templates/template_unit_hero_cavalry_axeman.xml:18
-#: simulation/templates/template_unit_hero_cavalry_maceman.xml:18
+#: simulation/templates/template_unit_hero_cavalry_maceman.xml:19
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:26
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:24
-#: simulation/templates/template_unit_hero_elephant_melee.xml:32
+#: simulation/templates/template_unit_hero_elephant_melee.xml:33
 #: simulation/templates/template_unit_hero_infantry_axeman.xml:18
-#: simulation/templates/template_unit_hero_infantry_maceman.xml:18
+#: simulation/templates/template_unit_hero_infantry_maceman.xml:19
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:26
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:26
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:24
@@ -149,16 +150,16 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Mace"
 msgstr ""
 
-#: simulation/templates/template_unit_cavalry_melee_maceman.xml:22
+#: simulation/templates/template_unit_cavalry_melee_maceman.xml:23
 msgid "Cavalry Maceman"
 msgstr ""
 
-#: simulation/templates/template_unit_cavalry_melee_maceman.xml:23
-#: simulation/templates/template_unit_champion_cavalry_maceman.xml:21
-#: simulation/templates/template_unit_champion_infantry_maceman.xml:21
-#: simulation/templates/template_unit_hero_cavalry_maceman.xml:18
-#: simulation/templates/template_unit_hero_infantry_maceman.xml:18
-#: simulation/templates/template_unit_infantry_melee_maceman.xml:23
+#: simulation/templates/template_unit_cavalry_melee_maceman.xml:24
+#: simulation/templates/template_unit_champion_cavalry_maceman.xml:22
+#: simulation/templates/template_unit_champion_infantry_maceman.xml:22
+#: simulation/templates/template_unit_hero_cavalry_maceman.xml:19
+#: simulation/templates/template_unit_hero_infantry_maceman.xml:19
+#: simulation/templates/template_unit_infantry_melee_maceman.xml:24
 msgid "Maceman"
 msgstr "Horzhour"
 
@@ -178,6 +179,7 @@ msgstr "Goafer War-Varc'h"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:30
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:28
+#: simulation/templates/template_unit_hero_cavalry_spearman.xml:25
 msgid "Counters: 1.75× vs Cavalry."
 msgstr ""
 
@@ -317,7 +319,7 @@ msgstr ""
 msgid "Champion Cavalry Javelineer"
 msgstr ""
 
-#: simulation/templates/template_unit_champion_cavalry_maceman.xml:20
+#: simulation/templates/template_unit_champion_cavalry_maceman.xml:21
 msgid "Champion Cavalry Maceman"
 msgstr ""
 
@@ -338,7 +340,7 @@ msgstr "Olifant Brezel"
 #: simulation/templates/template_unit_elephant.xml:11
 #: simulation/templates/template_unit_fauna_hunt_defensive_elephant.xml:18
 #: simulation/templates/template_unit_fauna_hunt_skittish_elephant_infant.xml:4
-#: simulation/templates/template_unit_hero_elephant_melee.xml:32
+#: simulation/templates/template_unit_hero_elephant_melee.xml:33
 #: simulation/templates/units/maur/support_elephant.xml:23
 msgid "Elephant"
 msgstr "Olifant"
@@ -373,7 +375,7 @@ msgstr ""
 msgid "Champion Infantry Javelineer"
 msgstr ""
 
-#: simulation/templates/template_unit_champion_infantry_maceman.xml:20
+#: simulation/templates/template_unit_champion_infantry_maceman.xml:21
 msgid "Champion Infantry Maceman"
 msgstr ""
 
@@ -485,7 +487,7 @@ msgstr ""
 msgid "Hero Cavalry Javelineer"
 msgstr ""
 
-#: simulation/templates/template_unit_hero_cavalry_maceman.xml:17
+#: simulation/templates/template_unit_hero_cavalry_maceman.xml:18
 msgid "Hero Cavalry Maceman"
 msgstr ""
 
@@ -493,15 +495,11 @@ msgstr ""
 msgid "Hero Cavalry Spearman"
 msgstr "Goafer War-Varc'h Harozel"
 
-#: simulation/templates/template_unit_hero_cavalry_spearman.xml:25
-msgid "Counters: 1.5× vs Cavalry."
-msgstr ""
-
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:25
 msgid "Hero Cavalry Swordsman"
 msgstr "Klezeour War-Varc'h Harozel"
 
-#: simulation/templates/template_unit_hero_elephant_melee.xml:31
+#: simulation/templates/template_unit_hero_elephant_melee.xml:32
 msgid "Hero Elephant"
 msgstr ""
 
@@ -529,7 +527,7 @@ msgstr ""
 msgid "Hero Infantry Javelineer"
 msgstr ""
 
-#: simulation/templates/template_unit_hero_infantry_maceman.xml:17
+#: simulation/templates/template_unit_hero_infantry_maceman.xml:18
 msgid "Hero Infantry Maceman"
 msgstr ""
 
@@ -555,7 +553,7 @@ msgstr "Labourer"
 msgid "Melee Infantry"
 msgstr "Troadeien meskadeg"
 
-#: simulation/templates/template_unit_infantry_melee_maceman.xml:22
+#: simulation/templates/template_unit_infantry_melee_maceman.xml:23
 msgid "Infantry Maceman"
 msgstr ""
 
@@ -2275,7 +2273,7 @@ msgstr "Arštibara"
 
 #: simulation/templates/units/pers/catafalque.xml:9
 msgid "Artaxšaçā"
-msgstr ""
+msgstr "Artaxšaçā"
 
 #: simulation/templates/units/pers/cavalry_archer_b.xml:8
 msgid "Parthian Horse Archer"
@@ -2370,7 +2368,7 @@ msgstr "Gzerses I"
 #: simulation/templates/units/pers/hero_xerxes_i.xml:10
 #: simulation/templates/units/pers/hero_xerxes_i_chariot.xml:14
 msgid "Xšayāršā"
-msgstr ""
+msgstr "Xšayāršā"
 
 #: simulation/templates/units/pers/infantry_archer_b.xml:12
 msgid "Sogdian Archer"

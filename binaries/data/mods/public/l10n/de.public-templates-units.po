@@ -30,9 +30,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-20 00:57+0000\n"
-"PO-Revision-Date: 2021-01-23 20:23+0000\n"
-"Last-Translator: xtother90\n"
+"POT-Creation-Date: 2021-01-25 08:08+0000\n"
+"PO-Revision-Date: 2021-01-25 09:36+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -103,24 +103,24 @@ msgstr "Nahkampfkavallerie"
 
 #: simulation/templates/template_unit_cavalry_melee.xml:8
 #: simulation/templates/template_unit_champion_cavalry_axeman.xml:21
-#: simulation/templates/template_unit_champion_cavalry_maceman.xml:21
+#: simulation/templates/template_unit_champion_cavalry_maceman.xml:22
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:29
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:21
-#: simulation/templates/template_unit_champion_elephant_melee.xml:18
+#: simulation/templates/template_unit_champion_elephant_melee.xml:19
 #: simulation/templates/template_unit_champion_infantry_axeman.xml:21
-#: simulation/templates/template_unit_champion_infantry_maceman.xml:21
+#: simulation/templates/template_unit_champion_infantry_maceman.xml:22
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:29
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:29
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:21
 #: simulation/templates/template_unit_champion_infantry_trumpeter.xml:27
 #: simulation/templates/template_unit_dog.xml:35
 #: simulation/templates/template_unit_hero_cavalry_axeman.xml:18
-#: simulation/templates/template_unit_hero_cavalry_maceman.xml:18
+#: simulation/templates/template_unit_hero_cavalry_maceman.xml:19
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:26
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:24
-#: simulation/templates/template_unit_hero_elephant_melee.xml:32
+#: simulation/templates/template_unit_hero_elephant_melee.xml:33
 #: simulation/templates/template_unit_hero_infantry_axeman.xml:18
-#: simulation/templates/template_unit_hero_infantry_maceman.xml:18
+#: simulation/templates/template_unit_hero_infantry_maceman.xml:19
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:26
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:26
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:24
@@ -164,16 +164,16 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Mace"
 msgstr "Streitkolben"
 
-#: simulation/templates/template_unit_cavalry_melee_maceman.xml:22
+#: simulation/templates/template_unit_cavalry_melee_maceman.xml:23
 msgid "Cavalry Maceman"
 msgstr "Berittener Streitkolbenträger"
 
-#: simulation/templates/template_unit_cavalry_melee_maceman.xml:23
-#: simulation/templates/template_unit_champion_cavalry_maceman.xml:21
-#: simulation/templates/template_unit_champion_infantry_maceman.xml:21
-#: simulation/templates/template_unit_hero_cavalry_maceman.xml:18
-#: simulation/templates/template_unit_hero_infantry_maceman.xml:18
-#: simulation/templates/template_unit_infantry_melee_maceman.xml:23
+#: simulation/templates/template_unit_cavalry_melee_maceman.xml:24
+#: simulation/templates/template_unit_champion_cavalry_maceman.xml:22
+#: simulation/templates/template_unit_champion_infantry_maceman.xml:22
+#: simulation/templates/template_unit_hero_cavalry_maceman.xml:19
+#: simulation/templates/template_unit_hero_infantry_maceman.xml:19
+#: simulation/templates/template_unit_infantry_melee_maceman.xml:24
 msgid "Maceman"
 msgstr "Streitkolbenkämpfer"
 
@@ -193,6 +193,7 @@ msgstr "Berittener Speerträger"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:30
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:28
+#: simulation/templates/template_unit_hero_cavalry_spearman.xml:25
 msgid "Counters: 1.75× vs Cavalry."
 msgstr "Konter: 1,75× gegen Kavallerie."
 
@@ -332,7 +333,7 @@ msgstr "Berittener Gardeaxtkämpfer"
 msgid "Champion Cavalry Javelineer"
 msgstr "Berittener Gardistspeerkämpfer"
 
-#: simulation/templates/template_unit_champion_cavalry_maceman.xml:20
+#: simulation/templates/template_unit_champion_cavalry_maceman.xml:21
 msgid "Champion Cavalry Maceman"
 msgstr "Berittener Gardestreitkolbenträger"
 
@@ -353,7 +354,7 @@ msgstr "Kriegselefant"
 #: simulation/templates/template_unit_elephant.xml:11
 #: simulation/templates/template_unit_fauna_hunt_defensive_elephant.xml:18
 #: simulation/templates/template_unit_fauna_hunt_skittish_elephant_infant.xml:4
-#: simulation/templates/template_unit_hero_elephant_melee.xml:32
+#: simulation/templates/template_unit_hero_elephant_melee.xml:33
 #: simulation/templates/units/maur/support_elephant.xml:23
 msgid "Elephant"
 msgstr "Elefant"
@@ -388,7 +389,7 @@ msgstr "Gardeaxtkämpfer"
 msgid "Champion Infantry Javelineer"
 msgstr "Infanterie Gardistspeerkämpfer"
 
-#: simulation/templates/template_unit_champion_infantry_maceman.xml:20
+#: simulation/templates/template_unit_champion_infantry_maceman.xml:21
 msgid "Champion Infantry Maceman"
 msgstr "Gardestreitkolbenträger"
 
@@ -500,7 +501,7 @@ msgstr "Berittener Heldenaxtkämpfer"
 msgid "Hero Cavalry Javelineer"
 msgstr "Berittener Heldenspeerkämpfer"
 
-#: simulation/templates/template_unit_hero_cavalry_maceman.xml:17
+#: simulation/templates/template_unit_hero_cavalry_maceman.xml:18
 msgid "Hero Cavalry Maceman"
 msgstr "Berittener Heldenstreitkolbenträger"
 
@@ -508,15 +509,11 @@ msgstr "Berittener Heldenstreitkolbenträger"
 msgid "Hero Cavalry Spearman"
 msgstr "Berittener Heldenspeerkämpfer"
 
-#: simulation/templates/template_unit_hero_cavalry_spearman.xml:25
-msgid "Counters: 1.5× vs Cavalry."
-msgstr "Konter: 1,5× gegen Kavallerie"
-
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:25
 msgid "Hero Cavalry Swordsman"
 msgstr "Berittener Heldenschwertkämpfer"
 
-#: simulation/templates/template_unit_hero_elephant_melee.xml:31
+#: simulation/templates/template_unit_hero_elephant_melee.xml:32
 msgid "Hero Elephant"
 msgstr "Heldenelefant"
 
@@ -544,7 +541,7 @@ msgstr "Axtkämpfer-Held"
 msgid "Hero Infantry Javelineer"
 msgstr "Infanterie Heldenspeerkämpfer"
 
-#: simulation/templates/template_unit_hero_infantry_maceman.xml:17
+#: simulation/templates/template_unit_hero_infantry_maceman.xml:18
 msgid "Hero Infantry Maceman"
 msgstr "Heldenstreitkolbenträger"
 
@@ -570,7 +567,7 @@ msgstr "Arbeiter"
 msgid "Melee Infantry"
 msgstr "Nahkampfinfanterie"
 
-#: simulation/templates/template_unit_infantry_melee_maceman.xml:22
+#: simulation/templates/template_unit_infantry_melee_maceman.xml:23
 msgid "Infantry Maceman"
 msgstr "Streitkolbenträger"
 

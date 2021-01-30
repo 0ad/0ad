@@ -50,7 +50,7 @@
 # Paweł Klimek <pawelklimek102@gmail.com>, 2014
 # Piotr <joda17@wp.pl>, 2015
 # Piotr Lehmann <lejmus@o2.pl>, 2017
-# Przemysław Murach <moonshine133@vp.pl>, 2019-2020
+# Przemysław Murach <moonshine133@vp.pl>, 2019-2021
 # Robert Wolniak <robert.wolniak@gmail.com>, 2014
 # Robert x <jankinowski11@gmail.com>, 2020
 # Jakub Rosiński, 2014
@@ -61,9 +61,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-01-22 09:25+0000\n"
-"Last-Translator: Daniel Koć <daniel@xn--ko-wla.pl>\n"
+"POT-Creation-Date: 2021-01-29 08:08+0000\n"
+"PO-Revision-Date: 2021-01-29 09:16+0000\n"
+"Last-Translator: Przemysław Murach <moonshine133@vp.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -869,58 +869,62 @@ msgstr "Łączenie z serwerem..."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:166
 msgid "Server is not running."
-msgstr ""
+msgstr "Serwer nie działa."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:167
 msgid "Password is invalid."
-msgstr ""
+msgstr "Nieprawidłowe hasło."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:170
+#: gui/gamesetup_mp/gamesetup_mp.js:168
+msgid "You have been banned."
+msgstr "Zablokowano cię."
+
+#: gui/gamesetup_mp/gamesetup_mp.js:171
 #, javascript-format
 msgid "\\[Invalid value %(reason)s]"
-msgstr ""
+msgstr "\\[Wartość niepoprawna %(reason)s]"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:178
+#: gui/gamesetup_mp/gamesetup_mp.js:179
 msgid "Failed to connect to the server."
 msgstr "Nie udało się połączyć z serwerem."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:180
+#: gui/gamesetup_mp/gamesetup_mp.js:181
 msgid "Connection failed"
-msgstr ""
+msgstr "Połączenie nieudane"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:192
+#: gui/gamesetup_mp/gamesetup_mp.js:193
 #, javascript-format
 msgid "Net message: %(message)s"
 msgstr "Wiadomość sieciowa: %(message)s"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:287
+#: gui/gamesetup_mp/gamesetup_mp.js:288
 msgid "Registering with server..."
 msgstr "Rejestracja na serwerze..."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:293
+#: gui/gamesetup_mp/gamesetup_mp.js:294
 msgid "Game has already started, rejoining..."
 msgstr "Gra już się zaczęła. Ponowne łączenie."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:372
+#: gui/gamesetup_mp/gamesetup_mp.js:373
 msgid "Game name already in use."
 msgstr "Nazwa gry jest już używana."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:387
+#: gui/gamesetup_mp/gamesetup_mp.js:388
 #, javascript-format
 msgid "Cannot host game: %(message)s."
 msgstr "Nie można hostować gry: %(message)s."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:388 gui/gamesetup_mp/gamesetup_mp.js:417
-#: gui/gamesetup_mp/gamesetup_mp.js:444 gui/gamesetup_mp/gamesetup_mp.js:459
+#: gui/gamesetup_mp/gamesetup_mp.js:389 gui/gamesetup_mp/gamesetup_mp.js:418
+#: gui/gamesetup_mp/gamesetup_mp.js:445 gui/gamesetup_mp/gamesetup_mp.js:460
 msgid "Error"
 msgstr "Błąd"
 
-#: gui/gamesetup_mp/gamesetup_mp.js:416 gui/gamesetup_mp/gamesetup_mp.js:458
+#: gui/gamesetup_mp/gamesetup_mp.js:417 gui/gamesetup_mp/gamesetup_mp.js:459
 #, javascript-format
 msgid "Cannot join game: %(message)s."
 msgstr "Nie można dołączyć do gry: %(message)s."
 
-#: gui/gamesetup_mp/gamesetup_mp.js:473
+#: gui/gamesetup_mp/gamesetup_mp.js:474
 #, javascript-format
 msgid "%(playername)s's game"
 msgstr "Gra użytkownika %(playername)s"
@@ -957,7 +961,7 @@ msgstr "Nazwa serwera:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):112
 msgid "Server Password:"
-msgstr ""
+msgstr "Hasło serwera:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):128
 msgid "Use STUN to work around firewalls"
@@ -977,7 +981,7 @@ msgstr "Hasło:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):162
 msgid "Confirm"
-msgstr ""
+msgstr "Potwierdź"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):52
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):99
@@ -986,7 +990,7 @@ msgstr "Zostaw puste, a zostana użyte wartości domyślne."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):113
 msgid "Leave blank to not require it."
-msgstr ""
+msgstr "Pozostaw puste, żeby nie wymagać."
 
 #: gui/loading/ProgressBar.js:48
 #, javascript-format

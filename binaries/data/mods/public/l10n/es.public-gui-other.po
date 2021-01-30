@@ -21,7 +21,8 @@
 # hola jaaj <vespejo3@gmail.com>, 2017
 # ninovolador <ignacio.rodriguez.mo@gmail.com>, 2015
 # Javier Rojas <hekeine@gmail.com>, 2017
-# Jesus A <jasenjot@gmail.com>, 2017
+# Jesús Asenjo <jasenjot@gmail.com>, 2017
+# Jesús Asenjo <jasenjot@gmail.com>, 2021
 # Joseba Uranga <shadowjosebau@gmail.com>, 2019
 # José Javier Domínguez Reina <jjdominguez@gmail.com>, 2017
 # Juan Jaramillo <juanda097@protonmail.ch>, 2014-2015
@@ -40,9 +41,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-01-22 08:36+0000\n"
-"Last-Translator: Swyter <Swyterzone@gmail.com>\n"
+"POT-Creation-Date: 2021-01-29 11:30+0000\n"
+"PO-Revision-Date: 2021-01-29 14:26+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -489,7 +490,7 @@ msgstr "Se te ha restringido la entrada."
 
 #: gui/common/network.js:73
 msgid "Player name in use. If you were disconnected, retry in few seconds."
-msgstr ""
+msgstr "Nombre del jugador en uso. Si te has desconectado, vuelve a intentarlo en unos momentos."
 
 #: gui/common/network.js:74
 msgid "Server full."
@@ -513,15 +514,15 @@ msgstr "Error: El cliente ha simulado un movimiento inesperado."
 
 #: gui/common/network.js:79
 msgid "Password is invalid."
-msgstr ""
+msgstr "Contraseña incorrecta."
 
 #: gui/common/network.js:80
 msgid "Could not find an unused port for the enet STUN client."
-msgstr ""
+msgstr "No fue posible encontrar un puerto libre para el cliente de red STUN."
 
 #: gui/common/network.js:81
 msgid "Could not find the STUN endpoint."
-msgstr ""
+msgstr "No fue posible encontrar el nodo STUN destino."
 
 #: gui/common/network.js:84
 #, javascript-format
@@ -1025,7 +1026,7 @@ msgstr "Número de reparadores:"
 
 #: gui/common/tooltips.js:605
 msgid "Remaining repair time:"
-msgstr ""
+msgstr "Tiempo de emparejado restante:"
 
 #: gui/common/tooltips.js:609
 #, javascript-format
@@ -1048,7 +1049,7 @@ msgstr "Número de constructores:"
 
 #: gui/common/tooltips.js:639
 msgid "Remaining build time:"
-msgstr ""
+msgstr "Tiempo de carga restante:"
 
 #: gui/common/tooltips.js:643
 #, javascript-format
@@ -1345,7 +1346,7 @@ msgstr "Latín"
 
 #: gui/credits/texts/audio.jsonContent[3].Content[2].Subtitle
 msgid "Napatan"
-msgstr ""
+msgstr "Napatan"
 
 #: gui/credits/texts/audio.jsonContent[3].Content[3].Subtitle
 msgid "Persian"
@@ -1673,7 +1674,7 @@ msgstr "Restaurar los valores originales borrará tus ajustes. ¿Quieres continu
 
 #: gui/options/options.js:351
 msgid "Some setting values are invalid! Are you sure you want to save them?"
-msgstr ""
+msgstr "¡Algunos valores de configuración no son válidos! ¿Estás seguro de que quieres guardarlos?"
 
 #: gui/options/options.js:377
 msgid "You have unsaved changes, do you want to close this window?"
@@ -1886,7 +1887,7 @@ msgstr "Visión suave"
 
 #: gui/options/options.json[1].options[18].tooltip
 msgid "Lift darkness and fog of war smoothly."
-msgstr ""
+msgstr "Levantar la oscuridad y niebla de guerra suavemente."
 
 #: gui/options/options.json[1].options[19].label
 msgid "VSync"
@@ -2434,29 +2435,29 @@ msgstr "Número de unidades reclutadas por lote por defecto."
 
 #: gui/options/options.json[5].options[20].label
 msgid "Formation control"
-msgstr ""
+msgstr "Control de formación"
 
 #: gui/options/options.json[5].options[20].list[0].label
 msgid "Walk/Patrol Only"
-msgstr ""
+msgstr "Solo caminar/patrullar"
 
 #: gui/options/options.json[5].options[20].list[0].tooltip
 msgid "Other orders will disband existing formations."
-msgstr ""
+msgstr "Otras órdenes desharán las formaciones existentes."
 
 #: gui/options/options.json[5].options[20].list[1].label
 msgid "No Override"
-msgstr ""
+msgstr "No sobreescribir"
 
 #: gui/options/options.json[5].options[20].list[1].tooltip
 msgid "Units in formations stay in formations."
-msgstr ""
+msgstr "Las unidades en formación se mantienen en formación."
 
 #: gui/options/options.json[5].options[20].tooltip
 msgid ""
 "Decide whether formations are enabled for all orders or only 'Walk' and "
 "'Patrol'."
-msgstr ""
+msgstr "Decide si las formaciones tienen permitidas todas las órdenes o solamente 'caminar' y 'patrullar'."
 
 #: gui/options/options.json[5].options[2].label
 msgid "Scroll batch increment ratio"
@@ -2822,8 +2823,8 @@ msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
 #: gui/pregame/ProjectInformation.js:18
-msgid "Alpha XXIV"
-msgstr "Alfa XXIV"
+msgid "Alpha XXIV: Xšayaṛšā"
+msgstr ""
 
 #: gui/pregame/ProjectInformation.js:19
 msgid ""
