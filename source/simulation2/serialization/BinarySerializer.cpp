@@ -454,16 +454,18 @@ u32 CBinarySerializerScriptImpl::GetScriptBackrefTag(JS::HandleObject obj)
 	// to indicate multiple references to one object(/array). So every time we serialize a
 	// new object, we give it a new tag; when we serialize it a second time we just refer
 	// to that tag.
-	//
-	// Tags are stored on the object. To avoid overwriting any existing property,
-	// they are saved as a uniquely-named, non-enumerable property (the serializer's unique symbol).
 
 	ScriptRequest rq(m_ScriptInterface);
 
 	ObjectTagMap::Ptr ptr = m_ScriptBackrefTags.lookup(JS::Heap<JSObject*>(obj.get()));
 	if (!ptr.found())
 	{
-		ENSURE(m_ScriptBackrefTags.put(JS::Heap<JSObject*>(obj.get()), ++m_ScriptBackrefsNext));
+		if (!m_ScriptBackrefTags.put(JS::Heap<JSObject*>(obj.get()), ++m_ScriptBackrefsNext))
+		{
+			JS::RootedValue objval(rq.cx, JS::ObjectValue(*obj.get()));
+			LOGERROR("BinarySerializer: error at insertion. Object was %s", m_ScriptInterface.ToString(&objval));
+			return 0;
+		}
 		// Return 0 to mean "you have to serialize this object";
 		return 0;
 	}
