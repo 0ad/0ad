@@ -1577,6 +1577,11 @@ UnitAI.prototype.UnitFsmSpec = {
 				}
 			},
 
+			"Attacked": function(msg) {
+				if (this.isIdle && (this.GetStance().targetAttackersAlways || !this.order || !this.order.data || !this.order.data.force))
+					this.RespondToTargetedEntities([msg.data.attacker]);
+			},
+
 			// On the range updates:
 			// We check for idleness to prevent an entity to react only to newly seen entities
 			// when receiving a Los*RangeUpdate on the same turn as the entity becomes idle
