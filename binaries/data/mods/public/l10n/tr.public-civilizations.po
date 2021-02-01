@@ -20,7 +20,7 @@
 # Ferhat Olçum <ferhatolcum@gmail.com>, 2018
 # Furkan Çevik <furkan_ts1967@hotmail.com>, 2013
 # Gokhan" Colpan <golpan27lp@yahoo.com>, 2017
-# Günay Yılmaz, 2019-2020
+# Günay Yılmaz, 2019-2021
 # Kudret <kudretemre@hotmail.com.tr>, 2014
 # mehmet akar <mehmettakar.35@gmail.com>, 2013
 # Merve BİÇKES <dark_angel_369_06@hotmail.com>, 2014
@@ -48,7 +48,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-01-22 08:36+0000\n"
+"PO-Revision-Date: 2021-01-30 06:35+0000\n"
 "Last-Translator: Günay Yılmaz\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -119,7 +119,7 @@ msgstr "Miltiades"
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].Description
 msgid "Workers +10% metal gather rate per phase advance."
-msgstr ""
+msgstr "İşçiler aşama gelişimi başına %10 metal çıkarma oranı alır."
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].History
 msgid ""
@@ -265,19 +265,19 @@ msgstr "Himilko"
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].Description
 msgid "Merchant Ships +25% trade gain."
-msgstr ""
+msgstr "Tüccar Gemileri +%25 ticaret getirisi."
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].Name
 msgid "Commercial Acumen"
-msgstr ""
+msgstr "Ticari Zeka"
 
 #: simulation/data/civs/cart.jsonCivBonuses[1].Description
 msgid "Docks and Markets +10% international trade bonus."
-msgstr ""
+msgstr "Tersane ve Marketler +%10 uluslararası ticaret bonusu."
 
 #: simulation/data/civs/cart.jsonCivBonuses[1].Name
 msgid "Desirable Products"
-msgstr ""
+msgstr "Talep Edilen Üretimler"
 
 #: simulation/data/civs/cart.jsonHistory
 msgid ""
@@ -377,7 +377,7 @@ msgstr "Tantalos"
 
 #: simulation/data/civs/iber.jsonCivBonuses[0].Description
 msgid "Iberians start with City Walls around their base on most maps."
-msgstr ""
+msgstr "İberler çoğu haritada üslerinin etrafındaki Şehir Surları ile başlar."
 
 #: simulation/data/civs/iber.jsonCivBonuses[0].History
 msgid ""
@@ -388,17 +388,17 @@ msgstr "Alüvyonlu ovalar ve nehir vadileri hariç, İberya Yarımadasında taş
 
 #: simulation/data/civs/iber.jsonCivBonuses[0].Name
 msgid "Starting Walls"
-msgstr ""
+msgstr "Başlangıç Duvarları"
 
 #: simulation/data/civs/iber.jsonCivBonuses[1].Description
 msgid ""
 "Stone Towers −50% wood cost, +150% stone cost, +33% build time, +60% health,"
 " +3 garrison capacity, and +1 default arrow count."
-msgstr ""
+msgstr "Taş Kuleler −% 50 odun maliyeti, +% 150 taş maliyeti, +% 33 inşa süresi, +% 60 sağlık, +3 garnizon kapasitesi ve +1 öntanımlı ok sayısı."
 
 #: simulation/data/civs/iber.jsonCivBonuses[1].Name
 msgid "Massive Towers"
-msgstr ""
+msgstr "Büyük Kuleler"
 
 #: simulation/data/civs/iber.jsonHistory
 msgid ""
@@ -473,12 +473,12 @@ msgstr "Nasalsa"
 #: simulation/data/civs/kush.jsonCivBonuses[0].Description
 #: simulation/data/civs/pers.jsonCivBonuses[1].Description
 msgid "Battering Rams +20% attack damage and +2 garrison capacity."
-msgstr ""
+msgstr "Battering Rams +% 20 saldırı gücü ve +2 garnizon kapasitesi."
 
 #: simulation/data/civs/kush.jsonCivBonuses[0].Name
 #: simulation/data/civs/pers.jsonCivBonuses[1].Name
 msgid "Large Rams"
-msgstr ""
+msgstr "Büyük Koçbaşları"
 
 #: simulation/data/civs/kush.jsonHistory
 msgid ""
@@ -670,11 +670,11 @@ msgstr "Artaxshacha III"
 
 #: simulation/data/civs/pers.jsonCivBonuses[0].Description
 msgid "Land Traders +25% trade gain."
-msgstr ""
+msgstr "Kara Tüccarları +%25 ticaret getirisi."
 
 #: simulation/data/civs/pers.jsonCivBonuses[0].Name
 msgid "Darics"
-msgstr ""
+msgstr "Darics"
 
 #: simulation/data/civs/pers.jsonHistory
 msgid ""
@@ -769,7 +769,7 @@ msgstr "Ptolemy Neos Dionysos"
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].Description
 msgid "Bolt Shooters −33% attack damage and −33% attack time."
-msgstr ""
+msgstr "Ok Atıcılar −% 33 saldırı gücü ve −% 33 saldırı süresi."
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].Name
 msgid "Polybolos"
@@ -860,11 +860,11 @@ msgstr "Kaplumbağa Düzeni"
 
 #: simulation/data/civs/rome.jsonCivBonuses[1].Description
 msgid "Battering Rams +20% attack damage. Stone Throwers +10% attack damage."
-msgstr ""
+msgstr "Koçbaşları +% 20 saldırı gücü. Taş atıcılar +% 10 saldırı gücü."
 
 #: simulation/data/civs/rome.jsonCivBonuses[1].Name
 msgid "Legionary Engineers"
-msgstr ""
+msgstr "Lejyon Muhendisleri"
 
 #: simulation/data/civs/rome.jsonHistory
 msgid ""
@@ -1053,11 +1053,11 @@ msgstr "Eurykrates"
 
 #: simulation/data/civs/spart.jsonCivBonuses[0].Description
 msgid "Female Citizens +40% health and +50% melee attack hack damage."
-msgstr ""
+msgstr "Kadın Vatandaşlar +% 40 sağlık ve +% 50 yakın muharebe saldırısı darbe hasarı."
 
 #: simulation/data/civs/spart.jsonCivBonuses[0].Name
 msgid "Spartan Women"
-msgstr ""
+msgstr "Spartalı Kadınlar"
 
 #: simulation/data/civs/spart.jsonHistory
 msgid ""

@@ -26,13 +26,13 @@
 # Pau Soliva <psoliva@naralabs.com>, 2017
 # Peredelgrau, 2016
 # Peredelgrau, 2016
-# Haommin <tfs.msimangu@gmail.com>, 2016,2020
+# Haommin <tfs.msimangu@gmail.com>, 2016,2020-2021
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-01-22 08:37+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-01-31 21:12+0000\n"
+"Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -85,7 +85,7 @@ msgstr "Patriotisme"
 msgid ""
 "Soldiers +1 crush, hack, pierce resistance and +10% melee and ranged attack "
 "damage."
-msgstr ""
+msgstr "Augmenta en 1 la resistència d'impacte, tall i perforació i un 10% l'atac cos a cos i a distància dels soldats."
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraName
 msgid "Exhortative Presence"
@@ -101,11 +101,11 @@ msgstr "Sacerdoci poderós"
 
 #: simulation/data/auras/structures/library.jsonauraDescription
 msgid "Structures −15% technology resource costs and research time."
-msgstr ""
+msgstr "Redueix un 15% el cost i el temps d'investigació de les tecnologies."
 
 #: simulation/data/auras/structures/library.jsonauraName
 msgid "Centre of Scholarship"
-msgstr ""
+msgstr "Centre del saber"
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraDescription
 msgid "Structures +50% capture points garrison regeneration rate."
@@ -150,7 +150,7 @@ msgstr "Hel·lenització"
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraDescription
 msgid ""
 "Garrisoned Soldiers +3 crush, hack, pierce resistance and +20 vision range."
-msgstr ""
+msgstr "Els soldats refugiats augmenten en 3 la resistència d'impacte, tall i perforació i en 20 el camp visual."
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraName
 msgid "Wall Protection"
@@ -160,7 +160,7 @@ msgstr "Protecció de muralla"
 msgid ""
 "+20% maximum population limit (requires the “Glorious Expansion” "
 "technology)."
-msgstr ""
+msgstr "Augmenta el límit de població màxim un 20% (necessita la tecnologia “Expansió gloriosa”)."
 
 #: simulation/data/auras/structures/wonder_population_cap.jsonauraName
 msgid "Glorious Expansion"
@@ -274,11 +274,11 @@ msgstr "Lliga del Peloponès"
 
 #: simulation/data/auras/units/carnyx.jsonauraDescription
 msgid "Enemy Soldiers −10% attack damage and capture attack strength."
-msgstr ""
+msgstr "Els soldats enemics perden un 10% d'atac i de poder de captura."
 
 #: simulation/data/auras/units/carnyx.jsonauraName
 msgid "Intimidating Sound"
-msgstr ""
+msgstr "So amenaçador"
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_1.jsonauraDescription
 msgid ""
@@ -325,7 +325,7 @@ msgstr "Tàctiques de guerrilla"
 msgid ""
 "Leader of the Carthaginian heavy cavalry at Trebia and Cannae, where his triple charge had devastating effects on the enemy.\n"
 "Melee Cavalry +1 crush, hack, pierce resistance and +10% health."
-msgstr ""
+msgstr "Líder de la cavalleria pesada cartaginesa al Trèbia i a Cannes, on la seva triple càrrega va tenir efectes devastadors en l'enemic.\n+1 de resistència d'impacte, tall i perforació i +10% de salut per a la cavalleria cos a cos."
 
 #: simulation/data/auras/units/catafalques/cart_catafalque.jsonauraName
 msgid "Commander of Heavy Cavalry"
@@ -455,7 +455,7 @@ msgstr "Venjador de Lucrècia"
 msgid ""
 "Brutus was one of the key figures in the overthrow of the monarchy and the founding of the Roman Republic. Later, as consul he led a Roman army to victory against the Etruscan King Tarquinius who sought to retake the throne.\n"
 "Humans and Siege Engines +1 crush, hack, pierce resistance."
-msgstr ""
+msgstr "Brut va ser una de les figures clau en l'enderrocament de la monarquia i la fundació de la República de Roma. Més endavant, com a cònsol, va conduir un exèrcit a la victòria contra el rei etrusc Tarquini, que volia prendre el tron.\n+1 de resistència d'impacte, tall i perforació per a totes les unitats humanes i màquines de setge."
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_2.jsonauraName
 msgid "Founder and Defender of the Republic"
@@ -528,7 +528,7 @@ msgstr "Elefants de treball"
 msgid ""
 "Soldiers in his formation +3 crush, hack, pierce resistance, +15% movement "
 "speed."
-msgstr ""
+msgstr "Els soldats que estiguin en la seva formació guanyen 3 de resistència d'impacte, tall i perforació i 15% de velocitat."
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraName
 msgid "Formation Reforms"
@@ -590,7 +590,7 @@ msgstr "Exèrcit campió"
 msgid ""
 "Soldiers and Siege Engines +1 crush, hack, pierce resistance, +15% movement "
 "speed."
-msgstr ""
+msgstr "Els soldats i màquines de setge guanyen 3 de resistència d'impacte, tall i perforació i 15% de velocitat."
 
 #: simulation/data/auras/units/heroes/brit_hero_caratacos.jsonauraName
 msgid "Guerrilla Chief"
@@ -681,7 +681,7 @@ msgstr "Defensor valerós"
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_2.jsonauraDescription
 msgid "Soldiers +1 crush, hack, pierce resistance."
-msgstr ""
+msgstr "Augmenta en 1 la resistència d'impacte, tall i perforació dels soldats."
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_2.jsonauraName
 msgid "Battle Fervor"
@@ -747,7 +747,7 @@ msgstr "Matança dels fidels"
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_1.jsonauraDescription
 msgid "Soldiers +10% melee and ranged attack damage, gain +50% resource loot."
-msgstr ""
+msgstr "Els soldats guanyen un 10% d'atac cos a cos i a distància i un 50% de saqueig."
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_1.jsonauraName
 msgid "Savior of Kush"
@@ -790,7 +790,7 @@ msgstr "Taxiarchès"
 msgid ""
 "Siege Engines +1 crush, hack, pierce resistance, +20% melee and ranged "
 "attack damage, +10% ranged attack range, +10% vision range."
-msgstr ""
+msgstr "+1 de resistència d'impacte, tall i perforació, +20% d'atac cos a cos i a distància, +10% d'abast i +10% de camp visual per a les màquines de setge."
 
 #: simulation/data/auras/units/heroes/mace_hero_demetrius_i.jsonauraName
 msgid "Besieger"
@@ -918,7 +918,7 @@ msgstr "−10% d'atac cos a cos i a distància de la infanteria enemiga."
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraDescription
 msgid "Humans and Structures +1 crush, hack, pierce resistance."
-msgstr ""
+msgstr "Augmenta en 1 la resistència d'impacte, tall i perforació de les unitats humanes i estructures."
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraName
 msgid "Shield of Rome"
@@ -936,7 +936,7 @@ msgstr "Triomf"
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_iii.jsonauraDescription
 msgid "Cavalry +2 crush, hack, pierce resistance."
-msgstr ""
+msgstr "Augmenta en 2 la resistència d'impacte, tall i perforació de la cavalleria."
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_iii.jsonauraName
 msgid "Ilarchès"
@@ -962,7 +962,7 @@ msgstr "Zooiarchos"
 msgid ""
 "Citizen Infantry Javelineers +1 crush, hack, pierce resistance, +25% ranged "
 "attack pierce damage."
-msgstr ""
+msgstr "+1 de resistència d'impacte, tall i perforació i +25% d'atac a distància de perforació de la infanteria ciutadana amb javelina."
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraName
 msgid "Helot Reforms"

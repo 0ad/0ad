@@ -87,7 +87,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-29 08:08+0000\n"
-"PO-Revision-Date: 2021-01-29 09:16+0000\n"
+"PO-Revision-Date: 2021-01-31 17:16+0000\n"
 "Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -244,7 +244,7 @@ msgstr "Чит-коды"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:43
 msgid "Toggle the usability of cheats."
-msgstr "Возможность применения читов."
+msgstr "Разрешите или запретите применения читов."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map
@@ -258,7 +258,7 @@ msgstr "Исследованная карта"
 #. settings!
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/ExploredMap.js:59
 msgid "Toggle explored map (see initial map)."
-msgstr "Исследованная карта с туманом войны."
+msgstr "Решите, исследованна ли карта (с туманом войны)."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:59
 msgid "Last Man Standing"
@@ -268,7 +268,7 @@ msgstr "Последний герой"
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
-msgstr "Переключение между победой последнего игрока и победой последнего альянса."
+msgstr "Решите, побеждает последний игрок или последний альянс."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:53
 msgid "Teams Locked"
@@ -276,7 +276,7 @@ msgstr "Постоянные команды"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:56
 msgid "Toggle locked teams."
-msgstr "Постоянные команды игроков."
+msgstr "Решите, постоянны ли команды."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Nomad.js:61
 msgid "Nomad"
@@ -294,7 +294,7 @@ msgstr "Рейтинговая игра"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Rating.js:54
 msgid "Toggle if this game will be rated for the leaderboard."
-msgstr "Учёт итогов для доски почёта."
+msgstr "Решите, учитываются ли итоги для доски почёта."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:62
 msgid "Hero Garrison"
@@ -302,7 +302,7 @@ msgstr "Герой в гарнизоне"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:65
 msgid "Toggle whether heroes can be garrisoned."
-msgstr "Разрешение или запрет героям на размещение в гарнизонах."
+msgstr "Решите, могут ли герои состоять в гарнизонах."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map
@@ -316,7 +316,7 @@ msgstr "Открытая карта"
 #. settings!
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RevealedMap.js:54
 msgid "Toggle revealed map (see everything)."
-msgstr "Открытая карта без туманы войны."
+msgstr "Решите, видна ли вся карта."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Spies.js:43
 msgid "Disable Spies"

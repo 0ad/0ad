@@ -36,7 +36,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-25 08:08+0000\n"
-"PO-Revision-Date: 2021-01-28 14:37+0000\n"
+"PO-Revision-Date: 2021-01-31 17:07+0000\n"
 "Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -90,7 +90,7 @@ msgstr "• ЛКМ — для выбора юнитов"
 
 #: gui/manual/intro.txt:12
 msgid "• Left-click-and-drag to select groups of units"
-msgstr "• Выделение ЛКМ - выбор группы юнитов"
+msgstr "• Обведите с зажатой левой кнопкой для выбора группы юнитов"
 
 #: gui/manual/intro.txt:13
 msgid "• Right-click to order units to the target"
@@ -142,7 +142,7 @@ msgstr "Чтобы создать сетевую игру, выберите «С
 
 #: gui/manual/intro.txt:25
 msgid "[font=\"sans-bold-16\"]Game setup[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Настройки игры[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:26
 msgid "In a multiplayer game, only the host can alter the game setup options."
@@ -204,7 +204,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:42
 msgid "[font=\"sans-bold-14\"]Program-wide[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Общепрограммные[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:43
 msgid ""
@@ -389,19 +389,19 @@ msgstr "  hotkey.session.unload — высадить гарнизон из вы�
 msgid ""
 "  hotkey.selection.group.save.1 – Create control group 1 (by default, "
 "respectively 2,3, ...) from the selected unit(s)/structure(s)"
-msgstr ""
+msgstr "  hotkey.selection.group.save.1 — Создать отряд №1 (по умолчанию, далее №№2, 3 и т.д.) из выбранных юнитов или зданий"
 
 #: gui/manual/intro.txt:81
 msgid ""
 "  hotkey.selection.group.select.1 – Select the unit(s)/structure(s) in "
 "control group 1"
-msgstr ""
+msgstr "  hotkey.selection.group.select.1 — Выбрать юнита или здание из отряда №1"
 
 #: gui/manual/intro.txt:82
 msgid ""
 "  hotkey.selection.group.add.1 – Add control group 1 (to 0) to the selected "
 "unit(s)/structure(s)"
-msgstr ""
+msgstr "  hotkey.selection.group.add.1 — Добавить в отряд №1 (и так до №0) выбранных юнитов или зданий"
 
 #: gui/manual/intro.txt:83
 msgid ""
@@ -478,7 +478,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:98
 msgid "[font=\"sans-bold-14\"]Modify mouse action[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Настроить действия мышью[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:99
 msgid "  hotkey.session.garrison + Right Click on structure – Garrison"
@@ -585,7 +585,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:118
 msgid "[font=\"sans-bold-14\"]Overlays[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Слои[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:119
 msgid "  hotkey.session.gui.toggle – Toggle the GUI"
@@ -634,7 +634,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:128
 msgid "[font=\"sans-bold-14\"]Camera manipulation[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Манипуляция камерой[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:129
 msgid "  hotkey.camera.up – Pan screen up"
@@ -727,7 +727,7 @@ msgstr "Перемещение мыши при зажатой левой кно�
 
 #: gui/manual/intro.txt:150
 msgid "[font=\"sans-bold-14\"]When loading a saved game[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]При загрузке сохранённой игры[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:151
 msgid "  hotkey.cancel – Cancel"

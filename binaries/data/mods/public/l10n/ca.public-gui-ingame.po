@@ -19,13 +19,14 @@
 # Miguel Molina <miguigana12@hotmail.com>, 2015
 # Peredelgrau, 2013,2015
 # ribasvilanova <ribasvilanova@gmail.com>, 2014
-# Haommin <tfs.msimangu@gmail.com>, 2014-2016,2020
+# Stanislas Dolcini <stan@wildfiregames.com>, 2021
+# Haommin <tfs.msimangu@gmail.com>, 2014-2016,2020-2021
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-29 11:30+0000\n"
-"PO-Revision-Date: 2021-01-29 13:26+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-01-29 14:56+0000\n"
+"PO-Revision-Date: 2021-01-31 22:01+0000\n"
+"Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -76,7 +77,7 @@ msgstr "Opcions"
 
 #: gui/session/MenuButtons.js:182
 msgid "Hotkeys"
-msgstr ""
+msgstr "Tecles drecera"
 
 #: gui/session/MenuButtons.js:217
 msgid "Resume"
@@ -348,16 +349,16 @@ msgstr "* %(user)s %(message)s"
 #: gui/session/chat/ChatMessageFormatSimulation.js:16
 #, javascript-format
 msgid "%(icon)sYour livestock has been attacked by %(attacker)s!"
-msgstr ""
+msgstr "%(icon)s%(attacker)s ha atacat el vostre bestiar!"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:17
 #, javascript-format
 msgid "%(icon)sYou have been attacked by %(attacker)s!"
-msgstr ""
+msgstr "%(icon)s%(attacker)s us ataca!"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:30
 msgid "Click to focus on the attacked unit."
-msgstr ""
+msgstr "Feu clic per enfocar la unitat que està sent atacada."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:49
 #, javascript-format
@@ -941,7 +942,7 @@ msgstr "Guany: %(gain)s"
 msgid ""
 "(%(number)s)\n"
 "%(time)s"
-msgstr ""
+msgstr "(%(number)s)\n%(time)s"
 
 #: gui/session/selection_details.js:282
 msgid "Current/max gatherers"
@@ -1006,19 +1007,19 @@ msgstr "Fi de l'alerta."
 
 #: gui/session/selection_panels.js:276
 msgid "Default formation is disabled."
-msgstr ""
+msgstr "La formació per defecte està desactivada."
 
 #: gui/session/selection_panels.js:277
 msgid "Right-click to disable the default formation feature."
-msgstr ""
+msgstr "Feu clic dret per desactivar la formació per defecte."
 
 #: gui/session/selection_panels.js:280
 msgid "This is the default formation, used for movement orders."
-msgstr ""
+msgstr "Aquesta és la formació per defecte, que s'utilitza per donar ordres de moviment."
 
 #: gui/session/selection_panels.js:281
 msgid "Right-click to set this as the default formation."
-msgstr ""
+msgstr "Feu clic per assignar aquesta formació per defecte."
 
 #: gui/session/selection_panels.js:337
 #, javascript-format
@@ -1186,53 +1187,53 @@ msgstr "%(changer)s redueix el límit amb %(change)s."
 #: gui/session/selection_panels_helpers.js:140
 msgid "Could only be constructed once."
 msgid_plural "Could only be constructed %(limit)s times."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Només es pot construir una vegada."
+msgstr[1] "Només es pot construir %(limit)s vegades."
 
 #: gui/session/selection_panels_helpers.js:144
 msgid "Can be constructed only once."
-msgstr ""
+msgstr "Només es pot construir una vegada."
 
 #: gui/session/selection_panels_helpers.js:146
 #, javascript-format
 msgid "Can be constructed %(count)s more time."
 msgid_plural "Can be constructed %(count)s more times."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Es pot construir %(count)s vegada més."
+msgstr[1] "Es pot construir %(count)s vegades més."
 
 #: gui/session/selection_panels_helpers.js:153
 msgid "Could only be trained once."
 msgid_plural "Could only be trained %(limit)s times."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Només es pot reclutar una vegada."
+msgstr[1] "Només es pot reclutar %(limit)s vegades."
 
 #: gui/session/selection_panels_helpers.js:157
 msgid "Can be trained only once."
-msgstr ""
+msgstr "Només es pot reclutar un cop."
 
 #: gui/session/selection_panels_helpers.js:159
 #, javascript-format
 msgid "Can be trained %(count)s more time."
 msgid_plural "Can be trained %(count)s more times."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Es pot reclutar %(count)s vegada més."
+msgstr[1] "Es pot reclutar %(count)s vegades més."
 
 #: gui/session/selection_panels_helpers.js:166
 msgid "Could only be created once."
 msgid_plural "Could only be created %(limit)s times."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Només es pot crear una vegada."
+msgstr[1] "Només es pot crear %(limit)s vegades."
 
 #: gui/session/selection_panels_helpers.js:170
 msgid "Can be created only once."
-msgstr ""
+msgstr "Només es pot crear un cop."
 
 #: gui/session/selection_panels_helpers.js:172
 #, javascript-format
 msgid "Can be created %(count)s more time."
 msgid_plural "Can be created %(count)s more times."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Es pot crear %(count)s vegada més."
+msgstr[1] "Es pot crear %(count)s vegades més."
 
 #: gui/session/selection_panels_helpers.js:201
 #, javascript-format
@@ -1290,8 +1291,8 @@ msgid ""
 msgstr "Feu clic per seleccionar un grup d'unitats, doble clic per enfocar el grup d'unitats i clic dret per desfer el grup."
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
-msgid "ALPHA XXIV: Xšayaṛšā"
-msgstr ""
+msgid "ALPHA XXIV: Xšayāršā"
+msgstr "ALFA XXIV: Xšayāršā"
 
 #: gui/session/top_panel/CivIcon.js:80
 #, javascript-format
@@ -1326,7 +1327,7 @@ msgstr "%(playername)s: %(statValue)s"
 #: gui/session/top_panel/CounterPopulation.js:34
 #, javascript-format
 msgid "Current gatherers: %(amount)s"
-msgstr ""
+msgstr "Treballadors actius: %(amount)s"
 
 #: gui/session/top_panel/CounterPopulation.js:63
 #, javascript-format
@@ -1350,7 +1351,7 @@ msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 #: gui/session/top_panel/CounterResource.js:32
 #, javascript-format
 msgid "Gatherers: %(amount)s"
-msgstr ""
+msgstr "Treballadors: %(amount)s"
 
 #: gui/session/top_panel/FollowPlayer.xml:(caption):15
 #: gui/session/top_panel/FollowPlayer.xml:(tooltip):11
@@ -1689,7 +1690,7 @@ msgstr "No podeu utilitzar aquest punt de descàrrega"
 
 #: gui/session/unit_actions.js:1503
 msgid "Allies are allowed to use this dropsite."
-msgstr ""
+msgstr "Els aliats poden utilitzar aquest punt de descàrrega."
 
 #: gui/session/unit_actions.js:1504
 msgid "You are allowed to use this dropsite"

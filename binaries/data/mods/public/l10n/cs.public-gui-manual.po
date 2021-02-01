@@ -3,6 +3,8 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
+# Adam H <knedle@uxes.cz>, 2021
+# Adam H <knedle@uxes.cz>, 2021
 # Jaroslav Lichtblau <jlichtblau@seznam.cz>, 2016
 # Marek Mojžíš <marek.moj@seznam.cz>, 2020
 # fri, 2014-2018
@@ -14,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-25 08:08+0000\n"
-"PO-Revision-Date: 2021-01-25 09:18+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-01-30 18:06+0000\n"
+"Last-Translator: Adam H <knedle@uxes.cz>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -48,7 +50,7 @@ msgstr "Mezi režimem na celou obrazovku a okenním režimem se přepnete stiskn
 
 #: gui/manual/intro.txt:7
 msgid "[font=\"sans-bold-16\"]Playing the game[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Hraní hry[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:8
 msgid ""
@@ -60,7 +62,7 @@ msgstr "Ovládání a způsob hry by měly být známy uživatelům z tradiční
 
 #: gui/manual/intro.txt:10
 msgid "Basic controls (by default):"
-msgstr ""
+msgstr "Základní ovládání:"
 
 #: gui/manual/intro.txt:11
 msgid "• Left-click to select units"
@@ -90,7 +92,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:18
 msgid "[font=\"sans-bold-16\"]Modes[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Režimy[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:19
 msgid "The main menu gives access to two game modes:"
@@ -108,7 +110,7 @@ msgstr ""
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – Play against human "
 "opponents over the internet."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Hra pro více hráčů[font=\"sans-14\"] – Hrajte proti lidským soupeřům na internetu."
 
 #: gui/manual/intro.txt:23
 msgid ""
@@ -120,7 +122,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:25
 msgid "[font=\"sans-bold-16\"]Game setup[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Nastavení hry[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:26
 msgid "In a multiplayer game, only the host can alter the game setup options."
@@ -134,7 +136,7 @@ msgstr "Nejprve, vyberte jaký typ mapy chcete hrát:"
 msgid ""
 "• [font=\"sans-bold-14\"]Random map[font=\"sans-14\"] – A map created "
 "automatically from a script"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Náhodná Mapa[font=\"sans-14\"] – Mapa automaticky vytvořena skriptem"
 
 #: gui/manual/intro.txt:30
 msgid ""
@@ -172,7 +174,7 @@ msgstr "Až budete připraven začít, klepněte na tlačítko \"Spustit hru\"."
 
 #: gui/manual/intro.txt:39
 msgid "[font=\"sans-bold-16\"]Hotkeys[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Klávesové zkratky[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:40
 msgid ""
@@ -709,7 +711,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:151
 msgid "  hotkey.cancel – Cancel"
-msgstr ""
+msgstr "hotkey.cancel – Zrušit"
 
 #: gui/manual/intro.txt:152
 msgid ""

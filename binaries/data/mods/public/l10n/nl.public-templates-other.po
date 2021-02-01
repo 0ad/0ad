@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-20 00:57+0000\n"
-"PO-Revision-Date: 2021-01-20 01:23+0000\n"
+"PO-Revision-Date: 2021-01-29 21:27+0000\n"
 "Last-Translator: Bart <b.anthonisse@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -52,7 +52,7 @@ msgstr "Verover"
 #: simulation/data/attack_effects/damage.jsondescription
 msgctxt "effect caused by an attack"
 msgid "Reduces the health of a target."
-msgstr "Vermindert de gezondheid van een doelwit."
+msgstr "Vermindert de gezondheid of sterkte van een doelwit."
 
 #: simulation/data/attack_effects/damage.jsonname
 msgctxt "effect caused by an attack"
@@ -159,15 +159,15 @@ msgstr "Zwarte beer"
 
 #: simulation/templates/gaia/fauna_bear_black.xml:12
 msgid "Ursus americanus"
-msgstr "Amerikaanse zwarte beer"
+msgstr "Ursus americanus"
 
 #: simulation/templates/gaia/fauna_bear_brown.xml:11
 msgid "Brown Bear"
-msgstr "Bruine Beer"
+msgstr "Bruine beer"
 
 #: simulation/templates/gaia/fauna_bear_brown.xml:12
 msgid "Ursus arctos"
-msgstr "Bruine beer"
+msgstr "Ursus arctos"
 
 #: simulation/templates/gaia/fauna_bear_polar.xml:11
 msgid "Polar Bear"
@@ -175,7 +175,7 @@ msgstr "IJsbeer"
 
 #: simulation/templates/gaia/fauna_bear_polar.xml:12
 msgid "Ursus maritimus"
-msgstr "IJsbeer"
+msgstr "Ursus maritimus"
 
 #: simulation/templates/gaia/fauna_boar.xml:5
 #: simulation/templates/gaia/fauna_hippopotamus.xml:5
@@ -186,7 +186,7 @@ msgstr "Slagtanden"
 
 #: simulation/templates/gaia/fauna_boar.xml:23
 msgid "Wild Boar"
-msgstr "Wild Zwijn"
+msgstr "Wild zwijn"
 
 #: simulation/templates/gaia/fauna_boar.xml:24
 msgid "Sus scrofa"
@@ -198,7 +198,7 @@ msgstr "Dromedaris"
 
 #: simulation/templates/gaia/fauna_camel.xml:12
 msgid "Camelus dromedarius"
-msgstr "Dromedaris"
+msgstr "Camelus dromedarius"
 
 #: simulation/templates/gaia/fauna_cattle_bull.xml:11
 msgid "Bull"
@@ -207,7 +207,7 @@ msgstr "Stier"
 #: simulation/templates/gaia/fauna_cattle_bull.xml:12
 #: simulation/templates/gaia/fauna_cattle_cow.xml:18
 msgid "Bos taurus taurus"
-msgstr "Vee"
+msgstr "Bos taurus taurus"
 
 #: simulation/templates/gaia/fauna_cattle_cow.xml:17
 msgid "Cow"
@@ -219,7 +219,7 @@ msgstr "Afrikaans vee"
 
 #: simulation/templates/gaia/fauna_cattle_sanga.xml:18
 msgid "Bos taurus africanus"
-msgstr "Afrikaans vee"
+msgstr "Bos taurus africanus"
 
 #: simulation/templates/gaia/fauna_cattle_zebu.xml:17
 msgid "Zebu"
@@ -227,7 +227,7 @@ msgstr "Zeboe"
 
 #: simulation/templates/gaia/fauna_cattle_zebu.xml:18
 msgid "Bos taurus indicus"
-msgstr "Zebu"
+msgstr "Bos taurus indicus"
 
 #: simulation/templates/gaia/fauna_chicken.xml:11
 msgid "Chicken"
@@ -235,7 +235,7 @@ msgstr "Kip"
 
 #: simulation/templates/gaia/fauna_chicken.xml:12
 msgid "Gallus gallus domesticus"
-msgstr "Kip"
+msgstr "Gallus gallus domesticus"
 
 #: simulation/templates/gaia/fauna_crocodile_nile.xml:5
 msgctxt "Name of an attack, usually the weapon."
@@ -256,7 +256,7 @@ msgstr "Edelhert"
 
 #: simulation/templates/gaia/fauna_deer.xml:12
 msgid "Cervus elaphus"
-msgstr "Edelhert"
+msgstr "Cervus elaphus"
 
 #: simulation/templates/gaia/fauna_dog_mastiff.xml:11
 msgid "Mastiff"
@@ -265,7 +265,7 @@ msgstr "Buldog"
 #: simulation/templates/gaia/fauna_dog_mastiff.xml:12
 #: simulation/templates/gaia/fauna_dog_wolfhound.xml:12
 msgid "Canis lupus familiaris"
-msgstr "Hond"
+msgstr "Canis lupus familiaris"
 
 #: simulation/templates/gaia/fauna_dog_wolfhound.xml:11
 msgid "Wolfhound"
@@ -277,7 +277,7 @@ msgstr "Ezel"
 
 #: simulation/templates/gaia/fauna_donkey.xml:12
 msgid "Equus africanus asinus"
-msgstr "Ezel"
+msgstr "Equus africanus asinus"
 
 #: simulation/templates/gaia/fauna_elephant_african_bush.xml:11
 msgid "African Bush Elephant"
@@ -286,7 +286,7 @@ msgstr "Afrikaanse bosolifant"
 #: simulation/templates/gaia/fauna_elephant_african_bush.xml:12
 #: simulation/templates/gaia/fauna_elephant_african_infant.xml:12
 msgid "Loxodonta africana"
-msgstr "Savanneolifant"
+msgstr "Loxodonta africana"
 
 #: simulation/templates/gaia/fauna_elephant_african_infant.xml:11
 msgid "African Bush Elephant Calf"
@@ -299,19 +299,19 @@ msgstr "Aziatische olifant"
 #: simulation/templates/gaia/fauna_elephant_asian.xml:12
 #: simulation/templates/gaia/fauna_elephant_asian_infant.xml:12
 msgid "Elephas maximus"
-msgstr "Aziatische olifant"
+msgstr "Elephas maximus"
 
 #: simulation/templates/gaia/fauna_elephant_asian_infant.xml:11
 msgid "Asian Elephant Calf"
-msgstr "Aziatische Olifant Kalf"
+msgstr "Aziatisch olifantskalf"
 
 #: simulation/templates/gaia/fauna_elephant_north_african.xml:11
 msgid "African Forest Elephant"
-msgstr "Afrikaanse Bosolifant"
+msgstr "Afrikaanse bosolifant"
 
 #: simulation/templates/gaia/fauna_elephant_north_african.xml:12
 msgid "Loxodonta cyclotis"
-msgstr "Bosolifant"
+msgstr "Loxodonta cyclotis"
 
 #: simulation/templates/gaia/fauna_fox_arctic.xml:11
 msgid "Arctic Fox"
@@ -319,7 +319,7 @@ msgstr "Poolvos"
 
 #: simulation/templates/gaia/fauna_fox_arctic.xml:12
 msgid "Vulpes lagopus"
-msgstr "Poolvos"
+msgstr "Vulpes lagopus"
 
 #: simulation/templates/gaia/fauna_fox_red.xml:11
 msgid "Red Fox"
@@ -335,7 +335,7 @@ msgstr "Thomsongazelle"
 
 #: simulation/templates/gaia/fauna_gazelle.xml:12
 msgid "Eudorcas thomsonii"
-msgstr "Thomsongazelle"
+msgstr "Eudorcas thomsonii"
 
 #: simulation/templates/gaia/fauna_giraffe.xml:11
 msgid "Giraffe"
@@ -344,7 +344,7 @@ msgstr "Giraf"
 #: simulation/templates/gaia/fauna_giraffe.xml:12
 #: simulation/templates/gaia/fauna_giraffe_infant.xml:12
 msgid "Giraffa camelopardalis"
-msgstr "Giraffe"
+msgstr "Giraffa camelopardalis"
 
 #: simulation/templates/gaia/fauna_giraffe_infant.xml:11
 msgid "Juvenile Giraffe"
@@ -356,7 +356,7 @@ msgstr "Geit"
 
 #: simulation/templates/gaia/fauna_goat.xml:18
 msgid "Capra aegagrus hircus"
-msgstr "Geit"
+msgstr "Capra aegagrus hircus"
 
 #: simulation/templates/gaia/fauna_hippopotamus.xml:21
 msgid "Hippopotamus"
@@ -364,7 +364,7 @@ msgstr "Nijlpaard"
 
 #: simulation/templates/gaia/fauna_hippopotamus.xml:22
 msgid "Hippopotamus amphibius"
-msgstr "Nijlpaard"
+msgstr "Hippopotamus amphibius"
 
 #: simulation/templates/gaia/fauna_horse.xml:11
 msgid "Horse"
@@ -372,7 +372,7 @@ msgstr "Paard"
 
 #: simulation/templates/gaia/fauna_horse.xml:12
 msgid "Equus ferus caballus"
-msgstr "Paard"
+msgstr "Equus ferus caballus"
 
 #: simulation/templates/gaia/fauna_horse_pony.xml:8
 msgid "Pony"
@@ -390,7 +390,7 @@ msgstr "Leeuw"
 
 #: simulation/templates/gaia/fauna_lion.xml:25
 msgid "Panthera leo"
-msgstr "Leeuw"
+msgstr "Panthera leo"
 
 #: simulation/templates/gaia/fauna_lioness.xml:4
 msgid "Lioness"
@@ -402,7 +402,7 @@ msgstr "Muskusos"
 
 #: simulation/templates/gaia/fauna_muskox.xml:12
 msgid "Ovibos moschatus"
-msgstr "Muskusos"
+msgstr "Ovibos moschatus"
 
 #: simulation/templates/gaia/fauna_peacock.xml:11
 msgid "Peacock"
@@ -418,7 +418,7 @@ msgstr "Varken"
 
 #: simulation/templates/gaia/fauna_pig.xml:18
 msgid "Sus scrofa domesticus"
-msgstr "Varken"
+msgstr "Sus scrofa domesticus"
 
 #: simulation/templates/gaia/fauna_pig_flaming.xml:18
 msgid "Flaming Pig"
@@ -434,7 +434,7 @@ msgstr "Konijn"
 
 #: simulation/templates/gaia/fauna_rabbit.xml:12
 msgid "Oryctolagus cuniculus"
-msgstr "Europees konijn"
+msgstr "Oryctolagus cuniculus"
 
 #: simulation/templates/gaia/fauna_rhinoceros_white.xml:5
 msgctxt "Name of an attack, usually the weapon."
@@ -447,7 +447,7 @@ msgstr "Witte neushoorn"
 
 #: simulation/templates/gaia/fauna_rhinoceros_white.xml:24
 msgid "Ceratotherium simum"
-msgstr "Witte neushoorn"
+msgstr "Ceratotherium simum"
 
 #: simulation/templates/gaia/fauna_shark.xml:12
 msgid "Great White Shark"
@@ -455,7 +455,7 @@ msgstr "Witte haai"
 
 #: simulation/templates/gaia/fauna_shark.xml:13
 msgid "Carcharodon carcharias"
-msgstr "Witte haai"
+msgstr "Carcharodon carcharias"
 
 #: simulation/templates/gaia/fauna_sheep.xml:17
 msgid "Sheep"
@@ -463,7 +463,7 @@ msgstr "Schaap"
 
 #: simulation/templates/gaia/fauna_sheep.xml:18
 msgid "Ovis aries"
-msgstr "Schaap"
+msgstr "Ovis aries"
 
 #: simulation/templates/gaia/fauna_tiger.xml:24
 msgid "Tiger"
@@ -471,7 +471,7 @@ msgstr "Tijger"
 
 #: simulation/templates/gaia/fauna_tiger.xml:25
 msgid "Panthera tigris"
-msgstr "Tijger"
+msgstr "Panthera tigris"
 
 #: simulation/templates/gaia/fauna_walrus.xml:25
 msgid "Walrus"
@@ -479,7 +479,7 @@ msgstr "Walrus"
 
 #: simulation/templates/gaia/fauna_walrus.xml:26
 msgid "Odobenus rosmarus"
-msgstr "Walrus"
+msgstr "Odobenus rosmarus"
 
 #: simulation/templates/gaia/fauna_whale_fin.xml:11
 msgid "Fin Whale"
@@ -487,7 +487,7 @@ msgstr "Blauwe vinvis"
 
 #: simulation/templates/gaia/fauna_whale_fin.xml:12
 msgid "Balaenoptera physalus"
-msgstr "Gewone vinvis"
+msgstr "Balaenoptera physalus"
 
 #: simulation/templates/gaia/fauna_whale_humpback.xml:11
 msgid "Humpback Whale"
@@ -495,15 +495,15 @@ msgstr "Bultrugwalvis"
 
 #: simulation/templates/gaia/fauna_whale_humpback.xml:12
 msgid "Megaptera novaeangliae"
-msgstr "Bultrug"
+msgstr "Megaptera novaeangliae"
 
 #: simulation/templates/gaia/fauna_wildebeest.xml:11
 msgid "Blue Wildebeest"
-msgstr "Blauwe Gnoe"
+msgstr "Blauwe gnoe"
 
 #: simulation/templates/gaia/fauna_wildebeest.xml:12
 msgid "Connochaetes taurinus"
-msgstr "Blauwe gnoe"
+msgstr "Connochaetes taurinus"
 
 #: simulation/templates/gaia/fauna_wolf.xml:5
 msgctxt "Name of an attack, usually the weapon."
@@ -516,7 +516,7 @@ msgstr "Wolf"
 
 #: simulation/templates/gaia/fauna_wolf.xml:25
 msgid "Canis lupus"
-msgstr "Wolf"
+msgstr "Canis lupus"
 
 #: simulation/templates/gaia/fauna_wolf_arctic.xml:4
 msgid "Arctic Wolf"
@@ -524,11 +524,11 @@ msgstr "Poolvos"
 
 #: simulation/templates/gaia/fauna_zebra.xml:11
 msgid "Common Zebra"
-msgstr "Gewone Zebra"
+msgstr "Zebra"
 
 #: simulation/templates/gaia/fauna_zebra.xml:12
 msgid "Equus quagga"
-msgstr "Steppezebra"
+msgstr "Equus quagga"
 
 #: simulation/templates/gaia/fish/tilapia.xml:4
 msgid "Tilapia"
@@ -896,7 +896,7 @@ msgstr "Afstand"
 #: simulation/templates/special/formations/anti_cavalry.xml:6
 #: simulation/templates/special/formations/testudo.xml:6
 msgid "Melee Infantry only, requires at least 16."
-msgstr "Slechts Mêlee Infanteriesoldaten, ten minste 16 benodigd."
+msgstr "Slechts mêlee Infanteriesoldaten, ten minste 16 benodigd."
 
 #: simulation/templates/special/formations/anti_cavalry.xml:7
 msgid "Anti Cavalry"
@@ -932,11 +932,11 @@ msgstr "Flank"
 
 #: simulation/templates/special/formations/line_closed.xml:5
 msgid "Close Order"
-msgstr "Gesloten Opstelling"
+msgstr "Gesloten opstelling"
 
 #: simulation/templates/special/formations/line_open.xml:5
 msgid "Open Order"
-msgstr "Open Opstelling"
+msgstr "Open opstelling"
 
 #: simulation/templates/special/formations/null.xml:5
 msgid "None"
@@ -960,7 +960,7 @@ msgstr "Slechts Afstandseenheden, ten minste 2 benodigd."
 
 #: simulation/templates/special/formations/skirmish.xml:6
 msgid "Skirmish"
-msgstr "Schermutselen"
+msgstr "Schermutseling"
 
 #: simulation/templates/special/formations/syntagma.xml:6
 msgid "Infantry Pikemen only, requires at least 16."

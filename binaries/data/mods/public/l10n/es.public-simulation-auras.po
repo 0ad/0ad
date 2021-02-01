@@ -18,7 +18,7 @@
 # Esteban A. Mina <ztephanuz@hotmail.com>, 2017
 # Facu G <cufa.galvagno@gmail.com>, 2020
 # Javier Rojas <hekeine@gmail.com>, 2017
-# Jesus A <jasenjot@gmail.com>, 2017
+# Jesús Asenjo <jasenjot@gmail.com>, 2017
 # Jesús Martínez <pakitochus@gmail.com>, 2020
 # Joaquin Marcher <joacorock@gmail.com>, 2018
 # Juan Jaramillo <juanda097@protonmail.ch>, 2019
@@ -31,7 +31,7 @@
 # Raúl Fdez. <raulferval@hotmail.com>, 2017
 # Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>, 2018,2020
 # Saul Axel Martínez Ortiz <saulaxel.50@gmail.com>, 2019
-# soloooy0 fg <juanjo.fg@hotmail.com>, 2017
+# soloooy0 fg <juanjo.fg@hotmail.com>, 2017,2021
 # Swyter <Swyterzone@gmail.com>, 2016-2018
 # Swyter <Swyterzone@gmail.com>, 2020
 # Vince LaRue <mc1171611@gmail.com>, 2020
@@ -39,8 +39,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-01-22 08:37+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-01-31 15:48+0000\n"
+"Last-Translator: soloooy0 fg <juanjo.fg@hotmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -93,7 +93,7 @@ msgstr "Patriotismo"
 msgid ""
 "Soldiers +1 crush, hack, pierce resistance and +10% melee and ranged attack "
 "damage."
-msgstr ""
+msgstr "Los soldados +1 aplastamiento, corte, perforación,  resistencia y + 10% de daño de ataque cuerpo a cuerpo y a distancia."
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraName
 msgid "Exhortative Presence"
@@ -109,11 +109,11 @@ msgstr "Sacerdocio poderoso"
 
 #: simulation/data/auras/structures/library.jsonauraDescription
 msgid "Structures −15% technology resource costs and research time."
-msgstr ""
+msgstr "Estructuras −15% de costos de recursos tecnología y tiempo de investigación."
 
 #: simulation/data/auras/structures/library.jsonauraName
 msgid "Centre of Scholarship"
-msgstr ""
+msgstr "Centro de becas"
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraDescription
 msgid "Structures +50% capture points garrison regeneration rate."
@@ -158,7 +158,7 @@ msgstr "Helenización"
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraDescription
 msgid ""
 "Garrisoned Soldiers +3 crush, hack, pierce resistance and +20 vision range."
-msgstr ""
+msgstr "Soldados guarnecidos +3 aplastamiento, corte, resistencia a perforaciones y +20 rango de visión."
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraName
 msgid "Wall Protection"
@@ -168,7 +168,7 @@ msgstr "Protección de muralla"
 msgid ""
 "+20% maximum population limit (requires the “Glorious Expansion” "
 "technology)."
-msgstr ""
+msgstr "+ 20% de límite máximo de población (requiere la tecnología \"Gloriosa Expansión\")."
 
 #: simulation/data/auras/structures/wonder_population_cap.jsonauraName
 msgid "Glorious Expansion"
@@ -282,11 +282,11 @@ msgstr "Liga del Peloponeso"
 
 #: simulation/data/auras/units/carnyx.jsonauraDescription
 msgid "Enemy Soldiers −10% attack damage and capture attack strength."
-msgstr ""
+msgstr "Soldados enemigos -10% de daño de ataque y captura de fuerza de ataque."
 
 #: simulation/data/auras/units/carnyx.jsonauraName
 msgid "Intimidating Sound"
-msgstr ""
+msgstr "sonido intimidante "
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_1.jsonauraDescription
 msgid ""
@@ -333,7 +333,7 @@ msgstr "Terror del escaramucero"
 msgid ""
 "Leader of the Carthaginian heavy cavalry at Trebia and Cannae, where his triple charge had devastating effects on the enemy.\n"
 "Melee Cavalry +1 crush, hack, pierce resistance and +10% health."
-msgstr ""
+msgstr "Líder de la caballería pesada cartaginesa en Trebia y Cannae, donde su triple carga tuvo efectos devastadores sobre el enemigo.\nCaballería cuerpo a cuerpo +1 aplastamiento, corte, resistencia a perforación y + 10% de salud."
 
 #: simulation/data/auras/units/catafalques/cart_catafalque.jsonauraName
 msgid "Commander of Heavy Cavalry"
@@ -463,7 +463,7 @@ msgstr "Vengador de Lucrecia"
 msgid ""
 "Brutus was one of the key figures in the overthrow of the monarchy and the founding of the Roman Republic. Later, as consul he led a Roman army to victory against the Etruscan King Tarquinius who sought to retake the throne.\n"
 "Humans and Siege Engines +1 crush, hack, pierce resistance."
-msgstr ""
+msgstr "Bruto fue una de las figuras clave en el derrocamiento de la monarquía y la fundación de la República Romana. Más tarde, como cónsul, condujo a un ejército romano a la victoria contra el rey etrusco Tarquinius, que buscaba recuperar el trono.\nHumanos y motores de asedio +1 aplastamiento, corte, resistencia a la perforación."
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_2.jsonauraName
 msgid "Founder and Defender of the Republic"
@@ -536,7 +536,7 @@ msgstr "Elefantes de trabajo"
 msgid ""
 "Soldiers in his formation +3 crush, hack, pierce resistance, +15% movement "
 "speed."
-msgstr ""
+msgstr "Soldados en su formación +3 aplastamiento, corte, resistencia a perforaciones, + 15% de velocidad de movimiento."
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraName
 msgid "Formation Reforms"
@@ -598,7 +598,7 @@ msgstr "Ejército de élite"
 msgid ""
 "Soldiers and Siege Engines +1 crush, hack, pierce resistance, +15% movement "
 "speed."
-msgstr ""
+msgstr "Soldados y motores de asedio +1 aplastamiento, corte, resistencia a perforaciones, + 15% de velocidad de movimiento."
 
 #: simulation/data/auras/units/heroes/brit_hero_caratacos.jsonauraName
 msgid "Guerrilla Chief"
@@ -689,7 +689,7 @@ msgstr "Gallardo defensor"
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_2.jsonauraDescription
 msgid "Soldiers +1 crush, hack, pierce resistance."
-msgstr ""
+msgstr "Soldados +1 aplastamiento, corte, resistencia a perforación."
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_2.jsonauraName
 msgid "Battle Fervor"
@@ -755,7 +755,7 @@ msgstr "La matanza de los fieles"
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_1.jsonauraDescription
 msgid "Soldiers +10% melee and ranged attack damage, gain +50% resource loot."
-msgstr ""
+msgstr "Soldados + 10% de daño de ataque cuerpo a cuerpo y a distancia, obtienen + 50% de botín de recursos."
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_1.jsonauraName
 msgid "Savior of Kush"
@@ -798,7 +798,7 @@ msgstr "Taxiarchès"
 msgid ""
 "Siege Engines +1 crush, hack, pierce resistance, +20% melee and ranged "
 "attack damage, +10% ranged attack range, +10% vision range."
-msgstr ""
+msgstr "Motores de asedio +1 aplastamiento, corte, resistencia a perforaciones, + 20% de daño de ataque cuerpo a cuerpo y a distancia, + 10% de alcance de ataque a distancia, + 10% de alcance de visión."
 
 #: simulation/data/auras/units/heroes/mace_hero_demetrius_i.jsonauraName
 msgid "Besieger"
@@ -926,7 +926,7 @@ msgstr "Enemy Infantry −10% melee and ranged attack damage."
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraDescription
 msgid "Humans and Structures +1 crush, hack, pierce resistance."
-msgstr ""
+msgstr "Humanos y estructuras +1 aplastamiento, corte, resistencia a la perforación."
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraName
 msgid "Shield of Rome"
@@ -944,7 +944,7 @@ msgstr "Triunfo"
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_iii.jsonauraDescription
 msgid "Cavalry +2 crush, hack, pierce resistance."
-msgstr ""
+msgstr "Caballería +2 resistencia a aplastamiento, corte, perforación."
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_iii.jsonauraName
 msgid "Ilarchès"
@@ -970,7 +970,7 @@ msgstr "Comandante de elefantes"
 msgid ""
 "Citizen Infantry Javelineers +1 crush, hack, pierce resistance, +25% ranged "
 "attack pierce damage."
-msgstr ""
+msgstr "Los jabalineros de infantería ciudadana +1 aplastamiento, corte, resistencia a perforaciones, + 25% de daño por perforación de ataque a distancia."
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraName
 msgid "Helot Reforms"

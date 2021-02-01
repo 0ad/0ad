@@ -10,14 +10,14 @@
 # Martin Plávala <martinplavala@gmail.com>, 2015,2017
 # Miroslav Kadlec <mirokadlec12@gmail.com>, 2018
 # Peto (wt-ts) <peter.tuharsky@gmail.com>, 2016
-# Angen <slavomir.slovenkai@gmail.com>, 2017
+# Angen <slavomir.slovenkai@gmail.com>, 2017,2021
 # Zuzana Miadoková <akara.horse@gmail.com>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-25 08:08+0000\n"
-"PO-Revision-Date: 2021-01-25 09:18+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-01-29 18:54+0000\n"
+"Last-Translator: Angen <slavomir.slovenkai@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -50,7 +50,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:7
 msgid "[font=\"sans-bold-16\"]Playing the game[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Hranie hry[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:8
 msgid ""
@@ -62,7 +62,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:10
 msgid "Basic controls (by default):"
-msgstr ""
+msgstr "Základné ovládanie:"
 
 #: gui/manual/intro.txt:11
 msgid "• Left-click to select units"
@@ -82,7 +82,7 @@ msgstr "• Šípky alebo klávesy WASD posúvajú kameru"
 
 #: gui/manual/intro.txt:15
 msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera"
-msgstr ""
+msgstr "• Ctrl + šípky alebo shift + koliesko myši otáčajú kameru."
 
 #: gui/manual/intro.txt:16
 msgid ""
@@ -118,7 +118,7 @@ msgid ""
 " The game uses UDP port 20595, so the host must configure their "
 "NAT/firewall/etc. to allow this. Other players can then select “Join game” "
 "and enter the host's IP address."
-msgstr ""
+msgstr "Na založenie hry pre viac hráčov musí jeden hráč vybrať možnosť \"Vytvoriť hru\". Hra používa UDP port 20595, takže hostiteľ si musí nakonfigurovať svoj NAT/firewall/hocičo iné. Ostatní hráči si môžu vybrať možnosť \"Pridať sa k hre\" a zadať hostiteľovu IP adresu."
 
 #: gui/manual/intro.txt:25
 msgid "[font=\"sans-bold-16\"]Game setup[font=\"sans-14\"]"

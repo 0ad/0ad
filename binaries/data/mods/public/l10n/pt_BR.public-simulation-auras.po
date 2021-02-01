@@ -25,6 +25,7 @@
 # Rafael Monteiro <rafaelimabsb2@hotmail.com>, 2016
 # Renato Cirino <renatimpirei@gmail.com>, 2019
 # Rui <xymarior@yandex.com>, 2018-2019
+# Thiago Fontanari <thiagofontanarimaciel@gmail.com>, 2021
 # Tiago <tiago.henrique.cco@gmail.com>, 2020
 # Tiago <tiago.henrique.cco@gmail.com>, 2020
 # Tiago <tiago.henrique.cco@gmail.com>, 2018-2020
@@ -34,8 +35,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-01-22 08:37+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-02-01 02:27+0000\n"
+"Last-Translator: Thiago Fontanari <thiagofontanarimaciel@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -45,7 +46,7 @@ msgstr ""
 
 #: simulation/data/auras/structures/arsenal_repair.jsonauraDescription
 msgid "Garrisoned Siege Engines +3 health regeneration rate."
-msgstr "Armas de Cerco abastecidas possuem +3 de \"Taxa de regeneração de vida\"."
+msgstr "Armas de Cerco abastecidas possuem +3 de Taxa de Regeneração de Saúde."
 
 #: simulation/data/auras/structures/arsenal_repair.jsonauraName
 msgid "Arsenal Repairs"
@@ -69,7 +70,7 @@ msgstr "Reparação do Estaleiro"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage."
-msgstr "Soldados têm +20% de ataque corpo-a-corpo e de dano à distância."
+msgstr "Soldados +20% de ataque corpo a corpo e ataque de longo alcance."
 
 #: simulation/data/auras/structures/iber_monument.jsonauraName
 msgid "Religious Fervor"
@@ -78,7 +79,7 @@ msgstr "Fervor Religioso"
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraDescription
 #: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraDescription
 msgid "Workers +15% gather speed."
-msgstr "Trabalhadores têm +15% de velocidade de coleta."
+msgstr "Trabalhador +15% de velocidade de coleta."
 
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraName
 msgid "Patriotism"
@@ -96,7 +97,7 @@ msgstr "Presença Encorajadora"
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraDescription
 msgid "Heroes −5% health."
-msgstr "Heróis têm -5% da vida máxima."
+msgstr "Heróis -5% de saúde máxima."
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraName
 msgid "Powerful Priesthood"
@@ -163,7 +164,7 @@ msgstr "Muralha de Proteção"
 msgid ""
 "+20% maximum population limit (requires the “Glorious Expansion” "
 "technology)."
-msgstr ""
+msgstr "+20% no limite máximo da população (requer a tecnologia \"Expansão Gloriosa\")"
 
 #: simulation/data/auras/structures/wonder_population_cap.jsonauraName
 msgid "Glorious Expansion"
@@ -281,7 +282,7 @@ msgstr ""
 
 #: simulation/data/auras/units/carnyx.jsonauraName
 msgid "Intimidating Sound"
-msgstr ""
+msgstr "Som Intimidante"
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_1.jsonauraDescription
 msgid ""
@@ -458,7 +459,7 @@ msgstr "Vingador de Lucrécia"
 msgid ""
 "Brutus was one of the key figures in the overthrow of the monarchy and the founding of the Roman Republic. Later, as consul he led a Roman army to victory against the Etruscan King Tarquinius who sought to retake the throne.\n"
 "Humans and Siege Engines +1 crush, hack, pierce resistance."
-msgstr ""
+msgstr "Brutus foi uma das figuras chave na derrubada da monarquia e na fundação da República Romana. Mais tarde, como cônsul, ele liderou a vitória do exército romano contra o rei etrusco Tarquínio, que buscava retomar o trono. Humanos e Armas de Cerco +1 resistência à esmagamento, corte e perfuração."
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_2.jsonauraName
 msgid "Founder and Defender of the Republic"
@@ -684,7 +685,7 @@ msgstr "Valente Defensor"
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_2.jsonauraDescription
 msgid "Soldiers +1 crush, hack, pierce resistance."
-msgstr ""
+msgstr "Soldados +1 resistência à esmagamento, corte e perfuração."
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_2.jsonauraName
 msgid "Battle Fervor"
@@ -921,7 +922,7 @@ msgstr "Infantaria Inimiga tem -10% de dano de ataque à distância e de corpo-a
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraDescription
 msgid "Humans and Structures +1 crush, hack, pierce resistance."
-msgstr ""
+msgstr "Humanos e Estruturas +1 resistência à esmagamento, corte e perfuração."
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraName
 msgid "Shield of Rome"
@@ -939,7 +940,7 @@ msgstr "Triunfo"
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_iii.jsonauraDescription
 msgid "Cavalry +2 crush, hack, pierce resistance."
-msgstr ""
+msgstr "Cavalaria +2 resistência à esmagamento, corte e perfuração."
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_iii.jsonauraName
 msgid "Ilarchès"

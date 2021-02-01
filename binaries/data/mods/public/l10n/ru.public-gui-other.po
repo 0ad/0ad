@@ -27,6 +27,7 @@
 # Константин <sad.2.shade@gmail.com>, 2015
 # Simple88, 2016
 # Simple88, 2016
+# Stanislas Dolcini <stan@wildfiregames.com>, 2021
 # Uzumaker Uzumaki <uzumaki1337pro@gmail.com>, 2017
 # Vic Grin <aliented@mail.ru>, 2016
 # _Arkan0ID_ <vinnikf24@gmail.com>, 2016
@@ -45,9 +46,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-29 11:30+0000\n"
-"PO-Revision-Date: 2021-01-29 14:26+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-01-29 14:56+0000\n"
+"PO-Revision-Date: 2021-01-31 17:09+0000\n"
+"Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -514,15 +515,15 @@ msgstr "Безопасная аутентификация в комнате не
 
 #: gui/common/network.js:76
 msgid "Error: Server failed to allocate a unique client identifier."
-msgstr ""
+msgstr "Ошибка: серверу не удалось выделить уникальный идентификатор клиента."
 
 #: gui/common/network.js:77
 msgid "Error: Client commands were ready for an unexpected game turn."
-msgstr ""
+msgstr "Ошибка: команды клиента были готовы к неожиданному ходу."
 
 #: gui/common/network.js:78
 msgid "Error: Client simulated an unexpected game turn."
-msgstr ""
+msgstr "Ошибка: клиент смоделировал неожиданный ход."
 
 #: gui/common/network.js:79
 msgid "Password is invalid."
@@ -818,7 +819,7 @@ msgstr "Блоки: %(blockPercentage)s%%, сокращение продолжи
 
 #: gui/common/tooltips.js:294
 msgid "Garrison to fire arrows"
-msgstr ""
+msgstr "Гарнизон будет выпускать стрелы"
 
 #: gui/common/tooltips.js:297 gui/common/tooltips.js:958
 msgid "Interval:"
@@ -944,7 +945,7 @@ msgstr "Нет"
 #: gui/common/tooltips.js:403
 #, javascript-format
 msgid "gives %(name)s"
-msgstr ""
+msgstr "даёт %(name)s"
 
 #: gui/common/tooltips.js:436
 #, javascript-format
@@ -1504,7 +1505,7 @@ msgstr "Удалить выбранную запись используя %(hotk
 #: gui/loadgame/SavegameDeleter.js:39 gui/replaymenu/replay_menu.js:203
 #, javascript-format
 msgid "Hold %(hotkey)s to skip the confirmation dialog while deleting."
-msgstr ""
+msgstr "Используйте %(hotkey)s, чтобы избежать диалога подтверждения при удалении."
 
 #: gui/loadgame/SavegameDeleter.js:52 gui/loadgame/SavegameWriter.js:45
 #, javascript-format
@@ -1722,7 +1723,7 @@ msgstr "Имя игрока (одиночная игра)"
 
 #: gui/options/options.json[0].options[0].tooltip
 msgid "How you want to be addressed in single-player matches."
-msgstr ""
+msgstr "Как вы хотите, чтобы к вам обращались в одиночной игре."
 
 #: gui/options/options.json[0].options[10].label
 msgid "Observer limit"
@@ -1746,7 +1747,7 @@ msgstr "Имя игрока (сетевая игра)"
 
 #: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in multiplayer matches (except lobby)."
-msgstr ""
+msgstr "Как вы хотите, чтобы к вам обращались в сетевой игре (не в комнате)."
 
 #: gui/options/options.json[0].options[2].label
 msgid "Background pause"
@@ -1754,7 +1755,7 @@ msgstr "Фоновая пауза"
 
 #: gui/options/options.json[0].options[2].tooltip
 msgid "Pause single-player games when window loses focus."
-msgstr ""
+msgstr "Приостанавливать одиночную игру, когда окно неактивно."
 
 #: gui/options/options.json[0].options[3].label
 msgid "Enable welcome screen"
@@ -2429,7 +2430,7 @@ msgstr "Эта опция позволяет выравнивать новые �
 
 #: gui/options/options.json[5].options[19].label
 msgid "Control group membership"
-msgstr ""
+msgstr "Членство в отряде"
 
 #: gui/options/options.json[5].options[19].list[0].label
 msgid "Single"
@@ -2440,7 +2441,7 @@ msgid ""
 "When adding a Unit or Structure to a control group, they are removed from "
 "other control groups. Use this choice if you want control groups to refer to"
 " distinct armies."
-msgstr "При добавлении юнита или здания в группу они удаляются из других групп. Используйте это, если хотите, чтобы группы относились исключительно к разным армиям."
+msgstr "При добавлении юнита или здания в отряд они удаляются из других отрядов. Используйте это, если хотите, чтобы отряды относились исключительно к разным армиям."
 
 #: gui/options/options.json[5].options[19].list[1].label
 msgid "Multiple"
@@ -2451,11 +2452,11 @@ msgid ""
 "Units and Structures can be part of multiple control groups. This is useful "
 "to keep control groups for distinct armies and a control group for the "
 "entire army simultaneously."
-msgstr "Юниты и здания могут состоять в нескольких группах. Это полезно, например, когда нужно выделить группы для разных армий и группу для всех войск одновременно."
+msgstr "Юниты и здания могут состоять в нескольких отрядах. Это полезно, например, когда нужно выделить отряды для разных армий и одновременно отряд для всех войск."
 
 #: gui/options/options.json[5].options[19].tooltip
 msgid "Decide whether units can be part of multiple control groups."
-msgstr ""
+msgstr "Решите, могут ли юниты состоять в нескольких отрядах."
 
 #: gui/options/options.json[5].options[1].label
 msgid "Batch training size"
@@ -2855,8 +2856,8 @@ msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
 #: gui/pregame/ProjectInformation.js:18
-msgid "Alpha XXIV: Xšayaṛšā"
-msgstr ""
+msgid "Alpha XXIV: Xšayāršā"
+msgstr "АЛЬФА XXIV: Ксеркс"
 
 #: gui/pregame/ProjectInformation.js:19
 msgid ""
@@ -3240,7 +3241,7 @@ msgstr "%(min)s - %(max)s min"
 
 #: gui/replaymenu/replay_filters.js:144
 msgid "Single-player and multiplayer"
-msgstr ""
+msgstr "Одиночный и сетевой режим"
 
 #: gui/replaymenu/replay_filters.js:157
 msgid "Any victory condition"
@@ -3266,7 +3267,7 @@ msgstr "Отфильтровать повторы набором одного и
 #: gui/replaymenu/replay_menu.js:198
 #, javascript-format
 msgid "Delete the selected replay using %(hotkey)s."
-msgstr ""
+msgstr "Удалить выбранный повтор используя  %(hotkey)s."
 
 #: gui/replaymenu/replay_menu.js:283
 #, javascript-format
@@ -3299,7 +3300,7 @@ msgstr "Главное меню"
 
 #: gui/replaymenu/replay_menu.xml:(caption):239
 msgid "Rebuild Cache"
-msgstr ""
+msgstr "Перестроить кэш"
 
 #: gui/replaymenu/replay_menu.xml:(caption):246
 #: gui/summary/summary.xml:(caption):26
@@ -3726,7 +3727,7 @@ msgstr "%(hotkey)s: Включить\\отключить сетевую комн
 #: gui/summary/summary.js:555
 #, javascript-format
 msgid "Toggle the %(name)s summary tab."
-msgstr ""
+msgstr "Выбрать состояние вкладки итогов %(name)s."
 
 #: gui/summary/summary.js:556
 #, javascript-format
@@ -3755,7 +3756,7 @@ msgstr "Тип:"
 
 #: gui/summary/summary.xml:(caption):167
 msgid "Group by team"
-msgstr ""
+msgstr "Группы по командам"
 
 #: gui/summary/summary.xml:(caption):187
 msgid "Watch Replay"
@@ -4027,7 +4028,7 @@ msgstr ""
 msgid ""
 "Historical characters, such as Xerxes, Leonidas, Pericles, Hannibal, Scipio,"
 " and Boudicca."
-msgstr ""
+msgstr "Исторические фигуры, такие как Ксеркс, Леонид, Перикл, Ганнибал, Сципион или Боудикка."
 
 #: gui/text/tips/heroes.txt:3
 msgid "A lot of health and very strong attacks."
@@ -4218,7 +4219,7 @@ msgstr ""
 msgid ""
 "Tightly packed groups of structures can also be used for obstructing raiding"
 " enemies."
-msgstr ""
+msgstr "Плотно стоящие здания могут, кроме прочего, служить для защиты от вражеских набегов."
 
 #: gui/text/tips/spartan_hoplites.txt:1
 msgid "SPARTIATES"

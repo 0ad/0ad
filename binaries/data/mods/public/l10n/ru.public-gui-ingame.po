@@ -42,6 +42,7 @@
 # Roman M. Yagodin <roman.yagodin@gmail.com>, 2017
 # Константин <sad.2.shade@gmail.com>, 2014
 # sorrymak <dearalcher@gmail.com>, 2013
+# Stanislas Dolcini <stan@wildfiregames.com>, 2021
 # under.quol <under.quol@gmail.com>, 2013
 # Uzumaker Uzumaki <uzumaki1337pro@gmail.com>, 2017
 # Vladislav Belov <vladislavbelovdev@gmail.com>, 2015
@@ -66,9 +67,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-29 11:30+0000\n"
-"PO-Revision-Date: 2021-01-29 13:26+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-01-29 14:56+0000\n"
+"PO-Revision-Date: 2021-01-31 17:16+0000\n"
+"Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -674,7 +675,7 @@ msgstr "До конца перемирия: %(time)s."
 #: gui/session/diplomacy/DiplomacyDialogColorsButton.js:30
 #: gui/session/minimap/MiniMapDiplomacyColorsButton.js:34
 msgid "Toggle Diplomacy Colors"
-msgstr "Включить\\отключить дипломатические цвета"
+msgstr "Решите, используются ли дипломатические цвета"
 
 #: gui/session/diplomacy/playercontrols/AttackRequestButton.js:38
 msgid "Request your allies to attack this enemy"
@@ -1350,11 +1351,11 @@ msgstr "Очередь производства"
 msgid ""
 "Click to select grouped units, double-click to focus the grouped units and "
 "right-click to disband the group."
-msgstr "Кликните для выбора сгруппированных юнитов, двойной клик для перевода фокуса, а правый клик для расформирования группы."
+msgstr "Щёлкните, чтобы выбрать отряд, двойной щелчок чтобы показать отряд, а правый щелчок для расформирования отряда."
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
-msgid "ALPHA XXIV: Xšayaṛšā"
-msgstr ""
+msgid "ALPHA XXIV: Xšayāršā"
+msgstr "АЛЬФА XXIV: Ксеркс"
 
 #: gui/session/top_panel/CivIcon.js:80
 #, javascript-format
