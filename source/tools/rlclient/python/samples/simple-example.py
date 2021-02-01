@@ -45,7 +45,7 @@ nearby_tree = closest(state.units(owner=0, type='tree'), center(citizen_soldiers
 collect_wood = zero_ad.actions.gather(citizen_soldiers, nearby_tree)
 
 female_citizens = state.units(owner=1, type='female_citizen')
-house_tpl = 'structures/spart_house'
+house_tpl = 'structures/spart/house'
 x = 680
 z = 640
 build_house = zero_ad.actions.construct(female_citizens, house_tpl, x, z, autocontinue=True)
@@ -65,7 +65,7 @@ print(female_citizen.data)
 
 # Units can be built using the "train action"
 civic_center = state.units(owner=1, type="civil_centre")[0]
-spearman_type = 'units/spart_infantry_spearman_b'
+spearman_type = 'units/spart/infantry_spearman_b'
 train_spearmen = zero_ad.actions.train([civic_center], spearman_type)
 
 state = game.step([train_spearmen])

@@ -30,12 +30,6 @@ def train(entities, unit_type, count=1):
         'count': count,
     }
 
-def debug_print(message):
-    return {
-        'type': 'debug-print',
-        'message': message
-    }
-
 def chat(message):
     return {
         'type': 'aichat',
