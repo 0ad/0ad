@@ -467,6 +467,11 @@ public:
 
 		m_FileDependencies = std::move(newFileDependencies);
 
+		if (vertexCode.empty())
+			LOGERROR("Failed to preprocess vertex shader: '%s'", m_VertexFile.string8());
+		if (fragmentCode.empty())
+			LOGERROR("Failed to preprocess fragment shader: '%s'", m_FragmentFile.string8());
+
 #if CONFIG2_GLES
 		// Ugly hack to replace desktop GLSL 1.10/1.20 with GLSL ES 1.00,
 		// and also to set default float precision for fragment shaders
