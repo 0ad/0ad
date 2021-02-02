@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -51,22 +51,23 @@ public:
 
 	void RenderWater(CShaderProgramPtr& shader, bool onlyShore = false, bool fixedPipeline = false);
 
-	static void RenderBases(const std::vector<CPatchRData*>& patches, const CShaderDefines& context,
-			      ShadowMap* shadow, bool isDummyShader=false, const CShaderProgramPtr& dummy=CShaderProgramPtr());
-	static void RenderBlends(const std::vector<CPatchRData*>& patches, const CShaderDefines& context,
-			      ShadowMap* shadow, bool isDummyShader=false, const CShaderProgramPtr& dummy=CShaderProgramPtr());
-	static void RenderStreams(const std::vector<CPatchRData*>& patches, const CShaderProgramPtr& shader, int streamflags);
-
 	CPatch* GetPatch() { return m_Patch; }
 
-	static void PrepareShader(const CShaderProgramPtr& shader, ShadowMap* shadow);
-
 	const CBoundingBoxAligned& GetWaterBounds() const { return m_WaterBounds; }
+
+	static void RenderBases(
+		const std::vector<CPatchRData*>& patches, const CShaderDefines& context, ShadowMap* shadow);
+	static void RenderBlends(
+		const std::vector<CPatchRData*>& patches, const CShaderDefines& context, ShadowMap* shadow);
+	static void RenderStreams(const std::vector<CPatchRData*>& patches, const CShaderProgramPtr& shader, int streamflags);
+
+	static void PrepareShader(const CShaderProgramPtr& shader, ShadowMap* shadow);
 
 private:
 	friend struct SBlendStackItem;
 
-	struct SSplat {
+	struct SSplat
+	{
 		SSplat() : m_Texture(0), m_IndexCount(0) {}
 
 		// texture to apply during splat
@@ -77,7 +78,8 @@ private:
 		size_t m_IndexCount;
 	};
 
-	struct SBaseVertex {
+	struct SBaseVertex
+	{
 		// vertex position
 		CVector3D m_Position;
 		CVector3D m_Normal;
@@ -86,7 +88,8 @@ private:
 	};
 	cassert(sizeof(SBaseVertex) == 32);
 
-	struct SSideVertex {
+	struct SSideVertex
+	{
 		// vertex position
 		CVector3D m_Position;
 		// pad to a power of two
@@ -94,7 +97,8 @@ private:
 	};
 	cassert(sizeof(SSideVertex) == 16);
 
-	struct SBlendVertex {
+	struct SBlendVertex
+	{
 		// vertex position
 		CVector3D m_Position;
 		// vertex uvs for alpha texture
@@ -104,7 +108,8 @@ private:
 	cassert(sizeof(SBlendVertex) == 32);
 
 	// Mixed Fancy/Simple water vertex description data structure
-	struct SWaterVertex {
+	struct SWaterVertex
+	{
 		// vertex position
 		CVector3D m_Position;
 		CVector2D m_WaterData;
