@@ -7,13 +7,14 @@
 # acac97 <aleksandar.cvetic97@gmail.com>, 2014-2015,2017
 # bozidar <rakovic.bozidar@gmail.com>, 2015
 # Damjan Obradović <damjanobradovic@hotmail.com>, 2016
+# Nemanja Mihailovic <nmihailovic96@gmail.com>, 2021
 # MIlosSD <pirisd@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-25 08:08+0000\n"
-"PO-Revision-Date: 2021-01-25 09:36+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-01-30 16:31+0000\n"
+"Last-Translator: Nemanja Mihailovic <nmihailovic96@gmail.com>\n"
 "Language-Team: Serbian (http://www.transifex.com/wildfire-games/0ad/language/sr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,15 +24,15 @@ msgstr ""
 
 #: simulation/templates/template_unit_catafalque.xml:16
 msgid "Relic"
-msgstr ""
+msgstr "Реликвија"
 
 #: simulation/templates/template_unit_catafalque.xml:18
 msgid "Catafalque"
-msgstr ""
+msgstr "Катафалк"
 
 #: simulation/templates/template_unit_catafalque.xml:21
 msgid "A catafalque that holds the remains of a great leader."
-msgstr ""
+msgstr "Катафалк који држи остатке великог вође."
 
 #: simulation/templates/template_unit_cavalry.xml:5
 #: simulation/templates/template_unit_champion.xml:5
@@ -39,14 +40,14 @@ msgstr ""
 #: simulation/templates/template_unit_infantry.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Capture"
-msgstr ""
+msgstr "Заузти"
 
 #: simulation/templates/template_unit_cavalry.xml:12
 #: simulation/templates/template_unit_infantry.xml:12
 #: simulation/templates/template_unit_support_female_citizen.xml:16
 msgctxt "Name of an attack, usually the weapon."
 msgid "Slaughter"
-msgstr ""
+msgstr "Покољ"
 
 #: simulation/templates/template_unit_cavalry.xml:30
 #: simulation/templates/template_unit_cavalry.xml:33
@@ -80,7 +81,7 @@ msgstr "Грађанин"
 
 #: simulation/templates/template_unit_cavalry_melee.xml:7
 msgid "Melee Cavalry"
-msgstr ""
+msgstr "Коњица за блиске борбе"
 
 #: simulation/templates/template_unit_cavalry_melee.xml:8
 #: simulation/templates/template_unit_champion_cavalry_axeman.xml:21
@@ -109,7 +110,7 @@ msgstr ""
 #: simulation/templates/template_unit_ship_fire.xml:42
 #: simulation/templates/template_unit_siege_ram.xml:37
 msgid "Melee"
-msgstr ""
+msgstr "Блиска борба"
 
 #: simulation/templates/template_unit_cavalry_melee_axeman.xml:5
 #: simulation/templates/template_unit_champion_cavalry_axeman.xml:5
@@ -119,11 +120,11 @@ msgstr ""
 #: simulation/templates/template_unit_infantry_melee_axeman.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Axe"
-msgstr ""
+msgstr "Секира"
 
 #: simulation/templates/template_unit_cavalry_melee_axeman.xml:24
 msgid "Cavalry Axeman"
-msgstr ""
+msgstr "Коњаник са секиром"
 
 #: simulation/templates/template_unit_cavalry_melee_axeman.xml:25
 #: simulation/templates/template_unit_champion_cavalry_axeman.xml:21
@@ -133,7 +134,7 @@ msgstr ""
 #: simulation/templates/template_unit_infantry_melee_axeman.xml:24
 #: simulation/templates/template_unit_infantry_melee_axeman.xml:25
 msgid "Axeman"
-msgstr ""
+msgstr "Војник са секиром"
 
 #: simulation/templates/template_unit_cavalry_melee_maceman.xml:5
 #: simulation/templates/template_unit_champion_cavalry_maceman.xml:5
@@ -143,11 +144,11 @@ msgstr ""
 #: simulation/templates/template_unit_infantry_melee_maceman.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Mace"
-msgstr ""
+msgstr "Буздован"
 
 #: simulation/templates/template_unit_cavalry_melee_maceman.xml:23
 msgid "Cavalry Maceman"
-msgstr ""
+msgstr "Коњаник са буздованом"
 
 #: simulation/templates/template_unit_cavalry_melee_maceman.xml:24
 #: simulation/templates/template_unit_champion_cavalry_maceman.xml:22
@@ -156,7 +157,7 @@ msgstr ""
 #: simulation/templates/template_unit_hero_infantry_maceman.xml:19
 #: simulation/templates/template_unit_infantry_melee_maceman.xml:24
 msgid "Maceman"
-msgstr ""
+msgstr "Војник са буздованом"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:5
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:5
@@ -170,13 +171,13 @@ msgstr "Копље"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:29
 msgid "Cavalry Spearman"
-msgstr ""
+msgstr "Коњаник копљаник"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:30
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:28
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:25
 msgid "Counters: 1.75× vs Cavalry."
-msgstr ""
+msgstr "Бројач: 1,75х против Коњице."
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:31
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:29
@@ -232,11 +233,11 @@ msgstr "мачевалац"
 #: simulation/templates/template_unit_siege_stonethrower.xml:43
 #: simulation/templates/template_unit_siege_tower.xml:61
 msgid "Ranged"
-msgstr ""
+msgstr "Удаљен"
 
 #: simulation/templates/template_unit_cavalry_ranged.xml:29
 msgid "Ranged Cavalry"
-msgstr ""
+msgstr "Коњица за борбу из даљине"
 
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:5
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:5
@@ -279,7 +280,7 @@ msgstr "копље"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelineer.xml:32
 msgid "Cavalry Javelineer"
-msgstr ""
+msgstr "Коњица бацача копља"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelineer.xml:33
 #: simulation/templates/template_unit_champion_cavalry_javelineer.xml:28
@@ -288,7 +289,7 @@ msgstr ""
 #: simulation/templates/template_unit_hero_infantry_javelineer.xml:28
 #: simulation/templates/template_unit_infantry_ranged_javelineer.xml:33
 msgid "Javelineer"
-msgstr ""
+msgstr "Бацач копља"
 
 #: simulation/templates/template_unit_champion.xml:14
 msgid "Champion"

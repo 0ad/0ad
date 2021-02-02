@@ -18,15 +18,16 @@
 # SuroX <peter.surovcik@gmail.com>, 2016
 # Peto (wt-ts) <peter.tuharsky@gmail.com>, 2015-2016
 # Roman 'Kaktuxista' Benji <romanbeno273@gmail.com>, 2014
-# Angen <slavomir.slovenkai@gmail.com>, 2017-2018,2020
+# Angen <slavomir.slovenkai@gmail.com>, 2017-2018,2020-2021
+# Stanislas Dolcini <stan@wildfiregames.com>, 2021
 # Tom Hanax, 2019
 # Tom Hanax, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-29 11:30+0000\n"
-"PO-Revision-Date: 2021-01-29 13:26+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-01-29 14:56+0000\n"
+"PO-Revision-Date: 2021-01-31 16:47+0000\n"
+"Last-Translator: Angen <slavomir.slovenkai@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -783,7 +784,7 @@ msgstr "Nesynchronizované"
 #. Translation: This is shown if replay is out of sync
 #: gui/session/message_box/OutOfSyncReplay.js:28
 msgid "Out-Of-Sync"
-msgstr ""
+msgstr "Nesynchronizované"
 
 #: gui/session/message_box/QuitConfirmation.js:6
 #: gui/session/message_box/QuitConfirmationMenu.js:63
@@ -946,7 +947,7 @@ msgstr "Zisk: %(gain)s"
 msgid ""
 "(%(number)s)\n"
 "%(time)s"
-msgstr ""
+msgstr "(%(number)s)\n%(time)s"
 
 #: gui/session/selection_details.js:282
 msgid "Current/max gatherers"
@@ -1290,7 +1291,7 @@ msgstr "Obsadzovacie body"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):62
 msgid "Attack and Resistance"
-msgstr ""
+msgstr "Útok a odolnosť"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):77
 msgid "Experience"
@@ -1311,8 +1312,8 @@ msgid ""
 msgstr "Kliknite pre označenie skupiny jednotiek, kliknite dva krát, aby ste presunuli kameru na skupinu jednotiek, alebo kliknite pravým tlačídlom pre rozpustenie skupiny jednotiek."
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
-msgid "ALPHA XXIV: Xšayaṛšā"
-msgstr ""
+msgid "ALPHA XXIV: Xšayāršā"
+msgstr "Alfa XXIV: Xšayāršā"
 
 #: gui/session/top_panel/CivIcon.js:80
 #, javascript-format
@@ -1371,7 +1372,7 @@ msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 #: gui/session/top_panel/CounterResource.js:32
 #, javascript-format
 msgid "Gatherers: %(amount)s"
-msgstr ""
+msgstr "Zberači: %(amount)s"
 
 #: gui/session/top_panel/FollowPlayer.xml:(caption):15
 #: gui/session/top_panel/FollowPlayer.xml:(tooltip):11

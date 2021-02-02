@@ -715,8 +715,8 @@ using VertexBufferBatches = PooledBatchMap<CVertexBuffer*, IndexBufferBatches>;
 // Group batches by texture
 using TextureBatches = PooledBatchMap<CTerrainTextureEntry*, VertexBufferBatches>;
 
-void CPatchRData::RenderBases(const std::vector<CPatchRData*>& patches, const CShaderDefines& context,
-			      ShadowMap* shadow, bool isDummyShader, const CShaderProgramPtr& dummy)
+void CPatchRData::RenderBases(
+	const std::vector<CPatchRData*>& patches, const CShaderDefines& context, ShadowMap* shadow)
 {
 	Arena arena;
 
@@ -752,33 +752,23 @@ void CPatchRData::RenderBases(const std::vector<CPatchRData*>& patches, const CS
  	// Render each batch
  	for (TextureBatches::iterator itt = batches.begin(); itt != batches.end(); ++itt)
 	{
-		int numPasses = 1;
-
-		CShaderTechniquePtr techBase;
-
-		if (!isDummyShader)
+		if (itt->first->GetMaterial().GetShaderEffect().empty())
 		{
-			if (itt->first->GetMaterial().GetShaderEffect().length() == 0)
-			{
-				LOGERROR("Terrain renderer failed to load shader effect.\n");
-				continue;
-			}
-
-			techBase = g_Renderer.GetShaderManager().LoadEffect(itt->first->GetMaterial().GetShaderEffect(),
-						context, itt->first->GetMaterial().GetShaderDefines(0));
-
-			numPasses = techBase->GetNumPasses();
+			LOGERROR("Terrain renderer failed to load shader effect.\n");
+			continue;
 		}
+
+		CShaderTechniquePtr techBase = g_Renderer.GetShaderManager().LoadEffect(itt->first->GetMaterial().GetShaderEffect(),
+					context, itt->first->GetMaterial().GetShaderDefines(0));
+
+		const int numPasses = techBase->GetNumPasses();
 
 		for (int pass = 0; pass < numPasses; ++pass)
 		{
-			if (!isDummyShader)
-			{
-				techBase->BeginPass(pass);
-				TerrainRenderer::PrepareShader(techBase->GetShader(), shadow);
-			}
+			techBase->BeginPass(pass);
+			TerrainRenderer::PrepareShader(techBase->GetShader(), shadow);
 
-			const CShaderProgramPtr& shader = isDummyShader ? dummy : techBase->GetShader(pass);
+			const CShaderProgramPtr& shader = techBase->GetShader(pass);
 
 			if (itt->first->GetMaterial().GetSamplers().size() != 0)
 			{
@@ -793,20 +783,9 @@ void CPatchRData::RenderBases(const std::vector<CPatchRData*>& patches, const CS
 
 				itt->first->GetMaterial().GetStaticUniforms().BindUniforms(shader);
 
-#if !CONFIG2_GLES
-				if (isDummyShader)
-				{
-					glMatrixMode(GL_TEXTURE);
-					glLoadMatrixf(itt->first->GetTextureMatrix());
-					glMatrixMode(GL_MODELVIEW);
-				}
-				else
-#endif
-				{
-					float c = itt->first->GetTextureMatrix()[0];
-					float ms = itt->first->GetTextureMatrix()[8];
-					shader->Uniform(str_textureTransform, c, ms, -ms, 0.f);
-				}
+				float c = itt->first->GetTextureMatrix()[0];
+				float ms = itt->first->GetTextureMatrix()[8];
+				shader->Uniform(str_textureTransform, c, ms, -ms, 0.f);
 			}
 			else
 			{
@@ -843,19 +822,9 @@ void CPatchRData::RenderBases(const std::vector<CPatchRData*>& patches, const CS
 				}
 			}
 
-			if (!isDummyShader)
-				techBase->EndPass();
+			techBase->EndPass();
 		}
 	}
-
-#if !CONFIG2_GLES
-	if (isDummyShader)
-	{
-		glMatrixMode(GL_TEXTURE);
-		glLoadIdentity();
-		glMatrixMode(GL_MODELVIEW);
-	}
-#endif
 
 	CVertexBuffer::Unbind();
 }
@@ -891,8 +860,8 @@ struct SBlendStackItem
 	SplatStack splats;
 };
 
-void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches, const CShaderDefines& context,
-			      ShadowMap* shadow, bool isDummyShader, const CShaderProgramPtr& dummy)
+void CPatchRData::RenderBlends(
+	const std::vector<CPatchRData*>& patches, const CShaderDefines& context, ShadowMap* shadow)
 {
 	Arena arena;
 
@@ -985,29 +954,19 @@ void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches, const C
 		if (itt->m_Texture->GetMaterial().GetSamplers().size() == 0)
 			continue;
 
-		int numPasses = 1;
-		CShaderTechniquePtr techBase;
-
-		if (!isDummyShader)
-		{
-			techBase = g_Renderer.GetShaderManager().LoadEffect(itt->m_Texture->GetMaterial().GetShaderEffect(), contextBlend, itt->m_Texture->GetMaterial().GetShaderDefines(0));
-
-			numPasses = techBase->GetNumPasses();
-		}
+		CShaderTechniquePtr techBase = g_Renderer.GetShaderManager().LoadEffect(itt->m_Texture->GetMaterial().GetShaderEffect(), contextBlend, itt->m_Texture->GetMaterial().GetShaderDefines(0));
+		const int numPasses = techBase->GetNumPasses();
 
 		CShaderProgramPtr previousShader;
 		for (int pass = 0; pass < numPasses; ++pass)
 		{
-			if (!isDummyShader)
-			{
-				techBase->BeginPass(pass);
-				TerrainRenderer::PrepareShader(techBase->GetShader(), shadow);
+			techBase->BeginPass(pass);
+			TerrainRenderer::PrepareShader(techBase->GetShader(), shadow);
 
-				glEnable(GL_BLEND);
-				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-			}
+			glEnable(GL_BLEND);
+			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-			const CShaderProgramPtr& shader = isDummyShader ? dummy : techBase->GetShader(pass);
+			const CShaderProgramPtr& shader = techBase->GetShader(pass);
 
 			if (itt->m_Texture)
 			{
@@ -1024,21 +983,9 @@ void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches, const C
 
 				itt->m_Texture->GetMaterial().GetStaticUniforms().BindUniforms(shader);
 
-#if !CONFIG2_GLES
-				if (isDummyShader)
-				{
-					pglClientActiveTextureARB(GL_TEXTURE0);
-					glMatrixMode(GL_TEXTURE);
-					glLoadMatrixf(itt->m_Texture->GetTextureMatrix());
-					glMatrixMode(GL_MODELVIEW);
-				}
-				else
-#endif
-				{
-					float c = itt->m_Texture->GetTextureMatrix()[0];
-					float ms = itt->m_Texture->GetTextureMatrix()[8];
-					shader->Uniform(str_textureTransform, c, ms, -ms, 0.f);
-				}
+				float c = itt->m_Texture->GetTextureMatrix()[0];
+				float ms = itt->m_Texture->GetTextureMatrix()[8];
+				shader->Uniform(str_textureTransform, c, ms, -ms, 0.f);
 			}
 			else
 			{
@@ -1081,23 +1028,10 @@ void CPatchRData::RenderBlends(const std::vector<CPatchRData*>& patches, const C
 				}
 			}
 
-			if (!isDummyShader)
-			{
-				glDisable(GL_BLEND);
-				techBase->EndPass();
-			}
+			glDisable(GL_BLEND);
+			techBase->EndPass();
 		}
 	}
-
-#if !CONFIG2_GLES
-	if (isDummyShader)
-	{
-		pglClientActiveTextureARB(GL_TEXTURE0);
-		glMatrixMode(GL_TEXTURE);
-		glLoadIdentity();
-		glMatrixMode(GL_MODELVIEW);
-	}
-#endif
 
 	CVertexBuffer::Unbind();
 }

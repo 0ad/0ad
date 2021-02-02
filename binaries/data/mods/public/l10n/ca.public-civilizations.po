@@ -13,13 +13,13 @@
 # Klan Ruiz Martin <rodamit@gmail.com>, 2017
 # Peredelgrau, 2013
 # ribasvilanova <ribasvilanova@gmail.com>, 2014
-# Haommin <tfs.msimangu@gmail.com>, 2014-2016,2020
+# Haommin <tfs.msimangu@gmail.com>, 2014-2016,2020-2021
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-01-22 08:36+0000\n"
-"Last-Translator: Albert F. <alb.fontquerni@gmail.com>\n"
+"PO-Revision-Date: 2021-01-31 22:24+0000\n"
+"Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -89,7 +89,7 @@ msgstr "Milcíades"
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].Description
 msgid "Workers +10% metal gather rate per phase advance."
-msgstr ""
+msgstr "Els treballadors recullen metall un 10% més ràpid cada nova fase."
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].History
 msgid ""
@@ -235,19 +235,19 @@ msgstr "Himilcó"
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].Description
 msgid "Merchant Ships +25% trade gain."
-msgstr ""
+msgstr "+25% de benefici per als vaixells mercants."
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].Name
 msgid "Commercial Acumen"
-msgstr ""
+msgstr "Astúcia comercial"
 
 #: simulation/data/civs/cart.jsonCivBonuses[1].Description
 msgid "Docks and Markets +10% international trade bonus."
-msgstr ""
+msgstr "Bonificació del +10% en el comerç internacional per als mercats i ports."
 
 #: simulation/data/civs/cart.jsonCivBonuses[1].Name
 msgid "Desirable Products"
-msgstr ""
+msgstr "Productes desitjables"
 
 #: simulation/data/civs/cart.jsonHistory
 msgid ""
@@ -347,7 +347,7 @@ msgstr "Tàntal"
 
 #: simulation/data/civs/iber.jsonCivBonuses[0].Description
 msgid "Iberians start with City Walls around their base on most maps."
-msgstr ""
+msgstr "Els ibers comencen amb una base emmurallada en la majoria de mapes."
 
 #: simulation/data/civs/iber.jsonCivBonuses[0].History
 msgid ""
@@ -358,17 +358,17 @@ msgstr "Amb l'excepció de les planes al·luvials i les valls dels rius, la pedr
 
 #: simulation/data/civs/iber.jsonCivBonuses[0].Name
 msgid "Starting Walls"
-msgstr ""
+msgstr "Muralles inicials"
 
 #: simulation/data/civs/iber.jsonCivBonuses[1].Description
 msgid ""
 "Stone Towers −50% wood cost, +150% stone cost, +33% build time, +60% health,"
 " +3 garrison capacity, and +1 default arrow count."
-msgstr ""
+msgstr "Les torres costen un 50% menys de fusta, un 150% més de pedra, es construeixen un 33% més lent, guanyen un 60% més de salut, guanyen 3 més de capacitat de refugi i 1 fletxa més per defecte."
 
 #: simulation/data/civs/iber.jsonCivBonuses[1].Name
 msgid "Massive Towers"
-msgstr ""
+msgstr "Torres colossals"
 
 #: simulation/data/civs/iber.jsonHistory
 msgid ""
@@ -443,12 +443,12 @@ msgstr "Nasalsa"
 #: simulation/data/civs/kush.jsonCivBonuses[0].Description
 #: simulation/data/civs/pers.jsonCivBonuses[1].Description
 msgid "Battering Rams +20% attack damage and +2 garrison capacity."
-msgstr ""
+msgstr "+20% d'atac i +2 de capacitat de refugi per als ariets."
 
 #: simulation/data/civs/kush.jsonCivBonuses[0].Name
 #: simulation/data/civs/pers.jsonCivBonuses[1].Name
 msgid "Large Rams"
-msgstr ""
+msgstr "Grans ariets"
 
 #: simulation/data/civs/kush.jsonHistory
 msgid ""
@@ -640,11 +640,11 @@ msgstr "Artaxshacha III"
 
 #: simulation/data/civs/pers.jsonCivBonuses[0].Description
 msgid "Land Traders +25% trade gain."
-msgstr ""
+msgstr "+25% de benefici per als mercaders terrestres."
 
 #: simulation/data/civs/pers.jsonCivBonuses[0].Name
 msgid "Darics"
-msgstr ""
+msgstr "Dàrics"
 
 #: simulation/data/civs/pers.jsonHistory
 msgid ""
@@ -739,7 +739,7 @@ msgstr "Ptolemeu Neo-Dionisi"
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].Description
 msgid "Bolt Shooters −33% attack damage and −33% attack time."
-msgstr ""
+msgstr "Redueix un 33% tant el dany com el temps entre atacs dels tiradors de projectils."
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].Name
 msgid "Polybolos"
@@ -830,11 +830,11 @@ msgstr "Formació Testudo"
 
 #: simulation/data/civs/rome.jsonCivBonuses[1].Description
 msgid "Battering Rams +20% attack damage. Stone Throwers +10% attack damage."
-msgstr ""
+msgstr "+20% d'atac per als ariets. +10% d'atac per als tiradors de pedres."
 
 #: simulation/data/civs/rome.jsonCivBonuses[1].Name
 msgid "Legionary Engineers"
-msgstr ""
+msgstr "Enginyers legionaris"
 
 #: simulation/data/civs/rome.jsonHistory
 msgid ""
@@ -1023,11 +1023,11 @@ msgstr "Eurícrates"
 
 #: simulation/data/civs/spart.jsonCivBonuses[0].Description
 msgid "Female Citizens +40% health and +50% melee attack hack damage."
-msgstr ""
+msgstr "Les ciutadanes guanyen un 40% de salut i un 50% d'atac de tall cos a cos."
 
 #: simulation/data/civs/spart.jsonCivBonuses[0].Name
 msgid "Spartan Women"
-msgstr ""
+msgstr "Dones espartanes"
 
 #: simulation/data/civs/spart.jsonHistory
 msgid ""

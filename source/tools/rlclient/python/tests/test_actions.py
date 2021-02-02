@@ -29,7 +29,7 @@ def closest(units, position):
 def test_construct():
     state = game.reset(config)
     female_citizens = state.units(owner=1, type='female_citizen')
-    house_tpl = 'structures/spart_house'
+    house_tpl = 'structures/spart/house'
     house_count = len(state.units(owner=1, type=house_tpl))
     x = 680
     z = 640
@@ -53,7 +53,7 @@ def test_gather():
 def test_train():
     state = game.reset(config)
     civic_centers = state.units(owner=1, type="civil_centre")
-    spearman_type = 'units/spart_infantry_spearman_b'
+    spearman_type = 'units/spart/infantry_spearman_b'
     spearman_count = len(state.units(owner=1, type=spearman_type))
     train_spearmen = zero_ad.actions.train(civic_centers, spearman_type)
 
@@ -88,11 +88,6 @@ def test_attack():
     state = game.step([attack])
     while state.unit(target.id()).health() >= initial_health:
         state = game.step()
-
-def test_debug_print():
-    state = game.reset(config)
-    debug_print = zero_ad.actions.debug_print('hello world!!')
-    state = game.step([debug_print])
 
 def test_chat():
     state = game.reset(config)

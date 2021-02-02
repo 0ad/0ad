@@ -18,7 +18,7 @@
 # Lampros Lampreas <marbiourd@hotmail.com>, 2016
 # elenapan <lolotafrantzi@gmail.com>, 2018
 # LOUKAS SKOUROLIAKOS, 2015
-# LOUKAS SKOUROLIAKOS, 2019-2020
+# LOUKAS SKOUROLIAKOS, 2019-2021
 # malvanos <malvanos@gmail.com>, 2014
 # Michael Chatz <chatziasemidismichael@gmail.com>, 2018
 # c28898edaeb1dbe1cfa07607b5ff55ed_3357a88 <52a60029b916ee18b3ab827835d415ca_491145>, 2016
@@ -27,6 +27,7 @@
 # a24aea7ffc84d2433b80f99f2fbaaa74_064c1cf <f35716e87b48e4f0b82a420d01c955ad_139079>, 2014
 # Savvas Nesseris <nesseris@yahoo.com>, 2016
 # csparta <scoon405@gmail.com>, 2016
+# Stanislas Dolcini <stan@wildfiregames.com>, 2021
 # Steven Gikas <stevengk123@gmail.com>, 2016
 # Thanasis Mousiolis <thanasism@yahoo.com>, 2014
 # Vasilis Drosos <basilisd@gmail.com>, 2016-2020
@@ -38,9 +39,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-29 11:30+0000\n"
-"PO-Revision-Date: 2021-01-29 13:26+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-01-29 14:56+0000\n"
+"PO-Revision-Date: 2021-01-31 10:31+0000\n"
+"Last-Translator: LOUKAS SKOUROLIAKOS\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -91,7 +92,7 @@ msgstr "Επιλογές"
 
 #: gui/session/MenuButtons.js:182
 msgid "Hotkeys"
-msgstr ""
+msgstr "Αυτόματη Επιλογή"
 
 #: gui/session/MenuButtons.js:217
 msgid "Resume"
@@ -363,16 +364,16 @@ msgstr "* %(user)s %(message)s"
 #: gui/session/chat/ChatMessageFormatSimulation.js:16
 #, javascript-format
 msgid "%(icon)sYour livestock has been attacked by %(attacker)s!"
-msgstr ""
+msgstr "%(icon)s Η κτηνοτροφία σας έχει δεχθεί επίθεση απο%(attacker)s!"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:17
 #, javascript-format
 msgid "%(icon)sYou have been attacked by %(attacker)s!"
-msgstr ""
+msgstr "%(icon)sΔέχθηκες επίθεση από %(attacker)s!"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:30
 msgid "Click to focus on the attacked unit."
-msgstr ""
+msgstr " Κλίκ για συγκέντρωση στην επιτιθέμενη ομάδα."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:49
 #, javascript-format
@@ -557,7 +558,7 @@ msgstr "Ενεργοποίηση χρονική δίνης"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:214
 msgid "Activate Rejoin Test"
-msgstr ""
+msgstr "Ενεργοποίηση  Δοκιμής Επανασύνδεσης."
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:248
 msgid "Promote selected units"
@@ -956,7 +957,7 @@ msgstr "Κέρδος: %(gain)s"
 msgid ""
 "(%(number)s)\n"
 "%(time)s"
-msgstr ""
+msgstr "(%(number)s)\n%(time)s"
 
 #: gui/session/selection_details.js:282
 msgid "Current/max gatherers"
@@ -1021,19 +1022,19 @@ msgstr "Τέλος του συναγερμού"
 
 #: gui/session/selection_panels.js:276
 msgid "Default formation is disabled."
-msgstr ""
+msgstr "Προεπιλεγμένος  σχηματισμός έχει απενεργοποιηθεί."
 
 #: gui/session/selection_panels.js:277
 msgid "Right-click to disable the default formation feature."
-msgstr ""
+msgstr "Δεξί-κλίκ για απενεργοποίηση αντικειμένου προ επιλεγμένου σχηματισμού."
 
 #: gui/session/selection_panels.js:280
 msgid "This is the default formation, used for movement orders."
-msgstr ""
+msgstr "Αυτός είναι ο προ επιλεγμένος σχηματισμός, χρησιμοποιείτε  για εντολές κίνησης."
 
 #: gui/session/selection_panels.js:281
 msgid "Right-click to set this as the default formation."
-msgstr ""
+msgstr "Δεξί-κλίκ για να οριστεί ώς ο προ επιλεγμένος σχηματισμός."
 
 #: gui/session/selection_panels.js:337
 #, javascript-format
@@ -1128,8 +1129,8 @@ msgid ""
 msgid_plural ""
 "Cannot upgrade when all entities are training, researching or already "
 "upgrading."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Αδυναμία αναβάθμισης όταν η οντότητα εκπαιδεύεται ,ανακαλύπτει ή είναι ήδη σε διαδικασία αναβάθμισης."
+msgstr[1] "Αδυναμία αναβάθμισης όταν όλες οι οντότητες εκπαιδεύονται,ανακαλύπτουν ή είναι ήδη σε διαδικασία αναβάθμισης."
 
 #: gui/session/selection_panels_helpers.js:53
 msgctxt "stance"
@@ -1201,53 +1202,53 @@ msgstr "%(changer)s μειώνει το όριο σε %(change)s."
 #: gui/session/selection_panels_helpers.js:140
 msgid "Could only be constructed once."
 msgid_plural "Could only be constructed %(limit)s times."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Μπορεί να ανεγερθεί ,ία φορά."
+msgstr[1] "Μπορεί να αναγερθεί %(limit)sφορές."
 
 #: gui/session/selection_panels_helpers.js:144
 msgid "Can be constructed only once."
-msgstr ""
+msgstr "Μπορεί να ανεγερθεί μόνο μία φορά."
 
 #: gui/session/selection_panels_helpers.js:146
 #, javascript-format
 msgid "Can be constructed %(count)s more time."
 msgid_plural "Can be constructed %(count)s more times."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Μπορεί να αναγερθεί %(count)s ακόμα  φορά."
+msgstr[1] "Μπορεί να αναγερθεί %(count)s ακόμα φορές."
 
 #: gui/session/selection_panels_helpers.js:153
 msgid "Could only be trained once."
 msgid_plural "Could only be trained %(limit)s times."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Μπορεί να εκπαιδευτεί μία φορά."
+msgstr[1] "Μπορεί να εκπαιδευτεί  %(limit)s φορές."
 
 #: gui/session/selection_panels_helpers.js:157
 msgid "Can be trained only once."
-msgstr ""
+msgstr "Μπορεί να εκπαιδευτεί μόνο μία φορά."
 
 #: gui/session/selection_panels_helpers.js:159
 #, javascript-format
 msgid "Can be trained %(count)s more time."
 msgid_plural "Can be trained %(count)s more times."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Μπορεί να εκπαιδευθεί %(count)s ακόμη φορά."
+msgstr[1] "Μπορεί να εκπαιδευθεί %(count)s ακόμα φορές "
 
 #: gui/session/selection_panels_helpers.js:166
 msgid "Could only be created once."
 msgid_plural "Could only be created %(limit)s times."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Μπορεί να δημιουργηθεί μόνο μία φορά."
+msgstr[1] "Μπορεί μόνο να δημιουργηθεί  %(limit)sακόμα φορές."
 
 #: gui/session/selection_panels_helpers.js:170
 msgid "Can be created only once."
-msgstr ""
+msgstr "Μπορεί να δημιουργηθεί μόνο μία φορά."
 
 #: gui/session/selection_panels_helpers.js:172
 #, javascript-format
 msgid "Can be created %(count)s more time."
 msgid_plural "Can be created %(count)s more times."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Μπορεί να δημιουργηθεί %(count)s ακόμα φορά"
+msgstr[1] "Μπορεί να δημιουργηθεί %(count)sακόμα φορές."
 
 #: gui/session/selection_panels_helpers.js:201
 #, javascript-format
@@ -1305,8 +1306,8 @@ msgid ""
 msgstr "Κάντε κλικ για να επιλέξετε ομαδικά μονάδες, κάντε διπλό κλικ για να επικεντρωθούν οι ομαδοποιημένες μονάδες και κάντε δεξί κλικ για να διαλύσετε την ομάδα."
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
-msgid "ALPHA XXIV: Xšayaṛšā"
-msgstr ""
+msgid "ALPHA XXIV: Xšayāršā"
+msgstr "ΑΛΦΑ ΚΔ: Ξέρξης"
 
 #: gui/session/top_panel/CivIcon.js:80
 #, javascript-format
@@ -1341,7 +1342,7 @@ msgstr "%(playername)s: %(statValue)s"
 #: gui/session/top_panel/CounterPopulation.js:34
 #, javascript-format
 msgid "Current gatherers: %(amount)s"
-msgstr ""
+msgstr "Τρέχοντες συλλέκτες: %(amount)s"
 
 #: gui/session/top_panel/CounterPopulation.js:63
 #, javascript-format
@@ -1365,7 +1366,7 @@ msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 #: gui/session/top_panel/CounterResource.js:32
 #, javascript-format
 msgid "Gatherers: %(amount)s"
-msgstr ""
+msgstr "Συλλέκτες: %(amount)s"
 
 #: gui/session/top_panel/FollowPlayer.xml:(caption):15
 #: gui/session/top_panel/FollowPlayer.xml:(tooltip):11
@@ -1628,8 +1629,8 @@ msgstr "Αναμενόμενο κέρδος: %(gain)s"
 #: gui/session/unit_actions.js:1106
 msgid "This entity cannot be controlled."
 msgid_plural "These entities cannot be controlled."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Αυτή η οντότητα δε μπορεί να ελεγχθεί."
+msgstr[1] "Αυτές οι οντότητες δε μπορούν να ελεγχθούν."
 
 #: gui/session/unit_actions.js:1152
 msgid "Unload All."
@@ -1704,7 +1705,7 @@ msgstr "Σου απαγορεύεται η χρήση του προκαθορι�
 
 #: gui/session/unit_actions.js:1503
 msgid "Allies are allowed to use this dropsite."
-msgstr ""
+msgstr "Σύμμαχοι επιτρέπετε να χρησιμοποιήσουν αυτό το προκαθορισμένο σημείο."
 
 #: gui/session/unit_actions.js:1504
 msgid "You are allowed to use this dropsite"

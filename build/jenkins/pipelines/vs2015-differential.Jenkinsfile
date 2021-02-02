@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,7 +15,7 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// This pipeline is used to build patches on MSVC 14.0 (Visual Studio 2015).
+// This pipeline is used to build patches on MSVC 15.0 (Visual Studio 2017).
 
 def jobs = "2"
 pipeline {
@@ -69,13 +69,50 @@ pipeline {
 		}
 		stage ('Debug: Build') {
 			steps {
-				bat("cd build\\workspaces\\vc2015 && MSBuild.exe pyrogenesis.sln /m:${jobs} /p:PlatformToolset=v140_xp /t:pyrogenesis /t:AtlasUI /t:test /p:Configuration=Debug -clp:Warningsonly -clp:ErrorsOnly ")
+				dir('build\\workspaces\\vs2017'){
+					bat("\"C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\MSBuild\\15.0\\Bin\\MSBuild.exe\" pyrogenesis.sln /p:XPDeprecationWarning=false /m:${jobs} /p:PlatformToolset=v141_xp /t:pyrogenesis /t:AtlasUI /t:test /p:Configuration=Debug -clp:Warningsonly -clp:ErrorsOnly > ..\\..\\..\\build-errors-debug.txt 2>&1")
+				}
+			}
+			post {
+				always {
+					bat "if exist build-errors-debug.txt type build-errors-debug.txt"
+				}
 			}
 		}
-		// Debug tests do not work on Windows, see #3753.
+		stage ('Debug: Test') {
+			options {
+				timeout(time: 30)
+			}
+			steps {
+				catchError { // Debug tests might not work on Windows, see #3753. uncomment just below if they do work.
+					script {
+						try {
+							bat 'binaries\\system\\test_dbg.exe > cxxtest_debug.xml'
+						} catch(err) {
+							echo (message: readFile (file: "cxxtest_debug.xml"))
+						}
+					}
+				}
+			}
+			post {
+				failure {
+					echo (message: readFile (file: "cxxtest_debug.xml"))
+				}
+				always {
+					junit "cxxtest_debug.xml"
+				}
+			}
+		}
 		stage ('Release: Build') {
 			steps {
-				bat("cd build\\workspaces\\vc2015 && MSBuild.exe pyrogenesis.sln /m:${jobs} /p:PlatformToolset=v140_xp /t:pyrogenesis /t:AtlasUI /t:test /p:Configuration=Release -clp:Warningsonly -clp:ErrorsOnly ")
+				dir('build\\workspaces\\vs2017'){
+					bat("\"C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\MSBuild\\15.0\\Bin\\MSBuild.exe\" pyrogenesis.sln /p:XPDeprecationWarning=false /m:${jobs} /p:PlatformToolset=v141_xp /t:pyrogenesis /t:AtlasUI /t:test /p:Configuration=Release -clp:Warningsonly -clp:ErrorsOnly > ..\\..\\..\\build-errors-release.txt 2>&1")
+				}
+			}
+			post {
+				always {
+					bat "if exist build-errors-release.txt type build-errors-release.txt"
+				}
 			}
 		}
 		stage ('Release: Test') {
@@ -97,11 +134,30 @@ pipeline {
 	}
 	post {
 		always {
-			step([$class: 'PhabricatorNotifier', commentOnSuccess: true, commentWithConsoleLinkOnFailure: true])
-			bat 'del cxxtest_*.xml'
-			bat 'svn revert -R .'
-			bat 'powershell.exe "svn st binaries/data | %% {$_.substring(8)} | del -r " '
-			bat 'powershell.exe "svn st source/ | %% {$_.substring(8)} | del -r " '
+			script {
+					catchError {
+						bat "if exist build-errors-debug.txt echo Debug: >> .phabricator-comment"
+						bat "if exist build-errors-debug.txt type build-errors-debug.txt >> .phabricator-comment"
+						bat "if exist build-errors-release.txt echo Release: >> .phabricator-comment"
+						bat "if exist build-errors-release.txt type build-errors-release.txt >> .phabricator-comment"
+					}
+					try {
+						if (fileExists(".phabricator-comment")) {
+							bat "if exist .phabricator-comment type .phabricator-comment"
+							step([$class: 'PhabricatorNotifier', commentOnSuccess: true, commentWithConsoleLinkOnFailure: true, customComment: true, commentFile: ".phabricator-comment"])
+						}
+					} catch(e) {
+						throw e
+					} finally {
+						bat 'del .phabricator-comment'
+						bat 'del build-errors-debug.txt'
+						bat 'del build-errors-release.txt'
+						bat 'del cxxtest_*.xml'
+						bat 'svn revert -R .'
+						bat 'powershell.exe "svn st binaries/data | %% {$_.substring(8)} | del -r " '
+						bat 'powershell.exe "svn st source/ | %% {$_.substring(8)} | del -r " '
+					}
+			}
 		}
 	}
 }

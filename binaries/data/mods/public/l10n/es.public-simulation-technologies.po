@@ -15,11 +15,12 @@
 # Federico Castro <dwcels@gmail.com>, 2018
 # Fernando Mendez <nandito104@gmail.com>, 2019
 # Ghenadi Avricenco <gplushentr@gmx.us>, 2014
-# Jesus A <jasenjot@gmail.com>, 2017
+# Jesús Asenjo <jasenjot@gmail.com>, 2017
 # Jesus Covo <jurdikd@gmail.com>, 2019
 # Jhon Valencia <jhonvalencia314@gmail.com>, 2017-2018
 # Joaquin Cubelli <jcubellidl@gmail.com>, 2017
 # José Javier Domínguez Reina <jjdominguez@gmail.com>, 2017
+# Juan Campos <juan.camposzambrana@gmail.com>, 2021
 # Juan Jaramillo <juanda097@protonmail.ch>, 2019
 # Luis Torrecilla <l_torrecilla@yahoo.es>, 2016
 # Miguel Magdaleno Santamaría, 2020
@@ -34,8 +35,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-01-22 11:22+0000\n"
-"Last-Translator: Brookhaven Alt <Lion.Kanzen@gmail.com>\n"
+"PO-Revision-Date: 2021-01-30 19:36+0000\n"
+"Last-Translator: Juan Campos <juan.camposzambrana@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -126,7 +127,7 @@ msgstr "Se desbloquea en la Fase inicial."
 
 #: simulation/data/technologies/archery_tradition.jsontooltip
 msgid "Archers −10% training time and +10 attack range."
-msgstr ""
+msgstr "Arqueros -10% en tiempo de entrenamiento y +10% en alcance de ataque"
 
 #: simulation/data/technologies/architecture_kush.jsongenericName
 msgid "Monumental Architecture"
@@ -253,7 +254,7 @@ msgstr "Leva de caballería"
 
 #: simulation/data/technologies/cavalry_cost_time.jsontooltip
 msgid "Cavalry −10% training time."
-msgstr ""
+msgstr "Caballería -10% en tiempo de entrenamiento"
 
 #: simulation/data/technologies/cavalry_health.jsondescription
 msgid "Selectively breed better war horses."
@@ -261,11 +262,11 @@ msgstr ""
 
 #: simulation/data/technologies/cavalry_health.jsongenericName
 msgid "Horse Breeding"
-msgstr ""
+msgstr "Cría de Caballos"
 
 #: simulation/data/technologies/cavalry_health.jsontooltip
 msgid "Cavalry +10% health."
-msgstr ""
+msgstr "Caballería +10% en salud"
 
 #: simulation/data/technologies/cavalry_movement_speed.jsondescription
 msgid "Train your horses to move faster."
@@ -314,7 +315,7 @@ msgstr ""
 
 #: simulation/data/technologies/civbonuses/gaul_cavalry.jsongenericName
 msgid "Superior Cavalry"
-msgstr ""
+msgstr "Caballeria Superior"
 
 #: simulation/data/technologies/civbonuses/gaul_cavalry.jsontooltip
 msgid "Cavalry +10% melee attack damage."
@@ -369,7 +370,7 @@ msgstr "Chakravarti Samrāt"
 #: simulation/data/technologies/civbonuses/maur_population.jsontooltip
 #: simulation/data/technologies/civbonuses/pers_population.jsontooltip
 msgid "+10% maximum population limit."
-msgstr ""
+msgstr "+10% en el límite de población máximo"
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsondescription
 msgid ""
@@ -427,7 +428,7 @@ msgstr "Colonización"
 
 #: simulation/data/technologies/colonization.jsontooltip
 msgid "Civic Structures −25% build time."
-msgstr ""
+msgstr "Estructuras Cíviles -25% en tiempo de construcción"
 
 #: simulation/data/technologies/equine_transports.jsondescription
 msgid ""
@@ -736,7 +737,7 @@ msgstr "Distancia de sanación 2"
 
 #: simulation/data/technologies/heal_range_2.jsonspecificName.athen
 msgid "Akadēmeia"
-msgstr ""
+msgstr "Academia"
 
 #: simulation/data/technologies/heal_rate.jsondescription
 #: simulation/data/technologies/heal_rate_2.jsondescription
@@ -785,7 +786,7 @@ msgstr "El telar"
 
 #: simulation/data/technologies/health_females_01.jsontooltip
 msgid "Female Citizens +100% health."
-msgstr ""
+msgstr "Mujeres Ciudadanas +100% en salud"
 
 #: simulation/data/technologies/health_regen_units.jsondescription
 msgid "Organic units will slowly regenerate health over time when idle."
@@ -907,7 +908,7 @@ msgstr "Paraíso de Dafne"
 
 #: simulation/data/technologies/parade_of_daphne.jsontooltip
 msgid "Champions −20% training time."
-msgstr ""
+msgstr "Campeones -20% en tiempo de entrenamiento"
 
 #: simulation/data/technologies/phase_city.jsondescription
 msgid ""
@@ -931,7 +932,7 @@ msgstr "Avanzar de una bulliciosa ciudad a una verdadera metrópolis, llena de l
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
 msgid "Requires four Town Structures."
-msgstr ""
+msgstr "Requiere cuatro Estructura de la Ciudad"
 
 #: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
@@ -1040,7 +1041,7 @@ msgstr ""
 
 #: simulation/data/technologies/pop_house_01.jsonspecificName.rome
 msgid "Peristylium"
-msgstr ""
+msgstr "Peristilo"
 
 #: simulation/data/technologies/pop_house_01.jsontooltip
 #: simulation/data/technologies/pop_house_02.jsontooltip
@@ -1084,7 +1085,7 @@ msgstr "Arquitectura naval"
 
 #: simulation/data/technologies/ship_cost_time.jsontooltip
 msgid "Ships −20% construction time."
-msgstr ""
+msgstr "Barcos -20% en tiempo de construcción"
 
 #: simulation/data/technologies/ship_health.jsondescription
 msgid "Wooden reinforcement beams for ship hulls."
@@ -1295,7 +1296,7 @@ msgstr ""
 
 #: simulation/data/technologies/soldier_resistance_pierce_01.jsongenericName
 msgid "Wooden Shield"
-msgstr ""
+msgstr "Escudo de madera"
 
 #: simulation/data/technologies/soldier_resistance_pierce_01.jsontooltip
 #: simulation/data/technologies/soldier_resistance_pierce_02.jsontooltip
@@ -1442,7 +1443,7 @@ msgstr ""
 
 #: simulation/data/technologies/trader_health.jsongenericName
 msgid "Trade Caravan"
-msgstr ""
+msgstr "Caravana de Comerciantes"
 
 #: simulation/data/technologies/trader_health.jsontooltip
 msgid "Land Traders +50% health."
@@ -1573,7 +1574,7 @@ msgstr "Diáspora"
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsonrequirementsTooltip
 msgid "Requires three Traders"
-msgstr ""
+msgstr "Requiere tres Comerciantes"
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsontooltip
 msgid "Allows using allied dropsites."

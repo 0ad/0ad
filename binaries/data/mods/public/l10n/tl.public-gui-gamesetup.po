@@ -4,12 +4,13 @@
 # project.
 # Translators:
 # Miguel Quiambao <miguel_quiambao@dlsu.edu.ph>, 2019
+# Raymond Jay Golo <rjgolo@gmail.com>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-29 08:08+0000\n"
-"PO-Revision-Date: 2021-01-29 09:16+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-01-31 02:41+0000\n"
+"Last-Translator: Raymond Jay Golo <rjgolo@gmail.com>\n"
 "Language-Team: Tagalog (http://www.transifex.com/wildfire-games/0ad/language/tl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,15 +28,15 @@ msgstr "OK"
 
 #: gui/gamesetup/Pages/AIConfigPage/AIDescription.js:37
 msgid "AI will be disabled for this player."
-msgstr "Hindi papaganahin ang AI para sa manlalaro na ito."
+msgstr "Hindi pagaganahin ang AI para sa manlalaro na ito."
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIBehavior.js:95
 msgid "AI Behavior"
-msgstr ""
+msgstr "Paguugali ng AI"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIDifficulty.js:89
 msgid "AI Difficulty"
-msgstr ""
+msgstr "Hirap ng AI"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AISelection.js:86
 msgctxt "ai"
@@ -44,7 +45,7 @@ msgstr "Wala"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AISelection.js:91
 msgid "AI Player"
-msgstr ""
+msgstr "Manlalarong AI"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingControl.js:172
 #, javascript-format
@@ -84,11 +85,11 @@ msgstr "Uri ng Laro"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/AIConfigButton.js:32
 #, javascript-format
 msgid "Configure AI: %(description)s."
-msgstr "I-confugure ang AI: %(description)s."
+msgstr "Isaayos ang AI: %(description)s."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:153
 msgid "Select player."
-msgstr "Piliin ang manlalaro."
+msgstr "Pumili ng manlalaro."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:230
 #, javascript-format
@@ -101,7 +102,7 @@ msgstr "Hindi itinalaga"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:131
 msgid "Choose the civilization for this player."
-msgstr "Piliin ang sibilisayon ng manlalaro."
+msgstr "Piliin ang sibilisasyon ng manlalaro."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:134
 msgctxt "civilization"
@@ -118,7 +119,7 @@ msgstr "Pumili ng kulay."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerTeam.js:73
 msgid "Select player's team."
-msgstr "Piliin ang koponan ng manlalaro."
+msgstr "Pumili ng koponan ng manlalaro."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerTeam.js:76
 msgctxt "team"
@@ -152,12 +153,12 @@ msgstr "Koponan"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:26
 msgid "Browse Maps"
-msgstr ""
+msgstr "Tignan ang mga Mapa"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:29
 #, javascript-format
 msgid "Press %(hotkey)s to view the list of available maps."
-msgstr ""
+msgstr "Pindutin ang %(hotkey)s upang makita ang listahan ng mga mapang magagamit."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:40
 msgid "Cheats"
@@ -183,13 +184,13 @@ msgstr "I-toggle ang ginalugad na mapa (tignan ang ika-aunang mapa)."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:59
 msgid "Last Man Standing"
-msgstr "Huling Natititrang Tao"
+msgstr "Huling Taong Buhay"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:62
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
-msgstr "I-toggle kung ang huling natititirang manlalaro o ang huling natitirang mag kaalyado ay mananalo."
+msgstr "I-toggle kung ang huling natitirang manlalaro o ang huling natitirang mag kaalyado ang mananalo."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:53
 msgid "Teams Locked"
@@ -201,13 +202,13 @@ msgstr "I-toggle ang mga nakakandadong mga koponan."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Nomad.js:61
 msgid "Nomad"
-msgstr "Nomad"
+msgstr "Ligaw"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Nomad.js:64
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
-msgstr "Sa modong Nomad, magsisimula ang mga manlalaro na may kaunting yunit lamang at kailangan nilang makahanap ng angkop na lugar upang maisagawa ang kanilang siyudad. Inirerekomenda ang Pagtigil ng digmaan."
+msgstr "Sa modong Ligaw, magsisimula ang mga manlalaro na may kaunting yunit lamang at kailangan nilang makahanap ng angkop na lugar upang maisagawa ang kanilang siyudad. Inirerekomenda ang Tigil-Putukan."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Rating.js:51
 msgid "Rated Game"
@@ -215,15 +216,15 @@ msgstr "Rated na Laro"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Rating.js:54
 msgid "Toggle if this game will be rated for the leaderboard."
-msgstr "I-toggle kung ang laron'g ito ay bibigyang rate para sa leaderboard."
+msgstr "I-toggle kung ang larong ito ay bibigyang rate para sa leaderboard."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:62
 msgid "Hero Garrison"
-msgstr "Kampamyenton'g Bayani"
+msgstr "Himpilan ng Bayani"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:65
 msgid "Toggle whether heroes can be garrisoned."
-msgstr "I-toggle kung maaring i-garrison ang mga bayani."
+msgstr "I-toggle kung maaring i-himpil ang mga bayani."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map
@@ -253,17 +254,17 @@ msgstr "Huwag paganahin ang mga kayamanan"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js:46
 msgid "Do not add treasures to the map."
-msgstr "Huwag idagdag ang mga kayamanan sa mapa."
+msgstr "Huwag magdagdag ng mga kayamanan sa mapa."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:49
 msgid "World population"
-msgstr ""
+msgstr "Populasyon ng mundo"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:52
 msgid ""
 "When checked the Population Cap will be evenly distributed over all living "
 "players."
-msgstr ""
+msgstr "Kapag naka-check, ang Hangganan ng Populasyon ay magiging patas ang distribusyon sa lahat ng mga buhay na manlalaro."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:128
 msgid "Biome"
@@ -271,7 +272,7 @@ msgstr "Biome"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:134
 msgid "Select the flora and fauna."
-msgstr "Piliin ang talahalamanan at palahayupan."
+msgstr "Pumili ng mga halaman at hayop."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:137
 msgctxt "biome"
@@ -284,11 +285,11 @@ msgstr "Pumili ng kahit anong biome."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:101
 msgid "Daytime"
-msgstr ""
+msgstr "Umaga"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:104
 msgid "Select whether the match takes place at daylight or night."
-msgstr ""
+msgstr "Pumili kung ang laban ay mangyayari ng umaga o gabi."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:107
 msgctxt "daytime selection"
@@ -298,7 +299,7 @@ msgstr "Random"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:110
 msgctxt "daytime selection"
 msgid "Randomly pick a time of the day."
-msgstr ""
+msgstr "Isapalaran kung anong oras sa araw ang mapipili."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:75
 msgid "Game Speed"
@@ -310,53 +311,53 @@ msgstr "Pumili ng bilis ng laro."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:138
 msgid "Landscape"
-msgstr ""
+msgstr "Tanawin"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:141
 msgid "Select one of the landscapes of this map."
-msgstr ""
+msgstr "Pumili ng tanawin ng mapang ito."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:147
 msgctxt "landscape selection"
 msgid "Random Land or Naval"
-msgstr ""
+msgstr "Random na Lupain o Katubigan"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:148
 msgctxt "landscape selection"
 msgid "Select a random land or naval map generation."
-msgstr ""
+msgstr "Pumili ng random na lupain o katubigan sa paggawa ng mapa."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:152
 msgctxt "landscape selection"
 msgid "Random Land"
-msgstr ""
+msgstr "Random na Lupain"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:153
 msgctxt "landscape selection"
 msgid "Select a random land map generation."
-msgstr ""
+msgstr "Pumili ng random na paggawa ng lupaing mapa."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:157
 msgctxt "landscape selection"
 msgid "Random Naval"
-msgstr ""
+msgstr "Random na Katubigan"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:158
 msgctxt "landscape selection"
 msgid "Select a random naval map generation."
-msgstr ""
+msgstr "Pumili ng random na paggawa ng katubigang mapa."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:89
 msgid "Map Filter"
-msgstr "Piltro ng Mapa"
+msgstr "Salaan ng Mapa"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:92
 msgid "Select a map filter."
-msgstr "Pumili ng piltro ng mapa."
+msgstr "Pumili ng salaan ng mapa."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:143
 msgid "Select Map"
-msgstr "Piliin ang Mapa"
+msgstr "Pumili ng Mapa"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:146
 msgid "Select a map to play on."
@@ -377,7 +378,7 @@ msgstr "Sukat ng Mapa"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:73
 msgid "Select map size. (Larger sizes may reduce performance.)"
-msgstr "Piliin ang sukat ng mapa. (Nakakabawas ng performance ang malalaking sukat.)"
+msgstr "Pumili ng sukat ng mapa. (Nakababawas ng performance ang malalaking sukat.)"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapType.js:61
 msgid "Map Type"
@@ -406,14 +407,14 @@ msgstr "Pumili ng hangganan ng populasyon."
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:98
 msgctxt "population limit"
 msgid "Per Player"
-msgstr ""
+msgstr "Kada Manlalaro"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:101
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
 "%(popCap)s population."
-msgstr "Babala: Maaring magkaroon ng mga isyu sa perfromance kapag lahat ng %(players)s ay nakaabot ng %(popCap)s na populasyon."
+msgstr "Babala: Maaaring magkaroon ng mga isyu sa performance kapag lahat ng %(players)s ay nakaabot ng %(popCap)s na populasyon."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:82
 msgid "Starting Resources"
@@ -421,7 +422,7 @@ msgstr "Pansimulang Kayamanan"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:85
 msgid "Select the game's starting resources."
-msgstr "Piliin ang mga pansimulang kayamanan ng laro."
+msgstr "Pumili ng mga pansimulang kayamanan ng laro."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:88
 #, javascript-format
@@ -431,15 +432,15 @@ msgstr "Paunang dami ng bawat kayamanan: %(resources)s."
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:91
 msgctxt "starting resources"
 msgid "Per Player"
-msgstr ""
+msgstr "Kada Manlalaro"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:91
 msgid "Team Placement"
-msgstr ""
+msgstr "Kalalagyan ng mga Magkagrupo"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:94
 msgid "Select one of the starting position patterns of this map."
-msgstr ""
+msgstr "Pumili ng isa sa mga paunang disenyo ng posisyon sa mapang ito."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:98
 msgctxt "team placement"
@@ -449,45 +450,45 @@ msgstr "Random"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:99
 msgctxt "team placement"
 msgid "Select a random team placement pattern when starting the game."
-msgstr ""
+msgstr "Pumili ng random na disenyong kalalagyan kapag nagsimula ang laro."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:105
 msgctxt "team placement"
 msgid "Circle"
-msgstr ""
+msgstr "Bilog"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:106
 msgid ""
 "Allied players are grouped and placed with opposing players on one circle "
 "spanning the map."
-msgstr ""
+msgstr "Ang mga magkakamping manlalaro ay nakagrupo at nakalagay kasama ng mga kalabang manlalaro sa isang bilog na sakop ang mapa."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:110
 msgctxt "team placement"
 msgid "Line"
-msgstr ""
+msgstr "Linya"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:111
 msgid "Allied players are placed in a linear pattern."
-msgstr ""
+msgstr "Ang mga magkakamping manlalaro ay nakalagay sa disenyong pa-linya."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:115
 msgctxt "team placement"
 msgid "Random Group"
-msgstr ""
+msgstr "Random na Grupo"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:116
 msgid "Allied players are grouped, but otherwise placed randomly on the map."
-msgstr ""
+msgstr "Nakagrupo ang mga manlalarong magkakampi ngunit nakalagay ng random sa mapa."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:120
 msgctxt "team placement"
 msgid "Stronghold"
-msgstr ""
+msgstr "Kuta"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:121
 msgid "Allied players are grouped in one random place of the map."
-msgstr ""
+msgstr "Nakagrupo ang mga manlalarong magkakampi sa isang random na lugar sa mapa."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TriggerDifficulty.js:81
 msgid "Difficulty"
@@ -495,43 +496,43 @@ msgstr "Kahirapan"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TriggerDifficulty.js:84
 msgid "Select the difficulty of this scenario."
-msgstr "Pumili ng pagkahirap ng senaryon'g ito."
+msgstr "Pumili ng kahirapan ng senaryong ito."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:77
 msgid "World Population Cap"
-msgstr ""
+msgstr "Hangganan ng Populasyon ng Mundo"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:80
 msgid "Select world population limit."
-msgstr ""
+msgstr "Pumili ng Hangganan ng Populasyon ng Mundo"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:83
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if %(popCap)s population is "
 "reached."
-msgstr ""
+msgstr "Babala: Maaaring magkaroon ng isyu sa performance kapag narating ang %(popCap)s ng populasyon."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:62
 msgid "Ceasefire"
-msgstr "Pagtigil ng digmaan"
+msgstr "Tigil-Putukan"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:65
 msgid "Set time where no attacks are possible."
-msgstr "Piliin ang oras kung saan hindi posible ang paglusob."
+msgstr "Piliin ang oras kung saan hindi posible ang pagatake."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:68
 msgctxt "ceasefire"
 msgid "No ceasefire"
-msgstr ""
+msgstr "Walang tigil-putukan"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:71
 #, javascript-format
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(minutes)s minuto"
+msgstr[1] "%(minutes)s minuto"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:87
 msgid "Relic Count"
@@ -541,8 +542,8 @@ msgstr "Bilang ng Relic"
 #, javascript-format
 msgid "%(number)s relic"
 msgid_plural "%(number)s relics"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(number)s ng relic"
+msgstr[1] "%(number)s ng mga relic"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:93
 msgid ""
@@ -565,8 +566,8 @@ msgstr "Mga minuto hanggang maakit ng manlalaro ang Tagumpay Pang-relikiya."
 msgctxt "victory duration"
 msgid "%(min)s minute"
 msgid_plural "%(min)s minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(min)s minuto"
+msgstr[1] "%(min)s minuto"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:99
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:100

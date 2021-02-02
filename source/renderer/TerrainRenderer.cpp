@@ -307,11 +307,11 @@ void TerrainRenderer::RenderTerrainShader(const CShaderDefines& context, int cul
 
 	// render blend passes for each patch
 	PROFILE_START("render terrain blends");
-	CPatchRData::RenderBlends(visiblePatches, context, shadow, false);
+	CPatchRData::RenderBlends(visiblePatches, context, shadow);
 	PROFILE_END("render terrain blends");
 
 	PROFILE_START("render terrain decals");
-	CDecalRData::RenderDecals(visibleDecals, context, shadow, false);
+	CDecalRData::RenderDecals(visibleDecals, context, shadow);
 	PROFILE_END("render terrain decals");
 
 	// restore OpenGL state

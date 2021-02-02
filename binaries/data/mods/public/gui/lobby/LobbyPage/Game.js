@@ -93,8 +93,16 @@ class Game
 		if (oldStanza.niceMapName != newStanza.niceMapName)
 		{
 			Engine.ProfileStart("niceMapName");
-			displayData.mapName = escapeText(this.mapCache.translateMapName(newStanza.niceMapName));
-			displayData.mapDescription = this.mapCache.getTranslatedMapDescription(newStanza.mapType, newStanza.mapName);
+			if (this.mapCache.checkIfExists(newStanza.mapType, newStanza.mapName))
+			{
+				displayData.mapName = escapeText(this.mapCache.translateMapName(newStanza.niceMapName));
+				displayData.mapDescription = this.mapCache.getTranslatedMapDescription(newStanza.mapType, newStanza.mapName);
+			}
+			else
+			{
+				displayData.mapName = escapeText(newStanza.niceMapName);
+				displayData.mapDescription = "";
+			}
 			Engine.ProfileStop();
 		}
 

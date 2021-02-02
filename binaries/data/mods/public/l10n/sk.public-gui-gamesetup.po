@@ -19,14 +19,14 @@
 # Peto (wt-ts) <peter.tuharsky@gmail.com>, 2015-2016
 # Roman Beňo <romanko.sk@gmail.com>, 2014
 # Roman 'Kaktuxista' Benji <romanbeno273@gmail.com>, 2014
-# Angen <slavomir.slovenkai@gmail.com>, 2017-2020
+# Angen <slavomir.slovenkai@gmail.com>, 2017-2021
 # Tom Hanax, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-29 08:08+0000\n"
-"PO-Revision-Date: 2021-01-29 09:16+0000\n"
-"Last-Translator: Tom Hanax\n"
+"PO-Revision-Date: 2021-01-31 16:52+0000\n"
+"Last-Translator: Angen <slavomir.slovenkai@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -169,7 +169,7 @@ msgstr "Tím"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:26
 msgid "Browse Maps"
-msgstr ""
+msgstr "Prezeraj mapy"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:29
 #, javascript-format
@@ -274,7 +274,7 @@ msgstr "Nepridávaj na mapu poklady."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:49
 msgid "World population"
-msgstr ""
+msgstr "Svetová populácia"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:52
 msgid ""
@@ -327,7 +327,7 @@ msgstr "Vyberte rýchlosti hry."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:138
 msgid "Landscape"
-msgstr ""
+msgstr "Krajina"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:141
 msgid "Select one of the landscapes of this map."
@@ -346,7 +346,7 @@ msgstr ""
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:152
 msgctxt "landscape selection"
 msgid "Random Land"
-msgstr ""
+msgstr "Náhodná krajina"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:153
 msgctxt "landscape selection"
@@ -356,7 +356,7 @@ msgstr ""
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:157
 msgctxt "landscape selection"
 msgid "Random Naval"
-msgstr ""
+msgstr "Náhodná námorná mapa"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:158
 msgctxt "landscape selection"
@@ -516,11 +516,11 @@ msgstr "Vyber náročnosť scenária."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:77
 msgid "World Population Cap"
-msgstr ""
+msgstr "Limit svetovej populácie"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:80
 msgid "Select world population limit."
-msgstr ""
+msgstr "Vyber limit svetovej populácie."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:83
 #, javascript-format
@@ -595,7 +595,7 @@ msgstr[3] ""
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:100
 msgctxt "victory duration"
 msgid "Immediate Victory."
-msgstr ""
+msgstr "Okamžité víťazstvo."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:73
 msgid "Sea Level Rise Time"
@@ -775,7 +775,7 @@ msgstr "Cheaty sú povolené"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.js:41
 msgid "Rated game."
-msgstr ""
+msgstr "Hodnotená hra."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:77
 #, javascript-format
@@ -832,11 +832,11 @@ msgstr "Pripája sa na server..."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:166
 msgid "Server is not running."
-msgstr ""
+msgstr "Server nie je aktívny."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:167
 msgid "Password is invalid."
-msgstr ""
+msgstr "Nesprávne heslo."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:168
 msgid "You have been banned."
@@ -853,7 +853,7 @@ msgstr "Nepodarilo sa spojiť so serverom."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:181
 msgid "Connection failed"
-msgstr ""
+msgstr "Pripojenie zlyhalo"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:193
 #, javascript-format
@@ -924,7 +924,7 @@ msgstr "Názov servera:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):112
 msgid "Server Password:"
-msgstr ""
+msgstr "Heslo servera:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):128
 msgid "Use STUN to work around firewalls"
@@ -944,7 +944,7 @@ msgstr "Heslo:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):162
 msgid "Confirm"
-msgstr ""
+msgstr "Potvrď"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):52
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):99
@@ -953,7 +953,7 @@ msgstr "Ak ponecháte prázdne, použije sa predvolený port."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):113
 msgid "Leave blank to not require it."
-msgstr ""
+msgstr "Nechaj prázdne pre zápas bez hesla."
 
 #: gui/loading/ProgressBar.js:48
 #, javascript-format
@@ -1080,7 +1080,7 @@ msgstr ""
 msgid ""
 "“Spartans do not ask how many, only where the enemy are.” \\n— Agis II of "
 "Sparta (Plutarch, “Moralia”, “Sayings of Spartans”, 215d)"
-msgstr ""
+msgstr "\"Sparťania sa nepýtajú koľko ich je, iba kde sa tí nepriatelia nachádzajú.\" \\n— Agis II. zo Sparty (Plutarch, “Moralia”, “Sayings of Spartans”, 215d)"
 
 #: gui/text/quotes.txt:19
 msgid ""

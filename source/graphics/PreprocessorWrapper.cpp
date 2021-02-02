@@ -152,7 +152,8 @@ bool ResolveIncludesImpl(
 		// We need to insert #line directives to have correct line numbers in errors.
 		chunks.emplace_back(lineDirective + "1\n" + it->second + "\n" + lineDirective + CStr::FromUInt(line + 1) + "\n");
 		processedParts.emplace_back(currentPart.substr(0, lineStart));
-		ResolveIncludesImpl(chunks.back(), includeCache, includeCallback, chunks, processedParts);
+		if (!ResolveIncludesImpl(chunks.back(), includeCache, includeCallback, chunks, processedParts))
+			return false;
 		currentPart = currentPart.substr(match.nextLineStart);
 		lineStart = 0;
 	}

@@ -23,8 +23,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-25 08:08+0000\n"
-"PO-Revision-Date: 2021-01-25 09:18+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-01-29 22:43+0000\n"
+"Last-Translator: Przemysław Murach <moonshine133@vp.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -325,19 +325,19 @@ msgstr " • Używając hotkey.session.noconfirmation zniszcz zaznaczone jednost
 msgid ""
 "  hotkey.selection.add – Modifier – add to selection (works with clicking "
 "and hotkeys, e.g. the idle hotkeys)"
-msgstr ""
+msgstr "hotkey.selection.add – Modyfikator - dodaj do zaznaczenia (działa też z kliknięciami i skrótami klawiszowymi)"
 
 #: gui/manual/intro.txt:71
 msgid ""
 "  hotkey.selection.remove – Modifier – remove from selection (works with "
 "clicking and hotkeys, e.g. the idle hotkeys)"
-msgstr ""
+msgstr "hotkey.selection.remove – Modyfikator - usuwa z zaznaczenia (działa też z kliknięciami i skrótami klawiszowymi)"
 
 #: gui/manual/intro.txt:72
 msgid ""
 "  hotkey.selection.offscreen – Modifier – add all units, including offscreen"
 " units, to selection."
-msgstr ""
+msgstr "hotkey.selection.offscreen – Modyfikator - dodaje do zaznaczenia wszystkie jednostki, także te poza ekranem"
 
 #: gui/manual/intro.txt:73
 msgid ""
@@ -382,7 +382,7 @@ msgstr "hotkey.selection.group.save.1 – stwórz grupę kontrolną 1 (domyślni
 msgid ""
 "  hotkey.selection.group.select.1 – Select the unit(s)/structure(s) in "
 "control group 1"
-msgstr ""
+msgstr "hotkey.selection.group.select.1 – wybierz jednostki/budynki z grupy kontrolnej 1"
 
 #: gui/manual/intro.txt:82
 msgid ""
@@ -544,25 +544,25 @@ msgstr "  PPM z wybranym budynkiem – tworzy punkt zbiórki dla jednostek stwor
 msgid ""
 "  hotkey.session.garrison + Right Click with unit(s) selected – Garrison (If"
 " the cursor is over an own or allied structure)"
-msgstr ""
+msgstr "hotkey.session.garrison + PPM z zaznaczonymi jednostkami – garnizon (jeśli kursor znajduje się nad własną lub sojuszniczą budowlą)"
 
 #: gui/manual/intro.txt:113
 msgid ""
 "  hotkey.session.attack + Right Click with unit(s) selected – Attack "
 "(instead of capture or gather)"
-msgstr ""
+msgstr "hotkey.session.attack + PPM z zaznaczonymi jednostkami – zaatakuj (zamiast przejęcia lub zbierania)"
 
 #: gui/manual/intro.txt:114
 msgid ""
 "  hotkey.session.attackmove + Right Click with unit(s) selected – Attack "
 "move (by default all enemy units and structures along the way are targeted)"
-msgstr ""
+msgstr "hotkey.session.attackmove + PPM z zaznaczonymi jednostkami – atak w ruchu (domyślnie wszystkie wrogie jednostki i budowle po drodze będą atakowane)"
 
 #: gui/manual/intro.txt:115
 msgid ""
 "  hotkey.session.attackmoveUnit + Right Click with unit(s) selected – Attack"
 " move, only units along the way are targeted"
-msgstr ""
+msgstr "hotkey.session.attackmoveUnit + PPM z zaznaczonymi jednostkami – atak w ruchu, tylko jednostki po drodze będą atakowane"
 
 #: gui/manual/intro.txt:116
 msgid ""

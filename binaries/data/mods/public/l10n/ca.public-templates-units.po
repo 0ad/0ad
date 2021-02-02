@@ -17,13 +17,13 @@
 # Pau Soliva <psoliva@naralabs.com>, 2017
 # Peredelgrau, 2014,2016
 # Peredelgrau, 2014,2016
-# Haommin <tfs.msimangu@gmail.com>, 2014-2016,2020
+# Haommin <tfs.msimangu@gmail.com>, 2014-2016,2020-2021
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-25 08:08+0000\n"
-"PO-Revision-Date: 2021-01-25 09:36+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-01-31 22:26+0000\n"
+"Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -56,7 +56,7 @@ msgstr "Captura"
 #: simulation/templates/template_unit_support_female_citizen.xml:16
 msgctxt "Name of an attack, usually the weapon."
 msgid "Slaughter"
-msgstr ""
+msgstr "Matança"
 
 #: simulation/templates/template_unit_cavalry.xml:30
 #: simulation/templates/template_unit_cavalry.xml:33
@@ -157,7 +157,7 @@ msgstr "Maça"
 
 #: simulation/templates/template_unit_cavalry_melee_maceman.xml:23
 msgid "Cavalry Maceman"
-msgstr ""
+msgstr "Genet amb maça"
 
 #: simulation/templates/template_unit_cavalry_melee_maceman.xml:24
 #: simulation/templates/template_unit_champion_cavalry_maceman.xml:22
@@ -186,7 +186,7 @@ msgstr "Llancer a cavall"
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:28
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:25
 msgid "Counters: 1.75× vs Cavalry."
-msgstr ""
+msgstr "Punts forts: 1,75× contra cavalleria."
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:31
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:29
@@ -326,7 +326,7 @@ msgstr "Cavalleria amb javelina campiona"
 
 #: simulation/templates/template_unit_champion_cavalry_maceman.xml:21
 msgid "Champion Cavalry Maceman"
-msgstr ""
+msgstr "Genet amb maça campió"
 
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:27
 msgid "Champion Cavalry Spearman"
@@ -382,7 +382,7 @@ msgstr "Infanteria amb javelina campiona"
 
 #: simulation/templates/template_unit_champion_infantry_maceman.xml:21
 msgid "Champion Infantry Maceman"
-msgstr ""
+msgstr "Campió d'infanteria amb maça"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:5
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:5
@@ -421,11 +421,11 @@ msgstr "Espadatxí campió"
 
 #: simulation/templates/template_unit_champion_infantry_trumpeter.xml:27
 msgid "Trumpeter"
-msgstr ""
+msgstr "Trompetista"
 
 #: simulation/templates/template_unit_champion_infantry_trumpeter.xml:28
 msgid "Champion Infantry Trumpeter"
-msgstr ""
+msgstr "Trompetista campió d'infanteria"
 
 #: simulation/templates/template_unit_dog.xml:5
 #: simulation/templates/template_unit_fauna_wild_aggressive_dog.xml:5
@@ -494,7 +494,7 @@ msgstr "Heroi amb javelina a cavall"
 
 #: simulation/templates/template_unit_hero_cavalry_maceman.xml:18
 msgid "Hero Cavalry Maceman"
-msgstr ""
+msgstr "Heroi a cavall amb maça"
 
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:24
 msgid "Hero Cavalry Spearman"
@@ -506,7 +506,7 @@ msgstr "Heroi a cavall amb espasa"
 
 #: simulation/templates/template_unit_hero_elephant_melee.xml:32
 msgid "Hero Elephant"
-msgstr ""
+msgstr "Heroi en elefant"
 
 #: simulation/templates/template_unit_hero_healer.xml:27
 #: simulation/templates/template_unit_support.xml:5
@@ -534,7 +534,7 @@ msgstr "Heroi amb javelina"
 
 #: simulation/templates/template_unit_hero_infantry_maceman.xml:18
 msgid "Hero Infantry Maceman"
-msgstr ""
+msgstr "Heroi d'infanteria amb maça"
 
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:24
 msgid "Hero Pikeman"
@@ -560,7 +560,7 @@ msgstr "Infanteria cos a cos"
 
 #: simulation/templates/template_unit_infantry_melee_maceman.xml:23
 msgid "Infantry Maceman"
-msgstr ""
+msgstr "Soldat d'infanteria amb maça"
 
 #: simulation/templates/template_unit_infantry_ranged_javelineer.xml:32
 msgid "Infantry Javelineer"
@@ -618,7 +618,7 @@ msgstr "Vaixell incendiari"
 
 #: simulation/templates/template_unit_ship_fire.xml:41
 msgid "Unrepairable. Gradually loses health. Can only attack Ships."
-msgstr ""
+msgstr "No es pot reparar. Perd salut gradualment. Només pot atacar vaixells."
 
 #: simulation/templates/template_unit_ship_fire.xml:42
 msgid "Fireship"
@@ -1151,7 +1151,7 @@ msgstr "Oxybelḗs"
 #: simulation/templates/units/sele/siege_ram.xml:9
 #: simulation/templates/units/spart/siege_ram.xml:9
 msgid "Krios"
-msgstr ""
+msgstr "Krios"
 
 #: simulation/templates/units/athen/support_female_citizen.xml:11
 msgid "Gýnē Athēnaía"
@@ -1546,7 +1546,7 @@ msgstr "Soliduros"
 
 #: simulation/templates/units/gaul/champion_infantry_trumpeter.xml:8
 msgid "Carnucos"
-msgstr ""
+msgstr "Carnucos"
 
 #: simulation/templates/units/gaul/hero_brennus.xml:8
 msgid "Brennus"
@@ -2202,7 +2202,7 @@ msgctxt ""
 "Name of an attack using a rhomphaia (ῥομφαία), a Thracian two-handed weapon "
 "capable of both thrusting and slashing."
 msgid "Rhomphaia"
-msgstr ""
+msgstr "Rhomphaia"
 
 #: simulation/templates/units/mace/champion_infantry_swordsman.xml:11
 #: simulation/templates/units/merc_black_cloak.xml:10
@@ -2211,7 +2211,7 @@ msgstr "Capa negra de Tràcia"
 
 #: simulation/templates/units/merc_black_cloak.xml:11
 msgid "Rhomphaiophoros"
-msgstr ""
+msgstr "Rhomphaiophoros"
 
 #: simulation/templates/units/athen/infantry_javelineer_b.xml:15
 #: simulation/templates/units/athen/infantry_marine_archer_b.xml:15
@@ -2262,7 +2262,7 @@ msgstr "Infanteria pesada"
 
 #: simulation/templates/units/merc_thureophoros.xml:6
 msgid "Thyreophoros"
-msgstr ""
+msgstr "Thyreophoros"
 
 #: simulation/templates/units/noldor_ship_bireme.xml:8
 msgid "Mankar Cirya"
@@ -2347,7 +2347,7 @@ msgstr "Anušiya"
 
 #: simulation/templates/units/pers/champion_infantry.xml:8
 msgid "Immortal"
-msgstr ""
+msgstr "Immortal"
 
 #: simulation/templates/units/pers/hero_cyrus_ii.xml:9
 msgid "Cyrus II The Great"
@@ -2492,7 +2492,7 @@ msgstr "P-51 Mustang"
 
 #: simulation/templates/units/plane.xml:50
 msgid "A World War II American fighter plane."
-msgstr ""
+msgstr "Un caça americà de la Segona Guerra Mundial."
 
 #: simulation/templates/units/ptol/catafalque.xml:8
 msgid "Ptolemy III Euergetes (Benefactor)"

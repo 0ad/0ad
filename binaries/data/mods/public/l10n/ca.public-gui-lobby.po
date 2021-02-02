@@ -15,13 +15,13 @@
 # Nicolas Auvray <na.itms76@gmail.com>, 2018
 # Peredelgrau, 2014
 # Peredelgrau, 2014
-# Haommin <tfs.msimangu@gmail.com>, 2014-2016,2020
+# Haommin <tfs.msimangu@gmail.com>, 2014-2016,2020-2021
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-01-22 08:36+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-01-31 23:37+0000\n"
+"Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -212,12 +212,12 @@ msgstr "Envia"
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:47
 #, javascript-format
 msgid "%(nick)s has joined."
-msgstr "%(nick)s ha arribat."
+msgstr "%(nick)s s'ha unit a la partida."
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:48
 #, javascript-format
 msgid "%(nick)s has left."
-msgstr "%(nick)s ha marxat."
+msgstr "%(nick)s ha deixat la partida."
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:70
 #, javascript-format
@@ -278,7 +278,7 @@ msgstr "== %(message)s"
 
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageEvents.js:55
 msgid "Connected."
-msgstr "S'ha connectat."
+msgstr "Connectat."
 
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageEvents.js:56
 msgid "Disconnected."
@@ -654,7 +654,7 @@ msgstr "[font=\"sans-bold-18\"]Política de privacitat de la sala multijugador d
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:3
 msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2020-12-24"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Data del document:[/font] 2020-12-24"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:5
 msgid ""
@@ -664,7 +664,7 @@ msgstr "[font=\"sans-bold-16\"]Dades personals processades per Wildfire Games i 
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:6
 msgid "[font=\"sans-bold-14\"]1. Player name[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]1. Nom del jugador[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:7
 msgid ""
@@ -678,7 +678,7 @@ msgid ""
 "players, moderators and developers to identify players they met before, "
 "communicate about the game, coordinate matches and enables moderators to "
 "enforce the Terms of Use."
-msgstr ""
+msgstr "Tenir un nom de jugador exclusiu és un requisit per obtenir una classificació, per permetre als jugadors, moderadors i desenvolupadors identificar jugadors que han conegut abans, comunicar-se sobre el joc, coordinar partides i permetre als moderadors fer complir els termes d'ús."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:9
 msgid ""
@@ -687,7 +687,7 @@ msgid ""
 " information (such as the real name) was disclosed on the Lobby Chat, other "
 "services of Wildfire Games or elsewhere in the public, or when the IP "
 "address is used to bring criminal proceedings."
-msgstr ""
+msgstr "El nom de jugador serveix com a pseudònim. La identitat (persona física) dels jugadors no és coneguda per Wildfire Games, excepte si es dóna a conèixer informació personal identificable (com ara el nom real) al xat de la sala, en altres serveis de Wildfire Games o en altres llocs públics, o quan l'adreça IP és usada en processos penals."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:11
 msgid "[font=\"sans-bold-14\"]2. Password[/font]"
@@ -1067,7 +1067,7 @@ msgid ""
 " by Wildfire Games that allows players to set up online multiplayer matches,"
 " discuss the game in a public chat room and gain a rating that reflects "
 "their skill."
-msgstr ""
+msgstr "La sala multijugador del 0 A.D. Empires Ascendant és un servei en línia proporcionat per Wildfire Games que permet als jugadors configurar partides multijugador en línia, parlar del joc en un xat públic i obtenir una qualificació que reflecteixi la seva habilitat."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:7
 msgid ""

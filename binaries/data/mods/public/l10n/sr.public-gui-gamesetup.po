@@ -5,6 +5,7 @@
 # Translators:
 # acac97 <aleksandar.cvetic97@gmail.com>, 2015,2017
 # Damjan Obradović <damjanobradovic@hotmail.com>, 2016
+# Milos Pesic <msg4misa@gmail.com>, 2021
 # MIlosSD <pirisd@gmail.com>, 2014
 # Nicolas Auvray <na.itms76@gmail.com>, 2017
 # MIlosSD <pirisd@gmail.com>, 2014-2015
@@ -17,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-29 08:08+0000\n"
-"PO-Revision-Date: 2021-01-29 09:16+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-01-31 14:09+0000\n"
+"Last-Translator: Milos Pesic <msg4misa@gmail.com>\n"
 "Language-Team: Serbian (http://www.transifex.com/wildfire-games/0ad/language/sr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -40,7 +41,7 @@ msgstr "AI ће бити онемогућена за овог играча"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIBehavior.js:95
 msgid "AI Behavior"
-msgstr ""
+msgstr "Понашање АI"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIDifficulty.js:89
 msgid "AI Difficulty"
@@ -53,7 +54,7 @@ msgstr "Ништа"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AISelection.js:91
 msgid "AI Player"
-msgstr ""
+msgstr "AI играч"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingControl.js:172
 #, javascript-format
@@ -161,12 +162,12 @@ msgstr "Тим"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:26
 msgid "Browse Maps"
-msgstr ""
+msgstr "Разгледај мапе"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:29
 #, javascript-format
 msgid "Press %(hotkey)s to view the list of available maps."
-msgstr ""
+msgstr "Стисни%(hotkey)s за приказ листе доступних мапа."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:40
 msgid "Cheats"
@@ -210,13 +211,13 @@ msgstr "Омогући закључане тимове."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Nomad.js:61
 msgid "Nomad"
-msgstr ""
+msgstr "Номад"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Nomad.js:64
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
-msgstr ""
+msgstr "У номадском моду, играчи почињу само са неколико јединица и морају да надђу погодно место за изградњу њиховог града. Препоручен је привремени прекид ватре."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Rating.js:51
 msgid "Rated Game"
@@ -228,7 +229,7 @@ msgstr "Омогућити да ли ће се ова партија бодов�
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:62
 msgid "Hero Garrison"
-msgstr ""
+msgstr "Гарнизон за хероје"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:65
 msgid "Toggle whether heroes can be garrisoned."
@@ -266,13 +267,13 @@ msgstr "Не додавати блага на мапи"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:49
 msgid "World population"
-msgstr ""
+msgstr "Светско становништво"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:52
 msgid ""
 "When checked the Population Cap will be evenly distributed over all living "
 "players."
-msgstr ""
+msgstr "Када је означено, ограничење становништва биће равномерно расподељено између свих активних играча."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:128
 msgid "Biome"
@@ -293,11 +294,11 @@ msgstr "Изабери биом насумично."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:101
 msgid "Daytime"
-msgstr ""
+msgstr "Oбданица"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:104
 msgid "Select whether the match takes place at daylight or night."
-msgstr ""
+msgstr "Изабери да ли се сусрет одвија дању или ноћу."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:107
 msgctxt "daytime selection"
@@ -307,7 +308,7 @@ msgstr "Насумично"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:110
 msgctxt "daytime selection"
 msgid "Randomly pick a time of the day."
-msgstr ""
+msgstr "Насумично изабери део дана."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:75
 msgid "Game Speed"
@@ -319,11 +320,11 @@ msgstr "Изабери брзину игре."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:138
 msgid "Landscape"
-msgstr ""
+msgstr "Tерен"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:141
 msgid "Select one of the landscapes of this map."
-msgstr ""
+msgstr "Изаберите један од терена за ову мапу."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:147
 msgctxt "landscape selection"
@@ -415,7 +416,7 @@ msgstr "Одабери популациони лимит."
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:98
 msgctxt "population limit"
 msgid "Per Player"
-msgstr ""
+msgstr "По играчу"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:101
 #, javascript-format
@@ -435,20 +436,20 @@ msgstr "Изабери почетне ресурсе у партији."
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:88
 #, javascript-format
 msgid "Initial amount of each resource: %(resources)s."
-msgstr ""
+msgstr "Почетна количина сваког ресурса:%(resources)s"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:91
 msgctxt "starting resources"
 msgid "Per Player"
-msgstr ""
+msgstr "По играчу"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:91
 msgid "Team Placement"
-msgstr ""
+msgstr "Постављање тимова"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:94
 msgid "Select one of the starting position patterns of this map."
-msgstr ""
+msgstr "Изаберите један од шаблона за почетне положаје за ову мапу."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:98
 msgctxt "team placement"
@@ -458,36 +459,36 @@ msgstr "Насумично"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:99
 msgctxt "team placement"
 msgid "Select a random team placement pattern when starting the game."
-msgstr ""
+msgstr "Изаберите шаблон за наизменичан размештај тимова на почетку игре."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:105
 msgctxt "team placement"
 msgid "Circle"
-msgstr ""
+msgstr "Круг"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:106
 msgid ""
 "Allied players are grouped and placed with opposing players on one circle "
 "spanning the map."
-msgstr ""
+msgstr "Савезнички играчи су груписани и постављени са противничкимм играчима на једном кругу који се протеже по целој мапи."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:110
 msgctxt "team placement"
 msgid "Line"
-msgstr ""
+msgstr "Линија"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:111
 msgid "Allied players are placed in a linear pattern."
-msgstr ""
+msgstr "Савезнички играчи су постављени по линијском шаблону."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:115
 msgctxt "team placement"
 msgid "Random Group"
-msgstr ""
+msgstr "Насумична група"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:116
 msgid "Allied players are grouped, but otherwise placed randomly on the map."
-msgstr ""
+msgstr "Савезнички играчи су груписани али иначе насумично постављени на мапи."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:120
 msgctxt "team placement"
@@ -496,7 +497,7 @@ msgstr "Тврђава"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:121
 msgid "Allied players are grouped in one random place of the map."
-msgstr ""
+msgstr "Савезнички играчи су груписани на једном насумичном месту на мапи."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TriggerDifficulty.js:81
 msgid "Difficulty"
@@ -508,18 +509,18 @@ msgstr "Изаберите тежину сценарија"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:77
 msgid "World Population Cap"
-msgstr ""
+msgstr "Ограничење светског становништва"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:80
 msgid "Select world population limit."
-msgstr ""
+msgstr "Изаберите ограничење светског становништва."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:83
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if %(popCap)s population is "
 "reached."
-msgstr ""
+msgstr "Упозорење: може доћи до проблема са перформансама ако број становника досегне%(popCap)s."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:62
 msgid "Ceasefire"
@@ -564,11 +565,11 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:87
 msgid "Relic Duration"
-msgstr ""
+msgstr "Трајање реликвије"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:90
 msgid "Minutes until the player has achieved Relic Victory."
-msgstr ""
+msgstr "Број минута до играчеве победе реликвијама."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:96
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:97
@@ -584,15 +585,15 @@ msgstr[2] ""
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:100
 msgctxt "victory duration"
 msgid "Immediate Victory."
-msgstr ""
+msgstr "Тренутна победа."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:73
 msgid "Sea Level Rise Time"
-msgstr ""
+msgstr "Време до подизања нивоа мора"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:76
 msgid "Set the time when the water will start to rise."
-msgstr ""
+msgstr "Подеси време када ће ниво воде почети да расте."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:79
 #, javascript-format
@@ -609,7 +610,7 @@ msgstr "Трајање Чуда"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:91
 msgid "Minutes until the player has achieved Wonder Victory"
-msgstr ""
+msgstr "Број минута до играчеве победе чудима"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/CancelButton.js:36
 msgid "Back"
@@ -763,7 +764,7 @@ msgstr "Варања активирана."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.js:41
 msgid "Rated game."
-msgstr ""
+msgstr "Игра за поене."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:77
 #, javascript-format
@@ -773,16 +774,16 @@ msgstr ""
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:80
 #, javascript-format
 msgid "Press %(hotkey)s to move to the next settings tab."
-msgstr ""
+msgstr "Стисни %(hotkey)sза прелазак на следећу картицу подешавања."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:83
 #, javascript-format
 msgid "Press %(hotkey)s to move to the previous settings tab."
-msgstr ""
+msgstr "Стисни %(hotkey)sза прелазак на претходну картицу подешавања."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/MapPreview.js:47
 msgid "Click to view the list of available maps."
-msgstr ""
+msgstr "Кликни за приказ листе доступних мапа."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/TipsPanel.xml:(caption):9
 msgid "Show this message in the future."
@@ -820,20 +821,20 @@ msgstr "Повезивање са сервером..."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:166
 msgid "Server is not running."
-msgstr ""
+msgstr "Сервер не ради."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:167
 msgid "Password is invalid."
-msgstr ""
+msgstr "Погрешна шифра."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:168
 msgid "You have been banned."
-msgstr ""
+msgstr "Забрањен Вам је приступ."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:171
 #, javascript-format
 msgid "\\[Invalid value %(reason)s]"
-msgstr ""
+msgstr "\\[Недозвољена вредност %(reason)s]"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:179
 msgid "Failed to connect to the server."
@@ -841,7 +842,7 @@ msgstr "Неуспешно повезивање на сервер."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:181
 msgid "Connection failed"
-msgstr ""
+msgstr "Неуспешно успостављање везе"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:193
 #, javascript-format
@@ -912,11 +913,11 @@ msgstr "Име сервера:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):112
 msgid "Server Password:"
-msgstr ""
+msgstr "Шифра сервера:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):128
 msgid "Use STUN to work around firewalls"
-msgstr ""
+msgstr "Користи STUN за заобилажење заштитних зидова"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):136
 msgid "Continue"
@@ -932,7 +933,7 @@ msgstr "Шифра:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):162
 msgid "Confirm"
-msgstr ""
+msgstr "Потврди"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):52
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):99
@@ -941,7 +942,7 @@ msgstr "Оставите празно поље како би сте корист
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):113
 msgid "Leave blank to not require it."
-msgstr ""
+msgstr "Остави празно да не би било потребно."
 
 #: gui/loading/ProgressBar.js:48
 #, javascript-format
@@ -955,7 +956,7 @@ msgstr "%(percentage)s%%"
 #: gui/loading/TipDisplay.js:52
 #, javascript-format
 msgid "• %(tiptext)s"
-msgstr ""
+msgstr "%(tiptext)s"
 
 #: gui/loading/TitleDisplay.js:15
 #, javascript-format
@@ -972,7 +973,7 @@ msgid ""
 "“Zeus \\[…] established his law: wisdom comes through suffering. \\[…] So "
 "men against their will learn to practice moderation. \\[…] Such grace is "
 "harsh and violent.” \\n— Aeschylus (“Agamemnon”, 176–183)"
-msgstr ""
+msgstr "“Зевс \\[…] успостави његов закон: мудрост долази кроз патњу. \\[…] Тако ће људи противно њиховој вољи научити да буду умерени. \\[…] Таква милост је окрутна и насилна.” \\n— Есхил (“Агамемнон”, 176–183)"
 
 #: gui/text/quotes.txt:2
 msgid ""

@@ -16,11 +16,12 @@
 # Nescio, 2020
 # Martin H <pilino@posteo.de>, 2017
 # s0600204, 2017
+# Stanislas Dolcini <stan@wildfiregames.com>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-29 11:30+0000\n"
-"PO-Revision-Date: 2021-01-29 15:05+0000\n"
+"POT-Creation-Date: 2021-01-29 14:56+0000\n"
+"PO-Revision-Date: 2021-01-30 15:58+0000\n"
 "Last-Translator: Nescio\n"
 "Language-Team: English (United Kingdom) (http://www.transifex.com/wildfire-games/0ad/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
@@ -1730,7 +1731,7 @@ msgstr "Show frames per second in top right corner."
 
 #: gui/options/options.json[0].options[6].label
 msgid "Real time overlay"
-msgstr "Real time overlay"
+msgstr "Real-time overlay"
 
 #: gui/options/options.json[0].options[6].tooltip
 msgid "Show current system time in top right corner."
@@ -1805,7 +1806,7 @@ msgstr "Unit silhouettes"
 
 #: gui/options/options.json[1].options[11].tooltip
 msgid "Show outlines of units behind structures."
-msgstr "Show outlines of units behind structures."
+msgstr "Show outlines of Units behind Structures."
 
 #: gui/options/options.json[1].options[12].label
 msgid "Particles"
@@ -2291,7 +2292,7 @@ msgstr "Detailed tooltips"
 #: gui/options/options.json[5].options[12].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing structures."
-msgstr "Show detailed tooltips for trainable units in unit-producing structures."
+msgstr "Show detailed tooltips for trainable Units in unit-producing Structures."
 
 #: gui/options/options.json[5].options[13].label
 msgid "Sort resources and population tooltip"
@@ -2357,7 +2358,7 @@ msgstr "Hotkey to enable snapping"
 #: gui/options/options.json[5].options[18].list[0].tooltip
 msgid ""
 "New structures are aligned with nearby structures while pressing the hotkey."
-msgstr "New structures are aligned with nearby structures while pressing the hotkey."
+msgstr "New structures are aligned with nearby Structures while pressing the hotkey."
 
 #: gui/options/options.json[5].options[18].list[1].label
 msgid "Hotkey to disable snapping"
@@ -2367,11 +2368,11 @@ msgstr "Hotkey to disable snapping"
 msgid ""
 "New structures are aligned with nearby structures unless the hotkey is "
 "pressed."
-msgstr "New structures are aligned with nearby structures unless the hotkey is pressed."
+msgstr "New structures are aligned with nearby Structures unless the hotkey is pressed."
 
 #: gui/options/options.json[5].options[18].tooltip
 msgid "This option allows to align new structures with nearby structures."
-msgstr "This option allows to align new structures with nearby structures."
+msgstr "This option allows to align new Structures with nearby Structures."
 
 #: gui/options/options.json[5].options[19].label
 msgid "Control group membership"
@@ -2503,7 +2504,7 @@ msgstr "Attack range visualisation"
 msgid ""
 "Display the attack range of selected defensive structures. (It can also be "
 "toggled with the hotkey during a game)."
-msgstr "Display the attack range of selected defensive structures. (It can also be toggled with the hotkey during a game)."
+msgstr "Display the attack range of selected Defensive Structures. (It can also be toggled with the hotkey during a game)."
 
 #: gui/options/options.json[5].options[8].label
 msgid "Aura range visualization"
@@ -2513,7 +2514,7 @@ msgstr "Aura range visualisation"
 msgid ""
 "Display the range of auras of selected units and structures. (It can also be"
 " toggled with the hotkey during a game)."
-msgstr "Display the range of auras of selected units and structures. (It can also be toggled with the hotkey during a game)."
+msgstr "Display the range of auras of selected Units and Structures. (It can also be toggled with the hotkey during a game)."
 
 #: gui/options/options.json[5].options[9].label
 msgid "Heal range visualization"
@@ -2801,7 +2802,7 @@ msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
 #: gui/pregame/ProjectInformation.js:18
-msgid "Alpha XXIV: Xšayaṛšā"
+msgid "Alpha XXIV: Xšayāršā"
 msgstr "Alpha XXIV: Xšayāršā"
 
 #: gui/pregame/ProjectInformation.js:19
@@ -3782,7 +3783,7 @@ msgstr "CATAPULTS"
 
 #: gui/text/tips/catapults.txt:2
 msgid "Ranged siege engines that are good against structures."
-msgstr "Ranged siege engines that are good against structures."
+msgstr "Ranged Siege Engines that are good against Structures."
 
 #: gui/text/tips/catapults.txt:3
 msgid "Expensive and slow."
@@ -3852,7 +3853,7 @@ msgstr "Train mercenaries from each of the ethnically-themed embassies."
 msgid ""
 "Mercenary citizen-soldiers have their normal Food cost converted to Metal "
 "cost."
-msgstr "Mercenary citizen soldiers have their normal Food cost converted to Metal cost."
+msgstr "Mercenary Citizen Soldiers have their normal food cost converted to metal cost."
 
 #: gui/text/tips/fishing.txt:1
 msgid "FISHING"
@@ -3880,7 +3881,7 @@ msgstr "FORGE"
 
 #: gui/text/tips/forge.txt:2
 msgid "Research structure for all factions."
-msgstr "Research structure for all factions."
+msgstr "Research Structure for all factions."
 
 #: gui/text/tips/forge.txt:3
 msgid "Research weapon and armor upgrades for your units."
@@ -3892,7 +3893,7 @@ msgstr "FORTRESS"
 
 #: gui/text/tips/fortress.txt:2
 msgid "The Fortress is usually each faction's strongest structure."
-msgstr "The Fortress is usually each faction's strongest structure."
+msgstr "The Fortress is usually each faction's strongest Structure."
 
 #: gui/text/tips/fortress.txt:3
 msgid "Trains Champions, Heroes, and Siege Weapons."
@@ -4126,7 +4127,7 @@ msgstr "Free-standing towers good for defending large areas of countryside."
 msgid ""
 "They usually cost 100 Wood and 100 Stone. Iberian Defense Towers cost 50 "
 "Wood and 250 Stone (because they're stronger)."
-msgstr "They usually cost 100 Wood and 100 Stone. Iberian Defence Towers cost 50 Wood and 250 Stone (because they're stronger)."
+msgstr "They usually cost 100 wood and 100 stone. Iberian Defence Towers cost 50 wood and 250 stone (because they're stronger)."
 
 #: gui/text/tips/scout_towers.txt:4
 msgid "Has a ranged attack that increases for each garrisoned unit."
@@ -4198,7 +4199,7 @@ msgstr "STOREHOUSES"
 
 #: gui/text/tips/storehouses.txt:2
 msgid "A cheap dropsite for non-food resources (Wood, Stone, Metal)."
-msgstr "A cheap dropsite for non-food resources (Wood, Stone, Metal)."
+msgstr "A cheap dropsite for non-food resources (wood, stone, metal)."
 
 #: gui/text/tips/storehouses.txt:3
 msgid ""
@@ -4243,13 +4244,13 @@ msgstr "Decay happens when structures are not connected to an allied Civic Centr
 msgid ""
 "The decay process can be slowed down or reversed by garrisoning some units "
 "in the structure."
-msgstr "The decay process can be slowed down or reversed by garrisoning some units in the structure."
+msgstr "The decay process can be slowed down or reversed by garrisoning some units in the Structure."
 
 #: gui/text/tips/territory_decay.txt:4
 msgid ""
 "When the decay is completed, the structure will be given to the most "
 "influential neighbor."
-msgstr "When the decay is completed, the structure will be given to the most influential neighbour."
+msgstr "When the decay is completed, the Structure will be given to the most influential neighbour."
 
 #: gui/text/tips/themistocles.txt:1
 msgid "THEMISTOCLES"
@@ -4315,7 +4316,7 @@ msgstr "Huge beasts from Africa and India, trained for war."
 
 #: gui/text/tips/war_elephants.txt:3
 msgid "High Food and Metal cost, but very powerful."
-msgstr "High Food and Metal cost, but very powerful."
+msgstr "High food and metal cost, but very powerful."
 
 #: gui/text/tips/war_elephants.txt:4
 msgid ""

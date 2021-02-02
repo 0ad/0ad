@@ -10,15 +10,15 @@
 # Martin H <pilino@posteo.de>, 2021
 # Martin H <pilino@posteo.de>, 2016
 # Martin H <pilino@posteo.de>, 2016-2017
-# Nescio, 2020
+# Nescio, 2020-2021
 # Nescio, 2020
 # Martin H <pilino@posteo.de>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-25 08:08+0000\n"
-"PO-Revision-Date: 2021-01-25 13:07+0000\n"
-"Last-Translator: Martin H <pilino@posteo.de>\n"
+"PO-Revision-Date: 2021-01-29 16:07+0000\n"
+"Last-Translator: Nescio\n"
 "Language-Team: English (United Kingdom) (http://www.transifex.com/wildfire-games/0ad/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -307,13 +307,13 @@ msgstr "hotkey.pause – Pause or resume the game"
 msgid ""
 "  hotkey.session.kill – Delete currently selected unit(s)/structure(s), ask "
 "for confirmation"
-msgstr "hotkey.session.kill – Delete currently selected unit(s)/structure(s), ask for confirmation"
+msgstr "hotkey.session.kill – Delete currently selected Unit(s)/Structure(s), ask for confirmation"
 
 #: gui/manual/intro.txt:69
 msgid ""
 "    • With hotkey.session.noconfirmation – Immediately delete currently "
 "selected unit(s)/structure(s), without asking for confirmation"
-msgstr "• With hotkey.session.noconfirmation – Immediately delete currently selected unit(s)/structure(s), without asking for confirmation"
+msgstr "• With hotkey.session.noconfirmation – Immediately delete currently selected Unit(s)/Structure(s), without asking for confirmation"
 
 #: gui/manual/intro.txt:70
 msgid ""
@@ -364,13 +364,13 @@ msgstr "hotkey.session.backtowork – The unit will go back to work"
 msgid ""
 "  hotkey.session.unload – Unload the garrisoned units of the selected "
 "structure(s)"
-msgstr "hotkey.session.unload – Unload the garrisoned units of the selected structure(s)"
+msgstr "hotkey.session.unload – Unload the garrisoned Units of the selected Structure(s)"
 
 #: gui/manual/intro.txt:80
 msgid ""
 "  hotkey.selection.group.save.1 – Create control group 1 (by default, "
 "respectively 2,3, ...) from the selected unit(s)/structure(s)"
-msgstr "hotkey.selection.group.save.1 – Create control group 1 (by default, respectively 2,3, ...) from the selected unit(s)/structure(s)"
+msgstr "hotkey.selection.group.save.1 – Create control group 1 (by default, respectively 2,3, ...) from the selected Unit(s)/Structure(s)"
 
 #: gui/manual/intro.txt:81
 msgid ""
@@ -382,7 +382,7 @@ msgstr "  hotkey.selection.group.select.1 – Select the unit(s)/structure(s) in
 msgid ""
 "  hotkey.selection.group.add.1 – Add control group 1 (to 0) to the selected "
 "unit(s)/structure(s)"
-msgstr "hotkey.selection.group.add.1 – Add control group 1 (to 0) to the selected unit(s)/structure(s)"
+msgstr "hotkey.selection.group.add.1 – Add control group 1 (to 0) to the selected Unit(s)/Structure(s)"
 
 #: gui/manual/intro.txt:83
 msgid ""
@@ -403,19 +403,19 @@ msgid ""
 "hotkey.session.queueunit.5, hotkey.session.queueunit.6, "
 "hotkey.session.queueunit.7 – With training structure selected. Add the 1st, "
 "2nd, … unit shown to the training queue for all the selected structures"
-msgstr "hotkey.session.queueunit.1, hotkey.session.queueunit.2, hotkey.session.queueunit.3, hotkey.session.queueunit.4, hotkey.session.queueunit.5, hotkey.session.queueunit.6, hotkey.session.queueunit.7 – With training structure selected. Add the 1st, 2nd, … unit shown to the training queue for all the selected structures"
+msgstr "hotkey.session.queueunit.1, hotkey.session.queueunit.2, hotkey.session.queueunit.3, hotkey.session.queueunit.4, hotkey.session.queueunit.5, hotkey.session.queueunit.6, hotkey.session.queueunit.7 – With training Structure selected. Add the 1st, 2nd, … unit shown to the training queue for all the selected Structures"
 
 #: gui/manual/intro.txt:86
 msgid ""
 "  hotkey.session.highlightguarded with unit(s) selected – Highlight the "
 "unit(s)/structure(s) guarded by the selection"
-msgstr "hotkey.session.highlightguarded with unit(s) selected – Highlight the unit(s)/structure(s) guarded by the selection"
+msgstr "hotkey.session.highlightguarded with Unit(s) selected – Highlight the Unit(s)/Structure(s) guarded by the selection"
 
 #: gui/manual/intro.txt:87
 msgid ""
 "  hotkey.session.highlightguarding with unit(s)/structure(s) selected – "
 "Highlight the unit(s) guarding the selection"
-msgstr "hotkey.session.highlightguarding with unit(s)/structure(s) selected – Highlight the unit(s) guarding the selection"
+msgstr "hotkey.session.highlightguarding with Unit(s)/Structure(s) selected – Highlight the Unit(s) guarding the selection"
 
 #: gui/manual/intro.txt:88
 msgid ""
@@ -463,11 +463,11 @@ msgstr "[font=\"sans-bold-14\"]Modify mouse action[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:99
 msgid "  hotkey.session.garrison + Right Click on structure – Garrison"
-msgstr "hotkey.session.garrison + Right Click on structure – Garrison"
+msgstr "hotkey.session.garrison + Right Click on Structure – Garrison"
 
 #: gui/manual/intro.txt:100
 msgid "  hotkey.session.repair + Right Click on structure – Repair"
-msgstr "hotkey.session.repair + Right Click on structure – Repair"
+msgstr "hotkey.session.repair + Right Click on Structure – Repair"
 
 #: gui/manual/intro.txt:101
 msgid "  hotkey.session.patrol + Right Click – Patrol"
@@ -532,7 +532,7 @@ msgstr "hotkey.selection.woundedonly + Left Drag over units on map – Only sele
 msgid ""
 "  Right Click with a structure(s) selected – Set a rally point for units "
 "created/ungarrisoned from that structure"
-msgstr "  Right Click with a structure(s) selected – Set a rally point for units created/ungarrisoned from that structure"
+msgstr "  Right Click with a Structure(s) selected – Set a rally point for Units created/ungarrisoned from that Structure"
 
 #: gui/manual/intro.txt:112
 msgid ""
@@ -562,7 +562,7 @@ msgstr "  hotkey.session.attackmoveUnit + Right Click with unit(s) selected – 
 msgid ""
 "  hotkey.session.snaptoedges + Mouse Move near structures – Align the new "
 "structure with an existing nearby structure"
-msgstr "hotkey.session.snaptoedges + Mouse Move near structures – Align the new structure with an existing nearby structure"
+msgstr "hotkey.session.snaptoedges + Mouse Move near Structures – Align the new Structure with an existing nearby Structure"
 
 #: gui/manual/intro.txt:118
 msgid "[font=\"sans-bold-14\"]Overlays[font=\"sans-14\"]"
@@ -599,13 +599,13 @@ msgstr "hotkey.session.diplomacycolors – Toggle diplomacy colours"
 msgid ""
 "  hotkey.session.toggleattackrange – Toggle attack range visualizations of "
 "selected units and structures"
-msgstr "hotkey.session.toggleattackrange – Toggle attack range visualisations of selected units and structures"
+msgstr "hotkey.session.toggleattackrange – Toggle attack range visualisations of selected Units and Structures"
 
 #: gui/manual/intro.txt:125
 msgid ""
 "  hotkey.session.toggleaurasrange – Toggle aura range visualizations of "
 "selected units and structures"
-msgstr "hotkey.session.toggleaurasrange – Toggle aura range visualisations of selected units and structures"
+msgstr "hotkey.session.toggleaurasrange – Toggle aura range visualisations of selected Units and Structures"
 
 #: gui/manual/intro.txt:126
 msgid ""
@@ -694,17 +694,17 @@ msgstr "[font=\"sans-bold-14\"]During Structure Placement[font=\"sans-14\"]"
 #: gui/manual/intro.txt:146
 msgid ""
 "  hotkey.session.rotate.ccw – Rotate structure 15 degrees counter-clockwise"
-msgstr "hotkey.session.rotate.ccw – Rotate structure 15 degrees anticlockwise"
+msgstr "hotkey.session.rotate.ccw – Rotate Structure 15 degrees anticlockwise"
 
 #: gui/manual/intro.txt:147
 msgid "  hotkey.session.rotate.cw – Rotate structure 15 degrees clockwise"
-msgstr "hotkey.session.rotate.cw – Rotate structure 15 degrees clockwise"
+msgstr "hotkey.session.rotate.cw – Rotate Structure 15 degrees clockwise"
 
 #: gui/manual/intro.txt:148
 msgid ""
 "  Left Drag – Rotate structure using mouse (foundation will be placed on "
 "mouse release)"
-msgstr "  Left Drag – Rotate structure using mouse (foundation will be placed on mouse release)"
+msgstr "  Left Drag – Rotate Structure using mouse (foundation will be placed on mouse release)"
 
 #: gui/manual/intro.txt:150
 msgid "[font=\"sans-bold-14\"]When loading a saved game[font=\"sans-14\"]"

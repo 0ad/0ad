@@ -11,19 +11,20 @@
 # Martin Plávala <martinplavala@gmail.com>, 2017
 # Miroslav Kadlec <mirokadlec12@gmail.com>, 2018
 # MiroslavR <miroslavr256@gmail.com>, 2014
+# Ondrej K. <kozlovsky.ondrej@gmail.com>, 2021
 # Patrik Špaňo <pa4k.xyon@gmail.com>, 2020
 # SuroX <peter.surovcik@gmail.com>, 2014
 # Peto (wt-ts) <peter.tuharsky@gmail.com>, 2015-2016
 # Roman 'Kaktuxista' Benji <romanbeno273@gmail.com>, 2014
-# Angen <slavomir.slovenkai@gmail.com>, 2018,2020
+# Angen <slavomir.slovenkai@gmail.com>, 2018,2020-2021
 # Tom Hanax, 2019
 # Zuzana Miadoková <akara.horse@gmail.com>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-25 08:08+0000\n"
-"PO-Revision-Date: 2021-01-25 09:36+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-01-31 16:47+0000\n"
+"Last-Translator: Angen <slavomir.slovenkai@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -133,7 +134,7 @@ msgstr "Sekera"
 
 #: simulation/templates/template_unit_cavalry_melee_axeman.xml:24
 msgid "Cavalry Axeman"
-msgstr ""
+msgstr "Jazda sekerníkov"
 
 #: simulation/templates/template_unit_cavalry_melee_axeman.xml:25
 #: simulation/templates/template_unit_champion_cavalry_axeman.xml:21
@@ -153,11 +154,11 @@ msgstr "Sekerník"
 #: simulation/templates/template_unit_infantry_melee_maceman.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Mace"
-msgstr ""
+msgstr "Palcát"
 
 #: simulation/templates/template_unit_cavalry_melee_maceman.xml:23
 msgid "Cavalry Maceman"
-msgstr ""
+msgstr "Jazda s palcátmi"
 
 #: simulation/templates/template_unit_cavalry_melee_maceman.xml:24
 #: simulation/templates/template_unit_champion_cavalry_maceman.xml:22
@@ -260,7 +261,7 @@ msgstr "Jazda na diaľku"
 #: simulation/templates/template_unit_siege_tower.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Bow"
-msgstr ""
+msgstr "Luk"
 
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:32
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:27
@@ -289,7 +290,7 @@ msgstr "Oštep"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelineer.xml:32
 msgid "Cavalry Javelineer"
-msgstr ""
+msgstr "Jazdec s oštepom."
 
 #: simulation/templates/template_unit_cavalry_ranged_javelineer.xml:33
 #: simulation/templates/template_unit_champion_cavalry_javelineer.xml:28
@@ -298,7 +299,7 @@ msgstr ""
 #: simulation/templates/template_unit_hero_infantry_javelineer.xml:28
 #: simulation/templates/template_unit_infantry_ranged_javelineer.xml:33
 msgid "Javelineer"
-msgstr ""
+msgstr "Oštepár"
 
 #: simulation/templates/template_unit_champion.xml:14
 msgid "Champion"
@@ -318,15 +319,15 @@ msgstr "Šampiónsky lukostrelec na koni"
 
 #: simulation/templates/template_unit_champion_cavalry_axeman.xml:22
 msgid "Champion Cavalry Axeman"
-msgstr ""
+msgstr "Šampiónsky sekerník na koni"
 
 #: simulation/templates/template_unit_champion_cavalry_javelineer.xml:27
 msgid "Champion Cavalry Javelineer"
-msgstr ""
+msgstr "Šampiónsky oštepár na koni"
 
 #: simulation/templates/template_unit_champion_cavalry_maceman.xml:21
 msgid "Champion Cavalry Maceman"
-msgstr ""
+msgstr "Šampiónsky s plalcátom na koni"
 
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:27
 msgid "Champion Cavalry Spearman"
@@ -355,7 +356,7 @@ msgstr "Slon"
 #: simulation/templates/template_unit_hero_elephant_melee.xml:6
 msgctxt "Name of an attack, usually the weapon."
 msgid "Trunk"
-msgstr ""
+msgstr "Chobot slona"
 
 #: simulation/templates/template_unit_champion_infantry.xml:15
 #: simulation/templates/template_unit_hero_infantry.xml:14
@@ -374,15 +375,15 @@ msgstr "Šampiónsky lukostrelec"
 
 #: simulation/templates/template_unit_champion_infantry_axeman.xml:22
 msgid "Champion Axeman"
-msgstr ""
+msgstr "Šampiónsky sekerník"
 
 #: simulation/templates/template_unit_champion_infantry_javelineer.xml:30
 msgid "Champion Infantry Javelineer"
-msgstr ""
+msgstr "Šampiónsky pechotný oštepár"
 
 #: simulation/templates/template_unit_champion_infantry_maceman.xml:21
 msgid "Champion Infantry Maceman"
-msgstr ""
+msgstr "Šampiónska pechota s palcátom"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:5
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:5
@@ -459,7 +460,7 @@ msgstr ""
 #: simulation/templates/template_unit_fauna_hunt_aggressive_bear.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Paws"
-msgstr ""
+msgstr "škriabanie"
 
 #: simulation/templates/template_unit_fauna_hunt_defensive_bull.xml:5
 msgctxt "Name of an attack, usually the weapon."
@@ -627,7 +628,7 @@ msgstr "Zápalná loď"
 #: simulation/templates/template_unit_ship_fishing.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Harpoon"
-msgstr ""
+msgstr "Harpúna"
 
 #: simulation/templates/template_unit_ship_fishing.xml:30
 #: simulation/templates/units/kush/ship_fishing.xml:9
@@ -695,7 +696,7 @@ msgstr "Obliehacie"
 #: simulation/templates/template_unit_siege_boltshooter.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Bolt"
-msgstr ""
+msgstr "Šíp"
 
 #: simulation/templates/template_unit_siege_boltshooter.xml:50
 msgid "BoltShooter"
@@ -741,7 +742,7 @@ msgstr "Obliehacia veža"
 #: simulation/templates/template_unit_support_female_citizen.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Dagger"
-msgstr ""
+msgstr "Dýka"
 
 #: simulation/templates/template_unit_support_female_citizen.xml:66
 msgid "Female Citizen"
@@ -1050,7 +1051,7 @@ msgstr "Temistokles"
 
 #: simulation/templates/units/athen/hero_themistocles.xml:11
 msgid "Themistoklēs"
-msgstr ""
+msgstr "Temistokles"
 
 #: simulation/templates/units/athen/hero_xenophon.xml:6
 msgid "Xenophon"
@@ -1058,7 +1059,7 @@ msgstr "Xenofón"
 
 #: simulation/templates/units/athen/hero_xenophon.xml:7
 msgid "Xenophōn"
-msgstr ""
+msgstr "Xenophōn"
 
 #: simulation/templates/units/athen/infantry_javelineer_b.xml:13
 msgid "Thracian Peltast"
@@ -1151,7 +1152,7 @@ msgstr "Oxybeles"
 #: simulation/templates/units/sele/siege_ram.xml:9
 #: simulation/templates/units/spart/siege_ram.xml:9
 msgid "Krios"
-msgstr ""
+msgstr "Krios"
 
 #: simulation/templates/units/athen/support_female_citizen.xml:11
 msgid "Gýnē Athēnaía"
@@ -3047,7 +3048,7 @@ msgstr "Leónidas I."
 
 #: simulation/templates/units/spart/hero_leonidas.xml:10
 msgid "Leōnidēs"
-msgstr ""
+msgstr "Leonidas"
 
 #: simulation/templates/units/spart/infantry_javelineer_b.xml:13
 msgid "Helot Skirmisher"

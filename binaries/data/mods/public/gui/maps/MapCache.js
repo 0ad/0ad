@@ -8,6 +8,14 @@ class MapCache
 		this.cache = {};
 	}
 
+	checkIfExists(mapType, mapPath)
+	{
+		if (!mapPath || mapPath == "random")
+			return true;
+
+		return g_Settings.MapTypes.find(type => type.Name == mapType).CheckIfExists(mapPath);
+	}
+
 	getMapData(mapType, mapPath)
 	{
 		if (!mapPath || mapPath == "random")
