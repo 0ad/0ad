@@ -52,7 +52,10 @@ class GameDetails
 		if (stanza.mapType != this.lastGame.mapType || stanza.mapName != this.lastGame.mapName)
 		{
 			this.sgMapName.caption = displayData.mapName;
-			this.sgMapPreview.sprite = this.mapCache.getMapPreview(stanza.mapType, stanza.mapName);
+			if (this.mapCache.checkIfExists(stanza.mapType, stanza.mapName))
+				this.sgMapPreview.sprite = this.mapCache.getMapPreview(stanza.mapType, stanza.mapName);
+			else
+				this.sgMapPreview.sprite = this.mapCache.getMapPreview(stanza.mapType);
 		}
 
 		{
