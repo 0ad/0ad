@@ -68,13 +68,25 @@ class ObstructionSnap
 		return scoreA - scoreB;
 	}
 
+	getNearestSizeAlongNormal(width, depth, angle, normal)
+	{
+		// Front face direction.
+		let direction = new Vector2D(0.0, 1.0);
+		direction.rotate(angle);
+		let dot = direction.dot(normal);
+		const threshold = Math.cos(Math.PI / 4.0);
+		if (Math.abs(dot) > threshold)
+			return [depth, width];
+		return [width, depth];
+	}
+
 	getPosition(data, template)
 	{
 		if (!data.snapToEdges || !template.Obstruction || !template.Obstruction.Static)
 			return undefined;
 
-		let width = template.Obstruction.Static["@depth"] / 2;
-		let depth = template.Obstruction.Static["@width"] / 2;
+		const width = template.Obstruction.Static["@width"] / 2;
+		const depth = template.Obstruction.Static["@depth"] / 2;
 		const maxSide = Math.max(width, depth);
 		let templatePos = Vector2D.from3D(data);
 		let templateAngle = data.angle || 0;
@@ -97,16 +109,15 @@ class ObstructionSnap
 			difference = Math.min(difference, Math.PI * 2 - difference);
 			if (difference < Math.PI / 4 + this.EPS)
 			{
-				// We need to swap sides for orthogonal cases.
-				if (dir % 2 == 0)
-					[width, depth] = [depth, width];
 				templateAngle = angleCandidate;
 				break;
 			}
 		}
+		let [sizeToBaseEdge, sizeToPairedEdge] =
+			this.getNearestSizeAlongNormal(width, depth, templateAngle, baseEdge.normal);
 
 		let distance = Vector2D.dot(baseEdge.normal, templatePos) - Vector2D.dot(baseEdge.normal, baseEdge.begin);
-		templatePos.sub(Vector2D.mult(baseEdge.normal, distance - width - this.getPadding(baseEdge)));
+		templatePos.sub(Vector2D.mult(baseEdge.normal, distance - sizeToBaseEdge - this.getPadding(baseEdge)));
 		edges = this.getValidEdges(data.snapToEdges, templatePos, maxSide);
 		if (edges.length > 1)
 		{
@@ -136,7 +147,7 @@ class ObstructionSnap
 					if (this.compareEdges(edge, secondEdge) < 0)
 						secondEdge = edge;
 				let distance = Vector2D.dot(secondEdge.normal, templatePos) - Vector2D.dot(secondEdge.normal, secondEdge.begin);
-				templatePos.sub(Vector2D.mult(secondEdge.normal, distance - depth - this.getPadding(secondEdge)));
+				templatePos.sub(Vector2D.mult(secondEdge.normal, distance - sizeToPairedEdge - this.getPadding(secondEdge)));
 			}
 		}
 		return {
