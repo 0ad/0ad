@@ -715,113 +715,115 @@ using VertexBufferBatches = PooledBatchMap<CVertexBuffer*, IndexBufferBatches>;
 // Group batches by texture
 using TextureBatches = PooledBatchMap<CTerrainTextureEntry*, VertexBufferBatches>;
 
+// Group batches by shaders.
+using ShaderTechniqueBatches = PooledBatchMap<CShaderTechniquePtr, TextureBatches>;
+
 void CPatchRData::RenderBases(
 	const std::vector<CPatchRData*>& patches, const CShaderDefines& context, ShadowMap* shadow)
 {
 	Arena arena;
 
-	TextureBatches batches(TextureBatches::key_compare(), (TextureBatches::allocator_type(arena)));
+	ShaderTechniqueBatches batches(ShaderTechniqueBatches::key_compare(), (ShaderTechniqueBatches::allocator_type(arena)));
 
- 	PROFILE_START("compute batches");
+	PROFILE_START("compute batches");
 
- 	// Collect all the patches' base splats into their appropriate batches
- 	for (size_t i = 0; i < patches.size(); ++i)
- 	{
- 		CPatchRData* patch = patches[i];
- 		for (size_t j = 0; j < patch->m_Splats.size(); ++j)
- 		{
- 			SSplat& splat = patch->m_Splats[j];
+	// Collect all the patches' base splats into their appropriate batches
+	for (size_t i = 0; i < patches.size(); ++i)
+	{
+		CPatchRData* patch = patches[i];
+		for (size_t j = 0; j < patch->m_Splats.size(); ++j)
+		{
+			SSplat& splat = patch->m_Splats[j];
+			const CMaterial& material = splat.m_Texture->GetMaterial();
+			if (material.GetShaderEffect().empty())
+			{
+				LOGERROR("Terrain renderer failed to load shader effect.\n");
+				continue;
+			}
+			CShaderTechniquePtr techBase = g_Renderer.GetShaderManager().LoadEffect(
+				material.GetShaderEffect(), context, material.GetShaderDefines(0));
 
- 			BatchElements& batch = PooledPairGet(
+			BatchElements& batch = PooledPairGet(
 				PooledMapGet(
- 					PooledMapGet(batches, splat.m_Texture, arena),
- 					patch->m_VBBase->m_Owner, arena
+					PooledMapGet(
+						PooledMapGet(batches, techBase, arena),
+						splat.m_Texture, arena
+					),
+					patch->m_VBBase->m_Owner, arena
 				),
 				patch->m_VBBaseIndices->m_Owner, arena
 			);
 
- 			batch.first.push_back(splat.m_IndexCount);
+			batch.first.push_back(splat.m_IndexCount);
 
- 			u8* indexBase = patch->m_VBBaseIndices->m_Owner->GetBindAddress();
- 			batch.second.push_back(indexBase + sizeof(u16)*(patch->m_VBBaseIndices->m_Index + splat.m_IndexStart));
+			u8* indexBase = patch->m_VBBaseIndices->m_Owner->GetBindAddress();
+			batch.second.push_back(indexBase + sizeof(u16)*(patch->m_VBBaseIndices->m_Index + splat.m_IndexStart));
 		}
- 	}
+	}
 
- 	PROFILE_END("compute batches");
+	PROFILE_END("compute batches");
 
- 	// Render each batch
- 	for (TextureBatches::iterator itt = batches.begin(); itt != batches.end(); ++itt)
+	// Render each batch
+	for (ShaderTechniqueBatches::iterator itTech = batches.begin(); itTech != batches.end(); ++itTech)
 	{
-		if (itt->first->GetMaterial().GetShaderEffect().empty())
-		{
-			LOGERROR("Terrain renderer failed to load shader effect.\n");
-			continue;
-		}
-
-		CShaderTechniquePtr techBase = g_Renderer.GetShaderManager().LoadEffect(itt->first->GetMaterial().GetShaderEffect(),
-					context, itt->first->GetMaterial().GetShaderDefines(0));
-
+		const CShaderTechniquePtr& techBase = itTech->first;
 		const int numPasses = techBase->GetNumPasses();
-
 		for (int pass = 0; pass < numPasses; ++pass)
 		{
 			techBase->BeginPass(pass);
-			TerrainRenderer::PrepareShader(techBase->GetShader(), shadow);
-
 			const CShaderProgramPtr& shader = techBase->GetShader(pass);
+			TerrainRenderer::PrepareShader(shader, shadow);
 
-			if (itt->first->GetMaterial().GetSamplers().size() != 0)
+			TextureBatches& textureBatches = itTech->second;
+			for (TextureBatches::iterator itt = textureBatches.begin(); itt != textureBatches.end(); ++itt)
 			{
-				const CMaterial::SamplersVector& samplers = itt->first->GetMaterial().GetSamplers();
-				size_t samplersNum = samplers.size();
-
-				for (size_t s = 0; s < samplersNum; ++s)
+				if (itt->first->GetMaterial().GetSamplers().size() != 0)
 				{
-					const CMaterial::TextureSampler& samp = samplers[s];
-					shader->BindTexture(samp.Name, samp.Sampler);
+					const CMaterial::SamplersVector& samplers = itt->first->GetMaterial().GetSamplers();
+					for(const CMaterial::TextureSampler& samp : samplers)
+						shader->BindTexture(samp.Name, samp.Sampler);
+
+					itt->first->GetMaterial().GetStaticUniforms().BindUniforms(shader);
+
+					float c = itt->first->GetTextureMatrix()[0];
+					float ms = itt->first->GetTextureMatrix()[8];
+					shader->Uniform(str_textureTransform, c, ms, -ms, 0.f);
+				}
+				else
+				{
+					shader->BindTexture(str_baseTex, g_Renderer.GetTextureManager().GetErrorTexture());
 				}
 
-				itt->first->GetMaterial().GetStaticUniforms().BindUniforms(shader);
-
-				float c = itt->first->GetTextureMatrix()[0];
-				float ms = itt->first->GetTextureMatrix()[8];
-				shader->Uniform(str_textureTransform, c, ms, -ms, 0.f);
-			}
-			else
-			{
-				shader->BindTexture(str_baseTex, g_Renderer.GetTextureManager().GetErrorTexture());
-			}
-
-			for (VertexBufferBatches::iterator itv = itt->second.begin(); itv != itt->second.end(); ++itv)
-			{
-				GLsizei stride = sizeof(SBaseVertex);
-				SBaseVertex *base = (SBaseVertex *)itv->first->Bind();
-				shader->VertexPointer(3, GL_FLOAT, stride, &base->m_Position[0]);
-				shader->NormalPointer(GL_FLOAT, stride, &base->m_Normal[0]);
-				shader->TexCoordPointer(GL_TEXTURE0, 3, GL_FLOAT, stride, &base->m_Position[0]);
-
-				shader->AssertPointersBound();
-
-				for (IndexBufferBatches::iterator it = itv->second.begin(); it != itv->second.end(); ++it)
+				for (VertexBufferBatches::iterator itv = itt->second.begin(); itv != itt->second.end(); ++itv)
 				{
-					it->first->Bind();
+					GLsizei stride = sizeof(SBaseVertex);
+					SBaseVertex *base = (SBaseVertex *)itv->first->Bind();
+					shader->VertexPointer(3, GL_FLOAT, stride, &base->m_Position[0]);
+					shader->NormalPointer(GL_FLOAT, stride, &base->m_Normal[0]);
+					shader->TexCoordPointer(GL_TEXTURE0, 3, GL_FLOAT, stride, &base->m_Position[0]);
 
-					BatchElements& batch = it->second;
+					shader->AssertPointersBound();
 
-					if (!g_Renderer.m_SkipSubmit)
+					for (IndexBufferBatches::iterator it = itv->second.begin(); it != itv->second.end(); ++it)
 					{
-						// Don't use glMultiDrawElements here since it doesn't have a significant
-						// performance impact and it suffers from various driver bugs (e.g. it breaks
-						// in Mesa 7.10 swrast with index VBOs)
-						for (size_t i = 0; i < batch.first.size(); ++i)
-							glDrawElements(GL_TRIANGLES, batch.first[i], GL_UNSIGNED_SHORT, batch.second[i]);
-					}
+						it->first->Bind();
 
-					g_Renderer.m_Stats.m_DrawCalls++;
-					g_Renderer.m_Stats.m_TerrainTris += std::accumulate(batch.first.begin(), batch.first.end(), 0) / 3;
+						BatchElements& batch = it->second;
+
+						if (!g_Renderer.m_SkipSubmit)
+						{
+							// Don't use glMultiDrawElements here since it doesn't have a significant
+							// performance impact and it suffers from various driver bugs (e.g. it breaks
+							// in Mesa 7.10 swrast with index VBOs)
+							for (size_t i = 0; i < batch.first.size(); ++i)
+								glDrawElements(GL_TRIANGLES, batch.first[i], GL_UNSIGNED_SHORT, batch.second[i]);
+						}
+
+						g_Renderer.m_Stats.m_DrawCalls++;
+						g_Renderer.m_Stats.m_TerrainTris += std::accumulate(batch.first.begin(), batch.first.end(), 0) / 3;
+					}
 				}
 			}
-
 			techBase->EndPass();
 		}
 	}
@@ -840,7 +842,8 @@ struct SBlendBatch
 	}
 
 	CTerrainTextureEntry* m_Texture;
- 	VertexBufferBatches m_Batches;
+	CShaderTechniquePtr m_ShaderTech;
+	VertexBufferBatches m_Batches;
 };
 
 /**
@@ -942,96 +945,99 @@ void CPatchRData::RenderBlends(
 
 		SBlendBatch layer(arena);
 		layer.m_Texture = bestTex;
+		if (!bestTex->GetMaterial().GetSamplers().empty())
+		{
+			layer.m_ShaderTech = g_Renderer.GetShaderManager().LoadEffect(
+				bestTex->GetMaterial().GetShaderEffect(), contextBlend, bestTex->GetMaterial().GetShaderDefines(0));
+		}
 		batches.push_back(layer);
 	}
 
- 	PROFILE_END("compute batches");
+	PROFILE_END("compute batches");
 
- 	CVertexBuffer* lastVB = NULL;
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
- 	for (BatchesStack::iterator itt = batches.begin(); itt != batches.end(); ++itt)
+	CVertexBuffer* lastVB = nullptr;
+	CShaderProgramPtr previousShader;
+	for (BatchesStack::iterator itTechBegin = batches.begin(), itTechEnd = batches.begin(); itTechBegin != batches.end(); itTechBegin = itTechEnd)
 	{
-		if (itt->m_Texture->GetMaterial().GetSamplers().size() == 0)
-			continue;
+		while (itTechEnd != batches.end() && itTechEnd->m_ShaderTech == itTechBegin->m_ShaderTech)
+			++itTechEnd;
 
-		CShaderTechniquePtr techBase = g_Renderer.GetShaderManager().LoadEffect(itt->m_Texture->GetMaterial().GetShaderEffect(), contextBlend, itt->m_Texture->GetMaterial().GetShaderDefines(0));
+		const CShaderTechniquePtr& techBase = itTechBegin->m_ShaderTech;
 		const int numPasses = techBase->GetNumPasses();
-
-		CShaderProgramPtr previousShader;
 		for (int pass = 0; pass < numPasses; ++pass)
 		{
 			techBase->BeginPass(pass);
-			TerrainRenderer::PrepareShader(techBase->GetShader(), shadow);
-
-			glEnable(GL_BLEND);
-			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
 			const CShaderProgramPtr& shader = techBase->GetShader(pass);
+			TerrainRenderer::PrepareShader(shader, shadow);
 
-			if (itt->m_Texture)
+			for (BatchesStack::iterator itt = itTechBegin; itt != itTechEnd; ++itt)
 			{
-				const CMaterial::SamplersVector& samplers = itt->m_Texture->GetMaterial().GetSamplers();
-				size_t samplersNum = samplers.size();
+				if (itt->m_Texture->GetMaterial().GetSamplers().empty())
+					continue;
 
-				for (size_t s = 0; s < samplersNum; ++s)
+				if (itt->m_Texture)
 				{
-					const CMaterial::TextureSampler& samp = samplers[s];
-					shader->BindTexture(samp.Name, samp.Sampler);
+					const CMaterial::SamplersVector& samplers = itt->m_Texture->GetMaterial().GetSamplers();
+					for (const CMaterial::TextureSampler& samp : samplers)
+						shader->BindTexture(samp.Name, samp.Sampler);
+
+					shader->BindTexture(str_blendTex, itt->m_Texture->m_TerrainAlpha->second.m_hCompositeAlphaMap);
+
+					itt->m_Texture->GetMaterial().GetStaticUniforms().BindUniforms(shader);
+
+					float c = itt->m_Texture->GetTextureMatrix()[0];
+					float ms = itt->m_Texture->GetTextureMatrix()[8];
+					shader->Uniform(str_textureTransform, c, ms, -ms, 0.f);
+				}
+				else
+				{
+					shader->BindTexture(str_baseTex, g_Renderer.GetTextureManager().GetErrorTexture());
 				}
 
-				shader->BindTexture(str_blendTex, itt->m_Texture->m_TerrainAlpha->second.m_hCompositeAlphaMap);
-
-				itt->m_Texture->GetMaterial().GetStaticUniforms().BindUniforms(shader);
-
-				float c = itt->m_Texture->GetTextureMatrix()[0];
-				float ms = itt->m_Texture->GetTextureMatrix()[8];
-				shader->Uniform(str_textureTransform, c, ms, -ms, 0.f);
-			}
-			else
-			{
-				shader->BindTexture(str_baseTex, g_Renderer.GetTextureManager().GetErrorTexture());
-			}
-
-			for (VertexBufferBatches::iterator itv = itt->m_Batches.begin(); itv != itt->m_Batches.end(); ++itv)
-			{
-				// Rebind the VB only if it changed since the last batch
-				if (itv->first != lastVB || shader != previousShader)
+				for (VertexBufferBatches::iterator itv = itt->m_Batches.begin(); itv != itt->m_Batches.end(); ++itv)
 				{
-					lastVB = itv->first;
-					previousShader = shader;
-					GLsizei stride = sizeof(SBlendVertex);
-					SBlendVertex *base = (SBlendVertex *)itv->first->Bind();
-
-					shader->VertexPointer(3, GL_FLOAT, stride, &base->m_Position[0]);
-					shader->NormalPointer(GL_FLOAT, stride, &base->m_Normal[0]);
-					shader->TexCoordPointer(GL_TEXTURE0, 3, GL_FLOAT, stride, &base->m_Position[0]);
-					shader->TexCoordPointer(GL_TEXTURE1, 2, GL_FLOAT, stride, &base->m_AlphaUVs[0]);
-				}
-
-				shader->AssertPointersBound();
-
-				for (IndexBufferBatches::iterator it = itv->second.begin(); it != itv->second.end(); ++it)
-				{
-					it->first->Bind();
-
-					BatchElements& batch = it->second;
-
-					if (!g_Renderer.m_SkipSubmit)
+					// Rebind the VB only if it changed since the last batch
+					if (itv->first != lastVB || shader != previousShader)
 					{
-						for (size_t i = 0; i < batch.first.size(); ++i)
-							glDrawElements(GL_TRIANGLES, batch.first[i], GL_UNSIGNED_SHORT, batch.second[i]);
+						lastVB = itv->first;
+						previousShader = shader;
+						GLsizei stride = sizeof(SBlendVertex);
+						SBlendVertex *base = (SBlendVertex *)itv->first->Bind();
+
+						shader->VertexPointer(3, GL_FLOAT, stride, &base->m_Position[0]);
+						shader->NormalPointer(GL_FLOAT, stride, &base->m_Normal[0]);
+						shader->TexCoordPointer(GL_TEXTURE0, 3, GL_FLOAT, stride, &base->m_Position[0]);
+						shader->TexCoordPointer(GL_TEXTURE1, 2, GL_FLOAT, stride, &base->m_AlphaUVs[0]);
 					}
 
-					g_Renderer.m_Stats.m_DrawCalls++;
-					g_Renderer.m_Stats.m_BlendSplats++;
-					g_Renderer.m_Stats.m_TerrainTris += std::accumulate(batch.first.begin(), batch.first.end(), 0) / 3;
+					shader->AssertPointersBound();
+
+					for (IndexBufferBatches::iterator it = itv->second.begin(); it != itv->second.end(); ++it)
+					{
+						it->first->Bind();
+
+						BatchElements& batch = it->second;
+
+						if (!g_Renderer.m_SkipSubmit)
+						{
+							for (size_t i = 0; i < batch.first.size(); ++i)
+								glDrawElements(GL_TRIANGLES, batch.first[i], GL_UNSIGNED_SHORT, batch.second[i]);
+						}
+
+						g_Renderer.m_Stats.m_DrawCalls++;
+						g_Renderer.m_Stats.m_BlendSplats++;
+						g_Renderer.m_Stats.m_TerrainTris += std::accumulate(batch.first.begin(), batch.first.end(), 0) / 3;
+					}
 				}
 			}
-
-			glDisable(GL_BLEND);
 			techBase->EndPass();
 		}
 	}
+
+	glDisable(GL_BLEND);
 
 	CVertexBuffer::Unbind();
 }
