@@ -86,7 +86,7 @@ CVertexBuffer::~CVertexBuffer()
 }
 
 
-bool CVertexBuffer::CompatibleVertexType(size_t vertexSize, GLenum usage, GLenum target)
+bool CVertexBuffer::CompatibleVertexType(size_t vertexSize, GLenum usage, GLenum target) const
 {
 	return usage == m_Usage && target == m_Target && vertexSize == m_VertexSize;
 }
@@ -99,14 +99,14 @@ CVertexBuffer::VBChunk* CVertexBuffer::Allocate(size_t vertexSize, size_t numVer
 {
 	// check this is the right kind of buffer
 	if (!CompatibleVertexType(vertexSize, usage, target))
-		return 0;
+		return nullptr;
 
 	if (UseStreaming(usage))
-		ENSURE(backingStore != NULL);
+		ENSURE(backingStore != nullptr);
 
 	// quick check there's enough vertices spare to allocate
 	if (numVertices > m_FreeVertices)
-		return 0;
+		return nullptr;
 
 	// trawl free list looking for first free chunk with enough space
 	std::vector<VBChunk*>::iterator best_iter = m_FreeList.end();
@@ -162,30 +162,35 @@ void CVertexBuffer::Release(VBChunk* chunk)
 
 	m_AllocList.erase(std::find(m_AllocList.begin(), m_AllocList.end(), chunk));
 
-	typedef std::vector<VBChunk*>::iterator Iter;
+	// Sorting O(nlogn) shouldn't be too far from O(n) by performance, because
+	// the container is partly sorted already.
+	std::sort(
+		m_FreeList.begin(), m_FreeList.end(),
+		[](const VBChunk* chunk1, const VBChunk* chunk2) -> bool
+		{
+			return chunk1->m_Index < chunk2->m_Index;
+		});
 
 	// Coalesce with any free-list items that are adjacent to this chunk;
 	// merge the found chunk with the new one, and remove the old one
-	// from the list, and repeat until no more are found
-	bool coalesced;
-	do
+	// from the list.
+	for (std::vector<VBChunk*>::iterator iter = m_FreeList.begin(); iter != m_FreeList.end();)
 	{
-		coalesced = false;
-		for (Iter iter = m_FreeList.begin(); iter != m_FreeList.end(); ++iter)
+		if ((*iter)->m_Index == chunk->m_Index + chunk->m_Count
+		 || (*iter)->m_Index + (*iter)->m_Count == chunk->m_Index)
 		{
-			if ((*iter)->m_Index == chunk->m_Index + chunk->m_Count
-			 || (*iter)->m_Index + (*iter)->m_Count == chunk->m_Index)
-			{
-				chunk->m_Index = std::min(chunk->m_Index, (*iter)->m_Index);
-				chunk->m_Count += (*iter)->m_Count;
-				delete *iter;
-				m_FreeList.erase(iter);
-				coalesced = true;
-				break;
-			}
+			chunk->m_Index = std::min(chunk->m_Index, (*iter)->m_Index);
+			chunk->m_Count += (*iter)->m_Count;
+			delete *iter;
+			iter = m_FreeList.erase(iter);
+			if (!m_FreeList.empty() && iter != m_FreeList.begin())
+				iter = std::prev(iter);
+		}
+		else
+		{
+			++iter;
 		}
 	}
-	while (coalesced);
 
 	m_FreeList.emplace_back(chunk);
 }
@@ -313,13 +318,13 @@ u8* CVertexBuffer::Bind()
 		m_HasNeededChunks = false;
 	}
 
-	return (u8*)0;
+	return nullptr;
 }
 
 u8* CVertexBuffer::GetBindAddress()
 {
 	if (g_Renderer.m_Caps.m_VBO)
-		return (u8*)0;
+		return nullptr;
 	else
 		return m_SysMem;
 }
@@ -358,7 +363,7 @@ void CVertexBuffer::DumpStatus()
 
 bool CVertexBuffer::UseStreaming(GLenum usage)
 {
-	return (usage == GL_DYNAMIC_DRAW || usage == GL_STREAM_DRAW);
+	return usage == GL_DYNAMIC_DRAW || usage == GL_STREAM_DRAW;
 }
 
 void CVertexBuffer::PrepareForRendering(VBChunk* chunk)

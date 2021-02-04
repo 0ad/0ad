@@ -111,7 +111,7 @@ public:
 	size_t GetBytesAllocated() const;
 
 	/// Returns true if this vertex buffer is compatible with the specified vertex type and intended usage.
-	bool CompatibleVertexType(size_t vertexSize, GLenum usage, GLenum target);
+	bool CompatibleVertexType(size_t vertexSize, GLenum usage, GLenum target) const;
 
 	void DumpStatus();
 
