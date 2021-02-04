@@ -360,7 +360,7 @@ function calculateMiscellaneousTeam(team, index, type, counters, headings)
 	if (type == "killDeath")
 		return calculateRatio(g_TeamHelperData[team].enemyUnitsKilled[index], g_TeamHelperData[team].unitsLost[index]);
 
-	if (type == "bribes")
+	if (type == "bribes" || type == "population")
 		return summaryArraySum(getPlayerValuesPerTeam(team, index, type, counters, headings));
 
 	return { "percent": g_TeamHelperData[team][type][index] };
