@@ -16,8 +16,8 @@ class MapGridBrowser extends GridBrowser
 
 		this.mapBrowserPage.registerOpenPageHandler(this.onOpenPage.bind(this));
 		this.mapBrowserPage.registerClosePageHandler(this.onClosePage.bind(this));
-		this.mapBrowserPage.mapBrowserPageDialog.onMouseWheelUp = this.nextPage.bind(this);
-		this.mapBrowserPage.mapBrowserPageDialog.onMouseWheelDown = this.previousPage.bind(this);
+		this.mapBrowserPage.mapBrowserPageDialog.onMouseWheelUp = () => this.previousPage(false);
+		this.mapBrowserPage.mapBrowserPageDialog.onMouseWheelDown = () => this.nextPage(false);
 	}
 
 	onOpenPage()

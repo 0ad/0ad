@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -156,7 +156,7 @@ JS::Value JSI_Simulation::GetEdgesOfStaticObstructionsOnScreenNearTo(ScriptInter
 			halfSize,
 			CFixedVector2D(halfSize.X, -halfSize.Y)
 		};
-		fixed angle = cmpPosition->GetRotation().Y;
+		const fixed angle = cmpPosition->GetRotation().Y;
 		for (CFixedVector2D& corner : corners)
 			corner = corner.Rotate(angle) + cmpPosition->GetPosition2D();
 
@@ -166,7 +166,7 @@ JS::Value JSI_Simulation::GetEdgesOfStaticObstructionsOnScreenNearTo(ScriptInter
 			const CFixedVector2D& corner = corners[i];
 			const CFixedVector2D& nextCorner = corners[(i + 1) % corners.size()];
 
-			fixed distanceToEdge =
+			const fixed distanceToEdge =
 				Geometry::DistanceToSegment(entityPos, corner, nextCorner);
 			if (distanceToEdge.ToFloat() > distanceThreshold)
 				continue;

@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -69,11 +69,14 @@ void CDecalRData::Update(CSimulation2* simulation)
 	}
 }
 
-void CDecalRData::RenderDecals(std::vector<CDecalRData*>& decals, const CShaderDefines& context,
-			       ShadowMap* shadow, bool isDummyShader, const CShaderProgramPtr& dummy)
+void CDecalRData::RenderDecals(
+	std::vector<CDecalRData*>& decals, const CShaderDefines& context, ShadowMap* shadow)
 {
 	CShaderDefines contextDecal = context;
 	contextDecal.Add(str_DECAL, str_1);
+
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	for (size_t i = 0; i < decals.size(); ++i)
 	{
@@ -87,36 +90,22 @@ void CDecalRData::RenderDecals(std::vector<CDecalRData*>& decals, const CShaderD
 			continue;
 		}
 
-		int numPasses = 1;
-		CShaderTechniquePtr techBase;
-
-		if (!isDummyShader)
+		CShaderTechniquePtr techBase = g_Renderer.GetShaderManager().LoadEffect(
+			material.GetShaderEffect(), contextDecal, material.GetShaderDefines(0));
+		if (!techBase)
 		{
-			techBase = g_Renderer.GetShaderManager().LoadEffect(
-				material.GetShaderEffect(), contextDecal, material.GetShaderDefines(0));
-
-			if (!techBase)
-			{
-				LOGERROR("Terrain renderer failed to load shader effect (%s)\n",
-						material.GetShaderEffect().string().c_str());
-				continue;
-			}
-
-			numPasses = techBase->GetNumPasses();
+			LOGERROR("Terrain renderer failed to load shader effect (%s)\n",
+					material.GetShaderEffect().string().c_str());
+			continue;
 		}
 
+		const int numPasses = techBase->GetNumPasses();
 		for (int pass = 0; pass < numPasses; ++pass)
 		{
-			if (!isDummyShader)
-			{
-				techBase->BeginPass(pass);
-				TerrainRenderer::PrepareShader(techBase->GetShader(), shadow);
+			techBase->BeginPass(pass);
+			TerrainRenderer::PrepareShader(techBase->GetShader(), shadow);
 
-				glEnable(GL_BLEND);
-				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-			}
-
-			const CShaderProgramPtr& shader = isDummyShader ? dummy : techBase->GetShader(pass);
+			const CShaderProgramPtr& shader = techBase->GetShader(pass);
 
 			if (material.GetSamplers().size() != 0)
 			{
@@ -147,17 +136,7 @@ void CDecalRData::RenderDecals(std::vector<CDecalRData*>& decals, const CShaderD
 
 				u8* indexBase = decal->m_IndexArray.Bind();
 
-#if !CONFIG2_GLES
-				if (isDummyShader)
-				{
-					glColor3fv(decal->m_Decal->GetShadingColor().FloatArray());
-				}
-				else
-#endif
-				{
-
-					shader->Uniform(str_shadingColor, decal->m_Decal->GetShadingColor());
-				}
+				shader->Uniform(str_shadingColor, decal->m_Decal->GetShadingColor());
 
 				shader->VertexPointer(3, GL_FLOAT, stride, base + decal->m_Position.offset);
 				shader->NormalPointer(GL_FLOAT, stride, base + decal->m_Normal.offset);
@@ -177,13 +156,11 @@ void CDecalRData::RenderDecals(std::vector<CDecalRData*>& decals, const CShaderD
 				CVertexBuffer::Unbind();
 			}
 
-			if (!isDummyShader)
-			{
-				glDisable(GL_BLEND);
-				techBase->EndPass();
-			}
+			techBase->EndPass();
 		}
 	}
+
+	glDisable(GL_BLEND);
 }
 
 void CDecalRData::BuildArrays()
