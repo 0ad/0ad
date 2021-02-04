@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,7 +24,6 @@
 
 #include "lib/res/graphics/ogl_tex.h"
 
-#include <list>
 #include <vector>
 
 /**
@@ -102,7 +101,7 @@ public:
 	static void Unbind();
 
 	/// Make the vertex data available for the next call to Bind()
-	void PrepareForRendering(VBChunk* chunk) { chunk->m_Needed = true; }
+	void PrepareForRendering(VBChunk* chunk);
 
 	/// Update vertex data for given chunk. Transfers the provided data to the actual OpenGL vertex buffer.
 	void UpdateChunkVertices(VBChunk* chunk, void* data);
@@ -145,9 +144,9 @@ private:
 	/// Number of vertices of above size in this buffer
 	size_t m_MaxVertices;
 	/// List of free chunks in this buffer
-	std::list<VBChunk*> m_FreeList;
+	std::vector<VBChunk*> m_FreeList;
 	/// List of allocated chunks
-	std::list<VBChunk*> m_AllocList;
+	std::vector<VBChunk*> m_AllocList;
 	/// Available free vertices - total of all free vertices in the free list
 	size_t m_FreeVertices;
 	/// Handle to the actual GL vertex buffer object
@@ -158,6 +157,7 @@ private:
 	GLenum m_Usage;
 	/// Buffer target (GL_ARRAY_BUFFER, GL_ELEMENT_ARRAY_BUFFER)
 	GLenum m_Target;
+	bool m_HasNeededChunks;
 };
 
 #endif
