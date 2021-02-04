@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -35,8 +35,8 @@ public:
 
 	void Update(CSimulation2* simulation);
 
-	static void RenderDecals(std::vector<CDecalRData*>& decals, const CShaderDefines& context,
-			       ShadowMap* shadow, bool isDummyShader=false, const CShaderProgramPtr& dummy=CShaderProgramPtr());
+	static void RenderDecals(
+		std::vector<CDecalRData*>& decals, const CShaderDefines& context, ShadowMap* shadow);
 
 	CModelDecal* GetDecal() { return m_Decal; }
 
