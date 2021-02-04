@@ -1072,7 +1072,11 @@ bool CCmpUnitMotion::PerformMove(fixed dt, const fixed& turnRate, WaypointPath& 
 			target = CFixedVector2D(shortPath.m_Waypoints.back().x, shortPath.m_Waypoints.back().z);
 
 		CFixedVector2D offset = target - pos;
-		if (turnRate > zero && !offset.IsZero())
+		// Idle formations reorder their members to move to their offset, but numerical imprecisions can lead
+		// to small offsets every time. Units would then rotate in-place, looking odd.
+		// If the offset is small enough (epsilon is about 0.000015, so that's 0.0015 which is still irrelevant),
+		// simply don't turn.
+		if (turnRate > zero && offset.CompareLength(fixed::Epsilon() * 100) > 0)
 		{
 			fixed maxRotation = turnRate.Multiply(timeLeft);
 			fixed angleDiff = angle - atan2_approx(offset.X, offset.Y);
