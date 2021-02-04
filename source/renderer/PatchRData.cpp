@@ -159,6 +159,9 @@ void CPatchRData::BuildBlends()
 	std::vector<STileBlendStack> blendStacks;
 	blendStacks.reserve(PATCH_SIZE*PATCH_SIZE);
 
+	std::vector<STileBlend> blends;
+	blends.reserve(9);
+
 	// For each tile in patch ..
 	for (ssize_t j = 0; j < PATCH_SIZE; ++j)
 	{
@@ -167,8 +170,7 @@ void CPatchRData::BuildBlends()
 			ssize_t gx = m_Patch->m_X * PATCH_SIZE + i;
 			ssize_t gz = m_Patch->m_Z * PATCH_SIZE + j;
 
-			std::vector<STileBlend> blends;
-			blends.reserve(9);
+			blends.clear();
 
 			// Compute a blend for every tile in the 3x3 square around this tile
 			for (size_t n = 0; n < 9; ++n)
@@ -973,6 +975,8 @@ void CPatchRData::RenderBlends(
 			const CShaderProgramPtr& shader = techBase->GetShader(pass);
 			TerrainRenderer::PrepareShader(shader, shadow);
 
+			Handle lastBlendTex = 0;
+
 			for (BatchesStack::iterator itt = itTechBegin; itt != itTechEnd; ++itt)
 			{
 				if (itt->m_Texture->GetMaterial().GetSamplers().empty())
@@ -984,7 +988,12 @@ void CPatchRData::RenderBlends(
 					for (const CMaterial::TextureSampler& samp : samplers)
 						shader->BindTexture(samp.Name, samp.Sampler);
 
-					shader->BindTexture(str_blendTex, itt->m_Texture->m_TerrainAlpha->second.m_hCompositeAlphaMap);
+					Handle currentBlendTex = itt->m_Texture->m_TerrainAlpha->second.m_hCompositeAlphaMap;
+					if (currentBlendTex != lastBlendTex)
+					{
+						shader->BindTexture(str_blendTex, currentBlendTex);
+						lastBlendTex = currentBlendTex;
+					}
 
 					itt->m_Texture->GetMaterial().GetStaticUniforms().BindUniforms(shader);
 
