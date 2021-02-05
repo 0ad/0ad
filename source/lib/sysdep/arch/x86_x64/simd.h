@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -20,27 +20,13 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#include "precompiled.h"
+#ifndef INCLUDED_SSE
+#define INCLUDED_SSE
 
-#include "lib/sse.h"
+#include "lib/sysdep/compiler.h"
 
 #if COMPILER_HAS_SSE
-#include "lib/code_generation.h"
-#include "lib/debug.h"
-#include "lib/sysdep/arch.h"
-
-#if ARCH_X86_X64
-#include "lib/sysdep/arch/x86_x64/x86_x64.h"
+extern bool HostHasSSE();
 #endif
 
-bool HostHasSSE()
-{
-#if ARCH_X86_X64
-	return x86_x64::Cap(x86_x64::CAP_SSE);
-#elif ARCH_E2K
-	return true;
-#else
-	return false;
-#endif
-}
-#endif
+#endif // INCLUDED_SSE

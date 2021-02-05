@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,8 +20,8 @@
 #include "graphics/Color.h"
 
 #include "graphics/SColor.h"
+#include "lib/sysdep/arch/x86_x64/simd.h"
 #include "maths/MathUtil.h"
-#include "lib/sse.h"
 #include "ps/CLogger.h"
 #include "ps/CStr.h"
 
