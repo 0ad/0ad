@@ -24,8 +24,8 @@
 #include "gui/GUIManager.h"
 #include "ps/CLogger.h"
 #include "ps/Game.h"
-#include "ps/Loader.h"
 #include "ps/GameSetup/GameSetup.h"
+#include "ps/Loader.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpAIInterface.h"
 #include "simulation2/components/ICmpTemplateManager.h"
@@ -133,8 +133,8 @@ void* Interface::MgCallback(mg_event event, struct mg_connection *conn, const st
 
 		if (uri == "/reset")
 		{
-			const char* val = mg_get_header(conn, "Content-Length");
-			if (!val)
+			std::string data = GetRequestContent(conn);
+			if (data.empty())
 			{
 				mg_printf(conn, "%s", noPostData);
 				return handled;
@@ -149,11 +149,7 @@ void* Interface::MgCallback(mg_event event, struct mg_connection *conn, const st
 			if (len != -1)
 				scenario.playerID = std::stoi(playerID);
 
-			const int bufSize = std::atoi(val);
-			std::unique_ptr<char[]> buf = std::unique_ptr<char[]>(new char[bufSize]);
-			mg_read(conn, buf.get(), bufSize);
-			const std::string content(buf.get(), bufSize);
-			scenario.content = content;
+			scenario.content = std::move(data);
 
 			const std::string gameState = interface->Reset(std::move(scenario));
 
@@ -167,30 +163,21 @@ void* Interface::MgCallback(mg_event event, struct mg_connection *conn, const st
 				return handled;
 			}
 
-			const char* val = mg_get_header(conn, "Content-Length");
-			if (!val)
-			{
-				mg_printf(conn, "%s", noPostData);
-				return handled;
-			}
-			int bufSize = std::atoi(val);
-			std::unique_ptr<char[]> buf = std::unique_ptr<char[]>(new char[bufSize]);
-			mg_read(conn, buf.get(), bufSize);
-			const std::string postData(buf.get(), bufSize);
-			std::stringstream postStream(postData);
+			std::string data = GetRequestContent(conn);
+			std::stringstream postStream(data);
 			std::string line;
 			std::vector<GameCommand> commands;
 
 			while (std::getline(postStream, line, '\n'))
 			{
-				GameCommand cmd;
 				const std::size_t splitPos = line.find(";");
-				if (splitPos != std::string::npos)
-				{
-					cmd.playerID = std::stoi(line.substr(0, splitPos));
-					cmd.json_cmd = line.substr(splitPos + 1);
-					commands.push_back(cmd);
-				}
+				if (splitPos == std::string::npos)
+					continue;
+
+				GameCommand cmd;
+				cmd.playerID = std::stoi(line.substr(0, splitPos));
+				cmd.json_cmd = line.substr(splitPos + 1);
+				commands.push_back(std::move(cmd));
 			}
 			const std::string gameState = interface->Step(std::move(commands));
 			if (gameState.empty())
@@ -207,17 +194,13 @@ void* Interface::MgCallback(mg_event event, struct mg_connection *conn, const st
 				mg_printf(conn, "%s", notRunningResponse);
 				return handled;
 			}
-			const char* val = mg_get_header(conn, "Content-Length");
-			if (!val)
+			const std::string data = GetRequestContent(conn);
+			if (data.empty())
 			{
 				mg_printf(conn, "%s", noPostData);
 				return handled;
 			}
-			const int bufSize = std::atoi(val);
-			std::unique_ptr<char[]> buf = std::unique_ptr<char[]>(new char[bufSize]);
-			mg_read(conn, buf.get(), bufSize);
-			const std::string postData(buf.get(), bufSize);
-			std::stringstream postStream(postData);
+			std::stringstream postStream(data);
 			std::string line;
 			std::vector<std::string> templateNames;
 			while (std::getline(postStream, line, '\n'))
@@ -254,7 +237,22 @@ void* Interface::MgCallback(mg_event event, struct mg_connection *conn, const st
 		debug_warn(L"Invalid Mongoose event type");
 		return nullptr;
 	}
-};
+}
+
+std::string Interface::GetRequestContent(struct mg_connection *conn)
+{
+	const static std::string NO_CONTENT;
+	const char* val = mg_get_header(conn, "Content-Length");
+	if (!val)
+	{
+		return NO_CONTENT;
+	}
+	const int contentSize = std::atoi(val);
+
+	std::string content(contentSize, ' ');
+	mg_read(conn, content.data(), contentSize);
+	return content;
+}
 
 bool Interface::TryGetGameMessage(GameMessage& msg)
 {
