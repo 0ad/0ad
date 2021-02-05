@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -34,6 +34,7 @@
 # pragma warning(disable:4127)	// conditional expression is constant; rationale: see STMT in lib.h.
 # pragma warning(disable:4324)	// structure was padded due to __declspec(align())
 # pragma warning(disable:4574)	// macro is defined to be 0
+# pragma warning(disable:4456)	// hides previous local declaration
 # pragma warning(disable:4355)	// 'this' used in base member initializer list
 # pragma warning(disable:4512)	// assignment operator could not be generated
 # pragma warning(disable:4718)	// recursive call has no side effects, deleting

@@ -35,7 +35,7 @@ class WeakCacheBase : public mozilla::LinkedListElement<WeakCacheBase> {
   virtual size_t sweep() = 0;
   virtual bool needsSweep() = 0;
 
-  virtual bool setNeedsIncrementalBarrier(bool needs) {
+  virtual bool setNeedsIncrementalBarrier() {
     // Derived classes do not support incremental barriers by default.
     return false;
   }
