@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,18 +15,18 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
- * encapsulation of VBOs with sharing
- */
-
 #include "precompiled.h"
-#include "ps/Errors.h"
+
+#include "VertexBuffer.h"
+
 #include "lib/ogl.h"
 #include "lib/sysdep/cpu.h"
 #include "Renderer.h"
-#include "VertexBuffer.h"
-#include "VertexBufferManager.h"
 #include "ps/CLogger.h"
+#include "ps/Errors.h"
+
+#include <algorithm>
+#include <iterator>
 
 // Absolute maximum (bytewise) size of each GL vertex buffer object.
 // Make it large enough for the maximum feasible mesh size (64K vertexes,
@@ -35,7 +35,7 @@
 #define MAX_VB_SIZE_BYTES		(4*1024*1024)
 
 CVertexBuffer::CVertexBuffer(size_t vertexSize, GLenum usage, GLenum target)
-	: m_VertexSize(vertexSize), m_Handle(0), m_SysMem(0), m_Usage(usage), m_Target(target)
+	: m_VertexSize(vertexSize), m_Handle(0), m_SysMem(0), m_Usage(usage), m_Target(target), m_HasNeededChunks(false)
 {
 	size_t size = MAX_VB_SIZE_BYTES;
 
@@ -68,7 +68,7 @@ CVertexBuffer::CVertexBuffer(size_t vertexSize, GLenum usage, GLenum target)
 	chunk->m_Owner = this;
 	chunk->m_Count = m_FreeVertices;
 	chunk->m_Index = 0;
-	m_FreeList.push_front(chunk);
+	m_FreeList.emplace_back(chunk);
 }
 
 CVertexBuffer::~CVertexBuffer()
@@ -79,20 +79,16 @@ CVertexBuffer::~CVertexBuffer()
 	if (m_Handle)
 		pglDeleteBuffersARB(1, &m_Handle);
 
-	delete[] m_SysMem;
+	SAFE_ARRAY_DELETE(m_SysMem);
 
-	typedef std::list<VBChunk*>::iterator Iter;
-	for (Iter iter = m_FreeList.begin(); iter != m_FreeList.end(); ++iter)
-		delete *iter;
+	for (VBChunk* const& chunk : m_FreeList)
+		delete chunk;
 }
 
 
-bool CVertexBuffer::CompatibleVertexType(size_t vertexSize, GLenum usage, GLenum target)
+bool CVertexBuffer::CompatibleVertexType(size_t vertexSize, GLenum usage, GLenum target) const
 {
-	if (usage != m_Usage || target != m_Target || vertexSize != m_VertexSize)
-		return false;
-
-	return true;
+	return usage == m_Usage && target == m_Target && vertexSize == m_VertexSize;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -103,33 +99,35 @@ CVertexBuffer::VBChunk* CVertexBuffer::Allocate(size_t vertexSize, size_t numVer
 {
 	// check this is the right kind of buffer
 	if (!CompatibleVertexType(vertexSize, usage, target))
-		return 0;
+		return nullptr;
 
 	if (UseStreaming(usage))
-		ENSURE(backingStore != NULL);
+		ENSURE(backingStore != nullptr);
 
 	// quick check there's enough vertices spare to allocate
 	if (numVertices > m_FreeVertices)
-		return 0;
+		return nullptr;
 
 	// trawl free list looking for first free chunk with enough space
-	VBChunk* chunk = 0;
-	typedef std::list<VBChunk*>::iterator Iter;
-	for (Iter iter = m_FreeList.begin(); iter != m_FreeList.end(); ++iter) {
-		if (numVertices <= (*iter)->m_Count) {
-			chunk = *iter;
-			// remove this chunk from the free list
-			m_FreeList.erase(iter);
-			m_FreeVertices -= chunk->m_Count;
-			// no need to search further ..
+	std::vector<VBChunk*>::iterator best_iter = m_FreeList.end();
+	for (std::vector<VBChunk*>::iterator iter = m_FreeList.begin(); iter != m_FreeList.end(); ++iter)
+	{
+		if (numVertices == (*iter)->m_Count)
+		{
+			best_iter = iter;
 			break;
 		}
+		else if (numVertices < (*iter)->m_Count && (best_iter == m_FreeList.end() || (*best_iter)->m_Count < (*iter)->m_Count))
+			best_iter = iter;
 	}
 
-	if (!chunk) {
-		// no big enough spare chunk available
-		return 0;
-	}
+	// We could not find a large enough chunk.
+	if (best_iter == m_FreeList.end())
+		return nullptr;
+
+	VBChunk* chunk = *best_iter;
+	m_FreeList.erase(best_iter);
+	m_FreeVertices -= chunk->m_Count;
 
 	chunk->m_BackingStore = backingStore;
 	chunk->m_Dirty = false;
@@ -143,7 +141,7 @@ CVertexBuffer::VBChunk* CVertexBuffer::Allocate(size_t vertexSize, size_t numVer
 		newchunk->m_Owner = this;
 		newchunk->m_Count = chunk->m_Count - numVertices;
 		newchunk->m_Index = chunk->m_Index + numVertices;
-		m_FreeList.push_front(newchunk);
+		m_FreeList.emplace_back(newchunk);
 		m_FreeVertices += newchunk->m_Count;
 
 		// resize given chunk
@@ -162,34 +160,39 @@ void CVertexBuffer::Release(VBChunk* chunk)
 	// Update total free count before potentially modifying this chunk's count
 	m_FreeVertices += chunk->m_Count;
 
-	m_AllocList.remove(chunk);
+	m_AllocList.erase(std::find(m_AllocList.begin(), m_AllocList.end(), chunk));
 
-	typedef std::list<VBChunk*>::iterator Iter;
+	// Sorting O(nlogn) shouldn't be too far from O(n) by performance, because
+	// the container is partly sorted already.
+	std::sort(
+		m_FreeList.begin(), m_FreeList.end(),
+		[](const VBChunk* chunk1, const VBChunk* chunk2) -> bool
+		{
+			return chunk1->m_Index < chunk2->m_Index;
+		});
 
 	// Coalesce with any free-list items that are adjacent to this chunk;
 	// merge the found chunk with the new one, and remove the old one
-	// from the list, and repeat until no more are found
-	bool coalesced;
-	do
+	// from the list.
+	for (std::vector<VBChunk*>::iterator iter = m_FreeList.begin(); iter != m_FreeList.end();)
 	{
-		coalesced = false;
-		for (Iter iter = m_FreeList.begin(); iter != m_FreeList.end(); ++iter)
+		if ((*iter)->m_Index == chunk->m_Index + chunk->m_Count
+		 || (*iter)->m_Index + (*iter)->m_Count == chunk->m_Index)
 		{
-			if ((*iter)->m_Index == chunk->m_Index + chunk->m_Count
-			 || (*iter)->m_Index + (*iter)->m_Count == chunk->m_Index)
-			{
-				chunk->m_Index = std::min(chunk->m_Index, (*iter)->m_Index);
-				chunk->m_Count += (*iter)->m_Count;
-				delete *iter;
-				m_FreeList.erase(iter);
-				coalesced = true;
-				break;
-			}
+			chunk->m_Index = std::min(chunk->m_Index, (*iter)->m_Index);
+			chunk->m_Count += (*iter)->m_Count;
+			delete *iter;
+			iter = m_FreeList.erase(iter);
+			if (!m_FreeList.empty() && iter != m_FreeList.begin())
+				iter = std::prev(iter);
+		}
+		else
+		{
+			++iter;
 		}
 	}
-	while (coalesced);
 
-	m_FreeList.push_front(chunk);
+	m_FreeList.emplace_back(chunk);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -234,6 +237,9 @@ u8* CVertexBuffer::Bind()
 
 	if (UseStreaming(m_Usage))
 	{
+		if (!m_HasNeededChunks)
+			return nullptr;
+
 		// If any chunks are out of sync with the current VBO, and are
 		// needed for rendering this frame, we'll need to re-upload the VBO
 		bool needUpload = false;
@@ -294,24 +300,31 @@ u8* CVertexBuffer::Bind()
 			for (VBChunk* const& chunk : m_AllocList)
 			{
 				if (chunk->m_Needed)
+				{
 					chunk->m_Dirty = false;
+					chunk->m_Needed = false;
+				}
 				else
 					chunk->m_Dirty = true;
 			}
 		}
+		else
+		{
+			// Reset the flags for the next phase.
+			for (VBChunk* const& chunk : m_AllocList)
+				chunk->m_Needed = false;
+		}
 
-		// Reset the flags for the next phase
-		for (VBChunk* const& chunk : m_AllocList)
-			chunk->m_Needed = false;
+		m_HasNeededChunks = false;
 	}
 
-	return (u8*)0;
+	return nullptr;
 }
 
 u8* CVertexBuffer::GetBindAddress()
 {
 	if (g_Renderer.m_Caps.m_VBO)
-		return (u8*)0;
+		return nullptr;
 	else
 		return m_SysMem;
 }
@@ -337,19 +350,24 @@ size_t CVertexBuffer::GetBytesAllocated() const
 
 void CVertexBuffer::DumpStatus()
 {
-	debug_printf("freeverts = %d\n", (int)m_FreeVertices);
+	debug_printf("freeverts = %d\n", static_cast<int>(m_FreeVertices));
 
 	size_t maxSize = 0;
-	typedef std::list<VBChunk*>::iterator Iter;
-	for (Iter iter = m_FreeList.begin(); iter != m_FreeList.end(); ++iter)
+	for (VBChunk* const& chunk : m_FreeList)
 	{
-		debug_printf("free chunk %p: size=%d\n", (void *)*iter, (int)((*iter)->m_Count));
-		maxSize = std::max((*iter)->m_Count, maxSize);
+		debug_printf("free chunk %p: size=%d\n", static_cast<void *>(chunk), static_cast<int>(chunk->m_Count));
+		maxSize = std::max(chunk->m_Count, maxSize);
 	}
-	debug_printf("max size = %d\n", (int)maxSize);
+	debug_printf("max size = %d\n", static_cast<int>(maxSize));
 }
 
 bool CVertexBuffer::UseStreaming(GLenum usage)
 {
-	return (usage == GL_DYNAMIC_DRAW || usage == GL_STREAM_DRAW);
+	return usage == GL_DYNAMIC_DRAW || usage == GL_STREAM_DRAW;
+}
+
+void CVertexBuffer::PrepareForRendering(VBChunk* chunk)
+{
+	chunk->m_Needed = true;
+	m_HasNeededChunks = true;
 }

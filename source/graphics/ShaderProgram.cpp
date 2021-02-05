@@ -638,13 +638,13 @@ public:
 
 	virtual void NormalPointer(GLenum type, GLsizei stride, const void* pointer)
 	{
-		pglVertexAttribPointerARB(2, 3, type, GL_TRUE, stride, pointer);
+		pglVertexAttribPointerARB(2, 3, type, (type == GL_FLOAT ? GL_FALSE : GL_TRUE), stride, pointer);
 		m_ValidStreams |= STREAM_NORMAL;
 	}
 
 	virtual void ColorPointer(GLint size, GLenum type, GLsizei stride, const void* pointer)
 	{
-		pglVertexAttribPointerARB(3, size, type, GL_TRUE, stride, pointer);
+		pglVertexAttribPointerARB(3, size, type, (type == GL_FLOAT ? GL_FALSE : GL_TRUE), stride, pointer);
 		m_ValidStreams |= STREAM_COLOR;
 	}
 

@@ -324,7 +324,7 @@ void InstancingModelRenderer::PrepareModelDef(const CShaderProgramPtr& shader, i
 		shader->NormalPointer(GL_FLOAT, stride, base + m->imodeldef->m_Normal.offset);
 
 	if (m->calculateTangents)
-		shader->VertexAttribPointer(str_a_tangent, 4, GL_FLOAT, GL_TRUE, stride, base + m->imodeldef->m_Tangent.offset);
+		shader->VertexAttribPointer(str_a_tangent, 4, GL_FLOAT, GL_FALSE, stride, base + m->imodeldef->m_Tangent.offset);
 
 	// The last UV set is STREAM_UV3
 	for (size_t uv = 0; uv < 4; ++uv)
