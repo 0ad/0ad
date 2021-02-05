@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-29 14:56+0000\n"
-"PO-Revision-Date: 2021-01-29 16:56+0000\n"
-"Last-Translator: Stanislas Dolcini <stan@wildfiregames.com>\n"
+"PO-Revision-Date: 2021-02-03 17:59+0000\n"
+"Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -336,16 +336,16 @@ msgstr "* %(user)s %(message)s"
 #: gui/session/chat/ChatMessageFormatSimulation.js:16
 #, javascript-format
 msgid "%(icon)sYour livestock has been attacked by %(attacker)s!"
-msgstr ""
+msgstr "%(icon)sThug %(attacker)s ionnsaigh air an sprèidh agad!"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:17
 #, javascript-format
 msgid "%(icon)sYou have been attacked by %(attacker)s!"
-msgstr ""
+msgstr "%(icon)sThug %(attacker)s ionnsaigh ort!"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:30
 msgid "Click to focus on the attacked unit."
-msgstr ""
+msgstr "Briog airson am fòcas a chur air an aonad fo ionnsaigh."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:49
 #, javascript-format
@@ -933,7 +933,7 @@ msgstr "Buannachd: %(gain)s"
 msgid ""
 "(%(number)s)\n"
 "%(time)s"
-msgstr ""
+msgstr "(%(number)s)\n%(time)s"
 
 #: gui/session/selection_details.js:282
 msgid "Current/max gatherers"
@@ -998,19 +998,19 @@ msgstr "Deireadh na caismeachd."
 
 #: gui/session/selection_panels.js:276
 msgid "Default formation is disabled."
-msgstr ""
+msgstr "Tha an cumadh tùsail à comas."
 
 #: gui/session/selection_panels.js:277
 msgid "Right-click to disable the default formation feature."
-msgstr ""
+msgstr "Dèan briogadh deas a chur gleus a’ chumaidh thùsail à comas."
 
 #: gui/session/selection_panels.js:280
 msgid "This is the default formation, used for movement orders."
-msgstr ""
+msgstr "Seo an cumadh tùsail a thèid a chleachdadh airson òrduighean gluasaid."
 
 #: gui/session/selection_panels.js:281
 msgid "Right-click to set this as the default formation."
-msgstr ""
+msgstr "Dèan briogadh deas airson an cumadh seo a shuidheachadh ’na fhear tùsail."
 
 #: gui/session/selection_panels.js:337
 #, javascript-format
@@ -1182,65 +1182,65 @@ msgstr "Teannaidh %(changer)s an cuingeachadh le %(change)s."
 #: gui/session/selection_panels_helpers.js:140
 msgid "Could only be constructed once."
 msgid_plural "Could only be constructed %(limit)s times."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Cha b’ urrainnear a thogail ach %(limit)s turas."
+msgstr[1] "Cha b’ urrainnear a thogail ach %(limit)s thuras."
+msgstr[2] "Cha b’ urrainnear a thogail ach %(limit)s tursan."
+msgstr[3] "Cha b’ urrainnear a thogail ach %(limit)s turas."
 
 #: gui/session/selection_panels_helpers.js:144
 msgid "Can be constructed only once."
-msgstr ""
+msgstr "Cha ghabh a thogail ach aon turas."
 
 #: gui/session/selection_panels_helpers.js:146
 #, javascript-format
 msgid "Can be constructed %(count)s more time."
 msgid_plural "Can be constructed %(count)s more times."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Cha ghabh a thogail ach %(count)s turas eile."
+msgstr[1] "Cha ghabh a thogail ach %(count)s thuras eile."
+msgstr[2] "Cha ghabh a thogail ach %(count)s tursan eile."
+msgstr[3] "Cha ghabh a thogail ach %(count)s turas eile."
 
 #: gui/session/selection_panels_helpers.js:153
 msgid "Could only be trained once."
 msgid_plural "Could only be trained %(limit)s times."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Cha b’ urrainnear oideachadh ach %(limit)s turas."
+msgstr[1] "Cha b’ urrainnear oideachadh ach %(limit)s thuras."
+msgstr[2] "Cha b’ urrainnear oideachadh ach %(limit)s tursan."
+msgstr[3] "Cha b’ urrainnear oideachadh ach %(limit)s turas."
 
 #: gui/session/selection_panels_helpers.js:157
 msgid "Can be trained only once."
-msgstr ""
+msgstr "Cha ghabh oideachadh ach aon turas."
 
 #: gui/session/selection_panels_helpers.js:159
 #, javascript-format
 msgid "Can be trained %(count)s more time."
 msgid_plural "Can be trained %(count)s more times."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Cha ghabh oideachadh ach %(count)s turas eile."
+msgstr[1] "Cha ghabh oideachadh ach %(count)s thuras eile."
+msgstr[2] "Cha ghabh oideachadh ach %(count)s tursan eile."
+msgstr[3] "Cha ghabh oideachadh ach %(count)s turas eile."
 
 #: gui/session/selection_panels_helpers.js:166
 msgid "Could only be created once."
 msgid_plural "Could only be created %(limit)s times."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Cha b’ urrainnear a chruthachadh ach %(limit)s turas."
+msgstr[1] "Cha b’ urrainnear a chruthachadh ach %(limit)s thuras."
+msgstr[2] "Cha b’ urrainnear a chruthachadh ach %(limit)s tursan."
+msgstr[3] "Cha b’ urrainnear a chruthachadh ach %(limit)s turas."
 
 #: gui/session/selection_panels_helpers.js:170
 msgid "Can be created only once."
-msgstr ""
+msgstr "Cha ghabh a chruthachadh ach aon turas."
 
 #: gui/session/selection_panels_helpers.js:172
 #, javascript-format
 msgid "Can be created %(count)s more time."
 msgid_plural "Can be created %(count)s more times."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Cha ghabh a chruthachadh ach %(count)s turas eile."
+msgstr[1] "Cha ghabh a chruthachadh ach %(count)s thuras eile."
+msgstr[2] "Cha ghabh a chruthachadh ach %(count)s tursan eile."
+msgstr[3] "Cha ghabh a chruthachadh ach %(count)s turas eile."
 
 #: gui/session/selection_panels_helpers.js:201
 #, javascript-format
@@ -1717,7 +1717,7 @@ msgstr "Chan fhaod thu an t-ionad-stòrais seo a chleachdadh"
 
 #: gui/session/unit_actions.js:1503
 msgid "Allies are allowed to use this dropsite."
-msgstr ""
+msgstr "Faodaidh caidreabhaich an t-ionad-stòrais seo a chleachdadh."
 
 #: gui/session/unit_actions.js:1504
 msgid "You are allowed to use this dropsite"

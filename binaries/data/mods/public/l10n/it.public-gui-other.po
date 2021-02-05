@@ -30,6 +30,7 @@
 # Nicola Jelmorini, 2014-2015
 # Nicolas Auvray <na.itms76@gmail.com>, 2018
 # Paolo <paolo.libardi@gmail.com>, 2015
+# rib ezz <ribezzz@gmail.com>, 2021
 # Riccardo Cariboni <riccardo99car@gmail.com>, 2017
 # Sergio <leonesergio96@gmail.com>, 2015
 # Stanislas Dolcini <stan@wildfiregames.com>, 2021
@@ -38,8 +39,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-29 14:56+0000\n"
-"PO-Revision-Date: 2021-01-29 17:00+0000\n"
-"Last-Translator: Stanislas Dolcini <stan@wildfiregames.com>\n"
+"PO-Revision-Date: 2021-02-01 16:18+0000\n"
+"Last-Translator: rib ezz <ribezzz@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -458,7 +459,7 @@ msgstr "Cattiva connessione a %(player)s (%(milliseconds)sms)"
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
 " by a firewall, or anti-virus software."
-msgstr ""
+msgstr "Ciò è spesso causato dalla porta UDP 20595 che non viene reindirizzata dall'host, da un firewall, o da un software anti-virus."
 
 #: gui/common/network.js:67
 msgid "The host has ended the game."
@@ -466,7 +467,7 @@ msgstr "L'ospite ha terminato la partita."
 
 #: gui/common/network.js:68
 msgid "Incorrect network protocol version."
-msgstr ""
+msgstr "Versione del protocollo di rete non corretta."
 
 #: gui/common/network.js:69
 msgid "Game is loading, please try again later."
@@ -510,7 +511,7 @@ msgstr ""
 
 #: gui/common/network.js:79
 msgid "Password is invalid."
-msgstr ""
+msgstr "Password non valida."
 
 #: gui/common/network.js:80
 msgid "Could not find an unused port for the enet STUN client."
@@ -740,11 +741,11 @@ msgstr ""
 
 #: gui/common/tooltips.js:200
 msgid "Resistance:"
-msgstr ""
+msgstr "Resistenza:"
 
 #: gui/common/tooltips.js:211
 msgid "Damage:"
-msgstr ""
+msgstr "Danno:"
 
 #: gui/common/tooltips.js:214 gui/common/tooltips.js:234
 #, javascript-format
@@ -758,7 +759,7 @@ msgstr ""
 
 #: gui/common/tooltips.js:232
 msgid "Capture:"
-msgstr ""
+msgstr "Cattura:"
 
 #: gui/common/tooltips.js:236 gui/common/tooltips.js:376
 msgctxt "damage type"
@@ -1022,7 +1023,7 @@ msgstr "Numero di riparatori:"
 
 #: gui/common/tooltips.js:605
 msgid "Remaining repair time:"
-msgstr ""
+msgstr "Tempo di riparazione rimanente:"
 
 #: gui/common/tooltips.js:609
 #, javascript-format
@@ -1045,7 +1046,7 @@ msgstr "Numero di costruttori:"
 
 #: gui/common/tooltips.js:639
 msgid "Remaining build time:"
-msgstr ""
+msgstr "Tempo di costruzione rimanente:"
 
 #: gui/common/tooltips.js:643
 #, javascript-format
@@ -1401,7 +1402,7 @@ msgstr "Caratteri mappa casuale."
 
 #: gui/credits/texts/maps.jsonTitle
 msgid "Maps"
-msgstr ""
+msgstr "Mappe"
 
 #: gui/credits/texts/programming.jsonContent[0].Title
 msgid "Programming managers"
@@ -1722,7 +1723,7 @@ msgstr ""
 
 #: gui/options/options.json[0].options[3].label
 msgid "Enable welcome screen"
-msgstr ""
+msgstr "Attiva la schermata iniziale"
 
 #: gui/options/options.json[0].options[3].tooltip
 msgid ""
@@ -1732,7 +1733,7 @@ msgstr "Quando disabilitata, la schermata di benvenuto sarà comunque mostrata o
 
 #: gui/options/options.json[0].options[4].label
 msgid "Network warnings"
-msgstr ""
+msgstr "Avvisi di rete"
 
 #: gui/options/options.json[0].options[4].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
@@ -1855,7 +1856,7 @@ msgstr "Utilizza effetti di qualità superiore per l'acqua, riproducendo le onde
 
 #: gui/options/options.json[1].options[15].label
 msgid "Water reflections"
-msgstr ""
+msgstr "Riflessi dell'acqua"
 
 #: gui/options/options.json[1].options[15].tooltip
 msgid "Allow water to reflect a mirror image."

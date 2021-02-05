@@ -8,12 +8,13 @@
 # GunChleoc, 2015
 # Michael Bauer, 2014
 # Sgàire Uallas <zjwallace96@gmail.com>, 2018
+# Stanislas Dolcini <stan@wildfiregames.com>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-25 08:08+0000\n"
-"PO-Revision-Date: 2021-01-25 09:18+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-02-04 08:04+0000\n"
+"Last-Translator: Stanislas Dolcini <stan@wildfiregames.com>\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -84,11 +85,11 @@ msgstr "• Cleachd Ctrl + iuchraichean saighde no shift + cuibhle na luchaige g
 msgid ""
 "• Mouse wheel, or “hotkey.camera.zoom.in” and “hotkey.camera.zoom.out” keys,"
 " to zoom"
-msgstr ""
+msgstr "• Cleachd cuibhle na luchaige no na h‑iuchraichean “hotkey.camera.zoom.in” is “hotkey.camera.zoom.out” airson sùmadh"
 
 #: gui/manual/intro.txt:18
 msgid "[font=\"sans-bold-16\"]Modes[font=\"sans-14\"]"
-msgstr "[font=”sans-bold-16”]Modhan[font=\"sans-14\"]"
+msgstr "[font=\"sans-bold-16\"]Modhan[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:19
 msgid "The main menu gives access to two game modes:"
@@ -170,17 +171,17 @@ msgstr "Nuair a bhios tu deiseil airson tòiseachadh, briog air a’ phutan “T
 
 #: gui/manual/intro.txt:39
 msgid "[font=\"sans-bold-16\"]Hotkeys[font=\"sans-14\"]"
-msgstr "[font=”sans-bold-16”]Grad-iuchraichean[font=\"sans-14\"]"
+msgstr "[font=\"sans-bold-16\"]Grad-iuchraichean[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:40
 msgid ""
 "You may change hotkeys in [font=\"sans-bold-14\"]Options > "
 "Hotkeys[font=\"sans-14\"] to suit your liking."
-msgstr "’S urrainn dhut grad-iuchraichean atharrachadh ann an [font=”sans-bold-14”]Roghainnean > Grad-iuchraichean[font=\"sans-14\"] a-rèir do thoil."
+msgstr "’S urrainn dhut grad-iuchraichean atharrachadh ann an [font=\"sans-bold-14\"]Roghainnean > Grad-iuchraichean[font=\"sans-14\"] a-rèir do thoil."
 
 #: gui/manual/intro.txt:42
 msgid "[font=\"sans-bold-14\"]Program-wide[font=\"sans-14\"]"
-msgstr "[font=”sans-bold-14”]Feadh a’ phrògraim[font=\"sans-14\"]"
+msgstr "[font=\"sans-bold-14\"]Feadh a’ phrògraim[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:43
 msgid ""
@@ -314,19 +315,19 @@ msgstr "    • Le hotkey.session.noconfirmation – Sguab às na h‑aonadan no
 msgid ""
 "  hotkey.selection.add – Modifier – add to selection (works with clicking "
 "and hotkeys, e.g. the idle hotkeys)"
-msgstr ""
+msgstr "  hotkey.selection.add – Atharraichear – cuir ris an taghadh (obraichidh seo an dà chuid le briogadh is ghrad-iuchraichean, can na grad-iuchraichean “’na thàmh”)"
 
 #: gui/manual/intro.txt:71
 msgid ""
 "  hotkey.selection.remove – Modifier – remove from selection (works with "
 "clicking and hotkeys, e.g. the idle hotkeys)"
-msgstr ""
+msgstr "  hotkey.selection.remove – Atharraichear – thoir air falbh on taghadh (obraichidh seo an dà chuid le briogadh is ghrad-iuchraichean, can na grad-iuchraichean “’na thàmh”)"
 
 #: gui/manual/intro.txt:72
 msgid ""
 "  hotkey.selection.offscreen – Modifier – add all units, including offscreen"
 " units, to selection."
-msgstr ""
+msgstr "  hotkey.selection.offscreen – Atharraichear – cuir a h-uile aonad ris an taghadh, a’ gabhail a-staigh an fheadhainn taobh a-muigh na sgrìn."
 
 #: gui/manual/intro.txt:73
 msgid ""
@@ -371,7 +372,7 @@ msgstr "  hotkey.selection.group.save.1 – Cruthaich buidheann-smachd 1 (Seo 2,
 msgid ""
 "  hotkey.selection.group.select.1 – Select the unit(s)/structure(s) in "
 "control group 1"
-msgstr ""
+msgstr "  hotkey.selection.group.select.1 – Tagh na h‑aonadan/togalaichean sa bhuidheann-smachd 1"
 
 #: gui/manual/intro.txt:82
 msgid ""
@@ -533,25 +534,25 @@ msgstr "  Briogadh deas le togalach/togalaichean air an taghadh – suidhich cea
 msgid ""
 "  hotkey.session.garrison + Right Click with unit(s) selected – Garrison (If"
 " the cursor is over an own or allied structure)"
-msgstr ""
+msgstr "  hotkey.session.garrison + briogadh deas le aonad(an) air an taghadh – Rach ’nad ghearastan (Ma tha an cùrsair os cionn togalach caidreabhach no agad fhèin)"
 
 #: gui/manual/intro.txt:113
 msgid ""
 "  hotkey.session.attack + Right Click with unit(s) selected – Attack "
 "(instead of capture or gather)"
-msgstr ""
+msgstr "  hotkey.session.attack + briogadh deas le aonad(an) air an taghadh – Thoir ionnsaigh (seach glacadh no cruinneachadh)"
 
 #: gui/manual/intro.txt:114
 msgid ""
 "  hotkey.session.attackmove + Right Click with unit(s) selected – Attack "
 "move (by default all enemy units and structures along the way are targeted)"
-msgstr ""
+msgstr "  hotkey.session.attackmove + briogadh deas le aonad(an) air an taghadh – Gluasad ionnsaighe (thèid amas air gach aonad ’s togalach an nàmhad air an rathad o thùs)"
 
 #: gui/manual/intro.txt:115
 msgid ""
 "  hotkey.session.attackmoveUnit + Right Click with unit(s) selected – Attack"
 " move, only units along the way are targeted"
-msgstr ""
+msgstr "  hotkey.session.attackmoveUnit + briogadh deas le aonad(an) air an taghadh – Gluasad ionnsaighe is dha dèid amas ach air aonadan air an rathad"
 
 #: gui/manual/intro.txt:116
 msgid ""
@@ -561,7 +562,7 @@ msgstr "  hotkey.session.snaptoedges + gluasad luchaige faisg air togalaichean �
 
 #: gui/manual/intro.txt:118
 msgid "[font=\"sans-bold-14\"]Overlays[font=\"sans-14\"]"
-msgstr "[font=”sans-bold-14”]Tar-chòmhdachaidhean[font=\"sans-14\"]"
+msgstr "[font=\"sans-bold-14\"]Tar-chòmhdachaidhean[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:119
 msgid "  hotkey.session.gui.toggle – Toggle the GUI"
@@ -684,7 +685,7 @@ msgstr "  hotkey.camera.pan – Cùm sìos e is gluais an luchag airson panachad
 
 #: gui/manual/intro.txt:145
 msgid "[font=\"sans-bold-14\"]During Structure Placement[font=\"sans-14\"]"
-msgstr "[font=”sans-bold-14”]Nuair a chuireas tu togalach ris[font=\"sans-14\"]"
+msgstr "[font=\"sans-bold-14\"]Nuair a chuireas tu togalach ris[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:146
 msgid ""

@@ -16,6 +16,7 @@
 # alveselvis16 <elvis.alves.ismart@gmail.com>, 2014
 # Enrico Nicoletto <enrico.BR@gmx.co.uk>, 2013
 # Ernan, 2014
+# Estevan Borges Martins <tet3e@hotmail.com>, 2021
 # Estus <totalgameplayz@gmail.com>, 2014
 # Fábio Medeiros <fmperoxido@gmail.com>, 2014
 # Filipe Oliveira <contato@fmoliveira.com.br>, 2013
@@ -70,8 +71,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-29 14:56+0000\n"
-"PO-Revision-Date: 2021-02-01 06:04+0000\n"
-"Last-Translator: Thiago Fontanari <thiagofontanarimaciel@gmail.com>\n"
+"PO-Revision-Date: 2021-02-04 00:13+0000\n"
+"Last-Translator: Estevan Borges Martins <tet3e@hotmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -394,16 +395,16 @@ msgstr "* %(user)s %(message)s"
 #: gui/session/chat/ChatMessageFormatSimulation.js:16
 #, javascript-format
 msgid "%(icon)sYour livestock has been attacked by %(attacker)s!"
-msgstr ""
+msgstr "%(icon)s Seu gado foi atacado por %(attacker)s!"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:17
 #, javascript-format
 msgid "%(icon)sYou have been attacked by %(attacker)s!"
-msgstr ""
+msgstr "%(icon)s você foi atacado por %(attacker)s!"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:30
 msgid "Click to focus on the attacked unit."
-msgstr ""
+msgstr "Clique para focar na unidade atacada."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:49
 #, javascript-format
@@ -588,7 +589,7 @@ msgstr "Permitir manipulação do tempo"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:214
 msgid "Activate Rejoin Test"
-msgstr ""
+msgstr "Ativar teste de reingresso"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:248
 msgid "Promote selected units"
@@ -987,7 +988,7 @@ msgstr "Ganho: %(gain)s"
 msgid ""
 "(%(number)s)\n"
 "%(time)s"
-msgstr ""
+msgstr "(%(number)s)\n%(time)s"
 
 #: gui/session/selection_details.js:282
 msgid "Current/max gatherers"
@@ -1052,19 +1053,19 @@ msgstr "Fim do alerta."
 
 #: gui/session/selection_panels.js:276
 msgid "Default formation is disabled."
-msgstr ""
+msgstr "A formação padrão está desabilitada."
 
 #: gui/session/selection_panels.js:277
 msgid "Right-click to disable the default formation feature."
-msgstr ""
+msgstr "Clique com o botão direito para desativar o recurso de formação padrão."
 
 #: gui/session/selection_panels.js:280
 msgid "This is the default formation, used for movement orders."
-msgstr ""
+msgstr "Esta é a formação padrão, usada para ordens de movimento."
 
 #: gui/session/selection_panels.js:281
 msgid "Right-click to set this as the default formation."
-msgstr ""
+msgstr "Clique com o botão direito para definir esta como a formação padrão."
 
 #: gui/session/selection_panels.js:337
 #, javascript-format
@@ -1232,8 +1233,8 @@ msgstr "%(changer)s diminui o limite com %(change)s."
 #: gui/session/selection_panels_helpers.js:140
 msgid "Could only be constructed once."
 msgid_plural "Could only be constructed %(limit)s times."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Could only be constructed  once."
+msgstr[1] "Só pode ser construído %(limit)s vezes."
 
 #: gui/session/selection_panels_helpers.js:144
 msgid "Can be constructed only once."
@@ -1243,42 +1244,42 @@ msgstr "Pode ser construída apenas uma vez."
 #, javascript-format
 msgid "Can be constructed %(count)s more time."
 msgid_plural "Can be constructed %(count)s more times."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "aa"
+msgstr[1] "Pode ser construído %(count)s mais vezes."
 
 #: gui/session/selection_panels_helpers.js:153
 msgid "Could only be trained once."
 msgid_plural "Could only be trained %(limit)s times."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "a"
+msgstr[1] "Só pode ser treinado %(limit)s vezes."
 
 #: gui/session/selection_panels_helpers.js:157
 msgid "Can be trained only once."
-msgstr ""
+msgstr "Pode ser treinado apenas uma vez."
 
 #: gui/session/selection_panels_helpers.js:159
 #, javascript-format
 msgid "Can be trained %(count)s more time."
 msgid_plural "Can be trained %(count)s more times."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "a"
+msgstr[1] "Pode ser treinado %(count)s mais vezes."
 
 #: gui/session/selection_panels_helpers.js:166
 msgid "Could only be created once."
 msgid_plural "Could only be created %(limit)s times."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "as"
+msgstr[1] "Só pode ser criado %(limit)s vezes."
 
 #: gui/session/selection_panels_helpers.js:170
 msgid "Can be created only once."
-msgstr ""
+msgstr "Pode ser criado apenas uma vez."
 
 #: gui/session/selection_panels_helpers.js:172
 #, javascript-format
 msgid "Can be created %(count)s more time."
 msgid_plural "Can be created %(count)s more times."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "a"
+msgstr[1] "Pode ser criado %(count)s mais vezes."
 
 #: gui/session/selection_panels_helpers.js:201
 #, javascript-format
@@ -1372,7 +1373,7 @@ msgstr "%(playername)s: %(statValue)s"
 #: gui/session/top_panel/CounterPopulation.js:34
 #, javascript-format
 msgid "Current gatherers: %(amount)s"
-msgstr ""
+msgstr "Coletores atuais: %(amount)s"
 
 #: gui/session/top_panel/CounterPopulation.js:63
 #, javascript-format
@@ -1396,7 +1397,7 @@ msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 #: gui/session/top_panel/CounterResource.js:32
 #, javascript-format
 msgid "Gatherers: %(amount)s"
-msgstr ""
+msgstr "Coletores: %(amount)s"
 
 #: gui/session/top_panel/FollowPlayer.xml:(caption):15
 #: gui/session/top_panel/FollowPlayer.xml:(tooltip):11
@@ -1735,7 +1736,7 @@ msgstr "O uso deste depósito é proibido"
 
 #: gui/session/unit_actions.js:1503
 msgid "Allies are allowed to use this dropsite."
-msgstr ""
+msgstr "Os aliados estão autorizados a usar este dropsite."
 
 #: gui/session/unit_actions.js:1504
 msgid "You are allowed to use this dropsite"

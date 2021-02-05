@@ -87,7 +87,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-29 08:08+0000\n"
-"PO-Revision-Date: 2021-01-31 17:16+0000\n"
+"PO-Revision-Date: 2021-02-04 08:43+0000\n"
 "Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -110,7 +110,7 @@ msgstr "Искусственный Интеллект (ИИ) будет откл
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIBehavior.js:95
 msgid "AI Behavior"
-msgstr "Поведение искуственного интеллекта"
+msgstr "Поведение ИИ"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIDifficulty.js:89
 msgid "AI Difficulty"
@@ -286,7 +286,7 @@ msgstr "Кочевник"
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
-msgstr "В режиме кочевника игроки начинают с несколькими юнитами и вынуждены искать подходящее место для строительства города. Рекомендуется включить стартовое перемирие."
+msgstr "В кочевом режиме игроки получают на старте всего нескольких юнитов и должны подыскать себе подходящее место для основания города. Рекомендуется включить стартовое перемирие."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Rating.js:51
 msgid "Rated Game"
@@ -316,7 +316,7 @@ msgstr "Открытая карта"
 #. settings!
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RevealedMap.js:54
 msgid "Toggle revealed map (see everything)."
-msgstr "Решите, видна ли вся карта."
+msgstr "Решите, будет ли видна вся карта."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Spies.js:43
 msgid "Disable Spies"
@@ -539,7 +539,7 @@ msgstr "Круг"
 msgid ""
 "Allied players are grouped and placed with opposing players on one circle "
 "spanning the map."
-msgstr "Союзные игроки группируются и размещаются вместе с противоборствующими игроками на одном круге, охватывающем карту."
+msgstr "Дружественные игроки группируются и размещаются вместе с противоборствующими игроками на одном круге, охватывающем карту."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:110
 msgctxt "team placement"
@@ -548,7 +548,7 @@ msgstr "Ряд"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:111
 msgid "Allied players are placed in a linear pattern."
-msgstr "Союзные игроки размещаются в линейном порядке."
+msgstr "Дружественные игроки размещаются в линейном порядке."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:115
 msgctxt "team placement"
@@ -557,7 +557,7 @@ msgstr "Случайная группа"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:116
 msgid "Allied players are grouped, but otherwise placed randomly on the map."
-msgstr "Союзные игроки группируются, но в остальном размещаются на карте случайным образом."
+msgstr "Дружественные игроки группируются, но в остальном размещаются на карте случайным образом."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:120
 msgctxt "team placement"
@@ -566,7 +566,7 @@ msgstr "Крепость"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:121
 msgid "Allied players are grouped in one random place of the map."
-msgstr "Союзные игроки группируются в одном случайном месте карты."
+msgstr "Дружественные игроки группируются в одном случайном месте карты."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TriggerDifficulty.js:81
 msgid "Difficulty"
@@ -610,7 +610,7 @@ msgctxt "ceasefire"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
 msgstr[0] "%(minutes)s минута"
-msgstr[1] "%(minutes)s"
+msgstr[1] "%(minutes)s минуты"
 msgstr[2] "%(minutes)s минут"
 msgstr[3] "%(minutes)s минут"
 
@@ -649,9 +649,9 @@ msgctxt "victory duration"
 msgid "%(min)s minute"
 msgid_plural "%(min)s minutes"
 msgstr[0] "%(min)s минута"
-msgstr[1] "%(min)s минут"
+msgstr[1] "%(min)s минуты"
 msgstr[2] "%(min)s минут"
-msgstr[3] "%(min)s минуты"
+msgstr[3] "%(min)s минут"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:99
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:100
@@ -673,9 +673,9 @@ msgctxt "sea level rise time"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
 msgstr[0] "%(minutes)s минута"
-msgstr[1] "%(minutes)s минут"
+msgstr[1] "%(minutes)s минуты"
 msgstr[2] "%(minutes)s минут"
-msgstr[3] "%(minutes)s минуты"
+msgstr[3] "%(minutes)s минут"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:88
 msgid "Wonder Duration"
@@ -842,7 +842,7 @@ msgstr "Рейтинговая игра."
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:77
 #, javascript-format
 msgid "Click to toggle the %(name)s settings tab."
-msgstr "Кликните переключатель %(name)s вкладки настроек."
+msgstr "Щёлкните %(name)s для включения вкладки настроек."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:80
 #, javascript-format

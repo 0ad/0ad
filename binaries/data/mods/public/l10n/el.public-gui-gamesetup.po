@@ -16,7 +16,7 @@
 # 77960155d0a4db79ed901e7c2ee242e7_4b8c532, 2015
 # manitarious gr <manitarious@gmail.com>, 2015
 # LOUKAS SKOUROLIAKOS, 2015-2016
-# LOUKAS SKOUROLIAKOS, 2020
+# LOUKAS SKOUROLIAKOS, 2020-2021
 # malvanos <malvanos@gmail.com>, 2015
 # mAnlis mAnlAkis <www.1908jeep@gmail.com>, 2016
 # Michael Chatz <chatziasemidismichael@gmail.com>, 2018
@@ -36,8 +36,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-29 08:08+0000\n"
-"PO-Revision-Date: 2021-01-29 09:16+0000\n"
-"Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
+"PO-Revision-Date: 2021-02-02 22:24+0000\n"
+"Last-Translator: LOUKAS SKOUROLIAKOS\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -180,12 +180,12 @@ msgstr "Ομάδα"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:26
 msgid "Browse Maps"
-msgstr ""
+msgstr "Περιήγηση σε Χάρτες"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:29
 #, javascript-format
 msgid "Press %(hotkey)s to view the list of available maps."
-msgstr ""
+msgstr "Πατήστε %(hotkey)s για να δείτε τη λίστα με διαθέσιμους χάρτες."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:40
 msgid "Cheats"
@@ -797,7 +797,7 @@ msgstr "Πατήστε %(hotkey)sγια μετακίνιη προς τη προ�
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/MapPreview.js:47
 msgid "Click to view the list of available maps."
-msgstr ""
+msgstr "Κλίκ για να δείτε τη διαθέσιμη λίστα με χάρτες."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/TipsPanel.xml:(caption):9
 msgid "Show this message in the future."
@@ -835,11 +835,11 @@ msgstr "Σύνδεση με διακομιστή..."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:166
 msgid "Server is not running."
-msgstr ""
+msgstr "Ο εξυπηρετητής ( Server) δε τρέχει."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:167
 msgid "Password is invalid."
-msgstr ""
+msgstr "Μη έγκυρος κωδικός."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:168
 msgid "You have been banned."
@@ -848,7 +848,7 @@ msgstr "Σου απαγορεύτηκε η πρόσβαση."
 #: gui/gamesetup_mp/gamesetup_mp.js:171
 #, javascript-format
 msgid "\\[Invalid value %(reason)s]"
-msgstr ""
+msgstr "\\[Μη έγκυρη τιμή%(reason)s]"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:179
 msgid "Failed to connect to the server."
@@ -856,7 +856,7 @@ msgstr "Αποτυχία σύνδεσης με τον εξυπηρετητή."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:181
 msgid "Connection failed"
-msgstr ""
+msgstr "Η σύνδεση απέτυχε"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:193
 #, javascript-format
@@ -927,7 +927,7 @@ msgstr "Όνομα Διακομιστή:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):112
 msgid "Server Password:"
-msgstr ""
+msgstr "Κωδικός Server:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):128
 msgid "Use STUN to work around firewalls"
@@ -947,7 +947,7 @@ msgstr "Κωδικός:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):162
 msgid "Confirm"
-msgstr ""
+msgstr "Επιβεβαίωση"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):52
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):99
@@ -956,7 +956,7 @@ msgstr "Αφήστε κενό για να χρησιμοποιηθεί η προ
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):113
 msgid "Leave blank to not require it."
-msgstr ""
+msgstr "Αφήστε κενό αν δέντο χρειάζεστε."
 
 #: gui/loading/ProgressBar.js:48
 #, javascript-format
@@ -1963,7 +1963,7 @@ msgstr "“Κάθε επισκέπτης είναι ευπρόσδεκτος σ�
 msgid ""
 "“You cannot eat your cake and have it too, unless you think your money is "
 "immortal.”\\n— Plautus (“Trinummus”, Act II, scene 4, 13–14)"
-msgstr ""
+msgstr "\"Δε μπορείς να τρώς την πίτα σου και να την έχεις ολόκληρη παράλληλα , εκτός και αν νομίζεις ότι τα χρήματα σου είναι αθάνατα.\" \\n- Τίτος Μάκκιος Πλαύτος (\"Trinummus\", Μέρος ΙΙ , σκηνή 4, 13-14)"
 
 #: gui/text/quotes.txt:144
 msgid ""
@@ -2165,7 +2165,7 @@ msgid ""
 "“He could boast that he found a city of brick and left it a city of "
 "marble.”\\n— Suetonius, commenting on the many building projects of Augustus"
 " in Rome (“Divus Augustus”, 28.3)"
-msgstr ""
+msgstr "\"Εκείνος μπορούσε να καυχηθεί πώς βρήκε μια πόλη απο πλίθες και άφησε μια πόλη απο μάρμαρο .\"\\n- Σουητώνιος ,σχολιάζοντας τα πολλά  οικοδομικά έργα  του Αύγουστου στη Ρώμη\"\n(“Divus Augustus”, 28.3)"
 
 #: gui/text/quotes.txt:169
 msgid "“Moderation in all things.” \\n— Terence (“The Girl from Andros”, 61)"
@@ -2264,7 +2264,7 @@ msgid ""
 "Tiberius Gracchus, advocating for land reform to the benefit of homeless and"
 " unemployed veterans whose lands had often been bought up while they were on"
 " campaign. (Plutarch, “Parallel Lives”, “Tiberius Gracchus”, 9.4–5)"
-msgstr ""
+msgstr "\" Τα άγρια θηρία της Ιταλίας έχουν τις σπηλιές τους για να αποσυρθούν, αλλά για τους γενναίους βετεράνους που χύσανε το αίμα τους για το σκοπό της ,δεν έχουν τίποτα παρά οξυγόνο και φως. Περιπλανώνται τριγύρω άστεγοι με τις γυναίκες και τα παιδιά τους\" \\n- Ο Τιβέριος Γράκχος, υποστηρίζοντας την ανάγκη για ανασυγκρότηση της γής  προς το όφελος των άστεγων και άνεργων βετεράνων των οποίων η γή συχνά είχε εξαγοραστεί όσο βρισκόντουσαν σε εκστρατεία . (Πλούταρχος , \"Βίοι Παράλληλοι\", \"Τιβέριος Γράκχος\", 9.4-5) "
 
 #: gui/text/quotes.txt:182
 msgid ""
@@ -2274,7 +2274,7 @@ msgid ""
 "benefit of homeless and unemployed veterans whose lands had often been "
 "bought up while they were on campaign. (Plutarch, “Parallel Lives”, "
 "“Tiberius Gracchus”, 9.5)"
-msgstr ""
+msgstr "“Οι στρατιώτες πολεμούν και πεθαίνουν για να υποστηρίξουν άλλους στο πλούτο και καλή ζωή και αποκαλούνται αφέντες του κόσμου χωρίς να κατέχουν ούτε ένα κομμάτι αγροτικής γης στο όνομά τους\"\\n-  Ο Τιβέριος Γράκχος, υποστηρίζοντας την ανάγκη για ανασυγκρότηση της γής προς το όφελος των άστεγων και άνεργων βετεράνων των οποίων η γή συχνά είχε εξαγοραστεί όσο βρισκόντουσαν σε εκστρατεία . (Πλούταρχος , \"Βίοι Παράλληλοι\", ”Τιβέριος Γράκχος”, 9.5) "
 
 #: gui/text/quotes.txt:183
 msgid ""

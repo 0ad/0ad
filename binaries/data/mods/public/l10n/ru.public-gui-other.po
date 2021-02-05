@@ -47,7 +47,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-29 14:56+0000\n"
-"PO-Revision-Date: 2021-01-31 17:09+0000\n"
+"PO-Revision-Date: 2021-02-04 16:19+0000\n"
 "Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -123,14 +123,14 @@ msgstr "%(playerName)s (%(AIdescription)s, %(state)s)"
 #: gui/common/gamedescription.js:90
 #, javascript-format
 msgid "%(playerName)s (OFFLINE)"
-msgstr "%(playerName)s (Не в сети)"
+msgstr "%(playerName)s (не в сети)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:93
 #, javascript-format
 msgid "%(playerName)s (OFFLINE, %(state)s)"
-msgstr "%(playerName)s (Не в сети, %(state)s)"
+msgstr "%(playerName)s (не в сети, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
@@ -162,7 +162,7 @@ msgstr "%(playerName)s (%(state)s)"
 
 #: gui/common/gamedescription.js:130
 msgid "Unknown Civilization"
-msgstr "Неизвестная Цивилизация"
+msgstr "Неизвестная цивилизация"
 
 #: gui/common/gamedescription.js:137
 msgctxt "playerstate"
@@ -172,11 +172,11 @@ msgstr "потерпел поражение"
 #: gui/common/gamedescription.js:138
 msgctxt "playerstate"
 msgid "won"
-msgstr "выиграл"
+msgstr "одержал победу"
 
 #: gui/common/gamedescription.js:159
 msgid "No Team"
-msgstr "Нет Команды"
+msgstr "Нет команды"
 
 #: gui/common/gamedescription.js:160
 #, javascript-format
@@ -244,7 +244,7 @@ msgstr "Герои могут размещаться в гарнизонах."
 
 #: gui/common/gamedescription.js:244
 msgid "Exposed Heroes"
-msgstr "Открытые Герои"
+msgstr "Незащищённые герои"
 
 #: gui/common/gamedescription.js:245
 msgid "Heroes cannot be garrisoned and they are vulnerable to raids."
@@ -302,7 +302,7 @@ msgstr "Стартовое перемирие"
 
 #: gui/common/gamedescription.js:283 gui/pregame/userreport/userreport.js:26
 msgid "disabled"
-msgstr "отключено"
+msgstr "Отключено"
 
 #: gui/common/gamedescription.js:284
 msgid "For the first minute, other players will stay neutral."
@@ -348,7 +348,7 @@ msgstr "Выбрать биом из списка случайным образ�
 
 #: gui/common/gamedescription.js:345
 msgid "Nomad Mode"
-msgstr "Режим кочевника"
+msgstr "Кочевой режим"
 
 #: gui/common/gamedescription.js:345
 msgid "Civic Centers"
@@ -358,11 +358,11 @@ msgstr "Городские центры"
 msgid ""
 "Players start with only few units and have to find a suitable place to build"
 " their city."
-msgstr "Игроки начинают с несколькими юнитами и вынуждены искать подходящее место для строительства города."
+msgstr "Игроки получают на старте всего нескольких юнитов и должны подыскать себе подходящее место для основания города."
 
 #: gui/common/gamedescription.js:349
 msgid "Players start with a Civic Center."
-msgstr "Игроки начинают с городскими центрами."
+msgstr "Игроки начинают игру с городскими Центрами."
 
 #: gui/common/gamedescription.js:354
 msgid "Starting Resources"
@@ -503,7 +503,7 @@ msgstr "Вас заблокировали."
 
 #: gui/common/network.js:73
 msgid "Player name in use. If you were disconnected, retry in few seconds."
-msgstr ""
+msgstr "Имя игрока уже используется. Если вы потеряли соединение, переподключитесь через несколько секунд."
 
 #: gui/common/network.js:74
 msgid "Server full."
@@ -531,11 +531,11 @@ msgstr "Неверный пароль."
 
 #: gui/common/network.js:80
 msgid "Could not find an unused port for the enet STUN client."
-msgstr ""
+msgstr "Не удаётся обнаружить свободный внешний порт для клиета STUN."
 
 #: gui/common/network.js:81
 msgid "Could not find the STUN endpoint."
-msgstr ""
+msgstr "Не удаётся обнаружить конечное устройство посредством STUN."
 
 #: gui/common/network.js:84
 #, javascript-format
@@ -620,7 +620,7 @@ msgstr "Сбалансированный"
 #: gui/common/settings.js:156
 msgctxt "aiBehavior"
 msgid "Defensive"
-msgstr "Защищающийся"
+msgstr "Оборонительный"
 
 #: gui/common/settings.js:160
 msgctxt "aiBehavior"
@@ -636,7 +636,7 @@ msgstr "Схватка"
 msgid ""
 "A map with a predefined landscape and number of players. Freely select the "
 "other game settings."
-msgstr ""
+msgstr "Карта с заранее определённой местностью и числом игроков, однако можно изменять другие настройки игры."
 
 #: gui/common/settings.js:182
 msgctxt "map"
@@ -690,7 +690,7 @@ msgstr "По умолчанию"
 #: gui/common/settings.js:400
 msgctxt "population capacity addendum"
 msgid "(world)"
-msgstr ""
+msgstr "(на весь мир)"
 
 #: gui/common/settings.js:401 gui/common/settings.js:405
 msgctxt "population capacity"
@@ -741,7 +741,7 @@ msgstr "%(healthLabel)s %(current)s / %(max)s"
 #: gui/common/tooltips.js:167
 #, javascript-format
 msgid "%(captureLabel)s %(current)s / %(max)s"
-msgstr ""
+msgstr "%(captureLabel)s %(current)s / %(max)s"
 
 #: gui/common/tooltips.js:168
 msgid "Capture points:"
@@ -757,11 +757,11 @@ msgstr "%(percentage)s%%"
 msgid ""
 "%(label)s\n"
 "%(details)s"
-msgstr ""
+msgstr "%(label)s\n%(details)s"
 
 #: gui/common/tooltips.js:200
 msgid "Resistance:"
-msgstr ""
+msgstr "Защита:"
 
 #: gui/common/tooltips.js:211
 msgid "Damage:"
@@ -770,16 +770,16 @@ msgstr "Урон:"
 #: gui/common/tooltips.js:214 gui/common/tooltips.js:234
 #, javascript-format
 msgid "%(damage)s %(damageType)s %(resistancePercentage)s"
-msgstr ""
+msgstr "%(damage)s %(damageType)s %(resistancePercentage)s"
 
 #: gui/common/tooltips.js:219 gui/common/tooltips.js:239
 #, javascript-format
 msgid "(%(resistancePercentage)s)"
-msgstr ""
+msgstr "(%(resistancePercentage)s)"
 
 #: gui/common/tooltips.js:232
 msgid "Capture:"
-msgstr ""
+msgstr "Захват:"
 
 #: gui/common/tooltips.js:236 gui/common/tooltips.js:376
 msgctxt "damage type"
@@ -788,18 +788,18 @@ msgstr "Захват"
 
 #: gui/common/tooltips.js:251
 msgid "Status Effects:"
-msgstr ""
+msgstr "Статус влияет на:"
 
 #: gui/common/tooltips.js:256
 #, javascript-format
 msgid "Blocks %(name)s"
-msgstr ""
+msgstr "Блокирует %(name)s"
 
 #: gui/common/tooltips.js:261 gui/common/tooltips.js:269
 #: gui/common/tooltips.js:276
 #, javascript-format
 msgid "%(name)s %(details)s"
-msgstr ""
+msgstr "%(name)s %(details)s"
 
 #: gui/common/tooltips.js:263
 #, javascript-format
@@ -809,7 +809,7 @@ msgstr "Сокращение продолжительности: %(durationReduc
 #: gui/common/tooltips.js:271
 #, javascript-format
 msgid "Blocks: %(blockPercentage)s%%"
-msgstr ""
+msgstr "Блокирует: %(blockPercentage)s%%"
 
 #: gui/common/tooltips.js:278
 #, javascript-format
@@ -914,7 +914,7 @@ msgstr "%(amount)s %(name)s"
 #: gui/common/tooltips.js:382
 #, javascript-format
 msgid "%(splashShape)s Splash"
-msgstr ""
+msgstr "%(splashShape)s разлёт"
 
 #: gui/common/tooltips.js:385
 #, javascript-format
@@ -984,17 +984,17 @@ msgstr "Продолжительность"
 #: gui/common/tooltips.js:526
 msgctxt "status effect stackability"
 msgid "(extends)"
-msgstr ""
+msgstr "(расширяет)"
 
 #: gui/common/tooltips.js:528
 msgctxt "status effect stackability"
 msgid "(replaces)"
-msgstr ""
+msgstr "(заменяет)"
 
 #: gui/common/tooltips.js:530
 msgctxt "status effect stackability"
 msgid "(stacks)"
-msgstr ""
+msgstr "(добавляет)"
 
 #: gui/common/tooltips.js:532
 #, javascript-format
@@ -1049,7 +1049,7 @@ msgstr "Число ремонтников:"
 
 #: gui/common/tooltips.js:605
 msgid "Remaining repair time:"
-msgstr ""
+msgstr "До конца ремонта:"
 
 #: gui/common/tooltips.js:609
 #, javascript-format
@@ -1076,7 +1076,7 @@ msgstr "Количество строителей:"
 
 #: gui/common/tooltips.js:639
 msgid "Remaining build time:"
-msgstr ""
+msgstr "До конца строительства:"
 
 #: gui/common/tooltips.js:643
 #, javascript-format
@@ -1175,7 +1175,7 @@ msgstr "Требуется технология: %(technology)s"
 #: gui/common/tooltips.js:885
 #, javascript-format
 msgid "%(label)s %(bonus)s"
-msgstr ""
+msgstr "%(label)s %(bonus)s"
 
 #: gui/common/tooltips.js:886
 msgid "Population Bonus:"
@@ -1286,7 +1286,7 @@ msgstr "Нажмите, чтобы посмотреть дополнительн
 #: gui/credits/credits.js:83
 #, javascript-format
 msgid "%(nick)s — %(name)s"
-msgstr ""
+msgstr "%(nick)s — %(name)s"
 
 #: gui/credits/credits.xml:(caption):19
 msgid "0 A.D. Credits"
@@ -1375,7 +1375,7 @@ msgstr "Греческий"
 
 #: gui/credits/texts/audio.jsonContent[3].Content[1].Subtitle
 msgid "Latin"
-msgstr "Латинский"
+msgstr "Латынь"
 
 #: gui/credits/texts/audio.jsonContent[3].Content[2].Subtitle
 msgid "Napatan"
@@ -1560,7 +1560,7 @@ msgstr "Для этой сохранённой игры необходим др�
 
 #: gui/loadgame/SavegameLoader.js:55
 msgid "Do you still want to proceed?"
-msgstr "Вы хотите продолжить?"
+msgstr "Всё ещё хотите продолжить?"
 
 #: gui/loadgame/SavegameLoader.js:60 gui/options/options.js:299
 #: gui/options/options.js:352 gui/options/options.js:378
@@ -1631,7 +1631,7 @@ msgstr "Победа:"
 #: gui/replaymenu/replay_menu.xml:(heading):71
 msgctxt "replay"
 msgid "Date / Time"
-msgstr "Дата / Время"
+msgstr "Дата / время"
 
 #: gui/loadgame/load.xml:(heading):31
 msgctxt "replay"
@@ -1707,7 +1707,7 @@ msgstr "Восстановление удалит сохраненные нас�
 
 #: gui/options/options.js:351
 msgid "Some setting values are invalid! Are you sure you want to save them?"
-msgstr ""
+msgstr "Некоторые параметры настроек некорректны! Вы уверены, что хотите сохранить их?"
 
 #: gui/options/options.js:377
 msgid "You have unsaved changes, do you want to close this window?"
@@ -1739,7 +1739,7 @@ msgstr "Время сообщения в чате"
 
 #: gui/options/options.json[0].options[11].tooltip
 msgid "Display the time at which a chat message was posted."
-msgstr ""
+msgstr "Показывать время отправления сообщения в чате."
 
 #: gui/options/options.json[0].options[1].label
 msgid "Player name (multiplayer)"
@@ -1878,7 +1878,7 @@ msgstr "Водные эффекты"
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
-msgstr "Когда Выкл., Используйте самые низкие настройки возможных для визуализации воды. Это делает другие настройки незначимыми"
+msgstr "Когда выключенно, используйте нижайшии настройки качества визуализации воды. Это делает другие настройки неактуальными."
 
 #: gui/options/options.json[1].options[14].label
 msgid "High-quality water effects"
@@ -1950,13 +1950,13 @@ msgstr "Для уменьшения нагрузки на процессор, у
 
 #: gui/options/options.json[1].options[21].label
 msgid "FPS throttling in games"
-msgstr "Ограничение FPS в игре"
+msgstr "Дросселирование FPS в игре"
 
 #: gui/options/options.json[1].options[21].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."
-msgstr "Для уменьшения нагрузки на процессор, уменьшает частоту отрисовки в игре. Установите на максимум для отключения этой функции."
+msgstr "Для уменьшения нагрузки на процессор, частота отрисовки в игре динамически дросселируется. Установите на максимум для отключения дросселирования."
 
 #: gui/options/options.json[1].options[2].label
 msgid "Fog"
@@ -2163,7 +2163,7 @@ msgstr "Получать звуковые уведомления, когда к�
 
 #: gui/options/options.json[2].options[6].label
 msgid "New player notification in game setup"
-msgstr ""
+msgstr "Сообщение о новом игроке в настройках игры"
 
 #: gui/options/options.json[2].options[6].tooltip
 msgid "Receive audio notification when a new client joins the game setup."
@@ -2244,7 +2244,7 @@ msgstr "Агрессивный"
 
 #: gui/options/options.json[3].options[4].list[3].label
 msgid "Defensive"
-msgstr "Защищающийся"
+msgstr "Оборонительный"
 
 #: gui/options/options.json[3].options[4].tooltip
 msgid "Default behavior of the AI."
@@ -2311,7 +2311,7 @@ msgstr "Эти настройки влияют только на сетевую 
 
 #: gui/options/options.json[5].label
 msgid "Game Session"
-msgstr ""
+msgstr "Игровая сессия"
 
 #: gui/options/options.json[5].options[0].label
 msgid "Wounded unit health"
@@ -2468,29 +2468,29 @@ msgstr "Количество юнитов в партии для обучени�
 
 #: gui/options/options.json[5].options[20].label
 msgid "Formation control"
-msgstr ""
+msgstr "Управление боевыми порядками"
 
 #: gui/options/options.json[5].options[20].list[0].label
 msgid "Walk/Patrol Only"
-msgstr ""
+msgstr "Только марш или патрулирование"
 
 #: gui/options/options.json[5].options[20].list[0].tooltip
 msgid "Other orders will disband existing formations."
-msgstr ""
+msgstr "Другие приказы расформируют существующие боевый порядки."
 
 #: gui/options/options.json[5].options[20].list[1].label
 msgid "No Override"
-msgstr ""
+msgstr "Без перекрывания"
 
 #: gui/options/options.json[5].options[20].list[1].tooltip
 msgid "Units in formations stay in formations."
-msgstr ""
+msgstr "Юниты в боевых порядках не покидают рядов."
 
 #: gui/options/options.json[5].options[20].tooltip
 msgid ""
 "Decide whether formations are enabled for all orders or only 'Walk' and "
 "'Patrol'."
-msgstr ""
+msgstr "Решите, используются ли боевые порядки при выполнении всех приказов, либо только на марше и патрулировании."
 
 #: gui/options/options.json[5].options[2].label
 msgid "Scroll batch increment ratio"
@@ -2521,7 +2521,7 @@ msgstr "Показывать уведомление в чате, если сою
 
 #: gui/options/options.json[5].options[5].label
 msgid "Chat notification barter"
-msgstr "Уведомление в чате о бартере"
+msgstr "Уведомление в чате об обмене"
 
 #: gui/options/options.json[5].options[5].tooltip
 msgid ""
@@ -2548,7 +2548,7 @@ msgstr "Все"
 msgid ""
 "Show a chat notification if you or an ally have started, aborted or "
 "completed a new phase, and phases of all players in observer mode."
-msgstr "Показать уведомление в чате если вы или союзник начал, прервал или завершил переход на новый этап, а также на этапы всех игроков в режиме ожидания."
+msgstr "Показать уведомление в чате если вы или союзник начал, прервал или завершил переход на новый этап, а также на этапы всех игроков в режиме наблюдателя."
 
 #: gui/options/options.json[5].options[7].label
 msgid "Attack range visualization"
@@ -2558,7 +2558,7 @@ msgstr "Отображение радиуса атаки"
 msgid ""
 "Display the attack range of selected defensive structures. (It can also be "
 "toggled with the hotkey during a game)."
-msgstr ""
+msgstr "Отображать дальность атаки выбранных защитных сооружений (можно переключать во время игры с помощью горячей клавиши)."
 
 #: gui/options/options.json[5].options[8].label
 msgid "Aura range visualization"
@@ -2568,7 +2568,7 @@ msgstr "Отображение области действия ауры"
 msgid ""
 "Display the range of auras of selected units and structures. (It can also be"
 " toggled with the hotkey during a game)."
-msgstr ""
+msgstr "Отображать ауру выбранных юнитов и зданий (можно переключать во время игры с помощью горячей клавиши)."
 
 #: gui/options/options.json[5].options[9].label
 msgid "Heal range visualization"
@@ -2578,7 +2578,7 @@ msgstr "Отображение радиуса действия ауры лече
 msgid ""
 "Display the healing range of selected units. (It can also be toggled with "
 "the hotkey during a game)."
-msgstr ""
+msgstr "Отображать дальность лечения для выбранных юнитов (можно переключать во время игры с помощью горячей клавиши)."
 
 #: gui/options/options.json[5].tooltip
 msgid "Change options regarding the in-game settings."
@@ -2972,7 +2972,7 @@ msgstr "неизвестно"
 
 #: gui/pregame/userreport/userreport.js:86
 msgid "Help improve 0 A.D.!"
-msgstr "Помогите улучшить 0 A.D!"
+msgstr "Помогите сделать 0 A.D. лучше!"
 
 #: gui/pregame/userreport/userreport.js:87
 msgid ""
@@ -2987,7 +2987,7 @@ msgstr "Вы можете автоматически посылать нам а�
 msgid ""
 "\n"
 "     %(description)s"
-msgstr ""
+msgstr "\n     %(description)s"
 
 #. Translation: An entry in the CivInfo Page. The newline and indentation of
 #. the description
@@ -2998,7 +2998,7 @@ msgstr ""
 #: gui/reference/civinfo/CivInfoPage.js:102
 #, javascript-format
 msgid "• %(name)s %(info_icon)s%(description)s"
-msgstr ""
+msgstr "• %(name)s %(info_icon)s%(description)s"
 
 #: gui/reference/civinfo/CivInfoPage.js:113
 #, javascript-format
@@ -3034,26 +3034,26 @@ msgstr[3] "Командные бонусы"
 #: gui/reference/civinfo/Sections/Subsections/HeroesSubsection.js:29
 msgid "Hero"
 msgid_plural "Heroes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Герой"
+msgstr[1] "Герои"
+msgstr[2] "Герои"
+msgstr[3] "Герои"
 
 #: gui/reference/civinfo/Sections/Subsections/StructuresSubsection.js:29
 msgid "Specific Structure"
 msgid_plural "Specific Structures"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Особое здание"
+msgstr[1] "Особые здания"
+msgstr[2] "Особые здания"
+msgstr[3] "Особые здания"
 
 #: gui/reference/civinfo/Sections/Subsections/TechnologiesSubsection.js:28
 msgid "Specific Technology"
 msgid_plural "Specific Technologies"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Особая технология"
+msgstr[1] "Особые технологии"
+msgstr[2] "Особые технологии"
+msgstr[3] "Особые технологии"
 
 #: gui/reference/common/Buttons/CivInfoButton.js:27
 #, javascript-format
@@ -3103,49 +3103,49 @@ msgstr "Обучается в:"
 #. technology selected.
 #: gui/reference/common/tooltips.js:39
 msgid "Researched at:"
-msgstr "Исследовано:"
+msgstr "Исследуется в:"
 
 #. Translation: Label before a list of the names of structures the selected
 #. unit can
 #. construct or build.
 #: gui/reference/common/tooltips.js:48
 msgid "Builds:"
-msgstr "Строит:"
+msgstr "Строится:"
 
 #. Translation: Label before a list of the names of technologies the selected
 #. unit or
 #. structure can research.
 #: gui/reference/common/tooltips.js:57
 msgid "Researches:"
-msgstr "Изучается:"
+msgstr "Исследует:"
 
 #. Translation: Label before a list of the names of units the selected unit or
 #. structure can
 #. train.
 #: gui/reference/common/tooltips.js:66
 msgid "Trains:"
-msgstr "Обучается:"
+msgstr "Обучает:"
 
 #. Translation: Label before a list of the names of units or structures the
 #. selected unit or
 #. structure can be upgradable to.
 #: gui/reference/common/tooltips.js:75
 msgid "Upgradable to:"
-msgstr "Модернизировано:"
+msgstr "Улучшается до:"
 
 #: gui/reference/structree/Sections/Trainer/TrainerSection.js:70
 msgid "Trainer Units"
-msgstr "Тренера"
+msgstr "Обучающие юниты"
 
 #: gui/reference/structree/StructreePage.js:85
 #, javascript-format
 msgid "%(hotkey)s: Close Structure Tree."
-msgstr "%(hotkey)s: Закрыть Дерево Технологий."
+msgstr "%(hotkey)s: Закрыть древо зданий."
 
 #: gui/reference/viewer/ViewerPage.js:167
 #, javascript-format
 msgid "%(hotkey)s: Close Template Viewer"
-msgstr ""
+msgstr "%(hotkey)s: закрыть просмотр шаблона"
 
 #: gui/reference/viewer/viewer.xml:(caption):16
 msgid "Information"
@@ -3245,11 +3245,11 @@ msgstr "Одиночный и сетевой режим"
 
 #: gui/replaymenu/replay_filters.js:157
 msgid "Any victory condition"
-msgstr ""
+msgstr "Любое условие победы"
 
 #: gui/replaymenu/replay_filters.js:170
 msgid "Rated and unrated games"
-msgstr "Игры с рейтингом и без рейтинга"
+msgstr "Рейтинговые и нерейтинговые игры"
 
 #: gui/replaymenu/replay_filters.js:170
 msgid "Rated games"
@@ -3257,12 +3257,12 @@ msgstr "Рейтинговые игры"
 
 #: gui/replaymenu/replay_filters.js:170
 msgid "Unrated games"
-msgstr "Не рейтинговые игры"
+msgstr "Нерейтинговые игры"
 
 #: gui/replaymenu/replay_menu.js:194
 msgid ""
 "Filter replays by typing one or more, partial or complete player names."
-msgstr "Отфильтровать повторы набором одного или более частичных или полных имен игроков. "
+msgstr "Отфильтровать повторы набором частичных или полных имён игроков. "
 
 #: gui/replaymenu/replay_menu.js:198
 #, javascript-format
@@ -3309,7 +3309,7 @@ msgstr "Итог"
 
 #: gui/replaymenu/replay_menu.xml:(caption):252
 msgid "Start Replay"
-msgstr "Начать Повтор"
+msgstr "Начать повтор"
 
 #: gui/replaymenu/replay_menu.xml:(heading):75
 msgctxt "replay"
@@ -3333,11 +3333,11 @@ msgstr "Продолжительность"
 
 #: gui/replaymenu/replay_menu.xml:(placeholder_text):32
 msgid "Search for Player"
-msgstr ""
+msgstr "Поиск игрока"
 
 #: gui/replaymenu/replay_menu.xml:(tooltip):240
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
-msgstr "Создать кэш повторов с нуля. Возможно, это будет медленно!"
+msgstr "Создать кэш повторов с нуля. Возможно, это будет долго!"
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
@@ -3364,7 +3364,7 @@ msgstr "[imgleft=\"iconLag\"]Игра может иметь проблемы с 
 msgid ""
 "[imgleft=\"iconFormation\"]Formations are a work in progress, but you can "
 "toggle forming and disbanding formations as desired."
-msgstr "[imgleft=\"iconFormation\"]Боевые порядки находятся на стадии разработки, но, при желании, вы можете создавать и распускать боевые порядки."
+msgstr "[imgleft=\"iconFormation\"]Боевые порядки находятся на стадии разработки, но, при желании, вы можете их создавать и распускать."
 
 #: gui/splashscreen/splashscreen.xml:(caption):14
 msgid "Welcome!"
@@ -3469,7 +3469,7 @@ msgstr "Конница"
 
 #: gui/summary/layout.js:76
 msgid "Champion"
-msgstr "Чемпионы"
+msgstr "Гвардия"
 
 #: gui/summary/layout.js:77
 msgid "Heroes"
@@ -3534,13 +3534,13 @@ msgstr "Доход от торговли"
 
 #: gui/summary/layout.js:164
 msgid "Barter efficiency"
-msgstr "Эффектив. обмена"
+msgstr "Польза от обмена"
 
 #. Translation: use %(resourceWithinSentence)s if needed
 #: gui/summary/layout.js:170
 #, javascript-format
 msgid "%(resourceFirstWord)s exchanged"
-msgstr "%(resourceFirstWord)s обменяны"
+msgstr "%(resourceFirstWord)s обменяно"
 
 #: gui/summary/layout.js:192
 msgid "Miscellaneous"
@@ -3548,7 +3548,7 @@ msgstr "Разное"
 
 #: gui/summary/layout.js:195
 msgid "Kill / Death ratio"
-msgstr "Отношение убийств / смертей"
+msgstr "Соотношение убито/потеряно"
 
 #: gui/summary/layout.js:196 gui/summary/summary.js:99
 msgid "Population"
@@ -3556,11 +3556,11 @@ msgstr "Население"
 
 #: gui/summary/layout.js:197
 msgid "Map control (peak)"
-msgstr "Контроль карты (макс.)"
+msgstr "Контроль карты (пиковый)"
 
 #: gui/summary/layout.js:198
 msgid "Map control (finish)"
-msgstr "Контроль карты (в конце)"
+msgstr "Контроль карты (итоговый)"
 
 #: gui/summary/layout.js:199
 msgid "Map exploration"
@@ -3607,7 +3607,7 @@ msgstr "Собрано"
 
 #: gui/summary/summary.js:44
 msgid "Count"
-msgstr ""
+msgstr "Счётчик"
 
 #: gui/summary/summary.js:49
 msgid "Sent"
@@ -3679,7 +3679,7 @@ msgstr ", "
 
 #: gui/summary/summary.js:340
 msgid "Time elapsed"
-msgstr "Время прошло"
+msgstr "Времени прошло"
 
 #: gui/summary/summary.js:508
 msgid "Current Scores"
@@ -3687,7 +3687,7 @@ msgstr "Текущий счёт"
 
 #: gui/summary/summary.js:510
 msgid "Scores at the end of the game."
-msgstr "Счет в конце игры."
+msgstr "Счёт в конце игры."
 
 #: gui/summary/summary.js:512
 msgid "You have been disconnected."
@@ -3722,12 +3722,12 @@ msgstr "%(mapName)s — %(mapType)s"
 #: gui/summary/summary.js:542
 #, javascript-format
 msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
-msgstr "%(hotkey)s: Включить\\отключить сетевую комнату в диалоговом окне."
+msgstr "%(hotkey)s: Выбрать состояние сетевой комнаты в диалоговом окне."
 
 #: gui/summary/summary.js:555
 #, javascript-format
 msgid "Toggle the %(name)s summary tab."
-msgstr "Выбрать состояние вкладки итогов %(name)s."
+msgstr "Выбрать видимость вкладки итогов %(name)s."
 
 #: gui/summary/summary.js:556
 #, javascript-format
@@ -3803,13 +3803,13 @@ msgstr "Разместите юниты внутри для медленного
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
-msgstr "БАРАКИ"
+msgstr "КАЗАРМЫ"
 
 #: gui/text/tips/barracks.txt:2
 msgid ""
 "Train all citizen-soldiers. Some factions can unlock the training of "
 "champions as well."
-msgstr "Позволяет обучать воинов-граждан. Для некоторых цивилизаций открывает также обучение чемпионов."
+msgstr "Позволяет обучать воинов-граждан. Для некоторых цивилизаций открывает также обучение гвардейцев."
 
 #: gui/text/tips/barracks.txt:3
 msgid "Research military technologies unique to each faction."
@@ -3831,13 +3831,13 @@ msgstr "КАРФАГЕНСКИЙ СВЯЩЕННЫЙ ОТРЯД"
 
 #: gui/text/tips/carth_sacred_band.txt:2
 msgid "Champion Spearmen and Champion Cavalry Spearmen for Carthage."
-msgstr "Копейщики-чемпионы и конные копейщики-чемпионы Карфагена."
+msgstr "Гвардейские пешие и конные копейщики Карфагена."
 
 #: gui/text/tips/carth_sacred_band.txt:3
 msgid ""
 "Both are trainable from the Temple, instead of the Fortress like most other "
 "champions."
-msgstr "Обучение обоих проходит в храме, а не в крепости, как у большинства других чемпионов."
+msgstr "Обучение обоих проходит в храме, а не в крепости, как у большинства других гвардейцев."
 
 #: gui/text/tips/carth_sacred_band.txt:4
 msgid ""
@@ -3865,7 +3865,7 @@ msgstr "Собирайте в походное положение для пер�
 
 #: gui/text/tips/celtic_war_barge.txt:1
 msgid "CELTIC WAR BARGE"
-msgstr "ВОЕННЫЙ БАРКАС КЕЛЬТОВ"
+msgstr "КЕЛЬТСКИЙ ВОЕННЫЙ КОРАБЛЬ"
 
 #: gui/text/tips/celtic_war_barge.txt:2
 msgid "A medium trireme-class warship."
@@ -3903,7 +3903,7 @@ msgstr "Может быть построен на нейтральной и со
 msgid ""
 "Train citizens: female citizens, infantry citizen-soldiers, and cavalry "
 "citizen-soldiers."
-msgstr "Обучайте граждан: женщин, воинов-граждан и всадников-граждан."
+msgstr "Обучайте граждан: женщин, пеших воинов-граждан и всадников-граждан."
 
 #: gui/text/tips/embassies.txt:1
 msgid "EMBASSIES"
@@ -3915,7 +3915,7 @@ msgstr "Особые казармы доступны карфагенянам."
 
 #: gui/text/tips/embassies.txt:3
 msgid "Train mercenaries from each of the ethnically-themed embassies."
-msgstr "Обучайте наёмников в каждом из традиционно оформленных посольств."
+msgstr "Нанимайте наёмников в каждом из традиционно оформленных посольств."
 
 #: gui/text/tips/embassies.txt:4
 msgid ""
@@ -3945,7 +3945,7 @@ msgstr "Будьте внимательны! Рыба не бесконечны�
 
 #: gui/text/tips/forge.txt:1
 msgid "FORGE"
-msgstr ""
+msgstr "КУЗНИЦА"
 
 #: gui/text/tips/forge.txt:2
 msgid "Research structure for all factions."
@@ -3965,7 +3965,7 @@ msgstr "Крепость обычно является самым мощным �
 
 #: gui/text/tips/fortress.txt:3
 msgid "Trains Champions, Heroes, and Siege Weapons."
-msgstr "Обучайте чемпионов, героев и стройте осадные орудия."
+msgstr "Позволяет обучайть гвардейцев и героев и строить осадные орудия."
 
 #: gui/text/tips/fortress.txt:4
 msgid "Gives a population boost."
@@ -4018,11 +4018,11 @@ msgstr "Всадники-граждане быстрее добывают мяс
 msgid ""
 "The higher the level of a citizen-soldier (advanced, elite), the better he "
 "fights, but the less efficient he is at gathering resources."
-msgstr "Чем выше уровень воинов-граждан (улучшенный, элитный), тем лучше они сражаются, но хуже добывают ресурсы."
+msgstr "Чем выше уровень воинов-граждан (улучшенный, отборный), тем лучше они сражаются, но хуже добывают ресурсы."
 
 #: gui/text/tips/heroes.txt:1
 msgid "HEROES"
-msgstr ""
+msgstr "ГЕРОИ"
 
 #: gui/text/tips/heroes.txt:2
 msgid ""
@@ -4032,15 +4032,15 @@ msgstr "Исторические фигуры, такие как Ксеркс, �
 
 #: gui/text/tips/heroes.txt:3
 msgid "A lot of health and very strong attacks."
-msgstr ""
+msgstr "Огромное здоровье и сильнейший урон."
 
 #: gui/text/tips/heroes.txt:4
 msgid "Have auras which alter the stats of other units or structures."
-msgstr ""
+msgstr "Имеют ауру, оказывающую влияние на других юнитов и здания."
 
 #: gui/text/tips/heroes.txt:5
 msgid "Caution: Each hero can be recruited only once per match!"
-msgstr ""
+msgstr "Внимание: каждый герой может быть призван за игру лишь однажды!"
 
 #: gui/text/tips/iphicrates.txt:1
 msgid "IPHICRATES"
@@ -4066,17 +4066,17 @@ msgstr "ЗАСТАВЫ"
 
 #: gui/text/tips/outposts.txt:2
 msgid "Build in neutral or own territory."
-msgstr ""
+msgstr "Строится на своей или нейтральной территории."
 
 #: gui/text/tips/outposts.txt:3
 msgid "Cheap and quickly built, but weak."
-msgstr ""
+msgstr "Дешёвый и быстровозводимый, но хлипкий."
 
 #: gui/text/tips/outposts.txt:4
 msgid ""
 "Garrison infantry for extensive vision, and to prevent losing control of the"
 " outpost due to territory decay."
-msgstr ""
+msgstr "Резместите в гарнизоне пехоту, чтобы обеспечить хороший обзор и не потерять в случае утраты территории."
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"
@@ -4185,7 +4185,7 @@ msgstr "Лес, как правило, редкий, но состоит из в
 
 #: gui/text/tips/scout_towers.txt:1
 msgid "DEFENSE TOWERS"
-msgstr "ЗАЩИТНЫЕ БАШНИ"
+msgstr "ОБОРОНИТЕЛЬНЫЕ БАШНИ"
 
 #: gui/text/tips/scout_towers.txt:2
 msgid "Free-standing towers good for defending large areas of countryside."
@@ -4195,7 +4195,7 @@ msgstr "Отдельно стоящие башни хороши для обор�
 msgid ""
 "They usually cost 100 Wood and 100 Stone. Iberian Defense Towers cost 50 "
 "Wood and 250 Stone (because they're stronger)."
-msgstr "Обычная стоимость строительства 100 древесины и 100 камня. Но иберийские защитные башни стоят 50 древесины и 250 камня (т.к. они крепче)."
+msgstr "Обычная цена строительства — 100 древесины и 100 камня. Но иберийские оборонительные башни требуют 50 древесины и 250 камня (поскольку они крепче)."
 
 #: gui/text/tips/scout_towers.txt:4
 msgid "Has a ranged attack that increases for each garrisoned unit."
@@ -4209,11 +4209,11 @@ msgstr "ПРИЛИПАНИЕ"
 msgid ""
 "Structures can be aligned by keeping the snap hotkey pressed during "
 "placement."
-msgstr ""
+msgstr "Здания могут быть выровняны нажатием горячей клавиши прилипания при размещении"
 
 #: gui/text/tips/snapping.txt:3
 msgid "Aligning structures allows to conserve space for future construction."
-msgstr ""
+msgstr "Выравнивание зданий позволяет экономить пространство для будущей застройки."
 
 #: gui/text/tips/snapping.txt:4
 msgid ""
@@ -4231,7 +4231,7 @@ msgstr "Самый сильный пеший юнит в игре."
 
 #: gui/text/tips/spartan_hoplites.txt:3
 msgid "Champion Infantry available to the Spartans."
-msgstr "Элитные пехотинцы доступны спартанцам."
+msgstr "Гвардейская пехота доступна спартанцам."
 
 #: gui/text/tips/spartan_hoplites.txt:4
 msgid ""
@@ -4245,7 +4245,7 @@ msgstr "КОПЕЙЩИКИ"
 
 #: gui/text/tips/spearmen.txt:2
 msgid "The basic melee infantry for every faction in the game."
-msgstr "Основной тип пехоты ближнего боя у всех цивилизаций."
+msgstr "Основной тип тяжёлой пехоты у всех цивилизаций."
 
 #: gui/text/tips/spearmen.txt:3
 msgid "Used against cavalry for an attack bonus."
@@ -4301,7 +4301,7 @@ msgstr "Разместите раненых юнитов внутри для и�
 
 #: gui/text/tips/territory_decay.txt:1
 msgid "TERRITORY DECAY"
-msgstr "РАСПАД ТЕРРИТОРИИ"
+msgstr "РАСПАД ВЛАДЕНИЙ"
 
 #: gui/text/tips/territory_decay.txt:2
 msgid ""
@@ -4380,7 +4380,7 @@ msgstr "БОЕВЫЕ СЛОНЫ"
 
 #: gui/text/tips/war_elephants.txt:2
 msgid "Huge beasts from Africa and India, trained for war."
-msgstr "Огромные звери из Африки и Индии, обученные для участия в битвах."
+msgstr "Огромные звери из Африки и Индии, натасканные для войны."
 
 #: gui/text/tips/war_elephants.txt:3
 msgid "High Food and Metal cost, but very powerful."
