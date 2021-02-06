@@ -140,14 +140,18 @@ void* Interface::MgCallback(mg_event event, struct mg_connection *conn, const st
 				return handled;
 			}
 			ScenarioConfig scenario;
-			const std::string qs(request_info->query_string);
-			scenario.saveReplay = qs.find("saveReplay") != std::string::npos;
+			const char *query_string = request_info->query_string;
+			if (query_string != nullptr)
+			{
+				const std::string qs(query_string);
+				scenario.saveReplay = qs.find("saveReplay") != std::string::npos;
 
-			scenario.playerID = 1;
-			char playerID[1];
-			const int len = mg_get_var(request_info->query_string, qs.length(), "playerID", playerID, 1);
-			if (len != -1)
-				scenario.playerID = std::stoi(playerID);
+				scenario.playerID = 1;
+				char playerID[1];
+				const int len = mg_get_var(query_string, qs.length(), "playerID", playerID, 1);
+				if (len != -1)
+					scenario.playerID = std::stoi(playerID);
+			}
 
 			scenario.content = std::move(data);
 
