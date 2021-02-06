@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
+# akiraueno <akiraueno@outlook.com>, 2021
 # Asakura, 2017-2018
 # Jun Furukawa <junnik@icloud.com>, 2019
 # karubabu <karubabu@protonmail.com>, 2018
@@ -13,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-01-22 08:37+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-02-04 17:11+0000\n"
+"Last-Translator: akiraueno <akiraueno@outlook.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,19 +25,19 @@ msgstr ""
 
 #: simulation/data/auras/structures/arsenal_repair.jsonauraDescription
 msgid "Garrisoned Siege Engines +3 health regeneration rate."
-msgstr ""
+msgstr "駐屯している攻城兵器は耐久力の回復率が+3%増加します。"
 
 #: simulation/data/auras/structures/arsenal_repair.jsonauraName
 msgid "Arsenal Repairs"
-msgstr ""
+msgstr "兵器廠の修復効果"
 
 #: simulation/data/auras/structures/barracks_xp_trickle.jsonauraDescription
 msgid "Units gain experience while garrisoned in barracks."
-msgstr ""
+msgstr "ユニットは兵営に駐屯している間、経験値を得ます。"
 
 #: simulation/data/auras/structures/barracks_xp_trickle.jsonauraName
 msgid "Rigorous Training"
-msgstr ""
+msgstr "厳しい訓練"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Garrisoned Ships +10 health regeneration rate."
@@ -67,7 +68,7 @@ msgstr "愛国心"
 msgid ""
 "Soldiers +1 crush, hack, pierce resistance and +10% melee and ranged attack "
 "damage."
-msgstr ""
+msgstr "兵士の衝突、打撃、貫通に対する守備力+1、攻撃力+10%"
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraName
 msgid "Exhortative Presence"
@@ -83,15 +84,15 @@ msgstr "強力な神官職"
 
 #: simulation/data/auras/structures/library.jsonauraDescription
 msgid "Structures −15% technology resource costs and research time."
-msgstr ""
+msgstr "建造物のテクノロジー資源コストと研究時間を15%減少します。"
 
 #: simulation/data/auras/structures/library.jsonauraName
 msgid "Centre of Scholarship"
-msgstr ""
+msgstr "学問の中心"
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraDescription
 msgid "Structures +50% capture points garrison regeneration rate."
-msgstr ""
+msgstr "建物の占領ポイントの回復率が+50%増加します。"
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraName
 msgid "Loyalty"
@@ -115,7 +116,7 @@ msgstr "農耕ボーナス"
 
 #: simulation/data/auras/structures/temple_heal.jsonauraDescription
 msgid "Humans +1 health regeneration rate."
-msgstr ""
+msgstr "人間は耐久力の回復率が+1%増加します。"
 
 #: simulation/data/auras/structures/temple_heal.jsonauraName
 msgid "Medical Treatment"
@@ -132,7 +133,7 @@ msgstr "ギリシャ化"
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraDescription
 msgid ""
 "Garrisoned Soldiers +3 crush, hack, pierce resistance and +20 vision range."
-msgstr ""
+msgstr "駐屯した兵士の衝突、打撃、貫通に対する守備力+3、視界+20"
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraName
 msgid "Wall Protection"
@@ -166,7 +167,7 @@ msgstr "ドルイド僧"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
 msgid "Allies +10% international trade bonus."
-msgstr ""
+msgstr "同盟国に+10%の国家間貿易ボーナスを加える。"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
 msgid "Trademasters"
@@ -182,7 +183,7 @@ msgstr ""
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
 msgid "Allied Citizen Javelineers −10% resource costs."
-msgstr ""
+msgstr "同盟している市民の投槍兵は、-10%の資源コストが下がります。"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
@@ -411,7 +412,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/pers_catafalque.jsonauraName
 msgid "Great Builder"
-msgstr ""
+msgstr "大建築家"
 
 #: simulation/data/auras/units/catafalques/ptol_catafalque.jsonauraDescription
 msgid ""
@@ -421,7 +422,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/ptol_catafalque.jsonauraName
 msgid "Great Librarian"
-msgstr ""
+msgstr "大司書"
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_1.jsonauraDescription
 msgid ""

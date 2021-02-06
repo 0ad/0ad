@@ -68,7 +68,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-29 14:56+0000\n"
-"PO-Revision-Date: 2021-01-31 17:16+0000\n"
+"PO-Revision-Date: 2021-02-04 12:20+0000\n"
 "Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -116,7 +116,7 @@ msgstr "Нажмите %(hotkey)s для открытия страницы ло�
 
 #: gui/session/MenuButtons.js:158
 msgid "Options"
-msgstr "Опции"
+msgstr "Настройки"
 
 #: gui/session/MenuButtons.js:182
 msgid "Hotkeys"
@@ -283,7 +283,7 @@ msgstr "Чат врагов"
 #: gui/session/chat/ChatHistory.js:113
 msgctxt "chat history filter"
 msgid "Observer chat"
-msgstr "Чат зрителей"
+msgstr "Чат наблюдателей"
 
 #: gui/session/chat/ChatHistory.js:120
 msgctxt "chat history filter"
@@ -313,7 +313,7 @@ msgstr "Нажмите %(hotkey)s для открытия публичного �
 #: gui/session/chat/ChatInput.js:40
 #, javascript-format
 msgid "Press %(hotkey)s to open the observer chat."
-msgstr "Нажмите %(hotkey)s для открытия чата зрителей."
+msgstr "Нажмите %(hotkey)s для открытия чата наблюдателей."
 
 #: gui/session/chat/ChatInput.js:41
 #, javascript-format
@@ -582,7 +582,7 @@ msgstr "Раскрыть карту"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:195
 msgid "Enable time warp"
-msgstr " Включить деформацию времени"
+msgstr " Включить искажение времени"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:214
 msgid "Activate Rejoin Test"
@@ -617,7 +617,7 @@ msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
-msgstr "Заметка: режим искривления времени — это опция для разработчиков, не предназначенная для длительного использования. Неправильное использование данной опции может стать причиной переполнения памяти или выключения игры."
+msgstr "Заметка: режим искажения времени — это опция для разработчиков, не предназначенная для длительного использования. Неправильное использование данной опции может стать причиной переполнения памяти или выключения игры."
 
 #: gui/session/dialogs/yes_no.xml:(caption):11
 msgid "Question"
@@ -694,7 +694,7 @@ msgstr "Союзник"
 #: gui/session/diplomacy/DiplomacyDialog.xml:(tooltip):32
 #: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:81
 msgid "Neutral"
-msgstr "Нейтрал"
+msgstr "Нейтральный"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(tooltip):36
 #: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:84
@@ -804,7 +804,7 @@ msgstr "Убедитесь, что все игроки используют од
 #: gui/session/message_box/OutOfSyncNetwork.js:35
 msgctxt "Out-Of-Sync"
 msgid "Click on \"Report a Bug\" in the main menu to help fix this."
-msgstr "Кликните по кнопке \"Сообщить об ошибке\" в главном меню, чтобы помочь исправить это."
+msgstr "Щёлкните по кнопке «Сообщить об ошибке» в главном меню, чтобы помочь исправить это."
 
 #: gui/session/message_box/OutOfSyncNetwork.js:36
 #, javascript-format
@@ -875,7 +875,7 @@ msgstr "Подтверждение"
 #: gui/session/message_box/QuitConfirmationReplay.js:17
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
-msgstr "Повтор завершён. Вы хотите выйти?"
+msgstr "Повтор завершён. Хотите выйти?"
 
 #: gui/session/message_box/QuitConfirmationReplay.js:22
 msgctxt "replayFinished"
@@ -926,7 +926,7 @@ msgstr "Найти свободного рабочего"
 #: gui/session/selection_details.js:68
 #, javascript-format
 msgid "%(genericName)s — Packed"
-msgstr "%(genericName)s — Свёрнуто"
+msgstr "%(genericName)s — свёрнуто"
 
 #: gui/session/chat/ChatAddressees.js:74 gui/session/selection_details.js:78
 #, javascript-format
@@ -936,7 +936,7 @@ msgstr "\\[НЕ В СЕТИ] %(player)s"
 #: gui/session/selection_details.js:83
 #, javascript-format
 msgid "%(rank)s Rank"
-msgstr "%(rank)s Рейтинг"
+msgstr "%(rank)s ранг"
 
 #: gui/session/selection_details.js:140
 #, javascript-format
@@ -1181,7 +1181,7 @@ msgstr "Агрессивный"
 #: gui/session/selection_panels_helpers.js:57
 msgctxt "stance"
 msgid "Defensive"
-msgstr "Защищающийся"
+msgstr "Оборонительный"
 
 #: gui/session/selection_panels_helpers.js:59
 msgctxt "stance"

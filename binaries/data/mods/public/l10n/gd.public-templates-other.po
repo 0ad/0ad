@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-20 00:57+0000\n"
-"PO-Revision-Date: 2021-01-27 15:50+0000\n"
+"PO-Revision-Date: 2021-02-03 17:24+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -22,17 +22,17 @@ msgstr ""
 #: simulation/data/attack_effects/applystatus.jsondescription
 msgctxt "effect caused by an attack"
 msgid "Various (timed) effects."
-msgstr ""
+msgstr "Caochladh èifeachdan (sealach)."
 
 #: simulation/data/attack_effects/applystatus.jsonname
 msgctxt "effect caused by an attack"
 msgid "Apply Status"
-msgstr ""
+msgstr "Cuir an staid an sàs"
 
 #: simulation/data/attack_effects/capture.jsondescription
 msgctxt "effect caused by an attack"
 msgid "Reduces capture points of a target."
-msgstr ""
+msgstr "Ìslichidh seo puingean-glacaidh amais."
 
 #: simulation/data/attack_effects/capture.jsonname
 msgctxt "effect caused by an attack"
@@ -42,42 +42,42 @@ msgstr "Glacadh"
 #: simulation/data/attack_effects/damage.jsondescription
 msgctxt "effect caused by an attack"
 msgid "Reduces the health of a target."
-msgstr ""
+msgstr "Ìslichidh seo slàinte amais."
 
 #: simulation/data/attack_effects/damage.jsonname
 msgctxt "effect caused by an attack"
 msgid "Damage"
-msgstr ""
+msgstr "Dochann"
 
 #: simulation/data/status_effects/burning.jsonapplierTooltip
 msgctxt "status effect"
 msgid "This unit causes fire damage."
-msgstr ""
+msgstr "Adhbharaichidh an t-aonad seo dochann teine."
 
 #: simulation/data/status_effects/burning.jsonreceiverTooltip
 msgctxt "status effect"
 msgid "This unit is burning."
-msgstr ""
+msgstr "Tha an t-aonad seo ’na theine."
 
 #: simulation/data/status_effects/burning.jsonstatusName
 msgctxt "status effect"
 msgid "Burning"
-msgstr ""
+msgstr "’Na theine"
 
 #: simulation/data/status_effects/poisoned.jsonapplierTooltip
 msgctxt "status effect"
 msgid "This unit causes poison damage."
-msgstr ""
+msgstr "Adhbharaichidh an t-aonad seo dochann puinnsein."
 
 #: simulation/data/status_effects/poisoned.jsonreceiverTooltip
 msgctxt "status effect"
 msgid "This unit is poisoned."
-msgstr ""
+msgstr "Tha am puinnsean air an aonad seo."
 
 #: simulation/data/status_effects/poisoned.jsonstatusName
 msgctxt "status effect"
 msgid "Poisoned"
-msgstr ""
+msgstr "Puinnseanaichte"
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:24
 msgid "Army of Alexander the Great."

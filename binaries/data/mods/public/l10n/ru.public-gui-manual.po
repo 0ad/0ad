@@ -21,6 +21,7 @@
 # Malyanov Evgeniy <flange465@gmail.com>, 2015
 # Mikhail Grebelnick <oers92@mail.ru>, 2020
 # GreWeMa <gwm@tutanota.com>, 2018
+# Pavel Anisimov, 2021
 # Prince Moth <princemoth@rambler.ru>, 2016
 # Roman M. Yagodin <roman.yagodin@gmail.com>, 2017
 # Simple88, 2016
@@ -36,7 +37,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-25 08:08+0000\n"
-"PO-Revision-Date: 2021-01-31 17:07+0000\n"
+"PO-Revision-Date: 2021-02-03 11:50+0000\n"
 "Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -47,14 +48,14 @@ msgstr ""
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual[font=\"sans-14\"]"
-msgstr "[font=\"sans-bold-18\"]Руководство по 0 A.D.[font=\"sans-14\"]"
+msgstr "[font=\"sans-bold-18\"]Игровое руководство по 0 A.D.[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:2
 msgid ""
 "Thank you for installing 0 A.D.! This page will give a brief overview of the"
 " features available in this incomplete, under-development, alpha version of "
 "the game."
-msgstr "Благодарим Вас за установку 0 A.D.! На этой странице приведён краткий обзор возможностей, доступных в игре, находящейся в данный момент в разработке на стадии альфа-версии. "
+msgstr "Благодарим вас за установку 0 A.D.! На этой странице приведён краткий обзор возможностей, доступных в игре, находящейся в данный момент в разработке на стадии альфа-версии. "
 
 #: gui/manual/intro.txt:4
 msgid "[font=\"sans-bold-16\"]Graphics settings[font=\"sans-14\"]"
@@ -78,7 +79,7 @@ msgid ""
 "time strategy (RTS) games. There are currently a lot of missing features and"
 " poorly-balanced stats – you will probably have to wait until a beta release"
 " for it to work well."
-msgstr "Управление и геймплей определённо будут знакомы игрокам классических стратегий в реальном времени. В данный момент отсутствует множество функций и плохо сбалансирована статистика, поэтому вам, вероятно, придется подождать до бета – релиза, чтобы всё работало стабильно."
+msgstr "Управление и геймплей определённо будут знакомы игрокам классических стратегий в реальном времени. В данный момент отсутствует множество функций и плохо сбалансирована статистика, поэтому вам, вероятно, придется подождать до бета-релиза, чтобы всё работало стабильно."
 
 #: gui/manual/intro.txt:10
 msgid "Basic controls (by default):"
@@ -86,7 +87,7 @@ msgstr "Основные команды (по умолчанию):"
 
 #: gui/manual/intro.txt:11
 msgid "• Left-click to select units"
-msgstr "• ЛКМ — для выбора юнитов"
+msgstr "•  Левый щелчок для выбора юнитов"
 
 #: gui/manual/intro.txt:12
 msgid "• Left-click-and-drag to select groups of units"
@@ -94,11 +95,11 @@ msgstr "• Обведите с зажатой левой кнопкой для 
 
 #: gui/manual/intro.txt:13
 msgid "• Right-click to order units to the target"
-msgstr "• ПКМ - приказать юнитам идти к цели"
+msgstr "• Правый щелчок — приказать юнитам идти к цели"
 
 #: gui/manual/intro.txt:14
 msgid "• Arrow keys or WASD keys to move the camera"
-msgstr "• Стрелки или клавиши WASD — для перемещения камеры"
+msgstr "• Стрелки или клавиши WASD — перемещения камеры"
 
 #: gui/manual/intro.txt:15
 msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera"
@@ -108,7 +109,7 @@ msgstr "• Ctrl + стрелки или Shift + колесо мыши — дл�
 msgid ""
 "• Mouse wheel, or “hotkey.camera.zoom.in” and “hotkey.camera.zoom.out” keys,"
 " to zoom"
-msgstr ""
+msgstr "• Колесо мыши или клавиши “hotkey.camera.zoom.in” и “hotkey.camera.zoom.out” для изменения масштаба"
 
 #: gui/manual/intro.txt:18
 msgid "[font=\"sans-bold-16\"]Modes[font=\"sans-14\"]"
@@ -124,7 +125,7 @@ msgid ""
 "game or against one or more computer players (AI). The default AI (Petra) is"
 " under development and may not always be up to date on the new features, but"
 " you can play the game with or against it nonetheless."
-msgstr "• [font=\"sans-bold-14\"]Одиночная игра[font=\"sans-14\"] – Играйте в песочницу или против нескольких игроков, управляемых компьютером (ИИ). ИИ (Петра) находится в разработке и может некорректно работать с новыми обновлениями, однако Вы можете играть в союзе с ним или против него."
+msgstr "• [font=\"sans-bold-14\"]Одиночная игра[font=\"sans-14\"] – Играйте в песочницу или против нескольких игроков, управляемых компьютером (ИИ). ИИ (Петра) находится в разработке и может некорректно работать с новыми обновлениями, однако вы можете играть в союзе с ним или против него."
 
 #: gui/manual/intro.txt:21
 msgid ""
@@ -200,7 +201,7 @@ msgstr "[font=\"sans-bold-16\"]Горячие клавиши[font=\"sans-14\"]"
 msgid ""
 "You may change hotkeys in [font=\"sans-bold-14\"]Options > "
 "Hotkeys[font=\"sans-14\"] to suit your liking."
-msgstr ""
+msgstr "Вы можете менять назначение горячих клавиш на своё усмотрение в: [font=\"sans-bold-14\"]Настройки > Горячие клавиши[font=\"sans-14\"]."
 
 #: gui/manual/intro.txt:42
 msgid "[font=\"sans-bold-14\"]Program-wide[font=\"sans-14\"]"
@@ -209,52 +210,52 @@ msgstr "[font=\"sans-bold-14\"]Общепрограммные[font=\"sans-14\"]"
 #: gui/manual/intro.txt:43
 msgid ""
 "  hotkey.exit – Immediately close the game, without asking for confirmation"
-msgstr ""
+msgstr " hotkey.exit — немедленно закрыть игру, не спрашивая разрешения "
 
 #: gui/manual/intro.txt:44
 msgid "  hotkey.togglefullscreen – Toggle between fullscreen and windowed"
-msgstr ""
+msgstr " hotkey.togglefullscreen — переключиться между полноэкранным и оконным режимами."
 
 #: gui/manual/intro.txt:45
 msgid "  hotkey.console.toggle – Toggle console"
-msgstr ""
+msgstr " hotkey.console.toggle — показать или скрыть консоль"
 
 #: gui/manual/intro.txt:46
 msgid "  hotkey.fps.toggle – Toggle frame counter (FPS)"
-msgstr ""
+msgstr " hotkey.fps.toggle — показать или скрыть счётчик частоты обновления кадров (FPS)"
 
 #: gui/manual/intro.txt:47
 msgid ""
 "  hotkey.profile.toggle – Toggle real-time profiler (cycles through the "
 "displays of information)"
-msgstr ""
+msgstr " hotkey.profile.toggle — показать или скрыть профилировщик реального времени (переключение между способами отображения информации)"
 
 #: gui/manual/intro.txt:48
 msgid ""
 "  hotkey.profile.save – Save current profiler data to “logs/profile.txt”"
-msgstr ""
+msgstr "  hotkey.profile.save — сохранить текущие данные профилировщика в \"logs/profile.txt”"
 
 #: gui/manual/intro.txt:49
 msgid ""
 "  hotkey.screenshot – Take screenshot (in .png format, location is displayed"
 " in the top left of the GUI after the file has been saved, and can also be "
 "seen in the console/logs if you miss it there)"
-msgstr ""
+msgstr " hotkey.screenshot — сделать снимок экрана (в формате .bmp, путь к снимку будет показан в верхнем левом углу после сохранения, а также доступен в консоли и журнале)"
 
 #: gui/manual/intro.txt:50
 msgid ""
 "  hotkey.bigscreenshot – Take huge screenshot (6400×4800 pixels, in .bmp "
 "format, location is displayed in the top left of the GUI after the file has "
 "been saved, and can also be seen in the console/logs if you miss it there)"
-msgstr ""
+msgstr " hotkey.bigscreenshot — сделать огромный снимок экрана (6400 на 4800 пикселей в формате .bmp, путь к снимку будет показан в верхнем левом углу после сохранения, а также доступен в консоли и журнале)"
 
 #: gui/manual/intro.txt:51
 msgid "  hotkey.tab.next – Switch to the next tab"
-msgstr ""
+msgstr " hotkey.tab.next — переключиться на следующую вкладку"
 
 #: gui/manual/intro.txt:52
 msgid "  hotkey.tab.prev – Switch to the previous tab"
-msgstr ""
+msgstr " hotkey.tab.prev — переключиться на предыдущую вкладку"
 
 #: gui/manual/intro.txt:54
 msgid "[font=\"sans-bold-14\"]In Game[font=\"sans-14\"]"
@@ -270,7 +271,7 @@ msgstr "Двойной левый щелчок по юниту выбирает 
 msgid ""
 "  Triple Left Click \\[on unit] – Select all of your units of the same kind "
 "and the same rank on the screen"
-msgstr "Тройной клик ЛКМ \\[по юниту] – Выбрать всех ваших юнитов того же типа и ранга на экране"
+msgstr "Тройной левый щелчок по юниту — выбрать всех ваших юнитов того же типа и ранга на экране"
 
 #: gui/manual/intro.txt:57
 msgid ""
@@ -282,102 +283,102 @@ msgstr "Alt + двойной левый щелчок по юниту выбир�
 msgid ""
 "  Alt + Triple Left Click \\[on unit] – Select all your units of the same "
 "kind and rank on the entire map"
-msgstr "Alt + Тройной клик ЛКМ \\[по юниту] – Выбрать всех ваших юнитов того же типа и ранга на всей карте"
+msgstr "Alt + тройной левый щелчок по юниту — выбрать всех ваших юнитов того же типа и ранга на всей карте"
 
 #: gui/manual/intro.txt:59
 msgid "  hotkey.quicksave – Quicksave"
-msgstr ""
+msgstr "  hotkey.quicksave — быстрое сохранение"
 
 #: gui/manual/intro.txt:60
 msgid "  hotkey.quickload – Quickload"
-msgstr ""
+msgstr " hotkey.quickload — быстрая загрузка"
 
 #: gui/manual/intro.txt:61
 msgid "  hotkey.session.gui.menu.toggle – Toggle menu"
-msgstr ""
+msgstr " hotkey.session.gui.menu.toggle — показать или скрыть меню"
 
 #: gui/manual/intro.txt:62
 msgid "  hotkey.timeelapsedcounter.toggle – Toggle time elapsed counter"
-msgstr ""
+msgstr " hotkey.timeelapsedcounter.toggle — показать или скрыть время, прошедшее с начала игры"
 
 #: gui/manual/intro.txt:63
 msgid "  hotkey.cancel – Close all dialogs (chat, menu)"
-msgstr ""
+msgstr " hotkey.cancel — закрыть все диалоги (чат, меню)"
 
 #: gui/manual/intro.txt:64
 msgid "  hotkey.confirm – Open chat or send message"
-msgstr ""
+msgstr " hotkey.confirm — открыть чат или отправить сообщение"
 
 #: gui/manual/intro.txt:65
 msgid "  hotkey.teamchat – Send team chat"
-msgstr ""
+msgstr " hotkey.teamchat – отправить в чат команды"
 
 #: gui/manual/intro.txt:66
 msgid ""
 "  hotkey.privatechat – Chat with the previously selected private chat "
 "partner"
-msgstr ""
+msgstr " hotkey.privatechat — говорить с предыдущим выбранным партнёром приватного чата"
 
 #: gui/manual/intro.txt:67
 msgid "  hotkey.pause – Pause or resume the game"
-msgstr ""
+msgstr " hotkey.pause — приостановить или продолжить игру"
 
 #: gui/manual/intro.txt:68
 msgid ""
 "  hotkey.session.kill – Delete currently selected unit(s)/structure(s), ask "
 "for confirmation"
-msgstr ""
+msgstr " hotkey.session.kill — удалить выделенных юнитов или здания, спросить разрешение"
 
 #: gui/manual/intro.txt:69
 msgid ""
 "    • With hotkey.session.noconfirmation – Immediately delete currently "
 "selected unit(s)/structure(s), without asking for confirmation"
-msgstr ""
+msgstr "    • При hotkey.session.noconfirmation — немедленно удалить выделенных юнитов или здания, не спрашивая разрешения"
 
 #: gui/manual/intro.txt:70
 msgid ""
 "  hotkey.selection.add – Modifier – add to selection (works with clicking "
 "and hotkeys, e.g. the idle hotkeys)"
-msgstr ""
+msgstr " hotkey.selection.add — модификатор — добавить в выбор (работает со щелчками и горящими клавишами, например, незанятыми)"
 
 #: gui/manual/intro.txt:71
 msgid ""
 "  hotkey.selection.remove – Modifier – remove from selection (works with "
 "clicking and hotkeys, e.g. the idle hotkeys)"
-msgstr ""
+msgstr " hotkey.selection.remove — модификатор — убрать из выбора (работает со щелчками и горящими клавишами, например, незанятыми)"
 
 #: gui/manual/intro.txt:72
 msgid ""
 "  hotkey.selection.offscreen – Modifier – add all units, including offscreen"
 " units, to selection."
-msgstr ""
+msgstr " hotkey.selection.offscreen — модификатор — добавить всех юнитов, включая находящихся за пределами экрана, в выбор"
 
 #: gui/manual/intro.txt:73
 msgid ""
 "  hotkey.selection.cancel – Unselect all units, cancel building placement."
-msgstr ""
+msgstr " hotkey.selection.cancel — отменить выбор всех юнитов, отменить размещение здания"
 
 #: gui/manual/intro.txt:74
 msgid "  hotkey.selection.idlewarrior – Select idle fighter"
-msgstr ""
+msgstr " hotkey.selection.idlewarrior — выбрать бездействующего воина"
 
 #: gui/manual/intro.txt:75
 msgid ""
 "  hotkey.selection.idleworker – Select idle worker (including citizen-"
 "soldiers)"
-msgstr ""
+msgstr " hotkey.selection.idleworker — выбрать бездействующего работника (включая воинов-граждан)"
 
 #: gui/manual/intro.txt:76
 msgid "  hotkey.selection.idleunit – Select idle unit"
-msgstr ""
+msgstr " hotkey.selection.idleunit — выбрать бездействующего юнита"
 
 #: gui/manual/intro.txt:77
 msgid "  hotkey.session.stop – Stop (halt) the currently selected units"
-msgstr ""
+msgstr " hotkey.session.stop — прервать действия выбранных юнитов"
 
 #: gui/manual/intro.txt:78
 msgid "  hotkey.session.backtowork – The unit will go back to work"
-msgstr ""
+msgstr " hotkey.session.backtowork — юнит вернётся к работе"
 
 #: gui/manual/intro.txt:79
 msgid ""
@@ -389,31 +390,31 @@ msgstr "  hotkey.session.unload — высадить гарнизон из вы�
 msgid ""
 "  hotkey.selection.group.save.1 – Create control group 1 (by default, "
 "respectively 2,3, ...) from the selected unit(s)/structure(s)"
-msgstr "  hotkey.selection.group.save.1 — Создать отряд №1 (по умолчанию, далее №№2, 3 и т.д.) из выбранных юнитов или зданий"
+msgstr " hotkey.selection.group.save.1 — создать отряд №1 (по умолчанию, далее №№2, 3 и т.д.) из выбранных юнитов или зданий"
 
 #: gui/manual/intro.txt:81
 msgid ""
 "  hotkey.selection.group.select.1 – Select the unit(s)/structure(s) in "
 "control group 1"
-msgstr "  hotkey.selection.group.select.1 — Выбрать юнита или здание из отряда №1"
+msgstr " hotkey.selection.group.select.1 — выбрать юнита или здание из отряда №1"
 
 #: gui/manual/intro.txt:82
 msgid ""
 "  hotkey.selection.group.add.1 – Add control group 1 (to 0) to the selected "
 "unit(s)/structure(s)"
-msgstr "  hotkey.selection.group.add.1 — Добавить в отряд №1 (и так до №0) выбранных юнитов или зданий"
+msgstr " hotkey.selection.group.add.1 — добавить в отряд №1 (и так до №0) выбранных юнитов или зданий"
 
 #: gui/manual/intro.txt:83
 msgid ""
 "  hotkey.camera.jump.set.1 – Mark the current camera position, for jumping "
 "back to later (by default, there are 4 possible positions)"
-msgstr ""
+msgstr "  hotkey.camera.jump.set.1 — сохранить текущее положение камеры для дальнейшего возврата (по умолчанию предусмотрены 4 возможные позиции)"
 
 #: gui/manual/intro.txt:84
 msgid ""
 "  hotkey.camera.jump.1 – Move the camera to a marked position. Jump back to "
 "the last location if the camera is already over the marked position"
-msgstr ""
+msgstr " hotkey.camera.jump.1 — переместить камеру в указанное положение. Вернуть к последнему местоположению, если камера уже стоит по указанному положению"
 
 #: gui/manual/intro.txt:85
 msgid ""
@@ -422,59 +423,59 @@ msgid ""
 "hotkey.session.queueunit.5, hotkey.session.queueunit.6, "
 "hotkey.session.queueunit.7 – With training structure selected. Add the 1st, "
 "2nd, … unit shown to the training queue for all the selected structures"
-msgstr ""
+msgstr "  hotkey.session.queueunit.1, hotkey.session.queueunit.2, hotkey.session.queueunit.3, hotkey.session.queueunit.4, hotkey.session.queueunit.5, hotkey.session.queueunit.6, hotkey.session.queueunit.7 при выбранных обучающих зданиях — добавить первого, второго и т.д. показанных юнитов в очередь обучения во всех выбранных зданиях"
 
 #: gui/manual/intro.txt:86
 msgid ""
 "  hotkey.session.highlightguarded with unit(s) selected – Highlight the "
 "unit(s)/structure(s) guarded by the selection"
-msgstr ""
+msgstr "  hotkey.session.highlightguarded при выбранных юнитах — подсветить объекты, охраняемые выбранными юнитами"
 
 #: gui/manual/intro.txt:87
 msgid ""
 "  hotkey.session.highlightguarding with unit(s)/structure(s) selected – "
 "Highlight the unit(s) guarding the selection"
-msgstr ""
+msgstr "  hotkey.session.highlightguarding при выбранных объектах — подсветить юниты, охраняющие выбранные объекты"
 
 #: gui/manual/intro.txt:88
 msgid ""
 "  highlightguarding.showstatusbars – See all status bars (which would also "
 "show the building progress)"
-msgstr ""
+msgstr " highlightguarding.showstatusbars — посмотреть все строки состояния (которые могут так же показывать прогресс строительства)"
 
 #: gui/manual/intro.txt:89
 msgid "  hotkey.summary – Toggle summary window"
-msgstr ""
+msgstr " hotkey.summary — показать или скрыть панель итогов"
 
 #: gui/manual/intro.txt:90
 msgid "  hotkey.lobby – Show the multiplayer lobby in a dialog window"
-msgstr ""
+msgstr " hotkey.lobby — показать сетевую комнату в диалоговом окне"
 
 #: gui/manual/intro.txt:91
 msgid "  hotkey.session.gui.diplomacy.toggle – Toggle in-game diplomacy panel"
-msgstr ""
+msgstr "  hotkey.session.gui.diplomacy.toggle — показать или скрыть внутриигровую панель дипломатии"
 
 #: gui/manual/intro.txt:92
 msgid ""
 "  hotkey.session.gui.barter.toggle – Toggle in-game barter and trade panel"
-msgstr ""
+msgstr "  hotkey.session.gui.barter.toggle — показать или скрыть внутриигровую панель обмена и торговли"
 
 #: gui/manual/intro.txt:93
 msgid ""
 "  hotkey.session.gui.objectives.toggle – Toggle in-game objectives panel"
-msgstr ""
+msgstr " hotkey.session.gui.objectives.toggle — показать или скрыть внутриигровую панель задач"
 
 #: gui/manual/intro.txt:94
 msgid "  hotkey.session.gui.tutorial.toggle – Toggle in-game tutorial panel"
-msgstr ""
+msgstr " hotkey.session.gui.tutorial.toggle — показать или скрыть внутриигровую панель обучения"
 
 #: gui/manual/intro.txt:95
 msgid "  hotkey.structree – Toggle structure tree panel"
-msgstr ""
+msgstr " hotkey.structree — показать или скрыть панель древа строительства"
 
 #: gui/manual/intro.txt:96
 msgid "  hotkey.civinfo – Toggle civilization info panel"
-msgstr ""
+msgstr " hotkey.civinfo — показать или скрыть панель описания цивилизации"
 
 #: gui/manual/intro.txt:98
 msgid "[font=\"sans-bold-14\"]Modify mouse action[font=\"sans-14\"]"
@@ -482,70 +483,70 @@ msgstr "[font=\"sans-bold-14\"]Настроить действия мышью[fo
 
 #: gui/manual/intro.txt:99
 msgid "  hotkey.session.garrison + Right Click on structure – Garrison"
-msgstr ""
+msgstr "  hotkey.session.garrison + правый щелчок по знанию — разместиться в гарнизоне"
 
 #: gui/manual/intro.txt:100
 msgid "  hotkey.session.repair + Right Click on structure – Repair"
-msgstr ""
+msgstr " hotkey.session.repair + правый щелчок по знанию — ремонтировать"
 
 #: gui/manual/intro.txt:101
 msgid "  hotkey.session.patrol + Right Click – Patrol"
-msgstr ""
+msgstr " hotkey.session.patrol + правый щелчок — патрулировать"
 
 #: gui/manual/intro.txt:102
 msgid ""
 "  hotkey.session.queue + Right Click – Queue the move/build/gather/etc. "
 "order"
-msgstr ""
+msgstr "  hotkey.session.queue + правый щелчок — назначить очередь передвижения/строительства/сбора и т.д."
 
 #: gui/manual/intro.txt:103
 msgid ""
 "  hotkey.session.orderone + Right Click – Order one unit from the current "
 "selection to move/build/gather/etc. and unselect it. Used to quickly "
 "dispatch units with specific tasks"
-msgstr ""
+msgstr "  hotkey.session.orderone + правый щелчок — приказать одному юниту из выбранного отряда идти/строить/собирать/и т.д. и убрать его из группы. Используется для того, чтобы быстро распределить работу среди выбранных юнитов"
 
 #: gui/manual/intro.txt:104
 msgid ""
 "  hotkey.session.batchtrain + Left Click when training units – Add units in "
 "batches (the batch size is 5 by default and can be changed in the options)"
-msgstr ""
+msgstr " hotkey.session.batchtrain + левый щелчок при обучении юнитов — добавляет партии юнитов (размер партии по умолчанию — 5, может быть изменён в настройках)"
 
 #: gui/manual/intro.txt:105
 msgid ""
 "  hotkey.selection.add + Left Click or Left Drag over unit on map – Add unit"
 " to selection"
-msgstr ""
+msgstr " hotkey.selection.add + выделение юнитов левой кнопкой — добавить юнитов в выбор"
 
 #: gui/manual/intro.txt:106
 msgid ""
 "  hotkey.selection.remove + Left Click or Left Drag over unit on map – "
 "Remove unit from selection"
-msgstr ""
+msgstr " hotkey.selection.remove + выделение юнитов левой кнопкой — убрать юнитов из выбора"
 
 #: gui/manual/intro.txt:107
 msgid ""
 "  hotkey.selection.militaryonly + Left Drag over units on map – Only select "
 "military units"
-msgstr ""
+msgstr " hotkey.selection.militaryonly + выделение юнитов левой кнопкой — выбрать только военных юнитов"
 
 #: gui/manual/intro.txt:108
 msgid ""
 "  hotkey.selection.nonmilitaryonly + Left Drag over units on map – Only "
 "select non-military units"
-msgstr ""
+msgstr "  hotkey.selection.nonmilitaryonly + выделение юнитов левой кнопкой — выбрать только невоенных юнитов"
 
 #: gui/manual/intro.txt:109
 msgid ""
 "  hotkey.selection.idleonly + Left Drag over units on map – Only select idle"
 " units"
-msgstr ""
+msgstr "  hotkey.selection.idleonly + выделение юнитов левой кнопкой — выбрать только бездействующих юнитов"
 
 #: gui/manual/intro.txt:110
 msgid ""
 "  hotkey.selection.woundedonly + Left Drag over units on map – Only select "
 "wounded units"
-msgstr ""
+msgstr "  hotkey.selection.woundedonly + выделение юнитов левой кнопкой — выбрать только раненых юнитов"
 
 #: gui/manual/intro.txt:111
 msgid ""
@@ -557,31 +558,31 @@ msgstr "Правый щелчок при выбранном здании (зда
 msgid ""
 "  hotkey.session.garrison + Right Click with unit(s) selected – Garrison (If"
 " the cursor is over an own or allied structure)"
-msgstr ""
+msgstr " hotkey.session.garrison + правый щелчок при выбранных юнитах — расположиться в гарнизоне (если курсор над своим или дружественным зданием)"
 
 #: gui/manual/intro.txt:113
 msgid ""
 "  hotkey.session.attack + Right Click with unit(s) selected – Attack "
 "(instead of capture or gather)"
-msgstr ""
+msgstr " hotkey.session.attack + правый щелчок при выбранных юнитах — атаковать (вместо захвата или сбора)"
 
 #: gui/manual/intro.txt:114
 msgid ""
 "  hotkey.session.attackmove + Right Click with unit(s) selected – Attack "
 "move (by default all enemy units and structures along the way are targeted)"
-msgstr ""
+msgstr " hotkey.session.attackmove + правый щелчок при выбранных юнитах — двигаться, атакуя (по умолчанию любые юниты или здания, попадающихся на пути)"
 
 #: gui/manual/intro.txt:115
 msgid ""
 "  hotkey.session.attackmoveUnit + Right Click with unit(s) selected – Attack"
 " move, only units along the way are targeted"
-msgstr ""
+msgstr " hotkey.session.attackmoveUnit + правый щелчок при выбранных юнитах — двигаться, атакуя только юнитов, попадающихся на пути"
 
 #: gui/manual/intro.txt:116
 msgid ""
 "  hotkey.session.snaptoedges + Mouse Move near structures – Align the new "
 "structure with an existing nearby structure"
-msgstr ""
+msgstr "  hotkey.session.snaptoedges + движение курсора возле здания — выровнять новое здание по существующим соседним"
 
 #: gui/manual/intro.txt:118
 msgid "[font=\"sans-bold-14\"]Overlays[font=\"sans-14\"]"
@@ -589,48 +590,48 @@ msgstr "[font=\"sans-bold-14\"]Слои[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:119
 msgid "  hotkey.session.gui.toggle – Toggle the GUI"
-msgstr ""
+msgstr " hotkey.session.gui.toggle — показать или скрыть графический интерфейс"
 
 #: gui/manual/intro.txt:120
 msgid ""
 "  hotkey.session.devcommands.toggle – Toggle developer overlay (with "
 "developer options)"
-msgstr ""
+msgstr " hotkey.session.devcommands.toggle — показать или скрыть слой разработки (с настройками разработчика)"
 
 #: gui/manual/intro.txt:121
 msgid ""
 "  hotkey.wireframe – Toggle wireframe mode (press once to get wireframes "
 "overlaid over the textured models, twice to get just the wireframes colored "
 "by the textures, thrice to get back to normal textured mode)"
-msgstr ""
+msgstr " hotkey.wireframe — переключить отображение каркаса (одно нажатие включает отображение каркасов поверх текстурированных моделей, второе — только каркасы, окрашенные текстурами, третье — возвращает в обычный текстурированный режим)"
 
 #: gui/manual/intro.txt:122
 msgid ""
 "  hotkey.silhouettes – Toggle unit silhouettes (might give a small "
 "performance boost)"
-msgstr ""
+msgstr " hotkey.silhouettes — переключить режим отображения силуэтов юнитов (выключение может дать небольшой прирост производительности)"
 
 #: gui/manual/intro.txt:123
 msgid "  hotkey.session.diplomacycolors – Toggle diplomacy colors"
-msgstr ""
+msgstr " hotkey.session.diplomacycolors — показать или скрыть дипломатические цвета"
 
 #: gui/manual/intro.txt:124
 msgid ""
 "  hotkey.session.toggleattackrange – Toggle attack range visualizations of "
 "selected units and structures"
-msgstr ""
+msgstr " hotkey.session.toggleattackrange — показать или скрыть дистанцию атаки выбранных юнитов или зданий"
 
 #: gui/manual/intro.txt:125
 msgid ""
 "  hotkey.session.toggleaurasrange – Toggle aura range visualizations of "
 "selected units and structures"
-msgstr ""
+msgstr " hotkey.session.toggleaurasrange — показать или скрыть ауру выбранных юнитов и сооружений"
 
 #: gui/manual/intro.txt:126
 msgid ""
 "  hotkey.session.togglehealrange – Toggle heal range visualizations of "
 "selected units"
-msgstr ""
+msgstr " hotkey.session.togglehealrange — показать или скрыть дальность лечения выбранных юнитов"
 
 #: gui/manual/intro.txt:128
 msgid "[font=\"sans-bold-14\"]Camera manipulation[font=\"sans-14\"]"
@@ -638,73 +639,73 @@ msgstr "[font=\"sans-bold-14\"]Манипуляция камерой[font=\"sans
 
 #: gui/manual/intro.txt:129
 msgid "  hotkey.camera.up – Pan screen up"
-msgstr ""
+msgstr " hotkey.camera.up — переместить экран вверх"
 
 #: gui/manual/intro.txt:130
 msgid "  hotkey.camera.down – Pan screen down"
-msgstr ""
+msgstr " hotkey.camera.down — переместить экран вниз"
 
 #: gui/manual/intro.txt:131
 msgid "  hotkey.camera.left – Pan screen left"
-msgstr ""
+msgstr "  hotkey.camera.left — переместить экран влево"
 
 #: gui/manual/intro.txt:132
 msgid "  hotkey.camera.right – Pan screen right"
-msgstr ""
+msgstr " hotkey.camera.right — переместить экран вправо"
 
 #: gui/manual/intro.txt:133
 msgid "  hotkey.camera.rotate.up – Rotate camera to look upward"
-msgstr ""
+msgstr "  hotkey.camera.rotate.up — направить камеру вверх"
 
 #: gui/manual/intro.txt:134
 msgid "  hotkey.camera.rotate.down – Rotate camera to look downward"
-msgstr ""
+msgstr "  hotkey.camera.rotate.down — направить камеру вниз"
 
 #: gui/manual/intro.txt:135
 msgid "  hotkey.camera.rotate.cw – Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "  hotkey.camera.rotate.cw — поворот камеры по часовой стрелке вокруг местности"
 
 #: gui/manual/intro.txt:136
 msgid ""
 "  hotkey.camera.rotate.ccw – Rotate camera counter-clockwise around terrain"
-msgstr ""
+msgstr " hotkey.camera.rotate.ccw — поворот камеры против часовой стрелки вокруг местности"
 
 #: gui/manual/intro.txt:137
 msgid ""
 "  hotkey.camera.rotate.wheel.cw – Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "  hotkey.camera.rotate.wheel.cw — поворот камеры по часовой стрелке вокруг местности"
 
 #: gui/manual/intro.txt:138
 msgid ""
 "  hotkey.camera.rotate.wheel.ccw – Rotate camera counter-clockwise around "
 "terrain"
-msgstr ""
+msgstr "  hotkey.camera.rotate.cw — поворот камеры против часовой стрелки вокруг местности"
 
 #: gui/manual/intro.txt:139
 msgid ""
 "  hotkey.camera.follow – Follow the selected unit (move the camera to stop "
 "following the unit)"
-msgstr ""
+msgstr "  hotkey.camera.follow — следовать за выбранным юнитом (переместите камеру, чтобы прекратить)"
 
 #: gui/manual/intro.txt:140
 msgid "  hotkey.camera.reset – Reset camera zoom and orientation"
-msgstr ""
+msgstr "  hotkey.camera.reset — сброс приближения и ориентации камеры"
 
 #: gui/manual/intro.txt:141
 msgid ""
 "  hotkey.camera.zoom.in, hotkey.camera.zoom.wheel.in – Zoom in (keep pressed"
 " for continuous zoom)"
-msgstr ""
+msgstr "  hotkey.camera.zoom.in, hotkey.camera.zoom.wheel.in — приблизить камеру (держать зажатым для постоянного приближения)"
 
 #: gui/manual/intro.txt:142
 msgid ""
 "  hotkey.camera.zoom.out, hotkey.camera.zoom.wheel.out – Zoom out (keep "
 "pressed for continuous zoom)"
-msgstr ""
+msgstr " hotkey.camera.zoom.out, hotkey.camera.zoom.wheel.out — отдалить камеру (держать зажатым для постоянного отдаления)"
 
 #: gui/manual/intro.txt:143
 msgid "  hotkey.camera.pan – Keep pressed and move the mouse to pan"
-msgstr ""
+msgstr " hotkey.camera.pan — удерживайте и передвигайте мышь для перемещения экрана"
 
 #: gui/manual/intro.txt:145
 msgid "[font=\"sans-bold-14\"]During Structure Placement[font=\"sans-14\"]"
@@ -713,11 +714,11 @@ msgstr "[font=\"sans-bold-14\"]При размещении здания[font=\"s
 #: gui/manual/intro.txt:146
 msgid ""
 "  hotkey.session.rotate.ccw – Rotate structure 15 degrees counter-clockwise"
-msgstr ""
+msgstr "  hotkey.session.rotate.ccw — поворот здания на 15 градусов против часовой стрелки"
 
 #: gui/manual/intro.txt:147
 msgid "  hotkey.session.rotate.cw – Rotate structure 15 degrees clockwise"
-msgstr ""
+msgstr "  hotkey.session.rotate.cw — поворот здания на 15 градусов по часовой стрелке"
 
 #: gui/manual/intro.txt:148
 msgid ""
@@ -731,19 +732,19 @@ msgstr "[font=\"sans-bold-14\"]При загрузке сохранённой и
 
 #: gui/manual/intro.txt:151
 msgid "  hotkey.cancel – Cancel"
-msgstr ""
+msgstr " hotkey.cancel — отмена"
 
 #: gui/manual/intro.txt:152
 msgid ""
 "  hotkey.session.savedgames.delete – Delete the selected saved game, ask for"
 " confirmation"
-msgstr ""
+msgstr " hotkey.session.savedgames.delete — удалить выделенную сохранённую игру, спросив разрешения"
 
 #: gui/manual/intro.txt:153
 msgid ""
 "    • With hotkey.session.savedgames.noconfirmation – Don't ask for "
 "confirmation"
-msgstr ""
+msgstr "    • При hotkey.session.savedgames.noconfirmation — не спрашивать разрешения"
 
 #: gui/manual/manual.xml:(caption):13
 msgid "Manual"

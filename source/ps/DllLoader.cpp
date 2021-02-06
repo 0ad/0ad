@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -41,9 +41,9 @@ static CStr g_Libdir = "";
 
 // note: on Linux, lib is prepended to the SO file name
 #if OS_UNIX
-static CStr prefix = "lib";
+static CStr g_DllPrefix = "lib";
 #else
-static CStr prefix = "";
+static CStr g_DllPrefix = "";
 #endif
 
 // we usually want to use the same debug/release build type as the
@@ -99,7 +99,7 @@ static CStr GenerateFilename(const CStr& name, const CStr& suffix, const CStr& e
 	}
 #endif
 
-	n += prefix + name + suffix + extension;
+	n += g_DllPrefix + name + suffix + extension;
 	return n;
 }
 

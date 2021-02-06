@@ -8,7 +8,7 @@
 # Attila Kocsner, 2014
 # Balázs Meskó <meskobalazs@mailbox.org>, 2020
 # Balázs Meskó <meskobalazs@mailbox.org>, 2015-2019
-# Balázs Meskó <meskobalazs@mailbox.org>, 2020
+# Balázs Meskó <meskobalazs@mailbox.org>, 2020-2021
 # Balázs Úr, 2015-2016
 # 12dde84ca529f511e7ad8b70de73f71c_b688a04 <2328b4f5662bb45a5de7adc879cc0db2_206283>, 2015
 # Boross Péter <borosspet@web.de>, 2015
@@ -35,7 +35,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-29 08:08+0000\n"
-"PO-Revision-Date: 2021-01-29 09:16+0000\n"
+"PO-Revision-Date: 2021-02-01 17:41+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -179,12 +179,12 @@ msgstr "Csapat"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:26
 msgid "Browse Maps"
-msgstr ""
+msgstr "Térképek tallózása"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:29
 #, javascript-format
 msgid "Press %(hotkey)s to view the list of available maps."
-msgstr ""
+msgstr "Nyomd meg az összes elérhető térkép megtekintéséhez: %(hotkey)s."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:40
 msgid "Cheats"
@@ -838,7 +838,7 @@ msgstr ""
 
 #: gui/gamesetup_mp/gamesetup_mp.js:167
 msgid "Password is invalid."
-msgstr ""
+msgstr "A jelszó érvénytelen."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:168
 msgid "You have been banned."

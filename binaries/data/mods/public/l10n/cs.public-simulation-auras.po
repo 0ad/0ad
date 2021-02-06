@@ -18,14 +18,15 @@
 # Radek Mašek <warrriog@gmail.com>, 2018
 # Radim Kohout <radimm.kohout@gmail.com>, 2020
 # Robin Kriebel <kriebel.robin@gmail.com>, 2016-2017
+# Tomáš Jelen <mail@tomasjelen.cz>, 2021
 # Tomáš Matýs <thommathys@gmail.com>, 2018
 # Vojtěch Valigura <Encounter@seznam.cz>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-01-22 08:37+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-02-04 15:57+0000\n"
+"Last-Translator: Tomáš Jelen <mail@tomasjelen.cz>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,7 +36,7 @@ msgstr ""
 
 #: simulation/data/auras/structures/arsenal_repair.jsonauraDescription
 msgid "Garrisoned Siege Engines +3 health regeneration rate."
-msgstr ""
+msgstr "Obléhací stroje umístěné v budově získají +3 k rychlosti regenerace."
 
 #: simulation/data/auras/structures/arsenal_repair.jsonauraName
 msgid "Arsenal Repairs"
@@ -59,7 +60,7 @@ msgstr "Opravy v loděnici"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage."
-msgstr "Vojáci získávají +20% k útoku na blízko i na dálku."
+msgstr "Vojáci získávají +20 % k útoku na blízko i na dálku."
 
 #: simulation/data/auras/structures/iber_monument.jsonauraName
 msgid "Religious Fervor"
@@ -68,7 +69,7 @@ msgstr "Náboženská horlivost"
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraDescription
 #: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraDescription
 msgid "Workers +15% gather speed."
-msgstr "Dělníci získávají zdroje o 15% rychleji."
+msgstr "Dělníci získávají zdroje o 15 % rychleji."
 
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraName
 msgid "Patriotism"
@@ -98,7 +99,7 @@ msgstr ""
 
 #: simulation/data/auras/structures/library.jsonauraName
 msgid "Centre of Scholarship"
-msgstr ""
+msgstr "Centrum vzdělání"
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraDescription
 msgid "Structures +50% capture points garrison regeneration rate."
@@ -126,7 +127,7 @@ msgstr "Zemědělský přídavek"
 
 #: simulation/data/auras/structures/temple_heal.jsonauraDescription
 msgid "Humans +1 health regeneration rate."
-msgstr ""
+msgstr "Lidé získají +1 rychlost regenerace."
 
 #: simulation/data/auras/structures/temple_heal.jsonauraName
 msgid "Medical Treatment"
@@ -177,7 +178,7 @@ msgstr "Druidové"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
 msgid "Allies +10% international trade bonus."
-msgstr ""
+msgstr "Spojenci získají bonus +10 % k mezinárodnímu obchodu."
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
 msgid "Trademasters"
@@ -189,7 +190,7 @@ msgstr ""
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraName
 msgid "Products from Gaul"
-msgstr ""
+msgstr "Galské produkty"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
 msgid "Allied Citizen Javelineers −10% resource costs."
@@ -209,7 +210,7 @@ msgstr "Dodavatelé slonů"
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraDescription
 msgid "Allies +20% barter sell prices."
-msgstr ""
+msgstr "Spojenci získají +20 % při prodeji výměnou."
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraName
 msgid "Standardized Currency"
@@ -271,7 +272,7 @@ msgstr ""
 
 #: simulation/data/auras/units/carnyx.jsonauraName
 msgid "Intimidating Sound"
-msgstr ""
+msgstr "Zastrašující zvuk"
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_1.jsonauraDescription
 msgid ""
@@ -497,7 +498,7 @@ msgstr "Lykúrgovy vojenské reformy"
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_2.jsonauraDescription
 msgid "Champion Infantry Spearmen −5% resource costs."
-msgstr ""
+msgstr "-5 % z cen surovin za Elitního bojovníka s oštěpem."
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_3.jsonauraDescription
 msgid ""
@@ -537,7 +538,7 @@ msgstr "Reformy peltastů"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraDescription
 msgid "Workers +15% build rate."
-msgstr ""
+msgstr "Dělníci staví o 15 % rychleji."
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraName
 msgid "Periclean Building Program"
@@ -549,7 +550,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraName
 msgid "Temple of Athena Nike"
-msgstr ""
+msgstr "Chrám Athény Nike"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraDescription
 msgid ""
@@ -563,7 +564,7 @@ msgstr "Námořní velitel"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraDescription
 msgid "Ships −50% metal cost, −20% construction time."
-msgstr ""
+msgstr "Lodě stojí o 50 % méně kovu, staví se o 20 % rychleji."
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraName
 msgid "Naval Architect"

@@ -11,6 +11,7 @@
 # Dalcio Marçal, 2016
 # Diana K. Cury <dianakac@gmail.com>, 2016
 # Ernan, 2015
+# Estevan Borges Martins <tet3e@hotmail.com>, 2021
 # Filipe Oliveira <contato@fmoliveira.com.br>, 2017
 # Sturm <gravador202@yahoo.com.br>, 2014
 # Gustavo Moitinho <gustavo.moitinho@outlook.com>, 2016
@@ -45,8 +46,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-29 14:56+0000\n"
-"PO-Revision-Date: 2021-02-01 06:01+0000\n"
-"Last-Translator: Thiago Fontanari <thiagofontanarimaciel@gmail.com>\n"
+"PO-Revision-Date: 2021-02-04 00:14+0000\n"
+"Last-Translator: Estevan Borges Martins <tet3e@hotmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -493,7 +494,7 @@ msgstr "Você foi banido."
 
 #: gui/common/network.js:73
 msgid "Player name in use. If you were disconnected, retry in few seconds."
-msgstr ""
+msgstr "Nome do jogador em uso. Se você foi desconectado, tente novamente em alguns segundos."
 
 #: gui/common/network.js:74
 msgid "Server full."
@@ -521,11 +522,11 @@ msgstr "Senha inválida."
 
 #: gui/common/network.js:80
 msgid "Could not find an unused port for the enet STUN client."
-msgstr ""
+msgstr "Não foi possível encontrar uma porta não utilizada para o cliente ENET STUN."
 
 #: gui/common/network.js:81
 msgid "Could not find the STUN endpoint."
-msgstr ""
+msgstr "Não foi possível encontrar o STUN endpoint."
 
 #: gui/common/network.js:84
 #, javascript-format
@@ -626,7 +627,7 @@ msgstr "Escaramuça"
 msgid ""
 "A map with a predefined landscape and number of players. Freely select the "
 "other game settings."
-msgstr ""
+msgstr "Um mapa com uma paisagem predefinida e número de jogadores. Selecione livremente as outras configurações do jogo."
 
 #: gui/common/settings.js:182
 msgctxt "map"
@@ -727,7 +728,7 @@ msgstr "%(healthLabel)s %(current)s / %(max)s"
 #: gui/common/tooltips.js:167
 #, javascript-format
 msgid "%(captureLabel)s %(current)s / %(max)s"
-msgstr ""
+msgstr "%(captureLabel)s%(current)s / %(max)s"
 
 #: gui/common/tooltips.js:168
 msgid "Capture points:"
@@ -1029,7 +1030,7 @@ msgstr "Número de reparadores:"
 
 #: gui/common/tooltips.js:605
 msgid "Remaining repair time:"
-msgstr ""
+msgstr "Tempo restante de reparo:"
 
 #: gui/common/tooltips.js:609
 #, javascript-format
@@ -1052,7 +1053,7 @@ msgstr "Número de construtores:"
 
 #: gui/common/tooltips.js:639
 msgid "Remaining build time:"
-msgstr ""
+msgstr "Tempo de construção restante:"
 
 #: gui/common/tooltips.js:643
 #, javascript-format
@@ -1147,7 +1148,7 @@ msgstr "Requer %(technology)s"
 #: gui/common/tooltips.js:885
 #, javascript-format
 msgid "%(label)s %(bonus)s"
-msgstr ""
+msgstr "%(label)s%(bonus)s"
 
 #: gui/common/tooltips.js:886
 msgid "Population Bonus:"
@@ -1677,7 +1678,7 @@ msgstr "Restaurar as opções irá apagar suas configurações salvas. Deseja co
 
 #: gui/options/options.js:351
 msgid "Some setting values are invalid! Are you sure you want to save them?"
-msgstr ""
+msgstr "Alguns valores de configuração são inválidos! Tem certeza que deseja salvá-los?"
 
 #: gui/options/options.js:377
 msgid "You have unsaved changes, do you want to close this window?"
@@ -1709,7 +1710,7 @@ msgstr "Marcação de data e hora do chat"
 
 #: gui/options/options.json[0].options[11].tooltip
 msgid "Display the time at which a chat message was posted."
-msgstr ""
+msgstr "Exibe a hora em que uma mensagem de bate-papo foi postada."
 
 #: gui/options/options.json[0].options[1].label
 msgid "Player name (multiplayer)"
@@ -1890,7 +1891,7 @@ msgstr "Visão suave"
 
 #: gui/options/options.json[1].options[18].tooltip
 msgid "Lift darkness and fog of war smoothly."
-msgstr ""
+msgstr "Levante a escuridão e a névoa da guerra suavemente."
 
 #: gui/options/options.json[1].options[19].label
 msgid "VSync"
@@ -1934,7 +1935,7 @@ msgstr "Nevoeiro"
 
 #: gui/options/options.json[1].options[2].tooltip
 msgid "Enable fog."
-msgstr ""
+msgstr "Ative a névoa."
 
 #: gui/options/options.json[1].options[3].label
 msgid "Post-processing"
@@ -1946,11 +1947,11 @@ msgstr "Use filtros de pós-processamento  (HDR, Bloom, DOF, etc)."
 
 #: gui/options/options.json[1].options[4].label
 msgid "Antialiasing"
-msgstr ""
+msgstr "Antialiasing."
 
 #: gui/options/options.json[1].options[4].list[0].tooltip
 msgid "Do not use antialiasing."
-msgstr ""
+msgstr "Não use antialiasing."
 
 #: gui/options/options.json[1].options[4].list[1].label
 msgid "FXAA"
@@ -1958,47 +1959,47 @@ msgstr "FXAA"
 
 #: gui/options/options.json[1].options[4].list[1].tooltip
 msgid "Fast, but simple antialiasing."
-msgstr ""
+msgstr "Rápido, mas um antialiasing simples."
 
 #: gui/options/options.json[1].options[4].list[2].label
 msgid "MSAA (2×)"
-msgstr ""
+msgstr "MSAA (2×)"
 
 #: gui/options/options.json[1].options[4].list[2].tooltip
 msgid ""
 "Slow, but high-quality antialiasing, uses two samples per pixel. Supported "
 "for GL3.3+."
-msgstr ""
+msgstr "Lento, mas um antialiasing de alta qualidade, usa duas amostras por pixel. Suportado para GL3.3 +."
 
 #: gui/options/options.json[1].options[4].list[3].label
 msgid "MSAA (4×)"
-msgstr ""
+msgstr "MSAA (4×)"
 
 #: gui/options/options.json[1].options[4].list[3].tooltip
 msgid ""
 "Slow, but high-quality antialiasing, uses four samples per pixel. Supported "
 "for GL3.3+."
-msgstr ""
+msgstr "Lento, mas um antialiasing de alta qualidade, usa quatro amostras por pixel. Suportado para GL3.3 +."
 
 #: gui/options/options.json[1].options[4].list[4].label
 msgid "MSAA (8×)"
-msgstr ""
+msgstr "MSAA (8×)"
 
 #: gui/options/options.json[1].options[4].list[4].tooltip
 msgid ""
 "Slow, but high-quality antialiasing, uses eight samples per pixel. Supported"
 " for GL3.3+."
-msgstr ""
+msgstr "Lento, mas um antialiasing de alta qualidade, usa oito amostras por pixel. Suportado para GL3.3 +."
 
 #: gui/options/options.json[1].options[4].list[5].label
 msgid "MSAA (16×)"
-msgstr ""
+msgstr "MSAA (16×)"
 
 #: gui/options/options.json[1].options[4].list[5].tooltip
 msgid ""
 "Slow, but high-quality antialiasing, uses sixteen samples per pixel. "
 "Supported for GL3.3+."
-msgstr ""
+msgstr "Lento, mas um antialiasing de alta qualidade, usa dezesseis amostras por pixel. Suportado para GL3.3 +."
 
 #: gui/options/options.json[1].options[4].tooltip
 msgid "Reduce aliasing effect on edges."
@@ -2133,7 +2134,7 @@ msgstr "Receber notificação de áudio quando alguém digitar seu nome."
 
 #: gui/options/options.json[2].options[6].label
 msgid "New player notification in game setup"
-msgstr ""
+msgstr "Notificação de novo jogador na configuração do jogo"
 
 #: gui/options/options.json[2].options[6].tooltip
 msgid "Receive audio notification when a new client joins the game setup."
@@ -2281,7 +2282,7 @@ msgstr "Estas configurações afetam apenas o modo multijogador."
 
 #: gui/options/options.json[5].label
 msgid "Game Session"
-msgstr ""
+msgstr "Sessão de Jogo"
 
 #: gui/options/options.json[5].options[0].label
 msgid "Wounded unit health"
@@ -2400,7 +2401,7 @@ msgstr "Esta opção permite alinhar novas estruturas com estruturas próximas."
 
 #: gui/options/options.json[5].options[19].label
 msgid "Control group membership"
-msgstr ""
+msgstr "Membros do grupo de controle"
 
 #: gui/options/options.json[5].options[19].list[0].label
 msgid "Single"
@@ -2438,29 +2439,29 @@ msgstr "Número de unidades treinadas por lote por padrão."
 
 #: gui/options/options.json[5].options[20].label
 msgid "Formation control"
-msgstr ""
+msgstr "Controle de formação"
 
 #: gui/options/options.json[5].options[20].list[0].label
 msgid "Walk/Patrol Only"
-msgstr ""
+msgstr "Apenas caminhada/patrulha"
 
 #: gui/options/options.json[5].options[20].list[0].tooltip
 msgid "Other orders will disband existing formations."
-msgstr ""
+msgstr "Outras ordens irão dispersar as formações existentes."
 
 #: gui/options/options.json[5].options[20].list[1].label
 msgid "No Override"
-msgstr ""
+msgstr "Sem substituição"
 
 #: gui/options/options.json[5].options[20].list[1].tooltip
 msgid "Units in formations stay in formations."
-msgstr ""
+msgstr "Unidades em formações permanecem em formações."
 
 #: gui/options/options.json[5].options[20].tooltip
 msgid ""
 "Decide whether formations are enabled for all orders or only 'Walk' and "
 "'Patrol'."
-msgstr ""
+msgstr "Decida se as formações estão habilitadas para todas as ordens ou apenas 'Caminhada' e 'Patrulha'."
 
 #: gui/options/options.json[5].options[2].label
 msgid "Scroll batch increment ratio"
@@ -2528,7 +2529,7 @@ msgstr "Visualização do alcance de ataque"
 msgid ""
 "Display the attack range of selected defensive structures. (It can also be "
 "toggled with the hotkey during a game)."
-msgstr ""
+msgstr "Exibe o alcance de ataque das estruturas defensivas selecionadas. (Também pode ser alternado com a tecla de atalho durante um jogo)."
 
 #: gui/options/options.json[5].options[8].label
 msgid "Aura range visualization"
@@ -2538,7 +2539,7 @@ msgstr "Vizualiação do alcance de aura"
 msgid ""
 "Display the range of auras of selected units and structures. (It can also be"
 " toggled with the hotkey during a game)."
-msgstr ""
+msgstr "Exibe a gama de auras de unidades e estruturas selecionadas. (Também pode ser alternado com a tecla de atalho durante um jogo)."
 
 #: gui/options/options.json[5].options[9].label
 msgid "Heal range visualization"
@@ -2548,7 +2549,7 @@ msgstr "Vizualização do alcance de cura"
 msgid ""
 "Display the healing range of selected units. (It can also be toggled with "
 "the hotkey during a game)."
-msgstr ""
+msgstr "Exibe a faixa de cura das unidades selecionadas. (Também pode ser alternado com a tecla de atalho durante um jogo)."
 
 #: gui/options/options.json[5].tooltip
 msgid "Change options regarding the in-game settings."
@@ -2633,19 +2634,19 @@ msgstr "%(hotkey)s: Aprenda sobre as civilizações presentes em 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:48
 msgid "Catafalque Overview"
-msgstr ""
+msgstr "Visão geral do Catafalque"
 
 #: gui/pregame/MainMenuItems.js:49
 msgid "Compare the bonuses of catafalques featured in 0 A.D."
-msgstr ""
+msgstr "Compare os bônus dos catafalques apresentados em 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:55
 msgid "Map Overview"
-msgstr ""
+msgstr "Visão geral do mapa"
 
 #: gui/pregame/MainMenuItems.js:56
 msgid "View the different maps featured in 0 A.D."
-msgstr ""
+msgstr "Veja os diferentes mapas apresentados em 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:64 gui/replaymenu/replay_filters.js:144
 msgid "Single-player"
@@ -2957,7 +2958,7 @@ msgstr "Você pode enviar automaticamente um feedback que pode nos ajudar a corr
 msgid ""
 "\n"
 "     %(description)s"
-msgstr ""
+msgstr "%(description)s"
 
 #. Translation: An entry in the CivInfo Page. The newline and indentation of
 #. the description
@@ -2968,7 +2969,7 @@ msgstr ""
 #: gui/reference/civinfo/CivInfoPage.js:102
 #, javascript-format
 msgid "• %(name)s %(info_icon)s%(description)s"
-msgstr ""
+msgstr "%(name)s%(info_icon)s%(description)s"
 
 #: gui/reference/civinfo/CivInfoPage.js:113
 #, javascript-format
@@ -3000,20 +3001,20 @@ msgstr[1] "Bônus de Time"
 #: gui/reference/civinfo/Sections/Subsections/HeroesSubsection.js:29
 msgid "Hero"
 msgid_plural "Heroes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "a"
+msgstr[1] "Heróis"
 
 #: gui/reference/civinfo/Sections/Subsections/StructuresSubsection.js:29
 msgid "Specific Structure"
 msgid_plural "Specific Structures"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "a"
+msgstr[1] "Estruturas Específicas"
 
 #: gui/reference/civinfo/Sections/Subsections/TechnologiesSubsection.js:28
 msgid "Specific Technology"
 msgid_plural "Specific Technologies"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "a"
+msgstr[1] "Tecnologias específicas"
 
 #: gui/reference/common/Buttons/CivInfoButton.js:27
 #, javascript-format
@@ -3201,7 +3202,7 @@ msgstr "Um jogador e multijogador"
 
 #: gui/replaymenu/replay_filters.js:157
 msgid "Any victory condition"
-msgstr ""
+msgstr "Qualquer condição de vitória"
 
 #: gui/replaymenu/replay_filters.js:170
 msgid "Rated and unrated games"
@@ -3289,7 +3290,7 @@ msgstr "Duração"
 
 #: gui/replaymenu/replay_menu.xml:(placeholder_text):32
 msgid "Search for Player"
-msgstr ""
+msgstr "Procurar por jogador"
 
 #: gui/replaymenu/replay_menu.xml:(tooltip):240
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
@@ -3563,7 +3564,7 @@ msgstr "Coletados"
 
 #: gui/summary/summary.js:44
 msgid "Count"
-msgstr ""
+msgstr "Contagem"
 
 #: gui/summary/summary.js:49
 msgid "Sent"
@@ -3978,25 +3979,25 @@ msgstr "Quanto mais alto o nível de um soldado-cidadão (avançado, elite), mel
 
 #: gui/text/tips/heroes.txt:1
 msgid "HEROES"
-msgstr ""
+msgstr "HERÓIS"
 
 #: gui/text/tips/heroes.txt:2
 msgid ""
 "Historical characters, such as Xerxes, Leonidas, Pericles, Hannibal, Scipio,"
 " and Boudicca."
-msgstr ""
+msgstr "Personagens históricos, como Xerxes, Leônidas, Péricles, Hannibal, Cipião e Boudicca."
 
 #: gui/text/tips/heroes.txt:3
 msgid "A lot of health and very strong attacks."
-msgstr ""
+msgstr "Muita saúde e ataques muito fortes."
 
 #: gui/text/tips/heroes.txt:4
 msgid "Have auras which alter the stats of other units or structures."
-msgstr ""
+msgstr "Têm auras que alteram as estatísticas de outras unidades ou estruturas."
 
 #: gui/text/tips/heroes.txt:5
 msgid "Caution: Each hero can be recruited only once per match!"
-msgstr ""
+msgstr "Cuidado: Cada herói pode ser recrutado apenas uma vez por partida!"
 
 #: gui/text/tips/iphicrates.txt:1
 msgid "IPHICRATES"
@@ -4159,23 +4160,23 @@ msgstr "Tem um ataque à distância que aumenta para cada unidade guarnecida."
 
 #: gui/text/tips/snapping.txt:1
 msgid "SNAPPING"
-msgstr ""
+msgstr "SNAPPING"
 
 #: gui/text/tips/snapping.txt:2
 msgid ""
 "Structures can be aligned by keeping the snap hotkey pressed during "
 "placement."
-msgstr ""
+msgstr "As estruturas podem ser alinhadas mantendo a tecla de atalho pressionada durante a colocação."
 
 #: gui/text/tips/snapping.txt:3
 msgid "Aligning structures allows to conserve space for future construction."
-msgstr ""
+msgstr "O alinhamento de estruturas permite conservar espaço para futuras construções."
 
 #: gui/text/tips/snapping.txt:4
 msgid ""
 "Tightly packed groups of structures can also be used for obstructing raiding"
 " enemies."
-msgstr ""
+msgstr "Grupos de estruturas bem compactados também podem ser usados para obstruir inimigos em ataque."
 
 #: gui/text/tips/spartan_hoplites.txt:1
 msgid "SPARTIATES"

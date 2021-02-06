@@ -92,6 +92,7 @@ public:
 
 private:
 	static void* MgCallback(mg_event event, struct mg_connection *conn, const struct mg_request_info *request_info);
+	static std::string GetRequestContent(struct mg_connection *conn);
 
 	/**
 	 * Process commands, update the simulation by one turn.

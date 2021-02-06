@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-29 08:08+0000\n"
-"PO-Revision-Date: 2021-01-31 17:36+0000\n"
-"Last-Translator: Stanislas Dolcini <stan@wildfiregames.com>\n"
+"PO-Revision-Date: 2021-02-03 18:03+0000\n"
+"Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -156,12 +156,12 @@ msgstr "Sgioba"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:26
 msgid "Browse Maps"
-msgstr ""
+msgstr "Rùraich na mapaichean"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:29
 #, javascript-format
 msgid "Press %(hotkey)s to view the list of available maps."
-msgstr ""
+msgstr "Brùth air %(hotkey)s a shealltainn liosta dhe na mapaichean ri am faighinn."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:40
 msgid "Cheats"
@@ -261,13 +261,13 @@ msgstr "Na cuir ulaidhean air a’ mhapa."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:49
 msgid "World population"
-msgstr ""
+msgstr "Tomhas-sluaigh an t-saoghail"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:52
 msgid ""
 "When checked the Population Cap will be evenly distributed over all living "
 "players."
-msgstr ""
+msgstr "Nuair a bhios cromag ris, thèid an tomhas-sluaigh a riarachadh gu cothromach dha na cluicheadairean beòtha."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:128
 msgid "Biome"
@@ -507,14 +507,14 @@ msgstr "Tomhas-sluaigh as motha an t-saoghail"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:80
 msgid "Select world population limit."
-msgstr ""
+msgstr "Tagh tomhas-sluaigh as motha an t-saoghail."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:83
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if %(popCap)s population is "
 "reached."
-msgstr ""
+msgstr "Rabhadh: Dh’fhaoidte gun dig dàil air a’ gheama nuair a ruigear sluagh dhe %(popCap)s."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:62
 msgid "Ceasefire"
@@ -627,7 +627,7 @@ msgstr "Till dhan phrìomh chlàr-taice."
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr ""
+msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: Seall foir-shealladh / craobh nan sìobhaltas\nThèid am fear mu dheireadh air an robh thu fhosgladh a-rithist nuair a nì thu briogadh."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/LobbyButton.js:19
 msgid "Show the multiplayer lobby in a dialog window."
@@ -767,21 +767,21 @@ msgstr "Geama rangaichte."
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:77
 #, javascript-format
 msgid "Click to toggle the %(name)s settings tab."
-msgstr ""
+msgstr "Briog airson taba roghainnean %(name)s a thoglachadh."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:80
 #, javascript-format
 msgid "Press %(hotkey)s to move to the next settings tab."
-msgstr ""
+msgstr "Brùth air %(hotkey)s a ghluasad gu ath-thaba nan roghainnean."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:83
 #, javascript-format
 msgid "Press %(hotkey)s to move to the previous settings tab."
-msgstr ""
+msgstr "Brùth air %(hotkey)s a ghluasad gu taba roimhe nan roghainnean."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/MapPreview.js:47
 msgid "Click to view the list of available maps."
-msgstr ""
+msgstr "Briog a shealltainn liosta dhe na mapaichean ri am faighinn."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/TipsPanel.xml:(caption):9
 msgid "Show this message in the future."
@@ -819,11 +819,11 @@ msgstr "A’ ceangal ris an fhrithealaiche…"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:166
 msgid "Server is not running."
-msgstr ""
+msgstr "Chan eil am frithealaiche ’ga ruith."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:167
 msgid "Password is invalid."
-msgstr ""
+msgstr "Chan eil am facal-faire dligheach."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:168
 msgid "You have been banned."
@@ -832,7 +832,7 @@ msgstr "Chaidh do thoirmeasg."
 #: gui/gamesetup_mp/gamesetup_mp.js:171
 #, javascript-format
 msgid "\\[Invalid value %(reason)s]"
-msgstr ""
+msgstr "\\[Luach mì-dhligheach %(reason)s]"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:179
 msgid "Failed to connect to the server."
@@ -840,7 +840,7 @@ msgstr "Cha deach leinn ceangal ris an fhrithealaiche."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:181
 msgid "Connection failed"
-msgstr ""
+msgstr "Dh’fhàillig leis a’ cheangal"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:193
 #, javascript-format
@@ -911,7 +911,7 @@ msgstr "Ainm an fhrithealaiche:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):112
 msgid "Server Password:"
-msgstr ""
+msgstr "Facal-faire an fhrithealaiche:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):128
 msgid "Use STUN to work around firewalls"
@@ -931,7 +931,7 @@ msgstr "Facal-faire:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):162
 msgid "Confirm"
-msgstr ""
+msgstr "Dearbh"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):52
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):99
@@ -940,7 +940,7 @@ msgstr "Fàg bàn e gus am port tùsail a chleachdadh."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):113
 msgid "Leave blank to not require it."
-msgstr ""
+msgstr "Fàg bàn e ach nach bi e riatanach."
 
 #: gui/loading/ProgressBar.js:48
 #, javascript-format

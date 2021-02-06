@@ -15,15 +15,16 @@
 # Patrik Špaňo <pa4k.xyon@gmail.com>, 2020
 # Peto (wt-ts) <peter.tuharsky@gmail.com>, 2015-2016
 # Roman 'Kaktuxista' Benji <romanbeno273@gmail.com>, 2014
-# Angen <slavomir.slovenkai@gmail.com>, 2017-2019,2021
+# Slavomir Slovenkai <slavomir.slovenkai@gmail.com>, 2017-2019,2021
+# Slavomir Slovenkai <slavomir.slovenkai@gmail.com>, 2021
 # Stanislas Dolcini <stan@wildfiregames.com>, 2021
 # Tom Hanax, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-29 14:56+0000\n"
-"PO-Revision-Date: 2021-01-31 16:47+0000\n"
-"Last-Translator: Angen <slavomir.slovenkai@gmail.com>\n"
+"PO-Revision-Date: 2021-02-02 18:33+0000\n"
+"Last-Translator: Slavomir Slovenkai <slavomir.slovenkai@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -768,7 +769,7 @@ msgstr ""
 #: gui/common/tooltips.js:256
 #, javascript-format
 msgid "Blocks %(name)s"
-msgstr ""
+msgstr "Blokuje %(name)s"
 
 #: gui/common/tooltips.js:261 gui/common/tooltips.js:269
 #: gui/common/tooltips.js:276
@@ -784,7 +785,7 @@ msgstr ""
 #: gui/common/tooltips.js:271
 #, javascript-format
 msgid "Blocks: %(blockPercentage)s%%"
-msgstr ""
+msgstr "Blokuje: %(blockPercentage)s%%"
 
 #: gui/common/tooltips.js:278
 #, javascript-format
@@ -1242,7 +1243,7 @@ msgstr "%(label)s %(icons)s"
 
 #: gui/common/tooltips.js:1083
 msgid "Dropsite for:"
-msgstr ""
+msgstr "Úložisko pre:"
 
 #. Translation: Appears in a tooltip to indicate that right-clicking the
 #. corresponding GUI
@@ -1895,7 +1896,7 @@ msgstr ""
 
 #: gui/options/options.json[1].options[18].tooltip
 msgid "Lift darkness and fog of war smoothly."
-msgstr ""
+msgstr "Plynulé odkrývanie tmy a vojnovej hmly."
 
 #: gui/options/options.json[1].options[19].label
 msgid "VSync"
@@ -1939,7 +1940,7 @@ msgstr "Hmla"
 
 #: gui/options/options.json[1].options[2].tooltip
 msgid "Enable fog."
-msgstr ""
+msgstr "Zapnúť hmlu."
 
 #: gui/options/options.json[1].options[3].label
 msgid "Post-processing"
@@ -2543,7 +2544,7 @@ msgstr ""
 msgid ""
 "Display the range of auras of selected units and structures. (It can also be"
 " toggled with the hotkey during a game)."
-msgstr ""
+msgstr "Zobraz dosah aury označených jednotiek a budov (môže byť zmenené v hre pomocou klávesnice)"
 
 #: gui/options/options.json[5].options[9].label
 msgid "Heal range visualization"
@@ -3220,7 +3221,7 @@ msgstr "Hra jedného i viacerých hráčov"
 
 #: gui/replaymenu/replay_filters.js:157
 msgid "Any victory condition"
-msgstr ""
+msgstr "Akékoľvek víťazné podmienky "
 
 #: gui/replaymenu/replay_filters.js:170
 msgid "Rated and unrated games"
@@ -3997,7 +3998,7 @@ msgstr "Čím vyššia úroveň vojenského občana (pokročilý, elitný), tým
 
 #: gui/text/tips/heroes.txt:1
 msgid "HEROES"
-msgstr ""
+msgstr "HRDINOVIA"
 
 #: gui/text/tips/heroes.txt:2
 msgid ""

@@ -30,7 +30,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-01-26 13:38+0000\n"
+"PO-Revision-Date: 2021-02-03 11:47+0000\n"
 "Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -70,11 +70,11 @@ msgstr "Примечание"
 
 #: gui/lobby/LobbyPage/Buttons/BuddyButton.js:69
 msgid "Mark as Buddy"
-msgstr "Отметить как Друга"
+msgstr "Отметить как друга"
 
 #: gui/lobby/LobbyPage/Buttons/BuddyButton.js:70
 msgid "Unmark as Buddy"
-msgstr "Снять отметку Друга"
+msgstr "Снять отметку друга"
 
 #: gui/lobby/LobbyPage/Buttons/HostButton.js:10
 msgid "Host Game"
@@ -86,7 +86,7 @@ msgstr "Ваши действующие моды не сочетаются с м
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:42
 msgid "Do you want to switch to the mod selection page?"
-msgstr "Вы хотите переключиться на страницу выбора модификаций?"
+msgstr "Вы хотите переключиться на страницу выбора модов?"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:43
 msgid "Incompatible mods"
@@ -94,7 +94,7 @@ msgstr "Несовместимые моды"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:52
 msgid "The game has already started. Do you want to join as observer?"
-msgstr "Игра уже началась. Вы хотите подключиться как зритель?"
+msgstr "Игра уже началась. Хотите подключиться как наблюдатель?"
 
 #. Translation: Join the game currently selected in the list.
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:104
@@ -328,7 +328,7 @@ msgstr "ИЗГНАН"
 
 #: gui/lobby/LobbyPage/ConnectionHandler.js:61
 msgid "You have been disconnected from the lobby. Do you want to reconnect?"
-msgstr "Вы были отключены от комнаты. Вы хотите переподключиться?"
+msgstr "Вы были отключены от комнаты. Хотите переподключиться?"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:53
 #: gui/lobby/LobbyPage/ConnectionHandler.js:62
@@ -551,7 +551,7 @@ msgstr "%(percentage)s%%"
 #: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):8
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):30
 msgid "Current Rank:"
-msgstr "Текущий Ранг:"
+msgstr "Текущий ранг:"
 
 #: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):12
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):34
@@ -826,7 +826,7 @@ msgid ""
 "number of units trained, resources gathered and the winner of the match) to "
 "Wildfire Games, so that Wildfire Games can adapt the players ratings based "
 "on these statistics."
-msgstr "Во время рейтинговых сражений игроки отправляют игровые данные (такие как количество обученных единиц, собранные ресурсы и победитель) в Wildfire Games, чтобы Wildfire Games могла обновлять рейтинги игроков на основе этой статистики."
+msgstr "Во время рейтинговых сражений игроки отправляют игровые данные (такие как количество обученных единиц, собранные ресурсы и имена победителей) в Wildfire Games, чтобы Wildfire Games могла обновлять рейтинги игроков на основе этой статистики."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:37
 msgid "Wildfire Games stores match statistics to:"
