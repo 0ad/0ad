@@ -132,7 +132,7 @@ class GameSettingsControl
 				g_GameAttributes = this.gameSettingsFile.loadFile();
 
 			this.updateGameAttributes();
-			this.setNetworkGameAttributes();
+			this.setNetworkGameAttributesImmediately();
 		}
 	}
 
@@ -223,9 +223,19 @@ class GameSettingsControl
 	 *
 	 * To avoid an infinite loop, do not call this function when a game setup message was
 	 * received and the data had only been modified deterministically.
+	 *
+	 * This is run on a timer to avoid flooding the network with messages,
+	 * e.g. when modifying a slider.
 	 */
 	setNetworkGameAttributes()
 	{
+		if (g_IsNetworked && this.timer === undefined)
+			this.timer = setTimeout(this.setNetworkGameAttributesImmediately.bind(this), this.Timeout);
+	}
+
+	setNetworkGameAttributesImmediately()
+	{
+		delete this.timer;
 		if (g_IsNetworked)
 			Engine.SetNetworkGameAttributes(g_GameAttributes);
 	}
@@ -274,11 +284,16 @@ class GameSettingsControl
 		for (let handler of this.gameAttributesFinalizeHandlers)
 			handler();
 
-		this.setNetworkGameAttributes();
+		this.setNetworkGameAttributesImmediately();
 	}
 }
 
 GameSettingsControl.prototype.MaxDepth = 512;
+
+/**
+ * Wait (at most) this many milliseconds before sending network messages.
+ */
+GameSettingsControl.prototype.Timeout = 400;
 
 /**
  * This number is used when selecting the random map type, which doesn't provide PlayerData.
