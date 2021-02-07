@@ -160,7 +160,7 @@ class GameList
 				this.list_maxnbp[i] = displayData.playerCount;
 				this.list_gameRating[i] = game.gameRating;
 				this.list[i] = "";
-				if (selectedGame && game.hostUsername == selectedGame.hostUsername && game.stanza.gameName == selectedGame.stanza.gameName)
+				if (selectedGame && game.stanza.hostUsername == selectedGame.stanza.hostUsername && game.stanza.name == selectedGame.stanza.name)
 					selectedGameIndex = i;
 			});
 			Engine.ProfileStop();
