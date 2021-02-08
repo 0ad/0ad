@@ -5586,6 +5586,16 @@ UnitAI.prototype.Attack = function(target, allowCapture = true, queued = false)
 
 	this.RememberTargetPosition(order);
 
+	if (this.order && this.order.type == "Attack" &&
+		this.order.data &&
+		this.order.data.target === order.target &&
+		this.order.data.allowCapture === order.allowCapture)
+	{
+		this.order.data.lastPos = order.lastPos;
+		this.order.data.force = order.force;
+		return;
+	}
+
 	this.AddOrder("Attack", order, queued);
 };
 
@@ -5672,6 +5682,16 @@ UnitAI.prototype.PerformGather = function(target, queued, force)
 	this.RememberTargetPosition(order);
 	order.initPos = order.lastPos;
 
+	if (this.order &&
+		(this.order.type == "Gather" || this.order.type == "Attack") &&
+		this.order.data &&
+		this.order.data.target === order.target)
+	{
+		this.order.data.lastPos = order.lastPos;
+		this.order.data.force = order.force;
+		return;
+	}
+
 	this.AddOrder("Gather", order, queued);
 };
 
@@ -5698,6 +5718,14 @@ UnitAI.prototype.Heal = function(target, queued)
 	if (!this.CanHeal(target))
 	{
 		this.WalkToTarget(target, queued);
+		return;
+	}
+
+	if (this.order && this.order.type == "Heal" &&
+		this.order.data &&
+		this.order.data.target === target)
+	{
+		this.order.data.force = true;
 		return;
 	}
 
@@ -5887,6 +5915,15 @@ UnitAI.prototype.Repair = function(target, autocontinue, queued)
 	if (!this.CanRepair(target))
 	{
 		this.WalkToTarget(target, queued);
+		return;
+	}
+
+	if (this.order && this.order.type == "Repair" &&
+		this.order.data &&
+		this.order.data.target === target &&
+		this.order.data.autocontinue === autocontinue)
+	{
+		this.order.data.force = true;
 		return;
 	}
 
