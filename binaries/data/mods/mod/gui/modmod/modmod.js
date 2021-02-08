@@ -151,6 +151,8 @@ function displayModList(listObjectName, folders)
 
 	folders = folders.filter(filterMod);
 
+	let selected = listObject.selected !== -1 ? listObject.list_name[listObject.selected] : null;
+
 	listObject.list_name = folders.map(folder => g_Mods[folder].name).map(name => g_InstalledMods.indexOf(name) == -1 ? name : coloredText(name, "green"));
 	listObject.list_folder = folders;
 	listObject.list_label = folders.map(folder => g_Mods[folder].label);
@@ -158,6 +160,8 @@ function displayModList(listObjectName, folders)
 	listObject.list_version = folders.map(folder => g_Mods[folder].version);
 	listObject.list_dependencies = folders.map(folder => g_Mods[folder].dependencies.join(" "));
 	listObject.list = folders;
+
+	listObject.selected = selected ? listObject.list_name.indexOf(selected) : -1;
 
 	return folders;
 }
