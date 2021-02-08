@@ -27,6 +27,7 @@
 
 #include <memory>
 #include <utility>
+#include <vector>
 
 // CVertexBufferManager: owner object for CVertexBuffer objects; acts as
 // 'front end' for their allocation and destruction
@@ -106,7 +107,7 @@ private:
 	CVertexBuffer::VBChunk* AllocateImpl(size_t vertexSize, size_t numVertices, GLenum usage, GLenum target, void* backingStore = nullptr, Group group = Group::DEFAULT);
 
 	/// List of all known vertex buffers
-	std::list<std::unique_ptr<CVertexBuffer>> m_Buffers[static_cast<std::size_t>(Group::COUNT)];
+	std::vector<std::unique_ptr<CVertexBuffer>> m_Buffers[static_cast<std::size_t>(Group::COUNT)];
 };
 
 extern CVertexBufferManager g_VBMan;
