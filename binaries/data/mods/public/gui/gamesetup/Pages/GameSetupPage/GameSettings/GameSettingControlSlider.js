@@ -60,8 +60,11 @@ class GameSettingControlSlider extends GameSettingControl
 
 	onValueChangeSuper()
 	{
-		if (!this.isInGuiUpdate)
-			this.onValueChange(this.slider.value);
+		if (!this.isInGuiUpdate && !this.timer)
+			this.timer = setTimeout(() => {
+				this.onValueChange(this.slider.value);
+				delete this.timer;
+			}, this.Timeout);
 	}
 
 	onPress()
@@ -74,6 +77,8 @@ class GameSettingControlSlider extends GameSettingControl
 		this.isPressing = false;
 	}
 }
+
+GameSettingControlSlider.prototype.Timeout = 50;
 
 GameSettingControlSlider.prototype.UnknownValue =
 	translateWithContext("settings value", "Unknown");
