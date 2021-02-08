@@ -47,7 +47,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-29 14:56+0000\n"
-"PO-Revision-Date: 2021-02-04 16:19+0000\n"
+"PO-Revision-Date: 2021-02-07 21:14+0000\n"
 "Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -1950,13 +1950,13 @@ msgstr "Для уменьшения нагрузки на процессор, у
 
 #: gui/options/options.json[1].options[21].label
 msgid "FPS throttling in games"
-msgstr "Дросселирование FPS в игре"
+msgstr "Ограничение FPS в игре"
 
 #: gui/options/options.json[1].options[21].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."
-msgstr "Для уменьшения нагрузки на процессор, частота отрисовки в игре динамически дросселируется. Установите на максимум для отключения дросселирования."
+msgstr "Для уменьшения нагрузки на процессор, частота отрисовки в игре ограничивается. Установите на максимум для отключения дросселирования."
 
 #: gui/options/options.json[1].options[2].label
 msgid "Fog"

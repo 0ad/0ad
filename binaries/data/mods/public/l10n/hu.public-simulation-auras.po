@@ -7,7 +7,7 @@
 # András Vöröskői <voroskoi@gmail.com>, 2019
 # Balázs Meskó <meskobalazs@mailbox.org>, 2020
 # Balázs Meskó <meskobalazs@mailbox.org>, 2016-2020
-# Balázs Meskó <meskobalazs@mailbox.org>, 2020
+# Balázs Meskó <meskobalazs@mailbox.org>, 2020-2021
 # Balázs Úr, 2017
 # Gyuris Gellért <jobel@ujevangelizacio.hu>, 2016
 # Gyuris Gellért <jobel@ujevangelizacio.hu>, 2017
@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-01-22 08:37+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-02-05 16:17+0000\n"
+"Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -89,7 +89,7 @@ msgstr "Erős papság"
 
 #: simulation/data/auras/structures/library.jsonauraDescription
 msgid "Structures −15% technology resource costs and research time."
-msgstr ""
+msgstr "-15% nyersanyagköltség és kutatási idő az épületekben kutatott fejlesztéseknél."
 
 #: simulation/data/auras/structures/library.jsonauraName
 msgid "Centre of Scholarship"
@@ -148,7 +148,7 @@ msgstr "Falvédelem"
 msgid ""
 "+20% maximum population limit (requires the “Glorious Expansion” "
 "technology)."
-msgstr ""
+msgstr "+20% maximális népességkorlát (a „Dicsőséges hódítás” fejlesztés szükséges)."
 
 #: simulation/data/auras/structures/wonder_population_cap.jsonauraName
 msgid "Glorious Expansion"
@@ -214,7 +214,7 @@ msgstr "Egységes váltó"
 msgid ""
 "Allied Temples −50% resource costs and building time; Temple technologies "
 "−50% resource costs and research time."
-msgstr "Minden szövetséges templomnál -50% nyersanyagköltség és építési idő; minden templomi technológiánál -50% nyersanyagköltség és kutatási idő."
+msgstr "Minden szövetséges templomnál -50% nyersanyagköltség és építési idő; minden templomi fejlesztésnél -50% nyersanyagköltség és kutatási idő."
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraName
 msgid "Ashoka's Religious Support"
@@ -282,7 +282,7 @@ msgstr "Gazdasági reformok"
 msgid ""
 "Solon brought in a new system of weights and measures, fathers were encouraged to find trades for their sons.\n"
 "Economic technologies −10% resource costs."
-msgstr "Szolón új súly- és mértékrendszert vezetett be, az apákat ösztönözte, hogy új szakmát keressenek fiaiknak.\n-10% a gazdasági technológiák költségéből."
+msgstr "Szolón új súly- és mértékrendszert vezetett be, az apákat ösztönözte, hogy új szakmát keressenek fiaiknak.\n-10% a gazdasági fejlesztések költségéből."
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_2.jsonauraName
 msgid "Economic Fortune"
@@ -423,7 +423,7 @@ msgstr "Nagy építő"
 msgid ""
 "Continuing his predecessors' work on the Great Library of Alexandria, he seized every book brought to the city, thus leaving to his people a vast amount of hoarded wisdom.\n"
 "Structure technologies −10% resource costs."
-msgstr "Elődei munkáját folytatva Alexandrai Nagykönyvtárán, beszerzett minden könyvet, ami a városba került, így nagy mennyiségű felhalmozott tudást hagyva a népének.\n-10% kutatási költség minden épülettechnológiánál."
+msgstr "Elődei munkáját folytatva Alexandria Nagykönyvtárán, beszerzett minden könyvet, ami a városba került, így nagy mennyiségű felhalmozott tudást hagyva a népének.\n-10% kutatási költség minden épületfejlesztésnél."
 
 #: simulation/data/auras/units/catafalques/ptol_catafalque.jsonauraName
 msgid "Great Librarian"
@@ -453,7 +453,7 @@ msgstr "A köztársaság alapítója és védelmezője"
 msgid ""
 "Antiochus I laid the foundation for the Ezida Temple in Borsippa.\n"
 "Temples −10% resource costs; Temple technologies −10% resource costs."
-msgstr "I. Antiokhosz rakta le az Ezida templom alapkövét Borszippában.\n-10% nyersanyagköltség a templomoknál és templomi technológiáknál."
+msgstr "I. Antiokhosz rakta le az Ezida templom alapkövét Borszippában.\n-10% nyersanyagköltség a templomoknál és templomi fejlesztéseknél."
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_1.jsonauraName
 msgid "Founder of the Ezida Temple"
@@ -800,7 +800,7 @@ msgstr "Pürrhoszi győzelem"
 msgid ""
 "Temples −50% resource costs and build time. Temple technologies −50% "
 "resource costs and research time."
-msgstr "−50% nyersanyagköltség és építési idő a templomoknál. −50% nyersanyagköltség és kutatási idő a templomi technológiáknál."
+msgstr "−50% nyersanyagköltség és építési idő a templomoknál. −50% nyersanyagköltség és kutatási idő a templomi fejlesztéseknél."
 
 #: simulation/data/auras/units/heroes/maur_hero_ashoka.jsonauraName
 msgid "Buddhism"
@@ -810,7 +810,7 @@ msgstr "Buddhizmus"
 msgid ""
 "When garrisoned, the Structure's technologies have −20% resource cost and "
 "−50% research time."
-msgstr "Beszállásolva −20% nyersanyagköltség és −50% kutatási idő az épülettechnológiáknál."
+msgstr "Beszállásolva −20% nyersanyagköltség és −50% kutatási idő az épületfejlesztéseknél."
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraName
 msgid "Teacher"
