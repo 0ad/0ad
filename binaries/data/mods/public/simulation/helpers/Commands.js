@@ -1473,7 +1473,7 @@ function GetFormationUnitAIs(ents, player, cmd, formationTemplate, forceTemplate
 				cmpFormation.DeleteTwinFormations();
 
 				// The whole formation was selected, so reuse its controller for this command.
-				if (!forceTemplate)
+				if (!forceTemplate || formationTemplate == formation.templates[fid])
 				{
 					formationTemplate = formation.templates[fid];
 					formationUnitAIs = [Engine.QueryInterface(+fid, IID_UnitAI)];
