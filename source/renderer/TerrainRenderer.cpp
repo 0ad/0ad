@@ -292,8 +292,7 @@ void TerrainRenderer::RenderTerrainShader(const CShaderDefines& context, int cul
 	shaderSolid->Uniform(str_color, 0.0f, 0.0f, 0.0f, 1.0f);
 
 	PROFILE_START("render terrain sides");
-	for (size_t i = 0; i < visiblePatches.size(); ++i)
-		visiblePatches[i]->RenderSides(shaderSolid);
+	CPatchRData::RenderSides(visiblePatches, shaderSolid);
 	PROFILE_END("render terrain sides");
 
 	techSolid->EndPass();

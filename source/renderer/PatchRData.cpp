@@ -78,15 +78,15 @@ CPatchRData::CPatchRData(CPatch* patch, CSimulation2* simulation) :
 CPatchRData::~CPatchRData()
 {
 	// release vertex buffer chunks
-	if (m_VBSides) g_VBMan.Release(m_VBSides);
-	if (m_VBBase) g_VBMan.Release(m_VBBase);
-	if (m_VBBaseIndices) g_VBMan.Release(m_VBBaseIndices);
-	if (m_VBBlends) g_VBMan.Release(m_VBBlends);
-	if (m_VBBlendIndices) g_VBMan.Release(m_VBBlendIndices);
-	if (m_VBWater) g_VBMan.Release(m_VBWater);
-	if (m_VBWaterIndices) g_VBMan.Release(m_VBWaterIndices);
-	if (m_VBWaterShore) g_VBMan.Release(m_VBWaterShore);
-	if (m_VBWaterIndicesShore) g_VBMan.Release(m_VBWaterIndicesShore);
+	m_VBSides.Reset();
+	m_VBBase.Reset();
+	m_VBBaseIndices.Reset();
+	m_VBBlends.Reset();
+	m_VBBlendIndices.Reset();
+	m_VBWater.Reset();
+	m_VBWaterIndices.Reset();
+	m_VBWaterShore.Reset();
+	m_VBWaterIndicesShore.Reset();
 }
 
 /**
@@ -290,31 +290,22 @@ void CPatchRData::BuildBlends()
 	}
 
 	// Release existing vertex buffer chunks
-	if (m_VBBlends)
-	{
-		g_VBMan.Release(m_VBBlends);
-		m_VBBlends = 0;
-	}
-
-	if (m_VBBlendIndices)
-	{
-		g_VBMan.Release(m_VBBlendIndices);
-		m_VBBlendIndices = 0;
-	}
+	m_VBBlends.Reset();
+	m_VBBlendIndices.Reset();
 
 	if (blendVertices.size())
 	{
 		// Construct vertex buffer
 
-		m_VBBlends = g_VBMan.Allocate(sizeof(SBlendVertex), blendVertices.size(), GL_STATIC_DRAW, GL_ARRAY_BUFFER);
-		m_VBBlends->m_Owner->UpdateChunkVertices(m_VBBlends, &blendVertices[0]);
+		m_VBBlends = g_VBMan.AllocateChunk(sizeof(SBlendVertex), blendVertices.size(), GL_STATIC_DRAW, GL_ARRAY_BUFFER, nullptr, CVertexBufferManager::Group::TERRAIN);
+		m_VBBlends->m_Owner->UpdateChunkVertices(m_VBBlends.Get(), &blendVertices[0]);
 
 		// Update the indices to include the base offset of the vertex data
 		for (size_t k = 0; k < blendIndices.size(); ++k)
 			blendIndices[k] += static_cast<u16>(m_VBBlends->m_Index);
 
-		m_VBBlendIndices = g_VBMan.Allocate(sizeof(u16), blendIndices.size(), GL_STATIC_DRAW, GL_ELEMENT_ARRAY_BUFFER);
-		m_VBBlendIndices->m_Owner->UpdateChunkVertices(m_VBBlendIndices, &blendIndices[0]);
+		m_VBBlendIndices = g_VBMan.AllocateChunk(sizeof(u16), blendIndices.size(), GL_STATIC_DRAW, GL_ELEMENT_ARRAY_BUFFER, nullptr, CVertexBufferManager::Group::TERRAIN);
+		m_VBBlendIndices->m_Owner->UpdateChunkVertices(m_VBBlendIndices.Get(), &blendIndices[0]);
 	}
 }
 
@@ -509,17 +500,13 @@ void CPatchRData::BuildIndices()
 	}
 
 	// Release existing vertex buffer chunk
-	if (m_VBBaseIndices)
-	{
-		g_VBMan.Release(m_VBBaseIndices);
-		m_VBBaseIndices = 0;
-	}
+	m_VBBaseIndices.Reset();
 
 	ENSURE(indices.size());
 
 	// Construct vertex buffer
-	m_VBBaseIndices = g_VBMan.Allocate(sizeof(u16), indices.size(), GL_STATIC_DRAW, GL_ELEMENT_ARRAY_BUFFER);
-	m_VBBaseIndices->m_Owner->UpdateChunkVertices(m_VBBaseIndices, &indices[0]);
+	m_VBBaseIndices = g_VBMan.AllocateChunk(sizeof(u16), indices.size(), GL_STATIC_DRAW, GL_ELEMENT_ARRAY_BUFFER, nullptr, CVertexBufferManager::Group::TERRAIN);
+	m_VBBaseIndices->m_Owner->UpdateChunkVertices(m_VBBaseIndices.Get(), &indices[0]);
 }
 
 
@@ -561,9 +548,9 @@ void CPatchRData::BuildVertices()
 
 	// upload to vertex buffer
 	if (!m_VBBase)
-		m_VBBase = g_VBMan.Allocate(sizeof(SBaseVertex), vsize * vsize, GL_STATIC_DRAW, GL_ARRAY_BUFFER);
+		m_VBBase = g_VBMan.AllocateChunk(sizeof(SBaseVertex), vsize * vsize, GL_STATIC_DRAW, GL_ARRAY_BUFFER, nullptr, CVertexBufferManager::Group::TERRAIN);
 
-	m_VBBase->m_Owner->UpdateChunkVertices(m_VBBase, &vertices[0]);
+	m_VBBase->m_Owner->UpdateChunkVertices(m_VBBase.Get(), &vertices[0]);
 }
 
 void CPatchRData::BuildSide(std::vector<SSideVertex>& vertices, CPatchSideFlags side)
@@ -643,8 +630,8 @@ void CPatchRData::BuildSides()
 		return;
 
 	if (!m_VBSides)
-		m_VBSides = g_VBMan.Allocate(sizeof(SSideVertex), sideVertices.size(), GL_STATIC_DRAW, GL_ARRAY_BUFFER);
-	m_VBSides->m_Owner->UpdateChunkVertices(m_VBSides, &sideVertices[0]);
+		m_VBSides = g_VBMan.AllocateChunk(sizeof(SSideVertex), sideVertices.size(), GL_STATIC_DRAW, GL_ARRAY_BUFFER, nullptr, CVertexBufferManager::Group::DEFAULT);
+	m_VBSides->m_Owner->UpdateChunkVertices(m_VBSides.Get(), &sideVertices[0]);
 }
 
 void CPatchRData::Build()
@@ -723,6 +710,8 @@ using ShaderTechniqueBatches = PooledBatchMap<CShaderTechniquePtr, TextureBatche
 void CPatchRData::RenderBases(
 	const std::vector<CPatchRData*>& patches, const CShaderDefines& context, ShadowMap* shadow)
 {
+	PROFILE3("render terrain bases");
+
 	Arena arena;
 
 	ShaderTechniqueBatches batches(ShaderTechniqueBatches::key_compare(), (ShaderTechniqueBatches::allocator_type(arena)));
@@ -868,6 +857,8 @@ struct SBlendStackItem
 void CPatchRData::RenderBlends(
 	const std::vector<CPatchRData*>& patches, const CShaderDefines& context, ShadowMap* shadow)
 {
+	PROFILE3("render terrain blends");
+
 	Arena arena;
 
 	using BatchesStack = std::vector<SBlendBatch, ProxyAllocator<SBlendBatch, Arena>>;
@@ -893,7 +884,7 @@ void CPatchRData::RenderBlends(
  		if (!patch->m_BlendSplats.empty())
  		{
 
- 			blendStacks.push_back(SBlendStackItem(patch->m_VBBlends, patch->m_VBBlendIndices, patch->m_BlendSplats, arena));
+ 			blendStacks.push_back(SBlendStackItem(patch->m_VBBlends.Get(), patch->m_VBBlendIndices.Get(), patch->m_BlendSplats, arena));
  			// Reverse the splats so the first to be rendered is at the back of the list
  			std::reverse(blendStacks.back().splats.begin(), blendStacks.back().splats.end());
  		}
@@ -1053,6 +1044,8 @@ void CPatchRData::RenderBlends(
 
 void CPatchRData::RenderStreams(const std::vector<CPatchRData*>& patches, const CShaderProgramPtr& shader, int streamflags)
 {
+	PROFILE3("render terrain streams");
+
 	// Each batch has a list of index counts, and a list of pointers-to-first-indexes
 	using StreamBatchElements = std::pair<std::vector<GLint>, std::vector<void*> > ;
 
@@ -1152,29 +1145,35 @@ void CPatchRData::RenderOutline()
 #endif
 }
 
-void CPatchRData::RenderSides(CShaderProgramPtr& shader)
+void CPatchRData::RenderSides(const std::vector<CPatchRData*>& patches, const CShaderProgramPtr& shader)
 {
-	ENSURE(m_UpdateFlags==0);
-
-	if (!m_VBSides)
-		return;
-
 	glDisable(GL_CULL_FACE);
 
-	SSideVertex *base = (SSideVertex *)m_VBSides->m_Owner->Bind();
+	CVertexBuffer* lastVB = nullptr;
+	for (CPatchRData* patch : patches)
+	{
+		ENSURE(patch->m_UpdateFlags == 0);
+		if (!patch->m_VBSides)
+			continue;
+		if (lastVB != patch->m_VBSides->m_Owner)
+		{
+			lastVB = patch->m_VBSides->m_Owner;
+			SSideVertex *base = (SSideVertex*)patch->m_VBSides->m_Owner->Bind();
 
-	// setup data pointers
-	GLsizei stride = sizeof(SSideVertex);
-	shader->VertexPointer(3, GL_FLOAT, stride, &base->m_Position);
+			// setup data pointers
+			GLsizei stride = sizeof(SSideVertex);
+			shader->VertexPointer(3, GL_FLOAT, stride, &base->m_Position);
+		}
 
-	shader->AssertPointersBound();
+		shader->AssertPointersBound();
 
-	if (!g_Renderer.m_SkipSubmit)
-		glDrawArrays(GL_TRIANGLE_STRIP, m_VBSides->m_Index, (GLsizei)m_VBSides->m_Count);
+		if (!g_Renderer.m_SkipSubmit)
+			glDrawArrays(GL_TRIANGLE_STRIP, patch->m_VBSides->m_Index, (GLsizei)patch->m_VBSides->m_Count);
 
-	// bump stats
-	g_Renderer.m_Stats.m_DrawCalls++;
-	g_Renderer.m_Stats.m_TerrainTris += m_VBSides->m_Count - 2;
+		// bump stats
+		g_Renderer.m_Stats.m_DrawCalls++;
+		g_Renderer.m_Stats.m_TerrainTris += patch->m_VBSides->m_Count - 2;
+	}
 
 	CVertexBuffer::Unbind();
 
@@ -1220,26 +1219,11 @@ void CPatchRData::BuildWater()
 	// Number of vertices in each direction in each patch
 	ENSURE(PATCH_SIZE % water_cell_size == 0);
 
-	if (m_VBWater)
-	{
-		g_VBMan.Release(m_VBWater);
-		m_VBWater = nullptr;
-	}
-	if (m_VBWaterIndices)
-	{
-		g_VBMan.Release(m_VBWaterIndices);
-		m_VBWaterIndices = nullptr;
-	}
-	if (m_VBWaterShore)
-	{
-		g_VBMan.Release(m_VBWaterShore);
-		m_VBWaterShore = nullptr;
-	}
-	if (m_VBWaterIndicesShore)
-	{
-		g_VBMan.Release(m_VBWaterIndicesShore);
-		m_VBWaterIndicesShore = nullptr;
-	}
+	m_VBWater.Reset();
+	m_VBWaterIndices.Reset();
+	m_VBWaterShore.Reset();
+	m_VBWaterIndicesShore.Reset();
+
 	m_WaterBounds.SetEmpty();
 
 	// We need to use this to access the water manager or we may not have the
@@ -1393,21 +1377,21 @@ void CPatchRData::BuildWater()
 	// No vertex buffers if no data generated
 	if (!water_indices.empty())
 	{
-		m_VBWater = g_VBMan.Allocate(sizeof(SWaterVertex), water_vertex_data.size(), GL_STATIC_DRAW, GL_ARRAY_BUFFER);
-		m_VBWater->m_Owner->UpdateChunkVertices(m_VBWater, &water_vertex_data[0]);
+		m_VBWater = g_VBMan.AllocateChunk(sizeof(SWaterVertex), water_vertex_data.size(), GL_STATIC_DRAW, GL_ARRAY_BUFFER, nullptr, CVertexBufferManager::Group::WATER);
+		m_VBWater->m_Owner->UpdateChunkVertices(m_VBWater.Get(), &water_vertex_data[0]);
 
-		m_VBWaterIndices = g_VBMan.Allocate(sizeof(GLushort), water_indices.size(), GL_STATIC_DRAW, GL_ELEMENT_ARRAY_BUFFER);
-		m_VBWaterIndices->m_Owner->UpdateChunkVertices(m_VBWaterIndices, &water_indices[0]);
+		m_VBWaterIndices = g_VBMan.AllocateChunk(sizeof(GLushort), water_indices.size(), GL_STATIC_DRAW, GL_ELEMENT_ARRAY_BUFFER, nullptr, CVertexBufferManager::Group::WATER);
+		m_VBWaterIndices->m_Owner->UpdateChunkVertices(m_VBWaterIndices.Get(), &water_indices[0]);
 	}
 
 	if (!water_indices_shore.empty())
 	{
-		m_VBWaterShore = g_VBMan.Allocate(sizeof(SWaterVertex), water_vertex_data_shore.size(), GL_STATIC_DRAW, GL_ARRAY_BUFFER);
-		m_VBWaterShore->m_Owner->UpdateChunkVertices(m_VBWaterShore, &water_vertex_data_shore[0]);
+		m_VBWaterShore = g_VBMan.AllocateChunk(sizeof(SWaterVertex), water_vertex_data_shore.size(), GL_STATIC_DRAW, GL_ARRAY_BUFFER, nullptr, CVertexBufferManager::Group::WATER);
+		m_VBWaterShore->m_Owner->UpdateChunkVertices(m_VBWaterShore.Get(), &water_vertex_data_shore[0]);
 
 		// Construct indices buffer
-		m_VBWaterIndicesShore = g_VBMan.Allocate(sizeof(GLushort), water_indices_shore.size(), GL_STATIC_DRAW, GL_ELEMENT_ARRAY_BUFFER);
-		m_VBWaterIndicesShore->m_Owner->UpdateChunkVertices(m_VBWaterIndicesShore, &water_indices_shore[0]);
+		m_VBWaterIndicesShore = g_VBMan.AllocateChunk(sizeof(GLushort), water_indices_shore.size(), GL_STATIC_DRAW, GL_ELEMENT_ARRAY_BUFFER, nullptr, CVertexBufferManager::Group::WATER);
+		m_VBWaterIndicesShore->m_Owner->UpdateChunkVertices(m_VBWaterIndicesShore.Get(), &water_indices_shore[0]);
 	}
 }
 
@@ -1423,7 +1407,7 @@ void CPatchRData::RenderWater(CShaderProgramPtr& shader, bool onlyShore, bool fi
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 #endif
 
-	if (m_VBWater != 0x0 && !onlyShore)
+	if (m_VBWater && !onlyShore)
 	{
 		SWaterVertex *base=(SWaterVertex *)m_VBWater->m_Owner->Bind();
 
@@ -1443,7 +1427,7 @@ void CPatchRData::RenderWater(CShaderProgramPtr& shader, bool onlyShore, bool fi
 		g_Renderer.m_Stats.m_WaterTris += m_VBWaterIndices->m_Count / 3;
 	}
 
-	if (m_VBWaterShore != 0x0 &&
+	if (m_VBWaterShore &&
 	    g_Renderer.GetWaterManager()->m_WaterEffects &&
 	    g_Renderer.GetWaterManager()->m_WaterFancyEffects)
 	{

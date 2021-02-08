@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,14 +22,58 @@
 #ifndef INCLUDED_VERTEXBUFFERMANAGER
 #define INCLUDED_VERTEXBUFFERMANAGER
 
-#include "VertexBuffer.h"
+#include "lib/types.h"
+#include "renderer/VertexBuffer.h"
 
-///////////////////////////////////////////////////////////////////////////////
+#include <memory>
+#include <utility>
+
 // CVertexBufferManager: owner object for CVertexBuffer objects; acts as
 // 'front end' for their allocation and destruction
 class CVertexBufferManager
 {
 public:
+	enum class Group : u32
+	{
+		DEFAULT,
+		TERRAIN,
+		WATER,
+		COUNT
+	};
+
+	// Helper for automatic VBChunk lifetime management.
+	class Handle
+	{
+	public:
+		Handle() = default;
+		Handle(const Handle&) = delete;
+		Handle& operator=(const Handle&) = delete;
+
+		explicit Handle(CVertexBuffer::VBChunk* chunk);
+		Handle(Handle&& other);
+		Handle& operator=(Handle&& other);
+
+		~Handle() { Reset(); }
+
+		bool IsValid() const { return m_Chunk != nullptr; }
+		explicit operator bool() const { return IsValid(); }
+		bool operator!() const { return !static_cast<bool>(*this); }
+		void Reset();
+
+		friend void swap(Handle& lhs, Handle& rhs)
+		{
+			using std::swap;
+
+			swap(lhs.m_Chunk, rhs.m_Chunk);
+		}
+
+		CVertexBuffer::VBChunk& operator*() const { return *m_Chunk; }
+		CVertexBuffer::VBChunk* operator->() const { return m_Chunk; }
+		CVertexBuffer::VBChunk* Get() const { return m_Chunk; }
+
+	private:
+		CVertexBuffer::VBChunk* m_Chunk = nullptr;
+	};
 
 	/**
 	 * Try to allocate a vertex buffer of the given size and type.
@@ -43,23 +87,26 @@ public:
 	 *            lifetime of the VBChunk
 	 * @return chunk, or NULL if no free chunks available
 	 */
-	CVertexBuffer::VBChunk* Allocate(size_t vertexSize, size_t numVertices, GLenum usage, GLenum target, void* backingStore = NULL);
+	CVertexBuffer::VBChunk* Allocate(size_t vertexSize, size_t numVertices, GLenum usage, GLenum target, void* backingStore = nullptr);
 
 	/// Returns the given @p chunk to its owning buffer
 	void Release(CVertexBuffer::VBChunk* chunk);
 
-	/// Returns a list of all buffers
-	const std::list<CVertexBuffer*>& GetBufferList() const { return m_Buffers; }
+	// Same as the Allocate function but returns Handle. Should be used instead
+	// of the Allocate.
+	Handle AllocateChunk(size_t vertexSize, size_t numVertices, GLenum usage, GLenum target, void* backingStore = nullptr, Group group = Group::DEFAULT);
 
-	size_t GetBytesReserved();
-	size_t GetBytesAllocated();
+	size_t GetBytesReserved() const;
+	size_t GetBytesAllocated() const;
 
 	/// Explicit shutdown of the vertex buffer subsystem; releases all currently-allocated buffers.
 	void Shutdown();
 
 private:
+	CVertexBuffer::VBChunk* AllocateImpl(size_t vertexSize, size_t numVertices, GLenum usage, GLenum target, void* backingStore = nullptr, Group group = Group::DEFAULT);
+
 	/// List of all known vertex buffers
-	std::list<CVertexBuffer*> m_Buffers;
+	std::list<std::unique_ptr<CVertexBuffer>> m_Buffers[static_cast<std::size_t>(Group::COUNT)];
 };
 
 extern CVertexBufferManager g_VBMan;

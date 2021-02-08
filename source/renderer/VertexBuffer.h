@@ -88,6 +88,7 @@ public:
 public:
 	// constructor, destructor
 	CVertexBuffer(size_t vertexSize, GLenum usage, GLenum target);
+	CVertexBuffer(size_t vertexSize, GLenum usage, GLenum target, size_t maximumBufferSize);
 	~CVertexBuffer();
 
 	/// Bind to this buffer; return pointer to address required as parameter
@@ -113,7 +114,7 @@ public:
 	/// Returns true if this vertex buffer is compatible with the specified vertex type and intended usage.
 	bool CompatibleVertexType(size_t vertexSize, GLenum usage, GLenum target) const;
 
-	void DumpStatus();
+	void DumpStatus() const;
 
 	/**
 	 * Given the usage flags of a buffer that has been (or will be) allocated:
