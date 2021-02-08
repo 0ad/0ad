@@ -40,8 +40,6 @@ bool FindStunEndpointHost(CStr8& ip, u16& port);
 bool FindStunEndpointJoin(ENetHost& transactionHost, StunClient::StunEndpoint& stunEndpoint);
 
 void SendHolePunchingMessages(ENetHost& enetClient, const std::string& serverAddress, u16 serverPort);
-
-bool GetPublicIp(CStr8& ip, u16 port);
 }
 
 #endif // STUNCLIENT_H
