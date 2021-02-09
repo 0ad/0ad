@@ -50,8 +50,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-29 14:56+0000\n"
-"PO-Revision-Date: 2021-01-29 16:39+0000\n"
-"Last-Translator: Stanislas Dolcini <stan@wildfiregames.com>\n"
+"PO-Revision-Date: 2021-02-05 17:59+0000\n"
+"Last-Translator: Freagarach\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -311,7 +311,7 @@ msgstr "Druk %(hotkey)s om de vorige geselecteerd privé-chat te openen."
 #: gui/session/chat/ChatMessageFormatNetwork.js:24
 #, javascript-format
 msgid "%(player)s is starting to rejoin the game."
-msgstr "%(player)s is verbinding aan het maken met het spel."
+msgstr "%(player)s is opnieuw verbinding aan het maken met het spel."
 
 #. Translation: A player joins the game for the first time
 #: gui/session/chat/ChatMessageFormatNetwork.js:26
@@ -1366,7 +1366,7 @@ msgstr "Bevolking (huidig / limiet)"
 #: gui/session/top_panel/CounterPopulation.js:67
 #, javascript-format
 msgid "Maximum population: %(popCap)s"
-msgstr "Maximum bevolking: %(popCap)s"
+msgstr "Maximale bevolking: %(popCap)s"
 
 #: gui/session/top_panel/CounterPopulation.js:69
 #, javascript-format

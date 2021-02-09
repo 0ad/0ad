@@ -88,22 +88,15 @@ void JSI_Network::StartNetworkHost(ScriptInterface::CmptPrivate* pCmptPrivate, c
 	bool hasLobby = !!g_XmppClient;
 	g_NetServer = new CNetServer(hasLobby);
 	// In lobby, we send our public ip and port on request to the players, who want to connect.
-	// In both cases we need to ping stun server to get our public ip. If we want to host via stun,
-	// we need port as well.
+	// In either case we need to know our public IP. If using STUN, we'll use that,
+	// otherwise, the lobby's reponse to the game registration stanza will tell us our public IP.
 	if (hasLobby)
 	{
 		CStr ip;
 		if (!useSTUN)
-		{
-			if (!StunClient::GetPublicIp(ip, serverPort))
-			{
-				ScriptRequest rq(pCmptPrivate->pScriptInterface);
-				ScriptException::Raise(rq, "Failed to get public ip.");
-				SAFE_DELETE(g_NetServer);
-				return;
-			}
-			g_NetServer->SetConnectionData(ip, serverPort, false);
-		}
+			// Don't store IP - the lobby bot will send it later.
+			// (if a client tries to connect before it's setup, they'll be disconnected)
+			g_NetServer->SetConnectionData("", serverPort, false);
 		else
 		{
 			u16 port = serverPort;

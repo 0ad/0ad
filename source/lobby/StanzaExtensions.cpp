@@ -129,7 +129,7 @@ GameListQuery::GameListQuery(const glooxwrapper::Tag* tag)
 	if (!tag || tag->name() != "query" || tag->xmlns() != XMLNS_GAMELIST)
 		return;
 
-	const glooxwrapper::Tag* c = tag->findTag_clone("query/game");
+	const glooxwrapper::Tag* c = tag->findTag_clone("query/command");
 	if (c)
 		m_Command = c->cdata();
 	glooxwrapper::Tag::free(c);

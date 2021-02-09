@@ -46,7 +46,6 @@ public:
 
 	void Update(CSimulation2* simulation);
 	void RenderOutline();
-	void RenderSides(CShaderProgramPtr& shader);
 	void RenderPriorities(CTextRenderer& textRenderer);
 
 	void RenderWater(CShaderProgramPtr& shader, bool onlyShore = false, bool fixedPipeline = false);
@@ -60,6 +59,7 @@ public:
 	static void RenderBlends(
 		const std::vector<CPatchRData*>& patches, const CShaderDefines& context, ShadowMap* shadow);
 	static void RenderStreams(const std::vector<CPatchRData*>& patches, const CShaderProgramPtr& shader, int streamflags);
+	static void RenderSides(const std::vector<CPatchRData*>& patches, const CShaderProgramPtr& shader);
 
 	static void PrepareShader(const CShaderProgramPtr& shader, ShadowMap* shadow);
 
@@ -135,19 +135,19 @@ private:
 	CPatch* m_Patch;
 
 	// vertex buffer handle for side vertices
-	CVertexBuffer::VBChunk* m_VBSides;
+	CVertexBufferManager::Handle m_VBSides;
 
 	// vertex buffer handle for base vertices
-	CVertexBuffer::VBChunk* m_VBBase;
+	CVertexBufferManager::Handle m_VBBase;
 
 	// vertex buffer handle for base vertex indices
-	CVertexBuffer::VBChunk* m_VBBaseIndices;
+	CVertexBufferManager::Handle m_VBBaseIndices;
 
 	// vertex buffer handle for blend vertices
-	CVertexBuffer::VBChunk* m_VBBlends;
+	CVertexBufferManager::Handle m_VBBlends;
 
 	// vertex buffer handle for blend vertex indices
-	CVertexBuffer::VBChunk* m_VBBlendIndices;
+	CVertexBufferManager::Handle m_VBBlendIndices;
 
 	// list of base splats to apply to this patch
 	std::vector<SSplat> m_Splats;
@@ -159,12 +159,12 @@ private:
 	CBoundingBoxAligned m_WaterBounds;
 
 	// Water vertex buffer
-	CVertexBuffer::VBChunk* m_VBWater;
-	CVertexBuffer::VBChunk* m_VBWaterShore;
+	CVertexBufferManager::Handle m_VBWater;
+	CVertexBufferManager::Handle m_VBWaterShore;
 
 	// Water indices buffer
-	CVertexBuffer::VBChunk* m_VBWaterIndices;
-	CVertexBuffer::VBChunk* m_VBWaterIndicesShore;
+	CVertexBufferManager::Handle m_VBWaterIndices;
+	CVertexBufferManager::Handle m_VBWaterIndicesShore;
 
 	CSimulation2* m_Simulation;
 

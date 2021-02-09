@@ -32,12 +32,17 @@
 // Make it large enough for the maximum feasible mesh size (64K vertexes,
 // 64 bytes per vertex in InstancingModelRenderer).
 // TODO: measure what influence this has on performance
-#define MAX_VB_SIZE_BYTES		(4*1024*1024)
+constexpr std::size_t MAX_VB_SIZE_BYTES = 4 * 1024 * 1024;
 
 CVertexBuffer::CVertexBuffer(size_t vertexSize, GLenum usage, GLenum target)
+	: CVertexBuffer(vertexSize, usage, target, MAX_VB_SIZE_BYTES)
+{
+}
+
+CVertexBuffer::CVertexBuffer(size_t vertexSize, GLenum usage, GLenum target, size_t maximumBufferSize)
 	: m_VertexSize(vertexSize), m_Handle(0), m_SysMem(0), m_Usage(usage), m_Target(target), m_HasNeededChunks(false)
 {
-	size_t size = MAX_VB_SIZE_BYTES;
+	size_t size = maximumBufferSize;
 
 	if (target == GL_ARRAY_BUFFER) // vertex data buffer
 	{
@@ -348,7 +353,7 @@ size_t CVertexBuffer::GetBytesAllocated() const
 	return (m_MaxVertices - m_FreeVertices) * m_VertexSize;
 }
 
-void CVertexBuffer::DumpStatus()
+void CVertexBuffer::DumpStatus() const
 {
 	debug_printf("freeverts = %d\n", static_cast<int>(m_FreeVertices));
 

@@ -371,11 +371,6 @@ bool STUNRequestAndResponse(ENetHost& transactionHost)
 	       ParseStunResponse(buffer);
 }
 
-bool StunClient::GetPublicIp(CStr8& ip, u16 port)
-{
-	return FindStunEndpointHost(ip, port);
-}
-
 bool StunClient::FindStunEndpointHost(CStr8& ip, u16& port)
 {
 	ENetAddress hostAddr{ENET_HOST_ANY, static_cast<u16>(port)};

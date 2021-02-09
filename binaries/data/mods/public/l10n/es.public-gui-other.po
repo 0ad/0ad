@@ -14,6 +14,7 @@
 # Arepa Acolyte <germanantivero07@gmail.com>, 2020
 # Cristian Alejandro Rueda Rodriguez <crisrueda99@gmail.com>, 2020
 # daniel diaz <danieldiazdelaiglesia@gmail.com>, 2020
+# Daniel Muñoz <dani_m_1991@hotmail.com>, 2021
 # The_Gipsy <xelectronhd@gmail.com>, 2018
 # Emilio Romero <milioe25@yahoo.es>, 2017
 # Federico Castro <dwcels@gmail.com>, 2018
@@ -43,8 +44,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-29 14:56+0000\n"
-"PO-Revision-Date: 2021-01-29 16:50+0000\n"
-"Last-Translator: Stanislas Dolcini <stan@wildfiregames.com>\n"
+"PO-Revision-Date: 2021-02-07 23:26+0000\n"
+"Last-Translator: Daniel Muñoz <dani_m_1991@hotmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2631,19 +2632,19 @@ msgstr "%(hotkey)s:  Aprende acerca de las civilizaciones en 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:48
 msgid "Catafalque Overview"
-msgstr ""
+msgstr "Resumen del catafalco"
 
 #: gui/pregame/MainMenuItems.js:49
 msgid "Compare the bonuses of catafalques featured in 0 A.D."
-msgstr ""
+msgstr "Compara los bonuses de los catafalcos que aparecen en 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:55
 msgid "Map Overview"
-msgstr ""
+msgstr "Resumen de map"
 
 #: gui/pregame/MainMenuItems.js:56
 msgid "View the different maps featured in 0 A.D."
-msgstr ""
+msgstr "Echa un vistazo a los diferentes mapas que aparecen en 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:64 gui/replaymenu/replay_filters.js:144
 msgid "Single-player"
@@ -3004,14 +3005,14 @@ msgstr[1] "Héroes"
 #: gui/reference/civinfo/Sections/Subsections/StructuresSubsection.js:29
 msgid "Specific Structure"
 msgid_plural "Specific Structures"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Estructura específica"
+msgstr[1] "Estructuras específicas"
 
 #: gui/reference/civinfo/Sections/Subsections/TechnologiesSubsection.js:28
 msgid "Specific Technology"
 msgid_plural "Specific Technologies"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Tecnología específica"
+msgstr[1] "Tecnologías específicas"
 
 #: gui/reference/common/Buttons/CivInfoButton.js:27
 #, javascript-format
@@ -3287,7 +3288,7 @@ msgstr "Duración"
 
 #: gui/replaymenu/replay_menu.xml:(placeholder_text):32
 msgid "Search for Player"
-msgstr ""
+msgstr "Buscar jugador"
 
 #: gui/replaymenu/replay_menu.xml:(tooltip):240
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
@@ -3561,7 +3562,7 @@ msgstr "Explotados"
 
 #: gui/summary/summary.js:44
 msgid "Count"
-msgstr ""
+msgstr "Conteo"
 
 #: gui/summary/summary.js:49
 msgid "Sent"
@@ -3976,25 +3977,25 @@ msgstr "Cuanto más alto sea el nivel del ciudadano-soldado (avanzado, élite), 
 
 #: gui/text/tips/heroes.txt:1
 msgid "HEROES"
-msgstr ""
+msgstr "HÉROES"
 
 #: gui/text/tips/heroes.txt:2
 msgid ""
 "Historical characters, such as Xerxes, Leonidas, Pericles, Hannibal, Scipio,"
 " and Boudicca."
-msgstr ""
+msgstr "Personajes históricos como Jerjes, Leónidas, Pericles, Aníbal, Escipión y Boudica."
 
 #: gui/text/tips/heroes.txt:3
 msgid "A lot of health and very strong attacks."
-msgstr ""
+msgstr "Un montón de salud y ataques muy fuertes."
 
 #: gui/text/tips/heroes.txt:4
 msgid "Have auras which alter the stats of other units or structures."
-msgstr ""
+msgstr "Tener auras que alteran los stats de otras unidades o estructuras."
 
 #: gui/text/tips/heroes.txt:5
 msgid "Caution: Each hero can be recruited only once per match!"
-msgstr ""
+msgstr "Cuidado: Cada héroe solo puede ser reclutado una vez por partida!"
 
 #: gui/text/tips/iphicrates.txt:1
 msgid "IPHICRATES"
@@ -4157,23 +4158,23 @@ msgstr "Tiene un ataque a distancia que aumenta para cada unidad guarnecida."
 
 #: gui/text/tips/snapping.txt:1
 msgid "SNAPPING"
-msgstr ""
+msgstr "ACOPLAMIENTO"
 
 #: gui/text/tips/snapping.txt:2
 msgid ""
 "Structures can be aligned by keeping the snap hotkey pressed during "
 "placement."
-msgstr ""
+msgstr "Las estructuras pueden ser alineadas al mantener pulsada la tecla de ajuste durante su emplazamiento."
 
 #: gui/text/tips/snapping.txt:3
 msgid "Aligning structures allows to conserve space for future construction."
-msgstr ""
+msgstr "Alinear estructuras te permite conservar espacio para futuras construcciones."
 
 #: gui/text/tips/snapping.txt:4
 msgid ""
 "Tightly packed groups of structures can also be used for obstructing raiding"
 " enemies."
-msgstr ""
+msgstr "Grupos de estructuras compactadas pueden también utilizarse para obstaculizar a enemigos atacantes."
 
 #: gui/text/tips/spartan_hoplites.txt:1
 msgid "SPARTIATES"

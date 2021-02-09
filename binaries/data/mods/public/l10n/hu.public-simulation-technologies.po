@@ -25,7 +25,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-02-01 16:17+0000\n"
+"PO-Revision-Date: 2021-02-08 07:56+0000\n"
 "Last-Translator: Ács Zoltán <acszoltan111@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -193,7 +193,7 @@ msgstr "Dynamis"
 
 #: simulation/data/technologies/attack_soldiers_will.jsontooltip
 msgid "Soldiers, Siege Engines, and Ships +25% attack damage."
-msgstr ""
+msgstr "Katonáknak, ostromgépeknek és hajóknak +25% támadási sebzés."
 
 #: simulation/data/technologies/attack_steel_working.jsondescription
 msgid ""
@@ -904,7 +904,7 @@ msgstr "–10% kiképzési idő a bajnokoknál."
 msgid ""
 "Dummy technology for use in templates requirements, replaced by "
 "phase_city_generic or phase_city_{civ}."
-msgstr "Helykitöltő technológia sablon követelményekhez történő használathoz, a phase_city_generic vagy phase_city_{civ} váltja."
+msgstr "Helykitöltő fejlesztéssablon követelményekhez történő használathoz, a phase_city_generic vagy phase_city_{civ} váltja."
 
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
@@ -917,7 +917,7 @@ msgid ""
 "Advances from a bustling town to a veritable metropolis, full of the wonders"
 " of modern technology. This is the Athenian city phase, where metal "
 "gathering rates are boosted because of the 'Silver Owls' bonus."
-msgstr "Egy nyüzsgő városból igazi metropolisszá fejlődik a modern technológia minden csodájával tele. Ez az athéni nagyvárosi szakasz, ahol a fémgyűjtési sebesség fellendült az „ezüst baglyok” bónusz miatt."
+msgstr "Egy nyüzsgő városból igazi metropolisszá fejlődik a modern technológia minden csodájával tele. Ez az athéni nagyvárosi szakasz, ahol a fémgyűjtési sebesség fellendült az „Ezüst baglyok” bónusz miatt."
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
@@ -937,7 +937,7 @@ msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +50% territory influence radius. Structures +9 capture points "
 "regeneration rate per garrisoned unit. Workers +10% metal gather rate."
-msgstr ""
+msgstr "Nagyvárosi szakaszba fejlődés, amely több épületet, egységet és fejlesztést tesz elérhetővé. +50% a területhatás sugarához. +9 foglalási pont regenerációs sebesség beszállásolt egységenként. +10% fémgyűjtési sebesség a munkásoknál."
 
 #: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
@@ -950,13 +950,13 @@ msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +50% territory influence radius. Structures +9 capture points "
 "regeneration rate per garrisoned unit."
-msgstr ""
+msgstr "Nagyárosi szakaszba fejlődés, amely több épületet, egységet és fejlesztést tesz elérhetővé. +50% a területhatás sugarához. +9 foglalási pont regenerációs sebesség beszállásolt egységenként."
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
 "Dummy technology for use in templates requirements, replaced by "
 "phase_town_generic or phase_town_{civ}."
-msgstr "Helykitöltő technológia sablon követelményekhez történő használathoz, a phase_town_generic vagy phase_town_{civ} váltja."
+msgstr "Helykitöltő fejlesztéssablon követelményekhez történő használathoz, a phase_town_generic vagy phase_town_{civ} váltja."
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
@@ -989,7 +989,7 @@ msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
 "Centers +30% territory influence radius. Structures +7 capture points "
 "regeneration rate per garrisoned unit. Workers +10% metal gather rate."
-msgstr ""
+msgstr "Városi szakaszba fejlődés, amely több épületet, egységet és fejlesztést tesz elérhetővé. +30% a területhatás sugarához. +7 foglalási pont regenerációs sebesség beszállásolt egységenként. +10% fémgyűjtési sebesség a munkásoknál."
 
 #: simulation/data/technologies/phase_town_generic.jsondescription
 msgid ""
@@ -1001,7 +1001,7 @@ msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
 "Centers +30% territory influence radius. Structures +7 capture points "
 "regeneration rate per garrisoned unit."
-msgstr ""
+msgstr "Városi szakaszba fejlődés, amely több épületet, egységet és fejlesztést tesz elérhetővé. +30% a területhatás sugarához. +7 foglalási pont regenerációs sebesség beszállásolt egységenként."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1036,7 +1036,7 @@ msgstr "Peristylium"
 #: simulation/data/technologies/pop_house_01.jsontooltip
 #: simulation/data/technologies/pop_house_02.jsontooltip
 msgid "Houses +20% population bonus."
-msgstr ""
+msgstr "Házaknak +20% népesség bónusz."
 
 #: simulation/data/technologies/pop_house_02.jsondescription
 msgid ""
@@ -1162,7 +1162,7 @@ msgstr "Hadmérnökök"
 
 #: simulation/data/technologies/siege_pack_unpack.jsontooltip
 msgid "Siege Engines –40% pack and unpack time."
-msgstr ""
+msgstr "Ostromgépeknek -40% kicsomagolási és becsomagolási idő."
 
 #: simulation/data/technologies/silvershields.jsondescription
 msgid ""
@@ -1457,7 +1457,7 @@ msgid ""
 "attack strength, +20% loot, and −30% gather speed; Healers +5 healing "
 "strength and +3 healing range; Melee units +1 resistance and +20% attack "
 "damage; Ranged units −20% spread."
-msgstr ""
+msgstr "+20% kiképzési idő, +25% életerő, +0,7 elfoglalási támadási erősség, +20% zsákmányolás és −30% begyűjtési sebesség a fejlett és elit egységeknél; +5 gyógyítási erősség és +3 gyógyítási távolság a gyógyítóknál; +20% sebzés a közelharci egységeknél; −20% szórás a távolsági egységeknél."
 
 #: simulation/data/technologies/unit_elephant_african.jsontooltip
 msgid ""

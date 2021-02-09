@@ -430,8 +430,6 @@ void XmppClient::SendIqRegisterGame(const ScriptInterface& scriptInterface, JS::
 	GameListQuery* g = new GameListQuery();
 	g->m_Command = "register";
 	glooxwrapper::Tag* game = glooxwrapper::Tag::allocate("game");
-	// Add a fake ip which will be overwritten by the ip stamp XMPP module on the server.
-	game->addAttribute("ip", "fake");
 
 	// Iterate through all the properties reported and add them to the stanza.
 	std::vector<std::string> properties;
@@ -861,6 +859,23 @@ bool XmppClient::handleIq(const glooxwrapper::IQ& iq)
 		}
 		if (gq)
 		{
+			if (iq.from().full() == m_xpartamuppId && gq->m_Command == "register" && g_NetServer && !g_NetServer->GetUseSTUN())
+			{
+				if (gq->m_GameList.empty())
+				{
+					LOGWARNING("XmppClient: Received empty game list in response to Game Register");
+					return true;
+				}
+				std::string publicIP = gq->m_GameList.front()->findAttribute("ip").to_string();
+				if (publicIP.empty())
+				{
+					LOGWARNING("XmppClient: Received game with no IP in response to Game Register");
+					return true;
+				}
+				g_NetServer->SetConnectionData(publicIP, g_NetServer->GetPublicPort(), false);
+				return true;
+			}
+
 			for (const glooxwrapper::Tag* const& t : m_GameList)
 				glooxwrapper::Tag::free(t);
 			m_GameList.clear();

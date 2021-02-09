@@ -7,8 +7,9 @@
 # Antón Chinaev <Chinaev_Anton@outlook.es>, 2018
 # Antonio Vazquez <antoniovavazquez@gmail.com>, 2020
 # Antonio Vazquez <antoniovavazquez@gmail.com>, 2020
+# Daniel Muñoz <dani_m_1991@hotmail.com>, 2021
 # David Fernandez Carhuas <deivyelintelecto23@gmail.com>, 2015
-# Jesus A <jasenjot@gmail.com>, 2017
+# Jesús Asenjo <jasenjot@gmail.com>, 2017
 # Joseba Uranga <shadowjosebau@gmail.com>, 2019
 # Juan Jaramillo <juanda097@protonmail.ch>, 2017
 # juan pablo Ferraro <ferrarojuanpablo@yahoo.es>, 2020
@@ -22,8 +23,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-20 00:57+0000\n"
-"PO-Revision-Date: 2021-01-20 01:23+0000\n"
-"Last-Translator: Miguel Magdaleno Santamaría\n"
+"PO-Revision-Date: 2021-02-07 23:00+0000\n"
+"Last-Translator: Daniel Muñoz <dani_m_1991@hotmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,17 +35,17 @@ msgstr ""
 #: simulation/data/attack_effects/applystatus.jsondescription
 msgctxt "effect caused by an attack"
 msgid "Various (timed) effects."
-msgstr ""
+msgstr "Varios efectos (temporales)."
 
 #: simulation/data/attack_effects/applystatus.jsonname
 msgctxt "effect caused by an attack"
 msgid "Apply Status"
-msgstr ""
+msgstr "Aplicar status"
 
 #: simulation/data/attack_effects/capture.jsondescription
 msgctxt "effect caused by an attack"
 msgid "Reduces capture points of a target."
-msgstr ""
+msgstr "Reduce los puntos de captura de un objetivo."
 
 #: simulation/data/attack_effects/capture.jsonname
 msgctxt "effect caused by an attack"
@@ -54,42 +55,42 @@ msgstr "Captura"
 #: simulation/data/attack_effects/damage.jsondescription
 msgctxt "effect caused by an attack"
 msgid "Reduces the health of a target."
-msgstr ""
+msgstr "Reduce la salud de un objetivo"
 
 #: simulation/data/attack_effects/damage.jsonname
 msgctxt "effect caused by an attack"
 msgid "Damage"
-msgstr ""
+msgstr "Daño"
 
 #: simulation/data/status_effects/burning.jsonapplierTooltip
 msgctxt "status effect"
 msgid "This unit causes fire damage."
-msgstr ""
+msgstr "Esta unidad causa daño por fuego."
 
 #: simulation/data/status_effects/burning.jsonreceiverTooltip
 msgctxt "status effect"
 msgid "This unit is burning."
-msgstr ""
+msgstr "Esta unidad está ardiendo."
 
 #: simulation/data/status_effects/burning.jsonstatusName
 msgctxt "status effect"
 msgid "Burning"
-msgstr ""
+msgstr "Ardiendo"
 
 #: simulation/data/status_effects/poisoned.jsonapplierTooltip
 msgctxt "status effect"
 msgid "This unit causes poison damage."
-msgstr ""
+msgstr "Esta unidad causa daño por veneno."
 
 #: simulation/data/status_effects/poisoned.jsonreceiverTooltip
 msgctxt "status effect"
 msgid "This unit is poisoned."
-msgstr ""
+msgstr "Esta unidad está envenenada."
 
 #: simulation/data/status_effects/poisoned.jsonstatusName
 msgctxt "status effect"
 msgid "Poisoned"
-msgstr ""
+msgstr "Envenenado"
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:24
 msgid "Army of Alexander the Great."

@@ -7,11 +7,10 @@ The Pyrogenesis Multiplayer Lobby consists of three components:
 
 * **XMPP server: ejabberd**:
     The XMPP server provides the platform where users can register accounts, chat in a public room, and can interact with lobby bots.
-    Currently, ejabberd is the only XMPP server software supported (by the ipstamp module for XpartaMuPP).
+    ejabberd is recommended.
 
 * **Gamelist bot: XpartaMuPP**:
     This bot allows players to host and join online multiplayer matches.
-    It utilizes the ejabberd ipstamp module to inform players of IP addresses of hosting players.
 
 * **Rating bot: EcheLOn**:
     This bot allows players to gain a rating that reflects their skill based on online multiplayer matches.
@@ -91,10 +90,13 @@ You should now be able to connect to this XMPP server using any XMPP client.
     $ apt-get install python3-sqlalchemy
     ```
 
-### 1.3 Install ejabberd ipstamp module
+## 2 (Optional) Install ejabberd ipstamp module
 
-The ejabberd ipstamp module has the purpose of inserting the IP address of the hosting players into the gamelist packet.
-That enables players to connect to each others games.
+### 2.1 Copy mod_ipstamp files.
+
+The ejabberd ipstamp module is used as a fallback for users without STUN capabilities.
+It inserts the IP to GameList "register" stanzas, which XpartMuPP sends back to the host.
+STUN-enabled users do not require it to host, so this is optional.
 
 * Adjust `/etc/ejabberd/ejabberdctl.cfg` and set `CONTRIB_MODULES_PATH` to the directory where you want to store `mod_ipstamp`:
 
@@ -117,7 +119,7 @@ That enables players to connect to each others games.
     $ ejabberdctl module_install mod_ipstamp
     ```
 
-## 2. Configure ejabberd mod_ipstamp
+## 2.2. Configure ejabberd mod_ipstamp
 
 The ejabberd configuration in the remainder of this document is performed by editing `/etc/ejabberd/ejabberd.yml`.
 The directory containing this README includes a preconfigured `ejabberd_example.yml` that only needs few setting changes to work with your setup.
@@ -151,8 +153,8 @@ The settings in this section ensure that connections can be built where intended
     ```
 
 ### 3.2 Enable STUN
-* ejabberd and Pyrogenesis support the STUN protocol. This allows players to connect to each others games even if the host did not configure
-the router and forward the UDP port. Enabling STUN is optional but recommended.
+* ejabberd and Pyrogenesis support the STUN protocol. This allows players to connect to each others games even if the host did not configure the router and forward the UDP port.
+0 A.D. uses STUN to let hosts find their IP.
 
     ```
     listen:
@@ -280,7 +282,7 @@ ejabberd should be configured to use TLS with a proper, trusted certificate.
         - "no_sslv2"
         - "no_sslv3"
         - "no_tlsv1"
-	```
+    ```
 
 ## 3. Configure ejabberd use policy
 
@@ -345,9 +347,9 @@ The settings in this section grant or restrict user access rights.
 * (Optional) Prevent users from sending too large stanzas.
   Notice the bots can send large stanzas as well, so don't restrict it too much.
 
-	```
+  ```
     max_stanza_size: 1048576
-	```
+  ```
 
 
 * (Optional) Prevent users from changing the room topic:
@@ -452,6 +454,7 @@ The settings in this section grant or restrict user access rights.
       mod_muc:
         default_room_options:
           anonymous: false
+    ```
 
 #### Choice B: Non-anonymous room
 * If you for any reason wish to configure the room as semi-anonymous (only muc administrators can see real JIDs),
@@ -465,7 +468,7 @@ The settings in this section grant or restrict user access rights.
     modules:
       mod_muc:
         access_admin: muc_admin
-	```
+    ```
 
 ### 4.3 Authorize lobby bots with ejabberd
 
@@ -491,8 +494,7 @@ The settings in this section grant or restrict user access rights.
         - allow: bots
     ```
 
-* Due to the amount of traffic the bot may process, give the group containing bots either unlimited
-  or a very high traffic shaper:
+* Due to the amount of traffic the bot may process, give the group containing bots either unlimited or a very high traffic shaper:
 
     ```
     shaper_rules:
@@ -536,17 +538,17 @@ The score difference after a completed match is relative to the rating differenc
 
 * (Optional) Some constants of the algorithm may be edited by experienced administrators at the head of `ELO.py`:
 
-	```
-	# Difference between two ratings such that it is
-	# regarded as a "sure win" for the higher player.
-	# No points are gained or lost for such a game.
-	elo_sure_win_difference = 600.0
+  ```
+  # Difference between two ratings such that it is
+  # regarded as a "sure win" for the higher player.
+  # No points are gained or lost for such a game.
+  elo_sure_win_difference = 600.0
 
-	# Lower ratings "move faster" and change more
-	# dramatically than higher ones. Anything rating above
-	# this value moves at the same rate as this value.
-	elo_k_factor_constant_rating = 2200.0
-	```
+  # Lower ratings "move faster" and change more
+  # dramatically than higher ones. Anything rating above
+  # this value moves at the same rate as this value.
+  elo_k_factor_constant_rating = 2200.0
+  ```
 
 * To initialize the `lobby_rankings.sqlite3` database, execute the following command:
 
@@ -605,9 +607,9 @@ If you intend to use the server only for local testing, you may skip this step.
 
 * The following files should be created by the service provider:
 
-	`Terms_of_Service.txt` to explain the service and the contract.
-	`Terms_of_Use.txt` to explain what the user should and should not do.
-	`Privacy_Policy.txt` to explain how personal data is handled.
+  `Terms_of_Service.txt` to explain the service and the contract.
+  `Terms_of_Use.txt` to explain what the user should and should not do.
+  `Privacy_Policy.txt` to explain how personal data is handled.
 
 * To use Wildfire Games Terms as a template, obtain our Terms from a copy of the game or from or from
 <https://trac.wildfiregames.com/browser/ps/trunk/binaries/data/mods/public/gui/prelobby/common/terms/>
@@ -625,9 +627,9 @@ Visit <https://www.ejabberd.im/Rotating%20logs%20with%20ejabberd/index.html> for
 * The terms should be published online, so users can save and print them.
   Add to your `local.cfg`:
 
-	```
-	lobby.terms_url = "https://lobby.wildfiregames.com/terms/"; Allows the user to save the text and print the terms
-	```
+  ```
+  lobby.terms_url = "https://lobby.wildfiregames.com/terms/"; Allows the user to save the text and print the terms
+  ```
 
 ### 5.4 Distribute the configuration
 
