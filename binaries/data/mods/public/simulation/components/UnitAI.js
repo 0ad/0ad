@@ -4166,6 +4166,17 @@ UnitAI.prototype.ReplaceOrder = function(type, data)
 		else
 			this.orderQueue = [packingOrder, order];
 	}
+	else if (this.IsFormationMember())
+	{
+		// Don't replace orders after a LeaveFormation order
+		// (this is needed to support queued no-formation orders).
+		let idx = this.orderQueue.findIndex(o => o.type == "LeaveFormation");
+		if (idx === -1)
+			this.orderQueue = [];
+		else
+			this.orderQueue.splice(0, idx);
+		this.PushOrderFront(type, data);
+	}
 	else
 	{
 		this.orderQueue = [];
