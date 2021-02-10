@@ -4,6 +4,7 @@
 # project.
 # Translators:
 # azayrahmad <azayrahmad@gmail.com>, 2014-2015
+# Dabiq 1441 <dlc39hw3eh@just4fun.me>, 2021
 # Muhammad Furqon Abrori <furqonklondigizoid@gmail.com>, 2016
 # Ilham Nur Pratama <ilham151096@gmail.com>, 2017
 # Muhammad Furqon Abrori <furqonklondigizoid@gmail.com>, 2016,2020
@@ -15,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-25 08:08+0000\n"
-"PO-Revision-Date: 2021-01-25 09:36+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-02-08 23:39+0000\n"
+"Last-Translator: Dabiq 1441 <dlc39hw3eh@just4fun.me>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -42,14 +43,14 @@ msgstr "Sebuah podium jenazah yang menyimpan sisa-sisa pemimpin besar."
 #: simulation/templates/template_unit_infantry.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Capture"
-msgstr ""
+msgstr "Merebut"
 
 #: simulation/templates/template_unit_cavalry.xml:12
 #: simulation/templates/template_unit_infantry.xml:12
 #: simulation/templates/template_unit_support_female_citizen.xml:16
 msgctxt "Name of an attack, usually the weapon."
 msgid "Slaughter"
-msgstr ""
+msgstr "Menyembelih"
 
 #: simulation/templates/template_unit_cavalry.xml:30
 #: simulation/templates/template_unit_cavalry.xml:33
@@ -122,7 +123,7 @@ msgstr "Jarak Dekat"
 #: simulation/templates/template_unit_infantry_melee_axeman.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Axe"
-msgstr ""
+msgstr "Kapak"
 
 #: simulation/templates/template_unit_cavalry_melee_axeman.xml:24
 msgid "Cavalry Axeman"
@@ -146,11 +147,11 @@ msgstr "Pasukan Kapak"
 #: simulation/templates/template_unit_infantry_melee_maceman.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Mace"
-msgstr ""
+msgstr "Gada"
 
 #: simulation/templates/template_unit_cavalry_melee_maceman.xml:23
 msgid "Cavalry Maceman"
-msgstr ""
+msgstr "Kavaleri Gada"
 
 #: simulation/templates/template_unit_cavalry_melee_maceman.xml:24
 #: simulation/templates/template_unit_champion_cavalry_maceman.xml:22
@@ -179,7 +180,7 @@ msgstr "Kavaleri Penombak"
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:28
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:25
 msgid "Counters: 1.75× vs Cavalry."
-msgstr ""
+msgstr "Membalas: 1.75x vs Kavaleri."
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:31
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:29
@@ -319,7 +320,7 @@ msgstr "Jawara Kavaleri Pelempar Lembing"
 
 #: simulation/templates/template_unit_champion_cavalry_maceman.xml:21
 msgid "Champion Cavalry Maceman"
-msgstr ""
+msgstr "Jawara Kavaleri Gada"
 
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:27
 msgid "Champion Cavalry Spearman"
@@ -348,7 +349,7 @@ msgstr "Gajah"
 #: simulation/templates/template_unit_hero_elephant_melee.xml:6
 msgctxt "Name of an attack, usually the weapon."
 msgid "Trunk"
-msgstr ""
+msgstr "Bagasi"
 
 #: simulation/templates/template_unit_champion_infantry.xml:15
 #: simulation/templates/template_unit_hero_infantry.xml:14
@@ -375,7 +376,7 @@ msgstr "Jawara Infanteri Pelempar Lembing"
 
 #: simulation/templates/template_unit_champion_infantry_maceman.xml:21
 msgid "Champion Infantry Maceman"
-msgstr ""
+msgstr "Jawara Infanteri Gada"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:5
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:5
@@ -395,7 +396,7 @@ msgstr "Jawara Pasukan Tembiang"
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:30
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:30
 msgid "Counters: 3× vs Cavalry."
-msgstr ""
+msgstr "Membalas: 3x vs Kavaleri."
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:29
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:26
@@ -414,18 +415,18 @@ msgstr "Jawara Pedang"
 
 #: simulation/templates/template_unit_champion_infantry_trumpeter.xml:27
 msgid "Trumpeter"
-msgstr ""
+msgstr "Peniup Terompet"
 
 #: simulation/templates/template_unit_champion_infantry_trumpeter.xml:28
 msgid "Champion Infantry Trumpeter"
-msgstr ""
+msgstr "Jawara Infanteri Peniup Terompet"
 
 #: simulation/templates/template_unit_dog.xml:5
 #: simulation/templates/template_unit_fauna_wild_aggressive_dog.xml:5
 #: simulation/templates/template_unit_fauna_wild_defensive_fox.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Fangs"
-msgstr ""
+msgstr "Taring"
 
 #: simulation/templates/template_unit_dog.xml:32
 msgid "War Dog"
@@ -452,12 +453,12 @@ msgstr "Bunuh untuk mendapatkan makanan."
 #: simulation/templates/template_unit_fauna_hunt_aggressive_bear.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Paws"
-msgstr ""
+msgstr "Cakar"
 
 #: simulation/templates/template_unit_fauna_hunt_defensive_bull.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Horns"
-msgstr ""
+msgstr "Tanduk"
 
 #: simulation/templates/template_unit_fauna_hunt_whale.xml:7
 msgid "Kill to butcher for food."
@@ -487,7 +488,7 @@ msgstr "Pahlawan Kavaleri Pelempar Lembing"
 
 #: simulation/templates/template_unit_hero_cavalry_maceman.xml:18
 msgid "Hero Cavalry Maceman"
-msgstr ""
+msgstr "Pahlawan Kavaleri Gada"
 
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:24
 msgid "Hero Cavalry Spearman"
@@ -499,7 +500,7 @@ msgstr "Pahlawan Kavaleri Pedang"
 
 #: simulation/templates/template_unit_hero_elephant_melee.xml:32
 msgid "Hero Elephant"
-msgstr ""
+msgstr "Pahlawan Bergajah"
 
 #: simulation/templates/template_unit_hero_healer.xml:27
 #: simulation/templates/template_unit_support.xml:5
@@ -527,7 +528,7 @@ msgstr "Pahlawan Infanteri Pelempar Lembing"
 
 #: simulation/templates/template_unit_hero_infantry_maceman.xml:18
 msgid "Hero Infantry Maceman"
-msgstr ""
+msgstr "Pahlawan Infanteri Gada"
 
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:24
 msgid "Hero Pikeman"
@@ -553,7 +554,7 @@ msgstr "Infanteri Jarak Dekat"
 
 #: simulation/templates/template_unit_infantry_melee_maceman.xml:23
 msgid "Infantry Maceman"
-msgstr ""
+msgstr "Infanteri Gada"
 
 #: simulation/templates/template_unit_infantry_ranged_javelineer.xml:32
 msgid "Infantry Javelineer"
@@ -603,7 +604,7 @@ msgstr "Bireme"
 #: simulation/templates/units/theb_siege_fireraiser.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Fire"
-msgstr ""
+msgstr "Api"
 
 #: simulation/templates/template_unit_ship_fire.xml:40
 msgid "Fire Ship"
@@ -611,7 +612,7 @@ msgstr "Kapal Api"
 
 #: simulation/templates/template_unit_ship_fire.xml:41
 msgid "Unrepairable. Gradually loses health. Can only attack Ships."
-msgstr ""
+msgstr "Tidak dapat diperbaiki. Secara bertahap kehilangan kesehatan. Hanya dapat menyerang Kapal."
 
 #: simulation/templates/template_unit_ship_fire.xml:42
 msgid "Fireship"
@@ -620,7 +621,7 @@ msgstr "Kapal api"
 #: simulation/templates/template_unit_ship_fishing.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Harpoon"
-msgstr ""
+msgstr "Seruit"
 
 #: simulation/templates/template_unit_ship_fishing.xml:30
 #: simulation/templates/units/kush/ship_fishing.xml:9
@@ -688,7 +689,7 @@ msgstr "Kepung"
 #: simulation/templates/template_unit_siege_boltshooter.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Bolt"
-msgstr ""
+msgstr "Baut"
 
 #: simulation/templates/template_unit_siege_boltshooter.xml:50
 msgid "BoltShooter"
@@ -734,7 +735,7 @@ msgstr "Menara Kepung"
 #: simulation/templates/template_unit_support_female_citizen.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Dagger"
-msgstr ""
+msgstr "Pisau Belati"
 
 #: simulation/templates/template_unit_support_female_citizen.xml:66
 msgid "Female Citizen"
@@ -1144,7 +1145,7 @@ msgstr "Oxybelḗs"
 #: simulation/templates/units/sele/siege_ram.xml:9
 #: simulation/templates/units/spart/siege_ram.xml:9
 msgid "Krios"
-msgstr ""
+msgstr "Keios"
 
 #: simulation/templates/units/athen/support_female_citizen.xml:11
 msgid "Gýnē Athēnaía"
@@ -1539,7 +1540,7 @@ msgstr "Soliduros"
 
 #: simulation/templates/units/gaul/champion_infantry_trumpeter.xml:8
 msgid "Carnucos"
-msgstr ""
+msgstr "Carnucos"
 
 #: simulation/templates/units/gaul/hero_brennus.xml:8
 msgid "Brennus"
@@ -1773,7 +1774,7 @@ msgstr "Pdty Nhsyw"
 
 #: simulation/templates/units/kush/infantry_javelineer_merc_b.xml:16
 msgid "Noba Skirmisher"
-msgstr ""
+msgstr "Penskrimis Noba"
 
 #: simulation/templates/units/kush/infantry_javelineer_merc_b.xml:17
 msgid "nhw ʿhȝw Noba"
@@ -1781,7 +1782,7 @@ msgstr "nhw ʿhȝw Noba"
 
 #: simulation/templates/units/kush/infantry_maceman_merc_b.xml:16
 msgid "Noba Maceman"
-msgstr ""
+msgstr "Pasukan Gada Noba"
 
 #: simulation/templates/units/kush/infantry_maceman_merc_b.xml:17
 msgid "nhw Noba"
@@ -1902,7 +1903,7 @@ msgstr "Hetaîros"
 #: simulation/templates/units/mace/champion_infantry_crossbowman.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Crossbow"
-msgstr ""
+msgstr "Busur Silang"
 
 #: simulation/templates/units/mace/champion_infantry_crossbowman.xml:28
 msgid "Crossbowman"
@@ -1942,7 +1943,7 @@ msgstr "Alexandros ho Megas"
 
 #: simulation/templates/units/mace/hero_alexander_iii.xml:23
 msgid "Counters: 1.2× vs Heroes."
-msgstr ""
+msgstr "Membalas: 1.2x vs  Pahlawan."
 
 #: simulation/templates/units/mace/hero_craterus.xml:14
 msgid "Craterus"
@@ -2195,7 +2196,7 @@ msgctxt ""
 "Name of an attack using a rhomphaia (ῥομφαία), a Thracian two-handed weapon "
 "capable of both thrusting and slashing."
 msgid "Rhomphaia"
-msgstr ""
+msgstr "Rhomphaia"
 
 #: simulation/templates/units/mace/champion_infantry_swordsman.xml:11
 #: simulation/templates/units/merc_black_cloak.xml:10
@@ -2204,7 +2205,7 @@ msgstr "Jubah Hitam Trakhia"
 
 #: simulation/templates/units/merc_black_cloak.xml:11
 msgid "Rhomphaiophoros"
-msgstr ""
+msgstr "Rhomphaiophoros"
 
 #: simulation/templates/units/athen/infantry_javelineer_b.xml:15
 #: simulation/templates/units/athen/infantry_marine_archer_b.xml:15
@@ -2255,7 +2256,7 @@ msgstr "Penskirmis Berat"
 
 #: simulation/templates/units/merc_thureophoros.xml:6
 msgid "Thyreophoros"
-msgstr ""
+msgstr "Thyreophoros"
 
 #: simulation/templates/units/noldor_ship_bireme.xml:8
 msgid "Mankar Cirya"
@@ -2340,7 +2341,7 @@ msgstr "Anušiya"
 
 #: simulation/templates/units/pers/champion_infantry.xml:8
 msgid "Immortal"
-msgstr ""
+msgstr "Kebal"
 
 #: simulation/templates/units/pers/hero_cyrus_ii.xml:9
 msgid "Cyrus II The Great"
@@ -2477,7 +2478,7 @@ msgstr "Perdagangkan sumber daya antara pasar pemain dengan pasar sekutu. Persia
 #: simulation/templates/units/plane.xml:5
 msgctxt "Name of an attack of a World War II fighter plane."
 msgid "Machine Guns"
-msgstr ""
+msgstr "Senjata Mesin"
 
 #: simulation/templates/units/plane.xml:49
 msgid "P-51 Mustang"
@@ -2485,7 +2486,7 @@ msgstr "P-51 Mustang"
 
 #: simulation/templates/units/plane.xml:50
 msgid "A World War II American fighter plane."
-msgstr ""
+msgstr "Pesawat Tempur  Perang Dunia II Amerika."
 
 #: simulation/templates/units/ptol/catafalque.xml:8
 msgid "Ptolemy III Euergetes (Benefactor)"
@@ -2638,7 +2639,7 @@ msgstr "Lūcius Iūnius Brūtus"
 
 #: simulation/templates/units/rome/cavalry_javelineer_b.xml:6
 msgid "Allied Cavalry"
-msgstr ""
+msgstr "Kavaleri Sekutu"
 
 #: simulation/templates/units/rome/cavalry_javelineer_b.xml:7
 msgid "Eques Socius"

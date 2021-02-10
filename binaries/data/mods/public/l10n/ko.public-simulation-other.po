@@ -24,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2021-01-11 12:49+0000\n"
+"PO-Revision-Date: 2021-02-10 08:44+0000\n"
 "Last-Translator: Bruce Lee <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -72,7 +72,7 @@ msgstr "%(_player_)s님을 공격하기 위한 준비를 마칩니다."
 msgid ""
 "Sorry, I do not have enough soldiers currently; but my next attack will "
 "target %(_player_)s."
-msgstr "죄송합니다. 현재 병력이 부족합니다. 하지만 다음 공격은 %(_player_)s님을 공략합니다."
+msgstr "죄송합니다. 현재 병사들이 부족하지만 다음 공격은 %(_player_)s님을 대상으로 합니다."
 
 #: simulation/ai/petra/chatHelper.js:19
 #, javascript-format
@@ -574,7 +574,7 @@ msgstr "자원 부족 - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2
 
 #: simulation/components/ProductionQueue.js:339
 msgid "Entity is being upgraded. Cannot start production."
-msgstr "본체를 업그레이드하는 중입니다. 생산을 시작할 수 없습니다."
+msgstr "개체가 업그레이드되고 있습니다. 생산을 시작할 수 없습니다."
 
 #: simulation/components/ProductionQueue.js:512
 msgid "The production queue is full."
@@ -586,7 +586,7 @@ msgstr "훈련된 유닛을 생성할 여유 공간을 찾을 수 없습니다"
 
 #: simulation/components/Upgrade.js:241
 msgid "Entity is producing. Cannot start upgrading."
-msgstr "본체가 생성중입니다. 업그레이드를 시작할 수 없습니다."
+msgstr "개체가 생성중입니다. 업그레이드를 시작할 수 없습니다."
 
 #: simulation/data/settings/game_speeds.jsonData[0].Title
 msgid "Turtle (0.1×)"
@@ -652,7 +652,7 @@ msgstr "소형 지도는 1v1 경기들에 적합합니다. 플레이어가 확�
 
 #: simulation/data/settings/map_sizes.jsonData[2].Name
 msgid "Normal"
-msgstr "보통"
+msgstr "표준"
 
 #: simulation/data/settings/map_sizes.jsonData[2].Tooltip
 msgid ""
@@ -776,7 +776,7 @@ msgstr "당신이 쓰러지는 것을 좋아하지 않는다면 이 난이도를
 #: simulation/data/settings/map_sizes.jsonData[3].Name
 #: simulation/data/settings/trigger_difficulties.jsonData[2].Title
 msgid "Medium"
-msgstr "보통"
+msgstr "중형"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[2].Tooltip
 msgid ""

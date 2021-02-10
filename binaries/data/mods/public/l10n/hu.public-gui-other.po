@@ -27,8 +27,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-29 14:56+0000\n"
-"PO-Revision-Date: 2021-02-05 16:07+0000\n"
-"Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
+"PO-Revision-Date: 2021-02-08 17:40+0000\n"
+"Last-Translator: Ács Zoltán <acszoltan111@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -503,11 +503,11 @@ msgstr "A jelszó érvénytelen."
 
 #: gui/common/network.js:80
 msgid "Could not find an unused port for the enet STUN client."
-msgstr ""
+msgstr "Nem található nem használt port az enet STUN kliens számára. "
 
 #: gui/common/network.js:81
 msgid "Could not find the STUN endpoint."
-msgstr ""
+msgstr "Nem található a STUN végpont."
 
 #: gui/common/network.js:84
 #, javascript-format
@@ -2180,7 +2180,7 @@ msgstr "Az MI alapértelmezett nehézségi szintje."
 
 #: gui/options/options.json[3].options[4].label
 msgid "Default AI behavior"
-msgstr "Alapértelmezett MI viselkedés."
+msgstr "Alapértelmezett MI viselkedés"
 
 #: gui/options/options.json[3].options[4].list[0].label
 msgid "Random"
@@ -2424,11 +2424,11 @@ msgstr ""
 
 #: gui/options/options.json[5].options[20].list[0].label
 msgid "Walk/Patrol Only"
-msgstr ""
+msgstr "Csak séta/őrjárat"
 
 #: gui/options/options.json[5].options[20].list[0].tooltip
 msgid "Other orders will disband existing formations."
-msgstr ""
+msgstr "Más elrendezések fel fogják osztani a létező formációkat."
 
 #: gui/options/options.json[5].options[20].list[1].label
 msgid "No Override"
@@ -2436,13 +2436,13 @@ msgstr "Nincs felülírás"
 
 #: gui/options/options.json[5].options[20].list[1].tooltip
 msgid "Units in formations stay in formations."
-msgstr ""
+msgstr "Az egységek benne maradnak a formációkban."
 
 #: gui/options/options.json[5].options[20].tooltip
 msgid ""
 "Decide whether formations are enabled for all orders or only 'Walk' and "
 "'Patrol'."
-msgstr ""
+msgstr "Eldönti, hogy a formációk minden egység számára engedélyezve legyenek, vagy csak a sétáló és őrjáratozó egységek számára."
 
 #: gui/options/options.json[5].options[2].label
 msgid "Scroll batch increment ratio"
@@ -3966,11 +3966,11 @@ msgstr "HŐSÖK"
 msgid ""
 "Historical characters, such as Xerxes, Leonidas, Pericles, Hannibal, Scipio,"
 " and Boudicca."
-msgstr ""
+msgstr "Történelmi karakterek, mint Khsajársá, Leónidasz, Hannibál, Periklész, Scipio és Boudicca."
 
 #: gui/text/tips/heroes.txt:3
 msgid "A lot of health and very strong attacks."
-msgstr ""
+msgstr "Nagyon sok életerő és nagyon erős támadások."
 
 #: gui/text/tips/heroes.txt:4
 msgid "Have auras which alter the stats of other units or structures."
@@ -4151,13 +4151,13 @@ msgstr ""
 
 #: gui/text/tips/snapping.txt:3
 msgid "Aligning structures allows to conserve space for future construction."
-msgstr ""
+msgstr "Az épületek illesztése helymegtakarítást tesz lehetővé a jövőbeli építkezéshez."
 
 #: gui/text/tips/snapping.txt:4
 msgid ""
 "Tightly packed groups of structures can also be used for obstructing raiding"
 " enemies."
-msgstr ""
+msgstr "A szorosan összepakolt épületcsoportok a támadó ellenségek akadályozására is használhatók."
 
 #: gui/text/tips/spartan_hoplites.txt:1
 msgid "SPARTIATES"

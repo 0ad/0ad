@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
+# Ács Zoltán <acszoltan111@gmail.com>, 2021
 # András Vöröskői <voroskoi@gmail.com>, 2019
 # Hammer Andrew <andrewhammer87@gmail.com>, 2017
 # Attila Kocsner, 2014
@@ -28,8 +29,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-29 14:56+0000\n"
-"PO-Revision-Date: 2021-01-29 16:52+0000\n"
-"Last-Translator: Stanislas Dolcini <stan@wildfiregames.com>\n"
+"PO-Revision-Date: 2021-02-08 15:28+0000\n"
+"Last-Translator: Ács Zoltán <acszoltan111@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -357,11 +358,11 @@ msgstr ""
 #: gui/session/chat/ChatMessageFormatSimulation.js:17
 #, javascript-format
 msgid "%(icon)sYou have been attacked by %(attacker)s!"
-msgstr ""
+msgstr "%(icon)s, %(attacker)s megtámadott! "
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:30
 msgid "Click to focus on the attacked unit."
-msgstr ""
+msgstr "Kattints a megtámadott egységre való fókuszáláshoz."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:49
 #, javascript-format
@@ -1190,53 +1191,53 @@ msgstr "%(changer)s csökkenti a határt %(change)s egységgel."
 #: gui/session/selection_panels_helpers.js:140
 msgid "Could only be constructed once."
 msgid_plural "Could only be constructed %(limit)s times."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Csak egyszer lehetett megépíteni."
+msgstr[1] "Csak ennyiszer lehetett megépíteni: %(limit)s."
 
 #: gui/session/selection_panels_helpers.js:144
 msgid "Can be constructed only once."
-msgstr ""
+msgstr "Csak egyszer lehet megépíteni."
 
 #: gui/session/selection_panels_helpers.js:146
 #, javascript-format
 msgid "Can be constructed %(count)s more time."
 msgid_plural "Can be constructed %(count)s more times."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Még ennyiszer lehet megépíteni: %(count)s."
+msgstr[1] "Még ennyiszer lehet megépíteni: %(count)s."
 
 #: gui/session/selection_panels_helpers.js:153
 msgid "Could only be trained once."
 msgid_plural "Could only be trained %(limit)s times."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Csak egyszer lehetett kiképezni."
+msgstr[1] "Csak ennyiszer lehetett kiképezni: %(limit)s."
 
 #: gui/session/selection_panels_helpers.js:157
 msgid "Can be trained only once."
-msgstr ""
+msgstr "Csak egyszer lehet kiképezni."
 
 #: gui/session/selection_panels_helpers.js:159
 #, javascript-format
 msgid "Can be trained %(count)s more time."
 msgid_plural "Can be trained %(count)s more times."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Még ennyiszer lehet kiképezni: %(count)s."
+msgstr[1] "Még ennyiszer lehet kiképezni: %(count)s."
 
 #: gui/session/selection_panels_helpers.js:166
 msgid "Could only be created once."
 msgid_plural "Could only be created %(limit)s times."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Csak egyszer lehetett létrehozni."
+msgstr[1] "Csak ennyiszer lehetett létrehozni: %(limit)s."
 
 #: gui/session/selection_panels_helpers.js:170
 msgid "Can be created only once."
-msgstr ""
+msgstr "Csak egyszer lehet létrehozni."
 
 #: gui/session/selection_panels_helpers.js:172
 #, javascript-format
 msgid "Can be created %(count)s more time."
 msgid_plural "Can be created %(count)s more times."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] " Még ennyiszer lehet létrehozni: %(count)s."
+msgstr[1] " Még ennyiszer lehet létrehozni: %(count)s."
 
 #: gui/session/selection_panels_helpers.js:201
 #, javascript-format
@@ -1693,7 +1694,7 @@ msgstr "A lerakóhely használata tiltott"
 
 #: gui/session/unit_actions.js:1503
 msgid "Allies are allowed to use this dropsite."
-msgstr ""
+msgstr "A szövetségesek használhatják ezt a lerakóhelyet."
 
 #: gui/session/unit_actions.js:1504
 msgid "You are allowed to use this dropsite"
