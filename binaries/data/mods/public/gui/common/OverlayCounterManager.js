@@ -13,6 +13,7 @@ class OverlayCounterManager
 		this.enabledCounters = [];
 		this.lastTick = undefined;
 		this.resizeHandlers = [];
+		this.lastHeight = undefined;
 		this.initSize = this.dataCounter.size;
 
 		for (let name of this.availableCounterNames())
@@ -91,6 +92,7 @@ class OverlayCounterManager
 			txt += newTxt + "\n";
 		}
 
+		let height;
 		if (lineCount)
 		{
 			this.dataCounter.caption = txt;
@@ -103,12 +105,19 @@ class OverlayCounterManager
 			size.bottom = size.top + textSize.height;
 			size.left = size.right - textSize.width;
 			this.dataCounter.size = size;
+			height = textSize.height;
 		}
+		else
+			height = 0;
 
 		this.dataCounter.hidden = !lineCount;
 
-		for (let handler of this.resizeHandlers)
-			handler(textSize);
+		if (this.lastHeight != height)
+		{
+			this.lastHeight = height;
+			for (let handler of this.resizeHandlers)
+				handler(height);
+		}
 	}
 }
 
