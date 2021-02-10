@@ -2013,8 +2013,18 @@ UnitAI.prototype.UnitFsmSpec = {
 							this.SetNextState("COMBAT.FINDINGNEWTARGET");
 							return;
 						}
+						// If the order was forced, try moving to the target position,
+						// under the assumption that this is desirable if the target
+						// was somewhat far away - we'll likely end up closer to where
+						// the player hoped we would.
 						let lastPos = this.order.data.lastPos;
-						this.PushOrder("WalkAndFight", { "x": lastPos.x, "z": lastPos.z, "force": false });
+						this.PushOrder("WalkAndFight", {
+							"x": lastPos.x, "z": lastPos.z,
+							"force": false,
+							// Force to true - otherwise structures might be attacked instead of captured,
+							// which is generally not expected (attacking units usually has allowCapture false).
+							"allowCapture": true
+						});
 						return;
 					}
 
