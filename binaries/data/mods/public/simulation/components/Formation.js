@@ -85,7 +85,6 @@ Formation.prototype.variablesToSerialize = [
 	"formationMembersWithAura",
 	"width",
 	"depth",
-	"oldOrientation",
 	"twinFormations",
 	"formationSeparation",
 	"offsets"
@@ -146,7 +145,6 @@ Formation.prototype.Init = function(deserialized = false)
 	this.formationMembersWithAura = [];
 	this.width = 0;
 	this.depth = 0;
-	this.oldOrientation = { "sin": 0, "cos": 0 };
 	this.twinFormations = [];
 	// Distance from which two twin formations will merge into one.
 	this.formationSeparation = 0;
@@ -515,16 +513,11 @@ Formation.prototype.MoveMembersIntoFormation = function(moveCenter, force, varia
 
 	let offsetsChanged = false;
 	let newOrientation = this.GetEstimatedOrientation(avgpos);
-	let dSin = Math.abs(newOrientation.sin - this.oldOrientation.sin);
-	let dCos = Math.abs(newOrientation.cos - this.oldOrientation.cos);
-	// If the formation existed, only recalculate positions if the turning agle is somewhat large.
-	if (!this.offsets || dSin > 1 || dCos > 1)
+	if (!this.offsets)
 	{
 		this.offsets = this.ComputeFormationOffsets(active, positions);
 		offsetsChanged = true;
 	}
-
-	this.oldOrientation = newOrientation;
 
 	let xMax = 0;
 	let yMax = 0;

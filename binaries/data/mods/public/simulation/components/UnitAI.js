@@ -941,13 +941,14 @@ UnitAI.prototype.UnitFsmSpec = {
 
 		"IDLE": {
 			"enter": function(msg) {
-				// Turn rearrange off. Otherwise, if the formation is idle,
-				// but individual units go off to fight, any death
-				// will rearrange the formation, looking odd.
+				// Turn rearrange off. Otherwise, if the formation is idle
+				// but individual units go off to fight,
+				// any death will rearrange the formation, which looks odd.
 				// Instead, move idle units in formation on a timer.
 				let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
 				cmpFormation.SetRearrange(false);
-				this.StartTimer(0, 2000);
+				// Start the timer on the next turn to catch up with potential stragglers.
+				this.StartTimer(100, 2000);
 				this.isIdle = true;
 				this.CallMemberFunction("ResetIdle");
 				return false;
