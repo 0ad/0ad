@@ -59,35 +59,19 @@ const ssize_t BlendOffsets[9][2] = {
 	{  0,  0 }
 };
 
-///////////////////////////////////////////////////////////////////
-// CPatchRData constructor
 CPatchRData::CPatchRData(CPatch* patch, CSimulation2* simulation) :
-	m_Patch(patch), m_VBSides(0),
-	m_VBBase(0), m_VBBaseIndices(0),
-	m_VBBlends(0), m_VBBlendIndices(0),
-	m_VBWater(0), m_VBWaterIndices(0),
-	m_VBWaterShore(0), m_VBWaterIndicesShore(0),
+	m_Patch(patch), m_VBSides(),
+	m_VBBase(), m_VBBaseIndices(),
+	m_VBBlends(), m_VBBlendIndices(),
+	m_VBWater(), m_VBWaterIndices(),
+	m_VBWaterShore(), m_VBWaterIndicesShore(),
 	m_Simulation(simulation)
 {
 	ENSURE(patch);
 	Build();
 }
 
-///////////////////////////////////////////////////////////////////
-// CPatchRData destructor
-CPatchRData::~CPatchRData()
-{
-	// release vertex buffer chunks
-	m_VBSides.Reset();
-	m_VBBase.Reset();
-	m_VBBaseIndices.Reset();
-	m_VBBlends.Reset();
-	m_VBBlendIndices.Reset();
-	m_VBWater.Reset();
-	m_VBWaterIndices.Reset();
-	m_VBWaterShore.Reset();
-	m_VBWaterIndicesShore.Reset();
-}
+CPatchRData::~CPatchRData() = default;
 
 /**
  * Represents a blend for a single tile, texture and shape.

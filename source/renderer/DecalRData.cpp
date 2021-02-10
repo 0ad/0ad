@@ -49,6 +49,8 @@ struct SDecalBatch
 {
 	CDecalRData* decal;
 	CShaderTechniquePtr shaderTech;
+	CVertexBuffer::VBChunk* vertices;
+	CVertexBuffer::VBChunk* indices;
 };
 
 struct SDecalBatchComparator
@@ -57,6 +59,10 @@ struct SDecalBatchComparator
 	{
 		if (lhs.shaderTech != rhs.shaderTech)
 			return lhs.shaderTech < rhs.shaderTech;
+		if (lhs.vertices->m_Owner != rhs.vertices->m_Owner)
+			return lhs.vertices->m_Owner < rhs.vertices->m_Owner;
+		if (lhs.indices->m_Owner != rhs.indices->m_Owner)
+			return lhs.indices->m_Owner < rhs.indices->m_Owner;
 		return lhs.decal < rhs.decal;
 	}
 };
@@ -64,33 +70,19 @@ struct SDecalBatchComparator
 } // anonymous namespace
 
 CDecalRData::CDecalRData(CModelDecal* decal, CSimulation2* simulation)
-	: m_Decal(decal), m_IndexArray(GL_STATIC_DRAW), m_Array(GL_STATIC_DRAW), m_Simulation(simulation)
+	: m_Decal(decal), m_Simulation(simulation)
 {
-	m_Position.type = GL_FLOAT;
-	m_Position.elems = 3;
-	m_Array.AddAttribute(&m_Position);
-
-	m_Normal.type = GL_FLOAT;
-	m_Normal.elems = 3;
-	m_Array.AddAttribute(&m_Normal);
-
-	m_UV.type = GL_FLOAT;
-	m_UV.elems = 2;
-	m_Array.AddAttribute(&m_UV);
-
-	BuildArrays();
+	BuildVertexData();
 }
 
-CDecalRData::~CDecalRData()
-{
-}
+CDecalRData::~CDecalRData() = default;
 
 void CDecalRData::Update(CSimulation2* simulation)
 {
 	m_Simulation = simulation;
 	if (m_UpdateFlags != 0)
 	{
-		BuildArrays();
+		BuildVertexData();
 		m_UpdateFlags = 0;
 	}
 }
@@ -100,7 +92,7 @@ void CDecalRData::RenderDecals(
 {
 	PROFILE3("render terrain decals");
 
-	using Arena = Allocators::DynamicArena<512 * KiB>;
+	using Arena = Allocators::DynamicArena<256 * KiB>;
 
 	Arena arena;
 
@@ -111,7 +103,7 @@ void CDecalRData::RenderDecals(
 	CShaderDefines contextDecal = context;
 	contextDecal.Add(str_DECAL, str_1);
 
-	for (CDecalRData *decal : decals)
+	for (CDecalRData* decal : decals)
 	{
 		CMaterial &material = decal->m_Decal->m_Decal.m_Material;
 
@@ -130,12 +122,14 @@ void CDecalRData::RenderDecals(
 			continue;
 		}
 
-		if (material.GetSamplers().empty())
+		if (material.GetSamplers().empty() || !decal->m_VBDecals || !decal->m_VBDecalsIndices)
 			continue;
 
 		SDecalBatch batch;
 		batch.decal = decal;
 		batch.shaderTech = techBase;
+		batch.vertices = decal->m_VBDecals.Get();
+		batch.indices = decal->m_VBDecalsIndices.Get();
 
 		batches.emplace_back(std::move(batch));
 	}
@@ -148,6 +142,7 @@ void CDecalRData::RenderDecals(
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
+	CVertexBuffer* lastIB = nullptr;
 	for (auto itTechBegin = batches.begin(), itTechEnd = batches.begin(); itTechBegin != batches.end(); itTechBegin = itTechEnd)
 	{
 		while (itTechEnd != batches.end() && itTechBegin->shaderTech == itTechEnd->shaderTech)
@@ -162,9 +157,11 @@ void CDecalRData::RenderDecals(
 			const CShaderProgramPtr& shader = techBase->GetShader(pass);
 			TerrainRenderer::PrepareShader(shader, shadow);
 
+			CVertexBuffer* lastVB = nullptr;
 			for (auto itDecal = itTechBegin; itDecal != itTechEnd; ++itDecal)
 			{
-				CDecalRData* decal = itDecal->decal;
+				SDecalBatch& batch = *itDecal;
+				CDecalRData* decal = batch.decal;
 				CMaterial& material = decal->m_Decal->m_Decal.m_Material;
 
 				const CMaterial::SamplersVector& samplers = material.GetSamplers();
@@ -184,27 +181,36 @@ void CDecalRData::RenderDecals(
 				//	m_Decal->GetBounds().Render();
 				//	glEnable(GL_TEXTURE_2D);
 
-				u8* base = decal->m_Array.Bind();
-				GLsizei stride = (GLsizei)decal->m_Array.GetStride();
-
-				u8* indexBase = decal->m_IndexArray.Bind();
-
 				shader->Uniform(str_shadingColor, decal->m_Decal->GetShadingColor());
 
-				shader->VertexPointer(3, GL_FLOAT, stride, base + decal->m_Position.offset);
-				shader->NormalPointer(GL_FLOAT, stride, base + decal->m_Normal.offset);
-				shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, stride, base + decal->m_UV.offset);
+				if (lastVB != batch.vertices->m_Owner)
+				{
+					lastVB = batch.vertices->m_Owner;
+					const GLsizei stride = sizeof(SDecalVertex);
+					SDecalVertex* base = (SDecalVertex*)batch.vertices->m_Owner->Bind();
+
+					shader->VertexPointer(3, GL_FLOAT, stride, &base->m_Position[0]);
+					shader->NormalPointer(GL_FLOAT, stride, &base->m_Normal[0]);
+					shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, stride, &base->m_UV[0]);
+				}
 
 				shader->AssertPointersBound();
 
+				if (lastIB != batch.indices->m_Owner)
+				{
+					lastIB = batch.indices->m_Owner;
+					batch.indices->m_Owner->Bind();
+				}
+
+				u8* indexBase = batch.indices->m_Owner->GetBindAddress() + sizeof(u16) * (batch.indices->m_Index);
 				if (!g_Renderer.m_SkipSubmit)
 				{
-					glDrawElements(GL_TRIANGLES, (GLsizei)decal->m_IndexArray.GetNumVertices(), GL_UNSIGNED_SHORT, indexBase);
+					glDrawElements(GL_TRIANGLES, batch.indices->m_Count, GL_UNSIGNED_SHORT, indexBase);
 				}
 
 				// bump stats
 				g_Renderer.m_Stats.m_DrawCalls++;
-				g_Renderer.m_Stats.m_TerrainTris += decal->m_IndexArray.GetNumVertices() / 3;
+				g_Renderer.m_Stats.m_TerrainTris += batch.indices->m_Count / 3;
 			}
 
 			techBase->EndPass();
@@ -216,7 +222,7 @@ void CDecalRData::RenderDecals(
 	glDisable(GL_BLEND);
 }
 
-void CDecalRData::BuildArrays()
+void CDecalRData::BuildVertexData()
 {
 	PROFILE("decal build");
 
@@ -229,81 +235,75 @@ void CDecalRData::BuildArrays()
 	ssize_t i0, j0, i1, j1;
 	m_Decal->CalcVertexExtents(i0, j0, i1, j1);
 
-	// Construct vertex data arrays
-
 	CmpPtr<ICmpWaterManager> cmpWaterManager(*m_Simulation, SYSTEM_ENTITY);
 
-	m_Array.SetNumVertices((i1-i0+1)*(j1-j0+1));
-	m_Array.Layout();
-	VertexArrayIterator<CVector3D> Position = m_Position.GetIterator<CVector3D>();
-	VertexArrayIterator<CVector3D> Normal = m_Normal.GetIterator<CVector3D>();
-	VertexArrayIterator<float[2]> UV = m_UV.GetIterator<float[2]>();
+	std::vector<SDecalVertex> vertices((i1 - i0 + 1) * (j1 - j0 + 1));
 
-	for (ssize_t j = j0; j <= j1; ++j)
+	for (ssize_t j = j0, idx = 0; j <= j1; ++j)
 	{
-		for (ssize_t i = i0; i <= i1; ++i)
+		for (ssize_t i = i0; i <= i1; ++i, ++idx)
 		{
-			CVector3D pos;
-			m_Decal->m_Terrain->CalcPosition(i, j, pos);
+			SDecalVertex& vertex = vertices[idx];
+			m_Decal->m_Terrain->CalcPosition(i, j, vertex.m_Position);
 
 			if (decal.m_Floating && cmpWaterManager)
-				pos.Y = std::max(pos.Y, cmpWaterManager->GetExactWaterLevel(pos.X, pos.Z));
+			{
+				vertex.m_Position.Y = std::max(
+					vertex.m_Position.Y,
+					cmpWaterManager->GetExactWaterLevel(vertex.m_Position.X, vertex.m_Position.Z));
+			}
 
-			*Position = pos;
-			++Position;
+			m_Decal->m_Terrain->CalcNormal(i, j, vertex.m_Normal);
 
-			CVector3D normal;
-			m_Decal->m_Terrain->CalcNormal(i, j, normal);
-			*Normal = normal;
-			Normal++;
-
-			// Map from world space back into decal texture space
-			CVector3D inv = m_Decal->GetInvTransform().Transform(pos);
-			(*UV)[0] = 0.5f + (inv.X - decal.m_OffsetX) / decal.m_SizeX;
-			(*UV)[1] = 0.5f - (inv.Z - decal.m_OffsetZ) / decal.m_SizeZ; // flip V to match our texture convention
-			++UV;
+			// Map from world space back into decal texture space.
+			CVector3D inv = m_Decal->GetInvTransform().Transform(vertex.m_Position);
+			vertex.m_UV.X = 0.5f + (inv.X - decal.m_OffsetX) / decal.m_SizeX;
+			// Flip V to match our texture convention.
+			vertex.m_UV.Y = 0.5f - (inv.Z - decal.m_OffsetZ) / decal.m_SizeZ;
 		}
 	}
 
-	m_Array.Upload();
-	m_Array.FreeBackingStore();
+	if (!m_VBDecals || m_VBDecals->m_Count != vertices.size())
+		m_VBDecals = g_VBMan.AllocateChunk(sizeof(SDecalVertex), vertices.size(), GL_STATIC_DRAW, GL_ARRAY_BUFFER);
+	m_VBDecals->m_Owner->UpdateChunkVertices(m_VBDecals.Get(), vertices.data());
 
-	// Construct index arrays for each terrain tile
+	std::vector<u16> indices((i1 - i0) * (j1 - j0) * 6);
 
-	m_IndexArray.SetNumVertices((i1-i0)*(j1-j0)*6);
-	m_IndexArray.Layout();
-	VertexArrayIterator<u16> Index = m_IndexArray.GetIterator();
-
-	u16 base = 0;
-	ssize_t w = i1-i0+1;
-	for (ssize_t dj = 0; dj < j1-j0; ++dj)
+	const ssize_t w = i1 - i0 + 1;
+	auto itIdx = indices.begin();
+	const size_t base = m_VBDecals->m_Index;
+	for (ssize_t dj = 0; dj < j1 - j0; ++dj)
 	{
-		for (ssize_t di = 0; di < i1-i0; ++di)
+		for (ssize_t di = 0; di < i1 - i0; ++di)
 		{
-			bool dir = m_Decal->m_Terrain->GetTriangulationDir(i0+di, j0+dj);
+			const bool dir = m_Decal->m_Terrain->GetTriangulationDir(i0 + di, j0 + dj);
 			if (dir)
 			{
-				*Index++ = u16(((dj+0)*w+(di+0))+base);
-				*Index++ = u16(((dj+0)*w+(di+1))+base);
-				*Index++ = u16(((dj+1)*w+(di+0))+base);
+				*itIdx++ = u16(((dj + 0) * w + (di + 0)) + base);
+				*itIdx++ = u16(((dj + 0) * w + (di + 1)) + base);
+				*itIdx++ = u16(((dj + 1) * w + (di + 0)) + base);
 
-				*Index++ = u16(((dj+0)*w+(di+1))+base);
-				*Index++ = u16(((dj+1)*w+(di+1))+base);
-				*Index++ = u16(((dj+1)*w+(di+0))+base);
+				*itIdx++ = u16(((dj + 0) * w + (di + 1)) + base);
+				*itIdx++ = u16(((dj + 1) * w + (di + 1)) + base);
+				*itIdx++ = u16(((dj + 1) * w + (di + 0)) + base);
 			}
 			else
 			{
-				*Index++ = u16(((dj+0)*w+(di+0))+base);
-				*Index++ = u16(((dj+0)*w+(di+1))+base);
-				*Index++ = u16(((dj+1)*w+(di+1))+base);
+				*itIdx++ = u16(((dj + 0) * w + (di + 0)) + base);
+				*itIdx++ = u16(((dj + 0) * w + (di + 1)) + base);
+				*itIdx++ = u16(((dj + 1) * w + (di + 1)) + base);
 
-				*Index++ = u16(((dj+1)*w+(di+1))+base);
-				*Index++ = u16(((dj+1)*w+(di+0))+base);
-				*Index++ = u16(((dj+0)*w+(di+0))+base);
+				*itIdx++ = u16(((dj + 1) * w + (di + 1)) + base);
+				*itIdx++ = u16(((dj + 1) * w + (di + 0)) + base);
+				*itIdx++ = u16(((dj + 0) * w + (di + 0)) + base);
 			}
 		}
 	}
 
-	m_IndexArray.Upload();
-	m_IndexArray.FreeBackingStore();
+	ENSURE(!indices.empty());
+
+	// Construct vertex buffer.
+	if (!m_VBDecalsIndices || m_VBDecalsIndices->m_Count != indices.size())
+		m_VBDecalsIndices = g_VBMan.AllocateChunk(sizeof(u16), indices.size(), GL_STATIC_DRAW, GL_ELEMENT_ARRAY_BUFFER);
+	m_VBDecalsIndices->m_Owner->UpdateChunkVertices(m_VBDecalsIndices.Get(), indices.data());
 }

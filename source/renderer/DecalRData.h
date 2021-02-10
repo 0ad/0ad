@@ -20,7 +20,9 @@
 
 #include "graphics/RenderableObject.h"
 #include "graphics/ShaderProgramPtr.h"
-#include "renderer/VertexArray.h"
+#include "maths/Vector2D.h"
+#include "maths/Vector3D.h"
+#include "renderer/VertexBufferManager.h"
 
 class CModelDecal;
 class CShaderDefines;
@@ -41,14 +43,18 @@ public:
 	CModelDecal* GetDecal() { return m_Decal; }
 
 private:
-	void BuildArrays();
+	void BuildVertexData();
 
-	VertexIndexArray m_IndexArray;
+	struct SDecalVertex
+	{
+		CVector3D m_Position;
+		CVector3D m_Normal;
+		CVector2D m_UV;
+	};
+	cassert(sizeof(SDecalVertex) == 32);
 
-	VertexArray m_Array;
-	VertexArray::Attribute m_Position;
-	VertexArray::Attribute m_Normal;
-	VertexArray::Attribute m_UV;
+	CVertexBufferManager::Handle m_VBDecals;
+	CVertexBufferManager::Handle m_VBDecalsIndices;
 
 	CModelDecal* m_Decal;
 
