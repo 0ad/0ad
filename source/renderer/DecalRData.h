@@ -36,7 +36,7 @@ public:
 	void Update(CSimulation2* simulation);
 
 	static void RenderDecals(
-		std::vector<CDecalRData*>& decals, const CShaderDefines& context, ShadowMap* shadow);
+		const std::vector<CDecalRData*>& decals, const CShaderDefines& context, ShadowMap* shadow);
 
 	CModelDecal* GetDecal() { return m_Decal; }
 

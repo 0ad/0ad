@@ -24,18 +24,44 @@
 #include "graphics/ShaderManager.h"
 #include "graphics/Terrain.h"
 #include "graphics/TextureManager.h"
+#include "lib/allocators/DynamicArena.h"
+#include "lib/allocators/STLAllocators.h"
 #include "ps/CLogger.h"
 #include "ps/Game.h"
 #include "ps/Profile.h"
 #include "renderer/Renderer.h"
 #include "renderer/TerrainRenderer.h"
-#include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpWaterManager.h"
+#include "simulation2/Simulation2.h"
+
+#include <algorithm>
+#include <vector>
 
 // TODO: Currently each decal is a separate CDecalRData. We might want to use
 // lots of decals for special effects like shadows, footprints, etc, in which
 // case we should probably redesign this to batch them all together for more
 // efficient rendering.
+
+namespace
+{
+
+struct SDecalBatch
+{
+	CDecalRData* decal;
+	CShaderTechniquePtr shaderTech;
+};
+
+struct SDecalBatchComparator
+{
+	bool operator()(const SDecalBatch& lhs, const SDecalBatch& rhs) const
+	{
+		if (lhs.shaderTech != rhs.shaderTech)
+			return lhs.shaderTech < rhs.shaderTech;
+		return lhs.decal < rhs.decal;
+	}
+};
+
+} // anonymous namespace
 
 CDecalRData::CDecalRData(CModelDecal* decal, CSimulation2* simulation)
 	: m_Decal(decal), m_IndexArray(GL_STATIC_DRAW), m_Array(GL_STATIC_DRAW), m_Simulation(simulation)
@@ -70,21 +96,26 @@ void CDecalRData::Update(CSimulation2* simulation)
 }
 
 void CDecalRData::RenderDecals(
-	std::vector<CDecalRData*>& decals, const CShaderDefines& context, ShadowMap* shadow)
+	const std::vector<CDecalRData*>& decals, const CShaderDefines& context, ShadowMap* shadow)
 {
+	PROFILE3("render terrain decals");
+
+	using Arena = Allocators::DynamicArena<512 * KiB>;
+
+	Arena arena;
+
+	using Batches = std::vector<SDecalBatch, ProxyAllocator<SDecalBatch, Arena>>;
+	Batches batches((Batches::allocator_type(arena)));
+	batches.reserve(decals.size());
+
 	CShaderDefines contextDecal = context;
 	contextDecal.Add(str_DECAL, str_1);
 
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-	for (size_t i = 0; i < decals.size(); ++i)
+	for (CDecalRData *decal : decals)
 	{
-		CDecalRData *decal = decals[i];
-
 		CMaterial &material = decal->m_Decal->m_Decal.m_Material;
 
-		if (material.GetShaderEffect().length() == 0)
+		if (material.GetShaderEffect().empty())
 		{
 			LOGERROR("Terrain renderer failed to load shader effect.\n");
 			continue;
@@ -99,24 +130,46 @@ void CDecalRData::RenderDecals(
 			continue;
 		}
 
+		if (material.GetSamplers().empty())
+			continue;
+
+		SDecalBatch batch;
+		batch.decal = decal;
+		batch.shaderTech = techBase;
+
+		batches.emplace_back(std::move(batch));
+	}
+
+	if (batches.empty())
+		return;
+
+	std::sort(batches.begin(), batches.end(), SDecalBatchComparator());
+
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	for (auto itTechBegin = batches.begin(), itTechEnd = batches.begin(); itTechBegin != batches.end(); itTechBegin = itTechEnd)
+	{
+		while (itTechEnd != batches.end() && itTechBegin->shaderTech == itTechEnd->shaderTech)
+			++itTechEnd;
+
+		const CShaderTechniquePtr& techBase = itTechBegin->shaderTech;
 		const int numPasses = techBase->GetNumPasses();
+
 		for (int pass = 0; pass < numPasses; ++pass)
 		{
 			techBase->BeginPass(pass);
-			TerrainRenderer::PrepareShader(techBase->GetShader(), shadow);
-
 			const CShaderProgramPtr& shader = techBase->GetShader(pass);
+			TerrainRenderer::PrepareShader(shader, shadow);
 
-			if (material.GetSamplers().size() != 0)
+			for (auto itDecal = itTechBegin; itDecal != itTechEnd; ++itDecal)
 			{
-				const CMaterial::SamplersVector& samplers = material.GetSamplers();
-				size_t samplersNum = samplers.size();
+				CDecalRData* decal = itDecal->decal;
+				CMaterial& material = decal->m_Decal->m_Decal.m_Material;
 
-				for (size_t s = 0; s < samplersNum; ++s)
-				{
-					const CMaterial::TextureSampler& samp = samplers[s];
-					shader->BindTexture(samp.Name, samp.Sampler);
-				}
+				const CMaterial::SamplersVector& samplers = material.GetSamplers();
+				for (const CMaterial::TextureSampler& sampler : samplers)
+					shader->BindTexture(sampler.Name, sampler.Sampler);
 
 				material.GetStaticUniforms().BindUniforms(shader);
 
@@ -152,13 +205,13 @@ void CDecalRData::RenderDecals(
 				// bump stats
 				g_Renderer.m_Stats.m_DrawCalls++;
 				g_Renderer.m_Stats.m_TerrainTris += decal->m_IndexArray.GetNumVertices() / 3;
-
-				CVertexBuffer::Unbind();
 			}
 
 			techBase->EndPass();
 		}
 	}
+
+	CVertexBuffer::Unbind();
 
 	glDisable(GL_BLEND);
 }

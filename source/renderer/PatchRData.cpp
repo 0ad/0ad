@@ -1147,6 +1147,8 @@ void CPatchRData::RenderOutline()
 
 void CPatchRData::RenderSides(const std::vector<CPatchRData*>& patches, const CShaderProgramPtr& shader)
 {
+	PROFILE3("render terrain sides");
+
 	glDisable(GL_CULL_FACE);
 
 	CVertexBuffer* lastVB = nullptr;
