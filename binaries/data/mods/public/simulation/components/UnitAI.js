@@ -696,6 +696,13 @@ UnitAI.prototype.UnitFsmSpec = {
 		this.FinishOrder();
 	},
 
+	"Order.MoveToChasingPoint": function(msg) {
+		// Overriden by the CHASING state.
+		// Can however happen outside of it when renaming...
+		// TODO: don't use an order for that behaviour.
+		return { "discardOrder": true };
+	},
+
 	// States for the special entity representing a group of units moving in formation:
 	"FORMATIONCONTROLLER": {
 
