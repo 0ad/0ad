@@ -27,8 +27,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-25 08:08+0000\n"
-"PO-Revision-Date: 2021-02-04 14:17+0000\n"
-"Last-Translator: Stanislas Dolcini <stan@wildfiregames.com>\n"
+"PO-Revision-Date: 2021-02-10 08:17+0000\n"
+"Last-Translator: Bruce Lee <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -77,11 +77,11 @@ msgstr "기본 컨트롤(기본값):"
 
 #: gui/manual/intro.txt:11
 msgid "• Left-click to select units"
-msgstr "• 마우스 왼쪽 클릭으로 유닛 선택"
+msgstr "• 마우스 왼쪽 버튼 클릭으로 유닛 선택"
 
 #: gui/manual/intro.txt:12
 msgid "• Left-click-and-drag to select groups of units"
-msgstr "• 마우스 왼쪽 클릭후 끌어서 유닛 묶음을 선택"
+msgstr "• 마우스 왼쪽 버튼 클릭 및 드래그로 유닛 그룹 선택"
 
 #: gui/manual/intro.txt:13
 msgid "• Right-click to order units to the target"
@@ -99,7 +99,7 @@ msgstr "• Ctrl + 화살표키 또는 shift + 마우스 바퀴로 카메라 회
 msgid ""
 "• Mouse wheel, or “hotkey.camera.zoom.in” and “hotkey.camera.zoom.out” keys,"
 " to zoom"
-msgstr ""
+msgstr "• 마우스 휠 또는 \"hotkey.camera.zoom.in\" 및 \"hotkey.camera.discal.out\" 키를 확대/축소할 수 있습니다."
 
 #: gui/manual/intro.txt:18
 msgid "[font=\"sans-bold-16\"]Modes[font=\"sans-14\"]"
@@ -255,7 +255,7 @@ msgstr "[font=\"sans-bold-14\"]게임 내[font=\"sans-14\"]"
 msgid ""
 "  Double Left Click \\[on unit] – Select all of your units of the same kind "
 "on the screen (even if they're different ranks)"
-msgstr " 마우스 왼쪽 두번 연속 클릭 \\[유닛에 대고] – 화면에서 같은 종류의 유닛을 모두 선택 (다른 등급이라도)"
+msgstr " 마우스 왼쪽 두번 연속 클릭 \\[유닛에 대고] – 화면에서 같은 종류의 유닛을 모두 선택(계급이 다르더라도)"
 
 #: gui/manual/intro.txt:56
 msgid ""
@@ -329,19 +329,19 @@ msgstr "    • hotkey.session.noconfirmation 사용 – 확인을 요청하지 
 msgid ""
 "  hotkey.selection.add – Modifier – add to selection (works with clicking "
 "and hotkeys, e.g. the idle hotkeys)"
-msgstr ""
+msgstr "  hotkey.selection.add – 수정도구 – 선택에 추가 (클릭 및 단축키와 함께 작동, 예 : 유휴 핫키)"
 
 #: gui/manual/intro.txt:71
 msgid ""
 "  hotkey.selection.remove – Modifier – remove from selection (works with "
 "clicking and hotkeys, e.g. the idle hotkeys)"
-msgstr ""
+msgstr "  hotkey.selection.remove – 수정도구 – 선택에서 제거(클릭 및 단축키와 함께 작동, 예 : 유휴 핫키)"
 
 #: gui/manual/intro.txt:72
 msgid ""
 "  hotkey.selection.offscreen – Modifier – add all units, including offscreen"
 " units, to selection."
-msgstr ""
+msgstr "  hotkey.selection.offscreen – 수정도구– 화면 밖 유닛을 포함한 모든 유닛을 선택 항목에 추가합니다."
 
 #: gui/manual/intro.txt:73
 msgid ""
@@ -386,7 +386,7 @@ msgstr "  hotkey.selection.group.save.1 – 선택한 유닛/건축물에서 제
 msgid ""
 "  hotkey.selection.group.select.1 – Select the unit(s)/structure(s) in "
 "control group 1"
-msgstr ""
+msgstr "  hotkey.select.select.select.1 – 제어 그룹 1에서 유닛/건축물 선택"
 
 #: gui/manual/intro.txt:82
 msgid ""
@@ -448,7 +448,7 @@ msgstr "  hotkey.session.gui.diplomacy.toggle – 게임 내 외교 패널을 �
 #: gui/manual/intro.txt:92
 msgid ""
 "  hotkey.session.gui.barter.toggle – Toggle in-game barter and trade panel"
-msgstr "  hotkey.session.gui.barter.toggle – 게임 내 물물교환 및 거래 패널을 전환합니다"
+msgstr "  hotkey.session.gui.barter.toggle – 게임 내 물물교환 및 교역 패널을 전환합니다"
 
 #: gui/manual/intro.txt:93
 msgid ""
@@ -506,37 +506,37 @@ msgstr "  hotkey.session.batchtrain + 유닛 교육 시 마우스 왼쪽 버튼 
 msgid ""
 "  hotkey.selection.add + Left Click or Left Drag over unit on map – Add unit"
 " to selection"
-msgstr "  hotkey.selection.add + 지도에서 유닛 위로 왼쪽 클릭 또는 왼쪽 드래그 – 선택할 유닛을 추가합니다"
+msgstr "  hotkey.selection.add + 지도에서 유닛 위로 마우스 왼쪽 버튼 클릭 또는 마우스 왼쪽 버튼으로 드레그 – 선택할 유닛 추가"
 
 #: gui/manual/intro.txt:106
 msgid ""
 "  hotkey.selection.remove + Left Click or Left Drag over unit on map – "
 "Remove unit from selection"
-msgstr "  hotkey.selection.remove + 지도에서 유닛을 왼쪽 클릭 또는 왼쪽 드래그 – 선택에서 유닛을 제거합니다"
+msgstr "  hotkey.selection.remove + 지도에서 유닛을 마우스 왼쪽 버튼 클릭 또는 마우스 왼쪽 버튼으로 드레그 – 선택에서 유닛 제거"
 
 #: gui/manual/intro.txt:107
 msgid ""
 "  hotkey.selection.militaryonly + Left Drag over units on map – Only select "
 "military units"
-msgstr "  hotkey.selection.militaryonly + 지도에서 유닛을 왼쪽으로 드래그 – 군대 유닛만 선택합니다"
+msgstr "  hotkey.selection.militaryonly + 지도에서 유닛을 마우스 왼쪽 버튼으로 드레그 – 군대 유닛만 선택"
 
 #: gui/manual/intro.txt:108
 msgid ""
 "  hotkey.selection.nonmilitaryonly + Left Drag over units on map – Only "
 "select non-military units"
-msgstr "  hotkey.selection.nonmilitaryonly + 지도에서 유닛 위로 왼쪽 드래그 – 군대가 아닌 유닛만 선택합니다"
+msgstr "  hotkey.selection.nonmilitaryonly + 지도에서 유닛 위로 마우스 왼쪽 버튼으로 드레그 – 군대가 아닌 유닛만 선택"
 
 #: gui/manual/intro.txt:109
 msgid ""
 "  hotkey.selection.idleonly + Left Drag over units on map – Only select idle"
 " units"
-msgstr "  hotkey.selection.idleonly + 지도에서 유닛 위로 왼쪽 드래그 – 노는 유닛만 선택합니다"
+msgstr "  hotkey.selection.idleonly + 지도에서 유닛 위에서 마우스 왼쪽 버튼으로 드레그 – 노는 유닛만 선택"
 
 #: gui/manual/intro.txt:110
 msgid ""
 "  hotkey.selection.woundedonly + Left Drag over units on map – Only select "
 "wounded units"
-msgstr "  hotkey.selection.woundedonly + 지도에서 유닛 위로 왼쪽 드래그 – 부상당한 유닛만 선택합니다"
+msgstr "  hotkey.selection.woundedonly + 지도에서 유닛 위에서 마우스 왼쪽 버튼으로 드레그 – 부상당한 유닛만 선택"
 
 #: gui/manual/intro.txt:111
 msgid ""
@@ -548,31 +548,31 @@ msgstr "  건축물(들)을 선택한 상태에서 마우스 오른쪽 클릭 �
 msgid ""
 "  hotkey.session.garrison + Right Click with unit(s) selected – Garrison (If"
 " the cursor is over an own or allied structure)"
-msgstr ""
+msgstr "  hotkey.session.garrison + 유닛을 선택한 상태에서 마우스 오른쪽 버튼 – 주둔지(커서가 자신의 또는 동맹 건축물 위에 있는 경우)"
 
 #: gui/manual/intro.txt:113
 msgid ""
 "  hotkey.session.attack + Right Click with unit(s) selected – Attack "
 "(instead of capture or gather)"
-msgstr ""
+msgstr "  hotkey.session.attack + 유닛을 선택한 상태에서 마우스 오른쪽 버튼 – 공격(점령 또는 채집 대신)"
 
 #: gui/manual/intro.txt:114
 msgid ""
 "  hotkey.session.attackmove + Right Click with unit(s) selected – Attack "
 "move (by default all enemy units and structures along the way are targeted)"
-msgstr ""
+msgstr "  hotkey.session.attack move + 유닛을 선택한 상태에서 마우스 오른쪽 버튼 클릭 – 공격 이동(기본적으로 길을 따라있는 모든 적 유닛과 건축물이 표적이 됨)"
 
 #: gui/manual/intro.txt:115
 msgid ""
 "  hotkey.session.attackmoveUnit + Right Click with unit(s) selected – Attack"
 " move, only units along the way are targeted"
-msgstr ""
+msgstr "  hotkey.session.attackmoveUnit + 유닛을 선택한 상태에서 마우스 오른쪽 버튼 클릭 – 공격 이동, 길을 따라있는 유닛만 대상 지정"
 
 #: gui/manual/intro.txt:116
 msgid ""
 "  hotkey.session.snaptoedges + Mouse Move near structures – Align the new "
 "structure with an existing nearby structure"
-msgstr "  hotkey.session.snaptoedges + 마우스를 건축물 근처로 이동 – 새로운 구조물을 기존 인근 구조물에 맞춥니다"
+msgstr "  hotkey.session.snaptoedges + 건축물 근처로 마우스 이동 – 새 건축물을 기존 근처 건축물과 정렬"
 
 #: gui/manual/intro.txt:118
 msgid "[font=\"sans-bold-14\"]Overlays[font=\"sans-14\"]"
@@ -615,7 +615,7 @@ msgstr "  hotkey.session.toggleattackrange – 선택한 유닛 및 건축물의
 msgid ""
 "  hotkey.session.toggleaurasrange – Toggle aura range visualizations of "
 "selected units and structures"
-msgstr "  hotkey.session.toggleaurasrange – 선택한 유닛 및 건축물의 오라 범위 시각화를 전환합니다"
+msgstr "  hotkey.session.toggleaurasrange – 선택한 유닛 및 건축물의 기운 범위 시각화를 전환합니다"
 
 #: gui/manual/intro.txt:126
 msgid ""
@@ -714,7 +714,7 @@ msgstr "  hotkey.session.rotate.cw – 건축물을 시계 방향으로 15도 �
 msgid ""
 "  Left Drag – Rotate structure using mouse (foundation will be placed on "
 "mouse release)"
-msgstr "  마우스 왼쪽 끌기 – 마우스를 사용하여 건축물을 돌림 (토대는 마우스를 놓을 때 배치됨)"
+msgstr "  마우스 왼쪽 버튼으로 드레그 – 마우스를 사용하여 건축물을 돌림 (토대는 마우스를 놓을 때 배치됨)"
 
 #: gui/manual/intro.txt:150
 msgid "[font=\"sans-bold-14\"]When loading a saved game[font=\"sans-14\"]"

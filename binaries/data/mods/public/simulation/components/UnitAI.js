@@ -696,6 +696,13 @@ UnitAI.prototype.UnitFsmSpec = {
 		this.FinishOrder();
 	},
 
+	"Order.MoveToChasingPoint": function(msg) {
+		// Overriden by the CHASING state.
+		// Can however happen outside of it when renaming...
+		// TODO: don't use an order for that behaviour.
+		return { "discardOrder": true };
+	},
+
 	// States for the special entity representing a group of units moving in formation:
 	"FORMATIONCONTROLLER": {
 
@@ -934,13 +941,14 @@ UnitAI.prototype.UnitFsmSpec = {
 
 		"IDLE": {
 			"enter": function(msg) {
-				// Turn rearrange off. Otherwise, if the formation is idle,
-				// but individual units go off to fight, any death
-				// will rearrange the formation, looking odd.
+				// Turn rearrange off. Otherwise, if the formation is idle
+				// but individual units go off to fight,
+				// any death will rearrange the formation, which looks odd.
 				// Instead, move idle units in formation on a timer.
 				let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
 				cmpFormation.SetRearrange(false);
-				this.StartTimer(0, 2000);
+				// Start the timer on the next turn to catch up with potential stragglers.
+				this.StartTimer(100, 2000);
 				this.isIdle = true;
 				this.CallMemberFunction("ResetIdle");
 				return false;
@@ -2005,8 +2013,18 @@ UnitAI.prototype.UnitFsmSpec = {
 							this.SetNextState("COMBAT.FINDINGNEWTARGET");
 							return;
 						}
+						// If the order was forced, try moving to the target position,
+						// under the assumption that this is desirable if the target
+						// was somewhat far away - we'll likely end up closer to where
+						// the player hoped we would.
 						let lastPos = this.order.data.lastPos;
-						this.PushOrder("WalkAndFight", { "x": lastPos.x, "z": lastPos.z, "force": false });
+						this.PushOrder("WalkAndFight", {
+							"x": lastPos.x, "z": lastPos.z,
+							"force": false,
+							// Force to true - otherwise structures might be attacked instead of captured,
+							// which is generally not expected (attacking units usually has allowCapture false).
+							"allowCapture": true
+						});
 						return;
 					}
 
@@ -4147,6 +4165,17 @@ UnitAI.prototype.ReplaceOrder = function(type, data)
 		}
 		else
 			this.orderQueue = [packingOrder, order];
+	}
+	else if (this.IsFormationMember())
+	{
+		// Don't replace orders after a LeaveFormation order
+		// (this is needed to support queued no-formation orders).
+		let idx = this.orderQueue.findIndex(o => o.type == "LeaveFormation");
+		if (idx === -1)
+			this.orderQueue = [];
+		else
+			this.orderQueue.splice(0, idx);
+		this.PushOrderFront(type, data);
 	}
 	else
 	{

@@ -8,13 +8,14 @@
 # Dedi Wahyudi <dedi.dkv@gmail.com>, 2017
 # donny widi <citozpremium@gmail.com>, 2019
 # Ulzeta Ulzeta <julyusputra@gmail.com>, 2020
+# Dabiq 1441 <dlc39hw3eh@just4fun.me>, 2021
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "POT-Creation-Date: 2020-12-26 15:10+0000\n"
 "PO-Revision-Date: 2017-06-04 12:59+0000\n"
-"Last-Translator: Ulzeta Ulzeta <julyusputra@gmail.com>, 2020\n"
+"Last-Translator: Dabiq 1441 <dlc39hw3eh@just4fun.me>, 2021\n"
 "Language-Team: Indonesian (https://www.transifex.com/wildfire-games/teams/17418/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -208,12 +209,17 @@ msgid ""
 "Prepare for an attack by an enemy player. Train more soldiers using the "
 "Barracks, and get idle soldiers to build a Tower near your Outpost."
 msgstr ""
+"Mempersiapkan serangan dari pemain musuh. Latih lebih banyak tentara "
+"menggunakan Barak, dan dapatkan tentara menganggur untuk membangun Menara di"
+" dekat Pos Luar Anda."
 
 #: maps/tutorials/introductory_tutorial.js:274
 msgid ""
 "Build a Forge and research the Infantry Training technology (sword icon) to "
 "improve infantry hack attack."
 msgstr ""
+"Bangun Pandai Besi dan teliti teknologi Pelatihan Infanteri (ikon pedang) "
+"untuk meningkatkan serangan retas infanteri."
 
 #: maps/tutorials/introductory_tutorial.js:282
 msgid "The enemy is coming. Train more soldiers to fight off the enemies."
@@ -278,11 +284,11 @@ msgstr "Seluruh musuh telah dikalahkan. Semua tugas tutorial telah selesai..."
 
 #: maps/tutorials/introductory_tutorial.xml:Description:39
 msgid "This is a basic tutorial to get you started playing 0 A.D."
-msgstr ""
+msgstr "Ini adalah tutorial dasar untuk membantu Anda mulai bermain 0 A.D."
 
 #: maps/tutorials/introductory_tutorial.xml:Name:39
 msgid "Introductory Tutorial"
-msgstr ""
+msgstr "Tutorial Pengantar"
 
 #: maps/tutorials/introductory_tutorial.xml:PlayerData[0].Name:39
 #: maps/tutorials/starting_economy_walkthrough.xml:PlayerData[0].Name:40
@@ -291,7 +297,7 @@ msgstr "Pemain 1"
 
 #: maps/tutorials/introductory_tutorial.xml:PlayerData[1].Name:39
 msgid "Player 2"
-msgstr ""
+msgstr "Pemain 2"
 
 #: maps/tutorials/starting_economy_walkthrough.js:4
 msgid ""
@@ -737,6 +743,10 @@ msgid ""
 " lasting food source. Fields produce an unlimited food resource, but are "
 "slower to gather than forageable fruits.\n"
 msgstr ""
+"Anda mungkin memperhatikan bahwa buah beri adalah persediaan makanan yang "
+"terbatas. Kita membutuhkan sumber makanan yang lebih tahan lama. Ladang "
+"menghasilkan sumber makanan yang tidak terbatas, tetapi pengumpulannya lebih"
+" lambat daripada buah-buahan yang bisa dimakan."
 
 #: maps/tutorials/starting_economy_walkthrough.js:247
 msgid ""
@@ -776,6 +786,12 @@ msgid ""
 "click on the cavalry unit icon of the selection panel at the bottom of the "
 "screen to remove the cavalry unit from the current selection."
 msgstr ""
+"Jika Anda mencoba memilih tiga warga wanita yang menganggur dengan mengeklik"
+" dan menyeret kotak pilihan di atasnya, Anda mungkin tidak sengaja memilih "
+"unit tambahan. Untuk menghindarinya, tahan tombol I saat memilih sehingga "
+"hanya unit menganggur yang dipilih. Jika Anda tidak sengaja memilih unit "
+"kavaleri, tahan Ctrl dan klik ikon unit kavaleri dari panel pilihan di "
+"bagian bawah layar untuk menghapus unit kavaleri dari pilihan saat ini."
 
 #: maps/tutorials/starting_economy_walkthrough.js:275
 msgid ""
@@ -790,6 +806,9 @@ msgid ""
 "But your house builders will only look for something else to build and, if "
 "nothing found, become idle. Let's wait for them to build the houses."
 msgstr ""
+"Tetapi pembangun rumah Anda hanya akan mencari sesuatu yang lain untuk "
+"dibangun dan, jika tidak ditemukan, menjadi menganggur.  Mari kita tunggu "
+"mereka membangun rumahnya."
 
 #: maps/tutorials/starting_economy_walkthrough.js:292
 msgid ""
@@ -806,6 +825,7 @@ msgid ""
 "When the field is ready, the builders will automatically start gathering "
 "it.\n"
 msgstr ""
+"Saat ladang sudah siap, pembangun secara otomatis akan mulai memanennya."
 
 #: maps/tutorials/starting_economy_walkthrough.js:303
 msgid ""
@@ -814,6 +834,11 @@ msgid ""
 "your cavalry by right-clicking on the point you want to go, and when you see"
 " a herd of camels, right-click on one of them to start hunting for food."
 msgstr ""
+"Satuan kavaleri seharusnya sudah menyembelih semua ayam sekarang. Pilih dan "
+"jelajahi area barat daya: ada danau dengan beberapa unta di sekitarnya. "
+"Gerakkan kavaleri Anda dengan mengeklik kanan titik yang ingin Anda tuju, "
+"dan ketika Anda melihat kawanan unta, klik kanan salah satunya untuk mulai "
+"berburu makanan."
 
 #: maps/tutorials/starting_economy_walkthrough.js:314
 msgid ""
@@ -822,6 +847,11 @@ msgid ""
 "on it. If the Field is not yet finished, new Workers sent by a rally point "
 "will help building it, and when built, they will gather food."
 msgstr ""
+"Hingga lima Pekerja dapat berkumpul dari Lapangan. Untuk menambahkan Pekerja"
+" tambahan, pilih Civic Center dan tetapkan titik temu di Lapangan dengan "
+"mengklik kanan di atasnya. Jika Lapangan belum selesai, Pekerja baru yang "
+"dikirim oleh titik temu akan membantu membangunnya, dan ketika dibangun, "
+"mereka akan mengumpulkan makanan."
 
 #: maps/tutorials/starting_economy_walkthrough.js:322
 msgid "Select the Civic Center and right-click on the field."
@@ -832,14 +862,16 @@ msgid ""
 "Now click three times on the female citizen icon in the bottom right panel "
 "to train three additional farmers."
 msgstr ""
+"Sekarang klik tiga kali ikon warga wanita di panel kanan bawah untuk melatih"
+" tiga petani tambahan."
 
 #: maps/tutorials/starting_economy_walkthrough.js:344
 msgid "Click without holding Shift to train a single unit."
-msgstr ""
+msgstr "Klik tanpa memegang shift untuk melatih satu unit."
 
 #: maps/tutorials/starting_economy_walkthrough.js:345
 msgid "Click on the Female Citizen icon."
-msgstr ""
+msgstr "Klik pada ikon Warganegara Wanita."
 
 #: maps/tutorials/starting_economy_walkthrough.js:355
 msgid ""
@@ -869,6 +901,9 @@ msgid ""
 "many more units and buildings. Select the Civic Center and hover the cursor "
 "over the Town Phase icon to see what is still needed.\n"
 msgstr ""
+"Kita harus mulai bersiap untuk fase ke Fase Kota, yang akan membuka lebih "
+"banyak unit dan bangunan. Pilih Civic Center dan arahkan kursor ke ikon Fase"
+" Kota untuk melihat apa yang masih dibutuhkan."
 
 #: maps/tutorials/starting_economy_walkthrough.js:372
 msgid ""
@@ -876,6 +911,10 @@ msgid ""
 " an economic tutorial, it is nonetheless useful to be prepared for defense "
 "in case of attack, so let's build Barracks.\n"
 msgstr ""
+"Kita sekarang memiliki cukup sumber daya, tetapi satu struktur hilang. "
+"Meskipun ini adalah tutorial ekonomi, namun tetap berguna untuk "
+"mempersiapkan pertahanan jika terjadi serangan, jadi mari kita membangun "
+"Barak."
 
 #: maps/tutorials/starting_economy_walkthrough.js:373
 msgid ""
@@ -884,6 +923,10 @@ msgid ""
 "panel and then lay down a foundation not far from your Civic Center where "
 "you want to build."
 msgstr ""
+"Pilih empat tentara Anda dan minta mereka untuk membangun Barak: seperti "
+"sebelumnya, mulailah memilih tentara, klik ikon Barak di panel produksi dan "
+"kemudian letakkan fondasi tidak jauh dari Civic Center tempat Anda ingin "
+"membangun."
 
 #: maps/tutorials/starting_economy_walkthrough.js:384
 msgid ""
@@ -893,6 +936,11 @@ msgid ""
 " on it (you should see a hammer icon). Then produce two more builders by "
 "clicking on the hoplite icon twice."
 msgstr ""
+"Mari kita tunggu Barak dibangun. Karena konstruksi ini panjang, Anda dapat "
+"menambahkan dua tentara untuk membangunnya lebih cepat. Untuk melakukannya, "
+"pilih Civic Center Anda dan atur titik temu di fondasi Barak dengan mengklik"
+" kanan di atasnya (Anda akan melihat ikon palu). Kemudian buat dua pembuat "
+"lagi dengan mengklik ikon hoplite dua kali."
 
 #: maps/tutorials/starting_economy_walkthrough.js:394
 msgid ""
@@ -907,6 +955,8 @@ msgid ""
 "If you still miss some resources (icon with red overlay), wait for them to "
 "be gathered by your workers."
 msgstr ""
+"Jika Anda masih melewatkan beberapa sumber daya (ikon dengan hamparan "
+"merah), tunggu sampai mereka dikumpulkan oleh pekerja Anda."
 
 #: maps/tutorials/starting_economy_walkthrough.js:409
 msgid ""
@@ -943,12 +993,19 @@ msgid ""
 "their Wood and then hold Shift and right-click on the Stone mine to gather "
 "it.\n"
 msgstr ""
+"Jadi, kita harus memerintahkan mereka untuk menyimpan Kayu mereka di Civic "
+"Center sepanjang jalan. Untuk melakukannya, kita akan menahan Shift sambil "
+"mengklik ke antrian pesanan: pilih tentara Anda, tahan Shift dan klik kanan "
+"pada Civic Center untuk menyimpan Kayu mereka dan kemudian tahan Shift dan "
+"klik kanan pada tambang Batu untuk mengumpulkannya."
 
 #: maps/tutorials/starting_economy_walkthrough.js:416
 msgid ""
 "Perform a similar order queue with the remaining soldiers and the Metal mine"
 " in the west."
 msgstr ""
+"Lakukan antrian pesanan serupa dengan tentara yang tersisa dan tambang Logam"
+" di barat."
 
 #: maps/tutorials/starting_economy_walkthrough.js:450
 msgid ""

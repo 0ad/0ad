@@ -31,8 +31,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-29 14:56+0000\n"
-"PO-Revision-Date: 2021-01-29 16:48+0000\n"
-"Last-Translator: Stanislas Dolcini <stan@wildfiregames.com>\n"
+"PO-Revision-Date: 2021-02-10 08:14+0000\n"
+"Last-Translator: Bruce Lee <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -156,7 +156,7 @@ msgstr "게임 일시정지"
 
 #: gui/session/PauseOverlay.xml:(caption):11
 msgid "Click to Resume Game"
-msgstr "게임을 계속 진행 하려면 클릭하십시오"
+msgstr "게임을 이어하려면 클릭"
 
 #: gui/session/ResearchProgress.js:108 gui/session/selection_details.js:272
 #: gui/session/selection_details.js:290 gui/session/selection_panels.js:557
@@ -355,16 +355,16 @@ msgstr "* %(user)s %(message)s"
 #: gui/session/chat/ChatMessageFormatSimulation.js:16
 #, javascript-format
 msgid "%(icon)sYour livestock has been attacked by %(attacker)s!"
-msgstr ""
+msgstr "%(icon)s당신의 가축이 %(attacker)s의 공격을 받았습니다!"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:17
 #, javascript-format
 msgid "%(icon)sYou have been attacked by %(attacker)s!"
-msgstr ""
+msgstr "%(icon)s%(attacker)s의 공격을 받았습니다!"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:30
 msgid "Click to focus on the attacked unit."
-msgstr ""
+msgstr "공격당한 유닛에 초점을 맞추려면 클릭하십시오."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:49
 #, javascript-format
@@ -761,7 +761,7 @@ msgstr "모든 플레이어가 같은 모드를 사용해야 합니다."
 #: gui/session/message_box/OutOfSyncNetwork.js:35
 msgctxt "Out-Of-Sync"
 msgid "Click on \"Report a Bug\" in the main menu to help fix this."
-msgstr "이 문제를 해결하려면, 주 메뉴에서 \"벌레 신고하기\"를 클릭하십시오."
+msgstr "이 문제를 해결하려면 기본 메뉴에서 \"버그 신고하기\"를 클릭하십시오."
 
 #: gui/session/message_box/OutOfSyncNetwork.js:36
 #, javascript-format
@@ -950,7 +950,7 @@ msgstr "(%(number)s)\n%(time)s"
 
 #: gui/session/selection_details.js:282
 msgid "Current/max gatherers"
-msgstr "현재/최대 채취자 수"
+msgstr "현재/최대 채집자"
 
 #: gui/session/selection_details.js:306
 #, javascript-format
@@ -1032,7 +1032,7 @@ msgstr "%(name)s님을 내립니다"
 
 #: gui/session/selection_panels.js:338
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
-msgstr "1개 내리려면 1번 누르세요. Shift 키를 누르고 클릭하면 같은 유형의 유닛이 모두 내립니다."
+msgstr "하나를 내리려면 한 번 클릭합니다.이 유형을 모두 내리려면 Shift 키를 누른 상태에서 클릭합니다."
 
 #: gui/session/selection_panels.js:340 gui/session/selection_panels.js:860
 #, javascript-format
@@ -1045,7 +1045,7 @@ msgstr "문 닫기"
 
 #: gui/session/selection_panels.js:382
 msgid "Unlock Gate"
-msgstr "문 열기"
+msgstr "성문 잠금해제"
 
 #: gui/session/selection_panels.js:433
 msgid "Pack"
@@ -1076,7 +1076,7 @@ msgstr "%(population)s %(neededSlots)s"
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
-msgstr[0] "%(class)s 계급의 %(number)s개 본체"
+msgstr[0] "%(class)s 계급의 %(number)s개 개체들"
 
 #: gui/session/selection_panels.js:731
 #, javascript-format
@@ -1117,7 +1117,7 @@ msgid ""
 msgid_plural ""
 "Cannot upgrade when all entities are training, researching or already "
 "upgrading."
-msgstr[0] "본체가 훈련중이거나, 연구중이거나, 이미 업그레이드 중인 경우에는 업그레이드할 수 없습니다."
+msgstr[0] "모든 개체들이 훈련중이거나, 연구중이거나, 이미 업그레이드 중인 경우에는 업그레이드할 수 없습니다."
 
 #: gui/session/selection_panels_helpers.js:53
 msgctxt "stance"
@@ -1284,7 +1284,7 @@ msgstr "생산 대기중인 목록"
 msgid ""
 "Click to select grouped units, double-click to focus the grouped units and "
 "right-click to disband the group."
-msgstr "묶인 유닛들을 선택하려면 마우스 클릭, 묶인 유닛들에 포커스를 맞추려면 마우스 더블클릭, 묶임을 해산하려면 마우스 오른쪽 클릭하십시오."
+msgstr "그룹화된 유닛들을 클릭하여 선택하고, 그룹화된 유닛들에 초점을 맞추려면 두번 클릭하고, 그룹을 해제하려면 마우스 오른쪽 버튼을 클릭합니다."
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
 msgid "ALPHA XXIV: Xšayāršā"
@@ -1435,7 +1435,7 @@ msgid ""
 "Select one type of goods you want to modify by clicking on it, and then use "
 "the arrows of the other types to modify their shares. You can also press "
 "%(hotkey)s while selecting one type of goods to bring its share to 100%%."
-msgstr "수정하려는 상품 유형을 클릭하여 선택하고 다른 유형의 화살표를 사용하여 공유를 수정하십시오. 한 가지 유형의 상품을 선택하는 동안 %(hotkey)s 키를 눌러 공유를 100%%로 가져올 수도 있습니다."
+msgstr "수정하려는 상품 유형을 클릭하여 선택한 다음 다른 유형의 화살표를 사용하여 그들의 몫을 수정합니다. 또한 한 가지 유형의 상품을 선택하는 동안 %(hotkey)s 키를 눌러 그 몫을 100%%로 가져올 수도 있습니다."
 
 #: gui/session/trade/TradeDialogBarterPanel.js:45
 #, javascript-format
@@ -1444,11 +1444,11 @@ msgid ""
 "each time the lower buttons are pressed, %(quantity)s of the upper resource "
 "will be sold for the displayed quantity of the lower. Press and hold "
 "%(hotkey)s to temporarily multiply the traded amount by %(multiplier)s."
-msgstr "맨 위 줄에서 판매할 자원을 선택하십시오. 아랫줄의 버튼이 눌릴때마다 위에 자원 %(quantity)s 가 아랫부분에 표시된 양만큼 판매됩니다. %(hotkey)s를 길게 누르면 거래량을 잠시 %(multiplier)s 배로 늘릴 수 있습니다."
+msgstr "맨 위 줄에서 판매할 자원을 선택하십시오. 아랫줄의 버튼이 눌릴때마다 위에 자원 %(quantity)s 가 아랫부분에 표시된 양만큼 판매됩니다. %(hotkey)s를 길게 누르면 교역량을 잠시 %(multiplier)s 배로 늘릴 수 있습니다."
 
 #: gui/session/trade/TradePanel.xml:(caption):5
 msgid "Trade"
-msgstr "무역"
+msgstr "교역"
 
 #: gui/session/trade/TradePanel.xml:(caption):14
 msgid "Resources:"
@@ -1458,7 +1458,7 @@ msgstr "자원:"
 #, javascript-format
 msgid "There is %(numberTrading)s land trader trading"
 msgid_plural "There are %(numberTrading)s land traders trading"
-msgstr[0] "%(numberTrading)s명의 상인이 거래중입니다"
+msgstr[0] "%(numberTrading)s명의 육로 상인이 거래중입니다"
 
 #: gui/session/trade/TraderStatusTextLand.js:25
 #, javascript-format
@@ -1470,7 +1470,7 @@ msgstr[0] "%(numberOfLandTraders)s명이 쉬고 있습니다"
 #, javascript-format
 msgid "%(numberOfLandTraders)s land trader inactive"
 msgid_plural "%(numberOfLandTraders)s land traders inactive"
-msgstr[0] "%(numberOfLandTraders)s명의 상인이 쉬고 있습니다"
+msgstr[0] "%(numberOfLandTraders)s명의 육로 상인이 쉬고 있습니다"
 
 #: gui/session/trade/TraderStatusTextLand.js:40
 #, javascript-format
@@ -1486,7 +1486,7 @@ msgid ""
 msgid_plural ""
 "There are %(numberGarrisoned)s land traders garrisoned on a trading merchant"
 " ship"
-msgstr[0] "무역상선에 %(numberGarrisoned)s명의 영토 거래상들이 주둔하고 있습니다"
+msgstr[0] "상선에 주둔중인 %(numberGarrisoned)s명의 육로 상인들이 있습니다"
 
 #: gui/session/trade/TraderStatusTextLand.js:65
 #, javascript-format
@@ -1530,13 +1530,13 @@ msgstr[0] "%(inactiveString)s명 있습니다."
 
 #: gui/session/trade/TraderStatusTextLand.js:80
 msgid "There are no land traders."
-msgstr "상인이 한명도 없습니다."
+msgstr "육로 상인이 없습니다."
 
 #: gui/session/trade/TraderStatusTextShip.js:14
 #, javascript-format
 msgid "There is %(numberTrading)s merchant ship trading"
 msgid_plural "There are %(numberTrading)s merchant ships trading"
-msgstr[0] "%(numberTrading)s번의 상선 거래가 있습니다"
+msgstr[0] "%(numberTrading)s번의 선박 거래가 있습니다"
 
 #: gui/session/trade/TraderStatusTextShip.js:24
 #, javascript-format
@@ -1562,19 +1562,19 @@ msgstr "준비 완료"
 msgid ""
 "This is the origin trade market.\n"
 "Right-click to cancel trade route."
-msgstr "원산지 무역시장입니다.\n무역 경로를 취소하려면 마우스 오른쪽 버튼을 클릭하십시오."
+msgstr "이것은 원산지 교역 시장입니다.\n교역로를 취소하려면 마우스 오른쪽 버튼을 클릭하십시오."
 
 #: gui/session/unit_actions.js:617
 msgid "Origin trade market."
-msgstr "원산지 무역 시장."
+msgstr "원산지 교역 시장."
 
 #: gui/session/unit_actions.js:627
 msgid "Destination trade market."
-msgstr "목적지 무역 시장."
+msgstr "행선지 교역 시장."
 
 #: gui/session/unit_actions.js:634
 msgid "Right-click to set as origin trade market"
-msgstr "원산지 무역 시장으로 지정할 시장을 마우스 오른쪽 버튼으로 클릭하십시오"
+msgstr "원산지 교역 시장으로 지정하려면 마우스 오른쪽 버튼으로 클릭"
 
 #: gui/session/unit_actions.js:641 gui/session/unit_actions.js:985
 msgid "This market is too close to the origin market."
@@ -1582,7 +1582,7 @@ msgstr "이 시장은 원산지 시장에 너무 가깝습니다."
 
 #: gui/session/unit_actions.js:645
 msgid "Right-click to set as destination trade market."
-msgstr "목적지 무역 시장으로 지정할 시장을 마우스 오른쪽 클릭하십시오."
+msgstr "목적지 교역 시장으로 지정하려면 마우스 오른쪽 클릭하십시오."
 
 #: gui/session/unit_actions.js:704 gui/session/unit_actions.js:923
 #, javascript-format
@@ -1591,7 +1591,7 @@ msgstr "현재 주둔지: %(garrisoned)s/%(capacity)s"
 
 #: gui/session/unit_actions.js:976
 msgid "Right-click to establish a default route for new traders."
-msgstr "새로운 상인들에게도 표준 길목으로 지정하려면 마우스 오른쪽 클릭하십시오."
+msgstr "새로운 상인들을 위한 기본 경로를 지정하려면 마우스 오른쪽 클릭하십시오."
 
 #: gui/session/unit_actions.js:980
 #, javascript-format
@@ -1601,7 +1601,7 @@ msgstr "예상 수익: %(gain)s"
 #: gui/session/unit_actions.js:1106
 msgid "This entity cannot be controlled."
 msgid_plural "These entities cannot be controlled."
-msgstr[0] "이러한 본체를 제어할 수 없습니다."
+msgstr[0] "이러한 개체들을 제어할 수 없습니다."
 
 #: gui/session/unit_actions.js:1152
 msgid "Unload All."
@@ -1652,7 +1652,7 @@ msgstr "경비병 제거"
 #: gui/session/trade/TradeDialog.xml:(caption):9
 #: gui/session/unit_actions.js:1408
 msgid "Barter & Trade"
-msgstr "물물교환 및 무역"
+msgstr "물물교환 및 교역"
 
 #: gui/session/unit_actions.js:1428
 msgid "Patrol"
@@ -1684,13 +1684,13 @@ msgstr "당신은 이 회수 시설을 사용할 수 있습니다"
 
 #: gui/session/unit_actions.js:1568
 msgid "The entity has to be killed before it can be gathered from"
-msgstr "본체를 수집하려면 먼저 죽여야합니다"
+msgstr "개체를 수집하려면 먼저 죽여야합니다"
 
 #: gui/session/unit_actions.js:1571
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
-msgstr "점령 지수의 절반 이하 값을 가지고 있으므로, 이 본체를 파괴할 수 없습니다"
+msgstr "점령 지수의 절반 이하 값을 가지고 있으므로, 이 개체를 파괴할 수 없습니다"
 
 #: gui/session/unit_actions.js:1574
 msgid "This entity is undeletable"
-msgstr "이 본체는 삭제할 수 없습니다"
+msgstr "이 개체는 삭제할 수 없습니다"

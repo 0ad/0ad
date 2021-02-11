@@ -291,27 +291,19 @@ void TerrainRenderer::RenderTerrainShader(const CShaderDefines& context, int cul
 	shaderSolid->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
 	shaderSolid->Uniform(str_color, 0.0f, 0.0f, 0.0f, 1.0f);
 
-	PROFILE_START("render terrain sides");
 	CPatchRData::RenderSides(visiblePatches, shaderSolid);
-	PROFILE_END("render terrain sides");
 
 	techSolid->EndPass();
 
-	PROFILE_START("render terrain base");
 	CPatchRData::RenderBases(visiblePatches, context, shadow);
-	PROFILE_END("render terrain base");
 
 	// no need to write to the depth buffer a second time
 	glDepthMask(0);
 
 	// render blend passes for each patch
-	PROFILE_START("render terrain blends");
 	CPatchRData::RenderBlends(visiblePatches, context, shadow);
-	PROFILE_END("render terrain blends");
 
-	PROFILE_START("render terrain decals");
 	CDecalRData::RenderDecals(visibleDecals, context, shadow);
-	PROFILE_END("render terrain decals");
 
 	// restore OpenGL state
 	g_Renderer.BindTexture(1, 0);

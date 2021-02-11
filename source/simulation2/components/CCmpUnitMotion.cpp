@@ -1007,10 +1007,13 @@ bool CCmpUnitMotion::PossiblyAtDestination() const
 		if (cmpControllerMotion && cmpControllerMotion->IsMoveRequested())
 			return false;
 
+		// In formation, return a match only if we are exactly at the target position.
+		// Otherwise, units can go in an infinite "walzting" loop when the Idle formation timer
+		// reforms them.
 		CFixedVector2D targetPos;
 		ComputeTargetPosition(targetPos);
 		CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
-		return cmpObstructionManager->IsInPointRange(GetEntityId(), targetPos.X, targetPos.Y, m_MoveRequest.m_MinRange, m_MoveRequest.m_MaxRange, false);
+		return (targetPos-cmpPosition->GetPosition2D()).CompareLength(fixed::Zero()) <= 0;
 	}
 	return false;
 }
@@ -1072,11 +1075,7 @@ bool CCmpUnitMotion::PerformMove(fixed dt, const fixed& turnRate, WaypointPath& 
 			target = CFixedVector2D(shortPath.m_Waypoints.back().x, shortPath.m_Waypoints.back().z);
 
 		CFixedVector2D offset = target - pos;
-		// Idle formations reorder their members to move to their offset, but numerical imprecisions can lead
-		// to small offsets every time. Units would then rotate in-place, looking odd.
-		// If the offset is small enough (epsilon is about 0.000015, so that's 0.0015 which is still irrelevant),
-		// simply don't turn.
-		if (turnRate > zero && offset.CompareLength(fixed::Epsilon() * 100) > 0)
+		if (turnRate > zero && !offset.IsZero())
 		{
 			fixed maxRotation = turnRate.Multiply(timeLeft);
 			fixed angleDiff = angle - atan2_approx(offset.X, offset.Y);

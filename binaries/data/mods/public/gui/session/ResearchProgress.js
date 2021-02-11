@@ -17,6 +17,7 @@ class ResearchProgress
 		let updater = this.updateResearchProgress.bind(this);
 		registerSimulationUpdateHandler(updater);
 		playerViewControl.registerViewedPlayerChangeHandler(updater);
+		g_OverlayCounterManager.registerResizeHandler(this.setTopOffset.bind(this));
 	}
 
 	setTopOffset(offset)

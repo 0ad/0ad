@@ -14,7 +14,7 @@
     </variant>
     <variant frequency="0" name="attack_ranged">
       <animations>
-        <animation event="0.5" file="mechanical/weap_sling_attack.dae" name="attack_ranged" id="attack_ranged_01" speed="100"/>
+        <animation event="0.5" sound="0.1" file="mechanical/weap_sling_attack.dae" name="attack_ranged" id="attack_ranged_01" speed="100"/>
       </animations>
       <mesh>props/weap_sling_attack.dae</mesh>
     </variant>
