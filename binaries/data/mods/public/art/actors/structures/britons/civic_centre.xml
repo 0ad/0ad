@@ -15,6 +15,7 @@
         <prop actor="props/structures/decals/gravel_5x5.xml" attachpoint="root"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+        <prop actor="particle/smoke_light_delay.xml" attachpoint="smoke"/>
       </props>
       <textures>
         <texture file="structural/brit_struct_1.png" name="baseTex"/>
