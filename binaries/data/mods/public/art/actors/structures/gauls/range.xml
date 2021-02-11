@@ -2,10 +2,9 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="New">
+    <variant frequency="100" name="Gaul Range">
       <mesh>structural/gaul_range.dae</mesh>
       <props>
-        <prop actor="props/structures/decals/dirt_5x5.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/celt_barracks.xml" attachpoint="root"/>
       </props>
       <textures>
@@ -26,17 +25,7 @@
   </group>
   <group>
     <variant frequency="1" name="alive"/>
-    <variant name="death">
-      <props>
-        <prop attachpoint="garrisoned"/>
-        <prop actor="particle/destruction_smoke_med.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_med.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_med_gray.xml" attachpoint="root"/>
-        <prop actor="props/structures/gauls/fortress_props_new.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/celt_fortress.xml" attachpoint="root"/>
-        <prop actor="props/structures/gauls/fortress_b_roof.xml" attachpoint="root"/>
-      </props>
-    </variant>
+    <variant file="structures/destruction_medium.xml"/>
   </group>
   <material>player_trans_ao_parallax_spec.xml</material>
 </actor>

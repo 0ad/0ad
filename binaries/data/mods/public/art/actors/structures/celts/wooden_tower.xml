@@ -27,5 +27,9 @@
       </props>
     </variant>
   </group>
+  <group>
+    <variant frequency="1" name="alive"/>
+    <variant file="structures/destruction_small.xml"/>
+  </group>
   <material>player_trans_ao_parallax_spec.xml</material>
 </actor>

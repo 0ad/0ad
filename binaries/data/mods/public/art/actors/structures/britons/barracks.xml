@@ -30,16 +30,12 @@
   </group>
   <group>
     <variant frequency="1" name="alive"/>
-    <variant name="death">
+    <variant file="structures/destruction_medium.xml">
       <props>
-        <prop actor="particle/destruction_smoke_med.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_med.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_med_gray.xml" attachpoint="root"/>
         <prop actor="props/structures/britons/barracks_props_new.xml" attachpoint="root"/>
         <prop actor="props/structures/britons/barracks_props_1.xml" attachpoint="root"/>
         <prop actor="props/structures/britons/barracks_struct1.xml" attachpoint="root"/>
         <prop actor="props/structures/britons/barracks_weapons.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/celt_barracks.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>

@@ -54,13 +54,7 @@
   </group>
   <group>
     <variant frequency="1" name="alive"/>
-    <variant name="death">
-      <props>
-        <prop actor="particle/destruction_smoke_small.xml" attachpoint="dust"/>
-        <prop actor="particle/destruction_dust_small.xml" attachpoint="dust"/>
-        <prop actor="particle/destruction_dust_small_gray.xml" attachpoint="dust"/>
-      </props>
-    </variant>
+    <variant file="structures/destruction_small.xml"/>
   </group>
   <material>player_trans_ao_parallax_spec.xml</material>
 </actor>

@@ -31,12 +31,10 @@
   </group>
   <group>
     <variant frequency="1" name="alive"/>
-    <variant name="death">
+    <variant file="structures/destruction_small.xml">
       <props>
-        <prop attachpoint="garrisoned"/>
-        <prop actor="particle/destruction_smoke_small.xml" attachpoint="dust"/>
-        <prop actor="particle/destruction_dust_small.xml" attachpoint="dust"/>
-        <prop actor="particle/destruction_dust_small_gray.xml" attachpoint="dust"/>
+        <prop actor="props/structures/britons/outpost_props_new.xml" attachpoint="root"/>
+        <prop actor="props/structures/britons/outpost_palisade.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>

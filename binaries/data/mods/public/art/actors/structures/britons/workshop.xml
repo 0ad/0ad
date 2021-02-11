@@ -5,7 +5,6 @@
     <variant frequency="1" name="Briton Workshop">
       <mesh>structural/brit_workshop.dae</mesh>
       <props>
-        <prop actor="props/structures/decals/dirt_5x5.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/celt_barracks.xml" attachpoint="root"/>
         <prop actor="props/structures/britons/workshop_nature.xml" attachpoint="root"/>
         <prop actor="props/structures/britons/workshop_shields.xml" attachpoint="root"/>
@@ -45,14 +44,15 @@
   </group>
   <group>
     <variant frequency="1" name="alive"/>
-    <variant name="death">
+    <variant file="structures/destruction_medium.xml">
       <props>
-        <prop attachpoint="garrisoned"/>
-        <prop actor="particle/destruction_smoke_med.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_med.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_med_gray.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/dirt_5x5.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/celt_barracks.xml" attachpoint="root"/>
+        <prop actor="props/structures/britons/workshop_nature.xml" attachpoint="root"/>
+        <prop actor="props/structures/britons/workshop_shields.xml" attachpoint="root"/>
+        <prop actor="props/structures/britons/workshop_box_pile_02.xml" attachpoint="root"/>
+        <prop actor="props/structures/britons/workshop_chariot_props_01.xml" attachpoint="root"/>
+        <prop actor="props/structures/britons/workshop_chariot_props_02.xml" attachpoint="root"/>
+        <prop actor="props/structures/britons/workshop_planks.xml" attachpoint="root"/>
+        <prop actor="props/structures/britons/workshop_pelts.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>

@@ -37,5 +37,15 @@
       </props>
     </variant>
   </group>
+  <group>
+    <variant frequency="1" name="alive"/>
+    <variant file="structures/destruction_large.xml">
+      <props>
+        <prop actor="props/structures/britons/wonder_ground.xml" attachpoint="root"/>
+        <prop actor="props/structures/britons/wonder_roof.xml" attachpoint="root"/>
+        <prop actor="props/structures/britons/wonder_turf.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
   <material>player_trans_ao_parallax_spec.xml</material>
 </actor>

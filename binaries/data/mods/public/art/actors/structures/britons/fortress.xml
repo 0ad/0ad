@@ -32,7 +32,6 @@
       <props>
         <prop actor="particle/smoke_light_delay.xml" attachpoint="smokea"/>
         <prop actor="props/structures/decals/celt_fortress.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/celt_fortress.xml" attachpoint="root"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
@@ -50,7 +49,6 @@
       <mesh>structural/brit_fortress_2_b.dae</mesh>
       <props>
         <prop actor="particle/smoke_light_delay.xml" attachpoint="smokea"/>
-        <prop actor="props/structures/decals/celt_fortress.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/celt_fortress.xml" attachpoint="root"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
@@ -73,18 +71,7 @@
   </group>
   <group>
     <variant frequency="1" name="alive"/>
-    <variant name="death">
-      <props>
-        <prop attachpoint="garrisoned"/>
-        <prop actor="particle/destruction_smoke_med.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_med.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_med_gray.xml" attachpoint="root"/>
-        <prop actor="props/structures/britons/fortress_props_1.xml" attachpoint="root"/>
-        <prop actor="props/structures/britons/fortress_props_new.xml" attachpoint="root"/>
-        <prop actor="props/structures/britons/fortress_tower.xml" attachpoint="root"/>
-        <prop actor="props/structures/britons/fortress_wall.xml" attachpoint="root"/>
-      </props>
-    </variant>
+    <variant file="structures/destruction_large.xml"/>
   </group>
   <material>player_trans_ao_parallax_spec.xml</material>
 </actor>

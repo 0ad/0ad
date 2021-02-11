@@ -3,12 +3,12 @@
   <castshadow/>
   <group>
     <variant frequency="100" name="siege ram">
-      <animations> 
-        <animation file="mechanical/celt_siege_ram_idle.dae" name="Idle" speed="100"/> 
-        <animation file="mechanical/celt_siege_ram_move.dae" name="Walk" speed="15"/> 
-        <animation file="mechanical/celt_siege_ram_move.dae" name="Run" speed="30"/> 
+      <animations>
+        <animation file="mechanical/celt_siege_ram_idle.dae" name="Idle" speed="100"/>
+        <animation file="mechanical/celt_siege_ram_move.dae" name="Walk" speed="15"/>
+        <animation file="mechanical/celt_siege_ram_move.dae" name="Run" speed="30"/>
         <animation event="0.3" file="mechanical/celt_siege_ram_attack.dae" name="attack_melee" speed="100"/>
-      </animations> 
+      </animations>
       <mesh>structural/celt_siege_ram.dae</mesh>
       <props>
         <prop actor="props/structures/celts/siege_ram_shields.xml" attachpoint="root"/>
@@ -17,10 +17,9 @@
     </variant>
   </group>
   <group>
-    <variant frequency="100" name="Idle"/>
-    <variant name="death">
+    <variant frequency="100" name="alive"/>
+    <variant file="structures/destruction_small.xml">
       <props>
-        <prop actor="particle/destruction_dust_small_gray.xml" attachpoint="root"/>
         <prop actor="props/structures/celts/siege_ram_shields.xml" attachpoint="root"/>
       </props>
     </variant>
