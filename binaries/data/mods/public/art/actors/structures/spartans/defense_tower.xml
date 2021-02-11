@@ -12,7 +12,6 @@
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
         <prop actor="props/structures/spartans/defense_tower_nature.xml" attachpoint="root"/>
-        <prop attachpoint=""/>
       </props>
       <textures>
         <texture file="structural/sparta_struct.png" name="baseTex"/>
@@ -27,6 +26,7 @@
     <variant name="upgrading">
       <props>
         <prop actor="props/structures/decals/spart_1x1.xml" attachpoint="root"/>
+        <prop actor="props/structures/spartans/defense_tower_nature.xml" attachpoint="root"/>
         <prop actor="props/structures/construction/scaf_3x3_tower.xml" attachpoint="root"/>
         <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
       </props>
@@ -42,14 +42,7 @@
   </group>
   <group>
     <variant frequency="1" name="alive"/>
-    <variant name="death">
-      <props>
-        <prop attachpoint="garrisoned"/>
-        <prop actor="particle/destruction_smoke_small.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_large.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_large_gray.xml" attachpoint="root"/>
-      </props>
-    </variant>
+    <variant file="structures/destruction_small.xml"/>
   </group>
   <material>player_trans_ao_parallax_spec.xml</material>
 </actor>

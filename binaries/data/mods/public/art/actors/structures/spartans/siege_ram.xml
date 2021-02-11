@@ -37,10 +37,6 @@
   </group>
   <group>
     <variant frequency="100" name="Idle"/>
-    <variant name="death">
-      <props>
-        <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
-      </props>
-    </variant>
+    <variant file="structures/destruction_small.xml"/>
   </group>
 </actor>
