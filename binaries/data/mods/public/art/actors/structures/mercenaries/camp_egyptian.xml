@@ -9,12 +9,12 @@
       <mesh>structural/ptol_settlement_palisade.dae</mesh>
       <props>
         <prop actor="props/special/eyecandy/campfire_prop.xml" attachpoint="campfire" minheight="-20" maxheight="20"/>
-        <prop actor="props/structures/ptolemies/settlement_campfire.xml" attachpoint="campfire" minheight="-20" maxheight="20"/>        
+        <prop actor="props/structures/ptolemies/settlement_campfire.xml" attachpoint="campfire" minheight="-20" maxheight="20"/>
         <prop actor="props/structures/ptolemies/settlement_outpost.xml" attachpoint="outpost" minheight="-20" maxheight="20"/>
         <prop actor="props/structures/ptolemies/settlement_greektent.xml" attachpoint="greektent" minheight="-20" maxheight="20"/>
         <prop actor="props/structures/ptolemies/settlement_arabtent.xml" attachpoint="arabtent" minheight="-20" maxheight="20"/>
         <prop actor="props/structures/ptolemies/settlement_bigtent.xml" attachpoint="bigtent" minheight="-20" maxheight="20"/>
-        <prop actor="props/structures/persians/stable_horse_a.xml" attachpoint="horse" minheight="-20" maxheight="20"/>        
+        <prop actor="props/structures/persians/stable_horse_a.xml" attachpoint="horse" minheight="-20" maxheight="20"/>
         <prop actor="props/structures/decals/dirt_5x5.xml" attachpoint="root"/>
         <prop actor="props/structures/ptolemies/settlement_entrance.xml" attachpoint="root"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
@@ -38,18 +38,9 @@
   </group>
   <group>
     <variant name="alive" frequency="1"/>
-    <variant name="death">
+    <variant file="structures/destruction_large.xml">
       <props>
-        <prop attachpoint="garrisoned"/>
-        <prop actor="particle/destruction_smoke_large.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_large.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_large_gray.xml" attachpoint="root"/>
-        <prop actor="props/structures/ptolemies/settlement_campfire.xml" attachpoint="campfire" minheight="-20" maxheight="20"/>        
-        <prop actor="props/structures/ptolemies/settlement_outpost.xml" attachpoint="outpost" minheight="-20" maxheight="20"/>
-        <prop actor="props/structures/ptolemies/settlement_greektent.xml" attachpoint="greektent" minheight="-20" maxheight="20"/>
-        <prop actor="props/structures/ptolemies/settlement_arabtent.xml" attachpoint="arabtent" minheight="-20" maxheight="20"/>
-        <prop actor="props/structures/ptolemies/settlement_bigtent.xml" attachpoint="bigtent" minheight="-20" maxheight="20"/>
-        <prop actor="props/structures/ptolemies/settlement_entrance.xml" attachpoint="root" minheight="-20" maxheight="20"/>
+        <prop actor="props/structures/ptolemies/settlement_entrance.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>

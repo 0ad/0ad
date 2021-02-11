@@ -62,13 +62,10 @@
   </group>
   <group>
     <variant frequency="1" name="alive"/>
-    <variant name="death">
+    <variant file="structures/destruction_large.xml">
       <props>
-        <prop attachpoint="garrisoned"/>
-        <prop actor="particle/destruction_smoke_small.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_small_gray.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/dirt_6x6.xml" attachpoint="root"/>
+        <prop actor="props/special/eyecandy/campfire_prop.xml" attachpoint="root" minheight="-20" maxheight="20"/>
+        <prop maxheight="20" minheight="-20" actor="props/structures/mercenaries/kush_nuba_camp_roofs_walls.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
