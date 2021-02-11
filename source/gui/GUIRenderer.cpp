@@ -333,6 +333,9 @@ CRect SDrawCall::ComputeTexCoords() const
 
 void GUIRenderer::Draw(DrawCalls& Calls, float Z)
 {
+	if (Calls.empty())
+		return;
+
 	// Called every frame, to draw the object (based on cached calculations)
 
 	// TODO: batching by shader/texture/etc would be nice
@@ -340,6 +343,7 @@ void GUIRenderer::Draw(DrawCalls& Calls, float Z)
 	CMatrix3D matrix = GetDefaultGuiMatrix();
 
 	glDisable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	// Iterate through each DrawCall, and execute whatever drawing code is being called
 	for (DrawCalls::const_iterator cit = Calls.begin(); cit != Calls.end(); ++cit)
@@ -353,11 +357,10 @@ void GUIRenderer::Draw(DrawCalls& Calls, float Z)
 			shader->Uniform(str_color, cit->m_ShaderColorParameter);
 			shader->BindTexture(str_tex, cit->m_Texture);
 
-			if (cit->m_EnableBlending || cit->m_Texture->HasAlpha()) // (shouldn't call HasAlpha before BindTexture)
-			{
-				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+			// Shouldn't call HasAlpha before BindTexture.
+			const bool needsBlend = cit->m_EnableBlending || cit->m_Texture->HasAlpha();
+			if (needsBlend)
 				glEnable(GL_BLEND);
-			}
 
 			CRect TexCoords = cit->ComputeTexCoords();
 
@@ -388,16 +391,16 @@ void GUIRenderer::Draw(DrawCalls& Calls, float Z)
 			shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, 5*sizeof(float), &data[0]);
 			shader->VertexPointer(3, GL_FLOAT, 5*sizeof(float), &data[2]);
 			glDrawArrays(GL_TRIANGLES, 0, 6);
+
+			if (needsBlend)
+				glDisable(GL_BLEND);
 		}
 		else
 		{
 			shader->Uniform(str_color, *cit->m_BackColor);
 
 			if (cit->m_EnableBlending)
-			{
-				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 				glEnable(GL_BLEND);
-			}
 
 			// Ensure the quad has the correct winding order
 			CRect Verts = cit->m_Vertices;
@@ -432,11 +435,12 @@ void GUIRenderer::Draw(DrawCalls& Calls, float Z)
 				shader->VertexPointer(3, GL_FLOAT, 3*sizeof(float), &data[0]);
 				glDrawArrays(GL_LINE_LOOP, 0, 4);
 			}
+
+			if (cit->m_EnableBlending)
+				glDisable(GL_BLEND);
 #undef ADD
 		}
 
 		cit->m_Shader->EndPass();
-
-		glDisable(GL_BLEND);
 	}
 }

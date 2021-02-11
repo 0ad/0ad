@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -244,13 +244,18 @@ void CTextRenderer::Render()
 			++it;
 	}
 
+	CTexture* lastTexture = nullptr;
 	for (std::list<SBatch>::iterator it = m_Batches.begin(); it != m_Batches.end(); ++it)
 	{
 		SBatch& batch = *it;
 
 		const CFont::GlyphMap& glyphs = batch.font->GetGlyphs();
 
-		m_Shader->BindTexture(str_tex, batch.font->GetTexture());
+		if (lastTexture != batch.font->GetTexture().get())
+		{
+			lastTexture = batch.font->GetTexture().get();
+			m_Shader->BindTexture(str_tex, batch.font->GetTexture());
+		}
 
 		m_Shader->Uniform(str_transform, batch.transform);
 
