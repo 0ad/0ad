@@ -26,13 +26,15 @@
   </group>
   <group>
     <variant name="alive" frequency="1"/>
-    <variant name="death">
+    <variant file="structures/destruction_medium.xml">
       <props>
         <prop attachpoint="garrisoned"/>
-        <prop actor="particle/destruction_smoke_med.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_med.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_med_gray.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/gravel_5x5.xml" attachpoint="root"/>
+        <prop actor="props/structures/ptolemies/market_cloth_big.xml" attachpoint="root"/>
+        <prop actor="props/structures/ptolemies/market_waterplane.xml" attachpoint="root"/>
+        <prop actor="props/structures/ptolemies/market_fountain.xml" attachpoint="root"/>
+        <prop actor="props/structures/ptolemies/market_cloth_big2.xml" attachpoint="root"/>
+        <prop actor="props/structures/ptolemies/market_cloth_small.xml" attachpoint="root"/>
+        <prop actor="props/structures/ptolemies/market_plants.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
