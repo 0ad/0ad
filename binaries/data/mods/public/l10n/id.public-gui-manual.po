@@ -4,6 +4,7 @@
 # project.
 # Translators:
 # azayrahmad <azayrahmad@gmail.com>, 2014
+# Dabiq 1441 <dlc39hw3eh@just4fun.me>, 2021
 # Dito Kurnia Pratama <ditokpl@gmail.com>, 2018
 # Muhammad Furqon Abrori <furqonklondigizoid@gmail.com>, 2016
 # Ibnu Daru Aji, 2014
@@ -19,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-25 08:08+0000\n"
-"PO-Revision-Date: 2021-01-25 09:18+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-02-12 08:03+0000\n"
+"Last-Translator: Dabiq 1441 <dlc39hw3eh@just4fun.me>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -49,11 +50,11 @@ msgid ""
 " In windowed mode, you can resize the window. If the game runs too slowly, "
 "you can change some settings in the options window: try disabling the “HQ "
 "Water Effects” and “Shadows” options."
-msgstr ""
+msgstr "Anda dapat beralih antara mode layar penuh dan jendela dengan menekan Alt + Enter. Dalam mode berjendela, Anda dapat mengubah ukuran jendela. Jika permainan berjalan terlalu lambat, Anda dapat mengubah beberapa pengaturan di jendela opsi: coba nonaktifkan opsi “HQ Water Effects” dan “Shadows”."
 
 #: gui/manual/intro.txt:7
 msgid "[font=\"sans-bold-16\"]Playing the game[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Main game[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:8
 msgid ""
@@ -61,11 +62,11 @@ msgid ""
 "time strategy (RTS) games. There are currently a lot of missing features and"
 " poorly-balanced stats – you will probably have to wait until a beta release"
 " for it to work well."
-msgstr ""
+msgstr "Kontrol dan gameplay harus familiar bagi pemain game strategi real-time (RTS) tradisional. Saat ini ada banyak fitur yang hilang dan statistik yang kurang seimbang – Anda mungkin harus menunggu hingga rilis beta agar berfungsi dengan baik."
 
 #: gui/manual/intro.txt:10
 msgid "Basic controls (by default):"
-msgstr ""
+msgstr "Kontrol dasar (secara default):"
 
 #: gui/manual/intro.txt:11
 msgid "• Left-click to select units"
@@ -99,7 +100,7 @@ msgstr "[font=\"sans-bold-16\"]Mode[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:19
 msgid "The main menu gives access to two game modes:"
-msgstr ""
+msgstr "Menu utama memberikan akses ke dua mode permainan:"
 
 #: gui/manual/intro.txt:20
 msgid ""
@@ -107,7 +108,7 @@ msgid ""
 "game or against one or more computer players (AI). The default AI (Petra) is"
 " under development and may not always be up to date on the new features, but"
 " you can play the game with or against it nonetheless."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Pemain tunggal[font=\"sans-14\"] – Mainkan permainan sandbox atau melawan satu atau lebih pemain komputer (AI). AI default (Petra) sedang dalam pengembangan dan mungkin tidak selalu mutakhir tentang fitur-fitur baru, tetapi Anda tetap dapat memainkan game dengan atau melawannya."
 
 #: gui/manual/intro.txt:21
 msgid ""
@@ -121,7 +122,7 @@ msgid ""
 " The game uses UDP port 20595, so the host must configure their "
 "NAT/firewall/etc. to allow this. Other players can then select “Join game” "
 "and enter the host's IP address."
-msgstr ""
+msgstr "Untuk menyiapkan game multipemain, satu pemain harus memilih opsi “Host game”. Permainan menggunakan port UDP 20595, jadi tuan rumah (host) harus mengkonfigurasi NAT/firewall/dll. untuk mengizinkan ini. Pemain lain kemudian dapat memilih \"Gabung game\" dan memasukkan alamat IP host."
 
 #: gui/manual/intro.txt:25
 msgid "[font=\"sans-bold-16\"]Game setup[font=\"sans-14\"]"
@@ -129,7 +130,7 @@ msgstr "[font=\"sans-bold-16\"]Pengaturan Permainan[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:26
 msgid "In a multiplayer game, only the host can alter the game setup options."
-msgstr ""
+msgstr "Dalam game multipemain, hanya tuan rumah yang dapat mengubah opsi penyiapan game."
 
 #: gui/manual/intro.txt:28
 msgid "First, select what type of map you want to play:"
@@ -139,19 +140,19 @@ msgstr "Pertama, pilih jenis peta yang akan Anda mainkan:"
 msgid ""
 "• [font=\"sans-bold-14\"]Random map[font=\"sans-14\"] – A map created "
 "automatically from a script"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Peta acak[font=\"sans-14\"] – Sebuah peta yang dibuat secara otomatis dari sebuah program"
 
 #: gui/manual/intro.txt:30
 msgid ""
 "• [font=\"sans-bold-14\"]Scenario map[font=\"sans-14\"] – A map created by "
 "map designers and with fixed civilizations"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Peta Skenario[font=\"sans-14\"] – Peta yang dibuat oleh perancang peta dan dengan peradaban tetap"
 
 #: gui/manual/intro.txt:31
 msgid ""
 "• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] – A map created by "
 "map designers but where the civilizations can be chosen"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Peta Perperangan[font=\"sans-14\"] – Peta yang dibuat oleh perancang peta, tetapi tempat peradaban dapat dipilih"
 
 #: gui/manual/intro.txt:33
 msgid ""
@@ -160,7 +161,7 @@ msgid ""
 "over land and demo maps are maps used for testing purposes (generally not "
 "useful to play on). The “All Maps” filter shows all maps together in one "
 "list."
-msgstr ""
+msgstr "Kemudian peta dapat disaring lebih lanjut. Peta standar umumnya adalah peta yang dapat dimainkan. Peta angkatan laut adalah peta di mana tidak semua lawan dapat dijangkau melalui darat dan peta demo adalah peta yang digunakan untuk tujuan pengujian (umumnya tidak berguna untuk dimainkan). Filter “Semua Peta” menunjukkan semua peta bersama dalam satu daftar."
 
 #: gui/manual/intro.txt:35
 msgid ""
@@ -169,11 +170,11 @@ msgid ""
 "controls which player (decides where you start on the map etc.). The options"
 " are either a human player, an AI or no player at all (the opponent will "
 "just be idle)."
-msgstr ""
+msgstr "Terakhir ubah pengaturannya. Untuk peta acak, ini mencakup jumlah pemain, ukuran peta, dll. Untuk skenario, Anda hanya dapat memilih siapa yang mengontrol pemain mana (memutuskan di mana Anda mulai di peta, dll.). Opsinya adalah pemain manusia, AI atau tidak ada pemain sama sekali (lawan hanya akan diam)."
 
 #: gui/manual/intro.txt:37
 msgid "When you are ready to start, click the “Start game” button."
-msgstr ""
+msgstr "Saat Anda siap untuk memulai, klik tombol “Memulai permainan”."
 
 #: gui/manual/intro.txt:39
 msgid "[font=\"sans-bold-16\"]Hotkeys[font=\"sans-14\"]"
@@ -192,124 +193,124 @@ msgstr ""
 #: gui/manual/intro.txt:43
 msgid ""
 "  hotkey.exit – Immediately close the game, without asking for confirmation"
-msgstr ""
+msgstr "  hotkey.exit – Segera tutup gamenya, tanpa meminta konfirmasi"
 
 #: gui/manual/intro.txt:44
 msgid "  hotkey.togglefullscreen – Toggle between fullscreen and windowed"
-msgstr ""
+msgstr "  hotkey.togglefullscreen – Beralih antara layar penuh dan berjendela"
 
 #: gui/manual/intro.txt:45
 msgid "  hotkey.console.toggle – Toggle console"
-msgstr ""
+msgstr "  hotkey.console.toggle – Alihkan konsol"
 
 #: gui/manual/intro.txt:46
 msgid "  hotkey.fps.toggle – Toggle frame counter (FPS)"
-msgstr ""
+msgstr "  hotkey.fps.toggle – Alihkan penghitung bingkai (FPS)"
 
 #: gui/manual/intro.txt:47
 msgid ""
 "  hotkey.profile.toggle – Toggle real-time profiler (cycles through the "
 "displays of information)"
-msgstr ""
+msgstr "  hotkey.profile.toggle – Beralih profiler waktu-nyata (siklus melalui tampilan informasi)"
 
 #: gui/manual/intro.txt:48
 msgid ""
 "  hotkey.profile.save – Save current profiler data to “logs/profile.txt”"
-msgstr ""
+msgstr "  hotkey.profile.save – Simpan data profiler saat ini ke “logs/profile.txt”"
 
 #: gui/manual/intro.txt:49
 msgid ""
 "  hotkey.screenshot – Take screenshot (in .png format, location is displayed"
 " in the top left of the GUI after the file has been saved, and can also be "
 "seen in the console/logs if you miss it there)"
-msgstr ""
+msgstr "  hotkey.screenshot – Ambil tangkapan layar (dalam format .png, lokasi ditampilkan di kiri atas GUI setelah file disimpan, dan juga dapat dilihat di konsol / log jika Anda melewatkannya di sana)"
 
 #: gui/manual/intro.txt:50
 msgid ""
 "  hotkey.bigscreenshot – Take huge screenshot (6400×4800 pixels, in .bmp "
 "format, location is displayed in the top left of the GUI after the file has "
 "been saved, and can also be seen in the console/logs if you miss it there)"
-msgstr ""
+msgstr "  hotkey.bigscreenshot – Ambil tangkapan layar besar (6400×4800 piksel, dalam format .bmp, lokasi ditampilkan di kiri atas GUI setelah file disimpan, dan juga dapat dilihat di konsol / log jika Anda melewatkannya di sana)"
 
 #: gui/manual/intro.txt:51
 msgid "  hotkey.tab.next – Switch to the next tab"
-msgstr ""
+msgstr "  hotkey.tab.next – Beralih ke tab berikutnya"
 
 #: gui/manual/intro.txt:52
 msgid "  hotkey.tab.prev – Switch to the previous tab"
-msgstr ""
+msgstr "  hotkey.tab.prev – Beralih ke tab sebelumnya"
 
 #: gui/manual/intro.txt:54
 msgid "[font=\"sans-bold-14\"]In Game[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Dalam permainan[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:55
 msgid ""
 "  Double Left Click \\[on unit] – Select all of your units of the same kind "
 "on the screen (even if they're different ranks)"
-msgstr ""
+msgstr "Klik Kiri dua kali \\[on unit] – Pilih semua unit Anda dari jenis yang sama di layar (meskipun peringkatnya berbeda)"
 
 #: gui/manual/intro.txt:56
 msgid ""
 "  Triple Left Click \\[on unit] – Select all of your units of the same kind "
 "and the same rank on the screen"
-msgstr ""
+msgstr "Klik kiri tiga kali \\[on unit] – Pilih semua unit Anda dari jenis yang sama dan peringkat yang sama di layar"
 
 #: gui/manual/intro.txt:57
 msgid ""
 "  Alt + Double Left Click \\[on unit] – Select all your units of the same "
 "kind on the entire map (even if they have different ranks)"
-msgstr ""
+msgstr "  Alt + Klik Kiri dua kali \\[pada unit] – Pilih semua unit Anda dari jenis yang sama di seluruh peta (meskipun mereka memiliki peringkat yang berbeda)"
 
 #: gui/manual/intro.txt:58
 msgid ""
 "  Alt + Triple Left Click \\[on unit] – Select all your units of the same "
 "kind and rank on the entire map"
-msgstr ""
+msgstr "  Alt + Klik Kiri tiga kali \\[pada unit] – Pilih semua unit Anda dari jenis yang sama dan peringkat di seluruh peta"
 
 #: gui/manual/intro.txt:59
 msgid "  hotkey.quicksave – Quicksave"
-msgstr ""
+msgstr "  hotkey.quicksave – Simpan cepat"
 
 #: gui/manual/intro.txt:60
 msgid "  hotkey.quickload – Quickload"
-msgstr ""
+msgstr "  hotkey.quickload – Muat cepat"
 
 #: gui/manual/intro.txt:61
 msgid "  hotkey.session.gui.menu.toggle – Toggle menu"
-msgstr ""
+msgstr "  hotkey.session.gui.menu.toggle – Beralih menu"
 
 #: gui/manual/intro.txt:62
 msgid "  hotkey.timeelapsedcounter.toggle – Toggle time elapsed counter"
-msgstr ""
+msgstr "  hotkey.timeelapsedcounter.toggle – Aktifkan penghitung waktu berlalu"
 
 #: gui/manual/intro.txt:63
 msgid "  hotkey.cancel – Close all dialogs (chat, menu)"
-msgstr ""
+msgstr "  hotkey.cancel – Tutup semua dialog (obrolan, menu)"
 
 #: gui/manual/intro.txt:64
 msgid "  hotkey.confirm – Open chat or send message"
-msgstr ""
+msgstr "  hotkey.confirm – Buka obrolan atau kirim pesan"
 
 #: gui/manual/intro.txt:65
 msgid "  hotkey.teamchat – Send team chat"
-msgstr ""
+msgstr "  hotkey.teamchat – Kirim obrolan tim"
 
 #: gui/manual/intro.txt:66
 msgid ""
 "  hotkey.privatechat – Chat with the previously selected private chat "
 "partner"
-msgstr ""
+msgstr "  hotkey.privatechat – Mengobrol dengan mitra obrolan pribadi yang dipilih sebelumnya"
 
 #: gui/manual/intro.txt:67
 msgid "  hotkey.pause – Pause or resume the game"
-msgstr ""
+msgstr "  hotkey.pause – Jeda atau lanjutkan permainan"
 
 #: gui/manual/intro.txt:68
 msgid ""
 "  hotkey.session.kill – Delete currently selected unit(s)/structure(s), ask "
 "for confirmation"
-msgstr ""
+msgstr "  hotkey.session.kill – Hapus yang saat ini dipilih unit(s)/structure(s), minta konfirmasi"
 
 #: gui/manual/intro.txt:69
 msgid ""
@@ -321,82 +322,82 @@ msgstr ""
 msgid ""
 "  hotkey.selection.add – Modifier – add to selection (works with clicking "
 "and hotkeys, e.g. the idle hotkeys)"
-msgstr ""
+msgstr "  hotkey.selection.add – Modifier – tambahkan ke pilihan (berfungsi dengan mengklik dan hotkeys, misalnya hotkey idle)"
 
 #: gui/manual/intro.txt:71
 msgid ""
 "  hotkey.selection.remove – Modifier – remove from selection (works with "
 "clicking and hotkeys, e.g. the idle hotkeys)"
-msgstr ""
+msgstr "  hotkey.selection.remove – Modifier – hapus dari pilihan (berfungsi dengan mengklik dan tombol pintas, misalnya hotkey diam)"
 
 #: gui/manual/intro.txt:72
 msgid ""
 "  hotkey.selection.offscreen – Modifier – add all units, including offscreen"
 " units, to selection."
-msgstr ""
+msgstr "  hotkey.selection.offscreen – Modifier – tambahkan semua unit, termasuk unit di luar layar, ke pilihan."
 
 #: gui/manual/intro.txt:73
 msgid ""
 "  hotkey.selection.cancel – Unselect all units, cancel building placement."
-msgstr ""
+msgstr "  hotkey.selection.cancel – Batalkan pilihan semua unit, batalkan penempatan gedung."
 
 #: gui/manual/intro.txt:74
 msgid "  hotkey.selection.idlewarrior – Select idle fighter"
-msgstr ""
+msgstr "  hotkey.selection.idlewarrior – Pilih petarung yang diam"
 
 #: gui/manual/intro.txt:75
 msgid ""
 "  hotkey.selection.idleworker – Select idle worker (including citizen-"
 "soldiers)"
-msgstr ""
+msgstr "  hotkey.selection.idleworker – Pilih pekerja yang menganggur (termasuk warga-prajurit)"
 
 #: gui/manual/intro.txt:76
 msgid "  hotkey.selection.idleunit – Select idle unit"
-msgstr ""
+msgstr "  hotkey.selection.idleunit – Pilih unit yang menganggur"
 
 #: gui/manual/intro.txt:77
 msgid "  hotkey.session.stop – Stop (halt) the currently selected units"
-msgstr ""
+msgstr "  hotkey.session.stop – Stop (hentikan) unit yang saat ini dipilih"
 
 #: gui/manual/intro.txt:78
 msgid "  hotkey.session.backtowork – The unit will go back to work"
-msgstr ""
+msgstr "  hotkey.session.backtowork – Unit akan kembali bekerja"
 
 #: gui/manual/intro.txt:79
 msgid ""
 "  hotkey.session.unload – Unload the garrisoned units of the selected "
 "structure(s)"
-msgstr ""
+msgstr "  hotkey.session.unload – Bongkar unit garnisun dari structure(s) yang dipilih"
 
 #: gui/manual/intro.txt:80
 msgid ""
 "  hotkey.selection.group.save.1 – Create control group 1 (by default, "
 "respectively 2,3, ...) from the selected unit(s)/structure(s)"
-msgstr ""
+msgstr "  hotkey.selection.group.save.1 – Buat grup kontrol 1 (secara standar, masing-masing 2,3, ...) dari unit(s)/structure(s) yang dipilih"
 
 #: gui/manual/intro.txt:81
 msgid ""
 "  hotkey.selection.group.select.1 – Select the unit(s)/structure(s) in "
 "control group 1"
-msgstr ""
+msgstr "  hotkey.selection.group.select.1 – Pilih unit(s)/structure(s) dalam kelompok kontrol 1"
 
 #: gui/manual/intro.txt:82
 msgid ""
 "  hotkey.selection.group.add.1 – Add control group 1 (to 0) to the selected "
 "unit(s)/structure(s)"
-msgstr ""
+msgstr "  hotkey.selection.group.add.1 – Tambahkan grup kontrol 1 (ke 0) ke unit(s)/structure(s) yang dipilih"
 
 #: gui/manual/intro.txt:83
 msgid ""
 "  hotkey.camera.jump.set.1 – Mark the current camera position, for jumping "
 "back to later (by default, there are 4 possible positions)"
-msgstr ""
+msgstr "  hotkey.camera.jump.set.1 – Tandai posisi kamera saat ini, untuk melompat kembali ke lain waktu (secara standar, ada 4 kemungkinan posisi)"
 
 #: gui/manual/intro.txt:84
 msgid ""
 "  hotkey.camera.jump.1 – Move the camera to a marked position. Jump back to "
 "the last location if the camera is already over the marked position"
-msgstr ""
+msgstr "  hotkey.camera.jump.1 – Pindahkan kamera ke posisi yang ditandai. Lompat kembali ke lokasi terakhir jika kamera sudah melebihi posisi yang ditandai"
 
 #: gui/manual/intro.txt:85
 msgid ""
@@ -405,106 +406,106 @@ msgid ""
 "hotkey.session.queueunit.5, hotkey.session.queueunit.6, "
 "hotkey.session.queueunit.7 – With training structure selected. Add the 1st, "
 "2nd, … unit shown to the training queue for all the selected structures"
-msgstr ""
+msgstr "  hotkey.session.queueunit.1, hotkey.session.queueunit.2, hotkey.session.queueunit.3, hotkey.session.queueunit.4, hotkey.session.queueunit.5, hotkey.session.queueunit.6, hotkey.session.queueunit.7 – Dengan struktur pelatihan yang dipilih.  Tambahkan yang pertama, kedua, … unit ditampilkan ke antrian pelatihan untuk semua struktur yang dipilih"
 
 #: gui/manual/intro.txt:86
 msgid ""
 "  hotkey.session.highlightguarded with unit(s) selected – Highlight the "
 "unit(s)/structure(s) guarded by the selection"
-msgstr ""
+msgstr "  hotkey.session.highlightguarded with unit(s) selected – Menyoroti unit(s)/structure(s) yang dijaga oleh seleksi"
 
 #: gui/manual/intro.txt:87
 msgid ""
 "  hotkey.session.highlightguarding with unit(s)/structure(s) selected – "
 "Highlight the unit(s) guarding the selection"
-msgstr ""
+msgstr "  hotkey.session.highlightguarding with unit(s)/structure(s) selected – Menyoroti unit(s) yang menjaga seleksi"
 
 #: gui/manual/intro.txt:88
 msgid ""
 "  highlightguarding.showstatusbars – See all status bars (which would also "
 "show the building progress)"
-msgstr ""
+msgstr "  highlightguarding.showstatusbars – Lihat semua bilah status (yang juga akan menunjukkan kemajuan bangunan)"
 
 #: gui/manual/intro.txt:89
 msgid "  hotkey.summary – Toggle summary window"
-msgstr ""
+msgstr "  hotkey.summary – Aktifkan jendela ringkasan"
 
 #: gui/manual/intro.txt:90
 msgid "  hotkey.lobby – Show the multiplayer lobby in a dialog window"
-msgstr ""
+msgstr "  hotkey.lobby – Tampilkan lobi multipemain di jendela dialog"
 
 #: gui/manual/intro.txt:91
 msgid "  hotkey.session.gui.diplomacy.toggle – Toggle in-game diplomacy panel"
-msgstr ""
+msgstr "  hotkey.session.gui.diplomacy.toggle – Aktifkan panel diplomasi dalam game"
 
 #: gui/manual/intro.txt:92
 msgid ""
 "  hotkey.session.gui.barter.toggle – Toggle in-game barter and trade panel"
-msgstr ""
+msgstr "  hotkey.session.gui.barter.toggle – Aktifkan barter dalam game dan panel perdagangan"
 
 #: gui/manual/intro.txt:93
 msgid ""
 "  hotkey.session.gui.objectives.toggle – Toggle in-game objectives panel"
-msgstr ""
+msgstr "  hotkey.session.gui.objectives.toggle – Aktifkan panel tujuan dalam game"
 
 #: gui/manual/intro.txt:94
 msgid "  hotkey.session.gui.tutorial.toggle – Toggle in-game tutorial panel"
-msgstr ""
+msgstr "  hotkey.session.gui.tutorial.toggle – Aktifkan panel tutorial dalam game"
 
 #: gui/manual/intro.txt:95
 msgid "  hotkey.structree – Toggle structure tree panel"
-msgstr ""
+msgstr "  hotkey.structree – Aktifkan panel pohon struktur"
 
 #: gui/manual/intro.txt:96
 msgid "  hotkey.civinfo – Toggle civilization info panel"
-msgstr ""
+msgstr "  hotkey.civinfo – Aktifkan panel info peradaban"
 
 #: gui/manual/intro.txt:98
 msgid "[font=\"sans-bold-14\"]Modify mouse action[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Ubah tindakan mouse[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:99
 msgid "  hotkey.session.garrison + Right Click on structure – Garrison"
-msgstr ""
+msgstr "  hotkey.session.garrison + Klik kanan pada struktur – Menempati"
 
 #: gui/manual/intro.txt:100
 msgid "  hotkey.session.repair + Right Click on structure – Repair"
-msgstr ""
+msgstr "  hotkey.session.repair + Klik kanan pada struktur – Memperbaiki"
 
 #: gui/manual/intro.txt:101
 msgid "  hotkey.session.patrol + Right Click – Patrol"
-msgstr ""
+msgstr "  hotkey.session.patrol + Klik Kanan – Berpatroli"
 
 #: gui/manual/intro.txt:102
 msgid ""
 "  hotkey.session.queue + Right Click – Queue the move/build/gather/etc. "
 "order"
-msgstr ""
+msgstr "  hotkey.session.queue + Klik Kanan – Mengantri perintah gerak/bangun/kumpul/dll."
 
 #: gui/manual/intro.txt:103
 msgid ""
 "  hotkey.session.orderone + Right Click – Order one unit from the current "
 "selection to move/build/gather/etc. and unselect it. Used to quickly "
 "dispatch units with specific tasks"
-msgstr ""
+msgstr "  hotkey.session.orderone + Klik Kanan – Menyuruh satu unit dari pilihan saat ini untuk bergerak/membangun/mengumpulkan/dll. dan batal pilih. Digunakan untuk mengirimkan unit dengan cepat dengan tugas tertentu"
 
 #: gui/manual/intro.txt:104
 msgid ""
 "  hotkey.session.batchtrain + Left Click when training units – Add units in "
 "batches (the batch size is 5 by default and can be changed in the options)"
-msgstr ""
+msgstr "  hotkey.session.batchtrain + Klik Kiri saat melatih unit – Tambahkan unit dalam batch (ukuran batch adalah 5 secara standar dan dapat diubah dalam opsi)"
 
 #: gui/manual/intro.txt:105
 msgid ""
 "  hotkey.selection.add + Left Click or Left Drag over unit on map – Add unit"
 " to selection"
-msgstr ""
+msgstr "  hotkey.selection.add + Klik Kiri atau Seret Kiri pada unit di peta – Tambahkan unit ke pilihan"
 
 #: gui/manual/intro.txt:106
 msgid ""
 "  hotkey.selection.remove + Left Click or Left Drag over unit on map – "
 "Remove unit from selection"
-msgstr ""
+msgstr "  hotkey.selection.remove + Klik Kiri atau Seret Kiri pada unit di peta – Hapus unit dari pilihan"
 
 #: gui/manual/intro.txt:107
 msgid ""

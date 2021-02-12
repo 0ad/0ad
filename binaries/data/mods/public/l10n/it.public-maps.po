@@ -15,7 +15,8 @@
 # Fabrizio Morotti <famorot@tin.it>, 2016-2017
 # Federico Di Salvo <ad16fdis@uwcad.it>, 2020
 # George Lungu <lungugeorge88@gmail.com>, 2018
-# Giuseppe D'Addio <giuseppinoino@virgilio.it>, 2019-2020
+# Gianluca Luparini <gianlucalup@gmail.com>, 2021
+# Giuseppe D'Addio <giuseppinoino@virgilio.it>, 2019-2021
 # Italang, 2019
 # Kevin Tonel <prophetinnocence@gmail.com>, 2018
 # Luca Errani <luca.errani1@gmail.com>, 2018
@@ -31,8 +32,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-18 08:15+0000\n"
-"PO-Revision-Date: 2021-01-18 10:36+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-02-11 23:06+0000\n"
+"Last-Translator: Giuseppe D'Addio <giuseppinoino@virgilio.it>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -970,7 +971,7 @@ msgctxt "biome definition"
 msgid ""
 "Solidifying its grip, the harsh cold has succeeded in freezing up the gulf. "
 "The thick ice formed is capable of withstanding any weight."
-msgstr ""
+msgstr "Rinforzando la presa, il freddo pungente è riuscito a ghiacciare il golfo. Lo spesso strato di ghiaccio formatosi, è capace di sopportare qualsiasi peso."
 
 #: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Title
 msgctxt "biome definition"
@@ -1196,7 +1197,7 @@ msgstr "Passi"
 msgid ""
 "The land is enclosed by a hill that leaves a small area per player connected"
 " to the large central place."
-msgstr ""
+msgstr "Il terreno è racchiuso da una collina che lascia una piccola area per giocatore collegata al grande luogo centrale."
 
 #: maps/random/unknown.jsonsettings.Landscapes.land[7].Name
 msgid "Lowlands"
@@ -1743,11 +1744,11 @@ msgstr "Corinto"
 msgid ""
 "Test map for picking units up, with sea and two islands. Trigger points are "
 "placed."
-msgstr ""
+msgstr "Mappa di prova per raccogliere unità, con il mare e due isole. I punti trigger sono posizionati."
 
 #: maps/scenarios/pickup_test_map.xml:Name:39
 msgid "Pickup test map"
-msgstr ""
+msgstr "Mappa di prova"
 
 #: maps/scenarios/polynesia.xml:Description:38
 msgid "Demo map for new fancy water effects."
@@ -2265,11 +2266,11 @@ msgstr "Isola Tropicale"
 
 #: maps/scenarios/unit_dancing_test.xml:Description:40
 msgid "This map is designed to test a few different cases of 'Dancing'."
-msgstr ""
+msgstr "Questa mappa è progettata per provare diversi casi di \"Ballo\"."
 
 #: maps/scenarios/unit_dancing_test.xml:Name:40
 msgid "Unit Dancing test"
-msgstr ""
+msgstr "Prova di Ballo di unità"
 
 #: maps/scenarios/unit_motion_integration_test.xml:Description:39
 msgid ""
@@ -2277,11 +2278,11 @@ msgid ""
 " unitAI, unitMotion and the relevant pathfinders and thus acts as an "
 "integrated test map. Look for things such as stuck units, wrong animations, "
 "and weird pathing."
-msgstr ""
+msgstr "Questa mappa è progettata per provare alcuni casi di movimento delle unità di base. Coinvolgerà unitAI, unitMotion e i relativi pathfinder e fungerà quindi da mappa di test integrata. Cerca cose come unità bloccate, animazioni sbagliate e percorsi strani."
 
 #: maps/scenarios/unit_motion_integration_test.xml:Name:39
 msgid "Unit Motion Integration Test"
-msgstr ""
+msgstr "Prova integrazione movimento dell'unità"
 
 #: maps/scenarios/units_demo.xml:Description:27
 msgid "Every unit in the game."
@@ -2348,11 +2349,11 @@ msgid ""
 "Skirmish high in the Atlas mountains, where snowcapped mountains loom over "
 "desert oases. A wild landscape awaits; every player will experience "
 "different advantages and challenges based on their location."
-msgstr ""
+msgstr "Schermaglia sulle montagne dell'Atlante, dove montagne innevate incombono sulle oasi del deserto. Un paesaggio selvaggio attende; ogni giocatore sperimenterà diversi vantaggi e sfide in base alla propria posizione."
 
 #: maps/skirmishes/atlas_valleys_8p.xml:Name:39
 msgid "Atlas Valleys (8)"
-msgstr ""
+msgstr "Valli Atlante (8)"
 
 #: maps/skirmishes/bactria_2p.xml:Description:38
 msgid ""
@@ -2741,15 +2742,15 @@ msgid ""
 "A lazy river meanders through these Serbian wetlands. Stone is scarce, but many lumps of bog iron sit waiting to be found.\n"
 "\n"
 "*This map makes heavy use of grass actors which may adversely affect performance."
-msgstr ""
+msgstr "Un fiume pigro serpeggia attraverso queste zone umide serbe. La pietra è scarsa, ma molti grumi di ferro di palude aspettano di essere trovati.\n\n*Questa mappa fa intenso uso di attori in erba che possono influire negativamente sulle prestazioni."
 
 #: maps/skirmishes/obedska_bog_4p.xml:Name:39
 msgid "Obedska Bog (4)"
-msgstr ""
+msgstr "Obedska Bog (4)"
 
 #: maps/skirmishes/obedska_bog_night_4p.xml:Name:39
 msgid "Obedska Bog Night (4)"
-msgstr ""
+msgstr "Obedska Bog notte (4)"
 
 #: maps/skirmishes/oceanside_2p.xml:Description:39
 msgid "A Lush temperate biome along an ocean. "
@@ -2809,11 +2810,11 @@ msgid ""
 "Iberian players do not get full circuit walls, but 5 strategically placed wall towers.\n"
 "\n"
 "WARNING: This map uses a lot of floral actors on account of being a rainforest. Expect a drop in framerate, this is taxing on most mid range computers."
-msgstr ""
+msgstr "Le diverse foreste pluviali si annidano nella catena montuosa Sahyadri della costa occidentale dell'India. Inutile dire che il legno è abbondante.\n\nI giocatori iberici non ottengono muri a circuito completo, ma 5 torri a muro posizionate strategicamente.\n\nATTENZIONE: questa mappa utilizza molti attori floreali perché è una foresta pluviale. Aspettatevi un calo del framerate, questo è faticoso per la maggior parte dei computer di fascia media."
 
 #: maps/skirmishes/sahyadri_buttes_5.xml:Name:39
 msgid "Sahyadri Buttes (5)"
-msgstr ""
+msgstr "Butte di Sahyadri (5)"
 
 #: maps/skirmishes/savanna_river.xml:Description:38
 msgid "A large savanna is bisected by a narrow jungle stream."
@@ -2920,7 +2921,7 @@ msgid ""
 "Skirmish as ash lightly falls around this recently erupted volcano. The "
 "scorched landscape offers little food, though the blasted forests are still "
 "laden with useful wood."
-msgstr ""
+msgstr "Qui la cenere cade leggermente intorno a questo vulcano eruttato di recente. Il paesaggio arido offre poco cibo, sebbene le foreste devastate siano ancora cariche di legno utile."
 
 #: maps/skirmishes/vesuvius_6p.xml:Name:39
 msgid "Vesuvius (6)"

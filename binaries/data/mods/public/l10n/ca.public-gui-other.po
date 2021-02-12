@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
+# Adrià Palouzié <adriapalouzie@gmail.com>, 2021
 # Albert F. <alb.fontquerni@gmail.com>, 2018
 # Àlvar Farré <alvarkok@hotmail.com>, 2020
 # Arnau Barrabeig <arnaubrossa@hotmail.com>, 2017
@@ -22,8 +23,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-29 14:56+0000\n"
-"PO-Revision-Date: 2021-02-01 11:59+0000\n"
-"Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
+"PO-Revision-Date: 2021-02-11 20:04+0000\n"
+"Last-Translator: Adrià Palouzié <adriapalouzie@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -498,11 +499,11 @@ msgstr "La contrasenya no és vàlida."
 
 #: gui/common/network.js:80
 msgid "Could not find an unused port for the enet STUN client."
-msgstr ""
+msgstr "No s'ha pogut trobar un port no utilitzat per el protocol d'internet enet del client."
 
 #: gui/common/network.js:81
 msgid "Could not find the STUN endpoint."
-msgstr ""
+msgstr "No s'ha pogut trobar el final del protocol d'internet."
 
 #: gui/common/network.js:84
 #, javascript-format
@@ -2110,7 +2111,7 @@ msgstr "Rebeu una notificació de so quan algú escrigui el vostre nom."
 
 #: gui/options/options.json[2].options[6].label
 msgid "New player notification in game setup"
-msgstr ""
+msgstr "Nova notificació d'un jugador a la configuració de la partida"
 
 #: gui/options/options.json[2].options[6].tooltip
 msgid "Receive audio notification when a new client joins the game setup."
@@ -2427,7 +2428,7 @@ msgstr "Altres ordres trencaran les formacions existents."
 
 #: gui/options/options.json[5].options[20].list[1].label
 msgid "No Override"
-msgstr ""
+msgstr "No sobreescriure"
 
 #: gui/options/options.json[5].options[20].list[1].tooltip
 msgid "Units in formations stay in formations."
@@ -3540,7 +3541,7 @@ msgstr "Recollits"
 
 #: gui/summary/summary.js:44
 msgid "Count"
-msgstr ""
+msgstr "Compte"
 
 #: gui/summary/summary.js:49
 msgid "Sent"

@@ -31,7 +31,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-29 14:56+0000\n"
-"PO-Revision-Date: 2021-02-10 08:14+0000\n"
+"PO-Revision-Date: 2021-02-10 11:47+0000\n"
 "Last-Translator: Bruce Lee <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -1189,7 +1189,7 @@ msgstr "%(changer)s이(가) %(change)s(으)로 제한을 축소합니다."
 #: gui/session/selection_panels_helpers.js:140
 msgid "Could only be constructed once."
 msgid_plural "Could only be constructed %(limit)s times."
-msgstr[0] ""
+msgstr[0] "%(limit)s번만 건설할 수 있습니다."
 
 #: gui/session/selection_panels_helpers.js:144
 msgid "Can be constructed only once."
@@ -1204,7 +1204,7 @@ msgstr[0] "%(count)s번 더 건설 할 수 있습니다."
 #: gui/session/selection_panels_helpers.js:153
 msgid "Could only be trained once."
 msgid_plural "Could only be trained %(limit)s times."
-msgstr[0] ""
+msgstr[0] "%(limit)s번만 훈련할 수 있습니다."
 
 #: gui/session/selection_panels_helpers.js:157
 msgid "Can be trained only once."
@@ -1219,7 +1219,7 @@ msgstr[0] "%(count)s번 더 훈련할 수 있습니다."
 #: gui/session/selection_panels_helpers.js:166
 msgid "Could only be created once."
 msgid_plural "Could only be created %(limit)s times."
-msgstr[0] ""
+msgstr[0] "%(limit)s번만 만들 수 있습니다."
 
 #: gui/session/selection_panels_helpers.js:170
 msgid "Can be created only once."
@@ -1288,7 +1288,7 @@ msgstr "그룹화된 유닛들을 클릭하여 선택하고, 그룹화된 유닛
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
 msgid "ALPHA XXIV: Xšayāršā"
-msgstr "Alpha XXIV: 끄사야르사"
+msgstr "Alpha XXIV: 흐샤야르샤"
 
 #: gui/session/top_panel/CivIcon.js:80
 #, javascript-format

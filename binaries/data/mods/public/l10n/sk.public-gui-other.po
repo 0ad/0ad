@@ -6,6 +6,7 @@
 # kecer <adam@kecer.net>, 2016
 # LeviTaule <levi.taule@gmail.com>, 2018
 # LeviTaule <levi.taule@gmail.com>, 2015-2016
+# Marek Berčík <marek.bercik@hotmail.com>, 2021
 # 2001c3bfc7421750b343e20d6f8feae5_62d342a <746da4594d700c1e2023e1839e1e5d4f_309682>, 2015
 # Mário Bulejko, 2015
 # Miroslav Kadlec <mirokadlec12@gmail.com>, 2018
@@ -19,12 +20,13 @@
 # Slavomir Slovenkai <slavomir.slovenkai@gmail.com>, 2021
 # Stanislas Dolcini <stan@wildfiregames.com>, 2021
 # Tom Hanax, 2019
+# Tom Hanax, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-29 14:56+0000\n"
-"PO-Revision-Date: 2021-02-02 18:33+0000\n"
-"Last-Translator: Slavomir Slovenkai <slavomir.slovenkai@gmail.com>\n"
+"PO-Revision-Date: 2021-02-11 16:59+0000\n"
+"Last-Translator: Marek Berčík <marek.bercik@hotmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -347,7 +349,7 @@ msgstr "Zdroje na začiatku"
 #: gui/common/gamedescription.js:358
 msgctxt "starting resources"
 msgid "Per Player"
-msgstr ""
+msgstr "Na hráča"
 
 #: gui/common/gamedescription.js:359
 #, javascript-format
@@ -361,7 +363,7 @@ msgstr "Populačný limit"
 #: gui/common/gamedescription.js:374
 msgctxt "population limit"
 msgid "Per Player"
-msgstr ""
+msgstr "Na hráča"
 
 #: gui/common/gamedescription.js:382
 msgid "World Population Cap"
@@ -479,7 +481,7 @@ msgstr "Bol ti udelený ban."
 
 #: gui/common/network.js:73
 msgid "Player name in use. If you were disconnected, retry in few seconds."
-msgstr ""
+msgstr "Meno hráča sa už používa. Ak ste boli odpojení, skúste opäť o niekoľko sekúnd."
 
 #: gui/common/network.js:74
 msgid "Server full."
@@ -491,11 +493,11 @@ msgstr "Zabezpečenie overenia pravosti lobby zlyhalo. Pripojte sa cez lobby."
 
 #: gui/common/network.js:76
 msgid "Error: Server failed to allocate a unique client identifier."
-msgstr ""
+msgstr "Chyba: Serveru sa nepodarilo alokovať unikátny identifikátor klienta."
 
 #: gui/common/network.js:77
 msgid "Error: Client commands were ready for an unexpected game turn."
-msgstr ""
+msgstr "Chyba: Klientské povely boli pripravené na neočakávaný zvrat hry."
 
 #: gui/common/network.js:78
 msgid "Error: Client simulated an unexpected game turn."
@@ -737,11 +739,11 @@ msgstr "%(label)s\n%(details)s"
 
 #: gui/common/tooltips.js:200
 msgid "Resistance:"
-msgstr ""
+msgstr "Odolnosť:"
 
 #: gui/common/tooltips.js:211
 msgid "Damage:"
-msgstr ""
+msgstr "Poškodenie:"
 
 #: gui/common/tooltips.js:214 gui/common/tooltips.js:234
 #, javascript-format
@@ -755,16 +757,16 @@ msgstr "(%(resistancePercentage)s)"
 
 #: gui/common/tooltips.js:232
 msgid "Capture:"
-msgstr ""
+msgstr "Obsadenie:"
 
 #: gui/common/tooltips.js:236 gui/common/tooltips.js:376
 msgctxt "damage type"
 msgid "Capture"
-msgstr ""
+msgstr "Prevzatie"
 
 #: gui/common/tooltips.js:251
 msgid "Status Effects:"
-msgstr ""
+msgstr "Efekty stavu:"
 
 #: gui/common/tooltips.js:256
 #, javascript-format
@@ -795,7 +797,7 @@ msgstr ""
 
 #: gui/common/tooltips.js:294
 msgid "Garrison to fire arrows"
-msgstr ""
+msgstr "Vytvoriť posádku pre streľbu šípov"
 
 #: gui/common/tooltips.js:297 gui/common/tooltips.js:958
 msgid "Interval:"
@@ -1025,7 +1027,7 @@ msgstr "Počet opravárov:"
 
 #: gui/common/tooltips.js:605
 msgid "Remaining repair time:"
-msgstr ""
+msgstr "Zostávajúci čas opravy:"
 
 #: gui/common/tooltips.js:609
 #, javascript-format
@@ -1052,7 +1054,7 @@ msgstr "Počet staviteľov:"
 
 #: gui/common/tooltips.js:639
 msgid "Remaining build time:"
-msgstr ""
+msgstr "Zostávajúci čas výstavby:"
 
 #: gui/common/tooltips.js:643
 #, javascript-format
@@ -1290,11 +1292,11 @@ msgstr "Vedúci zvuku"
 
 #: gui/credits/texts/audio.jsonContent[0].Content[1].Subtitle
 msgid "Lead Composer"
-msgstr ""
+msgstr "Vedúci skladateľ"
 
 #: gui/credits/texts/audio.jsonContent[0].Title
 msgid "Audio managers"
-msgstr ""
+msgstr "Ovládanie zvuku"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[10].Subtitle
 msgid "Viola, violin"
@@ -1367,7 +1369,7 @@ msgstr "Hlasy"
 
 #: gui/credits/texts/audio.jsonTitle
 msgid "Audio"
-msgstr ""
+msgstr "Zvuk"
 
 #: gui/credits/texts/balancing.jsonContent[0].Subtitle
 #: gui/credits/texts/history.jsonContent[0].Subtitle
@@ -1376,7 +1378,7 @@ msgstr "Vedenie"
 
 #: gui/credits/texts/balancing.jsonTitle
 msgid "Balancing"
-msgstr ""
+msgstr "Vyváženie"
 
 #: gui/credits/texts/community.jsonTitle
 msgid "Community and Management"
@@ -1414,7 +1416,7 @@ msgstr "Náhodné mapové skripty"
 
 #: gui/credits/texts/maps.jsonTitle
 msgid "Maps"
-msgstr ""
+msgstr "Mapy"
 
 #: gui/credits/texts/programming.jsonContent[0].Title
 msgid "Programming managers"
@@ -1476,7 +1478,7 @@ msgstr "Aj keď je to pre skúseného hráča primerane jednoduché, predvolený
 #: gui/loadgame/SavegameDeleter.js:34
 #, javascript-format
 msgid "Delete the selected savegame using %(hotkey)s."
-msgstr ""
+msgstr "Vymazať uloženú hru pomocou %(hotkey)s."
 
 #: gui/loadgame/SavegameDeleter.js:39 gui/replaymenu/replay_menu.js:203
 #, javascript-format
@@ -1683,7 +1685,7 @@ msgstr "Obnova predvolených nastavení odstráni vaše uložené nastavenia. Na
 
 #: gui/options/options.js:351
 msgid "Some setting values are invalid! Are you sure you want to save them?"
-msgstr ""
+msgstr "Niektoré z hodnôt sú neplatné! Ste si istí, že ich chcete uložiť?"
 
 #: gui/options/options.js:377
 msgid "You have unsaved changes, do you want to close this window?"
@@ -1695,7 +1697,7 @@ msgstr "Všeobecné"
 
 #: gui/options/options.json[0].options[0].label
 msgid "Player name (single-player)"
-msgstr ""
+msgstr "Meno hráča (hra jedného hráča)"
 
 #: gui/options/options.json[0].options[0].tooltip
 msgid "How you want to be addressed in single-player matches."
@@ -1703,7 +1705,7 @@ msgstr "Ako vás majú volať počas hier jedného hráča."
 
 #: gui/options/options.json[0].options[10].label
 msgid "Observer limit"
-msgstr ""
+msgstr "Limit počtu pozorovateľov"
 
 #: gui/options/options.json[0].options[10].tooltip
 msgid "Prevent further observers from joining if the limit is reached."
@@ -1711,23 +1713,23 @@ msgstr "Zabrániť pripojeniu ďalších pozorovateľov ak je dosiahnutý limit"
 
 #: gui/options/options.json[0].options[11].label
 msgid "Chat timestamp"
-msgstr ""
+msgstr "Čas konverzácie"
 
 #: gui/options/options.json[0].options[11].tooltip
 msgid "Display the time at which a chat message was posted."
-msgstr ""
+msgstr "Zobraziť čas, kedy bola správa v konverzácii odoslaná."
 
 #: gui/options/options.json[0].options[1].label
 msgid "Player name (multiplayer)"
-msgstr ""
+msgstr "Meno hráča (multiplayer)"
 
 #: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in multiplayer matches (except lobby)."
-msgstr ""
+msgstr "Ako chcete byť oslovovaný v multiplayeri (okrem lobby)."
 
 #: gui/options/options.json[0].options[2].label
 msgid "Background pause"
-msgstr ""
+msgstr "Pauza na pozadí"
 
 #: gui/options/options.json[0].options[2].tooltip
 msgid "Pause single-player games when window loses focus."
@@ -1735,7 +1737,7 @@ msgstr "Pozastav hru jedného hráča, ak okno s hrou nebude aktívne."
 
 #: gui/options/options.json[0].options[3].label
 msgid "Enable welcome screen"
-msgstr ""
+msgstr "Povoliť uvítaciu obrazovku"
 
 #: gui/options/options.json[0].options[3].tooltip
 msgid ""
@@ -1745,7 +1747,7 @@ msgstr "Ak to zakážeš, uvítacia obrazovka sa stále raz objaví, keď bude d
 
 #: gui/options/options.json[0].options[4].label
 msgid "Network warnings"
-msgstr ""
+msgstr "Sieťové varovania"
 
 #: gui/options/options.json[0].options[4].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
@@ -1753,7 +1755,7 @@ msgstr "Zobraziť, ktorý hráč má zlé spojenie v hre s viacerými hráčmi."
 
 #: gui/options/options.json[0].options[5].label
 msgid "FPS overlay"
-msgstr ""
+msgstr "Vrstva FPS"
 
 #: gui/options/options.json[0].options[5].tooltip
 msgid "Show frames per second in top right corner."
@@ -1761,7 +1763,7 @@ msgstr "Zobrazovať počet snímok za sekundu v pravom hornom rohu obrazovky."
 
 #: gui/options/options.json[0].options[6].label
 msgid "Real time overlay"
-msgstr ""
+msgstr "Vrstva reálneho času"
 
 #: gui/options/options.json[0].options[6].tooltip
 msgid "Show current system time in top right corner."
@@ -1769,7 +1771,7 @@ msgstr "Zobrazovať aktuálny systémový čas v pravom hornom rohu obrazovky."
 
 #: gui/options/options.json[0].options[7].label
 msgid "Game time overlay"
-msgstr ""
+msgstr "Vrstva herného času"
 
 #: gui/options/options.json[0].options[7].tooltip
 msgid "Show current simulation time in top right corner."
@@ -1785,7 +1787,7 @@ msgstr "Vždy ukázať zostávajúci čas do ukončenia prímeria."
 
 #: gui/options/options.json[0].options[9].label
 msgid "Late observer joins"
-msgstr ""
+msgstr "Pripojil sa oneskorený pozorovateľ"
 
 #: gui/options/options.json[0].options[9].list[0].label
 #: gui/options/options.json[3].options[5].list[0].label
@@ -1816,7 +1818,7 @@ msgstr "Grafika"
 
 #: gui/options/options.json[1].options[0].label
 msgid "Windowed mode"
-msgstr ""
+msgstr "Mód v okne"
 
 #: gui/options/options.json[1].options[0].tooltip
 msgid "Start 0 A.D. in a window."
@@ -1824,7 +1826,7 @@ msgstr "Spustiť 0 A.D. v okne."
 
 #: gui/options/options.json[1].options[10].label
 msgid "Shadow filtering"
-msgstr ""
+msgstr "Filtrovanie tieňov"
 
 #: gui/options/options.json[1].options[10].tooltip
 msgid "Smooth shadows."
@@ -1832,11 +1834,11 @@ msgstr "Vyhladiť tiene."
 
 #: gui/options/options.json[1].options[11].label
 msgid "Unit silhouettes"
-msgstr ""
+msgstr "Siluety jednotiek"
 
 #: gui/options/options.json[1].options[11].tooltip
 msgid "Show outlines of units behind structures."
-msgstr ""
+msgstr "Zobraziť obrysy jednotiek za budovami."
 
 #: gui/options/options.json[1].options[12].label
 msgid "Particles"
@@ -1848,7 +1850,7 @@ msgstr "Zapni častice."
 
 #: gui/options/options.json[1].options[13].label
 msgid "Water effects"
-msgstr ""
+msgstr "Vodné efekty"
 
 #: gui/options/options.json[1].options[13].tooltip
 msgid ""
@@ -1858,7 +1860,7 @@ msgstr "Keď sa vypne, pre vykreslenie vody sa použije to najnižšie možné n
 
 #: gui/options/options.json[1].options[14].label
 msgid "High-quality water effects"
-msgstr ""
+msgstr "Vysokokvalitné vodné efekty"
 
 #: gui/options/options.json[1].options[14].tooltip
 msgid ""
@@ -1868,7 +1870,7 @@ msgstr "Použi efekty vyššej kvality pre vodu, renderovanie pobrežných vĺn,
 
 #: gui/options/options.json[1].options[15].label
 msgid "Water reflections"
-msgstr ""
+msgstr "Odrazy vody"
 
 #: gui/options/options.json[1].options[15].tooltip
 msgid "Allow water to reflect a mirror image."
@@ -1876,7 +1878,7 @@ msgstr "Povoliť zrkadlové obrazy sveta na vodnej hladine."
 
 #: gui/options/options.json[1].options[16].label
 msgid "Water refraction"
-msgstr ""
+msgstr "Odrazy na vode"
 
 #: gui/options/options.json[1].options[16].tooltip
 msgid "Use a real water refraction map and not transparency."
@@ -1884,7 +1886,7 @@ msgstr "Použi reálny lom svetla vo vode a nie priehľadnosť."
 
 #: gui/options/options.json[1].options[17].label
 msgid "Real water depth"
-msgstr ""
+msgstr "Skutočná hĺbka vody"
 
 #: gui/options/options.json[1].options[17].tooltip
 msgid "Use actual water depth in rendering calculations."
@@ -1892,7 +1894,7 @@ msgstr "Do vykresľovacích výpočtov zahŕňať skutočnú hĺbku vody."
 
 #: gui/options/options.json[1].options[18].label
 msgid "Smooth vision"
-msgstr ""
+msgstr "Vyhladený obraz"
 
 #: gui/options/options.json[1].options[18].tooltip
 msgid "Lift darkness and fog of war smoothly."
@@ -1916,7 +1918,7 @@ msgstr "Použiť OpenGL 2.0 shaders (odporúčané)"
 
 #: gui/options/options.json[1].options[20].label
 msgid "FPS throttling in menus"
-msgstr ""
+msgstr "Obmedzovanie FPS v menu"
 
 #: gui/options/options.json[1].options[20].tooltip
 msgid ""
@@ -1926,7 +1928,7 @@ msgstr "Pre zníženie vyťaženia CPU, stlm frekvenciu vykresľovania v každom
 
 #: gui/options/options.json[1].options[21].label
 msgid "FPS throttling in games"
-msgstr ""
+msgstr "Obmedzovanie FPS v hrách"
 
 #: gui/options/options.json[1].options[21].tooltip
 msgid ""
@@ -1944,7 +1946,7 @@ msgstr "Zapnúť hmlu."
 
 #: gui/options/options.json[1].options[3].label
 msgid "Post-processing"
-msgstr ""
+msgstr "Post-processing"
 
 #: gui/options/options.json[1].options[3].tooltip
 msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
@@ -1956,7 +1958,7 @@ msgstr "Antialiasing"
 
 #: gui/options/options.json[1].options[4].list[0].tooltip
 msgid "Do not use antialiasing."
-msgstr ""
+msgstr "Nepoužívať antialiasing."
 
 #: gui/options/options.json[1].options[4].list[1].label
 msgid "FXAA"
@@ -1964,7 +1966,7 @@ msgstr "FXAA"
 
 #: gui/options/options.json[1].options[4].list[1].tooltip
 msgid "Fast, but simple antialiasing."
-msgstr ""
+msgstr "Rýchly, ale jednoduchý antialiasing."
 
 #: gui/options/options.json[1].options[4].list[2].label
 msgid "MSAA (2×)"
@@ -2012,11 +2014,11 @@ msgstr ""
 
 #: gui/options/options.json[1].options[5].label
 msgid "Sharpening"
-msgstr ""
+msgstr "Zostrovanie"
 
 #: gui/options/options.json[1].options[5].list[0].tooltip
 msgid "Do not use sharpening."
-msgstr ""
+msgstr "Nepoužívať zostrovanie."
 
 #: gui/options/options.json[1].options[5].list[1].label
 msgid "FidelityFX CAS"
@@ -2024,15 +2026,15 @@ msgstr ""
 
 #: gui/options/options.json[1].options[5].list[1].tooltip
 msgid "Contrast adaptive sharpening, a fast, contrast based sharpening pass."
-msgstr ""
+msgstr "Adaptívne zostrovanie podľa kontrastu."
 
 #: gui/options/options.json[1].options[5].tooltip
 msgid "Reduce blurry effects."
-msgstr ""
+msgstr "Obmedziť rozmazané efekty."
 
 #: gui/options/options.json[1].options[6].label
 msgid "Sharpness factor"
-msgstr ""
+msgstr "Súčiniteľ ostrosti"
 
 #: gui/options/options.json[1].options[6].tooltip
 msgid "The sharpness of the choosen pass."
@@ -2040,7 +2042,7 @@ msgstr ""
 
 #: gui/options/options.json[1].options[7].label
 msgid "Shader effects"
-msgstr ""
+msgstr "Shader efekty"
 
 #: gui/options/options.json[1].options[7].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
@@ -2056,7 +2058,7 @@ msgstr "Zapnúť tiene."
 
 #: gui/options/options.json[1].options[9].label
 msgid "Shadow quality"
-msgstr ""
+msgstr "Kvalita tieňov"
 
 #: gui/options/options.json[1].options[9].list[0].label
 msgid "Very Low"
@@ -2091,7 +2093,7 @@ msgstr "Nastav vyváženie medzi výkonom a vizuálnym vzhľadom."
 
 #: gui/options/options.json[2].options[0].label
 msgid "Master volume"
-msgstr ""
+msgstr "Hlasitosť zvuku"
 
 #: gui/options/options.json[2].options[0].tooltip
 msgid "Master audio gain."
@@ -2099,7 +2101,7 @@ msgstr "Zosilnenie hlavných zvukov."
 
 #: gui/options/options.json[2].options[1].label
 msgid "Music volume"
-msgstr ""
+msgstr "Hlasitosť hudby"
 
 #: gui/options/options.json[2].options[1].tooltip
 msgid "In game music gain."
@@ -2107,7 +2109,7 @@ msgstr "Zosilnenie hudby počas hry."
 
 #: gui/options/options.json[2].options[2].label
 msgid "Ambient volume"
-msgstr ""
+msgstr "Hlasitosť zvuku okolia"
 
 #: gui/options/options.json[2].options[2].tooltip
 msgid "In game ambient sound gain."
@@ -2115,7 +2117,7 @@ msgstr "Zosilnenie prírodných zvukov počas hry."
 
 #: gui/options/options.json[2].options[3].label
 msgid "Action volume"
-msgstr ""
+msgstr "Hlasitosť zvuku činností"
 
 #: gui/options/options.json[2].options[3].tooltip
 msgid "In game unit action sound gain."
@@ -2123,7 +2125,7 @@ msgstr "Zosilnenie zvukov činností jednotiek počas hry."
 
 #: gui/options/options.json[2].options[4].label
 msgid "UI volume"
-msgstr ""
+msgstr "Hlasitosť používateľského rozhrania"
 
 #: gui/options/options.json[2].options[4].tooltip
 msgid "UI sound gain."
@@ -2131,7 +2133,7 @@ msgstr "Zosilnenie zvukov používateľského rozhrania."
 
 #: gui/options/options.json[2].options[5].label
 msgid "Nick notification"
-msgstr ""
+msgstr "Upozornenie na prezývku"
 
 #: gui/options/options.json[2].options[5].tooltip
 msgid "Receive audio notification when someone types your nick."
@@ -2139,7 +2141,7 @@ msgstr "Zvukový signál, keď niekto napíše vašu prezývku."
 
 #: gui/options/options.json[2].options[6].label
 msgid "New player notification in game setup"
-msgstr ""
+msgstr "Nové hráčske upozornenie v nastavení hry"
 
 #: gui/options/options.json[2].options[6].tooltip
 msgid "Receive audio notification when a new client joins the game setup."
@@ -2151,7 +2153,7 @@ msgstr "Nastavenia hry"
 
 #: gui/options/options.json[3].options[0].label
 msgid "Enable game setting tips"
-msgstr ""
+msgstr "Povoliť tipy nastavenia hry"
 
 #: gui/options/options.json[3].options[0].tooltip
 msgid "Show tips when setting up a game."
@@ -2159,7 +2161,7 @@ msgstr "Ukáž typy keď nastavuješ hru."
 
 #: gui/options/options.json[3].options[1].label
 msgid "Enable settings panel slide"
-msgstr ""
+msgstr "Povoliť nastavenia panelu"
 
 #: gui/options/options.json[3].options[1].tooltip
 msgid "Slide the settings panel when opening, closing or resizing."
@@ -2176,7 +2178,7 @@ msgstr "Uloženie a obnova nastavenia zápasu pre rýchle opätovné použitie p
 
 #: gui/options/options.json[3].options[3].label
 msgid "Default AI difficulty"
-msgstr ""
+msgstr "Predvolená obtiažnosť počítača"
 
 #: gui/options/options.json[3].options[3].list[0].label
 msgid "Sandbox"
@@ -2204,7 +2206,7 @@ msgstr "Základná obtiažnosť pre AI."
 
 #: gui/options/options.json[3].options[4].label
 msgid "Default AI behavior"
-msgstr ""
+msgstr "Predvolené správanie počítača"
 
 #: gui/options/options.json[3].options[4].list[0].label
 msgid "Random"
@@ -2228,21 +2230,21 @@ msgstr "Základné chovanie AI."
 
 #: gui/options/options.json[3].options[5].label
 msgid "Assign players"
-msgstr ""
+msgstr "Prideľ hráčov"
 
 #: gui/options/options.json[3].options[5].list[0].tooltip
 msgid "Players joining the match will be assigned if there is a free slot."
-msgstr ""
+msgstr "Hráči, ktorí sa pripájajú k zápasu budú priradení, ak bude voľné miesto."
 
 #: gui/options/options.json[3].options[5].list[1].tooltip
 msgid ""
 "Players joining the match will only be assigned if they are a buddy of the "
 "host and if there is a free slot."
-msgstr ""
+msgstr "Hráči, ktorí sa pripájajú k zápasu budú priradení iba v prípade, ak sú priateľmi hostiteľa a ak bude voľné miesto."
 
 #: gui/options/options.json[3].options[5].list[2].tooltip
 msgid "Players only receive a slot when the host assigns them explicitly."
-msgstr ""
+msgstr "Hráči, dostanú miesto iba ak im ho hostiteľ priradí."
 
 #: gui/options/options.json[3].options[5].tooltip
 msgid ""
@@ -2256,7 +2258,7 @@ msgstr "Predsieň"
 
 #: gui/options/options.json[4].options[0].label
 msgid "TLS encryption"
-msgstr ""
+msgstr "Šifrovanie TLS"
 
 #: gui/options/options.json[4].options[0].tooltip
 msgid ""
@@ -2291,7 +2293,7 @@ msgstr ""
 
 #: gui/options/options.json[5].options[0].label
 msgid "Wounded unit health"
-msgstr ""
+msgstr "Zdravie zranenej jednotky"
 
 #: gui/options/options.json[5].options[0].tooltip
 msgid ""
@@ -2317,7 +2319,7 @@ msgstr "Ukazovať stavový riadok so skúsenosťami jednotky nad každou vybrato
 
 #: gui/options/options.json[5].options[12].label
 msgid "Detailed tooltips"
-msgstr ""
+msgstr "Podrobná nápoveda"
 
 #: gui/options/options.json[5].options[12].tooltip
 msgid ""
@@ -2355,7 +2357,7 @@ msgstr "Farba tvojich jednotiek keď sú aktivované diplomatické farby."
 
 #: gui/options/options.json[5].options[15].label
 msgid "Diplomacy colors: ally"
-msgstr ""
+msgstr "Farby Diplomacie: Spojenec "
 
 #: gui/options/options.json[5].options[15].tooltip
 msgid "Color of allies when diplomacy colors are enabled."
@@ -2363,7 +2365,7 @@ msgstr "Farba spojencov keď sú aktivované diplomatické farby."
 
 #: gui/options/options.json[5].options[16].label
 msgid "Diplomacy colors: neutral"
-msgstr ""
+msgstr "Farby Diplomacie: Neutrálne "
 
 #: gui/options/options.json[5].options[16].tooltip
 msgid "Color of neutral players when diplomacy colors are enabled."
@@ -2436,7 +2438,7 @@ msgstr ""
 
 #: gui/options/options.json[5].options[1].label
 msgid "Batch training size"
-msgstr ""
+msgstr "Veľkosť trénovacej dávky"
 
 #: gui/options/options.json[5].options[1].tooltip
 msgid "Number of units trained per batch by default."
@@ -2479,7 +2481,7 @@ msgstr "Počet rolovaní na zvýšenie/zníženie počtu dávky o 1. "
 
 #: gui/options/options.json[5].options[3].label
 msgid "Chat notification attack"
-msgstr ""
+msgstr "Upozornenie o útoku"
 
 #: gui/options/options.json[5].options[3].tooltip
 msgid "Show a chat notification if you are attacked by another player."
@@ -2506,7 +2508,7 @@ msgstr "Zobraz notifikáciu pre pozorovateľov keď hráč vymenil suroviny."
 
 #: gui/options/options.json[5].options[6].label
 msgid "Chat notification phase"
-msgstr ""
+msgstr "Upozornenie o fáze"
 
 #: gui/options/options.json[5].options[6].list[0].label
 msgid "Disable"
@@ -2528,7 +2530,7 @@ msgstr "Zobraz notifikáciu ak ty alebo tvoj spojenec začne, opustí alebo ukon
 
 #: gui/options/options.json[5].options[7].label
 msgid "Attack range visualization"
-msgstr ""
+msgstr "Zobrazenie dosahu útoku"
 
 #: gui/options/options.json[5].options[7].tooltip
 msgid ""
@@ -2667,7 +2669,7 @@ msgstr "Zápasy"
 
 #: gui/pregame/MainMenuItems.js:69
 msgid "Start a new single-player game."
-msgstr ""
+msgstr "Začať novú hru jedného hráča."
 
 #: gui/pregame/MainMenuItems.js:75
 msgid "Campaigns"
@@ -2681,7 +2683,7 @@ msgstr "Prežite históriu pomocou historických vojenských kampaní. \\[ZATIA�
 
 #: gui/pregame/MainMenuItems.js:81
 msgid "Load a saved game."
-msgstr ""
+msgstr "Načítať uloženú hru."
 
 #: gui/pregame/MainMenuItems.js:87 gui/pregame/MainMenuItems.js:137
 msgid "Replays"
@@ -2737,7 +2739,7 @@ msgstr "Nastavenia"
 
 #: gui/pregame/MainMenuItems.js:153
 msgid "Change game options."
-msgstr ""
+msgstr "Zmeniť možnosti hry"
 
 #: gui/pregame/MainMenuItems.js:156
 msgid "Options"
@@ -2821,7 +2823,7 @@ msgstr "Ukončiť"
 
 #: gui/pregame/MainMenuItems.js:222
 msgid "Exit the game."
-msgstr ""
+msgstr "Ukončiť hru."
 
 #: gui/pregame/MainMenuItems.js:226
 msgid "Are you sure you want to quit 0 A.D.?"
@@ -3386,7 +3388,7 @@ msgstr "Objaviteľské body"
 
 #: gui/summary/layout.js:31
 msgid "Structures"
-msgstr ""
+msgstr "Stavby"
 
 #: gui/summary/layout.js:34 gui/summary/layout.js:72 gui/summary/layout.js:112
 msgid "Total"
@@ -4076,7 +4078,7 @@ msgstr "Popredný aténsky politik 5. storočia pr. n. l."
 
 #: gui/text/tips/pericles.txt:3
 msgid "Structures are built faster within his range."
-msgstr ""
+msgstr "Stavba budov v jeho dohľade prebieha rýchlejšie."
 
 #: gui/text/tips/pericles.txt:4
 msgid "Temples are cheaper while he lives."

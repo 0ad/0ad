@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2021-02-09 11:56+0000\n"
+"PO-Revision-Date: 2021-02-11 15:14+0000\n"
 "Last-Translator: Dabiq 1441 <dlc39hw3eh@just4fun.me>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
@@ -244,7 +244,7 @@ msgstr "%(_player_)s, Anda harus mengirimkan upeti kepadaku sebesar %(_amount_)s
 msgid ""
 "Unless you send me %(_amount_)s %(_resource_)s, an alliance won’t be formed,"
 " %(_player_)s."
-msgstr ""
+msgstr "Kecuali Anda mengirim saya %(_amount_)s %(_resource_)s, persekutuan tidak akan terbentuk, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:85
 #, javascript-format
@@ -408,7 +408,7 @@ msgstr "sendiri"
 #: simulation/components/BuildRestrictions.js:188
 msgctxt "Territory type"
 msgid "unconnected own"
-msgstr ""
+msgstr "tidak terhubung sendiri"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House
@@ -517,7 +517,7 @@ msgstr "Anda bisa menyerang sekarang!"
 #, javascript-format
 msgid "%(lastPlayer)s has won (last player alive)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (last players alive)."
-msgstr[0] ""
+msgstr[0] "%(players)s dan %(lastPlayer)s telah menang (pemain terakhir hidup)."
 
 #: simulation/components/EndGameManager.js:182
 msgid "Last remaining player wins."
@@ -587,7 +587,7 @@ msgstr "Kura-kura (0.1×)"
 
 #: simulation/data/settings/game_speeds.jsonData[10].Title
 msgid "Fast Forward (20×)"
-msgstr ""
+msgstr "Maju Cepat (20×)"
 
 #: simulation/data/settings/game_speeds.jsonData[1].Title
 msgid "Slow (0.25×)"
@@ -619,11 +619,11 @@ msgstr "Gila (2×)"
 
 #: simulation/data/settings/game_speeds.jsonData[8].Title
 msgid "Fast Forward (5×)"
-msgstr ""
+msgstr "Maju Cepat (5×)"
 
 #: simulation/data/settings/game_speeds.jsonData[9].Title
 msgid "Fast Forward (10×)"
-msgstr ""
+msgstr "Maju Cepat (10x)"
 
 #: simulation/data/settings/map_sizes.jsonData[0].Name
 msgid "Tiny"
@@ -868,7 +868,7 @@ msgstr "(Cheat - ungkapkan peta)"
 #: simulation/helpers/Commands.js:442
 #, javascript-format
 msgid "%(player)s has resigned."
-msgstr ""
+msgstr "%(player)s telah mengundurkan diri."
 
 #: simulation/helpers/Commands.js:581
 msgid "(Cheat - promoted units)"
@@ -878,7 +878,7 @@ msgstr "(Cheat - unit yang telah dipromosikan)"
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
-msgstr ""
+msgstr "Tidak dapat meningkatkan karena persyaratan jarak tidak diverifikasi atau medan terhalang."
 
 #: simulation/helpers/Commands.js:712
 msgid "Cannot upgrade a garrisoned entity."

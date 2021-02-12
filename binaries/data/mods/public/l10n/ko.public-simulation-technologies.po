@@ -25,7 +25,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-02-10 09:04+0000\n"
+"PO-Revision-Date: 2021-02-10 12:51+0000\n"
 "Last-Translator: Bruce Lee <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -155,7 +155,7 @@ msgstr "소도시 단계에서 잠금해제합니다."
 #: simulation/data/technologies/architecture_kush.jsontooltip
 msgid ""
 "Civic Structures +20% build time, +20% health, and +20% capture points."
-msgstr "시민 건축물의 건설 시간이 +20% 증가하고, 내구성이 +20% 증가하고, 점유 점수가 +20% 증가합니다."
+msgstr "시민 건축물의 건설 시간이 +20%, 내구력이 +20%, 점유 점수가 +20% 증가합니다."
 
 #: simulation/data/technologies/architecture_pers.jsondescription
 msgid ""
@@ -283,7 +283,7 @@ msgstr "삼중 성벽"
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
 msgid "City Walls +100% build time, +100% stone cost, and +200% health."
-msgstr "성벽의 건설 시간이 +100%, 석재 비용이 +100%, 체력이 +200% 증가합니다."
+msgstr "성벽의 건설 시간이 +100%, 석재 비용이 +100%, 내구력이 +200% 증가합니다."
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsondescription
 msgid "Celtic structures were mostly made of wood with rubble foundations."
@@ -295,7 +295,7 @@ msgstr "목조 건축"
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
 msgid "Structures −20% build time, −20% health, and −20% capture points."
-msgstr "건축물의 건설 시간이 -20%, 체력이 -20%, 점유 점수가 -20% 감소합니다."
+msgstr "건축물의 건설 시간이 -20%, 내구력이 -20%, 점유 점수가 -20% 감소합니다."
 
 #: simulation/data/technologies/civbonuses/gaul_cavalry.jsondescription
 msgid ""
@@ -321,7 +321,7 @@ msgstr "그리스 건축"
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
 msgid "Structures +10% health and +10% capture points."
-msgstr "건축물의 내구성이 +10% 증가하고 점유 점수가 +10% 증가합니다."
+msgstr "건축물의 내구력이 +10%, 점유 점수가 +10% 증가합니다."
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsondescription
 msgid ""
@@ -374,7 +374,7 @@ msgstr "목조 성벽"
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsontooltip
 msgid "City Walls −20% build time and −20% health."
-msgstr "성벽의 건설 시간이 -20% 감소하고 체력이 -20% 감소합니다."
+msgstr "성벽의 건설 시간이 -20% 감소하고 내구력이 -20% 감소합니다."
 
 #: simulation/data/technologies/civbonuses/pers_population.jsondescription
 msgid ""
@@ -404,7 +404,7 @@ msgstr "햇볕에 말린 진흙 벽돌"
 
 #: simulation/data/technologies/civbonuses/ptol_structures.jsontooltip
 msgid "Houses and Economic Structures −40% wood cost and health."
-msgstr "주택 및 실리적인 건축물의 목재 비용과 체력이 -40% 감소합니다."
+msgstr "주택 및 실리적인 건축물의 목재 비용과 내구력이 -40% 감소합니다."
 
 #: simulation/data/technologies/colonization.jsondescription
 msgid ""
@@ -532,7 +532,7 @@ msgstr "비료"
 #: simulation/data/technologies/gather_farming_plows.jsontooltip
 #: simulation/data/technologies/gather_farming_training.jsontooltip
 msgid "Workers +15% grain gather rate."
-msgstr "노동자의 곡물 수확률이 +15% 증가합니다."
+msgstr "일꾼의 곡물 채집률이 +15% 증가합니다."
 
 #: simulation/data/technologies/gather_farming_harvester.jsondescription
 msgid ""
@@ -546,7 +546,7 @@ msgstr "수확기"
 
 #: simulation/data/technologies/gather_farming_harvester.jsontooltip
 msgid "Workers +10% grain gather rate."
-msgstr "일꾼의 곡물 수확률이 +10% 증가합니다."
+msgstr "일꾼의 곡물 채집률이 +10% 증가합니다."
 
 #: simulation/data/technologies/gather_farming_plows.jsondescription
 msgid ""
@@ -580,7 +580,7 @@ msgstr "쇠 도끼날"
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsontooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsontooltip
 msgid "Workers +20% wood gather rate."
-msgstr ""
+msgstr "일꾼의 목재 채집률이 +20% 증가합니다."
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsongenericName
 msgid "Sharp Axe Heads"
@@ -608,7 +608,7 @@ msgstr "힐로테스"
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
 #: simulation/data/technologies/gather_mining_slaves.jsontooltip
 msgid "Workers +20% stone gather rate."
-msgstr ""
+msgstr "일꾼의 석재 채집률이 +20% 증가합니다."
 
 #: simulation/data/technologies/gather_mining_servants.jsondescription
 msgid "Hire servants to help quarry stone. Increases stone gathering rates."
@@ -638,7 +638,7 @@ msgstr "수직 갱도 광산"
 #: simulation/data/technologies/gather_mining_silvermining.jsontooltip
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
 msgid "Workers +20% metal gather rate."
-msgstr ""
+msgstr "일꾼의 금속 채집률이 +20% 증가합니다."
 
 #: simulation/data/technologies/gather_mining_silvermining.jsondescription
 msgid "Strike a vein of precious silver. Increases metal gathering rates."
@@ -803,7 +803,7 @@ msgstr "헬레니즘 메트로폴리스"
 
 #: simulation/data/technologies/hellenistic_metropolis.jsontooltip
 msgid "Civic Centers +100% health and capture points, double default arrows."
-msgstr "시민 회관의 내구성이 +100% 증가하고 점유 점수, 기본 이중 화살이 증가합니다."
+msgstr "시민 회관의 내구력, 점유 점수, 기본 이중 화살이 +100% 증가합니다."
 
 #: simulation/data/technologies/immortals.jsondescription
 msgid ""
@@ -1075,7 +1075,7 @@ msgstr "조선 기술자"
 
 #: simulation/data/technologies/ship_cost_time.jsontooltip
 msgid "Ships −20% construction time."
-msgstr "선박의 건조 시간이 -20% 단축됩니다."
+msgstr "선박의 건조 시간이 -20% 감소합니다."
 
 #: simulation/data/technologies/ship_health.jsondescription
 msgid "Wooden reinforcement beams for ship hulls."
@@ -1129,40 +1129,40 @@ msgstr "노포의 원거리 공격 전개가 -20% 감소합니다."
 
 #: simulation/data/technologies/siege_cost_time.jsondescription
 msgid "The science or craft of laying or carrying out sieges."
-msgstr ""
+msgstr "포위 공격을 하거나 수행하는 과학 또는 기술."
 
 #: simulation/data/technologies/siege_cost_time.jsongenericName
 msgid "Siegecraft"
-msgstr ""
+msgstr "공성술"
 
 #: simulation/data/technologies/siege_cost_time.jsontooltip
 msgid "Siege Engines −20% construction time."
-msgstr ""
+msgstr "공성 무기의 건조 시간이 -20% 감소합니다."
 
 #: simulation/data/technologies/siege_health.jsondescription
 msgid ""
 "Cover the exterior with iron plates to protect against fire and projectiles."
-msgstr ""
+msgstr "철판으로 외관을 덮어 화재와 투사체로부터 보호합니다."
 
 #: simulation/data/technologies/siege_health.jsongenericName
 msgid "Armor Plating"
-msgstr ""
+msgstr "갑철판"
 
 #: simulation/data/technologies/siege_health.jsontooltip
 msgid "Battering Rams and Siege Towers +25% health."
-msgstr ""
+msgstr "충차 및 공성 탑의 내구력이 +25% 증가합니다."
 
 #: simulation/data/technologies/siege_pack_unpack.jsondescription
 msgid "Military engineers are responsible for improvements in siege engines."
-msgstr ""
+msgstr "군대 수리공은 공성 무기의 개선을 담당하고 있습니다."
 
 #: simulation/data/technologies/siege_pack_unpack.jsongenericName
 msgid "Military Engineers"
-msgstr "공병"
+msgstr "군대 수리공"
 
 #: simulation/data/technologies/siege_pack_unpack.jsontooltip
 msgid "Siege Engines –40% pack and unpack time."
-msgstr ""
+msgstr "공성 무기의 싸기 및 풀기 시간이 -40% 감소합니다."
 
 #: simulation/data/technologies/silvershields.jsondescription
 msgid ""
@@ -1185,7 +1185,7 @@ msgid ""
 "Often, a soldier would carry a secondary weapon in addition to his primary "
 "weapon of choice, to be drawn when the primary weapon has failed or been "
 "broken."
-msgstr ""
+msgstr "종종, 군인은 자신의 주된 무기인 선택 외에도 보조 무기를 가지고 다니며, 기본 무기가 고장 나거나 부서졌을 때 꺼내듭니다."
 
 #: simulation/data/technologies/soldier_attack_melee_01.jsongenericName
 msgid "Side Arms"
@@ -1218,11 +1218,11 @@ msgstr "철제 무기"
 
 #: simulation/data/technologies/soldier_attack_ranged_01.jsondescription
 msgid "Projectile points made of iron enable missiles to penetrate deeper."
-msgstr ""
+msgstr "철로 만든 발사체 끝부분은 쏘아대는 무기가 더 깊숙이 침투할 수 있게 합니다."
 
 #: simulation/data/technologies/soldier_attack_ranged_01.jsongenericName
 msgid "Iron Arrowheads"
-msgstr ""
+msgstr "쇠 화살촉"
 
 #: simulation/data/technologies/soldier_attack_ranged_01.jsontooltip
 #: simulation/data/technologies/soldier_attack_ranged_02.jsontooltip
@@ -1231,11 +1231,11 @@ msgstr "병사들의 원거리 공격 피해량이 +15% 증가합니다."
 
 #: simulation/data/technologies/soldier_attack_ranged_02.jsondescription
 msgid "Arrowheads with three lobes instead of two inflict larger wounds."
-msgstr ""
+msgstr "두개의 날보다 세개의 날이 있는 화살촉이 더 큰 상처를 입힙니다."
 
 #: simulation/data/technologies/soldier_attack_ranged_02.jsongenericName
 msgid "Trilobate Arrowheads"
-msgstr ""
+msgstr "세날 화살촉"
 
 #: simulation/data/technologies/soldier_ranged_experience.jsontooltip
 msgid "Ranged Soldiers +25% promotion experience."
@@ -1484,7 +1484,7 @@ msgid ""
 "Non-Champion Mercenaries −60% food cost, no wood or stone costs, −30% "
 "training time, and unable to gather resources; Infantry costs 60 metal, "
 "Cavalry 80 metal, Elephants 120 metal."
-msgstr ""
+msgstr "대표전사가 아닌 용병의 식량 비용은 -60 감소하고, 목재 또는 석재 비용이 없고, 훈련 시간이 -30% 감소하고, 자원을 채집할 수 없습니다; 보병 비용은 금속 60개, 기병 80개, 코끼리 120개입니다."
 
 #: simulation/data/technologies/unlock_champion_cavalry.jsondescription
 #: simulation/data/technologies/unlock_champion_chariots.jsondescription
@@ -1634,4 +1634,4 @@ msgstr "페리스타시스"
 msgid ""
 "Enable the “Glorious Expansion” aura: +20% maximum population limit per "
 "Wonder owned."
-msgstr ""
+msgstr "“영광적인 확장” 기운 활성화: 불가사의 소유당 최대 인구수가 +20% 증가합니다."

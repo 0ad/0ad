@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
-# abuyop <abuyop@gmail.com>, 2014-2019
+# abuyop <abuyop@gmail.com>, 2014-2019,2021
 # Nicolas Auvray <na.itms76@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-29 14:56+0000\n"
-"PO-Revision-Date: 2021-01-29 16:29+0000\n"
-"Last-Translator: Stanislas Dolcini <stan@wildfiregames.com>\n"
+"PO-Revision-Date: 2021-02-11 11:35+0000\n"
+"Last-Translator: abuyop <abuyop@gmail.com>\n"
 "Language-Team: Malay (http://www.transifex.com/wildfire-games/0ad/language/ms/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -321,7 +321,7 @@ msgstr "Memulakan Sumber"
 #: gui/common/gamedescription.js:358
 msgctxt "starting resources"
 msgid "Per Player"
-msgstr ""
+msgstr "Per Pemain"
 
 #: gui/common/gamedescription.js:359
 #, javascript-format
@@ -335,11 +335,11 @@ msgstr "Had Populasi"
 #: gui/common/gamedescription.js:374
 msgctxt "population limit"
 msgid "Per Player"
-msgstr ""
+msgstr "Per Pemain"
 
 #: gui/common/gamedescription.js:382
 msgid "World Population Cap"
-msgstr ""
+msgstr "Cap Populasi Dunia"
 
 #: gui/common/gamedescription.js:390
 msgid "Treasures"
@@ -453,7 +453,7 @@ msgstr "Anda telah disekat masuk."
 
 #: gui/common/network.js:73
 msgid "Player name in use. If you were disconnected, retry in few seconds."
-msgstr ""
+msgstr "Nama pemain yang digunakan. Jika anda terputus, cuba sekali lagi dalam beberapa saat."
 
 #: gui/common/network.js:74
 msgid "Server full."
@@ -477,15 +477,15 @@ msgstr "Ralat: Pihak klien telah simulasikan satu giliran permainan yang tidak d
 
 #: gui/common/network.js:79
 msgid "Password is invalid."
-msgstr ""
+msgstr "Kata laluan tidak sah."
 
 #: gui/common/network.js:80
 msgid "Could not find an unused port for the enet STUN client."
-msgstr ""
+msgstr "Tidak dapat mencari port yang tidak digunakan untuk klien STUN enet."
 
 #: gui/common/network.js:81
 msgid "Could not find the STUN endpoint."
-msgstr ""
+msgstr "Tidak dapat mencari titik akhir STUN."
 
 #: gui/common/network.js:84
 #, javascript-format
@@ -586,7 +586,7 @@ msgstr "Pertempuran"
 msgid ""
 "A map with a predefined landscape and number of players. Freely select the "
 "other game settings."
-msgstr ""
+msgstr "Satu peta dengan lanskap dipra-takrif dan sejumlah pemain. Anda bebas memilih tetapan permainan yang lain."
 
 #: gui/common/settings.js:182
 msgctxt "map"
@@ -640,7 +640,7 @@ msgstr "Lalai"
 #: gui/common/settings.js:400
 msgctxt "population capacity addendum"
 msgid "(world)"
-msgstr ""
+msgstr "(dunia)"
 
 #: gui/common/settings.js:401 gui/common/settings.js:405
 msgctxt "population capacity"
@@ -685,7 +685,7 @@ msgstr "%(healthLabel)s %(current)s / %(max)s"
 #: gui/common/tooltips.js:167
 #, javascript-format
 msgid "%(captureLabel)s %(current)s / %(max)s"
-msgstr ""
+msgstr "%(captureLabel)s %(current)s / %(max)s"
 
 #: gui/common/tooltips.js:168
 msgid "Capture points:"
@@ -701,29 +701,29 @@ msgstr "%(percentage)s%%"
 msgid ""
 "%(label)s\n"
 "%(details)s"
-msgstr ""
+msgstr "%(label)s\n%(details)s"
 
 #: gui/common/tooltips.js:200
 msgid "Resistance:"
-msgstr ""
+msgstr "Ketahanan:"
 
 #: gui/common/tooltips.js:211
 msgid "Damage:"
-msgstr ""
+msgstr "Kerosakan:"
 
 #: gui/common/tooltips.js:214 gui/common/tooltips.js:234
 #, javascript-format
 msgid "%(damage)s %(damageType)s %(resistancePercentage)s"
-msgstr ""
+msgstr "%(damage)s %(damageType)s %(resistancePercentage)s"
 
 #: gui/common/tooltips.js:219 gui/common/tooltips.js:239
 #, javascript-format
 msgid "(%(resistancePercentage)s)"
-msgstr ""
+msgstr "(%(resistancePercentage)s)"
 
 #: gui/common/tooltips.js:232
 msgid "Capture:"
-msgstr ""
+msgstr "Tangkap:"
 
 #: gui/common/tooltips.js:236 gui/common/tooltips.js:376
 msgctxt "damage type"
@@ -732,34 +732,34 @@ msgstr "Tangkap"
 
 #: gui/common/tooltips.js:251
 msgid "Status Effects:"
-msgstr ""
+msgstr "Kesan Status:"
 
 #: gui/common/tooltips.js:256
 #, javascript-format
 msgid "Blocks %(name)s"
-msgstr ""
+msgstr "Sekat %(name)s"
 
 #: gui/common/tooltips.js:261 gui/common/tooltips.js:269
 #: gui/common/tooltips.js:276
 #, javascript-format
 msgid "%(name)s %(details)s"
-msgstr ""
+msgstr "%(name)s %(details)s"
 
 #: gui/common/tooltips.js:263
 #, javascript-format
 msgid "Duration reduction: %(durationReduction)s%%"
-msgstr ""
+msgstr "Pengurangan tempoh: %(durationReduction)s%%"
 
 #: gui/common/tooltips.js:271
 #, javascript-format
 msgid "Blocks: %(blockPercentage)s%%"
-msgstr ""
+msgstr "Sekat: %(blockPercentage)s%%"
 
 #: gui/common/tooltips.js:278
 #, javascript-format
 msgid ""
 "Blocks: %(blockPercentage)s%%, Duration reduction: %(durationReduction)s%%"
-msgstr ""
+msgstr "Sekat: %(blockPercentage)s%%, Pengurangan tempoh: %(durationReduction)s%%"
 
 #: gui/common/tooltips.js:294
 msgid "Garrison to fire arrows"
@@ -849,7 +849,7 @@ msgstr "%(amount)s %(name)s"
 #: gui/common/tooltips.js:382
 #, javascript-format
 msgid "%(splashShape)s Splash"
-msgstr ""
+msgstr "Percikan %(splashShape)s "
 
 #: gui/common/tooltips.js:385
 #, javascript-format
@@ -885,13 +885,13 @@ msgstr "memberikan %(name)s"
 #: gui/common/tooltips.js:436
 #, javascript-format
 msgid "%(attackType)s"
-msgstr ""
+msgstr "%(attackType)s"
 
 #: gui/common/tooltips.js:457
 #, javascript-format
 msgid ""
 "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s%(splash)s"
-msgstr ""
+msgstr "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s%(splash)s"
 
 #: gui/common/tooltips.js:468
 msgid "Attack:"
@@ -900,17 +900,17 @@ msgstr "Serang:"
 #: gui/common/tooltips.js:495
 #, javascript-format
 msgid "%(statusName)s: %(statusInfo)s %(stackability)s"
-msgstr ""
+msgstr "%(statusName)s: %(statusInfo)s %(stackability)s"
 
 #: gui/common/tooltips.js:500
 #, javascript-format
 msgid "%(statusName)s: %(statusInfo)s"
-msgstr ""
+msgstr "%(statusName)s: %(statusInfo)s"
 
 #: gui/common/tooltips.js:511
 #, javascript-format
 msgid "%(durName)s: %(duration)s"
-msgstr ""
+msgstr "%(durName)s: %(duration)s"
 
 #: gui/common/tooltips.js:512
 msgid "Duration"
@@ -919,22 +919,22 @@ msgstr "Tempoh"
 #: gui/common/tooltips.js:526
 msgctxt "status effect stackability"
 msgid "(extends)"
-msgstr ""
+msgstr "(tambahan)"
 
 #: gui/common/tooltips.js:528
 msgctxt "status effect stackability"
 msgid "(replaces)"
-msgstr ""
+msgstr "(ganti)"
 
 #: gui/common/tooltips.js:530
 msgctxt "status effect stackability"
 msgid "(stacks)"
-msgstr ""
+msgstr "(tindan)"
 
 #: gui/common/tooltips.js:532
 #, javascript-format
 msgid "%(stackability)s"
-msgstr ""
+msgstr "%(stackability)s"
 
 #: gui/common/tooltips.js:543
 #, javascript-format
@@ -984,7 +984,7 @@ msgstr "Bilangan pembaik:"
 
 #: gui/common/tooltips.js:605
 msgid "Remaining repair time:"
-msgstr ""
+msgstr "Masa baiki berbaki:"
 
 #: gui/common/tooltips.js:609
 #, javascript-format
@@ -1005,7 +1005,7 @@ msgstr "Bilangan jurubina:"
 
 #: gui/common/tooltips.js:639
 msgid "Remaining build time:"
-msgstr ""
+msgstr "Masa bina berbaki:"
 
 #: gui/common/tooltips.js:643
 #, javascript-format
@@ -1098,7 +1098,7 @@ msgstr "Perlukan %(technology)s"
 #: gui/common/tooltips.js:885
 #, javascript-format
 msgid "%(label)s %(bonus)s"
-msgstr ""
+msgstr "%(label)s %(bonus)s"
 
 #: gui/common/tooltips.js:886
 msgid "Population Bonus:"
@@ -1183,7 +1183,7 @@ msgstr "Rampasan:"
 #: gui/common/tooltips.js:1082
 #, javascript-format
 msgid "%(label)s %(icons)s"
-msgstr ""
+msgstr "%(label)s %(icons)s"
 
 #: gui/common/tooltips.js:1083
 msgid "Dropsite for:"
@@ -1206,7 +1206,7 @@ msgstr "Klik untuk lihat lebih banyak maklumat."
 #: gui/credits/credits.js:83
 #, javascript-format
 msgid "%(nick)s — %(name)s"
-msgstr ""
+msgstr "%(nick)s — %(name)s"
 
 #: gui/credits/credits.xml:(caption):19
 msgid "0 A.D. Credits"
@@ -1234,11 +1234,11 @@ msgstr "Pengurus Bunyi"
 
 #: gui/credits/texts/audio.jsonContent[0].Content[1].Subtitle
 msgid "Lead Composer"
-msgstr ""
+msgstr "Penggubah Teraju"
 
 #: gui/credits/texts/audio.jsonContent[0].Title
 msgid "Audio managers"
-msgstr ""
+msgstr "Pengurus audio"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[10].Subtitle
 msgid "Viola, violin"
@@ -1299,7 +1299,7 @@ msgstr "Latin"
 
 #: gui/credits/texts/audio.jsonContent[3].Content[2].Subtitle
 msgid "Napatan"
-msgstr ""
+msgstr "Napatan"
 
 #: gui/credits/texts/audio.jsonContent[3].Content[3].Subtitle
 msgid "Persian"
@@ -1311,7 +1311,7 @@ msgstr "Suara"
 
 #: gui/credits/texts/audio.jsonTitle
 msgid "Audio"
-msgstr ""
+msgstr "Audio"
 
 #: gui/credits/texts/balancing.jsonContent[0].Subtitle
 #: gui/credits/texts/history.jsonContent[0].Subtitle
@@ -1320,7 +1320,7 @@ msgstr "Ketua"
 
 #: gui/credits/texts/balancing.jsonTitle
 msgid "Balancing"
-msgstr ""
+msgstr "Keseimbangan"
 
 #: gui/credits/texts/community.jsonTitle
 msgid "Community and Management"
@@ -1358,7 +1358,7 @@ msgstr "Skrip Peta Rawak"
 
 #: gui/credits/texts/maps.jsonTitle
 msgid "Maps"
-msgstr ""
+msgstr "Peta"
 
 #: gui/credits/texts/programming.jsonContent[0].Title
 msgid "Programming managers"
@@ -1627,7 +1627,7 @@ msgstr "Menetap semula pilihan ini akan memadam tetapan tersimpan anda. Anda mah
 
 #: gui/options/options.js:351
 msgid "Some setting values are invalid! Are you sure you want to save them?"
-msgstr ""
+msgstr "Sesetengah nilai tetapan tidak sah! Anda pasti mahu menyimpannya?"
 
 #: gui/options/options.js:377
 msgid "You have unsaved changes, do you want to close this window?"
@@ -1639,15 +1639,15 @@ msgstr "Am"
 
 #: gui/options/options.json[0].options[0].label
 msgid "Player name (single-player)"
-msgstr ""
+msgstr "Nama pemain (pemain-tunggal)"
 
 #: gui/options/options.json[0].options[0].tooltip
 msgid "How you want to be addressed in single-player matches."
-msgstr ""
+msgstr "Bagaimana anda mahu dikenali dalam perlawanan pemain tunggal."
 
 #: gui/options/options.json[0].options[10].label
 msgid "Observer limit"
-msgstr ""
+msgstr "Had pemerhati"
 
 #: gui/options/options.json[0].options[10].tooltip
 msgid "Prevent further observers from joining if the limit is reached."
@@ -1655,31 +1655,31 @@ msgstr "Halang pemerhati lain daripada menyertai jika had telah dicapai."
 
 #: gui/options/options.json[0].options[11].label
 msgid "Chat timestamp"
-msgstr ""
+msgstr "Setem masa sembang"
 
 #: gui/options/options.json[0].options[11].tooltip
 msgid "Display the time at which a chat message was posted."
-msgstr ""
+msgstr "Papar waktu bila satu mesej sembang dihantar."
 
 #: gui/options/options.json[0].options[1].label
 msgid "Player name (multiplayer)"
-msgstr ""
+msgstr "Nama pemain (pemain berbilang)"
 
 #: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in multiplayer matches (except lobby)."
-msgstr ""
+msgstr "Bagaimana anda mahu dikenali dalam perlawanan pemain berbilang (kecuali ruang legar)."
 
 #: gui/options/options.json[0].options[2].label
 msgid "Background pause"
-msgstr ""
+msgstr "Jeda latar belakang"
 
 #: gui/options/options.json[0].options[2].tooltip
 msgid "Pause single-player games when window loses focus."
-msgstr ""
+msgstr "Jeda permainan pemain tunggal bila tetingkap kehilangan fokus."
 
 #: gui/options/options.json[0].options[3].label
 msgid "Enable welcome screen"
-msgstr ""
+msgstr "Benarkan skrin aluan"
 
 #: gui/options/options.json[0].options[3].tooltip
 msgid ""
@@ -1689,7 +1689,7 @@ msgstr "Jika anda lumpuhkannya, skrin aluan akan kekal muncul sekali, setiap kal
 
 #: gui/options/options.json[0].options[4].label
 msgid "Network warnings"
-msgstr ""
+msgstr "Amaran rangkaian"
 
 #: gui/options/options.json[0].options[4].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
@@ -1697,7 +1697,7 @@ msgstr "Tunjuk pemain yang menghadapi sambungan bermasalah dalam permainan pemai
 
 #: gui/options/options.json[0].options[5].label
 msgid "FPS overlay"
-msgstr ""
+msgstr "Tindihan atas FPS"
 
 #: gui/options/options.json[0].options[5].tooltip
 msgid "Show frames per second in top right corner."
@@ -1705,7 +1705,7 @@ msgstr "Tunjuk bingkai per saat pada bucu kanan atas."
 
 #: gui/options/options.json[0].options[6].label
 msgid "Real time overlay"
-msgstr ""
+msgstr "Tindihan atas masa nyata"
 
 #: gui/options/options.json[0].options[6].tooltip
 msgid "Show current system time in top right corner."
@@ -1713,7 +1713,7 @@ msgstr "Tunjuk masa sistem semasa pada bucu kanan atas."
 
 #: gui/options/options.json[0].options[7].label
 msgid "Game time overlay"
-msgstr ""
+msgstr "Tindihan atas masa permainan"
 
 #: gui/options/options.json[0].options[7].tooltip
 msgid "Show current simulation time in top right corner."
@@ -1721,7 +1721,7 @@ msgstr "Tunjuk masa simulasi pada bucu kanan atas."
 
 #: gui/options/options.json[0].options[8].label
 msgid "Ceasefire time overlay"
-msgstr ""
+msgstr "Tindihan atas masa genjatan senjata"
 
 #: gui/options/options.json[0].options[8].tooltip
 msgid "Always show the remaining ceasefire time."
@@ -1729,7 +1729,7 @@ msgstr "Sentiasa tunjuk masa genjatan senjata berbaki."
 
 #: gui/options/options.json[0].options[9].label
 msgid "Late observer joins"
-msgstr ""
+msgstr "Pemerhati lewat sertai"
 
 #: gui/options/options.json[0].options[9].list[0].label
 #: gui/options/options.json[3].options[5].list[0].label
@@ -1760,7 +1760,7 @@ msgstr "Grafik"
 
 #: gui/options/options.json[1].options[0].label
 msgid "Windowed mode"
-msgstr ""
+msgstr "Mod bertetingkap"
 
 #: gui/options/options.json[1].options[0].tooltip
 msgid "Start 0 A.D. in a window."
@@ -1768,7 +1768,7 @@ msgstr "Mula 0 A.D. dalam tetingkap."
 
 #: gui/options/options.json[1].options[10].label
 msgid "Shadow filtering"
-msgstr ""
+msgstr "Penapisan bayang"
 
 #: gui/options/options.json[1].options[10].tooltip
 msgid "Smooth shadows."
@@ -1776,11 +1776,11 @@ msgstr "Bayang lancar."
 
 #: gui/options/options.json[1].options[11].label
 msgid "Unit silhouettes"
-msgstr ""
+msgstr "Unit bebayang"
 
 #: gui/options/options.json[1].options[11].tooltip
 msgid "Show outlines of units behind structures."
-msgstr ""
+msgstr "Tunjuk garis luar unit di balik struktur."
 
 #: gui/options/options.json[1].options[12].label
 msgid "Particles"
@@ -1792,7 +1792,7 @@ msgstr "Benarkan butiran."
 
 #: gui/options/options.json[1].options[13].label
 msgid "Water effects"
-msgstr ""
+msgstr "Kesan air"
 
 #: gui/options/options.json[1].options[13].tooltip
 msgid ""
@@ -1802,7 +1802,7 @@ msgstr "Bila MATI, guna tetapan terendah yang mungkin untuk menerap air. Ia menj
 
 #: gui/options/options.json[1].options[14].label
 msgid "High-quality water effects"
-msgstr ""
+msgstr "Kesan air berkualiti tinggi"
 
 #: gui/options/options.json[1].options[14].tooltip
 msgid ""
@@ -1812,7 +1812,7 @@ msgstr "Guna kesan berkualiti-lebih-tinggi unntuk air, penerapan ombak pantai, b
 
 #: gui/options/options.json[1].options[15].label
 msgid "Water reflections"
-msgstr ""
+msgstr "Pantulan air"
 
 #: gui/options/options.json[1].options[15].tooltip
 msgid "Allow water to reflect a mirror image."
@@ -1820,7 +1820,7 @@ msgstr "Benarkan air memantulkan imej bayangan."
 
 #: gui/options/options.json[1].options[16].label
 msgid "Water refraction"
-msgstr ""
+msgstr "Pembiasan air"
 
 #: gui/options/options.json[1].options[16].tooltip
 msgid "Use a real water refraction map and not transparency."
@@ -1828,7 +1828,7 @@ msgstr "Guna peta pembiasan air sebenar bukannya kelutsinaran."
 
 #: gui/options/options.json[1].options[17].label
 msgid "Real water depth"
-msgstr ""
+msgstr "Kedalaman air sebenar"
 
 #: gui/options/options.json[1].options[17].tooltip
 msgid "Use actual water depth in rendering calculations."
@@ -1836,11 +1836,11 @@ msgstr "Guna kedalaman air sebenar di dalam pengiraan penerapan."
 
 #: gui/options/options.json[1].options[18].label
 msgid "Smooth vision"
-msgstr ""
+msgstr "Pandangan lancar"
 
 #: gui/options/options.json[1].options[18].tooltip
 msgid "Lift darkness and fog of war smoothly."
-msgstr ""
+msgstr "Buang kegelapan dan kabus perang secara lancar."
 
 #: gui/options/options.json[1].options[19].label
 msgid "VSync"
@@ -1860,7 +1860,7 @@ msgstr "Guna pelorek OpenGL 2.0 (disarankan)."
 
 #: gui/options/options.json[1].options[20].label
 msgid "FPS throttling in menus"
-msgstr ""
+msgstr "Pendikitan FPS dalam menu"
 
 #: gui/options/options.json[1].options[20].tooltip
 msgid ""
@@ -1870,7 +1870,7 @@ msgstr "Untuk mengurangkan beban kerja CPU, dikit frekuensi penerap dalam semua 
 
 #: gui/options/options.json[1].options[21].label
 msgid "FPS throttling in games"
-msgstr ""
+msgstr "Pendikitan FPS dalam permainan"
 
 #: gui/options/options.json[1].options[21].tooltip
 msgid ""
@@ -1884,11 +1884,11 @@ msgstr "Kabus"
 
 #: gui/options/options.json[1].options[2].tooltip
 msgid "Enable fog."
-msgstr ""
+msgstr "Benarkan kabus."
 
 #: gui/options/options.json[1].options[3].label
 msgid "Post-processing"
-msgstr ""
+msgstr "Pasca-pemprosesan"
 
 #: gui/options/options.json[1].options[3].tooltip
 msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."

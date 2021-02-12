@@ -6,6 +6,8 @@
 # Alejandro Avellaneda <aleavellaneda1@gmail.com>, 2019
 # Alejandro Cosculluela <coscumoscu@gmail.com>, 2019
 # Ancel0 <ancel0@openmailbox.org>, 2013
+# Antonio J. Artuñedo <antoniojartunedo@gmail.com>, 2021
+# Antonio J. Artuñedo <antoniojartunedo@gmail.com>, 2021
 # blvebird <doomsamurai@hotmail.com>, 2014
 # Diego Bruschetti <d.bruschetti@hotmail.com>, 2014
 # caniroc <carlos.barraza.e@gmail.com>, 2013
@@ -30,6 +32,7 @@
 # Jesús Martínez <pakitochus@gmail.com>, 2014
 # jhonny fernando montoya giraldo <jhonny.antares@gmail.com>, 2018
 # Joaquín <joaquin95uru@gmail.com>, 2013
+# José Castro <jlcastrogro@gmail.com>, 2021
 # José Javier Domínguez Reina <jjdominguez@gmail.com>, 2017
 # Jose Manuel <elmanytas@gmail.com>, 2019
 # Juan Campos <juan.camposzambrana@gmail.com>, 2021
@@ -63,8 +66,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-02-07 23:29+0000\n"
-"Last-Translator: Daniel Muñoz <dani_m_1991@hotmail.com>\n"
+"PO-Revision-Date: 2021-02-11 18:32+0000\n"
+"Last-Translator: soloooy0 fg <juanjo.fg@hotmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -392,7 +395,7 @@ msgstr "Tautalus"
 
 #: simulation/data/civs/iber.jsonCivBonuses[0].Description
 msgid "Iberians start with City Walls around their base on most maps."
-msgstr ""
+msgstr "Los íberos comienzan con murallas alrededor de su base en la mayoría de los mapas."
 
 #: simulation/data/civs/iber.jsonCivBonuses[0].History
 msgid ""
@@ -409,11 +412,11 @@ msgstr "Comenzando Murallas"
 msgid ""
 "Stone Towers −50% wood cost, +150% stone cost, +33% build time, +60% health,"
 " +3 garrison capacity, and +1 default arrow count."
-msgstr ""
+msgstr "Torres de Piedra −50% coste de madera, +150% coste de piedra, +33% tiempo de construcción, +60% salud, +3 capacidad de guarnición, y +1 número de flechas por defecto."
 
 #: simulation/data/civs/iber.jsonCivBonuses[1].Name
 msgid "Massive Towers"
-msgstr ""
+msgstr "Torres masivas"
 
 #: simulation/data/civs/iber.jsonHistory
 msgid ""
@@ -488,12 +491,12 @@ msgstr "Nasalsa"
 #: simulation/data/civs/kush.jsonCivBonuses[0].Description
 #: simulation/data/civs/pers.jsonCivBonuses[1].Description
 msgid "Battering Rams +20% attack damage and +2 garrison capacity."
-msgstr ""
+msgstr "Arietes + 20% de daño de ataque y +2 de capacidad de guarnición."
 
 #: simulation/data/civs/kush.jsonCivBonuses[0].Name
 #: simulation/data/civs/pers.jsonCivBonuses[1].Name
 msgid "Large Rams"
-msgstr ""
+msgstr "Grandes Carneros"
 
 #: simulation/data/civs/kush.jsonHistory
 msgid ""
@@ -784,7 +787,7 @@ msgstr "Ptolomeo Neos Dioniso"
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].Description
 msgid "Bolt Shooters −33% attack damage and −33% attack time."
-msgstr ""
+msgstr "Lanza virotes -33% de daño de ataque y -33% de tiempo de ataque."
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].Name
 msgid "Polybolos"
@@ -875,11 +878,11 @@ msgstr "Formación en tortuga"
 
 #: simulation/data/civs/rome.jsonCivBonuses[1].Description
 msgid "Battering Rams +20% attack damage. Stone Throwers +10% attack damage."
-msgstr ""
+msgstr "Arietes  + 20% de daño de ataque. Catapulta + 10% de daño de ataque."
 
 #: simulation/data/civs/rome.jsonCivBonuses[1].Name
 msgid "Legionary Engineers"
-msgstr ""
+msgstr "Ingenieros legionarios"
 
 #: simulation/data/civs/rome.jsonHistory
 msgid ""
@@ -1068,7 +1071,7 @@ msgstr "Eurícrates"
 
 #: simulation/data/civs/spart.jsonCivBonuses[0].Description
 msgid "Female Citizens +40% health and +50% melee attack hack damage."
-msgstr ""
+msgstr "Ciudadanas +40% de salud y +50% de daño cuerpo a cuerpo por corte."
 
 #: simulation/data/civs/spart.jsonCivBonuses[0].Name
 msgid "Spartan Women"

@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
-# Adrian Pappas <pappasadrian@gmail.com>, 2017
+# Adrian Pappas, 2017
 # Tasos Grv. <tasosgr4@gmail.com>, 2016
 # Armando Stylianakis <armandos.styl@gmail.com>, 2016
 # elenapan <lolotafrantzi@gmail.com>, 2017
@@ -16,14 +16,14 @@
 # Savvas Nesseris <nesseris@yahoo.com>, 2016
 # Sotiris K <sotok42@gmail.com>, 2015
 # Stanislas Dolcini <stan@wildfiregames.com>, 2021
-# Vasilis Drosos <basilisd@gmail.com>, 2016-2020
+# Vasilis Drosos <basilisd@gmail.com>, 2016-2021
 # Steven Gikas <stevengk123@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-29 14:56+0000\n"
-"PO-Revision-Date: 2021-02-01 16:48+0000\n"
-"Last-Translator: LOUKAS SKOUROLIAKOS\n"
+"PO-Revision-Date: 2021-02-11 21:20+0000\n"
+"Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -498,11 +498,11 @@ msgstr "Μη έγκυρος κωδικός."
 
 #: gui/common/network.js:80
 msgid "Could not find an unused port for the enet STUN client."
-msgstr ""
+msgstr "Δεν ήταν δυνατή η εύρεση μιας θύρας που δεν χρησιμοποιείται για τον πελάτη enet STUN."
 
 #: gui/common/network.js:81
 msgid "Could not find the STUN endpoint."
-msgstr ""
+msgstr "Δεν ήταν δυνατή η εύρεση του τελικού σημείου STUN."
 
 #: gui/common/network.js:84
 #, javascript-format
@@ -724,7 +724,7 @@ msgstr "%(label)s\n%(details)s"
 
 #: gui/common/tooltips.js:200
 msgid "Resistance:"
-msgstr ""
+msgstr "Αντίσταση:"
 
 #: gui/common/tooltips.js:211
 msgid "Damage:"
@@ -733,7 +733,7 @@ msgstr "Ζημιά:"
 #: gui/common/tooltips.js:214 gui/common/tooltips.js:234
 #, javascript-format
 msgid "%(damage)s %(damageType)s %(resistancePercentage)s"
-msgstr ""
+msgstr "%(damage)s%(damageType)s%(resistancePercentage)s"
 
 #: gui/common/tooltips.js:219 gui/common/tooltips.js:239
 #, javascript-format
@@ -751,7 +751,7 @@ msgstr "Κατάληψη"
 
 #: gui/common/tooltips.js:251
 msgid "Status Effects:"
-msgstr ""
+msgstr "Κατάσταση Εφέ:"
 
 #: gui/common/tooltips.js:256
 #, javascript-format
@@ -762,7 +762,7 @@ msgstr ""
 #: gui/common/tooltips.js:276
 #, javascript-format
 msgid "%(name)s %(details)s"
-msgstr ""
+msgstr "%(name)s %(details)s"
 
 #: gui/common/tooltips.js:263
 #, javascript-format
@@ -907,13 +907,13 @@ msgstr "δίνει στον %(name)s"
 #: gui/common/tooltips.js:436
 #, javascript-format
 msgid "%(attackType)s"
-msgstr ""
+msgstr "%(attackType)s"
 
 #: gui/common/tooltips.js:457
 #, javascript-format
 msgid ""
 "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s%(splash)s"
-msgstr ""
+msgstr "%(attackLabel)s:%(effects)s,%(range)s,%(rate)s%(statusEffects)s\n%(splash)s"
 
 #: gui/common/tooltips.js:468
 msgid "Attack:"
@@ -922,12 +922,12 @@ msgstr "Επίθεση:"
 #: gui/common/tooltips.js:495
 #, javascript-format
 msgid "%(statusName)s: %(statusInfo)s %(stackability)s"
-msgstr ""
+msgstr "%(statusName)s:%(statusInfo)s%(stackability)s"
 
 #: gui/common/tooltips.js:500
 #, javascript-format
 msgid "%(statusName)s: %(statusInfo)s"
-msgstr ""
+msgstr "%(statusName)s:%(statusInfo)s"
 
 #: gui/common/tooltips.js:511
 #, javascript-format
@@ -941,22 +941,22 @@ msgstr "Διάρκεια"
 #: gui/common/tooltips.js:526
 msgctxt "status effect stackability"
 msgid "(extends)"
-msgstr ""
+msgstr "(επεκτείνει)"
 
 #: gui/common/tooltips.js:528
 msgctxt "status effect stackability"
 msgid "(replaces)"
-msgstr ""
+msgstr "(αντικαθιστά)"
 
 #: gui/common/tooltips.js:530
 msgctxt "status effect stackability"
 msgid "(stacks)"
-msgstr ""
+msgstr "(στοιβάζει)"
 
 #: gui/common/tooltips.js:532
 #, javascript-format
 msgid "%(stackability)s"
-msgstr ""
+msgstr "%(stackability)s"
 
 #: gui/common/tooltips.js:543
 #, javascript-format
@@ -1214,7 +1214,7 @@ msgstr ""
 
 #: gui/common/tooltips.js:1083
 msgid "Dropsite for:"
-msgstr ""
+msgstr "Σημείο ρίψης για:"
 
 #. Translation: Appears in a tooltip to indicate that right-clicking the
 #. corresponding GUI
@@ -1233,7 +1233,7 @@ msgstr "Κάνε κλικ για να δεις περισσότερες πληρ
 #: gui/credits/credits.js:83
 #, javascript-format
 msgid "%(nick)s — %(name)s"
-msgstr ""
+msgstr "%(nick)s — %(name)s"
 
 #: gui/credits/credits.xml:(caption):19
 msgid "0 A.D. Credits"
@@ -1261,11 +1261,11 @@ msgstr "Υπεύθυνος Ήχου"
 
 #: gui/credits/texts/audio.jsonContent[0].Content[1].Subtitle
 msgid "Lead Composer"
-msgstr ""
+msgstr "Αρχι Μουσικοσυνθέτης"
 
 #: gui/credits/texts/audio.jsonContent[0].Title
 msgid "Audio managers"
-msgstr ""
+msgstr "Διαχειριστές Ήχου"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[10].Subtitle
 msgid "Viola, violin"
@@ -1385,7 +1385,7 @@ msgstr "Τυχαίες Δέσμες Ενεργειών για τους Χάρτ�
 
 #: gui/credits/texts/maps.jsonTitle
 msgid "Maps"
-msgstr ""
+msgstr "Χάρτες"
 
 #: gui/credits/texts/programming.jsonContent[0].Title
 msgid "Programming managers"
@@ -1682,7 +1682,7 @@ msgstr "Αποτρέπει την περαιτέρω σύνδεση παρατη
 
 #: gui/options/options.json[0].options[11].label
 msgid "Chat timestamp"
-msgstr ""
+msgstr "Χρονοθέτηση συνομιλίας"
 
 #: gui/options/options.json[0].options[11].tooltip
 msgid "Display the time at which a chat message was posted."
@@ -1863,7 +1863,7 @@ msgstr "Χρησιμοποιήστε το πραγματικό βάθος νερ
 
 #: gui/options/options.json[1].options[18].label
 msgid "Smooth vision"
-msgstr ""
+msgstr "Οπτική εξομάλυνση"
 
 #: gui/options/options.json[1].options[18].tooltip
 msgid "Lift darkness and fog of war smoothly."
@@ -1915,7 +1915,7 @@ msgstr "Ενεργοποίηση ομίχλης."
 
 #: gui/options/options.json[1].options[3].label
 msgid "Post-processing"
-msgstr ""
+msgstr "Μετεπεξαργασία"
 
 #: gui/options/options.json[1].options[3].tooltip
 msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
@@ -1939,7 +1939,7 @@ msgstr ""
 
 #: gui/options/options.json[1].options[4].list[2].label
 msgid "MSAA (2×)"
-msgstr ""
+msgstr "MSAA (2×)"
 
 #: gui/options/options.json[1].options[4].list[2].tooltip
 msgid ""
@@ -1949,7 +1949,7 @@ msgstr ""
 
 #: gui/options/options.json[1].options[4].list[3].label
 msgid "MSAA (4×)"
-msgstr ""
+msgstr "MSAA (4×)"
 
 #: gui/options/options.json[1].options[4].list[3].tooltip
 msgid ""
@@ -1959,7 +1959,7 @@ msgstr ""
 
 #: gui/options/options.json[1].options[4].list[4].label
 msgid "MSAA (8×)"
-msgstr ""
+msgstr "MSAA (8×)"
 
 #: gui/options/options.json[1].options[4].list[4].tooltip
 msgid ""
@@ -1969,7 +1969,7 @@ msgstr ""
 
 #: gui/options/options.json[1].options[4].list[5].label
 msgid "MSAA (16×)"
-msgstr ""
+msgstr "MSAA (16×)"
 
 #: gui/options/options.json[1].options[4].list[5].tooltip
 msgid ""
@@ -2011,7 +2011,7 @@ msgstr ""
 
 #: gui/options/options.json[1].options[7].label
 msgid "Shader effects"
-msgstr ""
+msgstr "Εφέ σκίασης"
 
 #: gui/options/options.json[1].options[7].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
@@ -2122,7 +2122,7 @@ msgstr "Διαμόρφωση Παιχνιδιού"
 
 #: gui/options/options.json[3].options[0].label
 msgid "Enable game setting tips"
-msgstr ""
+msgstr "Ενεργοποίηση συμβουλών για τις ρυθμίσεις"
 
 #: gui/options/options.json[3].options[0].tooltip
 msgid "Show tips when setting up a game."
@@ -2130,7 +2130,7 @@ msgstr "Εμφάνιση συμβουλών όταν ρυθμίζετε ένα �
 
 #: gui/options/options.json[3].options[1].label
 msgid "Enable settings panel slide"
-msgstr ""
+msgstr "Ενεργοποίηση ολίσθησης του πίνακα επιλογών"
 
 #: gui/options/options.json[3].options[1].tooltip
 msgid "Slide the settings panel when opening, closing or resizing."
@@ -2147,7 +2147,7 @@ msgstr "Αποθηκεύει και επαναφέρει τις ρυθμίσει
 
 #: gui/options/options.json[3].options[3].label
 msgid "Default AI difficulty"
-msgstr ""
+msgstr "Προκαθορισμένη δυσκολία"
 
 #: gui/options/options.json[3].options[3].list[0].label
 msgid "Sandbox"
@@ -2236,7 +2236,7 @@ msgstr "Προστάτευσε τα στοιχεία σύνδεσης και τ�
 
 #: gui/options/options.json[4].options[1].label
 msgid "Chat backlog"
-msgstr ""
+msgstr "Συνομιλία εκκρεμοτήτων"
 
 #: gui/options/options.json[4].options[1].tooltip
 msgid "Number of backlogged messages to load when joining the lobby."
@@ -2258,7 +2258,7 @@ msgstr "Αυτές οι ρυθμίσεις επηρεάσουν μόνο το π
 
 #: gui/options/options.json[5].label
 msgid "Game Session"
-msgstr ""
+msgstr "Συνεδρίαση Παιχνιδιού"
 
 #: gui/options/options.json[5].options[0].label
 msgid "Wounded unit health"
@@ -2381,7 +2381,7 @@ msgstr ""
 
 #: gui/options/options.json[5].options[19].list[0].label
 msgid "Single"
-msgstr ""
+msgstr "Μονό"
 
 #: gui/options/options.json[5].options[19].list[0].tooltip
 msgid ""
@@ -2392,7 +2392,7 @@ msgstr "Όταν προσθέτετε μια Μονάδα ή Κτίριο σε �
 
 #: gui/options/options.json[5].options[19].list[1].label
 msgid "Multiple"
-msgstr ""
+msgstr "Πολλαπλό"
 
 #: gui/options/options.json[5].options[19].list[1].tooltip
 msgid ""
@@ -2415,7 +2415,7 @@ msgstr "Αριθμός των μονάδων που θα εκπαιδεύοντ�
 
 #: gui/options/options.json[5].options[20].label
 msgid "Formation control"
-msgstr ""
+msgstr "Έλεγχος Σχηματισμού"
 
 #: gui/options/options.json[5].options[20].list[0].label
 msgid "Walk/Patrol Only"
@@ -2458,7 +2458,7 @@ msgstr "Δείχνει μία ειδοποίηση στη συζήτηση αν 
 
 #: gui/options/options.json[5].options[4].label
 msgid "Chat notification tribute"
-msgstr ""
+msgstr "Ειδοποίηση για εισφορές"
 
 #: gui/options/options.json[5].options[4].tooltip
 msgid ""
@@ -2509,7 +2509,7 @@ msgstr ""
 
 #: gui/options/options.json[5].options[8].label
 msgid "Aura range visualization"
-msgstr ""
+msgstr "Οπτικοποίηση βεληνεκές αύρας"
 
 #: gui/options/options.json[5].options[8].tooltip
 msgid ""
@@ -2610,11 +2610,11 @@ msgstr "%(hotkey)s: Μάθε για τους πολιτισμούς που εμ�
 
 #: gui/pregame/MainMenuItems.js:48
 msgid "Catafalque Overview"
-msgstr ""
+msgstr "Επισκόπηση φέρετρου "
 
 #: gui/pregame/MainMenuItems.js:49
 msgid "Compare the bonuses of catafalques featured in 0 A.D."
-msgstr ""
+msgstr "Σύγκριση των μπόνους των νεκροκρέβατων που εμφανίζονται στο 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:55
 msgid "Map Overview"
@@ -2630,7 +2630,7 @@ msgstr "Ένας παίκτης"
 
 #: gui/pregame/MainMenuItems.js:65
 msgid "Start, load, or replay a single-player game."
-msgstr ""
+msgstr "Εκκίνηση, φόρτωση ή επανάληψη παιχνιδιού για έναν παίκτη."
 
 #: gui/pregame/MainMenuItems.js:68
 msgid "Matches"
@@ -2989,8 +2989,8 @@ msgstr[1] ""
 #: gui/reference/civinfo/Sections/Subsections/TechnologiesSubsection.js:28
 msgid "Specific Technology"
 msgid_plural "Specific Technologies"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Συγκεκριμένη Τεχνολογία"
+msgstr[1] "Συγκεκριμένες Τεχνολογίες"
 
 #: gui/reference/common/Buttons/CivInfoButton.js:27
 #, javascript-format
@@ -3266,7 +3266,7 @@ msgstr "Διάρκεια"
 
 #: gui/replaymenu/replay_menu.xml:(placeholder_text):32
 msgid "Search for Player"
-msgstr ""
+msgstr "Αναζήτηση για Παίκτη/τρια"
 
 #: gui/replaymenu/replay_menu.xml:(tooltip):240
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
@@ -3540,7 +3540,7 @@ msgstr "Συγκομιδή"
 
 #: gui/summary/summary.js:44
 msgid "Count"
-msgstr ""
+msgstr "Καταμέτρηση"
 
 #: gui/summary/summary.js:49
 msgid "Sent"
@@ -3603,7 +3603,7 @@ msgstr ""
 #: gui/summary/summary.js:204
 msgctxt "Charts player color indicator"
 msgid "■"
-msgstr ""
+msgstr "■"
 
 #: gui/summary/summary.js:234
 msgctxt "Player listing"
@@ -3689,7 +3689,7 @@ msgstr "Τύπος:"
 
 #: gui/summary/summary.xml:(caption):167
 msgid "Group by team"
-msgstr ""
+msgstr "Συγκρότηση ανά ομάδα"
 
 #: gui/summary/summary.xml:(caption):187
 msgid "Watch Replay"

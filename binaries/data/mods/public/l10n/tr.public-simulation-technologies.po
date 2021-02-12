@@ -4,7 +4,7 @@
 # project.
 # Translators:
 # Ender Türsen <ado.ender@gmail.com>, 2014
-# ali topçu <ali134636@gmail.com>, 2018
+# ali topçu <ali134636@gmail.com>, 2018,2021
 # Cem Aktas <cemwstone@gmail.com>, 2018
 # Cengizhan Asıliskender <ceas08@gmail.com>, 2016
 # coolland, 2014
@@ -29,8 +29,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-01-30 11:35+0000\n"
-"Last-Translator: Günay Yılmaz\n"
+"PO-Revision-Date: 2021-02-11 06:02+0000\n"
+"Last-Translator: ali topçu <ali134636@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -121,7 +121,7 @@ msgstr "Köy Aşaması açıldı."
 
 #: simulation/data/technologies/archery_tradition.jsontooltip
 msgid "Archers −10% training time and +10 attack range."
-msgstr ""
+msgstr "Okçulara -%10 eğitim süresi ve +10 saldırı mesafesi."
 
 #: simulation/data/technologies/architecture_kush.jsongenericName
 msgid "Monumental Architecture"
@@ -175,17 +175,17 @@ msgstr "Pers Mimarisi"
 
 #: simulation/data/technologies/architecture_pers.jsontooltip
 msgid "Structures +25% health and capture points, but also +20% build time."
-msgstr ""
+msgstr "Yapılara +%25 sağlık ve ele geçirme puanı fakat aynı zamanda +%20 inşa süresi."
 
 #: simulation/data/technologies/attack_soldiers_will.jsondescription
 msgid ""
 "The will to fight is crucial to victory. Inspire your troops with higher "
 "pay."
-msgstr ""
+msgstr "Mücadele iradesi zafer için çok önemlidir. Yüksek ödeme ile birliklerinizin moralini yükseltin."
 
 #: simulation/data/technologies/attack_soldiers_will.jsongenericName
 msgid "Will to Fight"
-msgstr "Dövüş Azmi"
+msgstr "Savaş İradesi"
 
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.athen
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.mace
@@ -193,11 +193,11 @@ msgstr "Dövüş Azmi"
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.sele
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.spart
 msgid "Dynamis"
-msgstr "Dynamis"
+msgstr "Potansiyel güç"
 
 #: simulation/data/technologies/attack_soldiers_will.jsontooltip
 msgid "Soldiers, Siege Engines, and Ships +25% attack damage."
-msgstr ""
+msgstr "Askerlere, Kuşatma Ekipmanlarına ve gemilere +%25 saldırı hasarı."
 
 #: simulation/data/technologies/attack_steel_working.jsondescription
 msgid ""
@@ -219,13 +219,13 @@ msgstr "Wootz Çeliği"
 
 #: simulation/data/technologies/attack_steel_working.jsontooltip
 msgid "Swordsmen +20% attack damage."
-msgstr ""
+msgstr "Kılıçlılara +%20 saldırı hasarı."
 
 #: simulation/data/technologies/barracks_batch_training.jsondescription
 msgid ""
 "Significantly increase training speed of infantry by training them in large "
 "batches or companies."
-msgstr ""
+msgstr "Geniş gruplar veya taburlar halinde üretilen yayaların eğitim süresini gözle görünür şekilde artırın."
 
 #: simulation/data/technologies/barracks_batch_training.jsongenericName
 #: simulation/data/technologies/stable_batch_training.jsongenericName
@@ -234,7 +234,7 @@ msgstr "Zorunlu Askerlik"
 
 #: simulation/data/technologies/barracks_batch_training.jsontooltip
 msgid "Barracks −10% batch training time."
-msgstr ""
+msgstr "Kışlalara -%10 grup eğitim süresi."
 
 #: simulation/data/technologies/cavalry_cost_time.jsondescription
 msgid ""
@@ -248,19 +248,19 @@ msgstr "Toplama Süvari"
 
 #: simulation/data/technologies/cavalry_cost_time.jsontooltip
 msgid "Cavalry −10% training time."
-msgstr ""
+msgstr "Süvariler -%10 eğitim hızı."
 
 #: simulation/data/technologies/cavalry_health.jsondescription
 msgid "Selectively breed better war horses."
-msgstr ""
+msgstr "Yapay seçilim ile daha iyi savaş atları."
 
 #: simulation/data/technologies/cavalry_health.jsongenericName
 msgid "Horse Breeding"
-msgstr ""
+msgstr "At yetiştirme"
 
 #: simulation/data/technologies/cavalry_health.jsontooltip
 msgid "Cavalry +10% health."
-msgstr ""
+msgstr "Süvarilere +%10 sağlık."
 
 #: simulation/data/technologies/cavalry_movement_speed.jsondescription
 msgid "Train your horses to move faster."
@@ -287,7 +287,7 @@ msgstr "Üçlü Duvarlar"
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
 msgid "City Walls +100% build time, +100% stone cost, and +200% health."
-msgstr ""
+msgstr "Şehir duvarlarına +%100 inşa süresi, +%100 taş maliyeti ve +%200 sağlık."
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsondescription
 msgid "Celtic structures were mostly made of wood with rubble foundations."
@@ -299,21 +299,21 @@ msgstr "Ahşap İnşaat"
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
 msgid "Structures −20% build time, −20% health, and −20% capture points."
-msgstr ""
+msgstr "Yerleşim Yapıları -%20 inşa süresi, -%20 sağlık ve -%20 ele geçirme puanı."
 
 #: simulation/data/technologies/civbonuses/gaul_cavalry.jsondescription
 msgid ""
 "The Gauls were well-known for their effective cavalry. Celtic mercenaries "
 "were in demand throughout the Mediterranean."
-msgstr ""
+msgstr "Galyalılar etkili süvarileri le tanınırlardı. Kelt paralı askerleri tüm Akdeniz'de talep görüyordu."
 
 #: simulation/data/technologies/civbonuses/gaul_cavalry.jsongenericName
 msgid "Superior Cavalry"
-msgstr ""
+msgstr "Üstün Süvari"
 
 #: simulation/data/technologies/civbonuses/gaul_cavalry.jsontooltip
 msgid "Cavalry +10% melee attack damage."
-msgstr ""
+msgstr "Süvarilere +%10 yakın dövüş saldırı hasarı."
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsondescription
 msgid "The Greeks used stone construction from early Mycenaean times."
@@ -321,7 +321,7 @@ msgstr "Miken zamanlarının başlarında Yunanlar inşaat için taş kullanırd
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
 msgid "Hellenic Architecture"
-msgstr "Eski Yunan Mimarisi"
+msgstr "Hellen Mimarisi"
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
 msgid "Structures +10% health and +10% capture points."
@@ -364,7 +364,7 @@ msgstr "Chakravarti Samrāt"
 #: simulation/data/technologies/civbonuses/maur_population.jsontooltip
 #: simulation/data/technologies/civbonuses/pers_population.jsontooltip
 msgid "+10% maximum population limit."
-msgstr ""
+msgstr "+%10 azami nüfus sınırı."
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsondescription
 msgid ""
@@ -378,7 +378,7 @@ msgstr "Ahşap Duvarlar"
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsontooltip
 msgid "City Walls −20% build time and −20% health."
-msgstr ""
+msgstr "Şehir duvarları -%20 inşa süresi ve -%20 sağlık."
 
 #: simulation/data/technologies/civbonuses/pers_population.jsondescription
 msgid ""
@@ -392,7 +392,7 @@ msgstr "Ahameniş Hanedanlığı imparatorluğun yapısı ve büyüklüğü sebe
 
 #: simulation/data/technologies/civbonuses/pers_population.jsongenericName
 msgid "Great King's Levy"
-msgstr "Great King'in Vergisi"
+msgstr "Büyük Kral'ın Vergisi"
 
 #: simulation/data/technologies/civbonuses/ptol_structures.jsondescription
 msgid ""
@@ -400,15 +400,15 @@ msgid ""
 "especially where wood was scarce. Although not as strong and durable as "
 "fired bricks or natural stone and vulnerable to constant rains and heavy "
 "floods, mud bricks have the advantage they are cheap and easy to produce."
-msgstr ""
+msgstr "Güneşte kurutulmuş kerpiç tuğlalar, özellikle ahşabın az olduğu sıcak ve kuru alanlarda yaygın bir yapı malzemesiydi. Ateş tuğlası veya doğal taş kadar güçlü ve dayanıklı olmasa da, sürekli yağmur ve şiddetli sellere karşı savunmasız olmasına rağmen, kerpiç tuğlalar ucuz ve kolay üretilmeleri avantajına sahiptir. "
 
 #: simulation/data/technologies/civbonuses/ptol_structures.jsongenericName
 msgid "Sun-dried Mud Bricks"
-msgstr ""
+msgstr "Güneşte kurutulmuş kerpiç tuğlalar"
 
 #: simulation/data/technologies/civbonuses/ptol_structures.jsontooltip
 msgid "Houses and Economic Structures −40% wood cost and health."
-msgstr ""
+msgstr "Evlere ve ekonomik yapılara -%40 odun maliyeti ve sağlık."
 
 #: simulation/data/technologies/colonization.jsondescription
 msgid ""
@@ -422,7 +422,7 @@ msgstr "Kolonicilik"
 
 #: simulation/data/technologies/colonization.jsontooltip
 msgid "Civic Structures −25% build time."
-msgstr ""
+msgstr "Sivil yapılara %-25 inşa süresi."
 
 #: simulation/data/technologies/equine_transports.jsondescription
 msgid ""
@@ -441,7 +441,7 @@ msgstr "Atlı Taşımacılık"
 
 #: simulation/data/technologies/equine_transports.jsontooltip
 msgid "Phoenician Triremes gain the ability to train Cavalry."
-msgstr ""
+msgstr "Fenike triremleri süvari eğitme yeteneği kazanır."
 
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsondescription
 msgid "Salting allows to preserve fish longer."
@@ -469,7 +469,7 @@ msgstr "Balıkçı teknesi +%30 balıkçılık oranı."
 
 #: simulation/data/technologies/garrison_heal.jsondescription
 msgid "Units regain health over time while garrisoned."
-msgstr ""
+msgstr "Birimler konuşlandırıldıklarında zamanla sağlık kazanırlar."
 
 #: simulation/data/technologies/garrison_heal.jsongenericName
 msgid "Living Conditions"
@@ -477,11 +477,11 @@ msgstr "Yaşam Koşulları"
 
 #: simulation/data/technologies/garrison_heal.jsontooltip
 msgid "Structures +1 garrison heal rate."
-msgstr ""
+msgstr "Yapılara +1 garnizon iyileşme oranı."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breed livestock to slaughter for meat."
-msgstr ""
+msgstr "Et için çiftlik hayvanı kesin."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsongenericName
 msgid "Stockbreeding"
@@ -578,7 +578,7 @@ msgstr "Odun toplama oranını artırır."
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsongenericName
 msgid "Iron Axe Heads"
-msgstr ""
+msgstr "Demir Balta Başı"
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsontooltip
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsontooltip
@@ -588,11 +588,11 @@ msgstr ""
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsongenericName
 msgid "Sharp Axe Heads"
-msgstr ""
+msgstr "Keskin Balta Başı"
 
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsongenericName
 msgid "Stronger Axe"
-msgstr ""
+msgstr "Kuvvetli Balta"
 
 #: simulation/data/technologies/gather_mining_serfs.jsondescription
 msgid ""
@@ -606,13 +606,13 @@ msgstr "Köleler"
 
 #: simulation/data/technologies/gather_mining_serfs.jsonspecificName.spart
 msgid "Heilōtes"
-msgstr ""
+msgstr "Spartalı Köleler"
 
 #: simulation/data/technologies/gather_mining_serfs.jsontooltip
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
 #: simulation/data/technologies/gather_mining_slaves.jsontooltip
 msgid "Workers +20% stone gather rate."
-msgstr ""
+msgstr "İşçilere +%20 taş toplama oranı."
 
 #: simulation/data/technologies/gather_mining_servants.jsondescription
 msgid "Hire servants to help quarry stone. Increases stone gathering rates."
@@ -628,7 +628,7 @@ msgstr "Hizmetçiler"
 #: simulation/data/technologies/gather_mining_servants.jsonspecificName.sele
 #: simulation/data/technologies/gather_mining_servants.jsonspecificName.spart
 msgid "Douloi"
-msgstr "Douloi"
+msgstr "Hizmetçi"
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsondescription
 msgid "Develop shaft mining. Increases metal gathering rates."
@@ -642,7 +642,7 @@ msgstr "Kuyu Madenciliği"
 #: simulation/data/technologies/gather_mining_silvermining.jsontooltip
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
 msgid "Workers +20% metal gather rate."
-msgstr ""
+msgstr "İşçilere +%20 metal toplama oranı."
 
 #: simulation/data/technologies/gather_mining_silvermining.jsondescription
 msgid "Strike a vein of precious silver. Increases metal gathering rates."
@@ -676,11 +676,11 @@ msgstr "Köleler"
 #: simulation/data/technologies/gather_mining_slaves.jsonspecificName.sele
 #: simulation/data/technologies/gather_mining_slaves.jsonspecificName.spart
 msgid "Andrapoda"
-msgstr ""
+msgstr "Yunan Köleler"
 
 #: simulation/data/technologies/gather_mining_slaves.jsonspecificName.rome
 msgid "Servi"
-msgstr ""
+msgstr "Sırp"
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsondescription
 msgid ""
@@ -723,7 +723,7 @@ msgstr "Olympic Pantheon"
 #: simulation/data/technologies/heal_range.jsontooltip
 #: simulation/data/technologies/heal_range_2.jsontooltip
 msgid "Healers +5 healing range."
-msgstr ""
+msgstr "Şifacılara +5 İyileştirme Menzili."
 
 #: simulation/data/technologies/heal_range_2.jsongenericName
 msgid "Healing Range 2"
@@ -731,12 +731,12 @@ msgstr "İyileştirme Menzili 2"
 
 #: simulation/data/technologies/heal_range_2.jsonspecificName.athen
 msgid "Akadēmeia"
-msgstr ""
+msgstr "Akademi"
 
 #: simulation/data/technologies/heal_rate.jsondescription
 #: simulation/data/technologies/heal_rate_2.jsondescription
 msgid "Increases the healing rate of all healers."
-msgstr ""
+msgstr "Tüm şifacıların iyileştirme oranını artırır."
 
 #: simulation/data/technologies/heal_rate.jsongenericName
 msgid "Healing Rate"
@@ -780,7 +780,7 @@ msgstr "Dokuma"
 
 #: simulation/data/technologies/health_females_01.jsontooltip
 msgid "Female Citizens +100% health."
-msgstr ""
+msgstr "Kadın Vatandaşlar +%100 sağlık."
 
 #: simulation/data/technologies/health_regen_units.jsondescription
 msgid "Organic units will slowly regenerate health over time when idle."
@@ -941,7 +941,7 @@ msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +50% territory influence radius. Structures +9 capture points "
 "regeneration rate per garrisoned unit. Workers +10% metal gather rate."
-msgstr ""
+msgstr "Daha fazla varlık ve teknolojinin kilidini açan Şehir Aşamasına ilerleyin. Halk Merkezleri +% 50 bölge etkisi yarıçapı. Yapılar +9 işgal puanı, garnizondaki birim başına yenilenme oranı. İşçiler +% 10 metal toplama oranı. "
 
 #: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
@@ -954,7 +954,7 @@ msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +50% territory influence radius. Structures +9 capture points "
 "regeneration rate per garrisoned unit."
-msgstr ""
+msgstr "Daha fazla varlık ve teknolojinin kilidini açan Şehir Aşamasına ilerleyin. Halk Merkezleri +% 50 bölge etkisi yarıçapı. Yapılar +9 işgal puanı, garnizondaki birim başına yenilenme oranı. İşçiler +% 10 metal toplama oranı. "
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -986,7 +986,7 @@ msgstr ""
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.sele
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.spart
 msgid "Kōmopolis"
-msgstr ""
+msgstr "Kōmopolis"
 
 #: simulation/data/technologies/phase_town_athen.jsontooltip
 msgid ""

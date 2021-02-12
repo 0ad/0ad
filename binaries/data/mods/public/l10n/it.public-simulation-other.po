@@ -13,6 +13,7 @@
 # Fabio Pedretti <pedretti.fabio@gmail.com>, 2015
 # Fabrizio Morotti <famorot@tin.it>, 2016-2017
 # George Lungu <lungugeorge88@gmail.com>, 2018
+# Gianluca Luparini <gianlucalup@gmail.com>, 2021
 # Giuseppe D'Addio <giuseppinoino@virgilio.it>, 2019
 # Italang, 2020
 # Luca Errani <luca.errani1@gmail.com>, 2018
@@ -30,8 +31,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2021-01-19 17:14+0000\n"
-"Last-Translator: Angelica Buonaurio <angydna2@yahoo.it>\n"
+"PO-Revision-Date: 2021-02-11 10:23+0000\n"
+"Last-Translator: Gianluca Luparini <gianlucalup@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -583,7 +584,7 @@ msgstr "Risorse Insufficienti - %(resourceAmount1)s %(resourceType1)s, %(resourc
 
 #: simulation/components/ProductionQueue.js:339
 msgid "Entity is being upgraded. Cannot start production."
-msgstr ""
+msgstr "L'entità si sta potenziando. Impossibile iniziare la produzione."
 
 #: simulation/components/ProductionQueue.js:512
 msgid "The production queue is full."
@@ -595,7 +596,7 @@ msgstr "Non c'è spazio libero per posizionare le unità addestrate"
 
 #: simulation/components/Upgrade.js:241
 msgid "Entity is producing. Cannot start upgrading."
-msgstr ""
+msgstr "L'entità sta producendo. Impossibile iniziare il potenziamento."
 
 #: simulation/data/settings/game_speeds.jsonData[0].Title
 msgid "Turtle (0.1×)"
@@ -611,7 +612,7 @@ msgstr "Lento (0.25x)"
 
 #: simulation/data/settings/game_speeds.jsonData[2].Title
 msgid "Leisurely (0.5×)"
-msgstr ""
+msgstr "Tranquillo (0.5×)"
 
 #: simulation/data/settings/game_speeds.jsonData[3].Title
 msgid "Relaxed (0.75×)"
@@ -667,7 +668,7 @@ msgstr "Normale"
 msgid ""
 "This map size provides plenty of space for two players, but even eight "
 "players fit."
-msgstr ""
+msgstr "Questa dimensione della mappa offre parecchio spazio per due giocatori, ma è adatta anche per otto giocatori."
 
 #: simulation/data/settings/map_sizes.jsonData[3].Tooltip
 msgid ""

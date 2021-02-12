@@ -8,12 +8,13 @@
 # Danila Catalin <dlcatalin@ymail.com>, 2016
 # Marius Nan <waasszyie.x@gmail.com>, 2016
 # Raz Taz <qvovadis@yahoo.com>, 2016
+# Stefan Bayreuther <stefan-bayreuther@web.de>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-29 14:56+0000\n"
-"PO-Revision-Date: 2021-01-29 16:29+0000\n"
-"Last-Translator: Stanislas Dolcini <stan@wildfiregames.com>\n"
+"PO-Revision-Date: 2021-02-11 15:00+0000\n"
+"Last-Translator: Stefan Bayreuther <stefan-bayreuther@web.de>\n"
 "Language-Team: Romanian (http://www.transifex.com/wildfire-games/0ad/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -168,11 +169,11 @@ msgstr[2] "Observatori"
 #: gui/common/gamedescription.js:188
 msgctxt "victory condition"
 msgid "Endless Game"
-msgstr ""
+msgstr "Joc infinit"
 
 #: gui/common/gamedescription.js:189
 msgid "No winner will be determined, even if everyone is defeated."
-msgstr ""
+msgstr "Niciun câștigător va fi determinat, chiar dacă toți sunt învinși."
 
 #: gui/common/gamedescription.js:202
 #, javascript-format
@@ -576,7 +577,7 @@ msgstr "Aleator"
 #: gui/common/settings.js:152
 msgctxt "aiBehavior"
 msgid "Balanced"
-msgstr ""
+msgstr "Echilibrat"
 
 #: gui/common/settings.js:156
 msgctxt "aiBehavior"
@@ -684,9 +685,9 @@ msgstr[2] ""
 #: gui/common/tooltips.js:960
 msgid "second"
 msgid_plural "seconds"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "secundă"
+msgstr[1] "secunde"
+msgstr[2] "secunde"
 
 #: gui/common/tooltips.js:145 gui/common/tooltips.js:156
 msgid "Health:"
@@ -853,9 +854,9 @@ msgstr ""
 #: gui/common/tooltips.js:985
 msgid "meter"
 msgid_plural "meters"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "metru"
+msgstr[1] "metri"
+msgstr[2] "metri"
 
 #: gui/common/tooltips.js:363
 #, javascript-format
@@ -1026,7 +1027,7 @@ msgstr[2] ""
 
 #: gui/common/tooltips.js:633
 msgid "Number of builders:"
-msgstr ""
+msgstr "Numărul constructorilor"
 
 #: gui/common/tooltips.js:639
 msgid "Remaining build time:"
@@ -1326,7 +1327,7 @@ msgstr ""
 
 #: gui/credits/texts/audio.jsonContent[3].Content[1].Subtitle
 msgid "Latin"
-msgstr ""
+msgstr "Latină"
 
 #: gui/credits/texts/audio.jsonContent[3].Content[2].Subtitle
 msgid "Napatan"
@@ -2044,7 +2045,7 @@ msgstr ""
 #: gui/options/options.json[1].options[9].list[2].label
 #: gui/options/options.json[3].options[3].list[3].label
 msgid "Medium"
-msgstr ""
+msgstr "Mediu"
 
 #: gui/options/options.json[1].options[9].list[3].label
 msgid "High"
@@ -2187,7 +2188,7 @@ msgstr "Aleator"
 
 #: gui/options/options.json[3].options[4].list[1].label
 msgid "Balanced"
-msgstr ""
+msgstr "Echilibrat"
 
 #: gui/options/options.json[3].options[4].list[2].label
 msgid "Aggressive"
@@ -3595,7 +3596,7 @@ msgstr ""
 
 #: gui/summary/summary.js:104
 msgid "Sold"
-msgstr ""
+msgstr "Vândut"
 
 #: gui/summary/summary.js:109
 msgid "Outcome"
@@ -3799,7 +3800,7 @@ msgstr ""
 
 #: gui/text/tips/catapults.txt:3
 msgid "Expensive and slow."
-msgstr ""
+msgstr "Scump și încet."
 
 #: gui/text/tips/catapults.txt:4
 msgid ""
@@ -3881,7 +3882,7 @@ msgstr ""
 
 #: gui/text/tips/fishing.txt:4
 msgid "Fishing is faster than gathering food on fields."
-msgstr ""
+msgstr "Pescuitul este mai repede decât culesul mâncării pe câmp."
 
 #: gui/text/tips/fishing.txt:5
 msgid "Careful! Fish are not an infinite resource!"

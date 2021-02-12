@@ -12,6 +12,7 @@
 # fri, 2014
 # ike20 <mvaldman@seznam.cz>, 2014
 # Jakub Jelen <jakuje@gmail.com>, 2017
+# Karolína Pokorná <karolinapoky@gmail.com>, 2021
 # Katie Trochimovičová <Kattienika@gmail.com>, 2018
 # LiberteCzech <liberte.czech@gmail.com>, 2018
 # xgimp <l.bacovsky@gmail.com>, 2020
@@ -25,13 +26,14 @@
 # Tomáš Weber <webertomas01@gmail.com>, 2021
 # Vit Pelcak, 2014
 # Vít Pelčák, 2014
+# Vojtěch Dubský <dub@dubix.eu>, 2021
 # Vojtěch Valigura <Encounter@seznam.cz>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-29 08:08+0000\n"
-"PO-Revision-Date: 2021-01-30 22:57+0000\n"
-"Last-Translator: Tomáš Weber <webertomas01@gmail.com>\n"
+"PO-Revision-Date: 2021-02-11 19:01+0000\n"
+"Last-Translator: Vojtěch Dubský <dub@dubix.eu>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -179,7 +181,7 @@ msgstr "Prohlížet mapy"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:29
 #, javascript-format
 msgid "Press %(hotkey)s to view the list of available maps."
-msgstr ""
+msgstr "stiskni%(hotkey)s pro zobrazení map k dispozici"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:40
 msgid "Cheats"
@@ -285,7 +287,7 @@ msgstr "Počet obyvatel světa"
 msgid ""
 "When checked the Population Cap will be evenly distributed over all living "
 "players."
-msgstr ""
+msgstr "když zkontroluješ populaci bude rovnoměrně rozdělaná všude ostatním žijícím hráčům"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:128
 msgid "Biome"
@@ -471,7 +473,7 @@ msgstr "Náhodná"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:99
 msgctxt "team placement"
 msgid "Select a random team placement pattern when starting the game."
-msgstr ""
+msgstr "když začínáš hru vyber si náhodný vzor umístění týmu"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:105
 msgctxt "team placement"
@@ -482,7 +484,7 @@ msgstr "Kruh"
 msgid ""
 "Allied players are grouped and placed with opposing players on one circle "
 "spanning the map."
-msgstr ""
+msgstr "spoluhráči jsou seskupeni a umístěni s protihráči na jednom kruhu přesahujícím mapu"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:110
 msgctxt "team placement"
@@ -521,18 +523,18 @@ msgstr "Vyberte obtížnost hry."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:77
 msgid "World Population Cap"
-msgstr ""
+msgstr "světová populace "
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:80
 msgid "Select world population limit."
-msgstr ""
+msgstr "vyber si světové populační omezení"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:83
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if %(popCap)s population is "
 "reached."
-msgstr ""
+msgstr "varování: mohou být zde problémy s výkonem když %(popCap)spopulace dosáhne svého limitu"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:62
 msgid "Ceasefire"
@@ -626,7 +628,7 @@ msgstr "Trvání divu světa"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:91
 msgid "Minutes until the player has achieved Wonder Victory"
-msgstr ""
+msgstr "minuty než hráč dosáhne úžasného vítězství "
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/CancelButton.js:36
 msgid "Back"
@@ -837,7 +839,7 @@ msgstr "Připojuje se k serveru..."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:166
 msgid "Server is not running."
-msgstr ""
+msgstr "Server neběží."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:167
 msgid "Password is invalid."
@@ -929,7 +931,7 @@ msgstr "Název serveru:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):112
 msgid "Server Password:"
-msgstr ""
+msgstr "Heslo serveru:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):128
 msgid "Use STUN to work around firewalls"
