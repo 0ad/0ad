@@ -8,15 +8,9 @@
         <prop actor="props/flora/decal_dates.xml" attachpoint="root"/>
       </props>
       <textures>
+        <texture file="gaia/palm_date_new_3_fruiting.png" name="baseTex"/>
         <texture file="gaia/palm_date_new_norm.png" name="normTex"/>
         <texture file="gaia/palm_date_new_spec.png" name="specTex"/>
-      </textures>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="2" name="a">
-      <textures>
-        <texture file="gaia/palm_date_new_3_fruiting.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
@@ -28,5 +22,5 @@
       <mesh>gaia/palm_date_new_fruit_2.dae</mesh>
     </variant>
   </group>
-  <material>trans_wind_parallax_spec.xml</material>
+  <material>basic_trans_wind_norm_spec.xml</material>
 </actor>

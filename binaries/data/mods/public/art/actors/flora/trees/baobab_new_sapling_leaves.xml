@@ -2,7 +2,9 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="base"/>
+    <variant frequency="1" name="1">
+      <mesh>gaia/baobab_sapling_1_leaves.dae</mesh>
+    </variant>
   </group>
   <group>
     <variant frequency="1" name="a">
@@ -27,10 +29,5 @@
       </textures>
     </variant>
   </group>
-  <group>
-    <variant frequency="1" name="1">
-      <mesh>gaia/baobab_sapling_1_leaves.dae</mesh>
-    </variant>
-  </group>
-  <material>trans_wind_parallax_spec.xml</material>
+  <material>basic_trans_wind_norm_spec.xml</material>
 </actor>

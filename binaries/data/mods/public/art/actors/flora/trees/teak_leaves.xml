@@ -4,15 +4,9 @@
   <group>
     <variant name="base">
       <textures>
+        <texture file="gaia/teak.png" name="baseTex"/>
         <texture file="gaia/teak_norm.png" name="normTex"/>
         <texture file="gaia/teak_spec.png" name="specTex"/>
-      </textures>
-    </variant>
-  </group>
-  <group>
-    <variant name="a">
-      <textures>
-        <texture file="gaia/teak.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
@@ -27,5 +21,5 @@
       <mesh>gaia/tree_teak_3_leaves.dae</mesh>
     </variant>
   </group>
-  <material>trans_wind_parallax_spec.xml</material>
+  <material>basic_trans_wind_norm_spec.xml</material>
 </actor>

@@ -2,9 +2,6 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="base"/>
-  </group>
-  <group>
     <variant frequency="4" name="a">
       <textures>
         <texture file="gaia/tree_baobab.png" name="baseTex"/>
@@ -38,5 +35,5 @@
       <mesh>gaia/baobab_3_leaves.dae</mesh>
     </variant>
   </group>
-  <material>trans_wind_parallax_spec.xml</material>
+  <material>basic_trans_wind_norm_spec.xml</material>
 </actor>

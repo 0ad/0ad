@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <material>
   <alpha_blending/>
+  <alternative material="basic_trans_wind.xml" quality="8"/>
   <define name="USE_TRANSPARENT" value="1"/>
   <define name="USE_WIND" value="1"/>
   <renderquery name="sim_time"/>

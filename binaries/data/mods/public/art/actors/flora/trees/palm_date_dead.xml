@@ -6,12 +6,6 @@
       <textures>
         <texture file="gaia/palm_date_new_norm.png" name="normTex"/>
         <texture file="gaia/palm_date_new_spec.png" name="specTex"/>
-      </textures>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="2" name="a">
-      <textures>
         <texture file="gaia/palm_dead.png" name="baseTex"/>
       </textures>
     </variant>
@@ -33,5 +27,5 @@
       <mesh>gaia/palm_dead_5.dae</mesh>
     </variant>
   </group>
-  <material>trans_wind_parallax_spec.xml</material>
+  <material>basic_trans_wind_norm_spec.xml</material>
 </actor>
