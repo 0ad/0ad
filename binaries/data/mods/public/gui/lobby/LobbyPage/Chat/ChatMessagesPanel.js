@@ -47,6 +47,6 @@ class ChatMessagesPanel
 	clearChatMessages()
 	{
 		this.chatHistory = "";
-		this.chatText.caption = "";
+		this.chatText.list = [];
 	}
 }
