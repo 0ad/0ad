@@ -15,6 +15,7 @@
         <prop actor="props/structures/decals/gravel_5x5.xml" attachpoint="root"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+        <prop actor="particle/smoke_light_delay.xml" attachpoint="smoke"/>
       </props>
       <textures>
         <texture file="structural/brit_struct_1.png" name="baseTex"/>
@@ -34,17 +35,12 @@
   </group>
   <group>
     <variant frequency="1" name="alive"/>
-    <variant name="death">
+    <variant file="structures/destruction_large.xml">
       <props>
-        <prop attachpoint="garrisoned"/>
-        <prop actor="particle/destruction_smoke_large.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_large.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_large_gray.xml" attachpoint="root"/>
         <prop actor="props/structures/britons/civic_centre_props_1.xml" attachpoint="root"/>
         <prop actor="props/structures/britons/civic_centre_props_new.xml" attachpoint="root"/>
         <prop actor="props/structures/britons/civic_centre_wood_c.xml" attachpoint="root"/>
         <prop actor="props/structures/britons/civic_centre_roof.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/gravel_5x5.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>

@@ -21,7 +21,7 @@
         <prop actor="props/structures/celts/stable_horse_a.xml" attachpoint="horse" maxheight="0" minheight="-20"/>
         <prop actor="props/structures/celts/stable_horse_b.xml" attachpoint="horse_1" maxheight="0" minheight="-20"/>
         <prop actor="props/structures/celts/stable_horse_c.xml" attachpoint="horse_2" maxheight="0" minheight="-20"/>
-        <prop actor="props/structures/decals/gravel_5x5.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_6x6.xml" attachpoint="root"/>
       </props>
       <textures>
         <texture file="structural/celt_struct.dds" name="baseTex"/>
@@ -41,12 +41,11 @@
   </group>
   <group>
     <variant name="alive" frequency="1"/>
-    <variant name="death">
+    <variant file="structures/destruction_medium.xml">
       <props>
-        <prop actor="particle/destruction_smoke_med.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_med.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_med_gray.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/gravel_5x5.xml" attachpoint="root"/>
+        <prop actor="props/structures/gauls/stable_shields.xml" attachpoint="root"/>
+        <prop actor="props/structures/gauls/stable_water.xml" attachpoint="root"/>
+        <prop actor="props/structures/gauls/stable_nature.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>

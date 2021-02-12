@@ -49,9 +49,8 @@
   </group>
   <group>
     <variant frequency="1" name="alive"/>
-    <variant name="death">
+    <variant file="structures/destruction_medium.xml">
       <props>
-        <prop actor="props/structures/decals/dirt_6x6_gaul_theater.xml" attachpoint="root"/>
         <prop actor="props/structures/gauls/theater_roof.xml" attachpoint="root"/>
         <prop actor="props/structures/gauls/theater_nature.xml" attachpoint="root"/>
       </props>

@@ -20,15 +20,11 @@
   </group>
   <group>
     <variant frequency="1" name="alive"/>
-    <variant name="death">
+    <variant file="structures/destruction_small.xml">
       <props>
-        <prop actor="particle/destruction_smoke_small.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_small_gray.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/celt_corral_mud.xml" attachpoint="root"/>
         <prop actor="props/structures/celts/corral_props_new.xml" attachpoint="root"/>
         <prop actor="props/structures/celts/corral_props_1.xml" attachpoint="root"/>
-        <prop actor="props/structures/celts/corral_food.xml" attachpoint="root" maxheight="20" minheight="-20"/>
       </props>
     </variant>
   </group>

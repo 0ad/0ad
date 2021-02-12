@@ -34,12 +34,8 @@
   </group>
   <group>
     <variant name="alive" frequency="1"/>
-    <variant name="death">
+    <variant file="structures/destruction_medium.xml">
       <props>
-        <prop actor="props/structures/decals/celt_barracks.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_smoke_med.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_med.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_med_gray.xml" attachpoint="root"/>
         <prop actor="props/structures/celts/barracks_props_01.xml" attachpoint="root"/>
         <prop actor="props/structures/celts/barracks_props_02.xml" attachpoint="root"/>
         <prop actor="props/structures/celts/barracks_props_03.xml" attachpoint="root"/>

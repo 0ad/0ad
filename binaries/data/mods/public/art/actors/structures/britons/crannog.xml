@@ -40,19 +40,11 @@
   </group>
   <group>
     <variant frequency="1" name="alive"/>
-    <variant name="death">
+    <variant file="structures/destruction_large.xml">
       <props>
-        <prop attachpoint="garrisoned"/>
         <prop actor="props/structures/britons/crannog_props.xml" attachpoint="root"/>
         <prop actor="props/structures/britons/crannog_dirt.xml" attachpoint="root"/>
         <prop actor="props/structures/britons/crannog_wall.xml" attachpoint="root"/>
-        <prop actor="particle/smoke_jav.xml" attachpoint="chimney"/>
-        <prop actor="props/special/eyecandy/campfire_prop.xml" attachpoint="campfire"/>
-        <prop actor="props/flora/grass_tufts_a.xml" attachpoint="tufta"/>
-        <prop actor="props/flora/grass_tufts_a.xml" attachpoint="tuftb"/>
-        <prop actor="props/flora/grass_tufts_a.xml" attachpoint="tuftc"/>
-        <prop actor="props/flora/reeds_beach_mythos.xml" attachpoint="watergrassa"/>
-        <prop actor="props/flora/reeds_beach_mythos.xml" attachpoint="watergrassb"/>
       </props>
     </variant>
   </group>
