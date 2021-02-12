@@ -10,4 +10,5 @@
   <required_texture name="normTex" define="USE_NORMAL_MAP"/>
   <shader effect="model_transparent"/>
   <uniform name="windData" value="1.0 1.0"/>
+  <uniform name="effectSettings" value="1.0 50.0 0.0075 0.0"/>
 </material>
