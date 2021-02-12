@@ -8,11 +8,12 @@ def dump_font(ttf):
 
     (face, indexes) = FontLoader.create_cairo_font_face_for_file("../../../binaries/data/tools/fontbuilder/fonts/%s" % ttf, 0, FontLoader.FT_LOAD_DEFAULT)
 
-    mappings = [ (c, indexes(unichr(c))) for c in range(1, 65535) ]
-    print ttf,
-    print ' '.join(str(c) for (c, g) in mappings if g != 0)
+    mappings = [ (c, indexes(chr(c))) for c in range(1, 65535) ]
+    print(ttf, end=' ')
+    print(' '.join(str(c) for (c, g) in mappings if g != 0))
 
 dump_font("DejaVuSansMono.ttf")
-dump_font("DejaVuSans.ttf")
+dump_font("FreeSans.ttf")
+dump_font("LinBiolinum_Rah.ttf")
 dump_font("texgyrepagella-regular.otf")
 dump_font("texgyrepagella-bold.otf")

@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import cairo
 import codecs
 import math
@@ -111,7 +113,7 @@ def generate_font(outname, ttfNames, loadopts, size, renderstyle, dsizes):
 
     # TODO this gets the line height from the default font
     # while entire texts can be in the fallback font
-    ctx.set_font_face(faceList[0]);
+    ctx.set_font_face(faceList[0])
     ctx.set_font_size(size + dsizes[ttfNames[0]])
     (_, _, linespacing, _, _) = ctx.font_extents()
 
@@ -124,11 +126,11 @@ def generate_font(outname, ttfNames, loadopts, size, renderstyle, dsizes):
     #for c in chars:
     for c in range(0x20, 0xFFFE):
         for i in range(len(indexList)):
-            idx = indexList[i](unichr(c))
+            idx = indexList[i](chr(c))
             if c == 0xFFFD and idx == 0: # use "?" if the missing-glyph glyph is missing
                 idx = indexList[i]("?")
             if idx:
-                glyphs.append(Glyph(ctx, renderstyle, unichr(c), idx, faceList[i], size + dsizes[ttfNames[i]]))
+                glyphs.append(Glyph(ctx, renderstyle, chr(c), idx, faceList[i], size + dsizes[ttfNames[i]]))
                 break
 
     # Sort by decreasing height (tie-break on decreasing width)
@@ -139,7 +141,7 @@ def generate_font(outname, ttfNames, loadopts, size, renderstyle, dsizes):
     for h in [32, 64, 128, 256, 512, 1024, 2048, 4096]:
         sizes.append((h, h))
         sizes.append((h*2, h))
-    sizes.sort(key = lambda (w, h): (w*h, max(w, h))) # prefer smaller and squarer
+    sizes.sort(key = lambda w_h: (w_h[0]*w_h[1], max(w_h[0], w_h[1]))) # prefer smaller and squarer
 
     for w, h in sizes:
         try:
@@ -154,7 +156,7 @@ def generate_font(outname, ttfNames, loadopts, size, renderstyle, dsizes):
 
         ctx, surface = setup_context(w, h, renderstyle)
         for g in glyphs:
-			 g.render(ctx)
+            g.render(ctx)
         surface.write_to_png("%s.png" % outname)
 
         # Output the .fnt file with all the glyph positions etc
@@ -184,7 +186,7 @@ def generate_font(outname, ttfNames, loadopts, size, renderstyle, dsizes):
         fnt.close()
 
         return
-    print "Failed to fit glyphs in texture"
+    print("Failed to fit glyphs in texture")
 
 filled = { "fill": [(1, 1, 1, 1)] }
 stroked1 = { "colour": True, "stroke": [((0, 0, 0, 1), 2.0), ((0, 0, 0, 1), 2.0)], "fill": [(1, 1, 1, 1)] }
@@ -230,5 +232,5 @@ fonts = (
 )
 
 for (name, (fontnames, loadopts), size, style) in fonts:
-    print "%s..." % name
+    print("%s..." % name)
     generate_font("../../../binaries/data/mods/mod/fonts/%s" % name, fontnames, loadopts, size, style, dsizes)

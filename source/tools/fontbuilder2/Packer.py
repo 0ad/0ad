@@ -176,7 +176,7 @@ class CygonRectanglePacker(RectanglePacker):
             # rectangle at its current placement. We cannot put the rectangle
             # any lower than this without overlapping the other rectangles.
             highest = self.heightSlices[leftSliceIndex].y
-            for index in xrange(leftSliceIndex + 1, rightSliceIndex):
+            for index in range(leftSliceIndex + 1, rightSliceIndex):
                 if self.heightSlices[index].y > highest:
                     highest = self.heightSlices[index].y
  
