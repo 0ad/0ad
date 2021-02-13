@@ -2,15 +2,8 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="palisade rocks fort">
-      <animations>
-        <animation event="0.5" load="0" name="attack_ranged" speed="100"/>
-      </animations>
+    <variant frequency="100" name="palisade rocks fort" file="structures/defensive_building.xml">
       <mesh>props/palisade_rocks_fort.dae</mesh>
-      <props>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
-      </props>
       <textures>
         <texture file="props/palisade_main.png" name="baseTex"/>
         <texture file="props/palisade_main_norm.png" name="normTex"/>

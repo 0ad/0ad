@@ -2,10 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Gaullic Stable">
-      <animations>
-        <animation event="0.5" load="0.0" name="attack_ranged" speed="100"/>
-      </animations>
+    <variant frequency="100" name="Gaullic Stable" file="structures/defensive_building.xml">
       <mesh>structural/gaul_stable.dae</mesh>
       <props>
         <prop actor="props/structures/gauls/stable_nature.xml" attachpoint="root"/>
@@ -16,8 +13,6 @@
         <prop actor="props/structures/gauls/stable_ladder.xml" attachpoint="ladder" />
         <prop actor="props/structures/gauls/stable_shields.xml" attachpoint="root"/>
         <prop actor="props/structures/gauls/stable_water.xml" attachpoint="root"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
         <prop actor="props/structures/celts/stable_horse_a.xml" attachpoint="horse" maxheight="0" minheight="-20"/>
         <prop actor="props/structures/celts/stable_horse_b.xml" attachpoint="horse_1" maxheight="0" minheight="-20"/>
         <prop actor="props/structures/celts/stable_horse_c.xml" attachpoint="horse_2" maxheight="0" minheight="-20"/>

@@ -2,18 +2,13 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="gaul outpost a_2">
-      <animations>
-        <animation event="0.5" load="0" name="attack_ranged" speed="100"/>
-      </animations>
+    <variant frequency="1" name="gaul outpost a_2" file="structures/defensive_building.xml">
       <mesh>structural/gaul_scout_tower_2.dae</mesh>
       <props>
         <prop actor="props/structures/gauls/outpost_windows.xml" attachpoint="root"/>
         <prop actor="props/structures/gauls/outpost_door.xml" attachpoint="root"/>
         <prop actor="props/structures/gauls/scout_tower_b_2_roof.xml" attachpoint="root"/>
         <prop actor="props/structures/gauls/outpost_shields.xml" attachpoint="root"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
       </props>
       <textures>
         <texture file="structural/celt_struct_1.dds" name="baseTex"/>
@@ -22,7 +17,7 @@
         <texture file="structural/ao/gaul_scout_tower_2_AO.png" name="aoTex"/>
       </textures>
     </variant>
-    <variant frequency="0" name="gaul outpost a">
+    <variant frequency="0" name="gaul outpost a" file="structures/defensive_building.xml">
       <animations>
         <animation event="0.5" load="0" name="attack_ranged" speed="100"/>
       </animations>
@@ -31,8 +26,6 @@
         <prop actor="props/structures/gauls/outpost_windows.xml" attachpoint="root"/>
         <prop actor="props/structures/gauls/outpost_door.xml" attachpoint="root"/>
         <prop actor="props/structures/gauls/outpost_shields.xml" attachpoint="root"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
       </props>
       <textures>
         <texture file="structural/celt_struct_1.dds" name="baseTex"/>
@@ -41,17 +34,12 @@
         <texture file="structural/ao/gaul_scout_tower.png" name="aoTex"/>
       </textures>
     </variant>
-    <variant frequency="0" name="gaul outpost b">
-      <animations>
-        <animation event="0.5" load="0" name="attack_ranged" speed="100"/>
-      </animations>
+    <variant frequency="0" name="gaul outpost b" file="structures/defensive_building.xml">
       <mesh>structural/gaul_outpost2.dae</mesh>
       <props>
         <prop actor="props/structures/gauls/outpost2_windows.xml" attachpoint="root"/>
         <prop actor="props/structures/gauls/outpost2_shields.xml" attachpoint="root"/>
         <prop actor="props/structures/gauls/outpost2_door.xml" attachpoint="root"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
       </props>
       <textures>
         <texture file="structural/celt_struct_1.dds" name="baseTex"/>
@@ -60,18 +48,13 @@
         <texture file="structural/ao/gaul_scout_tower2.png" name="aoTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="gaul outpost b_2">
-      <animations>
-        <animation event="0.5" load="0" name="attack_ranged" speed="100"/>
-      </animations>
+    <variant frequency="1" name="gaul outpost b_2" file="structures/defensive_building.xml">
       <mesh>structural/gaul_scout_tower_b_2.dae</mesh>
       <props>
         <prop actor="props/structures/gauls/outpost2_windows.xml" attachpoint="root"/>
         <prop actor="props/structures/gauls/outpost2_shields.xml" attachpoint="root"/>
         <prop actor="props/structures/gauls/outpost2_door.xml" attachpoint="root"/>
         <prop actor="props/structures/gauls/scout_tower_b_2_roof.xml" attachpoint="root"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
       </props>
       <textures>
         <texture file="structural/celt_struct_1.dds" name="baseTex"/>

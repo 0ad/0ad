@@ -2,10 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Briton Civic Center">
-      <animations>
-        <animation event="0.5" load="0.0" name="attack_ranged" speed="100"/>
-      </animations>
+    <variant frequency="1" name="Briton Civic Center" file="structures/defensive_building.xml">
       <mesh>structural/brit_civic_centre_struct1.dae</mesh>
       <props>
         <prop actor="props/structures/britons/civic_centre_props_1.xml" attachpoint="root"/>
@@ -13,8 +10,6 @@
         <prop actor="props/structures/britons/civic_centre_wood_c.xml" attachpoint="root"/>
         <prop actor="props/structures/britons/civic_centre_roof.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/gravel_5x5.xml" attachpoint="root"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
         <prop actor="particle/smoke_light_delay.xml" attachpoint="smoke"/>
       </props>
       <textures>

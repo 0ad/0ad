@@ -2,14 +2,12 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Briton Small Tower">
+    <variant frequency="1" name="Briton Small Tower" file="structures/defensive_building.xml">
       <animations>
         <animation event="0.5" load="0" name="attack_ranged" speed="100"/>
       </animations>
       <mesh>structural/brit_wooden_tower.dae</mesh>
       <props>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
         <prop actor="props/structures/celts/kennel_mud.xml" attachpoint="root"/>
       </props>
       <textures>
@@ -40,6 +38,7 @@
   </group>
   <group>
     <variant frequency="1" name="alive"/>
+    <variant file="structures/destruction_small.xml"/>
   </group>
   <material>player_trans_ao_parallax_spec.xml</material>
 </actor>
