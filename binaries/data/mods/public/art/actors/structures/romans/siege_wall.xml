@@ -4,17 +4,13 @@
   <group>
     <variant frequency="1" name="roman siege wall">
       <mesh>structural/rome_siege_wall.dae</mesh>
-      <textures><texture file="structural/rome_special_1.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="structural/rome_special_1.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>
     <variant name="alive" frequency="1"/>
-    <variant name="death">
-      <props>
-        <prop actor="particle/destruction_smoke_med.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_med.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_med.xml" attachpoint="root"/>
-      </props>
-    </variant>
+    <variant file="structures/destruction_medium.xml"/>
   </group>
 </actor>

@@ -25,12 +25,8 @@
   </group>
   <group>
     <variant name="alive" frequency="1"/>
-    <variant name="death">
+    <variant file="structures/destruction_medium.xml">
       <props>
-        <prop attachpoint="garrisoned"/>
-        <prop actor="particle/destruction_smoke_large.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_large.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_large_gray.xml" attachpoint="root"/>
         <prop actor="props/structures/romans/rome_temple_big_statues.xml" attachpoint="root"/>
       </props>
     </variant>

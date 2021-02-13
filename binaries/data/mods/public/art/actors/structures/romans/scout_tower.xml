@@ -2,14 +2,12 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Base">
-      <animations>
-        <animation event="0.5" load="0.0" name="attack_ranged" speed="100"/>
-      </animations>
+    <variant frequency="1" name="Base" file="structures/defensive_building.xml">
       <mesh>structural/rome_tower.dae</mesh>
       <props>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
+        <prop actor="props/structures/romans/rome_tower_wood.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
+        <prop actor="props/flora/bush_tempe_underbrush.xml" attachpoint="root"/>
       </props>
       <textures>
         <texture file="structural/rome_struct_2.png" name="baseTex"/>
@@ -28,13 +26,7 @@
         <prop actor="props/flora/bush_tempe_underbrush.xml" attachpoint="root"/>
       </props>
     </variant>
-    <variant name="no ivy" frequency="1">
-      <props>
-        <prop actor="props/structures/romans/rome_tower_wood.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
-        <prop actor="props/flora/bush_tempe_underbrush.xml" attachpoint="root"/>
-      </props>
-    </variant>
+    <variant name="no ivy" frequency="1"/>
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
@@ -58,14 +50,10 @@
   </group>
   <group>
     <variant name="alive" frequency="1"/>
-    <variant name="death">
+    <variant file="structures/destruction_small.xml">
       <props>
-        <prop attachpoint="garrisoned"/>
-        <prop actor="particle/destruction_smoke_small.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_small_gray.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
         <prop actor="props/structures/romans/rome_tower_wood.xml" attachpoint="root"/>
+        <prop actor="props/flora/bush_tempe_underbrush.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
