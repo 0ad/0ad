@@ -22,7 +22,8 @@ ChatMessageFormatSimulation.attack = class
 				"attacker": colorizePlayernameByID(msg.attacker)
 			}),
 			"callback": ((entityId, position) => function() {
-				if (GetEntityState(entityId))
+				let entState = entityId && GetEntityState(entityId);
+				if (entState && hasClass(entState, "Unit"))
 					setCameraFollow(entityId);
 				else
 					Engine.SetCameraTarget(position.x, position.y, position.z);
