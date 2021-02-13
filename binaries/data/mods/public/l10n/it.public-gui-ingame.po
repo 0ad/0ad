@@ -21,6 +21,7 @@
 # Fabrizio Morotti <famorot@tin.it>, 2016-2017
 # George Lungu <lungugeorge88@gmail.com>, 2018
 # giangy <giancarlo.moi@tiscali.it>, 2014
+# Gianluca Luparini <gianlucalup@gmail.com>, 2021
 # Giuseppe D'Addio <giuseppinoino@virgilio.it>, 2019
 # Italang, 2019
 # j4nsen <enrico.meneguzzi@gmail.com>, 2013
@@ -49,8 +50,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-29 14:56+0000\n"
-"PO-Revision-Date: 2021-01-29 17:00+0000\n"
-"Last-Translator: Stanislas Dolcini <stan@wildfiregames.com>\n"
+"PO-Revision-Date: 2021-02-10 22:55+0000\n"
+"Last-Translator: Gianluca Luparini <gianlucalup@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1211,8 +1212,8 @@ msgstr "%(changer)s diminuisce il limite a %(change)s."
 #: gui/session/selection_panels_helpers.js:140
 msgid "Could only be constructed once."
 msgid_plural "Could only be constructed %(limit)s times."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Può essere costruito solo una volta."
+msgstr[1] "Può essere costruito solo %(limit)s volte."
 
 #: gui/session/selection_panels_helpers.js:144
 msgid "Can be constructed only once."
@@ -1228,8 +1229,8 @@ msgstr[1] "Può essere costruito %(count)s altre volte."
 #: gui/session/selection_panels_helpers.js:153
 msgid "Could only be trained once."
 msgid_plural "Could only be trained %(limit)s times."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Può essere addestrato solo una volta."
+msgstr[1] "Può essere addestrato solo %(limit)s volte."
 
 #: gui/session/selection_panels_helpers.js:157
 msgid "Can be trained only once."
@@ -1245,8 +1246,8 @@ msgstr[1] "Può essere addestrato altre %(count)s volte."
 #: gui/session/selection_panels_helpers.js:166
 msgid "Could only be created once."
 msgid_plural "Could only be created %(limit)s times."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Può essere creato solo una volta."
+msgstr[1] "Può essere creato solo %(limit)s volte."
 
 #: gui/session/selection_panels_helpers.js:170
 msgid "Can be created only once."

@@ -10,13 +10,14 @@
 # Bogdan Mințoi <mintoi.bogdan@gmail.com>, 2015
 # Raz Taz <qvovadis@yahoo.com>, 2016
 # Robert <roberto_asasinul_2006@yahoo.com>, 2018
+# Stefan Bayreuther <stefan-bayreuther@web.de>, 2021
 # Vultur David <david1989mail@yahoo.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-01-22 08:36+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-02-11 13:47+0000\n"
+"Last-Translator: Stefan Bayreuther <stefan-bayreuther@web.de>\n"
 "Language-Team: Romanian (http://www.transifex.com/wildfire-games/0ad/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -158,7 +159,7 @@ msgstr "Trimite un mesaj în chat despre tine. Exemplu: /me înot."
 #. Translation: Chat command
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:149
 msgid "/me"
-msgstr ""
+msgstr "/eu"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:153
 msgid ""
@@ -169,7 +170,7 @@ msgstr "Trimite un text ca mesaj în chat ( chiar dacă începe cu '/' ). Exempl
 #. Translation: Chat command
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:156
 msgid "/say"
-msgstr ""
+msgstr "/spune"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:160
 msgid "Clear all chat scrollback."
@@ -273,7 +274,7 @@ msgstr "== %(message)s"
 
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageEvents.js:55
 msgid "Connected."
-msgstr ""
+msgstr "Conectat."
 
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageEvents.js:56
 msgid "Disconnected."
@@ -282,7 +283,7 @@ msgstr "Deconectat"
 #. Translation: Caption for system notifications shown in the chat panel
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageFormat.js:25
 msgid "System:"
-msgstr ""
+msgstr "Sistem:"
 
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageFormat.js:32
 #, javascript-format
@@ -350,7 +351,7 @@ msgstr ""
 #: gui/lobby/LobbyPage/GameDetails.js:65
 msgctxt "victory condition"
 msgid "Endless Game"
-msgstr ""
+msgstr "Joc infinit"
 
 #: gui/lobby/LobbyPage/GameDetails.js:117
 #, javascript-format

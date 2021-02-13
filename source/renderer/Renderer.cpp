@@ -926,13 +926,17 @@ void CRenderer::ComputeReflectionCamera(CCamera& camera, const CBoundingBoxAlign
 {
 	WaterManager& wm = m->waterManager;
 
-	ENSURE(m_ViewCamera.GetProjectionType() == CCamera::PERSPECTIVE);
-	float fov = m_ViewCamera.GetFOV();
-
-	// Expand fov slightly since ripples can reflect parts of the scene that
-	// are slightly outside the normal camera view, and we want to avoid any
-	// noticeable edge-filtering artifacts
-	fov *= 1.05f;
+	CMatrix3D projection;
+	if (m_ViewCamera.GetProjectionType() == CCamera::PERSPECTIVE)
+	{
+		const float aspectRatio = 1.0f;
+		// Expand fov slightly since ripples can reflect parts of the scene that
+		// are slightly outside the normal camera view, and we want to avoid any
+		// noticeable edge-filtering artifacts
+		projection.SetPerspective(m_ViewCamera.GetFOV() * 1.05f, aspectRatio, m_ViewCamera.GetNearPlane(), m_ViewCamera.GetFarPlane());
+	}
+	else
+		projection = m_ViewCamera.GetProjection();
 
 	camera = m_ViewCamera;
 
@@ -942,7 +946,7 @@ void CRenderer::ComputeReflectionCamera(CCamera& camera, const CBoundingBoxAlign
 	// the whole screen despite being rendered into a square, and cover slightly more
 	// of the view so we can see wavy reflections of slightly off-screen objects.
 	camera.m_Orientation.Scale(1, -1, 1);
-	camera.m_Orientation.Translate(0, 2*wm.m_WaterHeight, 0);
+	camera.m_Orientation.Translate(0, 2 * wm.m_WaterHeight, 0);
 	camera.UpdateFrustum(scissor);
 	// Clip slightly above the water to improve reflections of objects on the water
 	// when the reflections are distorted.
@@ -954,27 +958,30 @@ void CRenderer::ComputeReflectionCamera(CCamera& camera, const CBoundingBoxAlign
 	vp.m_X = 0;
 	vp.m_Y = 0;
 	camera.SetViewPort(vp);
-	camera.SetPerspectiveProjection(m_ViewCamera.GetNearPlane(), m_ViewCamera.GetFarPlane(), fov);
+	camera.SetProjection(projection);
 	CMatrix3D scaleMat;
-	scaleMat.SetScaling(m_Height/float(std::max(1, m_Width)), 1.0f, 1.0f);
+	scaleMat.SetScaling(m_Height / static_cast<float>(std::max(1, m_Width)), 1.0f, 1.0f);
 	camera.SetProjection(scaleMat * camera.GetProjection());
 
 	CVector4D camPlane(0, 1, 0, -wm.m_WaterHeight + 0.5f);
 	SetObliqueFrustumClipping(camera, camPlane);
-
 }
 
 void CRenderer::ComputeRefractionCamera(CCamera& camera, const CBoundingBoxAligned& scissor) const
 {
 	WaterManager& wm = m->waterManager;
 
-	ENSURE(m_ViewCamera.GetProjectionType() == CCamera::PERSPECTIVE);
-	float fov = m_ViewCamera.GetFOV();
-
-	// Expand fov slightly since ripples can reflect parts of the scene that
-	// are slightly outside the normal camera view, and we want to avoid any
-	// noticeable edge-filtering artifacts
-	fov *= 1.05f;
+	CMatrix3D projection;
+	if (m_ViewCamera.GetProjectionType() == CCamera::PERSPECTIVE)
+	{
+		const float aspectRatio = 1.0f;
+		// Expand fov slightly since ripples can reflect parts of the scene that
+		// are slightly outside the normal camera view, and we want to avoid any
+		// noticeable edge-filtering artifacts
+		projection.SetPerspective(m_ViewCamera.GetFOV() * 1.05f, aspectRatio, m_ViewCamera.GetNearPlane(), m_ViewCamera.GetFarPlane());
+	}
+	else
+		projection = m_ViewCamera.GetProjection();
 
 	camera = m_ViewCamera;
 
@@ -991,9 +998,9 @@ void CRenderer::ComputeRefractionCamera(CCamera& camera, const CBoundingBoxAlign
 	vp.m_X = 0;
 	vp.m_Y = 0;
 	camera.SetViewPort(vp);
-	camera.SetPerspectiveProjection(m_ViewCamera.GetNearPlane(), m_ViewCamera.GetFarPlane(), fov);
+	camera.SetProjection(projection);
 	CMatrix3D scaleMat;
-	scaleMat.SetScaling(m_Height/float(std::max(1, m_Width)), 1.0f, 1.0f);
+	scaleMat.SetScaling(m_Height / static_cast<float>(std::max(1, m_Width)), 1.0f, 1.0f);
 	camera.SetProjection(scaleMat * camera.GetProjection());
 }
 

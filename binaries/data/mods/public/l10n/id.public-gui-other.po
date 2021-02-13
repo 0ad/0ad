@@ -4,6 +4,7 @@
 # project.
 # Translators:
 # azayrahmad <azayrahmad@gmail.com>, 2014
+# Dabiq 1441 <dlc39hw3eh@just4fun.me>, 2021
 # Dhemas E. Rilian N. <dhemaser@gmail.com>, 2017
 # Muhammad Furqon Abrori <furqonklondigizoid@gmail.com>, 2016
 # Joshua Randiny <jrandiny2@gmail.com>, 2016
@@ -17,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-29 14:56+0000\n"
-"PO-Revision-Date: 2021-02-08 22:58+0000\n"
+"PO-Revision-Date: 2021-02-12 06:11+0000\n"
 "Last-Translator: Dabiq 1441 <dlc39hw3eh@just4fun.me>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
@@ -175,7 +176,7 @@ msgstr "Permainan tak berujung"
 
 #: gui/common/gamedescription.js:189
 msgid "No winner will be determined, even if everyone is defeated."
-msgstr ""
+msgstr "Tidak ada pemenang yang akan ditentukan, bahkan jika semua orang dikalahkan."
 
 #: gui/common/gamedescription.js:202
 #, javascript-format
@@ -310,17 +311,17 @@ msgstr "Mode Nomaden"
 
 #: gui/common/gamedescription.js:345
 msgid "Civic Centers"
-msgstr ""
+msgstr "Pusat Peradaban"
 
 #: gui/common/gamedescription.js:348
 msgid ""
 "Players start with only few units and have to find a suitable place to build"
 " their city."
-msgstr ""
+msgstr "Pemain mulai dengan hanya beberapa unit dan harus menemukan tempat yang cocok untuk membangun kota mereka."
 
 #: gui/common/gamedescription.js:349
 msgid "Players start with a Civic Center."
-msgstr ""
+msgstr "Pemain mulai dengan Pusat Peradaban"
 
 #: gui/common/gamedescription.js:354
 msgid "Starting Resources"
@@ -361,7 +362,7 @@ msgstr "Dimatikan"
 #: gui/common/gamedescription.js:393
 msgctxt "treasures"
 msgid "As defined by the map."
-msgstr ""
+msgstr "Seperti yang didefinisikan oleh peta."
 
 #: gui/common/gamedescription.js:397
 msgid "Revealed Map"
@@ -433,15 +434,15 @@ msgstr "Koneksi buruk dengan %(player)s (%(milliseconds)sms)"
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
 " by a firewall, or anti-virus software."
-msgstr ""
+msgstr "Hal ini sering disebabkan oleh port UDP 20595 tidak diteruskan di sisi host, oleh firewall, atau perangkat lunak anti-virus."
 
 #: gui/common/network.js:67
 msgid "The host has ended the game."
-msgstr ""
+msgstr "Host telah mengakhiri pertandingan."
 
 #: gui/common/network.js:68
 msgid "Incorrect network protocol version."
-msgstr ""
+msgstr "Versi protokol jaringan keliru."
 
 #: gui/common/network.js:69
 msgid "Game is loading, please try again later."
@@ -461,7 +462,7 @@ msgstr "Anda telah dibanned."
 
 #: gui/common/network.js:73
 msgid "Player name in use. If you were disconnected, retry in few seconds."
-msgstr ""
+msgstr "Nama pemain sedang digunakan. Jika Anda terputus, coba lagi dalam beberapa detik."
 
 #: gui/common/network.js:74
 msgid "Server full."
@@ -469,31 +470,31 @@ msgstr "Server penuh."
 
 #: gui/common/network.js:75
 msgid "Secure lobby authentication failed. Join via lobby."
-msgstr ""
+msgstr "Otentikasi lobi aman gagal. Bergabunglah melalui lobi."
 
 #: gui/common/network.js:76
 msgid "Error: Server failed to allocate a unique client identifier."
-msgstr ""
+msgstr "Kesalahan: Server gagal mengalokasikan pengenal klien unik."
 
 #: gui/common/network.js:77
 msgid "Error: Client commands were ready for an unexpected game turn."
-msgstr ""
+msgstr "Kesalahan: Perintah klien siap untuk giliran permainan yang tidak terduga."
 
 #: gui/common/network.js:78
 msgid "Error: Client simulated an unexpected game turn."
-msgstr ""
+msgstr "Kesalahan: Klien mensimulasikan giliran permainan yang tidak terduga."
 
 #: gui/common/network.js:79
 msgid "Password is invalid."
-msgstr ""
+msgstr "Kata sandi tidak valid."
 
 #: gui/common/network.js:80
 msgid "Could not find an unused port for the enet STUN client."
-msgstr ""
+msgstr "Tidak dapat menemukan port yang tidak digunakan untuk klien enet STUN."
 
 #: gui/common/network.js:81
 msgid "Could not find the STUN endpoint."
-msgstr ""
+msgstr "Tidak dapat menemukan titik akhir STUN."
 
 #: gui/common/network.js:84
 #, javascript-format
@@ -594,7 +595,7 @@ msgstr "Perperangan"
 msgid ""
 "A map with a predefined landscape and number of players. Freely select the "
 "other game settings."
-msgstr ""
+msgstr "Peta dengan lanskap yang telah ditentukan dan jumlah pemain.  Pilih pengaturan game lainnya dengan bebas."
 
 #: gui/common/settings.js:182
 msgctxt "map"
@@ -648,7 +649,7 @@ msgstr "Standar"
 #: gui/common/settings.js:400
 msgctxt "population capacity addendum"
 msgid "(world)"
-msgstr ""
+msgstr "(dunia)"
 
 #: gui/common/settings.js:401 gui/common/settings.js:405
 msgctxt "population capacity"
@@ -713,11 +714,11 @@ msgstr ""
 
 #: gui/common/tooltips.js:200
 msgid "Resistance:"
-msgstr ""
+msgstr "Ketahanan:"
 
 #: gui/common/tooltips.js:211
 msgid "Damage:"
-msgstr ""
+msgstr "Kerusakan:"
 
 #: gui/common/tooltips.js:214 gui/common/tooltips.js:234
 #, javascript-format
@@ -731,7 +732,7 @@ msgstr ""
 
 #: gui/common/tooltips.js:232
 msgid "Capture:"
-msgstr ""
+msgstr "Menguasai:"
 
 #: gui/common/tooltips.js:236 gui/common/tooltips.js:376
 msgctxt "damage type"
@@ -740,7 +741,7 @@ msgstr "Merebut"
 
 #: gui/common/tooltips.js:251
 msgid "Status Effects:"
-msgstr ""
+msgstr "Efek Status:"
 
 #: gui/common/tooltips.js:256
 #, javascript-format
@@ -927,7 +928,7 @@ msgstr "Durasi"
 #: gui/common/tooltips.js:526
 msgctxt "status effect stackability"
 msgid "(extends)"
-msgstr ""
+msgstr "(meluas)"
 
 #: gui/common/tooltips.js:528
 msgctxt "status effect stackability"
@@ -937,7 +938,7 @@ msgstr "(menggantikan)"
 #: gui/common/tooltips.js:530
 msgctxt "status effect stackability"
 msgid "(stacks)"
-msgstr ""
+msgstr "(tumpukan)"
 
 #: gui/common/tooltips.js:532
 #, javascript-format
@@ -988,24 +989,24 @@ msgstr "Per Unit"
 
 #: gui/common/tooltips.js:599
 msgid "Number of repairers:"
-msgstr ""
+msgstr "Jumlah tukang:"
 
 #: gui/common/tooltips.js:605
 msgid "Remaining repair time:"
-msgstr ""
+msgstr "Sisa waktu perbaikan:"
 
 #: gui/common/tooltips.js:609
 #, javascript-format
 msgid "Add another worker to speed up the repairs by %(second)s second."
 msgid_plural ""
 "Add another worker to speed up the repairs by %(second)s seconds."
-msgstr[0] ""
+msgstr[0] "Tambahkan pekerja lain untuk mempercepat perbaikan dengan %(second)s detik."
 
 #: gui/common/tooltips.js:621
 #, javascript-format
 msgid "Add a worker to finish the repairs in %(second)s second."
 msgid_plural "Add a worker to finish the repairs in %(second)s seconds."
-msgstr[0] ""
+msgstr[0] "Tambahkan pekerja untuk menyelesaikan perbaikan %(second)s detik."
 
 #: gui/common/tooltips.js:633
 msgid "Number of builders:"
@@ -1013,20 +1014,20 @@ msgstr "Jumlah pembangun:"
 
 #: gui/common/tooltips.js:639
 msgid "Remaining build time:"
-msgstr ""
+msgstr "Sisa waktu tempuh bangunan:"
 
 #: gui/common/tooltips.js:643
 #, javascript-format
 msgid "Add another worker to speed up the construction by %(second)s second."
 msgid_plural ""
 "Add another worker to speed up the construction by %(second)s seconds."
-msgstr[0] ""
+msgstr[0] "Tambahkan pekerja lain untuk mempercepat pembangunan %(second)s detik."
 
 #: gui/common/tooltips.js:655
 #, javascript-format
 msgid "Add a worker to finish the construction in %(second)s second."
 msgid_plural "Add a worker to finish the construction in %(second)s seconds."
-msgstr[0] ""
+msgstr[0] "Tambahkan pekerja untuk menyelesaikan konstruksi %(second)s detik."
 
 #: gui/common/tooltips.js:693 gui/common/tooltips.js:901
 #, javascript-format
@@ -1052,7 +1053,7 @@ msgstr ""
 
 #: gui/common/tooltips.js:750
 msgid "Resource Supply:"
-msgstr ""
+msgstr "Pasokan Sumber Daya:"
 
 #. Translation: Marks that a resource supply entity has an unending, infinite,
 #. supply of its
@@ -1063,7 +1064,7 @@ msgstr ""
 
 #: gui/common/tooltips.js:767
 msgid "Resource Trickle:"
-msgstr ""
+msgstr "Aliran Sumber Daya:"
 
 #: gui/common/tooltips.js:768
 #, javascript-format
@@ -1195,7 +1196,7 @@ msgstr ""
 
 #: gui/common/tooltips.js:1083
 msgid "Dropsite for:"
-msgstr ""
+msgstr "Dropsite untuk:"
 
 #. Translation: Appears in a tooltip to indicate that right-clicking the
 #. corresponding GUI
@@ -1242,11 +1243,11 @@ msgstr "Manajer Suara"
 
 #: gui/credits/texts/audio.jsonContent[0].Content[1].Subtitle
 msgid "Lead Composer"
-msgstr ""
+msgstr "Komposer Utama"
 
 #: gui/credits/texts/audio.jsonContent[0].Title
 msgid "Audio managers"
-msgstr ""
+msgstr "Manajer audio"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[10].Subtitle
 msgid "Viola, violin"
@@ -1254,7 +1255,7 @@ msgstr "Biola"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[1].Subtitle
 msgid "Additional music, percussion, djembe, sampling"
-msgstr ""
+msgstr "Musik tambahan, perkusi, djembe, sampling"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[2].Subtitle
 msgid "Additional music"
@@ -1270,7 +1271,7 @@ msgstr "Djembe"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[5].Subtitle
 msgid "Frame drum, darbuka, riq, toms"
-msgstr ""
+msgstr "Bingkai drum, darbuka, riq, tom"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[6].Subtitle
 msgid "Didgeridoo"
@@ -1286,7 +1287,7 @@ msgstr "Harpa Kelt"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[9].Subtitle
 msgid "Tin whistles"
-msgstr ""
+msgstr "Peluit timah"
 
 #: gui/credits/texts/audio.jsonContent[1].Title
 msgid "Music"
@@ -1307,7 +1308,7 @@ msgstr "Latin"
 
 #: gui/credits/texts/audio.jsonContent[3].Content[2].Subtitle
 msgid "Napatan"
-msgstr ""
+msgstr "Napatan"
 
 #: gui/credits/texts/audio.jsonContent[3].Content[3].Subtitle
 msgid "Persian"
@@ -1319,7 +1320,7 @@ msgstr "Suara"
 
 #: gui/credits/texts/audio.jsonTitle
 msgid "Audio"
-msgstr ""
+msgstr "Audio"
 
 #: gui/credits/texts/balancing.jsonContent[0].Subtitle
 #: gui/credits/texts/history.jsonContent[0].Subtitle
@@ -1328,7 +1329,7 @@ msgstr "Kepala"
 
 #: gui/credits/texts/balancing.jsonTitle
 msgid "Balancing"
-msgstr ""
+msgstr "Menyeimbangkan"
 
 #: gui/credits/texts/community.jsonTitle
 msgid "Community and Management"
@@ -1336,11 +1337,11 @@ msgstr "Komunitas dan Manajemen"
 
 #: gui/credits/texts/donators.jsonContent[0].Title
 msgid "Pledgie Drive 1"
-msgstr ""
+msgstr "Pledgie Drive 1"
 
 #: gui/credits/texts/donators.jsonContent[1].Title
 msgid "Pledgie Drive 2"
-msgstr ""
+msgstr "Pledgie Drive 2"
 
 #: gui/credits/texts/donators.jsonContent[2].Title
 msgid ""
@@ -1366,7 +1367,7 @@ msgstr "Program Peta Acak"
 
 #: gui/credits/texts/maps.jsonTitle
 msgid "Maps"
-msgstr ""
+msgstr "Peta"
 
 #: gui/credits/texts/programming.jsonContent[0].Title
 msgid "Programming managers"
@@ -1394,7 +1395,7 @@ msgstr "Pemimpin Proyek"
 
 #: gui/credits/texts/special.jsonContent[1].Content[2].Subtitle
 msgid "Co-Lead Designers"
-msgstr ""
+msgstr "Co-Lead Desainer"
 
 #: gui/credits/texts/special.jsonContent[1].Title
 msgid "Special thanks to:"
@@ -1423,17 +1424,17 @@ msgid ""
 "game. Beginners are advised to start by playing against a lower level AI "
 "(Sandbox or Very Easy). Change the AI level by clicking the gear icon next "
 "to the player you want to modify in the selection panel above."
-msgstr ""
+msgstr "Meski cukup mudah untuk pemain berpengalaman, level AI default cukup menantang bagi pemain baru yang belum menguasai mekanisme dasar permainan. Para pemula disarankan untuk memulai dengan bermain melawan AI level yang lebih rendah (Sandbox atau Sangat Mudah). Ubah level AI dengan mengklik ikon roda gigi di sebelah pemutar yang ingin Anda modifikasi pada panel pilihan di atas."
 
 #: gui/loadgame/SavegameDeleter.js:34
 #, javascript-format
 msgid "Delete the selected savegame using %(hotkey)s."
-msgstr ""
+msgstr "Hapus savegame yang dipilih menggunakan %(hotkey)s."
 
 #: gui/loadgame/SavegameDeleter.js:39 gui/replaymenu/replay_menu.js:203
 #, javascript-format
 msgid "Hold %(hotkey)s to skip the confirmation dialog while deleting."
-msgstr ""
+msgstr "Tahan %(hotkey)s untuk melewati dialog konfirmasi saat menghapus."
 
 #: gui/loadgame/SavegameDeleter.js:52 gui/loadgame/SavegameWriter.js:45
 #, javascript-format
@@ -1476,15 +1477,15 @@ msgstr "Muat"
 msgid ""
 "This savegame needs 0 A.D. version %(requiredVersion)s, while you are "
 "running version %(currentVersion)s."
-msgstr ""
+msgstr "Savegame ini membutuhkan versi 0 A.D. %(requiredVersion)s, sementara Anda menjalankan versi %(currentVersion)s."
 
 #: gui/loadgame/SavegameLoader.js:44
 msgid "This savegame needs an older version of 0 A.D."
-msgstr ""
+msgstr "Savegame ini membutuhkan versi lama 0 A.D."
 
 #: gui/loadgame/SavegameLoader.js:51
 msgid "This savegame needs a different sequence of mods:"
-msgstr ""
+msgstr "Savegame ini membutuhkan urutan mod yang berbeda:"
 
 #: gui/loadgame/SavegameLoader.js:55
 msgid "Do you still want to proceed?"
@@ -1530,7 +1531,7 @@ msgstr "Hapus"
 
 #: gui/loadgame/load.xml:(caption):64
 msgid "Filter compatible saved games"
-msgstr ""
+msgstr "Filter game tersimpan yang kompatibel"
 
 #: gui/loadgame/load.xml:(caption):74
 msgid "Players:"
@@ -1601,7 +1602,7 @@ msgstr "Terima"
 #: gui/options/options.js:95
 #, javascript-format
 msgid "Default: %(value)s"
-msgstr ""
+msgstr "Standar: %(value)s"
 
 #: gui/options/options.js:121
 #, javascript-format
@@ -1635,7 +1636,7 @@ msgstr "Mereset pengaturan akan menghapus semua pengaturan Anda yang tersimpan. 
 
 #: gui/options/options.js:351
 msgid "Some setting values are invalid! Are you sure you want to save them?"
-msgstr ""
+msgstr "Beberapa nilai pengaturan tidak valid! Anda yakin ingin menyimpannya?"
 
 #: gui/options/options.js:377
 msgid "You have unsaved changes, do you want to close this window?"
@@ -1647,11 +1648,11 @@ msgstr "Umum"
 
 #: gui/options/options.json[0].options[0].label
 msgid "Player name (single-player)"
-msgstr ""
+msgstr "Nama pemain (pemain tunggal)"
 
 #: gui/options/options.json[0].options[0].tooltip
 msgid "How you want to be addressed in single-player matches."
-msgstr ""
+msgstr "Bagaimana Anda ingin disapa dalam pertandingan pemain tunggal."
 
 #: gui/options/options.json[0].options[10].label
 msgid "Observer limit"
@@ -1659,23 +1660,23 @@ msgstr "Batas pengamat"
 
 #: gui/options/options.json[0].options[10].tooltip
 msgid "Prevent further observers from joining if the limit is reached."
-msgstr ""
+msgstr "Cegah pengamat lebih lanjut untuk bergabung jika batas tercapai."
 
 #: gui/options/options.json[0].options[11].label
 msgid "Chat timestamp"
-msgstr ""
+msgstr "Cap waktu obrolan"
 
 #: gui/options/options.json[0].options[11].tooltip
 msgid "Display the time at which a chat message was posted."
-msgstr ""
+msgstr "Tampilkan waktu di mana pesan obrolan diposting."
 
 #: gui/options/options.json[0].options[1].label
 msgid "Player name (multiplayer)"
-msgstr ""
+msgstr "Nama pemain (multipemain)"
 
 #: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in multiplayer matches (except lobby)."
-msgstr ""
+msgstr "Bagaimana Anda ingin disapa dalam pertandingan multipemain (kecuali lobi)."
 
 #: gui/options/options.json[0].options[2].label
 msgid "Background pause"
@@ -1683,7 +1684,7 @@ msgstr "Jeda latar belakang"
 
 #: gui/options/options.json[0].options[2].tooltip
 msgid "Pause single-player games when window loses focus."
-msgstr ""
+msgstr "Jeda game pemain tunggal saat jendela kehilangan fokus."
 
 #: gui/options/options.json[0].options[3].label
 msgid "Enable welcome screen"
@@ -1697,15 +1698,15 @@ msgstr "Jika dinonaktifkan, jendela sambutan akan tetap muncul sekali, saat ters
 
 #: gui/options/options.json[0].options[4].label
 msgid "Network warnings"
-msgstr ""
+msgstr "Peringatan Jaringan"
 
 #: gui/options/options.json[0].options[4].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
-msgstr ""
+msgstr "Tunjukkan pemain mana yang memiliki koneksi buruk di game multipemain."
 
 #: gui/options/options.json[0].options[5].label
 msgid "FPS overlay"
-msgstr ""
+msgstr "Tampilan FPS"
 
 #: gui/options/options.json[0].options[5].tooltip
 msgid "Show frames per second in top right corner."
@@ -1713,7 +1714,7 @@ msgstr "Tampilkan bingkai per detik di sudut kanan atas."
 
 #: gui/options/options.json[0].options[6].label
 msgid "Real time overlay"
-msgstr ""
+msgstr "Tampilan Waktu sebenarnya"
 
 #: gui/options/options.json[0].options[6].tooltip
 msgid "Show current system time in top right corner."
@@ -1721,7 +1722,7 @@ msgstr "Tampilkan waktu sistem sekarang di sudut kanan atas."
 
 #: gui/options/options.json[0].options[7].label
 msgid "Game time overlay"
-msgstr ""
+msgstr "Tampilan waktu Permainan"
 
 #: gui/options/options.json[0].options[7].tooltip
 msgid "Show current simulation time in top right corner."
@@ -1729,7 +1730,7 @@ msgstr "Tampilkan waktu simulasi sekarang di sudut kanan atas."
 
 #: gui/options/options.json[0].options[8].label
 msgid "Ceasefire time overlay"
-msgstr ""
+msgstr "Tampilan Waktu Gencatan Senjata"
 
 #: gui/options/options.json[0].options[8].tooltip
 msgid "Always show the remaining ceasefire time."
@@ -1737,7 +1738,7 @@ msgstr "Selalu perlihatkan sisa waktu gencata senjata."
 
 #: gui/options/options.json[0].options[9].label
 msgid "Late observer joins"
-msgstr ""
+msgstr "Pengamat terlambat bergabung"
 
 #: gui/options/options.json[0].options[9].list[0].label
 #: gui/options/options.json[3].options[5].list[0].label
@@ -1760,7 +1761,7 @@ msgstr "Dimatikan"
 msgid ""
 "Allow everybody or buddies only to join the game as observer after it "
 "started."
-msgstr ""
+msgstr "Izinkan semua orang atau teman hanya untuk bergabung dengan permainan sebagai pengamat setelah permainan dimulai."
 
 #: gui/options/options.json[1].label
 msgid "Graphics"
@@ -1776,7 +1777,7 @@ msgstr "Mulai 0 A.D. dalam mode jendela."
 
 #: gui/options/options.json[1].options[10].label
 msgid "Shadow filtering"
-msgstr ""
+msgstr "Penyaringan Bayangan"
 
 #: gui/options/options.json[1].options[10].tooltip
 msgid "Smooth shadows."
@@ -1788,7 +1789,7 @@ msgstr "Siluet unit"
 
 #: gui/options/options.json[1].options[11].tooltip
 msgid "Show outlines of units behind structures."
-msgstr ""
+msgstr "Tampilkan garis pinggir unit di belakang struktur."
 
 #: gui/options/options.json[1].options[12].label
 msgid "Particles"
@@ -1806,7 +1807,7 @@ msgstr "Efek air"
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
-msgstr ""
+msgstr "Saat MATI, gunakan pengaturan serendah mungkin untuk membuat air. Ini membuat pengaturan lain tidak relevan."
 
 #: gui/options/options.json[1].options[14].label
 msgid "High-quality water effects"
@@ -1824,15 +1825,15 @@ msgstr "Pantulan air"
 
 #: gui/options/options.json[1].options[15].tooltip
 msgid "Allow water to reflect a mirror image."
-msgstr ""
+msgstr "Biarkan air memantulkan bayangan cermin."
 
 #: gui/options/options.json[1].options[16].label
 msgid "Water refraction"
-msgstr ""
+msgstr "Pembiasan air"
 
 #: gui/options/options.json[1].options[16].tooltip
 msgid "Use a real water refraction map and not transparency."
-msgstr ""
+msgstr "Gunakan peta pembiasan air nyata dan bukan transparansi."
 
 #: gui/options/options.json[1].options[17].label
 msgid "Real water depth"
@@ -1840,15 +1841,15 @@ msgstr "Kedalaman air yang nyata"
 
 #: gui/options/options.json[1].options[17].tooltip
 msgid "Use actual water depth in rendering calculations."
-msgstr ""
+msgstr "Gunakan kedalaman air aktual dalam kalkulasi rendering."
 
 #: gui/options/options.json[1].options[18].label
 msgid "Smooth vision"
-msgstr ""
+msgstr "Penglihatan halus"
 
 #: gui/options/options.json[1].options[18].tooltip
 msgid "Lift darkness and fog of war smoothly."
-msgstr ""
+msgstr "Angkat kegelapan dan kabut perang dengan lancar."
 
 #: gui/options/options.json[1].options[19].label
 msgid "VSync"
@@ -1864,27 +1865,27 @@ msgstr "Utamakan GLSL"
 
 #: gui/options/options.json[1].options[1].tooltip
 msgid "Use OpenGL 2.0 shaders (recommended)."
-msgstr ""
+msgstr "Gunakan shader OpenGL 2.0 (disarankan)."
 
 #: gui/options/options.json[1].options[20].label
 msgid "FPS throttling in menus"
-msgstr ""
+msgstr "Pelambatan FPS dalam menu"
 
 #: gui/options/options.json[1].options[20].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in all menus. Set to maximum"
 " to disable throttling."
-msgstr ""
+msgstr "Untuk menghemat beban kerja CPU, percepat frekuensi render di semua menu. Setel ke maksimum untuk menonaktifkan pembatasan."
 
 #: gui/options/options.json[1].options[21].label
 msgid "FPS throttling in games"
-msgstr ""
+msgstr "Pelambatan FPS dalam game"
 
 #: gui/options/options.json[1].options[21].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."
-msgstr ""
+msgstr "Untuk menghemat beban kerja CPU, percepat frekuensi render dalam menjalankan game. Setel ke maksimum untuk menonaktifkan pembatasan."
 
 #: gui/options/options.json[1].options[2].label
 msgid "Fog"
@@ -1892,23 +1893,23 @@ msgstr "Kabut"
 
 #: gui/options/options.json[1].options[2].tooltip
 msgid "Enable fog."
-msgstr ""
+msgstr "Aktifkan Kabut"
 
 #: gui/options/options.json[1].options[3].label
 msgid "Post-processing"
-msgstr ""
+msgstr "Pasca-pemrosesan"
 
 #: gui/options/options.json[1].options[3].tooltip
 msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
-msgstr ""
+msgstr "Gunakan filter pasca-pemrosesan ruang layar (HDR, Bloom, DOF, dll)."
 
 #: gui/options/options.json[1].options[4].label
 msgid "Antialiasing"
-msgstr ""
+msgstr "Antialias"
 
 #: gui/options/options.json[1].options[4].list[0].tooltip
 msgid "Do not use antialiasing."
-msgstr ""
+msgstr "Jangan gunakan antialias."
 
 #: gui/options/options.json[1].options[4].list[1].label
 msgid "FXAA"
@@ -1916,47 +1917,47 @@ msgstr "FXAA"
 
 #: gui/options/options.json[1].options[4].list[1].tooltip
 msgid "Fast, but simple antialiasing."
-msgstr ""
+msgstr "Cepat, tapi antialias sederhana."
 
 #: gui/options/options.json[1].options[4].list[2].label
 msgid "MSAA (2×)"
-msgstr ""
+msgstr "MSAA (2×)"
 
 #: gui/options/options.json[1].options[4].list[2].tooltip
 msgid ""
 "Slow, but high-quality antialiasing, uses two samples per pixel. Supported "
 "for GL3.3+."
-msgstr ""
+msgstr "Antialiasing lambat, tetapi berkualitas tinggi, menggunakan dua sampel per piksel. Didukung untuk GL3.3+."
 
 #: gui/options/options.json[1].options[4].list[3].label
 msgid "MSAA (4×)"
-msgstr ""
+msgstr "MSAA (4×)"
 
 #: gui/options/options.json[1].options[4].list[3].tooltip
 msgid ""
 "Slow, but high-quality antialiasing, uses four samples per pixel. Supported "
 "for GL3.3+."
-msgstr ""
+msgstr "Antialiasing lambat, tetapi berkualitas tinggi, menggunakan empat sampel per piksel. Didukung untuk GL3.3+."
 
 #: gui/options/options.json[1].options[4].list[4].label
 msgid "MSAA (8×)"
-msgstr ""
+msgstr "MSAA (8×)"
 
 #: gui/options/options.json[1].options[4].list[4].tooltip
 msgid ""
 "Slow, but high-quality antialiasing, uses eight samples per pixel. Supported"
 " for GL3.3+."
-msgstr ""
+msgstr "Antialias lambat, tetapi berkualitas tinggi, menggunakan delapan sampel per piksel. Didukung untuk GL3.3+."
 
 #: gui/options/options.json[1].options[4].list[5].label
 msgid "MSAA (16×)"
-msgstr ""
+msgstr "MSAA (16×)"
 
 #: gui/options/options.json[1].options[4].list[5].tooltip
 msgid ""
 "Slow, but high-quality antialiasing, uses sixteen samples per pixel. "
 "Supported for GL3.3+."
-msgstr ""
+msgstr "Antialias lambat, tetapi berkualitas tinggi, menggunakan enam belas sampel per piksel. Didukung untuk GL3.3+."
 
 #: gui/options/options.json[1].options[4].tooltip
 msgid "Reduce aliasing effect on edges."
@@ -1964,23 +1965,23 @@ msgstr "Mengurangi efek aliasing pada sudut."
 
 #: gui/options/options.json[1].options[5].label
 msgid "Sharpening"
-msgstr ""
+msgstr "Penajaman"
 
 #: gui/options/options.json[1].options[5].list[0].tooltip
 msgid "Do not use sharpening."
-msgstr ""
+msgstr "Jangan gunakan penajaman."
 
 #: gui/options/options.json[1].options[5].list[1].label
 msgid "FidelityFX CAS"
-msgstr ""
+msgstr "FidelityFX CAS"
 
 #: gui/options/options.json[1].options[5].list[1].tooltip
 msgid "Contrast adaptive sharpening, a fast, contrast based sharpening pass."
-msgstr ""
+msgstr "Penajaman adaptif kontras, jalur penajaman berbasis kontras yang cepat."
 
 #: gui/options/options.json[1].options[5].tooltip
 msgid "Reduce blurry effects."
-msgstr ""
+msgstr "Kurangi efek buram."
 
 #: gui/options/options.json[1].options[6].label
 msgid "Sharpness factor"
@@ -2701,7 +2702,7 @@ msgstr "Sesuaikan pengaturan permainan."
 
 #: gui/pregame/MainMenuItems.js:166
 msgid "Hotkeys"
-msgstr ""
+msgstr "Hotkeys"
 
 #: gui/pregame/MainMenuItems.js:167
 msgid "Adjust hotkeys."

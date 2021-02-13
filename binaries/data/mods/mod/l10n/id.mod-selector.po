@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the Pyrogenesis - Mod Selector
 # project.
 # Translators:
+# Dabiq 1441 <dlc39hw3eh@just4fun.me>, 2021
 # e628d465dac42212314cccfedeb58a39_4bd0330 <da4c4a9c7424e7eb88624d82301cb7c1_147575>, 2014
 # Joshua Randiny <jrandiny2@gmail.com>, 2016
 # Joshua Randiny <jrandiny2@gmail.com>, 2014
@@ -12,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-12-26 15:10+0000\n"
-"PO-Revision-Date: 2020-08-01 03:45+0000\n"
-"Last-Translator: Muhammad Furqon Abrori <furqonklondigizoid@gmail.com>\n"
+"PO-Revision-Date: 2021-02-11 22:20+0000\n"
+"Last-Translator: Dabiq 1441 <dlc39hw3eh@just4fun.me>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,7 +27,7 @@ msgstr ""
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait…"
-msgstr ""
+msgstr "Pembukaan %(url)s\ndi browser web standar. Mohon tunggu…"
 
 #: gui/common/functions_msgbox.js:28
 msgid "Opening page"
@@ -35,22 +36,22 @@ msgstr "Halaman pembuka"
 #: gui/common/l10n.js:9
 msgctxt "filesize unit"
 msgid "B"
-msgstr ""
+msgstr "B"
 
 #: gui/common/l10n.js:10
 msgctxt "filesize unit"
 msgid "KiB"
-msgstr ""
+msgstr "KiB"
 
 #: gui/common/l10n.js:11
 msgctxt "filesize unit"
 msgid "MiB"
-msgstr ""
+msgstr "MiB"
 
 #: gui/common/l10n.js:12
 msgctxt "filesize unit"
 msgid "GiB"
-msgstr ""
+msgstr "GiB"
 
 #. Translation: For example: 123.4 KiB
 #: gui/common/l10n.js:33
@@ -98,40 +99,40 @@ msgstr "Aktif: %(mods)s"
 
 #: gui/modio/Disclaimer.txt:1
 msgid "0 A.D. Empires Ascendant mod.io Disclaimer"
-msgstr ""
+msgstr "0 A.D. Empires Ascendant mod.io Disclaimer"
 
 #: gui/modio/Disclaimer.txt:3
 msgid "Document Date: 2018-10-12"
-msgstr ""
+msgstr "Tanggal Dokumen: 2018-10-12"
 
 #: gui/modio/Disclaimer.txt:5
 msgid "You are about to connect to the mod.io online service."
-msgstr ""
+msgstr "Anda akan terhubung ke layanan online mod.io."
 
 #: gui/modio/Disclaimer.txt:6
 msgid ""
 "This service provides an easy way to download and install community-made "
 "mods and is provided by DBolical Pty Ltd, the company behind IndieDB and "
 "ModDB."
-msgstr ""
+msgstr "Layanan ini menyediakan cara mudah untuk mengunduh dan menginstal mod buatan komunitas dan disediakan oleh DBolical Pty Ltd, perusahaan di balik IndieDB dan ModDB."
 
 #: gui/modio/Disclaimer.txt:7
 msgid "The service is for users age 13 and over."
-msgstr ""
+msgstr "Layanan ini untuk pengguna berusia 13 tahun ke atas."
 
 #: gui/modio/Disclaimer.txt:9
 msgid ""
 "Wildfire Games has taken care to make this connection secure and reviewed "
 "the mods for security flaws, but cannot guarantee that this does not pose "
 "any risks."
-msgstr ""
+msgstr "Wildfire Games telah berhati-hati untuk membuat koneksi ini aman dan meninjau mod untuk kelemahan keamanan, tetapi tidak dapat menjamin bahwa ini tidak menimbulkan risiko apa pun."
 
 #: gui/modio/Disclaimer.txt:11
 msgid ""
 "By using the service, you understand that mod.io's Terms of Use and Privacy "
 "Policy apply and that Wildfire Games is not liable for any damages resulting"
 " from this service."
-msgstr ""
+msgstr "Dengan menggunakan layanan ini, Anda memahami bahwa Syarat Penggunaan dan Kebijakan Privasi mod.io berlaku dan bahwa Wildfire Games tidak bertanggung jawab atas segala kerusakan yang diakibatkan dari layanan ini."
 
 #: gui/modio/modio.js:80
 #, javascript-format
@@ -145,7 +146,7 @@ msgstr ""
 #: gui/modio/modio.js:83
 msgctxt "mod.io error message"
 msgid "Initialization Error"
-msgstr ""
+msgstr "Kesalahan Inisialisasi"
 
 #: gui/modio/modio.js:84 gui/modio/modio.js:95 gui/modio/modio.js:106
 msgid "Retry"

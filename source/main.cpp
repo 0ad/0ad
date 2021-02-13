@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -208,7 +208,14 @@ static InReaction MainInputHandler(const SDL_Event_* ev)
 		}
 		else if (hotkey == "bigscreenshot")
 		{
-			WriteBigScreenshot(L".bmp", 10);
+			int tiles = 4, tileWidth = 256, tileHeight = 256;
+			CFG_GET_VAL("screenshot.tiles", tiles);
+			CFG_GET_VAL("screenshot.tilewidth", tileWidth);
+			CFG_GET_VAL("screenshot.tileheight", tileHeight);
+			if (tiles > 0 && tileWidth > 0 && tileHeight > 0)
+				WriteBigScreenshot(L".bmp", tiles, tileWidth, tileHeight);
+			else
+				LOGWARNING("Invalid big screenshot size: tiles=%d tileWidth=%d tileHeight=%d", tiles, tileWidth, tileHeight);
 			return IN_HANDLED;
 		}
 		else if (hotkey == "togglefullscreen")

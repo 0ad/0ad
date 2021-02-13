@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # Copyright (C) 2015 Wildfire Games.
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy

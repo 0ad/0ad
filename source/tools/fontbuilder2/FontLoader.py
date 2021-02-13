@@ -47,7 +47,7 @@ def create_cairo_font_face_for_file (filename, faceindex=0, loadoptions=0):
     cairo_ctx = cairo.Context (_surface)
     cairo_t = PycairoContext.from_address(id(cairo_ctx)).ctx
 
-    if FT_Err_Ok != _freetype_so.FT_New_Face (_ft_lib, filename, faceindex, ctypes.byref(ft_face)):
+    if FT_Err_Ok != _freetype_so.FT_New_Face (_ft_lib, filename.encode('ascii'), faceindex, ctypes.byref(ft_face)):
         raise Exception("Error creating FreeType font face for " + filename)
 
     # create cairo font face for freetype face

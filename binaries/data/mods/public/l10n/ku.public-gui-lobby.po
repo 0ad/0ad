@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
+# Îslam Zinar <islamzinar@yandex.com>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-01-22 08:36+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-02-11 02:54+0000\n"
+"Last-Translator: Îslam Zinar <islamzinar@yandex.com>\n"
 "Language-Team: Kurdish (http://www.transifex.com/wildfire-games/0ad/language/ku/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,84 +20,84 @@ msgstr ""
 #: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(caption):28
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):61
 msgid "Back"
-msgstr ""
+msgstr "Paş"
 
 #: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(caption):32
 msgid "Update"
-msgstr ""
+msgstr "Nûvekirin"
 
 #: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(heading):17
 msgid "Rank"
-msgstr ""
+msgstr "Rêz"
 
 #: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(heading):20
 #: gui/lobby/LobbyPage/GameList.xml:(heading):12
 #: gui/lobby/LobbyPage/PlayerList.xml:(heading):15
 msgid "Name"
-msgstr ""
+msgstr "Nav"
 
 #: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(heading):23
 #: gui/lobby/LobbyPage/GameList.xml:(heading):27
 #: gui/lobby/LobbyPage/PlayerList.xml:(heading):18
 msgid "Rating"
-msgstr ""
+msgstr "Nirxandin"
 
 #: gui/lobby/LobbyPage/AnnouncementHandler.js:18
 msgid "Notice"
-msgstr ""
+msgstr "Baldarî"
 
 #: gui/lobby/LobbyPage/Buttons/BuddyButton.js:69
 msgid "Mark as Buddy"
-msgstr ""
+msgstr "Wekî Heval nîşan bikin"
 
 #: gui/lobby/LobbyPage/Buttons/BuddyButton.js:70
 msgid "Unmark as Buddy"
-msgstr ""
+msgstr "Nîşana Hevaltiyê Rake"
 
 #: gui/lobby/LobbyPage/Buttons/HostButton.js:10
 msgid "Host Game"
-msgstr ""
+msgstr "Host Game"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:40
 msgid "Your active mods do not match the mods of this game."
-msgstr ""
+msgstr "Modên weyên çalak bi modên vê lîstikê re li hev nayên."
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:42
 msgid "Do you want to switch to the mod selection page?"
-msgstr ""
+msgstr "Hûn dixwazin derbasê hilbijartina rûpela modê bibin? "
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:43
 msgid "Incompatible mods"
-msgstr ""
+msgstr "Modên ne li hevhatî "
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:52
 msgid "The game has already started. Do you want to join as observer?"
-msgstr ""
+msgstr "Lîstik zûde dest pê kiriye. Hûn dixwazin wekî çavdêr beşdarî bibin? "
 
 #. Translation: Join the game currently selected in the list.
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:104
 msgid "Join Game"
-msgstr ""
+msgstr "Têkeve Lîstikê"
 
 #: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(caption):12
 #: gui/lobby/LobbyPage/Buttons/LeaderboardButton.js:9
 msgid "Leaderboard"
-msgstr ""
+msgstr "Rêza Serokan"
 
 #: gui/lobby/LobbyPage/Buttons/ProfileButton.js:9
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):12
 msgid "Player Profile Lookup"
-msgstr ""
+msgstr "Lêgerîna Profîla Lîstikvan"
 
 #: gui/lobby/LobbyPage/Buttons/QuitButton.js:15
 msgctxt "previous page"
 msgid "Back"
-msgstr ""
+msgstr "Paş"
 
 #: gui/lobby/LobbyPage/Buttons/QuitButton.js:16
 msgctxt "previous page"
 msgid "Main Menu"
-msgstr ""
+msgstr "Menuya Serekê"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:32
 #, javascript-format
@@ -318,14 +319,14 @@ msgstr ""
 #: gui/lobby/LobbyPage/ConnectionHandler.js:63
 #: gui/prelobby/common/credentials/credentials.js:56
 msgid "No"
-msgstr ""
+msgstr "Na"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:44
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:54
 #: gui/lobby/LobbyPage/ConnectionHandler.js:63
 #: gui/prelobby/common/credentials/credentials.js:56
 msgid "Yes"
-msgstr ""
+msgstr "Erê"
 
 #. Translation: The number of players and observers in this game
 #: gui/lobby/LobbyPage/Game.js:298
@@ -361,7 +362,7 @@ msgstr ""
 #. Translation: Comma used to concatenate victory conditions
 #: gui/lobby/LobbyPage/GameDetails.js:124
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/lobby/LobbyPage/GameDetails.js:126
 msgid "Mods:"
@@ -509,7 +510,7 @@ msgstr ""
 
 #: gui/lobby/LobbyPage/ProfilePanel.js:113
 msgid "Player"
-msgstr ""
+msgstr "Lîstikvan"
 
 #: gui/lobby/LobbyPage/ProfilePanel.js:114
 msgid "Muted Player"
@@ -631,7 +632,7 @@ msgstr ""
 #: gui/prelobby/common/feedback/feedback.xml:(caption):10
 #: gui/prelobby/entrance/entrance.xml:(caption):30
 msgid "Cancel"
-msgstr ""
+msgstr "Betal"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:1
 msgid ""

@@ -298,11 +298,15 @@ void WriteScreenshot(const VfsPath& extension)
 
 
 
-// Similar to WriteScreenshot, but generates an image of size 640*tiles x 480*tiles.
-void WriteBigScreenshot(const VfsPath& extension, int tiles)
+// Similar to WriteScreenshot, but generates an image of size tileWidth*tiles x tileHeight*tiles.
+void WriteBigScreenshot(const VfsPath& extension, int tiles, int tileWidth, int tileHeight)
 {
 	// If the game hasn't started yet then use WriteScreenshot to generate the image.
-	if(g_Game == NULL){ WriteScreenshot(L".bmp"); return; }
+	if (g_Game == nullptr)
+	{
+		WriteScreenshot(L".bmp");
+		return;
+	}
 
 	// get next available numbered filename
 	// note: %04d -> always 4 digits, so sorting by filename works correctly.
@@ -313,10 +317,9 @@ void WriteBigScreenshot(const VfsPath& extension, int tiles)
 
 	// Slightly ugly and inflexible: Always draw 640*480 tiles onto the screen, and
 	// hope the screen is actually large enough for that.
-	const int tile_w = 640, tile_h = 480;
-	ENSURE(g_xres >= tile_w && g_yres >= tile_h);
+	ENSURE(g_xres >= tileWidth && g_yres >= tileHeight);
 
-	const int img_w = tile_w*tiles, img_h = tile_h*tiles;
+	const int img_w = tileWidth * tiles, img_h = tileHeight * tiles;
 	const int bpp = 24;
 	GLenum fmt = GL_RGB;
 	int flags = TEX_BOTTOM_UP;
@@ -331,7 +334,7 @@ void WriteBigScreenshot(const VfsPath& extension, int tiles)
 	}
 
 	const size_t img_size = img_w * img_h * bpp/8;
-	const size_t tile_size = tile_w * tile_h * bpp/8;
+	const size_t tile_size = tileWidth * tileHeight * bpp/8;
 	const size_t hdr_size = tex_hdr_size(filename);
 	void* tile_data = malloc(tile_size);
 	if(!tile_data)
@@ -340,7 +343,7 @@ void WriteBigScreenshot(const VfsPath& extension, int tiles)
 		return;
 	}
 	shared_ptr<u8> img_buf;
-	AllocateAligned(img_buf, hdr_size+img_size, maxSectorSize);
+	AllocateAligned(img_buf, hdr_size + img_size, maxSectorSize);
 
 	Tex t;
 	GLvoid* img = img_buf.get() + hdr_size;
@@ -356,8 +359,8 @@ void WriteBigScreenshot(const VfsPath& extension, int tiles)
 
 	// Resize various things so that the sizes and aspect ratios are correct
 	{
-		g_Renderer.Resize(tile_w, tile_h);
-		SViewPort vp = { 0, 0, tile_w, tile_h };
+		g_Renderer.Resize(tileWidth, tileHeight);
+		SViewPort vp = { 0, 0, tileWidth, tileHeight };
 		g_Game->GetView()->SetViewport(vp);
 	}
 
@@ -380,6 +383,7 @@ void WriteBigScreenshot(const VfsPath& extension, int tiles)
 	// Render each tile
 	CMatrix3D projection;
 	projection.SetIdentity();
+	const float aspectRatio = 1.0f * tileWidth / tileHeight;
 	for (int tile_y = 0; tile_y < tiles; ++tile_y)
 	{
 		for (int tile_x = 0; tile_x < tiles; ++tile_x)
@@ -387,7 +391,7 @@ void WriteBigScreenshot(const VfsPath& extension, int tiles)
 			// Adjust the camera to render the appropriate region
 			if (oldCamera.GetProjectionType() == CCamera::PERSPECTIVE)
 			{
-				projection.SetPerspectiveTile(oldCamera.GetFOV(), oldCamera.GetAspectRatio(), oldCamera.GetNearPlane(), oldCamera.GetFarPlane(), tiles, tile_x, tile_y);
+				projection.SetPerspectiveTile(oldCamera.GetFOV(), aspectRatio, oldCamera.GetNearPlane(), oldCamera.GetFarPlane(), tiles, tile_x, tile_y);
 			}
 			g_Game->GetView()->GetCamera()->SetProjection(projection);
 
@@ -398,12 +402,12 @@ void WriteBigScreenshot(const VfsPath& extension, int tiles)
 			RenderLogger(true);
 
 			// Copy the tile pixels into the main image
-			glReadPixels(0, 0, tile_w, tile_h, fmt, GL_UNSIGNED_BYTE, tile_data);
-			for (int y = 0; y < tile_h; ++y)
+			glReadPixels(0, 0, tileWidth, tileHeight, fmt, GL_UNSIGNED_BYTE, tile_data);
+			for (int y = 0; y < tileHeight; ++y)
 			{
-				void* dest = (char*)img + ((tile_y*tile_h + y) * img_w + (tile_x*tile_w)) * bpp/8;
-				void* src = (char*)tile_data + y * tile_w * bpp/8;
-				memcpy(dest, src, tile_w * bpp/8);
+				void* dest = static_cast<char*>(img) + ((tile_y * tileHeight + y) * img_w + (tile_x * tileWidth)) * bpp / 8;
+				void* src = static_cast<char*>(tile_data) + y * tileWidth * bpp / 8;
+				memcpy(dest, src, tileWidth * bpp / 8);
 			}
 		}
 	}

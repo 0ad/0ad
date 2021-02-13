@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -30,7 +30,7 @@ const wchar_t* ErrorString(int err);
 OsPath createDateIndexSubdirectory(const OsPath& parentDir);
 
 void WriteScreenshot(const VfsPath& extension);
-void WriteBigScreenshot(const VfsPath& extension, int tiles);
+void WriteBigScreenshot(const VfsPath& extension, int tiles = 4, int tileWidth = 640, int tileHeight = 480);
 
 Status tex_write(Tex* t, const VfsPath& filename);
 

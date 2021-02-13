@@ -4,6 +4,7 @@
 # project.
 # Translators:
 # azayrahmad <azayrahmad@gmail.com>, 2014-2015
+# Dabiq 1441 <dlc39hw3eh@just4fun.me>, 2021
 # Dedi Wahyudi <dedi.dkv@gmail.com>, 2017
 # e628d465dac42212314cccfedeb58a39_4bd0330 <da4c4a9c7424e7eb88624d82301cb7c1_147575>, 2014
 # Joshua Randiny <jrandiny2@gmail.com>, 2014-2015
@@ -15,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-01-22 08:36+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-02-11 22:17+0000\n"
+"Last-Translator: Dabiq 1441 <dlc39hw3eh@just4fun.me>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -71,7 +72,7 @@ msgstr "Modifikasi yang aktif tidak cocok dengan modifikasi di permainan ini."
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:42
 msgid "Do you want to switch to the mod selection page?"
-msgstr ""
+msgstr "Apakah Anda ingin beralih ke halaman pemilihan mod?"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:43
 msgid "Incompatible mods"
@@ -258,12 +259,12 @@ msgstr "%(nick)s sudah bukan moderator lagi"
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:152
 #, javascript-format
 msgid "%(nick)s changed the lobby subject to:"
-msgstr ""
+msgstr "%(nick)s mengubah subjek lobi menjadi:"
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:153
 #, javascript-format
 msgid "%(nick)s deleted the lobby subject."
-msgstr ""
+msgstr "%(nick)s menghapus subjek lobi."
 
 #. Translation: Chat status message
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageFormat.js:25
@@ -313,7 +314,7 @@ msgstr "DIKELUARKAN"
 
 #: gui/lobby/LobbyPage/ConnectionHandler.js:61
 msgid "You have been disconnected from the lobby. Do you want to reconnect?"
-msgstr ""
+msgstr "Anda telah terputus dari lobi. Apakah Anda ingin menyambungkan kembali?"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:53
 #: gui/lobby/LobbyPage/ConnectionHandler.js:62
@@ -673,7 +674,7 @@ msgid ""
 "players, moderators and developers to identify players they met before, "
 "communicate about the game, coordinate matches and enables moderators to "
 "enforce the Terms of Use."
-msgstr ""
+msgstr "Memiliki nama pemain yang unik adalah persyaratan untuk mendapatkan peringkat, untuk memungkinkan pemain, moderator, dan pengembang mengidentifikasi pemain yang mereka temui sebelumnya, berkomunikasi tentang permainan, mengoordinasikan pertandingan, dan memungkinkan moderator untuk menegakkan Ketentuan Penggunaan."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:9
 msgid ""
@@ -682,7 +683,7 @@ msgid ""
 " information (such as the real name) was disclosed on the Lobby Chat, other "
 "services of Wildfire Games or elsewhere in the public, or when the IP "
 "address is used to bring criminal proceedings."
-msgstr ""
+msgstr "Nama pemain berfungsi sebagai nama samaran.  Identitas (perorangan) pemain tidak diketahui oleh Wildfire Games, kecuali jika informasi yang dapat diidentifikasi secara pribadi (seperti nama asli) diungkapkan di Obrolan Lobi, layanan lain dari Wildfire Games atau di tempat lain di depan umum, atau ketika alamat IP  digunakan untuk membawa proses pidana."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:11
 msgid "[font=\"sans-bold-14\"]2. Password[/font]"
@@ -692,7 +693,7 @@ msgstr ""
 msgid ""
 "A player is authenticated using a password that the player chooses at the "
 "time of registration."
-msgstr ""
+msgstr "Seorang pemain diautentikasi menggunakan kata sandi yang dipilih pemain pada saat pendaftaran."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:13
 msgid ""
@@ -710,21 +711,21 @@ msgid ""
 "When a player hosts a match in the Multiplayer Lobby, the IP address of that"
 " player is sent to every player who is online, so that other players can "
 "join that game."
-msgstr ""
+msgstr "Ketika seorang pemain mengadakan pertandingan di Lobi Multiplayer, alamat IP dari pemain tersebut dikirim ke setiap pemain yang sedang online, sehingga pemain lain dapat bergabung dalam permainan tersebut."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:17
 msgid ""
 "Wildfire Games stores players IP addresses and may infer publicly available "
 "geolocation and internet service provider data (for example \"geolite2\") "
 "from the IP address in order to:"
-msgstr ""
+msgstr "Wildfire Games menyimpan alamat IP pemain dan dapat menyimpulkan geolokasi yang tersedia untuk umum dan data penyedia layanan internet (misalnya \"geolite2\") dari alamat IP untuk:"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:18
 msgid ""
 " 1. Enforce the Terms of Use where persons create multiple accounts without "
 "Wildfire Games permission, in particular after having been banned from the "
 "service for violating the Terms of Use."
-msgstr ""
+msgstr "1. Menerapkan Ketentuan Penggunaan di mana orang membuat banyak akun tanpa izin Wildfire Games, khususnya setelah dilarang dari layanan karena melanggar Ketentuan Penggunaan."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:19
 msgid ""
@@ -744,7 +745,7 @@ msgid ""
 "particular not for marketing, not otherwise disclose IP addresses to the "
 "public or third parties and erase IP addresses if they are not relevant for "
 "the stated purposes anymore."
-msgstr ""
+msgstr "Wildfire Games tidak akan menggunakan log alamat IP untuk tujuan lain apa pun, khususnya bukan untuk pemasaran, tidak mengungkapkan alamat IP kepada publik atau pihak ketiga dan menghapus alamat IP jika tidak relevan lagi untuk tujuan yang disebutkan."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:23
 msgid "[font=\"sans-bold-14\"]4. Online presence[/font]"
@@ -754,7 +755,7 @@ msgstr ""
 msgid ""
 "Which players are currently connected to the Multiplayer Lobby and which "
 "match they joined is shown to all online players."
-msgstr ""
+msgstr "Pemain mana yang saat ini terhubung ke Lobi Multiplayer dan pertandingan mana yang mereka ikuti akan ditampilkan ke semua pemain online."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:26
 msgid "[font=\"sans-bold-14\"]5. Chat messages[/font]"
@@ -764,30 +765,30 @@ msgstr ""
 msgid ""
 "The Multiplayer Lobby features a public chat room that enables players to "
 "discuss the game and organize multiplayer matches."
-msgstr ""
+msgstr "Lobi Multipemain memiliki ruang obrolan publik yang memungkinkan pemain untuk mendiskusikan permainan dan mengatur pertandingan multipemain."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:28
 msgid ""
 "Wildfire Games stores a log of the public chat messages and online presence "
 "to meet the following purposes:"
-msgstr ""
+msgstr "Wildfire Games menyimpan log pesan obrolan publik dan kehadiran online untuk memenuhi tujuan berikut:"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:29
 msgid " 1. Moderators may screen chat messages to enforce the Terms of Use."
-msgstr ""
+msgstr "1. Moderator dapat menyaring pesan obrolan untuk menegakkan Syarat Penggunaan."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:30
 msgid ""
 " 2. Wildfire Games may address or resolve bug reports, balancing issues or "
 "feature proposals indicated by players in the chat room."
-msgstr ""
+msgstr " 2. Wildfire Games dapat mengatasi atau menyelesaikan laporan bug, menyeimbangkan masalah, atau proposal fitur yang ditunjukkan oleh pemain di ruang obrolan."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:31
 msgid ""
 " 3. Wildfire Games may assess trends amongst discussed topics, the growth of"
 " the active community and use these indicators as feedback to assess, "
 "improve and direct development of the game and the service."
-msgstr ""
+msgstr "3. Wildfire Games dapat menilai tren di antara topik yang dibahas, pertumbuhan komunitas aktif dan menggunakan indikator ini sebagai umpan balik untuk menilai, meningkatkan dan mengarahkan pengembangan permainan dan layanan."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:33
 msgid "[font=\"sans-bold-14\"]6. Match statistics[/font]"
@@ -797,13 +798,13 @@ msgstr ""
 msgid ""
 "Players can gain a rating on the Multiplayer Lobby that reflects their skill"
 " at the game."
-msgstr ""
+msgstr "Pemain bisa mendapatkan peringkat di Lobi Multiplayer yang mencerminkan keahlian mereka dalam permainan."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:35
 msgid ""
 "The rating of all players is published by Wildfire Games and allows players "
 "to focus on competitive or balanced matchmaking if they wish to."
-msgstr ""
+msgstr "Peringkat semua pemain diterbitkan oleh Wildfire Games dan memungkinkan pemain untuk fokus pada matchmaking yang kompetitif atau seimbang jika mereka mau."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:36
 msgid ""
@@ -811,7 +812,7 @@ msgid ""
 "number of units trained, resources gathered and the winner of the match) to "
 "Wildfire Games, so that Wildfire Games can adapt the players ratings based "
 "on these statistics."
-msgstr ""
+msgstr "Selama pertandingan berperingkat, pemain mengirim data yang berkaitan dengan permainan (seperti jumlah unit yang dilatih, sumber daya yang dikumpulkan, dan pemenang pertandingan) ke Wildfire Games, sehingga Wildfire Games dapat menyesuaikan peringkat pemain berdasarkan statistik ini."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:37
 msgid "Wildfire Games stores match statistics to:"
@@ -821,14 +822,14 @@ msgstr "Wildfire Games menyimpan statistika pertandingan di:"
 msgid ""
 " 1. Verify the accuracy of the rating score and identify and enforce Terms "
 "of Use violations relating to that."
-msgstr ""
+msgstr "1. Memverifikasi keakuratan skor peringkat dan mengidentifikasi serta menegakkan pelanggaran Persyaratan Penggunaan yang terkait dengan itu."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:39
 msgid ""
 " 2. Compute and publish community statistics to improve the game and the "
 "service, for example to improve the balancing of the game or to make certain"
 " aspects of the game more appealing."
-msgstr ""
+msgstr "2. Menghitung dan mempublikasikan statistik komunitas untuk meningkatkan permainan dan layanan, misalnya untuk meningkatkan keseimbangan permainan atau untuk membuat aspek-aspek tertentu dari permainan lebih menarik."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:41
 msgid "[font=\"sans-bold-14\"]Security of processing:[/font]"
@@ -837,26 +838,26 @@ msgstr ""
 #: gui/prelobby/common/terms/Privacy_Policy.txt:42
 msgid ""
 "The transmission of personal data is secured using TLS encryption (GDPR 32)."
-msgstr ""
+msgstr "Transmisi data pribadi diamankan menggunakan enkripsi TLS (GDPR 32)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:43
 msgid ""
 "Personal data is protected against unintentional loss in encrypted backups "
 "for additional time (GDPR 30.1.g, GDPR 32)."
-msgstr ""
+msgstr "Data pribadi dilindungi dari kehilangan yang tidak disengaja dalam cadangan terenkripsi untuk waktu tambahan (GDPR 30.1.g, GDPR 32)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:45
 msgid ""
 "All personal data that Wildfire Games processes is obtained from the user "
 "(GDPR 14)."
-msgstr ""
+msgstr "Semua data pribadi yang diproses Wildfire Games diperoleh dari pengguna (GDPR 14)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:46
 msgid ""
 "Wildfire Games reserves the right to delete any service data (including "
 "personal data) at any time, except where a user has objected to the erasure "
 "of his or her personal data for performance of a legal claim."
-msgstr ""
+msgstr "Wildfire Games berhak untuk menghapus data layanan apa pun (termasuk data pribadi) kapan saja, kecuali jika pengguna keberatan dengan penghapusan data pribadinya untuk pelaksanaan klaim hukum."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:48
 msgid "[font=\"sans-bold-16\"]Legal basis for the processing:[/font]"
@@ -866,7 +867,7 @@ msgstr ""
 msgid ""
 "1. The processing is necessary for the performance of the service defined in"
 " the terms (GDPR 6.1.b)."
-msgstr ""
+msgstr "1. Pemrosesan diperlukan untuk kinerja layanan yang ditentukan dalam persyaratan (GDPR 6.1.b)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:50
 msgid ""
@@ -874,14 +875,14 @@ msgid ""
 "Lobby, in the development and improvement of 0 A.D. and the Multiplayer "
 "Lobby, in enforcing the Terms of Use and in the protection against "
 "cyberattacks (GDPR 6.1.f)."
-msgstr ""
+msgstr "2. Wildfire Games memiliki kepentingan yang sah dalam menyediakan Lobi Multiplayer, dalam pengembangan dan peningkatan tahun 0 A.D. dan Lobi Multiplayer, dalam menegakkan Ketentuan Penggunaan dan dalam perlindungan terhadap serangan cyber (GDPR 6.1.f)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:51
 msgid ""
 "3. Wildfire Games does not process any further data for the Multiplayer "
 "Lobby and does not ask for consent to process data (GDPR 6.1.a, GDPR 7, GDPR"
 " 8, GDPR 13.2.c)."
-msgstr ""
+msgstr "3. Wildfire Games tidak memproses data lebih lanjut untuk Lobi Multiplayer dan tidak meminta izin untuk memproses data (GDPR 6.1.a, GDPR 7, GDPR 8, GDPR 13.2.c)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:53
 msgid "[font=\"sans-bold-16\"]User rights:[/font]"

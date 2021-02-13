@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-02-10 08:59+0000\n"
+"PO-Revision-Date: 2021-02-10 12:41+0000\n"
 "Last-Translator: Bruce Lee <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgstr ""
 
 #: simulation/data/auras/structures/arsenal_repair.jsonauraDescription
 msgid "Garrisoned Siege Engines +3 health regeneration rate."
-msgstr "공성 무기에 주둔시 체력 회복률이 +3 증가합니다."
+msgstr "배치된 공성 무기의 내구력 회복 속도가 +3 증가합니다."
 
 #: simulation/data/auras/structures/arsenal_repair.jsonauraName
 msgid "Arsenal Repairs"
@@ -91,7 +91,7 @@ msgstr "강력한 신권"
 
 #: simulation/data/auras/structures/library.jsonauraDescription
 msgid "Structures −15% technology resource costs and research time."
-msgstr ""
+msgstr "건축물의 기술 자원 비용과 연구 시간이 -15% 감소합니다."
 
 #: simulation/data/auras/structures/library.jsonauraName
 msgid "Centre of Scholarship"
@@ -140,7 +140,7 @@ msgstr "헬레니즘(그리스)화"
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraDescription
 msgid ""
 "Garrisoned Soldiers +3 crush, hack, pierce resistance and +20 vision range."
-msgstr ""
+msgstr "주둔한 병사들의 격파, 난도질, 관통 저항력이 +3, 시야 범위가 +20 증가합니다."
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraName
 msgid "Wall Protection"
@@ -150,7 +150,7 @@ msgstr "벽 보호"
 msgid ""
 "+20% maximum population limit (requires the “Glorious Expansion” "
 "technology)."
-msgstr ""
+msgstr "최대 인구수가 +20% 증가합니다 (“영광스러운 확장” 기술이 필요함)."
 
 #: simulation/data/auras/structures/wonder_population_cap.jsonauraName
 msgid "Glorious Expansion"
@@ -158,7 +158,7 @@ msgstr "영광스러운 확장"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
 msgid "Allied Warships −25% construction time."
-msgstr "동맹의 전함 건조 시간이 -25% 단축됩니다."
+msgstr "동맹의 전함 건조 시간이 -25% 감소합니다."
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"
@@ -186,7 +186,7 @@ msgstr "대장간의 기술 자원 비용과 연구 시간이 -15% 감소합니�
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraName
 msgid "Products from Gaul"
-msgstr "갈리아의 제품"
+msgstr "갈리아의 제작품"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
 msgid "Allied Citizen Javelineers −10% resource costs."
@@ -315,7 +315,7 @@ msgstr "척후병 괴롭힘"
 msgid ""
 "Leader of the Carthaginian heavy cavalry at Trebia and Cannae, where his triple charge had devastating effects on the enemy.\n"
 "Melee Cavalry +1 crush, hack, pierce resistance and +10% health."
-msgstr ""
+msgstr "트레비아와 칸나에 있는 카르타고 중기병의 우두머리로서, 그의 세차례의 습격이 적에게 치명적인 영향을 미쳤습니다.\n근접 기병의 격파, 난도질, 관통 저항력이 +1, 체력이 +10% 증가합니다."
 
 #: simulation/data/auras/units/catafalques/cart_catafalque.jsonauraName
 msgid "Commander of Heavy Cavalry"
@@ -518,7 +518,7 @@ msgstr "코끼리 일꾼"
 msgid ""
 "Soldiers in his formation +3 crush, hack, pierce resistance, +15% movement "
 "speed."
-msgstr ""
+msgstr "그의 진영세서 병사들의 격파, 난도질, 관통 저항력이 +3, 이동 속도가 +15% 증가합니다."
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraName
 msgid "Formation Reforms"

@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from ctypes import *
 import sys
 import os
@@ -19,12 +21,12 @@ os.environ['PATH'] = '%s/system/' % binaries
 library = cdll.LoadLibrary('%s/system/%s' % (binaries, dll_filename))
 
 def log(severity, message):
-	print '[%s] %s' % (('INFO', 'WARNING', 'ERROR')[severity], message)
+	print('[%s] %s' % (('INFO', 'WARNING', 'ERROR')[severity], message))
 
 clog = CFUNCTYPE(None, c_int, c_char_p)(log)
 	# (the CFUNCTYPE must not be GC'd, so try to keep a reference)
 library.set_logger(clog)
-skeleton_definitions = open('%s/data/tools/collada/skeletons.xml' % binaries).read()
+skeleton_definitions = open('%s/data/tests/collada/skeletons.xml' % binaries).read()
 library.set_skeleton_definitions(skeleton_definitions, len(skeleton_definitions))
 
 def _convert_dae(func, filename, expected_status=0):
@@ -107,7 +109,7 @@ clean_dir(test_mod + '/art/animation')
 for test_file in ['xsitest3c','xsitest3e','jav2d','jav2d2']:
 #for test_file in ['xsitest3']:
 #for test_file in []:
-	print "* Converting PMD %s" % (test_file)
+	print("* Converting PMD %s" % (test_file))
 
 	input_filename = '%s/%s.dae' % (test_data, test_file)
 	output_filename = '%s/art/meshes/%s.pmd' % (test_mod, test_file)
@@ -125,7 +127,7 @@ for test_file in ['xsitest3c','xsitest3e','jav2d','jav2d2']:
 #for test_file in ['jav2','jav2b', 'jav2d']:
 for test_file in ['xsitest3c','xsitest3e','jav2d','jav2d2']:
 #for test_file in []:
-	print "* Converting PSA %s" % (test_file)
+	print("* Converting PSA %s" % (test_file))
 
 	input_filename = '%s/%s.dae' % (test_data, test_file)
 	output_filename = '%s/art/animation/%s.psa' % (test_mod, test_file)

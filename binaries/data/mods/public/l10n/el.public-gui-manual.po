@@ -19,14 +19,14 @@
 # Sander Deryckere, 2016
 # Sander Deryckere, 2016
 # Steven Gikas <stevengk123@gmail.com>, 2016
-# Vasilis Drosos <basilisd@gmail.com>, 2016-2020
+# Vasilis Drosos <basilisd@gmail.com>, 2016-2021
 # Steven Gikas <stevengk123@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-25 08:08+0000\n"
-"PO-Revision-Date: 2021-01-29 21:25+0000\n"
-"Last-Translator: LOUKAS SKOUROLIAKOS\n"
+"PO-Revision-Date: 2021-02-11 21:28+0000\n"
+"Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -119,7 +119,7 @@ msgstr "• [font=\"sans-bold-14\"]Ένας παίκτης[font=\"sans-14\"] –
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – Play against human "
 "opponents over the internet."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Παιχνίδι πολλαπλών παικτών[font=\"sans-14\"] -– Παίξτε εναντίων άλλων παικτών στο διαδίκτυο."
 
 #: gui/manual/intro.txt:23
 msgid ""
@@ -206,11 +206,11 @@ msgstr ""
 
 #: gui/manual/intro.txt:45
 msgid "  hotkey.console.toggle – Toggle console"
-msgstr ""
+msgstr "hotkey.console.toggle – Εμφάνιση κονσόλας"
 
 #: gui/manual/intro.txt:46
 msgid "  hotkey.fps.toggle – Toggle frame counter (FPS)"
-msgstr ""
+msgstr "hotkey.fps.toggle – Εμφάνιση μετρητή καρέ (FPS)"
 
 #: gui/manual/intro.txt:47
 msgid ""
@@ -239,11 +239,11 @@ msgstr ""
 
 #: gui/manual/intro.txt:51
 msgid "  hotkey.tab.next – Switch to the next tab"
-msgstr ""
+msgstr "hotkey.tab.next – Μετάβαση σε επόμενη καρτέλα"
 
 #: gui/manual/intro.txt:52
 msgid "  hotkey.tab.prev – Switch to the previous tab"
-msgstr ""
+msgstr "hotkey.tab.prev – Μετάβαση σε προηγούμενη καρτέλα"
 
 #: gui/manual/intro.txt:54
 msgid "[font=\"sans-bold-14\"]In Game[font=\"sans-14\"]"
@@ -283,7 +283,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:61
 msgid "  hotkey.session.gui.menu.toggle – Toggle menu"
-msgstr ""
+msgstr "hotkey.session.gui.menu.toggle – Εμφάνιση μενού"
 
 #: gui/manual/intro.txt:62
 msgid "  hotkey.timeelapsedcounter.toggle – Toggle time elapsed counter"
@@ -295,11 +295,11 @@ msgstr ""
 
 #: gui/manual/intro.txt:64
 msgid "  hotkey.confirm – Open chat or send message"
-msgstr ""
+msgstr " hotkey.confirm – Άνοιγμα συζήτησης ή αποστολή μυνήματος"
 
 #: gui/manual/intro.txt:65
 msgid "  hotkey.teamchat – Send team chat"
-msgstr ""
+msgstr " hotkey.teamchat – Αποστολή σε ομαδική συνομιλία."
 
 #: gui/manual/intro.txt:66
 msgid ""
@@ -309,7 +309,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:67
 msgid "  hotkey.pause – Pause or resume the game"
-msgstr ""
+msgstr "hotkey.pause – Παύση ή συνέχεια του παιχνιδιού"
 
 #: gui/manual/intro.txt:68
 msgid ""
@@ -358,7 +358,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:76
 msgid "  hotkey.selection.idleunit – Select idle unit"
-msgstr ""
+msgstr "hotkey.selection.idleunit – Επιλογή ανενεργής μονάδας"
 
 #: gui/manual/intro.txt:77
 msgid "  hotkey.session.stop – Stop (halt) the currently selected units"
@@ -366,7 +366,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:78
 msgid "  hotkey.session.backtowork – The unit will go back to work"
-msgstr ""
+msgstr "hotkey.session.backtowork – Η μονάδα θα γυρίσει στη δουλειά"
 
 #: gui/manual/intro.txt:79
 msgid ""
@@ -384,7 +384,7 @@ msgstr ""
 msgid ""
 "  hotkey.selection.group.select.1 – Select the unit(s)/structure(s) in "
 "control group 1"
-msgstr ""
+msgstr "  hotkey.selection.group.select.1 – Επιλογή των μονάδων/κτιρίων στην επιλεγμένη ομάδα 1"
 
 #: gui/manual/intro.txt:82
 msgid ""
@@ -540,7 +540,7 @@ msgstr ""
 msgid ""
 "  Right Click with a structure(s) selected – Set a rally point for units "
 "created/ungarrisoned from that structure"
-msgstr ""
+msgstr "Δεξί Κλικ με ένα κτίριο(α) επιλεγμένο – Ορίζει ένα σημείο συγκέντρωσης για μονάδες που δημιουργούνται/αποχυρώνονται από αυτό το κτίριο"
 
 #: gui/manual/intro.txt:112
 msgid ""
@@ -697,7 +697,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:145
 msgid "[font=\"sans-bold-14\"]During Structure Placement[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Κατά τη Διάρκεια Τοποθέτησης Κτηρίου[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:146
 msgid ""
@@ -712,7 +712,7 @@ msgstr ""
 msgid ""
 "  Left Drag – Rotate structure using mouse (foundation will be placed on "
 "mouse release)"
-msgstr ""
+msgstr "Αριστερό κλικ και σύρσιμο – Περιστροφή κτιρίου χρησιμοποιώντας το ποντίκι (θα τοποθετηθεί με απελευθέρωση του αριστερού κλικ)"
 
 #: gui/manual/intro.txt:150
 msgid "[font=\"sans-bold-14\"]When loading a saved game[font=\"sans-14\"]"

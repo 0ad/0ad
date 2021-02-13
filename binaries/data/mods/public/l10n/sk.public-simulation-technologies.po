@@ -5,6 +5,7 @@
 # Translators:
 # LeviTaule <levi.taule@gmail.com>, 2018
 # LeviTaule <levi.taule@gmail.com>, 2015-2016
+# Marek Berčík <marek.bercik@hotmail.com>, 2021
 # Mário Bulejko, 2015
 # Michal Ján Mária Polovka <michal.polovka@gmail.com>, 2016
 # Miroslav Kadlec <mirokadlec12@gmail.com>, 2018
@@ -21,8 +22,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-02-02 18:33+0000\n"
-"Last-Translator: Slavomir Slovenkai <slavomir.slovenkai@gmail.com>\n"
+"PO-Revision-Date: 2021-02-11 16:41+0000\n"
+"Last-Translator: Marek Berčík <marek.bercik@hotmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -88,13 +89,13 @@ msgstr "Odomknuté vo fáze metropoly."
 
 #: simulation/data/technologies/agoge.jsontooltip
 msgid "Champion Infantry Spearmen +25% health, but +5% training time."
-msgstr ""
+msgstr "Šampiónski pechotní kopijníci +25% zdravia, ale +5% doby tréningu."
 
 #: simulation/data/technologies/archery_tradition.jsondescription
 msgid ""
 "The Indian, Iranian, and Kushite peoples had a tradition of fine archery and"
 " a penchant for using massed archers in battle."
-msgstr ""
+msgstr "Indovia, Iránci a Kušiti mali tradíciu dobrej lukostreľby a náklonnosť k využívaniu nahromadených lukostrelcov v bitke."
 
 #: simulation/data/technologies/archery_tradition.jsongenericName
 msgid "Archery Tradition"
@@ -151,7 +152,7 @@ msgstr "Odomknuté vo fáze mesta."
 #: simulation/data/technologies/architecture_kush.jsontooltip
 msgid ""
 "Civic Structures +20% build time, +20% health, and +20% capture points."
-msgstr ""
+msgstr "Civilné budovy +20% doby výstavby, +20% bodov zdravia a +20% bodov obsadenia."
 
 #: simulation/data/technologies/architecture_pers.jsondescription
 msgid ""
@@ -167,13 +168,13 @@ msgstr "Perzská architektúra"
 
 #: simulation/data/technologies/architecture_pers.jsontooltip
 msgid "Structures +25% health and capture points, but also +20% build time."
-msgstr ""
+msgstr "Budovy +25% bodov zdravia a obsadenia, ale taktiež +20% času výstavby."
 
 #: simulation/data/technologies/attack_soldiers_will.jsondescription
 msgid ""
 "The will to fight is crucial to victory. Inspire your troops with higher "
 "pay."
-msgstr ""
+msgstr "Vôľa bojovať je k víťazstvu kľúčová. Povzbuďte svoje jednotky vyššou mzdou."
 
 #: simulation/data/technologies/attack_soldiers_will.jsongenericName
 msgid "Will to Fight"
@@ -189,7 +190,7 @@ msgstr "Dynamis"
 
 #: simulation/data/technologies/attack_soldiers_will.jsontooltip
 msgid "Soldiers, Siege Engines, and Ships +25% attack damage."
-msgstr ""
+msgstr "Vojaci, obliehacie stroje a lode +25% útočné poškodenie."
 
 #: simulation/data/technologies/attack_steel_working.jsondescription
 msgid ""
@@ -217,7 +218,7 @@ msgstr "Šermiari +20% sila útoku."
 msgid ""
 "Significantly increase training speed of infantry by training them in large "
 "batches or companies."
-msgstr ""
+msgstr "Rýchlosť tréningu pechoty výrazne zvýšite, ak ich budete trénovať vo veľkých skupinách."
 
 #: simulation/data/technologies/barracks_batch_training.jsongenericName
 #: simulation/data/technologies/stable_batch_training.jsongenericName
@@ -244,11 +245,11 @@ msgstr "Jazda -10% čas tréningu."
 
 #: simulation/data/technologies/cavalry_health.jsondescription
 msgid "Selectively breed better war horses."
-msgstr ""
+msgstr "Výberové šľachtenie lepších bojových koní"
 
 #: simulation/data/technologies/cavalry_health.jsongenericName
 msgid "Horse Breeding"
-msgstr ""
+msgstr "Šľachtenie koní"
 
 #: simulation/data/technologies/cavalry_health.jsontooltip
 msgid "Cavalry +10% health."
@@ -279,7 +280,7 @@ msgstr "Trojité hradby"
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
 msgid "City Walls +100% build time, +100% stone cost, and +200% health."
-msgstr ""
+msgstr "Mestské hradby +100% času výstavby, +100% cena kameňa a +200% bodov zdravia."
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsondescription
 msgid "Celtic structures were mostly made of wood with rubble foundations."
@@ -291,17 +292,17 @@ msgstr "Drevená konštrukcia"
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
 msgid "Structures −20% build time, −20% health, and −20% capture points."
-msgstr ""
+msgstr "Budovy -20% doby výstavby, -20% bodov zdravia a -20% bodov obsadenia."
 
 #: simulation/data/technologies/civbonuses/gaul_cavalry.jsondescription
 msgid ""
 "The Gauls were well-known for their effective cavalry. Celtic mercenaries "
 "were in demand throughout the Mediterranean."
-msgstr ""
+msgstr "Galovia boli známi svojou účinnou jazdou. Keltskí žoldnieri boli žiadaní po celom Stredomorí."
 
 #: simulation/data/technologies/civbonuses/gaul_cavalry.jsongenericName
 msgid "Superior Cavalry"
-msgstr ""
+msgstr "Vylepšená jazda"
 
 #: simulation/data/technologies/civbonuses/gaul_cavalry.jsontooltip
 msgid "Cavalry +10% melee attack damage."
@@ -325,11 +326,11 @@ msgid ""
 " continued for millennia. It was also the source of elephants for the "
 "eastern Mediterranean. Indian kings were able to field large numbers of war "
 "elephants."
-msgstr ""
+msgstr "India je krajinou slonov. Boje na slonoch vznikli v Indii a pokračovali po stáročia. India bola taktiež zdrojom slonov pre východné Stredomorie. Indickí králi boli schopní postaviť do boja veľké množstvá bojových slonov."
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsongenericName
 msgid "Elephant Tradition"
-msgstr ""
+msgstr "Tradícia slonov"
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsontooltip
 msgid "Elephants −30% training time."
@@ -396,11 +397,11 @@ msgstr ""
 
 #: simulation/data/technologies/civbonuses/ptol_structures.jsongenericName
 msgid "Sun-dried Mud Bricks"
-msgstr ""
+msgstr "Slnkom sušené tehly"
 
 #: simulation/data/technologies/civbonuses/ptol_structures.jsontooltip
 msgid "Houses and Economic Structures −40% wood cost and health."
-msgstr ""
+msgstr "Domy a ekonomické budovy -40% ceny dreva a bodov zdravia."
 
 #: simulation/data/technologies/colonization.jsondescription
 msgid ""
@@ -534,7 +535,7 @@ msgstr "Pracovníci +15% rýchlosť farmárčenia."
 msgid ""
 "The Gauls invented an harvesting machine, making it much easier to harvest "
 "grain."
-msgstr ""
+msgstr "Galovia vynašli žatevný stroj, ktorý umožnil rýchlejší zber obilia."
 
 #: simulation/data/technologies/gather_farming_harvester.jsongenericName
 msgid "Harvesting Machine"
@@ -590,7 +591,7 @@ msgstr "Pevnejšie sekery"
 msgid ""
 "Compel serfs to help your workers quarry stone. Increases stone gathering "
 "rates."
-msgstr ""
+msgstr "Prinúťte nevoľníkov pomáhať vašim pracovníkom v kameňolome. Zvyšuje to rýchlosť získavania kameňa."
 
 #: simulation/data/technologies/gather_mining_serfs.jsongenericName
 msgid "Serfs"
@@ -624,7 +625,7 @@ msgstr "Douloi"
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsondescription
 msgid "Develop shaft mining. Increases metal gathering rates."
-msgstr ""
+msgstr "Vynájdenie ťažby v šachtách. Zvyšuje rýchlosť získavania kovu."
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsongenericName
 msgid "Shaft Mining"
@@ -728,7 +729,7 @@ msgstr "Akadēmeia"
 #: simulation/data/technologies/heal_rate.jsondescription
 #: simulation/data/technologies/heal_rate_2.jsondescription
 msgid "Increases the healing rate of all healers."
-msgstr ""
+msgstr "Zvyšuje rýchlosť liečenia u všetkých liečiteľov."
 
 #: simulation/data/technologies/heal_rate.jsongenericName
 msgid "Healing Rate"
@@ -745,7 +746,7 @@ msgstr "Sphagia"
 #: simulation/data/technologies/heal_rate.jsontooltip
 #: simulation/data/technologies/heal_rate_2.jsontooltip
 msgid "Healers −20% healing time."
-msgstr ""
+msgstr "Liečitelia -20% času liečenia."
 
 #: simulation/data/technologies/heal_rate_2.jsongenericName
 msgid "Healing Rate 2"
@@ -784,7 +785,7 @@ msgstr "Poľná medicína"
 
 #: simulation/data/technologies/health_regen_units.jsontooltip
 msgid "Idle Organic units +0.5 health regeneration rate."
-msgstr ""
+msgstr "Nečinné organické jednotky +0,5 rýchlosti obnovovania zdravia."
 
 #: simulation/data/technologies/hellenistic_metropolis.jsondescription
 msgid ""
@@ -799,7 +800,7 @@ msgstr "Helénske metropoly"
 
 #: simulation/data/technologies/hellenistic_metropolis.jsontooltip
 msgid "Civic Centers +100% health and capture points, double default arrows."
-msgstr ""
+msgstr "Občianske centrá +100% bodov zdravia a bodov obsadenia, dvojnásobok pôvodných šípov."
 
 #: simulation/data/technologies/immortals.jsondescription
 msgid ""
@@ -813,7 +814,7 @@ msgstr "Nesmrteľní"
 
 #: simulation/data/technologies/immortals.jsontooltip
 msgid "Immortals −50% training time, but −10% health."
-msgstr ""
+msgstr "Nesmrteľní -50% doba tréningu, ale -10% bodov zdravia."
 
 #: simulation/data/technologies/infantry_cost_time.jsondescription
 msgid ""
@@ -841,7 +842,7 @@ msgstr "Iphicrateanove reformy"
 
 #: simulation/data/technologies/iphicratean_reforms.jsontooltip
 msgid "Athenian Triremes can train Marines and Cretan Mercenary Archers."
-msgstr ""
+msgstr "Aténske trirémy môžu trénovať námorníkov a krétskych žoldnierskych lukostrelcov."
 
 #: simulation/data/technologies/long_walls.jsondescription
 msgid ""
@@ -876,17 +877,17 @@ msgstr "Nisioi"
 
 #: simulation/data/technologies/nisean_horses.jsontooltip
 msgid "Champion Cavalry Spearmen +20% health, but +10% training time."
-msgstr ""
+msgstr "Šampiónski jazdci s oštepmi +20% bodov zdravia, ale +10% doba tréningu."
 
 #: simulation/data/technologies/pair_unlock_champions_sele.jsongenericName
 msgid "Traditional Army vs Reform Army"
-msgstr ""
+msgstr "Tradičná armáda verzus reformovaná armáda"
 
 #: simulation/data/technologies/parade_of_daphne.jsondescription
 msgid ""
 "The festival at Daphne was a major event of the Seleucid Empire: tens of "
 "thousands of well-equipped troops participated in the opening procession."
-msgstr ""
+msgstr "Slávnosť Dafné bola veľkou udalosťou Seleuckej ríše; desaťtisíce dobre vyzbrojených jednotiek sa zúčastňovali otváracej procesie."
 
 #: simulation/data/technologies/parade_of_daphne.jsongenericName
 msgid "Parade of Daphne"
@@ -946,7 +947,7 @@ msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +50% territory influence radius. Structures +9 capture points "
 "regeneration rate per garrisoned unit."
-msgstr ""
+msgstr "Postúpte do fázy metropoly, ktorá odomyká viac entít a technológií. Občianske centrá +50% polomer vplyvu územia. Budovy +9 obnovených bodov obsadzovania na jednotku posádky."
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -970,7 +971,7 @@ msgstr "Vylepší malú dedinu na rušné mesto, pripravené na rapídnu expanzi
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
 msgid "Requires five Village Structures."
-msgstr ""
+msgstr "Je nutných päť dedinských budov."
 
 #: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
@@ -985,7 +986,7 @@ msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
 "Centers +30% territory influence radius. Structures +7 capture points "
 "regeneration rate per garrisoned unit. Workers +10% metal gather rate."
-msgstr ""
+msgstr "Postúpte do fázy mesta, ktorá odomyká viac entít a technológií. Občianske centrá +30% polomer vplyvu územia. Budovy +7 obnovených bodov obsadzovania na jednotku posádky. Pracovníci +10% rýchlosť získavania kovu."
 
 #: simulation/data/technologies/phase_town_generic.jsondescription
 msgid ""
@@ -997,7 +998,7 @@ msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
 "Centers +30% territory influence radius. Structures +7 capture points "
 "regeneration rate per garrisoned unit."
-msgstr ""
+msgstr "Postúpte do fázy mesta, ktorá odomyká viac entít a technológií. Občianske centrá +30% polomer vplyvu územia. Budovy +7 obnovených bodov obsadzovania na jednotku posádky."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1049,7 +1050,7 @@ msgstr "Insulae"
 
 #: simulation/data/technologies/reformed_army_sele.jsondescription
 msgid "The Roman-style core of the Seleucid army."
-msgstr ""
+msgstr "Jadro seleuckej armády na rímsky štýl."
 
 #: simulation/data/technologies/reformed_army_sele.jsongenericName
 msgid "Reform Army"
@@ -1057,13 +1058,13 @@ msgstr "Reformná armáda"
 
 #: simulation/data/technologies/reformed_army_sele.jsontooltip
 msgid "Unlock the Champion Infantry Swordsman."
-msgstr ""
+msgstr "Odomknúť šampiónskeho pechotného šermiara."
 
 #: simulation/data/technologies/ship_cost_time.jsondescription
 msgid ""
 "Employ skilled shipwrights with specialized tools to speed up ship "
 "construction."
-msgstr ""
+msgstr "Využite skúsených staviteľov lodí so špecializovanými nástrojmi na urýchlenie výstavby lodí."
 
 #: simulation/data/technologies/ship_cost_time.jsongenericName
 msgid "Naval Architects"
@@ -1089,11 +1090,11 @@ msgstr "Lode +25% zdravie."
 msgid ""
 "Train your oarsmen and sailors to move more efficiently and speed up your "
 "ships."
-msgstr ""
+msgstr "Trénujte svojich veslárov a námorníkov, aby sa pohybovali účinnejšie a zrýchlili vaše lode."
 
 #: simulation/data/technologies/ship_movement_speed.jsongenericName
 msgid "Experienced Crews"
-msgstr ""
+msgstr "Skúsené posádky"
 
 #: simulation/data/technologies/ship_movement_speed.jsontooltip
 msgid "Ships +10% movement speed."
@@ -1109,7 +1110,7 @@ msgstr "Pokročilé obliehanie"
 
 #: simulation/data/technologies/siege_attack.jsontooltip
 msgid "Siege Engines +25% attack crush damage."
-msgstr ""
+msgstr "Obliehací inžinieri +25% drvivého útočného poškodenia."
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsondescription
 msgid "Improvement to projectile accuracy."
@@ -1121,36 +1122,36 @@ msgstr "Presnosť šípov"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
 msgid "Bolt Shooters −20% ranged attack spread."
-msgstr ""
+msgstr "Vrhače šípov -20% rozptyl útoku zdiaľky."
 
 #: simulation/data/technologies/siege_cost_time.jsondescription
 msgid "The science or craft of laying or carrying out sieges."
-msgstr ""
+msgstr "Umenie obliehania."
 
 #: simulation/data/technologies/siege_cost_time.jsongenericName
 msgid "Siegecraft"
-msgstr ""
+msgstr "Umenie obliehania"
 
 #: simulation/data/technologies/siege_cost_time.jsontooltip
 msgid "Siege Engines −20% construction time."
-msgstr ""
+msgstr "Obliehacie stroje -20% doba výstavby."
 
 #: simulation/data/technologies/siege_health.jsondescription
 msgid ""
 "Cover the exterior with iron plates to protect against fire and projectiles."
-msgstr ""
+msgstr "Pokryte vonkajšok železnými plátmi na ochranu pred ohňom a strelami."
 
 #: simulation/data/technologies/siege_health.jsongenericName
 msgid "Armor Plating"
-msgstr ""
+msgstr "Plátenné brnenie"
 
 #: simulation/data/technologies/siege_health.jsontooltip
 msgid "Battering Rams and Siege Towers +25% health."
-msgstr ""
+msgstr "Baranidlá a obliehacie veže +25% bodov zdravia."
 
 #: simulation/data/technologies/siege_pack_unpack.jsondescription
 msgid "Military engineers are responsible for improvements in siege engines."
-msgstr ""
+msgstr "Vojenskí inžinieri sú zodpovední sa zlepšovanie obliehacích strojov."
 
 #: simulation/data/technologies/siege_pack_unpack.jsongenericName
 msgid "Military Engineers"
@@ -1158,7 +1159,7 @@ msgstr "Vojenskí inžinieri"
 
 #: simulation/data/technologies/siege_pack_unpack.jsontooltip
 msgid "Siege Engines –40% pack and unpack time."
-msgstr ""
+msgstr "Obliehacie stroje -40% doba zbalenia a rozbalenia."
 
 #: simulation/data/technologies/silvershields.jsondescription
 msgid ""
@@ -1174,14 +1175,14 @@ msgstr "Pluk Strieborných štítov "
 msgid ""
 "Upgrade Shield Bearer Champion Infantry to Silver Shields, with more health "
 "and attack damage."
-msgstr ""
+msgstr "Vylepšiť śampiónsku pechotu so štítmi na strieborné štíty s väčším množstvom bodov zdravia a bodov útoku."
 
 #: simulation/data/technologies/soldier_attack_melee_01.jsondescription
 msgid ""
 "Often, a soldier would carry a secondary weapon in addition to his primary "
 "weapon of choice, to be drawn when the primary weapon has failed or been "
 "broken."
-msgstr ""
+msgstr "Často nosil vojak druhotnú zbraň na doplnenie svojej prvotnej, aby ju mohol použiť v prípade, že by sa jeho primárna zbraň pokazila alebo zlyhala."
 
 #: simulation/data/technologies/soldier_attack_melee_01.jsongenericName
 msgid "Side Arms"
@@ -1193,7 +1194,7 @@ msgstr "Sečné zbrane"
 #: simulation/data/technologies/soldier_attack_melee_01.jsonspecificName.sele
 #: simulation/data/technologies/soldier_attack_melee_01.jsonspecificName.spart
 msgid "Xiphos"
-msgstr ""
+msgstr "Xifos"
 
 #: simulation/data/technologies/soldier_attack_melee_01.jsonspecificName.rome
 msgid "Pugio"
@@ -1214,11 +1215,11 @@ msgstr "Železné zbrane"
 
 #: simulation/data/technologies/soldier_attack_ranged_01.jsondescription
 msgid "Projectile points made of iron enable missiles to penetrate deeper."
-msgstr ""
+msgstr "Hroty striel zo železa umožňujú strelám preniknúť hlbšie."
 
 #: simulation/data/technologies/soldier_attack_ranged_01.jsongenericName
 msgid "Iron Arrowheads"
-msgstr ""
+msgstr "Železné hroty šípov"
 
 #: simulation/data/technologies/soldier_attack_ranged_01.jsontooltip
 #: simulation/data/technologies/soldier_attack_ranged_02.jsontooltip
@@ -1227,19 +1228,19 @@ msgstr "Vojaci +15% poškodenia v boji na diaľku."
 
 #: simulation/data/technologies/soldier_attack_ranged_02.jsondescription
 msgid "Arrowheads with three lobes instead of two inflict larger wounds."
-msgstr ""
+msgstr "Trojlisté hroty šípov spôsobujú väčšie zranenia ako dvojlisté hroty."
 
 #: simulation/data/technologies/soldier_attack_ranged_02.jsongenericName
 msgid "Trilobate Arrowheads"
-msgstr ""
+msgstr "Trojlisté hroty šípov"
 
 #: simulation/data/technologies/soldier_ranged_experience.jsontooltip
 msgid "Ranged Soldiers +25% promotion experience."
-msgstr ""
+msgstr "Vojaci na boj zdiaľky +25% skúseností."
 
 #: simulation/data/technologies/soldier_resistance_hack_01.jsondescription
 msgid "Body armor made from quilted wool, linen, cotton, or leather."
-msgstr ""
+msgstr "Brnenie vyrobené z prešívanej vlny, plátna, bavlny alebo kože."
 
 #: simulation/data/technologies/soldier_resistance_hack_01.jsongenericName
 msgid "Quilted Body Armor"
@@ -1260,7 +1261,7 @@ msgstr "Vojaci +1 sečná odolnosť."
 
 #: simulation/data/technologies/soldier_resistance_hack_02.jsondescription
 msgid "Body armor made from laminated linen."
-msgstr ""
+msgstr "Brnenie vyrobené z laminovaného plátna."
 
 #: simulation/data/technologies/soldier_resistance_hack_02.jsongenericName
 msgid "Laminated Linen Body Armor"
@@ -1278,11 +1279,11 @@ msgstr "Linothōrax"
 msgid ""
 "Wooden shields are heavier but much better able to resist projectiles and "
 "blows than wicker-frame shields."
-msgstr ""
+msgstr "Drevené štíty sú ťažšie, ale omnoho ľahšie odolávajú projektilom a úderom ako prútené štíty."
 
 #: simulation/data/technologies/soldier_resistance_pierce_01.jsongenericName
 msgid "Wooden Shield"
-msgstr ""
+msgstr "Drevené štíty"
 
 #: simulation/data/technologies/soldier_resistance_pierce_01.jsontooltip
 #: simulation/data/technologies/soldier_resistance_pierce_02.jsontooltip
@@ -1291,11 +1292,11 @@ msgstr "Vojaci +1 bodná odolnosť."
 
 #: simulation/data/technologies/soldier_resistance_pierce_02.jsondescription
 msgid "Strengthen shields with a metal rim or spine."
-msgstr ""
+msgstr "Zosilnite štíty kovovou obručou alebo rámom."
 
 #: simulation/data/technologies/soldier_resistance_pierce_02.jsongenericName
 msgid "Metal Rim"
-msgstr ""
+msgstr "Kovová obruč"
 
 #: simulation/data/technologies/spy_counter.jsondescription
 msgid "Recruit a network of informants to watch over your people."
@@ -1313,7 +1314,7 @@ msgstr "Tvoje jednotky bude o 50% ťažšie podplatiť."
 msgid ""
 "Significantly increase training speed of cavalry by training them in large "
 "batches or squadrons."
-msgstr ""
+msgstr "Výrazne zvýšite rýchlosť trénovania jazdy, ak ju budete trénovať vo veľkých skupinách alebo eskadrách."
 
 #: simulation/data/technologies/stable_batch_training.jsontooltip
 msgid "Stables −10% batch training time."
@@ -1331,7 +1332,7 @@ msgstr "Cimburia"
 
 #: simulation/data/technologies/tower_crenellations.jsontooltip
 msgid "Sentry and Stone Towers +40% more arrows per garrisoned Soldier."
-msgstr ""
+msgstr "Strážne a kamenné veže +40% viac šípov na bojovníka posádky."
 
 #: simulation/data/technologies/tower_health.jsondescription
 msgid "Reinforce the foundations in preparation of an attack."
@@ -1355,7 +1356,7 @@ msgstr "Vraždné diery"
 
 #: simulation/data/technologies/tower_murderholes.jsontooltip
 msgid "Sentry and Stone Towers have 0 minimum attack range."
-msgstr ""
+msgstr "Strážne a kamenné veže majú 0 minimálny dosah útoku."
 
 #: simulation/data/technologies/tower_range.jsondescription
 msgid "Arrow shooters increase the maximum range of the fire arrows."
@@ -1367,7 +1368,7 @@ msgstr "Lukostrelci"
 
 #: simulation/data/technologies/tower_range.jsontooltip
 msgid "Sentry and Stone Towers +8 attack range."
-msgstr ""
+msgstr "Strážne a kamenné veže +8 dosah útoku."
 
 #: simulation/data/technologies/tower_watch.jsondescription
 msgid "A night's watch increases vigilance."
@@ -1391,7 +1392,7 @@ msgstr "Nočné stráže"
 
 #: simulation/data/technologies/tower_watch.jsontooltip
 msgid "Sentry and Stone Towers +1 default arrow count."
-msgstr ""
+msgstr "Strážne a kamenné veže +1 základný počet šípov."
 
 #: simulation/data/technologies/trade_commercial_treaty.jsondescription
 msgid "Improve the international trading profit."
@@ -1403,7 +1404,7 @@ msgstr "Obchodná dohoda"
 
 #: simulation/data/technologies/trade_commercial_treaty.jsontooltip
 msgid "+10% international trade bonus."
-msgstr ""
+msgstr "+10% medzinárodný obchodný bonus"
 
 #: simulation/data/technologies/trade_gain_01.jsondescription
 #: simulation/data/technologies/trade_gain_02.jsondescription
@@ -1425,7 +1426,7 @@ msgstr "Pokročilé remeselníctvo"
 
 #: simulation/data/technologies/trader_health.jsondescription
 msgid "Traders traveling together in caravans are less vulnerable."
-msgstr ""
+msgstr "Obchodníci cestujúci spolu v karavánach sú menej zraniteľní."
 
 #: simulation/data/technologies/trader_health.jsongenericName
 msgid "Trade Caravan"
@@ -1433,11 +1434,11 @@ msgstr "Obchodná karavana"
 
 #: simulation/data/technologies/trader_health.jsontooltip
 msgid "Land Traders +50% health."
-msgstr ""
+msgstr "Pozemní obchodníci +50% zdravia."
 
 #: simulation/data/technologies/traditional_army_sele.jsondescription
 msgid "The Macedonian-style core of the Seleucid army."
-msgstr ""
+msgstr "Jadro seleuckej armády na macedónsky štýl."
 
 #: simulation/data/technologies/traditional_army_sele.jsongenericName
 msgid "Traditional Army"
@@ -1445,7 +1446,7 @@ msgstr "Tradičná armáda"
 
 #: simulation/data/technologies/traditional_army_sele.jsontooltip
 msgid "Unlock the Champion Infantry Pikeman."
-msgstr ""
+msgstr "Odomknúť pechotného kopijníckeho šampióna."
 
 #: simulation/data/technologies/unit_advanced.jsontooltip
 msgid ""
@@ -1453,19 +1454,19 @@ msgid ""
 "attack strength, +20% loot, and −30% gather speed; Healers +5 healing "
 "strength and +3 healing range; Melee units +1 resistance and +20% attack "
 "damage; Ranged units −20% spread."
-msgstr ""
+msgstr "Pokročilé alebo elitné jednotky +20% doba tréningu, +25% body zdravia, +0,7 sila obsadzovania, +20% korisť a -30% rýchlosť zberu; liečitelia +5 sila liečenia a +3 dosah liečenia; jednotky na boj zblízka +1 odolnosť a +20% útočné poškodenie; jednotky na boj zdiaľky -20% rozptyl."
 
 #: simulation/data/technologies/unit_elephant_african.jsontooltip
 msgid ""
 "African Elephants −10% resource costs, training time, health, attack damage,"
 " and loot."
-msgstr ""
+msgstr "Africké slony -10% cena surovín, doba tréningu, body zdravia, útočné poškodenie a korisť."
 
 #: simulation/data/technologies/unit_elephant_indian.jsontooltip
 msgid ""
 "Indian Elephants +10% resource costs, training time, health, attack damage, "
 "and loot."
-msgstr ""
+msgstr "Indické slony +10% cena surovín, doba tréningu, body zdravia, útočné poškodenie a korisť."
 
 #: simulation/data/technologies/unit_elite.jsontooltip
 msgid ""
@@ -1473,14 +1474,14 @@ msgid ""
 "+20% loot, and −30% gather speed; Healers +5 healing strength and +3 healing"
 " range; Melee units +1 resistance and +20% attack damage; Ranged units −20% "
 "spread."
-msgstr ""
+msgstr "Elitné jednotky +20% doba tréningu, +25% body zdravia, +0,8 sila obsadzovania, +20% korisť a -30% rýchlosť zberu; liečitelia +5 sila liečenia a +3 dosah liečenia; jednotky na boj zblízka +1 odolnosť a +20% útočné poškodenie; jednotky na boj zdiaľky -20% rozptyl."
 
 #: simulation/data/technologies/unit_mercenary.jsontooltip
 msgid ""
 "Non-Champion Mercenaries −60% food cost, no wood or stone costs, −30% "
 "training time, and unable to gather resources; Infantry costs 60 metal, "
 "Cavalry 80 metal, Elephants 120 metal."
-msgstr ""
+msgstr "Nešampiónski žoldnieri -60% cena jedla, žiadne náklady dreva alebo kameňa, -30% doba tréningu a neschopnosť zberu surovín; pechota stojí 60 kovu, jazda 80 kovu, slony 120 kovu."
 
 #: simulation/data/technologies/unlock_champion_cavalry.jsondescription
 #: simulation/data/technologies/unlock_champion_chariots.jsondescription
@@ -1496,15 +1497,15 @@ msgstr "Sprístupni jazdu šampiónov"
 
 #: simulation/data/technologies/unlock_champion_cavalry.jsontooltip
 msgid "Unlock Champion Cavalry at the Stable."
-msgstr ""
+msgstr "Odomknúť šampiónsku jazdu v stajni."
 
 #: simulation/data/technologies/unlock_champion_chariots.jsongenericName
 msgid "Unlock Champion Chariots"
-msgstr ""
+msgstr "Odomknúť šampiónske vozy"
 
 #: simulation/data/technologies/unlock_champion_chariots.jsontooltip
 msgid "Unlock Champion Chariots at the Stable."
-msgstr ""
+msgstr "Odomknúť šampiónske vozy v stajni."
 
 #: simulation/data/technologies/unlock_champion_infantry.jsongenericName
 msgid "Unlock Champion Infantry"
@@ -1608,7 +1609,7 @@ msgstr "Odbornosť vo Vojne"
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
 msgid "Mercenaries are promoted to Advanced rank."
-msgstr ""
+msgstr "Žoldnieri sú povýšení na pokročilú hodnosť."
 
 #: simulation/data/technologies/wonder_population_cap.jsondescription
 msgid "The wonder attracts many more people to your civilization."
@@ -1630,4 +1631,4 @@ msgstr "Peristasis"
 msgid ""
 "Enable the “Glorious Expansion” aura: +20% maximum population limit per "
 "Wonder owned."
-msgstr ""
+msgstr "Povoliť \"Slávnu expanziu\" aura: +20% maximálna populácia na vlastnený div sveta."

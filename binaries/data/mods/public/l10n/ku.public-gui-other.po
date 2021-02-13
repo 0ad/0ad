@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-29 14:56+0000\n"
-"PO-Revision-Date: 2021-01-29 16:29+0000\n"
-"Last-Translator: Stanislas Dolcini <stan@wildfiregames.com>\n"
+"PO-Revision-Date: 2021-02-11 02:51+0000\n"
+"Last-Translator: Îslam Zinar <islamzinar@yandex.com>\n"
 "Language-Team: Kurdish (http://www.transifex.com/wildfire-games/0ad/language/ku/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -527,7 +527,7 @@ msgstr ""
 #: gui/common/tooltips.js:1036 gui/loadgame/SavegameDetails.js:38
 #: gui/reference/common/tooltips.js:13 gui/replaymenu/replay_menu.js:282
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/common/settings.js:116
 msgctxt "aiDiff"
@@ -874,7 +874,7 @@ msgstr ""
 #: gui/options/options.js:379 gui/pregame/MainMenuItems.js:204
 #: gui/pregame/MainMenuItems.js:228 gui/replaymenu/replay_actions.js:169
 msgid "Yes"
-msgstr ""
+msgstr "Erê"
 
 #: gui/common/tooltips.js:392 gui/loadgame/SavegameDeleter.js:55
 #: gui/loadgame/SavegameLoader.js:61 gui/loadgame/SavegameWriter.js:48
@@ -882,7 +882,7 @@ msgstr ""
 #: gui/options/options.js:379 gui/pregame/MainMenuItems.js:204
 #: gui/pregame/MainMenuItems.js:228 gui/replaymenu/replay_actions.js:169
 msgid "No"
-msgstr ""
+msgstr "Na"
 
 #: gui/common/tooltips.js:403
 #, javascript-format
@@ -1062,7 +1062,7 @@ msgstr ""
 #. resource.
 #: gui/common/tooltips.js:753 gui/summary/summary.js:120
 msgid "∞"
-msgstr ""
+msgstr "∞"
 
 #: gui/common/tooltips.js:767
 msgid "Resource Trickle:"
@@ -1525,7 +1525,7 @@ msgstr ""
 
 #: gui/loadgame/load.xml:(caption):50 gui/locale/locale.xml:(caption):36
 msgid "Cancel"
-msgstr ""
+msgstr "Betal"
 
 #: gui/loadgame/load.xml:(caption):54
 #: gui/replaymenu/replay_menu.xml:(caption):233
@@ -1579,7 +1579,7 @@ msgstr ""
 #: gui/loadgame/load.xml:(heading):39
 msgctxt "replay"
 msgid "Description"
-msgstr ""
+msgstr "Daxuyanî"
 
 #: gui/locale/locale.xml:(caption):17
 msgid "Language:"
@@ -1600,7 +1600,7 @@ msgstr ""
 
 #: gui/locale/locale.xml:(caption):46
 msgid "Accept"
-msgstr ""
+msgstr "Qebûl"
 
 #: gui/options/options.js:95
 #, javascript-format
@@ -2466,7 +2466,7 @@ msgstr ""
 
 #: gui/options/options.json[5].options[6].list[0].label
 msgid "Disable"
-msgstr ""
+msgstr "Neçalak Bike"
 
 #: gui/options/options.json[5].options[6].list[1].label
 msgid "Completed"
@@ -2658,7 +2658,7 @@ msgstr ""
 #. Translation: Join a game by specifying the host's IP address.
 #: gui/pregame/MainMenuItems.js:107
 msgid "Join Game"
-msgstr ""
+msgstr "Têkeve Lîstikê"
 
 #: gui/pregame/MainMenuItems.js:108
 msgid "Joining an existing multiplayer game."
@@ -2666,7 +2666,7 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:116
 msgid "Host Game"
-msgstr ""
+msgstr "Host Game"
 
 #: gui/pregame/MainMenuItems.js:117
 msgid "Host a multiplayer game."
@@ -2713,7 +2713,7 @@ msgstr ""
 
 #: gui/locale/locale.xml:(caption):14 gui/pregame/MainMenuItems.js:173
 msgid "Language"
-msgstr ""
+msgstr "Ziman"
 
 #: gui/pregame/MainMenuItems.js:174
 msgid "Choose the language of the game."
@@ -2799,7 +2799,7 @@ msgstr ""
 
 #: gui/pregame/ProjectInformation.js:25
 msgid "Website"
-msgstr ""
+msgstr "Malper"
 
 #: gui/pregame/ProjectInformation.js:26
 msgid "Click to open play0ad.com in your web browser."
@@ -2985,7 +2985,7 @@ msgstr ""
 #: gui/credits/credits.xml:(caption):32 gui/options/options.xml:(caption):60
 #: gui/reference/common/Buttons/CloseButton.js:13
 msgid "Close"
-msgstr ""
+msgstr "Bigire"
 
 #: gui/reference/common/Buttons/StructreeButton.js:27
 #, javascript-format
@@ -3214,7 +3214,7 @@ msgstr ""
 
 #: gui/replaymenu/replay_menu.xml:(caption):227
 msgid "Main Menu"
-msgstr ""
+msgstr "Menuya Serekê"
 
 #: gui/replaymenu/replay_menu.xml:(caption):239
 msgid "Rebuild Cache"
@@ -3298,7 +3298,7 @@ msgstr ""
 
 #: gui/splashscreen/splashscreen.xml:(caption):30
 msgid "OK"
-msgstr ""
+msgstr "Baş e"
 
 #: gui/summary/layout.js:13
 msgid "Score"
@@ -3593,7 +3593,7 @@ msgstr ""
 #: gui/summary/summary.js:234
 msgctxt "Player listing"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/summary/summary.js:340
 msgid "Time elapsed"

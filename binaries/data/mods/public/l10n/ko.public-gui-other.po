@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-29 14:56+0000\n"
-"PO-Revision-Date: 2021-02-10 09:04+0000\n"
+"PO-Revision-Date: 2021-02-10 12:53+0000\n"
 "Last-Translator: Bruce Lee <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -494,15 +494,15 @@ msgstr "오류: 클라이언트가 예상하지 못한 게임 차례를 시뮬�
 
 #: gui/common/network.js:79
 msgid "Password is invalid."
-msgstr ""
+msgstr "비밀번호가 잘못되었습니다."
 
 #: gui/common/network.js:80
 msgid "Could not find an unused port for the enet STUN client."
-msgstr ""
+msgstr "enet STUN 클라이언트에 대한 사용되지 않는 포트를 찾을 수 없습니다."
 
 #: gui/common/network.js:81
 msgid "Could not find the STUN endpoint."
-msgstr ""
+msgstr "STUN 전송 접속 종단점을 찾을 수 없습니다."
 
 #: gui/common/network.js:84
 #, javascript-format
@@ -2427,7 +2427,7 @@ msgstr "진형의 유닛은 진형에 남아 있습니다."
 msgid ""
 "Decide whether formations are enabled for all orders or only 'Walk' and "
 "'Patrol'."
-msgstr ""
+msgstr "모든 명령에 대해 진형을 사용할지, 아니면 '걷기'와 '순찰'만 사용할지 결정합니다."
 
 #: gui/options/options.json[5].options[2].label
 msgid "Scroll batch increment ratio"
@@ -2600,11 +2600,11 @@ msgstr "%(hotkey)s: 0 A.D.에 나타난 문명들에 대해 배웁니다."
 
 #: gui/pregame/MainMenuItems.js:48
 msgid "Catafalque Overview"
-msgstr ""
+msgstr "관대 개요"
 
 #: gui/pregame/MainMenuItems.js:49
 msgid "Compare the bonuses of catafalques featured in 0 A.D."
-msgstr ""
+msgstr "0 A.D.에 등장한 관대의 보너스를 비교하십시오."
 
 #: gui/pregame/MainMenuItems.js:55
 msgid "Map Overview"
@@ -2794,7 +2794,7 @@ msgstr "WILDFIRE GAMES"
 
 #: gui/pregame/ProjectInformation.js:18
 msgid "Alpha XXIV: Xšayāršā"
-msgstr "Alpha XXIV: 끄사야르사"
+msgstr "Alpha XXIV: 흐샤야르샤"
 
 #: gui/pregame/ProjectInformation.js:19
 msgid ""
@@ -3523,7 +3523,7 @@ msgstr "채집됨"
 
 #: gui/summary/summary.js:44
 msgid "Count"
-msgstr ""
+msgstr "횟수"
 
 #: gui/summary/summary.js:49
 msgid "Sent"
@@ -3948,7 +3948,7 @@ msgstr "제르크스, 레오니다스, 페리클스, 한니발, 스시피오, �
 
 #: gui/text/tips/heroes.txt:3
 msgid "A lot of health and very strong attacks."
-msgstr "많은 체력과 매우 강력한 공격."
+msgstr "많은 내구력과 매우 강력한 공격."
 
 #: gui/text/tips/heroes.txt:4
 msgid "Have auras which alter the stats of other units or structures."
@@ -4135,7 +4135,7 @@ msgstr "건축물을 정렬하면 향후 건설을 위한 공간을 절약할 �
 msgid ""
 "Tightly packed groups of structures can also be used for obstructing raiding"
 " enemies."
-msgstr "빽빽하게 가득찬 건축물 그룹을 사용하여 적 침입을 차단할 수도 있습니다."
+msgstr "빽빽하게 가득채워진 건축물 그룹을 사용하여 적 침입을 차단할 수도 있습니다."
 
 #: gui/text/tips/spartan_hoplites.txt:1
 msgid "SPARTIATES"
