@@ -17,12 +17,12 @@
   </group>
   <group>
     <variant name="alive" frequency="1"/>
-    <variant name="death">
+    <variant file="structures/sele/light_damage.xml"/>
+    <variant file="structures/sele/medium_damage.xml"/>
+    <variant file="structures/sele/heavy_damage.xml"/>
+    <variant file="structures/sele/destruction_medium.xml">
       <props>
-        <prop attachpoint="garrisoned"/>
-        <prop actor="particle/destruction_smoke_small.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_large.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_large_gray.xml" attachpoint="root"/>
+        <prop actor="props/structures/seleucids/gate.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
