@@ -718,12 +718,16 @@ m.GameState.prototype.findTrainableUnits = function(classes, anticlasses)
 	let ret = [];
 	let limits = this.getEntityLimits();
 	let current = this.getEntityCounts();
+	let matchCounts = this.getEntityMatchCounts();
 	for (let trainable of allTrainable)
 	{
 		if (this.isTemplateDisabled(trainable))
 			continue;
 		let template = this.getTemplate(trainable);
 		if (!template || !template.available(this))
+			continue;
+		let limit = template.matchLimit();
+		if (matchCounts && limit && matchCounts[trainable] >= limit)
 			continue;
 		if (classes.some(c => !template.hasClass(c)))
 			continue;
@@ -886,6 +890,11 @@ m.GameState.prototype.findResearchers = function(templateName, noRequirementChec
 m.GameState.prototype.getEntityLimits = function()
 {
 	return this.playerData.entityLimits;
+};
+
+m.GameState.prototype.getEntityMatchCounts = function()
+{
+	return this.playerData.matchEntityCounts;
 };
 
 m.GameState.prototype.getEntityCounts = function()

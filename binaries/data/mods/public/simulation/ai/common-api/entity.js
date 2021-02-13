@@ -52,6 +52,12 @@ m.Template = m.Class({
 
 	"civ": function() { return this.get("Identity/Civ"); },
 
+	"matchLimit": function() {
+		if (!this.get("TrainingRestrictions"))
+			return undefined;
+		return this.get("TrainingRestrictions/MatchLimit");
+	},
+
 	"classes": function() {
 		let template = this.get("Identity");
 		if (!template)
