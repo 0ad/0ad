@@ -2,14 +2,9 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Base">
-      <animations>
-        <animation event="0.5" load="0.0" name="attack_ranged" speed="100"/>
-      </animations>
+    <variant frequency="100" name="Base" file="structures/defensive_building.xml">
       <mesh>structural/kush_mercenary_camp_01.dae</mesh>
       <props>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
         <prop actor="structures/tent_kush.xml" attachpoint="kush_tent_01" minheight="-20" maxheight="20"/>
         <prop actor="structures/tent_big.xml" attachpoint="kush_tent_03" minheight="-20" maxheight="20"/>
         <prop actor="structures/tent_arab.xml" attachpoint="kush_tent_02" minheight="-20" maxheight="20"/>

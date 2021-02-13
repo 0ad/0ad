@@ -2,16 +2,13 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant>
+    <variant file="structures/defensive_building.xml">
       <mesh>structural/maur_misc_01.dae</mesh>
-      <props>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
-      </props>
       <textures>
-	  	<texture file="structural/maur_struct.png" name="baseTex"/>
-	  	<texture file="structural/maur_struct_spec.png" name="specTex"/>
-		<texture file="structural/maur_struct_norm.png" name="normTex"/>
-	  </textures>
+        <texture file="structural/maur_struct.png" name="baseTex"/>
+        <texture file="structural/maur_struct_spec.png" name="specTex"/>
+        <texture file="structural/maur_struct_norm.png" name="normTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -24,13 +21,7 @@
   </group>
   <group>
     <variant name="alive" frequency="1"/>
-    <variant name="death">
-      <props>
-        <prop attachpoint="garrisoned"/>
-        <prop actor="particle/destruction_dust_med.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_med_dark.xml" attachpoint="root"/>
-      </props>
-    </variant>
+    <variant file="structures/destruction_medium.xml"/>
   </group>
   <material>player_trans_parallax_spec.xml</material>
 </actor>

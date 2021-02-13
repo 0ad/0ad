@@ -29,10 +29,8 @@
   </group>
   <group>
     <variant name="alive" frequency="1"/>
-    <variant name="death">
+    <variant file="structures/destruction_medium.xml">
       <props>
-        <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_small_gray.xml" attachpoint="root"/>
         <prop actor="props/structures/mauryas/wall_long_palisade.xml" attachpoint="root"/>
         <prop actor="props/structures/mauryas/wall_long_struct_b.xml" attachpoint="root"/>
       </props>

@@ -36,13 +36,8 @@
   </group>
   <group>
     <variant name="alive" frequency="1"/>
-    <variant name="death">
+    <variant file="structures/destruction_medium.xml">
       <props>
-        <prop attachpoint="garrisoned"/>
-        <prop actor="particle/destruction_smoke_med.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/dirt_8x8.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_med.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_med_gray.xml" attachpoint="root"/>
         <prop actor="props/structures/mauryas/stable_elephant_roof.xml" attachpoint="root"/>
         <prop actor="props/structures/mauryas/stable_elephant_water.xml" attachpoint="root"/>
       </props>

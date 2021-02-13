@@ -29,15 +29,9 @@
   </group>
   <group>
     <variant frequency="1" name="alive"/>
-    <variant name="death">
+    <variant file="structures/destruction_medium.xml">
       <props>
-        <prop attachpoint="garrisoned"/>
-        <prop actor="props/structures/decals/dirt_6x6.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/celt_fortress.xml" attachpoint="root"/>
         <prop actor="props/structures/mauryas/workshop_roof.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_smoke_med.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_med.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_med_gray.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
