@@ -21,16 +21,12 @@
   </group>
   <group>
     <variant name="alive" frequency="1"/>
-    <variant name="death">
+    <variant file="structures/destruction_small.xml">
       <props>
-        <prop actor="particle/destruction_smoke_small.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_small_gray.xml" attachpoint="root"/>
         <prop actor="props/structures/hellenes/storehouse_blocks.xml" attachpoint="root"/>
         <prop actor="props/structures/hellenes/storehouse_roof.xml" attachpoint="root"/>
         <prop actor="props/structures/hellenes/storehouse_props.xml" attachpoint="root"/>
         <prop actor="props/structures/hellenes/storehouse_wood.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/celt_sb1_mud.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>

@@ -2,23 +2,18 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant>
-      <animations>
-        <animation event="0.5" load="0" name="attack_ranged" speed="100"/>
-      </animations>
+    <variant file="structures/defensive_building.xml">
       <mesh>structural/hele_wall_tower.dae</mesh>
       <props>
         <prop actor="props/structures/hellenes/wall_turret.xml" attachpoint="root"/>
         <prop actor="geology/decal_stone_medit_a.xml" attachpoint="root"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
       <textures>
-		<texture file="structural/hele_struct_b.dds" name="baseTex"/>
-		<texture file="structural/hele_struct_b_norm.png" name="normTex"/>
-		<texture file="structural/hele_struct_b_spec.png" name="specTex"/>
-		<texture file="structural/ao/hele_wall_tower.png" name="aoTex"/>
-	</textures>
+        <texture file="structural/hele_struct_b.dds" name="baseTex"/>
+        <texture file="structural/hele_struct_b_norm.png" name="normTex"/>
+        <texture file="structural/hele_struct_b_spec.png" name="specTex"/>
+        <texture file="structural/ao/hele_wall_tower.png" name="aoTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -31,14 +26,9 @@
   </group>
   <group>
     <variant name="alive" frequency="1"/>
-    <variant name="death">
+    <variant file="structures/destruction_small.xml">
       <props>
-        <prop attachpoint="garrisoned"/>
-        <prop actor="particle/destruction_smoke_small.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_small_gray.xml" attachpoint="root"/>
         <prop actor="props/structures/hellenes/wall_turret.xml" attachpoint="root"/>
-        <prop actor="geology/decal_stone_medit_a.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
