@@ -2,12 +2,10 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="0" name="Base">
+    <variant frequency="0" name="Base" file="structures/defensive_building.xml">
       <mesh>structural/ptol_defense_tower.dae</mesh>
       <props>
-        <prop actor="props/structures/decals/dirt_1x1.xml" attachpoint="root"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+        <prop actor="props/structures/decals/spart_1x1.xml" attachpoint="root"/>
       </props>
       <textures>
         <texture file="structural/ptol_struct.png" name="baseTex"/>
@@ -16,12 +14,10 @@
         <texture file="structural/ao/ptol_defense_tower.png" name="aoTex"/>
       </textures>
     </variant>
-    <variant frequency="100" name="Palestrina">
+    <variant frequency="100" name="Palestrina" file="structures/defensive_building.xml">
       <mesh>structural/ptol_defense_tower_2.dae</mesh>
       <props>
         <prop actor="props/structures/decals/spart_1x1.xml" attachpoint="root"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
       <textures>
         <texture file="structural/ptol_struct.png" name="baseTex"/>
@@ -45,13 +41,13 @@
     <variant frequency="1" name="ungarrisoned"/>
     <variant name="garrisoned">
       <props>
-        <prop actor="props/special/common/garrison_flag_hele.xml" attachpoint="garrisoned"/>
+        <prop actor="props/special/common/garrison_flag_ptol.xml" attachpoint="garrisoned"/>
       </props>
     </variant>
   </group>
   <group>
     <variant frequency="1" name="alive"/>
-    <variant name="death">
+    <variant file="structures/destruction_small.xml">
       <props>
         <prop actor="particle/destruction_smoke_small.xml" attachpoint="root"/>
         <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
