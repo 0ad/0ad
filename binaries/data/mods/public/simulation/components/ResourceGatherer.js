@@ -33,6 +33,7 @@ ResourceGatherer.prototype.Schema =
 
 ResourceGatherer.prototype.Init = function()
 {
+	this.capacities = {};
 	this.carrying = {}; // { generic type: integer amount currently carried }
 	// (Note that this component supports carrying multiple types of resources,
 	// each with an independent capacity, but the rest of the game currently
