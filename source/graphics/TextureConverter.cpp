@@ -139,7 +139,7 @@ CTextureConverter::SettingsFile* CTextureConverter::LoadSettings(const VfsPath& 
 		return NULL;
 	}
 
-	std::unique_ptr<SettingsFile> settings(new SettingsFile());
+	std::unique_ptr<SettingsFile> settings = std::make_unique<SettingsFile>();
 
 	XERO_ITER_EL(root, child)
 	{
@@ -385,7 +385,7 @@ bool CTextureConverter::ConvertTexture(const CTexturePtr& texture, const VfsPath
 
 #if CONFIG2_NVTT
 
-	shared_ptr<ConversionRequest> request(new ConversionRequest);
+	shared_ptr<ConversionRequest> request = std::make_shared<ConversionRequest>();
 	request->dest = dest;
 	request->texture = texture;
 
@@ -572,7 +572,7 @@ void CTextureConverter::RunThread(CTextureConverter* textureConverter)
 		}
 
 		// Set up the result object
-		shared_ptr<ConversionResult> result(new ConversionResult());
+		shared_ptr<ConversionResult> result = std::make_shared<ConversionResult>();
 		result->dest = request->dest;
 		result->texture = request->texture;
 

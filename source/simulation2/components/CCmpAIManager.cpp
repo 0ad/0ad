@@ -472,7 +472,7 @@ public:
 
 	bool AddPlayer(const std::wstring& aiName, player_id_t player, u8 difficulty, const std::wstring& behavior)
 	{
-		shared_ptr<CAIPlayer> ai(new CAIPlayer(*this, aiName, player, difficulty, behavior, m_ScriptInterface));
+		shared_ptr<CAIPlayer> ai = std::make_shared<CAIPlayer>(*this, aiName, player, difficulty, behavior, m_ScriptInterface);
 		if (!ai->Initialise())
 			return false;
 

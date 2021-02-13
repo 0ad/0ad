@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -472,7 +472,7 @@ public:
 			{
 				const OsPath name = relativePathname.Filename();
 				CFileInfo fileInfo(name, cdfh->USize(), cdfh->MTime());
-				shared_ptr<ArchiveFile_Zip> archiveFile(new ArchiveFile_Zip(m_file, cdfh->HeaderOffset(), cdfh->CSize(), cdfh->Checksum(), cdfh->Method()));
+				shared_ptr<ArchiveFile_Zip> archiveFile = std::make_shared<ArchiveFile_Zip>(m_file, cdfh->HeaderOffset(), cdfh->CSize(), cdfh->Checksum(), cdfh->Method());
 				cb(relativePathname, fileInfo, archiveFile, cbData);
 			}
 
@@ -548,7 +548,7 @@ private:
 					// for this:
 					// 1) Header file format and size differ from what we expect
 					// 2) File has been truncated
-					// 3) The magic id occurs inside a zip comment 
+					// 3) The magic id occurs inside a zip comment
 					ecdr = nullptr;
 				}
 				else

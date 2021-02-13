@@ -196,7 +196,7 @@ private:
 		CVector2D origin;
 		cmpPosition->GetInterpolatedPosition2D(frameOffset, origin.X, origin.Y, rotY);
 
-		rangeOverlay.line = std::unique_ptr<SOverlayTexturedLine>(new SOverlayTexturedLine);
+		rangeOverlay.line = std::make_unique<SOverlayTexturedLine>();
 		rangeOverlay.line->m_SimContext = &GetSimContext();
 		rangeOverlay.line->m_Color = m_Color;
 		rangeOverlay.line->CreateOverlayTexture(&rangeOverlay.descriptor);

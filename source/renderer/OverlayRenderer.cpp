@@ -285,7 +285,7 @@ void OverlayRenderer::PrepareForRendering()
 		SOverlayTexturedLine* line = m->texlines[i];
 		if (!line->m_RenderData)
 		{
-			line->m_RenderData = shared_ptr<CTexturedLineRData>(new CTexturedLineRData());
+			line->m_RenderData = std::make_shared<CTexturedLineRData>();
 			line->m_RenderData->Update(*line);
 			// We assume the overlay line will get replaced by the caller
 			// if terrain changes, so we don't need to detect that here and

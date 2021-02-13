@@ -254,7 +254,7 @@ void CComponentManager::Script_RegisterComponentType_Common(ScriptInterface::Cmp
 		ctWrapper.dealloc,
 		cname,
 		schema,
-		std::unique_ptr<JS::PersistentRootedValue>(new JS::PersistentRootedValue(rq.cx, ctor))
+		std::make_unique<JS::PersistentRootedValue>(rq.cx, ctor)
 	};
 	componentManager->m_ComponentTypesById[cid] = std::move(ct);
 

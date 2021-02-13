@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -98,7 +98,7 @@ bool RelaxNGValidator::LoadGrammar(const std::string& grammar)
 		std::map<std::string, shared_ptr<RelaxNGSchema> >::iterator it = g_SchemaCache.find(grammar);
 		if (it == g_SchemaCache.end())
 		{
-			schema = shared_ptr<RelaxNGSchema>(new RelaxNGSchema(grammar));
+			schema = std::make_shared<RelaxNGSchema>(grammar);
 			g_SchemaCache[grammar] = schema;
 		}
 		else

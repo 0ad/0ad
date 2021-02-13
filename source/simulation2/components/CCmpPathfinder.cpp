@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -57,9 +57,9 @@ void CCmpPathfinder::Init(const CParamNode& UNUSED(paramNode))
 
 	m_AtlasOverlay = NULL;
 
-	m_VertexPathfinder = std::unique_ptr<VertexPathfinder>(new VertexPathfinder(m_MapSize, m_TerrainOnlyGrid));
-	m_LongPathfinder = std::unique_ptr<LongPathfinder>(new LongPathfinder());
-	m_PathfinderHier = std::unique_ptr<HierarchicalPathfinder>(new HierarchicalPathfinder());
+	m_VertexPathfinder = std::make_unique<VertexPathfinder>(m_MapSize, m_TerrainOnlyGrid);
+	m_LongPathfinder = std::make_unique<LongPathfinder>();
+	m_PathfinderHier = std::make_unique<HierarchicalPathfinder>();
 
 	// Register Relax NG validator
 	CXeromyces::AddValidator(g_VFS, "pathfinder", "simulation/data/pathfinder.rng");

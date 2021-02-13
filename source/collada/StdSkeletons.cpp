@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -148,7 +148,7 @@ namespace
 		for (xmlNodeList::iterator skeletonNode = skeletonNodes.begin();
 			skeletonNode != skeletonNodes.end(); ++skeletonNode)
 		{
-			std::unique_ptr<Skeleton> skeleton (new Skeleton());
+			std::unique_ptr<Skeleton> skeleton = std::make_unique<Skeleton>();
 
 			std::string title (FUXmlParser::ReadNodeProperty(*skeletonNode, "title"));
 

@@ -507,7 +507,7 @@ void L10n::LoadListOfAvailableLocales()
 		std::string filename = utf8_from_wstring(path.string()).substr(strlen("l10n/"));
 		size_t lengthToFirstDot = filename.find('.');
 		std::string localeCode = filename.substr(0, lengthToFirstDot);
-		std::unique_ptr<icu::Locale> locale(new icu::Locale(icu::Locale::createCanonical(localeCode.c_str())));
+		std::unique_ptr<icu::Locale> locale = std::make_unique<icu::Locale>(icu::Locale::createCanonical(localeCode.c_str()));
 		auto it = std::find_if(availableLocales.begin(), availableLocales.end(), [&locale](const std::unique_ptr<icu::Locale>& l) {
 			return *locale == *l;
 		});
