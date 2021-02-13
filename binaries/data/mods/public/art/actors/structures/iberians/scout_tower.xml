@@ -2,13 +2,8 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant name="base" frequency="1">
-      <animations>
-        <animation event="0.5" load="0" name="attack_ranged" speed="100"/>
-      </animations>
+    <variant name="base" frequency="1" file="structures/defensive_building.xml">
       <props>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
         <prop actor="props/flora/bush_desert_dry_a.xml" attachpoint="plant_1" maxheight="20" minheight="-20"/>
         <prop actor="props/flora/bush_desert_a.xml" attachpoint="plant_2" maxheight="20" minheight="-20"/>
         <prop actor="props/flora/bush_medit_me_dry.xml" attachpoint="plant_3" maxheight="20" minheight="-20"/>
@@ -29,6 +24,7 @@
     <variant name="upgrading">
       <props>
         <prop actor="props/structures/construction/scaf_3x3_tower.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
         <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
       </props>
     </variant>
@@ -63,15 +59,7 @@
   </group>
   <group>
     <variant name="alive" frequency="1"/>
-    <variant name="death">
-      <props>
-        <prop attachpoint="garrisoned"/>
-        <prop actor="particle/destruction_smoke_small.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_small_gray.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
-      </props>
-    </variant>
+    <variant file="structures/destruction_small.xml"/>
   </group>
   <material>player_trans_ao_parallax_spec.xml</material>
 </actor>
