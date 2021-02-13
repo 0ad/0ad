@@ -25,8 +25,8 @@
 
 #include "lib/bits.h"
 
-#include <new> // bad_alloc
 #include <memory> // unique_ptr
+#include <new> // bad_alloc
 #include <vector>
 
 namespace Allocators {
@@ -43,23 +43,25 @@ template<size_t BLOCK_SIZE>
 class DynamicArena
 {
 protected:
-	struct Block
+	class Block
 	{
+	public:
 		bool Available(size_t n, size_t alignment) const
 		{
-			return n + ROUND_UP(size, alignment) <= BLOCK_SIZE;
+			return n + ROUND_UP(m_Size, alignment) <= BLOCK_SIZE;
 		}
 
 		uint8_t* Allocate(size_t n, size_t alignment)
 		{
-			size = ROUND_UP(size, alignment);
-			uint8_t* ptr = &block[size];
-			size += n;
+			m_Size = ROUND_UP(m_Size, alignment);
+			uint8_t* ptr = &m_Data[m_Size];
+			m_Size += n;
 			return ptr;
 		}
 
-		alignas(8) uint8_t block[BLOCK_SIZE];
-		size_t size = 0;
+	private:
+		size_t m_Size = 0;
+		std::unique_ptr<uint8_t[]> m_Data = std::make_unique<uint8_t[]>(BLOCK_SIZE);
 	};
 
 	NONCOPYABLE(DynamicArena);
@@ -72,8 +74,7 @@ public:
 
 	void AllocateNewBlock()
 	{
-		m_Blocks.emplace_back(std::make_unique<Block>());
-		m_NewestBlock = m_Blocks.back().get();
+		m_Blocks.emplace_back();
 	}
 
 	void* allocate(size_t n, const void*, size_t alignment)
@@ -88,10 +89,10 @@ public:
 			throw std::bad_alloc();
 		}
 
-		if (!m_NewestBlock->Available(n, alignment))
+		if (!m_Blocks.back().Available(n, alignment))
 			AllocateNewBlock();
 
-		return reinterpret_cast<void*>(m_NewestBlock->Allocate(n, alignment));
+		return reinterpret_cast<void*>(m_Blocks.back().Allocate(n, alignment));
 	}
 
 	void deallocate(void* UNUSED(p), size_t UNUSED(n))
@@ -101,14 +102,12 @@ public:
 
 	void clear()
 	{
-		m_NewestBlock = nullptr;
 		m_Blocks.clear();
 		AllocateNewBlock();
 	}
 
 protected:
-	std::vector<std::unique_ptr<Block>> m_Blocks;
-	Block* m_NewestBlock = nullptr;
+	std::vector<Block> m_Blocks;
 };
 
 } // namespace Allocators
