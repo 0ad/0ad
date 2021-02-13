@@ -2,7 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Hellenes Fortress">
+    <variant frequency="100" name="Hellenes Fortress" file="structures/defensive_building.xml">
       <mesh>structural/hele_fortress_up.dae</mesh>
       <props>
         <prop actor="props/structures/athenians/fortress_shields.xml" attachpoint="root"/>
@@ -10,7 +10,6 @@
         <prop actor="props/structures/hellenes/fortress_tile_b.xml" attachpoint="root"/>
         <prop actor="props/structures/hellenes/fortress_props_up.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/dirt_5x5.xml" attachpoint="root"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
       <textures>
         <texture file="structural/hele_struct_b.dds" name="baseTex"/>
@@ -30,17 +29,12 @@
   </group>
   <group>
     <variant name="alive" frequency="1"/>
-    <variant name="death">
+    <variant file="structures/destruction_large.xml">
       <props>
-        <prop attachpoint="garrisoned"/>
-        <prop actor="particle/destruction_smoke_large.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_large.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_large_gray.xml" attachpoint="root"/>
-        <prop actor="props/structures/hellenes/fortress_shields.xml" attachpoint="root"/>
-        <prop actor="props/structures/hellenes/fortress_gate.xml" attachpoint="root"/>
-        <prop actor="props/structures/hellenes/fortress_props_up.xml" attachpoint="root"/>
+        <prop actor="props/structures/athenians/fortress_shields.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/fortress_gate_up.xml" attachpoint="root"/>
         <prop actor="props/structures/hellenes/fortress_tile_b.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/dirt_5x5.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/fortress_props_up.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>

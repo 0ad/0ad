@@ -22,16 +22,13 @@
   </group>
   <group>
     <variant name="alive" frequency="1"/>
-    <variant name="death">
+    <variant file="structures/destruction_large.xml">
       <props>
-        <prop actor="particle/destruction_smoke_large.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_large.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_large_gray.xml" attachpoint="root"/>
-        <prop actor="props/structures/athenians/gym_decor.xml" attachpoint="root"/>
         <prop actor="props/structures/athenians/gym_shields.xml" attachpoint="root"/>
-        <prop actor="props/structures/hellenes/gym_props.xml" attachpoint="root"/>
-        <prop actor="props/structures/hellenes/gym_tiles.xml" attachpoint="root"/>
-        <prop actor="props/structures/hellenes/gym_trees.xml" attachpoint="root"/>
+        <prop actor="props/structures/athenians/gym_props.xml" attachpoint="root"/>
+        <prop actor="props/structures/athenians/gym_tiles.xml" attachpoint="root"/>
+        <prop actor="props/structures/athenians/gym_trees.xml" attachpoint="root"/>
+        <prop actor="props/structures/athenians/gym_decor.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
