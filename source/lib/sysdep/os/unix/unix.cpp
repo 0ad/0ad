@@ -1,4 +1,4 @@
-/* Copyright (c) 2019 Wildfire Games.
+/* Copyright (c) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -330,7 +330,10 @@ Status sys_generate_random_bytes(u8* buf, size_t count)
 	{
 		size_t numread = fread(buf, 1, count, f);
 		if (numread == 0)
+		{
+			fclose(f);
 			WARN_RETURN(ERR::FAIL);
+		}
 		buf += numread;
 		count -= numread;
 	}
