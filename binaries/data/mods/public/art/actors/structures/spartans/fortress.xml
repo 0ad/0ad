@@ -2,15 +2,10 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="SpartanFortress">
-      <animations>
-        <animation event="0.5" load="0.0" name="attack_ranged" speed="100"/>
-      </animations>
+    <variant frequency="1" name="SpartanFortress" file="structures/defensive_building.xml">
       <mesh>structural/spart_fortress.dae</mesh>
       <props>
         <prop actor="props/structures/decals/spart_5x5.xml" attachpoint="root"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
       <textures>
         <texture file="structural/sparta_struct.png" name="baseTex"/>

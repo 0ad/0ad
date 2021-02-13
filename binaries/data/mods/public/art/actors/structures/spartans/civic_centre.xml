@@ -2,10 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Hellenes_Civic_Centre">
-      <animations>
-        <animation event="0.5" load="0.0" name="attack_ranged" speed="100"/>
-      </animations>
+    <variant frequency="1" name="Hellenes_Civic_Centre" file="structures/defensive_building.xml">
       <mesh>structural/spart_cc_struct.dae</mesh>
       <props>
         <prop actor="props/structures/spartans/civic_centre_decor.xml" attachpoint="root"/>
@@ -15,8 +12,6 @@
         <prop actor="props/structures/spartans/civic_centre_struct_b.xml" attachpoint="root"/>
         <prop actor="props/structures/spartans/civic_centre_shields.xml" attachpoint="root"/>
         <prop actor="props/structures/spartans/civic_centre_tiles.xml" attachpoint="root"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
       <textures>
         <texture file="structural/hele_struct.dds" name="baseTex"/>
