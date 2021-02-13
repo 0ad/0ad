@@ -2,7 +2,13 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="foundation 3x3 a"/>
+    <variant frequency="1" name="foundation 3x3 a">
+      <textures>
+        <texture file="structural/kart_struct.dds" name="baseTex"/>
+        <texture file="structural/kart_struct_norm.png" name="normTex"/>
+        <texture file="structural/kart_struct_spec.png" name="specTex"/>
+      </textures>
+    </variant>
   </group>
   <group>
     <variant name="House A">
@@ -37,15 +43,6 @@
         <prop actor="props/structures/decals/dirt_3x3.xml" attachpoint="root"/>
         <prop actor="particle/construction_dust.xml" attachpoint="root"/>
       </props>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="1">
-      <textures>
-        <texture file="structural/kart_struct.dds" name="baseTex"/>
-        <texture file="structural/kart_struct_norm.png" name="normTex"/>
-        <texture file="structural/kart_struct_spec.png" name="specTex"/>
-      </textures>
     </variant>
   </group>
   <material>player_trans_ao_parallax_spec.xml</material>
