@@ -25,8 +25,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-29 14:56+0000\n"
-"PO-Revision-Date: 2021-02-11 16:59+0000\n"
-"Last-Translator: Marek Berčík <marek.bercik@hotmail.com>\n"
+"PO-Revision-Date: 2021-02-12 19:27+0000\n"
+"Last-Translator: Slavomir Slovenkai <slavomir.slovenkai@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -668,7 +668,7 @@ msgstr "Prednastavené"
 #: gui/common/settings.js:400
 msgctxt "population capacity addendum"
 msgid "(world)"
-msgstr ""
+msgstr "(svet)"
 
 #: gui/common/settings.js:401 gui/common/settings.js:405
 msgctxt "population capacity"
@@ -782,7 +782,7 @@ msgstr "%(name)s %(details)s"
 #: gui/common/tooltips.js:263
 #, javascript-format
 msgid "Duration reduction: %(durationReduction)s%%"
-msgstr ""
+msgstr "Zkrátenie trvania: %(durationReduction)s%%"
 
 #: gui/common/tooltips.js:271
 #, javascript-format
@@ -811,10 +811,10 @@ msgstr "Miera:"
 #, javascript-format
 msgid "%(projectileCount)s %(projectileName)s"
 msgid_plural "%(projectileCount)s %(projectileName)s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(projectileCount)s %(projectileName)s"
+msgstr[1] "%(projectileCount)s %(projectileName)s"
+msgstr[2] "%(projectileCount)s %(projectileName)s"
+msgstr[3] "%(projectileCount)s %(projectileName)s"
 
 #: gui/common/tooltips.js:304
 msgid "arrow"
@@ -827,7 +827,7 @@ msgstr[3] "šípov"
 #: gui/common/tooltips.js:307
 #, javascript-format
 msgid "%(projectileString)s / %(attackRateString)s"
-msgstr ""
+msgstr "%(projectileString)s / %(attackRateString)s"
 
 #. Translation: For example: Range: 2 to 10 (+2) meters
 #: gui/common/tooltips.js:327
@@ -835,25 +835,25 @@ msgstr ""
 msgid ""
 "%(rangeLabel)s %(minRange)s to %(maxRange)s (%(relativeRange)s) "
 "%(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s %(minRange)s do %(maxRange)s (%(relativeRange)s) %(rangeUnit)s"
 
 #. Translation: For example: Range: 10 (+2) meters
 #: gui/common/tooltips.js:329
 #, javascript-format
 msgid "%(rangeLabel)s %(maxRange)s (%(relativeRange)s) %(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s %(maxRange)s (%(relativeRange)s) %(rangeUnit)s"
 
 #. Translation: For example: Range: 2 to 10 meters
 #: gui/common/tooltips.js:333
 #, javascript-format
 msgid "%(rangeLabel)s %(minRange)s to %(maxRange)s %(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s  %(minRange)sdo %(maxRange)s %(rangeUnit)s"
 
 #. Translation: For example: Range: 10 meters
 #: gui/common/tooltips.js:335
 #, javascript-format
 msgid "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
 
 #: gui/common/tooltips.js:345 gui/common/tooltips.js:953
 msgid "Range:"
@@ -887,7 +887,7 @@ msgstr "%(damage)s %(damageType)s"
 #: gui/common/tooltips.js:374
 #, javascript-format
 msgid "%(amount)s %(name)s"
-msgstr ""
+msgstr "%(amount)s %(name)s"
 
 #: gui/common/tooltips.js:382
 #, javascript-format
@@ -897,7 +897,7 @@ msgstr ""
 #: gui/common/tooltips.js:385
 #, javascript-format
 msgid "%(label)s: %(effects)s"
-msgstr ""
+msgstr "%(label)s: %(effects)s"
 
 #: gui/common/tooltips.js:391
 #, javascript-format
@@ -923,7 +923,7 @@ msgstr "Nie"
 #: gui/common/tooltips.js:403
 #, javascript-format
 msgid "gives %(name)s"
-msgstr ""
+msgstr "poskytuje %(name)s"
 
 #: gui/common/tooltips.js:436
 #, javascript-format
@@ -934,7 +934,7 @@ msgstr "%(attackType)s"
 #, javascript-format
 msgid ""
 "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s%(splash)s"
-msgstr ""
+msgstr "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s%(splash)s"
 
 #: gui/common/tooltips.js:468
 msgid "Attack:"
@@ -1361,7 +1361,7 @@ msgstr ""
 
 #: gui/credits/texts/audio.jsonContent[3].Content[3].Subtitle
 msgid "Persian"
-msgstr ""
+msgstr "Peržan"
 
 #: gui/credits/texts/audio.jsonContent[3].Title
 msgid "Voices"
@@ -1501,7 +1501,7 @@ msgstr "VYMAZANIE"
 #: gui/loadgame/SavegameDetails.js:40
 #, javascript-format
 msgid "Mods: %(mods)s"
-msgstr ""
+msgstr "Modifikácie: %(mods)s"
 
 #: gui/loadgame/SavegameList.js:158
 msgid "yyyy-MM-dd HH:mm:ss"
@@ -1779,7 +1779,7 @@ msgstr "Zobrazovať aktuálny čas simulácie v pravom hornom rohu obrazovky."
 
 #: gui/options/options.json[0].options[8].label
 msgid "Ceasefire time overlay"
-msgstr ""
+msgstr "Vrstva času prímeria"
 
 #: gui/options/options.json[0].options[8].tooltip
 msgid "Always show the remaining ceasefire time."
@@ -1976,7 +1976,7 @@ msgstr "MSAA (2×)"
 msgid ""
 "Slow, but high-quality antialiasing, uses two samples per pixel. Supported "
 "for GL3.3+."
-msgstr ""
+msgstr "Pomalý, ale vysoko kvalitný antialiasing, používa dve vzorky na pixel. Podporované pre GL3.3+."
 
 #: gui/options/options.json[1].options[4].list[3].label
 msgid "MSAA (4×)"
@@ -1986,7 +1986,7 @@ msgstr "MSAA (4×)"
 msgid ""
 "Slow, but high-quality antialiasing, uses four samples per pixel. Supported "
 "for GL3.3+."
-msgstr ""
+msgstr "Pomalý, ale vysoko kvalitný antialiasing, používa štyri vzorky na pixel. Podporované pre GL3.3+."
 
 #: gui/options/options.json[1].options[4].list[4].label
 msgid "MSAA (8×)"
@@ -1996,7 +1996,7 @@ msgstr "MSAA (8×)"
 msgid ""
 "Slow, but high-quality antialiasing, uses eight samples per pixel. Supported"
 " for GL3.3+."
-msgstr ""
+msgstr "Pomalý, ale vysoko kvalitný antialiasing, používa osem vzoriek na pixel. Podporované pre GL3.3+."
 
 #: gui/options/options.json[1].options[4].list[5].label
 msgid "MSAA (16×)"
@@ -2006,11 +2006,11 @@ msgstr "MSAA (16×)"
 msgid ""
 "Slow, but high-quality antialiasing, uses sixteen samples per pixel. "
 "Supported for GL3.3+."
-msgstr ""
+msgstr "Pomalý, ale vysoko kvalitný antialiasing, používa šestnásť vzoriek na pixel. Podporované pre GL3.3+."
 
 #: gui/options/options.json[1].options[4].tooltip
 msgid "Reduce aliasing effect on edges."
-msgstr ""
+msgstr "Zmenšite efekty aliasingu na okrajoch."
 
 #: gui/options/options.json[1].options[5].label
 msgid "Sharpening"
@@ -2267,7 +2267,7 @@ msgstr ""
 
 #: gui/options/options.json[4].options[1].label
 msgid "Chat backlog"
-msgstr ""
+msgstr "Denník konverzácie"
 
 #: gui/options/options.json[4].options[1].tooltip
 msgid "Number of backlogged messages to load when joining the lobby."
@@ -2275,7 +2275,7 @@ msgstr "Počet spätných správ ktorý sa majú načítať pri pripájaní sa d
 
 #: gui/options/options.json[4].options[2].label
 msgid "Game rating column"
-msgstr ""
+msgstr "Stĺpec herného hodnotenia"
 
 #: gui/options/options.json[4].options[2].tooltip
 msgid ""
@@ -2289,7 +2289,7 @@ msgstr "Tieto nastavenia ovplyvnia iba hru viacerých hráčov."
 
 #: gui/options/options.json[5].label
 msgid "Game Session"
-msgstr ""
+msgstr "Herná schôdza"
 
 #: gui/options/options.json[5].options[0].label
 msgid "Wounded unit health"
@@ -2349,7 +2349,7 @@ msgstr "Tooltip na dynamické zoradenie hráčov podla surovinových a populačn
 
 #: gui/options/options.json[5].options[14].label
 msgid "Diplomacy colors: self"
-msgstr ""
+msgstr "Diplomatické farby: vlastné"
 
 #: gui/options/options.json[5].options[14].tooltip
 msgid "Color of your units when diplomacy colors are enabled."
@@ -2373,7 +2373,7 @@ msgstr "Farba neutrálnych hráčov keď sú aktivované diplomatické farby."
 
 #: gui/options/options.json[5].options[17].label
 msgid "Diplomacy colors: enemy"
-msgstr ""
+msgstr "Diplomatické farby: nepriateľské"
 
 #: gui/options/options.json[5].options[17].tooltip
 msgid "Color of enemies when diplomacy colors are enabled."
@@ -2381,38 +2381,38 @@ msgstr "Farba nepriateľov keď sú aktivované diplomatické farby."
 
 #: gui/options/options.json[5].options[18].label
 msgid "Snap to edges"
-msgstr ""
+msgstr "Prichytávať k rohom"
 
 #: gui/options/options.json[5].options[18].list[0].label
 msgid "Hotkey to enable snapping"
-msgstr ""
+msgstr "Klávesová skratka na zapnutie prichytávania."
 
 #: gui/options/options.json[5].options[18].list[0].tooltip
 msgid ""
 "New structures are aligned with nearby structures while pressing the hotkey."
-msgstr ""
+msgstr "Nové budovy sú zarovnané k budovám v blízkosti, ak je stlačená klávesová skratka."
 
 #: gui/options/options.json[5].options[18].list[1].label
 msgid "Hotkey to disable snapping"
-msgstr ""
+msgstr "Klávesová kombinácia na vypnutie prichytávania"
 
 #: gui/options/options.json[5].options[18].list[1].tooltip
 msgid ""
 "New structures are aligned with nearby structures unless the hotkey is "
 "pressed."
-msgstr ""
+msgstr "Ak nie je použitá klávesová kombinácia, nové budovy sú zarovnané k stavbám v ich blízkosti."
 
 #: gui/options/options.json[5].options[18].tooltip
 msgid "This option allows to align new structures with nearby structures."
-msgstr ""
+msgstr "Táto možnosť umožňuje zarovnať nové budovy k budovám v blízkosti."
 
 #: gui/options/options.json[5].options[19].label
 msgid "Control group membership"
-msgstr ""
+msgstr "Ovládať členstvo v skupine"
 
 #: gui/options/options.json[5].options[19].list[0].label
 msgid "Single"
-msgstr ""
+msgstr "V jednej"
 
 #: gui/options/options.json[5].options[19].list[0].tooltip
 msgid ""
@@ -2423,7 +2423,7 @@ msgstr ""
 
 #: gui/options/options.json[5].options[19].list[1].label
 msgid "Multiple"
-msgstr ""
+msgstr "Viaceré"
 
 #: gui/options/options.json[5].options[19].list[1].tooltip
 msgid ""
@@ -2446,15 +2446,15 @@ msgstr "Počet jednotiek vytrénovaných v predvolenej skupine. "
 
 #: gui/options/options.json[5].options[20].label
 msgid "Formation control"
-msgstr ""
+msgstr "Ovládanie formácie"
 
 #: gui/options/options.json[5].options[20].list[0].label
 msgid "Walk/Patrol Only"
-msgstr ""
+msgstr "Iba kráčať/hliadkovať"
 
 #: gui/options/options.json[5].options[20].list[0].tooltip
 msgid "Other orders will disband existing formations."
-msgstr ""
+msgstr "Iné príkazy rozpustia jestvujúce formácie."
 
 #: gui/options/options.json[5].options[20].list[1].label
 msgid "No Override"
@@ -2462,13 +2462,13 @@ msgstr ""
 
 #: gui/options/options.json[5].options[20].list[1].tooltip
 msgid "Units in formations stay in formations."
-msgstr ""
+msgstr "Jednotky vo formáciách zostanú vo formáciách."
 
 #: gui/options/options.json[5].options[20].tooltip
 msgid ""
 "Decide whether formations are enabled for all orders or only 'Walk' and "
 "'Patrol'."
-msgstr ""
+msgstr "Rozhodnite či sú formácie zapnuté pre všetky rozkazy, alebo iba pre chôdzu a hliadkovanie."
 
 #: gui/options/options.json[5].options[2].label
 msgid "Scroll batch increment ratio"
@@ -2632,28 +2632,28 @@ msgstr "%(hotkey)s: Pozri si strom stavieb civilizácií v 0 A,D,"
 #: gui/reference/civinfo/civinfo.xml:(caption):21
 #: gui/reference/common/Buttons/CivInfoButton.js:21
 msgid "Civilization Overview"
-msgstr ""
+msgstr "Prehľad civilizácie"
 
 #: gui/pregame/MainMenuItems.js:37
 #, javascript-format
 msgid "%(hotkey)s: Learn about the civilizations featured in 0 A.D."
-msgstr ""
+msgstr "%(hotkey)s: Dozvedieť sa viac o civilizáciách v 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:48
 msgid "Catafalque Overview"
-msgstr ""
+msgstr "Prehľad katafalku"
 
 #: gui/pregame/MainMenuItems.js:49
 msgid "Compare the bonuses of catafalques featured in 0 A.D."
-msgstr ""
+msgstr "Porovnať bonusy katafalkov v 0. A.D."
 
 #: gui/pregame/MainMenuItems.js:55
 msgid "Map Overview"
-msgstr ""
+msgstr "Prehľad mapy"
 
 #: gui/pregame/MainMenuItems.js:56
 msgid "View the different maps featured in 0 A.D."
-msgstr ""
+msgstr "Zobraziť rôzne mapy v 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:64 gui/replaymenu/replay_filters.js:144
 msgid "Single-player"
@@ -2661,7 +2661,7 @@ msgstr "Hra jedného hráča"
 
 #: gui/pregame/MainMenuItems.js:65
 msgid "Start, load, or replay a single-player game."
-msgstr ""
+msgstr "Zapnúť, načítať alebo znova prehrať hru jedného hráča."
 
 #: gui/pregame/MainMenuItems.js:68
 msgid "Matches"
@@ -2716,7 +2716,7 @@ msgstr "Vytvoriť hru"
 
 #: gui/pregame/MainMenuItems.js:117
 msgid "Host a multiplayer game."
-msgstr ""
+msgstr "Vytvoriť hru viacerých hráčov."
 
 #: gui/pregame/MainMenuItems.js:125
 msgid "Game Lobby"
@@ -2751,11 +2751,11 @@ msgstr "Upraviť nastavenia hry."
 
 #: gui/pregame/MainMenuItems.js:166
 msgid "Hotkeys"
-msgstr ""
+msgstr "Klávesové skratky"
 
 #: gui/pregame/MainMenuItems.js:167
 msgid "Adjust hotkeys."
-msgstr ""
+msgstr "Upraviť klávesové skratky."
 
 #: gui/locale/locale.xml:(caption):14 gui/pregame/MainMenuItems.js:173
 msgid "Language"
@@ -2779,7 +2779,7 @@ msgstr "Úvodná obrazovka"
 
 #: gui/pregame/MainMenuItems.js:188
 msgid "Show the Welcome Screen again. Useful if you hid it by mistake."
-msgstr ""
+msgstr "Znova zobraziť uvítacie okno. Užitočné, ak ste ju skryli omylom."
 
 #: gui/pregame/MainMenuItems.js:196
 msgid "Scenario Editor"
@@ -2815,7 +2815,7 @@ msgstr "Poďakovanie"
 
 #: gui/pregame/MainMenuItems.js:215
 msgid "Show the 0 A.D. credits."
-msgstr ""
+msgstr "Zobraziť titulky ľudí podieľajúcich sa 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:221
 msgid "Exit"
@@ -2841,7 +2841,7 @@ msgstr "Alfa XXIV: Xšayāršā"
 msgid ""
 "Notice: This game is under development and many features have not been added"
 " yet."
-msgstr ""
+msgstr "Upozornenie: Táto hra je vo vývoji a mnohé funkcie do nej ešte neboli pridané."
 
 #: gui/pregame/ProjectInformation.js:25
 msgid "Website"
@@ -2981,7 +2981,7 @@ msgstr "• %(name)s %(info_icon)s%(description)s"
 #: gui/reference/civinfo/CivInfoPage.js:113
 #, javascript-format
 msgid "%(hotkey)s: Close Civilization Overview."
-msgstr ""
+msgstr "%(hotkey)s: Zatvoriť prehľad civilizácií."
 
 #: gui/reference/civinfo/Sections/GameplaySection.js:30
 #, javascript-format
@@ -3012,31 +3012,31 @@ msgstr[3] "Tímových bonusov"
 #: gui/reference/civinfo/Sections/Subsections/HeroesSubsection.js:29
 msgid "Hero"
 msgid_plural "Heroes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Hrdina"
+msgstr[1] "Hrdinovia"
+msgstr[2] "Hrdinovia"
+msgstr[3] "Hrdinovia"
 
 #: gui/reference/civinfo/Sections/Subsections/StructuresSubsection.js:29
 msgid "Specific Structure"
 msgid_plural "Specific Structures"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Zvláštna budova"
+msgstr[1] "Zvláštne budovy"
+msgstr[2] "Zvláštne budovy"
+msgstr[3] "Zvláštne budovy"
 
 #: gui/reference/civinfo/Sections/Subsections/TechnologiesSubsection.js:28
 msgid "Specific Technology"
 msgid_plural "Specific Technologies"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Zvláštna technológia"
+msgstr[1] "Zvláštne technológie"
+msgstr[2] "Zvláštne technológie"
+msgstr[3] "Zvláštne technológie"
 
 #: gui/reference/common/Buttons/CivInfoButton.js:27
 #, javascript-format
 msgid "%(hotkey)s: Switch to Civilization Overview."
-msgstr ""
+msgstr "%(hotkey)s: Prepnúť na prehľad civilizácii."
 
 #: gui/credits/credits.xml:(caption):32 gui/options/options.xml:(caption):60
 #: gui/reference/common/Buttons/CloseButton.js:13
@@ -3123,7 +3123,7 @@ msgstr "%(hotkey)s: Zatvor Strom stavieb"
 #: gui/reference/viewer/ViewerPage.js:167
 #, javascript-format
 msgid "%(hotkey)s: Close Template Viewer"
-msgstr ""
+msgstr "%(hotkey)s: Zatvoriť prehliadač predlôh"
 
 #: gui/reference/viewer/viewer.xml:(caption):16
 msgid "Information"
@@ -3245,7 +3245,7 @@ msgstr "Záznamy môžete filtrovať zadaním jedného alebo viacerých hráčsk
 #: gui/replaymenu/replay_menu.js:198
 #, javascript-format
 msgid "Delete the selected replay using %(hotkey)s."
-msgstr ""
+msgstr "Vymazať vybranú nahrávku hry pomocou %(hotkey)s."
 
 #: gui/replaymenu/replay_menu.js:283
 #, javascript-format
@@ -3278,7 +3278,7 @@ msgstr "Hlavné menu"
 
 #: gui/replaymenu/replay_menu.xml:(caption):239
 msgid "Rebuild Cache"
-msgstr ""
+msgstr "Obnoviť cache"
 
 #: gui/replaymenu/replay_menu.xml:(caption):246
 #: gui/summary/summary.xml:(caption):26
@@ -3311,7 +3311,7 @@ msgstr "Trvanie"
 
 #: gui/replaymenu/replay_menu.xml:(placeholder_text):32
 msgid "Search for Player"
-msgstr ""
+msgstr "Hľadať hráča"
 
 #: gui/replaymenu/replay_menu.xml:(tooltip):240
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
@@ -3427,7 +3427,7 @@ msgstr "Divy sveta"
 msgid ""
 "Structure Statistics (%(constructed)s / %(destroyed)s / %(captured)s / "
 "%(lost)s)"
-msgstr ""
+msgstr "Štatistiky budov (%(constructed)s / %(destroyed)s / %(captured)s / %(lost)s)"
 
 #: gui/summary/layout.js:69
 msgid "Units"
@@ -3468,7 +3468,7 @@ msgstr "Obchodníci"
 #: gui/summary/layout.js:84
 #, javascript-format
 msgid "Unit Statistics (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
-msgstr ""
+msgstr "Štatistiky jednotiek (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 
 #: gui/summary/layout.js:109
 msgid "Resources"
@@ -3585,7 +3585,7 @@ msgstr "Zhromaždené"
 
 #: gui/summary/summary.js:44
 msgid "Count"
-msgstr ""
+msgstr "Počet"
 
 #: gui/summary/summary.js:49
 msgid "Sent"
@@ -3705,17 +3705,17 @@ msgstr "%(hotkey)s: Otvor predsieň hry viac hráčov v dialóvom okne."
 #: gui/summary/summary.js:555
 #, javascript-format
 msgid "Toggle the %(name)s summary tab."
-msgstr ""
+msgstr "Prepnúť na %(name)s zobrazenie zhrnutia."
 
 #: gui/summary/summary.js:556
 #, javascript-format
 msgid "Use %(hotkey)s to move a summary tab right."
-msgstr ""
+msgstr "Použite %(hotkey)s na posunutie zobrazenia zhrnutia vpravo."
 
 #: gui/summary/summary.js:557
 #, javascript-format
 msgid "Use %(hotkey)s to move a summary tab left."
-msgstr ""
+msgstr "Použite %(hotkey)s na posunutie zobrazenia zhrnutia vľavo."
 
 #: gui/summary/summary.xml:(caption):120
 msgctxt "summary chart"
@@ -3734,7 +3734,7 @@ msgstr "Typ:"
 
 #: gui/summary/summary.xml:(caption):167
 msgid "Group by team"
-msgstr ""
+msgstr "Zoskupiť podľa tímov"
 
 #: gui/summary/summary.xml:(caption):187
 msgid "Watch Replay"
@@ -3829,7 +3829,7 @@ msgstr "KATAPULTY"
 
 #: gui/text/tips/catapults.txt:2
 msgid "Ranged siege engines that are good against structures."
-msgstr ""
+msgstr "Obliehacie stroje pre boj zdiaľky sú dobré v ničení budov."
 
 #: gui/text/tips/catapults.txt:3
 msgid "Expensive and slow."
@@ -3847,11 +3847,11 @@ msgstr "KELTSKÝ VOJNOVÝ ČLN"
 
 #: gui/text/tips/celtic_war_barge.txt:2
 msgid "A medium trireme-class warship."
-msgstr ""
+msgstr "Bojová triréma strednej triedy."
 
 #: gui/text/tips/celtic_war_barge.txt:3
 msgid "Available to Britons, Gauls, and Iberians."
-msgstr ""
+msgstr "Dostupné u Britov, Galov a Iberov."
 
 #: gui/text/tips/celtic_war_barge.txt:4
 msgid "Can transport up to 40 units."
@@ -3893,7 +3893,7 @@ msgstr "Špeciálne Kasárne pre Kartágincov."
 
 #: gui/text/tips/embassies.txt:3
 msgid "Train mercenaries from each of the ethnically-themed embassies."
-msgstr ""
+msgstr "Trénujte žoldnierov z ambasád."
 
 #: gui/text/tips/embassies.txt:4
 msgid ""
@@ -3939,7 +3939,7 @@ msgstr "PEVNOSŤ"
 
 #: gui/text/tips/fortress.txt:2
 msgid "The Fortress is usually each faction's strongest structure."
-msgstr ""
+msgstr "Pevnosť je zvyčajne najsilnejšia budovy každej frakcie."
 
 #: gui/text/tips/fortress.txt:3
 msgid "Trains Champions, Heroes, and Siege Weapons."
@@ -4006,11 +4006,11 @@ msgstr "HRDINOVIA"
 msgid ""
 "Historical characters, such as Xerxes, Leonidas, Pericles, Hannibal, Scipio,"
 " and Boudicca."
-msgstr ""
+msgstr "Historické postavy ako Xerxes, Leonidas, Perikles, Hanibal, Scipio a Boudica."
 
 #: gui/text/tips/heroes.txt:3
 msgid "A lot of health and very strong attacks."
-msgstr ""
+msgstr "Veľa bodov zdravia a veľmi silný útok."
 
 #: gui/text/tips/heroes.txt:4
 msgid "Have auras which alter the stats of other units or structures."
@@ -4018,7 +4018,7 @@ msgstr ""
 
 #: gui/text/tips/heroes.txt:5
 msgid "Caution: Each hero can be recruited only once per match!"
-msgstr ""
+msgstr "Upozornenie: Každý hrdina môže byť trénovaný iba raz za hru!"
 
 #: gui/text/tips/iphicrates.txt:1
 msgid "IPHICRATES"
@@ -4044,11 +4044,11 @@ msgstr "ROZHĽADNE"
 
 #: gui/text/tips/outposts.txt:2
 msgid "Build in neutral or own territory."
-msgstr ""
+msgstr "Postavte na vlastnom alebo neutrálnom území."
 
 #: gui/text/tips/outposts.txt:3
 msgid "Cheap and quickly built, but weak."
-msgstr ""
+msgstr "Stavba je lacná a rýchla, ale slabá."
 
 #: gui/text/tips/outposts.txt:4
 msgid ""
@@ -4094,7 +4094,7 @@ msgstr "Špeciálna technológia pre Peržanov."
 
 #: gui/text/tips/persian_architecture.txt:3
 msgid "Structures +25% health."
-msgstr ""
+msgstr "Budovy +25% bodov zdravia."
 
 #: gui/text/tips/persian_architecture.txt:4
 msgid "Build time lengthened by +20% as a consequence."
@@ -4121,17 +4121,17 @@ msgstr "Používa sa proti jazde alebo inej pechote útočiacej zblízka, aby si
 
 #: gui/text/tips/pikemen.txt:4
 msgid "Available to: Kushites, Macedonians, Ptolemies, and Seleucids."
-msgstr ""
+msgstr "Dostupné pre: Kušitov, Macedóncov, Ptolemaiovcov a Seleukovcov."
 
 #: gui/text/tips/quinquereme.txt:1
 msgid "QUINQUEREME"
-msgstr ""
+msgstr "QUINQUEREME"
 
 #: gui/text/tips/quinquereme.txt:2
 msgid ""
 "The heaviest standard warship. Available to: Carthaginians, Ptolemies, "
 "Romans, and Seleucids."
-msgstr ""
+msgstr "Najťažšia štandardná bojová loď. Dostupná pre: Kartágincov, Ptolemaiovcov, Rimanov a Seleukovcov."
 
 #: gui/text/tips/quinquereme.txt:3
 msgid "Transports up to 50 units."
@@ -4181,7 +4181,7 @@ msgstr "Majú útok na diaľku, ktorý sa zvyšuje s každou jednotkou do nich u
 
 #: gui/text/tips/snapping.txt:1
 msgid "SNAPPING"
-msgstr ""
+msgstr "PRICHYTÁVANIE"
 
 #: gui/text/tips/snapping.txt:2
 msgid ""
@@ -4197,7 +4197,7 @@ msgstr ""
 msgid ""
 "Tightly packed groups of structures can also be used for obstructing raiding"
 " enemies."
-msgstr ""
+msgstr "Budovy natlačené tesne na seba môžu byť užitočné pri bránení proti plieniacim nepriateľom."
 
 #: gui/text/tips/spartan_hoplites.txt:1
 msgid "SPARTIATES"
@@ -4267,7 +4267,7 @@ msgstr "Verbujú liečiteľov, ktorí liečia jednotky na bojisku."
 
 #: gui/text/tips/temples.txt:4
 msgid "Research healing technologies."
-msgstr ""
+msgstr "Skúmať technológie uzdravovania."
 
 #: gui/text/tips/temples.txt:5
 msgid "Its aura heals nearby units."
@@ -4284,7 +4284,7 @@ msgstr "TERITORIÁLNY ÚPADOK"
 #: gui/text/tips/territory_decay.txt:2
 msgid ""
 "Decay happens when structures are not connected to an allied Civil Center."
-msgstr ""
+msgstr "Rozklad nastáva, keď budovy nie sú spojené so spojeneckým občianskym centrom."
 
 #: gui/text/tips/territory_decay.txt:3
 msgid ""
@@ -4296,7 +4296,7 @@ msgstr "Proces úpadku možno spomaliť alebo odvrátiť ubytovaním jednotiek v
 msgid ""
 "When the decay is completed, the structure will be given to the most "
 "influential neighbor."
-msgstr ""
+msgstr "Keď je rozklad dokončený, budova prechádza do vlastníctva najvplyvnejšieho suseda."
 
 #: gui/text/tips/themistocles.txt:1
 msgid "THEMISTOCLES"
@@ -4314,7 +4314,7 @@ msgstr "Počas jeho života stavba všetkých lodí prebieha rýchlejšie."
 
 #: gui/text/tips/themistocles.txt:4
 msgid "The ship he is garrisoned inside sails much faster."
-msgstr ""
+msgstr "Loď s posádkou pláva omnoho rýchlejšie."
 
 #: gui/text/tips/triremes.txt:1
 msgid "TRIREME"
@@ -4368,7 +4368,7 @@ msgstr "Stoja veľa jedla a kovu, ale sú veľmi silné."
 msgid ""
 "Available to: Carthaginians, Kushites, Mauryas, Persians, Ptolemies, and "
 "Seleucids."
-msgstr ""
+msgstr "Dostupné pre: Kartágincov, Kušitov, Maurjov, Peržanov, Ptolemaiovcov a Seleukovcov."
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"
@@ -4388,7 +4388,7 @@ msgstr "Rybárske člny môžu pozbierať mäso z mŕtvej veľryby."
 
 #: gui/text/tips/whales.txt:5
 msgid "Roam around the oceans of the game and flee when attacked."
-msgstr ""
+msgstr "Plávajte po oceánoch a utekajte, keď vás napadnú."
 
 #: simulation/data/resources/food.jsondescription
 msgid "Harvest from animals, berry bushes, fish, or fields."

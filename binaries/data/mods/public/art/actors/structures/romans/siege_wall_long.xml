@@ -27,11 +27,10 @@
   </group>
   <group>
     <variant name="alive" frequency="1"/>
-    <variant name="death">
+    <variant file="structures/destruction_medium.xml">
       <props>
-        <prop actor="particle/destruction_smoke_med.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_med.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_med_gray.xml" attachpoint="root"/>
+        <prop actor="props/structures/romans/siege_walls_turf_long.xml" attachpoint="root"/>
+        <prop actor="props/structures/romans/siege_walls_long_banners.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>

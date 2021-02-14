@@ -629,7 +629,7 @@ void CUserReporter::SubmitReport(const std::string& type, int version, const std
 		return;
 
 	// Actual submit
-	shared_ptr<CUserReport> report(new CUserReport);
+	shared_ptr<CUserReport> report = std::make_shared<CUserReport>();
 	report->m_Time = time(NULL);
 	report->m_Type = type;
 	report->m_Version = version;

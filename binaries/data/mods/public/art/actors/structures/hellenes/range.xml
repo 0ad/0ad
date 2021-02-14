@@ -28,12 +28,10 @@
   </group>
   <group>
     <variant frequency="1" name="alive"/>
-    <variant name="death">
+    <variant file="structures/destruction_medium.xml">
       <props>
-        <prop attachpoint="garrisoned"/>
-        <prop actor="particle/destruction_smoke_med.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_med.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_med_gray.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/range_2.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/range_struct.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>

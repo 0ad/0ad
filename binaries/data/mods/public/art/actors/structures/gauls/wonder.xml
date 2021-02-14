@@ -3,9 +3,6 @@
   <castshadow/>
   <group>
     <variant frequency="1" name="Wonder Main Struct">
-      <animations>
-        <animation event="0.5" load="0.0" name="attack_ranged" speed="100"/>
-      </animations>
       <mesh>structural/gaul_wonder.dae</mesh>
       <props>
         <prop actor="props/structures/gauls/wonder_roof.xml" attachpoint="root"/>

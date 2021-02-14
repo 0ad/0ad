@@ -2,13 +2,11 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Persian_Fortress_A">
+    <variant frequency="1" name="Persian_Fortress_A" file="structures/defensive_building.xml">
       <mesh>structural/pers_fortress.dae</mesh>
       <props>
         <prop actor="props/structures/persians/fortress_paintings.xml" attachpoint="root"/>
         <prop actor="props/structures/persians/fortress_shields.xml" attachpoint="root"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
         <prop actor="props/structures/decals/dirt_5x5.xml" attachpoint="root"/>
       </props>
       <textures>
@@ -18,13 +16,11 @@
         <texture file="structural/ao/pers_fortress.png" name="aoTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Persian_Fortress_B">
+    <variant frequency="1" name="Persian_Fortress_B" file="structures/defensive_building.xml">
       <mesh>structural/pers_fortress_b.dae</mesh>
       <props>
         <prop actor="props/structures/persians/fortress_b_shields.xml" attachpoint="root"/>
         <prop actor="props/structures/persians/fortress_b_paintings.xml" attachpoint="root"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
         <prop actor="props/structures/decals/dirt_5x5.xml" attachpoint="root"/>
       </props>
       <textures>
@@ -45,12 +41,12 @@
   </group>
   <group>
     <variant name="alive" frequency="1"/>
-    <variant name="death">
+    <variant file="structures/destruction_large.xml">
       <props>
-        <prop attachpoint="garrisoned"/>
-        <prop actor="particle/destruction_smoke_large.xml" attachpoint="death"/>
-        <prop actor="particle/destruction_dust_large.xml" attachpoint="death"/>
-        <prop actor="particle/destruction_dust_large_gray.xml" attachpoint="death"/>
+        <prop actor="props/structures/persians/fortress_paintings.xml" attachpoint="root"/>
+        <prop actor="props/structures/persians/fortress_shields.xml" attachpoint="root"/>
+        <prop actor="props/structures/persians/fortress_b_shields.xml" attachpoint="root"/>
+        <prop actor="props/structures/persians/fortress_b_paintings.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>

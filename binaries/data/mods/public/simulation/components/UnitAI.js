@@ -231,6 +231,14 @@ UnitAI.prototype.UnitFsmSpec = {
 
 		if (this.CanPack())
 		{
+			// If the controller is IDLE, this is just the regular reformation timer.
+			// In that case we don't actually want to move, as that would unpack us.
+			let cmpControllerAI = Engine.QueryInterface(this.GetFormationController(), IID_UnitAI);
+			if (cmpControllerAI.IsIdle())
+			{
+				this.FinishOrder();
+				return;
+			}
 			this.PushOrderFront("Pack", { "force": true });
 			return;
 		}
@@ -4172,7 +4180,10 @@ UnitAI.prototype.ReplaceOrder = function(type, data)
 		// (this is needed to support queued no-formation orders).
 		let idx = this.orderQueue.findIndex(o => o.type == "LeaveFormation");
 		if (idx === -1)
+		{
 			this.orderQueue = [];
+			this.order = undefined;
+		}
 		else
 			this.orderQueue.splice(0, idx);
 		this.PushOrderFront(type, data);

@@ -280,7 +280,7 @@ CModelDef* CModelDef::Load(const VfsPath& filename, const VfsPath& name)
 		throw PSERROR_File_InvalidVersion();
 	}
 
-	std::unique_ptr<CModelDef> mdef (new CModelDef());
+	std::unique_ptr<CModelDef> mdef = std::make_unique<CModelDef>();
 	mdef->m_Name = name;
 
 	// now unpack everything

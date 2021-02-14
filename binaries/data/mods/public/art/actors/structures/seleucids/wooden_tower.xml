@@ -2,19 +2,13 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Seleucid Tower">
-      <animations>
-        <animation event="0.5" load="0.0" name="attack_ranged" speed="100"/>
-      </animations>
+    <variant frequency="1" name="Seleucid Tower" file="structures/defensive_building.xml">
       <mesh>structural/sele_wooden_tower.dae</mesh>
       <props>
         <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
         <prop actor="props/flora/bush.xml" attachpoint="bush"/>
         <prop actor="props/flora/bush.xml" attachpoint="bush_1"/>
         <prop actor="props/flora/bush.xml" attachpoint="bush_2"/>
-        <prop attachpoint=""/>
       </props>
       <textures>
         <texture file="structural/Sele_struct_2.png" name="baseTex"/>
@@ -43,15 +37,11 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="alive"/>
-    <variant name="death">
-      <props>
-        <prop attachpoint="garrisoned"/>
-        <prop actor="particle/destruction_smoke_small.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_large.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_large_gray.xml" attachpoint="root"/>
-      </props>
-    </variant>
+    <variant name="alive" frequency="1"/>
+    <variant file="structures/sele/light_damage.xml"/>
+    <variant file="structures/sele/medium_damage.xml"/>
+    <variant file="structures/sele/heavy_damage.xml"/>
+    <variant file="structures/sele/destruction_small.xml"/>
   </group>
   <material>player_trans_ao_parallax_spec.xml</material>
 </actor>

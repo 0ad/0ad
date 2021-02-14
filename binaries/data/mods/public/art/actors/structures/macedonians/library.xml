@@ -2,10 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Hellenes_Civic_Centre">
-      <animations>
-        <animation event="0.5" load="0.0" name="attack_ranged" speed="100"/>
-      </animations>
+    <variant frequency="1" name="Macedonian Library" file="structures/defensive_building.xml">
       <mesh>structural/mace_library_struct.dae</mesh>
       <props>
         <prop actor="props/structures/macedonians/library_decor.xml" attachpoint="root"/>
@@ -14,8 +11,6 @@
         <prop actor="props/structures/macedonians/library_props_a.xml" attachpoint="root"/>
         <prop actor="props/structures/macedonians/library_struct_b.xml" attachpoint="root"/>
         <prop actor="props/structures/macedonians/library_tiles.xml" attachpoint="root"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
       <textures>
         <texture file="structural/hele_struct.dds" name="baseTex"/>

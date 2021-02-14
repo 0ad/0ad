@@ -2,11 +2,9 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Base">
+    <variant frequency="1" name="Base" file="structures/defensive_building.xml">
       <mesh>structural/kush_civic_center.dae</mesh>
       <props>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
         <prop actor="props/structures/kushites/civic_centre_lion_statues.xml" attachpoint="root"/>
       </props>
       <textures>

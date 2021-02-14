@@ -2,14 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant name="base" frequency="1">
-      <animations>
-        <animation event="0.5" load="0" name="attack_ranged" speed="100"/>
-      </animations>
-      <props>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
-      </props>
+    <variant name="base" frequency="1" file="structures/defensive_building.xml">
       <textures>
         <texture file="structural/pers_struct.png" name="baseTex"/>
         <texture file="structural/pers_struct_norm.png" name="normTex"/>
@@ -45,14 +38,7 @@
   </group>
   <group>
     <variant name="alive" frequency="1"/>
-    <variant name="death">
-      <props>
-        <prop attachpoint="garrisoned"/>
-        <prop actor="particle/destruction_smoke_small.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_small_gray.xml" attachpoint="root"/>
-      </props>
-    </variant>
+    <variant file="structures/destruction_small.xml"/>
   </group>
   <material>player_trans_ao_parallax_spec.xml</material>
 </actor>

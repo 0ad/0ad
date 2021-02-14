@@ -19,12 +19,8 @@
   </group>
   <group>
     <variant name="alive" frequency="1"/>
-    <variant name="death">
+    <variant file="structures/destruction_small.xml">
       <props>
-        <prop actor="particle/destruction_smoke_small.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_small_gray.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/dirt_3x3.xml" attachpoint="root"/>
         <prop actor="props/structures/ptolemies/stall_small_b_plants.xml" attachpoint="root"/>
         <prop actor="props/structures/ptolemies/stall_small_b_cloth.xml" attachpoint="root"/>
       </props>

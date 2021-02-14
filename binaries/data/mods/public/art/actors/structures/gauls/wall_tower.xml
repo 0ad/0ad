@@ -2,13 +2,8 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Base">
+    <variant frequency="1" name="Base" file="structures/defensive_building.xml">
       <mesh>structural/gaul_wall_tower.dae</mesh>
-      <props>
-        <prop actor="props/structures/persians/wall_tower.xml" attachpoint="root"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
-      </props>
       <textures>
         <texture file="structural/celt_murus.png" name="baseTex"/>
         <texture file="structural/celt_murus_norm.png" name="normTex"/>

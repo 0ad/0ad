@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -430,7 +430,7 @@ void CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 		// Load the map into the secondary simulation
 
 		LDR_BeginRegistering();
-		std::unique_ptr<CMapReader> mapReader(new CMapReader);
+		std::unique_ptr<CMapReader> mapReader = std::make_unique<CMapReader>();
 
 		std::string mapType;
 		scriptInterface.GetProperty(m_InitAttributes, "mapType", mapType);

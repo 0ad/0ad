@@ -2,13 +2,8 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="norm">
-      <animations>
-        <animation event="0.5" load="0" name="attack_ranged" speed="100"/>
-      </animations>
+    <variant frequency="1" name="norm" file="structures/defensive_building.xml">
       <props>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
         <prop actor="props/flora/bush_tempe_underbrush.xml" attachpoint="root"/>
       </props>
       <textures>

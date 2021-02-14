@@ -105,7 +105,7 @@ static CStrInternInternals* GetString(const char* str, size_t len)
 	if (it != g_Strings.end())
 		return it->second.get();
 
-	shared_ptr<CStrInternInternals> internals(new CStrInternInternals(str, len));
+	shared_ptr<CStrInternInternals> internals = std::make_shared<CStrInternInternals>(str, len);
 	g_Strings.insert(std::make_pair(internals->data, internals));
 	return internals.get();
 }

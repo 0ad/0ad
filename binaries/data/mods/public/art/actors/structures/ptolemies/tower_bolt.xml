@@ -2,13 +2,11 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Palestrina">
+    <variant frequency="100" name="Palestrina" file="structures/defensive_building_bolt.xml">
       <mesh>structural/ptol_tower_bolt.dae</mesh>
       <props>
         <prop actor="props/structures/decals/spart_1x1.xml" attachpoint="root"/>
         <prop actor="props/structures/ptolemies/tower_bolt_roof.xml" attachpoint="root"/>
-        <prop actor="props/units/weapons/bolt_tower.xml" attachpoint="loaded-projectile"/>
-        <prop actor="props/units/weapons/bolt_tower.xml" attachpoint="projectile"/>
       </props>
       <textures>
         <texture file="structural/ptol_struct.png" name="baseTex"/>
@@ -28,12 +26,8 @@
   </group>
   <group>
     <variant frequency="1" name="alive"/>
-    <variant name="death">
+    <variant file="structures/destruction_small.xml">
       <props>
-        <prop actor="particle/destruction_smoke_small.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_small_gray.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/dirt_1x1.xml" attachpoint="root"/>
         <prop actor="props/structures/ptolemies/tower_bolt_roof.xml" attachpoint="root"/>
       </props>
     </variant>

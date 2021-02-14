@@ -17,44 +17,37 @@
     <variant frequency="1" name="Bazaar A">
       <mesh>structural/pers_market_a.dae</mesh>
       <props>
-          <prop actor="props/structures/persians/market_a_stall1.xml" attachpoint="stall1" minheight="-20" maxheight="2"/>
-          <prop actor="props/structures/persians/market_a_stall2.xml" attachpoint="stall2" minheight="-20" maxheight="2"/>
-          <prop actor="props/structures/persians/market_a_stall3.xml" attachpoint="stall3" minheight="-20" maxheight="2"/>
-          <prop actor="props/structures/persians/market_a_stall4.xml" attachpoint="stall4" minheight="-20" maxheight="2"/>
-          <prop actor="props/structures/persians/market_a_stall5.xml" attachpoint="stall5" minheight="-20" maxheight="2"/>
-          <prop actor="props/structures/persians/market_a_stall6.xml" attachpoint="stall6" minheight="-20" maxheight="2"/>
-          <prop actor="props/structures/persians/market_a_stall7.xml" attachpoint="stall7" minheight="-20" maxheight="2"/>
+        <prop actor="props/structures/persians/market_a_stall1.xml" attachpoint="stall1" minheight="-20" maxheight="2"/>
+        <prop actor="props/structures/persians/market_a_stall2.xml" attachpoint="stall2" minheight="-20" maxheight="2"/>
+        <prop actor="props/structures/persians/market_a_stall3.xml" attachpoint="stall3" minheight="-20" maxheight="2"/>
+        <prop actor="props/structures/persians/market_a_stall4.xml" attachpoint="stall4" minheight="-20" maxheight="2"/>
+        <prop actor="props/structures/persians/market_a_stall5.xml" attachpoint="stall5" minheight="-20" maxheight="2"/>
+        <prop actor="props/structures/persians/market_a_stall6.xml" attachpoint="stall6" minheight="-20" maxheight="2"/>
+        <prop actor="props/structures/persians/market_a_stall7.xml" attachpoint="stall7" minheight="-20" maxheight="2"/>
       </props>
       <textures>
-        <texture file="structural/ao/pers_market_a.png" name="aoTex"/>          
-      </textures>      
+        <texture file="structural/ao/pers_market_a.png" name="aoTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="Bazaar B">
       <mesh>structural/pers_market_b.dae</mesh>
       <props>
-          <prop actor="props/structures/persians/market_b_stall1.xml" attachpoint="stall1" minheight="-20" maxheight="2"/>
-          <prop actor="props/structures/persians/market_b_stall2.xml" attachpoint="stall2" minheight="-20" maxheight="2"/>
-          <prop actor="props/structures/persians/market_b_stall3.xml" attachpoint="stall3" minheight="-20" maxheight="2"/>
-          <prop actor="props/structures/persians/market_b_stall4.xml" attachpoint="stall4" minheight="-20" maxheight="2"/>
-          <prop actor="props/structures/persians/market_b_stall5.xml" attachpoint="stall5" minheight="-20" maxheight="2"/>
-          <prop actor="props/structures/persians/market_b_stall6.xml" attachpoint="stall6" minheight="-20" maxheight="2"/>
-          <prop actor="props/structures/persians/market_b_stall7.xml" attachpoint="stall7" minheight="-20" maxheight="2"/>
+        <prop actor="props/structures/persians/market_b_stall1.xml" attachpoint="stall1" minheight="-20" maxheight="2"/>
+        <prop actor="props/structures/persians/market_b_stall2.xml" attachpoint="stall2" minheight="-20" maxheight="2"/>
+        <prop actor="props/structures/persians/market_b_stall3.xml" attachpoint="stall3" minheight="-20" maxheight="2"/>
+        <prop actor="props/structures/persians/market_b_stall4.xml" attachpoint="stall4" minheight="-20" maxheight="2"/>
+        <prop actor="props/structures/persians/market_b_stall5.xml" attachpoint="stall5" minheight="-20" maxheight="2"/>
+        <prop actor="props/structures/persians/market_b_stall6.xml" attachpoint="stall6" minheight="-20" maxheight="2"/>
+        <prop actor="props/structures/persians/market_b_stall7.xml" attachpoint="stall7" minheight="-20" maxheight="2"/>
       </props>
       <textures>
-        <texture file="structural/ao/pers_market_b.png" name="aoTex"/>          
-      </textures>            
+        <texture file="structural/ao/pers_market_b.png" name="aoTex"/>
+      </textures>
     </variant>
   </group>
   <group>
     <variant name="alive" frequency="1"/>
-    <variant name="death">
-      <props>
-        <prop actor="particle/destruction_smoke_med.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_med.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_med_gray.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/dirt_5x5.xml" attachpoint="root"/>
-      </props>
-    </variant>
+    <variant file="structures/destruction_medium.xml"/>
   </group>
   <material>player_trans_ao_parallax_spec.xml</material>
 </actor>

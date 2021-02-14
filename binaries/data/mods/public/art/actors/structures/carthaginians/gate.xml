@@ -18,36 +18,11 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="alive"/>
-    <variant name="lightdamage">
-      <textures>
-        <texture file="structural/kart_struct_damaged.png" name="baseTex"/>
-        <texture file="structural/kart_struct_damaged_norm.png" name="normTex"/>
-      </textures>
-    </variant>
-    <variant name="mediumdamage">
-      <textures>
-        <texture file="structural/kart_struct_damaged_med.png" name="baseTex"/>
-        <texture file="structural/kart_struct_damaged_med_norm.png" name="normTex"/>
-      </textures>
-    </variant>
-    <variant name="heavydamage">
-      <textures>
-        <texture file="structural/kart_struct_damaged_heavy.png" name="baseTex"/>
-        <texture file="structural/kart_struct_damaged_heavy_norm.png" name="normTex"/>
-      </textures>
-    </variant>
-    <variant name="death">
-      <props>
-        <prop actor="particle/destruction_smoke_med.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_med.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_med_gray.xml" attachpoint="root"/>
-      </props>
-      <textures>
-        <texture file="structural/kart_struct_damaged_heavy.png" name="baseTex"/>
-        <texture file="structural/kart_struct_damaged_heavy_norm.png" name="normTex"/>
-      </textures>
-    </variant>
+    <variant name="alive" frequency="1"/>
+    <variant file="structures/cart/light_damage.xml"/>
+    <variant file="structures/cart/medium_damage.xml"/>
+    <variant file="structures/cart/heavy_damage.xml"/>
+    <variant file="structures/cart/destruction_medium.xml"/>
   </group>
   <material>player_trans_parallax_spec.xml</material>
 </actor>

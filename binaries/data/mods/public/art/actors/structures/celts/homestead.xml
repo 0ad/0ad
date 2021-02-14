@@ -2,7 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant>
+    <variant file="structures/defensive_building.xml">
       <mesh>structural/celt_civic_centre.dae</mesh>
       <props>
         <prop actor="props/structures/celts/civic_roof.xml" attachpoint="root"/>
@@ -11,14 +11,12 @@
         <prop actor="props/structures/celts/civic_entry.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/gravel_5x5.xml" attachpoint="root"/>
         <prop actor="particle/smoke_light.xml" attachpoint="smoke"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
       <textures>
-	  <texture file="structural/celt_struct_1.dds" name="baseTex"/>
-	  <texture file="structural/celt_struct_1_norm.png" name="normTex"/>
-	  <texture file="structural/celt_struct_1_spec.png" name="specTex"/>
-	  </textures>
+        <texture file="structural/celt_struct_1.dds" name="baseTex"/>
+        <texture file="structural/celt_struct_1_norm.png" name="normTex"/>
+        <texture file="structural/celt_struct_1_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
   <group>

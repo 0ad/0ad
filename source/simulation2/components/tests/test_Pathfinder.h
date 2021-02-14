@@ -144,7 +144,7 @@ public:
 		sim2.LoadDefaultScripts();
 		sim2.ResetState();
 
-		std::unique_ptr<CMapReader> mapReader(new CMapReader());
+		std::unique_ptr<CMapReader> mapReader = std::make_unique<CMapReader>();
 
 		LDR_BeginRegistering();
 		mapReader->LoadMap(L"maps/skirmishes/Median Oasis (2).pmp",
@@ -255,7 +255,7 @@ public:
 		sim2.LoadDefaultScripts();
 		sim2.ResetState();
 
-		std::unique_ptr<CMapReader> mapReader(new CMapReader());
+		std::unique_ptr<CMapReader> mapReader = std::make_unique<CMapReader>();
 
 		LDR_BeginRegistering();
 		mapReader->LoadMap(L"maps/scenarios/Peloponnese.pmp",
@@ -312,7 +312,7 @@ public:
 		sim2.LoadDefaultScripts();
 		sim2.ResetState();
 
-		std::unique_ptr<CMapReader> mapReader(new CMapReader());
+		std::unique_ptr<CMapReader> mapReader = std::make_unique<CMapReader>();
 
 		LDR_BeginRegistering();
 		mapReader->LoadMap(L"maps/scenarios/Peloponnese.pmp",

@@ -9,14 +9,15 @@
         <prop actor="props/structures/athenians/barracks_props_a.xml" attachpoint="root"/>
         <prop actor="props/structures/athenians/barracks_props_shields.xml" attachpoint="root"/>
         <prop actor="props/structures/athenians/barracks_tile_c.xml" attachpoint="root"/>
-<prop actor="props/structures/athenians/barracks_decor.xml" attachpoint="root"/>
+        <prop actor="props/structures/athenians/barracks_decor.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/dirt_4x4.xml" attachpoint="root"/>
       </props>
       <textures>
         <texture file="structural/hele_struct.dds" name="baseTex"/>
         <texture file="structural/hele_struct_norm.png" name="normTex"/>
         <texture file="structural/hele_struct_spec.png" name="specTex"/>
-        <texture file="structural/ao/athen_barracks.png" name="aoTex"/></textures>
+        <texture file="structural/ao/athen_barracks.png" name="aoTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -29,18 +30,13 @@
   </group>
   <group>
     <variant name="alive" frequency="1"/>
-    <variant name="death">
+    <variant file="structures/destruction_medium.xml">
       <props>
-        <prop attachpoint="garrisoned"/>
-        <prop actor="particle/destruction_smoke_med.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_med.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_med_gray.xml" attachpoint="root"/>
         <prop actor="props/structures/athenians/barracks_struct_b.xml" attachpoint="root"/>
         <prop actor="props/structures/athenians/barracks_props_a.xml" attachpoint="root"/>
         <prop actor="props/structures/athenians/barracks_props_shields.xml" attachpoint="root"/>
         <prop actor="props/structures/athenians/barracks_tile_c.xml" attachpoint="root"/>
-<prop actor="props/structures/athenians/barracks_decor.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/dirt_4x4.xml" attachpoint="root"/>
+        <prop actor="props/structures/athenians/barracks_decor.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>

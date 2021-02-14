@@ -2,10 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Roman Army Camp">
-      <animations>
-        <animation event="0.5" load="0.0" name="attack_ranged" speed="100"/>
-      </animations>
+    <variant frequency="100" name="Roman Army Camp" file="structures/defensive_building.xml">
       <mesh>structural/rome_camp_palisade.dae</mesh>
       <props>
         <prop actor="props/special/eyecandy/campfire_prop.xml" attachpoint="root"/>
@@ -16,8 +13,6 @@
         <prop actor="props/structures/decals/dirt_7x7.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/gravel_5x5.xml" attachpoint="root"/>
         <prop actor="props/structures/romans/camp_turf.xml" attachpoint="root"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
       </props>
       <textures>
         <texture file="props/palisade_main.png" name="baseTex"/>
@@ -40,22 +35,14 @@
   </group>
   <group>
     <variant name="alive" frequency="1"/>
-    <variant name="death">
+    <variant file="structures/destruction_large.xml">
       <props>
-        <prop attachpoint="garrisoned"/>
-        <prop attachpoint="garrisoned2"/>
-        <prop attachpoint="garrisoned3"/>
-        <prop attachpoint="garrisoned4"/>
-        <prop actor="particle/destruction_smoke_large.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_large.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_large_gray.xml" attachpoint="root"/>
         <prop actor="props/special/eyecandy/campfire_prop.xml" attachpoint="root"/>
-        <prop actor="props/structures/romans/camp_turf.xml" attachpoint="root"/>
         <prop actor="props/structures/romans/camp_struct2.xml" attachpoint="root"/>
         <prop actor="props/structures/romans/camp_tents.xml" attachpoint="root"/>
         <prop actor="props/structures/romans/camp_tentflaps.xml" attachpoint="root"/>
         <prop actor="props/structures/romans/camp_struct2_trans.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/gravel_5x5.xml" attachpoint="root"/>
+        <prop actor="props/structures/romans/camp_turf.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>

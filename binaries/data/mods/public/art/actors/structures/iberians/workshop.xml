@@ -28,12 +28,10 @@
   </group>
   <group>
     <variant frequency="1" name="alive"/>
-    <variant name="death">
+    <variant file="structures/destruction_medium.xml">
       <props>
-        <prop actor="particle/destruction_smoke_med.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_med.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_med_gray.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/dirt_small.xml" attachpoint="root"/>
+        <prop actor="props/structures/iberians/workshop_nature.xml" attachpoint="root"/>
+        <prop actor="props/structures/iberians/workshop_shields.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>

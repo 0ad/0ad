@@ -4,9 +4,6 @@
   <group>
     <variant frequency="1" name="Briton Wonder">
       <mesh>structural/brit_wonder.dae</mesh>
-      <animations>
-        <animation event="0.5" load="0.0" name="attack_ranged" speed="100"/>
-      </animations>
       <props>
         <prop actor="props/structures/britons/wonder_ground.xml" attachpoint="root"/>
         <prop actor="props/structures/britons/wonder_roof.xml" attachpoint="root"/>

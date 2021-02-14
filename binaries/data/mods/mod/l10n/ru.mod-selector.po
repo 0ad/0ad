@@ -8,7 +8,7 @@
 # Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2018
 # Максим Дронь <dronmax@gmail.com>, 2014
 # Ilya Andreev, 2018
-# Vladislav Belov <vladislavbelovdev@gmail.com>, 2018
+# Vladislav Belov <vladislavbelovdev@gmail.com>, 2018,2021
 # Woratiklis, 2015
 # Yegor <revolver45@inbox.ru>, 2014
 # Валерий Дмиртиевич Степанов <valera1111@yandex.ru>, 2018
@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-12-26 15:10+0000\n"
-"PO-Revision-Date: 2021-02-03 11:49+0000\n"
-"Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
+"PO-Revision-Date: 2021-02-14 01:36+0000\n"
+"Last-Translator: Vladislav Belov <vladislavbelovdev@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -172,7 +172,7 @@ msgstr "Список модов недоступен.\n\n%(technicalDetails)s"
 #: gui/modio/modio.js:94
 msgctxt "mod.io error message"
 msgid "Fetch Error"
-msgstr "Ошибка проверки"
+msgstr "Ошибка получения"
 
 #: gui/modio/modio.js:102
 #, javascript-format
@@ -195,12 +195,12 @@ msgid ""
 "File verification error.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr "Ошибка подтверждения файла.\n\n%(technicalDetails)s"
+msgstr "Ошибка проверки файла.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:116
 msgctxt "mod.io error message"
 msgid "Verification Error"
-msgstr "Ошибка подтверждения"
+msgstr "Ошибка проверки"
 
 #: gui/modio/modio.js:133
 msgid "Initializing mod.io interface."
@@ -221,7 +221,7 @@ msgstr "Неактуальный мод: %(error)s"
 
 #: gui/modio/modio.js:242
 msgid "Fetching and updating list of available mods."
-msgstr "Проверка и обновление списка доступных модов."
+msgstr "Получение и обновление списка доступных модов."
 
 #: gui/modio/modio.js:243
 msgid "Updating"

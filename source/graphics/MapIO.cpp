@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,6 +20,7 @@
 #include "MapIO.h"
 
 #include "graphics/Patch.h"
+#include "lib/allocators/shared_ptr.h"
 #include "lib/file/file.h"
 #include "lib/file/vfs/vfs_path.h"
 #include "lib/os_path.h"
@@ -51,7 +52,9 @@ Status LoadHeightmapImageOs(const OsPath& filepath, std::vector<u16>& heightmap)
 	size_t fileSize = lseek(file.Descriptor(), 0, SEEK_END);
 	lseek(file.Descriptor(), 0, SEEK_SET);
 
-	shared_ptr<u8> fileData = shared_ptr<u8>(new u8[fileSize]);
+	shared_ptr<u8> fileData;
+	RETURN_STATUS_IF_ERR(AllocateAligned(fileData, fileSize, maxSectorSize));
+
 	Status readvalue = read(file.Descriptor(), fileData.get(), fileSize);
 	file.Close();
 

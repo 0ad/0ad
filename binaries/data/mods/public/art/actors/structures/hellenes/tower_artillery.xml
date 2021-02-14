@@ -2,16 +2,11 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="scout tower">
-      <animations>
-        <animation event="0.5" load="0" name="attack_ranged" speed="100"/>
-      </animations>
+    <variant frequency="100" name="scout tower" file="structures/defensive_building_artillery.xml">
       <mesh>structural/hele_tower_artillery_1.dae</mesh>
       <props>
         <prop actor="props/structures/hellenes/tower_artillery_2.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/spart_1x1.xml" attachpoint="root"/>
-        <prop actor="props/units/weapons/rock_flaming.xml" attachpoint="loaded-projectile"/>
-        <prop actor="props/units/weapons/tower_artillery_projectile.xml" attachpoint="projectile"/>
       </props>
       <textures>
         <texture file="structural/hele_struct.dds" name="baseTex"/>
@@ -31,14 +26,10 @@
   </group>
   <group>
     <variant frequency="1" name="alive"/>
-    <variant name="death">
+    <variant file="structures/destruction_small.xml">
       <props>
         <prop attachpoint="garrisoned"/>
         <prop actor="props/structures/hellenes/tower_artillery_2.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_smoke_small.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_small_gray.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/dirt_1x1.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>

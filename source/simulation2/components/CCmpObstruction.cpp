@@ -86,6 +86,11 @@ public:
 	/// used to set control groups for entities that collide with it.
 	bool m_ControlPersist;
 
+	// WORKAROUND: While processing Destroy messages, the obstruction component may receive messages
+	// that make it re-enable the obstruction, thus leaving behind dangling obstructions.
+	// To avoid that, if this is true, _never_ reactivate the obstruction.
+	bool m_IsDestroyed = false;
+
 	/**
 	 * Primary control group identifier. Indicates to which control group this entity's shape belongs.
 	 * Typically used in combination with obstruction test filters to have member shapes ignore each
@@ -305,7 +310,7 @@ public:
 		{
 		case MT_PositionChanged:
 		{
-			if (!m_Active)
+			if (!m_Active || m_IsDestroyed)
 				break;
 
 			const CMessagePositionChanged& data = static_cast<const CMessagePositionChanged&> (msg);
@@ -355,14 +360,16 @@ public:
 		}
 		case MT_Destroy:
 		{
+			// Mark the obstruction as destroyed to prevent reactivating it after this point
+			m_IsDestroyed = true;
+			m_Active = false;
+
 			if (m_Tag.valid())
 			{
 				CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
 				if (!cmpObstructionManager)
 					break; // error
 
-				// Deactivate the obstruction in case PositionChanged messages are sent after this.
-				m_Active = false;
 				cmpObstructionManager->RemoveShape(m_Tag);
 				m_Tag = tag_t();
 				if(m_Type == CLUSTER)
@@ -375,7 +382,7 @@ public:
 
 	virtual void SetActive(bool active)
 	{
-		if (active && !m_Active)
+		if (active && !m_Active && !m_IsDestroyed)
 		{
 			m_Active = true;
 

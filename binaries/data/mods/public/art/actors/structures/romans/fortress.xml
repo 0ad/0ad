@@ -2,23 +2,18 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Base">
-      <animations>
-        <animation event="0.5" load="0.0" name="attack_ranged" speed="100"/>
-      </animations>
+    <variant frequency="100" name="Base" file="structures/defensive_building.xml">
       <mesh>structural/rome_fortress.dae</mesh>
       <props>
         <prop actor="props/structures/romans/fortress.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/dirt_6x6.xml" attachpoint="root"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
       </props>
       <textures>
-	    <texture file="structural/rome_struct_2.png" name="baseTex"/>
-	    <texture file="structural/rome_struct_2_norm.png" name="normTex"/>
-	    <texture file="structural/rome_struct_2_spec.png" name="specTex"/>
-	    <texture file="structural/ao/rome_fortress.png" name="aoTex"/>
-	  </textures>
+        <texture file="structural/rome_struct_2.png" name="baseTex"/>
+        <texture file="structural/rome_struct_2_norm.png" name="normTex"/>
+        <texture file="structural/rome_struct_2_spec.png" name="specTex"/>
+        <texture file="structural/ao/rome_fortress.png" name="aoTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -32,15 +27,9 @@
   </group>
   <group>
     <variant name="alive" frequency="1"/>
-    <variant name="death">
+    <variant file="structures/destruction_large.xml">
       <props>
-        <prop attachpoint="garrisoned"/>
-        <prop attachpoint="garrisoned2"/>
-        <prop actor="particle/destruction_smoke_large.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_large.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_large_gray.xml" attachpoint="root"/>
         <prop actor="props/structures/romans/fortress.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/dirt_6x6.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>

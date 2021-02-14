@@ -2,7 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Hellenes Fortress">
+    <variant frequency="100" name="Hellenes Fortress" file="structures/defensive_building.xml">
       <mesh>structural/hele_fortress_up.dae</mesh>
       <props>
         <prop actor="props/structures/spartans/fortress_shields.xml" attachpoint="root"/>
@@ -10,7 +10,6 @@
         <prop actor="props/structures/hellenes/fortress_tile_b.xml" attachpoint="root"/>
         <prop actor="props/structures/hellenes/fortress_props_up.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/dirt_5x5.xml" attachpoint="root"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
       <textures>
         <texture file="structural/hele_struct_b.dds" name="baseTex"/>

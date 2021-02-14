@@ -310,7 +310,7 @@ Status OpenOggStream(const OsPath& pathname, OggStreamPtr& stream)
 	PFile file(new File);
     RETURN_STATUS_IF_ERR(file->Open(pathname, L'r'));
 
-	shared_ptr<OggStreamImpl<VorbisFileAdapter> > tmp(new OggStreamImpl<VorbisFileAdapter>(VorbisFileAdapter(file)));
+	shared_ptr<OggStreamImpl<VorbisFileAdapter>> tmp = std::make_shared<OggStreamImpl<VorbisFileAdapter>>(VorbisFileAdapter(file));
 	RETURN_STATUS_IF_ERR(tmp->Open());
 	stream = tmp;
 	return INFO::OK;
@@ -322,7 +322,7 @@ Status OpenOggNonstream(const PIVFS& vfs, const VfsPath& pathname, OggStreamPtr&
 	size_t size;
 	RETURN_STATUS_IF_ERR(vfs->LoadFile(pathname, contents, size));
 
-	shared_ptr<OggStreamImpl<VorbisBufferAdapter> > tmp(new OggStreamImpl<VorbisBufferAdapter>(VorbisBufferAdapter(contents, size)));
+	shared_ptr<OggStreamImpl<VorbisBufferAdapter>> tmp = std::make_shared<OggStreamImpl<VorbisBufferAdapter>>(VorbisBufferAdapter(contents, size));
 	RETURN_STATUS_IF_ERR(tmp->Open());
 	stream = tmp;
 	return INFO::OK;

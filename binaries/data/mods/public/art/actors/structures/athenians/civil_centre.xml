@@ -2,10 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Hellenes_Civic_Centre">
-      <animations>
-        <animation event="0.5" load="0.0" name="attack_ranged" speed="100"/>
-      </animations>
+    <variant frequency="1" name="Hellenes_Civic_Centre" file="structures/defensive_building.xml">
       <mesh>structural/athen_cc_struct.dae</mesh>
       <props>
         <prop actor="props/structures/athenians/civic_centre_decor.xml" attachpoint="root"/>
@@ -15,8 +12,6 @@
         <prop actor="props/structures/athenians/civic_centre_roundroof.xml" attachpoint="root"/>
         <prop actor="props/structures/athenians/civic_centre_shields.xml" attachpoint="root"/>
         <prop actor="props/structures/athenians/civic_centre_tiles.xml" attachpoint="root"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
       <textures>
         <texture file="structural/hele_struct.dds" name="baseTex"/>
@@ -36,18 +31,15 @@
   </group>
   <group>
     <variant name="alive" frequency="1"/>
-    <variant name="death">
+    <variant file="structures/destruction_large.xml">
       <props>
-        <prop attachpoint="garrisoned"/>
-        <prop actor="particle/destruction_smoke_large.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_large.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_large_gray.xml" attachpoint="root"/>
         <prop actor="props/structures/athenians/civic_centre_decor.xml" attachpoint="root"/>
-        <prop actor="props/structures/athenians/civic_centre_props_a.xml" attachpoint="root"/>
+        <prop actor="props/structures/athenians/civic_centre_nature.xml" attachpoint="root"/>
         <prop actor="props/structures/athenians/civic_centre_trees.xml" attachpoint="root"/>
+        <prop actor="props/structures/athenians/civic_centre_props_a.xml" attachpoint="root"/>
         <prop actor="props/structures/athenians/civic_centre_roundroof.xml" attachpoint="root"/>
-        <prop actor="props/structures/athenians/civic_centre_tiles.xml" attachpoint="root"/>
         <prop actor="props/structures/athenians/civic_centre_shields.xml" attachpoint="root"/>
+        <prop actor="props/structures/athenians/civic_centre_tiles.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>

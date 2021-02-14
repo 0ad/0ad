@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<variant name="Base Defensive Building">
+  <animations>
+    <!-- Note this doesn't do anything because buildings don't have dae animations
+    The real sound is forced by BuildingAI while it should use the C++ code. -->
+    <animation event="0.5" load="0.0" name="attack_ranged" speed="100"/>
+  </animations>
+  <props>
+    <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
+    <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+  </props>
+</variant>

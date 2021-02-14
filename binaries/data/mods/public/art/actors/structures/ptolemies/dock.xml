@@ -7,8 +7,8 @@
       <mesh>structural/ptol_dock.dae</mesh>
       <props>
         <prop actor="props/special/eyecandy/wood_pile_1_c.xml" attachpoint="wood1"/>
-        <prop actor="props/special/eyecandy/wood_pile_1_c.xml" attachpoint="wood2"/>        
-        <prop actor="props/structures/ptolemies/dock_cloth.xml" attachpoint="root"/>        
+        <prop actor="props/special/eyecandy/wood_pile_1_c.xml" attachpoint="wood2"/>
+        <prop actor="props/structures/ptolemies/dock_cloth.xml" attachpoint="root"/>
         <prop actor="props/structures/ptolemies/dock_roof.xml" attachpoint="root"/>
         <prop actor="props/structures/ptolemies/dock_scaffold.xml" attachpoint="root"/>
       </props>
@@ -30,18 +30,12 @@
   </group>
   <group>
     <variant name="alive" frequency="1"/>
-    <variant name="death">
+    <variant file="structures/destruction_medium.xml">
       <props>
-        <prop attachpoint="garrisoned"/>
-        <prop actor="particle/destruction_smoke_med.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_med.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_med_gray.xml" attachpoint="root"/>
-        <prop actor="props/special/eyecandy/wood_pile_1_c.xml" attachpoint="wood1"/>
-        <prop actor="props/special/eyecandy/wood_pile_1_c.xml" attachpoint="wood2"/>        
-        <prop actor="props/structures/ptolemies/dock_cloth.xml" attachpoint="root"/>        
+        <prop actor="props/structures/ptolemies/dock_cloth.xml" attachpoint="root"/>
         <prop actor="props/structures/ptolemies/dock_roof.xml" attachpoint="root"/>
         <prop actor="props/structures/ptolemies/dock_scaffold.xml" attachpoint="root"/>
-      </props>        
+      </props>
     </variant>
   </group>
   <material>player_trans_ao_parallax_spec.xml</material>

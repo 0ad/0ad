@@ -2,10 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Tower">
-      <animations>
-        <animation event="0.5" load="0" name="attack_ranged" speed="100"/>
-      </animations>
+    <variant frequency="100" name="Tower" file="structures/defensive_building.xml">
       <mesh>structural/maur_scout_tower.dae</mesh>
       <props>
         <prop actor="props/structures/mauryas/scout_tower_shield_bell.xml" attachpoint="root"/>
@@ -14,8 +11,6 @@
         <prop actor="props/structures/mauryas/scout_tower_shield_curved.xml" attachpoint="root"/>
         <prop actor="props/structures/mauryas/scout_tower_shield_tall_round.xml" attachpoint="root"/>
         <prop actor="props/structures/mauryas/scout_tower_struct_b.xml" attachpoint="root"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
       <textures>
         <texture file="structural/maur_struct.png" name="baseTex"/>
@@ -50,18 +45,14 @@
   </group>
   <group>
     <variant name="alive" frequency="1"/>
-    <variant name="death">
+    <variant file="structures/destruction_small.xml">
       <props>
-        <prop attachpoint="garrisoned"/>
-        <prop actor="particle/destruction_smoke_small.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_small_gray.xml" attachpoint="root"/>
-        <prop actor="props/structures/mauryas/scout_tower_struct_b.xml" attachpoint="root"/>
         <prop actor="props/structures/mauryas/scout_tower_shield_bell.xml" attachpoint="root"/>
         <prop actor="props/structures/mauryas/scout_tower_shield_straight.xml" attachpoint="root"/>
         <prop actor="props/structures/mauryas/scout_tower_shield_bell_straight.xml" attachpoint="root"/>
         <prop actor="props/structures/mauryas/scout_tower_shield_curved.xml" attachpoint="root"/>
         <prop actor="props/structures/mauryas/scout_tower_shield_tall_round.xml" attachpoint="root"/>
+        <prop actor="props/structures/mauryas/scout_tower_struct_b.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>

@@ -365,7 +365,7 @@ void ScriptInterface_impl::Register(const char* name, JSNative fptr, uint nargs)
 }
 
 ScriptInterface::ScriptInterface(const char* nativeScopeName, const char* debugName, const shared_ptr<ScriptContext>& context) :
-	m(new ScriptInterface_impl(nativeScopeName, context))
+	m(std::make_unique<ScriptInterface_impl>(nativeScopeName, context))
 {
 	// Profiler stats table isn't thread-safe, so only enable this on the main thread
 	if (Threading::IsMainThread())

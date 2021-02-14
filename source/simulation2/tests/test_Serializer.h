@@ -889,7 +889,7 @@ public:
 		sim2.LoadDefaultScripts();
 		sim2.ResetState();
 
-		std::unique_ptr<CMapReader> mapReader(new CMapReader());
+		std::unique_ptr<CMapReader> mapReader = std::make_unique<CMapReader>();
 
 		LDR_BeginRegistering();
 		mapReader->LoadMap(L"maps/skirmishes/Greek Acropolis (2).pmp",

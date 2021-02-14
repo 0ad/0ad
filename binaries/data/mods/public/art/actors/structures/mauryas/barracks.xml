@@ -8,37 +8,37 @@
         <prop actor="props/structures/decals/dirt_4x4.xml" attachpoint="root"/>
         <prop actor="props/structures/mauryas/barracks_a_struct_b.xml" attachpoint="root"/>
         <prop actor="props/units/shields/maur_straight_a.xml" attachpoint="shieldentrance"/>
-		<prop actor="props/units/shields/maur_straight_a.xml" attachpoint="shieldentrance1"/>
+        <prop actor="props/units/shields/maur_straight_a.xml" attachpoint="shieldentrance1"/>
         <prop actor="props/units/shields/maur_straight_a.xml" attachpoint="shieldstraight"/>
         <prop actor="props/units/shields/maur_small_a.xml" attachpoint="shieldback"/>
         <prop actor="props/units/shields/maur_small_a.xml" attachpoint="shieldback1"/>
         <prop actor="props/units/shields/maur_small_a.xml" attachpoint="shieldsmall"/>
-	  </props>
+      </props>
       <textures>
-		<texture file="structural/maur_struct.png" name="baseTex"/>
-		<texture file="structural/maur_struct_spec.png" name="specTex"/>
-		<texture file="structural/maur_struct_norm.png" name="normTex"/>
-		<texture file="structural/ao/maur_barracks_a.png" name="aoTex"/>
-	  </textures>
+        <texture file="structural/maur_struct.png" name="baseTex"/>
+        <texture file="structural/maur_struct_spec.png" name="specTex"/>
+        <texture file="structural/maur_struct_norm.png" name="normTex"/>
+        <texture file="structural/ao/maur_barracks_a.png" name="aoTex"/>
+      </textures>
     </variant>
-	<variant frequency="1" name="Barracks B">
+    <variant frequency="1" name="Barracks B">
       <mesh>structural/maur_barracks_b_struct.dae</mesh>
       <props>
         <prop actor="props/structures/decals/dirt_4x4.xml" attachpoint="root"/>
         <prop actor="props/structures/mauryas/barracks_b_struct_b.xml" attachpoint="root"/>
         <prop actor="props/units/shields/maur_straight_a.xml" attachpoint="shieldentrance"/>
-		<prop actor="props/units/shields/maur_straight_a.xml" attachpoint="shieldentrance1"/>
+        <prop actor="props/units/shields/maur_straight_a.xml" attachpoint="shieldentrance1"/>
         <prop actor="props/units/shields/maur_straight_a.xml" attachpoint="shieldstraight"/>
         <prop actor="props/units/shields/maur_small_a.xml" attachpoint="shieldback"/>
         <prop actor="props/units/shields/maur_small_a.xml" attachpoint="shieldback1"/>
         <prop actor="props/units/shields/maur_small_a.xml" attachpoint="shieldsmall"/>
-	  </props>
+      </props>
       <textures>
-		<texture file="structural/maur_struct.png" name="baseTex"/>
-		<texture file="structural/maur_struct_spec.png" name="specTex"/>
-		<texture file="structural/maur_struct_norm.png" name="normTex"/>
-		<texture file="structural/ao/maur_barracks_b.png" name="aoTex"/>
-	  </textures>
+        <texture file="structural/maur_struct.png" name="baseTex"/>
+        <texture file="structural/maur_struct_spec.png" name="specTex"/>
+        <texture file="structural/maur_struct_norm.png" name="normTex"/>
+        <texture file="structural/ao/maur_barracks_b.png" name="aoTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -51,15 +51,7 @@
   </group>
   <group>
     <variant name="alive" frequency="1"/>
-    <variant name="death">
-      <props>
-        <prop attachpoint="garrisoned"/>
-<prop actor="props/structures/mauryas/barracks_a_struct_b.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_smoke_med.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_med.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_med_gray.xml" attachpoint="root"/>
-      </props>
-    </variant>
+    <variant file="structures/destruction_medium.xml"/>
   </group>
   <material>player_trans_ao_parallax_spec.xml</material>
 </actor>

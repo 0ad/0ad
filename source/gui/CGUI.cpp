@@ -66,7 +66,7 @@ const CStr CGUI::EventNameMouseRightDoubleClick = "MouseRightDoubleClick";
 const CStr CGUI::EventNameMouseRightRelease = "MouseRightRelease";
 
 CGUI::CGUI(const shared_ptr<ScriptContext>& context)
-	: m_BaseObject(new CGUIDummyObject(*this)),
+	: m_BaseObject(std::make_unique<CGUIDummyObject>(*this)),
 	  m_FocusedObject(nullptr),
 	  m_InternalNameNumber(0),
 	  m_MouseButtons(0)

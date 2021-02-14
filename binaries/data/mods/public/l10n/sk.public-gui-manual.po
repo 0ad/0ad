@@ -5,6 +5,7 @@
 # Translators:
 # LeviTaule <levi.taule@gmail.com>, 2017
 # LeviTaule <levi.taule@gmail.com>, 2014-2015
+# Marek Berčík <marek.bercik@hotmail.com>, 2021
 # 2001c3bfc7421750b343e20d6f8feae5_62d342a <746da4594d700c1e2023e1839e1e5d4f_309682>, 2015
 # Martin Plávala <martinplavala@gmail.com>, 2014-2015
 # Martin Plávala <martinplavala@gmail.com>, 2015,2017
@@ -17,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-25 08:08+0000\n"
-"PO-Revision-Date: 2021-02-05 19:06+0000\n"
-"Last-Translator: Slavomir Slovenkai <slavomir.slovenkai@gmail.com>\n"
+"PO-Revision-Date: 2021-02-12 12:53+0000\n"
+"Last-Translator: Marek Berčík <marek.bercik@hotmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -47,7 +48,7 @@ msgid ""
 " In windowed mode, you can resize the window. If the game runs too slowly, "
 "you can change some settings in the options window: try disabling the “HQ "
 "Water Effects” and “Shadows” options."
-msgstr ""
+msgstr "Môžete prepínať medzi zobrazením na celú obrazovku a zobrazením v okne stlačením Alt + Enter. V režime v okne môžete meniť veľkosť okna. Ak hra beží príliš pomaly, môžete zmeniť niektoré z nastavení v okne možností: skúste vypnúť \"Vysokokvalitné efekty vody\" a \"Tiene\"."
 
 #: gui/manual/intro.txt:7
 msgid "[font=\"sans-bold-16\"]Playing the game[font=\"sans-14\"]"
@@ -127,7 +128,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:26
 msgid "In a multiplayer game, only the host can alter the game setup options."
-msgstr ""
+msgstr "V hre pre viacerých hráčov, iba hostiteľ môže zmeniť nastavenia hry."
 
 #: gui/manual/intro.txt:28
 msgid "First, select what type of map you want to play:"
@@ -171,7 +172,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:37
 msgid "When you are ready to start, click the “Start game” button."
-msgstr ""
+msgstr "Ak ste pripravení, kliknite na tlačidlo \"Spustiť hru\"."
 
 #: gui/manual/intro.txt:39
 msgid "[font=\"sans-bold-16\"]Hotkeys[font=\"sans-14\"]"
@@ -190,19 +191,19 @@ msgstr ""
 #: gui/manual/intro.txt:43
 msgid ""
 "  hotkey.exit – Immediately close the game, without asking for confirmation"
-msgstr ""
+msgstr " hotkey.exit – Okamžite zavrie hru bez pýtania sa na potvrdenie"
 
 #: gui/manual/intro.txt:44
 msgid "  hotkey.togglefullscreen – Toggle between fullscreen and windowed"
-msgstr ""
+msgstr " hotkey.togglefullscreen – Prepínať medzi zobrazením na celú obrazovku a zobrazením v okne"
 
 #: gui/manual/intro.txt:45
 msgid "  hotkey.console.toggle – Toggle console"
-msgstr ""
+msgstr " hotkey.console.toggle – Prepnúť na konzolu"
 
 #: gui/manual/intro.txt:46
 msgid "  hotkey.fps.toggle – Toggle frame counter (FPS)"
-msgstr ""
+msgstr " hotkey.fps.toggle – Zobraziť vrstvu snímok za sekundu (FPS)"
 
 #: gui/manual/intro.txt:47
 msgid ""
@@ -451,11 +452,11 @@ msgstr ""
 
 #: gui/manual/intro.txt:95
 msgid "  hotkey.structree – Toggle structure tree panel"
-msgstr ""
+msgstr " hotkey.structree – Prepnúť na panel stromu budov"
 
 #: gui/manual/intro.txt:96
 msgid "  hotkey.civinfo – Toggle civilization info panel"
-msgstr ""
+msgstr " hotkey.civinfo – Prepnúť na informačný panel civilizácie"
 
 #: gui/manual/intro.txt:98
 msgid "[font=\"sans-bold-14\"]Modify mouse action[font=\"sans-14\"]"
@@ -619,86 +620,86 @@ msgstr ""
 
 #: gui/manual/intro.txt:129
 msgid "  hotkey.camera.up – Pan screen up"
-msgstr ""
+msgstr "hotkey.camera.up – Nakloniť obrazovku hore"
 
 #: gui/manual/intro.txt:130
 msgid "  hotkey.camera.down – Pan screen down"
-msgstr ""
+msgstr "hotkey.camera.down – Nakloniť obrazovku dole"
 
 #: gui/manual/intro.txt:131
 msgid "  hotkey.camera.left – Pan screen left"
-msgstr ""
+msgstr "hotkey.camera.left – Nakloniť obrazovku vľavo"
 
 #: gui/manual/intro.txt:132
 msgid "  hotkey.camera.right – Pan screen right"
-msgstr ""
+msgstr "hotkey.camera.right – Nakloniť obrazovku vpravo"
 
 #: gui/manual/intro.txt:133
 msgid "  hotkey.camera.rotate.up – Rotate camera to look upward"
-msgstr ""
+msgstr " hotkey.camera.rotate.up – Otočiť kameru pre pohľad hore"
 
 #: gui/manual/intro.txt:134
 msgid "  hotkey.camera.rotate.down – Rotate camera to look downward"
-msgstr ""
+msgstr " hotkey.camera.rotate.down – Otočiť kameru pre pohľad dole"
 
 #: gui/manual/intro.txt:135
 msgid "  hotkey.camera.rotate.cw – Rotate camera clockwise around terrain"
-msgstr ""
+msgstr " hotkey.camera.rotate.cw – Otočiť kameru pre pohľad po smere hodinových ručičiek"
 
 #: gui/manual/intro.txt:136
 msgid ""
 "  hotkey.camera.rotate.ccw – Rotate camera counter-clockwise around terrain"
-msgstr ""
+msgstr " hotkey.camera.rotate.ccw – Otočiť kameru pre pohľad proti smeru hodinových ručičiek"
 
 #: gui/manual/intro.txt:137
 msgid ""
 "  hotkey.camera.rotate.wheel.cw – Rotate camera clockwise around terrain"
-msgstr ""
+msgstr " hotkey.camera.rotate.wheel.cw – Otočiť kameru po smere hodinových ručičiek vzhľadom na terén"
 
 #: gui/manual/intro.txt:138
 msgid ""
 "  hotkey.camera.rotate.wheel.ccw – Rotate camera counter-clockwise around "
 "terrain"
-msgstr ""
+msgstr " hotkey.camera.rotate.wheel.ccw – Otočiť kameru proti smeru hodinových ručičiek vzhľadom na terén"
 
 #: gui/manual/intro.txt:139
 msgid ""
 "  hotkey.camera.follow – Follow the selected unit (move the camera to stop "
 "following the unit)"
-msgstr ""
+msgstr " hotkey.camera.follow – Sledovať vybranú jednotku (posuňte kameru nahor pre ukončenie sledovania)"
 
 #: gui/manual/intro.txt:140
 msgid "  hotkey.camera.reset – Reset camera zoom and orientation"
-msgstr ""
+msgstr " hotkey.camera.reset – Vrátiť na pôvodné hodnoty priblíženie a orientáciu"
 
 #: gui/manual/intro.txt:141
 msgid ""
 "  hotkey.camera.zoom.in, hotkey.camera.zoom.wheel.in – Zoom in (keep pressed"
 " for continuous zoom)"
-msgstr ""
+msgstr " hotkey.camera.zoom.in, hotkey.camera.zoom.wheel.in – Priblíženie (držte stlačené pre pokračované priblíženie)"
 
 #: gui/manual/intro.txt:142
 msgid ""
 "  hotkey.camera.zoom.out, hotkey.camera.zoom.wheel.out – Zoom out (keep "
 "pressed for continuous zoom)"
-msgstr ""
+msgstr " hotkey.camera.zoom.out, hotkey.camera.zoom.wheel.out – Oddialenie (držte stlačené pre pokračované oddialenie)"
 
 #: gui/manual/intro.txt:143
 msgid "  hotkey.camera.pan – Keep pressed and move the mouse to pan"
-msgstr ""
+msgstr " hotkey.camera.pan – Držte stlačené a pohybujte myšou pre naklonenie"
 
 #: gui/manual/intro.txt:145
 msgid "[font=\"sans-bold-14\"]During Structure Placement[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Počas umiestňovania budovy[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:146
 msgid ""
 "  hotkey.session.rotate.ccw – Rotate structure 15 degrees counter-clockwise"
-msgstr ""
+msgstr "hotkey.session.rotate.ccw – Otočte budovu o 15 stupňov proti smeru hodinových ručičiek"
 
 #: gui/manual/intro.txt:147
 msgid "  hotkey.session.rotate.cw – Rotate structure 15 degrees clockwise"
-msgstr ""
+msgstr " hotkey.session.rotate.cw – Otočte budovu o 15 stupňov v smere hodinových ručičiek"
 
 #: gui/manual/intro.txt:148
 msgid ""
@@ -708,7 +709,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:150
 msgid "[font=\"sans-bold-14\"]When loading a saved game[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Pri načítaní uloženej hry[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:151
 msgid "  hotkey.cancel – Cancel"

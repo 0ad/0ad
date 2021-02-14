@@ -2,10 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Settlement">
-      <animations>
-        <animation event="0.5" load="0.0" name="attack_ranged" speed="100"/>
-      </animations>
+    <variant frequency="100" name="Settlement" file="structures/defensive_building.xml">
       <mesh>structural/ptol_military_settlement_struct_ptolemaic.dae</mesh>
       <props>
         <prop actor="props/structures/ptolemies/ptol_military_settlement_struct_seleucid.xml" attachpoint="root"/>
@@ -14,8 +11,6 @@
         <prop actor="props/structures/ptolemies/ptol_military_settlement_trunks.xml" attachpoint="root"/>
         <prop actor="props/structures/ptolemies/ptol_military_settlement_flowers.xml" attachpoint="root"/>
         <prop actor="props/structures/ptolemies/ptol_military_settlement_door.xml" attachpoint="root"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
       </props>
       <textures>
         <texture file="structural/ptol_struct.png" name="baseTex"/>
@@ -38,15 +33,8 @@
   </group>
   <group>
     <variant name="alive" frequency="1"/>
-    <variant name="death">
+    <variant file="structures/destruction_large.xml">
       <props>
-        <prop attachpoint="garrisoned"/>
-        <prop attachpoint="garrisoned2"/>
-        <prop attachpoint="garrisoned3"/>
-        <prop attachpoint="garrisoned4"/>
-        <prop actor="particle/destruction_smoke_large.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_large.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_large_gray.xml" attachpoint="root"/>
         <prop actor="props/structures/ptolemies/ptol_military_settlement_struct_seleucid.xml" attachpoint="root"/>
         <prop actor="props/structures/ptolemies/ptol_military_settlement_struct_helenistic.xml" attachpoint="root"/>
         <prop actor="props/structures/ptolemies/ptol_military_settlement_leaves.xml" attachpoint="root" />

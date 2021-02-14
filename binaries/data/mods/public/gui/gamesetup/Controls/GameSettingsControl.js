@@ -132,7 +132,7 @@ class GameSettingsControl
 				g_GameAttributes = this.gameSettingsFile.loadFile();
 
 			this.updateGameAttributes();
-			this.setNetworkGameAttributesImmediately();
+			this.setNetworkGameAttributes();
 		}
 	}
 

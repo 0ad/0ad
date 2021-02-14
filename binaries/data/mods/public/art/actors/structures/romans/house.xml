@@ -4,11 +4,15 @@
   <group>
     <variant frequency="1" name="House A">
       <mesh>structural/roman_house_a.dae</mesh>
-      <textures><texture file="structural/ao/rome_house_a.png" name="aoTex"/></textures>
+      <textures>
+        <texture file="structural/ao/rome_house_a.png" name="aoTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="House B">
       <mesh>structural/roman_house_b.dae</mesh>
-      <textures><texture file="structural/ao/rome_house_b.png" name="aoTex"/></textures>
+      <textures>
+        <texture file="structural/ao/rome_house_b.png" name="aoTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="House C">
       <mesh>structural/roman_house_c.dae</mesh>
@@ -16,7 +20,9 @@
         <prop actor="props/flora/plant_medit_artichoke.xml" attachpoint="plant_a"/>
         <prop actor="props/flora/bush_tempe_sm.xml" attachpoint="plant_b"/>
       </props>
-      <textures><texture file="structural/ao/rome_house_c.png" name="aoTex"/></textures>
+      <textures>
+        <texture file="structural/ao/rome_house_c.png" name="aoTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="House D">
       <mesh>structural/roman_house_d.dae</mesh>
@@ -24,7 +30,9 @@
         <prop actor="props/flora/plant_medit_artichoke.xml" attachpoint="plant_b"/>
         <prop actor="props/flora/bush_tempe_sm.xml" attachpoint="plant_a"/>
       </props>
-      <textures><texture file="structural/ao/rome_house_d.png" name="aoTex"/></textures>
+      <textures>
+        <texture file="structural/ao/rome_house_d.png" name="aoTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -33,22 +41,15 @@
         <prop actor="props/structures/decals/dirt_small.xml" attachpoint="root"/>
       </props>
       <textures>
-	    <texture file="structural/rome_struct_2.png" name="baseTex"/>
-	    <texture file="structural/rome_struct_2_norm.png" name="normTex"/>
-	    <texture file="structural/rome_struct_2_spec.png" name="specTex"/>
-	  </textures>
+        <texture file="structural/rome_struct_2.png" name="baseTex"/>
+        <texture file="structural/rome_struct_2_norm.png" name="normTex"/>
+        <texture file="structural/rome_struct_2_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
   <group>
     <variant name="alive" frequency="1"/>
-    <variant name="death">
-      <props>
-        <prop actor="particle/destruction_smoke_small.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_small_gray.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/dirt_small.xml" attachpoint="root"/>
-      </props>
-    </variant>
+    <variant file="structures/destruction_small.xml"/>
   </group>
   <material>player_trans_ao_parallax_spec.xml</material>
 </actor>

@@ -2,15 +2,10 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Scout_Tower">
-      <animations>
-        <animation event="0.5" load="0" name="attack_ranged" speed="100"/>
-      </animations>
+    <variant frequency="1" name="Scout_Tower" file="structures/defensive_building.xml">
       <mesh>structural/kart_scout_tower.dae</mesh>
       <props>
         <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
       <textures>
         <texture file="structural/kart_struct.dds" name="baseTex"/>
@@ -38,38 +33,11 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="alive"/>
-    <variant name="lightdamage">
-      <textures>
-        <texture file="structural/kart_struct_damaged.png" name="baseTex"/>
-        <texture file="structural/kart_struct_damaged_norm.png" name="normTex"/>
-      </textures>
-    </variant>
-    <variant name="mediumdamage">
-      <textures>
-        <texture file="structural/kart_struct_damaged_med.png" name="baseTex"/>
-        <texture file="structural/kart_struct_damaged_med_norm.png" name="normTex"/>
-      </textures>
-    </variant>
-    <variant name="heavydamage">
-      <textures>
-        <texture file="structural/kart_struct_damaged_heavy.png" name="baseTex"/>
-        <texture file="structural/kart_struct_damaged_heavy_norm.png" name="normTex"/>
-      </textures>
-    </variant>
-    <variant name="death">
-      <props>
-        <prop attachpoint="garrisoned"/>
-        <prop actor="particle/destruction_smoke_small.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_small_gray.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
-      </props>
-      <textures>
-        <texture file="structural/kart_struct_damaged_heavy.png" name="baseTex"/>
-        <texture file="structural/kart_struct_damaged_heavy_norm.png" name="normTex"/>
-      </textures>
-    </variant>
+    <variant name="alive" frequency="1"/>
+    <variant file="structures/cart/light_damage.xml"/>
+    <variant file="structures/cart/medium_damage.xml"/>
+    <variant file="structures/cart/heavy_damage.xml"/>
+    <variant file="structures/cart/destruction_small.xml"/>
   </group>
   <material>player_trans_ao_parallax_spec.xml</material>
 </actor>

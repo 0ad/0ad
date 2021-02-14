@@ -3,10 +3,7 @@
   <castshadow/>
   <float/>
   <group>
-    <variant frequency="1" name="Briton Crannog">
-      <animations>
-        <animation event="0.5" load="0.0" name="attack_ranged" speed="100"/>
-      </animations>
+    <variant frequency="1" name="Briton Crannog" file="structures/defensive_building.xml">
       <mesh>structural/brit_crannog_struct1.dae</mesh>
       <props>
         <prop actor="props/structures/britons/crannog_props.xml" attachpoint="root"/>
@@ -19,8 +16,6 @@
         <prop actor="props/flora/grass_tufts_a.xml" attachpoint="tuftc"/>
         <prop actor="props/flora/reeds_beach_mythos.xml" attachpoint="watergrassa"/>
         <prop actor="props/flora/reeds_beach_mythos.xml" attachpoint="watergrassb"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
       <textures>
         <texture file="structural/brit_struct_1.png" name="baseTex"/>

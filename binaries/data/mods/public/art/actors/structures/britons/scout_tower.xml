@@ -2,7 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Briton Large Tower">
+    <variant frequency="1" name="Briton Large Tower" file="structures/defensive_building.xml">
       <animations>
         <animation event="0.5" load="0" name="attack_ranged" speed="100"/>
       </animations>
@@ -10,8 +10,6 @@
       <props>
         <prop actor="props/structures/britons/outpost_props_new.xml" attachpoint="root"/>
         <prop actor="props/structures/britons/outpost_palisade.xml" attachpoint="root"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
       </props>
       <textures>
         <texture file="structural/brit_struct.png" name="baseTex"/>

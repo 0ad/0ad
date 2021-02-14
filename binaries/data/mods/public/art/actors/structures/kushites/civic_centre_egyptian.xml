@@ -2,7 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Base">
+    <variant frequency="1" name="Base" file="structures/defensive_building.xml">
       <mesh>structural/ptol_civic_centre.dae</mesh>
       <props>
         <prop actor="props/structures/ptolemies/civic_centre_paintings.xml" attachpoint="root"/>
@@ -19,8 +19,6 @@
         <prop actor="particle/smoke_small_light.xml" attachpoint="fire2"/>
         <prop actor="props/special/eyecandy/obelisk_b.xml" attachpoint="obelisk1" maxheight="20" minheight="-20"/>
         <prop actor="props/special/eyecandy/obelisk_b.xml" attachpoint="obelisk2" maxheight="20" minheight="-20"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
       <textures>
         <texture file="structural/kush_struct_02.png" name="baseTex"/>

@@ -2,10 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="0" name="Briton Fortress Old">
-      <animations>
-        <animation event="0.5" load="0.0" name="attack_ranged" speed="100"/>
-      </animations>
+    <variant frequency="0" name="Briton Fortress Old" file="structures/defensive_building.xml">
       <mesh>structural/brit_fortress_struct1.dae</mesh>
       <props>
         <prop actor="props/structures/britons/fortress_props_1.xml" attachpoint="root"/>
@@ -14,8 +11,6 @@
         <prop actor="props/structures/britons/fortress_wall.xml" attachpoint="root"/>
         <prop actor="particle/smoke_small_light.xml" attachpoint="smokea"/>
         <prop actor="props/structures/decals/celt_fortress.xml" attachpoint="root"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
       <textures>
         <texture file="structural/celt_struct_1.dds" name="baseTex"/>
@@ -24,16 +19,11 @@
         <texture file="structural/ao/brit_fortress.png" name="aoTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Briton Fortress A">
-      <animations>
-        <animation event="0.5" load="0.0" name="attack_ranged" speed="100"/>
-      </animations>
+    <variant frequency="1" name="Briton Fortress A" file="structures/defensive_building.xml">
       <mesh>structural/brit_fortress_2.dae</mesh>
       <props>
         <prop actor="particle/smoke_light_delay.xml" attachpoint="smokea"/>
         <prop actor="props/structures/decals/celt_fortress.xml" attachpoint="root"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
       <textures>
         <texture file="structural/brit_struct.png" name="baseTex"/>
@@ -42,16 +32,11 @@
         <texture file="structural/ao/brit_fortress_2_AO.png" name="aoTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Briton Fortress B">
-      <animations>
-        <animation event="0.5" load="0.0" name="attack_ranged" speed="100"/>
-      </animations>
+    <variant frequency="1" name="Briton Fortress B" file="structures/defensive_building.xml">
       <mesh>structural/brit_fortress_2_b.dae</mesh>
       <props>
         <prop actor="particle/smoke_light_delay.xml" attachpoint="smokea"/>
         <prop actor="props/structures/decals/celt_fortress.xml" attachpoint="root"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
       </props>
       <textures>
         <texture file="structural/brit_struct.png" name="baseTex"/>
