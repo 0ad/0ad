@@ -68,8 +68,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-29 14:56+0000\n"
-"PO-Revision-Date: 2021-02-04 12:20+0000\n"
-"Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
+"PO-Revision-Date: 2021-02-14 01:41+0000\n"
+"Last-Translator: Vladislav Belov <vladislavbelovdev@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -283,7 +283,7 @@ msgstr "Чат врагов"
 #: gui/session/chat/ChatHistory.js:113
 msgctxt "chat history filter"
 msgid "Observer chat"
-msgstr "Чат наблюдателей"
+msgstr "Чат зрителей"
 
 #: gui/session/chat/ChatHistory.js:120
 msgctxt "chat history filter"
@@ -313,7 +313,7 @@ msgstr "Нажмите %(hotkey)s для открытия публичного �
 #: gui/session/chat/ChatInput.js:40
 #, javascript-format
 msgid "Press %(hotkey)s to open the observer chat."
-msgstr "Нажмите %(hotkey)s для открытия чата наблюдателей."
+msgstr "Нажмите %(hotkey)s для открытия чата зрителей."
 
 #: gui/session/chat/ChatInput.js:41
 #, javascript-format
@@ -606,7 +606,7 @@ msgstr "Показать поле зрения камеры"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:323
 msgid "Display shadows frustum"
-msgstr "Показать слепые зоны"
+msgstr "Показать границы отрисовки теней"
 
 #: gui/session/developer_overlay/TimeWarp.js:65
 msgid "Time warp mode"
@@ -773,7 +773,7 @@ msgstr "Да"
 #: gui/session/message_box/OutOfSyncReplay.js:26
 #, javascript-format
 msgid "Out-Of-Sync error on turn %(turn)s."
-msgstr "Ошибка синхронизации на %(turn)s ходу."
+msgstr "Ошибка рассинхронизации на ходу №%(turn)s."
 
 #: gui/session/message_box/OutOfSyncNetwork.js:19
 #, javascript-format
@@ -826,7 +826,7 @@ msgstr "Рассинхронизация"
 #. Translation: This is shown if replay is out of sync
 #: gui/session/message_box/OutOfSyncReplay.js:28
 msgid "Out-Of-Sync"
-msgstr "Синхронизация отсутсвует"
+msgstr "Рассинхронизация"
 
 #: gui/session/message_box/QuitConfirmation.js:6
 #: gui/session/message_box/QuitConfirmationMenu.js:63

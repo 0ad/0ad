@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-02-11 22:17+0000\n"
+"PO-Revision-Date: 2021-02-13 00:37+0000\n"
 "Last-Translator: Dabiq 1441 <dlc39hw3eh@just4fun.me>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
@@ -170,7 +170,7 @@ msgstr "Kirim teks sebagai pesan (bahkan jika dimulai dengan slash)\nContoh : /s
 #. Translation: Chat command
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:156
 msgid "/say"
-msgstr ""
+msgstr "/say"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:160
 msgid "Clear all chat scrollback."
@@ -180,7 +180,7 @@ msgstr "Hapus Semua Pesan Obrolan"
 #: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessageFormatMe.js:24
 #, javascript-format
 msgid "* %(sender)s %(message)s"
-msgstr ""
+msgstr "* %(sender)s %(message)s"
 
 #: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessageFormatSay.js:29
 #, javascript-format
@@ -199,7 +199,7 @@ msgstr "Pribadi"
 #: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessagePrivateWrapper.js:25
 #, javascript-format
 msgid "(%(private)s) %(message)s"
-msgstr ""
+msgstr "(%(private)s) %(message)s"
 
 #: gui/lobby/LobbyPage/Chat/ChatPanel.xml:(caption):12
 msgid "Send"
@@ -288,7 +288,7 @@ msgstr "Sistem:"
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageFormat.js:32
 #, javascript-format
 msgid "=== %(system)s %(message)s"
-msgstr ""
+msgstr "=== %(system)s %(message)s"
 
 #. Translation: Chat message format when there is a time prefix.
 #: gui/lobby/LobbyPage/Chat/TimestampWrapper.js:25
@@ -340,13 +340,13 @@ msgstr "Ya"
 #: gui/lobby/LobbyPage/Game.js:298
 #, javascript-format
 msgid "%(current)s/%(max)s +%(observercount)s"
-msgstr ""
+msgstr "%(current)s/%(max)s +%(observercount)s"
 
 #. Translation: The number of players in this game
 #: gui/lobby/LobbyPage/Game.js:301
 #, javascript-format
 msgid "%(current)s/%(max)s"
-msgstr ""
+msgstr "%(current)s/%(max)s"
 
 #: gui/lobby/LobbyPage/GameDetails.js:65
 msgctxt "victory condition"
@@ -356,7 +356,7 @@ msgstr "Permainan tak berujung"
 #: gui/lobby/LobbyPage/GameDetails.js:117
 #, javascript-format
 msgid "Host: %(playername)s"
-msgstr ""
+msgstr "Host: %(playername)s"
 
 #: gui/lobby/LobbyPage/GameDetails.js:119
 #, javascript-format
@@ -646,21 +646,21 @@ msgstr "Batal"
 msgid ""
 "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Privacy "
 "Policy[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Kebijakan Privasi[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:3
 msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2020-12-24"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Tanggal dokumen:[/font] 2020-12-24"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:5
 msgid ""
 "[font=\"sans-bold-16\"]Personal data processed by Wildfire Games and "
 "purposes of processing:[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Data pribadi diproses oleh Wildfire Games dan tujuan pemrosesan:[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:6
 msgid "[font=\"sans-bold-14\"]1. Player name[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]1. Nama pemain[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:7
 msgid ""
@@ -687,7 +687,7 @@ msgstr "Nama pemain berfungsi sebagai nama samaran.  Identitas (perorangan) pema
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:11
 msgid "[font=\"sans-bold-14\"]2. Password[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]2. Kata sandi[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:12
 msgid ""
@@ -704,7 +704,7 @@ msgstr "Wildfire Games hanya menerima versi kata sandi yang telah terenskripsi, 
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:15
 msgid "[font=\"sans-bold-14\"]3. IP address[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]3. Alamat IP[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:16
 msgid ""
@@ -737,7 +737,7 @@ msgstr "Alamat IP tidak akan disimpan untuk lebih dari tiga tahun untuk alasan i
 msgid ""
 " 2. Make it possible to bring criminal proceedings in case of a cyberattack "
 "(EU Court of Justice Press Release No 112/16)."
-msgstr ""
+msgstr " 2. Memungkinkan untuk mengajukan tuntutan pidana jika terjadi serangan dunia maya (Siaran Pers Pengadilan UE No 112/16)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:21
 msgid ""
@@ -749,7 +749,7 @@ msgstr "Wildfire Games tidak akan menggunakan log alamat IP untuk tujuan lain ap
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:23
 msgid "[font=\"sans-bold-14\"]4. Online presence[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]4. Kehadiran online[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:24
 msgid ""
@@ -759,7 +759,7 @@ msgstr "Pemain mana yang saat ini terhubung ke Lobi Multiplayer dan pertandingan
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:26
 msgid "[font=\"sans-bold-14\"]5. Chat messages[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]5. Pesan obrolan[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:27
 msgid ""
@@ -792,7 +792,7 @@ msgstr "3. Wildfire Games dapat menilai tren di antara topik yang dibahas, pertu
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:33
 msgid "[font=\"sans-bold-14\"]6. Match statistics[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]6. Statistik pertandingan[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:34
 msgid ""
@@ -833,7 +833,7 @@ msgstr "2. Menghitung dan mempublikasikan statistik komunitas untuk meningkatkan
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:41
 msgid "[font=\"sans-bold-14\"]Security of processing:[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Keamanan pemrosesan:[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:42
 msgid ""
@@ -861,7 +861,7 @@ msgstr "Wildfire Games berhak untuk menghapus data layanan apa pun (termasuk dat
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:48
 msgid "[font=\"sans-bold-16\"]Legal basis for the processing:[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Dasar hukum pemrosesan:[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:49
 msgid ""
@@ -886,56 +886,56 @@ msgstr "3. Wildfire Games tidak memproses data lebih lanjut untuk Lobi Multiplay
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:53
 msgid "[font=\"sans-bold-16\"]User rights:[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Hak pengguna:[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:54
 msgid ""
 "1. Contact Wildfire Games, by sending an email to webmaster at wildfiregames"
 " dot com (GDPR 13.1.a, GDPR 13.1.b)."
-msgstr ""
+msgstr "1. Hubungi Wildfire Games, dengan mengirimkan email ke webmaster di wildfiregames dot com (GDPR 13.1.a, GDPR 13.1.b)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:55
 msgid "   To exercise any user right, please refer to this contact."
-msgstr ""
+msgstr "Untuk menggunakan hak pengguna mana pun, silakan merujuk ke kontak ini."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:56
 msgid "2. Right of access to personal data concerning him or her (GDPR 15)."
-msgstr ""
+msgstr "2. Hak akses ke data pribadi tentang dirinya (GDPR 15)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:57
 msgid ""
 "3. Right to obtain personal data in a machine-readable format (GDPR 20)."
-msgstr ""
+msgstr "3. Hak untuk mendapatkan data pribadi dalam format yang dapat dibaca mesin (GDPR 20)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:58
 msgid "4. Right to rectification of inaccurate personal data (GDPR 16)."
-msgstr ""
+msgstr "4. Hak untuk memperbaiki data pribadi yang tidak akurat (GDPR 16)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:59
 msgid ""
 "5. Right to erasure of personal data where it is not relevant to the stated "
 "purposes, if the data was processed unlawfully or if the user objects to the"
 " processing and has overriding legitimate grounds (GDPR 17)."
-msgstr ""
+msgstr "5. Hak untuk menghapus data pribadi jika tidak relevan dengan tujuan yang dinyatakan, jika data diproses secara tidak sah atau jika pengguna menolak pemrosesan dan memiliki alasan yang sah (GDPR 17)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:60
 msgid ""
 "6. Right to restriction of personal data processing where the accuracy of "
 "the data is contested by the user, if the data was processed unlawfully or "
 "if the user requires the data for a legal claim (GDPR 18)."
-msgstr ""
+msgstr "6. Hak untuk membatasi pemrosesan data pribadi di mana keakuratan data diperebutkan oleh pengguna, jika data diproses secara tidak sah atau jika pengguna memerlukan data untuk klaim hukum (GDPR 18)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:61
 msgid ""
 "7. Right to object to the processing of personal data concerning him or her "
 "on grounds relating to their particular situation (GDPR 21)."
-msgstr ""
+msgstr "7. Hak untuk menolak pemrosesan data pribadi tentang dirinya dengan alasan yang berkaitan dengan situasi khusus mereka (GDPR 21)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:62
 msgid ""
 "8. Right to lodge a complaint with a supervisory authority (GDPR 13.2.d, "
 "GDPR 77)."
-msgstr ""
+msgstr "8. Hak untuk mengajukan keluhan kepada otoritas pengawas (GDPR 13.2.d, GDPR 77)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:63
 msgid ""
@@ -945,13 +945,13 @@ msgstr "Permohonan yang secara nyata tidak berdasar atau berlebihan tidak akan d
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:65
 msgid "[font=\"sans-bold-16\"]Wildfire Games obligations:[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Kewajiban Wildfire Games:[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:66
 msgid ""
 " 1. Wildfire Games demonstrates compliance with GDPR (GDPR 5.2 "
 "'accountability')."
-msgstr ""
+msgstr " 1. Wildfire Games menunjukkan kepatuhan dengan GDPR ('akuntabilitas' GDPR 5.2)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:67
 msgid ""
@@ -973,33 +973,33 @@ msgid ""
 "is processed, recipients of personal data and where applicable, transfer of "
 "personal data to third countries and automated decision-making (GDPR "
 "13.1.c-f, GDPR 13.2.a, GDPR 13.2.e-f, GDPR 15.1, GDPR 15.4)."
-msgstr ""
+msgstr " 4. Wildfire Games memberi tahu pengguna tentang tujuan, dasar hukum, kepentingan yang sah, dan periode penyimpanan pemrosesan data pribadi pada saat diproses, penerima data pribadi dan jika berlaku, transfer data pribadi ke negara ketiga dan pengambilan keputusan otomatis (GDPR 13.1  .cf, GDPR 13.2.a, GDPR 13.2.ef, GDPR 15.1, GDPR 15.4)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:70
 msgid ""
 " 5. Wildfire Games does not processes personal data for purposes other than "
 "the specified ones (GDPR 5.1.b, 'purpose limitation', GDPR 13.3)."
-msgstr ""
+msgstr " 5. Wildfire Games tidak memproses data pribadi untuk tujuan selain yang ditentukan (GDPR 5.1.b, 'batasan tujuan', GDPR 13.3)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:71
 msgid ""
 " 6. Wildfire Games does not process personal data that is not needed for the"
 " specified purposes (GDPR 5.1.c, 'data minimization')."
-msgstr ""
+msgstr " 6. Wildfire Games tidak memproses data pribadi yang tidak diperlukan untuk tujuan yang ditentukan (GDPR 5.1.c, 'minimisasi data')."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:72
 msgid ""
 " 7. Wildfire Games uses a storage form that does not allow identification of"
 " natural persons for longer than necessary (GDPR 5.1.e 'storage "
 "limitation')."
-msgstr ""
+msgstr " 7. Wildfire Games menggunakan formulir penyimpanan yang tidak memungkinkan identifikasi orang lebih lama dari yang diperlukan (GDPR 5.1.e 'batasan penyimpanan')."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:73
 msgid ""
 " 8. Wildfire Games secures personal data processing to prevent unauthorised "
 "or unlawful processing and accidental loss (GDPR 5.1.f. 'integrity and "
 "confidentiality')."
-msgstr ""
+msgstr " 8. Wildfire Games mengamankan pemrosesan data pribadi untuk mencegah pemrosesan yang tidak sah atau melanggar hukum dan kerugian yang tidak disengaja (GDPR 5.1.f. 'integritas dan kerahasiaan')."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:74
 msgid ""
@@ -1020,7 +1020,7 @@ msgid ""
 "11. Wildfire Games informs the users that to exercise their rights, users "
 "might need to provide additional information to identify the natural person "
 "or the data (GDPR 12.6, GDPR 13.2.e)."
-msgstr ""
+msgstr "11. Wildfire Games memberi tahu pengguna bahwa untuk menggunakan hak mereka, pengguna mungkin perlu memberikan informasi tambahan untuk mengidentifikasi orang atau datanya (GDPR 12.6, GDPR 13.2.e)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:77
 msgid ""
@@ -1028,7 +1028,7 @@ msgid ""
 "under the age of 13 (Children's Online Privacy Protection Act). If you "
 "believe Wildfire Games received any personal data from or about a child "
 "under 13, please contact Wildfire Games."
-msgstr ""
+msgstr "12. Wildfire Games tidak akan secara sengaja mengumpulkan data pribadi dari anak-anak di bawah usia 13 tahun (Undang-Undang Perlindungan Privasi Online Anak).  Jika Anda yakin Wildfire Games menerima data pribadi apa pun dari atau tentang seorang anak di bawah 13 tahun, silakan hubungi Wildfire Games."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:78
 msgid ""
@@ -1039,7 +1039,7 @@ msgid ""
 "interests do not override Wildfire Games legitimate interests, and that "
 "Wildfire Games is not using personal data in intrusive ways unless there is "
 "a very good reason to."
-msgstr ""
+msgstr "13. Saat Wildfire Games memproses data pribadi sensitif berdasarkan minat yang sah, Wildfire Games mempertimbangkan untuk melakukan, merekam, dan meninjau secara berkala Penilaian Minat yang Sah dan Penilaian Dampak Perlindungan Data (GDPR 35) untuk menjadi yakin bahwa kepentingan individu tidak menggantikan kepentingan sah Wildfire Games, dan bahwa  Wildfire Games tidak menggunakan data pribadi dengan cara yang mengganggu kecuali ada alasan yang sangat bagus untuk itu."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:80
 msgid ""
@@ -1051,7 +1051,7 @@ msgstr "Untuk informasi lebih lanjut tentang Kebijakan Pribadi Wildfire Games, k
 msgid ""
 "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Terms of "
 "Service[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Persyaratan Layanan Lobi Multiplayer[/font]"
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:3
 msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2018-10-16"
@@ -1063,25 +1063,25 @@ msgid ""
 " by Wildfire Games that allows players to set up online multiplayer matches,"
 " discuss the game in a public chat room and gain a rating that reflects "
 "their skill."
-msgstr ""
+msgstr "Lobi Multiplayer 0 A.D. Empires Ascendant adalah layanan online yang disediakan oleh Wildfire Games yang memungkinkan pemain untuk mengatur pertandingan multipemain online, mendiskusikan permainan di ruang obrolan publik dan mendapatkan peringkat yang mencerminkan keahlian mereka."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:7
 msgid ""
 "Due to the subject matter of historic warfare, description and depiction of "
 "violence and the language on the Multiplayer Lobby, 0 A.D. and the "
 "Multiplayer Lobby are not directed to young children (COPPA §312.2)."
-msgstr ""
+msgstr "Karena subjek perang bersejarah, deskripsi dan penggambaran kekerasan dan bahasa di Lobi Multipemain, 0 A.D. dan Lobi Multipemain tidak ditujukan untuk anak-anak (COPPA §312.2)."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:8
 msgid "The minimum age to use the Multiplayer Lobby is 13."
-msgstr ""
+msgstr "Usia minimum untuk menggunakan Lobi Multiplayer adalah 13 tahun."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:10
 #: gui/prelobby/common/terms/Terms_of_Use.txt:5
 msgid ""
 "[font=\"sans-bold-14\"]By using the 0 A.D. Multiplayer Lobby, you agree "
 "to:[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Dengan menggunakan Lobi Multipemain 0 A.D., Anda setuju:[/font]"
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:11
 msgid " 1. Follow all usage policies."
@@ -1092,14 +1092,14 @@ msgid ""
 " 2. Not use the service with third-party software or mods that prevents the "
 "user from being informed of updated Terms and Conditions, unless authorized "
 "by a Wildfire Games team member."
-msgstr ""
+msgstr "2. Tidak menggunakan layanan dengan perangkat lunak atau mod pihak ketiga yang mencegah pengguna untuk diberi tahu tentang Syarat dan Ketentuan yang diperbarui, kecuali diizinkan oleh anggota tim Wildfire Games."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:13
 msgid ""
 " 3. Use the service at your own risk. Wildfire Games does not take "
 "responsibility for the content posted by users or damages resulting from "
 "this service."
-msgstr ""
+msgstr "3. Gunakan layanan dengan risiko Anda sendiri. Wildfire Games tidak bertanggung jawab atas konten yang diposting oleh pengguna atau kerusakan yang diakibatkan dari layanan ini."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:15
 msgid "[font=\"sans-bold-14\"]Wildfire Games reserves the right to:[/font]"
@@ -1109,7 +1109,7 @@ msgstr "[font=\"sans-bold-14\"]Wildfire Games berhak untuk:[/font]"
 msgid ""
 " 1. Moderate the service, i.e. to enforce the Terms of Use by restricting, "
 "suspending or terminating user accounts."
-msgstr ""
+msgstr " 1. Memoderasi layanan, yaitu untuk menegakkan Ketentuan Penggunaan dengan membatasi, menangguhkan, atau menghentikan akun pengguna."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:17
 msgid " 2. Appoint others to moderate the service."
@@ -1117,21 +1117,21 @@ msgstr "2. Menunjuk orang lain untuk memoderasi layanan."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:18
 msgid " 3. Discontinue or interrupt any part of the service at any time."
-msgstr ""
+msgstr "3. Hentikan atau hentikan bagian mana pun dari layanan ini kapan saja."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:19
 msgid ""
 " 4. Change the service or the terms. The document date of the terms indicate"
 " its version, and the user is informed of the new terms before being able to"
 " use the service again."
-msgstr ""
+msgstr "4. Ubah layanan atau persyaratan. Tanggal dokumen dari persyaratan menunjukkan versinya, dan pengguna diberitahu tentang persyaratan baru sebelum dapat menggunakan layanan lagi."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:20
 msgid ""
 " 5. Process personal data in accordance with the Lobby Privacy Policy, the "
 "General Data Protection Regulation (GDPR) and the Children's Online Privacy "
 "Protection Act (COPPA) where applicable."
-msgstr ""
+msgstr " 5. Memproses data pribadi sesuai dengan Kebijakan Privasi Lobi, Peraturan Perlindungan Data Umum (GDPR), dan Undang-Undang Perlindungan Privasi Online Anak-Anak (COPPA) jika berlaku."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:22
 msgid ""
@@ -1143,34 +1143,34 @@ msgstr "Jika sebagian dari syarat dianggap ilegal atau jika tidak dapat ditegakk
 msgid ""
 "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Terms of "
 "Use[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Ketentuan Penggunaan Lobi Multiplayer[/font]"
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:3
 msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2018-10-13"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Tanggal Dokumen:[/font] 2018-10-13"
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:6
 msgid ""
 " 1. Only create one account per person on the service unless authorized by "
 "Wildfire Games."
-msgstr ""
+msgstr "1. Hanya buat satu akun per orang di layanan kecuali diizinkan oleh Wildfire Games."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:7
 msgid ""
 " 2. Not impersonate other users of the service and only use your registered "
 "username in multiplayer matches."
-msgstr ""
+msgstr "2. Tidak meniru pengguna lain dari layanan ini dan hanya menggunakan nama pengguna terdaftar Anda dalam pertandingan multipemain."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:8
 msgid " 3. Not post profanity, pejorative terms or pornographic content."
-msgstr ""
+msgstr "3. Tidak memposting kata-kata kotor, istilah yang merendahkan, atau konten pornografi."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:9
 msgid ""
 " 4. Not harass, harm, intimidate, discriminate, threaten, defame, cause "
 "damage to others or purposefully demean the worth of others using this "
 "service."
-msgstr ""
+msgstr "4. Tidak melecehkan, merugikan, mengintimidasi, mendiskriminasi, mengancam, mencemarkan nama baik, menyebabkan kerugian pada orang lain atau dengan sengaja merendahkan nilai orang lain yang menggunakan layanan ini."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:10
 msgid ""
@@ -1178,11 +1178,11 @@ msgid ""
 "information (for example real name, location, ID) or private details (for "
 "example social media or messenger account names) of others without their "
 "consent."
-msgstr ""
+msgstr "5. Tidak melanggar privasi orang lain dengan mengungkapkan informasi yang dapat diidentifikasi secara pribadi (misalnya nama asli, lokasi, ID) atau detail pribadi (misalnya nama akun media sosial atau messenger) orang lain tanpa persetujuan mereka."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:11
 msgid " 6. Not incite violence or promote illegal acts."
-msgstr ""
+msgstr "6. Tidak menghasut kekerasan atau mempromosikan tindakan ilegal."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:12
 msgid ""
@@ -1197,25 +1197,25 @@ msgid ""
 " 8. Not undermine the intended gameplay or purposefully gain unfair "
 "advantages in multiplayer matches (for example cheating, using exploits or "
 "bugs)."
-msgstr ""
+msgstr "8. Tidak merusak gameplay yang dimaksudkan atau dengan sengaja mendapatkan keuntungan yang tidak adil dalam pertandingan multipemain (misalnya curang, menggunakan eksploitasi atau bug)."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:14
 msgid ""
 " 9. Not spam the service and not post large amounts of repetitive or "
 "unwanted messages."
-msgstr ""
+msgstr "9. Tidak mengirim spam ke layanan dan tidak memposting pesan berulang atau tidak diinginkan dalam jumlah besar."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:15
 msgid ""
 "10. Not use the service to promote specific goods, services, or products "
 "unless authorized by Wildfire Games."
-msgstr ""
+msgstr "10. Tidak menggunakan layanan untuk mempromosikan barang, layanan, atau produk tertentu kecuali diizinkan oleh Wildfire Games."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:17
 msgid ""
 "If a moderator deems your behavior to be inconsistent with these terms, your"
 " account may be restricted, suspended or terminated."
-msgstr ""
+msgstr "Jika moderator menganggap perilaku Anda tidak sesuai dengan persyaratan ini, akun Anda dapat dibatasi, ditangguhkan, atau dihentikan."
 
 #: gui/prelobby/common/terms/termslobby.js:9
 msgid "Terms of Service"
@@ -1231,7 +1231,7 @@ msgstr "Persyaratan Penggunaan"
 
 #: gui/prelobby/common/terms/termslobby.js:20
 msgid "Please read and accept the Terms of Use."
-msgstr ""
+msgstr "Harap baca dan setujui Persyaratan Penggunaan."
 
 #: gui/prelobby/common/terms/termslobby.js:29
 msgid "Privacy Policy"
@@ -1239,7 +1239,7 @@ msgstr "Kebijakan Privasi"
 
 #: gui/prelobby/common/terms/termslobby.js:30
 msgid "Please read and accept the Privacy Policy."
-msgstr ""
+msgstr "Harap baca dan terima Kebijakan Privasi."
 
 #: gui/prelobby/entrance/entrance.xml:(caption):20
 msgid "Create a new account"

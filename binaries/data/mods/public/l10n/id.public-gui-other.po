@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-29 14:56+0000\n"
-"PO-Revision-Date: 2021-02-12 06:11+0000\n"
+"PO-Revision-Date: 2021-02-13 00:10+0000\n"
 "Last-Translator: Dabiq 1441 <dlc39hw3eh@just4fun.me>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
@@ -66,28 +66,28 @@ msgstr "Versi: %(buildDate)s (%(revision)s)"
 #: gui/common/gamedescription.js:68
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdescription)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(AIdescription)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:71
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdescription)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(AIdescription)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:77
 #, javascript-format
 msgid "%(playerName)s (%(AIdescription)s)"
-msgstr ""
+msgstr "%(playerName)s (%(AIdescription)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:80
 #, javascript-format
 msgid "%(playerName)s (%(AIdescription)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(AIdescription)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
@@ -190,7 +190,7 @@ msgstr[0] "Keajaiban Dunia (%(min)s menit)"
 msgctxt "victory condition"
 msgid "Capture the Relic (%(min)s minute)"
 msgid_plural "Capture the Relic (%(min)s minutes)"
-msgstr[0] ""
+msgstr[0] "Kuasai semua peninggalan (%(min)s menit)"
 
 #: gui/common/gamedescription.js:232
 msgid "Relic Count"
@@ -408,7 +408,7 @@ msgstr "Kalah"
 #: gui/common/gamedescription.js:441
 #, javascript-format
 msgid "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
-msgstr ""
+msgstr "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
 
 #: gui/common/network.js:17
 #, javascript-format
@@ -694,7 +694,7 @@ msgstr "%(healthLabel)s %(current)s / %(max)s"
 #: gui/common/tooltips.js:167
 #, javascript-format
 msgid "%(captureLabel)s %(current)s / %(max)s"
-msgstr ""
+msgstr "%(captureLabel)s %(current)s / %(max)s"
 
 #: gui/common/tooltips.js:168
 msgid "Capture points:"
@@ -710,7 +710,7 @@ msgstr "%(percentage)s%%"
 msgid ""
 "%(label)s\n"
 "%(details)s"
-msgstr ""
+msgstr "%(label)s\n%(details)s"
 
 #: gui/common/tooltips.js:200
 msgid "Resistance:"
@@ -723,12 +723,12 @@ msgstr "Kerusakan:"
 #: gui/common/tooltips.js:214 gui/common/tooltips.js:234
 #, javascript-format
 msgid "%(damage)s %(damageType)s %(resistancePercentage)s"
-msgstr ""
+msgstr "%(damage)s %(damageType)s %(resistancePercentage)s"
 
 #: gui/common/tooltips.js:219 gui/common/tooltips.js:239
 #, javascript-format
 msgid "(%(resistancePercentage)s)"
-msgstr ""
+msgstr "(%(resistancePercentage)s)"
 
 #: gui/common/tooltips.js:232
 msgid "Capture:"
@@ -746,29 +746,29 @@ msgstr "Efek Status:"
 #: gui/common/tooltips.js:256
 #, javascript-format
 msgid "Blocks %(name)s"
-msgstr ""
+msgstr "Blocks %(name)s"
 
 #: gui/common/tooltips.js:261 gui/common/tooltips.js:269
 #: gui/common/tooltips.js:276
 #, javascript-format
 msgid "%(name)s %(details)s"
-msgstr ""
+msgstr "%(name)s %(details)s"
 
 #: gui/common/tooltips.js:263
 #, javascript-format
 msgid "Duration reduction: %(durationReduction)s%%"
-msgstr ""
+msgstr "Pengurangan durasi: %(durationReduction)s%%"
 
 #: gui/common/tooltips.js:271
 #, javascript-format
 msgid "Blocks: %(blockPercentage)s%%"
-msgstr ""
+msgstr "Blocks: %(blockPercentage)s%%"
 
 #: gui/common/tooltips.js:278
 #, javascript-format
 msgid ""
 "Blocks: %(blockPercentage)s%%, Duration reduction: %(durationReduction)s%%"
-msgstr ""
+msgstr "Blocks: %(blockPercentage)s%%, Pengurangan durasi: %(durationReduction)s%%"
 
 #: gui/common/tooltips.js:294
 msgid "Garrison to fire arrows"
@@ -786,7 +786,7 @@ msgstr "Tingkat:"
 #, javascript-format
 msgid "%(projectileCount)s %(projectileName)s"
 msgid_plural "%(projectileCount)s %(projectileName)s"
-msgstr[0] ""
+msgstr[0] "%(projectileCount)s %(projectileName)s"
 
 #: gui/common/tooltips.js:304
 msgid "arrow"
@@ -796,7 +796,7 @@ msgstr[0] "panah"
 #: gui/common/tooltips.js:307
 #, javascript-format
 msgid "%(projectileString)s / %(attackRateString)s"
-msgstr ""
+msgstr "%(projectileString)s / %(attackRateString)s"
 
 #. Translation: For example: Range: 2 to 10 (+2) meters
 #: gui/common/tooltips.js:327
@@ -804,25 +804,25 @@ msgstr ""
 msgid ""
 "%(rangeLabel)s %(minRange)s to %(maxRange)s (%(relativeRange)s) "
 "%(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s %(minRange)s to %(maxRange)s (%(relativeRange)s) %(rangeUnit)s"
 
 #. Translation: For example: Range: 10 (+2) meters
 #: gui/common/tooltips.js:329
 #, javascript-format
 msgid "%(rangeLabel)s %(maxRange)s (%(relativeRange)s) %(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s %(maxRange)s (%(relativeRange)s) %(rangeUnit)s"
 
 #. Translation: For example: Range: 2 to 10 meters
 #: gui/common/tooltips.js:333
 #, javascript-format
 msgid "%(rangeLabel)s %(minRange)s to %(maxRange)s %(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s %(minRange)s to %(maxRange)s %(rangeUnit)s"
 
 #. Translation: For example: Range: 10 meters
 #: gui/common/tooltips.js:335
 #, javascript-format
 msgid "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
 
 #: gui/common/tooltips.js:345 gui/common/tooltips.js:953
 msgid "Range:"
@@ -853,17 +853,17 @@ msgstr "%(damage)s %(damageType)s"
 #: gui/common/tooltips.js:374
 #, javascript-format
 msgid "%(amount)s %(name)s"
-msgstr ""
+msgstr "%(amount)s %(name)s"
 
 #: gui/common/tooltips.js:382
 #, javascript-format
 msgid "%(splashShape)s Splash"
-msgstr ""
+msgstr "%(splashShape)s Percikan"
 
 #: gui/common/tooltips.js:385
 #, javascript-format
 msgid "%(label)s: %(effects)s"
-msgstr ""
+msgstr "%(label)s: %(effects)s"
 
 #: gui/common/tooltips.js:391
 #, javascript-format
@@ -889,18 +889,18 @@ msgstr "Tidak"
 #: gui/common/tooltips.js:403
 #, javascript-format
 msgid "gives %(name)s"
-msgstr ""
+msgstr "memberi %(name)s"
 
 #: gui/common/tooltips.js:436
 #, javascript-format
 msgid "%(attackType)s"
-msgstr ""
+msgstr "%(attackType)s"
 
 #: gui/common/tooltips.js:457
 #, javascript-format
 msgid ""
 "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s%(splash)s"
-msgstr ""
+msgstr "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s%(splash)s"
 
 #: gui/common/tooltips.js:468
 msgid "Attack:"
@@ -909,17 +909,17 @@ msgstr "Serangan:"
 #: gui/common/tooltips.js:495
 #, javascript-format
 msgid "%(statusName)s: %(statusInfo)s %(stackability)s"
-msgstr ""
+msgstr "%(statusName)s: %(statusInfo)s %(stackability)s"
 
 #: gui/common/tooltips.js:500
 #, javascript-format
 msgid "%(statusName)s: %(statusInfo)s"
-msgstr ""
+msgstr "%(statusName)s: %(statusInfo)s"
 
 #: gui/common/tooltips.js:511
 #, javascript-format
 msgid "%(durName)s: %(duration)s"
-msgstr ""
+msgstr "%(durName)s: %(duration)s"
 
 #: gui/common/tooltips.js:512
 msgid "Duration"
@@ -943,7 +943,7 @@ msgstr "(tumpukan)"
 #: gui/common/tooltips.js:532
 #, javascript-format
 msgid "%(stackability)s"
-msgstr ""
+msgstr "%(stackability)s"
 
 #: gui/common/tooltips.js:543
 #, javascript-format
@@ -1049,7 +1049,7 @@ msgstr "%(resourceIcon)s %(rate)s"
 #: gui/common/tooltips.js:749
 #, javascript-format
 msgid "%(label)s %(component)s %(amount)s"
-msgstr ""
+msgstr "%(label)s %(component)s %(amount)s"
 
 #: gui/common/tooltips.js:750
 msgid "Resource Supply:"
@@ -1060,7 +1060,7 @@ msgstr "Pasokan Sumber Daya:"
 #. resource.
 #: gui/common/tooltips.js:753 gui/summary/summary.js:120
 msgid "∞"
-msgstr ""
+msgstr "∞"
 
 #: gui/common/tooltips.js:767
 msgid "Resource Trickle:"
@@ -1093,7 +1093,7 @@ msgstr "Menara:  %(costs)s"
 #: gui/common/tooltips.js:858
 #, javascript-format
 msgid "%(label)s %(costs)s"
-msgstr ""
+msgstr "%(label)s %(costs)s"
 
 #: gui/common/tooltips.js:859
 msgid "Cost:"
@@ -1107,7 +1107,7 @@ msgstr "Membutuhkan %(technology)s"
 #: gui/common/tooltips.js:885
 #, javascript-format
 msgid "%(label)s %(bonus)s"
-msgstr ""
+msgstr "%(label)s %(bonus)s"
 
 #: gui/common/tooltips.js:886
 msgid "Population Bonus:"
@@ -1192,7 +1192,7 @@ msgstr "Jarahan:"
 #: gui/common/tooltips.js:1082
 #, javascript-format
 msgid "%(label)s %(icons)s"
-msgstr ""
+msgstr "%(label)s %(icons)s"
 
 #: gui/common/tooltips.js:1083
 msgid "Dropsite for:"
@@ -1215,7 +1215,7 @@ msgstr "Klik untuk menampilkan informasi lebih."
 #: gui/credits/credits.js:83
 #, javascript-format
 msgid "%(nick)s — %(name)s"
-msgstr ""
+msgstr "%(nick)s — %(name)s"
 
 #: gui/credits/credits.xml:(caption):19
 msgid "0 A.D. Credits"
@@ -1608,19 +1608,19 @@ msgstr "Standar: %(value)s"
 #, javascript-format
 msgctxt "option number"
 msgid "Min: %(min)s, Max: %(max)s"
-msgstr ""
+msgstr "Minimal: %(min)s, Maksimal: %(max)s"
 
 #: gui/options/options.js:123
 #, javascript-format
 msgctxt "option number"
 msgid "Min: %(min)s"
-msgstr ""
+msgstr "Minimal: %(min)s"
 
 #: gui/options/options.js:125
 #, javascript-format
 msgctxt "option number"
 msgid "Max: %(max)s"
-msgstr ""
+msgstr "Maksimal: %(max)s"
 
 #: gui/options/options.js:162
 #, javascript-format
@@ -1985,19 +1985,19 @@ msgstr "Kurangi efek buram."
 
 #: gui/options/options.json[1].options[6].label
 msgid "Sharpness factor"
-msgstr ""
+msgstr "Faktor ketajaman"
 
 #: gui/options/options.json[1].options[6].tooltip
 msgid "The sharpness of the choosen pass."
-msgstr ""
+msgstr "Ketajaman umpan yang dipilih."
 
 #: gui/options/options.json[1].options[7].label
 msgid "Shader effects"
-msgstr ""
+msgstr "Efek shader"
 
 #: gui/options/options.json[1].options[7].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "Jumlah efek shader. PERLU MULAI ULANG PERMAINAN"
 
 #: gui/options/options.json[1].options[8].label
 msgid "Shadows"
@@ -2048,7 +2048,7 @@ msgstr "Volume utama"
 
 #: gui/options/options.json[2].options[0].tooltip
 msgid "Master audio gain."
-msgstr ""
+msgstr "Volume audio master"
 
 #: gui/options/options.json[2].options[1].label
 msgid "Music volume"
@@ -2056,23 +2056,23 @@ msgstr "Volume musik"
 
 #: gui/options/options.json[2].options[1].tooltip
 msgid "In game music gain."
-msgstr ""
+msgstr "Volume musik dalam permainan"
 
 #: gui/options/options.json[2].options[2].label
 msgid "Ambient volume"
-msgstr ""
+msgstr "Volume alam sekitar"
 
 #: gui/options/options.json[2].options[2].tooltip
 msgid "In game ambient sound gain."
-msgstr ""
+msgstr "Volume suara alam sekitar dalam permainan"
 
 #: gui/options/options.json[2].options[3].label
 msgid "Action volume"
-msgstr ""
+msgstr "Volume aksi"
 
 #: gui/options/options.json[2].options[3].tooltip
 msgid "In game unit action sound gain."
-msgstr ""
+msgstr "Volume suara aksi unit dalam permainan"
 
 #: gui/options/options.json[2].options[4].label
 msgid "UI volume"
@@ -2080,23 +2080,23 @@ msgstr "Volume antarmuka"
 
 #: gui/options/options.json[2].options[4].tooltip
 msgid "UI sound gain."
-msgstr ""
+msgstr "Volume suara UI"
 
 #: gui/options/options.json[2].options[5].label
 msgid "Nick notification"
-msgstr ""
+msgstr "Notifikasi Nama"
 
 #: gui/options/options.json[2].options[5].tooltip
 msgid "Receive audio notification when someone types your nick."
-msgstr ""
+msgstr "Terima pemberitahuan audio ketika seseorang mengetik nama Anda."
 
 #: gui/options/options.json[2].options[6].label
 msgid "New player notification in game setup"
-msgstr ""
+msgstr "Notifikasi pemain baru dalam pengaturan game"
 
 #: gui/options/options.json[2].options[6].tooltip
 msgid "Receive audio notification when a new client joins the game setup."
-msgstr ""
+msgstr "Terima pemberitahuan audio saat klien baru bergabung dengan penyiapan game."
 
 #: gui/options/options.json[3].label
 msgid "Game Setup"
@@ -2108,15 +2108,15 @@ msgstr "Aktifkan tips pengaturan permainan"
 
 #: gui/options/options.json[3].options[0].tooltip
 msgid "Show tips when setting up a game."
-msgstr ""
+msgstr "Tampilkan tips saat menyiapkan game."
 
 #: gui/options/options.json[3].options[1].label
 msgid "Enable settings panel slide"
-msgstr ""
+msgstr "Aktifkan slide panel pengaturan"
 
 #: gui/options/options.json[3].options[1].tooltip
 msgid "Slide the settings panel when opening, closing or resizing."
-msgstr ""
+msgstr "Geser panel pengaturan saat membuka, menutup atau mengubah ukuran."
 
 #: gui/options/options.json[3].options[2].label
 msgid "Persist match settings"
@@ -2125,11 +2125,11 @@ msgstr "Pengaturan pertandingan persisten"
 #: gui/options/options.json[3].options[2].tooltip
 msgid ""
 "Save and restore match settings for quick reuse when hosting another game."
-msgstr ""
+msgstr "Simpan dan pulihkan pengaturan pertandingan untuk digunakan kembali dengan cepat saat menghosting game lain."
 
 #: gui/options/options.json[3].options[3].label
 msgid "Default AI difficulty"
-msgstr ""
+msgstr "Kesulitan AI standar"
 
 #: gui/options/options.json[3].options[3].list[0].label
 msgid "Sandbox"
@@ -2153,11 +2153,11 @@ msgstr "Sangat Susah"
 
 #: gui/options/options.json[3].options[3].tooltip
 msgid "Default difficulty of the AI."
-msgstr ""
+msgstr "Kesulitan standar dari AI."
 
 #: gui/options/options.json[3].options[4].label
 msgid "Default AI behavior"
-msgstr ""
+msgstr "Perilaku AI standar"
 
 #: gui/options/options.json[3].options[4].list[0].label
 msgid "Random"
@@ -2177,31 +2177,31 @@ msgstr "Defensif"
 
 #: gui/options/options.json[3].options[4].tooltip
 msgid "Default behavior of the AI."
-msgstr ""
+msgstr "Perilaku standar dari AI."
 
 #: gui/options/options.json[3].options[5].label
 msgid "Assign players"
-msgstr ""
+msgstr "Tetapkan pemain"
 
 #: gui/options/options.json[3].options[5].list[0].tooltip
 msgid "Players joining the match will be assigned if there is a free slot."
-msgstr ""
+msgstr "Pemain yang bergabung dalam pertandingan akan ditugaskan jika ada slot kosong."
 
 #: gui/options/options.json[3].options[5].list[1].tooltip
 msgid ""
 "Players joining the match will only be assigned if they are a buddy of the "
 "host and if there is a free slot."
-msgstr ""
+msgstr "Pemain yang bergabung dalam pertandingan hanya akan ditugaskan jika mereka adalah teman tuan rumah dan jika ada slot kosong."
 
 #: gui/options/options.json[3].options[5].list[2].tooltip
 msgid "Players only receive a slot when the host assigns them explicitly."
-msgstr ""
+msgstr "Pemain hanya menerima slot ketika tuan rumah menugaskan mereka secara eksplisit."
 
 #: gui/options/options.json[3].options[5].tooltip
 msgid ""
 "Automatically assign joining clients to free player slots during the match "
 "setup."
-msgstr ""
+msgstr "Secara otomatis menetapkan klien yang bergabung ke slot pemain gratis selama pengaturan pertandingan."
 
 #: gui/options/options.json[4].label
 msgid "Lobby"
@@ -2209,12 +2209,12 @@ msgstr "Lobi"
 
 #: gui/options/options.json[4].options[0].label
 msgid "TLS encryption"
-msgstr ""
+msgstr "Enkripsi TLS"
 
 #: gui/options/options.json[4].options[0].tooltip
 msgid ""
 "Protect login and data exchanged with the lobby server using TLS encryption."
-msgstr ""
+msgstr "Lindungi login dan data yang dipertukarkan dengan server lobi menggunakan enkripsi TLS."
 
 #: gui/options/options.json[4].options[1].label
 msgid "Chat backlog"
@@ -2222,25 +2222,25 @@ msgstr "Simpanan obrolan"
 
 #: gui/options/options.json[4].options[1].tooltip
 msgid "Number of backlogged messages to load when joining the lobby."
-msgstr ""
+msgstr "Jumlah pesan backlog untuk dimuat saat bergabung dengan lobi."
 
 #: gui/options/options.json[4].options[2].label
 msgid "Game rating column"
-msgstr ""
+msgstr "Kolom peringkat game"
 
 #: gui/options/options.json[4].options[2].tooltip
 msgid ""
 "Show the average rating of the participating players in a column of the "
 "gamelist."
-msgstr ""
+msgstr "Tunjukkan nilai rata-rata dari pemain yang berpartisipasi dalam kolom daftar pemain."
 
 #: gui/options/options.json[4].tooltip
 msgid "These settings only affect the multiplayer."
-msgstr ""
+msgstr "Pengaturan ini hanya mempengaruhi multiplayer."
 
 #: gui/options/options.json[5].label
 msgid "Game Session"
-msgstr ""
+msgstr "Sesi Game"
 
 #: gui/options/options.json[5].options[0].label
 msgid "Wounded unit health"
@@ -2250,36 +2250,36 @@ msgstr "Nyawa unit yang terluka"
 msgid ""
 "The wounded unit hotkey considers the selected units as wounded if their "
 "health percentage falls below this number."
-msgstr ""
+msgstr "Tombol pintas unit yang terluka menganggap unit yang dipilih terluka jika persentase kesehatannya turun di bawah angka ini."
 
 #: gui/options/options.json[5].options[10].label
 msgid "Rank icon above status bar"
-msgstr ""
+msgstr "Ikon peringkat di atas bilah status"
 
 #: gui/options/options.json[5].options[10].tooltip
 msgid "Show rank icons above status bars."
-msgstr ""
+msgstr "Tampilkan ikon peringkat di atas bilah status."
 
 #: gui/options/options.json[5].options[11].label
 msgid "Experience status bar"
-msgstr ""
+msgstr "Bilah status Pengalaman"
 
 #: gui/options/options.json[5].options[11].tooltip
 msgid "Show an experience status bar above each selected unit."
-msgstr ""
+msgstr "Tampilkan bilah status pengalaman di atas setiap unit yang dipilih."
 
 #: gui/options/options.json[5].options[12].label
 msgid "Detailed tooltips"
-msgstr ""
+msgstr "Keterangan alat mendetail"
 
 #: gui/options/options.json[5].options[12].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing structures."
-msgstr ""
+msgstr "Tunjukkan keterangan alat terperinci untuk unit yang dapat dilatih dalam struktur penghasil unit."
 
 #: gui/options/options.json[5].options[13].label
 msgid "Sort resources and population tooltip"
-msgstr ""
+msgstr "Urutkan sumber daya dan keterangan alat populasi"
 
 #: gui/options/options.json[5].options[13].list[0].label
 msgid "Unordered"
@@ -2296,7 +2296,7 @@ msgstr "Meningkat"
 #: gui/options/options.json[5].options[13].tooltip
 msgid ""
 "Dynamically sort players in the resources and population tooltip by value."
-msgstr ""
+msgstr "Urutkan pemain secara dinamis dalam keterangan alat sumber daya dan populasi berdasarkan nilai."
 
 #: gui/options/options.json[5].options[14].label
 msgid "Diplomacy colors: self"
@@ -2304,7 +2304,7 @@ msgstr "Warna diplomasi: diri sendiri"
 
 #: gui/options/options.json[5].options[14].tooltip
 msgid "Color of your units when diplomacy colors are enabled."
-msgstr ""
+msgstr "Warna unit Anda saat warna diplomasi diaktifkan."
 
 #: gui/options/options.json[5].options[15].label
 msgid "Diplomacy colors: ally"
@@ -2312,7 +2312,7 @@ msgstr "Warna diplomasi: sekutu"
 
 #: gui/options/options.json[5].options[15].tooltip
 msgid "Color of allies when diplomacy colors are enabled."
-msgstr ""
+msgstr "Warna sekutu saat warna diplomasi diaktifkan."
 
 #: gui/options/options.json[5].options[16].label
 msgid "Diplomacy colors: neutral"
@@ -2320,7 +2320,7 @@ msgstr "Warna diplomasi: netral"
 
 #: gui/options/options.json[5].options[16].tooltip
 msgid "Color of neutral players when diplomacy colors are enabled."
-msgstr ""
+msgstr "Warna pemain netral saat warna diplomasi diaktifkan."
 
 #: gui/options/options.json[5].options[17].label
 msgid "Diplomacy colors: enemy"
@@ -2336,30 +2336,30 @@ msgstr "Tempelkan ke ujung"
 
 #: gui/options/options.json[5].options[18].list[0].label
 msgid "Hotkey to enable snapping"
-msgstr ""
+msgstr "Tombol pintas untuk mengaktifkan snapping"
 
 #: gui/options/options.json[5].options[18].list[0].tooltip
 msgid ""
 "New structures are aligned with nearby structures while pressing the hotkey."
-msgstr ""
+msgstr "Struktur baru disejajarkan dengan bangunan di dekatnya sambil menekan tombol pintas."
 
 #: gui/options/options.json[5].options[18].list[1].label
 msgid "Hotkey to disable snapping"
-msgstr ""
+msgstr "Tombol pintas untuk menonaktifkan snapping"
 
 #: gui/options/options.json[5].options[18].list[1].tooltip
 msgid ""
 "New structures are aligned with nearby structures unless the hotkey is "
 "pressed."
-msgstr ""
+msgstr "Struktur baru disejajarkan dengan bangunan di dekatnya kecuali tombol pintas ditekan."
 
 #: gui/options/options.json[5].options[18].tooltip
 msgid "This option allows to align new structures with nearby structures."
-msgstr ""
+msgstr "Opsi ini memungkinkan untuk menyelaraskan struktur baru dengan struktur di dekatnya."
 
 #: gui/options/options.json[5].options[19].label
 msgid "Control group membership"
-msgstr ""
+msgstr "Keanggotaan grup kontrol"
 
 #: gui/options/options.json[5].options[19].list[0].label
 msgid "Single"
@@ -2370,96 +2370,96 @@ msgid ""
 "When adding a Unit or Structure to a control group, they are removed from "
 "other control groups. Use this choice if you want control groups to refer to"
 " distinct armies."
-msgstr ""
+msgstr "Saat menambahkan Unit atau Struktur ke grup kontrol, mereka dihapus dari grup kontrol lain. Gunakan pilihan ini jika Anda ingin grup kontrol merujuk ke tentara yang berbeda."
 
 #: gui/options/options.json[5].options[19].list[1].label
 msgid "Multiple"
-msgstr ""
+msgstr "Banyak"
 
 #: gui/options/options.json[5].options[19].list[1].tooltip
 msgid ""
 "Units and Structures can be part of multiple control groups. This is useful "
 "to keep control groups for distinct armies and a control group for the "
 "entire army simultaneously."
-msgstr ""
+msgstr "Unit dan Struktur dapat menjadi bagian dari beberapa grup kontrol. Ini berguna untuk menjaga grup kontrol untuk prajurit yang berbeda dan grup kontrol untuk seluruh prajurit secara bersamaan."
 
 #: gui/options/options.json[5].options[19].tooltip
 msgid "Decide whether units can be part of multiple control groups."
-msgstr ""
+msgstr "Putuskan apakah unit dapat menjadi bagian dari beberapa grup kontrol."
 
 #: gui/options/options.json[5].options[1].label
 msgid "Batch training size"
-msgstr ""
+msgstr "Ukuran pelatihan batch"
 
 #: gui/options/options.json[5].options[1].tooltip
 msgid "Number of units trained per batch by default."
-msgstr ""
+msgstr "Jumlah unit yang dilatih per batch secara standar."
 
 #: gui/options/options.json[5].options[20].label
 msgid "Formation control"
-msgstr ""
+msgstr "Kontrol formasi"
 
 #: gui/options/options.json[5].options[20].list[0].label
 msgid "Walk/Patrol Only"
-msgstr ""
+msgstr "Jalan / Patroli Saja"
 
 #: gui/options/options.json[5].options[20].list[0].tooltip
 msgid "Other orders will disband existing formations."
-msgstr ""
+msgstr "Perintah lain akan membubarkan formasi yang ada."
 
 #: gui/options/options.json[5].options[20].list[1].label
 msgid "No Override"
-msgstr ""
+msgstr "Tidak Ada Timpa"
 
 #: gui/options/options.json[5].options[20].list[1].tooltip
 msgid "Units in formations stay in formations."
-msgstr ""
+msgstr "Unit dalam formasi tetap dalam formasi."
 
 #: gui/options/options.json[5].options[20].tooltip
 msgid ""
 "Decide whether formations are enabled for all orders or only 'Walk' and "
 "'Patrol'."
-msgstr ""
+msgstr "Tentukan apakah formasi diaktifkan untuk semua perintah atau hanya 'Berjalan' dan 'Patroli'."
 
 #: gui/options/options.json[5].options[2].label
 msgid "Scroll batch increment ratio"
-msgstr ""
+msgstr "Gulir rasio kenaikan batch"
 
 #: gui/options/options.json[5].options[2].tooltip
 msgid ""
 "Number of times you have to scroll to increase/decrease the batchsize by 1."
-msgstr ""
+msgstr "Berapa kali Anda harus menggulir untuk menambah / mengurangi ukuran kelompok sebanyak 1."
 
 #: gui/options/options.json[5].options[3].label
 msgid "Chat notification attack"
-msgstr ""
+msgstr "Obrolan notifikasi serangan"
 
 #: gui/options/options.json[5].options[3].tooltip
 msgid "Show a chat notification if you are attacked by another player."
-msgstr ""
+msgstr "Tampilkan obrolan pemberitahuan jika Anda diserang oleh pemain lain."
 
 #: gui/options/options.json[5].options[4].label
 msgid "Chat notification tribute"
-msgstr ""
+msgstr "Obrolan pemberitahuan penghargaan"
 
 #: gui/options/options.json[5].options[4].tooltip
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode."
-msgstr ""
+msgstr "Tampilkan obrolan pemberitahuan jika sekutu memberikan sumber daya kepada anggota tim lain jika tim terkunci, dan semua penghargaan dalam mode pengamat."
 
 #: gui/options/options.json[5].options[5].label
 msgid "Chat notification barter"
-msgstr ""
+msgstr "Obrolan pemberitahuan barter"
 
 #: gui/options/options.json[5].options[5].tooltip
 msgid ""
 "Show a chat notification to observers when a player bartered resources."
-msgstr ""
+msgstr "Tampilkan obrolan pemberitahuan kepada pengamat ketika pemain menukar sumber daya."
 
 #: gui/options/options.json[5].options[6].label
 msgid "Chat notification phase"
-msgstr ""
+msgstr "Obrolan Pemberitahuan Fase"
 
 #: gui/options/options.json[5].options[6].list[0].label
 msgid "Disable"
@@ -2477,41 +2477,41 @@ msgstr "Semuanya ditampilkan"
 msgid ""
 "Show a chat notification if you or an ally have started, aborted or "
 "completed a new phase, and phases of all players in observer mode."
-msgstr ""
+msgstr "Tampilkan obrolan pemberitahuan jika Anda atau sekutu telah memulai, membatalkan, atau menyelesaikan fase baru, dan fase semua pemain dalam mode pengamat."
 
 #: gui/options/options.json[5].options[7].label
 msgid "Attack range visualization"
-msgstr ""
+msgstr "Visualisasi jangkauan serangan"
 
 #: gui/options/options.json[5].options[7].tooltip
 msgid ""
 "Display the attack range of selected defensive structures. (It can also be "
 "toggled with the hotkey during a game)."
-msgstr ""
+msgstr "Menampilkan jangkauan serangan dari struktur pertahanan yang dipilih. (Ini juga dapat diubah dengan tombol pintas selama pertandingan)."
 
 #: gui/options/options.json[5].options[8].label
 msgid "Aura range visualization"
-msgstr ""
+msgstr "Visualisasi jangkauan aura"
 
 #: gui/options/options.json[5].options[8].tooltip
 msgid ""
 "Display the range of auras of selected units and structures. (It can also be"
 " toggled with the hotkey during a game)."
-msgstr ""
+msgstr "Menampilkan jangkauan aura unit dan struktur yang dipilih. (Ini juga dapat diubah dengan tombol pintas selama pertandingan)."
 
 #: gui/options/options.json[5].options[9].label
 msgid "Heal range visualization"
-msgstr ""
+msgstr "Visualisasi  jangkauan penyembuhan"
 
 #: gui/options/options.json[5].options[9].tooltip
 msgid ""
 "Display the healing range of selected units. (It can also be toggled with "
 "the hotkey during a game)."
-msgstr ""
+msgstr "Menampilkan rentang penyembuhan dari unit yang dipilih. (Ini juga dapat diubah dengan tombol pintas selama pertandingan)."
 
 #: gui/options/options.json[5].tooltip
 msgid "Change options regarding the in-game settings."
-msgstr ""
+msgstr "Ubah opsi terkait pengaturan dalam game."
 
 #: gui/options/options.xml:(caption):15
 msgid "Game Options"
@@ -2577,42 +2577,42 @@ msgstr "Pohon struktur"
 #, javascript-format
 msgid ""
 "%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
-msgstr ""
+msgstr "%(hotkey)s: Lihat pohon struktur peradaban yang ditampilkan pada 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:36
 #: gui/reference/civinfo/civinfo.xml:(caption):21
 #: gui/reference/common/Buttons/CivInfoButton.js:21
 msgid "Civilization Overview"
-msgstr ""
+msgstr "Tinjauan Peradaban"
 
 #: gui/pregame/MainMenuItems.js:37
 #, javascript-format
 msgid "%(hotkey)s: Learn about the civilizations featured in 0 A.D."
-msgstr ""
+msgstr "%(hotkey)s: Pelajari tentang peradaban yang ditampilkan pada 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:48
 msgid "Catafalque Overview"
-msgstr ""
+msgstr "Ikhtisar Podium"
 
 #: gui/pregame/MainMenuItems.js:49
 msgid "Compare the bonuses of catafalques featured in 0 A.D."
-msgstr ""
+msgstr "Bandingkan bonus podium yang ditampilkan pada 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:55
 msgid "Map Overview"
-msgstr ""
+msgstr "Ikhtisar Peta"
 
 #: gui/pregame/MainMenuItems.js:56
 msgid "View the different maps featured in 0 A.D."
-msgstr ""
+msgstr "Lihat berbagai peta yang ditampilkan dalam game 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:64 gui/replaymenu/replay_filters.js:144
 msgid "Single-player"
-msgstr ""
+msgstr "Pemain tunggal"
 
 #: gui/pregame/MainMenuItems.js:65
 msgid "Start, load, or replay a single-player game."
-msgstr ""
+msgstr "Memulai, memuat, atau memutar ulang game pemain tunggal."
 
 #: gui/pregame/MainMenuItems.js:68
 msgid "Matches"
@@ -2620,7 +2620,7 @@ msgstr "Peperangan"
 
 #: gui/pregame/MainMenuItems.js:69
 msgid "Start a new single-player game."
-msgstr ""
+msgstr "Mulai permainan pemain tunggal baru."
 
 #: gui/pregame/MainMenuItems.js:75
 msgid "Campaigns"
@@ -2667,7 +2667,7 @@ msgstr "Buat Permainan"
 
 #: gui/pregame/MainMenuItems.js:117
 msgid "Host a multiplayer game."
-msgstr ""
+msgstr "Selenggarakan game multipemain."
 
 #: gui/pregame/MainMenuItems.js:125
 msgid "Game Lobby"
@@ -2678,7 +2678,7 @@ msgstr "Lobi Permainan"
 msgid ""
 "%(hotkey)s: Launch the multiplayer lobby to join and host publicly visible "
 "games and chat with other players."
-msgstr ""
+msgstr "%(hotkey)s: Luncurkan lobi multipemain untuk bergabung dan menyelenggarakan permainan yang dapat dilihat publik dan mengobrol dengan pemain lain."
 
 #: gui/pregame/MainMenuItems.js:128
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
@@ -2706,7 +2706,7 @@ msgstr "Hotkeys"
 
 #: gui/pregame/MainMenuItems.js:167
 msgid "Adjust hotkeys."
-msgstr ""
+msgstr "Sesuaikan tombol pintas."
 
 #: gui/locale/locale.xml:(caption):14 gui/pregame/MainMenuItems.js:173
 msgid "Language"
@@ -2722,7 +2722,7 @@ msgstr "Pilihan Mod"
 
 #: gui/pregame/MainMenuItems.js:181
 msgid "Select and download mods for the game."
-msgstr ""
+msgstr "Pilih dan unduh mod untuk game tersebut."
 
 #: gui/pregame/MainMenuItems.js:187
 msgid "Welcome Screen"
@@ -2766,7 +2766,7 @@ msgstr "Kredit"
 
 #: gui/pregame/MainMenuItems.js:215
 msgid "Show the 0 A.D. credits."
-msgstr ""
+msgstr "Tampilkan kredit game 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:221
 msgid "Exit"
@@ -2786,13 +2786,13 @@ msgstr "WILDFIRE GAMES"
 
 #: gui/pregame/ProjectInformation.js:18
 msgid "Alpha XXIV: Xšayāršā"
-msgstr ""
+msgstr "Alpha XXIV: Xšayāršā"
 
 #: gui/pregame/ProjectInformation.js:19
 msgid ""
 "Notice: This game is under development and many features have not been added"
 " yet."
-msgstr ""
+msgstr "Perhatian: Game ini sedang dalam pengembangan dan banyak fitur belum ditambahkan."
 
 #: gui/pregame/ProjectInformation.js:25
 msgid "Website"
@@ -2834,20 +2834,20 @@ msgstr "Sumbang"
 
 #: gui/pregame/ProjectInformation.js:58
 msgid "Help with the project expenses by donating."
-msgstr ""
+msgstr "Bantulah pengeluaran proyek dengan berdonasi."
 
 #: gui/pregame/userreport/userreport.js:3
 msgctxt "UserReporter Terms and Conditions"
 msgid "Terms"
-msgstr ""
+msgstr "Persyaratan"
 
 #: gui/pregame/userreport/userreport.js:4
 msgid "Please read and accept the UserReporter Terms and Conditions."
-msgstr ""
+msgstr "Harap baca dan terima Syarat dan Ketentuan UserReporter."
 
 #: gui/pregame/userreport/userreport.js:18
 msgid "Publications"
-msgstr ""
+msgstr "Publikasi"
 
 #: gui/pregame/userreport/userreport.js:27
 #: gui/pregame/userreport/userreport.js:28
@@ -2888,7 +2888,7 @@ msgstr "Terima kasih sudah membantu memperbaiki 0 A.D.!"
 
 #: gui/pregame/userreport/userreport.js:82
 msgid "Feedback is currently enabled."
-msgstr ""
+msgstr "Umpan balik saat ini diaktifkan."
 
 #: gui/pregame/userreport/userreport.js:83
 #, javascript-format
@@ -2907,7 +2907,7 @@ msgstr "Bantu meningkatkan 0 A.D.!"
 msgid ""
 "You can automatically send us feedback that can help us fix bugs, and "
 "improve performance and compatibility."
-msgstr ""
+msgstr "Anda dapat secara otomatis mengirimkan masukan yang dapat membantu kami memperbaiki bug, serta meningkatkan kinerja dan kompatibilitas."
 
 #. Translation: Description of an item in the CivInfo page, on a new line and
 #. indented.
@@ -2916,7 +2916,7 @@ msgstr ""
 msgid ""
 "\n"
 "     %(description)s"
-msgstr ""
+msgstr "\n     %(description)s"
 
 #. Translation: An entry in the CivInfo Page. The newline and indentation of
 #. the description
@@ -2927,12 +2927,12 @@ msgstr ""
 #: gui/reference/civinfo/CivInfoPage.js:102
 #, javascript-format
 msgid "• %(name)s %(info_icon)s%(description)s"
-msgstr ""
+msgstr "• %(name)s %(info_icon)s%(description)s"
 
 #: gui/reference/civinfo/CivInfoPage.js:113
 #, javascript-format
 msgid "%(hotkey)s: Close Civilization Overview."
-msgstr ""
+msgstr "%(hotkey)s: Tutup Tinjauan Peradaban."
 
 #: gui/reference/civinfo/Sections/GameplaySection.js:30
 #, javascript-format
@@ -2957,22 +2957,22 @@ msgstr[0] "Bonus Regu"
 #: gui/reference/civinfo/Sections/Subsections/HeroesSubsection.js:29
 msgid "Hero"
 msgid_plural "Heroes"
-msgstr[0] ""
+msgstr[0] "Pahlawan"
 
 #: gui/reference/civinfo/Sections/Subsections/StructuresSubsection.js:29
 msgid "Specific Structure"
 msgid_plural "Specific Structures"
-msgstr[0] ""
+msgstr[0] "Struktur Khusus"
 
 #: gui/reference/civinfo/Sections/Subsections/TechnologiesSubsection.js:28
 msgid "Specific Technology"
 msgid_plural "Specific Technologies"
-msgstr[0] ""
+msgstr[0] "Teknologi Khusus"
 
 #: gui/reference/common/Buttons/CivInfoButton.js:27
 #, javascript-format
 msgid "%(hotkey)s: Switch to Civilization Overview."
-msgstr ""
+msgstr "%(hotkey)s: Beralih ke Tinjauan Peradaban."
 
 #: gui/credits/credits.xml:(caption):32 gui/options/options.xml:(caption):60
 #: gui/reference/common/Buttons/CloseButton.js:13
@@ -2982,7 +2982,7 @@ msgstr "Tutup"
 #: gui/reference/common/Buttons/StructreeButton.js:27
 #, javascript-format
 msgid "%(hotkey)s: Switch to Structure Tree."
-msgstr ""
+msgstr "%(hotkey)s: Beralih ke Pohon Struktur."
 
 #: gui/reference/common/Dropdowns/CivSelectDropdown.js:63
 msgid "Civilization:"
@@ -2991,13 +2991,13 @@ msgstr "Peradaban:"
 #: gui/reference/common/TemplateParser.js:147
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
-msgstr ""
+msgstr "%(health_min)s sampai %(health_max)s"
 
 #. Translation: Label followed by a list of values.
 #: gui/reference/common/tooltips.js:10
 #, javascript-format
 msgid "%(listHeader)s %(listOfValues)s"
-msgstr ""
+msgstr "%(listHeader)s %(listOfValues)s"
 
 #. Translation: Label before a list of the names of units that build the
 #. structure selected.
@@ -3049,17 +3049,17 @@ msgstr "Dapat diupgrade menjadi:"
 
 #: gui/reference/structree/Sections/Trainer/TrainerSection.js:70
 msgid "Trainer Units"
-msgstr ""
+msgstr "Unit Pelatih"
 
 #: gui/reference/structree/StructreePage.js:85
 #, javascript-format
 msgid "%(hotkey)s: Close Structure Tree."
-msgstr ""
+msgstr "%(hotkey)s: Tutup Pohon Struktur."
 
 #: gui/reference/viewer/ViewerPage.js:167
 #, javascript-format
 msgid "%(hotkey)s: Close Template Viewer"
-msgstr ""
+msgstr "%(hotkey)s: Tutup Penampil Template"
 
 #: gui/reference/viewer/viewer.xml:(caption):16
 msgid "Information"
@@ -3067,7 +3067,7 @@ msgstr "Informasi"
 
 #: gui/replaymenu/replay_actions.js:90
 msgid "This replay needs a different sequence of mods:"
-msgstr ""
+msgstr "Pemutaran ulang ini membutuhkan urutan mod yang berbeda:"
 
 #: gui/replaymenu/replay_actions.js:95
 msgid "This replay is not compatible with your version of the game!"
@@ -3149,11 +3149,11 @@ msgstr "%(min)s - %(max)s menit"
 
 #: gui/replaymenu/replay_filters.js:144
 msgid "Single-player and multiplayer"
-msgstr ""
+msgstr "Pemain tunggal dan multipemain"
 
 #: gui/replaymenu/replay_filters.js:157
 msgid "Any victory condition"
-msgstr ""
+msgstr "Kondisi kemenangan apapun"
 
 #: gui/replaymenu/replay_filters.js:170
 msgid "Rated and unrated games"
@@ -3170,12 +3170,12 @@ msgstr "Permainan tak berperingkat"
 #: gui/replaymenu/replay_menu.js:194
 msgid ""
 "Filter replays by typing one or more, partial or complete player names."
-msgstr ""
+msgstr "Filter pemutaran ulang dengan mengetik satu atau lebih, nama pemain sebagian atau lengkap."
 
 #: gui/replaymenu/replay_menu.js:198
 #, javascript-format
 msgid "Delete the selected replay using %(hotkey)s."
-msgstr ""
+msgstr "Hapus replay yang dipilih menggunakan %(hotkey)s."
 
 #: gui/replaymenu/replay_menu.js:283
 #, javascript-format
@@ -3208,7 +3208,7 @@ msgstr "Menu Utama"
 
 #: gui/replaymenu/replay_menu.xml:(caption):239
 msgid "Rebuild Cache"
-msgstr ""
+msgstr "Buat Ulang Cache"
 
 #: gui/replaymenu/replay_menu.xml:(caption):246
 #: gui/summary/summary.xml:(caption):26
@@ -3241,11 +3241,11 @@ msgstr "Durasi"
 
 #: gui/replaymenu/replay_menu.xml:(placeholder_text):32
 msgid "Search for Player"
-msgstr ""
+msgstr "Cari Player"
 
 #: gui/replaymenu/replay_menu.xml:(tooltip):240
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
-msgstr ""
+msgstr "Buat ulang cache replay dari awal. Berpotensi lambat!"
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
@@ -3357,7 +3357,7 @@ msgstr "Keajaiban Dunia"
 msgid ""
 "Structure Statistics (%(constructed)s / %(destroyed)s / %(captured)s / "
 "%(lost)s)"
-msgstr ""
+msgstr "Statistik Struktur (%(constructed)s / %(destroyed)s / %(captured)s / %(lost)s)"
 
 #: gui/summary/layout.js:69
 msgid "Units"
@@ -3398,7 +3398,7 @@ msgstr "Pedagang"
 #: gui/summary/layout.js:84
 #, javascript-format
 msgid "Unit Statistics (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
-msgstr ""
+msgstr "Statistik Unit (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 
 #: gui/summary/layout.js:109
 msgid "Resources"
@@ -3413,7 +3413,7 @@ msgstr "Upeti"
 msgid ""
 "Tributes \n"
 "(%(sent)s / %(received)s)"
-msgstr ""
+msgstr "Penghargaan \n(%(sent)s / %(received)s)"
 
 #: gui/summary/layout.js:130
 msgid "Treasures collected"
@@ -3425,7 +3425,7 @@ msgstr "Jarahan"
 
 #: gui/summary/layout.js:132
 msgid "Livestock bred"
-msgstr ""
+msgstr "Ternak dibesarkan"
 
 #: gui/summary/layout.js:136
 #, javascript-format
@@ -3484,18 +3484,18 @@ msgstr "Kefeminiman"
 
 #: gui/summary/layout.js:204
 msgid "Bribes"
-msgstr ""
+msgstr "Sogokan"
 
 #: gui/summary/layout.js:205
 #, javascript-format
 msgid ""
 "Bribes\n"
 "(%(succeeded)s / %(failed)s)"
-msgstr ""
+msgstr "Sogokan\n(%(succeeded)s / %(failed)s)"
 
 #: gui/summary/layout.js:231
 msgid "Charts"
-msgstr ""
+msgstr "Grafik"
 
 #: gui/summary/layout.js:378
 msgid "Team total"
@@ -3515,7 +3515,7 @@ msgstr "Terkumpul"
 
 #: gui/summary/summary.js:44
 msgid "Count"
-msgstr ""
+msgstr "Jumlah"
 
 #: gui/summary/summary.js:49
 msgid "Sent"
@@ -3573,12 +3573,12 @@ msgstr "Gagal"
 #, javascript-format
 msgctxt "Player listing with color indicator"
 msgid "%(colorIndicator)s %(playerListing)s"
-msgstr ""
+msgstr "%(colorIndicator)s %(playerListing)s"
 
 #: gui/summary/summary.js:204
 msgctxt "Charts player color indicator"
 msgid "■"
-msgstr ""
+msgstr "■"
 
 #: gui/summary/summary.js:234
 msgctxt "Player listing"
@@ -3630,22 +3630,22 @@ msgstr "%(mapName)s - %(mapType)s"
 #: gui/summary/summary.js:542
 #, javascript-format
 msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
-msgstr ""
+msgstr "%(hotkey)s: Aktifkan lobi multipemain di jendela dialog."
 
 #: gui/summary/summary.js:555
 #, javascript-format
 msgid "Toggle the %(name)s summary tab."
-msgstr ""
+msgstr "Aktifkan %(name)s tab ringkasan."
 
 #: gui/summary/summary.js:556
 #, javascript-format
 msgid "Use %(hotkey)s to move a summary tab right."
-msgstr ""
+msgstr "Gunakan %(hotkey)s untuk memindahkan tab ringkasan ke kanan."
 
 #: gui/summary/summary.js:557
 #, javascript-format
 msgid "Use %(hotkey)s to move a summary tab left."
-msgstr ""
+msgstr "Gunakan %(hotkey)s untuk memindahkan tab ringkasan ke kiri."
 
 #: gui/summary/summary.xml:(caption):120
 msgctxt "summary chart"
@@ -3664,11 +3664,11 @@ msgstr "Tipe:"
 
 #: gui/summary/summary.xml:(caption):167
 msgid "Group by team"
-msgstr ""
+msgstr "Grup menurut tim"
 
 #: gui/summary/summary.xml:(caption):187
 msgid "Watch Replay"
-msgstr ""
+msgstr "Tonton Pemutaran Ulang"
 
 #: gui/summary/summary.xml:(caption):192
 msgid "Continue"
@@ -3697,7 +3697,7 @@ msgstr "KAMP PRAJURIT ROMA"
 msgid ""
 "Buildable in neutral or enemy territory. Good for building a secret base "
 "behind enemy lines or to consolidate gains within enemy territory."
-msgstr ""
+msgstr "Dapat dibangun di wilayah netral atau musuh. Baik untuk membangun pangkalan rahasia di belakang garis musuh atau untuk mengkonsolidasikan keuntungan dalam wilayah musuh."
 
 #: gui/text/tips/army_camp.txt:3
 msgid "Construct siege weapons and train citizen-soldiers."
@@ -3731,7 +3731,7 @@ msgstr "Bangun satu lebih awal untuk melatih prajurit-rakyat sementara pemukiman
 
 #: gui/text/tips/barracks.txt:5
 msgid "Build in a forward base to resupply your assault with fresh troops."
-msgstr ""
+msgstr "Bangun di pangkalan depan untuk memasok serangan Anda dengan pasukan baru."
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
@@ -3739,19 +3739,19 @@ msgstr "PASUKAN SUCI KARTAGO"
 
 #: gui/text/tips/carth_sacred_band.txt:2
 msgid "Champion Spearmen and Champion Cavalry Spearmen for Carthage."
-msgstr ""
+msgstr "Jawara Penombak dan Jawara Kavaleri Penombak untuk Kartagi"
 
 #: gui/text/tips/carth_sacred_band.txt:3
 msgid ""
 "Both are trainable from the Temple, instead of the Fortress like most other "
 "champions."
-msgstr ""
+msgstr "Keduanya bisa dilatih dari Kuil, bukan dari Benteng seperti kebanyakan jawara lainnya."
 
 #: gui/text/tips/carth_sacred_band.txt:4
 msgid ""
 "Use the Spearmen as heavy infantry against cavalry. Use the Cavalry as heavy"
 " shock against siege weapons and skirmishers."
-msgstr ""
+msgstr "Gunakan Penombak sebagai infanteri berat melawan kavaleri. Gunakan Kavaleri sebagai kejutan berat melawan senjata pengepungan dan skirmisher."
 
 #: gui/text/tips/catapults.txt:1
 msgid "CATAPULTS"
@@ -3759,7 +3759,7 @@ msgstr "KETAPEL"
 
 #: gui/text/tips/catapults.txt:2
 msgid "Ranged siege engines that are good against structures."
-msgstr ""
+msgstr "Mesin pengepungan jarak jauh yang baik terhadap struktur."
 
 #: gui/text/tips/catapults.txt:3
 msgid "Expensive and slow."
@@ -3769,7 +3769,7 @@ msgstr "Mahal dan lambat."
 msgid ""
 "Pack up into carts for movement, and unpack into stationary engines for "
 "attack!"
-msgstr ""
+msgstr "Kemas ke dalam gerobak untuk bergerak, dan bongkar ke dalam mesin stasioner untuk diserang!"
 
 #: gui/text/tips/celtic_war_barge.txt:1
 msgid "CELTIC WAR BARGE"
@@ -3781,7 +3781,7 @@ msgstr "Kapal perang trireme kelas sedang."
 
 #: gui/text/tips/celtic_war_barge.txt:3
 msgid "Available to Britons, Gauls, and Iberians."
-msgstr ""
+msgstr "Tersedia untuk warga Briton, Galia, dan Iberia."
 
 #: gui/text/tips/celtic_war_barge.txt:4
 msgid "Can transport up to 40 units."
@@ -3801,7 +3801,7 @@ msgstr "Fondasi dari koloni baru anda."
 
 #: gui/text/tips/civic_centres.txt:3
 msgid "Claim large tracts of territory."
-msgstr ""
+msgstr "Klaim wilayah yang luas."
 
 #: gui/text/tips/civic_centres.txt:4
 msgid "Can be built in friendly and neutral territory."
@@ -3819,11 +3819,11 @@ msgstr "KEDUTAAN"
 
 #: gui/text/tips/embassies.txt:2
 msgid "Special Barracks available to the Carthaginians."
-msgstr ""
+msgstr "Barak Spesial tersedia untuk Orang Kartagi"
 
 #: gui/text/tips/embassies.txt:3
 msgid "Train mercenaries from each of the ethnically-themed embassies."
-msgstr ""
+msgstr "Latih prajurit bayaran dari masing-masing kedutaan bertema etnis."
 
 #: gui/text/tips/embassies.txt:4
 msgid ""
@@ -3837,15 +3837,15 @@ msgstr "MEMANCING"
 
 #: gui/text/tips/fishing.txt:2
 msgid "Fish the seas for a bountiful harvest."
-msgstr ""
+msgstr "Memancing di laut untuk panen yang melimpah."
 
 #: gui/text/tips/fishing.txt:3
 msgid "Fishing boats carry a large amount of food per trip."
-msgstr ""
+msgstr "Kapal penangkap ikan membawa makanan dalam jumlah besar per perjalanan."
 
 #: gui/text/tips/fishing.txt:4
 msgid "Fishing is faster than gathering food on fields."
-msgstr ""
+msgstr "Memancing lebih cepat daripada mengumpulkan makanan di ladang."
 
 #: gui/text/tips/fishing.txt:5
 msgid "Careful! Fish are not an infinite resource!"
@@ -3853,7 +3853,7 @@ msgstr "Awas! ikan bukan sumberdaya tak terbatas!"
 
 #: gui/text/tips/forge.txt:1
 msgid "FORGE"
-msgstr ""
+msgstr "PANDAI BESI"
 
 #: gui/text/tips/forge.txt:2
 msgid "Research structure for all factions."
@@ -3869,15 +3869,15 @@ msgstr "BENTENG"
 
 #: gui/text/tips/fortress.txt:2
 msgid "The Fortress is usually each faction's strongest structure."
-msgstr ""
+msgstr "Benteng biasanya merupakan struktur terkuat setiap faksi."
 
 #: gui/text/tips/fortress.txt:3
 msgid "Trains Champions, Heroes, and Siege Weapons."
-msgstr ""
+msgstr "Melatih Jawara, Pahlawan, dan Senjata Pengepungan."
 
 #: gui/text/tips/fortress.txt:4
 msgid "Gives a population boost."
-msgstr ""
+msgstr "Memberikan peningkatan populasi."
 
 #: gui/text/tips/fortress.txt:5
 msgid "Garrison soldiers inside to add more firepower to its defense."
@@ -3885,22 +3885,22 @@ msgstr "Tempati prajurit di dalamnya untuk menambah kekuatan pada pertahanannya.
 
 #: gui/text/tips/freehand_position.txt:1
 msgid "FREEHAND POSITION"
-msgstr ""
+msgstr "POSISI TANGAN BEBAS"
 
 #: gui/text/tips/freehand_position.txt:2
 msgid ""
 "Gain an advantage on the battleground by tactically positioning your units!"
-msgstr ""
+msgstr "Dapatkan keuntungan di medan pertempuran dengan memposisikan unit Anda secara taktis!"
 
 #: gui/text/tips/freehand_position.txt:3
 msgid ""
 "Therefore select some units, press and hold the right mouse button, draw any"
 " line, then release the button."
-msgstr ""
+msgstr "Oleh karena itu pilih beberapa unit, tekan dan tahan tombol kanan mouse, gambar garis mana saja, lalu lepaskan tombol."
 
 #: gui/text/tips/freehand_position.txt:4
 msgid "Your units will now spread out on this line."
-msgstr ""
+msgstr "Unit Anda sekarang akan tersebar di baris ini."
 
 #: gui/text/tips/gathering.txt:1
 msgid "RESOURCE GATHERING"
@@ -3930,25 +3930,25 @@ msgstr "Semakin tinggi tingkat prajurit-rakyat (berpangkat, elit), dia akan sema
 
 #: gui/text/tips/heroes.txt:1
 msgid "HEROES"
-msgstr ""
+msgstr "PAHLAWAN"
 
 #: gui/text/tips/heroes.txt:2
 msgid ""
 "Historical characters, such as Xerxes, Leonidas, Pericles, Hannibal, Scipio,"
 " and Boudicca."
-msgstr ""
+msgstr "Karakter sejarah, seperti Xerxes, Leonidas, Pericles, Hannibal, Scipio, dan Boudicca."
 
 #: gui/text/tips/heroes.txt:3
 msgid "A lot of health and very strong attacks."
-msgstr ""
+msgstr "Banyak kesehatan dan serangan yang sangat kuat."
 
 #: gui/text/tips/heroes.txt:4
 msgid "Have auras which alter the stats of other units or structures."
-msgstr ""
+msgstr "Memiliki aura yang mengubah statistik unit atau struktur lain."
 
 #: gui/text/tips/heroes.txt:5
 msgid "Caution: Each hero can be recruited only once per match!"
-msgstr ""
+msgstr "Perhatian: Setiap pahlawan hanya dapat direkrut satu kali per pertandingan!"
 
 #: gui/text/tips/iphicrates.txt:1
 msgid "IPHICRATES"
@@ -3958,15 +3958,15 @@ msgstr "IPHIKRATES"
 msgid ""
 "The Athenian general who reformed the Athenian army to be faster and more "
 "maneuverable."
-msgstr ""
+msgstr "Jenderal Athena yang mereformasi pasukan Athena menjadi lebih cepat dan lebih bermanuver."
 
 #: gui/text/tips/iphicrates.txt:3
 msgid "Units in his formation are faster and stronger."
-msgstr ""
+msgstr "Unit dalam formasinya lebih cepat dan lebih kuat."
 
 #: gui/text/tips/iphicrates.txt:4
 msgid "Skirmishers move faster while he lives."
-msgstr ""
+msgstr "Skirmisher bergerak lebih cepat saat dia hidup."
 
 #: gui/text/tips/outposts.txt:1
 msgid "OUTPOSTS"
@@ -3974,17 +3974,17 @@ msgstr "POS PENGAWAS"
 
 #: gui/text/tips/outposts.txt:2
 msgid "Build in neutral or own territory."
-msgstr ""
+msgstr "Bangun di wilayah netral atau wilayah sendiri."
 
 #: gui/text/tips/outposts.txt:3
 msgid "Cheap and quickly built, but weak."
-msgstr ""
+msgstr "Murah dan cepat dibangun, tapi lemah."
 
 #: gui/text/tips/outposts.txt:4
 msgid ""
 "Garrison infantry for extensive vision, and to prevent losing control of the"
 " outpost due to territory decay."
-msgstr ""
+msgstr "Tempatkan Infanteri untuk penglihatan yang luas, dan untuk mencegah kehilangan kendali atas pos terdepan karena kerusakan wilayah."
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"
@@ -3992,11 +3992,11 @@ msgstr "TEMBOK PALISADE"
 
 #: gui/text/tips/palisades.txt:2
 msgid "A quick, cheap wooden wall available to all factions."
-msgstr ""
+msgstr "Dinding kayu cepat dan murah tersedia untuk semua faksi."
 
 #: gui/text/tips/palisades.txt:3
 msgid "Most factions have access to them in Village Phase."
-msgstr ""
+msgstr "Sebagian besar faksi memiliki akses ke mereka di Fase Desa."
 
 #: gui/text/tips/pericles.txt:1
 msgid "PERICLES"
@@ -4004,15 +4004,15 @@ msgstr "PERIKLES"
 
 #: gui/text/tips/pericles.txt:2
 msgid "The foremost Athenian politician of the 5th century BC."
-msgstr ""
+msgstr "Politisi Athena terkemuka abad ke-5 SM."
 
 #: gui/text/tips/pericles.txt:3
 msgid "Structures are built faster within his range."
-msgstr ""
+msgstr "Struktur dibangun lebih cepat dalam jangkauannya."
 
 #: gui/text/tips/pericles.txt:4
 msgid "Temples are cheaper while he lives."
-msgstr ""
+msgstr "Kuil lebih murah selama dia hidup."
 
 #: gui/text/tips/persian_architecture.txt:1
 msgid "PERSIAN ARCHITECTURE"
@@ -4042,26 +4042,26 @@ msgstr "PASUKAN TEMBIANG"
 
 #: gui/text/tips/pikemen.txt:2
 msgid "Heavily armored and slow. Low attack."
-msgstr ""
+msgstr "Lapis baja berat dan lambat. Serangan rendah."
 
 #: gui/text/tips/pikemen.txt:3
 msgid ""
 "Used against cavalry or against other melee infantry to pin them in place."
-msgstr ""
+msgstr "Digunakan melawan kavaleri atau melawan infanteri jarak dekat lainnya untuk menjepit mereka."
 
 #: gui/text/tips/pikemen.txt:4
 msgid "Available to: Kushites, Macedonians, Ptolemies, and Seleucids."
-msgstr ""
+msgstr "Tersedia untuk: Orang-orang Kush, Makedonia, Ptolemi, dan Seleukia."
 
 #: gui/text/tips/quinquereme.txt:1
 msgid "QUINQUEREME"
-msgstr ""
+msgstr "QUINQUEREME"
 
 #: gui/text/tips/quinquereme.txt:2
 msgid ""
 "The heaviest standard warship. Available to: Carthaginians, Ptolemies, "
 "Romans, and Seleucids."
-msgstr ""
+msgstr "Kapal perang standar terberat. Tersedia untuk: Orang-orang Kartagi, Ptolemi, Romawi, dan Seleukia."
 
 #: gui/text/tips/quinquereme.txt:3
 msgid "Transports up to 50 units."
@@ -4077,19 +4077,19 @@ msgstr "BIOMA SAVANA"
 
 #: gui/text/tips/savanna_biome.txt:2
 msgid "Generally flat, with a few watering holes and rocky outcrops."
-msgstr ""
+msgstr "Umumnya datar, dengan sedikit lubang air dan singkapan berbatu."
 
 #: gui/text/tips/savanna_biome.txt:3
 msgid "Chock full of herd animals for plentiful hunting."
-msgstr ""
+msgstr "Penuh sesak dengan kawanan hewan untuk perburuan yang melimpah."
 
 #: gui/text/tips/savanna_biome.txt:4
 msgid "Rich in all types of mining."
-msgstr ""
+msgstr "Kaya dalam semua jenis pertambangan."
 
 #: gui/text/tips/savanna_biome.txt:5
 msgid "Wood tends to be sparse, but consists of high-yield Baobab trees."
-msgstr ""
+msgstr "Kayu cenderung jarang, tetapi terdiri dari pohon Baobab hasil tinggi."
 
 #: gui/text/tips/scout_towers.txt:1
 msgid "DEFENSE TOWERS"
@@ -4097,13 +4097,13 @@ msgstr "MENARA PERTAHANAN"
 
 #: gui/text/tips/scout_towers.txt:2
 msgid "Free-standing towers good for defending large areas of countryside."
-msgstr ""
+msgstr "Menara yang berdiri bebas bagus untuk mempertahankan area pedesaan yang luas."
 
 #: gui/text/tips/scout_towers.txt:3
 msgid ""
 "They usually cost 100 Wood and 100 Stone. Iberian Defense Towers cost 50 "
 "Wood and 250 Stone (because they're stronger)."
-msgstr ""
+msgstr "Harganya biasanya 100 Kayu dan 100 Batu. Menara Pertahanan Iberia berharga 50 Kayu dan 250 Batu (karena lebih kuat)."
 
 #: gui/text/tips/scout_towers.txt:4
 msgid "Has a ranged attack that increases for each garrisoned unit."
@@ -4111,23 +4111,23 @@ msgstr "Memiliki serangan jarak jauh yang meningkat untuk setiap unit yang menem
 
 #: gui/text/tips/snapping.txt:1
 msgid "SNAPPING"
-msgstr ""
+msgstr "GERTAKAN"
 
 #: gui/text/tips/snapping.txt:2
 msgid ""
 "Structures can be aligned by keeping the snap hotkey pressed during "
 "placement."
-msgstr ""
+msgstr "Struktur dapat disejajarkan dengan terus menekan tombol pintas snap selama penempatan."
 
 #: gui/text/tips/snapping.txt:3
 msgid "Aligning structures allows to conserve space for future construction."
-msgstr ""
+msgstr "Menyelaraskan struktur memungkinkan untuk menghemat ruang untuk konstruksi di masa depan."
 
 #: gui/text/tips/snapping.txt:4
 msgid ""
 "Tightly packed groups of structures can also be used for obstructing raiding"
 " enemies."
-msgstr ""
+msgstr "Kelompok struktur yang padat juga dapat digunakan untuk menghalangi musuh yang menyerang."
 
 #: gui/text/tips/spartan_hoplites.txt:1
 msgid "SPARTIATES"
@@ -4139,13 +4139,13 @@ msgstr "Unit infanteri terkuat di game."
 
 #: gui/text/tips/spartan_hoplites.txt:3
 msgid "Champion Infantry available to the Spartans."
-msgstr ""
+msgstr "Jawara Infanteri tersedia untuk Orang Sparta"
 
 #: gui/text/tips/spartan_hoplites.txt:4
 msgid ""
 "Use them to slaughter enemy cavalry or as a shock force to support your "
 "regular infantry."
-msgstr ""
+msgstr "Gunakan mereka untuk membantai kavaleri musuh atau sebagai kekuatan kejutan untuk mendukung infanteri reguler Anda."
 
 #: gui/text/tips/spearmen.txt:1
 msgid "SPEARMEN"
@@ -4153,21 +4153,21 @@ msgstr "PENOMBAK"
 
 #: gui/text/tips/spearmen.txt:2
 msgid "The basic melee infantry for every faction in the game."
-msgstr ""
+msgstr "Infanteri jarak dekat dasar untuk setiap faksi dalam game."
 
 #: gui/text/tips/spearmen.txt:3
 msgid "Used against cavalry for an attack bonus."
-msgstr ""
+msgstr "Digunakan melawan kavaleri untuk bonus serangan."
 
 #: gui/text/tips/spearmen.txt:4
 msgid "Decent hack attack make them good front line troops."
-msgstr ""
+msgstr "Serangan tebas yang layak menjadikannya pasukan garis depan yang baik."
 
 #: gui/text/tips/spearmen.txt:5
 msgid ""
 "They are countered by ranged units and swordsmen, so support your spearmen "
 "with slingers or cavalry."
-msgstr ""
+msgstr "Mereka dilawan dengan unit jarak jauh dan pendekar pedang, jadi dukung penombak Anda dengan pelempar batu atau kavaleri."
 
 #: gui/text/tips/storehouses.txt:1
 msgid "STOREHOUSES"
@@ -4175,7 +4175,7 @@ msgstr "GUDANG"
 
 #: gui/text/tips/storehouses.txt:2
 msgid "A cheap dropsite for non-food resources (Wood, Stone, Metal)."
-msgstr ""
+msgstr "Dropsite murah untuk sumber daya non-makanan (kayu, batu, logam)."
 
 #: gui/text/tips/storehouses.txt:3
 msgid ""
@@ -4189,11 +4189,11 @@ msgstr "KUIL"
 
 #: gui/text/tips/temples.txt:2
 msgid "Town Phase structure."
-msgstr ""
+msgstr "Struktur Fase Kota."
 
 #: gui/text/tips/temples.txt:3
 msgid "Recruit Healers to heal your troops on the battlefield."
-msgstr ""
+msgstr "Rekrut Tabib untuk menyembuhkan pasukan Anda di medan perang."
 
 #: gui/text/tips/temples.txt:4
 msgid "Research healing technologies."
@@ -4201,7 +4201,7 @@ msgstr "Meneliti teknologi penyembuhan."
 
 #: gui/text/tips/temples.txt:5
 msgid "Its aura heals nearby units."
-msgstr ""
+msgstr "Auranya menyembuhkan unit di sekitar."
 
 #: gui/text/tips/temples.txt:6
 msgid "Garrison wounded units inside for quicker healing."
@@ -4214,7 +4214,7 @@ msgstr "PENYUSUTAN WILAYAH"
 #: gui/text/tips/territory_decay.txt:2
 msgid ""
 "Decay happens when structures are not connected to an allied Civil Center."
-msgstr ""
+msgstr "Kerusakan terjadi ketika struktur tidak terhubung ke sekutu Pusat Sipil."
 
 #: gui/text/tips/territory_decay.txt:3
 msgid ""
@@ -4226,7 +4226,7 @@ msgstr "Proses penurunan dapat diperlambat atau dibalikkan dengan menempatkan be
 msgid ""
 "When the decay is completed, the structure will be given to the most "
 "influential neighbor."
-msgstr ""
+msgstr "Saat kerusakan selesai, struktur akan diberikan kepada tetangga yang paling berpengaruh."
 
 #: gui/text/tips/themistocles.txt:1
 msgid "THEMISTOCLES"
@@ -4236,7 +4236,7 @@ msgstr "THEMISTOKLES"
 msgid ""
 "Athenian hero who commanded the Greeks at the great naval battles of "
 "Artemisium and Salamis."
-msgstr ""
+msgstr "Pahlawan Athena yang memimpin orang-orang Yunani di pertempuran laut besar Artemisium dan Salamis."
 
 #: gui/text/tips/themistocles.txt:3
 msgid "All ships are built faster while he lives."
@@ -4252,11 +4252,11 @@ msgstr "TRIREME"
 
 #: gui/text/tips/triremes.txt:2
 msgid "The Medium Warship."
-msgstr ""
+msgstr "Kapal Perang Medium."
 
 #: gui/text/tips/triremes.txt:3
 msgid "Good for transporting or fighting."
-msgstr ""
+msgstr "Bagus untuk mengangkut atau berkelahi."
 
 #: gui/text/tips/triremes.txt:4
 msgid "Garrison troops aboard to increase fire power."
@@ -4268,19 +4268,19 @@ msgstr "VIRIATO"
 
 #: gui/text/tips/viriato.txt:2
 msgid "Iberian hero of the Lusitani tribe."
-msgstr ""
+msgstr "Pahlawan Iberia dari suku Lusitani."
 
 #: gui/text/tips/viriato.txt:3
 msgid ""
 "At least seven campaigns against the Romans during the Lusitani Wars from "
 "147 to 139 BC."
-msgstr ""
+msgstr "Setidaknya tujuh kampanye melawan Romawi selama Perang Lusitani dari 147 hingga 139 SM."
 
 #: gui/text/tips/viriato.txt:4
 msgid ""
 "Has the Guerrilla Tactics aura that allows nearby Iberian units to ambush "
 "their opponents."
-msgstr ""
+msgstr "Memiliki aura Taktik Gerilya yang memungkinkan unit Iberia terdekat untuk menyergap lawan mereka."
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"
@@ -4288,17 +4288,17 @@ msgstr "GAJAH PERANG"
 
 #: gui/text/tips/war_elephants.txt:2
 msgid "Huge beasts from Africa and India, trained for war."
-msgstr ""
+msgstr "Binatang besar dari Afrika dan India, dilatih untuk berperang."
 
 #: gui/text/tips/war_elephants.txt:3
 msgid "High Food and Metal cost, but very powerful."
-msgstr ""
+msgstr "Biaya Makanan dan Logam Tinggi, tetapi sangat kuat."
 
 #: gui/text/tips/war_elephants.txt:4
 msgid ""
 "Available to: Carthaginians, Kushites, Mauryas, Persians, Ptolemies, and "
 "Seleucids."
-msgstr ""
+msgstr "Tersedia untuk: Orang-orang Kush, Makedonia, Ptolemi, dan Seleukia."
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"
@@ -4314,15 +4314,15 @@ msgstr "2000 Makanan."
 
 #: gui/text/tips/whales.txt:4
 msgid "Gatherable by Fishing Boats after the whale is killed."
-msgstr ""
+msgstr "Dapat dikumpulkan oleh Kapal Nelayan setelah paus dibunuh."
 
 #: gui/text/tips/whales.txt:5
 msgid "Roam around the oceans of the game and flee when attacked."
-msgstr ""
+msgstr "Berkeliaran di sekitar lautan permainan dan melarikan diri saat diserang."
 
 #: simulation/data/resources/food.jsondescription
 msgid "Harvest from animals, berry bushes, fish, or fields."
-msgstr ""
+msgstr "Panen dari hewan, semak berry, ikan, atau ladang."
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -4401,7 +4401,7 @@ msgstr "daging"
 
 #: simulation/data/resources/metal.jsondescription
 msgid "Mine from metal mines or quarries."
-msgstr ""
+msgstr "Tambang dari tambang logam atau pertambangan."
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.

@@ -17,7 +17,7 @@
 # v00d00911 <agroworker@mail.ru>, 2014
 # Валерий Дмиртиевич Степанов <valera1111@yandex.ru>, 2017
 # Vladislav Belov <vladislavbelovdev@gmail.com>, 2015
-# Vladislav Belov <vladislavbelovdev@gmail.com>, 2016-2018
+# Vladislav Belov <vladislavbelovdev@gmail.com>, 2016-2018,2021
 # Woratiklis, 2015
 # Александр Волосников <Volosnikov.aleksandr@bk.ru>, 2018
 # Алексей72 <Alteza.72ru@mail.ru>, 2014
@@ -30,8 +30,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-02-03 11:47+0000\n"
-"Last-Translator: Boris Karalnik <eyesucker@gmail.com>\n"
+"PO-Revision-Date: 2021-02-14 01:31+0000\n"
+"Last-Translator: Vladislav Belov <vladislavbelovdev@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -94,7 +94,7 @@ msgstr "Несовместимые моды"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:52
 msgid "The game has already started. Do you want to join as observer?"
-msgstr "Игра уже началась. Хотите подключиться как наблюдатель?"
+msgstr "Игра уже началась. Хотите подключиться как зритель?"
 
 #. Translation: Join the game currently selected in the list.
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:104
@@ -146,11 +146,11 @@ msgstr "Установить статус «в игре»."
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:101
 msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
-msgstr "выгнать указанного игрока из комнаты "
+msgstr "Выгнать указанного игрока из комнаты. Пример: /kick имя причина"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:113
 msgid "Ban a specified user from the lobby. Usage: /ban nick reason"
-msgstr "Заблокировать указанного игрока в комнате "
+msgstr "Заблокировать указанного игрока в комнате. Пример: /ban имя причина"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:125
 msgid "Show this help."
@@ -168,7 +168,7 @@ msgstr "%(command)s — %(description)s"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:146
 msgid "Send a chat message about yourself. Example: /me goes swimming."
-msgstr "Отправьте сообщение в чат о себе. Например: /me идёт плавать."
+msgstr "Отправить сообщение о себе в чат. Пример: /me идёт плавать."
 
 #. Translation: Chat command
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:149
