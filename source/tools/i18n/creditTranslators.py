@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 #
-# Copyright (C) 2020 Wildfire Games.
+# Copyright (C) 2021 Wildfire Games.
 # This file is part of 0 A.D.
 #
 # 0 A.D. is free software: you can redistribute it and/or modify
@@ -31,34 +31,84 @@ once before updateTemplates.py.
 
 import json, os, glob, re
 
-# Credited languages - Keep in sync with source/tools/dist/remove-incomplete-translations.sh
+# We credit everyone that helps translating even if the translations don't
+# make it into the game.
+# Note: Needs to be edited manually when new languages are added on Transifex.
 langs = {
-    'ast': 'Asturianu',
-    'bg': 'Български',
-    'ca': 'Català',
-    'cs': 'Čeština',
-    'de': 'Deutsch',
-    'el': 'Ελληνικά',
-    'en_GB': 'English (UK)',
-    'es': 'Español',
-    'eu': 'Euskara',
-    'fr': 'Français',
-    'gd': 'Gàidhlig',
-    'gl': 'Galego',
-    'hu': 'Magyar',
-    'id': 'Bahasa Indonesia',
-    'it': 'Italiano',
-    'ms': 'Bahasa Melayu',
-    'nb': 'Norsk bokmål',
-    'nl': 'Nederlands',
-    'pl': 'Polski',
-    'pt_BR': 'Português (Brasil)',
-    'pt_PT': 'Português (Portugal)',
-    'ru': 'Русский',
-    'sk': 'Slovenčina',
-    'sv': 'Svenska',
-    'tr': 'Türkçe',
-    'uk': 'Українська'}
+    'af': 'Afrikaans',
+    'ar': 'Arabic',
+    'ast': 'Asturian',
+    'az': 'Azerbaijani',
+    'bar': 'Bavarian',
+    'be': 'Belarusian',
+    'bg': 'Bulgarian',
+    'bn': 'Bengali',
+    'br': 'Breton',
+    'ca': 'Catalan',
+    'cs': 'Czech',
+    'cy': 'Welsh',
+    'da': 'Danish',
+    'de': 'German',
+    'el': 'Greek',
+    'en_GB': 'English (United Kingdom)',
+    'eo': 'Esperanto',
+    'es': 'Spanish',
+    'es_AR': 'Spanish (Argentina)',
+    'es_CL': 'Spanish (Chile)',
+    'es_MX': 'Spanish (Mexico)',
+    'et': 'Estonian',
+    'eu': 'Basque',
+    'fa': 'Persian',
+    'fi': 'Finnish',
+    'fr': 'French',
+    'fr_CA': 'French (Canada)',
+    'frp': 'Franco-Provençal (Arpitan)',
+    'ga': 'Irish',
+    'gd': 'Gaelic: Scottish',
+    'gl': 'Galician',
+    'he': 'Hebrew',
+    'hi': 'Hindi',
+    'hr': 'Croatian',
+    'hu': 'Hungarian',
+    'hy': 'Armenian',
+    'id': 'Indonesian',
+    'it': 'Italian',
+    'ja': 'Japanese',
+    'jbo': 'Lojban',
+    'ka': 'Georgian',
+    'ko': 'Korean',
+    'krl': 'Karelian',
+    'ku': 'Kurdish',
+    'la': 'Latin',
+    'lt': 'Lithuanian',
+    'lv': 'Latvian',
+    'mk': 'Macedonian',
+    'ml': 'Malayalam',
+    'mr': 'Marathi',
+    'ms': 'Malay',
+    'nb': 'Norwegian Bokmål',
+    'nl': 'Dutch',
+    'pl': 'Polish',
+    'pt_BR': 'Portuguese (Brazil)',
+    'pt_PT': 'Portuguese (Portugal)',
+    'ro': 'Romanian',
+    'ru': 'Russian',
+    'sk': 'Slovak',
+    'sl': 'Slovenian',
+    'sq': 'Albanian',
+    'sr': 'Serbian',
+    'sv': 'Swedish',
+    'szl': 'Silesian',
+    'ta_IN': 'Tamil (India)',
+    'te': 'Telugu',
+    'th': 'Thai',
+    'tl': 'Tagalog',
+    'tr': 'Turkish',
+    'uk': 'Ukrainian',
+    'uz': 'Uzbek',
+    'vi': 'Vietnamese',
+    'zh': 'Chinese',
+    'zh_TW': 'Chinese (Taiwan)'}
 
 root = '../../../'
 
@@ -90,7 +140,7 @@ for lang in langs.keys():
     for location in poLocations:
         files = glob.glob(root + location + lang + '.*.po')
         for file in files:
-            poFile = open(file.replace('\\', '/'))
+            poFile = open(file.replace('\\', '/'), encoding='utf-8')
             reached = False
             for line in poFile:
                 if reached:
@@ -116,6 +166,6 @@ for (langCode, langList) in sorted(langsLists.items()):
         newJSONData['Content'][-1]['List'].append({'name': name})
 
 # Save the JSON data to the credits file
-creditsFile = open(root + creditsLocation, 'w')
+creditsFile = open(root + creditsLocation, 'w', encoding='utf-8')
 json.dump(newJSONData, creditsFile, indent=4)
 creditsFile.close()
