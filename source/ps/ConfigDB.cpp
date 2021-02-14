@@ -19,34 +19,28 @@
 
 #include "ConfigDB.h"
 
-#include <boost/algorithm/string.hpp>
-
 #include "lib/allocators/shared_ptr.h"
 #include "lib/file/vfs/vfs_path.h"
 #include "ps/CLogger.h"
 #include "ps/CStr.h"
 #include "ps/Filesystem.h"
 
+#include <boost/algorithm/string.hpp>
 #include <mutex>
 #include <unordered_set>
 
-
-typedef std::map<CStr, CConfigValueSet> TConfigMap;
-TConfigMap CConfigDB::m_Map[CFG_LAST];
-VfsPath CConfigDB::m_ConfigFile[CFG_LAST];
-bool CConfigDB::m_HasChanges[CFG_LAST];
-
-std::multimap<CStr, std::function<void()>> CConfigDB::m_Hooks;
+namespace
+{
 
 void TriggerAllHooks(const std::multimap<CStr, std::function<void()>>& hooks, const CStr& name)
 {
 	std::for_each(hooks.lower_bound(name), hooks.upper_bound(name), [](const std::pair<CStr, std::function<void()>>& hook) { hook.second(); });
 }
 
-static std::recursive_mutex cfgdb_mutex;
+std::recursive_mutex g_ConfigDBMutex;
 
 // These entries will not be printed to logfiles, so that logfiles can be shared without leaking personal or sensitive data
-static const std::unordered_set<std::string> g_UnloggedEntries = {
+const std::unordered_set<std::string> g_UnloggedEntries = {
 	"lobby.password",
 	"lobby.buddies",
 	"userreport.id" // authentication token for GDPR personal data requests
@@ -61,20 +55,22 @@ static const std::unordered_set<std::string> g_UnloggedEntries = {
 		}\
 	} while (false)
 
-namespace {
 template<typename T> void Get(const CStr& value, T& ret)
 {
 	std::stringstream ss(value);
 	ss >> ret;
 }
+
 template<> void Get<>(const CStr& value, bool& ret)
 {
 	ret = value == "true";
 }
+
 template<> void Get<>(const CStr& value, std::string& ret)
 {
 	ret = value;
 }
+
 std::string EscapeString(const CStr& str)
 {
 	std::string ret;
@@ -89,13 +85,21 @@ std::string EscapeString(const CStr& str)
 	}
 	return ret;
 }
-} // namespace
+
+} // anonymous namespace
+
+typedef std::map<CStr, CConfigValueSet> TConfigMap;
+TConfigMap CConfigDB::m_Map[CFG_LAST];
+VfsPath CConfigDB::m_ConfigFile[CFG_LAST];
+bool CConfigDB::m_HasChanges[CFG_LAST];
+
+std::multimap<CStr, std::function<void()>> CConfigDB::m_Hooks;
 
 #define GETVAL(type)\
 	void CConfigDB::GetValue(EConfigNamespace ns, const CStr& name, type& value)\
 	{\
 		CHECK_NS(;);\
-		std::lock_guard<std::recursive_mutex> s(cfgdb_mutex);\
+		std::lock_guard<std::recursive_mutex> s(g_ConfigDBMutex);\
 		TConfigMap::iterator it = m_Map[CFG_COMMAND].find(name);\
 		if (it != m_Map[CFG_COMMAND].end())\
 		{\
@@ -126,7 +130,7 @@ bool CConfigDB::HasChanges(EConfigNamespace ns) const
 {
 	CHECK_NS(false);
 
-	std::lock_guard<std::recursive_mutex> s(cfgdb_mutex);
+	std::lock_guard<std::recursive_mutex> s(g_ConfigDBMutex);
 	return m_HasChanges[ns];
 }
 
@@ -134,7 +138,7 @@ void CConfigDB::SetChanges(EConfigNamespace ns, bool value)
 {
 	CHECK_NS(;);
 
-	std::lock_guard<std::recursive_mutex> s(cfgdb_mutex);
+	std::lock_guard<std::recursive_mutex> s(g_ConfigDBMutex);
 	m_HasChanges[ns] = value;
 }
 
@@ -142,7 +146,7 @@ void CConfigDB::GetValues(EConfigNamespace ns, const CStr& name, CConfigValueSet
 {
 	CHECK_NS(;);
 
-	std::lock_guard<std::recursive_mutex> s(cfgdb_mutex);
+	std::lock_guard<std::recursive_mutex> s(g_ConfigDBMutex);
 	TConfigMap::iterator it = m_Map[CFG_COMMAND].find(name);
 	if (it != m_Map[CFG_COMMAND].end())
 	{
@@ -165,7 +169,7 @@ EConfigNamespace CConfigDB::GetValueNamespace(EConfigNamespace ns, const CStr& n
 {
 	CHECK_NS(CFG_LAST);
 
-	std::lock_guard<std::recursive_mutex> s(cfgdb_mutex);
+	std::lock_guard<std::recursive_mutex> s(g_ConfigDBMutex);
 	TConfigMap::iterator it = m_Map[CFG_COMMAND].find(name);
 	if (it != m_Map[CFG_COMMAND].end())
 		return CFG_COMMAND;
@@ -182,7 +186,7 @@ EConfigNamespace CConfigDB::GetValueNamespace(EConfigNamespace ns, const CStr& n
 
 std::map<CStr, CConfigValueSet> CConfigDB::GetValuesWithPrefix(EConfigNamespace ns, const CStr& prefix) const
 {
-	std::lock_guard<std::recursive_mutex> s(cfgdb_mutex);
+	std::lock_guard<std::recursive_mutex> s(g_ConfigDBMutex);
 	std::map<CStr, CConfigValueSet> ret;
 
 	CHECK_NS(ret);
@@ -205,12 +209,15 @@ void CConfigDB::SetValueString(EConfigNamespace ns, const CStr& name, const CStr
 {
 	CHECK_NS(;);
 
-	std::lock_guard<std::recursive_mutex> s(cfgdb_mutex);
+	std::lock_guard<std::recursive_mutex> s(g_ConfigDBMutex);
 	TConfigMap::iterator it = m_Map[ns].find(name);
 	if (it == m_Map[ns].end())
 		it = m_Map[ns].insert(m_Map[ns].begin(), make_pair(name, CConfigValueSet(1)));
 
-	it->second[0] = value;
+	if (!it->second.empty())
+		it->second[0] = value;
+	else
+		it->second.emplace_back(value);
 
 	TriggerAllHooks(m_Hooks, name);
 }
@@ -225,7 +232,7 @@ void CConfigDB::SetValueList(EConfigNamespace ns, const CStr& name, std::vector<
 {
 	CHECK_NS(;);
 
-	std::lock_guard<std::recursive_mutex> s(cfgdb_mutex);
+	std::lock_guard<std::recursive_mutex> s(g_ConfigDBMutex);
 	TConfigMap::iterator it = m_Map[ns].find(name);
 	if (it == m_Map[ns].end())
 		it = m_Map[ns].insert(m_Map[ns].begin(), make_pair(name, CConfigValueSet(1)));
@@ -237,7 +244,7 @@ void CConfigDB::RemoveValue(EConfigNamespace ns, const CStr& name)
 {
 	CHECK_NS(;);
 
-	std::lock_guard<std::recursive_mutex> s(cfgdb_mutex);
+	std::lock_guard<std::recursive_mutex> s(g_ConfigDBMutex);
 	TConfigMap::iterator it = m_Map[ns].find(name);
 	if (it == m_Map[ns].end())
 		return;
@@ -250,7 +257,7 @@ void CConfigDB::SetConfigFile(EConfigNamespace ns, const VfsPath& path)
 {
 	CHECK_NS(;);
 
-	std::lock_guard<std::recursive_mutex> s(cfgdb_mutex);
+	std::lock_guard<std::recursive_mutex> s(g_ConfigDBMutex);
 	m_ConfigFile[ns] = path;
 }
 
@@ -258,7 +265,7 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 {
 	CHECK_NS(false);
 
-	std::lock_guard<std::recursive_mutex> s(cfgdb_mutex);
+	std::lock_guard<std::recursive_mutex> s(g_ConfigDBMutex);
 
 	shared_ptr<u8> buffer;
 	size_t buflen;
@@ -421,7 +428,7 @@ bool CConfigDB::WriteFile(EConfigNamespace ns) const
 {
 	CHECK_NS(false);
 
-	std::lock_guard<std::recursive_mutex> s(cfgdb_mutex);
+	std::lock_guard<std::recursive_mutex> s(g_ConfigDBMutex);
 	return WriteFile(ns, m_ConfigFile[ns]);
 }
 
@@ -429,7 +436,7 @@ bool CConfigDB::WriteFile(EConfigNamespace ns, const VfsPath& path) const
 {
 	CHECK_NS(false);
 
-	std::lock_guard<std::recursive_mutex> s(cfgdb_mutex);
+	std::lock_guard<std::recursive_mutex> s(g_ConfigDBMutex);
 	shared_ptr<u8> buf;
 	AllocateAligned(buf, 1*MiB, maxSectorSize);
 	char* pos = (char*)buf.get();
@@ -461,7 +468,7 @@ bool CConfigDB::WriteValueToFile(EConfigNamespace ns, const CStr& name, const CS
 {
 	CHECK_NS(false);
 
-	std::lock_guard<std::recursive_mutex> s(cfgdb_mutex);
+	std::lock_guard<std::recursive_mutex> s(g_ConfigDBMutex);
 	return WriteValueToFile(ns, name, value, m_ConfigFile[ns]);
 }
 
@@ -469,7 +476,7 @@ bool CConfigDB::WriteValueToFile(EConfigNamespace ns, const CStr& name, const CS
 {
 	CHECK_NS(false);
 
-	std::lock_guard<std::recursive_mutex> s(cfgdb_mutex);
+	std::lock_guard<std::recursive_mutex> s(g_ConfigDBMutex);
 
 	TConfigMap newMap;
 	m_Map[ns].swap(newMap);
