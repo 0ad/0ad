@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -80,6 +80,7 @@ void CObjectBase::LoadVariant(const CXeromyces& XeroFile, const XMBElement& vari
 		return;
 	}
 
+	// Load variants first, so that they can be overriden if necessary.
 	XERO_ITER_ATTR(variant, attr)
 	{
 		if (attr.Name == at_file)
@@ -97,7 +98,11 @@ void CObjectBase::LoadVariant(const CXeromyces& XeroFile, const XMBElement& vari
 				LOGERROR("Could not open path %s", attr.Value);
 			// Continue loading extra definitions in this variant to allow nested files
 		}
-		else if (attr.Name == at_name)
+	}
+
+	XERO_ITER_ATTR(variant, attr)
+	{
+		if (attr.Name == at_name)
 			currentVariant.m_VariantName = attr.Value.LowerCase();
 		else if (attr.Name == at_frequency)
 			currentVariant.m_Frequency = attr.Value.ToInt();
