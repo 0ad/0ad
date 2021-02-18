@@ -25,10 +25,13 @@ function formatHotkeyCombination(comb, translateScancodes = true)
 	return comb.sort(hotkeySort).map(hk => g_ScancodesMap[hk]).join("+");
 }
 
+/**
+ * @return a sorted array when @param translateScancodes is false, a formatted string otherwise.
+ */
 function formatHotkeyCombinations(combinations, translateScancodes = true)
 {
 	if (!combinations || !combinations.length)
-		return "";
+		return translateScancodes ? "" : [];
 
 	let combs = combinations.map(x => formatHotkeyCombination(x, translateScancodes));
 	combs.sort((a, b) => a.length - b.length || a - b);
