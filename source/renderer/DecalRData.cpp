@@ -234,6 +234,15 @@ void CDecalRData::BuildVertexData()
 
 	ssize_t i0, j0, i1, j1;
 	m_Decal->CalcVertexExtents(i0, j0, i1, j1);
+	// Currently CalcVertexExtents might return empty rectangle, that means
+	// we can't render it.
+	if (i1 <= i0 && j1 <= j0)
+	{
+		// We have nothing to render.
+		m_VBDecals.Reset();
+		m_VBDecalsIndices.Reset();
+		return;
+	}
 
 	CmpPtr<ICmpWaterManager> cmpWaterManager(*m_Simulation, SYSTEM_ENTITY);
 
@@ -299,8 +308,6 @@ void CDecalRData::BuildVertexData()
 			}
 		}
 	}
-
-	ENSURE(!indices.empty());
 
 	// Construct vertex buffer.
 	if (!m_VBDecalsIndices || m_VBDecalsIndices->m_Count != indices.size())
