@@ -1177,7 +1177,9 @@ UnitAI.prototype.UnitFsmSpec = {
 			"GARRISONING": {
 				"enter": function() {
 					this.CallMemberFunction("Garrison", [this.order.data.target, false]);
-					this.SetNextState("MEMBER");
+					// We might have been disbanded due to the lack of members.
+					if (Engine.QueryInterface(this.entity, IID_Formation).GetMemberCount())
+						this.SetNextState("MEMBER");
 					return true;
 				},
 			},
