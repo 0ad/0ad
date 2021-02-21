@@ -836,7 +836,7 @@ msgstr "Taux :"
 #, javascript-format
 msgid "%(projectileCount)s %(projectileName)s"
 msgid_plural "%(projectileCount)s %(projectileName)s"
-msgstr[0] "1%(nomduprojectile)s 2%(nombredeprojectiles)s"
+msgstr[0] "%(projectileCount)s %(projectileName)s"
 msgstr[1] "%(projectileCount)s %(projectileName)s"
 
 #: gui/common/tooltips.js:304
@@ -916,7 +916,7 @@ msgstr "%(splashShape)s Dégâts de zone"
 #: gui/common/tooltips.js:385
 #, javascript-format
 msgid "%(label)s: %(effects)s"
-msgstr "1%(label)s : 2%(effet)s"
+msgstr "%(label)s : %(effects)s"
 
 #: gui/common/tooltips.js:391
 #, javascript-format
