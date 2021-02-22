@@ -22,6 +22,7 @@
 #include "graphics/ParticleEmitterType.h"
 
 #include <boost/random/mersenne_twister.hpp>
+#include <list>
 #include <unordered_map>
 
 class SceneCollector;
