@@ -10,6 +10,8 @@ UnitAI.prototype.Schema =
 			"<value>defensive</value>" +
 			"<value>passive</value>" +
 			"<value>standground</value>" +
+			"<value>skittish</value>" +
+			"<value>passive-defensive</value>" +
 		"</choice>" +
 	"</element>" +
 	"<element name='FormationController'>" +
@@ -34,16 +36,6 @@ UnitAI.prototype.Schema =
 	"</optional>" +
 	"<optional>" +
 		"<interleave>" +
-			"<element name='NaturalBehaviour' a:help='Behaviour of the unit in the absence of player commands (intended for animals)'>" +
-				"<choice>" +
-					"<value a:help='Will actively attack any unit it encounters, even if not threatened'>violent</value>" +
-					"<value a:help='Will attack nearby units if it feels threatened (if they linger within LOS for too long)'>aggressive</value>" +
-					"<value a:help='Will attack nearby units if attacked'>defensive</value>" +
-					"<value a:help='Will never attack units but will attempt to flee when attacked'>passive</value>" +
-					"<value a:help='Will never attack units. Will typically attempt to flee for short distances when units approach'>skittish</value>" +
-					"<value a:help='Will never attack units and will not attempt to flee when attacked'>domestic</value>" +
-				"</choice>" +
-			"</element>" +
 			"<element name='RoamDistance'>" +
 				"<ref name='positiveDecimal'/>" +
 			"</element>" +
@@ -69,6 +61,7 @@ UnitAI.prototype.Schema =
 //     possibly overriding user orders!
 // There are some response options, triggered when targets are detected:
 //   respondFlee: run away
+//   respondFleeOnSight: run away when an enemy is sighted
 //   respondChase: start chasing after the enemy
 //   respondChaseBeyondVision: start chasing, and don't stop even if it's out
 //     of this unit's vision range (though still visible to the player)
@@ -81,6 +74,7 @@ var g_Stances = {
 		"targetVisibleEnemies": true,
 		"targetAttackersAlways": true,
 		"respondFlee": false,
+		"respondFleeOnSight": false,
 		"respondChase": true,
 		"respondChaseBeyondVision": true,
 		"respondStandGround": false,
@@ -91,6 +85,7 @@ var g_Stances = {
 		"targetVisibleEnemies": true,
 		"targetAttackersAlways": false,
 		"respondFlee": false,
+		"respondFleeOnSight": false,
 		"respondChase": true,
 		"respondChaseBeyondVision": false,
 		"respondStandGround": false,
@@ -101,6 +96,7 @@ var g_Stances = {
 		"targetVisibleEnemies": true,
 		"targetAttackersAlways": false,
 		"respondFlee": false,
+		"respondFleeOnSight": false,
 		"respondChase": false,
 		"respondChaseBeyondVision": false,
 		"respondStandGround": false,
@@ -111,6 +107,7 @@ var g_Stances = {
 		"targetVisibleEnemies": false,
 		"targetAttackersAlways": false,
 		"respondFlee": true,
+		"respondFleeOnSight": false,
 		"respondChase": false,
 		"respondChaseBeyondVision": false,
 		"respondStandGround": false,
@@ -121,17 +118,41 @@ var g_Stances = {
 		"targetVisibleEnemies": true,
 		"targetAttackersAlways": false,
 		"respondFlee": false,
+		"respondFleeOnSight": false,
 		"respondChase": false,
 		"respondChaseBeyondVision": false,
 		"respondStandGround": true,
 		"respondHoldGround": false,
 		"selectable": true
 	},
+	"skittish": {
+		"targetVisibleEnemies": false,
+		"targetAttackersAlways": false,
+		"respondFlee": true,
+		"respondFleeOnSight": true,
+		"respondChase": false,
+		"respondChaseBeyondVision": false,
+		"respondStandGround": false,
+		"respondHoldGround": false,
+		"selectable": false
+	},
+	"passive-defensive": {
+		"targetVisibleEnemies": false,
+		"targetAttackersAlways": false,
+		"respondFlee": false,
+		"respondFleeOnSight": false,
+		"respondChase": false,
+		"respondChaseBeyondVision": false,
+		"respondStandGround": false,
+		"respondHoldGround": true,
+		"selectable": false
+	},
 	"none": {
 		// Only to be used by AI or trigger scripts
 		"targetVisibleEnemies": false,
 		"targetAttackersAlways": false,
 		"respondFlee": false,
+		"respondFleeOnSight": false,
 		"respondChase": false,
 		"respondChaseBeyondVision": false,
 		"respondStandGround": false,
@@ -283,9 +304,7 @@ UnitAI.prototype.UnitFsmSpec = {
 		this.StopMoving();
 		this.FinishOrder();
 
-		if (this.IsAnimal())
-			this.SetNextState("ANIMAL.IDLE");
-		else if (this.IsFormationMember())
+		if (this.IsFormationMember())
 			this.SetNextState("FORMATIONMEMBER.IDLE");
 		else
 			this.SetNextState("INDIVIDUAL.IDLE");
@@ -307,10 +326,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 		this.SetHeldPosition(this.order.data.x, this.order.data.z);
 		this.order.data.relaxed = true;
-		if (this.IsAnimal())
-			this.SetNextState("ANIMAL.WALKING");
-		else
-			this.SetNextState("INDIVIDUAL.WALKING");
+		this.SetNextState("INDIVIDUAL.WALKING");
 	},
 
 	"Order.WalkAndFight": function(msg) {
@@ -328,10 +344,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 		this.SetHeldPosition(this.order.data.x, this.order.data.z);
 		this.order.data.relaxed = true;
-		if (this.IsAnimal())
-			this.SetNextState("ANIMAL.WALKING");   // WalkAndFight not applicable for animals
-		else
-			this.SetNextState("INDIVIDUAL.WALKINGANDFIGHTING");
+		this.SetNextState("INDIVIDUAL.WALKINGANDFIGHTING");
 	},
 
 
@@ -353,15 +366,11 @@ UnitAI.prototype.UnitFsmSpec = {
 		{
 			// We are already at the target, or can't move at all
 			this.FinishOrder();
-			return true;
+			return;
 		}
 
 		this.order.data.relaxed = true;
-
-		if (this.IsAnimal())
-			this.SetNextState("ANIMAL.WALKING");
-		else
-			this.SetNextState("INDIVIDUAL.WALKING");
+		this.SetNextState("INDIVIDUAL.WALKING");
 	},
 
 	"Order.PickupUnit": function(msg) {
@@ -406,10 +415,7 @@ UnitAI.prototype.UnitFsmSpec = {
 	},
 
 	"Order.Flee": function(msg) {
-		if (this.IsAnimal())
-			this.SetNextState("ANIMAL.FLEEING");
-		else
-			this.SetNextState("INDIVIDUAL.FLEEING");
+		this.SetNextState("INDIVIDUAL.FLEEING");
 	},
 
 	"Order.Attack": function(msg) {
@@ -438,10 +444,7 @@ UnitAI.prototype.UnitFsmSpec = {
 			if (!this.EnsureCorrectPackStateForAttack(false))
 				return;
 
-			if (this.IsAnimal())
-				this.SetNextState("ANIMAL.COMBAT.ATTACKING");
-			else
-				this.SetNextState("INDIVIDUAL.COMBAT.ATTACKING");
+			this.SetNextState("INDIVIDUAL.COMBAT.ATTACKING");
 			return;
 		}
 
@@ -462,14 +465,11 @@ UnitAI.prototype.UnitFsmSpec = {
 		if (!this.EnsureCorrectPackStateForAttack(true))
 			return;
 
-		if (this.IsAnimal())
-			this.SetNextState("ANIMAL.COMBAT.APPROACHING");
-		else
-			this.SetNextState("INDIVIDUAL.COMBAT.APPROACHING");
+		this.SetNextState("INDIVIDUAL.COMBAT.APPROACHING");
 	},
 
 	"Order.Patrol": function(msg) {
-		if (this.IsAnimal() || !this.AbleToMove())
+		if (!this.AbleToMove())
 		{
 			this.FinishOrder();
 			return;
@@ -642,10 +642,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 		if (this.IsGarrisoned())
 		{
-			if (this.IsAnimal())
-				this.SetNextState("ANIMAL.GARRISON.GARRISONED");
-			else
-				this.SetNextState("INDIVIDUAL.GARRISON.GARRISONED");
+			this.SetNextState("INDIVIDUAL.GARRISON.GARRISONED");
 			return;
 		}
 
@@ -665,10 +662,7 @@ UnitAI.prototype.UnitFsmSpec = {
 			return;
 		}
 
-		if (this.IsAnimal())
-			this.SetNextState("ANIMAL.GARRISON.APPROACHING");
-		else
-			this.SetNextState("INDIVIDUAL.GARRISON.APPROACHING");
+		this.SetNextState("INDIVIDUAL.GARRISON.APPROACHING");
 	},
 
 	"Order.Ungarrison": function() {
@@ -1393,14 +1387,6 @@ UnitAI.prototype.UnitFsmSpec = {
 		},
 
 		"enter": function() {
-			if (this.IsAnimal())
-			{
-				warn("Entity " + this.entity + " was put in FORMATIONMEMBER state but is an animal");
-				this.FinishOrder();
-				this.SetNextState("ANIMAL.IDLE");
-				return true;
-			}
-
 			let cmpFormation = Engine.QueryInterface(this.formationController, IID_Formation);
 			if (cmpFormation)
 			{
@@ -1487,13 +1473,6 @@ UnitAI.prototype.UnitFsmSpec = {
 
 	// States for entities not part of a formation:
 	"INDIVIDUAL": {
-
-		"enter": function() {
-			if (this.IsAnimal())
-				error("Animal got moved into INDIVIDUAL.* state");
-			return false;
-		},
-
 		"Attacked": function(msg) {
 			if (this.GetStance().targetAttackersAlways || !this.order || !this.order.data || !this.order.data.force)
 				this.RespondToTargetedEntities([msg.data.attacker]);
@@ -1663,6 +1642,52 @@ UnitAI.prototype.UnitFsmSpec = {
 					this.isIdle = true;
 					Engine.PostMessage(this.entity, MT_UnitIdleChanged, { "idle": this.isIdle });
 				}
+
+				// Go linger first to prevent all roaming entities
+				// to move all at the same time on map init.
+				if (this.template.RoamDistance)
+					this.SetNextState("LINGERING");
+			},
+
+			"ROAMING": {
+				"enter": function() {
+					this.SetFacePointAfterMove(false);
+					this.MoveRandomly(+this.template.RoamDistance);
+					this.StartTimer(randIntInclusive(+this.template.RoamTimeMin, +this.template.RoamTimeMax));
+					return false;
+				},
+
+				"leave": function() {
+					this.StopMoving();
+					this.StopTimer();
+					this.SetFacePointAfterMove(true);
+				},
+
+				"Timer": function(msg) {
+					this.SetNextState("LINGERING");
+				},
+
+				"MovementUpdate": function() {
+					this.MoveRandomly(+this.template.RoamDistance);
+				},
+			},
+
+			"LINGERING": {
+				"enter": function() {
+					// ToDo: rename animations?
+					this.SelectAnimation("feeding");
+					this.StartTimer(randIntInclusive(+this.template.FeedTimeMin, +this.template.FeedTimeMax));
+					return false;
+				},
+
+				"leave": function() {
+					this.ResetAnimation();
+					this.StopTimer();
+				},
+
+				"Timer": function(msg) {
+					this.SetNextState("ROAMING");
+				},
 			},
 		},
 
@@ -2165,7 +2190,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					}
 
 					// PerformAttack might have triggered messages that moved us to another state.
-					// (use 'ends with' to handle animals/formation members copying our state).
+					// (use 'ends with' to handle formation members copying our state).
 					if (!this.GetCurrentState().endsWith("COMBAT.ATTACKING"))
 						return;
 
@@ -3388,149 +3413,6 @@ UnitAI.prototype.UnitFsmSpec = {
 			},
 		},
 	},
-
-	"ANIMAL": {
-		"Attacked": function(msg) {
-			if (this.template.NaturalBehaviour == "skittish" ||
-			    this.template.NaturalBehaviour == "passive")
-			{
-				this.Flee(msg.data.attacker, false);
-			}
-			else if (this.IsDangerousAnimal() || this.template.NaturalBehaviour == "defensive")
-			{
-				if (this.CanAttack(msg.data.attacker))
-					this.Attack(msg.data.attacker, false);
-			}
-			else if (this.template.NaturalBehaviour == "domestic")
-			{
-				// Never flee, stop what we were doing
-				this.SetNextState("IDLE");
-			}
-		},
-
-		"Order.LeaveFoundation": function(msg) {
-			// Move a tile outside the building
-			if (this.CheckTargetRangeExplicit(msg.data.target, g_LeaveFoundationRange, -1))
-			{
-				this.FinishOrder();
-				return;
-			}
-			this.order.data.min = g_LeaveFoundationRange;
-			this.SetNextState("WALKING");
-		},
-
-		"IDLE": {
-			// (We need an IDLE state so that FinishOrder works)
-
-			"enter": function() {
-				this.SetNextState("FEEDING");
-				return true;
-			},
-		},
-
-		"ROAMING": {
-			"enter": function() {
-				this.SetFacePointAfterMove(false);
-				this.MoveRandomly(+this.template.RoamDistance);
-				this.StartTimer(randIntInclusive(+this.template.RoamTimeMin, +this.template.RoamTimeMax));
-				return false;
-			},
-
-			"leave": function() {
-				this.StopMoving();
-				this.StopTimer();
-				this.SetFacePointAfterMove(true);
-			},
-
-			"LosRangeUpdate": function(msg) {
-				if (msg && msg.data && msg.data.added && msg.data.added.length)
-					this.RespondToSightedEntities(msg.data.added);
-			},
-
-			"LosAttackRangeUpdate": function(msg) {
-				if (this.IsDangerousAnimal() && msg && msg.data && msg.data.added && msg.data.added.length)
-					this.AttackVisibleEntity(msg.data.added);
-
-				// TODO: if two units enter our range together, we'll attack the
-				// first and then the second won't trigger another LosAttackRangeUpdate
-				// so we won't notice it. Probably we should do something with
-				// ResetActiveQuery in ROAMING.enter/FEEDING.enter in order to
-				// find any units that are already in range.
-			},
-
-			"Timer": function(msg) {
-				this.SetNextState("FEEDING");
-			},
-
-			"MovementUpdate": function() {
-				this.MoveRandomly(+this.template.RoamDistance);
-			},
-		},
-
-		"FEEDING": {
-			"enter": function() {
-				this.SelectAnimation("feeding");
-				this.StopMoving();
-				this.StartTimer(randIntInclusive(+this.template.FeedTimeMin, +this.template.FeedTimeMax));
-				return false;
-			},
-
-			"leave": function() {
-				this.ResetAnimation();
-				this.StopTimer();
-			},
-
-			"LosRangeUpdate": function(msg) {
-				if (msg && msg.data && msg.data.added && msg.data.added.length)
-					this.RespondToSightedEntities(msg.data.added);
-			},
-
-			"LosAttackRangeUpdate": function(msg) {
-				if (this.template.NaturalBehaviour == "violent" && msg && msg.data && msg.data.added && msg.data.added.length)
-					this.AttackVisibleEntity(msg.data.added);
-			},
-
-			"Timer": function(msg) {
-				this.SetNextState("ROAMING");
-			},
-		},
-
-		"FLEEING": "INDIVIDUAL.FLEEING",
-
-		"COMBAT": "INDIVIDUAL.COMBAT",
-
-		"WALKING": "INDIVIDUAL.WALKING",	// reuse the same walking behaviour for animals
-							// only used for domestic animals
-
-		"CHEERING": {
-			"enter": function() {
-				this.SelectAnimation("promotion");
-				this.StartTimer(this.cheeringTime);
-				return false;
-			},
-
-			"leave": function() {
-				this.StopTimer();
-				this.ResetAnimation();
-			},
-
-			"LosRangeUpdate": function(msg) {
-				if (msg && msg.data && msg.data.added && msg.data.added.length)
-					this.RespondToSightedEntities(msg.data.added);
-			},
-
-			"LosAttackRangeUpdate": function(msg) {
-				if (this.template.NaturalBehaviour == "violent" && msg && msg.data && msg.data.added && msg.data.added.length)
-					this.AttackVisibleEntity(msg.data.added);
-			},
-
-			"Timer": function(msg) {
-				this.FinishOrder();
-			},
-		},
-
-		"GARRISON": "INDIVIDUAL.GARRISON",
-	},
 };
 
 UnitAI.prototype.Init = function()
@@ -3574,15 +3456,22 @@ UnitAI.prototype.IsFormationMember = function()
 	return (this.formationController != INVALID_ENTITY);
 };
 
+/**
+ * For now, entities with a RoamDistance are animals.
+ */
 UnitAI.prototype.IsAnimal = function()
 {
-	return (this.template.NaturalBehaviour ? true : false);
+	return !!this.template.RoamDistance;
 };
 
+/**
+ * ToDo: Make this not needed by fixing gaia
+ * range queries in BuildingAI and UnitAI regarding
+ * animals and other gaia entities.
+ */
 UnitAI.prototype.IsDangerousAnimal = function()
 {
-	return (this.IsAnimal() && (this.template.NaturalBehaviour == "violent" ||
-			this.template.NaturalBehaviour == "aggressive"));
+	return this.IsAnimal() && this.GetStance().targetVisibleEnemies && !!Engine.QueryInterface(this.entity, IID_Attack);
 };
 
 UnitAI.prototype.IsHealer = function()
@@ -3680,9 +3569,7 @@ UnitAI.prototype.IsWalkingAndFighting = function()
 
 UnitAI.prototype.OnCreate = function()
 {
-	if (this.IsAnimal())
-		this.UnitFsm.Init(this, "ANIMAL.FEEDING");
-	else if (this.IsFormationController())
+	if (this.IsFormationController())
 		this.UnitFsm.Init(this, "FORMATIONCONTROLLER.IDLE");
 	else
 		this.UnitFsm.Init(this, "INDIVIDUAL.IDLE");
@@ -3788,8 +3675,7 @@ UnitAI.prototype.OnPickupCanceled = function(msg)
  */
 UnitAI.prototype.SetupRangeQueries = function()
 {
-	// Only skittish animals use this for now.
-	if (this.template.NaturalBehaviour && this.template.NaturalBehaviour == "skittish")
+	if (this.GetStance().respondFleeOnSight)
 		this.SetupLOSRangeQuery();
 
 	if (this.IsHealer())
@@ -4132,7 +4018,8 @@ UnitAI.prototype.EnsureCorrectPackStateForAttack = function(requirePacked)
 
 UnitAI.prototype.WillMoveFromFoundation = function(target, checkPacking = true)
 {
-	if (!IsOwnedByAllyOfEntity(this.entity, target) &&
+	let cmpUnitAI = Engine.QueryInterface(target, IID_UnitAI);
+	if (!IsOwnedByAllyOfEntity(this.entity, target) && cmpUnitAI && !cmpUnitAI.IsAnimal() &&
 	    !Engine.QueryInterface(SYSTEM_ENTITY, IID_CeasefireManager).IsCeasefireActive() ||
 	    checkPacking && this.IsPacking() || this.CanPack() || !this.AbleToMove())
 		return false;
@@ -5188,7 +5075,7 @@ UnitAI.prototype.RespondToSightedEntities = function(ents)
 	if (!ents || !ents.length)
 		return false;
 
-	if (this.template.NaturalBehaviour && this.template.NaturalBehaviour == "skittish")
+	if (this.GetStance().respondFleeOnSight)
 	{
 		this.Flee(ents[0], false);
 		return true;
@@ -6181,17 +6068,22 @@ UnitAI.prototype.GetTargetsFromUnit = function()
 		return [];
 
 	let attackfilter = function(e) {
+		if (!cmpAttack.CanAttack(e))
+			return false;
+
 		let cmpOwnership = Engine.QueryInterface(e, IID_Ownership);
 		if (cmpOwnership && cmpOwnership.GetOwner() > 0)
 			return true;
+
 		let cmpUnitAI = Engine.QueryInterface(e, IID_UnitAI);
 		return cmpUnitAI && (!cmpUnitAI.IsAnimal() || cmpUnitAI.IsDangerousAnimal());
 	};
 
 	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	let entities = cmpRangeManager.ResetActiveQuery(this.losAttackRangeQuery);
-	let targets = entities.filter(function(v) { return cmpAttack.CanAttack(v) && attackfilter(v); })
-		.sort(function(a, b) { return cmpAttack.CompareEntitiesByPreference(a, b); });
+	let targets = entities.filter(attackfilter).sort(function(a, b) {
+		return cmpAttack.CompareEntitiesByPreference(a, b);
+	});
 
 	return targets;
 };
@@ -6523,11 +6415,9 @@ UnitAI.prototype.IsAttackingAsFormation = function()
 		&& this.GetCurrentState() == "FORMATIONCONTROLLER.COMBAT.ATTACKING";
 };
 
-//// Animal specific functions ////
-
 UnitAI.prototype.MoveRandomly = function(distance)
 {
-	// To minimize drift all across the map, animals describe circles
+	// To minimize drift all across the map, describe circles
 	// approximated by polygons.
 	// And to avoid getting stuck in obstacles or narrow spaces, each side
 	// of the polygon is obtained by trying to go away from a point situated
@@ -6581,15 +6471,19 @@ UnitAI.prototype.AttackEntitiesByPreference = function(ents)
 	if (!ents.length)
 		return false;
 
-	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
+	let cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
 	if (!cmpAttack)
 		return false;
 
-	var attackfilter = function(e) {
-		var cmpOwnership = Engine.QueryInterface(e, IID_Ownership);
+	let attackfilter = function(e) {
+		if (!cmpAttack.CanAttack(e))
+			return false;
+
+		let cmpOwnership = Engine.QueryInterface(e, IID_Ownership);
 		if (cmpOwnership && cmpOwnership.GetOwner() > 0)
 			return true;
-		var cmpUnitAI = Engine.QueryInterface(e, IID_UnitAI);
+
+		let cmpUnitAI = Engine.QueryInterface(e, IID_UnitAI);
 		return cmpUnitAI && (!cmpUnitAI.IsAnimal() || cmpUnitAI.IsDangerousAnimal());
 	};
 

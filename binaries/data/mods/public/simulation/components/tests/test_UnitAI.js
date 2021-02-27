@@ -205,7 +205,8 @@ function TestFormationExiting(mode)
 			GetHitpoints: function() { return 10; },
 		});
 		AddMock(enemy, IID_UnitAI, {
-			IsAnimal: function() { return false; }
+			"IsAnimal": () => "false",
+			"IsDangerousAnimal": () => "false"
 		});
 	}
 	else if (mode == 2)

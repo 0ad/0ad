@@ -38,7 +38,7 @@
     <HeightOffset>5.0</HeightOffset>
   </StatusBars>
   <UnitAI>
-    <NaturalBehaviour>skittish</NaturalBehaviour>
+    <DefaultStance>skittish</DefaultStance>
     <RoamDistance>60.0</RoamDistance>
     <FleeDistance>60.0</FleeDistance>
     <RoamTimeMin>100000</RoamTimeMin>
@@ -46,6 +46,9 @@
     <FeedTimeMin>1</FeedTimeMin>
     <FeedTimeMax>2</FeedTimeMax>
   </UnitAI>
+  <Vision>
+    <Range>0</Range>
+  </Vision>
   <UnitMotion>
     <PassabilityClass>ship-small</PassabilityClass>
     <WalkSpeed op="mul">1.8</WalkSpeed>
