@@ -103,7 +103,9 @@ void JSI_GameView::CameraMoveTo(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivat
  */
 void JSI_GameView::SetCameraTarget(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), float x, float y, float z)
 {
-	g_Game->GetView()->ResetCameraTarget(CVector3D(x, y, z));
+	if (!g_Game || !g_Game->GetView())
+		return;
+	g_Game->GetView()->MoveCameraTarget(CVector3D(x, y, z));
 }
 
 /**
