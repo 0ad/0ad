@@ -113,15 +113,12 @@ void JSI_GameView::SetCameraTarget(ScriptInterface::CmptPrivate* UNUSED(pCmptPri
  */
 void JSI_GameView::SetCameraData(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), entity_pos_t x, entity_pos_t y, entity_pos_t z, entity_pos_t rotx, entity_pos_t roty, entity_pos_t zoom)
 {
-	if (!g_Game || !g_Game->GetWorld() || !g_Game->GetView() || !g_Game->GetWorld()->GetTerrain())
+	if (!g_Game || !g_Game->GetView())
 		return;
 
-	CVector3D Pos = CVector3D(x.ToFloat(), y.ToFloat(), z.ToFloat());
-	float RotX = rotx.ToFloat();
-	float RotY = roty.ToFloat();
-	float Zoom = zoom.ToFloat();
+	CVector3D pos(x.ToFloat(), y.ToFloat(), z.ToFloat());
 
-	g_Game->GetView()->SetCamera(Pos, RotX, RotY, Zoom);
+	g_Game->GetView()->SetCamera(pos, rotx.ToFloat(), roty.ToFloat(), zoom.ToFloat());
 }
 
 /**
