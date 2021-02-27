@@ -941,10 +941,11 @@ void WaterManager::RecomputeWindStrength()
 	if (!terrain || !terrain->GetHeightMap())
 		return;
 
-	CVector2D windDir = CVector2D(cos(m_WindAngle),sin(m_WindAngle));
+	CVector2D windDir = CVector2D(cos(m_WindAngle), sin(m_WindAngle));
 
-	ssize_t windX = round(1.f / windDir.X);
-	ssize_t windY = round(1.f / windDir.Y);
+	int stepSize = 10;
+	ssize_t windX = -round(stepSize * windDir.X);
+	ssize_t windY = -round(stepSize * windDir.Y);
 
 	struct SWindPoint {
 		SWindPoint(size_t x, size_t y, float strength) : X(x), Y(y), windStrength(strength) {}
@@ -959,7 +960,7 @@ void WaterManager::RecomputeWindStrength()
 	// Compute starting points (one or two edges of the map) and how much to move each computation increment.
 	if (fabs(windDir.X) < 0.01f)
 	{
-		movement.emplace_back(0, windY);
+		movement.emplace_back(0, windY > 0.f ? 1 : -1);
 		startingPoints.reserve(m_MapSize);
 		size_t start = windY > 0 ? 0 : m_MapSize - 1;
 		for (size_t x = 0; x < m_MapSize; ++x)
@@ -967,7 +968,8 @@ void WaterManager::RecomputeWindStrength()
 	}
 	else if (fabs(windDir.Y) < 0.01f)
 	{
-		movement.emplace_back(windX, 0);
+		movement.emplace_back(windX > 0.f ? 1 : - 1, 0);
+		startingPoints.reserve(m_MapSize);
 		size_t start = windX > 0 ? 0 : m_MapSize - 1;
 		for (size_t z = 0; z < m_MapSize; ++z)
 			startingPoints.emplace_back(start, z, 0.f);
@@ -1022,7 +1024,7 @@ void WaterManager::RecomputeWindStrength()
 				// Adjust speed based on height difference, a positive height difference slowly increases speed (simulate venturi effect)
 				// and a lower height reduces speed (wind protection from hills/...)
 				float heightDiff = std::max(m_WaterHeight, terrain->GetVertexGroundLevel(point.X + movement[step].first, point.Y + movement[step].second)) -
-								   std::max(m_WaterHeight, terrain->GetVertexGroundLevel(point.X, point.Y));
+					std::max(m_WaterHeight, terrain->GetVertexGroundLevel(point.X, point.Y));
 				if (heightDiff > 0.f)
 					point.windStrength = std::min(2.f, point.windStrength + std::min(4.f, heightDiff) / 40.f);
 				else
