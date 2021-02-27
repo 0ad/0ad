@@ -109,7 +109,7 @@ class CNetServer
 public:
 	/**
 	 * Construct a new network server.
-	 * @param autostartPlayers if positive then StartGame will be called automatically
+	 * @param autostartPlayers - if positive then StartGame will be called automatically
 	 * once this many players are connected (intended for the command-line testing mode).
 	 */
 	CNetServer(bool useLobbyAuth = false, int autostartPlayers = -1);
@@ -173,6 +173,8 @@ public:
 
 	void SetPassword(const CStr& password);
 
+	void SetControllerSecret(const std::string& secret);
+
 private:
 	CNetServerWorker* m_Worker;
 	const bool m_LobbyAuth;
@@ -225,6 +227,8 @@ private:
 	~CNetServerWorker();
 
 	void SetPassword(const CStr& hashedPassword);
+
+	void SetControllerSecret(const std::string& secret);
 
 	/**
 	 * Begin listening for network connections.
@@ -369,7 +373,15 @@ private:
 
 	CNetServerTurnManager* m_ServerTurnManager;
 
-	CStr m_HostGUID;
+	/**
+	 * The GUID of the client in control of the game (the 'host' from the players' perspective).
+	 */
+	CStr m_ControllerGUID;
+
+	/**
+	 * The 'secret' used to identify the controller of the game.
+	 */
+	std::string m_ControllerSecret;
 
 	/**
 	 * A copy of all simulation commands received so far, indexed by

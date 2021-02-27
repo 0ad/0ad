@@ -48,7 +48,7 @@ const g_IsNetworked = Engine.HasNetClient();
 /**
  * Is this user in control of game settings (i.e. is a network server, or offline player).
  */
-var g_IsController = !g_IsNetworked || Engine.HasNetServer();
+var g_IsController = !g_IsNetworked || Engine.IsNetController();
 
 /**
  * Whether we have finished the synchronization and

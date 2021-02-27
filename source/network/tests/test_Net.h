@@ -150,7 +150,7 @@ public:
 		CGame client2Game(false);
 		CGame client3Game(false);
 
-		CNetServer server;
+		CNetServer server("no_secret");
 
 		JS::RootedValue attrs(rq.cx);
 		ScriptInterface::CreateObject(
@@ -163,9 +163,9 @@ public:
 
 		server.UpdateGameAttributes(&attrs, scriptInterface);
 
-		CNetClient client1(&client1Game, false);
-		CNetClient client2(&client2Game, false);
-		CNetClient client3(&client3Game, false);
+		CNetClient client1(&client1Game);
+		CNetClient client2(&client2Game);
+		CNetClient client3(&client3Game);
 
 		clients.push_back(&client1);
 		clients.push_back(&client2);
@@ -229,7 +229,7 @@ public:
 		CGame client2Game(false);
 		CGame client3Game(false);
 
-		CNetServer server;
+		CNetServer server("no_secret");
 
 		JS::RootedValue attrs(rq.cx);
 		ScriptInterface::CreateObject(
@@ -242,9 +242,9 @@ public:
 
 		server.UpdateGameAttributes(&attrs, scriptInterface);
 
-		CNetClient client1(&client1Game, false);
-		CNetClient client2(&client2Game, false);
-		CNetClient client3(&client3Game, false);
+		CNetClient client1(&client1Game);
+		CNetClient client2(&client2Game);
+		CNetClient client3(&client3Game);
 
 		client1.SetUserName(L"alice");
 		client2.SetUserName(L"bob");
@@ -303,7 +303,7 @@ public:
 		debug_printf("==== Connecting client 2B\n");
 
 		CGame client2BGame(false);
-		CNetClient client2B(&client2BGame, false);
+		CNetClient client2B(&client2BGame);
 		client2B.SetUserName(L"bob");
 		clients.push_back(&client2B);
 

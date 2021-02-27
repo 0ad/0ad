@@ -20,7 +20,7 @@ const g_IsNetworked = Engine.HasNetClient();
 /**
  * Is this user in control of game settings (i.e. is a network server, or offline player).
  */
-const g_IsController = !g_IsNetworked || Engine.HasNetServer();
+const g_IsController = !g_IsNetworked || Engine.IsNetController();
 
 /**
  * Central data storing all settings relevant to the map generation and simulation.
