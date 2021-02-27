@@ -170,6 +170,9 @@ public:
 		if (cmpSpawnedObstruction)
 		{
 			spawnedRadius = cmpSpawnedObstruction->GetSize();
+			// Force a positive radius to avoid division by zero errors.
+			if (spawnedRadius == 0)
+				spawnedRadius = 1;
 			spawnedTag = cmpSpawnedObstruction->GetObstruction();
 		}
 
