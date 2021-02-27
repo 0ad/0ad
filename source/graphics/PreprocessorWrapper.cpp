@@ -237,7 +237,8 @@ CStr CPreprocessorWrapper::ResolveIncludes(const CStr& source)
 	// After resolving the following vector should contain a complete list
 	// to concatenate.
 	std::vector<std::string_view> processedParts;
-	ResolveIncludesImpl(source, m_IncludeCache, m_IncludeCallback, chunks, processedParts);
+	if (!ResolveIncludesImpl(source, m_IncludeCache, m_IncludeCallback, chunks, processedParts))
+		return {};
 	std::size_t totalSize = 0;
 	for (const std::string_view& part : processedParts)
 		totalSize += part.size();
