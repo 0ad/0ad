@@ -789,9 +789,13 @@ UnitAI.prototype.UnitFsmSpec = {
 					return REJECT_ORDER;
 				// TODO: Should we issue a gather-near-position order
 				// if the target isn't gatherable/doesn't exist anymore?
-
-				this.PushOrderFront("WalkToTargetRange", { "target": msg.data.target, "min": 0, "max": 10 });
-				return ACCEPT_ORDER;
+				if (!msg.data.secondTry)
+				{
+					msg.data.secondTry = true;
+					this.PushOrderFront("WalkToTargetRange", { "target": msg.data.target, "min": 0, "max": 10 });
+					return ACCEPT_ORDER;
+				}
+				return REJECT_ORDER;
 			}
 
 			this.CallMemberFunction("Gather", [msg.data.target, false]);
@@ -822,9 +826,13 @@ UnitAI.prototype.UnitFsmSpec = {
 				if (!this.TargetIsAlive(msg.data.target) || !this.CheckTargetVisible(msg.data.target))
 					return REJECT_ORDER;
 
-				// Out of range; move there in formation.
-				this.PushOrderFront("WalkToTargetRange", { "target": msg.data.target, "min": 0, "max": 10 });
-				return ACCEPT_ORDER;
+				if (!msg.data.secondTry)
+				{
+					msg.data.secondTry = true;
+					this.PushOrderFront("WalkToTargetRange", { "target": msg.data.target, "min": 0, "max": 10 });
+					return ACCEPT_ORDER;
+				}
+				return REJECT_ORDER;
 			}
 
 			this.CallMemberFunction("Heal", [msg.data.target, false]);
@@ -840,9 +848,13 @@ UnitAI.prototype.UnitFsmSpec = {
 				if (!this.TargetIsAlive(msg.data.target) || !this.CheckTargetVisible(msg.data.target))
 					return REJECT_ORDER;
 
-				// Out of range move there in formation.
-				this.PushOrderFront("WalkToTargetRange", { "target": msg.data.target, "min": 0, "max": 10 });
-				return ACCEPT_ORDER;
+				if (!msg.data.secondTry)
+				{
+					msg.data.secondTry = true;
+					this.PushOrderFront("WalkToTargetRange", { "target": msg.data.target, "min": 0, "max": 10 });
+					return ACCEPT_ORDER;
+				}
+				return REJECT_ORDER;
 			}
 
 			this.CallMemberFunction("Repair", [msg.data.target, msg.data.autocontinue, false]);
@@ -858,9 +870,13 @@ UnitAI.prototype.UnitFsmSpec = {
 				if (!this.CheckTargetVisible(msg.data.target))
 					return REJECT_ORDER;
 
-				// Out of range; move there in formation.
-				this.PushOrderFront("WalkToTargetRange", { "target": msg.data.target, "min": 0, "max": 10 });
-				return ACCEPT_ORDER;
+				if (!msg.data.secondTry)
+				{
+					msg.data.secondTry = true;
+					this.PushOrderFront("WalkToTargetRange", { "target": msg.data.target, "min": 0, "max": 10 });
+					return ACCEPT_ORDER;
+				}
+				return REJECT_ORDER;
 			}
 
 			this.CallMemberFunction("ReturnResource", [msg.data.target, false]);
@@ -916,14 +932,14 @@ UnitAI.prototype.UnitFsmSpec = {
 
 		"WALKING": {
 			"enter": function() {
+				let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+				cmpFormation.SetRearrange(true);
+				cmpFormation.MoveMembersIntoFormation(true, true);
 				if (!this.MoveTo(this.order.data))
 				{
 					this.FinishOrder();
 					return true;
 				}
-				let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-				cmpFormation.SetRearrange(true);
-				cmpFormation.MoveMembersIntoFormation(true, true);
 				return false;
 			},
 
@@ -956,15 +972,15 @@ UnitAI.prototype.UnitFsmSpec = {
 
 		"WALKINGANDFIGHTING": {
 			"enter": function(msg) {
+				let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+				cmpFormation.SetRearrange(true);
+				cmpFormation.MoveMembersIntoFormation(true, true, "combat");
 				if (!this.MoveTo(this.order.data))
 				{
 					this.FinishOrder();
 					return true;
 				}
 				this.StartTimer(0, 1000);
-				let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-				cmpFormation.SetRearrange(true);
-				cmpFormation.MoveMembersIntoFormation(true, true, "combat");
 				return false;
 			},
 
@@ -1011,6 +1027,10 @@ UnitAI.prototype.UnitFsmSpec = {
 
 			"PATROLLING": {
 				"enter": function() {
+					let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+					cmpFormation.SetRearrange(true);
+					cmpFormation.MoveMembersIntoFormation(true, true, "combat");
+
 					let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 					if (!cmpPosition || !cmpPosition.IsInWorld() ||
 					    !this.MoveTo(this.order.data))
@@ -1018,10 +1038,6 @@ UnitAI.prototype.UnitFsmSpec = {
 						this.FinishOrder();
 						return true;
 					}
-
-					let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-					cmpFormation.SetRearrange(true);
-					cmpFormation.MoveMembersIntoFormation(true, true, "combat");
 
 					this.StartTimer(0, 1000);
 					return false;
@@ -1076,14 +1092,15 @@ UnitAI.prototype.UnitFsmSpec = {
 		"GARRISON": {
 			"APPROACHING": {
 				"enter": function() {
+					let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+					cmpFormation.SetRearrange(true);
+					cmpFormation.MoveMembersIntoFormation(true, true);
+
 					if (!this.MoveToGarrisonRange(this.order.data.target))
 					{
 						this.FinishOrder();
 						return true;
 					}
-					let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-					cmpFormation.SetRearrange(true);
-					cmpFormation.MoveMembersIntoFormation(true, true);
 
 					// If the garrisonholder should pickup, warn it so it can take needed action.
 					let cmpGarrisonHolder = Engine.QueryInterface(this.order.data.target, IID_GarrisonHolder);
@@ -1123,14 +1140,15 @@ UnitAI.prototype.UnitFsmSpec = {
 
 		"FORMING": {
 			"enter": function() {
+				let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+				cmpFormation.SetRearrange(true);
+				cmpFormation.MoveMembersIntoFormation(true, true);
+
 				if (!this.MoveTo(this.order.data))
 				{
 					this.FinishOrder();
 					return true;
 				}
-				let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-				cmpFormation.SetRearrange(true);
-				cmpFormation.MoveMembersIntoFormation(true, true);
 				return false;
 			},
 
@@ -1149,14 +1167,15 @@ UnitAI.prototype.UnitFsmSpec = {
 		"COMBAT": {
 			"APPROACHING": {
 				"enter": function() {
+					let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+					cmpFormation.SetRearrange(true);
+					cmpFormation.MoveMembersIntoFormation(true, true, "combat");
+
 					if (!this.MoveFormationToTargetAttackRange(this.order.data.target))
 					{
 						this.FinishOrder();
 						return true;
 					}
-					let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-					cmpFormation.SetRearrange(true);
-					cmpFormation.MoveMembersIntoFormation(true, true, "combat");
 					return false;
 				},
 
