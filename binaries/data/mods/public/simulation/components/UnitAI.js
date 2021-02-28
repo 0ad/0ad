@@ -683,20 +683,6 @@ UnitAI.prototype.UnitFsmSpec = {
 			this.SetNextState("INDIVIDUAL.UNPACKING");
 	},
 
-	"Order.CancelPack": function(msg) {
-		var cmpPack = Engine.QueryInterface(this.entity, IID_Pack);
-		if (cmpPack && cmpPack.IsPacking() && !cmpPack.IsPacked())
-			cmpPack.CancelPack();
-		this.FinishOrder();
-	},
-
-	"Order.CancelUnpack": function(msg) {
-		var cmpPack = Engine.QueryInterface(this.entity, IID_Pack);
-		if (cmpPack && cmpPack.IsPacking() && cmpPack.IsPacked())
-			cmpPack.CancelPack();
-		this.FinishOrder();
-	},
-
 	"Order.MoveToChasingPoint": function(msg) {
 		// Overriden by the CHASING state.
 		// Can however happen outside of it when renaming...
@@ -3317,6 +3303,10 @@ UnitAI.prototype.UnitFsmSpec = {
 				return false;
 			},
 
+			"Order.CancelPack": function(msg) {
+				this.FinishOrder();
+			},
+
 			"PackFinished": function(msg) {
 				this.FinishOrder();
 			},
@@ -3336,6 +3326,10 @@ UnitAI.prototype.UnitFsmSpec = {
 				let cmpPack = Engine.QueryInterface(this.entity, IID_Pack);
 				cmpPack.Unpack();
 				return false;
+			},
+
+			"Order.CancelUnpack": function(msg) {
+				this.FinishOrder();
 			},
 
 			"PackFinished": function(msg) {
