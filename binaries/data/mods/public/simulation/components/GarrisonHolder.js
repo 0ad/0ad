@@ -179,17 +179,6 @@ GarrisonHolder.prototype.Garrison = function(entity, renamed = false)
 
 	this.entities.push(entity);
 	this.UpdateGarrisonFlag();
-	let cmpProductionQueue = Engine.QueryInterface(entity, IID_ProductionQueue);
-	if (cmpProductionQueue)
-		cmpProductionQueue.PauseProduction();
-
-	let cmpAura = Engine.QueryInterface(entity, IID_Auras);
-	if (cmpAura && cmpAura.HasGarrisonAura())
-		cmpAura.ApplyGarrisonAura(this.entity);
-
-	let cmpPosition = Engine.QueryInterface(entity, IID_Position);
-	if (cmpPosition)
-		cmpPosition.MoveOutOfWorld();
 
 	Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, {
 		"added": [entity],
@@ -215,7 +204,27 @@ GarrisonHolder.prototype.Eject = function(entity, forced, renamed = false)
 	if (entityIndex == -1)
 		return false;
 
-	// Find spawning location
+	let cmpGarrisonable = Engine.QueryInterface(entity, IID_Garrisonable);
+	if (!cmpGarrisonable || !cmpGarrisonable.UnGarrison(forced))
+		return false;
+
+	this.entities.splice(entityIndex, 1);
+	Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, {
+		"added": [],
+		"removed": [entity],
+		"renamed": renamed
+	});
+
+	return true;
+};
+
+/**
+ * @param {number} entity - EntityID to find the spawn position for.
+ * @param {boolean} forced - Optionally whether the spawning is forced.
+ * @return {Vector3D} - An appropriate spawning position.
+ */
+GarrisonHolder.prototype.GetSpawnPosition = function(entity, forced)
+{
 	let cmpFootprint = Engine.QueryInterface(this.entity, IID_Footprint);
 	let cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
 	let cmpIdentity = Engine.QueryInterface(this.entity, IID_Identity);
@@ -232,49 +241,13 @@ GarrisonHolder.prototype.Eject = function(entity, forced, renamed = false)
 	{
 		// Error: couldn't find space satisfying the unit's passability criteria
 		if (!forced)
-			return false;
+			return null;
 
 		// If ejection is forced, we need to continue, so use center of the building
 		let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 		pos = cmpPosition.GetPosition();
 	}
-
-	this.entities.splice(entityIndex, 1);
-
-	let cmpEntUnitAI = Engine.QueryInterface(entity, IID_UnitAI);
-	if (cmpEntUnitAI)
-		cmpEntUnitAI.Ungarrison();
-
-	let cmpEntProductionQueue = Engine.QueryInterface(entity, IID_ProductionQueue);
-	if (cmpEntProductionQueue)
-		cmpEntProductionQueue.UnpauseProduction();
-
-	let cmpEntAura = Engine.QueryInterface(entity, IID_Auras);
-	if (cmpEntAura && cmpEntAura.HasGarrisonAura())
-		cmpEntAura.RemoveGarrisonAura(this.entity);
-
-	let cmpEntPosition = Engine.QueryInterface(entity, IID_Position);
-	if (cmpEntPosition)
-	{
-		cmpEntPosition.JumpTo(pos.x, pos.z);
-		cmpEntPosition.SetHeightOffset(0);
-
-		let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
-		if (cmpPosition)
-			cmpEntPosition.SetYRotation(cmpPosition.GetPosition().horizAngleTo(pos));
-	}
-
-	let cmpGarrisonable = Engine.QueryInterface(entity, IID_Garrisonable);
-	if (cmpGarrisonable)
-		cmpGarrisonable.UnGarrison();
-
-	Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, {
-		"added": [],
-		"removed": [entity],
-		"renamed": renamed
-	});
-
-	return true;
+	return pos;
 };
 
 /**

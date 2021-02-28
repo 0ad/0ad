@@ -4,12 +4,9 @@ Engine.LoadComponentScript("interfaces/GarrisonHolder.js");
 Engine.LoadComponentScript("interfaces/Garrisonable.js");
 Engine.LoadComponentScript("interfaces/TurretHolder.js");
 Engine.LoadComponentScript("GarrisonHolder.js");
-Engine.LoadComponentScript("interfaces/Auras.js");
 Engine.LoadComponentScript("interfaces/Health.js");
-Engine.LoadComponentScript("interfaces/ProductionQueue.js");
 Engine.LoadComponentScript("interfaces/ModifiersManager.js");
 Engine.LoadComponentScript("interfaces/Timer.js");
-Engine.LoadComponentScript("interfaces/UnitAI.js");
 
 const garrisonedEntitiesList = [25, 26, 27, 28, 29, 30, 31, 32, 33];
 const garrisonHolderId = 15;
@@ -70,7 +67,7 @@ for (let i = 24; i <= 34; ++i)
 
 	AddMock(i, IID_Garrisonable, {
 		"Garrison": entity => true,
-		"UnGarrison": () => {}
+		"UnGarrison": () => true
 	});
 
 	AddMock(i, IID_Position, {
@@ -217,7 +214,7 @@ AddMock(siegeEngineId, IID_Ownership, {
 });
 AddMock(siegeEngineId, IID_Garrisonable, {
 	"Garrison": entity => true,
-	"UnGarrison": () => {}
+	"UnGarrison": () => true
 });
 let cavalryId = 46;
 AddMock(cavalryId, IID_Identity, {
@@ -238,7 +235,7 @@ AddMock(cavalryId, IID_Ownership, {
 });
 AddMock(cavalryId, IID_Garrisonable, {
 	"Garrison": entity => true,
-	"UnGarrison": () => {}
+	"UnGarrison": () => true
 });
 TS_ASSERT(cmpGarrisonHolder.Garrison(siegeEngineId));
 TS_ASSERT_EQUALS(cmpGarrisonHolder.GetGarrisonedEntitiesCount(), 1);
