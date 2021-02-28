@@ -72,7 +72,7 @@ public:
 	CNetClientSession(CNetClient& client);
 	~CNetClientSession();
 
-	bool Connect(const CStr& server, const u16 port, const bool isLocalClient, ENetHost* enetClient);
+	bool Connect(const CStr& server, const u16 port, ENetHost* enetClient);
 
 	/**
 	 * The client NetSession is threaded to avoid getting timeouts if the main thread hangs.
@@ -140,8 +140,6 @@ private:
 	ENetHost* m_Host;
 	ENetPeer* m_Server;
 	CNetStatsTable* m_Stats;
-
-	bool m_IsLocalClient;
 };
 
 
@@ -174,11 +172,6 @@ public:
 	u32 GetIPAddress() const;
 
 	/**
-	 * Whether this client is running in the same process as the server.
-	 */
-	bool IsLocalClient() const;
-
-	/**
 	 * Number of milliseconds since the latest packet of that client was received.
 	 */
 	u32 GetLastReceivedTime() const;
@@ -204,11 +197,6 @@ public:
 	void DisconnectNow(NetDisconnectReason reason);
 
 	/**
-	 * Prevent timeouts for the client running in the same process as the server.
-	 */
-	void SetLocalClient(bool isLocalClient);
-
-	/**
 	 * Send a message to the client.
 	 */
 	virtual bool SendMessage(const CNetMessage* message);
@@ -226,8 +214,6 @@ private:
 	CStrW m_UserName;
 	u32 m_HostID;
 	CStr m_Password;
-
-	bool m_IsLocalClient;
 };
 
 #endif	// NETSESSION_H

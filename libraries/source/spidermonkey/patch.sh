@@ -39,6 +39,10 @@ patch -p1 < ../FixMacBuild.diff
 # https://bugzilla.mozilla.org/show_bug.cgi?id=1536491
 patch -p1 < ../FixRpiUnalignedFpAccess.diff
 
+# Bug 1684261 upstreamed from 78.8: https://hg.mozilla.org/releases/mozilla-esr78/rev/0e8f444683cb
+# Note that this isn't quite the upstream patch to match our version.
+patch -p1 < ../FixRust150.diff
+
 # Patch those separately, as they might interfere with normal behaviour.
 if [ "$(uname -s)" = "FreeBSD" ];
 then

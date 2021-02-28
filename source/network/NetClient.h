@@ -70,7 +70,7 @@ public:
 	 * Construct a client associated with the given game object.
 	 * The game must exist for the lifetime of this object.
 	 */
-	CNetClient(CGame* game, bool isLocalClient);
+	CNetClient(CGame* game);
 
 	virtual ~CNetClient();
 
@@ -98,6 +98,10 @@ public:
 	 * This is needed for the secure lobby authentication.
 	 */
 	void SetHostingPlayerName(const CStr& hostingPlayerName);
+
+	void SetControllerSecret(const std::string& secret);
+
+	bool IsController() const { return m_IsController; }
 
 	/**
 	 * Set the game password.
@@ -303,6 +307,12 @@ private:
 	 */
 	CStr m_Password;
 
+	/// The 'secret' used to identify the controller of the game.
+	std::string m_ControllerSecret;
+
+	/// Note that this is just a "gui hint" with no actual impact on being controller.
+	bool m_IsController = false;
+
 	/// Current network session (or NULL if not connected)
 	CNetClientSession* m_Session;
 
@@ -316,9 +326,6 @@ private:
 
 	/// True if the player is currently rejoining or has already rejoined the game.
 	bool m_Rejoin;
-
-	/// Whether to prevent the client of the host from timing out
-	bool m_IsLocalClient;
 
 	/// Latest copy of game setup attributes heard from the server
 	JS::PersistentRootedValue m_GameAttributes;

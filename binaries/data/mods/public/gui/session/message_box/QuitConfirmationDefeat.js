@@ -33,7 +33,7 @@ class QuitConfirmationDefeat extends QuitConfirmation
 
 		unregisterSimulationUpdateHandler(this.confirmHandler);
 
-		// Don't ask for exit if other humans are still playing.
+		// Don't invite the host to exit if other humans are still playing.
 		let askExit = !Engine.HasNetServer() || g_Players.every((player, i) =>
 			i == 0 ||
 			player.state != "active" ||

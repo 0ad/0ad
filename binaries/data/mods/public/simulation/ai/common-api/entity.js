@@ -437,17 +437,11 @@ m.Template = m.Class({
 
 	"isPackable": function() { return this.get("Pack") != undefined; },
 
-	/**
-	 * Returns whether this is an animal that is too difficult to hunt.
-	 */
 	"isHuntable": function() {
-		if(!this.get("ResourceSupply/KillBeforeGather"))
-			return false;
-
-		// do not hunt retaliating animals (animals without UnitAI are dead animals)
-		let behaviour = this.get("UnitAI/NaturalBehaviour");
-		return !behaviour ||
-		        behaviour != "violent" && behaviour != "aggressive" && behaviour != "defensive";
+		// Do not hunt retaliating animals (dead animals can be used).
+		// Assume entities which can attack, will attack.
+		return this.get("ResourceSupply/KillBeforeGather") &&
+			(!this.get("Health") || !this.get("Attack"));
 	},
 
 	"walkSpeed": function() { return +this.get("UnitMotion/WalkSpeed"); },

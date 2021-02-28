@@ -33,7 +33,7 @@ constexpr int CHANNEL_COUNT = 1;
 
 CNetClientSession::CNetClientSession(CNetClient& client) :
 	m_Client(client), m_FileTransferer(this), m_Host(nullptr), m_Server(nullptr),
-	m_Stats(nullptr), m_IsLocalClient(false), m_IncomingMessages(16), m_OutgoingMessages(16),
+	m_Stats(nullptr), m_IncomingMessages(16), m_OutgoingMessages(16),
 	m_LoopRunning(false), m_ShouldShutdown(false), m_MeanRTT(0), m_LastReceivedTime(0)
 {
 }
@@ -55,7 +55,7 @@ CNetClientSession::~CNetClientSession()
 	}
 }
 
-bool CNetClientSession::Connect(const CStr& server, const u16 port, const bool isLocalClient, ENetHost* enetClient)
+bool CNetClientSession::Connect(const CStr& server, const u16 port, ENetHost* enetClient)
 {
 	ENSURE(!m_LoopRunning);
 	ENSURE(!m_Host);
@@ -84,7 +84,6 @@ bool CNetClientSession::Connect(const CStr& server, const u16 port, const bool i
 
 	m_Host = host;
 	m_Server = peer;
-	m_IsLocalClient = isLocalClient;
 
 	m_Stats = new CNetStatsTable(m_Server);
 	if (CProfileViewer::IsInitialised())
@@ -236,7 +235,7 @@ u32 CNetClientSession::GetMeanRTT() const
 }
 
 CNetServerSession::CNetServerSession(CNetServerWorker& server, ENetPeer* peer) :
-	m_Server(server), m_FileTransferer(this), m_Peer(peer), m_IsLocalClient(false), m_HostID(0), m_GUID(), m_UserName()
+	m_Server(server), m_FileTransferer(this), m_Peer(peer), m_HostID(0), m_GUID(), m_UserName()
 {
 }
 
@@ -282,17 +281,4 @@ void CNetServerSession::DisconnectNow(NetDisconnectReason reason)
 bool CNetServerSession::SendMessage(const CNetMessage* message)
 {
 	return m_Server.SendMessage(m_Peer, message);
-}
-
-bool CNetServerSession::IsLocalClient() const
-{
-	return m_IsLocalClient;
-}
-
-void CNetServerSession::SetLocalClient(bool isLocalClient)
-{
-	m_IsLocalClient = isLocalClient;
-
-	if (!isLocalClient)
-		return;
 }

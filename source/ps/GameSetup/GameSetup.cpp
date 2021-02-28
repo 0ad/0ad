@@ -57,6 +57,7 @@
 #include "ps/GameSetup/CmdLineArgs.h"
 #include "ps/GameSetup/HWDetect.h"
 #include "ps/Globals.h"
+#include "ps/GUID.h"
 #include "ps/Hotkey.h"
 #include "ps/Joystick.h"
 #include "ps/Loader.h"
@@ -1556,23 +1557,27 @@ bool Autostart(const CmdLineArgs& args)
 		if (args.Has("autostart-host-players"))
 			maxPlayers = args.Get("autostart-host-players").ToUInt();
 
-		g_NetServer = new CNetServer(false, maxPlayers);
+		// Generate a secret to identify the host client.
+		std::string secret = ps_generate_guid();
 
+		g_NetServer = new CNetServer(false, maxPlayers);
+		g_NetServer->SetControllerSecret(secret);
 		g_NetServer->UpdateGameAttributes(&attrs, scriptInterface);
 
 		bool ok = g_NetServer->SetupConnection(PS_DEFAULT_PORT);
 		ENSURE(ok);
 
-		g_NetClient = new CNetClient(g_Game, true);
+		g_NetClient = new CNetClient(g_Game);
 		g_NetClient->SetUserName(userName);
 		g_NetClient->SetupServerData("127.0.0.1", PS_DEFAULT_PORT, false);
+		g_NetClient->SetControllerSecret(secret);
 		g_NetClient->SetupConnection(nullptr);
 	}
 	else if (args.Has("autostart-client"))
 	{
 		InitPsAutostart(true, attrs);
 
-		g_NetClient = new CNetClient(g_Game, false);
+		g_NetClient = new CNetClient(g_Game);
 		g_NetClient->SetUserName(userName);
 
 		CStr ip = args.Get("autostart-client");

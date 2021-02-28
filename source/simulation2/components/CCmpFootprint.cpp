@@ -163,13 +163,16 @@ public:
 			return error;
 
 		// If no spawned obstruction, use a positive radius to avoid division by zero errors.
-		entity_pos_t spawnedRadius = fixed::FromInt(1);
+		entity_pos_t spawnedRadius = entity_pos_t::FromInt(1);
 		ICmpObstructionManager::tag_t spawnedTag;
 
 		CmpPtr<ICmpObstruction> cmpSpawnedObstruction(GetSimContext(), spawned);
 		if (cmpSpawnedObstruction)
 		{
 			spawnedRadius = cmpSpawnedObstruction->GetSize();
+			// Force a positive radius to avoid division by zero errors.
+			if (spawnedRadius == entity_pos_t::Zero())
+				spawnedRadius = entity_pos_t::FromInt(1);
 			spawnedTag = cmpSpawnedObstruction->GetObstruction();
 		}
 

@@ -137,7 +137,7 @@ CNetServerWorker::CNetServerWorker(bool useLobbyAuth, int autostartPlayers) :
 	m_LobbyAuth(useLobbyAuth),
 	m_Shutdown(false),
 	m_ScriptInterface(NULL),
-	m_NextHostID(1), m_Host(NULL), m_HostGUID(), m_Stats(NULL),
+	m_NextHostID(1), m_Host(NULL), m_ControllerGUID(), m_Stats(NULL),
 	m_LastConnectionCheck(0)
 {
 	m_State = SERVER_STATE_UNCONNECTED;
@@ -186,6 +186,13 @@ void CNetServerWorker::SetPassword(const CStr& hashedPassword)
 {
 	m_Password = hashedPassword;
 }
+
+
+void CNetServerWorker::SetControllerSecret(const std::string& secret)
+{
+	m_ControllerSecret = secret;
+}
+
 
 bool CNetServerWorker::SetupConnection(const u16 port)
 {
@@ -714,9 +721,6 @@ void CNetServerWorker::OnUserJoin(CNetServerSession* session)
 {
 	AddPlayer(session->GetGUID(), session->GetUserName());
 
-	if (m_HostGUID.empty() && session->IsLocalClient())
-		m_HostGUID = session->GetGUID();
-
 	CGameSetupMessage gameSetupMessage(GetScriptInterface());
 	gameSetupMessage.m_Data = m_GameAttributes;
 	session->SendMessage(&gameSetupMessage);
@@ -814,7 +818,7 @@ void CNetServerWorker::KickPlayer(const CStrW& playerName, const bool ban)
 		[&](CNetServerSession* session) { return session->GetUserName() == playerName; });
 
 	// and return if no one or the host has that name
-	if (it == m_Sessions.end() || (*it)->GetGUID() == m_HostGUID)
+	if (it == m_Sessions.end() || (*it)->GetGUID() == m_ControllerGUID)
 		return;
 
 	if (ban)
@@ -1110,12 +1114,23 @@ bool CNetServerWorker::OnAuthenticate(void* context, CFsmEvent* event)
 
 	session->SetUserName(username);
 	session->SetHostID(newHostID);
-	session->SetLocalClient(message->m_IsLocalClient);
 
 	CAuthenticateResultMessage authenticateResult;
 	authenticateResult.m_Code = isRejoining ? ARC_OK_REJOINING : ARC_OK;
 	authenticateResult.m_HostID = newHostID;
 	authenticateResult.m_Message = L"Logged in";
+	authenticateResult.m_IsController = 0;
+
+	if (message->m_ControllerSecret == server.m_ControllerSecret)
+	{
+		if (server.m_ControllerGUID.empty())
+		{
+			server.m_ControllerGUID = session->GetGUID();
+			authenticateResult.m_IsController = 1;
+		}
+		// TODO: we could probably handle having several controllers, or swapping?
+	}
+
 	session->SendMessage(&authenticateResult);
 
 	server.OnUserJoin(session);
@@ -1247,7 +1262,7 @@ bool CNetServerWorker::OnClearAllReady(void* context, CFsmEvent* event)
 	CNetServerSession* session = (CNetServerSession*)context;
 	CNetServerWorker& server = session->GetServer();
 
-	if (session->GetGUID() == server.m_HostGUID)
+	if (session->GetGUID() == server.m_ControllerGUID)
 		server.ClearAllPlayerReady();
 
 	return true;
@@ -1265,7 +1280,7 @@ bool CNetServerWorker::OnGameSetup(void* context, CFsmEvent* event)
 	if (server.m_State != SERVER_STATE_PREGAME)
 		return true;
 
-	if (session->GetGUID() == server.m_HostGUID)
+	if (session->GetGUID() == server.m_ControllerGUID)
 	{
 		CGameSetupMessage* message = (CGameSetupMessage*)event->GetParamRef();
 		server.UpdateGameAttributes(&(message->m_Data));
@@ -1279,7 +1294,7 @@ bool CNetServerWorker::OnAssignPlayer(void* context, CFsmEvent* event)
 	CNetServerSession* session = (CNetServerSession*)context;
 	CNetServerWorker& server = session->GetServer();
 
-	if (session->GetGUID() == server.m_HostGUID)
+	if (session->GetGUID() == server.m_ControllerGUID)
 	{
 		CAssignPlayerMessage* message = (CAssignPlayerMessage*)event->GetParamRef();
 		server.AssignPlayer(message->m_PlayerID, message->m_GUID);
@@ -1293,7 +1308,7 @@ bool CNetServerWorker::OnStartGame(void* context, CFsmEvent* event)
 	CNetServerSession* session = (CNetServerSession*)context;
 	CNetServerWorker& server = session->GetServer();
 
-	if (session->GetGUID() == server.m_HostGUID)
+	if (session->GetGUID() == server.m_ControllerGUID)
 		server.StartGame();
 
 	return true;
@@ -1413,7 +1428,7 @@ bool CNetServerWorker::OnKickPlayer(void* context, CFsmEvent* event)
 	CNetServerSession* session = (CNetServerSession*)context;
 	CNetServerWorker& server = session->GetServer();
 
-	if (session->GetGUID() == server.m_HostGUID)
+	if (session->GetGUID() == server.m_ControllerGUID)
 	{
 		CKickedMessage* message = (CKickedMessage*)event->GetParamRef();
 		server.KickPlayer(message->m_Name, message->m_Ban);
@@ -1657,6 +1672,12 @@ void CNetServer::SetPassword(const CStr& password)
 	m_Password = password;
 	std::lock_guard<std::mutex> lock(m_Worker->m_WorkerMutex);
 	m_Worker->SetPassword(password);
+}
+
+void CNetServer::SetControllerSecret(const std::string& secret)
+{
+	std::lock_guard<std::mutex> lock(m_Worker->m_WorkerMutex);
+	m_Worker->SetControllerSecret(secret);
 }
 
 void CNetServer::StartGame()

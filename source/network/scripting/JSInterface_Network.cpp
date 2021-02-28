@@ -29,6 +29,7 @@
 #include "network/StunClient.h"
 #include "ps/CLogger.h"
 #include "ps/Game.h"
+#include "ps/GUID.h"
 #include "ps/Util.h"
 #include "scriptinterface/ScriptInterface.h"
 
@@ -37,6 +38,11 @@
 u16 JSI_Network::GetDefaultPort(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 {
 	return PS_DEFAULT_PORT;
+}
+
+bool JSI_Network::IsNetController(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
+{
+	return !!g_NetClient && g_NetClient->IsController();
 }
 
 bool JSI_Network::HasNetServer(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
@@ -120,16 +126,21 @@ void JSI_Network::StartNetworkHost(ScriptInterface::CmptPrivate* pCmptPrivate, c
 		return;
 	}
 
+	// Generate a secret to identify the host client.
+	std::string secret = ps_generate_guid();
+
 	// We will get hashed password from clients, so hash it once for server
 	CStr hashedPass = HashPassword(password);
 	g_NetServer->SetPassword(hashedPass);
+	g_NetServer->SetControllerSecret(secret);
 
 	g_Game = new CGame(true);
-	g_NetClient = new CNetClient(g_Game, true);
+	g_NetClient = new CNetClient(g_Game);
 	g_NetClient->SetUserName(playerName);
 	g_NetClient->SetHostingPlayerName(hostLobbyName);
 	g_NetClient->SetGamePassword(hashedPass);
 	g_NetClient->SetupServerData("127.0.0.1", serverPort, false);
+	g_NetClient->SetControllerSecret(secret);
 
 	if (!g_NetClient->SetupConnection(nullptr))
 	{
@@ -147,7 +158,7 @@ void JSI_Network::StartNetworkJoin(ScriptInterface::CmptPrivate* pCmptPrivate, c
 	ENSURE(!g_Game);
 
 	g_Game = new CGame(true);
-	g_NetClient = new CNetClient(g_Game, false);
+	g_NetClient = new CNetClient(g_Game);
 	g_NetClient->SetUserName(playerName);
 	g_NetClient->SetHostingPlayerName(hostJID.substr(0, hostJID.find("@")));
 	g_NetClient->SetupServerData(serverAddress, serverPort, useSTUN);
@@ -170,7 +181,7 @@ void JSI_Network::StartNetworkJoinLobby(ScriptInterface::CmptPrivate* UNUSED(pCm
 
 	CStr hashedPass = HashPassword(password);
 	g_Game = new CGame(true);
-	g_NetClient = new CNetClient(g_Game, false);
+	g_NetClient = new CNetClient(g_Game);
 	g_NetClient->SetUserName(playerName);
 	g_NetClient->SetHostingPlayerName(hostJID.substr(0, hostJID.find("@")));
 	g_NetClient->SetGamePassword(hashedPass);
@@ -269,6 +280,7 @@ void JSI_Network::SetTurnLength(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivat
 void JSI_Network::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
 {
 	scriptInterface.RegisterFunction<u16, &GetDefaultPort>("GetDefaultPort");
+	scriptInterface.RegisterFunction<bool, &IsNetController>("IsNetController");
 	scriptInterface.RegisterFunction<bool, &HasNetServer>("HasNetServer");
 	scriptInterface.RegisterFunction<bool, &HasNetClient>("HasNetClient");
 	scriptInterface.RegisterFunction<void, CStrW, u16, CStr, bool, CStr, &StartNetworkHost>("StartNetworkHost");

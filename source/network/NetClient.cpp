@@ -71,12 +71,11 @@ private:
 	CNetClient& m_Client;
 };
 
-CNetClient::CNetClient(CGame* game, bool isLocalClient) :
+CNetClient::CNetClient(CGame* game) :
 	m_Session(NULL),
 	m_UserName(L"anonymous"),
 	m_HostID((u32)-1), m_ClientTurnManager(NULL), m_Game(game),
 	m_GameAttributes(game->GetSimulation2()->GetScriptInterface().GetGeneralJSContext()),
-	m_IsLocalClient(isLocalClient),
 	m_LastConnectionCheck(0),
 	m_ServerAddress(),
 	m_ServerPort(0),
@@ -180,10 +179,16 @@ void CNetClient::SetGamePassword(const CStr& hashedPassword)
 	m_Password = hashedPassword;
 }
 
+void CNetClient::SetControllerSecret(const std::string& secret)
+{
+	m_ControllerSecret = secret;
+}
+
+
 bool CNetClient::SetupConnection(ENetHost* enetClient)
 {
 	CNetClientSession* session = new CNetClientSession(*this);
-	bool ok = session->Connect(m_ServerAddress, m_ServerPort, m_IsLocalClient, enetClient);
+	bool ok = session->Connect(m_ServerAddress, m_ServerPort, enetClient);
 	SetAndOwnSession(session);
 	m_PollingThread = std::thread(Threading::HandleExceptions<CNetClientSession::RunNetLoop>::Wrapper, m_Session);
 	return ok;
@@ -576,7 +581,7 @@ void CNetClient::SendAuthenticateMessage()
 	CAuthenticateMessage authenticate;
 	authenticate.m_Name = m_UserName;
 	authenticate.m_Password = m_Password;
-	authenticate.m_IsLocalClient = m_IsLocalClient;
+	authenticate.m_ControllerSecret = m_ControllerSecret;
 	SendMessage(&authenticate);
 }
 
@@ -657,6 +662,7 @@ bool CNetClient::OnAuthenticate(void* context, CFsmEvent* event)
 
 	client->m_HostID = message->m_HostID;
 	client->m_Rejoin = message->m_Code == ARC_OK_REJOINING;
+	client->m_IsController = message->m_IsController;
 
 	client->PushGuiMessage(
 		"type", "netstatus",

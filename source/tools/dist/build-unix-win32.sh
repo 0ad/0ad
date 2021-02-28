@@ -16,11 +16,13 @@ tar cf $PREFIX-unix-build.tar \
 	--exclude='libraries/source/fcollada/src/FCollada/FColladaTest' \
 	--exclude='libraries/source/spidermonkey/include-*' \
 	--exclude='libraries/source/spidermonkey/lib*' \
+	-s "|.|$PREFIX/~|" \
 	{source,build,libraries/source,binaries/system/readme.txt,binaries/data/l10n,binaries/data/tests,binaries/data/mods/_test.*,*.txt}
 
 tar cf $PREFIX-unix-data.tar \
 	--exclude='binaries/data/config/dev.cfg' \
-	 -s "|archives|binaries/data/mods|" \
+	 -s "|archives|$PREFIX/binaries/data/mods|" \
+	 -s "|binaries|$PREFIX/binaries|" \
 	 binaries/data/{config,tools} archives/
 # TODO: ought to include generated docs in here, perhaps?
 

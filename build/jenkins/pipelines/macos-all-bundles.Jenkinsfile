@@ -30,9 +30,20 @@ pipeline {
 	}
 
 	stages {
-		stage("Checkout") {
+		stage ("Checkout") {
+			options {
+				retry(3)
+			}
 			steps {
-				svn "https://svn.wildfiregames.com/public/ps/trunk@${params.SVN_REV}"
+				script {
+					try {
+						svn "https://svn.wildfiregames.com/public/ps/trunk@${params.SVN_REV}"
+					} catch(e) {
+						sh "svn cleanup"
+						sleep 300
+						throw e
+					}
+				}
 				sh "svn cleanup"
 				sh "svn revert . -R"
 				sh "svn st --no-ignore | cut -c 9- | xargs rm -rfv"
@@ -59,6 +70,8 @@ pipeline {
 				sh "svn st binaries/ --no-ignore | cut -c 9- | xargs rm -rf"
 				sh "svn st build/ --no-ignore | cut -c 9- | xargs rm -rf"
 				sh "svn st libraries/ --no-ignore | cut -c 9- | xargs rm -rf"
+				// The generated tests use hardcoded paths so they must be deleted as well.
+				sh 'python3 -c \"import glob; print(\\\" \\\".join(glob.glob(\\\"source/**/tests/**.cpp\\\", recursive=True)));\" | xargs rm -v'
 				sh "svn revert build/ -R"
 
 				// Then run the core object.
