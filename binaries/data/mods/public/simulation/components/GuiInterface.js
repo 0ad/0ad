@@ -368,7 +368,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 			"buffHeal": cmpGarrisonHolder.GetHealRate(),
 			"allowedClasses": cmpGarrisonHolder.GetAllowedClasses(),
 			"capacity": cmpGarrisonHolder.GetCapacity(),
-			"garrisonedEntitiesCount": cmpGarrisonHolder.GetGarrisonedEntitiesCount()
+			"occupiedSlots": cmpGarrisonHolder.OccupiedSlots()
 		};
 
 	let cmpTurretHolder = Engine.QueryInterface(ent, IID_TurretHolder);
@@ -380,7 +380,8 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 	let cmpGarrisonable = Engine.QueryInterface(ent, IID_Garrisonable);
 	if (cmpGarrisonable)
 		ret.garrisonable = {
-			"holder": cmpGarrisonable.HolderID()
+			"holder": cmpGarrisonable.HolderID(),
+			"size": cmpGarrisonable.UnitSize()
 		};
 
 	let cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);

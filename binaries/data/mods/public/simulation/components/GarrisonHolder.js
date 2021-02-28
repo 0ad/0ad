@@ -93,7 +93,7 @@ GarrisonHolder.prototype.GetCapacity = function()
 
 GarrisonHolder.prototype.IsFull = function()
 {
-	return this.GetGarrisonedEntitiesCount() >= this.GetCapacity();
+	return this.OccupiedSlots() >= this.GetCapacity();
 };
 
 GarrisonHolder.prototype.GetHealRate = function()
@@ -134,6 +134,18 @@ GarrisonHolder.prototype.GetGarrisonedEntitiesCount = function()
 	return count;
 };
 
+GarrisonHolder.prototype.OccupiedSlots = function()
+{
+	let count = 0;
+	for (let ent of this.entities)
+	{
+		let cmpGarrisonable = Engine.QueryInterface(ent, IID_Garrisonable);
+		if (cmpGarrisonable)
+			count += cmpGarrisonable.TotalSize();
+	}
+	return count;
+};
+
 GarrisonHolder.prototype.IsAllowedToGarrison = function(entity)
 {
 	if (!this.IsGarrisoningAllowed())
@@ -142,11 +154,8 @@ GarrisonHolder.prototype.IsAllowedToGarrison = function(entity)
 	if (!IsOwnedByMutualAllyOfEntity(entity, this.entity))
 		return false;
 
-	let extraCount = 0;
-	let cmpGarrisonHolder = Engine.QueryInterface(entity, IID_GarrisonHolder);
-	if (cmpGarrisonHolder)
-		extraCount += cmpGarrisonHolder.GetGarrisonedEntitiesCount();
-	if (this.GetGarrisonedEntitiesCount() + extraCount >= this.GetCapacity())
+	let cmpGarrisonable = Engine.QueryInterface(entity, IID_Garrisonable);
+	if (!cmpGarrisonable || this.OccupiedSlots() + cmpGarrisonable.TotalSize() > this.GetCapacity())
 		return false;
 
 	let cmpIdentity = Engine.QueryInterface(entity, IID_Identity);

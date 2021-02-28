@@ -419,6 +419,8 @@ m.Template = m.Class({
 
 	"garrisonMax": function() { return this.get("GarrisonHolder/Max"); },
 
+	"garrisonSize": function() { return this.get("Garrisonable/Size"); },
+
 	"garrisonEjectHealth": function() { return +this.get("GarrisonHolder/EjectHealth"); },
 
 	"getDefaultArrow": function() { return +this.get("BuildingAI/DefaultArrowCount"); },
@@ -735,7 +737,21 @@ m.Entity = m.Class({
 	},
 
 	"garrisoned": function() { return this._entity.garrisoned; },
-	"canGarrisonInside": function() { return this._entity.garrisoned.length < this.garrisonMax(); },
+
+	"garrisonedSlots": function() {
+		let count = 0;
+
+		if (this._entity.garrisoned)
+			for (let ent of this._entity.garrisoned)
+				count += +this._ai._entities.get(ent).garrisonSize();
+
+		return count;
+	},
+
+	"canGarrisonInside": function()
+	{
+		return this.garrisonedSlots() < this.garrisonMax();
+	},
 
 	/**
 	 * returns true if the entity can attack (including capture) the given class.

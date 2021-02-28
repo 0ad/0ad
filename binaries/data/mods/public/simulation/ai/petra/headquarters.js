@@ -2108,7 +2108,7 @@ PETRA.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 
 	// We will choose randomly ranged and melee units, except when garrisonHolder is full
 	// in which case we prefer melee units
-	let numGarrisoned = this.garrisonManager.numberOfGarrisonedUnits(nearestAnchor);
+	let numGarrisoned = this.garrisonManager.numberOfGarrisonedSlots(nearestAnchor);
 	if (nearestAnchor._entity.trainingQueue)
 	{
 		for (let item of nearestAnchor._entity.trainingQueue)

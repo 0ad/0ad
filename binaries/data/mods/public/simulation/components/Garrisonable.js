@@ -1,9 +1,39 @@
 function Garrisonable() {}
 
-Garrisonable.prototype.Schema = "<empty/>";
+Garrisonable.prototype.Schema =
+	"<a:help>Controls the garrisonability of an entity.</a:help>" +
+	"<a:example>" +
+		"<Size>10</Size>" +
+	"</a:example>" +
+	"<element name='Size' a:help='Number of garrison slots the entity occupies.'>" +
+		"<data type='nonNegativeInteger'/>" +
+	"</element>";
 
 Garrisonable.prototype.Init = function()
 {
+};
+
+/**
+ * @return {number} - The number of slots this unit takes in a garrisonHolder.
+ */
+Garrisonable.prototype.UnitSize = function()
+{
+	return ApplyValueModificationsToEntity("Garrisonable/Size", +this.template.Size, this.entity);
+};
+
+/**
+ * Calculates the number of slots this unit takes in a garrisonHolder by
+ * adding the number of garrisoned slots to the equation.
+ *
+ * @return {number} - The number of slots this unit and its garrison takes in a garrisonHolder.
+ */
+Garrisonable.prototype.TotalSize = function()
+{
+	let size = this.UnitSize();
+	let cmpGarrisonHolder = Engine.QueryInterface(this.entity, IID_GarrisonHolder);
+	if (cmpGarrisonHolder)
+		size += cmpGarrisonHolder.OccupiedSlots();
+	return size;
 };
 
 /**

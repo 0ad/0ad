@@ -179,7 +179,7 @@ PETRA.GarrisonManager.prototype.update = function(gameState, events)
 				}
 				list.splice(j--, 1);
 			}
-			if (this.numberOfGarrisonedUnits(holder) === 0)
+			if (this.numberOfGarrisonedSlots(holder) === 0)
 				this.holders.delete(id);
 			else
 				holder.setMetadata(PlayerID, "holderTimeUpdate", gameState.ai.elapsedTime);
@@ -193,7 +193,7 @@ PETRA.GarrisonManager.prototype.update = function(gameState, events)
 		let ent = gameState.getEntityById(id);
 		if (!ent || ent.owner() !== PlayerID)
 			this.decayingStructures.delete(id);
-		else if (this.numberOfGarrisonedUnits(ent) < gmin)
+		else if (this.numberOfGarrisonedSlots(ent) < gmin)
 			gameState.ai.HQ.defenseManager.garrisonUnitsInside(gameState, ent, { "min": gmin, "type": "decay" });
 	}
 };
@@ -207,6 +207,15 @@ PETRA.GarrisonManager.prototype.numberOfGarrisonedUnits = function(holder)
 	return holder.garrisoned().length + this.holders.get(holder.id()).list.length;
 };
 
+/** TODO should add the units garrisoned inside garrisoned units */
+PETRA.GarrisonManager.prototype.numberOfGarrisonedSlots = function(holder)
+{
+	if (!this.holders.has(holder.id()))
+		return holder.garrisonedSlots();
+
+	return holder.garrisonedSlots() + this.holders.get(holder.id()).list.length;
+};
+
 PETRA.GarrisonManager.prototype.allowMelee = function(holder)
 {
 	if (!this.holders.has(holder.id()))
@@ -218,7 +227,7 @@ PETRA.GarrisonManager.prototype.allowMelee = function(holder)
 /** This is just a pre-garrison state, while the entity walk to the garrison holder */
 PETRA.GarrisonManager.prototype.garrison = function(gameState, ent, holder, type)
 {
-	if (this.numberOfGarrisonedUnits(holder) >= holder.garrisonMax() || !ent.canGarrison())
+	if (this.numberOfGarrisonedSlots(holder) >= holder.garrisonMax() || !ent.canGarrison())
 		return;
 
 	this.registerHolder(gameState, holder);

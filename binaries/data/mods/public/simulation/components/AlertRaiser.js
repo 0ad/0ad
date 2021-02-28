@@ -63,7 +63,7 @@ AlertRaiser.prototype.RaiseAlert = function()
 
 			let cmpGarrisonHolder = Engine.QueryInterface(ent, IID_GarrisonHolder);
 			if (!reserved.has(ent))
-				reserved.set(ent, cmpGarrisonHolder.GetCapacity() - cmpGarrisonHolder.GetGarrisonedEntitiesCount());
+				reserved.set(ent, cmpGarrisonHolder.GetCapacity() - cmpGarrisonHolder.OccupiedSlots());
 
 			return cmpGarrisonHolder.IsAllowedToGarrison(unit) && reserved.get(ent);
 		});
