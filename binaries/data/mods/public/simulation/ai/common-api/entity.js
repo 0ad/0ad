@@ -392,7 +392,7 @@ m.Template = m.Class({
 
 	"getDiminishingReturns": function() { return +(this.get("ResourceSupply/DiminishingReturns") || 1); },
 
-	"resourceSupplyMax": function() { return +this.get("ResourceSupply/Amount"); },
+	"resourceSupplyMax": function() { return +this.get("ResourceSupply/Max"); },
 
 	"maxGatherers": function() { return +(this.get("ResourceSupply/MaxGatherers") || 0); },
 

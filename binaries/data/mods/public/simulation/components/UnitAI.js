@@ -2447,7 +2447,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					// Check if the resource is full.
 					// Will only be added if we're not already in.
 					let cmpSupply = Engine.QueryInterface(this.gatheringTarget, IID_ResourceSupply);
-					if (!cmpSupply || !cmpSupply.AddGatherer(this.entity))
+					if (!cmpSupply || !cmpSupply.AddActiveGatherer(this.entity))
 					{
 						this.SetNextState("FINDINGNEWTARGET");
 						return true;

@@ -82,7 +82,7 @@ class TemplateParser
 		if (template.ResourceSupply)
 			parsed.supply = {
 				"type": template.ResourceSupply.Type.split("."),
-				"amount": template.ResourceSupply.Amount,
+				"amount": template.ResourceSupply.Max,
 			};
 
 		if (parsed.upgrades)

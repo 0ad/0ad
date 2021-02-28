@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_resource">
+  <Auras datatype="tokens">
+    structures/corral
+  </Auras>
   <Cost>
     <BuildTime>50</BuildTime>
     <Resources>
