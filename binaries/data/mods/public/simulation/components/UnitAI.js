@@ -301,7 +301,6 @@ UnitAI.prototype.UnitFsmSpec = {
 	},
 
 	"Order.Stop": function(msg) {
-		this.StopMoving();
 		this.FinishOrder();
 
 		if (this.IsFormationMember())
@@ -761,7 +760,6 @@ UnitAI.prototype.UnitFsmSpec = {
 			cmpFormation.ResetOrderVariant();
 			if (!this.IsAttackingAsFormation())
 				this.CallMemberFunction("Stop", [false]);
-			this.StopMoving();
 			this.FinishOrder();
 			// Don't move the members back into formation,
 			// as the formation then resets and it looks odd when walk-stopping.
@@ -1308,10 +1306,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				// so move the controller out of the world to enforce that.
 				let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 				if (cmpPosition && cmpPosition.IsInWorld())
-				{
-					this.StopMoving();
 					cmpPosition.MoveOutOfWorld();
-				}
 
 				this.StartTimer(1000, 1000);
 				return false;
@@ -1461,10 +1456,13 @@ UnitAI.prototype.UnitFsmSpec = {
 				return false;
 			},
 
+			"leave": function() {
+				this.StopMoving();
+			},
+
 			"MovementUpdate": function() {
 				if (!this.CheckRange(this.order.data))
 					return;
-				this.StopMoving();
 				this.FinishOrder();
 			},
 		},
@@ -1835,7 +1833,6 @@ UnitAI.prototype.UnitFsmSpec = {
 
 		"GUARD": {
 			"RemoveGuard": function() {
-				this.StopMoving();
 				this.FinishOrder();
 			},
 
@@ -1884,7 +1881,6 @@ UnitAI.prototype.UnitFsmSpec = {
 
 			"GUARDING": {
 				"enter": function() {
-					this.StopMoving();
 					this.StartTimer(1000, 1000);
 					this.SetHeldPositionOnEntity(this.entity);
 					this.SetAnimationVariant("combat");
@@ -2019,7 +2015,6 @@ UnitAI.prototype.UnitFsmSpec = {
 				"Timer": function(msg) {
 					if (this.ShouldAbandonChase(this.order.data.target, this.order.data.force, IID_Attack, this.order.data.attackType))
 					{
-						this.StopMoving();
 						this.FinishOrder();
 
 						if (this.GetStance().respondHoldGround)
@@ -2109,8 +2104,6 @@ UnitAI.prototype.UnitFsmSpec = {
 						this.SetNextState("COMBAT.APPROACHING");
 						return true;
 					}
-
-					this.StopMoving();
 
 					let cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
 					this.attackTimers = cmpAttack.GetTimers(this.order.data.attackType);
@@ -2285,7 +2278,6 @@ UnitAI.prototype.UnitFsmSpec = {
 				"Order.MoveToChasingPoint": function(msg) {
 					if (this.CheckPointRangeExplicit(msg.data.x, msg.data.z, 0, msg.data.max))
 					{
-						this.StopMoving();
 						this.FinishOrder();
 						return;
 					}
@@ -2313,7 +2305,6 @@ UnitAI.prototype.UnitFsmSpec = {
 
 				"leave": function() {
 					this.ResetSpeedMultiplier();
-
 					this.StopMoving();
 					this.StopTimer();
 				},
@@ -2321,7 +2312,6 @@ UnitAI.prototype.UnitFsmSpec = {
 				"Timer": function(msg) {
 					if (this.ShouldAbandonChase(this.order.data.target, this.order.data.force, IID_Attack, this.order.data.attackType))
 					{
-						this.StopMoving();
 						this.FinishOrder();
 
 						if (this.GetStance().respondHoldGround)
@@ -2540,7 +2530,6 @@ UnitAI.prototype.UnitFsmSpec = {
 					// off to a different target.)
 					if (this.CheckTargetRange(this.gatheringTarget, IID_ResourceGatherer))
 					{
-						this.StopMoving();
 						this.SetDefaultAnimationVariant();
 						this.FaceTowardsTarget(this.order.data.target);
 						this.SelectAnimation("gather_" + this.order.data.type.specific);
@@ -3024,8 +3013,6 @@ UnitAI.prototype.UnitFsmSpec = {
 						return true;
 					}
 
-					this.StopMoving();
-
 					let cmpBuilderList = QueryBuilderListInterface(this.repairTarget);
 					if (cmpBuilderList)
 						cmpBuilderList.AddBuilder(this.entity);
@@ -3325,9 +3312,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 		"PACKING": {
 			"enter": function() {
-				this.StopMoving();
-
-				var cmpPack = Engine.QueryInterface(this.entity, IID_Pack);
+				let cmpPack = Engine.QueryInterface(this.entity, IID_Pack);
 				cmpPack.Pack();
 				return false;
 			},
@@ -3348,9 +3333,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 		"UNPACKING": {
 			"enter": function() {
-				this.StopMoving();
-
-				var cmpPack = Engine.QueryInterface(this.entity, IID_Pack);
+				let cmpPack = Engine.QueryInterface(this.entity, IID_Pack);
 				cmpPack.Unpack();
 				return false;
 			},
@@ -3390,15 +3373,13 @@ UnitAI.prototype.UnitFsmSpec = {
 				},
 
 				"PickupCanceled": function() {
-					this.StopMoving();
 					this.FinishOrder();
 				},
 			},
 
 			"LOADING": {
 				"enter": function() {
-					this.StopMoving();
-					var cmpGarrisonHolder = Engine.QueryInterface(this.entity, IID_GarrisonHolder);
+					let cmpGarrisonHolder = Engine.QueryInterface(this.entity, IID_GarrisonHolder);
 					if (!cmpGarrisonHolder || cmpGarrisonHolder.IsFull())
 					{
 						this.FinishOrder();
@@ -5829,7 +5810,6 @@ UnitAI.prototype.MarketRemoved = function(market)
 
 UnitAI.prototype.StopTrading = function()
 {
-	this.StopMoving();
 	this.FinishOrder();
 	var cmpTrader = Engine.QueryInterface(this.entity, IID_Trader);
 	cmpTrader.StopTrading();
