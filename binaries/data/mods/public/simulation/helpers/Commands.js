@@ -710,16 +710,6 @@ var g_Commands = {
 				continue;
 			}
 
-			if (!CanGarrisonedChangeTemplate(ent, cmd.template))
-			{
-				var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-				cmpGUIInterface.PushNotification({
-					"players": [player],
-					"message": markForTranslation("Cannot upgrade a garrisoned entity.")
-				});
-				continue;
-			}
-
 			// Check entity limits
 			var cmpEntityLimits = QueryPlayerIDInterface(player, IID_EntityLimits);
 			if (cmpEntityLimits && !cmpEntityLimits.AllowedToReplace(ent, cmd.template))

@@ -140,19 +140,6 @@ function ChangeEntityTemplate(oldEnt, newTemplate)
 	return newEnt;
 }
 
-function CanGarrisonedChangeTemplate(ent, template)
-{
-	var cmpPosition = Engine.QueryInterface(ent, IID_Position);
-	var unitAI = Engine.QueryInterface(ent, IID_UnitAI);
-	if (cmpPosition && !cmpPosition.IsInWorld() && unitAI && unitAI.IsGarrisoned())
-	{
-		// We're a garrisoned unit, assume impossibility as I've been unable to find a way to get the holder ID.
-		// TODO: change this if that ever becomes possibles
-		return false;
-	}
-	return true;
-}
-
 function CopyControlGroups(oldEnt, newEnt)
 {
 	let cmpObstruction = Engine.QueryInterface(oldEnt, IID_Obstruction);
@@ -277,5 +264,4 @@ function TransferGarrisonedUnits(oldEnt, newEnt)
 }
 
 Engine.RegisterGlobal("ChangeEntityTemplate", ChangeEntityTemplate);
-Engine.RegisterGlobal("CanGarrisonedChangeTemplate", CanGarrisonedChangeTemplate);
 Engine.RegisterGlobal("ObstructionsBlockingTemplateChange", ObstructionsBlockingTemplateChange);
