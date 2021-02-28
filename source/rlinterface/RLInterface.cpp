@@ -62,7 +62,7 @@ std::string Interface::SendGameMessage(GameMessage&& msg)
 	ENSURE(m_GameMessage.type == GameMessageType::None);
 	m_GameMessage = std::move(msg);
 	m_MsgApplied.wait(msgLock, [this]() { return m_GameMessage.type == GameMessageType::None; });
-	return m_GameState;
+	return m_ReturnValue;
 }
 
 std::string Interface::Step(std::vector<GameCommand>&& commands)
@@ -76,6 +76,13 @@ std::string Interface::Reset(ScenarioConfig&& scenario)
 	std::lock_guard<std::mutex> lock(m_Lock);
 	m_ScenarioConfig = std::move(scenario);
 	return SendGameMessage({ GameMessageType::Reset });
+}
+
+std::string Interface::Evaluate(std::string&& code)
+{
+	std::lock_guard<std::mutex> lock(m_Lock);
+	m_Code = std::move(code);
+	return SendGameMessage({ GameMessageType::Evaluate });
 }
 
 std::vector<std::string> Interface::GetTemplates(const std::vector<std::string>& names) const
@@ -192,6 +199,30 @@ void* Interface::MgCallback(mg_event event, struct mg_connection *conn, const st
 			else
 				stream << gameState.c_str();
 		}
+		else if (uri == "/evaluate")
+		{
+			if (!interface->IsGameRunning())
+			{
+				mg_printf(conn, "%s", notRunningResponse);
+				return handled;
+			}
+
+			std::string code = GetRequestContent(conn);
+			if (code.empty())
+			{
+				mg_printf(conn, "%s", noPostData);
+				return handled;
+			}
+
+			const std::string codeResult = interface->Evaluate(std::move(code));
+			if (codeResult.empty())
+			{
+				mg_printf(conn, "%s", notRunningResponse);
+				return handled;
+			}
+			else
+				stream << codeResult.c_str();
+		}
 		else if (uri == "/templates")
 		{
 			if (!interface->IsGameRunning()) {
@@ -274,7 +305,7 @@ void Interface::TryApplyMessage()
 	const bool isGameStarted = g_Game && g_Game->IsGameStarted();
 	if (m_NeedsGameState && isGameStarted)
 	{
-		m_GameState = GetGameState();
+		m_ReturnValue = GetGameState();
 		m_MsgApplied.notify_one();
 		m_MsgLock.unlock();
 		m_NeedsGameState = false;
@@ -318,7 +349,7 @@ void Interface::ApplyMessage(const GameMessage& msg)
 			{
 				LDR_NonprogressiveLoad();
 				ENSURE(g_Game->ReallyStartGame() == PSRETURN_OK);
-				m_GameState = GetGameState();
+				m_ReturnValue = GetGameState();
 				m_MsgApplied.notify_one();
 				m_MsgLock.unlock();
 			}
@@ -342,7 +373,7 @@ void Interface::ApplyMessage(const GameMessage& msg)
 		{
 			if (!g_Game)
 			{
-				m_GameState = EMPTY_STATE;
+				m_ReturnValue = EMPTY_STATE;
 				m_MsgApplied.notify_one();
 				m_MsgLock.unlock();
 				return;
@@ -368,11 +399,29 @@ void Interface::ApplyMessage(const GameMessage& msg)
 			else
 				g_Game->Update(deltaRealTime);
 
-			m_GameState = GetGameState();
+			m_ReturnValue = GetGameState();
 			m_MsgApplied.notify_one();
 			m_MsgLock.unlock();
 			break;
 		}
+        case GameMessageType::Evaluate:
+        {
+            if (!g_Game)
+            {
+                m_ReturnValue = EMPTY_STATE;
+                m_MsgApplied.notify_one();
+                m_MsgLock.unlock();
+                return;
+            }
+            const ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
+            ScriptRequest rq(scriptInterface);
+            JS::RootedValue ret(rq.cx);
+            scriptInterface.Eval(m_Code.c_str(), &ret);
+            m_ReturnValue = scriptInterface.StringifyJSON(&ret, false);
+            m_MsgApplied.notify_one();
+            m_MsgLock.unlock();
+            break;
+        }
 		default:
 		break;
 	}

@@ -78,15 +78,17 @@ def test_walk():
 
 def test_attack():
     state = game.reset(config)
-    units = state.units(owner=1, type='cavalry')
+    unit = state.units(owner=1, type='cavalry')[0]
     target = state.units(owner=2, type='female_citizen')[0]
-    initial_health = target.health()
+    initial_health_target = target.health()
+    initial_health_unit = unit.health()
 
     state = game.step([zero_ad.actions.reveal_map()])
 
-    attack = zero_ad.actions.attack(units, target)
+    attack = zero_ad.actions.attack([unit], target)
     state = game.step([attack])
-    while state.unit(target.id()).health() >= initial_health:
+    while (state.unit(target.id()).health() >= initial_health_target
+        ) and (state.unit(unit.id()).health() >= initial_health_unit):
         state = game.step()
 
 def test_chat():
