@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -45,6 +45,7 @@ enum class GameMessageType
 	None,
 	Reset,
 	Commands,
+	Evaluate,
 };
 
 /**
@@ -71,9 +72,9 @@ struct GameMessage
  * Flow of data (with the interface active):
  *  0. The game/main thread calls TryApplyMessage()
  *    - If no messages are pending, GOTO 0 (the simulation is not advanced).
- *  1. TryApplyMessage locks m_MsgLock, pulls the message, processes it, advances the simulation, and sets m_GameState.
+ *  1. TryApplyMessage locks m_MsgLock, pulls the message, processes it, advances the simulation, and sets m_ReturnValue.
  *  2. TryApplyMessage notifies the RL thread that it can carry on and unlocks m_MsgLock. The main thread carries on frame rendering and goes back to 0.
- *  3. The RL thread locks m_MsgLock, reads m_GameState, unlocks m_MsgLock, and sends the gamestate as HTTP Response to the RL client.
+ *  3. The RL thread locks m_MsgLock, reads m_ReturnValue, unlocks m_MsgLock, and sends the gamestate as HTTP Response to the RL client.
  *	4. The client processes the response and ultimately sends a new HTTP message to the RL Interface.
  *  5. The RL thread locks m_MsgLock, pushes the message, and starts waiting on the game/main thread to notify it (step 2).
  *   - GOTO 0.
@@ -86,7 +87,7 @@ public:
 
 	/**
 	 * Non-blocking call to process any pending messages from the RL client.
-	 * Updates m_GameState to the gamestate after messages have been processed.
+	 * Updates m_ReturnValue to the gamestate after messages have been processed.
 	 */
 	void TryApplyMessage();
 
@@ -105,6 +106,12 @@ private:
 	 * @return the gamestate after resetting.
 	 */
 	std::string Reset(ScenarioConfig&& scenario);
+
+	/**
+	 * Evaluate JS code in the engine such as applying arbitrary modifiers.
+	 * @return the gamestate after script evaluation.
+	 */
+	std::string Evaluate(std::string&& code);
 
 	/**
 	 * @return template data for all templates of @param names.
@@ -131,7 +138,7 @@ private:
 
 	/**
 	 * Process any pending messages from the RL client.
-	 * Updates m_GameState to the gamestate after messages have been processed.
+	 * Updates m_ReturnValue to the gamestate after messages have been processed.
 	 */
 	void ApplyMessage(const GameMessage& msg);
 
@@ -144,12 +151,13 @@ private:
 private:
 	GameMessage m_GameMessage;
 	ScenarioConfig m_ScenarioConfig;
-	std::string m_GameState;
+	std::string m_ReturnValue;
 	bool m_NeedsGameState = false;
 
 	mutable std::mutex m_Lock;
 	std::mutex m_MsgLock;
 	std::condition_variable m_MsgApplied;
+	std::string m_Code;
 };
 
 }

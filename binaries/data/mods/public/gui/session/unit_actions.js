@@ -702,15 +702,15 @@ var g_UnitActions =
 				return false;
 
 			let tooltip = sprintf(translate("Current garrison: %(garrisoned)s/%(capacity)s"), {
-				"garrisoned": targetState.garrisonHolder.garrisonedEntitiesCount,
+				"garrisoned": targetState.garrisonHolder.occupiedSlots,
 				"capacity": targetState.garrisonHolder.capacity
 			});
 
-			let extraCount = 0;
+			let extraCount = entState.garrisonable.size;
 			if (entState.garrisonHolder)
-				extraCount += entState.garrisonHolder.garrisonedEntitiesCount;
+				extraCount += entState.garrisonHolder.occupiedSlots;
 
-			if (targetState.garrisonHolder.garrisonedEntitiesCount + extraCount >= targetState.garrisonHolder.capacity)
+			if (targetState.garrisonHolder.occupiedSlots + extraCount > targetState.garrisonHolder.capacity)
 				tooltip = coloredText(tooltip, "orange");
 
 			if (!MatchesClassList(entState.identity.classes, targetState.garrisonHolder.allowedClasses))
@@ -921,11 +921,11 @@ var g_UnitActions =
 				cursor = "action-garrison";
 
 				tooltip = sprintf(translate("Current garrison: %(garrisoned)s/%(capacity)s"), {
-					"garrisoned": targetState.garrisonHolder.garrisonedEntitiesCount,
+					"garrisoned": targetState.garrisonHolder.occupiedSlots,
 					"capacity": targetState.garrisonHolder.capacity
 				});
 
-				if (targetState.garrisonHolder.garrisonedEntitiesCount >=
+				if (targetState.garrisonHolder.occupiedSlots >=
 				    targetState.garrisonHolder.capacity)
 					tooltip = coloredText(tooltip, "orange");
 			}

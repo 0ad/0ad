@@ -4,17 +4,15 @@ Engine.LoadComponentScript("interfaces/GarrisonHolder.js");
 Engine.LoadComponentScript("interfaces/Garrisonable.js");
 Engine.LoadComponentScript("interfaces/TurretHolder.js");
 Engine.LoadComponentScript("GarrisonHolder.js");
-Engine.LoadComponentScript("interfaces/Auras.js");
 Engine.LoadComponentScript("interfaces/Health.js");
-Engine.LoadComponentScript("interfaces/ProductionQueue.js");
 Engine.LoadComponentScript("interfaces/ModifiersManager.js");
 Engine.LoadComponentScript("interfaces/Timer.js");
-Engine.LoadComponentScript("interfaces/UnitAI.js");
 
 const garrisonedEntitiesList = [25, 26, 27, 28, 29, 30, 31, 32, 33];
 const garrisonHolderId = 15;
 const unitToGarrisonId = 24;
 const enemyUnitId = 34;
+const largeUnitId = 35;
 const player = 1;
 const friendlyPlayer = 2;
 const enemyPlayer = 3;
@@ -48,7 +46,7 @@ AddMock(SYSTEM_ENTITY, IID_PlayerManager, {
 	"GetPlayerByID": id => id
 });
 
-for (let i = 24; i <= 34; ++i)
+for (let i = 24; i <= 35; ++i)
 {
 	AddMock(i, IID_Identity, {
 		"GetClassesList": () => ["Infantry", "Cavalry"],
@@ -68,10 +66,20 @@ for (let i = 24; i <= 34; ++i)
 			"GetOwner": () => friendlyPlayer
 		});
 
-	AddMock(i, IID_Garrisonable, {
-		"Garrison": entity => true,
-		"UnGarrison": () => {}
-	});
+	if (i == largeUnitId)
+		AddMock(i, IID_Garrisonable, {
+			"UnitSize": () => 9,
+			"TotalSize": () => 9,
+			"Garrison": entity => true,
+			"UnGarrison": () => true
+		});
+	else
+		AddMock(i, IID_Garrisonable, {
+			"UnitSize": () => 1,
+			"TotalSize": () => 1,
+			"Garrison": entity => true,
+			"UnGarrison": () => true
+		});
 
 	AddMock(i, IID_Position, {
 		"GetHeightOffset": () => 0,
@@ -103,10 +111,14 @@ let testGarrisonAllowed = function()
 	TS_ASSERT_EQUALS(cmpGarrisonHolder.HasEnoughHealth(), true);
 	TS_ASSERT_EQUALS(cmpGarrisonHolder.Garrison(enemyUnitId), false);
 	TS_ASSERT_EQUALS(cmpGarrisonHolder.Garrison(unitToGarrisonId), true);
+	TS_ASSERT_EQUALS(cmpGarrisonHolder.Garrison(largeUnitId), true);
+	TS_ASSERT_EQUALS(cmpGarrisonHolder.IsFull(), true);
+	TS_ASSERT_EQUALS(cmpGarrisonHolder.Eject(largeUnitId), true);
 	TS_ASSERT_EQUALS(cmpGarrisonHolder.Eject(unitToGarrisonId), true);
 	TS_ASSERT_EQUALS(cmpGarrisonHolder.Garrison(unitToGarrisonId), true);
 	for (let entity of garrisonedEntitiesList)
 		TS_ASSERT_EQUALS(cmpGarrisonHolder.Garrison(entity), true);
+	TS_ASSERT_EQUALS(cmpGarrisonHolder.Garrison(largeUnitId), false);
 	TS_ASSERT_EQUALS(cmpGarrisonHolder.IsFull(), true);
 	TS_ASSERT_EQUALS(cmpGarrisonHolder.CanPickup(unitToGarrisonId), false);
 
@@ -123,6 +135,7 @@ let testGarrisonAllowed = function()
 	TS_ASSERT_UNEVAL_EQUALS(cmpGarrisonHolder.GetEntities(), [24, 26, 27]);
 	TS_ASSERT_EQUALS(cmpGarrisonHolder.GetGarrisonedEntitiesCount(), 3);
 	TS_ASSERT_EQUALS(cmpGarrisonHolder.IsFull(), false);
+	TS_ASSERT_EQUALS(cmpGarrisonHolder.Garrison(largeUnitId), false);
 	TS_ASSERT_EQUALS(cmpGarrisonHolder.UnloadAll(), true);
 	TS_ASSERT_UNEVAL_EQUALS(cmpGarrisonHolder.GetEntities(), []);
 };
@@ -155,6 +168,7 @@ TS_ASSERT_EQUALS(cmpGarrisonHolder.CanPickup(unitToGarrisonId), false);
 TS_ASSERT_EQUALS(cmpGarrisonHolder.CanPickup(enemyUnitId), false);
 TS_ASSERT_EQUALS(cmpGarrisonHolder.IsFull(), false);
 TS_ASSERT_EQUALS(cmpGarrisonHolder.IsAllowedToGarrison(enemyUnitId), false);
+TS_ASSERT_EQUALS(cmpGarrisonHolder.IsAllowedToGarrison(largeUnitId), true);
 TS_ASSERT_EQUALS(cmpGarrisonHolder.IsAllowedToGarrison(unitToGarrisonId), true);
 TS_ASSERT_EQUALS(cmpGarrisonHolder.HasEnoughHealth(), false);
 TS_ASSERT_EQUALS(cmpGarrisonHolder.Garrison(unitToGarrisonId), false);
@@ -216,8 +230,10 @@ AddMock(siegeEngineId, IID_Ownership, {
 	"GetOwner": () => currentSiegePlayer
 });
 AddMock(siegeEngineId, IID_Garrisonable, {
+	"UnitSize": () => 1,
+	"TotalSize": () => 1,
 	"Garrison": entity => true,
-	"UnGarrison": () => {}
+	"UnGarrison": () => true
 });
 let cavalryId = 46;
 AddMock(cavalryId, IID_Identity, {
@@ -237,8 +253,10 @@ AddMock(cavalryId, IID_Ownership, {
 	"GetOwner": () => currentCavalryPlayer
 });
 AddMock(cavalryId, IID_Garrisonable, {
+	"UnitSize": () => 1,
+	"TotalSize": () => 1,
 	"Garrison": entity => true,
-	"UnGarrison": () => {}
+	"UnGarrison": () => true
 });
 TS_ASSERT(cmpGarrisonHolder.Garrison(siegeEngineId));
 TS_ASSERT_EQUALS(cmpGarrisonHolder.GetGarrisonedEntitiesCount(), 1);

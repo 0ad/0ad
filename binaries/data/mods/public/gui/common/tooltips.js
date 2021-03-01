@@ -536,27 +536,45 @@ function getStatusEffectStackabilityTooltip(template)
 
 function getGarrisonTooltip(template)
 {
-	if (!template.garrisonHolder)
-		return "";
-
-	let tooltips = [
-		sprintf(translate("%(label)s: %(garrisonLimit)s"), {
-			"label": headerFont(translate("Garrison Limit")),
-			"garrisonLimit": template.garrisonHolder.capacity
-		})
-	];
-
-	if (template.garrisonHolder.buffHeal)
-		tooltips.push(
-			sprintf(translate("%(healRateLabel)s %(value)s %(health)s / %(second)s"), {
-				"healRateLabel": headerFont(translate("Heal:")),
-				"value": Math.round(template.garrisonHolder.buffHeal),
-				"health": unitFont(translate("Health")),
-				"second": unitFont(translate("second")),
+	let tooltips = [];
+	if (template.garrisonHolder)
+	{
+		tooltips.push (
+			sprintf(translate("%(label)s: %(garrisonLimit)s"), {
+				"label": headerFont(translate("Garrison Limit")),
+				"garrisonLimit": template.garrisonHolder.capacity
 			})
 		);
 
-	return tooltips.join(commaFont(translate(", ")));
+		if (template.garrisonHolder.buffHeal)
+			tooltips.push(
+				sprintf(translate("%(healRateLabel)s %(value)s %(health)s / %(second)s"), {
+					"healRateLabel": headerFont(translate("Heal:")),
+					"value": Math.round(template.garrisonHolder.buffHeal),
+					"health": unitFont(translate("Health")),
+					"second": unitFont(translate("second")),
+				})
+			);
+
+		tooltips.join(commaFont(translate(", ")));
+	}
+	if (template.garrisonable)
+	{
+		let extraSize;
+		if (template.garrisonHolder)
+			extraSize = template.garrisonHolder.occupiedSlots;
+		if (template.garrisonable.size > 1 || extraSize)
+			tooltips.push (
+				sprintf(translate("%(label)s: %(garrisonSize)s %(extraSize)s"), {
+					"label": headerFont(translate("Garrison Size")),
+					"garrisonSize": template.garrisonable.size,
+					"extraSize": extraSize ?
+						translateWithContext("nested garrison", "+ ") + extraSize : ""
+				})
+			);
+	}
+
+	return tooltips.join("\n");
 }
 
 function getProjectilesTooltip(template)

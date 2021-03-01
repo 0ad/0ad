@@ -748,7 +748,7 @@ PETRA.DefenseManager.prototype.garrisonUnitsInside = function(gameState, target,
 	if (target.hitpoints() < target.garrisonEjectHealth() * target.maxHitpoints())
 		return false;
 	let minGarrison = data.min || target.garrisonMax();
-	if (gameState.ai.HQ.garrisonManager.numberOfGarrisonedUnits(target) >= minGarrison)
+	if (gameState.ai.HQ.garrisonManager.numberOfGarrisonedSlots(target) >= minGarrison)
 		return false;
 	if (data.attacker)
 	{
@@ -800,7 +800,7 @@ PETRA.DefenseManager.prototype.garrisonUnitsInside = function(gameState, target,
 	let ret = false;
 	for (let ent of units.values())
 	{
-		if (garrisonManager.numberOfGarrisonedUnits(target) >= minGarrison)
+		if (garrisonManager.numberOfGarrisonedSlots(target) >= minGarrison)
 			break;
 		if (ent.getMetadata(PlayerID, "plan") !== undefined && ent.getMetadata(PlayerID, "plan") >= 0)
 		{
@@ -830,7 +830,7 @@ PETRA.DefenseManager.prototype.garrisonSiegeUnit = function(gameState, unit)
 			continue;
 		if (!MatchesClassList(unit.classes(), ent.garrisonableClasses()))
 			continue;
-		if (garrisonManager.numberOfGarrisonedUnits(ent) >= ent.garrisonMax())
+		if (garrisonManager.numberOfGarrisonedSlots(ent) >= ent.garrisonMax())
 			continue;
 		if (ent.hitpoints() < ent.garrisonEjectHealth() * ent.maxHitpoints())
 			continue;
@@ -866,7 +866,7 @@ PETRA.DefenseManager.prototype.garrisonAttackedUnit = function(gameState, unit, 
 			continue;
 		if (!MatchesClassList(unit.classes(), ent.garrisonableClasses()))
 			continue;
-		if (garrisonManager.numberOfGarrisonedUnits(ent) >= ent.garrisonMax() &&
+		if (garrisonManager.numberOfGarrisonedSlots(ent) >= ent.garrisonMax() &&
 		    (!emergency || !ent.garrisoned().length))
 			continue;
 		if (ent.hitpoints() < ent.garrisonEjectHealth() * ent.maxHitpoints())
@@ -887,7 +887,7 @@ PETRA.DefenseManager.prototype.garrisonAttackedUnit = function(gameState, unit, 
 		garrisonManager.garrison(gameState, unit, nearest, "protection");
 		return true;
 	}
-	if (garrisonManager.numberOfGarrisonedUnits(nearest) >= nearest.garrisonMax()) // make room for this ent
+	if (garrisonManager.numberOfGarrisonedSlots(nearest) >= nearest.garrisonMax()) // make room for this ent
 		nearest.unload(nearest.garrisoned()[0]);
 
 	garrisonManager.garrison(gameState, unit, nearest, nearest.buffHeal() ? "protection" : "emergency");

@@ -392,7 +392,7 @@ m.Template = m.Class({
 
 	"getDiminishingReturns": function() { return +(this.get("ResourceSupply/DiminishingReturns") || 1); },
 
-	"resourceSupplyMax": function() { return +this.get("ResourceSupply/Amount"); },
+	"resourceSupplyMax": function() { return +this.get("ResourceSupply/Max"); },
 
 	"maxGatherers": function() { return +(this.get("ResourceSupply/MaxGatherers") || 0); },
 
@@ -418,6 +418,8 @@ m.Template = m.Class({
 	"garrisonableClasses": function() { return this.get("GarrisonHolder/List/_string"); },
 
 	"garrisonMax": function() { return this.get("GarrisonHolder/Max"); },
+
+	"garrisonSize": function() { return this.get("Garrisonable/Size"); },
 
 	"garrisonEjectHealth": function() { return +this.get("GarrisonHolder/EjectHealth"); },
 
@@ -735,7 +737,21 @@ m.Entity = m.Class({
 	},
 
 	"garrisoned": function() { return this._entity.garrisoned; },
-	"canGarrisonInside": function() { return this._entity.garrisoned.length < this.garrisonMax(); },
+
+	"garrisonedSlots": function() {
+		let count = 0;
+
+		if (this._entity.garrisoned)
+			for (let ent of this._entity.garrisoned)
+				count += +this._ai._entities.get(ent).garrisonSize();
+
+		return count;
+	},
+
+	"canGarrisonInside": function()
+	{
+		return this.garrisonedSlots() < this.garrisonMax();
+	},
 
 	/**
 	 * returns true if the entity can attack (including capture) the given class.

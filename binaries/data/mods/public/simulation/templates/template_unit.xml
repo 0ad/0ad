@@ -22,7 +22,9 @@
     <Circle radius="1.5"/>
     <Height>4.0</Height>
   </Footprint>
-  <Garrisonable/>
+  <Garrisonable>
+    <Size>1</Size>
+  </Garrisonable>
   <Guard/>
   <Health>
     <DeathType>corpse</DeathType>

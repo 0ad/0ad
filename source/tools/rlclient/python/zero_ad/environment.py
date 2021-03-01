@@ -25,6 +25,9 @@ class ZeroAD():
         self.current_state = GameState(json.loads(state_json), self)
         return self.current_state
 
+    def evaluate(self, code):
+        return self.api.evaluate(code)
+
     def get_template(self, name):
         return self.get_templates([name])[0]
 

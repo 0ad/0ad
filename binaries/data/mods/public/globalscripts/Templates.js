@@ -327,6 +327,11 @@ function GetTemplateDataHelper(template, player, auraTemplates, modifiers = {})
 			warn("GetTemplateDataHelper(): Unrecognized Footprint type");
 	}
 
+	if (template.Garrisonable)
+		ret.garrisonable = {
+			"size": getEntityValue("Garrisonable/Size")
+		};
+
 	if (template.GarrisonHolder)
 	{
 		ret.garrisonHolder = {
