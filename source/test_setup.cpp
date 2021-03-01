@@ -36,6 +36,7 @@
 #include "lib/timer.h"
 #include "lib/sysdep/sysdep.h"
 #include "ps/Profiler2.h"
+#include "scriptinterface/FunctionWrapper.h"
 #include "scriptinterface/ScriptEngine.h"
 #include "scriptinterface/ScriptContext.h"
 #include "scriptinterface/ScriptInterface.h"
@@ -138,15 +139,16 @@ OsPath DataDir()
 
 namespace
 {
-	void script_TS_FAIL(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::wstring& msg)
+	void script_TS_FAIL(const std::wstring& msg)
 	{
 		TS_FAIL(utf8_from_wstring(msg).c_str());
 	}
 }
 
-void ScriptTestSetup(const ScriptInterface& scriptinterface)
+void ScriptTestSetup(const ScriptInterface& scriptInterface)
 {
-	scriptinterface.RegisterFunction<void, std::wstring, script_TS_FAIL>("TS_FAIL");
+	ScriptRequest rq(scriptInterface);
+	ScriptFunction::Register<script_TS_FAIL>(rq, "TS_FAIL");
 
 	// Load the TS_* function definitions
 	// (We don't use VFS because tests might not have the normal VFS paths loaded)
@@ -154,5 +156,5 @@ void ScriptTestSetup(const ScriptInterface& scriptinterface)
 	std::ifstream ifs(OsString(path).c_str());
 	ENSURE(ifs.good());
 	std::string content((std::istreambuf_iterator<char>(ifs)), std::istreambuf_iterator<char>());
-	ENSURE(scriptinterface.LoadScript(L"test_setup.js", content));
+	ENSURE(scriptInterface.LoadScript(L"test_setup.js", content));
 }

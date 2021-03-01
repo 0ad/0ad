@@ -24,6 +24,7 @@
 #include "ps/ConfigDB.h"
 #include "ps/Hotkey.h"
 #include "ps/KeyName.h"
+#include "scriptinterface/FunctionWrapper.h"
 #include "scriptinterface/ScriptConversions.h"
 
 #include <unordered_map>
@@ -66,13 +67,13 @@ void ScriptInterface::ToJSVal<std::unordered_map<std::string, std::string>>(cons
 	ToJSVal_unordered_map(rq, ret, val);
 }
 
+namespace
+{
 /**
  * @return a (js) object mapping hotkey name (from cfg files) to a list ofscancode names
  */
-JS::Value GetHotkeyMap(ScriptInterface::CmptPrivate* pCmptPrivate)
+JS::Value GetHotkeyMap(const ScriptRequest& rq)
 {
-	ScriptRequest rq(*pCmptPrivate->pScriptInterface);
-
 	JS::RootedValue hotkeyMap(rq.cx);
 
 	std::unordered_map<std::string, std::vector<std::vector<std::string>>> hotkeys;
@@ -89,7 +90,7 @@ JS::Value GetHotkeyMap(ScriptInterface::CmptPrivate* pCmptPrivate)
 			if (keymap.size() < 2 || keymap[0] < keymap[1])
 				hotkeys[mapping.name].emplace_back(keymap);
 		}
-	pCmptPrivate->pScriptInterface->ToJSVal(rq, &hotkeyMap, hotkeys);
+	ScriptInterface::ToJSVal(rq, &hotkeyMap, hotkeys);
 
 	return hotkeyMap;
 }
@@ -97,10 +98,8 @@ JS::Value GetHotkeyMap(ScriptInterface::CmptPrivate* pCmptPrivate)
 /**
  * @return a (js) object mapping scancode names to their locale-dependent name.
  */
-JS::Value GetScancodeKeyNames(ScriptInterface::CmptPrivate* pCmptPrivate)
+JS::Value GetScancodeKeyNames(const ScriptRequest& rq)
 {
-	ScriptRequest rq(*pCmptPrivate->pScriptInterface);
-
 	JS::RootedValue obj(rq.cx);
 	std::unordered_map<std::string, std::string> map;
 
@@ -108,24 +107,21 @@ JS::Value GetScancodeKeyNames(ScriptInterface::CmptPrivate* pCmptPrivate)
 	// This is slightly wasteful but should be fine overall, they are dense.
 	for (int i = 0; i < MOUSE_LAST; ++i)
 		map[FindScancodeName(static_cast<SDL_Scancode>(i))] = FindKeyName(static_cast<SDL_Scancode>(i));
-	pCmptPrivate->pScriptInterface->ToJSVal(rq, &obj, map);
+	ScriptInterface::ToJSVal(rq, &obj, map);
 
 	return obj;
 }
 
-void ReloadHotkeys(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
+void ReloadHotkeys()
 {
 	UnloadHotkeys();
 	LoadHotkeys(g_ConfigDB);
 }
 
-JS::Value GetConflicts(ScriptInterface::CmptPrivate* pCmptPrivate, JS::HandleValue combination)
+JS::Value GetConflicts(const ScriptRequest& rq, JS::HandleValue combination)
 {
-	ScriptInterface* scriptInterface = pCmptPrivate->pScriptInterface;
-	ScriptRequest rq(*scriptInterface);
-
 	std::vector<std::string> keys;
-	if (!scriptInterface->FromJSVal(rq, combination, keys))
+	if (!ScriptInterface::FromJSVal(rq, combination, keys))
 	{
 		LOGERROR("Invalid hotkey combination");
 		return JS::NullValue();
@@ -161,14 +157,15 @@ JS::Value GetConflicts(ScriptInterface::CmptPrivate* pCmptPrivate, JS::HandleVal
 		return JS::NullValue();
 
 	JS::RootedValue ret(rq.cx);
-	scriptInterface->ToJSVal(rq, &ret, conflicts);
+	ScriptInterface::ToJSVal(rq, &ret, conflicts);
 	return ret;
 }
+}
 
-void JSI_Hotkey::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
+void JSI_Hotkey::RegisterScriptFunctions(const ScriptRequest& rq)
 {
-	scriptInterface.RegisterFunction<JS::Value, &GetHotkeyMap>("GetHotkeyMap");
-	scriptInterface.RegisterFunction<JS::Value, &GetScancodeKeyNames>("GetScancodeKeyNames");
-	scriptInterface.RegisterFunction<void, &ReloadHotkeys>("ReloadHotkeys");
-	scriptInterface.RegisterFunction<JS::Value, JS::HandleValue, &GetConflicts>("GetConflicts");
+	ScriptFunction::Register<&GetHotkeyMap>(rq, "GetHotkeyMap");
+	ScriptFunction::Register<&GetScancodeKeyNames>(rq, "GetScancodeKeyNames");
+	ScriptFunction::Register<&ReloadHotkeys>(rq, "ReloadHotkeys");
+	ScriptFunction::Register<&GetConflicts>(rq, "GetConflicts");
 }

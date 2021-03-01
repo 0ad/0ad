@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,11 +18,11 @@
 #ifndef INCLUDED_JSI_HOTKEY
 #define INCLUDED_JSI_HOTKEY
 
-#include "scriptinterface/ScriptInterface.h"
+class ScriptRequest;
 
 namespace JSI_Hotkey
 {
-	void RegisterScriptFunctions(const ScriptInterface& ScriptInterface);
+	void RegisterScriptFunctions(const ScriptRequest& rq);
 }
 
 #endif // INCLUDED_JSI_HOTKEY

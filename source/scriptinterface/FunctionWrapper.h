@@ -1,0 +1,276 @@
+/* Copyright (C) 2021 Wildfire Games.
+ * This file is part of 0 A.D.
+ *
+ * 0 A.D. is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * 0 A.D. is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#ifndef INCLUDED_FUNCTIONWRAPPER
+#define INCLUDED_FUNCTIONWRAPPER
+
+#include "ScriptInterface.h"
+#include "ScriptExceptions.h"
+
+/**
+ * This class introduces templates to conveniently wrap C++ functions in JSNative functions.
+ * This _is_ rather template heavy, so compilation times beware.
+ * The C++ code can have arbitrary arguments and arbitrary return types, so long
+ * as they can be converted to/from JS using ScriptInterface::ToJSVal (FromJSVal respectively),
+ * and they are default-constructible (TODO: that can probably changed).
+ * (This could be a namespace, but I like being able to specify public/private).
+ */
+class ScriptFunction {
+private:
+	ScriptFunction() = delete;
+	ScriptFunction(const ScriptFunction&) = delete;
+	ScriptFunction(ScriptFunction&&) = delete;
+
+	/**
+	 * In JS->C++ calls, types are converted using FromJSVal,
+	 * and this requires them to be default-constructible (as that function takes an out parameter)
+	 * Exceptions are:
+	 *  - const ScriptRequest& (as the first argument only, for implementation simplicity).
+	 *  - JS::HandleValue
+	 */
+	template<typename T>
+	using type_transform = std::conditional_t<std::is_same_v<const ScriptRequest&, T>, const ScriptRequest&,
+		std::remove_const_t<typename std::remove_reference_t<T>>>;
+
+	/**
+	 * Convenient struct to get info on a [class] [const] function pointer.
+	 * TODO VS19: I ran into a really weird bug with an auto specialisation on this taking function pointers.
+	 * It'd be good to add it back once we upgrade.
+	 */
+	template <class T> struct args_info;
+
+	template<typename R, typename ...Types>
+	struct args_info<R(*)(Types ...)>
+	{
+		static constexpr const size_t nb_args = sizeof...(Types);
+		using return_type = R;
+		using object_type = void;
+		using arg_types = std::tuple<type_transform<Types>...>;
+	};
+
+	template<typename C, typename R, typename ...Types>
+	struct args_info<R(C::*)(Types ...)> : public args_info<R(*)(Types ...)> { using object_type = C; };
+	template<typename C, typename R, typename ...Types>
+	struct args_info<R(C::*)(Types ...) const> : public args_info<R(C::*)(Types ...)> {};
+
+	///////////////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////////////
+
+	/**
+	 * DoConvertFromJS takes a type, a JS argument, and converts.
+	 * The type T must be default constructible (except for HandleValue, which is handled specially).
+	 * (possible) TODO: this could probably be changed if FromJSVal had a different signature.
+	 * @param went_ok - true if the conversion succeeded and went_ok was true before, false otherwise.
+	 */
+	template<size_t idx, typename T>
+	static std::tuple<T> DoConvertFromJS(const ScriptRequest& rq, JS::CallArgs& args, bool& went_ok)
+	{
+		// No need to convert JS values.
+		if constexpr (std::is_same_v<T, JS::HandleValue>)
+		{
+			// GCC (at least < 9) & VS17 prints warnings if arguments are not used in some constexpr branch.
+			UNUSED2(rq); UNUSED2(args); UNUSED2(went_ok);
+			return std::forward_as_tuple(args[idx]); // This passes the null handle value if idx is beyond the length of args.
+		}
+		else
+		{
+			// Default-construct values that aren't passed by JS.
+			// TODO: this should perhaps be removed, as it's distinct from C++ default values and kind of tricky.
+			if (idx >= args.length())
+				return std::forward_as_tuple(T{});
+			else
+			{
+				T ret;
+				went_ok &= ScriptInterface::FromJSVal<T>(rq, args[idx], ret);
+				return std::forward_as_tuple(ret);
+			}
+		}
+	}
+
+	/**
+	 * Recursive wrapper: calls DoConvertFromJS for type T and recurses.
+	 */
+	template<size_t idx, typename T, typename V, typename ...Types>
+	static std::tuple<T, V, Types...> DoConvertFromJS(const ScriptRequest& rq, JS::CallArgs& args, bool& went_ok)
+	{
+		return std::tuple_cat(DoConvertFromJS<idx, T>(rq, args, went_ok), DoConvertFromJS<idx + 1, V, Types...>(rq, args, went_ok));
+	}
+
+	/**
+	 * ConvertFromJS is a wrapper around DoConvertFromJS, and serves to:
+	 *  - unwrap the tuple types as a parameter pack
+	 *  - handle specific cases for the first argument (cmptPrivate, ScriptRequest).
+	 *
+	 * Trick: to unpack the types of the tuple as a parameter pack, we deduce them from the function signature.
+	 * To do that, we want the tuple in the arguments, but we don't want to actually have to default-instantiate,
+	 * so we'll pass a nullptr that's static_cast to what we want.
+	 */
+	template<typename ...Types>
+	static std::tuple<Types...> ConvertFromJS(ScriptInterface::CmptPrivate*, const ScriptRequest& rq, JS::CallArgs& args, bool& went_ok, std::tuple<Types...>*)
+	{
+		if constexpr (sizeof...(Types) == 0)
+		{
+			// GCC (at least < 9) & VS17 prints warnings if arguments are not used in some constexpr branch.
+			UNUSED2(rq); UNUSED2(args); UNUSED2(went_ok);
+			return {};
+		}
+		else
+			return DoConvertFromJS<0, Types...>(rq, args, went_ok);
+	}
+
+	// Overloads for CmptPrivate* first argument.
+	template<typename ...Types>
+	static std::tuple<ScriptInterface::CmptPrivate*, Types...> ConvertFromJS(ScriptInterface::CmptPrivate* cmptPrivate, const ScriptRequest& rq, JS::CallArgs& args, bool& went_ok, std::tuple<ScriptInterface::CmptPrivate*, Types...>*)
+	{
+		if constexpr (sizeof...(Types) == 0)
+		{
+			// GCC (at least < 9) & VS17 prints warnings if arguments are not used in some constexpr branch.
+			UNUSED2(rq); UNUSED2(args); UNUSED2(went_ok);
+			return std::forward_as_tuple(cmptPrivate);
+		}
+		else
+			return std::tuple_cat(std::forward_as_tuple(cmptPrivate), DoConvertFromJS<0, Types...>(rq, args, went_ok));
+	}
+
+	// Overloads for ScriptRequest& first argument.
+	template<typename ...Types>
+	static std::tuple<const ScriptRequest&, Types...> ConvertFromJS(ScriptInterface::CmptPrivate*, const ScriptRequest& rq, JS::CallArgs& args, bool& went_ok, std::tuple<const ScriptRequest&, Types...>*)
+	{
+		if constexpr (sizeof...(Types) == 0)
+		{
+			// GCC (at least < 9) & VS17 prints warnings if arguments are not used in some constexpr branch.
+			UNUSED2(args); UNUSED2(went_ok);
+			return std::forward_as_tuple(rq);
+		}
+		else
+			return std::tuple_cat(std::forward_as_tuple(rq), DoConvertFromJS<0, Types...>(rq, args, went_ok));
+	}
+
+	///////////////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////////////
+
+	/**
+	 * Wrap std::apply for the case where we have an object method or a regular function.
+	 */
+	template <auto callable, typename T, typename tuple>
+	static typename args_info<decltype(callable)>::return_type call(T* object, tuple& args)
+	{
+		if constexpr(std::is_same_v<T, void>)
+		{
+			// GCC (at least < 9) & VS17 prints warnings if arguments are not used in some constexpr branch.
+			UNUSED2(object);
+			return std::apply(callable, args);
+		}
+		else
+			return std::apply(callable, std::tuple_cat(std::forward_as_tuple(*object), args));
+	}
+
+	///////////////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////////////
+public:
+	template <typename T>
+	using ObjectGetter = T*(*)(const ScriptRequest&, JS::CallArgs&);
+
+	// TODO: the fact that this takes class and not auto is to work around an odd VS17 bug.
+	// It can be removed with VS19.
+	template <class callableType>
+	using GetterFor = ObjectGetter<typename args_info<callableType>::object_type>;
+
+	/**
+	 * The meat of this file. This wraps a C++ function into a JSNative,
+	 * so that it can be called from JS and manipulated in Spidermonkey.
+	 * Most C++ functions can be directly wrapped, so long as their arguments are
+	 * convertible from JS::Value and their return value is convertible to JS::Value (or void)
+	 * The C++ function may optionally take const ScriptRequest& or CmptPrivate* as its first argument.
+	 * The function may be an object method, in which case you need to pass an appropriate getter
+	 *
+	 * Optimisation note: the ScriptRequest object is created even without arguments,
+	 * as it's necessary for IsExceptionPending.
+	 *
+	 * @param thisGetter to get the object, if necessary.
+	 */
+	template <auto callable, GetterFor<decltype(callable)> thisGetter = nullptr>
+	static bool ToJSNative(JSContext* cx, unsigned argc, JS::Value* vp)
+	{
+		using ObjType = typename args_info<decltype(callable)>::object_type;
+
+		JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
+		ScriptInterface* scriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
+		ScriptRequest rq(*scriptInterface);
+
+// GCC 7 triggers spurious warnings
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Waddress"
+		ObjType* obj = nullptr;
+		if constexpr (thisGetter != nullptr)
+		{
+			obj = thisGetter(rq, args);
+			if (!obj)
+				return false;
+		}
+#pragma GCC diagnostic pop
+
+		bool went_ok = true;
+		typename args_info<decltype(callable)>::arg_types outs = ConvertFromJS(ScriptInterface::GetScriptInterfaceAndCBData(cx), rq, args, went_ok, static_cast<typename args_info<decltype(callable)>::arg_types*>(nullptr));
+		if (!went_ok)
+			return false;
+
+		/**
+		 * TODO: error handling isn't standard, and since this can call any C++ function,
+		 * there's no simple obvious way to deal with it.
+		 * For now we check for pending JS exceptions, but it would probably be nicer
+		 * to standardise on something, or perhaps provide an "errorHandler" here.
+		 */
+		if constexpr (std::is_same_v<void, typename args_info<decltype(callable)>::return_type>)
+			call<callable>(obj, outs);
+		else if constexpr (std::is_same_v<JS::Value, typename args_info<decltype(callable)>::return_type>)
+			args.rval().set(call<callable>(obj, outs));
+		else
+			ScriptInterface::ToJSVal(rq, args.rval(), call<callable>(obj, outs));
+
+		return !ScriptException::IsPending(rq);
+	}
+
+	/**
+	 * Return a function spec from a C++ function.
+	 */
+	template <auto callable, GetterFor<decltype(callable)> thisGetter = nullptr, u16 flags = JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT>
+	static JSFunctionSpec Wrap(const char* name)
+	{
+		return JS_FN(name, (&ToJSNative<callable>), args_info<decltype(callable)>::nb_args, flags);
+	}
+
+	/**
+	 * Register a function on the native scope (usually 'Engine').
+	 */
+	template <auto callable, GetterFor<decltype(callable)> thisGetter = nullptr, u16 flags = JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT>
+	static void Register(const ScriptRequest& rq, const char* name)
+	{
+		JS_DefineFunction(rq.cx, rq.nativeScope, name, &ToJSNative<callable, thisGetter>, args_info<decltype(callable)>::nb_args, flags);
+	}
+
+	/**
+	 * Convert the CmptPrivate callback data to T*
+	 */
+	template <typename T>
+	static T* ObjectFromCBData(const ScriptRequest& rq, JS::CallArgs&)
+	{
+		return static_cast<T*>(ScriptInterface::GetScriptInterfaceAndCBData(rq.cx)->pCBData);
+	}
+};
+
+#endif // INCLUDED_FUNCTIONWRAPPER

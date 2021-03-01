@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,34 +21,23 @@
 
 #include "ps/CConsole.h"
 #include "ps/CLogger.h"
-#include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/FunctionWrapper.h"
 
-bool JSI_Console::CheckGlobalInitialized()
+namespace
+{
+CConsole* ConsoleGetter(const ScriptRequest&, JS::CallArgs&)
 {
 	if (!g_Console)
 	{
 		LOGERROR("Trying to access the console when it's not initialized!");
-		return false;
+		return nullptr;
 	}
-	return true;
+	return g_Console;
+}
 }
 
-bool JSI_Console::GetVisibleEnabled(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
+void JSI_Console::RegisterScriptFunctions(const ScriptRequest& rq)
 {
-	if (!CheckGlobalInitialized())
-		return false;
-	return g_Console->IsActive();
-}
-
-void JSI_Console::SetVisibleEnabled(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), bool Enabled)
-{
-	if (!CheckGlobalInitialized())
-		return;
-	g_Console->SetVisible(Enabled);
-}
-
-void JSI_Console::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
-{
-	scriptInterface.RegisterFunction<bool, &JSI_Console::GetVisibleEnabled>("Console_GetVisibleEnabled");
-	scriptInterface.RegisterFunction<void, bool, &JSI_Console::SetVisibleEnabled>("Console_SetVisibleEnabled");
+	ScriptFunction::Register<&CConsole::IsActive, ConsoleGetter>(rq, "Console_GetVisibleEnabled");
+	ScriptFunction::Register<&CConsole::SetVisible, ConsoleGetter>(rq, "Console_SetVisibleEnabled");
 }

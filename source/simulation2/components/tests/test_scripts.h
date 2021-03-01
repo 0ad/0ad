@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,6 +21,7 @@
 
 #include "ps/Filesystem.h"
 
+#include "scriptinterface/FunctionWrapper.h"
 #include "scriptinterface/ScriptContext.h"
 
 class TestComponentScripts : public CxxTest::TestSuite
@@ -118,9 +119,10 @@ public:
 
 			ScriptTestSetup(componentManager.GetScriptInterface());
 
-			componentManager.GetScriptInterface().RegisterFunction<void, VfsPath, Script_LoadComponentScript> ("LoadComponentScript");
-			componentManager.GetScriptInterface().RegisterFunction<void, VfsPath, Script_LoadHelperScript> ("LoadHelperScript");
-			componentManager.GetScriptInterface().RegisterFunction<JS::Value, JS::HandleValue, Script_SerializationRoundTrip> ("SerializationRoundTrip");
+			ScriptRequest rq(componentManager.GetScriptInterface());
+			ScriptFunction::Register<Script_LoadComponentScript>(rq, "LoadComponentScript");
+			ScriptFunction::Register<Script_LoadHelperScript>(rq, "LoadHelperScript");
+			ScriptFunction::Register<Script_SerializationRoundTrip>(rq, "SerializationRoundTrip");
 
 			componentManager.LoadComponentTypes();
 

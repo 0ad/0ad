@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -50,9 +50,11 @@
  */
 void GuiScriptingInit(ScriptInterface& scriptInterface)
 {
+	ScriptRequest rq(scriptInterface);
+
 	JSI_GUISize::RegisterScriptClass(scriptInterface);
 	JSI_ConfigDB::RegisterScriptFunctions(scriptInterface);
-	JSI_Console::RegisterScriptFunctions(scriptInterface);
+	JSI_Console::RegisterScriptFunctions(rq);
 	JSI_Debug::RegisterScriptFunctions(scriptInterface);
 	JSI_GUIManager::RegisterScriptFunctions(scriptInterface);
 	JSI_Game::RegisterScriptFunctions(scriptInterface);
