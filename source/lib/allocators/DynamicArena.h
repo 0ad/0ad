@@ -25,8 +25,9 @@
 
 #include "lib/bits.h"
 
-#include <memory> // unique_ptr
+#include <cstdlib>
 #include <new> // bad_alloc
+#include <utility>
 #include <vector>
 
 namespace Allocators {
@@ -46,6 +47,51 @@ protected:
 	class Block
 	{
 	public:
+		Block()
+		{
+			m_Data = static_cast<uint8_t*>(
+				std::malloc(BLOCK_SIZE * sizeof(uint8_t)));
+			if (!m_Data)
+			{
+				debug_warn("DynamicArena failed to allocate chunk");
+				throw std::bad_alloc();
+			}
+		}
+
+		~Block()
+		{
+			std::free(static_cast<void*>(m_Data));
+		}
+
+		Block(const Block& other) = delete;
+		Block& operator=(const Block& other) = delete;
+
+		Block(Block&& other)
+			: m_Size(other.m_Size), m_Data(other.m_Data)
+		{
+			other.m_Size = 0;
+			other.m_Data = nullptr;
+		}
+
+		Block& operator=(Block&& other)
+		{
+			if (&other == this)
+				return *this;
+
+			Block tmp(std::move(other));
+			swap(*this, tmp);
+
+			return *this;
+		}
+
+		friend void swap(Block& lhs, Block& rhs)
+		{
+			using std::swap;
+
+			swap(lhs.m_Size, rhs.m_Size);
+			swap(lhs.m_Data, rhs.m_Data);
+		}
+
 		bool Available(size_t n, size_t alignment) const
 		{
 			return n + ROUND_UP(m_Size, alignment) <= BLOCK_SIZE;
@@ -61,7 +107,7 @@ protected:
 
 	private:
 		size_t m_Size = 0;
-		std::unique_ptr<uint8_t[]> m_Data = std::make_unique<uint8_t[]>(BLOCK_SIZE);
+		uint8_t* m_Data = nullptr;
 	};
 
 	NONCOPYABLE(DynamicArena);
