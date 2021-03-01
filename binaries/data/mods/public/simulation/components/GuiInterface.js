@@ -592,7 +592,13 @@ GuiInterface.prototype.GetTemplateData = function(player, data)
 	let auraNames = template.Auras._string.split(/\s+/);
 
 	for (let name of auraNames)
-		aurasTemplate[name] = AuraTemplates.Get(name);
+	{
+		let auraTemplate = AuraTemplates.Get(name);
+		if (!auraTemplate)
+			error("Template " + templateName + " has undefined aura " + name);
+		else
+			aurasTemplate[name] = auraTemplate;
+	}
 
 	return GetTemplateDataHelper(template, owner, aurasTemplate);
 };
