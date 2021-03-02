@@ -1794,11 +1794,11 @@ public:
 	LosRegion PosToLosRegionsHelper(entity_pos_t x, entity_pos_t z) const
 	{
 		u16 i = Clamp(
-			((x/LOS_TILE_SIZE)/LOS_REGION_RATIO).ToInt_RoundToZero(),
+			(x/(LOS_TILE_SIZE*LOS_REGION_RATIO)).ToInt_RoundToZero(),
 			0,
 			m_LosRegionsPerSide - 1);
 		u16 j = Clamp(
-			((z/LOS_TILE_SIZE)/LOS_REGION_RATIO).ToInt_RoundToZero(),
+			(z/(LOS_TILE_SIZE*LOS_REGION_RATIO)).ToInt_RoundToZero(),
 			0,
 			m_LosRegionsPerSide - 1);
 		return std::make_pair(i, j);
