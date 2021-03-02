@@ -213,8 +213,10 @@ public:
 		ScriptRequest rq(*scriptInterface);
 
 // GCC 7 triggers spurious warnings
+#ifdef __GNUC__
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Waddress"
+#endif
 		ObjType* obj = nullptr;
 		if constexpr (thisGetter != nullptr)
 		{
@@ -222,7 +224,9 @@ public:
 			if (!obj)
 				return false;
 		}
+#ifdef __GNUC__
 #pragma GCC diagnostic pop
+#endif
 
 		bool went_ok = true;
 		typename args_info<decltype(callable)>::arg_types outs = ConvertFromJS(ScriptInterface::GetScriptInterfaceAndCBData(cx), rq, args, went_ok, static_cast<typename args_info<decltype(callable)>::arg_types*>(nullptr));
