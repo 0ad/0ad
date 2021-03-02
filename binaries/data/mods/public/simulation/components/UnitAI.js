@@ -177,8 +177,8 @@ var g_LeaveFoundationRange = 4;
 
 UnitAI.prototype.notifyToCheerInRange = 30;
 
+// To reject an order, use 'return this.FinishOrder();'
 const ACCEPT_ORDER = true;
-const REJECT_ORDER = false;
 
 // See ../helpers/FSM.js for some documentation of this FSM specification syntax
 UnitAI.prototype.UnitFsmSpec = {
@@ -248,7 +248,7 @@ UnitAI.prototype.UnitFsmSpec = {
 	// Called when being told to walk as part of a formation
 	"Order.FormationWalk": function(msg) {
 		if (!this.AbleToMove())
-			return REJECT_ORDER;
+			return this.FinishOrder();
 
 		if (this.CanPack())
 		{
@@ -256,7 +256,7 @@ UnitAI.prototype.UnitFsmSpec = {
 			// In that case we don't actually want to move, as that would unpack us.
 			let cmpControllerAI = Engine.QueryInterface(this.GetFormationController(), IID_UnitAI);
 			if (cmpControllerAI.IsIdle())
-				return REJECT_ORDER;
+				return this.FinishOrder();
 			this.PushOrderFront("Pack", { "force": true });
 		}
 		else
@@ -269,7 +269,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 	"Order.LeaveFoundation": function(msg) {
 		if (!this.WillMoveFromFoundation(msg.data.target))
-			return REJECT_ORDER;
+			return this.FinishOrder();
 		this.order.data.min = g_LeaveFoundationRange;
 		this.SetNextState("INDIVIDUAL.WALKING");
 		return ACCEPT_ORDER;
@@ -279,7 +279,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 	"Order.LeaveFormation": function() {
 		if (!this.IsFormationMember())
-			return REJECT_ORDER;
+			return this.FinishOrder();
 
 		let cmpFormation = Engine.QueryInterface(this.formationController, IID_Formation);
 		if (cmpFormation)
@@ -300,7 +300,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 	"Order.Walk": function(msg) {
 		if (!this.AbleToMove())
-			return REJECT_ORDER;
+			return this.FinishOrder();
 
 		if (this.CanPack())
 		{
@@ -316,7 +316,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 	"Order.WalkAndFight": function(msg) {
 		if (!this.AbleToMove())
-			return REJECT_ORDER;
+			return this.FinishOrder();
 
 		if (this.CanPack())
 		{
@@ -333,7 +333,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 	"Order.WalkToTarget": function(msg) {
 		if (!this.AbleToMove())
-			return REJECT_ORDER;
+			return this.FinishOrder();
 
 		if (this.CanPack())
 		{
@@ -343,7 +343,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 
 		if (this.CheckRange(this.order.data))
-			return REJECT_ORDER;
+			return this.FinishOrder();
 
 		this.order.data.relaxed = true;
 		this.SetNextState("INDIVIDUAL.WALKING");
@@ -353,13 +353,13 @@ UnitAI.prototype.UnitFsmSpec = {
 	"Order.PickupUnit": function(msg) {
 		let cmpGarrisonHolder = Engine.QueryInterface(this.entity, IID_GarrisonHolder);
 		if (!cmpGarrisonHolder || cmpGarrisonHolder.IsFull())
-			return REJECT_ORDER;
+			return this.FinishOrder();
 
 		let range = cmpGarrisonHolder.GetLoadingRange();
 		this.order.data.min = range.min;
 		this.order.data.max = range.max;
 		if (this.CheckRange(this.order.data))
-			return REJECT_ORDER;
+			return this.FinishOrder();
 
 		// Check if we need to move
 		// If the target can reach us and we are reasonably close, don't move.
@@ -376,7 +376,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 	"Order.Guard": function(msg) {
 		if (!this.AddGuard(this.order.data.target))
-			return REJECT_ORDER;
+			return this.FinishOrder();
 
 		if (!this.CheckTargetRangeExplicit(this.isGuardOf, 0, this.guardRange))
 			this.SetNextState("INDIVIDUAL.GUARD.ESCORTING");
@@ -393,7 +393,7 @@ UnitAI.prototype.UnitFsmSpec = {
 	"Order.Attack": function(msg) {
 		let type = this.GetBestAttackAgainst(this.order.data.target, this.order.data.allowCapture);
 		if (!type)
-			return REJECT_ORDER;
+			return this.FinishOrder();
 
 		this.order.data.attackType = type;
 
@@ -418,7 +418,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 		// If we're hunting, that's a special case where we should continue attacking our target.
 		if (this.GetStance().respondStandGround && !this.order.data.force && !this.order.data.hunting || !this.AbleToMove())
-			return REJECT_ORDER;
+			return this.FinishOrder();
 
 		if (this.CanPack())
 		{
@@ -434,7 +434,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 	"Order.Patrol": function(msg) {
 		if (!this.AbleToMove())
-			return REJECT_ORDER;
+			return this.FinishOrder();
 
 		if (this.CanPack())
 		{
@@ -450,11 +450,11 @@ UnitAI.prototype.UnitFsmSpec = {
 
 	"Order.Heal": function(msg) {
 		if (!this.TargetIsAlive(this.order.data.target))
-			return REJECT_ORDER;
+			return this.FinishOrder();
 
 		// Healers can't heal themselves.
 		if (this.order.data.target == this.entity)
-			return REJECT_ORDER;
+			return this.FinishOrder();
 
 		if (this.CheckTargetRange(this.order.data.target, IID_Heal))
 		{
@@ -463,7 +463,7 @@ UnitAI.prototype.UnitFsmSpec = {
 		}
 
 		if (this.GetStance().respondStandGround && !this.order.data.force)
-			return REJECT_ORDER;
+			return this.FinishOrder();
 
 		this.SetNextState("INDIVIDUAL.HEAL.APPROACHING");
 		return ACCEPT_ORDER;
@@ -502,7 +502,7 @@ UnitAI.prototype.UnitFsmSpec = {
 			{
 				// Oops, we can't attack at all - give up
 				// TODO: should do something so the player knows why this failed
-				return REJECT_ORDER;
+				return this.FinishOrder();
 			}
 			// The target was visible when this order was issued,
 			// but could now be invisible again.
@@ -571,7 +571,7 @@ UnitAI.prototype.UnitFsmSpec = {
 		// We must check if this trader has both markets in case it was a back-to-work order.
 		let cmpTrader = Engine.QueryInterface(this.entity, IID_Trader);
 		if (!cmpTrader || !cmpTrader.HasBothMarkets())
-			return REJECT_ORDER;
+			return this.FinishOrder();
 
 		this.waypoints = [];
 		this.SetNextState("TRADE.APPROACHINGMARKET");
@@ -621,19 +621,19 @@ UnitAI.prototype.UnitFsmSpec = {
 	},
 
 	"Order.Cheer": function(msg) {
-		return REJECT_ORDER;
+		return this.FinishOrder();
 	},
 
 	"Order.Pack": function(msg) {
 		if (!this.CanPack())
-			return REJECT_ORDER;
+			return this.FinishOrder();
 		this.SetNextState("INDIVIDUAL.PACKING");
 		return ACCEPT_ORDER;
 	},
 
 	"Order.Unpack": function(msg) {
 		if (!this.CanUnpack())
-			return REJECT_ORDER;
+			return this.FinishOrder();
 		this.SetNextState("INDIVIDUAL.UNPACKING");
 		return ACCEPT_ORDER;
 	},
@@ -642,7 +642,7 @@ UnitAI.prototype.UnitFsmSpec = {
 		// Overriden by the CHASING state.
 		// Can however happen outside of it when renaming...
 		// TODO: don't use an order for that behaviour.
-		return REJECT_ORDER;
+		return this.FinishOrder();
 	},
 
 	// States for the special entity representing a group of units moving in formation:
@@ -669,21 +669,21 @@ UnitAI.prototype.UnitFsmSpec = {
 		// Only used by other orders to walk there in formation.
 		"Order.WalkToTargetRange": function(msg) {
 			if (this.CheckRange(this.order.data))
-				return REJECT_ORDER;
+				return this.FinishOrder();
 			this.SetNextState("WALKING");
 			return ACCEPT_ORDER;
 		},
 
 		"Order.WalkToTarget": function(msg) {
 			if (this.CheckRange(this.order.data))
-				return REJECT_ORDER;
+				return this.FinishOrder();
 			this.SetNextState("WALKING");
 			return ACCEPT_ORDER;
 		},
 
 		"Order.WalkToPointRange": function(msg) {
 			if (this.CheckRange(this.order.data))
-				return REJECT_ORDER;
+				return this.FinishOrder();
 			this.SetNextState("WALKING");
 			return ACCEPT_ORDER;
 		},
@@ -726,7 +726,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					this.SetNextState("COMBAT.APPROACHING");
 					return ACCEPT_ORDER;
 				}
-				return REJECT_ORDER;
+				return this.FinishOrder();
 			}
 			this.CallMemberFunction("Attack", [target, allowCapture, false]);
 			let cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
@@ -739,11 +739,11 @@ UnitAI.prototype.UnitFsmSpec = {
 
 		"Order.Garrison": function(msg) {
 			if (!Engine.QueryInterface(msg.data.target, IID_GarrisonHolder))
-				return REJECT_ORDER;
+				return this.FinishOrder();
 			if (!this.CheckGarrisonRange(msg.data.target))
 			{
 				if (!this.CheckTargetVisible(msg.data.target))
-					return REJECT_ORDER;
+					return this.FinishOrder();
 
 				this.SetNextState("GARRISON.APPROACHING");
 			}
@@ -786,7 +786,7 @@ UnitAI.prototype.UnitFsmSpec = {
 			if (!this.CheckTargetRangeExplicit(msg.data.target, 0, 10))
 			{
 				if (!this.CanGather(msg.data.target) || !this.CheckTargetVisible(msg.data.target))
-					return REJECT_ORDER;
+					return this.FinishOrder();
 				// TODO: Should we issue a gather-near-position order
 				// if the target isn't gatherable/doesn't exist anymore?
 				if (!msg.data.secondTry)
@@ -795,7 +795,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					this.PushOrderFront("WalkToTargetRange", { "target": msg.data.target, "min": 0, "max": 10 });
 					return ACCEPT_ORDER;
 				}
-				return REJECT_ORDER;
+				return this.FinishOrder();
 			}
 
 			this.CallMemberFunction("Gather", [msg.data.target, false]);
@@ -824,7 +824,7 @@ UnitAI.prototype.UnitFsmSpec = {
 			if (!this.CheckTargetRangeExplicit(msg.data.target, 0, 10))
 			{
 				if (!this.TargetIsAlive(msg.data.target) || !this.CheckTargetVisible(msg.data.target))
-					return REJECT_ORDER;
+					return this.FinishOrder();
 
 				if (!msg.data.secondTry)
 				{
@@ -832,7 +832,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					this.PushOrderFront("WalkToTargetRange", { "target": msg.data.target, "min": 0, "max": 10 });
 					return ACCEPT_ORDER;
 				}
-				return REJECT_ORDER;
+				return this.FinishOrder();
 			}
 
 			this.CallMemberFunction("Heal", [msg.data.target, false]);
@@ -846,7 +846,7 @@ UnitAI.prototype.UnitFsmSpec = {
 			if (!this.CheckTargetRangeExplicit(msg.data.target, 0, 10))
 			{
 				if (!this.TargetIsAlive(msg.data.target) || !this.CheckTargetVisible(msg.data.target))
-					return REJECT_ORDER;
+					return this.FinishOrder();
 
 				if (!msg.data.secondTry)
 				{
@@ -854,7 +854,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					this.PushOrderFront("WalkToTargetRange", { "target": msg.data.target, "min": 0, "max": 10 });
 					return ACCEPT_ORDER;
 				}
-				return REJECT_ORDER;
+				return this.FinishOrder();
 			}
 
 			this.CallMemberFunction("Repair", [msg.data.target, msg.data.autocontinue, false]);
@@ -868,7 +868,7 @@ UnitAI.prototype.UnitFsmSpec = {
 			if (!this.CheckTargetRangeExplicit(msg.data.target, 0, 10))
 			{
 				if (!this.CheckTargetVisible(msg.data.target))
-					return REJECT_ORDER;
+					return this.FinishOrder();
 
 				if (!msg.data.secondTry)
 				{
@@ -876,7 +876,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					this.PushOrderFront("WalkToTargetRange", { "target": msg.data.target, "min": 0, "max": 10 });
 					return ACCEPT_ORDER;
 				}
-				return REJECT_ORDER;
+				return this.FinishOrder();
 			}
 
 			this.CallMemberFunction("ReturnResource", [msg.data.target, false]);
@@ -1336,7 +1336,7 @@ UnitAI.prototype.UnitFsmSpec = {
 		// state forever and need to get out of foundations in that case)
 		"Order.LeaveFoundation": function(msg) {
 			if (!this.WillMoveFromFoundation(msg.data.target))
-				return REJECT_ORDER;
+				return this.FinishOrder();
 			this.order.data.min = g_LeaveFoundationRange;
 			this.SetNextState("WALKINGTOPOINT");
 			return ACCEPT_ORDER;
@@ -1492,7 +1492,7 @@ UnitAI.prototype.UnitFsmSpec = {
 			"Order.Cheer": function() {
 				// Do not cheer if there is no cheering time and we are not idle yet.
 				if (!this.cheeringTime || !this.isIdle)
-					return REJECT_ORDER;
+					return this.FinishOrder();
 
 				this.SetNextState("CHEERING");
 				return ACCEPT_ORDER;
@@ -1938,7 +1938,7 @@ UnitAI.prototype.UnitFsmSpec = {
 		"COMBAT": {
 			"Order.LeaveFoundation": function(msg) {
 				// Ignore the order as we're busy.
-				return REJECT_ORDER;
+				return this.FinishOrder();
 			},
 
 			"Attacked": function(msg) {
@@ -2187,7 +2187,7 @@ UnitAI.prototype.UnitFsmSpec = {
 			"FINDINGNEWTARGET": {
 				"Order.Cheer": function() {
 					if (!this.cheeringTime)
-						return REJECT_ORDER;
+						return this.FinishOrder();
 
 					this.SetNextState("CHEERING");
 					return ACCEPT_ORDER;
@@ -2238,7 +2238,7 @@ UnitAI.prototype.UnitFsmSpec = {
 			"CHASING": {
 				"Order.MoveToChasingPoint": function(msg) {
 					if (this.CheckPointRangeExplicit(msg.data.x, msg.data.z, 0, msg.data.max))
-						return REJECT_ORDER;
+						return this.FinishOrder();
 					this.order.data.relaxed = true;
 					this.StopTimer();
 					this.SetNextState("MOVINGTOPOINT");
@@ -3751,11 +3751,13 @@ UnitAI.prototype.SetupAttackRangeQuery = function(enable = true)
 //// FSM linkage functions ////
 
 // Setting the next state to the current state will leave/re-enter the top-most substate.
+// Must be called from inside the FSM.
 UnitAI.prototype.SetNextState = function(state)
 {
 	this.UnitFsm.SetNextState(this, state);
 };
 
+// Must be called from inside the FSM.
 UnitAI.prototype.DeferMessage = function(msg)
 {
 	this.UnitFsm.DeferMessage(this, msg);
@@ -3777,6 +3779,7 @@ UnitAI.prototype.FsmStateNameChanged = function(state)
  * next one (if any). Returns false and defaults to IDLE
  * if there are no remaining orders or if the unit is not
  * inWorld and not garrisoned (thus usually waiting to be destroyed).
+ * Must be called from inside the FSM.
  */
 UnitAI.prototype.FinishOrder = function()
 {
@@ -3801,13 +3804,7 @@ UnitAI.prototype.FinishOrder = function()
 
 		Engine.PostMessage(this.entity, MT_UnitAIOrderDataChanged, { "to": this.GetOrderData() });
 
-		// If the order was rejected then immediately take it off
-		// and process the remaining queue
-		if (ret === REJECT_ORDER)
-			return this.FinishOrder();
-
-		// Otherwise we've successfully processed a new order
-		return true;
+		return ret;
 	}
 
 	this.orderQueue = [];
@@ -3849,14 +3846,9 @@ UnitAI.prototype.PushOrder = function(type, data)
 	if (this.orderQueue.length == 1)
 	{
 		this.order = order;
-		let ret = this.UnitFsm.ProcessMessage(this,
+		this.UnitFsm.ProcessMessage(this,
 			{ "type": "Order."+this.order.type, "data": this.order.data }
 		);
-
-		// If the order was rejected then immediately take it off
-		// and process the remaining queue
-		if (ret === REJECT_ORDER)
-			this.FinishOrder();
 	}
 
 	Engine.PostMessage(this.entity, MT_UnitAIOrderDataChanged, { "to": this.GetOrderData() });
@@ -3879,19 +3871,9 @@ UnitAI.prototype.PushOrderFront = function(type, data, ignorePacking = false)
 	{
 		this.orderQueue.unshift(order);
 		this.order = order;
-		let ret = this.UnitFsm.ProcessMessage(this,
+		this.UnitFsm.ProcessMessage(this,
 			{ "type": "Order."+this.order.type, "data": this.order.data }
 		);
-
-		// If the order was rejected then immediately take it off again;
-		// assume the previous active order is still valid (the short-lived
-		// new order hasn't changed state or anything) so we can carry on
-		// as if nothing had happened
-		if (ret === REJECT_ORDER)
-		{
-			this.orderQueue.shift();
-			this.order = this.orderQueue[0];
-		}
 	}
 
 	Engine.PostMessage(this.entity, MT_UnitAIOrderDataChanged, { "to": this.GetOrderData() });
