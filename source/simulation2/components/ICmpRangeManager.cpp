@@ -60,7 +60,7 @@ DEFINE_INTERFACE_METHOD_CONST_1("GetEntitiesByPlayer", std::vector<entity_id_t>,
 DEFINE_INTERFACE_METHOD_CONST_0("GetNonGaiaEntities", std::vector<entity_id_t>, ICmpRangeManager, GetNonGaiaEntities)
 DEFINE_INTERFACE_METHOD_CONST_0("GetGaiaAndNonGaiaEntities", std::vector<entity_id_t>, ICmpRangeManager, GetGaiaAndNonGaiaEntities)
 DEFINE_INTERFACE_METHOD_1("SetDebugOverlay", void, ICmpRangeManager, SetDebugOverlay, bool)
-DEFINE_INTERFACE_METHOD_1("ExploreAllTiles", void, ICmpRangeManager, ExploreAllTiles, player_id_t)
+DEFINE_INTERFACE_METHOD_1("ExploreMap", void, ICmpRangeManager, ExploreMap, player_id_t)
 DEFINE_INTERFACE_METHOD_0("ExploreTerritories", void, ICmpRangeManager, ExploreTerritories)
 DEFINE_INTERFACE_METHOD_2("SetLosRevealAll", void, ICmpRangeManager, SetLosRevealAll, player_id_t, bool)
 DEFINE_INTERFACE_METHOD_CONST_1("GetLosRevealAll", bool, ICmpRangeManager, GetLosRevealAll, player_id_t)

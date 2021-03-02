@@ -362,8 +362,8 @@ void CCmpProjectileManager::RenderModel(CModelAbstract& model, const CVector3D& 
 	const CFrustum& frustum, bool culling, const CLosQuerier& los, bool losRevealAll) const
 {
 	// Don't display objects outside the visible area
-	ssize_t posi = (ssize_t)(0.5f + position.X / TERRAIN_TILE_SIZE);
-	ssize_t posj = (ssize_t)(0.5f + position.Z / TERRAIN_TILE_SIZE);
+	ssize_t posi = (ssize_t)(0.5f + position.X / LOS_TILE_SIZE);
+	ssize_t posj = (ssize_t)(0.5f + position.Z / LOS_TILE_SIZE);
 	if (!losRevealAll && !los.IsVisible(posi, posj))
 		return;
 

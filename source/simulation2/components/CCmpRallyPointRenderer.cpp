@@ -816,10 +816,10 @@ void CCmpRallyPointRenderer::GetVisibilitySegments(std::vector<SVisibilitySegmen
 	// Go through the path node list, comparing each node's visibility with the previous one. If it changes, end the current segment and start
 	// a new one at the next point.
 
-	const float terrainSize = static_cast<float>(TERRAIN_TILE_SIZE);
+	const float cellSize = static_cast<float>(LOS_TILE_SIZE);
 	bool lastVisible = losQuerier.IsExplored(
-		(fixed::FromFloat(m_Path[index][0].X / terrainSize)).ToInt_RoundToNearest(),
-		(fixed::FromFloat(m_Path[index][0].Y / terrainSize)).ToInt_RoundToNearest()
+		(fixed::FromFloat(m_Path[index][0].X / cellSize)).ToInt_RoundToNearest(),
+		(fixed::FromFloat(m_Path[index][0].Y / cellSize)).ToInt_RoundToNearest()
 	);
 	// Starting node index of the current segment
 	size_t curSegmentStartIndex = 0;
@@ -827,8 +827,8 @@ void CCmpRallyPointRenderer::GetVisibilitySegments(std::vector<SVisibilitySegmen
 	for (size_t k = 1; k < m_Path[index].size(); ++k)
 	{
 		// Grab tile indices for this coord
-		int i = (fixed::FromFloat(m_Path[index][k].X / terrainSize)).ToInt_RoundToNearest();
-		int j = (fixed::FromFloat(m_Path[index][k].Y / terrainSize)).ToInt_RoundToNearest();
+		int i = (fixed::FromFloat(m_Path[index][k].X / cellSize)).ToInt_RoundToNearest();
+		int j = (fixed::FromFloat(m_Path[index][k].Y / cellSize)).ToInt_RoundToNearest();
 
 		bool nodeVisible = losQuerier.IsExplored(i, j);
 		if (nodeVisible != lastVisible)

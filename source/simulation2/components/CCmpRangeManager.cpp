@@ -45,9 +45,9 @@
 #include "ps/Profile.h"
 #include "renderer/Scene.h"
 
-#define LOS_TILES_RATIO 8
 #define DEBUG_RANGE_MANAGER_BOUNDS 0
 
+constexpr int LOS_REGION_RATIO = 8;
 
 /**
  * Convert an owner ID (-1 = unowned, 0 = gaia, 1..30 = players)
@@ -113,7 +113,7 @@ static inline LosVisibility GetPlayerVisibility(u32 visibilities, player_id_t pl
 }
 
 /**
- * Test whether the visibility is dirty for a given LoS tile and a given player
+ * Test whether the visibility is dirty for a given LoS region and a given player
  */
 static inline bool IsVisibilityDirty(u16 dirty, player_id_t player)
 {
@@ -381,18 +381,18 @@ public:
 	// LOS state:
 	static const player_id_t MAX_LOS_PLAYER_ID = 16;
 
-	using LosTile = std::pair<u16, u16>;
+	using LosRegion = std::pair<u16, u16>;
 
 	std::array<bool, MAX_LOS_PLAYER_ID+2> m_LosRevealAll;
 	bool m_LosCircular;
-	i32 m_TerrainVerticesPerSide;
+	i32 m_LosVerticesPerSide;
 
 	// Cache for visibility tracking
-	i32 m_LosTilesPerSide;
+	i32 m_LosRegionsPerSide;
 	bool m_GlobalVisibilityUpdate;
 	std::array<bool, MAX_LOS_PLAYER_ID> m_GlobalPlayerVisibilityUpdate;
 	Grid<u16> m_DirtyVisibility;
-	Grid<std::set<entity_id_t>> m_LosTiles;
+	Grid<std::set<entity_id_t>> m_LosRegions;
 	// List of entities that must be updated, regardless of the status of their tile
 	std::vector<entity_id_t> m_ModifiedEntities;
 
@@ -447,7 +447,7 @@ public:
 		m_GlobalVisibilityUpdate = true;
 
 		m_LosCircular = false;
-		m_TerrainVerticesPerSide = 0;
+		m_LosVerticesPerSide = 0;
 	}
 
 	virtual void Deinit()
@@ -468,14 +468,14 @@ public:
 
 		Serializer(serialize, "los reveal all", m_LosRevealAll);
 		serialize.Bool("los circular", m_LosCircular);
-		serialize.NumberI32_Unbounded("terrain verts per side", m_TerrainVerticesPerSide);
+		serialize.NumberI32_Unbounded("los verts per side", m_LosVerticesPerSide);
 
 		serialize.Bool("global visibility update", m_GlobalVisibilityUpdate);
 		Serializer(serialize, "global player visibility update", m_GlobalPlayerVisibilityUpdate);
 		Serializer(serialize, "dirty visibility", m_DirtyVisibility);
 		Serializer(serialize, "modified entities", m_ModifiedEntities);
 
-		// We don't serialize m_Subdivision, m_LosPlayerCounts or m_LosTiles
+		// We don't serialize m_Subdivision, m_LosPlayerCounts or m_LosRegions
 		// since they can be recomputed from the entity data when deserializing;
 		// m_LosState must be serialized since it depends on the history of exploration
 
@@ -570,12 +570,12 @@ public:
 						SharingLosMove(it->second.visionSharing, it->second.visionRange, from, to);
 					else
 						LosMove(it->second.owner, it->second.visionRange, from, to);
-					LosTile oldLosTile = PosToLosTilesHelper(it->second.x, it->second.z);
-					LosTile newLosTile = PosToLosTilesHelper(msgData.x, msgData.z);
-					if (oldLosTile != newLosTile)
+					LosRegion oldLosRegion = PosToLosRegionsHelper(it->second.x, it->second.z);
+					LosRegion newLosRegion = PosToLosRegionsHelper(msgData.x, msgData.z);
+					if (oldLosRegion != newLosRegion)
 					{
-						RemoveFromTile(oldLosTile, ent);
-						AddToTile(newLosTile, ent);
+						RemoveFromRegion(oldLosRegion, ent);
+						AddToRegion(newLosRegion, ent);
 					}
 				}
 				else
@@ -586,7 +586,7 @@ public:
 						SharingLosAdd(it->second.visionSharing, it->second.visionRange, to);
 					else
 						LosAdd(it->second.owner, it->second.visionRange, to);
-					AddToTile(PosToLosTilesHelper(msgData.x, msgData.z), ent);
+					AddToRegion(PosToLosRegionsHelper(msgData.x, msgData.z), ent);
 				}
 
 				it->second.SetFlag<FlagMasks::InWorld>(true);
@@ -603,7 +603,7 @@ public:
 						SharingLosRemove(it->second.visionSharing, it->second.visionRange, from);
 					else
 						LosRemove(it->second.owner, it->second.visionRange, from);
-					RemoveFromTile(PosToLosTilesHelper(it->second.x, it->second.z), ent);
+					RemoveFromRegion(PosToLosRegionsHelper(it->second.x, it->second.z), ent);
 				}
 
 				it->second.SetFlag<FlagMasks::InWorld>(false);
@@ -663,7 +663,7 @@ public:
 			if (it->second.HasFlag<FlagMasks::InWorld>())
 			{
 				m_Subdivision.Remove(ent, CFixedVector2D(it->second.x, it->second.z), it->second.size);
-				RemoveFromTile(PosToLosTilesHelper(it->second.x, it->second.z), ent);
+				RemoveFromRegion(PosToLosRegionsHelper(it->second.x, it->second.z), ent);
 			}
 
 			// This will be called after Ownership's OnDestroy, so ownership will be set
@@ -769,13 +769,15 @@ public:
 		}
 	}
 
-	virtual void SetBounds(entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, ssize_t vertices)
+	virtual void SetBounds(entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1)
 	{
+		// Don't support rectangular looking maps.
+		ENSURE(x1-x0 == z1-z0);
 		m_WorldX0 = x0;
 		m_WorldZ0 = z0;
 		m_WorldX1 = x1;
 		m_WorldZ1 = z1;
-		m_TerrainVerticesPerSide = (i32)vertices;
+		m_LosVerticesPerSide = ((x1 - x0) / LOS_TILE_SIZE).ToInt_RoundToZero() + 1;
 
 		ResetDerivedData();
 	}
@@ -792,7 +794,7 @@ public:
 		std::array<Grid<u16>, MAX_LOS_PLAYER_ID> oldPlayerCounts = m_LosPlayerCounts;
 		Grid<u32> oldStateRevealed = m_LosStateRevealed;
 		FastSpatialSubdivision oldSubdivision = m_Subdivision;
-		Grid<std::set<entity_id_t> > oldLosTiles = m_LosTiles;
+		Grid<std::set<entity_id_t> > oldLosRegions = m_LosRegions;
 
 		m_Deserializing = true;
 		ResetDerivedData();
@@ -826,8 +828,8 @@ public:
 			debug_warn(L"inconsistent revealed");
 		if (oldSubdivision != m_Subdivision)
 			debug_warn(L"inconsistent subdivs");
-		if (oldLosTiles != m_LosTiles)
-			debug_warn(L"inconsistent los tiles");
+		if (oldLosRegions != m_LosRegions)
+			debug_warn(L"inconsistent los regions");
 	}
 
 	FastSpatialSubdivision* GetSubdivision()
@@ -841,7 +843,7 @@ public:
 		ENSURE(m_WorldX0.IsZero() && m_WorldZ0.IsZero()); // don't bother implementing non-zero offsets yet
 		ResetSubdivisions(m_WorldX1, m_WorldZ1);
 
-		m_LosTilesPerSide = (m_TerrainVerticesPerSide - 1)/LOS_TILES_RATIO;
+		m_LosRegionsPerSide = m_LosVerticesPerSide / LOS_REGION_RATIO;
 
 		for (size_t player_id = 0; player_id < m_LosPlayerCounts.size(); ++player_id)
 			m_LosPlayerCounts[player_id].clear();
@@ -852,24 +854,24 @@ public:
 		if (m_Deserializing)
 		{
 			// recalc current exploration stats.
-			for (i32 j = 0; j < m_TerrainVerticesPerSide; j++)
-				for (i32 i = 0; i < m_TerrainVerticesPerSide; i++)
+			for (i32 j = 0; j < m_LosVerticesPerSide; j++)
+				for (i32 i = 0; i < m_LosVerticesPerSide; i++)
 					if (!LosIsOffWorld(i, j))
 						for (u8 k = 1; k < MAX_LOS_PLAYER_ID+1; ++k)
 							m_ExploredVertices.at(k) += ((m_LosState.get(i, j) & ((u32)LosState::EXPLORED << (2*(k-1)))) > 0);
 		} else
-			m_LosState.resize(m_TerrainVerticesPerSide, m_TerrainVerticesPerSide);
+			m_LosState.resize(m_LosVerticesPerSide, m_LosVerticesPerSide);
 
-		m_LosStateRevealed.resize(m_TerrainVerticesPerSide, m_TerrainVerticesPerSide);
+		m_LosStateRevealed.resize(m_LosVerticesPerSide, m_LosVerticesPerSide);
 
 		if (!m_Deserializing)
 		{
-			m_DirtyVisibility.resize(m_LosTilesPerSide, m_LosTilesPerSide);
+			m_DirtyVisibility.resize(m_LosRegionsPerSide, m_LosRegionsPerSide);
 		}
-		ENSURE(m_DirtyVisibility.width() == m_LosTilesPerSide);
-		ENSURE(m_DirtyVisibility.height() == m_LosTilesPerSide);
+		ENSURE(m_DirtyVisibility.width() == m_LosRegionsPerSide);
+		ENSURE(m_DirtyVisibility.height() == m_LosRegionsPerSide);
 
-		m_LosTiles.resize(m_LosTilesPerSide, m_LosTilesPerSide);
+		m_LosRegions.resize(m_LosRegionsPerSide, m_LosRegionsPerSide);
 
 		for (EntityMap<EntityData>::const_iterator it = m_EntityData.begin(); it != m_EntityData.end(); ++it)
 			if (it->second.HasFlag<FlagMasks::InWorld>())
@@ -878,15 +880,15 @@ public:
 					SharingLosAdd(it->second.visionSharing, it->second.visionRange, CFixedVector2D(it->second.x, it->second.z));
 				else
 					LosAdd(it->second.owner, it->second.visionRange, CFixedVector2D(it->second.x, it->second.z));
-				AddToTile(PosToLosTilesHelper(it->second.x, it->second.z), it->first);
+				AddToRegion(PosToLosRegionsHelper(it->second.x, it->second.z), it->first);
 
 				if (it->second.HasFlag<FlagMasks::RevealShore>())
 					RevealShore(it->second.owner, true);
 			}
 
 		m_TotalInworldVertices = 0;
-		for (ssize_t j = 0; j < m_TerrainVerticesPerSide; ++j)
-			for (ssize_t i = 0; i < m_TerrainVerticesPerSide; ++i)
+		for (i32 j = 0; j < m_LosVerticesPerSide; ++j)
+			for (i32 i = 0; i < m_LosVerticesPerSide; ++i)
 			{
 				if (LosIsOffWorld(i,j))
 					m_LosStateRevealed.get(i, j) = 0;
@@ -1600,9 +1602,9 @@ public:
 	virtual CLosQuerier GetLosQuerier(player_id_t player) const
 	{
 		if (GetLosRevealAll(player))
-			return CLosQuerier(0xFFFFFFFFu, m_LosStateRevealed, m_TerrainVerticesPerSide);
+			return CLosQuerier(0xFFFFFFFFu, m_LosStateRevealed, m_LosVerticesPerSide);
 		else
-			return CLosQuerier(GetSharedLosMask(player), m_LosState, m_TerrainVerticesPerSide);
+			return CLosQuerier(GetSharedLosMask(player), m_LosState, m_LosVerticesPerSide);
 	}
 
 	virtual void ActivateScriptedVisibility(entity_id_t ent, bool status)
@@ -1627,8 +1629,8 @@ public:
 			return LosVisibility::HIDDEN;
 
 		CFixedVector2D pos = cmpPosition->GetPosition2D();
-		int i = (pos.X / (int)TERRAIN_TILE_SIZE).ToInt_RoundToNearest();
-		int j = (pos.Y / (int)TERRAIN_TILE_SIZE).ToInt_RoundToNearest();
+		int i = (pos.X / LOS_TILE_SIZE).ToInt_RoundToNearest();
+		int j = (pos.Y / LOS_TILE_SIZE).ToInt_RoundToNearest();
 
 		// Reveal flag makes all positioned entities visible and all mirages useless
 		if (GetLosRevealAll(player))
@@ -1639,7 +1641,7 @@ public:
 		}
 
 		// Get visible regions
-		CLosQuerier los(GetSharedLosMask(player), m_LosState, m_TerrainVerticesPerSide);
+		CLosQuerier los(GetSharedLosMask(player), m_LosState, m_LosVerticesPerSide);
 
 		CmpPtr<ICmpVisibility> cmpVisibility(ent);
 
@@ -1733,7 +1735,7 @@ public:
 
 		CFixedVector2D pos = cmpPosition->GetPosition2D();
 
-		if (IsVisibilityDirty(m_DirtyVisibility[PosToLosTilesHelper(pos.X, pos.Y)], player))
+		if (IsVisibilityDirty(m_DirtyVisibility[PosToLosRegionsHelper(pos.X, pos.Y)], player))
 			return ComputeLosVisibility(ent, player);
 
 		if (std::find(m_ModifiedEntities.begin(), m_ModifiedEntities.end(), entId) != m_ModifiedEntities.end())
@@ -1754,8 +1756,8 @@ public:
 
 	virtual LosVisibility GetLosVisibilityPosition(entity_pos_t x, entity_pos_t z, player_id_t player) const
 	{
-		int i = (x / (int)TERRAIN_TILE_SIZE).ToInt_RoundToNearest();
-		int j = (z / (int)TERRAIN_TILE_SIZE).ToInt_RoundToNearest();
+		int i = (x / LOS_TILE_SIZE).ToInt_RoundToNearest();
+		int j = (z / LOS_TILE_SIZE).ToInt_RoundToNearest();
 
 		// Reveal flag makes all positioned entities visible and all mirages useless
 		if (GetLosRevealAll(player))
@@ -1767,7 +1769,7 @@ public:
 		}
 
 		// Get visible regions
-		CLosQuerier los(GetSharedLosMask(player), m_LosState, m_TerrainVerticesPerSide);
+		CLosQuerier los(GetSharedLosMask(player), m_LosState, m_LosVerticesPerSide);
 
 		if (los.IsVisible(i,j))
 			return LosVisibility::VISIBLE;
@@ -1776,47 +1778,55 @@ public:
 		return LosVisibility::HIDDEN;
 	}
 
-	LosTile PosToLosTilesHelper(u16 x, u16 z) const
+	size_t GetVerticesPerSide() const
 	{
-		return LosTile{ Clamp(x/LOS_TILES_RATIO, 0, m_LosTilesPerSide - 1), Clamp(z/LOS_TILES_RATIO, 0, m_LosTilesPerSide - 1) };
+		return m_LosVerticesPerSide;
 	}
 
-	LosTile PosToLosTilesHelper(entity_pos_t x, entity_pos_t z) const
+	LosRegion LosVertexToLosRegionsHelper(u16 x, u16 z) const
 	{
-		i32 i = Clamp(
-			(x/(entity_pos_t::FromInt(TERRAIN_TILE_SIZE * LOS_TILES_RATIO))).ToInt_RoundToZero(),
+		return LosRegion {
+			Clamp(x/LOS_REGION_RATIO, 0, m_LosRegionsPerSide - 1),
+			Clamp(z/LOS_REGION_RATIO, 0, m_LosRegionsPerSide - 1)
+		};
+	}
+
+	LosRegion PosToLosRegionsHelper(entity_pos_t x, entity_pos_t z) const
+	{
+		u16 i = Clamp(
+			((x/LOS_TILE_SIZE)/LOS_REGION_RATIO).ToInt_RoundToZero(),
 			0,
-			m_LosTilesPerSide - 1);
-		i32 j = Clamp(
-			(z/(entity_pos_t::FromInt(TERRAIN_TILE_SIZE * LOS_TILES_RATIO))).ToInt_RoundToZero(),
+			m_LosRegionsPerSide - 1);
+		u16 j = Clamp(
+			((z/LOS_TILE_SIZE)/LOS_REGION_RATIO).ToInt_RoundToZero(),
 			0,
-			m_LosTilesPerSide - 1);
+			m_LosRegionsPerSide - 1);
 		return std::make_pair(i, j);
 	}
 
-	void AddToTile(LosTile tile, entity_id_t ent)
+	void AddToRegion(LosRegion region, entity_id_t ent)
 	{
-		m_LosTiles[tile].insert(ent);
+		m_LosRegions[region].insert(ent);
 	}
 
-	void RemoveFromTile(LosTile tile, entity_id_t ent)
+	void RemoveFromRegion(LosRegion region, entity_id_t ent)
 	{
-		std::set<entity_id_t>::const_iterator tileIt = m_LosTiles[tile].find(ent);
-		if (tileIt != m_LosTiles[tile].end())
-			m_LosTiles[tile].erase(tileIt);
+		std::set<entity_id_t>::const_iterator regionIt = m_LosRegions[region].find(ent);
+		if (regionIt != m_LosRegions[region].end())
+			m_LosRegions[region].erase(regionIt);
 	}
 
 	void UpdateVisibilityData()
 	{
 		PROFILE("UpdateVisibilityData");
 
-		for (u16 i = 0; i < m_LosTilesPerSide; ++i)
-			for (u16 j = 0; j < m_LosTilesPerSide; ++j)
+		for (u16 i = 0; i < m_LosRegionsPerSide; ++i)
+			for (u16 j = 0; j < m_LosRegionsPerSide; ++j)
 			{
-				LosTile pos{i, j};
+				LosRegion pos{i, j};
 				for (player_id_t player = 1; player < MAX_LOS_PLAYER_ID + 1; ++player)
 					if (IsVisibilityDirty(m_DirtyVisibility[pos], player) || m_GlobalPlayerVisibilityUpdate[player-1] == 1 || m_GlobalVisibilityUpdate)
-						for (const entity_id_t& ent : m_LosTiles[pos])
+						for (const entity_id_t& ent : m_LosRegions[pos])
 							UpdateVisibility(ent, player);
 
 				m_DirtyVisibility[pos] = 0;
@@ -1936,10 +1946,10 @@ public:
 		return m_SharedLosMasks[player];
 	}
 
-	void ExploreAllTiles(player_id_t p)
+	void ExploreMap(player_id_t p)
 	{
-		for (u16 j = 0; j < m_TerrainVerticesPerSide; ++j)
-			for (u16 i = 0; i < m_TerrainVerticesPerSide; ++i)
+		for (i32 j = 0; j < m_LosVerticesPerSide; ++j)
+			for (i32 i = 0; i < m_LosVerticesPerSide; ++i)
 			{
 				if (LosIsOffWorld(i,j))
 					continue;
@@ -1959,40 +1969,33 @@ public:
 		const Grid<u8>& grid = cmpTerritoryManager->GetTerritoryGrid();
 
 		// Territory data is stored per territory-tile (typically a multiple of terrain-tiles).
-		// LOS data is stored per terrain-tile vertex.
+		// LOS data is stored per los vertex (in reality tiles too, but it's the center that matters).
+		// This scales from LOS coordinates to Territory coordinates.
+		auto scale = [](i32 coord) -> i32 {
+			return (coord * LOS_TILE_SIZE + LOS_TILE_SIZE / 2) / (ICmpTerritoryManager::NAVCELLS_PER_TERRITORY_TILE * Pathfinding::NAVCELL_SIZE_INT);
+		};
 
 		// For each territory-tile, if it is owned by a valid player then update the LOS
 		// for every vertex inside/around that tile, to mark them as explored.
-
-		// Currently this code doesn't support territory-tiles smaller than terrain-tiles
-		// (it will get scale==0 and break), or a non-integer multiple, so check that first
-		cassert(ICmpTerritoryManager::NAVCELLS_PER_TERRITORY_TILE >= Pathfinding::NAVCELLS_PER_TILE);
-		cassert(ICmpTerritoryManager::NAVCELLS_PER_TERRITORY_TILE % Pathfinding::NAVCELLS_PER_TILE == 0);
-
-		int scale = ICmpTerritoryManager::NAVCELLS_PER_TERRITORY_TILE / Pathfinding::NAVCELLS_PER_TILE;
-
-		ENSURE(grid.m_W*scale == m_TerrainVerticesPerSide-1 && grid.m_H*scale == m_TerrainVerticesPerSide-1);
-
-		for (u16 j = 0; j < grid.m_H; ++j)
-			for (u16 i = 0; i < grid.m_W; ++i)
+		for (i32 j = 0; j < m_LosVerticesPerSide; ++j)
+			for (i32 i = 0; i < m_LosVerticesPerSide; ++i)
 			{
-				u8 p = grid.get(i, j) & ICmpTerritoryManager::TERRITORY_PLAYER_MASK;
+				// TODO: This fetches data redundantly if the los grid is smaller than the territory grid
+				// (but it's unlikely to matter much).
+				u8 p = grid.get(scale(i), scale(j)) & ICmpTerritoryManager::TERRITORY_PLAYER_MASK;
 				if (p > 0 && p <= MAX_LOS_PLAYER_ID)
 				{
 					u32& explored = m_ExploredVertices.at(p);
-					for (int tj = j * scale; tj <= (j+1) * scale; ++tj)
-						for (int ti = i * scale; ti <= (i+1) * scale; ++ti)
-						{
-							if (LosIsOffWorld(ti, tj))
-								continue;
 
-							u32& losState = m_LosState.get(ti, tj);
-							if (!(losState & ((u32)LosState::EXPLORED << (2*(p-1)))))
-							{
-								++explored;
-								losState |= ((u32)LosState::EXPLORED << (2*(p-1)));
-							}
-						}
+					if (LosIsOffWorld(i, j))
+						continue;
+
+					u32& losState = m_LosState.get(i, j);
+					if (!(losState & ((u32)LosState::EXPLORED << (2*(p-1)))))
+					{
+						++explored;
+						losState |= ((u32)LosState::EXPLORED << (2*(p-1)));
+					}
 				}
 			}
 
@@ -2021,10 +2024,10 @@ public:
 				continue;
 
 			CFixedVector2D pos = cmpPosition->GetPosition2D();
-			int i = (pos.X / (int)TERRAIN_TILE_SIZE).ToInt_RoundToNearest();
-			int j = (pos.Y / (int)TERRAIN_TILE_SIZE).ToInt_RoundToNearest();
+			int i = (pos.X / LOS_TILE_SIZE).ToInt_RoundToNearest();
+			int j = (pos.Y / LOS_TILE_SIZE).ToInt_RoundToNearest();
 
-			CLosQuerier los(GetSharedLosMask(p), m_LosState, m_TerrainVerticesPerSide);
+			CLosQuerier los(GetSharedLosMask(p), m_LosState, m_LosVerticesPerSide);
 			if (!los.IsExplored(i,j) || los.IsVisible(i,j))
 				continue;
 
@@ -2051,7 +2054,7 @@ public:
 
 		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
 		const Grid<u16>& shoreGrid = cmpPathfinder->ComputeShoreGrid(true);
-		ENSURE(shoreGrid.m_W == m_TerrainVerticesPerSide-1 && shoreGrid.m_H == m_TerrainVerticesPerSide-1);
+		ENSURE(shoreGrid.m_W == m_LosVerticesPerSide-1 && shoreGrid.m_H == m_LosVerticesPerSide-1);
 
 		Grid<u16>& counts = m_LosPlayerCounts.at(p);
 		ENSURE(!counts.blank());
@@ -2081,10 +2084,10 @@ public:
 		{
 			// With a circular map, vertex is off-world if hypot(i - size/2, j - size/2) >= size/2:
 
-			ssize_t dist2 = (i - m_TerrainVerticesPerSide/2)*(i - m_TerrainVerticesPerSide/2)
-					+ (j - m_TerrainVerticesPerSide/2)*(j - m_TerrainVerticesPerSide/2);
+			ssize_t dist2 = (i - m_LosVerticesPerSide/2)*(i - m_LosVerticesPerSide/2)
+					+ (j - m_LosVerticesPerSide/2)*(j - m_LosVerticesPerSide/2);
 
-			ssize_t r = m_TerrainVerticesPerSide / 2 - MAP_EDGE_TILES + 1;
+			ssize_t r = m_LosVerticesPerSide / 2 - MAP_EDGE_TILES + 1;
 				// subtract a bit from the radius to ensure nice
 				// SoD blurring around the edges of the map
 
@@ -2095,8 +2098,8 @@ public:
 			// With a square map, the outermost edge of the map should be off-world,
 			// so the SoD texture blends out nicely
 			return i < MAP_EDGE_TILES || j < MAP_EDGE_TILES ||
-				i >= m_TerrainVerticesPerSide - MAP_EDGE_TILES ||
-				j >= m_TerrainVerticesPerSide - MAP_EDGE_TILES;
+				i >= m_LosVerticesPerSide - MAP_EDGE_TILES ||
+				j >= m_LosVerticesPerSide - MAP_EDGE_TILES;
 		}
 	}
 
@@ -2158,22 +2161,22 @@ public:
 		if (m_Deserializing)
 			return;
 
-		// Mark the LoS tiles around the updated vertex
+		// Mark the LoS regions around the updated vertex
 		// 1: left-up, 2: right-up, 3: left-down, 4: right-down
-		LosTile n1 = PosToLosTilesHelper(i-1, j-1);
-		LosTile n2 = PosToLosTilesHelper(i-1, j);
-		LosTile n3 = PosToLosTilesHelper(i, j-1);
-		LosTile n4 = PosToLosTilesHelper(i, j);
+		LosRegion n1 = LosVertexToLosRegionsHelper(i-1, j-1);
+		LosRegion n2 = LosVertexToLosRegionsHelper(i-1, j);
+		LosRegion n3 = LosVertexToLosRegionsHelper(i, j-1);
+		LosRegion n4 = LosVertexToLosRegionsHelper(i, j);
 
 		u16 sharedDirtyVisibilityMask = m_SharedDirtyVisibilityMasks[owner];
 
 		if (j > 0 && i > 0)
 			m_DirtyVisibility[n1] |= sharedDirtyVisibilityMask;
-		if (n2 != n1 && j > 0 && i < m_TerrainVerticesPerSide)
+		if (n2 != n1 && j > 0 && i < m_LosVerticesPerSide)
 			m_DirtyVisibility[n2] |= sharedDirtyVisibilityMask;
-		if (n3 != n1 && j < m_TerrainVerticesPerSide && i > 0)
+		if (n3 != n1 && j < m_LosVerticesPerSide && i > 0)
 			m_DirtyVisibility[n3] |= sharedDirtyVisibilityMask;
-		if (n4 != n1 && j < m_TerrainVerticesPerSide && i < m_TerrainVerticesPerSide)
+		if (n4 != n1 && j < m_LosVerticesPerSide && i < m_LosVerticesPerSide)
 			m_DirtyVisibility[n4] |= sharedDirtyVisibilityMask;
 	}
 
@@ -2185,7 +2188,7 @@ public:
 	template<bool adding>
 	void LosUpdateHelper(u8 owner, entity_pos_t visionRange, CFixedVector2D pos)
 	{
-		if (m_TerrainVerticesPerSide == 0) // do nothing if not initialised yet
+		if (m_LosVerticesPerSide == 0) // do nothing if not initialised yet
 			return;
 
 		PROFILE("LosUpdateHelper");
@@ -2194,7 +2197,7 @@ public:
 
 		// Lazy initialisation of counts:
 		if (counts.blank())
-			counts.resize(m_TerrainVerticesPerSide, m_TerrainVerticesPerSide);
+			counts.resize(m_LosVerticesPerSide, m_LosVerticesPerSide);
 
 		// Compute the circular region as a series of strips.
 		// Rather than quantise pos to vertexes, we do more precise sub-tile computations
@@ -2207,15 +2210,15 @@ public:
 
 		// Compute top/bottom coordinates, and clamp to exclude the 1-tile border around the map
 		// (so that we never render the sharp edge of the map)
-		i32 j0 = ((pos.Y - visionRange)/(int)TERRAIN_TILE_SIZE).ToInt_RoundToInfinity();
-		i32 j1 = ((pos.Y + visionRange)/(int)TERRAIN_TILE_SIZE).ToInt_RoundToNegInfinity();
+		i32 j0 = ((pos.Y - visionRange)/LOS_TILE_SIZE).ToInt_RoundToInfinity();
+		i32 j1 = ((pos.Y + visionRange)/LOS_TILE_SIZE).ToInt_RoundToNegInfinity();
 		i32 j0clamp = std::max(j0, 1);
-		i32 j1clamp = std::min(j1, m_TerrainVerticesPerSide-2);
+		i32 j1clamp = std::min(j1, m_LosVerticesPerSide-2);
 
 		// Translate world coordinates into fractional tile-space coordinates
-		entity_pos_t x = pos.X / (int)TERRAIN_TILE_SIZE;
-		entity_pos_t y = pos.Y / (int)TERRAIN_TILE_SIZE;
-		entity_pos_t r = visionRange / (int)TERRAIN_TILE_SIZE;
+		entity_pos_t x = pos.X / LOS_TILE_SIZE;
+		entity_pos_t y = pos.Y / LOS_TILE_SIZE;
+		entity_pos_t r = visionRange / LOS_TILE_SIZE;
 		entity_pos_t r2 = r.Square();
 
 		// Compute the integers on either side of x
@@ -2257,7 +2260,7 @@ public:
 			// Clamp the strip to exclude the 1-tile border,
 			// then add or remove the strip as requested
 			i32 i0clamp = std::max(i0, 1);
-			i32 i1clamp = std::min(i1, m_TerrainVerticesPerSide-2);
+			i32 i1clamp = std::min(i1, m_LosVerticesPerSide-2);
 			if (adding)
 				LosAddStripHelper(owner, i0clamp, i1clamp, j, counts);
 			else
@@ -2272,7 +2275,7 @@ public:
 	 */
 	void LosUpdateHelperIncremental(u8 owner, entity_pos_t visionRange, CFixedVector2D from, CFixedVector2D to)
 	{
-		if (m_TerrainVerticesPerSide == 0) // do nothing if not initialised yet
+		if (m_LosVerticesPerSide == 0) // do nothing if not initialised yet
 			return;
 
 		PROFILE("LosUpdateHelperIncremental");
@@ -2281,7 +2284,7 @@ public:
 
 		// Lazy initialisation of counts:
 		if (counts.blank())
-			counts.resize(m_TerrainVerticesPerSide, m_TerrainVerticesPerSide);
+			counts.resize(m_LosVerticesPerSide, m_LosVerticesPerSide);
 
 		// See comments in LosUpdateHelper.
 		// This does exactly the same, except computing the strips for
@@ -2290,18 +2293,18 @@ public:
 		// so we can compute the difference between the removed/added strips
 		// and only have to touch tiles that have a net change.)
 
-		i32 j0_from = ((from.Y - visionRange)/(int)TERRAIN_TILE_SIZE).ToInt_RoundToInfinity();
-		i32 j1_from = ((from.Y + visionRange)/(int)TERRAIN_TILE_SIZE).ToInt_RoundToNegInfinity();
-		i32 j0_to = ((to.Y - visionRange)/(int)TERRAIN_TILE_SIZE).ToInt_RoundToInfinity();
-		i32 j1_to = ((to.Y + visionRange)/(int)TERRAIN_TILE_SIZE).ToInt_RoundToNegInfinity();
+		i32 j0_from = ((from.Y - visionRange)/LOS_TILE_SIZE).ToInt_RoundToInfinity();
+		i32 j1_from = ((from.Y + visionRange)/LOS_TILE_SIZE).ToInt_RoundToNegInfinity();
+		i32 j0_to = ((to.Y - visionRange)/LOS_TILE_SIZE).ToInt_RoundToInfinity();
+		i32 j1_to = ((to.Y + visionRange)/LOS_TILE_SIZE).ToInt_RoundToNegInfinity();
 		i32 j0clamp = std::max(std::min(j0_from, j0_to), 1);
-		i32 j1clamp = std::min(std::max(j1_from, j1_to), m_TerrainVerticesPerSide-2);
+		i32 j1clamp = std::min(std::max(j1_from, j1_to), m_LosVerticesPerSide-2);
 
-		entity_pos_t x_from = from.X / (int)TERRAIN_TILE_SIZE;
-		entity_pos_t y_from = from.Y / (int)TERRAIN_TILE_SIZE;
-		entity_pos_t x_to = to.X / (int)TERRAIN_TILE_SIZE;
-		entity_pos_t y_to = to.Y / (int)TERRAIN_TILE_SIZE;
-		entity_pos_t r = visionRange / (int)TERRAIN_TILE_SIZE;
+		entity_pos_t x_from = from.X / LOS_TILE_SIZE;
+		entity_pos_t y_from = from.Y / LOS_TILE_SIZE;
+		entity_pos_t x_to = to.X / LOS_TILE_SIZE;
+		entity_pos_t y_to = to.Y / LOS_TILE_SIZE;
+		entity_pos_t r = visionRange / LOS_TILE_SIZE;
 		entity_pos_t r2 = r.Square();
 
 		i32 xfloor_from = (x_from - entity_pos_t::Epsilon()).ToInt_RoundToNegInfinity();
@@ -2359,9 +2362,9 @@ public:
 			if (!(i0_to == i0_from && i1_to == i1_from))
 			{
 				i32 i0clamp_from = std::max(i0_from, 1);
-				i32 i1clamp_from = std::min(i1_from, m_TerrainVerticesPerSide-2);
+				i32 i1clamp_from = std::min(i1_from, m_LosVerticesPerSide-2);
 				i32 i0clamp_to = std::max(i0_to, 1);
-				i32 i1clamp_to = std::min(i1_to, m_TerrainVerticesPerSide-2);
+				i32 i1clamp_to = std::min(i1_to, m_LosVerticesPerSide-2);
 
 				// Check whether one strip is negative width,
 				// and we can just add/remove the entire other strip
@@ -2465,8 +2468,8 @@ public:
 		u32 exploredVertices = 0;
 		std::vector<player_id_t>::const_iterator playerIt;
 
-		for (i32 j = 0; j < m_TerrainVerticesPerSide; j++)
-			for (i32 i = 0; i < m_TerrainVerticesPerSide; i++)
+		for (i32 j = 0; j < m_LosVerticesPerSide; j++)
+			for (i32 i = 0; i < m_LosVerticesPerSide; i++)
 			{
 				if (LosIsOffWorld(i, j))
 					continue;
@@ -2484,6 +2487,3 @@ public:
 };
 
 REGISTER_COMPONENT_TYPE(RangeManager)
-
-#undef LOS_TILES_RATIO
-#undef DEBUG_RANGE_MANAGER_BOUNDS
