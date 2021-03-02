@@ -70,10 +70,14 @@ public:
 
 	void test_method_wrappers()
 	{
-		static_assert(std::is_same_v<decltype(&ScriptFunction::ToJSNative<&TestFunctionWrapper::test_method::method_1>), JSNative>);
-		static_assert(std::is_same_v<decltype(&ScriptFunction::ToJSNative<&TestFunctionWrapper::test_method::method_2>), JSNative>);
-		static_assert(std::is_same_v<decltype(&ScriptFunction::ToJSNative<&TestFunctionWrapper::test_method::const_method_1>), JSNative>);
-		static_assert(std::is_same_v<decltype(&ScriptFunction::ToJSNative<&TestFunctionWrapper::test_method::const_method_2>), JSNative>);
+		static_assert(std::is_same_v<decltype(&ScriptFunction::ToJSNative<&TestFunctionWrapper::test_method::method_1,
+											  &ScriptFunction::ObjectFromCBData<test_method>>), JSNative>);
+		static_assert(std::is_same_v<decltype(&ScriptFunction::ToJSNative<&TestFunctionWrapper::test_method::method_2,
+											  &ScriptFunction::ObjectFromCBData<test_method>>), JSNative>);
+		static_assert(std::is_same_v<decltype(&ScriptFunction::ToJSNative<&TestFunctionWrapper::test_method::const_method_1,
+											  &ScriptFunction::ObjectFromCBData<test_method>>), JSNative>);
+		static_assert(std::is_same_v<decltype(&ScriptFunction::ToJSNative<&TestFunctionWrapper::test_method::const_method_2,
+											  &ScriptFunction::ObjectFromCBData<test_method>>), JSNative>);
 	}
 
 	void test_calling()

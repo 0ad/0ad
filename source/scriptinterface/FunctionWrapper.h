@@ -38,13 +38,18 @@ private:
 	/**
 	 * In JS->C++ calls, types are converted using FromJSVal,
 	 * and this requires them to be default-constructible (as that function takes an out parameter)
+	 * thus constref needs to be removed when defining the tuple.
 	 * Exceptions are:
 	 *  - const ScriptRequest& (as the first argument only, for implementation simplicity).
+	 *  - const ScriptInterface& (as the first argument only, for implementation simplicity).
 	 *  - JS::HandleValue
 	 */
 	template<typename T>
-	using type_transform = std::conditional_t<std::is_same_v<const ScriptRequest&, T>, const ScriptRequest&,
-		std::remove_const_t<typename std::remove_reference_t<T>>>;
+	using type_transform = std::conditional_t<
+		std::is_same_v<const ScriptRequest&, T> || std::is_same_v<const ScriptInterface&, T>,
+		T,
+		std::remove_const_t<typename std::remove_reference_t<T>>
+	>;
 
 	/**
 	 * Convenient struct to get info on a [class] [const] function pointer.
@@ -82,9 +87,16 @@ private:
 		// No need to convert JS values.
 		if constexpr (std::is_same_v<T, JS::HandleValue>)
 		{
-			// GCC (at least < 9) & VS17 prints warnings if arguments are not used in some constexpr branch.
-			UNUSED2(rq); UNUSED2(args); UNUSED2(went_ok);
-			return std::forward_as_tuple(args[idx]); // This passes the null handle value if idx is beyond the length of args.
+			// Default-construct values that aren't passed by JS.
+			// TODO: this should perhaps be removed, as it's distinct from C++ default values and kind of tricky.
+			if (idx >= args.length())
+				return std::forward_as_tuple(JS::UndefinedHandleValue);
+			else
+			{
+				// GCC (at least < 9) & VS17 prints warnings if arguments are not used in some constexpr branch.
+				UNUSED2(rq); UNUSED2(args); UNUSED2(went_ok);
+				return std::forward_as_tuple(args[idx]); // This passes the null handle value if idx is beyond the length of args.
+			}
 		}
 		else
 		{
@@ -160,6 +172,20 @@ private:
 			return std::tuple_cat(std::forward_as_tuple(rq), DoConvertFromJS<0, Types...>(rq, args, went_ok));
 	}
 
+	// Overloads for ScriptInterface& first argument.
+	template<typename ...Types>
+	static std::tuple<const ScriptInterface&, Types...> ConvertFromJS(ScriptInterface::CmptPrivate* cmptPrivate, const ScriptRequest& rq, JS::CallArgs& args, bool& went_ok, std::tuple<const ScriptInterface&, Types...>*)
+	{
+		if constexpr (sizeof...(Types) == 0)
+		{
+			// GCC (at least < 9) & VS17 prints warnings if arguments are not used in some constexpr branch.
+			UNUSED2(rq); UNUSED2(args); UNUSED2(went_ok);
+			return std::forward_as_tuple(*cmptPrivate->pScriptInterface);
+		}
+		else
+			return std::tuple_cat(std::forward_as_tuple(*cmptPrivate->pScriptInterface), DoConvertFromJS<0, Types...>(rq, args, went_ok));
+	}
+
 	///////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////
 
@@ -211,6 +237,10 @@ public:
 		JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
 		ScriptInterface* scriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
 		ScriptRequest rq(*scriptInterface);
+
+		// If the callable is an object method, we must specify how to fetch the object.
+		static_assert(std::is_same_v<typename args_info<decltype(callable)>::object_type, void> || thisGetter != nullptr,
+					  "ScriptFunction::Register - No getter specified for object method");
 
 // GCC 7 triggers spurious warnings
 #ifdef __GNUC__
@@ -265,6 +295,17 @@ public:
 	static void Register(const ScriptRequest& rq, const char* name)
 	{
 		JS_DefineFunction(rq.cx, rq.nativeScope, name, &ToJSNative<callable, thisGetter>, args_info<decltype(callable)>::nb_args, flags);
+	}
+
+	/**
+	 * Register a function on @param scope.
+	 * Prefer the version taking ScriptRequest unless you have a good reason not to.
+	 * @see Register
+	 */
+	template <auto callable, GetterFor<decltype(callable)> thisGetter = nullptr, u16 flags = JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT>
+	static void Register(JSContext* cx, JS::HandleObject scope, const char* name)
+	{
+		JS_DefineFunction(cx, scope, name, &ToJSNative<callable, thisGetter>, args_info<decltype(callable)>::nb_args, flags);
 	}
 
 	/**
