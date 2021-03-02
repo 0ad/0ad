@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,17 +18,11 @@
 #ifndef INCLUDED_JSI_MOD
 #define INCLUDED_JSI_MOD
 
-#include "ps/CStr.h"
-#include "scriptinterface/ScriptInterface.h"
+class ScriptRequest;
 
 namespace JSI_Mod
 {
-	void RegisterScriptFunctions(const ScriptInterface& scriptInterface);
-
-	JS::Value GetEngineInfo(ScriptInterface::CmptPrivate* pCmptPrivate);
-	JS::Value GetAvailableMods(ScriptInterface::CmptPrivate* pCmptPrivate);
-	void RestartEngine(ScriptInterface::CmptPrivate* pCmptPrivate);
-	void SetMods(ScriptInterface::CmptPrivate* pCmptPrivate, const std::vector<CStr>& mods);
+	void RegisterScriptFunctions(const ScriptRequest& rq);
 }
 
 #endif // INCLUDED_JSI_MOD

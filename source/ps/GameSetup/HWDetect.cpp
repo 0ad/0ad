@@ -17,8 +17,6 @@
 
 #include "precompiled.h"
 
-#include "scriptinterface/ScriptInterface.h"
-
 #include "lib/ogl.h"
 #include "lib/svn_revision.h"
 #include "lib/timer.h"
@@ -45,6 +43,8 @@
 #include "ps/scripting/JSInterface_Debug.h"
 #include "ps/UserReport.h"
 #include "ps/VideoMode.h"
+#include "scriptinterface/FunctionWrapper.h"
+#include "scriptinterface/ScriptInterface.h"
 
 // TODO: Support OpenGL platforms which don't use GLX as well.
 #if defined(SDL_VIDEO_DRIVER_X11) && !CONFIG2_GLES
@@ -74,7 +74,7 @@
 static void ReportSDL(const ScriptInterface& scriptInterface, JS::HandleValue settings);
 static void ReportGLLimits(const ScriptInterface& scriptInterface, JS::HandleValue settings);
 
-void SetDisableAudio(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), bool disabled)
+void SetDisableAudio(bool disabled)
 {
 	g_DisableAudio = disabled;
 }
@@ -90,7 +90,7 @@ void RunHardwareDetection()
 	JSI_Debug::RegisterScriptFunctions(scriptInterface); // Engine.DisplayErrorDialog
 	JSI_ConfigDB::RegisterScriptFunctions(scriptInterface);
 
-	scriptInterface.RegisterFunction<void, bool, &SetDisableAudio>("SetDisableAudio");
+	ScriptFunction::Register<SetDisableAudio>(rq, "SetDisableAudio");
 
 	// Load the detection script:
 

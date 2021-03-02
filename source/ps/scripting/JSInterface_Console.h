@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,15 +18,11 @@
 #ifndef INCLUDED_JSI_CONSOLE
 #define INCLUDED_JSI_CONSOLE
 
-#include "scriptinterface/ScriptInterface.h"
+class ScriptRequest;
 
 namespace JSI_Console
 {
-	bool CheckGlobalInitialized();
-	bool GetVisibleEnabled(ScriptInterface::CmptPrivate* pCmptPrivate);
-	void SetVisibleEnabled(ScriptInterface::CmptPrivate* pCmptPrivate, bool Enabled);
-
-	void RegisterScriptFunctions(const ScriptInterface& scriptInterface);
+	void RegisterScriptFunctions(const ScriptRequest& rq);
 }
 
 #endif // INCLUDED_JSI_CONSOLE

@@ -5,10 +5,6 @@
     <variant frequency="1" name="Briton Blacksmith">
       <mesh>structural/brit_blacksmith.dae</mesh>
       <props>
-        <prop actor="particle/smoke_blacksmith.xml" attachpoint="smoke"/>
-        <prop actor="particle/flame.xml" attachpoint="flame_01"/>
-        <prop actor="particle/flame.xml" attachpoint="flame_02"/>
-        <prop actor="particle/flame.xml" attachpoint="flame_03"/>
         <prop actor="props/structures/celts/blacksmith_barrels.xml" attachpoint="barrels" maxheight="20" minheight="-20"/>
         <prop actor="props/structures/celts/blacksmith_bucket_water.xml" attachpoint="water_bucket" maxheight="20" minheight="-20"/>
         <prop actor="props/structures/celts/blacksmith_bucket.xml" attachpoint="water_bucket" maxheight="20" minheight="-20"/>
@@ -65,6 +61,18 @@
         <texture file="structural/celt_struct_spec.png" name="specTex"/>
         <texture file="structural/ao/brit_blacksmith.png" name="aoTex"/>
       </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant name="researching">
+      <props>
+        <prop actor="particle/sparks_blacksmith.xml" attachpoint="smoke"/>
+        <prop actor="particle/smoke_blacksmith.xml" attachpoint="smoke"/>
+        <prop actor="particle/flame.xml" attachpoint="flame_01"/>
+        <prop actor="particle/flame.xml" attachpoint="flame_02"/>
+        <prop actor="particle/flame.xml" attachpoint="flame_03"/>
+      </props>
     </variant>
   </group>
   <group>

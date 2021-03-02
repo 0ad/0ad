@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,6 +24,7 @@
 #include "ps/Filesystem.h"
 #include "ps/Profile.h"
 #include "ps/scripting/JSInterface_VFS.h"
+#include "scriptinterface/FunctionWrapper.h"
 #include "simulation2/components/ICmpTemplateManager.h"
 #include "simulation2/MessageTypes.h"
 #include "simulation2/system/DynamicSubscription.h"
@@ -68,21 +69,23 @@ CComponentManager::CComponentManager(CSimContext& context, shared_ptr<ScriptCont
 	if (!skipScriptFunctions)
 	{
 		JSI_VFS::RegisterScriptFunctions_Simulation(m_ScriptInterface);
-		m_ScriptInterface.RegisterFunction<void, int, std::string, JS::HandleValue, CComponentManager::Script_RegisterComponentType> ("RegisterComponentType");
-		m_ScriptInterface.RegisterFunction<void, int, std::string, JS::HandleValue, CComponentManager::Script_RegisterSystemComponentType> ("RegisterSystemComponentType");
-		m_ScriptInterface.RegisterFunction<void, int, std::string, JS::HandleValue, CComponentManager::Script_ReRegisterComponentType> ("ReRegisterComponentType");
-		m_ScriptInterface.RegisterFunction<void, std::string, CComponentManager::Script_RegisterInterface> ("RegisterInterface");
-		m_ScriptInterface.RegisterFunction<void, std::string, CComponentManager::Script_RegisterMessageType> ("RegisterMessageType");
-		m_ScriptInterface.RegisterFunction<void, std::string, JS::HandleValue, CComponentManager::Script_RegisterGlobal> ("RegisterGlobal");
-		m_ScriptInterface.RegisterFunction<IComponent*, int, int, CComponentManager::Script_QueryInterface> ("QueryInterface");
-		m_ScriptInterface.RegisterFunction<std::vector<int>, int, CComponentManager::Script_GetEntitiesWithInterface> ("GetEntitiesWithInterface");
-		m_ScriptInterface.RegisterFunction<std::vector<IComponent*>, int, CComponentManager::Script_GetComponentsWithInterface> ("GetComponentsWithInterface");
-		m_ScriptInterface.RegisterFunction<void, int, int, JS::HandleValue, CComponentManager::Script_PostMessage> ("PostMessage");
-		m_ScriptInterface.RegisterFunction<void, int, JS::HandleValue, CComponentManager::Script_BroadcastMessage> ("BroadcastMessage");
-		m_ScriptInterface.RegisterFunction<int, std::string, CComponentManager::Script_AddEntity> ("AddEntity");
-		m_ScriptInterface.RegisterFunction<int, std::string, CComponentManager::Script_AddLocalEntity> ("AddLocalEntity");
-		m_ScriptInterface.RegisterFunction<void, int, CComponentManager::Script_DestroyEntity> ("DestroyEntity");
-		m_ScriptInterface.RegisterFunction<void, CComponentManager::Script_FlushDestroyedEntities> ("FlushDestroyedEntities");
+		ScriptRequest rq(m_ScriptInterface);
+		constexpr ScriptFunction::ObjectGetter<CComponentManager> Getter = &ScriptFunction::ObjectFromCBData<CComponentManager>;
+		ScriptFunction::Register<&CComponentManager::Script_RegisterComponentType, Getter>(rq, "RegisterComponentType");
+		ScriptFunction::Register<&CComponentManager::Script_RegisterSystemComponentType, Getter>(rq, "RegisterSystemComponentType");
+		ScriptFunction::Register<&CComponentManager::Script_ReRegisterComponentType, Getter>(rq, "ReRegisterComponentType");
+		ScriptFunction::Register<&CComponentManager::Script_RegisterInterface, Getter>(rq, "RegisterInterface");
+		ScriptFunction::Register<&CComponentManager::Script_RegisterMessageType, Getter>(rq, "RegisterMessageType");
+		ScriptFunction::Register<&CComponentManager::Script_RegisterGlobal, Getter>(rq, "RegisterGlobal");
+		ScriptFunction::Register<&CComponentManager::Script_GetEntitiesWithInterface, Getter>(rq, "GetEntitiesWithInterface");
+		ScriptFunction::Register<&CComponentManager::Script_GetComponentsWithInterface, Getter>(rq, "GetComponentsWithInterface");
+		ScriptFunction::Register<&CComponentManager::Script_PostMessage, Getter>(rq, "PostMessage");
+		ScriptFunction::Register<&CComponentManager::Script_BroadcastMessage, Getter>(rq, "BroadcastMessage");
+		ScriptFunction::Register<&CComponentManager::Script_AddEntity, Getter>(rq, "AddEntity");
+		ScriptFunction::Register<&CComponentManager::Script_AddLocalEntity, Getter>(rq, "AddLocalEntity");
+		ScriptFunction::Register<&CComponentManager::QueryInterface, Getter>(rq, "QueryInterface");
+		ScriptFunction::Register<&CComponentManager::DestroyComponentsSoon, Getter>(rq, "DestroyEntity");
+		ScriptFunction::Register<&CComponentManager::FlushDestroyedComponents, Getter>(rq, "FlushDestroyedEntities");
 	}
 
 	// Globalscripts may use VFS script functions
@@ -149,23 +152,22 @@ bool CComponentManager::LoadScript(const VfsPath& filename, bool hotload)
 	return ok;
 }
 
-void CComponentManager::Script_RegisterComponentType_Common(ScriptInterface::CmptPrivate* pCmptPrivate, int iid, const std::string& cname, JS::HandleValue ctor, bool reRegister, bool systemComponent)
+void CComponentManager::Script_RegisterComponentType_Common(int iid, const std::string& cname, JS::HandleValue ctor, bool reRegister, bool systemComponent)
 {
-	CComponentManager* componentManager = static_cast<CComponentManager*> (pCmptPrivate->pCBData);
-	ScriptRequest rq(componentManager->m_ScriptInterface);
+	ScriptRequest rq(m_ScriptInterface);
 
 	// Find the C++ component that wraps the interface
-	int cidWrapper = componentManager->GetScriptWrapper(iid);
+	int cidWrapper = GetScriptWrapper(iid);
 	if (cidWrapper == CID__Invalid)
 	{
 		ScriptException::Raise(rq, "Invalid interface id");
 		return;
 	}
-	const ComponentType& ctWrapper = componentManager->m_ComponentTypesById[cidWrapper];
+	const ComponentType& ctWrapper = m_ComponentTypesById[cidWrapper];
 
 	bool mustReloadComponents = false; // for hotloading
 
-	ComponentTypeId cid = componentManager->LookupCID(cname);
+	ComponentTypeId cid = LookupCID(cname);
 	if (cid == CID__Invalid)
 	{
 		if (reRegister)
@@ -174,22 +176,22 @@ void CComponentManager::Script_RegisterComponentType_Common(ScriptInterface::Cmp
 			return;
 		}
 		// Allocate a new cid number
-		cid = componentManager->m_NextScriptComponentTypeId++;
-		componentManager->m_ComponentTypeIdsByName[cname] = cid;
+		cid = m_NextScriptComponentTypeId++;
+		m_ComponentTypeIdsByName[cname] = cid;
 		if (systemComponent)
-			componentManager->MarkScriptedComponentForSystemEntity(cid);
+			MarkScriptedComponentForSystemEntity(cid);
 	}
 	else
 	{
 		// Component type is already loaded, so do hotloading:
 
-		if (!componentManager->m_CurrentlyHotloading && !reRegister)
+		if (!m_CurrentlyHotloading && !reRegister)
 		{
 			ScriptException::Raise(rq, "Registering component type with already-registered name '%s'", cname.c_str());
 			return;
 		}
 
-		const ComponentType& ctPrevious = componentManager->m_ComponentTypesById[cid];
+		const ComponentType& ctPrevious = m_ComponentTypesById[cid];
 
 		// We can only replace scripted component types, not native ones
 		if (ctPrevious.type != CT_Script)
@@ -203,7 +205,7 @@ void CComponentManager::Script_RegisterComponentType_Common(ScriptInterface::Cmp
 		if (ctPrevious.iid != iid)
 		{
 			// ...though it only matters if any components exist with this type
-			if (!componentManager->m_ComponentsByTypeId[cid].empty())
+			if (!m_ComponentsByTypeId[cid].empty())
 			{
 				ScriptException::Raise(rq, "Hotloading script component type mustn't change interface ID");
 				return;
@@ -212,14 +214,14 @@ void CComponentManager::Script_RegisterComponentType_Common(ScriptInterface::Cmp
 
 		// Remove the old component type's message subscriptions
 		std::map<MessageTypeId, std::vector<ComponentTypeId> >::iterator it;
-		for (it = componentManager->m_LocalMessageSubscriptions.begin(); it != componentManager->m_LocalMessageSubscriptions.end(); ++it)
+		for (it = m_LocalMessageSubscriptions.begin(); it != m_LocalMessageSubscriptions.end(); ++it)
 		{
 			std::vector<ComponentTypeId>& types = it->second;
 			std::vector<ComponentTypeId>::iterator ctit = find(types.begin(), types.end(), cid);
 			if (ctit != types.end())
 				types.erase(ctit);
 		}
-		for (it = componentManager->m_GlobalMessageSubscriptions.begin(); it != componentManager->m_GlobalMessageSubscriptions.end(); ++it)
+		for (it = m_GlobalMessageSubscriptions.begin(); it != m_GlobalMessageSubscriptions.end(); ++it)
 		{
 			std::vector<ComponentTypeId>& types = it->second;
 			std::vector<ComponentTypeId>::iterator ctit = find(types.begin(), types.end(), cid);
@@ -231,7 +233,7 @@ void CComponentManager::Script_RegisterComponentType_Common(ScriptInterface::Cmp
 	}
 
 	JS::RootedValue protoVal(rq.cx);
-	if (!componentManager->m_ScriptInterface.GetProperty(ctor, "prototype", &protoVal))
+	if (!m_ScriptInterface.GetProperty(ctor, "prototype", &protoVal))
 	{
 		ScriptException::Raise(rq, "Failed to get property 'prototype'");
 		return;
@@ -243,8 +245,8 @@ void CComponentManager::Script_RegisterComponentType_Common(ScriptInterface::Cmp
 	}
 	std::string schema = "<empty/>";
 
-	if (componentManager->m_ScriptInterface.HasProperty(protoVal, "Schema"))
-		componentManager->m_ScriptInterface.GetProperty(protoVal, "Schema", schema);
+	if (m_ScriptInterface.HasProperty(protoVal, "Schema"))
+		m_ScriptInterface.GetProperty(protoVal, "Schema", schema);
 
 	// Construct a new ComponentType, using the wrapper's alloc functions
 	ComponentType ct{
@@ -256,14 +258,14 @@ void CComponentManager::Script_RegisterComponentType_Common(ScriptInterface::Cmp
 		schema,
 		std::make_unique<JS::PersistentRootedValue>(rq.cx, ctor)
 	};
-	componentManager->m_ComponentTypesById[cid] = std::move(ct);
+	m_ComponentTypesById[cid] = std::move(ct);
 
-	componentManager->m_CurrentComponent = cid; // needed by Subscribe
+	m_CurrentComponent = cid; // needed by Subscribe
 
 	// Find all the ctor prototype's On* methods, and subscribe to the appropriate messages:
 	std::vector<std::string> methods;
 
-	if (!componentManager->m_ScriptInterface.EnumeratePropertyNames(protoVal, false, methods))
+	if (!m_ScriptInterface.EnumeratePropertyNames(protoVal, false, methods))
 	{
 		ScriptException::Raise(rq, "Failed to enumerate component properties.");
 		return;
@@ -285,121 +287,105 @@ void CComponentManager::Script_RegisterComponentType_Common(ScriptInterface::Cmp
 			name = name.substr(6);
 		}
 
-		std::map<std::string, MessageTypeId>::const_iterator mit = componentManager->m_MessageTypeIdsByName.find(name);
-		if (mit == componentManager->m_MessageTypeIdsByName.end())
+		std::map<std::string, MessageTypeId>::const_iterator mit = m_MessageTypeIdsByName.find(name);
+		if (mit == m_MessageTypeIdsByName.end())
 		{
 			ScriptException::Raise(rq, "Registered component has unrecognized '%s' message handler method", it->c_str());
 			return;
 		}
 
 		if (isGlobal)
-			componentManager->SubscribeGloballyToMessageType(mit->second);
+			SubscribeGloballyToMessageType(mit->second);
 		else
-			componentManager->SubscribeToMessageType(mit->second);
+			SubscribeToMessageType(mit->second);
 	}
 
-	componentManager->m_CurrentComponent = CID__Invalid;
+	m_CurrentComponent = CID__Invalid;
 
 	if (mustReloadComponents)
 	{
 		// For every script component with this cid, we need to switch its
 		// prototype from the old constructor's prototype property to the new one's
-		const std::map<entity_id_t, IComponent*>& comps = componentManager->m_ComponentsByTypeId[cid];
+		const std::map<entity_id_t, IComponent*>& comps = m_ComponentsByTypeId[cid];
 		std::map<entity_id_t, IComponent*>::const_iterator eit = comps.begin();
 		for (; eit != comps.end(); ++eit)
 		{
 			JS::RootedValue instance(rq.cx, eit->second->GetJSInstance());
 			if (!instance.isNull())
-				componentManager->m_ScriptInterface.SetPrototype(instance, protoVal);
+				m_ScriptInterface.SetPrototype(instance, protoVal);
 		}
 	}
 }
 
-void CComponentManager::Script_RegisterComponentType(ScriptInterface::CmptPrivate* pCmptPrivate, int iid, const std::string& cname, JS::HandleValue ctor)
+void CComponentManager::Script_RegisterComponentType(int iid, const std::string& cname, JS::HandleValue ctor)
 {
-	CComponentManager* componentManager = static_cast<CComponentManager*> (pCmptPrivate->pCBData);
-	componentManager->Script_RegisterComponentType_Common(pCmptPrivate, iid, cname, ctor, false, false);
-	componentManager->m_ScriptInterface.SetGlobal(cname.c_str(), ctor, componentManager->m_CurrentlyHotloading);
+	Script_RegisterComponentType_Common(iid, cname, ctor, false, false);
+	m_ScriptInterface.SetGlobal(cname.c_str(), ctor, m_CurrentlyHotloading);
 }
 
-void CComponentManager::Script_RegisterSystemComponentType(ScriptInterface::CmptPrivate* pCmptPrivate, int iid, const std::string& cname, JS::HandleValue ctor)
+void CComponentManager::Script_RegisterSystemComponentType(int iid, const std::string& cname, JS::HandleValue ctor)
 {
-	CComponentManager* componentManager = static_cast<CComponentManager*> (pCmptPrivate->pCBData);
-	componentManager->Script_RegisterComponentType_Common(pCmptPrivate, iid, cname, ctor, false, true);
-	componentManager->m_ScriptInterface.SetGlobal(cname.c_str(), ctor, componentManager->m_CurrentlyHotloading);
+	Script_RegisterComponentType_Common(iid, cname, ctor, false, true);
+	m_ScriptInterface.SetGlobal(cname.c_str(), ctor, m_CurrentlyHotloading);
 }
 
-void CComponentManager::Script_ReRegisterComponentType(ScriptInterface::CmptPrivate* pCmptPrivate, int iid, const std::string& cname, JS::HandleValue ctor)
+void CComponentManager::Script_ReRegisterComponentType(int iid, const std::string& cname, JS::HandleValue ctor)
 {
-	Script_RegisterComponentType_Common(pCmptPrivate, iid, cname, ctor, true, false);
+	Script_RegisterComponentType_Common(iid, cname, ctor, true, false);
 }
 
-void CComponentManager::Script_RegisterInterface(ScriptInterface::CmptPrivate* pCmptPrivate, const std::string& name)
+void CComponentManager::Script_RegisterInterface(const std::string& name)
 {
-	CComponentManager* componentManager = static_cast<CComponentManager*> (pCmptPrivate->pCBData);
-
-	std::map<std::string, InterfaceId>::iterator it = componentManager->m_InterfaceIdsByName.find(name);
-	if (it != componentManager->m_InterfaceIdsByName.end())
+	std::map<std::string, InterfaceId>::iterator it = m_InterfaceIdsByName.find(name);
+	if (it != m_InterfaceIdsByName.end())
 	{
 		// Redefinitions are fine (and just get ignored) when hotloading; otherwise
 		// they're probably unintentional and should be reported
-		if (!componentManager->m_CurrentlyHotloading)
+		if (!m_CurrentlyHotloading)
 		{
-			ScriptRequest rq(componentManager->m_ScriptInterface);
+			ScriptRequest rq(m_ScriptInterface);
 			ScriptException::Raise(rq, "Registering interface with already-registered name '%s'", name.c_str());
 		}
 		return;
 	}
 
 	// IIDs start at 1, so size+1 is the next unused one
-	size_t id = componentManager->m_InterfaceIdsByName.size() + 1;
-	componentManager->m_InterfaceIdsByName[name] = (InterfaceId)id;
-	componentManager->m_ComponentsByInterface.resize(id+1); // add one so we can index by InterfaceId
-	componentManager->m_ScriptInterface.SetGlobal(("IID_" + name).c_str(), (int)id);
+	size_t id = m_InterfaceIdsByName.size() + 1;
+	m_InterfaceIdsByName[name] = (InterfaceId)id;
+	m_ComponentsByInterface.resize(id+1); // add one so we can index by InterfaceId
+	m_ScriptInterface.SetGlobal(("IID_" + name).c_str(), (int)id);
 }
 
-void CComponentManager::Script_RegisterMessageType(ScriptInterface::CmptPrivate* pCmptPrivate, const std::string& name)
+void CComponentManager::Script_RegisterMessageType(const std::string& name)
 {
-	CComponentManager* componentManager = static_cast<CComponentManager*> (pCmptPrivate->pCBData);
-
-	std::map<std::string, MessageTypeId>::iterator it = componentManager->m_MessageTypeIdsByName.find(name);
-	if (it != componentManager->m_MessageTypeIdsByName.end())
+	std::map<std::string, MessageTypeId>::iterator it = m_MessageTypeIdsByName.find(name);
+	if (it != m_MessageTypeIdsByName.end())
 	{
 		// Redefinitions are fine (and just get ignored) when hotloading; otherwise
 		// they're probably unintentional and should be reported
-		if (!componentManager->m_CurrentlyHotloading)
+		if (!m_CurrentlyHotloading)
 		{
-			ScriptRequest rq(componentManager->m_ScriptInterface);
+			ScriptRequest rq(m_ScriptInterface);
 			ScriptException::Raise(rq, "Registering message type with already-registered name '%s'", name.c_str());
 		}
 		return;
 	}
 
 	// MTIDs start at 1, so size+1 is the next unused one
-	size_t id = componentManager->m_MessageTypeIdsByName.size() + 1;
-	componentManager->RegisterMessageType((MessageTypeId)id, name.c_str());
-	componentManager->m_ScriptInterface.SetGlobal(("MT_" + name).c_str(), (int)id);
+	size_t id = m_MessageTypeIdsByName.size() + 1;
+	RegisterMessageType((MessageTypeId)id, name.c_str());
+	m_ScriptInterface.SetGlobal(("MT_" + name).c_str(), (int)id);
 }
 
-void CComponentManager::Script_RegisterGlobal(ScriptInterface::CmptPrivate* pCmptPrivate, const std::string& name, JS::HandleValue value)
+void CComponentManager::Script_RegisterGlobal(const std::string& name, JS::HandleValue value)
 {
-	CComponentManager* componentManager = static_cast<CComponentManager*> (pCmptPrivate->pCBData);
-	componentManager->m_ScriptInterface.SetGlobal(name.c_str(), value, componentManager->m_CurrentlyHotloading);
+	m_ScriptInterface.SetGlobal(name.c_str(), value, m_CurrentlyHotloading);
 }
 
-IComponent* CComponentManager::Script_QueryInterface(ScriptInterface::CmptPrivate* pCmptPrivate, int ent, int iid)
+std::vector<int> CComponentManager::Script_GetEntitiesWithInterface(int iid)
 {
-	CComponentManager* componentManager = static_cast<CComponentManager*> (pCmptPrivate->pCBData);
-	IComponent* component = componentManager->QueryInterface((entity_id_t)ent, iid);
-	return component;
-}
-
-std::vector<int> CComponentManager::Script_GetEntitiesWithInterface(ScriptInterface::CmptPrivate* pCmptPrivate, int iid)
-{
-	CComponentManager* componentManager = static_cast<CComponentManager*> (pCmptPrivate->pCBData);
-
 	std::vector<int> ret;
-	const InterfaceListUnordered& ents = componentManager->GetEntitiesWithInterfaceUnordered(iid);
+	const InterfaceListUnordered& ents = GetEntitiesWithInterfaceUnordered(iid);
 	for (InterfaceListUnordered::const_iterator it = ents.begin(); it != ents.end(); ++it)
 		if (!ENTITY_IS_LOCAL(it->first))
 			ret.push_back(it->first);
@@ -407,12 +393,10 @@ std::vector<int> CComponentManager::Script_GetEntitiesWithInterface(ScriptInterf
 	return ret;
 }
 
-std::vector<IComponent*> CComponentManager::Script_GetComponentsWithInterface(ScriptInterface::CmptPrivate* pCmptPrivate, int iid)
+std::vector<IComponent*> CComponentManager::Script_GetComponentsWithInterface(int iid)
 {
-	CComponentManager* componentManager = static_cast<CComponentManager*> (pCmptPrivate->pCBData);
-
 	std::vector<IComponent*> ret;
-	InterfaceList ents = componentManager->GetEntitiesWithInterface(iid);
+	InterfaceList ents = GetEntitiesWithInterface(iid);
 	for (InterfaceList::const_iterator it = ents.begin(); it != ents.end(); ++it)
 		ret.push_back(it->second); // TODO: maybe we should exclude local entities
 	return ret;
@@ -433,67 +417,40 @@ CMessage* CComponentManager::ConstructMessage(int mtid, JS::HandleValue data)
 	}
 }
 
-void CComponentManager::Script_PostMessage(ScriptInterface::CmptPrivate* pCmptPrivate, int ent, int mtid, JS::HandleValue data)
+void CComponentManager::Script_PostMessage(int ent, int mtid, JS::HandleValue data)
 {
-	CComponentManager* componentManager = static_cast<CComponentManager*> (pCmptPrivate->pCBData);
-
-	CMessage* msg = componentManager->ConstructMessage(mtid, data);
+	CMessage* msg = ConstructMessage(mtid, data);
 	if (!msg)
 		return; // error
 
-	componentManager->PostMessage(ent, *msg);
+	PostMessage(ent, *msg);
 
 	delete msg;
 }
 
-void CComponentManager::Script_BroadcastMessage(ScriptInterface::CmptPrivate* pCmptPrivate, int mtid, JS::HandleValue data)
+void CComponentManager::Script_BroadcastMessage(int mtid, JS::HandleValue data)
 {
-	CComponentManager* componentManager = static_cast<CComponentManager*> (pCmptPrivate->pCBData);
-
-	CMessage* msg = componentManager->ConstructMessage(mtid, data);
+	CMessage* msg = ConstructMessage(mtid, data);
 	if (!msg)
 		return; // error
 
-	componentManager->BroadcastMessage(*msg);
+	BroadcastMessage(*msg);
 
 	delete msg;
 }
 
-int CComponentManager::Script_AddEntity(ScriptInterface::CmptPrivate* pCmptPrivate, const std::string& templateName)
+int CComponentManager::Script_AddEntity(const std::wstring& templateName)
 {
-	CComponentManager* componentManager = static_cast<CComponentManager*> (pCmptPrivate->pCBData);
-
-	std::wstring name(templateName.begin(), templateName.end());
 	// TODO: should validate the string to make sure it doesn't contain scary characters
 	// that will let it access non-component-template files
-
-	entity_id_t ent = componentManager->AddEntity(name, componentManager->AllocateNewEntity());
-	return (int)ent;
+	return AddEntity(templateName, AllocateNewEntity());
 }
 
-int CComponentManager::Script_AddLocalEntity(ScriptInterface::CmptPrivate* pCmptPrivate, const std::string& templateName)
+int CComponentManager::Script_AddLocalEntity(const std::wstring& templateName)
 {
-	CComponentManager* componentManager = static_cast<CComponentManager*> (pCmptPrivate->pCBData);
-
-	std::wstring name(templateName.begin(), templateName.end());
 	// TODO: should validate the string to make sure it doesn't contain scary characters
 	// that will let it access non-component-template files
-
-	entity_id_t ent = componentManager->AddEntity(name, componentManager->AllocateNewLocalEntity());
-	return (int)ent;
-}
-
-void CComponentManager::Script_DestroyEntity(ScriptInterface::CmptPrivate* pCmptPrivate, int ent)
-{
-	CComponentManager* componentManager = static_cast<CComponentManager*> (pCmptPrivate->pCBData);
-
-	componentManager->DestroyComponentsSoon(ent);
-}
-
-void CComponentManager::Script_FlushDestroyedEntities(ScriptInterface::CmptPrivate *pCmptPrivate)
-{
-	CComponentManager* componentManager = static_cast<CComponentManager*> (pCmptPrivate->pCBData);
-	componentManager->FlushDestroyedComponents();
+	return AddEntity(templateName, AllocateNewLocalEntity());
 }
 
 void CComponentManager::ResetState()

@@ -6,8 +6,6 @@
       <mesh>structural/pers_blacksmith.dae</mesh>
       <props>
         <prop actor="props/structures/persians/blacksmith.xml" attachpoint="root"/>
-        <prop actor="particle/smoke_blacksmith.xml" attachpoint="smoke"/>
-        <prop actor="particle/flame.xml" attachpoint="fire"/>
         <prop actor="props/units/shields/pers_taka_a.xml" attachpoint="shielda"/>
         <prop actor="props/units/shields/pers_round_kardakes.xml" attachpoint="shieldb"/>
         <prop actor="props/units/shields/pers_round_kardakes.xml" attachpoint="shieldc"/>
@@ -23,6 +21,16 @@
         <texture file="structural/pers_struct_spec.png" name="specTex"/>
         <texture file="structural/ao/pers_blacksmith.png" name="aoTex"/>
       </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant name="researching">
+      <props>
+        <prop actor="particle/sparks_blacksmith.xml" attachpoint="smoke"/>
+        <prop actor="particle/smoke_blacksmith.xml" attachpoint="smoke"/>
+        <prop actor="particle/flame.xml" attachpoint="fire"/>
+      </props>
     </variant>
   </group>
   <material>player_trans_ao_parallax_spec.xml</material>

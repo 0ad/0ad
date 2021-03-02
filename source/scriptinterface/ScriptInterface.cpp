@@ -72,7 +72,7 @@ struct ScriptInterface_impl
 };
 
 ScriptRequest::ScriptRequest(const ScriptInterface& scriptInterface) :
-	cx(scriptInterface.m->m_cx)
+	cx(scriptInterface.m->m_cx), nativeScope(scriptInterface.m->m_nativeScope)
 {
 	m_formerRealm = JS::EnterRealm(cx, scriptInterface.m->m_glob);
 	glob = JS::CurrentGlobalOrNull(cx);

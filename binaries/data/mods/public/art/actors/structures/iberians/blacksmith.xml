@@ -6,18 +6,14 @@
       <mesh>structural/iber_blacksmith_struct.dae</mesh>
       <props>
         <prop actor="props/structures/iberians/blacksmith_props.xml" attachpoint="root"/>
-        <prop actor="particle/smoke_blacksmith.xml" attachpoint="ibersmoke"/>
-        <prop actor="particle/flame.xml" attachpoint="iberfire"/>
         <prop actor="props/structures/decals/dirt_4x4.xml" attachpoint="root"/>
-
-<prop actor="props/structures/iberians/blacksmith_barrel.xml" attachpoint="iberbarrel"/>
-<prop actor="props/structures/iberians/blacksmith_barrels.xml" attachpoint="iberbarrels"/>
-<prop actor="props/structures/iberians/blacksmith_bucket.xml" attachpoint="ibercube"/>
-<prop actor="props/structures/iberians/blacksmith_shields1.xml" attachpoint="ibershields1"/>
-<prop actor="props/structures/iberians/blacksmith_shields2.xml" attachpoint="ibershields2"/>
-<prop actor="props/structures/iberians/blacksmith_spear.xml" attachpoint="iberspear"/>
-<prop actor="props/structures/iberians/blacksmith_wheel.xml" attachpoint="iberwheel"/>
-
+        <prop actor="props/structures/iberians/blacksmith_barrel.xml" attachpoint="iberbarrel"/>
+        <prop actor="props/structures/iberians/blacksmith_barrels.xml" attachpoint="iberbarrels"/>
+        <prop actor="props/structures/iberians/blacksmith_bucket.xml" attachpoint="ibercube"/>
+        <prop actor="props/structures/iberians/blacksmith_shields1.xml" attachpoint="ibershields1"/>
+        <prop actor="props/structures/iberians/blacksmith_shields2.xml" attachpoint="ibershields2"/>
+        <prop actor="props/structures/iberians/blacksmith_spear.xml" attachpoint="iberspear"/>
+        <prop actor="props/structures/iberians/blacksmith_wheel.xml" attachpoint="iberwheel"/>
       </props>
       <textures>
         <texture file="structural/iber_struct.dds" name="baseTex"/>
@@ -25,6 +21,16 @@
         <texture file="structural/iber_struct_spec.png" name="specTex"/>
         <texture file="structural/ao/iber_blacksmith.png" name="aoTex"/>
       </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant name="researching">
+      <props>
+        <prop actor="particle/sparks_blacksmith.xml" attachpoint="smoke"/>
+        <prop actor="particle/smoke_blacksmith.xml" attachpoint="ibersmoke"/>
+        <prop actor="particle/flame.xml" attachpoint="iberfire"/>
+      </props>
     </variant>
   </group>
   <material>player_trans_ao_spec.xml</material>

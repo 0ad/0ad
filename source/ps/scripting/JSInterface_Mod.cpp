@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,11 +20,14 @@
 #include "JSInterface_Mod.h"
 
 #include "ps/Mod.h"
+#include "scriptinterface/FunctionWrapper.h"
 #include "scriptinterface/ScriptInterface.h"
 
 extern void RestartEngine();
 
-JS::Value JSI_Mod::GetEngineInfo(ScriptInterface::CmptPrivate* pCmptPrivate)
+namespace
+{
+JS::Value GetEngineInfo(ScriptInterface::CmptPrivate* pCmptPrivate)
 {
 	return Mod::GetEngineInfo(*(pCmptPrivate->pScriptInterface));
 }
@@ -39,25 +42,21 @@ JS::Value JSI_Mod::GetEngineInfo(ScriptInterface::CmptPrivate* pCmptPrivate)
  * @return JS object with available mods as the keys of the modname.json
  *         properties.
  */
-JS::Value JSI_Mod::GetAvailableMods(ScriptInterface::CmptPrivate* pCmptPrivate)
+JS::Value GetAvailableMods(ScriptInterface::CmptPrivate* pCmptPrivate)
 {
 	return Mod::GetAvailableMods(*(pCmptPrivate->pScriptInterface));
 }
 
-void JSI_Mod::RestartEngine(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
-{
-	::RestartEngine();
-}
-
-void JSI_Mod::SetMods(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::vector<CStr>& mods)
+void SetMods(const std::vector<CStr>& mods)
 {
 	g_modsLoaded = mods;
 }
+}
 
-void JSI_Mod::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
+void JSI_Mod::RegisterScriptFunctions(const ScriptRequest& rq)
 {
-	scriptInterface.RegisterFunction<JS::Value, &GetEngineInfo>("GetEngineInfo");
-	scriptInterface.RegisterFunction<JS::Value, &JSI_Mod::GetAvailableMods>("GetAvailableMods");
-	scriptInterface.RegisterFunction<void, &JSI_Mod::RestartEngine>("RestartEngine");
-	scriptInterface.RegisterFunction<void, std::vector<CStr>, &JSI_Mod::SetMods>("SetMods");
+	ScriptFunction::Register<&GetEngineInfo>(rq, "GetEngineInfo");
+	ScriptFunction::Register<&GetAvailableMods>(rq, "GetAvailableMods");
+	ScriptFunction::Register<&RestartEngine>(rq, "RestartEngine");
+	ScriptFunction::Register<&SetMods>(rq, "SetMods");
 }

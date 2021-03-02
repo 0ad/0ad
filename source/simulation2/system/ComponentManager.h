@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -273,22 +273,19 @@ public:
 
 private:
 	// Implementations of functions exposed to scripts
-	static void Script_RegisterComponentType_Common(ScriptInterface::CmptPrivate* pCmptPrivate, int iid, const std::string& cname, JS::HandleValue ctor, bool reRegister, bool systemComponent);
-	static void Script_RegisterComponentType(ScriptInterface::CmptPrivate* pCmptPrivate, int iid, const std::string& cname, JS::HandleValue ctor);
-	static void Script_RegisterSystemComponentType(ScriptInterface::CmptPrivate* pCmptPrivate, int iid, const std::string& cname, JS::HandleValue ctor);
-	static void Script_ReRegisterComponentType(ScriptInterface::CmptPrivate* pCmptPrivate, int iid, const std::string& cname, JS::HandleValue ctor);
-	static void Script_RegisterInterface(ScriptInterface::CmptPrivate* pCmptPrivate, const std::string& name);
-	static void Script_RegisterMessageType(ScriptInterface::CmptPrivate* pCmptPrivate, const std::string& name);
-	static void Script_RegisterGlobal(ScriptInterface::CmptPrivate* pCmptPrivate, const std::string& name, JS::HandleValue value);
-	static IComponent* Script_QueryInterface(ScriptInterface::CmptPrivate* pCmptPrivate, int ent, int iid);
-	static std::vector<int> Script_GetEntitiesWithInterface(ScriptInterface::CmptPrivate* pCmptPrivate, int iid);
-	static std::vector<IComponent*> Script_GetComponentsWithInterface(ScriptInterface::CmptPrivate* pCmptPrivate, int iid);
-	static void Script_PostMessage(ScriptInterface::CmptPrivate* pCmptPrivate, int ent, int mtid, JS::HandleValue data);
-	static void Script_BroadcastMessage(ScriptInterface::CmptPrivate* pCmptPrivate, int mtid, JS::HandleValue data);
-	static int Script_AddEntity(ScriptInterface::CmptPrivate* pCmptPrivate, const std::string& templateName);
-	static int Script_AddLocalEntity(ScriptInterface::CmptPrivate* pCmptPrivate, const std::string& templateName);
-	static void Script_DestroyEntity(ScriptInterface::CmptPrivate* pCmptPrivate, int ent);
-	static void Script_FlushDestroyedEntities(ScriptInterface::CmptPrivate* pCmptPrivate);
+	void Script_RegisterComponentType_Common(int iid, const std::string& cname, JS::HandleValue ctor, bool reRegister, bool systemComponent);
+	void Script_RegisterComponentType(int iid, const std::string& cname, JS::HandleValue ctor);
+	void Script_RegisterSystemComponentType(int iid, const std::string& cname, JS::HandleValue ctor);
+	void Script_ReRegisterComponentType(int iid, const std::string& cname, JS::HandleValue ctor);
+	void Script_RegisterInterface(const std::string& name);
+	void Script_RegisterMessageType(const std::string& name);
+	void Script_RegisterGlobal(const std::string& name, JS::HandleValue value);
+	std::vector<int> Script_GetEntitiesWithInterface(int iid);
+	std::vector<IComponent*> Script_GetComponentsWithInterface(int iid);
+	void Script_PostMessage(int ent, int mtid, JS::HandleValue data);
+	void Script_BroadcastMessage(int mtid, JS::HandleValue data);
+	int Script_AddEntity(const std::wstring& templateName);
+	int Script_AddLocalEntity(const std::wstring& templateName);
 
 	CMessage* ConstructMessage(int mtid, JS::HandleValue data);
 	void SendGlobalMessage(entity_id_t ent, const CMessage& msg);
