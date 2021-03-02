@@ -184,14 +184,9 @@ TriggerHelper.SpawnGarrisonedUnits = function(entity, template, count, owner)
 		if (cmpOwnership)
 			cmpOwnership.SetOwner(owner);
 
-		if (cmpGarrisonHolder.Garrison(ent))
-		{
-			let cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
-			if (cmpUnitAI)
-				cmpUnitAI.Autogarrison(entity);
-
+		let cmpGarrisonable = Engine.QueryInterface(ent, IID_Garrisonable);
+		if (cmpGarrisonable && cmpGarrisonable.Autogarrison(entity))
 			entities.push(ent);
-		}
 		else
 			error("failed to garrison entity " + ent + " (" + template + ") inside " + entity);
 	}

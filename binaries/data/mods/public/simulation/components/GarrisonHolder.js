@@ -164,20 +164,14 @@ GarrisonHolder.prototype.IsAllowedToGarrison = function(entity)
 
 /**
  * @param {number} entity - The entityID to garrison.
- * @param {boolean} renamed - Whether the entity was renamed.
- *
  * @return {boolean} - Whether the entity was garrisoned.
  */
-GarrisonHolder.prototype.Garrison = function(entity, renamed = false)
+GarrisonHolder.prototype.Garrison = function(entity)
 {
 	if (!this.IsAllowedToGarrison(entity))
 		return false;
 
 	if (!this.HasEnoughHealth())
-		return false;
-
-	let cmpGarrisonable = Engine.QueryInterface(entity, IID_Garrisonable);
-	if (!cmpGarrisonable || !cmpGarrisonable.Garrison(this.entity))
 		return false;
 
 	if (!this.timer && this.GetHealRate() > 0)
@@ -191,8 +185,7 @@ GarrisonHolder.prototype.Garrison = function(entity, renamed = false)
 
 	Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, {
 		"added": [entity],
-		"removed": [],
-		"renamed": renamed
+		"removed": []
 	});
 
 	return true;
@@ -214,14 +207,13 @@ GarrisonHolder.prototype.Eject = function(entity, forced, renamed = false)
 		return false;
 
 	let cmpGarrisonable = Engine.QueryInterface(entity, IID_Garrisonable);
-	if (!cmpGarrisonable || !cmpGarrisonable.UnGarrison(forced))
+	if (!cmpGarrisonable || !cmpGarrisonable.UnGarrison(forced, renamed))
 		return false;
 
 	this.entities.splice(entityIndex, 1);
 	Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, {
 		"added": [],
-		"removed": [entity],
-		"renamed": renamed
+		"removed": [entity]
 	});
 
 	return true;
@@ -510,24 +502,6 @@ GarrisonHolder.prototype.OnGlobalOwnershipChanged = function(msg)
  */
 GarrisonHolder.prototype.OnGlobalEntityRenamed = function(msg)
 {
-	let entityIndex = this.entities.indexOf(msg.entity);
-	if (entityIndex != -1)
-	{
-		this.Eject(msg.entity, true, true);
-		this.Garrison(msg.newentity, true);
-
-		// TurretHolder is not subscribed to GarrisonChanged, so we must inform it explicitly.
-		// Otherwise a renaming entity may re-occupy another turret instead of its previous one,
-		// since the message does not know what turret point whas used, which is not wanted.
-		// Also ensure the TurretHolder receives the message after we process it.
-		// If it processes it before us we garrison a turret and subsequently
-		// are hidden by GarrisonHolder again.
-		// This could be fixed by not requiring a turret to be 'garrisoned'.
-		let cmpTurretHolder = Engine.QueryInterface(this.entity, IID_TurretHolder);
-		if (cmpTurretHolder)
-			cmpTurretHolder.SwapEntities(msg.entity, msg.newentity);
-	}
-
 	if (!this.initGarrison)
 		return;
 
@@ -540,7 +514,7 @@ GarrisonHolder.prototype.OnGlobalEntityRenamed = function(msg)
 	}
 	else
 	{
-		entityIndex = this.initGarrison.indexOf(msg.entity);
+		let entityIndex = this.initGarrison.indexOf(msg.entity);
 		if (entityIndex != -1)
 			this.initGarrison[entityIndex] = msg.newentity;
 	}
@@ -630,9 +604,9 @@ GarrisonHolder.prototype.OnGlobalInitGame = function(msg)
 
 	for (let ent of this.initGarrison)
 	{
-		let cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
-		if (cmpUnitAI && cmpUnitAI.CanGarrison(this.entity) && this.Garrison(ent))
-			cmpUnitAI.Autogarrison(this.entity);
+		let cmpGarrisonable = Engine.QueryInterface(ent, IID_Garrisonable);
+		if (cmpGarrisonable)
+			cmpGarrisonable.Autogarrison(this.entity);
 	}
 	this.initGarrison = undefined;
 };
@@ -665,4 +639,3 @@ GarrisonHolder.prototype.OnValueModification = function(msg)
 };
 
 Engine.RegisterComponentType(IID_GarrisonHolder, "GarrisonHolder", GarrisonHolder);
-

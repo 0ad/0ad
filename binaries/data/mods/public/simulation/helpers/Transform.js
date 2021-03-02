@@ -67,6 +67,8 @@ function ChangeEntityTemplate(oldEnt, newTemplate)
 			cmpNewUnitAI.SetHeldPosition(pos.x, pos.z);
 		if (cmpUnitAI.GetStanceName())
 			cmpNewUnitAI.SwitchToStance(cmpUnitAI.GetStanceName());
+		if (cmpUnitAI.IsGarrisoned())
+			cmpNewUnitAI.SetGarrisoned();
 		cmpNewUnitAI.AddOrders(cmpUnitAI.GetOrders());
 		if (cmpUnitAI.IsGuardOf())
 		{
@@ -78,8 +80,6 @@ function ChangeEntityTemplate(oldEnt, newTemplate)
 				cmpNewUnitAI.SetGuardOf(guarded);
 			}
 		}
-		if (cmpUnitAI.IsGarrisoned())
-			cmpNewUnitAI.SetGarrisoned();
 	}
 
 	let cmpPromotion = Engine.QueryInterface(oldEnt, IID_Promotion);
@@ -255,11 +255,10 @@ function TransferGarrisonedUnits(oldEnt, newEnt)
 		cmpOldGarrison.Eject(ent);
 		if (!cmpNewGarrison)
 			continue;
-		let cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
-		if (!cmpUnitAI)
+		let cmpGarrisonable = Engine.QueryInterface(ent, IID_Garrisonable);
+		if (!cmpGarrisonable)
 			continue;
-		cmpUnitAI.Autogarrison(newEnt);
-		cmpNewGarrison.Garrison(ent);
+		cmpGarrisonable.Autogarrison(newEnt);
 	}
 }
 

@@ -9,8 +9,11 @@ Engine.RegisterGlobal("ApplyValueModificationsToEntity", (prop, oVal, ent) => oV
 
 const garrisonHolderID = 1;
 const garrisonableID = 2;
+AddMock(garrisonHolderID, IID_GarrisonHolder, {
+	"Garrison": () => true
+});
 
-let size = 1
+let size = 1;
 let cmpGarrisonable = ConstructComponent(garrisonableID, "Garrisonable", {
 	"Size": size
 });

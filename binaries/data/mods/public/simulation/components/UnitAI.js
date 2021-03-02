@@ -3163,8 +3163,8 @@ UnitAI.prototype.UnitFsmSpec = {
 					if (this.CanGarrison(target))
 						if (this.CheckGarrisonRange(target))
 						{
-							var cmpGarrisonHolder = Engine.QueryInterface(target, IID_GarrisonHolder);
-							if (cmpGarrisonHolder.Garrison(this.entity))
+							let cmpGarrisonable = Engine.QueryInterface(this.entity, IID_Garrisonable);
+							if (cmpGarrisonable.Garrison(target))
 							{
 								this.isGarrisoned = true;
 								this.SetImmobile(true);
