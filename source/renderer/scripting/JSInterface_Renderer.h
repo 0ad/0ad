@@ -18,16 +18,11 @@
 #ifndef INCLUDED_JSINTERFACE_RENDERER
 #define INCLUDED_JSINTERFACE_RENDERER
 
-#include "scriptinterface/ScriptInterface.h"
+class ScriptRequest;
 
 namespace JSI_Renderer
 {
-	std::string GetRenderPath(ScriptInterface::CmptPrivate* pCmptPrivate);
-	bool TextureExists(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& filename);
-
-	void RegisterScriptFunctions(const ScriptInterface& scriptInterface);
+	void RegisterScriptFunctions(const ScriptRequest& rq);
 }
-
-#undef DECLARE_BOOLEAN_SCRIPT_SETTING
 
 #endif // INCLUDED_JSINTERFACE_RENDERER

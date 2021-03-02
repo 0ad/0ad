@@ -18,21 +18,11 @@
 #ifndef INCLUDED_JSI_DEBUG
 #define INCLUDED_JSI_DEBUG
 
-#include "scriptinterface/ScriptInterface.h"
-
-#include <string>
+class ScriptRequest;
 
 namespace JSI_Debug
 {
-	int Crash(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate));
-	void DebugWarn(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate));
-	void DisplayErrorDialog(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::wstring& msg);
-	std::wstring GetBuildDate(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate));
-	double GetBuildTimestamp(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate));
-	std::wstring GetBuildRevision(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate));
-	double GetMicroseconds(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate));
-
-	void RegisterScriptFunctions(const ScriptInterface& ScriptInterface);
+	void RegisterScriptFunctions(const ScriptRequest& rq);
 }
 
 #endif // INCLUDED_JSI_DEBUG

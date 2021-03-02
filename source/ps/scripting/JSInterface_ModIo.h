@@ -18,19 +18,11 @@
 #ifndef INCLUDED_JSI_MODIO
 #define INCLUDED_JSI_MODIO
 
-#include "scriptinterface/ScriptInterface.h"
+class ScriptRequest;
 
 namespace JSI_ModIo
 {
-	void RegisterScriptFunctions(const ScriptInterface& scriptInterface);
-
-	void StartGetGameId(ScriptInterface::CmptPrivate* pCmptPrivate);
-	void StartListMods(ScriptInterface::CmptPrivate* pCmptPrivate);
-	void StartDownloadMod(ScriptInterface::CmptPrivate* pCmptPrivate, uint32_t idx);
-	bool AdvanceRequest(ScriptInterface::CmptPrivate* pCmptPrivate);
-	void CancelRequest(ScriptInterface::CmptPrivate* pCmptPrivate);
-	JS::Value GetMods(ScriptInterface::CmptPrivate* pCmptPrivate);
-	JS::Value GetDownloadProgress(ScriptInterface::CmptPrivate* pCmptPrivate);
+	void RegisterScriptFunctions(const ScriptRequest& rq);
 }
 
 #endif // INCLUDED_JSI_MODIO

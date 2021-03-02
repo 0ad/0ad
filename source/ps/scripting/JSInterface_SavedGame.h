@@ -18,19 +18,11 @@
 #ifndef INCLUDED_JSI_SAVEDGAME
 #define INCLUDED_JSI_SAVEDGAME
 
-#include "scriptinterface/ScriptInterface.h"
+class ScriptRequest;
 
 namespace JSI_SavedGame
 {
-	JS::Value GetSavedGames(ScriptInterface::CmptPrivate* pCmptPrivate);
-	bool DeleteSavedGame(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& name);
-	void SaveGame(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& filename, const std::wstring& description, JS::HandleValue GUIMetadata);
-	void SaveGamePrefix(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& prefix, const std::wstring& description, JS::HandleValue GUIMetadata);
-	void QuickSave(ScriptInterface::CmptPrivate* pCmptPrivate, JS::HandleValue GUIMetadata);
-	void QuickLoad(ScriptInterface::CmptPrivate* pCmptPrivate);
-	JS::Value StartSavedGame(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& name);
-
-	void RegisterScriptFunctions(const ScriptInterface& scriptInterface);
+	void RegisterScriptFunctions(const ScriptRequest& rq);
 }
 
 #endif // INCLUDED_JSI_SAVEDGAME

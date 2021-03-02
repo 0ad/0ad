@@ -18,19 +18,11 @@
 #ifndef INCLUDED_JSI_VISUALREPLAY
 #define INCLUDED_JSI_VISUALREPLAY
 
-#include "scriptinterface/ScriptInterface.h"
+class ScriptRequest;
 
 namespace JSI_VisualReplay
 {
-	bool StartVisualReplay(ScriptInterface::CmptPrivate* pCmptPrivate, const CStrW& directory);
-	bool DeleteReplay(ScriptInterface::CmptPrivate* pCmptPrivate, const CStrW& replayFile);
-	JS::Value GetReplays(ScriptInterface::CmptPrivate* pCmptPrivate, bool compareFiles);
-	JS::Value GetReplayAttributes(ScriptInterface::CmptPrivate* pCmptPrivate, const CStrW& directoryName);
-	bool HasReplayMetadata(ScriptInterface::CmptPrivate* pCmptPrivate, const CStrW& directoryName);
-	JS::Value GetReplayMetadata(ScriptInterface::CmptPrivate* pCmptPrivate, const CStrW& directoryName);
-	void AddReplayToCache(ScriptInterface::CmptPrivate* pCmptPrivate, const CStrW& directoryName);
-	void RegisterScriptFunctions(const ScriptInterface& scriptInterface);
-	CStrW GetReplayDirectoryName(ScriptInterface::CmptPrivate* pCmptPrivate, const CStrW& directoryName);
+	void RegisterScriptFunctions(const ScriptRequest& rq);
 }
 
 #endif // INCLUDED_JSI_VISUALREPLAY

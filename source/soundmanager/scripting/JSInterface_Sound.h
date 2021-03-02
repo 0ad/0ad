@@ -19,11 +19,11 @@
 #ifndef INCLUDED_SOUNDSCRIPTINTERFACE
 #define INCLUDED_SOUNDSCRIPTINTERFACE
 
-class ScriptInterface;
+class ScriptRequest;
 
 namespace JSI_Sound
 {
-	void RegisterScriptFunctions(const ScriptInterface& scriptInterface);
+	void RegisterScriptFunctions(const ScriptRequest& rq);
 }
 
 #endif // INCLUDED_SOUNDSCRIPTINTERFACE

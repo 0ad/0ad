@@ -44,7 +44,7 @@ public:
 	virtual void SendIqChangeStateGame(const std::string& nbp, const std::string& players) = 0;
 	virtual void SendIqLobbyAuth(const std::string& to, const std::string& token) = 0;
 	virtual void SetNick(const std::string& nick) = 0;
-	virtual void GetNick(std::string& nick) = 0;
+	virtual std::string GetNick() = 0;
 	virtual void kick(const std::string& nick, const std::string& reason) = 0;
 	virtual void ban(const std::string& nick, const std::string& reason) = 0;
 	virtual void SetPresence(const std::string& presence) = 0;
@@ -52,10 +52,10 @@ public:
 	virtual const char* GetRole(const std::string& nickname) = 0;
 	virtual std::wstring GetRating(const std::string& nickname) = 0;
 	virtual const std::wstring& GetSubject() = 0;
-	virtual void GUIGetPlayerList(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret) = 0;
-	virtual void GUIGetGameList(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret) = 0;
-	virtual void GUIGetBoardList(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret) = 0;
-	virtual void GUIGetProfile(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret) = 0;
+	virtual JS::Value GUIGetPlayerList(const ScriptInterface& scriptInterface) = 0;
+	virtual JS::Value GUIGetGameList(const ScriptInterface& scriptInterface) = 0;
+	virtual JS::Value GUIGetBoardList(const ScriptInterface& scriptInterface) = 0;
+	virtual JS::Value GUIGetProfile(const ScriptInterface& scriptInterface) = 0;
 
 	virtual JS::Value GuiPollNewMessages(const ScriptInterface& scriptInterface) = 0;
 	virtual JS::Value GuiPollHistoricMessages(const ScriptInterface& scriptInterface) = 0;

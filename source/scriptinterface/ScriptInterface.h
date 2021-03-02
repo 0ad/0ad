@@ -34,7 +34,6 @@ ERROR_TYPE(Scripting_LoadFile, OpenFailed);
 ERROR_TYPE(Scripting_LoadFile, EvalErrors);
 
 ERROR_TYPE(Scripting, CallFunctionFailed);
-ERROR_TYPE(Scripting, RegisterFunctionFailed);
 ERROR_TYPE(Scripting, DefineConstantFailed);
 ERROR_TYPE(Scripting, CreateObjectFailed);
 ERROR_TYPE(Scripting, TypeDoesNotExist);
@@ -105,7 +104,7 @@ public:
 
 	/**
 	 * Constructor.
-	 * @param nativeScopeName Name of global object that functions (via RegisterFunction) will
+	 * @param nativeScopeName Name of global object that functions (via ScriptFunction::Register) will
 	 *   be placed into, as a scoping mechanism; typically "Engine"
 	 * @param debugName Name of this interface for CScriptStats purposes.
 	 * @param context ScriptContext to use when initializing this interface.
@@ -455,7 +454,6 @@ private:
 		JSClass* m_Class;
 		JSNative m_Constructor;
 	};
-	void Register(const char* name, JSNative fptr, size_t nargs) const;
 
 	// Take care to keep this declaration before heap rooted members. Destructors of heap rooted
 	// members have to be called before the custom destructor of ScriptInterface_impl.
@@ -468,9 +466,6 @@ private:
 public:
 	#include "NativeWrapperDecls.h"
 	// This declares:
-	//
-	//   template <R, T0..., TR (*fptr) (void* cbdata, T0...)>
-	//   void RegisterFunction(const char* functionName) const;
 	//
 	//   template <R, T0..., TR (*fptr) (void* cbdata, T0...)>
 	//   static JSNative call;

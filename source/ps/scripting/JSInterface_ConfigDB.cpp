@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,11 +21,14 @@
 
 #include "ps/ConfigDB.h"
 #include "ps/CLogger.h"
+#include "scriptinterface/FunctionWrapper.h"
 #include "scriptinterface/ScriptInterface.h"
 
 #include <string>
 #include <unordered_set>
 
+namespace JSI_ConfigDB
+{
 // These entries will not be readable nor writable for JS, so that e.g. malicious mods can't leak personal or sensitive data
 static const std::unordered_set<std::string> g_ProtectedConfigNames = {
 	"modio.public_key", // See ModIO.cpp
@@ -35,7 +38,7 @@ static const std::unordered_set<std::string> g_ProtectedConfigNames = {
 	"userreport.id" // Acts as authentication token for GDPR personal data requests.
 };
 
-bool JSI_ConfigDB::IsProtectedConfigName(const std::string& name)
+bool IsProtectedConfigName(const std::string& name)
 {
 	if (g_ProtectedConfigNames.find(name) != g_ProtectedConfigNames.end())
 	{
@@ -45,7 +48,7 @@ bool JSI_ConfigDB::IsProtectedConfigName(const std::string& name)
 	return false;
 }
 
-bool JSI_ConfigDB::GetConfigNamespace(const std::wstring& cfgNsString, EConfigNamespace& cfgNs)
+bool GetConfigNamespace(const std::wstring& cfgNsString, EConfigNamespace& cfgNs)
 {
 	if (cfgNsString == L"default")
 		cfgNs = CFG_DEFAULT;
@@ -66,7 +69,7 @@ bool JSI_ConfigDB::GetConfigNamespace(const std::wstring& cfgNsString, EConfigNa
 	return true;
 }
 
-bool JSI_ConfigDB::HasChanges(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::wstring& cfgNsString)
+bool HasChanges(const std::wstring& cfgNsString)
 {
 	EConfigNamespace cfgNs;
 	if (!GetConfigNamespace(cfgNsString, cfgNs))
@@ -75,7 +78,7 @@ bool JSI_ConfigDB::HasChanges(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate)
 	return g_ConfigDB.HasChanges(cfgNs);
 }
 
-bool JSI_ConfigDB::SetChanges(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::wstring& cfgNsString, bool value)
+bool SetChanges(const std::wstring& cfgNsString, bool value)
 {
 	EConfigNamespace cfgNs;
 	if (!GetConfigNamespace(cfgNsString, cfgNs))
@@ -85,7 +88,7 @@ bool JSI_ConfigDB::SetChanges(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate)
 	return true;
 }
 
-std::string JSI_ConfigDB::GetValue(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::wstring& cfgNsString, const std::string& name)
+std::string GetValue(const std::wstring& cfgNsString, const std::string& name)
 {
 	if (IsProtectedConfigName(name))
 		return "";
@@ -99,7 +102,7 @@ std::string JSI_ConfigDB::GetValue(ScriptInterface::CmptPrivate* UNUSED(pCmptPri
 	return value;
 }
 
-bool JSI_ConfigDB::CreateValue(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::wstring& cfgNsString, const std::string& name, const std::string& value)
+bool CreateValue(const std::wstring& cfgNsString, const std::string& name, const std::string& value)
 {
 	if (IsProtectedConfigName(name))
 		return false;
@@ -112,7 +115,7 @@ bool JSI_ConfigDB::CreateValue(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate
 	return true;
 }
 
-bool JSI_ConfigDB::CreateValues(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::wstring& cfgNsString, const std::string& name, const std::vector<CStr>& values)
+bool CreateValues(const std::wstring& cfgNsString, const std::string& name, const std::vector<CStr>& values)
 {
 	if (IsProtectedConfigName(name))
 		return false;
@@ -126,7 +129,7 @@ bool JSI_ConfigDB::CreateValues(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivat
 }
 
 
-bool JSI_ConfigDB::RemoveValue(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::wstring& cfgNsString, const std::string& name)
+bool RemoveValue(const std::wstring& cfgNsString, const std::string& name)
 {
 	if (IsProtectedConfigName(name))
 		return false;
@@ -139,7 +142,7 @@ bool JSI_ConfigDB::RemoveValue(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate
 	return true;
 }
 
-bool JSI_ConfigDB::WriteFile(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::wstring& cfgNsString, const Path& path)
+bool WriteFile(const std::wstring& cfgNsString, const Path& path)
 {
 	EConfigNamespace cfgNs;
 	if (!GetConfigNamespace(cfgNsString, cfgNs))
@@ -148,7 +151,7 @@ bool JSI_ConfigDB::WriteFile(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate),
 	return g_ConfigDB.WriteFile(cfgNs, path);
 }
 
-bool JSI_ConfigDB::WriteValueToFile(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::wstring& cfgNsString,  const std::string& name, const std::string& value, const Path& path)
+bool WriteValueToFile(const std::wstring& cfgNsString,  const std::string& name, const std::string& value, const Path& path)
 {
 	if (IsProtectedConfigName(name))
 		return false;
@@ -160,13 +163,13 @@ bool JSI_ConfigDB::WriteValueToFile(ScriptInterface::CmptPrivate* UNUSED(pCmptPr
 	return g_ConfigDB.WriteValueToFile(cfgNs, name, value, path);
 }
 
-void JSI_ConfigDB::CreateAndWriteValueToFile(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& cfgNsString,  const std::string& name, const std::string& value, const Path& path)
+void CreateAndWriteValueToFile(const std::wstring& cfgNsString,  const std::string& name, const std::string& value, const Path& path)
 {
-	CreateValue(pCmptPrivate, cfgNsString, name, value);
-	WriteValueToFile(pCmptPrivate, cfgNsString, name, value, path);
+	CreateValue(cfgNsString, name, value);
+	WriteValueToFile(cfgNsString, name, value, path);
 }
 
-bool JSI_ConfigDB::Reload(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::wstring& cfgNsString)
+bool Reload(const std::wstring& cfgNsString)
 {
 	EConfigNamespace cfgNs;
 	if (!GetConfigNamespace(cfgNsString, cfgNs))
@@ -175,7 +178,7 @@ bool JSI_ConfigDB::Reload(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), co
 	return g_ConfigDB.Reload(cfgNs);
 }
 
-bool JSI_ConfigDB::SetFile(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::wstring& cfgNsString, const Path& path)
+bool SetFile(const std::wstring& cfgNsString, const Path& path)
 {
 	EConfigNamespace cfgNs;
 	if (!GetConfigNamespace(cfgNsString, cfgNs))
@@ -185,17 +188,18 @@ bool JSI_ConfigDB::SetFile(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), c
 	return true;
 }
 
-void JSI_ConfigDB::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
+void RegisterScriptFunctions(const ScriptRequest& rq)
 {
-	scriptInterface.RegisterFunction<bool, std::wstring, &JSI_ConfigDB::HasChanges>("ConfigDB_HasChanges");
-	scriptInterface.RegisterFunction<bool, std::wstring, bool, &JSI_ConfigDB::SetChanges>("ConfigDB_SetChanges");
-	scriptInterface.RegisterFunction<std::string, std::wstring, std::string, &JSI_ConfigDB::GetValue>("ConfigDB_GetValue");
-	scriptInterface.RegisterFunction<bool, std::wstring, std::string, std::string, &JSI_ConfigDB::CreateValue>("ConfigDB_CreateValue");
-	scriptInterface.RegisterFunction<bool, std::wstring, std::string, std::vector<CStr>, &JSI_ConfigDB::CreateValues>("ConfigDB_CreateValues");
-	scriptInterface.RegisterFunction<bool, std::wstring, std::string, &JSI_ConfigDB::RemoveValue>("ConfigDB_RemoveValue");
-	scriptInterface.RegisterFunction<bool, std::wstring, Path, &JSI_ConfigDB::WriteFile>("ConfigDB_WriteFile");
-	scriptInterface.RegisterFunction<bool, std::wstring, std::string, std::string, Path, &JSI_ConfigDB::WriteValueToFile>("ConfigDB_WriteValueToFile");
-	scriptInterface.RegisterFunction<void, std::wstring, std::string, std::string, Path, &JSI_ConfigDB::CreateAndWriteValueToFile>("ConfigDB_CreateAndWriteValueToFile");
-	scriptInterface.RegisterFunction<bool, std::wstring, Path, &JSI_ConfigDB::SetFile>("ConfigDB_SetFile");
-	scriptInterface.RegisterFunction<bool, std::wstring, &JSI_ConfigDB::Reload>("ConfigDB_Reload");
+	ScriptFunction::Register<&HasChanges>(rq, "ConfigDB_HasChanges");
+	ScriptFunction::Register<&SetChanges>(rq, "ConfigDB_SetChanges");
+	ScriptFunction::Register<&GetValue>(rq, "ConfigDB_GetValue");
+	ScriptFunction::Register<&CreateValue>(rq, "ConfigDB_CreateValue");
+	ScriptFunction::Register<&CreateValues>(rq, "ConfigDB_CreateValues");
+	ScriptFunction::Register<&RemoveValue>(rq, "ConfigDB_RemoveValue");
+	ScriptFunction::Register<&WriteFile>(rq, "ConfigDB_WriteFile");
+	ScriptFunction::Register<&WriteValueToFile>(rq, "ConfigDB_WriteValueToFile");
+	ScriptFunction::Register<&CreateAndWriteValueToFile>(rq, "ConfigDB_CreateAndWriteValueToFile");
+	ScriptFunction::Register<&SetFile>(rq, "ConfigDB_SetFile");
+	ScriptFunction::Register<&Reload>(rq, "ConfigDB_Reload");
+}
 }

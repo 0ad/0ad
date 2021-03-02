@@ -18,19 +18,11 @@
 #ifndef INCLUDED_JSI_USERREPORT
 #define INCLUDED_JSI_USERREPORT
 
-#include "scriptinterface/ScriptInterface.h"
-
-#include <string>
+class ScriptRequest;
 
 namespace JSI_UserReport
 {
-	bool IsUserReportEnabled(ScriptInterface::CmptPrivate* pCmptPrivate);
-	void SetUserReportEnabled(ScriptInterface::CmptPrivate* pCmptPrivate, bool enabled);
-	std::string GetUserReportStatus(ScriptInterface::CmptPrivate* pCmptPrivate);
-	std::string GetUserReportLogPath(ScriptInterface::CmptPrivate* pCmptPrivate);
-	std::string GetUserReportConfigPath(ScriptInterface::CmptPrivate* pCmptPrivate);
-
-	void RegisterScriptFunctions(const ScriptInterface& ScriptInterface);
+	void RegisterScriptFunctions(const ScriptRequest& rq);
 }
 
 #endif // INCLUDED_JSI_USERREPORT

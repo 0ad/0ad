@@ -24,35 +24,38 @@
 #include "ps/CLogger.h"
 #include "ps/Game.h"
 #include "ps/SavedGame.h"
+#include "scriptinterface/FunctionWrapper.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/system/TurnManager.h"
 
-JS::Value JSI_SavedGame::GetSavedGames(ScriptInterface::CmptPrivate* pCmptPrivate)
+namespace JSI_SavedGame
 {
-	return SavedGames::GetSavedGames(*(pCmptPrivate->pScriptInterface));
+JS::Value GetSavedGames(const ScriptInterface& scriptInterface)
+{
+	return SavedGames::GetSavedGames(scriptInterface);
 }
 
-bool JSI_SavedGame::DeleteSavedGame(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::wstring& name)
+bool DeleteSavedGame(const std::wstring& name)
 {
 	return SavedGames::DeleteSavedGame(name);
 }
 
-void JSI_SavedGame::SaveGame(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& filename, const std::wstring& description, JS::HandleValue GUIMetadata)
+void SaveGame(const ScriptInterface& scriptInterface, const std::wstring& filename, const std::wstring& description, JS::HandleValue GUIMetadata)
 {
-	ScriptInterface::StructuredClone GUIMetadataClone = pCmptPrivate->pScriptInterface->WriteStructuredClone(GUIMetadata);
+	ScriptInterface::StructuredClone GUIMetadataClone = scriptInterface.WriteStructuredClone(GUIMetadata);
 	if (SavedGames::Save(filename, description, *g_Game->GetSimulation2(), GUIMetadataClone) < 0)
 		LOGERROR("Failed to save game");
 }
 
-void JSI_SavedGame::SaveGamePrefix(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& prefix, const std::wstring& description, JS::HandleValue GUIMetadata)
+void SaveGamePrefix(const ScriptInterface& scriptInterface, const std::wstring& prefix, const std::wstring& description, JS::HandleValue GUIMetadata)
 {
-	ScriptInterface::StructuredClone GUIMetadataClone = pCmptPrivate->pScriptInterface->WriteStructuredClone(GUIMetadata);
+	ScriptInterface::StructuredClone GUIMetadataClone = scriptInterface.WriteStructuredClone(GUIMetadata);
 	if (SavedGames::SavePrefix(prefix, description, *g_Game->GetSimulation2(), GUIMetadataClone) < 0)
 		LOGERROR("Failed to save game");
 }
 
-void JSI_SavedGame::QuickSave(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), JS::HandleValue GUIMetadata)
+void QuickSave(JS::HandleValue GUIMetadata)
 {
 	if (g_NetServer || g_NetClient)
 		LOGERROR("Can't store quicksave during multiplayer!");
@@ -62,7 +65,7 @@ void JSI_SavedGame::QuickSave(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate)
 		LOGERROR("Can't store quicksave if game is not running!");
 }
 
-void JSI_SavedGame::QuickLoad(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
+void QuickLoad()
 {
 	if (g_NetServer || g_NetClient)
 		LOGERROR("Can't load quicksave during multiplayer!");
@@ -72,13 +75,13 @@ void JSI_SavedGame::QuickLoad(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate)
 		LOGERROR("Can't load quicksave if game is not running!");
 }
 
-JS::Value JSI_SavedGame::StartSavedGame(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& name)
+JS::Value StartSavedGame(const ScriptInterface& scriptInterface, const std::wstring& name)
 {
 	// We need to be careful with different compartments and contexts.
 	// The GUI calls this function from the GUI context and expects the return value in the same context.
 	// The game we start from here creates another context and expects data in this context.
 
-	ScriptRequest rqGui(pCmptPrivate->pScriptInterface);
+	ScriptRequest rqGui(scriptInterface);
 
 	ENSURE(!g_NetServer);
 	ENSURE(!g_NetClient);
@@ -88,7 +91,7 @@ JS::Value JSI_SavedGame::StartSavedGame(ScriptInterface::CmptPrivate* pCmptPriva
 	// Load the saved game data from disk
 	JS::RootedValue guiContextMetadata(rqGui.cx);
 	std::string savedState;
-	Status err = SavedGames::Load(name, *(pCmptPrivate->pScriptInterface), &guiContextMetadata, savedState);
+	Status err = SavedGames::Load(name, scriptInterface, &guiContextMetadata, savedState);
 	if (err < 0)
 		return JS::UndefinedValue();
 
@@ -99,7 +102,7 @@ JS::Value JSI_SavedGame::StartSavedGame(ScriptInterface::CmptPrivate* pCmptPriva
 		ScriptRequest rqGame(sim->GetScriptInterface());
 
 		JS::RootedValue gameContextMetadata(rqGame.cx,
-			sim->GetScriptInterface().CloneValueFromOtherCompartment(*(pCmptPrivate->pScriptInterface), guiContextMetadata));
+			sim->GetScriptInterface().CloneValueFromOtherCompartment(scriptInterface, guiContextMetadata));
 		JS::RootedValue gameInitAttributes(rqGame.cx);
 		sim->GetScriptInterface().GetProperty(gameContextMetadata, "initAttributes", &gameInitAttributes);
 
@@ -113,21 +116,22 @@ JS::Value JSI_SavedGame::StartSavedGame(ScriptInterface::CmptPrivate* pCmptPriva
 	return guiContextMetadata;
 }
 
-void ActivateRejoinTest(ScriptInterface::CmptPrivate*)
+void ActivateRejoinTest()
 {
 	if (!g_Game || !g_Game->GetSimulation2() || !g_Game->GetTurnManager())
 		return;
 	g_Game->GetSimulation2()->ActivateRejoinTest(g_Game->GetTurnManager()->GetCurrentTurn() + 1);
 }
 
-void JSI_SavedGame::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
+void RegisterScriptFunctions(const ScriptRequest& rq)
 {
-	scriptInterface.RegisterFunction<JS::Value, &GetSavedGames>("GetSavedGames");
-	scriptInterface.RegisterFunction<bool, std::wstring, &DeleteSavedGame>("DeleteSavedGame");
-	scriptInterface.RegisterFunction<void, std::wstring, std::wstring, JS::HandleValue, &SaveGame>("SaveGame");
-	scriptInterface.RegisterFunction<void, std::wstring, std::wstring, JS::HandleValue, &SaveGamePrefix>("SaveGamePrefix");
-	scriptInterface.RegisterFunction<void, JS::HandleValue, &QuickSave>("QuickSave");
-	scriptInterface.RegisterFunction<void, &QuickLoad>("QuickLoad");
-	scriptInterface.RegisterFunction<void, &ActivateRejoinTest>("ActivateRejoinTest");
-	scriptInterface.RegisterFunction<JS::Value, std::wstring, &StartSavedGame>("StartSavedGame");
+	ScriptFunction::Register<&GetSavedGames>(rq, "GetSavedGames");
+	ScriptFunction::Register<&DeleteSavedGame>(rq, "DeleteSavedGame");
+	ScriptFunction::Register<&SaveGame>(rq, "SaveGame");
+	ScriptFunction::Register<&SaveGamePrefix>(rq, "SaveGamePrefix");
+	ScriptFunction::Register<&QuickSave>(rq, "QuickSave");
+	ScriptFunction::Register<&QuickLoad>(rq, "QuickLoad");
+	ScriptFunction::Register<&ActivateRejoinTest>(rq, "ActivateRejoinTest");
+	ScriptFunction::Register<&StartSavedGame>(rq, "StartSavedGame");
+}
 }

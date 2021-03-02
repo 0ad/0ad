@@ -559,11 +559,12 @@ void XmppClient::handleOOB(const glooxwrapper::JID&, const glooxwrapper::OOB&)
  *
  * @return A JS array containing all known players and their presences
  */
-void XmppClient::GUIGetPlayerList(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret)
+JS::Value XmppClient::GUIGetPlayerList(const ScriptInterface& scriptInterface)
 {
 	ScriptRequest rq(scriptInterface);
 
-	ScriptInterface::CreateArray(rq, ret);
+	JS::RootedValue ret(rq.cx);
+	ScriptInterface::CreateArray(rq, &ret);
 	int j = 0;
 
 	for (const std::pair<const glooxwrapper::string, SPlayer>& p : m_PlayerMap)
@@ -580,6 +581,7 @@ void XmppClient::GUIGetPlayerList(const ScriptInterface& scriptInterface, JS::Mu
 
 		scriptInterface.SetPropertyInt(ret, j++, player);
 	}
+	return ret;
 }
 
 /**
@@ -587,11 +589,12 @@ void XmppClient::GUIGetPlayerList(const ScriptInterface& scriptInterface, JS::Mu
  *
  * @return A JS array containing all known games
  */
-void XmppClient::GUIGetGameList(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret)
+JS::Value XmppClient::GUIGetGameList(const ScriptInterface& scriptInterface)
 {
 	ScriptRequest rq(scriptInterface);
 
-	ScriptInterface::CreateArray(rq, ret);
+	JS::RootedValue ret(rq.cx);
+	ScriptInterface::CreateArray(rq, &ret);
 	int j = 0;
 
 	const char* stats[] = { "name", "hostUsername", "state", "hasPassword",
@@ -608,6 +611,7 @@ void XmppClient::GUIGetGameList(const ScriptInterface& scriptInterface, JS::Muta
 
 		scriptInterface.SetPropertyInt(ret, j++, game);
 	}
+	return ret;
 }
 
 /**
@@ -615,11 +619,12 @@ void XmppClient::GUIGetGameList(const ScriptInterface& scriptInterface, JS::Muta
  *
  * @return A JS array containing all known leaderboard data
  */
-void XmppClient::GUIGetBoardList(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret)
+JS::Value XmppClient::GUIGetBoardList(const ScriptInterface& scriptInterface)
 {
 	ScriptRequest rq(scriptInterface);
 
-	ScriptInterface::CreateArray(rq, ret);
+	JS::RootedValue ret(rq.cx);
+	ScriptInterface::CreateArray(rq, &ret);
 	int j = 0;
 
 	const char* attributes[] = { "name", "rank", "rating" };
@@ -634,6 +639,7 @@ void XmppClient::GUIGetBoardList(const ScriptInterface& scriptInterface, JS::Mut
 
 		scriptInterface.SetPropertyInt(ret, j++, board);
 	}
+	return ret;
 }
 
 /**
@@ -641,11 +647,12 @@ void XmppClient::GUIGetBoardList(const ScriptInterface& scriptInterface, JS::Mut
  *
  * @return A JS array containing the specific user's profile data
  */
-void XmppClient::GUIGetProfile(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret)
+JS::Value XmppClient::GUIGetProfile(const ScriptInterface& scriptInterface)
 {
 	ScriptRequest rq(scriptInterface);
 
-	ScriptInterface::CreateArray(rq, ret);
+	JS::RootedValue ret(rq.cx);
+	ScriptInterface::CreateArray(rq, &ret);
 	int j = 0;
 
 	const char* stats[] = { "player", "rating", "totalGamesPlayed", "highestRating", "wins", "losses", "rank" };
@@ -660,6 +667,7 @@ void XmppClient::GUIGetProfile(const ScriptInterface& scriptInterface, JS::Mutab
 
 		scriptInterface.SetPropertyInt(ret, j++, profile);
 	}
+	return ret;
 }
 
 /*****************************************************
@@ -1157,12 +1165,10 @@ void XmppClient::SetNick(const std::string& nick)
 
 /**
  * Get current nickname.
- *
- * @param nick Variable to store the nickname in.
  */
-void XmppClient::GetNick(std::string& nick)
+std::string XmppClient::GetNick()
 {
-	nick = m_mucRoom->nick().to_string();
+	return m_mucRoom->nick().to_string();
 }
 
 /**

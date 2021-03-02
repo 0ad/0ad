@@ -17,6 +17,7 @@
 
 #include "precompiled.h"
 
+#include "FunctionWrapper.h"
 #include "ScriptContext.h"
 #include "ScriptExtraHeaders.h"
 #include "ScriptInterface.h"
@@ -55,7 +56,6 @@ struct ScriptInterface_impl
 {
 	ScriptInterface_impl(const char* nativeScopeName, const shared_ptr<ScriptContext>& context);
 	~ScriptInterface_impl();
-	void Register(const char* name, JSNative fptr, uint nargs) const;
 
 	// Take care to keep this declaration before heap rooted members. Destructors of heap rooted
 	// members have to be called before the context destructor.
@@ -176,107 +176,77 @@ bool error(JSContext* cx, uint argc, JS::Value* vp)
 	return true;
 }
 
-bool deepcopy(JSContext* cx, uint argc, JS::Value* vp)
+JS::Value deepcopy(const ScriptRequest& rq, JS::HandleValue val)
 {
-	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
-	if (args.length() < 1)
+	if (val.isNullOrUndefined())
 	{
-		args.rval().setUndefined();
-		return true;
+		ScriptException::Raise(rq, "deepcopy requires one argument.");
+		return JS::UndefinedValue();
 	}
 
-	ScriptRequest rq(*ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface); \
-	JS::RootedValue ret(cx);
-	if (!JS_StructuredClone(rq.cx, args[0], &ret, NULL, NULL))
-		return false;
-
-	args.rval().set(ret);
-	return true;
+	JS::RootedValue ret(rq.cx);
+	if (!JS_StructuredClone(rq.cx, val, &ret, NULL, NULL))
+	{
+		ScriptException::Raise(rq, "deepcopy StructureClone copy failed.");
+		return JS::UndefinedValue();
+	}
+	return ret;
 }
 
-bool deepfreeze(JSContext* cx, uint argc, JS::Value* vp)
+JS::Value deepfreeze(const ScriptInterface& scriptInterface, JS::HandleValue val)
 {
-	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
-	ScriptRequest rq(*ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface); \
-
-	if (args.length() != 1 || !args.get(0).isObject())
+	ScriptRequest rq(scriptInterface);
+	if (!val.isObject())
 	{
 		ScriptException::Raise(rq, "deepfreeze requires exactly one object as an argument.");
-		return false;
+		return JS::UndefinedValue();
 	}
 
-	ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface->FreezeObject(args.get(0), true);
-	args.rval().set(args.get(0));
-	return true;
+	scriptInterface.FreezeObject(val, true);
+	return val;
 }
 
-bool ProfileStart(JSContext* cx, uint argc, JS::Value* vp)
+void ProfileStart(const std::string& regionName)
 {
 	const char* name = "(ProfileStart)";
 
-	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
-	ScriptRequest rq(*ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface); \
-	if (args.length() >= 1)
-	{
-		std::string str;
-		if (!ScriptInterface::FromJSVal(rq, args[0], str))
-			return false;
+	typedef boost::flyweight<
+		std::string,
+		boost::flyweights::no_tracking,
+		boost::flyweights::no_locking
+	> StringFlyweight;
 
-		typedef boost::flyweight<
-			std::string,
-			boost::flyweights::no_tracking,
-			boost::flyweights::no_locking
-		> StringFlyweight;
-
-		name = StringFlyweight(str).get().c_str();
-	}
+	if (!regionName.empty())
+		name = StringFlyweight(regionName).get().c_str();
 
 	if (CProfileManager::IsInitialised() && Threading::IsMainThread())
 		g_Profiler.StartScript(name);
 
 	g_Profiler2.RecordRegionEnter(name);
-
-	args.rval().setUndefined();
-	return true;
 }
 
-bool ProfileStop(JSContext* UNUSED(cx), uint argc, JS::Value* vp)
+void ProfileStop()
 {
-	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
 	if (CProfileManager::IsInitialised() && Threading::IsMainThread())
 		g_Profiler.Stop();
 
 	g_Profiler2.RecordRegionLeave();
-
-	args.rval().setUndefined();
-	return true;
 }
 
-bool ProfileAttribute(JSContext* cx, uint argc, JS::Value* vp)
+void ProfileAttribute(const std::string& attr)
 {
 	const char* name = "(ProfileAttribute)";
 
-	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
-	ScriptRequest rq(*ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface); \
-	if (args.length() >= 1)
-	{
-		std::string str;
-		if (!ScriptInterface::FromJSVal(rq, args[0], str))
-			return false;
+	typedef boost::flyweight<
+		std::string,
+		boost::flyweights::no_tracking,
+		boost::flyweights::no_locking
+	> StringFlyweight;
 
-		typedef boost::flyweight<
-			std::string,
-			boost::flyweights::no_tracking,
-			boost::flyweights::no_locking
-		> StringFlyweight;
-
-		name = StringFlyweight(str).get().c_str();
-	}
+	if (!attr.empty())
+		name = StringFlyweight(attr).get().c_str();
 
 	g_Profiler2.RecordAttribute("%s", name);
-
-	args.rval().setUndefined();
-	return true;
 }
 
 // Math override functions:
@@ -336,18 +306,19 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const sh
 
 	JS_DefineProperty(m_cx, m_glob, "global", m_glob, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
 
-	m_nativeScope = JS_DefineObject(m_cx, m_glob, nativeScopeName, nullptr, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
-
+	// These first 4 actually use CallArgs & thus don't use ScriptFunction
 	JS_DefineFunction(m_cx, m_glob, "print", ::print,        0, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
 	JS_DefineFunction(m_cx, m_glob, "log",   ::logmsg,       1, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
 	JS_DefineFunction(m_cx, m_glob, "warn",  ::warn,         1, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
 	JS_DefineFunction(m_cx, m_glob, "error", ::error,        1, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
-	JS_DefineFunction(m_cx, m_glob, "clone", ::deepcopy,        1, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
-	JS_DefineFunction(m_cx, m_glob, "deepfreeze", ::deepfreeze, 1, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
+	ScriptFunction::Register<deepcopy>(m_cx, m_glob, "clone");
+	ScriptFunction::Register<deepfreeze>(m_cx, m_glob, "deepfreeze");
 
-	Register("ProfileStart", ::ProfileStart, 1);
-	Register("ProfileStop", ::ProfileStop, 0);
-	Register("ProfileAttribute", ::ProfileAttribute, 1);
+	m_nativeScope = JS_DefineObject(m_cx, m_glob, nativeScopeName, nullptr, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT);
+
+	ScriptFunction::Register<&ProfileStart>(m_cx, m_nativeScope, "ProfileStart");
+	ScriptFunction::Register<&ProfileStop>(m_cx, m_nativeScope, "ProfileStop");
+	ScriptFunction::Register<&ProfileAttribute>(m_cx, m_nativeScope, "ProfileAttribute");
 
 	m_context->RegisterRealm(JS::GetObjectRealmOrNull(m_glob));
 }
@@ -355,13 +326,6 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const sh
 ScriptInterface_impl::~ScriptInterface_impl()
 {
 	m_context->UnRegisterRealm(JS::GetObjectRealmOrNull(m_glob));
-}
-
-void ScriptInterface_impl::Register(const char* name, JSNative fptr, uint nargs) const
-{
-	JSAutoRealm autoRealm(m_cx, m_glob);
-	JS::RootedObject nativeScope(m_cx, m_nativeScope);
-	JS::RootedFunction func(m_cx, JS_DefineFunction(m_cx, nativeScope, name, fptr, nargs, JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT));
 }
 
 ScriptInterface::ScriptInterface(const char* nativeScopeName, const char* debugName, const shared_ptr<ScriptContext>& context) :
@@ -439,11 +403,6 @@ bool ScriptInterface::ReplaceNondeterministicRNG(boost::rand48& rng)
 	ScriptException::CatchPending(rq);
 	LOGERROR("ReplaceNondeterministicRNG: failed to replace Math.random");
 	return false;
-}
-
-void ScriptInterface::Register(const char* name, JSNative fptr, size_t nargs) const
-{
-	m->Register(name, fptr, (uint)nargs);
 }
 
 JSContext* ScriptInterface::GetGeneralJSContext() const

@@ -30,50 +30,53 @@
 #include "ps/Globals.h"
 #include "ps/Hotkey.h"
 #include "ps/Util.h"
+#include "scriptinterface/FunctionWrapper.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "tools/atlas/GameInterface/GameLoop.h"
 
 extern void QuitEngine();
 extern void StartAtlas();
 
-void JSI_Main::QuitEngine(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
+namespace JSI_Main
+{
+void QuitEngine()
 {
 	::QuitEngine();
 }
 
-void JSI_Main::StartAtlas(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
+void StartAtlas()
 {
 	::StartAtlas();
 }
 
-bool JSI_Main::AtlasIsAvailable(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
+bool AtlasIsAvailable()
 {
 	return ATLAS_IsAvailable();
 }
 
-bool JSI_Main::IsAtlasRunning(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
+bool IsAtlasRunning()
 {
 	return g_AtlasGameLoop && g_AtlasGameLoop->running;
 }
 
-void JSI_Main::OpenURL(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::string& url)
+void OpenURL(const std::string& url)
 {
 	sys_open_url(url);
 }
 
-std::wstring JSI_Main::GetSystemUsername(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
+std::wstring GetSystemUsername()
 {
 	return sys_get_user_name();
 }
 
-std::wstring JSI_Main::GetMatchID(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
+std::wstring GetMatchID()
 {
 	return ps_generate_guid().FromUTF8();
 }
 
-JS::Value JSI_Main::LoadMapSettings(ScriptInterface::CmptPrivate* pCmptPrivate, const VfsPath& pathname)
+JS::Value LoadMapSettings(const ScriptInterface& scriptInterface, const VfsPath& pathname)
 {
-	ScriptRequest rq(pCmptPrivate->pScriptInterface);
+	ScriptRequest rq(scriptInterface);
 
 	CMapSummaryReader reader;
 
@@ -81,18 +84,18 @@ JS::Value JSI_Main::LoadMapSettings(ScriptInterface::CmptPrivate* pCmptPrivate, 
 		return JS::UndefinedValue();
 
 	JS::RootedValue settings(rq.cx);
-	reader.GetMapSettings(*(pCmptPrivate->pScriptInterface), &settings);
+	reader.GetMapSettings(scriptInterface, &settings);
 	return settings;
 }
 
-bool JSI_Main::HotkeyIsPressed_(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::string& hotkeyName)
+bool HotkeyIsPressed_(const std::string& hotkeyName)
 {
 	return HotkeyIsPressed(hotkeyName);
 }
 
 // This value is recalculated once a frame. We take special care to
 // filter it, so it is both accurate and free of jitter.
-int JSI_Main::GetFps(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
+int GetFps()
 {
 	if (!g_frequencyFilter)
 		return 0;
@@ -100,7 +103,7 @@ int JSI_Main::GetFps(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 	return g_frequencyFilter->StableFrequency();
 }
 
-int JSI_Main::GetTextWidth(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::string& fontName, const std::wstring& text)
+int GetTextWidth(const std::string& fontName, const std::wstring& text)
 {
 	int width = 0;
 	int height = 0;
@@ -110,7 +113,7 @@ int JSI_Main::GetTextWidth(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), c
 	return width;
 }
 
-std::string JSI_Main::CalculateMD5(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::string& input)
+std::string CalculateMD5(const std::string& input)
 {
 	u8 digest[MD5::DIGESTSIZE];
 
@@ -121,18 +124,19 @@ std::string JSI_Main::CalculateMD5(ScriptInterface::CmptPrivate* UNUSED(pCmptPri
 	return Hexify(digest, MD5::DIGESTSIZE);
 }
 
-void JSI_Main::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
+void RegisterScriptFunctions(const ScriptRequest& rq)
 {
-	scriptInterface.RegisterFunction<void, &QuitEngine>("Exit");
-	scriptInterface.RegisterFunction<void, &StartAtlas>("RestartInAtlas");
-	scriptInterface.RegisterFunction<bool, &AtlasIsAvailable>("AtlasIsAvailable");
-	scriptInterface.RegisterFunction<bool, &IsAtlasRunning>("IsAtlasRunning");
-	scriptInterface.RegisterFunction<void, std::string, &OpenURL>("OpenURL");
-	scriptInterface.RegisterFunction<std::wstring, &GetSystemUsername>("GetSystemUsername");
-	scriptInterface.RegisterFunction<std::wstring, &GetMatchID>("GetMatchID");
-	scriptInterface.RegisterFunction<JS::Value, VfsPath, &LoadMapSettings>("LoadMapSettings");
-	scriptInterface.RegisterFunction<bool, std::string, &HotkeyIsPressed_>("HotkeyIsPressed");
-	scriptInterface.RegisterFunction<int, &GetFps>("GetFPS");
-	scriptInterface.RegisterFunction<int, std::string, std::wstring, &GetTextWidth>("GetTextWidth");
-	scriptInterface.RegisterFunction<std::string, std::string, &CalculateMD5>("CalculateMD5");
+	ScriptFunction::Register<&QuitEngine>(rq, "Exit");
+	ScriptFunction::Register<&StartAtlas>(rq, "RestartInAtlas");
+	ScriptFunction::Register<&AtlasIsAvailable>(rq, "AtlasIsAvailable");
+	ScriptFunction::Register<&IsAtlasRunning>(rq, "IsAtlasRunning");
+	ScriptFunction::Register<&OpenURL>(rq, "OpenURL");
+	ScriptFunction::Register<&GetSystemUsername>(rq, "GetSystemUsername");
+	ScriptFunction::Register<&GetMatchID>(rq, "GetMatchID");
+	ScriptFunction::Register<&LoadMapSettings>(rq, "LoadMapSettings");
+	ScriptFunction::Register<&HotkeyIsPressed_>(rq, "HotkeyIsPressed");
+	ScriptFunction::Register<&GetFps>(rq, "GetFPS");
+	ScriptFunction::Register<&GetTextWidth>(rq, "GetTextWidth");
+	ScriptFunction::Register<&CalculateMD5>(rq, "CalculateMD5");
+}
 }

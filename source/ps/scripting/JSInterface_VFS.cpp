@@ -23,11 +23,14 @@
 #include "ps/CLogger.h"
 #include "ps/CStr.h"
 #include "ps/Filesystem.h"
+#include "scriptinterface/FunctionWrapper.h"
 #include "scriptinterface/ScriptExtraHeaders.h"
 #include "scriptinterface/ScriptInterface.h"
 
 #include <sstream>
 
+namespace JSI_VFS
+{
 // Only allow engine compartments to read files they may be concerned about.
 #define PathRestriction_GUI {L""}
 #define PathRestriction_Simulation {L"simulation/"}
@@ -46,19 +49,40 @@
 	/* else: success */
 
 
+// Tests whether the current script context is allowed to read from the given directory
+bool PathRestrictionMet(const ScriptRequest& rq, const std::vector<CStrW>& validPaths, const CStrW& filePath)
+{
+	for (const CStrW& validPath : validPaths)
+		if (filePath.find(validPath) == 0)
+			return true;
+
+	CStrW allowedPaths;
+	for (std::size_t i = 0; i < validPaths.size(); ++i)
+	{
+		if (i != 0)
+			allowedPaths += L", ";
+
+		allowedPaths += L"\"" + validPaths[i] + L"\"";
+	}
+
+	ScriptException::Raise(rq, "This part of the engine may only read from %s!", utf8_from_wstring(allowedPaths).c_str());
+
+	return false;
+}
+
+
 // state held across multiple BuildDirEntListCB calls; init by BuildDirEntList.
 struct BuildDirEntListState
 {
-	ScriptInterface* pScriptInterface;
+	const ScriptRequest& rq;
 	JS::PersistentRootedObject filename_array;
 	int cur_idx;
 
-	BuildDirEntListState(ScriptInterface* scriptInterface)
-		: pScriptInterface(scriptInterface),
-		filename_array(scriptInterface->GetGeneralJSContext()),
+	BuildDirEntListState(const ScriptRequest& rq)
+		: rq(rq),
+		filename_array(rq.cx),
 		cur_idx(0)
 	{
-		ScriptRequest rq(pScriptInterface);
 		filename_array = JS::NewArrayObject(rq.cx, JS::HandleValueArray::empty());
 	}
 };
@@ -67,12 +91,11 @@ struct BuildDirEntListState
 static Status BuildDirEntListCB(const VfsPath& pathname, const CFileInfo& UNUSED(fileINfo), uintptr_t cbData)
 {
 	BuildDirEntListState* s = (BuildDirEntListState*)cbData;
-	ScriptRequest rq(s->pScriptInterface);
 
-	JS::RootedObject filenameArrayObj(rq.cx, s->filename_array);
-	JS::RootedValue val(rq.cx);
-	ScriptInterface::ToJSVal(rq, &val, CStrW(pathname.string()) );
-	JS_SetElement(rq.cx, filenameArrayObj, s->cur_idx++, val);
+	JS::RootedObject filenameArrayObj(s->rq.cx, s->filename_array);
+	JS::RootedValue val(s->rq.cx);
+	ScriptInterface::ToJSVal(s->rq, &val, CStrW(pathname.string()) );
+	JS_SetElement(s->rq.cx, filenameArrayObj, s->cur_idx++, val);
 	return INFO::OK;
 }
 
@@ -81,9 +104,9 @@ static Status BuildDirEntListCB(const VfsPath& pathname, const CFileInfo& UNUSED
 // specified directory.
 //   filter_string: default "" matches everything; otherwise, see vfs_next_dirent.
 //   recurse: should subdirectories be included in the search? default false.
-JS::Value JSI_VFS::BuildDirEntList(ScriptInterface::CmptPrivate* pCmptPrivate, const std::vector<CStrW>& validPaths, const std::wstring& path, const std::wstring& filterStr, bool recurse)
+JS::Value BuildDirEntList(const ScriptRequest& rq, const std::vector<CStrW>& validPaths, const std::wstring& path, const std::wstring& filterStr, bool recurse)
 {
-	if (!PathRestrictionMet(pCmptPrivate, validPaths, path))
+	if (!PathRestrictionMet(rq, validPaths, path))
 		return JS::NullValue();
 
 	// convert to const wchar_t*; if there's no filter, pass 0 for speed
@@ -95,20 +118,20 @@ JS::Value JSI_VFS::BuildDirEntList(ScriptInterface::CmptPrivate* pCmptPrivate, c
 	int flags = recurse ? vfs::DIR_RECURSIVE : 0;
 
 	// build array in the callback function
-	BuildDirEntListState state(pCmptPrivate->pScriptInterface);
+	BuildDirEntListState state(rq);
 	vfs::ForEachFile(g_VFS, path, BuildDirEntListCB, (uintptr_t)&state, filter, flags);
 
 	return JS::ObjectValue(*state.filename_array);
 }
 
 // Return true iff the file exits
-bool JSI_VFS::FileExists(ScriptInterface::CmptPrivate* pCmptPrivate, const std::vector<CStrW>& validPaths, const CStrW& filename)
+bool FileExists(const ScriptRequest& rq, const std::vector<CStrW>& validPaths, const CStrW& filename)
 {
-	return PathRestrictionMet(pCmptPrivate, validPaths, filename) && g_VFS->GetFileInfo(filename, 0) == INFO::OK;
+	return PathRestrictionMet(rq, validPaths, filename) && g_VFS->GetFileInfo(filename, 0) == INFO::OK;
 }
 
 // Return time [seconds since 1970] of the last modification to the specified file.
-double JSI_VFS::GetFileMTime(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::wstring& filename)
+double GetFileMTime(const std::wstring& filename)
 {
 	CFileInfo fileInfo;
 	Status err = g_VFS->GetFileInfo(filename, &fileInfo);
@@ -118,7 +141,7 @@ double JSI_VFS::GetFileMTime(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate),
 }
 
 // Return current size of file.
-unsigned int JSI_VFS::GetFileSize(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::wstring& filename)
+unsigned int GetFileSize(const std::wstring& filename)
 {
 	CFileInfo fileInfo;
 	Status err = g_VFS->GetFileInfo(filename, &fileInfo);
@@ -128,7 +151,7 @@ unsigned int JSI_VFS::GetFileSize(ScriptInterface::CmptPrivate* UNUSED(pCmptPriv
 }
 
 // Return file contents in a string. Assume file is UTF-8 encoded text.
-JS::Value JSI_VFS::ReadFile(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& filename)
+JS::Value ReadFile(const ScriptRequest& rq, const std::wstring& filename)
 {
 	CVFSFile file;
 	if (file.Load(g_VFS, filename) != PSRETURN_OK)
@@ -140,14 +163,13 @@ JS::Value JSI_VFS::ReadFile(ScriptInterface::CmptPrivate* pCmptPrivate, const st
 	contents.Replace("\r\n", "\n");
 
 	// Decode as UTF-8
-	ScriptRequest rq(pCmptPrivate->pScriptInterface);
 	JS::RootedValue ret(rq.cx);
 	ScriptInterface::ToJSVal(rq, &ret, contents.FromUTF8());
 	return ret;
 }
 
 // Return file contents as an array of lines. Assume file is UTF-8 encoded text.
-JS::Value JSI_VFS::ReadFileLines(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& filename)
+JS::Value ReadFileLines(const ScriptInterface& scriptInterface, const std::wstring& filename)
 {
 	CVFSFile file;
 	if (file.Load(g_VFS, filename) != PSRETURN_OK)
@@ -161,7 +183,6 @@ JS::Value JSI_VFS::ReadFileLines(ScriptInterface::CmptPrivate* pCmptPrivate, con
 	// split into array of strings (one per line)
 	std::stringstream ss(contents);
 
-	const ScriptInterface& scriptInterface = *pCmptPrivate->pScriptInterface;
 	ScriptRequest rq(scriptInterface);
 
 	JS::RootedValue line_array(rq.cx);
@@ -181,21 +202,21 @@ JS::Value JSI_VFS::ReadFileLines(ScriptInterface::CmptPrivate* pCmptPrivate, con
 	return line_array;
 }
 
-JS::Value JSI_VFS::ReadJSONFile(ScriptInterface::CmptPrivate* pCmptPrivate, const std::vector<CStrW>& validPaths, const CStrW& filePath)
+// Return file contents parsed as a JS Object
+JS::Value ReadJSONFile(const ScriptInterface& scriptInterface, const std::vector<CStrW>& validPaths, const CStrW& filePath)
 {
-	if (!PathRestrictionMet(pCmptPrivate, validPaths, filePath))
+	ScriptRequest rq(scriptInterface);
+	if (!PathRestrictionMet(rq, validPaths, filePath))
 		return JS::NullValue();
 
-	const ScriptInterface& scriptInterface = *pCmptPrivate->pScriptInterface;
-	ScriptRequest rq(scriptInterface);
 	JS::RootedValue out(rq.cx);
 	scriptInterface.ReadJSONFile(filePath, &out);
 	return out;
 }
 
-void JSI_VFS::WriteJSONFile(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& filePath, JS::HandleValue val1)
+// Save given JS Object to a JSON file
+void WriteJSONFile(const ScriptInterface& scriptInterface, const std::wstring& filePath, JS::HandleValue val1)
 {
-	const ScriptInterface& scriptInterface = *pCmptPrivate->pScriptInterface;
 	ScriptRequest rq(scriptInterface);
 
 	// TODO: This is a workaround because we need to pass a MutableHandle to StringifyJSON.
@@ -209,7 +230,7 @@ void JSI_VFS::WriteJSONFile(ScriptInterface::CmptPrivate* pCmptPrivate, const st
 	g_VFS->CreateFile(path, buf.Data(), buf.Size());
 }
 
-bool JSI_VFS::DeleteCampaignSave(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const CStrW& filePath)
+bool DeleteCampaignSave(const CStrW& filePath)
 {
 	OsPath realPath;
 	if (filePath.Left(16) != L"saves/campaigns/" || filePath.Right(12) != L".0adcampaign")
@@ -221,39 +242,18 @@ bool JSI_VFS::DeleteCampaignSave(ScriptInterface::CmptPrivate* UNUSED(pCmptPriva
 		wunlink(realPath) == 0;
 }
 
-bool JSI_VFS::PathRestrictionMet(ScriptInterface::CmptPrivate* pCmptPrivate, const std::vector<CStrW>& validPaths, const CStrW& filePath)
-{
-	for (const CStrW& validPath : validPaths)
-		if (filePath.find(validPath) == 0)
-			return true;
-
-	CStrW allowedPaths;
-	for (std::size_t i = 0; i < validPaths.size(); ++i)
-	{
-		if (i != 0)
-			allowedPaths += L", ";
-
-		allowedPaths += L"\"" + validPaths[i] + L"\"";
-	}
-
-	ScriptRequest rq(pCmptPrivate->pScriptInterface);
-	ScriptException::Raise(rq, "This part of the engine may only read from %s!", utf8_from_wstring(allowedPaths).c_str());
-
-	return false;
-}
-
 #define VFS_ScriptFunctions(context)\
-JS::Value Script_ReadJSONFile_##context(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& filePath)\
+JS::Value Script_ReadJSONFile_##context(const ScriptInterface& scriptInterface, const std::wstring& filePath)\
 {\
-	return JSI_VFS::ReadJSONFile(pCmptPrivate, PathRestriction_##context, filePath);\
+	return ReadJSONFile(scriptInterface, PathRestriction_##context, filePath);\
 }\
-JS::Value Script_ListDirectoryFiles_##context(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& path, const std::wstring& filterStr, bool recurse)\
+JS::Value Script_ListDirectoryFiles_##context(const ScriptInterface& scriptInterface, const std::wstring& path, const std::wstring& filterStr, bool recurse)\
 {\
-	return JSI_VFS::BuildDirEntList(pCmptPrivate, PathRestriction_##context, path, filterStr, recurse);\
+	return BuildDirEntList(scriptInterface, PathRestriction_##context, path, filterStr, recurse);\
 }\
-bool Script_FileExists_##context(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& filePath)\
+bool Script_FileExists_##context(const ScriptInterface& scriptInterface, const std::wstring& filePath)\
 {\
-	return JSI_VFS::FileExists(pCmptPrivate, PathRestriction_##context, filePath);\
+	return FileExists(scriptInterface, PathRestriction_##context, filePath);\
 }\
 
 VFS_ScriptFunctions(GUI);
@@ -261,29 +261,30 @@ VFS_ScriptFunctions(Simulation);
 VFS_ScriptFunctions(Maps);
 #undef VFS_ScriptFunctions
 
-void JSI_VFS::RegisterScriptFunctions_GUI(const ScriptInterface& scriptInterface)
+void RegisterScriptFunctions_GUI(const ScriptRequest& rq)
 {
-	scriptInterface.RegisterFunction<JS::Value, std::wstring, std::wstring, bool, &Script_ListDirectoryFiles_GUI>("ListDirectoryFiles");
-	scriptInterface.RegisterFunction<bool, std::wstring, Script_FileExists_GUI>("FileExists");
-	scriptInterface.RegisterFunction<double, std::wstring, &JSI_VFS::GetFileMTime>("GetFileMTime");
-	scriptInterface.RegisterFunction<unsigned int, std::wstring, &JSI_VFS::GetFileSize>("GetFileSize");
-	scriptInterface.RegisterFunction<JS::Value, std::wstring, &JSI_VFS::ReadFile>("ReadFile");
-	scriptInterface.RegisterFunction<JS::Value, std::wstring, &JSI_VFS::ReadFileLines>("ReadFileLines");
-	scriptInterface.RegisterFunction<JS::Value, std::wstring, &Script_ReadJSONFile_GUI>("ReadJSONFile");
-	scriptInterface.RegisterFunction<void, std::wstring, JS::HandleValue, &WriteJSONFile>("WriteJSONFile");
-	scriptInterface.RegisterFunction<bool, CStrW, &DeleteCampaignSave>("DeleteCampaignSave");
+	ScriptFunction::Register<&Script_ListDirectoryFiles_GUI>(rq, "ListDirectoryFiles");
+	ScriptFunction::Register<&Script_FileExists_GUI>(rq, "FileExists");
+	ScriptFunction::Register<&GetFileMTime>(rq, "GetFileMTime");
+	ScriptFunction::Register<&GetFileSize>(rq, "GetFileSize");
+	ScriptFunction::Register<&ReadFile>(rq, "ReadFile");
+	ScriptFunction::Register<&ReadFileLines>(rq, "ReadFileLines");
+	ScriptFunction::Register<&Script_ReadJSONFile_GUI>(rq, "ReadJSONFile");
+	ScriptFunction::Register<&WriteJSONFile>(rq, "WriteJSONFile");
+	ScriptFunction::Register<&DeleteCampaignSave>(rq, "DeleteCampaignSave");
 }
 
-void JSI_VFS::RegisterScriptFunctions_Simulation(const ScriptInterface& scriptInterface)
+void RegisterScriptFunctions_Simulation(const ScriptRequest& rq)
 {
-	scriptInterface.RegisterFunction<JS::Value, std::wstring, std::wstring, bool, &Script_ListDirectoryFiles_Simulation>("ListDirectoryFiles");
-	scriptInterface.RegisterFunction<bool, std::wstring, Script_FileExists_Simulation>("FileExists");
-	scriptInterface.RegisterFunction<JS::Value, std::wstring, &Script_ReadJSONFile_Simulation>("ReadJSONFile");
+	ScriptFunction::Register<&Script_ListDirectoryFiles_Simulation>(rq, "ListDirectoryFiles");
+	ScriptFunction::Register<&Script_FileExists_Simulation>(rq, "FileExists");
+	ScriptFunction::Register<&Script_ReadJSONFile_Simulation>(rq, "ReadJSONFile");
 }
 
-void JSI_VFS::RegisterScriptFunctions_Maps(const ScriptInterface& scriptInterface)
+void RegisterScriptFunctions_Maps(const ScriptRequest& rq)
 {
-	scriptInterface.RegisterFunction<JS::Value, std::wstring, std::wstring, bool, &Script_ListDirectoryFiles_Maps>("ListDirectoryFiles");
-	scriptInterface.RegisterFunction<bool, std::wstring, Script_FileExists_Maps>("FileExists");
-	scriptInterface.RegisterFunction<JS::Value, std::wstring, &Script_ReadJSONFile_Maps>("ReadJSONFile");
+	ScriptFunction::Register<&Script_ListDirectoryFiles_Maps>(rq, "ListDirectoryFiles");
+	ScriptFunction::Register<&Script_FileExists_Maps>(rq, "FileExists");
+	ScriptFunction::Register<&Script_ReadJSONFile_Maps>(rq, "ReadJSONFile");
+}
 }

@@ -27,17 +27,20 @@
 #include "ps/GameSetup/GameSetup.h"
 #include "ps/Replay.h"
 #include "ps/World.h"
+#include "scriptinterface/FunctionWrapper.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/system/TurnManager.h"
 #include "simulation2/Simulation2.h"
 #include "soundmanager/SoundManager.h"
 
-bool JSI_Game::IsGameStarted(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
+namespace JSI_Game
+{
+bool IsGameStarted()
 {
 	return g_Game;
 }
 
-void JSI_Game::StartGame(ScriptInterface::CmptPrivate* pCmptPrivate, JS::HandleValue attribs, int playerID)
+void StartGame(ScriptInterface::CmptPrivate* pCmptPrivate, JS::HandleValue attribs, int playerID)
 {
 	ENSURE(!g_NetServer);
 	ENSURE(!g_NetClient);
@@ -56,12 +59,12 @@ void JSI_Game::StartGame(ScriptInterface::CmptPrivate* pCmptPrivate, JS::HandleV
 	g_Game->StartGame(&gameAttribs, "");
 }
 
-void JSI_Game::Script_EndGame(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
+void Script_EndGame()
 {
 	EndGame();
 }
 
-int JSI_Game::GetPlayerID(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
+int GetPlayerID()
 {
 	if (!g_Game)
 		return -1;
@@ -69,7 +72,7 @@ int JSI_Game::GetPlayerID(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
 	return g_Game->GetPlayerID();
 }
 
-void JSI_Game::SetPlayerID(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), int id)
+void SetPlayerID(int id)
 {
 	if (!g_Game)
 		return;
@@ -77,7 +80,7 @@ void JSI_Game::SetPlayerID(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), i
 	g_Game->SetPlayerID(id);
 }
 
-void JSI_Game::SetViewedPlayer(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), int id)
+void SetViewedPlayer(int id)
 {
 	if (!g_Game)
 		return;
@@ -85,21 +88,20 @@ void JSI_Game::SetViewedPlayer(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate
 	g_Game->SetViewedPlayerID(id);
 }
 
-float JSI_Game::GetSimRate(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
+float GetSimRate()
 {
 	return g_Game->GetSimRate();
 }
 
-void JSI_Game::SetSimRate(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), float rate)
+void SetSimRate(float rate)
 {
 	g_Game->SetSimRate(rate);
 }
 
-bool JSI_Game::IsPaused(ScriptInterface::CmptPrivate* pCmptPrivate)
+bool IsPaused(const ScriptRequest& rq)
 {
 	if (!g_Game)
 	{
-		ScriptRequest rq(pCmptPrivate->pScriptInterface);
 		ScriptException::Raise(rq, "Game is not started");
 		return false;
 	}
@@ -107,11 +109,10 @@ bool JSI_Game::IsPaused(ScriptInterface::CmptPrivate* pCmptPrivate)
 	return g_Game->m_Paused;
 }
 
-void JSI_Game::SetPaused(ScriptInterface::CmptPrivate* pCmptPrivate, bool pause, bool sendMessage)
+void SetPaused(const ScriptRequest& rq, bool pause, bool sendMessage)
 {
 	if (!g_Game)
 	{
-		ScriptRequest rq(pCmptPrivate->pScriptInterface);
 		ScriptException::Raise(rq, "Game is not started");
 		return;
 	}
@@ -130,7 +131,7 @@ void JSI_Game::SetPaused(ScriptInterface::CmptPrivate* pCmptPrivate, bool pause,
 		g_NetClient->SendPausedMessage(pause);
 }
 
-bool JSI_Game::IsVisualReplay(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
+bool IsVisualReplay()
 {
 	if (!g_Game)
 		return false;
@@ -138,7 +139,7 @@ bool JSI_Game::IsVisualReplay(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate)
 	return g_Game->IsVisualReplay();
 }
 
-std::wstring JSI_Game::GetCurrentReplayDirectory(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
+std::wstring GetCurrentReplayDirectory()
 {
 	if (!g_Game)
 		return std::wstring();
@@ -149,17 +150,17 @@ std::wstring JSI_Game::GetCurrentReplayDirectory(ScriptInterface::CmptPrivate* U
 	return g_Game->GetReplayLogger().GetDirectory().Filename().string();
 }
 
-void JSI_Game::EnableTimeWarpRecording(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), unsigned int numTurns)
+void EnableTimeWarpRecording(unsigned int numTurns)
 {
 	g_Game->GetTurnManager()->EnableTimeWarpRecording(numTurns);
 }
 
-void JSI_Game::RewindTimeWarp(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
+void RewindTimeWarp()
 {
 	g_Game->GetTurnManager()->RewindTimeWarp();
 }
 
-void JSI_Game::DumpTerrainMipmap(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
+void DumpTerrainMipmap()
 {
 	VfsPath filename(L"screenshots/terrainmipmap.png");
 	g_Game->GetWorld()->GetTerrain()->GetHeightMipmap().DumpToDisk(filename);
@@ -168,21 +169,22 @@ void JSI_Game::DumpTerrainMipmap(ScriptInterface::CmptPrivate* UNUSED(pCmptPriva
 	LOGMESSAGERENDER("Terrain mipmap written to '%s'", realPath.string8());
 }
 
-void JSI_Game::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
+void RegisterScriptFunctions(const ScriptRequest& rq)
 {
-	scriptInterface.RegisterFunction<bool, &IsGameStarted>("IsGameStarted");
-	scriptInterface.RegisterFunction<void, JS::HandleValue, int, &StartGame>("StartGame");
-	scriptInterface.RegisterFunction<void, &Script_EndGame>("EndGame");
-	scriptInterface.RegisterFunction<int, &GetPlayerID>("GetPlayerID");
-	scriptInterface.RegisterFunction<void, int, &SetPlayerID>("SetPlayerID");
-	scriptInterface.RegisterFunction<void, int, &SetViewedPlayer>("SetViewedPlayer");
-	scriptInterface.RegisterFunction<float, &GetSimRate>("GetSimRate");
-	scriptInterface.RegisterFunction<void, float, &SetSimRate>("SetSimRate");
-	scriptInterface.RegisterFunction<bool, &IsPaused>("IsPaused");
-	scriptInterface.RegisterFunction<void, bool, bool, &SetPaused>("SetPaused");
-	scriptInterface.RegisterFunction<bool, &IsVisualReplay>("IsVisualReplay");
-	scriptInterface.RegisterFunction<std::wstring, &GetCurrentReplayDirectory>("GetCurrentReplayDirectory");
-	scriptInterface.RegisterFunction<void, unsigned int, &EnableTimeWarpRecording>("EnableTimeWarpRecording");
-	scriptInterface.RegisterFunction<void, &RewindTimeWarp>("RewindTimeWarp");
-	scriptInterface.RegisterFunction<void, &DumpTerrainMipmap>("DumpTerrainMipmap");
+	ScriptFunction::Register<&IsGameStarted>(rq, "IsGameStarted");
+	ScriptFunction::Register<&StartGame>(rq, "StartGame");
+	ScriptFunction::Register<&Script_EndGame>(rq, "EndGame");
+	ScriptFunction::Register<&GetPlayerID>(rq, "GetPlayerID");
+	ScriptFunction::Register<&SetPlayerID>(rq, "SetPlayerID");
+	ScriptFunction::Register<&SetViewedPlayer>(rq, "SetViewedPlayer");
+	ScriptFunction::Register<&GetSimRate>(rq, "GetSimRate");
+	ScriptFunction::Register<&SetSimRate>(rq, "SetSimRate");
+	ScriptFunction::Register<&IsPaused>(rq, "IsPaused");
+	ScriptFunction::Register<&SetPaused>(rq, "SetPaused");
+	ScriptFunction::Register<&IsVisualReplay>(rq, "IsVisualReplay");
+	ScriptFunction::Register<&GetCurrentReplayDirectory>(rq, "GetCurrentReplayDirectory");
+	ScriptFunction::Register<&EnableTimeWarpRecording>(rq, "EnableTimeWarpRecording");
+	ScriptFunction::Register<&RewindTimeWarp>(rq, "RewindTimeWarp");
+	ScriptFunction::Register<&DumpTerrainMipmap>(rq, "DumpTerrainMipmap");
+}
 }

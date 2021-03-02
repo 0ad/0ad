@@ -18,23 +18,11 @@
 #ifndef INCLUDED_JSI_GUIMANAGER
 #define INCLUDED_JSI_GUIMANAGER
 
-#include "scriptinterface/ScriptInterface.h"
-#include "simulation2/system/ParamNode.h"
+class ScriptRequest;
 
 namespace JSI_GUIManager
 {
-	void PushGuiPage(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& name, JS::HandleValue initData, JS::HandleValue callbackFunction);
-	void SwitchGuiPage(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& name, JS::HandleValue initData);
-	void PopGuiPage(ScriptInterface::CmptPrivate* pCmptPrivate, JS::HandleValue args);
-	JS::Value GetGUIObjectByName(ScriptInterface::CmptPrivate* pCmptPrivate, const std::string& name);
-	void SetGlobalHotkey(ScriptInterface::CmptPrivate* pCmptPrivate, const std::string& hotkeyTag, const std::string& eventName, JS::HandleValue function);
-	void UnsetGlobalHotkey(ScriptInterface::CmptPrivate* pCmptPrivate, const std::string& hotkeyTag, const std::string& eventName);
-	std::wstring SetCursor(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& name);
-	void ResetCursor(ScriptInterface::CmptPrivate* pCmptPrivate);
-	bool TemplateExists(ScriptInterface::CmptPrivate* pCmptPrivate, const std::string& templateName);
-	CParamNode GetTemplate(ScriptInterface::CmptPrivate* pCmptPrivate, const std::string& templateName);
-
-	void RegisterScriptFunctions(const ScriptInterface& scriptInterface);
+	void RegisterScriptFunctions(const ScriptRequest& rq);
 }
 
 #endif // INCLUDED_JSI_GUIMANAGER

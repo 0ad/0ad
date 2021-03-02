@@ -91,7 +91,7 @@ public:
 	void SendIqChangeStateGame(const std::string& nbp, const std::string& players);
 	void SendIqLobbyAuth(const std::string& to, const std::string& token);
 	void SetNick(const std::string& nick);
-	void GetNick(std::string& nick);
+	std::string GetNick();
 	void kick(const std::string& nick, const std::string& reason);
 	void ban(const std::string& nick, const std::string& reason);
 	void SetPresence(const std::string& presence);
@@ -100,10 +100,10 @@ public:
 	std::wstring GetRating(const std::string& nickname);
 	const std::wstring& GetSubject();
 
-	void GUIGetPlayerList(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret);
-	void GUIGetGameList(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret);
-	void GUIGetBoardList(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret);
-	void GUIGetProfile(const ScriptInterface& scriptInterface, JS::MutableHandleValue ret);
+	JS::Value GUIGetPlayerList(const ScriptInterface& scriptInterface);
+	JS::Value GUIGetGameList(const ScriptInterface& scriptInterface);
+	JS::Value GUIGetBoardList(const ScriptInterface& scriptInterface);
+	JS::Value GUIGetProfile(const ScriptInterface& scriptInterface);
 
 	void SendStunEndpointToHost(const StunClient::StunEndpoint& stunEndpoint, const std::string& hostJID);
 
