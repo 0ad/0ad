@@ -8,10 +8,17 @@
  */
 class SavegameList
 {
-	constructor()
+	constructor(campaignRun)
 	{
 		this.savedGamesMetadata = [];
 		this.selectionChangeHandlers = [];
+
+		// If not null, only show games for the following campaign run
+		// (campaign save-games are not shown by default).
+		// Campaign games are saved in the same folder as regular ones,
+		// as there is no strong reason to do otherwise (since games from different runs
+		// need to be hidden from one another anyways, we need code to handle it).
+		this.campaignRun = campaignRun;
 
 		this.gameSelection = Engine.GetGUIObjectByName("gameSelection");
 		this.gameSelectionFeedback = Engine.GetGUIObjectByName("gameSelectionFeedback");
@@ -67,7 +74,13 @@ class SavegameList
 		let engineInfo = Engine.GetEngineInfo();
 
 		if (this.compatibilityFilter.checked)
-			savedGames = savedGames.filter(game => this.isCompatibleSavegame(game.metadata, engineInfo));
+			savedGames = savedGames.filter(game => {
+				return this.isCompatibleSavegame(game.metadata, engineInfo) &&
+				this.campaignFilter(game.metadata, this.campaignRun);
+			});
+		else if (this.campaignRun)
+			savedGames = savedGames.filter(game => this.campaignFilter(game.metadata, this.campaignRun));
+
 
 		this.gameSelection.enabled = !!savedGames.length;
 		this.gameSelectionFeedback.hidden = !!savedGames.length;
@@ -114,7 +127,8 @@ class SavegameList
 		});
 
 		let list = this.savedGamesMetadata.map(metadata => {
-			let isCompatible = this.isCompatibleSavegame(metadata, engineInfo);
+			let isCompatible = this.isCompatibleSavegame(metadata, engineInfo) &&
+			                   this.campaignFilter(metadata, this.campaignRun);
 			return {
 				"date": this.generateSavegameDateString(metadata, engineInfo),
 				"mapName": compatibilityColor(translate(metadata.initAttributes.settings.Name), isCompatible),
@@ -142,6 +156,15 @@ class SavegameList
 			this.gameSelection.selected = selectedGameIndex;
 		else if (this.gameSelection.selected >= this.savedGamesMetadata.length)
 			this.gameSelection.selected = this.savedGamesMetadata.length - 1;
+	}
+
+	campaignFilter(metadata, campaignRun)
+	{
+		if (!campaignRun)
+			return !metadata.initAttributes.campaignData;
+		if (metadata.initAttributes.campaignData)
+			return metadata.initAttributes.campaignData.run == campaignRun;
+		return false;
 	}
 
 	isCompatibleSavegame(metadata, engineInfo)

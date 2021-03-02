@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -46,6 +46,10 @@ namespace JSI_VFS
 
 	// Save given JS Object to a JSON file
 	void WriteJSONFile(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& filePath, JS::HandleValue val1);
+
+	// Delete the given campaign save.
+	// This is limited to campaign save to avoid mods deleting the wrong file.
+	bool DeleteCampaignSave(ScriptInterface::CmptPrivate* pCmptPrivate, const CStrW& filePath);
 
 	// Tests whether the current script context is allowed to read from the given directory
 	bool PathRestrictionMet(ScriptInterface::CmptPrivate* pCmptPrivate, const std::vector<CStrW>& validPaths, const CStrW& filePath);

@@ -211,6 +211,17 @@ GuiInterface.prototype.GetReplayMetadata = function()
 	};
 };
 
+/**
+ * Called when the game ends if the current game is part of a campaign run.
+ */
+GuiInterface.prototype.GetCampaignGameEndData = function(player)
+{
+	let cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
+	if (Trigger.prototype.OnCampaignGameEnd)
+		return Trigger.prototype.OnCampaignGameEnd();
+	return {};
+};
+
 GuiInterface.prototype.GetRenamedEntities = function(player)
 {
 	if (this.miragedEntities[player])
@@ -2012,6 +2023,7 @@ let exposedFunctions = {
 	"GetExtendedSimulationState": 1,
 	"GetInitAttributes": 1,
 	"GetReplayMetadata": 1,
+	"GetCampaignGameEndData": 1,
 	"GetRenamedEntities": 1,
 	"ClearRenamedEntities": 1,
 	"GetEntityState": 1,

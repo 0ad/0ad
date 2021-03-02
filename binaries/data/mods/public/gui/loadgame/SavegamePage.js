@@ -1,15 +1,4 @@
 /**
- * This class architecture is an example of how to use classes
- * to encapsulate and to avoid fragmentation and globals.
- */
-var g_SavegamePage;
-
-function init(data)
-{
-	g_SavegamePage = new SavegamePage(data);
-}
-
-/**
  * This class is responsible for loading the affected GUI control classes,
  * and setting them up to communicate with each other.
  */
@@ -17,7 +6,7 @@ class SavegamePage
 {
 	constructor(data)
 	{
-		this.savegameList = new SavegameList();
+		this.savegameList = new SavegameList(data && data.campaignRun || null);
 
 		this.savegameDetails = new SavegameDetails();
 		this.savegameList.registerSelectionChangeHandler(this.savegameDetails);
@@ -45,4 +34,11 @@ class SavegamePage
 		Engine.GetGUIObjectByName("title").caption = savePage ? translate("Save Game") : translate("Load Game");
 		Engine.GetGUIObjectByName("cancel").onPress = () => { Engine.PopGuiPage(); };
 	}
+}
+
+var g_SavegamePage;
+
+function init(data)
+{
+	g_SavegamePage = new SavegamePage(data);
 }

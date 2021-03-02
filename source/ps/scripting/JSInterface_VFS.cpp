@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -209,6 +209,18 @@ void JSI_VFS::WriteJSONFile(ScriptInterface::CmptPrivate* pCmptPrivate, const st
 	g_VFS->CreateFile(path, buf.Data(), buf.Size());
 }
 
+bool JSI_VFS::DeleteCampaignSave(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const CStrW& filePath)
+{
+	OsPath realPath;
+	if (filePath.Left(16) != L"saves/campaigns/" || filePath.Right(12) != L".0adcampaign")
+		return false;
+
+	return VfsFileExists(filePath) &&
+		g_VFS->GetRealPath(filePath, realPath) == INFO::OK &&
+		g_VFS->RemoveFile(filePath) == INFO::OK &&
+		wunlink(realPath) == 0;
+}
+
 bool JSI_VFS::PathRestrictionMet(ScriptInterface::CmptPrivate* pCmptPrivate, const std::vector<CStrW>& validPaths, const CStrW& filePath)
 {
 	for (const CStrW& validPath : validPaths)
@@ -259,6 +271,7 @@ void JSI_VFS::RegisterScriptFunctions_GUI(const ScriptInterface& scriptInterface
 	scriptInterface.RegisterFunction<JS::Value, std::wstring, &JSI_VFS::ReadFileLines>("ReadFileLines");
 	scriptInterface.RegisterFunction<JS::Value, std::wstring, &Script_ReadJSONFile_GUI>("ReadJSONFile");
 	scriptInterface.RegisterFunction<void, std::wstring, JS::HandleValue, &WriteJSONFile>("WriteJSONFile");
+	scriptInterface.RegisterFunction<bool, CStrW, &DeleteCampaignSave>("DeleteCampaignSave");
 }
 
 void JSI_VFS::RegisterScriptFunctions_Simulation(const ScriptInterface& scriptInterface)

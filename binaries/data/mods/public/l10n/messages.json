@@ -241,6 +241,64 @@
         ]
     },
     {
+        "output": "public-gui-campaigns.pot",
+        "inputRoot": "..",
+        "project": "0 A.D. — Empires Ascendant",
+        "copyrightHolder": "Wildfire Games",
+        "rules": [
+            {
+                "extractor": "javascript",
+                "filemasks": [
+                    "gui/campaigns/**.js",
+                    "gui/common/campaigns/**.js"
+                ],
+                "options": {
+                    "format": "javascript-format",
+                    "keywords": {
+                        "translate": [1],
+                        "translatePlural": [1, 2],
+                        "translateWithContext": [[1], 2],
+                        "translatePluralWithContext": [[1], 2, 3],
+                        "markForTranslation": [1],
+                        "markForTranslationWithContext": [[1], 2],
+                        "markForPluralTranslation": [1, 2]
+                    },
+                    "commentTags": [
+                        "Translation:"
+                    ]
+                }
+            },
+            {
+                "extractor": "xml",
+                "filemasks": [
+                    "gui/campaigns/**.xml",
+                    "gui/common/campaigns/**.xml"
+                ],
+                "options": {
+                    "keywords": {
+                        "translatableAttribute": {
+                            "locationAttributes": ["id"]
+                        },
+                        "translate": {}
+                    }
+                }
+            },
+            {
+                "extractor": "json",
+                "filemasks": [
+                    "campaigns/**.json"
+                ],
+                "options": {
+                    "keywords": [
+                        "Name",
+                        "Description"
+                    ],
+                    "context": "Campaign Template"
+                }
+            }
+        ]
+    },
+    {
         "output": "public-gui-other.pot",
         "inputRoot": "..",
         "project": "0 A.D. — Empires Ascendant",

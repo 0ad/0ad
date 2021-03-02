@@ -15,6 +15,7 @@ var g_MainMenuItems = [
 				"tooltip": translate("Start the economic tutorial."),
 				"onPress": () => {
 					Engine.SwitchGuiPage("page_gamesetup.xml", {
+						"autostart": true,
 						"mapType": "scenario",
 						"map": "maps/tutorials/starting_economy_walkthrough"
 					});
@@ -61,6 +62,16 @@ var g_MainMenuItems = [
 		]
 	},
 	{
+		"caption": translate("Continue Campaign"),
+		"tooltip": translate("Relive history through historical military campaigns."),
+		"onPress": () => {
+			Engine.SwitchGuiPage(CampaignRun.getCurrentRun().getMenuPath(), {
+				"filename": CampaignRun.getCurrentRun().filename
+			});
+		},
+		"enabled": () => !!CampaignRun.getCurrentRun()
+	},
+	{
 		"caption": translate("Single-player"),
 		"tooltip": translate("Start, load, or replay a single-player game."),
 		"submenu": [
@@ -72,15 +83,37 @@ var g_MainMenuItems = [
 				}
 			},
 			{
-				"caption": translate("Campaigns"),
-				"tooltip": translate("Relive history through historical military campaigns. \\[NOT YET IMPLEMENTED]"),
-				"enabled": false
-			},
-			{
 				"caption": translate("Load Game"),
 				"tooltip": translate("Load a saved game."),
 				"onPress": () => {
 					Engine.PushGuiPage("page_loadgame.xml");
+				}
+			},
+			{
+				"caption": translate("Continue Campaign"),
+				"tooltip": translate("Relive history through historical military campaigns."),
+				"onPress": () => {
+					Engine.SwitchGuiPage(CampaignRun.getCurrentRun().getMenuPath(), {
+						"filename": CampaignRun.getCurrentRun().filename
+					});
+				},
+				"enabled": () => !!CampaignRun.getCurrentRun()
+			},
+			{
+				"caption": translate("New Campaign"),
+				"tooltip": translate("Relive history through historical military campaigns."),
+				"onPress": () => {
+					Engine.SwitchGuiPage("campaigns/setup/page.xml");
+				}
+			},
+			{
+				"caption": translate("Load Campaign"),
+				"tooltip": translate("Relive history through historical military campaigns."),
+				"onPress": () => {
+					// Switch instead of push, otherwise the 'continue'
+					// button might remain enabled.
+					// TODO: find a better solution.
+					Engine.SwitchGuiPage("campaigns/load_modal/page.xml");
 				}
 			},
 			{
@@ -126,7 +159,7 @@ var g_MainMenuItems = [
 				"tooltip":
 					colorizeHotkey(translate("%(hotkey)s: Launch the multiplayer lobby to join and host publicly visible games and chat with other players."), "lobby") +
 					(Engine.StartXmppClient ? "" : translate("Launch the multiplayer lobby. \\[DISABLED BY BUILD]")),
-				"enabled": !!Engine.StartXmppClient,
+				"enabled": () => !!Engine.StartXmppClient,
 				"hotkey": "lobby",
 				"onPress": () => {
 					 if (Engine.StartXmppClient)
