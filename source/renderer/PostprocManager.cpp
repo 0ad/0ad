@@ -378,16 +378,13 @@ void CPostprocManager::CaptureRenderOutput()
 {
 	ENSURE(m_IsInitialized);
 
-	// clear both FBOs and leave m_PingFbo selected for rendering;
-	// m_WhichBuffer stays true at this point
+	// Leaves m_PingFbo selected for rendering; m_WhichBuffer stays true at this point.
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PongFbo);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
 	GLenum buffers[] = { GL_COLOR_ATTACHMENT0_EXT, GL_COLOR_ATTACHMENT1_EXT };
 	pglDrawBuffers(1, buffers);
 
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PingFbo);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 	pglDrawBuffers(1, buffers);
 
 	m_WhichBuffer = true;
@@ -395,7 +392,6 @@ void CPostprocManager::CaptureRenderOutput()
 	if (m_UsingMultisampleBuffer)
 	{
 		pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_MultisampleFBO);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 		pglDrawBuffers(1, buffers);
 	}
 }
