@@ -9,9 +9,6 @@
         <prop actor="props/structures/hellenes/blacksmith_struct.xml" attachpoint="root"/>
         <prop actor="props/structures/hellenes/blacksmith_rooftiles.xml" attachpoint="root"/>
         <prop actor="props/structures/hellenes/blacksmith_shield_back.xml" attachpoint="root"/>
-        <prop actor="particle/smoke_blacksmith.xml" attachpoint="smoke"/>
-		<prop actor="particle/sparks_blacksmith.xml" attachpoint="smoke"/>
-        <prop actor="particle/flame.xml" attachpoint="fire"/>
         <prop actor="props/structures/decals/dirt_4x4.xml" attachpoint="root"/>
         <prop actor="props/structures/hellenes/blacksmith_bucket.xml" attachpoint="greekbucket"/>
         <prop actor="props/structures/hellenes/blacksmith_bucket_water.xml" attachpoint="greekbucket"/>
@@ -25,10 +22,20 @@
       </props>
       <textures>
         <texture file="structural/hele_struct_b.dds" name="baseTex"/>
-		<texture file="structural/hele_struct_b_norm.png" name="normTex"/>
-	    <texture file="structural/hele_struct_b_spec.png" name="specTex"/>
+        <texture file="structural/hele_struct_b_norm.png" name="normTex"/>
+        <texture file="structural/hele_struct_b_spec.png" name="specTex"/>
         <texture file="structural/ao/hele_blacksmith.png" name="aoTex"/>
       </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant name="researching">
+      <props>
+        <prop actor="particle/sparks_blacksmith.xml" attachpoint="smoke"/>
+        <prop actor="particle/smoke_blacksmith.xml" attachpoint="smoke"/>
+        <prop actor="particle/flame.xml" attachpoint="fire"/>
+      </props>
     </variant>
   </group>
   <group>

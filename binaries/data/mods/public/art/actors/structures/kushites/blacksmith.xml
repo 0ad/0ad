@@ -6,9 +6,6 @@
       <mesh>structural/kush_blacksmith.dae</mesh>
       <props>
         <prop actor="props/structures/decals/dirt_5x5.xml" attachpoint="root"/>
-        <prop actor="particle/sparks_blacksmith.xml" attachpoint="smoke"/>
-        <prop actor="particle/flame_catapult.xml" attachpoint="fire"/>
-        <prop actor="particle/smoke_blacksmith.xml" attachpoint="smoke"/>
       </props>
       <textures>
         <texture file="structural/kush_struct.png" name="baseTex"/>
@@ -16,6 +13,16 @@
         <texture file="structural/kush_struct_norm.png" name="normTex"/>
         <texture file="structural/ao/kush_blacksmith.png" name="aoTex"/>
       </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant name="researching">
+      <props>
+        <prop actor="particle/sparks_blacksmith.xml" attachpoint="smoke"/>
+        <prop actor="particle/smoke_blacksmith.xml" attachpoint="smoke"/>
+        <prop actor="particle/flame_catapult.xml" attachpoint="fire"/>
+      </props>
     </variant>
   </group>
   <group>

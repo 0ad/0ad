@@ -6,8 +6,6 @@
       <mesh>structural/spart_blacksmith.dae</mesh>
       <props>
         <prop actor="props/structures/decals/dirt_3x3.xml" attachpoint="root"/>
-        <prop actor="particle/smoke_blacksmith.xml" attachpoint="smoke"/>
-        <prop actor="particle/flame_firepit_2.xml" attachpoint="fire"/>
       </props>
       <textures>
         <texture file="structural/sparta_struct.png" name="baseTex"/>
@@ -15,6 +13,16 @@
         <texture file="structural/sparta_struct_spec.png" name="specTex"/>
         <texture file="structural/ao/spart_blacksmith_AO.png" name="aoTex"/>
       </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant name="researching">
+      <props>
+        <prop actor="particle/sparks_blacksmith.xml" attachpoint="smoke"/>
+        <prop actor="particle/smoke_blacksmith.xml" attachpoint="smoke"/>
+        <prop actor="particle/flame_firepit_2.xml" attachpoint="fire"/>
+      </props>
     </variant>
   </group>
   <group>

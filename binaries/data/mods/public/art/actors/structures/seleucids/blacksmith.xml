@@ -10,8 +10,6 @@
         <prop actor="props/flora/bush.xml" attachpoint="bush" maxheight="20" minheight="-20"/>
         <prop actor="props/flora/bush.xml" attachpoint="bush_1" maxheight="20" minheight="-20"/>
         <prop actor="props/flora/bush.xml" attachpoint="bush_2" maxheight="20" minheight="-20"/>
-        <prop actor="particle/flame.xml" attachpoint="fire"/>
-        <prop actor="particle/smoke_blacksmith.xml" attachpoint="smoke"/>
       </props>
       <textures>
         <texture file="structural/Sele_struct_2.png" name="baseTex"/>
@@ -19,6 +17,16 @@
         <texture file="structural/ao/sele_blacksmith_AO.png" name="aoTex"/>
         <texture file="structural/Sele_struct_2_spec.png" name="specTex"/>
       </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant name="researching">
+      <props>
+        <prop actor="particle/sparks_blacksmith.xml" attachpoint="smoke"/>
+        <prop actor="particle/smoke_blacksmith.xml" attachpoint="smoke"/>
+        <prop actor="particle/flame.xml" attachpoint="fire"/>
+      </props>
     </variant>
   </group>
   <group>
