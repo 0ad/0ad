@@ -1459,10 +1459,14 @@ void CRenderer::EndFrame()
 
 void CRenderer::OnSwapBuffers()
 {
+	bool checkGLErrorAfterSwap = false;
+	CFG_GET_VAL("gl.checkerrorafterswap", checkGLErrorAfterSwap);
+	if (!checkGLErrorAfterSwap)
+		return;
 	PROFILE3("error check");
 	// We have to check GL errors after SwapBuffer to avoid possible
 	// synchronizations during rendering.
-	if (GLenum  err = glGetError())
+	if (GLenum err = glGetError())
 		ONCE(LOGERROR("GL error %s (0x%04x) occurred", ogl_GetErrorName(err), err));
 }
 
