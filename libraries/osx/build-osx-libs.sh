@@ -902,6 +902,7 @@ pushd fmt > /dev/null
 
 if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ "$(<.already-built)" != "$FMT_VERSION" ]]
 then
+  INSTALL_DIR="$(pwd)"
   rm -f .already-built
 
   download_lib $LIB_URL $LIB_ARCHIVE
@@ -919,13 +920,10 @@ then
   (cmake .. \
       -DFMT_TEST=False \
       -DFMT_DOC=False \
-    && make fmt ${JOBS}) || die "fmt build failed"
+      -DCMAKE_INSTALL_PREFIX="$INSTALL_DIR" \
+    && make fmt ${JOBS} && make install) || die "fmt build failed"
+
   popd
-
-  mkdir -p ../lib
-  cp build/libfmt.a ../lib/
-  cp -r include ../include
-
   popd
   echo "$FMT_VERSION" > .already-built
 else

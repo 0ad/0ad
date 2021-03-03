@@ -22,15 +22,18 @@
 #include "i18n/L10n.h"
 #include "lib/svn_revision.h"
 #include "lib/debug.h"
+#include "scriptinterface/FunctionWrapper.h"
 #include "scriptinterface/ScriptInterface.h"
 
 #include <ctime>
 #include <string>
 
+namespace JSI_Debug
+{
 /**
  * Microseconds since the epoch.
  */
-double JSI_Debug::GetMicroseconds(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
+double GetMicroseconds()
 {
 	return JS_Now();
 }
@@ -38,18 +41,18 @@ double JSI_Debug::GetMicroseconds(ScriptInterface::CmptPrivate* UNUSED(pCmptPriv
 // Deliberately cause the game to crash.
 // Currently implemented via access violation (read of address 0).
 // Useful for testing the crashlog/stack trace code.
-int JSI_Debug::Crash(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
+int Crash()
 {
 	debug_printf("Crashing at user's request.\n");
 	return *(volatile int*)0;
 }
 
-void JSI_Debug::DebugWarn(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
+void DebugWarn()
 {
 	debug_warn(L"Warning at user's request.");
 }
 
-void JSI_Debug::DisplayErrorDialog(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::wstring& msg)
+void DisplayErrorDialog(const std::wstring& msg)
 {
 	debug_DisplayError(msg.c_str(), DE_NO_DEBUG_INFO, NULL, NULL, NULL, 0, NULL, NULL);
 }
@@ -58,13 +61,13 @@ void JSI_Debug::DisplayErrorDialog(ScriptInterface::CmptPrivate* UNUSED(pCmptPri
 // - Displayed on main menu screen; tells non-programmers which auto-build
 //   they are running. Could also be determined via .EXE file properties,
 //   but that's a bit more trouble.
-std::wstring JSI_Debug::GetBuildDate(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
+std::wstring GetBuildDate()
 {
 	UDate buildDate = g_L10n.ParseDateTime(__DATE__, "MMM d yyyy", icu::Locale::getUS());
 	return wstring_from_utf8(g_L10n.LocalizeDateTime(buildDate, L10n::Date, icu::SimpleDateFormat::MEDIUM));
 }
 
-double JSI_Debug::GetBuildTimestamp(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
+double GetBuildTimestamp()
 {
 	UDate buildDate = g_L10n.ParseDateTime(__DATE__ " " __TIME__, "MMM d yyyy HH:mm:ss", icu::Locale::getUS());
 	if (buildDate)
@@ -77,7 +80,7 @@ double JSI_Debug::GetBuildTimestamp(ScriptInterface::CmptPrivate* UNUSED(pCmptPr
 //   lib/svn_revision.cpp. it is useful to know when attempting to
 //   reproduce bugs (the main EXE and PDB should be temporarily reverted to
 //   that revision so that they match user-submitted crashdumps).
-std::wstring JSI_Debug::GetBuildRevision(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
+std::wstring GetBuildRevision()
 {
 	std::wstring svnRevision(svn_revision);
 	if (svnRevision == L"custom build")
@@ -85,13 +88,14 @@ std::wstring JSI_Debug::GetBuildRevision(ScriptInterface::CmptPrivate* UNUSED(pC
 	return svnRevision;
 }
 
-void JSI_Debug::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
+void RegisterScriptFunctions(const ScriptRequest& rq)
 {
-	scriptInterface.RegisterFunction<double, &GetMicroseconds>("GetMicroseconds");
-	scriptInterface.RegisterFunction<int, &Crash>("Crash");
-	scriptInterface.RegisterFunction<void, &DebugWarn>("DebugWarn");
-	scriptInterface.RegisterFunction<void, std::wstring, &DisplayErrorDialog>("DisplayErrorDialog");
-	scriptInterface.RegisterFunction<std::wstring, &GetBuildDate>("GetBuildDate");
-	scriptInterface.RegisterFunction<double, &GetBuildTimestamp>("GetBuildTimestamp");
-	scriptInterface.RegisterFunction<std::wstring, &GetBuildRevision>("GetBuildRevision");
+	ScriptFunction::Register<&GetMicroseconds>(rq, "GetMicroseconds");
+	ScriptFunction::Register<&Crash>(rq, "Crash");
+	ScriptFunction::Register<&DebugWarn>(rq, "DebugWarn");
+	ScriptFunction::Register<&DisplayErrorDialog>(rq, "DisplayErrorDialog");
+	ScriptFunction::Register<&GetBuildDate>(rq, "GetBuildDate");
+	ScriptFunction::Register<&GetBuildTimestamp>(rq, "GetBuildTimestamp");
+	ScriptFunction::Register<&GetBuildRevision>(rq, "GetBuildRevision");
+}
 }

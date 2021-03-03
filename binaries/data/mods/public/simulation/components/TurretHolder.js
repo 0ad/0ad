@@ -238,12 +238,6 @@ class TurretHolder
 	}
 
 	/**
-	 * We process EntityRenamed here because we need to be sure that we receive
-	 * it after it is processed by GarrisonHolder.js.
-	 * ToDo: Make this not needed by fully separating TurretHolder from GarrisonHolder.
-	 * That means an entity with TurretHolder should not need a GarrisonHolder
-	 * for e.g. the garrisoning logic.
-	 *
 	 * @param {number} from - The entity to substitute.
 	 * @param {number} to - The entity to subtitute with.
 	 */
@@ -251,24 +245,10 @@ class TurretHolder
 	{
 		let turretPoint = this.GetOccupiedTurret(from);
 		if (turretPoint)
+		{
 			this.LeaveTurret(from, turretPoint);
-
-		let cmpGarrisonHolder = Engine.QueryInterface(this.entity, IID_GarrisonHolder);
-		if (cmpGarrisonHolder && cmpGarrisonHolder.IsGarrisoned(to))
 			this.OccupyTurret(to, turretPoint);
-	}
-
-	OnGarrisonedUnitsChanged(msg)
-	{
-		// Ignore renaming for that is handled seperately
-		// (i.e. called directly from GarrisonHolder.js).
-		if (msg.renamed)
-			return;
-
-		for (let entity of msg.removed)
-			this.LeaveTurret(entity);
-		for (let entity of msg.added)
-			this.OccupyTurret(entity);
+		}
 	}
 
 	/**

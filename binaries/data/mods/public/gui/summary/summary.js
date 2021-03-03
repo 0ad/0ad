@@ -473,6 +473,8 @@ function continueButton()
 			"replaySelectionData": g_GameData.gui.replaySelectionData,
 			"summarySelection": summarySelection
 		});
+	else if (g_GameData.campaignData)
+		Engine.SwitchGuiPage(g_GameData.nextPage, g_GameData.campaignData);
 	else
 		Engine.SwitchGuiPage("page_pregame.xml");
 }

@@ -296,7 +296,7 @@ void ModIo::StartListMods()
 	m_DownloadProgressData.status = DownloadProgressStatus::LISTING;
 }
 
-void ModIo::StartDownloadMod(size_t idx)
+void ModIo::StartDownloadMod(u32 idx)
 {
 	// Don't start such a request during active downloads.
 	if (m_DownloadProgressData.status == DownloadProgressStatus::GAMEID ||

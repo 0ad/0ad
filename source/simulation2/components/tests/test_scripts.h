@@ -92,7 +92,8 @@ public:
 			CComponentManager componentManager(context, g_ScriptContext, true);
 			ScriptTestSetup(componentManager.GetScriptInterface());
 
-			componentManager.GetScriptInterface().RegisterFunction<JS::Value, JS::HandleValue, Script_SerializationRoundTrip> ("SerializationRoundTrip");
+			ScriptRequest rq(componentManager.GetScriptInterface());
+			ScriptFunction::Register<Script_SerializationRoundTrip>(rq, "SerializationRoundTrip");
 
 			load_script(componentManager.GetScriptInterface(), path);
 		}

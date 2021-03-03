@@ -35,7 +35,6 @@
 #include "graphics/TerritoryTexture.h"
 #include "graphics/Unit.h"
 #include "graphics/UnitManager.h"
-#include "graphics/scripting/JSInterface_GameView.h"
 #include "lib/input.h"
 #include "lib/timer.h"
 #include "lobby/IXmppClient.h"

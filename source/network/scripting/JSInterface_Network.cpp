@@ -31,31 +31,34 @@
 #include "ps/Game.h"
 #include "ps/GUID.h"
 #include "ps/Util.h"
+#include "scriptinterface/FunctionWrapper.h"
 #include "scriptinterface/ScriptInterface.h"
 
 #include "third_party/encryption/pkcs5_pbkdf2.h"
 
-u16 JSI_Network::GetDefaultPort(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
+namespace JSI_Network
+{
+u16 GetDefaultPort()
 {
 	return PS_DEFAULT_PORT;
 }
 
-bool JSI_Network::IsNetController(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
+bool IsNetController()
 {
 	return !!g_NetClient && g_NetClient->IsController();
 }
 
-bool JSI_Network::HasNetServer(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
+bool HasNetServer()
 {
 	return !!g_NetServer;
 }
 
-bool JSI_Network::HasNetClient(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
+bool HasNetClient()
 {
 	return !!g_NetClient;
 }
 
-CStr JSI_Network::HashPassword(const CStr& password)
+CStr HashPassword(const CStr& password)
 {
 	if (password.empty())
 		return password;
@@ -84,7 +87,7 @@ CStr JSI_Network::HashPassword(const CStr& password)
 	return CStr(Hexify(encrypted, DIGESTSIZE)).UpperCase();
 }
 
-void JSI_Network::StartNetworkHost(ScriptInterface::CmptPrivate* pCmptPrivate, const CStrW& playerName, const u16 serverPort, const CStr& hostLobbyName, bool useSTUN, const CStr& password)
+void StartNetworkHost(const ScriptRequest& rq, const CStrW& playerName, const u16 serverPort, const CStr& hostLobbyName, bool useSTUN, const CStr& password)
 {
 	ENSURE(!g_NetClient);
 	ENSURE(!g_NetServer);
@@ -109,7 +112,6 @@ void JSI_Network::StartNetworkHost(ScriptInterface::CmptPrivate* pCmptPrivate, c
 			// This is using port variable to store return value, do not pass serverPort itself.
 			if (!StunClient::FindStunEndpointHost(ip, port))
 			{
-				ScriptRequest rq(pCmptPrivate->pScriptInterface);
 				ScriptException::Raise(rq, "Failed to host via STUN.");
 				SAFE_DELETE(g_NetServer);
 				return;
@@ -120,7 +122,6 @@ void JSI_Network::StartNetworkHost(ScriptInterface::CmptPrivate* pCmptPrivate, c
 
 	if (!g_NetServer->SetupConnection(serverPort))
 	{
-		ScriptRequest rq(pCmptPrivate->pScriptInterface);
 		ScriptException::Raise(rq, "Failed to start server");
 		SAFE_DELETE(g_NetServer);
 		return;
@@ -144,14 +145,13 @@ void JSI_Network::StartNetworkHost(ScriptInterface::CmptPrivate* pCmptPrivate, c
 
 	if (!g_NetClient->SetupConnection(nullptr))
 	{
-		ScriptRequest rq(pCmptPrivate->pScriptInterface);
 		ScriptException::Raise(rq, "Failed to connect to server");
 		SAFE_DELETE(g_NetClient);
 		SAFE_DELETE(g_Game);
 	}
 }
 
-void JSI_Network::StartNetworkJoin(ScriptInterface::CmptPrivate* pCmptPrivate, const CStrW& playerName, const CStr& serverAddress, u16 serverPort, bool useSTUN, const CStr& hostJID)
+void StartNetworkJoin(const ScriptRequest& rq, const CStrW& playerName, const CStr& serverAddress, u16 serverPort, bool useSTUN, const CStr& hostJID)
 {
 	ENSURE(!g_NetClient);
 	ENSURE(!g_NetServer);
@@ -165,14 +165,18 @@ void JSI_Network::StartNetworkJoin(ScriptInterface::CmptPrivate* pCmptPrivate, c
 
 	if (!g_NetClient->SetupConnection(nullptr))
 	{
-		ScriptRequest rq(pCmptPrivate->pScriptInterface);
 		ScriptException::Raise(rq, "Failed to connect to server");
 		SAFE_DELETE(g_NetClient);
 		SAFE_DELETE(g_Game);
 	}
 }
 
-void JSI_Network::StartNetworkJoinLobby(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const CStrW& playerName, const CStr& hostJID, const CStr& password)
+/**
+ * Requires XmppClient to send iq request to the server to get server's ip and port based on passed password.
+ * This is needed to not force server to share it's public ip with all potential clients in the lobby.
+ * XmppClient will also handle logic after receiving the answer.
+ */
+void StartNetworkJoinLobby(const CStrW& playerName, const CStr& hostJID, const CStr& password)
 {
 	ENSURE(!!g_XmppClient);
 	ENSURE(!g_NetClient);
@@ -188,7 +192,7 @@ void JSI_Network::StartNetworkJoinLobby(ScriptInterface::CmptPrivate* UNUSED(pCm
 	g_XmppClient->SendIqGetConnectionData(hostJID, hashedPass.c_str());
 }
 
-void JSI_Network::DisconnectNetworkGame(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
+void DisconnectNetworkGame()
 {
 	// TODO: we ought to do async reliable disconnections
 
@@ -197,7 +201,7 @@ void JSI_Network::DisconnectNetworkGame(ScriptInterface::CmptPrivate* UNUSED(pCm
 	SAFE_DELETE(g_Game);
 }
 
-CStr JSI_Network::GetPlayerGUID(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
+CStr GetPlayerGUID()
 {
 	if (!g_NetClient)
 		return "local";
@@ -205,7 +209,7 @@ CStr JSI_Network::GetPlayerGUID(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivat
 	return g_NetClient->GetGUID();
 }
 
-JS::Value JSI_Network::PollNetworkClient(ScriptInterface::CmptPrivate* pCmptPrivate)
+JS::Value PollNetworkClient(const ScriptInterface& scriptInterface)
 {
 	if (!g_NetClient)
 		return JS::UndefinedValue();
@@ -214,62 +218,62 @@ JS::Value JSI_Network::PollNetworkClient(ScriptInterface::CmptPrivate* pCmptPriv
 	ScriptRequest rqNet(g_NetClient->GetScriptInterface());
 	JS::RootedValue pollNet(rqNet.cx);
 	g_NetClient->GuiPoll(&pollNet);
-	return pCmptPrivate->pScriptInterface->CloneValueFromOtherCompartment(g_NetClient->GetScriptInterface(), pollNet);
+	return scriptInterface.CloneValueFromOtherCompartment(g_NetClient->GetScriptInterface(), pollNet);
 }
 
-void JSI_Network::SetNetworkGameAttributes(ScriptInterface::CmptPrivate* pCmptPrivate, JS::HandleValue attribs1)
+void SetNetworkGameAttributes(const ScriptInterface& scriptInterface, JS::HandleValue attribs1)
 {
 	ENSURE(g_NetClient);
 
 	// TODO: This is a workaround because we need to pass a MutableHandle to a JSAPI functions somewhere (with no obvious reason).
-	ScriptRequest rq(pCmptPrivate->pScriptInterface);
+	ScriptRequest rq(scriptInterface);
 	JS::RootedValue attribs(rq.cx, attribs1);
 
-	g_NetClient->SendGameSetupMessage(&attribs, *(pCmptPrivate->pScriptInterface));
+	g_NetClient->SendGameSetupMessage(&attribs, scriptInterface);
 }
 
-void JSI_Network::AssignNetworkPlayer(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), int playerID, const CStr& guid)
+void AssignNetworkPlayer(int playerID, const CStr& guid)
 {
 	ENSURE(g_NetClient);
 
 	g_NetClient->SendAssignPlayerMessage(playerID, guid);
 }
 
-void JSI_Network::KickPlayer(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const CStrW& playerName, bool ban)
+void KickPlayer(const CStrW& playerName, bool ban)
 {
 	ENSURE(g_NetClient);
 
 	g_NetClient->SendKickPlayerMessage(playerName, ban);
 }
 
-void JSI_Network::SendNetworkChat(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const CStrW& message)
+void SendNetworkChat(const CStrW& message)
 {
 	ENSURE(g_NetClient);
 
 	g_NetClient->SendChatMessage(message);
 }
 
-void JSI_Network::SendNetworkReady(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), int message)
+void SendNetworkReady(int message)
 {
 	ENSURE(g_NetClient);
 
 	g_NetClient->SendReadyMessage(message);
 }
 
-void JSI_Network::ClearAllPlayerReady (ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
+void ClearAllPlayerReady ()
 {
 	ENSURE(g_NetClient);
 
 	g_NetClient->SendClearAllReadyMessage();
 }
 
-void JSI_Network::StartNetworkGame(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
+void StartNetworkGame()
 {
 	ENSURE(g_NetClient);
 	g_NetClient->SendStartGameMessage();
 }
 
-void JSI_Network::SetTurnLength(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), int length)
+void SetTurnLength(int length)
 {
 	if (g_NetServer)
 		g_NetServer->SetTurnLength(length);
@@ -277,24 +281,25 @@ void JSI_Network::SetTurnLength(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivat
 		LOGERROR("Only network host can change turn length");
 }
 
-void JSI_Network::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
+void RegisterScriptFunctions(const ScriptRequest& rq)
 {
-	scriptInterface.RegisterFunction<u16, &GetDefaultPort>("GetDefaultPort");
-	scriptInterface.RegisterFunction<bool, &IsNetController>("IsNetController");
-	scriptInterface.RegisterFunction<bool, &HasNetServer>("HasNetServer");
-	scriptInterface.RegisterFunction<bool, &HasNetClient>("HasNetClient");
-	scriptInterface.RegisterFunction<void, CStrW, u16, CStr, bool, CStr, &StartNetworkHost>("StartNetworkHost");
-	scriptInterface.RegisterFunction<void, CStrW, CStr, u16, bool, CStr, &StartNetworkJoin>("StartNetworkJoin");
-	scriptInterface.RegisterFunction<void, CStrW, CStr, CStr, &StartNetworkJoinLobby>("StartNetworkJoinLobby");
-	scriptInterface.RegisterFunction<void, &DisconnectNetworkGame>("DisconnectNetworkGame");
-	scriptInterface.RegisterFunction<CStr, &GetPlayerGUID>("GetPlayerGUID");
-	scriptInterface.RegisterFunction<JS::Value, &PollNetworkClient>("PollNetworkClient");
-	scriptInterface.RegisterFunction<void, JS::HandleValue, &SetNetworkGameAttributes>("SetNetworkGameAttributes");
-	scriptInterface.RegisterFunction<void, int, CStr, &AssignNetworkPlayer>("AssignNetworkPlayer");
-	scriptInterface.RegisterFunction<void, CStrW, bool, &KickPlayer>("KickPlayer");
-	scriptInterface.RegisterFunction<void, CStrW, &SendNetworkChat>("SendNetworkChat");
-	scriptInterface.RegisterFunction<void, int, &SendNetworkReady>("SendNetworkReady");
-	scriptInterface.RegisterFunction<void, &ClearAllPlayerReady>("ClearAllPlayerReady");
-	scriptInterface.RegisterFunction<void, &StartNetworkGame>("StartNetworkGame");
-	scriptInterface.RegisterFunction<void, int, &SetTurnLength>("SetTurnLength");
+	ScriptFunction::Register<&GetDefaultPort>(rq, "GetDefaultPort");
+	ScriptFunction::Register<&IsNetController>(rq, "IsNetController");
+	ScriptFunction::Register<&HasNetServer>(rq, "HasNetServer");
+	ScriptFunction::Register<&HasNetClient>(rq, "HasNetClient");
+	ScriptFunction::Register<&StartNetworkHost>(rq, "StartNetworkHost");
+	ScriptFunction::Register<&StartNetworkJoin>(rq, "StartNetworkJoin");
+	ScriptFunction::Register<&StartNetworkJoinLobby>(rq, "StartNetworkJoinLobby");
+	ScriptFunction::Register<&DisconnectNetworkGame>(rq, "DisconnectNetworkGame");
+	ScriptFunction::Register<&GetPlayerGUID>(rq, "GetPlayerGUID");
+	ScriptFunction::Register<&PollNetworkClient>(rq, "PollNetworkClient");
+	ScriptFunction::Register<&SetNetworkGameAttributes>(rq, "SetNetworkGameAttributes");
+	ScriptFunction::Register<&AssignNetworkPlayer>(rq, "AssignNetworkPlayer");
+	ScriptFunction::Register<&KickPlayer>(rq, "KickPlayer");
+	ScriptFunction::Register<&SendNetworkChat>(rq, "SendNetworkChat");
+	ScriptFunction::Register<&SendNetworkReady>(rq, "SendNetworkReady");
+	ScriptFunction::Register<&ClearAllPlayerReady>(rq, "ClearAllPlayerReady");
+	ScriptFunction::Register<&StartNetworkGame>(rq, "StartNetworkGame");
+	ScriptFunction::Register<&SetTurnLength>(rq, "SetTurnLength");
+}
 }

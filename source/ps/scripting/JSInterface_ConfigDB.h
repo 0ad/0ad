@@ -18,27 +18,11 @@
 #ifndef INCLUDED_JSI_CONFIGDB
 #define INCLUDED_JSI_CONFIGDB
 
-#include "ps/ConfigDB.h"
-#include "scriptinterface/ScriptInterface.h"
-
-#include <string>
+class ScriptRequest;
 
 namespace JSI_ConfigDB
 {
-	bool IsProtectedConfigName(const std::string& name);
-	bool GetConfigNamespace(const std::wstring& cfgNsString, EConfigNamespace& cfgNs);
-	bool HasChanges(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& cfgNsString);
-	bool SetChanges(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& cfgNsString, bool value);
-	std::string GetValue(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& cfgNsString, const std::string& name);
-	bool CreateValue(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& cfgNsString, const std::string& name, const std::string& value);
- 	bool CreateValues(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& cfgNsString, const std::string& name, const std::vector<CStr>& values);
-	bool RemoveValue(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& cfgNsString, const std::string& name);
-	bool WriteFile(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& cfgNsString, const Path& path);
-	bool WriteValueToFile(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& cfgNsString, const std::string& name, const std::string& value, const Path& path);
-	void CreateAndWriteValueToFile(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& cfgNsString, const std::string& name, const std::string& value, const Path& path);
-	bool Reload(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& cfgNsString);
-	bool SetFile(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& cfgNsString, const Path& path);
-	void RegisterScriptFunctions(const ScriptInterface& scriptInterface);
+	void RegisterScriptFunctions(const ScriptRequest& rq);
 }
 
 #endif // INCLUDED_JSI_CONFIGDB

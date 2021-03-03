@@ -38,7 +38,7 @@ class MainMenuItemHandler
 				0, 0, 100, 0);
 			button.caption = item.caption;
 			button.tooltip = item.tooltip;
-			button.enabled = item.enabled === undefined || item.enabled;
+			button.enabled = item.enabled === undefined || item.enabled();
 			button.onPress = this.pressButton.bind(this, item, i);
 			button.hidden = false;
 		});

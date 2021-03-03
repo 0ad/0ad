@@ -21,7 +21,6 @@
 
 #include "graphics/HFTracer.h"
 #include "graphics/Terrain.h"
-#include "graphics/scripting/JSInterface_GameView.h"
 #include "lib/input.h"
 #include "lib/timer.h"
 #include "maths/MathUtil.h"

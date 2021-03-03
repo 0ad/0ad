@@ -50,6 +50,7 @@ var graphFormat = {
 
 function showReplayData()
 {
+	loadReplayGraphData();
 	var displayedColumn = $("#replayGraphSelection").val();
 
 	$.plot($("#replayGraph"), getReplayGraphData(displayedColumn), {
@@ -137,20 +138,8 @@ function showTooltip(x, y, displayedColumn, label, turn, value)
 
 function loadReplayGraphData()
 {
-	$.ajax({
-		"dataType": "json",
-		"url": $("#filename").val(),
-		"success": function(data) {
-			$("#errorMsg").hide();
-			$("#replayGraphContainer").show();
-			replayData = data;
-			showReplayData();
-		},
-		"error": function() {
-			$("#replayGraphContainer").hide();
-			$("#errorMsg").show();
-		}
-	});
+replayData =
+<!-- include data json -->
 }
 
 $(loadReplayGraphData);

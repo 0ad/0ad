@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<objects>
+	<script directory="gui/campaigns/setup/" />
+
+	<object type="image" style="ModernWindow" size="0 0 100% 100%" name="campaignWindow">
+
+		<!-- Title -->
+		<object style="ModernLabelText" type="text" size="50%-128 4 50%+128 36">
+			<translatableAttribute id="caption">Campaigns</translatableAttribute>
+		</object>
+
+		<object name="leftPanel" size="30 50 100%-515 100%-80">
+			<!-- List of campaigns -->
+			<object name="campaignSelection"
+				size="0 0 100% 100%"
+				style="ModernSortedList"
+				type="olist"
+				sortable="true"
+				selected_column="name"
+				selected_column_order="-1"
+				font="sans-stroke-16"
+				>
+
+			<column id="name" color="172 172 212" width="99%">
+				<translatableAttribute id="heading" context="campaignsetup">Name</translatableAttribute>
+			</column>
+			</object>
+		</object>
+
+		<object name="rightPanel" size="100%-485 50 100%-30 100%-30">
+			<object type="image" sprite="ModernDarkBoxGold" size="0 0 100% 342">
+				<object name="campaignImage" type="image" sprite="" size="1 1 100%-1 100%-1">
+				</object>
+			</object>
+			<object type="text" name="campaignTitle" style="TitleText" size="0 360 100% 390">
+				<translatableAttribute id="caption">No Campaign selected</translatableAttribute>
+			</object>
+			<object type="image" sprite="ModernDarkBoxGold" name="campaignDescBox" size="0 400 100% 100%-50" hidden="false">
+				<object type="text" name="campaignDesc" style="ModernLabelText" font="sans-16" size="10 10 100%-10 100%-10">
+				</object>
+			</object>
+		</object>
+	</object>
+
+	<object name="bottomPanel" size="25 100%-55 100%-5 100%-25" >
+
+		<!-- Main Menu Button -->
+		<object name="mainMenuButton" type="button" style="StoneButton" size="25 0 17%+25 100%">
+			<translatableAttribute id="caption">Main Menu</translatableAttribute>
+		</object>
+
+		<!-- Start Campaign Button -->
+		<object name="startCampButton" type="button" style="StoneButtonFancy" size="83%-25 0 100%-25 100%" enabled="false">
+			<translatableAttribute id="caption">Start Campaign</translatableAttribute>
+		</object>
+
+	</object>
+</objects>

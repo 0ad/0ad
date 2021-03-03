@@ -3,16 +3,11 @@
 	<head>
 		<meta charset="UTF-8"/>
 		<title>0 A.D. Simulation Profiling</title>
-		<script src="jquery.js"></script>
-		<script src="jquery.flot.js"></script>
-		<script src="jquery.flot.navigate.js"></script>
-		<script src="graph.js"></script>
+		<!-- include js -->
+		<!-- include graph js -->
 	</head>
-	<body>
+	<body onload="showReplayData();">
 		<div>
-			<label>File:
-				<input type="text" id="filename" value="data.json" onKeyUp="loadReplayGraphData()"></input>
-			</label>
 			<label>Graph:
 				<select id="replayGraphSelection" size="1" onChange="showReplayData()">
 					<option value="time" selected="selected">Performance</option>
@@ -21,7 +16,6 @@
 				</select>
 			</label>
 		</div>
-		<div id="errorMsg">File does not exist!</div>
 		<div id="replayGraphContainer">
 			<div id="replayGraphLegend" style="width:300px;float:left"></div>
 			<div>

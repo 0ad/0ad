@@ -99,7 +99,7 @@ private:
 	GLuint m_smoothFbo;
 	CShaderTechniquePtr m_smoothShader;
 
-	ssize_t m_MapSize; // vertexes per side
+	size_t m_MapSize; // vertexes per side
 	GLsizei m_TextureSize; // texels per side
 
 	CMatrix3D m_TextureMatrix;

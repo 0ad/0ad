@@ -61,7 +61,10 @@ MenuButtons.prototype.Save = class
 
 		Engine.PushGuiPage(
 			"page_loadgame.xml",
-			{ "savedGameData": getSavedGameData() },
+			{
+				"savedGameData": getSavedGameData(),
+				"campaignRun": g_CampaignSession ? g_CampaignSession.run.filename : null
+			},
 			resumeGame);
 	}
 };

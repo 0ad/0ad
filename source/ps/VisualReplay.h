@@ -15,14 +15,15 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INCLUDED_REPlAY
-#define INCLUDED_REPlAY
+#ifndef INCLUDED_VISUAL_REPLAY
+#define INCLUDED_VISUAL_REPLAY
 
 #include "lib/os_path.h"
-#include "scriptinterface/ScriptInterface.h"
 
 class CSimulation2;
 class CGUIManager;
+
+class ScriptInterface;
 
 /**
  * Contains functions for visually replaying past games.
@@ -104,7 +105,7 @@ bool DeleteReplay(const OsPath& replayFile);
 /**
  * Returns the parsed header of the replay file (commands.txt).
  */
-JS::Value GetReplayAttributes(ScriptInterface::CmptPrivate* pCmptPrivate, const OsPath& directoryName);
+JS::Value GetReplayAttributes(const ScriptInterface& scriptInterface, const OsPath& directoryName);
 
 /**
  * Returns whether or not the metadata / summary screen data has been saved properly when the game ended.
@@ -114,7 +115,7 @@ bool HasReplayMetadata(const OsPath& directoryName);
 /**
  * Returns the metadata of a replay.
  */
-JS::Value GetReplayMetadata(ScriptInterface::CmptPrivate* pCmptPrivate, const OsPath& directoryName);
+JS::Value GetReplayMetadata(const ScriptInterface& scriptInterface, const OsPath& directoryName);
 
 /**
 * Adds a replay to the replayCache.

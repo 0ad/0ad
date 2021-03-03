@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<objects>
+	<!-- TODO: add a way to load the directory we're in ? -->
+	<script directory="gui/campaigns/load_modal/" />
+
+	<!-- Add a translucent black background to fade out the page -->
+	<object type="image" z="0" sprite="ModernFade"/>
+
+	<object type="image" style="ModernDialog" size="50%-300 50%-200 50%+300 50%+200">
+		<object type="image" z="0" sprite="ModernFade"/>
+		<object type="text" style="TitleText" size="50%-128 -18 50%+128 14">
+			<translatableAttribute id="caption">Load Campaign</translatableAttribute>
+		</object>
+
+		<object name="runSelection" style="ModernList" type="list" size="24 22 100%-24 100%-130">
+		</object>
+
+		<object size="24 22 100%-24 100%-130" name="noCampaignsText" type="text" text_align="center" style="ModernLeftLabelText">
+			<translatableAttribute id="caption">No ongoing campaigns.</translatableAttribute>
+		</object>
+
+		<object size="24 100%-124 100%-24 100%-100" name="campaignSaveName" type="text" style="ModernLeftLabelText">
+			<translatableAttribute id="caption">Name of selected run:</translatableAttribute>
+		</object>
+
+		<object name="runDescription" size="24 100%-96 100%-24 100%-72" type="input" style="ModernInput">
+		</object>
+
+		<object name="cancelButton" type="button" size="0%+25 100%-60 33%+10 100%-32" style="StoneButton" hotkey="cancel">
+			<translatableAttribute id="caption">Cancel</translatableAttribute>
+		</object>
+
+		<object name="deleteGameButton" type="button" size="33%+20 100%-60 66%-15 100%-32" style="StoneButton" enabled="false">
+			<translatableAttribute id="caption">Delete</translatableAttribute>
+		</object>
+
+		<object name="startButton" type="button" style="StoneButton" size="66%-5 100%-60 100%-25 100%-32">
+			<translatableAttribute id="caption">Load Campaign</translatableAttribute>
+		</object>
+
+	</object>
+</objects>

@@ -106,20 +106,18 @@ class GameSettingsControl
 	{
 		if (initData && initData.map && initData.mapType)
 		{
-			Object.defineProperty(this, "autostart", {
-				"value": true,
-				"writable": false,
-				"configurable": false
-			});
+			if (initData.autostart)
+				Object.defineProperty(this, "autostart", {
+					"value": true,
+					"writable": false,
+					"configurable": false
+				});
 
 			// TODO: Fix g_GameAttributes, g_GameAttributes.settings,
 			// g_GameAttributes.settings.PlayerData object references and
 			// copy over each attribute individually when receiving
 			// settings from the server or the local file.
-			g_GameAttributes = {
-				"mapType": initData.mapType,
-				"map": initData.map
-			};
+			g_GameAttributes = initData;
 
 			this.updateGameAttributes();
 			// Don't launchGame before all Load handlers finished

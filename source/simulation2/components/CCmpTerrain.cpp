@@ -139,8 +139,7 @@ public:
 		{
 			cmpRangeManager->SetBounds(entity_pos_t::Zero(), entity_pos_t::Zero(),
 					entity_pos_t::FromInt(tiles*(int)TERRAIN_TILE_SIZE),
-					entity_pos_t::FromInt(tiles*(int)TERRAIN_TILE_SIZE),
-					vertices);
+					entity_pos_t::FromInt(tiles*(int)TERRAIN_TILE_SIZE));
 		}
 
 		if (ReloadWater && CRenderer::IsInitialised())

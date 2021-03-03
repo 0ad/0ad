@@ -21,8 +21,21 @@
 
 #include "ps/CLogger.h"
 #include "ps/ModIo.h"
+#include "scriptinterface/FunctionWrapper.h"
 
-void JSI_ModIo::StartGetGameId(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
+namespace JSI_ModIo
+{
+ModIo* ModIoGetter(const ScriptRequest&, JS::CallArgs&)
+{
+	if (!g_ModIo)
+	{
+		LOGERROR("Trying to access ModIO when it's not initialized!");
+		return nullptr;
+	}
+	return g_ModIo;
+}
+
+void StartGetGameId()
 {
 	if (!g_ModIo)
 		g_ModIo = new ModIo();
@@ -32,52 +45,8 @@ void JSI_ModIo::StartGetGameId(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate
 	g_ModIo->StartGetGameId();
 }
 
-void JSI_ModIo::StartListMods(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
-{
-	if (!g_ModIo)
-	{
-		LOGERROR("ModIoStartListMods called before ModIoStartGetGameId");
-		return;
-	}
-
-	g_ModIo->StartListMods();
-}
-
-void JSI_ModIo::StartDownloadMod(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), uint32_t idx)
-{
-	if (!g_ModIo)
-	{
-		LOGERROR("ModIoStartDownloadMod called before ModIoStartGetGameId");
-		return;
-	}
-
-	g_ModIo->StartDownloadMod(idx);
-}
-
-bool JSI_ModIo::AdvanceRequest(ScriptInterface::CmptPrivate* pCmptPrivate)
-{
-	if (!g_ModIo)
-	{
-		LOGERROR("ModIoAdvanceRequest called before ModIoGetMods");
-		return false;
-	}
-
-	ScriptInterface* scriptInterface = pCmptPrivate->pScriptInterface;
-	return g_ModIo->AdvanceRequest(*scriptInterface);
-}
-
-void JSI_ModIo::CancelRequest(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
-{
-	if (!g_ModIo)
-	{
-		LOGERROR("ModIoCancelRequest called before ModIoGetMods");
-		return;
-	}
-
-	g_ModIo->CancelRequest();
-}
-
-JS::Value JSI_ModIo::GetMods(ScriptInterface::CmptPrivate* pCmptPrivate)
+// TODO: could provide a FromJSVal for ModIoModData
+JS::Value GetMods(const ScriptInterface& scriptInterface)
 {
 	if (!g_ModIo)
 	{
@@ -85,7 +54,6 @@ JS::Value JSI_ModIo::GetMods(ScriptInterface::CmptPrivate* pCmptPrivate)
 		return JS::NullValue();
 	}
 
-	ScriptInterface* scriptInterface = pCmptPrivate->pScriptInterface;
 	ScriptRequest rq(scriptInterface);
 
 	const std::vector<ModIoModData>& availableMods = g_ModIo->GetMods();
@@ -100,10 +68,10 @@ JS::Value JSI_ModIo::GetMods(ScriptInterface::CmptPrivate* pCmptPrivate)
 		ScriptInterface::CreateObject(rq, &m);
 
 		for (const std::pair<const std::string, std::string>& prop : mod.properties)
-			scriptInterface->SetProperty(m, prop.first.c_str(), prop.second, true);
+			scriptInterface.SetProperty(m, prop.first.c_str(), prop.second, true);
 
-		scriptInterface->SetProperty(m, "dependencies", mod.dependencies, true);
-		scriptInterface->SetPropertyInt(mods, i++, m);
+		scriptInterface.SetProperty(m, "dependencies", mod.dependencies, true);
+		scriptInterface.SetPropertyInt(mods, i++, m);
 	}
 
 	return mods;
@@ -123,7 +91,8 @@ const std::map<DownloadProgressStatus, std::string> statusStrings = {
 	{ DownloadProgressStatus::FAILED_FILECHECK, "failed_filecheck" }
 };
 
-JS::Value JSI_ModIo::GetDownloadProgress(ScriptInterface::CmptPrivate* pCmptPrivate)
+// TODO: could provide a FromJSVal for DownloadProgressData
+JS::Value GetDownloadProgress(ScriptInterface::CmptPrivate* pCmptPrivate)
 {
 	if (!g_ModIo)
 	{
@@ -145,13 +114,14 @@ JS::Value JSI_ModIo::GetDownloadProgress(ScriptInterface::CmptPrivate* pCmptPriv
 	return progressData;
 }
 
-void JSI_ModIo::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
+void RegisterScriptFunctions(const ScriptRequest& rq)
 {
-	scriptInterface.RegisterFunction<void, &JSI_ModIo::StartGetGameId>("ModIoStartGetGameId");
-	scriptInterface.RegisterFunction<void, &JSI_ModIo::StartListMods>("ModIoStartListMods");
-	scriptInterface.RegisterFunction<void, uint32_t, &JSI_ModIo::StartDownloadMod>("ModIoStartDownloadMod");
-	scriptInterface.RegisterFunction<bool, &JSI_ModIo::AdvanceRequest>("ModIoAdvanceRequest");
-	scriptInterface.RegisterFunction<void, &JSI_ModIo::CancelRequest>("ModIoCancelRequest");
-	scriptInterface.RegisterFunction<JS::Value, &JSI_ModIo::GetMods>("ModIoGetMods");
-	scriptInterface.RegisterFunction<JS::Value, &JSI_ModIo::GetDownloadProgress>("ModIoGetDownloadProgress");
+	ScriptFunction::Register<&StartGetGameId>(rq, "ModIoStartGetGameId");
+	ScriptFunction::Register<&ModIo::StartListMods, &ModIoGetter>(rq, "ModIoStartListMods");
+	ScriptFunction::Register<&ModIo::StartDownloadMod, &ModIoGetter>(rq, "ModIoStartDownloadMod");
+	ScriptFunction::Register<&ModIo::AdvanceRequest, &ModIoGetter>(rq, "ModIoAdvanceRequest");
+	ScriptFunction::Register<&ModIo::CancelRequest, &ModIoGetter>(rq, "ModIoCancelRequest");
+	ScriptFunction::Register<&GetMods>(rq, "ModIoGetMods");
+	ScriptFunction::Register<&GetDownloadProgress>(rq, "ModIoGetDownloadProgress");
+}
 }

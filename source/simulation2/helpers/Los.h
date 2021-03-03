@@ -22,6 +22,13 @@
 // since files must include "Los.h" explicitly, and that's only done in .cpp files.
 #include "Grid.h"
 
+/**
+ * Computing LOS data at a very high resolution is not necessary and quite slow.
+ * This is the size, in meters, separating each LOS vertex.
+ * (Note that this also means it is the minimal meaningful resolution of any vision range change).
+ */
+static constexpr i32 LOS_TILE_SIZE = 4;
+
 enum class LosState : u8
 {
 	UNEXPLORED = 0,

@@ -133,7 +133,7 @@ public:
 	// Async requests
 	void StartGetGameId();
 	void StartListMods();
-	void StartDownloadMod(size_t idx);
+	void StartDownloadMod(u32 idx);
 
 	/**
 	 * Advance the current async request and perform final steps if the download is complete.

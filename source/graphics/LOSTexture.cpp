@@ -20,7 +20,6 @@
 #include "LOSTexture.h"
 
 #include "graphics/ShaderManager.h"
-#include "graphics/Terrain.h"
 #include "lib/bits.h"
 #include "lib/config2.h"
 #include "ps/CLogger.h"
@@ -31,12 +30,11 @@
 #include "renderer/TimeManager.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpRangeManager.h"
-#include "simulation2/components/ICmpTerrain.h"
 #include "simulation2/helpers/Los.h"
 
 /*
 
-The LOS bitmap is computed with one value per map vertex, based on
+The LOS bitmap is computed with one value per LOS vertex, based on
 CCmpRangeManager's visibility information.
 
 The bitmap is then blurred using an NxN filter (in particular a
@@ -243,11 +241,11 @@ const CMatrix3D* CLOSTexture::GetMinimapTextureMatrix()
 
 void CLOSTexture::ConstructTexture(int unit)
 {
-	CmpPtr<ICmpTerrain> cmpTerrain(m_Simulation, SYSTEM_ENTITY);
-	if (!cmpTerrain)
+	CmpPtr<ICmpRangeManager> cmpRangeManager(m_Simulation, SYSTEM_ENTITY);
+	if (!cmpRangeManager)
 		return;
 
-	m_MapSize = cmpTerrain->GetVerticesPerSide();
+	m_MapSize = cmpRangeManager->GetVerticesPerSide();
 
 	m_TextureSize = (GLsizei)round_up_to_pow2(round_up((size_t)m_MapSize + g_BlurSize - 1, g_SubTextureAlignment));
 
@@ -294,7 +292,7 @@ void CLOSTexture::ConstructTexture(int unit)
 		//   world pos ((mapsize-1)*cellsize, y, (mapsize-1)*cellsize)  (i.e. last vertex)
 		//     onto texcoord ((mapsize-0.5) / texsize, (mapsize-0.5) / texsize)  (i.e. middle of last texel)
 
-		float s = (m_MapSize-1) / (float)(m_TextureSize * (m_MapSize-1) * TERRAIN_TILE_SIZE);
+		float s = (m_MapSize-1) / (float)(m_TextureSize * (m_MapSize-1) * LOS_TILE_SIZE);
 		float t = 0.5f / m_TextureSize;
 		m_TextureMatrix.SetZero();
 		m_TextureMatrix._11 = s;
@@ -320,8 +318,8 @@ void CLOSTexture::RecomputeTexture(int unit)
 	// If the map was resized, delete and regenerate the texture
 	if (m_Texture)
 	{
-		CmpPtr<ICmpTerrain> cmpTerrain(m_Simulation, SYSTEM_ENTITY);
-		if (cmpTerrain && m_MapSize != (ssize_t)cmpTerrain->GetVerticesPerSide())
+		CmpPtr<ICmpRangeManager> cmpRangeManager(m_Simulation, SYSTEM_ENTITY);
+		if (!cmpRangeManager || m_MapSize != cmpRangeManager->GetVerticesPerSide())
 			DeleteTexture();
 	}
 

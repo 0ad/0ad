@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,169 +21,81 @@
 
 #include "i18n/L10n.h"
 #include "lib/utf8.h"
+#include "scriptinterface/FunctionWrapper.h"
 #include "scriptinterface/ScriptInterface.h"
 
-// Returns a translation of the specified English string into the current language.
-std::wstring JSI_L10n::Translate(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::wstring& sourceString)
+namespace JSI_L10n
 {
-	return wstring_from_utf8(g_L10n.Translate(utf8_from_wstring(sourceString)));
+L10n* L10nGetter(const ScriptRequest&, JS::CallArgs&)
+{
+	if (!g_L10n.IsInitialised())
+	{
+		LOGERROR("Trying to access g_L10n when it's not initialized!");
+		return nullptr;
+	}
+	return &g_L10n.GetSingleton();
 }
 
-// Returns a translation of the specified English string, for the specified context.
-std::wstring JSI_L10n::TranslateWithContext(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::string& context, const std::wstring& sourceString)
+std::vector<std::string> TranslateArray(const std::vector<std::string>& sourceArray)
 {
-	return wstring_from_utf8(g_L10n.TranslateWithContext(context, utf8_from_wstring(sourceString)));
-}
-
-// Return a translated version of the given strings (singular and plural) depending on an integer value.
-std::wstring JSI_L10n::TranslatePlural(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::wstring& singularSourceString, const std::wstring& pluralSourceString, int number)
-{
-	return wstring_from_utf8(g_L10n.TranslatePlural(utf8_from_wstring(singularSourceString), utf8_from_wstring(pluralSourceString), number));
-}
-
-// Return a translated version of the given strings (singular and plural) depending on an integer value, for the specified context.
-std::wstring JSI_L10n::TranslatePluralWithContext(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::string& context, const std::wstring& singularSourceString, const std::wstring& pluralSourceString, int number)
-{
-	return wstring_from_utf8(g_L10n.TranslatePluralWithContext(context, utf8_from_wstring(singularSourceString), utf8_from_wstring(pluralSourceString), number));
-}
-
-// Return a translated version of the given string, localizing it line by line.
-std::wstring JSI_L10n::TranslateLines(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::wstring& sourceString)
-{
-	return wstring_from_utf8(g_L10n.TranslateLines(utf8_from_wstring(sourceString)));
-}
-
-// Return a translated version of the items in the specified array.
-std::vector<std::wstring> JSI_L10n::TranslateArray(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::vector<std::wstring>& sourceArray)
-{
-	std::vector<std::wstring> translatedArray;
-	for (const std::wstring& elem : sourceArray)
-		translatedArray.push_back(wstring_from_utf8(g_L10n.Translate(utf8_from_wstring(elem))));
+	std::vector<std::string> translatedArray;
+	if (g_L10n.IsInitialised())
+		for (const std::string& elem : sourceArray)
+			translatedArray.push_back(g_L10n.Translate(elem));
 
 	return translatedArray;
 }
 
-std::wstring JSI_L10n::GetFallbackToAvailableDictLocale(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::string& locale)
-{
-	return g_L10n.GetFallbackToAvailableDictLocale(locale);
-}
-
 // Return a localized version of a time given in milliseconds.
-std::wstring JSI_L10n::FormatMillisecondsIntoDateStringLocal(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), UDate milliseconds, const std::wstring& formatString)
+std::string FormatMillisecondsIntoDateStringLocal(UDate milliseconds, const std::string& formatString)
 {
-	return wstring_from_utf8(g_L10n.FormatMillisecondsIntoDateString(milliseconds, utf8_from_wstring(formatString), true));
+	return g_L10n.FormatMillisecondsIntoDateString(milliseconds, formatString, true);
 }
 
 // Return a localized version of a duration or a time in GMT given in milliseconds.
-std::wstring JSI_L10n::FormatMillisecondsIntoDateStringGMT(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), UDate milliseconds, const std::wstring& formatString)
+std::string FormatMillisecondsIntoDateStringGMT(UDate milliseconds, const std::string& formatString)
 {
-	return wstring_from_utf8(g_L10n.FormatMillisecondsIntoDateString(milliseconds, utf8_from_wstring(formatString), false));
+	return g_L10n.FormatMillisecondsIntoDateString(milliseconds, formatString, false);
 }
 
-// Return a localized version of the given decimal number.
-std::wstring JSI_L10n::FormatDecimalNumberIntoString(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), double number)
+void RegisterScriptFunctions(const ScriptRequest& rq)
 {
-	return wstring_from_utf8(g_L10n.FormatDecimalNumberIntoString(number));
+#define REGISTER_L10N(name) \
+	ScriptFunction::Register<&L10n::name, &L10nGetter>(rq, #name);
+#define REGISTER_L10N_FUNC(func, name) \
+	ScriptFunction::Register<func, &L10nGetter>(rq, name);
+
+	REGISTER_L10N(Translate)
+	REGISTER_L10N(TranslateWithContext)
+	REGISTER_L10N(TranslatePlural)
+	REGISTER_L10N(TranslatePluralWithContext)
+	REGISTER_L10N(TranslateLines)
+	ScriptFunction::Register<&TranslateArray>(rq, "TranslateArray");
+	ScriptFunction::Register<&FormatMillisecondsIntoDateStringLocal>(rq, "FormatMillisecondsIntoDateStringLocal");
+	ScriptFunction::Register<&FormatMillisecondsIntoDateStringGMT>(rq, "FormatMillisecondsIntoDateStringGMT");
+	REGISTER_L10N(FormatDecimalNumberIntoString)
+
+	REGISTER_L10N(GetSupportedLocaleBaseNames)
+	REGISTER_L10N(GetSupportedLocaleDisplayNames)
+	REGISTER_L10N_FUNC(&L10n::GetCurrentLocaleString, "GetCurrentLocale");
+	REGISTER_L10N(GetAllLocales)
+	// Select the appropriate overload.
+	REGISTER_L10N_FUNC(static_cast<std::string(L10n::*)(const std::string&) const>(&L10n::GetDictionaryLocale), "GetDictionaryLocale");
+	REGISTER_L10N(GetDictionariesForLocale)
+
+	REGISTER_L10N(UseLongStrings)
+	REGISTER_L10N(GetLocaleLanguage)
+	REGISTER_L10N(GetLocaleBaseName)
+	REGISTER_L10N(GetLocaleCountry)
+	REGISTER_L10N(GetLocaleScript)
+	// Select the appropriate overload.
+	REGISTER_L10N_FUNC(static_cast<std::wstring(L10n::*)(const std::string&) const>(&L10n::GetFallbackToAvailableDictLocale), "GetFallbackToAvailableDictLocale");
+
+	// Select the appropriate overloads.
+	REGISTER_L10N_FUNC(static_cast<bool(L10n::*)(const std::string&) const>(&L10n::ValidateLocale), "ValidateLocale");
+	REGISTER_L10N_FUNC(static_cast<bool(L10n::*)(const std::string&) const>(&L10n::SaveLocale), "SaveLocale");
+	REGISTER_L10N(ReevaluateCurrentLocaleAndReload)
+#undef REGISTER_L10N
+#undef REGISTER_L10N_FUNC
 }
-
-std::vector<std::string> JSI_L10n::GetSupportedLocaleBaseNames(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
-{
-	return g_L10n.GetSupportedLocaleBaseNames();
-}
-
-std::vector<std::wstring> JSI_L10n::GetSupportedLocaleDisplayNames(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
-{
-	return g_L10n.GetSupportedLocaleDisplayNames();
-}
-
-std::string JSI_L10n::GetCurrentLocale(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
-{
-	return g_L10n.GetCurrentLocaleString();
-}
-
-bool JSI_L10n::UseLongStrings(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
-{
-	return g_L10n.UseLongStrings();
-}
-
-std::vector<std::string> JSI_L10n::GetAllLocales(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
-{
-	return g_L10n.GetAllLocales();
-}
-
-std::string JSI_L10n::GetDictionaryLocale(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::string& configLocale)
-{
-	return g_L10n.GetDictionaryLocale(configLocale);
-}
-
-std::vector<std::wstring> JSI_L10n::GetDictionariesForLocale(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::string& locale)
-{
-	return g_L10n.GetDictionariesForLocale(locale);
-}
-
-std::string JSI_L10n::GetLocaleLanguage(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::string& locale)
-{
-	return g_L10n.GetLocaleLanguage(locale);
-}
-
-std::string JSI_L10n::GetLocaleBaseName(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::string& locale)
-{
-	return g_L10n.GetLocaleBaseName(locale);
-}
-
-std::string JSI_L10n::GetLocaleCountry(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::string& locale)
-{
-	return g_L10n.GetLocaleCountry(locale);
-}
-
-std::string JSI_L10n::GetLocaleScript(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::string& locale)
-{
-	return g_L10n.GetLocaleScript(locale);
-}
-
-bool JSI_L10n::ValidateLocale(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::string& locale)
-{
-	return g_L10n.ValidateLocale(locale);
-}
-
-bool JSI_L10n::SaveLocale(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::string& locale)
-{
-	return g_L10n.SaveLocale(locale);
-}
-
-void JSI_L10n::ReevaluateCurrentLocaleAndReload(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
-{
-	g_L10n.ReevaluateCurrentLocaleAndReload();
-}
-
-
-void JSI_L10n::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
-{
-	scriptInterface.RegisterFunction<std::wstring, std::wstring, &Translate>("Translate");
-	scriptInterface.RegisterFunction<std::wstring, std::string, std::wstring, &TranslateWithContext>("TranslateWithContext");
-	scriptInterface.RegisterFunction<std::wstring, std::wstring, std::wstring, int, &TranslatePlural>("TranslatePlural");
-	scriptInterface.RegisterFunction<std::wstring, std::string, std::wstring, std::wstring, int, &TranslatePluralWithContext>("TranslatePluralWithContext");
-	scriptInterface.RegisterFunction<std::wstring, std::wstring, &TranslateLines>("TranslateLines");
-	scriptInterface.RegisterFunction<std::vector<std::wstring>, std::vector<std::wstring>, &TranslateArray>("TranslateArray");
-	scriptInterface.RegisterFunction<std::wstring, UDate, std::wstring, &FormatMillisecondsIntoDateStringLocal>("FormatMillisecondsIntoDateStringLocal");
-	scriptInterface.RegisterFunction<std::wstring, UDate, std::wstring, &FormatMillisecondsIntoDateStringGMT>("FormatMillisecondsIntoDateStringGMT");
-	scriptInterface.RegisterFunction<std::wstring, double, &FormatDecimalNumberIntoString>("FormatDecimalNumberIntoString");
-
-	scriptInterface.RegisterFunction<std::vector<std::string>, &GetSupportedLocaleBaseNames>("GetSupportedLocaleBaseNames");
-	scriptInterface.RegisterFunction<std::vector<std::wstring>, &GetSupportedLocaleDisplayNames>("GetSupportedLocaleDisplayNames");
-	scriptInterface.RegisterFunction<std::string, &GetCurrentLocale>("GetCurrentLocale");
-	scriptInterface.RegisterFunction<std::vector<std::string>, &GetAllLocales>("GetAllLocales");
-	scriptInterface.RegisterFunction<std::string, std::string, &GetDictionaryLocale>("GetDictionaryLocale");
-	scriptInterface.RegisterFunction<std::vector<std::wstring>, std::string, &GetDictionariesForLocale>("GetDictionariesForLocale");
-
-	scriptInterface.RegisterFunction<bool, &UseLongStrings>("UseLongStrings");
-	scriptInterface.RegisterFunction<std::string, std::string, &GetLocaleLanguage>("GetLocaleLanguage");
-	scriptInterface.RegisterFunction<std::string, std::string, &GetLocaleBaseName>("GetLocaleBaseName");
-	scriptInterface.RegisterFunction<std::string, std::string, &GetLocaleCountry>("GetLocaleCountry");
-	scriptInterface.RegisterFunction<std::string, std::string, &GetLocaleScript>("GetLocaleScript");
-	scriptInterface.RegisterFunction<std::wstring, std::string, &GetFallbackToAvailableDictLocale>("GetFallbackToAvailableDictLocale");
-
-	scriptInterface.RegisterFunction<bool, std::string, &ValidateLocale>("ValidateLocale");
-	scriptInterface.RegisterFunction<bool, std::string, &SaveLocale>("SaveLocale");
-	scriptInterface.RegisterFunction<void, &ReevaluateCurrentLocaleAndReload>("ReevaluateCurrentLocaleAndReload");
 }

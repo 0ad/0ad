@@ -266,6 +266,9 @@ function init(initData, hotloadData)
 			restoreSavedGameData(initData.savedGUIData);
 	}
 
+	if (g_GameAttributes.campaignData)
+		g_CampaignSession = new CampaignSession(g_GameAttributes.campaignData);
+
 	let mapCache = new MapCache();
 	g_Cheats = new Cheats();
 	g_DiplomacyColors = new DiplomacyColors();
@@ -524,7 +527,7 @@ function endGame()
 	if (g_IsController && Engine.HasXmppClient())
 		Engine.SendUnregisterGame();
 
-	Engine.SwitchGuiPage("page_summary.xml", {
+	let summaryData = {
 		"sim": simData,
 		"gui": {
 			"dialog": false,
@@ -534,7 +537,21 @@ function endGame()
 			"replayDirectory": !g_HasRejoined && replayDirectory,
 			"replaySelectionData": g_ReplaySelectionData
 		}
-	});
+	};
+
+	if (g_GameAttributes.campaignData)
+	{
+		let menu = g_CampaignSession.getMenu();
+		if (g_GameAttributes.campaignData.skipSummary)
+		{
+			Engine.SwitchGuiPage(menu);
+			return;
+		}
+		summaryData.campaignData = { "filename": g_GameAttributes.campaignData.run };
+		summaryData.nextPage = menu;
+	}
+
+	Engine.SwitchGuiPage("page_summary.xml", summaryData);
 }
 
 // Return some data that we'll use when hotloading this file after changes

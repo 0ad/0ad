@@ -18,38 +18,11 @@
 #ifndef INCLUDED_JSI_NETWORK
 #define INCLUDED_JSI_NETWORK
 
-#include "lib/types.h"
-#include "ps/CStr.h"
-#include "scriptinterface/ScriptInterface.h"
+class ScriptRequest;
 
 namespace JSI_Network
 {
-	u16 GetDefaultPort(ScriptInterface::CmptPrivate* pCmptPrivate);
-	bool IsNetController(ScriptInterface::CmptPrivate* pCmptPrivate);
-	bool HasNetServer(ScriptInterface::CmptPrivate* pCmptPrivate);
-	bool HasNetClient(ScriptInterface::CmptPrivate* pCmptPrivate);
-	void StartNetworkGame(ScriptInterface::CmptPrivate* pCmptPrivate);
-	void SetNetworkGameAttributes(ScriptInterface::CmptPrivate* pCmptPrivate, JS::HandleValue attribs1);
-	void StartNetworkHost(ScriptInterface::CmptPrivate* pCmptPrivate, const CStrW& playerName, const u16 serverPort, const CStr& hostLobbyName, bool useSTUN, const CStr& password);
-	void StartNetworkJoin(ScriptInterface::CmptPrivate* pCmptPrivate, const CStrW& playerName, const CStr& serverAddress, u16 serverPort, bool useSTUN, const CStr& hostJID);
-	/**
-	* Requires XmppClient to send iq request to the server to get server's ip and port based on passed password.
-	* This is needed to not force server to share it's public ip with all potential clients in the lobby.
-	* XmppClient will also handle logic after receiving the answer.
-	*/
-	void StartNetworkJoinLobby(ScriptInterface::CmptPrivate* pCmptPrivate, const CStrW& playerName, const CStr& hostJID, const CStr& password);
-	void DisconnectNetworkGame(ScriptInterface::CmptPrivate* pCmptPrivate);
-	JS::Value PollNetworkClient(ScriptInterface::CmptPrivate* pCmptPrivate);
-	CStr GetPlayerGUID(ScriptInterface::CmptPrivate* pCmptPrivate);
-	void KickPlayer(ScriptInterface::CmptPrivate* pCmptPrivate, const CStrW& playerName, bool ban);
-	void AssignNetworkPlayer(ScriptInterface::CmptPrivate* pCmptPrivate, int playerID, const CStr& guid);
-	void ClearAllPlayerReady (ScriptInterface::CmptPrivate* pCmptPrivate);
-	void SendNetworkChat(ScriptInterface::CmptPrivate* pCmptPrivate, const CStrW& message);
-	void SendNetworkReady(ScriptInterface::CmptPrivate* pCmptPrivate, int message);
-	void SetTurnLength(ScriptInterface::CmptPrivate* pCmptPrivate, int length);
-
-	CStr HashPassword(const CStr& password);
-	void RegisterScriptFunctions(const ScriptInterface& scriptInterface);
+	void RegisterScriptFunctions(const ScriptRequest& rq);
 }
 
 #endif // INCLUDED_JSI_NETWORK

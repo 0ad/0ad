@@ -106,9 +106,8 @@ public:
 	 * Set the bounds of the world.
 	 * Entities should not be outside the bounds (else efficiency will suffer).
 	 * @param x0,z0,x1,z1 Coordinates of the corners of the world
-	 * @param vertices Number of terrain vertices per side
 	 */
-	virtual void SetBounds(entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, ssize_t vertices) = 0;
+	virtual void SetBounds(entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1) = 0;
 
 	/**
 	 * Execute a passive query.
@@ -297,9 +296,9 @@ public:
 	std::string GetLosVisibilityPosition_wrapper(entity_pos_t x, entity_pos_t z, player_id_t player) const;
 
 	/**
-	 * Explore all tiles (but leave them in the FoW) for player p
+	 * Explore the map (but leave it in the FoW) for player p
 	 */
-	virtual void ExploreAllTiles(player_id_t p) = 0;
+	virtual void ExploreMap(player_id_t p) = 0;
 
 	/**
 	 * Explore the tiles inside each player's territory.
@@ -357,6 +356,10 @@ public:
 	 */
 	virtual u8 GetUnionPercentMapExplored(const std::vector<player_id_t>& players) const = 0;
 
+	/**
+	 * @return The number of LOS vertices.
+	 */
+	virtual size_t GetVerticesPerSide() const = 0;
 
 	/**
 	 * Perform some internal consistency checks for testing/debugging.

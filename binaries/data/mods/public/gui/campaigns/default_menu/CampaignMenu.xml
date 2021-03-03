@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<objects>
+	<script file="gui/maps/MapCache.js"/>
+	<script directory="gui/campaigns/default_menu/"/>
+
+	<object type="image" style="ModernWindow" size="0 0 100% 100%" name="campaignMenuWindow">
+
+		<!-- Title -->
+		<object style="ModernLabelText" name="campaignTitle" type="text" size="50%-128 4 50%+128 36">
+			<translatableAttribute id="caption">Campaign Name</translatableAttribute>
+		</object>
+
+		<object name="leftPanel" size="30 50 100%-447 100%-60">
+			<!-- List of available levels -->
+			<object name="levelSelection"
+				size="0 0 100% 100%"
+				style="ModernList"
+				type="olist"
+				font="sans-stroke-16"
+				>
+			<!-- Columns -->
+			<column id="name" color="172 172 212" width="80%">
+				<translatableAttribute id="heading" context="campaignLevelList">Scenario Name</translatableAttribute>
+			</column>
+
+			<column id="status" color="192 192 192" width="20%">
+				<translatableAttribute id="heading" context="campaignLevelList">Status</translatableAttribute>
+			</column>
+			</object>
+		</object>
+
+		<object name="rightPanel" size="100%-432 50 100%-30 100%-60">
+			<!-- Scenario Image -->
+			<object type="image" sprite="ModernDarkBoxGold" name="levelPreviewBox" size="0 0 100% 302">
+				<object type="image" sprite="" size="1 1 100%-1 301" name="mapPreview"/>
+			</object>
+
+			<!-- Name and description -->
+			<object size="0 315 100% 100%">
+				<object name="scenarioName" type="text" style="TitleText" size="0 0 100% 30">
+					<translatableAttribute id="caption">No scenario selected</translatableAttribute>
+				</object>
+				<object type="image" sprite="ModernDarkBoxGold" size="0 30 100% 100%">
+					<object name="scenarioDesc" type="text" style="ModernText" size="10 10 100%-10 100%-10"/>
+				</object>
+			</object>
+
+		</object>
+
+		<object name="bottomPanel" size="30 100%-55 100%-5 100%-25" >
+
+			<!-- Exit & Back to Main Menu -->
+			<object name="backToMain" type="button" style="StoneButton" size="0 0 17% 100%">
+				<translatableAttribute id="caption">Back to Main Menu</translatableAttribute>
+			</object>
+
+			<object name="savedGamesButton" type="button" style="StoneButtonFancy" size="63%-25 0 80%-25 100%">
+				<translatableAttribute id="caption">Saved Games</translatableAttribute>
+			</object>
+
+			<object name="startButton" type="button" style="StoneButtonFancy" size="83%-25 0 100%-25 100%" enabled="false">
+				<translatableAttribute id="caption">Start Scenario</translatableAttribute>
+			</object>
+			<object name="loadSavedButton" type="button" style="StoneButtonFancy" size="83%-25 0 100%-25 100%" hidden="true">
+				<translatableAttribute id="caption">Resume Saved Game</translatableAttribute>
+			</object>
+
+		</object>
+	</object>
+
+</objects>

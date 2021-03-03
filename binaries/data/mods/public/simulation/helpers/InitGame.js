@@ -38,7 +38,7 @@ function InitGame(settings)
 	{
 		let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 		for (let i = 1; i < settings.PlayerData.length; ++i)
-			cmpRangeManager.ExploreAllTiles(i);
+			cmpRangeManager.ExploreMap(i);
 	}
 
 	// Sandbox, Very Easy, Easy, Medium, Hard, Very Hard

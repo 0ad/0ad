@@ -32,6 +32,7 @@
 #include "ps/scripting/JSInterface_VFS.h"
 #include "ps/TemplateLoader.h"
 #include "ps/Util.h"
+#include "scriptinterface/FunctionWrapper.h"
 #include "scriptinterface/ScriptContext.h"
 #include "simulation2/components/ICmpAIInterface.h"
 #include "simulation2/components/ICmpCommandQueue.h"
@@ -228,16 +229,22 @@ public:
 
 		JS_AddExtraGCRootsTracer(m_ScriptInterface->GetGeneralJSContext(), Trace, this);
 
-		m_ScriptInterface->RegisterFunction<void, int, JS::HandleValue, CAIWorker::PostCommand>("PostCommand");
-		m_ScriptInterface->RegisterFunction<void, std::wstring, CAIWorker::IncludeModule>("IncludeModule");
-		m_ScriptInterface->RegisterFunction<void, CAIWorker::ExitProgram>("Exit");
+		ScriptRequest rq(m_ScriptInterface);
+#define REGISTER_FUNC_NAME(func, name) \
+	ScriptFunction::Register<&CAIWorker::func, ScriptFunction::ObjectFromCBData<CAIWorker>>(rq, name);
 
-		m_ScriptInterface->RegisterFunction<JS::Value, JS::HandleValue, JS::HandleValue, pass_class_t, CAIWorker::ComputePath>("ComputePath");
+		REGISTER_FUNC_NAME(PostCommand, "PostCommand");
+		REGISTER_FUNC_NAME(LoadScripts, "IncludeModule");
+		ScriptFunction::Register<QuitEngine>(rq, "Exit");
 
-		m_ScriptInterface->RegisterFunction<void, std::wstring, std::vector<u32>, u32, u32, u32, CAIWorker::DumpImage>("DumpImage");
-		m_ScriptInterface->RegisterFunction<CParamNode, std::string, CAIWorker::GetTemplate>("GetTemplate");
+		REGISTER_FUNC_NAME(ComputePathScript, "ComputePath");
 
-		JSI_VFS::RegisterScriptFunctions_Simulation(*(m_ScriptInterface.get()));
+		REGISTER_FUNC_NAME(DumpImage, "DumpImage");
+		REGISTER_FUNC_NAME(GetTemplate, "GetTemplate");
+
+#undef REGISTER_FUNC_NAME
+
+		JSI_VFS::RegisterScriptFunctions_Simulation(rq);
 
 		// Globalscripts may use VFS script functions
 		m_ScriptInterface->LoadGlobalScripts();
@@ -279,20 +286,6 @@ public:
 		return true;
 	}
 
-	static void IncludeModule(ScriptInterface::CmptPrivate* pCmptPrivate, const std::wstring& name)
-	{
-		ENSURE(pCmptPrivate->pCBData);
-		CAIWorker* self = static_cast<CAIWorker*> (pCmptPrivate->pCBData);
-		self->LoadScripts(name);
-	}
-
-	static void PostCommand(ScriptInterface::CmptPrivate* pCmptPrivate, int playerid, JS::HandleValue cmd)
-	{
-		ENSURE(pCmptPrivate->pCBData);
-		CAIWorker* self = static_cast<CAIWorker*> (pCmptPrivate->pCBData);
-		self->PostCommand(playerid, cmd);
-	}
-
 	void PostCommand(int playerid, JS::HandleValue cmd)
 	{
 		for (size_t i=0; i<m_Players.size(); i++)
@@ -307,22 +300,19 @@ public:
 		LOGERROR("Invalid playerid in PostCommand!");
 	}
 
-	static JS::Value ComputePath(ScriptInterface::CmptPrivate* pCmptPrivate,
-		JS::HandleValue position, JS::HandleValue goal, pass_class_t passClass)
+	JS::Value ComputePathScript(JS::HandleValue position, JS::HandleValue goal, pass_class_t passClass)
 	{
-		ENSURE(pCmptPrivate->pCBData);
-		CAIWorker* self = static_cast<CAIWorker*> (pCmptPrivate->pCBData);
-		ScriptRequest rq(self->m_ScriptInterface);
+		ScriptRequest rq(m_ScriptInterface);
 
 		CFixedVector2D pos, goalPos;
 		std::vector<CFixedVector2D> waypoints;
 		JS::RootedValue retVal(rq.cx);
 
-		self->m_ScriptInterface->FromJSVal<CFixedVector2D>(rq, position, pos);
-		self->m_ScriptInterface->FromJSVal<CFixedVector2D>(rq, goal, goalPos);
+		m_ScriptInterface->FromJSVal<CFixedVector2D>(rq, position, pos);
+		m_ScriptInterface->FromJSVal<CFixedVector2D>(rq, goal, goalPos);
 
-		self->ComputePath(pos, goalPos, passClass, waypoints);
-		self->m_ScriptInterface->ToJSVal<std::vector<CFixedVector2D> >(rq, &retVal, waypoints);
+		ComputePath(pos, goalPos, passClass, waypoints);
+		m_ScriptInterface->ToJSVal<std::vector<CFixedVector2D> >(rq, &retVal, waypoints);
 
 		return retVal;
 	}
@@ -337,14 +327,6 @@ public:
 			waypoints.emplace_back(wp.x, wp.z);
 	}
 
-	static CParamNode GetTemplate(ScriptInterface::CmptPrivate* pCmptPrivate, const std::string& name)
-	{
-		ENSURE(pCmptPrivate->pCBData);
-		CAIWorker* self = static_cast<CAIWorker*> (pCmptPrivate->pCBData);
-
-		return self->GetTemplate(name);
-	}
-
 	CParamNode GetTemplate(const std::string& name)
 	{
 		if (!m_TemplateLoader.TemplateExists(name))
@@ -352,15 +334,10 @@ public:
 		return m_TemplateLoader.GetTemplateFileData(name).GetChild("Entity");
 	}
 
-	static void ExitProgram(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
-	{
-		QuitEngine();
-	}
-
 	/**
 	 * Debug function for AI scripts to dump 2D array data (e.g. terrain tile weights).
 	 */
-	static void DumpImage(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::wstring& name, const std::vector<u32>& data, u32 w, u32 h, u32 max)
+	void DumpImage(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), const std::wstring& name, const std::vector<u32>& data, u32 w, u32 h, u32 max)
 	{
 		// TODO: this is totally not threadsafe.
 		VfsPath filename = L"screenshots/aidump/" + name;

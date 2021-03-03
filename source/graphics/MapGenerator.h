@@ -134,54 +134,49 @@ private:
 	bool LoadScripts(const VfsPath& libraryName);
 
 	/**
-	 * Recursively load all script files in the given folder.
-	 */
-	static bool LoadLibrary(ScriptInterface::CmptPrivate* pCmptPrivate, const VfsPath& name);
-
-	/**
 	 * Finalize map generation and pass results from the script to the engine.
 	 */
-	static void ExportMap(ScriptInterface::CmptPrivate* pCmptPrivate, JS::HandleValue data);
+	void ExportMap(JS::HandleValue data);
 
 	/**
 	 * Load an image file and return it as a height array.
 	 */
-	static JS::Value LoadHeightmap(ScriptInterface::CmptPrivate* pCmptPrivate, const VfsPath& src);
+	JS::Value LoadHeightmap(const VfsPath& src);
 
 	/**
 	 * Load an Atlas terrain file (PMP) returning textures and heightmap.
 	 */
-	static JS::Value LoadMapTerrain(ScriptInterface::CmptPrivate* pCmptPrivate, const VfsPath& filename);
+	JS::Value LoadMapTerrain(const VfsPath& filename);
 
 	/**
 	 * Sets the map generation progress, which is one of multiple stages determining the loading screen progress.
 	 */
-	static void SetProgress(ScriptInterface::CmptPrivate* pCmptPrivate, int progress);
+	void SetProgress(int progress);
 
 	/**
 	 * Microseconds since the epoch.
 	 */
-	static double GetMicroseconds(ScriptInterface::CmptPrivate* pCmptPrivate);
+	double GetMicroseconds();
 
 	/**
 	 * Return the template data of the given template name.
 	 */
-	static CParamNode GetTemplate(ScriptInterface::CmptPrivate* pCmptPrivate, const std::string& templateName);
+	CParamNode GetTemplate(const std::string& templateName);
 
 	/**
 	 * Check whether the given template exists.
 	 */
-	static bool TemplateExists(ScriptInterface::CmptPrivate* pCmptPrivate, const std::string& templateName);
+	bool TemplateExists(const std::string& templateName);
 
 	/**
 	 * Returns all template names of simulation entity templates.
 	 */
-	static std::vector<std::string> FindTemplates(ScriptInterface::CmptPrivate* pCmptPrivate, const std::string& path, bool includeSubdirectories);
+	std::vector<std::string> FindTemplates(const std::string& path, bool includeSubdirectories);
 
 	/**
 	 * Returns all template names of actors.
 	 */
-	static std::vector<std::string> FindActorTemplates(ScriptInterface::CmptPrivate* pCmptPrivate, const std::string& path, bool includeSubdirectories);
+	std::vector<std::string> FindActorTemplates(const std::string& path, bool includeSubdirectories);
 
 	/**
 	 * Perform map generation in an independent thread.

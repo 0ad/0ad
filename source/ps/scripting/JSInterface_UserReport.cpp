@@ -22,42 +22,46 @@
 #include "ps/Filesystem.h"
 #include "ps/Pyrogenesis.h"
 #include "ps/UserReport.h"
+#include "scriptinterface/FunctionWrapper.h"
 #include "scriptinterface/ScriptInterface.h"
 
 #include <string>
 
-bool JSI_UserReport::IsUserReportEnabled(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
+namespace JSI_UserReport
+{
+bool IsUserReportEnabled()
 {
 	return g_UserReporter.IsReportingEnabled();
 }
 
-void JSI_UserReport::SetUserReportEnabled(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate), bool enabled)
+void SetUserReportEnabled(bool enabled)
 {
 	g_UserReporter.SetReportingEnabled(enabled);
 }
 
-std::string JSI_UserReport::GetUserReportStatus(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
+std::string GetUserReportStatus()
 {
 	return g_UserReporter.GetStatus();
 }
 
-std::string JSI_UserReport::GetUserReportLogPath(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
+std::string GetUserReportLogPath()
 {
 	return psLogDir().string8();
 }
 
-std::string JSI_UserReport::GetUserReportConfigPath(ScriptInterface::CmptPrivate* UNUSED(pCmptPrivate))
+std::string GetUserReportConfigPath()
 {
 	OsPath configPath;
 	WARN_IF_ERR(g_VFS->GetDirectoryRealPath("config/", configPath));
 	return configPath.string8();
 }
 
-void JSI_UserReport::RegisterScriptFunctions(const ScriptInterface& scriptInterface)
+void RegisterScriptFunctions(const ScriptRequest& rq)
 {
-	scriptInterface.RegisterFunction<bool, &IsUserReportEnabled>("IsUserReportEnabled");
-	scriptInterface.RegisterFunction<void, bool, &SetUserReportEnabled>("SetUserReportEnabled");
-	scriptInterface.RegisterFunction<std::string, &GetUserReportStatus>("GetUserReportStatus");
-	scriptInterface.RegisterFunction<std::string, &GetUserReportLogPath>("GetUserReportLogPath");
-	scriptInterface.RegisterFunction<std::string, &GetUserReportConfigPath>("GetUserReportConfigPath");
+	ScriptFunction::Register<&IsUserReportEnabled>(rq, "IsUserReportEnabled");
+	ScriptFunction::Register<&SetUserReportEnabled>(rq, "SetUserReportEnabled");
+	ScriptFunction::Register<&GetUserReportStatus>(rq, "GetUserReportStatus");
+	ScriptFunction::Register<&GetUserReportLogPath>(rq, "GetUserReportLogPath");
+	ScriptFunction::Register<&GetUserReportConfigPath>(rq, "GetUserReportConfigPath");
+}
 }

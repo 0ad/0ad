@@ -1,12 +1,13 @@
 Engine.LoadHelperScript("ValueModification.js");
 Engine.LoadHelperScript("Player.js");
-Engine.LoadComponentScript("interfaces/GarrisonHolder.js");
 Engine.LoadComponentScript("interfaces/Garrisonable.js");
+Engine.LoadComponentScript("interfaces/GarrisonHolder.js");
 Engine.LoadComponentScript("interfaces/TurretHolder.js");
-Engine.LoadComponentScript("GarrisonHolder.js");
 Engine.LoadComponentScript("interfaces/Health.js");
 Engine.LoadComponentScript("interfaces/ModifiersManager.js");
 Engine.LoadComponentScript("interfaces/Timer.js");
+Engine.LoadComponentScript("Garrisonable.js");
+Engine.LoadComponentScript("GarrisonHolder.js");
 
 const garrisonedEntitiesList = [25, 26, 27, 28, 29, 30, 31, 32, 33];
 const garrisonHolderId = 15;
@@ -16,6 +17,16 @@ const largeUnitId = 35;
 const player = 1;
 const friendlyPlayer = 2;
 const enemyPlayer = 3;
+
+let cmpGarrisonHolder = ConstructComponent(garrisonHolderId, "GarrisonHolder", {
+	"Max": 10,
+	"List": { "_string": "Infantry+Cavalry" },
+	"EjectHealth": 0.1,
+	"EjectClassesOnDestroy": { "_string": "Infantry" },
+	"BuffHeal": 1,
+	"LoadingRange": 2.1,
+	"Pickup": false
+});
 
 AddMock(garrisonHolderId, IID_Footprint, {
 	"PickSpawnPointBothPass": entity => new Vector3D(4, 3, 30),
@@ -70,7 +81,7 @@ for (let i = 24; i <= 35; ++i)
 		AddMock(i, IID_Garrisonable, {
 			"UnitSize": () => 9,
 			"TotalSize": () => 9,
-			"Garrison": entity => true,
+			"Garrison": (entity, renamed) => cmpGarrisonHolder.Garrison(i, renamed),
 			"UnGarrison": () => true
 		});
 	else
@@ -94,16 +105,6 @@ for (let i = 24; i <= 35; ++i)
 AddMock(33, IID_Identity, {
 	"GetClassesList": () => ["Infantry", "Cavalry"],
 	"GetSelectionGroupName": () => "spart_infantry_archer_a"
-});
-
-let cmpGarrisonHolder = ConstructComponent(garrisonHolderId, "GarrisonHolder", {
-	"Max": 10,
-	"List": { "_string": "Infantry+Cavalry" },
-	"EjectHealth": 0.1,
-	"EjectClassesOnDestroy": { "_string": "Infantry" },
-	"BuffHeal": 1,
-	"LoadingRange": 2.1,
-	"Pickup": false
 });
 
 let testGarrisonAllowed = function()
@@ -232,7 +233,7 @@ AddMock(siegeEngineId, IID_Ownership, {
 AddMock(siegeEngineId, IID_Garrisonable, {
 	"UnitSize": () => 1,
 	"TotalSize": () => 1,
-	"Garrison": entity => true,
+	"Garrison": (entity, renamed) => cmpGarrisonHolder.Garrison(siegeEngineId, renamed),
 	"UnGarrison": () => true
 });
 let cavalryId = 46;
@@ -255,15 +256,10 @@ AddMock(cavalryId, IID_Ownership, {
 AddMock(cavalryId, IID_Garrisonable, {
 	"UnitSize": () => 1,
 	"TotalSize": () => 1,
-	"Garrison": entity => true,
+	"Garrison": (entity, renamed) => cmpGarrisonHolder.Garrison(cavalryId, renamed),
 	"UnGarrison": () => true
 });
-TS_ASSERT(cmpGarrisonHolder.Garrison(siegeEngineId));
-TS_ASSERT_EQUALS(cmpGarrisonHolder.GetGarrisonedEntitiesCount(), 1);
-cmpGarrisonHolder.OnGlobalEntityRenamed({
-	"entity": siegeEngineId,
-	"newentity": cavalryId
-});
+TS_ASSERT(cmpGarrisonHolder.Garrison(cavalryId));
 TS_ASSERT_EQUALS(cmpGarrisonHolder.GetGarrisonedEntitiesCount(), 1);
 
 // Eject enemy units.
