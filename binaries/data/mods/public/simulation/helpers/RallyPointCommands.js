@@ -16,7 +16,14 @@ function GetRallyPointCommands(cmpRallyPoint, spawnedEnts)
 		{
 			let cmpPosition = Engine.QueryInterface(data[i].target, IID_Position);
 			if (!cmpPosition || !cmpPosition.IsInWorld())
-				command = command == "gather" ? "gather-near-position" : "walk";
+			{
+				if (command == "gather")
+					command = "gather-near-position";
+				else if (command == "collect-treasure")
+					command = "collect-treasure-near-position";
+				else
+					command = "walk";
+			}
 		}
 
 		switch (command)
@@ -103,6 +110,17 @@ function GetRallyPointCommands(cmpRallyPoint, spawnedEnts)
 				"entities": spawnedEnts,
 				"target": data[i].target,
 				"queued": true,
+				"autocontinue": i == rallyPos.length - 1
+			});
+			break;
+		case "collect-treasure-near-position":
+			ret.push({
+				"type": "collect-treasure-near-position",
+				"entities": spawnedEnts,
+				"x": rallyPos[i].x,
+				"z": rallyPos[i].z,
+				"queued": true,
+				"autocontinue": i == rallyPos.length - 1
 			});
 			break;
 		default:

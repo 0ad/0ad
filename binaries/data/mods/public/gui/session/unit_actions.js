@@ -812,6 +812,7 @@ var g_UnitActions =
 				"entities": selection,
 				"target": action.target,
 				"queued": queued,
+				"autocontinue": true,
 				"formation": g_AutoFormation.getNull()
 			});
 
@@ -989,8 +990,12 @@ var g_UnitActions =
 			else if (targetState && targetState.treasure)
 			{
 				cursor = "action-collect-treasure";
-				data.command = "collect-treasure";
-				data.target = targetState.id;
+				data.command = "collect-treasure-near-position";
+				if (!targetState.speed)
+				{
+					data.command = "collect-treasure";
+					data.target = targetState.id;
+				}
 			}
 			else if (entState.market && targetState && targetState.market &&
 			         entState.id != targetState.id &&

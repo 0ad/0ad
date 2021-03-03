@@ -649,6 +649,15 @@ UnitAI.prototype.UnitFsmSpec = {
 		return ACCEPT_ORDER;
 	},
 
+	"Order.CollectTreasureNearPosition": function(msg) {
+		let nearbyTreasure = this.FindNearbyTreasure(msg.data.x, msg.data.z);
+		if (nearbyTreasure)
+			this.CollectTreasure(nearbyTreasure, oldData.autocontinue, true);
+		else
+			this.SetNextState("COLLECTTREASURE");
+		return ACCEPT_ORDER;
+	},
+
 	// States for the special entity representing a group of units moving in formation:
 	"FORMATIONCONTROLLER": {
 
@@ -2872,7 +2881,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				let cmpTreasureCollecter = Engine.QueryInterface(this.entity, IID_TreasureCollecter);
 				if (!cmpTreasureCollecter || !cmpTreasureCollecter.CanCollect(this.order.data.target))
 				{
-					this.FinishOrder();
+					this.SetNextState("FINDINGNEWTARGET");
 					return true;
 				}
 				if (this.CheckTargetRange(this.order.data.target, IID_TreasureCollecter))
@@ -2889,7 +2898,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				"enter": function() {
 					if (!this.MoveToTargetRange(this.order.data.target, IID_TreasureCollecter))
 					{
-						this.FinishOrder();
+						this.SetNextState("FINDINGNEWTARGET");
 						return true;
 					}
 					return false;
@@ -2903,7 +2912,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					if (this.CheckTargetRange(this.order.data.target, IID_TreasureCollecter))
 						this.SetNextState("COLLECTING");
 					else if (msg.likelyFailure)
-						this.FinishOrder();
+						this.SetNextState("FINDINGNEWTARGET");
 				},
 			},
 
@@ -2932,7 +2941,28 @@ UnitAI.prototype.UnitFsmSpec = {
 				},
 
 				"TargetInvalidated": function(msg) {
-					this.FinishOrder();
+					this.SetNextState("FINDINGNEWTARGET");
+				},
+			},
+
+			"FINDINGNEWTARGET": {
+				"enter": function() {
+					let oldData = this.order.data;
+
+					// Switch to the next order (if any).
+					if (this.FinishOrder())
+						return true;
+
+					// If autocontinue explicitly disabled (e.g. by AI)
+					// then do nothing automatically.
+					if (!oldData.autocontinue)
+						return false;
+
+					let nearbyTreasure = this.FindNearbyTreasure(this.TargetPosOrEntPos(oldData.target));
+					if (nearbyTreasure)
+						this.CollectTreasure(nearbyTreasure, oldData.autocontinue, true);
+
+					return true;
 				},
 			},
 		},
@@ -4496,6 +4526,28 @@ UnitAI.prototype.FindNearbyFoundation = function(position)
 };
 
 /**
+ * Returns the entity ID of the nearest treasure.
+ * "Nearest" is nearest from @param position.
+ */
+UnitAI.prototype.FindNearbyTreasure = function(position)
+{
+	if (!position)
+		return undefined;
+
+	let cmpTreasureCollecter = Engine.QueryInterface(this.entity, IID_TreasureCollecter);
+	if (!cmpTreasureCollecter)
+		return undefined;
+
+	let players = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetAllPlayers();
+
+	let range = 64; // TODO: what's a sensible number?
+	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	// Don't account for entity size, we need to match LOS visibility.
+	let nearby = cmpRangeManager.ExecuteQueryAroundPos(position, 0, range, players, IID_Treasure, false);
+	return nearby.find(ent => cmpTreasureCollecter.CanCollect(ent));
+};
+
+/**
  * Play a sound appropriate to the current entity.
  */
 UnitAI.prototype.PlaySound = function(name)
@@ -5683,9 +5735,27 @@ UnitAI.prototype.ReturnResource = function(target, queued)
 /**
  * Adds order to collect a treasure to queue, forced by the player.
  */
-UnitAI.prototype.CollectTreasure = function(target, queued)
+UnitAI.prototype.CollectTreasure = function(target, autocontinue, queued)
 {
-	this.AddOrder("CollectTreasure", { "target": target, "force": true }, queued);
+	this.AddOrder("CollectTreasure", {
+		"target": target,
+		"autocontinue": autocontinue,
+		"force": true
+	}, queued);
+};
+
+/**
+ * Adds order to collect a treasure to queue, forced by the player.
+ */
+UnitAI.prototype.CollectTreasureNearPosition = function(posX, posZ, autocontinue, queued)
+{
+	this.AddOrder("CollectTreasureNearPosition", {
+		"x": posX,
+		"z": posZ,
+		"target": target,
+		"autocontinue": autocontinue,
+		"force": false
+	}, queued);
 };
 
 UnitAI.prototype.CancelSetupTradeRoute = function(target)
