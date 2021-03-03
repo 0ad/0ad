@@ -81,6 +81,7 @@ that of Atlas depending on commandline parameters.
 #include "soundmanager/ISoundManager.h"
 
 #if OS_UNIX
+#include <iostream>
 #include <unistd.h> // geteuid
 #endif // OS_UNIX
 
@@ -94,7 +95,6 @@ that of Atlas depending on commandline parameters.
 #endif
 
 #include <chrono>
-#include <iostream>
 
 extern CmdLineArgs g_args;
 extern CStrW g_UniqueLogPostfix;

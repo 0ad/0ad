@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,7 +22,6 @@
 #include "graphics/FontMetrics.h"
 #include "graphics/ShaderManager.h"
 #include "graphics/TextRenderer.h"
-#include "lib/ogl.h"
 #include "lib/timer.h"
 #include "lib/utf8.h"
 #include "ps/CConsole.h"
@@ -31,6 +30,7 @@
 #include "renderer/Renderer.h"
 
 #include <ctime>
+#include <fstream>
 #include <iostream>
 
 #include <boost/algorithm/string/replace.hpp>

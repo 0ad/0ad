@@ -26,7 +26,7 @@
 
 #include <boost/algorithm/string.hpp>
 #include <boost/concept_check.hpp>
-#include <iostream>
+#include <sstream>
 #include <string>
 
 #include "gui/GUIManager.h"
