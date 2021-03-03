@@ -2627,29 +2627,29 @@ UnitAI.prototype.UnitFsmSpec = {
 
 					// No remaining orders - pick a useful default behaviour
 
-					// Give up if we're not in the world right now.
 					let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 					if (!cmpPosition || !cmpPosition.IsInWorld())
 						return true;
 
-					// If we have no known initial position of our target, look around our own position
-					// as a fallback.
+					let filter = (ent, type, template) => {
+						if (previousTarget == ent)
+							return false;
+
+						// Don't switch to a different type of huntable animal.
+						return type.specific == resourceType.specific &&
+						    (type.specific != "meat" || resourceTemplate == template);
+					};
+
+					// Current position is often next to a dropsite.
+					let pos = cmpPosition.GetPosition();
+					let nearbyResource = this.FindNearbyResource(Vector2D.from3D(pos), filter);
+
+					// If there is an initPos, search there as well when we haven't found anything.
+					// Otherwise set initPos to our current pos.
 					if (!initPos)
-					{
-						let pos = cmpPosition.GetPosition();
 						initPos = { 'x': pos.X, 'z': pos.Z };
-					}
-
-					// Try to find a new resource of the same specific type near the initial resource position:
-					// Also don't switch to a different type of huntable animal
-					let nearbyResource = this.FindNearbyResource(new Vector2D(initPos.x, initPos.z),
-						(ent, type, template) => {
-							if (previousTarget == ent)
-								return false;
-
-							return type.specific == resourceType.specific &&
-							    (type.specific != "meat" || resourceTemplate == template);
-						});
+					else if (!nearbyResource)
+						nearbyResource = this.FindNearbyResource(new Vector2D(initPos.X, initPos.Z), filter);
 
 					if (nearbyResource)
 					{
