@@ -40,10 +40,7 @@ GarrisonHolder.prototype.Schema =
  */
 GarrisonHolder.prototype.Init = function()
 {
-	// Garrisoned Units
 	this.entities = [];
-	this.timer = undefined;
-	this.allowGarrisoning = new Map();
 	this.allowedClasses = ApplyValueModificationsToEntity("GarrisonHolder/List/_string", this.template.List._string, this.entity);
 };
 
@@ -114,12 +111,18 @@ GarrisonHolder.prototype.GetHealRate = function()
  */
 GarrisonHolder.prototype.AllowGarrisoning = function(allow, callerID)
 {
+	if (!this.allowGarrisoning)
+		this.allowGarrisoning = new Map();
 	this.allowGarrisoning.set(callerID, allow);
 };
 
+/**
+ * @return {boolean} - Whether (un)garrisoning is allowed.
+ */
 GarrisonHolder.prototype.IsGarrisoningAllowed = function()
 {
-	return Array.from(this.allowGarrisoning.values()).every(allow => allow);
+	return !this.allowGarrisoning ||
+		Array.from(this.allowGarrisoning.values()).every(allow => allow);
 };
 
 GarrisonHolder.prototype.GetGarrisonedEntitiesCount = function()
@@ -422,7 +425,7 @@ GarrisonHolder.prototype.HealTimeout = function(data)
 	if (!this.entities.length)
 	{
 		cmpTimer.CancelTimer(this.timer);
-		this.timer = undefined;
+		delete this.timer;
 		return;
 	}
 
@@ -629,7 +632,7 @@ GarrisonHolder.prototype.OnValueModification = function(msg)
 	{
 		let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 		cmpTimer.CancelTimer(this.timer);
-		this.timer = undefined;
+		delete this.timer;
 	}
 	else if (!this.timer && this.GetHealRate() > 0)
 	{
