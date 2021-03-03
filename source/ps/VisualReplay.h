@@ -19,9 +19,11 @@
 #define INCLUDED_VISUAL_REPLAY
 
 #include "lib/os_path.h"
+#include "scriptinterface/ScriptTypes.h"
 
 class CSimulation2;
 class CGUIManager;
+class CStrW;
 
 class ScriptInterface;
 

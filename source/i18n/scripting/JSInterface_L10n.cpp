@@ -21,6 +21,7 @@
 
 #include "i18n/L10n.h"
 #include "lib/utf8.h"
+#include "ps/CLogger.h"
 #include "scriptinterface/FunctionWrapper.h"
 #include "scriptinterface/ScriptInterface.h"
 
