@@ -98,6 +98,7 @@
 
 extern void RestartEngine();
 
+#include <fstream>
 #include <iostream>
 
 #include <boost/algorithm/string/classification.hpp>

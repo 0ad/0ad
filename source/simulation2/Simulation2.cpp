@@ -44,6 +44,7 @@
 #include "ps/Util.h"
 #include "ps/XML/Xeromyces.h"
 
+#include <fstream>
 #include <iomanip>
 
 class CSimulation2Impl

@@ -36,6 +36,8 @@
 #include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/ScriptExtraHeaders.h"
 
+#include <fstream>
+
 /**
  * Filter too short replays (value in seconds).
  */

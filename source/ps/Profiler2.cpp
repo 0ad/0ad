@@ -33,8 +33,11 @@
 #include "ps/Pyrogenesis.h"
 #include "third_party/mongoose/mongoose.h"
 
+#include <fstream>
 #include <iomanip>
 #include <map>
+#include <set>
+#include <tuple>
 #include <unordered_map>
 
 CProfiler2 g_Profiler2;
