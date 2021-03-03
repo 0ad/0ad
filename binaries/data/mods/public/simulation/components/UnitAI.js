@@ -270,7 +270,7 @@ UnitAI.prototype.UnitFsmSpec = {
 	"Order.LeaveFoundation": function(msg) {
 		if (!this.WillMoveFromFoundation(msg.data.target))
 			return this.FinishOrder();
-		this.order.data.min = g_LeaveFoundationRange;
+		msg.data.min = g_LeaveFoundationRange;
 		this.SetNextState("INDIVIDUAL.WALKING");
 		return ACCEPT_ORDER;
 	},
@@ -308,8 +308,8 @@ UnitAI.prototype.UnitFsmSpec = {
 			return ACCEPT_ORDER;
 		}
 
-		this.SetHeldPosition(this.order.data.x, this.order.data.z);
-		this.order.data.relaxed = true;
+		this.SetHeldPosition(msg.data.x, msg.data.z);
+		msg.data.relaxed = true;
 		this.SetNextState("INDIVIDUAL.WALKING");
 		return ACCEPT_ORDER;
 	},
@@ -324,8 +324,8 @@ UnitAI.prototype.UnitFsmSpec = {
 			return ACCEPT_ORDER;
 		}
 
-		this.SetHeldPosition(this.order.data.x, this.order.data.z);
-		this.order.data.relaxed = true;
+		this.SetHeldPosition(msg.data.x, msg.data.z);
+		msg.data.relaxed = true;
 		this.SetNextState("INDIVIDUAL.WALKINGANDFIGHTING");
 		return ACCEPT_ORDER;
 	},
@@ -342,10 +342,10 @@ UnitAI.prototype.UnitFsmSpec = {
 		}
 
 
-		if (this.CheckRange(this.order.data))
+		if (this.CheckRange(msg.data))
 			return this.FinishOrder();
 
-		this.order.data.relaxed = true;
+		msg.data.relaxed = true;
 		this.SetNextState("INDIVIDUAL.WALKING");
 		return ACCEPT_ORDER;
 	},
@@ -356,18 +356,18 @@ UnitAI.prototype.UnitFsmSpec = {
 			return this.FinishOrder();
 
 		let range = cmpGarrisonHolder.GetLoadingRange();
-		this.order.data.min = range.min;
-		this.order.data.max = range.max;
-		if (this.CheckRange(this.order.data))
+		msg.data.min = range.min;
+		msg.data.max = range.max;
+		if (this.CheckRange(msg.data))
 			return this.FinishOrder();
 
 		// Check if we need to move
 		// If the target can reach us and we are reasonably close, don't move.
 		// TODO: it would be slightly more optimal to check for real, not bird-flight distance.
-		let cmpPassengerMotion = Engine.QueryInterface(this.order.data.target, IID_UnitMotion);
+		let cmpPassengerMotion = Engine.QueryInterface(msg.data.target, IID_UnitMotion);
 		if (cmpPassengerMotion &&
 		        cmpPassengerMotion.IsTargetRangeReachable(this.entity, range.min, range.max) &&
-		        PositionHelper.DistanceBetweenEntities(this.entity, this.order.data.target) < 200)
+		        PositionHelper.DistanceBetweenEntities(this.entity, msg.data.target) < 200)
 			this.SetNextState("INDIVIDUAL.PICKUP.LOADING");
 		else
 			this.SetNextState("INDIVIDUAL.PICKUP.APPROACHING");
@@ -375,7 +375,7 @@ UnitAI.prototype.UnitFsmSpec = {
 	},
 
 	"Order.Guard": function(msg) {
-		if (!this.AddGuard(this.order.data.target))
+		if (!this.AddGuard(msg.data.target))
 			return this.FinishOrder();
 
 		if (!this.CheckTargetRangeExplicit(this.isGuardOf, 0, this.guardRange))
@@ -391,17 +391,17 @@ UnitAI.prototype.UnitFsmSpec = {
 	},
 
 	"Order.Attack": function(msg) {
-		let type = this.GetBestAttackAgainst(this.order.data.target, this.order.data.allowCapture);
+		let type = this.GetBestAttackAgainst(msg.data.target, msg.data.allowCapture);
 		if (!type)
 			return this.FinishOrder();
 
-		this.order.data.attackType = type;
+		msg.data.attackType = type;
 
 		this.RememberTargetPosition();
-		if (this.order.data.hunting && this.orderQueue.length > 1 && this.orderQueue[1].type === "Gather")
+		if (msg.data.hunting && this.orderQueue.length > 1 && this.orderQueue[1].type === "Gather")
 			this.RememberTargetPosition(this.orderQueue[1].data);
 
-		if (this.CheckTargetAttackRange(this.order.data.target, this.order.data.attackType))
+		if (this.CheckTargetAttackRange(msg.data.target, msg.data.attackType))
 		{
 			if (this.CanUnpack())
 			{
@@ -417,7 +417,7 @@ UnitAI.prototype.UnitFsmSpec = {
 		}
 
 		// If we're hunting, that's a special case where we should continue attacking our target.
-		if (this.GetStance().respondStandGround && !this.order.data.force && !this.order.data.hunting || !this.AbleToMove())
+		if (this.GetStance().respondStandGround && !msg.data.force && !msg.data.hunting || !this.AbleToMove())
 			return this.FinishOrder();
 
 		if (this.CanPack())
@@ -442,27 +442,27 @@ UnitAI.prototype.UnitFsmSpec = {
 			return ACCEPT_ORDER;
 		}
 
-		this.order.data.relaxed = true;
+		msg.data.relaxed = true;
 
 		this.SetNextState("INDIVIDUAL.PATROL.PATROLLING");
 		return ACCEPT_ORDER;
 	},
 
 	"Order.Heal": function(msg) {
-		if (!this.TargetIsAlive(this.order.data.target))
+		if (!this.TargetIsAlive(msg.data.target))
 			return this.FinishOrder();
 
 		// Healers can't heal themselves.
-		if (this.order.data.target == this.entity)
+		if (msg.data.target == this.entity)
 			return this.FinishOrder();
 
-		if (this.CheckTargetRange(this.order.data.target, IID_Heal))
+		if (this.CheckTargetRange(msg.data.target, IID_Heal))
 		{
 			this.SetNextState("INDIVIDUAL.HEAL.HEALING");
 			return ACCEPT_ORDER;
 		}
 
-		if (this.GetStance().respondStandGround && !this.order.data.force)
+		if (this.GetStance().respondStandGround && !msg.data.force)
 			return this.FinishOrder();
 
 		this.SetNextState("INDIVIDUAL.HEAL.APPROACHING");
@@ -470,7 +470,7 @@ UnitAI.prototype.UnitFsmSpec = {
 	},
 
 	"Order.Gather": function(msg) {
-		if (!this.CanGather(this.order.data.target))
+		if (!this.CanGather(msg.data.target))
 		{
 			this.SetNextState("INDIVIDUAL.GATHER.FINDINGNEWTARGET");
 			return ACCEPT_ORDER;
@@ -494,10 +494,10 @@ UnitAI.prototype.UnitFsmSpec = {
 			return ACCEPT_ORDER;
 		}
 
-		if (this.MustKillGatherTarget(this.order.data.target))
+		if (this.MustKillGatherTarget(msg.data.target))
 		{
 			// Make sure we can attack the target, else we'll get very stuck
-			if (!this.GetBestAttackAgainst(this.order.data.target, false))
+			if (!this.GetBestAttackAgainst(msg.data.target, false))
 			{
 				// Oops, we can't attack at all - give up
 				// TODO: should do something so the player knows why this failed
@@ -505,37 +505,33 @@ UnitAI.prototype.UnitFsmSpec = {
 			}
 			// The target was visible when this order was issued,
 			// but could now be invisible again.
-			if (!this.CheckTargetVisible(this.order.data.target))
+			if (!this.CheckTargetVisible(msg.data.target))
 			{
-				if (this.order.data.secondTry === undefined)
+				if (msg.data.secondTry === undefined)
 				{
-					this.order.data.secondTry = true;
-					this.PushOrderFront("Walk", this.order.data.lastPos);
+					msg.data.secondTry = true;
+					this.PushOrderFront("Walk", msg.data.lastPos);
 				}
 				// We couldn't move there, or the target moved away
-				else
-				{
-					let data = this.order.data;
-					if (!this.FinishOrder())
-						this.PushOrderFront("GatherNearPosition", {
-							"x": data.lastPos.x,
-							"z": data.lastPos.z,
-							"type": data.type,
-							"template": data.template
-						});
-				}
+				else if (!this.FinishOrder())
+					this.PushOrderFront("GatherNearPosition", {
+						"x": msg.data.lastPos.x,
+						"z": msg.data.lastPos.z,
+						"type": msg.data.type,
+						"template": msg.data.template
+					});
 				return ACCEPT_ORDER;
 			}
 
-			this.PushOrderFront("Attack", { "target": this.order.data.target, "force": !!this.order.data.force, "hunting": true, "allowCapture": false });
+			this.PushOrderFront("Attack", { "target": msg.data.target, "force": !!msg.data.force, "hunting": true, "allowCapture": false });
 			return ACCEPT_ORDER;
 		}
 
 		this.RememberTargetPosition();
-		if (!this.order.data.initPos)
-			this.order.data.initPos = this.order.data.lastPos;
+		if (!msg.data.initPos)
+			msg.data.initPos = msg.data.lastPos;
 
-		if (this.CheckTargetRange(this.order.data.target, IID_ResourceGatherer))
+		if (this.CheckTargetRange(msg.data.target, IID_ResourceGatherer))
 			this.SetNextState("INDIVIDUAL.GATHER.GATHERING");
 		else
 			this.SetNextState("INDIVIDUAL.GATHER.APPROACHING");
@@ -544,17 +540,17 @@ UnitAI.prototype.UnitFsmSpec = {
 
 	"Order.GatherNearPosition": function(msg) {
 		this.SetNextState("INDIVIDUAL.GATHER.WALKING");
-		this.order.data.initPos = { 'x': this.order.data.x, 'z': this.order.data.z };
-		this.order.data.relaxed = true;
+		msg.data.initPos = { 'x': msg.data.x, 'z': msg.data.z };
+		msg.data.relaxed = true;
 		return ACCEPT_ORDER;
 	},
 
 	"Order.ReturnResource": function(msg) {
 		let cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
-		if (this.CheckTargetRange(this.order.data.target, IID_ResourceGatherer) &&
-		    this.CanReturnResource(this.order.data.target, true, cmpResourceGatherer))
+		if (this.CheckTargetRange(msg.data.target, IID_ResourceGatherer) &&
+		    this.CanReturnResource(msg.data.target, true, cmpResourceGatherer))
 		{
-			cmpResourceGatherer.CommitResources(this.order.data.target);
+			cmpResourceGatherer.CommitResources(msg.data.target);
 			this.SetDefaultAnimationVariant();
 
 			// Our next order should always be a Gather,
@@ -578,7 +574,7 @@ UnitAI.prototype.UnitFsmSpec = {
 	},
 
 	"Order.Repair": function(msg) {
-		if (this.CheckTargetRange(this.order.data.target, IID_Builder))
+		if (this.CheckTargetRange(msg.data.target, IID_Builder))
 			this.SetNextState("INDIVIDUAL.REPAIR.REPAIRING");
 		else
 			this.SetNextState("INDIVIDUAL.REPAIR.APPROACHING");
@@ -606,7 +602,7 @@ UnitAI.prototype.UnitFsmSpec = {
 			return ACCEPT_ORDER;
 		}
 
-		if (this.CheckGarrisonRange(this.order.data.target))
+		if (this.CheckGarrisonRange(msg.data.target))
 			this.SetNextState("INDIVIDUAL.GARRISON.GARRISONED");
 		else
 			this.SetNextState("INDIVIDUAL.GARRISON.APPROACHING");
@@ -676,21 +672,21 @@ UnitAI.prototype.UnitFsmSpec = {
 
 		// Only used by other orders to walk there in formation.
 		"Order.WalkToTargetRange": function(msg) {
-			if (this.CheckRange(this.order.data))
+			if (this.CheckRange(msg.data))
 				return this.FinishOrder();
 			this.SetNextState("WALKING");
 			return ACCEPT_ORDER;
 		},
 
 		"Order.WalkToTarget": function(msg) {
-			if (this.CheckRange(this.order.data))
+			if (this.CheckRange(msg.data))
 				return this.FinishOrder();
 			this.SetNextState("WALKING");
 			return ACCEPT_ORDER;
 		},
 
 		"Order.WalkToPointRange": function(msg) {
-			if (this.CheckRange(this.order.data))
+			if (this.CheckRange(msg.data))
 				return this.FinishOrder();
 			this.SetNextState("WALKING");
 			return ACCEPT_ORDER;
@@ -1345,7 +1341,7 @@ UnitAI.prototype.UnitFsmSpec = {
 		"Order.LeaveFoundation": function(msg) {
 			if (!this.WillMoveFromFoundation(msg.data.target))
 				return this.FinishOrder();
-			this.order.data.min = g_LeaveFoundationRange;
+			msg.data.min = g_LeaveFoundationRange;
 			this.SetNextState("WALKINGTOPOINT");
 			return ACCEPT_ORDER;
 		},
@@ -2247,7 +2243,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				"Order.MoveToChasingPoint": function(msg) {
 					if (this.CheckPointRangeExplicit(msg.data.x, msg.data.z, 0, msg.data.max))
 						return this.FinishOrder();
-					this.order.data.relaxed = true;
+					msg.data.relaxed = true;
 					this.StopTimer();
 					this.SetNextState("MOVINGTOPOINT");
 					return ACCEPT_ORDER;
