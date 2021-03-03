@@ -468,9 +468,9 @@ static void NonVisualFrame()
 	PROFILE2_ATTR("%d", g_Profiler2.GetFrameNumber());
 
 	static u32 turn = 0;
-	debug_printf("Turn %u (%u)...\n", turn++, DEFAULT_TURN_LENGTH_SP);
+	debug_printf("Turn %u (%u)...\n", turn++, DEFAULT_TURN_LENGTH);
 
-	g_Game->GetSimulation2()->Update(DEFAULT_TURN_LENGTH_SP);
+	g_Game->GetSimulation2()->Update(DEFAULT_TURN_LENGTH);
 
 	g_Profiler.Frame();
 

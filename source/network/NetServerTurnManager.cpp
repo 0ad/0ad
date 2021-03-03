@@ -27,19 +27,21 @@
 #include "simulation2/system/TurnManager.h"
 
 #if 0
+#include "ps/Util.h"
 #define NETSERVERTURN_LOG(...) debug_printf(__VA_ARGS__)
 #else
 #define NETSERVERTURN_LOG(...)
 #endif
 
 CNetServerTurnManager::CNetServerTurnManager(CNetServerWorker& server)
-	: m_NetServer(server), m_ReadyTurn(1), m_TurnLength(DEFAULT_TURN_LENGTH_MP), m_HasSyncError(false)
+	: m_NetServer(server), m_ReadyTurn(COMMAND_DELAY_MP - 1), m_TurnLength(DEFAULT_TURN_LENGTH), m_HasSyncError(false)
 {
 	// Turn 0 is not actually executed, store a dummy value.
 	m_SavedTurnLengths.push_back(0);
-	// Turn 1 is special: all clients run it without waiting on a server command batch.
-	// Because of this, it is always run with the default MP turn length.
-	m_SavedTurnLengths.push_back(m_TurnLength);
+	// Turns [1..COMMAND_DELAY - 1] are special: all clients run them without waiting on a server command batch.
+	// Because of this, they are always run with the default MP turn length.
+	for (u32 i = 1; i < COMMAND_DELAY_MP; ++i)
+		m_SavedTurnLengths.push_back(m_TurnLength);
 }
 
 void CNetServerTurnManager::NotifyFinishedClientCommands(CNetServerSession& session, u32 turn)
@@ -139,7 +141,7 @@ void CNetServerTurnManager::NotifyFinishedClientUpdate(CNetServerSession& sessio
 		std::vector<CStrW> OOSPlayerNames;
 		for (const std::pair<const int, std::string>& hashPair : clientStateHash.second)
 		{
-			NETSERVERTURN_LOG("sync check %d: %d = %hs\n", it->first, cit->first, Hexify(cit->second).c_str());
+			NETSERVERTURN_LOG("sync check %d: %d = %hs\n", clientStateHash.first, hashPair.first, Hexify(hashPair.second).c_str());
 			if (hashPair.second != expected)
 			{
 				// Oh no, out of sync
@@ -174,7 +176,7 @@ void CNetServerTurnManager::InitialiseClient(int client, u32 turn)
 	NETSERVERTURN_LOG("InitialiseClient(client=%d, turn=%d)\n", client, turn);
 
 	ENSURE(m_ClientsReady.find(client) == m_ClientsReady.end());
-	m_ClientsReady[client] = turn + 1;
+	m_ClientsReady[client] = turn + COMMAND_DELAY_MP - 1;
 	m_ClientsSimulated[client] = turn;
 }
 
