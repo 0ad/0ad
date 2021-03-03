@@ -411,24 +411,23 @@ extern_lib_defs = {
 	},
 	libpng = {
 		compile_settings = function()
-			if os.istarget("windows") or os.istarget("macosx") then
+			if os.istarget("windows") then
 				add_default_include_paths("libpng")
-			end
-			if os.getversion().description == "OpenBSD" then
-				sysincludedirs { "/usr/local/include/libpng" }
+			else
+				-- Support LIBPNG_CONFIG for overriding the default (pkg-config --cflags libpng)
+				-- i.e. on OSX where it gets set in update-workspaces.sh
+				pkgconfig.add_includes("libpng", os.getenv("LIBPNG_CONFIG"))
 			end
 		end,
 		link_settings = function()
-			if os.istarget("windows") or os.istarget("macosx") then
+			if os.istarget("windows") then
 				add_default_lib_paths("libpng")
+				add_default_links({
+					win_names  = { "libpng16" },
+				})
+			else
+				pkgconfig.add_links("libpng", os.getenv("LIBPNG_CONFIG"), "--ldflags")
 			end
-			add_default_links({
-				win_names  = { "libpng16" },
-				unix_names = { "png" },
-				-- Otherwise ld will sometimes pull in ancient 1.2 from the SDK, which breaks the build :/
-				-- TODO: Figure out why that happens
-				osx_names = { "png16" },
-			})
 		end,
 	},
 	libsodium = {
