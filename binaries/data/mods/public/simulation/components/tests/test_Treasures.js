@@ -58,7 +58,10 @@ AddMock(SYSTEM_ENTITY, IID_ObstructionManager, {
 
 let cmpPlayer = ConstructComponent(owner, "Player", {
 	"SpyCostMultiplier": 1,
-	"BarterMultiplier": {}
+	"BarterMultiplier": {
+		"Buy": {},
+		"Sell": {}
+	}
 });
 let playerSpy = new Spy(cmpPlayer, "AddResources");
 
