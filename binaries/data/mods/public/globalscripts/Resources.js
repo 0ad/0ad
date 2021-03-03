@@ -18,13 +18,6 @@ function Resources()
 		if (data.code != data.code.toLowerCase())
 			warn("Resource codes should use lower case: " + data.code);
 
-		// Treasures are supported for every specified resource
-		if (data.code == "treasure")
-		{
-			error("Encountered resource with reserved keyword: " + data.code);
-			continue;
-		}
-
 		this.resourceData.push(data);
 		this.resourceDataObj[data.code] = data;
 		this.resourceCodes.push(data.code);

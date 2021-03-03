@@ -34,13 +34,13 @@
       </Damage>
     </Entity>
   </Resistance>
-  <ResourceGatherer>
-    <MaxDistance>12.0</MaxDistance>
-  </ResourceGatherer>
   <Trader>
     <GainMultiplier>0.75</GainMultiplier>
     <GarrisonGainMultiplier>0.2</GarrisonGainMultiplier>
   </Trader>
+  <TreasureCollecter>
+    <MaxDistance>12</MaxDistance>
+  </TreasureCollecter>
   <UnitAI>
     <DefaultStance>passive</DefaultStance>
     <CanGuard>false</CanGuard>

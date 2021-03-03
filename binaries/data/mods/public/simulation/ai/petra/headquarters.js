@@ -65,10 +65,7 @@ PETRA.HQ.prototype.init = function(gameState, queues)
 	this.navalMap = false;
 	this.navalRegions = {};
 
-	this.treasures = gameState.getEntities().filter(ent => {
-		let type = ent.resourceSupplyType();
-		return type && type.generic == "treasure";
-	});
+	this.treasures = gameState.getEntities().filter(ent => ent.isTreasure());
 	this.treasures.registerUpdates();
 	this.currentPhase = gameState.currentPhase();
 	this.decayingStructures = new Set();

@@ -32,6 +32,8 @@ Engine.LoadComponentScript("interfaces/TechnologyManager.js");
 Engine.LoadComponentScript("interfaces/Trader.js");
 Engine.LoadComponentScript("interfaces/TurretHolder.js");
 Engine.LoadComponentScript("interfaces/Timer.js");
+Engine.LoadComponentScript("interfaces/Treasure.js");
+Engine.LoadComponentScript("interfaces/TreasureCollecter.js");
 Engine.LoadComponentScript("interfaces/StatisticsTracker.js");
 Engine.LoadComponentScript("interfaces/StatusEffectsReceiver.js");
 Engine.LoadComponentScript("interfaces/UnitAI.js");

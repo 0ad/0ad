@@ -11,10 +11,11 @@
   <Obstruction>
     <Static width="6.5" depth="6.5"/>
   </Obstruction>
-  <ResourceSupply>
-    <Max>300</Max>
-    <Type>treasure.food</Type>
-  </ResourceSupply>
+  <Treasure>
+    <Resources>
+      <food>300</food>
+    </Resources>
+  </Treasure>
   <VisualActor>
     <Actor>props/special/eyecandy/amphorae.xml</Actor>
   </VisualActor>

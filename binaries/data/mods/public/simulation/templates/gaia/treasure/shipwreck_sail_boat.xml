@@ -14,10 +14,11 @@
     <Floating>true</Floating>
     <FloatDepth>0.0</FloatDepth>
   </Position>
-  <ResourceSupply>
-    <Max>400</Max>
-    <Type>treasure.wood</Type>
-  </ResourceSupply>
+  <Treasure>
+    <Resources>
+      <wood>400</wood>
+    </Resources>
+  </Treasure>
   <VisualActor>
     <Actor>props/special/eyecandy/shipwreck_sail_boat.xml</Actor>
   </VisualActor>

@@ -481,6 +481,16 @@ function GetTemplateDataHelper(template, player, auraTemplates, modifiers = {})
 			"GainMultiplier": getEntityValue("Trader/GainMultiplier")
 		};
 
+	if (template.Treasure)
+	{
+		ret.treasure = {
+			"collectTime": getEntityValue("Treasure/CollectTime"),
+			"resources": {}
+		};
+		for (let resource in template.Treasure.Resources)
+			ret.treasure.resources[resource] = getEntityValue("Treasure/Resources/" + resource);
+	}
+
 	if (template.WallSet)
 	{
 		ret.wallSet = {

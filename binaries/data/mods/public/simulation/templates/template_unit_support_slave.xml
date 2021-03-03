@@ -53,6 +53,7 @@
     <metal>5</metal>
   </Loot>
   <ResourceGatherer>
+    <MaxDistance>2.0</MaxDistance>
     <BaseSpeed>1.0</BaseSpeed>
     <Rates>
       <food.fish>0.5</food.fish>
@@ -64,9 +65,15 @@
       <stone.rock>1.0</stone.rock>
       <stone.ruins>5</stone.ruins>
       <metal.ore>1.0</metal.ore>
-      <treasure disable=""/>
     </Rates>
+    <Capacities>
+      <food>10</food>
+      <wood>10</wood>
+      <stone>10</stone>
+      <metal>10</metal>
+    </Capacities>
   </ResourceGatherer>
+  <TreasureCollecter disable=""/>
   <Sound>
     <SoundGroups>
       <build>resource/construction/con_wood.xml</build>

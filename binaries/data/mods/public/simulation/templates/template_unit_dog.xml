@@ -38,7 +38,6 @@
     <xp>100</xp>
     <food>10</food>
   </Loot>
-  <ResourceGatherer disable=""/>
   <Selectable>
     <Overlay>
       <Texture>
@@ -65,6 +64,7 @@
   <TrainingRestrictions>
     <Category>WarDog</Category>
   </TrainingRestrictions>
+  <TreasureCollecter disable=""/>
   <UnitMotion>
     <WalkSpeed op="mul">1.5</WalkSpeed>
     <RunMultiplier>2</RunMultiplier>

@@ -477,9 +477,8 @@ UnitAI.prototype.UnitFsmSpec = {
 		}
 
 		// If the unit is full go to the nearest dropsite instead of trying to gather.
-		// Unless our target is a treasure which we cannot be full enough with (we can't carry treasures).
 		let cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
-		if (msg.data.type.generic !== "treasure" && cmpResourceGatherer && !cmpResourceGatherer.CanCarryMore(msg.data.type.generic))
+		if (cmpResourceGatherer && !cmpResourceGatherer.CanCarryMore(msg.data.type.generic))
 		{
 			let nearestDropsite = this.FindNearestDropsite(msg.data.type.generic);
 			if (nearestDropsite)
@@ -643,6 +642,15 @@ UnitAI.prototype.UnitFsmSpec = {
 		// Can however happen outside of it when renaming...
 		// TODO: don't use an order for that behaviour.
 		return this.FinishOrder();
+	},
+
+	"Order.CollectTreasure": function(msg) {
+		let cmpTreasureCollecter = Engine.QueryInterface(this.entity, IID_TreasureCollecter);
+		if (!cmpTreasureCollecter || !cmpTreasureCollecter.CanCollect(msg.data.target))
+			return this.FinishOrder();
+
+		this.SetNextState("COLLECTTREASURE");
+		return ACCEPT_ORDER;
 	},
 
 	// States for the special entity representing a group of units moving in formation:
@@ -2551,13 +2559,8 @@ UnitAI.prototype.UnitFsmSpec = {
 						return;
 					}
 
-					// Gather the resources:
 
 					let cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
-
-					// Try to gather treasure
-					if (cmpResourceGatherer.TryInstantGather(this.gatheringTarget))
-						return;
 
 					// If we've already got some resources but they're the wrong type,
 					// drop them first to ensure we're only ever carrying one type
@@ -2566,11 +2569,8 @@ UnitAI.prototype.UnitFsmSpec = {
 
 					this.FaceTowardsTarget(this.order.data.target);
 
-					// Collect from the target
 					let status = cmpResourceGatherer.PerformGather(this.gatheringTarget);
 
-					// If we've collected as many resources as possible,
-					// return to the nearest dropsite
 					if (status.filled)
 					{
 						let nearestDropsite = this.FindNearestDropsite(resourceType.generic);
@@ -2642,12 +2642,9 @@ UnitAI.prototype.UnitFsmSpec = {
 							if (previousTarget == ent)
 								return false;
 
-							if (type.generic == "treasure" && resourceType.generic == "treasure")
-								return true;
-
 							return type.specific == resourceType.specific &&
 							    (type.specific != "meat" || resourceTemplate == template);
-					});
+						});
 
 					if (nearbyResource)
 					{
@@ -2869,6 +2866,76 @@ UnitAI.prototype.UnitFsmSpec = {
 					}
 
 					// Oh no, couldn't find any drop sites. Give up on returning.
+					this.FinishOrder();
+				},
+			},
+		},
+
+		"COLLECTTREASURE": {
+			"enter": function() {
+				let cmpTreasureCollecter = Engine.QueryInterface(this.entity, IID_TreasureCollecter);
+				if (!cmpTreasureCollecter || !cmpTreasureCollecter.CanCollect(this.order.data.target))
+				{
+					this.FinishOrder();
+					return true;
+				}
+				if (this.CheckTargetRange(this.order.data.target, IID_TreasureCollecter))
+					this.SetNextState("COLLECTING");
+				else
+					this.SetNextState("APPROACHING");
+				return true;
+			},
+
+			"leave": function() {
+			},
+
+			"APPROACHING": {
+				"enter": function() {
+					if (!this.MoveToTargetRange(this.order.data.target, IID_TreasureCollecter))
+					{
+						this.FinishOrder();
+						return true;
+					}
+					return false;
+				},
+
+				"leave": function() {
+					this.StopMoving();
+				},
+
+				"MovementUpdate": function(msg) {
+					if (this.CheckTargetRange(this.order.data.target, IID_TreasureCollecter))
+						this.SetNextState("COLLECTING");
+					else if (msg.likelyFailure)
+						this.FinishOrder();
+				},
+			},
+
+			"COLLECTING": {
+				"enter": function() {
+					let cmpTreasureCollecter = Engine.QueryInterface(this.entity, IID_TreasureCollecter);
+					if (!cmpTreasureCollecter.StartCollecting(this.order.data.target, IID_UnitAI))
+					{
+						this.ProcessMessage("TargetInvalidated");
+						return true;
+					}
+					this.FaceTowardsTarget(this.order.data.target);
+					this.SelectAnimation("collecting_treasure");
+					return false;
+				},
+
+				"leave": function() {
+					let cmpTreasureCollecter = Engine.QueryInterface(this.entity, IID_TreasureCollecter);
+					if (cmpTreasureCollecter)
+						cmpTreasureCollecter.StopCollecting();
+					this.ResetAnimation();
+				},
+
+				"OutOfRange": function(msg) {
+					this.SetNextState("APPROACHING");
+				},
+
+				"TargetInvalidated": function(msg) {
 					this.FinishOrder();
 				},
 			},
@@ -4240,6 +4307,16 @@ UnitAI.prototype.OnPackFinished = function(msg)
 	this.UnitFsm.ProcessMessage(this, {"type": "PackFinished", "packed": msg.packed});
 };
 
+/**
+ * A general function to process messages sent from components.
+ * @param {string} type - The type of message to process.
+ * @param {Object} msg - Optionally extra data to use.
+ */
+UnitAI.prototype.ProcessMessage = function(type, msg)
+{
+	this.UnitFsm.ProcessMessage(this, { "type": type, "data": msg });
+};
+
 //// Helper functions to be called by the FSM ////
 
 UnitAI.prototype.GetWalkSpeed = function()
@@ -5605,6 +5682,14 @@ UnitAI.prototype.ReturnResource = function(target, queued)
 	}
 
 	this.AddOrder("ReturnResource", { "target": target, "force": true }, queued);
+};
+
+/**
+ * Adds order to collect a treasure to queue, forced by the player.
+ */
+UnitAI.prototype.CollectTreasure = function(target, queued)
+{
+	this.AddOrder("CollectTreasure", { "target": target, "force": true }, queued);
 };
 
 UnitAI.prototype.CancelSetupTradeRoute = function(target)

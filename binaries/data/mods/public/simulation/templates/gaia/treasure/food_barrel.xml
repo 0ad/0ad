@@ -8,10 +8,6 @@
     <SpecificName>Food Treasure</SpecificName>
     <Icon>gaia/special_treasure_food.png</Icon>
   </Identity>
-  <ResourceSupply>
-    <Max>100</Max>
-    <Type>treasure.food</Type>
-  </ResourceSupply>
   <Selectable replace="">
     <Overlay>
       <Texture>
@@ -20,6 +16,11 @@
       </Texture>
     </Overlay>
   </Selectable>
+  <Treasure>
+    <Resources>
+      <food>100</food>
+    </Resources>
+  </Treasure>
   <VisualActor>
     <Actor>props/special/eyecandy/barrel_a.xml</Actor>
   </VisualActor>

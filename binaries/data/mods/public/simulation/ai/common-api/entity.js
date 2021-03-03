@@ -380,14 +380,11 @@ m.Template = m.Class({
 		let [type, subtype] = this.get("ResourceSupply/Type").split('.');
 		return { "generic": type, "specific": subtype };
 	},
-	// will return either "food", "wood", "stone", "metal" and not treasure.
+
 	"getResourceType": function() {
 		if (!this.get("ResourceSupply"))
 			return undefined;
-		let [type, subtype] = this.get("ResourceSupply/Type").split('.');
-		if (type == "treasure")
-			return subtype;
-		return type;
+		return this.get("ResourceSupply/Type").split('.')[0];
 	},
 
 	"getDiminishingReturns": function() { return +(this.get("ResourceSupply/DiminishingReturns") || 1); },
@@ -412,6 +409,17 @@ m.Template = m.Class({
 
 		let types = this.get("ResourceDropsite/Types");
 		return types ? types.split(/\s+/) : [];
+	},
+
+	"isTreasure": function() { return this.get("Treasure") !== undefined; },
+
+	"treasureResources": function() {
+		if (!this.get("Treasure"))
+			return undefined;
+		let ret = {};
+		for (let r in this.get("Treasure/Resources"))
+			ret[r] = +this.get("Treasure/Resources/" + r);
+		return ret;
 	},
 
 
@@ -557,6 +565,8 @@ m.Template = m.Class({
 	"canGuard": function() { return this.get("UnitAI/CanGuard") === "true"; },
 
 	"canGarrison": function() { return "Garrisonable" in this._template; },
+
+	"isTreasureCollecter": function() { return this.get("TreasureCollecter") !== undefined; },
 });
 
 
@@ -723,9 +733,6 @@ m.Entity = m.Class({
 			if (!type)
 				return 0;
 
-			if (type.generic == "treasure")
-				return 1000;
-
 			let tstring = type.generic + "." + type.specific;
 			let rate = +this.get("ResourceGatherer/BaseSpeed");
 			rate *= +this.get("ResourceGatherer/Rates/" +tstring);
@@ -795,7 +802,7 @@ m.Entity = m.Class({
 			let restrictedClasses = this.get("Attack/" + type + "/RestrictedClasses/_string");
 			if (!restrictedClasses || !MatchesClassList(target.classes(), restrictedClasses))
 				return true;
-		};
+		}
 
 		return false;
 	},
@@ -849,6 +856,16 @@ m.Entity = m.Class({
 
 	"attack": function(unitId, allowCapture = true, queued = false) {
 		Engine.PostCommand(PlayerID, { "type": "attack", "entities": [this.id()], "target": unitId, "allowCapture": allowCapture, "queued": queued });
+		return this;
+	},
+
+	"collectTreasure": function(target, queued = false) {
+		Engine.PostCommand(PlayerID, {
+			"type": "collect-treasure",
+			"entities": [this.id()],
+			"target": target.id(),
+			"queued": queued
+		});
 		return this;
 	},
 

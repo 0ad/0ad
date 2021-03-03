@@ -72,6 +72,13 @@ var g_Commands = {
 		Cheat(cmd);
 	},
 
+	"collect-treasure": function(player, cmd, data)
+	{
+		GetFormationUnitAIs(data.entities, player, cmd, data.formation).forEach(cmpUnitAI => {
+			cmpUnitAI.CollectTreasure(cmd.target, cmd.queued);
+		});
+	},
+
 	"diplomacy": function(player, cmd, data)
 	{
 		let cmpCeasefireManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_CeasefireManager);

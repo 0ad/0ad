@@ -45,7 +45,7 @@ ResourceSupply.prototype.Schema =
 		"</element>" +
 	"</optional>" +
 	"<element name='Type' a:help='Type and Subtype of resource available from this entity'>" +
-		Resources.BuildChoicesSchema(true, true) +
+		Resources.BuildChoicesSchema(true) +
 	"</element>" +
 	"<element name='MaxGatherers' a:help='Amount of gatherers who can gather resources from this entity at the same time'>" +
 		"<data type='nonNegativeInteger'/>" +

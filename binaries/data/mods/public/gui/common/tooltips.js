@@ -761,14 +761,45 @@ function getResourceSupplyTooltip(template)
 		return "";
 
 	let supply = template.supply;
-	let type = supply.type[0] == "treasure" ? supply.type[1] : supply.type[0];
-
 	// Translation: Label in tooltip showing the resource type and quantity of a given resource supply.
 	return sprintf(translate("%(label)s %(component)s %(amount)s"), {
 		"label": headerFont(translate("Resource Supply:")),
-		"component": resourceIcon(type),
+		"component": resourceIcon(supply.type[0]),
 		// Translation: Marks that a resource supply entity has an unending, infinite, supply of its resource.
 		"amount": Number.isFinite(+supply.amount) ? supply.amount : translate("∞")
+	});
+}
+
+/**
+ * @param {Object} template - The entity's template.
+ * @return {string} - The resources this entity rewards to a collecter.
+ */
+function getTreasureTooltip(template)
+{
+	if (!template.treasure)
+		return "";
+
+	let resources = {};
+	for (let resource of g_ResourceData.GetResources())
+	{
+		let type = resource.code;
+		if (template.treasure.resources[type])
+			resources[type] = template.treasure.resources[type];
+	}
+
+	let resourceNames = Object.keys(resources);
+	if (!resourceNames.length)
+		return "";
+
+	return sprintf(translate("%(label)s %(details)s"), {
+		"label": headerFont(translate("Reward:")),
+		"details":
+			resourceNames.map(
+				type => sprintf(translate("%(resourceIcon)s %(reward)s"), {
+					"resourceIcon": resourceIcon(type),
+					"reward": resources[type]
+				})
+			).join("  ")
 	});
 }
 

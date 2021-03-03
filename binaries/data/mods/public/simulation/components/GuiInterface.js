@@ -552,6 +552,17 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 			"rates": cmpResourceTrickle.GetRates()
 		};
 
+	let cmpTreasure = Engine.QueryInterface(ent, IID_Treasure);
+	if (cmpTreasure)
+		ret.treasure = {
+			"collectTime": cmpTreasure.CollectionTime(),
+			"resources": cmpTreasure.Resources()
+		};
+
+	let cmpTreasureCollecter = Engine.QueryInterface(ent, IID_TreasureCollecter);
+	if (cmpTreasureCollecter)
+		ret.treasureCollecter = true;
+
 	let cmpUnitMotion = Engine.QueryInterface(ent, IID_UnitMotion);
 	if (cmpUnitMotion)
 		ret.speed = {

@@ -97,6 +97,14 @@ function GetRallyPointCommands(cmpRallyPoint, spawnedEnts)
 				"queued": true
 			});
 			break;
+		case "collect-treasure":
+			ret.push({
+				"type": "collect-treasure",
+				"entities": spawnedEnts,
+				"target": data[i].target,
+				"queued": true,
+			});
+			break;
 		default:
 			ret.push({
 				"type": "walk",
