@@ -25,6 +25,7 @@
 
 #include <ostream>
 #include <string>
+#include <unordered_map>
 #include <vector>
 
 class CFrustum;
