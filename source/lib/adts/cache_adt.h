@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -29,7 +29,6 @@
 
 #include <cfloat>
 #include <list>
-#include <map>
 #include <queue> // std::priority_queue
 #include <unordered_map>
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -32,7 +32,6 @@
 #include "scriptinterface/ScriptTypes.h"
 
 #include <map>
-#include <string>
 #include <vector>
 
 class CGUI;

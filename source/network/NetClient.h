@@ -25,7 +25,6 @@
 
 #include "ps/CStr.h"
 
-#include <atomic>
 #include <ctime>
 #include <deque>
 #include <thread>
