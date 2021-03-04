@@ -46,6 +46,10 @@
 #include "scriptinterface/FunctionWrapper.h"
 #include "scriptinterface/ScriptInterface.h"
 
+#if OS_LINUX
+#include <fstream>
+#endif
+
 // TODO: Support OpenGL platforms which don't use GLX as well.
 #if defined(SDL_VIDEO_DRIVER_X11) && !CONFIG2_GLES
 #include <GL/glx.h>
