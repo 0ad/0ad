@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -64,6 +64,12 @@
 #else
 # define ARCH_AARCH64 0
 #endif
+// .. PowerPC64 (PPC64)
+#if defined(__powerpc64__)
+# define ARCH_PPC64 1
+#else
+# define ARCH_PPC64 0
+#endif
 // .. MIPS
 #if defined(__MIPS__) || defined(__mips__) || defined(__mips)
 # define ARCH_MIPS 1
@@ -78,7 +84,7 @@
 #endif
 
 // ensure exactly one architecture has been detected
-#if (ARCH_IA32+ARCH_IA64+ARCH_AMD64+ARCH_ALPHA+ARCH_ARM+ARCH_AARCH64+ARCH_MIPS+ARCH_E2K) != 1
+#if (ARCH_IA32+ARCH_IA64+ARCH_AMD64+ARCH_ALPHA+ARCH_ARM+ARCH_AARCH64+ARCH_MIPS+ARCH_E2K+ARCH_PPC64) != 1
 # error "architecture not correctly detected (either none or multiple ARCH_* defined)"
 #endif
 

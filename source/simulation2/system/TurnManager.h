@@ -30,11 +30,6 @@ class CSimulationMessage;
 class CSimulation2;
 class IReplayLogger;
 
-extern const u32 DEFAULT_TURN_LENGTH_SP;
-extern const u32 DEFAULT_TURN_LENGTH_MP;
-
-extern const int COMMAND_DELAY;
-
 /**
  * This file defines the base class of the turn managers for clients, local games and replays.
  * The basic idea of our turn managing system across a network is as in this article:
@@ -54,6 +49,31 @@ extern const int COMMAND_DELAY;
  */
 
 /**
+ * Default turn length in SP & MP.
+ * This value should be as low as possible, while not introducing un-necessary lag.
+ */
+inline constexpr u32 DEFAULT_TURN_LENGTH = 200;
+
+/**
+ * In single-player, commands are directly scheduled for the next turn.
+ */
+inline constexpr u32 COMMAND_DELAY_SP = 1;
+
+/**
+ * In multi-player, clients can only compute turn N if all clients have finished sending commands for it,
+ * i.e. N < CurrentTurn + COMMAND_DELAY for all clients.
+ * Commands are sent from client to server to client, and both client and network can lag.
+ * If a client reaches turn CURRENT_TURN + COMMAND_DELAY - 1, it'll freeze while waiting for commands.
+ * To avoid that, we increase the command-delay to make sure that in general players will have received all commands
+ * by the time they reach a given turn. Keep in mind the minimum delay is one turn.
+ * This value should be as low as possible while avoiding 'freezing' in general usage.
+ * TODO:
+ *  - this command-delay could vary based on server-client pings
+ *  - it ought be possible to send commands in a P2P fashion (with server verification), which would lower the ping.
+ */
+inline constexpr u32 COMMAND_DELAY_MP = 4;
+
+/**
  * Common turn system (used by clients and offline games).
  */
 class CTurnManager
@@ -63,7 +83,7 @@ public:
 	/**
 	 * Construct for a given network session ID.
 	 */
-	CTurnManager(CSimulation2& simulation, u32 defaultTurnLength, int clientId, IReplayLogger& replay);
+	CTurnManager(CSimulation2& simulation, u32 defaultTurnLength, u32 commandDelay, int clientId, IReplayLogger& replay);
 
 	virtual ~CTurnManager() { }
 
@@ -163,6 +183,9 @@ protected:
 
 	/// The turn that we have most recently executed
 	u32 m_CurrentTurn;
+
+	// Current command delay (commands are scheduled for m_CurrentTurn + m_CommandDelay)
+	u32 m_CommandDelay;
 
 	/// The latest turn for which we have received all commands from all clients
 	u32 m_ReadyTurn;

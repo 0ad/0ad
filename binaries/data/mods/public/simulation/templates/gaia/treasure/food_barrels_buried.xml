@@ -15,10 +15,11 @@
     <Floating>false</Floating>
     <FloatDepth>0.0</FloatDepth>
   </Position>
-  <ResourceSupply>
-    <Max>200</Max>
-    <Type>treasure.food</Type>
-  </ResourceSupply>
+  <Treasure>
+    <Resources>
+      <food>200</food>
+    </Resources>
+  </Treasure>
   <VisualActor>
     <Actor>props/special/eyecandy/barrels_buried.xml</Actor>
   </VisualActor>

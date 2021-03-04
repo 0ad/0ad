@@ -7,10 +7,11 @@
   <Identity>
     <SpecificName>Pegasus</SpecificName>
   </Identity>
-  <ResourceSupply>
-    <Max>1000</Max>
-    <Type>treasure.metal</Type>
-  </ResourceSupply>
+  <Treasure>
+    <Resources>
+      <metal>1000</metal>
+    </Resources>
+  </Treasure>
   <VisualActor>
     <Actor>special/pegasus.xml</Actor>
   </VisualActor>

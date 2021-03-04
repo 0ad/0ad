@@ -44,7 +44,7 @@ GNUTLS_VERSION="gnutls-3.6.15"
 # NOTE: remember to also update LIB_URL below when changing version
 ICU_VERSION="icu4c-67_1"
 ENET_VERSION="enet-1.3.17"
-MINIUPNPC_VERSION="miniupnpc-2.1"
+MINIUPNPC_VERSION="miniupnpc-2.2.2"
 SODIUM_VERSION="libsodium-1.0.18"
 FMT_VERSION="7.1.3"
 # --------------------------------------------------------------

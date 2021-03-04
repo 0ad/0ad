@@ -389,7 +389,7 @@ void Interface::ApplyMessage(const GameMessage& msg)
 				turnMgr->PostCommand(command.playerID, commandJSON);
 			}
 
-			const u32 deltaRealTime = DEFAULT_TURN_LENGTH_SP;
+			const u32 deltaRealTime = DEFAULT_TURN_LENGTH;
 			if (nonVisual)
 			{
 				const double deltaSimTime = deltaRealTime * g_Game->GetSimRate();

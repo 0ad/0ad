@@ -468,7 +468,7 @@ function placePlayersNomad(playerClass, constraints)
 
 			let count = Math.max(0, Math.ceil(
 				(ccCost[resourceType] - (g_MapSettings.StartingResources || 0)) /
-				Engine.GetTemplate(treasureTemplate).ResourceSupply.Amount));
+				Engine.GetTemplate(treasureTemplate).Treasure.Resources[resourceType]));
 
 			objects.push(new SimpleObject(treasureTemplate, count, count, 3, 5));
 		}

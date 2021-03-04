@@ -23,7 +23,9 @@
 #include "ps/Filesystem.h"
 #include "ps/XML/Xeromyces.h"
 
+#ifdef OS_WIN
 #include <fstream>
+#endif
 
 CModInstaller::CModInstaller(const OsPath& modsdir, const OsPath& tempdir) :
 	m_ModsDir(modsdir), m_TempDir(tempdir / "_modscache"), m_CacheDir("cache/")

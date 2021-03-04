@@ -11,10 +11,11 @@
   <Obstruction>
     <Static width="1.75" depth="1.75"/>
   </Obstruction>
-  <ResourceSupply>
-    <Max>200</Max>
-    <Type>treasure.food</Type>
-  </ResourceSupply>
+  <Treasure>
+    <Resources>
+      <food>200</food>
+    </Resources>
+  </Treasure>
   <VisualActor>
     <Actor>props/special/eyecandy/crate_a.xml</Actor>
   </VisualActor>

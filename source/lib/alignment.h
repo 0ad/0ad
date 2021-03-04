@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -80,7 +80,18 @@ static const size_t cacheLineSize = 64;	// (L2)
 // MMU pages
 //
 
+#ifdef ARCH_PPC64
+// NOTE: ppc64 can operate in either 4k or 64k page size mode
+// If the define page size is larger than the active page size,
+// the allocator functions normally.  If the defined page size
+// is less than the active page size, the allocator fails tests.
+//
+// Define the page size to the maximum known architectural page
+// size on ppc64 systems.
+static const size_t g_PageSize = 64 * 1024;	// 64 KB
+#else
 static const size_t g_PageSize = 4 * 1024;	// 4 KB
+#endif
 static const size_t g_LargePageSize = 2 * 1024 * 1024;	// 2 MB
 
 

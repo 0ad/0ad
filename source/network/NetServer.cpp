@@ -67,6 +67,14 @@ constexpr int FAILED_PASSWORD_TRIES_BEFORE_BAN = 3;
  */
 static const int HOST_SERVICE_TIMEOUT = 50;
 
+/**
+ * Once ping goes above turn length * command delay,
+ * the game will start 'freezing' for other clients while we catch up.
+ * Since commands are sent client -> server -> client, divide by 2.
+ * (duplicated in NetServer.cpp to avoid having to fetch the constants in a header file)
+ */
+constexpr u32 NETWORK_BAD_PING = DEFAULT_TURN_LENGTH * COMMAND_DELAY_MP / 2;
+
 CNetServer* g_NetServer = NULL;
 
 static CStr DebugName(CNetServerSession* session)
@@ -604,7 +612,7 @@ void CNetServerWorker::CheckClientConnections()
 			message = msg;
 		}
 		// Report if the client has bad ping
-		else if (meanRTT > DEFAULT_TURN_LENGTH_MP)
+		else if (meanRTT > NETWORK_BAD_PING)
 		{
 			CClientPerformanceMessage* msg = new CClientPerformanceMessage();
 			CClientPerformanceMessage::S_m_Clients client;

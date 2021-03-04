@@ -11,10 +11,11 @@
   <Obstruction>
     <Static width="5.0" depth="5.0"/>
   </Obstruction>
-  <ResourceSupply>
-    <Max>400</Max>
-    <Type>treasure.food</Type>
-  </ResourceSupply>
+  <Treasure>
+    <Resources>
+      <food>400</food>
+    </Resources>
+  </Treasure>
   <VisualActor>
     <Actor>props/special/eyecandy/treasure_persian_food_small.xml</Actor>
   </VisualActor>

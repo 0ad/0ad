@@ -268,17 +268,17 @@ PETRA.HQ.prototype.buildFirstBase = function(gameState)
 			if (ent.isIdle())
 				PETRA.gatherTreasure(gameState, ent);
 			// Then count the resources from the treasures being collected
-			let supplyId = ent.getMetadata(PlayerID, "supply");
-			if (!supplyId)
+			let treasureId = ent.getMetadata(PlayerID, "treasure");
+			if (!treasureId)
 				continue;
-			let supply = gameState.getEntityById(supplyId);
-			if (!supply || supply.resourceSupplyType().generic != "treasure")
+			let treasure = gameState.getEntityById(treasureId);
+			if (!treasure)
 				continue;
-			let type = supply.resourceSupplyType().specific;
-			if (!(type in totalExpected))
-				continue;
-			totalExpected[type] += supply.resourceSupplyMax();
-			// If we can collect enough resources from these treasures, wait for them
+			let types = treasure.treasureResources();
+			for (let type in types)
+				if (type in totalExpected)
+					totalExpected[type] += types[type];
+			// If we can collect enough resources from these treasures, wait for them.
 			if (totalExpected.canAfford(new API3.Resources(template.cost())))
 				return;
 		}

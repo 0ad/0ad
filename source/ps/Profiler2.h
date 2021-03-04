@@ -81,11 +81,10 @@
 #include "lib/timer.h"
 #include "ps/ThreadUtil.h"
 
-#include <cstring>
-#include <map>
 #include <mutex>
-#include <vector>
+#include <string>
 #include <thread>
+#include <vector>
 
 struct mg_context;
 

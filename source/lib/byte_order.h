@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -33,7 +33,7 @@
 #ifndef BYTE_ORDER
 # define LITTLE_ENDIAN 0x4321
 # define BIG_ENDIAN    0x1234
-# if ARCH_IA32 || ARCH_IA64 || ARCH_AMD64 || ARCH_ALPHA || ARCH_ARM || ARCH_AARCH64 || ARCH_MIPS || ARCH_E2K || defined(__LITTLE_ENDIAN__)
+# if ARCH_IA32 || ARCH_IA64 || ARCH_AMD64 || ARCH_ALPHA || ARCH_ARM || ARCH_AARCH64 || ARCH_MIPS || ARCH_E2K || ARCH_PPC64 || defined(__LITTLE_ENDIAN__)
 #  define BYTE_ORDER LITTLE_ENDIAN
 # else
 #  define BYTE_ORDER BIG_ENDIAN

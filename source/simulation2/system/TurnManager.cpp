@@ -30,32 +30,36 @@
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
 
-const u32 DEFAULT_TURN_LENGTH_MP = 500;
-const u32 DEFAULT_TURN_LENGTH_SP = 200;
-
-const int COMMAND_DELAY = 2;
-
 #if 0
 #define NETTURN_LOG(...) debug_printf(__VA_ARGS__)
 #else
 #define NETTURN_LOG(...)
 #endif
 
+/**
+ * Maximum number of turns between two clients.
+ * When we are on turn n, we schedule new commands for n+COMMAND_DELAY.
+ * We know that all other clients have finished scheduling commands for n,
+ * else we couldn't have got here, which means they're at least on turn n-COMMAND_DELAY+1.
+ * We know we have not yet finished scheduling commands for n+COMMAND_DELAY, so no client can be there.
+ * Hence other clients can be on turns [n-COMMAND_DELAY+1, ..., n+COMMAND_DELAY-1], and no other,
+ * hence any two clients can only be this many turns apart.
+ */
+constexpr int MaxClientTurnDelta(int commandDelay)
+{
+		return 2 * (commandDelay - 1);
+}
+
 const CStr CTurnManager::EventNameSavegameLoaded = "SavegameLoaded";
 
-CTurnManager::CTurnManager(CSimulation2& simulation, u32 defaultTurnLength, int clientId, IReplayLogger& replay)
-	: m_Simulation2(simulation), m_CurrentTurn(0), m_ReadyTurn(1), m_TurnLength(defaultTurnLength),
+CTurnManager::CTurnManager(CSimulation2& simulation, u32 defaultTurnLength, u32 commandDelay, int clientId, IReplayLogger& replay)
+	: m_Simulation2(simulation), m_CurrentTurn(0), m_CommandDelay(commandDelay), m_ReadyTurn(commandDelay - 1), m_TurnLength(defaultTurnLength),
 	m_PlayerId(-1), m_ClientId(clientId), m_DeltaSimTime(0), m_HasSyncError(false), m_Replay(replay),
 	m_FinalTurn(std::numeric_limits<u32>::max()), m_TimeWarpNumTurns(0),
 	m_QuickSaveMetadata(m_Simulation2.GetScriptInterface().GetGeneralJSContext())
 {
-	// When we are on turn n, we schedule new commands for n+2.
-	// We know that all other clients have finished scheduling commands for n (else we couldn't have got here).
-	// We know we have not yet finished scheduling commands for n+2.
-	// Hence other clients can be on turn n-1, n, n+1, and no other.
-	// So they can be sending us commands scheduled for n+1, n+2, n+3.
-	// So we need a 3-element buffer:
-	m_QueuedCommands.resize(COMMAND_DELAY + 1);
+	// Lag between any two clients is bounded. Add 1 for inclusive bounds.
+	m_QueuedCommands.resize(MaxClientTurnDelta(m_CommandDelay) + 1);
 }
 
 void CTurnManager::ResetState(u32 newCurrentTurn, u32 newReadyTurn)
@@ -108,7 +112,7 @@ bool CTurnManager::Update(float simFrameLength, size_t maxTurns)
 	NETTURN_LOG("Update current=%d ready=%d\n", m_CurrentTurn, m_ReadyTurn);
 
 	// Check that the next turn is ready for execution
-	if (m_ReadyTurn <= m_CurrentTurn)
+	if (m_ReadyTurn <= m_CurrentTurn && m_CommandDelay > 1)
 	{
 		// Oops, we wanted to start the next turn but it's not ready yet -
 		// there must be too much network lag.
@@ -132,10 +136,10 @@ bool CTurnManager::Update(float simFrameLength, size_t maxTurns)
 			break;
 
 		// Check that the i'th next turn is still ready
-		if (m_ReadyTurn <= m_CurrentTurn)
+		if (m_ReadyTurn <= m_CurrentTurn && m_CommandDelay > 1)
 			break;
 
-		NotifyFinishedOwnCommands(m_CurrentTurn + COMMAND_DELAY);
+		NotifyFinishedOwnCommands(m_CurrentTurn + m_CommandDelay);
 
 		// Increase now, so Update can send new commands for a subsequent turn
 		++m_CurrentTurn;
@@ -231,9 +235,10 @@ void CTurnManager::Interpolate(float simFrameLength, float realFrameLength)
 
 void CTurnManager::AddCommand(int client, int player, JS::HandleValue data, u32 turn)
 {
-	NETTURN_LOG("AddCommand(client=%d player=%d turn=%d)\n", client, player, turn);
+	NETTURN_LOG("AddCommand(client=%d player=%d turn=%d current=%d, ready=%d)\n", client, player, turn, m_CurrentTurn, m_ReadyTurn);
 
-	if (!(m_CurrentTurn < turn && turn <= m_CurrentTurn + COMMAND_DELAY + 1))
+	// Reject commands for turns that we should not be able to compute (in the past or too far future).
+	if (m_CurrentTurn >= turn || turn > m_CurrentTurn + MaxClientTurnDelta(m_CommandDelay) + 1)
 	{
 		debug_warn(L"Received command for invalid turn");
 		return;

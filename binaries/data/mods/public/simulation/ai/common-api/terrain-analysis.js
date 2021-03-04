@@ -397,7 +397,7 @@ m.SharedScript.prototype.createResourceMaps = function()
 	}
 	for (let ent of this._entities.values())
 	{
-		if (!ent || !ent.position() || !ent.resourceSupplyType() || ent.resourceSupplyType().generic === "treasure")
+		if (!ent || !ent.position() || !ent.resourceSupplyType())
 			continue;
 		let resource = ent.resourceSupplyType().generic;
 		if (!this.resourceMaps[resource])
@@ -439,7 +439,7 @@ m.SharedScript.prototype.updateResourceMaps = function(events)
 		if (!e.entityObj)
 			continue;
 		let ent = e.entityObj;
-		if (!ent || !ent.position() || !ent.resourceSupplyType() || ent.resourceSupplyType().generic === "treasure")
+		if (!ent || !ent.position() || !ent.resourceSupplyType())
 			continue;
 		let resource = ent.resourceSupplyType().generic;
 		if (!this.resourceMaps[resource])
@@ -458,7 +458,7 @@ m.SharedScript.prototype.updateResourceMaps = function(events)
 		if (!e.entity || !this._entities.has(e.entity))
 			continue;
 		let ent = this._entities.get(e.entity);
-		if (!ent || !ent.position() || !ent.resourceSupplyType() || ent.resourceSupplyType().generic === "treasure")
+		if (!ent || !ent.position() || !ent.resourceSupplyType())
 			continue;
 		let resource = ent.resourceSupplyType().generic;
 		if (!this.resourceMaps[resource])

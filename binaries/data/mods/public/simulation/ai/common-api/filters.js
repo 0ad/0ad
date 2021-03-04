@@ -117,6 +117,20 @@ m.Filters = {
 		"dynamicProperties": []
 	}),
 
+	"isTreasure": () => ({
+		"func": ent => {
+			if (!ent.isTreasure())
+				return false;
+
+			// Don't go for floating treasures since we might not be able
+			// to reach them and that kills the pathfinder.
+			let template = ent.templateName();
+			return template != "gaia/treasure/shipwreck_debris" &&
+			    template != "gaia/treasure/shipwreck";
+		},
+		"dynamicProperties": []
+	}),
+
 	"byResource": resourceType => ({
 		"func": ent => {
 			if (!ent.resourceSupplyMax())
@@ -129,14 +143,6 @@ m.Filters = {
 			// Skip targets that are too hard to hunt
 			if (!ent.isHuntable() || ent.hasClass("SeaCreature"))
 				return false;
-
-			// Don't go for floating treasures since we won't be able to reach them and it kills the pathfinder.
-			if (ent.templateName() == "gaia/treasure/shipwreck_debris" ||
-			    ent.templateName() == "gaia/treasure/shipwreck")
-				return false;
-
-			if (type.generic == "treasure")
-				return resourceType == type.specific;
 
 			return resourceType == type.generic;
 		},

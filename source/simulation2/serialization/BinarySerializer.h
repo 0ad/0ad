@@ -25,8 +25,7 @@
 #include "js/AllocPolicy.h"
 #include "js/GCHashTable.h"
 
-#include <iostream>
-#include <map>
+#include <ostream>
 #include <streambuf>
 
 /**

@@ -10,15 +10,16 @@
   <Obstruction>
     <Static width="7.0" depth="7.0"/>
   </Obstruction>
-  <ResourceSupply>
-    <Max>500</Max>
-    <Type>treasure.metal</Type>
-  </ResourceSupply>
   <Sound>
     <SoundGroups>
       <select>interface/select/resource/sel_metal.xml</select>
     </SoundGroups>
   </Sound>
+  <Treasure>
+    <Resources>
+      <metal>500</metal>
+    </Resources>
+  </Treasure>
   <VisualActor>
     <Actor>props/special/eyecandy/treasure_persian_metal_big.xml</Actor>
   </VisualActor>

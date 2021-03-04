@@ -170,8 +170,6 @@ PETRA.BaseManager.prototype.assignResourceToDropsite = function(gameState, drops
 				return;
 			if (supply.hasClass("Field"))     // fields are treated separately
 				return;
-			if (supply.resourceSupplyType().generic == "treasure")  // treasures are treated separately
-				return;
 			// quick accessibility check
 			if (PETRA.getLandAccess(gameState, supply) != accessIndex)
 				return;

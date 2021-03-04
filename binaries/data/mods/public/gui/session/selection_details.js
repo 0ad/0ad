@@ -10,14 +10,6 @@ function layoutSelectionMultiple()
 	Engine.GetGUIObjectByName("detailsAreaSingle").hidden = true;
 }
 
-function getResourceTypeDisplayName(resourceType)
-{
-	return resourceNameFirstWord(
-		resourceType.generic == "treasure" ?
-			resourceType.specific :
-			resourceType.generic);
-}
-
 // Updates the health bar of garrisoned units
 function updateGarrisonHealthBar(entState, selection)
 {
@@ -228,7 +220,7 @@ function displaySingle(entState)
 		unitResourceBar.size = resourceSize;
 
 		Engine.GetGUIObjectByName("resourceLabel").caption = sprintf(translate("%(resource)s:"), {
-			"resource": getResourceTypeDisplayName(entState.resourceSupply.type)
+			"resource": resourceNameFirstWord(entState.resourceSupply.type.generic)
 		});
 		Engine.GetGUIObjectByName("resourceStats").caption = resources;
 
@@ -347,6 +339,7 @@ function displaySingle(entState)
 		getVisibleEntityClassesFormatted,
 		getAurasTooltip,
 		getEntityTooltip,
+		getTreasureTooltip,
 		showTemplateViewerOnRightClickTooltip
 	].map(func => func(template)));
 

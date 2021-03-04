@@ -25,7 +25,7 @@ ResourceGatherer.prototype.Schema =
 		"<ref name='positiveDecimal'/>" +
 	"</element>" +
 	"<element name='Rates' a:help='Per-resource-type gather rate multipliers. If a resource type is not specified then it cannot be gathered by this unit'>" +
-		Resources.BuildSchema("positiveDecimal", ["treasure"], true) +
+		Resources.BuildSchema("positiveDecimal", [], true) +
 	"</element>" +
 	"<element name='Capacities' a:help='Per-resource-type maximum carrying capacity'>" +
 		Resources.BuildSchema("positiveDecimal") +
@@ -114,7 +114,7 @@ ResourceGatherer.prototype.RecalculateGatherRates = function()
 	{
 		let type = r.split(".");
 
-		if (type[0] != "treasure" && type.length > 1 && !Resources.GetResource(type[0]).subtypes[type[1]])
+		if (!Resources.GetResource(type[0]).subtypes[type[1]])
 		{
 			error("Resource subtype not found: " + type[0] + "." + type[1]);
 			continue;
@@ -162,35 +162,6 @@ ResourceGatherer.prototype.GetRange = function()
 {
 	return { "max": +this.template.MaxDistance, "min": 0 };
 	// maybe this should depend on the unit or target or something?
-};
-
-/**
- * Try to gather treasure
- * @return 'true' if treasure is successfully gathered, otherwise 'false'
- */
-ResourceGatherer.prototype.TryInstantGather = function(target)
-{
-	let cmpResourceSupply = Engine.QueryInterface(target, IID_ResourceSupply);
-	let type = cmpResourceSupply.GetType();
-
-	if (type.generic != "treasure")
-		return false;
-
-	let status = cmpResourceSupply.TakeResources(cmpResourceSupply.GetCurrentAmount());
-
-	let cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
-	if (cmpPlayer)
-		cmpPlayer.AddResource(type.specific, status.amount);
-
-	let cmpStatisticsTracker = QueryOwnerInterface(this.entity, IID_StatisticsTracker);
-	if (cmpStatisticsTracker)
-		cmpStatisticsTracker.IncreaseTreasuresCollectedCounter();
-
-	let cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
-	if (cmpTrigger && cmpPlayer)
-		cmpTrigger.CallEvent("TreasureCollected", { "player": cmpPlayer.GetPlayerID(), "type": type.specific, "amount": status.amount });
-
-	return true;
 };
 
 /**

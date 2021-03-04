@@ -72,6 +72,20 @@ var g_Commands = {
 		Cheat(cmd);
 	},
 
+	"collect-treasure": function(player, cmd, data)
+	{
+		GetFormationUnitAIs(data.entities, player, cmd, data.formation).forEach(cmpUnitAI => {
+			cmpUnitAI.CollectTreasure(cmd.target, cmd.autocontinue, cmd.queued);
+		});
+	},
+
+	"collect-treasure-near-position": function(player, cmd, data)
+	{
+		GetFormationUnitAIs(data.entities, player, cmd, data.formation).forEach(cmpUnitAI => {
+			cmpUnitAI.CollectTreasureNearPosition(cmd.x, cmd.z, cmd.autocontinue, cmd.queued);
+		});
+	},
+
 	"diplomacy": function(player, cmd, data)
 	{
 		let cmpCeasefireManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_CeasefireManager);

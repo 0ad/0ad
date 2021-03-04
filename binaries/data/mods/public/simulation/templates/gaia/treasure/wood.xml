@@ -10,15 +10,16 @@
   <Obstruction>
     <Static width="3.5" depth="6.5"/>
   </Obstruction>
-  <ResourceSupply>
-    <Max>300</Max>
-    <Type>treasure.wood</Type>
-  </ResourceSupply>
   <Sound>
     <SoundGroups>
       <select>interface/select/resource/sel_tree.xml</select>
     </SoundGroups>
   </Sound>
+  <Treasure>
+    <Resources>
+      <wood>300</wood>
+    </Resources>
+  </Treasure>
   <VisualActor>
     <Actor>props/special/eyecandy/wood_pile.xml</Actor>
   </VisualActor>

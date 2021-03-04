@@ -18,8 +18,6 @@
 #ifndef INCLUDED_TERRAINTEXTUREENTRY
 #define INCLUDED_TERRAINTEXTUREENTRY
 
-#include <map>
-
 #include "TerrainTextureManager.h"
 #include "TextureManager.h"
 #include "Material.h"
@@ -28,6 +26,8 @@
 #include "lib/file/vfs/vfs_path.h"
 #include "maths/Matrix3D.h"
 #include "ps/CStr.h"
+
+#include <vector>
 
 class XMBElement;
 class CXeromyces;

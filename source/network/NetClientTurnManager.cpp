@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -27,6 +27,8 @@
 #include "ps/Util.h"
 #include "simulation2/Simulation2.h"
 
+#include <fstream>
+
 #if 0
 #define NETCLIENTTURN_LOG(...) debug_printf(__VA_ARGS__)
 #else
@@ -36,7 +38,7 @@
 extern CStrW g_UniqueLogPostfix;
 
 CNetClientTurnManager::CNetClientTurnManager(CSimulation2& simulation, CNetClient& client, int clientId, IReplayLogger& replay)
-	: CTurnManager(simulation, DEFAULT_TURN_LENGTH_MP, clientId, replay), m_NetClient(client)
+	: CTurnManager(simulation, DEFAULT_TURN_LENGTH, COMMAND_DELAY_MP, clientId, replay), m_NetClient(client)
 {
 }
 
@@ -45,11 +47,11 @@ void CNetClientTurnManager::PostCommand(JS::HandleValue data)
 	NETCLIENTTURN_LOG("PostCommand()\n");
 
 	// Transmit command to server
-	CSimulationMessage msg(m_Simulation2.GetScriptInterface(), m_ClientId, m_PlayerId, m_CurrentTurn + COMMAND_DELAY, data);
+	CSimulationMessage msg(m_Simulation2.GetScriptInterface(), m_ClientId, m_PlayerId, m_CurrentTurn + m_CommandDelay, data);
 	m_NetClient.SendMessage(&msg);
 
 	// Add to our local queue
-	//AddCommand(m_ClientId, m_PlayerId, data, m_CurrentTurn + COMMAND_DELAY);
+	//AddCommand(m_ClientId, m_PlayerId, data, m_CurrentTurn + m_CommandDelay);
 	// TODO: we should do this when the server stops sending our commands back to us
 }
 
@@ -98,7 +100,7 @@ void CNetClientTurnManager::OnDestroyConnection()
 	// Attempt to flush messages before leaving.
 	// Notice the sending is not reliable and rarely makes it to the Server.
 	if (m_NetClient.GetCurrState() == NCS_INGAME)
-		NotifyFinishedOwnCommands(m_CurrentTurn + COMMAND_DELAY);
+		NotifyFinishedOwnCommands(m_CurrentTurn + m_CommandDelay);
 }
 
 void CNetClientTurnManager::OnSimulationMessage(CSimulationMessage* msg)

@@ -40,6 +40,14 @@
 #include "simulation2/Simulation2.h"
 #include "network/StunClient.h"
 
+/**
+ * Once ping goes above turn length * command delay,
+ * the game will start 'freezing' for other clients while we catch up.
+ * Since commands are sent client -> server -> client, divide by 2.
+ * (duplicated in NetServer.cpp to avoid having to fetch the constants in a header file)
+ */
+constexpr u32 NETWORK_BAD_PING = DEFAULT_TURN_LENGTH * COMMAND_DELAY_MP / 2;
+
 CNetClient *g_NetClient = NULL;
 
 /**
@@ -334,9 +342,9 @@ void CNetClient::CheckServerConnection()
 		return;
 	}
 
-	// Report if we have a bad ping to the server
+	// Report if we have a bad ping to the server.
 	u32 meanRTT = m_Session->GetMeanRTT();
-	if (meanRTT > DEFAULT_TURN_LENGTH_MP)
+	if (meanRTT > NETWORK_BAD_PING)
 	{
 		PushGuiMessage(
 			"type", "netwarn",
@@ -857,7 +865,7 @@ bool CNetClient::OnClientPerformance(void *context, CFsmEvent* event)
 	// Display warnings for other clients with bad ping
 	for (size_t i = 0; i < message->m_Clients.size(); ++i)
 	{
-		if (message->m_Clients[i].m_MeanRTT < DEFAULT_TURN_LENGTH_MP || message->m_Clients[i].m_GUID == client->m_GUID)
+		if (message->m_Clients[i].m_MeanRTT < NETWORK_BAD_PING || message->m_Clients[i].m_GUID == client->m_GUID)
 			continue;
 
 		client->PushGuiMessage(

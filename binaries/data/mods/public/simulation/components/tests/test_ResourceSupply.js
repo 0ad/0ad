@@ -21,10 +21,6 @@ Engine.LoadComponentScript("Timer.js");
 
 let entity = 60;
 
-AddMock(SYSTEM_ENTITY, IID_PlayerManager, {
-	"GetNumPlayers": () => 3
-});
-
 AddMock(entity, IID_Fogging, {
 	"Activate": () => {}
 });

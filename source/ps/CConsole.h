@@ -23,7 +23,6 @@
 #define INCLUDED_CCONSOLE
 
 #include <deque>
-#include <map>
 #include <mutex>
 #include <stdarg.h>
 #include <string>

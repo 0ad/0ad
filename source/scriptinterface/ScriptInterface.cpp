@@ -30,8 +30,8 @@
 #include "ps/Profile.h"
 #include "ps/utf16string.h"
 
-#include <cassert>
 #include <map>
+#include <string>
 
 #define BOOST_MULTI_INDEX_DISABLE_SERIALIZATION
 #include <boost/preprocessor/punctuation/comma_if.hpp>

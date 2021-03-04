@@ -270,7 +270,7 @@ UnitAI.prototype.UnitFsmSpec = {
 	"Order.LeaveFoundation": function(msg) {
 		if (!this.WillMoveFromFoundation(msg.data.target))
 			return this.FinishOrder();
-		this.order.data.min = g_LeaveFoundationRange;
+		msg.data.min = g_LeaveFoundationRange;
 		this.SetNextState("INDIVIDUAL.WALKING");
 		return ACCEPT_ORDER;
 	},
@@ -308,8 +308,8 @@ UnitAI.prototype.UnitFsmSpec = {
 			return ACCEPT_ORDER;
 		}
 
-		this.SetHeldPosition(this.order.data.x, this.order.data.z);
-		this.order.data.relaxed = true;
+		this.SetHeldPosition(msg.data.x, msg.data.z);
+		msg.data.relaxed = true;
 		this.SetNextState("INDIVIDUAL.WALKING");
 		return ACCEPT_ORDER;
 	},
@@ -324,8 +324,8 @@ UnitAI.prototype.UnitFsmSpec = {
 			return ACCEPT_ORDER;
 		}
 
-		this.SetHeldPosition(this.order.data.x, this.order.data.z);
-		this.order.data.relaxed = true;
+		this.SetHeldPosition(msg.data.x, msg.data.z);
+		msg.data.relaxed = true;
 		this.SetNextState("INDIVIDUAL.WALKINGANDFIGHTING");
 		return ACCEPT_ORDER;
 	},
@@ -342,10 +342,10 @@ UnitAI.prototype.UnitFsmSpec = {
 		}
 
 
-		if (this.CheckRange(this.order.data))
+		if (this.CheckRange(msg.data))
 			return this.FinishOrder();
 
-		this.order.data.relaxed = true;
+		msg.data.relaxed = true;
 		this.SetNextState("INDIVIDUAL.WALKING");
 		return ACCEPT_ORDER;
 	},
@@ -356,18 +356,18 @@ UnitAI.prototype.UnitFsmSpec = {
 			return this.FinishOrder();
 
 		let range = cmpGarrisonHolder.GetLoadingRange();
-		this.order.data.min = range.min;
-		this.order.data.max = range.max;
-		if (this.CheckRange(this.order.data))
+		msg.data.min = range.min;
+		msg.data.max = range.max;
+		if (this.CheckRange(msg.data))
 			return this.FinishOrder();
 
 		// Check if we need to move
 		// If the target can reach us and we are reasonably close, don't move.
 		// TODO: it would be slightly more optimal to check for real, not bird-flight distance.
-		let cmpPassengerMotion = Engine.QueryInterface(this.order.data.target, IID_UnitMotion);
+		let cmpPassengerMotion = Engine.QueryInterface(msg.data.target, IID_UnitMotion);
 		if (cmpPassengerMotion &&
 		        cmpPassengerMotion.IsTargetRangeReachable(this.entity, range.min, range.max) &&
-		        PositionHelper.DistanceBetweenEntities(this.entity, this.order.data.target) < 200)
+		        PositionHelper.DistanceBetweenEntities(this.entity, msg.data.target) < 200)
 			this.SetNextState("INDIVIDUAL.PICKUP.LOADING");
 		else
 			this.SetNextState("INDIVIDUAL.PICKUP.APPROACHING");
@@ -375,7 +375,7 @@ UnitAI.prototype.UnitFsmSpec = {
 	},
 
 	"Order.Guard": function(msg) {
-		if (!this.AddGuard(this.order.data.target))
+		if (!this.AddGuard(msg.data.target))
 			return this.FinishOrder();
 
 		if (!this.CheckTargetRangeExplicit(this.isGuardOf, 0, this.guardRange))
@@ -391,17 +391,17 @@ UnitAI.prototype.UnitFsmSpec = {
 	},
 
 	"Order.Attack": function(msg) {
-		let type = this.GetBestAttackAgainst(this.order.data.target, this.order.data.allowCapture);
+		let type = this.GetBestAttackAgainst(msg.data.target, msg.data.allowCapture);
 		if (!type)
 			return this.FinishOrder();
 
-		this.order.data.attackType = type;
+		msg.data.attackType = type;
 
 		this.RememberTargetPosition();
-		if (this.order.data.hunting && this.orderQueue.length > 1 && this.orderQueue[1].type === "Gather")
+		if (msg.data.hunting && this.orderQueue.length > 1 && this.orderQueue[1].type === "Gather")
 			this.RememberTargetPosition(this.orderQueue[1].data);
 
-		if (this.CheckTargetAttackRange(this.order.data.target, this.order.data.attackType))
+		if (this.CheckTargetAttackRange(msg.data.target, msg.data.attackType))
 		{
 			if (this.CanUnpack())
 			{
@@ -417,7 +417,7 @@ UnitAI.prototype.UnitFsmSpec = {
 		}
 
 		// If we're hunting, that's a special case where we should continue attacking our target.
-		if (this.GetStance().respondStandGround && !this.order.data.force && !this.order.data.hunting || !this.AbleToMove())
+		if (this.GetStance().respondStandGround && !msg.data.force && !msg.data.hunting || !this.AbleToMove())
 			return this.FinishOrder();
 
 		if (this.CanPack())
@@ -442,27 +442,27 @@ UnitAI.prototype.UnitFsmSpec = {
 			return ACCEPT_ORDER;
 		}
 
-		this.order.data.relaxed = true;
+		msg.data.relaxed = true;
 
 		this.SetNextState("INDIVIDUAL.PATROL.PATROLLING");
 		return ACCEPT_ORDER;
 	},
 
 	"Order.Heal": function(msg) {
-		if (!this.TargetIsAlive(this.order.data.target))
+		if (!this.TargetIsAlive(msg.data.target))
 			return this.FinishOrder();
 
 		// Healers can't heal themselves.
-		if (this.order.data.target == this.entity)
+		if (msg.data.target == this.entity)
 			return this.FinishOrder();
 
-		if (this.CheckTargetRange(this.order.data.target, IID_Heal))
+		if (this.CheckTargetRange(msg.data.target, IID_Heal))
 		{
 			this.SetNextState("INDIVIDUAL.HEAL.HEALING");
 			return ACCEPT_ORDER;
 		}
 
-		if (this.GetStance().respondStandGround && !this.order.data.force)
+		if (this.GetStance().respondStandGround && !msg.data.force)
 			return this.FinishOrder();
 
 		this.SetNextState("INDIVIDUAL.HEAL.APPROACHING");
@@ -470,16 +470,15 @@ UnitAI.prototype.UnitFsmSpec = {
 	},
 
 	"Order.Gather": function(msg) {
-		if (!this.CanGather(this.order.data.target))
+		if (!this.CanGather(msg.data.target))
 		{
 			this.SetNextState("INDIVIDUAL.GATHER.FINDINGNEWTARGET");
 			return ACCEPT_ORDER;
 		}
 
 		// If the unit is full go to the nearest dropsite instead of trying to gather.
-		// Unless our target is a treasure which we cannot be full enough with (we can't carry treasures).
 		let cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
-		if (msg.data.type.generic !== "treasure" && cmpResourceGatherer && !cmpResourceGatherer.CanCarryMore(msg.data.type.generic))
+		if (cmpResourceGatherer && !cmpResourceGatherer.CanCarryMore(msg.data.type.generic))
 		{
 			let nearestDropsite = this.FindNearestDropsite(msg.data.type.generic);
 			if (nearestDropsite)
@@ -495,10 +494,10 @@ UnitAI.prototype.UnitFsmSpec = {
 			return ACCEPT_ORDER;
 		}
 
-		if (this.MustKillGatherTarget(this.order.data.target))
+		if (this.MustKillGatherTarget(msg.data.target))
 		{
 			// Make sure we can attack the target, else we'll get very stuck
-			if (!this.GetBestAttackAgainst(this.order.data.target, false))
+			if (!this.GetBestAttackAgainst(msg.data.target, false))
 			{
 				// Oops, we can't attack at all - give up
 				// TODO: should do something so the player knows why this failed
@@ -506,37 +505,33 @@ UnitAI.prototype.UnitFsmSpec = {
 			}
 			// The target was visible when this order was issued,
 			// but could now be invisible again.
-			if (!this.CheckTargetVisible(this.order.data.target))
+			if (!this.CheckTargetVisible(msg.data.target))
 			{
-				if (this.order.data.secondTry === undefined)
+				if (msg.data.secondTry === undefined)
 				{
-					this.order.data.secondTry = true;
-					this.PushOrderFront("Walk", this.order.data.lastPos);
+					msg.data.secondTry = true;
+					this.PushOrderFront("Walk", msg.data.lastPos);
 				}
 				// We couldn't move there, or the target moved away
-				else
-				{
-					let data = this.order.data;
-					if (!this.FinishOrder())
-						this.PushOrderFront("GatherNearPosition", {
-							"x": data.lastPos.x,
-							"z": data.lastPos.z,
-							"type": data.type,
-							"template": data.template
-						});
-				}
+				else if (!this.FinishOrder())
+					this.PushOrderFront("GatherNearPosition", {
+						"x": msg.data.lastPos.x,
+						"z": msg.data.lastPos.z,
+						"type": msg.data.type,
+						"template": msg.data.template
+					});
 				return ACCEPT_ORDER;
 			}
 
-			this.PushOrderFront("Attack", { "target": this.order.data.target, "force": !!this.order.data.force, "hunting": true, "allowCapture": false });
+			this.PushOrderFront("Attack", { "target": msg.data.target, "force": !!msg.data.force, "hunting": true, "allowCapture": false });
 			return ACCEPT_ORDER;
 		}
 
 		this.RememberTargetPosition();
-		if (!this.order.data.initPos)
-			this.order.data.initPos = this.order.data.lastPos;
+		if (!msg.data.initPos)
+			msg.data.initPos = msg.data.lastPos;
 
-		if (this.CheckTargetRange(this.order.data.target, IID_ResourceGatherer))
+		if (this.CheckTargetRange(msg.data.target, IID_ResourceGatherer))
 			this.SetNextState("INDIVIDUAL.GATHER.GATHERING");
 		else
 			this.SetNextState("INDIVIDUAL.GATHER.APPROACHING");
@@ -545,17 +540,17 @@ UnitAI.prototype.UnitFsmSpec = {
 
 	"Order.GatherNearPosition": function(msg) {
 		this.SetNextState("INDIVIDUAL.GATHER.WALKING");
-		this.order.data.initPos = { 'x': this.order.data.x, 'z': this.order.data.z };
-		this.order.data.relaxed = true;
+		msg.data.initPos = { 'x': msg.data.x, 'z': msg.data.z };
+		msg.data.relaxed = true;
 		return ACCEPT_ORDER;
 	},
 
 	"Order.ReturnResource": function(msg) {
 		let cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
-		if (this.CheckTargetRange(this.order.data.target, IID_ResourceGatherer) &&
-		    this.CanReturnResource(this.order.data.target, true, cmpResourceGatherer))
+		if (this.CheckTargetRange(msg.data.target, IID_ResourceGatherer) &&
+		    this.CanReturnResource(msg.data.target, true, cmpResourceGatherer))
 		{
-			cmpResourceGatherer.CommitResources(this.order.data.target);
+			cmpResourceGatherer.CommitResources(msg.data.target);
 			this.SetDefaultAnimationVariant();
 
 			// Our next order should always be a Gather,
@@ -579,7 +574,7 @@ UnitAI.prototype.UnitFsmSpec = {
 	},
 
 	"Order.Repair": function(msg) {
-		if (this.CheckTargetRange(this.order.data.target, IID_Builder))
+		if (this.CheckTargetRange(msg.data.target, IID_Builder))
 			this.SetNextState("INDIVIDUAL.REPAIR.REPAIRING");
 		else
 			this.SetNextState("INDIVIDUAL.REPAIR.APPROACHING");
@@ -607,7 +602,7 @@ UnitAI.prototype.UnitFsmSpec = {
 			return ACCEPT_ORDER;
 		}
 
-		if (this.CheckGarrisonRange(this.order.data.target))
+		if (this.CheckGarrisonRange(msg.data.target))
 			this.SetNextState("INDIVIDUAL.GARRISON.GARRISONED");
 		else
 			this.SetNextState("INDIVIDUAL.GARRISON.APPROACHING");
@@ -645,6 +640,24 @@ UnitAI.prototype.UnitFsmSpec = {
 		return this.FinishOrder();
 	},
 
+	"Order.CollectTreasure": function(msg) {
+		let cmpTreasureCollecter = Engine.QueryInterface(this.entity, IID_TreasureCollecter);
+		if (!cmpTreasureCollecter || !cmpTreasureCollecter.CanCollect(msg.data.target))
+			return this.FinishOrder();
+
+		this.SetNextState("COLLECTTREASURE");
+		return ACCEPT_ORDER;
+	},
+
+	"Order.CollectTreasureNearPosition": function(msg) {
+		let nearbyTreasure = this.FindNearbyTreasure(msg.data.x, msg.data.z);
+		if (nearbyTreasure)
+			this.CollectTreasure(nearbyTreasure, oldData.autocontinue, true);
+		else
+			this.SetNextState("COLLECTTREASURE");
+		return ACCEPT_ORDER;
+	},
+
 	// States for the special entity representing a group of units moving in formation:
 	"FORMATIONCONTROLLER": {
 
@@ -668,21 +681,21 @@ UnitAI.prototype.UnitFsmSpec = {
 
 		// Only used by other orders to walk there in formation.
 		"Order.WalkToTargetRange": function(msg) {
-			if (this.CheckRange(this.order.data))
+			if (this.CheckRange(msg.data))
 				return this.FinishOrder();
 			this.SetNextState("WALKING");
 			return ACCEPT_ORDER;
 		},
 
 		"Order.WalkToTarget": function(msg) {
-			if (this.CheckRange(this.order.data))
+			if (this.CheckRange(msg.data))
 				return this.FinishOrder();
 			this.SetNextState("WALKING");
 			return ACCEPT_ORDER;
 		},
 
 		"Order.WalkToPointRange": function(msg) {
-			if (this.CheckRange(this.order.data))
+			if (this.CheckRange(msg.data))
 				return this.FinishOrder();
 			this.SetNextState("WALKING");
 			return ACCEPT_ORDER;
@@ -1337,7 +1350,7 @@ UnitAI.prototype.UnitFsmSpec = {
 		"Order.LeaveFoundation": function(msg) {
 			if (!this.WillMoveFromFoundation(msg.data.target))
 				return this.FinishOrder();
-			this.order.data.min = g_LeaveFoundationRange;
+			msg.data.min = g_LeaveFoundationRange;
 			this.SetNextState("WALKINGTOPOINT");
 			return ACCEPT_ORDER;
 		},
@@ -2239,7 +2252,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				"Order.MoveToChasingPoint": function(msg) {
 					if (this.CheckPointRangeExplicit(msg.data.x, msg.data.z, 0, msg.data.max))
 						return this.FinishOrder();
-					this.order.data.relaxed = true;
+					msg.data.relaxed = true;
 					this.StopTimer();
 					this.SetNextState("MOVINGTOPOINT");
 					return ACCEPT_ORDER;
@@ -2551,13 +2564,8 @@ UnitAI.prototype.UnitFsmSpec = {
 						return;
 					}
 
-					// Gather the resources:
 
 					let cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
-
-					// Try to gather treasure
-					if (cmpResourceGatherer.TryInstantGather(this.gatheringTarget))
-						return;
 
 					// If we've already got some resources but they're the wrong type,
 					// drop them first to ensure we're only ever carrying one type
@@ -2566,11 +2574,8 @@ UnitAI.prototype.UnitFsmSpec = {
 
 					this.FaceTowardsTarget(this.order.data.target);
 
-					// Collect from the target
 					let status = cmpResourceGatherer.PerformGather(this.gatheringTarget);
 
-					// If we've collected as many resources as possible,
-					// return to the nearest dropsite
 					if (status.filled)
 					{
 						let nearestDropsite = this.FindNearestDropsite(resourceType.generic);
@@ -2622,32 +2627,29 @@ UnitAI.prototype.UnitFsmSpec = {
 
 					// No remaining orders - pick a useful default behaviour
 
-					// Give up if we're not in the world right now.
 					let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 					if (!cmpPosition || !cmpPosition.IsInWorld())
 						return true;
 
-					// If we have no known initial position of our target, look around our own position
-					// as a fallback.
+					let filter = (ent, type, template) => {
+						if (previousTarget == ent)
+							return false;
+
+						// Don't switch to a different type of huntable animal.
+						return type.specific == resourceType.specific &&
+						    (type.specific != "meat" || resourceTemplate == template);
+					};
+
+					// Current position is often next to a dropsite.
+					let pos = cmpPosition.GetPosition();
+					let nearbyResource = this.FindNearbyResource(Vector2D.from3D(pos), filter);
+
+					// If there is an initPos, search there as well when we haven't found anything.
+					// Otherwise set initPos to our current pos.
 					if (!initPos)
-					{
-						let pos = cmpPosition.GetPosition();
 						initPos = { 'x': pos.X, 'z': pos.Z };
-					}
-
-					// Try to find a new resource of the same specific type near the initial resource position:
-					// Also don't switch to a different type of huntable animal
-					let nearbyResource = this.FindNearbyResource(new Vector2D(initPos.x, initPos.z),
-						(ent, type, template) => {
-							if (previousTarget == ent)
-								return false;
-
-							if (type.generic == "treasure" && resourceType.generic == "treasure")
-								return true;
-
-							return type.specific == resourceType.specific &&
-							    (type.specific != "meat" || resourceTemplate == template);
-					});
+					else if (!nearbyResource)
+						nearbyResource = this.FindNearbyResource(new Vector2D(initPos.X, initPos.Z), filter);
 
 					if (nearbyResource)
 					{
@@ -2870,6 +2872,97 @@ UnitAI.prototype.UnitFsmSpec = {
 
 					// Oh no, couldn't find any drop sites. Give up on returning.
 					this.FinishOrder();
+				},
+			},
+		},
+
+		"COLLECTTREASURE": {
+			"enter": function() {
+				let cmpTreasureCollecter = Engine.QueryInterface(this.entity, IID_TreasureCollecter);
+				if (!cmpTreasureCollecter || !cmpTreasureCollecter.CanCollect(this.order.data.target))
+				{
+					this.SetNextState("FINDINGNEWTARGET");
+					return true;
+				}
+				if (this.CheckTargetRange(this.order.data.target, IID_TreasureCollecter))
+					this.SetNextState("COLLECTING");
+				else
+					this.SetNextState("APPROACHING");
+				return true;
+			},
+
+			"leave": function() {
+			},
+
+			"APPROACHING": {
+				"enter": function() {
+					if (!this.MoveToTargetRange(this.order.data.target, IID_TreasureCollecter))
+					{
+						this.SetNextState("FINDINGNEWTARGET");
+						return true;
+					}
+					return false;
+				},
+
+				"leave": function() {
+					this.StopMoving();
+				},
+
+				"MovementUpdate": function(msg) {
+					if (this.CheckTargetRange(this.order.data.target, IID_TreasureCollecter))
+						this.SetNextState("COLLECTING");
+					else if (msg.likelyFailure)
+						this.SetNextState("FINDINGNEWTARGET");
+				},
+			},
+
+			"COLLECTING": {
+				"enter": function() {
+					let cmpTreasureCollecter = Engine.QueryInterface(this.entity, IID_TreasureCollecter);
+					if (!cmpTreasureCollecter.StartCollecting(this.order.data.target, IID_UnitAI))
+					{
+						this.ProcessMessage("TargetInvalidated");
+						return true;
+					}
+					this.FaceTowardsTarget(this.order.data.target);
+					this.SelectAnimation("collecting_treasure");
+					return false;
+				},
+
+				"leave": function() {
+					let cmpTreasureCollecter = Engine.QueryInterface(this.entity, IID_TreasureCollecter);
+					if (cmpTreasureCollecter)
+						cmpTreasureCollecter.StopCollecting();
+					this.ResetAnimation();
+				},
+
+				"OutOfRange": function(msg) {
+					this.SetNextState("APPROACHING");
+				},
+
+				"TargetInvalidated": function(msg) {
+					this.SetNextState("FINDINGNEWTARGET");
+				},
+			},
+
+			"FINDINGNEWTARGET": {
+				"enter": function() {
+					let oldData = this.order.data;
+
+					// Switch to the next order (if any).
+					if (this.FinishOrder())
+						return true;
+
+					// If autocontinue explicitly disabled (e.g. by AI)
+					// then do nothing automatically.
+					if (!oldData.autocontinue)
+						return false;
+
+					let nearbyTreasure = this.FindNearbyTreasure(this.TargetPosOrEntPos(oldData.target));
+					if (nearbyTreasure)
+						this.CollectTreasure(nearbyTreasure, oldData.autocontinue, true);
+
+					return true;
 				},
 			},
 		},
@@ -4240,6 +4333,16 @@ UnitAI.prototype.OnPackFinished = function(msg)
 	this.UnitFsm.ProcessMessage(this, {"type": "PackFinished", "packed": msg.packed});
 };
 
+/**
+ * A general function to process messages sent from components.
+ * @param {string} type - The type of message to process.
+ * @param {Object} msg - Optionally extra data to use.
+ */
+UnitAI.prototype.ProcessMessage = function(type, msg)
+{
+	this.UnitFsm.ProcessMessage(this, { "type": type, "data": msg });
+};
+
 //// Helper functions to be called by the FSM ////
 
 UnitAI.prototype.GetWalkSpeed = function()
@@ -4420,6 +4523,28 @@ UnitAI.prototype.FindNearbyFoundation = function(position)
 	// we process the ConstructionFinished message before the foundation
 	// we're working on has been deleted.)
 	return nearby.find(ent => !Engine.QueryInterface(ent, IID_Foundation).IsFinished());
+};
+
+/**
+ * Returns the entity ID of the nearest treasure.
+ * "Nearest" is nearest from @param position.
+ */
+UnitAI.prototype.FindNearbyTreasure = function(position)
+{
+	if (!position)
+		return undefined;
+
+	let cmpTreasureCollecter = Engine.QueryInterface(this.entity, IID_TreasureCollecter);
+	if (!cmpTreasureCollecter)
+		return undefined;
+
+	let players = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetAllPlayers();
+
+	let range = 64; // TODO: what's a sensible number?
+	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	// Don't account for entity size, we need to match LOS visibility.
+	let nearby = cmpRangeManager.ExecuteQueryAroundPos(position, 0, range, players, IID_Treasure, false);
+	return nearby.find(ent => cmpTreasureCollecter.CanCollect(ent));
 };
 
 /**
@@ -5605,6 +5730,32 @@ UnitAI.prototype.ReturnResource = function(target, queued)
 	}
 
 	this.AddOrder("ReturnResource", { "target": target, "force": true }, queued);
+};
+
+/**
+ * Adds order to collect a treasure to queue, forced by the player.
+ */
+UnitAI.prototype.CollectTreasure = function(target, autocontinue, queued)
+{
+	this.AddOrder("CollectTreasure", {
+		"target": target,
+		"autocontinue": autocontinue,
+		"force": true
+	}, queued);
+};
+
+/**
+ * Adds order to collect a treasure to queue, forced by the player.
+ */
+UnitAI.prototype.CollectTreasureNearPosition = function(posX, posZ, autocontinue, queued)
+{
+	this.AddOrder("CollectTreasureNearPosition", {
+		"x": posX,
+		"z": posZ,
+		"target": target,
+		"autocontinue": autocontinue,
+		"force": false
+	}, queued);
 };
 
 UnitAI.prototype.CancelSetupTradeRoute = function(target)

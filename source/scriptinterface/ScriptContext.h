@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,7 +22,6 @@
 #include "ScriptExtraHeaders.h"
 
 #include <list>
-#include <sstream>
 
 // Those are minimal defaults. The runtime for the main game is larger and GCs upon a larger growth.
 constexpr int DEFAULT_CONTEXT_SIZE = 16 * 1024 * 1024;

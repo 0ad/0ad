@@ -81,6 +81,7 @@ that of Atlas depending on commandline parameters.
 #include "soundmanager/ISoundManager.h"
 
 #if OS_UNIX
+#include <iostream>
 #include <unistd.h> // geteuid
 #endif // OS_UNIX
 
@@ -94,7 +95,6 @@ that of Atlas depending on commandline parameters.
 #endif
 
 #include <chrono>
-#include <iostream>
 
 extern CmdLineArgs g_args;
 extern CStrW g_UniqueLogPostfix;
@@ -468,9 +468,9 @@ static void NonVisualFrame()
 	PROFILE2_ATTR("%d", g_Profiler2.GetFrameNumber());
 
 	static u32 turn = 0;
-	debug_printf("Turn %u (%u)...\n", turn++, DEFAULT_TURN_LENGTH_SP);
+	debug_printf("Turn %u (%u)...\n", turn++, DEFAULT_TURN_LENGTH);
 
-	g_Game->GetSimulation2()->Update(DEFAULT_TURN_LENGTH_SP);
+	g_Game->GetSimulation2()->Update(DEFAULT_TURN_LENGTH);
 
 	g_Profiler.Frame();
 

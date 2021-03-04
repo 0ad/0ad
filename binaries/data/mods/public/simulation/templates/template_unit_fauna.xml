@@ -21,7 +21,6 @@
   <Position>
     <TurnRate>4</TurnRate>
   </Position>
-  <ResourceGatherer disable=""/>
   <Selectable>
     <Overlay>
       <Texture>
@@ -30,6 +29,7 @@
       </Texture>
     </Overlay>
   </Selectable>
+  <TreasureCollecter disable=""/>
   <UnitAI>
     <DefaultStance>passive</DefaultStance>
     <CanGuard>false</CanGuard>

@@ -803,6 +803,50 @@ var g_UnitActions =
 		"specificness": 40,
 	},
 
+	"collect-treasure":
+	{
+		"execute": function(target, action, selection, queued)
+		{
+			Engine.PostNetworkCommand({
+				"type": "collect-treasure",
+				"entities": selection,
+				"target": action.target,
+				"queued": queued,
+				"autocontinue": true,
+				"formation": g_AutoFormation.getNull()
+			});
+
+			Engine.GuiInterfaceCall("PlaySound", {
+				"name": "order_collect_treasure",
+				"entity": action.firstAbleEntity
+			});
+
+			return true;
+		},
+		"getActionInfo": function(entState, targetState)
+		{
+			if (!entState.treasureCollecter ||
+				!targetState || !targetState.treasure)
+				return false;
+
+			return {
+				"possible": true,
+				"cursor": "action-collect-treasure"
+			};
+		},
+		"actionCheck": function(target, selection)
+		{
+			let actionInfo = getActionInfo("collect-treasure", target, selection);
+			return actionInfo.possible && {
+				"type": "collect-treasure",
+				"cursor": actionInfo.cursor,
+				"target": target,
+				"firstAbleEntity": actionInfo.entity
+			};
+		},
+		"specificness": 1,
+	},
+
 	"remove-guard":
 	{
 		"execute": function(target, action, selection, queued)
@@ -932,10 +976,7 @@ var g_UnitActions =
 			else if (targetState && targetState.resourceSupply)
 			{
 				let resourceType = targetState.resourceSupply.type;
-				if (resourceType.generic == "treasure")
-					cursor = "action-gather-" + resourceType.generic;
-				else
-					cursor = "action-gather-" + resourceType.specific;
+				cursor = "action-gather-" + resourceType.specific;
 
 				data.command = "gather-near-position";
 				data.resourceType = resourceType;
@@ -943,6 +984,16 @@ var g_UnitActions =
 				if (!targetState.speed)
 				{
 					data.command = "gather";
+					data.target = targetState.id;
+				}
+			}
+			else if (targetState && targetState.treasure)
+			{
+				cursor = "action-collect-treasure";
+				data.command = "collect-treasure-near-position";
+				if (!targetState.speed)
+				{
+					data.command = "collect-treasure";
 					data.target = targetState.id;
 				}
 			}

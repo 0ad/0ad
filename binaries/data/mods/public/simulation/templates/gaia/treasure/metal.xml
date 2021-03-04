@@ -7,15 +7,16 @@
   <Identity>
     <SpecificName>Secret Box</SpecificName>
   </Identity>
-  <ResourceSupply>
-    <Max>300</Max>
-    <Type>treasure.metal</Type>
-  </ResourceSupply>
   <Sound>
     <SoundGroups>
       <select>interface/select/resource/sel_metal.xml</select>
     </SoundGroups>
   </Sound>
+  <Treasure>
+    <Resources>
+      <metal>300</metal>
+    </Resources>
+  </Treasure>
   <VisualActor>
     <Actor>props/special/eyecandy/barrel_a.xml</Actor>
   </VisualActor>

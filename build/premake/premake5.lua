@@ -87,6 +87,8 @@ else
 			arch = "aarch64"
 		elseif string.find(machine, "e2k") == 1 then
 			arch = "e2k"
+		elseif string.find(machine, "ppc64") == 1 or string.find(machine, "powerpc64") == 1 then
+			arch = "ppc64"
 		else
 			print("WARNING: Cannot determine architecture from GCC, assuming x86")
 		end
@@ -865,6 +867,8 @@ function setup_all_libs ()
 		table.insert(source_dirs, "lib/sysdep/arch/aarch64");
 	elseif arch == "e2k" then
 		table.insert(source_dirs, "lib/sysdep/arch/e2k");
+	elseif arch == "ppc64" then
+		table.insert(source_dirs, "lib/sysdep/arch/ppc64");
 	end
 
 	-- OS-specific

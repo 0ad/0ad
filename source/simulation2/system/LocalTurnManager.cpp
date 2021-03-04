@@ -20,20 +20,18 @@
 #include "LocalTurnManager.h"
 
 CLocalTurnManager::CLocalTurnManager(CSimulation2& simulation, IReplayLogger& replay)
-	: CTurnManager(simulation, DEFAULT_TURN_LENGTH_SP, 0, replay)
+	: CTurnManager(simulation, DEFAULT_TURN_LENGTH, COMMAND_DELAY_SP, 0, replay)
 {
 }
 
 void CLocalTurnManager::PostCommand(player_id_t playerid, JS::HandleValue data)
 {
-	AddCommand(m_ClientId, playerid, data, m_CurrentTurn + 1);
+	AddCommand(m_ClientId, playerid, data, m_CurrentTurn + m_CommandDelay);
 }
 
 void CLocalTurnManager::PostCommand(JS::HandleValue data)
 {
-	// Add directly to the next turn, ignoring COMMAND_DELAY,
-	// because we don't need to compensate for network latency
-	AddCommand(m_ClientId, m_PlayerId, data, m_CurrentTurn + 1);
+	AddCommand(m_ClientId, m_PlayerId, data, m_CurrentTurn + m_CommandDelay);
 }
 
 void CLocalTurnManager::NotifyFinishedOwnCommands(u32 turn)

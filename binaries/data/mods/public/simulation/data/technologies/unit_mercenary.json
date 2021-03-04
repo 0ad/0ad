@@ -16,15 +16,7 @@
 		{ "value": "Loot/metal", "replace": 6, "affects": "Infantry" },
 		{ "value": "Loot/metal", "replace": 8, "affects": "Cavalry" },
 		{ "value": "Loot/metal", "replace": 12, "affects": "Elephant" },
-		{ "value": "ResourceGatherer/Rates/food.fish", "replace": 0 },
-		{ "value": "ResourceGatherer/Rates/food.fruit", "replace": 0 },
-		{ "value": "ResourceGatherer/Rates/food.grain", "replace": 0 },
-		{ "value": "ResourceGatherer/Rates/food.meat", "replace": 0 },
-		{ "value": "ResourceGatherer/Rates/wood.tree", "replace": 0 },
-		{ "value": "ResourceGatherer/Rates/wood.ruins", "replace": 0 },
-		{ "value": "ResourceGatherer/Rates/stone.rock", "replace": 0 },
-		{ "value": "ResourceGatherer/Rates/stone.ruins", "replace": 0 },
-		{ "value": "ResourceGatherer/Rates/metal.ore", "replace": 0 }
+		{ "value": "ResourceGatherer/BaseSpeed", "replace": 0 }
 	],
 	"affects": ["Mercenary !Champion"]
 }
