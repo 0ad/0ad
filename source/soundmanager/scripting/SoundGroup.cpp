@@ -123,6 +123,12 @@ CSoundGroup::~CSoundGroup()
 
 float CSoundGroup::RadiansOffCenter(const CVector3D& position, bool& onScreen, float& itemRollOff)
 {
+#if !CONFIG2_AUDIO
+        UNUSED2(position);
+        UNUSED2(onScreen);
+        UNUSED2(itemRollOff);
+	return 0.f;
+#else
 	const int screenWidth = g_Game->GetView()->GetCamera()->GetViewPort().m_Width;
 	const int screenHeight = g_Game->GetView()->GetCamera()->GetViewPort().m_Height;
 	const float xBufferSize = screenWidth * 0.1f;
@@ -166,6 +172,7 @@ float CSoundGroup::RadiansOffCenter(const CVector3D& position, bool& onScreen, f
 	}
 
 	return answer;
+#endif // !CONFIG2_AUDIO
 }
 
 void CSoundGroup::UploadPropertiesAndPlay(size_t index, const CVector3D& position, entity_id_t source)
