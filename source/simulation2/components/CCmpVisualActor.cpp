@@ -475,6 +475,8 @@ public:
 		ENSURE(name == "idle" || name == "walk" || name == "run");
 		if (m_AnimName != "idle" && m_AnimName != "walk" && m_AnimName != "run")
 			return;
+		if (m_AnimName == name && speed == m_AnimSpeed)
+			return;
 		SelectAnimation(name, false, speed);
 	}
 
