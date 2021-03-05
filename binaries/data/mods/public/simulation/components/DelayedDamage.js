@@ -68,7 +68,7 @@ DelayedDamage.prototype.MissileHit = function(data, lateness)
 	// Deal direct damage if we hit the main target
 	// and we could handle the attack.
 	if (PositionHelper.TestCollision(target, data.position, lateness) &&
-		Attacking.HandleAttackEffects(target, data.type, data.attackData, data.attacker, data.attackerOwner))
+		Attacking.HandleAttackEffects(target, data))
 	{
 		cmpProjectileManager.RemoveProjectile(data.projectileId);
 		return;
@@ -81,7 +81,7 @@ DelayedDamage.prototype.MissileHit = function(data, lateness)
 	for (let ent of ents)
 	{
 		if (!PositionHelper.TestCollision(ent, data.position, lateness) ||
-			!Attacking.HandleAttackEffects(ent, data.type, data.attackData, data.attacker, data.attackerOwner))
+			!Attacking.HandleAttackEffects(ent, data))
 			continue;
 
 		cmpProjectileManager.RemoveProjectile(data.projectileId);

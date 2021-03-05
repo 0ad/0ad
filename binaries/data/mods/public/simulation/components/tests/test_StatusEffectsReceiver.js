@@ -19,9 +19,9 @@ let enemy = 2;
 let statusName;
 
 let Attacking = {
-	"HandleAttackEffects": (_, __, attackData) => {
-		for (let type in attackData.Damage)
-			dealtDamage += attackData.Damage[type];
+	"HandleAttackEffects": (_, data) => {
+		for (let type in data.attackData.Damage)
+			dealtDamage += data.attackData.Damage[type];
 	}
 };
 Engine.RegisterGlobal("Attacking", Attacking);

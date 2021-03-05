@@ -504,6 +504,14 @@ Attack.prototype.PerformAttack = function(type, target)
 {
 	let attackerOwner = Engine.QueryInterface(this.entity, IID_Ownership).GetOwner();
 
+	let data = {
+		"type": type,
+		"attackData": this.GetAttackEffectsData(type),
+		"target": target,
+		"attacker": this.entity,
+		"attackerOwner": attackerOwner,
+	};
+
 	// If this is a ranged attack, then launch a projectile
 	if (type == "Ranged")
 	{
@@ -613,24 +621,17 @@ Attack.prototype.PerformAttack = function(type, target)
 		if (cmpSound)
 			attackImpactSound = cmpSound.GetSoundGroup("attack_impact_" + type.toLowerCase());
 
-		let data = {
-			"type": type,
-			"attackData": this.GetAttackEffectsData(type),
-			"target": target,
-			"attacker": this.entity,
-			"attackerOwner": attackerOwner,
-			"position": realTargetPosition,
-			"direction": missileDirection,
-			"projectileId": id,
-			"attackImpactSound": attackImpactSound,
-			"splash": this.GetSplashData(type),
-			"friendlyFire": this.template[type].Projectile.FriendlyFire == "true",
-		};
+		data.position = realTargetPosition;
+		data.direction = missileDirection;
+		data.projectileId = id;
+		data.attackImpactSound = attackImpactSound;
+		data.splash = this.GetSplashData(type);
+		data.friendlyFire = this.template[type].Projectile.FriendlyFire == "true";
 
 		cmpTimer.SetTimeout(SYSTEM_ENTITY, IID_DelayedDamage, "MissileHit", +this.template[type].Delay + timeToTarget * 1000, data);
 	}
 	else
-		Attacking.HandleAttackEffects(target, type, this.GetAttackEffectsData(type), this.entity, attackerOwner);
+		Attacking.HandleAttackEffects(target, data);
 };
 
 Attack.prototype.OnValueModification = function(msg)

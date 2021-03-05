@@ -59,7 +59,12 @@ class testHandleAttackEffects {
 			"Capture": x => { this.resultString += x; },
 		});
 
-		Attacking.HandleAttackEffects(this.TESTED_ENTITY_ID, "Test", this.attackData, INVALID_ENTITY, INVALID_PLAYER);
+		Attacking.HandleAttackEffects(this.TESTED_ENTITY_ID, {
+			"type": "Test",
+			"attackData": this.attackData,
+			"attacker": INVALID_ENTITY,
+			"attackerOwner": INVALID_PLAYER
+		});
 
 		TS_ASSERT(this.resultString.indexOf(this.attackData.Damage) !== -1);
 		TS_ASSERT(this.resultString.indexOf(this.attackData.Capture) !== -1);
@@ -73,7 +78,12 @@ class testHandleAttackEffects {
 			"Capture": x => { this.resultString += x; },
 		});
 
-		Attacking.HandleAttackEffects(this.TESTED_ENTITY_ID, "Test", this.attackData, INVALID_ENTITY, INVALID_PLAYER);
+		Attacking.HandleAttackEffects(this.TESTED_ENTITY_ID, {
+			"type": "Test",
+			"attackData": this.attackData,
+			"attacker": INVALID_ENTITY,
+			"attackerOwner": INVALID_PLAYER
+		});
 		TS_ASSERT(this.resultString.indexOf(this.attackData.Damage) === -1);
 		TS_ASSERT(this.resultString.indexOf(this.attackData.Capture) !== -1);
 
@@ -85,7 +95,12 @@ class testHandleAttackEffects {
 			"GetMaxHitpoints": () => 1,
 		});
 
-		Attacking.HandleAttackEffects(this.TESTED_ENTITY_ID, "Test", this.attackData, INVALID_ENTITY, INVALID_PLAYER);
+		Attacking.HandleAttackEffects(this.TESTED_ENTITY_ID, {
+			"type": "Test",
+			"attackData": this.attackData,
+			"attacker": INVALID_ENTITY,
+			"attackerOwner": INVALID_PLAYER
+		});
 		TS_ASSERT(this.resultString.indexOf(this.attackData.Damage) !== -1);
 		TS_ASSERT(this.resultString.indexOf(this.attackData.Capture) === -1);
 	}
@@ -95,14 +110,24 @@ class testHandleAttackEffects {
 	 */
 	testAttackedMessage() {
 		Engine.PostMessage = () => TS_ASSERT(false);
-		Attacking.HandleAttackEffects(this.TESTED_ENTITY_ID, "Test", this.attackData, INVALID_ENTITY, INVALID_PLAYER);
+		Attacking.HandleAttackEffects(this.TESTED_ENTITY_ID, {
+			"type": "Test",
+			"attackData": this.attackData,
+			"attacker": INVALID_ENTITY,
+			"attackerOwner": INVALID_PLAYER
+		});
 
 		AddMock(this.TESTED_ENTITY_ID, IID_Capturable, {
 			"Capture": () => ({ "captureChange": 0 }),
 		});
 		let count = 0;
 		Engine.PostMessage = () => count++;
-		Attacking.HandleAttackEffects(this.TESTED_ENTITY_ID, "Test", this.attackData, INVALID_ENTITY, INVALID_PLAYER);
+		Attacking.HandleAttackEffects(this.TESTED_ENTITY_ID, {
+			"type": "Test",
+			"attackData": this.attackData,
+			"attacker": INVALID_ENTITY,
+			"attackerOwner": INVALID_PLAYER
+		});
 		TS_ASSERT_EQUALS(count, 1);
 
 		AddMock(this.TESTED_ENTITY_ID, IID_Health, {
@@ -112,7 +137,12 @@ class testHandleAttackEffects {
 		});
 		count = 0;
 		Engine.PostMessage = () => count++;
-		Attacking.HandleAttackEffects(this.TESTED_ENTITY_ID, "Test", this.attackData, INVALID_ENTITY, INVALID_PLAYER);
+		Attacking.HandleAttackEffects(this.TESTED_ENTITY_ID, {
+			"type": "Test",
+			"attackData": this.attackData,
+			"attacker": INVALID_ENTITY,
+			"attackerOwner": INVALID_PLAYER
+		});
 		TS_ASSERT_EQUALS(count, 1);
 	}
 
@@ -127,7 +157,12 @@ class testHandleAttackEffects {
 		});
 		let spy = new Spy(cmpStatusEffectsReceiver, "ApplyStatus");
 
-		Attacking.HandleAttackEffects(this.TESTED_ENTITY_ID, "Test", this.attackData, INVALID_ENTITY, INVALID_PLAYER, 2);
+		Attacking.HandleAttackEffects(this.TESTED_ENTITY_ID, {
+			"type": "Test",
+			"attackData": this.attackData,
+			"attacker": INVALID_ENTITY,
+			"attackerOwner": INVALID_PLAYER
+		}, 2);
 		TS_ASSERT_EQUALS(spy._called, 1);
 	}
 
@@ -148,7 +183,12 @@ class testHandleAttackEffects {
 			},
 		});
 
-		Attacking.HandleAttackEffects(this.TESTED_ENTITY_ID, "Test", this.attackData, INVALID_ENTITY, INVALID_PLAYER, 2);
+		Attacking.HandleAttackEffects(this.TESTED_ENTITY_ID, {
+			"type": "Test",
+			"attackData": this.attackData,
+			"attacker": INVALID_ENTITY,
+			"attackerOwner": INVALID_PLAYER
+		}, 2);
 	}
 }
 
