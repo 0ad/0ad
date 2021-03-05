@@ -1151,25 +1151,24 @@ void CCmpUnitMotion::UpdateMovementState(entity_pos_t speed)
 {
 	CmpPtr<ICmpObstruction> cmpObstruction(GetEntityHandle());
 	CmpPtr<ICmpVisual> cmpVisual(GetEntityHandle());
-	// Moved last turn, didn't this turn.
-	if (speed == fixed::Zero() && m_CurSpeed > fixed::Zero())
+	// Idle this turn.
+	if (speed == fixed::Zero())
 	{
-		if (cmpObstruction)
+		// Update moving flag if we moved last turn.
+		if (m_CurSpeed > fixed::Zero() && cmpObstruction)
 			cmpObstruction->SetMovingFlag(false);
 		if (cmpVisual)
 			cmpVisual->SelectMovementAnimation("idle", fixed::FromInt(1));
 	}
-	// Moved this turn, didn't last turn
-	else if (speed > fixed::Zero() && m_CurSpeed == fixed::Zero())
+	// Moved this turn
+	else
 	{
-		if (cmpObstruction)
+		// Update moving flag if we didn't move last turn.
+		if (m_CurSpeed == fixed::Zero() && cmpObstruction)
 			cmpObstruction->SetMovingFlag(true);
 		if (cmpVisual)
 			cmpVisual->SelectMovementAnimation(speed > (m_WalkSpeed / 2).Multiply(m_RunMultiplier + fixed::FromInt(1)) ? "run" : "walk", speed);
 	}
-	// Speed change, update the visual actor if necessary.
-	else if (cmpVisual)
-		cmpVisual->SelectMovementAnimation(speed > (m_WalkSpeed / 2).Multiply(m_RunMultiplier + fixed::FromInt(1)) ? "run" : "walk", speed);
 
 	m_CurSpeed = speed;
 }
