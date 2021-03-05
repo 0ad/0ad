@@ -19,6 +19,7 @@
 
 #include "OverlayRenderer.h"
 
+#include "graphics/Camera.h"
 #include "graphics/LOSTexture.h"
 #include "graphics/Overlay.h"
 #include "graphics/Terrain.h"
@@ -455,6 +456,8 @@ void OverlayRenderer::RenderTexturedOverlayLines()
 		shaderTexLineNormal->BindTexture(str_losTex, los.GetTexture());
 		shaderTexLineNormal->Uniform(str_losTransform, los.GetTextureMatrix()[0], los.GetTextureMatrix()[12], 0.f, 0.f);
 
+		shaderTexLineNormal->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
+
 		// batch render only the non-always-visible overlay lines using the normal shader
 		RenderTexturedOverlayLines(shaderTexLineNormal, false);
 
@@ -469,6 +472,8 @@ void OverlayRenderer::RenderTexturedOverlayLines()
 		// TODO: losTex and losTransform are unused in the always visible shader; see if these can be safely omitted
 		shaderTexLineAlwaysVisible->BindTexture(str_losTex, los.GetTexture());
 		shaderTexLineAlwaysVisible->Uniform(str_losTransform, los.GetTextureMatrix()[0], los.GetTextureMatrix()[12], 0.f, 0.f);
+
+		shaderTexLineAlwaysVisible->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
 
 		// batch render only the always-visible overlay lines using the LoS-ignored shader
 		RenderTexturedOverlayLines(shaderTexLineAlwaysVisible, true);
@@ -540,6 +545,8 @@ void OverlayRenderer::RenderQuadOverlays()
 	shader->Bind();
 	shader->BindTexture(str_losTex, los.GetTexture());
 	shader->Uniform(str_losTransform, los.GetTextureMatrix()[0], los.GetTextureMatrix()[12], 0.f, 0.f);
+
+	shader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
 
 	// Base offsets (in bytes) of the two backing stores relative to their owner VBO
 	u8* indexBase = m->quadIndices.Bind();
@@ -626,6 +633,8 @@ void OverlayRenderer::RenderForegroundOverlays(const CCamera& viewCamera)
 	tech->BeginPass();
 	CShaderProgramPtr shader = tech->GetShader();
 
+	shader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
+
 	float uvs[8] = { 0,1, 1,1, 1,0, 0,0 };
 
 	shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, sizeof(float)*2, &uvs[0]);
@@ -633,11 +642,10 @@ void OverlayRenderer::RenderForegroundOverlays(const CCamera& viewCamera)
 	for (size_t i = 0; i < m->sprites.size(); ++i)
 	{
 		SOverlaySprite* sprite = m->sprites[i];
+		if (!i || sprite->m_Texture != m->sprites[i - 1]->m_Texture)
+			shader->BindTexture(str_baseTex, sprite->m_Texture);
 
-		shader->BindTexture(str_baseTex, sprite->m_Texture);
-
-		if (shader)
-			shader->Uniform(str_colorMul, sprite->m_Color);
+		shader->Uniform(str_colorMul, sprite->m_Color);
 
 		CVector3D pos[4] = {
 			sprite->m_Position + right*sprite->m_X0 + up*sprite->m_Y0,
