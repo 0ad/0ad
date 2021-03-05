@@ -32,9 +32,8 @@ StatusEffectsReceiver.prototype.GetActiveStatuses = function()
  */
 StatusEffectsReceiver.prototype.ApplyStatus = function(effectData, attacker, attackerOwner)
 {
-	let attackerData = { "entity": attacker, "owner": attackerOwner };
 	for (let effect in effectData)
-		this.AddStatus(effect, effectData[effect], attackerData);
+		this.AddStatus(effect, effectData[effect], attacker, attackerOwner);
 
 	// TODO: implement loot?
 
@@ -46,9 +45,10 @@ StatusEffectsReceiver.prototype.ApplyStatus = function(effectData, attacker, att
  *
  * @param {string} statusCode - The code of the status effect.
  * @param {Object} data - The various effects and timings.
- * @param {Object} attackerData - The attacker and attackerOwner.
+ * @param {number} attacker - optional, the entity ID of the attacker.
+ * @param {number} attackerOwner - optional, the player ID of the attacker.
  */
-StatusEffectsReceiver.prototype.AddStatus = function(baseCode, data, attackerData)
+StatusEffectsReceiver.prototype.AddStatus = function(baseCode, data, attacker = INVALID_ENTITY, attackerOwner = INVALID_PLAYER)
 {
 	let statusCode = baseCode;
 	if (this.activeStatusEffects[statusCode])
@@ -101,7 +101,7 @@ StatusEffectsReceiver.prototype.AddStatus = function(baseCode, data, attackerDat
 
 	status._timeElapsed = 0;
 	status._firstTime = true;
-	status.source = attackerData;
+	status.source = { "entity": attacker, "owner": attackerOwner };
 
 	let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 	status._timer = cmpTimer.SetInterval(this.entity, IID_StatusEffectsReceiver, "ExecuteEffect", 0, +(status.Interval || status._interval), statusCode);

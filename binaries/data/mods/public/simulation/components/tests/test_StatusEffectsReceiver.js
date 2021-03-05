@@ -44,10 +44,9 @@ cmpStatusReceiver.AddStatus(statusName, {
 		[statusName]: 1
 	}
 },
-{
-	"entity": enemyEntity,
-	"owner": enemy,
-});
+enemyEntity,
+enemy
+);
 
 cmpTimer.OnUpdate({ "turnLength": 1 });
 TS_ASSERT_EQUALS(dealtDamage, 1); // 1 sec
@@ -111,10 +110,9 @@ cmpStatusReceiver.AddStatus(statusName, {
 		[statusName]: 1
 	}
 },
-{
-	"entity": enemyEntity,
-	"owner": enemy,
-});
+enemyEntity,
+enemy
+);
 
 cmpTimer.OnUpdate({ "turnLength": 1 });
 TS_ASSERT_EQUALS(dealtDamage, 1); // 1 sec
@@ -154,10 +152,9 @@ cmpStatusReceiver.AddStatus(statusName, {
 		}
 	}
 },
-{
-	"entity": enemyEntity,
-	"owner": enemy,
-});
+enemyEntity,
+enemy
+);
 
 let cmpHealth = Engine.QueryInterface(target, IID_Health);
 // Test that the modification is applied.
@@ -186,10 +183,9 @@ cmpStatusReceiver.AddStatus(statusName, {
 		}
 	}
 },
-{
-	"entity": enemyEntity,
-	"owner": enemy,
-});
+enemyEntity,
+enemy
+);
 
 // Test that the addition modification is applied.
 TS_ASSERT_EQUALS(cmpHealth.GetMaxHitpoints(), maxHealth + addition);
@@ -217,10 +213,9 @@ cmpStatusReceiver.AddStatus(statusName, {
 		}
 	}
 },
-{
-	"entity": enemyEntity,
-	"owner": enemy,
-});
+enemyEntity,
+enemy
+);
 
 // Test that the replacement modification is applied.
 TS_ASSERT_EQUALS(cmpHealth.GetMaxHitpoints(), newValue);
