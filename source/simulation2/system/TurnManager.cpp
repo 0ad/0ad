@@ -294,7 +294,7 @@ void CTurnManager::RewindTimeWarp()
 	// won't do the next snapshot until the appropriate time.
 	// (Ideally we ought to serialise the turn manager state and restore it
 	// here, but this is simpler for now.)
-	ResetState(0, 1);
+	ResetState(1, m_CommandDelay);
 }
 
 void CTurnManager::QuickSave(JS::HandleValue GUIMetadata)
@@ -344,7 +344,7 @@ void CTurnManager::QuickLoad()
 	}
 
 	// See RewindTimeWarp
-	ResetState(0, 1);
+	ResetState(1, m_CommandDelay);
 
 	if (!g_GUI)
 		return;
