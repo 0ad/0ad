@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-29 14:56+0000\n"
-"PO-Revision-Date: 2021-02-12 13:41+0000\n"
+"PO-Revision-Date: 2021-02-20 08:12+0000\n"
 "Last-Translator: LOUKAS SKOUROLIAKOS\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -603,7 +603,7 @@ msgstr "Αψιμαχία"
 msgid ""
 "A map with a predefined landscape and number of players. Freely select the "
 "other game settings."
-msgstr ""
+msgstr "Χάρτης με προκαθορισμένο τοπίο και αριθμό παικτών. Επιλέξτε ελεύθερα τις άλλες ρυθμίσεις του παιχνιδιού."
 
 #: gui/common/settings.js:182
 msgctxt "map"
@@ -767,18 +767,18 @@ msgstr "%(name)s %(details)s"
 #: gui/common/tooltips.js:263
 #, javascript-format
 msgid "Duration reduction: %(durationReduction)s%%"
-msgstr ""
+msgstr "Διάρκεια ελαχιστοποίησης: %(durationReduction)s%%"
 
 #: gui/common/tooltips.js:271
 #, javascript-format
 msgid "Blocks: %(blockPercentage)s%%"
-msgstr ""
+msgstr "Κύβοι: %(blockPercentage)s%%"
 
 #: gui/common/tooltips.js:278
 #, javascript-format
 msgid ""
 "Blocks: %(blockPercentage)s%%, Duration reduction: %(durationReduction)s%%"
-msgstr ""
+msgstr "Κύβοι:%(blockPercentage)s%%,Διάρκεια ελαχιστοποίησης:%(durationReduction)s%%"
 
 #: gui/common/tooltips.js:294
 msgid "Garrison to fire arrows"
@@ -1029,7 +1029,7 @@ msgstr "Αριθμός χτιστών:"
 
 #: gui/common/tooltips.js:639
 msgid "Remaining build time:"
-msgstr ""
+msgstr "Υπόλοιπος χρόνος ανέγερσης:"
 
 #: gui/common/tooltips.js:643
 #, javascript-format
@@ -1326,7 +1326,7 @@ msgstr "Λατινικά"
 
 #: gui/credits/texts/audio.jsonContent[3].Content[2].Subtitle
 msgid "Napatan"
-msgstr ""
+msgstr "Νάπατα"
 
 #: gui/credits/texts/audio.jsonContent[3].Content[3].Subtitle
 msgid "Persian"
@@ -1654,7 +1654,7 @@ msgstr "Επαναφέροντας τις ρυθμίσεις θα διαγραφ
 
 #: gui/options/options.js:351
 msgid "Some setting values are invalid! Are you sure you want to save them?"
-msgstr ""
+msgstr "Μερικές τιμές των ρυθμίσεων είναι εσφαλμένες. Είστε σίγουροι οτι θέλετε να κάνετε αποθήκευση ;"
 
 #: gui/options/options.js:377
 msgid "You have unsaved changes, do you want to close this window?"
@@ -1686,7 +1686,7 @@ msgstr "Χρονοθέτηση συνομιλίας"
 
 #: gui/options/options.json[0].options[11].tooltip
 msgid "Display the time at which a chat message was posted."
-msgstr ""
+msgstr "Εμφάνιση χρόνου στον οποίο ένα μήνυμα ανέβηκε."
 
 #: gui/options/options.json[0].options[1].label
 msgid "Player name (multiplayer)"
@@ -1867,7 +1867,7 @@ msgstr "Οπτική εξομάλυνση"
 
 #: gui/options/options.json[1].options[18].tooltip
 msgid "Lift darkness and fog of war smoothly."
-msgstr ""
+msgstr "Άρει το σκοτάδι και την ομίχλη-του-πολέμου ομαλά."
 
 #: gui/options/options.json[1].options[19].label
 msgid "VSync"
@@ -1923,11 +1923,11 @@ msgstr "Χρήση προεπεξεργασμένων screen-space φίλτρω�
 
 #: gui/options/options.json[1].options[4].label
 msgid "Antialiasing"
-msgstr ""
+msgstr "Εξομάλυνση γραφικών."
 
 #: gui/options/options.json[1].options[4].list[0].tooltip
 msgid "Do not use antialiasing."
-msgstr ""
+msgstr "Μη χρησιμοποιήσετε την εξομάλυνση γραφικών."
 
 #: gui/options/options.json[1].options[4].list[1].label
 msgid "FXAA"
@@ -1935,7 +1935,7 @@ msgstr "Γρήγορη Κατά Προσέγγιση Εξομάλυνση (FXAA)
 
 #: gui/options/options.json[1].options[4].list[1].tooltip
 msgid "Fast, but simple antialiasing."
-msgstr ""
+msgstr "Γρήγορη, αλλά απλή εξομάλυνση γραφικών"
 
 #: gui/options/options.json[1].options[4].list[2].label
 msgid "MSAA (2×)"
@@ -1945,7 +1945,7 @@ msgstr "MSAA (2×)"
 msgid ""
 "Slow, but high-quality antialiasing, uses two samples per pixel. Supported "
 "for GL3.3+."
-msgstr ""
+msgstr "Αργή ,αλλά υψηλής ποιότητας εξομάλυνση, χρησιμοποιεί δύο μοτίβα ανα πίξελ (εικονοστιχείο). Υποστηρίζεται για GL3.3+."
 
 #: gui/options/options.json[1].options[4].list[3].label
 msgid "MSAA (4×)"
@@ -1955,7 +1955,7 @@ msgstr "MSAA (4×)"
 msgid ""
 "Slow, but high-quality antialiasing, uses four samples per pixel. Supported "
 "for GL3.3+."
-msgstr ""
+msgstr "Αργή ,αλλα υψηλής ποιότητας εξομάλυνση, χρησιμοποιεί τέσσερα μοτίβα ανα πίξελ (εικονοστιχείο). Υποστηρίζεται για GL3.3+."
 
 #: gui/options/options.json[1].options[4].list[4].label
 msgid "MSAA (8×)"
@@ -1965,7 +1965,7 @@ msgstr "MSAA (8×)"
 msgid ""
 "Slow, but high-quality antialiasing, uses eight samples per pixel. Supported"
 " for GL3.3+."
-msgstr ""
+msgstr "Αργή ,αλλα υψηλής ποιότητας εξομάλυνση, χρησιμοποιεί οκτώ μοτίβα ανα πίξελ (εικονοστιχείο) . Υποστηρίζεται για GL3.3+."
 
 #: gui/options/options.json[1].options[4].list[5].label
 msgid "MSAA (16×)"
@@ -1975,7 +1975,7 @@ msgstr "MSAA (16×)"
 msgid ""
 "Slow, but high-quality antialiasing, uses sixteen samples per pixel. "
 "Supported for GL3.3+."
-msgstr ""
+msgstr "Αργή ,αλλα υψηλής ποιότητας εξομάλυνση, χρησιμοποιεί δεκαέξι μοτίβα ανα πίξελ (εικονοστιχείο). Υποστηρίζεται για GL3.3+."
 
 #: gui/options/options.json[1].options[4].tooltip
 msgid "Reduce aliasing effect on edges."
@@ -1983,31 +1983,31 @@ msgstr "Μείωση του εφέ εξομάλυνσης στις άκρες."
 
 #: gui/options/options.json[1].options[5].label
 msgid "Sharpening"
-msgstr ""
+msgstr "Ακόνισμα"
 
 #: gui/options/options.json[1].options[5].list[0].tooltip
 msgid "Do not use sharpening."
-msgstr ""
+msgstr "Μη χρησιμοποιήσετε ακόνισμα γραφικών."
 
 #: gui/options/options.json[1].options[5].list[1].label
 msgid "FidelityFX CAS"
-msgstr ""
+msgstr "FidelityFX CAS"
 
 #: gui/options/options.json[1].options[5].list[1].tooltip
 msgid "Contrast adaptive sharpening, a fast, contrast based sharpening pass."
-msgstr ""
+msgstr "Προσάρμοση αντίθεσης ακονίσματος γραφικών, μια γρήγορη, προσάρμοση βασισμένη σε ακόνισμα προσπέρασης."
 
 #: gui/options/options.json[1].options[5].tooltip
 msgid "Reduce blurry effects."
-msgstr ""
+msgstr "Μείωση εφέ θαμπώματος."
 
 #: gui/options/options.json[1].options[6].label
 msgid "Sharpness factor"
-msgstr ""
+msgstr "Παράγοντας ακονίσματος γραφικών"
 
 #: gui/options/options.json[1].options[6].tooltip
 msgid "The sharpness of the choosen pass."
-msgstr ""
+msgstr "Το ακόνισμα γραφικών της επιλεγμένης μετάβασης."
 
 #: gui/options/options.json[1].options[7].label
 msgid "Shader effects"
@@ -2110,7 +2110,7 @@ msgstr "Λαμβάνεις ηχητική προειδοποίηση όταν κ
 
 #: gui/options/options.json[2].options[6].label
 msgid "New player notification in game setup"
-msgstr ""
+msgstr "Ειδοποίηση νέου παίκτη σε ρύθμιση παιχνιδιού"
 
 #: gui/options/options.json[2].options[6].tooltip
 msgid "Receive audio notification when a new client joins the game setup."
@@ -2377,7 +2377,7 @@ msgstr "Αυτή η επιλογή επιτρέπει την ευθυγράμμ�
 
 #: gui/options/options.json[5].options[19].label
 msgid "Control group membership"
-msgstr ""
+msgstr "'Έλεγχος ομαδικής συμμετοχής."
 
 #: gui/options/options.json[5].options[19].list[0].label
 msgid "Single"
@@ -2403,7 +2403,7 @@ msgstr "Οι μονάδες και τα Κτίρια μπορούν να είν�
 
 #: gui/options/options.json[5].options[19].tooltip
 msgid "Decide whether units can be part of multiple control groups."
-msgstr ""
+msgstr "Αποφασίστε αν οι μονάδες θα μπορούν να είναι μέλη πολλαπλών ομάδων ελέγχου."
 
 #: gui/options/options.json[5].options[1].label
 msgid "Batch training size"
@@ -2423,11 +2423,11 @@ msgstr "Βηματισμός/Περιπολία Μόνο"
 
 #: gui/options/options.json[5].options[20].list[0].tooltip
 msgid "Other orders will disband existing formations."
-msgstr ""
+msgstr "'Άλλες εντολές θα διαλύσουν υπάρχοντες σχηματισμούς."
 
 #: gui/options/options.json[5].options[20].list[1].label
 msgid "No Override"
-msgstr ""
+msgstr "Καμία Παράκαμψη"
 
 #: gui/options/options.json[5].options[20].list[1].tooltip
 msgid "Units in formations stay in formations."
@@ -2437,7 +2437,7 @@ msgstr "Οι Μονάδες σε σχηματισμούς διατηρούν τ�
 msgid ""
 "Decide whether formations are enabled for all orders or only 'Walk' and "
 "'Patrol'."
-msgstr ""
+msgstr "Αποφασίστε άν οι σχηματισμοί ενεργοποιούνται όλοι από εντολές ή  με 'Βηματισμός' και'Περιπολία'."
 
 #: gui/options/options.json[5].options[2].label
 msgid "Scroll batch increment ratio"
@@ -2505,7 +2505,7 @@ msgstr "Οπτικοποίηση βεληνεκές επίθεσης"
 msgid ""
 "Display the attack range of selected defensive structures. (It can also be "
 "toggled with the hotkey during a game)."
-msgstr ""
+msgstr "Εμφάνιση εμβέλειας επίθεσης των επιλεγμένων αμυντικών κατασκευών. (Μπορεί επίσης να εναλλαχτεί με το πλήκτρο συντόμευσης κατά τη διάρκεια παιχνιδιού)."
 
 #: gui/options/options.json[5].options[8].label
 msgid "Aura range visualization"
@@ -2515,7 +2515,7 @@ msgstr "Οπτικοποίηση βεληνεκές αύρας"
 msgid ""
 "Display the range of auras of selected units and structures. (It can also be"
 " toggled with the hotkey during a game)."
-msgstr ""
+msgstr "Εμφανίζει το εύρος της αύρας των επιλεγμένων μονάδων και κατασκευών. (Μπορεί επίσης να γίνει εναλλαγή με πλήκτρο συντόμευσης κατά τη διάρκεια παιχνιδιού)"
 
 #: gui/options/options.json[5].options[9].label
 msgid "Heal range visualization"
@@ -2525,7 +2525,7 @@ msgstr "Οπτικοποίηση βεληνεκές θεραπείας"
 msgid ""
 "Display the healing range of selected units. (It can also be toggled with "
 "the hotkey during a game)."
-msgstr ""
+msgstr "Εμφανίζει το εύρος της θεραπείας  αύρας των επιλεγμένων μονάδων και κατασκευών. (Μπορεί επίσης να γίνει εναλλαγή με πλήκτρο συντόμευσης κατά τη διάρκεια παιχνιδιού)."
 
 #: gui/options/options.json[5].tooltip
 msgid "Change options regarding the in-game settings."
@@ -2622,7 +2622,7 @@ msgstr "Επισκόπηση Χάρτη"
 
 #: gui/pregame/MainMenuItems.js:56
 msgid "View the different maps featured in 0 A.D."
-msgstr ""
+msgstr "Δείτε τους διαφορετικούς χάρτες που συμπεριλαμβάνονται στο  0 A.D."
 
 #: gui/pregame/MainMenuItems.js:64 gui/replaymenu/replay_filters.js:144
 msgid "Single-player"
@@ -2724,7 +2724,7 @@ msgstr "Αυτόματη Επιλογή"
 
 #: gui/pregame/MainMenuItems.js:167
 msgid "Adjust hotkeys."
-msgstr ""
+msgstr "Ταξινόμηση hotkeys."
 
 #: gui/locale/locale.xml:(caption):14 gui/pregame/MainMenuItems.js:173
 msgid "Language"
@@ -3082,7 +3082,7 @@ msgstr "%(hotkey)s: Κλείσιμο του Δέντρου Κατασκευής.
 #: gui/reference/viewer/ViewerPage.js:167
 #, javascript-format
 msgid "%(hotkey)s: Close Template Viewer"
-msgstr ""
+msgstr "%(hotkey)s:Κλείσιμο Επισκόπησης Προτύπου"
 
 #: gui/reference/viewer/viewer.xml:(caption):16
 msgid "Information"
@@ -3660,17 +3660,17 @@ msgstr "%(hotkey)s: Εναλλαγή του λόμπι πολλαπλών παι
 #: gui/summary/summary.js:555
 #, javascript-format
 msgid "Toggle the %(name)s summary tab."
-msgstr ""
+msgstr "Εναλλαγή της %(name)s καρτέλας περίληψης."
 
 #: gui/summary/summary.js:556
 #, javascript-format
 msgid "Use %(hotkey)s to move a summary tab right."
-msgstr ""
+msgstr "Χρήση %(hotkey)s για να μετακινήσετε τη καρτέλα περίληψης προς τα δεξιά."
 
 #: gui/summary/summary.js:557
 #, javascript-format
 msgid "Use %(hotkey)s to move a summary tab left."
-msgstr ""
+msgstr "Χρήση %(hotkey)s για να μετακινήσετε τη καρτέλα περίληψης προς τα αριστερά."
 
 #: gui/summary/summary.xml:(caption):120
 msgctxt "summary chart"
@@ -3961,7 +3961,7 @@ msgstr "ΗΡΩΕΣ"
 msgid ""
 "Historical characters, such as Xerxes, Leonidas, Pericles, Hannibal, Scipio,"
 " and Boudicca."
-msgstr ""
+msgstr "Ιστορικοί χαρακτήρες όπως ο Ξέρξης,  ο Λεωνίδας,  ο Περικλής,  ο Αννίβας, ο Σίσυφος και η Βοαδίκεια."
 
 #: gui/text/tips/heroes.txt:3
 msgid "A lot of health and very strong attacks."
@@ -3969,7 +3969,7 @@ msgstr "Μπόλικη υγεία και πολύ δυνατές επιθέσε�
 
 #: gui/text/tips/heroes.txt:4
 msgid "Have auras which alter the stats of other units or structures."
-msgstr ""
+msgstr "Έχουν αύρες που τροποποιούν τα στατιστικά των άλλων μονάδων ή κατασκευών."
 
 #: gui/text/tips/heroes.txt:5
 msgid "Caution: Each hero can be recruited only once per match!"
@@ -4009,7 +4009,7 @@ msgstr "Φθηνή και γρήγορη κατασκευή ,αλλά αδύνα
 msgid ""
 "Garrison infantry for extensive vision, and to prevent losing control of the"
 " outpost due to territory decay."
-msgstr ""
+msgstr "Φρουρά πεζικού για εκτεταμένο πεδίο όρασης, και για αποτροπή απώλειας ελέγχου φυλακίου λόγω φθοράς περιοχής. "
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"
@@ -4136,23 +4136,23 @@ msgstr "Έχει επίθεση  από απόσταση που αυξάνετα
 
 #: gui/text/tips/snapping.txt:1
 msgid "SNAPPING"
-msgstr ""
+msgstr "ΣΤΙΓΜΙΟΤΥΠΟ"
 
 #: gui/text/tips/snapping.txt:2
 msgid ""
 "Structures can be aligned by keeping the snap hotkey pressed during "
 "placement."
-msgstr ""
+msgstr "Οι κατασκευές μπορούν να ευθυγραμμιστούν κρατώντας το πλήκτρο συντόμευσης κλειδώματος κατά την τοποθέτηση."
 
 #: gui/text/tips/snapping.txt:3
 msgid "Aligning structures allows to conserve space for future construction."
-msgstr ""
+msgstr "Η ευθυγράμμιση κατασκευών επιτρέπει να διατηρηθεί ο χώρος για μελλοντική ανέγερση."
 
 #: gui/text/tips/snapping.txt:4
 msgid ""
 "Tightly packed groups of structures can also be used for obstructing raiding"
 " enemies."
-msgstr ""
+msgstr "Στενά συσκευασμένες ομάδες κατασκευών μπορούν επίσης να χρησιμοποιηθούν για παρεμπόδιση επιτιθέμενων εχθρών."
 
 #: gui/text/tips/spartan_hoplites.txt:1
 msgid "SPARTIATES"

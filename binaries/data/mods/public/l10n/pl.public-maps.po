@@ -17,7 +17,7 @@
 # Krzysztof Balawejder <krzybalaw@outlook.com>, 2018
 # Leszek Szary, 2014-2015
 # Lukasz B <boberstarosta@gmail.com>, 2016
-# Marcin S <dzidek1003@o2.pl>, 2016
+# Marcin S <dzidek1003@o2.pl>, 2016,2021
 # Marek Balicki <m.s.balicki@gmail.com>, 2017
 # Marek Opłotny <oplotny.marek@gmail.com>, 2017
 # Mateusz Kubicz <zabsik1@wp.pl>, 2017
@@ -35,8 +35,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-18 08:15+0000\n"
-"PO-Revision-Date: 2021-01-18 10:36+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-02-28 21:21+0000\n"
+"Last-Translator: Marcin S <dzidek1003@o2.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -84,7 +84,7 @@ msgstr "Alpejska dolina"
 msgid ""
 "High bluffs overlook the terrain below. Bountiful resources await on the "
 "cliffs, but beware of enemies planning an ambush."
-msgstr "Wysocy chuligani wychodzą na teren poniżej . Chroń zasobów czekają na skałach , ale uważaj na wrogów planują zasadzkę ."
+msgstr "Wysocy chuligani wychodzą na teren poniżej. Chroń zasobów czekających na skałach, ale uważaj na wrogów planujących zasadzkę."
 
 #: maps/random/ambush.jsonsettings.Name
 msgid "Ambush"
@@ -94,7 +94,7 @@ msgstr "Zasadzka"
 msgid ""
 "An indefensible open land with little wood and stone, representing the "
 "central basin of Asia Minor."
-msgstr "Nie dająca się obronić otwarta przestrzeń z niewielką ilości drzewa i kamienia, reprezentujaca centralne zlewisko Azji Mniejszej."
+msgstr "Niedająca się obronić otwarta przestrzeń z niewielką ilości drewna i kamienia, reprezentująca centralne zlewisko Azji Mniejszej."
 
 #: maps/random/anatolian_plateau.jsonsettings.Name
 msgid "Anatolian Plateau"
@@ -127,7 +127,7 @@ msgid ""
 "Each player starts deep in the forest.\n"
 "\n"
 "The Ardennes is a region of extensive forests, rolling hills and ridges formed within the Givetian  Ardennes mountain range, primarily in modern day Belgium and Luxembourg. The region took its name from the ancient Silva, a vast forest in Roman times called Arduenna Silva."
-msgstr "Zawodnicy startują w głębokich lasach.\n\nArdeny to region rozległych lasów, które rozkładają się na wzgórzach i grzbietach pasma górskiego Arden powstałego w żywecie, erze  dewonu środkowego, głównie na terenach dzisiejszej Belgii i Luksmeburgu. Region wziął swą nazwę od rozległego lasu z okresu rzymskiego nazywanego Arduenna Silva."
+msgstr "Gracze startują w głębokich lasach.\n\nArdeny to region rozległych lasów, które rozkładają się na wzgórzach i grzbietach pasma górskiego Arden powstałego w żywecie, erze dewonu środkowego, głównie na terenach dzisiejszej Belgii i Luksmeburgu. Region wziął swą nazwę od rozległego lasu z okresu rzymskiego nazywanego Arduenna Silva."
 
 #: maps/random/ardennes_forest.jsonsettings.Name
 msgid "Ardennes Forest"
@@ -175,7 +175,7 @@ msgid ""
 "inhospitable just weeks before has come to life totally transformed. Herds "
 "of zebras graze amid the tall, lush grasses in which lions lie waiting, "
 "while in the shallow pools lurk fearsome crocodiles."
-msgstr "Botswańska Afryka podczas pory deszczowej: ziemia, która jeszcze przed kilkoma tygodniami była sucha i niesprzyjająca jakiemukolwiek życiu wróciła do życia pod całkowicie zmienioną postacią. Stada zebr pasą się wśród wysokich, bujnych traw w których przyczajone lwy wypatrują kolacji, a w płytkich wodach zanurzone krokodyle czekają na spragnioną zwierzynę."
+msgstr "Botswańska Afryka podczas pory deszczowej: ziemia, która jeszcze przed kilkoma tygodniami była sucha i niesprzyjająca jakiemukolwiek istnieniu, wróciła do życia pod całkowicie zmienioną postacią. Stada zebr pasą się wśród wysokich, bujnych traw, w których przyczajone lwy wypatrują kolacji, a w płytkich wodach zanurzone krokodyle czekają na spragnioną zwierzynę."
 
 #: maps/random/botswanan_haven.jsonsettings.Name
 msgid "Botswanan Haven"
@@ -196,7 +196,7 @@ msgstr "Kaledońskie łąki"
 msgid ""
 "Each player starts on a hill surrounded by steep cliffs. Represents "
 "Cantabria, a mountainous region in the North of the Iberian peninsula."
-msgstr "Każdy zawodnik zaczyna na wzgórzu otoczonym przez strome klify. Reprezentuje obszar Kantabrii, górskiego regionu na północy Półwyspu Iberyjskiego."
+msgstr "Każdy gracz zaczyna na wzgórzu otoczonym przez strome klify. Reprezentuje obszar Kantabrii, górskiego regionu na północy Półwyspu Iberyjskiego."
 
 #: maps/random/cantabrian_highlands.jsonsettings.Name
 msgid "Cantabrian Highlands"
@@ -323,7 +323,7 @@ msgstr "Słoniowaty"
 msgid ""
 "A neighboring province has pledged alegiance to your rule. It's up to you to"
 " command them to victory."
-msgstr "Sąsiednia prowincja zobowiązała się do przestrzedania reguły. To znak dla ciebie, aby dowieść ich do zwycięstwa."
+msgstr "Sąsiednia prowincja zobowiązała się do przestrzedania reguły. To znak dla Ciebie, aby dowieść ich do zwycięstwa."
 
 #: maps/random/empire.jsonsettings.Name
 msgid "Empire"
@@ -466,7 +466,7 @@ msgid ""
 " bountiful resources far from the front lines, teams may choose to support "
 "their exposed teammates financially, or retreat to more fertile, but less "
 "defensible ground."
-msgstr "Wąskie przejście między stromymi górami daje możliwość mocno, obronnej walki. Przy obfitych zasobach daleko od linii frontu, zespoły mogą zdecydować się wspierać  finansowo narażone drużyny, albo wycofać się bardziej żyzne, ale mniej obronne grunty."
+msgstr "Wąskie przejście między stromymi górami daje możliwość mocno obronnej walki. Przy obfitych zasobach, daleko od linii frontu, zespoły mogą zdecydować się wspierać finansowo narażone drużyny, albo wycofać się bardziej żyzne, ale mniej obronne grunty."
 
 #: maps/random/hells_pass.jsonsettings.Name
 msgid "Hell's Pass"
@@ -570,7 +570,7 @@ msgstr "Lacjum"
 msgid ""
 "High cliffs protect each player's main base. Venturing into the unknown can "
 "be risky, but necessary."
-msgstr "Wysokie klify chronią główną bazę każdego gracza . Wyruszenie w nieznane może być ryzykowne , ale konieczne."
+msgstr "Wysokie klify chronią główną bazę każdego gracza. Wyruszenie w nieznane może być ryzykowne, ale konieczne."
 
 #: maps/random/lions_den.jsonsettings.Name
 msgid "Lion's Den"
@@ -712,7 +712,7 @@ msgid ""
 "A dry central plateau rich in minerals surrounded by rocky hills\n"
 "\n"
 "The southern parts of Zagros Mountains were the heart of the Persian empires and population. Although the altitude is high, the southern parts are drier that the northern Zagros, leading to a semi-arid climate. Still there are some sparse oak forests in the higher grounds."
-msgstr "Suchy centralny płaskowyż bogaty w minerały otoczony skalistymi wzgórzami. Południowe części gór Zagros, były sercem imperium perskiego i jego ludności. Wysokość nad poziomem morza jest tu wysoka, a południowe części są bardziej suche niż północne. Skutkuje to klimatem półpustynnym, jednak w wyższych terenach istnieją rzadkie lasy dębowe."
+msgstr "Suchy, centralny płaskowyż bogaty w minerały otoczony skalistymi wzgórzami. \n\nPołudniowe części gór Zagros, były sercem imperium perskiego i jego ludności. Wysokość nad poziomem morza jest tu znaczna, a południowe części są bardziej suche niż północne. Skutkuje to klimatem półpustynnym, jednak w wyższych terenach istnieją rzadkie lasy dębowe."
 
 #: maps/random/persian_highlands.jsonsettings.Name
 msgid "Persian Highlands"

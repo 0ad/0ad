@@ -8,7 +8,7 @@
 # helinb <1696060289@qq.com>, 2015
 # Julian, 2019
 # Kelvin Cooper <Zhu-Zhe-Yong@live.com>, 2016
-# liulitchi <xingzuo88@qq.com>, 2019-2020
+# liulitchi <xingzuo88@qq.com>, 2019-2021
 # 武军 李 <lwj7863439@gmail.com>, 2016
 # 武军 李 <lwj7863439@gmail.com>, 2016
 # 玉堂白鹤 <yjwork@qq.com>, 2015
@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-20 00:57+0000\n"
-"PO-Revision-Date: 2021-01-20 01:22+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-02-23 12:11+0000\n"
+"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,17 +29,17 @@ msgstr ""
 #: simulation/data/attack_effects/applystatus.jsondescription
 msgctxt "effect caused by an attack"
 msgid "Various (timed) effects."
-msgstr ""
+msgstr "各种（限时）效果。"
 
 #: simulation/data/attack_effects/applystatus.jsonname
 msgctxt "effect caused by an attack"
 msgid "Apply Status"
-msgstr ""
+msgstr "应用状态"
 
 #: simulation/data/attack_effects/capture.jsondescription
 msgctxt "effect caused by an attack"
 msgid "Reduces capture points of a target."
-msgstr ""
+msgstr "减少目标的占领点"
 
 #: simulation/data/attack_effects/capture.jsonname
 msgctxt "effect caused by an attack"
@@ -49,50 +49,50 @@ msgstr "占领"
 #: simulation/data/attack_effects/damage.jsondescription
 msgctxt "effect caused by an attack"
 msgid "Reduces the health of a target."
-msgstr ""
+msgstr "减少目标的生命值"
 
 #: simulation/data/attack_effects/damage.jsonname
 msgctxt "effect caused by an attack"
 msgid "Damage"
-msgstr ""
+msgstr "破坏"
 
 #: simulation/data/status_effects/burning.jsonapplierTooltip
 msgctxt "status effect"
 msgid "This unit causes fire damage."
-msgstr ""
+msgstr "单位会使用火攻。"
 
 #: simulation/data/status_effects/burning.jsonreceiverTooltip
 msgctxt "status effect"
 msgid "This unit is burning."
-msgstr ""
+msgstr "单位正被灼烧"
 
 #: simulation/data/status_effects/burning.jsonstatusName
 msgctxt "status effect"
 msgid "Burning"
-msgstr ""
+msgstr "火烧"
 
 #: simulation/data/status_effects/poisoned.jsonapplierTooltip
 msgctxt "status effect"
 msgid "This unit causes poison damage."
-msgstr ""
+msgstr "单位可使用毒药攻击。"
 
 #: simulation/data/status_effects/poisoned.jsonreceiverTooltip
 msgctxt "status effect"
 msgid "This unit is poisoned."
-msgstr ""
+msgstr "单位已中毒"
 
 #: simulation/data/status_effects/poisoned.jsonstatusName
 msgctxt "status effect"
 msgid "Poisoned"
-msgstr ""
+msgstr "中毒"
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:24
 msgid "Army of Alexander the Great."
-msgstr "亚历山大大帝的军队"
+msgstr "亚历山大三世的军队"
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:25
 msgid "Army of Alexander the Great"
-msgstr "亚历山大大帝的军队"
+msgstr "亚历山大三世的军队"
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:26
 #: simulation/templates/campaigns/army_mace_standard.xml:21
@@ -110,16 +110,16 @@ msgstr "马其顿军队"
 
 #: simulation/templates/campaigns/army_spart_hero_leonidas.xml:24
 msgid "Army of Leonidas I."
-msgstr "列奥尼达一世的军队。"
+msgstr "列奥尼达斯一世的军队。"
 
 #: simulation/templates/campaigns/army_spart_hero_leonidas.xml:25
 msgid "Army of Leonidas I"
-msgstr "列奥尼达一世的军队"
+msgstr "列奥尼达斯一世的军队"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:21
 #: simulation/templates/campaigns/campaign_city_test.xml:21
 msgid "Market"
-msgstr "市场"
+msgstr "集市"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:22
 #: simulation/templates/campaigns/campaign_city_test.xml:22
@@ -132,7 +132,7 @@ msgstr "小型希腊城邦"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:24
 msgid "This is a minor Greek city."
-msgstr "这是一个希腊的小城市。"
+msgstr "这是一个希腊的城镇。"
 
 #: simulation/templates/campaigns/campaign_city_test.xml:23
 msgid "Greek Polis"
@@ -140,7 +140,7 @@ msgstr "希腊城邦"
 
 #: simulation/templates/campaigns/campaign_city_test.xml:24
 msgid "This is a major Greek city."
-msgstr "这是一个希腊的主要城市。"
+msgstr "这是一个希腊的都邑。"
 
 #: simulation/templates/campaigns/campaign_religious_test.xml:12
 msgid "Religious Sanctuary"
@@ -179,7 +179,7 @@ msgstr "北极熊"
 #: simulation/templates/gaia/fauna_walrus.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Tusks"
-msgstr ""
+msgstr "象牙"
 
 #: simulation/templates/gaia/fauna_boar.xml:23
 msgid "Wild Boar"
@@ -228,7 +228,7 @@ msgstr "瘤牛"
 
 #: simulation/templates/gaia/fauna_chicken.xml:11
 msgid "Chicken"
-msgstr "小鸡"
+msgstr "鸡"
 
 #: simulation/templates/gaia/fauna_chicken.xml:12
 msgid "Gallus gallus domesticus"
@@ -237,7 +237,7 @@ msgstr "鸡"
 #: simulation/templates/gaia/fauna_crocodile_nile.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Teeth"
-msgstr ""
+msgstr "利齿"
 
 #: simulation/templates/gaia/fauna_crocodile_nile.xml:23
 msgid "Nile Crocodile"
@@ -262,11 +262,11 @@ msgstr "獒"
 #: simulation/templates/gaia/fauna_dog_mastiff.xml:12
 #: simulation/templates/gaia/fauna_dog_wolfhound.xml:12
 msgid "Canis lupus familiaris"
-msgstr "狗"
+msgstr "犬"
 
 #: simulation/templates/gaia/fauna_dog_wolfhound.xml:11
 msgid "Wolfhound"
-msgstr "狼狗"
+msgstr "猎狼犬"
 
 #: simulation/templates/gaia/fauna_donkey.xml:11
 msgid "Donkey"
@@ -379,7 +379,7 @@ msgstr "矮种马"
 #: simulation/templates/gaia/fauna_tiger.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Paws"
-msgstr ""
+msgstr "利爪"
 
 #: simulation/templates/gaia/fauna_lion.xml:24
 msgid "Lion"
@@ -436,7 +436,7 @@ msgstr "穴兔"
 #: simulation/templates/gaia/fauna_rhinoceros_white.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Horn"
-msgstr ""
+msgstr "犄角"
 
 #: simulation/templates/gaia/fauna_rhinoceros_white.xml:23
 msgid "White Rhinoceros"
@@ -505,7 +505,7 @@ msgstr "斑纹角马"
 #: simulation/templates/gaia/fauna_wolf.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Fangs"
-msgstr ""
+msgstr "尖牙"
 
 #: simulation/templates/gaia/fauna_wolf.xml:24
 msgid "Wolf"
@@ -584,15 +584,15 @@ msgstr "小金字塔"
 #: simulation/templates/gaia/ruins/standing_stone.xml:8
 #: simulation/templates/gaia/treasure/standing_stone.xml:8
 msgid "Celtic Standing Stone"
-msgstr "塞尔特地位石"
+msgstr "凯尔特立石"
 
 #: simulation/templates/gaia/ruins/stone_statues_egyptian.xml:8
 msgid "Ptolemaic Egyptian Statues"
-msgstr "埃及托勒密雕像"
+msgstr "托勒密埃及雕像"
 
 #: simulation/templates/gaia/ruins/stone_statues_kushite.xml:8
 msgid "Kushite Statue"
-msgstr "克什塔雕像"
+msgstr "库什雕像"
 
 #: simulation/templates/gaia/ruins/stone_statues_roman.xml:8
 msgid "Roman Statues"
@@ -611,11 +611,11 @@ msgstr "食物宝藏"
 
 #: simulation/templates/gaia/treasure/food_barrels_buried.xml:8
 msgid "Half-buried Barrels"
-msgstr "半埋砲管"
+msgstr "半埋的桶"
 
 #: simulation/templates/gaia/treasure/food_persian_big.xml:8
 msgid "Persian Food Stores"
-msgstr "波斯食物储藏"
+msgstr "波斯食品柜"
 
 #: simulation/templates/gaia/treasure/food_persian_small.xml:8
 msgid "Persian Food Treasure"
@@ -654,7 +654,7 @@ msgstr "沉船货物"
 
 #: simulation/templates/gaia/treasure/stone.xml:8
 msgid "Stone Treasure"
-msgstr "石头资源"
+msgstr "石料资源"
 
 #: simulation/templates/gaia/treasure/wood.xml:8
 msgid "Wood Treasure"
@@ -872,7 +872,7 @@ msgstr "雨林树木"
 msgid ""
 "Changes in a 10-pop house for civilisations with those houses, is deleted "
 "for other civs"
-msgstr "将有房舍的文明变为10单位容量的房舍，其他文明的则删除。"
+msgstr "将有民居的文明变为10单位容量的民居，其他文明的则删除。"
 
 #: simulation/templates/skirmish/structures/default_house_5.xml:8
 msgid ""
@@ -901,7 +901,7 @@ msgstr "反骑"
 
 #: simulation/templates/special/formations/battle_line.xml:5
 msgid "Battle Line"
-msgstr "战线"
+msgstr "迎击横队"
 
 #: simulation/templates/special/formations/box.xml:6
 msgid "Requires at least 4 Soldiers or Siege engines."
@@ -909,15 +909,15 @@ msgstr "需要至少 4 名战士或攻城器械。"
 
 #: simulation/templates/special/formations/box.xml:7
 msgid "Box"
-msgstr "方阵"
+msgstr "回形阵"
 
 #: simulation/templates/special/formations/column_closed.xml:5
 msgid "Forced March"
-msgstr "强行军"
+msgstr "行军纵队"
 
 #: simulation/templates/special/formations/column_open.xml:5
 msgid "Column Open"
-msgstr "散开纵队"
+msgstr "分散纵队"
 
 #: simulation/templates/special/formations/flank.xml:6
 msgid "Requires at least 8 Soldiers or Siege engines."
@@ -925,15 +925,15 @@ msgstr "需要至少 8 名战士或攻城器械。"
 
 #: simulation/templates/special/formations/flank.xml:7
 msgid "Flank"
-msgstr "翼形"
+msgstr "两翼阵"
 
 #: simulation/templates/special/formations/line_closed.xml:5
 msgid "Close Order"
-msgstr "关闭命令"
+msgstr "横队"
 
 #: simulation/templates/special/formations/line_open.xml:5
 msgid "Open Order"
-msgstr "开启命令"
+msgstr "分散横队"
 
 #: simulation/templates/special/formations/null.xml:5
 msgid "None"
@@ -941,11 +941,11 @@ msgstr "无"
 
 #: simulation/templates/special/formations/phalanx.xml:6
 msgid "Infantry Hoplites only, requires at least 10."
-msgstr "至少需要 10 名重步兵。"
+msgstr "至少需要 10 名铜盾枪兵。"
 
 #: simulation/templates/special/formations/phalanx.xml:7
 msgid "Phalanx"
-msgstr "方阵"
+msgstr "密集横队"
 
 #: simulation/templates/special/formations/scatter.xml:5
 msgid "Scatter"
@@ -957,7 +957,7 @@ msgstr "至少需要 2 名远程士兵。"
 
 #: simulation/templates/special/formations/skirmish.xml:6
 msgid "Skirmish"
-msgstr "散兵"
+msgstr "游击横队"
 
 #: simulation/templates/special/formations/syntagma.xml:6
 msgid "Infantry Pikemen only, requires at least 16."
@@ -965,11 +965,11 @@ msgstr "至少需要 16 名标枪兵。"
 
 #: simulation/templates/special/formations/syntagma.xml:8
 msgid "Syntagma"
-msgstr "马其顿方阵"
+msgstr "长枪横队"
 
 #: simulation/templates/special/formations/testudo.xml:8
 msgid "Testudo"
-msgstr "陆龟"
+msgstr "龟型阵"
 
 #: simulation/templates/special/formations/wedge.xml:6
 msgid "Cavalry only, requires at least 6."
@@ -977,7 +977,7 @@ msgstr "至少需要 6 名骑兵。"
 
 #: simulation/templates/special/formations/wedge.xml:7
 msgid "Wedge"
-msgstr "楔形队形"
+msgstr "楔形阵"
 
 #: simulation/templates/special/player/player.xml:58
 msgid "Player"
@@ -993,7 +993,7 @@ msgstr "需要至少 2 名士兵或攻城器械。"
 
 #: simulation/templates/template_gaia.xml:7
 msgid "Gaia"
-msgstr "大自然"
+msgstr "自然界"
 
 #: simulation/templates/gaia/fish/generic.xml:4
 #: simulation/templates/template_gaia_fish.xml:8
@@ -1002,7 +1002,7 @@ msgstr "鱼"
 
 #: simulation/templates/template_gaia_fish.xml:10
 msgid "Catch fish for food."
-msgstr "打鱼获取食物。"
+msgstr "捕鱼以获得食物。"
 
 #: simulation/templates/template_gaia_fruit.xml:8
 msgid "Fruit"
@@ -1010,7 +1010,7 @@ msgstr "浆果"
 
 #: simulation/templates/template_gaia_fruit.xml:9
 msgid "Pick fruit for food."
-msgstr "采集野果获取食物。"
+msgstr "采集浆果以获得食物。"
 
 #: simulation/templates/template_gaia_ore.xml:8
 msgid "Metal Mine"
@@ -1018,15 +1018,15 @@ msgstr "金矿"
 
 #: simulation/templates/template_gaia_ore.xml:9
 msgid "Mine ore for metal."
-msgstr "金属矿"
+msgstr "金矿"
 
 #: simulation/templates/template_gaia_rock.xml:8
 msgid "Stone Quarry"
-msgstr "采石场"
+msgstr "石场"
 
 #: simulation/templates/template_gaia_rock.xml:9
 msgid "Quarry rock for stone."
-msgstr "去采石场获得石头。"
+msgstr "开采石场以获得石料。"
 
 #: simulation/templates/template_gaia_ruins.xml:8
 msgid "Ruins"
@@ -1034,7 +1034,7 @@ msgstr "废墟"
 
 #: simulation/templates/template_gaia_ruins.xml:9
 msgid "Demolish ruins for stone."
-msgstr "收集废墟的石头。"
+msgstr "收集废墟的石料。"
 
 #: simulation/templates/template_gaia_treasure.xml:8
 msgid "Treasure"
@@ -1050,7 +1050,7 @@ msgstr "树"
 
 #: simulation/templates/template_gaia_tree.xml:9
 msgid "Chop trees for wood."
-msgstr "伐木获取食物。"
+msgstr "伐木以获得木材。"
 
 #: simulation/templates/template_structure.xml:46
 msgid "Structure"

@@ -51,11 +51,12 @@
 # Pedro Luis <pedrochusma@gmail.com>, 2014
 # Pretorg <fpgelmejor2@hotmail.com>, 2014
 # Rafael Castro <drill.hurricane@hotmail.com>, 2013
-# Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>, 2020
+# Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>, 2020-2021
 # Roger Vasquez <r0g3rva5qu3z@hotmail.com>, 2013
 # Sander Deryckere, 2014
 # Sander Deryckere, 2016
 # ab661d6cee6a756af4a49df8163441b7_633a6fb, 2014
+# Slavomir Slovenkai <slavomir.slovenkai@gmail.com>, 2021
 # Spartan2411 <andyyosoy@hotmail.com>, 2014
 # Stanislas Dolcini <stan@wildfiregames.com>, 2021
 # Swyter <Swyterzone@gmail.com>, 2013-2018
@@ -67,8 +68,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-29 14:56+0000\n"
-"PO-Revision-Date: 2021-02-07 23:07+0000\n"
-"Last-Translator: Daniel Muñoz <dani_m_1991@hotmail.com>\n"
+"PO-Revision-Date: 2021-03-02 17:17+0000\n"
+"Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -119,7 +120,7 @@ msgstr "Opciones"
 
 #: gui/session/MenuButtons.js:182
 msgid "Hotkeys"
-msgstr "Teclas rápidas"
+msgstr "Atajos de teclado"
 
 #: gui/session/MenuButtons.js:217
 msgid "Resume"
@@ -391,16 +392,16 @@ msgstr "* %(user)s %(message)s"
 #: gui/session/chat/ChatMessageFormatSimulation.js:16
 #, javascript-format
 msgid "%(icon)sYour livestock has been attacked by %(attacker)s!"
-msgstr "%(icon)sTu ganado ha sido atacado por %(attacker)s!"
+msgstr "%(icon)s¡Tu ganado está siendo atacado por %(attacker)s!"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:17
 #, javascript-format
 msgid "%(icon)sYou have been attacked by %(attacker)s!"
-msgstr "%(icon)s Has sido atacado por %(attacker)s!"
+msgstr "%(icon)s¡Estás siendo atacado por %(attacker)s!"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:30
 msgid "Click to focus on the attacked unit."
-msgstr "Pincha para centrarte en la unidad que está siendo atacada."
+msgstr "Haz clic para posicionarte sobre la unidad atacada."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:49
 #, javascript-format
@@ -472,7 +473,7 @@ msgstr "%(player)s ha alcanzado la %(phaseName)s."
 #. enumeration.
 #: gui/session/chat/ChatMessageFormatSimulation.js:145
 msgid ", "
-msgstr ","
+msgstr ", "
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:162
 #, javascript-format
@@ -870,7 +871,7 @@ msgstr "Confirmación"
 #: gui/session/message_box/QuitConfirmationReplay.js:17
 msgctxt "replayFinished"
 msgid "The replay has finished. Do you want to quit?"
-msgstr "La repetición ha terminado ¿Quieres salir?"
+msgstr "La repetición ha terminado. ¿Quieres salir?"
 
 #: gui/session/message_box/QuitConfirmationReplay.js:22
 msgctxt "replayFinished"
@@ -1045,23 +1046,23 @@ msgstr "¡Dad la alarma!"
 
 #: gui/session/selection_panels.js:68
 msgid "End of alert."
-msgstr "Fin de la alarma."
+msgstr "Cancelar alarma."
 
 #: gui/session/selection_panels.js:276
 msgid "Default formation is disabled."
-msgstr "La formación por defecto está deshabilitada"
+msgstr "La formación por defecto está deshabilitada."
 
 #: gui/session/selection_panels.js:277
 msgid "Right-click to disable the default formation feature."
-msgstr "Click-derecho para deshabilitar la característica de la formación por defecto."
+msgstr "Clic derecho para deshabilitar la opción de formación por defecto."
 
 #: gui/session/selection_panels.js:280
 msgid "This is the default formation, used for movement orders."
-msgstr "Esta es la formación por defecto, utilizada para las órdenes de movimiento."
+msgstr "Esta es la formación por defecto utilizada para las órdenes de movimiento."
 
 #: gui/session/selection_panels.js:281
 msgid "Right-click to set this as the default formation."
-msgstr "Click-derecho para establecerla como la formación por defecto."
+msgstr "Clic derecho para establecer como formación por defecto."
 
 #: gui/session/selection_panels.js:337
 #, javascript-format
@@ -1125,7 +1126,7 @@ msgstr "Restante: %(entityCounts)s"
 #: gui/session/selection_panels.js:732
 msgctxt "Separator for a list of entity counts"
 msgid ", "
-msgstr ","
+msgstr ", "
 
 #: gui/session/selection_panels.js:784
 msgid "Cannot research while upgrading."
@@ -1247,18 +1248,18 @@ msgstr[1] "Puede construirse %(count)s veces más."
 msgid "Could only be trained once."
 msgid_plural "Could only be trained %(limit)s times."
 msgstr[0] "Solo puede entrenarse una vez."
-msgstr[1] "Solo puede entrenarse %(limit)s veces."
+msgstr[1] "Solo puede reclutarse %(limit)s veces."
 
 #: gui/session/selection_panels_helpers.js:157
 msgid "Can be trained only once."
-msgstr "Solo puede entrenarse una vez."
+msgstr "Solo puede reclutarse una vez."
 
 #: gui/session/selection_panels_helpers.js:159
 #, javascript-format
 msgid "Can be trained %(count)s more time."
 msgid_plural "Can be trained %(count)s more times."
 msgstr[0] "Puede entrenarse %(count)s más."
-msgstr[1] "Puede entrenarse %(count)s veces más."
+msgstr[1] "Puede reclutarse %(count)s veces más."
 
 #: gui/session/selection_panels_helpers.js:166
 msgid "Could only be created once."
@@ -1268,7 +1269,7 @@ msgstr[1] "Solo puede crearse %(limit)s veces."
 
 #: gui/session/selection_panels_helpers.js:170
 msgid "Can be created only once."
-msgstr "Solo puede crearse una vez"
+msgstr "Solo puede crearse una vez."
 
 #: gui/session/selection_panels_helpers.js:172
 #, javascript-format

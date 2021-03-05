@@ -5,7 +5,7 @@
 # Translators:
 # linux_eki <ekiuusi@gmail.com>, 2014-2015
 # Järvi Eduardo <hammondemain@gmail.com>, 2018
-# Jiri Grönroos <jiri.gronroos@iki.fi>, 2019
+# Jiri Grönroos <jiri.gronroos@iki.fi>, 2019,2021
 # Max Ihalempia, 2016
 # Max Ihalempia, 2015
 # Olavi Tuomaala <olatuo1955@gmail.com>, 2015
@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-01-22 11:22+0000\n"
-"Last-Translator: Riku Viitanen <riisseli4@gmail.com>\n"
+"PO-Revision-Date: 2021-02-20 18:01+0000\n"
+"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -112,7 +112,7 @@ msgstr ""
 
 #: simulation/data/technologies/architecture_kush.jsongenericName
 msgid "Monumental Architecture"
-msgstr ""
+msgstr "Monumentaalinen arkkitehtuuri"
 
 #: simulation/data/technologies/architecture_kush.jsonrequirementsTooltip
 #: simulation/data/technologies/cavalry_cost_time.jsonrequirementsTooltip
@@ -172,7 +172,7 @@ msgstr ""
 
 #: simulation/data/technologies/attack_soldiers_will.jsongenericName
 msgid "Will to Fight"
-msgstr ""
+msgstr "Taistelutahto"
 
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.athen
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.mace
@@ -247,7 +247,7 @@ msgstr ""
 
 #: simulation/data/technologies/cavalry_health.jsontooltip
 msgid "Cavalry +10% health."
-msgstr ""
+msgstr "Ratsuväelle +10 % terveyttä."
 
 #: simulation/data/technologies/cavalry_movement_speed.jsondescription
 msgid "Train your horses to move faster."
@@ -259,7 +259,7 @@ msgstr ""
 
 #: simulation/data/technologies/cavalry_movement_speed.jsontooltip
 msgid "Cavalry +10% walk speed."
-msgstr ""
+msgstr "Ratsuväelle +10 % kävelynopeutta."
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsondescription
 msgid ""
@@ -296,7 +296,7 @@ msgstr ""
 
 #: simulation/data/technologies/civbonuses/gaul_cavalry.jsongenericName
 msgid "Superior Cavalry"
-msgstr ""
+msgstr "Ylivoimainen ratsuväki"
 
 #: simulation/data/technologies/civbonuses/gaul_cavalry.jsontooltip
 msgid "Cavalry +10% melee attack damage."
@@ -444,7 +444,7 @@ msgstr "Kalastusalukset kantavat +20 ruokaa."
 
 #: simulation/data/technologies/fishing_boat_gather_rate.jsondescription
 msgid "Use nets to improve the productivity of fishing boats."
-msgstr ""
+msgstr "Käytä verkkoja parantaaksesi kalastusalusten tuottavuutta."
 
 #: simulation/data/technologies/fishing_boat_gather_rate.jsongenericName
 msgid "Fishing Net"
@@ -533,7 +533,7 @@ msgstr ""
 
 #: simulation/data/technologies/gather_farming_harvester.jsongenericName
 msgid "Harvesting Machine"
-msgstr ""
+msgstr "Sadonkorjuulaitteet"
 
 #: simulation/data/technologies/gather_farming_harvester.jsontooltip
 msgid "Workers +10% grain gather rate."
@@ -710,7 +710,7 @@ msgstr "Olympic Pantheon"
 #: simulation/data/technologies/heal_range.jsontooltip
 #: simulation/data/technologies/heal_range_2.jsontooltip
 msgid "Healers +5 healing range."
-msgstr ""
+msgstr "Parantajille +5 parantamiskantamaa."
 
 #: simulation/data/technologies/heal_range_2.jsongenericName
 msgid "Healing Range 2"
@@ -901,7 +901,7 @@ msgstr ""
 #: simulation/data/technologies/phase_city_athen.jsongenericName
 #: simulation/data/technologies/phase_city_generic.jsongenericName
 msgid "City Phase"
-msgstr "Kaupunki vaihe"
+msgstr "Kaupunkivaihe"
 
 #: simulation/data/technologies/phase_city_athen.jsondescription
 msgid ""
@@ -1066,7 +1066,7 @@ msgstr "laivastoarkkitehdit"
 
 #: simulation/data/technologies/ship_cost_time.jsontooltip
 msgid "Ships −20% construction time."
-msgstr ""
+msgstr "Laivojen −20 % rakentamisaika."
 
 #: simulation/data/technologies/ship_health.jsondescription
 msgid "Wooden reinforcement beams for ship hulls."
@@ -1078,7 +1078,7 @@ msgstr "Vahvistettu runko"
 
 #: simulation/data/technologies/ship_health.jsontooltip
 msgid "Ships +25% health."
-msgstr ""
+msgstr "Laivoille +25 % terveyttä."
 
 #: simulation/data/technologies/ship_movement_speed.jsondescription
 msgid ""
@@ -1088,11 +1088,11 @@ msgstr ""
 
 #: simulation/data/technologies/ship_movement_speed.jsongenericName
 msgid "Experienced Crews"
-msgstr ""
+msgstr "Kokenut miehistö"
 
 #: simulation/data/technologies/ship_movement_speed.jsontooltip
 msgid "Ships +10% movement speed."
-msgstr ""
+msgstr "Laivoille +10 % liikkumisnopeutta."
 
 #: simulation/data/technologies/siege_attack.jsondescription
 msgid "Advanced technologies improve siege efficiency."
@@ -1213,7 +1213,7 @@ msgstr ""
 
 #: simulation/data/technologies/soldier_attack_ranged_01.jsongenericName
 msgid "Iron Arrowheads"
-msgstr ""
+msgstr "Rautaiset nuolenkärjet"
 
 #: simulation/data/technologies/soldier_attack_ranged_01.jsontooltip
 #: simulation/data/technologies/soldier_attack_ranged_02.jsontooltip
@@ -1334,11 +1334,11 @@ msgstr "Vahvista perustukset hyökkäystä varten."
 
 #: simulation/data/technologies/tower_health.jsongenericName
 msgid "Sturdy Foundations"
-msgstr "Vankkaperusta"
+msgstr "Vankka perusta"
 
 #: simulation/data/technologies/tower_health.jsontooltip
 msgid "Towers +25% health."
-msgstr ""
+msgstr "Torneille +25 % terveyttä."
 
 #: simulation/data/technologies/tower_murderholes.jsondescription
 msgid "Murder holes allow hitting enemies at the foot of the tower."

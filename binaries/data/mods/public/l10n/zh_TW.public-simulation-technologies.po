@@ -9,7 +9,7 @@
 # 黃柏諺 <s8321414@gmail.com>, 2014-2017
 # JerryShen <jerry82422@gmail.com>, 2018
 # Mysterelee <8161525@qq.com>, 2014
-# Shoichi Chou <shoichi.chou@gmail.com>, 2018
+# Shoichi Chou <shoichi.chou@gmail.com>, 2018,2021
 # StarAtt <tea55688@gmail.com>, 2019
 # You-Ruei Tzeng <e222et@gmail.com>, 2014
 # Yuan <daan0014119@gmail.com>, 2020-2021
@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-02-11 09:26+0000\n"
-"Last-Translator: Yuan <daan0014119@gmail.com>\n"
+"PO-Revision-Date: 2021-02-19 19:00+0000\n"
+"Last-Translator: Shoichi Chou <shoichi.chou@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -86,7 +86,7 @@ msgstr "在城市階段解鎖"
 
 #: simulation/data/technologies/agoge.jsontooltip
 msgid "Champion Infantry Spearmen +25% health, but +5% training time."
-msgstr "鬥士長矛兵 +25% 生命值但 +5% 訓練時間。"
+msgstr "精英長矛兵 +25% 生命值但 +5% 訓練時間。"
 
 #: simulation/data/technologies/archery_tradition.jsondescription
 msgid ""
@@ -215,7 +215,7 @@ msgstr "劍士 +20% 攻擊傷害。"
 msgid ""
 "Significantly increase training speed of infantry by training them in large "
 "batches or companies."
-msgstr ""
+msgstr "通過批次或連隊訓練，大大提高步兵的訓練速度。"
 
 #: simulation/data/technologies/barracks_batch_training.jsongenericName
 #: simulation/data/technologies/stable_batch_training.jsongenericName
@@ -295,11 +295,11 @@ msgstr "建築 -20% 建造時間、-20% 生命值和 -20% 佔領值。"
 msgid ""
 "The Gauls were well-known for their effective cavalry. Celtic mercenaries "
 "were in demand throughout the Mediterranean."
-msgstr ""
+msgstr "高盧人以高效的騎兵聞名，整個地中海地區都想僱凱爾特傭兵"
 
 #: simulation/data/technologies/civbonuses/gaul_cavalry.jsongenericName
 msgid "Superior Cavalry"
-msgstr ""
+msgstr "上級騎兵"
 
 #: simulation/data/technologies/civbonuses/gaul_cavalry.jsontooltip
 msgid "Cavalry +10% melee attack damage."
@@ -349,7 +349,7 @@ msgstr "萬王之王"
 
 #: simulation/data/technologies/civbonuses/maur_population.jsonspecificName.maur
 msgid "Chakravarti Samrāt"
-msgstr "Chakravarti Samrāt"
+msgstr "轉輪聖王"
 
 #: simulation/data/technologies/civbonuses/maur_population.jsontooltip
 #: simulation/data/technologies/civbonuses/pers_population.jsontooltip
@@ -360,7 +360,7 @@ msgstr "+10% 最大人口上限。"
 msgid ""
 "The Mauryas built their city walls out of wood, an abundant natural resource"
 " in India."
-msgstr ""
+msgstr "孔雀王朝人用木頭建造城牆，木頭是印度豐富的自然資源。 "
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsongenericName
 msgid "Wooden Walls"
@@ -390,7 +390,7 @@ msgid ""
 "especially where wood was scarce. Although not as strong and durable as "
 "fired bricks or natural stone and vulnerable to constant rains and heavy "
 "floods, mud bricks have the advantage they are cheap and easy to produce."
-msgstr ""
+msgstr "曬乾的泥磚是炎熱乾燥地區的常見建築材料，尤其是在木材稀缺的地區。 儘管不像燒磚或天然石材那樣堅固耐用，並且易受持續降雨和大洪水的影響，但泥磚具有價格便宜且易於生產的優勢。"
 
 #: simulation/data/technologies/civbonuses/ptol_structures.jsongenericName
 msgid "Sun-dried Mud Bricks"
@@ -431,7 +431,7 @@ msgstr "馬的運輸"
 
 #: simulation/data/technologies/equine_transports.jsontooltip
 msgid "Phoenician Triremes gain the ability to train Cavalry."
-msgstr ""
+msgstr "腓尼基三列槳座戰船獲得了訓練騎兵的能力。 "
 
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsondescription
 msgid "Salting allows to preserve fish longer."
@@ -459,7 +459,7 @@ msgstr "漁船 +30% 魚的採集效率。"
 
 #: simulation/data/technologies/garrison_heal.jsondescription
 msgid "Units regain health over time while garrisoned."
-msgstr ""
+msgstr "單位在駐守後會隨著時間的流逝恢復生命值。 "
 
 #: simulation/data/technologies/garrison_heal.jsongenericName
 msgid "Living Conditions"
@@ -467,11 +467,11 @@ msgstr "生活條件"
 
 #: simulation/data/technologies/garrison_heal.jsontooltip
 msgid "Structures +1 garrison heal rate."
-msgstr ""
+msgstr "建築 +1 駐點生命值回復率"
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breed livestock to slaughter for meat."
-msgstr ""
+msgstr "飼養牲畜，宰殺來取得肉。 "
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsongenericName
 msgid "Stockbreeding"
@@ -540,7 +540,7 @@ msgstr "收割機"
 
 #: simulation/data/technologies/gather_farming_harvester.jsontooltip
 msgid "Workers +10% grain gather rate."
-msgstr ""
+msgstr "工人 +10% 作物採集率。"
 
 #: simulation/data/technologies/gather_farming_plows.jsondescription
 msgid ""
@@ -582,7 +582,7 @@ msgstr "銳利斧頭"
 
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsongenericName
 msgid "Stronger Axe"
-msgstr ""
+msgstr "較強的斧頭"
 
 #: simulation/data/technologies/gather_mining_serfs.jsondescription
 msgid ""
@@ -602,7 +602,7 @@ msgstr "Heilōtes"
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
 #: simulation/data/technologies/gather_mining_slaves.jsontooltip
 msgid "Workers +20% stone gather rate."
-msgstr ""
+msgstr "工人 +20% 石頭採集率"
 
 #: simulation/data/technologies/gather_mining_servants.jsondescription
 msgid "Hire servants to help quarry stone. Increases stone gathering rates."
@@ -632,7 +632,7 @@ msgstr "豎井挖掘"
 #: simulation/data/technologies/gather_mining_silvermining.jsontooltip
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
 msgid "Workers +20% metal gather rate."
-msgstr ""
+msgstr "工人 +20% 金屬採集率。"
 
 #: simulation/data/technologies/gather_mining_silvermining.jsondescription
 msgid "Strike a vein of precious silver. Increases metal gathering rates."
@@ -666,7 +666,7 @@ msgstr "奴隸"
 #: simulation/data/technologies/gather_mining_slaves.jsonspecificName.sele
 #: simulation/data/technologies/gather_mining_slaves.jsonspecificName.spart
 msgid "Andrapoda"
-msgstr ""
+msgstr "畜生型奴隸"
 
 #: simulation/data/technologies/gather_mining_slaves.jsonspecificName.rome
 msgid "Servi"
@@ -713,7 +713,7 @@ msgstr "奧林匹克萬神殿"
 #: simulation/data/technologies/heal_range.jsontooltip
 #: simulation/data/technologies/heal_range_2.jsontooltip
 msgid "Healers +5 healing range."
-msgstr ""
+msgstr "醫療者 +5 治療距離"
 
 #: simulation/data/technologies/heal_range_2.jsongenericName
 msgid "Healing Range 2"
@@ -726,7 +726,7 @@ msgstr "Akadēmeia"
 #: simulation/data/technologies/heal_rate.jsondescription
 #: simulation/data/technologies/heal_rate_2.jsondescription
 msgid "Increases the healing rate of all healers."
-msgstr ""
+msgstr "增加所有醫療者的治療速率"
 
 #: simulation/data/technologies/heal_rate.jsongenericName
 msgid "Healing Rate"
@@ -782,7 +782,7 @@ msgstr "戰地醫療"
 
 #: simulation/data/technologies/health_regen_units.jsontooltip
 msgid "Idle Organic units +0.5 health regeneration rate."
-msgstr ""
+msgstr "閒置有機單位 +0.5 生命值恢復速率。 "
 
 #: simulation/data/technologies/hellenistic_metropolis.jsondescription
 msgid ""
@@ -797,7 +797,7 @@ msgstr "希臘風格的大都市"
 
 #: simulation/data/technologies/hellenistic_metropolis.jsontooltip
 msgid "Civic Centers +100% health and capture points, double default arrows."
-msgstr "城鎮中心 +100% 血量及捕獲／占領值，並具有雙倍箭矢。"
+msgstr "城鎮中心 +100% 血量及捕獲 /占領值，箭矢量為預設值的兩倍。"
 
 #: simulation/data/technologies/immortals.jsondescription
 msgid ""
@@ -811,7 +811,7 @@ msgstr "長生軍"
 
 #: simulation/data/technologies/immortals.jsontooltip
 msgid "Immortals −50% training time, but −10% health."
-msgstr ""
+msgstr "長生軍 −50% 訓練時間，但是 −10% 生命值"
 
 #: simulation/data/technologies/infantry_cost_time.jsondescription
 msgid ""
@@ -839,7 +839,7 @@ msgstr "伊菲克拉特斯的軍事改革"
 
 #: simulation/data/technologies/iphicratean_reforms.jsontooltip
 msgid "Athenian Triremes can train Marines and Cretan Mercenary Archers."
-msgstr ""
+msgstr "雅典三列槳座戰船可以訓練陸戰隊和克里特弓箭手傭兵"
 
 #: simulation/data/technologies/long_walls.jsondescription
 msgid ""
@@ -884,7 +884,7 @@ msgstr "傳統軍隊 vs. 革新軍隊"
 msgid ""
 "The festival at Daphne was a major event of the Seleucid Empire: tens of "
 "thousands of well-equipped troops participated in the opening procession."
-msgstr ""
+msgstr "達芙妮的節日是塞琉古帝國的重要活動：成千上萬裝備精良的部隊參加了開幕式。 "
 
 #: simulation/data/technologies/parade_of_daphne.jsongenericName
 msgid "Parade of Daphne"
@@ -916,7 +916,7 @@ msgstr "從繁華的大城市進展為一個名副其實的大都市，充滿著
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
 msgid "Requires four Town Structures."
-msgstr ""
+msgstr "需要四棟城鎮建築。"
 
 #: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.mace

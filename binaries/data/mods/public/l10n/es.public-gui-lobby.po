@@ -21,15 +21,15 @@
 # Mihai Pantazi <malexandru_70@hotmail.com>, 2017-2018
 # Álvaro Mondéjar <mondejar1994@gmail.com>, 2019
 # nani 0 <infinitaloop@gmail.com>, 2018
-# Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>, 2020
+# Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>, 2020-2021
 # Swyter <Swyterzone@gmail.com>, 2014-2018
 # The_Gipsy <xelectronhd@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-01-25 20:58+0000\n"
-"Last-Translator: Jesús Asenjo <jasenjot@gmail.com>\n"
+"PO-Revision-Date: 2021-03-02 13:21+0000\n"
+"Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -107,7 +107,7 @@ msgstr "Clasificación"
 #: gui/lobby/LobbyPage/Buttons/ProfileButton.js:9
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):12
 msgid "Player Profile Lookup"
-msgstr "Búsqueda de jugador"
+msgstr "Buscar perfil de jugador"
 
 #: gui/lobby/LobbyPage/Buttons/QuitButton.js:15
 msgctxt "previous page"
@@ -132,7 +132,7 @@ msgstr "Sólo los moderadores pueden utilizar  «%(cmd)s»."
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:66
 #, javascript-format
 msgid "The command '%(cmd)s' requires at least one argument."
-msgstr "El comando '%(cmd)s' requiere al menos un argumento."
+msgstr "La instrucción '%(cmd)s' requiere al menos un argumento."
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:87
 msgid "Set your state to 'Away'."
@@ -271,12 +271,12 @@ msgstr "%(nick)s ya no es moderador."
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:152
 #, javascript-format
 msgid "%(nick)s changed the lobby subject to:"
-msgstr "%(nick)scambió el tema de la sala a:"
+msgstr "%(nick)s cambió el título de la sala a:"
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:153
 #, javascript-format
 msgid "%(nick)s deleted the lobby subject."
-msgstr "%(nick)s eliminó el tema de la sala."
+msgstr "%(nick)s eliminó el título de la sala."
 
 #. Translation: Chat status message
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageFormat.js:25
@@ -363,12 +363,12 @@ msgstr "%(current)s/%(max)s"
 #: gui/lobby/LobbyPage/GameDetails.js:65
 msgctxt "victory condition"
 msgid "Endless Game"
-msgstr "Partida sin fin"
+msgstr "Partida sin objetivo final"
 
 #: gui/lobby/LobbyPage/GameDetails.js:117
 #, javascript-format
 msgid "Host: %(playername)s"
-msgstr "Anfitrión:  %(playername)s"
+msgstr "Anfitrión: %(playername)s"
 
 #: gui/lobby/LobbyPage/GameDetails.js:119
 #, javascript-format
@@ -382,7 +382,7 @@ msgstr "Condiciones de victoria:"
 #. Translation: Comma used to concatenate victory conditions
 #: gui/lobby/LobbyPage/GameDetails.js:124
 msgid ", "
-msgstr ","
+msgstr ", "
 
 #: gui/lobby/LobbyPage/GameDetails.js:126
 msgid "Mods:"
@@ -583,7 +583,7 @@ msgstr "No se ha encontrado al jugador «%(nick)s»."
 
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):16
 msgid "Enter playername:"
-msgstr "Ingrese nombre de jugador: "
+msgstr "Introducir nombre del jugador: "
 
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):22
 msgid "View Profile"
@@ -617,7 +617,7 @@ msgstr "Introduce tu contraseña"
 
 #: gui/prelobby/common/credentials/credentials.js:23
 msgid "Please choose a longer password"
-msgstr "Por favor, elija una contraseña más larga"
+msgstr "Por favor, elije una contraseña más larga"
 
 #: gui/prelobby/common/credentials/credentials.js:32
 msgid "Please enter your password again"
@@ -629,7 +629,7 @@ msgstr "Las contraseñas no coinciden"
 
 #: gui/prelobby/common/credentials/credentials.js:54
 msgid "Are you sure you want to delete the password after connecting?"
-msgstr "¿Está seguro de que quiere borrar la contraseña después de conectarse?"
+msgstr "¿Estás seguro de que quieres borrar la contraseña después de conectarte?"
 
 #: gui/prelobby/common/credentials/credentials.xml:(caption):6
 msgid "Login:"
@@ -658,27 +658,27 @@ msgstr "Cancelar"
 msgid ""
 "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Privacy "
 "Policy[/font]"
-msgstr "[font=\"sans-bold-18\"]Política de Privacidad de la Sala Multijugador de 0AD Empires Ascendant[/font]\n"
+msgstr "[font=\"sans-bold-18\"]Política de privacidad de la sala multijugador de 0 A.D. Empires Ascendant[/font]\n"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:3
 msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2020-12-24"
-msgstr "[font=\"sans-bold-14\"]Fecha del Documento:[/font] 2020-12-24"
+msgstr "[font=\"sans-bold-14\"]Fecha del documento:[/font] 24/12/2020"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:5
 msgid ""
 "[font=\"sans-bold-16\"]Personal data processed by Wildfire Games and "
 "purposes of processing:[/font]"
-msgstr "[font=\"sans-bold-16\"]Datos personales procesados por Wildfire Games y fines de procesamiento:[/font]"
+msgstr "[font=\"sans-bold-16\"]Datos personales procesados por Wildfire Games y finalidad de procesamiento:[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:6
 msgid "[font=\"sans-bold-14\"]1. Player name[/font]"
-msgstr "[font=\"sans-bold-14\"]1. Alias[/font]"
+msgstr "[font=\"sans-bold-14\"]1. Nombre del jugador[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:7
 msgid ""
 "The player is identified by a name that the player chooses at the time of "
 "registration."
-msgstr "El jugador se identifica por el nombre que escogió al momento de registrarse."
+msgstr "El jugador se identificará por el nombre que escogió al registrarse."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:8
 msgid ""
@@ -686,7 +686,7 @@ msgid ""
 "players, moderators and developers to identify players they met before, "
 "communicate about the game, coordinate matches and enables moderators to "
 "enforce the Terms of Use."
-msgstr "Tener un nombre de jugador único es un requisito para obtener una puntuación, para permitir que los jugadores, moderadores y desarrolladores identifiquen a los jugadores que se reunieron con anterioridad, comunicarse durante el juego, coordinar partidas y permitir a los moderadores hacer cumplir los Términos de uso."
+msgstr "Tener un nombre de jugador único es un requisito para obtener una puntuación, para permitir que los jugadores, moderadores y desarrolladores identifiquen a los jugadores que se conectaron, comunicarles aspectos del juego, coordinar partidas y permitir que los moderadores puedan hacer cumplir los términos de uso."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:9
 msgid ""
@@ -695,7 +695,7 @@ msgid ""
 " information (such as the real name) was disclosed on the Lobby Chat, other "
 "services of Wildfire Games or elsewhere in the public, or when the IP "
 "address is used to bring criminal proceedings."
-msgstr "El alias sirve como un seudónimo. Wildfire Games no conoce la verdadera identidad del jugador, a menos que este haya revelado información personal en la sala de chat, otros servicios de Wildfire Games u otros lugares públicos, o cuando la dirección IP es usada en procedimientos judiciales."
+msgstr "El nombre del jugador sirve como un seudónimo. Wildfire Games no conoce la verdadera identidad del jugador, salvo por la información personal que revele en la sala de chat, en otros servicios de Wildfire Games, otro lugar público, o cuando la dirección IP se solicite en procedimientos judiciales."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:11
 msgid "[font=\"sans-bold-14\"]2. Password[/font]"
@@ -705,14 +705,14 @@ msgstr "[font=\"sans-bold-14\"]2. Contraseña[/font]"
 msgid ""
 "A player is authenticated using a password that the player chooses at the "
 "time of registration."
-msgstr "El jugador inicia sesión utilizando la contraseña que eligió al momento de registrarse."
+msgstr "El jugador se autentica mediante la contraseña que eligió al momento de registrarse."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:13
 msgid ""
 "Wildfire Games only receives an encrypted version of the password, so that "
 "the password chosen by the user is not revealed to Wildfire Games or others "
 "in case of a breach."
-msgstr "Wildfire Games recibe una versión encriptada de la contraseña, de forma que en caso de una filtración de datos, la contraseña no sea revelada"
+msgstr "Wildfire Games recibe una versión encriptada de la contraseña, de forma que en caso de una brecha de seguridad, la contraseña no sea revelada."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:15
 msgid "[font=\"sans-bold-14\"]3. IP address[/font]"
@@ -723,33 +723,33 @@ msgid ""
 "When a player hosts a match in the Multiplayer Lobby, the IP address of that"
 " player is sent to every player who is online, so that other players can "
 "join that game."
-msgstr "Cuando un jugador es anfitrión en una sala multijugador, la dirección IP de ese jugador se envía a cada jugador que está en línea, para que otros jugadores puedan unirse a dicho juego."
+msgstr "Cuando un jugador es anfitrión en una sala multijugador, la dirección IP de ese jugador se envía a cada jugador que está en línea, para que otros jugadores puedan unirse a su partida."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:17
 msgid ""
 "Wildfire Games stores players IP addresses and may infer publicly available "
 "geolocation and internet service provider data (for example \"geolite2\") "
 "from the IP address in order to:"
-msgstr "Wildfire Games almacena las direcciones IP de los jugadores y puede inferir la localización geográfica disponible públicamente y los datos del proveedor de servicios (por ejemplo \"geolite2\") de las direcciones IP con el propósito de:"
+msgstr "Wildfire Games almacena las direcciones IP de los jugadores y puede inferir la localización geográfica disponible públicamente y los datos del proveedor de servicios (por ejemplo «geolite2») de las direcciones IP con el propósito de:"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:18
 msgid ""
 " 1. Enforce the Terms of Use where persons create multiple accounts without "
 "Wildfire Games permission, in particular after having been banned from the "
 "service for violating the Terms of Use."
-msgstr "1. Hacer cumplir los Términos de Uso cuando personas crean múltiples cuentas sin el permiso de Wildfire Games, en particular después de haber sido baneados del servicio por incumplir los Términos de Uso."
+msgstr "1. Hacer cumplir los términos de uso cuando se estén creando múltiples cuentas sin el permiso de Wildfire Games, en particular después de haber sido expulsados del servicio por incumplir los términos de uso."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:19
 msgid ""
 "    IP addresses will not be saved for longer than three years for this "
 "purpose."
-msgstr "Las direcciones IP no serán guardadas por más de tres años para este propósito."
+msgstr "    Las direcciones IP no serán guardadas por más de tres años para este propósito."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:20
 msgid ""
 " 2. Make it possible to bring criminal proceedings in case of a cyberattack "
 "(EU Court of Justice Press Release No 112/16)."
-msgstr "2. Hacer posible el llevar a cabo procedimientos penales en caso de ciberataque (Corte de Justicia de EU, lanzamiento número 112/16)."
+msgstr "2. Hacer posible el llevar a cabo procedimientos penales en caso de ciberataque (Comuniado de prensa del Tribunal de Justicia de la Unión Europea 112/16)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:21
 msgid ""
@@ -757,7 +757,7 @@ msgid ""
 "particular not for marketing, not otherwise disclose IP addresses to the "
 "public or third parties and erase IP addresses if they are not relevant for "
 "the stated purposes anymore."
-msgstr "Wildfire Games no utilizará los registros de direcciones IP para ningún otro propósito, en particular ni para la comercialización, ni divulgará las direcciones IP al público o a terceros y borrará las direcciones IP si ya no son relevantes para los fines establecidos."
+msgstr "Wildfire Games no utilizará los registros de direcciones IP para ningún otro propósito, incluyendo el marketing, ni divulgará las direcciones IP al público o a terceros y borrará las direcciones IP si ya no son útiles para los fines establecidos."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:23
 msgid "[font=\"sans-bold-14\"]4. Online presence[/font]"
@@ -1063,11 +1063,11 @@ msgstr "Para obtener más información sobre las Políticas de Privacidad de Wil
 msgid ""
 "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Terms of "
 "Service[/font]"
-msgstr "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Términos del servicio de la sala multijugador[/font]"
+msgstr "[font=\"sans-bold-18\"]Términos del servicio de la sala multijugador de 0 A.D. Empires Ascendant[/font]"
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:3
 msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2018-10-16"
-msgstr "[font=\"sans-bold-14\"]Fecha del documento:[/font] 2018-10-13"
+msgstr "[font=\"sans-bold-14\"]Fecha del documento:[/font] 16/10/2018"
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:5
 msgid ""
@@ -1086,14 +1086,14 @@ msgstr "Debido al tema de la guerra histórica, la descripción y representació
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:8
 msgid "The minimum age to use the Multiplayer Lobby is 13."
-msgstr "La edad mínima para usar el modo Multijugador es de 13 años."
+msgstr "La edad mínima para utilizar la sala multijugador es de 13 años."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:10
 #: gui/prelobby/common/terms/Terms_of_Use.txt:5
 msgid ""
 "[font=\"sans-bold-14\"]By using the 0 A.D. Multiplayer Lobby, you agree "
 "to:[/font]"
-msgstr "[font=\"sans-bold-14\"]Al usar la sala multijugador de 0 A.D.  acepta:[/font]"
+msgstr "[font=\"sans-bold-14\"]Al utilizar la sala multijugador de 0 A.D. usted acepta:[/font]"
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:11
 msgid " 1. Follow all usage policies."
@@ -1121,7 +1121,7 @@ msgstr "[font=\"sans-bold-14\"]Wildfire Games se reserva el derecho a:[/font]"
 msgid ""
 " 1. Moderate the service, i.e. to enforce the Terms of Use by restricting, "
 "suspending or terminating user accounts."
-msgstr "1. Modere el servicio, es decir, para hacer cumplir los Términos de uso restringiendo, suspendiendo o cancelando cuentas de usuario."
+msgstr "1. Moderar el servicio, es decir, para hacer cumplir los términos de uso restringiendo, suspendiendo o cancelando cuentas de usuario."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:17
 msgid " 2. Appoint others to moderate the service."
@@ -1129,14 +1129,14 @@ msgstr "2. Designar a otros para que moderen el servicio."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:18
 msgid " 3. Discontinue or interrupt any part of the service at any time."
-msgstr "3. Discontinuar o interrumpir cualquiera parte del servicio en cualquier momento."
+msgstr "3. Descontinuar o interrumpir cualquier parte del servicio en cualquier momento."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:19
 msgid ""
 " 4. Change the service or the terms. The document date of the terms indicate"
 " its version, and the user is informed of the new terms before being able to"
 " use the service again."
-msgstr "4. Cambiar el servicio o los términos. La fecha del documento de los términos indica su versión, y el usuario es informado de los nuevos términos antes de poder usar el servicio nuevamente."
+msgstr "4. Cambiar el servicio o los términos. La fecha del documento de los términos indica su versión, y previamente se informará al usuario de los nuevos términos antes de volver a usar el servicio."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:20
 msgid ""
@@ -1251,7 +1251,7 @@ msgstr "Política de Privacidad"
 
 #: gui/prelobby/common/terms/termslobby.js:30
 msgid "Please read and accept the Privacy Policy."
-msgstr "Por favor,  lea y acepte la Política de Privacidad."
+msgstr "Por favor, lee y acepta la Política de Privacidad."
 
 #: gui/prelobby/entrance/entrance.xml:(caption):20
 msgid "Create a new account"

@@ -6,7 +6,7 @@
 # linux_eki <ekiuusi@gmail.com>, 2014-2016
 # Ildradil <piggmatias@gmail.com>, 2013
 # Järvi Eduardo <hammondemain@gmail.com>, 2018
-# Jiri Grönroos <jiri.gronroos@iki.fi>, 2019
+# Jiri Grönroos <jiri.gronroos@iki.fi>, 2019,2021
 # Max Ihalempia, 2016
 # Max Ihalempia, 2016
 # Max Ihalempia, 2015
@@ -23,8 +23,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-29 14:56+0000\n"
-"PO-Revision-Date: 2021-01-29 16:26+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-02-20 17:38+0000\n"
+"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -39,7 +39,7 @@ msgstr "Valitse pelinopeus"
 #: gui/session/Menu.js:41
 #, javascript-format
 msgid "Press %(hotkey)s to toggle this menu."
-msgstr ""
+msgstr "Paina %(hotkey)s avataksesi tai sulkeaksesi tämän valikon."
 
 #: gui/session/MenuButtons.js:32
 msgid "Chat"
@@ -88,7 +88,7 @@ msgstr "Tauko"
 #: gui/session/MenuButtons.js:218
 #, javascript-format
 msgid "Press %(hotkey)s to pause or resume the game."
-msgstr ""
+msgstr "Paina %(hotkey)s keskeyttääksesi tai palataksesi peliin."
 
 #: gui/session/MenuButtons.js:234
 msgid "Resign"
@@ -940,7 +940,7 @@ msgstr "Saavuta: %(gain)s"
 msgid ""
 "(%(number)s)\n"
 "%(time)s"
-msgstr ""
+msgstr "(%(number)s)\n%(time)s"
 
 #: gui/session/selection_details.js:282
 msgid "Current/max gatherers"
@@ -1290,7 +1290,7 @@ msgstr "Paina valitaksesi ryhmitetyt yksiköt, tuplaklikkaamalla saat keskitetty
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
 msgid "ALPHA XXIV: Xšayāršā"
-msgstr ""
+msgstr "ALPHA XXIV: Xšayāršā"
 
 #: gui/session/top_panel/CivIcon.js:80
 #, javascript-format
@@ -1401,13 +1401,13 @@ msgstr "Myy %(resource)s"
 #, javascript-format
 msgctxt "buy action"
 msgid "+%(amount)s"
-msgstr ""
+msgstr "+%(amount)s"
 
 #: gui/session/trade/BarterButton.js:103
 #, javascript-format
 msgctxt "sell action"
 msgid "-%(amount)s"
-msgstr ""
+msgstr "-%(amount)s"
 
 #: gui/session/trade/BarterPanel.xml:(caption):5
 msgid "Barter"
@@ -1454,7 +1454,7 @@ msgstr "Kauppa"
 
 #: gui/session/trade/TradePanel.xml:(caption):14
 msgid "Resources:"
-msgstr ""
+msgstr "Resurssit:"
 
 #: gui/session/trade/TraderStatusTextLand.js:15
 #, javascript-format

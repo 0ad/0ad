@@ -23,13 +23,13 @@
 # liulitchi <xingzuo88@qq.com>, 2014,2017-2020
 # 星臣 <yuronglong1996@gmail.com>, 2017
 # 武军 李 <lwj7863439@gmail.com>, 2016-2017
-# 玉堂白鹤 <yjwork@qq.com>, 2015
+# 玉堂白鹤 <yjwork@qq.com>, 2015,2021
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-18 08:15+0000\n"
-"PO-Revision-Date: 2021-01-18 10:36+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-02-23 09:33+0000\n"
+"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -87,7 +87,7 @@ msgstr "伏击"
 msgid ""
 "An indefensible open land with little wood and stone, representing the "
 "central basin of Asia Minor."
-msgstr "一个只有稀少木头及石头，且易攻难守的开阔地区，位于小亚细亚的中部盆地。"
+msgstr "一个只有稀少木头及石料，且易攻难守的开阔地区，位于小亚细亚的中部盆地。"
 
 #: maps/random/anatolian_plateau.jsonsettings.Name
 msgid "Anatolian Plateau"
@@ -376,7 +376,7 @@ msgstr "麦罗埃田地"
 msgid ""
 "A great flood has moved across the valley enabling ships and troops to "
 "battle in chest deep waters."
-msgstr "一场巨大的洪水已经越过山谷，这使船只和部队在洪水及胸的深水域战斗。"
+msgstr "一场巨大的洪水已经越过山谷，这使船舶和部队在洪水及胸的深水域战斗。"
 
 #: maps/random/flood.jsonsettings.Name
 msgid "Flood"
@@ -967,7 +967,7 @@ msgctxt "biome definition"
 msgid ""
 "Solidifying its grip, the harsh cold has succeeded in freezing up the gulf. "
 "The thick ice formed is capable of withstanding any weight."
-msgstr ""
+msgstr "严寒冻结了海湾，形成的厚冰能够承受任何重量。"
 
 #: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Title
 msgctxt "biome definition"
@@ -1575,7 +1575,7 @@ msgstr "一个不列颠群岛的示例地图。根据高程图创建的。"
 
 #: maps/scenarios/eire_and_albion.xml:Name:26
 msgid "Eire and Albion (British Isles)"
-msgstr "爱尔兰和阿尔比恩(英伦三岛)"
+msgstr "爱尔兰和阿尔比恩（不列颠群岛）"
 
 #: maps/scenarios/fast_oasis.xml:Description:26
 msgid ""
@@ -1636,7 +1636,7 @@ msgid ""
 "The Peloponnesian valley of Laconia, homeland of the Spartans.\n"
 "\n"
 "The Macedonians are encroaching into Spartan lands. After losing a pitched battle against the invaders, the Spartans must rebuild their army quickly before the Macedonians overrun the entire valley."
-msgstr "伯罗奔尼撒半岛东南的拉科尼亚峡谷，是斯巴达人的家园。\n由于马其顿人侵犯斯巴达人的领土。在一场难分难解的酣战中失利后，斯巴达人必须在马其顿完全占领峡谷前，尽快重新建立一直军队。"
+msgstr "伯罗奔尼撒半岛东南的拉科尼亚峡谷，是拉栖代孟人的家园。\n由于马其顿人侵犯拉栖代孟人的领土。在一场难分难解的酣战中失利后，拉栖代孟人必须在马其顿完全占领峡谷前，尽快重新建立一直军队。"
 
 #: maps/scenarios/laconia.xml:Name:26
 msgid "Laconia"
@@ -1722,11 +1722,11 @@ msgstr "伯罗奔尼撒之战"
 
 #: maps/scenarios/peloponnese.xml:PlayerData[0].Name:38
 msgid "Athens"
-msgstr "雅典"
+msgstr "亚甸"
 
 #: maps/scenarios/peloponnese.xml:PlayerData[1].Name:38
 msgid "Sparta"
-msgstr "斯巴达"
+msgstr "拉栖代孟"
 
 #: maps/scenarios/peloponnese.xml:PlayerData[2].Name:38
 msgid "Elis"
@@ -1818,22 +1818,22 @@ msgstr "坦塔罗斯"
 #: maps/scenarios/sandbox_athenians.xml:Description:38
 msgid ""
 "Play with the Athenians faction in a non-threatening sandbox environment."
-msgstr "和雅典在没有威胁的测试环境中游戏。"
+msgstr "和亚甸在没有威胁的测试环境中游戏。"
 
 #: maps/scenarios/sandbox_athenians.xml:Name:38
 msgid "Sandbox - The Athenians"
-msgstr "测试区-雅典"
+msgstr "测试区-亚甸"
 
 #: maps/scenarios/sandbox_athenians.xml:PlayerData[0].Name:38
 msgid "The Athenians"
-msgstr "雅典"
+msgstr "亚甸"
 
 #: maps/scenarios/sandbox_athenians.xml:PlayerData[1].Name:38
 #: maps/scenarios/sandbox_macedonians.xml:PlayerData[1].Name:38
 #: maps/scenarios/sandbox_spartans.xml:PlayerData[0].Name:38
 #: maps/scenarios/sandbox_spartans.xml:PlayerData[1].Name:38
 msgid "The Spartans"
-msgstr "斯巴达"
+msgstr "拉栖代孟"
 
 #: maps/scenarios/sandbox_athenians.xml:PlayerData[2].Name:38
 #: maps/scenarios/sandbox_macedonians.xml:PlayerData[2].Name:38
@@ -1922,15 +1922,15 @@ msgstr "马其顿"
 
 #: maps/scenarios/sandbox_mauryas.xml:Description:38
 msgid "Mauryan Indian faction showcase map."
-msgstr "一个对孔雀王朝各部分的展示地图。"
+msgstr "一个对印度各部分的展示地图。"
 
 #: maps/scenarios/sandbox_mauryas.xml:Name:38
 msgid "Sandbox - The Mauryas"
-msgstr "沙盒 - 孔雀王朝"
+msgstr "沙盒 - 印度"
 
 #: maps/scenarios/sandbox_mauryas.xml:PlayerData[0].Name:38
 msgid "Mauryan Indians"
-msgstr "印度孔雀王朝"
+msgstr "孔雀王朝"
 
 #: maps/scenarios/sandbox_mauryas.xml:PlayerData[1].Name:38
 msgid "Enemy"
@@ -1980,7 +1980,7 @@ msgstr "托勒密一世“救主”"
 
 #: maps/scenarios/sandbox_ptolemies_02.xml:PlayerData[2].Name:38
 msgid "Seleucids"
-msgstr "塞琉古"
+msgstr "塞留西"
 
 #: maps/scenarios/sandbox_ptolemies_02.xml:PlayerData[3].Name:38
 msgid "Libyans"
@@ -1996,15 +1996,15 @@ msgstr "测试区 - 罗马共和国"
 
 #: maps/scenarios/sandbox_seleucids.xml:Description:38
 msgid "A sandbox scenario for players to try out the Seleucid civilisation."
-msgstr "供玩家尝试塞琉古文明的测试剧情。"
+msgstr "供玩家尝试塞留西文明的测试剧情。"
 
 #: maps/scenarios/sandbox_seleucids.xml:Name:38
 msgid "Sandbox - The Seleucids"
-msgstr "测试区 - 塞琉古"
+msgstr "测试区 - 塞留西"
 
 #: maps/scenarios/sandbox_seleucids.xml:PlayerData[0].Name:38
 msgid "The Seleucids"
-msgstr "塞琉古"
+msgstr "塞留西"
 
 #: maps/scenarios/sandbox_seleucids.xml:PlayerData[1].Name:38
 msgid "The Ptolemies"
@@ -2013,11 +2013,11 @@ msgstr "托勒密"
 #: maps/scenarios/sandbox_spartans.xml:Description:38
 msgid ""
 "Play with the Spartans faction in a non-threatening sandbox environment."
-msgstr "和斯巴达在没有威胁的测试环境中游戏。"
+msgstr "和拉栖代孟在没有威胁的测试环境中游戏。"
 
 #: maps/scenarios/sandbox_spartans.xml:Name:38
 msgid "Sandbox - The Spartans"
-msgstr "测试区-斯巴达"
+msgstr "测试区-拉栖代孟"
 
 #: maps/scenarios/savanna_ravine.xml:Description:38
 msgid ""
@@ -2053,11 +2053,11 @@ msgstr "波斯"
 
 #: maps/scenarios/ship_formations.xml:Description:26
 msgid "Ship formations mockup."
-msgstr "船只编队模型"
+msgstr "船舶编队模型"
 
 #: maps/scenarios/ship_formations.xml:Name:26
 msgid "Ship Formations"
-msgstr "船只阵型"
+msgstr "船舶阵型"
 
 #: maps/scenarios/ship_formations.xml:PlayerData[0].Name:26
 msgid "Ships"
@@ -2065,7 +2065,7 @@ msgstr "船"
 
 #: maps/scenarios/shipattacks.xml:Description:26
 msgid "Move ships around. Attack other ships."
-msgstr "四处移动船只。攻击其他的船只。"
+msgstr "四处移动船舶。攻击其他的船舶。"
 
 #: maps/scenarios/shipattacks.xml:Name:26
 msgid "Ships Demo"
@@ -2120,15 +2120,15 @@ msgid ""
 "\"Beware such pride. The East has a way of swallowing men and their dreams.\"\n"
 "\n"
 "Will Alexander push his way through The Persian Gates and fulfill his destiny, or will Ariobarzanes defend the rugged ancient land of Persis against a foreign invader?"
-msgstr "“一直以来，希腊人都梦想着向东前进。”\n\n“小心这种骄傲。东方有着将一个男人及他的梦想吞噬的一种方法。”\n\n亚历山大将会推进到波斯的城门前并完成他的使命，或是阿里奥巴尔赞将会成功的防守住波斯这块古老的土地，不让异国人入侵？"
+msgstr "“一直以来，希腊人都梦想着向东前进。”\n\n“小心这种骄傲。东方有着将一个男人及他的梦想吞噬的一种方法。”\n\n亚历山大将会推进到波斯隘口前并完成他的使命，或是阿里奥巴尔赞将会成功的防守住波斯这块古老的土地，不让异国人入侵？"
 
 #: maps/scenarios/the_persian_gates.xml:Name:26
 msgid "The Persian Gates"
-msgstr "波斯大门"
+msgstr "波斯隘口"
 
 #: maps/scenarios/the_persian_gates.xml:PlayerData[0].Name:26
 msgid "Alexandros Megas"
-msgstr "亚历山大大帝"
+msgstr "亚历山大三世"
 
 #: maps/scenarios/the_persian_gates.xml:PlayerData[1].Name:26
 msgid "Krateros"
@@ -2377,7 +2377,7 @@ msgid ""
 "Two players face off across a large bog somewhere in the Rhine lowlands.\n"
 "\n"
 "Wood is abundant, but Metal and Stone are hard to find and extract. Hunting and foraging is plentiful."
-msgstr "两个玩家在莱茵河低地的某沼泽隔岸对峙。\n木材很丰富，但金属和石头稀缺。"
+msgstr "两个玩家在莱茵河低地的某沼泽隔岸对峙。\n木材很丰富，但金属和石料稀缺。"
 
 #: maps/skirmishes/belgian_bog_2p.xml:Name:38
 msgid "Belgian Bog (2)"
@@ -2406,7 +2406,7 @@ msgid ""
 "Two teams face off across a long, very large saltwater lake.\n"
 "\n"
 "Fishing can be had in the central lake. The map is also well-endowed with Stone and Metal deposits."
-msgstr "两支队伍在一个既长且大的咸水湖的两边进行对抗。\n\n可以在湖的中央捕鱼。此地图也有相当丰富的石头与金属矿藏。"
+msgstr "两支队伍在一个既长且大的咸水湖的两边进行对抗。\n\n可以在湖的中央捕鱼。此地图也有相当丰富的石料与金属矿藏。"
 
 #: maps/skirmishes/caspian_sea_2pv2p.xml:Name:38
 msgid "Caspian Sea (2v2)"
@@ -2512,7 +2512,7 @@ msgid ""
 "- Fayyum: crocodile shrine, nile dam\n"
 "- Eastern desert: mount Sinai, deep Wadi, Red Sea reefs\n"
 "- Western desert: Oasis Charga and Siwa, Qattara Depression\n"
-msgstr "为古埃及的而战！\n\n玩家以成熟的城市和小型军队开局，每个都有明显的优点和缺点。小心，有7个强大的堡垒和劫匪！\n\n公元前一世纪。埃及在内部分为希腊化（亚历山大，以塞琉古为代表）和传统影响（孟菲斯，以托勒密为代表）。尼罗河南部的底比斯已被库什接管。在地中海城市昔兰尼所在的Al-Dschabal al-Achdar西北部，罗马人正准备入侵。来自东部沙漠的Tih和西奈山的敌人（以波斯人为代表）正在向前推进和锡瓦绿洲。西南沙漠的查加（以迦太基为代表）也试图分一杯羹。\n位置：\n- 亚历山大港：图书馆，港口\n- 孟菲斯：大墓地，金字塔，阿匹斯神庙\n- 底比斯：神庙区，帝王谷\n- 昔兰尼：地中海城市，橄榄树林\n- 法耶姆：鳄鱼神殿，尼罗河大坝\n- 东部沙漠：西奈山，深谷，红海珊瑚礁\n- 西部沙漠：查加和锡瓦绿洲，卡塔拉低地\n"
+msgstr "为古埃及的而战！\n\n玩家以成熟的城市和小型军队开局，每个都有明显的优点和缺点。小心，有7个强大的堡垒和劫匪！\n\n公元前一世纪。埃及在内部分为希腊化（亚历山大，以塞留西为代表）和传统影响（孟菲斯，以托勒密为代表）。尼罗河南部的底比斯已被库什接管。在地中海城市昔兰尼所在的Al-Dschabal al-Achdar西北部，罗马人正准备入侵。来自东部沙漠的Tih和西奈山的敌人（以波斯人为代表）正在向前推进和锡瓦绿洲。西南沙漠的查加（以迦太基为代表）也试图分一杯羹。\n位置：\n- 亚历山大港：图书馆，港口\n- 孟菲斯：大墓地，金字塔，阿匹斯神庙\n- 底比斯：神庙区，帝王谷\n- 昔兰尼：地中海城市，橄榄树林\n- 法耶姆：鳄鱼神殿，尼罗河大坝\n- 东部沙漠：西奈山，深谷，红海珊瑚礁\n- 西部沙漠：查加和锡瓦绿洲，卡塔拉低地\n"
 
 #: maps/skirmishes/egypt_3pv3p.xml:Name:39
 msgid "Egypt (3v3)"
@@ -2520,7 +2520,7 @@ msgstr "埃及(3V3)"
 
 #: maps/skirmishes/egypt_3pv3p.xml:PlayerData[0].Name:39
 msgid "Alexandria"
-msgstr "亚历山大"
+msgstr "亚历山大里亚"
 
 #: maps/skirmishes/egypt_3pv3p.xml:PlayerData[2].Name:39
 msgid "Siwa"
@@ -2563,7 +2563,7 @@ msgid ""
 "Each player begins the match with a wooden palisade and some guard towers atop a low embankment.\n"
 "\n"
 "Watch out for Romans passing by!"
-msgstr "保护你的高卢哨所不被险恶的邻居攻击！\n\n每个玩家皆以在一个低矮的路堤上的一组木栅栏及一些防御塔开始游戏。\n\n当心罗马人的攻击！"
+msgstr "保护你的高卢望楼不被险恶的邻居攻击！\n\n每个玩家皆以在一个低矮的路堤上的一组木墙及一些碉楼开始游戏。\n\n当心罗马人的攻击！"
 
 #: maps/skirmishes/gallic_fields_3p.xml:Name:38
 msgid "Gallic Fields (3)"
@@ -2611,7 +2611,7 @@ msgstr "双方皆位于一个大型的岩石高原上。\n\n探索这片土地�
 
 #: maps/skirmishes/greek_acropolis_2p.xml:Name:38
 msgid "Greek Acropolis (2)"
-msgstr "雅典卫城 (2)"
+msgstr "亚甸卫城 (2)"
 
 #: maps/skirmishes/greek_acropolis_4p.xml:Description:38
 msgid ""
@@ -2622,11 +2622,11 @@ msgstr "其中三方会发现自己安全的位于一个大型的岩石高原之
 
 #: maps/skirmishes/greek_acropolis_4p.xml:Name:38
 msgid "Greek Acropolis (4)"
-msgstr "雅典卫城 (4)"
+msgstr "亚甸卫城 (4)"
 
 #: maps/skirmishes/greek_acropolis_night_2p.xml:Name:38
 msgid "Greek Acropolis Night (2)"
-msgstr "雅典卫城之夜 (2)"
+msgstr "亚甸卫城之夜 (2)"
 
 #: maps/skirmishes/libyan_oases_4p.xml:Description:38
 msgid ""
@@ -2646,7 +2646,7 @@ msgid ""
 "This represents the Libyan Desert, part of the Saharan Desert, West of the Nile River in Egypt.\n"
 "\n"
 "Iberians do not receive their circuit walls here. Instead, all factions receive four free Stone Towers."
-msgstr ""
+msgstr "一个古老但倍受喜爱的地图。开阔且平坦，被两个苍翠繁茂的绿洲穿过中心的沙漠地图。\n\n这代表著撒哈拉沙漠的一部份，利比亚沙漠，在位于埃及的尼罗河的西边。\n\n伊比利人在这裡不会有环绕著的城牆。相反的，所有文明都会有 4 座免费的石塔。"
 
 #: maps/skirmishes/libyan_oasis_2p.xml:Name:38
 msgid "Libyan Oasis (2)"
@@ -2698,7 +2698,7 @@ msgid ""
 "All players start on the Western end of the map, with a vast unclaimed wilderness lying open before them ripe for conquest and depredation.\n"
 "\n"
 "Stone and Metal resources are in abundance, especially Stone, but Wood is somewhat scarce."
-msgstr "位于安纳托利亚东南部的“卡帕达奇亚”。\n\n所有玩家都在地图的最西边开始游戏，有著在他们有足够的能力进行征服或掠夺前就已经在此处的无主荒野。\n\n石头及金属相当丰富，特别是石头，但木头则较为缺乏。"
+msgstr "位于安纳托利亚东南部的“卡帕多细亚”。\n\n所有玩家都在地图的最西边开始游戏，有著在他们有足够的能力进行征服或掠夺前就已经在此处的无主荒野。\n\n石料及金属相当丰富，特别是石料，但木头则较为缺乏。"
 
 #: maps/skirmishes/neareastern_badlands_2p.xml:Name:38
 msgid "Neareastern Badlands (2)"
@@ -2736,7 +2736,7 @@ msgid ""
 "A lazy river meanders through these Serbian wetlands. Stone is scarce, but many lumps of bog iron sit waiting to be found.\n"
 "\n"
 "*This map makes heavy use of grass actors which may adversely affect performance."
-msgstr "一条河流蜿蜒穿过塞尔维亚湿地。 石头稀缺，而金属丰富。\n\n*本地图含有大量草地，可能会有渲染问题。"
+msgstr "一条河流蜿蜒穿过塞尔维亚湿地。 石料稀缺，而金属丰富。\n\n*本地图含有大量草地，可能会有渲染问题。"
 
 #: maps/skirmishes/obedska_bog_4p.xml:Name:39
 msgid "Obedska Bog (4)"
@@ -2758,7 +2758,7 @@ msgstr "海滨(2)"
 msgid ""
 "A dry central basin rich in minerals surrounded by rocky hills and "
 "highlands."
-msgstr "由岩石山丘和高地所包围盆地中部含有丰富的矿藏。"
+msgstr "四周为山丘和高地所包围，中部的盆地蕴含有丰富的矿藏。"
 
 #: maps/skirmishes/persian_highlands_4p.xml:Name:38
 msgid "Persian Highlands (4)"
@@ -2883,7 +2883,7 @@ msgid ""
 "The rolling Thessalian plain is traversed with narrow streams, easily "
 "forded. Wide-open spaces allow for massive expansion, while each player "
 "starts the match safe atop a large plateau."
-msgstr "许多易于穿过的狭窄细流穿过绵延起伏的色萨利平原。有着可以大举扩张的开阔地图，每个玩家都在安全的大型雅典卫城上开始游戏。"
+msgstr "许多易于穿过的狭窄细流穿过绵延起伏的色萨利平原。有着可以大举扩张的开阔地图，每个玩家都在安全的大型亚甸卫城上开始游戏。"
 
 #: maps/skirmishes/thessalian_plains_4p.xml:Name:38
 msgid "Thessalian Plains (4)"
@@ -2915,7 +2915,7 @@ msgid ""
 "Skirmish as ash lightly falls around this recently erupted volcano. The "
 "scorched landscape offers little food, though the blasted forests are still "
 "laden with useful wood."
-msgstr ""
+msgstr "火山喷发的周围，森林烧焦，几乎没什么食物，不过还有不少木材。"
 
 #: maps/skirmishes/vesuvius_6p.xml:Name:39
 msgid "Vesuvius (6)"

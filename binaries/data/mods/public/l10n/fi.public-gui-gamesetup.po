@@ -5,7 +5,7 @@
 # Translators:
 # linux_eki <ekiuusi@gmail.com>, 2014-2015
 # Ildradil <piggmatias@gmail.com>, 2013
-# Jiri Grönroos <jiri.gronroos@iki.fi>, 2019
+# Jiri Grönroos <jiri.gronroos@iki.fi>, 2019,2021
 # Max Ihalempia, 2016
 # Max Ihalempia, 2015
 # Olavi Tuomaala <olatuo1955@gmail.com>, 2015
@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-29 08:08+0000\n"
-"PO-Revision-Date: 2021-01-29 09:16+0000\n"
+"PO-Revision-Date: 2021-02-20 18:11+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -33,7 +33,7 @@ msgstr "Tekoälyn asetukset"
 
 #: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):29
 msgid "OK"
-msgstr "Ok"
+msgstr "OK"
 
 #: gui/gamesetup/Pages/AIConfigPage/AIDescription.js:37
 msgid "AI will be disabled for this player."
@@ -41,11 +41,11 @@ msgstr "Tekoäly on pois käytöstä tältä pelaajalta."
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIBehavior.js:95
 msgid "AI Behavior"
-msgstr ""
+msgstr "Tekoälyn toiminta"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIDifficulty.js:89
 msgid "AI Difficulty"
-msgstr "AI:n vaikeustaso"
+msgstr "Tekoälyn vaikeustaso"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AISelection.js:86
 msgctxt "ai"
@@ -54,7 +54,7 @@ msgstr "Ei mitään"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AISelection.js:91
 msgid "AI Player"
-msgstr "AI pelaaja"
+msgstr "Tekoälypelaaja"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingControl.js:172
 #, javascript-format
@@ -94,7 +94,7 @@ msgstr "Pelin tyyppi"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/AIConfigButton.js:32
 #, javascript-format
 msgid "Configure AI: %(description)s."
-msgstr ""
+msgstr "Mukauta tekoälyä: %(description)s."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:153
 msgid "Select player."
@@ -103,7 +103,7 @@ msgstr "Valitse pelaaja."
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:230
 #, javascript-format
 msgid "AI: %(ai)s"
-msgstr "AI: %(ai)s"
+msgstr "Tekoäly: %(ai)s"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:265
 msgid "Unassigned"
@@ -111,7 +111,7 @@ msgstr "Määrittelemätön"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:131
 msgid "Choose the civilization for this player."
-msgstr ""
+msgstr "Valitse sivilisaatio tälle pelaajalle."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:134
 msgctxt "civilization"
@@ -162,12 +162,12 @@ msgstr "Joukkue"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:26
 msgid "Browse Maps"
-msgstr ""
+msgstr "Selaa karttoja"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:29
 #, javascript-format
 msgid "Press %(hotkey)s to view the list of available maps."
-msgstr ""
+msgstr "Paina %(hotkey)s nähdäksesi käytettävissä olevat kartat."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:40
 msgid "Cheats"
@@ -251,7 +251,7 @@ msgstr "Näytä koko kartta (näet kaiken)"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Spies.js:43
 msgid "Disable Spies"
-msgstr ""
+msgstr "Poista vakoojat"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Spies.js:46
 msgid "Disable spies during the game."
@@ -259,7 +259,7 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js:43
 msgid "Disable Treasures"
-msgstr ""
+msgstr "Poista aarteet"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js:46
 msgid "Do not add treasures to the map."
@@ -294,7 +294,7 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:101
 msgid "Daytime"
-msgstr ""
+msgstr "Päiväsaika"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:104
 msgid "Select whether the match takes place at daylight or night."
@@ -575,8 +575,8 @@ msgstr ""
 msgctxt "victory duration"
 msgid "%(min)s minute"
 msgid_plural "%(min)s minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(min)s minuutti"
+msgstr[1] "%(min)s minuuttia"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:99
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:100
@@ -809,7 +809,7 @@ msgstr "Kirjoita kelvollinen palvelimen nimi."
 #: gui/gamesetup_mp/gamesetup_mp.js:132
 #, javascript-format
 msgid "Server port number must be between %(min)s and %(max)s."
-msgstr ""
+msgstr "Palvelimen portin tulee olla välillä %(min)s ja %(max)s."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:151
 msgid "Connecting to server..."
@@ -817,11 +817,11 @@ msgstr "Yhdistetään palvelimeen..."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:166
 msgid "Server is not running."
-msgstr ""
+msgstr "Palvelin ei ole käynnissä."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:167
 msgid "Password is invalid."
-msgstr ""
+msgstr "Salasana on virheellinen."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:168
 msgid "You have been banned."
@@ -830,7 +830,7 @@ msgstr "Sinut on estetty."
 #: gui/gamesetup_mp/gamesetup_mp.js:171
 #, javascript-format
 msgid "\\[Invalid value %(reason)s]"
-msgstr ""
+msgstr "\\[Virheellinen arvo %(reason)s]"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:179
 msgid "Failed to connect to the server."
@@ -838,7 +838,7 @@ msgstr "Palvelimeen yhdistäminen epäonnistui."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:181
 msgid "Connection failed"
-msgstr ""
+msgstr "Yhdistäminen epäonnistui"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:193
 #, javascript-format
@@ -909,7 +909,7 @@ msgstr "Palvelimen nimi:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):112
 msgid "Server Password:"
-msgstr ""
+msgstr "Palvelimen salasana:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):128
 msgid "Use STUN to work around firewalls"
@@ -929,7 +929,7 @@ msgstr "Salasana:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):162
 msgid "Confirm"
-msgstr ""
+msgstr "Vahvista"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):52
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):99
@@ -938,7 +938,7 @@ msgstr "Jätä tyhjäksi käyttääksesi oletusporttia."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):113
 msgid "Leave blank to not require it."
-msgstr ""
+msgstr "Jätä tyhjäksi jos et vaadi sitä."
 
 #: gui/loading/ProgressBar.js:48
 #, javascript-format

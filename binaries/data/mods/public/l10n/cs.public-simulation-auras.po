@@ -7,15 +7,16 @@
 # David Nováček, 2020
 # Jakub Jelen <jakuje@gmail.com>, 2017
 # Jakub Podlaha <j.podlaha@gmail.com>, 2018
+# Jan Sekera <sekerka092@gmail.com>, 2021
 # Jaroslav Benkovsky <jaroslav.benkovsky@nic.cz>, 2018
 # Jaroslav Lichtblau <jlichtblau@seznam.cz>, 2016
 # Wesalius <jonas.dyba@gmail.com>, 2016
-# xgimp <l.bacovsky@gmail.com>, 2020
+# Lukáš Bačovský <l.bacovsky@gmail.com>, 2020
 # Marek Harok <kenturin@seznam.cz>, 2017
 # fri, 2016-2019
 # Petr Hála <halapetr@selfnet.cz>, 2016-2017
 # Petr Louda <nalaniel@gmail.com>, 2018
-# Radek Mašek <warrriog@gmail.com>, 2018
+# Warriog <warrriog@gmail.com>, 2018
 # Radim Kohout <radimm.kohout@gmail.com>, 2020
 # Robin Kriebel <kriebel.robin@gmail.com>, 2016-2017
 # Tomáš Jelen <mail@tomasjelen.cz>, 2021
@@ -25,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-02-09 10:21+0000\n"
-"Last-Translator: Tomáš Jelen <mail@tomasjelen.cz>\n"
+"PO-Revision-Date: 2021-02-27 19:59+0000\n"
+"Last-Translator: Jan Sekera <sekerka092@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,7 +37,7 @@ msgstr ""
 
 #: simulation/data/auras/structures/arsenal_repair.jsonauraDescription
 msgid "Garrisoned Siege Engines +3 health regeneration rate."
-msgstr "Obléhací stroje umístěné v budově získají +3 k rychlosti regenerace."
+msgstr "Obsazené obléhací stroje získají +3 zdraví k rychlosti regenerace."
 
 #: simulation/data/auras/structures/arsenal_repair.jsonauraName
 msgid "Arsenal Repairs"
@@ -60,7 +61,7 @@ msgstr "Opravy v loděnici"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage."
-msgstr "Vojáci získávají +20 % k útoku na blízko i na dálku."
+msgstr "Vojáci +20 % poškození k útoku na blízko a k útoku na dálku."
 
 #: simulation/data/auras/structures/iber_monument.jsonauraName
 msgid "Religious Fervor"
@@ -69,7 +70,7 @@ msgstr "Náboženská horlivost"
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraDescription
 #: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraDescription
 msgid "Workers +15% gather speed."
-msgstr "Dělníci získávají zdroje o 15 % rychleji."
+msgstr "Dělníci +15% rychlosti sběru"
 
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraName
 msgid "Patriotism"

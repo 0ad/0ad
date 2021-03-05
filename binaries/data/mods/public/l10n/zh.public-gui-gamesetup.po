@@ -11,6 +11,7 @@
 # Charles Yang <mryang@minelandcn.com>, 2018
 # Christian Xia <wood_elf@126.com>, 2016
 # ciaran <ciaranchen@qq.com>, 2019
+# CodingJellyfish <dumaosen_main01@outlook.com>, 2019
 # Feng Chang <chang_196700@hotmail.com>, 2018
 # hiahoo lee (leaber) <zodiac8765@gmail.com>, 2014
 # hyln9 <hyln9@live.cn>, 2014
@@ -31,7 +32,7 @@
 # WY Liu <amberwyliu@icloud.com>, 2020
 # xiaolong dai <1091198228@qq.com>, 2018
 # xingtong, 2013
-# liulitchi <xingzuo88@qq.com>, 2014,2017-2020
+# liulitchi <xingzuo88@qq.com>, 2014,2017-2021
 # yukisola <yolandaapply@gmail.com>, 2014
 # hiahoo lee (leaber) <zodiac8765@gmail.com>, 2014
 # 吴善俊 <sjwuny@126.com>, 2014
@@ -44,13 +45,14 @@
 # Feng Chang <chang_196700@hotmail.com>, 2018
 # 潘 恩民 <568014904@qq.com>, 2018
 # 玉堂白鹤 <yjwork@qq.com>, 2015,2021
+# 神楽坂·喵 <i@kagurazakanyaa.com>, 2017
 # Lawrence Maxwell <maxwell4432@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-29 08:08+0000\n"
-"PO-Revision-Date: 2021-02-12 15:24+0000\n"
-"Last-Translator: 玉堂白鹤 <yjwork@qq.com>\n"
+"PO-Revision-Date: 2021-02-23 13:50+0000\n"
+"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -60,7 +62,7 @@ msgstr ""
 
 #: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):13
 msgid "AI Configuration"
-msgstr "电脑玩家设置"
+msgstr "人工智能（AI）设置"
 
 #: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):29
 msgid "OK"
@@ -68,15 +70,15 @@ msgstr "确定"
 
 #: gui/gamesetup/Pages/AIConfigPage/AIDescription.js:37
 msgid "AI will be disabled for this player."
-msgstr "此玩家禁用AI。"
+msgstr "此玩家禁用人工智能。"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIBehavior.js:95
 msgid "AI Behavior"
-msgstr "AI性能"
+msgstr "人工智能性能"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIDifficulty.js:89
 msgid "AI Difficulty"
-msgstr "电脑玩家难度"
+msgstr "人工智能难度"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AISelection.js:86
 msgctxt "ai"
@@ -85,7 +87,7 @@ msgstr "无"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AISelection.js:91
 msgid "AI Player"
-msgstr "电脑玩家"
+msgstr "人工智能玩家"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingControl.js:172
 #, javascript-format
@@ -134,7 +136,7 @@ msgstr "选择玩家"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:230
 #, javascript-format
 msgid "AI: %(ai)s"
-msgstr "电脑: %(ai)s"
+msgstr "人工智能: %(ai)s"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:265
 msgid "Unassigned"
@@ -224,7 +226,7 @@ msgstr "切换已经勘探过的地图 ( 显示最初的地图 ) 。"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:59
 msgid "Last Man Standing"
-msgstr "最后屹立在战场上者"
+msgstr "笑到最后"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:62
 msgid ""
@@ -610,22 +612,22 @@ msgstr[0] "%(min)s分鐘"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:100
 msgctxt "victory duration"
 msgid "Immediate Victory."
-msgstr "立即獲勝"
+msgstr "立即获胜"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:73
 msgid "Sea Level Rise Time"
-msgstr "海平面上升時間"
+msgstr "海平面上升时间"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:76
 msgid "Set the time when the water will start to rise."
-msgstr "設定水上升的時間"
+msgstr "设定水上升的时间"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:79
 #, javascript-format
 msgctxt "sea level rise time"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
-msgstr[0] "%(minutes)s分鐘"
+msgstr[0] "%(minutes)s分钟"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:88
 msgid "Wonder Duration"
@@ -965,7 +967,7 @@ msgstr "留空白以使用默认端口。"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):113
 msgid "Leave blank to not require it."
-msgstr ""
+msgstr "留空。"
 
 #: gui/loading/ProgressBar.js:48
 #, javascript-format
@@ -1209,7 +1211,7 @@ msgstr "为了捍卫真理而牺牲自己最亲密的私人关系，这是义不
 msgid ""
 "“Happiness depends on leisure; for we are busy to have leisure, and make war"
 " to live in peace.” \\n— Aristotle (“Nicomachean Ethics”, X. 1177b.4)"
-msgstr "幸福取决于闲暇;因为我们忙乱，要有暇，又要争战，好得平安。——亚里士多德(《尼各马可伦理学》，第十卷 1177b .4)"
+msgstr "幸福取决于闲暇；因为我们忙乱，要有暇，又要争战，好得平安。——亚里士多德(《尼各马可伦理学》，第十卷 1177b .4)"
 
 #: gui/text/quotes.txt:36
 msgid ""
@@ -1843,7 +1845,7 @@ msgid ""
 "murdering someone; then they boast that they have spared him!” \\n— Cicero, "
 "condemning Mark Anthony who had not killed him (yet) (“Philippics”, II., "
 "sec. 5)"
-msgstr "也就是说，元老会议员同样也只会同流合污。他们克制住谋杀某人的冲动；却又吹嘘着他们放过了他！——马库斯•图利乌斯•西塞罗"
+msgstr "也就是说，元老们同样也只会同流合污。他们克制住谋杀某人的冲动；却又吹嘘着他们放过了他！——马库斯•图利乌斯•西塞罗"
 
 #: gui/text/quotes.txt:126
 msgid ""
@@ -2273,7 +2275,7 @@ msgid ""
 "Tiberius Gracchus, advocating for land reform to the benefit of homeless and"
 " unemployed veterans whose lands had often been bought up while they were on"
 " campaign. (Plutarch, “Parallel Lives”, “Tiberius Gracchus”, 9.4–5)"
-msgstr ""
+msgstr "野兽到老了，还有洞穴可以栖身。而我们勇敢的退伍军人，在他们的事业中流血流汗，除了阳光和空气外，什么也没有得到。 他们与妻儿一道无家可归，四处游荡。 —— 提比略·格拉库斯。倡导土地改革，退伍军人的土地经常被买下，他们为什么要冲锋陷阵不计将来（普鲁塔克，《希腊罗马名人传 提比略·格拉库斯》，第9段）"
 
 #: gui/text/quotes.txt:182
 msgid ""
@@ -2283,7 +2285,7 @@ msgid ""
 "benefit of homeless and unemployed veterans whose lands had often been "
 "bought up while they were on campaign. (Plutarch, “Parallel Lives”, "
 "“Tiberius Gracchus”, 9.5)"
-msgstr ""
+msgstr "士兵们为了富人权贵战斗和死去，为那些被称为世界的主人的人，自己却没能拥有一块土地。——提比略·格拉库斯，主张对土地进行改革，以造福无家可归和失业的退伍军人，这些退伍军人的土地经常被美国政府收购，他们为什么要出征（普鲁塔克，《希腊罗马名人传之提比略·格拉库斯》，第 9 段）"
 
 #: gui/text/quotes.txt:183
 msgid ""
