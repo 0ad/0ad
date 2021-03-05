@@ -176,7 +176,7 @@ function loadMapTypes()
 			"Path": "maps/skirmishes/",
 			"Suffix": ".xml",
 			"GetData": Engine.LoadMapSettings,
-			"CheckIfExists": mapPath => Engine.FileExists(mapPath)
+			"CheckIfExists": mapPath => Engine.FileExists(mapPath + ".xml")
 		},
 		{
 			"Name": "random",
@@ -194,7 +194,7 @@ function loadMapTypes()
 			"Path": "maps/scenarios/",
 			"Suffix": ".xml",
 			"GetData": Engine.LoadMapSettings,
-			"CheckIfExists": mapPath => Engine.FileExists(mapPath)
+			"CheckIfExists": mapPath => Engine.FileExists(mapPath + ".xml")
 		}
 	];
 }
