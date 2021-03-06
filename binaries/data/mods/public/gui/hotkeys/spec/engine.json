@@ -1,0 +1,100 @@
+{
+    "categories": {
+        "general": {
+            "name": "General",
+            "desc": "General hotkeys"
+        }
+    },
+    "mapped_hotkeys": {
+        "general": {
+            "exit": {
+                "name": "Exit to desktop",
+                "desc": "Exit to desktop"
+            },
+            "cancel": {
+                "name": "Close/Cancel",
+                "desc": "Close or cancel the current dialog box/popup"
+            },
+            "confirm": {
+                "name": "Confirm",
+                "desc": "Confirm the current command"
+            },
+            "pause": {
+                "name": "Pause/Unpause",
+                "desc": "Pause/unpause game"
+            },
+            "screenshot": {
+                "name": "Screenshot",
+                "desc": "Take PNG screenshot"
+            },
+            "bigscreenshot": {
+                "name": "Big screenshot",
+                "desc": "Take large BMP screenshot"
+            },
+            "togglefullscreen": {
+                "name": "Toggle Fullscreen",
+                "desc": "Toggle fullscreen/windowed mode"
+            },
+            "screenshot.watermark": {
+                "name": "Toggle watermark",
+                "desc": "Toggle product/company watermark for official screenshots"
+            },
+            "wireframe": {
+                "name": "Toggle wireframe mode",
+                "desc": "Toggle wireframe mode"
+            },
+            "copy": {
+                "name": "Copy to clipboard",
+                "desc": "Copy to clipboard"
+            },
+            "paste": {
+                "name": "Paste from clipboard",
+                "desc": "Paste from clipboard"
+            },
+            "cut": {
+                "name": "Cut to clipboard",
+                "desc": "Cut selected text and copy to the clipboard"
+            },
+            "console.toggle": {
+                "name": "Toggle Console",
+                "desc": "Open/close console"
+            },
+            "profile.toggle": {
+                "name": "Toggle profiler",
+                "desc": "Enable/disable real-time profiler"
+            },
+            "profile.save": {
+                "name": "Save profile",
+                "desc": "Save current profiler data to logs/profile.txt"
+            },
+            "profile2.toggle": {
+                "name": "Toggle profiler2",
+                "desc": "Enable/disable HTTP/GPU modes for new profiler"
+            },
+            "tab.next": {
+                "name": "Next tab",
+                "desc": "Show the next tab"
+            },
+            "tab.prev": {
+                "name": "Previous tab",
+                "desc": "Show the previous tab"
+            },
+            "text.delete.left": {
+                "name": "Delete before cursor",
+                "desc": "Delete word to the left of cursor"
+            },
+            "text.delete.right": {
+                "name": "Delete after cursor",
+                "desc": "Delete word to the right of cursor"
+            },
+            "text.move.left": {
+                "name": "Move cursor to left word",
+                "desc": "Move cursor to start of word to the left of cursor"
+            },
+            "text.move.right": {
+                "name": "Move cursor to right word",
+                "desc": "Move cursor to start of word to the right of cursor"
+            }
+        }
+    }
+}
