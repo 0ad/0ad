@@ -807,31 +807,31 @@ m.Entity = m.Class({
 		return false;
 	},
 
-	"move": function(x, z, queued = false) {
-		Engine.PostCommand(PlayerID, { "type": "walk", "entities": [this.id()], "x": x, "z": z, "queued": queued });
+	"move": function(x, z, queued = false, pushFront = false) {
+		Engine.PostCommand(PlayerID, { "type": "walk", "entities": [this.id()], "x": x, "z": z, "queued": queued, "pushFront": pushFront });
 		return this;
 	},
 
-	"moveToRange": function(x, z, min, max, queued = false) {
-		Engine.PostCommand(PlayerID, { "type": "walk-to-range", "entities": [this.id()], "x": x, "z": z, "min": min, "max": max, "queued": queued });
+	"moveToRange": function(x, z, min, max, queued = false, pushFront = false) {
+		Engine.PostCommand(PlayerID, { "type": "walk-to-range", "entities": [this.id()], "x": x, "z": z, "min": min, "max": max, "queued": queued, "pushFront": pushFront });
 		return this;
 	},
 
-	"attackMove": function(x, z, targetClasses, allowCapture = true, queued = false) {
-		Engine.PostCommand(PlayerID, { "type": "attack-walk", "entities": [this.id()], "x": x, "z": z, "targetClasses": targetClasses, "allowCapture": allowCapture, "queued": queued });
+	"attackMove": function(x, z, targetClasses, allowCapture = true, queued = false, pushFront = false) {
+		Engine.PostCommand(PlayerID, { "type": "attack-walk", "entities": [this.id()], "x": x, "z": z, "targetClasses": targetClasses, "allowCapture": allowCapture, "queued": queued, "pushFront": pushFront });
 		return this;
 	},
 
 	// violent, aggressive, defensive, passive, standground
-	"setStance": function(stance, queued = false) {
+	"setStance": function(stance, queued = false, pushFront = false) {
 		if (this.getStance() === undefined)
 			return undefined;
-		Engine.PostCommand(PlayerID, { "type": "stance", "entities": [this.id()], "name": stance, "queued": queued });
+		Engine.PostCommand(PlayerID, { "type": "stance", "entities": [this.id()], "name": stance, "queued": queued, "pushFront": pushFront });
 		return this;
 	},
 
 	"stopMoving": function() {
-		Engine.PostCommand(PlayerID, { "type": "stop", "entities": [this.id()], "queued": false });
+		Engine.PostCommand(PlayerID, { "type": "stop", "entities": [this.id()], "queued": false, "pushFront": false });
 	},
 
 	"unload": function(id) {
@@ -882,7 +882,7 @@ m.Entity = m.Class({
 				direction[0] /= norm;
 				direction[1] /= norm;
 			}
-			Engine.PostCommand(PlayerID, { "type": "walk", "entities": [this.id()], "x": this.position()[0] + direction[0]*dist, "z": this.position()[1] + direction[1]*dist, "queued": false });
+			Engine.PostCommand(PlayerID, { "type": "walk", "entities": [this.id()], "x": this.position()[0] + direction[0]*dist, "z": this.position()[1] + direction[1]*dist, "queued": false, "pushFront": false });
 		}
 		return this;
 	},
@@ -896,23 +896,23 @@ m.Entity = m.Class({
 			FleeDirection[0] = 40 * FleeDirection[0]/dist;
 			FleeDirection[1] = 40 * FleeDirection[1]/dist;
 
-			Engine.PostCommand(PlayerID, { "type": "walk", "entities": [this.id()], "x": this.position()[0] + FleeDirection[0], "z": this.position()[1] + FleeDirection[1], "queued": false });
+			Engine.PostCommand(PlayerID, { "type": "walk", "entities": [this.id()], "x": this.position()[0] + FleeDirection[0], "z": this.position()[1] + FleeDirection[1], "queued": false, "pushFront": false });
 		}
 		return this;
 	},
 
-	"gather": function(target, queued = false) {
-		Engine.PostCommand(PlayerID, { "type": "gather", "entities": [this.id()], "target": target.id(), "queued": queued });
+	"gather": function(target, queued = false, pushFront = false) {
+		Engine.PostCommand(PlayerID, { "type": "gather", "entities": [this.id()], "target": target.id(), "queued": queued, "pushFront": pushFront });
 		return this;
 	},
 
-	"repair": function(target, autocontinue = false, queued = false) {
-		Engine.PostCommand(PlayerID, { "type": "repair", "entities": [this.id()], "target": target.id(), "autocontinue": autocontinue, "queued": queued });
+	"repair": function(target, autocontinue = false, queued = false, pushFront = false) {
+		Engine.PostCommand(PlayerID, { "type": "repair", "entities": [this.id()], "target": target.id(), "autocontinue": autocontinue, "queued": queued, "pushFront": pushFront });
 		return this;
 	},
 
-	"returnResources": function(target, queued = false) {
-		Engine.PostCommand(PlayerID, { "type": "returnresource", "entities": [this.id()], "target": target.id(), "queued": queued });
+	"returnResources": function(target, queued = false, pushFront = false) {
+		Engine.PostCommand(PlayerID, { "type": "returnresource", "entities": [this.id()], "target": target.id(), "queued": queued, "pushFront": pushFront });
 		return this;
 	},
 
@@ -927,7 +927,7 @@ m.Entity = m.Class({
 	},
 
 	"tradeRoute": function(target, source) {
-		Engine.PostCommand(PlayerID, { "type": "setup-trade-route", "entities": [this.id()], "target": target.id(), "source": source.id(), "route": undefined, "queued": false });
+		Engine.PostCommand(PlayerID, { "type": "setup-trade-route", "entities": [this.id()], "target": target.id(), "source": source.id(), "route": undefined, "queued": false, "pushFront": false });
 		return this;
 	},
 
@@ -981,6 +981,7 @@ m.Entity = m.Class({
 			"autorepair": false,
 			"autocontinue": false,
 			"queued": false,
+			"pushFront": false,
 			"metadata": metadata	// can be undefined
 		});
 		return this;
@@ -1006,8 +1007,8 @@ m.Entity = m.Class({
 		return this;
 	},
 
-	"guard": function(target, queued = false) {
-		Engine.PostCommand(PlayerID, { "type": "guard", "entities": [this.id()], "target": target.id(), "queued": queued });
+	"guard": function(target, queued = false, pushFront = false) {
+		Engine.PostCommand(PlayerID, { "type": "guard", "entities": [this.id()], "target": target.id(), "queued": queued, "pushFront": pushFront });
 		return this;
 	},
 

@@ -1232,8 +1232,14 @@ function handleUnitAction(target, action)
 	let selection = Engine.HotkeyIsPressed("session.orderone") &&
 		popOneFromSelection(action) || g_Selection.toList();
 	// If the session.queue hotkey is down, add the order to the unit's order queue instead
-	// of running it immediately.
-	return g_UnitActions[action.type].execute(target, action, selection, Engine.HotkeyIsPressed("session.queue"));
+	// of running it immediately. If the pushorderfront hotkey is down, execute the order
+	// immidiately and continue the rest of the queue afterwards.
+	return g_UnitActions[action.type].execute(
+		target,
+		action,
+		selection,
+		Engine.HotkeyIsPressed("session.queue"),
+		Engine.HotkeyIsPressed("session.pushorderfront"));
 }
 
 function getEntityLimitAndCount(playerState, entType)

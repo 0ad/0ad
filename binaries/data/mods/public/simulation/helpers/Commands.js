@@ -158,7 +158,7 @@ var g_Commands = {
 	"walk": function(player, cmd, data)
 	{
 		GetFormationUnitAIs(data.entities, player, cmd, data.formation).forEach(cmpUnitAI => {
-			cmpUnitAI.Walk(cmd.x, cmd.z, cmd.queued);
+			cmpUnitAI.Walk(cmd.x, cmd.z, cmd.queued, cmd.pushFront);
 		});
 	},
 
@@ -166,7 +166,7 @@ var g_Commands = {
 	{
 		for (let ent in data.entities)
 			GetFormationUnitAIs([data.entities[ent]], player, cmd, data.formation).forEach(cmpUnitAI => {
-				cmpUnitAI.Walk(cmd.targetPositions[ent].x, cmd.targetPositions[ent].y, cmd.queued);
+				cmpUnitAI.Walk(cmd.targetPositions[ent].x, cmd.targetPositions[ent].y, cmd.queued, cmd.pushFront);
 			});
 	},
 
@@ -177,7 +177,7 @@ var g_Commands = {
 		{
 			var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 			if (cmpUnitAI)
-				cmpUnitAI.WalkToPointRange(cmd.x, cmd.z, cmd.min, cmd.max, cmd.queued);
+				cmpUnitAI.WalkToPointRange(cmd.x, cmd.z, cmd.min, cmd.max, cmd.queued, cmd.pushFront);
 		}
 	},
 
@@ -186,7 +186,7 @@ var g_Commands = {
 		let allowCapture = cmd.allowCapture || cmd.allowCapture == null;
 
 		GetFormationUnitAIs(data.entities, player, cmd, data.formation).forEach(cmpUnitAI => {
-			cmpUnitAI.WalkAndFight(cmd.x, cmd.z, cmd.targetClasses, allowCapture, cmd.queued);
+			cmpUnitAI.WalkAndFight(cmd.x, cmd.z, cmd.targetClasses, allowCapture, cmd.queued, cmd.pushFront);
 		});
 	},
 
@@ -195,7 +195,7 @@ var g_Commands = {
 		let allowCapture = cmd.allowCapture || cmd.allowCapture == null;
 		for (let ent in data.entities)
 			GetFormationUnitAIs([data.entities[ent]], player, cmd, data.formation).forEach(cmpUnitAI => {
-				cmpUnitAI.WalkAndFight(cmd.targetPositions[ent].x, cmd.targetPositions[ent].y, cmd.targetClasses, allowCapture, cmd.queued);
+				cmpUnitAI.WalkAndFight(cmd.targetPositions[ent].x, cmd.targetPositions[ent].y, cmd.targetClasses, allowCapture, cmd.queued, cmd.pushFront);
 			});
 	},
 
@@ -208,7 +208,7 @@ var g_Commands = {
 			warn("Invalid command: attack target is not owned by enemy of player "+player+": "+uneval(cmd));
 
 		GetFormationUnitAIs(data.entities, player, cmd, data.formation).forEach(cmpUnitAI => {
-			cmpUnitAI.Attack(cmd.target, allowCapture, cmd.queued);
+			cmpUnitAI.Attack(cmd.target, allowCapture, cmd.queued, cmd.pushFront);
 		});
 	},
 
@@ -227,7 +227,7 @@ var g_Commands = {
 			warn("Invalid command: heal target is not owned by player "+player+" or their ally: "+uneval(cmd));
 
 		GetFormationUnitAIs(data.entities, player, cmd, data.formation).forEach(cmpUnitAI => {
-			cmpUnitAI.Heal(cmd.target, cmd.queued);
+			cmpUnitAI.Heal(cmd.target, cmd.queued, cmd.pushFront);
 		});
 	},
 
@@ -238,7 +238,7 @@ var g_Commands = {
 			warn("Invalid command: repair target is not owned by ally of player "+player+": "+uneval(cmd));
 
 		GetFormationUnitAIs(data.entities, player, cmd, data.formation).forEach(cmpUnitAI => {
-			cmpUnitAI.Repair(cmd.target, cmd.autocontinue, cmd.queued);
+			cmpUnitAI.Repair(cmd.target, cmd.autocontinue, cmd.queued, cmd.pushFront);
 		});
 	},
 
@@ -248,14 +248,14 @@ var g_Commands = {
 			warn("Invalid command: resource is not owned by gaia or player "+player+": "+uneval(cmd));
 
 		GetFormationUnitAIs(data.entities, player, cmd, data.formation).forEach(cmpUnitAI => {
-			cmpUnitAI.Gather(cmd.target, cmd.queued);
+			cmpUnitAI.Gather(cmd.target, cmd.queued, cmd.pushFront);
 		});
 	},
 
 	"gather-near-position": function(player, cmd, data)
 	{
 		GetFormationUnitAIs(data.entities, player, cmd, data.formation).forEach(cmpUnitAI => {
-			cmpUnitAI.GatherNearPosition(cmd.x, cmd.z, cmd.resourceType, cmd.resourceTemplate, cmd.queued);
+			cmpUnitAI.GatherNearPosition(cmd.x, cmd.z, cmd.resourceType, cmd.resourceTemplate, cmd.queued, cmd.pushFront);
 		});
 	},
 
@@ -265,7 +265,7 @@ var g_Commands = {
 			warn("Invalid command: dropsite is not owned by player "+player+": "+uneval(cmd));
 
 		GetFormationUnitAIs(data.entities, player, cmd, data.formation).forEach(cmpUnitAI => {
-			cmpUnitAI.ReturnResource(cmd.target, cmd.queued);
+			cmpUnitAI.ReturnResource(cmd.target, cmd.queued, cmd.pushFront);
 		});
 	},
 
@@ -472,7 +472,7 @@ var g_Commands = {
 		}
 
 		GetFormationUnitAIs(data.entities, player, cmd, data.formation).forEach(cmpUnitAI => {
-			cmpUnitAI.Garrison(cmd.target, cmd.queued);
+			cmpUnitAI.Garrison(cmd.target, cmd.queued, cmd.pushFront);
 		});
 	},
 
@@ -486,7 +486,7 @@ var g_Commands = {
 		}
 
 		GetFormationUnitAIs(data.entities, player, cmd, data.formation).forEach(cmpUnitAI => {
-			cmpUnitAI.Guard(cmd.target, cmd.queued);
+			cmpUnitAI.Guard(cmd.target, cmd.queued, cmd.pushFront);
 		});
 	},
 
@@ -684,9 +684,9 @@ var g_Commands = {
 				continue;
 
 			if (cmd.pack)
-				cmpUnitAI.Pack(cmd.queued);
+				cmpUnitAI.Pack(cmd.queued, cmd.pushFront);
 			else
-				cmpUnitAI.Unpack(cmd.queued);
+				cmpUnitAI.Unpack(cmd.queued, cmd.pushFront);
 		}
 	},
 
@@ -699,9 +699,9 @@ var g_Commands = {
 				continue;
 
 			if (cmd.pack)
-				cmpUnitAI.CancelPack(cmd.queued);
+				cmpUnitAI.CancelPack(cmd.queued, cmd.pushFront);
 			else
-				cmpUnitAI.CancelUnpack(cmd.queued);
+				cmpUnitAI.CancelUnpack(cmd.queued, cmd.pushFront);
 		}
 	},
 

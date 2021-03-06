@@ -5349,12 +5349,14 @@ UnitAI.prototype.ComputeWalkingDistance = function()
 	return distance;
 };
 
-UnitAI.prototype.AddOrder = function(type, data, queued)
+UnitAI.prototype.AddOrder = function(type, data, queued, pushFront)
 {
 	if (this.expectedRoute)
 		this.expectedRoute = undefined;
 
-	if (queued)
+	if (pushFront)
+		this.PushOrderFront(type, data);
+	else if (queued)
 		this.PushOrder(type, data);
 	else
 	{
@@ -5369,7 +5371,7 @@ UnitAI.prototype.AddOrder = function(type, data, queued)
 /**
  * Adds guard/escort order to the queue, forced by the player.
  */
-UnitAI.prototype.Guard = function(target, queued)
+UnitAI.prototype.Guard = function(target, queued, pushFront)
 {
 	if (!this.CanGuard())
 	{
@@ -5388,7 +5390,7 @@ UnitAI.prototype.Guard = function(target, queued)
 			this.RemoveGuard();
 	}
 
-	this.AddOrder("Guard", { "target": target, "force": false }, queued);
+	this.AddOrder("Guard", { "target": target, "force": false }, queued, pushFront);
 };
 
 /**
@@ -5470,37 +5472,37 @@ UnitAI.prototype.CanPatrol = function()
 /**
  * Adds walk order to queue, forced by the player.
  */
-UnitAI.prototype.Walk = function(x, z, queued)
+UnitAI.prototype.Walk = function(x, z, queued, pushFront)
 {
-	if (this.expectedRoute && queued)
+	if (!pushFront && this.expectedRoute && queued)
 		this.expectedRoute.push({ "x": x, "z": z });
 	else
-		this.AddOrder("Walk", { "x": x, "z": z, "force": true }, queued);
+		this.AddOrder("Walk", { "x": x, "z": z, "force": true }, queued, pushFront);
 };
 
 /**
  * Adds walk to point range order to queue, forced by the player.
  */
-UnitAI.prototype.WalkToPointRange = function(x, z, min, max, queued)
+UnitAI.prototype.WalkToPointRange = function(x, z, min, max, queued, pushFront)
 {
-	this.AddOrder("Walk", { "x": x, "z": z, "min": min, "max": max, "force": true }, queued);
+	this.AddOrder("Walk", { "x": x, "z": z, "min": min, "max": max, "force": true }, queued, pushFront);
 };
 
 /**
  * Adds stop order to queue, forced by the player.
  */
-UnitAI.prototype.Stop = function(queued)
+UnitAI.prototype.Stop = function(queued, pushFront)
 {
-	this.AddOrder("Stop", { "force": true }, queued);
+	this.AddOrder("Stop", { "force": true }, queued, pushFront);
 };
 
 /**
  * Adds walk-to-target order to queue, this only occurs in response
  * to a player order, and so is forced.
  */
-UnitAI.prototype.WalkToTarget = function(target, queued)
+UnitAI.prototype.WalkToTarget = function(target, queued, pushFront)
 {
-	this.AddOrder("WalkToTarget", { "target": target, "force": true }, queued);
+	this.AddOrder("WalkToTarget", { "target": target, "force": true }, queued, pushFront);
 };
 
 /**
@@ -5508,12 +5510,12 @@ UnitAI.prototype.WalkToTarget = function(target, queued)
  * to a player order, and so is forced.
  * If targetClasses is given, only entities matching the targetClasses can be attacked.
  */
-UnitAI.prototype.WalkAndFight = function(x, z, targetClasses, allowCapture = true, queued = false)
+UnitAI.prototype.WalkAndFight = function(x, z, targetClasses, allowCapture = true, queued = false, pushFront = false)
 {
-	this.AddOrder("WalkAndFight", { "x": x, "z": z, "targetClasses": targetClasses, "allowCapture": allowCapture, "force": true }, queued);
+	this.AddOrder("WalkAndFight", { "x": x, "z": z, "targetClasses": targetClasses, "allowCapture": allowCapture, "force": true }, queued, pushFront);
 };
 
-UnitAI.prototype.Patrol = function(x, z, targetClasses, allowCapture = true, queued = false)
+UnitAI.prototype.Patrol = function(x, z, targetClasses, allowCapture = true, queued = false, pushFront = false)
 {
 	if (!this.CanPatrol())
 	{
@@ -5521,7 +5523,7 @@ UnitAI.prototype.Patrol = function(x, z, targetClasses, allowCapture = true, que
 		return;
 	}
 
-	this.AddOrder("Patrol", { "x": x, "z": z, "targetClasses": targetClasses, "allowCapture": allowCapture, "force": true }, queued);
+	this.AddOrder("Patrol", { "x": x, "z": z, "targetClasses": targetClasses, "allowCapture": allowCapture, "force": true }, queued, pushFront);
 };
 
 /**
@@ -5551,7 +5553,7 @@ UnitAI.prototype.LeaveFoundation = function(target)
 /**
  * Adds attack order to the queue, forced by the player.
  */
-UnitAI.prototype.Attack = function(target, allowCapture = true, queued = false)
+UnitAI.prototype.Attack = function(target, allowCapture = true, queued = false, pushFront = false)
 {
 	if (!this.CanAttack(target))
 	{
@@ -5560,7 +5562,7 @@ UnitAI.prototype.Attack = function(target, allowCapture = true, queued = false)
 		if (this.IsHealer())
 			this.MoveToTargetRange(target, IID_Heal);
 		else
-			this.WalkToTarget(target, queued);
+			this.WalkToTarget(target, queued, pushFront);
 		return;
 	}
 
@@ -5582,13 +5584,13 @@ UnitAI.prototype.Attack = function(target, allowCapture = true, queued = false)
 		return;
 	}
 
-	this.AddOrder("Attack", order, queued);
+	this.AddOrder("Attack", order, queued, pushFront);
 };
 
 /**
  * Adds garrison order to the queue, forced by the player.
  */
-UnitAI.prototype.Garrison = function(target, queued)
+UnitAI.prototype.Garrison = function(target, queued, pushFront)
 {
 	if (target == this.entity)
 		return;
@@ -5597,7 +5599,7 @@ UnitAI.prototype.Garrison = function(target, queued)
 		this.WalkToTarget(target, queued);
 		return;
 	}
-	this.AddOrder("Garrison", { "target": target, "force": true }, queued);
+	this.AddOrder("Garrison", { "target": target, "force": true }, queued, pushFront);
 };
 
 /**
@@ -5625,15 +5627,15 @@ UnitAI.prototype.Autogarrison = function(target)
  * Adds gather order to the queue, forced by the player
  * until the target is reached
  */
-UnitAI.prototype.Gather = function(target, queued)
+UnitAI.prototype.Gather = function(target, queued, pushFront)
 {
-	this.PerformGather(target, queued, true);
+	this.PerformGather(target, queued, true, pushFront);
 };
 
 /**
  * Internal function to abstract the force parameter.
  */
-UnitAI.prototype.PerformGather = function(target, queued, force)
+UnitAI.prototype.PerformGather = function(target, queued, force, pushFront = false)
 {
 	if (!this.CanGather(target))
 	{
@@ -5678,28 +5680,28 @@ UnitAI.prototype.PerformGather = function(target, queued, force)
 		return;
 	}
 
-	this.AddOrder("Gather", order, queued);
+	this.AddOrder("Gather", order, queued, pushFront);
 };
 
 /**
  * Adds gather-near-position order to the queue, not forced, so it can be
  * interrupted by attacks.
  */
-UnitAI.prototype.GatherNearPosition = function(x, z, type, template, queued)
+UnitAI.prototype.GatherNearPosition = function(x, z, type, template, queued, pushFront)
 {
 	if (template.indexOf("resource|") != -1)
 		template = template.slice(9);
 
 	if (this.IsFormationController() || Engine.QueryInterface(this.entity, IID_ResourceGatherer))
-		this.AddOrder("GatherNearPosition", { "type": type, "template": template, "x": x, "z": z, "force": false }, queued);
+		this.AddOrder("GatherNearPosition", { "type": type, "template": template, "x": x, "z": z, "force": false }, queued, pushFront);
 	else
-		this.AddOrder("Walk", { "x": x, "z": z, "force": false }, queued);
+		this.AddOrder("Walk", { "x": x, "z": z, "force": false }, queued, pushFront);
 };
 
 /**
  * Adds heal order to the queue, forced by the player.
  */
-UnitAI.prototype.Heal = function(target, queued)
+UnitAI.prototype.Heal = function(target, queued, pushFront)
 {
 	if (!this.CanHeal(target))
 	{
@@ -5715,13 +5717,13 @@ UnitAI.prototype.Heal = function(target, queued)
 		return;
 	}
 
-	this.AddOrder("Heal", { "target": target, "force": true }, queued);
+	this.AddOrder("Heal", { "target": target, "force": true }, queued, pushFront);
 };
 
 /**
  * Adds return resource order to the queue, forced by the player.
  */
-UnitAI.prototype.ReturnResource = function(target, queued)
+UnitAI.prototype.ReturnResource = function(target, queued, pushFront)
 {
 	if (!this.CanReturnResource(target, true))
 	{
@@ -5729,7 +5731,7 @@ UnitAI.prototype.ReturnResource = function(target, queued)
 		return;
 	}
 
-	this.AddOrder("ReturnResource", { "target": target, "force": true }, queued);
+	this.AddOrder("ReturnResource", { "target": target, "force": true }, queued, pushFront);
 };
 
 /**
@@ -5775,7 +5777,7 @@ UnitAI.prototype.CancelSetupTradeRoute = function(target)
  * The possible route may be given directly as a SetupTradeRoute argument
  * if coming from a RallyPoint, or through this.expectedRoute if a user command.
  */
-UnitAI.prototype.SetupTradeRoute = function(target, source, route, queued)
+UnitAI.prototype.SetupTradeRoute = function(target, source, route, queued, pushFront)
 {
 	if (!this.CanTrade(target))
 	{
@@ -5826,14 +5828,14 @@ UnitAI.prototype.SetupTradeRoute = function(target, source, route, queued)
 				cmpFormation.Disband();
 		}
 		else
-			this.AddOrder("Trade", data, queued);
+			this.AddOrder("Trade", data, queued, pushFront);
 	}
 	else
 	{
 		if (this.IsFormationController())
-			this.CallMemberFunction("WalkToTarget", [cmpTrader.GetFirstMarket(), queued]);
+			this.CallMemberFunction("WalkToTarget", [cmpTrader.GetFirstMarket(), queued, pushFront]);
 		else
-			this.WalkToTarget(cmpTrader.GetFirstMarket(), queued);
+			this.WalkToTarget(cmpTrader.GetFirstMarket(), queued, pushFront);
 		this.expectedRoute = [];
 	}
 };
@@ -5921,7 +5923,7 @@ UnitAI.prototype.StopTrading = function()
  * Adds repair/build order to the queue, forced by the player
  * until the target is reached
  */
-UnitAI.prototype.Repair = function(target, autocontinue, queued)
+UnitAI.prototype.Repair = function(target, autocontinue, queued, pushFront)
 {
 	if (!this.CanRepair(target))
 	{
@@ -5938,16 +5940,16 @@ UnitAI.prototype.Repair = function(target, autocontinue, queued)
 		return;
 	}
 
-	this.AddOrder("Repair", { "target": target, "autocontinue": autocontinue, "force": true }, queued);
+	this.AddOrder("Repair", { "target": target, "autocontinue": autocontinue, "force": true }, queued, pushFront);
 };
 
 /**
  * Adds flee order to the queue, not forced, so it can be
  * interrupted by attacks.
  */
-UnitAI.prototype.Flee = function(target, queued)
+UnitAI.prototype.Flee = function(target, queued, pushFront)
 {
-	this.AddOrder("Flee", { "target": target, "force": false }, queued);
+	this.AddOrder("Flee", { "target": target, "force": false }, queued, pushFront);
 };
 
 UnitAI.prototype.Cheer = function()
@@ -5955,30 +5957,30 @@ UnitAI.prototype.Cheer = function()
 	this.PushOrderFront("Cheer", { "force": false });
 };
 
-UnitAI.prototype.Pack = function(queued)
+UnitAI.prototype.Pack = function(queued, pushFront)
 {
 	if (this.CanPack())
-		this.AddOrder("Pack", { "force": true }, queued);
+		this.AddOrder("Pack", { "force": true }, queued, pushFront);
 };
 
-UnitAI.prototype.Unpack = function(queued)
+UnitAI.prototype.Unpack = function(queued, pushFront)
 {
 	if (this.CanUnpack())
-		this.AddOrder("Unpack", { "force": true }, queued);
+		this.AddOrder("Unpack", { "force": true }, queued, pushFront);
 };
 
-UnitAI.prototype.CancelPack = function(queued)
+UnitAI.prototype.CancelPack = function(queued, pushFront)
 {
 	var cmpPack = Engine.QueryInterface(this.entity, IID_Pack);
 	if (cmpPack && cmpPack.IsPacking() && !cmpPack.IsPacked())
-		this.AddOrder("CancelPack", { "force": true }, queued);
+		this.AddOrder("CancelPack", { "force": true }, queued, pushFront);
 };
 
-UnitAI.prototype.CancelUnpack = function(queued)
+UnitAI.prototype.CancelUnpack = function(queued, pushFront)
 {
 	var cmpPack = Engine.QueryInterface(this.entity, IID_Pack);
 	if (cmpPack && cmpPack.IsPacking() && cmpPack.IsPacked())
-		this.AddOrder("CancelUnpack", { "force": true }, queued);
+		this.AddOrder("CancelUnpack", { "force": true }, queued, pushFront);
 };
 
 UnitAI.prototype.SetStance = function(stance)
@@ -6298,7 +6300,7 @@ UnitAI.prototype.WalkToHeldPosition = function()
 {
 	if (this.heldPosition)
 	{
-		this.AddOrder("Walk", { "x": this.heldPosition.x, "z": this.heldPosition.z, "force": false }, false);
+		this.AddOrder("Walk", { "x": this.heldPosition.x, "z": this.heldPosition.z, "force": false }, false, false);
 		return true;
 	}
 	return false;
