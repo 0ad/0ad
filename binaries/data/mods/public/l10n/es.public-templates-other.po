@@ -17,14 +17,14 @@
 # Miguel Magdaleno Santamaría, 2020
 # Mihai Pantazi <malexandru_70@hotmail.com>, 2017-2018
 # Raul Ferrero <raufex@gmail.com>, 2020
-# Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>, 2020
+# Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>, 2020-2021
 # Swyter <Swyterzone@gmail.com>, 2014-2018,2020
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-20 00:57+0000\n"
-"PO-Revision-Date: 2021-02-07 23:00+0000\n"
-"Last-Translator: Daniel Muñoz <dani_m_1991@hotmail.com>\n"
+"PO-Revision-Date: 2021-03-01 20:05+0000\n"
+"Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -55,7 +55,7 @@ msgstr "Captura"
 #: simulation/data/attack_effects/damage.jsondescription
 msgctxt "effect caused by an attack"
 msgid "Reduces the health of a target."
-msgstr "Reduce la salud de un objetivo"
+msgstr "Reduce la salud de un objetivo."
 
 #: simulation/data/attack_effects/damage.jsonname
 msgctxt "effect caused by an attack"
@@ -85,12 +85,12 @@ msgstr "Esta unidad causa daño por veneno."
 #: simulation/data/status_effects/poisoned.jsonreceiverTooltip
 msgctxt "status effect"
 msgid "This unit is poisoned."
-msgstr "Esta unidad está envenenada."
+msgstr "Esta unidad ha sido envenenada."
 
 #: simulation/data/status_effects/poisoned.jsonstatusName
 msgctxt "status effect"
 msgid "Poisoned"
-msgstr "Envenenado"
+msgstr "envenenamiento"
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:24
 msgid "Army of Alexander the Great."
@@ -134,19 +134,19 @@ msgstr "Asentamiento"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:23
 msgid "Minor Greek Polis"
-msgstr "Ciudad griega menor"
+msgstr "Polis griega menor"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:24
 msgid "This is a minor Greek city."
-msgstr "Esta es una pequeña ciudad griega."
+msgstr "Pequeña ciudad griega."
 
 #: simulation/templates/campaigns/campaign_city_test.xml:23
 msgid "Greek Polis"
-msgstr "Ciudad griega"
+msgstr "Polis griega"
 
 #: simulation/templates/campaigns/campaign_city_test.xml:24
 msgid "This is a major Greek city."
-msgstr "Esta es una importante ciudad griega."
+msgstr "Importante ciudad griega."
 
 #: simulation/templates/campaigns/campaign_religious_test.xml:12
 msgid "Religious Sanctuary"
@@ -170,7 +170,7 @@ msgstr "Oso kodiak"
 
 #: simulation/templates/gaia/fauna_bear_brown.xml:12
 msgid "Ursus arctos"
-msgstr "Oso pardo"
+msgstr "Ursus arctos"
 
 #: simulation/templates/gaia/fauna_bear_polar.xml:11
 msgid "Polar Bear"
@@ -210,7 +210,7 @@ msgstr "Toro"
 #: simulation/templates/gaia/fauna_cattle_bull.xml:12
 #: simulation/templates/gaia/fauna_cattle_cow.xml:18
 msgid "Bos taurus taurus"
-msgstr "Toro de lidia"
+msgstr "Bos taurus taurus"
 
 #: simulation/templates/gaia/fauna_cattle_cow.xml:17
 msgid "Cow"
@@ -222,7 +222,7 @@ msgstr "Vacuno Sur Africano"
 
 #: simulation/templates/gaia/fauna_cattle_sanga.xml:18
 msgid "Bos taurus africanus"
-msgstr "Vacuno Sur Africano"
+msgstr "Bos taurus africanus"
 
 #: simulation/templates/gaia/fauna_cattle_zebu.xml:17
 msgid "Zebu"
@@ -230,7 +230,7 @@ msgstr "Cebú"
 
 #: simulation/templates/gaia/fauna_cattle_zebu.xml:18
 msgid "Bos taurus indicus"
-msgstr "Toro Cebú"
+msgstr "Bos taurus indicus"
 
 #: simulation/templates/gaia/fauna_chicken.xml:11
 msgid "Chicken"
@@ -238,7 +238,7 @@ msgstr "Pollo"
 
 #: simulation/templates/gaia/fauna_chicken.xml:12
 msgid "Gallus gallus domesticus"
-msgstr "Gallo domestico"
+msgstr "Gallus gallus domesticus"
 
 #: simulation/templates/gaia/fauna_crocodile_nile.xml:5
 msgctxt "Name of an attack, usually the weapon."
@@ -259,7 +259,7 @@ msgstr "Ciervo europeo"
 
 #: simulation/templates/gaia/fauna_deer.xml:12
 msgid "Cervus elaphus"
-msgstr "Ciervo común"
+msgstr "Cervus elaphus"
 
 #: simulation/templates/gaia/fauna_dog_mastiff.xml:11
 msgid "Mastiff"
@@ -268,7 +268,7 @@ msgstr "Mastín"
 #: simulation/templates/gaia/fauna_dog_mastiff.xml:12
 #: simulation/templates/gaia/fauna_dog_wolfhound.xml:12
 msgid "Canis lupus familiaris"
-msgstr "Perro doméstico"
+msgstr "Canis lupus familiaris"
 
 #: simulation/templates/gaia/fauna_dog_wolfhound.xml:11
 msgid "Wolfhound"
@@ -280,7 +280,7 @@ msgstr "Asno"
 
 #: simulation/templates/gaia/fauna_donkey.xml:12
 msgid "Equus africanus asinus"
-msgstr "Asno silvestre africano"
+msgstr "Equus africanus asinus"
 
 #: simulation/templates/gaia/fauna_elephant_african_bush.xml:11
 msgid "African Bush Elephant"
@@ -289,7 +289,7 @@ msgstr "Elefante africano de la sabana"
 #: simulation/templates/gaia/fauna_elephant_african_bush.xml:12
 #: simulation/templates/gaia/fauna_elephant_african_infant.xml:12
 msgid "Loxodonta africana"
-msgstr "Elefante africano"
+msgstr "Loxodonta africana"
 
 #: simulation/templates/gaia/fauna_elephant_african_infant.xml:11
 msgid "African Bush Elephant Calf"
@@ -302,7 +302,7 @@ msgstr "Elefante asiático"
 #: simulation/templates/gaia/fauna_elephant_asian.xml:12
 #: simulation/templates/gaia/fauna_elephant_asian_infant.xml:12
 msgid "Elephas maximus"
-msgstr "Elefante asiático"
+msgstr "Elephas maximus"
 
 #: simulation/templates/gaia/fauna_elephant_asian_infant.xml:11
 msgid "Asian Elephant Calf"
@@ -310,11 +310,11 @@ msgstr "Cría de elefante asiático"
 
 #: simulation/templates/gaia/fauna_elephant_north_african.xml:11
 msgid "African Forest Elephant"
-msgstr "Elefante de selva africano"
+msgstr "Elefante de la selva africana"
 
 #: simulation/templates/gaia/fauna_elephant_north_african.xml:12
 msgid "Loxodonta cyclotis"
-msgstr "Elefante africano de bosque"
+msgstr "Loxodonta cyclotis"
 
 #: simulation/templates/gaia/fauna_fox_arctic.xml:11
 msgid "Arctic Fox"
@@ -322,7 +322,7 @@ msgstr "Zorro ártico"
 
 #: simulation/templates/gaia/fauna_fox_arctic.xml:12
 msgid "Vulpes lagopus"
-msgstr "Zorro ártico"
+msgstr "Vulpes lagopus"
 
 #: simulation/templates/gaia/fauna_fox_red.xml:11
 msgid "Red Fox"
@@ -330,15 +330,15 @@ msgstr "Zorro rojo"
 
 #: simulation/templates/gaia/fauna_fox_red.xml:12
 msgid "Vulpes vulpes"
-msgstr "Zorro común"
+msgstr "Vulpes vulpes"
 
 #: simulation/templates/gaia/fauna_gazelle.xml:11
 msgid "Thomson's Gazelle"
-msgstr "Gacela de Thomson"
+msgstr "Gacela Thomson"
 
 #: simulation/templates/gaia/fauna_gazelle.xml:12
 msgid "Eudorcas thomsonii"
-msgstr "Gacela de Thomson"
+msgstr "Eudorcas thomsonii"
 
 #: simulation/templates/gaia/fauna_giraffe.xml:11
 msgid "Giraffe"
@@ -347,7 +347,7 @@ msgstr "Jirafa"
 #: simulation/templates/gaia/fauna_giraffe.xml:12
 #: simulation/templates/gaia/fauna_giraffe_infant.xml:12
 msgid "Giraffa camelopardalis"
-msgstr "Jirafa africana"
+msgstr "Giraffa camelopardalis"
 
 #: simulation/templates/gaia/fauna_giraffe_infant.xml:11
 msgid "Juvenile Giraffe"
@@ -363,7 +363,7 @@ msgstr "Capra aegagrus hircus"
 
 #: simulation/templates/gaia/fauna_hippopotamus.xml:21
 msgid "Hippopotamus"
-msgstr "Hipopótamo"
+msgstr "Hippopotamus"
 
 #: simulation/templates/gaia/fauna_hippopotamus.xml:22
 msgid "Hippopotamus amphibius"
@@ -429,7 +429,7 @@ msgstr "Cerdos incendiarios"
 
 #: simulation/templates/gaia/fauna_piglet.xml:11
 msgid "Piglet"
-msgstr "Lechon"
+msgstr "Lechón"
 
 #: simulation/templates/gaia/fauna_rabbit.xml:11
 msgid "Rabbit"
@@ -454,7 +454,7 @@ msgstr "Ceratotherium simum"
 
 #: simulation/templates/gaia/fauna_shark.xml:12
 msgid "Great White Shark"
-msgstr "Great White Shark"
+msgstr "Gran tiburón blanco"
 
 #: simulation/templates/gaia/fauna_shark.xml:13
 msgid "Carcharodon carcharias"
@@ -519,7 +519,7 @@ msgstr "Lobo"
 
 #: simulation/templates/gaia/fauna_wolf.xml:25
 msgid "Canis lupus"
-msgstr "Lobo"
+msgstr "Canis lupus"
 
 #: simulation/templates/gaia/fauna_wolf_arctic.xml:4
 msgid "Arctic Wolf"
@@ -547,7 +547,7 @@ msgstr "Manzano"
 
 #: simulation/templates/gaia/fruit/banana.xml:4
 msgid "Banana"
-msgstr "Plátano"
+msgstr "Platanero"
 
 #: simulation/templates/gaia/fruit/berry_01.xml:4
 #: simulation/templates/gaia/fruit/berry_02.xml:4
@@ -555,7 +555,7 @@ msgstr "Plátano"
 #: simulation/templates/gaia/fruit/berry_04.xml:4
 #: simulation/templates/gaia/fruit/berry_05.xml:4
 msgid "Berries"
-msgstr "Baya silvestre"
+msgstr "Frutos silvestres"
 
 #: simulation/templates/gaia/fruit/date.xml:4
 #: simulation/templates/gaia/tree/date_palm.xml:4
@@ -598,7 +598,7 @@ msgstr "Estatuas egipcio-ptolomaicas"
 
 #: simulation/templates/gaia/ruins/stone_statues_kushite.xml:8
 msgid "Kushite Statue"
-msgstr "Estatua Kushita"
+msgstr "Estatua cusita"
 
 #: simulation/templates/gaia/ruins/stone_statues_roman.xml:8
 msgid "Roman Statues"
@@ -681,7 +681,7 @@ msgstr "Bambú"
 
 #: simulation/templates/gaia/tree/bamboo_dragon.xml:8
 msgid "Dragon Bamboo"
-msgstr "Dragon Bamboo"
+msgstr "Bambú dragón"
 
 #: simulation/templates/gaia/tree/banyan.xml:8
 msgid "Banyan"
@@ -899,19 +899,19 @@ msgstr "A distancia"
 #: simulation/templates/special/formations/anti_cavalry.xml:6
 #: simulation/templates/special/formations/testudo.xml:6
 msgid "Melee Infantry only, requires at least 16."
-msgstr "Melee Infantry only, requires at least 16."
+msgstr "Solo infantería cuerpo a cuerpo. Requiere al menos 16."
 
 #: simulation/templates/special/formations/anti_cavalry.xml:7
 msgid "Anti Cavalry"
-msgstr "Anti  caballería"
+msgstr "Anticaballería"
 
 #: simulation/templates/special/formations/battle_line.xml:5
 msgid "Battle Line"
-msgstr "En línea"
+msgstr "Primera línea"
 
 #: simulation/templates/special/formations/box.xml:6
 msgid "Requires at least 4 Soldiers or Siege engines."
-msgstr "Requires at least 4 Soldiers or Siege engines."
+msgstr "Requiere al menos 4 soldados o máquinas de asedio."
 
 #: simulation/templates/special/formations/box.xml:7
 msgid "Box"
@@ -927,7 +927,7 @@ msgstr "Columna abierta"
 
 #: simulation/templates/special/formations/flank.xml:6
 msgid "Requires at least 8 Soldiers or Siege engines."
-msgstr "Requires at least 8 Soldiers or Siege engines."
+msgstr "Require al menos 8 soldados o máquinas de asedio."
 
 #: simulation/templates/special/formations/flank.xml:7
 msgid "Flank"
@@ -947,7 +947,7 @@ msgstr "Ninguno"
 
 #: simulation/templates/special/formations/phalanx.xml:6
 msgid "Infantry Hoplites only, requires at least 10."
-msgstr "Infantry Hoplites only, requires at least 10."
+msgstr "Solo hoplitas de infantería. Require al menos 10."
 
 #: simulation/templates/special/formations/phalanx.xml:7
 msgid "Phalanx"
@@ -967,7 +967,7 @@ msgstr "Escaramuza"
 
 #: simulation/templates/special/formations/syntagma.xml:6
 msgid "Infantry Pikemen only, requires at least 16."
-msgstr "Infantry Pikemen only, requires at least 16."
+msgstr "Solo piqueros de infantería. Requiere al menos 16."
 
 #: simulation/templates/special/formations/syntagma.xml:8
 msgid "Syntagma"
@@ -979,7 +979,7 @@ msgstr "Tortuga"
 
 #: simulation/templates/special/formations/wedge.xml:6
 msgid "Cavalry only, requires at least 6."
-msgstr "Cavalry only, requires at least 6."
+msgstr "Solo caballería. Requiere al menos 6."
 
 #: simulation/templates/special/formations/wedge.xml:7
 msgid "Wedge"
@@ -1008,7 +1008,7 @@ msgstr "Pescado"
 
 #: simulation/templates/template_gaia_fish.xml:10
 msgid "Catch fish for food."
-msgstr "Pesca para conseguir comida."
+msgstr "Pesca para obtener alimentos."
 
 #: simulation/templates/template_gaia_fruit.xml:8
 msgid "Fruit"
@@ -1016,7 +1016,7 @@ msgstr "Frutal"
 
 #: simulation/templates/template_gaia_fruit.xml:9
 msgid "Pick fruit for food."
-msgstr "Recoge fruta para conseguir comida."
+msgstr "Recolecta fruta para obtener alimentos."
 
 #: simulation/templates/template_gaia_ore.xml:8
 msgid "Metal Mine"
@@ -1024,7 +1024,7 @@ msgstr "Mina de metal"
 
 #: simulation/templates/template_gaia_ore.xml:9
 msgid "Mine ore for metal."
-msgstr "Mina minerales para obtener metal."
+msgstr "Extrae minerales para obtener metal."
 
 #: simulation/templates/template_gaia_rock.xml:8
 msgid "Stone Quarry"
@@ -1048,7 +1048,7 @@ msgstr "Tesoro"
 
 #: simulation/templates/template_gaia_treasure.xml:9
 msgid "Collect treasures for resources."
-msgstr "Recoge tesoros para obtener recursos."
+msgstr "Recupera tesoros para obtener recursos."
 
 #: simulation/templates/template_gaia_tree.xml:8
 msgid "Tree"
@@ -1056,7 +1056,7 @@ msgstr "Árbol"
 
 #: simulation/templates/template_gaia_tree.xml:9
 msgid "Chop trees for wood."
-msgstr "Tala árboles para conseguir madera"
+msgstr "Tala árboles para obtener madera."
 
 #: simulation/templates/template_structure.xml:46
 msgid "Structure"
@@ -1069,8 +1069,8 @@ msgstr "Unidad"
 #: simulation/templates/template_wallset.xml:9
 #: simulation/templates/template_wallset.xml:11
 msgid "Wall"
-msgstr "Muro"
+msgstr "Muralla"
 
 #: simulation/templates/template_wallset.xml:10
 msgid "Wall off an area."
-msgstr "Levantar un muro en el área."
+msgstr "Amurallar una zona."

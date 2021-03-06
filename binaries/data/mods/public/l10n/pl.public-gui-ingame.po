@@ -29,7 +29,7 @@
 # Mar321 <grobelskimarcin@gmail.com>, 2013
 # Marcin Kozłowski <martinkoaz@gmail.com>, 2015
 # Marcin Malinowski <szyszka45@gmail.com>, 2015
-# Marcin S <dzidek1003@o2.pl>, 2016-2017
+# Marcin S <dzidek1003@o2.pl>, 2016-2017,2021
 # Marek Balicki <m.s.balicki@gmail.com>, 2017
 # Marek Opłotny <oplotny.marek@gmail.com>, 2017
 # Michał Garapich <michal@garapich.pl>, 2013
@@ -63,8 +63,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-29 14:56+0000\n"
-"PO-Revision-Date: 2021-01-29 16:47+0000\n"
-"Last-Translator: Stanislas Dolcini <stan@wildfiregames.com>\n"
+"PO-Revision-Date: 2021-03-01 13:40+0000\n"
+"Last-Translator: Marcin S <dzidek1003@o2.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -188,7 +188,7 @@ msgstr "Gra zatrzymana"
 
 #: gui/session/PauseOverlay.xml:(caption):11
 msgid "Click to Resume Game"
-msgstr "Kliknij by wznowić grę"
+msgstr "Kliknij, by wznowić grę"
 
 #: gui/session/ResearchProgress.js:108 gui/session/selection_details.js:272
 #: gui/session/selection_details.js:290 gui/session/selection_panels.js:557
@@ -303,22 +303,22 @@ msgstr "Typ wiadomości do wysłania."
 #: gui/session/chat/ChatInput.js:37
 #, javascript-format
 msgid "Press %(hotkey)s to open the public chat."
-msgstr "Wciśnij %(hotkey)s aby otworzyć publiczny czat."
+msgstr "Wciśnij %(hotkey)s, aby otworzyć publiczny czat."
 
 #: gui/session/chat/ChatInput.js:40
 #, javascript-format
 msgid "Press %(hotkey)s to open the observer chat."
-msgstr "Wciśnij %(hotkey)s aby otworzyć czat obserwatorów."
+msgstr "Wciśnij %(hotkey)s, aby otworzyć czat obserwatorów."
 
 #: gui/session/chat/ChatInput.js:41
 #, javascript-format
 msgid "Press %(hotkey)s to open the ally chat."
-msgstr "Wciśnij %(hotkey)s aby otworzyć sojuszniczy czat."
+msgstr "Wciśnij %(hotkey)s, aby otworzyć sojuszniczy czat."
 
 #: gui/session/chat/ChatInput.js:43
 #, javascript-format
 msgid "Press %(hotkey)s to open the previously selected private chat."
-msgstr "Naciśnij %(hotkey)s w celu przywrócenia poprzedniego prywatnego czatu."
+msgstr "Naciśnij %(hotkey)s, w celu przywrócenia poprzedniego prywatnego czatu."
 
 #. Translation: A player that left the game joins again
 #: gui/session/chat/ChatMessageFormatNetwork.js:24
@@ -392,7 +392,7 @@ msgstr "%(icon)sTwoja trzoda została zaatakowana przez %(attacker)s!"
 #: gui/session/chat/ChatMessageFormatSimulation.js:17
 #, javascript-format
 msgid "%(icon)sYou have been attacked by %(attacker)s!"
-msgstr "%(icon)sZostałeś zaatakowany przez%(attacker)s!"
+msgstr "%(icon)sZostałeś zaatakowany przez %(attacker)s!"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:30
 msgid "Click to focus on the attacked unit."
@@ -704,7 +704,7 @@ msgstr "Przekup losową jednostkę tego gracza i uzyskaj jej wizję na ograniczo
 
 #: gui/session/diplomacy/playercontrols/SpyRequestButton.js:142
 msgid "A failed bribe will cost you:"
-msgstr "Nieudana próba przekupstwa będzie cię kosztować:"
+msgstr "Nieudana próba przekupstwa będzie Cię kosztować:"
 
 #: gui/session/diplomacy/playercontrols/StanceButton.js:60
 msgctxt "diplomatic stance selection"
@@ -852,7 +852,7 @@ msgstr "Czy na pewno chcesz wyjść? Spowoduje to rozłączenie się innych grac
 
 #: gui/session/message_box/QuitConfirmationMenu.js:64
 msgid "Do you want to resign or will you return soon?"
-msgstr "Chcesz zrezygnować, czy zamierzasz wrócić tu wkrótce?"
+msgstr "Chcesz zrezygnować czy zamierzasz wrócić tu wkrótce?"
 
 #: gui/session/message_box/QuitConfirmationMenu.js:67
 msgid "I will return"
@@ -904,7 +904,7 @@ msgstr "Wyjdź"
 
 #: gui/session/messages.js:359
 msgid "Click when ready."
-msgstr "Kliknij jeżeli jesteś gotowy."
+msgstr "Kliknij, jeżeli jesteś gotowy."
 
 #: gui/session/messages.js:363
 msgid "Follow the instructions."
@@ -1191,7 +1191,7 @@ msgstr "Utrzymujący pozycję"
 #: gui/session/selection_panels_helpers.js:73
 msgctxt "stance"
 msgid "Attack nearby opponents, focus on attackers and chase while visible"
-msgstr "Atakuj pobliskich przeciwników, koncentruj się na atakujących i goń ich gdy są widoczni"
+msgstr "Atakuj pobliskich przeciwników, koncentruj się na atakujących i goń ich, gdy są widoczni"
 
 #: gui/session/selection_panels_helpers.js:75
 msgctxt "stance"
@@ -1235,8 +1235,8 @@ msgid "Could only be constructed once."
 msgid_plural "Could only be constructed %(limit)s times."
 msgstr[0] "Można stworzyć tylko raz."
 msgstr[1] "Można stworzyć tylko %(limit)s razy."
-msgstr[2] "Można stworzyć tylko %(limit)srazy."
-msgstr[3] "Można stworzyć tylko %(limit)srazy."
+msgstr[2] "Można stworzyć tylko %(limit)s razy."
+msgstr[3] "Można stworzyć tylko %(limit)s razy."
 
 #: gui/session/selection_panels_helpers.js:144
 msgid "Can be constructed only once."
@@ -1255,9 +1255,9 @@ msgstr[3] "Może zostać stworzone jeszcze tylko %(count)s."
 msgid "Could only be trained once."
 msgid_plural "Could only be trained %(limit)s times."
 msgstr[0] "Można wyszkolić tylko raz."
-msgstr[1] "Można wyszkolić tylko %(limit)srazy."
-msgstr[2] "Można wyszkolić tylko %(limit)srazy."
-msgstr[3] "Można wyszkolić tylko %(limit)srazy."
+msgstr[1] "Można wyszkolić tylko %(limit)s razy."
+msgstr[2] "Można wyszkolić tylko %(limit)s razy."
+msgstr[3] "Można wyszkolić tylko %(limit)s razy."
 
 #: gui/session/selection_panels_helpers.js:157
 msgid "Can be trained only once."
@@ -1276,9 +1276,9 @@ msgstr[3] "Może zostać wyszkolone jeszcze %(count)srazy."
 msgid "Could only be created once."
 msgid_plural "Could only be created %(limit)s times."
 msgstr[0] "Można stworzyć tylko raz."
-msgstr[1] "Można stworzyć tylko %(limit)srazy."
-msgstr[2] "Można stworzyć tylko %(limit)srazy."
-msgstr[3] "Można stworzyć tylko %(limit)srazy."
+msgstr[1] "Można stworzyć tylko %(limit)s razy."
+msgstr[2] "Można stworzyć tylko %(limit)s razy."
+msgstr[3] "Można stworzyć tylko %(limit)s razy."
 
 #: gui/session/selection_panels_helpers.js:170
 msgid "Can be created only once."
@@ -1706,7 +1706,7 @@ msgstr "Zniszcz zaznaczone jednostki lub budowle."
 #: gui/session/unit_actions.js:1174
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
-msgstr "Użyj %(hotkey)s aby anulować okno dialogowe."
+msgstr "Użyj %(hotkey)s, aby anulować okno dialogowe."
 
 #: gui/session/unit_actions.js:1224
 msgid "Abort the current order."

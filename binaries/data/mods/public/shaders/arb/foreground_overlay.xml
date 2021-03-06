@@ -4,6 +4,7 @@
     <vertex file="arb/foreground_overlay.vp">
         <stream name="pos"/>
         <stream name="uv0"/>
+        <uniform name="transform" loc="0" type="mat4"/>
     </vertex>
 
     <fragment file="arb/foreground_overlay.fp">

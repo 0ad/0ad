@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
-# Saibamen <saibamenppl@gmail.com>, 2015
+# Adam Stachowicz <saibamenppl@gmail.com>, 2015
 # Adrian Budasz <adrianbudasz@gmail.com>, 2015-2016
 # Annunnaky <doublemiu@gmail.com>, 2015
 # Arthur Glovchynski <kontakt.artix@gmail.com>, 2015
@@ -16,7 +16,7 @@
 # Leszek Szary, 2014-2015
 # Lukasz B <boberstarosta@gmail.com>, 2015-2016
 # Marcin Malinowski <szyszka45@gmail.com>, 2015
-# Marcin S <dzidek1003@o2.pl>, 2016-2017
+# Marcin S <dzidek1003@o2.pl>, 2016-2017,2021
 # Marek Opłotny <oplotny.marek@gmail.com>, 2017
 # Michał Karol, 2016-2017
 # Michał Koźlarek <m.kozlarek@vp.pl>, 2015
@@ -32,8 +32,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2020-11-14 20:43+0000\n"
-"Last-Translator: Przemysław Murach <moonshine133@vp.pl>\n"
+"PO-Revision-Date: 2021-02-28 21:23+0000\n"
+"Last-Translator: Marcin S <dzidek1003@o2.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -53,7 +53,7 @@ msgstr "Zaczynam masywną kampanię wojskową przeciw %(_player_)s, chodź się 
 msgid ""
 "I have set up a huge army to crush %(_player_)s. Join me and you will have "
 "your share of the loot."
-msgstr "Stworzyłem wielką armię aby zgnieść %(_player_)s.Przyłącz się do mnie, a podzielimy się łupami."
+msgstr "Stworzyłem wielką armię, aby zgnieść %(_player_)s.Przyłącz się do mnie, a podzielimy się łupami."
 
 #: simulation/ai/petra/chatHelper.js:7
 #, javascript-format
@@ -80,38 +80,38 @@ msgstr "Kończę przygotowania do ataku %(_player_)s."
 msgid ""
 "Sorry, I do not have enough soldiers currently; but my next attack will "
 "target %(_player_)s."
-msgstr "Przepraszam, nie mam wystarczająco zołnierzy; ale mój następny atak będzie na %(_player_)s."
+msgstr "Przepraszam, nie mam wystarczająco żołnierzy, ale mój następny atak będzie na %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:19
 #, javascript-format
 msgid ""
 "Sorry, I still need to strengthen my army. However, I will attack "
 "%(_player_)s next."
-msgstr "Przepraszam, muszę wzmocnić swoją armie. Jednak później zaatakuje %(_player_)s."
+msgstr "Przepraszam, muszę wzmocnić swoją armię. Jednak później zaatakuje %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:22
 #, javascript-format
 msgid ""
 "I cannot help you against %(_player_)s for the time being, I am planning to "
 "attack %(_player_2)s first."
-msgstr "Nie mogę wesprzeć cię przeciwko %(_player_)s w tej chwili, wpierw planuje atak na %(_player_2)s."
+msgstr "Nie mogę wesprzeć Cię przeciwko %(_player_)s w tej chwili, wpierw planuje atak na %(_player_2)s."
 
 #: simulation/ai/petra/chatHelper.js:27
 #, javascript-format
 msgid "Here is a gift for you, %(_player_)s. Make good use of it."
-msgstr "Mam dla ciebie podarunek, %(_player_)s. Wykorzystaj go dobrze."
+msgstr "Mam dla Ciebie podarunek, %(_player_)s. Wykorzystaj go dobrze."
 
 #: simulation/ai/petra/chatHelper.js:28
 #, javascript-format
 msgid "I see you are in a bad situation, %(_player_)s. I hope this helps."
-msgstr "Widzę że masz kłopoty, %(_player_)s. Mam nadzieję że to pomoże."
+msgstr "Widzę że masz kłopoty, %(_player_)s. Mam nadzieję, że to pomoże."
 
 #: simulation/ai/petra/chatHelper.js:29
 #, javascript-format
 msgid ""
 "I can help you this time, %(_player_)s, but you should manage your resources"
 " more carefully in the future."
-msgstr "Wesprę cię tym razem, %(_player_)s, jednak w przyszłości lepiej zarządzaj swoimi zasobami."
+msgstr "Wesprę Cię tym razem, %(_player_)s, jednak w przyszłości lepiej zarządzaj swoimi zasobami."
 
 #: simulation/ai/petra/chatHelper.js:33
 #, javascript-format
@@ -163,21 +163,21 @@ msgstr "%(_player_)s jest teraz moim wrogiem."
 #: simulation/ai/petra/chatHelper.js:58
 #, javascript-format
 msgid "I cannot accept your offer to become allies, %(_player_)s."
-msgstr "Nie mogę zaakceptować twojej oferty sojuszu, %(_player_)s."
+msgstr "Nie mogę zaakceptować Twojej oferty sojuszu, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:61
 #, javascript-format
 msgid ""
 "I will not be your ally, %(_player_)s. However, I will consider a neutrality"
 " pact."
-msgstr "Nie będę twym sojusznikiem, %(_player_)s. Jednakże rozważę pakt o neutralności."
+msgstr "Nie będę Twym sojusznikiem, %(_player_)s. Jednakże rozważę pakt o neutralności."
 
 #: simulation/ai/petra/chatHelper.js:62
 #, javascript-format
 msgid ""
 "I reject your request for alliance, %(_player_)s, but we could become "
 "neutral."
-msgstr "Odrzucam twoją ofertę sojuszu, %(_player_)s, jednak możemy stać się neutralni."
+msgstr "Odrzucam Twoją ofertę sojuszu, %(_player_)s, jednak możemy stać się neutralni."
 
 #: simulation/ai/petra/chatHelper.js:63
 #, javascript-format
@@ -217,7 +217,7 @@ msgstr "Moja odpowiedzią na twe powatrzajace sie propozycje sojuszu pozostanie 
 msgid ""
 "I will accept your offer to become allies, %(_player_)s. We will both "
 "benefit from this partnership."
-msgstr "Zaakceptuję twoją ofertę sojuszu, %(_player_)s. Obaj skorzystamy z tego układu."
+msgstr "Zaakceptuję Twoją ofertę sojuszu, %(_player_)s. Obaj skorzystamy z tego układu."
 
 #: simulation/ai/petra/chatHelper.js:74
 #, javascript-format
@@ -339,7 +339,7 @@ msgstr "%(_player_)s, nie zaakceptuję twojej prośby o neutralności póki nie 
 msgid ""
 "%(_player_)s, it would help both of our civilizations if we formed an "
 "alliance. If you become allies with me, I will respond in kind."
-msgstr "%(_player_)s, pomogłop by to obu naszym cywilizacjom jesli utworzyliśmyby sojusz. Jeśli zostaniesz mym sojusznikiem, postąpię podobnie."
+msgstr "%(_player_)s, pomogłoby to obu naszym cywilizacjom jeśli utworzyliśmybyśmy sojusz. Jeśli zostaniesz mym sojusznikiem, postąpię podobnie."
 
 #: simulation/ai/petra/chatHelper.js:119
 #, javascript-format
@@ -902,7 +902,7 @@ msgstr "(Pozwolono - awansować jednostki)"
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
-msgstr "Nie można ulepszyć gdy nie zweryfikowano wymagań odległości lub teren jest zablokowany."
+msgstr "Nie można ulepszyć, gdy nie zweryfikowano wymagań odległości lub teren jest zablokowany."
 
 #: simulation/helpers/Commands.js:712
 msgid "Cannot upgrade a garrisoned entity."

@@ -15,13 +15,14 @@
 # Raz Taz <qvovadis@yahoo.com>, 2016
 # Robert <roberto_asasinul_2006@yahoo.com>, 2018
 # Stefan Bayreuther <stefan-bayreuther@web.de>, 2021
+# Victor Achim <victorachim23@gmail.com>, 2021
 # zsofiaforro, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-25 08:08+0000\n"
-"PO-Revision-Date: 2021-02-11 14:54+0000\n"
-"Last-Translator: Stefan Bayreuther <stefan-bayreuther@web.de>\n"
+"PO-Revision-Date: 2021-03-02 07:57+0000\n"
+"Last-Translator: Victor Achim <victorachim23@gmail.com>\n"
 "Language-Team: Romanian (http://www.transifex.com/wildfire-games/0ad/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -47,14 +48,14 @@ msgstr "Un catafalc ce păstrează rămășițele unui mare lider."
 #: simulation/templates/template_unit_infantry.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Capture"
-msgstr ""
+msgstr "Captură"
 
 #: simulation/templates/template_unit_cavalry.xml:12
 #: simulation/templates/template_unit_infantry.xml:12
 #: simulation/templates/template_unit_support_female_citizen.xml:16
 msgctxt "Name of an attack, usually the weapon."
 msgid "Slaughter"
-msgstr ""
+msgstr "Măcelărește"
 
 #: simulation/templates/template_unit_cavalry.xml:30
 #: simulation/templates/template_unit_cavalry.xml:33
@@ -88,7 +89,7 @@ msgstr "Cetățean"
 
 #: simulation/templates/template_unit_cavalry_melee.xml:7
 msgid "Melee Cavalry"
-msgstr "Cavalerie melee"
+msgstr "Cavalerie de apropiere"
 
 #: simulation/templates/template_unit_cavalry_melee.xml:8
 #: simulation/templates/template_unit_champion_cavalry_axeman.xml:21
@@ -117,7 +118,7 @@ msgstr "Cavalerie melee"
 #: simulation/templates/template_unit_ship_fire.xml:42
 #: simulation/templates/template_unit_siege_ram.xml:37
 msgid "Melee"
-msgstr "melee"
+msgstr "Corp la corp"
 
 #: simulation/templates/template_unit_cavalry_melee_axeman.xml:5
 #: simulation/templates/template_unit_champion_cavalry_axeman.xml:5
@@ -131,7 +132,7 @@ msgstr "Topor"
 
 #: simulation/templates/template_unit_cavalry_melee_axeman.xml:24
 msgid "Cavalry Axeman"
-msgstr ""
+msgstr "Luptător cu toporul călare"
 
 #: simulation/templates/template_unit_cavalry_melee_axeman.xml:25
 #: simulation/templates/template_unit_champion_cavalry_axeman.xml:21
@@ -141,7 +142,7 @@ msgstr ""
 #: simulation/templates/template_unit_infantry_melee_axeman.xml:24
 #: simulation/templates/template_unit_infantry_melee_axeman.xml:25
 msgid "Axeman"
-msgstr ""
+msgstr "Luptător cu toporul"
 
 #: simulation/templates/template_unit_cavalry_melee_maceman.xml:5
 #: simulation/templates/template_unit_champion_cavalry_maceman.xml:5
@@ -155,7 +156,7 @@ msgstr "Buzdugan"
 
 #: simulation/templates/template_unit_cavalry_melee_maceman.xml:23
 msgid "Cavalry Maceman"
-msgstr ""
+msgstr "Luptător cu buzduganul călare"
 
 #: simulation/templates/template_unit_cavalry_melee_maceman.xml:24
 #: simulation/templates/template_unit_champion_cavalry_maceman.xml:22
@@ -164,7 +165,7 @@ msgstr ""
 #: simulation/templates/template_unit_hero_infantry_maceman.xml:19
 #: simulation/templates/template_unit_infantry_melee_maceman.xml:24
 msgid "Maceman"
-msgstr "Infanterist"
+msgstr "Luptător cu buzduganul"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:5
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:5
@@ -184,7 +185,7 @@ msgstr "Călăreț sulițaș"
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:28
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:25
 msgid "Counters: 1.75× vs Cavalry."
-msgstr ""
+msgstr "Contrează: 1.75x vs. Cavalerie"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:31
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:29
@@ -205,7 +206,7 @@ msgstr "Lăncier"
 #: simulation/templates/template_unit_infantry_melee_swordsman.xml:5
 msgctxt "Name of an attack using a double-edged sword."
 msgid "Sword"
-msgstr "Sabie"
+msgstr "Spadă"
 
 #: simulation/templates/template_unit_cavalry_melee_swordsman.xml:24
 msgid "Cavalry Swordsman"
@@ -287,7 +288,7 @@ msgstr "Lance"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelineer.xml:32
 msgid "Cavalry Javelineer"
-msgstr ""
+msgstr "Lăncier călare"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelineer.xml:33
 #: simulation/templates/template_unit_champion_cavalry_javelineer.xml:28
@@ -296,7 +297,7 @@ msgstr ""
 #: simulation/templates/template_unit_hero_infantry_javelineer.xml:28
 #: simulation/templates/template_unit_infantry_ranged_javelineer.xml:33
 msgid "Javelineer"
-msgstr ""
+msgstr "Lăncier"
 
 #: simulation/templates/template_unit_champion.xml:14
 msgid "Champion"
@@ -316,19 +317,19 @@ msgstr "Călareț arcaș campion"
 
 #: simulation/templates/template_unit_champion_cavalry_axeman.xml:22
 msgid "Champion Cavalry Axeman"
-msgstr ""
+msgstr "Luptător cu toporul călare campion"
 
 #: simulation/templates/template_unit_champion_cavalry_javelineer.xml:27
 msgid "Champion Cavalry Javelineer"
-msgstr ""
+msgstr "Lăncier călar campion"
 
 #: simulation/templates/template_unit_champion_cavalry_maceman.xml:21
 msgid "Champion Cavalry Maceman"
-msgstr ""
+msgstr "Luptător cu buzduganul călare campion"
 
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:27
 msgid "Champion Cavalry Spearman"
-msgstr "Lăncier călare campion"
+msgstr "Sulițaș călare campion"
 
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:22
 msgid "Champion Cavalry Swordsman"
@@ -337,7 +338,7 @@ msgstr "Spadasin călare campion"
 #: simulation/templates/template_unit_champion_elephant.xml:19
 #: simulation/templates/template_unit_elephant.xml:8
 msgid "War Elephant"
-msgstr "Elefant de război"
+msgstr "Elefant de luptă"
 
 #: simulation/templates/template_unit_champion_elephant.xml:20
 #: simulation/templates/template_unit_elephant.xml:11
@@ -353,7 +354,7 @@ msgstr "Elefant"
 #: simulation/templates/template_unit_hero_elephant_melee.xml:6
 msgctxt "Name of an attack, usually the weapon."
 msgid "Trunk"
-msgstr ""
+msgstr "Trompă"
 
 #: simulation/templates/template_unit_champion_infantry.xml:15
 #: simulation/templates/template_unit_hero_infantry.xml:14
@@ -372,22 +373,22 @@ msgstr "Arcaș campion"
 
 #: simulation/templates/template_unit_champion_infantry_axeman.xml:22
 msgid "Champion Axeman"
-msgstr ""
+msgstr "Luptător cu toporul campion"
 
 #: simulation/templates/template_unit_champion_infantry_javelineer.xml:30
 msgid "Champion Infantry Javelineer"
-msgstr ""
+msgstr "Lăncier campion"
 
 #: simulation/templates/template_unit_champion_infantry_maceman.xml:21
 msgid "Champion Infantry Maceman"
-msgstr ""
+msgstr "Luptător cu buzduganul campion"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:5
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:5
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Pike"
-msgstr "lance"
+msgstr "Țepușă lungă"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:27
 msgid "Champion Pikeman"
@@ -400,7 +401,7 @@ msgstr "Lancier campion"
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:30
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:30
 msgid "Counters: 3× vs Cavalry."
-msgstr ""
+msgstr "Contrează: 3x vs. Cavalerie"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:29
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:26
@@ -411,7 +412,7 @@ msgstr "Lăncier"
 
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:27
 msgid "Champion Spearman"
-msgstr "Lăncier campion"
+msgstr "Suițaș campion"
 
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:22
 msgid "Champion Swordsman"
@@ -419,18 +420,18 @@ msgstr "Spadasin campion"
 
 #: simulation/templates/template_unit_champion_infantry_trumpeter.xml:27
 msgid "Trumpeter"
-msgstr ""
+msgstr "Gornist"
 
 #: simulation/templates/template_unit_champion_infantry_trumpeter.xml:28
 msgid "Champion Infantry Trumpeter"
-msgstr ""
+msgstr "Gornist campion"
 
 #: simulation/templates/template_unit_dog.xml:5
 #: simulation/templates/template_unit_fauna_wild_aggressive_dog.xml:5
 #: simulation/templates/template_unit_fauna_wild_defensive_fox.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Fangs"
-msgstr ""
+msgstr "Colți"
 
 #: simulation/templates/template_unit_dog.xml:32
 msgid "War Dog"
@@ -438,7 +439,7 @@ msgstr "Câine de război"
 
 #: simulation/templates/template_unit_dog.xml:33
 msgid "Cannot attack Structures, Ships, or Siege Engines."
-msgstr ""
+msgstr "Nu poate ataca nave, clădiri sau mașinării de asediu."
 
 #: simulation/templates/template_unit_dog.xml:35
 msgid "Dog"
@@ -452,7 +453,7 @@ msgstr "Elefant arcaș"
 #: simulation/templates/template_unit_fauna_herd.xml:4
 #: simulation/templates/template_unit_fauna_hunt.xml:4
 msgid "Kill to gather meat for food."
-msgstr "Ucide pentru a strânge carne și a face rost de mâncare"
+msgstr "Vânează pentru a strânge carne."
 
 #: simulation/templates/template_unit_fauna_hunt_aggressive_bear.xml:5
 msgctxt "Name of an attack, usually the weapon."
@@ -466,7 +467,7 @@ msgstr "Coarne"
 
 #: simulation/templates/template_unit_fauna_hunt_whale.xml:7
 msgid "Kill to butcher for food."
-msgstr ""
+msgstr "Taie animalele pentru a strânge carne."
 
 #: simulation/templates/template_unit_hero.xml:25
 #: simulation/templates/template_unit_hero.xml:26
@@ -484,19 +485,19 @@ msgstr "Arcaș călare erou"
 
 #: simulation/templates/template_unit_hero_cavalry_axeman.xml:19
 msgid "Hero Cavalry Axeman"
-msgstr ""
+msgstr "Luptător cu toporul călare erou"
 
 #: simulation/templates/template_unit_hero_cavalry_javelineer.xml:27
 msgid "Hero Cavalry Javelineer"
-msgstr ""
+msgstr "Lăncier călare erou"
 
 #: simulation/templates/template_unit_hero_cavalry_maceman.xml:18
 msgid "Hero Cavalry Maceman"
-msgstr ""
+msgstr "Luptător cu buzgudanul călare erou"
 
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:24
 msgid "Hero Cavalry Spearman"
-msgstr "Lăncier călare erou"
+msgstr "Sulițaș călare erou"
 
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:25
 msgid "Hero Cavalry Swordsman"
@@ -504,7 +505,7 @@ msgstr "Spadasin călare erou"
 
 #: simulation/templates/template_unit_hero_elephant_melee.xml:32
 msgid "Hero Elephant"
-msgstr ""
+msgstr "Elefant erou"
 
 #: simulation/templates/template_unit_hero_healer.xml:27
 #: simulation/templates/template_unit_support.xml:5
@@ -524,15 +525,15 @@ msgstr "Arcaș erou"
 
 #: simulation/templates/template_unit_hero_infantry_axeman.xml:19
 msgid "Hero Axeman"
-msgstr ""
+msgstr "Luptător cu toporul erou"
 
 #: simulation/templates/template_unit_hero_infantry_javelineer.xml:27
 msgid "Hero Infantry Javelineer"
-msgstr ""
+msgstr "Lăncier erou"
 
 #: simulation/templates/template_unit_hero_infantry_maceman.xml:18
 msgid "Hero Infantry Maceman"
-msgstr ""
+msgstr "Luptător cu buzduganul erou"
 
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:24
 msgid "Hero Pikeman"
@@ -558,7 +559,7 @@ msgstr "Infanterie "
 
 #: simulation/templates/template_unit_infantry_melee_maceman.xml:23
 msgid "Infantry Maceman"
-msgstr ""
+msgstr "Luptător cu buzduganul"
 
 #: simulation/templates/template_unit_infantry_ranged_javelineer.xml:32
 msgid "Infantry Javelineer"
@@ -588,7 +589,7 @@ msgstr "Navă ușoară de război"
 #: simulation/templates/template_unit_ship_trireme.xml:49
 #: simulation/templates/template_unit_siege_tower.xml:63
 msgid "Garrison units for transport and to increase firepower."
-msgstr "Încartiruiește unități pentru transport și pentru a crește puterea de foc."
+msgstr "Încartiruiește unități pentru transport și pentru a crește puterea de atac."
 
 #: simulation/templates/template_unit_ship_bireme.xml:50
 #: simulation/templates/template_unit_ship_fire.xml:42
@@ -608,15 +609,15 @@ msgstr "Biremă"
 #: simulation/templates/units/theb_siege_fireraiser.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Fire"
-msgstr ""
+msgstr "Foc"
 
 #: simulation/templates/template_unit_ship_fire.xml:40
 msgid "Fire Ship"
-msgstr "navă de foc"
+msgstr "Navă de foc"
 
 #: simulation/templates/template_unit_ship_fire.xml:41
 msgid "Unrepairable. Gradually loses health. Can only attack Ships."
-msgstr ""
+msgstr "De nereparat. Își pierde treptat viața. Poate ataca doar nave."
 
 #: simulation/templates/template_unit_ship_fire.xml:42
 msgid "Fireship"
@@ -625,7 +626,7 @@ msgstr "Navă de foc"
 #: simulation/templates/template_unit_ship_fishing.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Harpoon"
-msgstr ""
+msgstr "Harpon"
 
 #: simulation/templates/template_unit_ship_fishing.xml:30
 #: simulation/templates/units/kush/ship_fishing.xml:9
@@ -634,7 +635,7 @@ msgstr "Barcă de pescuit"
 
 #: simulation/templates/template_unit_ship_fishing.xml:32
 msgid "Fish the waters for food."
-msgstr "Pescuiește pentru a colecta hrană."
+msgstr "Pescuiește pentru a strânge carne."
 
 #: simulation/templates/template_unit_ship_fishing.xml:34
 msgid "FishingBoat"
@@ -706,19 +707,19 @@ msgstr "Oxybeles"
 #: simulation/templates/template_unit_siege_ram.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Ram"
-msgstr "Berbece"
+msgstr "Berbec"
 
 #: simulation/templates/template_unit_siege_ram.xml:37
 msgid "Ram"
-msgstr "Berbece"
+msgstr "Berbec"
 
 #: simulation/templates/template_unit_siege_ram.xml:38
 msgid "Battering Ram"
-msgstr "Berbec"
+msgstr "Berbec de asediu"
 
 #: simulation/templates/template_unit_siege_ram.xml:39
 msgid "Cannot attack Fields or Organic Units."
-msgstr ""
+msgstr "Nu poate ataca ferme, oameni sau vietăți."
 
 #: simulation/templates/template_unit_siege_stonethrower.xml:43
 msgid "StoneThrower"
@@ -739,7 +740,7 @@ msgstr "Turn de asediu"
 #: simulation/templates/template_unit_support_female_citizen.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Dagger"
-msgstr ""
+msgstr "Pumnal"
 
 #: simulation/templates/template_unit_support_female_citizen.xml:66
 msgid "Female Citizen"
@@ -757,7 +758,7 @@ msgstr "Sclav"
 
 #: simulation/templates/template_unit_support_slave.xml:49
 msgid "Gatherer with a finite life span. Bonused at mining and lumbering."
-msgstr "Adunător de resurse cu o viață limitată. Bonus pentru minare și tăiat de lemne."
+msgstr "Culegător de resurse cu viață limitată. Bonus pentru minare și tăiat de lemne."
 
 #: simulation/templates/template_unit_support_trader.xml:18
 msgid "Trade resources between your own markets and those of your allies."
@@ -992,7 +993,7 @@ msgstr "De elită"
 #: simulation/templates/units/maur/infantry_swordsman_b.xml:5
 msgctxt "Name of an attack using a single-edged sword."
 msgid "Sword"
-msgstr "Sabie"
+msgstr "Spadă"
 
 #: simulation/templates/units/athen/cavalry_swordsman_b.xml:12
 msgid "Greek Cavalry"
@@ -1080,7 +1081,7 @@ msgstr "Toxótēs Krētikós"
 
 #: simulation/templates/units/athen/infantry_slinger_b.xml:13
 msgid "Athenian Slinger Militia"
-msgstr "Miliție aruncătoare cu praștia ateniană"
+msgstr "Ostaș prăștiaș atenian"
 
 #: simulation/templates/units/athen/infantry_slinger_b.xml:14
 msgid "Psilòs Athēnaîos"
@@ -1149,7 +1150,7 @@ msgstr "Oxibeleu"
 #: simulation/templates/units/sele/siege_ram.xml:9
 #: simulation/templates/units/spart/siege_ram.xml:9
 msgid "Krios"
-msgstr ""
+msgstr "Krios"
 
 #: simulation/templates/units/athen/support_female_citizen.xml:11
 msgid "Gýnē Athēnaía"
@@ -1197,7 +1198,7 @@ msgstr "Marcac"
 
 #: simulation/templates/units/brit/cavalry_javelineer_b.xml:7
 msgid "Raiding Cavalry"
-msgstr "Cavalerie de incursiune"
+msgstr "Cavalerie de razie"
 
 #: simulation/templates/units/brit/cavalry_swordsman_b.xml:6
 #: simulation/templates/units/gaul/cavalry_swordsman_b.xml:6
@@ -1279,7 +1280,7 @@ msgstr "Aruncător cu praștia celt"
 #: simulation/templates/units/brit/infantry_slinger_b.xml:7
 #: simulation/templates/units/gaul/infantry_slinger_b.xml:11
 msgid "Talmoris"
-msgstr ""
+msgstr "Talmoris"
 
 #: simulation/templates/units/brit/infantry_spearman_b.xml:6
 msgid "Celtic Spearman"
@@ -1288,27 +1289,27 @@ msgstr "Lăncier celtic"
 #: simulation/templates/units/brit/infantry_spearman_b.xml:7
 #: simulation/templates/units/gaul/infantry_spearman_b.xml:11
 msgid "Catucos"
-msgstr ""
+msgstr "Catucos"
 
 #: simulation/templates/units/brit/ship_fishing.xml:9
 #: simulation/templates/units/gaul/ship_fishing.xml:9
 msgid "Longos"
-msgstr ""
+msgstr "Longos"
 
 #: simulation/templates/units/brit/ship_merchant.xml:9
 #: simulation/templates/units/gaul/ship_merchant.xml:9
 msgid "Nauson"
-msgstr ""
+msgstr "Nauson"
 
 #: simulation/templates/units/brit/ship_trireme.xml:18
 #: simulation/templates/units/gaul/ship_trireme.xml:18
 msgid "Pontos"
-msgstr ""
+msgstr "Pontos"
 
 #: simulation/templates/units/brit/siege_ram.xml:9
 #: simulation/templates/units/gaul/siege_ram.xml:9
 msgid "Molton"
-msgstr ""
+msgstr "Molton"
 
 #: simulation/templates/units/brit/support_female_citizen.xml:5
 #: simulation/templates/units/gaul/support_female_citizen.xml:10
@@ -1318,27 +1319,27 @@ msgstr "Femeie celtică"
 #: simulation/templates/units/brit/support_female_citizen.xml:6
 #: simulation/templates/units/gaul/support_female_citizen.xml:11
 msgid "Bena"
-msgstr ""
+msgstr "Bena"
 
 #: simulation/templates/units/brit/support_healer_b.xml:5
 #: simulation/templates/units/brit/support_healer_b.xml:6
 #: simulation/templates/units/gaul/support_healer_b.xml:5
 #: simulation/templates/units/gaul/support_healer_b.xml:6
 msgid "Druid"
-msgstr ""
+msgstr "Druid"
 
 #: simulation/templates/units/brit/support_trader.xml:9
 #: simulation/templates/units/gaul/support_trader.xml:9
 msgid "Uogition"
-msgstr ""
+msgstr "Uogition"
 
 #: simulation/templates/units/brit/war_dog.xml:5
 msgid "Agrocuna"
-msgstr ""
+msgstr "Agrocuna"
 
 #: simulation/templates/units/cart/catafalque.xml:8
 msgid "Hasdrubal (Quartermaster)"
-msgstr ""
+msgstr "Hasdrubal (intendent)"
 
 #: simulation/templates/units/cart/cavalry_javelineer_b.xml:6
 msgid "Numidian Cavalry"
@@ -1371,11 +1372,11 @@ msgstr "Cavalerie grea iberică"
 
 #: simulation/templates/units/cart/champion_cavalry.xml:5
 msgid "Sacred Band Cavalry"
-msgstr "Cavalerie civilă cartagineză"
+msgstr "Trupă sacră călare"
 
 #: simulation/templates/units/cart/champion_cavalry.xml:6
 msgid "Sacred Band of Astarte"
-msgstr "Banda Sacră a lui Astarte"
+msgstr "Trupa sacră a lui Astarte"
 
 #: simulation/templates/units/cart/champion_elephant.xml:5
 msgid "North African War Elephant"
@@ -1692,7 +1693,7 @@ msgstr "Cămilă"
 
 #: simulation/templates/units/kush/cavalry_spearman_b.xml:7
 msgid "Meroitic Heavy Cavalry"
-msgstr ""
+msgstr "Cavalerie grea meroitică"
 
 #: simulation/templates/units/kush/cavalry_spearman_b.xml:8
 msgid "Htr"
@@ -1700,7 +1701,7 @@ msgstr ""
 
 #: simulation/templates/units/kush/champion_cavalry.xml:6
 msgid "Noble Cavalry"
-msgstr ""
+msgstr "Cavalerie nobilă"
 
 #: simulation/templates/units/kush/champion_cavalry.xml:7
 msgid "Htr Msʿ n mh-ib"
@@ -1708,7 +1709,7 @@ msgstr ""
 
 #: simulation/templates/units/kush/champion_elephant.xml:6
 msgid "Meroitic War Elephant"
-msgstr ""
+msgstr "Elefant de luptă meroitic"
 
 #: simulation/templates/units/kush/champion_elephant.xml:7
 msgid "Abore ʿhȝ"
@@ -1724,7 +1725,7 @@ msgstr ""
 
 #: simulation/templates/units/kush/champion_infantry_apedemak.xml:6
 msgid "Meroitic Temple Guard"
-msgstr ""
+msgstr "Străjer al templului meroitic"
 
 #: simulation/templates/units/kush/champion_infantry_apedemak.xml:7
 msgid "rs ʿIprmk"
@@ -1778,7 +1779,7 @@ msgstr ""
 
 #: simulation/templates/units/kush/infantry_javelineer_merc_b.xml:16
 msgid "Noba Skirmisher"
-msgstr ""
+msgstr "Tiralior Noban"
 
 #: simulation/templates/units/kush/infantry_javelineer_merc_b.xml:17
 msgid "nhw ʿhȝw Noba"
@@ -1911,15 +1912,15 @@ msgstr "Arbaletă"
 
 #: simulation/templates/units/mace/champion_infantry_crossbowman.xml:28
 msgid "Crossbowman"
-msgstr ""
+msgstr "Arbaletist"
 
 #: simulation/templates/units/mace/champion_infantry_crossbowman.xml:30
 msgid "Champion Crossbowman"
-msgstr ""
+msgstr "Arbaletist campion"
 
 #: simulation/templates/units/mace/champion_infantry_crossbowman.xml:31
 msgid "Gastraphetophoros"
-msgstr ""
+msgstr "Arbatelist grec"
 
 #: simulation/templates/units/mace/champion_infantry_spearman.xml:6
 msgid "Macedonian Shield Bearer"
@@ -1939,7 +1940,7 @@ msgstr "Rhomphaiaphoros"
 
 #: simulation/templates/units/mace/hero_alexander_iii.xml:21
 msgid "Alexander III the Great"
-msgstr ""
+msgstr "Alexandru al III-lea cel Mare"
 
 #: simulation/templates/units/mace/hero_alexander_iii.xml:22
 msgid "Alexandros ho Megas"
@@ -1947,7 +1948,7 @@ msgstr ""
 
 #: simulation/templates/units/mace/hero_alexander_iii.xml:23
 msgid "Counters: 1.2× vs Heroes."
-msgstr ""
+msgstr "Contrează: 1.2x vs Eroi"
 
 #: simulation/templates/units/mace/hero_craterus.xml:14
 msgid "Craterus"
@@ -2345,7 +2346,7 @@ msgstr ""
 
 #: simulation/templates/units/pers/champion_infantry.xml:8
 msgid "Immortal"
-msgstr ""
+msgstr "Nemuritor"
 
 #: simulation/templates/units/pers/hero_cyrus_ii.xml:9
 msgid "Cyrus II The Great"

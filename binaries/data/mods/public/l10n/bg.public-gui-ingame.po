@@ -4,6 +4,7 @@
 # project.
 # Translators:
 # Daniel Ignatov <sa3ana3a@abv.bg>, 2014
+# Georgi Georgiev (Жоро) <g.georgiev.shumen@gmail.com>, 2021
 # iron4o <ironsmile@gmail.com>, 2014
 # Ivailo Monev <xakepa10@gmail.com>, 2014
 # Yordan Grigorov (yoreei) <yoreei.grigorov@gmail.com>, 2016
@@ -18,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-29 14:56+0000\n"
-"PO-Revision-Date: 2021-01-29 16:26+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-02-22 19:14+0000\n"
+"Last-Translator: Georgi Georgiev (Жоро) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1396,13 +1397,13 @@ msgstr "Продаване на %(resource)s"
 #, javascript-format
 msgctxt "buy action"
 msgid "+%(amount)s"
-msgstr ""
+msgstr "+%(amount)s"
 
 #: gui/session/trade/BarterButton.js:103
 #, javascript-format
 msgctxt "sell action"
 msgid "-%(amount)s"
-msgstr ""
+msgstr "-%(amount)s"
 
 #: gui/session/trade/BarterPanel.xml:(caption):5
 msgid "Barter"
@@ -1424,7 +1425,7 @@ msgstr "Няма налични пазари"
 #, javascript-format
 msgctxt "trading good ratio"
 msgid "%(amount)s%%"
-msgstr ""
+msgstr "%(amount)s%%"
 
 #: gui/session/trade/TradeButtonManager.js:80
 #, javascript-format
@@ -1449,7 +1450,7 @@ msgstr "Търговия"
 
 #: gui/session/trade/TradePanel.xml:(caption):14
 msgid "Resources:"
-msgstr ""
+msgstr "Ресурси:"
 
 #: gui/session/trade/TraderStatusTextLand.js:15
 #, javascript-format

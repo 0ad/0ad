@@ -6,8 +6,8 @@
 # Alejandro Avellaneda <aleavellaneda1@gmail.com>, 2019
 # Alejandro Cosculluela <coscumoscu@gmail.com>, 2019
 # Ancel0 <ancel0@openmailbox.org>, 2013
-# Antonio J. Artuñedo <antoniojartunedo@gmail.com>, 2021
-# Antonio J. Artuñedo <antoniojartunedo@gmail.com>, 2021
+# Antonio J. A <antoniojartunedo@gmail.com>, 2021
+# Antonio J. A <antoniojartunedo@gmail.com>, 2021
 # blvebird <doomsamurai@hotmail.com>, 2014
 # Diego Bruschetti <d.bruschetti@hotmail.com>, 2014
 # caniroc <carlos.barraza.e@gmail.com>, 2013
@@ -50,7 +50,7 @@
 # Rafael Castro <drill.hurricane@hotmail.com>, 2013
 # Rafael López Reyes <rafalopezreyes@gmail.com>, 2018
 # ec4ed8ad513c79b45aa3a016799aa037_aac9b66 <40ec634153c8e56a0afc75e965b51fbf_269003>, 2015
-# Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>, 2018,2020
+# Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>, 2018,2020-2021
 # Roger Vasquez <r0g3rva5qu3z@hotmail.com>, 2013
 # Sander Deryckere, 2014
 # ab661d6cee6a756af4a49df8163441b7_633a6fb, 2014
@@ -66,8 +66,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-02-11 18:32+0000\n"
-"Last-Translator: soloooy0 fg <juanjo.fg@hotmail.com>\n"
+"PO-Revision-Date: 2021-02-27 14:57+0000\n"
+"Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -137,7 +137,7 @@ msgstr "Milcíades"
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].Description
 msgid "Workers +10% metal gather rate per phase advance."
-msgstr "Trabajadores +10% recolección de metal por avance de fase"
+msgstr "Trabajadores (Velocidad de de extracción de metal: +10% en cada fase)."
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].History
 msgid ""
@@ -155,7 +155,7 @@ msgid ""
 "Athens was famed as a center for the arts, learning and philosophy. The "
 "Athenians were also powerful warriors, particularly at sea. At its peak, "
 "Athens dominated a large part of the Hellenic world for several decades."
-msgstr "Como cuna de la civilización occidental y lugar de nacimiento de la democracia, Atenas fue reconocida como el centro del arte, la educación y filosofía. Los atenienses también eran guerreros poderosos, especialmente en el mar. En su apogeo, Atenas dominó gran parte del mundo griego durante varias décadas."
+msgstr "Como cuna de la civilización occidental y lugar de nacimiento de la democracia, Atenas fue reconocida como el centro del arte, la educación y la filosofía. Los atenienses también eran fuertes guerreros, especialmente en el mar. En su apogeo, Atenas dominó gran parte del mundo griego durante varias décadas."
 
 #: simulation/data/civs/athen.jsonName
 msgid "Athenians"
@@ -211,7 +211,7 @@ msgid ""
 "longswordsmen and powerful melee soldiers, they staged fearsome revolts "
 "against Rome to protect their customs and interests. Also, they built "
 "thousands of unique structures such as hill forts, crannogs and brochs."
-msgstr "Los britanos eran las tribus celtas de las Islas Británicas. Utilizando carros de combate, espadachines y poderosos guerreros cuerpo a cuerpo protagonizaron terribles revueltas contra Roma para proteger sus costumbres e intereses. También construyeron miles de estructuras únicas como castros, crannogs y brochs."
+msgstr "Los britanos eran las tribus celtas de las islas británicas. Protagonizaron violentas revueltas contra Roma para proteger sus costumbres e intereses mediante el uso de carros de combate, espadas largas y fuertes guerreros cuerpo a cuerpo. Son los constructores de miles de estructuras únicas como castros, crannogs y brochs."
 
 #: simulation/data/civs/brit.jsonName
 msgid "Britons"
@@ -283,19 +283,19 @@ msgstr "Himilcón"
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].Description
 msgid "Merchant Ships +25% trade gain."
-msgstr "Barcos mercaderes (Ganancias: +25%)."
+msgstr "Barcos mercantes (Ganancias: +25%)."
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].Name
 msgid "Commercial Acumen"
-msgstr "Perspicacia Comercial"
+msgstr "Habilidad comercial"
 
 #: simulation/data/civs/cart.jsonCivBonuses[1].Description
 msgid "Docks and Markets +10% international trade bonus."
-msgstr "Puertos y mercados - Bonus del 10% en comercio internacional"
+msgstr "Puertos y mercados (Bonus en comercio internacional: 10%)."
 
 #: simulation/data/civs/cart.jsonCivBonuses[1].Name
 msgid "Desirable Products"
-msgstr "Productos deseables"
+msgstr "Productos deseados"
 
 #: simulation/data/civs/cart.jsonHistory
 msgid ""
@@ -358,7 +358,7 @@ msgid ""
 "metalworking, agriculture, trade and even road engineering. With heavy "
 "infantry and cavalry, Gallic warriors valiantly resisted Caesar's campaign "
 "of conquest and Rome's authoritarian rule."
-msgstr "Los galos eran las tribus célticas de la Europa continental. Dominados por una clase religiosa, los Druidas, tenían una sofisticada cultura de metalurgia avanzada, agricultura, comercio e incluso ingeniería de caminos. Con la ayuda de infantería pesada y caballería, los guerreros galos resistieron valientemente la campaña de conquista de César y el gobierno autoritario de Roma. "
+msgstr "Los galos eran tribus celtas de la Europa continental. Estaban dominados por una clase religiosa: los druidas. Tenían una sofisticada cultura de metalurgia avanzada, agricultura, comercio e incluso ingeniería de caminos. Con la ayuda de infantería pesada y caballería, los guerreros galos resistieron valientemente la campaña de conquista de César y el gobierno autoritario de Roma. "
 
 #: simulation/data/civs/gaul.jsonName
 msgid "Gauls"
@@ -406,17 +406,17 @@ msgstr "Con excepción a llanuras aluviales y valles fluviales, la piedra es abu
 
 #: simulation/data/civs/iber.jsonCivBonuses[0].Name
 msgid "Starting Walls"
-msgstr "Comenzando Murallas"
+msgstr "Muralla inicial"
 
 #: simulation/data/civs/iber.jsonCivBonuses[1].Description
 msgid ""
 "Stone Towers −50% wood cost, +150% stone cost, +33% build time, +60% health,"
 " +3 garrison capacity, and +1 default arrow count."
-msgstr "Torres de Piedra −50% coste de madera, +150% coste de piedra, +33% tiempo de construcción, +60% salud, +3 capacidad de guarnición, y +1 número de flechas por defecto."
+msgstr "Torres de Piedra (Madera: −50%;  Piedra: +150%; Tiempo: +33%; Resistencia: +60%; Guarnición: +3; Flechas: +1)."
 
 #: simulation/data/civs/iber.jsonCivBonuses[1].Name
 msgid "Massive Towers"
-msgstr "Torres masivas"
+msgstr "Torres macizas"
 
 #: simulation/data/civs/iber.jsonHistory
 msgid ""
@@ -491,12 +491,12 @@ msgstr "Nasalsa"
 #: simulation/data/civs/kush.jsonCivBonuses[0].Description
 #: simulation/data/civs/pers.jsonCivBonuses[1].Description
 msgid "Battering Rams +20% attack damage and +2 garrison capacity."
-msgstr "Arietes + 20% de daño de ataque y +2 de capacidad de guarnición."
+msgstr "Arietes (Daño de ataque: +20%; Guarnición: +2)."
 
 #: simulation/data/civs/kush.jsonCivBonuses[0].Name
 #: simulation/data/civs/pers.jsonCivBonuses[1].Name
 msgid "Large Rams"
-msgstr "Grandes Carneros"
+msgstr "Arietes grandes"
 
 #: simulation/data/civs/kush.jsonHistory
 msgid ""
@@ -514,11 +514,11 @@ msgid ""
 "Meroitic kingdom was known as Aethiopia. The Kushite kingdom persisted until"
 " the 4th century AD, when it weakened and disintegrated due to internal "
 "rebellion, eventually succumbing to the rising power of Axum."
-msgstr "El Reino de Kush fue el antiguo reino africano situado en las confluencias del Nilo Azul, el Nilo Blanco y el Río Atbara en lo que hoy es la República de Sudán. La era kushita se estableció en la región después del colapso del Nuevo Reino de Egipto una vez terminada la edad de bronce, y se centraba en Napata en su fase temprana. Invadieron Egipto en el siglo 8 a. C, y los emperadores kushitas gobernaron como faraones de la vigésimo quinta dinastía de Egipto durante un siglo, hasta que fueron expulsados por los asirios. La cultura kushita estaba fuertemente influenciada por la egipcia, con la construcción de la pirámide kushita y la arquitectura monumental de sus templos como ejemplos de ello. Los kushitas incluso adoraron a muchos dioses egipcios, incluido Amón. Durante la antigüedad clásica, la capital del imperio kushita estaba en Meroe. En la temprana geografía griega, el reino Meroe se conocía como Etiopía. El reino kushita sobrevivió hasta el siglo 4 a. C, cuando se debilitó y desintegró debido a rebeliones internas y eventualmente sucumbió ante el floreciente poder de Akxum."
+msgstr "El Reino de Kush fue un antiguo reino africano situado en las confluencias del Nilo Azul, el Nilo Blanco y el río Atbara, en la actual República del Sudán. El dominio cusita en la región se estableció tras el colapso de la Edad del Bronce ante el Nuevo Reino de Egipto, centrándose en Napata en su fase inicial. Invadieron Egipto en el siglo VIII a. C., y los emperadores cusitas gobernaron como faraones de la vigésimo quinta dinastía de Egipto durante un siglo, hasta que fueron expulsados por los asirios. La cultura cusita estuvo muy influenciada por la egipcia, destacando la construcción de pirámides cusitas y la arquitectura de templos monumentales que aún perduran. Los cusitas incluso adoraban a muchos dioses egipcios, incluido Amón. En una segunda etapa, la capital del imperio cusita se trasladó a Meroe. En la primera geografía griega, el reino meroítico era conocido como Etiopía. El reino cusita perduró hasta el siglo IV d. C., cuando se debilitó y desintegró debido a las rebeliones internas, sucumbiendo finalmente ante el creciente poder de Axum."
 
 #: simulation/data/civs/kush.jsonName
 msgid "Kushites"
-msgstr "Kushitas africanos"
+msgstr "Cusitas"
 
 #: simulation/data/civs/mace.jsonAINames[0]
 msgid "Alexander the Great"
@@ -580,7 +580,7 @@ msgid ""
 "Macedonian forces and allies took over most of the world they knew, "
 "including Egypt, Persia and parts of the Indian subcontinent, allowing a "
 "diffusion of Hellenic and eastern cultures for years to come."
-msgstr "Macedonia fue un antiguo reino griego situado en el noreste de la península griega. Bajo el liderazgo de Alejandro Magno, las fuerzas macedonias y sus aliados conquistaron la mayor parte del mundo conocido, incluyendo Egipto, Persia y partes del subcontinente indio, permitiendo la difusión de las culturas helenística y oriental durante los años venideros"
+msgstr "Macedonia fue un antiguo reino griego ubicado al noreste de la península griega. Bajo el liderazgo de Alejandro Magno, las fuerzas macedonias y sus aliados conquistaron la mayor parte del mundo conocido, incluyendo Egipto, Persia y partes del subcontinente indio, permitiendo la difusión de la cultura helenística y oriental durante años."
 
 #: simulation/data/civs/mace.jsonName
 msgid "Macedonians"
@@ -688,7 +688,7 @@ msgstr "Artaxshacha III"
 
 #: simulation/data/civs/pers.jsonCivBonuses[0].Description
 msgid "Land Traders +25% trade gain."
-msgstr "Comerciantes terrestres (Ganancias: +15%)."
+msgstr "Comerciantes terrestres (Ganancias: +25%)."
 
 #: simulation/data/civs/pers.jsonCivBonuses[0].Name
 msgid "Darics"
@@ -703,7 +703,7 @@ msgid ""
 "rule over various peoples with different customs, laws, religions and "
 "languages, and building a cosmopolitan army made up of contingents from each"
 " of these nations."
-msgstr "El imperio persa, mientras era gobernado por la dinastía Aqueménida, era uno de los más grandes imperios de la antigüedad, extendiéndose en su cenit desde el Valle del Indo en el este, hasta Grecia en el oeste. Los persas fueron pioneros en la construcción de imperios en el mundo antiguo, logrando imponer con éxito una ley centralizada sobre variados pueblos con diferentes costumbres, leyes, religiones e idiomas, y conformando un ejército cosmopolita hecho de contingentes de cada una de esas naciones."
+msgstr "El imperio persa, durante el gobierno de la dinastía aqueménida, era uno de los más grandes imperios de la antigüedad, extendiéndose en su cenit desde el Valle del Indo en el este, hasta Grecia en el oeste. Los persas fueron pioneros en la construcción de imperios en el mundo antiguo, logrando imponer con éxito una ley centralizada sobre variados pueblos con diferentes costumbres, leyes, religiones e idiomas, y conformando un ejército cosmopolita hecho de contingentes de cada una de esas naciones."
 
 #: simulation/data/civs/pers.jsonName
 msgid "Persians"
@@ -787,7 +787,7 @@ msgstr "Ptolomeo Neos Dioniso"
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].Description
 msgid "Bolt Shooters −33% attack damage and −33% attack time."
-msgstr "Lanza virotes -33% de daño de ataque y -33% de tiempo de ataque."
+msgstr "Ballestas (Daño de ataque: -33%; Tiempo de ataque: -33%)."
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].Name
 msgid "Polybolos"
@@ -863,7 +863,7 @@ msgstr "Publio Cornelio Escipión Africano"
 
 #: simulation/data/civs/rome.jsonCivBonuses[0].Description
 msgid "Roman Legionaries can form a Testudo."
-msgstr "Los legionarios romanos se pueden proteger con la formación en tortuga."
+msgstr "Los legionarios romanos pueden protegerse con la formación en tortuga."
 
 #: simulation/data/civs/rome.jsonCivBonuses[0].History
 msgid ""
@@ -878,7 +878,7 @@ msgstr "Formación en tortuga"
 
 #: simulation/data/civs/rome.jsonCivBonuses[1].Description
 msgid "Battering Rams +20% attack damage. Stone Throwers +10% attack damage."
-msgstr "Arietes  + 20% de daño de ataque. Catapulta + 10% de daño de ataque."
+msgstr "Arietes (Daño de ataque: +20%). Catapultas (Daño de ataque: +10%)."
 
 #: simulation/data/civs/rome.jsonCivBonuses[1].Name
 msgid "Legionary Engineers"
@@ -893,7 +893,7 @@ msgid ""
 "nations on earth for almost 800 years. The Romans were the supreme builders "
 "of the ancient world, excelled at siege warfare and had an exquisite "
 "infantry and navy."
-msgstr "Los romanos controlaron uno de los imperios más grandes del mundo antiguo, abarcaba desde el sur de Escocia al desierto del Sahara. Era poblado por entre 60 millones u 80 millones de habitantes, un cuarto de la población del mundo en esa época, Roma continuó siendo uno de las naciones más poderosas durante 800 años. Los romanos fueron los supremos constructores del mundo antiguo, excelentes asediadores y tuvieron una formidable infantería y marina."
+msgstr "Los romanos controlaron uno de los imperios más grandes del mundo antiguo. Abarcaba desde el sur de Escocia hasta el desierto del Sahara y contaba con una población entre 60 y 80 millones de habitantes; un cuarto de la población mundial en aquella época. Roma continuó siendo una de las naciones más poderosas del mundo durante 800 años. Los romanos fueron los constructores supremos del mundo antiguo, destacando en técnicas de asedio y contaban con una formidable infantería y marina."
 
 #: simulation/data/civs/rome.jsonName
 msgid "Romans"
@@ -1019,7 +1019,7 @@ msgstr "Demetrio I Sóter"
 #: simulation/data/civs/sele.jsonHistory
 msgid ""
 "The Macedonian-Greek dynasty that ruled most of Alexander's former empire."
-msgstr "La dinastía greco-macedonia que gobernó gran parte del antiguo imperio de Alejandro Magno."
+msgstr "La dinastía grecomacedonica que gobernó gran parte del antiguo imperio de Alejandro Magno."
 
 #: simulation/data/civs/sele.jsonName
 msgid "Seleucids"
@@ -1071,11 +1071,11 @@ msgstr "Eurícrates"
 
 #: simulation/data/civs/spart.jsonCivBonuses[0].Description
 msgid "Female Citizens +40% health and +50% melee attack hack damage."
-msgstr "Ciudadanas +40% de salud y +50% de daño cuerpo a cuerpo por corte."
+msgstr "Ciudadanas (Salud: +40%; Daño por corte en ataques cuerpo a cuerpo: +50%)."
 
 #: simulation/data/civs/spart.jsonCivBonuses[0].Name
 msgid "Spartan Women"
-msgstr "Mujeres Espartanas"
+msgstr "Espartanas"
 
 #: simulation/data/civs/spart.jsonHistory
 msgid ""
@@ -1085,7 +1085,7 @@ msgid ""
 " at age seven. Thanks to its military might, Sparta led a coalition of Greek"
 " forces during the Greco-Persian Wars, and won over Athens in the "
 "Peloponnesian Wars, though at great cost."
-msgstr "Esparta fue una importante ciudad-estado de la antigua Grecia que contaba con un poder militar terrestre decisivo en torno al 650 a. C. La cultura espartana estaba obsesionada con el entrenamiento militar y la excelencia. Contaban con un riguroso programa de adiestramiento para varones a partir de siete años. Gracias a su poderío militar, Esparta lideró una coalición de fuerzas griegas durante las guerras médicas y derrotó a Atenas en la guerra del Peloponeso, aunque con un alto coste."
+msgstr "Esparta fue una importante ciudad-estado de la antigua Grecia que en torno al 650 a. C. contaba con una fuerza militar terrestre determinante. La cultura espartana estaba obsesionada con el entrenamiento militar y la excelencia. Contaban con un riguroso programa de adiestramiento para varones a partir de siete años. Gracias a su poderío militar, Esparta lideró una coalición de fuerzas griegas durante las guerras médicas y derrotó a Atenas en la guerra del Peloponeso, aunque con un alto coste."
 
 #: simulation/data/civs/spart.jsonName
 msgid "Spartans"

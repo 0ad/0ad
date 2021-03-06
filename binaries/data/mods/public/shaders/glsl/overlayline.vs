@@ -2,6 +2,8 @@
 
 #include "common/los_vertex.h"
 
+uniform mat4 transform;
+
 attribute vec3 a_vertex;
 attribute vec2 a_uv0;
 
@@ -19,5 +21,5 @@ void main()
 #if !USE_OBJECTCOLOR
 	v_color = a_color;
 #endif
-	gl_Position = gl_ModelViewProjectionMatrix * vec4(a_vertex, 1.0);
+	gl_Position = transform * vec4(a_vertex, 1.0);
 }

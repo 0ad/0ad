@@ -147,12 +147,12 @@ function Test_Generic()
 		damageTaken = false;
 	}
 
-	Attacking.HandleAttackEffects(target, data.type, data.attackData, data.attacker, data.attackerOwner);
+	Attacking.HandleAttackEffects(target, data);
 	TestDamage();
 
 	data.type = "Ranged";
 	type = data.type;
-	Attacking.HandleAttackEffects(target, data.type, data.attackData, data.attacker, data.attackerOwner);
+	Attacking.HandleAttackEffects(target, data);
 	TestDamage();
 
 	// Check for damage still being dealt if the attacker dies
@@ -607,7 +607,7 @@ function Test_MissileHit()
 		"DistanceToPoint": (ent) => 0
 	});
 
-	let bonus= { "BonusCav": { "Classes": "Cavalry", "Multiplier": 400 } };
+	let bonus = { "BonusCav": { "Classes": "Cavalry", "Multiplier": 400 } };
 	let splashBonus = { "BonusCav": { "Classes": "Cavalry", "Multiplier": 10000 } };
 
 	AddMock(61, IID_Identity, {

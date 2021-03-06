@@ -16,7 +16,7 @@
 # Günay Yılmaz, 2019-2020
 # Hüseyin Cem Aras <hcemaras@gmail.com>, 2015
 # İrfan Sunay <irfan_sunay@hotmail.com>, 2018
-# Muha Aliss <muhaaliss@gmail.com>, 2017
+# Muha Aliss <muhaaliss@gmail.com>, 2017,2021
 # Onur Kılıç <onur.ce.ytu@gmail.com>, 2017
 # sicey <sicey224@hotmail.com>, 2015
 # Stanislas Dolcini <stan@wildfiregames.com>, 2021
@@ -28,8 +28,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-29 14:56+0000\n"
-"PO-Revision-Date: 2021-01-30 11:16+0000\n"
-"Last-Translator: Günay Yılmaz\n"
+"PO-Revision-Date: 2021-02-20 19:35+0000\n"
+"Last-Translator: Muha Aliss <muhaaliss@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -609,7 +609,7 @@ msgstr "Çatışma"
 msgid ""
 "A map with a predefined landscape and number of players. Freely select the "
 "other game settings."
-msgstr ""
+msgstr "Önceden tanımlanmış manzara ve oyuncu sayısı olan bir harita. Diğer oyun ayarlarını özgürce seçin."
 
 #: gui/common/settings.js:182
 msgctxt "map"
@@ -710,7 +710,7 @@ msgstr "%(healthLabel)s %(current)s / %(max)s"
 #: gui/common/tooltips.js:167
 #, javascript-format
 msgid "%(captureLabel)s %(current)s / %(max)s"
-msgstr ""
+msgstr "%(captureLabel)s %(current)s / %(max)s"
 
 #: gui/common/tooltips.js:168
 msgid "Capture points:"
@@ -768,7 +768,7 @@ msgstr ""
 #: gui/common/tooltips.js:276
 #, javascript-format
 msgid "%(name)s %(details)s"
-msgstr ""
+msgstr "%(name)s %(details)s"
 
 #: gui/common/tooltips.js:263
 #, javascript-format
@@ -1130,7 +1130,7 @@ msgstr "%(technology)s gerekiyor"
 #: gui/common/tooltips.js:885
 #, javascript-format
 msgid "%(label)s %(bonus)s"
-msgstr ""
+msgstr "%(label)s %(bonus)s"
 
 #: gui/common/tooltips.js:886
 msgid "Population Bonus:"
@@ -1660,7 +1660,7 @@ msgstr "Sıfırlama kaydedilmiş ayarları silecektir. Devam edilsin mi?"
 
 #: gui/options/options.js:351
 msgid "Some setting values are invalid! Are you sure you want to save them?"
-msgstr ""
+msgstr "Bazı ayarlar geçersiz. Kaydetmek istediğinizden emin misiniz?"
 
 #: gui/options/options.js:377
 msgid "You have unsaved changes, do you want to close this window?"
@@ -1692,7 +1692,7 @@ msgstr "Konuşma zaman damgası"
 
 #: gui/options/options.json[0].options[11].tooltip
 msgid "Display the time at which a chat message was posted."
-msgstr ""
+msgstr "Sohbet mesajının gönderildiği saati görüntüle."
 
 #: gui/options/options.json[0].options[1].label
 msgid "Player name (multiplayer)"
@@ -1873,7 +1873,7 @@ msgstr "Düz görüş"
 
 #: gui/options/options.json[1].options[18].tooltip
 msgid "Lift darkness and fog of war smoothly."
-msgstr ""
+msgstr "Karanlığı ve savaş sisini sorunsuz bir şekilde kaldırın."
 
 #: gui/options/options.json[1].options[19].label
 msgid "VSync"
@@ -1929,11 +1929,11 @@ msgstr "Ekran alanı işlem sonrası filtreleri (HDR, Bloom, DOF, vb.) Kullanın
 
 #: gui/options/options.json[1].options[4].label
 msgid "Antialiasing"
-msgstr ""
+msgstr "Kenar Yumuşatma"
 
 #: gui/options/options.json[1].options[4].list[0].tooltip
 msgid "Do not use antialiasing."
-msgstr ""
+msgstr "Kenar yumuşatma kullanma."
 
 #: gui/options/options.json[1].options[4].list[1].label
 msgid "FXAA"
@@ -1941,47 +1941,47 @@ msgstr "FXAA"
 
 #: gui/options/options.json[1].options[4].list[1].tooltip
 msgid "Fast, but simple antialiasing."
-msgstr ""
+msgstr "Hızlı, ancak basit kenar yumuşatma."
 
 #: gui/options/options.json[1].options[4].list[2].label
 msgid "MSAA (2×)"
-msgstr ""
+msgstr "MSAA (2×)"
 
 #: gui/options/options.json[1].options[4].list[2].tooltip
 msgid ""
 "Slow, but high-quality antialiasing, uses two samples per pixel. Supported "
 "for GL3.3+."
-msgstr ""
+msgstr "Yavaş ancak yüksek kaliteli kenar yumuşatma, piksel başına iki örnek kullanır. GL3.3+ için desteklenir."
 
 #: gui/options/options.json[1].options[4].list[3].label
 msgid "MSAA (4×)"
-msgstr ""
+msgstr "MSAA (4×)"
 
 #: gui/options/options.json[1].options[4].list[3].tooltip
 msgid ""
 "Slow, but high-quality antialiasing, uses four samples per pixel. Supported "
 "for GL3.3+."
-msgstr ""
+msgstr "Yavaş ancak yüksek kaliteli kenar yumuşatma, piksel başına dört örnek kullanır. GL3.3+ için desteklenir."
 
 #: gui/options/options.json[1].options[4].list[4].label
 msgid "MSAA (8×)"
-msgstr ""
+msgstr "MSAA (8×)"
 
 #: gui/options/options.json[1].options[4].list[4].tooltip
 msgid ""
 "Slow, but high-quality antialiasing, uses eight samples per pixel. Supported"
 " for GL3.3+."
-msgstr ""
+msgstr "Yavaş ancak yüksek kaliteli kenar yumuşatma, piksel başına sekiz örnek kullanır. GL3.3+ için desteklenir."
 
 #: gui/options/options.json[1].options[4].list[5].label
 msgid "MSAA (16×)"
-msgstr ""
+msgstr "MSAA (16×)"
 
 #: gui/options/options.json[1].options[4].list[5].tooltip
 msgid ""
 "Slow, but high-quality antialiasing, uses sixteen samples per pixel. "
 "Supported for GL3.3+."
-msgstr ""
+msgstr "Yavaş ancak yüksek kaliteli kenar yumuşatma, piksel başına on altı örnek kullanır. GL3.3+ için desteklenir."
 
 #: gui/options/options.json[1].options[4].tooltip
 msgid "Reduce aliasing effect on edges."
@@ -2383,7 +2383,7 @@ msgstr "Bu seçenek yeni yapıları yakındaki yapılarla hizalamaya izin verir.
 
 #: gui/options/options.json[5].options[19].label
 msgid "Control group membership"
-msgstr ""
+msgstr "Kontrol grubu üyeliği"
 
 #: gui/options/options.json[5].options[19].list[0].label
 msgid "Single"
@@ -2425,15 +2425,15 @@ msgstr ""
 
 #: gui/options/options.json[5].options[20].list[0].label
 msgid "Walk/Patrol Only"
-msgstr ""
+msgstr "Sadece Yürüme/Devriye"
 
 #: gui/options/options.json[5].options[20].list[0].tooltip
 msgid "Other orders will disband existing formations."
-msgstr ""
+msgstr "Diğer siparişler mevcut oluşumları dağıtacak."
 
 #: gui/options/options.json[5].options[20].list[1].label
 msgid "No Override"
-msgstr ""
+msgstr "Geçersiz Kılınamaz"
 
 #: gui/options/options.json[5].options[20].list[1].tooltip
 msgid "Units in formations stay in formations."
@@ -2624,11 +2624,11 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:55
 msgid "Map Overview"
-msgstr ""
+msgstr "Haritaya Genel Bakış"
 
 #: gui/pregame/MainMenuItems.js:56
 msgid "View the different maps featured in 0 A.D."
-msgstr ""
+msgstr "0 A.D. içinde yer alan farklı haritaları görüntüle."
 
 #: gui/pregame/MainMenuItems.js:64 gui/replaymenu/replay_filters.js:144
 msgid "Single-player"
@@ -2730,7 +2730,7 @@ msgstr "Kısayollar"
 
 #: gui/pregame/MainMenuItems.js:167
 msgid "Adjust hotkeys."
-msgstr ""
+msgstr "Kısayol tuşlarını ayarla."
 
 #: gui/locale/locale.xml:(caption):14 gui/pregame/MainMenuItems.js:173
 msgid "Language"
@@ -2951,7 +2951,7 @@ msgstr "\n%(description)s"
 #: gui/reference/civinfo/CivInfoPage.js:102
 #, javascript-format
 msgid "• %(name)s %(info_icon)s%(description)s"
-msgstr ""
+msgstr "• %(name)s %(info_icon)s%(description)s"
 
 #: gui/reference/civinfo/CivInfoPage.js:113
 #, javascript-format
@@ -3546,7 +3546,7 @@ msgstr "Toplandı"
 
 #: gui/summary/summary.js:44
 msgid "Count"
-msgstr ""
+msgstr "Miktar"
 
 #: gui/summary/summary.js:49
 msgid "Sent"
@@ -3961,13 +3961,13 @@ msgstr "Vatandaş askerlerin seviyesi arttıkça (gelişmiş, seçkin) daha iyi 
 
 #: gui/text/tips/heroes.txt:1
 msgid "HEROES"
-msgstr ""
+msgstr "KAHRAMANLAR"
 
 #: gui/text/tips/heroes.txt:2
 msgid ""
 "Historical characters, such as Xerxes, Leonidas, Pericles, Hannibal, Scipio,"
 " and Boudicca."
-msgstr ""
+msgstr "Xerxes, Leonidas, Pericles, Hannibal, Scipio ve Boudicca gibi tarihi karakterler."
 
 #: gui/text/tips/heroes.txt:3
 msgid "A lot of health and very strong attacks."
@@ -3979,7 +3979,7 @@ msgstr ""
 
 #: gui/text/tips/heroes.txt:5
 msgid "Caution: Each hero can be recruited only once per match!"
-msgstr ""
+msgstr "Dikkat: Her kahraman maç başına yalnızca bir kez alınabilir!"
 
 #: gui/text/tips/iphicrates.txt:1
 msgid "IPHICRATES"

@@ -1,14 +1,14 @@
 # Translation template for Pyrogenesis.
 # Copyright (C) 2020 Wildfire Games
 # This file is distributed under the same license as the Pyrogenesis project.
-# 
 # Translators:
+# Îslam Zinar <islamzinar@yandex.com>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-05-22 07:08+0000\n"
-"PO-Revision-Date: 2020-05-22 10:20+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2020-11-28 10:01+0000\n"
+"PO-Revision-Date: 2021-02-20 21:46+0000\n"
+"Last-Translator: Îslam Zinar <islamzinar@yandex.com>\n"
 "Language-Team: Kurdish (http://www.transifex.com/wildfire-games/0ad/language/ku/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,211 +16,211 @@ msgstr ""
 "Language: ku\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: i18n/L10n.cpp:251
+#: i18n/L10n.cpp:247
 msgid "Long strings"
-msgstr ""
+msgstr "Têlên dirêj"
 
-#: lobby/XmppClient.cpp:887
+#: lobby/XmppClient.cpp:881
 msgid "unknown subtype (see logs)"
-msgstr ""
+msgstr "subtype nenas (têketin binihêre)"
+
+#: lobby/XmppClient.cpp:1209
+msgid "The certificate is not trusted."
+msgstr "Sertîfîka nayê bawer kirin."
+
+#: lobby/XmppClient.cpp:1210
+msgid "The certificate hasn't got a known issuer."
+msgstr "Sertîfîkayê weşanek naskirî negirtiye."
+
+#: lobby/XmppClient.cpp:1211
+msgid "The certificate has been revoked."
+msgstr "Sertîfîka hate betalkirin."
+
+#: lobby/XmppClient.cpp:1212
+msgid "The certificate has expired."
+msgstr "Sertîfîka bidawî bûye."
+
+#: lobby/XmppClient.cpp:1213
+msgid "The certificate is not yet active."
+msgstr "Sertîfîka hîn ne çalak e."
+
+#: lobby/XmppClient.cpp:1214
+msgid "The certificate has not been issued for the peer connected to."
+msgstr "Sertîfîka ji bo peer-ê ku pê ve girêdayî ye nehatiye dayîn."
 
 #: lobby/XmppClient.cpp:1215
-msgid "The certificate is not trusted."
-msgstr ""
-
-#: lobby/XmppClient.cpp:1216
-msgid "The certificate hasn't got a known issuer."
-msgstr ""
-
-#: lobby/XmppClient.cpp:1217
-msgid "The certificate has been revoked."
-msgstr ""
-
-#: lobby/XmppClient.cpp:1218
-msgid "The certificate has expired."
-msgstr ""
-
-#: lobby/XmppClient.cpp:1219
-msgid "The certificate is not yet active."
-msgstr ""
-
-#: lobby/XmppClient.cpp:1220
-msgid "The certificate has not been issued for the peer connected to."
-msgstr ""
-
-#: lobby/XmppClient.cpp:1221
 msgid "The certificate signer is not a certificate authority."
-msgstr ""
+msgstr "Ermzekarê sertîfîkayê ne rayedarek sertîfîkayê ye."
 
-#: lobby/XmppClient.cpp:1243 lobby/XmppClient.cpp:1287
-#: lobby/XmppClient.cpp:1326
+#: lobby/XmppClient.cpp:1237 lobby/XmppClient.cpp:1281
+#: lobby/XmppClient.cpp:1320
 msgid "Error"
-msgstr ""
+msgstr "Şaşî"
 
-#: lobby/XmppClient.cpp:1246 lobby/XmppClient.cpp:1290
+#: lobby/XmppClient.cpp:1240 lobby/XmppClient.cpp:1284
 msgid "No error"
-msgstr ""
+msgstr "Çewtiyek tune"
 
-#: lobby/XmppClient.cpp:1248
+#: lobby/XmppClient.cpp:1242
 msgid "Player already logged in"
-msgstr ""
+msgstr "Lîstikvan jixwe têketiye"
+
+#: lobby/XmppClient.cpp:1244
+msgid "Forbidden"
+msgstr "Qedexekirî"
+
+#: lobby/XmppClient.cpp:1246
+msgid "Internal server error"
+msgstr "Xeletiya servera navxweyî"
 
 #: lobby/XmppClient.cpp:1250
-msgid "Forbidden"
-msgstr ""
+msgid "Not allowed"
+msgstr "Destûr nayê dayîn"
 
-#: lobby/XmppClient.cpp:1252
-msgid "Internal server error"
-msgstr ""
+#: lobby/XmppClient.cpp:1251
+msgid "Not authorized"
+msgstr "Destûr nadin"
+
+#: lobby/XmppClient.cpp:1254
+msgid "Recipient temporarily unavailable"
+msgstr "Wergir demkî ne amade ye"
 
 #: lobby/XmppClient.cpp:1256
-msgid "Not allowed"
-msgstr ""
-
-#: lobby/XmppClient.cpp:1257
-msgid "Not authorized"
-msgstr ""
+msgid "Registration required"
+msgstr "Tomarbûn hewce ye"
 
 #: lobby/XmppClient.cpp:1260
-msgid "Recipient temporarily unavailable"
-msgstr ""
-
-#: lobby/XmppClient.cpp:1262
-msgid "Registration required"
-msgstr ""
-
-#: lobby/XmppClient.cpp:1266
 msgid "Service unavailable"
-msgstr ""
+msgstr "Xizmet tune"
 
-#: lobby/XmppClient.cpp:1271 lobby/XmppClient.cpp:1310
+#: lobby/XmppClient.cpp:1265 lobby/XmppClient.cpp:1304
 msgid "Unknown error"
-msgstr ""
+msgstr "Çewtiya nenas"
+
+#: lobby/XmppClient.cpp:1285
+msgid "Stream error"
+msgstr "Çewtiya Stream"
+
+#: lobby/XmppClient.cpp:1286
+msgid "The incoming stream version is unsupported"
+msgstr "Guhertoya herika hatinê nayê piştgirî kirin"
+
+#: lobby/XmppClient.cpp:1287
+msgid "The stream has been closed by the server"
+msgstr "Stream ji hêla serverê ve hate girtin"
 
 #: lobby/XmppClient.cpp:1291
-msgid "Stream error"
-msgstr ""
-
-#: lobby/XmppClient.cpp:1292
-msgid "The incoming stream version is unsupported"
-msgstr ""
+msgid "An I/O error occurred"
+msgstr "Xeletiyek I/O çêbû"
 
 #: lobby/XmppClient.cpp:1293
-msgid "The stream has been closed by the server"
-msgstr ""
+msgid "The connection was refused by the server"
+msgstr "Têkilî ji hêla serverê ve hate red kirin"
+
+#: lobby/XmppClient.cpp:1294
+msgid "Resolving the server's hostname failed"
+msgstr "Çareserkirina navê mêvandarê serverê serneket"
+
+#: lobby/XmppClient.cpp:1295
+msgid "This system is out of memory"
+msgstr "Vê pergalê ji bîr nayê"
 
 #: lobby/XmppClient.cpp:1297
-msgid "An I/O error occurred"
-msgstr ""
-
-#: lobby/XmppClient.cpp:1299
-msgid "The connection was refused by the server"
-msgstr ""
-
-#: lobby/XmppClient.cpp:1300
-msgid "Resolving the server's hostname failed"
-msgstr ""
-
-#: lobby/XmppClient.cpp:1301
-msgid "This system is out of memory"
-msgstr ""
-
-#: lobby/XmppClient.cpp:1303
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
-msgstr ""
+msgstr "Sertîfîkaya serverê nehate rastandin an destana TLS bi serfirazî temam nebû"
 
-#: lobby/XmppClient.cpp:1304
+#: lobby/XmppClient.cpp:1298
 msgid "The server did not offer required TLS encryption"
-msgstr ""
+msgstr "Pêşkêşker şîfrekirina hewceyê TLS-ê pêşkêş nekir"
 
-#: lobby/XmppClient.cpp:1306
+#: lobby/XmppClient.cpp:1300
 msgid "Authentication failed. Incorrect password or account does not exist"
-msgstr ""
+msgstr "Nasname têk çû. Passwordîfre an hesabek çewt tune"
 
-#: lobby/XmppClient.cpp:1307
+#: lobby/XmppClient.cpp:1301
 msgid "The user or system requested a disconnect"
-msgstr ""
+msgstr "Bikarhêner an pergalê qutbûnek xwest"
 
-#: lobby/XmppClient.cpp:1308
+#: lobby/XmppClient.cpp:1302
 msgid "There is no active connection"
-msgstr ""
+msgstr "Têkiliyek çalak tune"
 
-#: lobby/XmppClient.cpp:1329
+#: lobby/XmppClient.cpp:1323
 msgid "Your account has been successfully registered"
-msgstr ""
+msgstr "Hesabê we bi serfirazî hate tomar kirin"
 
-#: lobby/XmppClient.cpp:1330
+#: lobby/XmppClient.cpp:1324
 msgid "Not all necessary information provided"
-msgstr ""
+msgstr "Hemî agahdariya hewce ne peyda kirin"
 
-#: lobby/XmppClient.cpp:1331
+#: lobby/XmppClient.cpp:1325
 msgid "Username already exists"
-msgstr ""
+msgstr "Ev nav tê bikaranîn"
 
 #: ps/ModIo.cpp:261
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
-msgstr ""
+msgstr "Dema ku dest bi pirskirina id lîstikê hate kirin têk çû. Şaşî: %s; %s."
 
 #: ps/ModIo.cpp:291
 #, c-format
 msgid "Failure while starting querying for mods. Error: %s; %s."
-msgstr ""
+msgstr "Têkçûna dema destpêkirina lêpirsîna modan. Şaşî: %s; %s."
 
 #: ps/ModIo.cpp:317
 #, c-format
 msgid "Could not create mod directory: %s."
-msgstr ""
+msgstr "Peldanka modê nehat afirandin: %s."
 
 #: ps/ModIo.cpp:342
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
-msgstr ""
+msgstr "Ji bo dakêşana modê pelê demkî nehat vekirin: %s."
 
 #: ps/ModIo.cpp:352
 #, c-format
 msgid "Failed to start the download. Error: %s; %s."
-msgstr ""
+msgstr "Dakêşandin dest pê nekir. Şaşî: %s; %s."
 
 #: ps/ModIo.cpp:397
 #, c-format
 msgid "Asynchronous download failure: %s, %s."
-msgstr ""
+msgstr "Têkçûna dakêşandina asinkron: %s, %s."
 
-#: ps/ModIo.cpp:426
+#: ps/ModIo.cpp:425
 #, c-format
 msgid "Download failure. Server response: %s; %s."
-msgstr ""
+msgstr "Têkçûna dakêşanê. Bersiva serverê: %s; %s."
 
-#: ps/ModIo.cpp:529
+#: ps/ModIo.cpp:528
 msgid "Mismatched filesize."
-msgstr ""
+msgstr "Mezinahiya pelê lihevnekirin."
 
-#: ps/ModIo.cpp:547
+#: ps/ModIo.cpp:546
 #, c-format
 msgid "Invalid file. Expected md5 %s, got %s."
-msgstr ""
+msgstr "Pelê nederbasdar. Li bende md5 %s, got  %s."
 
-#: ps/ModIo.cpp:562
+#: ps/ModIo.cpp:561
 msgid "Failed to compute final hash."
-msgstr ""
+msgstr "Hespkirina dawîn nehat hesibandin."
 
-#: ps/ModIo.cpp:568
+#: ps/ModIo.cpp:567
 msgid "Failed to verify signature."
-msgstr ""
+msgstr "Tomze rast nehat rastandin."
 
-#: ps/SavedGame.cpp:139
+#: ps/SavedGame.cpp:138
 #, c-format
 msgid "Saved game to '%s'"
-msgstr ""
+msgstr "Lîstik ji '%s' re hat hilanîn"
 
-#: ps/Util.cpp:280 ps/Util.cpp:283 ps/Util.cpp:424 ps/Util.cpp:427
+#: ps/Util.cpp:282 ps/Util.cpp:285 ps/Util.cpp:426 ps/Util.cpp:429
 #, c-format
 msgid "Screenshot written to '%s'"
-msgstr ""
+msgstr "Dîmender dîmendera ku ji '%s' re hatî nivîsandin"
 
 #: ps/scripting/JSInterface_Debug.cpp:83
 msgid "custom build"
-msgstr ""
+msgstr "çêkirina xwerû"

@@ -73,14 +73,20 @@ class testResistance
 			}
 		});
 		let spy = new Spy(cmpHealth, "TakeDamage");
+		let data = {
+			"type": attackType,
+			"attackData": attackData,
+			"attacker": this.AttackerID,
+			"attackerOwner": this.EnemyID
+		};
 
-		Attacking.HandleAttackEffects(this.EntityID, attackType, attackData, this.AttackerID, this.EnemyID);
+		Attacking.HandleAttackEffects(this.EntityID, data);
 		TS_ASSERT_EQUALS(spy._called, 1);
 
 		this.cmpResistance.SetInvulnerability(true);
 
 		TS_ASSERT(this.cmpResistance.IsInvulnerable());
-		Attacking.HandleAttackEffects(this.EntityID, attackType, attackData, this.AttackerID, this.EnemyID);
+		Attacking.HandleAttackEffects(this.EntityID, data);
 		TS_ASSERT_EQUALS(spy._called, 1);
 	}
 
@@ -114,7 +120,12 @@ class testResistance
 		});
 		let spy = new Spy(cmpHealth, "TakeDamage");
 
-		Attacking.HandleAttackEffects(this.EntityID, "Test", attackData, this.AttackerID, this.EnemyID);
+		Attacking.HandleAttackEffects(this.EntityID, {
+			"type": "Test",
+			"attackData": attackData,
+			"attacker": this.AttackerID,
+			"attackerOwner": this.EnemyID
+		});
 		TS_ASSERT_EQUALS(spy._called, 1);
 	}
 
@@ -143,7 +154,12 @@ class testResistance
 		});
 		let spy = new Spy(cmpHealth, "TakeDamage");
 
-		Attacking.HandleAttackEffects(this.EntityID, "Test", attackData, this.AttackerID, this.EnemyID);
+		Attacking.HandleAttackEffects(this.EntityID, {
+			"type": "Test",
+			"attackData": attackData,
+			"attacker": this.AttackerID,
+			"attackerOwner": this.EnemyID
+		});
 		TS_ASSERT_EQUALS(spy._called, 1);
 	}
 
@@ -169,7 +185,12 @@ class testResistance
 		});
 		let spy = new Spy(cmpCapturable, "Capture");
 
-		Attacking.HandleAttackEffects(this.EntityID, "Test", attackData, this.AttackerID, this.EnemyID);
+		Attacking.HandleAttackEffects(this.EntityID, {
+			"type": "Test",
+			"attackData": attackData,
+			"attacker": this.AttackerID,
+			"attackerOwner": this.EnemyID
+		});
 		TS_ASSERT_EQUALS(spy._called, 1);
 	}
 
@@ -205,7 +226,12 @@ class testResistance
 		});
 		let spy = new Spy(cmpStatusEffectsReceiver, "ApplyStatus");
 
-		Attacking.HandleAttackEffects(this.EntityID, "Test", attackData, this.AttackerID, this.EnemyID);
+		Attacking.HandleAttackEffects(this.EntityID, {
+			"type": "Test",
+			"attackData": attackData,
+			"attacker": this.AttackerID,
+			"attackerOwner": this.EnemyID
+		});
 		TS_ASSERT_EQUALS(spy._called, 1);
 
 		// Test blocking.
@@ -227,7 +253,12 @@ class testResistance
 		});
 		spy = new Spy(cmpStatusEffectsReceiver, "ApplyStatus");
 
-		Attacking.HandleAttackEffects(this.EntityID, "Test", attackData, this.AttackerID, this.EnemyID);
+		Attacking.HandleAttackEffects(this.EntityID, {
+			"type": "Test",
+			"attackData": attackData,
+			"attacker": this.AttackerID,
+			"attackerOwner": this.EnemyID
+		});
 		TS_ASSERT_EQUALS(spy._called, 1);
 
 		// Test multiple resistances.
@@ -266,7 +297,12 @@ class testResistance
 		});
 		spy = new Spy(cmpStatusEffectsReceiver, "ApplyStatus");
 
-		Attacking.HandleAttackEffects(this.EntityID, "Test", attackData, this.AttackerID, this.EnemyID);
+		Attacking.HandleAttackEffects(this.EntityID, {
+			"type": "Test",
+			"attackData": attackData,
+			"attacker": this.AttackerID,
+			"attackerOwner": this.EnemyID
+		});
 		TS_ASSERT_EQUALS(spy._called, 1);
 	}
 
@@ -308,7 +344,12 @@ class testResistance
 		});
 		let spy = new Spy(cmpHealth, "TakeDamage");
 
-		Attacking.HandleAttackEffects(this.EntityID, "Test", attackData, this.AttackerID, this.EnemyID);
+		Attacking.HandleAttackEffects(this.EntityID, {
+			"type": "Test",
+			"attackData": attackData,
+			"attacker": this.AttackerID,
+			"attackerOwner": this.EnemyID
+		});
 		TS_ASSERT_EQUALS(spy._called, 1);
 	}
 
@@ -357,7 +398,12 @@ class testResistance
 		let healthSpy = new Spy(cmpHealth, "TakeDamage");
 		let captureSpy = new Spy(cmpCapturable, "Capture");
 
-		Attacking.HandleAttackEffects(this.EntityID, "Test", attackData, this.AttackerID, this.EnemyID);
+		Attacking.HandleAttackEffects(this.EntityID, {
+			"type": "Test",
+			"attackData": attackData,
+			"attacker": this.AttackerID,
+			"attackerOwner": this.EnemyID
+		});
 		TS_ASSERT_EQUALS(healthSpy._called, 1);
 		TS_ASSERT_EQUALS(captureSpy._called, 1);
 	}

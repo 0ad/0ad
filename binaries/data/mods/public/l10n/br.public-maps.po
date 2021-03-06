@@ -6,7 +6,7 @@
 # Envel PICHON <envel_ras@hotmail.fr>, 2016
 # ernest olory <ernestolory@hotmail.fr>, 2018
 # Irriep Nala Novram <allannkorh@yahoo.fr>, 2016-2019
-# Thierry Vignaud <thierry.vignaud@gmail.com>, 2017,2019
+# Thierry Vignaud <thierry.vignaud@gmail.com>, 2017,2019,2021
 # Irriep Nala Novram <allannkorh@yahoo.fr>, 2016
 # Yann-Vari Gwiader <yannvari.gwiader@gmail.com>, 2016
 # Goulven, 2017-2018
@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-18 08:15+0000\n"
-"PO-Revision-Date: 2021-01-18 10:36+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-02-23 07:42+0000\n"
+"Last-Translator: Thierry Vignaud <thierry.vignaud@gmail.com>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -239,7 +239,7 @@ msgstr ""
 
 #: maps/random/danubius.jsonsettings.Daytime[0].Name
 msgid "Day"
-msgstr ""
+msgstr "Deiz"
 
 #: maps/random/danubius.jsonsettings.Daytime[1].Description
 msgid "Attackers are covered by the darkness of the night."
@@ -247,7 +247,7 @@ msgstr ""
 
 #: maps/random/danubius.jsonsettings.Daytime[1].Name
 msgid "Night"
-msgstr ""
+msgstr "Noz"
 
 #: maps/random/danubius.jsonsettings.Description
 msgid ""
@@ -356,7 +356,7 @@ msgstr ""
 
 #: maps/random/fields_of_meroe.jsonsettings.Name
 msgid "Fields of Meroë"
-msgstr ""
+msgstr "Parkoù Meroë"
 
 #: maps/random/flood.jsonsettings.Description
 msgid ""
@@ -514,7 +514,7 @@ msgstr "O tagañ emañ Napata!"
 #: maps/random/jebel_barkal_triggers.js:602
 #, javascript-format
 msgid "Napata will attack in %(time)s!"
-msgstr ""
+msgstr "O vont da dagañ emañ Napata a-benn %(time)s!"
 
 #: maps/random/kerala.jsonsettings.Description
 msgid ""
@@ -713,7 +713,7 @@ msgstr ""
 
 #: maps/random/polar_sea.jsonsettings.Daytime[0].Name
 msgid "Dawn"
-msgstr ""
+msgstr "Goulou-deiz"
 
 #: maps/random/polar_sea.jsonsettings.Daytime[1].Description
 msgid "The scenery is illuminated by direct or indirect sunlight."
@@ -721,7 +721,7 @@ msgstr ""
 
 #: maps/random/polar_sea.jsonsettings.Daytime[1].Name
 msgid "Daylight"
-msgstr ""
+msgstr "Goulou an deiz"
 
 #: maps/random/polar_sea.jsonsettings.Description
 msgid ""
@@ -852,7 +852,7 @@ msgstr ""
 #: maps/random/rmbiome/generic/alpine.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Alpine"
-msgstr ""
+msgstr "Alpek"
 
 #: maps/random/rmbiome/generic/autumn.jsonDescription.Description
 msgctxt "biome definition"
@@ -971,7 +971,7 @@ msgstr ""
 #: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Late Spring"
-msgstr ""
+msgstr "Nevez-amzer diwezhat"
 
 #: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Description
 msgctxt "biome definition"
@@ -1129,15 +1129,15 @@ msgstr "An dianav"
 
 #: maps/random/unknown.jsonsettings.Landscapes.land[1].Name
 msgid "Isthmus"
-msgstr ""
+msgstr "Strizh-douar"
 
 #: maps/random/unknown.jsonsettings.Landscapes.land[2].Description
 msgid "A small central river."
-msgstr ""
+msgstr "Ur stêr kreiz bihan"
 
 #: maps/random/unknown.jsonsettings.Landscapes.land[2].Name
 msgid "Central River"
-msgstr ""
+msgstr "Stêr kreiz"
 
 #: maps/random/unknown.jsonsettings.Landscapes.land[3].Description
 msgid ""
@@ -1147,7 +1147,7 @@ msgstr ""
 
 #: maps/random/unknown.jsonsettings.Landscapes.land[3].Name
 msgid "Edge Seas"
-msgstr ""
+msgstr "Arvorioù"
 
 #: maps/random/unknown.jsonsettings.Landscapes.land[4].Description
 msgid "Land shaped like a concrescent moon around a central lake."
@@ -1155,7 +1155,7 @@ msgstr ""
 
 #: maps/random/unknown.jsonsettings.Landscapes.land[4].Name
 msgid "Gulf"
-msgstr ""
+msgstr "Golf"
 
 #: maps/random/unknown.jsonsettings.Landscapes.land[5].Description
 msgid "Mainland style with some small random lakes."
@@ -1163,7 +1163,7 @@ msgstr ""
 
 #: maps/random/unknown.jsonsettings.Landscapes.land[5].Name
 msgid "Lakes"
-msgstr ""
+msgstr "Lennoù"
 
 #: maps/random/unknown.jsonsettings.Landscapes.land[6].Description
 msgid ""
@@ -1191,7 +1191,7 @@ msgstr ""
 
 #: maps/random/unknown.jsonsettings.Landscapes.naval[0].Name
 msgid "Naval: Central Sea"
-msgstr ""
+msgstr "Listri : Mor kreiz"
 
 #: maps/random/unknown.jsonsettings.Landscapes.naval[1].Description
 msgid "Players are scattered across island chains and disconnected islands."
@@ -1199,7 +1199,7 @@ msgstr ""
 
 #: maps/random/unknown.jsonsettings.Landscapes.naval[1].Name
 msgid "Naval: Archipelago"
-msgstr ""
+msgstr "Mor: Enezeg"
 
 #: maps/random/unknown.jsonsettings.Landscapes.naval[2].Description
 msgid "A central lake with rivers possibly separating neighboring players."
@@ -1421,11 +1421,11 @@ msgstr ""
 
 #: maps/scenarios/bridge_demo.xml:Name:26
 msgid "Bridge demo"
-msgstr ""
+msgstr "Diskouez ar pont"
 
 #: maps/scenarios/bridge_demo.xml:PlayerData[0].Name:26
 msgid "Bridge Demo"
-msgstr ""
+msgstr "Diskouez ar pont"
 
 #: maps/scenarios/bridge_demo.xml:PlayerData[1].Name:26
 msgid "Other"
@@ -1588,7 +1588,7 @@ msgstr ""
 
 #: maps/scenarios/fishing_demo.xml:Name:26
 msgid "Fishing Demo"
-msgstr ""
+msgstr "Diskouez ar presketa"
 
 #: maps/scenarios/flight_demo.xml:Description:39
 msgid "Fly some Mustangs."
@@ -1912,7 +1912,7 @@ msgstr ""
 
 #: maps/scenarios/sandbox_mauryas.xml:Name:38
 msgid "Sandbox - The Mauryas"
-msgstr ""
+msgstr "Kestenn-Draezh - Ar Mauryaed"
 
 #: maps/scenarios/sandbox_mauryas.xml:PlayerData[0].Name:38
 msgid "Mauryan Indians"
@@ -2228,7 +2228,7 @@ msgstr ""
 
 #: maps/scenarios/triggers_demo.js:89
 msgid "Rather not"
-msgstr ""
+msgstr "Kentoc'h ket"
 
 #: maps/scenarios/triggers_demo.js:93
 msgid "Say rather not"
@@ -2341,7 +2341,7 @@ msgstr ""
 
 #: maps/skirmishes/atlas_valleys_8p.xml:Name:39
 msgid "Atlas Valleys (8)"
-msgstr ""
+msgstr "Traoniennoù an Atlas (8)"
 
 #: maps/skirmishes/bactria_2p.xml:Description:38
 msgid ""
@@ -2385,15 +2385,15 @@ msgstr ""
 
 #: maps/skirmishes/butana_steppe_2p.xml:Name:39
 msgid "Butana Steppe (2)"
-msgstr ""
+msgstr "Stepenn Bhoutan (2)"
 
 #: maps/skirmishes/butana_steppe_2p.xml:PlayerData[0].Name:39
 msgid "West Player"
-msgstr ""
+msgstr "C'hoarier ar c'hornog"
 
 #: maps/skirmishes/butana_steppe_2p.xml:PlayerData[1].Name:39
 msgid "East Player"
-msgstr ""
+msgstr "C'hoarier ar reter"
 
 #: maps/skirmishes/caspian_sea_2pv2p.xml:Description:38
 msgid ""
@@ -2510,23 +2510,23 @@ msgstr "En em gannit evit ar pezh a chom eus Hen-Bro-Ejipt!\n\nAr c'hoarierien a
 
 #: maps/skirmishes/egypt_3pv3p.xml:Name:39
 msgid "Egypt (3v3)"
-msgstr ""
+msgstr "Egipt (3v3)"
 
 #: maps/skirmishes/egypt_3pv3p.xml:PlayerData[0].Name:39
 msgid "Alexandria"
-msgstr ""
+msgstr "Alexandria"
 
 #: maps/skirmishes/egypt_3pv3p.xml:PlayerData[2].Name:39
 msgid "Siwa"
-msgstr ""
+msgstr "Siwa"
 
 #: maps/skirmishes/egypt_3pv3p.xml:PlayerData[3].Name:39
 msgid "Sinai"
-msgstr ""
+msgstr "Sinai"
 
 #: maps/skirmishes/egypt_3pv3p.xml:PlayerData[4].Name:39
 msgid "Memphis"
-msgstr ""
+msgstr "Memphis"
 
 #: maps/skirmishes/egypt_3pv3p.xml:PlayerData[5].Name:39
 msgid "Cyrene"
@@ -2746,7 +2746,7 @@ msgstr ""
 
 #: maps/skirmishes/oceanside_2p.xml:Name:39
 msgid "Oceanside (2)"
-msgstr ""
+msgstr "Arvor (2)"
 
 #: maps/skirmishes/persian_highlands_4p.xml:Description:38
 msgid ""

@@ -11,7 +11,8 @@
         <stream name="pos"/>
         <stream name="uv0"/>
         <stream name="color" if="!USE_OBJECTCOLOR"/>
-        <uniform name="losTransform" loc="0" type="vec2" if="!IGNORE_LOS"/>
+        <uniform name="transform" loc="0" type="mat4"/>
+        <uniform name="losTransform" loc="4" type="vec2" if="!IGNORE_LOS"/>
     </vertex>
 
     <fragment file="arb/overlayline.fp">

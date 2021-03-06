@@ -40,7 +40,7 @@
 # wuxb <wuxb45@gmail.com>, 2014
 # wuxb <wuxb45@gmail.com>, 2014
 # xingtong, 2013
-# liulitchi <xingzuo88@qq.com>, 2014,2017-2020
+# liulitchi <xingzuo88@qq.com>, 2014,2017-2021
 # yhcvb <yhcvb@126.com>, 2014
 # yhcvb <yhcvb@126.com>, 2014
 # yukisola <yolandaapply@gmail.com>, 2014
@@ -52,13 +52,14 @@
 # 武军 李 <lwj7863439@gmail.com>, 2016-2017
 # 武军 李 <lwj7863439@gmail.com>, 2017
 # 玉堂白鹤 <yjwork@qq.com>, 2015,2021
+# 神楽坂·喵 <i@kagurazakanyaa.com>, 2017
 # Lawrence Maxwell <maxwell4432@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-29 14:56+0000\n"
-"PO-Revision-Date: 2021-02-12 15:30+0000\n"
-"Last-Translator: 玉堂白鹤 <yjwork@qq.com>\n"
+"PO-Revision-Date: 2021-02-24 01:18+0000\n"
+"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -105,11 +106,11 @@ msgstr "按 %(hotkey)s ，不离开游戏的情况下打开多人游戏大厅。
 
 #: gui/session/MenuButtons.js:158
 msgid "Options"
-msgstr "选择"
+msgstr "选项"
 
 #: gui/session/MenuButtons.js:182
 msgid "Hotkeys"
-msgstr "热键"
+msgstr "快捷键"
 
 #: gui/session/MenuButtons.js:217
 msgid "Resume"
@@ -575,7 +576,7 @@ msgstr "启用时间扭曲"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:214
 msgid "Activate Rejoin Test"
-msgstr ""
+msgstr "激活重新加入"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:248
 msgid "Promote selected units"
@@ -1037,19 +1038,19 @@ msgstr "警报终止。"
 
 #: gui/session/selection_panels.js:276
 msgid "Default formation is disabled."
-msgstr ""
+msgstr "消息默认被禁止。"
 
 #: gui/session/selection_panels.js:277
 msgid "Right-click to disable the default formation feature."
-msgstr ""
+msgstr "鼠标右击，以禁用默认队形。"
 
 #: gui/session/selection_panels.js:280
 msgid "This is the default formation, used for movement orders."
-msgstr ""
+msgstr "默认队形，执行移动命令。"
 
 #: gui/session/selection_panels.js:281
 msgid "Right-click to set this as the default formation."
-msgstr ""
+msgstr "鼠标右击，设为默认队形。"
 
 #: gui/session/selection_panels.js:337
 #, javascript-format
@@ -1215,47 +1216,47 @@ msgstr "%(changer)s 将限制降低 %(change)s."
 #: gui/session/selection_panels_helpers.js:140
 msgid "Could only be constructed once."
 msgid_plural "Could only be constructed %(limit)s times."
-msgstr[0] ""
+msgstr[0] "只能建造%(limit)s个。"
 
 #: gui/session/selection_panels_helpers.js:144
 msgid "Can be constructed only once."
-msgstr ""
+msgstr "只能构造一次。"
 
 #: gui/session/selection_panels_helpers.js:146
 #, javascript-format
 msgid "Can be constructed %(count)s more time."
 msgid_plural "Can be constructed %(count)s more times."
-msgstr[0] ""
+msgstr[0] "还可生产%(count)s个建筑。"
 
 #: gui/session/selection_panels_helpers.js:153
 msgid "Could only be trained once."
 msgid_plural "Could only be trained %(limit)s times."
-msgstr[0] ""
+msgstr[0] "只能训练%(limit)s个。"
 
 #: gui/session/selection_panels_helpers.js:157
 msgid "Can be trained only once."
-msgstr ""
+msgstr "只能训练一次。"
 
 #: gui/session/selection_panels_helpers.js:159
 #, javascript-format
 msgid "Can be trained %(count)s more time."
 msgid_plural "Can be trained %(count)s more times."
-msgstr[0] ""
+msgstr[0] "还可训练%(count)s个。"
 
 #: gui/session/selection_panels_helpers.js:166
 msgid "Could only be created once."
 msgid_plural "Could only be created %(limit)s times."
-msgstr[0] ""
+msgstr[0] "只能训练%(limit)s个。"
 
 #: gui/session/selection_panels_helpers.js:170
 msgid "Can be created only once."
-msgstr ""
+msgstr "只能创建一次。"
 
 #: gui/session/selection_panels_helpers.js:172
 #, javascript-format
 msgid "Can be created %(count)s more time."
 msgid_plural "Can be created %(count)s more times."
-msgstr[0] ""
+msgstr[0] "还可生产%(count)s个。"
 
 #: gui/session/selection_panels_helpers.js:201
 #, javascript-format
@@ -1349,7 +1350,7 @@ msgstr "%(playername)s：%(statValue)s"
 #: gui/session/top_panel/CounterPopulation.js:34
 #, javascript-format
 msgid "Current gatherers: %(amount)s"
-msgstr ""
+msgstr "当前采集者: %(amount)s"
 
 #: gui/session/top_panel/CounterPopulation.js:63
 #, javascript-format
@@ -1373,7 +1374,7 @@ msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 #: gui/session/top_panel/CounterResource.js:32
 #, javascript-format
 msgid "Gatherers: %(amount)s"
-msgstr ""
+msgstr "采集者: %(amount)s"
 
 #: gui/session/top_panel/FollowPlayer.xml:(caption):15
 #: gui/session/top_panel/FollowPlayer.xml:(tooltip):11
@@ -1627,7 +1628,7 @@ msgstr "预期收益: %(gain)s"
 #: gui/session/unit_actions.js:1106
 msgid "This entity cannot be controlled."
 msgid_plural "These entities cannot be controlled."
-msgstr[0] ""
+msgstr[0] "它们不可被操控。"
 
 #: gui/session/unit_actions.js:1152
 msgid "Unload All."
@@ -1702,7 +1703,7 @@ msgstr "已禁止使用此资源回收点"
 
 #: gui/session/unit_actions.js:1503
 msgid "Allies are allowed to use this dropsite."
-msgstr ""
+msgstr "允许盟友使用此资源回收点。"
 
 #: gui/session/unit_actions.js:1504
 msgid "You are allowed to use this dropsite"

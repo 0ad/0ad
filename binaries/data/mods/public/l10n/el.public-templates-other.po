@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-20 00:57+0000\n"
-"PO-Revision-Date: 2021-02-11 21:32+0000\n"
-"Last-Translator: Vasilis Drosos <basilisd@gmail.com>\n"
+"PO-Revision-Date: 2021-02-21 10:51+0000\n"
+"Last-Translator: LOUKAS SKOUROLIAKOS\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,17 +27,17 @@ msgstr ""
 #: simulation/data/attack_effects/applystatus.jsondescription
 msgctxt "effect caused by an attack"
 msgid "Various (timed) effects."
-msgstr ""
+msgstr "Ποικίλα (με καταγραφή χρόνου) εφέ."
 
 #: simulation/data/attack_effects/applystatus.jsonname
 msgctxt "effect caused by an attack"
 msgid "Apply Status"
-msgstr ""
+msgstr "Εφαρμογή Κατάστασης"
 
 #: simulation/data/attack_effects/capture.jsondescription
 msgctxt "effect caused by an attack"
 msgid "Reduces capture points of a target."
-msgstr ""
+msgstr "Ελαττώνει τους πόντους κατάκτησης  ενός στόχου."
 
 #: simulation/data/attack_effects/capture.jsonname
 msgctxt "effect caused by an attack"
@@ -47,7 +47,7 @@ msgstr "Κατάληψη"
 #: simulation/data/attack_effects/damage.jsondescription
 msgctxt "effect caused by an attack"
 msgid "Reduces the health of a target."
-msgstr ""
+msgstr "Ελαττώνει τους πόντους υγείας  ενός στόχου."
 
 #: simulation/data/attack_effects/damage.jsonname
 msgctxt "effect caused by an attack"
@@ -72,7 +72,7 @@ msgstr "Φλέγεται"
 #: simulation/data/status_effects/poisoned.jsonapplierTooltip
 msgctxt "status effect"
 msgid "This unit causes poison damage."
-msgstr ""
+msgstr "Αυτή η μονάδα προκαλεί δηλητηριώδη ζημιά."
 
 #: simulation/data/status_effects/poisoned.jsonreceiverTooltip
 msgctxt "status effect"
@@ -170,7 +170,7 @@ msgstr "Πολική Αρκούδα"
 
 #: simulation/templates/gaia/fauna_bear_polar.xml:12
 msgid "Ursus maritimus"
-msgstr ""
+msgstr "Πολική αρκούδα"
 
 #: simulation/templates/gaia/fauna_boar.xml:5
 #: simulation/templates/gaia/fauna_hippopotamus.xml:5
@@ -434,7 +434,7 @@ msgstr "Αγριοκούνελο"
 #: simulation/templates/gaia/fauna_rhinoceros_white.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Horn"
-msgstr ""
+msgstr "Κέρατο"
 
 #: simulation/templates/gaia/fauna_rhinoceros_white.xml:23
 msgid "White Rhinoceros"
@@ -503,7 +503,7 @@ msgstr "Κοννοχαίτης ο ταυρίσιος"
 #: simulation/templates/gaia/fauna_wolf.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Fangs"
-msgstr ""
+msgstr "Κυνόδοντες"
 
 #: simulation/templates/gaia/fauna_wolf.xml:24
 msgid "Wolf"
@@ -664,7 +664,7 @@ msgstr "Ακακία"
 
 #: simulation/templates/gaia/tree/aleppo_pine.xml:4
 msgid "Aleppo Pine"
-msgstr ""
+msgstr "Πεύκο Χαλεπιού"
 
 #: simulation/templates/gaia/tree/bamboo.xml:4
 #: simulation/templates/gaia/tree/bamboo_single.xml:4
@@ -705,7 +705,7 @@ msgstr "Θάμνος"
 
 #: simulation/templates/gaia/tree/carob.xml:4
 msgid "Carob"
-msgstr ""
+msgstr "Δένδρο Χαρουπιάς"
 
 #: simulation/templates/gaia/tree/cedar_atlas_1_sapling.xml:4
 msgid "Atlas Cedar Sapling"
@@ -727,7 +727,7 @@ msgstr "Κρητική Χουρμαδιά"
 #: simulation/templates/gaia/tree/cypress_wild.xml:4
 #: simulation/templates/gaia/tree/cypress_windswept.xml:4
 msgid "Cypress"
-msgstr ""
+msgstr "Κυπαρίσσι"
 
 #: simulation/templates/gaia/tree/dead.xml:4
 #: simulation/templates/gaia/tree/temperate.xml:4
@@ -739,12 +739,12 @@ msgstr "Φυλλοβόλο Δέντρο"
 #: simulation/templates/gaia/tree/elm.xml:4
 #: simulation/templates/gaia/tree/elm_dead.xml:4
 msgid "Elm"
-msgstr ""
+msgstr "Φτελιά"
 
 #: simulation/templates/gaia/tree/euro_beech.xml:4
 #: simulation/templates/gaia/tree/euro_beech_aut.xml:4
 msgid "European Beech"
-msgstr ""
+msgstr "Ευρωπαϊκή Οξιά"
 
 #: simulation/templates/gaia/tree/euro_birch.xml:4
 msgid "Silver Birch"
@@ -753,7 +753,7 @@ msgstr "Σημύδα η κρεμοκλαδής"
 #: simulation/templates/gaia/tree/fir.xml:4
 #: simulation/templates/gaia/tree/fir_winter.xml:4
 msgid "Fir"
-msgstr ""
+msgstr "Έλατο"
 
 #: simulation/templates/gaia/tree/fir_sapling.xml:4
 msgid "Fir Sapling"
@@ -781,7 +781,7 @@ msgstr "Χαμαίρωψ"
 #: simulation/templates/gaia/tree/oak_dead.xml:4
 #: simulation/templates/gaia/tree/oak_new.xml:4
 msgid "Oak"
-msgstr ""
+msgstr "Βελανιδιά"
 
 #: simulation/templates/gaia/tree/oak_holly.xml:4
 msgid "Holly Oak"
@@ -794,7 +794,7 @@ msgstr "Πλατύφυλλη Βελανιδιά"
 
 #: simulation/templates/gaia/tree/oak_large.xml:4
 msgid "Large Oak"
-msgstr ""
+msgstr "Μεγάλη Βελανιδιά."
 
 #: simulation/templates/gaia/tree/palm_areca.xml:4
 msgid "Areca Palm"
@@ -840,7 +840,7 @@ msgstr "Λεύκα"
 #: simulation/templates/gaia/tree/poplar_lombardy.xml:4
 #: simulation/templates/gaia/tree/poplar_lombardy_dead.xml:4
 msgid "Black Poplar"
-msgstr ""
+msgstr "Μαύρη Λεύκα"
 
 #: simulation/templates/gaia/tree/senegal_date_palm.xml:4
 msgid "Senegal Date Palm"
@@ -852,7 +852,7 @@ msgstr "Αγριοσυκιά"
 
 #: simulation/templates/gaia/tree/tamarix.xml:4
 msgid "Tamarix"
-msgstr ""
+msgstr "Αλμυρίκι"
 
 #: simulation/templates/gaia/tree/teak.xml:8
 msgid "Teak"
@@ -860,7 +860,7 @@ msgstr "Τικ"
 
 #: simulation/templates/gaia/tree/toona.xml:4
 msgid "Toona"
-msgstr ""
+msgstr "Μαόνι"
 
 #: simulation/templates/gaia/tree/tropic_rainforest.xml:4
 msgid "Rainforest Tree"
@@ -891,7 +891,7 @@ msgstr "Εκήβολο"
 #: simulation/templates/special/formations/anti_cavalry.xml:6
 #: simulation/templates/special/formations/testudo.xml:6
 msgid "Melee Infantry only, requires at least 16."
-msgstr ""
+msgstr "Άοπλο Πεζικό μόνο, απαιτεί τουλάχιστον 16."
 
 #: simulation/templates/special/formations/anti_cavalry.xml:7
 msgid "Anti Cavalry"
@@ -939,7 +939,7 @@ msgstr "Κανένα"
 
 #: simulation/templates/special/formations/phalanx.xml:6
 msgid "Infantry Hoplites only, requires at least 10."
-msgstr ""
+msgstr "Οπλίτες Πεζικού μόνο, απαιτεί τουλάχιστον 10."
 
 #: simulation/templates/special/formations/phalanx.xml:7
 msgid "Phalanx"
@@ -951,7 +951,7 @@ msgstr "Διασκορπισμός"
 
 #: simulation/templates/special/formations/skirmish.xml:5
 msgid "Ranged Soldiers only, requires at least 2."
-msgstr ""
+msgstr "Στρατιώτες Εύρους μόνο, απαιτεί τουλάχιστον 2."
 
 #: simulation/templates/special/formations/skirmish.xml:6
 msgid "Skirmish"
@@ -959,7 +959,7 @@ msgstr "Αψιμαχία"
 
 #: simulation/templates/special/formations/syntagma.xml:6
 msgid "Infantry Pikemen only, requires at least 16."
-msgstr ""
+msgstr "Στρατιώτες Ακοντιστές μόνο, απαιτεί τουλάχιστον 16."
 
 #: simulation/templates/special/formations/syntagma.xml:8
 msgid "Syntagma"
@@ -1065,4 +1065,4 @@ msgstr "Τείχος"
 
 #: simulation/templates/template_wallset.xml:10
 msgid "Wall off an area."
-msgstr ""
+msgstr "Αποκοπή περιοχής με ανέγερση Τοίχους."

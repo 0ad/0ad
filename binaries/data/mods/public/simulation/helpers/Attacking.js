@@ -283,61 +283,63 @@ Attacking.prototype.CauseDamageOverArea = function(data)
 		// so the multiplier can end up below 0.
 		damageMultiplier = Math.max(0, damageMultiplier);
 
-		this.HandleAttackEffects(ent, data.type + ".Splash", data.attackData, data.attacker, data.attackerOwner, damageMultiplier);
+		data.type += ".Splash";
+		this.HandleAttackEffects(ent, data, damageMultiplier);
 	}
 };
 /**
  * Handle an attack peformed on an entity.
  *
  * @param {number} target - The targetted entityID.
- * @param {string} attackType - The type of attack that was performed (e.g. "Melee" or "Capture").
- * @param {Object} effectData - The effects use.
- * @param {number} attacker - The entityID that attacked us.
- * @param {number} attackerOwner - The playerID that owned the attacker when the attack was performed.
+ * @param {Object} data - The data of the attack.
+ * @param {string} data.type - The type of attack that was performed (e.g. "Melee" or "Capture").
+ * @param {Object} data.effectData - The effects use.
+ * @param {number} data.attacker - The entityID that attacked us.
+ * @param {number} data.attackerOwner - The playerID that owned the attacker when the attack was performed.
  * @param {number} bonusMultiplier - The factor to multiply the total effect with, defaults to 1.
  *
  * @return {boolean} - Whether we handled the attack.
  */
-Attacking.prototype.HandleAttackEffects = function(target, attackType, attackData, attacker, attackerOwner, bonusMultiplier = 1)
+Attacking.prototype.HandleAttackEffects = function(target, data, bonusMultiplier = 1)
 {
 	let cmpResistance = Engine.QueryInterface(target, IID_Resistance);
 	if (cmpResistance && cmpResistance.IsInvulnerable())
 		return false;
 
-	bonusMultiplier *= !attackData.Bonuses ? 1 : this.GetAttackBonus(attacker, target, attackType, attackData.Bonuses);
+	bonusMultiplier *= !data.attackData.Bonuses ? 1 : this.GetAttackBonus(data.attacker, target, data.type, data.attackData.Bonuses);
 
 	let targetState = {};
 	for (let receiver of g_AttackEffects.Receivers())
 	{
-		if (!attackData[receiver.type])
+		if (!data.attackData[receiver.type])
 			continue;
 
 		let cmpReceiver = Engine.QueryInterface(target, global[receiver.IID]);
 		if (!cmpReceiver)
 			continue;
 
-		Object.assign(targetState, cmpReceiver[receiver.method](this.GetTotalAttackEffects(target, attackData, receiver.type, bonusMultiplier, cmpResistance), attacker, attackerOwner));
+		Object.assign(targetState, cmpReceiver[receiver.method](this.GetTotalAttackEffects(target, data.attackData, receiver.type, bonusMultiplier, cmpResistance), data.attacker, data.attackerOwner));
 	}
 
 	if (!Object.keys(targetState).length)
 		return false;
 
 	Engine.PostMessage(target, MT_Attacked, {
-		"type": attackType,
+		"type": data.type,
 		"target": target,
-		"attacker": attacker,
-		"attackerOwner": attackerOwner,
+		"attacker": data.attacker,
+		"attackerOwner": data.attackerOwner,
 		"damage": -(targetState.healthChange || 0),
 		"capture": targetState.captureChange || 0,
 		"statusEffects": targetState.inflictedStatuses || [],
-		"fromStatusEffect": !!attackData.StatusEffect,
+		"fromStatusEffect": !!data.attackData.StatusEffect,
 	});
 
 	// We do not want an entity to get XP from active Status Effects.
-	if (!!attackData.StatusEffect)
+	if (!!data.attackData.StatusEffect)
 		return true;
 
-	let cmpPromotion = Engine.QueryInterface(attacker, IID_Promotion);
+	let cmpPromotion = Engine.QueryInterface(data.attacker, IID_Promotion);
 	if (cmpPromotion && targetState.xp)
 		cmpPromotion.IncreaseXp(targetState.xp);
 
