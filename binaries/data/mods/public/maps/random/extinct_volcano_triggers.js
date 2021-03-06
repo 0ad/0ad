@@ -95,9 +95,7 @@ Trigger.prototype.GarrisonWoodenTowers = function()
 		if (!cmpGarrisonHolder)
 			continue;
 
-		for (let newEnt of TriggerHelper.SpawnUnits(gaiaEnt, garrisonedUnits, cmpGarrisonHolder.GetCapacity(), 0))
-			if (Engine.QueryInterface(gaiaEnt, IID_GarrisonHolder).Garrison(newEnt))
-				Engine.QueryInterface(newEnt, IID_UnitAI).Autogarrison(gaiaEnt);
+		TriggerHelper.SpawnGarrisonedUnits(gaiaEnt, garrisonedUnits, cmpGarrisonHolder.GetCapacity(), 0);
 	}
 };
 

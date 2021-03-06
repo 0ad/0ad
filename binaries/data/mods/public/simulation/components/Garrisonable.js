@@ -50,6 +50,9 @@ Garrisonable.prototype.HolderID = function()
  */
 Garrisonable.prototype.CanGarrison = function(entity)
 {
+	if (this.holder)
+		return false;
+
 	let cmpGarrisonHolder = Engine.QueryInterface(entity, IID_GarrisonHolder);
 	return cmpGarrisonHolder && cmpGarrisonHolder.IsAllowedToGarrison(this.entity);
 };
@@ -60,7 +63,7 @@ Garrisonable.prototype.CanGarrison = function(entity)
  */
 Garrisonable.prototype.Garrison = function(entity, renamed = false)
 {
-	if (this.holder)
+	if (!this.CanGarrison(entity))
 		return false;
 
 	let cmpGarrisonHolder = Engine.QueryInterface(entity, IID_GarrisonHolder);
@@ -114,24 +117,30 @@ Garrisonable.prototype.Autogarrison = function(entity)
  */
 Garrisonable.prototype.UnGarrison = function(forced = false, renamed = false)
 {
+	if (!this.holder)
+		return true;
+
+	let cmpGarrisonHolder = Engine.QueryInterface(this.holder, IID_GarrisonHolder);
+	if (!cmpGarrisonHolder)
+		return false;
+
+	let pos = cmpGarrisonHolder.GetSpawnPosition(this.entity, forced);
+	if (!pos)
+		return false;
+
+	if (!cmpGarrisonHolder.Eject(this.entity, forced))
+		return false;
+
 	let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 	if (cmpPosition)
 	{
-		let pos;
-		let cmpGarrisonHolder = Engine.QueryInterface(this.holder, IID_GarrisonHolder);
-		if (cmpGarrisonHolder)
-			pos = cmpGarrisonHolder.GetSpawnPosition(this.entity, forced);
-
-		if (!pos)
-			return false;
-
 		cmpPosition.JumpTo(pos.x, pos.z);
 		cmpPosition.SetHeightOffset(0);
-
-		let cmpHolderPosition = Engine.QueryInterface(this.holder, IID_Position);
-		if (cmpHolderPosition)
-			cmpPosition.SetYRotation(cmpHolderPosition.GetPosition().horizAngleTo(pos));
 	}
+
+	let cmpHolderPosition = Engine.QueryInterface(this.holder, IID_Position);
+	if (cmpHolderPosition)
+		cmpPosition.SetYRotation(cmpHolderPosition.GetPosition().horizAngleTo(pos));
 
 	let cmpUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
 	if (cmpUnitAI)
@@ -152,6 +161,8 @@ Garrisonable.prototype.UnGarrison = function(forced = false, renamed = false)
 	if (cmpTurretHolder)
 		cmpTurretHolder.LeaveTurret(this.entity);
 
+	cmpGarrisonHolder.OrderToRallyPoint(this.entity);
+
 	delete this.holder;
 	return true;
 };
@@ -164,8 +175,7 @@ Garrisonable.prototype.OnEntityRenamed = function(msg)
 	let cmpGarrisonHolder = Engine.QueryInterface(this.holder, IID_GarrisonHolder);
 	if (cmpGarrisonHolder)
 	{
-		// ToDo: Clean this by using cmpGarrisonable to ungarrison.
-		cmpGarrisonHolder.Eject(msg.entity, true, true);
+		this.UnGarrison(true, true);
 		let cmpGarrisonable = Engine.QueryInterface(msg.newentity, IID_Garrisonable);
 		if (cmpGarrisonable)
 			cmpGarrisonable.Garrison(this.holder, true);

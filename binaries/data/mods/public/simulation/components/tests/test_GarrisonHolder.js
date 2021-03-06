@@ -19,18 +19,13 @@ const friendlyPlayer = 2;
 const enemyPlayer = 3;
 
 let cmpGarrisonHolder = ConstructComponent(garrisonHolderId, "GarrisonHolder", {
-	"Max": 10,
+	"Max": "10",
 	"List": { "_string": "Infantry+Cavalry" },
-	"EjectHealth": 0.1,
+	"EjectHealth": "0.1",
 	"EjectClassesOnDestroy": { "_string": "Infantry" },
-	"BuffHeal": 1,
-	"LoadingRange": 2.1,
+	"BuffHeal": "1",
+	"LoadingRange": "2.1",
 	"Pickup": false
-});
-
-AddMock(garrisonHolderId, IID_Footprint, {
-	"PickSpawnPointBothPass": entity => new Vector3D(4, 3, 30),
-	"PickSpawnPoint": entity => new Vector3D(4, 3, 30)
 });
 
 AddMock(garrisonHolderId, IID_Ownership, {
@@ -81,15 +76,15 @@ for (let i = 24; i <= 35; ++i)
 		AddMock(i, IID_Garrisonable, {
 			"UnitSize": () => 9,
 			"TotalSize": () => 9,
-			"Garrison": (entity, renamed) => cmpGarrisonHolder.Garrison(i, renamed),
-			"UnGarrison": () => true
+			"Garrison": (entity) => cmpGarrisonHolder.Garrison(i),
+			"UnGarrison": () => cmpGarrisonHolder.Eject(i)
 		});
 	else
 		AddMock(i, IID_Garrisonable, {
 			"UnitSize": () => 1,
 			"TotalSize": () => 1,
-			"Garrison": entity => true,
-			"UnGarrison": () => true
+			"Garrison": entity => cmpGarrisonHolder.Garrison(i),
+			"UnGarrison": () => cmpGarrisonHolder.Eject(i)
 		});
 
 	AddMock(i, IID_Position, {
@@ -114,8 +109,8 @@ let testGarrisonAllowed = function()
 	TS_ASSERT_EQUALS(cmpGarrisonHolder.Garrison(unitToGarrisonId), true);
 	TS_ASSERT_EQUALS(cmpGarrisonHolder.Garrison(largeUnitId), true);
 	TS_ASSERT_EQUALS(cmpGarrisonHolder.IsFull(), true);
-	TS_ASSERT_EQUALS(cmpGarrisonHolder.Eject(largeUnitId), true);
-	TS_ASSERT_EQUALS(cmpGarrisonHolder.Eject(unitToGarrisonId), true);
+	TS_ASSERT_EQUALS(cmpGarrisonHolder.Unload(largeUnitId), true);
+	TS_ASSERT_EQUALS(cmpGarrisonHolder.Unload(unitToGarrisonId), true);
 	TS_ASSERT_EQUALS(cmpGarrisonHolder.Garrison(unitToGarrisonId), true);
 	for (let entity of garrisonedEntitiesList)
 		TS_ASSERT_EQUALS(cmpGarrisonHolder.Garrison(entity), true);
@@ -123,16 +118,16 @@ let testGarrisonAllowed = function()
 	TS_ASSERT_EQUALS(cmpGarrisonHolder.IsFull(), true);
 	TS_ASSERT_EQUALS(cmpGarrisonHolder.CanPickup(unitToGarrisonId), false);
 
-	TS_ASSERT_EQUALS(cmpGarrisonHolder.UnloadTemplate("spart_infantry_archer_a", 2, false, false), true);
+	TS_ASSERT_EQUALS(cmpGarrisonHolder.UnloadTemplate("spart_infantry_archer_a", 2, false), true);
 	TS_ASSERT_UNEVAL_EQUALS(cmpGarrisonHolder.GetEntities(), [24, 25, 26, 27, 28, 29, 30, 31, 32]);
-	TS_ASSERT_EQUALS(cmpGarrisonHolder.UnloadAllByOwner(friendlyPlayer, false), true);
+	TS_ASSERT_EQUALS(cmpGarrisonHolder.UnloadAllByOwner(friendlyPlayer), true);
 	TS_ASSERT_UNEVAL_EQUALS(cmpGarrisonHolder.GetEntities(), [24, 25, 26, 27]);
 	TS_ASSERT_EQUALS(cmpGarrisonHolder.GetGarrisonedEntitiesCount(), 4);
 	TS_ASSERT_EQUALS(cmpGarrisonHolder.IsEjectable(25), true);
 	TS_ASSERT_EQUALS(cmpGarrisonHolder.Unload(25), true);
 	TS_ASSERT_EQUALS(cmpGarrisonHolder.IsEjectable(25), false);
-	TS_ASSERT_EQUALS(cmpGarrisonHolder.PerformEject([25], false), false);
-	TS_ASSERT_EQUALS(cmpGarrisonHolder.PerformEject([], false), true);
+	TS_ASSERT_EQUALS(cmpGarrisonHolder.Unload(25), true);
+	TS_ASSERT_EQUALS(cmpGarrisonHolder.Eject(null, false), true);
 	TS_ASSERT_UNEVAL_EQUALS(cmpGarrisonHolder.GetEntities(), [24, 26, 27]);
 	TS_ASSERT_EQUALS(cmpGarrisonHolder.GetGarrisonedEntitiesCount(), 3);
 	TS_ASSERT_EQUALS(cmpGarrisonHolder.IsFull(), false);
@@ -141,7 +136,7 @@ let testGarrisonAllowed = function()
 	TS_ASSERT_UNEVAL_EQUALS(cmpGarrisonHolder.GetEntities(), []);
 };
 
-// No health component yet.
+// No health component yet.Pick
 testGarrisonAllowed();
 
 AddMock(garrisonHolderId, IID_Health, {

@@ -126,7 +126,7 @@ AlertRaiser.prototype.EndOfAlert = function()
 		});
 
 		for (let unit of units)
-			if (cmpGarrisonHolder.PerformEject([unit], false))
+			if (cmpGarrisonHolder.Unload(unit))
 			{
 				let cmpUnitAI = Engine.QueryInterface(unit, IID_UnitAI);
 				if (cmpUnitAI.HasWorkOrders())
