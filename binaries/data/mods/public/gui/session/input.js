@@ -281,7 +281,7 @@ function isSnapToEdgesEnabled()
 	return hotkeyPressed == (config == "disabled");
 }
 
-function tryPlaceBuilding(queued)
+function tryPlaceBuilding(queued, pushFront)
 {
 	if (placementSupport.mode !== "building")
 	{
@@ -312,6 +312,7 @@ function tryPlaceBuilding(queued)
 		"autorepair": true,
 		"autocontinue": true,
 		"queued": queued,
+		"pushFront": pushFront,
 		"formation": g_AutoFormation.getNull()
 	});
 	Engine.GuiInterfaceCall("PlaySound", { "name": "order_build", "entity": selection[0] });
@@ -574,7 +575,7 @@ function handleInputBeforeGui(ev, hoveredObject)
 			{
 				// If queued, let the player continue placing another of the same building.
 				let queued = Engine.HotkeyIsPressed("session.queue");
-				if (tryPlaceBuilding(queued))
+				if (tryPlaceBuilding(queued, Engine.HotkeyIsPressed("session.pushorderfront")))
 				{
 					if (queued && g_Selection.toList().length)
 						inputState = INPUT_BUILDING_PLACEMENT;
@@ -732,7 +733,7 @@ function handleInputBeforeGui(ev, hoveredObject)
 			{
 				// If queued, let the player continue placing another of the same structure.
 				let queued = Engine.HotkeyIsPressed("session.queue");
-				if (tryPlaceBuilding(queued))
+				if (tryPlaceBuilding(queued, Engine.HotkeyIsPressed("session.pushorderfront")))
 				{
 					if (queued && g_Selection.toList().length)
 						inputState = INPUT_BUILDING_PLACEMENT;
@@ -1205,6 +1206,7 @@ function positionUnitsFreehandSelectionMouseUp(ev)
 		"targetPositions": entityDistribution.map(pos => pos.toFixed(2)),
 		"targetClasses": Engine.HotkeyIsPressed("session.attackmoveUnit") ? { "attack": ["Unit"] } : { "attack": ["Unit", "Structure"] },
 		"queued": Engine.HotkeyIsPressed("session.queue"),
+		"pushFront": Engine.HotkeyIsPressed("session.pushorderfront"),
 		"formation": NULL_FORMATION,
 	});
 

@@ -1178,6 +1178,7 @@ function TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd)
 			"target": ent,
 			"autocontinue": cmd.autocontinue,
 			"queued": cmd.queued,
+			"pushFront": cmd.pushFront,
 			"formation": cmd.formation || undefined
 		});
 	}
