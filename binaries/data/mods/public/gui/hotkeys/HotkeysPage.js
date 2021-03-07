@@ -88,7 +88,7 @@ class HotkeysPage
 	{
 		let hotkeyList = Engine.GetGUIObjectByName("hotkeyList");
 		hotkeyList.selected = -1;
-		let textFilter = Engine.GetGUIObjectByName("hotkeyTextFilter").caption;
+		let textFilter = Engine.GetGUIObjectByName("hotkeyTextFilter").caption.toLowerCase();
 
 		let hotkeys;
 		let dropdown = Engine.GetGUIObjectByName("hotkeyFilter");
@@ -98,7 +98,7 @@ class HotkeysPage
 			hotkeys = Object.values(this.categories).map(x => x.hotkeys).flat();
 		hotkeys = hotkeys.filter(x => {
 			return x.indexOf(textFilter) !== -1 ||
-				translate(this.metadata.hotkeys[x]?.name || x).indexOf(textFilter) !== -1;
+				translate(this.metadata.hotkeys[x]?.name || x).toLowerCase().indexOf(textFilter) !== -1;
 		});
 
 		hotkeyList.list_name = hotkeys.map(x => translate(this.metadata.hotkeys[x]?.name || x));
