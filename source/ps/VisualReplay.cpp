@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -117,8 +117,8 @@ JS::HandleObject VisualReplay::ReloadReplayCache(const ScriptInterface& scriptIn
 	TIMER(L"ReloadReplayCache");
 	ScriptRequest rq(scriptInterface);
 
-	// Maps the filename onto the index and size
-	typedef std::map<OsPath, std::pair<u32, off_t>> replayCacheMap;
+	// Maps the filename onto the index, mtime and size
+	using replayCacheMap = std::map<OsPath, std::tuple<u32, u64, off_t>>;
 
 	replayCacheMap fileList;
 
@@ -136,10 +136,12 @@ JS::HandleObject VisualReplay::ReloadReplayCache(const ScriptInterface& scriptIn
 			JS::RootedValue file(rq.cx);
 			OsPath fileName;
 			double fileSize;
+			double fileMtime;
 			scriptInterface.GetProperty(replay, "directory", fileName);
 			scriptInterface.GetProperty(replay, "fileSize", fileSize);
+			scriptInterface.GetProperty(replay, "fileMTime", fileMtime);
 
-			fileList[fileName] = std::make_pair(j, fileSize);
+			fileList[fileName] = std::make_tuple(j, fileMtime, fileSize);
 		}
 	}
 
@@ -174,7 +176,7 @@ JS::HandleObject VisualReplay::ReloadReplayCache(const ScriptInterface& scriptIn
 					continue;
 				CFileInfo fileInfo;
 				GetFileInfo(replayFile, &fileInfo);
-				if (fileInfo.Size() == it->second.second)
+				if ((u64)fileInfo.MTime() == std::get<1>(it->second) && (off_t)fileInfo.Size() == std::get<2>(it->second))
 					isNew = false;
 			}
 			else
@@ -195,13 +197,14 @@ JS::HandleObject VisualReplay::ReloadReplayCache(const ScriptInterface& scriptIn
 					rq,
 					&replayData,
 					"directory", directory.string(),
+					"fileMTime", static_cast<double>(fileInfo.MTime()),
 					"fileSize", static_cast<double>(fileInfo.Size()));
 			}
 			JS_SetElement(rq.cx, replays, i++, replayData);
 			newReplays = true;
 		}
 		else
-			copyFromOldCache.push_back(it->second.first);
+			copyFromOldCache.push_back(std::get<0>(it->second));
 	}
 
 	debug_printf(
@@ -411,6 +414,7 @@ JS::Value VisualReplay::LoadReplayData(const ScriptInterface& scriptInterface, c
 		&replayData,
 		"directory", directory.string(),
 		"fileSize", static_cast<double>(fileSize),
+		"fileMTime", static_cast<double>(fileInfo.MTime()),
 		"duration", duration);
 
 	scriptInterface.SetProperty(replayData, "attribs", attribs);
