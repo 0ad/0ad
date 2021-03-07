@@ -1,0 +1,140 @@
+{
+    "categories": {
+        "camera": {
+            "name": "Camera",
+            "desc": "Camera-related hotkeys"
+        }
+    },
+    "mapped_hotkeys": {
+    	"camera": {
+	        "camera.reset": {
+	            "name": "Reset Camera",
+	            "desc": "Reset camera rotation to default."
+	        },
+	        "camera.follow": {
+	            "name": "Follow Unit",
+	            "desc": "Follow the first unit in the selection"
+	        },
+	        "camera.rallypointfocus": {
+	            "name": "Focus on rallypoint",
+	            "desc": "Focus the camera on the rally point of the selected building"
+	        },
+	        "camera.zoom.in": {
+	            "name": "Zoom in",
+	            "desc": "Zoom camera in (continuous control)"
+	        },
+	        "camera.zoom.out": {
+	            "name": "Zoom out",
+	            "desc": "Zoom camera out (continuous control)"
+	        },
+	        "camera.zoom.wheel.in": {
+	            "name": "Zoom in (step-by-step)",
+	            "desc": "Zoom camera in (stepped control)"
+	        },
+	        "camera.zoom.wheel.out": {
+	            "name": "Zoom out (step-by-step)",
+	            "desc": "Zoom camera out (stepped control)"
+	        },
+	        "camera.rotate.up": {
+	            "name": "Rotate up",
+	            "desc": "Rotate camera to look upwards"
+	        },
+	        "camera.rotate.down": {
+	            "name": "Rotate Down",
+	            "desc": "Rotate camera to look downwards"
+	        },
+	        "camera.rotate.cw": {
+	            "name": "Rotate clock-wise",
+	            "desc": "Rotate camera clockwise around terrain"
+	        },
+	        "camera.rotate.ccw": {
+	            "name": "Rotate counter-clockwise",
+	            "desc": "Rotate camera anticlockwise around terrain"
+	        },
+	        "camera.rotate.wheel.cw": {
+	            "name": "Rotate clock-wise",
+	            "desc": "Rotate camera clockwise around terrain (stepped control)"
+	        },
+	        "camera.rotate.wheel.ccw": {
+	            "name": "Rotate counter-clockwise",
+	            "desc": "Rotate camera anticlockwise around terrain (stepped control)"
+	        },
+	        "camera.pan": {
+	            "name": "Pan camera",
+	            "desc": "Enable scrolling by moving mouse"
+	        },
+	        "camera.left": {
+	            "name": "Scroll/Rotate left",
+	            "desc": "Scroll or rotate left"
+	        },
+	        "camera.right": {
+	            "name": "Scroll/Rotate right",
+	            "desc": "Scroll or rotate right"
+	        },
+	        "camera.up": {
+	            "name": "Scroll/Rotate up",
+	            "desc": "Scroll or rotate up/forwards"
+	        },
+	        "camera.down": {
+	            "name": "Scroll/Rotate down",
+	            "desc": "Scroll or rotate down/backwards"
+	        },
+	        "camera.scroll.speed.increase": {
+	            "name": "Increase scroll speed",
+	            "desc": "Increase scroll speed"
+	        },
+	        "camera.scroll.speed.decrease": {
+	            "name": "Decrease scroll speed",
+	            "desc": "Decrease scroll speed"
+	        },
+	        "camera.rotate.speed.increase": {
+	            "name": "Increase rotation speed",
+	            "desc": "Increase rotation speed"
+	        },
+	        "camera.rotate.speed.decrease": {
+	            "name": "Decrease rotation speed",
+	            "desc": "Decrease rotation speed"
+	        },
+	        "camera.zoom.speed.increase": {
+	            "name": "Increase zoom speed",
+	            "desc": "Increase zoom speed"
+	        },
+	        "camera.zoom.speed.decrease": {
+	            "name": "Decrease zoom speed",
+	            "desc": "Decrease zoom speed"
+	        },
+	        "camera.jump.1": {
+	            "name": "Jump to camera 1",
+	            "desc": "Jump to camera position 1 (see Set Jump #1)"
+	        },
+	        "camera.jump.2": {
+	            "name": "Jump to camera 2",
+	            "desc": "Jump to camera position 2 (see Set Jump #2)"
+	        },
+	        "camera.jump.3": {
+	            "name": "Jump to camera 3",
+	            "desc": "Jump to camera position 3 (see Set Jump #3)"
+	        },
+	        "camera.jump.4": {
+	            "name": "Jump to camera 4",
+	            "desc": "Jump to camera position 4 (see Set Jump #4)"
+	        },
+	        "camera.jump.set.1": {
+	            "name": "Set camera jump 1",
+	            "desc": "Set camera jump position 1"
+	        },
+	        "camera.jump.set.2": {
+	            "name": "Set camera jump 2",
+	            "desc": "Set camera jump position 2"
+	        },
+	        "camera.jump.set.3": {
+	            "name": "Set camera jump 3",
+	            "desc": "Set camera jump position 3"
+	        },
+	        "camera.jump.set.4": {
+	            "name": "Set camera jump 4",
+	            "desc": "Set camera jump position 4"
+	        }
+	    }
+	}
+}

@@ -1,16 +1,33 @@
 class HotkeysPage
 {
-	constructor()
+	constructor(metadata)
 	{
+		this.metadata = metadata;
+
 		Engine.GetGUIObjectByName("hotkeyList").onMouseLeftDoubleClickItem = () => {
 			let idx = Engine.GetGUIObjectByName("hotkeyList").selected;
 			let picker = new HotkeyPicker(
+				this.metadata,
 				this.onHotkeyPicked.bind(this),
 				Engine.GetGUIObjectByName("hotkeyList").list_data[idx],
 				clone(this.hotkeys[Engine.GetGUIObjectByName("hotkeyList").list_data[idx]])
 			);
 		};
+		Engine.GetGUIObjectByName("hotkeyList").onHoverChange = () => this.onHoverChange();
+
 		Engine.GetGUIObjectByName("hotkeyFilter").onSelectionChange = () => this.setupHotkeyList();
+		Engine.GetGUIObjectByName("hotkeyFilter").onHoverChange = () => {
+			let dropdown = Engine.GetGUIObjectByName("hotkeyFilter");
+			if (dropdown.hovered === -1)
+				dropdown.tooltip = "";
+			else
+			{
+				if (dropdown.list_data[dropdown.hovered] == -1)
+					dropdown.tooltip = "";
+				else
+					dropdown.tooltip = translate(this.categories[dropdown.list_data[dropdown.hovered]].desc);
+			}
+		};
 
 		Engine.GetGUIObjectByName("hotkeyTextFilter").onTextEdit = () => this.setupHotkeyList();
 
@@ -29,12 +46,39 @@ class HotkeysPage
 		this.setupHotkeyList();
 	}
 
+	setupHotkeyData()
+	{
+		let hotkeydata = Engine.GetHotkeyMap();
+		this.hotkeys = hotkeydata;
+		let categories = clone(this.metadata.categories);
+		for (let name in categories)
+			categories[name].hotkeys = [];
+		for (let hotkeyName in this.hotkeys)
+		{
+			if (this.metadata.hotkeys[hotkeyName])
+				for (let cat of this.metadata.hotkeys[hotkeyName].categories)
+					categories[cat].hotkeys.push(hotkeyName);
+			else
+				categories[this.metadata.DEFAULT_CATEGORY].hotkeys.push(hotkeyName);
+		}
+		for (let cat in categories)
+			categories[cat].hotkeys.sort((a, b) => {
+				if (!this.metadata.hotkeys[a] || !this.metadata.hotkeys[b])
+					return !this.metadata.hotkeys[a] ? 1 : -1;
+				return this.metadata.hotkeys[a].order - this.metadata.hotkeys[b].order;
+			});
+		for (let cat in categories)
+			if (categories[cat].hotkeys.length === 0)
+				delete categories[cat];
+		this.categories = categories;
+	}
+
 	setupFilters()
 	{
 		let dropdown = Engine.GetGUIObjectByName("hotkeyFilter");
 		let names = [];
 		for (let cat in this.categories)
-			names.push(this.categories[cat].label);
+			names.push(translate(this.categories[cat].name));
 		dropdown.list = [translate("All Hotkeys")].concat(names);
 		dropdown.list_data = [-1].concat(Object.keys(this.categories));
 		dropdown.selected = 0;
@@ -45,28 +89,34 @@ class HotkeysPage
 		let hotkeyList = Engine.GetGUIObjectByName("hotkeyList");
 		hotkeyList.selected = -1;
 		let textFilter = Engine.GetGUIObjectByName("hotkeyTextFilter").caption;
+
+		let hotkeys;
 		let dropdown = Engine.GetGUIObjectByName("hotkeyFilter");
 		if (dropdown.selected && dropdown.selected !== 0)
-		{
-			let category = this.categories[dropdown.list_data[dropdown.selected]];
-			// This is inefficient but it seems fast enough.
-			let hotkeys = category.hotkeys.filter(x => translate(x[0]).indexOf(textFilter) !== -1);
-			hotkeyList.list_name = hotkeys.map(x => translate(x[0]));
-			hotkeyList.list_mapping = hotkeys.map(x => formatHotkeyCombinations(x[1]));
-			hotkeyList.list = hotkeys.map(() => 0);
-			hotkeyList.list_data = hotkeys.map(x => x[0]);
-		}
+			hotkeys = this.categories[dropdown.list_data[dropdown.selected]].hotkeys;
+		else
+			hotkeys = Object.values(this.categories).map(x => x.hotkeys).flat();
+		hotkeys = hotkeys.filter(x => {
+			return x.indexOf(textFilter) !== -1 ||
+				translate(this.metadata.hotkeys[x]?.name || x).indexOf(textFilter) !== -1;
+		});
+
+		hotkeyList.list_name = hotkeys.map(x => translate(this.metadata.hotkeys[x]?.name || x));
+		hotkeyList.list_mapping = hotkeys.map(x => formatHotkeyCombinations(this.hotkeys[x]));
+		hotkeyList.list = hotkeys.map(() => 0);
+		hotkeyList.list_data = hotkeys.map(x => x);
+	}
+
+	onHoverChange()
+	{
+		let hotkeyList = Engine.GetGUIObjectByName("hotkeyList");
+		if (hotkeyList.hovered === -1)
+			hotkeyList.tooltip = "";
 		else
 		{
-			// TODO SM62+ : refactor using flat()
-			let flattened = [];
-			for (let cat in this.categories)
-				flattened = flattened.concat(this.categories[cat].hotkeys);
-			flattened = flattened.filter(x => translate(x[0]).indexOf(textFilter) !== -1);
-			hotkeyList.list_name = flattened.map(x => translate(x[0]));
-			hotkeyList.list_mapping = flattened.map(x => formatHotkeyCombinations(x[1]));
-			hotkeyList.list = flattened.map(() => 0);
-			hotkeyList.list_data = flattened.map(x => x[0]);
+			let hotkey = hotkeyList.list_data[hotkeyList.hovered];
+			let tooltip = this.metadata.hotkeys[hotkey]?.desc || markForTranslation("No tooltip available");
+			hotkeyList.tooltip = translate(tooltip);
 		}
 	}
 
@@ -92,48 +142,6 @@ class HotkeysPage
 
 		this.saveButton.enabled = true;
 		this.setupHotkeyList();
-	}
-
-	setupHotkeyData()
-	{
-		let hotkeydata = Engine.GetHotkeyMap();
-		this.hotkeys = hotkeydata;
-
-		let categories = {
-			"other": {
-				"label": translate("Other hotkeys"),
-				"hotkeys": []
-			}
-		};
-		let n_categories = 1;
-		for (let hotkeyName in this.hotkeys)
-		{
-			let category = "other";
-			let firstdot = hotkeyName.indexOf('.');
-			if (firstdot !== -1)
-				category = hotkeyName.substr(0, firstdot);
-			if (!(category in categories))
-			{
-				if (n_categories > 18)
-					category = "other";
-				categories[category] = {
-					"label": category,
-					"hotkeys": []
-				};
-			}
-			categories[category].hotkeys.push([hotkeyName, this.hotkeys[hotkeyName]]);
-		}
-		// Remove categories that are too small to deserve a tab.
-		for (let cat of Object.keys(categories))
-			if (categories[cat].hotkeys.length < 3)
-			{
-				categories.other.hotkeys = categories.other.hotkeys.concat(categories[cat].hotkeys);
-				delete categories[cat];
-			}
-		for (let cat in categories)
-			categories[cat].hotkeys = categories[cat].hotkeys.sort();
-
-		this.categories = categories;
 	}
 
 	resetUserHotkeys()
@@ -177,7 +185,7 @@ class HotkeysPage
 }
 
 
-function init(data)
+function init()
 {
-	let hotkeyPage = new HotkeysPage(data);
+	let hotkeyPage = new HotkeysPage(new HotkeyMetadata());
 }

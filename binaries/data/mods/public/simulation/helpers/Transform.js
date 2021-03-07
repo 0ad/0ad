@@ -252,7 +252,7 @@ function TransferGarrisonedUnits(oldEnt, newEnt)
 	let entities = cmpOldGarrison.GetEntities().slice();
 	for (let ent of entities)
 	{
-		cmpOldGarrison.Eject(ent);
+		cmpOldGarrison.Unload(ent);
 		if (!cmpNewGarrison)
 			continue;
 		let cmpGarrisonable = Engine.QueryInterface(ent, IID_Garrisonable);

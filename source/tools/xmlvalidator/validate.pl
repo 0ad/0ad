@@ -98,8 +98,8 @@ sub validate_guis
     my (@guipages, @guixmls);
     for my $f (@files)
     {
-        # GUI page definitions are assumed to be named page_[something].xml and alone in that.
-        if ($f =~ /\/page_[^.\/]+\.xml$/)
+        # GUI page definitions are assumed to be named page[_something].xml and alone in that.
+        if ($f =~ /\/page(_[^.\/]+)?\.xml$/)
         {
             push @guipages, $f;
         }

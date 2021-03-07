@@ -195,34 +195,6 @@ GarrisonHolder.prototype.Garrison = function(entity)
 };
 
 /**
- * Simply eject the unit from the garrisoning entity without moving it
- * @param {number} entity - Id of the entity to be ejected.
- * @param {boolean} forced - Whether eject is forced (i.e. if building is destroyed).
- * @param {boolean} renamed - Whether eject was due to entity renaming.
- *
- * @return {boolean} Whether the entity was ejected.
- */
-GarrisonHolder.prototype.Eject = function(entity, forced, renamed = false)
-{
-	let entityIndex = this.entities.indexOf(entity);
-	// Error: invalid entity ID, usually it's already been ejected
-	if (entityIndex == -1)
-		return false;
-
-	let cmpGarrisonable = Engine.QueryInterface(entity, IID_Garrisonable);
-	if (!cmpGarrisonable || !cmpGarrisonable.UnGarrison(forced, renamed))
-		return false;
-
-	this.entities.splice(entityIndex, 1);
-	Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, {
-		"added": [],
-		"removed": [entity]
-	});
-
-	return true;
-};
-
-/**
  * @param {number} entity - EntityID to find the spawn position for.
  * @param {boolean} forced - Optionally whether the spawning is forced.
  * @return {Vector3D} - An appropriate spawning position.
@@ -255,71 +227,48 @@ GarrisonHolder.prototype.GetSpawnPosition = function(entity, forced)
 };
 
 /**
- * Ejects units and orders them to move to the rally point. If an ejection
- * with a given obstruction radius has failed, we won't try anymore to eject
- * entities with a bigger obstruction as that is compelled to also fail.
- * @param {Array} entities - An array containing the ids of the entities to eject.
- * @param {boolean} forced - Whether eject is forced (ie: if building is destroyed).
- * @return {boolean} Whether the entities were ejected.
+ * @param {number} entity - The entity ID of the entity to eject.
+ * @param {boolean} forced - Whether eject is forced (e.g. if building is destroyed).
+ * @return {boolean} Whether the entity was ejected.
  */
-GarrisonHolder.prototype.PerformEject = function(entities, forced)
+GarrisonHolder.prototype.Eject = function(entity, forced)
 {
 	if (!this.IsGarrisoningAllowed() && !forced)
 		return false;
 
-	let ejectedEntities = [];
-	let success = true;
-	let failedRadius;
-	let radius;
-	let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	let entityIndex = this.entities.indexOf(entity);
+	// Error: invalid entity ID, usually it's already been ejected, assume success.
+	if (entityIndex == -1)
+		return true;
 
-	for (let entity of entities)
-	{
-		if (failedRadius !== undefined)
-		{
-			let cmpObstruction = Engine.QueryInterface(entity, IID_Obstruction);
-			radius = cmpObstruction ? cmpObstruction.GetSize() : 0;
-			if (radius >= failedRadius)
-				continue;
-		}
-
-		if (this.Eject(entity, forced))
-		{
-			let cmpEntOwnership = Engine.QueryInterface(entity, IID_Ownership);
-			if (cmpOwnership && cmpEntOwnership && cmpOwnership.GetOwner() == cmpEntOwnership.GetOwner())
-				ejectedEntities.push(entity);
-		}
-		else
-		{
-			success = false;
-			if (failedRadius !== undefined)
-				failedRadius = Math.min(failedRadius, radius);
-			else
-			{
-				let cmpObstruction = Engine.QueryInterface(entity, IID_Obstruction);
-				failedRadius = cmpObstruction ? cmpObstruction.GetSize() : 0;
-			}
-		}
-	}
-
-	this.OrderWalkToRallyPoint(ejectedEntities);
+	this.entities.splice(entityIndex, 1);
 	this.UpdateGarrisonFlag();
+	Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, {
+		"added": [],
+		"removed": [entity]
+	});
 
-	return success;
+	return true;
 };
 
 /**
- * Order entities to walk to the rally point.
- * @param {Array} entities - An array containing all the ids of the entities.
+ * @param {number} entity - The entity ID of the entity to order to the rally point.
  */
-GarrisonHolder.prototype.OrderWalkToRallyPoint = function(entities)
+GarrisonHolder.prototype.OrderToRallyPoint = function(entity)
 {
-	let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 	let cmpRallyPoint = Engine.QueryInterface(this.entity, IID_RallyPoint);
 	if (!cmpRallyPoint || !cmpRallyPoint.GetPositions()[0])
 		return;
 
-	let commands = GetRallyPointCommands(cmpRallyPoint, entities);
+	let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	if (!cmpOwnership)
+		return;
+
+	let cmpEntOwnership = Engine.QueryInterface(entity, IID_Ownership);
+	if (!cmpEntOwnership || cmpOwnership.GetOwner() != cmpEntOwnership.GetOwner())
+		return;
+
+	let commands = GetRallyPointCommands(cmpRallyPoint, [entity]);
 	// Ignore the rally point if it is autogarrison
 	if (commands[0].type == "garrison" && commands[0].target == this.entity)
 		return;
@@ -329,25 +278,38 @@ GarrisonHolder.prototype.OrderWalkToRallyPoint = function(entities)
 };
 
 /**
- * Unload unit from the garrisoning entity and order them
- * to move to the rally point.
+ * Tell unit to unload from this entity.
+ * @param {number} entity - The entity to unload.
  * @return {boolean} Whether the command was successful.
  */
-GarrisonHolder.prototype.Unload = function(entity, forced)
+GarrisonHolder.prototype.Unload = function(entity)
 {
-	return this.PerformEject([entity], forced);
+	let cmpGarrisonable = Engine.QueryInterface(entity, IID_Garrisonable);
+	return cmpGarrisonable && cmpGarrisonable.UnGarrison();
 };
 
 /**
- * Unload one or all units that match a template and owner from
- * the garrisoning entity and order them to move to the rally point.
+ * Tell units to unload from this entity.
+ * @param {number[]} entities - The entities to unload.
+ * @return {boolean} - Whether all unloads were successful.
+ */
+GarrisonHolder.prototype.UnloadEntities = function(entities)
+{
+	let success = true;
+	for (let entity of entities)
+		if (!this.Unload(entity))
+			success = false;
+	return success;
+};
+
+/**
+ * Unload one or all units that match a template and owner from us.
  * @param {string} template - Type of units that should be ejected.
  * @param {number} owner - Id of the player whose units should be ejected.
  * @param {boolean} all - Whether all units should be ejected.
- * @param {boolean} forced - Whether unload is forced.
  * @return {boolean} Whether the unloading was successful.
  */
-GarrisonHolder.prototype.UnloadTemplate = function(template, owner, all, forced)
+GarrisonHolder.prototype.UnloadTemplate = function(template, owner, all)
 {
 	let entities = [];
 	let cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
@@ -367,33 +329,31 @@ GarrisonHolder.prototype.UnloadTemplate = function(template, owner, all, forced)
 			break;
 	}
 
-	return this.PerformEject(entities, forced);
+	return this.UnloadEntities(entities);
 };
 
 /**
  * Unload all units, that belong to certain player
  * and order all own units to move to the rally point.
- * @param {boolean} forced - Whether unload is forced.
  * @param {number} owner - Id of the player whose units should be ejected.
  * @return {boolean} Whether the unloading was successful.
  */
-GarrisonHolder.prototype.UnloadAllByOwner = function(owner, forced)
+GarrisonHolder.prototype.UnloadAllByOwner = function(owner)
 {
 	let entities = this.entities.filter(ent => {
 		let cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
 		return cmpOwnership && cmpOwnership.GetOwner() == owner;
 	});
-	return this.PerformEject(entities, forced);
+	return this.UnloadEntities(entities);
 };
 
 /**
  * Unload all units from the entity and order them to move to the rally point.
- * @param {boolean} forced - Whether unload is forced.
  * @return {boolean} Whether the unloading was successful.
  */
-GarrisonHolder.prototype.UnloadAll = function(forced)
+GarrisonHolder.prototype.UnloadAll = function()
 {
-	return this.PerformEject(this.entities.slice(), forced);
+	return this.UnloadEntities(this.entities.slice());
 };
 
 /**
@@ -544,7 +504,7 @@ GarrisonHolder.prototype.EjectOrKill = function(entities)
 	{
 		let ejectables = entities.filter(ent => this.IsEjectable(ent));
 		if (ejectables.length)
-			this.PerformEject(ejectables, false);
+			this.UnloadEntities(ejectables);
 	}
 
 	// And destroy all remaining entities
@@ -557,6 +517,8 @@ GarrisonHolder.prototype.EjectOrKill = function(entities)
 		let cmpHealth = Engine.QueryInterface(entity, IID_Health);
 		if (cmpHealth)
 			cmpHealth.Kill();
+		else
+			Engine.DestroyEntity(entity);
 		this.entities.splice(entityIndex, 1);
 		killedEntities.push(entity);
 	}

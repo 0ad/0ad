@@ -700,12 +700,12 @@ ProductionQueue.prototype.SpawnUnits = function(templateName, count, metadata)
 		for (let i = 0; i < count; ++i)
 			this.entityCache.push(Engine.AddEntity(templateName));
 
-	let cmpAutoGarrison;
+	let autoGarrison;
 	if (cmpRallyPoint)
 	{
 		let data = cmpRallyPoint.GetData()[0];
 		if (data && data.target && data.target == this.entity && data.command == "garrison")
-			cmpAutoGarrison = Engine.QueryInterface(this.entity, IID_GarrisonHolder);
+			autoGarrison = true;
 	}
 
 	for (let i = 0; i < count; ++i)
@@ -714,21 +714,16 @@ ProductionQueue.prototype.SpawnUnits = function(templateName, count, metadata)
 		let cmpNewOwnership = Engine.QueryInterface(ent, IID_Ownership);
 		let garrisoned = false;
 
-		if (cmpAutoGarrison)
+		if (autoGarrison)
 		{
+			let cmpGarrisonable = Engine.QueryInterface(ent, IID_Garrisonable);
 			// Temporary owner affectation needed for GarrisonHolder checks.
 			cmpNewOwnership.SetOwnerQuiet(cmpOwnership.GetOwner());
-			garrisoned = cmpAutoGarrison.Garrison(ent);
+			garrisoned = cmpGarrisonable && cmpGarrisonable.Autogarrison(this.entity);
 			cmpNewOwnership.SetOwnerQuiet(INVALID_PLAYER);
 		}
 
-		if (garrisoned)
-		{
-			let cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
-			if (cmpUnitAI)
-				cmpUnitAI.Autogarrison(this.entity);
-		}
-		else
+		if (!garrisoned)
 		{
 			let pos = cmpFootprint.PickSpawnPoint(ent);
 			if (pos.y < 0)
@@ -766,7 +761,7 @@ ProductionQueue.prototype.SpawnUnits = function(templateName, count, metadata)
 		createdEnts.push(ent);
 	}
 
-	if (spawnedEnts.length && !cmpAutoGarrison)
+	if (spawnedEnts.length && !autoGarrison)
 	{
 		// If a rally point is set, walk towards it (in formation) using a suitable command based on where the
 		// rally point is placed.

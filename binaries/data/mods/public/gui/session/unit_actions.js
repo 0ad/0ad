@@ -45,7 +45,7 @@ var g_UnitActions =
 {
 	"move":
 	{
-		"execute": function(target, action, selection, queued)
+		"execute": function(target, action, selection, queued, pushFront)
 		{
 			Engine.PostNetworkCommand({
 				"type": "walk",
@@ -53,6 +53,7 @@ var g_UnitActions =
 				"x": target.x,
 				"z": target.z,
 				"queued": queued,
+				"pushFront": pushFront,
 				"formation": g_AutoFormation.getDefault()
 			});
 
@@ -89,7 +90,7 @@ var g_UnitActions =
 
 	"attack-move":
 	{
-		"execute": function(target, action, selection, queued)
+		"execute": function(target, action, selection, queued, pushFront)
 		{
 			let targetClasses;
 			if (Engine.HotkeyIsPressed("session.attackmoveUnit"))
@@ -104,6 +105,7 @@ var g_UnitActions =
 				"z": target.z,
 				"targetClasses": targetClasses,
 				"queued": queued,
+				"pushFront": pushFront,
 				"formation": g_AutoFormation.getNull()
 			});
 
@@ -141,7 +143,7 @@ var g_UnitActions =
 
 	"capture":
 	{
-		"execute": function(target, action, selection, queued)
+		"execute": function(target, action, selection, queued, pushFront)
 		{
 			Engine.PostNetworkCommand({
 				"type": "attack",
@@ -149,6 +151,7 @@ var g_UnitActions =
 				"target": action.target,
 				"allowCapture": true,
 				"queued": queued,
+				"pushFront": pushFront,
 				"formation": g_AutoFormation.getNull()
 			});
 
@@ -187,13 +190,14 @@ var g_UnitActions =
 
 	"attack":
 	{
-		"execute": function(target, action, selection, queued)
+		"execute": function(target, action, selection, queued, pushFront)
 		{
 			Engine.PostNetworkCommand({
 				"type": "attack",
 				"entities": selection,
 				"target": action.target,
 				"queued": queued,
+				"pushFront": pushFront,
 				"allowCapture": false,
 				"formation": g_AutoFormation.getNull()
 			});
@@ -238,7 +242,7 @@ var g_UnitActions =
 
 	"patrol":
 	{
-		"execute": function(target, action, selection, queued)
+		"execute": function(target, action, selection, queued, pushFront)
 		{
 			Engine.PostNetworkCommand({
 				"type": "patrol",
@@ -292,13 +296,14 @@ var g_UnitActions =
 
 	"heal":
 	{
-		"execute": function(target, action, selection, queued)
+		"execute": function(target, action, selection, queued, pushFront)
 		{
 			Engine.PostNetworkCommand({
 				"type": "heal",
 				"entities": selection,
 				"target": action.target,
 				"queued": queued,
+				"pushFront": pushFront,
 				"formation": g_AutoFormation.getNull()
 			});
 
@@ -357,7 +362,7 @@ var g_UnitActions =
 
 	"repair":
 	{
-		"execute": function(target, action, selection, queued)
+		"execute": function(target, action, selection, queued, pushFront)
 		{
 			Engine.PostNetworkCommand({
 				"type": "repair",
@@ -365,6 +370,7 @@ var g_UnitActions =
 				"target": action.target,
 				"autocontinue": true,
 				"queued": queued,
+				"pushFront": pushFront,
 				"formation": g_AutoFormation.getNull()
 			});
 
@@ -416,13 +422,14 @@ var g_UnitActions =
 
 	"gather":
 	{
-		"execute": function(target, action, selection, queued)
+		"execute": function(target, action, selection, queued, pushFront)
 		{
 			Engine.PostNetworkCommand({
 				"type": "gather",
 				"entities": selection,
 				"target": action.target,
 				"queued": queued,
+				"pushFront": pushFront,
 				"formation": g_AutoFormation.getNull()
 			});
 
@@ -467,13 +474,14 @@ var g_UnitActions =
 
 	"returnresource":
 	{
-		"execute": function(target, action, selection, queued)
+		"execute": function(target, action, selection, queued, pushFront)
 		{
 			Engine.PostNetworkCommand({
 				"type": "returnresource",
 				"entities": selection,
 				"target": action.target,
 				"queued": queued,
+				"pushFront": pushFront,
 				"formation": g_AutoFormation.getNull()
 			});
 
@@ -525,7 +533,7 @@ var g_UnitActions =
 
 	"cancel-setup-trade-route":
 	{
-		"execute": function(target, action, selection, queued)
+		"execute": function(target, action, selection, queued, pushFront)
 		{
 			Engine.PostNetworkCommand({
 				"type": "cancel-setup-trade-route",
@@ -678,13 +686,14 @@ var g_UnitActions =
 
 	"garrison":
 	{
-		"execute": function(target, action, selection, queued)
+		"execute": function(target, action, selection, queued, pushFront)
 		{
 			Engine.PostNetworkCommand({
 				"type": "garrison",
 				"entities": selection,
 				"target": action.target,
 				"queued": queued,
+				"pushFront": pushFront,
 				"formation": g_AutoFormation.getNull()
 			});
 
@@ -751,13 +760,14 @@ var g_UnitActions =
 
 	"guard":
 	{
-		"execute": function(target, action, selection, queued)
+		"execute": function(target, action, selection, queued, pushFront)
 		{
 			Engine.PostNetworkCommand({
 				"type": "guard",
 				"entities": selection,
 				"target": action.target,
 				"queued": queued,
+				"pushFront": pushFront,
 				"formation": g_AutoFormation.getNull()
 			});
 
@@ -849,13 +859,14 @@ var g_UnitActions =
 
 	"remove-guard":
 	{
-		"execute": function(target, action, selection, queued)
+		"execute": function(target, action, selection, queued, pushFront)
 		{
 			Engine.PostNetworkCommand({
 				"type": "remove-guard",
 				"entities": selection,
 				"target": action.target,
-				"queued": queued
+				"queued": queued,
+				"pushFront": pushFront
 			});
 
 			Engine.GuiInterfaceCall("PlaySound", {
@@ -890,7 +901,7 @@ var g_UnitActions =
 
 	"set-rallypoint":
 	{
-		"execute": function(target, action, selection, queued)
+		"execute": function(target, action, selection, queued, pushFront)
 		{
 			// if there is a position set in the action then use this so that when setting a
 			// rally point on an entity it is centered on that entity
@@ -1098,7 +1109,7 @@ var g_UnitActions =
 
 	"unset-rallypoint":
 	{
-		"execute": function(target, action, selection, queued)
+		"execute": function(target, action, selection, queued, pushFront)
 		{
 			Engine.PostNetworkCommand({
 				"type": "unset-rallypoint",

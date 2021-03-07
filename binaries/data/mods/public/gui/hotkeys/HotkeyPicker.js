@@ -4,8 +4,9 @@
  */
 class HotkeyPicker
 {
-	constructor(onClose, name, combinations)
+	constructor(metadata, onClose, name, combinations)
 	{
+		this.metadata = metadata;
 		this.name = name;
 		this.combinations = combinations;
 		this.window = Engine.GetGUIObjectByName("hotkeyPicker");
@@ -13,7 +14,16 @@ class HotkeyPicker
 
 		this.enteringInput = -1;
 
-		Engine.GetGUIObjectByName("hotkeyPickerTitle").caption = translate(this.name);
+		if (this.metadata.hotkeys[name])
+		{
+			Engine.GetGUIObjectByName("hotkeyPickerTitle").caption = translate(this.metadata.hotkeys[name].name);
+			Engine.GetGUIObjectByName("hotkeyPickerDescHotkey").caption = translate(this.metadata.hotkeys[name].desc);
+		}
+		else
+		{
+			Engine.GetGUIObjectByName("hotkeyPickerTitle").caption = this.name;
+			Engine.GetGUIObjectByName("hotkeyPickerDescHotkey").hidden = true;
+		}
 
 		this.setupCombinations();
 		this.render();
@@ -41,8 +51,8 @@ class HotkeyPicker
 		for (let i = 0; i < 4; ++i)
 		{
 			let s = Engine.GetGUIObjectByName("combination[" + i + "]").size;
-			s.top = +i * 60 + 90;
-			s.bottom = +i * 60 + 120;
+			s.top = +i * 60 + 120;
+			s.bottom = +i * 60 + 150;
 			Engine.GetGUIObjectByName("combination[" + i + "]").size = s;
 			Engine.GetGUIObjectByName("combNb[" + i + "]").caption = sprintf(translate("#%i"), i);
 
