@@ -11,13 +11,14 @@
 # Petr Hála <halapetr@selfnet.cz>, 2016
 # Robin Kriebel <kriebel.robin@gmail.com>, 2016,2020
 # Tomáš Matýs <thommathys@gmail.com>, 2018
+# Vladim Štér <vladim.ster94@gmail.com>, 2021
 # Vojtěch Valigura <Encounter@seznam.cz>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-25 08:08+0000\n"
-"PO-Revision-Date: 2021-01-30 18:06+0000\n"
-"Last-Translator: Adam H <knedle@uxes.cz>\n"
+"PO-Revision-Date: 2021-03-07 01:06+0000\n"
+"Last-Translator: Vladim Štér <vladim.ster94@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -148,7 +149,7 @@ msgstr ""
 msgid ""
 "• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] – A map created by "
 "map designers but where the civilizations can be chosen"
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] – Mapa vytvořena výtvarníky map, ale mohou být zde vybrány civilizace."
 
 #: gui/manual/intro.txt:33
 msgid ""
@@ -266,11 +267,11 @@ msgstr ""
 
 #: gui/manual/intro.txt:59
 msgid "  hotkey.quicksave – Quicksave"
-msgstr ""
+msgstr "hotkey.quicksave – Rychlouložení"
 
 #: gui/manual/intro.txt:60
 msgid "  hotkey.quickload – Quickload"
-msgstr ""
+msgstr "hotkey.quickload – Rychlonačtení"
 
 #: gui/manual/intro.txt:61
 msgid "  hotkey.session.gui.menu.toggle – Toggle menu"
@@ -286,33 +287,33 @@ msgstr ""
 
 #: gui/manual/intro.txt:64
 msgid "  hotkey.confirm – Open chat or send message"
-msgstr ""
+msgstr " hotkey.confirm – Otevřete chat nebo pošlete zprávu"
 
 #: gui/manual/intro.txt:65
 msgid "  hotkey.teamchat – Send team chat"
-msgstr ""
+msgstr "hotkey.teamchat – Pošlete týmovou zprávu"
 
 #: gui/manual/intro.txt:66
 msgid ""
 "  hotkey.privatechat – Chat with the previously selected private chat "
 "partner"
-msgstr ""
+msgstr "hotkey.privatechat – Chatuj s předešle vybraným soukromým příjemcem"
 
 #: gui/manual/intro.txt:67
 msgid "  hotkey.pause – Pause or resume the game"
-msgstr ""
+msgstr " hotkey.pause – Pozastavit či obnovit hru"
 
 #: gui/manual/intro.txt:68
 msgid ""
 "  hotkey.session.kill – Delete currently selected unit(s)/structure(s), ask "
 "for confirmation"
-msgstr ""
+msgstr "hotkey.session.kill – Vymazat aktuálně vybrané jednotky/budovy, zeptat se pro potvrzení"
 
 #: gui/manual/intro.txt:69
 msgid ""
 "    • With hotkey.session.noconfirmation – Immediately delete currently "
 "selected unit(s)/structure(s), without asking for confirmation"
-msgstr ""
+msgstr " • With hotkey.session.noconfirmation – Okamžite vymazat aktuálně vybrané jednotky/budovy, bez výzvy k potvrzení"
 
 #: gui/manual/intro.txt:70
 msgid ""
@@ -330,12 +331,12 @@ msgstr ""
 msgid ""
 "  hotkey.selection.offscreen – Modifier – add all units, including offscreen"
 " units, to selection."
-msgstr ""
+msgstr " hotkey.selection.offscreen – Modifikátor – přidat veškeré jednotyk, včetně těch, které jsou mimo obrazovku k výběru."
 
 #: gui/manual/intro.txt:73
 msgid ""
 "  hotkey.selection.cancel – Unselect all units, cancel building placement."
-msgstr ""
+msgstr " hotkey.selection.cancel – Zrušit výběr všech jednotek či místa pro stavbu."
 
 #: gui/manual/intro.txt:74
 msgid "  hotkey.selection.idlewarrior – Select idle fighter"
@@ -357,7 +358,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:78
 msgid "  hotkey.session.backtowork – The unit will go back to work"
-msgstr ""
+msgstr " hotkey.session.backtowork – Jednotka se vrátí k práci"
 
 #: gui/manual/intro.txt:79
 msgid ""
@@ -369,13 +370,13 @@ msgstr ""
 msgid ""
 "  hotkey.selection.group.save.1 – Create control group 1 (by default, "
 "respectively 2,3, ...) from the selected unit(s)/structure(s)"
-msgstr ""
+msgstr " hotkey.selection.group.save.1 –  Vytvořit kontrolovanou skupinu 1 (ve výchozím stavu, případně 2,3, atd.) z již vybraných jednotek/budov."
 
 #: gui/manual/intro.txt:81
 msgid ""
 "  hotkey.selection.group.select.1 – Select the unit(s)/structure(s) in "
 "control group 1"
-msgstr ""
+msgstr "hotkey.selection.group.select.1 – Vyber jednotky/budovy z první kontrolované skupiny"
 
 #: gui/manual/intro.txt:82
 msgid ""
@@ -387,7 +388,7 @@ msgstr ""
 msgid ""
 "  hotkey.camera.jump.set.1 – Mark the current camera position, for jumping "
 "back to later (by default, there are 4 possible positions)"
-msgstr ""
+msgstr " hotkey.camera.jump.set.1 – Označ současnou pozici umístění kamery, pro možnost se vrátit na pizici později zpět (ve výchozím stavu, jsou zde možné 4 různé umístění)"
 
 #: gui/manual/intro.txt:84
 msgid ""
@@ -428,7 +429,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:90
 msgid "  hotkey.lobby – Show the multiplayer lobby in a dialog window"
-msgstr ""
+msgstr "hotkey.lobby – Ukázat hráčské lobby v dialgovém okně"
 
 #: gui/manual/intro.txt:91
 msgid "  hotkey.session.gui.diplomacy.toggle – Toggle in-game diplomacy panel"
@@ -458,7 +459,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:98
 msgid "[font=\"sans-bold-14\"]Modify mouse action[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Nastavit možnost akce při stisknutí myši[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:99
 msgid "  hotkey.session.garrison + Right Click on structure – Garrison"
@@ -466,7 +467,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:100
 msgid "  hotkey.session.repair + Right Click on structure – Repair"
-msgstr ""
+msgstr " hotkey.session.repair + kliknutí na budovu pravým tlačítkem myši – Oprava"
 
 #: gui/manual/intro.txt:101
 msgid "  hotkey.session.patrol + Right Click – Patrol"
@@ -476,7 +477,7 @@ msgstr ""
 msgid ""
 "  hotkey.session.queue + Right Click – Queue the move/build/gather/etc. "
 "order"
-msgstr ""
+msgstr " hotkey.session.queue + Pravé kliknutí myši – Fronta pro pohyb/stavění/shromáždění a další. rozkazy"
 
 #: gui/manual/intro.txt:103
 msgid ""
@@ -495,19 +496,19 @@ msgstr ""
 msgid ""
 "  hotkey.selection.add + Left Click or Left Drag over unit on map – Add unit"
 " to selection"
-msgstr ""
+msgstr "hotkey.selection.remove + Levé kliknutí či podržení a přetáhnutí přes jednotku na mapě – Přidá jednotku do výběru"
 
 #: gui/manual/intro.txt:106
 msgid ""
 "  hotkey.selection.remove + Left Click or Left Drag over unit on map – "
 "Remove unit from selection"
-msgstr ""
+msgstr "hotkey.selection.remove + Levé kliknutí či podržení a přetáhnutí přes jednotku na mapě –  Odstraní jednotku z výběru"
 
 #: gui/manual/intro.txt:107
 msgid ""
 "  hotkey.selection.militaryonly + Left Drag over units on map – Only select "
 "military units"
-msgstr ""
+msgstr " hotkey.selection.militaryonly + podržení a táhnutí levým tlačítkem myši přes jednotky na mapě –  Vybere jen vojenské jednotky"
 
 #: gui/manual/intro.txt:108
 msgid ""
@@ -664,11 +665,11 @@ msgstr ""
 msgid ""
 "  hotkey.camera.follow – Follow the selected unit (move the camera to stop "
 "following the unit)"
-msgstr ""
+msgstr " hotkey.camera.follow – Následovat vybranou jednotku (Pohněte kamerou k zastavení následování jednotky)"
 
 #: gui/manual/intro.txt:140
 msgid "  hotkey.camera.reset – Reset camera zoom and orientation"
-msgstr ""
+msgstr " hotkey.camera.reset – Zresetujte přiblížení kamery a její orientaci"
 
 #: gui/manual/intro.txt:141
 msgid ""
@@ -693,11 +694,11 @@ msgstr ""
 #: gui/manual/intro.txt:146
 msgid ""
 "  hotkey.session.rotate.ccw – Rotate structure 15 degrees counter-clockwise"
-msgstr ""
+msgstr "hotkey.session.rotate.cw – Struktura rotace 15 stupňů proti směru hodinových ručiček"
 
 #: gui/manual/intro.txt:147
 msgid "  hotkey.session.rotate.cw – Rotate structure 15 degrees clockwise"
-msgstr ""
+msgstr "hotkey.session.rotate.cw – Struktura rotace 15 stupňů ve směru hodinových ručiček"
 
 #: gui/manual/intro.txt:148
 msgid ""
@@ -707,7 +708,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:150
 msgid "[font=\"sans-bold-14\"]When loading a saved game[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Když se načítá uložená hrafont=\"sans-14\"]"
 
 #: gui/manual/intro.txt:151
 msgid "  hotkey.cancel – Cancel"
@@ -717,13 +718,13 @@ msgstr "hotkey.cancel – Zrušit"
 msgid ""
 "  hotkey.session.savedgames.delete – Delete the selected saved game, ask for"
 " confirmation"
-msgstr ""
+msgstr "hotkey.session.savedgames.delete – Vymazat vybranou uloženou hru, nutno potvrdit"
 
 #: gui/manual/intro.txt:153
 msgid ""
 "    • With hotkey.session.savedgames.noconfirmation – Don't ask for "
 "confirmation"
-msgstr ""
+msgstr " • With hotkey.session.savedgames.noconfirmation – Neptat se pro potvrzení"
 
 #: gui/manual/manual.xml:(caption):13
 msgid "Manual"

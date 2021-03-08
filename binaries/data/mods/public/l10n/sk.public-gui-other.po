@@ -24,9 +24,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-29 14:56+0000\n"
-"PO-Revision-Date: 2021-02-21 19:52+0000\n"
-"Last-Translator: Slavomir Slovenkai <slavomir.slovenkai@gmail.com>\n"
+"POT-Creation-Date: 2021-03-05 08:13+0000\n"
+"PO-Revision-Date: 2021-03-05 11:29+0000\n"
+"Last-Translator: Miroslav Kadlec <mirokadlec12@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -39,6 +39,11 @@ msgstr ""
 #, javascript-format
 msgid "FPS: %(fps)4s"
 msgstr "FPS: %(fps)4s"
+
+#: gui/common/campaigns/CampaignRun.js:95
+#, javascript-format
+msgid "%(userDesc)s - %(templateName)s"
+msgstr ""
 
 #: gui/common/color.js:179
 #, javascript-format
@@ -398,10 +403,10 @@ msgstr "Podvody"
 #: gui/common/gamedescription.js:411 gui/common/tooltips.js:144
 #: gui/common/tooltips.js:210 gui/common/tooltips.js:231
 #: gui/common/tooltips.js:250 gui/common/tooltips.js:313
-#: gui/common/tooltips.js:598 gui/common/tooltips.js:604
-#: gui/common/tooltips.js:632 gui/common/tooltips.js:638
-#: gui/common/tooltips.js:725 gui/common/tooltips.js:766
-#: gui/common/tooltips.js:1071
+#: gui/common/tooltips.js:616 gui/common/tooltips.js:622
+#: gui/common/tooltips.js:650 gui/common/tooltips.js:656
+#: gui/common/tooltips.js:743 gui/common/tooltips.js:794
+#: gui/common/tooltips.js:815 gui/common/tooltips.js:1120
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -548,9 +553,9 @@ msgstr "Používateľov (%(num)s): %(users)s"
 #: gui/common/tooltips.js:366 gui/common/tooltips.js:391
 #: gui/common/tooltips.js:406 gui/common/tooltips.js:420
 #: gui/common/tooltips.js:497 gui/common/tooltips.js:502
-#: gui/common/tooltips.js:559 gui/common/tooltips.js:592
-#: gui/common/tooltips.js:929 gui/common/tooltips.js:962
-#: gui/common/tooltips.js:1036 gui/loadgame/SavegameDetails.js:38
+#: gui/common/tooltips.js:559 gui/common/tooltips.js:610
+#: gui/common/tooltips.js:978 gui/common/tooltips.js:1011
+#: gui/common/tooltips.js:1085 gui/loadgame/SavegameDetails.js:38
 #: gui/reference/common/tooltips.js:13 gui/replaymenu/replay_menu.js:282
 msgid ", "
 msgstr ", "
@@ -616,66 +621,66 @@ msgid ""
 "other game settings."
 msgstr ""
 
-#: gui/common/settings.js:182
+#: gui/common/settings.js:183
 msgctxt "map"
 msgid "Random"
 msgstr "Náhodná"
 
-#: gui/common/settings.js:183
+#: gui/common/settings.js:184
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
 " select the number of players and teams."
 msgstr "Vytvor unikátnu mapu s rôznym rozdelením surovín, pri každom spustení. Ľubovoľne zvoľ počet hráčov a tými."
 
-#: gui/common/settings.js:190
+#: gui/common/settings.js:192
 msgctxt "map"
 msgid "Scenario"
 msgstr "Scenár"
 
-#: gui/common/settings.js:191
+#: gui/common/settings.js:193
 msgid "A map with a predefined landscape and matchsettings."
 msgstr "Mapa s preddefinovanou krajinou a nastaveniami."
 
-#: gui/common/settings.js:268 gui/common/settings.js:291
+#: gui/common/settings.js:271 gui/common/settings.js:294
 msgid "Unlimited"
 msgstr "Neobmedzené"
 
-#: gui/common/settings.js:339
+#: gui/common/settings.js:342
 msgctxt "AI name"
 msgid "Unknown"
 msgstr "Neznáme"
 
-#: gui/common/settings.js:350
+#: gui/common/settings.js:353
 msgctxt "AI difficulty"
 msgid "Unknown"
 msgstr "Neznáme"
 
-#: gui/common/settings.js:361
+#: gui/common/settings.js:364
 msgctxt "AI behavior"
 msgid "Default"
 msgstr "Predvolené"
 
-#: gui/common/settings.js:373
+#: gui/common/settings.js:376
 msgctxt "map type"
 msgid "Unknown"
 msgstr "Neznáme"
 
-#: gui/common/settings.js:385
+#: gui/common/settings.js:388
 msgctxt "map size"
 msgid "Default"
 msgstr "Prednastavené"
 
-#: gui/common/settings.js:400
+#: gui/common/settings.js:403
 msgctxt "population capacity addendum"
 msgid "(world)"
 msgstr "(svet)"
 
-#: gui/common/settings.js:401 gui/common/settings.js:405
+#: gui/common/settings.js:404 gui/common/settings.js:408
 msgctxt "population capacity"
 msgid "Unknown"
 msgstr "Neznáme"
 
-#: gui/common/settings.js:417
+#: gui/common/settings.js:420
 msgid "Unknown Victory Condition"
 msgstr "Neznáme víťazné podmienky "
 
@@ -699,7 +704,7 @@ msgstr[2] "%(time)s %(second)s"
 msgstr[3] "%(time)s %(second)s"
 
 #: gui/common/tooltips.js:92 gui/common/tooltips.js:555
-#: gui/common/tooltips.js:960
+#: gui/common/tooltips.js:1009
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "sekundu"
@@ -799,7 +804,7 @@ msgstr ""
 msgid "Garrison to fire arrows"
 msgstr "Vytvoriť posádku pre streľbu šípov"
 
-#: gui/common/tooltips.js:297 gui/common/tooltips.js:958
+#: gui/common/tooltips.js:297 gui/common/tooltips.js:1007
 msgid "Interval:"
 msgstr "Interval:"
 
@@ -855,7 +860,7 @@ msgstr "%(rangeLabel)s  %(minRange)sdo %(maxRange)s %(rangeUnit)s"
 msgid "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
 msgstr "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
 
-#: gui/common/tooltips.js:345 gui/common/tooltips.js:953
+#: gui/common/tooltips.js:345 gui/common/tooltips.js:1002
 msgid "Range:"
 msgstr "Dosah:"
 
@@ -870,8 +875,8 @@ msgstr "+%(number)s"
 msgid "meters"
 msgstr "metrov"
 
-#: gui/common/tooltips.js:353 gui/common/tooltips.js:955
-#: gui/common/tooltips.js:985
+#: gui/common/tooltips.js:353 gui/common/tooltips.js:1004
+#: gui/common/tooltips.js:1034
 msgid "meter"
 msgid_plural "meters"
 msgstr[0] "meter"
@@ -904,19 +909,21 @@ msgstr "%(label)s: %(effects)s"
 msgid "Friendly Fire: %(enabled)s"
 msgstr "Poškodenie priateľskou streľbou: %(enabled)s"
 
-#: gui/common/tooltips.js:392 gui/loadgame/SavegameDeleter.js:55
-#: gui/loadgame/SavegameLoader.js:61 gui/loadgame/SavegameWriter.js:48
-#: gui/options/options.js:300 gui/options/options.js:353
-#: gui/options/options.js:379 gui/pregame/MainMenuItems.js:204
-#: gui/pregame/MainMenuItems.js:228 gui/replaymenu/replay_actions.js:169
+#: gui/common/tooltips.js:392 gui/hotkeys/HotkeysPage.js:145
+#: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
+#: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:300
+#: gui/options/options.js:353 gui/options/options.js:379
+#: gui/pregame/MainMenuItems.js:237 gui/pregame/MainMenuItems.js:261
+#: gui/replaymenu/replay_actions.js:169
 msgid "Yes"
 msgstr "Áno"
 
-#: gui/common/tooltips.js:392 gui/loadgame/SavegameDeleter.js:55
-#: gui/loadgame/SavegameLoader.js:61 gui/loadgame/SavegameWriter.js:48
-#: gui/options/options.js:300 gui/options/options.js:353
-#: gui/options/options.js:379 gui/pregame/MainMenuItems.js:204
-#: gui/pregame/MainMenuItems.js:228 gui/replaymenu/replay_actions.js:169
+#: gui/common/tooltips.js:392 gui/hotkeys/HotkeysPage.js:145
+#: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
+#: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:300
+#: gui/options/options.js:353 gui/options/options.js:379
+#: gui/pregame/MainMenuItems.js:237 gui/pregame/MainMenuItems.js:261
+#: gui/replaymenu/replay_actions.js:169
 msgid "No"
 msgstr "Nie"
 
@@ -993,43 +1000,57 @@ msgstr "Maximálna kapacita"
 msgid "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 msgstr "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 
-#: gui/common/tooltips.js:552 gui/common/tooltips.js:948
+#: gui/common/tooltips.js:552 gui/common/tooltips.js:997
 msgid "Heal:"
 msgstr "Liečenie:"
 
-#: gui/common/tooltips.js:554 gui/common/tooltips.js:950
+#: gui/common/tooltips.js:554 gui/common/tooltips.js:999
 msgid "Health"
 msgstr "Zdravie"
 
-#: gui/common/tooltips.js:578 gui/common/tooltips.js:583
-#: gui/common/tooltips.js:588
+#: gui/common/tooltips.js:568
+#, javascript-format
+msgid "%(label)s: %(garrisonSize)s %(extraSize)s"
+msgstr ""
+
+#: gui/common/tooltips.js:569
+msgid "Garrison Size"
+msgstr ""
+
+#: gui/common/tooltips.js:572
+msgctxt "nested garrison"
+msgid "+ "
+msgstr ""
+
+#: gui/common/tooltips.js:596 gui/common/tooltips.js:601
+#: gui/common/tooltips.js:606
 #, javascript-format
 msgid "%(label)s: %(value)s"
 msgstr "%(label)s: %(value)s"
 
-#: gui/common/tooltips.js:579
+#: gui/common/tooltips.js:597
 msgid "Projectile Limit"
 msgstr "Limit streliva"
 
-#: gui/common/tooltips.js:584
+#: gui/common/tooltips.js:602
 msgctxt "projectiles"
 msgid "Default"
 msgstr "Predvolené"
 
-#: gui/common/tooltips.js:589
+#: gui/common/tooltips.js:607
 msgctxt "projectiles"
 msgid "Per Unit"
 msgstr "Na jednotku"
 
-#: gui/common/tooltips.js:599
+#: gui/common/tooltips.js:617
 msgid "Number of repairers:"
 msgstr "Počet opravárov:"
 
-#: gui/common/tooltips.js:605
+#: gui/common/tooltips.js:623
 msgid "Remaining repair time:"
 msgstr "Zostávajúci čas opravy:"
 
-#: gui/common/tooltips.js:609
+#: gui/common/tooltips.js:627
 #, javascript-format
 msgid "Add another worker to speed up the repairs by %(second)s second."
 msgid_plural ""
@@ -1039,7 +1060,7 @@ msgstr[1] "Pridaj ďalšieho pracovníka pre zrýchlenie opráv o %(second)s sek
 msgstr[2] "Pridaj ďalšieho pracovníka pre zrýchlenie opráv o %(second)s sekúnd."
 msgstr[3] "Pridaj ďalšieho pracovníka pre zrýchlenie opráv o %(second)s sekúnd."
 
-#: gui/common/tooltips.js:621
+#: gui/common/tooltips.js:639
 #, javascript-format
 msgid "Add a worker to finish the repairs in %(second)s second."
 msgid_plural "Add a worker to finish the repairs in %(second)s seconds."
@@ -1048,15 +1069,15 @@ msgstr[1] "Pridaj pracovníka na ukončenie opráv za %(second)s sekundy."
 msgstr[2] "Pridaj pracovníka na ukončenie opráv za %(second)s sekúnd."
 msgstr[3] "Pridaj pracovníka na ukončenie opráv za %(second)s sekúnd."
 
-#: gui/common/tooltips.js:633
+#: gui/common/tooltips.js:651
 msgid "Number of builders:"
 msgstr "Počet staviteľov:"
 
-#: gui/common/tooltips.js:639
+#: gui/common/tooltips.js:657
 msgid "Remaining build time:"
 msgstr "Zostávajúci čas výstavby:"
 
-#: gui/common/tooltips.js:643
+#: gui/common/tooltips.js:661
 #, javascript-format
 msgid "Add another worker to speed up the construction by %(second)s second."
 msgid_plural ""
@@ -1066,7 +1087,7 @@ msgstr[1] "Pridaj ďalšieho pracovníka pre zrýchlenie konštrukcie o %(second
 msgstr[2] "Pridaj ďalšieho pracovníka pre zrýchlenie konštrukcie o %(second)s sekúnd."
 msgstr[3] "Pridaj ďalšieho pracovníka pre zrýchlenie konštrukcie o %(second)s sekúnd."
 
-#: gui/common/tooltips.js:655
+#: gui/common/tooltips.js:673
 #, javascript-format
 msgid "Add a worker to finish the construction in %(second)s second."
 msgid_plural "Add a worker to finish the construction in %(second)s seconds."
@@ -1075,16 +1096,16 @@ msgstr[1] "Pridaj pracovníka na dokončenie konštrukcie za %(second)s sekundy.
 msgstr[2] "Pridaj pracovníka na dokončenie konštrukcie za %(second)s sekúnd."
 msgstr[3] "Pridaj pracovníka na dokončenie konštrukcie za %(second)s sekúnd."
 
-#: gui/common/tooltips.js:693 gui/common/tooltips.js:901
+#: gui/common/tooltips.js:711 gui/common/tooltips.js:950
 #, javascript-format
 msgid "%(component)s %(cost)s"
 msgstr "%(component)s %(cost)s"
 
-#: gui/common/tooltips.js:726
+#: gui/common/tooltips.js:744
 msgid "Gather Rates:"
 msgstr "Výsledky zberu:"
 
-#: gui/common/tooltips.js:729 gui/common/tooltips.js:771
+#: gui/common/tooltips.js:747 gui/common/tooltips.js:820
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
 msgstr "%(resourceIcon)s %(rate)s"
@@ -1092,101 +1113,110 @@ msgstr "%(resourceIcon)s %(rate)s"
 #. Translation: Label in tooltip showing the resource type and quantity of a
 #. given resource
 #. supply.
-#: gui/common/tooltips.js:749
+#: gui/common/tooltips.js:765
 #, javascript-format
 msgid "%(label)s %(component)s %(amount)s"
 msgstr "%(label)s %(component)s %(amount)s"
 
-#: gui/common/tooltips.js:750
+#: gui/common/tooltips.js:766
 msgid "Resource Supply:"
 msgstr "Zásoby surovín:"
 
 #. Translation: Marks that a resource supply entity has an unending, infinite,
 #. supply of its
 #. resource.
-#: gui/common/tooltips.js:753 gui/summary/summary.js:120
+#: gui/common/tooltips.js:769 gui/summary/summary.js:120
 msgid "∞"
 msgstr "∞"
 
-#: gui/common/tooltips.js:767
+#: gui/common/tooltips.js:795
+msgid "Reward:"
+msgstr ""
+
+#: gui/common/tooltips.js:798
+#, javascript-format
+msgid "%(resourceIcon)s %(reward)s"
+msgstr ""
+
+#: gui/common/tooltips.js:816
 msgid "Resource Trickle:"
 msgstr "Prísun surovín:"
 
-#: gui/common/tooltips.js:768
+#: gui/common/tooltips.js:817
 #, javascript-format
 msgid "%(resources)s / %(time)s"
 msgstr "%(resources)s / %(time)s"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
-#: gui/common/tooltips.js:820
+#: gui/common/tooltips.js:869
 #, javascript-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
 msgstr "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
 
-#: gui/common/tooltips.js:849
+#: gui/common/tooltips.js:898
 #, javascript-format
 msgid "Walls:  %(costs)s"
 msgstr "Múry:  %(costs)s"
 
-#: gui/common/tooltips.js:850
+#: gui/common/tooltips.js:899
 #, javascript-format
 msgid "Towers:  %(costs)s"
 msgstr "Veže:  %(costs)s"
 
 #. Translation: Label in tooltip showing cost of a unit, structure or
 #. technology.
-#: gui/common/tooltips.js:858
+#: gui/common/tooltips.js:907
 #, javascript-format
 msgid "%(label)s %(costs)s"
 msgstr "%(label)s %(costs)s"
 
-#: gui/common/tooltips.js:859
+#: gui/common/tooltips.js:908
 msgid "Cost:"
 msgstr "Cena:"
 
-#: gui/common/tooltips.js:872
+#: gui/common/tooltips.js:921
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "Vyžaduje %(technology)s"
 
-#: gui/common/tooltips.js:885
+#: gui/common/tooltips.js:934
 #, javascript-format
 msgid "%(label)s %(bonus)s"
 msgstr "%(label)s %(bonus)s"
 
-#: gui/common/tooltips.js:886
+#: gui/common/tooltips.js:935
 msgid "Population Bonus:"
 msgstr "Populačný bonus:"
 
-#: gui/common/tooltips.js:906
+#: gui/common/tooltips.js:955
 msgid "Insufficient resources:"
 msgstr "Nedostatkové suroviny:"
 
-#: gui/common/tooltips.js:922
+#: gui/common/tooltips.js:971
 #, javascript-format
 msgid "%(label)s %(speeds)s"
 msgstr "%(label)s %(speeds)s"
 
-#: gui/common/tooltips.js:923
+#: gui/common/tooltips.js:972
 msgid "Speed:"
 msgstr "Rýchlosť:"
 
-#: gui/common/tooltips.js:925 gui/common/tooltips.js:930
+#: gui/common/tooltips.js:974 gui/common/tooltips.js:979
 #, javascript-format
 msgid "%(speed)s %(movementType)s"
 msgstr "%(speed)s %(movementType)s"
 
-#: gui/common/tooltips.js:927
+#: gui/common/tooltips.js:976
 msgid "Walk"
 msgstr "Chôdza"
 
-#: gui/common/tooltips.js:932
+#: gui/common/tooltips.js:981
 msgid "Run"
 msgstr "Beh"
 
-#: gui/common/tooltips.js:947 gui/common/tooltips.js:952
-#: gui/common/tooltips.js:957 gui/common/tooltips.js:982
+#: gui/common/tooltips.js:996 gui/common/tooltips.js:1001
+#: gui/common/tooltips.js:1006 gui/common/tooltips.js:1031
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
@@ -1195,69 +1225,69 @@ msgstr[1] "%(label)s %(val)s %(unit)s"
 msgstr[2] "%(label)s %(val)s %(unit)s"
 msgstr[3] "%(label)s %(val)s %(unit)s"
 
-#: gui/common/tooltips.js:974
+#: gui/common/tooltips.js:1023
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
 msgstr "%(auralabel)s %(aurainfo)s"
 
-#: gui/common/tooltips.js:975
+#: gui/common/tooltips.js:1024
 #, javascript-format
 msgid "%(auraname)s:"
 msgstr "%(auraname)s:"
 
-#: gui/common/tooltips.js:983
+#: gui/common/tooltips.js:1032
 msgctxt "aura"
 msgid "Range:"
 msgstr "Dosah:"
 
-#: gui/common/tooltips.js:1000
+#: gui/common/tooltips.js:1049
 #, javascript-format
 msgid "%(specificName)s (%(genericName)s)"
 msgstr "%(specificName)s (%(genericName)s)"
 
 #. Translation: Example: "Epibátēs Athēnaîos [font="sans-bold-16"](Athenian
 #. Marine)[/font]"
-#: gui/common/tooltips.js:1013
+#: gui/common/tooltips.js:1062
 #, javascript-format
 msgid "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 msgstr "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 
-#: gui/common/tooltips.js:1035
+#: gui/common/tooltips.js:1084
 msgid "Classes:"
 msgstr "Triedy:"
 
 #. Translation: %(component) will be the icon for the loot type and %(loot)
 #. will be the
 #. value.
-#: gui/common/tooltips.js:1062
+#: gui/common/tooltips.js:1111
 #, javascript-format
 msgid "%(component)s %(loot)s"
 msgstr "%(component)s %(loot)s"
 
-#: gui/common/tooltips.js:1072
+#: gui/common/tooltips.js:1121
 msgid "Loot:"
 msgstr "Korisť:"
 
-#: gui/common/tooltips.js:1082
+#: gui/common/tooltips.js:1131
 #, javascript-format
 msgid "%(label)s %(icons)s"
 msgstr "%(label)s %(icons)s"
 
-#: gui/common/tooltips.js:1083
+#: gui/common/tooltips.js:1132
 msgid "Dropsite for:"
 msgstr "Úložisko pre:"
 
 #. Translation: Appears in a tooltip to indicate that right-clicking the
 #. corresponding GUI
 #. element will open the Template Details GUI page.
-#: gui/common/tooltips.js:1091
+#: gui/common/tooltips.js:1140
 msgid "Right-click to view more information."
 msgstr "Klikni pravým tlačítkom myši, aby si videl viac informácií."
 
 #. Translation: Appears in a tooltip to indicate that clicking the
 #. corresponding GUI element
 #. will open the Template Details GUI page.
-#: gui/common/tooltips.js:1097
+#: gui/common/tooltips.js:1146
 msgid "Click to view more information."
 msgstr "Klikni aby si videl viac informácií."
 
@@ -1475,6 +1505,114 @@ msgid ""
 "to the player you want to modify in the selection panel above."
 msgstr "Aj keď je to pre skúseného hráča primerane jednoduché, predvolený AI úroveň je pomerne náročná pre nových hráčov ktorí ešte neovládli základné mechanizmy hry. Začiatočníkom sa odporúča spustenie hry proti nižším úrovniam AI (Pieskovisko alebo Veľmi Ľahký). Zmeň úroveň AI kliknutím na ikonu ozubené kolieska vedľa hráča ktorého chcete upraviť  v panelu výberu vyššie. "
 
+#: gui/hotkeys/HotkeyPicker.js:47
+#, javascript-format
+msgid "#%i"
+msgstr ""
+
+#: gui/hotkeys/HotkeyPicker.js:63
+msgid " (hold to register)"
+msgstr ""
+
+#: gui/hotkeys/HotkeyPicker.js:64 gui/hotkeys/HotkeyPicker.js:95
+msgid "Enter new Hotkey, hold to register."
+msgstr ""
+
+#: gui/hotkeys/HotkeyPicker.js:106
+msgid "May conflict with: "
+msgstr ""
+
+#: gui/hotkeys/HotkeysPage.js:38
+msgid "All Hotkeys"
+msgstr ""
+
+#: gui/hotkeys/HotkeysPage.js:104
+msgid "Other hotkeys"
+msgstr ""
+
+#: gui/hotkeys/HotkeysPage.js:143
+msgid ""
+"Reset all hotkeys to default values?\n"
+"WARNING: this cannot be reversed."
+msgstr ""
+
+#: gui/hotkeys/HotkeysPage.js:144 gui/pregame/MainMenuItems.js:236
+#: gui/pregame/MainMenuItems.js:260
+msgid "Confirmation"
+msgstr "Potvrdenie"
+
+#: gui/hotkeys/hotkeys.xml:(caption):18
+msgid "Category:"
+msgstr "Kategória:"
+
+#: gui/hotkeys/hotkeys.xml:(caption):24
+msgid "Filter:"
+msgstr "Filter:"
+
+#: gui/hotkeys/hotkeys.xml:(caption):48 gui/hotkeys/hotkeys.xml:(caption):97
+#: gui/options/options.xml:(caption):42
+msgid "Reset"
+msgstr "Reštart"
+
+#: gui/hotkeys/hotkeys.xml:(caption):72
+msgid "Hotkey"
+msgstr ""
+
+#: gui/hotkeys/hotkeys.xml:(caption):76
+msgid ""
+"Click on any mapping to modify it.\\n You may have up to 4 different "
+"hotkeys."
+msgstr ""
+
+#: gui/hotkeys/hotkeys.xml:(caption):102 gui/locale/locale.xml:(caption):46
+msgid "Accept"
+msgstr "Prijať"
+
+#: gui/hotkeys/hotkeys.xml:(caption):107 gui/loadgame/load.xml:(caption):50
+#: gui/locale/locale.xml:(caption):36
+#: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):51
+msgid "Cancel"
+msgstr "Zrušiť"
+
+#: gui/hotkeys/hotkeys.xml:(heading):39
+msgctxt "hotkey list"
+msgid "Name"
+msgstr "Názov"
+
+#: gui/hotkeys/hotkeys.xml:(heading):43
+msgctxt "hotkey list"
+msgid "Mapping"
+msgstr ""
+
+#: gui/hotkeys/hotkeys.xml:(tooltip):49 gui/hotkeys/hotkeys.xml:(tooltip):98
+#: gui/options/options.xml:(tooltip):43
+msgid "Resets user settings to their game default"
+msgstr "Vráti používateľove nastavenia na predvolené hodnoty hry"
+
+#: gui/hotkeys/hotkeys.xml:(tooltip):54 gui/options/options.xml:(tooltip):55
+msgid "Saves changes"
+msgstr "Uložiť zmeny"
+
+#: gui/hotkeys/hotkeys.xml:(tooltip):59
+msgid "Unsaved changes will be lost"
+msgstr ""
+
+#: gui/hotkeys/hotkeys.xml:(tooltip):86
+msgid "Click to set the hotkey"
+msgstr ""
+
+#: gui/hotkeys/hotkeys.xml:(tooltip):90
+msgid "Click to delete the hotkey"
+msgstr ""
+
+#: gui/hotkeys/hotkeys.xml:(tooltip):103
+msgid "Change the hotkeys and close"
+msgstr ""
+
+#: gui/hotkeys/hotkeys.xml:(tooltip):108
+msgid "The hotkeys will not be modified"
+msgstr ""
+
 #: gui/loadgame/SavegameDeleter.js:34
 #, javascript-format
 msgid "Delete the selected savegame using %(hotkey)s."
@@ -1503,16 +1641,16 @@ msgstr "VYMAZANIE"
 msgid "Mods: %(mods)s"
 msgstr "Modifikácie: %(mods)s"
 
-#: gui/loadgame/SavegameList.js:158
+#: gui/loadgame/SavegameList.js:181
 msgid "yyyy-MM-dd HH:mm:ss"
 msgstr "yyyy-MM-dd HH:mm:ss"
 
-#: gui/loadgame/SavegameList.js:169
+#: gui/loadgame/SavegameList.js:192
 #, javascript-format
 msgid "%(dateString)s %(map)s - %(description)s"
 msgstr "%(dateString)s %(map)s - %(description)s"
 
-#: gui/loadgame/SavegameList.js:170
+#: gui/loadgame/SavegameList.js:193
 #, javascript-format
 msgid "%(dateString)s %(map)s"
 msgstr "%(dateString)s %(map)s"
@@ -1545,15 +1683,16 @@ msgstr "Chcete aj tak pokračovať?"
 msgid "Warning"
 msgstr "Upozornenie"
 
-#: gui/loadgame/SavegamePage.js:45
+#: gui/loadgame/SavegamePage.js:34
 msgid "Save Game"
 msgstr "Uložiť hru"
 
-#: gui/loadgame/SavegamePage.js:45 gui/pregame/MainMenuItems.js:80
+#: gui/loadgame/SavegamePage.js:34 gui/pregame/MainMenuItems.js:86
 msgid "Load Game"
 msgstr "Načítať hru"
 
-#: gui/loadgame/SavegameWriter.js:16 gui/options/options.xml:(caption):54
+#: gui/hotkeys/hotkeys.xml:(caption):53 gui/loadgame/SavegameWriter.js:16
+#: gui/options/options.xml:(caption):54
 msgid "Save"
 msgstr "Uložiť"
 
@@ -1568,10 +1707,6 @@ msgstr "PREPÍSANIE ULOŽENEJ HRY"
 #: gui/loadgame/load.xml:(caption):44
 msgid "No saved games found."
 msgstr "Nebola nájdena žiadna uložená hra."
-
-#: gui/loadgame/load.xml:(caption):50 gui/locale/locale.xml:(caption):36
-msgid "Cancel"
-msgstr "Zrušiť"
 
 #: gui/loadgame/load.xml:(caption):54
 #: gui/replaymenu/replay_menu.xml:(caption):233
@@ -1591,6 +1726,7 @@ msgid "Played time:"
 msgstr "Hrací čas:"
 
 #: gui/loadgame/load.xml:(caption):82
+#: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):32
 #: gui/replaymenu/replay_menu.xml:(caption):152
 msgid "Map Type:"
 msgstr "Typ mapy:"
@@ -1644,9 +1780,136 @@ msgstr "Miestne nastavenia:"
 msgid "Advanced"
 msgstr "Pokročilé"
 
-#: gui/locale/locale.xml:(caption):46
-msgid "Accept"
-msgstr "Prijať"
+#: gui/maps/MapCache.js:60
+msgctxt "map selection"
+msgid "Random"
+msgstr "Náhodné"
+
+#: gui/maps/MapCache.js:67
+msgid "A randomly selected map."
+msgstr "Náhodne vybraná mapa."
+
+#: gui/maps/MapFilters.js:85
+msgid "Default"
+msgstr "Predvolené"
+
+#: gui/maps/MapFilters.js:86
+msgid "All maps except naval and demo maps."
+msgstr "Všetky mapy, okrem námorných, sú demo mapy."
+
+#: gui/maps/MapFilters.js:91
+msgid "Naval Maps"
+msgstr "Námorné mapy"
+
+#: gui/maps/MapFilters.js:92
+msgid "Maps where ships are needed to reach the enemy."
+msgstr "Mapy vyžadujúce lode na presun k nepriateľovi."
+
+#: gui/maps/MapFilters.js:97
+msgid "Demo Maps"
+msgstr "Ukážkové - demo - mapy"
+
+#: gui/maps/MapFilters.js:98
+msgid "These maps are not playable but for demonstration purposes only."
+msgstr "Tieto mapy nie sú hrateľné. Slúžia len pre demonštráciu."
+
+#: gui/maps/MapFilters.js:103
+msgid "New Maps"
+msgstr "Nové mapy"
+
+#: gui/maps/MapFilters.js:104
+msgid "Maps that are brand new in this release of the game."
+msgstr "Mapy pridané v tejto verzii hry."
+
+#: gui/maps/MapFilters.js:109
+msgid "Trigger Maps"
+msgstr "Spúšťače"
+
+#: gui/maps/MapFilters.js:110
+msgid "Maps that come with scripted events and potentially spawn enemy units."
+msgstr "Mapy obsahujúce manuálne predprogramované udalosti a potenciálne vytvárajúce nové nepriateľské jednotky na mape."
+
+#: gui/maps/MapFilters.js:115
+msgid "All Maps"
+msgstr "Všetky mapy"
+
+#: gui/maps/MapFilters.js:116
+msgid "Every map of the chosen maptype."
+msgstr "Všetky mapy vybraného typu."
+
+#: gui/maps/mapbrowser/MapBrowser.xml:(caption):14
+msgid "Map Browser"
+msgstr ""
+
+#: gui/maps/mapbrowser/controls/MapBrowserControls.js:31
+#, javascript-format
+msgid "%(hotkey)s: Close map browser and discard the selection."
+msgstr ""
+
+#: gui/credits/credits.xml:(caption):32 gui/hotkeys/hotkeys.xml:(caption):58
+#: gui/maps/mapbrowser/controls/MapBrowserControls.js:34
+#: gui/options/options.xml:(caption):60
+#: gui/reference/common/Buttons/CloseButton.js:13
+msgid "Close"
+msgstr "Zavrieť"
+
+#: gui/maps/mapbrowser/controls/MapBrowserControls.js:36
+#, javascript-format
+msgid "%(hotkey)s: Close map browser."
+msgstr ""
+
+#: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):15
+msgctxt "zoom in"
+msgid "+"
+msgstr "+"
+
+#: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):18
+msgctxt "zoom out"
+msgid "−"
+msgstr ""
+
+#: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):26
+msgid "Search Map:"
+msgstr ""
+
+#: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):38
+msgid "Map Filter:"
+msgstr "Filter máp:"
+
+#: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):48
+msgid "Pick Random Map"
+msgstr ""
+
+#: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):54
+msgctxt "map selection dialog"
+msgid "Select"
+msgstr ""
+
+#: gui/maps/mapbrowser/controls/Pagination.js:27
+msgid "Go to the previous page."
+msgstr ""
+
+#: gui/maps/mapbrowser/controls/Pagination.js:28
+msgid "Go to the next page."
+msgstr ""
+
+#: gui/maps/mapbrowser/controls/Pagination.js:32
+msgid "Increase map preview size."
+msgstr ""
+
+#: gui/maps/mapbrowser/controls/Pagination.js:33
+msgid "Decrease map preview size."
+msgstr ""
+
+#: gui/maps/mapbrowser/controls/Pagination.js:39
+#, javascript-format
+msgid "Maps: %(mapCount)s"
+msgstr ""
+
+#: gui/maps/mapbrowser/controls/Pagination.js:43
+#, javascript-format
+msgid "Page: %(currentPage)s/%(maxPage)s"
+msgstr ""
 
 #: gui/options/options.js:95
 #, javascript-format
@@ -2566,25 +2829,13 @@ msgstr "Zmeňte možnosti týkajúce sa nastavení v hre."
 msgid "Game Options"
 msgstr "Herné možnosti"
 
-#: gui/options/options.xml:(caption):42
-msgid "Reset"
-msgstr "Reštart"
-
 #: gui/options/options.xml:(caption):48
 msgid "Revert"
 msgstr "Vrátiť späť"
 
-#: gui/options/options.xml:(tooltip):43
-msgid "Resets user settings to their game default"
-msgstr "Vráti používateľove nastavenia na predvolené hodnoty hry"
-
 #: gui/options/options.xml:(tooltip):49
 msgid "Reverts to previous saved settings"
 msgstr "Vráti predošlé uložené nastavenia"
-
-#: gui/options/options.xml:(tooltip):55
-msgid "Saves changes"
-msgstr "Uložiť zmeny"
 
 #: gui/options/options.xml:(tooltip):61
 msgid "Unsaved changes affect this session only"
@@ -2616,216 +2867,219 @@ msgstr "Tutoriál"
 msgid "Start the economic tutorial."
 msgstr "Spusť ekonomický tutoriál."
 
-#: gui/pregame/MainMenuItems.js:24
+#: gui/pregame/MainMenuItems.js:25
 #: gui/reference/common/Buttons/StructreeButton.js:21
 #: gui/reference/structree/structree.xml:(caption):20
 msgid "Structure Tree"
 msgstr "Strom stavieb"
 
-#: gui/pregame/MainMenuItems.js:25
+#: gui/pregame/MainMenuItems.js:26
 #, javascript-format
 msgid ""
 "%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
 msgstr "%(hotkey)s: Pozri si strom stavieb civilizácií v 0 A,D,"
 
-#: gui/pregame/MainMenuItems.js:36
+#: gui/pregame/MainMenuItems.js:37
 #: gui/reference/civinfo/civinfo.xml:(caption):21
 #: gui/reference/common/Buttons/CivInfoButton.js:21
 msgid "Civilization Overview"
 msgstr "Prehľad civilizácie"
 
-#: gui/pregame/MainMenuItems.js:37
+#: gui/pregame/MainMenuItems.js:38
 #, javascript-format
 msgid "%(hotkey)s: Learn about the civilizations featured in 0 A.D."
 msgstr "%(hotkey)s: Dozvedieť sa viac o civilizáciách v 0 A.D."
 
-#: gui/pregame/MainMenuItems.js:48
+#: gui/pregame/MainMenuItems.js:49
 msgid "Catafalque Overview"
 msgstr "Prehľad katafalku"
 
-#: gui/pregame/MainMenuItems.js:49
+#: gui/pregame/MainMenuItems.js:50
 msgid "Compare the bonuses of catafalques featured in 0 A.D."
 msgstr "Porovnať bonusy katafalkov v 0. A.D."
 
-#: gui/pregame/MainMenuItems.js:55
+#: gui/pregame/MainMenuItems.js:56
 msgid "Map Overview"
 msgstr "Prehľad mapy"
 
-#: gui/pregame/MainMenuItems.js:56
+#: gui/pregame/MainMenuItems.js:57
 msgid "View the different maps featured in 0 A.D."
 msgstr "Zobraziť rôzne mapy v 0 A.D."
 
-#: gui/pregame/MainMenuItems.js:64 gui/replaymenu/replay_filters.js:144
+#: gui/pregame/MainMenuItems.js:65 gui/pregame/MainMenuItems.js:93
+msgid "Continue Campaign"
+msgstr ""
+
+#: gui/pregame/MainMenuItems.js:66 gui/pregame/MainMenuItems.js:94
+#: gui/pregame/MainMenuItems.js:104 gui/pregame/MainMenuItems.js:111
+msgid "Relive history through historical military campaigns."
+msgstr ""
+
+#: gui/pregame/MainMenuItems.js:75 gui/replaymenu/replay_filters.js:144
 msgid "Single-player"
 msgstr "Hra jedného hráča"
 
-#: gui/pregame/MainMenuItems.js:65
+#: gui/pregame/MainMenuItems.js:76
 msgid "Start, load, or replay a single-player game."
 msgstr "Zapnúť, načítať alebo znova prehrať hru jedného hráča."
 
-#: gui/pregame/MainMenuItems.js:68
+#: gui/pregame/MainMenuItems.js:79
 msgid "Matches"
 msgstr "Zápasy"
 
-#: gui/pregame/MainMenuItems.js:69
+#: gui/pregame/MainMenuItems.js:80
 msgid "Start a new single-player game."
 msgstr "Začať novú hru jedného hráča."
 
-#: gui/pregame/MainMenuItems.js:75
-msgid "Campaigns"
-msgstr "Kampane"
-
-#: gui/pregame/MainMenuItems.js:76
-msgid ""
-"Relive history through historical military campaigns. \\[NOT YET "
-"IMPLEMENTED]"
-msgstr "Prežite históriu pomocou historických vojenských kampaní. \\[ZATIAĽ NEIMPLEMENTOVANÉ]"
-
-#: gui/pregame/MainMenuItems.js:81
+#: gui/pregame/MainMenuItems.js:87
 msgid "Load a saved game."
 msgstr "Načítať uloženú hru."
 
-#: gui/pregame/MainMenuItems.js:87 gui/pregame/MainMenuItems.js:137
+#: gui/pregame/MainMenuItems.js:103
+msgid "New Campaign"
+msgstr ""
+
+#: gui/pregame/MainMenuItems.js:110
+msgid "Load Campaign"
+msgstr ""
+
+#: gui/pregame/MainMenuItems.js:120 gui/pregame/MainMenuItems.js:170
 msgid "Replays"
 msgstr "Prehrávania"
 
-#: gui/pregame/MainMenuItems.js:88 gui/pregame/MainMenuItems.js:138
+#: gui/pregame/MainMenuItems.js:121 gui/pregame/MainMenuItems.js:171
 msgid "Playback previous games."
 msgstr "Prehrať predošlé hry."
 
-#: gui/pregame/MainMenuItems.js:102 gui/replaymenu/replay_filters.js:144
+#: gui/pregame/MainMenuItems.js:135 gui/replaymenu/replay_filters.js:144
 msgid "Multiplayer"
 msgstr "Hra viacerých hráčov"
 
-#: gui/pregame/MainMenuItems.js:103
+#: gui/pregame/MainMenuItems.js:136
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "Bojujte proti jednému alebo viacerým ľuďom v hre viacerých hráčov."
 
 #. Translation: Join a game by specifying the host's IP address.
-#: gui/pregame/MainMenuItems.js:107
+#: gui/pregame/MainMenuItems.js:140
 msgid "Join Game"
 msgstr "Pripojiť sa k hre"
 
-#: gui/pregame/MainMenuItems.js:108
+#: gui/pregame/MainMenuItems.js:141
 msgid "Joining an existing multiplayer game."
 msgstr "Pripája sa k existujúcej hre viacerých hráčov."
 
-#: gui/pregame/MainMenuItems.js:116
+#: gui/pregame/MainMenuItems.js:149
 msgid "Host Game"
 msgstr "Vytvoriť hru"
 
-#: gui/pregame/MainMenuItems.js:117
+#: gui/pregame/MainMenuItems.js:150
 msgid "Host a multiplayer game."
 msgstr "Vytvoriť hru viacerých hráčov."
 
-#: gui/pregame/MainMenuItems.js:125
+#: gui/pregame/MainMenuItems.js:158
 msgid "Game Lobby"
 msgstr "Herná predsieň"
 
-#: gui/pregame/MainMenuItems.js:127
+#: gui/pregame/MainMenuItems.js:160
 #, javascript-format
 msgid ""
 "%(hotkey)s: Launch the multiplayer lobby to join and host publicly visible "
 "games and chat with other players."
 msgstr "%(hotkey)s: Spusti hernú predsieň pre pripojenie a hosťovanie verejne viditeľných hier a chatuj s ostatnými hráčmi. "
 
-#: gui/pregame/MainMenuItems.js:128
+#: gui/pregame/MainMenuItems.js:161
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
 msgstr "Spusti multiplayerovú predsieň. \\[ZNEFUNKČNENÉ BUILDOM]"
 
-#: gui/pregame/MainMenuItems.js:152
+#: gui/pregame/MainMenuItems.js:185
 msgid "Settings"
 msgstr "Nastavenia"
 
-#: gui/pregame/MainMenuItems.js:153
+#: gui/pregame/MainMenuItems.js:186
 msgid "Change game options."
 msgstr "Zmeniť možnosti hry"
 
-#: gui/pregame/MainMenuItems.js:156
+#: gui/pregame/MainMenuItems.js:189
 msgid "Options"
 msgstr "Možnosti"
 
-#: gui/pregame/MainMenuItems.js:157
+#: gui/pregame/MainMenuItems.js:190
 msgid "Adjust game settings."
 msgstr "Upraviť nastavenia hry."
 
-#: gui/pregame/MainMenuItems.js:166
+#: gui/hotkeys/hotkeys.xml:(caption):14 gui/pregame/MainMenuItems.js:199
 msgid "Hotkeys"
 msgstr "Klávesové skratky"
 
-#: gui/pregame/MainMenuItems.js:167
+#: gui/pregame/MainMenuItems.js:200
 msgid "Adjust hotkeys."
 msgstr "Upraviť klávesové skratky."
 
-#: gui/locale/locale.xml:(caption):14 gui/pregame/MainMenuItems.js:173
+#: gui/locale/locale.xml:(caption):14 gui/pregame/MainMenuItems.js:206
 msgid "Language"
 msgstr "Jazyk"
 
-#: gui/pregame/MainMenuItems.js:174
+#: gui/pregame/MainMenuItems.js:207
 msgid "Choose the language of the game."
 msgstr "Vybrať jazyk hry."
 
-#: gui/pregame/MainMenuItems.js:180
+#: gui/pregame/MainMenuItems.js:213
 msgid "Mod Selection"
 msgstr "Výber modov"
 
-#: gui/pregame/MainMenuItems.js:181
+#: gui/pregame/MainMenuItems.js:214
 msgid "Select and download mods for the game."
 msgstr "Vyber a stiahni módy pre hru. "
 
-#: gui/pregame/MainMenuItems.js:187
+#: gui/pregame/MainMenuItems.js:220
 msgid "Welcome Screen"
 msgstr "Úvodná obrazovka"
 
-#: gui/pregame/MainMenuItems.js:188
+#: gui/pregame/MainMenuItems.js:221
 msgid "Show the Welcome Screen again. Useful if you hid it by mistake."
 msgstr "Znova zobraziť uvítacie okno. Užitočné, ak ste ju skryli omylom."
 
-#: gui/pregame/MainMenuItems.js:196
+#: gui/pregame/MainMenuItems.js:229
 msgid "Scenario Editor"
 msgstr "Editor scenárov"
 
-#: gui/pregame/MainMenuItems.js:197
+#: gui/pregame/MainMenuItems.js:230
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "Otvoriť Atlas Scenario Editor v novom okne. Ak ho chcete otvoriť spoľahlivejšie, spustite hru v príkazovom riadku s argumentom „-editor“."
 
-#: gui/pregame/MainMenuItems.js:202
+#: gui/pregame/MainMenuItems.js:235
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
 msgstr "Naozaj chceš ukončiť 0 A.D. a otvoriť Scenário editor? "
 
-#: gui/pregame/MainMenuItems.js:203 gui/pregame/MainMenuItems.js:227
-msgid "Confirmation"
-msgstr "Potvrdenie"
-
-#: gui/pregame/MainMenuItems.js:209
+#: gui/pregame/MainMenuItems.js:242
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "Editor scenárov nie je k dispozícii alebo sa ho nepodarilo načítať. Ďalšie informácie nájdete v herných záznamoch."
 
-#: gui/pregame/MainMenuItems.js:210 gui/replaymenu/replay_actions.js:117
+#: gui/pregame/MainMenuItems.js:243 gui/replaymenu/replay_actions.js:117
 msgid "Error"
 msgstr "Chyba"
 
-#: gui/pregame/MainMenuItems.js:214
+#: gui/pregame/MainMenuItems.js:247
 msgid "Credits"
 msgstr "Poďakovanie"
 
-#: gui/pregame/MainMenuItems.js:215
+#: gui/pregame/MainMenuItems.js:248
 msgid "Show the 0 A.D. credits."
 msgstr "Zobraziť titulky ľudí podieľajúcich sa 0 A.D."
 
-#: gui/pregame/MainMenuItems.js:221
+#: gui/pregame/MainMenuItems.js:254
 msgid "Exit"
 msgstr "Ukončiť"
 
-#: gui/pregame/MainMenuItems.js:222
+#: gui/pregame/MainMenuItems.js:255
 msgid "Exit the game."
 msgstr "Ukončiť hru."
 
-#: gui/pregame/MainMenuItems.js:226
+#: gui/pregame/MainMenuItems.js:259
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Naozaj chcete ukončiť 0 A.D.?"
 
@@ -2834,8 +3088,8 @@ msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
 #: gui/pregame/ProjectInformation.js:18
-msgid "Alpha XXIV: Xšayāršā"
-msgstr "Alfa XXIV: Xšayāršā"
+msgid "Alpha XXV: Y——"
+msgstr ""
 
 #: gui/pregame/ProjectInformation.js:19
 msgid ""
@@ -2958,6 +3212,15 @@ msgid ""
 "improve performance and compatibility."
 msgstr "Môžete nám automaticky poslať spätnú väzbu, ktorá nám pomôže opraviť chyby a zlepšiť výkon a kompatibilitu."
 
+#: gui/reference/catafalque/CatafalquePage.js:41
+#, javascript-format
+msgid "%(hotkey)s: Close Catafalque Bonuses."
+msgstr ""
+
+#: gui/reference/catafalque/catafalque.xml:(caption):18
+msgid "Catafalque Bonuses"
+msgstr ""
+
 #. Translation: Description of an item in the CivInfo page, on a new line and
 #. indented.
 #: gui/reference/civinfo/CivInfoPage.js:95
@@ -3037,11 +3300,6 @@ msgstr[3] "Zvláštne technológie"
 #, javascript-format
 msgid "%(hotkey)s: Switch to Civilization Overview."
 msgstr "%(hotkey)s: Prepnúť na prehľad civilizácii."
-
-#: gui/credits/credits.xml:(caption):32 gui/options/options.xml:(caption):60
-#: gui/reference/common/Buttons/CloseButton.js:13
-msgid "Close"
-msgstr "Zavrieť"
 
 #: gui/reference/common/Buttons/StructreeButton.js:27
 #, javascript-format
@@ -3659,60 +3917,60 @@ msgstr ", "
 msgid "Time elapsed"
 msgstr "Uplynulý čas"
 
-#: gui/summary/summary.js:508
+#: gui/summary/summary.js:510
 msgid "Current Scores"
 msgstr "Tabuľka výsledkov"
 
-#: gui/summary/summary.js:510
+#: gui/summary/summary.js:512
 msgid "Scores at the end of the game."
 msgstr "Skóre na konci hry."
 
-#: gui/summary/summary.js:512
+#: gui/summary/summary.js:514
 msgid "You have been disconnected."
 msgstr "Boli ste odpojení."
 
-#: gui/summary/summary.js:514
+#: gui/summary/summary.js:516
 msgid "You have left the game."
 msgstr "Odišli ste z hry."
 
-#: gui/summary/summary.js:516
+#: gui/summary/summary.js:518
 msgid "You have won the battle!"
 msgstr "Vyhral si bitku!"
 
-#: gui/summary/summary.js:518
+#: gui/summary/summary.js:520
 msgid "You have been defeated…"
 msgstr "Bol si porazený..."
 
-#: gui/summary/summary.js:519
+#: gui/summary/summary.js:521
 msgid "You have abandoned the game."
 msgstr "Opustil si hru."
 
-#: gui/summary/summary.js:522
+#: gui/summary/summary.js:524
 #, javascript-format
 msgid "Game time elapsed: %(time)s"
 msgstr "Uplynutý herný čas: %(time)s"
 
-#: gui/summary/summary.js:530
+#: gui/summary/summary.js:532
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s – %(mapType)s"
 
-#: gui/summary/summary.js:542
+#: gui/summary/summary.js:544
 #, javascript-format
 msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
 msgstr "%(hotkey)s: Otvor predsieň hry viac hráčov v dialóvom okne."
 
-#: gui/summary/summary.js:555
+#: gui/summary/summary.js:557
 #, javascript-format
 msgid "Toggle the %(name)s summary tab."
 msgstr "Prepnúť na %(name)s zobrazenie zhrnutia."
 
-#: gui/summary/summary.js:556
+#: gui/summary/summary.js:558
 #, javascript-format
 msgid "Use %(hotkey)s to move a summary tab right."
 msgstr "Použite %(hotkey)s na posunutie zobrazenia zhrnutia vpravo."
 
-#: gui/summary/summary.js:557
+#: gui/summary/summary.js:559
 #, javascript-format
 msgid "Use %(hotkey)s to move a summary tab left."
 msgstr "Použite %(hotkey)s na posunutie zobrazenia zhrnutia vľavo."

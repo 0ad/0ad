@@ -9,7 +9,7 @@
 # mohammad khodadadi <asmanp2012@gmail.com>, 2017
 # Mohammad Namvarpour <mohammadnamvarpour@gmail.com>, 2020
 # Mohsen Nouri <mohsen.nouri1372@gmail.com>, 2014
-# Mostafa Lotfi <lotfi.mostafa@gmail.com>, 2018-2019
+# Mostafa Lotfi <lotfi.mostafa@gmail.com>, 2018-2019,2021
 # omidh <omid_h28@hotmail.com>, 2013
 # reza latifi <reza.bubba@gmail.com>, 2019
 # VAHID SOHRABLOO <vahid4134@gmail.com>, 2014
@@ -18,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-29 08:08+0000\n"
-"PO-Revision-Date: 2021-02-20 01:43+0000\n"
-"Last-Translator: aleks a <caspian7@yandex.com>\n"
+"PO-Revision-Date: 2021-03-06 04:08+0000\n"
+"Last-Translator: Mostafa Lotfi <lotfi.mostafa@gmail.com>\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -45,7 +45,7 @@ msgstr "رفتار هوش مصنوعی"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIDifficulty.js:89
 msgid "AI Difficulty"
-msgstr "سختی هوش"
+msgstr "سختی هوش مصنوعی"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AISelection.js:86
 msgctxt "ai"
@@ -111,7 +111,7 @@ msgstr "تخصیص داده نشده"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:131
 msgid "Choose the civilization for this player."
-msgstr " تمدن این بازیکن را انتخاب کنید."
+msgstr "انتخاب تمدن این بازیکن."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:134
 msgctxt "civilization"
@@ -263,11 +263,11 @@ msgstr "غیر فعال کردن گنجینه ها"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js:46
 msgid "Do not add treasures to the map."
-msgstr "گنجینه ها را به نقشه اضافه نکن"
+msgstr "اضافه نکردن گنجینه ها به نقشه."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:49
 msgid "World population"
-msgstr "مردم جهان"
+msgstr "جمعیت دنیا"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:52
 msgid ""
@@ -298,7 +298,7 @@ msgstr "روز"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:104
 msgid "Select whether the match takes place at daylight or night."
-msgstr "انتخاب کنید که مسابقه در روز رخ دهد یا در شب"
+msgstr "نبرد در روز رخ دهد یا در شب"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:107
 msgctxt "daytime selection"
@@ -329,7 +329,7 @@ msgstr "یکی از مناظر را برای این نقشه انتخاب کنی
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:147
 msgctxt "landscape selection"
 msgid "Random Land or Naval"
-msgstr "نقشه ی تصادفی یا دریایی"
+msgstr "نقشه زمینی یا دریایی بصورت تصادفی"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:148
 msgctxt "landscape selection"
@@ -449,7 +449,7 @@ msgstr "مکان تیم"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:94
 msgid "Select one of the starting position patterns of this map."
-msgstr "یکی از الگو های جایگزینی این نقشه را انتخاب کنید"
+msgstr "یکی از الگو های  پیش فرض موقعیت شروع این نقشه را انتخاب کنید"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:98
 msgctxt "team placement"
@@ -459,7 +459,7 @@ msgstr "تصادفی"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:99
 msgctxt "team placement"
 msgid "Select a random team placement pattern when starting the game."
-msgstr "یک الگوی تصادفی جایگزینی تیم را در زمان آغاز بازی انتخاب کن"
+msgstr "انتخاب یک الگوی پیش فرض تصادفی برای موقعیت تیم در نقشه"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:105
 msgctxt "team placement"
@@ -470,7 +470,7 @@ msgstr "دایره"
 msgid ""
 "Allied players are grouped and placed with opposing players on one circle "
 "spanning the map."
-msgstr "بازیکنان متحد گروهبندی شده اند و با بازیکنان دشمن یک دایره به دور نقشه تشکیل داده اند. "
+msgstr "بازیکنان متحد در یک گروه قرار گرفته و با تیم حریف به شکل یک دایره بدور نقشه قرار گرفته اند."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:110
 msgctxt "team placement"
@@ -1013,7 +1013,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:9
 msgid "“Union gives strength.” \\n— Aesop (“The Bundle of Sticks”)"
-msgstr "“اتحاد قدرت میدهد.” \\n— Aesop (“The Bundle of Sticks”)"
+msgstr "\"اتحاد قدرت می سازد\" - آزوپ (داستان \"دسته چوب\")"
 
 #: gui/text/quotes.txt:10
 msgid ""
@@ -1048,7 +1048,7 @@ msgstr ""
 msgid ""
 "“Enemies' promises were made to be broken.” \\n— Aesop (“The Nurse and the "
 "Wolf”)"
-msgstr "“عهد های دشمن برای شکسته شدن ساخته شده اند.” \\n— Aesop (“The Nurse and the Wolf”)"
+msgstr "\"قول های دشمنان شما بسته شده اند که شکسته شوند\" - آزوپ (داستان \"پرستار و گرگ\")"
 
 #: gui/text/quotes.txt:16
 msgid "“Any excuse will serve a tyrant.” \\n— Aesop (“The Wolf and the Lamb”)"

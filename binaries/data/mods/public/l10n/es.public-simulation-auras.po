@@ -39,7 +39,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-03-02 10:53+0000\n"
+"PO-Revision-Date: 2021-03-05 08:58+0000\n"
 "Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -343,7 +343,7 @@ msgstr "Comandante de caballería pesada"
 msgid ""
 "Warring with the Romans, Ambiorix realized the futility of open warfare and instead resorted to ambush tactics. The Gauls quickly learned where and when to execute surprise attacks.\n"
 "Soldiers +5% melee and ranged attack damage and −25% promotion experience."
-msgstr "Batallando con los romanos, Ambiórix se dio cuenta de la futilidad de la guerra abierta contra ellos y decidió apostar por tácticas de emboscada. Los galos aprendieron rápidamente donde y cuando ejecutar ataques sorpresa.\nLos soldados aumentan sus ataques cuerpo a cuerpo y a distancia +5% y disminuye el coste de experiencia para promocionar -25%."
+msgstr "Batallando con los romanos, Ambiórix se dio cuenta de la futilidad de la guerra abierta contra ellos y decidió apostar por tácticas de emboscada. Los galos aprendieron rápidamente donde y cuando ejecutar ataques sorpresa.\nSoldados (Daño a distancia y cuerpo a cuerpo: +5%; Experiencia para promocionar: −25%)."
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_1.jsonauraName
 msgid "Ambush Slaughter"
@@ -588,7 +588,7 @@ msgstr "Arquitecto naval"
 msgid ""
 "Champions +2 capture attack strength, +20% melee and ranged attack damage, "
 "+10% movement speed."
-msgstr "Tropas de élite (Fuerza de captura: +2; Daño: +20%, cuerpo a cuerpo y a distancia; Velocidad de movimiento: +10%)."
+msgstr "Tropas de élite (Fuerza de captura: +2; Daño a distancia y cuerpo a cuerpo: +20%; Velocidad de movimiento: +10%)."
 
 #: simulation/data/auras/units/heroes/brit_hero_boudicca.jsonauraName
 msgid "Champion Army"
@@ -633,7 +633,7 @@ msgstr "Someter mercenarios"
 msgid ""
 "Own and Allied Soldiers and Siege Engines +1 capture attack strength, +20% "
 "melee and ranged attack damage."
-msgstr "Soldados y máquinas de asedio propios y aliados (Fuerza de captura: +1; Daño: +20%, cuerpo a cuerpo y a distancia)."
+msgstr "Soldados y máquinas de asedio propios y aliados (Fuerza de captura: +1; Daño a distancia y cuerpo a cuerpo: +20%)."
 
 #: simulation/data/auras/units/heroes/cart_hero_hannibal.jsonauraName
 msgid "Tactician"
@@ -641,7 +641,7 @@ msgstr "Estratega"
 
 #: simulation/data/auras/units/heroes/cart_hero_maharbal.jsonauraDescription
 msgid "Melee Cavalry +30% melee attack damage."
-msgstr "Caballería cuerpo a cuerpo (Daño: +30%)."
+msgstr "Caballería (Daño cuerpo a cuerpo: +30%)."
 
 #: simulation/data/auras/units/heroes/cart_hero_maharbal.jsonauraName
 msgid "Cavalry Commander"
@@ -659,7 +659,7 @@ msgstr "Saqueador de Roma"
 msgid ""
 "Soldiers and Siege Engines +1 capture attack strength, +20% melee and ranged"
 " attack damage."
-msgstr "Soldados y máquinas de asedio (Fuerza de captura: +1; Daño: +20%, cuerpo a cuerpo y a distancia)."
+msgstr "Soldados y máquinas de asedio (Fuerza de captura: +1; Daño a distancia y cuerpo a cuerpo: +20%."
 
 #: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.jsonauraName
 msgid "Celtic Warlord"
@@ -719,7 +719,7 @@ msgstr "Botín"
 #: simulation/data/auras/units/heroes/mace_hero_philip_ii.jsonauraDescription
 msgid ""
 "Champions +2 capture attack strength, +20% melee and ranged attack damage."
-msgstr "Tropas de élite (Fuerza de captura: +2; Daño: +20%, cuerpo a cuerpo y a distancia)."
+msgstr "Tropas de élite (Fuerza de captura: +2; Daño a distancia y cuerpo a cuerpo: +20%)."
 
 #: simulation/data/auras/units/heroes/kush_hero_amanirenas.jsonauraName
 msgid "Warrior Queen"
@@ -798,7 +798,7 @@ msgstr "Taxiarchès"
 msgid ""
 "Siege Engines +1 crush, hack, pierce resistance, +20% melee and ranged "
 "attack damage, +10% ranged attack range, +10% vision range."
-msgstr "Máquinas de asedio (Resistencia al aplastamiento, corte y perforación: +1; Daño a distancia y cuerpo a cuerpo: +20%; Distancia de ataque: +10%; Campo de visión: +10%)."
+msgstr "Máquinas de asedio (Resistencia al aplastamiento, corte y perforación: +1; Daño a distancia y cuerpo a cuerpo: +20%; Alcance: +10%; Campo de visión: +10%)."
 
 #: simulation/data/auras/units/heroes/mace_hero_demetrius_i.jsonauraName
 msgid "Besieger"
@@ -843,7 +843,7 @@ msgstr "Regeneración"
 #: simulation/data/auras/units/heroes/pers_hero_cyrus_ii.jsonauraDescription
 msgid ""
 "Cavalry +1 capture attack strength, +20% melee and ranged attack damage."
-msgstr "Caballería (Fuerza de ataque de captura: +1; Ataque: +20%)."
+msgstr "Caballería (Fuerza de captura: +1; Daño: +20%)."
 
 #: simulation/data/auras/units/heroes/pers_hero_cyrus_ii.jsonauraName
 msgid "Forefront Leader"
@@ -913,7 +913,7 @@ msgstr "Rafia"
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_1.jsonauraDescription
 msgid "Cavalry +15% melee and ranged attack damage."
-msgstr "Caballería (Ataque: +15%)."
+msgstr "Caballería (Daño a distancia y cuerpo a cuerpo: +15%)."
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_1.jsonauraName
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_2.jsonauraName
@@ -922,7 +922,7 @@ msgstr "Espada de Roma"
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_2.jsonauraDescription
 msgid "Enemy Infantry −10% melee and ranged attack damage."
-msgstr "Infantería enemiga (Ataque a distancia y cuerpo a cuerpo: −10%)."
+msgstr "Infantería enemiga (Daño a distancia y cuerpo a cuerpo: −10%)."
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraDescription
 msgid "Humans and Structures +1 crush, hack, pierce resistance."
@@ -936,7 +936,7 @@ msgstr "Escudo de Roma"
 msgid ""
 "Soldiers and Siege Engines +2 capture attack strength, +20% melee and ranged"
 " attack damage."
-msgstr "Soldados y máquinas de asedio (Fuerza de captura: +2; Daño: +20% cuerpo a cuerpo y a distancia)."
+msgstr "Soldados y máquinas de asedio (Fuerza de captura: +2; Daño a distancia y cuerpo a cuerpo: +20%)."
 
 #: simulation/data/auras/units/heroes/rome_hero_scipio.jsonauraName
 msgid "Triumph"
@@ -960,7 +960,7 @@ msgstr "Gran conquistador"
 
 #: simulation/data/auras/units/heroes/sele_hero_seleucus_i.jsonauraDescription
 msgid "Champion Elephants +20% melee attack damage, +20% movement speed."
-msgstr "Elefantes de élite (Ataque cuerpo a cuerpo: +20%; Velocidad: +20%)."
+msgstr "Elefantes de élite (Daño cuerpo a cuerpo: +20%; Velocidad: +20%)."
 
 #: simulation/data/auras/units/heroes/sele_hero_seleucus_i.jsonauraName
 msgid "Zooiarchos"

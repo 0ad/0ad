@@ -6,12 +6,13 @@
 # LaPingvino <ikojba@gmail.com>, 2014
 # LaPingvino <ikojba@gmail.com>, 2016
 # Muhammad Furqon Abrori <furqonklondigizoid@gmail.com>, 2016
+# Vladim Štér <vladim.ster94@gmail.com>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-01-22 08:36+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-03-07 16:08+0000\n"
+"Last-Translator: Vladim Štér <vladim.ster94@gmail.com>\n"
 "Language-Team: Esperanto (http://www.transifex.com/wildfire-games/0ad/language/eo/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,39 +23,39 @@ msgstr ""
 #: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(caption):28
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):61
 msgid "Back"
-msgstr "Retroiri"
+msgstr "Reen"
 
 #: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(caption):32
 msgid "Update"
-msgstr ""
+msgstr "Ĝisdatigo"
 
 #: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(heading):17
 msgid "Rank"
-msgstr ""
+msgstr "Rango"
 
 #: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(heading):20
 #: gui/lobby/LobbyPage/GameList.xml:(heading):12
 #: gui/lobby/LobbyPage/PlayerList.xml:(heading):15
 msgid "Name"
-msgstr "Nomo"
+msgstr "Kromnomo"
 
 #: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(heading):23
 #: gui/lobby/LobbyPage/GameList.xml:(heading):27
 #: gui/lobby/LobbyPage/PlayerList.xml:(heading):18
 msgid "Rating"
-msgstr ""
+msgstr "Takso"
 
 #: gui/lobby/LobbyPage/AnnouncementHandler.js:18
 msgid "Notice"
-msgstr ""
+msgstr "Rimarko"
 
 #: gui/lobby/LobbyPage/Buttons/BuddyButton.js:69
 msgid "Mark as Buddy"
-msgstr ""
+msgstr "Marki kiel amiko"
 
 #: gui/lobby/LobbyPage/Buttons/BuddyButton.js:70
 msgid "Unmark as Buddy"
-msgstr ""
+msgstr "Malmarki kiel amiko"
 
 #: gui/lobby/LobbyPage/Buttons/HostButton.js:10
 msgid "Host Game"
@@ -62,19 +63,19 @@ msgstr "Gastigi ludon"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:40
 msgid "Your active mods do not match the mods of this game."
-msgstr ""
+msgstr "Viaj aktivaj modoj ne kongruas kun la modoj de ĉi tiu ludo."
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:42
 msgid "Do you want to switch to the mod selection page?"
-msgstr ""
+msgstr "Ĉu vi volas ŝanĝi al la mod-elekta paĝo?"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:43
 msgid "Incompatible mods"
-msgstr ""
+msgstr "Nekongruaj modoj"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:52
 msgid "The game has already started. Do you want to join as observer?"
-msgstr ""
+msgstr "La ludo jam komenciĝis. Ĉu vi volas aliĝi kiel observanto?"
 
 #. Translation: Join the game currently selected in the list.
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:104
@@ -84,17 +85,17 @@ msgstr "Aliĝi al ludo"
 #: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(caption):12
 #: gui/lobby/LobbyPage/Buttons/LeaderboardButton.js:9
 msgid "Leaderboard"
-msgstr ""
+msgstr "Poenttabulo"
 
 #: gui/lobby/LobbyPage/Buttons/ProfileButton.js:9
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):12
 msgid "Player Profile Lookup"
-msgstr ""
+msgstr "Ludanta profila serĉo"
 
 #: gui/lobby/LobbyPage/Buttons/QuitButton.js:15
 msgctxt "previous page"
 msgid "Back"
-msgstr "Retroiri"
+msgstr "Reen"
 
 #: gui/lobby/LobbyPage/Buttons/QuitButton.js:16
 msgctxt "previous page"
@@ -104,56 +105,56 @@ msgstr "Ĉefa Menuo"
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:32
 #, javascript-format
 msgid "The command '%(cmd)s' is not supported."
-msgstr ""
+msgstr "La komando '%(cmd)s' ne estas subtenata."
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:44
 #, javascript-format
 msgid "The command '%(cmd)s' is restricted to moderators."
-msgstr ""
+msgstr "La komando '%(cmd)s' estas limigita al moderantoj."
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:66
 #, javascript-format
 msgid "The command '%(cmd)s' requires at least one argument."
-msgstr ""
+msgstr "La komando '%(cmd)s' postulas almenaŭ unu argumenton."
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:87
 msgid "Set your state to 'Away'."
-msgstr ""
+msgstr "Agordu vian staton al \"For\"."
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:94
 msgid "Set your state to 'Online'."
-msgstr ""
+msgstr "Agordu vian staton al 'Interrete'."
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:101
 msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
-msgstr ""
+msgstr "Piedi specifan uzanton el la vestiblo. Uzado: / piedi kromnomo kialo"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:113
 msgid "Ban a specified user from the lobby. Usage: /ban nick reason"
-msgstr ""
+msgstr "Malpermesi specifan uzanton el la vestiblo. Uzado: /malpermesi kromnomo kialo"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:125
 msgid "Show this help."
-msgstr ""
+msgstr "Montru ĉi tiun helpon."
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:128
 msgid "Chat commands:"
-msgstr ""
+msgstr "Babiladaj komandoj:"
 
 #. Translation: Chat command help format
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:132
 #, javascript-format
 msgid "%(command)s - %(description)s"
-msgstr ""
+msgstr "%(command)s-%(description)s"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:146
 msgid "Send a chat message about yourself. Example: /me goes swimming."
-msgstr ""
+msgstr "Sendi en babilado mesaĝon pri mi mem. Ekzemple: /me mi naĝos."
 
 #. Translation: Chat command
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:149
 msgid "/me"
-msgstr ""
+msgstr "/mi"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:153
 msgid ""
@@ -164,36 +165,36 @@ msgstr ""
 #. Translation: Chat command
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:156
 msgid "/say"
-msgstr ""
+msgstr "/diru"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:160
 msgid "Clear all chat scrollback."
-msgstr ""
+msgstr "Forigi ĉiujn babilejajn retromemorojn."
 
 #. Translation: Chat message issued using the ‘/me’ command.
 #: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessageFormatMe.js:24
 #, javascript-format
 msgid "* %(sender)s %(message)s"
-msgstr ""
+msgstr "* %(sender)s%(message)s"
 
 #: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessageFormatSay.js:29
 #, javascript-format
 msgid "<%(sender)s>"
-msgstr ""
+msgstr "<%(sender)s>"
 
 #: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessageFormatSay.js:31
 #, javascript-format
 msgid "%(sender)s %(message)s"
-msgstr ""
+msgstr "%(sender)s%(message)s"
 
 #: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessagePrivateWrapper.js:23
 msgid "Private"
-msgstr ""
+msgstr "Privata"
 
 #: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessagePrivateWrapper.js:25
 #, javascript-format
 msgid "(%(private)s) %(message)s"
-msgstr ""
+msgstr "(%(private)s)%(message)s"
 
 #: gui/lobby/LobbyPage/Chat/ChatPanel.xml:(caption):12
 msgid "Send"
@@ -202,53 +203,53 @@ msgstr "Sendu"
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:47
 #, javascript-format
 msgid "%(nick)s has joined."
-msgstr ""
+msgstr "%(nick)s aliĝis."
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:48
 #, javascript-format
 msgid "%(nick)s has left."
-msgstr ""
+msgstr "%(nick)s foriris."
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:70
 #, javascript-format
 msgid "%(oldnick)s is now known as %(newnick)s."
-msgstr ""
+msgstr "%(oldnick)sestas nun konata kiel%(newnick)s."
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:107
 msgid "You have been muted."
-msgstr ""
+msgstr "Vi estis silentigita."
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:108
 #, javascript-format
 msgid "%(nick)s has been muted."
-msgstr ""
+msgstr "%(nick)s estis silentigita."
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:112
 msgid "You are now a moderator."
-msgstr ""
+msgstr "Vi nun estas moderanto."
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:113
 #, javascript-format
 msgid "%(nick)s is now a moderator."
-msgstr ""
+msgstr "%(nick)sestas nun moderanto."
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:118
 msgid "You have been unmuted."
-msgstr ""
+msgstr "Vi estis malsilentiga."
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:119
 #, javascript-format
 msgid "%(nick)s has been unmuted."
-msgstr ""
+msgstr "%(nick)sestis malsilentigita."
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:124
 msgid "You are not a moderator anymore."
-msgstr ""
+msgstr "Vi ne jam estas moderanto."
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:125
 #, javascript-format
 msgid "%(nick)s is not a moderator anymore."
-msgstr ""
+msgstr "%(nick)sne estas moreranto jam."
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:152
 #, javascript-format
@@ -264,31 +265,31 @@ msgstr ""
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageFormat.js:25
 #, javascript-format
 msgid "== %(message)s"
-msgstr ""
+msgstr "== %(message)s"
 
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageEvents.js:55
 msgid "Connected."
-msgstr ""
+msgstr "Konektis."
 
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageEvents.js:56
 msgid "Disconnected."
-msgstr ""
+msgstr "Diskonektis."
 
 #. Translation: Caption for system notifications shown in the chat panel
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageFormat.js:25
 msgid "System:"
-msgstr ""
+msgstr "Sistemo:"
 
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageFormat.js:32
 #, javascript-format
 msgid "=== %(system)s %(message)s"
-msgstr ""
+msgstr "===%(system)s%(message)s"
 
 #. Translation: Chat message format when there is a time prefix.
 #: gui/lobby/LobbyPage/Chat/TimestampWrapper.js:25
 #, javascript-format
 msgid "%(time)s %(message)s"
-msgstr ""
+msgstr "%(time)s%(message)s"
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it in the
@@ -296,25 +297,25 @@ msgstr ""
 #: gui/lobby/LobbyPage/Chat/TimestampWrapper.js:28
 #, javascript-format
 msgid "\\[%(time)s]"
-msgstr ""
+msgstr "\\[%(time)s]"
 
 #: gui/lobby/LobbyPage/ConnectionHandler.js:45
 msgid "BANNED"
-msgstr ""
+msgstr "MALPERMESITA"
 
 #: gui/lobby/LobbyPage/ConnectionHandler.js:45
 msgid "KICKED"
-msgstr ""
+msgstr "PIEDIS"
 
 #: gui/lobby/LobbyPage/ConnectionHandler.js:61
 msgid "You have been disconnected from the lobby. Do you want to reconnect?"
-msgstr ""
+msgstr "Vi estis malkonektita de la vestiblo. Ĉu vi volas rekonekti?"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:53
 #: gui/lobby/LobbyPage/ConnectionHandler.js:62
 #: gui/prelobby/common/credentials/credentials.js:55
 msgid "Confirmation"
-msgstr ""
+msgstr "Konfirmo"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:44
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:54
@@ -334,32 +335,32 @@ msgstr "Jes"
 #: gui/lobby/LobbyPage/Game.js:298
 #, javascript-format
 msgid "%(current)s/%(max)s +%(observercount)s"
-msgstr ""
+msgstr "%(current)s/%(max)s+%(observercount)s"
 
 #. Translation: The number of players in this game
 #: gui/lobby/LobbyPage/Game.js:301
 #, javascript-format
 msgid "%(current)s/%(max)s"
-msgstr ""
+msgstr "%(current)s/%(max)s"
 
 #: gui/lobby/LobbyPage/GameDetails.js:65
 msgctxt "victory condition"
 msgid "Endless Game"
-msgstr "Senlima ludo"
+msgstr "Senfina ludo"
 
 #: gui/lobby/LobbyPage/GameDetails.js:117
 #, javascript-format
 msgid "Host: %(playername)s"
-msgstr ""
+msgstr "Gastiganto: %(playername)s"
 
 #: gui/lobby/LobbyPage/GameDetails.js:119
 #, javascript-format
 msgid "Players: %(current)s/%(total)s"
-msgstr ""
+msgstr "Geludantoj: %(current)s/%(total)s"
 
 #: gui/lobby/LobbyPage/GameDetails.js:121
 msgid "Victory Conditions:"
-msgstr ""
+msgstr "Venkaj kondiĉoj:"
 
 #. Translation: Comma used to concatenate victory conditions
 #: gui/lobby/LobbyPage/GameDetails.js:124
@@ -368,22 +369,22 @@ msgstr "'"
 
 #: gui/lobby/LobbyPage/GameDetails.js:126
 msgid "Mods:"
-msgstr ""
+msgstr "Modoj:"
 
 #. Translation: %(time)s is the hour and minute here.
 #: gui/lobby/LobbyPage/GameDetails.js:129
 #, javascript-format
 msgid "Game started at %(time)s"
-msgstr ""
+msgstr "Ludo komencos je %(time)s"
 
 #: gui/lobby/LobbyPage/Chat/TimestampWrapper.js:33
 #: gui/lobby/LobbyPage/GameDetails.js:131
 msgid "HH:mm"
-msgstr ""
+msgstr "HH:MM"
 
 #: gui/lobby/LobbyPage/GameDetails.js:133
 msgid "Map Type:"
-msgstr "Tipo de mapo:"
+msgstr "Speco de mapo:"
 
 #: gui/lobby/LobbyPage/GameDetails.js:135
 msgid "Map Size:"
@@ -391,7 +392,7 @@ msgstr "Grandeco de la mapo:"
 
 #: gui/lobby/LobbyPage/GameDetails.js:137
 msgid "Map Description:"
-msgstr ""
+msgstr "Mapo priskribo:"
 
 #: gui/lobby/LobbyPage/GameList.xml:(heading):15
 msgid "Map Name"
@@ -405,15 +406,15 @@ msgstr "Grandeco"
 #: gui/lobby/LobbyPage/GameList.xml:(heading):21
 msgctxt "map"
 msgid "Type"
-msgstr ""
+msgstr "Speco"
 
 #: gui/lobby/LobbyPage/GameList.xml:(heading):24
 msgid "Players"
-msgstr "Ludantoj"
+msgstr "Geludantoj"
 
 #: gui/lobby/LobbyPage/GameListFilters.xml:(caption):7
 msgid "Show only open games"
-msgstr ""
+msgstr "Montri nur malfermajn ludojn"
 
 #: gui/lobby/LobbyPage/GameListFilters/MapSize.js:9
 msgctxt "map size"
@@ -435,13 +436,13 @@ msgstr "Ajna"
 #, javascript-format
 msgctxt "gamelist filter"
 msgid "> %(rating)s"
-msgstr ""
+msgstr ">%(rating)s"
 
 #: gui/lobby/LobbyPage/GameListFilters/Rating.js:20
 #, javascript-format
 msgctxt "gamelist filter"
 msgid "< %(rating)s"
-msgstr ""
+msgstr "< %(rating)s"
 
 #: gui/lobby/LobbyPage/KickStrings.js:39
 msgid "You have been kicked from the lobby!"
@@ -470,28 +471,28 @@ msgstr ""
 #: gui/lobby/LobbyPage/LobbyPage.xml:(caption):13
 #: gui/prelobby/entrance/entrance.xml:(caption):14
 msgid "Multiplayer Lobby"
-msgstr ""
+msgstr "Plurludanta vestiblo"
 
 #: gui/lobby/LobbyPage/PlayerColor.js:34
 #, javascript-format
 msgid "%(nick)s (%(rating)s)"
-msgstr ""
+msgstr "%(nick)s(%(rating)s)"
 
 #: gui/lobby/LobbyPage/PlayerList.js:178
 msgid "Online"
-msgstr "En la reto"
+msgstr "Interrete"
 
 #: gui/lobby/LobbyPage/PlayerList.js:184
 msgid "Away"
-msgstr ""
+msgstr "For"
 
 #: gui/lobby/LobbyPage/PlayerList.js:190
 msgid "Busy"
-msgstr ""
+msgstr "Okupita"
 
 #: gui/lobby/LobbyPage/PlayerList.js:196
 msgid "Offline"
-msgstr ""
+msgstr "Eksterrete"
 
 #: gui/lobby/LobbyPage/PlayerList.js:202
 msgctxt "lobby presence"
@@ -512,7 +513,7 @@ msgstr ""
 
 #: gui/lobby/LobbyPage/ProfilePanel.js:113
 msgid "Player"
-msgstr ""
+msgstr "Geludanto"
 
 #: gui/lobby/LobbyPage/ProfilePanel.js:114
 msgid "Muted Player"
@@ -565,7 +566,7 @@ msgstr ""
 
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):16
 msgid "Enter playername:"
-msgstr ""
+msgstr "Tajpu nomon de ludanto:"
 
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):22
 msgid "View Profile"
@@ -573,37 +574,37 @@ msgstr ""
 
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):55
 msgid "Please enter a player name."
-msgstr ""
+msgstr "Bonvolu, tajpu nomon de ludanto."
 
 #: gui/prelobby/common/credentials/confirmpassword.xml:(caption):4
 msgid "Password again:"
-msgstr ""
+msgstr "Pasvorto denove:"
 
 #: gui/prelobby/common/credentials/credentials.js:5
 msgid "Please enter your username"
-msgstr ""
+msgstr "Bonvolu, tajpu vian kromnomon."
 
 #: gui/prelobby/common/credentials/credentials.js:8
 msgid "Invalid username"
-msgstr ""
+msgstr "Malvalida kromnomo"
 
 #: gui/prelobby/common/credentials/credentials.js:19
 msgctxt "register"
 msgid "Please enter your password"
-msgstr ""
+msgstr "Bonvolu, tajpu vian pasvorton"
 
 #: gui/prelobby/common/credentials/credentials.js:20
 msgctxt "login"
 msgid "Please enter your password"
-msgstr ""
+msgstr "Bonvolu, tajpu vian pasvorton"
 
 #: gui/prelobby/common/credentials/credentials.js:23
 msgid "Please choose a longer password"
-msgstr ""
+msgstr "Bonvolu, tajpu pli longan pasvorton."
 
 #: gui/prelobby/common/credentials/credentials.js:32
 msgid "Please enter your password again"
-msgstr ""
+msgstr "Bonvolu, tajpu vian pasvorton denove."
 
 #: gui/prelobby/common/credentials/credentials.js:36
 msgid "Passwords do not match"
@@ -615,7 +616,7 @@ msgstr ""
 
 #: gui/prelobby/common/credentials/credentials.xml:(caption):6
 msgid "Login:"
-msgstr ""
+msgstr "Kromnomo:"
 
 #: gui/prelobby/common/credentials/credentials.xml:(caption):15
 msgid "Password:"
@@ -623,7 +624,7 @@ msgstr "Pasvorto:"
 
 #: gui/prelobby/common/credentials/rememberpassword.xml:(caption):7
 msgid "Remember Password"
-msgstr ""
+msgstr "Memori pasvorton"
 
 #: gui/prelobby/common/feedback/feedback.js:4
 msgid ""
@@ -681,7 +682,7 @@ msgstr ""
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:11
 msgid "[font=\"sans-bold-14\"]2. Password[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]2. Pasvorto[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:12
 msgid ""
@@ -698,7 +699,7 @@ msgstr ""
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:15
 msgid "[font=\"sans-bold-14\"]3. IP address[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]3. IP adreso[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:16
 msgid ""
@@ -753,7 +754,7 @@ msgstr ""
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:26
 msgid "[font=\"sans-bold-14\"]5. Chat messages[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]5. Mesaĝoj de geludantoj[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:27
 msgid ""
@@ -1237,7 +1238,7 @@ msgstr ""
 
 #: gui/prelobby/entrance/entrance.xml:(caption):20
 msgid "Create a new account"
-msgstr ""
+msgstr "Kreigi novan konton"
 
 #: gui/prelobby/entrance/entrance.xml:(caption):25
 msgid "Login to an existing account"
