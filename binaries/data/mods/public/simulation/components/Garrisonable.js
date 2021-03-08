@@ -197,4 +197,17 @@ Garrisonable.prototype.OnEntityRenamed = function(msg)
 	delete this.holder;
 };
 
+/**
+ * @param {Object} msg - { "entity": this.entity, "from": {number}, "to": {number} }
+ */
+Garrisonable.prototype.OnOwnershipChanged = function(msg)
+{
+	if (!this.holder)
+		return;
+
+	let cmpGarrisonHolder = Engine.QueryInterface(this.holder, IID_GarrisonHolder);
+	if (!cmpGarrisonHolder.IsAllowedToBeGarrisoned(this.entity))
+		this.UnGarrison(msg.to == INVALID_PLAYER);
+};
+
 Engine.RegisterComponentType(IID_Garrisonable, "Garrisonable", Garrisonable);

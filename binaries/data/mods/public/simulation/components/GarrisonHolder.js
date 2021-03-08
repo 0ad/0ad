@@ -154,11 +154,16 @@ GarrisonHolder.prototype.IsAllowedToGarrison = function(entity)
 	if (!this.IsGarrisoningAllowed())
 		return false;
 
-	if (!IsOwnedByMutualAllyOfEntity(entity, this.entity))
-		return false;
-
 	let cmpGarrisonable = Engine.QueryInterface(entity, IID_Garrisonable);
 	if (!cmpGarrisonable || this.OccupiedSlots() + cmpGarrisonable.TotalSize() > this.GetCapacity())
+		return false;
+
+	return this.IsAllowedToBeGarrisoned(entity);
+};
+
+GarrisonHolder.prototype.IsAllowedToBeGarrisoned = function(entity)
+{
+	if (!IsOwnedByMutualAllyOfEntity(entity, this.entity))
 		return false;
 
 	let cmpIdentity = Engine.QueryInterface(entity, IID_Identity);
@@ -427,37 +432,11 @@ GarrisonHolder.prototype.OnDestroy = function()
  * If a garrisoned entity is captured, or about to be killed (so its owner changes to '-1'),
  * remove it from the building so we only ever contain valid entities.
  */
-GarrisonHolder.prototype.OnGlobalOwnershipChanged = function(msg)
+GarrisonHolder.prototype.OnOwnershipChanged = function(msg)
 {
-	// The ownership change may be on the garrisonholder
-	if (this.entity == msg.entity)
-	{
-		let entities = this.entities.filter(ent => msg.to == INVALID_PLAYER || !IsOwnedByMutualAllyOfEntity(this.entity, ent));
-
-		if (entities.length)
-			this.EjectOrKill(entities);
-
-		return;
-	}
-
-	// or on some of its garrisoned units
-	let entityIndex = this.entities.indexOf(msg.entity);
-	if (entityIndex != -1)
-	{
-		// If the entity is dead, remove it directly instead of ejecting the corpse
-		let cmpHealth = Engine.QueryInterface(msg.entity, IID_Health);
-		if (cmpHealth && cmpHealth.GetHitpoints() == 0)
-		{
-			this.entities.splice(entityIndex, 1);
-			Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, {
-				"added": [],
-				"removed": [msg.entity]
-			});
-			this.UpdateGarrisonFlag();
-		}
-		else if (msg.to == INVALID_PLAYER || !IsOwnedByMutualAllyOfEntity(this.entity, msg.entity))
-			this.EjectOrKill([msg.entity]);
-	}
+	let entities = this.entities.filter(ent => msg.to == INVALID_PLAYER || !IsOwnedByMutualAllyOfEntity(this.entity, ent));
+	if (entities.length)
+		this.EjectOrKill(entities);
 };
 
 /**
@@ -583,7 +562,7 @@ GarrisonHolder.prototype.OnValueModification = function(msg)
 	if (msg.valueNames.indexOf("GarrisonHolder/List/_string") !== -1)
 	{
 		this.allowedClasses = ApplyValueModificationsToEntity("GarrisonHolder/List/_string", this.template.List._string, this.entity);
-		this.EjectOrKill(this.entities.filter(entity => !this.IsAllowedToGarrison(entity)));
+		this.EjectOrKill(this.entities.filter(entity => !this.IsAllowedToBeGarrisoned(entity)));
 	}
 
 	if (msg.valueNames.indexOf("GarrisonHolder/BuffHeal") === -1)
