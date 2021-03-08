@@ -45,32 +45,32 @@ Garrisonable.prototype.HolderID = function()
 };
 
 /**
- * @param {number} - The entity ID to check.
+ * @param {number} target - The entity ID to check.
  * @return {boolean} - Whether we can garrison.
  */
-Garrisonable.prototype.CanGarrison = function(entity)
+Garrisonable.prototype.CanGarrison = function(target)
 {
 	if (this.holder)
 		return false;
 
-	let cmpGarrisonHolder = Engine.QueryInterface(entity, IID_GarrisonHolder);
+	let cmpGarrisonHolder = Engine.QueryInterface(target, IID_GarrisonHolder);
 	return cmpGarrisonHolder && cmpGarrisonHolder.IsAllowedToGarrison(this.entity);
 };
 
 /**
- * @param {number} entity - The entity ID of the entity this entity is being garrisoned in.
+ * @param {number} target - The entity ID of the entity this entity is being garrisoned in.
  * @return {boolean} - Whether garrisoning succeeded.
  */
-Garrisonable.prototype.Garrison = function(entity, renamed = false)
+Garrisonable.prototype.Garrison = function(target, renamed = false)
 {
-	if (!this.CanGarrison(entity))
+	if (!this.CanGarrison(target))
 		return false;
 
-	let cmpGarrisonHolder = Engine.QueryInterface(entity, IID_GarrisonHolder);
+	let cmpGarrisonHolder = Engine.QueryInterface(target, IID_GarrisonHolder);
 	if (!cmpGarrisonHolder || !cmpGarrisonHolder.Garrison(this.entity))
 		return false;
 
-	this.holder = entity;
+	this.holder = target;
 
 	let cmpProductionQueue = Engine.QueryInterface(this.entity, IID_ProductionQueue);
 	if (cmpProductionQueue)
@@ -78,7 +78,7 @@ Garrisonable.prototype.Garrison = function(entity, renamed = false)
 
 	let cmpAura = Engine.QueryInterface(this.entity, IID_Auras);
 	if (cmpAura && cmpAura.HasGarrisonAura())
-		cmpAura.ApplyGarrisonAura(entity);
+		cmpAura.ApplyGarrisonAura(target);
 
 	let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 	if (cmpPosition)
@@ -87,7 +87,7 @@ Garrisonable.prototype.Garrison = function(entity, renamed = false)
 	if (renamed)
 		return true;
 
-	let cmpTurretHolder = Engine.QueryInterface(entity, IID_TurretHolder);
+	let cmpTurretHolder = Engine.QueryInterface(target, IID_TurretHolder);
 	if (cmpTurretHolder)
 		cmpTurretHolder.OccupyTurret(this.entity);
 
@@ -96,17 +96,17 @@ Garrisonable.prototype.Garrison = function(entity, renamed = false)
 
 /**
  * Called on game init when the entity was part of init garrison.
- * @param {number} entity - The entityID to autogarrison.
+ * @param {number} target - The entityID to autogarrison.
  * @return {boolean} - Whether garrisoning succeeded.
  */
-Garrisonable.prototype.Autogarrison = function(entity)
+Garrisonable.prototype.Autogarrison = function(target)
 {
-	if (!this.Garrison(entity))
+	if (!this.Garrison(target))
 		return false;
 
 	let cmpUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
 	if (cmpUnitAI)
-		cmpUnitAI.Autogarrison(this.entity);
+		cmpUnitAI.Autogarrison(target);
 	return true;
 };
 
@@ -181,11 +181,8 @@ Garrisonable.prototype.OnEntityRenamed = function(msg)
 			cmpGarrisonable.Garrison(this.holder, true);
 	}
 
-	// We process EntityRenamed of turrets here because we need to be sure that we
-	// receive it after it is processed by GarrisonHolder.js.
-	// ToDo: Make this not needed by fully separating TurretHolder from GarrisonHolder.
-	// That means an entity with TurretHolder should not need a GarrisonHolder
-	// for e.g. the garrisoning logic.
+	// We process EntityRenamed of turrets seperately since we
+	// want to occupy the same position after being renamed.
 	let cmpTurretHolder = Engine.QueryInterface(this.holder, IID_TurretHolder);
 	if (cmpTurretHolder)
 		cmpTurretHolder.SwapEntities(msg.entity, msg.newentity);

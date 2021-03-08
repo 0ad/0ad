@@ -238,7 +238,7 @@
 			<object type="button" style="StoneButton" size="40%+25 0 57%+25 100%">
 				<translatableAttribute id="caption">Rebuild Cache</translatableAttribute>
 				<translatableAttribute id="tooltip">Rebuild the replay cache from scratch. Potentially slow!</translatableAttribute>
-				<action on="Press">reloadCache();</action>
+				<action on="Press">reloadCache(); displayReplayList();</action>
 			</object>
 
 			<!-- Summary Button -->
