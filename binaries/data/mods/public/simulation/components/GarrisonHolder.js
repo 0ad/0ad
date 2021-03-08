@@ -461,14 +461,13 @@ GarrisonHolder.prototype.OnGlobalOwnershipChanged = function(msg)
 };
 
 /**
- * Update list of garrisoned entities if one gets renamed (e.g. by promotion).
+ * Update list of garrisoned entities when a game inits.
  */
-GarrisonHolder.prototype.OnGlobalEntityRenamed = function(msg)
+GarrisonHolder.prototype.OnGlobalSkirmishReplacerReplaced = function(msg)
 {
 	if (!this.initGarrison)
 		return;
 
-	// Update the pre-game garrison because of SkirmishReplacement
 	if (msg.entity == this.entity)
 	{
 		let cmpGarrisonHolder = Engine.QueryInterface(msg.newentity, IID_GarrisonHolder);
