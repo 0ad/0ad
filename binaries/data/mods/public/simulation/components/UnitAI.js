@@ -589,7 +589,7 @@ UnitAI.prototype.UnitFsmSpec = {
 			return ACCEPT_ORDER;
 		}
 
-		if (this.IsGarrisoned())
+		if (this.isGarrisoned)
 		{
 			this.SetNextState("INDIVIDUAL.GARRISON.GARRISONED");
 			return ACCEPT_ORDER;
@@ -610,8 +610,11 @@ UnitAI.prototype.UnitFsmSpec = {
 	},
 
 	"Order.Ungarrison": function() {
+		// Note that this order MUST succeed, or we break
+		// the assumptions done in garrisonable/garrisonHolder,
+		// especially in Unloading in the latter. (For user feedback.)
+		// ToDo: This can be fixed by not making that assumption :)
 		this.FinishOrder();
-		this.isGarrisoned = false;
 		return ACCEPT_ORDER;
 	},
 
@@ -3259,9 +3262,6 @@ UnitAI.prototype.UnitFsmSpec = {
 							let cmpGarrisonable = Engine.QueryInterface(this.entity, IID_Garrisonable);
 							if (cmpGarrisonable.Garrison(target))
 							{
-								this.isGarrisoned = true;
-								this.SetImmobile(true);
-
 								if (this.formationController)
 								{
 									var cmpFormation = Engine.QueryInterface(this.formationController, IID_Formation);
@@ -3463,9 +3463,7 @@ UnitAI.prototype.Init = function()
 	this.orderQueue = []; // current order is at the front of the list
 	this.order = undefined; // always == this.orderQueue[0]
 	this.formationController = INVALID_ENTITY; // entity with IID_Formation that we belong to
-	this.isGarrisoned = false;
 	this.isIdle = false;
-	this.isImmobile = false; // True if the unit is currently unable to move (garrisoned,...)
 
 	this.heldPosition = undefined;
 
@@ -3539,14 +3537,17 @@ UnitAI.prototype.ResetIdle = function()
 	Engine.PostMessage(this.entity, MT_UnitIdleChanged, { "idle": this.isIdle });
 };
 
-UnitAI.prototype.IsGarrisoned = function()
-{
-	return this.isGarrisoned;
-};
-
 UnitAI.prototype.SetGarrisoned = function()
 {
+	// UnitAI caches its own garrisoned state for performance.
 	this.isGarrisoned = true;
+	this.SetImmobile();
+};
+
+UnitAI.prototype.UnsetGarrisoned = function()
+{
+	delete this.isGarrisoned;
+	this.SetMobile();
 };
 
 UnitAI.prototype.GetGarrisonHolder = function()
@@ -3563,9 +3564,24 @@ UnitAI.prototype.ShouldRespondToEndOfAlert = function()
 	return !this.orderQueue.length || this.orderQueue[0].type == "Garrison";
 };
 
-UnitAI.prototype.SetImmobile = function(immobile)
+UnitAI.prototype.SetImmobile = function()
 {
-	this.isImmobile = immobile;
+	if (this.isImmobile)
+		return;
+
+	this.isImmobile = true;
+	Engine.PostMessage(this.entity, MT_UnitAbleToMoveChanged, {
+		"entity": this.entity,
+		"ableToMove": this.AbleToMove()
+	});
+};
+
+UnitAI.prototype.SetMobile = function()
+{
+	if (!this.isImmobile)
+		return;
+
+	delete this.isImmobile;
 	Engine.PostMessage(this.entity, MT_UnitAbleToMoveChanged, {
 		"entity": this.entity,
 		"ableToMove": this.AbleToMove()
@@ -3888,7 +3904,7 @@ UnitAI.prototype.FinishOrder = function()
 	this.order = this.orderQueue[0];
 
 	let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
-	if (this.orderQueue.length && (this.IsGarrisoned() || this.IsFormationController() ||
+	if (this.orderQueue.length && (this.isGarrisoned || this.IsFormationController() ||
 	        cmpPosition && cmpPosition.IsInWorld()))
 	{
 		let ret = this.UnitFsm.ProcessMessage(this,
@@ -4063,7 +4079,7 @@ UnitAI.prototype.ReplaceOrder = function(type, data)
 			this.UpdateWorkOrders(type);
 	}
 
-	let garrisonHolder = this.IsGarrisoned() && type != "Ungarrison" ? this.GetGarrisonHolder() : null;
+	let garrisonHolder = this.isGarrisoned && type != "Ungarrison" ? this.GetGarrisonHolder() : null;
 
 	// Do not replace packing/unpacking unless it is cancel order.
 	// TODO: maybe a better way of doing this would be to use priority levels
@@ -4178,10 +4194,10 @@ UnitAI.prototype.BackToWork = function()
 	if (this.workOrders.length == 0)
 		return false;
 
-	if (this.IsGarrisoned())
+	if (this.isGarrisoned)
 	{
-		let cmpGarrisonHolder = Engine.QueryInterface(this.GetGarrisonHolder(), IID_GarrisonHolder);
-		if (!cmpGarrisonHolder || !cmpGarrisonHolder.PerformEject([this.entity], false))
+		let cmpGarrisonable = Engine.QueryInterface(this.entity, IID_Garrisonable);
+		if (!cmpGarrisonable || !cmpGarrisonable.UnGarrison(false))
 			return false;
 	}
 
@@ -5362,7 +5378,7 @@ UnitAI.prototype.AddOrder = function(type, data, queued, pushFront)
 	{
 		// May happen if an order arrives on the same turn the unit is garrisoned
 		// in that case, just forget the order as this will lead to an infinite loop
-		if (this.IsGarrisoned() && !this.IsTurret() && type != "Ungarrison")
+		if (this.isGarrisoned && !this.IsTurret() && type != "Ungarrison")
 			return;
 		this.ReplaceOrder(type, data);
 	}
@@ -5607,11 +5623,9 @@ UnitAI.prototype.Garrison = function(target, queued, pushFront)
  */
 UnitAI.prototype.Ungarrison = function()
 {
-	if (this.IsGarrisoned())
-	{
-		this.SetImmobile(false);
-		this.AddOrder("Ungarrison", null, false);
-	}
+	if (!this.isGarrisoned)
+		return;
+	this.AddOrder("Ungarrison", null, false);
 };
 
 /**
@@ -5619,7 +5633,6 @@ UnitAI.prototype.Ungarrison = function()
  */
 UnitAI.prototype.Autogarrison = function(target)
 {
-	this.isGarrisoned = true;
 	this.PushOrderFront("Garrison", { "target": target });
 };
 

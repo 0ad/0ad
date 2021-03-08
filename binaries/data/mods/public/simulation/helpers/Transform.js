@@ -67,7 +67,7 @@ function ChangeEntityTemplate(oldEnt, newTemplate)
 			cmpNewUnitAI.SetHeldPosition(pos.x, pos.z);
 		if (cmpUnitAI.GetStanceName())
 			cmpNewUnitAI.SwitchToStance(cmpUnitAI.GetStanceName());
-		if (cmpUnitAI.IsGarrisoned())
+		if (cmpUnitAI.GetGarrisonHolder() != INVALID_ENTITY)
 			cmpNewUnitAI.SetGarrisoned();
 		cmpNewUnitAI.AddOrders(cmpUnitAI.GetOrders());
 		if (cmpUnitAI.IsGuardOf())

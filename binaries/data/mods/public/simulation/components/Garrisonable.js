@@ -72,6 +72,10 @@ Garrisonable.prototype.Garrison = function(target, renamed = false)
 
 	this.holder = target;
 
+	let cmpUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
+	if (cmpUnitAI)
+		cmpUnitAI.SetGarrisoned();
+
 	let cmpProductionQueue = Engine.QueryInterface(this.entity, IID_ProductionQueue);
 	if (cmpProductionQueue)
 		cmpProductionQueue.PauseProduction();
@@ -144,7 +148,10 @@ Garrisonable.prototype.UnGarrison = function(forced = false, renamed = false)
 
 	let cmpUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
 	if (cmpUnitAI)
+	{
 		cmpUnitAI.Ungarrison();
+		cmpUnitAI.UnsetGarrisoned();
+	}
 
 	let cmpProductionQueue = Engine.QueryInterface(this.entity, IID_ProductionQueue);
 	if (cmpProductionQueue)
