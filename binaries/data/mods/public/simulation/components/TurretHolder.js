@@ -252,6 +252,28 @@ class TurretHolder
 	}
 
 	/**
+	 * Update list of turreted entities when a game inits.
+	 */
+	OnGlobalSkirmishReplacerReplaced(msg)
+	{
+		if (!this.initTurrets)
+			return;
+
+		if (msg.entity == this.entity)
+		{
+			let cmpTurretHolder = Engine.QueryInterface(msg.newentity, IID_TurretHolder);
+			if (cmpTurretHolder)
+				cmpTurretHolder.initTurrets = this.initTurrets;
+		}
+		else
+		{
+			let entityIndex = this.initTurrets.indexOf(msg.entity);
+			if (entityIndex != -1)
+				this.initTurrets[entityIndex] = msg.newentity;
+		}
+	}
+
+	/**
 	 * Initialise the turreted units.
 	 * Really ugly, but because GarrisonHolder is processed earlier, and also turrets
 	 * entities on init, we can find an entity that already is present.

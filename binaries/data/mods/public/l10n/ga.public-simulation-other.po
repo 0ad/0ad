@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2020 Wildfire Games
+# Copyright (C) 2021 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2020-11-13 09:19+0000\n"
+"POT-Creation-Date: 2021-03-05 08:13+0000\n"
+"PO-Revision-Date: 2021-03-05 09:29+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Irish (http://www.transifex.com/wildfire-games/0ad/language/ga/)\n"
 "MIME-Version: 1.0\n"
@@ -366,22 +366,22 @@ msgstr "Is bota réamhshocraithe í Petra de chuid 0 A.D. Tuairiscigh deacrachta
 msgid "Petra Bot"
 msgstr "Bota Petra"
 
-#: simulation/components/BuildRestrictions.js:86
+#: simulation/components/BuildRestrictions.js:91
 #, javascript-format
 msgid "%(name)s cannot be built due to unknown error"
 msgstr "Ní féidir le %(name)s a thógáil mar gheall ar earráid anaithnid"
 
-#: simulation/components/BuildRestrictions.js:110
+#: simulation/components/BuildRestrictions.js:115
 #, javascript-format
 msgid "%(name)s cannot be built in unexplored area"
 msgstr "Ní féidir le %(name)s a thógáil i gcríocha neamh-thaiscéalaíochta"
 
-#: simulation/components/BuildRestrictions.js:158
+#: simulation/components/BuildRestrictions.js:163
 #, javascript-format
 msgid "%(name)s cannot be built on another building or resource"
 msgstr "Ní féidir le %(name)s a thógáil ar foirgneamh nó acmhainn eile"
 
-#: simulation/components/BuildRestrictions.js:162
+#: simulation/components/BuildRestrictions.js:167
 #, javascript-format
 msgid "%(name)s cannot be built on invalid terrain"
 msgstr "Ní féidir le %(name)s a thógáil ar talamh neamhbhailí"
@@ -389,7 +389,7 @@ msgstr "Ní féidir le %(name)s a thógáil ar talamh neamhbhailí"
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House
 #. cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:185
+#: simulation/components/BuildRestrictions.js:190
 msgctxt "Territory type"
 msgid "own"
 msgstr "tusa féin"
@@ -397,7 +397,7 @@ msgstr "tusa féin"
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House
 #. cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:188
+#: simulation/components/BuildRestrictions.js:193
 msgctxt "Territory type"
 msgid "unconnected own"
 msgstr "tusa féin neamhcheangailte"
@@ -405,7 +405,7 @@ msgstr "tusa féin neamhcheangailte"
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House
 #. cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:194
+#: simulation/components/BuildRestrictions.js:199
 msgctxt "Territory type"
 msgid "allied"
 msgstr "comhghuaillithe"
@@ -413,7 +413,7 @@ msgstr "comhghuaillithe"
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House
 #. cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:197
+#: simulation/components/BuildRestrictions.js:202
 msgctxt "Territory type"
 msgid "unconnected allied"
 msgstr "comghuaillithe neamhcheangailte"
@@ -421,7 +421,7 @@ msgstr "comghuaillithe neamhcheangailte"
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House
 #. cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:203
+#: simulation/components/BuildRestrictions.js:208
 msgctxt "Territory type"
 msgid "neutral"
 msgstr "neodrach"
@@ -429,24 +429,24 @@ msgstr "neodrach"
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House
 #. cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:210
+#: simulation/components/BuildRestrictions.js:215
 msgctxt "Territory type"
 msgid "enemy"
 msgstr "naimhde"
 
-#: simulation/components/BuildRestrictions.js:215
+#: simulation/components/BuildRestrictions.js:220
 #, javascript-format
 msgid ""
 "%(name)s cannot be built in %(territoryType)s territory. Valid territories: "
 "%(validTerritories)s"
 msgstr "Ní féidir le %(name)s a thógáil i grcíocha %(territoryType)s. Críocha bailí: %(validTerritories)s"
 
-#: simulation/components/BuildRestrictions.js:229
+#: simulation/components/BuildRestrictions.js:234
 #, javascript-format
 msgid "%(name)s must be built on a valid shoreline"
 msgstr "Is gá le %(name)s a thógáil ar cósta bailí"
 
-#: simulation/components/BuildRestrictions.js:256
+#: simulation/components/BuildRestrictions.js:261
 #, javascript-format
 msgid ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meter "
@@ -460,7 +460,7 @@ msgstr[2] "Tá %(name)s róghar le %(category)s, is gá leis a bheidh %(distance
 msgstr[3] "Tá %(name)s róghar le %(category)s, is gá leis a bheidh %(distance)s méadair ar shiúl"
 msgstr[4] "Tá %(name)s róghar le %(category)s, is gá leis a bheidh %(distance)s méadair ar shiúl"
 
-#: simulation/components/BuildRestrictions.js:277
+#: simulation/components/BuildRestrictions.js:282
 #, javascript-format
 msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meter"
@@ -475,7 +475,7 @@ msgstr[4] "Tá %(name)s rófhada le %(category)s, is gá leis a bheidh taobh ist
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories:
 #. own, ally".
-#: simulation/components/BuildRestrictions.js:317
+#: simulation/components/BuildRestrictions.js:322
 msgctxt "Territory type list"
 msgid "own"
 msgstr "tusa féin"
@@ -483,7 +483,7 @@ msgstr "tusa féin"
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories:
 #. own, ally".
-#: simulation/components/BuildRestrictions.js:319
+#: simulation/components/BuildRestrictions.js:324
 msgctxt "Territory type list"
 msgid "ally"
 msgstr "comhghuaillithe"
@@ -491,7 +491,7 @@ msgstr "comhghuaillithe"
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories:
 #. own, ally".
-#: simulation/components/BuildRestrictions.js:321
+#: simulation/components/BuildRestrictions.js:326
 msgctxt "Territory type list"
 msgid "neutral"
 msgstr "neodrach"
@@ -499,7 +499,7 @@ msgstr "neodrach"
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories:
 #. own, ally".
-#: simulation/components/BuildRestrictions.js:323
+#: simulation/components/BuildRestrictions.js:328
 msgctxt "Territory type list"
 msgid "enemy"
 msgstr "naimhde"
@@ -527,41 +527,41 @@ msgstr[4] "Tá %(players)s is %(lastPlayer)s ina mbuaiteoirí (na himreoirí is 
 msgid "Last remaining player wins."
 msgstr "Buaigh an t-imreoir is deireanaí."
 
-#: simulation/components/EntityLimits.js:165
+#: simulation/components/EntityLimits.js:192
 #, javascript-format
 msgid "%(category)s build limit of %(limit)s reached"
 msgstr "Tá an teorainn thógála %(limit)s do %(category)s bainte amach"
 
-#: simulation/components/EntityLimits.js:167
+#: simulation/components/EntityLimits.js:194
 #, javascript-format
 msgid "%(category)s training limit of %(limit)s reached"
 msgstr "Tá an teorainn traenála %(limit)s do %(category)s bainte amach"
 
-#: simulation/components/EntityLimits.js:171
+#: simulation/components/EntityLimits.js:198
 #, javascript-format
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "Tá an teorainn %(limit)s do %(category)s bainte amach"
 
-#: simulation/components/Player.js:319
+#: simulation/components/Player.js:348
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
 msgstr "Acmhainní easnamhacha - %(resourceAmount1)s %(resourceType1)s"
 
-#: simulation/components/Player.js:321
+#: simulation/components/Player.js:350
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
 msgstr "Acmhainní easnamhacha - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
 
-#: simulation/components/Player.js:323
+#: simulation/components/Player.js:352
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 msgstr "Acmhainní easnamhacha - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 
-#: simulation/components/Player.js:325
+#: simulation/components/Player.js:354
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
@@ -573,11 +573,11 @@ msgstr "Acmhainní easnamhacha - %(resourceAmount1)s %(resourceType1)s, %(resour
 msgid "Entity is being upgraded. Cannot start production."
 msgstr ""
 
-#: simulation/components/ProductionQueue.js:512
+#: simulation/components/ProductionQueue.js:515
 msgid "The production queue is full."
 msgstr ".Tá an scuaine táirgthe ró-lán."
 
-#: simulation/components/ProductionQueue.js:900
+#: simulation/components/ProductionQueue.js:905
 msgid "Can't find free space to spawn trained units"
 msgstr "Ní féidir le spás ar fáil a aimsiú d'aonaid thraenáilte a sceitheadh"
 
@@ -861,55 +861,51 @@ msgstr "Tá %(player)s cloíte (feall)."
 msgid "You need to select a building that trains units."
 msgstr "Tá ort foirgneamh a roghnú d'aonaid a thraenáil."
 
-#: simulation/helpers/Commands.js:114
+#: simulation/helpers/Commands.js:134
 msgid "(Cheat - control all units)"
 msgstr "(Feall - cuir na haonaid uile faoi smacht)"
 
-#: simulation/helpers/Commands.js:129
+#: simulation/helpers/Commands.js:149
 msgid "(Cheat - reveal map)"
 msgstr "(Feall - léirigh léarscáil)"
 
-#: simulation/helpers/Commands.js:442
+#: simulation/helpers/Commands.js:462
 #, javascript-format
 msgid "%(player)s has resigned."
 msgstr "Éirí %(player)s as"
 
-#: simulation/helpers/Commands.js:581
+#: simulation/helpers/Commands.js:601
 msgid "(Cheat - promoted units)"
 msgstr "(Feall - aonaid ardaithe)"
 
-#: simulation/helpers/Commands.js:702
+#: simulation/helpers/Commands.js:722
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "Ní féidir le huasghradú a dhéanamh mar níl riachtanais an fhaid ina mbailí nó tá baic ar an dtalamh seo."
 
-#: simulation/helpers/Commands.js:712
-msgid "Cannot upgrade a garrisoned entity."
-msgstr "Ní féidir le huasghradú a dhéanamh ar aonán garastúntha."
-
-#: simulation/helpers/Commands.js:757
+#: simulation/helpers/Commands.js:767
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Tá ionsaí ar %(_player_)s faoi iarratas."
 
-#: simulation/helpers/Commands.js:796
+#: simulation/helpers/Commands.js:806
 msgid "There are no bribable units"
 msgstr "Níl aon aonad sobhreabtha ann"
 
-#: simulation/helpers/Commands.js:842
+#: simulation/helpers/Commands.js:852
 msgid "Unable to ungarrison unit(s)"
 msgstr "Níl ábalta aona(i)d a chur i ngarastún"
 
-#: simulation/helpers/Commands.js:856
+#: simulation/helpers/Commands.js:866
 msgid "Some unit(s) can't go back to work"
 msgstr "Ní féidir le roinnt aona(i)d a chur ag obair"
 
-#: simulation/helpers/Commands.js:875
+#: simulation/helpers/Commands.js:885
 #, javascript-format
 msgid "%(unit)s can't be controlled."
 msgstr ""
 
-#: simulation/helpers/Commands.js:1115
+#: simulation/helpers/Commands.js:1136
 msgid "The building's technology requirements are not met."
 msgstr "Ní bhailí iad riachtanais teicneolaíochta an fhoirgnimh seo."

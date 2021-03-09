@@ -1,21 +1,20 @@
 # Translation template for Pyrogenesis.
 # Copyright (C) 2020 Wildfire Games
 # This file is distributed under the same license as the Pyrogenesis project.
-# 
 # Translators:
 # علیرضا محمدنژاد <aarmn80@gmail.com>, 2018
 # Amin Behshad, 2015
 # hamed farri <hamed.farri@gmail.com>, 2016
 # Kasra D. Tabrizi, 2020
-# Mostafa Lotfi <lotfi.mostafa@gmail.com>, 2018
+# Mostafa Lotfi <lotfi.mostafa@gmail.com>, 2018,2021
 # Spahbod <myops37@yahoo.com>, 2013
 # reza latifi <reza.bubba@gmail.com>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-05-22 07:08+0000\n"
-"PO-Revision-Date: 2020-07-19 03:42+0000\n"
-"Last-Translator: Kasra D. Tabrizi\n"
+"POT-Creation-Date: 2020-11-28 10:01+0000\n"
+"PO-Revision-Date: 2021-03-05 21:44+0000\n"
+"Last-Translator: Mostafa Lotfi <lotfi.mostafa@gmail.com>\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,146 +22,146 @@ msgstr ""
 "Language: fa\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: i18n/L10n.cpp:251
+#: i18n/L10n.cpp:247
 msgid "Long strings"
 msgstr "رشته های طولانی"
 
-#: lobby/XmppClient.cpp:887
+#: lobby/XmppClient.cpp:881
 msgid "unknown subtype (see logs)"
 msgstr "زیرشاخه شناخته نشده ( یادداشتها را ببینید )"
 
-#: lobby/XmppClient.cpp:1215
+#: lobby/XmppClient.cpp:1209
 msgid "The certificate is not trusted."
 msgstr "مجوز نامعتبر است."
 
-#: lobby/XmppClient.cpp:1216
+#: lobby/XmppClient.cpp:1210
 msgid "The certificate hasn't got a known issuer."
 msgstr "مجوز منبع شناخته شده ندارد."
 
-#: lobby/XmppClient.cpp:1217
+#: lobby/XmppClient.cpp:1211
 msgid "The certificate has been revoked."
 msgstr "مجوز نامعتبر است."
 
-#: lobby/XmppClient.cpp:1218
+#: lobby/XmppClient.cpp:1212
 msgid "The certificate has expired."
 msgstr "مجوز منقضی شده است."
 
-#: lobby/XmppClient.cpp:1219
+#: lobby/XmppClient.cpp:1213
 msgid "The certificate is not yet active."
 msgstr "مجوز هنوز فعال نشده است."
 
-#: lobby/XmppClient.cpp:1220
+#: lobby/XmppClient.cpp:1214
 msgid "The certificate has not been issued for the peer connected to."
-msgstr "مجوز برای همکار متصل شده به آن صادر نشده است."
+msgstr "مجوز برای سیستمی که قصد اتصال به آن را دارید صادر نشده است."
 
-#: lobby/XmppClient.cpp:1221
+#: lobby/XmppClient.cpp:1215
 msgid "The certificate signer is not a certificate authority."
-msgstr "امضا کننده‌ی مجوز یک منبع صادر کننده‌ی مجوز نیست."
+msgstr "امضا کننده‌ی مجوز یک منبع صادر کننده‌ی مجاز نیست."
 
-#: lobby/XmppClient.cpp:1243 lobby/XmppClient.cpp:1287
-#: lobby/XmppClient.cpp:1326
+#: lobby/XmppClient.cpp:1237 lobby/XmppClient.cpp:1281
+#: lobby/XmppClient.cpp:1320
 msgid "Error"
 msgstr "خطا"
 
-#: lobby/XmppClient.cpp:1246 lobby/XmppClient.cpp:1290
+#: lobby/XmppClient.cpp:1240 lobby/XmppClient.cpp:1284
 msgid "No error"
 msgstr "خطایی نیست."
 
-#: lobby/XmppClient.cpp:1248
+#: lobby/XmppClient.cpp:1242
 msgid "Player already logged in"
 msgstr "بازیکن در حال حاضر وارد بازی شده است."
 
-#: lobby/XmppClient.cpp:1250
+#: lobby/XmppClient.cpp:1244
 msgid "Forbidden"
 msgstr "ممنوع شده است ."
 
-#: lobby/XmppClient.cpp:1252
+#: lobby/XmppClient.cpp:1246
 msgid "Internal server error"
 msgstr "خطای داخلی سرور"
 
-#: lobby/XmppClient.cpp:1256
+#: lobby/XmppClient.cpp:1250
 msgid "Not allowed"
 msgstr "مجاز نیست"
 
-#: lobby/XmppClient.cpp:1257
+#: lobby/XmppClient.cpp:1251
 msgid "Not authorized"
 msgstr "معتبر نیست"
 
-#: lobby/XmppClient.cpp:1260
+#: lobby/XmppClient.cpp:1254
 msgid "Recipient temporarily unavailable"
 msgstr "گیرنده به طور موقت در دسترس نیست"
 
-#: lobby/XmppClient.cpp:1262
+#: lobby/XmppClient.cpp:1256
 msgid "Registration required"
 msgstr "باید ثبت‌نام کنید !"
 
-#: lobby/XmppClient.cpp:1266
+#: lobby/XmppClient.cpp:1260
 msgid "Service unavailable"
 msgstr "سرویس در دسترس نیست"
 
-#: lobby/XmppClient.cpp:1271 lobby/XmppClient.cpp:1310
+#: lobby/XmppClient.cpp:1265 lobby/XmppClient.cpp:1304
 msgid "Unknown error"
 msgstr "خطای ناشناخته"
 
-#: lobby/XmppClient.cpp:1291
+#: lobby/XmppClient.cpp:1285
 msgid "Stream error"
 msgstr "خطای استریم"
 
-#: lobby/XmppClient.cpp:1292
+#: lobby/XmppClient.cpp:1286
 msgid "The incoming stream version is unsupported"
 msgstr "نسخه استریم ورودی پشتیبانی نشده است"
 
-#: lobby/XmppClient.cpp:1293
+#: lobby/XmppClient.cpp:1287
 msgid "The stream has been closed by the server"
 msgstr "استریم توسط سرور بسته شده است"
 
-#: lobby/XmppClient.cpp:1297
+#: lobby/XmppClient.cpp:1291
 msgid "An I/O error occurred"
 msgstr "یک خطای I/O رخ داد"
 
-#: lobby/XmppClient.cpp:1299
+#: lobby/XmppClient.cpp:1293
 msgid "The connection was refused by the server"
 msgstr "ارتباط توسط سرور رد شد"
 
-#: lobby/XmppClient.cpp:1300
+#: lobby/XmppClient.cpp:1294
 msgid "Resolving the server's hostname failed"
 msgstr "حل کردن نام میزبان سرور ناموفق بود"
 
-#: lobby/XmppClient.cpp:1301
+#: lobby/XmppClient.cpp:1295
 msgid "This system is out of memory"
 msgstr "این سیستم با مشکل کمبود رم یا همان حافظه مواجهه است"
 
-#: lobby/XmppClient.cpp:1303
+#: lobby/XmppClient.cpp:1297
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
 msgstr "گواهی سرور تأیید نشده است و یا هندشیک TLS با موفقیت کامل نشده است"
 
-#: lobby/XmppClient.cpp:1304
+#: lobby/XmppClient.cpp:1298
 msgid "The server did not offer required TLS encryption"
 msgstr "سرور کدگذاری TLS لازم را ارائه نمیدهد "
 
-#: lobby/XmppClient.cpp:1306
+#: lobby/XmppClient.cpp:1300
 msgid "Authentication failed. Incorrect password or account does not exist"
 msgstr "احراز هویت ناموفق بوده است. رمز ورود نادرست یا حساب کاربری وجود ندارد"
 
-#: lobby/XmppClient.cpp:1307
+#: lobby/XmppClient.cpp:1301
 msgid "The user or system requested a disconnect"
 msgstr "یک کاربر یا سیستم درخواست لغو اتصال داده است"
 
-#: lobby/XmppClient.cpp:1308
+#: lobby/XmppClient.cpp:1302
 msgid "There is no active connection"
 msgstr "هیچ ارتباط فعالی وجود ندارد"
 
-#: lobby/XmppClient.cpp:1329
+#: lobby/XmppClient.cpp:1323
 msgid "Your account has been successfully registered"
 msgstr "حساب کاربری شما با موفقیت به ثبت رسید"
 
-#: lobby/XmppClient.cpp:1330
+#: lobby/XmppClient.cpp:1324
 msgid "Not all necessary information provided"
 msgstr "همه اطلاعات مورد نیاز ارائه نشده است"
 
-#: lobby/XmppClient.cpp:1331
+#: lobby/XmppClient.cpp:1325
 msgid "Username already exists"
 msgstr "نام کاربری قبلا انتخاب شده است"
 
@@ -196,34 +195,34 @@ msgstr "بروز خطا در شروع دانلود. خطا %s:%s"
 msgid "Asynchronous download failure: %s, %s."
 msgstr "خطای دانلود غیر همزمان: %s:%s."
 
-#: ps/ModIo.cpp:426
+#: ps/ModIo.cpp:425
 #, c-format
 msgid "Download failure. Server response: %s; %s."
 msgstr "بروز خطا در دانلود. پاسخ سرور: %s:%s"
 
-#: ps/ModIo.cpp:529
+#: ps/ModIo.cpp:528
 msgid "Mismatched filesize."
 msgstr "عدم تطابق حجم فایل"
 
-#: ps/ModIo.cpp:547
+#: ps/ModIo.cpp:546
 #, c-format
 msgid "Invalid file. Expected md5 %s, got %s."
 msgstr "فایل نامعتبر. فرمت md5 مورد انتظار است %s، اما %sدریافت شده است"
 
-#: ps/ModIo.cpp:562
+#: ps/ModIo.cpp:561
 msgid "Failed to compute final hash."
 msgstr "بروز خطا در محاسبه هش نهایی"
 
-#: ps/ModIo.cpp:568
+#: ps/ModIo.cpp:567
 msgid "Failed to verify signature."
 msgstr "بروز خطا در تایید امضا"
 
-#: ps/SavedGame.cpp:139
+#: ps/SavedGame.cpp:138
 #, c-format
 msgid "Saved game to '%s'"
 msgstr "بازی در '%s' ذخیره شد ."
 
-#: ps/Util.cpp:280 ps/Util.cpp:283 ps/Util.cpp:424 ps/Util.cpp:427
+#: ps/Util.cpp:282 ps/Util.cpp:285 ps/Util.cpp:426 ps/Util.cpp:429
 #, c-format
 msgid "Screenshot written to '%s'"
 msgstr "تصویر نمایشگر در '%s' ذخیره شد ."

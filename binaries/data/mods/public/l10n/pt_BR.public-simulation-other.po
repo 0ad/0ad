@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2020 Wildfire Games
+# Copyright (C) 2021 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -22,16 +22,16 @@
 # Raphael Mendonça, 2014
 # dddb155916b6708524139dbbf813fa7c, 2017
 # e05a6f0c527312287ac027cf3d3a35f5_685166c <0e3f187c36e42a887ffaef9a9e407417_190443>, 2015
-# Tiago Melo <tiago.henrique.cco@gmail.com>, 2020
-# Tiago Melo <tiago.henrique.cco@gmail.com>, 2018-2019
+# Tiago <tiago.henrique.cco@gmail.com>, 2020
+# Tiago <tiago.henrique.cco@gmail.com>, 2018-2019
 # Vinícius Pereira <lameiravinicius24@gmail.com>, 2018-2020
 # Werther Ramalho <werther23@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2020-11-21 13:58+0000\n"
-"Last-Translator: Vinícius Pereira <lameiravinicius24@gmail.com>\n"
+"POT-Creation-Date: 2021-03-05 08:13+0000\n"
+"PO-Revision-Date: 2021-03-05 09:29+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -387,22 +387,22 @@ msgstr "Petra é a IA padrão do 0 A.D. Por favor reporte problemas para Wildfir
 msgid "Petra Bot"
 msgstr "Petra Bot"
 
-#: simulation/components/BuildRestrictions.js:86
+#: simulation/components/BuildRestrictions.js:91
 #, javascript-format
 msgid "%(name)s cannot be built due to unknown error"
 msgstr "%(name)s não pode ser construído devido a um erro desconhecido"
 
-#: simulation/components/BuildRestrictions.js:110
+#: simulation/components/BuildRestrictions.js:115
 #, javascript-format
 msgid "%(name)s cannot be built in unexplored area"
 msgstr "%(name)s não pode ser construído em área inexplorada"
 
-#: simulation/components/BuildRestrictions.js:158
+#: simulation/components/BuildRestrictions.js:163
 #, javascript-format
 msgid "%(name)s cannot be built on another building or resource"
 msgstr "%(name)s não pode ser construído em outro edifício ou recurso"
 
-#: simulation/components/BuildRestrictions.js:162
+#: simulation/components/BuildRestrictions.js:167
 #, javascript-format
 msgid "%(name)s cannot be built on invalid terrain"
 msgstr "%(name)s não pode ser construído em terreno inválido"
@@ -410,7 +410,7 @@ msgstr "%(name)s não pode ser construído em terreno inválido"
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House
 #. cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:185
+#: simulation/components/BuildRestrictions.js:190
 msgctxt "Territory type"
 msgid "own"
 msgstr "próprio"
@@ -418,7 +418,7 @@ msgstr "próprio"
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House
 #. cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:188
+#: simulation/components/BuildRestrictions.js:193
 msgctxt "Territory type"
 msgid "unconnected own"
 msgstr "desconectado próprio"
@@ -426,7 +426,7 @@ msgstr "desconectado próprio"
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House
 #. cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:194
+#: simulation/components/BuildRestrictions.js:199
 msgctxt "Territory type"
 msgid "allied"
 msgstr "aliado"
@@ -434,7 +434,7 @@ msgstr "aliado"
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House
 #. cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:197
+#: simulation/components/BuildRestrictions.js:202
 msgctxt "Territory type"
 msgid "unconnected allied"
 msgstr "aliado desconectado"
@@ -442,7 +442,7 @@ msgstr "aliado desconectado"
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House
 #. cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:203
+#: simulation/components/BuildRestrictions.js:208
 msgctxt "Territory type"
 msgid "neutral"
 msgstr "neutro"
@@ -450,24 +450,24 @@ msgstr "neutro"
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House
 #. cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:210
+#: simulation/components/BuildRestrictions.js:215
 msgctxt "Territory type"
 msgid "enemy"
 msgstr "inimigo"
 
-#: simulation/components/BuildRestrictions.js:215
+#: simulation/components/BuildRestrictions.js:220
 #, javascript-format
 msgid ""
 "%(name)s cannot be built in %(territoryType)s territory. Valid territories: "
 "%(validTerritories)s"
 msgstr "%(name)s não pode ser construído em %(territoryType)s território. Territórios válidos: %(validTerritories)s"
 
-#: simulation/components/BuildRestrictions.js:229
+#: simulation/components/BuildRestrictions.js:234
 #, javascript-format
 msgid "%(name)s must be built on a valid shoreline"
 msgstr "%(name)s deve ser construído sobre um litoral válido"
 
-#: simulation/components/BuildRestrictions.js:256
+#: simulation/components/BuildRestrictions.js:261
 #, javascript-format
 msgid ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meter "
@@ -478,7 +478,7 @@ msgid_plural ""
 msgstr[0] "%(name)s está perto demais de %(category)s, %(distance)s metro deve ser a distância mínima"
 msgstr[1] "%(name)s está perto demais de %(category)s, %(distance)s metros deve ser a distância mínima"
 
-#: simulation/components/BuildRestrictions.js:277
+#: simulation/components/BuildRestrictions.js:282
 #, javascript-format
 msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meter"
@@ -490,7 +490,7 @@ msgstr[1] "%(name)s está longe demais de %(category)s, %(distance)s metros deve
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories:
 #. own, ally".
-#: simulation/components/BuildRestrictions.js:317
+#: simulation/components/BuildRestrictions.js:322
 msgctxt "Territory type list"
 msgid "own"
 msgstr "próprio"
@@ -498,7 +498,7 @@ msgstr "próprio"
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories:
 #. own, ally".
-#: simulation/components/BuildRestrictions.js:319
+#: simulation/components/BuildRestrictions.js:324
 msgctxt "Territory type list"
 msgid "ally"
 msgstr "aliado"
@@ -506,7 +506,7 @@ msgstr "aliado"
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories:
 #. own, ally".
-#: simulation/components/BuildRestrictions.js:321
+#: simulation/components/BuildRestrictions.js:326
 msgctxt "Territory type list"
 msgid "neutral"
 msgstr "neutro"
@@ -514,7 +514,7 @@ msgstr "neutro"
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories:
 #. own, ally".
-#: simulation/components/BuildRestrictions.js:323
+#: simulation/components/BuildRestrictions.js:328
 msgctxt "Territory type list"
 msgid "enemy"
 msgstr "inimigo"
@@ -539,41 +539,41 @@ msgstr[1] "%(players)s e %(lastPlayer)s foram vitoriosos (últimos jogadores res
 msgid "Last remaining player wins."
 msgstr "Último jogador restante ganha."
 
-#: simulation/components/EntityLimits.js:165
+#: simulation/components/EntityLimits.js:192
 #, javascript-format
 msgid "%(category)s build limit of %(limit)s reached"
 msgstr "%(category)s limite de construções de %(limit)s alcançado"
 
-#: simulation/components/EntityLimits.js:167
+#: simulation/components/EntityLimits.js:194
 #, javascript-format
 msgid "%(category)s training limit of %(limit)s reached"
 msgstr "%(category)s limite de formação de %(limit)s alcançado"
 
-#: simulation/components/EntityLimits.js:171
+#: simulation/components/EntityLimits.js:198
 #, javascript-format
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "%(category)s limite de %(limit)s alcançado"
 
-#: simulation/components/Player.js:319
+#: simulation/components/Player.js:348
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
 msgstr "Recursos insuficientes - %(resourceAmount1)s %(resourceType1)s"
 
-#: simulation/components/Player.js:321
+#: simulation/components/Player.js:350
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
 msgstr "Recursos insuficientes - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
 
-#: simulation/components/Player.js:323
+#: simulation/components/Player.js:352
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 msgstr "Recursos insuficientes - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 
-#: simulation/components/Player.js:325
+#: simulation/components/Player.js:354
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
@@ -585,11 +585,11 @@ msgstr "Recursos insuficientes - %(resourceAmount1)s %(resourceType1)s, %(resour
 msgid "Entity is being upgraded. Cannot start production."
 msgstr "A entidade está sendo atualizada. Não é possível iniciar a produção."
 
-#: simulation/components/ProductionQueue.js:512
+#: simulation/components/ProductionQueue.js:515
 msgid "The production queue is full."
 msgstr "A fila de produção está cheia."
 
-#: simulation/components/ProductionQueue.js:900
+#: simulation/components/ProductionQueue.js:905
 msgid "Can't find free space to spawn trained units"
 msgstr "Não é possível encontrar espaço livre para gerar unidades treinadas"
 
@@ -873,55 +873,51 @@ msgstr "%(player)s foi derrotado (trapaça)."
 msgid "You need to select a building that trains units."
 msgstr "Você precisa selecionar uma construção que treine unidades."
 
-#: simulation/helpers/Commands.js:114
+#: simulation/helpers/Commands.js:134
 msgid "(Cheat - control all units)"
 msgstr "(Trapaça - controlar todas as unidades)"
 
-#: simulation/helpers/Commands.js:129
+#: simulation/helpers/Commands.js:149
 msgid "(Cheat - reveal map)"
 msgstr "(Trapaça - revelar mapa)"
 
-#: simulation/helpers/Commands.js:442
+#: simulation/helpers/Commands.js:462
 #, javascript-format
 msgid "%(player)s has resigned."
 msgstr "%(player)s renunciou"
 
-#: simulation/helpers/Commands.js:581
+#: simulation/helpers/Commands.js:601
 msgid "(Cheat - promoted units)"
 msgstr "(Trapaça - unidades promovidas)"
 
-#: simulation/helpers/Commands.js:702
+#: simulation/helpers/Commands.js:722
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "Melhoramento impossível devido a terreno obstruído ou requerimento de distância não verificado."
 
-#: simulation/helpers/Commands.js:712
-msgid "Cannot upgrade a garrisoned entity."
-msgstr "Impossível melhorar uma entidade abrigada."
-
-#: simulation/helpers/Commands.js:757
+#: simulation/helpers/Commands.js:767
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Ataque contra %(_player_)s solicitado."
 
-#: simulation/helpers/Commands.js:796
+#: simulation/helpers/Commands.js:806
 msgid "There are no bribable units"
 msgstr "Não há unidades subornáveis. "
 
-#: simulation/helpers/Commands.js:842
+#: simulation/helpers/Commands.js:852
 msgid "Unable to ungarrison unit(s)"
 msgstr "Impossível abrigar unidade(s)"
 
-#: simulation/helpers/Commands.js:856
+#: simulation/helpers/Commands.js:866
 msgid "Some unit(s) can't go back to work"
 msgstr "Alguma(s) unidade(s) não pode(m) voltar ao trabalho"
 
-#: simulation/helpers/Commands.js:875
+#: simulation/helpers/Commands.js:885
 #, javascript-format
 msgid "%(unit)s can't be controlled."
 msgstr "%(unit)s não podem ser controladas."
 
-#: simulation/helpers/Commands.js:1115
+#: simulation/helpers/Commands.js:1136
 msgid "The building's technology requirements are not met."
 msgstr "Os requisitos tecnológicos da construção não foram atingidos."

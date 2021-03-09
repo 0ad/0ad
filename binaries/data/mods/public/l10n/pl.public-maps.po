@@ -29,14 +29,15 @@
 # Piotr Lehmann <lejmus@o2.pl>, 2017
 # Przemysław Murach <moonshine133@vp.pl>, 2019-2021
 # slodki12341 <slodki1234@gmail.com>, 2014
+# Szymon Blaut <szymonblaut315@gmail.com>, 2021
 # tombox <wptom@wp.pl>, 2016,2018
 # Voltinus <voltinusmail@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-18 08:15+0000\n"
-"PO-Revision-Date: 2021-02-28 21:21+0000\n"
-"Last-Translator: Marcin S <dzidek1003@o2.pl>\n"
+"POT-Creation-Date: 2021-03-05 08:13+0000\n"
+"PO-Revision-Date: 2021-03-06 06:52+0000\n"
+"Last-Translator: Szymon Blaut <szymonblaut315@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2318,6 +2319,123 @@ msgstr "Szybka, demonstracyjna mapa bitewna z udziałem rzymskich legionistów."
 #: maps/scenarios/we_are_legion.xml:Name:26
 msgid "We Are Legion"
 msgstr "My jesteśmy Legionem"
+
+#: maps/scripts/CaptureTheRelic.js:144
+#, javascript-format
+msgid ""
+"%(_player_)s and their allies have captured all relics and will win in "
+"%(time)s."
+msgstr "%(_player_)s i jego sojusznicy zdobyli wszystkie relikty i zwyciężą w %(time)s"
+
+#: maps/scripts/CaptureTheRelic.js:145
+#, javascript-format
+msgid "%(_player_)s has captured all relics and will win in %(time)s."
+msgstr "%(_player_)s przejął wszystkie relikty i wygra w %(time)s"
+
+#: maps/scripts/CaptureTheRelic.js:156
+#, javascript-format
+msgid "You and your allies have captured all relics and will win in %(time)s."
+msgstr "Ty i Twoi sojusznicy przejeli wszystkie relikty, i wygracie w %(time)s."
+
+#: maps/scripts/CaptureTheRelic.js:157
+#, javascript-format
+msgid "You have captured all relics and will win in %(time)s."
+msgstr "przejąłeś wszystkie relikty i wygrasz w %(time)s."
+
+#: maps/scripts/CaptureTheRelic.js:171
+#, javascript-format
+msgid "%(lastPlayer)s has won (Capture the Relic)."
+msgid_plural "%(players)s and %(lastPlayer)s have won (Capture the Relic)."
+msgstr[0] "%(lastPlayer)swygrał (przejął relikt)."
+msgstr[1] "%(players)s i %(lastPlayer)swygrali (przejeli relikt)"
+msgstr[2] "%(players)s i %(lastPlayer)s wygrali (przejeli relikt)"
+msgstr[3] "%(players)s i %(lastPlayer)s wygrali (przejeli relikt)"
+
+#: maps/scripts/CaptureTheRelic.js:175
+#, javascript-format
+msgid "%(lastPlayer)s has been defeated (Capture the Relic)."
+msgid_plural ""
+"%(players)s and %(lastPlayer)s have been defeated (Capture the Relic)."
+msgstr[0] "%(lastPlayer)s został pokonany (przejęciem reliktu)"
+msgstr[1] "%(players)s i %(lastPlayer)s zostali pokonani (przejęciem reliktu)."
+msgstr[2] "%(players)s i %(lastPlayer)s  zostali pokonani (przejęciem reliktu)."
+msgstr[3] "%(players)s i %(lastPlayer)s zostali pokonani (przejęciem reliktu)."
+
+#: maps/scripts/Conquest.js:5
+#, javascript-format
+msgid "%(player)s has been defeated (lost all critical units and structures)."
+msgstr "%(player)s został zabity (stracił wszystkie jednostki i struktury)"
+
+#: maps/scripts/ConquestStructures.js:5
+#, javascript-format
+msgid "%(player)s has been defeated (lost all structures)."
+msgstr "%(player)s został pokonany (stracił wszystkie konstrukcje)."
+
+#: maps/scripts/ConquestStructures.js:9
+#, javascript-format
+msgid "%(player)s has been defeated (lost all structures and critical units)."
+msgstr "%(player)s został pokonany (stracił wszystkie konstrukcje i kluczowe jednostki)."
+
+#: maps/scripts/ConquestUnits.js:5
+#, javascript-format
+msgid "%(player)s has been defeated (lost all units)."
+msgstr "%(player)s został pokonany (stracił wszystkie jednostki)."
+
+#: maps/scripts/ConquestUnits.js:9
+#, javascript-format
+msgid "%(player)s has been defeated (lost all units and critical structures)."
+msgstr "%(player)s został pokonany (stracił wszystkie jednostki i kluczowe konstrukcje)."
+
+#: maps/scripts/Regicide.js:130
+#, javascript-format
+msgid "%(player)s has been defeated (lost hero)."
+msgstr "%(player)szostał zabity (ostatni bohater)"
+
+#: maps/scripts/WonderVictory.js:80
+#, javascript-format
+msgid ""
+"%(_player_)s owns a Wonder and %(_player_)s and their allies will win in "
+"%(time)s."
+msgstr "%(_player_)s posiada cud i %(_player_)s i jego sojusznicy wygrają w %(time)s"
+
+#: maps/scripts/WonderVictory.js:81
+#, javascript-format
+msgid "%(_player_)s owns a Wonder and will win in %(time)s."
+msgstr "%(_player_)s posiada cud i wygra w %(time)s"
+
+#: maps/scripts/WonderVictory.js:92
+#, javascript-format
+msgid "%(_player_)s owns a Wonder and you will win in %(time)s."
+msgstr "%(_player_)s posiada cud i wygrasz w %(time)s"
+
+#: maps/scripts/WonderVictory.js:104
+#, javascript-format
+msgid "You own a Wonder and you and your allies will win in %(time)s."
+msgstr "ty posiadasz cud i ty i twoi sojusznicy wygracie w %(time)s"
+
+#: maps/scripts/WonderVictory.js:105
+#, javascript-format
+msgid "You own a Wonder and will win in %(time)s."
+msgstr "uzyskałeś cud i wygrasz w %(time)s"
+
+#: maps/scripts/WonderVictory.js:150
+#, javascript-format
+msgid "%(lastPlayer)s has won (wonder victory)."
+msgid_plural "%(players)s and %(lastPlayer)s have won (wonder victory)."
+msgstr[0] "%(lastPlayer)swygrał (cudowne zwycięstwo)"
+msgstr[1] "%(players)s i %(lastPlayer)s wygrali (cudowne zwycięstwo)."
+msgstr[2] " %(players)s i %(lastPlayer)s  wygrali (cudowne zwycięstwo)."
+msgstr[3] "%(players)s i %(lastPlayer)s wygrali (cudowne zwycięstwo.)"
+
+#: maps/scripts/WonderVictory.js:154
+#, javascript-format
+msgid "%(lastPlayer)s has been defeated (wonder victory)."
+msgid_plural ""
+"%(players)s and %(lastPlayer)s have been defeated (wonder victory)."
+msgstr[0] "%(lastPlayer)szostał pokonany (cudowne zwycięstwo)"
+msgstr[1] "%(lastPlayer)szostał pokonany (cudowne zwycięstwo)"
+msgstr[2] "%(lastPlayer)szostał pokonany (cudowne zwycięstwo)"
+msgstr[3] "%(players)s i %(lastPlayer)s zostali pokonani (cudowne zwycięstwo)."
 
 #: maps/skirmishes/acropolis_bay_2p.xml:Description:38
 msgid ""

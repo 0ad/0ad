@@ -27,9 +27,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-29 14:56+0000\n"
-"PO-Revision-Date: 2021-01-29 16:55+0000\n"
-"Last-Translator: Stanislas Dolcini <stan@wildfiregames.com>\n"
+"POT-Creation-Date: 2021-03-05 08:13+0000\n"
+"PO-Revision-Date: 2021-03-05 10:28+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -54,52 +54,52 @@ msgstr "Бесіда"
 msgid "Save"
 msgstr "Зберегти"
 
-#: gui/session/MenuButtons.js:74
+#: gui/session/MenuButtons.js:77
 msgid "Summary"
 msgstr "Підсумок"
 
-#: gui/session/MenuButtons.js:87
+#: gui/session/MenuButtons.js:90
 #, javascript-format
 msgid "Press %(hotkey)s to open the summary screen."
 msgstr "Натиснути %(hotkey)s, щоб відкрити підсумковий екран."
 
-#: gui/session/MenuButtons.js:130
+#: gui/session/MenuButtons.js:133
 msgid "Lobby"
 msgstr "Лобі"
 
-#: gui/session/MenuButtons.js:139
+#: gui/session/MenuButtons.js:142
 #, javascript-format
 msgid ""
 "Press %(hotkey)s to open the multiplayer lobby page without leaving the "
 "game."
 msgstr "Натиснути %(hotkey)s, щоб відкрити сторінку багатокористувацького лобі, не виходячи з гри."
 
-#: gui/session/MenuButtons.js:158
+#: gui/session/MenuButtons.js:161
 msgid "Options"
 msgstr "Налаштунки"
 
-#: gui/session/MenuButtons.js:182
+#: gui/session/MenuButtons.js:185
 msgid "Hotkeys"
 msgstr "Гарячі клавіші"
 
-#: gui/session/MenuButtons.js:217
+#: gui/session/MenuButtons.js:220
 msgid "Resume"
 msgstr "Продовжити"
 
-#: gui/session/MenuButtons.js:217
+#: gui/session/MenuButtons.js:220
 msgid "Pause"
 msgstr "Пауза"
 
-#: gui/session/MenuButtons.js:218
+#: gui/session/MenuButtons.js:221
 #, javascript-format
 msgid "Press %(hotkey)s to pause or resume the game."
 msgstr "Натиснути %(hotkey)s, щоб призупинити або продовжити гру."
 
-#: gui/session/MenuButtons.js:234
+#: gui/session/MenuButtons.js:237
 msgid "Resign"
 msgstr "Здатися"
 
-#: gui/session/MenuButtons.js:258
+#: gui/session/MenuButtons.js:261
 #: gui/session/NetworkStatusOverlay.xml:(caption):9
 msgid "Exit"
 msgstr "Вихід"
@@ -155,8 +155,8 @@ msgstr "Гру призупинено"
 msgid "Click to Resume Game"
 msgstr "Клацнути, щоб продовжити гру"
 
-#: gui/session/ResearchProgress.js:108 gui/session/selection_details.js:272
-#: gui/session/selection_details.js:290 gui/session/selection_panels.js:557
+#: gui/session/ResearchProgress.js:109 gui/session/selection_details.js:264
+#: gui/session/selection_details.js:282 gui/session/selection_panels.js:557
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
@@ -359,71 +359,71 @@ msgstr "%(icon)sВашу худобу було атаковано %(attacker)s!"
 msgid "%(icon)sYou have been attacked by %(attacker)s!"
 msgstr "%(icon)sВи були атаковані %(attacker)s!"
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:30
+#: gui/session/chat/ChatMessageFormatSimulation.js:31
 msgid "Click to focus on the attacked unit."
 msgstr ""
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:49
+#: gui/session/chat/ChatMessageFormatSimulation.js:50
 #, javascript-format
 msgid "%(player)s bartered %(amountGiven)s for %(amountGained)s."
 msgstr "%(player)s обмінює %(amountGiven)s на %(amountGained)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:84
+#: gui/session/chat/ChatMessageFormatSimulation.js:85
 #, javascript-format
 msgid "You are now allied with %(player)s."
 msgstr "Ви наразі уклали союз із %(player)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:85
+#: gui/session/chat/ChatMessageFormatSimulation.js:86
 #, javascript-format
 msgid "You are now at war with %(player)s."
 msgstr "Ви тепер воюєте з %(player)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:86
+#: gui/session/chat/ChatMessageFormatSimulation.js:87
 #, javascript-format
 msgid "You are now neutral with %(player)s."
 msgstr "Ви зараз прийняли нейтралітет до %(player)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:89
+#: gui/session/chat/ChatMessageFormatSimulation.js:90
 #, javascript-format
 msgid "%(player)s is now allied with you."
 msgstr "%(player)s наразі укладає союз із Вами."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:90
+#: gui/session/chat/ChatMessageFormatSimulation.js:91
 #, javascript-format
 msgid "%(player)s is now at war with you."
 msgstr "%(player)s тепер воює з Вами."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:91
+#: gui/session/chat/ChatMessageFormatSimulation.js:92
 #, javascript-format
 msgid "%(player)s is now neutral with you."
 msgstr "%(player)s зараз приймає нейтралітет до Вас."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:94
+#: gui/session/chat/ChatMessageFormatSimulation.js:95
 #, javascript-format
 msgid "%(player)s is now allied with %(player2)s."
 msgstr "%(player)s наразі укладає союз із %(player2)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:95
+#: gui/session/chat/ChatMessageFormatSimulation.js:96
 #, javascript-format
 msgid "%(player)s is now at war with %(player2)s."
 msgstr "%(player)s тепер воює з %(player2)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:96
+#: gui/session/chat/ChatMessageFormatSimulation.js:97
 #, javascript-format
 msgid "%(player)s is now neutral with %(player2)s."
 msgstr "%(player)s зараз приймає нейтралітет до %(player2)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:112
+#: gui/session/chat/ChatMessageFormatSimulation.js:113
 #, javascript-format
 msgid "%(player)s is advancing to the %(phaseName)s."
 msgstr "%(player)s просувається до %(phaseName)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:114
+#: gui/session/chat/ChatMessageFormatSimulation.js:115
 #, javascript-format
 msgid "The %(phaseName)s of %(player)s has been aborted."
 msgstr "Просування %(player)s до %(phaseName)s було перервано."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:117
+#: gui/session/chat/ChatMessageFormatSimulation.js:118
 #, javascript-format
 msgid "%(player)s has reached the %(phaseName)s."
 msgstr "%(player)s досягає %(phaseName)s."
@@ -431,21 +431,21 @@ msgstr "%(player)s досягає %(phaseName)s."
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an
 #. enumeration.
-#: gui/session/chat/ChatMessageFormatSimulation.js:145
+#: gui/session/chat/ChatMessageFormatSimulation.js:146
 msgid ", "
 msgstr ", "
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:162
+#: gui/session/chat/ChatMessageFormatSimulation.js:163
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr "%(player)s надсилає Вам %(amounts)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:164
+#: gui/session/chat/ChatMessageFormatSimulation.js:165
 #, javascript-format
 msgid "You have sent %(player2)s %(amounts)s."
 msgstr "Ви надіслали %(amounts)s до %(player2)s."
 
-#: gui/session/chat/ChatMessageFormatSimulation.js:169
+#: gui/session/chat/ChatMessageFormatSimulation.js:170
 #, javascript-format
 msgid "%(player)s has sent %(player2)s %(amounts)s."
 msgstr "%(player)s надсилає %(amounts)s до %(player2)s."
@@ -883,79 +883,79 @@ msgstr "Невідомий гравець"
 msgid "Find idle worker"
 msgstr "Знайти незайнятого працівника"
 
-#: gui/session/selection_details.js:68
+#: gui/session/selection_details.js:60
 #, javascript-format
 msgid "%(genericName)s — Packed"
 msgstr "%(genericName)s — запаковано"
 
-#: gui/session/chat/ChatAddressees.js:74 gui/session/selection_details.js:78
+#: gui/session/chat/ChatAddressees.js:74 gui/session/selection_details.js:70
 #, javascript-format
 msgid "\\[OFFLINE] %(player)s"
 msgstr "\\[ПОЗА МЕРЕЖЕЮ] %(player)s"
 
-#: gui/session/selection_details.js:83
+#: gui/session/selection_details.js:75
 #, javascript-format
 msgid "%(rank)s Rank"
 msgstr "%(rank)s ранг"
 
-#: gui/session/selection_details.js:140
+#: gui/session/selection_details.js:132
 #, javascript-format
 msgid "%(hitpoints)s / %(maxHitpoints)s"
 msgstr "%(hitpoints)s / %(maxHitpoints)s"
 
-#: gui/session/selection_details.js:181
+#: gui/session/selection_details.js:173
 #, javascript-format
 msgid "%(capturePoints)s / %(maxCapturePoints)s"
 msgstr "%(capturePoints)s / %(maxCapturePoints)s"
 
-#: gui/session/selection_details.js:201
+#: gui/session/selection_details.js:193
 #, javascript-format
 msgid "%(experience)s %(current)s / %(required)s"
 msgstr "%(experience)s %(current)s / %(required)s"
 
-#: gui/session/selection_details.js:202 gui/session/selection_details.js:208
+#: gui/session/selection_details.js:194 gui/session/selection_details.js:200
 msgid "Experience:"
 msgstr "Досвід:"
 
-#: gui/session/selection_details.js:207
+#: gui/session/selection_details.js:199
 #, javascript-format
 msgid "%(experience)s %(current)s"
 msgstr "%(experience)s %(current)s"
 
-#: gui/session/selection_details.js:217
+#: gui/session/selection_details.js:209
 msgid "∞"
 msgstr "∞"
 
-#: gui/session/selection_details.js:218 gui/session/selection_details.js:248
-#: gui/session/selection_details.js:278
+#: gui/session/selection_details.js:210 gui/session/selection_details.js:240
+#: gui/session/selection_details.js:270
 #, javascript-format
 msgid "%(amount)s / %(max)s"
 msgstr "%(amount)s / %(max)s"
 
-#: gui/session/selection_details.js:230
+#: gui/session/selection_details.js:222
 #, javascript-format
 msgid "%(resource)s:"
 msgstr "%(resource)s:"
 
-#: gui/session/selection_details.js:261 gui/session/unit_actions.js:619
+#: gui/session/selection_details.js:253 gui/session/unit_actions.js:619
 #: gui/session/unit_actions.js:628 gui/session/unit_actions.js:646
-#: gui/session/unit_actions.js:979
+#: gui/session/unit_actions.js:1030
 #, javascript-format
 msgid "Gain: %(gain)s"
 msgstr "Прибуток: %(gain)s"
 
-#: gui/session/selection_details.js:270 gui/session/selection_details.js:288
+#: gui/session/selection_details.js:262 gui/session/selection_details.js:280
 #, javascript-format
 msgid ""
 "(%(number)s)\n"
 "%(time)s"
 msgstr "(%(number)s)\n%(time)s"
 
-#: gui/session/selection_details.js:282
+#: gui/session/selection_details.js:274
 msgid "Current/max gatherers"
 msgstr "Поточна/макс. кількість збирачів"
 
-#: gui/session/selection_details.js:306
+#: gui/session/selection_details.js:298
 #, javascript-format
 msgid "(%(genericName)s)"
 msgstr "(%(genericName)s)"
@@ -966,40 +966,49 @@ msgstr "Очки захоплення:"
 
 #: gui/session/selection_details.js:452
 #, javascript-format
+msgid "%(label)s: %(details)s\n"
+msgstr ""
+
+#: gui/session/selection_details.js:453
+msgid "Garrison Size"
+msgstr ""
+
+#: gui/session/selection_details.js:458
+#, javascript-format
 msgid "%(label)s %(details)s\n"
 msgstr "%(label)s %(details)s\n"
 
-#: gui/session/selection_details.js:453
+#: gui/session/selection_details.js:459
 msgid "Carrying:"
 msgstr "Перенесення:"
 
-#: gui/session/selection_details.js:456 gui/session/selection_details.js:465
+#: gui/session/selection_details.js:462 gui/session/selection_details.js:471
 #, javascript-format
 msgid "%(type)s %(amount)s"
 msgstr "%(type)s %(amount)s"
 
-#: gui/session/selection_details.js:461
+#: gui/session/selection_details.js:467
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/session/selection_details.js:462
+#: gui/session/selection_details.js:468
 msgid "Loot:"
 msgstr "Трофей:"
 
 #. Translation: Used in the trading gain tooltip
-#: gui/session/selection_details.js:523
+#: gui/session/selection_details.js:529
 #, javascript-format
 msgid "%(gain)s (%(player)s)"
 msgstr "%(gain)s (%(player)s)"
 
 #. Translation: Used in the trading gain tooltip to concatenate profits of
 #. different players
-#: gui/session/selection_details.js:547
+#: gui/session/selection_details.js:553
 msgid "+"
 msgstr "+"
 
-#: gui/session/selection_details.js:554
+#: gui/session/selection_details.js:560
 msgctxt "Separation mark in an enumeration"
 msgid ", "
 msgstr ", "
@@ -1314,8 +1323,8 @@ msgid ""
 msgstr "Клацнути, щоб вибрати згруповані підрозділи, подвійно клацнути, щоб сфокусуватися на згрупованих підрозділах та клацнути правою кнопкою миші, щоб розформовувати групу."
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
-msgid "ALPHA XXIV: Xšayāršā"
-msgstr "ALPHA XXIV: Хшаярша"
+msgid "Alpha XXV: Y——"
+msgstr ""
 
 #: gui/session/top_panel/CivIcon.js:80
 #, javascript-format
@@ -1630,7 +1639,7 @@ msgstr "Ринок призначення торгівлі."
 msgid "Right-click to set as origin trade market"
 msgstr "Клацнути правою кнопкою миші, щоб вибрати ринок початку торгівлі"
 
-#: gui/session/unit_actions.js:641 gui/session/unit_actions.js:985
+#: gui/session/unit_actions.js:641 gui/session/unit_actions.js:1036
 msgid "This market is too close to the origin market."
 msgstr "Цей ринок занадто близький до початкового ринку."
 
@@ -1638,21 +1647,21 @@ msgstr "Цей ринок занадто близький до початков�
 msgid "Right-click to set as destination trade market."
 msgstr "Клацнути правою кнопкою миші, щоб вибрати ринок призначення торгівлі."
 
-#: gui/session/unit_actions.js:704 gui/session/unit_actions.js:923
+#: gui/session/unit_actions.js:704 gui/session/unit_actions.js:967
 #, javascript-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
 msgstr "Поточний гарнізон: %(garrisoned)s/%(capacity)s"
 
-#: gui/session/unit_actions.js:976
+#: gui/session/unit_actions.js:1027
 msgid "Right-click to establish a default route for new traders."
 msgstr "Клацнути правою кнопкою миші, щоб встановити маршрут за замовчуванням для нових торговців."
 
-#: gui/session/unit_actions.js:980
+#: gui/session/unit_actions.js:1031
 #, javascript-format
 msgid "Expected gain: %(gain)s"
 msgstr "Очікуваний прибуток: %(gain)s"
 
-#: gui/session/unit_actions.js:1106
+#: gui/session/unit_actions.js:1157
 msgid "This entity cannot be controlled."
 msgid_plural "These entities cannot be controlled."
 msgstr[0] "Ця сутність не може контролюватися."
@@ -1660,94 +1669,94 @@ msgstr[1] "Ці сутністі не можуть контролюватися.
 msgstr[2] "Ці сутністі не можуть контролюватися."
 msgstr[3] "Ці сутністі не можуть контролюватися."
 
-#: gui/session/unit_actions.js:1152
+#: gui/session/unit_actions.js:1203
 msgid "Unload All."
 msgstr "Вивести всіх."
 
-#: gui/session/unit_actions.js:1172
+#: gui/session/unit_actions.js:1223
 msgid "Destroy the selected units or structures."
 msgstr "Знищити вибрані підрозділи чи споруди."
 
-#: gui/session/unit_actions.js:1174
+#: gui/session/unit_actions.js:1225
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr "Застосувати %(hotkey)s, щоб уникнути підтвердження діалогу."
 
-#: gui/session/unit_actions.js:1224
+#: gui/session/unit_actions.js:1275
 msgid "Abort the current order."
 msgstr "Перервати поточний наказ."
 
-#: gui/session/unit_actions.js:1245
+#: gui/session/unit_actions.js:1296
 msgid "Order the selected units to garrison in a structure or unit."
 msgstr "Наказати вибраним підрозділам стати гарнізоном у споруді чи одиниці."
 
-#: gui/session/unit_actions.js:1270
+#: gui/session/unit_actions.js:1321
 msgid "Unload"
 msgstr "Вивести"
 
-#: gui/session/unit_actions.js:1290
+#: gui/session/unit_actions.js:1341
 msgid "Order the selected units to repair a structure, ship, or siege engine."
 msgstr "Наказати вибраним підрозділам ремонтувати споруду, корабель чи облогове знаряддя."
 
-#: gui/session/unit_actions.js:1311
+#: gui/session/unit_actions.js:1362
 msgid "Focus on Rally Point."
 msgstr "Зосередити увагу на точці збору."
 
-#: gui/session/unit_actions.js:1348
+#: gui/session/unit_actions.js:1399
 msgid "Back to Work"
 msgstr "Повернути до праці"
 
-#: gui/session/unit_actions.js:1369
+#: gui/session/unit_actions.js:1420
 msgid "Order the selected units to guard a structure or unit."
 msgstr "Наказати вибраним підрозділам охороняти споруду чи одиницю."
 
-#: gui/session/unit_actions.js:1389
+#: gui/session/unit_actions.js:1440
 msgid "Remove guard"
 msgstr "Зняти охорону"
 
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
 #: gui/session/trade/TradeDialog.xml:(caption):9
-#: gui/session/unit_actions.js:1408
+#: gui/session/unit_actions.js:1459
 msgid "Barter & Trade"
 msgstr "Обмін та торгівля"
 
-#: gui/session/unit_actions.js:1428
+#: gui/session/unit_actions.js:1479
 msgid "Patrol"
 msgstr "Патрулювати"
 
-#: gui/session/unit_actions.js:1429
+#: gui/session/unit_actions.js:1480
 msgid "Attack all encountered enemy units while avoiding structures."
 msgstr "Атакувати всі зустрічні ворожі підрозділи, уникаючи будівель."
 
-#: gui/session/unit_actions.js:1457
+#: gui/session/unit_actions.js:1508
 msgid "Press to allow allies to use this dropsite"
 msgstr "Натиснути, щоб дозволити союзникам використовувати це місце збору"
 
-#: gui/session/unit_actions.js:1462
+#: gui/session/unit_actions.js:1513
 msgid "Press to prevent allies from using this dropsite"
 msgstr "Натиснути, щоб завадити союзникам використовувати це місце збору"
 
-#: gui/session/unit_actions.js:1497
+#: gui/session/unit_actions.js:1548
 msgid "The use of this dropsite is prohibited"
 msgstr "Використовувати це місце збору заборонено"
 
-#: gui/session/unit_actions.js:1503
+#: gui/session/unit_actions.js:1554
 msgid "Allies are allowed to use this dropsite."
 msgstr "Союзникам дозволено використовувати це місце збору."
 
-#: gui/session/unit_actions.js:1504
+#: gui/session/unit_actions.js:1555
 msgid "You are allowed to use this dropsite"
 msgstr "Вам дозволено використовувати це місце збору"
 
-#: gui/session/unit_actions.js:1568
+#: gui/session/unit_actions.js:1619
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "Об'єкт повинен бути вбитий, перш ніж його можна буде зібрати"
 
-#: gui/session/unit_actions.js:1571
+#: gui/session/unit_actions.js:1622
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "Ви не можете зруйнувати цей об'єкт, так як Ви володієте менш, ніж половиною від очок захоплення"
 
-#: gui/session/unit_actions.js:1574
+#: gui/session/unit_actions.js:1625
 msgid "This entity is undeletable"
 msgstr "Цей об'єкт неможливо видалити"

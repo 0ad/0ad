@@ -1857,7 +1857,7 @@ GuiInterface.prototype.HasIdleUnits = function(player, data)
 GuiInterface.prototype.IdleUnitFilter = function(unit, idleClasses, excludeUnits)
 {
 	let cmpUnitAI = Engine.QueryInterface(unit, IID_UnitAI);
-	if (!cmpUnitAI || !cmpUnitAI.IsIdle() || cmpUnitAI.IsGarrisoned())
+	if (!cmpUnitAI || !cmpUnitAI.IsIdle() || cmpUnitAI.IsTurret())
 		return { "idle": false };
 
 	let cmpIdentity = Engine.QueryInterface(unit, IID_Identity);

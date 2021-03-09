@@ -72,6 +72,10 @@ Garrisonable.prototype.Garrison = function(target, renamed = false)
 
 	this.holder = target;
 
+	let cmpUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
+	if (cmpUnitAI)
+		cmpUnitAI.SetGarrisoned();
+
 	let cmpProductionQueue = Engine.QueryInterface(this.entity, IID_ProductionQueue);
 	if (cmpProductionQueue)
 		cmpProductionQueue.PauseProduction();
@@ -144,7 +148,10 @@ Garrisonable.prototype.UnGarrison = function(forced = false, renamed = false)
 
 	let cmpUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
 	if (cmpUnitAI)
+	{
 		cmpUnitAI.Ungarrison();
+		cmpUnitAI.UnsetGarrisoned();
+	}
 
 	let cmpProductionQueue = Engine.QueryInterface(this.entity, IID_ProductionQueue);
 	if (cmpProductionQueue)
@@ -188,6 +195,19 @@ Garrisonable.prototype.OnEntityRenamed = function(msg)
 		cmpTurretHolder.SwapEntities(msg.entity, msg.newentity);
 
 	delete this.holder;
+};
+
+/**
+ * @param {Object} msg - { "entity": this.entity, "from": {number}, "to": {number} }
+ */
+Garrisonable.prototype.OnOwnershipChanged = function(msg)
+{
+	if (!this.holder)
+		return;
+
+	let cmpGarrisonHolder = Engine.QueryInterface(this.holder, IID_GarrisonHolder);
+	if (!cmpGarrisonHolder.IsAllowedToBeGarrisoned(this.entity))
+		this.UnGarrison(msg.to == INVALID_PLAYER);
 };
 
 Engine.RegisterComponentType(IID_Garrisonable, "Garrisonable", Garrisonable);
