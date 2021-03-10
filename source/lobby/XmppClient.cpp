@@ -953,7 +953,7 @@ bool XmppClient::handleIq(const glooxwrapper::IQ& iq)
 		const ConnectionData* cd = iq.findExtension<ConnectionData>(EXTCONNECTIONDATA);
 		if (cd)
 		{
-			LOGMESSAGE("XmppClient: Recieved request for connection data from %s", iq.from().username());
+			LOGMESSAGE("XmppClient: Received request for connection data from %s", iq.from().username());
 			if (!g_NetServer)
 			{
 				glooxwrapper::IQ response(gloox::IQ::Result, iq.from(), iq.id());
