@@ -522,7 +522,7 @@ function openDialog(dialogName, data, player)
 	let dialog = Engine.GetGUIObjectByName(dialogName + "-dialog");
 	if (!dialog)
 	{
-		warn("messages.js: Unknow dialog with name " + dialogName);
+		warn("messages.js: Unknown dialog with name " + dialogName);
 		return;
 	}
 	dialog.hidden = false;
