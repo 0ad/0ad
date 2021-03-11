@@ -259,9 +259,9 @@ TS_ASSERT_EQUALS(cmpGarrisonHolder.GetGarrisonedEntitiesCount(), 1);
 
 // Eject enemy units.
 currentCavalryPlayer = enemyPlayer;
-cmpGarrisonHolder.OnOwnershipChanged({
-	"entity": garrisonHolderId,
-	"to": player
+cmpGarrisonHolder.OnGlobalOwnershipChanged({
+	"entity": cavalryId,
+	"to": enemyPlayer
 });
 TS_ASSERT_EQUALS(cmpGarrisonHolder.GetGarrisonedEntitiesCount(), 0);
 

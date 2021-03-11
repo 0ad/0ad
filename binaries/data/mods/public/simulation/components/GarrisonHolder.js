@@ -432,11 +432,23 @@ GarrisonHolder.prototype.OnDestroy = function()
  * If a garrisoned entity is captured, or about to be killed (so its owner changes to '-1'),
  * remove it from the building so we only ever contain valid entities.
  */
-GarrisonHolder.prototype.OnOwnershipChanged = function(msg)
+GarrisonHolder.prototype.OnGlobalOwnershipChanged = function(msg)
 {
-	let entities = this.entities.filter(ent => msg.to == INVALID_PLAYER || !IsOwnedByMutualAllyOfEntity(this.entity, ent));
-	if (entities.length)
-		this.EjectOrKill(entities);
+	// The ownership change may be on the garrisonholder
+	if (this.entity == msg.entity)
+	{
+		let entities = this.entities.filter(ent => msg.to == INVALID_PLAYER || !IsOwnedByMutualAllyOfEntity(this.entity, ent));
+
+		if (entities.length)
+			this.EjectOrKill(entities);
+
+		return;
+	}
+
+	// or on some of its garrisoned units
+	let entityIndex = this.entities.indexOf(msg.entity);
+	if (entityIndex != -1 && (msg.to == INVALID_PLAYER || !IsOwnedByMutualAllyOfEntity(this.entity, msg.entity)))
+		this.EjectOrKill([msg.entity]);
 };
 
 /**
