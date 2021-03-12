@@ -298,7 +298,7 @@ function regression_test_d1879()
 	TS_ASSERT_EQUALS(cmpEntLimits.GetMatchCounts().some_template, 6);
 
 	// Check that when the batch is removed the counts are subtracted again.
-	cmpProdQueue.RemoveBatch(cmpProdQueue.GetQueue()[0].id);
+	cmpProdQueue.RemoveItem(cmpProdQueue.GetQueue()[0].id);
 	TS_ASSERT_EQUALS(cmpEntLimits.GetCounts().some_limit, 3);
 	TS_ASSERT_EQUALS(cmpEntLimits.GetMatchCounts().some_template, 3);
 }
@@ -406,7 +406,7 @@ function test_batch_removal()
 		"CallEvent": () => {}
 	});
 
-	ConstructComponent(SYSTEM_ENTITY, "Timer", null);
+	let cmpTimer = ConstructComponent(SYSTEM_ENTITY, "Timer", null);
 
 	AddMock(SYSTEM_ENTITY, IID_TemplateManager, {
 		"TemplateExists": () => true,
@@ -451,28 +451,28 @@ function test_batch_removal()
 
 	cmpProdQueue.AddBatch("some_template", "unit", 3);
 	TS_ASSERT_EQUALS(cmpProdQueue.GetQueue().length, 1);
-	cmpProdQueue.ProgressTimeout(null, 0);
+	cmpTimer.OnUpdate({ "turnLength": 1 });
 	TS_ASSERT_EQUALS(cmpPlayerBlockSpy._called, 1);
 
 	cmpProdQueue.AddBatch("some_template", "unit", 2);
 	TS_ASSERT_EQUALS(cmpProdQueue.GetQueue().length, 2);
 
-	cmpProdQueue.RemoveBatch(1);
+	cmpProdQueue.RemoveItem(1);
 	TS_ASSERT_EQUALS(cmpProdQueue.GetQueue().length, 1);
-	TS_ASSERT_EQUALS(cmpPlayerUnblockSpy._called, 0);
-
-	cmpProdQueue.RemoveBatch(2);
-	TS_ASSERT_EQUALS(cmpProdQueue.GetQueue().length, 0);
-	cmpProdQueue.ProgressTimeout(null, 0);
 	TS_ASSERT_EQUALS(cmpPlayerUnblockSpy._called, 1);
+
+	cmpProdQueue.RemoveItem(2);
+	TS_ASSERT_EQUALS(cmpProdQueue.GetQueue().length, 0);
+	cmpTimer.OnUpdate({ "turnLength": 1 });
+	TS_ASSERT_EQUALS(cmpPlayerUnblockSpy._called, 2);
 
 	cmpProdQueue.AddBatch("some_template", "unit", 3);
 	cmpProdQueue.AddBatch("some_template", "unit", 3);
 	cmpPlayer.TryReservePopulationSlots = () => false;
-	cmpProdQueue.RemoveBatch(3);
-	cmpProdQueue.ProgressTimeout(null, 0);
-	TS_ASSERT_EQUALS(cmpPlayerUnblockSpy._called, 2);
-
+	cmpProdQueue.RemoveItem(3);
+	TS_ASSERT_EQUALS(cmpPlayerUnblockSpy._called, 3);
+	cmpTimer.OnUpdate({ "turnLength": 1 });
+	TS_ASSERT_EQUALS(cmpPlayerUnblockSpy._called, 4);
 }
 
 function test_token_changes()

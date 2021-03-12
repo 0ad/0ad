@@ -117,7 +117,7 @@ ProductionQueue.prototype.CalculateEntitiesMap = function()
 		let template = this.entitiesMap.get(token);
 		for (let item of queue)
 			if (item.unitTemplate && item.unitTemplate === template)
-				this.RemoveBatch(item.id);
+				this.RemoveItem(item.id);
 	};
 	let updateAllQueuedTemplate = (token, updateTo) => {
 		let template = this.entitiesMap.get(token);
@@ -508,74 +508,74 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 };
 
 /*
- * Removes an existing batch of units from the production queue.
+ * Removes an item from the queue.
  * Refunds resource costs and population reservations.
+ * item.player is used as this.entity's owner may have changed.
  */
-ProductionQueue.prototype.RemoveBatch = function(id)
+ProductionQueue.prototype.RemoveItem = function(id)
 {
-	// Destroy any cached entities (those which didn't spawn for some reason).
-	for (let ent of this.entityCache)
-		Engine.DestroyEntity(ent);
-
-	this.entityCache = [];
-
-	for (let i = 0; i < this.queue.length; ++i)
-	{
-		// Find the item to remove.
-		let item = this.queue[i];
-		if (item.id != id)
-			continue;
-
-		// Update entity count in the EntityLimits component.
-		if (item.unitTemplate)
-		{
-			let cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
-			let template = cmpTemplateManager.GetTemplate(item.unitTemplate);
-			if (template.TrainingRestrictions)
-			{
-				let cmpPlayerEntityLimits = QueryPlayerIDInterface(item.player, IID_EntityLimits);
-				if (cmpPlayerEntityLimits)
-					cmpPlayerEntityLimits.ChangeCount(template.TrainingRestrictions.Category, -item.count);
-				if (template.TrainingRestrictions.MatchLimit)
-					cmpPlayerEntityLimits.ChangeMatchCount(item.unitTemplate, -item.count);
-			}
-		}
-
-		// Refund the resource cost for this batch.
-		let totalCosts = {};
-		let cmpStatisticsTracker = QueryPlayerIDInterface(item.player, IID_StatisticsTracker);
-		for (let r in item.resources)
-		{
-			totalCosts[r] = Math.floor(item.count * item.resources[r]);
-			if (cmpStatisticsTracker)
-				cmpStatisticsTracker.IncreaseResourceUsedCounter(r, -totalCosts[r]);
-		}
-
-		let cmpPlayer = QueryPlayerIDInterface(item.player);
-		if (cmpPlayer)
-		{
-			cmpPlayer.AddResources(totalCosts);
-
-			// Remove reserved population slots if necessary.
-			if (item.productionStarted && item.unitTemplate)
-				cmpPlayer.UnReservePopulationSlots(item.population * item.count);
-		}
-
-		// Mark the research as stopped if we cancel it.
-		if (item.technologyTemplate)
-		{
-			// item.player is used as this.entity's owner may be invalid (deletion, etc.)
-			let cmpTechnologyManager = QueryPlayerIDInterface(item.player, IID_TechnologyManager);
-			if (cmpTechnologyManager)
-				cmpTechnologyManager.StoppedResearch(item.technologyTemplate, true);
-			this.SetAnimation("idle");
-		}
-
-		this.queue.splice(i, 1);
-		Engine.PostMessage(this.entity, MT_ProductionQueueChanged, null);
-
+	let itemIndex = this.queue.findIndex(item => item.id == id);
+	if (itemIndex == -1)
 		return;
+
+	// Destroy any cached entities (those which didn't spawn for some reason).
+	if (itemIndex == 0 && this.entityCache.length)
+	{
+		for (let ent of this.entityCache)
+			Engine.DestroyEntity(ent);
+
+		this.entityCache = [];
 	}
+
+	let item = this.queue[itemIndex];
+
+	// Update entity count in the EntityLimits component.
+	if (item.unitTemplate)
+	{
+		let cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
+		let template = cmpTemplateManager.GetTemplate(item.unitTemplate);
+		if (template.TrainingRestrictions)
+		{
+			let cmpPlayerEntityLimits = QueryPlayerIDInterface(item.player, IID_EntityLimits);
+			if (cmpPlayerEntityLimits)
+				cmpPlayerEntityLimits.ChangeCount(template.TrainingRestrictions.Category, -item.count);
+			if (template.TrainingRestrictions.MatchLimit)
+				cmpPlayerEntityLimits.ChangeMatchCount(item.unitTemplate, -item.count);
+		}
+	}
+
+	let totalCosts = {};
+	let cmpStatisticsTracker = QueryPlayerIDInterface(item.player, IID_StatisticsTracker);
+	for (let resource in item.resources)
+	{
+		totalCosts[resource] = Math.floor(item.count * item.resources[resource]);
+		if (cmpStatisticsTracker)
+			cmpStatisticsTracker.IncreaseResourceUsedCounter(resource, -totalCosts[resource]);
+	}
+
+	let cmpPlayer = QueryPlayerIDInterface(item.player);
+	if (cmpPlayer)
+	{
+		cmpPlayer.AddResources(totalCosts);
+		if (item.productionStarted && item.unitTemplate)
+			cmpPlayer.UnReservePopulationSlots(item.population * item.count);
+		if (itemIndex == 0)
+			cmpPlayer.UnBlockTraining();
+	}
+
+	if (item.technologyTemplate)
+	{
+		let cmpTechnologyManager = QueryPlayerIDInterface(item.player, IID_TechnologyManager);
+		if (cmpTechnologyManager)
+			cmpTechnologyManager.StoppedResearch(item.technologyTemplate, true);
+		this.SetAnimation("idle");
+	}
+
+	this.queue.splice(itemIndex, 1);
+	Engine.PostMessage(this.entity, MT_ProductionQueueChanged, null);
+
+	if (!this.queue.length)
+		this.StopTimer();
 };
 
 ProductionQueue.prototype.SetAnimation = function(name)
@@ -612,7 +612,7 @@ ProductionQueue.prototype.ResetQueue = function()
 	// buildings' queues when they're about to be destroyed or captured.)
 
 	while (this.queue.length)
-		this.RemoveBatch(this.queue[0].id);
+		this.RemoveItem(this.queue[0].id);
 };
 
 /*
@@ -629,13 +629,6 @@ ProductionQueue.prototype.GetBatchTime = function(batchSize)
 
 ProductionQueue.prototype.OnOwnershipChanged = function(msg)
 {
-	if (msg.from != INVALID_PLAYER)
-	{
-		// Unset flag that previous owner's training may be blocked.
-		let cmpPlayer = QueryPlayerIDInterface(msg.from);
-		if (cmpPlayer && this.queue.length)
-			cmpPlayer.UnBlockTraining();
-	}
 	if (msg.to != INVALID_PLAYER)
 		this.CalculateEntitiesMap();
 
@@ -656,7 +649,6 @@ ProductionQueue.prototype.OnDestroy = function()
 {
 	// Reset the queue to refund any resources.
 	this.ResetQueue();
-	this.StopTimer();
 };
 
 /*
@@ -897,17 +889,11 @@ ProductionQueue.prototype.ProgressTimeout = function(data, lateness)
 
 		time -= item.timeRemaining;
 		this.queue.shift();
-		Engine.PostMessage(this.entity, MT_ProductionQueueChanged, {});
+		Engine.PostMessage(this.entity, MT_ProductionQueueChanged, null);
 	}
 
 	if (!this.queue.length)
-	{
 		this.StopTimer();
-
-		// Unset flag that training is blocked.
-		// (This might happen when the player unqueues all batches.)
-		cmpPlayer.UnBlockTraining();
-	}
 };
 
 ProductionQueue.prototype.PauseProduction = function()

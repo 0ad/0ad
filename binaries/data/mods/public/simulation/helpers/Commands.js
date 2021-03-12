@@ -375,9 +375,9 @@ var g_Commands = {
 
 	"stop-production": function(player, cmd, data)
 	{
-		var queue = Engine.QueryInterface(cmd.entity, IID_ProductionQueue);
-		if (queue)
-			queue.RemoveBatch(cmd.id);
+		let cmpProductionQueue = Engine.QueryInterface(cmd.entity, IID_ProductionQueue);
+		if (cmpProductionQueue)
+			cmpProductionQueue.RemoveItem(cmd.id);
 	},
 
 	"construct": function(player, cmd, data)
