@@ -743,6 +743,10 @@ m.Entity = m.Class({
 		return undefined;
 	},
 
+	"garrisonHolderID": function() {
+		return this._entity.garrisonHolderID;
+	},
+
 	"garrisoned": function() { return this._entity.garrisoned; },
 
 	"garrisonedSlots": function() {
