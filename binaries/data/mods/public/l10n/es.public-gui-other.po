@@ -43,9 +43,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-03-05 08:13+0000\n"
-"PO-Revision-Date: 2021-03-05 19:26+0000\n"
-"Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>\n"
+"POT-Creation-Date: 2021-03-08 08:15+0000\n"
+"PO-Revision-Date: 2021-03-08 11:28+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -910,7 +910,7 @@ msgstr "%(label)s: %(effects)s"
 msgid "Friendly Fire: %(enabled)s"
 msgstr "Fuego amigo: %(enabled)s"
 
-#: gui/common/tooltips.js:392 gui/hotkeys/HotkeysPage.js:145
+#: gui/common/tooltips.js:392 gui/hotkeys/HotkeysPage.js:153
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
 #: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:300
 #: gui/options/options.js:353 gui/options/options.js:379
@@ -919,7 +919,7 @@ msgstr "Fuego amigo: %(enabled)s"
 msgid "Yes"
 msgstr "Sí"
 
-#: gui/common/tooltips.js:392 gui/hotkeys/HotkeysPage.js:145
+#: gui/common/tooltips.js:392 gui/hotkeys/HotkeysPage.js:153
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
 #: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:300
 #: gui/options/options.js:353 gui/options/options.js:379
@@ -1496,38 +1496,42 @@ msgid ""
 "to the player you want to modify in the selection panel above."
 msgstr "Aunque sea razonablemente fácil para el jugador experto, el nivel de la IA supone todo un reto para jugadores nuevos que todavía desconozcan los rudimentos del juego.\n\nEs recomendable bajar el nivel (a «de prueba» o «fácil») en las primeras partidas. Puedes cambiarlo haciendo clic sobre cada botón con engranaje en el panel de selección de jugadores, encima de este mensaje."
 
-#: gui/hotkeys/HotkeyPicker.js:47
+#: gui/hotkeys/HotkeyMetadata.js:21 gui/hotkeys/HotkeyMetadata.js:22
+msgid "Other Hotkeys"
+msgstr ""
+
+#: gui/hotkeys/HotkeyPicker.js:57
 #, javascript-format
 msgid "#%i"
 msgstr "#%i"
 
-#: gui/hotkeys/HotkeyPicker.js:63
+#: gui/hotkeys/HotkeyPicker.js:73
 msgid " (hold to register)"
 msgstr "(mantener presionado para registrar)"
 
-#: gui/hotkeys/HotkeyPicker.js:64 gui/hotkeys/HotkeyPicker.js:95
+#: gui/hotkeys/HotkeyPicker.js:74 gui/hotkeys/HotkeyPicker.js:105
 msgid "Enter new Hotkey, hold to register."
 msgstr "Pulsa la combinación de teclas. Mantener para registrar."
 
-#: gui/hotkeys/HotkeyPicker.js:106
+#: gui/hotkeys/HotkeyPicker.js:116
 msgid "May conflict with: "
 msgstr "Puede entrar en conflicto con:"
 
-#: gui/hotkeys/HotkeysPage.js:38
+#: gui/hotkeys/HotkeysPage.js:82
 msgid "All Hotkeys"
 msgstr "Todos los atajos de teclado"
 
-#: gui/hotkeys/HotkeysPage.js:104
-msgid "Other hotkeys"
-msgstr "Otros atajos de teclado"
+#: gui/hotkeys/HotkeysPage.js:118
+msgid "No tooltip available"
+msgstr ""
 
-#: gui/hotkeys/HotkeysPage.js:143
+#: gui/hotkeys/HotkeysPage.js:151
 msgid ""
 "Reset all hotkeys to default values?\n"
 "WARNING: this cannot be reversed."
 msgstr "¿Quieres reiniciar todos los atajos de teclado a su valor por defecto?\nATENCIÓN: Acción no reversible."
 
-#: gui/hotkeys/HotkeysPage.js:144 gui/pregame/MainMenuItems.js:236
+#: gui/hotkeys/HotkeysPage.js:152 gui/pregame/MainMenuItems.js:236
 #: gui/pregame/MainMenuItems.js:260
 msgid "Confirmation"
 msgstr "Confirmar decisión"
@@ -1540,7 +1544,7 @@ msgstr "Categoría:"
 msgid "Filter:"
 msgstr "Filtro:"
 
-#: gui/hotkeys/hotkeys.xml:(caption):48 gui/hotkeys/hotkeys.xml:(caption):97
+#: gui/hotkeys/hotkeys.xml:(caption):48 gui/hotkeys/hotkeys.xml:(caption):101
 #: gui/options/options.xml:(caption):42
 msgid "Reset"
 msgstr "Restablecer"
@@ -1550,16 +1554,20 @@ msgid "Hotkey"
 msgstr "Atajo de teclado"
 
 #: gui/hotkeys/hotkeys.xml:(caption):76
+msgid "Hotkey Description"
+msgstr ""
+
+#: gui/hotkeys/hotkeys.xml:(caption):80
 msgid ""
 "Click on any mapping to modify it.\\n You may have up to 4 different "
 "hotkeys."
 msgstr "Haz clic para modificar los atajos.\\n Puedes tener hasta 4 atajos de teclado distintos."
 
-#: gui/hotkeys/hotkeys.xml:(caption):102 gui/locale/locale.xml:(caption):46
+#: gui/hotkeys/hotkeys.xml:(caption):106 gui/locale/locale.xml:(caption):46
 msgid "Accept"
 msgstr "Aceptar"
 
-#: gui/hotkeys/hotkeys.xml:(caption):107 gui/loadgame/load.xml:(caption):50
+#: gui/hotkeys/hotkeys.xml:(caption):111 gui/loadgame/load.xml:(caption):50
 #: gui/locale/locale.xml:(caption):36
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):51
 msgid "Cancel"
@@ -1575,7 +1583,7 @@ msgctxt "hotkey list"
 msgid "Mapping"
 msgstr "Mapeado"
 
-#: gui/hotkeys/hotkeys.xml:(tooltip):49 gui/hotkeys/hotkeys.xml:(tooltip):98
+#: gui/hotkeys/hotkeys.xml:(tooltip):49 gui/hotkeys/hotkeys.xml:(tooltip):102
 #: gui/options/options.xml:(tooltip):43
 msgid "Resets user settings to their game default"
 msgstr "Restablece los ajustes a su valor original"
@@ -1588,19 +1596,19 @@ msgstr "Guarda los cambios"
 msgid "Unsaved changes will be lost"
 msgstr "Se perderán los cambios sin guardar"
 
-#: gui/hotkeys/hotkeys.xml:(tooltip):86
+#: gui/hotkeys/hotkeys.xml:(tooltip):90
 msgid "Click to set the hotkey"
 msgstr "Haz clic para seleccionar el atajo de teclado"
 
-#: gui/hotkeys/hotkeys.xml:(tooltip):90
+#: gui/hotkeys/hotkeys.xml:(tooltip):94
 msgid "Click to delete the hotkey"
 msgstr "Haz clic para eliminar el atajo de teclado"
 
-#: gui/hotkeys/hotkeys.xml:(tooltip):103
+#: gui/hotkeys/hotkeys.xml:(tooltip):107
 msgid "Change the hotkeys and close"
 msgstr "Modificaa los atajos de teclado y cierra"
 
-#: gui/hotkeys/hotkeys.xml:(tooltip):108
+#: gui/hotkeys/hotkeys.xml:(tooltip):112
 msgid "The hotkeys will not be modified"
 msgstr "Los atajos de teclado no se pueden modificar"
 

@@ -9,6 +9,7 @@
 # 76407af6b051a571d67c2577de2183db_7380deb <7a4a088c8c60986e924b802e46370579_512231>, 2016
 # 76407af6b051a571d67c2577de2183db_7380deb <7a4a088c8c60986e924b802e46370579_512231>, 2016
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
+# JungHee Lee <daemul72@gmail.com>, 2021
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
 # ks k, 2019
 # ks k, 2019-2020
@@ -21,8 +22,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-03-05 08:13+0000\n"
-"PO-Revision-Date: 2021-03-05 10:29+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-03-11 02:57+0000\n"
+"Last-Translator: JungHee Lee <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2304,105 +2305,105 @@ msgstr "우리는 군단병"
 msgid ""
 "%(_player_)s and their allies have captured all relics and will win in "
 "%(time)s."
-msgstr ""
+msgstr "%(_player_)s님과 그 동맹국들은 모든 유물을 획득했으며 %(time)s 후에 승리할 것입니다."
 
 #: maps/scripts/CaptureTheRelic.js:145
 #, javascript-format
 msgid "%(_player_)s has captured all relics and will win in %(time)s."
-msgstr ""
+msgstr "%(_player_)s님이 모든 유물을 점령했으며 %(time)s 후에 승리할 것입니다."
 
 #: maps/scripts/CaptureTheRelic.js:156
 #, javascript-format
 msgid "You and your allies have captured all relics and will win in %(time)s."
-msgstr ""
+msgstr "당신과 당신의 동맹국들은 모든 유물을 점령했고 %(time)s 후에 승리할 것입니다."
 
 #: maps/scripts/CaptureTheRelic.js:157
 #, javascript-format
 msgid "You have captured all relics and will win in %(time)s."
-msgstr ""
+msgstr "당신은 모든 유물을 획득했으며 %(time)s 후에 승리할 것입니다."
 
 #: maps/scripts/CaptureTheRelic.js:171
 #, javascript-format
 msgid "%(lastPlayer)s has won (Capture the Relic)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (Capture the Relic)."
-msgstr[0] ""
+msgstr[0] "%(players)s님과 %(lastPlayer)s님이 승리했습니다 (유물 획득)."
 
 #: maps/scripts/CaptureTheRelic.js:175
 #, javascript-format
 msgid "%(lastPlayer)s has been defeated (Capture the Relic)."
 msgid_plural ""
 "%(players)s and %(lastPlayer)s have been defeated (Capture the Relic)."
-msgstr[0] ""
+msgstr[0] "%(players)s님과 %(lastPlayer)s님이 패배했습니다 (유물 탈취)."
 
 #: maps/scripts/Conquest.js:5
 #, javascript-format
 msgid "%(player)s has been defeated (lost all critical units and structures)."
-msgstr ""
+msgstr "%(player)s님이 패배했습니다 (모든 중요 유닛과 건축물 잃음)."
 
 #: maps/scripts/ConquestStructures.js:5
 #, javascript-format
 msgid "%(player)s has been defeated (lost all structures)."
-msgstr ""
+msgstr "%(player)s님이 패배했습니다 (모든 건축물 잃음)."
 
 #: maps/scripts/ConquestStructures.js:9
 #, javascript-format
 msgid "%(player)s has been defeated (lost all structures and critical units)."
-msgstr ""
+msgstr "%(player)s님이 패배했습니다 (모든 건축물과 중요 유닛 잃음)."
 
 #: maps/scripts/ConquestUnits.js:5
 #, javascript-format
 msgid "%(player)s has been defeated (lost all units)."
-msgstr ""
+msgstr "%(player)s님이 패배했습니다 (모든 유닛 잃음)."
 
 #: maps/scripts/ConquestUnits.js:9
 #, javascript-format
 msgid "%(player)s has been defeated (lost all units and critical structures)."
-msgstr ""
+msgstr "%(player)s님이 패배했습니다 (모든 유닛과 중요 건축물 잃음)."
 
 #: maps/scripts/Regicide.js:130
 #, javascript-format
 msgid "%(player)s has been defeated (lost hero)."
-msgstr ""
+msgstr "%(player)s님이 패배했습니다(영웅 잃음)."
 
 #: maps/scripts/WonderVictory.js:80
 #, javascript-format
 msgid ""
 "%(_player_)s owns a Wonder and %(_player_)s and their allies will win in "
 "%(time)s."
-msgstr ""
+msgstr "%(_player_)s님이 불가사의를 소유하고 있다면 %(_player_)s님과 그 동맹은 %(time)s 후에 승리할 것입니다."
 
 #: maps/scripts/WonderVictory.js:81
 #, javascript-format
 msgid "%(_player_)s owns a Wonder and will win in %(time)s."
-msgstr ""
+msgstr "%(_player_)s님이 불가사의를 소유하고 있으며 %(time)s 후에 승리할 것입니다."
 
 #: maps/scripts/WonderVictory.js:92
 #, javascript-format
 msgid "%(_player_)s owns a Wonder and you will win in %(time)s."
-msgstr ""
+msgstr "%(_player_)s님이 불가사의를 소유하고 있으며 %(time)s 후에 승리할 것입니다"
 
 #: maps/scripts/WonderVictory.js:104
 #, javascript-format
 msgid "You own a Wonder and you and your allies will win in %(time)s."
-msgstr ""
+msgstr "당신이 불가사의를 소유하고 있다면 당신과 당신의 동맹은 %(time)s 후에 승리할 것입니다."
 
 #: maps/scripts/WonderVictory.js:105
 #, javascript-format
 msgid "You own a Wonder and will win in %(time)s."
-msgstr ""
+msgstr "당신은 불가사의를 소유하고 있으며 %(time)s 후에 승리할 것입니다."
 
 #: maps/scripts/WonderVictory.js:150
 #, javascript-format
 msgid "%(lastPlayer)s has won (wonder victory)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (wonder victory)."
-msgstr[0] ""
+msgstr[0] "%(players)s님과 %(lastPlayer)s님이 승리했습니다 (불가사의 승리)."
 
 #: maps/scripts/WonderVictory.js:154
 #, javascript-format
 msgid "%(lastPlayer)s has been defeated (wonder victory)."
 msgid_plural ""
 "%(players)s and %(lastPlayer)s have been defeated (wonder victory)."
-msgstr[0] ""
+msgstr[0] "%(players)s님과  %(lastPlayer)s님이 패배했습니다 (불가사의 승리)."
 
 #: maps/skirmishes/acropolis_bay_2p.xml:Description:38
 msgid ""

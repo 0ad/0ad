@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-03-05 08:13+0000\n"
-"PO-Revision-Date: 2021-03-05 11:28+0000\n"
+"POT-Creation-Date: 2021-03-08 08:15+0000\n"
+"PO-Revision-Date: 2021-03-08 11:28+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Swahili (http://www.transifex.com/wildfire-games/0ad/language/sw/)\n"
 "MIME-Version: 1.0\n"
@@ -873,7 +873,7 @@ msgstr ""
 msgid "Friendly Fire: %(enabled)s"
 msgstr ""
 
-#: gui/common/tooltips.js:392 gui/hotkeys/HotkeysPage.js:145
+#: gui/common/tooltips.js:392 gui/hotkeys/HotkeysPage.js:153
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
 #: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:300
 #: gui/options/options.js:353 gui/options/options.js:379
@@ -882,7 +882,7 @@ msgstr ""
 msgid "Yes"
 msgstr ""
 
-#: gui/common/tooltips.js:392 gui/hotkeys/HotkeysPage.js:145
+#: gui/common/tooltips.js:392 gui/hotkeys/HotkeysPage.js:153
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
 #: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:300
 #: gui/options/options.js:353 gui/options/options.js:379
@@ -1459,38 +1459,42 @@ msgid ""
 "to the player you want to modify in the selection panel above."
 msgstr ""
 
-#: gui/hotkeys/HotkeyPicker.js:47
+#: gui/hotkeys/HotkeyMetadata.js:21 gui/hotkeys/HotkeyMetadata.js:22
+msgid "Other Hotkeys"
+msgstr ""
+
+#: gui/hotkeys/HotkeyPicker.js:57
 #, javascript-format
 msgid "#%i"
 msgstr ""
 
-#: gui/hotkeys/HotkeyPicker.js:63
+#: gui/hotkeys/HotkeyPicker.js:73
 msgid " (hold to register)"
 msgstr ""
 
-#: gui/hotkeys/HotkeyPicker.js:64 gui/hotkeys/HotkeyPicker.js:95
+#: gui/hotkeys/HotkeyPicker.js:74 gui/hotkeys/HotkeyPicker.js:105
 msgid "Enter new Hotkey, hold to register."
 msgstr ""
 
-#: gui/hotkeys/HotkeyPicker.js:106
+#: gui/hotkeys/HotkeyPicker.js:116
 msgid "May conflict with: "
 msgstr ""
 
-#: gui/hotkeys/HotkeysPage.js:38
+#: gui/hotkeys/HotkeysPage.js:82
 msgid "All Hotkeys"
 msgstr ""
 
-#: gui/hotkeys/HotkeysPage.js:104
-msgid "Other hotkeys"
+#: gui/hotkeys/HotkeysPage.js:118
+msgid "No tooltip available"
 msgstr ""
 
-#: gui/hotkeys/HotkeysPage.js:143
+#: gui/hotkeys/HotkeysPage.js:151
 msgid ""
 "Reset all hotkeys to default values?\n"
 "WARNING: this cannot be reversed."
 msgstr ""
 
-#: gui/hotkeys/HotkeysPage.js:144 gui/pregame/MainMenuItems.js:236
+#: gui/hotkeys/HotkeysPage.js:152 gui/pregame/MainMenuItems.js:236
 #: gui/pregame/MainMenuItems.js:260
 msgid "Confirmation"
 msgstr ""
@@ -1503,7 +1507,7 @@ msgstr ""
 msgid "Filter:"
 msgstr ""
 
-#: gui/hotkeys/hotkeys.xml:(caption):48 gui/hotkeys/hotkeys.xml:(caption):97
+#: gui/hotkeys/hotkeys.xml:(caption):48 gui/hotkeys/hotkeys.xml:(caption):101
 #: gui/options/options.xml:(caption):42
 msgid "Reset"
 msgstr ""
@@ -1513,16 +1517,20 @@ msgid "Hotkey"
 msgstr ""
 
 #: gui/hotkeys/hotkeys.xml:(caption):76
+msgid "Hotkey Description"
+msgstr ""
+
+#: gui/hotkeys/hotkeys.xml:(caption):80
 msgid ""
 "Click on any mapping to modify it.\\n You may have up to 4 different "
 "hotkeys."
 msgstr ""
 
-#: gui/hotkeys/hotkeys.xml:(caption):102 gui/locale/locale.xml:(caption):46
+#: gui/hotkeys/hotkeys.xml:(caption):106 gui/locale/locale.xml:(caption):46
 msgid "Accept"
 msgstr ""
 
-#: gui/hotkeys/hotkeys.xml:(caption):107 gui/loadgame/load.xml:(caption):50
+#: gui/hotkeys/hotkeys.xml:(caption):111 gui/loadgame/load.xml:(caption):50
 #: gui/locale/locale.xml:(caption):36
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):51
 msgid "Cancel"
@@ -1538,7 +1546,7 @@ msgctxt "hotkey list"
 msgid "Mapping"
 msgstr ""
 
-#: gui/hotkeys/hotkeys.xml:(tooltip):49 gui/hotkeys/hotkeys.xml:(tooltip):98
+#: gui/hotkeys/hotkeys.xml:(tooltip):49 gui/hotkeys/hotkeys.xml:(tooltip):102
 #: gui/options/options.xml:(tooltip):43
 msgid "Resets user settings to their game default"
 msgstr ""
@@ -1551,19 +1559,19 @@ msgstr ""
 msgid "Unsaved changes will be lost"
 msgstr ""
 
-#: gui/hotkeys/hotkeys.xml:(tooltip):86
+#: gui/hotkeys/hotkeys.xml:(tooltip):90
 msgid "Click to set the hotkey"
 msgstr ""
 
-#: gui/hotkeys/hotkeys.xml:(tooltip):90
+#: gui/hotkeys/hotkeys.xml:(tooltip):94
 msgid "Click to delete the hotkey"
 msgstr ""
 
-#: gui/hotkeys/hotkeys.xml:(tooltip):103
+#: gui/hotkeys/hotkeys.xml:(tooltip):107
 msgid "Change the hotkeys and close"
 msgstr ""
 
-#: gui/hotkeys/hotkeys.xml:(tooltip):108
+#: gui/hotkeys/hotkeys.xml:(tooltip):112
 msgid "The hotkeys will not be modified"
 msgstr ""
 

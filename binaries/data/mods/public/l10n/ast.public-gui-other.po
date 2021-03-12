@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-03-05 08:13+0000\n"
-"PO-Revision-Date: 2021-03-07 21:57+0000\n"
+"POT-Creation-Date: 2021-03-08 08:15+0000\n"
+"PO-Revision-Date: 2021-03-09 21:44+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -92,14 +92,14 @@ msgstr "%(playerName)s (%(AIdescription)s, %(state)s)"
 #: gui/common/gamedescription.js:90
 #, javascript-format
 msgid "%(playerName)s (OFFLINE)"
-msgstr "%(playerName)s (FUERA DE LA REDE)"
+msgstr "%(playerName)s (DESCONEUTÁU/-ADA)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:93
 #, javascript-format
 msgid "%(playerName)s (OFFLINE, %(state)s)"
-msgstr "%(playerName)s (FUERA DE LA REDE, %(state)s)"
+msgstr "%(playerName)s (DESCONEUTÁU/-ADA, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
@@ -131,17 +131,17 @@ msgstr "%(playerName)s (%(state)s)"
 
 #: gui/common/gamedescription.js:130
 msgid "Unknown Civilization"
-msgstr "Desconozse la civilización"
+msgstr "Civilización desconocida"
 
 #: gui/common/gamedescription.js:137
 msgctxt "playerstate"
 msgid "defeated"
-msgstr "vencióse"
+msgstr "vencíu/-ida"
 
 #: gui/common/gamedescription.js:138
 msgctxt "playerstate"
 msgid "won"
-msgstr "ganó"
+msgstr "trunfante"
 
 #: gui/common/gamedescription.js:159
 msgid "No Team"
@@ -171,11 +171,11 @@ msgstr[1] "Espeutadores"
 #: gui/common/gamedescription.js:188
 msgctxt "victory condition"
 msgid "Endless Game"
-msgstr "Partida ensin fin"
+msgstr "Partida infinita"
 
 #: gui/common/gamedescription.js:189
 msgid "No winner will be determined, even if everyone is defeated."
-msgstr "Nun va determinase dengún ganador, anque toos tean vencíos."
+msgstr "Naide nun va ganar, anque toos pierdan."
 
 #: gui/common/gamedescription.js:202
 #, javascript-format
@@ -199,11 +199,11 @@ msgstr "Númberu de reliquies"
 
 #: gui/common/gamedescription.js:239
 msgid "Hero Garrison"
-msgstr "Guarecimientu d'héroes"
+msgstr "Héroes guarecederos"
 
 #: gui/common/gamedescription.js:240
 msgid "Heroes can be garrisoned."
-msgstr "Los héroes puen guarecese."
+msgstr "Pue guarecese a los héroes."
 
 #: gui/common/gamedescription.js:244
 msgid "Exposed Heroes"
@@ -211,7 +211,7 @@ msgstr "Héroes espuestos"
 
 #: gui/common/gamedescription.js:245
 msgid "Heroes cannot be garrisoned and they are vulnerable to raids."
-msgstr "Los héroes nun puen guarecese & son mancables n'asaltos."
+msgstr "Los héroes han quedar albentestate y son más dañatibles."
 
 #: gui/common/gamedescription.js:252
 msgid "Rated game"
@@ -221,7 +221,7 @@ msgstr "Partida clasificada"
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
-msgstr "Cuando'l ganador d'esti alcuentru se determine, va afacese'l marcador na sala."
+msgstr "En ganando daquién l'alcuentru, va anovase'l marcador na sala."
 
 #: gui/common/gamedescription.js:258
 msgid "Locked Teams"
@@ -229,7 +229,7 @@ msgstr "Equipos fixos"
 
 #: gui/common/gamedescription.js:259
 msgid "Players can't change the initial teams."
-msgstr "Los xugadores nun puen camudar los equipos iniciales."
+msgstr "Los xugadores nun puen cambiar d'equipu."
 
 #: gui/common/gamedescription.js:263
 msgid "Diplomacy"
@@ -237,7 +237,7 @@ msgstr "Diplomacia"
 
 #: gui/common/gamedescription.js:264
 msgid "Players can make alliances and declare war on allies."
-msgstr "Los xugadores puen aliase & declarar la guerra a aliaos."
+msgstr "Los xugadores puen aliase y declarar la guerra a aliaos."
 
 #: gui/common/gamedescription.js:269
 msgid "Last Man Standing"
@@ -247,7 +247,7 @@ msgstr "El caberu de pie"
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
-msgstr "Namái un xugador pue ganar la partida. Si los xugadores que queden son aliaos, la partida sigue fasta que quede namái ún."
+msgstr "Namái pue ganar un xugador. Si los que queden tán aliaos, l'alcuentru sigue hasta que quede solo ún."
 
 #: gui/common/gamedescription.js:274
 msgid "Allied Victory"
@@ -257,7 +257,7 @@ msgstr "Victoria aliada"
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
-msgstr "Si gana un xugador, tamién ganen los sos aliaos. Si queda un grupu d'aliaos, gana."
+msgstr "Al ganar un xugador, tola alianza tamién gana. Al quedar una alianza, gana."
 
 #: gui/common/gamedescription.js:280
 msgid "Ceasefire"
@@ -270,8 +270,8 @@ msgstr "desactivóse"
 #: gui/common/gamedescription.js:284
 msgid "For the first minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
-msgstr[0] "El primer minutu, los otros xugadores van siguir neutrales."
-msgstr[1] "Los primeros %(min)s minutos, los otros xugadores van siguir neutrales."
+msgstr[0] "Demientres el primer minutu, tolos xugadores van tar neutrales."
+msgstr[1] "Demientres los primeros %(min)s minutos, tolos xugadores van tar neutrales."
 
 #: gui/common/gamedescription.js:293
 msgctxt "Map Selection"
@@ -280,7 +280,7 @@ msgstr "Mapa al debalu"
 
 #: gui/common/gamedescription.js:294
 msgid "Randomly select a map from the list."
-msgstr "Esbillar un mapa de la llista al debalu."
+msgstr "Esbilla un mapa de la llista al debalu."
 
 #: gui/common/gamedescription.js:299
 msgid "Map Name"
@@ -305,7 +305,7 @@ msgstr "Bioma al debalu"
 
 #: gui/common/gamedescription.js:330
 msgid "Randomly select a biome from the list."
-msgstr "Esbillar un bioma de la llista al debalu."
+msgstr "Esbilla un bioma de la llista al debalu."
 
 #: gui/common/gamedescription.js:345
 msgid "Nomad Mode"
@@ -319,7 +319,7 @@ msgstr "Places"
 msgid ""
 "Players start with only few units and have to find a suitable place to build"
 " their city."
-msgstr "Los xugadores entamen con un puñáu d'unidaes ya tienen qu'atopar un sitiu apode pa fincar."
+msgstr "Los xugadores entamen con un puñáu d'unidaes ya escueyen onde fincar."
 
 #: gui/common/gamedescription.js:349
 msgid "Players start with a Civic Center."
@@ -332,7 +332,7 @@ msgstr "Recursos iniciales"
 #: gui/common/gamedescription.js:358
 msgctxt "starting resources"
 msgid "Per Player"
-msgstr "Per xugador"
+msgstr "Por xugador"
 
 #: gui/common/gamedescription.js:359
 #, javascript-format
@@ -346,7 +346,7 @@ msgstr "Población máxima"
 #: gui/common/gamedescription.js:374
 msgctxt "population limit"
 msgid "Per Player"
-msgstr "Per xugador"
+msgstr "Por xugador"
 
 #: gui/common/gamedescription.js:382
 msgid "World Population Cap"
@@ -368,7 +368,7 @@ msgstr "Según les definiciones del mapa"
 
 #: gui/common/gamedescription.js:397
 msgid "Revealed Map"
-msgstr "Mapa descubiertu"
+msgstr "Mapa reveláu"
 
 #: gui/common/gamedescription.js:402
 msgid "Explored Map"
@@ -401,11 +401,11 @@ msgstr "desactiváronse"
 
 #: gui/common/gamedescription.js:427
 msgid "Victorious"
-msgstr "Venció"
+msgstr "Trunfante"
 
 #: gui/common/gamedescription.js:432
 msgid "Defeated"
-msgstr "Vencióse"
+msgstr "Vencíu/-ida"
 
 #: gui/common/gamedescription.js:441
 #, javascript-format
@@ -436,7 +436,7 @@ msgstr "Mala conexón con %(player)s (%(milliseconds)sms)"
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
 " by a firewall, or anti-virus software."
-msgstr "Esto prodúcenlo davezu una non remisión del puertu UDP 20595 pel llau del agospiu, un tornafuéu o un programa antivirus."
+msgstr "Ello pue ser por un tornafuéu, un programa antivirus o la non remisión del puertu UDP 20595 per parte l'agospiu."
 
 #: gui/common/network.js:67
 msgid "The host has ended the game."
@@ -468,7 +468,7 @@ msgstr "Nome de xugador n'usu. Si te desconeutesti, reténtalo en dellos segundo
 
 #: gui/common/network.js:74
 msgid "Server full."
-msgstr "Sirvidor enllén."
+msgstr "El sirvidor ta enllén."
 
 #: gui/common/network.js:75
 msgid "Secure lobby authentication failed. Join via lobby."
@@ -877,7 +877,7 @@ msgstr "%(label)s: %(effects)s"
 msgid "Friendly Fire: %(enabled)s"
 msgstr "Fueu amigo: %(enabled)s"
 
-#: gui/common/tooltips.js:392 gui/hotkeys/HotkeysPage.js:145
+#: gui/common/tooltips.js:392 gui/hotkeys/HotkeysPage.js:153
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
 #: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:300
 #: gui/options/options.js:353 gui/options/options.js:379
@@ -886,7 +886,7 @@ msgstr "Fueu amigo: %(enabled)s"
 msgid "Yes"
 msgstr "Sí"
 
-#: gui/common/tooltips.js:392 gui/hotkeys/HotkeysPage.js:145
+#: gui/common/tooltips.js:392 gui/hotkeys/HotkeysPage.js:153
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
 #: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:300
 #: gui/options/options.js:353 gui/options/options.js:379
@@ -1463,38 +1463,42 @@ msgid ""
 "to the player you want to modify in the selection panel above."
 msgstr "Magar que'l xugador tralláu nun lu vea tan difícil, el nivel por defeutu de la IA ye enforma abegosu pa novatos, que siguen ensin dominar los fundamentales del xuegu. A estos aconséyase-yos entamar xugando escontra una IA de nivel más baxu (Quedu o Perfácil). Cambia'l nivel de la IA calcando nel iconu del engrane cabo'l xugador que quieras camudar nel panel d'esbilla enriba."
 
-#: gui/hotkeys/HotkeyPicker.js:47
+#: gui/hotkeys/HotkeyMetadata.js:21 gui/hotkeys/HotkeyMetadata.js:22
+msgid "Other Hotkeys"
+msgstr "Otros atayos"
+
+#: gui/hotkeys/HotkeyPicker.js:57
 #, javascript-format
 msgid "#%i"
 msgstr "#%i"
 
-#: gui/hotkeys/HotkeyPicker.js:63
+#: gui/hotkeys/HotkeyPicker.js:73
 msgid " (hold to register)"
 msgstr "(Calténlu calcáu p'asignalu)"
 
-#: gui/hotkeys/HotkeyPicker.js:64 gui/hotkeys/HotkeyPicker.js:95
+#: gui/hotkeys/HotkeyPicker.js:74 gui/hotkeys/HotkeyPicker.js:105
 msgid "Enter new Hotkey, hold to register."
 msgstr "Introduz l'atayu nuevu, calténlu calcáu p'asignalu."
 
-#: gui/hotkeys/HotkeyPicker.js:106
+#: gui/hotkeys/HotkeyPicker.js:116
 msgid "May conflict with: "
 msgstr ""
 
-#: gui/hotkeys/HotkeysPage.js:38
+#: gui/hotkeys/HotkeysPage.js:82
 msgid "All Hotkeys"
 msgstr "Tolos atayos"
 
-#: gui/hotkeys/HotkeysPage.js:104
-msgid "Other hotkeys"
-msgstr "Otros atayos"
+#: gui/hotkeys/HotkeysPage.js:118
+msgid "No tooltip available"
+msgstr ""
 
-#: gui/hotkeys/HotkeysPage.js:143
+#: gui/hotkeys/HotkeysPage.js:151
 msgid ""
 "Reset all hotkeys to default values?\n"
 "WARNING: this cannot be reversed."
 msgstr ""
 
-#: gui/hotkeys/HotkeysPage.js:144 gui/pregame/MainMenuItems.js:236
+#: gui/hotkeys/HotkeysPage.js:152 gui/pregame/MainMenuItems.js:236
 #: gui/pregame/MainMenuItems.js:260
 msgid "Confirmation"
 msgstr "Confirmanza"
@@ -1507,7 +1511,7 @@ msgstr "Estaya:"
 msgid "Filter:"
 msgstr "Peñera:"
 
-#: gui/hotkeys/hotkeys.xml:(caption):48 gui/hotkeys/hotkeys.xml:(caption):97
+#: gui/hotkeys/hotkeys.xml:(caption):48 gui/hotkeys/hotkeys.xml:(caption):101
 #: gui/options/options.xml:(caption):42
 msgid "Reset"
 msgstr "Reafitar"
@@ -1517,16 +1521,20 @@ msgid "Hotkey"
 msgstr "Atayu"
 
 #: gui/hotkeys/hotkeys.xml:(caption):76
+msgid "Hotkey Description"
+msgstr ""
+
+#: gui/hotkeys/hotkeys.xml:(caption):80
 msgid ""
 "Click on any mapping to modify it.\\n You may have up to 4 different "
 "hotkeys."
 msgstr ""
 
-#: gui/hotkeys/hotkeys.xml:(caption):102 gui/locale/locale.xml:(caption):46
+#: gui/hotkeys/hotkeys.xml:(caption):106 gui/locale/locale.xml:(caption):46
 msgid "Accept"
 msgstr "Aceutar"
 
-#: gui/hotkeys/hotkeys.xml:(caption):107 gui/loadgame/load.xml:(caption):50
+#: gui/hotkeys/hotkeys.xml:(caption):111 gui/loadgame/load.xml:(caption):50
 #: gui/locale/locale.xml:(caption):36
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):51
 msgid "Cancel"
@@ -1542,7 +1550,7 @@ msgctxt "hotkey list"
 msgid "Mapping"
 msgstr "Asignación"
 
-#: gui/hotkeys/hotkeys.xml:(tooltip):49 gui/hotkeys/hotkeys.xml:(tooltip):98
+#: gui/hotkeys/hotkeys.xml:(tooltip):49 gui/hotkeys/hotkeys.xml:(tooltip):102
 #: gui/options/options.xml:(tooltip):43
 msgid "Resets user settings to their game default"
 msgstr "Reafita los axustes del usuariu a los por defeutu del xuegu."
@@ -1555,19 +1563,19 @@ msgstr "Guarda cambeos"
 msgid "Unsaved changes will be lost"
 msgstr ""
 
-#: gui/hotkeys/hotkeys.xml:(tooltip):86
+#: gui/hotkeys/hotkeys.xml:(tooltip):90
 msgid "Click to set the hotkey"
 msgstr "Calca p'afitar l'atayu"
 
-#: gui/hotkeys/hotkeys.xml:(tooltip):90
+#: gui/hotkeys/hotkeys.xml:(tooltip):94
 msgid "Click to delete the hotkey"
 msgstr "Calca pa desaniciar l'atayu"
 
-#: gui/hotkeys/hotkeys.xml:(tooltip):103
+#: gui/hotkeys/hotkeys.xml:(tooltip):107
 msgid "Change the hotkeys and close"
 msgstr "Cambia los atayos y zarra"
 
-#: gui/hotkeys/hotkeys.xml:(tooltip):108
+#: gui/hotkeys/hotkeys.xml:(tooltip):112
 msgid "The hotkeys will not be modified"
 msgstr "Los atayos van siguir igual"
 
