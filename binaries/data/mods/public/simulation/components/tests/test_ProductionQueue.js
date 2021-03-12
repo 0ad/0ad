@@ -11,6 +11,7 @@ Engine.LoadComponentScript("interfaces/TrainingRestrictions.js");
 Engine.LoadComponentScript("interfaces/Trigger.js");
 Engine.LoadComponentScript("interfaces/Upgrade.js");
 Engine.LoadComponentScript("EntityLimits.js");
+Engine.LoadComponentScript("Timer.js");
 
 Engine.RegisterGlobal("Resources", {
 	"BuildSchema": (a, b) => {}
@@ -215,7 +216,8 @@ function regression_test_d1879()
 	});
 
 	AddMock(SYSTEM_ENTITY, IID_Timer, {
-		"SetTimeout": (ent, iid, func) => {}
+		"SetInterval": (ent, iid, func) => 1,
+		"CancelTimer": (id) => {}
 	});
 
 	AddMock(SYSTEM_ENTITY, IID_TemplateManager, {
@@ -274,7 +276,7 @@ function regression_test_d1879()
 	TS_ASSERT_EQUALS(cmpEntLimits.GetCounts().some_limit, 3);
 	TS_ASSERT_EQUALS(cmpEntLimits.GetMatchCounts().some_template, 3);
 
-	cmpProdQueue.ProgressTimeout();
+	cmpProdQueue.ProgressTimeout(null, 0);
 
 	TS_ASSERT_EQUALS(cmpEntLimits.GetCounts().some_limit, 3);
 	TS_ASSERT_EQUALS(cmpEntLimits.GetMatchCounts().some_template, 3);
@@ -289,7 +291,7 @@ function regression_test_d1879()
 	});
 
 	cmpProdQueue.AddBatch("some_template", "unit", 3);
-	cmpProdQueue.ProgressTimeout();
+	cmpProdQueue.ProgressTimeout(null, 0);
 
 	TS_ASSERT_EQUALS(cmpProdQueue.GetQueue().length, 1);
 	TS_ASSERT_EQUALS(cmpEntLimits.GetCounts().some_limit, 6);
@@ -324,7 +326,7 @@ function test_batch_adding()
 	});
 
 	AddMock(SYSTEM_ENTITY, IID_Timer, {
-		"SetTimeout": (ent, iid, func) => {}
+		"SetInterval": (ent, iid, func) => 1
 	});
 
 	AddMock(SYSTEM_ENTITY, IID_TemplateManager, {
@@ -382,6 +384,97 @@ function test_batch_adding()
 	TS_ASSERT_EQUALS(cmpProdQueue.GetQueue().length, 1);
 }
 
+function test_batch_removal()
+{
+	let playerEnt = 2;
+	let playerID = 1;
+	let testEntity = 3;
+
+	ConstructComponent(playerEnt, "EntityLimits", {
+		"Limits": {
+			"some_limit": 8
+		},
+		"LimitChangers": {},
+		"LimitRemovers": {}
+	});
+
+	AddMock(SYSTEM_ENTITY, IID_GuiInterface, {
+		"PushNotification": () => {}
+	});
+
+	AddMock(SYSTEM_ENTITY, IID_Trigger, {
+		"CallEvent": () => {}
+	});
+
+	ConstructComponent(SYSTEM_ENTITY, "Timer", null);
+
+	AddMock(SYSTEM_ENTITY, IID_TemplateManager, {
+		"TemplateExists": () => true,
+		"GetTemplate": name => ({
+			"Cost": {
+				"BuildTime": 0,
+				"Population": 1,
+				"Resources": {}
+			},
+			"TrainingRestrictions": {
+				"Category": "some_limit"
+			}
+		})
+	});
+
+	AddMock(SYSTEM_ENTITY, IID_PlayerManager, {
+		"GetPlayerByID": id => playerEnt
+	});
+
+	let cmpPlayer = AddMock(playerEnt, IID_Player, {
+		"GetCiv": () => "iber",
+		"GetPlayerID": () => playerID,
+		"GetTimeMultiplier": () => 0,
+		"BlockTraining": () => {},
+		"UnBlockTraining": () => {},
+		"UnReservePopulationSlots": () => {},
+		"TrySubtractResources": () => true,
+		"AddResources": () => {},
+		"TryReservePopulationSlots": () => 1
+	});
+	let cmpPlayerBlockSpy = new Spy(cmpPlayer, "BlockTraining");
+	let cmpPlayerUnblockSpy = new Spy(cmpPlayer, "UnBlockTraining");
+
+	AddMock(testEntity, IID_Ownership, {
+		"GetOwner": () => playerID
+	});
+
+	let cmpProdQueue = ConstructComponent(testEntity, "ProductionQueue", {
+		"Entities": { "_string": "some_template" },
+		"BatchTimeModifier": 1
+	});
+
+	cmpProdQueue.AddBatch("some_template", "unit", 3);
+	TS_ASSERT_EQUALS(cmpProdQueue.GetQueue().length, 1);
+	cmpProdQueue.ProgressTimeout(null, 0);
+	TS_ASSERT_EQUALS(cmpPlayerBlockSpy._called, 1);
+
+	cmpProdQueue.AddBatch("some_template", "unit", 2);
+	TS_ASSERT_EQUALS(cmpProdQueue.GetQueue().length, 2);
+
+	cmpProdQueue.RemoveBatch(1);
+	TS_ASSERT_EQUALS(cmpProdQueue.GetQueue().length, 1);
+	TS_ASSERT_EQUALS(cmpPlayerUnblockSpy._called, 0);
+
+	cmpProdQueue.RemoveBatch(2);
+	TS_ASSERT_EQUALS(cmpProdQueue.GetQueue().length, 0);
+	cmpProdQueue.ProgressTimeout(null, 0);
+	TS_ASSERT_EQUALS(cmpPlayerUnblockSpy._called, 1);
+
+	cmpProdQueue.AddBatch("some_template", "unit", 3);
+	cmpProdQueue.AddBatch("some_template", "unit", 3);
+	cmpPlayer.TryReservePopulationSlots = () => false;
+	cmpProdQueue.RemoveBatch(3);
+	cmpProdQueue.ProgressTimeout(null, 0);
+	TS_ASSERT_EQUALS(cmpPlayerUnblockSpy._called, 2);
+
+}
+
 function test_token_changes()
 {
 	const ent = 10;
@@ -401,7 +494,9 @@ function test_token_changes()
 		"GetCiv": () => "test",
 		"GetDisabledTemplates": () => [],
 		"GetDisabledTechnologies": () => [],
+		"TryReservePopulationSlots": () => false, // Always have pop space.
 		"TrySubtractResources": () => true,
+		"UnBlockTraining": () => {},
 		"AddResources": () => {},
 		"GetPlayerID": () => 1,
 		// entitylimits
@@ -453,4 +548,5 @@ function test_token_changes()
 testEntitiesList();
 regression_test_d1879();
 test_batch_adding();
+test_batch_removal();
 test_token_changes();
