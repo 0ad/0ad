@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
 * This file is part of 0 A.D.
 *
 * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,11 +21,13 @@
 
 #include "graphics/HFTracer.h"
 #include "graphics/Terrain.h"
+#include "i18n/L10n.h"
 #include "lib/input.h"
 #include "lib/timer.h"
 #include "maths/MathUtil.h"
 #include "maths/Matrix3D.h"
 #include "maths/Quaternion.h"
+#include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
 #include "ps/Game.h"
 #include "ps/Globals.h"
@@ -681,33 +683,39 @@ InReaction CCameraController::HandleEvent(const SDL_Event_* ev)
 		else if (hotkey == "camera.scroll.speed.increase")
 		{
 			m_ViewScrollSpeed *= m_ViewScrollSpeedModifier;
+			LOGMESSAGERENDER(g_L10n.Translate("Scroll speed increased to %.1f"), m_ViewScrollSpeed);
 			return IN_HANDLED;
 		}
 		else if (hotkey == "camera.scroll.speed.decrease")
 		{
 			m_ViewScrollSpeed /= m_ViewScrollSpeedModifier;
+			LOGMESSAGERENDER(g_L10n.Translate("Scroll speed decreased to %.1f"), m_ViewScrollSpeed);
 			return IN_HANDLED;
 		}
 		else if (hotkey == "camera.rotate.speed.increase")
 		{
 			m_ViewRotateXSpeed *= m_ViewRotateSpeedModifier;
 			m_ViewRotateYSpeed *= m_ViewRotateSpeedModifier;
+			LOGMESSAGERENDER(g_L10n.Translate("Rotate speed increased to X=%.3f, Y=%.3f"), m_ViewRotateXSpeed, m_ViewRotateYSpeed);
 			return IN_HANDLED;
 		}
 		else if (hotkey == "camera.rotate.speed.decrease")
 		{
 			m_ViewRotateXSpeed /= m_ViewRotateSpeedModifier;
 			m_ViewRotateYSpeed /= m_ViewRotateSpeedModifier;
+			LOGMESSAGERENDER(g_L10n.Translate("Rotate speed decreased to X=%.3f, Y=%.3f"), m_ViewRotateXSpeed, m_ViewRotateYSpeed);
 			return IN_HANDLED;
 		}
 		else if (hotkey == "camera.zoom.speed.increase")
 		{
 			m_ViewZoomSpeed *= m_ViewZoomSpeedModifier;
+			LOGMESSAGERENDER(g_L10n.Translate("Zoom speed increased to %.1f"), m_ViewZoomSpeed);
 			return IN_HANDLED;
 		}
 		else if (hotkey == "camera.zoom.speed.decrease")
 		{
 			m_ViewZoomSpeed /= m_ViewZoomSpeedModifier;
+			LOGMESSAGERENDER(g_L10n.Translate("Zoom speed decreased to %.1f"), m_ViewZoomSpeed);
 			return IN_HANDLED;
 		}
 		return IN_PASS;
