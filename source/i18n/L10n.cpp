@@ -69,6 +69,33 @@ void ReadPoIntoDictionary(const std::string& poContent, tinygettext::Dictionary*
 	}
 }
 
+/**
+ * Creates an ICU date formatted with the specified settings.
+ *
+ * @param type Whether formatted dates must show both the date and the time,
+ *        only the date or only the time.
+ * @param style ICU style to format dates by default.
+ * @param locale Locale that the date formatter should use to parse strings.
+ *        It has no relevance for date formatting, only matters for date
+ *        parsing.
+ * @return ICU date formatter.
+ */
+icu::DateFormat* CreateDateTimeInstance(const L10n::DateTimeType& type, const icu::DateFormat::EStyle& style, const icu::Locale& locale)
+{
+	switch (type)
+	{
+	case L10n::Date:
+		return icu::SimpleDateFormat::createDateInstance(style, locale);
+
+	case L10n::Time:
+		return icu::SimpleDateFormat::createTimeInstance(style, locale);
+
+	case L10n::DateTime:
+	default:
+		return icu::SimpleDateFormat::createDateTimeInstance(style, style, locale);
+	}
+}
+
 } // anonymous namespace
 
 void L10n::DictionaryDeleter::operator()(tinygettext::Dictionary* dictionary)
@@ -549,21 +576,5 @@ void L10n::LoadListOfAvailableLocales()
 			continue;
 
 		availableLocales.push_back(std::move(locale));
-	}
-}
-
-icu::DateFormat* L10n::CreateDateTimeInstance(const L10n::DateTimeType& type, const icu::DateFormat::EStyle& style, const icu::Locale& locale) const
-{
-	switch(type)
-	{
-	case Date:
-		return icu::SimpleDateFormat::createDateInstance(style, locale);
-
-	case Time:
-		return icu::SimpleDateFormat::createTimeInstance(style, locale);
-
-	case DateTime:
-	default:
-		return icu::SimpleDateFormat::createDateTimeInstance(style, style, locale);
 	}
 }

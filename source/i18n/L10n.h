@@ -34,7 +34,7 @@
 
 namespace tinygettext
 {
-	class Dictionary;
+class Dictionary;
 }
 
 #define g_L10n L10n::GetSingleton()
@@ -56,7 +56,7 @@ public:
 	L10n();
 
 	/**
-	 * Handles the descruction of L10n.
+	 * Handles the destruction of L10n.
 	 *
 	 * Never destroy the L10n singleton manually. It must run as long as the
 	 * game runs, and it is destroyed automatically when you quit the game.
@@ -68,7 +68,8 @@ public:
 	 *
 	 * @sa LocalizeDateTime()
 	 */
-	enum DateTimeType {
+	enum DateTimeType
+	{
 		DateTime, ///< Both date and time.
 		Date, ///< Only date.
 		Time ///< Only time.
@@ -563,19 +564,6 @@ private:
 	 * @sa availableLocales
 	 */
 	void LoadListOfAvailableLocales();
-
-	/**
-	 * Creates an ICU date formatted with the specified settings.
-	 *
-	 * @param type Whether formatted dates must show both the date and the time,
-	 *        only the date or only the time.
-	 * @param style ICU style to format dates by default.
-	 * @param locale Locale that the date formatter should use to parse strings.
-	 *        It has no relevance for date formatting, only matters for date
-	 *        parsing.
-	 * @return ICU date formatter.
-	 */
-	icu::DateFormat* CreateDateTimeInstance(const DateTimeType& type, const icu::DateFormat::EStyle& style, const icu::Locale& locale) const;
 };
 
 #endif // INCLUDED_L10N
