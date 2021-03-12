@@ -41,10 +41,10 @@ g_WallStyles.other = {
 	"overlap": 0,
 	"fence": readyWallElement("structures/fence_long", "gaia"),
 	"fence_short": readyWallElement("structures/fence_short", "gaia"),
-	"bench":     { "angle": Math.PI / 2, "length": 1.5,  "indent": 0,    "bend": 0, "templateName": "structures/bench" },
-	"sheep":     { "angle": 0,           "length": 0,    "indent": 0.75, "bend": 0, "templateName": "gaia/fauna_sheep" },
-	"foodBin":   { "angle": Math.PI / 2, "length": 1.5,  "indent": 0,    "bend": 0, "templateName": "gaia/treasure/food_bin" },
-	"farmstead": { "angle": Math.PI,     "length": 0,    "indent": -3,   "bend": 0, "templateName": "structures/brit/farmstead" }
+	"bench": { "angle": Math.PI / 2, "length": 1.5, "indent": 0, "bend": 0, "templateName": "structures/bench" },
+	"sheep": { "angle": 0, "length": 0, "indent": 0.75, "bend": 0, "templateName": "gaia/fauna_sheep" },
+	"foodBin": { "angle": Math.PI / 2, "length": 1.5, "indent": 0, "bend": 0, "templateName": "gaia/treasure/food_bin" },
+	"farmstead": { "angle": Math.PI, "length": 0, "indent": -3, "bend": 0, "templateName": "structures/brit/farmstead" }
 };
 
 let fences = [
@@ -83,7 +83,7 @@ let num = fences.length;
 for (let i = 0; i < num; ++i)
 	fences.push(new Fortress("fence", clone(fences[i].wall).reverse()));
 
-// Groves, only Wood
+// Groves, only wood
 let groveEntities = ["gaia/tree/bush_temperate", "gaia/tree/euro_beech"];
 let groveActors = [
 	"actor|geology/highland1_moss.xml", "actor|geology/highland2_moss.xml",
@@ -190,7 +190,7 @@ function placeStartLocationResources(point, foodEntities = ["gaia/fruit/berry_01
  */
 setBiome("generic/alpine");
 g_Environment.Fog.FogColor = { "r": 0.8, "g": 0.8, "b": 0.8, "a": 0.01 };
-g_Environment.Water.WaterBody.Colour = { "r" : 0.3, "g" : 0.05, "b" : 0.1, "a" : 0.1 };
+g_Environment.Water.WaterBody.Colour = { "r": 0.3, "g": 0.05, "b": 0.1, "a": 0.1 };
 g_Environment.Water.WaterBody.Murkiness = 0.4;
 
 /**
