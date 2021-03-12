@@ -4,13 +4,12 @@
     <Melee>
       <AttackName>Paws</AttackName>
       <Damage>
-        <Hack>20.0</Hack>
-        <Pierce>0.0</Pierce>
-        <Crush>0.0</Crush>
+        <Hack>20</Hack>
       </Damage>
       <MaxRange>3</MaxRange>
       <PrepareTime>1000</PrepareTime>
       <RepeatTime>2000</RepeatTime>
+      <RestrictedClasses datatype="tokens">Structure Ship Siege</RestrictedClasses>
     </Melee>
   </Attack>
   <Footprint>

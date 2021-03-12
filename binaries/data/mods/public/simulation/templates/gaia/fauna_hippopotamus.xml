@@ -7,7 +7,10 @@
         <Hack>12</Hack>
         <Pierce>12</Pierce>
       </Damage>
-      <MaxRange>3</MaxRange>
+      <MaxRange>4</MaxRange>
+      <PrepareTime>500</PrepareTime>
+      <RepeatTime>1000</RepeatTime>
+      <RestrictedClasses datatype="tokens">Structure Ship Siege</RestrictedClasses>
     </Melee>
   </Attack>
   <Footprint>

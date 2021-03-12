@@ -1,19 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_fauna_hunt_defensive">
-  <Attack>
-    <Melee>
-      <AttackName>Trunk</AttackName>
-      <Damage>
-        <Hack>25.0</Hack>
-        <Pierce>10.0</Pierce>
-        <Crush>20.0</Crush>
-      </Damage>
-      <MaxRange>6.0</MaxRange>
-      <PrepareTime>500</PrepareTime>
-      <RepeatTime>1000</RepeatTime>
-      <RestrictedClasses datatype="tokens">Structure Ship Siege</RestrictedClasses>
-    </Melee>
-  </Attack>
   <Identity>
     <VisibleClasses datatype="tokens">Elephant</VisibleClasses>
   </Identity>

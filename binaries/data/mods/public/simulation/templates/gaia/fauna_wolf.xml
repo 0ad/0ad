@@ -6,11 +6,11 @@
       <Damage>
         <Hack>10</Hack>
         <Pierce>10</Pierce>
-        <Crush>0</Crush>
       </Damage>
-      <MaxRange>3</MaxRange>
+      <MaxRange>2.5</MaxRange>
       <PrepareTime>1000</PrepareTime>
       <RepeatTime>2000</RepeatTime>
+      <RestrictedClasses datatype="tokens">Structure Ship Siege</RestrictedClasses>
     </Melee>
   </Attack>
   <Footprint>

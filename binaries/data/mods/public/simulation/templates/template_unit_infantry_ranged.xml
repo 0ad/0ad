@@ -1,26 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_infantry">
-  <Attack>
-    <Ranged>
-      <Damage>
-        <Hack>0</Hack>
-        <Pierce>1.5</Pierce>
-        <Crush>0</Crush>
-      </Damage>
-      <MaxRange>10.0</MaxRange>
-      <MinRange>0.0</MinRange>
-      <PrepareTime>750</PrepareTime>
-      <RepeatTime>1250</RepeatTime>
-      <Delay>0</Delay>
-      <Projectile>
-        <Speed>100.0</Speed>
-        <Spread>3.0</Spread>
-        <Gravity>9.81</Gravity>
-        <FriendlyFire>false</FriendlyFire>
-        <LaunchPoint y="3"/>
-      </Projectile>
-    </Ranged>
-  </Attack>
   <Health>
     <Max>50</Max>
   </Health>

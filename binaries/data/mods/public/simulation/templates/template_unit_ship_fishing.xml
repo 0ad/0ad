@@ -4,11 +4,9 @@
     <Melee>
       <AttackName>Harpoon</AttackName>
       <Damage>
-        <Hack>10.0</Hack>
-        <Pierce>0.0</Pierce>
-        <Crush>0.0</Crush>
+        <Hack>10</Hack>
       </Damage>
-      <MaxRange>5.0</MaxRange>
+      <MaxRange>5</MaxRange>
       <PrepareTime>500</PrepareTime>
       <RepeatTime>1000</RepeatTime>
       <RestrictedClasses datatype="tokens">!SeaCreature</RestrictedClasses>

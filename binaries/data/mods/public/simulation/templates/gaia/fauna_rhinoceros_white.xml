@@ -5,11 +5,12 @@
       <AttackName>Horn</AttackName>
       <Damage>
         <Hack>20</Hack>
-        <Pierce>0</Pierce>
         <Crush>20</Crush>
       </Damage>
       <MaxRange>4</MaxRange>
+      <PrepareTime>1000</PrepareTime>
       <RepeatTime>2000</RepeatTime>
+      <RestrictedClasses datatype="tokens">Structure Ship Siege</RestrictedClasses>
     </Melee>
   </Attack>
   <Footprint>

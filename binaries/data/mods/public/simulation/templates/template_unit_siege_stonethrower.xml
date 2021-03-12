@@ -4,8 +4,6 @@
     <Ranged>
       <AttackName>Stone</AttackName>
       <Damage>
-        <Hack>0</Hack>
-        <Pierce>0</Pierce>
         <Crush>210</Crush>
       </Damage>
       <MaxRange>80</MaxRange>
@@ -14,9 +12,9 @@
       <RepeatTime>7000</RepeatTime>
       <Delay>0</Delay>
       <Projectile>
-        <Speed>40.0</Speed>
-        <Spread>6.0</Spread>
-        <Gravity>20.0</Gravity>
+        <Speed>40</Speed>
+        <Spread>6</Spread>
+        <Gravity>20</Gravity>
         <FriendlyFire>false</FriendlyFire>
         <LaunchPoint y="3"/>
         <ImpactActorName>props/units/weapons/rock_explosion.xml</ImpactActorName>

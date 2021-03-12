@@ -4,9 +4,7 @@
     <Ranged>
       <AttackName>Javelin</AttackName>
       <Damage>
-        <Hack>0</Hack>
         <Pierce>36</Pierce>
-        <Crush>0</Crush>
       </Damage>
       <MaxRange>30</MaxRange>
       <MinRange>0</MinRange>
@@ -14,9 +12,9 @@
       <RepeatTime>1250</RepeatTime>
       <Delay>0</Delay>
       <Projectile>
-        <Speed>70.0</Speed>
+        <Speed>70</Speed>
         <Spread>1.6</Spread>
-        <Gravity>35.0</Gravity>
+        <Gravity>35</Gravity>
         <FriendlyFire>false</FriendlyFire>
         <LaunchPoint y="5"/>
       </Projectile>

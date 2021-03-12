@@ -4,9 +4,7 @@
     <Ranged>
       <AttackName>Bolt</AttackName>
       <Damage>
-        <Hack>0</Hack>
         <Pierce>240</Pierce>
-        <Crush>0</Crush>
       </Damage>
       <MaxRange>90</MaxRange>
       <MinRange>15</MinRange>
@@ -14,8 +12,8 @@
       <RepeatTime>6000</RepeatTime>
       <Delay>0</Delay>
       <Projectile>
-        <Speed>150.0</Speed>
-        <Spread>1.0</Spread>
+        <Speed>150</Speed>
+        <Spread>1</Spread>
         <Gravity>9.81</Gravity>
         <FriendlyFire>false</FriendlyFire>
         <LaunchPoint y="3"/>

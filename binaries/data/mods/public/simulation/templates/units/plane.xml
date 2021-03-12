@@ -4,9 +4,8 @@
     <Ranged>
       <AttackName context="Name of an attack of a World War II fighter plane.">Machine Guns</AttackName>
       <Damage>
-        <Hack>0.0</Hack>
-        <Pierce>100.0</Pierce>
-        <Crush>227.0</Crush>
+        <Pierce>100</Pierce>
+        <Crush>227</Crush>
       </Damage>
       <MaxRange>120</MaxRange>
       <MinRange>80</MinRange>
@@ -14,8 +13,8 @@
       <RepeatTime>10000</RepeatTime>
       <Delay>0</Delay>
       <Projectile>
-        <Speed>75.0</Speed>
-        <Spread>1.0</Spread>
+        <Speed>75</Speed>
+        <Spread>1</Spread>
         <Gravity>9.81</Gravity>
         <FriendlyFire>false</FriendlyFire>
         <LaunchPoint y="3"/>
