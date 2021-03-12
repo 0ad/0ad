@@ -3196,17 +3196,14 @@ UnitAI.prototype.UnitFsmSpec = {
 		},
 
 		"GARRISON": {
-			"leave": function() {
-				if (this.pickup)
-				{
-					Engine.PostMessage(this.pickup, MT_PickupCanceled, { "entity": this.entity });
-					delete this.pickup;
-				}
-				return false;
-			},
-
 			"APPROACHING": {
 				"enter": function() {
+					if (!this.CanGarrison(this.order.data.target))
+					{
+						this.FinishOrder();
+						return true;
+					}
+
 					if (!this.MoveToGarrisonRange(this.order.data.target))
 					{
 						this.FinishOrder();
@@ -3219,108 +3216,81 @@ UnitAI.prototype.UnitFsmSpec = {
 					let cmpGarrisonHolder = Engine.QueryInterface(this.order.data.target, IID_GarrisonHolder);
 					if (cmpGarrisonHolder && cmpGarrisonHolder.CanPickup(this.entity))
 					{
-						this.pickup = this.order.data.target;       // temporary, deleted in "leave"
+						this.pickup = this.order.data.target;
 						Engine.PostMessage(this.pickup, MT_PickupRequested, { "entity": this.entity });
 					}
 					return false;
 				},
 
 				"leave": function() {
+					if (this.pickup)
+					{
+						Engine.PostMessage(this.pickup, MT_PickupCanceled, { "entity": this.entity });
+						delete this.pickup;
+					}
 					this.StopMoving();
 				},
 
 				"MovementUpdate": function(msg) {
-					if (msg.likelyFailure || msg.likelySuccess)
+					if (!msg.likelyFailure && !msg.likelySuccess)
+						return;
+
+					if (this.CheckGarrisonRange(this.order.data.target))
 						this.SetNextState("GARRISONED");
+					else
+					{
+						// Unable to reach the target, try again (or follow if it is a moving target)
+						// except if the target does not exist anymore or its orders have changed.
+						if (this.pickup)
+						{
+							let cmpUnitAI = Engine.QueryInterface(this.pickup, IID_UnitAI);
+							if (!cmpUnitAI || (!cmpUnitAI.HasPickupOrder(this.entity) && !cmpUnitAI.IsIdle()))
+								this.FinishOrder();
+						}
+					}
 				},
 			},
 
 			"GARRISONED": {
 				"enter": function() {
 					let target = this.order.data.target;
-					if (!target)
+					let cmpGarrisonable = Engine.QueryInterface(this.entity, IID_Garrisonable);
+					if (!cmpGarrisonable || !cmpGarrisonable.Garrison(target))
 					{
 						this.FinishOrder();
 						return true;
 					}
 
-					// Called when autogarrisoning.
-					if (this.isGarrisoned)
+					if (this.formationController)
 					{
-						this.SetImmobile(true);
-						if (this.IsTurret())
+						let cmpFormation = Engine.QueryInterface(this.formationController, IID_Formation);
+						if (cmpFormation)
 						{
-							this.SetNextState("IDLE");
-							return true;
+							let rearrange = cmpFormation.rearrange;
+							cmpFormation.SetRearrange(false);
+							cmpFormation.RemoveMembers([this.entity]);
+							cmpFormation.SetRearrange(rearrange);
 						}
-						return false;
 					}
 
-					if (this.CanGarrison(target))
-						if (this.CheckGarrisonRange(target))
-						{
-							let cmpGarrisonable = Engine.QueryInterface(this.entity, IID_Garrisonable);
-							if (cmpGarrisonable.Garrison(target))
-							{
-								if (this.formationController)
-								{
-									var cmpFormation = Engine.QueryInterface(this.formationController, IID_Formation);
-									if (cmpFormation)
-									{
-										var rearrange = cmpFormation.rearrange;
-										cmpFormation.SetRearrange(false);
-										cmpFormation.RemoveMembers([this.entity]);
-										cmpFormation.SetRearrange(rearrange);
-									}
-								}
+					let cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
+					if (this.CanReturnResource(target, true, cmpResourceGatherer))
+					{
+						cmpResourceGatherer.CommitResources(target);
+						this.SetDefaultAnimationVariant();
+					}
 
-								let cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
-								if (this.CanReturnResource(target, true, cmpResourceGatherer))
-								{
-									cmpResourceGatherer.CommitResources(target);
-									this.SetDefaultAnimationVariant();
-								}
+					if (this.IsTurret())
+					{
+						this.SetNextState("IDLE");
+						return true;
+					}
 
-								if (this.pickup)
-								{
-									Engine.PostMessage(this.pickup, MT_PickupCanceled, { "entity": this.entity });
-									delete this.pickup;
-								}
-
-								if (this.IsTurret())
-								{
-									this.SetNextState("IDLE");
-									return true;
-								}
-
-								return false;
-							}
-						}
-						else
-						{
-							// Unable to reach the target, try again (or follow if it is a moving target)
-							// except if the does not exits anymore or its orders have changed
-							if (this.pickup)
-							{
-								var cmpUnitAI = Engine.QueryInterface(this.pickup, IID_UnitAI);
-								if (!cmpUnitAI || (!cmpUnitAI.HasPickupOrder(this.entity) &&
-									!cmpUnitAI.IsIdle()))
-								{
-									this.FinishOrder();
-									return true;
-								}
-
-							}
-							this.SetNextState("APPROACHING");
-							return true;
-						}
-
-					this.FinishOrder();
-					return true;
+					return false;
 				},
 
 				"leave": function() {
-				}
+				},
 			},
 		},
 
