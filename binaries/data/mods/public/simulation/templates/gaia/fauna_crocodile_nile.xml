@@ -5,11 +5,11 @@
       <AttackName>Teeth</AttackName>
       <Damage>
         <Hack>30</Hack>
-        <Pierce>0</Pierce>
-        <Crush>0</Crush>
       </Damage>
       <MaxRange>7</MaxRange>
+      <PrepareTime>1000</PrepareTime>
       <RepeatTime>2000</RepeatTime>
+      <RestrictedClasses datatype="tokens">Structure Ship Siege</RestrictedClasses>
     </Melee>
   </Attack>
   <Footprint>

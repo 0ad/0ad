@@ -8,7 +8,7 @@ var templateTemple = "gaia/ruins/unfinished_greek_temple";
 
 var terrainPrimary = ["temp_grass", "temp_grass_b", "temp_grass_c", "temp_grass_d", "temp_grass_long_b", "temp_grass_clovers_2", "temp_grass_mossy", "temp_grass_plants"];
 var terrainWood = ['temp_grass_mossy|gaia/tree/oak', 'temp_forestfloor_pine|gaia/tree/pine', 'temp_mud_plants|gaia/tree/dead',
-	'temp_plants_bog|gaia/tree/oak_large', "temp_dirt_gravel_plants|gaia/tree/aleppo_pine", 'temp_forestfloor_autumn|gaia/tree/carob']; //'temp_forestfloor_autumn|gaia/fruit/fig'
+	'temp_plants_bog|gaia/tree/oak_large', "temp_dirt_gravel_plants|gaia/tree/aleppo_pine", 'temp_forestfloor_autumn|gaia/tree/carob'];
 var terrainWoodBorder = ['temp_grass_plants|gaia/tree/euro_beech', 'temp_grass_mossy|gaia/tree/poplar', 'temp_grass_mossy|gaia/tree/poplar_lombardy',
 	'temp_grass_long|gaia/tree/bush_temperate', 'temp_mud_plants|gaia/tree/bush_temperate', 'temp_mud_plants|gaia/tree/bush_badlands',
 	'temp_grass_long|gaia/fruit/apple', 'temp_grass_clovers|gaia/fruit/berry_01', 'temp_grass_clovers_2|gaia/fruit/grapes',
@@ -54,7 +54,7 @@ var radiusEC = Math.max(mapRadius/8, baseRadius/2);
 var resourceRadius = fractionToTiles(1/3);
 var resourcePerPlayer = [templateStone, templateMetalMine];
 
-// For large maps there are memory errors with too many trees.  A density of 256*192/mapArea works with 0 players.
+// For large maps there are memory errors with too many trees. A density of 256x192/mapArea works with 0 players.
 // Around each player there is an area without trees so with more players the max density can increase a bit.
 var maxTreeDensity = Math.min(256 * (192 + 8 * numPlayers) / Math.square(mapSize), 1); // Has to be tweeked but works ok
 var bushChance = 1/3; // 1 means 50% chance in deepest wood, 0.5 means 25% chance in deepest wood
@@ -160,7 +160,7 @@ createArea(
 		new TileClassPainter(clHill)
 	]);
 
-// Woods and general hight map
+// Woods and general height map
 for (var x = 0; x < mapSize; x++)
 	for (var z = 0; z < mapSize; z++)
 	{

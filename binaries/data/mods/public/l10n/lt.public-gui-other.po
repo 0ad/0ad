@@ -4,13 +4,14 @@
 # project.
 # Translators:
 # Donatas Kičas <donatas.kicas@outlook.com>, 2015
+# V S <v32itas@slacknet.eu>, 2021
 # Vytautas, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-03-05 08:13+0000\n"
-"PO-Revision-Date: 2021-03-05 11:29+0000\n"
-"Last-Translator: Vytautas\n"
+"POT-Creation-Date: 2021-03-08 08:15+0000\n"
+"PO-Revision-Date: 2021-03-11 10:43+0000\n"
+"Last-Translator: V S <v32itas@slacknet.eu>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/wildfire-games/0ad/language/lt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -129,26 +130,26 @@ msgstr ""
 
 #: gui/common/gamedescription.js:130
 msgid "Unknown Civilization"
-msgstr ""
+msgstr "Nežinoma Civiliziacija"
 
 #: gui/common/gamedescription.js:137
 msgctxt "playerstate"
 msgid "defeated"
-msgstr ""
+msgstr "sutriuškintas"
 
 #: gui/common/gamedescription.js:138
 msgctxt "playerstate"
 msgid "won"
-msgstr ""
+msgstr "laimėjąs"
 
 #: gui/common/gamedescription.js:159
 msgid "No Team"
-msgstr ""
+msgstr "Be Komandos"
 
 #: gui/common/gamedescription.js:160
 #, javascript-format
 msgid "Team %(team)s"
-msgstr ""
+msgstr "Komanda%(team)s"
 
 #. Translation: Describe players of one team in a selected game, f.e. in the
 #. replay- or
@@ -158,44 +159,44 @@ msgstr ""
 msgid ""
 "%(team)s:\n"
 "%(playerDescriptions)s"
-msgstr ""
+msgstr "%(team)s\n%(playerDescriptions)s"
 
 #: gui/common/gamedescription.js:171
 msgid "Observer"
 msgid_plural "Observers"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Stebėtojas"
+msgstr[1] "Stebėtojai"
+msgstr[2] "Stebėtojai"
+msgstr[3] "Stebėtojai"
 
 #: gui/common/gamedescription.js:188
 msgctxt "victory condition"
 msgid "Endless Game"
-msgstr ""
+msgstr "Nesibaigiantis Žaidimas"
 
 #: gui/common/gamedescription.js:189
 msgid "No winner will be determined, even if everyone is defeated."
-msgstr ""
+msgstr "Niekas nebus paskelbtas nugalėtoju, bet jei ir visi bus sutriuškinti."
 
 #: gui/common/gamedescription.js:202
 #, javascript-format
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
 msgid_plural "Wonder (%(min)s minutes)"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Stebuklas (%(min)s minutės)"
+msgstr[1] "Stebuklai (%(min)s minutės)"
+msgstr[2] "Stebuklai (%(min)s minutės)"
+msgstr[3] "Stebuklas (%(min)sminutės)"
 
 #: gui/common/gamedescription.js:216
 #, javascript-format
 msgctxt "victory condition"
 msgid "Capture the Relic (%(min)s minute)"
 msgid_plural "Capture the Relic (%(min)s minutes)"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Relikvijos užgrobimas (%(min)s minutės)"
+msgstr[1] "Relikvijų užgrobimas (%(min)s minutės)"
+msgstr[2] "Relikvijų užgrobimas (%(min)s minutės)"
+msgstr[3] "Relikvijos užgrobimas (%(min)s minutės)"
 
 #: gui/common/gamedescription.js:232
 msgid "Relic Count"
@@ -203,45 +204,45 @@ msgstr "Relikvijų skaičius"
 
 #: gui/common/gamedescription.js:239
 msgid "Hero Garrison"
-msgstr "Herojų įgula"
+msgstr "Herojų Sargyba"
 
 #: gui/common/gamedescription.js:240
 msgid "Heroes can be garrisoned."
-msgstr ""
+msgstr "Herojai gali būti palikti sargyboje."
 
 #: gui/common/gamedescription.js:244
 msgid "Exposed Heroes"
-msgstr ""
+msgstr "Atviri Herojai"
 
 #: gui/common/gamedescription.js:245
 msgid "Heroes cannot be garrisoned and they are vulnerable to raids."
-msgstr ""
+msgstr "Herojai negali būti palikti sargyboje jei jie yra pažeidžiamni plėšikavimo."
 
 #: gui/common/gamedescription.js:252
 msgid "Rated game"
-msgstr ""
+msgstr "Reitinguojamas Žaidimas"
 
 #: gui/common/gamedescription.js:253
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
-msgstr ""
+msgstr "Kai yra nustatytas Laimėtojas, vestibiulio taškai yra pritaikomi."
 
 #: gui/common/gamedescription.js:258
 msgid "Locked Teams"
-msgstr ""
+msgstr "Neišskiriamos Komandos"
 
 #: gui/common/gamedescription.js:259
 msgid "Players can't change the initial teams."
-msgstr ""
+msgstr "Žaidėjai negali pakeisti komandų kuriose pradėjo."
 
 #: gui/common/gamedescription.js:263
 msgid "Diplomacy"
-msgstr ""
+msgstr "Diplomatija"
 
 #: gui/common/gamedescription.js:264
 msgid "Players can make alliances and declare war on allies."
-msgstr ""
+msgstr "Žaidėjai gali sudaryti sąjungas ir skelbti karus sąjungininkams."
 
 #: gui/common/gamedescription.js:269
 msgid "Last Man Standing"
@@ -251,17 +252,17 @@ msgstr "Iki gyvos galvos"
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
-msgstr ""
+msgstr "Tik vienas žaidėjas gali laimėti žaidimą. Jei likusieji žaidėjai yra sąjungininkai, žaidimas tęsiasi kol lieka tik vienas žaidėjas."
 
 #: gui/common/gamedescription.js:274
 msgid "Allied Victory"
-msgstr ""
+msgstr "Pergalė Sąjungoje"
 
 #: gui/common/gamedescription.js:275
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
-msgstr ""
+msgstr "Jei vienas žaidėjas laimi. jo ar jos sąjungininkai laimi taip pat. Jei viena sąjungininkų grupė lieka, jie laimi."
 
 #: gui/common/gamedescription.js:280
 msgid "Ceasefire"
@@ -274,19 +275,19 @@ msgstr "išjungta"
 #: gui/common/gamedescription.js:284
 msgid "For the first minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Pirmają minutę, kiti žaidėjai išliks neutralūs."
+msgstr[1] "Pirmas %(min)s minutes, kiti žaidėjai išliks neutralūs."
+msgstr[2] "Pirmas %(min)s minutes, kiti žaidėjai išliks neutralūs."
+msgstr[3] "Pirmas %(min)s minutes, kiti žaidėjai išliks neutralūs."
 
 #: gui/common/gamedescription.js:293
 msgctxt "Map Selection"
 msgid "Random Map"
-msgstr ""
+msgstr "Atsitiktinis Žemėlapis"
 
 #: gui/common/gamedescription.js:294
 msgid "Randomly select a map from the list."
-msgstr ""
+msgstr "Atsitiktinai parinkti žemėlapį iš sąrašo."
 
 #: gui/common/gamedescription.js:299
 msgid "Map Name"
@@ -294,7 +295,7 @@ msgstr "Žemėlapio pavadinimas"
 
 #: gui/common/gamedescription.js:305
 msgid "Map Description"
-msgstr ""
+msgstr "Žemėlapio Apibūdinimas"
 
 #: gui/common/gamedescription.js:311
 msgid "Map Type"
@@ -307,70 +308,70 @@ msgstr "Žemėlapio dydis"
 #: gui/common/gamedescription.js:329
 msgctxt "biome"
 msgid "Random Biome"
-msgstr ""
+msgstr "Atsitiktinis Biomas"
 
 #: gui/common/gamedescription.js:330
 msgid "Randomly select a biome from the list."
-msgstr ""
+msgstr "Atsitiktinai parinkti biomą iš sąrašo."
 
 #: gui/common/gamedescription.js:345
 msgid "Nomad Mode"
-msgstr ""
+msgstr "Klajoklio Rėžimas"
 
 #: gui/common/gamedescription.js:345
 msgid "Civic Centers"
-msgstr ""
+msgstr "Civiliniai Centrai"
 
 #: gui/common/gamedescription.js:348
 msgid ""
 "Players start with only few units and have to find a suitable place to build"
 " their city."
-msgstr ""
+msgstr "Žaidėjai pradeda turėdami tik keletą vienetų ir turi patys susirasti tinkamą vietą, savo miesto įkūrimui."
 
 #: gui/common/gamedescription.js:349
 msgid "Players start with a Civic Center."
-msgstr ""
+msgstr "Žaidėjai pradeda turėdami Civilinį Centrą."
 
 #: gui/common/gamedescription.js:354
 msgid "Starting Resources"
-msgstr "Pradiniai ištekliai"
+msgstr "Pradiniai Ištekliai"
 
 #: gui/common/gamedescription.js:358
 msgctxt "starting resources"
 msgid "Per Player"
-msgstr ""
+msgstr "Kiekvienam Žaidėjui"
 
 #: gui/common/gamedescription.js:359
 #, javascript-format
 msgid "%(startingResourcesTitle)s (%(amount)s)"
-msgstr ""
+msgstr "%(startingResourcesTitle)s (%(amount)s)"
 
 #: gui/common/gamedescription.js:370
 msgid "Population Limit"
-msgstr ""
+msgstr "Populiacijos Limitas"
 
 #: gui/common/gamedescription.js:374
 msgctxt "population limit"
 msgid "Per Player"
-msgstr ""
+msgstr "Kiekvienam Žaidėjui"
 
 #: gui/common/gamedescription.js:382
 msgid "World Population Cap"
-msgstr ""
+msgstr "Pasaulinis Populiacijos Limitas"
 
 #: gui/common/gamedescription.js:390
 msgid "Treasures"
-msgstr ""
+msgstr "Lobiai"
 
 #: gui/common/gamedescription.js:392
 msgctxt "treasures"
 msgid "Disabled"
-msgstr ""
+msgstr "Išjungta"
 
 #: gui/common/gamedescription.js:393
 msgctxt "treasures"
 msgid "As defined by the map."
-msgstr ""
+msgstr "Kaip apibrėžta žemėlapyje."
 
 #: gui/common/gamedescription.js:397
 msgid "Revealed Map"
@@ -382,7 +383,7 @@ msgstr "Išžvalgytas žemėlapis"
 
 #: gui/common/gamedescription.js:407
 msgid "Cheats"
-msgstr "Žaidimo kodai"
+msgstr "Sukčiavimai"
 
 #: gui/common/gamedescription.js:411 gui/common/tooltips.js:144
 #: gui/common/tooltips.js:210 gui/common/tooltips.js:231
@@ -398,7 +399,7 @@ msgstr "%(label)s %(details)s"
 #: gui/common/gamedescription.js:414
 msgctxt "game setup option"
 msgid "enabled"
-msgstr ""
+msgstr "įjungta"
 
 #: gui/common/gamedescription.js:415
 msgctxt "game setup option"
@@ -407,107 +408,107 @@ msgstr "išjungta"
 
 #: gui/common/gamedescription.js:427
 msgid "Victorious"
-msgstr ""
+msgstr "Nugalėtojas"
 
 #: gui/common/gamedescription.js:432
 msgid "Defeated"
-msgstr ""
+msgstr "Sutriuškintas"
 
 #: gui/common/gamedescription.js:441
 #, javascript-format
 msgid "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
-msgstr ""
+msgstr "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
 
 #: gui/common/network.js:17
 #, javascript-format
 msgid "Losing connection to server (%(seconds)ss)"
-msgstr ""
+msgstr "Prarandamas prisijungimas prie serverio ( %(seconds)ss)"
 
 #: gui/common/network.js:22
 #, javascript-format
 msgid "%(player)s losing connection (%(seconds)ss)"
-msgstr ""
+msgstr "%(player)spraranda prisijungimą (%(seconds)ss)"
 
 #: gui/common/network.js:28
 #, javascript-format
 msgid "Bad connection to server (%(milliseconds)sms)"
-msgstr ""
+msgstr "Blogas sujungimas su serveriu (%(milliseconds)sms)"
 
 #: gui/common/network.js:33
 #, javascript-format
 msgid "Bad connection to %(player)s (%(milliseconds)sms)"
-msgstr ""
+msgstr "Blogas sujungimas su %(player)s (%(milliseconds)sms)"
 
 #: gui/common/network.js:66
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
 " by a firewall, or anti-virus software."
-msgstr ""
+msgstr "Tai dažnai sukeliama kai UDP portas 20595 nėra atviras šeimininko pusėje ar yra blokuojamas ugniąsienės ar anti virusinės programinės įrangos."
 
 #: gui/common/network.js:67
 msgid "The host has ended the game."
-msgstr ""
+msgstr "Šeimininkas užbaigė žaidimą."
 
 #: gui/common/network.js:68
 msgid "Incorrect network protocol version."
-msgstr ""
+msgstr "Netesinga tinklo protokolo versija."
 
 #: gui/common/network.js:69
 msgid "Game is loading, please try again later."
-msgstr ""
+msgstr "Žaidimas yra kraunamas, prašome pamėginti vėliau."
 
 #: gui/common/network.js:70
 msgid "Game has already started, no observers allowed."
-msgstr ""
+msgstr "Žaidimas jau yra prasidėjas, stebėtojai neleidžiami."
 
 #: gui/common/network.js:71
 msgid "You have been kicked."
-msgstr ""
+msgstr "Jūs buvote išspirti."
 
 #: gui/common/network.js:72
 msgid "You have been banned."
-msgstr ""
+msgstr "Jūs buvote užbaninti."
 
 #: gui/common/network.js:73
 msgid "Player name in use. If you were disconnected, retry in few seconds."
-msgstr ""
+msgstr "Žaidėjo vardas yra naudojamas. Jei jūs buvote atjungti, pamėginkite po kelių sekundžių."
 
 #: gui/common/network.js:74
 msgid "Server full."
-msgstr ""
+msgstr "Serveris pilnas."
 
 #: gui/common/network.js:75
 msgid "Secure lobby authentication failed. Join via lobby."
-msgstr ""
+msgstr "Saugus vestibiulio atpažinimas nepavyko. Junkitės per vestibiulį."
 
 #: gui/common/network.js:76
 msgid "Error: Server failed to allocate a unique client identifier."
-msgstr ""
+msgstr "Klaida: Serveriui nepavyko paskirti unikalios kliento žymos."
 
 #: gui/common/network.js:77
 msgid "Error: Client commands were ready for an unexpected game turn."
-msgstr ""
+msgstr "Klaida: Kliento komandos buvo paruoštos netikėtam žaidimo ėjimui."
 
 #: gui/common/network.js:78
 msgid "Error: Client simulated an unexpected game turn."
-msgstr ""
+msgstr "Klaida: Klientas simuliavo netikėtą žaidimo ėjimą."
 
 #: gui/common/network.js:79
 msgid "Password is invalid."
-msgstr ""
+msgstr "Slaptažodis Neteisingas."
 
 #: gui/common/network.js:80
 msgid "Could not find an unused port for the enet STUN client."
-msgstr ""
+msgstr "Nepavyko rasti nenaudojamo porto enet STUN klientui."
 
 #: gui/common/network.js:81
 msgid "Could not find the STUN endpoint."
-msgstr ""
+msgstr "Nepavyko rasti STUN išėjimo."
 
 #: gui/common/network.js:84
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
-msgstr ""
+msgstr "\\[Negalima vertė %(id)s]"
 
 #: gui/common/network.js:98
 msgid "Lost connection to the server."
@@ -515,22 +516,22 @@ msgstr "Prarastas ryšys su serveriu."
 
 #: gui/common/network.js:99
 msgid "Failed to connect to the server."
-msgstr ""
+msgstr "Nepavyko prisijungti prie serverio."
 
 #: gui/common/network.js:101
 msgid "Disconnected"
-msgstr ""
+msgstr "Atjungtas"
 
 #: gui/common/network.js:109
 msgid "Only the host can kick clients!"
-msgstr ""
+msgstr "Tik šeimininkas gali išspirti klientus!"
 
 #. Translation: Number of currently connected players/observers and their
 #. names
 #: gui/common/network.js:163
 #, javascript-format
 msgid "Users (%(num)s): %(users)s"
-msgstr ""
+msgstr "Naudotojai (%(num)s): %(users)s"
 
 #: gui/common/network.js:164 gui/common/tooltips.js:63
 #: gui/common/tooltips.js:223 gui/common/tooltips.js:284
@@ -547,7 +548,7 @@ msgstr ","
 #: gui/common/settings.js:116
 msgctxt "aiDiff"
 msgid "Sandbox"
-msgstr ""
+msgstr "Smėlio dėžė"
 
 #: gui/common/settings.js:120
 msgctxt "aiDiff"
@@ -582,7 +583,7 @@ msgstr "Atsitiktinis"
 #: gui/common/settings.js:152
 msgctxt "aiBehavior"
 msgid "Balanced"
-msgstr ""
+msgstr "Subalansuotas"
 
 #: gui/common/settings.js:156
 msgctxt "aiBehavior"
@@ -597,7 +598,7 @@ msgstr "Agresyvus"
 #: gui/common/settings.js:173
 msgctxt "map"
 msgid "Skirmish"
-msgstr ""
+msgstr "Skirmišas"
 
 #: gui/common/settings.js:174
 msgid ""
@@ -619,7 +620,7 @@ msgstr ""
 #: gui/common/settings.js:192
 msgctxt "map"
 msgid "Scenario"
-msgstr ""
+msgstr "Senarijus"
 
 #: gui/common/settings.js:193
 msgid "A map with a predefined landscape and matchsettings."
@@ -751,7 +752,7 @@ msgstr ""
 #: gui/common/tooltips.js:236 gui/common/tooltips.js:376
 msgctxt "damage type"
 msgid "Capture"
-msgstr ""
+msgstr "Užgrobti"
 
 #: gui/common/tooltips.js:251
 msgid "Status Effects:"
@@ -893,7 +894,7 @@ msgstr ""
 msgid "Friendly Fire: %(enabled)s"
 msgstr ""
 
-#: gui/common/tooltips.js:392 gui/hotkeys/HotkeysPage.js:145
+#: gui/common/tooltips.js:392 gui/hotkeys/HotkeysPage.js:153
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
 #: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:300
 #: gui/options/options.js:353 gui/options/options.js:379
@@ -902,7 +903,7 @@ msgstr ""
 msgid "Yes"
 msgstr "Taip"
 
-#: gui/common/tooltips.js:392 gui/hotkeys/HotkeysPage.js:145
+#: gui/common/tooltips.js:392 gui/hotkeys/HotkeysPage.js:153
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
 #: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:300
 #: gui/options/options.js:353 gui/options/options.js:379
@@ -1489,38 +1490,42 @@ msgid ""
 "to the player you want to modify in the selection panel above."
 msgstr ""
 
-#: gui/hotkeys/HotkeyPicker.js:47
+#: gui/hotkeys/HotkeyMetadata.js:21 gui/hotkeys/HotkeyMetadata.js:22
+msgid "Other Hotkeys"
+msgstr ""
+
+#: gui/hotkeys/HotkeyPicker.js:57
 #, javascript-format
 msgid "#%i"
 msgstr ""
 
-#: gui/hotkeys/HotkeyPicker.js:63
+#: gui/hotkeys/HotkeyPicker.js:73
 msgid " (hold to register)"
 msgstr ""
 
-#: gui/hotkeys/HotkeyPicker.js:64 gui/hotkeys/HotkeyPicker.js:95
+#: gui/hotkeys/HotkeyPicker.js:74 gui/hotkeys/HotkeyPicker.js:105
 msgid "Enter new Hotkey, hold to register."
 msgstr ""
 
-#: gui/hotkeys/HotkeyPicker.js:106
+#: gui/hotkeys/HotkeyPicker.js:116
 msgid "May conflict with: "
 msgstr ""
 
-#: gui/hotkeys/HotkeysPage.js:38
+#: gui/hotkeys/HotkeysPage.js:82
 msgid "All Hotkeys"
 msgstr ""
 
-#: gui/hotkeys/HotkeysPage.js:104
-msgid "Other hotkeys"
+#: gui/hotkeys/HotkeysPage.js:118
+msgid "No tooltip available"
 msgstr ""
 
-#: gui/hotkeys/HotkeysPage.js:143
+#: gui/hotkeys/HotkeysPage.js:151
 msgid ""
 "Reset all hotkeys to default values?\n"
 "WARNING: this cannot be reversed."
 msgstr ""
 
-#: gui/hotkeys/HotkeysPage.js:144 gui/pregame/MainMenuItems.js:236
+#: gui/hotkeys/HotkeysPage.js:152 gui/pregame/MainMenuItems.js:236
 #: gui/pregame/MainMenuItems.js:260
 msgid "Confirmation"
 msgstr "Patvirtinimas"
@@ -1533,7 +1538,7 @@ msgstr ""
 msgid "Filter:"
 msgstr "Filtras:"
 
-#: gui/hotkeys/hotkeys.xml:(caption):48 gui/hotkeys/hotkeys.xml:(caption):97
+#: gui/hotkeys/hotkeys.xml:(caption):48 gui/hotkeys/hotkeys.xml:(caption):101
 #: gui/options/options.xml:(caption):42
 msgid "Reset"
 msgstr ""
@@ -1543,16 +1548,20 @@ msgid "Hotkey"
 msgstr ""
 
 #: gui/hotkeys/hotkeys.xml:(caption):76
+msgid "Hotkey Description"
+msgstr ""
+
+#: gui/hotkeys/hotkeys.xml:(caption):80
 msgid ""
 "Click on any mapping to modify it.\\n You may have up to 4 different "
 "hotkeys."
 msgstr ""
 
-#: gui/hotkeys/hotkeys.xml:(caption):102 gui/locale/locale.xml:(caption):46
+#: gui/hotkeys/hotkeys.xml:(caption):106 gui/locale/locale.xml:(caption):46
 msgid "Accept"
 msgstr "Sutikti"
 
-#: gui/hotkeys/hotkeys.xml:(caption):107 gui/loadgame/load.xml:(caption):50
+#: gui/hotkeys/hotkeys.xml:(caption):111 gui/loadgame/load.xml:(caption):50
 #: gui/locale/locale.xml:(caption):36
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):51
 msgid "Cancel"
@@ -1568,7 +1577,7 @@ msgctxt "hotkey list"
 msgid "Mapping"
 msgstr ""
 
-#: gui/hotkeys/hotkeys.xml:(tooltip):49 gui/hotkeys/hotkeys.xml:(tooltip):98
+#: gui/hotkeys/hotkeys.xml:(tooltip):49 gui/hotkeys/hotkeys.xml:(tooltip):102
 #: gui/options/options.xml:(tooltip):43
 msgid "Resets user settings to their game default"
 msgstr ""
@@ -1581,19 +1590,19 @@ msgstr ""
 msgid "Unsaved changes will be lost"
 msgstr ""
 
-#: gui/hotkeys/hotkeys.xml:(tooltip):86
+#: gui/hotkeys/hotkeys.xml:(tooltip):90
 msgid "Click to set the hotkey"
 msgstr ""
 
-#: gui/hotkeys/hotkeys.xml:(tooltip):90
+#: gui/hotkeys/hotkeys.xml:(tooltip):94
 msgid "Click to delete the hotkey"
 msgstr ""
 
-#: gui/hotkeys/hotkeys.xml:(tooltip):103
+#: gui/hotkeys/hotkeys.xml:(tooltip):107
 msgid "Change the hotkeys and close"
 msgstr ""
 
-#: gui/hotkeys/hotkeys.xml:(tooltip):108
+#: gui/hotkeys/hotkeys.xml:(tooltip):112
 msgid "The hotkeys will not be modified"
 msgstr ""
 
@@ -2051,7 +2060,7 @@ msgstr ""
 #: gui/options/options.json[1].options[5].list[0].label
 #: gui/options/options.json[3].options[5].list[2].label
 msgid "Disabled"
-msgstr ""
+msgstr "Išjungta"
 
 #: gui/options/options.json[0].options[9].tooltip
 msgid ""
@@ -2461,7 +2470,7 @@ msgstr "Atsitiktinis"
 
 #: gui/options/options.json[3].options[4].list[1].label
 msgid "Balanced"
-msgstr ""
+msgstr "Subalansuotas"
 
 #: gui/options/options.json[3].options[4].list[2].label
 msgid "Aggressive"

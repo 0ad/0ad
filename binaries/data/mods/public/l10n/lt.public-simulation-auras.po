@@ -8,12 +8,13 @@
 # Jokubas Danilaitis <danilaitis1998@gmail.com>, 2020
 # Kristupas Kristupas <karthus.kart@gmail.com>, 2017
 # Nerijus Rastikis <nerijus.rastikis@hotmail.lt>, 2017
+# V S <v32itas@slacknet.eu>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-01-22 08:37+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-03-10 20:52+0000\n"
+"Last-Translator: V S <v32itas@slacknet.eu>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/wildfire-games/0ad/language/lt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -47,7 +48,7 @@ msgstr "Remontas laivų prieplaukoje"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage."
-msgstr "Kariai įgyja +20% atakos kovojant per atstumą ir arti."
+msgstr "Kariams +20% artimos ir nuotolinės atakos žalos."
 
 #: simulation/data/auras/structures/iber_monument.jsonauraName
 msgid "Religious Fervor"
@@ -66,7 +67,7 @@ msgstr "Patriotizmas"
 msgid ""
 "Soldiers +1 crush, hack, pierce resistance and +10% melee and ranged attack "
 "damage."
-msgstr ""
+msgstr "Kariams +1 traiškymo, kapojimo, pervėrimo atsparumo ir +10% artimos ir nuotolinės kovos žalos."
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraName
 msgid "Exhortative Presence"
@@ -82,15 +83,15 @@ msgstr "Stipri dvasininkija"
 
 #: simulation/data/auras/structures/library.jsonauraDescription
 msgid "Structures −15% technology resource costs and research time."
-msgstr ""
+msgstr "Statiniams -15% technologinių išteklių sąnaudos ir tyrinėjimų laiko."
 
 #: simulation/data/auras/structures/library.jsonauraName
 msgid "Centre of Scholarship"
-msgstr ""
+msgstr "Akademikų centras."
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraDescription
 msgid "Structures +50% capture points garrison regeneration rate."
-msgstr ""
+msgstr "Statiniams +50% užgrobimo taškų, sargybos atsistatymo greičiui."
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraName
 msgid "Loyalty"
@@ -98,7 +99,7 @@ msgstr "Lojalumas"
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraDescription
 msgid "Traders +20% movement speed."
-msgstr ""
+msgstr "Pirkliams +20% judėjimo greičio."
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraName
 msgid "Edict of Ashoka"
@@ -106,7 +107,7 @@ msgstr "Ašokos ediktas"
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraDescription
 msgid "Workers +25% grain gather rate."
-msgstr ""
+msgstr "Darbininkams +25% grūdų rinkimo greičio."
 
 #: simulation/data/auras/structures/rotary_mill.jsonauraName
 msgid "Farming bonus"
@@ -114,7 +115,7 @@ msgstr "Žemdirbystės priedas"
 
 #: simulation/data/auras/structures/temple_heal.jsonauraDescription
 msgid "Humans +1 health regeneration rate."
-msgstr ""
+msgstr "Žmonėms +1 sveikatos atsistatymo greičio."
 
 #: simulation/data/auras/structures/temple_heal.jsonauraName
 msgid "Medical Treatment"
@@ -122,7 +123,7 @@ msgstr "Medicininis gydymas"
 
 #: simulation/data/auras/structures/theater.jsonauraDescription
 msgid "Structures +20% territory influence radius."
-msgstr ""
+msgstr "Statiniams +20% teritorinės įtakos nuotolio."
 
 #: simulation/data/auras/structures/theater.jsonauraName
 msgid "Hellenization"
@@ -131,7 +132,7 @@ msgstr "Helenizmo sklaida"
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraDescription
 msgid ""
 "Garrisoned Soldiers +3 crush, hack, pierce resistance and +20 vision range."
-msgstr ""
+msgstr "Sargybos kariams +3 traiškymo, kapojimo, pervėrimo atsparumo ir +20 matomumo nuotolio."
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraName
 msgid "Wall Protection"
@@ -141,7 +142,7 @@ msgstr "Sienos apsauga"
 msgid ""
 "+20% maximum population limit (requires the “Glorious Expansion” "
 "technology)."
-msgstr ""
+msgstr "+20% maksimalios populiacijos limito (reikalauja “Šlovingos Plėtros” technologijos)."
 
 #: simulation/data/auras/structures/wonder_population_cap.jsonauraName
 msgid "Glorious Expansion"
@@ -149,7 +150,7 @@ msgstr "Šlovinga plėtra"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
 msgid "Allied Warships −25% construction time."
-msgstr ""
+msgstr "Sąjungoje Karo Laivams -25% statymo laiko."
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"
@@ -157,7 +158,7 @@ msgstr "Delo lyga"
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
 msgid "Allied Healers −20% resource costs."
-msgstr ""
+msgstr "Sąjungoje gydūnams −20% išteklių sąnaudos."
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraName
 msgid "Druids"
@@ -165,23 +166,23 @@ msgstr "Druidai"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
 msgid "Allies +10% international trade bonus."
-msgstr ""
+msgstr "Sąjungininkai +10% tarptautinių mainų pelnui."
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
 msgid "Trademasters"
-msgstr "Prekybininkai"
+msgstr "Prekybos Meistrai"
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraDescription
 msgid "Forges −15% technology resource costs and research time."
-msgstr ""
+msgstr "Kalvės -15% technologinių resursų sąnaudos ir tyrinėjimų laiko."
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraName
 msgid "Products from Gaul"
-msgstr ""
+msgstr "Produktai iš Gaulo"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
 msgid "Allied Citizen Javelineers −10% resource costs."
-msgstr ""
+msgstr "Sąjungoje Civiliams Ietsvaidžiams −10% išteklių sąnaudos."
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
@@ -189,15 +190,15 @@ msgstr ""
 
 #: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraDescription
 msgid "Allied Elephants −20% resource costs and training time."
-msgstr ""
+msgstr "Sąjungoje Drambliams −20% išteklių sąnaudos ir mokymo laiko."
 
 #: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraName
 msgid "Elephant Suppliers"
-msgstr "Dramblių tiekėjas"
+msgstr "Dramblių tiekėjai"
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraDescription
 msgid "Allies +20% barter sell prices."
-msgstr ""
+msgstr "Sąjungininkai +20% derybų pardavimų kainoms."
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraName
 msgid "Standardized Currency"
@@ -207,7 +208,7 @@ msgstr "Standartizuota valiuta"
 msgid ""
 "Allied Temples −50% resource costs and building time; Temple technologies "
 "−50% resource costs and research time."
-msgstr ""
+msgstr "Sąjungoje Šventykloms −50% išteklių sąnaudos ir statymo laiko; Šventyklos technologijoms −50% išteklių sąnaudos ir tyrinėjimo laiko"
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraName
 msgid "Ashoka's Religious Support"
@@ -215,7 +216,7 @@ msgstr "Ašokos religinė parama"
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraDescription
 msgid "Allied Land Traders +15% trade gain."
-msgstr ""
+msgstr "Sąjungoje Sausumos Pirkliams +15% mainų pelno."
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
 msgid "The Royal Road"
@@ -223,7 +224,7 @@ msgstr "Karališkasis kelias"
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraDescription
 msgid "Allies +1.0 food trickle rate."
-msgstr ""
+msgstr "Sąjungininkai +1.0 maisto prieaugio dažniui."
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraName
 msgid "Breadbasket of the Mediterranean"
@@ -231,7 +232,7 @@ msgstr "Viduržemio jūros maitintoja"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraDescription
 msgid "Allied Citizen Infantry −10% training time."
-msgstr ""
+msgstr "Sąjungoje Civiliams Pėstininkams −10% mokymo laiko."
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraName
 msgid "Conscription"
@@ -239,7 +240,7 @@ msgstr "Karo prievolė"
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraDescription
 msgid "Allied Civil Centers −20% resource costs."
-msgstr ""
+msgstr "Sąjungoje Civiliniams Centrams −20% išteklių sąnaudos."
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
@@ -247,7 +248,7 @@ msgstr "Sirijos tetrapolis"
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraDescription
 msgid "Allied Citizen Infantry Spearmen +10% health."
-msgstr ""
+msgstr "Sąjungoje Civilių Pėstininkų Ietininkams +10% sveikatos."
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraName
 msgid "Peloponnesian League"
@@ -255,27 +256,27 @@ msgstr "Peloponeso lyga"
 
 #: simulation/data/auras/units/carnyx.jsonauraDescription
 msgid "Enemy Soldiers −10% attack damage and capture attack strength."
-msgstr ""
+msgstr "Priešų Kariams −10% puolimo žalos ir užgrobimo atakos stiprybės."
 
 #: simulation/data/auras/units/carnyx.jsonauraName
 msgid "Intimidating Sound"
-msgstr ""
+msgstr "Bauginantis Garsas"
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_1.jsonauraDescription
 msgid ""
 "Solon instituted several economic reforms encouraging commerce and agriculture.\n"
 "Workers +15% gather speed."
-msgstr ""
+msgstr "Solono pradėtos kelios ekonominės permainos skatinančios prekybą ir žemdirbystę.\nDarbininkai +15% rinkimo greičio."
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_1.jsonauraName
 msgid "Economic Reforms"
-msgstr "Ekonomikos reformos"
+msgstr "Ekonominės Permainos"
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_2.jsonauraDescription
 msgid ""
 "Solon brought in a new system of weights and measures, fathers were encouraged to find trades for their sons.\n"
 "Economic technologies −10% resource costs."
-msgstr ""
+msgstr "Solono įvesta nauja sistema, svėrimui ir matavimui, tėvus paskatino surasti amatus savo sūnums.\nEkonomikos technologijoms −10% išteklių sąnaudos."
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_2.jsonauraName
 msgid "Economic Fortune"
@@ -285,7 +286,7 @@ msgstr "Ekonominė sėkmė"
 msgid ""
 "Seeing entrenched defense to be useless against the Roman army, Cassivellaunus resorted to guerrilla tactics. This was later employed by other chieftains too.\n"
 "Soldiers +15% movement speed and +15% vision range."
-msgstr ""
+msgstr "Matydamas, kad gynybiniai įtvirtinimai prieš romėnų kariuomenę yra beverčiai, Cassivellaunus griebėsi partizaninės taktikos. Vėliau šią taktiką taikė ir kiti vadai.\nKariams +15% judėjimo greičio ir +15% matymo nuotolio."
 
 #: simulation/data/auras/units/catafalques/brit_catafalque_1.jsonauraName
 #: simulation/data/auras/units/heroes/iber_hero_viriato_1.jsonauraName
@@ -296,7 +297,7 @@ msgstr "Partizaninė taktika"
 msgid ""
 "Cassivellaunus deployed fast-moving skirmishers to harass Roman troops and foragers.\n"
 "Javelineers +20% attack range."
-msgstr ""
+msgstr "Cassivellaunus naudojo greitai judančius skirmišerius trikdyti romėnų karius ir rankiotojus.\nIetsvaidžiams +20% atakos nuotolio."
 
 #: simulation/data/auras/units/catafalques/brit_catafalque_2.jsonauraName
 msgid "Skirmisher Harassment"
@@ -306,7 +307,7 @@ msgstr "Skirmišerių antpuolis"
 msgid ""
 "Leader of the Carthaginian heavy cavalry at Trebia and Cannae, where his triple charge had devastating effects on the enemy.\n"
 "Melee Cavalry +1 crush, hack, pierce resistance and +10% health."
-msgstr ""
+msgstr "Kartaginos sunkiosios kavalerijos vadas, Tebijos ir Kanajos mūšiuose, kur jo trigubas veržimasis turėjo triuškinančių padarinių.\nArtimoji Kavalerija +1 traiškymo, kapojimo, pervėrimo atsparumo ir +10% sveikatos."
 
 #: simulation/data/auras/units/catafalques/cart_catafalque.jsonauraName
 msgid "Commander of Heavy Cavalry"
@@ -316,7 +317,7 @@ msgstr "Sunkiosios kavalerijos vadas"
 msgid ""
 "Warring with the Romans, Ambiorix realized the futility of open warfare and instead resorted to ambush tactics. The Gauls quickly learned where and when to execute surprise attacks.\n"
 "Soldiers +5% melee and ranged attack damage and −25% promotion experience."
-msgstr ""
+msgstr "Kariaudamas su Romėnais, Ambioriksas suprato atviros kovos beprasmiškumą ir vietoj to grįžo prie pasalingų taktikų. Galai greitai išmoko kur ir kada vykdyti netikėtas atakas.\nKariams +5% artimos ir nuotolinės atakos žalos ir −25% paaukštinimo patirties."
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_1.jsonauraName
 msgid "Ambush Slaughter"
@@ -326,7 +327,7 @@ msgstr "Skerdynės iš pasalų"
 msgid ""
 "When the Roman army fell short of food supplies, the Gallic tribes were ordered to give up a part of their already meagre harvest. The Eburones under Ambiorix were reluctant to do so, therefore Caesar sent troops to take them by force.\n"
 "Workers −10% grain gather rate."
-msgstr ""
+msgstr "Kai Romėnų Kariuomenė pritrūko maisto išteklių, Galų gentims buvo įsakyta atiduoti dalį jų galimo naudoti derliaus. Eburonai vadovaujami Ambiorikso nenorėjo to daryti, todėl Cezaris nusiuntė pajėgas priverstinai jo paimti.\nDarbininkams −10% grūdų rinkimo greičio."
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_2.jsonauraName
 msgid "Tribute to Rome"
@@ -336,7 +337,7 @@ msgstr "Duoklė Romai"
 msgid ""
 "Along with his brother Indibil, Mandonius commanded the Iberian recruits and mercenaries that took part in the Punic Wars.\n"
 "Allied Citizen Mercenaries −25% metal cost."
-msgstr ""
+msgstr "Kartu su savo broliu Indibiliu, Mandonius vadovavo Iberijos rekrutams ir samdiniams kovojantiems Puniko Karuose.\nSąjungoje Civiliams Samdiniams −25% metalo sąnaudoms."
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_1.jsonauraName
 msgid "Mercenary Commander"
@@ -346,7 +347,7 @@ msgstr "Samdinių Vadas"
 msgid ""
 "Following the fall of Indibil in battle, Mandonius led the survivors to safety.\n"
 "Soldiers +10% health."
-msgstr ""
+msgstr "Kai buvo nukautas Indibilis, Mandonius vedė išgyvenusius į saugią vietą.\nKariams +10% sveikatos."
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_2.jsonauraName
 msgid "Saver of Lives"
@@ -356,17 +357,17 @@ msgstr "Gyvybių Gelbėtojas"
 msgid ""
 "Ruling with full power in the Meroë Empire and also playing a significant role in the Meroitic religion, Shanakdakheto represented the might of Kush, something not to be taken lightly.\n"
 "Enemy Female Citizens −15% gather speed."
-msgstr ""
+msgstr "Valdydamas visa galia Meorės imperijoje taip pat atlikdamas svarbų vaidmenį Meroitikos religijoje. Shanakdekheto atstovavo Kušo galybę, tai į ką nederėtų numoti ranka.\nPriešų Moterims Civilėms −15% rinkimo greičio."
 
 #: simulation/data/auras/units/catafalques/kush_catafalque_1.jsonauraName
 msgid "Earliest Nubian Queen"
-msgstr ""
+msgstr "Ankščiausioji Nubijos Karalienė"
 
 #: simulation/data/auras/units/catafalques/kush_catafalque_2.jsonauraDescription
 msgid ""
 "As in all cultures, religion played a significant part in Kush. Shanakdakheto had the temple built around 160 BC as a symbol of the advancedness of Meroë.\n"
 "Temples +1 garrison heal rate."
-msgstr ""
+msgstr "Kaip ir visose kultūrose, religija atliko svarbų vaidmenį Kuše. Shanakdekheto pastatė šventyklą apie 160 P.K. kaip Meroės pažangumo simbolį.\nBažnyčios +1 sargybos gydymo greičiui."
 
 #: simulation/data/auras/units/catafalques/kush_catafalque_2.jsonauraName
 msgid "Temple at Naqa"
@@ -396,7 +397,7 @@ msgstr ""
 msgid ""
 "Bindusara is said to have conquered lands to the south of the empire.\n"
 "Soldiers +15% capture attack strength."
-msgstr ""
+msgstr "Sakoma kad Bindusara nukariavo žemes į pietus nuo imperijos.\nKariams. +15% užgrobimo atakos stiprybės."
 
 #: simulation/data/auras/units/catafalques/maur_catafalque_2.jsonauraName
 msgid "Vamba Moriyar"
@@ -436,11 +437,11 @@ msgstr "Lucretios Keršytojas"
 msgid ""
 "Brutus was one of the key figures in the overthrow of the monarchy and the founding of the Roman Republic. Later, as consul he led a Roman army to victory against the Etruscan King Tarquinius who sought to retake the throne.\n"
 "Humans and Siege Engines +1 crush, hack, pierce resistance."
-msgstr ""
+msgstr "Brutas buvo vienas iš pagrindinių veikėjų, monarchijos nuvertime ir Romos Respublikos įkūrime. Vėliau kaip konsulas, jis vedė Romos kariuomenę į pergalę prieš Etruskanų Karalių Tarkvinijų, kuris siekė atsiimti sostą.\nŽmonėms ir Apgulties Įrenginiams +1 traiškymo, kapojimo, pervėrimo atsparumo"
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_2.jsonauraName
 msgid "Founder and Defender of the Republic"
-msgstr ""
+msgstr "Respublikos įkūrėjas ir gynėjas."
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_1.jsonauraDescription
 msgid ""
@@ -460,7 +461,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_2.jsonauraName
 msgid "Immigration"
-msgstr "Emigracija"
+msgstr "Imigracija"
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_3.jsonauraDescription
 msgid ""
@@ -485,7 +486,7 @@ msgstr "Lykurganiečių Karinės Reformos"
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_2.jsonauraDescription
 msgid "Champion Infantry Spearmen −5% resource costs."
-msgstr ""
+msgstr "Čempionams Pėstininkams Ietininkams −5% išteklių sąnaudos."
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_3.jsonauraDescription
 msgid ""
@@ -499,17 +500,17 @@ msgstr ""
 
 #: simulation/data/auras/units/elephant_worker.jsonauraDescription
 msgid "Workers +25% build rate."
-msgstr ""
+msgstr "Darbininkams +25% statymo greičio."
 
 #: simulation/data/auras/units/elephant_worker.jsonauraName
 msgid "Elephant Workers"
-msgstr ""
+msgstr "Darbininkų dramblys."
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraDescription
 msgid ""
 "Soldiers in his formation +3 crush, hack, pierce resistance, +15% movement "
 "speed."
-msgstr ""
+msgstr "Kariams jo rykiuotėje +3 traiškymo, kapojimo, pervėrimo atsparumo, +15% judėjimo greičio."
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraName
 msgid "Formation Reforms"
@@ -517,7 +518,7 @@ msgstr "Formacijos Reformos"
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_2.jsonauraDescription
 msgid "Infantry Javelineers +15% movement speed."
-msgstr ""
+msgstr "Pėstininkams Ietsvaidžiams +15% judėjimo greičio."
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_2.jsonauraName
 msgid "Peltast Reforms"
@@ -525,7 +526,7 @@ msgstr "Skydo ir ieties Reformos"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraDescription
 msgid "Workers +15% build rate."
-msgstr ""
+msgstr "Darbininkams +15% statymo greičio."
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraName
 msgid "Periclean Building Program"
@@ -533,35 +534,35 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraDescription
 msgid "Temples −25% stone cost, +2 garrisoned heal rate."
-msgstr ""
+msgstr "Šventyklos −25% akmens sąnaudos, +2 sargybos gijimo greičio."
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraName
 msgid "Temple of Athena Nike"
-msgstr ""
+msgstr "Atėnos Nikės Šventykla"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraDescription
 msgid ""
 "When garrisoned, the Ship has −30% batch training time and +50% movement "
 "speed."
-msgstr ""
+msgstr "Esant sargybai, Laivui −30% eilės mokymo laikui ir +50% judėjimo greičiui."
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraName
 msgid "Naval Commander"
-msgstr ""
+msgstr "Laivybos Vadovas"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraDescription
 msgid "Ships −50% metal cost, −20% construction time."
-msgstr ""
+msgstr "Laivams −50% metalo sąnauda, −20% statybos laikas."
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraName
 msgid "Naval Architect"
-msgstr ""
+msgstr "Laivybos Architektas"
 
 #: simulation/data/auras/units/heroes/brit_hero_boudicca.jsonauraDescription
 msgid ""
 "Champions +2 capture attack strength, +20% melee and ranged attack damage, "
 "+10% movement speed."
-msgstr ""
+msgstr "Čempionai +2 užgrobimo atakos jėgos, +20% artimos ir nuotolinės atakos žalos, +10% judėjimo greičio."
 
 #: simulation/data/auras/units/heroes/brit_hero_boudicca.jsonauraName
 msgid "Champion Army"
@@ -571,16 +572,16 @@ msgstr "Čempiono Armija"
 msgid ""
 "Soldiers and Siege Engines +1 crush, hack, pierce resistance, +15% movement "
 "speed."
-msgstr ""
+msgstr "Kariams ir Apgulties Įrenginiams +1 traiškymo, kapojimo, pervėrimo atsparumo, +15% judėjimo greičio."
 
 #: simulation/data/auras/units/heroes/brit_hero_caratacos.jsonauraName
 msgid "Guerrilla Chief"
-msgstr ""
+msgstr "Partizanų Vadas"
 
 #: simulation/data/auras/units/heroes/brit_hero_cunobelin.jsonauraDescription
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraDescription
 msgid "Humans +0.8 health regeneration rate."
-msgstr ""
+msgstr "Žmonėms +0.8 sveikatos atsistatymo greičio."
 
 #: simulation/data/auras/units/heroes/brit_hero_cunobelin.jsonauraName
 msgid "Britannorum Rex"
@@ -588,15 +589,15 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/cart_hero_hamilcar_1.jsonauraDescription
 msgid "Soldiers and Siege Engines +15% movement speed."
-msgstr ""
+msgstr "Kariams ir Apgulties Įrenginiams +15% judėjimo greičio."
 
 #: simulation/data/auras/units/heroes/cart_hero_hamilcar_1.jsonauraName
 msgid "Lightning General"
-msgstr ""
+msgstr "Žaibiškas Generolas"
 
 #: simulation/data/auras/units/heroes/cart_hero_hamilcar_2.jsonauraDescription
 msgid "Enemy Mercenaries −20% melee and ranged attack damage."
-msgstr ""
+msgstr "Priešų Samdiniams −20% artimos ir nuotolines atakos žalos."
 
 #: simulation/data/auras/units/heroes/cart_hero_hamilcar_2.jsonauraName
 msgid "Subduer of Mercenaries"
@@ -606,7 +607,7 @@ msgstr ""
 msgid ""
 "Own and Allied Soldiers and Siege Engines +1 capture attack strength, +20% "
 "melee and ranged attack damage."
-msgstr ""
+msgstr "Saviems ir Sąjungos Kariams ir Apgulties Įrenginiams +1 užgrobimo atakos stiprybės, +20% artimos ir nuotolinės atakos žalos."
 
 #: simulation/data/auras/units/heroes/cart_hero_hannibal.jsonauraName
 msgid "Tactician"
@@ -614,7 +615,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/cart_hero_maharbal.jsonauraDescription
 msgid "Melee Cavalry +30% melee attack damage."
-msgstr ""
+msgstr "Artimajai Kavalerijai +30% artimos atakos žalos."
 
 #: simulation/data/auras/units/heroes/cart_hero_maharbal.jsonauraName
 msgid "Cavalry Commander"
@@ -632,7 +633,7 @@ msgstr ""
 msgid ""
 "Soldiers and Siege Engines +1 capture attack strength, +20% melee and ranged"
 " attack damage."
-msgstr ""
+msgstr "Kariams ir Apgulties Įrenginiams +1 užgrobimo atakos stiprybės, +20% artimos ir nuotolinės atakos žalos."
 
 #: simulation/data/auras/units/heroes/gaul_hero_vercingetorix.jsonauraName
 msgid "Celtic Warlord"
@@ -662,7 +663,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_2.jsonauraDescription
 msgid "Soldiers +1 crush, hack, pierce resistance."
-msgstr ""
+msgstr "Kariams +1 traiškymo, kapojimo, pervėrimo atsparumo."
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_2.jsonauraName
 msgid "Battle Fervor"
@@ -692,7 +693,7 @@ msgstr ""
 #: simulation/data/auras/units/heroes/mace_hero_philip_ii.jsonauraDescription
 msgid ""
 "Champions +2 capture attack strength, +20% melee and ranged attack damage."
-msgstr ""
+msgstr "Čempionai +2 užgrobimo atakos jėgos, +20% artimos ir nuotolinės atakos žalos."
 
 #: simulation/data/auras/units/heroes/kush_hero_amanirenas.jsonauraName
 msgid "Warrior Queen"
@@ -720,7 +721,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_3.jsonauraDescription
 msgid "Enemy Healers −50% healing strength."
-msgstr ""
+msgstr "Priešų Gydūnams −50% gydymo stiprybės."
 
 #: simulation/data/auras/units/heroes/kush_hero_arakamani_3.jsonauraName
 msgid "Slaughter of the Faithful"
@@ -728,7 +729,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_1.jsonauraDescription
 msgid "Soldiers +10% melee and ranged attack damage, gain +50% resource loot."
-msgstr ""
+msgstr "Kariams +10% artimos ir nuotolinės atakos žalos, gauna +50% išteklių grobio."
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_1.jsonauraName
 msgid "Savior of Kush"
@@ -761,7 +762,7 @@ msgstr ""
 #: simulation/data/auras/units/heroes/mace_hero_craterus.jsonauraDescription
 msgid ""
 "Infantry Pikemen +20% capture attack strength, +20% melee attack damage."
-msgstr ""
+msgstr "Pėstininkams Ietininkams +20% užgrobimo atakos jėgos, +20% artimos atakos žalos."
 
 #: simulation/data/auras/units/heroes/mace_hero_craterus.jsonauraName
 msgid "Taxiarchès"
@@ -771,7 +772,7 @@ msgstr "Karininkas"
 msgid ""
 "Siege Engines +1 crush, hack, pierce resistance, +20% melee and ranged "
 "attack damage, +10% ranged attack range, +10% vision range."
-msgstr ""
+msgstr "Apgulties Įrenginiams +1 traiškymo, kapojiomo, pervėrimo atsparumo, +20% artimos ir nuotolinės atakos žalos, +10% nuotolinės atakos atstumo, +10% matomumo lauko."
 
 #: simulation/data/auras/units/heroes/mace_hero_demetrius_i.jsonauraName
 msgid "Besieger"
@@ -783,7 +784,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_pyrrhus_i.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage, −15% health."
-msgstr ""
+msgstr "Kariams +20% artimos ir nuotolinės atakos žalos, −15% sveikatos."
 
 #: simulation/data/auras/units/heroes/mace_hero_pyrrhus_i.jsonauraName
 msgid "Pyrrhic Victory"
@@ -816,7 +817,7 @@ msgstr ""
 #: simulation/data/auras/units/heroes/pers_hero_cyrus_ii.jsonauraDescription
 msgid ""
 "Cavalry +1 capture attack strength, +20% melee and ranged attack damage."
-msgstr ""
+msgstr "Kavalerijai +1 užgrobimo atakos stiprybės, +20% artimos ir nuotolinės atakos žalos."
 
 #: simulation/data/auras/units/heroes/pers_hero_cyrus_ii.jsonauraName
 msgid "Forefront Leader"
@@ -841,7 +842,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_vii_1.jsonauraDescription
 msgid "Soldiers and Siege Engines −20% melee and ranged attack repeat time."
-msgstr ""
+msgstr "Kariams ir Apgulties Įrenginiams -20% artimos ir nuotolinės atakos pakartojimo laiko."
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_vii_1.jsonauraName
 msgid "Patriot"
@@ -886,7 +887,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_1.jsonauraDescription
 msgid "Cavalry +15% melee and ranged attack damage."
-msgstr ""
+msgstr "Kavalerijai +15% artimos ir nuotolinės atakos žalos."
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_1.jsonauraName
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_2.jsonauraName
@@ -895,11 +896,11 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_2.jsonauraDescription
 msgid "Enemy Infantry −10% melee and ranged attack damage."
-msgstr ""
+msgstr "Priešų Pėstininkams  −10% artimos ir nuotolines atakos žalos."
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraDescription
 msgid "Humans and Structures +1 crush, hack, pierce resistance."
-msgstr ""
+msgstr "Žmonėms ir Statiniams +1 traiškymo, kapojimo, pervėrimo atsparumo."
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraName
 msgid "Shield of Rome"
@@ -909,7 +910,7 @@ msgstr ""
 msgid ""
 "Soldiers and Siege Engines +2 capture attack strength, +20% melee and ranged"
 " attack damage."
-msgstr ""
+msgstr "Kariams ir Apgulties Įrenginiams +2 užgrobimo atakos stiprybės, +20% artimos ir nuotolinės atakos žalos."
 
 #: simulation/data/auras/units/heroes/rome_hero_scipio.jsonauraName
 msgid "Triumph"
@@ -917,7 +918,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_iii.jsonauraDescription
 msgid "Cavalry +2 crush, hack, pierce resistance."
-msgstr ""
+msgstr "Kavalerijai +2 traiškymo, kapojimo, pervėrimo atsparumo."
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_iii.jsonauraName
 msgid "Ilarchès"
@@ -933,7 +934,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/sele_hero_seleucus_i.jsonauraDescription
 msgid "Champion Elephants +20% melee attack damage, +20% movement speed."
-msgstr ""
+msgstr "Čempionams Drambliams +20% artimos ir nuotolinės atakos žalos, +20% judėjimo greičio."
 
 #: simulation/data/auras/units/heroes/sele_hero_seleucus_i.jsonauraName
 msgid "Zooiarchos"
@@ -943,7 +944,7 @@ msgstr ""
 msgid ""
 "Citizen Infantry Javelineers +1 crush, hack, pierce resistance, +25% ranged "
 "attack pierce damage."
-msgstr ""
+msgstr "Civilių Pėstininkų Ietsvaidžiams +1 traiškymo, kapojimo, pervėrimo atsparumo, +25% nuotolinės atakos pervėrimo žalos."
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraName
 msgid "Helot Reforms"
@@ -951,7 +952,7 @@ msgstr "Helotų Reformos"
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraDescription
 msgid "Spearmen +1 capture attack strength, +25% melee attack damage."
-msgstr ""
+msgstr "Ietininkams +1 užgrobimo atakos stiprybės, +25% artimos atakos žalos."
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraName
 msgid "Last Stand"

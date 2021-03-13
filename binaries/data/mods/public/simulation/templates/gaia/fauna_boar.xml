@@ -4,12 +4,12 @@
     <Melee>
       <AttackName>Tusks</AttackName>
       <Damage>
-        <Hack>12.0</Hack>
-        <Pierce>0.0</Pierce>
-        <Crush>0.0</Crush>
+        <Hack>12</Hack>
       </Damage>
-      <MaxRange>1.0</MaxRange>
+      <MaxRange>3</MaxRange>
+      <PrepareTime>500</PrepareTime>
       <RepeatTime>1000</RepeatTime>
+      <RestrictedClasses datatype="tokens">Structure Ship Siege</RestrictedClasses>
     </Melee>
   </Attack>
   <Footprint>

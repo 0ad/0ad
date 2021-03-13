@@ -779,6 +779,7 @@ function setup_all_libs ()
 		"spidermonkey",	-- for graphics/scripting
 		"boost",
 		"fmt",
+		"icu",
 	}
 	if not _OPTIONS["without-nvtt"] then
 		table.insert(extern_libs, "nvtt")

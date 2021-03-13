@@ -106,6 +106,13 @@ AIProxy.prototype.OnHealthChanged = function(msg)
 	this.changes.hitpoints = msg.to;
 };
 
+AIProxy.prototype.OnGarrisonedStateChanged = function(msg)
+{
+	if (!this.NotifyChange())
+		return;
+	this.changes.garrisonHolderID = msg.holderID;
+};
+
 AIProxy.prototype.OnCapturePointsChanged = function(msg)
 {
 	if (!this.NotifyChange())
@@ -325,6 +332,13 @@ AIProxy.prototype.GetFullRepresentation = function()
 	{
 		// Updated by OnGarrisonedUnitsChanged
 		ret.garrisoned = cmpGarrisonHolder.GetEntities();
+	}
+
+	let cmpGarrisonable = Engine.QueryInterface(this.entity, IID_Garrisonable);
+	if (cmpGarrisonable)
+	{
+		// Updated by OnGarrisonedStateChanged
+		ret.garrisonHolderID = cmpGarrisonable.HolderID();
 	}
 
 	let cmpTerritoryDecay = Engine.QueryInterface(this.entity, IID_TerritoryDecay);

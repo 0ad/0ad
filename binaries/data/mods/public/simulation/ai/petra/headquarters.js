@@ -398,8 +398,7 @@ PETRA.HQ.prototype.checkEvents = function(gameState, events)
 			if (!ent.position())
 			{
 				// we are autogarrisoned, check that the holder is registered in the garrisonManager
-				let holderId = ent.unitAIOrderData()[0].target;
-				let holder = gameState.getEntityById(holderId);
+				let holder = gameState.getEntityById(ent.garrisonHolderID());
 				if (holder)
 					this.garrisonManager.registerHolder(gameState, holder);
 			}

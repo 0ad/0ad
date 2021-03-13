@@ -24,12 +24,8 @@
 
 #include "i18n/L10n.h"
 
-#include <boost/algorithm/string.hpp>
-#include <boost/concept_check.hpp>
-#include <sstream>
-#include <string>
-
 #include "gui/GUIManager.h"
+#include "lib/external_libraries/tinygettext.h"
 #include "lib/file/file_system.h"
 #include "lib/utf8.h"
 #include "ps/CLogger.h"
@@ -37,9 +33,74 @@
 #include "ps/Filesystem.h"
 #include "ps/GameSetup/GameSetup.h"
 
-static Status ReloadChangedFileCB(void* param, const VfsPath& path)
+#include <boost/algorithm/string.hpp>
+#include <boost/concept_check.hpp>
+#include <sstream>
+#include <string>
+
+namespace
+{
+
+Status ReloadChangedFileCB(void* param, const VfsPath& path)
 {
 	return static_cast<L10n*>(param)->ReloadChangedFile(path);
+}
+
+/**
+ * Loads the specified content of a PO file into the specified dictionary.
+ *
+ * Used by LoadDictionaryForCurrentLocale() to add entries to the game
+ * translations @link dictionary.
+ *
+ * @param poContent Content of a PO file as a string.
+ * @param dictionary Dictionary where the entries from the PO file should be
+ *        stored.
+ */
+void ReadPoIntoDictionary(const std::string& poContent, tinygettext::Dictionary* dictionary)
+{
+	try
+	{
+		std::istringstream inputStream(poContent);
+		tinygettext::POParser::parse("virtual PO file", inputStream, *dictionary);
+	}
+	catch (std::exception& e)
+	{
+		LOGERROR("[Localization] Exception while reading virtual PO file: %s", e.what());
+	}
+}
+
+/**
+ * Creates an ICU date formatted with the specified settings.
+ *
+ * @param type Whether formatted dates must show both the date and the time,
+ *        only the date or only the time.
+ * @param style ICU style to format dates by default.
+ * @param locale Locale that the date formatter should use to parse strings.
+ *        It has no relevance for date formatting, only matters for date
+ *        parsing.
+ * @return ICU date formatter.
+ */
+icu::DateFormat* CreateDateTimeInstance(const L10n::DateTimeType& type, const icu::DateFormat::EStyle& style, const icu::Locale& locale)
+{
+	switch (type)
+	{
+	case L10n::Date:
+		return icu::SimpleDateFormat::createDateInstance(style, locale);
+
+	case L10n::Time:
+		return icu::SimpleDateFormat::createTimeInstance(style, locale);
+
+	case L10n::DateTime:
+	default:
+		return icu::SimpleDateFormat::createDateTimeInstance(style, style, locale);
+	}
+}
+
+} // anonymous namespace
+
+void L10n::DictionaryDeleter::operator()(tinygettext::Dictionary* dictionary)
+{
+	delete dictionary;
 }
 
 L10n::L10n()
@@ -515,34 +576,5 @@ void L10n::LoadListOfAvailableLocales()
 			continue;
 
 		availableLocales.push_back(std::move(locale));
-	}
-}
-
-void L10n::ReadPoIntoDictionary(const std::string& poContent, tinygettext::Dictionary* dictionary) const
-{
-	try
-	{
-		std::istringstream inputStream(poContent);
-		tinygettext::POParser::parse("virtual PO file", inputStream, *dictionary);
-	}
-	catch(std::exception& e)
-	{
-		LOGERROR("[Localization] Exception while reading virtual PO file: %s", e.what());
-	}
-}
-
-icu::DateFormat* L10n::CreateDateTimeInstance(const L10n::DateTimeType& type, const icu::DateFormat::EStyle& style, const icu::Locale& locale) const
-{
-	switch(type)
-	{
-	case Date:
-		return icu::SimpleDateFormat::createDateInstance(style, locale);
-
-	case Time:
-		return icu::SimpleDateFormat::createTimeInstance(style, locale);
-
-	case DateTime:
-	default:
-		return icu::SimpleDateFormat::createDateTimeInstance(style, style, locale);
 	}
 }

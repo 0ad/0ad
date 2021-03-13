@@ -10,6 +10,7 @@
 # Mads Dyrmann <madsdyrmannlarsen@gmail.com>, 2014
 # Mads Overgård Henningsen <mads.overgaard@live.dk>, 2014
 # Martin Johansen (Promic2) <soliondk@gmail.com>, 2017
+# Michael Millet <mikevlet@protonmail.com>, 2021
 # Nicolai Nystrup-Eriksen <nicolain-e@hotmail.dk>, 2015
 # Nicolai Palstrøm <nicoisme@live.dk>, 2019
 # Thomas Andersen <tba@live.dk>, 2018
@@ -20,8 +21,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-25 08:08+0000\n"
-"PO-Revision-Date: 2021-01-25 10:36+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-03-12 07:49+0000\n"
+"Last-Translator: Michael Millet <mikevlet@protonmail.com>\n"
 "Language-Team: Danish (http://www.transifex.com/wildfire-games/0ad/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,7 +36,7 @@ msgstr ""
 #: simulation/templates/structures/sele/arsenal.xml:5
 #: simulation/templates/structures/spart/arsenal.xml:5
 msgid "Hoplothēkē"
-msgstr "Hoplothēkē"
+msgstr "Hoplotēkē"
 
 #: simulation/templates/structures/athen/barracks.xml:12
 #: simulation/templates/structures/mace/barracks.xml:12
@@ -99,7 +100,7 @@ msgstr "Agros"
 #: simulation/templates/structures/sele/forge.xml:5
 #: simulation/templates/structures/spart/forge.xml:5
 msgid "Chalkeōn"
-msgstr "Chalkeōn"
+msgstr "Kalkeōn"
 
 #: simulation/templates/structures/athen/fortress.xml:9
 #: simulation/templates/structures/mace/fortress.xml:9
@@ -107,7 +108,7 @@ msgstr "Chalkeōn"
 #: simulation/templates/structures/sele/fortress.xml:9
 #: simulation/templates/structures/spart/fortress.xml:9
 msgid "Phrourion"
-msgstr "Phrourion"
+msgstr "Frourion"
 
 #: simulation/templates/structures/athen/gymnasium.xml:22
 #: simulation/templates/structures/athen/gymnasium.xml:26
@@ -120,7 +121,7 @@ msgstr "Gymnasion"
 
 #: simulation/templates/structures/athen/gymnasium.xml:24
 msgid "Train Champions."
-msgstr "Træn eliteenheder."
+msgstr "Træn elitesoldater"
 
 #: simulation/templates/structures/athen/house.xml:5
 #: simulation/templates/structures/mace/house.xml:5
@@ -144,7 +145,7 @@ msgstr "Emporion"
 #: simulation/templates/structures/sele/outpost.xml:5
 #: simulation/templates/structures/spart/outpost.xml:5
 msgid "Prophylagma"
-msgstr "Prophylagma"
+msgstr "Profylagma"
 
 #: simulation/templates/structures/athen/prytaneion.xml:22
 msgid "Council Chamber"
@@ -156,13 +157,13 @@ msgstr "Prytaneion"
 
 #: simulation/templates/structures/athen/prytaneion.xml:24
 msgid "Train Heroes and research technologies."
-msgstr "Træn helte og udforsk teknologier."
+msgstr "Træn helte og forsk i teknologier."
 
 #: simulation/templates/structures/athen/prytaneion.xml:26
 #: simulation/templates/structures/gaul/assembly.xml:34
 #: simulation/templates/structures/spart/gerousia.xml:26
 msgid "Council"
-msgstr ""
+msgstr "Råd"
 
 #: simulation/templates/structures/athen/range.xml:8
 #: simulation/templates/structures/mace/range.xml:8
@@ -194,7 +195,7 @@ msgstr "Hippōn"
 #: simulation/templates/structures/sele/storehouse.xml:8
 #: simulation/templates/structures/spart/storehouse.xml:8
 msgid "Apothēkē"
-msgstr "Apothēkē"
+msgstr "Apotēkē"
 
 #: simulation/templates/structures/athen/temple.xml:9
 #: simulation/templates/structures/mace/temple.xml:9
@@ -210,7 +211,7 @@ msgstr "Naos"
 #: simulation/templates/structures/sele/theater.xml:5
 #: simulation/templates/structures/spart/theater.xml:5
 msgid "Theatron"
-msgstr "Theatron"
+msgstr "Teatron"
 
 #: simulation/templates/structures/athen/tower_artillery.xml:9
 #: simulation/templates/structures/athen/tower_bolt.xml:9
@@ -251,7 +252,7 @@ msgstr "Pylai"
 #: simulation/templates/structures/spart/wall_short.xml:9
 #: simulation/templates/structures/spart/wallset_stone.xml:5
 msgid "Teichos"
-msgstr "Teichos"
+msgstr "Teikos"
 
 #: simulation/templates/structures/athen/wall_tower.xml:9
 #: simulation/templates/structures/mace/wall_tower.xml:9
@@ -263,7 +264,7 @@ msgstr "Pyrgos"
 
 #: simulation/templates/structures/athen/wonder.xml:9
 msgid "Parthenōn"
-msgstr ""
+msgstr "Pantenōn"
 
 #: simulation/templates/structures/bench.xml:11
 msgid "Bench"
@@ -286,11 +287,11 @@ msgstr "Træbro"
 #: simulation/templates/structures/brit/arsenal.xml:5
 #: simulation/templates/structures/gaul/arsenal.xml:5
 msgid "Miletucerdon"
-msgstr ""
+msgstr "Miletukerdon"
 
 #: simulation/templates/structures/brit/barracks.xml:18
 msgid "Coriosessa"
-msgstr "Coriosessa"
+msgstr "Koriosessa"
 
 #: simulation/templates/structures/brit/civil_centre.xml:12
 msgid "Tigernotreba"
@@ -299,7 +300,7 @@ msgstr "Tigernotreba"
 #: simulation/templates/structures/brit/corral.xml:8
 #: simulation/templates/structures/gaul/corral.xml:8
 msgid "Cagion"
-msgstr "Cagion"
+msgstr "Kagion"
 
 #: simulation/templates/structures/brit/crannog.xml:13
 msgid "Island Settlement"
@@ -307,14 +308,14 @@ msgstr "Øbebyggelse"
 
 #: simulation/templates/structures/brit/crannog.xml:14
 msgid "Cranogion"
-msgstr "Cranogion"
+msgstr "Kranogion"
 
 #: simulation/templates/structures/brit/crannog.xml:15
 msgid ""
 "Build upon a shoreline in own, neutral, or allied territory. Acquire large "
 "tracts of territory. Territory root. Train Citizens, construct Ships, and "
 "research technologies. Garrison Soldiers for additional arrows."
-msgstr ""
+msgstr "Byg på en kystlinje, i dit eget, neutrale, eller allierede territorium. Anskaf store territoriale traktater. Territorial rod. Træn Borgere, konstruér Skibe og forsk i teknologier. Garnisonér Soldater for yderligere pile."
 
 #: simulation/templates/structures/brit/defense_tower.xml:9
 #: simulation/templates/structures/brit/sentry_tower.xml:5
@@ -328,7 +329,7 @@ msgstr "Uxelon"
 #: simulation/templates/structures/brit/dock.xml:12
 #: simulation/templates/structures/gaul/dock.xml:12
 msgid "Counos"
-msgstr "Counos"
+msgstr "Kounos"
 
 #: simulation/templates/structures/brit/farmstead.xml:11
 #: simulation/templates/structures/gaul/farmstead.xml:8
@@ -338,7 +339,7 @@ msgstr "Buta"
 #: simulation/templates/structures/brit/field.xml:5
 #: simulation/templates/structures/gaul/field.xml:5
 msgid "Olca"
-msgstr "Olca"
+msgstr "Olka"
 
 #: simulation/templates/structures/brit/forge.xml:5
 #: simulation/templates/structures/gaul/forge.xml:5
@@ -357,7 +358,7 @@ msgstr "Dunon"
 #: simulation/templates/structures/mace/fortress.xml:10
 #: simulation/templates/structures/rome/fortress.xml:6
 msgid "Territory root. Train Heroes. Garrison Soldiers for additional arrows."
-msgstr ""
+msgstr "Territorial rod. Træn Helte. Garnisonér Soldater for yderligere pile."
 
 #: simulation/templates/structures/brit/house.xml:9
 #: simulation/templates/structures/gaul/house.xml:5
@@ -372,7 +373,7 @@ msgstr "Magos"
 #: simulation/templates/structures/brit/outpost.xml:5
 #: simulation/templates/structures/gaul/outpost.xml:5
 msgid "Antosolicon"
-msgstr "Antosolicon"
+msgstr "Antosolikon"
 
 #: simulation/templates/structures/brit/range.xml:5
 #: simulation/templates/structures/gaul/range.xml:8
@@ -391,7 +392,7 @@ msgstr "Eposton"
 #: simulation/templates/structures/brit/storehouse.xml:8
 #: simulation/templates/structures/gaul/storehouse.xml:8
 msgid "Capanon"
-msgstr "Capanon"
+msgstr "Kapanon"
 
 #: simulation/templates/structures/brit/temple.xml:18
 #: simulation/templates/structures/gaul/temple.xml:18
@@ -401,7 +402,7 @@ msgstr "Nemeton"
 #: simulation/templates/structures/brit/wall_gate.xml:12
 #: simulation/templates/structures/gaul/wall_gate.xml:12
 msgid "Duoricos"
-msgstr "Duoricos"
+msgstr "Duorikos"
 
 #: simulation/templates/structures/brit/wall_long.xml:9
 #: simulation/templates/structures/brit/wall_medium.xml:9
@@ -412,11 +413,11 @@ msgstr "Duoricos"
 #: simulation/templates/structures/gaul/wall_short.xml:9
 #: simulation/templates/structures/gaul/wallset_stone.xml:5
 msgid "Rate"
-msgstr ""
+msgstr "Rate"
 
 #: simulation/templates/structures/brit/wonder.xml:9
 msgid "Emain Macha"
-msgstr ""
+msgstr "Emain Macha"
 
 #: simulation/templates/structures/cart/apartment.xml:23
 msgid "Apartment Building"
@@ -456,7 +457,7 @@ msgstr "Namel"
 
 #: simulation/templates/structures/cart/embassy.xml:19
 msgid "Train Mercenaries and research Mercenary technologies."
-msgstr ""
+msgstr "Træn Lejesoldater og forsk i Lejesoldat-teknologier."
 
 #: simulation/templates/structures/cart/embassy_celtic.xml:17
 msgid "Celtic Embassy"
@@ -464,7 +465,7 @@ msgstr "Keltisk Ambassade"
 
 #: simulation/templates/structures/cart/embassy_celtic.xml:18
 msgid "Train Celtic Mercenaries and research Mercenary technologies."
-msgstr ""
+msgstr "Træn Keltiske Lejesoldater og forsk i Lejesoldat-teknologier."
 
 #: simulation/templates/structures/cart/embassy_iberian.xml:10
 msgid "Iberian Embassy"
@@ -472,15 +473,15 @@ msgstr "Iberisk Ambassade "
 
 #: simulation/templates/structures/cart/embassy_iberian.xml:11
 msgid "Train Iberian Mercenaries and research Mercenary technologies."
-msgstr ""
+msgstr "Træn Iberiske Lejesoldater og forsk i Lejesoldat-teknologier."
 
 #: simulation/templates/structures/cart/embassy_italic.xml:17
 msgid "Italic Embassy"
-msgstr ""
+msgstr "Italiensk Ambassade"
 
 #: simulation/templates/structures/cart/embassy_italic.xml:18
 msgid "Train Italic Mercenaries and research Mercenary technologies."
-msgstr ""
+msgstr "Træn Italienske Lejesoldater og forsk i Lejesoldat-teknologier."
 
 #: simulation/templates/structures/cart/farmstead.xml:8
 msgid "Aḥuzāh"
@@ -504,7 +505,7 @@ msgstr "Šūq"
 #: simulation/templates/structures/cart/s_wall_tower.xml:10
 #: simulation/templates/structures/cart/wallset_short.xml:5
 msgid "Low Wall"
-msgstr "Lav væg."
+msgstr "Lav Mur"
 
 #: simulation/templates/structures/cart/s_wall_long.xml:11
 #: simulation/templates/structures/cart/s_wall_medium.xml:11
@@ -523,14 +524,14 @@ msgstr "Skibsværft"
 
 #: simulation/templates/structures/cart/super_dock.xml:40
 msgid "Cothon"
-msgstr "Cothon"
+msgstr "Koton"
 
 #: simulation/templates/structures/cart/super_dock.xml:41
 msgid ""
 "Build upon a shoreline in own, neutral, or allied territory. Acquire large "
 "tracts of territory. Territory root. Construct Warships and research "
 "technologies."
-msgstr ""
+msgstr "Byg på en kystlinje, der er din egen, neutral, eller allieret territorium. Erhverv store territoriale trakter. Territorial rod. Konstruér Krigsskibe og forsk i teknologier."
 
 #: simulation/templates/structures/cart/super_dock.xml:43
 msgid "Shipyard"
@@ -542,15 +543,15 @@ msgstr "Maqdaš"
 
 #: simulation/templates/structures/cart/temple.xml:10
 msgid "Train Healers and Champion Infantry and research healing technologies."
-msgstr ""
+msgstr "Træn Læger og Eliteinfanteri, og forsk i lægeteknologier."
 
 #: simulation/templates/structures/cart/tophet.xml:18
 msgid "Sacrificial Temple"
-msgstr "Offertempel"
+msgstr "Ofringstempel"
 
 #: simulation/templates/structures/cart/tophet.xml:19
 msgid "Tophet"
-msgstr "Tophet"
+msgstr "Tofet"
 
 #: simulation/templates/structures/cart/wall_gate.xml:12
 msgid "Mijdil-šaʿar"
@@ -568,7 +569,7 @@ msgstr "Jdar"
 
 #: simulation/templates/structures/cart/wonder.xml:9
 msgid "Temple of Ba'al Hammon"
-msgstr "Tempel til Ba'al Hammon"
+msgstr "Ba'al Hammon-templet"
 
 #: simulation/templates/structures/celt_hut.xml:20
 msgid "Hut"
@@ -595,7 +596,7 @@ msgstr "Falden Dorisk Søjle"
 
 #: simulation/templates/structures/desert_trading_post.xml:14
 msgid "Desert Trading Post"
-msgstr ""
+msgstr "Ørkenhandelspost"
 
 #: simulation/templates/structures/desert_trading_post.xml:15
 #: simulation/templates/structures/pers/market.xml:12
@@ -622,27 +623,27 @@ msgstr "Stenhegn"
 
 #: simulation/templates/structures/gaul/assembly.xml:30
 msgid "Assembly of Princes"
-msgstr ""
+msgstr "Prinsernes Forsamling"
 
 #: simulation/templates/structures/gaul/assembly.xml:31
 msgid "Remogantion"
-msgstr ""
+msgstr "Remogantion"
 
 #: simulation/templates/structures/gaul/assembly.xml:32
 msgid "Train Champion Trumpeters and Heroes."
-msgstr ""
+msgstr "Træn Elitetrompetister og Helte."
 
 #: simulation/templates/structures/gaul/barracks.xml:18
 msgid "Coriosedlon"
-msgstr ""
+msgstr "Kuriosedlon"
 
 #: simulation/templates/structures/gaul/civil_centre.xml:12
 msgid "Lissos"
-msgstr ""
+msgstr "Lissos"
 
 #: simulation/templates/structures/gaul/rotarymill.xml:5
 msgid "Brauon"
-msgstr ""
+msgstr "Brauon"
 
 #: simulation/templates/structures/gaul/tavern.xml:20
 msgid "Tavern"
@@ -654,15 +655,15 @@ msgstr "Taberna"
 
 #: simulation/templates/structures/gaul/wonder.xml:9
 msgid "Sanctuary of Corent"
-msgstr ""
+msgstr "Corents Helligdom"
 
 #: simulation/templates/structures/gaul/wonder.xml:10
 msgid "Celicnon"
-msgstr ""
+msgstr "Celicnon"
 
 #: simulation/templates/structures/generic_field.xml:8
 msgid "Wheat Field"
-msgstr "Hvedemark"
+msgstr "Kornmark"
 
 #: simulation/templates/structures/hellenic_epic_temple.xml:23
 msgid "Epic Temple"
@@ -674,11 +675,11 @@ msgstr "Naos Parthenos"
 
 #: simulation/templates/structures/hellenic_epic_temple.xml:25
 msgid "Garrison units to heal them at a quick rate."
-msgstr ""
+msgstr "Garnisonér enheder, for at øge deres lægdomsrate."
 
 #: simulation/templates/structures/hellenic_propylaea.xml:20
 msgid "Portico"
-msgstr "Porticus"
+msgstr "Portikus"
 
 #: simulation/templates/structures/hellenic_propylaea.xml:21
 msgid "Propylaea"
@@ -735,7 +736,7 @@ msgstr "Arruga"
 
 #: simulation/templates/structures/iber/monument.xml:32
 msgid "Revered Monument"
-msgstr "Æret Monument"
+msgstr "Hædret Monument"
 
 #: simulation/templates/structures/iber/monument.xml:33
 msgid "Gur Oroigarri"
@@ -744,7 +745,7 @@ msgstr "Gur Oroigarri"
 #: simulation/templates/structures/iber/monument.xml:9
 #: simulation/templates/structures/iber/monument.xml:35
 msgid "Monument"
-msgstr ""
+msgstr "Monument"
 
 #: simulation/templates/structures/iber/storehouse.xml:5
 msgid "Ola"
@@ -775,87 +776,87 @@ msgstr "Ishtarporten i Babylon"
 
 #: simulation/templates/structures/ishtar_gate.xml:26
 msgid "Territory root."
-msgstr ""
+msgstr "Territorial rod."
 
 #: simulation/templates/structures/kush/arsenal.xml:5
 msgid "Pr-ỉwn n ms"
-msgstr ""
+msgstr "Pr-ỉwn n ms"
 
 #: simulation/templates/structures/kush/barracks.xml:9
 msgid "pr-msʿyw"
-msgstr ""
+msgstr "pr-msʿyw"
 
 #: simulation/templates/structures/kush/camp_blemmye.xml:22
 msgid "Blemmye Camp"
-msgstr ""
+msgstr "Blemmyisk Lejr"
 
 #: simulation/templates/structures/kush/camp_blemmye.xml:23
 msgid "Train Blemmye Mercenaries."
-msgstr ""
+msgstr "Træn Blemmyiske Lejesoldater"
 
 #: simulation/templates/structures/kush/camp_noba.xml:22
 msgid "Noba Village"
-msgstr ""
+msgstr "Nobatisk Landsby"
 
 #: simulation/templates/structures/kush/camp_noba.xml:23
 msgid "Train Noba Mercenaries."
-msgstr ""
+msgstr "Træn Nobatiske Lejesoldater"
 
 #: simulation/templates/structures/kush/civil_centre.xml:9
 msgid "Pr-nsw"
-msgstr ""
+msgstr "Pr-nsw"
 
 #: simulation/templates/structures/kush/corral.xml:9
 msgid "ihy"
-msgstr ""
+msgstr "ihy"
 
 #: simulation/templates/structures/kush/defense_tower.xml:5
 msgid "tsmt ʿȝ"
-msgstr ""
+msgstr "tsmt ʿȝ"
 
 #: simulation/templates/structures/kush/dock.xml:9
 msgid "Mryt"
-msgstr ""
+msgstr "Mryt"
 
 #: simulation/templates/structures/kush/elephant_stables.xml:5
 msgid "Ỉḥ Abu"
-msgstr ""
+msgstr "Ỉḥ Abu"
 
 #: simulation/templates/structures/kush/farmstead.xml:9
 msgid "snwt"
-msgstr ""
+msgstr "snwt"
 
 #: simulation/templates/structures/kush/field.xml:5
 msgid "sht"
-msgstr ""
+msgstr "sht"
 
 #: simulation/templates/structures/kush/forge.xml:5
 msgid "hmw hʿy n rȝ-ʿ"
-msgstr ""
+msgstr "hmw hʿy n rȝ-ʿ"
 
 #: simulation/templates/structures/kush/fortress.xml:9
 msgid "Htm"
-msgstr ""
+msgstr "Htm"
 
 #: simulation/templates/structures/kush/house.xml:5
 msgid "Pr"
-msgstr ""
+msgstr "Pr"
 
 #: simulation/templates/structures/kush/market.xml:9
 msgid "Pr-sbt"
-msgstr ""
+msgstr "Pr-sbt"
 
 #: simulation/templates/structures/kush/outpost.xml:5
 msgid "trtr"
-msgstr ""
+msgstr "trtr"
 
 #: simulation/templates/structures/kush/pyramid_large.xml:26
 msgid "Large Pyramid"
-msgstr "Stor pyramide."
+msgstr "Stor Pyramide"
 
 #: simulation/templates/structures/kush/pyramid_large.xml:27
 msgid "mr ʿȝ"
-msgstr ""
+msgstr "mr ʿȝ"
 
 #: simulation/templates/structures/kush/pyramid_large.xml:29
 #: simulation/templates/structures/kush/pyramid_small.xml:29
@@ -864,83 +865,83 @@ msgstr "Pyramide"
 
 #: simulation/templates/structures/kush/pyramid_small.xml:26
 msgid "Small Pyramid"
-msgstr "Lille pyramide"
+msgstr "Lille Pyramide"
 
 #: simulation/templates/structures/kush/pyramid_small.xml:27
 msgid "mr"
-msgstr ""
+msgstr "mr"
 
 #: simulation/templates/structures/kush/range.xml:8
 msgid "Pr-Pdt"
-msgstr ""
+msgstr "Pr-Pdt"
 
 #: simulation/templates/structures/kush/sentry_tower.xml:5
 msgid "tsmt"
-msgstr ""
+msgstr "tsmt"
 
 #: simulation/templates/structures/kush/shrine.xml:12
 msgid "Shrine"
-msgstr ""
+msgstr "Helligdom"
 
 #: simulation/templates/structures/kush/shrine.xml:13
 msgid "ḥwt-nṯr"
-msgstr ""
+msgstr "ḥwt-nṯr"
 
 #: simulation/templates/structures/kush/stable.xml:9
 msgid "Ỉḥ Ssmt"
-msgstr ""
+msgstr "Ỉḥ Ssmt"
 
 #: simulation/templates/structures/kush/storehouse.xml:5
 msgid "wdȝt"
-msgstr ""
+msgstr "wdȝt"
 
 #: simulation/templates/structures/kush/temple.xml:8
 msgid "Temple of Apedemak"
-msgstr ""
+msgstr "Apedemak-Templet"
 
 #: simulation/templates/structures/kush/temple.xml:9
 msgid "Pr-ʿIprmk"
-msgstr ""
+msgstr "Pr-ʿIprmk"
 
 #: simulation/templates/structures/kush/temple.xml:10
 msgid ""
 "Train Healers and Apedemak Champions and research healing technologies."
-msgstr ""
+msgstr "Træn Læger og Apedemak-Elitesoldater, og forsk i lægeteknologier."
 
 #: simulation/templates/structures/kush/temple.xml:11
 msgid "TempleOfApedemak"
-msgstr ""
+msgstr "ApedemakTemplet"
 
 #: simulation/templates/structures/kush/temple_amun.xml:27
 msgid "Grand Temple of Amun"
-msgstr ""
+msgstr "Det Store Amun-Tempel"
 
 #: simulation/templates/structures/kush/temple_amun.xml:28
 msgid "Pr-ʿImn"
-msgstr ""
+msgstr "Pr-ʿImn"
 
 #: simulation/templates/structures/kush/temple_amun.xml:29
 msgid "Train Healers and Amun Champions and research healing technologies."
-msgstr ""
+msgstr "Træn Læger og Amun-Elitesoldater, og forsk i lægeteknologier."
 
 #: simulation/templates/structures/kush/temple_amun.xml:31
 msgid "TempleOfAmun"
-msgstr ""
+msgstr "AmunTemplet"
 
 #: simulation/templates/structures/kush/wall_gate.xml:12
 msgid "ʿryt"
-msgstr ""
+msgstr "ʿryt"
 
 #: simulation/templates/structures/kush/wall_long.xml:9
 #: simulation/templates/structures/kush/wall_medium.xml:9
 #: simulation/templates/structures/kush/wall_short.xml:9
 #: simulation/templates/structures/kush/wallset_stone.xml:5
 msgid "sbty"
-msgstr ""
+msgstr "sbty"
 
 #: simulation/templates/structures/kush/wall_tower.xml:9
 msgid "sȝwt"
-msgstr ""
+msgstr "sȝwt"
 
 #: simulation/templates/structures/kush/wonder.xml:9
 msgid "Mnw nht"
@@ -950,11 +951,11 @@ msgstr "Mnw nht"
 #: simulation/templates/structures/ptol/library.xml:5
 #: simulation/templates/structures/sele/library.xml:9
 msgid "Bibliothēkē"
-msgstr ""
+msgstr "Bibliothēkē"
 
 #: simulation/templates/structures/mace/wonder.xml:9
 msgid "Hieron tou Dios tou Olympiou"
-msgstr ""
+msgstr "Hieron tou Dios tou Olympiou"
 
 #: simulation/templates/structures/maur/barracks.xml:15
 msgid "Sainyavasa"
@@ -966,7 +967,7 @@ msgstr "Rajadhanika"
 
 #: simulation/templates/structures/maur/corral.xml:8
 msgid "Gotra"
-msgstr ""
+msgstr "Gotra"
 
 #: simulation/templates/structures/maur/defense_tower.xml:5
 #: simulation/templates/structures/maur/tower_double.xml:24
@@ -1023,11 +1024,11 @@ msgstr "Harmya"
 
 #: simulation/templates/structures/maur/palace.xml:24
 msgid "Territory root. Train Maiden Guards and Heroes."
-msgstr ""
+msgstr "Territorial rod. Træn Møvagter og Helte."
 
 #: simulation/templates/structures/maur/pillar_ashoka.xml:32
 msgid "Edict Pillar of Ashoka"
-msgstr "Ashokasøjle"
+msgstr "Ashokas Ediktsøjle"
 
 #: simulation/templates/structures/maur/pillar_ashoka.xml:33
 msgid "Śāsana Stambha Aśokā"
@@ -1048,14 +1049,14 @@ msgstr "Devalaya"
 
 #: simulation/templates/structures/maur/tower_double.xml:20
 msgid "Rampart Tower"
-msgstr ""
+msgstr "Bolværkstårn"
 
 #: simulation/templates/structures/maur/tower_double.xml:22
 msgid ""
 "Higher health tower with ramparts for up to 16 archers. Visibly garrisoned "
 "archers recieve a range and armor bonus. Only archers can garrison. Needs "
 "the murder holes tech to protect its foot."
-msgstr ""
+msgstr "Tårn med bedre helbred og bolværk med op til 16 bueskytter. Synligt garnisonerede bueskytter modtager en rækkevidde- og rustningsbonus. Kun bueskytter kan garnisoneres. Behøver mordhul-teknologien til at beskytte sin base."
 
 #: simulation/templates/structures/maur/wall_gate.xml:18
 msgid "Dwara"
@@ -1078,29 +1079,29 @@ msgstr "Stor Stupa"
 
 #: simulation/templates/structures/mausoleum.xml:8
 msgid "Mausoleum at Halicarnassus"
-msgstr ""
+msgstr "Mausoleum ved Halikarnassos"
 
 #: simulation/templates/structures/mausoleum.xml:9
 msgid "Mausōleion"
-msgstr ""
+msgstr "Mausōleion"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:6
 #: simulation/templates/structures/ptol/mercenary_camp.xml:6
 msgid "MercenaryCamp"
-msgstr "Lejesoldatslejr"
+msgstr "LejesoldatLejr"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:28
 msgid "Egyptian Mercenary Camp"
-msgstr ""
+msgstr "Ægyptisk Lejesoldat-Lejr"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:29
 #: simulation/templates/structures/ptol/mercenary_camp.xml:28
 msgid "Stratopedeia Misthophorōn"
-msgstr ""
+msgstr "Stratopedeia Misthophorōn"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:31
 msgid "Capture this structure to train mercenaries from Hellenistic Egypt."
-msgstr "Overtag denne bygning for at træne lejesoldater fra det hellenske Egypten."
+msgstr "Erobr denne bygning, for at træne lejesoldater fra det hellenistiske Ægypten."
 
 #: simulation/templates/structures/obelisk.xml:11
 msgid "Obelisk"
@@ -1108,7 +1109,7 @@ msgstr "Obelisk"
 
 #: simulation/templates/structures/obelisk.xml:12
 msgid "Egyptian Obelisk"
-msgstr "Egyptisk Obelisk"
+msgstr "Ægyptisk Obelisk"
 
 #: simulation/templates/structures/palisades_fort.xml:9
 msgid "Wooden Tower"
@@ -1121,15 +1122,15 @@ msgstr "Palisadeport"
 #: simulation/templates/structures/palisades_gate.xml:22
 #: simulation/templates/structures/palisades_long.xml:31
 msgid "Allow units access through Palisades. Can be locked to prevent access."
-msgstr ""
+msgstr "Tillad enheder adgang igennem Palisader. Kan låses, for at hindre adgang."
 
 #: simulation/templates/structures/palisades_long.xml:17
 msgid "Can be converted into a Palisade Gate."
-msgstr ""
+msgstr "Kan konverteres til en Palisadeport."
 
 #: simulation/templates/structures/palisades_spike_angle.xml:17
 msgid "Angle Spike"
-msgstr ""
+msgstr "Vinklet Pig"
 
 #: simulation/templates/structures/palisades_spikes_small.xml:17
 msgid "Small Spikes"
@@ -1145,16 +1146,16 @@ msgstr "Vagttårn"
 
 #: simulation/templates/structures/pers/apadana.xml:26
 msgid "Throne Hall"
-msgstr ""
+msgstr "Tronsal"
 
 #: simulation/templates/structures/pers/apadana.xml:27
 msgid "Apadāna"
-msgstr ""
+msgstr "Apadāna"
 
 #: simulation/templates/structures/pers/apadana.xml:28
 #: simulation/templates/structures/spart/syssiton.xml:25
 msgid "Train Champions and Heroes."
-msgstr "Træn eliteenheder og helte."
+msgstr "Træn Elitesoldater og Helte."
 
 #: simulation/templates/structures/pers/apartment_block.xml:12
 msgid "Apartment Block"
@@ -1204,15 +1205,15 @@ msgstr "Didā"
 
 #: simulation/templates/structures/pers/hall.xml:23
 msgid "Gate of All Nations"
-msgstr ""
+msgstr "Alle Nationers Port"
 
 #: simulation/templates/structures/pers/hall.xml:24
 msgid "Duvarθi Visadahyu"
-msgstr ""
+msgstr "Duvarθi Visadahyu"
 
 #: simulation/templates/structures/pers/hall.xml:25
 msgid "Hall"
-msgstr ""
+msgstr "Sal"
 
 #: simulation/templates/structures/pers/house.xml:8
 msgid "Huvādā"
@@ -1241,11 +1242,11 @@ msgstr "Tacara"
 
 #: simulation/templates/structures/pers/temple.xml:12
 msgid "Āyadanam"
-msgstr ""
+msgstr "Āyadanam"
 
 #: simulation/templates/structures/pers/wall_gate.xml:12
 msgid "Duvarθiš"
-msgstr ""
+msgstr "Duvarθiš"
 
 #: simulation/templates/structures/pers/wall_long.xml:9
 #: simulation/templates/structures/pers/wall_medium.xml:9
@@ -1256,7 +1257,7 @@ msgstr "Para"
 
 #: simulation/templates/structures/pers/warehouse.xml:12
 msgid "Warehouse"
-msgstr "Varehus"
+msgstr "Lagerbygning"
 
 #: simulation/templates/structures/pers/wonder.xml:9
 msgid "Hanging Gardens of Babylon"
@@ -1265,7 +1266,7 @@ msgstr "Babylons Hængende Haver"
 #: simulation/templates/structures/ptol/elephant_stables.xml:5
 #: simulation/templates/structures/sele/elephant_stables.xml:5
 msgid "Stathmos tōn Elepantōn"
-msgstr ""
+msgstr "Stathmos tōn Elepantōn"
 
 #: simulation/templates/structures/ptol/lighthouse.xml:25
 #: simulation/templates/structures/ptol/lighthouse.xml:29

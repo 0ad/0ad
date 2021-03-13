@@ -6,13 +6,14 @@
 # Vytautas, 2018
 # Elijus Žekonis <pablonavik@gmail.com>, 2019
 # Ainis Kilinskis <ainis.kilinskis@gmail.com>, 2020
+# V S <v32itas@slacknet.eu>, 2021
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "POT-Creation-Date: 2020-12-26 15:10+0000\n"
 "PO-Revision-Date: 2017-06-04 12:59+0000\n"
-"Last-Translator: Ainis Kilinskis <ainis.kilinskis@gmail.com>, 2020\n"
+"Last-Translator: V S <v32itas@slacknet.eu>, 2021\n"
 "Language-Team: Lithuanian (https://www.transifex.com/wildfire-games/teams/17418/lt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -50,6 +51,8 @@ msgid ""
 "Select the Civic Center building and hold %(hotkey)s while clicking on the "
 "Hoplite icon once to begin training a batch of Hoplites."
 msgstr ""
+"Pasirinkite Civilinio Centro pastatą ir laikykite %(hotkey)s spausdami ant "
+"Hoplito ikonos vieną, kad pradėtumėte rengti keletą Hoplitų."
 
 #: maps/tutorials/introductory_tutorial.js:37
 #: maps/tutorials/introductory_tutorial.js:79
@@ -59,16 +62,21 @@ msgid ""
 "Do not forget to press the batch training hotkey while clicking to produce "
 "multiple units."
 msgstr ""
+"Nepamirškite nuspausti keleto ruošimo klavišą spaudžiant, kad paruoštumėte "
+"daugiau nei vieną vienetą."
 
 #: maps/tutorials/introductory_tutorial.js:38
 msgid "Click on the HOPLITE icon."
-msgstr ""
+msgstr "Spauskite ant Hoplito ikonos."
 
 #: maps/tutorials/introductory_tutorial.js:46
 msgid ""
 "Select the two idle female citizens and build a house nearby by selecting "
 "the house icon. Place the house by left-clicking on a piece of land."
 msgstr ""
+"Pasirinkite dvi neveiksnias moteris civiles ir pastatykite namą netoliese, "
+"spausdami namo ikoną. Padėkite namą kairiu pelės klavišu ant žemės "
+"gabalėlio."
 
 #: maps/tutorials/introductory_tutorial.js:54
 msgid ""
@@ -76,6 +84,9 @@ msgid ""
 "build a storehouse beside some nearby trees. They will begin to gather Wood "
 "when it's constructed."
 msgstr ""
+"Kai jie bus paruošti, pažymėkite naujai parengtus Hoplitus ir paskirkite "
+"juos Talpyklos statymui šalia netoliese esančių medžių. Jie pradės rinkti "
+"Medieną kai ji bus pastatyta."
 
 #: maps/tutorials/introductory_tutorial.js:64
 #, javascript-format
@@ -83,20 +94,24 @@ msgid ""
 "Train a batch of Skirmishers by holding %(hotkey)s and clicking on the "
 "Skirmisher icon in the Civic Center."
 msgstr ""
+"Paruoškite keletą Skirmišerių laikydami %(hotkey)s ir spausdami ant "
+"Skirmišerio ikonos Civiliniame Centre."
 
 #: maps/tutorials/introductory_tutorial.js:80
 msgid "Click on the Skirmisher icon."
-msgstr ""
+msgstr "Spauskite ant Skirmišerio ikonos."
 
 #: maps/tutorials/introductory_tutorial.js:88
 msgid ""
 "Build a farmstead in an open space beside the Civic Center using any idle "
 "builders."
 msgstr ""
+"Statykite Ūkinę trobelę atviroje vietoje netoli Civilinio Centro, naudodami "
+"neveiksnius statytojus."
 
 #: maps/tutorials/introductory_tutorial.js:100
 msgid "Let's wait for the farmstead to be built."
-msgstr ""
+msgstr "Palaukime kol Ūkinė Trobelė bus pastatyta."
 
 #: maps/tutorials/introductory_tutorial.js:112
 msgid ""
@@ -104,6 +119,9 @@ msgid ""
 "gathering food if there is any nearby. Select the builders and instead make "
 "them construct a field beside the farmstead."
 msgstr ""
+"Kai Ūkinė trobelė bus pastatyta, jos statytojai automatiškai pradės rinkti "
+"maistą kuris yra netoliese. Pasirinkite statytojus ir vietoj to liepkite "
+"jiems pastatyti Lauką netoliese Ūkinės trobelės."
 
 #: maps/tutorials/introductory_tutorial.js:136
 msgid ""
@@ -111,6 +129,9 @@ msgid ""
 "field. Using the newly created group of skirmishers, get them to build "
 "another house nearby."
 msgstr ""
+"Lauko statytojai dabar atomatiškai pradės rinkti maistą iš lauko. Naudodami "
+"naujai paruoštą grupę skirmišerių, liepkite jiems pastatyti dar vieną namą "
+"netoliese."
 
 #: maps/tutorials/introductory_tutorial.js:144
 msgid ""
@@ -118,16 +139,22 @@ msgid ""
 "with it selected right-click on a tree nearby. Units from the Civic Center "
 "will now automatically gather Wood."
 msgstr ""
+"Paruoškite keletą Hoplitų Civiliniame Centre. Pasirinkite Civilinį Centrą ir"
+" kuomet jis pasirinktas dešniu pelės klavišu paspauskite ant medžio "
+"netoliese. Vienetai iš Civilinio Centro dabar automatiškai rinks Medieną."
 
 #: maps/tutorials/introductory_tutorial.js:162
 msgid "Click on the Hoplite icon."
-msgstr ""
+msgstr "Paspauskite ant Hoplito ikonos."
 
 #: maps/tutorials/introductory_tutorial.js:176
 msgid ""
 "Select the Civic Center, then hover the cursor over the tree and right-click"
 " when you see your cursor change into a Wood icon."
 msgstr ""
+"Pasirinkite Civilinį Centrą, tada užveskite pelės rodyklę virš medžio ir "
+"spauskite dešinį pelės klavišą kai matysite jog rodyklė pasikeitė į Medienos"
+" ikoną."
 
 #: maps/tutorials/introductory_tutorial.js:185
 msgid ""
@@ -135,6 +162,9 @@ msgid ""
 " of your territory.  This will be the fifth Village Phase structure that you"
 " have built, allowing you to advance to the Town Phase."
 msgstr ""
+"Įsakykite neveiksniems Skirmišeriams pastatyti Sargybos Postą šiaurės "
+"rytuose, savo teritorijos pakraštyje. Tai bus penktasis Kaimo Fazės "
+"pastatas, kurį reikia pastatyti, norint pažengti į Miesto Fazę."
 
 #: maps/tutorials/introductory_tutorial.js:193
 msgid ""

@@ -143,60 +143,60 @@ let wildLakeBiome = [
 
 var mercenaryCampGuards = {
 	"generic/temperate": [
-		{ "Template" : "structures/merc_camp_egyptian" },
-		{ "Template" : "units/mace/infantry_javelineer_b", "Count" : 4 },
-		{ "Template" : "units/mace/cavalry_spearman_e", "Count" : 3 },
-		{ "Template" : "units/mace/infantry_archer_a", "Count" : 4 },
-		{ "Template" : "units/mace/champion_infantry_spearman", "Count" : 3 }
+		{ "Template": "structures/merc_camp_egyptian" },
+		{ "Template": "units/mace/infantry_javelineer_b", "Count": 4 },
+		{ "Template": "units/mace/cavalry_spearman_e", "Count": 3 },
+		{ "Template": "units/mace/infantry_archer_a", "Count": 4 },
+		{ "Template": "units/mace/champion_infantry_spearman", "Count": 3 }
 	],
 	"generic/snowy": [
-		{ "Template" : "structures/ptol/mercenary_camp" },
-		{ "Template" : "units/brit/infantry_javelineer_b", "Count" : 4 },
-		{ "Template" : "units/brit/cavalry_swordsman_e", "Count" : 3 },
-		{ "Template" : "units/brit/infantry_slinger_a", "Count" : 4 },
-		{ "Template" : "units/brit/champion_infantry", "Count" : 3 }
+		{ "Template": "structures/ptol/mercenary_camp" },
+		{ "Template": "units/brit/infantry_javelineer_b", "Count": 4 },
+		{ "Template": "units/brit/cavalry_swordsman_e", "Count": 3 },
+		{ "Template": "units/brit/infantry_slinger_a", "Count": 4 },
+		{ "Template": "units/brit/champion_infantry", "Count": 3 }
 	],
 	"generic/desert": [
-		{ "Template" : "structures/ptol/mercenary_camp" },
-		{ "Template" : "units/pers/infantry_javelineer_b", "Count" : 4 },
-		{ "Template" : "units/pers/cavalry_axeman_e", "Count" : 3 },
-		{ "Template" : "units/pers/infantry_archer_a", "Count" : 4 },
-		{ "Template" : "units/pers/champion_infantry", "Count" : 3 }
+		{ "Template": "structures/ptol/mercenary_camp" },
+		{ "Template": "units/pers/infantry_javelineer_b", "Count": 4 },
+		{ "Template": "units/pers/cavalry_axeman_e", "Count": 3 },
+		{ "Template": "units/pers/infantry_archer_a", "Count": 4 },
+		{ "Template": "units/pers/champion_infantry", "Count": 3 }
 	],
 	"generic/alpine": [
-		{ "Template" : "structures/ptol/mercenary_camp" },
-		{ "Template" : "units/rome/infantry_swordsman_b", "Count" : 4 },
-		{ "Template" : "units/rome/cavalry_spearman_e", "Count" : 3 },
-		{ "Template" : "units/rome/infantry_javelineer_a", "Count" : 4 },
-		{ "Template" : "units/rome/champion_infantry", "Count" : 3 }
+		{ "Template": "structures/ptol/mercenary_camp" },
+		{ "Template": "units/rome/infantry_swordsman_b", "Count": 4 },
+		{ "Template": "units/rome/cavalry_spearman_e", "Count": 3 },
+		{ "Template": "units/rome/infantry_javelineer_a", "Count": 4 },
+		{ "Template": "units/rome/champion_infantry", "Count": 3 }
 	],
 	"generic/mediterranean": [
-		{ "Template" : "structures/merc_camp_egyptian" },
-		{ "Template" : "units/iber/infantry_javelineer_b", "Count" : 4 },
-		{ "Template" : "units/iber/cavalry_spearman_e", "Count" : 3 },
-		{ "Template" : "units/iber/infantry_slinger_a", "Count" : 4 },
-		{ "Template" : "units/iber/champion_infantry", "Count" : 3 }
+		{ "Template": "structures/merc_camp_egyptian" },
+		{ "Template": "units/iber/infantry_javelineer_b", "Count": 4 },
+		{ "Template": "units/iber/cavalry_spearman_e", "Count": 3 },
+		{ "Template": "units/iber/infantry_slinger_a", "Count": 4 },
+		{ "Template": "units/iber/champion_infantry", "Count": 3 }
 	],
 	"generic/savanna": [
-		{ "Template" : "structures/merc_camp_egyptian" },
-		{ "Template" : "units/sele/infantry_javelineer_b", "Count" : 4 },
-		{ "Template" : "units/sele/cavalry_spearman_merc_e", "Count" : 3 },
-		{ "Template" : "units/sele/infantry_spearman_a", "Count" : 4 },
-		{ "Template" : "units/sele/champion_infantry_swordsman", "Count" : 3 }
+		{ "Template": "structures/merc_camp_egyptian" },
+		{ "Template": "units/sele/infantry_javelineer_b", "Count": 4 },
+		{ "Template": "units/sele/cavalry_spearman_merc_e", "Count": 3 },
+		{ "Template": "units/sele/infantry_spearman_a", "Count": 4 },
+		{ "Template": "units/sele/champion_infantry_swordsman", "Count": 3 }
 	],
 	"generic/tropic": [
-		{ "Template" : "structures/merc_camp_egyptian" },
-		{ "Template" : "units/ptol/infantry_javelineer_b", "Count" : 4 },
-		{ "Template" : "units/ptol/cavalry_archer_e", "Count" : 3 },
-		{ "Template" : "units/ptol/infantry_slinger_a", "Count" : 4 },
-		{ "Template" : "units/ptol/champion_infantry_pikeman", "Count" : 3 }
+		{ "Template": "structures/merc_camp_egyptian" },
+		{ "Template": "units/ptol/infantry_javelineer_b", "Count": 4 },
+		{ "Template": "units/ptol/cavalry_archer_e", "Count": 3 },
+		{ "Template": "units/ptol/infantry_slinger_a", "Count": 4 },
+		{ "Template": "units/ptol/champion_infantry_pikeman", "Count": 3 }
 	],
 	"generic/autumn": [
-		{ "Template" : "structures/ptol/mercenary_camp" },
-		{ "Template" : "units/gaul/infantry_javelineer_b", "Count" : 4 },
-		{ "Template" : "units/gaul/cavalry_swordsman_e", "Count" : 3 },
-		{ "Template" : "units/gaul/infantry_slinger_a", "Count" : 4 },
-		{ "Template" : "units/gaul/champion_infantry", "Count" : 3 }
+		{ "Template": "structures/ptol/mercenary_camp" },
+		{ "Template": "units/gaul/infantry_javelineer_b", "Count": 4 },
+		{ "Template": "units/gaul/cavalry_swordsman_e", "Count": 3 },
+		{ "Template": "units/gaul/infantry_slinger_a", "Count": 4 },
+		{ "Template": "units/gaul/champion_infantry", "Count": 3 }
 	]
 };
 
@@ -224,7 +224,7 @@ function placeMine(position, centerEntity,
 			randomAngle());
 }
 
-// Groves, only Wood
+// Groves, only wood
 let groveActors = [g_Decoratives.grass, g_Decoratives.rockMedium, g_Decoratives.bushMedium];
 let clGrove = g_Map.createTileClass();
 let clGaiaCamp = g_Map.createTileClass();
@@ -281,10 +281,10 @@ g_WallStyles.other = {
 	"overlap": 0,
 	"fence": readyWallElement("structures/fence_long", "gaia"),
 	"fence_short": readyWallElement("structures/fence_short", "gaia"),
-	"bench":     { "angle": Math.PI / 2, "length": 1.5,  "indent": 0,    "bend": 0, "templateName": "structures/bench" },
-	"foodBin":   { "angle": Math.PI / 2, "length": 1.5,  "indent": 0,    "bend": 0, "templateName": "gaia/treasure/food_bin" },
-	"animal":    { "angle": 0,           "length": 0,    "indent": 0.75, "bend": 0, "templateName": farmEntities[currentBiome()].animal },
-	"farmstead": { "angle": Math.PI,     "length": 0,    "indent": -3,   "bend": 0, "templateName": farmEntities[currentBiome()].building }
+	"bench": { "angle": Math.PI / 2, "length": 1.5, "indent": 0, "bend": 0, "templateName": "structures/bench" },
+	"foodBin": { "angle": Math.PI / 2, "length": 1.5, "indent": 0, "bend": 0, "templateName": "gaia/treasure/food_bin" },
+	"animal": { "angle": 0, "length": 0, "indent": 0.75, "bend": 0, "templateName": farmEntities[currentBiome()].animal },
+	"farmstead": { "angle": Math.PI, "length": 0, "indent": -3, "bend": 0, "templateName": farmEntities[currentBiome()].building }
 };
 
 let fences = [
@@ -418,12 +418,13 @@ function placeStartLocationResources(
 /**
  * Base terrain shape generation and settings
  */
- // Height range by map size
+
+// Height range by map size
 let heightScale = (g_Map.size + 512) / 1024 / 5;
 let heightRange = { "min": MIN_HEIGHT * heightScale, "max": MAX_HEIGHT * heightScale };
 
 // Water coverage
-let averageWaterCoverage = 1/5; // NOTE: Since terrain generation is quite unpredictable actual water coverage might vary much with the same value
+let averageWaterCoverage = 1 / 5; // NOTE: Since terrain generation is quite unpredictable actual water coverage might vary much with the same value
 let heightSeaGround = -MIN_HEIGHT + heightRange.min + averageWaterCoverage * (heightRange.max - heightRange.min); // Water height in environment and the engine
 let heightSeaGroundAdjusted = heightSeaGround + MIN_HEIGHT; // Water height as terrain height
 setWaterHeight(heightSeaGround);
@@ -494,8 +495,8 @@ let heighLimits = [
 	heightSeaGroundAdjusted + 7/8 * (heightRange.max - heightSeaGroundAdjusted), // 6 Lower forest border
 	heightRange.max // 7 Forest
 ];
-let playerHeightRange = { "min" : heighLimits[3], "max" : heighLimits[4] };
-let resourceSpotHeightRange = { "min" : (heighLimits[2] + heighLimits[3]) / 2, "max" : (heighLimits[4] + heighLimits[5]) / 2 };
+let playerHeightRange = { "min": heighLimits[3], "max": heighLimits[4] };
+let resourceSpotHeightRange = { "min": (heighLimits[2] + heighLimits[3]) / 2, "max": (heighLimits[4] + heighLimits[5]) / 2 };
 let playerHeight = (playerHeightRange.min + playerHeightRange.max) / 2; // Average player height
 
 g_Map.log("Chosing starting locations");

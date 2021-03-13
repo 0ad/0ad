@@ -88,6 +88,10 @@ Garrisonable.prototype.Garrison = function(target, renamed = false)
 	if (cmpPosition)
 		cmpPosition.MoveOutOfWorld();
 
+	Engine.PostMessage(this.entity, MT_GarrisonedStateChanged, {
+		"holderID": target
+	});
+
 	if (renamed)
 		return true;
 
@@ -160,6 +164,10 @@ Garrisonable.prototype.UnGarrison = function(forced = false, renamed = false)
 	let cmpAura = Engine.QueryInterface(this.entity, IID_Auras);
 	if (cmpAura && cmpAura.HasGarrisonAura())
 		cmpAura.RemoveGarrisonAura(this.holder);
+
+	Engine.PostMessage(this.entity, MT_GarrisonedStateChanged, {
+		"holderID": INVALID_ENTITY
+	});
 
 	if (renamed)
 		return true;

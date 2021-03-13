@@ -5,13 +5,14 @@
 # Translators:
 # Adomas Jackevičius, 2014,2016
 # banginis <asesuarbanesu@gmail.com>, 2014
+# V S <v32itas@slacknet.eu>, 2021
 # Vytautas, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-29 08:08+0000\n"
-"PO-Revision-Date: 2021-01-29 09:16+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-03-11 13:36+0000\n"
+"Last-Translator: V S <v32itas@slacknet.eu>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/wildfire-games/0ad/language/lt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,11 +34,11 @@ msgstr "DI šiam žaidėjui bus apribotas"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIBehavior.js:95
 msgid "AI Behavior"
-msgstr ""
+msgstr "DI Elgsena"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIDifficulty.js:89
 msgid "AI Difficulty"
-msgstr ""
+msgstr "DI Sudėtingumas"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AISelection.js:86
 msgctxt "ai"
@@ -46,7 +47,7 @@ msgstr "Nieko"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AISelection.js:91
 msgid "AI Player"
-msgstr ""
+msgstr "DI Žaidėjas"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingControl.js:172
 #, javascript-format
@@ -103,7 +104,7 @@ msgstr "Nepriskirtas"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:131
 msgid "Choose the civilization for this player."
-msgstr ""
+msgstr "Parinkti civilizaciją šiam žaidėjui."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:134
 msgctxt "civilization"
@@ -154,16 +155,16 @@ msgstr "Komanda"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:26
 msgid "Browse Maps"
-msgstr ""
+msgstr "Naršyti Žemėlapius"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:29
 #, javascript-format
 msgid "Press %(hotkey)s to view the list of available maps."
-msgstr ""
+msgstr "Spauskite %(hotkey)s, kad matytumėte galimų žemėlapių sarašą."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:40
 msgid "Cheats"
-msgstr "Žaidimo kodai"
+msgstr "Sukčiavimai"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:43
 msgid "Toggle the usability of cheats."
@@ -255,17 +256,17 @@ msgstr "Panaikinti lobius."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js:46
 msgid "Do not add treasures to the map."
-msgstr ""
+msgstr "Nepridėti lobių šiame žemėlapyje."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:49
 msgid "World population"
-msgstr ""
+msgstr "Pasaulio Populiacija"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:52
 msgid ""
 "When checked the Population Cap will be evenly distributed over all living "
 "players."
-msgstr ""
+msgstr "Jeigu pažymėta, Populiacijos Riba bus tolygiai paskirstyta tarp visų gyvų žaidėjų."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:128
 msgid "Biome"
@@ -286,11 +287,11 @@ msgstr "Atsitiktiniu būdu pasirinkti biomą."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:101
 msgid "Daytime"
-msgstr ""
+msgstr "Paros Metas"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:104
 msgid "Select whether the match takes place at daylight or night."
-msgstr ""
+msgstr "Pasirinkite ar mačas vyksta dienos ar nakties metu."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:107
 msgctxt "daytime selection"
@@ -300,7 +301,7 @@ msgstr "Atsitiktinis"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:110
 msgctxt "daytime selection"
 msgid "Randomly pick a time of the day."
-msgstr ""
+msgstr "Atsitiktinai parinkti paros metą."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:75
 msgid "Game Speed"
@@ -312,41 +313,41 @@ msgstr "Pasirinkite žaidimo greitį."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:138
 msgid "Landscape"
-msgstr ""
+msgstr "Kraštovaizdis"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:141
 msgid "Select one of the landscapes of this map."
-msgstr ""
+msgstr "Pasirinkti vieną iš žemėlapio kraštovaizdžių."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:147
 msgctxt "landscape selection"
 msgid "Random Land or Naval"
-msgstr ""
+msgstr "Atsitiktinai Žemės ar Vandens"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:148
 msgctxt "landscape selection"
 msgid "Select a random land or naval map generation."
-msgstr ""
+msgstr "Parinkti atsitiktinai žemės ar jūrinio žemėlapio generavimą."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:152
 msgctxt "landscape selection"
 msgid "Random Land"
-msgstr ""
+msgstr "Atsitiktinė žemė"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:153
 msgctxt "landscape selection"
 msgid "Select a random land map generation."
-msgstr ""
+msgstr "Parinkti atsitiktinį žemėlapio žemės generavimą."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:157
 msgctxt "landscape selection"
 msgid "Random Naval"
-msgstr ""
+msgstr "Atsitiktinis Jūrinis"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:158
 msgctxt "landscape selection"
 msgid "Select a random naval map generation."
-msgstr ""
+msgstr "Parinkti atsitiktinį jūrinį žemėlapio generavimą."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:89
 msgid "Map Filter"
@@ -408,7 +409,7 @@ msgstr "Pasirinkite populiacijos limitą."
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:98
 msgctxt "population limit"
 msgid "Per Player"
-msgstr ""
+msgstr "Kiekvienam Žaidėjui"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:101
 #, javascript-format
@@ -433,15 +434,15 @@ msgstr "Pradinių išteklių kiekis: %(resources)s."
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:91
 msgctxt "starting resources"
 msgid "Per Player"
-msgstr ""
+msgstr "Kiekvienam Žaidėjui"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:91
 msgid "Team Placement"
-msgstr ""
+msgstr "Komandos Išdėstymas"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:94
 msgid "Select one of the starting position patterns of this map."
-msgstr ""
+msgstr "Parinkti viena iš startinių išdėstymo braižų šiam žemėlapiui."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:98
 msgctxt "team placement"
@@ -451,45 +452,45 @@ msgstr "Atsitiktinis"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:99
 msgctxt "team placement"
 msgid "Select a random team placement pattern when starting the game."
-msgstr ""
+msgstr "Parikti atsitktinį komandos išdėstymo braižą, pradedant žaidimą."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:105
 msgctxt "team placement"
 msgid "Circle"
-msgstr ""
+msgstr "Ratu"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:106
 msgid ""
 "Allied players are grouped and placed with opposing players on one circle "
 "spanning the map."
-msgstr ""
+msgstr "Sąjungininkai žaidėjai yra sugrupuoti ir išdėstyti su priešininkų žaidėjais ratu supančiu žemėlapį."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:110
 msgctxt "team placement"
 msgid "Line"
-msgstr ""
+msgstr "Linija"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:111
 msgid "Allied players are placed in a linear pattern."
-msgstr ""
+msgstr "Sąjungininkai išdėstomi pagal linijinį braiža."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:115
 msgctxt "team placement"
 msgid "Random Group"
-msgstr ""
+msgstr "Atsitiktinė grupė"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:116
 msgid "Allied players are grouped, but otherwise placed randomly on the map."
-msgstr ""
+msgstr "Sąjungininkai žaidėjai yra sugrupuoti, bet atsitiktinai išdėstomi žemėlapyje."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:120
 msgctxt "team placement"
 msgid "Stronghold"
-msgstr ""
+msgstr "Tvirtovė"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:121
 msgid "Allied players are grouped in one random place of the map."
-msgstr ""
+msgstr "Sąjungininkai žaidėjai yra sugrupuoti vienoje atsitiktinėje žemėlapio vietoje."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TriggerDifficulty.js:81
 msgid "Difficulty"
@@ -501,18 +502,18 @@ msgstr "Pasirinkite šio scenarijaus sunkumą."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:77
 msgid "World Population Cap"
-msgstr ""
+msgstr "Pasaulinis Populiacijos Limitas"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:80
 msgid "Select world population limit."
-msgstr ""
+msgstr "Parinkti pasaulio populacijos limitą."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:83
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if %(popCap)s population is "
 "reached."
-msgstr ""
+msgstr "Įspėjimas: gali suprastėti kompiuterio našumas jei %(popCap)s populiacija pasiekta."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:62
 msgid "Ceasefire"
@@ -525,17 +526,17 @@ msgstr "Nustatyti, kiek laiko negalima pulti."
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:68
 msgctxt "ceasefire"
 msgid "No ceasefire"
-msgstr ""
+msgstr "Jokių paliabų"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:71
 #, javascript-format
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(minutes)sminutė"
+msgstr[1] "%(minutes)sminutės"
+msgstr[2] "%(minutes)sminutės"
+msgstr[3] "%(minutes)sminutės"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:87
 msgid "Relic Count"
@@ -545,10 +546,10 @@ msgstr "Relikvijų skaičius"
 #, javascript-format
 msgid "%(number)s relic"
 msgid_plural "%(number)s relics"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(number)srelikvija"
+msgstr[1] "%(number)srelikvijos"
+msgstr[2] "%(number)srelikvijos"
+msgstr[3] "%(number)srelikvijos"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:93
 msgid ""
@@ -571,34 +572,34 @@ msgstr "Per kiek minučių žaidėjas pasieks relikvijų pergalę."
 msgctxt "victory duration"
 msgid "%(min)s minute"
 msgid_plural "%(min)s minutes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(min)sminutė"
+msgstr[1] "%(min)sminutės"
+msgstr[2] "%(min)sminutės"
+msgstr[3] "%(min)sminutės"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:99
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:100
 msgctxt "victory duration"
 msgid "Immediate Victory."
-msgstr ""
+msgstr "Staigi Pergalė."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:73
 msgid "Sea Level Rise Time"
-msgstr ""
+msgstr "Jūros Lygis Kylantis Per Laiką"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:76
 msgid "Set the time when the water will start to rise."
-msgstr ""
+msgstr "Nustatyti laiką kada vandens lygis pradės kilti."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:79
 #, javascript-format
 msgctxt "sea level rise time"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(minutes)sminutė"
+msgstr[1] "%(minutes)sminutės"
+msgstr[2] "%(minutes)sminutės"
+msgstr[3] "%(minutes)sminutės"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:88
 msgid "Wonder Duration"
@@ -606,7 +607,7 @@ msgstr "Stebuklų trukmė"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:91
 msgid "Minutes until the player has achieved Wonder Victory"
-msgstr ""
+msgstr "Minutės iki kol žaidėjas pasieks Stebuklų Pergalę"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/CancelButton.js:36
 msgid "Back"
@@ -821,11 +822,11 @@ msgstr ""
 
 #: gui/gamesetup_mp/gamesetup_mp.js:167
 msgid "Password is invalid."
-msgstr ""
+msgstr "Slaptažodis Neteisingas."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:168
 msgid "You have been banned."
-msgstr ""
+msgstr "Jūs buvote užbaninti."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:171
 #, javascript-format
@@ -834,7 +835,7 @@ msgstr ""
 
 #: gui/gamesetup_mp/gamesetup_mp.js:179
 msgid "Failed to connect to the server."
-msgstr ""
+msgstr "Nepavyko prisijungti prie serverio."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:181
 msgid "Connection failed"

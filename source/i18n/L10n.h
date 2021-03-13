@@ -25,13 +25,17 @@
 
 #include "lib/code_annotation.h"
 #include "lib/external_libraries/icu.h"
-#include "lib/external_libraries/tinygettext.h"
 #include "lib/file/vfs/vfs_path.h"
 #include "ps/Singleton.h"
 
 #include <memory>
 #include <string>
 #include <vector>
+
+namespace tinygettext
+{
+class Dictionary;
+}
 
 #define g_L10n L10n::GetSingleton()
 
@@ -52,7 +56,7 @@ public:
 	L10n();
 
 	/**
-	 * Handles the descruction of L10n.
+	 * Handles the destruction of L10n.
 	 *
 	 * Never destroy the L10n singleton manually. It must run as long as the
 	 * game runs, and it is destroyed automatically when you quit the game.
@@ -64,7 +68,8 @@ public:
 	 *
 	 * @sa LocalizeDateTime()
 	 */
-	enum DateTimeType {
+	enum DateTimeType
+	{
 		DateTime, ///< Both date and time.
 		Date, ///< Only date.
 		Time ///< Only time.
@@ -475,6 +480,10 @@ public:
 	Status ReloadChangedFile(const VfsPath& path);
 
 private:
+	struct DictionaryDeleter
+	{
+		void operator()(tinygettext::Dictionary* dictionary);
+	};
 
 	/**
 	 * Dictionary that contains the translations for the
@@ -483,7 +492,7 @@ private:
 	 *
 	 * @sa LoadDictionaryForCurrentLocale()
 	 */
-	std::unique_ptr<tinygettext::Dictionary> m_Dictionary;
+	std::unique_ptr<tinygettext::Dictionary, DictionaryDeleter> m_Dictionary;
 
 	/**
 	 * Locale that the game is currently using.
@@ -555,31 +564,6 @@ private:
 	 * @sa availableLocales
 	 */
 	void LoadListOfAvailableLocales();
-
-	/**
-	 * Loads the specified content of a PO file into the specified dictionary.
-	 *
-	 * Used by LoadDictionaryForCurrentLocale() to add entries to the game
-	 * translations @link dictionary.
-	 *
-	 * @param poContent Content of a PO file as a string.
-	 * @param dictionary Dictionary where the entries from the PO file should be
-	 *        stored.
-	 */
-	void ReadPoIntoDictionary(const std::string& poContent, tinygettext::Dictionary* dictionary) const;
-
-	/**
-	 * Creates an ICU date formatted with the specified settings.
-	 *
-	 * @param type Whether formatted dates must show both the date and the time,
-	 *        only the date or only the time.
-	 * @param style ICU style to format dates by default.
-	 * @param locale Locale that the date formatter should use to parse strings.
-	 *        It has no relevance for date formatting, only matters for date
-	 *        parsing.
-	 * @return ICU date formatter.
-	 */
-	icu::DateFormat* CreateDateTimeInstance(const DateTimeType& type, const icu::DateFormat::EStyle& style, const icu::Locale& locale) const;
 };
 
 #endif // INCLUDED_L10N

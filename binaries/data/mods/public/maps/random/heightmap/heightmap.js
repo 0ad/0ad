@@ -256,7 +256,7 @@ function getPointsByHeight(heightRange, avoidPoints = [], avoidClass = undefined
 
 			if (heightmap[x][y] > heightRange.min && heightmap[x][y] < heightRange.max && // Has correct height
 				(!isCircular || r - Math.euclidDistance2D(x, y, r, r) >= minDistance)) // Enough distance to the map border
-				validVertices.push({ "x": x, "y": y , "dist": minDistance});
+				validVertices.push({ "x": x, "y": y, "dist": minDistance });
 		}
 
 	for (let tries = 0; tries < maxTries; ++tries)
@@ -316,9 +316,9 @@ function getSlopeMap(inclineMap = getInclineMap(g_Map.height))
 /**
  * Returns an inclination map corresponding to the tiles between the heightmaps vertices:
  * array of heightmap width-1 arrays of height-1 vectors (associative arrays) of the form:
- * { "x": x_slope, "y": y_slope ] so a 2D Vector pointing to the hightest incline (with the length the incline in the vectors direction)
- * The x and y coordinates of a tile in the terrain texture map correspond to those of the inclination map
- * @param {array} [heightmap=g_Map.height] - The reliefmap the inclination map is to be generated from
+ * { "x": x_slope, "y": y_slope } - A 2D vector pointing to the highest incline (with the length the inclination in the vector's direction).
+ * The x and y coordinates of a tile in the terrain texture map correspond to those of the inclination map.
+ * @param {array} [heightmap=g_Map.height] - The reliefmap the inclination map is to be generated from.
  */
 function getInclineMap(heightmap)
 {
@@ -335,7 +335,7 @@ function getInclineMap(heightmap)
 			let dy = heightmap[x][y + 1] - heightmap[x][y];
 			let next_dx = heightmap[x + 1][y + 1] - heightmap[x][y + 1];
 			let next_dy = heightmap[x + 1][y + 1] - heightmap[x + 1][y];
-			inclineMap[x][y] = { "x" : 0.5 * (dx + next_dx), "y" : 0.5 * (dy + next_dy) };
+			inclineMap[x][y] = { "x": 0.5 * (dx + next_dx), "y": 0.5 * (dy + next_dy) };
 		}
 	}
 	return inclineMap;
@@ -358,8 +358,8 @@ function getGrad(wrapped = true, scalarField = g_Map.height)
 		for (let y = 0; y < max_y; ++y)
 		{
 			vectorField[x].push({
-				"x" : scalarField[(x + 1) % max_x][y] - scalarField[x][y],
-				"y" : scalarField[x][(y + 1) % max_y] - scalarField[x][y]
+				"x": scalarField[(x + 1) % max_x][y] - scalarField[x][y],
+				"y": scalarField[x][(y + 1) % max_y] - scalarField[x][y]
 			});
 		}
 	}
@@ -383,7 +383,7 @@ function splashErodeMap(strength = 1, heightmap = g_Map.height)
 			let next_y = (y + 1) % max_y;
 			let prev_y = (y + max_y - 1) % max_y;
 
-			let slopes = [- dHeight[x][y].x, - dHeight[x][y].y, dHeight[prev_x][y].x, dHeight[x][prev_y].y];
+			let slopes = [-dHeight[x][y].x, -dHeight[x][y].y, dHeight[prev_x][y].x, dHeight[x][prev_y].y];
 
 			let sumSlopes = 0;
 			for (let i = 0; i < slopes.length; ++i)

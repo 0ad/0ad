@@ -95,24 +95,24 @@ var playerAngleMaxOff = playerAngleAddAvrg/4;
 
 var resourceRadius = fractionToTiles(1/3);
 
-// Setup woods
-// For large maps there are memory errors with too many trees.  A density of 256*192/mapArea works with 0 players.
+// Set up woods.
+// For large maps there are memory errors with too many trees. A density of 256x192/mapArea works with 0 players.
 // Around each player there is an area without trees so with more players the max density can increase a bit.
-var maxTreeDensity = Math.min(256 * (192 + 8 * numPlayers) / Math.square(mapSize), 1); // Has to be tweeked but works ok
-var bushChance = 1/3; // 1 means 50% chance in deepest wood, 0.5 means 25% chance in deepest wood
+var maxTreeDensity = Math.min(256 * (192 + 8 * numPlayers) / Math.square(mapSize), 1); // Has to be tweeked but works ok.
+var bushChance = 1/3; // 1 means 50% chance in deepest wood, 0.5 means 25% chance in deepest wood.
 
-// Set height limits and water level by map size
+// Set height limits and water level by map size.
 
-// Set target min and max height depending on map size to make average steepness about the same on all map sizes
-var heightRange = {'min': MIN_HEIGHT * (g_Map.size + 512) / 8192, 'max': MAX_HEIGHT * (g_Map.size + 512) / 8192, 'avg': (MIN_HEIGHT * (g_Map.size + 512) +MAX_HEIGHT * (g_Map.size + 512))/16384};
+// Set target min and max height depending on map size to make average steepness about the same on all map sizes.
+var heightRange = { 'min': MIN_HEIGHT * (g_Map.size + 512) / 8192, 'max': MAX_HEIGHT * (g_Map.size + 512) / 8192, 'avg': (MIN_HEIGHT * (g_Map.size + 512) + MAX_HEIGHT * (g_Map.size + 512)) / 16384 };
 
-// Set average water coverage
-var averageWaterCoverage = 1/5; // NOTE: Since erosion is not predictable actual water coverage might vary much with the same values
+// Set average water coverage.
+var averageWaterCoverage = 1/5; // NOTE: Since erosion is not predictable actual water coverage might vary much with the same values.
 var heightSeaGround = -MIN_HEIGHT + heightRange.min + averageWaterCoverage * (heightRange.max - heightRange.min);
 var heightSeaGroundAdjusted = heightSeaGround + MIN_HEIGHT;
 setWaterHeight(heightSeaGround);
 
-// Setting a 3x3 Grid as initial heightmap
+// Setting a 3x3 grid as initial heightmap.
 var initialReliefmap = [[heightRange.max, heightRange.max, heightRange.max], [heightRange.max, heightRange.min, heightRange.max], [heightRange.max, heightRange.max, heightRange.max]];
 
 setBaseTerrainDiamondSquare(heightRange.min, heightRange.max, initialReliefmap);
@@ -212,7 +212,7 @@ createArea(
 	new HeightPlacer(Elevation_IncludeMin_IncludeMax, heightRange.min, heighLimits[2]),
 	new LayeredPainter([tWaterBorder, tWater], [2]));
 
-paintTileClassBasedOnHeight(heightRange.min,  heighLimits[2], 1, clWater);
+paintTileClassBasedOnHeight(heightRange.min, heighLimits[2], 1, clWater);
 Engine.SetProgress(60);
 
 g_Map.log("Painting paths");
@@ -230,7 +230,7 @@ for (let i = 0; i < numPlayers + (pathBlending ? 1 : 0); ++i)
 				new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetPath, 1),
 				new TileClassPainter(clPath)
 			],
-			avoidClasses(clPath, 0, clOpen, 0 ,clWater, 4, clBaseResource, 4));
+			avoidClasses(clPath, 0, clOpen, 0, clWater, 4, clBaseResource, 4));
 	}
 Engine.SetProgress(75);
 
