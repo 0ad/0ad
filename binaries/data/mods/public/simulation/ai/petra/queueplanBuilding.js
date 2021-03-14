@@ -891,7 +891,8 @@ PETRA.ConstructionPlan.prototype.isGo = function(gameState)
 {
 	if (this.goRequirement && this.goRequirement == "houseNeeded")
 	{
-		if (!gameState.ai.HQ.canBuild(gameState, "structures/{civ}/house"))
+		if (!gameState.ai.HQ.canBuild(gameState, "structures/{civ}/house")
+		    !gameState.ai.HQ.canBuild(gameState, "structures/{civ}/apartment"))
 			return false;
 		if (gameState.getPopulationMax() <= gameState.getPopulationLimit())
 			return false;
