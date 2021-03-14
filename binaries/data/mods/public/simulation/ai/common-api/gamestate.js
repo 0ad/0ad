@@ -465,10 +465,7 @@ m.GameState.prototype.isEntityOwn = function(ent)
 
 m.GameState.prototype.getEntityById = function(id)
 {
-	if (this.entities._entities.has(+id))
-		return this.entities._entities.get(+id);
-
-	return undefined;
+	return this.entities._entities.get(+id);
 };
 
 m.GameState.prototype.getEntities = function(id)
