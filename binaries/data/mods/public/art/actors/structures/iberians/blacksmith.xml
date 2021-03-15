@@ -27,7 +27,7 @@
     <variant frequency="1" name="Idle"/>
     <variant name="researching">
       <props>
-        <prop actor="particle/sparks_blacksmith.xml" attachpoint="smoke"/>
+        <prop actor="particle/sparks_blacksmith.xml" attachpoint="ibersmoke"/>
         <prop actor="particle/smoke_blacksmith.xml" attachpoint="ibersmoke"/>
         <prop actor="particle/flame.xml" attachpoint="iberfire"/>
       </props>
