@@ -3,6 +3,7 @@
     "(^binaries/system/)",
     "(^build/premake/premake5/)",
     "(^source/third_party/)",
+    "(test_[^.]+.cpp$)",
     "(^libraries/)"
   ],
   "linters": {
@@ -14,6 +15,25 @@
         "3": "disabled",
         "5": "disabled"
       }
+    },
+    "licence-year": {
+      "type": "licence-year"
+    },
+    "json": {
+      "type": "json",
+      "include": "/\\.json$/"
+    },
+    "eslint": {
+      "type": "eslint",
+      "bin": ["eslint", "build\\arclint\\dummies\\eslint.bat", "build/arclint/dummies/eslint.php"],
+      "include": "/\\.js$/",
+      "config": "build/arclint/configs/eslintrc.json"
+    },
+    "cppcheck": {
+      "type": "cppcheck",
+      "bin": ["cppcheck", "build\\arclint\\dummies\\cppcheck.bat", "build/arclint/dummies/cppcheck.php"],
+      "include": "/\\.(h|cpp)$/",
+      "flags": ["--max-configs=40", "--language=c++", "--std=c++17", "-Isource/"]
     }
   }
 }

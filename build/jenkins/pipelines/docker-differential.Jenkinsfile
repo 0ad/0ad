@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -147,16 +147,9 @@ pipeline {
 			steps {
 				script {
 					try {
-						withDockerContainer("0ad-coala:latest") {
-							sh '''
-							svn st | grep '^[AM]' | cut -c 9- | xargs coala -d build/coala --ci --disable-caching \
-							  --format '{{ "name": "{origin}", "code": "{origin}", "severity": "{severity_str}", "path": "{file}", "line": {line}, "description": "`{message}`" }}' \
-							  --limit-files > coala-report
-							'''
-						}
+						sh 'arc lint --output json > .phabricator-lint'
 					} catch (e) {
-						sh 'sed -i "s|$(pwd)/||g" coala-report'
-						sh 'sed -e "s/INFO/advice/g" -e "s/NORMAL/warning/g" -e "s/MAJOR/error/g" coala-report > .phabricator-lint'
+						sh 'echo \"{ \\\"name\\\": \\\"error\\\", \\\"severity\\\": \\\"error\\\", \\\"code\\\": \\\"0\\\", \\\"description\\\": \\\"lint could not run\\\" }\" > .phabricator-lint '
 					}
 				}
 			}
