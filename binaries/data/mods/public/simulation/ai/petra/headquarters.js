@@ -1685,14 +1685,21 @@ PETRA.HQ.prototype.manageCorral = function(gameState, queues)
  */
 PETRA.HQ.prototype.buildMoreHouses = function(gameState, queues)
 {
-	if (!gameState.isTemplateAvailable(gameState.applyCiv("structures/{civ}/house")) ||
-	    gameState.getPopulationMax() <= gameState.getPopulationLimit())
+	let houseTemplateString = "structures/{civ}/apartment";
+	if (!gameState.isTemplateAvailable(gameState.applyCiv(houseTemplateString)) ||
+		!this.canBuild(gameState, houseTemplateString))
+	{
+		houseTemplateString = "structures/{civ}/house";
+		if (!gameState.isTemplateAvailable(gameState.applyCiv(houseTemplateString)))
+			return;
+	}
+	if (gameState.getPopulationMax() <= gameState.getPopulationLimit())
 		return;
 
 	let numPlanned = queues.house.length();
 	if (numPlanned < 3 || numPlanned < 5 && gameState.getPopulation() > 80)
 	{
-		let plan = new PETRA.ConstructionPlan(gameState, "structures/{civ}/house");
+		let plan = new PETRA.ConstructionPlan(gameState, houseTemplateString);
 		// change the starting condition according to the situation.
 		plan.goRequirement = "houseNeeded";
 		queues.house.addPlan(plan);
@@ -1700,7 +1707,7 @@ PETRA.HQ.prototype.buildMoreHouses = function(gameState, queues)
 
 	if (numPlanned > 0 && this.phasing && gameState.getPhaseEntityRequirements(this.phasing).length)
 	{
-		let houseTemplateName = gameState.applyCiv("structures/{civ}/house");
+		let houseTemplateName = gameState.applyCiv(houseTemplateString);
 		let houseTemplate = gameState.getTemplate(houseTemplateName);
 
 		let needed = 0;
@@ -1733,7 +1740,7 @@ PETRA.HQ.prototype.buildMoreHouses = function(gameState, queues)
 
 	if (this.requireHouses)
 	{
-		let houseTemplate = gameState.getTemplate(gameState.applyCiv("structures/{civ}/house"));
+		let houseTemplate = gameState.getTemplate(gameState.applyCiv(houseTemplateString));
 		if (!this.phasing || gameState.getPhaseEntityRequirements(this.phasing).every(req =>
 			!houseTemplate.hasClass(req.class) || gameState.getOwnStructures().filter(API3.Filters.byClass(req.class)).length >= req.count))
 			this.requireHouses = undefined;
@@ -1742,7 +1749,7 @@ PETRA.HQ.prototype.buildMoreHouses = function(gameState, queues)
 	// When population limit too tight
 	//    - if no room to build, try to improve with technology
 	//    - otherwise increase temporarily the priority of houses
-	let house = gameState.applyCiv("structures/{civ}/house");
+	let house = gameState.applyCiv(houseTemplateString);
 	let HouseNb = gameState.getOwnFoundations().filter(API3.Filters.byClass("House")).length;
 	let popBonus = gameState.getTemplate(house).getPopulationBonus();
 	let freeSlots = gameState.getPopulationLimit() + HouseNb*popBonus - this.getAccountedPopulation(gameState);
