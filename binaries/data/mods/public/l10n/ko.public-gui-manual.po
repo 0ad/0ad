@@ -3,17 +3,17 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
-# Bruce Lee <daemul72@gmail.com>, 2020-2021
+# JungHee Lee <daemul72@gmail.com>, 2020-2021
 # moolow <copyhyeon@gmail.com>, 2019
-# Bruce Lee <daemul72@gmail.com>, 2020
+# JungHee Lee <daemul72@gmail.com>, 2020
 # EK lee <sodadida@gmail.com>, 2019
 # 손가현 <sgh991002@gmail.com>, 2016
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
-# Bruce Lee <daemul72@gmail.com>, 2020
+# JungHee Lee <daemul72@gmail.com>, 2020-2021
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
 # ks k, 2019
 # ks k, 2019-2020
-# Bruce Lee <daemul72@gmail.com>, 2020
+# JungHee Lee <daemul72@gmail.com>, 2020
 # moolow <copyhyeon@gmail.com>, 2019
 # Philipp Sauter <qt123@pm.me>, 2018
 # 손가현 <sgh991002@gmail.com>, 2016
@@ -27,8 +27,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-25 08:08+0000\n"
-"PO-Revision-Date: 2021-02-10 08:17+0000\n"
-"Last-Translator: Bruce Lee <daemul72@gmail.com>\n"
+"PO-Revision-Date: 2021-03-14 21:24+0000\n"
+"Last-Translator: JungHee Lee <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -177,7 +177,7 @@ msgid ""
 "controls which player (decides where you start on the map etc.). The options"
 " are either a human player, an AI or no player at all (the opponent will "
 "just be idle)."
-msgstr "마지막으로 설정을 변경합니다. 무작위 지도의 경우 플레이어 수, 지도 크기 등이 포함됩니다. 시나리오의 경우 누가 어떤 플레이어를 제어할지만 선택할 수 있습니다(지도에서 시작하는 위치를 결정합니다). 옵션은 인간 플레이어, AI 또는 플레이어 없음(상대는 그냥 유휴 상태일 것임)입니다."
+msgstr "마지막으로 설정을 변경합니다. 무작위 지도의 경우 플레이어 수, 지도 크기 등이 포함됩니다. 시나리오의 경우 누가 어떤 플레이어를 제어할지만 선택할 수 있습니다(지도에서 시작하는 위치를 결정합니다). 옵션은 인간 플레이어, AI 또는 플레이어 없음(상대는 그냥 노는 상태일 것임)입니다."
 
 #: gui/manual/intro.txt:37
 msgid "When you are ready to start, click the “Start game” button."
@@ -329,13 +329,13 @@ msgstr "    • hotkey.session.noconfirmation 사용 – 확인을 요청하지 
 msgid ""
 "  hotkey.selection.add – Modifier – add to selection (works with clicking "
 "and hotkeys, e.g. the idle hotkeys)"
-msgstr "  hotkey.selection.add – 수정도구 – 선택에 추가 (클릭 및 단축키와 함께 작동, 예 : 유휴 핫키)"
+msgstr "  hotkey.selection.add – 수정도구 – 선택에 추가 (클릭 및 단축키와 함께 작동, 예: 유휴 핫키)"
 
 #: gui/manual/intro.txt:71
 msgid ""
 "  hotkey.selection.remove – Modifier – remove from selection (works with "
 "clicking and hotkeys, e.g. the idle hotkeys)"
-msgstr "  hotkey.selection.remove – 수정도구 – 선택에서 제거(클릭 및 단축키와 함께 작동, 예 : 유휴 핫키)"
+msgstr "  hotkey.selection.remove – 수정도구 – 선택에서 제거(클릭 및 단축키와 함께 작동, 예: 유휴 핫키)"
 
 #: gui/manual/intro.txt:72
 msgid ""
@@ -356,7 +356,7 @@ msgstr "  hotkey.selection.idlewarrior – 노는 전사 선택"
 msgid ""
 "  hotkey.selection.idleworker – Select idle worker (including citizen-"
 "soldiers)"
-msgstr "  hotkey.selection.idleworker – 노는 일꾼 선택 (시민 군인 포함)"
+msgstr "  hotkey.selection.idleworker – 노는 일꾼 선택 (시민 병사들 포함)"
 
 #: gui/manual/intro.txt:76
 msgid "  hotkey.selection.idleunit – Select idle unit"
@@ -542,7 +542,7 @@ msgstr "  hotkey.selection.woundedonly + 지도에서 유닛 위에서 마우스
 msgid ""
 "  Right Click with a structure(s) selected – Set a rally point for units "
 "created/ungarrisoned from that structure"
-msgstr "  건축물(들)을 선택한 상태에서 마우스 오른쪽 클릭 – 건축물에서 유닛들이 생산/주둔해제될 경우 집결지를 설정"
+msgstr "  건축물(들)을 선택한 상태에서 마우스 오른쪽 클릭 – 건축물에서 유닛들이 생산/주둔해제될 경우 집결 지점을 설정"
 
 #: gui/manual/intro.txt:112
 msgid ""

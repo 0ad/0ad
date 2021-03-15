@@ -1,18 +1,18 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2020 Wildfire Games
+# Copyright (C) 2021 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
 # Yordan Grigorov (yoreei) <yoreei.grigorov@gmail.com>, 2017
 # Nerwitz Panzerfizt, 2018
-# Любомир Василев, 2019
+# Любомир Василев, 2021
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2020-12-26 15:10+0000\n"
+"POT-Creation-Date: 2021-03-12 08:08+0000\n"
 "PO-Revision-Date: 2017-06-04 12:59+0000\n"
-"Last-Translator: Любомир Василев, 2019\n"
+"Last-Translator: Любомир Василев, 2021\n"
 "Language-Team: Bulgarian (https://www.transifex.com/wildfire-games/teams/17418/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,23 +26,17 @@ msgstr "Добре дошли в обучението на 0 A.D."
 
 #: maps/tutorials/introductory_tutorial.js:6
 msgid ""
-"Left-click on a female citizen and then right-click on a berry bush to make "
-"that female citizen gather food. Female citizens gather vegetables faster "
+"Left-click on a Female Citizen and then right-click on a berry bush to make "
+"that Female Citizen gather food. Female Citizens gather vegetables faster "
 "than other units."
 msgstr ""
-"Изберете някоя от жените с левия бутон на мишката, а след това щракнете с "
-"десния бутон върху някой боровинков храст, за да накарате жената да събира "
-"храна. Жените събират храна от растенията по-бързо от другите единици."
 
 #: maps/tutorials/introductory_tutorial.js:15
 msgid ""
-"Select the citizen-soldier, right-click on a tree near the Civic Center to "
-"begin gathering Wood. Citizen Soldiers gather Wood faster than female "
-"citizens."
+"Select the Citizen Soldier, right-click on a tree near the Civic Center to "
+"begin gathering wood. Citizen Soldiers gather wood faster than Female "
+"Citizens."
 msgstr ""
-"Изберете гражданина-во̀ин и щракнете с десния бутон върху някое дърво близо "
-"до селищния център, за да започне да събира дървесина. Гражданите-во̀ини "
-"събират дървесина по-бързо от жените."
 
 #: maps/tutorials/introductory_tutorial.js:26
 #, javascript-format
@@ -65,27 +59,22 @@ msgstr ""
 " за да създадете няколко единици."
 
 #: maps/tutorials/introductory_tutorial.js:38
-msgid "Click on the HOPLITE icon."
-msgstr "Натиснете иконката с ХОПЛИТ."
+#: maps/tutorials/introductory_tutorial.js:162
+msgid "Click on the Hoplite icon."
+msgstr "Натиснете иконката с хоплит."
 
 #: maps/tutorials/introductory_tutorial.js:46
 msgid ""
-"Select the two idle female citizens and build a house nearby by selecting "
-"the house icon. Place the house by left-clicking on a piece of land."
+"Select the two idle Female Citizens and build a House nearby by selecting "
+"the House icon. Place the House by left-clicking on a piece of land."
 msgstr ""
-"Изберете двете бездействащи жени и постройте къща наблизо като натиснете "
-"върху иконката, изобразяваща къща. Поставете къщата някъде върху терена с "
-"левия бутон на мишката."
 
 #: maps/tutorials/introductory_tutorial.js:54
 msgid ""
 "When they are ready, select the newly trained Hoplites and assign them to "
-"build a storehouse beside some nearby trees. They will begin to gather Wood "
+"build a Storehouse beside some nearby trees. They will begin to gather wood "
 "when it's constructed."
 msgstr ""
-"Когато станат готови, изберете новообучените хоплити и им дайте задача да "
-"построят склад до близките дървета. След като бъде построен, те ще започнат "
-"да събират дървесина."
 
 #: maps/tutorials/introductory_tutorial.js:64
 #, javascript-format
@@ -102,69 +91,47 @@ msgstr "Натиснете иконката с копиехвъргач."
 
 #: maps/tutorials/introductory_tutorial.js:88
 msgid ""
-"Build a farmstead in an open space beside the Civic Center using any idle "
+"Build a Farmstead in an open space beside the Civic Center using any idle "
 "builders."
 msgstr ""
-"Постройте ферма някъде около селищния център като използвате свободните "
-"строители."
 
 #: maps/tutorials/introductory_tutorial.js:100
-msgid "Let's wait for the farmstead to be built."
-msgstr "Да почакаме докато фермата бъде построена.\n"
+msgid "Let's wait for the Farmstead to be built."
+msgstr ""
 
 #: maps/tutorials/introductory_tutorial.js:112
 msgid ""
-"Once the farmstead is constructed, its builders will automatically begin "
+"Once the Farmstead is constructed, its builders will automatically begin "
 "gathering food if there is any nearby. Select the builders and instead make "
-"them construct a field beside the farmstead."
+"them construct a Field beside the Farmstead."
 msgstr ""
-"След като фермата бъде построена, нейните строители автоматично ще започнат "
-"да събират храна, ако наблизо се намира такава. Вместо това, изберете "
-"строителите и ги накарайте да направят поле до фермата."
 
 #: maps/tutorials/introductory_tutorial.js:136
 msgid ""
-"The field's builders will now automatically begin gathering food from the "
-"field. Using the newly created group of skirmishers, get them to build "
-"another house nearby."
+"The Field's builders will now automatically begin gathering food from the "
+"Field. Using the newly created group of skirmishers, get them to build "
+"another House nearby."
 msgstr ""
-"Строителите на полето ще започнат автоматично да събират храна от него. "
-"Използвайте току-що обучената група стрелци, за да построите още една къща "
-"наблизо."
 
 #: maps/tutorials/introductory_tutorial.js:144
 msgid ""
 "Train a batch of Hoplites at the Civic Center. Select the Civic Center and "
 "with it selected right-click on a tree nearby. Units from the Civic Center "
-"will now automatically gather Wood."
+"will now automatically gather wood."
 msgstr ""
-"Обучете партида хоплити от селищния център. Изберете селищния център, и "
-"докато е избран, щракнете с десен бутон върху някое близко дърво. Така "
-"единиците, излизащи от градския център, автоматично ще събират дървесина от "
-"посоченото място."
-
-#: maps/tutorials/introductory_tutorial.js:162
-msgid "Click on the Hoplite icon."
-msgstr "Натиснете иконката с хоплит."
 
 #: maps/tutorials/introductory_tutorial.js:176
 msgid ""
 "Select the Civic Center, then hover the cursor over the tree and right-click"
-" when you see your cursor change into a Wood icon."
+" when you see your cursor change into a wood icon."
 msgstr ""
-"Изберете селищния център, а след това посочете дървото с мишката и щракнете "
-"с десния бутон върху него, когато курсорът се превърне в иконка с дърво."
 
 #: maps/tutorials/introductory_tutorial.js:185
 msgid ""
 "Order the idle Skirmishers to build an outpost to the north east at the edge"
-" of your territory.  This will be the fifth Village Phase structure that you"
-" have built, allowing you to advance to the Town Phase."
+" of your territory. This will be the fifth Village Phase structure that you "
+"have built, allowing you to advance to the Town Phase."
 msgstr ""
-"Наредете на бездействащите копиехвъргачи да построят аванпост на "
-"североизточния край на територията Ви. Това ще е петата сграда от Селската "
-"фаза, която ще сте построили, така че ще можете да преминете към Градската "
-"фаза."
 
 #: maps/tutorials/introductory_tutorial.js:193
 msgid ""
@@ -186,23 +153,20 @@ msgstr ""
 
 #: maps/tutorials/introductory_tutorial.js:220
 msgid ""
-"Start training a batch of female citizens in the Civic Center and set its "
+"Start training a batch of Female Citizens in the Civic Center and set its "
 "rally point to the farm (right click on it)."
 msgstr ""
-"Започнете обучаването на партида жени в селищния център и поставете сборната"
-" му точка върху фермата (като щракнете с десен бутон върху нея)."
 
 #: maps/tutorials/introductory_tutorial.js:238
-msgid "Click on the female citizen icon."
+#: maps/tutorials/starting_economy_walkthrough.js:345
+msgid "Click on the Female Citizen icon."
 msgstr "Щракнете върху иконката с жена."
 
 #: maps/tutorials/introductory_tutorial.js:258
 msgid ""
 "Build a Barracks nearby. Whenever your population limit is reached, build an"
-" extra house using any available builder units."
+" extra House using any available builder units."
 msgstr ""
-"Постройте казарма наблизо. Когато достигнете максималното население, "
-"постройте още една къща, като използвате бездействащите строители."
 
 #: maps/tutorials/introductory_tutorial.js:266
 msgid ""
@@ -260,36 +224,32 @@ msgstr ""
 #: maps/tutorials/introductory_tutorial.js:359
 msgid ""
 "Stop all your soldiers gathering resources and instead task small groups to "
-"find the enemy Civic Center on the map. Once The enemy's base has been "
-"spotted, send your siege weapons and all remaining soldiers to destroy it.\n"
+"find the enemy Civic Center on the map. Once the enemy's base has been "
+"spotted, send your Siege Engines and all remaining soldiers to destroy it.\n"
 msgstr ""
-"Спрете всички войници, които събират ресурси, и ги разделете на малки групи,"
-" които да потърсят вражеския селищен център на картата. След като забележите"
-" вражеската база, изпратете обсадните си оръжия и всички останали войници, "
-"за да я унищожите.\n"
 
 #: maps/tutorials/introductory_tutorial.js:360
-msgid "Female citizens should continue to gather resources."
-msgstr "Жените трябва да продължат да събират ресурси."
+msgid "Female Citizens should continue to gather resources."
+msgstr ""
 
 #: maps/tutorials/introductory_tutorial.js:371
 msgid "The enemy has been defeated. These tutorial tasks are now completed."
 msgstr "Врагът бе победен. Задачите от обучението бяха завършени."
 
-#: maps/tutorials/introductory_tutorial.xml:Description:39
+#: maps/tutorials/introductory_tutorial.xml:Description:38
 msgid "This is a basic tutorial to get you started playing 0 A.D."
 msgstr "Това е основно обучение, което ще Ви помогне да играете 0 А.D."
 
-#: maps/tutorials/introductory_tutorial.xml:Name:39
+#: maps/tutorials/introductory_tutorial.xml:Name:38
 msgid "Introductory Tutorial"
 msgstr "Въвеждащо обучение"
 
-#: maps/tutorials/introductory_tutorial.xml:PlayerData[0].Name:39
-#: maps/tutorials/starting_economy_walkthrough.xml:PlayerData[0].Name:40
+#: maps/tutorials/introductory_tutorial.xml:PlayerData[0].Name:38
+#: maps/tutorials/starting_economy_walkthrough.xml:PlayerData[0].Name:39
 msgid "Player 1"
 msgstr "Играч 1"
 
-#: maps/tutorials/introductory_tutorial.xml:PlayerData[1].Name:39
+#: maps/tutorials/introductory_tutorial.xml:PlayerData[1].Name:38
 msgid "Player 2"
 msgstr "Играч 2"
 
@@ -368,31 +328,19 @@ msgid ""
 "the building while the bottom one or two rows will have researchable "
 "technologies. Hover the cursor over the II icon. The tooltip will tell us "
 "that advancing to Town Phase requires both more constructed structures as "
-"well as more Food and Wood resources."
+"well as more food and wood resources."
 msgstr ""
-"Горният ред с бутони съдържа портретите на единиците, които могат да бъдат "
-"обучени в сградата, а долният (или долните два) ще съдържат технологии, "
-"които могат да бъдат проучени. Посочете с мишката иконката със знак „II“. "
-"Съобщението ни показва, че за да преминем към „Градската фаза“, трябва да "
-"имаме повече построени сгради, както и повече храна и дърва."
 
 #: maps/tutorials/starting_economy_walkthrough.js:30
 msgid ""
-"You have two main types of starting units: female citizens and citizen "
-"soldiers. Female citizens are purely economic units; they have low HP, no "
-"armor, and little to no attack. Citizen soldiers are workers by default, but"
-" in times of need, can utilize a weapon to fight. You have two categories of"
-" citizen soldiers: infantry and cavalry. Female citizens and infantry "
-"citizen soldiers can gather any land resources while cavalry citizen "
-"soldiers can only gather meat from hunted animals.\n"
+"You have two main types of starting units: Female Citizens and Citizen "
+"Soldiers. Female Citizens are purely economic units; they have low health "
+"and little to no attack. Citizen Soldiers are workers by default, but in "
+"times of need, can utilize a weapon to fight. You have two categories of "
+"Citizen Soldiers: Infantry and Cavalry. Female Citizens and Infantry Citizen"
+" Soldiers can gather any land resources while Cavalry Citizen Soldiers can "
+"only gather meat from animals.\n"
 msgstr ""
-"Имате два основни вида начални единици: жени и граждани-во̀ини. Жените са "
-"чисто икономическа единица — те имат малко здраве, нямат защита и никаква "
-"или почти никаква атака. Жените по подразбиране са работници, но при нужда "
-"могат да използват оръжия, за да се бият. Имате две категории граждани-"
-"во̀ини: пехотинци и конници. Жените и пехотните граждани-во̀ини могат да "
-"събират всякакви земни ресурси, докато конниците могат да събират само месо "
-"от животните, които ловуват.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:35
 msgid ""
@@ -406,12 +354,9 @@ msgstr ""
 #: maps/tutorials/starting_economy_walkthrough.js:40
 msgid ""
 "At this point, food and wood are the most important resources for developing"
-" your economy, so let's start with gathering food. Female citizens gather "
+" your economy, so let's start with gathering food. Female Citizens gather "
 "vegetables faster than other units.\n"
 msgstr ""
-"На този етап храната и дървата са най-важните ресурси за развиване на "
-"икономиката Ви, така че да започнем с добива на храна. Жените събират храна "
-"от растенията по-бързо от другите единици."
 
 #: maps/tutorials/starting_economy_walkthrough.js:41
 msgid "There are primarily three ways to select units:\n"
@@ -449,9 +394,9 @@ msgstr ""
 #: maps/tutorials/starting_economy_walkthrough.js:45
 msgid ""
 "You can click on an empty space on the map to reset the selection. Try each "
-"of these methods before tasking all of your female citizens to gather the "
+"of these methods before tasking all of your Female Citizens to gather the "
 "grapes to the southeast of your Civic Center by right-clicking on the grapes"
-" when you have all the female citizens selected."
+" when you have all the Female Citizens selected."
 msgstr ""
 "Можете да щракнете върху празно място на картата, за да отмените избора си. "
 "Опитайте всички тези начини за избор, а след това накарайте всичките си жени"
@@ -460,21 +405,16 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:56
 msgid ""
-"Now, let's gather some Wood with your Infantry Citizen Soldiers. Select your"
-" Infantry Citizen Soldiers and order them to gather Wood by right-clicking "
+"Now, let's gather some wood with your Infantry Citizen Soldiers. Select your"
+" Infantry Citizen Soldiers and order them to gather wood by right-clicking "
 "on the nearest tree."
 msgstr ""
-"А сега да започнем да събираме дърва с пехотните граждани-во̀ини. Изберете "
-"пехотинците и им наредете да събират дърва като щракнете с десен бутон върху"
-" най-близкото дърво."
 
 #: maps/tutorials/starting_economy_walkthrough.js:67
 msgid ""
-"Cavalry Citizen Soldiers are good for hunting. Select your cavalry and order"
+"Cavalry Citizen Soldiers are good for hunting. Select your Cavalry and order"
 " him to hunt the chickens around your Civic Center in similar fashion."
 msgstr ""
-"Конните граждани-во̀ини са добри ловци. Изберете конника си и му наредете да"
-" убие пилетата около селищния център."
 
 #: maps/tutorials/starting_economy_walkthrough.js:78
 msgid ""
@@ -487,16 +427,10 @@ msgid ""
 "First, let's set a rally point. Setting a rally point on a building that can"
 " train units will automatically designate a task to the new unit upon "
 "completion of training. We want to send the newly trained units to gather "
-"Wood on the group of trees to the south of the Civic Center. To do so, "
+"wood on the group of trees to the south of the Civic Center. To do so, "
 "select the Civic Center by clicking on it and then right-click on one of the"
 " trees.\n"
 msgstr ""
-"Първо, да поставим сборна точка. Определянето на сборна точка за сграда, "
-"която може да обучава единици, ще даде команда на новите единици веднага "
-"след създаването им. Искаме да изпратим новите единици да събират дърва от "
-"групата дървета на юг от селищния център. За да направим това, изберете "
-"селищния център като щракнете върху него с ляв бутон и след това щракнете с "
-"десен бутон върху едно от дърветата.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:80
 msgid ""
@@ -506,11 +440,8 @@ msgstr "Сборните точки се виждат като малко фла
 #: maps/tutorials/starting_economy_walkthrough.js:88
 msgid ""
 "Select the Civic Center, then hover the cursor over a tree and right-click "
-"when you see the cursor change into a Wood icon."
+"when you see the cursor change into a wood icon."
 msgstr ""
-"Изберете селищния център, а след това посочете някое дърво с мишката и "
-"щракнете с десния бутон, когато видите, че курсорът се превърне в иконка с "
-"дърво."
 
 #: maps/tutorials/starting_economy_walkthrough.js:97
 msgid ""
@@ -522,18 +453,12 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:98
 msgid ""
-"Citizen soldiers gather wood faster than female citizens. Select the Civic "
-"Center and, while holding Shift, click on the second unit icon, the hoplites"
+"Citizen Soldiers gather wood faster than Female Citizens. Select the Civic "
+"Center and, while holding Shift, click on the second unit icon, the Hoplites"
 " (holding Shift trains a batch of five units). You can also train units "
 "individually by simply clicking, but training 5 units together takes less "
 "time than training 5 units individually."
 msgstr ""
-"Гражданите-во̀ини са по-добри от жените в събирането на дърва. Изберете "
-"селищния център и, задържайки клавиша Shift, натиснете втората иконка на "
-"единица, хоплита (натискането на иконка при задържан Shift създава партида "
-"от пет единици). Можете да обучавате единиците и една по една, като просто "
-"натискате иконките им, но обучаването на 5 единици едновременно отнема по-"
-"малко време от обучаването им отделно."
 
 #: maps/tutorials/starting_economy_walkthrough.js:108
 msgid "Do not forget to hold Shift while clicking to train several units."
@@ -553,16 +478,11 @@ msgstr "Да почакаме докато единиците бъдат съз�
 #: maps/tutorials/starting_economy_walkthrough.js:119
 msgid ""
 "While waiting, direct your attention to the panel at the top of your screen."
-" On the upper left, you will see your current resource supply (Food, Wood, "
-"Stone, and Metal). As each worker brings resources back to the Civic Center "
+" On the upper left, you will see your current resource supply (food, wood, "
+"stone, and metal). As each worker brings resources back to the Civic Center "
 "(or another dropsite), you will see the amount of the corresponding resource"
 " increase.\n"
 msgstr ""
-"Докато чакаме, да насочим вниманието си към панела в горната част на екрана."
-" В горната лява част виждате текущите си запаси от ресурси (храна, дърва, "
-"камък и метал). Когато работниците носят събраните от тях ресурси в селищния"
-" център (или друго сборно място), ще видите как количеството на съответния "
-"ресурс се увеличава.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:120
 msgid ""
@@ -579,29 +499,19 @@ msgstr ""
 #: maps/tutorials/starting_economy_walkthrough.js:129
 msgid ""
 "The newly trained units automatically go to the trees and start gathering "
-"Wood.\n"
+"wood.\n"
 msgstr ""
-"Новообучените единици отиват автоматично при дърветата и започват да събират"
-" дърва.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:130
 msgid ""
 "But as they have to bring it back to the Civic Center to deposit it, their "
 "gathering efficiency suffers from the distance. To fix that, we can build a "
-"storehouse, a dropsite for Wood, Stone, and Metal, close to the trees. To do"
+"Storehouse, a dropsite for wood, stone, and metal, close to the trees. To do"
 " so, select your five newly trained Citizen Soldiers and look for the "
-"construction panel on the bottom right, click on the storehouse icon, move "
+"construction panel on the bottom right, click on the Storehouse icon, move "
 "the mouse as close as possible to the trees you want to gather and click on "
 "a valid place to build the dropsite.\n"
 msgstr ""
-"Но тъй като те трябва да занесат дървата до селищния център, разстоянието, "
-"което трябва да изминат, намалява производителността им. За да подобрим "
-"това, можем да построим близо до дърветата Склад — място за събиране на "
-"дърва, камък и метал. За да направим това, изберете петте новосъздадени "
-"граждани-во̀ини и потърсете панела за строителството в долната дясна част на"
-" екрана. Натиснете иконката на склада, преместете мишката колкото е възможно"
-" по-близо до дърветата, които искате да добивате и щракнете върху подходящо "
-"място за строеж на склада.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:131
 msgid ""
@@ -613,28 +523,22 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:141
 msgid ""
-"The selected citizens will automatically start constructing the building "
+"The selected Citizens will automatically start constructing the building "
 "once you place the foundation."
 msgstr ""
-"Избраните граждани ще започнат автоматично да строят сградата, след като "
-"поставите основите."
 
 #: maps/tutorials/starting_economy_walkthrough.js:152
 msgid ""
-"When construction finishes, the builders default to gathering Wood "
+"When construction finishes, the builders default to gathering wood "
 "automatically.\n"
 msgstr ""
-"След като строежът завърши, строителите автоматично ще се върнат към "
-"събирането на дърва.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:153
 msgid ""
-"Let's train some female citizens to gather more food. Select the Civic "
-"Center, hold Shift and click on the female citizen icon to train 5 female "
-"citizens."
+"Let's train some Female Citizens to gather more food. Select the Civic "
+"Center, hold Shift and click on the Female Citizen icon to train five Female"
+" Citizens."
 msgstr ""
-"Да обучим още жени, които да събират още храна. Изберете селищния център, "
-"задръжте Shift и натиснете иконката с жена, за да обучите 5 жени."
 
 #: maps/tutorials/starting_economy_walkthrough.js:167
 msgid "Do not forget to hold Shift and click to train several units."
@@ -648,16 +552,11 @@ msgstr "Задръжте Shift и щракнете върху иконката �
 
 #: maps/tutorials/starting_economy_walkthrough.js:178
 msgid ""
-"In the meantime, we seem to have enough workers gathering Wood. We should "
-"remove the current rally point of the Civic Center away from gathering Wood."
+"In the meantime, we seem to have enough workers gathering wood. We should "
+"remove the current rally point of the Civic Center away from gathering wood."
 " For that purpose, right-click on the Civic Center when it is selected (and "
 "the flag icon indicating the rally point is crossed out)."
 msgstr ""
-"В това време, да погледнем наоколо. Изглежда вече имаме достатъчно "
-"работници, които събират дърва. Трябва да премахнем текущата сборна точка на"
-" селищния център, която в момента е върху дърветата. Изберете селищния "
-"център и щракнете с десния бутон върху него (иконката с флагче ще бъде "
-"зачертана)."
 
 #: maps/tutorials/starting_economy_walkthrough.js:192
 msgid "The units should be ready soon.\n"
@@ -681,49 +580,34 @@ msgstr ""
 msgid ""
 "As you have nearly reached the population limit, you must increase it by "
 "building some new structures if you want to train more units. The most cost "
-"effective structure to increase your population limit is the house.\n"
+"effective structure to increase your population limit is the House.\n"
 msgstr ""
-"Тъй като сте достигнали ограничението на населението, трябва да го увеличим "
-"като построим нови сгради, за да можем да обучаваме още единици. Най-"
-"евтината сграда, която увеличава ограничението на населението, е къщата.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:207
 msgid ""
-"Now that the units are ready, let's see how to build several houses in a "
+"Now that the units are ready, let's see how to build several Houses in a "
 "row."
-msgstr "След като единиците вече са готови, да построим две къщи."
+msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:212
 msgid ""
-"Select two of your newly-trained female citizens and ask them to build these"
-" houses in the empty space to the east of the Civic Center. To do so, after "
-"selecting the female citizens, click on the house icon in the bottom right "
+"Select two of your newly-trained Female Citizens and ask them to build these"
+" Houses in the empty space to the east of the Civic Center. To do so, after "
+"selecting the Female Citizens, click on the House icon in the bottom right "
 "panel and, while holding Shift, click first on the position in the map where"
-" you want to build the first house, and then click on the position where you"
-" want to build the second house (when you give a command while holding "
+" you want to build the first House, and then click on the position where you"
+" want to build the second House (when you give a command while holding "
 "Shift, you put the command in a queue; units automatically switch to the "
 "next command in their queue when they finish their current command). Press "
-"Escape to get rid of the house cursor so you don't spam houses all over the "
+"Escape to get rid of the House cursor so you don't spam Houses all over the "
 "map.\n"
 msgstr ""
-"Изберете две от новообучените си жени и ги накарайте да построят къщите на "
-"празното пространство на изток от селищния център. За да направите това, "
-"след като изберете жените, натиснете иконката с къща в долния десен панел и,"
-" задържайки клавиша Shift, щракнете върху позицията на картата, където "
-"искате да построите първата къща, след което, продължавайки да задържате "
-"Shift, щракнете върху друга позиция, където да бъде построена втората къща "
-"(когато давате команди, задържането на Shift поставя командата в опашка, "
-"така че единиците автоматично да преминат към следващата задача в опашката "
-"си, след като свършат зададената им работа). Накрая натиснете Escape, за да "
-"може курсорът да спре да бъде къща и за излезете от този режим.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:213
 msgid ""
-"Reminder: to select only two female citizens, click on the first one and "
+"Reminder: to select only two Female Citizens, click on the first one and "
 "then hold Shift and click on the second one."
 msgstr ""
-"Напомняне: за да изберете само две жени, щракнете върху първата и след това "
-"задръжте Shift и щракнете върху втората."
 
 #: maps/tutorials/starting_economy_walkthrough.js:246
 msgid ""
@@ -739,80 +623,57 @@ msgstr ""
 #: maps/tutorials/starting_economy_walkthrough.js:247
 msgid ""
 "But to minimize the distance between a farm and its corresponding food "
-"dropsite, we will first build a farmstead."
+"dropsite, we will first build a Farmstead."
 msgstr ""
-"За да намалим разстоянието между нивата и съответното ѝ място за събиране на"
-" продукцията, първо ще построим Ферма."
 
 #: maps/tutorials/starting_economy_walkthrough.js:258
 msgid ""
-"Select the three remaining (idle) female citizens and order them to build a "
-"farmstead in the center of the large open area to the west of the Civic "
+"Select the three remaining (idle) Female Citizens and order them to build a "
+"Farmstead in the center of the large open area to the west of the Civic "
 "Center.\n"
 msgstr ""
-"Изберете останалите три (бездействащи) жени и ги накарайте да построят ферма"
-" в средата на голямото свободно пространство на запад от селищния център.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:259
 msgid ""
-"We will need a decent chunk of space around the farmstead to build fields. "
+"We will need a decent chunk of space around the Farmstead to build Fields. "
 "In addition, we can see goats on the west side to further improve our food "
 "gathering efficiency should we ever decide to hunt them.\n"
 msgstr ""
-"Около фермата трябва да има достатъчно свободно място за създаване на ниви. "
-"Освен това, на запад има няколко кози, които могат да повишат скоростта ни "
-"на събиране на храна, ако решим да ги хванем.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:260
 msgid ""
-"If you try to select the three idle female citizens by clicking and dragging"
+"If you try to select the three idle Female Citizens by clicking and dragging"
 " a selection rectangle over them, you might accidentally select additional "
 "units. To avoid that, hold the I key while selecting so that only idle units"
 " are selected. If you accidentally select a cavalry unit, hold Ctrl and "
 "click on the cavalry unit icon of the selection panel at the bottom of the "
 "screen to remove the cavalry unit from the current selection."
 msgstr ""
-"Ако се опитате да изберете трите бездействащи жени като щракнете и завлачите"
-" правоъгълник за избор над тях, може без да искате да хванете и някоя друга "
-"единица. За да избегнете това, задръжте клавиша I, докато избирате, така че "
-"да хванете само бездействащите единици. Ако без да искате изберете и някой "
-"конник, задръжте Ctrl и щракнете върху иконката с конника в панела с "
-"избраните единици в долната част на екрана, за да премахнете конника от "
-"избора."
 
 #: maps/tutorials/starting_economy_walkthrough.js:275
 msgid ""
-"When the farmstead construction is finished, its builders will automatically"
+"When the Farmstead construction is finished, its builders will automatically"
 " look for food, and in this case, they will go after the nearby goats.\n"
 msgstr ""
-"Когато строежът на фермата приключи, строителите ѝ автоматично ще започнат "
-"да търсят храна, и в този случай ще се насочат към близките кози.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:276
 msgid ""
-"But your house builders will only look for something else to build and, if "
-"nothing found, become idle. Let's wait for them to build the houses."
+"But your House builders will only look for something else to build and, if "
+"nothing found, become idle. Let's wait for them to build the Houses."
 msgstr ""
-"Но строителите на къщите Ви ще търсят само нещо друго за строене, и ако не "
-"намерят нищо, ще бездействат. Нека почакаме да завършат строежа на къщите."
 
 #: maps/tutorials/starting_economy_walkthrough.js:292
 msgid ""
-"When both houses are built, select your two female citizens and order them "
-"to build a field as close as possible to the farmstead, which is a dropsite "
+"When both Houses are built, select your two Female Citizens and order them "
+"to build a Field as close as possible to the Farmstead, which is a dropsite "
 "for all types of food."
 msgstr ""
-"Когато и двете къщи станат готови, изберете двете жени и им наредете да "
-"построят нива колкото може по-близо до фермата, която е сборно място за "
-"всякакъв вид храна."
 
 #: maps/tutorials/starting_economy_walkthrough.js:302
 msgid ""
-"When the field is ready, the builders will automatically start gathering "
+"When the Field is ready, the builders will automatically start gathering "
 "it.\n"
 msgstr ""
-"Когато фермата стане готова, строителите ѝ автоматично ще започнат да "
-"събират храна от нея.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:303
 msgid ""
@@ -836,24 +697,18 @@ msgid ""
 msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:322
-msgid "Select the Civic Center and right-click on the field."
-msgstr "Изберете селищния център и щракнете с десния бутон върху нивата."
+msgid "Select the Civic Center and right-click on the Field."
+msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:330
 msgid ""
-"Now click three times on the female citizen icon in the bottom right panel "
+"Now click three times on the Female Citizen icon in the bottom right panel "
 "to train three additional farmers."
 msgstr ""
-"Сега щракнете три пъти върху иконката с жена в долния десен панел, за да "
-"обучите още три фермерки."
 
 #: maps/tutorials/starting_economy_walkthrough.js:344
 msgid "Click without holding Shift to train a single unit."
 msgstr "Щракнете без да задържате Shift, за да създадете само една единица."
-
-#: maps/tutorials/starting_economy_walkthrough.js:345
-msgid "Click on the Female Citizen icon."
-msgstr "Щракнете върху иконката с жена."
 
 #: maps/tutorials/starting_economy_walkthrough.js:355
 msgid ""
@@ -866,17 +721,11 @@ msgstr ""
 #: maps/tutorials/starting_economy_walkthrough.js:356
 msgid ""
 "The farming rate, for example, can be improved with a researchable "
-"technology in the farmstead. Select the farmstead and look at its production"
+"technology in the Farmstead. Select the Farmstead and look at its production"
 " panel on the bottom right. You will see several researchable technologies. "
 "Hover the cursor over them to see their costs and effects and click on the "
 "one you want to research."
 msgstr ""
-"Бързината на добиване на реколтата от нивите, например, може да бъде "
-"увеличена чрез проучването на технология във фермата. Изберете фермата и "
-"разгледайте панела в долната дясна част на екрана. Ще видите няколко "
-"технологии, които могат да бъдат проучени. Посочете ги с мишката, за да "
-"видите цените и ефектите им и след това щракнете върху тази, която искате да"
-" проучите."
 
 #: maps/tutorials/starting_economy_walkthrough.js:371
 msgid ""
@@ -916,14 +765,8 @@ msgid ""
 "you can add two soldiers to build it faster. To do so, select your Civic "
 "Center and set up a rally point on the Barracks foundation by right-clicking"
 " on it (you should see a hammer icon). Then produce two more builders by "
-"clicking on the hoplite icon twice."
+"clicking on the Hoplite icon twice."
 msgstr ""
-"Да изчакаме построяването на казармата. Тъй като този строеж отнема повече "
-"време, можете да добавите двама во̀ини, за да го ускорите. За да направите "
-"това, изберете селищния си център и поставете сборната точка върху основата "
-"на казармата като щракнете с десния бутон върху нея (курсорът трябва да се "
-"превърне в чук). След това произведете още двама строители като натиснете "
-"два пъти иконката с хоплит."
 
 #: maps/tutorials/starting_economy_walkthrough.js:394
 msgid ""
@@ -943,54 +786,35 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:409
 msgid ""
-"In later phases, you need usually Stone and Metal to build bigger structures"
+"In later phases, you need usually stone and metal to build bigger structures"
 " and train better soldiers. Hence, while waiting for the research to be "
 "done, you will send half of your idle Citizen Soldiers (who have finished "
-"building the Barracks) to gather Stone and the other half to gather Metal.\n"
+"building the Barracks) to gather stone and the other half to gather metal.\n"
 msgstr ""
-"В следващите фази обикновено ще се нуждаете от камъни и метал, за да строите"
-" по-големи сгради и да обучавате по-добри во̀ини. Затова докато чакате "
-"проучването да завърши, изпратете половината от бездействащите си во̀ини "
-"(онези, които приключиха със строежа на казармата) да събират камъни, а "
-"другата половина — за метал.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:410
 msgid ""
 "To do so, we could select three Citizen Soldiers and right-click on the "
-"Stone mine on the west of the Civic Center (the cursor changes when hovering"
-" the Stone mine while your soldiers are selected). However, these soldiers "
-"were gathering Wood, so they may still carry some Wood which would be lost "
-"when starting to gather another resource."
+"stone quarry on the west of the Civic Center (the cursor changes when "
+"hovering the stone quarry while your soldiers are selected). However, these "
+"soldiers were gathering wood, so they may still carry some wood which would "
+"be lost when starting to gather another resource."
 msgstr ""
-"За да направите това, можете да изберете трима граждани-во̀ини и да щракнете"
-" с десния бутон върху каменната мина на запад от селищния център (когато "
-"посочите с мишката върху нея и сте избрали во̀ините, курсорът ще се "
-"промени). Тези во̀ини в момента събират дърва, така че може все още да носят"
-" дървата, когато ги изпратите да събират други ресурси. Дървата, които те "
-"носят, ще бъдат загубени."
 
 #: maps/tutorials/starting_economy_walkthrough.js:415
 msgid ""
-"Thus, we should order them to deposit their Wood in the Civic Center along "
+"Thus, we should order them to deposit their wood in the Civic Center along "
 "the way. To do so, we will hold Shift while clicking to queue orders: select"
 " your soldiers, hold Shift and right-click on the Civic Center to deposit "
-"their Wood and then hold Shift and right-click on the Stone mine to gather "
-"it.\n"
+"their wood and then hold Shift and right-click on the stone quarry to gather"
+" it.\n"
 msgstr ""
-"Затова трябва да ги накараме да оставят събраните дърва в селищния център по"
-" пътя към камъните. За да направим това, можем да създадем опашка от команди"
-" за тях, задържайки клавиша Shift: задръжте го и щракнете с десния бутон "
-"върху селищния център, за да ги накарате да оставят дървата там, а след "
-"това, все още държейки клавиша Shift, щракнете с десния бутон върху "
-"каменната мина, за да започнат да събират камъни оттам.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:416
 msgid ""
-"Perform a similar order queue with the remaining soldiers and the Metal mine"
+"Perform a similar order queue with the remaining soldiers and the metal mine"
 " in the west."
 msgstr ""
-"Направете същото и с останалите во̀ини, само че ги изпратете към мината за "
-"метал на запад."
 
 #: maps/tutorials/starting_economy_walkthrough.js:450
 msgid ""
@@ -1000,16 +824,13 @@ msgstr ""
 "Това е краят на обучението. То би трябвало да Ви е показало основните неща "
 "относно изграждането на икономиката."
 
-#: maps/tutorials/starting_economy_walkthrough.xml:Description:40
+#: maps/tutorials/starting_economy_walkthrough.xml:Description:39
 msgid ""
-"This map will give a rough guide for starting the game effectively.  Early "
-"in the game the most important thing is to gather resources as fast as "
+"This map will give a rough guide for starting the game effectively. Early in"
+" the game the most important thing is to gather resources as fast as "
 "possible so you are able to build enough troops later."
 msgstr ""
-"Тази карта представлява кратко ръководство как ефикасно да започнете игра. В"
-" началото на играта най-важното е да събирате ресурси възможно най-бързо, "
-"така че по-късно да можете да обучите достатъчно войници."
 
-#: maps/tutorials/starting_economy_walkthrough.xml:Name:40
+#: maps/tutorials/starting_economy_walkthrough.xml:Name:39
 msgid "Starting Economy Walkthrough"
 msgstr "Начален икономически пътеводител"

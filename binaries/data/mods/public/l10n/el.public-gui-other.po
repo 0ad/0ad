@@ -22,8 +22,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-03-08 08:15+0000\n"
-"PO-Revision-Date: 2021-03-08 11:28+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-03-13 20:41+0000\n"
+"Last-Translator: LOUKAS SKOUROLIAKOS\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -40,7 +40,7 @@ msgstr "FPS: %(fps)4s"
 #: gui/common/campaigns/CampaignRun.js:95
 #, javascript-format
 msgid "%(userDesc)s - %(templateName)s"
-msgstr ""
+msgstr "%(userDesc)s - %(templateName)s"
 
 #: gui/common/color.js:179
 #, javascript-format
@@ -990,7 +990,7 @@ msgstr "Υγεία"
 #: gui/common/tooltips.js:568
 #, javascript-format
 msgid "%(label)s: %(garrisonSize)s %(extraSize)s"
-msgstr ""
+msgstr "%(label)s:%(garrisonSize)s%(extraSize)s"
 
 #: gui/common/tooltips.js:569
 msgid "Garrison Size"
@@ -999,7 +999,7 @@ msgstr "Μέγεθος Οχύρωσης"
 #: gui/common/tooltips.js:572
 msgctxt "nested garrison"
 msgid "+ "
-msgstr ""
+msgstr "+ "
 
 #: gui/common/tooltips.js:596 gui/common/tooltips.js:601
 #: gui/common/tooltips.js:606
@@ -1102,12 +1102,12 @@ msgstr "∞"
 
 #: gui/common/tooltips.js:795
 msgid "Reward:"
-msgstr ""
+msgstr "Ανταμοιβή:"
 
 #: gui/common/tooltips.js:798
 #, javascript-format
 msgid "%(resourceIcon)s %(reward)s"
-msgstr ""
+msgstr "%(resourceIcon)s%(reward)s"
 
 #: gui/common/tooltips.js:816
 msgid "Resource Trickle:"
@@ -1476,38 +1476,38 @@ msgstr "Αν και λογικά είναι εύκολο για έναν έμπ�
 
 #: gui/hotkeys/HotkeyMetadata.js:21 gui/hotkeys/HotkeyMetadata.js:22
 msgid "Other Hotkeys"
-msgstr ""
+msgstr "Άλλα πλήκτρα αυτόματης επιλογής"
 
 #: gui/hotkeys/HotkeyPicker.js:57
 #, javascript-format
 msgid "#%i"
-msgstr ""
+msgstr "#%i"
 
 #: gui/hotkeys/HotkeyPicker.js:73
 msgid " (hold to register)"
-msgstr ""
+msgstr "(πατήστε για καταχώρηση)"
 
 #: gui/hotkeys/HotkeyPicker.js:74 gui/hotkeys/HotkeyPicker.js:105
 msgid "Enter new Hotkey, hold to register."
-msgstr ""
+msgstr "Εισαγωγή νέου Πλήκτρου Συντόμευσης, κρατήστε πατημένο για καταχώρηση."
 
 #: gui/hotkeys/HotkeyPicker.js:116
 msgid "May conflict with: "
-msgstr ""
+msgstr "Ίσως  υπάρξει αντίφαση με:"
 
 #: gui/hotkeys/HotkeysPage.js:82
 msgid "All Hotkeys"
-msgstr ""
+msgstr "Όλα τα πλήκτρα αυτόματης επιλογής"
 
 #: gui/hotkeys/HotkeysPage.js:118
 msgid "No tooltip available"
-msgstr ""
+msgstr "Δεν υπάρχει διαθέσιμη συμβουλή"
 
 #: gui/hotkeys/HotkeysPage.js:151
 msgid ""
 "Reset all hotkeys to default values?\n"
 "WARNING: this cannot be reversed."
-msgstr ""
+msgstr "Επαναφορά όλων των πλήκτρων συντόμευσης στις προκαθορισμένες τιμές?\nΠΡΟΣΟΧΗ: Αυτό δε θα μπορεί να αντιστραφεί."
 
 #: gui/hotkeys/HotkeysPage.js:152 gui/pregame/MainMenuItems.js:236
 #: gui/pregame/MainMenuItems.js:260
@@ -1529,17 +1529,17 @@ msgstr "Επαναφορά"
 
 #: gui/hotkeys/hotkeys.xml:(caption):72
 msgid "Hotkey"
-msgstr ""
+msgstr "Πλήκτρο αυτόματης επιλογής"
 
 #: gui/hotkeys/hotkeys.xml:(caption):76
 msgid "Hotkey Description"
-msgstr ""
+msgstr "Περιγραφή πλήκτρου αυτόματης επιλογής"
 
 #: gui/hotkeys/hotkeys.xml:(caption):80
 msgid ""
 "Click on any mapping to modify it.\\n You may have up to 4 different "
 "hotkeys."
-msgstr ""
+msgstr "Κλικάρετε σε οποιαδήποτε χαρτογράφηση για να την τροποποιήσετε. \\n Μπορεί να έχετε μέχρι 4 πλήκτρα συντόμευσης"
 
 #: gui/hotkeys/hotkeys.xml:(caption):106 gui/locale/locale.xml:(caption):46
 msgid "Accept"
@@ -1559,7 +1559,7 @@ msgstr "Όνομα"
 #: gui/hotkeys/hotkeys.xml:(heading):43
 msgctxt "hotkey list"
 msgid "Mapping"
-msgstr ""
+msgstr "Χαρτογράφηση"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):49 gui/hotkeys/hotkeys.xml:(tooltip):102
 #: gui/options/options.xml:(tooltip):43
@@ -1572,23 +1572,23 @@ msgstr "Αποθήκευση αλλαγών"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):59
 msgid "Unsaved changes will be lost"
-msgstr ""
+msgstr "Οι μη αποθηκευμένες αλλαγές θα χαθούν."
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):90
 msgid "Click to set the hotkey"
-msgstr ""
+msgstr "Κλίκ για ορισμό του πλήκτρου συντόμευσης."
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):94
 msgid "Click to delete the hotkey"
-msgstr ""
+msgstr "Κλίκ για διαγραφή του πλήκτρου συντόμευσης."
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):107
 msgid "Change the hotkeys and close"
-msgstr ""
+msgstr "Αλλαγή πλήκτρων συντόμευσης και κλείσιμο"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):112
 msgid "The hotkeys will not be modified"
-msgstr ""
+msgstr "Τα πλήκτρα συντόμευσης δε θα τροποποιηθούν."
 
 #: gui/loadgame/SavegameDeleter.js:34
 #, javascript-format
@@ -1816,12 +1816,12 @@ msgstr "Κάθε χάρτης του επιλεγμένου τύπου χάρτ�
 
 #: gui/maps/mapbrowser/MapBrowser.xml:(caption):14
 msgid "Map Browser"
-msgstr ""
+msgstr "Περιηγητής Χάρτη"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:31
 #, javascript-format
 msgid "%(hotkey)s: Close map browser and discard the selection."
-msgstr ""
+msgstr "%(hotkey)s: Κλείσιμο περιηγητή χάρτη και απόρριψη  επιλογής."
 
 #: gui/credits/credits.xml:(caption):32 gui/hotkeys/hotkeys.xml:(caption):58
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:34
@@ -1833,7 +1833,7 @@ msgstr "Κλείσιμο"
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:36
 #, javascript-format
 msgid "%(hotkey)s: Close map browser."
-msgstr ""
+msgstr "%(hotkey)s: Κλείσιμο Περιηγητή χάρτη."
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):15
 msgctxt "zoom in"
@@ -1843,11 +1843,11 @@ msgstr "+"
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):18
 msgctxt "zoom out"
 msgid "−"
-msgstr ""
+msgstr "−"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):26
 msgid "Search Map:"
-msgstr ""
+msgstr "Αναζήτηση Χάρτη:"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):38
 msgid "Map Filter:"
@@ -1855,38 +1855,38 @@ msgstr "Φίλτρο Χάρτη:"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):48
 msgid "Pick Random Map"
-msgstr ""
+msgstr "Επιλογή Τυχαίου Χάρτη"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):54
 msgctxt "map selection dialog"
 msgid "Select"
-msgstr ""
+msgstr "Επιλογή"
 
 #: gui/maps/mapbrowser/controls/Pagination.js:27
 msgid "Go to the previous page."
-msgstr ""
+msgstr "Πηγαίνετε στη προηγούμενη σελίδα."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:28
 msgid "Go to the next page."
-msgstr ""
+msgstr "Πηγαίνετε στην επόμενη σελίδα."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:32
 msgid "Increase map preview size."
-msgstr ""
+msgstr "Αύξηση μεγέθους προεπισκόπησης χάρτη."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:33
 msgid "Decrease map preview size."
-msgstr ""
+msgstr "Μείωση μεγέθους προεπισκόπησης χάρτη."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:39
 #, javascript-format
 msgid "Maps: %(mapCount)s"
-msgstr ""
+msgstr "Χάρτες:%(mapCount)s"
 
 #: gui/maps/mapbrowser/controls/Pagination.js:43
 #, javascript-format
 msgid "Page: %(currentPage)s/%(maxPage)s"
-msgstr ""
+msgstr "Σελίδα:%(currentPage)s/%(maxPage)s"
 
 #: gui/options/options.js:95
 #, javascript-format
@@ -2885,12 +2885,12 @@ msgstr "Δείτε τους διαφορετικούς χάρτες που συ�
 
 #: gui/pregame/MainMenuItems.js:65 gui/pregame/MainMenuItems.js:93
 msgid "Continue Campaign"
-msgstr ""
+msgstr "Συνέχεια Εκστρατείας"
 
 #: gui/pregame/MainMenuItems.js:66 gui/pregame/MainMenuItems.js:94
 #: gui/pregame/MainMenuItems.js:104 gui/pregame/MainMenuItems.js:111
 msgid "Relive history through historical military campaigns."
-msgstr ""
+msgstr "Αναβιώστε την Ιστορία μέσα από ιστορικά πολεμικές εκστρατείες."
 
 #: gui/pregame/MainMenuItems.js:75 gui/replaymenu/replay_filters.js:144
 msgid "Single-player"
@@ -2914,11 +2914,11 @@ msgstr "Φόρτωση αποθηκευμένου παιχνιδιού."
 
 #: gui/pregame/MainMenuItems.js:103
 msgid "New Campaign"
-msgstr ""
+msgstr "Νέα Εκστρατεία"
 
 #: gui/pregame/MainMenuItems.js:110
 msgid "Load Campaign"
-msgstr ""
+msgstr "Φόρτωση Εκστρατείας"
 
 #: gui/pregame/MainMenuItems.js:120 gui/pregame/MainMenuItems.js:170
 msgid "Replays"
@@ -3192,11 +3192,11 @@ msgstr "Μπορείς να μας στείλεις αυτόματα πληρο�
 #: gui/reference/catafalque/CatafalquePage.js:41
 #, javascript-format
 msgid "%(hotkey)s: Close Catafalque Bonuses."
-msgstr ""
+msgstr "%(hotkey)s:Κλείσιμο Βάθρου Μπόνους."
 
 #: gui/reference/catafalque/catafalque.xml:(caption):18
 msgid "Catafalque Bonuses"
-msgstr ""
+msgstr "Κενοτάφιο Μπόνους"
 
 #. Translation: Description of an item in the CivInfo page, on a new line and
 #. indented.

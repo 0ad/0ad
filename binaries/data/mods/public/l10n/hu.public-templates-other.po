@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-20 00:57+0000\n"
-"PO-Revision-Date: 2021-01-20 01:23+0000\n"
+"POT-Creation-Date: 2021-03-12 08:08+0000\n"
+"PO-Revision-Date: 2021-03-12 10:21+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -151,27 +151,36 @@ msgstr "Vallási szentély"
 msgid "Greek Religious Sanctuary"
 msgstr "Görög vallási szentély"
 
-#: simulation/templates/gaia/fauna_bear_black.xml:11
+#: simulation/templates/gaia/fauna_bear_black.xml:5
+#: simulation/templates/gaia/fauna_bear_brown.xml:5
+#: simulation/templates/gaia/fauna_bear_polar.xml:5
+#: simulation/templates/gaia/fauna_lion.xml:5
+#: simulation/templates/gaia/fauna_tiger.xml:5
+msgctxt "Name of an attack, usually the weapon."
+msgid "Paws"
+msgstr "Mancsok"
+
+#: simulation/templates/gaia/fauna_bear_black.xml:24
 msgid "Black Bear"
 msgstr "Fekete medve"
 
-#: simulation/templates/gaia/fauna_bear_black.xml:12
+#: simulation/templates/gaia/fauna_bear_black.xml:25
 msgid "Ursus americanus"
 msgstr "Ursus americanus"
 
-#: simulation/templates/gaia/fauna_bear_brown.xml:11
+#: simulation/templates/gaia/fauna_bear_brown.xml:24
 msgid "Brown Bear"
 msgstr "Barnamedve"
 
-#: simulation/templates/gaia/fauna_bear_brown.xml:12
+#: simulation/templates/gaia/fauna_bear_brown.xml:25
 msgid "Ursus arctos"
 msgstr "Ursus arctos"
 
-#: simulation/templates/gaia/fauna_bear_polar.xml:11
+#: simulation/templates/gaia/fauna_bear_polar.xml:24
 msgid "Polar Bear"
 msgstr "Jegesmedve"
 
-#: simulation/templates/gaia/fauna_bear_polar.xml:12
+#: simulation/templates/gaia/fauna_bear_polar.xml:25
 msgid "Ursus maritimus"
 msgstr "Ursus maritimus"
 
@@ -198,11 +207,16 @@ msgstr "Dromedár"
 msgid "Camelus dromedarius"
 msgstr "Camelus dromedarius"
 
-#: simulation/templates/gaia/fauna_cattle_bull.xml:11
+#: simulation/templates/gaia/fauna_cattle_bull.xml:5
+msgctxt "Name of an attack, usually the weapon."
+msgid "Horns"
+msgstr "Szarv"
+
+#: simulation/templates/gaia/fauna_cattle_bull.xml:25
 msgid "Bull"
 msgstr "Bika"
 
-#: simulation/templates/gaia/fauna_cattle_bull.xml:12
+#: simulation/templates/gaia/fauna_cattle_bull.xml:26
 #: simulation/templates/gaia/fauna_cattle_cow.xml:18
 msgid "Bos taurus taurus"
 msgstr "Bos taurus taurus"
@@ -256,16 +270,25 @@ msgstr "Gímszarvas"
 msgid "Cervus elaphus"
 msgstr "Cervus elaphus"
 
-#: simulation/templates/gaia/fauna_dog_mastiff.xml:11
+#: simulation/templates/gaia/fauna_dog_mastiff.xml:5
+#: simulation/templates/gaia/fauna_dog_wolfhound.xml:5
+#: simulation/templates/gaia/fauna_fox_arctic.xml:5
+#: simulation/templates/gaia/fauna_fox_red.xml:5
+#: simulation/templates/gaia/fauna_wolf.xml:5
+msgctxt "Name of an attack, usually the weapon."
+msgid "Fangs"
+msgstr "Agyarak"
+
+#: simulation/templates/gaia/fauna_dog_mastiff.xml:24
 msgid "Mastiff"
 msgstr "Masztiff"
 
-#: simulation/templates/gaia/fauna_dog_mastiff.xml:12
-#: simulation/templates/gaia/fauna_dog_wolfhound.xml:12
+#: simulation/templates/gaia/fauna_dog_mastiff.xml:25
+#: simulation/templates/gaia/fauna_dog_wolfhound.xml:25
 msgid "Canis lupus familiaris"
 msgstr "Canis lupus familiaris"
 
-#: simulation/templates/gaia/fauna_dog_wolfhound.xml:11
+#: simulation/templates/gaia/fauna_dog_wolfhound.xml:24
 msgid "Wolfhound"
 msgstr "Farkaskutya"
 
@@ -277,11 +300,18 @@ msgstr "Szamár"
 msgid "Equus africanus asinus"
 msgstr "Equus africanus asinus"
 
-#: simulation/templates/gaia/fauna_elephant_african_bush.xml:11
+#: simulation/templates/gaia/fauna_elephant_african_bush.xml:5
+#: simulation/templates/gaia/fauna_elephant_asian.xml:5
+#: simulation/templates/gaia/fauna_elephant_north_african.xml:5
+msgctxt "Name of an attack, usually the weapon."
+msgid "Trunk"
+msgstr "Ormány"
+
+#: simulation/templates/gaia/fauna_elephant_african_bush.xml:25
 msgid "African Bush Elephant"
 msgstr "Afrikai elefánt"
 
-#: simulation/templates/gaia/fauna_elephant_african_bush.xml:12
+#: simulation/templates/gaia/fauna_elephant_african_bush.xml:26
 #: simulation/templates/gaia/fauna_elephant_african_infant.xml:12
 msgid "Loxodonta africana"
 msgstr "Loxodonta africana"
@@ -290,11 +320,11 @@ msgstr "Loxodonta africana"
 msgid "African Bush Elephant Calf"
 msgstr "Afrikai elefántborjú"
 
-#: simulation/templates/gaia/fauna_elephant_asian.xml:11
+#: simulation/templates/gaia/fauna_elephant_asian.xml:25
 msgid "Asian Elephant"
 msgstr "Ázsiai elefánt"
 
-#: simulation/templates/gaia/fauna_elephant_asian.xml:12
+#: simulation/templates/gaia/fauna_elephant_asian.xml:26
 #: simulation/templates/gaia/fauna_elephant_asian_infant.xml:12
 msgid "Elephas maximus"
 msgstr "Elephas maximus"
@@ -303,27 +333,27 @@ msgstr "Elephas maximus"
 msgid "Asian Elephant Calf"
 msgstr "Ázsiai elefántborjú"
 
-#: simulation/templates/gaia/fauna_elephant_north_african.xml:11
+#: simulation/templates/gaia/fauna_elephant_north_african.xml:25
 msgid "African Forest Elephant"
 msgstr "Erdei elefánt"
 
-#: simulation/templates/gaia/fauna_elephant_north_african.xml:12
+#: simulation/templates/gaia/fauna_elephant_north_african.xml:26
 msgid "Loxodonta cyclotis"
 msgstr "Loxodonta cyclotis"
 
-#: simulation/templates/gaia/fauna_fox_arctic.xml:11
+#: simulation/templates/gaia/fauna_fox_arctic.xml:24
 msgid "Arctic Fox"
 msgstr "Sarki róka"
 
-#: simulation/templates/gaia/fauna_fox_arctic.xml:12
+#: simulation/templates/gaia/fauna_fox_arctic.xml:25
 msgid "Vulpes lagopus"
 msgstr "Vulpes lagopus"
 
-#: simulation/templates/gaia/fauna_fox_red.xml:11
+#: simulation/templates/gaia/fauna_fox_red.xml:24
 msgid "Red Fox"
 msgstr "Vörös róka"
 
-#: simulation/templates/gaia/fauna_fox_red.xml:12
+#: simulation/templates/gaia/fauna_fox_red.xml:25
 msgid "Vulpes vulpes"
 msgstr "Vulpes vulpes"
 
@@ -356,11 +386,11 @@ msgstr "Kecske"
 msgid "Capra aegagrus hircus"
 msgstr "Capra aegagrus hircus"
 
-#: simulation/templates/gaia/fauna_hippopotamus.xml:21
+#: simulation/templates/gaia/fauna_hippopotamus.xml:24
 msgid "Hippopotamus"
 msgstr "Víziló"
 
-#: simulation/templates/gaia/fauna_hippopotamus.xml:22
+#: simulation/templates/gaia/fauna_hippopotamus.xml:25
 msgid "Hippopotamus amphibius"
 msgstr "Hippopotamus amphibius"
 
@@ -376,17 +406,11 @@ msgstr "Equus ferus caballus"
 msgid "Pony"
 msgstr "Póni"
 
-#: simulation/templates/gaia/fauna_lion.xml:5
-#: simulation/templates/gaia/fauna_tiger.xml:5
-msgctxt "Name of an attack, usually the weapon."
-msgid "Paws"
-msgstr "Mancsok"
-
-#: simulation/templates/gaia/fauna_lion.xml:24
+#: simulation/templates/gaia/fauna_lion.xml:23
 msgid "Lion"
 msgstr "Oroszlán"
 
-#: simulation/templates/gaia/fauna_lion.xml:25
+#: simulation/templates/gaia/fauna_lion.xml:24
 msgid "Panthera leo"
 msgstr "Panthera leo"
 
@@ -439,11 +463,11 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Horn"
 msgstr "Szarv"
 
-#: simulation/templates/gaia/fauna_rhinoceros_white.xml:23
+#: simulation/templates/gaia/fauna_rhinoceros_white.xml:24
 msgid "White Rhinoceros"
 msgstr "Szélesszájú orrszarvú"
 
-#: simulation/templates/gaia/fauna_rhinoceros_white.xml:24
+#: simulation/templates/gaia/fauna_rhinoceros_white.xml:25
 msgid "Ceratotherium simum"
 msgstr "Ceratotherium simum"
 
@@ -463,19 +487,19 @@ msgstr "Bárány"
 msgid "Ovis aries"
 msgstr "Ovis aries"
 
-#: simulation/templates/gaia/fauna_tiger.xml:24
+#: simulation/templates/gaia/fauna_tiger.xml:23
 msgid "Tiger"
 msgstr "Tigris"
 
-#: simulation/templates/gaia/fauna_tiger.xml:25
+#: simulation/templates/gaia/fauna_tiger.xml:24
 msgid "Panthera tigris"
 msgstr "Panthera tigris"
 
-#: simulation/templates/gaia/fauna_walrus.xml:25
+#: simulation/templates/gaia/fauna_walrus.xml:24
 msgid "Walrus"
 msgstr "Rozmár"
 
-#: simulation/templates/gaia/fauna_walrus.xml:26
+#: simulation/templates/gaia/fauna_walrus.xml:25
 msgid "Odobenus rosmarus"
 msgstr "Odobenus rosmarus"
 
@@ -502,11 +526,6 @@ msgstr "Csíkos gnú"
 #: simulation/templates/gaia/fauna_wildebeest.xml:12
 msgid "Connochaetes taurinus"
 msgstr "Connochaetes taurinus"
-
-#: simulation/templates/gaia/fauna_wolf.xml:5
-msgctxt "Name of an attack, usually the weapon."
-msgid "Fangs"
-msgstr "Agyarak"
 
 #: simulation/templates/gaia/fauna_wolf.xml:24
 msgid "Wolf"
@@ -881,16 +900,6 @@ msgid ""
 " other civs"
 msgstr "Átváltozik egy 5 személyes házzá azoknál a civilizációknál, ahol van ilyen ház. Más civilizációknál törlődik."
 
-#: simulation/templates/skirmish/units/default_infantry_melee_b.xml:5
-msgctxt "Name of an attack, usually the weapon."
-msgid "Melee"
-msgstr "Közelharc"
-
-#: simulation/templates/skirmish/units/default_infantry_ranged_b.xml:5
-msgctxt "Name of an attack, usually the weapon."
-msgid "Ranged"
-msgstr "Távolsági"
-
 #: simulation/templates/special/formations/anti_cavalry.xml:6
 #: simulation/templates/special/formations/testudo.xml:6
 msgid "Melee Infantry only, requires at least 16."
@@ -1057,7 +1066,7 @@ msgstr "Fák kivágása fáért."
 msgid "Structure"
 msgstr "Épület"
 
-#: simulation/templates/template_unit.xml:37
+#: simulation/templates/template_unit.xml:39
 msgid "Unit"
 msgstr "Egység"
 

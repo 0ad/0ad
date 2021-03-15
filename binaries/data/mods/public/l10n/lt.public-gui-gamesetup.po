@@ -5,14 +5,15 @@
 # Translators:
 # Adomas Jackevičius, 2014,2016
 # banginis <asesuarbanesu@gmail.com>, 2014
+# Gaja Kl <gaja@slacknet.eu>, 2021
 # V S <v32itas@slacknet.eu>, 2021
 # Vytautas, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-29 08:08+0000\n"
-"PO-Revision-Date: 2021-03-11 13:36+0000\n"
-"Last-Translator: V S <v32itas@slacknet.eu>\n"
+"PO-Revision-Date: 2021-03-14 20:43+0000\n"
+"Last-Translator: Gaja Kl <gaja@slacknet.eu>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/wildfire-games/0ad/language/lt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -200,7 +201,7 @@ msgstr "Komandos užrakintos"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:56
 msgid "Toggle locked teams."
-msgstr "Pasirinkti komandų užrakinimą."
+msgstr "(Į/Iš)jungti komandų užrakinimą."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Nomad.js:61
 msgid "Nomad"
@@ -626,7 +627,7 @@ msgstr "Grįžti į pagrindinį meniu."
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr ""
+msgstr "%(hotkey_civinfo)s/%(hotkey_structree)s: Civilizacijų Peržiųra / Statinių Medis\nPaspaudus atidaromas paskesnis."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/LobbyButton.js:19
 msgid "Show the multiplayer lobby in a dialog window."
@@ -659,7 +660,7 @@ msgstr "Pranešti, kad tu dar nepasiruošei žaidimui."
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ResetCivsButton.js:33
 msgid ""
 "Reset any civilizations that have been selected to the default (random)."
-msgstr ""
+msgstr "Atstatyti visas parinktas civilizacijas į numatytasias (atsitiktines)."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ResetTeamsButton.js:35
 msgid "Reset all teams to the default."
@@ -677,12 +678,12 @@ msgstr "Pradėti žaidimą su dabartiniais nustatymais."
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)."
-msgstr ""
+msgstr "Pradėti naują žaidimą su esamais nustatymais (išjungta iki kol visi žaidėjai yra pasiruošę)."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatInputPanel.js:55
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete player names or settings."
-msgstr ""
+msgstr "Spauskite %(hotkey)s automatiškam vardų ar komandų užbaigimui."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientChat.js:27
 msgid "Unknown Player"
@@ -761,30 +762,30 @@ msgstr "Žaidimų kodai įjungti"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.js:41
 msgid "Rated game."
-msgstr ""
+msgstr "Reitinguojamas Žaidimas."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:77
 #, javascript-format
 msgid "Click to toggle the %(name)s settings tab."
-msgstr ""
+msgstr "Spausti%(name)s(į/iš)jungti nustatymų tabą."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:80
 #, javascript-format
 msgid "Press %(hotkey)s to move to the next settings tab."
-msgstr ""
+msgstr "Spausti %(hotkey)sperėjimui į sekantį nustatymų tabą."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:83
 #, javascript-format
 msgid "Press %(hotkey)s to move to the previous settings tab."
-msgstr ""
+msgstr "Spausti %(hotkey)sperėjimui į praeitą tabą."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/MapPreview.js:47
 msgid "Click to view the list of available maps."
-msgstr ""
+msgstr "Spauskite galimų žemėlapių peržiųrai."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/TipsPanel.xml:(caption):9
 msgid "Show this message in the future."
-msgstr ""
+msgstr "Ateityje rodyti šį pranešimą."
 
 #: gui/gamesetup/Pages/LoadingPage/LoadingPage.xml:(caption):7
 msgid "Loading"
@@ -805,12 +806,12 @@ msgstr "%(name)s žaidimas"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:124
 msgid "Please enter a valid server name."
-msgstr ""
+msgstr "Prašome įvesti tinkamą serverio pavadinimą."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:132
 #, javascript-format
 msgid "Server port number must be between %(min)s and %(max)s."
-msgstr ""
+msgstr "Serverio porto skaičius privalo būti tarp %(min)s ir %(max)s."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:151
 msgid "Connecting to server..."
@@ -818,7 +819,7 @@ msgstr "Jungiamasi prie serverio..."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:166
 msgid "Server is not running."
-msgstr ""
+msgstr "Serveris nėra paleistas."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:167
 msgid "Password is invalid."
@@ -831,7 +832,7 @@ msgstr "Jūs buvote užbaninti."
 #: gui/gamesetup_mp/gamesetup_mp.js:171
 #, javascript-format
 msgid "\\[Invalid value %(reason)s]"
-msgstr ""
+msgstr "\\[Negalima reikšmė %(reason)s]"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:179
 msgid "Failed to connect to the server."
@@ -839,7 +840,7 @@ msgstr "Nepavyko prisijungti prie serverio."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:181
 msgid "Connection failed"
-msgstr ""
+msgstr "Prisijungimas nepavyko"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:193
 #, javascript-format
@@ -861,7 +862,7 @@ msgstr "Žaidimo pavadinimas jau naudojamas."
 #: gui/gamesetup_mp/gamesetup_mp.js:388
 #, javascript-format
 msgid "Cannot host game: %(message)s."
-msgstr ""
+msgstr "Negalima surengti žaidimo: %(message)s."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:389 gui/gamesetup_mp/gamesetup_mp.js:418
 #: gui/gamesetup_mp/gamesetup_mp.js:445 gui/gamesetup_mp/gamesetup_mp.js:460
@@ -871,7 +872,7 @@ msgstr "Klaida"
 #: gui/gamesetup_mp/gamesetup_mp.js:417 gui/gamesetup_mp/gamesetup_mp.js:459
 #, javascript-format
 msgid "Cannot join game: %(message)s."
-msgstr ""
+msgstr "Negalima prisijungti į žaidimą: %(message)s."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:474
 #, javascript-format
@@ -884,41 +885,41 @@ msgstr "Daugelio žaidėjų režimas"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):24
 msgid "Joining an existing game."
-msgstr ""
+msgstr "Jungtis prie esamo žaidimo."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):28
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):70
 msgid "Player Name:"
-msgstr ""
+msgstr "Žaidėjo Vardas:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):38
 msgid "Server Hostname or IP:"
-msgstr ""
+msgstr "Serverio hostname arba IP:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):48
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):95
 msgid "Server Port:"
-msgstr ""
+msgstr "Serverio Portas:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):65
 msgid "Set up your server to host."
-msgstr ""
+msgstr "Paruošti savo serverį paleidimui."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):83
 msgid "Server Name:"
-msgstr ""
+msgstr "Serverio Pavadinimas:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):112
 msgid "Server Password:"
-msgstr ""
+msgstr "Serverio Slaptažodis:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):128
 msgid "Use STUN to work around firewalls"
-msgstr ""
+msgstr "Naudoti STUN, ugniasienių apėjimui"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):136
 msgid "Continue"
-msgstr ""
+msgstr "Tęsti"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):141
 msgid "Cancel"
@@ -930,16 +931,16 @@ msgstr "Slaptažodis:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):162
 msgid "Confirm"
-msgstr ""
+msgstr "Patvirtinti"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):52
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):99
 msgid "Leave blank to use the default port."
-msgstr ""
+msgstr "Palikti tuščią numatytajam portui."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):113
 msgid "Leave blank to not require it."
-msgstr ""
+msgstr "Palikti tuščią, jo nereikalauti."
 
 #: gui/loading/ProgressBar.js:48
 #, javascript-format
@@ -953,7 +954,7 @@ msgstr "%(percentage)s%%"
 #: gui/loading/TipDisplay.js:52
 #, javascript-format
 msgid "• %(tiptext)s"
-msgstr ""
+msgstr "• %(tiptext)s"
 
 #: gui/loading/TitleDisplay.js:15
 #, javascript-format
@@ -1004,7 +1005,7 @@ msgstr ""
 msgid ""
 "“The gods help those that help themselves.” \\n— Aesop (“Hercules and the "
 "Wagoner”)"
-msgstr ""
+msgstr "“Dievai padeda tiems, kurie padeda sau.”\\n—Ezopas (“Heraklis ir Vežėjas”)"
 
 #: gui/text/quotes.txt:8
 msgid ""
@@ -1037,7 +1038,7 @@ msgstr ""
 #: gui/text/quotes.txt:13
 msgid ""
 "“Slow and steady wins the race.” \\n— Aesop (“The Hare and the Tortoise”)"
-msgstr ""
+msgstr "\"Lėtas, bet atkaklus - laimi lenktynes.\" \\n— Ezopas (\"Kiškis ir vėžlys“) "
 
 #: gui/text/quotes.txt:14
 msgid ""
@@ -1157,7 +1158,7 @@ msgstr ""
 msgid ""
 "“The fox knows many tricks; the hedgehog one good one.” \\n— Archilochus "
 "(fragment 201)"
-msgstr ""
+msgstr "“Lapė žino daug gudrybių; ežys vieną patikimą.” \\n— Archilochus (201 fragmentas)"
 
 #: gui/text/quotes.txt:32
 msgid ""
@@ -1189,7 +1190,7 @@ msgstr ""
 msgid ""
 "“Man is by nature a political animal.” \\n— Aristotle (“Politics”, I. "
 "1253a.2)"
-msgstr ""
+msgstr "“Žmogus pagal prigimtį yra politinis gyvunas.” \\n— Aristotelis (“Politika”, I. 1253a.2)"
 
 #: gui/text/quotes.txt:37
 msgid ""
@@ -1209,7 +1210,7 @@ msgid ""
 "“I count him braver who overcomes his desires than him who conquers his "
 "enemies, for the hardest victory is over the self.” \\n— Aristotle "
 "(Stobaeus, “Florilegium”, 223)"
-msgstr ""
+msgstr "“Aš laikau drąsesniu tą, kuris įveikia savo norus, nei tą, kuris nugali priešus, nes sunkiausia pergalė yra prieš save” \\n— Aristotelis (Stobaeus, “Florilegium”, 223)"
 
 #: gui/text/quotes.txt:40
 msgid ""
@@ -1306,7 +1307,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:51
 msgid "“Set a thief to catch a thief.” \\n— Callimachus (“Epigrams”, 44)"
-msgstr ""
+msgstr "“Sugauti vagį - siųskite vagį.” \\n— Callimachus (“Epigramos”, 44)"
 
 #: gui/text/quotes.txt:52
 msgid ""
@@ -1318,7 +1319,7 @@ msgstr ""
 msgid ""
 "“The worst ruler is one who cannot rule himself.” \\n— Cato the Elder "
 "(Plutarch, “Moralia”, “Sayings of Romans”, 198f)"
-msgstr ""
+msgstr "“Blogiausias valdovas yra tas, kuris nesugeba vadyti savęs.” \\n— Cato the Elder (Plutarch, “Moralia”, “Romėnų Posakiai”, 198f)"
 
 #: gui/text/quotes.txt:54
 msgid ""
@@ -1391,12 +1392,12 @@ msgstr ""
 msgid ""
 "“By desiring little, a poor man makes himself rich.” \\n— Democritus "
 "(fragment)"
-msgstr ""
+msgstr "“Trokšdamas nedaug, skurdžius padaro save turtingu.” \\n— Democritus (fragmentas)"
 
 #: gui/text/quotes.txt:64
 msgid ""
 "“It is hard to be governed by one's inferior.” \\n— Democritus (fragment)"
-msgstr ""
+msgstr "“Sunku būti valdomam menkystos.” \\n— Democritus (fragmentas)"
 
 #: gui/text/quotes.txt:65
 msgid ""
@@ -1513,7 +1514,7 @@ msgstr ""
 msgid ""
 "“I came, I saw, I conquered.” \\n— Caesar, after routing Pharnaces II of "
 "Pontus in the first assault (Plutarch, “Parallel Lives”, “Caesar”, sec. 50)"
-msgstr ""
+msgstr "“Atėjau, pamačiau, nugalėjau.” \\n—  Cezario pranešimas apie pergalę Zelos mūšyje prieš Farnaką II-ąjį (Plutarch, “Parallel Lives”, “Caesar”, sec. 50)"
 
 #: gui/text/quotes.txt:82
 msgid ""
@@ -1621,13 +1622,13 @@ msgstr ""
 msgid ""
 "“You could not step twice into the same river.” \\n— Heraclitus (Plato, "
 "“Cratylus”, 402a)"
-msgstr ""
+msgstr "“Į tą pačią upę neįbrisi du kartus.” \\n— Heraklitas (Plato, “Cratylus”, 402a)"
 
 #: gui/text/quotes.txt:97
 msgid ""
 "“It is better to be envied than to be pitied.” \\n— Herodotus (“The "
 "Histories”, III. 52)"
-msgstr ""
+msgstr "“Geriau būti pavydo, nei gailesčio objektu.” \\n— Herodotas (“Istorijos”, III. 52)"
 
 #: gui/text/quotes.txt:98
 msgid ""
@@ -1701,7 +1702,7 @@ msgstr ""
 msgid ""
 "“Anger is a momentary madness, so control your passion or it will control "
 "you.” \\n— Horace (“Epistles”, epistle II., 62)"
-msgstr ""
+msgstr "“Pyktis yra momentinė beprotybė, todėl valdykite savo aistrą, kitaip ji valdys jus”. \\n— Horacijus (“Laiškai”, II laiškas, 62) "
 
 #: gui/text/quotes.txt:108
 msgid ""
@@ -1713,7 +1714,7 @@ msgstr ""
 msgid ""
 "“It is sweet and honorable to die for one's country.” \\n— Horace (“Odes”, "
 "III., ode II., 13)"
-msgstr ""
+msgstr "“Gera ir garbinga mirti už savo šalį”. \\ n— Horacijus (“Odes”, III., odė II., 13) "
 
 #: gui/text/quotes.txt:110
 msgid "“I am Cyrus, king of the world…” \\n— Inscription (Cyrus Cylinder)"

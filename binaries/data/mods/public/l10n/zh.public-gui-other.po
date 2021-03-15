@@ -88,7 +88,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-03-08 08:15+0000\n"
-"PO-Revision-Date: 2021-03-08 12:45+0000\n"
+"PO-Revision-Date: 2021-03-13 04:53+0000\n"
 "Last-Translator: ma xiaoming <maxiaoming@imicloud.net>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -106,7 +106,7 @@ msgstr "帧率：%(fps)4s"
 #: gui/common/campaigns/CampaignRun.js:95
 #, javascript-format
 msgid "%(userDesc)s - %(templateName)s"
-msgstr ""
+msgstr "%(userDesc)s-%(templateName)s"
 
 #: gui/common/color.js:179
 #, javascript-format
@@ -553,7 +553,7 @@ msgstr "错误:服务器无法分配唯一的客户端标识符。"
 
 #: gui/common/network.js:77
 msgid "Error: Client commands were ready for an unexpected game turn."
-msgstr ""
+msgstr "错误：客户端命令对应了预想外的游戏回合"
 
 #: gui/common/network.js:78
 msgid "Error: Client simulated an unexpected game turn."
@@ -821,13 +821,13 @@ msgstr "状态效果"
 #: gui/common/tooltips.js:256
 #, javascript-format
 msgid "Blocks %(name)s"
-msgstr ""
+msgstr "阻断%(name)s"
 
 #: gui/common/tooltips.js:261 gui/common/tooltips.js:269
 #: gui/common/tooltips.js:276
 #, javascript-format
 msgid "%(name)s %(details)s"
-msgstr ""
+msgstr "%(name)s%(details)s"
 
 #: gui/common/tooltips.js:263
 #, javascript-format
@@ -1005,12 +1005,12 @@ msgstr "时长"
 #: gui/common/tooltips.js:526
 msgctxt "status effect stackability"
 msgid "(extends)"
-msgstr ""
+msgstr "(扩展)"
 
 #: gui/common/tooltips.js:528
 msgctxt "status effect stackability"
 msgid "(replaces)"
-msgstr ""
+msgstr "(重置)"
 
 #: gui/common/tooltips.js:530
 msgctxt "status effect stackability"
@@ -1545,7 +1545,7 @@ msgstr ""
 
 #: gui/hotkeys/HotkeyPicker.js:116
 msgid "May conflict with: "
-msgstr ""
+msgstr "可能与此冲突:"
 
 #: gui/hotkeys/HotkeysPage.js:82
 msgid "All Hotkeys"
@@ -2937,7 +2937,7 @@ msgstr "查看 0 A.D. 包含的地图"
 
 #: gui/pregame/MainMenuItems.js:65 gui/pregame/MainMenuItems.js:93
 msgid "Continue Campaign"
-msgstr ""
+msgstr "继续战役"
 
 #: gui/pregame/MainMenuItems.js:66 gui/pregame/MainMenuItems.js:94
 #: gui/pregame/MainMenuItems.js:104 gui/pregame/MainMenuItems.js:111
@@ -2966,11 +2966,11 @@ msgstr "加载游戏。"
 
 #: gui/pregame/MainMenuItems.js:103
 msgid "New Campaign"
-msgstr ""
+msgstr "新战役"
 
 #: gui/pregame/MainMenuItems.js:110
 msgid "Load Campaign"
-msgstr ""
+msgstr "加载战役"
 
 #: gui/pregame/MainMenuItems.js:120 gui/pregame/MainMenuItems.js:170
 msgid "Replays"

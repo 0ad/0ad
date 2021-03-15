@@ -1,11 +1,10 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2020 Wildfire Games
+# Copyright (C) 2021 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
 # Christian Xia <wood_elf@126.com>, 2017
 # 子航 叶 <jerryzihye@gmail.com>, 2017
-# Renyi Chen <chenrenyi.babacry@gmail.com>, 2018
 # 李峰宇 <lxx4380@gmail.com>, 2018
 # 玉堂白鹤 <yjwork@qq.com>, 2021
 # liulitchi <xingzuo88@qq.com>, 2021
@@ -13,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2020-12-26 15:10+0000\n"
+"POT-Creation-Date: 2021-03-12 08:08+0000\n"
 "PO-Revision-Date: 2017-06-04 12:59+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>, 2021\n"
 "Language-Team: Chinese (https://www.transifex.com/wildfire-games/teams/17418/zh/)\n"
@@ -29,17 +28,17 @@ msgstr "欢迎来到 0 A.D. 教程！"
 
 #: maps/tutorials/introductory_tutorial.js:6
 msgid ""
-"Left-click on a female citizen and then right-click on a berry bush to make "
-"that female citizen gather food. Female citizens gather vegetables faster "
+"Left-click on a Female Citizen and then right-click on a berry bush to make "
+"that Female Citizen gather food. Female Citizens gather vegetables faster "
 "than other units."
-msgstr "让妇女收集食物：左键单击一个妇女，然后右击浆果灌木让她收集食物。（妇女收集食物比其他单位快）"
+msgstr ""
 
 #: maps/tutorials/introductory_tutorial.js:15
 msgid ""
-"Select the citizen-soldier, right-click on a tree near the Civic Center to "
-"begin gathering Wood. Citizen Soldiers gather Wood faster than female "
-"citizens."
-msgstr "选中公民士兵，右击公署旁边的树木，来收集木材。（公民士兵伐木效率高于妇女）。"
+"Select the Citizen Soldier, right-click on a tree near the Civic Center to "
+"begin gathering wood. Citizen Soldiers gather wood faster than Female "
+"Citizens."
+msgstr ""
 
 #: maps/tutorials/introductory_tutorial.js:26
 #, javascript-format
@@ -58,21 +57,22 @@ msgid ""
 msgstr "按下Shift健，一次可生产多个单位。"
 
 #: maps/tutorials/introductory_tutorial.js:38
-msgid "Click on the HOPLITE icon."
-msgstr "单击铜盾枪兵图标。"
+#: maps/tutorials/introductory_tutorial.js:162
+msgid "Click on the Hoplite icon."
+msgstr "按下铜盾枪兵图标。"
 
 #: maps/tutorials/introductory_tutorial.js:46
 msgid ""
-"Select the two idle female citizens and build a house nearby by selecting "
-"the house icon. Place the house by left-clicking on a piece of land."
-msgstr "选择两个空闲的妇女，选取民居图标，在附近建造一幢民居。单击左键，将民居置于空地上。"
+"Select the two idle Female Citizens and build a House nearby by selecting "
+"the House icon. Place the House by left-clicking on a piece of land."
+msgstr ""
 
 #: maps/tutorials/introductory_tutorial.js:54
 msgid ""
 "When they are ready, select the newly trained Hoplites and assign them to "
-"build a storehouse beside some nearby trees. They will begin to gather Wood "
+"build a Storehouse beside some nearby trees. They will begin to gather wood "
 "when it's constructed."
-msgstr "训练完成后，选择训练好的铜盾枪兵，让他们在树木旁边建一个仓库。建好仓库后，他们会自动伐木。"
+msgstr ""
 
 #: maps/tutorials/introductory_tutorial.js:64
 #, javascript-format
@@ -87,51 +87,47 @@ msgstr "按下标枪兵（Skirmisher）图标。"
 
 #: maps/tutorials/introductory_tutorial.js:88
 msgid ""
-"Build a farmstead in an open space beside the Civic Center using any idle "
+"Build a Farmstead in an open space beside the Civic Center using any idle "
 "builders."
-msgstr "在公署旁的空地上，让闲置的单位建一个粮仓。"
+msgstr ""
 
 #: maps/tutorials/introductory_tutorial.js:100
-msgid "Let's wait for the farmstead to be built."
-msgstr "等待粮仓建成。"
+msgid "Let's wait for the Farmstead to be built."
+msgstr ""
 
 #: maps/tutorials/introductory_tutorial.js:112
 msgid ""
-"Once the farmstead is constructed, its builders will automatically begin "
+"Once the Farmstead is constructed, its builders will automatically begin "
 "gathering food if there is any nearby. Select the builders and instead make "
-"them construct a field beside the farmstead."
-msgstr "粮仓建成后，如果附近有食物，建造者会自动开始收集食物。选择建造者，让他们在粮仓旁造一块农田。"
+"them construct a Field beside the Farmstead."
+msgstr ""
 
 #: maps/tutorials/introductory_tutorial.js:136
 msgid ""
-"The field's builders will now automatically begin gathering food from the "
-"field. Using the newly created group of skirmishers, get them to build "
-"another house nearby."
-msgstr "农田建造者会自动种田。让新建的标枪兵在附近另建一座民居。"
+"The Field's builders will now automatically begin gathering food from the "
+"Field. Using the newly created group of skirmishers, get them to build "
+"another House nearby."
+msgstr ""
 
 #: maps/tutorials/introductory_tutorial.js:144
 msgid ""
 "Train a batch of Hoplites at the Civic Center. Select the Civic Center and "
 "with it selected right-click on a tree nearby. Units from the Civic Center "
-"will now automatically gather Wood."
-msgstr "在公署训练一批铜盾枪兵。选择公署，右击旁边的一棵树，这样公署新训练出来的单位会自动收集木材。"
-
-#: maps/tutorials/introductory_tutorial.js:162
-msgid "Click on the Hoplite icon."
-msgstr "按下铜盾枪兵图标。"
+"will now automatically gather wood."
+msgstr ""
 
 #: maps/tutorials/introductory_tutorial.js:176
 msgid ""
 "Select the Civic Center, then hover the cursor over the tree and right-click"
-" when you see your cursor change into a Wood icon."
-msgstr "选择公署，鼠标悬停在树周边的位置，直到你的鼠标变成木头图标之后开始右击。"
+" when you see your cursor change into a wood icon."
+msgstr ""
 
 #: maps/tutorials/introductory_tutorial.js:185
 msgid ""
 "Order the idle Skirmishers to build an outpost to the north east at the edge"
-" of your territory.  This will be the fifth Village Phase structure that you"
-" have built, allowing you to advance to the Town Phase."
-msgstr "让闲置的标枪兵在领土东北方边界造一个望楼。这是你建造的第五个“乡村阶段”的建筑，为升级到“城镇阶段”的条件。"
+" of your territory. This will be the fifth Village Phase structure that you "
+"have built, allowing you to advance to the Town Phase."
+msgstr ""
 
 #: maps/tutorials/introductory_tutorial.js:193
 msgid ""
@@ -148,19 +144,20 @@ msgstr "等待升级的间隙，可以重新分配闲置人员来收集物资。
 
 #: maps/tutorials/introductory_tutorial.js:220
 msgid ""
-"Start training a batch of female citizens in the Civic Center and set its "
+"Start training a batch of Female Citizens in the Civic Center and set its "
 "rally point to the farm (right click on it)."
-msgstr "在公署训练一批妇女，并将集结点设为粮仓（右击粮仓）。"
+msgstr ""
 
 #: maps/tutorials/introductory_tutorial.js:238
-msgid "Click on the female citizen icon."
-msgstr "点击妇女按钮。"
+#: maps/tutorials/starting_economy_walkthrough.js:345
+msgid "Click on the Female Citizen icon."
+msgstr "单击妇女按钮"
 
 #: maps/tutorials/introductory_tutorial.js:258
 msgid ""
 "Build a Barracks nearby. Whenever your population limit is reached, build an"
-" extra house using any available builder units."
-msgstr "在附近建造一个军营。人口到达上限后，需要建造更多的民居。"
+" extra House using any available builder units."
+msgstr ""
 
 #: maps/tutorials/introductory_tutorial.js:266
 msgid ""
@@ -209,32 +206,32 @@ msgstr "你现在到了“都邑阶段”，在附近建造城堡（需收集足
 #: maps/tutorials/introductory_tutorial.js:359
 msgid ""
 "Stop all your soldiers gathering resources and instead task small groups to "
-"find the enemy Civic Center on the map. Once The enemy's base has been "
-"spotted, send your siege weapons and all remaining soldiers to destroy it.\n"
-msgstr "让所有收集物资的士兵停止工作，组织小波士兵搜寻敌人的公署。一旦发现了敌人的大本营，派遣所有的士兵和攻城武器摧毁它。\n"
+"find the enemy Civic Center on the map. Once the enemy's base has been "
+"spotted, send your Siege Engines and all remaining soldiers to destroy it.\n"
+msgstr ""
 
 #: maps/tutorials/introductory_tutorial.js:360
-msgid "Female citizens should continue to gather resources."
-msgstr "妇女继续收集物资。"
+msgid "Female Citizens should continue to gather resources."
+msgstr ""
 
 #: maps/tutorials/introductory_tutorial.js:371
 msgid "The enemy has been defeated. These tutorial tasks are now completed."
 msgstr "敌人已被打败！教程任务已完成。"
 
-#: maps/tutorials/introductory_tutorial.xml:Description:39
+#: maps/tutorials/introductory_tutorial.xml:Description:38
 msgid "This is a basic tutorial to get you started playing 0 A.D."
 msgstr "这是 0 A.D.的基本教程，会引导游戏入门。"
 
-#: maps/tutorials/introductory_tutorial.xml:Name:39
+#: maps/tutorials/introductory_tutorial.xml:Name:38
 msgid "Introductory Tutorial"
 msgstr "介绍"
 
-#: maps/tutorials/introductory_tutorial.xml:PlayerData[0].Name:39
-#: maps/tutorials/starting_economy_walkthrough.xml:PlayerData[0].Name:40
+#: maps/tutorials/introductory_tutorial.xml:PlayerData[0].Name:38
+#: maps/tutorials/starting_economy_walkthrough.xml:PlayerData[0].Name:39
 msgid "Player 1"
 msgstr "玩家 1"
 
-#: maps/tutorials/introductory_tutorial.xml:PlayerData[1].Name:39
+#: maps/tutorials/introductory_tutorial.xml:PlayerData[1].Name:38
 msgid "Player 2"
 msgstr "玩家 2"
 
@@ -300,21 +297,19 @@ msgid ""
 "the building while the bottom one or two rows will have researchable "
 "technologies. Hover the cursor over the II icon. The tooltip will tell us "
 "that advancing to Town Phase requires both more constructed structures as "
-"well as more Food and Wood resources."
+"well as more food and wood resources."
 msgstr ""
-"顶部一行按键包含了可被此建筑训练的单位，底部的一到两行是可研究的科技。鼠标悬停在按钮 “II”上。会告诉我们升级到“城镇阶段”需要的材料和物资。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:30
 msgid ""
-"You have two main types of starting units: female citizens and citizen "
-"soldiers. Female citizens are purely economic units; they have low HP, no "
-"armor, and little to no attack. Citizen soldiers are workers by default, but"
-" in times of need, can utilize a weapon to fight. You have two categories of"
-" citizen soldiers: infantry and cavalry. Female citizens and infantry "
-"citizen soldiers can gather any land resources while cavalry citizen "
-"soldiers can only gather meat from hunted animals.\n"
+"You have two main types of starting units: Female Citizens and Citizen "
+"Soldiers. Female Citizens are purely economic units; they have low health "
+"and little to no attack. Citizen Soldiers are workers by default, but in "
+"times of need, can utilize a weapon to fight. You have two categories of "
+"Citizen Soldiers: Infantry and Cavalry. Female Citizens and Infantry Citizen"
+" Soldiers can gather any land resources while Cavalry Citizen Soldiers can "
+"only gather meat from animals.\n"
 msgstr ""
-"开局后，你有两种单位：妇女和公民士兵。妇女仅可进行经济活动，她们的生命值很低，也没有武器，几乎没有攻击力。公民士兵默认可进行经济活动，如有需要，他们也可拿起武器攻击。有两类公民士兵：步兵和骑兵。妇女和公民步兵能够收集任何陆上物资，而公民骑兵只能狩猎。\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:35
 msgid ""
@@ -326,9 +321,9 @@ msgstr "一般法则，左键单击代表选择单位，右键单击表示实施
 #: maps/tutorials/starting_economy_walkthrough.js:40
 msgid ""
 "At this point, food and wood are the most important resources for developing"
-" your economy, so let's start with gathering food. Female citizens gather "
+" your economy, so let's start with gathering food. Female Citizens gather "
 "vegetables faster than other units.\n"
-msgstr "在目前这个阶段，为了发展经济，最重要的物资是食物和木材。让我们先从收集食物开始（妇女收集食物速度快于其他单位）。\n"
+msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:41
 msgid "There are primarily three ways to select units:\n"
@@ -357,23 +352,23 @@ msgstr "3) 双击一个单位。会选中当前可见窗口所有同类的单位
 #: maps/tutorials/starting_economy_walkthrough.js:45
 msgid ""
 "You can click on an empty space on the map to reset the selection. Try each "
-"of these methods before tasking all of your female citizens to gather the "
+"of these methods before tasking all of your Female Citizens to gather the "
 "grapes to the southeast of your Civic Center by right-clicking on the grapes"
-" when you have all the female citizens selected."
-msgstr "可点击地图上的空白区域以重设选区。依次尝试以上方法，然后命令所有妇女收集公署东南方的葡萄：先选中所有妇女，再右键点击葡萄。"
+" when you have all the Female Citizens selected."
+msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:56
 msgid ""
-"Now, let's gather some Wood with your Infantry Citizen Soldiers. Select your"
-" Infantry Citizen Soldiers and order them to gather Wood by right-clicking "
+"Now, let's gather some wood with your Infantry Citizen Soldiers. Select your"
+" Infantry Citizen Soldiers and order them to gather wood by right-clicking "
 "on the nearest tree."
-msgstr "现在，我们让“公民步兵”伐木。选择“公民步兵”，右击树木命令他们收集最近的木材。"
+msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:67
 msgid ""
-"Cavalry Citizen Soldiers are good for hunting. Select your cavalry and order"
+"Cavalry Citizen Soldiers are good for hunting. Select your Cavalry and order"
 " him to hunt the chickens around your Civic Center in similar fashion."
-msgstr "“公民骑兵”是打猎的好手。选择你的“公民骑兵”，用类似的方法命令他们猎取公署周围的鸡。"
+msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:78
 msgid ""
@@ -385,11 +380,10 @@ msgid ""
 "First, let's set a rally point. Setting a rally point on a building that can"
 " train units will automatically designate a task to the new unit upon "
 "completion of training. We want to send the newly trained units to gather "
-"Wood on the group of trees to the south of the Civic Center. To do so, "
+"wood on the group of trees to the south of the Civic Center. To do so, "
 "select the Civic Center by clicking on it and then right-click on one of the"
 " trees.\n"
 msgstr ""
-"先设立一个集结点。给一幢建筑设立集结点，可以自动地为训练后的单位安排任务：训练完成后，新单位会自动分配任务。我们要让新训练的的单位去砍伐公署南方的树木群，需要点选公署，然后右击某一棵树。\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:80
 msgid ""
@@ -399,8 +393,8 @@ msgstr "集结点由蓝线末端的小旗帜表示。"
 #: maps/tutorials/starting_economy_walkthrough.js:88
 msgid ""
 "Select the Civic Center, then hover the cursor over a tree and right-click "
-"when you see the cursor change into a Wood icon."
-msgstr "选择公署，然后在一棵树上悬停，当鼠标变成木材时，右击。"
+"when you see the cursor change into a wood icon."
+msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:97
 msgid ""
@@ -410,13 +404,12 @@ msgstr "集结点已设置，我们可以生产额外的单位，他们将自动
 
 #: maps/tutorials/starting_economy_walkthrough.js:98
 msgid ""
-"Citizen soldiers gather wood faster than female citizens. Select the Civic "
-"Center and, while holding Shift, click on the second unit icon, the hoplites"
+"Citizen Soldiers gather wood faster than Female Citizens. Select the Civic "
+"Center and, while holding Shift, click on the second unit icon, the Hoplites"
 " (holding Shift trains a batch of five units). You can also train units "
 "individually by simply clicking, but training 5 units together takes less "
 "time than training 5 units individually."
 msgstr ""
-"公民士兵收集木材比妇女快。选择公署，按住Shift并单击铜盾枪兵同，即第二个图标，以一次训练5个。你也可以不按住Shift，通过单击一个一个训练，但是相对比较耗费时间。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:108
 msgid "Do not forget to hold Shift while clicking to train several units."
@@ -434,12 +427,11 @@ msgstr "让我们等待单位被训练完成。\n"
 #: maps/tutorials/starting_economy_walkthrough.js:119
 msgid ""
 "While waiting, direct your attention to the panel at the top of your screen."
-" On the upper left, you will see your current resource supply (Food, Wood, "
-"Stone, and Metal). As each worker brings resources back to the Civic Center "
+" On the upper left, you will see your current resource supply (food, wood, "
+"stone, and metal). As each worker brings resources back to the Civic Center "
 "(or another dropsite), you will see the amount of the corresponding resource"
 " increase.\n"
 msgstr ""
-"在等待的时候，不妨将你的注意力转移到屏幕顶部。在左上角，你会看到当前的物资供给（食物，树木，石料和金属）。当每个工人带着物资回到公署（或者其他的物资回收点），你会看到相应物资数目的提高。\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:120
 msgid ""
@@ -452,20 +444,19 @@ msgstr "以下非常重要，你要牢记：收集的物资必须被带回物资
 #: maps/tutorials/starting_economy_walkthrough.js:129
 msgid ""
 "The newly trained units automatically go to the trees and start gathering "
-"Wood.\n"
-msgstr "新训练的单位会自动走到树边开始伐木。\n"
+"wood.\n"
+msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:130
 msgid ""
 "But as they have to bring it back to the Civic Center to deposit it, their "
 "gathering efficiency suffers from the distance. To fix that, we can build a "
-"storehouse, a dropsite for Wood, Stone, and Metal, close to the trees. To do"
+"Storehouse, a dropsite for wood, stone, and metal, close to the trees. To do"
 " so, select your five newly trained Citizen Soldiers and look for the "
-"construction panel on the bottom right, click on the storehouse icon, move "
+"construction panel on the bottom right, click on the Storehouse icon, move "
 "the mouse as close as possible to the trees you want to gather and click on "
 "a valid place to build the dropsite.\n"
 msgstr ""
-"因他们必须将物资带到公署储存，则离中心越远则效率越低。为了避免，可在树旁建造仓库。仓库是一个物资回收点，可储存木材，石料，金属等。选择五个新训练出来的公民士兵，在右下角找到建造面板，点击仓库图标，移动鼠标到离树木越近越好，然后单击空地建造物资回收点。\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:131
 msgid ""
@@ -475,22 +466,22 @@ msgstr "无效（阻碍）的位置会让你的建筑预览变成红色。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:141
 msgid ""
-"The selected citizens will automatically start constructing the building "
+"The selected Citizens will automatically start constructing the building "
 "once you place the foundation."
-msgstr "放置地基后，被选中的居民会自动地开始建造。"
+msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:152
 msgid ""
-"When construction finishes, the builders default to gathering Wood "
+"When construction finishes, the builders default to gathering wood "
 "automatically.\n"
-msgstr "建造完成后，建造者们会自动寻找食物。\n"
+msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:153
 msgid ""
-"Let's train some female citizens to gather more food. Select the Civic "
-"Center, hold Shift and click on the female citizen icon to train 5 female "
-"citizens."
-msgstr "让我们来训练一些妇女，以收集更多的食物。选中公署，按住Shift键并单击妇女图标，来训练5名妇女。"
+"Let's train some Female Citizens to gather more food. Select the Civic "
+"Center, hold Shift and click on the Female Citizen icon to train five Female"
+" Citizens."
+msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:167
 msgid "Do not forget to hold Shift and click to train several units."
@@ -502,11 +493,11 @@ msgstr "按住shift键并单击妇女图标"
 
 #: maps/tutorials/starting_economy_walkthrough.js:178
 msgid ""
-"In the meantime, we seem to have enough workers gathering Wood. We should "
-"remove the current rally point of the Civic Center away from gathering Wood."
+"In the meantime, we seem to have enough workers gathering wood. We should "
+"remove the current rally point of the Civic Center away from gathering wood."
 " For that purpose, right-click on the Civic Center when it is selected (and "
 "the flag icon indicating the rally point is crossed out)."
-msgstr "与此同时，我们已有足够多的工人来收集木材了。我们要移除公署收集木材的集结点。选中公署，然后右击公署(显示集结点的小旗图标会消失)。"
+msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:192
 msgid "The units should be ready soon.\n"
@@ -526,35 +517,34 @@ msgstr ""
 msgid ""
 "As you have nearly reached the population limit, you must increase it by "
 "building some new structures if you want to train more units. The most cost "
-"effective structure to increase your population limit is the house.\n"
-msgstr "已经快到人口上限了，要想训练新单位，你必须通过新建筑来增加人口上限。最有效的建筑是民居\n"
+"effective structure to increase your population limit is the House.\n"
+msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:207
 msgid ""
-"Now that the units are ready, let's see how to build several houses in a "
+"Now that the units are ready, let's see how to build several Houses in a "
 "row."
-msgstr "现在，你的单位已经被训练完成，让我看看如何建造一排民居。"
+msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:212
 msgid ""
-"Select two of your newly-trained female citizens and ask them to build these"
-" houses in the empty space to the east of the Civic Center. To do so, after "
-"selecting the female citizens, click on the house icon in the bottom right "
+"Select two of your newly-trained Female Citizens and ask them to build these"
+" Houses in the empty space to the east of the Civic Center. To do so, after "
+"selecting the Female Citizens, click on the House icon in the bottom right "
 "panel and, while holding Shift, click first on the position in the map where"
-" you want to build the first house, and then click on the position where you"
-" want to build the second house (when you give a command while holding "
+" you want to build the first House, and then click on the position where you"
+" want to build the second House (when you give a command while holding "
 "Shift, you put the command in a queue; units automatically switch to the "
 "next command in their queue when they finish their current command). Press "
-"Escape to get rid of the house cursor so you don't spam houses all over the "
+"Escape to get rid of the House cursor so you don't spam Houses all over the "
 "map.\n"
 msgstr ""
-"选择两个新训练的妇女，让她们在公署的东部建造民居。方法是：在选择妇女之后，单击右下角面板上的民居图标，然后按住Shift，单击地图上你想建造民居的第一个地点，再单击地图上你想建造民居的第二个地点。(当你按住Shift下指令时，你是把指令放在一个队列里，单位执行完当前命令时，会自动地切换到下一个命令。)按Esc键以取消民居图标。\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:213
 msgid ""
-"Reminder: to select only two female citizens, click on the first one and "
+"Reminder: to select only two Female Citizens, click on the first one and "
 "then hold Shift and click on the second one."
-msgstr "记住：为了选择两名妇女，首先点击第一个单位，然后按住Shift并且点击第二个单位。"
+msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:246
 msgid ""
@@ -566,58 +556,57 @@ msgstr "你可能注意到了，浆果是有限的食物。我们需要更持久
 #: maps/tutorials/starting_economy_walkthrough.js:247
 msgid ""
 "But to minimize the distance between a farm and its corresponding food "
-"dropsite, we will first build a farmstead."
-msgstr "为了减小粮仓与食物来源之间的距离，我们先要建造一个粮仓。"
+"dropsite, we will first build a Farmstead."
+msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:258
 msgid ""
-"Select the three remaining (idle) female citizens and order them to build a "
-"farmstead in the center of the large open area to the west of the Civic "
+"Select the three remaining (idle) Female Citizens and order them to build a "
+"Farmstead in the center of the large open area to the west of the Civic "
 "Center.\n"
-msgstr "选择剩下三个(空闲的)妇女，让她们在公署西边的空地上去建造一个粮仓\n"
+msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:259
 msgid ""
-"We will need a decent chunk of space around the farmstead to build fields. "
+"We will need a decent chunk of space around the Farmstead to build Fields. "
 "In addition, we can see goats on the west side to further improve our food "
 "gathering efficiency should we ever decide to hunt them.\n"
-msgstr "我们需要粮仓旁边的一块空间以建造农田。此外，注意到西边的羊群，它们可以作为肉类食物收集的来源。\n"
+msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:260
 msgid ""
-"If you try to select the three idle female citizens by clicking and dragging"
+"If you try to select the three idle Female Citizens by clicking and dragging"
 " a selection rectangle over them, you might accidentally select additional "
 "units. To avoid that, hold the I key while selecting so that only idle units"
 " are selected. If you accidentally select a cavalry unit, hold Ctrl and "
 "click on the cavalry unit icon of the selection panel at the bottom of the "
 "screen to remove the cavalry unit from the current selection."
 msgstr ""
-"若单击并拖动来选择空闲的妇女，你可能不小心选到别的单位。为了避免，可以在选择的时候按住I键。这样只有空闲的单位会被选中。若不小心选择了一个骑兵，按住Ctrl并单击骑兵图标来取消对骑兵的选择。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:275
 msgid ""
-"When the farmstead construction is finished, its builders will automatically"
+"When the Farmstead construction is finished, its builders will automatically"
 " look for food, and in this case, they will go after the nearby goats.\n"
-msgstr "当粮仓建造完成之后，它的建造者们会自动地寻找食物。在这种情况下，他们会去抓附近的山羊\n"
+msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:276
 msgid ""
-"But your house builders will only look for something else to build and, if "
-"nothing found, become idle. Let's wait for them to build the houses."
-msgstr "你的民居建造者们只会找其他未完成的来建造，如果找不到，就会闲置下来。让我们等他们完成建造民居。"
+"But your House builders will only look for something else to build and, if "
+"nothing found, become idle. Let's wait for them to build the Houses."
+msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:292
 msgid ""
-"When both houses are built, select your two female citizens and order them "
-"to build a field as close as possible to the farmstead, which is a dropsite "
+"When both Houses are built, select your two Female Citizens and order them "
+"to build a Field as close as possible to the Farmstead, which is a dropsite "
 "for all types of food."
-msgstr "当两个民居建造完成后，选择两个妇女叫她们建造农田，离粮仓越近越好。粮仓是所有食物的物资回收点。"
+msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:302
 msgid ""
-"When the field is ready, the builders will automatically start gathering "
+"When the Field is ready, the builders will automatically start gathering "
 "it.\n"
-msgstr "农田造好后，人员会自动收集食物。\n"
+msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:303
 msgid ""
@@ -639,22 +628,18 @@ msgstr ""
 "只要农田还没有建成，集结点发送的新工人将合力建造，而他们在建成后会收集。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:322
-msgid "Select the Civic Center and right-click on the field."
-msgstr "选择公署，并且右击农田。"
+msgid "Select the Civic Center and right-click on the Field."
+msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:330
 msgid ""
-"Now click three times on the female citizen icon in the bottom right panel "
+"Now click three times on the Female Citizen icon in the bottom right panel "
 "to train three additional farmers."
-msgstr "现在点击三次妇女按钮（右下角板块）以训练三位农民。"
+msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:344
 msgid "Click without holding Shift to train a single unit."
 msgstr "不按住Shift单击可以训练一个单位"
-
-#: maps/tutorials/starting_economy_walkthrough.js:345
-msgid "Click on the Female Citizen icon."
-msgstr "单击妇女按钮"
 
 #: maps/tutorials/starting_economy_walkthrough.js:355
 msgid ""
@@ -665,11 +650,11 @@ msgstr "你可以通过研发新的科技来增加收集速度。\n"
 #: maps/tutorials/starting_economy_walkthrough.js:356
 msgid ""
 "The farming rate, for example, can be improved with a researchable "
-"technology in the farmstead. Select the farmstead and look at its production"
+"technology in the Farmstead. Select the Farmstead and look at its production"
 " panel on the bottom right. You will see several researchable technologies. "
 "Hover the cursor over them to see their costs and effects and click on the "
 "one you want to research."
-msgstr "比如，耕种效率可以通过研发粮仓科技来提高。选择粮仓并在右下方的建造板块查看几种科技。悬停光标以查看升级代价和效果。单击以进行研发。"
+msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:371
 msgid ""
@@ -699,10 +684,8 @@ msgid ""
 "you can add two soldiers to build it faster. To do so, select your Civic "
 "Center and set up a rally point on the Barracks foundation by right-clicking"
 " on it (you should see a hammer icon). Then produce two more builders by "
-"clicking on the hoplite icon twice."
+"clicking on the Hoplite icon twice."
 msgstr ""
-"等待军营建成。 由于军营耗时很长，可添加两名士兵来加快建造。 选择你的公署并在军营地基上设置一个集结点，右键单击（可看到一个锤子图标）。 "
-"然后两次点击铜盾枪兵图标，生产两个铜盾枪兵。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:394
 msgid ""
@@ -718,38 +701,35 @@ msgstr "如果你还缺少一些物资(图标是红色的)，请等待你的工�
 
 #: maps/tutorials/starting_economy_walkthrough.js:409
 msgid ""
-"In later phases, you need usually Stone and Metal to build bigger structures"
+"In later phases, you need usually stone and metal to build bigger structures"
 " and train better soldiers. Hence, while waiting for the research to be "
 "done, you will send half of your idle Citizen Soldiers (who have finished "
-"building the Barracks) to gather Stone and the other half to gather Metal.\n"
+"building the Barracks) to gather stone and the other half to gather metal.\n"
 msgstr ""
-"以后的阶段中，你通常需要石料和金属来建造更大的建筑和训练更好的士兵。所以，在等待研发的时候，把一半公民士兵(完成建造军营的那些)送去收集石材，另一半收集金属。\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:410
 msgid ""
 "To do so, we could select three Citizen Soldiers and right-click on the "
-"Stone mine on the west of the Civic Center (the cursor changes when hovering"
-" the Stone mine while your soldiers are selected). However, these soldiers "
-"were gathering Wood, so they may still carry some Wood which would be lost "
-"when starting to gather another resource."
+"stone quarry on the west of the Civic Center (the cursor changes when "
+"hovering the stone quarry while your soldiers are selected). However, these "
+"soldiers were gathering wood, so they may still carry some wood which would "
+"be lost when starting to gather another resource."
 msgstr ""
-"方法：选择三个公民士兵并右击公署西边的石材(当选中士兵并光标在石料上悬停时，光标会改变)。但这些士兵正在收集木材，所以他们可能会抱着木材去。这些木材会在开始收集其他物资时丢失。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:415
 msgid ""
-"Thus, we should order them to deposit their Wood in the Civic Center along "
+"Thus, we should order them to deposit their wood in the Civic Center along "
 "the way. To do so, we will hold Shift while clicking to queue orders: select"
 " your soldiers, hold Shift and right-click on the Civic Center to deposit "
-"their Wood and then hold Shift and right-click on the Stone mine to gather "
-"it.\n"
+"their wood and then hold Shift and right-click on the stone quarry to gather"
+" it.\n"
 msgstr ""
-"因此，我们应该叫他们在途中把木材放置在公署。方法：按住Shift以下多个命令：选择士兵；按住Shift；右击公署以放置木材；保持按住Shift不要松开；右击采石场以收集。\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:416
 msgid ""
-"Perform a similar order queue with the remaining soldiers and the Metal mine"
+"Perform a similar order queue with the remaining soldiers and the metal mine"
 " in the west."
-msgstr "对剩下的士兵执行相似的命令，在西边采矿。"
+msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:450
 msgid ""
@@ -757,13 +737,13 @@ msgid ""
 "basics of setting up your economy."
 msgstr "你已经完成了所有的引导。你可以在此基础上很好的建设你的经济。"
 
-#: maps/tutorials/starting_economy_walkthrough.xml:Description:40
+#: maps/tutorials/starting_economy_walkthrough.xml:Description:39
 msgid ""
-"This map will give a rough guide for starting the game effectively.  Early "
-"in the game the most important thing is to gather resources as fast as "
+"This map will give a rough guide for starting the game effectively. Early in"
+" the game the most important thing is to gather resources as fast as "
 "possible so you are able to build enough troops later."
-msgstr "本地图为大概介绍，可让你尽快入门。游戏初期，要尽快收集物资，后期就能建起大军。"
+msgstr ""
 
-#: maps/tutorials/starting_economy_walkthrough.xml:Name:40
+#: maps/tutorials/starting_economy_walkthrough.xml:Name:39
 msgid "Starting Economy Walkthrough"
 msgstr "经济攻略"

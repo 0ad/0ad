@@ -6,13 +6,14 @@
 # Adomas Jackevičius, 2014
 # banginis <asesuarbanesu@gmail.com>, 2014
 # Vytautas, 2018
+# V S <v32itas@slacknet.eu>, 2021
 # Vytautas, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-03-05 08:13+0000\n"
-"PO-Revision-Date: 2021-03-05 10:28+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-03-14 19:02+0000\n"
+"Last-Translator: V S <v32itas@slacknet.eu>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/wildfire-games/0ad/language/lt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,7 +28,7 @@ msgstr "Pasirinkti žaidimo greitį"
 #: gui/session/Menu.js:41
 #, javascript-format
 msgid "Press %(hotkey)s to toggle this menu."
-msgstr ""
+msgstr "Spauskite %(hotkey)s (į/iš)jungti šį meniu,"
 
 #: gui/session/MenuButtons.js:32
 msgid "Chat"
@@ -44,7 +45,7 @@ msgstr "Suvestinė"
 #: gui/session/MenuButtons.js:90
 #, javascript-format
 msgid "Press %(hotkey)s to open the summary screen."
-msgstr ""
+msgstr "Spauskite %(hotkey)satidaryti išvadų ekraną."
 
 #: gui/session/MenuButtons.js:133
 msgid "Lobby"
@@ -55,7 +56,7 @@ msgstr "Žaidimo prieangis"
 msgid ""
 "Press %(hotkey)s to open the multiplayer lobby page without leaving the "
 "game."
-msgstr ""
+msgstr "Spauskite %(hotkey)s atidaryti kelių žaidėjų vestibiulio puslapį nepaliekant žaidimo."
 
 #: gui/session/MenuButtons.js:161
 msgid "Options"
@@ -63,7 +64,7 @@ msgstr "Nustatymai"
 
 #: gui/session/MenuButtons.js:185
 msgid "Hotkeys"
-msgstr ""
+msgstr "Kombinacijos"
 
 #: gui/session/MenuButtons.js:220
 msgid "Resume"
@@ -76,7 +77,7 @@ msgstr "Pauzė"
 #: gui/session/MenuButtons.js:221
 #, javascript-format
 msgid "Press %(hotkey)s to pause or resume the game."
-msgstr ""
+msgstr "Spauskite %(hotkey)s(at)stabdyti žaidimą."
 
 #: gui/session/MenuButtons.js:237
 msgid "Resign"
@@ -105,7 +106,7 @@ msgstr "Laukiama kol žaidėjai prisijungs:"
 
 #: gui/session/NetworkStatusOverlay.js:43
 msgid "Synchronizing gameplay with other players…"
-msgstr ""
+msgstr "Žaidimas sinchronizuojamas su kitais žaidėjais..."
 
 #: gui/session/NetworkStatusOverlay.js:47
 msgctxt "Separator for a list of client loading messages"
@@ -236,12 +237,12 @@ msgstr "Privatus pokalbis"
 #: gui/session/chat/ChatHistory.js:125
 msgctxt "chat history filter"
 msgid "Game notifications"
-msgstr ""
+msgstr "Žaidimo pranešimai"
 
 #: gui/session/chat/ChatHistory.js:130
 msgctxt "chat history filter"
 msgid "Network notifications"
-msgstr ""
+msgstr "Tinklo pranešimai"
 
 #: gui/session/chat/ChatInput.js:31
 msgctxt "chat input"
@@ -335,21 +336,21 @@ msgstr "* %(user)s %(message)s"
 #: gui/session/chat/ChatMessageFormatSimulation.js:16
 #, javascript-format
 msgid "%(icon)sYour livestock has been attacked by %(attacker)s!"
-msgstr ""
+msgstr "%(icon)sJūsų gyvulius užpuolė %(attacker)s!"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:17
 #, javascript-format
 msgid "%(icon)sYou have been attacked by %(attacker)s!"
-msgstr ""
+msgstr "%(icon)sJus užpuolė %(attacker)s!"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:31
 msgid "Click to focus on the attacked unit."
-msgstr ""
+msgstr "Spauskite, kad matytumėte užpultą vienetą."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:50
 #, javascript-format
 msgid "%(player)s bartered %(amountGiven)s for %(amountGained)s."
-msgstr ""
+msgstr "%(player)spaderino %(amountGiven)s už %(amountGained)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:85
 #, javascript-format
@@ -529,7 +530,7 @@ msgstr "Įjungti laiko keitimo režimą"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:214
 msgid "Activate Rejoin Test"
-msgstr ""
+msgstr "Aktyvuoti Perjungimo Testą"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:248
 msgid "Promote selected units"
@@ -537,19 +538,19 @@ msgstr "Paaukštinti pažymėtus vienetus"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:269
 msgid "Enable culling"
-msgstr ""
+msgstr "Leisti rūšiavimą"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:287
 msgid "Lock cull camera"
-msgstr ""
+msgstr "Rakinti rūšiavimo kamerą"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:305
 msgid "Display camera frustum"
-msgstr ""
+msgstr "Rodyti kameros frustą"
 
 #: gui/session/developer_overlay/DeveloperOverlayCheckboxes.js:323
 msgid "Display shadows frustum"
-msgstr ""
+msgstr "Rodyti šešėlių frustą"
 
 #: gui/session/developer_overlay/TimeWarp.js:65
 msgid "Time warp mode"
@@ -618,7 +619,7 @@ msgstr "Likęs paliaubų laikas: %(time)s"
 #: gui/session/diplomacy/DiplomacyDialogColorsButton.js:30
 #: gui/session/minimap/MiniMapDiplomacyColorsButton.js:34
 msgid "Toggle Diplomacy Colors"
-msgstr "Perjungti diplomatijos spalvas"
+msgstr "(Į/Iš)jungti diplomatijos spalvas"
 
 #: gui/session/diplomacy/playercontrols/AttackRequestButton.js:38
 msgid "Request your allies to attack this enemy"
@@ -627,7 +628,7 @@ msgstr "Paprašyti sąjungininkų pulti šį priešininką"
 #: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:75
 msgctxt "team"
 msgid "None"
-msgstr "Nieko"
+msgstr "Jokios"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(tooltip):28
 #: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:78
@@ -764,12 +765,12 @@ msgstr "Dabartinė būsena įrašyta į %(filepath)s"
 #: gui/session/message_box/OutOfSyncNetwork.js:51
 #: gui/session/message_box/OutOfSyncReplay.js:23
 msgid "Out of Sync"
-msgstr "Nesutampa"
+msgstr "Nesinchronizuota"
 
 #. Translation: This is shown if replay is out of sync
 #: gui/session/message_box/OutOfSyncReplay.js:28
 msgid "Out-Of-Sync"
-msgstr ""
+msgstr "Ne-sinchro-nizuota"
 
 #: gui/session/message_box/QuitConfirmation.js:6
 #: gui/session/message_box/QuitConfirmationMenu.js:63
@@ -932,7 +933,7 @@ msgstr "Padidėjimas: %(gain)s"
 msgid ""
 "(%(number)s)\n"
 "%(time)s"
-msgstr ""
+msgstr "(%(number)s)\n%(time)s"
 
 #: gui/session/selection_details.js:274
 msgid "Current/max gatherers"
@@ -950,11 +951,11 @@ msgstr "Užgrobimo taškai:"
 #: gui/session/selection_details.js:452
 #, javascript-format
 msgid "%(label)s: %(details)s\n"
-msgstr ""
+msgstr "%(label)s: %(details)s\n"
 
 #: gui/session/selection_details.js:453
 msgid "Garrison Size"
-msgstr ""
+msgstr "Sargybos Dydis"
 
 #: gui/session/selection_details.js:458
 #, javascript-format
@@ -1006,19 +1007,19 @@ msgstr "Nutraukti pavojaus skelbimą."
 
 #: gui/session/selection_panels.js:276
 msgid "Default formation is disabled."
-msgstr ""
+msgstr "Numatytoji formacija išjungta."
 
 #: gui/session/selection_panels.js:277
 msgid "Right-click to disable the default formation feature."
-msgstr ""
+msgstr "Dešniu-spaudimu išjungama numatytų formacijų galimybė."
 
 #: gui/session/selection_panels.js:280
 msgid "This is the default formation, used for movement orders."
-msgstr ""
+msgstr "Tai įra numatytoji formacija, naudojama judėjimo įsakymams."
 
 #: gui/session/selection_panels.js:281
 msgid "Right-click to set this as the default formation."
-msgstr ""
+msgstr "Dešniu-spaudimu nustatykite kaip numatytają formaciją."
 
 #: gui/session/selection_panels.js:337
 #, javascript-format
@@ -1088,25 +1089,25 @@ msgstr ", "
 
 #: gui/session/selection_panels.js:784
 msgid "Cannot research while upgrading."
-msgstr ""
+msgstr "Negalima tyrinėti, kol tobulinama."
 
 #: gui/session/selection_panels.js:1008
 msgid "Cannot train while upgrading."
-msgstr ""
+msgstr "Negalima mokyti, kol tobulinama."
 
 #: gui/session/selection_panels.js:1070
 #, javascript-format
 msgid "Upgrade to %(name)s. %(tooltip)s"
-msgstr ""
+msgstr "Tobulinti į %(name)s. %(tooltip)s"
 
 #: gui/session/selection_panels.js:1075
 #, javascript-format
 msgid "Upgrade to %(name)s."
-msgstr ""
+msgstr "Tobulinti į %(name)s."
 
 #: gui/session/selection_panels.js:1111
 msgid "Cancel Upgrading"
-msgstr "Atšaukti patobulinimą"
+msgstr "Atšaukti Tobulinimą"
 
 #: gui/session/selection_panels.js:1126
 msgid ""
@@ -1115,10 +1116,10 @@ msgid ""
 msgid_plural ""
 "Cannot upgrade when all entities are training, researching or already "
 "upgrading."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Negalima tobulinti kai dalykas yra ruošiamas, tyrinėjamas ar kai jau tobulinama."
+msgstr[1] "Negalima tobulinti kol Visi dalykai yra ruošiami, tyrinėjami ar kai jau tobulinama."
+msgstr[2] "Negalima tobulinti kol Visi dalykai yra ruošiami, tyrinėjami ar kai jau tobulinama."
+msgstr[3] "Negalima tobulinti kol Visi dalykai yra ruošiami, tyrinėjami ar kai jau tobulinama."
 
 #: gui/session/selection_panels_helpers.js:53
 msgctxt "stance"
@@ -1190,65 +1191,65 @@ msgstr "%(changer)s sumažina limitą %(change)s."
 #: gui/session/selection_panels_helpers.js:140
 msgid "Could only be constructed once."
 msgid_plural "Could only be constructed %(limit)s times."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] " Gali būti pastatyta tik kartą."
+msgstr[1] "Gali būti pastatyta tik %(limit)s kartus."
+msgstr[2] "Gali būti pastatyta tik %(limit)s kartų."
+msgstr[3] "Gali būti pastatyta tik %(limit)skartų."
 
 #: gui/session/selection_panels_helpers.js:144
 msgid "Can be constructed only once."
-msgstr ""
+msgstr "Gali būti pastatyta tik kartą."
 
 #: gui/session/selection_panels_helpers.js:146
 #, javascript-format
 msgid "Can be constructed %(count)s more time."
 msgid_plural "Can be constructed %(count)s more times."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Gali būti statoma dar %(count)s kartą."
+msgstr[1] "Gali būti statoma dar %(count)s kartus."
+msgstr[2] "Gali būti statoma dar %(count)s kartų."
+msgstr[3] "Gali būti statoma dar %(count)s kartų."
 
 #: gui/session/selection_panels_helpers.js:153
 msgid "Could only be trained once."
 msgid_plural "Could only be trained %(limit)s times."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] " Gali būti mokoma tik kartą."
+msgstr[1] " Gali būti mokoma tik %(limit)s kartus."
+msgstr[2] " Gali būti mokoma tik %(limit)s kartų."
+msgstr[3] " Gali būti mokoma tik %(limit)s kartų."
 
 #: gui/session/selection_panels_helpers.js:157
 msgid "Can be trained only once."
-msgstr ""
+msgstr " Gali būti mokoma tik kartą."
 
 #: gui/session/selection_panels_helpers.js:159
 #, javascript-format
 msgid "Can be trained %(count)s more time."
 msgid_plural "Can be trained %(count)s more times."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Gali būti mokoma dar %(count)skartą."
+msgstr[1] "Gali būti mokoma dar %(count)s kartus."
+msgstr[2] "Gali būti mokoma dar %(count)s kartų."
+msgstr[3] "Gali būti mokoma dar %(count)s kartų."
 
 #: gui/session/selection_panels_helpers.js:166
 msgid "Could only be created once."
 msgid_plural "Could only be created %(limit)s times."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Gali būti sukurta tik kartą."
+msgstr[1] "Gali būti sukurta tik %(limit)s kartus."
+msgstr[2] "Gali būti sukurta tik %(limit)s kartų."
+msgstr[3] "Gali būti sukurta tik %(limit)s kartų."
 
 #: gui/session/selection_panels_helpers.js:170
 msgid "Can be created only once."
-msgstr ""
+msgstr " Gali būti sukurta tik kartą."
 
 #: gui/session/selection_panels_helpers.js:172
 #, javascript-format
 msgid "Can be created %(count)s more time."
 msgid_plural "Can be created %(count)s more times."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Gali būti sukurta dar %(count)skartą."
+msgstr[1] "Gali būti sukurta dar %(count)s kartus."
+msgstr[2] "Gali būti sukurta dar %(count)s kartų."
+msgstr[3] "Gali būti sukurta dar %(count)s kartų."
 
 #: gui/session/selection_panels_helpers.js:201
 #, javascript-format
@@ -1272,20 +1273,20 @@ msgstr "%(action)s kad parengti %(number)s."
 
 #: gui/session/selection_panels_helpers.js:224
 msgid "Shift-click"
-msgstr "Lyg2+spragtelėti"
+msgstr "Laikant shift spustelti"
 
 #: gui/session/selection_panels_left/garrison_panel.xml:(tooltip):16
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):20
 msgid "Health"
-msgstr ""
+msgstr "Sveikata"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):34
 msgid "Capture points"
-msgstr ""
+msgstr "Užgrobimo taškai"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):62
 msgid "Attack and Resistance"
-msgstr ""
+msgstr "Puolimas ir Atsparumas"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):77
 msgid "Experience"
@@ -1307,7 +1308,7 @@ msgstr "Vienas paspaudimas parenka, dvigubas paspaudimas fokusuoja, o dešiniojo
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
 msgid "Alpha XXV: Y——"
-msgstr ""
+msgstr "Alfa XXV: Y——"
 
 #: gui/session/top_panel/CivIcon.js:80
 #, javascript-format
@@ -1315,7 +1316,7 @@ msgid ""
 "%(civ)s\n"
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr ""
+msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: Civilizacijų Apžvalga / Statinių Medis\nPaspaudus atidaromas paskesnis."
 
 #: gui/session/top_panel/CounterManager.js:101
 #, javascript-format
@@ -1342,7 +1343,7 @@ msgstr "%(playername)s: %(statValue)s"
 #: gui/session/top_panel/CounterPopulation.js:34
 #, javascript-format
 msgid "Current gatherers: %(amount)s"
-msgstr ""
+msgstr "Dabartiniai rankiotojaii: %(amount)s"
 
 #: gui/session/top_panel/CounterPopulation.js:63
 #, javascript-format
@@ -1366,7 +1367,7 @@ msgstr "%(popCount)s/%(popLimit)s/%(popMax)s"
 #: gui/session/top_panel/CounterResource.js:32
 #, javascript-format
 msgid "Gatherers: %(amount)s"
-msgstr ""
+msgstr "Rankiotojai: %(amount)s"
 
 #: gui/session/top_panel/FollowPlayer.xml:(caption):15
 #: gui/session/top_panel/FollowPlayer.xml:(tooltip):11
@@ -1418,13 +1419,13 @@ msgstr "Parduoti %(resource)s"
 #, javascript-format
 msgctxt "buy action"
 msgid "+%(amount)s"
-msgstr ""
+msgstr "+%(amount)s"
 
 #: gui/session/trade/BarterButton.js:103
 #, javascript-format
 msgctxt "sell action"
 msgid "-%(amount)s"
-msgstr ""
+msgstr "-%(amount)s"
 
 #: gui/session/trade/BarterPanel.xml:(caption):5
 msgid "Barter"
@@ -1446,7 +1447,7 @@ msgstr "Nėra turgavietės"
 #, javascript-format
 msgctxt "trading good ratio"
 msgid "%(amount)s%%"
-msgstr ""
+msgstr "%(amount)s%%"
 
 #: gui/session/trade/TradeButtonManager.js:80
 #, javascript-format
@@ -1471,7 +1472,7 @@ msgstr "Mainyti"
 
 #: gui/session/trade/TradePanel.xml:(caption):14
 msgid "Resources:"
-msgstr ""
+msgstr "Ištekliai:"
 
 #: gui/session/trade/TraderStatusTextLand.js:15
 #, javascript-format
@@ -1608,7 +1609,7 @@ msgstr "Paruošta"
 msgid ""
 "This is the origin trade market.\n"
 "Right-click to cancel trade route."
-msgstr ""
+msgstr "Tai pradinis turgus.\nDešiniu-spaudimu atšaukite prekybos kelią."
 
 #: gui/session/unit_actions.js:617
 msgid "Origin trade market."
@@ -1624,7 +1625,7 @@ msgstr "Nustatykite pradine turgaviete spustelėję dešinį pelės mygtuką."
 
 #: gui/session/unit_actions.js:641 gui/session/unit_actions.js:1036
 msgid "This market is too close to the origin market."
-msgstr ""
+msgstr "Šis turgus yra per arti pradinio turgaus."
 
 #: gui/session/unit_actions.js:645
 msgid "Right-click to set as destination trade market."
@@ -1647,10 +1648,10 @@ msgstr "Laukiamos įplaukos: %(gain)s"
 #: gui/session/unit_actions.js:1157
 msgid "This entity cannot be controlled."
 msgid_plural "These entities cannot be controlled."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Šis dalykas negali būti valdomas."
+msgstr[1] "Šie dalykai negali būti valdomi."
+msgstr[2] "Šie dalykai negali būti valdomi."
+msgstr[3] "Šie dalykai negali būti valdomi."
 
 #: gui/session/unit_actions.js:1203
 msgid "Unload All."
@@ -1658,7 +1659,7 @@ msgstr "Visus išleisti."
 
 #: gui/session/unit_actions.js:1223
 msgid "Destroy the selected units or structures."
-msgstr ""
+msgstr "Sunaikinti pasirinktus vienetus ar statinius."
 
 #: gui/session/unit_actions.js:1225
 #, javascript-format
@@ -1671,7 +1672,7 @@ msgstr "Atšaukti dabartinį įsakymą."
 
 #: gui/session/unit_actions.js:1296
 msgid "Order the selected units to garrison in a structure or unit."
-msgstr ""
+msgstr "Įsakyti pažymėtiems vienetams kraustytis į pastatą ar vienetą."
 
 #: gui/session/unit_actions.js:1321
 msgid "Unload"
@@ -1679,7 +1680,7 @@ msgstr "Išleisti"
 
 #: gui/session/unit_actions.js:1341
 msgid "Order the selected units to repair a structure, ship, or siege engine."
-msgstr ""
+msgstr "Įsakyti pažymėtiems vienetams pataisyti pastatą ar apgulties įrenginį."
 
 #: gui/session/unit_actions.js:1362
 msgid "Focus on Rally Point."
@@ -1691,7 +1692,7 @@ msgstr "Grįžti prie darbo"
 
 #: gui/session/unit_actions.js:1420
 msgid "Order the selected units to guard a structure or unit."
-msgstr ""
+msgstr "Įsakyti pažymėtiems vienetams saugoti pastatą ar vienetą."
 
 #: gui/session/unit_actions.js:1440
 msgid "Remove guard"
@@ -1709,7 +1710,7 @@ msgstr "Patruliuoti"
 
 #: gui/session/unit_actions.js:1480
 msgid "Attack all encountered enemy units while avoiding structures."
-msgstr ""
+msgstr "Pulti visus sutiktus priešų vienetus išvengiant statinių."
 
 #: gui/session/unit_actions.js:1508
 msgid "Press to allow allies to use this dropsite"
@@ -1725,7 +1726,7 @@ msgstr "Jums draudžiama naudoti šią aikštelę."
 
 #: gui/session/unit_actions.js:1554
 msgid "Allies are allowed to use this dropsite."
-msgstr ""
+msgstr "Sąjungininkams galima naudotis šiuo pakrovimu."
 
 #: gui/session/unit_actions.js:1555
 msgid "You are allowed to use this dropsite"
