@@ -24,7 +24,7 @@
     <SelectionGroupName>template_structure_military_stable</SelectionGroupName>
     <Tooltip>Train Cavalry and research Cavalry technologies.</Tooltip>
     <VisibleClasses datatype="tokens">Village Stable</VisibleClasses>
-    <Icon>structures/pers_stable.png</Icon>
+    <Icon>structures/stable.png</Icon>
     <RequiredTechnology>phase_village</RequiredTechnology>
   </Identity>
   <Loot>
@@ -58,8 +58,8 @@
   </ProductionQueue>
   <Sound>
     <SoundGroups>
-      <select>interface/select/building/sel_cavalry_stables.xml</select>
-      <constructed>interface/complete/building/complete_cavalry_stables.xml</constructed>
+      <select>interface/select/building/sel_stable.xml</select>
+      <constructed>interface/complete/building/complete_stable.xml</constructed>
     </SoundGroups>
   </Sound>
   <Vision>

@@ -1913,7 +1913,7 @@ PETRA.HQ.prototype.buildForge = function(gameState, queues)
 };
 
 /**
- * Deals with constructing military buildings (barracks, stables…)
+ * Deals with constructing military buildings (e.g. barracks, stable).
  * They are mostly defined by Config.js. This is unreliable since changes could be done easily.
  */
 PETRA.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
@@ -1936,7 +1936,7 @@ PETRA.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
 	if (this.getAccountedPopulation(gameState) > this.Config.Military.popForBarracks1 ||
 	    this.phasing == 2 && gameState.getOwnStructures().filter(API3.Filters.byClass("Village")).length < 5)
 	{
-		// first barracks/range and stables.
+		// First barracks/range and stable.
 		if (numBarracks + numRanges == 0)
 		{
 			let template = barracksTemplate || rangeTemplate;
@@ -1955,7 +1955,7 @@ PETRA.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
 			return;
 		}
 
-		// Second range/barracks and stables
+		// Second barracks/range and stable.
 		if (numBarracks + numRanges == 1 && this.getAccountedPopulation(gameState) > this.Config.Military.popForBarracks2)
 		{
 			let template = numBarracks == 0 ? (barracksTemplate || rangeTemplate) : (rangeTemplate || barracksTemplate);
@@ -1971,7 +1971,7 @@ PETRA.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
 			return;
 		}
 
-		// Then 3rd barracks/range/stables if needed
+		// Third barracks/range and stable, if needed.
 		if (numBarracks + numRanges + numStables == 2 && this.getAccountedPopulation(gameState) > this.Config.Military.popForBarracks2 + 30)
 		{
 			let template = barracksTemplate || stableTemplate || rangeTemplate;
@@ -1989,9 +1989,9 @@ PETRA.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
 	if (this.currentPhase < 3)
 		return;
 
-	if (this.canBuild(gameState, "structures/{civ}/elephant_stables") && !gameState.getOwnEntitiesByClass("ElephantStable", true).hasEntities())
+	if (this.canBuild(gameState, "structures/{civ}/elephant_stable") && !gameState.getOwnEntitiesByClass("ElephantStable", true).hasEntities())
 	{
-		queues.militaryBuilding.addPlan(new PETRA.ConstructionPlan(gameState, "structures/{civ}/elephant_stables", { "militaryBase": true }));
+		queues.militaryBuilding.addPlan(new PETRA.ConstructionPlan(gameState, "structures/{civ}/elephant_stable", { "militaryBase": true }));
 		return;
 	}
 

@@ -77,7 +77,7 @@ const oNobaCamp = "structures/kush/camp_noba";
 const oCivicCenter = "structures/kush/civil_centre";
 const oBarracks = "structures/kush/barracks";
 const oStable = "structures/kush/stable";
-const oElephantStables = "structures/kush/elephant_stables";
+const oElephantStable = "structures/kush/elephant_stable";
 const oWallMedium = "structures/kush/wall_medium";
 const oWallGate = "structures/kush/wall_gate";
 const oWallTower = "structures/kush/wall_tower";
@@ -183,7 +183,7 @@ const clPyramid = g_Map.createTileClass();
 const clHouse = g_Map.createTileClass();
 const clForge = g_Map.createTileClass();
 const clStable = g_Map.createTileClass();
-const clElephantStables = g_Map.createTileClass();
+const clElephantStable = g_Map.createTileClass();
 const clCivicCenter = g_Map.createTileClass();
 const clBarracks = g_Map.createTileClass();
 const clBlemmyeCamp = g_Map.createTileClass();
@@ -270,10 +270,10 @@ const layoutKushCity = [
 		"painters": new TileClassPainter(clCivicCenter)
 	},
 	{
-		"templateName": oElephantStables,
+		"templateName": oElephantStable,
 		"difficulty": "Easy",
-		"constraints": avoidClasses(clElephantStables, 10),
-		"painters": new TileClassPainter(clElephantStables)
+		"constraints": avoidClasses(clElephantStable, 10),
+		"painters": new TileClassPainter(clElephantStable)
 	},
 	{
 		"templateName": oStable,
@@ -1062,7 +1062,7 @@ var areaCityBushes =
 				clFortress, 1,
 				clHouse, 1,
 				clForge, 1,
-				clElephantStables, 1,
+				clElephantStable, 1,
 				clStable, 1,
 				clCivicCenter, 1,
 				clBarracks, 1,
@@ -1078,7 +1078,7 @@ var areaCityPalms =
 		undefined,
 		[
 			new StayAreasConstraint([areaCityBushes]),
-			avoidClasses(clElephantStables, 3)
+			avoidClasses(clElephantStable, 3)
 		]);
 
 g_Map.log("Placing city palms");
