@@ -11,7 +11,7 @@
     <List datatype="tokens">Support Cavalry</List>
   </GarrisonHolder>
   <Health>
-    <Max>400</Max>
+    <Max>240</Max>
   </Health>
   <Identity>
     <GenericName>Merchantman</GenericName>
@@ -22,18 +22,8 @@
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <Loot>
-    <xp>25</xp>
-    <wood>15</wood>
+    <metal>20</xp>
   </Loot>
-  <Resistance>
-    <Entity>
-      <Damage>
-        <Hack>2</Hack>
-        <Pierce>5</Pierce>
-        <Crush>2</Crush>
-      </Damage>
-    </Entity>
-  </Resistance>
   <Trader>
     <GainMultiplier>0.75</GainMultiplier>
     <GarrisonGainMultiplier>0.2</GarrisonGainMultiplier>
