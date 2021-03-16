@@ -3,11 +3,10 @@ class CampaignSession
 	constructor(data)
 	{
 		this.run = new CampaignRun(data.run).load();
-		this.levelID = data.levelID;
 		registerPlayersFinishedHandler(this.onFinish.bind(this));
 		this.endGameData = {
-			"levelID": data.levelID,
 			"won": false,
+			"initData": data,
 			"custom": {}
 		};
 	}

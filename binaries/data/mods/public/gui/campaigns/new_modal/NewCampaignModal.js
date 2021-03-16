@@ -28,7 +28,7 @@ class NewCampaignModal
 			.setCurrent();
 
 		Engine.SwitchGuiPage(run.getMenuPath(), {
-			"filename": filename
+			"filename": run.filename
 		});
 	}
 }
