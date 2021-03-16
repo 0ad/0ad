@@ -49,6 +49,7 @@ ProductionQueue.prototype.Init = function()
 	//     "resources": { "wood": 100, ... }, // resources per unit, multiply by count to get total
 	//     "population": 1,	// population per unit, multiply by count to get total
 	//     "productionStarted": false, // true iff we have reserved population
+	//     "entityCache": [189, ...], // The entities created but not spawned yet.
 	//     "timeTotal": 15000, // msecs
 	//     "timeRemaining": 10000, // msecs
 	//   }
@@ -65,7 +66,6 @@ ProductionQueue.prototype.Init = function()
 
 	this.paused = false;
 
-	this.entityCache = [];
 	this.spawnNotified = false;
 };
 
@@ -513,16 +513,16 @@ ProductionQueue.prototype.RemoveItem = function(id)
 	if (itemIndex == -1)
 		return;
 
+	let item = this.queue[itemIndex];
+
 	// Destroy any cached entities (those which didn't spawn for some reason).
-	if (itemIndex == 0 && this.entityCache.length)
+	if (item.entityCache && item.entityCache.length)
 	{
-		for (let ent of this.entityCache)
+		for (let ent of item.entityCache)
 			Engine.DestroyEntity(ent);
 
-		this.entityCache = [];
+		item.entityCache = [];
 	}
-
-	let item = this.queue[itemIndex];
 
 	// Update entity count in the EntityLimits component.
 	if (item.unitTemplate)
@@ -648,28 +648,31 @@ ProductionQueue.prototype.OnDestroy = function()
 
 /*
  * This function creates the entities and places them in world if possible
- * and returns the number of successfully created entities.
  * (some of these entities may be garrisoned directly if autogarrison, the others are spawned).
+ * @param {Object} item - The item to spawn units for.
+ * @param {number} item.count - The number of entities to spawn.
+ * @param {string} item.player - The owner of the item.
+ * @param {string} item.unitTemplate - The template to spawn.
+ * @param {any} - item.metadata - Optionally any metadata to add to the TrainingFinished message.
+ *
+ * @return {number} - The number of successfully created entities
  */
-ProductionQueue.prototype.SpawnUnits = function(templateName, count, metadata)
+ProductionQueue.prototype.SpawnUnits = function(item)
 {
-	let cmpFootprint = Engine.QueryInterface(this.entity, IID_Footprint);
-	let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	let cmpRallyPoint = Engine.QueryInterface(this.entity, IID_RallyPoint);
-	let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
-	let cmpPlayerEntityLimits = QueryOwnerInterface(this.entity, IID_EntityLimits);
-	let cmpPlayerStatisticsTracker = QueryOwnerInterface(this.entity, IID_StatisticsTracker);
-
 	let createdEnts = [];
 	let spawnedEnts = [];
 
 	// We need entities to test spawning, but we don't want to waste resources,
 	// so only create them once and use as needed.
-	if (!this.entityCache.length)
-		for (let i = 0; i < count; ++i)
-			this.entityCache.push(Engine.AddEntity(templateName));
+	if (!item.entityCache)
+	{
+		item.entityCache = [];
+		for (let i = 0; i < item.count; ++i)
+			item.entityCache.push(Engine.AddEntity(item.unitTemplate));
+	}
 
 	let autoGarrison;
+	let cmpRallyPoint = Engine.QueryInterface(this.entity, IID_RallyPoint);
 	if (cmpRallyPoint)
 	{
 		let data = cmpRallyPoint.GetData()[0];
@@ -677,19 +680,28 @@ ProductionQueue.prototype.SpawnUnits = function(templateName, count, metadata)
 			autoGarrison = true;
 	}
 
-	for (let i = 0; i < count; ++i)
+	let cmpFootprint = Engine.QueryInterface(this.entity, IID_Footprint);
+	let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+	let positionSelf = cmpPosition && cmpPosition.GetPosition();
+
+	let cmpPlayerEntityLimits = QueryPlayerIDInterface(item.player, IID_EntityLimits);
+	let cmpPlayerStatisticsTracker = QueryPlayerIDInterface(item.player, IID_StatisticsTracker);
+	while (item.entityCache.length)
 	{
-		let ent = this.entityCache[0];
+		let ent = item.entityCache[0];
 		let cmpNewOwnership = Engine.QueryInterface(ent, IID_Ownership);
 		let garrisoned = false;
 
 		if (autoGarrison)
 		{
 			let cmpGarrisonable = Engine.QueryInterface(ent, IID_Garrisonable);
-			// Temporary owner affectation needed for GarrisonHolder checks.
-			cmpNewOwnership.SetOwnerQuiet(cmpOwnership.GetOwner());
-			garrisoned = cmpGarrisonable && cmpGarrisonable.Autogarrison(this.entity);
-			cmpNewOwnership.SetOwnerQuiet(INVALID_PLAYER);
+			if (cmpGarrisonable)
+			{
+				// Temporary owner affectation needed for GarrisonHolder checks.
+				cmpNewOwnership.SetOwnerQuiet(item.player);
+				garrisoned = cmpGarrisonable.Autogarrison(this.entity);
+				cmpNewOwnership.SetOwnerQuiet(INVALID_PLAYER);
+			}
 		}
 
 		if (!garrisoned)
@@ -701,14 +713,14 @@ ProductionQueue.prototype.SpawnUnits = function(templateName, count, metadata)
 			let cmpNewPosition = Engine.QueryInterface(ent, IID_Position);
 			cmpNewPosition.JumpTo(pos.x, pos.z);
 
-			if (cmpPosition)
-				cmpNewPosition.SetYRotation(cmpPosition.GetPosition().horizAngleTo(pos));
+			if (positionSelf)
+				cmpNewPosition.SetYRotation(positionSelf.horizAngleTo(pos));
 
 			spawnedEnts.push(ent);
 		}
 
 		// Decrement entity count in the EntityLimits component
-		// since it will be increased by EntityLimits.OnGlobalOwnershipChanged function,
+		// since it will be increased by EntityLimits.OnGlobalOwnershipChanged,
 		// i.e. we replace a 'trained' entity by 'alive' one.
 		// Must be done after spawn check so EntityLimits decrements only if unit spawns.
 		if (cmpPlayerEntityLimits)
@@ -717,41 +729,29 @@ ProductionQueue.prototype.SpawnUnits = function(templateName, count, metadata)
 			if (cmpTrainingRestrictions)
 				cmpPlayerEntityLimits.ChangeCount(cmpTrainingRestrictions.GetCategory(), -1);
 		}
-		cmpNewOwnership.SetOwner(cmpOwnership.GetOwner());
+		cmpNewOwnership.SetOwner(item.player);
 
 		if (cmpPlayerStatisticsTracker)
 			cmpPlayerStatisticsTracker.IncreaseTrainedUnitsCounter(ent);
 
-		// Play a sound, but only for the first in the batch (to avoid nasty phasing effects).
-		if (!createdEnts.length)
-			PlaySound("trained", ent);
-
-		this.entityCache.shift();
+		item.entityCache.shift();
 		createdEnts.push(ent);
 	}
 
-	if (spawnedEnts.length && !autoGarrison)
-	{
-		// If a rally point is set, walk towards it (in formation) using a suitable command based on where the
-		// rally point is placed.
-		if (cmpRallyPoint)
-		{
-			let rallyPos = cmpRallyPoint.GetPositions()[0];
-			if (rallyPos)
-			{
-				let commands = GetRallyPointCommands(cmpRallyPoint, spawnedEnts);
-				for (let com of commands)
-					ProcessCommand(cmpOwnership.GetOwner(), com);
-			}
-		}
-	}
+	if (spawnedEnts.length && !autoGarrison && cmpRallyPoint)
+		for (let com of GetRallyPointCommands(cmpRallyPoint, spawnedEnts))
+			ProcessCommand(item.player, com);
 
 	if (createdEnts.length)
+	{
+		// Play a sound, but only for the first in the batch (to avoid nasty phasing effects).
+		PlaySound("trained", createdEnts[0]);
 		Engine.PostMessage(this.entity, MT_TrainingFinished, {
 		    "entities": createdEnts,
-		    "owner": cmpOwnership.GetOwner(),
-		    "metadata": metadata
+		    "owner": item.player,
+		    "metadata": item.metadata
 		});
+	}
 
 	return createdEnts.length;
 };
@@ -833,7 +833,7 @@ ProductionQueue.prototype.ProgressTimeout = function(data, lateness)
 
 		if (item.unitTemplate)
 		{
-			let numSpawned = this.SpawnUnits(item.unitTemplate, item.count, item.metadata);
+			let numSpawned = this.SpawnUnits(item);
 			if (numSpawned)
 				cmpPlayer.UnReservePopulationSlots(item.population * numSpawned);
 			if (numSpawned == item.count)
