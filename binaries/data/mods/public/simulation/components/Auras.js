@@ -505,4 +505,15 @@ Auras.prototype.OnGlobalPlayerDefeated = function(msg)
 		this.Clean();
 };
 
+Auras.prototype.OnGarrisonedStateChanged = function(msg)
+{
+	if (!this.HasGarrisonAura())
+		return;
+
+	if (msg.holderID != INVALID_ENTITY)
+		this.ApplyGarrisonAura(msg.holderID);
+	if (msg.olderHolder != INVALID_ENTITY)
+		this.RemoveGarrisonAura(msg.oldHolder);
+};
+
 Engine.RegisterComponentType(IID_Auras, "Auras", Auras);

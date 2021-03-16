@@ -967,4 +967,12 @@ ProductionQueue.prototype.OnDisabledTemplatesChanged = function(msg)
 	this.CalculateEntitiesMap();
 };
 
+ProductionQueue.prototype.OnGarrisonedStateChanged = function(msg)
+{
+	if (msg.holderID != INVALID_ENTITY)
+		this.PauseProduction();
+	else
+		this.UnpauseProduction();
+};
+
 Engine.RegisterComponentType(IID_ProductionQueue, "ProductionQueue", ProductionQueue);

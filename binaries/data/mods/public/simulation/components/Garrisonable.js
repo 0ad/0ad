@@ -76,19 +76,12 @@ Garrisonable.prototype.Garrison = function(target, renamed = false)
 	if (cmpUnitAI)
 		cmpUnitAI.SetGarrisoned();
 
-	let cmpProductionQueue = Engine.QueryInterface(this.entity, IID_ProductionQueue);
-	if (cmpProductionQueue)
-		cmpProductionQueue.PauseProduction();
-
-	let cmpAura = Engine.QueryInterface(this.entity, IID_Auras);
-	if (cmpAura && cmpAura.HasGarrisonAura())
-		cmpAura.ApplyGarrisonAura(target);
-
 	let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 	if (cmpPosition)
 		cmpPosition.MoveOutOfWorld();
 
 	Engine.PostMessage(this.entity, MT_GarrisonedStateChanged, {
+		"oldHolder": INVALID_ENTITY,
 		"holderID": target
 	});
 
@@ -157,15 +150,8 @@ Garrisonable.prototype.UnGarrison = function(forced = false, renamed = false)
 		cmpUnitAI.UnsetGarrisoned();
 	}
 
-	let cmpProductionQueue = Engine.QueryInterface(this.entity, IID_ProductionQueue);
-	if (cmpProductionQueue)
-		cmpProductionQueue.UnpauseProduction();
-
-	let cmpAura = Engine.QueryInterface(this.entity, IID_Auras);
-	if (cmpAura && cmpAura.HasGarrisonAura())
-		cmpAura.RemoveGarrisonAura(this.holder);
-
 	Engine.PostMessage(this.entity, MT_GarrisonedStateChanged, {
+		"oldHolder": this.holder,
 		"holderID": INVALID_ENTITY
 	});
 
