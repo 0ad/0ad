@@ -13,7 +13,7 @@
     </Melee>
   </Attack>
   <Cost>
-    <BuildTime>20</BuildTime>
+    <BuildTime>15</BuildTime>
     <Resources>
       <wood>50</wood>
     </Resources>
@@ -22,7 +22,7 @@
     <Max>1</Max>
   </GarrisonHolder>
   <Health>
-    <Max>200</Max>
+    <Max>120</Max>
   </Health>
   <Identity>
     <GenericName>Fishing Boat</GenericName>
@@ -32,18 +32,8 @@
     <VisibleClasses datatype="tokens">FishingBoat</VisibleClasses>
   </Identity>
   <Loot>
-    <xp>1</xp>
     <wood>10</wood>
   </Loot>
-  <Resistance>
-    <Entity>
-      <Damage>
-        <Hack>2</Hack>
-        <Pierce>5</Pierce>
-        <Crush>2</Crush>
-      </Damage>
-    </Entity>
-  </Resistance>
   <ResourceGatherer>
     <MaxDistance>6.0</MaxDistance>
     <BaseSpeed>1.0</BaseSpeed>

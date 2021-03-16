@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-03-08 08:15+0000\n"
-"PO-Revision-Date: 2021-03-11 10:43+0000\n"
+"PO-Revision-Date: 2021-03-14 20:45+0000\n"
 "Last-Translator: V S <v32itas@slacknet.eu>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/wildfire-games/0ad/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -23,12 +23,12 @@ msgstr ""
 #: gui/common/OverlayCounterFPS.js:28
 #, javascript-format
 msgid "FPS: %(fps)4s"
-msgstr ""
+msgstr "KPS: %(fps)4s"
 
 #: gui/common/campaigns/CampaignRun.js:95
 #, javascript-format
 msgid "%(userDesc)s - %(templateName)s"
-msgstr ""
+msgstr "%(userDesc)s - %(templateName)s"
 
 #: gui/common/color.js:179
 #, javascript-format
@@ -38,16 +38,16 @@ msgstr "Nepriskirti greitieji klavišai: %(hotkeyName)s"
 #: gui/common/color.js:196
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete player names."
-msgstr ""
+msgstr "Spauskite %(hotkey)s norėdami automatiškai parinkti žaidėjų vardus."
 
 #: gui/common/color.js:198
 msgctxt "hotkey"
 msgid "Tab"
-msgstr ""
+msgstr "Tab"
 
 #: gui/common/functions_global_object.js:53
 msgid "Loading Aborted"
-msgstr ""
+msgstr "Krovimas Nutrauktas"
 
 #: gui/common/functions_utility.js:42
 msgid "Gaia"
@@ -63,70 +63,70 @@ msgstr "Versija: %(buildDate)s (%(revision)s)"
 #: gui/common/gamedescription.js:68
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdescription)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(AIdescription)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:71
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdescription)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(AIdescription)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:77
 #, javascript-format
 msgid "%(playerName)s (%(AIdescription)s)"
-msgstr ""
+msgstr "%(playerName)s (%(AIdescription)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:80
 #, javascript-format
 msgid "%(playerName)s (%(AIdescription)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(AIdescription)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:90
 #, javascript-format
 msgid "%(playerName)s (OFFLINE)"
-msgstr ""
+msgstr "%(playerName)s (ATJUNGTAS)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:93
 #, javascript-format
 msgid "%(playerName)s (OFFLINE, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (ATJUNGTAS, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:100
 #, javascript-format
 msgid "%(playerName)s (%(civ)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:103
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:107
 #, javascript-format
 msgid "%(playerName)s"
-msgstr ""
+msgstr "%(playerName)s"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:110
 #, javascript-format
 msgid "%(playerName)s (%(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(state)s)"
 
 #: gui/common/gamedescription.js:130
 msgid "Unknown Civilization"
@@ -467,7 +467,7 @@ msgstr "Jūs buvote išspirti."
 
 #: gui/common/network.js:72
 msgid "You have been banned."
-msgstr "Jūs buvote užbaninti."
+msgstr "Jūs buvote uždrausti."
 
 #: gui/common/network.js:73
 msgid "Player name in use. If you were disconnected, retry in few seconds."
@@ -604,7 +604,7 @@ msgstr "Skirmišas"
 msgid ""
 "A map with a predefined landscape and number of players. Freely select the "
 "other game settings."
-msgstr ""
+msgstr "Žemėlapis su iš anksto parinktu kraštovaizdžiu ir žaidėjų skaičiumi. Laisvai rinkitės kitus žaidimo nustatymus."
 
 #: gui/common/settings.js:183
 msgctxt "map"
@@ -615,7 +615,7 @@ msgstr "Atsitiktinis"
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
 " select the number of players and teams."
-msgstr ""
+msgstr "Sukurkite unikalų žemėlapį su skirtingu išteklių pasiskirstymu kaskart. Laisvai rinkitės žaidėjų ir komandų skaičių."
 
 #: gui/common/settings.js:192
 msgctxt "map"
@@ -624,11 +624,11 @@ msgstr "Senarijus"
 
 #: gui/common/settings.js:193
 msgid "A map with a predefined landscape and matchsettings."
-msgstr ""
+msgstr "Žemėlapis su iš anksto parinktu kraštovaizdžiu ir partijos nustatymais."
 
 #: gui/common/settings.js:271 gui/common/settings.js:294
 msgid "Unlimited"
-msgstr ""
+msgstr "Neribota"
 
 #: gui/common/settings.js:342
 msgctxt "AI name"
@@ -658,7 +658,7 @@ msgstr "Numatytas"
 #: gui/common/settings.js:403
 msgctxt "population capacity addendum"
 msgid "(world)"
-msgstr ""
+msgstr "(pasaulis)"
 
 #: gui/common/settings.js:404 gui/common/settings.js:408
 msgctxt "population capacity"
@@ -667,35 +667,35 @@ msgstr "Nežinomas"
 
 #: gui/common/settings.js:420
 msgid "Unknown Victory Condition"
-msgstr ""
+msgstr "Nežinoma Pergalės Sąlyga."
 
 #: gui/common/tooltips.js:52
 #, javascript-format
 msgid "%(amount)s %(resourceType)s"
-msgstr ""
+msgstr "%(amount)s %(resourceType)s"
 
 #: gui/common/tooltips.js:61
 #, javascript-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
-msgstr ""
+msgstr "%(previousAmounts)s and %(lastAmount)s"
 
 #: gui/common/tooltips.js:90
 #, javascript-format
 msgid "%(time)s %(second)s"
 msgid_plural "%(time)s %(second)s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(time)s %(second)s"
+msgstr[1] "%(time)s %(second)s"
+msgstr[2] "%(time)s %(second)s"
+msgstr[3] "%(time)s %(second)s"
 
 #: gui/common/tooltips.js:92 gui/common/tooltips.js:555
 #: gui/common/tooltips.js:1009
 msgid "second"
 msgid_plural "seconds"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "sekundė"
+msgstr[1] "sekundės"
+msgstr[2] "sekundės"
+msgstr[3] "sekundės"
 
 #: gui/common/tooltips.js:145 gui/common/tooltips.js:156
 msgid "Health:"
@@ -704,12 +704,12 @@ msgstr "Gyvybės:"
 #: gui/common/tooltips.js:155
 #, javascript-format
 msgid "%(healthLabel)s %(current)s / %(max)s"
-msgstr ""
+msgstr "%(healthLabel)s %(current)s / %(max)s"
 
 #: gui/common/tooltips.js:167
 #, javascript-format
 msgid "%(captureLabel)s %(current)s / %(max)s"
-msgstr ""
+msgstr "%(captureLabel)s %(current)s / %(max)s"
 
 #: gui/common/tooltips.js:168
 msgid "Capture points:"
@@ -725,29 +725,29 @@ msgstr "%(percentage)s%%"
 msgid ""
 "%(label)s\n"
 "%(details)s"
-msgstr ""
+msgstr "%(label)s\n%(details)s"
 
 #: gui/common/tooltips.js:200
 msgid "Resistance:"
-msgstr ""
+msgstr "Atsparumas:"
 
 #: gui/common/tooltips.js:211
 msgid "Damage:"
-msgstr ""
+msgstr "Žala:"
 
 #: gui/common/tooltips.js:214 gui/common/tooltips.js:234
 #, javascript-format
 msgid "%(damage)s %(damageType)s %(resistancePercentage)s"
-msgstr ""
+msgstr "%(damage)s %(damageType)s %(resistancePercentage)s"
 
 #: gui/common/tooltips.js:219 gui/common/tooltips.js:239
 #, javascript-format
 msgid "(%(resistancePercentage)s)"
-msgstr ""
+msgstr "(%(resistancePercentage)s)"
 
 #: gui/common/tooltips.js:232
 msgid "Capture:"
-msgstr ""
+msgstr "Užgrobimas:"
 
 #: gui/common/tooltips.js:236 gui/common/tooltips.js:376
 msgctxt "damage type"
@@ -756,38 +756,38 @@ msgstr "Užgrobti"
 
 #: gui/common/tooltips.js:251
 msgid "Status Effects:"
-msgstr ""
+msgstr "Būsenos Efektai:"
 
 #: gui/common/tooltips.js:256
 #, javascript-format
 msgid "Blocks %(name)s"
-msgstr ""
+msgstr "Blokuoja %(name)s"
 
 #: gui/common/tooltips.js:261 gui/common/tooltips.js:269
 #: gui/common/tooltips.js:276
 #, javascript-format
 msgid "%(name)s %(details)s"
-msgstr ""
+msgstr "%(name)s %(details)s"
 
 #: gui/common/tooltips.js:263
 #, javascript-format
 msgid "Duration reduction: %(durationReduction)s%%"
-msgstr ""
+msgstr "Trukmės sumažinimas: %(durationReduction)s %%"
 
 #: gui/common/tooltips.js:271
 #, javascript-format
 msgid "Blocks: %(blockPercentage)s%%"
-msgstr ""
+msgstr "Blokuoja: %(blockPercentage)s%%"
 
 #: gui/common/tooltips.js:278
 #, javascript-format
 msgid ""
 "Blocks: %(blockPercentage)s%%, Duration reduction: %(durationReduction)s%%"
-msgstr ""
+msgstr "Blokuoja: %(blockPercentage)s%%, Trukmės sumažinimas: %(durationReduction)s%%"
 
 #: gui/common/tooltips.js:294
 msgid "Garrison to fire arrows"
-msgstr ""
+msgstr "Šaudyti strėlėms reikalinga sargyba."
 
 #: gui/common/tooltips.js:297 gui/common/tooltips.js:1007
 msgid "Interval:"
@@ -801,23 +801,23 @@ msgstr "Dažnumas:"
 #, javascript-format
 msgid "%(projectileCount)s %(projectileName)s"
 msgid_plural "%(projectileCount)s %(projectileName)s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(projectileCount)s %(projectileName)s"
+msgstr[1] "%(projectileCount)s %(projectileName)s"
+msgstr[2] "%(projectileCount)s %(projectileName)s"
+msgstr[3] "%(projectileCount)s %(projectileName)s"
 
 #: gui/common/tooltips.js:304
 msgid "arrow"
 msgid_plural "arrows"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "strėlė"
+msgstr[1] "strėlės"
+msgstr[2] "strėlės"
+msgstr[3] "strėlės"
 
 #: gui/common/tooltips.js:307
 #, javascript-format
 msgid "%(projectileString)s / %(attackRateString)s"
-msgstr ""
+msgstr "%(projectileString)s / %(attackRateString)s"
 
 #. Translation: For example: Range: 2 to 10 (+2) meters
 #: gui/common/tooltips.js:327
@@ -825,74 +825,74 @@ msgstr ""
 msgid ""
 "%(rangeLabel)s %(minRange)s to %(maxRange)s (%(relativeRange)s) "
 "%(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s %(minRange)s to %(maxRange)s (%(relativeRange)s) %(rangeUnit)s"
 
 #. Translation: For example: Range: 10 (+2) meters
 #: gui/common/tooltips.js:329
 #, javascript-format
 msgid "%(rangeLabel)s %(maxRange)s (%(relativeRange)s) %(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s %(maxRange)s (%(relativeRange)s) %(rangeUnit)s"
 
 #. Translation: For example: Range: 2 to 10 meters
 #: gui/common/tooltips.js:333
 #, javascript-format
 msgid "%(rangeLabel)s %(minRange)s to %(maxRange)s %(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s %(minRange)s to %(maxRange)s %(rangeUnit)s"
 
 #. Translation: For example: Range: 10 meters
 #: gui/common/tooltips.js:335
 #, javascript-format
 msgid "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
 
 #: gui/common/tooltips.js:345 gui/common/tooltips.js:1002
 msgid "Range:"
-msgstr "Atstumas:"
+msgstr "Nuotolis:"
 
 #: gui/common/tooltips.js:348
 #, javascript-format
 msgid "+%(number)s"
-msgstr ""
+msgstr "+%(number)s"
 
 #. Translation: For example "0.5 to 1 meters", "1 (+1) meters" or "1 to 2 (+3)
 #. meters"
 #: gui/common/tooltips.js:352
 msgid "meters"
-msgstr ""
+msgstr "metrų"
 
 #: gui/common/tooltips.js:353 gui/common/tooltips.js:1004
 #: gui/common/tooltips.js:1034
 msgid "meter"
 msgid_plural "meters"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "metras"
+msgstr[1] "metrai"
+msgstr[2] "metrai"
+msgstr[3] "metrai"
 
 #: gui/common/tooltips.js:363
 #, javascript-format
 msgid "%(damage)s %(damageType)s"
-msgstr ""
+msgstr "%(damage)s %(damageType)s"
 
 #: gui/common/tooltips.js:374
 #, javascript-format
 msgid "%(amount)s %(name)s"
-msgstr ""
+msgstr "%(amount)s %(name)s"
 
 #: gui/common/tooltips.js:382
 #, javascript-format
 msgid "%(splashShape)s Splash"
-msgstr ""
+msgstr "%(splashShape)s Taška"
 
 #: gui/common/tooltips.js:385
 #, javascript-format
 msgid "%(label)s: %(effects)s"
-msgstr ""
+msgstr "%(label)s: %(effects)s"
 
 #: gui/common/tooltips.js:391
 #, javascript-format
 msgid "Friendly Fire: %(enabled)s"
-msgstr ""
+msgstr "Draugų Apšaudymas: %(enabled)s"
 
 #: gui/common/tooltips.js:392 gui/hotkeys/HotkeysPage.js:153
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
@@ -915,18 +915,18 @@ msgstr "Ne"
 #: gui/common/tooltips.js:403
 #, javascript-format
 msgid "gives %(name)s"
-msgstr ""
+msgstr "duoda %(name)s"
 
 #: gui/common/tooltips.js:436
 #, javascript-format
 msgid "%(attackType)s"
-msgstr ""
+msgstr "%(attackType)s"
 
 #: gui/common/tooltips.js:457
 #, javascript-format
 msgid ""
 "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s%(splash)s"
-msgstr ""
+msgstr "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s%(splash)s"
 
 #: gui/common/tooltips.js:468
 msgid "Attack:"
@@ -935,55 +935,55 @@ msgstr "Pulti:"
 #: gui/common/tooltips.js:495
 #, javascript-format
 msgid "%(statusName)s: %(statusInfo)s %(stackability)s"
-msgstr ""
+msgstr "%(statusName)s: %(statusInfo)s %(stackability)s"
 
 #: gui/common/tooltips.js:500
 #, javascript-format
 msgid "%(statusName)s: %(statusInfo)s"
-msgstr ""
+msgstr "%(statusName)s: %(statusInfo)s"
 
 #: gui/common/tooltips.js:511
 #, javascript-format
 msgid "%(durName)s: %(duration)s"
-msgstr ""
+msgstr "%(durName)s: %(duration)s"
 
 #: gui/common/tooltips.js:512
 msgid "Duration"
-msgstr ""
+msgstr "Trukmė"
 
 #: gui/common/tooltips.js:526
 msgctxt "status effect stackability"
 msgid "(extends)"
-msgstr ""
+msgstr "(pratęsia)"
 
 #: gui/common/tooltips.js:528
 msgctxt "status effect stackability"
 msgid "(replaces)"
-msgstr ""
+msgstr "(pakeičia)"
 
 #: gui/common/tooltips.js:530
 msgctxt "status effect stackability"
 msgid "(stacks)"
-msgstr ""
+msgstr "(susideda)"
 
 #: gui/common/tooltips.js:532
 #, javascript-format
 msgid "%(stackability)s"
-msgstr ""
+msgstr "%(stackability)s"
 
 #: gui/common/tooltips.js:543
 #, javascript-format
 msgid "%(label)s: %(garrisonLimit)s"
-msgstr ""
+msgstr "%(label)s: %(garrisonLimit)s"
 
 #: gui/common/tooltips.js:544
 msgid "Garrison Limit"
-msgstr ""
+msgstr "Sargybos Limitas"
 
 #: gui/common/tooltips.js:551
 #, javascript-format
 msgid "%(healRateLabel)s %(value)s %(health)s / %(second)s"
-msgstr ""
+msgstr "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 
 #: gui/common/tooltips.js:552 gui/common/tooltips.js:997
 msgid "Heal:"
@@ -991,31 +991,31 @@ msgstr "Gydyti:"
 
 #: gui/common/tooltips.js:554 gui/common/tooltips.js:999
 msgid "Health"
-msgstr ""
+msgstr "Sveikata"
 
 #: gui/common/tooltips.js:568
 #, javascript-format
 msgid "%(label)s: %(garrisonSize)s %(extraSize)s"
-msgstr ""
+msgstr "%(label)s: %(garrisonSize)s %(extraSize)s"
 
 #: gui/common/tooltips.js:569
 msgid "Garrison Size"
-msgstr ""
+msgstr "Sargybos Dydis"
 
 #: gui/common/tooltips.js:572
 msgctxt "nested garrison"
 msgid "+ "
-msgstr ""
+msgstr "+ "
 
 #: gui/common/tooltips.js:596 gui/common/tooltips.js:601
 #: gui/common/tooltips.js:606
 #, javascript-format
 msgid "%(label)s: %(value)s"
-msgstr ""
+msgstr "%(label)s: %(value)s"
 
 #: gui/common/tooltips.js:597
 msgid "Projectile Limit"
-msgstr ""
+msgstr "Projektilių Limitas"
 
 #: gui/common/tooltips.js:602
 msgctxt "projectiles"
@@ -1025,75 +1025,75 @@ msgstr "Numatytas"
 #: gui/common/tooltips.js:607
 msgctxt "projectiles"
 msgid "Per Unit"
-msgstr ""
+msgstr "Vienetui"
 
 #: gui/common/tooltips.js:617
 msgid "Number of repairers:"
-msgstr ""
+msgstr "Taisytoju skaičius:"
 
 #: gui/common/tooltips.js:623
 msgid "Remaining repair time:"
-msgstr ""
+msgstr "Likęs taisymo laikas:"
 
 #: gui/common/tooltips.js:627
 #, javascript-format
 msgid "Add another worker to speed up the repairs by %(second)s second."
 msgid_plural ""
 "Add another worker to speed up the repairs by %(second)s seconds."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Pridėkite dar vieną darbininką taisymo pagreitinimui %(second)s sekunde."
+msgstr[1] "Pridėkite dar vieną darbininką taisymo pagreitinimui %(second)s sekundėmis."
+msgstr[2] "Pridėkite dar vieną darbininką taisymo pagreitinimui %(second)s sekundžių."
+msgstr[3] "Pridėkite dar vieną darbininką taisymo pagreitinimui %(second)s sekundžių."
 
 #: gui/common/tooltips.js:639
 #, javascript-format
 msgid "Add a worker to finish the repairs in %(second)s second."
 msgid_plural "Add a worker to finish the repairs in %(second)s seconds."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Pridėkite darbuotoją, kad būtų sutaisyta per %(second)ssekundę."
+msgstr[1] "Pridėkite darbuotoją, kad būtų sutaisyta per%(second)ssekundes."
+msgstr[2] "Pridėkite darbuotoją, kad būtų sutaisyta per %(second)s sekundžių."
+msgstr[3] "Pridėkite darbuotoją, kad būtų sutaisyta per %(second)s sekundes"
 
 #: gui/common/tooltips.js:651
 msgid "Number of builders:"
-msgstr ""
+msgstr "Statytojų skaičius:"
 
 #: gui/common/tooltips.js:657
 msgid "Remaining build time:"
-msgstr ""
+msgstr "Likęs statymo laikas:"
 
 #: gui/common/tooltips.js:661
 #, javascript-format
 msgid "Add another worker to speed up the construction by %(second)s second."
 msgid_plural ""
 "Add another worker to speed up the construction by %(second)s seconds."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Pridėkite papildomą darbininką statymo pagreitinimui %(second)ssekunde."
+msgstr[1] "Pridėkite papildomą darbininką statymo pagreitinimui %(second)s sekundėmis."
+msgstr[2] "Pridėkite papildomą darbininką statymo pagreitinimui %(second)s sekundžių"
+msgstr[3] "Pridėkite papildomą darbininką statymo pagreitinimui %(second)s sekundžių"
 
 #: gui/common/tooltips.js:673
 #, javascript-format
 msgid "Add a worker to finish the construction in %(second)s second."
 msgid_plural "Add a worker to finish the construction in %(second)s seconds."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Pridėkite darbininką užbaigti statymui po %(second)ssekundės."
+msgstr[1] "Pridėkite darbininką užbaigti statymui po %(second)s sekundžių."
+msgstr[2] "Pridėkite darbininką užbaigti statymui po %(second)s sekundžių."
+msgstr[3] "Pridėkite darbininką užbaigti statymui po %(second)s sekundžių"
 
 #: gui/common/tooltips.js:711 gui/common/tooltips.js:950
 #, javascript-format
 msgid "%(component)s %(cost)s"
-msgstr ""
+msgstr "%(component)s %(cost)s"
 
 #: gui/common/tooltips.js:744
 msgid "Gather Rates:"
-msgstr ""
+msgstr "Gavybos Greitis:"
 
 #: gui/common/tooltips.js:747 gui/common/tooltips.js:820
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
-msgstr ""
+msgstr "%(resourceIcon)s %(rate)s"
 
 #. Translation: Label in tooltip showing the resource type and quantity of a
 #. given resource
@@ -1101,43 +1101,43 @@ msgstr ""
 #: gui/common/tooltips.js:765
 #, javascript-format
 msgid "%(label)s %(component)s %(amount)s"
-msgstr ""
+msgstr "%(label)s %(component)s %(amount)s"
 
 #: gui/common/tooltips.js:766
 msgid "Resource Supply:"
-msgstr ""
+msgstr "Išteklio Atsargos:"
 
 #. Translation: Marks that a resource supply entity has an unending, infinite,
 #. supply of its
 #. resource.
 #: gui/common/tooltips.js:769 gui/summary/summary.js:120
 msgid "∞"
-msgstr ""
+msgstr "∞"
 
 #: gui/common/tooltips.js:795
 msgid "Reward:"
-msgstr ""
+msgstr "Apdovanojimas:"
 
 #: gui/common/tooltips.js:798
 #, javascript-format
 msgid "%(resourceIcon)s %(reward)s"
-msgstr ""
+msgstr "%(resourceIcon)s %(reward)s"
 
 #: gui/common/tooltips.js:816
 msgid "Resource Trickle:"
-msgstr ""
+msgstr "Išteklių Įplauka:"
 
 #: gui/common/tooltips.js:817
 #, javascript-format
 msgid "%(resources)s / %(time)s"
-msgstr ""
+msgstr "%(resources)s / %(time)s"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
 #: gui/common/tooltips.js:869
 #, javascript-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
-msgstr ""
+msgstr "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
 
 #: gui/common/tooltips.js:898
 #, javascript-format
@@ -1154,21 +1154,21 @@ msgstr "Bokšteliai:  %(costs)s"
 #: gui/common/tooltips.js:907
 #, javascript-format
 msgid "%(label)s %(costs)s"
-msgstr ""
+msgstr "%(label)s %(costs)s"
 
 #: gui/common/tooltips.js:908
 msgid "Cost:"
-msgstr ""
+msgstr "Kaina:"
 
 #: gui/common/tooltips.js:921
 #, javascript-format
 msgid "Requires %(technology)s"
-msgstr ""
+msgstr "Reikalauja %(technology)s"
 
 #: gui/common/tooltips.js:934
 #, javascript-format
 msgid "%(label)s %(bonus)s"
-msgstr ""
+msgstr "%(label)s %(bonus)s"
 
 #: gui/common/tooltips.js:935
 msgid "Population Bonus:"
@@ -1181,7 +1181,7 @@ msgstr "Nepakanka resursų:"
 #: gui/common/tooltips.js:971
 #, javascript-format
 msgid "%(label)s %(speeds)s"
-msgstr ""
+msgstr "%(label)s %(speeds)s"
 
 #: gui/common/tooltips.js:972
 msgid "Speed:"
@@ -1190,7 +1190,7 @@ msgstr "Greitis:"
 #: gui/common/tooltips.js:974 gui/common/tooltips.js:979
 #, javascript-format
 msgid "%(speed)s %(movementType)s"
-msgstr ""
+msgstr "%(speed)s %(movementType)s"
 
 #: gui/common/tooltips.js:976
 msgid "Walk"
@@ -1205,37 +1205,37 @@ msgstr "Bėgti"
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(label)s %(val)s %(unit)s"
+msgstr[1] "%(label)s %(val)s %(unit)s"
+msgstr[2] "%(label)s %(val)s %(unit)s"
+msgstr[3] "%(label)s %(val)s %(unit)s"
 
 #: gui/common/tooltips.js:1023
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
-msgstr ""
+msgstr "%(auralabel)s %(aurainfo)s"
 
 #: gui/common/tooltips.js:1024
 #, javascript-format
 msgid "%(auraname)s:"
-msgstr ""
+msgstr "%(auraname)s:"
 
 #: gui/common/tooltips.js:1032
 msgctxt "aura"
 msgid "Range:"
-msgstr ""
+msgstr "Nuotolis:"
 
 #: gui/common/tooltips.js:1049
 #, javascript-format
 msgid "%(specificName)s (%(genericName)s)"
-msgstr ""
+msgstr "%(specificName)s (%(genericName)s)"
 
 #. Translation: Example: "Epibátēs Athēnaîos [font="sans-bold-16"](Athenian
 #. Marine)[/font]"
 #: gui/common/tooltips.js:1062
 #, javascript-format
 msgid "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
-msgstr ""
+msgstr "%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"
 
 #: gui/common/tooltips.js:1084
 msgid "Classes:"
@@ -1247,7 +1247,7 @@ msgstr "Klasės:"
 #: gui/common/tooltips.js:1111
 #, javascript-format
 msgid "%(component)s %(loot)s"
-msgstr ""
+msgstr "%(component)s %(loot)s"
 
 #: gui/common/tooltips.js:1121
 msgid "Loot:"
@@ -1256,66 +1256,66 @@ msgstr "Grobis:"
 #: gui/common/tooltips.js:1131
 #, javascript-format
 msgid "%(label)s %(icons)s"
-msgstr ""
+msgstr "%(label)s %(icons)s"
 
 #: gui/common/tooltips.js:1132
 msgid "Dropsite for:"
-msgstr ""
+msgstr "Pakrovimas:"
 
 #. Translation: Appears in a tooltip to indicate that right-clicking the
 #. corresponding GUI
 #. element will open the Template Details GUI page.
 #: gui/common/tooltips.js:1140
 msgid "Right-click to view more information."
-msgstr ""
+msgstr "Spauskite-Dešiniu dėl daugiau informacijos."
 
 #. Translation: Appears in a tooltip to indicate that clicking the
 #. corresponding GUI element
 #. will open the Template Details GUI page.
 #: gui/common/tooltips.js:1146
 msgid "Click to view more information."
-msgstr ""
+msgstr "Spauskite dėl daugiau informacijos."
 
 #: gui/credits/credits.js:83
 #, javascript-format
 msgid "%(nick)s — %(name)s"
-msgstr ""
+msgstr "%(nick)s — %(name)s"
 
 #: gui/credits/credits.xml:(caption):19
 msgid "0 A.D. Credits"
-msgstr ""
+msgstr "0 A.D. Nuopelnai"
 
 #: gui/credits/texts/art.jsonContent[0].Title
 msgid "Art lead"
-msgstr ""
+msgstr "Meno vadovai"
 
 #: gui/credits/texts/art.jsonContent[1].Title
 msgid "2D Art"
-msgstr ""
+msgstr "2D Menas"
 
 #: gui/credits/texts/art.jsonContent[2].Title
 msgid "3D Art"
-msgstr ""
+msgstr "3D Menas"
 
 #: gui/credits/texts/art.jsonTitle
 msgid "Art"
-msgstr ""
+msgstr "Menas"
 
 #: gui/credits/texts/audio.jsonContent[0].Content[0].Subtitle
 msgid "Sound Manager"
-msgstr ""
+msgstr "Garso Vadybininkas"
 
 #: gui/credits/texts/audio.jsonContent[0].Content[1].Subtitle
 msgid "Lead Composer"
-msgstr ""
+msgstr "Pagrindinis Kompozitorius"
 
 #: gui/credits/texts/audio.jsonContent[0].Title
 msgid "Audio managers"
-msgstr ""
+msgstr "Audio vadybininkai"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[10].Subtitle
 msgid "Viola, violin"
-msgstr ""
+msgstr "Viola, smuikas"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[1].Subtitle
 msgid "Additional music, percussion, djembe, sampling"
@@ -1323,11 +1323,11 @@ msgstr ""
 
 #: gui/credits/texts/audio.jsonContent[1].Content[2].Subtitle
 msgid "Additional music"
-msgstr ""
+msgstr "Papildoma muzika"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[3].Subtitle
 msgid "Flute"
-msgstr ""
+msgstr "Fleita"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[4].Subtitle
 msgid "Djembe"
@@ -1343,53 +1343,53 @@ msgstr ""
 
 #: gui/credits/texts/audio.jsonContent[1].Content[7].Subtitle
 msgid "Trumpet"
-msgstr ""
+msgstr "Trimitas"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[8].Subtitle
 msgid "Celtic harp"
-msgstr ""
+msgstr "Keltiška arfa"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[9].Subtitle
 msgid "Tin whistles"
-msgstr ""
+msgstr "Alaviniai švilpukai"
 
 #: gui/credits/texts/audio.jsonContent[1].Title
 msgid "Music"
-msgstr ""
+msgstr "Muzika"
 
 #: gui/credits/texts/audio.jsonContent[2].Title
 #: gui/options/options.json[2].label
 msgid "Sound"
-msgstr ""
+msgstr "Garsas"
 
 #: gui/credits/texts/audio.jsonContent[3].Content[0].Subtitle
 msgid "Greek"
-msgstr ""
+msgstr "Graikų"
 
 #: gui/credits/texts/audio.jsonContent[3].Content[1].Subtitle
 msgid "Latin"
-msgstr ""
+msgstr "Lotynų"
 
 #: gui/credits/texts/audio.jsonContent[3].Content[2].Subtitle
 msgid "Napatan"
-msgstr ""
+msgstr "Napatanų"
 
 #: gui/credits/texts/audio.jsonContent[3].Content[3].Subtitle
 msgid "Persian"
-msgstr ""
+msgstr "Persų"
 
 #: gui/credits/texts/audio.jsonContent[3].Title
 msgid "Voices"
-msgstr ""
+msgstr "Balsai"
 
 #: gui/credits/texts/audio.jsonTitle
 msgid "Audio"
-msgstr ""
+msgstr "Audio"
 
 #: gui/credits/texts/balancing.jsonContent[0].Subtitle
 #: gui/credits/texts/history.jsonContent[0].Subtitle
 msgid "Head"
-msgstr ""
+msgstr "Vadovaujantis"
 
 #: gui/credits/texts/balancing.jsonTitle
 msgid "Balancing"
@@ -1397,7 +1397,7 @@ msgstr ""
 
 #: gui/credits/texts/community.jsonTitle
 msgid "Community and Management"
-msgstr ""
+msgstr "Bendruomenė ir Vadyba"
 
 #: gui/credits/texts/donators.jsonContent[0].Title
 msgid "Pledgie Drive 1"
@@ -1411,75 +1411,75 @@ msgstr ""
 msgid ""
 "Indiegogo 2013 campaign\n"
 "More than 1000 donators (!), including:"
-msgstr ""
+msgstr "Indegogo 2013 kampanija\nDaugiau nei 1000 rėmėjų (!), įskaitant:"
 
 #: gui/credits/texts/donators.jsonTitle
 msgid "Donors"
-msgstr ""
+msgstr "Rėmėjai"
 
 #: gui/credits/texts/history.jsonTitle
 msgid "History References"
-msgstr ""
+msgstr "Istoriniai Šaltiniai"
 
 #: gui/credits/texts/maps.jsonContent[0].Title
 msgid "Map Making"
-msgstr ""
+msgstr "Žemėlapių kūrimas"
 
 #: gui/credits/texts/maps.jsonContent[1].Title
 msgid "Random Map Scripts"
-msgstr ""
+msgstr "Atsitiktinių Žemėlapių Skriptai"
 
 #: gui/credits/texts/maps.jsonTitle
 msgid "Maps"
-msgstr ""
+msgstr "Žemėlapiai"
 
 #: gui/credits/texts/programming.jsonContent[0].Title
 msgid "Programming managers"
-msgstr ""
+msgstr "Programavimo Vadybininkai"
 
 #: gui/credits/texts/programming.jsonContent[1].Subtitle
 msgid "Special thanks to"
-msgstr ""
+msgstr "Speciali padėka"
 
 #: gui/credits/texts/programming.jsonTitle
 msgid "Programming"
-msgstr ""
+msgstr "Programavimas"
 
 #: gui/credits/texts/special.jsonContent[0].Title
 msgid "In Memoriam"
-msgstr ""
+msgstr "In Memoriam"
 
 #: gui/credits/texts/special.jsonContent[1].Content[0].Subtitle
 msgid "0 A.D. Founder"
-msgstr ""
+msgstr "0 A.D. Įkūrėjas"
 
 #: gui/credits/texts/special.jsonContent[1].Content[1].Subtitle
 msgid "Project Leaders"
-msgstr ""
+msgstr "Projekto Vadovai"
 
 #: gui/credits/texts/special.jsonContent[1].Content[2].Subtitle
 msgid "Co-Lead Designers"
-msgstr ""
+msgstr "Co-Lead Dizaineriai"
 
 #: gui/credits/texts/special.jsonContent[1].Title
 msgid "Special thanks to:"
-msgstr ""
+msgstr "Speciali padėka:"
 
 #: gui/credits/texts/special.jsonContent[2].Title
 msgid "And thanks to the entire community for making 0 A.D. possible."
-msgstr ""
+msgstr "Taip pat ačių visai bendruomenei, kurios dėka 0 A.D. tapo įmanomu."
 
 #: gui/credits/texts/special.jsonContent[3].Title
 msgid "No historians were harmed during the development of this project."
-msgstr ""
+msgstr "Projekto vystyme nebuvo sužeistas nei vienas istorikas."
 
 #: gui/credits/texts/special.jsonTitle
 msgid "Special Credits"
-msgstr ""
+msgstr "Specialūs Nuopelnai"
 
 #: gui/credits/texts/translators.jsonTitle
 msgid "Translators"
-msgstr ""
+msgstr "Vertėjai"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Tips.txt:1
 msgid ""
@@ -1488,42 +1488,42 @@ msgid ""
 "game. Beginners are advised to start by playing against a lower level AI "
 "(Sandbox or Very Easy). Change the AI level by clicking the gear icon next "
 "to the player you want to modify in the selection panel above."
-msgstr ""
+msgstr "Nors ir pagrįstai lengvas patyrusiam žaidėjui, numatytasis DI lygis yra keliantis iššūkį naujiems žaidėjams kurie dar neperprato visų pagrindinių žaidimo mechanikų. Pradedantiesiams patariama pradėti su mažesnio lygio DI (Smėlio Dėžės ar Labai Lengvo). Pakeiskite DI lygį spaudžiant ant krumpliaračio ikonos šalia žaidėjo vardo, viršutinėje panelėje."
 
 #: gui/hotkeys/HotkeyMetadata.js:21 gui/hotkeys/HotkeyMetadata.js:22
 msgid "Other Hotkeys"
-msgstr ""
+msgstr "Kitos Kombinacijos"
 
 #: gui/hotkeys/HotkeyPicker.js:57
 #, javascript-format
 msgid "#%i"
-msgstr ""
+msgstr "#%i"
 
 #: gui/hotkeys/HotkeyPicker.js:73
 msgid " (hold to register)"
-msgstr ""
+msgstr "(registravimui laikykite)"
 
 #: gui/hotkeys/HotkeyPicker.js:74 gui/hotkeys/HotkeyPicker.js:105
 msgid "Enter new Hotkey, hold to register."
-msgstr ""
+msgstr "Įveskite naują klavišą, registravimui laikykite."
 
 #: gui/hotkeys/HotkeyPicker.js:116
 msgid "May conflict with: "
-msgstr ""
+msgstr "Gali konfliktuoti su:"
 
 #: gui/hotkeys/HotkeysPage.js:82
 msgid "All Hotkeys"
-msgstr ""
+msgstr "Visos Kombinacijos"
 
 #: gui/hotkeys/HotkeysPage.js:118
 msgid "No tooltip available"
-msgstr ""
+msgstr "Nėra patarimo."
 
 #: gui/hotkeys/HotkeysPage.js:151
 msgid ""
 "Reset all hotkeys to default values?\n"
 "WARNING: this cannot be reversed."
-msgstr ""
+msgstr "Gražinti visas kombinacijas į numatytasias?\nĮSPĖJIMAS: to negalima atstatyti."
 
 #: gui/hotkeys/HotkeysPage.js:152 gui/pregame/MainMenuItems.js:236
 #: gui/pregame/MainMenuItems.js:260
@@ -1532,7 +1532,7 @@ msgstr "Patvirtinimas"
 
 #: gui/hotkeys/hotkeys.xml:(caption):18
 msgid "Category:"
-msgstr ""
+msgstr "Kategorija."
 
 #: gui/hotkeys/hotkeys.xml:(caption):24
 msgid "Filter:"
@@ -1541,21 +1541,21 @@ msgstr "Filtras:"
 #: gui/hotkeys/hotkeys.xml:(caption):48 gui/hotkeys/hotkeys.xml:(caption):101
 #: gui/options/options.xml:(caption):42
 msgid "Reset"
-msgstr ""
+msgstr "Atstatyti"
 
 #: gui/hotkeys/hotkeys.xml:(caption):72
 msgid "Hotkey"
-msgstr ""
+msgstr "Kombinacija"
 
 #: gui/hotkeys/hotkeys.xml:(caption):76
 msgid "Hotkey Description"
-msgstr ""
+msgstr "Kombinacijos Apibūdinimas"
 
 #: gui/hotkeys/hotkeys.xml:(caption):80
 msgid ""
 "Click on any mapping to modify it.\\n You may have up to 4 different "
 "hotkeys."
-msgstr ""
+msgstr "Spauskite ant betkurio sužymėjimo, jam pakeisti.\\n Jūs galite turėti iki 4 skirtingų kombinacijų."
 
 #: gui/hotkeys/hotkeys.xml:(caption):106 gui/locale/locale.xml:(caption):46
 msgid "Accept"
@@ -1575,55 +1575,55 @@ msgstr "Vardas"
 #: gui/hotkeys/hotkeys.xml:(heading):43
 msgctxt "hotkey list"
 msgid "Mapping"
-msgstr ""
+msgstr "Sužymėjimas"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):49 gui/hotkeys/hotkeys.xml:(tooltip):102
 #: gui/options/options.xml:(tooltip):43
 msgid "Resets user settings to their game default"
-msgstr ""
+msgstr "Atstato naudotojo nuostatas į žaidimo numatytąsias."
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):54 gui/options/options.xml:(tooltip):55
 msgid "Saves changes"
-msgstr ""
+msgstr "Išsaugoti pakeitimus"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):59
 msgid "Unsaved changes will be lost"
-msgstr ""
+msgstr "Neišsaugoti pakeitimai bus prarasti"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):90
 msgid "Click to set the hotkey"
-msgstr ""
+msgstr "Spauskite nustatyti kombinacijai"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):94
 msgid "Click to delete the hotkey"
-msgstr ""
+msgstr "Spauskite ištrinti kombinacijai"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):107
 msgid "Change the hotkeys and close"
-msgstr ""
+msgstr "Pakeisti kombinacijas ir uždaryti"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):112
 msgid "The hotkeys will not be modified"
-msgstr ""
+msgstr "Kombinacijos nebus modifikuotos"
 
 #: gui/loadgame/SavegameDeleter.js:34
 #, javascript-format
 msgid "Delete the selected savegame using %(hotkey)s."
-msgstr ""
+msgstr "Ištrinkite pasirinktą išsaugojimą naudojant %(hotkey)s."
 
 #: gui/loadgame/SavegameDeleter.js:39 gui/replaymenu/replay_menu.js:203
 #, javascript-format
 msgid "Hold %(hotkey)s to skip the confirmation dialog while deleting."
-msgstr ""
+msgstr "Laikykite %(hotkey)s trynimo patvirtinimui praleisti."
 
 #: gui/loadgame/SavegameDeleter.js:52 gui/loadgame/SavegameWriter.js:45
 #, javascript-format
 msgid "\"%(label)s\""
-msgstr ""
+msgstr "\"%(label)s\""
 
 #: gui/loadgame/SavegameDeleter.js:53
 msgid "Saved game will be permanently deleted, are you sure?"
-msgstr ""
+msgstr "išsaugotas žaidimas bus galutinai ištrintas, ar Jūs įsitikinę?"
 
 #: gui/loadgame/SavegameDeleter.js:54
 msgid "DELETE"
@@ -1632,40 +1632,40 @@ msgstr "PAŠALINTI"
 #: gui/loadgame/SavegameDetails.js:40
 #, javascript-format
 msgid "Mods: %(mods)s"
-msgstr ""
+msgstr "Modifikacijos: %(mods)s"
 
 #: gui/loadgame/SavegameList.js:181
 msgid "yyyy-MM-dd HH:mm:ss"
-msgstr ""
+msgstr "yyyy-MM-dd HH:mm:ss"
 
 #: gui/loadgame/SavegameList.js:192
 #, javascript-format
 msgid "%(dateString)s %(map)s - %(description)s"
-msgstr ""
+msgstr "%(dateString)s %(map)s - %(description)s"
 
 #: gui/loadgame/SavegameList.js:193
 #, javascript-format
 msgid "%(dateString)s %(map)s"
-msgstr ""
+msgstr "%(dateString)s %(map)s"
 
 #: gui/loadgame/SavegameLoader.js:9
 msgid "Load"
-msgstr ""
+msgstr "Krauti"
 
 #: gui/loadgame/SavegameLoader.js:39
 #, javascript-format
 msgid ""
 "This savegame needs 0 A.D. version %(requiredVersion)s, while you are "
 "running version %(currentVersion)s."
-msgstr ""
+msgstr "Šis išsaugojimas reikalauja %(requiredVersion)s 0 A.D versijos, jūs naudojate %(currentVersion)s."
 
 #: gui/loadgame/SavegameLoader.js:44
 msgid "This savegame needs an older version of 0 A.D."
-msgstr ""
+msgstr "Šis išsaugojimas reikalauja senesnės 0 A.D. versijos."
 
 #: gui/loadgame/SavegameLoader.js:51
 msgid "This savegame needs a different sequence of mods:"
-msgstr ""
+msgstr "Šiam išsaugojimui reikalinga kitokia modifikacijų seka:"
 
 #: gui/loadgame/SavegameLoader.js:55
 msgid "Do you still want to proceed?"
@@ -1691,15 +1691,15 @@ msgstr "Išsaugoti"
 
 #: gui/loadgame/SavegameWriter.js:46
 msgid "Saved game will be permanently overwritten, are you sure?"
-msgstr ""
+msgstr "Išsaugotas žaidimas bus visiškai perrašytas, ar jūs įsitikinę?"
 
 #: gui/loadgame/SavegameWriter.js:47
 msgid "OVERWRITE SAVE"
-msgstr ""
+msgstr "PERRAŠYTI IŠSAUGOJIMĄ"
 
 #: gui/loadgame/load.xml:(caption):44
 msgid "No saved games found."
-msgstr ""
+msgstr "Išsaugotų žaidimų nerasta."
 
 #: gui/loadgame/load.xml:(caption):54
 #: gui/replaymenu/replay_menu.xml:(caption):233
@@ -1708,7 +1708,7 @@ msgstr "Trinti"
 
 #: gui/loadgame/load.xml:(caption):64
 msgid "Filter compatible saved games"
-msgstr ""
+msgstr "Filtruoti suderinamus išsaugotus žaidimus."
 
 #: gui/loadgame/load.xml:(caption):74
 msgid "Players:"
@@ -1716,29 +1716,29 @@ msgstr "Žaidėjai:"
 
 #: gui/loadgame/load.xml:(caption):78
 msgid "Played time:"
-msgstr ""
+msgstr "Žaistas laikas:"
 
 #: gui/loadgame/load.xml:(caption):82
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):32
 #: gui/replaymenu/replay_menu.xml:(caption):152
 msgid "Map Type:"
-msgstr ""
+msgstr "Žemėlapio Tipas:"
 
 #: gui/loadgame/load.xml:(caption):86
 #: gui/replaymenu/replay_menu.xml:(caption):167
 msgid "Map Size:"
-msgstr ""
+msgstr "Žemėlapio Dydis:"
 
 #: gui/loadgame/load.xml:(caption):90
 #: gui/replaymenu/replay_menu.xml:(caption):182
 msgid "Victory:"
-msgstr ""
+msgstr "Pergalė:"
 
 #: gui/loadgame/load.xml:(heading):27
 #: gui/replaymenu/replay_menu.xml:(heading):71
 msgctxt "replay"
 msgid "Date / Time"
-msgstr ""
+msgstr "Data / Laikas"
 
 #: gui/loadgame/load.xml:(heading):31
 msgctxt "replay"
@@ -1767,7 +1767,7 @@ msgstr "Kalba:"
 #. refers to the code that identifies those settings, such as ‘en_US’.
 #: gui/locale/locale.xml:(caption):31
 msgid "Locale:"
-msgstr ""
+msgstr "Kalba: "
 
 #: gui/locale/locale.xml:(caption):41
 msgid "Advanced"
@@ -1832,12 +1832,12 @@ msgstr "Visi pasirinkto tipo žemėlapiai."
 
 #: gui/maps/mapbrowser/MapBrowser.xml:(caption):14
 msgid "Map Browser"
-msgstr ""
+msgstr "Žemėlapių Naršyklė"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:31
 #, javascript-format
 msgid "%(hotkey)s: Close map browser and discard the selection."
-msgstr ""
+msgstr "%(hotkey)s: Uždaro žemėlapių naršyklę ir pasirinkimų neišsaugo."
 
 #: gui/credits/credits.xml:(caption):32 gui/hotkeys/hotkeys.xml:(caption):58
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:34
@@ -1849,7 +1849,7 @@ msgstr "Uždaryti"
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:36
 #, javascript-format
 msgid "%(hotkey)s: Close map browser."
-msgstr ""
+msgstr "%(hotkey)s: Uždaro žemėlapių naršyklę."
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):15
 msgctxt "zoom in"
@@ -1859,11 +1859,11 @@ msgstr "+"
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):18
 msgctxt "zoom out"
 msgid "−"
-msgstr ""
+msgstr "−"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):26
 msgid "Search Map:"
-msgstr ""
+msgstr "Ieškoti Žemėlapio:"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):38
 msgid "Map Filter:"
@@ -1871,73 +1871,73 @@ msgstr "Žemėlapių Filtras:"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):48
 msgid "Pick Random Map"
-msgstr ""
+msgstr "Rinktis Atsitiktinį Žemėlapį"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):54
 msgctxt "map selection dialog"
 msgid "Select"
-msgstr ""
+msgstr "Pažymėti"
 
 #: gui/maps/mapbrowser/controls/Pagination.js:27
 msgid "Go to the previous page."
-msgstr ""
+msgstr "Eiti į ankstesnį lapą."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:28
 msgid "Go to the next page."
-msgstr ""
+msgstr "Eiti į sekantį lapą."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:32
 msgid "Increase map preview size."
-msgstr ""
+msgstr "Padidinti žemėlapio peržiūrą."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:33
 msgid "Decrease map preview size."
-msgstr ""
+msgstr "Sumažinti žemėlapio peržiūrą."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:39
 #, javascript-format
 msgid "Maps: %(mapCount)s"
-msgstr ""
+msgstr "Žemėlapiai: %(mapCount)s"
 
 #: gui/maps/mapbrowser/controls/Pagination.js:43
 #, javascript-format
 msgid "Page: %(currentPage)s/%(maxPage)s"
-msgstr ""
+msgstr "Lapas: %(currentPage)s/%(maxPage)s"
 
 #: gui/options/options.js:95
 #, javascript-format
 msgid "Default: %(value)s"
-msgstr ""
+msgstr "Numatytas: %(value)s"
 
 #: gui/options/options.js:121
 #, javascript-format
 msgctxt "option number"
 msgid "Min: %(min)s, Max: %(max)s"
-msgstr ""
+msgstr "Min: %(min)s, Max: %(max)s"
 
 #: gui/options/options.js:123
 #, javascript-format
 msgctxt "option number"
 msgid "Min: %(min)s"
-msgstr ""
+msgstr "Min: %(min)s"
 
 #: gui/options/options.js:125
 #, javascript-format
 msgctxt "option number"
 msgid "Max: %(max)s"
-msgstr ""
+msgstr "Max: %(max)s"
 
 #: gui/options/options.js:162
 #, javascript-format
 msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
-msgstr ""
+msgstr "Vertė: %(val)s (min: %(min)s, max: %(max)s)"
 
 #: gui/options/options.js:298
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
-msgstr ""
+msgstr "Pasirinkimų atstatymas ištrins visus išsaugotus nustatymus. Ar Jūs norite tęsti?"
 
 #: gui/options/options.js:351
 msgid "Some setting values are invalid! Are you sure you want to save them?"
@@ -1953,23 +1953,23 @@ msgstr ""
 
 #: gui/options/options.json[0].options[0].label
 msgid "Player name (single-player)"
-msgstr ""
+msgstr "Žaidėjo vardas (vienam-žaidėjui)"
 
 #: gui/options/options.json[0].options[0].tooltip
 msgid "How you want to be addressed in single-player matches."
-msgstr ""
+msgstr "Kaip Jūs norite būti vadinami vieno-žaidėjo partijose."
 
 #: gui/options/options.json[0].options[10].label
 msgid "Observer limit"
-msgstr ""
+msgstr "Stebėtojų Limitas"
 
 #: gui/options/options.json[0].options[10].tooltip
 msgid "Prevent further observers from joining if the limit is reached."
-msgstr ""
+msgstr "Neleisti daugiau stebėtojų kai limitas pasiektas."
 
 #: gui/options/options.json[0].options[11].label
 msgid "Chat timestamp"
-msgstr ""
+msgstr "Pokalbių laiko štampas"
 
 #: gui/options/options.json[0].options[11].tooltip
 msgid "Display the time at which a chat message was posted."
@@ -2318,24 +2318,24 @@ msgstr ""
 
 #: gui/options/options.json[1].options[9].list[0].label
 msgid "Very Low"
-msgstr ""
+msgstr "Labai mažai"
 
 #: gui/options/options.json[1].options[9].list[1].label
 msgid "Low"
-msgstr ""
+msgstr "Mažai"
 
 #: gui/options/options.json[1].options[9].list[2].label
 #: gui/options/options.json[3].options[3].list[3].label
 msgid "Medium"
-msgstr ""
+msgstr "Vidutiniškai"
 
 #: gui/options/options.json[1].options[9].list[3].label
 msgid "High"
-msgstr ""
+msgstr "Daug"
 
 #: gui/options/options.json[1].options[9].list[4].label
 msgid "Very High"
-msgstr ""
+msgstr "Labai Daug"
 
 #: gui/options/options.json[1].options[9].tooltip
 msgid ""
@@ -3002,7 +3002,7 @@ msgstr ""
 
 #: gui/hotkeys/hotkeys.xml:(caption):14 gui/pregame/MainMenuItems.js:199
 msgid "Hotkeys"
-msgstr ""
+msgstr "Kombinacijos"
 
 #: gui/pregame/MainMenuItems.js:200
 msgid "Adjust hotkeys."
@@ -3082,7 +3082,7 @@ msgstr "WILDFIRE GAMES"
 
 #: gui/pregame/ProjectInformation.js:18
 msgid "Alpha XXV: Y——"
-msgstr ""
+msgstr "Alpha XXV: Y——"
 
 #: gui/pregame/ProjectInformation.js:19
 msgid ""
@@ -3445,10 +3445,10 @@ msgstr "Betkoks"
 msgctxt "duration filter"
 msgid "< %(max)s min"
 msgid_plural "< %(max)s min"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "< %(max)s min"
+msgstr[1] "< %(max)s min"
+msgstr[2] "< %(max)s min"
+msgstr[3] "< %(max)s min"
 
 #. Translation: Longer duration than min minutes.
 #: gui/replaymenu/replay_filters.js:127
@@ -3456,17 +3456,17 @@ msgstr[3] ""
 msgctxt "duration filter"
 msgid "> %(min)s min"
 msgid_plural "> %(min)s min"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "> %(min)s min"
+msgstr[1] "> %(min)s min"
+msgstr[2] "> %(min)s min"
+msgstr[3] "> %(min)s min"
 
 #. Translation: Duration between min and max minutes.
 #: gui/replaymenu/replay_filters.js:130
 #, javascript-format
 msgctxt "duration filter"
 msgid "%(min)s - %(max)s min"
-msgstr ""
+msgstr "%(min)s - %(max)s min"
 
 #: gui/replaymenu/replay_filters.js:144
 msgid "Single-player and multiplayer"
@@ -3558,7 +3558,7 @@ msgstr ""
 #: gui/replaymenu/replay_menu.xml:(heading):91
 msgctxt "replay"
 msgid "Duration"
-msgstr ""
+msgstr "Trukmė"
 
 #: gui/replaymenu/replay_menu.xml:(placeholder_text):32
 msgid "Search for Player"
@@ -3894,7 +3894,7 @@ msgstr ""
 #, javascript-format
 msgctxt "Player listing with color indicator"
 msgid "%(colorIndicator)s %(playerListing)s"
-msgstr ""
+msgstr "%(colorIndicator)s %(playerListing)s"
 
 #: gui/summary/summary.js:204
 msgctxt "Charts player color indicator"
@@ -3971,7 +3971,7 @@ msgstr ""
 #: gui/summary/summary.xml:(caption):120
 msgctxt "summary chart"
 msgid "Category:"
-msgstr ""
+msgstr "Kategorija."
 
 #: gui/summary/summary.xml:(caption):130
 msgctxt "summary chart"
@@ -3993,7 +3993,7 @@ msgstr ""
 
 #: gui/summary/summary.xml:(caption):192
 msgid "Continue"
-msgstr ""
+msgstr "Tęsti"
 
 #: gui/summary/summary.xml:(tooltip):126
 msgctxt "summary chart"

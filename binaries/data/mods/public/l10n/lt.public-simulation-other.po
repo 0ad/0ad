@@ -4,13 +4,14 @@
 # project.
 # Translators:
 # Paulius Damaška <pauldam000@gmail.com>, 2016
+# V S <v32itas@slacknet.eu>, 2021
 # Vytautas, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-03-05 08:13+0000\n"
-"PO-Revision-Date: 2021-03-05 09:29+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-03-13 10:19+0000\n"
+"Last-Translator: V S <v32itas@slacknet.eu>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/wildfire-games/0ad/language/lt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -236,7 +237,7 @@ msgstr "%(_player_)s, privalote atsiųsti %(_amount_)s%(_resource_)s duoklę pri
 msgid ""
 "Unless you send me %(_amount_)s %(_resource_)s, an alliance won’t be formed,"
 " %(_player_)s."
-msgstr ""
+msgstr "Jeigu neatsiųsi man %(_amount_)s %(_resource_)s, sąjunga nebus sudaryta, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:85
 #, javascript-format
@@ -360,11 +361,11 @@ msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr ""
+msgstr "Petra yra numatytasis 0 A.D. DI robotas. Prašime pranešti problemas Wildfire Games (nuorodą rasie pagrindiniame meniu).\n\nDI išteklių ir prekybos greitis priklauso nuo sudėtingumo lygio (Smėlio dėžė -58%, Labai Lengvas -44%, Lengvas -25%, Vidutinis +0%, Sunkus +25%, Labai sunkus +56%). Lengviausi lygiai taip pat turi lėtesnį tyrinėjimo, ruošimo ir statymo greitį. Taip pat, Smėlio dėžės lygis nesiplečia ir nesistengia jūsų piktybiškai pulti."
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
-msgstr ""
+msgstr "Robotas Petra"
 
 #: simulation/components/BuildRestrictions.js:91
 #, javascript-format
@@ -568,7 +569,7 @@ msgstr "Nepakanka išteklių: %(resourceAmount1)s%(resourceType1)s, %(resourceAm
 
 #: simulation/components/ProductionQueue.js:339
 msgid "Entity is being upgraded. Cannot start production."
-msgstr ""
+msgstr "Institucija tobulinama. Negalima pradėti produkcijos."
 
 #: simulation/components/ProductionQueue.js:515
 msgid "The production queue is full."
@@ -580,51 +581,51 @@ msgstr "Nėra laisvos vietos naujai parengtiems vienetams."
 
 #: simulation/components/Upgrade.js:241
 msgid "Entity is producing. Cannot start upgrading."
-msgstr ""
+msgstr "Kol institucija gamina, tobulinimas negalimas."
 
 #: simulation/data/settings/game_speeds.jsonData[0].Title
 msgid "Turtle (0.1×)"
-msgstr ""
+msgstr "Vėžlio (0.1×)"
 
 #: simulation/data/settings/game_speeds.jsonData[10].Title
 msgid "Fast Forward (20×)"
-msgstr ""
+msgstr "Staigiai pirmyn (20×)"
 
 #: simulation/data/settings/game_speeds.jsonData[1].Title
 msgid "Slow (0.25×)"
-msgstr ""
+msgstr "Lėtas (0.25×)"
 
 #: simulation/data/settings/game_speeds.jsonData[2].Title
 msgid "Leisurely (0.5×)"
-msgstr ""
+msgstr "Atsipūtęs (0.5×)"
 
 #: simulation/data/settings/game_speeds.jsonData[3].Title
 msgid "Relaxed (0.75×)"
-msgstr ""
+msgstr "Atsipalaidavęs (0.75×)"
 
 #: simulation/data/settings/game_speeds.jsonData[4].Title
 msgid "Normal (1×)"
-msgstr ""
+msgstr "Normalus (1×)"
 
 #: simulation/data/settings/game_speeds.jsonData[5].Title
 msgid "Fast (1.25×)"
-msgstr ""
+msgstr "Greitas (1.25×)"
 
 #: simulation/data/settings/game_speeds.jsonData[6].Title
 msgid "Very Fast (1.5×)"
-msgstr ""
+msgstr "Labai Greitas (1.5×)"
 
 #: simulation/data/settings/game_speeds.jsonData[7].Title
 msgid "Insane (2×)"
-msgstr ""
+msgstr "Beprotiškas (2×)"
 
 #: simulation/data/settings/game_speeds.jsonData[8].Title
 msgid "Fast Forward (5×)"
-msgstr ""
+msgstr "Staigiai pirmyn (5×)"
 
 #: simulation/data/settings/game_speeds.jsonData[9].Title
 msgid "Fast Forward (10×)"
-msgstr ""
+msgstr "Staigiai pirmyn (10×)"
 
 #: simulation/data/settings/map_sizes.jsonData[0].Name
 msgid "Tiny"
@@ -632,7 +633,7 @@ msgstr "Mažytis"
 
 #: simulation/data/settings/map_sizes.jsonData[0].Tooltip
 msgid "This map size has barely any room for even the most basic resources."
-msgstr ""
+msgstr "Šiame žemėlapyje beveik nera vietos net patiems paprasčiausiams ištekliams."
 
 #: simulation/data/settings/map_sizes.jsonData[1].Name
 msgid "Small"
@@ -642,7 +643,7 @@ msgstr "Mažas"
 msgid ""
 "Small maps are suitable for 1v1 matches, as players can reach the enemy "
 "quickly while still having some room to expand."
-msgstr ""
+msgstr "Maži žemėlaiai yra tinkami 1v1 partijoms, žaidėjai gali greitai pasiekti priešą, tačiau vistiek turi vietos plėstis."
 
 #: simulation/data/settings/map_sizes.jsonData[2].Name
 msgid "Normal"
@@ -652,13 +653,13 @@ msgstr "Normalus"
 msgid ""
 "This map size provides plenty of space for two players, but even eight "
 "players fit."
-msgstr ""
+msgstr "Šis dydis suteikia daugybę vietos dviems žaidėjams, nors tilptų ir aštuoni."
 
 #: simulation/data/settings/map_sizes.jsonData[3].Tooltip
 msgid ""
 "This is the ideal mapsize for 4 to 8 players, because there is plenty of "
 "space to expand while the neighbors are quickly reachable."
-msgstr ""
+msgstr "Tai yra idealus dydis 4-8 žaidėjams, nes yra daugybė vietos plėstis, ir kaimynai yra greitai pasiekiami."
 
 #: simulation/data/settings/map_sizes.jsonData[4].Name
 msgid "Large"
@@ -668,7 +669,7 @@ msgstr "Didelis"
 msgid ""
 "The large mapsize is recommended when great portions of the map are covered "
 "with water or inaccessible mountains."
-msgstr ""
+msgstr "Didžiausias rekomenduotinas dydis kuomet didelės žemėlapio dalys yra padengtos vandeniu ar nepereinamais kalnais."
 
 #: simulation/data/settings/map_sizes.jsonData[5].Name
 msgid "Very Large"
@@ -679,7 +680,7 @@ msgstr "Labai didelis"
 msgid ""
 "Very large maps are not recommended as it takes very long to reach the enemy"
 " and the game performance can be reduced."
-msgstr ""
+msgstr "Labai dideli žemėlapiai nerekomenduojami, nes labai ilgai užtrunka pasiekti priešą ir žaidimo sklandumas gali būti prastesnis."
 
 #: simulation/data/settings/map_sizes.jsonData[6].Name
 msgid "Giant"
@@ -724,32 +725,32 @@ msgstr "8-as žaidėjas"
 #: simulation/data/settings/starting_resources.jsonData[0].Title
 msgctxt "startingResources"
 msgid "Very Low"
-msgstr ""
+msgstr "Labai mažai"
 
 #: simulation/data/settings/starting_resources.jsonData[1].Title
 msgctxt "startingResources"
 msgid "Low"
-msgstr ""
+msgstr "Mažai"
 
 #: simulation/data/settings/starting_resources.jsonData[2].Title
 msgctxt "startingResources"
 msgid "Medium"
-msgstr "Normalus"
+msgstr "Vidutiniškai"
 
 #: simulation/data/settings/starting_resources.jsonData[3].Title
 msgctxt "startingResources"
 msgid "High"
-msgstr ""
+msgstr "Daug"
 
 #: simulation/data/settings/starting_resources.jsonData[4].Title
 msgctxt "startingResources"
 msgid "Very High"
-msgstr ""
+msgstr "Labai Daug"
 
 #: simulation/data/settings/starting_resources.jsonData[5].Title
 msgctxt "startingResources"
 msgid "Deathmatch"
-msgstr ""
+msgstr "Žūtbūtinis"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[0].Title
 msgid "Very Easy"
@@ -757,7 +758,7 @@ msgstr "Labai lengvas"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[0].Tooltip
 msgid "Choose this difficulty if you are discovering 0 A.D."
-msgstr ""
+msgstr "Rinkitės šį lygį jei tik pradėjote tyrinėti 0. A.D."
 
 #: simulation/data/settings/trigger_difficulties.jsonData[1].Title
 msgid "Easy"
@@ -765,7 +766,7 @@ msgstr "Lengvas"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[1].Tooltip
 msgid "Choose this difficulty if you do not like being knocked down."
-msgstr ""
+msgstr "Rinkitės šį lygį jei jums nepatinka pralaimėti."
 
 #: simulation/data/settings/map_sizes.jsonData[3].Name
 #: simulation/data/settings/trigger_difficulties.jsonData[2].Title
@@ -775,7 +776,7 @@ msgstr "Vidutiniškai"
 #: simulation/data/settings/trigger_difficulties.jsonData[2].Tooltip
 msgid ""
 "Choose this difficulty if you have already a good experience with 0 A.D."
-msgstr ""
+msgstr "Rinkitės šį lygį jei jau turite patirties su 0 A.D."
 
 #: simulation/data/settings/trigger_difficulties.jsonData[3].Title
 msgid "Hard"
@@ -783,7 +784,7 @@ msgstr "Sunkus"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[3].Tooltip
 msgid "Choose this difficulty if you want to be really challenged."
-msgstr ""
+msgstr "Rinkitės šį lygį jei norite tikro iššūkio."
 
 #: simulation/data/settings/trigger_difficulties.jsonData[4].Title
 msgid "Very Hard"
@@ -791,7 +792,7 @@ msgstr "Labai Sunkus"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[4].Tooltip
 msgid "Choose this difficulty if you do not mind being swept out."
-msgstr ""
+msgstr "Rinkitės šį lygi jei neprieštaraujate būti nušluoti."
 
 #: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Description
 msgid ""
@@ -843,11 +844,11 @@ msgid ""
 "win the game. The timer will be reset when the Wonder is destroyed or "
 "captured. If the allied victory mode is enabled, the timer will also be "
 "reset when the alliances of the owner change."
-msgstr ""
+msgstr "Būkite pirmi pastatant ar užgrobiant Stebuklą ir išlaikykite jį tam tikrą laiką, tam kad laimėtumėte. Laiko skaičiavimas nutrūksta kuomet Stebuklas yra sunaikintas ar užgrobtas. Jeigu sąjungos pergalės modifikacija įjungta, laiko skaičiavimas taip pat nutrūksta kuomet savininko sąjunga pasikeičia."
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"
-msgstr ""
+msgstr "Stebuklas"
 
 #: simulation/helpers/Cheat.js:58
 #, javascript-format
@@ -879,12 +880,12 @@ msgstr "(Žaidimo kodas - paaukštinti vienetus)"
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
-msgstr ""
+msgstr "Tobulinimas negalimas kuomet atstumo reikalavimai nepatvirtinti ar paviršius yra užgriozdintas."
 
 #: simulation/helpers/Commands.js:767
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
-msgstr ""
+msgstr "Prašoma pulti %(_player_)s."
 
 #: simulation/helpers/Commands.js:806
 msgid "There are no bribable units"
@@ -901,7 +902,7 @@ msgstr "Kai kurie vienetai negali grįžti prie darbo"
 #: simulation/helpers/Commands.js:885
 #, javascript-format
 msgid "%(unit)s can't be controlled."
-msgstr ""
+msgstr "%(unit)s negali būti kontroliuojamas."
 
 #: simulation/helpers/Commands.js:1136
 msgid "The building's technology requirements are not met."

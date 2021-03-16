@@ -5,12 +5,13 @@
 # Translators:
 # banginis <asesuarbanesu@gmail.com>, 2015
 # Paulius Damaška <pauldam000@gmail.com>, 2016
+# V S <v32itas@slacknet.eu>, 2021
 # Vytautas, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-03-11 10:13+0000\n"
+"PO-Revision-Date: 2021-03-14 11:47+0000\n"
 "Last-Translator: V S <v32itas@slacknet.eu>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/wildfire-games/0ad/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -89,7 +90,7 @@ msgstr "Lyderių sąrašas"
 #: gui/lobby/LobbyPage/Buttons/ProfileButton.js:9
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):12
 msgid "Player Profile Lookup"
-msgstr ""
+msgstr "Žaidėjo Profilio Peržiųra"
 
 #: gui/lobby/LobbyPage/Buttons/QuitButton.js:15
 msgctxt "previous page"
@@ -114,7 +115,7 @@ msgstr "Komanda \"%(cmd)s\" skirta moderatoriams."
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:66
 #, javascript-format
 msgid "The command '%(cmd)s' requires at least one argument."
-msgstr ""
+msgstr "Komanda '%(cmd)s' reikalauja bent vieno argumento."
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:87
 msgid "Set your state to 'Away'."
@@ -153,7 +154,7 @@ msgstr "Siųsti pokalbio žinutę apie save. Pavyzdžiui: /me keliauja paplaukio
 #. Translation: Chat command
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:149
 msgid "/me"
-msgstr ""
+msgstr "/me"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:153
 msgid ""
@@ -164,7 +165,7 @@ msgstr "Siųsti tekstą kaip pokalbio žinutę (nei jei prasideda pasviru brūk�
 #. Translation: Chat command
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:156
 msgid "/say"
-msgstr ""
+msgstr "/say"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:160
 msgid "Clear all chat scrollback."
@@ -174,7 +175,7 @@ msgstr "Išvalyti nuslinktą pokalbio turinį."
 #: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessageFormatMe.js:24
 #, javascript-format
 msgid "* %(sender)s %(message)s"
-msgstr ""
+msgstr "* %(sender)s %(message)s"
 
 #: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessageFormatSay.js:29
 #, javascript-format
@@ -193,7 +194,7 @@ msgstr "Privatus"
 #: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessagePrivateWrapper.js:25
 #, javascript-format
 msgid "(%(private)s) %(message)s"
-msgstr ""
+msgstr "(%(private)s) %(message)s"
 
 #: gui/lobby/LobbyPage/Chat/ChatPanel.xml:(caption):12
 msgid "Send"
@@ -253,12 +254,12 @@ msgstr "%(nick)s nebe moderatorius."
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:152
 #, javascript-format
 msgid "%(nick)s changed the lobby subject to:"
-msgstr ""
+msgstr "%(nick)spakeitė vestibiulio temą į:"
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:153
 #, javascript-format
 msgid "%(nick)s deleted the lobby subject."
-msgstr ""
+msgstr "%(nick)sištrynė vestibiulio temą."
 
 #. Translation: Chat status message
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageFormat.js:25
@@ -268,7 +269,7 @@ msgstr "== %(message)s"
 
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageEvents.js:55
 msgid "Connected."
-msgstr ""
+msgstr "Prisijungta."
 
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageEvents.js:56
 msgid "Disconnected."
@@ -277,12 +278,12 @@ msgstr "Atsijungta"
 #. Translation: Caption for system notifications shown in the chat panel
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageFormat.js:25
 msgid "System:"
-msgstr ""
+msgstr "Sistema:"
 
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageFormat.js:32
 #, javascript-format
 msgid "=== %(system)s %(message)s"
-msgstr ""
+msgstr "=== %(system)s %(message)s"
 
 #. Translation: Chat message format when there is a time prefix.
 #: gui/lobby/LobbyPage/Chat/TimestampWrapper.js:25
@@ -334,13 +335,13 @@ msgstr "Taip"
 #: gui/lobby/LobbyPage/Game.js:298
 #, javascript-format
 msgid "%(current)s/%(max)s +%(observercount)s"
-msgstr ""
+msgstr "%(current)s/%(max)s +%(observercount)s"
 
 #. Translation: The number of players in this game
 #: gui/lobby/LobbyPage/Game.js:301
 #, javascript-format
 msgid "%(current)s/%(max)s"
-msgstr ""
+msgstr "%(current)s/%(max)s"
 
 #: gui/lobby/LobbyPage/GameDetails.js:65
 msgctxt "victory condition"
@@ -350,7 +351,7 @@ msgstr "Nesibaigiantis Žaidimas"
 #: gui/lobby/LobbyPage/GameDetails.js:117
 #, javascript-format
 msgid "Host: %(playername)s"
-msgstr ""
+msgstr "Šeimininkas: %(playername)s"
 
 #: gui/lobby/LobbyPage/GameDetails.js:119
 #, javascript-format
@@ -359,7 +360,7 @@ msgstr "Žaidėjai: %(current)s/%(total)s"
 
 #: gui/lobby/LobbyPage/GameDetails.js:121
 msgid "Victory Conditions:"
-msgstr ""
+msgstr "Pergalės Sąlygos:"
 
 #. Translation: Comma used to concatenate victory conditions
 #: gui/lobby/LobbyPage/GameDetails.js:124
@@ -368,7 +369,7 @@ msgstr ", "
 
 #: gui/lobby/LobbyPage/GameDetails.js:126
 msgid "Mods:"
-msgstr ""
+msgstr "Modifikacijos:"
 
 #. Translation: %(time)s is the hour and minute here.
 #: gui/lobby/LobbyPage/GameDetails.js:129
@@ -391,7 +392,7 @@ msgstr "Žemėlapio dydis:"
 
 #: gui/lobby/LobbyPage/GameDetails.js:137
 msgid "Map Description:"
-msgstr ""
+msgstr "Žemėlapio apibūdinimas:"
 
 #: gui/lobby/LobbyPage/GameList.xml:(heading):15
 msgid "Map Name"
@@ -565,7 +566,7 @@ msgstr "Žaidėjas \"%(nick)s\" nerastas."
 
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):16
 msgid "Enter playername:"
-msgstr ""
+msgstr "Įveskite Žaidėjo Vardą:"
 
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):22
 msgid "View Profile"
@@ -654,7 +655,7 @@ msgstr "[font=\"sans-bold-16\"]Wildfire Games naudojami asmeniniai duomenys ir j
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:6
 msgid "[font=\"sans-bold-14\"]1. Player name[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]1. Žaidėjo vardas[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:7
 msgid ""
@@ -668,7 +669,7 @@ msgid ""
 "players, moderators and developers to identify players they met before, "
 "communicate about the game, coordinate matches and enables moderators to "
 "enforce the Terms of Use."
-msgstr ""
+msgstr "Reitingavimui reikalingas unikalus žaidėjo vardas, kuris leidžia, moderatoriams, vystytojams ir kitiems žaidėjams atpažinti prieš tai sutiktus žaidėjus, pokalbiams apie žaidimą, partijų kordinavimą ir leidžia moderatoriams priversti paklusti Naudojimo Sąlygoms."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:9
 msgid ""
@@ -677,7 +678,7 @@ msgid ""
 " information (such as the real name) was disclosed on the Lobby Chat, other "
 "services of Wildfire Games or elsewhere in the public, or when the IP "
 "address is used to bring criminal proceedings."
-msgstr ""
+msgstr "Žaidėjo vardas pasitarnauja kaip pseudonimas. Fizinio asmens, nežinomo Wildfire Games, atpažinimui, išskyrus kuomet atpažinimo informacija (tokia kaip tikrasis vardas) buvo atskleista Vestibiulio Pokalbiuose, ar kitose Wildfire Games paslaugose ar kitur paviešinta, ar kai IP adresas naudojimas nusikaltimų vykdymui."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:11
 msgid "[font=\"sans-bold-14\"]2. Password[/font]"
@@ -935,7 +936,7 @@ msgstr ""
 msgid ""
 "Requests that are manifestly unfounded or excessive are not responded to or "
 "may be charged (GDPR 12.4, GDPR 12.5)."
-msgstr ""
+msgstr "Dėl akivaizdžiai nepagrystų ar ypač ilgų prašymų gali būti reikalaujamas mokestis arba išvis į juos neatsakoma (GDPR 12.4, GDPR 12.5)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:65
 msgid "[font=\"sans-bold-16\"]Wildfire Games obligations:[/font]"
@@ -952,13 +953,13 @@ msgid ""
 " 2. Wildfire Games documents their processing activities appropriately, in "
 "particular the categories of processed personal data and security measures "
 "to protect it (GDPR 30)."
-msgstr ""
+msgstr "3. Wildfire Games aprašo savo tvarkymo veiklą deramai, tai yra tvarkomų asmeninių duomenų kategorijas ir saugomo priemones jiems apsaugoti (GDPR 30)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:68
 msgid ""
 " 3. Wildfire Games processes personal data lawfully, fairly and "
 "transparently (GDPR 5.1.a, GDPR 12.1)."
-msgstr ""
+msgstr "3. Wildfire Games tvarko asmeninius duomenis pagal įstatymus, sąžiningai ir skaidriai (GDPR 5.1.a, GDPR 12.1)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:69
 msgid ""
@@ -1001,13 +1002,13 @@ msgid ""
 "erase personal data and the right to restrict, to withdraw consent to, to "
 "object to personal data processing and to complain at a supervisory "
 "authority (GDPR 13.2.b, GDPR 13.2.c, GDPR 13.2.d)."
-msgstr ""
+msgstr "9. Wildfire Games informuoja naudotojus apie jų teisėtą prieeigą, pataisyti, ištrinti asmeninius duomenis ir teisę apriboti, atsiimti sutikimą, prieštarauti dėl asmeninių duomenų tvarkymo taip pat skųstis prižiųrinčiai vadovybei (GDPR 13.2.b, GDPR 13.2.c, GDPR 13.2.d)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:75
 msgid ""
 "10. Wildfire Games facilitates the exercise of user rights where possible "
 "(GDPR 12.2), without undue delay (GDPR 12.3)."
-msgstr ""
+msgstr "10. Wildfire Games suteikia naudotojams naudotis jų teisėmis kur tai įmanoma (GDPR 12.2), nedelsiant  (GDPR 12.3)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:76
 msgid ""
@@ -1039,7 +1040,7 @@ msgstr ""
 msgid ""
 "For further information on Wildfire Games Privacy Policies, visit "
 "https://trac.wildfiregames.com/wiki/UserDataProtection"
-msgstr ""
+msgstr "Dėl tolimesnės informacijos apie Wildfire Games Privatumo Nuostatas apsilankykite https://trac.wildfiregames.com/wiki/UserDataProtection"
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:1
 msgid ""
@@ -1097,7 +1098,7 @@ msgstr ""
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:15
 msgid "[font=\"sans-bold-14\"]Wildfire Games reserves the right to:[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Wildfire Games pasileka teisę:[/font]"
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:16
 msgid ""
@@ -1131,7 +1132,7 @@ msgstr ""
 msgid ""
 "If parts of the terms are held to be illegal or otherwise unenforceable, the"
 " remainder of the terms shall still apply ('severability')."
-msgstr ""
+msgstr "Jei dalis nuostatų gali būti nederamos ar kitaip nepriverstinos, likusios nuostatos vistiek taikomos ('griežtumas')."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:1
 msgid ""

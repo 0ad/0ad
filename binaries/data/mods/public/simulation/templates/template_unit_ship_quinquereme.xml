@@ -28,12 +28,11 @@
     <GarrisonArrowClasses>StoneThrower</GarrisonArrowClasses>
   </BuildingAI>
   <Cost>
-    <Population>3</Population>
+    <Population>5</Population>
     <BuildTime>30</BuildTime>
     <Resources>
-      <wood>350</wood>
-      <metal>200</metal>
-      <stone>350</stone>
+      <wood>600</wood>
+      <metal>300</metal>
     </Resources>
   </Cost>
   <GarrisonHolder>
@@ -50,9 +49,9 @@
     <RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>
   <Loot>
-    <xp>150</xp>
-    <wood>40</wood>
-    <metal>30</metal>
+    <xp>200</xp>
+    <wood>120</wood>
+    <metal>60</metal>
   </Loot>
   <Position>
     <TurnRate>2</TurnRate>

@@ -21,7 +21,7 @@
   </Health>
   <Identity>
     <GenericName>Elephant Stable</GenericName>
-    <SelectionGroupName>template_structure_military_elephant_stables</SelectionGroupName>
+    <SelectionGroupName>template_structure_military_elephant_stable</SelectionGroupName>
     <Tooltip>Train Elephants and research Elephant technologies.</Tooltip>
     <VisibleClasses datatype="tokens">City ElephantStable</VisibleClasses>
     <RequiredTechnology>phase_city</RequiredTechnology>
@@ -44,8 +44,8 @@
   </ProductionQueue>
   <Sound>
     <SoundGroups>
-      <constructed>interface/complete/building/complete_elephant_stables.xml</constructed>
-      <select>interface/select/building/sel_elephant_stables.xml</select>
+      <constructed>interface/complete/building/complete_elephant_stable.xml</constructed>
+      <select>interface/select/building/sel_elephant_stable.xml</select>
     </SoundGroups>
   </Sound>
   <TerritoryInfluence>

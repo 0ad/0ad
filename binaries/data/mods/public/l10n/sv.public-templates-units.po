@@ -20,9 +20,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-25 08:08+0000\n"
-"PO-Revision-Date: 2021-01-29 14:29+0000\n"
-"Last-Translator: Martin H <pilino@posteo.de>\n"
+"POT-Creation-Date: 2021-03-12 08:08+0000\n"
+"PO-Revision-Date: 2021-03-12 09:29+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -52,7 +52,7 @@ msgstr "Fånga"
 
 #: simulation/templates/template_unit_cavalry.xml:12
 #: simulation/templates/template_unit_infantry.xml:12
-#: simulation/templates/template_unit_support_female_citizen.xml:16
+#: simulation/templates/template_unit_support_female_citizen.xml:14
 msgctxt "Name of an attack, usually the weapon."
 msgid "Slaughter"
 msgstr "Slakt"
@@ -83,7 +83,7 @@ msgstr "Soldat"
 #: simulation/templates/template_unit_cavalry.xml:33
 #: simulation/templates/template_unit_elephant.xml:11
 #: simulation/templates/template_unit_infantry.xml:64
-#: simulation/templates/template_unit_support_female_citizen.xml:65
+#: simulation/templates/template_unit_support_female_citizen.xml:63
 msgid "Citizen"
 msgstr "Medborgare"
 
@@ -92,31 +92,31 @@ msgid "Melee Cavalry"
 msgstr "Närstridskavalleri"
 
 #: simulation/templates/template_unit_cavalry_melee.xml:8
-#: simulation/templates/template_unit_champion_cavalry_axeman.xml:21
-#: simulation/templates/template_unit_champion_cavalry_maceman.xml:22
-#: simulation/templates/template_unit_champion_cavalry_spearman.xml:29
-#: simulation/templates/template_unit_champion_cavalry_swordsman.xml:21
-#: simulation/templates/template_unit_champion_elephant_melee.xml:19
-#: simulation/templates/template_unit_champion_infantry_axeman.xml:21
-#: simulation/templates/template_unit_champion_infantry_maceman.xml:22
-#: simulation/templates/template_unit_champion_infantry_pikeman.xml:29
-#: simulation/templates/template_unit_champion_infantry_spearman.xml:29
-#: simulation/templates/template_unit_champion_infantry_swordsman.xml:21
+#: simulation/templates/template_unit_champion_cavalry_axeman.xml:20
+#: simulation/templates/template_unit_champion_cavalry_maceman.xml:20
+#: simulation/templates/template_unit_champion_cavalry_spearman.xml:28
+#: simulation/templates/template_unit_champion_cavalry_swordsman.xml:19
+#: simulation/templates/template_unit_champion_elephant_melee.xml:18
+#: simulation/templates/template_unit_champion_infantry_axeman.xml:20
+#: simulation/templates/template_unit_champion_infantry_maceman.xml:20
+#: simulation/templates/template_unit_champion_infantry_pikeman.xml:28
+#: simulation/templates/template_unit_champion_infantry_spearman.xml:28
+#: simulation/templates/template_unit_champion_infantry_swordsman.xml:19
 #: simulation/templates/template_unit_champion_infantry_trumpeter.xml:27
-#: simulation/templates/template_unit_dog.xml:35
-#: simulation/templates/template_unit_hero_cavalry_axeman.xml:18
-#: simulation/templates/template_unit_hero_cavalry_maceman.xml:19
-#: simulation/templates/template_unit_hero_cavalry_spearman.xml:26
-#: simulation/templates/template_unit_hero_cavalry_swordsman.xml:24
-#: simulation/templates/template_unit_hero_elephant_melee.xml:33
-#: simulation/templates/template_unit_hero_infantry_axeman.xml:18
-#: simulation/templates/template_unit_hero_infantry_maceman.xml:19
-#: simulation/templates/template_unit_hero_infantry_pikeman.xml:26
-#: simulation/templates/template_unit_hero_infantry_spearman.xml:26
-#: simulation/templates/template_unit_hero_infantry_swordsman.xml:24
-#: simulation/templates/template_unit_infantry_melee.xml:20
+#: simulation/templates/template_unit_dog.xml:34
+#: simulation/templates/template_unit_hero_cavalry_axeman.xml:17
+#: simulation/templates/template_unit_hero_cavalry_maceman.xml:17
+#: simulation/templates/template_unit_hero_cavalry_spearman.xml:25
+#: simulation/templates/template_unit_hero_cavalry_swordsman.xml:22
+#: simulation/templates/template_unit_hero_elephant_melee.xml:32
+#: simulation/templates/template_unit_hero_infantry_axeman.xml:17
+#: simulation/templates/template_unit_hero_infantry_maceman.xml:17
+#: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
+#: simulation/templates/template_unit_hero_infantry_spearman.xml:25
+#: simulation/templates/template_unit_hero_infantry_swordsman.xml:22
+#: simulation/templates/template_unit_infantry_melee.xml:8
 #: simulation/templates/template_unit_ship_fire.xml:42
-#: simulation/templates/template_unit_siege_ram.xml:37
+#: simulation/templates/template_unit_siege_ram.xml:35
 msgid "Melee"
 msgstr "Närstrid"
 
@@ -130,17 +130,17 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Axe"
 msgstr "Yxa"
 
-#: simulation/templates/template_unit_cavalry_melee_axeman.xml:24
+#: simulation/templates/template_unit_cavalry_melee_axeman.xml:23
 msgid "Cavalry Axeman"
 msgstr "Ridande yxman"
 
-#: simulation/templates/template_unit_cavalry_melee_axeman.xml:25
-#: simulation/templates/template_unit_champion_cavalry_axeman.xml:21
-#: simulation/templates/template_unit_champion_infantry_axeman.xml:21
-#: simulation/templates/template_unit_hero_cavalry_axeman.xml:18
-#: simulation/templates/template_unit_hero_infantry_axeman.xml:18
+#: simulation/templates/template_unit_cavalry_melee_axeman.xml:24
+#: simulation/templates/template_unit_champion_cavalry_axeman.xml:20
+#: simulation/templates/template_unit_champion_infantry_axeman.xml:20
+#: simulation/templates/template_unit_hero_cavalry_axeman.xml:17
+#: simulation/templates/template_unit_hero_infantry_axeman.xml:17
+#: simulation/templates/template_unit_infantry_melee_axeman.xml:23
 #: simulation/templates/template_unit_infantry_melee_axeman.xml:24
-#: simulation/templates/template_unit_infantry_melee_axeman.xml:25
 msgid "Axeman"
 msgstr "Yxbärare"
 
@@ -154,16 +154,16 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Mace"
 msgstr "Spikklubba"
 
-#: simulation/templates/template_unit_cavalry_melee_maceman.xml:23
+#: simulation/templates/template_unit_cavalry_melee_maceman.xml:21
 msgid "Cavalry Maceman"
 msgstr "Kavalleriklubbman"
 
-#: simulation/templates/template_unit_cavalry_melee_maceman.xml:24
-#: simulation/templates/template_unit_champion_cavalry_maceman.xml:22
-#: simulation/templates/template_unit_champion_infantry_maceman.xml:22
-#: simulation/templates/template_unit_hero_cavalry_maceman.xml:19
-#: simulation/templates/template_unit_hero_infantry_maceman.xml:19
-#: simulation/templates/template_unit_infantry_melee_maceman.xml:24
+#: simulation/templates/template_unit_cavalry_melee_maceman.xml:22
+#: simulation/templates/template_unit_champion_cavalry_maceman.xml:20
+#: simulation/templates/template_unit_champion_infantry_maceman.xml:20
+#: simulation/templates/template_unit_hero_cavalry_maceman.xml:17
+#: simulation/templates/template_unit_hero_infantry_maceman.xml:17
+#: simulation/templates/template_unit_infantry_melee_maceman.xml:22
 msgid "Maceman"
 msgstr "Spikklubbeman"
 
@@ -177,23 +177,23 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Spear"
 msgstr "Spjut"
 
-#: simulation/templates/template_unit_cavalry_melee_spearman.xml:29
+#: simulation/templates/template_unit_cavalry_melee_spearman.xml:28
 msgid "Cavalry Spearman"
 msgstr "Kavalleri Spjutman"
 
-#: simulation/templates/template_unit_cavalry_melee_spearman.xml:30
-#: simulation/templates/template_unit_champion_cavalry_spearman.xml:28
-#: simulation/templates/template_unit_hero_cavalry_spearman.xml:25
+#: simulation/templates/template_unit_cavalry_melee_spearman.xml:29
+#: simulation/templates/template_unit_champion_cavalry_spearman.xml:27
+#: simulation/templates/template_unit_hero_cavalry_spearman.xml:24
 msgid "Counters: 1.75× vs Cavalry."
 msgstr "Kontrar: 1,75× mot kavalleri."
 
-#: simulation/templates/template_unit_cavalry_melee_spearman.xml:31
-#: simulation/templates/template_unit_champion_cavalry_spearman.xml:29
-#: simulation/templates/template_unit_champion_infantry_spearman.xml:29
-#: simulation/templates/template_unit_hero_cavalry_spearman.xml:26
-#: simulation/templates/template_unit_hero_infantry_spearman.xml:26
-#: simulation/templates/template_unit_infantry_melee_spearman.xml:29
-#: simulation/templates/template_unit_infantry_melee_spearman.xml:31
+#: simulation/templates/template_unit_cavalry_melee_spearman.xml:30
+#: simulation/templates/template_unit_champion_cavalry_spearman.xml:28
+#: simulation/templates/template_unit_champion_infantry_spearman.xml:28
+#: simulation/templates/template_unit_hero_cavalry_spearman.xml:25
+#: simulation/templates/template_unit_hero_infantry_spearman.xml:25
+#: simulation/templates/template_unit_infantry_melee_spearman.xml:28
+#: simulation/templates/template_unit_infantry_melee_spearman.xml:30
 msgid "Spearman"
 msgstr "Spjutman"
 
@@ -208,42 +208,42 @@ msgctxt "Name of an attack using a double-edged sword."
 msgid "Sword"
 msgstr "Svärd"
 
-#: simulation/templates/template_unit_cavalry_melee_swordsman.xml:24
+#: simulation/templates/template_unit_cavalry_melee_swordsman.xml:22
 msgid "Cavalry Swordsman"
 msgstr "Kavalleri Svärdsman"
 
-#: simulation/templates/template_unit_cavalry_melee_swordsman.xml:25
-#: simulation/templates/template_unit_champion_cavalry_swordsman.xml:21
-#: simulation/templates/template_unit_champion_infantry_swordsman.xml:21
-#: simulation/templates/template_unit_hero_cavalry_swordsman.xml:24
-#: simulation/templates/template_unit_hero_infantry_swordsman.xml:24
-#: simulation/templates/template_unit_infantry_melee_swordsman.xml:24
-#: simulation/templates/template_unit_infantry_melee_swordsman.xml:25
+#: simulation/templates/template_unit_cavalry_melee_swordsman.xml:23
+#: simulation/templates/template_unit_champion_cavalry_swordsman.xml:19
+#: simulation/templates/template_unit_champion_infantry_swordsman.xml:19
+#: simulation/templates/template_unit_hero_cavalry_swordsman.xml:22
+#: simulation/templates/template_unit_hero_infantry_swordsman.xml:22
+#: simulation/templates/template_unit_infantry_melee_swordsman.xml:22
+#: simulation/templates/template_unit_infantry_melee_swordsman.xml:23
 msgid "Swordsman"
 msgstr "Svärdsman"
 
-#: simulation/templates/template_unit_cavalry_ranged.xml:28
-#: simulation/templates/template_unit_champion_cavalry_archer.xml:27
-#: simulation/templates/template_unit_champion_cavalry_javelineer.xml:28
-#: simulation/templates/template_unit_champion_infantry_archer.xml:30
-#: simulation/templates/template_unit_champion_infantry_javelineer.xml:31
-#: simulation/templates/template_unit_elephant_archer.xml:38
-#: simulation/templates/template_unit_hero_cavalry_archer.xml:27
-#: simulation/templates/template_unit_hero_cavalry_javelineer.xml:28
-#: simulation/templates/template_unit_hero_infantry_archer.xml:27
-#: simulation/templates/template_unit_hero_infantry_javelineer.xml:28
-#: simulation/templates/template_unit_infantry_ranged.xml:28
-#: simulation/templates/template_unit_infantry_ranged.xml:29
-#: simulation/templates/template_unit_ship_bireme.xml:50
-#: simulation/templates/template_unit_ship_quinquereme.xml:51
-#: simulation/templates/template_unit_ship_trireme.xml:50
-#: simulation/templates/template_unit_siege_boltshooter.xml:50
-#: simulation/templates/template_unit_siege_stonethrower.xml:43
-#: simulation/templates/template_unit_siege_tower.xml:61
+#: simulation/templates/template_unit_cavalry_ranged.xml:7
+#: simulation/templates/template_unit_champion_cavalry_archer.xml:25
+#: simulation/templates/template_unit_champion_cavalry_javelineer.xml:26
+#: simulation/templates/template_unit_champion_infantry_archer.xml:28
+#: simulation/templates/template_unit_champion_infantry_javelineer.xml:29
+#: simulation/templates/template_unit_elephant_archer.xml:36
+#: simulation/templates/template_unit_hero_cavalry_archer.xml:25
+#: simulation/templates/template_unit_hero_cavalry_javelineer.xml:26
+#: simulation/templates/template_unit_hero_infantry_archer.xml:25
+#: simulation/templates/template_unit_hero_infantry_javelineer.xml:26
+#: simulation/templates/template_unit_infantry_ranged.xml:7
+#: simulation/templates/template_unit_infantry_ranged.xml:8
+#: simulation/templates/template_unit_ship_bireme.xml:48
+#: simulation/templates/template_unit_ship_quinquereme.xml:49
+#: simulation/templates/template_unit_ship_trireme.xml:48
+#: simulation/templates/template_unit_siege_boltshooter.xml:48
+#: simulation/templates/template_unit_siege_stonethrower.xml:41
+#: simulation/templates/template_unit_siege_tower.xml:60
 msgid "Ranged"
 msgstr "Distansattack"
 
-#: simulation/templates/template_unit_cavalry_ranged.xml:29
+#: simulation/templates/template_unit_cavalry_ranged.xml:8
 msgid "Ranged Cavalry"
 msgstr "Distansattack kavalleri"
 
@@ -261,18 +261,18 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Bow"
 msgstr "Båge"
 
-#: simulation/templates/template_unit_cavalry_ranged_archer.xml:32
-#: simulation/templates/template_unit_champion_cavalry_archer.xml:27
-#: simulation/templates/template_unit_champion_infantry_archer.xml:30
-#: simulation/templates/template_unit_elephant_archer.xml:38
-#: simulation/templates/template_unit_hero_cavalry_archer.xml:27
-#: simulation/templates/template_unit_hero_infantry_archer.xml:27
-#: simulation/templates/template_unit_infantry_ranged_archer.xml:33
-#: simulation/templates/template_unit_infantry_ranged_archer.xml:34
+#: simulation/templates/template_unit_cavalry_ranged_archer.xml:30
+#: simulation/templates/template_unit_champion_cavalry_archer.xml:25
+#: simulation/templates/template_unit_champion_infantry_archer.xml:28
+#: simulation/templates/template_unit_elephant_archer.xml:36
+#: simulation/templates/template_unit_hero_cavalry_archer.xml:25
+#: simulation/templates/template_unit_hero_infantry_archer.xml:25
+#: simulation/templates/template_unit_infantry_ranged_archer.xml:31
+#: simulation/templates/template_unit_infantry_ranged_archer.xml:32
 msgid "Archer"
 msgstr "Bågskytt"
 
-#: simulation/templates/template_unit_cavalry_ranged_archer.xml:33
+#: simulation/templates/template_unit_cavalry_ranged_archer.xml:31
 msgid "Cavalry Archer"
 msgstr "Kavalleri Bågsskytt"
 
@@ -286,16 +286,16 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Javelin"
 msgstr "Spjut"
 
-#: simulation/templates/template_unit_cavalry_ranged_javelineer.xml:32
+#: simulation/templates/template_unit_cavalry_ranged_javelineer.xml:30
 msgid "Cavalry Javelineer"
 msgstr "Ridande spjutman"
 
-#: simulation/templates/template_unit_cavalry_ranged_javelineer.xml:33
-#: simulation/templates/template_unit_champion_cavalry_javelineer.xml:28
-#: simulation/templates/template_unit_champion_infantry_javelineer.xml:31
-#: simulation/templates/template_unit_hero_cavalry_javelineer.xml:28
-#: simulation/templates/template_unit_hero_infantry_javelineer.xml:28
-#: simulation/templates/template_unit_infantry_ranged_javelineer.xml:33
+#: simulation/templates/template_unit_cavalry_ranged_javelineer.xml:31
+#: simulation/templates/template_unit_champion_cavalry_javelineer.xml:26
+#: simulation/templates/template_unit_champion_infantry_javelineer.xml:29
+#: simulation/templates/template_unit_hero_cavalry_javelineer.xml:26
+#: simulation/templates/template_unit_hero_infantry_javelineer.xml:26
+#: simulation/templates/template_unit_infantry_ranged_javelineer.xml:31
 msgid "Javelineer"
 msgstr "Spjutman"
 
@@ -311,27 +311,27 @@ msgstr "Mästarsoldat"
 msgid "Champion Cavalry"
 msgstr "Mästarkavalleri"
 
-#: simulation/templates/template_unit_champion_cavalry_archer.xml:28
+#: simulation/templates/template_unit_champion_cavalry_archer.xml:26
 msgid "Champion Cavalry Archer"
 msgstr "Beriden mästarbågskytt"
 
-#: simulation/templates/template_unit_champion_cavalry_axeman.xml:22
+#: simulation/templates/template_unit_champion_cavalry_axeman.xml:21
 msgid "Champion Cavalry Axeman"
 msgstr "Beriden mästaryxman"
 
-#: simulation/templates/template_unit_champion_cavalry_javelineer.xml:27
+#: simulation/templates/template_unit_champion_cavalry_javelineer.xml:25
 msgid "Champion Cavalry Javelineer"
 msgstr "Beriden mästarspjutman"
 
-#: simulation/templates/template_unit_champion_cavalry_maceman.xml:21
+#: simulation/templates/template_unit_champion_cavalry_maceman.xml:19
 msgid "Champion Cavalry Maceman"
 msgstr "Beriden mästarklubbman"
 
-#: simulation/templates/template_unit_champion_cavalry_spearman.xml:27
+#: simulation/templates/template_unit_champion_cavalry_spearman.xml:26
 msgid "Champion Cavalry Spearman"
 msgstr "Mästarkavallerispjutman"
 
-#: simulation/templates/template_unit_champion_cavalry_swordsman.xml:22
+#: simulation/templates/template_unit_champion_cavalry_swordsman.xml:20
 msgid "Champion Cavalry Swordsman"
 msgstr "Mästarkavallerisvärdsman"
 
@@ -342,15 +342,14 @@ msgstr "Stridselefant"
 
 #: simulation/templates/template_unit_champion_elephant.xml:20
 #: simulation/templates/template_unit_elephant.xml:11
-#: simulation/templates/template_unit_fauna_hunt_defensive_elephant.xml:18
+#: simulation/templates/template_unit_fauna_hunt_defensive_elephant.xml:4
 #: simulation/templates/template_unit_fauna_hunt_skittish_elephant_infant.xml:4
-#: simulation/templates/template_unit_hero_elephant_melee.xml:33
+#: simulation/templates/template_unit_hero_elephant_melee.xml:32
 #: simulation/templates/units/maur/support_elephant.xml:23
 msgid "Elephant"
 msgstr "Elefant"
 
 #: simulation/templates/template_unit_champion_elephant_melee.xml:6
-#: simulation/templates/template_unit_fauna_hunt_defensive_elephant.xml:5
 #: simulation/templates/template_unit_hero_elephant_melee.xml:6
 msgctxt "Name of an attack, usually the weapon."
 msgid "Trunk"
@@ -367,19 +366,19 @@ msgstr "Infanteri"
 msgid "Champion Infantry"
 msgstr "Mästarinfanteri"
 
-#: simulation/templates/template_unit_champion_infantry_archer.xml:31
+#: simulation/templates/template_unit_champion_infantry_archer.xml:29
 msgid "Champion Archer"
 msgstr "Mästarbågskytt"
 
-#: simulation/templates/template_unit_champion_infantry_axeman.xml:22
+#: simulation/templates/template_unit_champion_infantry_axeman.xml:21
 msgid "Champion Axeman"
 msgstr "Mästaryxman"
 
-#: simulation/templates/template_unit_champion_infantry_javelineer.xml:30
+#: simulation/templates/template_unit_champion_infantry_javelineer.xml:28
 msgid "Champion Infantry Javelineer"
 msgstr "Infanteri mästarspjutman"
 
-#: simulation/templates/template_unit_champion_infantry_maceman.xml:21
+#: simulation/templates/template_unit_champion_infantry_maceman.xml:19
 msgid "Champion Infantry Maceman"
 msgstr "Infanteri mästarklubbman"
 
@@ -390,31 +389,31 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Pike"
 msgstr "Pik"
 
-#: simulation/templates/template_unit_champion_infantry_pikeman.xml:27
+#: simulation/templates/template_unit_champion_infantry_pikeman.xml:26
 msgid "Champion Pikeman"
 msgstr "Mästarpikenerare"
 
-#: simulation/templates/template_unit_champion_infantry_pikeman.xml:28
-#: simulation/templates/template_unit_champion_infantry_spearman.xml:28
-#: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
-#: simulation/templates/template_unit_hero_infantry_spearman.xml:25
-#: simulation/templates/template_unit_infantry_melee_pikeman.xml:30
-#: simulation/templates/template_unit_infantry_melee_spearman.xml:30
+#: simulation/templates/template_unit_champion_infantry_pikeman.xml:27
+#: simulation/templates/template_unit_champion_infantry_spearman.xml:27
+#: simulation/templates/template_unit_hero_infantry_pikeman.xml:24
+#: simulation/templates/template_unit_hero_infantry_spearman.xml:24
+#: simulation/templates/template_unit_infantry_melee_pikeman.xml:29
+#: simulation/templates/template_unit_infantry_melee_spearman.xml:29
 msgid "Counters: 3× vs Cavalry."
 msgstr "Kontrar: 3× mot kavalleri."
 
-#: simulation/templates/template_unit_champion_infantry_pikeman.xml:29
-#: simulation/templates/template_unit_hero_infantry_pikeman.xml:26
-#: simulation/templates/template_unit_infantry_melee_pikeman.xml:29
-#: simulation/templates/template_unit_infantry_melee_pikeman.xml:31
+#: simulation/templates/template_unit_champion_infantry_pikeman.xml:28
+#: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
+#: simulation/templates/template_unit_infantry_melee_pikeman.xml:28
+#: simulation/templates/template_unit_infantry_melee_pikeman.xml:30
 msgid "Pikeman"
 msgstr "Pikenerare"
 
-#: simulation/templates/template_unit_champion_infantry_spearman.xml:27
+#: simulation/templates/template_unit_champion_infantry_spearman.xml:26
 msgid "Champion Spearman"
 msgstr "Mästarspjutman"
 
-#: simulation/templates/template_unit_champion_infantry_swordsman.xml:22
+#: simulation/templates/template_unit_champion_infantry_swordsman.xml:20
 msgid "Champion Swordsman"
 msgstr "Mästarsvärdsman"
 
@@ -427,25 +426,23 @@ msgid "Champion Infantry Trumpeter"
 msgstr "Infanteri mästartrumpetare"
 
 #: simulation/templates/template_unit_dog.xml:5
-#: simulation/templates/template_unit_fauna_wild_aggressive_dog.xml:5
-#: simulation/templates/template_unit_fauna_wild_defensive_fox.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Fangs"
 msgstr "Gaddar"
 
-#: simulation/templates/template_unit_dog.xml:32
+#: simulation/templates/template_unit_dog.xml:31
 msgid "War Dog"
 msgstr "Stridshund"
 
-#: simulation/templates/template_unit_dog.xml:33
+#: simulation/templates/template_unit_dog.xml:32
 msgid "Cannot attack Structures, Ships, or Siege Engines."
 msgstr "Kan inte attackera byggnader, skepp eller belägringsvapen."
 
-#: simulation/templates/template_unit_dog.xml:35
+#: simulation/templates/template_unit_dog.xml:34
 msgid "Dog"
 msgstr "Hund"
 
-#: simulation/templates/template_unit_elephant_archer.xml:37
+#: simulation/templates/template_unit_elephant_archer.xml:35
 #: simulation/templates/units/maur/elephant_archer_b.xml:5
 msgid "Elephant Archer"
 msgstr "Elefantbågskytt"
@@ -454,16 +451,6 @@ msgstr "Elefantbågskytt"
 #: simulation/templates/template_unit_fauna_hunt.xml:4
 msgid "Kill to gather meat for food."
 msgstr "Döda för att samla kött för mat."
-
-#: simulation/templates/template_unit_fauna_hunt_aggressive_bear.xml:5
-msgctxt "Name of an attack, usually the weapon."
-msgid "Paws"
-msgstr "Tassar"
-
-#: simulation/templates/template_unit_fauna_hunt_defensive_bull.xml:5
-msgctxt "Name of an attack, usually the weapon."
-msgid "Horns"
-msgstr "Horn"
 
 #: simulation/templates/template_unit_fauna_hunt_whale.xml:7
 msgid "Kill to butcher for food."
@@ -479,31 +466,31 @@ msgstr "Hjälte"
 msgid "Hero Cavalry"
 msgstr "Kavalleri Hjälte"
 
-#: simulation/templates/template_unit_hero_cavalry_archer.xml:28
+#: simulation/templates/template_unit_hero_cavalry_archer.xml:26
 msgid "Hero Cavalry Archer"
 msgstr "Kavalleri Hjälte Bågsskytt"
 
-#: simulation/templates/template_unit_hero_cavalry_axeman.xml:19
+#: simulation/templates/template_unit_hero_cavalry_axeman.xml:18
 msgid "Hero Cavalry Axeman"
 msgstr "Beriden hjälteyxman"
 
-#: simulation/templates/template_unit_hero_cavalry_javelineer.xml:27
+#: simulation/templates/template_unit_hero_cavalry_javelineer.xml:25
 msgid "Hero Cavalry Javelineer"
 msgstr "Beriden hjältespjutman"
 
-#: simulation/templates/template_unit_hero_cavalry_maceman.xml:18
+#: simulation/templates/template_unit_hero_cavalry_maceman.xml:16
 msgid "Hero Cavalry Maceman"
 msgstr "Beriden hjälteklubbman"
 
-#: simulation/templates/template_unit_hero_cavalry_spearman.xml:24
+#: simulation/templates/template_unit_hero_cavalry_spearman.xml:23
 msgid "Hero Cavalry Spearman"
 msgstr "Hjältekavallerispjutsman"
 
-#: simulation/templates/template_unit_hero_cavalry_swordsman.xml:25
+#: simulation/templates/template_unit_hero_cavalry_swordsman.xml:23
 msgid "Hero Cavalry Swordsman"
 msgstr "Hjältekavallerisvärdsman"
 
-#: simulation/templates/template_unit_hero_elephant_melee.xml:32
+#: simulation/templates/template_unit_hero_elephant_melee.xml:31
 msgid "Hero Elephant"
 msgstr "Elefanthjälte"
 
@@ -519,49 +506,49 @@ msgstr "Support"
 msgid "Healer"
 msgstr "Läkare"
 
-#: simulation/templates/template_unit_hero_infantry_archer.xml:28
+#: simulation/templates/template_unit_hero_infantry_archer.xml:26
 msgid "Hero Archer"
 msgstr "Hjältebågskytt"
 
-#: simulation/templates/template_unit_hero_infantry_axeman.xml:19
+#: simulation/templates/template_unit_hero_infantry_axeman.xml:18
 msgid "Hero Axeman"
 msgstr "Hjälteyxman"
 
-#: simulation/templates/template_unit_hero_infantry_javelineer.xml:27
+#: simulation/templates/template_unit_hero_infantry_javelineer.xml:25
 msgid "Hero Infantry Javelineer"
 msgstr "Infanteri hjältespjutman"
 
-#: simulation/templates/template_unit_hero_infantry_maceman.xml:18
+#: simulation/templates/template_unit_hero_infantry_maceman.xml:16
 msgid "Hero Infantry Maceman"
 msgstr "Infanteri hjälteklubbman"
 
-#: simulation/templates/template_unit_hero_infantry_pikeman.xml:24
+#: simulation/templates/template_unit_hero_infantry_pikeman.xml:23
 msgid "Hero Pikeman"
 msgstr "Hjältepikenerare"
 
-#: simulation/templates/template_unit_hero_infantry_spearman.xml:24
+#: simulation/templates/template_unit_hero_infantry_spearman.xml:23
 msgid "Hero Spearman"
 msgstr "Hjältespjutman"
 
-#: simulation/templates/template_unit_hero_infantry_swordsman.xml:25
+#: simulation/templates/template_unit_hero_infantry_swordsman.xml:23
 msgid "Hero Swordsman"
 msgstr "Hjältesvärdsman"
 
 #: simulation/templates/template_unit_infantry.xml:64
-#: simulation/templates/template_unit_support_female_citizen.xml:65
+#: simulation/templates/template_unit_support_female_citizen.xml:63
 #: simulation/templates/template_unit_support_slave.xml:46
 msgid "Worker"
 msgstr "Arbetare"
 
-#: simulation/templates/template_unit_infantry_melee.xml:19
+#: simulation/templates/template_unit_infantry_melee.xml:7
 msgid "Melee Infantry"
 msgstr "Närstridsinfanteri"
 
-#: simulation/templates/template_unit_infantry_melee_maceman.xml:23
+#: simulation/templates/template_unit_infantry_melee_maceman.xml:21
 msgid "Infantry Maceman"
 msgstr "Infanteriklubbman"
 
-#: simulation/templates/template_unit_infantry_ranged_javelineer.xml:32
+#: simulation/templates/template_unit_infantry_ranged_javelineer.xml:30
 msgid "Infantry Javelineer"
 msgstr "Infanterispjutman"
 
@@ -570,8 +557,8 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Sling"
 msgstr "Slunga"
 
+#: simulation/templates/template_unit_infantry_ranged_slinger.xml:32
 #: simulation/templates/template_unit_infantry_ranged_slinger.xml:33
-#: simulation/templates/template_unit_infantry_ranged_slinger.xml:34
 msgid "Slinger"
 msgstr "Slungare"
 
@@ -580,25 +567,25 @@ msgstr "Slungare"
 msgid "Ship"
 msgstr "Skepp"
 
-#: simulation/templates/template_unit_ship_bireme.xml:48
+#: simulation/templates/template_unit_ship_bireme.xml:46
 msgid "Light Warship"
 msgstr "Litet krigsskepp"
 
-#: simulation/templates/template_unit_ship_bireme.xml:49
-#: simulation/templates/template_unit_ship_quinquereme.xml:50
-#: simulation/templates/template_unit_ship_trireme.xml:49
-#: simulation/templates/template_unit_siege_tower.xml:63
+#: simulation/templates/template_unit_ship_bireme.xml:47
+#: simulation/templates/template_unit_ship_quinquereme.xml:48
+#: simulation/templates/template_unit_ship_trireme.xml:47
+#: simulation/templates/template_unit_siege_tower.xml:62
 msgid "Garrison units for transport and to increase firepower."
 msgstr "Garnisonera enheter för transport och för att öka eldkraften."
 
-#: simulation/templates/template_unit_ship_bireme.xml:50
+#: simulation/templates/template_unit_ship_bireme.xml:48
 #: simulation/templates/template_unit_ship_fire.xml:42
-#: simulation/templates/template_unit_ship_quinquereme.xml:51
-#: simulation/templates/template_unit_ship_trireme.xml:50
+#: simulation/templates/template_unit_ship_quinquereme.xml:49
+#: simulation/templates/template_unit_ship_trireme.xml:48
 msgid "Warship"
 msgstr "Krigsskepp"
 
-#: simulation/templates/template_unit_ship_bireme.xml:50
+#: simulation/templates/template_unit_ship_bireme.xml:48
 #: simulation/templates/units/cart/ship_bireme.xml:9
 #: simulation/templates/units/ptol/ship_bireme.xml:9
 #: simulation/templates/units/sele/ship_bireme.xml:9
@@ -628,16 +615,16 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Harpoon"
 msgstr "Harpun"
 
-#: simulation/templates/template_unit_ship_fishing.xml:30
+#: simulation/templates/template_unit_ship_fishing.xml:28
 #: simulation/templates/units/kush/ship_fishing.xml:9
 msgid "Fishing Boat"
 msgstr "Fiskebåt"
 
-#: simulation/templates/template_unit_ship_fishing.xml:32
+#: simulation/templates/template_unit_ship_fishing.xml:30
 msgid "Fish the waters for food."
 msgstr "Fiska vattnet för mat."
 
-#: simulation/templates/template_unit_ship_fishing.xml:34
+#: simulation/templates/template_unit_ship_fishing.xml:32
 msgid "FishingBoat"
 msgstr "Fiskebåt"
 
@@ -668,20 +655,20 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Stone"
 msgstr "sten"
 
-#: simulation/templates/template_unit_ship_quinquereme.xml:49
+#: simulation/templates/template_unit_ship_quinquereme.xml:47
 msgid "Heavy Warship"
 msgstr "Stort krigsskepp"
 
-#: simulation/templates/template_unit_ship_quinquereme.xml:51
+#: simulation/templates/template_unit_ship_quinquereme.xml:49
 #: simulation/templates/units/cart/ship_quinquereme.xml:9
 msgid "Quinquereme"
 msgstr "Quinquerem"
 
-#: simulation/templates/template_unit_ship_trireme.xml:48
+#: simulation/templates/template_unit_ship_trireme.xml:46
 msgid "Medium Warship"
 msgstr "Halvstort krigsskepp"
 
-#: simulation/templates/template_unit_ship_trireme.xml:50
+#: simulation/templates/template_unit_ship_trireme.xml:48
 #: simulation/templates/units/cart/ship_trireme.xml:9
 msgid "Trireme"
 msgstr "Trirem"
@@ -696,11 +683,11 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Bolt"
 msgstr "Lod"
 
-#: simulation/templates/template_unit_siege_boltshooter.xml:50
+#: simulation/templates/template_unit_siege_boltshooter.xml:48
 msgid "BoltShooter"
 msgstr "Pilskjutare"
 
-#: simulation/templates/template_unit_siege_boltshooter.xml:51
+#: simulation/templates/template_unit_siege_boltshooter.xml:49
 msgid "Bolt Shooter"
 msgstr "Pilskjutare"
 
@@ -709,31 +696,31 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Ram"
 msgstr "MurBräcka"
 
-#: simulation/templates/template_unit_siege_ram.xml:37
+#: simulation/templates/template_unit_siege_ram.xml:35
 msgid "Ram"
 msgstr "MurBräcka"
 
-#: simulation/templates/template_unit_siege_ram.xml:38
+#: simulation/templates/template_unit_siege_ram.xml:36
 msgid "Battering Ram"
 msgstr "Murbräcka"
 
-#: simulation/templates/template_unit_siege_ram.xml:39
+#: simulation/templates/template_unit_siege_ram.xml:37
 msgid "Cannot attack Fields or Organic Units."
 msgstr "Kan inte attackera åkrar eller organiska enheter."
 
-#: simulation/templates/template_unit_siege_stonethrower.xml:43
+#: simulation/templates/template_unit_siege_stonethrower.xml:41
 msgid "StoneThrower"
 msgstr "Stenkastare"
 
-#: simulation/templates/template_unit_siege_stonethrower.xml:44
+#: simulation/templates/template_unit_siege_stonethrower.xml:42
 msgid "Siege Catapult"
 msgstr "Belägringskatapult"
 
-#: simulation/templates/template_unit_siege_tower.xml:61
+#: simulation/templates/template_unit_siege_tower.xml:60
 msgid "SiegeTower"
 msgstr "Belägringstorn"
 
-#: simulation/templates/template_unit_siege_tower.xml:62
+#: simulation/templates/template_unit_siege_tower.xml:61
 msgid "Siege Tower"
 msgstr "Belägringstorn"
 
@@ -742,7 +729,7 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Dagger"
 msgstr "Dolk"
 
-#: simulation/templates/template_unit_support_female_citizen.xml:66
+#: simulation/templates/template_unit_support_female_citizen.xml:64
 msgid "Female Citizen"
 msgstr "Kvinnlig medborgare"
 
@@ -1222,7 +1209,6 @@ msgstr "Essedon"
 #: simulation/templates/units/kush/hero_amanirenas.xml:16
 #: simulation/templates/units/maur/champion_chariot.xml:12
 #: simulation/templates/units/maur/hero_ashoka.xml:15
-#: simulation/templates/units/pers/cavalry_archer_b.xml:5
 #: simulation/templates/units/pers/champion_chariot.xml:12
 #: simulation/templates/units/pers/hero_darius_i.xml:15
 #: simulation/templates/units/pers/hero_xerxes_i_chariot.xml:15
@@ -1910,15 +1896,15 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Crossbow"
 msgstr "Armborst"
 
-#: simulation/templates/units/mace/champion_infantry_crossbowman.xml:28
+#: simulation/templates/units/mace/champion_infantry_crossbowman.xml:26
 msgid "Crossbowman"
 msgstr "Armborstskytt"
 
-#: simulation/templates/units/mace/champion_infantry_crossbowman.xml:30
+#: simulation/templates/units/mace/champion_infantry_crossbowman.xml:28
 msgid "Champion Crossbowman"
 msgstr "Mästararmborstman"
 
-#: simulation/templates/units/mace/champion_infantry_crossbowman.xml:31
+#: simulation/templates/units/mace/champion_infantry_crossbowman.xml:29
 msgid "Gastraphetophoros"
 msgstr "Gastraphetophoros"
 
@@ -2279,11 +2265,11 @@ msgstr "Arštibara"
 msgid "Artaxšaçā"
 msgstr "Artaxšaçā"
 
-#: simulation/templates/units/pers/cavalry_archer_b.xml:8
+#: simulation/templates/units/pers/cavalry_archer_b.xml:7
 msgid "Parthian Horse Archer"
 msgstr "Parthisk beriden bågskytt"
 
-#: simulation/templates/units/pers/cavalry_archer_b.xml:9
+#: simulation/templates/units/pers/cavalry_archer_b.xml:8
 msgid "Asabāra Parθava"
 msgstr "Asabāra Parθava"
 
@@ -2485,11 +2471,11 @@ msgctxt "Name of an attack of a World War II fighter plane."
 msgid "Machine Guns"
 msgstr "Maskingevär"
 
-#: simulation/templates/units/plane.xml:49
+#: simulation/templates/units/plane.xml:48
 msgid "P-51 Mustang"
 msgstr "P-51 Mustang"
 
-#: simulation/templates/units/plane.xml:50
+#: simulation/templates/units/plane.xml:49
 msgid "A World War II American fighter plane."
 msgstr "Ett Amerikanskt stridsflygplan från Andra Världskriget."
 

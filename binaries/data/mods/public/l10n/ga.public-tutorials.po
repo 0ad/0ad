@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2020 Wildfire Games
+# Copyright (C) 2021 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2020-12-26 15:10+0000\n"
+"POT-Creation-Date: 2021-03-12 08:08+0000\n"
 "PO-Revision-Date: 2017-06-04 12:59+0000\n"
 "Last-Translator: Brian Mac Giolla Mhuire <brian@oireas.com>, 2019\n"
 "Language-Team: Irish (https://www.transifex.com/wildfire-games/teams/17418/ga/)\n"
@@ -24,23 +24,17 @@ msgstr "Fáilte go teagasc 0 A.D."
 
 #: maps/tutorials/introductory_tutorial.js:6
 msgid ""
-"Left-click on a female citizen and then right-click on a berry bush to make "
-"that female citizen gather food. Female citizens gather vegetables faster "
+"Left-click on a Female Citizen and then right-click on a berry bush to make "
+"that Female Citizen gather food. Female Citizens gather vegetables faster "
 "than other units."
 msgstr ""
-"Cléchliceáil ar bhanshaoránach agus ansin deaschliceáil ar tom caoire agus "
-"bailíonn an banshaoránach seo bia as. Bailíonn banshaoránaigh glasraí níos "
-"tapa ná aonaid eile."
 
 #: maps/tutorials/introductory_tutorial.js:15
 msgid ""
-"Select the citizen-soldier, right-click on a tree near the Civic Center to "
-"begin gathering Wood. Citizen Soldiers gather Wood faster than female "
-"citizens."
+"Select the Citizen Soldier, right-click on a tree near the Civic Center to "
+"begin gathering wood. Citizen Soldiers gather wood faster than Female "
+"Citizens."
 msgstr ""
-"Roghnaigh an míle-shaoránach, deaschliceáil ar crann in aice leis an Ionaid "
-"Chathartha d'Adhmad a bhailiú. Bailíonn míle-shaoránaigh Adhmad níos tapa ná"
-" banshaoránaigh."
 
 #: maps/tutorials/introductory_tutorial.js:26
 #, javascript-format
@@ -64,27 +58,22 @@ msgstr ""
 "aonad a dhéanamh."
 
 #: maps/tutorials/introductory_tutorial.js:38
-msgid "Click on the HOPLITE icon."
-msgstr "Cliceáil ar an íocón HOIPLÍTEACH."
+#: maps/tutorials/introductory_tutorial.js:162
+msgid "Click on the Hoplite icon."
+msgstr "Cliceáil ar íocón an Hoiplítigh."
 
 #: maps/tutorials/introductory_tutorial.js:46
 msgid ""
-"Select the two idle female citizens and build a house nearby by selecting "
-"the house icon. Place the house by left-clicking on a piece of land."
+"Select the two idle Female Citizens and build a House nearby by selecting "
+"the House icon. Place the House by left-clicking on a piece of land."
 msgstr ""
-"Roghnaigh na beirt banshaoránaigh agus tóg teach in aice láimhe trí roghnú "
-"an t-íocón tí. Cuir an teach trí dheaschliceáil ar píosa talún in aice "
-"láimhe."
 
 #: maps/tutorials/introductory_tutorial.js:54
 msgid ""
 "When they are ready, select the newly trained Hoplites and assign them to "
-"build a storehouse beside some nearby trees. They will begin to gather Wood "
+"build a Storehouse beside some nearby trees. They will begin to gather wood "
 "when it's constructed."
 msgstr ""
-"Nuair atá siad ina réidh, roghnaigh na Hoiplítigh nua-thraenáilte agus cuir "
-"orthu do stóras a dhéanamh in aice le roinnt crainn. Tosóidh siad d'Adhmad a"
-" bhailiú nuair atá sé tógtha."
 
 #: maps/tutorials/introductory_tutorial.js:64
 #, javascript-format
@@ -101,68 +90,47 @@ msgstr "Cliceáil ar an íocón Scirmiseora."
 
 #: maps/tutorials/introductory_tutorial.js:88
 msgid ""
-"Build a farmstead in an open space beside the Civic Center using any idle "
+"Build a Farmstead in an open space beside the Civic Center using any idle "
 "builders."
 msgstr ""
-"Tógáil feirm i áit oscailte in aice leis an Ionad Cathartha, in úsáid aon "
-"tógálaí díomhaoin."
 
 #: maps/tutorials/introductory_tutorial.js:100
-msgid "Let's wait for the farmstead to be built."
-msgstr "Fanfaimid go dtí tógáil na feirme atá críochnaithe."
+msgid "Let's wait for the Farmstead to be built."
+msgstr ""
 
 #: maps/tutorials/introductory_tutorial.js:112
 msgid ""
-"Once the farmstead is constructed, its builders will automatically begin "
+"Once the Farmstead is constructed, its builders will automatically begin "
 "gathering food if there is any nearby. Select the builders and instead make "
-"them construct a field beside the farmstead."
+"them construct a Field beside the Farmstead."
 msgstr ""
-"Nuair atá an fheirm chríochnaithe, tosóidh a thógálaithe do bhailiú bia a "
-"dhéanamh, má tá aon bhia in aice láimhe. Roghnaigh na tógálaithe agus, ina "
-"ionad sin, ordaigh orthu gort a thógáil in aice leis an bhfeirm."
 
 #: maps/tutorials/introductory_tutorial.js:136
 msgid ""
-"The field's builders will now automatically begin gathering food from the "
-"field. Using the newly created group of skirmishers, get them to build "
-"another house nearby."
+"The Field's builders will now automatically begin gathering food from the "
+"Field. Using the newly created group of skirmishers, get them to build "
+"another House nearby."
 msgstr ""
-"Tosóidh tógálaithe an ghoirt anois do bhia a bhailiú den ghort. Úsáid dream "
-"na scirmiseoirí nua-dhéanta agus ordaigh orthu do theach a thógáil in aice "
-"láimhe."
 
 #: maps/tutorials/introductory_tutorial.js:144
 msgid ""
 "Train a batch of Hoplites at the Civic Center. Select the Civic Center and "
 "with it selected right-click on a tree nearby. Units from the Civic Center "
-"will now automatically gather Wood."
+"will now automatically gather wood."
 msgstr ""
-"Traenáil dream Hoiplítigh ag an Ionad Cathartha. Roghnaigh an tIonad "
-"Cathartha agus leis an tIonad seo roghnaithe deaschliceáil ar crann in aice "
-"láimhe. Baileoidh aonaid den Ionaid Cathartha seo Adhmad go huathoibríoch."
-
-#: maps/tutorials/introductory_tutorial.js:162
-msgid "Click on the Hoplite icon."
-msgstr "Cliceáil ar íocón an Hoiplítigh."
 
 #: maps/tutorials/introductory_tutorial.js:176
 msgid ""
 "Select the Civic Center, then hover the cursor over the tree and right-click"
-" when you see your cursor change into a Wood icon."
+" when you see your cursor change into a wood icon."
 msgstr ""
-"Roghnaigh an tIonad Cathartha agus faoileáil an cúrsóir os crionn an chrainn"
-" agus deaschliceáil nuair a fhéiceann tú do chúrsóir ag athrú go íocón "
-"Adhmaid."
 
 #: maps/tutorials/introductory_tutorial.js:185
 msgid ""
 "Order the idle Skirmishers to build an outpost to the north east at the edge"
-" of your territory.  This will be the fifth Village Phase structure that you"
-" have built, allowing you to advance to the Town Phase."
+" of your territory. This will be the fifth Village Phase structure that you "
+"have built, allowing you to advance to the Town Phase."
 msgstr ""
-"Ordaigh na Scirmiseoirí díomhaoine d'urphost a thógáil san imeall thoir "
-"thuaidh do chríocha. Beidh an foirgneamh seo an cúigiú foirgneam den Chéim "
-"Sráidbhaile a thógáil tú, agus a ligean ort ag ardú go an gCéim Bhaile."
 
 #: maps/tutorials/introductory_tutorial.js:193
 msgid ""
@@ -185,23 +153,20 @@ msgstr ""
 
 #: maps/tutorials/introductory_tutorial.js:220
 msgid ""
-"Start training a batch of female citizens in the Civic Center and set its "
+"Start training a batch of Female Citizens in the Civic Center and set its "
 "rally point to the farm (right click on it)."
 msgstr ""
-"Tosaigh ag traenáil dreama banshaoránach san Ionad Cathartha, agus cuir a "
-"áit slogaidh ar an bhfeirm (deaschliceáil air). "
 
 #: maps/tutorials/introductory_tutorial.js:238
-msgid "Click on the female citizen icon."
-msgstr "Cliceáil ar íocón an bhanshaoránaigh."
+#: maps/tutorials/starting_economy_walkthrough.js:345
+msgid "Click on the Female Citizen icon."
+msgstr "Cliceáil ar íocón Bansaoránach."
 
 #: maps/tutorials/introductory_tutorial.js:258
 msgid ""
 "Build a Barracks nearby. Whenever your population limit is reached, build an"
-" extra house using any available builder units."
+" extra House using any available builder units."
 msgstr ""
-"Tógáil Beairic in aice láimhe. Gach uair a sroichfidh tú le d'uasdhaonra, "
-"thógáil tú teach breise in úsáid aon tógálaí díomhaoin."
 
 #: maps/tutorials/introductory_tutorial.js:266
 msgid ""
@@ -260,37 +225,33 @@ msgstr ""
 #: maps/tutorials/introductory_tutorial.js:359
 msgid ""
 "Stop all your soldiers gathering resources and instead task small groups to "
-"find the enemy Civic Center on the map. Once The enemy's base has been "
-"spotted, send your siege weapons and all remaining soldiers to destroy it.\n"
+"find the enemy Civic Center on the map. Once the enemy's base has been "
+"spotted, send your Siege Engines and all remaining soldiers to destroy it.\n"
 msgstr ""
-"Cuir stop le do shaighdiúirí uile agus iad a bhailiú acmhainní, in ionad "
-"sin, ordaigh ar grúpaí beag d'Ionad Cathartha an namhad a aimsiú. Nuair atá "
-"campa an namhad aimsithe, seol d'uirlisí léigir agus saighdiúirí uile agus "
-"scrios a chur orthu.\n"
 
 #: maps/tutorials/introductory_tutorial.js:360
-msgid "Female citizens should continue to gather resources."
-msgstr "Ba cheart do bhanshaoránaigh a lean bailiú bia ar aghaidh."
+msgid "Female Citizens should continue to gather resources."
+msgstr ""
 
 #: maps/tutorials/introductory_tutorial.js:371
 msgid "The enemy has been defeated. These tutorial tasks are now completed."
 msgstr ""
 "Tá an namhaid cloíte, agus tá tascanna an teagaisc seo críochnaithe anois."
 
-#: maps/tutorials/introductory_tutorial.xml:Description:39
+#: maps/tutorials/introductory_tutorial.xml:Description:38
 msgid "This is a basic tutorial to get you started playing 0 A.D."
 msgstr "Tá an teagasc seo an teagasc bunúsach do 0 A.D."
 
-#: maps/tutorials/introductory_tutorial.xml:Name:39
+#: maps/tutorials/introductory_tutorial.xml:Name:38
 msgid "Introductory Tutorial"
 msgstr "Teagasc Tosaigh"
 
-#: maps/tutorials/introductory_tutorial.xml:PlayerData[0].Name:39
-#: maps/tutorials/starting_economy_walkthrough.xml:PlayerData[0].Name:40
+#: maps/tutorials/introductory_tutorial.xml:PlayerData[0].Name:38
+#: maps/tutorials/starting_economy_walkthrough.xml:PlayerData[0].Name:39
 msgid "Player 1"
 msgstr "Imreoir 1"
 
-#: maps/tutorials/introductory_tutorial.xml:PlayerData[1].Name:39
+#: maps/tutorials/introductory_tutorial.xml:PlayerData[1].Name:38
 msgid "Player 2"
 msgstr "Imreoir 2"
 
@@ -370,32 +331,19 @@ msgid ""
 "the building while the bottom one or two rows will have researchable "
 "technologies. Hover the cursor over the II icon. The tooltip will tell us "
 "that advancing to Town Phase requires both more constructed structures as "
-"well as more Food and Wood resources."
+"well as more food and wood resources."
 msgstr ""
-"Tá portráidí aonad sa ró suas is féidir leat a thraenáil san fhoirgneamh seo"
-" cé go bhfuil teicneolaíochtaí intaighdeacha ar an t-aon nó dhó ró síos. "
-"Faoileáil an cúrsóir os cionn an íocóin 'II'. Inseoidh an nod seo go bhfuil "
-"níos mó foirgnimh agus acmhainní Bia is Adhmad ina riachtanas d'ardaigh go "
-"an 'gCéim Bhaile'."
 
 #: maps/tutorials/starting_economy_walkthrough.js:30
 msgid ""
-"You have two main types of starting units: female citizens and citizen "
-"soldiers. Female citizens are purely economic units; they have low HP, no "
-"armor, and little to no attack. Citizen soldiers are workers by default, but"
-" in times of need, can utilize a weapon to fight. You have two categories of"
-" citizen soldiers: infantry and cavalry. Female citizens and infantry "
-"citizen soldiers can gather any land resources while cavalry citizen "
-"soldiers can only gather meat from hunted animals.\n"
+"You have two main types of starting units: Female Citizens and Citizen "
+"Soldiers. Female Citizens are purely economic units; they have low health "
+"and little to no attack. Citizen Soldiers are workers by default, but in "
+"times of need, can utilize a weapon to fight. You have two categories of "
+"Citizen Soldiers: Infantry and Cavalry. Female Citizens and Infantry Citizen"
+" Soldiers can gather any land resources while Cavalry Citizen Soldiers can "
+"only gather meat from animals.\n"
 msgstr ""
-"Tá dhá chineál aonad bunúsach agat: banshaoránaigh agus míle-shaoránaigh. "
-"Níl i mbanshaoránaigh ach aonad éacnamaíochta amháin; tá AS beag, armúr ar "
-"bith, agus ionsaí beag go leor acu. Tá míle-shaoránaigh ina n-oibrí go "
-"réamhshocraithe ach, má a theastaíonn uathu, is féidir leo troid a dhéanamh."
-" Tá dha chineál míle-shaoránaigh: coisí is marcra. Is féidir le "
-"banshaoránaigh agus coisithe míle-shaoránacha aon acmhainn talún a bhailiú "
-"acu, cé go is féidir le míle-shaoránaigh marcacha ach feoil a bhailiú amháin"
-" d'ainmhithe fiaigh.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:35
 msgid ""
@@ -409,12 +357,9 @@ msgstr ""
 #: maps/tutorials/starting_economy_walkthrough.js:40
 msgid ""
 "At this point, food and wood are the most important resources for developing"
-" your economy, so let's start with gathering food. Female citizens gather "
+" your economy, so let's start with gathering food. Female Citizens gather "
 "vegetables faster than other units.\n"
 msgstr ""
-"Ag an am seo, tá bia is adhmad na hacmhainní is tábhachtaí agat le "
-"d'eacnamaíocht a fhorbairt. Mar sin tosaimid ag bailiú bia. Bailíonn "
-"banshaoránaigh glasraí níos tapa ná aonaid eile.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:41
 msgid "There are primarily three ways to select units:\n"
@@ -451,34 +396,23 @@ msgstr ""
 #: maps/tutorials/starting_economy_walkthrough.js:45
 msgid ""
 "You can click on an empty space on the map to reset the selection. Try each "
-"of these methods before tasking all of your female citizens to gather the "
+"of these methods before tasking all of your Female Citizens to gather the "
 "grapes to the southeast of your Civic Center by right-clicking on the grapes"
-" when you have all the female citizens selected."
+" when you have all the Female Citizens selected."
 msgstr ""
-"Is féidir leat a chliceáil ar aon spás folamh sa léarscáil do do roghnú a "
-"athshocrú. Baint triail as gach aon modh seo roimh a ordaíonn tú ar do "
-"bhanshaoránaigh uile fíonchaora a bhailiú san oirdheisceart d'Ionaid "
-"Chathartha trí dheaschliceáil ar na fíonchaora nuair atá na banshaoránaigh "
-"roghnaithe ar fad."
 
 #: maps/tutorials/starting_economy_walkthrough.js:56
 msgid ""
-"Now, let's gather some Wood with your Infantry Citizen Soldiers. Select your"
-" Infantry Citizen Soldiers and order them to gather Wood by right-clicking "
+"Now, let's gather some wood with your Infantry Citizen Soldiers. Select your"
+" Infantry Citizen Soldiers and order them to gather wood by right-clicking "
 "on the nearest tree."
 msgstr ""
-"Anois, bailímis roinnt Adhmad le do Coisithe Míle-Shaoránacha. Roghnaigh do "
-"Choisithe Míle-Shaoránacha agus ordaigh orthu d'Adhmad a bhailiú i "
-"ndeaschliceáil ar crann in aice láimhe."
 
 #: maps/tutorials/starting_economy_walkthrough.js:67
 msgid ""
-"Cavalry Citizen Soldiers are good for hunting. Select your cavalry and order"
+"Cavalry Citizen Soldiers are good for hunting. Select your Cavalry and order"
 " him to hunt the chickens around your Civic Center in similar fashion."
 msgstr ""
-"Tá Míle-Shaoránaigh Marcacha go maith le haghaidh seilge. Roghnaigh do "
-"mharcraí agus ordaigh orthu do sicíní a sheilg i dteampall d'Ionaid "
-"Chathartha."
 
 #: maps/tutorials/starting_economy_walkthrough.js:78
 msgid ""
@@ -492,16 +426,10 @@ msgid ""
 "First, let's set a rally point. Setting a rally point on a building that can"
 " train units will automatically designate a task to the new unit upon "
 "completion of training. We want to send the newly trained units to gather "
-"Wood on the group of trees to the south of the Civic Center. To do so, "
+"wood on the group of trees to the south of the Civic Center. To do so, "
 "select the Civic Center by clicking on it and then right-click on one of the"
 " trees.\n"
 msgstr ""
-"Ar dtús, leagaimid áit slogaidh. Nuair a leagann tú áit slogaidh ar "
-"foirgneamh ábalta aonaid a thraenáil, nuair atá aon aonad traenáilte, "
-"tabharfar tasc dóibh. Ba mhaith linn na haonaid nua-thraenáilte d'Adhmad a "
-"bhailiú den grúpa crann ó dheas den Ionad Cathartha. Do é sin a dhéanamh, "
-"roghnaigh an tIonad Cathartha trí chliceáil air agus ansin deaschliceáil ar "
-"aon chrann.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:80
 msgid ""
@@ -512,11 +440,8 @@ msgstr ""
 #: maps/tutorials/starting_economy_walkthrough.js:88
 msgid ""
 "Select the Civic Center, then hover the cursor over a tree and right-click "
-"when you see the cursor change into a Wood icon."
+"when you see the cursor change into a wood icon."
 msgstr ""
-"Roghnaigh an tIonad Cathartha, ansin faoileáil an cúrsóir os cionn crainn "
-"agus deaschliceáil nuair a fheiceann tú do chúrsóir ag athrú go íocón "
-"Adhmaid."
 
 #: maps/tutorials/starting_economy_walkthrough.js:97
 msgid ""
@@ -528,17 +453,12 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:98
 msgid ""
-"Citizen soldiers gather wood faster than female citizens. Select the Civic "
-"Center and, while holding Shift, click on the second unit icon, the hoplites"
+"Citizen Soldiers gather wood faster than Female Citizens. Select the Civic "
+"Center and, while holding Shift, click on the second unit icon, the Hoplites"
 " (holding Shift trains a batch of five units). You can also train units "
 "individually by simply clicking, but training 5 units together takes less "
 "time than training 5 units individually."
 msgstr ""
-"Bailíonn míle-shaoránaigh adhmad níos tapa ná banshaoránaigh. Roghnaigh an "
-"tIonad Cathartha agus, le Shift brúite, cliceáil ar an dara íocón aonaid, na"
-" hoiplítigh (nuair áta Shift brúite, tá cúigear aonad traenáilte). Is féidir"
-" leat aonaid a thraenáil astu féin, ach tá am traenála do dhream 5ir níos lú"
-" ná 5 aonaid astu féin."
 
 #: maps/tutorials/starting_economy_walkthrough.js:108
 msgid "Do not forget to hold Shift while clicking to train several units."
@@ -558,15 +478,11 @@ msgstr "Fágainn d'aonaid atá traenáilte.\n"
 #: maps/tutorials/starting_economy_walkthrough.js:119
 msgid ""
 "While waiting, direct your attention to the panel at the top of your screen."
-" On the upper left, you will see your current resource supply (Food, Wood, "
-"Stone, and Metal). As each worker brings resources back to the Civic Center "
+" On the upper left, you will see your current resource supply (food, wood, "
+"stone, and metal). As each worker brings resources back to the Civic Center "
 "(or another dropsite), you will see the amount of the corresponding resource"
 " increase.\n"
 msgstr ""
-"Nuair atá tú ag fanacht, feic ar an bpainéil i mbarr do scáileáin. Feicfidh "
-"tú do sholáthar acmhainne reatha (Bia, Adhmad, Cloch, is Miotail) i mbarr "
-"chúinne clé. Nuair a thugann gach oibrí leis acmhainní go dtí an tIonad "
-"Cathartha (nó fosú eile), feicfidh tú ar méad na hacmhainne seo ag méadú.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:120
 msgid ""
@@ -582,28 +498,19 @@ msgstr ""
 #: maps/tutorials/starting_economy_walkthrough.js:129
 msgid ""
 "The newly trained units automatically go to the trees and start gathering "
-"Wood.\n"
+"wood.\n"
 msgstr ""
-"Téann na haonaid nua-thraenáilte go dtí na crainn augs tósaíonn siad Adhmad "
-"a bhailiú.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:130
 msgid ""
 "But as they have to bring it back to the Civic Center to deposit it, their "
 "gathering efficiency suffers from the distance. To fix that, we can build a "
-"storehouse, a dropsite for Wood, Stone, and Metal, close to the trees. To do"
+"Storehouse, a dropsite for wood, stone, and metal, close to the trees. To do"
 " so, select your five newly trained Citizen Soldiers and look for the "
-"construction panel on the bottom right, click on the storehouse icon, move "
+"construction panel on the bottom right, click on the Storehouse icon, move "
 "the mouse as close as possible to the trees you want to gather and click on "
 "a valid place to build the dropsite.\n"
 msgstr ""
-"Ach teastaíonn uathu a n-acmhainní a chur i bhfosú san Ionad Cathartha, agus"
-" laghdaigh an fad seo a n-éifeachtúlacht. Is féidir linn stóras a thógáil in"
-" aice leis na crainn mar fhosú d'Adhmad, Cloch, agus Miotail. Mar é sin a "
-"dhénamh, roghnaigh cúigear do Mhíle-Shaoránaigh nua-thraenáilte agus feic ar"
-" painéal na tógála i mbun deas, cliceáil ar an íocón stórais, bog an cúrsóir"
-" chomh gar agus is féidir leis na crainn ar mhaith leat a bhailiú agus "
-"cliceáil ar áit bailí leis an bhfosú a thógáil.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:131
 msgid ""
@@ -615,29 +522,22 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:141
 msgid ""
-"The selected citizens will automatically start constructing the building "
+"The selected Citizens will automatically start constructing the building "
 "once you place the foundation."
 msgstr ""
-"Tosóidh na saoránaigh roghnaithe an foirgneamh a thógáil go huathoibríoch "
-"nuair a chuireann tú an búnsraith."
 
 #: maps/tutorials/starting_economy_walkthrough.js:152
 msgid ""
-"When construction finishes, the builders default to gathering Wood "
+"When construction finishes, the builders default to gathering wood "
 "automatically.\n"
 msgstr ""
-"Nuairt atá an tógáil críochnaithe, tosóidh na hoibríthe Adhmad a bhailiú go "
-"huathoibríoch.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:153
 msgid ""
-"Let's train some female citizens to gather more food. Select the Civic "
-"Center, hold Shift and click on the female citizen icon to train 5 female "
-"citizens."
+"Let's train some Female Citizens to gather more food. Select the Civic "
+"Center, hold Shift and click on the Female Citizen icon to train five Female"
+" Citizens."
 msgstr ""
-"Traenálaimis roinnt banshaoránaigh do níos mó bia a bhailiú. Roghnaigh an "
-"tIonad Cathartha, brúigh ar Shift agus cliceáil ar an íocón banshaoránaigh "
-"do 5 banshaoránaigh a thraenáil."
 
 #: maps/tutorials/starting_economy_walkthrough.js:167
 msgid "Do not forget to hold Shift and click to train several units."
@@ -649,16 +549,11 @@ msgstr "Brúigh ar Shift agus cliceáil ar an íocón Banshaoránach."
 
 #: maps/tutorials/starting_economy_walkthrough.js:178
 msgid ""
-"In the meantime, we seem to have enough workers gathering Wood. We should "
-"remove the current rally point of the Civic Center away from gathering Wood."
+"In the meantime, we seem to have enough workers gathering wood. We should "
+"remove the current rally point of the Civic Center away from gathering wood."
 " For that purpose, right-click on the Civic Center when it is selected (and "
 "the flag icon indicating the rally point is crossed out)."
 msgstr ""
-"Idir an dá linn, is cosúil go bhfuil ár ndóthain oibrithe ag bailiú Adhmaid."
-" Ba cheart orainn an áit-slógaidh reath don Ionad Cathartha a bhogadh as an "
-"mbailiú Adhmaid. Ar an son sin, deaschliceáil ar an Ionad Cathartha nuair "
-"atá sé cheana féin faoi roghnú (agus nuair atá íocón brataigh trasnaithe "
-"amach)."
 
 #: maps/tutorials/starting_economy_walkthrough.js:192
 msgid "The units should be ready soon.\n"
@@ -682,51 +577,34 @@ msgstr ""
 msgid ""
 "As you have nearly reached the population limit, you must increase it by "
 "building some new structures if you want to train more units. The most cost "
-"effective structure to increase your population limit is the house.\n"
+"effective structure to increase your population limit is the House.\n"
 msgstr ""
-"Mar atá tú ró-ghar leis an uasdhaonra, teastaíonn uait é a mhéadú trí "
-"thógáil roinnt foirgnimh nua má a theastaíonn uait níos mó aonaid a "
-"thraenáil. Is an teach é an foirgnimh is fearr do d'uasdhaonra a mhéadú go "
-"saoire.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:207
 msgid ""
-"Now that the units are ready, let's see how to build several houses in a "
+"Now that the units are ready, let's see how to build several Houses in a "
 "row."
 msgstr ""
-"Anois go bhfuil na haonaid ina réidh, feicimis conás a thógaimid roinnt "
-"tithe i ndiaidh a chéile."
 
 #: maps/tutorials/starting_economy_walkthrough.js:212
 msgid ""
-"Select two of your newly-trained female citizens and ask them to build these"
-" houses in the empty space to the east of the Civic Center. To do so, after "
-"selecting the female citizens, click on the house icon in the bottom right "
+"Select two of your newly-trained Female Citizens and ask them to build these"
+" Houses in the empty space to the east of the Civic Center. To do so, after "
+"selecting the Female Citizens, click on the House icon in the bottom right "
 "panel and, while holding Shift, click first on the position in the map where"
-" you want to build the first house, and then click on the position where you"
-" want to build the second house (when you give a command while holding "
+" you want to build the first House, and then click on the position where you"
+" want to build the second House (when you give a command while holding "
 "Shift, you put the command in a queue; units automatically switch to the "
 "next command in their queue when they finish their current command). Press "
-"Escape to get rid of the house cursor so you don't spam houses all over the "
+"Escape to get rid of the House cursor so you don't spam Houses all over the "
 "map.\n"
 msgstr ""
-"Roghnaigh beirt as do bhanshaoránaigh nua-thraenáilte agus ordaigh orthu na "
-"tithe seo a thógail i spás folamh in oirthear an Ionaid Chathartha. Mar é "
-"seo a dhéanamh, nuair atá na banshaoránaigh roghnaithe, ansin cliceáil ar an"
-" íocón tí i mbun painéil deas agus, nuair atá Shift brúite, cliceál ar dtús "
-"ar spás léarscáile ar mhaith leat an chéad teach a thógáil, agus ansin ar "
-"spás ar mhaith leat an dara teach a thógáil (nuair a ordaíonn tú le Shift "
-"brúite, cuireann tú an t-ord i gciú; leanann aonaid ar aghaidh lena gcéad "
-"ord eile nuair atá a n-ord reatha déanta). Brúigh ar Escape don chúrsóir tí "
-"a fháil réidh agus nach bhfuil teach eile a chruthú agat.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:213
 msgid ""
-"Reminder: to select only two female citizens, click on the first one and "
+"Reminder: to select only two Female Citizens, click on the first one and "
 "then hold Shift and click on the second one."
 msgstr ""
-"Meabhrú: do bheirt bhanshaoránaigh amháin a roghnú, cilceáil ar an gcéad "
-"agus anois brúigh Shift nuair a chliceáilíonn tú ar an ndara."
 
 #: maps/tutorials/starting_economy_walkthrough.js:246
 msgid ""
@@ -741,82 +619,57 @@ msgstr ""
 #: maps/tutorials/starting_economy_walkthrough.js:247
 msgid ""
 "But to minimize the distance between a farm and its corresponding food "
-"dropsite, we will first build a farmstead."
+"dropsite, we will first build a Farmstead."
 msgstr ""
-"Ach don fhaid a laghdú idir feirm agus a fosú bia comhfhreagrach, tógfaimid "
-"áitreabh feirme ar dtús."
 
 #: maps/tutorials/starting_economy_walkthrough.js:258
 msgid ""
-"Select the three remaining (idle) female citizens and order them to build a "
-"farmstead in the center of the large open area to the west of the Civic "
+"Select the three remaining (idle) Female Citizens and order them to build a "
+"Farmstead in the center of the large open area to the west of the Civic "
 "Center.\n"
 msgstr ""
-"Roghnaigh an triúr banshaoránaigh (díomhaoine) atá fágtha agus ordaigh orthu"
-" d'fheirm a thógáil i lár na críche mhóir oscailte siar ón Ionad "
-"Cathartha.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:259
 msgid ""
-"We will need a decent chunk of space around the farmstead to build fields. "
+"We will need a decent chunk of space around the Farmstead to build Fields. "
 "In addition, we can see goats on the west side to further improve our food "
 "gathering efficiency should we ever decide to hunt them.\n"
 msgstr ""
-"Teastaíonn leadhb mór spáis uainn i dtimpeall na feirme do ghóirt a thógáíl."
-" Is féidir linn gabhair a fheiceáil san iarthar freisin, agus méadfaidh siad"
-" a éifeactacht bailithe do bhia, ba chóir dúinn seilg a dhéanamh orthu "
-"riamh.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:260
 msgid ""
-"If you try to select the three idle female citizens by clicking and dragging"
+"If you try to select the three idle Female Citizens by clicking and dragging"
 " a selection rectangle over them, you might accidentally select additional "
 "units. To avoid that, hold the I key while selecting so that only idle units"
 " are selected. If you accidentally select a cavalry unit, hold Ctrl and "
 "click on the cavalry unit icon of the selection panel at the bottom of the "
 "screen to remove the cavalry unit from the current selection."
 msgstr ""
-"Má bhaint tú triail as tríur banshaoránaigh a roghnú trí chliceáil-is-"
-"tarraingt le dronuilleog orthu, d'fhéadfá aonaid eile a roghnú de thaisme. "
-"Chun seo a sheachaint, brúigh ar an gclé I nuair atá tú ag roghnú, ar an "
-"mbealach seo, beidh aonaid díomhaoine amháin roghnaithe. Má roghnaíonn tú "
-"aonaid marcra de thaisme, brúigh ar Ctrl agus cliceáil ar an íocón marcra ar"
-" an bpainéal roghnaithe i mbun scáileáin don mharcach a bhaint as an roghnú."
 
 #: maps/tutorials/starting_economy_walkthrough.js:275
 msgid ""
-"When the farmstead construction is finished, its builders will automatically"
+"When the Farmstead construction is finished, its builders will automatically"
 " look for food, and in this case, they will go after the nearby goats.\n"
 msgstr ""
-"Nuair atá an fheirm críochnaithe, cuardóidh a tógálaithe bia go "
-"huathoibríoch agus, sa chás seo, déanfaidh siad seilg ar na gabhair.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:276
 msgid ""
-"But your house builders will only look for something else to build and, if "
-"nothing found, become idle. Let's wait for them to build the houses."
+"But your House builders will only look for something else to build and, if "
+"nothing found, become idle. Let's wait for them to build the Houses."
 msgstr ""
-" Ach cuardóidh do thógálaithe tí ar aon fhoirgneamh eile a thógáil agus, "
-"mura aimseoidh siad foirgneamh ar bith, beidh siad ina ndíomhaoine. "
-"Fanfaimid go dtí go dtógann siad na tithe."
 
 #: maps/tutorials/starting_economy_walkthrough.js:292
 msgid ""
-"When both houses are built, select your two female citizens and order them "
-"to build a field as close as possible to the farmstead, which is a dropsite "
+"When both Houses are built, select your two Female Citizens and order them "
+"to build a Field as close as possible to the Farmstead, which is a dropsite "
 "for all types of food."
 msgstr ""
-"Nuair atá na dhá theach tógtha, roghnaigh do bheirt banshaoránaigh agus "
-"ordaigh orthu górt a thógáil so-aice leis an bhfeirm, is féidir le gach "
-"cineá bia a chur san fheirm mar fhosú."
 
 #: maps/tutorials/starting_economy_walkthrough.js:302
 msgid ""
-"When the field is ready, the builders will automatically start gathering "
+"When the Field is ready, the builders will automatically start gathering "
 "it.\n"
 msgstr ""
-"Nuair atá an górt críochnaithe, tosóidh na tógálaithe é a bhailiú go "
-"huathoibríoch.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:303
 msgid ""
@@ -840,24 +693,18 @@ msgid ""
 msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:322
-msgid "Select the Civic Center and right-click on the field."
-msgstr "Roghnoigh an tIonad Cathartha agus deaschliceáil ar an ngórt."
+msgid "Select the Civic Center and right-click on the Field."
+msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:330
 msgid ""
-"Now click three times on the female citizen icon in the bottom right panel "
+"Now click three times on the Female Citizen icon in the bottom right panel "
 "to train three additional farmers."
 msgstr ""
-"Anois tríchliceáil ar íocón an banshaoránaigh i mbun painéil deas do thríur "
-"feirmeora bhreise a thraenáil."
 
 #: maps/tutorials/starting_economy_walkthrough.js:344
 msgid "Click without holding Shift to train a single unit."
 msgstr "Cliceáil gan Shift faoi bhrú d'aonaid amháin a thraenáil."
-
-#: maps/tutorials/starting_economy_walkthrough.js:345
-msgid "Click on the Female Citizen icon."
-msgstr "Cliceáil ar íocón Bansaoránach."
 
 #: maps/tutorials/starting_economy_walkthrough.js:355
 msgid ""
@@ -870,17 +717,11 @@ msgstr ""
 #: maps/tutorials/starting_economy_walkthrough.js:356
 msgid ""
 "The farming rate, for example, can be improved with a researchable "
-"technology in the farmstead. Select the farmstead and look at its production"
+"technology in the Farmstead. Select the Farmstead and look at its production"
 " panel on the bottom right. You will see several researchable technologies. "
 "Hover the cursor over them to see their costs and effects and click on the "
 "one you want to research."
 msgstr ""
-"Mar shampla, is féidir leis an ráta feirmeorachta a ardú trí theicneolaíocht"
-" so-thaighdeach san áitreabh feirme. Roghnaigh an áitreabh feirme agus feic "
-"ar painéal táirgthe i mbun páinéil deas. Gheobhaidh tú roinnt "
-"teicneolaíochtaí so-thaighdeacha. Faoileáil an cúrsóir os cionn a n-íocón "
-"agus feic ar a gcostas agus a n-éifeachtaí, agus cliceáil ar aon ar mhaith "
-"leat taighde a dhéanamh air."
 
 #: maps/tutorials/starting_economy_walkthrough.js:371
 msgid ""
@@ -921,14 +762,8 @@ msgid ""
 "you can add two soldiers to build it faster. To do so, select your Civic "
 "Center and set up a rally point on the Barracks foundation by right-clicking"
 " on it (you should see a hammer icon). Then produce two more builders by "
-"clicking on the hoplite icon twice."
+"clicking on the Hoplite icon twice."
 msgstr ""
-"Fanfaimid go dtí tógáil na bheairice atá críochnaithe. Mar a thógann an "
-"tógáil seo i bhfad, is féidir leat dha saighdiúirí eile a chur leis an "
-"dtógáil agus luas tógála a mhéadú. Do é sin a dhéanamh, roghnaigh d'Ionad "
-"Cathartha agus cuir áit slógaidh ar bunsraith na beairice trí dheaschliceáil"
-" air (ba cheart duit íocón casúir a fheiceáil), agus ansin cruthaigh dhá "
-"thógálaí breise trí chliceáil faoi dó ar an íocón hoiplítigh."
 
 #: maps/tutorials/starting_economy_walkthrough.js:394
 msgid ""
@@ -948,54 +783,35 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:409
 msgid ""
-"In later phases, you need usually Stone and Metal to build bigger structures"
+"In later phases, you need usually stone and metal to build bigger structures"
 " and train better soldiers. Hence, while waiting for the research to be "
 "done, you will send half of your idle Citizen Soldiers (who have finished "
-"building the Barracks) to gather Stone and the other half to gather Metal.\n"
+"building the Barracks) to gather stone and the other half to gather metal.\n"
 msgstr ""
-"I gcéimeanna níos déanaí, teastaíonn Cloch agus Miotal uait go huaireanta "
-"d'fhoirgneamh níos mó a thógáil agus aonaid níos fearr a thraenáil. Mar sin,"
-" nuair atá tú ag fanacht leis an taighde a dhéanamh, seolfaidh tú leath den "
-"Mhíle-Shaoránaigh (atá críochnaithe an Bheairic a thógáil) do Chloch a "
-"bhailiú, agus an leath eile do Mhiotal a bhailliú.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:410
 msgid ""
 "To do so, we could select three Citizen Soldiers and right-click on the "
-"Stone mine on the west of the Civic Center (the cursor changes when hovering"
-" the Stone mine while your soldiers are selected). However, these soldiers "
-"were gathering Wood, so they may still carry some Wood which would be lost "
-"when starting to gather another resource."
+"stone quarry on the west of the Civic Center (the cursor changes when "
+"hovering the stone quarry while your soldiers are selected). However, these "
+"soldiers were gathering wood, so they may still carry some wood which would "
+"be lost when starting to gather another resource."
 msgstr ""
-"Mar é sin a dhéanamh, ba chóir duit trí Mhíle-Shaoránach a roghú agus "
-"deaschliceáil ar an mianach Cloiche in iarthair an Ionaid Chathartha "
-"(athreoidh an cúrsóir nuair atá sé ag faoileáil os cionn mianach Cloiche "
-"nuair atá do shaighdiúirí roghnaithe). Áfach, bhí na saighdiúirí seo ag "
-"bailiú Adhmaid, mar sin b'fhéidir go bhfuil roinnt Adhmaid acu chéana féin, "
-"agus beidh an Adhmad seo caillte má bhaileoidh siad acmhainn eile."
 
 #: maps/tutorials/starting_economy_walkthrough.js:415
 msgid ""
-"Thus, we should order them to deposit their Wood in the Civic Center along "
+"Thus, we should order them to deposit their wood in the Civic Center along "
 "the way. To do so, we will hold Shift while clicking to queue orders: select"
 " your soldiers, hold Shift and right-click on the Civic Center to deposit "
-"their Wood and then hold Shift and right-click on the Stone mine to gather "
-"it.\n"
+"their wood and then hold Shift and right-click on the stone quarry to gather"
+" it.\n"
 msgstr ""
-"Mar sin, ba cheart dúinn iad a ordú a nAdhmad a chur san Ionad Cathartha ar "
-"an mbealach. Mar é sin a dhéanamh, brúfaimid ar Shift nuair atá muid ag "
-"cliceáil d'oird a chur i scuaine: roghnaigh do shaighdiúirí, brúigh ar Shift"
-" agus deaschliceáil ar an Ionad Cathartha dá nAdhmad a chur, agus ansin "
-"brúigh ar Shift agus deaschliceáil ar an mianach Cloiche do Cloch a "
-"bhailiú.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:416
 msgid ""
-"Perform a similar order queue with the remaining soldiers and the Metal mine"
+"Perform a similar order queue with the remaining soldiers and the metal mine"
 " in the west."
 msgstr ""
-"Déan mar an gcéanna le leath na saighdiúirí eile agus an mianach Miotail in "
-"iarthair."
 
 #: maps/tutorials/starting_economy_walkthrough.js:450
 msgid ""
@@ -1005,17 +821,13 @@ msgstr ""
 "Táimid ag an ndeireadh den threoir céim ar chéim. Ba cheart é seo eolas "
 "maith a thabhairt dhuit faoina bunsraitheanna bunúsacha d'éacnamaíochta."
 
-#: maps/tutorials/starting_economy_walkthrough.xml:Description:40
+#: maps/tutorials/starting_economy_walkthrough.xml:Description:39
 msgid ""
-"This map will give a rough guide for starting the game effectively.  Early "
-"in the game the most important thing is to gather resources as fast as "
+"This map will give a rough guide for starting the game effectively. Early in"
+" the game the most important thing is to gather resources as fast as "
 "possible so you are able to build enough troops later."
 msgstr ""
-"Tugann an léarscáil seo treoir céim ar chéim leis an gcluiche a tosú go "
-"héifeachtach. Ag tús sa chluiche, tá bailiú na n-acmhainní é an rud is "
-"tabháchtaí, agus is féidir leat níos mó aonaid a thraenáil níos déanaí má "
-"bhailíonn tú acmhainní go tapa ag tús an chluiche."
 
-#: maps/tutorials/starting_economy_walkthrough.xml:Name:40
+#: maps/tutorials/starting_economy_walkthrough.xml:Name:39
 msgid "Starting Economy Walkthrough"
 msgstr "Teagasc Éacnamaíochta Bunúsaigh"

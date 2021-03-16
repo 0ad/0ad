@@ -19,6 +19,9 @@
     <Tooltip>Transport many soldiers across the sea.</Tooltip>
     <Icon>units/celt_ship_trireme.png</Icon>
   </Identity>
+  <Loot>
+    <xp op="add">20</xp>
+  </Loot>
   <UnitMotion>
     <WalkSpeed op="mul">0.9</WalkSpeed>
   </UnitMotion>

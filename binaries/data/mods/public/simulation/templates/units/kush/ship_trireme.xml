@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_ship_trireme">
-  <Cost>
-    <Resources>
-      <wood op="add">50</wood>
-      <metal op="add">50</metal>
-    </Resources>
-  </Cost>
   <Footprint>
     <Square width="10.0" depth="40.0"/>
     <Height>8.0</Height>

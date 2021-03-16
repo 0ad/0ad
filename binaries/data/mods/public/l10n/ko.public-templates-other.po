@@ -7,7 +7,7 @@
 # Aksidion Kreimben <aksidionkreimben@gmail.com>, 2016
 # Aksidion Kreimben <aksidionkreimben@gmail.com>, 2016
 # Asakura, 2017
-# Bruce Lee <daemul72@gmail.com>, 2021
+# JungHee Lee <daemul72@gmail.com>, 2021
 # 미워하지 않아 <eustaph7725@gmail.com>, 2017
 # 미워하지 않아 <eustaph7725@gmail.com>, 2017
 # 76407af6b051a571d67c2577de2183db_7380deb <7a4a088c8c60986e924b802e46370579_512231>, 2016
@@ -15,6 +15,7 @@
 # Hn Dsu <lomio97@naver.com>, 2016
 # moolow <copyhyeon@gmail.com>, 2018
 # jjj <triplej03@nate.com>, 2014
+# JungHee Lee <daemul72@gmail.com>, 2021
 # Gu Hong Min <placidmoon1@gmail.com>, 2015
 # ks k, 2017,2019
 # ks k, 2019-2020
@@ -29,9 +30,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-20 00:57+0000\n"
-"PO-Revision-Date: 2021-02-10 08:52+0000\n"
-"Last-Translator: Bruce Lee <daemul72@gmail.com>\n"
+"POT-Creation-Date: 2021-03-12 08:08+0000\n"
+"PO-Revision-Date: 2021-03-14 21:23+0000\n"
+"Last-Translator: JungHee Lee <daemul72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -163,27 +164,36 @@ msgstr "종교 성역"
 msgid "Greek Religious Sanctuary"
 msgstr "그리스 종교 안식처"
 
-#: simulation/templates/gaia/fauna_bear_black.xml:11
+#: simulation/templates/gaia/fauna_bear_black.xml:5
+#: simulation/templates/gaia/fauna_bear_brown.xml:5
+#: simulation/templates/gaia/fauna_bear_polar.xml:5
+#: simulation/templates/gaia/fauna_lion.xml:5
+#: simulation/templates/gaia/fauna_tiger.xml:5
+msgctxt "Name of an attack, usually the weapon."
+msgid "Paws"
+msgstr "갈퀴"
+
+#: simulation/templates/gaia/fauna_bear_black.xml:24
 msgid "Black Bear"
 msgstr "흑곰"
 
-#: simulation/templates/gaia/fauna_bear_black.xml:12
+#: simulation/templates/gaia/fauna_bear_black.xml:25
 msgid "Ursus americanus"
 msgstr "우루수스 아메리카누스"
 
-#: simulation/templates/gaia/fauna_bear_brown.xml:11
+#: simulation/templates/gaia/fauna_bear_brown.xml:24
 msgid "Brown Bear"
 msgstr "갈색곰"
 
-#: simulation/templates/gaia/fauna_bear_brown.xml:12
+#: simulation/templates/gaia/fauna_bear_brown.xml:25
 msgid "Ursus arctos"
 msgstr "우루수스 아르크토스"
 
-#: simulation/templates/gaia/fauna_bear_polar.xml:11
+#: simulation/templates/gaia/fauna_bear_polar.xml:24
 msgid "Polar Bear"
 msgstr "북극곰"
 
-#: simulation/templates/gaia/fauna_bear_polar.xml:12
+#: simulation/templates/gaia/fauna_bear_polar.xml:25
 msgid "Ursus maritimus"
 msgstr "우루수스 마리티무스"
 
@@ -210,11 +220,16 @@ msgstr "단봉 낙타"
 msgid "Camelus dromedarius"
 msgstr "카메루스 드로메다리우스"
 
-#: simulation/templates/gaia/fauna_cattle_bull.xml:11
+#: simulation/templates/gaia/fauna_cattle_bull.xml:5
+msgctxt "Name of an attack, usually the weapon."
+msgid "Horns"
+msgstr "뿔피리"
+
+#: simulation/templates/gaia/fauna_cattle_bull.xml:25
 msgid "Bull"
 msgstr "숫소"
 
-#: simulation/templates/gaia/fauna_cattle_bull.xml:12
+#: simulation/templates/gaia/fauna_cattle_bull.xml:26
 #: simulation/templates/gaia/fauna_cattle_cow.xml:18
 msgid "Bos taurus taurus"
 msgstr "보스 타우루스 타우루스"
@@ -268,16 +283,25 @@ msgstr "붉은사슴"
 msgid "Cervus elaphus"
 msgstr "세르부스 에라푸스"
 
-#: simulation/templates/gaia/fauna_dog_mastiff.xml:11
+#: simulation/templates/gaia/fauna_dog_mastiff.xml:5
+#: simulation/templates/gaia/fauna_dog_wolfhound.xml:5
+#: simulation/templates/gaia/fauna_fox_arctic.xml:5
+#: simulation/templates/gaia/fauna_fox_red.xml:5
+#: simulation/templates/gaia/fauna_wolf.xml:5
+msgctxt "Name of an attack, usually the weapon."
+msgid "Fangs"
+msgstr "송곳니"
+
+#: simulation/templates/gaia/fauna_dog_mastiff.xml:24
 msgid "Mastiff"
 msgstr "잉글리쉬 마스티프"
 
-#: simulation/templates/gaia/fauna_dog_mastiff.xml:12
-#: simulation/templates/gaia/fauna_dog_wolfhound.xml:12
+#: simulation/templates/gaia/fauna_dog_mastiff.xml:25
+#: simulation/templates/gaia/fauna_dog_wolfhound.xml:25
 msgid "Canis lupus familiaris"
 msgstr "카니스 루푸스 파미리아리스"
 
-#: simulation/templates/gaia/fauna_dog_wolfhound.xml:11
+#: simulation/templates/gaia/fauna_dog_wolfhound.xml:24
 msgid "Wolfhound"
 msgstr "울프호운드"
 
@@ -289,11 +313,18 @@ msgstr "당나귀"
 msgid "Equus africanus asinus"
 msgstr "에쿠우스 아프리카누스 아시누스"
 
-#: simulation/templates/gaia/fauna_elephant_african_bush.xml:11
+#: simulation/templates/gaia/fauna_elephant_african_bush.xml:5
+#: simulation/templates/gaia/fauna_elephant_asian.xml:5
+#: simulation/templates/gaia/fauna_elephant_north_african.xml:5
+msgctxt "Name of an attack, usually the weapon."
+msgid "Trunk"
+msgstr "통나무"
+
+#: simulation/templates/gaia/fauna_elephant_african_bush.xml:25
 msgid "African Bush Elephant"
 msgstr "아프리카 초원 코끼리"
 
-#: simulation/templates/gaia/fauna_elephant_african_bush.xml:12
+#: simulation/templates/gaia/fauna_elephant_african_bush.xml:26
 #: simulation/templates/gaia/fauna_elephant_african_infant.xml:12
 msgid "Loxodonta africana"
 msgstr "로소돈타 아프리카나"
@@ -302,11 +333,11 @@ msgstr "로소돈타 아프리카나"
 msgid "African Bush Elephant Calf"
 msgstr "아프리카 덤불 새끼 코끼리"
 
-#: simulation/templates/gaia/fauna_elephant_asian.xml:11
+#: simulation/templates/gaia/fauna_elephant_asian.xml:25
 msgid "Asian Elephant"
 msgstr "아시아 코끼리"
 
-#: simulation/templates/gaia/fauna_elephant_asian.xml:12
+#: simulation/templates/gaia/fauna_elephant_asian.xml:26
 #: simulation/templates/gaia/fauna_elephant_asian_infant.xml:12
 msgid "Elephas maximus"
 msgstr "에레파스 막시무스"
@@ -315,27 +346,27 @@ msgstr "에레파스 막시무스"
 msgid "Asian Elephant Calf"
 msgstr "아시아 새끼 코끼리"
 
-#: simulation/templates/gaia/fauna_elephant_north_african.xml:11
+#: simulation/templates/gaia/fauna_elephant_north_african.xml:25
 msgid "African Forest Elephant"
 msgstr "아프리카 둥근귀 코끼리"
 
-#: simulation/templates/gaia/fauna_elephant_north_african.xml:12
+#: simulation/templates/gaia/fauna_elephant_north_african.xml:26
 msgid "Loxodonta cyclotis"
 msgstr "로소돈타 시클로티스"
 
-#: simulation/templates/gaia/fauna_fox_arctic.xml:11
+#: simulation/templates/gaia/fauna_fox_arctic.xml:24
 msgid "Arctic Fox"
 msgstr "북극 여우"
 
-#: simulation/templates/gaia/fauna_fox_arctic.xml:12
+#: simulation/templates/gaia/fauna_fox_arctic.xml:25
 msgid "Vulpes lagopus"
 msgstr "불페스 라로푸스"
 
-#: simulation/templates/gaia/fauna_fox_red.xml:11
+#: simulation/templates/gaia/fauna_fox_red.xml:24
 msgid "Red Fox"
 msgstr "붉은 여우"
 
-#: simulation/templates/gaia/fauna_fox_red.xml:12
+#: simulation/templates/gaia/fauna_fox_red.xml:25
 msgid "Vulpes vulpes"
 msgstr "불페스 불페스"
 
@@ -368,11 +399,11 @@ msgstr "염소"
 msgid "Capra aegagrus hircus"
 msgstr "카프라 아에가그루스 히르쿠스"
 
-#: simulation/templates/gaia/fauna_hippopotamus.xml:21
+#: simulation/templates/gaia/fauna_hippopotamus.xml:24
 msgid "Hippopotamus"
 msgstr "하마"
 
-#: simulation/templates/gaia/fauna_hippopotamus.xml:22
+#: simulation/templates/gaia/fauna_hippopotamus.xml:25
 msgid "Hippopotamus amphibius"
 msgstr "히뽀포타무스 암피비우스"
 
@@ -388,17 +419,11 @@ msgstr "에쿠우스 페루스 카발루스"
 msgid "Pony"
 msgstr "조랑말"
 
-#: simulation/templates/gaia/fauna_lion.xml:5
-#: simulation/templates/gaia/fauna_tiger.xml:5
-msgctxt "Name of an attack, usually the weapon."
-msgid "Paws"
-msgstr "갈퀴"
-
-#: simulation/templates/gaia/fauna_lion.xml:24
+#: simulation/templates/gaia/fauna_lion.xml:23
 msgid "Lion"
 msgstr "사자"
 
-#: simulation/templates/gaia/fauna_lion.xml:25
+#: simulation/templates/gaia/fauna_lion.xml:24
 msgid "Panthera leo"
 msgstr "판테라 레오"
 
@@ -451,11 +476,11 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Horn"
 msgstr "뿔"
 
-#: simulation/templates/gaia/fauna_rhinoceros_white.xml:23
+#: simulation/templates/gaia/fauna_rhinoceros_white.xml:24
 msgid "White Rhinoceros"
 msgstr "흰 코뿔소"
 
-#: simulation/templates/gaia/fauna_rhinoceros_white.xml:24
+#: simulation/templates/gaia/fauna_rhinoceros_white.xml:25
 msgid "Ceratotherium simum"
 msgstr "케라토테리움 시뭄"
 
@@ -475,19 +500,19 @@ msgstr "양"
 msgid "Ovis aries"
 msgstr "오비스 아리에스"
 
-#: simulation/templates/gaia/fauna_tiger.xml:24
+#: simulation/templates/gaia/fauna_tiger.xml:23
 msgid "Tiger"
 msgstr "호랑이"
 
-#: simulation/templates/gaia/fauna_tiger.xml:25
+#: simulation/templates/gaia/fauna_tiger.xml:24
 msgid "Panthera tigris"
 msgstr "판테라 티그리스"
 
-#: simulation/templates/gaia/fauna_walrus.xml:25
+#: simulation/templates/gaia/fauna_walrus.xml:24
 msgid "Walrus"
 msgstr "바다코끼리"
 
-#: simulation/templates/gaia/fauna_walrus.xml:26
+#: simulation/templates/gaia/fauna_walrus.xml:25
 msgid "Odobenus rosmarus"
 msgstr "오도베누스 로스마루스"
 
@@ -514,11 +539,6 @@ msgstr "검은꼬리 누"
 #: simulation/templates/gaia/fauna_wildebeest.xml:12
 msgid "Connochaetes taurinus"
 msgstr "콘토차에테스 타우리누스"
-
-#: simulation/templates/gaia/fauna_wolf.xml:5
-msgctxt "Name of an attack, usually the weapon."
-msgid "Fangs"
-msgstr "송곳니"
 
 #: simulation/templates/gaia/fauna_wolf.xml:24
 msgid "Wolf"
@@ -893,16 +913,6 @@ msgid ""
 " other civs"
 msgstr "인구수를 5명으로 만드는 것은 다른 문명에서는 삭제되었습니다"
 
-#: simulation/templates/skirmish/units/default_infantry_melee_b.xml:5
-msgctxt "Name of an attack, usually the weapon."
-msgid "Melee"
-msgstr "근접대형"
-
-#: simulation/templates/skirmish/units/default_infantry_ranged_b.xml:5
-msgctxt "Name of an attack, usually the weapon."
-msgid "Ranged"
-msgstr "원거리"
-
 #: simulation/templates/special/formations/anti_cavalry.xml:6
 #: simulation/templates/special/formations/testudo.xml:6
 msgid "Melee Infantry only, requires at least 16."
@@ -934,7 +944,7 @@ msgstr "산개종대"
 
 #: simulation/templates/special/formations/flank.xml:6
 msgid "Requires at least 8 Soldiers or Siege engines."
-msgstr "최소 8명의 군인이나 공성 무기가 필요합니다."
+msgstr "최소 8명의 병사나 공성 무기가 필요합니다."
 
 #: simulation/templates/special/formations/flank.xml:7
 msgid "Flank"
@@ -1069,7 +1079,7 @@ msgstr "목재를 위해 나무를 팹니다."
 msgid "Structure"
 msgstr "건축물"
 
-#: simulation/templates/template_unit.xml:37
+#: simulation/templates/template_unit.xml:39
 msgid "Unit"
 msgstr "유닛"
 
