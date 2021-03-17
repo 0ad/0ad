@@ -45,6 +45,14 @@ Garrisonable.prototype.HolderID = function()
 };
 
 /**
+ * @return {boolean} - Whether we're garrisoned.
+ */
+Garrisonable.prototype.IsGarrisoned = function()
+{
+	return !!this.holder;
+};
+
+/**
  * @param {number} target - The entity ID to check.
  * @return {boolean} - Whether we can garrison.
  */
@@ -92,22 +100,6 @@ Garrisonable.prototype.Garrison = function(target, renamed = false)
 	if (cmpTurretHolder)
 		cmpTurretHolder.OccupyTurret(this.entity);
 
-	return true;
-};
-
-/**
- * Called on game init when the entity was part of init garrison.
- * @param {number} target - The entityID to autogarrison.
- * @return {boolean} - Whether garrisoning succeeded.
- */
-Garrisonable.prototype.Autogarrison = function(target)
-{
-	if (!this.Garrison(target))
-		return false;
-
-	let cmpUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
-	if (cmpUnitAI)
-		cmpUnitAI.Autogarrison(target);
 	return true;
 };
 

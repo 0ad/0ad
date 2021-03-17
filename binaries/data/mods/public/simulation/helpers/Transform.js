@@ -258,7 +258,7 @@ function TransferGarrisonedUnits(oldEnt, newEnt)
 		let cmpGarrisonable = Engine.QueryInterface(ent, IID_Garrisonable);
 		if (!cmpGarrisonable)
 			continue;
-		cmpGarrisonable.Autogarrison(newEnt);
+		cmpGarrisonable.Garrison(newEnt);
 	}
 }
 

@@ -61,7 +61,7 @@ TriggerHelper.GetTime = function()
 	return Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer).GetTime();
 };
 
- /**
+/**
   * Returns the elpased ingame time in minutes since the gamestart. Useful for balancing.
   */
 TriggerHelper.GetMinutes = function()
@@ -185,7 +185,7 @@ TriggerHelper.SpawnGarrisonedUnits = function(entity, template, count, owner)
 			cmpOwnership.SetOwner(owner);
 
 		let cmpGarrisonable = Engine.QueryInterface(ent, IID_Garrisonable);
-		if (cmpGarrisonable && cmpGarrisonable.Autogarrison(entity))
+		if (cmpGarrisonable && cmpGarrisonable.Garrison(entity))
 			entities.push(ent);
 		else
 			error("failed to garrison entity " + ent + " (" + template + ") inside " + entity);

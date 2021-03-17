@@ -1857,7 +1857,11 @@ GuiInterface.prototype.HasIdleUnits = function(player, data)
 GuiInterface.prototype.IdleUnitFilter = function(unit, idleClasses, excludeUnits)
 {
 	let cmpUnitAI = Engine.QueryInterface(unit, IID_UnitAI);
-	if (!cmpUnitAI || !cmpUnitAI.IsIdle() || cmpUnitAI.IsTurret())
+	if (!cmpUnitAI || !cmpUnitAI.IsIdle())
+		return { "idle": false };
+
+	let cmpGarrisonable = Engine.QueryInterface(unit, IID_Garrisonable);
+	if (cmpGarrisonable && cmpGarrisonable.IsGarrisoned())
 		return { "idle": false };
 
 	let cmpIdentity = Engine.QueryInterface(unit, IID_Identity);
