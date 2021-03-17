@@ -290,13 +290,13 @@ function QueryPlayerIDInterface(id, iid = IID_Player)
  */
 function QueryMiragedInterface(ent, iid)
 {
-	var cmp = Engine.QueryInterface(ent, IID_Mirage);
-	if (cmp && !cmp.Mirages(iid))
+	let cmpMirage = Engine.QueryInterface(ent, IID_Mirage);
+	if (cmpMirage && !cmpMirage.Mirages(iid))
 		return null;
-	else if (!cmp)
-		cmp = Engine.QueryInterface(ent, iid);
+	else if (!cmpMirage)
+		return Engine.QueryInterface(ent, iid);
 
-	return cmp;
+	return cmpMirage.Get(iid);
 }
 
 /**

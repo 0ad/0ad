@@ -10,36 +10,10 @@ Mirage.prototype.Schema =
 
 Mirage.prototype.Init = function()
 {
-	this.player = null;
 	this.parent = INVALID_ENTITY;
+	this.player = null;
 
-	this.miragedIids = new Set();
-
-	this.classesList = [];
-
-	this.numBuilders = 0;
-	this.buildTime = {};
-
-	this.maxHitpoints = null;
-	this.hitpoints = null;
-	this.repairable = null;
-	this.unhealable = null;
-	this.injured = null;
-
-	this.capturePoints = [];
-	this.maxCapturePoints = 0;
-
-	this.maxAmount = null;
-	this.amount = null;
-	this.type = null;
-	this.isInfinite = null;
-	this.killBeforeGather = null;
-	this.maxGatherers = null;
-	this.numGatherers = null;
-
-	this.traders = null;
-	this.marketType = null;
-	this.internationalBonus = null;
+	this.miragedIids = new Map();
 };
 
 Mirage.prototype.SetParent = function(ent)
@@ -67,47 +41,66 @@ Mirage.prototype.Mirages = function(iid)
 	return this.miragedIids.has(iid);
 };
 
+Mirage.prototype.Get = function(iid)
+{
+	return this.miragedIids.get(iid);
+};
+
 // ============================
 // Parent entity data
 
-Mirage.prototype.CopyIdentity = function(cmpIdentity)
+function MiragedIdentity(cmpIdentity)
 {
-	this.miragedIids.add(IID_Identity);
 	// Mirages don't get identity classes via the template-filter, so that code can query
 	// identity components via Engine.QueryInterface without having to explicitly check for mirages.
 	// This is cloned as otherwise we get a reference to Identity's property,
 	// and that array is deleted when serializing (as it's not seralized), which ends in OOS.
-	this.classesList = clone(cmpIdentity.GetClassesList());
+	this.classes = clone(cmpIdentity.GetClassesList());
 };
 
-Mirage.prototype.GetClassesList = function() { return this.classesList; };
+MiragedIdentity.prototype.GetClassesList = function() { return this.classes; };
+
+Mirage.prototype.CopyIdentity = function(cmpIdentity)
+{
+	this.miragedIids.set(IID_Identity, new MiragedIdentity(cmpIdentity));
+};
 
 // Foundation data
 
-Mirage.prototype.CopyFoundation = function(cmpFoundation)
+function MiragedFoundation(cmpFoundation)
 {
-	this.miragedIids.add(IID_Foundation);
 	this.numBuilders = cmpFoundation.GetNumBuilders();
 	this.buildTime = cmpFoundation.GetBuildTime();
 };
 
-Mirage.prototype.GetNumBuilders = function() { return this.numBuilders; };
-Mirage.prototype.GetBuildTime = function() { return this.buildTime; };
+MiragedFoundation.prototype.GetNumBuilders = function() { return this.numBuilders; };
+MiragedFoundation.prototype.GetBuildTime = function() { return this.buildTime; };
 
-// Repairable data (numBuilders and buildTime shared with foundation as entities can't have both)
-
-Mirage.prototype.CopyRepairable = function(cmpRepairable)
+Mirage.prototype.CopyFoundation = function(cmpFoundation)
 {
-	this.miragedIids.add(IID_Repairable);
+	this.miragedIids.set(IID_Foundation, new MiragedFoundation(cmpFoundation));
+};
+
+// Repairable data
+
+function MiragedRepairable(cmpRepairable)
+{
 	this.numBuilders = cmpRepairable.GetNumBuilders();
 	this.buildTime = cmpRepairable.GetBuildTime();
 };
 
+MiragedRepairable.prototype.GetNumBuilders = function() { return this.numBuilders; };
+MiragedRepairable.prototype.GetBuildTime = function() { return this.buildTime; };
+
+Mirage.prototype.CopyRepairable = function(cmpRepairable)
+{
+	this.miragedIids.set(IID_Repairable, new MiragedRepairable(cmpRepairable));
+};
+
 // Health data
 
-Mirage.prototype.CopyHealth = function(cmpHealth)
+function MiragedHealth(cmpHealth)
 {
-	this.miragedIids.add(IID_Health);
 	this.maxHitpoints = cmpHealth.GetMaxHitpoints();
 	this.hitpoints = cmpHealth.GetHitpoints();
 	this.repairable = cmpHealth.IsRepairable();
@@ -115,31 +108,37 @@ Mirage.prototype.CopyHealth = function(cmpHealth)
 	this.unhealable = cmpHealth.IsUnhealable();
 };
 
-Mirage.prototype.GetMaxHitpoints = function() { return this.maxHitpoints; };
-Mirage.prototype.GetHitpoints = function() { return this.hitpoints; };
-Mirage.prototype.IsRepairable = function() { return this.repairable; };
-Mirage.prototype.IsInjured = function() { return this.injured; };
-Mirage.prototype.IsUnhealable = function() { return this.unhealable; };
+MiragedHealth.prototype.GetMaxHitpoints = function() { return this.maxHitpoints; };
+MiragedHealth.prototype.GetHitpoints = function() { return this.hitpoints; };
+MiragedHealth.prototype.IsRepairable = function() { return this.repairable; };
+MiragedHealth.prototype.IsInjured = function() { return this.injured; };
+MiragedHealth.prototype.IsUnhealable = function() { return this.unhealable; };
+
+Mirage.prototype.CopyHealth = function(cmpHealth)
+{
+	this.miragedIids.set(IID_Health, new MiragedHealth(cmpHealth));
+};
 
 // Capture data
 
-Mirage.prototype.CopyCapturable = function(cmpCapturable)
+function MiragedCapture(cmpCapturable)
 {
-	this.miragedIids.add(IID_Capturable);
 	this.capturePoints = clone(cmpCapturable.GetCapturePoints());
 	this.maxCapturePoints = cmpCapturable.GetMaxCapturePoints();
+	this.CanCapture = cmpCapturable.CanCapture;
 };
 
-Mirage.prototype.GetMaxCapturePoints = function() { return this.maxCapturePoints; };
-Mirage.prototype.GetCapturePoints = function() { return this.capturePoints; };
+MiragedCapture.prototype.GetCapturePoints = function() { return this.capturePoints; };
+MiragedCapture.prototype.GetMaxCapturePoints = function() { return this.maxCapturePoints; };
 
-Mirage.prototype.CanCapture = Capturable.prototype.CanCapture;
+Mirage.prototype.CopyCapturable = function(cmpCapturable)
+{
+	this.miragedIids.set(IID_Capturable, new MiragedCapture(cmpCapturable));
+};
 
 // ResourceSupply data
-
-Mirage.prototype.CopyResourceSupply = function(cmpResourceSupply)
+function MiragedResourceSupply(cmpResourceSupply)
 {
-	this.miragedIids.add(IID_ResourceSupply);
 	this.maxAmount = cmpResourceSupply.GetMaxAmount();
 	this.amount = cmpResourceSupply.GetCurrentAmount();
 	this.type = cmpResourceSupply.GetType();
@@ -149,19 +148,26 @@ Mirage.prototype.CopyResourceSupply = function(cmpResourceSupply)
 	this.numGatherers = cmpResourceSupply.GetNumGatherers();
 };
 
-Mirage.prototype.GetMaxAmount = function() { return this.maxAmount; };
-Mirage.prototype.GetCurrentAmount = function() { return this.amount; };
-Mirage.prototype.GetType = function() { return this.type; };
-Mirage.prototype.IsInfinite = function() { return this.isInfinite; };
-Mirage.prototype.GetKillBeforeGather = function() { return this.killBeforeGather; };
-Mirage.prototype.GetMaxGatherers = function() { return this.maxGatherers; };
-Mirage.prototype.GetNumGatherers = function() { return this.numGatherers; };
+MiragedResourceSupply.prototype.GetMaxAmount = function() { return this.maxAmount; };
+MiragedResourceSupply.prototype.GetCurrentAmount = function() { return this.amount; };
+MiragedResourceSupply.prototype.GetType = function() { return this.type; };
+MiragedResourceSupply.prototype.IsInfinite = function() { return this.isInfinite; };
+MiragedResourceSupply.prototype.GetKillBeforeGather = function() { return this.killBeforeGather; };
+MiragedResourceSupply.prototype.GetMaxGatherers = function() { return this.maxGatherers; };
+MiragedResourceSupply.prototype.GetNumGatherers = function() { return this.numGatherers; };
+
+Mirage.prototype.CopyResourceSupply = function(cmpResourceSupply)
+{
+	this.miragedIids.set(IID_ResourceSupply, new MiragedResourceSupply(cmpResourceSupply));
+};
 
 // Market data
-
-Mirage.prototype.CopyMarket = function(cmpMarket)
+function MiragedMarket(cmpMarket, entity, parent, player)
 {
-	this.miragedIids.add(IID_Market);
+	this.entity = entity;
+	this.parent = parent;
+	this.player = player;
+
 	this.traders = new Set();
 	for (let trader of cmpMarket.GetTraders())
 	{
@@ -182,12 +188,12 @@ Mirage.prototype.CopyMarket = function(cmpMarket)
 	this.internationalBonus = cmpMarket.GetInternationalBonus();
 };
 
-Mirage.prototype.HasType = function(type) { return this.marketType.has(type); };
-Mirage.prototype.GetInternationalBonus = function() { return this.internationalBonus; };
-Mirage.prototype.AddTrader = function(trader) { this.traders.add(trader); };
-Mirage.prototype.RemoveTrader = function(trader) { this.traders.delete(trader); };
+MiragedMarket.prototype.HasType = function(type) { return this.marketType.has(type); };
+MiragedMarket.prototype.GetInternationalBonus = function() { return this.internationalBonus; };
+MiragedMarket.prototype.AddTrader = function(trader) { this.traders.add(trader); };
+MiragedMarket.prototype.RemoveTrader = function(trader) { this.traders.delete(trader); };
 
-Mirage.prototype.UpdateTraders = function(msg)
+MiragedMarket.prototype.UpdateTraders = function(msg)
 {
 	let cmpMarket = Engine.QueryInterface(this.parent, IID_Market);
 	if (!cmpMarket)	// The parent market does not exist anymore
@@ -213,6 +219,11 @@ Mirage.prototype.UpdateTraders = function(msg)
 	}
 };
 
+Mirage.prototype.CopyMarket = function(cmpMarket)
+{
+	this.miragedIids.set(IID_Market, new MiragedMarket(cmpMarket, this.entity, this.parent, this.player));
+};
+
 // ============================
 
 Mirage.prototype.OnVisibilityChanged = function(msg)
@@ -222,7 +233,7 @@ Mirage.prototype.OnVisibilityChanged = function(msg)
 		return;
 
 	if (this.miragedIids.has(IID_Market))
-		this.UpdateTraders(msg);
+		this.miragedIids.get(IID_Market).UpdateTraders(msg);
 
 	if (this.parent == INVALID_ENTITY)
 		Engine.DestroyEntity(this.entity);
