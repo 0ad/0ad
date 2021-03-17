@@ -84,7 +84,6 @@ static const entity_pos_t TARGET_UNCERTAINTY_MULTIPLIER = entity_pos_t::FromInt(
  * units may easily end up in this state, they still need to adjust to moving units).
  * This is rather arbitrary and mostly for simplicity & optimisation (a better recomputing algorithm
  * would not need this).
- * Keep in mind that MP turns are currently 500ms.
  */
 static const u8 KNOWN_IMPERFECT_PATH_RESET_COUNTDOWN = 12;
 
