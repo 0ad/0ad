@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -44,9 +44,10 @@ class CCamera
 		// Represents camera viewport or frustum side in 3D space.
 		using Quad = std::array<CVector3D, 4>;
 
-		enum ProjectionType
+		enum class ProjectionType
 		{
 			CUSTOM,
+			ORTHO,
 			PERSPECTIVE,
 		};
 
@@ -58,6 +59,7 @@ class CCamera
 		CMatrix3D GetViewProjection() const { return m_ProjMat * m_Orientation.GetInverse(); }
 		void SetProjection(const CMatrix3D& matrix);
 		void SetProjectionFromCamera(const CCamera& camera);
+		void SetOrthoProjection(float nearp, float farp, float scale);
 		void SetPerspectiveProjection(float nearp, float farp, float fov);
 		ProjectionType GetProjectionType() const { return m_ProjType; }
 
@@ -78,6 +80,7 @@ class CCamera
 		float GetNearPlane() const { return m_NearPlane; }
 		float GetFarPlane() const { return m_FarPlane; }
 		float GetFOV() const { return m_FOV; }
+		float GetOrthoScale() const { return m_OrthoScale; }
 
 		// Returns a quad of view in camera space at given distance from camera.
 		void GetViewQuad(float dist, Quad& quad) const;
@@ -102,10 +105,10 @@ class CCamera
 		CVector3D GetFocus() const;
 
 		// Build an orientation matrix from camera position, camera focus point, and up-vector
-		void LookAt(const CVector3D& camera, const CVector3D& orientation, const CVector3D& up);
+		void LookAt(const CVector3D& camera, const CVector3D& focus, const CVector3D& up);
 
 		// Build an orientation matrix from camera position, camera orientation, and up-vector
-		void LookAlong(const CVector3D& camera, CVector3D focus, CVector3D up);
+		void LookAlong(const CVector3D& camera, CVector3D orientation, CVector3D up);
 
 		/**
 		 * Render: Renders the camera's frustum in world space.
@@ -123,15 +126,18 @@ class CCamera
 
 	private:
 		CMatrix3D m_ProjMat;
-		ProjectionType m_ProjType;
+		ProjectionType m_ProjType = ProjectionType::CUSTOM;
 
+		float m_NearPlane = 0.0f;
+		float m_FarPlane = 0.0f;
+		union
+		{
+			float m_FOV;
+			float m_OrthoScale;
+		};
+		SViewPort m_ViewPort;
 
-		float			m_NearPlane;
-		float			m_FarPlane;
-		float			m_FOV;
-		SViewPort		m_ViewPort;
-
-		CFrustum		m_ViewFrustum;
+		CFrustum m_ViewFrustum;
 };
 
 #endif // INCLUDED_CAMERA

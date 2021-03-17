@@ -927,7 +927,7 @@ void CRenderer::ComputeReflectionCamera(CCamera& camera, const CBoundingBoxAlign
 	WaterManager& wm = m->waterManager;
 
 	CMatrix3D projection;
-	if (m_ViewCamera.GetProjectionType() == CCamera::PERSPECTIVE)
+	if (m_ViewCamera.GetProjectionType() == CCamera::ProjectionType::PERSPECTIVE)
 	{
 		const float aspectRatio = 1.0f;
 		// Expand fov slightly since ripples can reflect parts of the scene that
@@ -972,7 +972,7 @@ void CRenderer::ComputeRefractionCamera(CCamera& camera, const CBoundingBoxAlign
 	WaterManager& wm = m->waterManager;
 
 	CMatrix3D projection;
-	if (m_ViewCamera.GetProjectionType() == CCamera::PERSPECTIVE)
+	if (m_ViewCamera.GetProjectionType() == CCamera::ProjectionType::PERSPECTIVE)
 	{
 		const float aspectRatio = 1.0f;
 		// Expand fov slightly since ripples can reflect parts of the scene that
