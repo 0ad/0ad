@@ -119,9 +119,8 @@ class CCmpUnitMotion : public ICmpUnitMotion
 public:
 	static void ClassInit(CComponentManager& componentManager)
 	{
-		componentManager.SubscribeToMessageType(MT_TurnStart);
-		componentManager.SubscribeToMessageType(MT_Update_MotionFormation);
-		componentManager.SubscribeToMessageType(MT_Update_MotionUnit);
+		componentManager.SubscribeToMessageType(MT_Create);
+		componentManager.SubscribeToMessageType(MT_Destroy);
 		componentManager.SubscribeToMessageType(MT_PathResult);
 		componentManager.SubscribeToMessageType(MT_OwnershipChanged);
 		componentManager.SubscribeToMessageType(MT_ValueModification);
@@ -206,15 +205,6 @@ public:
 	// The last item in each path is the point we're currently heading towards.
 	WaypointPath m_LongPath;
 	WaypointPath m_ShortPath;
-
-	// Hack - units move one-at-a-time, so they may need to interplate their target position.
-	// However, some computations are not doing during the motion messages, and those shouldn't (e.g. turn start).
-	// This is true if and only if the calls take place during handling of the entity's MT_Motion* messages.
-	// NB: this won't be true if we end up in UnitMotion because of another entity's motion messages,
-	// but I think it fixes the issue of interpolating target position OK for current needs,
-	// without having to add parameters everywhere.
-	// No need for serialisation, it's just a transient boolean.
-	bool m_InMotionMessage = false;
 
 	static std::string GetSchema()
 	{
@@ -321,33 +311,6 @@ public:
 	{
 		switch (msg.GetType())
 		{
-		case MT_TurnStart:
-		{
-			TurnStart();
-			break;
-		}
-		case MT_Update_MotionFormation:
-		{
-			if (m_FormationController)
-			{
-				m_InMotionMessage = true;
-				fixed dt = static_cast<const CMessageUpdate_MotionFormation&> (msg).turnLength;
-				Move(dt);
-				m_InMotionMessage = false;
-			}
-			break;
-		}
-		case MT_Update_MotionUnit:
-		{
-			if (!m_FormationController)
-			{
-				m_InMotionMessage = true;
-				fixed dt = static_cast<const CMessageUpdate_MotionUnit&> (msg).turnLength;
-				Move(dt);
-				m_InMotionMessage = false;
-			}
-			break;
-		}
 		case MT_RenderSubmit:
 		{
 			PROFILE("UnitMotion::RenderSubmit");
@@ -361,6 +324,18 @@ public:
 			PathResult(msgData.ticket, msgData.path);
 			break;
 		}
+		case MT_Create:
+		{
+			if (!ENTITY_IS_LOCAL(GetEntityId()))
+				CmpPtr<ICmpUnitMotionManager>(GetSystemEntity())->Register(GetEntityId(), m_FormationController);
+			break;
+		}
+		case MT_Destroy:
+		{
+			if (!ENTITY_IS_LOCAL(GetEntityId()))
+				CmpPtr<ICmpUnitMotionManager>(GetSystemEntity())->Unregister(GetEntityId());
+			break;
+		}
 		case MT_ValueModification:
 		{
 			const CMessageValueModification& msgData = static_cast<const CMessageValueModification&> (msg);
@@ -369,20 +344,15 @@ public:
 			FALLTHROUGH;
 		}
 		case MT_OwnershipChanged:
+		{
+			OnValueModification();
+			break;
+		}
 		case MT_Deserialized:
 		{
-			CmpPtr<ICmpValueModificationManager> cmpValueModificationManager(GetSystemEntity());
-			if (!cmpValueModificationManager)
-				break;
-
-			m_WalkSpeed = cmpValueModificationManager->ApplyModifications(L"UnitMotion/WalkSpeed", m_TemplateWalkSpeed, GetEntityId());
-			m_RunMultiplier = cmpValueModificationManager->ApplyModifications(L"UnitMotion/RunMultiplier", m_TemplateRunMultiplier, GetEntityId());
-
-			// For MT_Deserialize compute m_Speed from the serialized m_SpeedMultiplier.
-			// For MT_ValueModification and MT_OwnershipChanged, adjust m_SpeedMultiplier if needed
-			// (in case then new m_RunMultiplier value is lower than the old).
-			SetSpeedMultiplier(m_SpeedMultiplier);
-
+			OnValueModification();
+			if (!ENTITY_IS_LOCAL(GetEntityId()))
+				CmpPtr<ICmpUnitMotionManager>(GetSystemEntity())->Register(GetEntityId(), m_FormationController);
 			break;
 		}
 		}
@@ -651,17 +621,33 @@ private:
 	 */
 	void PathResult(u32 ticket, const WaypointPath& path);
 
+	void OnValueModification()
+	{
+		CmpPtr<ICmpValueModificationManager> cmpValueModificationManager(GetSystemEntity());
+		if (!cmpValueModificationManager)
+			return;
+
+		m_WalkSpeed = cmpValueModificationManager->ApplyModifications(L"UnitMotion/WalkSpeed", m_TemplateWalkSpeed, GetEntityId());
+		m_RunMultiplier = cmpValueModificationManager->ApplyModifications(L"UnitMotion/RunMultiplier", m_TemplateRunMultiplier, GetEntityId());
+
+		// For MT_Deserialize compute m_Speed from the serialized m_SpeedMultiplier.
+		// For MT_ValueModification and MT_OwnershipChanged, adjust m_SpeedMultiplier if needed
+		// (in case then new m_RunMultiplier value is lower than the old).
+		SetSpeedMultiplier(m_SpeedMultiplier);
+	}
+
 	/**
 	 * Check if we are at destination early in the turn, this both lets units react faster
 	 * and ensure that distance comparisons are done while units are not being moved
 	 * (otherwise they won't be commutative).
 	 */
-	void TurnStart();
+	virtual void OnTurnStart();
 
-	/**
-	 * Do the per-turn movement and other updates.
-	 */
-	void Move(fixed dt);
+	virtual void PreMove(ICmpUnitMotionManager::MotionState& state);
+
+	virtual void Move(ICmpUnitMotionManager::MotionState& state, fixed dt);
+
+	virtual void PostMove(ICmpUnitMotionManager::MotionState& state, fixed dt);
 
 	/**
 	 * Returns true if we are possibly at our destination.
@@ -908,7 +894,7 @@ void CCmpUnitMotion::PathResult(u32 ticket, const WaypointPath& path)
 	}
 }
 
-void CCmpUnitMotion::TurnStart()
+void CCmpUnitMotion::OnTurnStart()
 {
 	if (PossiblyAtDestination())
 		MoveSucceeded();
@@ -926,64 +912,57 @@ void CCmpUnitMotion::TurnStart()
 	}
 }
 
-void CCmpUnitMotion::Move(fixed dt)
+void CCmpUnitMotion::PreMove(ICmpUnitMotionManager::MotionState& state)
+{
+	// If we were idle and will still be, no need for an update.
+	state.needUpdate = m_CurSpeed != fixed::Zero() || m_MoveRequest.m_Type != MoveRequest::NONE;
+}
+
+void CCmpUnitMotion::Move(ICmpUnitMotionManager::MotionState& state, fixed dt)
 {
 	PROFILE("Move");
 
-	// If we were idle and will still be, we can return.
-	// TODO: this will need to be removed if pushing is implemented.
-	if (m_CurSpeed == fixed::Zero() && m_MoveRequest.m_Type == MoveRequest::NONE)
-		return;
-
-	CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
-	if (!cmpPosition || !cmpPosition->IsInWorld())
-		return;
-
-	CFixedVector2D initialPos = cmpPosition->GetPosition2D();
-	entity_angle_t initialAngle = cmpPosition->GetRotation().Y;
-
-	// Keep track of the current unit's position and rotation during the update.
-	CFixedVector2D pos = initialPos;
-	entity_angle_t angle = initialAngle;
-
 	// If we're chasing a potentially-moving unit and are currently close
 	// enough to its current position, and we can head in a straight line
-	// to it, then throw away our current path and go straight to it
-	bool wentStraight = TryGoingStraightToTarget(initialPos);
+	// to it, then throw away our current path and go straight to it.
+	state.wentStraight = TryGoingStraightToTarget(state.initialPos);
 
-	bool wasObstructed = PerformMove(dt, cmpPosition->GetTurnRate(), m_ShortPath, m_LongPath, pos, angle);
+	state.wasObstructed = PerformMove(dt, state.cmpPosition->GetTurnRate(), m_ShortPath, m_LongPath, state.pos, state.angle);
+}
 
+void CCmpUnitMotion::PostMove(ICmpUnitMotionManager::MotionState& state, fixed dt)
+{
 	// Update our speed over this turn so that the visual actor shows the correct animation.
-	if (pos == initialPos)
+	if (state.pos == state.initialPos)
 	{
-		if (angle != initialAngle)
-			cmpPosition->TurnTo(angle);
+		if (state.angle != state.initialAngle)
+			state.cmpPosition->TurnTo(state.angle);
 		UpdateMovementState(fixed::Zero());
 	}
 	else
 	{
 		// Update the Position component after our movement (if we actually moved anywhere)
 		// When moving always set the angle in the direction of the movement.
-		CFixedVector2D offset = pos - initialPos;
-		angle = atan2_approx(offset.X, offset.Y);
-		cmpPosition->MoveAndTurnTo(pos.X, pos.Y, angle);
+		CFixedVector2D offset = state.pos - state.initialPos;
+		state.angle = atan2_approx(offset.X, offset.Y);
+		state.cmpPosition->MoveAndTurnTo(state.pos.X, state.pos.Y, state.angle);
 
 		// Calculate the mean speed over this past turn.
 		UpdateMovementState(offset.Length() / dt);
 	}
 
-	if (wasObstructed && HandleObstructedMove(pos != initialPos))
+	if (state.wasObstructed && HandleObstructedMove(state.pos != state.initialPos))
 		return;
-	else if (!wasObstructed && pos != initialPos)
+	else if (!state.wasObstructed && state.pos != state.initialPos)
 		m_FailedMovements = 0;
 
 	// We may need to recompute our path sometimes (e.g. if our target moves).
 	// Since we request paths asynchronously anyways, this does not need to be done before moving.
-	if (!wentStraight && PathingUpdateNeeded(pos))
+	if (!state.wentStraight && PathingUpdateNeeded(state.pos))
 	{
 		PathGoal goal;
 		if (ComputeGoal(goal, m_MoveRequest))
-			ComputePathToGoal(pos, goal);
+			ComputePathToGoal(state.pos, goal);
 	}
 	else if (m_FollowKnownImperfectPathCountdown > 0)
 		--m_FollowKnownImperfectPathCountdown;
@@ -1276,7 +1255,8 @@ bool CCmpUnitMotion::ComputeTargetPosition(CFixedVector2D& out, const MoveReques
 		// If our entity ID is higher, the target has already moved, so we can just use the position directly.
 		// TODO: This does not really aim many turns in advance, with orthogonal trajectories it probably should.
 		CmpPtr<ICmpUnitMotion> cmpUnitMotion(GetSimContext(), moveRequest.m_Entity);
-		bool needInterpolation = cmpUnitMotion && cmpUnitMotion->IsMoveRequested() && m_InMotionMessage;
+		CmpPtr<ICmpUnitMotionManager> cmpUnitMotionManager(GetSystemEntity());
+		bool needInterpolation = cmpUnitMotion && cmpUnitMotion->IsMoveRequested() && cmpUnitMotionManager->ComputingMotion();
 		if (needInterpolation && GetEntityId() < moveRequest.m_Entity)
 		{
 			// Add predicted movement.
