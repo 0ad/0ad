@@ -22,6 +22,8 @@ class BrokenRun
 	destroy()
 	{
 		Engine.DeleteCampaignSave("saves/campaigns/" + this.filename + ".0adcampaign");
+		if (CampaignRun.getCurrentRunFilename() === this.filename)
+			CampaignRun.clearCurrentRun();
 	}
 }
 
@@ -71,7 +73,7 @@ class LoadModal extends AutoWatcher
 			}
 			catch(err)
 			{
-				error(err);
+				warn(err);
 				out.push(new BrokenRun(name));
 			}
 		}
@@ -86,7 +88,7 @@ class LoadModal extends AutoWatcher
 			.setCurrent();
 
 		Engine.SwitchGuiPage(run.getMenuPath(), {
-			"filename": filename
+			"filename": run.filename
 		});
 	}
 

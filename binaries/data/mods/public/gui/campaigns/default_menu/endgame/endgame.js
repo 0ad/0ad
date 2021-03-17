@@ -7,5 +7,5 @@ function init(endGameData)
 {
 	let run = CampaignRun.getCurrentRun();
 	if (endGameData.won)
-		markLevelComplete(run, endGameData.levelID);
+		markLevelComplete(run, endGameData.initData.levelID);
 }

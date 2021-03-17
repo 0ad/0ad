@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -99,27 +99,26 @@ class CVector3D
 			return CVector3D(-X, -Y, -Z);
 		}
 
-	public:
-		float Dot (const CVector3D &vector) const
+		float Dot(const CVector3D& vector) const
 		{
 			return ( X * vector.X +
 					 Y * vector.Y +
 					 Z * vector.Z );
 		}
 
-		CVector3D Cross (const CVector3D &vector) const
+		CVector3D Cross(const CVector3D& vector) const
 		{
-			CVector3D Temp;
-			Temp.X = (Y * vector.Z) - (Z * vector.Y);
-			Temp.Y = (Z * vector.X) - (X * vector.Z);
-			Temp.Z = (X * vector.Y) - (Y * vector.X);
-			return Temp;
+			CVector3D temp;
+			temp.X = (Y * vector.Z) - (Z * vector.Y);
+			temp.Y = (Z * vector.X) - (X * vector.Z);
+			temp.Z = (X * vector.Y) - (Y * vector.X);
+			return temp;
 		}
 
-		float Length () const;
-		float LengthSquared () const;
-		void Normalize ();
-		CVector3D Normalized () const;
+		float Length() const;
+		float LengthSquared() const;
+		void Normalize();
+		CVector3D Normalized() const;
 
 		// Returns 3 element array of floats, e.g. for glVertex3fv
 		const float* GetFloatArray() const { return &X; }

@@ -352,9 +352,9 @@ var g_Commands = {
 			}
 			if (queue && queue.GetEntitiesList().indexOf(cmd.template) != -1)
 				if ("metadata" in cmd)
-					queue.AddBatch(cmd.template, "unit", +cmd.count, cmd.metadata);
+					queue.AddItem(cmd.template, "unit", +cmd.count, cmd.metadata);
 				else
-					queue.AddBatch(cmd.template, "unit", +cmd.count);
+					queue.AddItem(cmd.template, "unit", +cmd.count);
 		}
 	},
 
@@ -370,7 +370,7 @@ var g_Commands = {
 
 		var queue = Engine.QueryInterface(cmd.entity, IID_ProductionQueue);
 		if (queue)
-			queue.AddBatch(cmd.template, "technology");
+			queue.AddItem(cmd.template, "technology");
 	},
 
 	"stop-production": function(player, cmd, data)

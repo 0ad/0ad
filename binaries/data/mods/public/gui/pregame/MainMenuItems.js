@@ -65,11 +65,17 @@ var g_MainMenuItems = [
 		"caption": translate("Continue Campaign"),
 		"tooltip": translate("Relive history through historical military campaigns."),
 		"onPress": () => {
-			Engine.SwitchGuiPage(CampaignRun.getCurrentRun().getMenuPath(), {
-				"filename": CampaignRun.getCurrentRun().filename
-			});
+			try
+			{
+				Engine.SwitchGuiPage(CampaignRun.getCurrentRun().getMenuPath());
+			}
+			catch(err)
+			{
+				error(translate("Error opening campaign run:"));
+				error(err);
+			}
 		},
-		"enabled": () => !!CampaignRun.getCurrentRun()
+		"enabled": () => CampaignRun.hasCurrentRun()
 	},
 	{
 		"caption": translate("Single-player"),
@@ -93,11 +99,17 @@ var g_MainMenuItems = [
 				"caption": translate("Continue Campaign"),
 				"tooltip": translate("Relive history through historical military campaigns."),
 				"onPress": () => {
-					Engine.SwitchGuiPage(CampaignRun.getCurrentRun().getMenuPath(), {
-						"filename": CampaignRun.getCurrentRun().filename
-					});
+					try
+					{
+						Engine.SwitchGuiPage(CampaignRun.getCurrentRun().getMenuPath());
+					}
+					catch(err)
+					{
+						error(translate("Error opening campaign run:"));
+						error(err);
+					}
 				},
-				"enabled": () => !!CampaignRun.getCurrentRun()
+				"enabled": () => CampaignRun.hasCurrentRun()
 			},
 			{
 				"caption": translate("New Campaign"),

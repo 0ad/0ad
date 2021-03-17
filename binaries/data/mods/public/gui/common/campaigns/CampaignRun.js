@@ -7,27 +7,39 @@ var g_CurrentCampaignRun;
  * It is equivalent to a saved game for a game.
  * It is named a "run" in an attempt to disambiguate with saved games from campaign runs,
  * campaign templates, and the actual concept of a campaign at large.
+ *
+ * The intent is that this file should be lightweight to load/save.
  */
 class CampaignRun
 {
+	static getCurrentRunFilename()
+	{
+		return Engine.ConfigDB_GetValue("user", "currentcampaign");
+	}
+
+	static hasCurrentRun()
+	{
+		return !!CampaignRun.getCurrentRunFilename();
+	}
+
 	static getCurrentRun()
 	{
-		let current = Engine.ConfigDB_GetValue("user", "currentcampaign");
+		let current = CampaignRun.getCurrentRunFilename();
 		if (g_CurrentCampaignRun && g_CurrentCampaignRun.ID == current)
 			return g_CurrentCampaignRun.run;
-		try
-		{
-			let run = new CampaignRun(current).load();
-			g_CurrentCampaignRun = {
-				"run": run,
-				"ID": current
-			};
-			return run;
-		}
-		catch(error)
-		{
-			return undefined;
-		}
+
+		let run = new CampaignRun(current).load();
+		g_CurrentCampaignRun = {
+			"run": run,
+			"ID": current
+		};
+		return run;
+	}
+
+	static clearCurrentRun()
+	{
+		Engine.ConfigDB_RemoveValue("user", "currentcampaign");
+		Engine.ConfigDB_WriteFile("user", "config/user.cfg");
 	}
 
 	constructor(name = "")
@@ -72,7 +84,16 @@ class CampaignRun
 	{
 		Engine.ConfigDB_CreateValue("user", "currentcampaign", this.filename);
 		Engine.ConfigDB_WriteValueToFile("user", "currentcampaign", this.filename, "config/user.cfg");
+		g_CurrentCampaignRun = {
+			"ID": this.filename,
+			"run": this
+		};
 		return this;
+	}
+
+	isCurrent()
+	{
+		return this.filename === CampaignRun.getCurrentRunFilename();
 	}
 
 	getMenuPath()
@@ -125,5 +146,7 @@ class CampaignRun
 	destroy()
 	{
 		Engine.DeleteCampaignSave("saves/campaigns/" + this.filename + ".0adcampaign");
+		if (CampaignRun.getCurrentRunFilename() === this.filename)
+			CampaignRun.clearCurrentRun();
 	}
 }

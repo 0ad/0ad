@@ -151,12 +151,14 @@ var g_CampaignMenu;
 
 function init(initData)
 {
-	let run;
+	let run = initData?.filename || CampaignRun.getCurrentRunFilename();
 	try {
-		run = new CampaignRun(initData.filename).load();
+		run = new CampaignRun(run).load();
+		if (!run.isCurrent())
+			run.setCurrent();
+		g_CampaignMenu = new CampaignMenu(run);
 	} catch (err) {
-		error(sprintf(translate("Error loading campaign run %s: %s."), initData.filename, err));
+		error(sprintf(translate("Error loading campaign run %s: %s."), CampaignRun.getCurrentRunFilename(), err));
 		Engine.SwitchGuiPage("page_pregame.xml", {});
 	}
-	g_CampaignMenu = new CampaignMenu(run);
 }

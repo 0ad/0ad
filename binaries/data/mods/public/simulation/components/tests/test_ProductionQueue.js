@@ -271,7 +271,7 @@ function regression_test_d1879()
 		"PickSpawnPoint": () => ({ "x": 0, "y": 1, "z": 0 })
 	});
 
-	cmpProdQueue.AddBatch("some_template", "unit", 3);
+	cmpProdQueue.AddItem("some_template", "unit", 3);
 
 	TS_ASSERT_EQUALS(cmpEntLimits.GetCounts().some_limit, 3);
 	TS_ASSERT_EQUALS(cmpEntLimits.GetMatchCounts().some_template, 3);
@@ -290,7 +290,7 @@ function regression_test_d1879()
 		"IsUpgrading": () => false
 	});
 
-	cmpProdQueue.AddBatch("some_template", "unit", 3);
+	cmpProdQueue.AddItem("some_template", "unit", 3);
 	cmpProdQueue.ProgressTimeout(null, 0);
 
 	TS_ASSERT_EQUALS(cmpProdQueue.GetQueue().length, 1);
@@ -373,14 +373,14 @@ function test_batch_adding()
 		"IsUpgrading": () => true
 	});
 
-	cmpProdQueue.AddBatch("some_template", "unit", 3);
+	cmpProdQueue.AddItem("some_template", "unit", 3);
 	TS_ASSERT_EQUALS(cmpProdQueue.GetQueue().length, 0);
 
 	AddMock(testEntity, IID_Upgrade, {
 		"IsUpgrading": () => false
 	});
 
-	cmpProdQueue.AddBatch("some_template", "unit", 3);
+	cmpProdQueue.AddItem("some_template", "unit", 3);
 	TS_ASSERT_EQUALS(cmpProdQueue.GetQueue().length, 1);
 }
 
@@ -449,12 +449,12 @@ function test_batch_removal()
 		"BatchTimeModifier": 1
 	});
 
-	cmpProdQueue.AddBatch("some_template", "unit", 3);
+	cmpProdQueue.AddItem("some_template", "unit", 3);
 	TS_ASSERT_EQUALS(cmpProdQueue.GetQueue().length, 1);
 	cmpTimer.OnUpdate({ "turnLength": 1 });
 	TS_ASSERT_EQUALS(cmpPlayerBlockSpy._called, 1);
 
-	cmpProdQueue.AddBatch("some_template", "unit", 2);
+	cmpProdQueue.AddItem("some_template", "unit", 2);
 	TS_ASSERT_EQUALS(cmpProdQueue.GetQueue().length, 2);
 
 	cmpProdQueue.RemoveItem(1);
@@ -466,8 +466,8 @@ function test_batch_removal()
 	cmpTimer.OnUpdate({ "turnLength": 1 });
 	TS_ASSERT_EQUALS(cmpPlayerUnblockSpy._called, 2);
 
-	cmpProdQueue.AddBatch("some_template", "unit", 3);
-	cmpProdQueue.AddBatch("some_template", "unit", 3);
+	cmpProdQueue.AddItem("some_template", "unit", 3);
+	cmpProdQueue.AddItem("some_template", "unit", 3);
 	cmpPlayer.TryReservePopulationSlots = () => false;
 	cmpProdQueue.RemoveItem(3);
 	TS_ASSERT_EQUALS(cmpPlayerUnblockSpy._called, 3);
@@ -521,8 +521,8 @@ function test_token_changes()
 		cmpProductionQueue.GetTechnologiesList(), ["a", "b_generic", "c_generic"]
 	);
 	// Add a unit of each type to our queue, validate.
-	cmpProductionQueue.AddBatch("units/test/a", "unit", 1, {});
-	cmpProductionQueue.AddBatch("units/test/b", "unit", 1, {});
+	cmpProductionQueue.AddItem("units/test/a", "unit", 1, {});
+	cmpProductionQueue.AddItem("units/test/b", "unit", 1, {});
 	TS_ASSERT_EQUALS(cmpProductionQueue.GetQueue()[0].unitTemplate, "units/test/a");
 	TS_ASSERT_EQUALS(cmpProductionQueue.GetQueue()[1].unitTemplate, "units/test/b");
 
