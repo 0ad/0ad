@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
 * This file is part of 0 A.D.
 *
 * 0 A.D. is free software: you can redistribute it and/or modify
@@ -106,12 +106,6 @@ private:
 	float m_ViewFOV;
 	float m_ViewNear;
 	float m_ViewFar;
-	int m_JoystickPanX;
-	int m_JoystickPanY;
-	int m_JoystickRotateX;
-	int m_JoystickRotateY;
-	int m_JoystickZoomIn;
-	int m_JoystickZoomOut;
 	float m_HeightSmoothness;
 	float m_HeightMin;
 
