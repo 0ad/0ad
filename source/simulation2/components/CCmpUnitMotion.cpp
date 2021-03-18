@@ -914,7 +914,8 @@ void CCmpUnitMotion::OnTurnStart()
 void CCmpUnitMotion::PreMove(ICmpUnitMotionManager::MotionState& state)
 {
 	// If we were idle and will still be, no need for an update.
-	state.needUpdate = m_CurSpeed != fixed::Zero() || m_MoveRequest.m_Type != MoveRequest::NONE;
+	state.needUpdate = state.cmpPosition->IsInWorld() &&
+		(m_CurSpeed != fixed::Zero() || m_MoveRequest.m_Type != MoveRequest::NONE);
 }
 
 void CCmpUnitMotion::Move(ICmpUnitMotionManager::MotionState& state, fixed dt)

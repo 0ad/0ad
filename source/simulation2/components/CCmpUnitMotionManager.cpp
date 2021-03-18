@@ -17,6 +17,7 @@
 
 #include "precompiled.h"
 
+#include "simulation2/system/Component.h"
 #include "ICmpUnitMotionManager.h"
 
 #include "simulation2/MessageTypes.h"
@@ -28,14 +29,6 @@
 
 class CCmpUnitMotionManager : public ICmpUnitMotionManager
 {
-protected:
-	EntityMap<MotionState> m_Units;
-	EntityMap<MotionState> m_FormationControllers;
-
-	// Temporary vector, reconstructed each turn (stored here to avoid memory reallocations).
-	std::vector<EntityMap<MotionState>::iterator> m_MovingUnits;
-
-	bool m_ComputingMotion;
 public:
 	static void ClassInit(CComponentManager& componentManager)
 	{
@@ -46,6 +39,19 @@ public:
 	}
 
 	DEFAULT_COMPONENT_ALLOCATOR(UnitMotionManager)
+
+	EntityMap<MotionState> m_Units;
+	EntityMap<MotionState> m_FormationControllers;
+
+	// Temporary vector, reconstructed each turn (stored here to avoid memory reallocations).
+	std::vector<EntityMap<MotionState>::iterator> m_MovingUnits;
+
+	bool m_ComputingMotion;
+
+	static std::string GetSchema()
+	{
+		return "<a:component type='system'/><empty/>";
+	}
 
 	virtual void Init(const CParamNode& UNUSED(paramNode))
 	{
@@ -76,7 +82,7 @@ public:
 			}
 			case MT_Update_MotionFormation:
 			{
-				fixed dt = static_cast<const CMessageUpdate_MotionFormation&> (msg).turnLength;
+				fixed dt = static_cast<const CMessageUpdate_MotionFormation&>(msg).turnLength;
 				m_ComputingMotion = true;
 				MoveFormations(dt);
 				m_ComputingMotion = false;
@@ -84,7 +90,7 @@ public:
 			}
 			case MT_Update_MotionUnit:
 			{
-				fixed dt = static_cast<const CMessageUpdate_MotionUnit&> (msg).turnLength;
+				fixed dt = static_cast<const CMessageUpdate_MotionUnit&>(msg).turnLength;
 				m_ComputingMotion = true;
 				MoveUnits(dt);
 				m_ComputingMotion = false;
