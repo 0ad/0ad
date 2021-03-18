@@ -583,17 +583,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 	"Order.Garrison": function(msg) {
 		if (!this.AbleToMove())
-		{
-			// Garrisoned turrets (unable to move) go IDLE.
-			this.SetNextState("IDLE");
-			return ACCEPT_ORDER;
-		}
-
-		if (this.isGarrisoned)
-		{
-			this.SetNextState("INDIVIDUAL.GARRISON.GARRISONED");
-			return ACCEPT_ORDER;
-		}
+			return this.FinishOrder();
 
 		// Also pack when we are in range.
 		if (this.CanPack())
@@ -603,13 +593,13 @@ UnitAI.prototype.UnitFsmSpec = {
 		}
 
 		if (this.CheckGarrisonRange(msg.data.target))
-			this.SetNextState("INDIVIDUAL.GARRISON.GARRISONED");
+			this.SetNextState("INDIVIDUAL.GARRISON.GARRISONING");
 		else
 			this.SetNextState("INDIVIDUAL.GARRISON.APPROACHING");
 		return ACCEPT_ORDER;
 	},
 
-	"Order.Ungarrison": function() {
+	"Order.Ungarrison": function(msg) {
 		// Note that this order MUST succeed, or we break
 		// the assumptions done in garrisonable/garrisonHolder,
 		// especially in Unloading in the latter. (For user feedback.)
@@ -3236,7 +3226,7 @@ UnitAI.prototype.UnitFsmSpec = {
 						return;
 
 					if (this.CheckGarrisonRange(this.order.data.target))
-						this.SetNextState("GARRISONED");
+						this.SetNextState("GARRISONING");
 					else
 					{
 						// Unable to reach the target, try again (or follow if it is a moving target)
@@ -3251,7 +3241,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				},
 			},
 
-			"GARRISONED": {
+			"GARRISONING": {
 				"enter": function() {
 					let target = this.order.data.target;
 					let cmpGarrisonable = Engine.QueryInterface(this.entity, IID_Garrisonable);
@@ -3280,13 +3270,8 @@ UnitAI.prototype.UnitFsmSpec = {
 						this.SetDefaultAnimationVariant();
 					}
 
-					if (this.IsTurret())
-					{
-						this.SetNextState("IDLE");
-						return true;
-					}
-
-					return false;
+					this.FinishOrder();
+					return true;
 				},
 
 				"leave": function() {
@@ -3626,8 +3611,8 @@ UnitAI.prototype.OnOwnershipChanged = function(msg)
 	if (msg.to != INVALID_PLAYER && msg.from != INVALID_PLAYER)
 	{
 		// Switch to a virgin state to let states execute their leave handlers.
-		// Except if garrisoned or (un)packing, in which case we only clear the order queue.
-		if (this.isGarrisoned || this.IsPacking())
+		// Except if (un)packing, in which case we only clear the order queue.
+		if (this.IsPacking())
 		{
 			this.orderQueue.length = Math.min(this.orderQueue.length, 1);
 			Engine.PostMessage(this.entity, MT_UnitAIOrderDataChanged, { "to": this.GetOrderData() });
@@ -4049,8 +4034,6 @@ UnitAI.prototype.ReplaceOrder = function(type, data)
 			this.UpdateWorkOrders(type);
 	}
 
-	let garrisonHolder = this.isGarrisoned && type != "Ungarrison" ? this.GetGarrisonHolder() : null;
-
 	// Do not replace packing/unpacking unless it is cancel order.
 	// TODO: maybe a better way of doing this would be to use priority levels
 	if (this.IsPacking() && type != "CancelPack" && type != "CancelUnpack" && type != "Stop")
@@ -4093,9 +4076,6 @@ UnitAI.prototype.ReplaceOrder = function(type, data)
 		this.orderQueue = [];
 		this.PushOrder(type, data);
 	}
-
-	if (garrisonHolder)
-		this.PushOrder("Garrison", { "target": garrisonHolder });
 
 	Engine.PostMessage(this.entity, MT_UnitAIOrderDataChanged, { "to": this.GetOrderData() });
 };
@@ -5347,7 +5327,8 @@ UnitAI.prototype.AddOrder = function(type, data, queued, pushFront)
 	else
 	{
 		// May happen if an order arrives on the same turn the unit is garrisoned
-		// in that case, just forget the order as this will lead to an infinite loop
+		// in that case, just forget the order as this will lead to an infinite loop.
+		// ToDo: Fix that by checking for the ability to move on orders that need that.
 		if (this.isGarrisoned && !this.IsTurret() && type != "Ungarrison")
 			return;
 		this.ReplaceOrder(type, data);
@@ -5596,14 +5577,6 @@ UnitAI.prototype.Ungarrison = function()
 	if (!this.isGarrisoned)
 		return;
 	this.AddOrder("Ungarrison", null, false);
-};
-
-/**
- * Adds a garrison order for units that are already garrisoned in the garrison holder.
- */
-UnitAI.prototype.Autogarrison = function(target)
-{
-	this.PushOrderFront("Garrison", { "target": target });
 };
 
 /**

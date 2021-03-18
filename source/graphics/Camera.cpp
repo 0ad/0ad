@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -35,7 +35,6 @@
 #include "renderer/WaterManager.h"
 
 CCamera::CCamera()
-	: m_NearPlane(0.0f), m_FarPlane(0.0f), m_FOV(0.0f), m_ProjType(CUSTOM)
 {
 	// Set viewport to something anything should handle, but should be initialised
 	// to window size before use.
@@ -49,7 +48,7 @@ CCamera::~CCamera() = default;
 
 void CCamera::SetProjection(const CMatrix3D& matrix)
 {
-	m_ProjType = CUSTOM;
+	m_ProjType = ProjectionType::CUSTOM;
 	m_ProjMat = matrix;
 }
 
@@ -58,16 +57,32 @@ void CCamera::SetProjectionFromCamera(const CCamera& camera)
 	m_ProjType = camera.m_ProjType;
 	m_NearPlane = camera.m_NearPlane;
 	m_FarPlane = camera.m_FarPlane;
-	if (m_ProjType == PERSPECTIVE)
+	if (m_ProjType == ProjectionType::PERSPECTIVE)
 	{
 		m_FOV = camera.m_FOV;
+	}
+	else if (m_ProjType == ProjectionType::ORTHO)
+	{
+		m_OrthoScale = camera.m_OrthoScale;
 	}
 	m_ProjMat = camera.m_ProjMat;
 }
 
+void CCamera::SetOrthoProjection(float nearp, float farp, float scale)
+{
+	m_ProjType = ProjectionType::ORTHO;
+	m_NearPlane = nearp;
+	m_FarPlane = farp;
+	m_OrthoScale = scale;
+
+	const float halfHeight = 0.5f * m_OrthoScale;
+	const float halfWidth = halfHeight * GetAspectRatio();
+	m_ProjMat.SetOrtho(-halfWidth, halfWidth, -halfHeight, halfHeight, m_NearPlane, m_FarPlane);
+}
+
 void CCamera::SetPerspectiveProjection(float nearp, float farp, float fov)
 {
-	m_ProjType = PERSPECTIVE;
+	m_ProjType = ProjectionType::PERSPECTIVE;
 	m_NearPlane = nearp;
 	m_FarPlane = farp;
 	m_FOV = fov;
@@ -151,8 +166,9 @@ float CCamera::GetAspectRatio() const
 
 void CCamera::GetViewQuad(float dist, Quad& quad) const
 {
-	ENSURE(m_ProjType == PERSPECTIVE);
-	const float y = dist * tanf(m_FOV * 0.5f);
+	ENSURE(m_ProjType == ProjectionType::PERSPECTIVE || m_ProjType == ProjectionType::ORTHO);
+
+	const float y = m_ProjType == ProjectionType::PERSPECTIVE ? dist * tanf(m_FOV * 0.5f) : m_OrthoScale * 0.5f;
 	const float x = y * GetAspectRatio();
 
 	quad[0].X = -x;
@@ -213,7 +229,6 @@ CVector3D CCamera::GetWorldCoordinates(int px, int py, bool aboveWater) const
 	CVector3D origin, dir, delta, terrainPoint, waterPoint;
 
 	BuildCameraRay(px, py, origin, dir);
-
 
 	bool gotTerrain = tracer.RayIntersect(origin, dir, x, z, terrainPoint);
 
@@ -351,9 +366,9 @@ CVector3D CCamera::GetFocus() const
 	}
 }
 
-void CCamera::LookAt(const CVector3D& camera, const CVector3D& target, const CVector3D& up)
+void CCamera::LookAt(const CVector3D& camera, const CVector3D& focus, const CVector3D& up)
 {
-	CVector3D delta = target - camera;
+	CVector3D delta = focus - camera;
 	LookAlong(camera, delta, up);
 }
 

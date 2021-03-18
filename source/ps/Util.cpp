@@ -389,7 +389,7 @@ void WriteBigScreenshot(const VfsPath& extension, int tiles, int tileWidth, int 
 		for (int tile_x = 0; tile_x < tiles; ++tile_x)
 		{
 			// Adjust the camera to render the appropriate region
-			if (oldCamera.GetProjectionType() == CCamera::PERSPECTIVE)
+			if (oldCamera.GetProjectionType() == CCamera::ProjectionType::PERSPECTIVE)
 			{
 				projection.SetPerspectiveTile(oldCamera.GetFOV(), aspectRatio, oldCamera.GetNearPlane(), oldCamera.GetFarPlane(), tiles, tile_x, tile_y);
 			}
