@@ -228,12 +228,6 @@ ResourceGatherer.prototype.GetTargetGatherRate = function(target)
 	if (rate == 0 && type.generic)
 		rate = this.GetGatherRate(type.generic);
 
-	if ("Mirages" in cmpResourceSupply)
-		return rate;
-
-	// Apply diminishing returns with more gatherers, for e.g. infinite farms. For most resources this has no effect
-	// (GetDiminishingReturns will return null). We can assume that for resources that are miraged this is the case
-	// (else just add the diminishing returns data to the mirage data and remove the early return above)
 	let diminishingReturns = cmpResourceSupply.GetDiminishingReturns();
 	if (diminishingReturns)
 		rate *= diminishingReturns;
