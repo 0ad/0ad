@@ -1,10 +1,9 @@
 class AIGameSettingControlDropdown extends GameSettingControlDropdown
 {
-	constructor(...args)
+	onOpenPage(playerIndex)
 	{
-		super(...args);
-
-		this.gameSettingsControl.registerAssignPlayerHandler(this.onAssignPlayer.bind(this));
+		this.playerIndex = playerIndex;
+		this.render();
 	}
 
 	setControl(aiConfigPage)
@@ -24,24 +23,6 @@ class AIGameSettingControlDropdown extends GameSettingControlDropdown
 		this.frame.size = size;
 
 		this.setHidden(false);
-	}
-
-	onOpenPage(playerIndex)
-	{
-		this.playerIndex = playerIndex;
-		this.updateSelectedValue();
-		this.updateVisibility();
-	}
-
-	onGameAttributesChange()
-	{
-		for (let playerIndex = 0; playerIndex < g_MaxPlayers; ++playerIndex)
-			this.onGameAttributesChangePlayer(playerIndex);
-	}
-
-	onGameAttributesBatchChange()
-	{
-		this.updateSelectedValue();
 	}
 }
 

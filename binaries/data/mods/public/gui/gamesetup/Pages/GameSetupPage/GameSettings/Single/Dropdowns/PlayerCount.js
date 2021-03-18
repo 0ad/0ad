@@ -1,4 +1,4 @@
-GameSettingControls.PlayerCount = class extends GameSettingControlDropdown
+GameSettingControls.PlayerCount = class PlayerCount extends GameSettingControlDropdown
 {
 	constructor(...args)
 	{
@@ -10,38 +10,22 @@ GameSettingControls.PlayerCount = class extends GameSettingControlDropdown
 
 		this.dropdown.list = this.values;
 		this.dropdown.list_data = this.values;
+
+		g_GameSettings.playerCount.watch(() => this.render(), ["nbPlayers"]);
+		g_GameSettings.map.watch(() => this.render(), ["type"]);
+		this.render();
 	}
 
-	onMapChange(mapData)
+	render()
 	{
-		if (mapData &&
-			mapData.settings &&
-			mapData.settings.PlayerData &&
-			mapData.settings.PlayerData.length != g_GameAttributes.settings.PlayerData.length)
-		{
-			this.onSelectionChange(this.values.indexOf(mapData.settings.PlayerData.length));
-		}
-
-		this.setEnabled(g_GameAttributes.mapType == "random");
-	}
-
-	onGameAttributesBatchChange()
-	{
-		this.setSelectedValue(g_GameAttributes.settings.PlayerData.length);
+		this.setEnabled(g_GameSettings.map.type == "random");
+		this.setSelectedValue(g_GameSettings.playerCount.nbPlayers);
 	}
 
 	onSelectionChange(itemIdx)
 	{
-		let length = this.values[itemIdx];
-		if (g_GameAttributes.settings.PlayerData.length == length)
-			return;
-
-		g_GameAttributes.settings.PlayerData.length = length;
-
-		this.gameSettingsControl.updateGameAttributes();
+		g_GameSettings.playerCount.setNb(this.values[itemIdx]);
 		this.gameSettingsControl.setNetworkGameAttributes();
-
-		this.playerAssignmentsControl.unassignInvalidPlayers();
 	}
 };
 

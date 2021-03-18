@@ -30,7 +30,7 @@ ChatMessageEvents.ClientChat = class
 		let color = "white";
 		if (playerID > 0)
 		{
-			color = g_GameAttributes.settings.PlayerData[playerID - 1].Color;
+			color = g_GameSettings.playerColor.values[playerID - 1];
 
 			// Enlighten playercolor to improve readability
 			let [h, s, l] = rgbToHsl(color.r, color.g, color.b);

@@ -11,8 +11,8 @@ class MapPreview
 		this.mapPreview.onMouseLeftPress = this.onPress.bind(this); // TODO: Why does onPress not work? CGUI.cpp seems to support it
 		this.mapPreview.tooltip = this.Tooltip;
 
-		this.gameSettingsControl.registerMapChangeHandler(this.onMapChange.bind(this));
-		this.gameSettingsControl.registerGameAttributesBatchChangeHandler(this.onGameAttributesBatchChange.bind(this));
+		g_GameSettings.map.watch(() => this.renderName(), ["map"]);
+		g_GameSettings.mapPreview.watch(() => this.renderPreview(), ["value"]);
 	}
 
 	onPress()
@@ -20,26 +20,26 @@ class MapPreview
 		this.setupWindow.pages.MapBrowserPage.openPage();
 	}
 
-	onMapChange(mapData)
+	renderName()
 	{
-		let preview = mapData && mapData.settings && mapData.settings.Preview;
-		if (!g_GameAttributes.settings.Preview || g_GameAttributes.settings.Preview != preview)
+		if (!g_GameSettings.map.map)
 		{
-			g_GameAttributes.settings.Preview = preview;
-			this.gameSettingsControl.updateGameAttributes();
-		}
-	}
-
-	onGameAttributesBatchChange()
-	{
-		if (!g_GameAttributes.map || !g_GameAttributes.mapType)
+			this.mapInfoName.caption = translate("No selected map");
 			return;
+		}
 
 		this.mapInfoName.caption = this.mapCache.translateMapName(
-			this.mapCache.getTranslatableMapName(g_GameAttributes.mapType, g_GameAttributes.map));
+			this.mapCache.getTranslatableMapName(g_GameSettings.map.type, g_GameSettings.map.map));
+	}
 
-		this.mapPreview.sprite =
-			this.mapCache.getMapPreview(g_GameAttributes.mapType, g_GameAttributes.map, g_GameAttributes);
+	renderPreview()
+	{
+		if (!g_GameSettings.mapPreview.value)
+		{
+			this.mapPreview.sprite = this.mapCache.getMapPreview();
+			return;
+		}
+		this.mapPreview.sprite = g_GameSettings.mapPreview.value;
 	}
 }
 

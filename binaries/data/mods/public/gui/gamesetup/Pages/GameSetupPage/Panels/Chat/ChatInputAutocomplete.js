@@ -6,7 +6,7 @@ class ChatInputAutocomplete
 		this.entries = undefined;
 
 		playerAssignmentsControl.registerPlayerAssignmentsChangeHandler(this.onAutocompleteChange.bind(this));
-		gameSettingsControl.registerGameAttributesBatchChangeHandler(this.onAutocompleteChange.bind(this));
+		gameSettingsControl.registerSettingsChangeHandler(this.onAutocompleteChange.bind(this));
 	}
 
 	onAutocompleteChange()

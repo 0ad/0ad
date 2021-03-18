@@ -23,10 +23,6 @@ MapBrowserPageControls.prototype.MapFiltering = class
 	{
 		// setTimeout avoids having the hotkey key inserted into the input text.
 		setTimeout(() => this.searchBox.focus(), 0);
-		this.renderMapFilter();
-		this.mapFilter.select(g_GameAttributes.mapFilter);
-		this.mapType.render(g_MapTypes.Title, g_MapTypes.Name);
-		this.mapType.select(g_GameAttributes.mapType);
 	}
 
 	onClosePage()
@@ -46,6 +42,16 @@ MapBrowserPageControls.prototype.MapFiltering = class
 		this.gridBrowser.goToPageOfSelected();
 	}
 
+	select(filter, type)
+	{
+		this.mapType.render(g_MapTypes.Title, g_MapTypes.Name);
+		this.mapType.select(type);
+		this.renderMapFilter();
+		this.mapFilter.select(filter);
+		this.gridBrowser.updateMapList();
+		this.gridBrowser.goToPageOfSelected();
+	}
+
 	renderMapFilter()
 	{
 		let filters = this.mapFilters.getAvailableMapFilters(this.getSelectedMapType());
@@ -60,11 +66,11 @@ MapBrowserPageControls.prototype.MapFiltering = class
 
 	getSelectedMapType()
 	{
-		return this.mapType.getSelected() || g_GameAttributes.mapType;
+		return this.mapType.getSelected() || "";
 	}
 
 	getSelectedMapFilter()
 	{
-		return this.mapFilter.getSelected() || g_GameAttributes.mapFilter;
+		return this.mapFilter.getSelected() || "";
 	}
 };

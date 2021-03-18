@@ -1,4 +1,15 @@
-PlayerSettingControls.PlayerAssignment = class extends GameSettingControlDropdown
+// Declare this first to avoid redundant lint warnings.
+class PlayerAssignmentItem
+{
+}
+
+/**
+ * Warning: this class handles more than most other GUI controls.
+ * Indeed, the logic of how to handle player assignments is here,
+ * as that is not really a GUI-agnostic concern
+ * (campaigns and other autostarting scripts should handle that themselves).
+ */
+PlayerSettingControls.PlayerAssignment = class PlayerAssignment extends GameSettingControlDropdown
 {
 	constructor(...args)
 	{
@@ -16,6 +27,11 @@ PlayerSettingControls.PlayerAssignment = class extends GameSettingControlDropdow
 		this.assignedGUID = undefined;
 		this.fixedAI = undefined;
 
+		g_GameSettings.playerAI.watch(() => this.render(), ["values"]);
+		g_GameSettings.playerCount.watch((_, oldNb) => this.OnPlayerNbChange(oldNb), ["nbPlayers"]);
+
+		// Sets up the dropdown and renders.
+		this.onPlayerAssignmentsChange();
 		this.playerAssignmentsControl.registerClientJoinHandler(this.onClientJoin.bind(this));
 	}
 
@@ -29,6 +45,23 @@ PlayerSettingControls.PlayerAssignment = class extends GameSettingControlDropdow
 	{
 		if (!hotloadData && !g_IsNetworked)
 			this.onClientJoin("local", g_PlayerAssignments);
+		this.playerAssignmentsControl.updatePlayerAssignments();
+	}
+
+	OnPlayerNbChange(oldNb)
+	{
+		let isPlayerSlot = Object.values(g_PlayerAssignments).some(x => x.player === this.playerIndex + 1);
+		if (!isPlayerSlot && !g_GameSettings.playerAI.get(this.playerIndex) &&
+			this.playerIndex >= oldNb && this.playerIndex < g_GameSettings.playerCount.nbPlayers)
+		{
+			// Add AIs to unused slots by default.
+			// TODO: we could save the settings in case the player lowers, then re-raises the # of players.
+			g_GameSettings.playerAI.set(this.playerIndex, {
+				"bot": g_Settings.PlayerDefaults[this.playerIndex + 1].AI,
+				"difficulty": +Engine.ConfigDB_GetValue("user", "gui.gamesetup.aidifficulty"),
+				"behavior": Engine.ConfigDB_GetValue("user", "gui.gamesetup.aibehavior"),
+			});
+		}
 	}
 
 	onClientJoin(newGUID, newAssignments)
@@ -36,16 +69,12 @@ PlayerSettingControls.PlayerAssignment = class extends GameSettingControlDropdow
 		if (!g_IsController || this.fixedAI || newAssignments[newGUID].player != -1)
 			return;
 
-		let pData = this.gameSettingsControl.getPlayerData(g_GameAttributes, this.playerIndex);
-		if (!pData)
-			return;
-
 		// Assign the client (or only buddies if prefered) to a free slot
 		if (newGUID != Engine.GetPlayerGUID())
 		{
 			let assignOption = Engine.ConfigDB_GetValue("user", this.ConfigAssignPlayers);
 			if (assignOption == "disabled" ||
-			    assignOption == "buddies" && g_Buddies.indexOf(splitRatingFromNick(newAssignments[newGUID].name).nick) == -1)
+				assignOption == "buddies" && g_Buddies.indexOf(splitRatingFromNick(newAssignments[newGUID].name).nick) == -1)
 				return;
 		}
 
@@ -53,71 +82,45 @@ PlayerSettingControls.PlayerAssignment = class extends GameSettingControlDropdow
 			if (newAssignments[guid].player == this.playerIndex + 1)
 				return;
 
-		if (pData.AI)
-		{
-			pData.AI = false;
-			this.gameSettingsControl.updateGameAttributes();
-			this.gameSettingsControl.setNetworkGameAttributes();
-		}
-
 		newAssignments[newGUID].player = this.playerIndex + 1;
 		this.playerAssignmentsControl.assignClient(newGUID, this.playerIndex + 1);
 	}
 
 	onPlayerAssignmentsChange()
 	{
-		this.assignedGUID = undefined;
+		let newGUID;
 		for (let guid in g_PlayerAssignments)
 			if (g_PlayerAssignments[guid].player == this.playerIndex + 1)
 			{
-				this.assignedGUID = guid;
+				newGUID = guid;
 				break;
 			}
-
+		if (this.playerItems && newGUID === this.assignedGUID)
+			return;
+		this.assignedGUID = newGUID;
 		this.playerItems = sortGUIDsByPlayerID().map(
 			this.clientItemFactory.createItem.bind(this.clientItemFactory));
 
 		this.rebuildList();
-		this.updateSelection();
+		this.render();
 	}
 
-	onMapChange(mapData)
+	render()
 	{
-		let mapPData = this.gameSettingsControl.getPlayerData(mapData, this.playerIndex);
-		this.fixedAI = mapPData && mapPData.AI || undefined;
-	}
-
-	onGameAttributesChange()
-	{
-		let pData = this.gameSettingsControl.getPlayerData(g_GameAttributes, this.playerIndex);
-		if (!pData)
-			return;
-
-		if (this.fixedAI && (pData.AI === undefined || pData.AI != this.fixedAI))
+		this.setEnabled(true);
+		if (this.assignedGUID)
 		{
-			pData.AI = this.fixedAI;
-			this.gameSettingsControl.updateGameAttributes();
-			this.playerAssignmentsControl.unassignClient(this.playerIndex + 1);
-		}
-	}
-
-	onGameAttributesBatchChange()
-	{
-		let pData = this.gameSettingsControl.getPlayerData(g_GameAttributes, this.playerIndex);
-		if (!pData)
+			this.setSelectedValue(this.assignedGUID);
 			return;
+		}
+		let ai = g_GameSettings.playerAI.get(this.playerIndex);
+		if (ai)
+		{
+			this.setSelectedValue(ai.bot);
+			return;
+		}
 
-		this.setEnabled(!this.fixedAI);
-		this.updateSelection();
-	}
-
-	updateSelection()
-	{
-		let pData = this.gameSettingsControl.getPlayerData(g_GameAttributes, this.playerIndex);
-		if (pData && this.values)
-			this.setSelectedValue(
-				this.values.Value.findIndex((value, i) =>
-					this.values.Handler[i].isSelected(pData, this.assignedGUID, value)));
+		this.setSelectedValue(undefined);
 	}
 
 	rebuildList()
@@ -130,7 +133,7 @@ PlayerSettingControls.PlayerAssignment = class extends GameSettingControlDropdow
 		]);
 
 		this.dropdown.list = this.values.Caption;
-		this.dropdown.list_data = this.values.Value.map((value, i) => i);
+		this.dropdown.list_data = this.values.Value;
 		Engine.ProfileStop();
 	}
 
@@ -157,10 +160,6 @@ PlayerSettingControls.PlayerAssignment.prototype.AutocompleteOrder = 100;
 PlayerSettingControls.PlayerAssignment.prototype.ConfigAssignPlayers =
 	"gui.gamesetup.assignplayers";
 
-class PlayerAssignmentItem
-{
-}
-
 {
 	PlayerAssignmentItem.Client = class
 	{
@@ -179,8 +178,22 @@ class PlayerAssignmentItem
 		onSelectionChange(gameSettingsControl, playerAssignmentsControl, playerIndex, guidToAssign)
 		{
 			let sourcePlayer = g_PlayerAssignments[guidToAssign].player - 1;
+			if (sourcePlayer >= 0)
+			{
+				let ai = g_GameSettings.playerAI.get(playerIndex);
+				// If the target was an AI, swap so AI settings are kept.
+				if (ai)
+					g_GameSettings.playerAI.swap(sourcePlayer, playerIndex);
+				// Swap color + civ as well - this allows easy reorganizing of player order.
+				if (g_GameSettings.map.type !== "scenario")
+				{
+					g_GameSettings.playerCiv.swap(sourcePlayer, playerIndex);
+					g_GameSettings.playerColor.swap(sourcePlayer, playerIndex);
+				}
+			}
+
 			playerAssignmentsControl.assignPlayer(guidToAssign, playerIndex);
-			gameSettingsControl.assignPlayer(sourcePlayer, playerIndex);
+			gameSettingsControl.setNetworkGameAttributes();
 		}
 
 		isSelected(pData, guid, value)
@@ -214,9 +227,12 @@ class PlayerAssignmentItem
 		{
 			playerAssignmentsControl.unassignClient(playerIndex + 1);
 
-			g_GameAttributes.settings.PlayerData[playerIndex].AI = value;
+			g_GameSettings.playerAI.set(playerIndex, {
+				"bot": value,
+				"difficulty": +Engine.ConfigDB_GetValue("user", "gui.gamesetup.aidifficulty"),
+				"behavior": Engine.ConfigDB_GetValue("user", "gui.gamesetup.aibehavior"),
+			});
 
-			gameSettingsControl.updateGameAttributes();
 			gameSettingsControl.setNetworkGameAttributes();
 		}
 
@@ -250,8 +266,8 @@ class PlayerAssignmentItem
 		{
 			playerAssignmentsControl.unassignClient(playerIndex + 1);
 
-			g_GameAttributes.settings.PlayerData[playerIndex].AI = false;
-			gameSettingsControl.updateGameAttributes();
+			g_GameSettings.playerAI.setAI(playerIndex, undefined);
+
 			gameSettingsControl.setNetworkGameAttributes();
 		}
 

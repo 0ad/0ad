@@ -6,29 +6,22 @@ class AIDescription
 
 		this.aiDescription = Engine.GetGUIObjectByName("aiDescription");
 
-		this.gameSettingsControl = setupWindow.controls.gameSettingsControl;
-		this.gameSettingsControl.registerGameAttributesBatchChangeHandler(this.onGameAttributesBatchChange.bind(this));
-
 		aiConfigPage.registerOpenPageHandler(this.onOpenPage.bind(this));
+
+		g_GameSettings.playerAI.watch(() => this.render(), ["values"]);
 	}
 
 	onOpenPage(playerIndex)
 	{
 		this.playerIndex = playerIndex;
-		this.updateSelectedValue();
+		this.render();
 	}
 
-	onGameAttributesBatchChange()
+	render()
 	{
-		this.updateSelectedValue();
-	}
-
-	updateSelectedValue()
-	{
-		let pData = this.gameSettingsControl.getPlayerData(g_GameAttributes, this.playerIndex);
-		if (!pData)
-			return;
-		let AI = g_Settings.AIDescriptions.find(AI => AI.id == pData.AI);
+		let AI = g_GameSettings.playerAI.get(this.playerIndex);
+		if (!!AI)
+			AI = g_Settings.AIDescriptions.find(desc => desc.id == AI.bot);
 		this.aiDescription.caption = AI ? AI.data.description : this.NoAIDescription;
 	}
 }

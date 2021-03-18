@@ -7,7 +7,7 @@ class PlayerSettingControls
 }
 
 /**
- * The purpose of the PlayerSettingControlManager is to own all controls that handle a property of g_GameAttributes.settings.PlayerData.
+ * The purpose of the PlayerSettingControlManager is to own all GUI player controls.
  */
 class PlayerSettingControlManager
 {

@@ -52,7 +52,6 @@ class MapBrowserPageControls
 
 	onSelect()
 	{
-		this.gridBrowser.submitMapSelection();
-		this.mapBrowserPage.closePage();
+		this.mapBrowserPage.submitMapSelection();
 	}
 }

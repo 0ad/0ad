@@ -1,11 +1,12 @@
-GameSettingControls.MapFilter = class extends GameSettingControlDropdown
+GameSettingControls.MapFilter = class MapFilter extends GameSettingControlDropdown
 {
 	constructor(...args)
 	{
 		super(...args);
 
 		this.values = undefined;
-		this.previousMapType = undefined;
+
+		g_GameSettings.map.watch(() => this.checkMapTypeChange(), ["type"]);
 	}
 
 	onHoverChange()
@@ -13,36 +14,14 @@ GameSettingControls.MapFilter = class extends GameSettingControlDropdown
 		this.dropdown.tooltip = this.values.Description[this.dropdown.hovered] || this.Tooltip;
 	}
 
-	onGameAttributesChange()
-	{
-		this.checkMapTypeChange();
-
-		if (this.values)
-		{
-			if (this.values.Name.indexOf(g_GameAttributes.mapFilter || undefined) == -1)
-			{
-				g_GameAttributes.mapFilter = this.values.Name[this.values.Default];
-				this.gameSettingsControl.updateGameAttributes();
-			}
-		}
-		else if (g_GameAttributes.mapFilter !== undefined)
-		{
-			delete g_GameAttributes.mapFilter;
-			this.gameSettingsControl.updateGameAttributes();
-		}
-	}
-
 	checkMapTypeChange()
 	{
-		if (!g_GameAttributes.mapType || this.previousMapType == g_GameAttributes.mapType)
+		if (!g_GameSettings.map.type)
 			return;
-
-		Engine.ProfileStart("updateMapFilterList");
-		this.previousMapType = g_GameAttributes.mapType;
 
 		let values = prepareForDropdown(
 			this.mapFilters.getAvailableMapFilters(
-				g_GameAttributes.mapType));
+				g_GameSettings.map.type));
 
 		if (values.Name.length)
 		{
@@ -53,14 +32,15 @@ GameSettingControls.MapFilter = class extends GameSettingControlDropdown
 		else
 			this.values = undefined;
 
-		this.setHidden(!this.values);
-		Engine.ProfileStop();
-	}
+		if (this.values && this.values.Name.indexOf(this.gameSettingsControl.guiData.mapFilter.filter) === -1)
+		{
+			this.gameSettingsControl.guiData.mapFilter.filter = this.values.Name[this.values.Default];
+			this.gameSettingsControl.setNetworkGameAttributes();
+		}
+		// Index may have changed, reset.
+		this.setSelectedValue(this.gameSettingsControl.guiData.mapFilter.filter);
 
-	onGameAttributesBatchChange()
-	{
-		if (this.values && g_GameAttributes.mapFilter)
-			this.setSelectedValue(g_GameAttributes.mapFilter);
+		this.setHidden(!this.values);
 	}
 
 	getAutocompleteEntries()
@@ -70,18 +50,7 @@ GameSettingControls.MapFilter = class extends GameSettingControlDropdown
 
 	onSelectionChange(itemIdx)
 	{
-		if (this.values)
-		{
-			g_GameAttributes.mapFilter = this.values.Name[itemIdx];
-			this.gameSettingsControl.updateGameAttributes();
-			this.gameSettingsControl.setNetworkGameAttributes();
-		}
-	}
-
-	onGameAttributesFinalize()
-	{
-		// This setting is only relevant in the game-setup stage.
-		delete g_GameAttributes.mapFilter;
+		this.gameSettingsControl.guiData.mapFilter.filter = this.values.Name[itemIdx];
 	}
 };
 

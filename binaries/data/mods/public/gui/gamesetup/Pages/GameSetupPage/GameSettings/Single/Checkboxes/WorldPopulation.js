@@ -1,46 +1,22 @@
-GameSettingControls.WorldPopulation = class extends GameSettingControlCheckbox
+GameSettingControls.WorldPopulation = class WorldPopulation extends GameSettingControlCheckbox
 {
-	onMapChange(mapData)
+	constructor(...args)
 	{
-		let mapValue;
-		if (mapData &&
-			mapData.settings &&
-			mapData.settings.WorldPopulation !== undefined)
-			mapValue = mapData.settings.WorldPopulation;
-
-		if (mapValue !== undefined && mapValue != g_GameAttributes.settings.WorldPopulation)
-		{
-			g_GameAttributes.settings.WorldPopulation = mapValue;
-			this.gameSettingsControl.updateGameAttributes();
-		}
-
-		this.setEnabled(g_GameAttributes.mapType != "scenario");
+		super(...args);
+		g_GameSettings.population.watch(() => this.render(), ["useWorldPop"]);
+		g_GameSettings.map.watch(() => this.render(), ["type"]);
+		this.render();
 	}
 
-	onGameAttributesChange()
+	render()
 	{
-		if (!g_GameAttributes.mapType)
-			return;
-
-		if (g_GameAttributes.settings.WorldPopulation !== undefined)
-			return;
-
-		g_GameAttributes.settings.WorldPopulation = false;
-		this.gameSettingsControl.updateGameAttributes();
-	}
-
-	onGameAttributesBatchChange()
-	{
-		if (!g_GameAttributes.mapType)
-			return;
-
-		this.setChecked(g_GameAttributes.settings.WorldPopulation);
+		this.setEnabled(g_GameSettings.map.type != "scenario");
+		this.setChecked(g_GameSettings.population.useWorldPop);
 	}
 
 	onPress(checked)
 	{
-		g_GameAttributes.settings.WorldPopulation = checked;
-		this.gameSettingsControl.updateGameAttributes();
+		g_GameSettings.population.setPopCap(checked);
 		this.gameSettingsControl.setNetworkGameAttributes();
 	}
 };

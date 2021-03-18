@@ -7,18 +7,20 @@ class GameSettingWarning
 
 		this.gameSettingWarning = Engine.GetGUIObjectByName("gameSettingWarning");
 
-		setupWindow.controls.gameSettingsControl.registerGameAttributesBatchChangeHandler(this.onGameAttributesBatchChange.bind(this));
 		cancelButton.registerCancelButtonResizeHandler(this.onCancelButtonResize.bind(this));
+
+		g_GameSettings.cheats.watch(() => this.onSettingsChange(), ["enabled"]);
+		g_GameSettings.rating.watch(() => this.onSettingsChange(), ["enabled"]);
 	}
 
-	onGameAttributesBatchChange()
+	onSettingsChange()
 	{
 		let caption =
-			g_GameAttributes.settings.CheatsEnabled ?
+			g_GameSettings.cheats.enabled ?
 				this.CheatsEnabled :
-			g_GameAttributes.settings.RatingEnabled ?
-				this.RatingEnabled :
-				"";
+				g_GameSettings.rating.enabled ?
+					this.RatingEnabled :
+					"";
 
 		this.gameSettingWarning.caption = caption;
 		this.gameSettingWarning.hidden = !caption;

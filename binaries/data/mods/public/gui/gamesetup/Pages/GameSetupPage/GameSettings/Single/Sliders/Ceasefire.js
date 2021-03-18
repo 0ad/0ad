@@ -1,45 +1,24 @@
-GameSettingControls.Ceasefire = class extends GameSettingControlSlider
+GameSettingControls.Ceasefire = class Ceasefire extends GameSettingControlSlider
 {
 	constructor(...args)
 	{
 		super(...args);
 
 		this.sprintfValue = {};
+
+		g_GameSettings.ceasefire.watch(() => this.render(), ["value"]);
+		g_GameSettings.map.watch(() => this.render(), ["type"]);
+		this.render();
 	}
 
-	onMapChange(mapData)
+	render()
 	{
-		let mapValue;
-		if (mapData &&
-			mapData.settings &&
-			mapData.settings.Ceasefire !== undefined)
-			mapValue = mapData.settings.Ceasefire;
+		this.setEnabled(g_GameSettings.map.type != "scenario");
 
-		if (mapValue !== undefined && mapValue != g_GameAttributes.settings.Ceasefire)
-		{
-			g_GameAttributes.settings.Ceasefire = mapValue;
-			this.gameSettingsControl.updateGameAttributes();
-		}
-
-		this.setEnabled(g_GameAttributes.mapType != "scenario");
-	}
-
-	onGameAttributesChange()
-	{
-		if (g_GameAttributes.settings.Ceasefire == undefined)
-		{
-			g_GameAttributes.settings.Ceasefire = this.DefaultValue;
-			this.gameSettingsControl.updateGameAttributes();
-		}
-	}
-
-	onGameAttributesBatchChange()
-	{
-		let value = Math.round(g_GameAttributes.settings.Ceasefire);
+		let value = Math.round(g_GameSettings.ceasefire.value);
 		this.sprintfValue.minutes = value;
 
-		this.setSelectedValue(
-			g_GameAttributes.settings.Ceasefire,
+		this.setSelectedValue(g_GameSettings.ceasefire.value,
 			value == 0 ?
 				this.NoCeasefireCaption :
 				sprintf(this.CeasefireCaption(value), this.sprintfValue));
@@ -47,14 +26,8 @@ GameSettingControls.Ceasefire = class extends GameSettingControlSlider
 
 	onValueChange(value)
 	{
-		g_GameAttributes.settings.Ceasefire = value;
-		this.gameSettingsControl.updateGameAttributes();
+		g_GameSettings.ceasefire.setValue(value);
 		this.gameSettingsControl.setNetworkGameAttributes();
-	}
-
-	onGameAttributesFinalize()
-	{
-		g_GameAttributes.settings.Ceasefire = Math.round(g_GameAttributes.settings.Ceasefire);
 	}
 };
 

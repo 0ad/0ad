@@ -1,10 +1,12 @@
-GameSettingControls.TriggerDifficulty = class extends GameSettingControlDropdown
+GameSettingControls.TriggerDifficulty = class TriggerDifficulty extends GameSettingControlDropdown
 {
 	constructor(...args)
 	{
 		super(...args);
 
 		this.values = undefined;
+		g_GameSettings.triggerDifficulty.watch(() => this.render(), ["value", "available"]);
+		this.render();
 	}
 
 	onHoverChange()
@@ -14,65 +16,23 @@ GameSettingControls.TriggerDifficulty = class extends GameSettingControlDropdown
 			this.Tooltip;
 	}
 
-	onMapChange(mapData)
+	render()
 	{
-		let available = mapData && mapData.settings && mapData.settings.SupportedTriggerDifficulties || undefined;
-		this.setHidden(!available);
-
-		if (available)
-		{
-			Engine.ProfileStart("updateTriggerDifficultyList");
-			let values = g_Settings.TriggerDifficulties;
-			if (Array.isArray(available.Values))
-				values = values.filter(diff => available.Values.indexOf(diff.Name) != -1);
-
-			this.values = prepareForDropdown(values);
-
-			this.dropdown.list = this.values.Title;
-			this.dropdown.list_data = this.values.Difficulty;
-
-			if (mapData.settings.TriggerDifficulty &&
-				this.values.Difficulty.indexOf(mapData.settings.TriggerDifficulty) != -1)
-				g_GameAttributes.settings.TriggerDifficulty = mapData.settings.TriggerDifficulty;
-			Engine.ProfileStop();
-		}
-		else
-		{
-			this.values = undefined;
-			this.defaultValue = undefined;
-		}
-	}
-
-	onGameAttributesChange()
-	{
-		if (!g_GameAttributes.mapType)
+		this.setHidden(!g_GameSettings.triggerDifficulty.available);
+		if (!g_GameSettings.triggerDifficulty.available)
 			return;
 
-		if (this.values)
-		{
-			if (this.values.Difficulty.indexOf(g_GameAttributes.settings.TriggerDifficulty || undefined) == -1)
-			{
-				g_GameAttributes.settings.TriggerDifficulty = this.values.Difficulty[this.values.Default];
-				this.gameSettingsControl.updateGameAttributes();
-			}
-		}
-		else if (g_GameAttributes.settings.TriggerDifficulty !== undefined)
-		{
-			delete g_GameAttributes.settings.TriggerDifficulty;
-			this.gameSettingsControl.updateGameAttributes();
-		}
-	}
+		this.values = prepareForDropdown(g_GameSettings.triggerDifficulty.getAvailableSettings());
 
-	onGameAttributesBatchChange()
-	{
-		if (this.values)
-			this.setSelectedValue(g_GameAttributes.settings.TriggerDifficulty);
+		this.dropdown.list = this.values.Title;
+		this.dropdown.list_data = this.values.Difficulty;
+
+		this.setSelectedValue(g_GameSettings.triggerDifficulty.value);
 	}
 
 	onSelectionChange(itemIdx)
 	{
-		g_GameAttributes.settings.TriggerDifficulty = this.values.Difficulty[itemIdx];
-		this.gameSettingsControl.updateGameAttributes();
+		g_GameSettings.triggerDifficulty.setValue(this.values.Difficulty[itemIdx]);
 		this.gameSettingsControl.setNetworkGameAttributes();
 	}
 };

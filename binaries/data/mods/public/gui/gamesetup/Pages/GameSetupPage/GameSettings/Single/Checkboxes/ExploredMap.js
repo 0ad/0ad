@@ -1,51 +1,22 @@
-GameSettingControls.ExploredMap = class extends GameSettingControlCheckbox
+GameSettingControls.ExploredMap = class ExploredMap extends GameSettingControlCheckbox
 {
-	onMapChange(mapData)
+	constructor(...args)
 	{
-		let mapValue;
-		if (mapData &&
-			mapData.settings &&
-			mapData.settings.ExploreMap !== undefined)
-			mapValue = mapData.settings.ExploreMap;
-
-		if (mapValue !== undefined && mapValue != g_GameAttributes.settings.ExploreMap)
-		{
-			g_GameAttributes.settings.ExploreMap = mapValue;
-			this.gameSettingsControl.updateGameAttributes();
-		}
+		super(...args);
+		g_GameSettings.mapExploration.watch(() => this.render(), ["explored"]);
+		g_GameSettings.map.watch(() => this.render(), ["type"]);
+		this.render();
 	}
 
-	onGameAttributesChange()
+	render()
 	{
-		if (!g_GameAttributes.mapType)
-			return;
-
-		if (g_GameAttributes.settings.ExploreMap === undefined)
-		{
-			g_GameAttributes.settings.ExploreMap = !!g_GameAttributes.settings.RevealMap;
-			this.gameSettingsControl.updateGameAttributes();
-		}
-		else if (g_GameAttributes.settings.RevealMap &&
-		    !g_GameAttributes.settings.ExploreMap)
-		{
-			g_GameAttributes.settings.ExploreMap = true;
-			this.gameSettingsControl.updateGameAttributes();
-		}
-	}
-
-	onGameAttributesBatchChange()
-	{
-		if (!g_GameAttributes.mapType)
-			return;
-
-		this.setChecked(g_GameAttributes.settings.ExploreMap);
-		this.setEnabled(g_GameAttributes.mapType != "scenario" && !g_GameAttributes.settings.RevealMap);
+		this.setEnabled(g_GameSettings.map.type != "scenario");
+		this.setChecked(g_GameSettings.mapExploration.explored);
 	}
 
 	onPress(checked)
 	{
-		g_GameAttributes.settings.ExploreMap = checked;
-		this.gameSettingsControl.updateGameAttributes();
+		g_GameSettings.mapExploration.setExplored(checked);
 		this.gameSettingsControl.setNetworkGameAttributes();
 	}
 };

@@ -25,8 +25,7 @@ SetupWindowPages.AIConfigPage = class
 		this.aiConfigPage = Engine.GetGUIObjectByName("aiConfigPage");
 		Engine.GetGUIObjectByName("aiConfigOkButton").onPress = this.closePage.bind(this);
 
-		this.gameSettingsControl.registerGameAttributesBatchChangeHandler(
-			this.onGameAttributesBatchChange.bind(this));
+		g_GameSettings.playerAI.watch(() => this.maybeClose(), ["values"]);
 	}
 
 	registerOpenPageHandler(handler)
@@ -49,10 +48,9 @@ SetupWindowPages.AIConfigPage = class
 		this.aiConfigPage.hidden = false;
 	}
 
-	onGameAttributesBatchChange()
+	maybeClose()
 	{
-		let pData = this.gameSettingsControl.getPlayerData(g_GameAttributes, this.playerIndex);
-		if (!pData)
+		if (!g_GameSettings.playerAI.get(this.playerIndex))
 			this.closePage();
 	}
 
@@ -60,7 +58,7 @@ SetupWindowPages.AIConfigPage = class
 	{
 		this.aiConfigPage.hidden = true;
 	}
-}
+};
 
 SetupWindowPages.AIConfigPage.prototype.AIGameSettingControlOrder = [
 	"AISelection",

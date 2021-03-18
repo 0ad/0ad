@@ -293,7 +293,7 @@ function displayReplayDetails()
 				metadata.playerStates &&
 				metadata.playerStates.map(pState => pState.state));
 
-	Engine.GetGUIObjectByName("sgMapPreview").sprite = g_MapCache.getMapPreview(replay.attribs.mapType, replay.attribs.map, replay.attribs);
+	Engine.GetGUIObjectByName("sgMapPreview").sprite = g_MapCache.getMapPreview(replay.attribs.mapType, replay.attribs.map, replay.attribs?.mapPreview);
 	Engine.GetGUIObjectByName("sgMapDescription").caption = g_MapCache.getTranslatedMapDescription(replay.attribs.mapType, replay.attribs.map);
 
 	Engine.GetGUIObjectByName("summaryButton").hidden = !Engine.HasReplayMetadata(replay.directory);

@@ -1,37 +1,31 @@
 /**
  * Cheats are always enabled in singleplayer mode, since they are the choice of that one player.
  */
-GameSettingControls.Cheats = class extends GameSettingControlCheckbox
+GameSettingControls.Cheats = class Cheats extends GameSettingControlCheckbox
 {
 	constructor(...args)
 	{
 		super(...args);
-		this.setHidden(!g_IsNetworked);
+
+		g_GameSettings.cheats.watch(() => this.render(), ["enabled"]);
+		g_GameSettings.rating.watch(() => this.render(), ["enabled"]);
 	}
 
-	onGameAttributesChange()
+	onLoad()
 	{
-		if (g_GameAttributes.settings.CheatsEnabled === undefined ||
-			g_GameAttributes.settings.CheatsEnabled && g_GameAttributes.settings.RatingEnabled ||
-			!g_GameAttributes.settings.CheatsEnabled && !g_IsNetworked)
-		{
-			g_GameAttributes.settings.CheatsEnabled = !g_IsNetworked;
-			this.gameSettingsControl.updateGameAttributes();
-		}
+		g_GameSettings.cheats.setEnabled(!g_IsNetworked);
+		this.render();
 	}
 
-	onGameAttributesBatchChange()
+	render()
 	{
-		this.setChecked(g_GameAttributes.settings.CheatsEnabled);
-		this.setEnabled(!g_GameAttributes.settings.RatingEnabled);
+		this.setChecked(g_GameSettings.cheats.enabled);
+		this.setEnabled(g_IsNetworked && !g_GameSettings.rating.enabled);
 	}
 
 	onPress(checked)
 	{
-		g_GameAttributes.settings.CheatsEnabled =
-			!g_IsNetworked ||
-			checked && !g_GameAttributes.settings.RatingEnabled;
-		this.gameSettingsControl.updateGameAttributes();
+		g_GameSettings.cheats.setEnabled(!g_IsNetworked || checked);
 		this.gameSettingsControl.setNetworkGameAttributes();
 	}
 };

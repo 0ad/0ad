@@ -1,4 +1,4 @@
-GameSettingControls.WorldPopulationCap = class extends GameSettingControlDropdown
+GameSettingControls.WorldPopulationCap = class WorldPopulationCap extends GameSettingControlDropdown
 {
 	constructor(...args)
 	{
@@ -8,46 +8,17 @@ GameSettingControls.WorldPopulationCap = class extends GameSettingControlDropdow
 		this.dropdown.list_data = g_WorldPopulationCapacities.Population;
 
 		this.sprintfArgs = {};
+
+		g_GameSettings.population.watch(() => this.render(), ["useWorldPop", "cap"]);
+		g_GameSettings.map.watch(() => this.render(), ["type"]);
+		this.render();
 	}
 
-	onMapChange(mapData)
+	render()
 	{
-		let mapValue;
-		if (mapData &&
-			mapData.settings &&
-			mapData.settings.WorldPopulationCap !== undefined)
-			mapValue = mapData.settings.WorldPopulationCap;
-
-		if (mapValue !== undefined && mapValue != g_GameAttributes.settings.WorldPopulationCap)
-		{
-			g_GameAttributes.settings.WorldPopulationCap = mapValue;
-			this.gameSettingsControl.updateGameAttributes();
-		}
-
-		this.setEnabled(g_GameAttributes.mapType != "scenario");
-	}
-
-	onGameAttributesChange()
-	{
-		if (g_GameAttributes.settings.WorldPopulation)
-		{
-			this.setHidden(false);
-			if (g_GameAttributes.settings.WorldPopulationCap === undefined)
-			{
-				g_GameAttributes.settings.WorldPopulationCap = g_WorldPopulationCapacities.Population[g_WorldPopulationCapacities.Default];
-				this.gameSettingsControl.updateGameAttributes();
-			}
-		}
-		else
-		{
-			this.setHidden(true);
-			g_GameAttributes.settings.WorldPopulationCap = undefined;
-		}
-	}
-
-	onGameAttributesBatchChange()
-	{
-		this.setSelectedValue(g_GameAttributes.settings.WorldPopulationCap);
+		this.setEnabled(g_GameSettings.map.type != "scenario");
+		this.setHidden(!g_GameSettings.population.useWorldPop);
+		this.setSelectedValue(g_GameSettings.population.cap);
 	}
 
 	onHoverChange()
@@ -67,8 +38,7 @@ GameSettingControls.WorldPopulationCap = class extends GameSettingControlDropdow
 
 	onSelectionChange(itemIdx)
 	{
-		g_GameAttributes.settings.WorldPopulationCap = g_WorldPopulationCapacities.Population[itemIdx];
-		this.gameSettingsControl.updateGameAttributes();
+		g_GameSettings.population.setPopCap(true, g_WorldPopulationCapacities.Population[itemIdx]);
 		this.gameSettingsControl.setNetworkGameAttributes();
 	}
 };

@@ -1,6 +1,5 @@
 /**
- * This class provides a property independent interface to g_GameAttributes events.
- * Classes may use this interface in order to react to changing g_GameAttributes.
+ * 'Controller' for the GUI handling of gamesettings.
  */
 class GameSettingsControl
 {
@@ -10,18 +9,10 @@ class GameSettingsControl
 		this.mapCache = mapCache;
 		this.gameSettingsFile = new GameSettingsFile(this);
 
-		this.previousMap = undefined;
-		this.depth = 0;
+		this.guiData = new GameSettingsGuiData();
 
-		// This property may be read from publicly
-		this.autostart = false;
-
-		this.gameAttributesChangeHandlers = new Set();
-		this.gameAttributesBatchChangeHandlers = new Set();
-		this.gameAttributesFinalizeHandlers = new Set();
-		this.pickRandomItemsHandlers = new Set();
-		this.assignPlayerHandlers = new Set();
-		this.mapChangeHandlers = new Set();
+		this.updateLayoutHandlers = new Set();
+		this.settingsChangeHandlers = new Set();
 
 		setupWindow.registerLoadHandler(this.onLoad.bind(this));
 		setupWindow.registerGetHotloadDataHandler(this.onGetHotloadData.bind(this));
@@ -34,186 +25,92 @@ class GameSettingsControl
 			netMessages.registerNetMessageHandler("gamesetup", this.onGamesetupMessage.bind(this));
 	}
 
-	registerMapChangeHandler(handler)
+	registerUpdateLayoutHandler(handler)
 	{
-		this.mapChangeHandlers.add(handler);
-	}
-
-	unregisterMapChangeHandler(handler)
-	{
-		this.mapChangeHandlers.delete(handler);
+		this.updateLayoutHandlers.add(handler);
 	}
 
 	/**
-	 * This message is triggered everytime g_GameAttributes change.
-	 * Handlers may subsequently change g_GameAttributes and trigger this message again.
+	 * @param handler will be called when any setting change.
+	 * (this isn't exactly what happens but the behaviour should be similar).
 	 */
-	registerGameAttributesChangeHandler(handler)
+	registerSettingsChangeHandler(handler)
 	{
-		this.gameAttributesChangeHandlers.add(handler);
-	}
-
-	unregisterGameAttributesChangeHandler(handler)
-	{
-		this.gameAttributesChangeHandlers.delete(handler);
-	}
-
-	/**
-	 * This message is triggered after g_GameAttributes changed and recursed gameAttributesChangeHandlers finished.
-	 * The use case for this is to update GUI objects which do not change g_GameAttributes but only display the attributes.
-	 */
-	registerGameAttributesBatchChangeHandler(handler)
-	{
-		this.gameAttributesBatchChangeHandlers.add(handler);
-	}
-
-	unregisterGameAttributesBatchChangeHandler(handler)
-	{
-		this.gameAttributesBatchChangeHandlers.delete(handler);
-	}
-
-	registerGameAttributesFinalizeHandler(handler)
-	{
-		this.gameAttributesFinalizeHandlers.add(handler);
-	}
-
-	unregisterGameAttributesFinalizeHandler(handler)
-	{
-		this.gameAttributesFinalizeHandlers.delete(handler);
-	}
-
-	registerAssignPlayerHandler(handler)
-	{
-		this.assignPlayerHandlers.add(handler);
-	}
-
-	unregisterAssignPlayerHandler(handler)
-	{
-		this.assignPlayerHandlers.delete(handler);
-	}
-
-	registerPickRandomItemsHandler(handler)
-	{
-		this.pickRandomItemsHandlers.add(handler);
-	}
-
-	unregisterPickRandomItemsHandler(handler)
-	{
-		this.pickRandomItemsHandlers.delete(handler);
+		this.settingsChangeHandlers.add(handler);
 	}
 
 	onLoad(initData, hotloadData)
 	{
-		if (initData && initData.map && initData.mapType)
+		if (hotloadData)
+			this.parseSettings(hotloadData.gameAttributes);
+		else if (g_IsController && this.gameSettingsFile.enabled)
 		{
-			if (initData.autostart)
-				Object.defineProperty(this, "autostart", {
-					"value": true,
-					"writable": false,
-					"configurable": false
-				});
-
-			// TODO: Fix g_GameAttributes, g_GameAttributes.settings,
-			// g_GameAttributes.settings.PlayerData object references and
-			// copy over each attribute individually when receiving
-			// settings from the server or the local file.
-			g_GameAttributes = initData;
-
-			this.updateGameAttributes();
-			// Don't launchGame before all Load handlers finished
+			let settings = this.gameSettingsFile.loadFile();
+			if (settings)
+				this.parseSettings(settings);
 		}
-		else
-		{
-			if (hotloadData)
-				g_GameAttributes = hotloadData.gameAttributes;
-			else if (g_IsController && this.gameSettingsFile.enabled)
-				g_GameAttributes = this.gameSettingsFile.loadFile();
 
-			this.updateGameAttributes();
-			this.setNetworkGameAttributes();
-		}
+		this.updateLayout();
+		this.setNetworkGameAttributes();
 	}
 
 	onClose()
 	{
-		if (!this.autostart)
-			this.gameSettingsFile.saveFile();
+		this.gameSettingsFile.saveFile();
 	}
 
 	onGetHotloadData(object)
 	{
-		object.gameAttributes = g_GameAttributes;
+		object.gameAttributes = this.getSettings();
 	}
 
 	onGamesetupMessage(message)
 	{
-		if (!message.data)
+		if (!message.data || g_IsController)
 			return;
 
-		g_GameAttributes = message.data;
-		this.updateGameAttributes();
+		this.parseSettings(message.data);
+
+		// This assumes that messages aren't sent spuriously without changes
+		// (which is generally fair), but technically it would be good
+		// to check if the new data is different from the previous data.
+		for (let handler of this.settingsChangeHandlers)
+			handler();
 	}
 
 	/**
-	 * This is to be called whenever g_GameAttributes has been changed except on gameAttributes finalization.
+	 * Returns the InitAttributes, augmented by GUI-specific data.
 	 */
-	updateGameAttributes()
+	getSettings()
 	{
-		if (this.depth == 0)
-			Engine.ProfileStart("updateGameAttributes");
+		let ret = g_GameSettings.toInitAttributes();
+		ret.guiData = this.guiData.Serialize();
+		return ret;
+	}
 
-		if (this.depth >= this.MaxDepth)
-		{
-			error("Infinite loop: " + new Error().stack);
-			Engine.ProfileStop();
+	/**
+	 * Parse the following settings.
+	 */
+	parseSettings(settings)
+	{
+		if (settings.guiData)
+			this.guiData.Deserialize(settings.guiData);
+		g_GameSettings.fromInitAttributes(settings);
+	}
+
+	/**
+	 * This should be called whenever the GUI layout needs to be updated.
+	 * Triggers on the next GUI tick to avoid un-necessary layout.
+	 */
+	updateLayout()
+	{
+		if (this.layoutTimer)
 			return;
-		}
-
-		++this.depth;
-
-		// Basic sanitization
-		{
-			if (!g_GameAttributes.settings)
-				g_GameAttributes.settings = {};
-
-			if (!g_GameAttributes.settings.PlayerData)
-				g_GameAttributes.settings.PlayerData = new Array(this.DefaultPlayerCount);
-
-			for (let i = 0; i < g_GameAttributes.settings.PlayerData.length; ++i)
-				if (!g_GameAttributes.settings.PlayerData[i])
-					g_GameAttributes.settings.PlayerData[i] = {};
-		}
-
-		// Map change handlers are triggered first, so that GameSettingControls can update their
-		// gameAttributes model prior to applying that model in their gameAttributesChangeHandler.
-		if (g_GameAttributes.map && this.previousMap != g_GameAttributes.map && g_GameAttributes.mapType)
-		{
-			this.previousMap = g_GameAttributes.map;
-			// Use a try..catch to avoid completely failing in case of an error
-			// as this prevents even going back to the main menu.
-			try
-			{
-				let mapData = this.mapCache.getMapData(g_GameAttributes.mapType, g_GameAttributes.map);
-				for (let handler of this.mapChangeHandlers)
-					handler(mapData);
-			} catch(err) {
-				// Report the error regardless so that the underlying bug gets fixed.
-				error(err);
-				error(err.stack);
-			}
-		}
-
-		for (let handler of this.gameAttributesChangeHandlers)
-			handler();
-
-		--this.depth;
-
-		if (this.depth == 0)
-		{
-			for (let handler of this.gameAttributesBatchChangeHandlers)
+		this.layoutTimer = setTimeout(() => {
+			for (let handler of this.updateLayoutHandlers)
 				handler();
-			Engine.ProfileStop();
-		}
+			delete this.layoutTimer;
+		}, 0);
 	}
 
 	/**
@@ -227,73 +124,32 @@ class GameSettingsControl
 	 */
 	setNetworkGameAttributes()
 	{
+		for (let handler of this.settingsChangeHandlers)
+			handler();
+
 		if (g_IsNetworked && this.timer === undefined)
 			this.timer = setTimeout(this.setNetworkGameAttributesImmediately.bind(this), this.Timeout);
 	}
 
 	setNetworkGameAttributesImmediately()
 	{
-		delete this.timer;
-		if (g_IsNetworked)
-			Engine.SetNetworkGameAttributes(g_GameAttributes);
-	}
-
-	getPlayerData(gameAttributes, playerIndex)
-	{
-		return gameAttributes &&
-			gameAttributes.settings &&
-			gameAttributes.settings.PlayerData &&
-			gameAttributes.settings.PlayerData[playerIndex] || undefined;
-	}
-
-	assignPlayer(sourcePlayerIndex, playerIndex)
-	{
-		if (playerIndex == -1)
-			return;
-
-		let target = this.getPlayerData(g_GameAttributes, playerIndex);
-		let source = this.getPlayerData(g_GameAttributes, sourcePlayerIndex);
-
-		for (let handler of this.assignPlayerHandlers)
-			handler(source, target);
-
-		this.updateGameAttributes();
-		this.setNetworkGameAttributes();
-	}
-
-	/**
-	 * This function is called everytime a random setting selection was resolved,
-	 * so that subsequent random settings are triggered too,
-	 * for example picking a random biome after picking a random map.
-	 */
-	pickRandomItems()
-	{
-		for (let handler of this.pickRandomItemsHandlers)
-			handler();
+		if (this.timer)
+		{
+			clearTimeout(this.timer);
+			delete this.timer;
+		}
+		g_GameSettings.setNetworkGameAttributes();
 	}
 
 	onLaunchGame()
 	{
-		if (!this.autostart)
-			this.gameSettingsFile.saveFile();
-
-		this.pickRandomItems();
-
-		for (let handler of this.gameAttributesFinalizeHandlers)
-			handler();
-
-		this.setNetworkGameAttributesImmediately();
+		// Save the file before random settings are resolved.
+		this.gameSettingsFile.saveFile();
 	}
 }
 
-GameSettingsControl.prototype.MaxDepth = 512;
 
 /**
  * Wait (at most) this many milliseconds before sending network messages.
  */
 GameSettingsControl.prototype.Timeout = 400;
-
-/**
- * This number is used when selecting the random map type, which doesn't provide PlayerData.
- */
-GameSettingsControl.prototype.DefaultPlayerCount = 4;

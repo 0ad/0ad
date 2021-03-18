@@ -1,4 +1,4 @@
-GameSettingControls.RelicCount = class extends GameSettingControlSlider
+GameSettingControls.RelicCount = class RelicCount extends GameSettingControlSlider
 {
 	constructor(...args)
 	{
@@ -6,80 +6,31 @@ GameSettingControls.RelicCount = class extends GameSettingControlSlider
 
 		this.sprintfValue = {};
 		this.available = false;
+
+		g_GameSettings.relic.watch(() => this.render(), ["count", "available"]);
+		g_GameSettings.map.watch(() => this.render(), ["type"]);
+		this.render();
 	}
 
-	onMapChange(mapData)
+	render()
 	{
-		this.setEnabled(g_GameAttributes.mapType != "scenario");
+		this.setHidden(!g_GameSettings.relic.available);
+		this.setEnabled(g_GameSettings.map.type != "scenario");
 
-		let mapValue;
-		if (mapData &&
-			mapData.settings &&
-			mapData.settings.VictoryConditions &&
-			mapData.settings.VictoryConditions.indexOf(this.NameCaptureTheRelic) != -1 &&
-			mapData.settings.RelicCount !== undefined)
-			mapValue = mapData.settings.RelicCount;
-
-		if (mapValue === undefined || mapValue == g_GameAttributes.settings.RelicCount)
-			return;
-
-		if (!g_GameAttributes.settings.VictoryConditions)
-			g_GameAttributes.settings.VictoryConditions = [];
-
-		if (g_GameAttributes.settings.VictoryConditions.indexOf(this.NameCaptureTheRelic) == -1)
-			g_GameAttributes.settings.VictoryConditions.push(this.NameCaptureTheRelic);
-
-		g_GameAttributes.settings.RelicCount = mapValue;
-		this.gameSettingsControl.updateGameAttributes();
-	}
-
-	onGameAttributesChange()
-	{
-		if (!g_GameAttributes.settings.VictoryConditions)
-			return;
-
-		this.available = g_GameAttributes.settings.VictoryConditions.indexOf(this.NameCaptureTheRelic) != -1;
-
-		if (this.available)
+		if (g_GameSettings.relic.available)
 		{
-			if (g_GameAttributes.settings.RelicCount === undefined)
-			{
-				g_GameAttributes.settings.RelicCount = this.DefaultValue;
-				this.gameSettingsControl.updateGameAttributes();
-			}
-		}
-		else if (g_GameAttributes.settings.RelicCount !== undefined)
-		{
-			delete g_GameAttributes.settings.RelicCount;
-			this.gameSettingsControl.updateGameAttributes();
-		}
-	}
-
-	onGameAttributesBatchChange()
-	{
-		this.setHidden(!this.available);
-
-		if (this.available)
-		{
-			let value = Math.round(g_GameAttributes.settings.RelicCount);
+			let value = g_GameSettings.relic.count;
 			this.sprintfValue.number = value;
 			this.setSelectedValue(
-				g_GameAttributes.settings.RelicCount,
+				g_GameSettings.relic.count,
 				value == 0 ? this.InstantVictory : sprintf(this.CaptionRelicCount(value), this.sprintfValue));
 		}
 	}
 
 	onValueChange(value)
 	{
-		g_GameAttributes.settings.RelicCount = value;
-		this.gameSettingsControl.updateGameAttributes();
+		g_GameSettings.relic.setCount(value);
 		this.gameSettingsControl.setNetworkGameAttributes();
-	}
-
-	onGameAttributesFinalize()
-	{
-		if (this.available)
-			g_GameAttributes.settings.RelicCount = Math.round(g_GameAttributes.settings.RelicCount);
 	}
 };
 
@@ -98,5 +49,3 @@ GameSettingControls.RelicCount.prototype.NameCaptureTheRelic =
 GameSettingControls.RelicCount.prototype.MinValue = 1;
 
 GameSettingControls.RelicCount.prototype.MaxValue = Object.keys(g_CivData).length;
-
-GameSettingControls.RelicCount.prototype.DefaultValue = 2;

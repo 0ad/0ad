@@ -19,7 +19,7 @@ class GameSettingsPanel
 		this.lastTickTime = undefined;
 
 		gameSettingTabs.registerTabSelectHandler(this.updateSize.bind(this));
-		setupWindow.controls.gameSettingsControl.registerGameAttributesBatchChangeHandler(this.updateSize.bind(this));
+		setupWindow.controls.gameSettingsControl.registerUpdateLayoutHandler(this.updateSize.bind(this));
 		setupWindow.registerLoadHandler(this.triggerResizeHandlers.bind(this));
 	}
 

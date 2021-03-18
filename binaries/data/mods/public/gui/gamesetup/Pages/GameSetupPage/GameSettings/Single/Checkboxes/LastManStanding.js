@@ -1,56 +1,23 @@
-GameSettingControls.LastManStanding = class extends GameSettingControlCheckbox
+GameSettingControls.LastManStanding = class LastManStanding extends GameSettingControlCheckbox
 {
-	onMapChange(mapData)
+	constructor(...args)
 	{
-		let mapValue;
-		if (mapData &&
-			mapData.settings &&
-			mapData.settings.LastManStanding !== undefined)
-			mapValue = !mapData.settings.LockTeams &&
-				mapData.settings.LastManStanding;
-
-		if (mapValue !== undefined && mapValue != g_GameAttributes.settings.LastManStanding)
-		{
-			g_GameAttributes.settings.LastManStanding = mapValue;
-			this.gameSettingsControl.updateGameAttributes();
-		}
+		super(...args);
+		g_GameSettings.lastManStanding.watch(() => this.render(), ["enabled", "available"]);
+		g_GameSettings.map.watch(() => this.render(), ["type"]);
 	}
 
-	onGameAttributesChange()
+	render()
 	{
-		if (!g_GameAttributes.mapType)
-			return;
-
-		this.available = !g_GameAttributes.settings.LockTeams;
-		if (this.available)
-		{
-			if (g_GameAttributes.settings.LastManStanding === undefined)
-			{
-				g_GameAttributes.settings.LastManStanding = false;
-				this.gameSettingsControl.updateGameAttributes();
-			}
-		}
-		else if (g_GameAttributes.settings.LastManStanding !== undefined)
-		{
-			delete g_GameAttributes.settings.LastManStanding;
-			this.gameSettingsControl.updateGameAttributes();
-		}
-	}
-
-	onGameAttributesBatchChange()
-	{
-		if (!g_GameAttributes.mapType)
-			return;
-
 		// Always display this, so that players are aware that there is this gamemode
-		this.setChecked(!!g_GameAttributes.settings.LastManStanding);
-		this.setEnabled(g_GameAttributes.mapType != "scenario" && !g_GameAttributes.settings.LockTeams);
+		this.setChecked(g_GameSettings.lastManStanding.enabled);
+		this.setEnabled(g_GameSettings.map.type != "scenario" &&
+			g_GameSettings.lastManStanding.available);
 	}
 
 	onPress(checked)
 	{
-		g_GameAttributes.settings.LastManStanding = checked;
-		this.gameSettingsControl.updateGameAttributes();
+		g_GameSettings.lastManStanding.setEnabled(checked);
 		this.gameSettingsControl.setNetworkGameAttributes();
 	}
 };

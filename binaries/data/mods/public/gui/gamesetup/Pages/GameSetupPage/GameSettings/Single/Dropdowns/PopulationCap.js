@@ -1,4 +1,4 @@
-GameSettingControls.PopulationCap = class extends GameSettingControlDropdown
+GameSettingControls.PopulationCap = class PopulationCap extends GameSettingControlDropdown
 {
 	constructor(...args)
 	{
@@ -10,57 +10,20 @@ GameSettingControls.PopulationCap = class extends GameSettingControlDropdown
 		this.dropdown.list_data = g_PopulationCapacities.Population;
 
 		this.sprintfArgs = {};
+
+		g_GameSettings.population.watch(() => this.render(), ["useWorldPop", "cap", "perPlayer"]);
+		g_GameSettings.map.watch(() => this.render(), ["type"]);
+		this.render();
 	}
 
-	onMapChange(mapData)
+	render()
 	{
-		let mapValue;
-		if (mapData &&
-			mapData.settings &&
-			mapData.settings.PopulationCap !== undefined)
-			mapValue = mapData.settings.PopulationCap;
-
-		if (mapValue !== undefined && mapValue != g_GameAttributes.settings.PopulationCap)
-		{
-			g_GameAttributes.settings.PopulationCap = mapValue;
-			this.gameSettingsControl.updateGameAttributes();
-		}
-
-		let isScenario = g_GameAttributes.mapType == "scenario";
-
-		this.perPlayer =
-			isScenario &&
-			mapData && mapData.settings && mapData.settings.PlayerData &&
-			mapData.settings.PlayerData.some(pData => pData && pData.PopulationLimit !== undefined);
-
-		this.setEnabled(!isScenario && !this.perPlayer);
-
-		if (this.perPlayer)
+		this.setHidden(g_GameSettings.population.useWorldPop);
+		this.setEnabled(!g_GameSettings.map.type == "scenario" && !g_GameSettings.population.perPlayer);
+		if (g_GameSettings.population.perPlayer)
 			this.label.caption = this.PerPlayerCaption;
-	}
-
-	onGameAttributesChange()
-	{
-		if (g_GameAttributes.settings.WorldPopulation)
-		{
-			this.setHidden(true);
-			g_GameAttributes.settings.PopulationCap = undefined;
-		}
 		else
-		{
-			this.setHidden(false);
-			if (g_GameAttributes.settings.PopulationCap === undefined)
-			{
-				g_GameAttributes.settings.PopulationCap = g_PopulationCapacities.Population[g_PopulationCapacities.Default];
-				this.gameSettingsControl.updateGameAttributes();
-			}
-		}
-	}
-
-	onGameAttributesBatchChange()
-	{
-		if (!this.perPlayer)
-			this.setSelectedValue(g_GameAttributes.settings.PopulationCap);
+			this.setSelectedValue(g_GameSettings.population.cap);
 	}
 
 	onHoverChange()
@@ -69,7 +32,7 @@ GameSettingControls.PopulationCap = class extends GameSettingControlDropdown
 		if (this.dropdown.hovered != -1)
 		{
 			let popCap = g_PopulationCapacities.Population[this.dropdown.hovered];
-			let players = g_GameAttributes.settings.PlayerData.length;
+			let players = g_GameSettings.playerCount.nbPlayers;
 			if (popCap * players >= this.PopulationCapacityRecommendation)
 			{
 				this.sprintfArgs.players = players;
@@ -82,8 +45,7 @@ GameSettingControls.PopulationCap = class extends GameSettingControlDropdown
 
 	onSelectionChange(itemIdx)
 	{
-		g_GameAttributes.settings.PopulationCap = g_PopulationCapacities.Population[itemIdx];
-		this.gameSettingsControl.updateGameAttributes();
+		g_GameSettings.population.setPopCap(false, g_PopulationCapacities.Population[itemIdx]);
 		this.gameSettingsControl.setNetworkGameAttributes();
 	}
 };

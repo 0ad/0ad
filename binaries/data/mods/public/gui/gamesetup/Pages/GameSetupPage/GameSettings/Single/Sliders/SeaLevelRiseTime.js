@@ -1,4 +1,4 @@
-GameSettingControls.SeaLevelRiseTime = class extends GameSettingControlSlider
+GameSettingControls.SeaLevelRiseTime = class SeaLevelRiseTime extends GameSettingControlSlider
 {
 	constructor(...args)
 	{
@@ -6,66 +6,28 @@ GameSettingControls.SeaLevelRiseTime = class extends GameSettingControlSlider
 
 		this.values = undefined;
 		this.sprintfValue = {};
+
+		g_GameSettings.seaLevelRise.watch(() => this.render(), ["value"]);
+		g_GameSettings.map.watch(() => this.render(), ["type"]);
+		this.render();
 	}
 
-	onMapChange(mapData)
+	render()
 	{
-		this.values =
-			mapData &&
-			mapData.settings &&
-			mapData.settings.SeaLevelRise || undefined;
+		this.setHidden(g_GameSettings.seaLevelRise.value === undefined);
+		this.setEnabled(g_GameSettings.map.type != "scenario");
 
-		if (this.values)
-		{
-			this.slider.min_value = this.values.Min;
-			this.slider.max_value = this.values.Max;
-		}
-
-		this.setHidden(!this.values);
-		this.setEnabled(g_GameAttributes.mapType != "scenario");
-	}
-
-	onGameAttributesChange()
-	{
-		if (this.values)
-		{
-			if (g_GameAttributes.settings.SeaLevelRiseTime === undefined)
-			{
-				g_GameAttributes.settings.SeaLevelRiseTime = this.values.Default;
-				this.gameSettingsControl.updateGameAttributes();
-			}
-		}
-		else if (g_GameAttributes.settings.SeaLevelRiseTime !== undefined)
-		{
-			delete g_GameAttributes.settings.SeaLevelRiseTime;
-			this.gameSettingsControl.updateGameAttributes();
-		}
-	}
-
-	onGameAttributesBatchChange()
-	{
-		if (!this.values)
-			return;
-
-		let value = Math.round(g_GameAttributes.settings.SeaLevelRiseTime);
+		let value = g_GameSettings.seaLevelRise.value;
 		this.sprintfValue.minutes = value;
 
 		this.setSelectedValue(
-			g_GameAttributes.settings.SeaLevelRiseTime,
-			sprintf(this.SeaLevelRiseTimeCaption(value), this.sprintfValue));
+			value, sprintf(this.SeaLevelRiseTimeCaption(value), this.sprintfValue));
 	}
 
 	onValueChange(value)
 	{
-		g_GameAttributes.settings.SeaLevelRiseTime = value;
-		this.gameSettingsControl.updateGameAttributes();
+		g_GameSettings.seaLevelRise.setValue(value);
 		this.gameSettingsControl.setNetworkGameAttributes();
-	}
-
-	onGameAttributesFinalize()
-	{
-		if (this.values)
-			g_GameAttributes.settings.SeaLevelRiseTime = Math.round(g_GameAttributes.settings.SeaLevelRiseTime);
 	}
 };
 

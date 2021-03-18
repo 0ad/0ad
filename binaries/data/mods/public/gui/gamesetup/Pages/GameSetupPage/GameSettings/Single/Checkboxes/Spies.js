@@ -1,40 +1,23 @@
-GameSettingControls.Spies = class extends GameSettingControlCheckbox
+GameSettingControls.Spies = class Spies extends GameSettingControlCheckbox
 {
-	onMapChange(mapData)
+	constructor(...args)
 	{
-		let mapValue;
-		if (mapData &&
-			mapData.settings &&
-			mapData.settings.DisableSpies !== undefined)
-			mapValue = mapData.settings.DisableSpies;
+		super(...args);
 
-		if (mapValue !== undefined && mapValue != g_GameAttributes.settings.DisableSpies)
-		{
-			g_GameAttributes.settings.DisableSpies = mapValue;
-			this.gameSettingsControl.updateGameAttributes();
-		}
-
-		this.setEnabled(g_GameAttributes.mapType != "scenario");
+		g_GameSettings.disableSpies.watch(() => this.render(), ["enabled"]);
+		g_GameSettings.map.watch(() => this.render(), ["type"]);
+		this.render();
 	}
 
-	onGameAttributesChange()
+	render()
 	{
-		if (g_GameAttributes.settings.DisableSpies === undefined)
-		{
-			g_GameAttributes.settings.DisableSpies = false;
-			this.gameSettingsControl.updateGameAttributes();
-		}
-	}
-
-	onGameAttributesBatchChange()
-	{
-		this.setChecked(g_GameAttributes.settings.DisableSpies);
+		this.setEnabled(g_GameSettings.map.type != "scenario");
+		this.setChecked(g_GameSettings.disableSpies.enabled);
 	}
 
 	onPress(checked)
 	{
-		g_GameAttributes.settings.DisableSpies = checked;
-		this.gameSettingsControl.updateGameAttributes();
+		g_GameSettings.disableSpies.setEnabled(checked);
 		this.gameSettingsControl.setNetworkGameAttributes();
 	}
 };
