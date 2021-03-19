@@ -1,58 +1,22 @@
-GameSettingControls.Nomad = class extends GameSettingControlCheckbox
+GameSettingControls.Nomad = class Nomad extends GameSettingControlCheckbox
 {
-	onMapChange(mapData)
+	constructor(...args)
 	{
-		let available = g_GameAttributes.mapType == "random";
-		this.setHidden(!available);
-		if (!available)
-			return;
-
-		let mapValue;
-		if (mapData &&
-			mapData.settings &&
-			mapData.settings.Nomad !== undefined)
-			mapValue = mapData.settings.Nomad;
-
-		if (mapValue !== undefined && mapValue != g_GameAttributes.settings.Nomad)
-		{
-			g_GameAttributes.settings.Nomad = mapValue;
-			this.gameSettingsControl.updateGameAttributes();
-		}
+		super(...args);
+		g_GameSettings.nomad.watch(() => this.render(), ["enabled"]);
+		g_GameSettings.map.watch(() => this.render(), ["type"]);
+		this.render();
 	}
 
-	onGameAttributesChange()
+	render()
 	{
-		if (!g_GameAttributes.mapType)
-			return;
-
-		if (g_GameAttributes.mapType == "random")
-		{
-			if (g_GameAttributes.settings.Nomad === undefined)
-			{
-				g_GameAttributes.settings.Nomad = false;
-				this.gameSettingsControl.updateGameAttributes();
-			}
-		}
-		else if (g_GameAttributes.settings.Nomad !== undefined)
-		{
-			delete g_GameAttributes.settings.Nomad;
-			this.gameSettingsControl.updateGameAttributes();
-		}
-	}
-
-	onGameAttributesBatchChange()
-	{
-		if (!g_GameAttributes.mapType)
-			return;
-
-		if (g_GameAttributes.mapType == "random")
-			this.setChecked(g_GameAttributes.settings.Nomad);
+		this.setHidden(g_GameSettings.map.type != "random");
+		this.setChecked(g_GameSettings.nomad.enabled);
 	}
 
 	onPress(checked)
 	{
-		g_GameAttributes.settings.Nomad = checked;
-		this.gameSettingsControl.updateGameAttributes();
+		g_GameSettings.nomad.setEnabled(checked);
 		this.gameSettingsControl.setNetworkGameAttributes();
 	}
 };

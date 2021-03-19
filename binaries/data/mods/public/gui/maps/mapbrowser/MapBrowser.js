@@ -17,6 +17,16 @@ class MapBrowser
 		this.open = false;
 	}
 
+	submitMapSelection()
+	{
+		this.onSubmitMapSelection(
+			this.gridBrowser.getSelectedFile(),
+			this.controls.MapFiltering.getSelectedMapType(),
+			this.controls.MapFiltering.getSelectedMapFilter()
+		);
+		this.closePage();
+	}
+
 	// TODO: this is mostly gamesetup specific stuff.
 	registerOpenPageHandler(handler)
 	{

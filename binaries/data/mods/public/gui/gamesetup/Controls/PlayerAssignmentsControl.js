@@ -25,6 +25,8 @@ class PlayerAssignmentsControl
 			};
 		}
 
+		g_GameSettings.playerCount.watch(() => this.unassignInvalidPlayers(), ["nbPlayers"]);
+
 		setupWindow.registerLoadHandler(this.onLoad.bind(this));
 		setupWindow.registerGetHotloadDataHandler(this.onGetHotloadData.bind(this));
 		netMessages.registerNetMessageHandler("players", this.onPlayerAssignmentMessage.bind(this));
@@ -104,19 +106,18 @@ class PlayerAssignmentsControl
 		g_PlayerAssignments = newAssignments;
 		this.updatePlayerAssignments();
 		// Send at most one gameRegisterStanza after all handlers run in case a
-		// joining observer has been assigned to a playerslot. 	  			
+		// joining observer has been assigned to a playerslot.
 		this.gameRegisterStanza.sendImmediately?.();
 	}
 
 	assignClient(guid, playerIndex)
 	{
+		g_GameSettings.playerAI.setAI(playerIndex - 1, undefined);
 		if (g_IsNetworked)
 			Engine.AssignNetworkPlayer(playerIndex, guid);
-		else
-		{
+		if (g_PlayerAssignments[guid])
 			g_PlayerAssignments[guid].player = playerIndex;
-			this.updatePlayerAssignments();
-		}
+		this.updatePlayerAssignments();
 	}
 
 	/**
@@ -125,17 +126,15 @@ class PlayerAssignmentsControl
 	assignPlayer(guidToAssign, playerIndex)
 	{
 		if (g_PlayerAssignments[guidToAssign].player != -1)
+		{
 			for (let guid in g_PlayerAssignments)
 				if (g_PlayerAssignments[guid].player == playerIndex + 1)
 				{
 					this.assignClient(guid, g_PlayerAssignments[guidToAssign].player);
 					break;
 				}
-
+		}
 		this.assignClient(guidToAssign, playerIndex + 1);
-
-		if (!g_IsNetworked)
-			this.updatePlayerAssignments();
 	}
 
 	unassignClient(playerID)
@@ -152,11 +151,10 @@ class PlayerAssignmentsControl
 	unassignInvalidPlayers()
 	{
 		if (g_IsNetworked)
-			for (let playerID = g_GameAttributes.settings.PlayerData.length + 1; playerID <= g_MaxPlayers; ++playerID)
+			for (let playerID = g_GameSettings.playerCount.nbPlayers + 1; playerID <= g_MaxPlayers; ++playerID)
 				// Remove obsolete playerIDs from the servers playerassignments copy
 				Engine.AssignNetworkPlayer(playerID, "");
-
-		else if (g_PlayerAssignments.local.player > g_GameAttributes.settings.PlayerData.length)
+		else if (g_PlayerAssignments.local.player > g_GameSettings.playerCount.nbPlayers)
 		{
 			g_PlayerAssignments.local.player = -1;
 			this.updatePlayerAssignments();

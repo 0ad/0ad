@@ -7,7 +7,7 @@ class GameSettingControls
 }
 
 /**
- * The GameSettingControlManager owns all classes that handle a logical property of g_GameAttributes.
+ * The GameSettingControlManager owns all GUI controls.
  */
 class GameSettingControlManager
 {

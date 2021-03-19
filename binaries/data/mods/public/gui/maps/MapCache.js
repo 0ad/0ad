@@ -20,7 +20,6 @@ class MapCache
 	{
 		if (!mapPath || mapPath == "random")
 			return undefined;
-
 		if (!this.cache[mapPath])
 		{
 			let mapData = g_Settings.MapTypes.find(type => type.Name == mapType).GetData(mapPath);
@@ -70,10 +69,13 @@ class MapCache
 		return mapData && mapData.settings && translate(mapData.settings.Description) || "";
 	}
 
-	getMapPreview(mapType, mapPath, gameAttributes = undefined)
+	previewExists(filename)
 	{
-		let filename = gameAttributes && gameAttributes.settings && gameAttributes.settings.Preview || undefined;
+		return Engine.TextureExists(this.TexturesPath + this.PreviewsPath + filename);
+	}
 
+	getMapPreview(mapType, mapPath, filename = undefined)
+	{
 		if (!filename)
 		{
 			let mapData = this.getMapData(mapType, mapPath);

@@ -20,11 +20,15 @@ class GameRegisterStanza
 
 		// Events
 		setupWindow.registerClosePageHandler(this.onClosePage.bind(this));
-		gameSettingsControl.registerGameAttributesBatchChangeHandler(this.onGameAttributesBatchChange.bind(this));
 		netMessages.registerNetMessageHandler("start", this.onGameStart.bind(this));
+
+		g_GameSettings.map.watch(() => this.onSettingsChange(), ["map", "type"]);
+		g_GameSettings.mapSize.watch(() => this.onSettingsChange(), ["size"]);
+		g_GameSettings.victoryConditions.watch(() => this.onSettingsChange(), ["active"]);
+		g_GameSettings.playerCount.watch(() => this.onSettingsChange(), ["nbPlayers"]);
 	}
 
-	onGameAttributesBatchChange()
+	onSettingsChange()
 	{
 		if (this.lastStanza)
 			this.sendDelayed();
@@ -83,13 +87,13 @@ class GameRegisterStanza
 		let stanza = {
 			"name": this.serverName,
 			"hostUsername": Engine.LobbyGetNick(),
-			"mapName": g_GameAttributes.map,
-			"niceMapName": this.mapCache.getTranslatableMapName(g_GameAttributes.mapType, g_GameAttributes.map),
-			"mapSize": g_GameAttributes.mapType == "random" ? g_GameAttributes.settings.Size : "Default",
-			"mapType": g_GameAttributes.mapType,
-			"victoryConditions": g_GameAttributes.settings.VictoryConditions.join(","),
+			"mapName": g_GameSettings.map.map,
+			"niceMapName": this.mapCache.getTranslatableMapName(g_GameSettings.map.type, g_GameSettings.map.map),
+			"mapSize": g_GameSettings.map.type == "random" ? g_GameSettings.mapSize.size : "Default",
+			"mapType": g_GameSettings.map.type,
+			"victoryConditions": Array.from(g_GameSettings.victoryConditions.active).join(","),
 			"nbp": clients.connectedPlayers,
-			"maxnbp": g_GameAttributes.settings.PlayerData.length,
+			"maxnbp": g_GameSettings.playerCount.nbPlayers,
 			"players": clients.list,
 			"mods": this.mods,
 			"hasPassword": this.hasPassword || ""
@@ -107,7 +111,6 @@ class GameRegisterStanza
 	/**
 	 * Send a list of playernames and distinct between players and observers.
 	 * Don't send teams, AIs or anything else until the game was started.
-	 * The playerData format from g_GameAttributes is kept to reuse the GUI function presenting the data.
 	 */
 	formatClientsForStanza()
 	{
@@ -118,7 +121,7 @@ class GameRegisterStanza
 		{
 			let pData = { "Name": g_PlayerAssignments[guid].name };
 
-			if (g_GameAttributes.settings.PlayerData[g_PlayerAssignments[guid].player - 1])
+			if (g_PlayerAssignments[guid].player <= g_GameSettings.playerCount.nbPlayers)
 				++connectedPlayers;
 			else
 				pData.Team = "observer";

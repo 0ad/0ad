@@ -7,8 +7,32 @@ class GameDescription
 		this.gameDescriptionFrame = Engine.GetGUIObjectByName("gameDescriptionFrame");
 		this.gameDescription = Engine.GetGUIObjectByName("gameDescription");
 
-		setupWindow.controls.gameSettingsControl.registerGameAttributesBatchChangeHandler(this.onGameAttributesBatchChange.bind(this));
 		gameSettingTabs.registerTabsResizeHandler(this.onTabsResize.bind(this));
+		this.registerWatchers();
+		this.updateGameDescription();
+	}
+
+	registerWatchers()
+	{
+		let update = () => this.updateGameDescription();
+		g_GameSettings.biome.watch(update, ["biome"]);
+		g_GameSettings.ceasefire.watch(update, ["value"]);
+		g_GameSettings.cheats.watch(update, ["enabled"]);
+		g_GameSettings.disableTreasures.watch(update, ["enabled"]);
+		g_GameSettings.lastManStanding.watch(update, ["enabled"]);
+		g_GameSettings.lockedTeams.watch(update, ["enabled"]);
+		g_GameSettings.map.watch(update, ["map", "type"]);
+		g_GameSettings.mapExploration.watch(update, ["explored"]);
+		g_GameSettings.mapExploration.watch(update, ["revealed"]);
+		g_GameSettings.nomad.watch(update, ["enabled"]);
+		g_GameSettings.population.watch(update, ["perPlayer", "cap", "useWorldPop"]);
+		g_GameSettings.rating.watch(update, ["enabled"]);
+		g_GameSettings.regicideGarrison.watch(update, ["enabled"]);
+		g_GameSettings.relic.watch(update, ["count", "duration"]);
+		g_GameSettings.startingResources.watch(update, ["perPlayer", "resources"]);
+		g_GameSettings.triggerDifficulty.watch(update, ["value"]);
+		g_GameSettings.victoryConditions.watch(update, ["active"]);
+		g_GameSettings.wonder.watch(update, ["duration"]);
 	}
 
 	onTabsResize(settingsTabButtonsFrame)
@@ -18,9 +42,14 @@ class GameDescription
 		this.gameDescriptionFrame.size = size;
 	}
 
-	onGameAttributesBatchChange()
+	updateGameDescription()
 	{
-		this.gameDescription.caption = getGameDescription(this.mapCache);
+		if (this.timer)
+			clearTimeout(this.timer);
+		// Update the description on the next GUI tick.
+		// (multiple settings can change at once)
+		let updateCaption = () => { this.gameDescription.caption = getGameDescription(g_GameSettings.toInitAttributes(), this.mapCache); };
+		this.timer = setTimeout(updateCaption, 0);
 	}
 }
 

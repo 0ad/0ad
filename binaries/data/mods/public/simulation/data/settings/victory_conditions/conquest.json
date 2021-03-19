@@ -11,10 +11,7 @@
 			"scripts/Conquest.js"
 		],
 		"Default": true,
-		"ChangeOnChecked": {
-			"conquest_units": false,
-			"conquest_structures": false
-		},
+		"DisabledWhenChecked": ["conquest_units", "conquest_structures"],
 		"GUIOrder": 0
 	}
 }

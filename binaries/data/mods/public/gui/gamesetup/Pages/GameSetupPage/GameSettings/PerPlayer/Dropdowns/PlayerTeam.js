@@ -1,4 +1,4 @@
-PlayerSettingControls.PlayerTeam = class extends GameSettingControlDropdown
+PlayerSettingControls.PlayerTeam = class PlayerTeam extends GameSettingControlDropdown
 {
 	constructor(...args)
 	{
@@ -16,8 +16,12 @@ PlayerSettingControls.PlayerTeam = class extends GameSettingControlDropdown
 					"id": i
 				}))
 		]);
+
 		this.dropdown.list = this.values.label;
 		this.dropdown.list_data = this.values.id;
+
+		g_GameSettings.playerTeam.watch(() => this.render(), ["values", "locked"]);
+		this.render();
 	}
 
 	setControl()
@@ -26,45 +30,15 @@ PlayerSettingControls.PlayerTeam = class extends GameSettingControlDropdown
 		this.dropdown = Engine.GetGUIObjectByName("playerTeam[" + this.playerIndex + "]");
 	}
 
-	onMapChange(mapData)
+	render()
 	{
-		let mapPData = this.gameSettingsControl.getPlayerData(mapData, this.playerIndex);
-		let pData = this.gameSettingsControl.getPlayerData(g_GameAttributes, this.playerIndex);
-
-		if (pData && mapPData && mapPData.Team !== undefined)
-		{
-			pData.Team = mapPData.Team;
-			this.gameSettingsControl.updateGameAttributes();
-		}
-	}
-
-	onGameAttributesChange()
-	{
-		let pData = this.gameSettingsControl.getPlayerData(g_GameAttributes, this.playerIndex);
-		if (!pData)
-			return;
-
-		if (pData.Team === undefined)
-		{
-			pData.Team = this.NoTeamId;
-			this.gameSettingsControl.updateGameAttributes();
-		}
-	}
-
-	onGameAttributesBatchChange()
-	{
-		let pData = this.gameSettingsControl.getPlayerData(g_GameAttributes, this.playerIndex);
-		if (!pData)
-			return;
-
-		this.setEnabled(g_GameAttributes.mapType != "scenario");
-		this.setSelectedValue(pData.Team);
+		this.setEnabled(g_GameSettings.map.type != "scenario");
+		this.setSelectedValue(g_GameSettings.playerTeam.values[this.playerIndex]);
 	}
 
 	onSelectionChange(itemIdx)
 	{
-		g_GameAttributes.settings.PlayerData[this.playerIndex].Team = itemIdx - 1;
-		this.gameSettingsControl.updateGameAttributes();
+		g_GameSettings.playerTeam.setValue(this.playerIndex, itemIdx - 1);
 		this.gameSettingsControl.setNetworkGameAttributes();
 	}
 };

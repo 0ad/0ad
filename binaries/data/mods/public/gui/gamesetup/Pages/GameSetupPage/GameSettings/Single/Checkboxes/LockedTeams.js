@@ -1,50 +1,27 @@
-GameSettingControls.LockedTeams = class extends GameSettingControlCheckbox
+GameSettingControls.LockedTeams = class LockedTeams extends GameSettingControlCheckbox
 {
-	onMapChange(mapData)
+	constructor(...args)
 	{
-		let mapValue;
-		if (mapData &&
-			mapData.settings &&
-			mapData.settings.LockTeams !== undefined)
-			mapValue = !mapData.settings.LockTeams &&
-				mapData.settings.LastManStanding;
-
-		if (mapValue !== undefined && mapValue != g_GameAttributes.settings.LastManStanding)
-		{
-			g_GameAttributes.settings.LastManStanding = mapValue;
-			this.gameSettingsControl.updateGameAttributes();
-		}
+		super(...args);
+		g_GameSettings.map.watch(() => this.render(), ["type"]);
+		g_GameSettings.rating.watch(() => this.render(), ["available", "enabled"]);
+		this.render();
 	}
 
-	onGameAttributesChange()
+	onLoad()
 	{
-		if (!g_GameAttributes.mapType)
-			return;
-
-		if (g_GameAttributes.settings.LockTeams === undefined ||
-			g_GameAttributes.settings.RatingEnabled && !g_GameAttributes.settings.LockTeams)
-		{
-			g_GameAttributes.settings.LockTeams = g_IsNetworked;
-			this.gameSettingsControl.updateGameAttributes();
-		}
+		g_GameSettings.lockedTeams.setEnabled(this.DefaultValue);
 	}
 
-	onGameAttributesBatchChange()
+	render()
 	{
-		if (!g_GameAttributes.mapType)
-			return;
-
-		this.setChecked(g_GameAttributes.settings.LockTeams);
-
-		this.setEnabled(
-			g_GameAttributes.mapType != "scenario" &&
-			!g_GameAttributes.settings.RatingEnabled);
+		this.setEnabled(g_GameSettings.map.type != "scenario" && g_GameSettings.lockedTeams.available);
+		this.setChecked(g_GameSettings.lockedTeams.enabled);
 	}
 
 	onPress(checked)
 	{
-		g_GameAttributes.settings.LockTeams = checked;
-		this.gameSettingsControl.updateGameAttributes();
+		g_GameSettings.lockedTeams.setEnabled(checked);
 		this.gameSettingsControl.setNetworkGameAttributes();
 	}
 };

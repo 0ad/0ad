@@ -19,6 +19,8 @@ class StartGameControl
 		// This may be read from publicly
 		this.gameStarted = false;
 
+		// In MP, the host launches the game and switches right away,
+		// clients switch when they receive the appropriate message.
 		netMessages.registerNetMessageHandler("start", this.switchToLoadingPage.bind(this));
 	}
 
@@ -34,19 +36,17 @@ class StartGameControl
 		for (let handler of this.gameLaunchHandlers)
 			handler();
 
-		if (g_IsNetworked)
-			Engine.StartNetworkGame();
-		else
-		{
-			Engine.StartGame(g_GameAttributes, g_PlayerAssignments.local.player);
-			this.switchToLoadingPage();
-		}
+		g_GameSettings.launchGame(g_PlayerAssignments);
+
+		// Switch to the loading page right away,
+		// the GUI will otherwise show the unrandomised settings.
+		this.switchToLoadingPage();
 	}
 
 	switchToLoadingPage()
 	{
 		Engine.SwitchGuiPage("page_loading.xml", {
-			"attribs": g_GameAttributes,
+			"attribs": g_GameSettings.toInitAttributes(),
 			"playerAssignments": g_PlayerAssignments
 		});
 	}

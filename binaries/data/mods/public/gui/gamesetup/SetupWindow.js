@@ -22,12 +22,15 @@ class SetupWindow
 		this.closePageHandlers = new Set();
 		this.getHotloadDataHandlers = new Set();
 
+
+		let mapCache = new MapCache();
+		g_GameSettings = new GameSettings().init(mapCache);
+
 		let netMessages = new NetMessages(this);
 		let startGameControl = new StartGameControl(netMessages);
-		let mapCache = new MapCache();
 		let mapFilters = new MapFilters(mapCache);
 		let gameSettingsControl = new GameSettingsControl(this, netMessages, startGameControl, mapCache);
-		let gameRegisterStanza = Engine.HasXmppClient() && 
+		let gameRegisterStanza = Engine.HasXmppClient() &&
 			new GameRegisterStanza(initData, this, netMessages, gameSettingsControl, mapCache);
 		let playerAssignmentsControl = new PlayerAssignmentsControl(this, netMessages, gameRegisterStanza);
 		let readyControl = new ReadyControl(netMessages, gameSettingsControl, startGameControl, playerAssignmentsControl);
@@ -41,7 +44,7 @@ class SetupWindow
 			"readyControl": readyControl,
 			"startGameControl": startGameControl,
 			"netMessages": netMessages,
-			"gameRegisterStanza": gameRegisterStanza				
+			"gameRegisterStanza": gameRegisterStanza
 		};
 
 		// These are the pages within the setup window that may use the controls defined above
@@ -57,9 +60,6 @@ class SetupWindow
 			handler(initData, hotloadData);
 
 		Engine.ProfileStop();
-
-		if (gameSettingsControl.autostart)
-			startGameControl.launchGame();
 	}
 
 	registerLoadHandler(handler)

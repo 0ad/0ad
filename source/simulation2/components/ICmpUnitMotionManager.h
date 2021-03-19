@@ -20,6 +20,10 @@
 
 #include "simulation2/system/Interface.h"
 
+#include "maths/Fixed.h"
+#include "maths/FixedVector2D.h"
+#include "simulation2/system/CmpPtr.h"
+
 class ICmpPosition;
 class ICmpUnitMotion;
 

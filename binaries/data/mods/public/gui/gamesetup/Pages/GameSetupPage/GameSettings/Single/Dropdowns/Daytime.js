@@ -1,10 +1,12 @@
-GameSettingControls.Daytime = class extends GameSettingControlDropdown
+GameSettingControls.Daytime = class Daytime extends GameSettingControlDropdown
 {
 	constructor(...args)
 	{
 		super(...args);
 
 		this.values = undefined;
+		g_GameSettings.daytime.watch(() => this.render(), ["value", "data"]);
+		this.render();
 	}
 
 	onHoverChange()
@@ -12,65 +14,31 @@ GameSettingControls.Daytime = class extends GameSettingControlDropdown
 		this.dropdown.tooltip = this.values.Description[this.dropdown.hovered] || this.Tooltip;
 	}
 
-	onMapChange(mapData)
+	render()
 	{
-		if (mapData && mapData.settings && mapData.settings.Daytime)
-		{
-			this.values = prepareForDropdown([
-				{
-					"Id": "random",
-					"Name": setStringTags(this.RandomTitle, this.RandomItemTags),
-					"Description": this.RandomDescription,
-					"Preview": mapData.settings.Preview
-				},
-				...mapData.settings.Daytime.map(item => ({
-					"Id": item.Id,
-					"Name": translate(item.Name),
-					"Description": translate(item.Description),
-					"Preview": item.Preview
-				}))
-			]);
-
-			this.dropdown.list = this.values.Name;
-			this.dropdown.list_data = this.values.Id;
-		}
-		else
-			this.values = undefined;
-
-		this.setHidden(!this.values);
-	}
-
-	onGameAttributesChange()
-	{
-		if (!g_GameAttributes.map)
+		this.setHidden(!g_GameSettings.daytime.data);
+		if (!g_GameSettings.daytime.data)
 			return;
 
-		if (this.values)
-		{
-			if (this.values.Id.indexOf(g_GameAttributes.settings.Daytime || undefined) == -1)
+		this.values = prepareForDropdown([
 			{
-				g_GameAttributes.settings.Daytime = "random";
-				this.gameSettingsControl.updateGameAttributes();
-			}
+				"Id": "random",
+				"Name": setStringTags(this.RandomTitle, this.RandomItemTags),
+				"Description": this.RandomDescription,
+				"Preview": g_GameSettings.map.data.settings.Preview
+			},
+			...g_GameSettings.daytime.data.map(item => ({
+				"Id": item.Id,
+				"Name": translate(item.Name),
+				"Description": translate(item.Description),
+				"Preview": item.Preview
+			}))
+		]);
 
-			let preview = this.values.Preview[this.values.Id.indexOf(g_GameAttributes.settings.Daytime)];
-			if (!g_GameAttributes.settings.Preview || g_GameAttributes.settings.Preview != preview)
-			{
-				g_GameAttributes.settings.Preview = preview;
-				this.gameSettingsControl.updateGameAttributes();
-			}
-		}
-		else if (g_GameAttributes.settings.Daytime !== undefined)
-		{
-			delete g_GameAttributes.settings.Daytime;
-			this.gameSettingsControl.updateGameAttributes();
-		}
-	}
+		this.dropdown.list = this.values.Name;
+		this.dropdown.list_data = this.values.Id;
 
-	onGameAttributesBatchChange()
-	{
-		if (g_GameAttributes.settings.Daytime)
-			this.setSelectedValue(g_GameAttributes.settings.Daytime);
+		this.setSelectedValue(g_GameSettings.daytime.value);
 	}
 
 	getAutocompleteEntries()
@@ -80,20 +48,8 @@ GameSettingControls.Daytime = class extends GameSettingControlDropdown
 
 	onSelectionChange(itemIdx)
 	{
-		g_GameAttributes.settings.Daytime = this.values.Id[itemIdx];
-
-		this.gameSettingsControl.updateGameAttributes();
+		g_GameSettings.daytime.setValue(this.values.Id[itemIdx]);
 		this.gameSettingsControl.setNetworkGameAttributes();
-	}
-
-	onPickRandomItems()
-	{
-		if (this.values && g_GameAttributes.settings.Daytime == "random")
-		{
-			g_GameAttributes.settings.Daytime = pickRandom(this.values.Id.slice(1));
-			this.gameSettingsControl.updateGameAttributes();
-			this.gameSettingsControl.pickRandomItems();
-		}
 	}
 };
 

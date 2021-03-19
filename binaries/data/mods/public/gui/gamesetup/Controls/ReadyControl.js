@@ -25,7 +25,7 @@ class ReadyControl
 		this.readyState = this.NotReady;
 
 		netMessages.registerNetMessageHandler("ready", this.onReadyMessage.bind(this));
-		gameSettingsControl.registerGameAttributesBatchChangeHandler(this.onGameAttributesBatchChange.bind(this));
+		gameSettingsControl.registerSettingsChangeHandler(this.onSettingsChange.bind(this));
 		playerAssignmentsControl.registerClientJoinHandler(this.onClientJoin.bind(this));
 		playerAssignmentsControl.registerClientLeaveHandler(this.onClientLeave.bind(this));
 	}
@@ -73,7 +73,7 @@ class ReadyControl
 			}
 	}
 
-	onGameAttributesBatchChange()
+	onSettingsChange()
 	{
 		this.resetReady();
 	}

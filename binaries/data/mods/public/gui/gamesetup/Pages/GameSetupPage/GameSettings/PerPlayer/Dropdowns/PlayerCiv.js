@@ -1,14 +1,16 @@
-PlayerSettingControls.PlayerCiv = class extends GameSettingControlDropdown
+PlayerSettingControls.PlayerCiv = class PlayerCiv extends GameSettingControlDropdown
 {
 	constructor(...args)
 	{
 		super(...args);
 
-		this.fixedCiv = undefined;
 		this.values = prepareForDropdown(this.getItems());
 
 		this.dropdown.list = this.values.name;
 		this.dropdown.list_data = this.values.civ;
+
+		g_GameSettings.playerCiv.watch(() => this.render(), ["values", "locked"]);
+		this.render();
 	}
 
 	setControl()
@@ -22,51 +24,10 @@ PlayerSettingControls.PlayerCiv = class extends GameSettingControlDropdown
 		this.dropdown.tooltip = this.values && this.values.tooltip[this.dropdown.hovered] || this.Tooltip;
 	}
 
-	onMapChange(mapData)
+	render()
 	{
-		let mapPData = this.gameSettingsControl.getPlayerData(mapData, this.playerIndex);
-		this.fixedCiv = mapPData && mapPData.Civ || undefined;
-	}
-
-	onAssignPlayer(source, target)
-	{
-		if (g_GameAttributes.mapType != "scenario" && source && target)
-			[source.Civ, target.Civ] = [target.Civ, source.Civ];
-	}
-
-	onGameAttributesChange()
-	{
-		let pData = this.gameSettingsControl.getPlayerData(g_GameAttributes, this.playerIndex);
-		if (!pData || !g_GameAttributes.mapType)
-			return;
-
-		if (this.fixedCiv)
-		{
-			if (!pData.Civ || this.fixedCiv != pData.Civ)
-			{
-				pData.Civ = this.fixedCiv;
-				this.gameSettingsControl.updateGameAttributes();
-			}
-		}
-		else if (this.values.civ.indexOf(pData.Civ || undefined) == -1)
-		{
-			pData.Civ =
-				g_GameAttributes.mapType == "scenario" ?
-					g_Settings.PlayerDefaults[this.playerIndex + 1].Civ :
-					this.RandomCivId;
-
-			this.gameSettingsControl.updateGameAttributes();
-		}
-	}
-
-	onGameAttributesBatchChange()
-	{
-		let pData = this.gameSettingsControl.getPlayerData(g_GameAttributes, this.playerIndex);
-		if (!pData || !g_GameAttributes.mapType)
-			return;
-
-		this.setEnabled(!this.fixedCiv);
-		this.setSelectedValue(pData.Civ);
+		this.setEnabled(!g_GameSettings.playerCiv.locked[this.playerIndex]);
+		this.setSelectedValue(g_GameSettings.playerCiv.values[this.playerIndex]);
 	}
 
 	getItems()
@@ -101,29 +62,8 @@ PlayerSettingControls.PlayerCiv = class extends GameSettingControlDropdown
 
 	onSelectionChange(itemIdx)
 	{
-		let pData = this.gameSettingsControl.getPlayerData(g_GameAttributes, this.playerIndex);
-		pData.Civ = this.values.civ[itemIdx];
-		this.gameSettingsControl.updateGameAttributes();
+		g_GameSettings.playerCiv.setValue(this.playerIndex, this.values.civ[itemIdx]);
 		this.gameSettingsControl.setNetworkGameAttributes();
-	}
-
-	onPickRandomItems()
-	{
-		let pData = this.gameSettingsControl.getPlayerData(g_GameAttributes, this.playerIndex);
-		if (!pData || pData.Civ != this.RandomCivId)
-			return;
-
-		// Get a unique array of selectable cultures
-		let cultures = Object.keys(g_CivData).filter(civ => g_CivData[civ].SelectableInGameSetup).map(civ => g_CivData[civ].Culture);
-		cultures = cultures.filter((culture, index) => cultures.indexOf(culture) === index);
-
-		// Pick a random civ of a random culture
-		let culture = pickRandom(cultures);
-		pData.Civ = pickRandom(Object.keys(g_CivData).filter(civ =>
-			g_CivData[civ].Culture == culture && g_CivData[civ].SelectableInGameSetup));
-
-		this.gameSettingsControl.updateGameAttributes();
-		this.gameSettingsControl.pickRandomItems();
 	}
 };
 

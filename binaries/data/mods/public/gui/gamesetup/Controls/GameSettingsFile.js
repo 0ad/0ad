@@ -1,5 +1,5 @@
 /**
- * This class provides a way to save g_GameAttributes to a file and load them.
+ * This class provides a way to save game settings to a file and load them.
  */
 class GameSettingsFile
 {
@@ -8,6 +8,8 @@ class GameSettingsFile
 		this.filename = g_IsNetworked ?
 			this.GameAttributesFileMultiplayer :
 			this.GameAttributesFileSingleplayer;
+
+		this.gameSettingsControl = GameSettingsControl;
 
 		this.engineInfo = Engine.GetEngineInfo();
 		this.enabled = Engine.ConfigDB_GetValue("user", this.ConfigName) == "true";
@@ -45,7 +47,7 @@ class GameSettingsFile
 
 		Engine.ProfileStart("savePersistMatchSettingsFile");
 		Engine.WriteJSONFile(this.filename, {
-			"attributes": this.enabled ? g_GameAttributes : {},
+			"attributes": this.enabled ? this.gameSettingsControl.getSettings() : {},
 			"engine_info": this.engineInfo
 		});
 		Engine.ProfileStop();

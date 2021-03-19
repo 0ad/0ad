@@ -1,9 +1,12 @@
-GameSettingControls.TeamPlacement = class extends GameSettingControlDropdown
+GameSettingControls.TeamPlacement = class TeamPlacement extends GameSettingControlDropdown
 {
 	constructor(...args)
 	{
 		super(...args);
 		this.values = undefined;
+
+		g_GameSettings.teamPlacement.watch(() => this.render(), ["value", "available"]);
+		this.render();
 	}
 
 	onHoverChange()
@@ -11,57 +14,27 @@ GameSettingControls.TeamPlacement = class extends GameSettingControlDropdown
 		this.dropdown.tooltip = this.values.Description[this.dropdown.hovered] || this.Tooltip;
 	}
 
-	onMapChange(mapData)
+	render()
 	{
-		if (mapData && mapData.settings && mapData.settings.TeamPlacements)
-		{
-			let randomItem = clone(this.RandomItem);
-			randomItem.Name = setStringTags(randomItem.Name, this.RandomItemTags);
+		this.setHidden(!g_GameSettings.teamPlacement.value);
+		if (!g_GameSettings.teamPlacement.value)
+			return;
 
-			let patterns = [randomItem];
+		let randomItem = clone(this.RandomItem);
+		randomItem.Name = setStringTags(randomItem.Name, this.RandomItemTags);
 
-			for (let pattern of mapData.settings.TeamPlacements)
-				patterns.push(
-					typeof pattern == "string" ?
-						this.DefaultStartingPositions.find(pObj => pObj.Id == pattern) :
-						{
-							"Id": pattern.Id,
-							"Name": translate(pattern.Name),
-							"Description": translate(pattern.Description)
-						});
+		let patterns = [randomItem];
 
-			this.values = prepareForDropdown(patterns);
+		for (let pattern of g_GameSettings.teamPlacement.available)
+			patterns.push(g_GameSettings.teamPlacement.StartingPositions
+				.find(pObj => pObj.Id == pattern));
 
-			this.dropdown.list = this.values.Name;
-			this.dropdown.list_data = this.values.Id;
-		}
-		else
-			this.values = undefined;
-	}
+		this.values = prepareForDropdown(patterns);
 
-	onGameAttributesChange()
-	{
-		if (this.values)
-		{
-			if (this.values.Id.indexOf(g_GameAttributes.settings.TeamPlacement || undefined) == -1)
-			{
-				g_GameAttributes.settings.TeamPlacement = this.values.Id[0];
-				this.gameSettingsControl.updateGameAttributes();
-			}
-		}
-		else if (g_GameAttributes.settings.TeamPlacement !== undefined)
-		{
-			delete g_GameAttributes.settings.TeamPlacement;
-			this.gameSettingsControl.updateGameAttributes();
-		}
-	}
+		this.dropdown.list = this.values.Name;
+		this.dropdown.list_data = this.values.Id;
 
-	onGameAttributesBatchChange()
-	{
-		this.setHidden(!this.values);
-
-		if (this.values)
-			this.setSelectedValue(g_GameAttributes.settings.TeamPlacement);
+		this.setSelectedValue(g_GameSettings.teamPlacement.value);
 	}
 
 	getAutocompleteEntries()
@@ -71,19 +44,8 @@ GameSettingControls.TeamPlacement = class extends GameSettingControlDropdown
 
 	onSelectionChange(itemIdx)
 	{
-		g_GameAttributes.settings.TeamPlacement = this.values.Id[itemIdx];
-		this.gameSettingsControl.updateGameAttributes();
+		g_GameSettings.teamPlacement.setValue(this.values.Id[itemIdx]);
 		this.gameSettingsControl.setNetworkGameAttributes();
-	}
-
-	onPickRandomItems()
-	{
-		if (!this.values || g_GameAttributes.settings.TeamPlacement != "random")
-			return;
-
-		g_GameAttributes.settings.TeamPlacement = pickRandom(this.values.Id.filter(id => id != "random"));
-		this.gameSettingsControl.updateGameAttributes();
-		this.gameSettingsControl.pickRandomItems();
 	}
 };
 
@@ -98,28 +60,5 @@ GameSettingControls.TeamPlacement.prototype.RandomItem = {
 	"Name": translateWithContext("team placement", "Random"),
 	"Description": translateWithContext("team placement", "Select a random team placement pattern when starting the game.")
 };
-
-GameSettingControls.TeamPlacement.prototype.DefaultStartingPositions = [
-	{
-		"Id": "radial",
-		"Name": translateWithContext("team placement", "Circle"),
-		"Description": translate("Allied players are grouped and placed with opposing players on one circle spanning the map.")
-	},
-	{
-		"Id": "line",
-		"Name": translateWithContext("team placement", "Line"),
-		"Description": translate("Allied players are placed in a linear pattern."),
-	},
-	{
-		"Id": "randomGroup",
-		"Name": translateWithContext("team placement", "Random Group"),
-		"Description": translate("Allied players are grouped, but otherwise placed randomly on the map."),
-	},
-	{
-		"Id": "stronghold",
-		"Name": translateWithContext("team placement", "Stronghold"),
-		"Description": translate("Allied players are grouped in one random place of the map."),
-	}
-];
 
 GameSettingControls.TeamPlacement.prototype.AutocompleteOrder = 0;

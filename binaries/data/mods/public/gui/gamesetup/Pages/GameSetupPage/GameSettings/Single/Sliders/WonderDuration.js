@@ -1,4 +1,4 @@
-GameSettingControls.WonderDuration = class extends GameSettingControlSlider
+GameSettingControls.WonderDuration = class WonderDuration extends GameSettingControlSlider
 {
 	constructor(...args)
 	{
@@ -6,81 +6,31 @@ GameSettingControls.WonderDuration = class extends GameSettingControlSlider
 
 		this.sprintfValue = {};
 		this.available = false;
+
+		g_GameSettings.wonder.watch(() => this.render(), ["duration", "available"]);
+		g_GameSettings.map.watch(() => this.render(), ["type"]);
+		this.render();
 	}
 
-	onMapChange(mapData)
+	render()
 	{
-		this.setEnabled(g_GameAttributes.mapType != "scenario");
+		this.setHidden(!g_GameSettings.wonder.available);
+		this.setEnabled(g_GameSettings.map.type != "scenario");
 
-		let mapValue;
-		if (mapData &&
-			mapData.settings &&
-			mapData.settings.VictoryConditions &&
-			mapData.settings.VictoryConditions.indexOf(this.NameWonderVictory) != -1 &&
-			mapData.settings.WonderDuration !== undefined)
-			mapValue = mapData.settings.WonderDuration;
-
-		if (mapValue === undefined || mapValue == g_GameAttributes.settings.WonderDuration)
-			return;
-
-		if (!g_GameAttributes.settings.VictoryConditions)
-			g_GameAttributes.settings.VictoryConditions = [];
-
-		if (g_GameAttributes.settings.VictoryConditions.indexOf(this.NameWonderVictory) == -1)
-			g_GameAttributes.settings.VictoryConditions.push(this.NameWonderVictory);
-
-		g_GameAttributes.settings.WonderDuration = mapValue;
-
-		this.gameSettingsControl.updateGameAttributes();
-	}
-
-	onGameAttributesChange()
-	{
-		if (!g_GameAttributes.settings.VictoryConditions)
-			return;
-
-		this.available = g_GameAttributes.settings.VictoryConditions.indexOf(this.NameWonderVictory) != -1;
-
-		if (this.available)
+		if (g_GameSettings.wonder.available)
 		{
-			if (g_GameAttributes.settings.WonderDuration === undefined)
-			{
-				g_GameAttributes.settings.WonderDuration = this.DefaultValue;
-				this.gameSettingsControl.updateGameAttributes();
-			}
-		}
-		else if (g_GameAttributes.settings.WonderDuration !== undefined)
-		{
-			delete g_GameAttributes.settings.WonderDuration;
-			this.gameSettingsControl.updateGameAttributes();
-		}
-	}
-
-	onGameAttributesBatchChange()
-	{
-		this.setHidden(!this.available);
-
-		if (this.available)
-		{
-			let value = Math.round(g_GameAttributes.settings.WonderDuration);
+			let value = g_GameSettings.wonder.duration;
 			this.sprintfValue.min = value;
 			this.setSelectedValue(
-				g_GameAttributes.settings.WonderDuration,
+				g_GameSettings.wonder.duration,
 				value == 0 ? this.InstantVictory : sprintf(this.CaptionVictoryTime(value), this.sprintfValue));
 		}
 	}
 
 	onValueChange(value)
 	{
-		g_GameAttributes.settings.WonderDuration = value;
-		this.gameSettingsControl.updateGameAttributes();
+		g_GameSettings.wonder.setDuration(value);
 		this.gameSettingsControl.setNetworkGameAttributes();
-	}
-
-	onGameAttributesFinalize()
-	{
-		if (this.available)
-			g_GameAttributes.settings.WonderDuration = Math.round(g_GameAttributes.settings.WonderDuration);
 	}
 };
 
@@ -89,9 +39,6 @@ GameSettingControls.WonderDuration.prototype.TitleCaption =
 
 GameSettingControls.WonderDuration.prototype.Tooltip =
 	translate("Minutes until the player has achieved Wonder Victory");
-
-GameSettingControls.WonderDuration.prototype.NameWonderVictory =
-	"wonder";
 
 GameSettingControls.WonderDuration.prototype.CaptionVictoryTime =
 	min => translatePluralWithContext("victory duration", "%(min)s minute", "%(min)s minutes", min);

@@ -23,7 +23,6 @@ class MapGridBrowser extends GridBrowser
 	onOpenPage()
 	{
 		this.updateMapList();
-		this.setSelectedIndex(this.mapList.findIndex(map => map.file == g_GameAttributes.map));
 		this.goToPageOfSelected();
 		this.container.onWindowResized = this.onWindowResized.bind(this);
 
@@ -38,12 +37,22 @@ class MapGridBrowser extends GridBrowser
 		Engine.UnsetGlobalHotkey(this.HotkeyConfigPrevious, "Press");
 	}
 
+	getSelectedFile()
+	{
+		return this.mapList[this.selected].file || undefined;
+	}
+
+	select(mapFile)
+	{
+		this.setSelectedIndex(this.mapList.findIndex(map => map.file == mapFile));
+		this.goToPageOfSelected();
+	}
+
 	updateMapList()
 	{
 		let selectedMap =
 			this.mapList[this.selected] &&
 			this.mapList[this.selected].file || undefined;
-
 
 		let mapList = this.mapFilters.getFilteredMaps(
 			this.mapBrowserPage.controls.MapFiltering.getSelectedMapType(),
@@ -75,24 +84,6 @@ class MapGridBrowser extends GridBrowser
 		this.resizeGrid();
 
 		this.setSelectedIndex(this.mapList.findIndex(map => map.file == selectedMap));
-	}
-
-	submitMapSelection()
-	{
-		if (!g_IsController)
-			return;
-
-		let map = this.mapList[this.selected] || undefined;
-		if (!map)
-			return;
-
-		g_GameAttributes.mapType = map.type ? map.type :
-			this.mapBrowserPage.controls.MapFiltering.getSelectedMapType();
-		g_GameAttributes.mapFilter = map.filter ? map.filter :
-			this.mapBrowserPage.controls.MapFiltering.getSelectedMapFilter();
-		g_GameAttributes.map = map.file;
-		this.setupWindow.controls.gameSettingsControl.updateGameAttributes();
-		this.setupWindow.controls.gameSettingsControl.setNetworkGameAttributes();
 	}
 }
 

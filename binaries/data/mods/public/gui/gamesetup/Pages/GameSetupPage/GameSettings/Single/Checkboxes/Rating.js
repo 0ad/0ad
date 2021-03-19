@@ -1,49 +1,25 @@
-GameSettingControls.Rating = class extends GameSettingControlCheckbox
+GameSettingControls.Rating = class Rating extends GameSettingControlCheckbox
 {
 	constructor(...args)
 	{
 		super(...args);
 
-		this.hasXmppClient = Engine.HasXmppClient();
-		this.available = false;
+		// The availability of rated games is not a GUI concern, unlike most other
+		// potentially available settings.
+		g_GameSettings.rating.watch(() => this.render(), ["enabled", "available"]);
+		this.render();
 	}
 
-	onGameAttributesChange()
+	render()
 	{
-		this.available = this.hasXmppClient && g_GameAttributes.settings.PlayerData.length == 2;
-		if (this.available)
-		{
-			if (g_GameAttributes.settings.RatingEnabled === undefined)
-			{
-				g_GameAttributes.settings.RatingEnabled = true;
-				this.gameSettingsControl.updateGameAttributes();
-			}
-		}
-		else if (g_GameAttributes.settings.RatingEnabled !== undefined)
-		{
-			delete g_GameAttributes.settings.RatingEnabled;
-			this.gameSettingsControl.updateGameAttributes();
-		}
-	}
-
-	onGameAttributesBatchChange()
-	{
-		this.setHidden(!this.available);
-		if (this.available)
-			this.setChecked(g_GameAttributes.settings.RatingEnabled);
+		this.setHidden(!g_GameSettings.rating.available);
+		this.setChecked(g_GameSettings.rating.enabled);
 	}
 
 	onPress(checked)
 	{
-		g_GameAttributes.settings.RatingEnabled = checked;
-		this.gameSettingsControl.updateGameAttributes();
+		g_GameSettings.rating.setEnabled(checked);
 		this.gameSettingsControl.setNetworkGameAttributes();
-	}
-
-	onGameAttributesFinalize()
-	{
-		if (this.hasXmppClient)
-			Engine.SetRankedGame(!!g_GameAttributes.settings.RatingEnabled);
 	}
 };
 

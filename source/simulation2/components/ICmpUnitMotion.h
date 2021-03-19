@@ -36,8 +36,9 @@ class CCmpUnitMotionManager;
  */
 class ICmpUnitMotion : public IComponent
 {
-	friend class CCmpUnitMotionManager;
 protected:
+	friend class CCmpUnitMotionManager;
+
 	/**
 	 * This external interface is used by the Unit Motion Manager.
 	 * Components that do not register there do not need to implement these.

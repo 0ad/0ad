@@ -56,8 +56,7 @@ class MapGridBrowserItem extends GridBrowserItem
 
 	onMouseLeftDoubleClick()
 	{
-		this.gridBrowser.submitMapSelection();
-		this.mapBrowserPage.closePage();
+		this.mapBrowserPage.submitMapSelection();
 	}
 }
 

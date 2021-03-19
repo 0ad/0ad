@@ -1,4 +1,4 @@
-GameSettingControls.MapSize = class extends GameSettingControlDropdown
+GameSettingControls.MapSize = class MapSize extends GameSettingControlDropdown
 {
 	constructor(...args)
 	{
@@ -6,6 +6,9 @@ GameSettingControls.MapSize = class extends GameSettingControlDropdown
 
 		this.dropdown.list = g_MapSizes.Name;
 		this.dropdown.list_data = g_MapSizes.Tiles;
+
+		g_GameSettings.mapSize.watch(() => this.render(), ["size", "available"]);
+		this.render();
 	}
 
 	onHoverChange()
@@ -13,44 +16,11 @@ GameSettingControls.MapSize = class extends GameSettingControlDropdown
 		this.dropdown.tooltip = g_MapSizes.Tooltip[this.dropdown.hovered] || this.Tooltip;
 	}
 
-	onMapChange(mapData)
+	render()
 	{
-		let mapValue;
-		if (mapData &&
-			mapData.settings &&
-			mapData.settings.Size !== undefined)
-			mapValue = mapData.settings.Size;
-
-		if (g_GameAttributes.mapType == "random" && mapValue !== undefined && mapValue != g_GameAttributes.settings.Size)
-		{
-			g_GameAttributes.settings.Size = mapValue;
-			this.gameSettingsControl.updateGameAttributes();
-		}
-	}
-
-	onGameAttributesChange()
-	{
-		if (!g_GameAttributes.mapType ||
-			!g_GameAttributes.settings)
-			return;
-
-		let available = g_GameAttributes.mapType == "random";
-		this.setHidden(!available);
-
-		if (available)
-		{
-			if (g_GameAttributes.settings.Size === undefined)
-			{
-				g_GameAttributes.settings.Size = g_MapSizes.Tiles[g_MapSizes.Default];
-				this.gameSettingsControl.updateGameAttributes();
-			}
-			this.setSelectedValue(g_GameAttributes.settings.Size);
-		}
-		else if (g_GameAttributes.settings.Size !== undefined)
-		{
-			delete g_GameAttributes.settings.Size;
-			this.gameSettingsControl.updateGameAttributes();
-		}
+		this.setHidden(!g_GameSettings.mapSize.available);
+		this.setSelectedValue(g_GameSettings.mapSize.size);
+		// TODO: select first entry.
 	}
 
 	getAutocompleteEntries()
@@ -60,8 +30,7 @@ GameSettingControls.MapSize = class extends GameSettingControlDropdown
 
 	onSelectionChange(itemIdx)
 	{
-		g_GameAttributes.settings.Size = g_MapSizes.Tiles[itemIdx];
-		this.gameSettingsControl.updateGameAttributes();
+		g_GameSettings.mapSize.setSize(g_MapSizes.Tiles[itemIdx]);
 		this.gameSettingsControl.setNetworkGameAttributes();
 	}
 };

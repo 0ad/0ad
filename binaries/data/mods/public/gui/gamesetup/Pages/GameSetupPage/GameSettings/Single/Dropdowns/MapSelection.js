@@ -1,4 +1,4 @@
-GameSettingControls.MapSelection = class extends GameSettingControlDropdown
+GameSettingControls.MapSelection = class MapSelection extends GameSettingControlDropdown
 {
 	constructor(...args)
 	{
@@ -6,8 +6,10 @@ GameSettingControls.MapSelection = class extends GameSettingControlDropdown
 
 		this.values = undefined;
 
-		this.previousMapType = undefined;
-		this.previousMapFilter = undefined;
+		g_GameSettings.map.watch(() => this.render(), ["map"]);
+		g_GameSettings.map.watch(() => this.updateMapList(), ["type"]);
+
+		this.gameSettingsControl.guiData.mapFilter.watch(() => this.updateMapList(), ["filter"]);
 
 		this.randomItem = {
 			"file": this.RandomMapId,
@@ -21,51 +23,34 @@ GameSettingControls.MapSelection = class extends GameSettingControlDropdown
 		this.dropdown.tooltip = this.values.description[this.dropdown.hovered] || this.Tooltip;
 	}
 
-	onGameAttributesChange()
+	render()
 	{
-		if (!g_GameAttributes.mapType || !g_GameAttributes.mapFilter)
-			return;
-
-		this.updateMapList();
-
-		if (!this.gameSettingsControl.autostart &&
-			this.values &&
-			this.values.file.indexOf(g_GameAttributes.map || undefined) == -1)
+		// Can happen with bad matchsettings
+		if (this.values.file.indexOf(g_GameSettings.map.map) === -1)
 		{
-			g_GameAttributes.map = this.values.file[0];
-			this.gameSettingsControl.updateGameAttributes();
+			g_GameSettings.map.selectMap(this.values.file[this.values.Default]);
+			return;
 		}
-	}
-
-	onGameAttributesBatchChange()
-	{
-		if (g_GameAttributes.map)
-			this.setSelectedValue(g_GameAttributes.map);
+		this.setSelectedValue(g_GameSettings.map.map);
 	}
 
 	updateMapList()
 	{
-		if (this.previousMapType &&
-			this.previousMapType == g_GameAttributes.mapType &&
-			this.previousMapFilter &&
-			this.previousMapFilter == g_GameAttributes.mapFilter)
-			return;
-
 		Engine.ProfileStart("updateMapSelectionList");
 
-		this.previousMapType = g_GameAttributes.mapType;
-		this.previousMapFilter = g_GameAttributes.mapFilter;
+		if (!g_GameSettings.map.type)
+			return;
 
 		{
 			let values =
 				this.mapFilters.getFilteredMaps(
-					g_GameAttributes.mapType,
-					g_GameAttributes.mapFilter,
+					g_GameSettings.map.type,
+					this.gameSettingsControl.guiData.mapFilter.filter,
 					false);
 
 			values.sort(sortNameIgnoreCase);
 
-			if (g_GameAttributes.mapType == "random")
+			if (g_GameSettings.map.type == "random")
 				values.unshift(this.randomItem);
 
 			this.values = prepareForDropdown(values);
@@ -73,69 +58,43 @@ GameSettingControls.MapSelection = class extends GameSettingControlDropdown
 
 		this.dropdown.list = this.values.name;
 		this.dropdown.list_data = this.values.file;
+
+		g_GameSettings.map.setRandomOptions(this.values.file);
+
+		// Reset the selected map.
+		if (this.values.file.indexOf(g_GameSettings.map.map) === -1)
+		{
+			g_GameSettings.map.selectMap(this.values.file[this.values.Default]);
+			this.gameSettingsControl.setNetworkGameAttributes();
+		}
+		// The index may have changed: reset.
+		this.setSelectedValue(g_GameSettings.map.map);
+
 		Engine.ProfileStop();
 	}
 
 	onSelectionChange(itemIdx)
 	{
-		this.selectMap(this.values.file[itemIdx]);
-		this.gameSettingsControl.setNetworkGameAttributes();
-	}
-
-	/**
-	 * @param mapPath - for example "maps/skirmishes/Acropolis Bay (2)"
-	 */
-	selectMap(mapPath)
-	{
-		if (g_GameAttributes.map == mapPath)
+		// The triggering that happens on map change can be just slow enough
+		// that the next event happens before we're done when scrolling,
+		// and then the scrolling is not smooth since it can take arbitrarily long to render.
+		// To avoid that, run the change on the next GUI tick, and only do one increment.
+		// TODO: the problem is mostly that updating visibility can relayout the gamesetting,
+		// which takes a few ms, but this could only be done once per frame anyways.
+		// NB: this technically makes it possible to start the game without the change going through
+		// but it's essentially impossible to trigger accidentally.
+		if (this.reRenderTimeout)
 			return;
-
-		Engine.ProfileStart("selectMap");
-
-		// For scenario map, reset every setting per map selection
-		// For skirmish and random maps, persist player choices
-		if (g_GameAttributes.mapType == "scenario")
-			g_GameAttributes = {
-				"mapType": g_GameAttributes.mapType,
-				"mapFilter": g_GameAttributes.mapFilter
-			};
-
-		g_GameAttributes.map = mapPath;
-		this.gameSettingsControl.updateGameAttributes();
-
-		Engine.ProfileStop();
+		this.reRenderTimeout = setTimeout(() => {
+			g_GameSettings.map.selectMap(this.values.file[itemIdx]);
+			this.gameSettingsControl.setNetworkGameAttributes();
+			delete this.reRenderTimeout;
+		}, 0);
 	}
 
 	getAutocompleteEntries()
 	{
 		return this.values.name;
-	}
-
-	onPickRandomItems()
-	{
-		if (g_GameAttributes.map == this.RandomMapId)
-		{
-			this.selectMap(pickRandom(this.values.file.slice(1)));
-			this.gameSettingsControl.pickRandomItems();
-		}
-	}
-
-	onGameAttributesFinalize()
-	{
-		// Copy map well known properties (and only well known properties)
-		let mapData = this.mapCache.getMapData(g_GameAttributes.mapType, g_GameAttributes.map);
-
-		if (g_GameAttributes.mapType == "random")
-			g_GameAttributes.script = mapData.settings.Script;
-
-		g_GameAttributes.settings.TriggerScripts = Array.from(new Set([
-			...(g_GameAttributes.settings.TriggerScripts || []),
-			...(mapData.settings.TriggerScripts || [])
-		]));
-
-		for (let property of this.MapSettings)
-			if (mapData.settings[property] !== undefined)
-				g_GameAttributes.settings[property] = mapData.settings[property];
 	}
 };
 
@@ -155,15 +114,3 @@ GameSettingControls.MapSelection.prototype.RandomMapDescription =
 	translate("Pick any of the given maps at random.");
 
 GameSettingControls.MapSelection.prototype.AutocompleteOrder = 0;
-
-GameSettingControls.MapSelection.prototype.MapSettings = [
-	"CircularMap",
-	"StartingTechnologies",
-	"DisabledTechnologies",
-	"DisabledTemplates",
-	"StartingCamera",
-	"Garrison",
-	// Copy the map name so that the replay menu doesn't have to load hundreds of map descriptions on init
-	// Also it allows determining the english mapname from the replay file if the map is not available.
-	"Name"
-];

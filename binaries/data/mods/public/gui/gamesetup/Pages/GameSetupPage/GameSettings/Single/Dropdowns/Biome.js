@@ -1,126 +1,52 @@
-GameSettingControls.Biome = class extends GameSettingControlDropdown
+GameSettingControls.Biome = class Biome extends GameSettingControlDropdown
 {
 	constructor(...args)
 	{
 		super(...args);
 
-		this.values = undefined;
-		this.biomeValues = undefined;
-
-		this.randomItem = {
-			"Id": this.RandomBiomeId,
-			"Title": setStringTags(this.RandomBiome, this.RandomItemTags),
-			"Autocomplete": this.RandomBiome,
-			"Description": this.RandomDescription
-		};
+		g_GameSettings.biome.watch(() => this.render(), ["biome", "available"]);
+		this.render();
 	}
 
 	onHoverChange()
 	{
-		this.dropdown.tooltip =
-			this.values && this.values.Description && this.values.Description[this.dropdown.hovered] ||
-			this.Tooltip;
-	}
-
-	onMapChange(mapData)
-	{
-		let available = g_GameAttributes.mapType == "random" &&
-			mapData && mapData.settings && mapData.settings.SupportedBiomes || undefined;
-
-		this.setHidden(!available);
-
-		if (available)
-		{
-			Engine.ProfileStart("updateBiomeList");
-			this.biomeValues =
-				g_Settings.Biomes.filter(this.filterBiome(available)).map(this.createBiomeItem);
-
-			this.values = prepareForDropdown([
-				this.randomItem,
-				...this.biomeValues
-			]);
-
-			this.dropdown.list = this.values.Title;
-			this.dropdown.list_data = this.values.Id;
-			Engine.ProfileStop();
-		}
+		if (!this.dropdown.list_data[this.dropdown.hovered])
+			this.dropdown.tooltip = "";
+		else if (this.dropdown.list_data[this.dropdown.hovered] == "random")
+			this.dropdown.tooltip = this.RandomDescription;
 		else
-			this.values = undefined;
-
+			this.dropdown.tooltip = g_GameSettings.biome.biomeData[
+				this.dropdown.list_data[this.dropdown.hovered]
+			].Description;
 	}
 
-	onGameAttributesChange()
+	render()
 	{
-		if (!g_GameAttributes.mapType || !g_GameAttributes.map)
-			return;
+		this.setHidden(!g_GameSettings.biome.available.size);
 
-		if (this.values)
-		{
-			if (this.values.Id.indexOf(g_GameAttributes.settings.Biome || undefined) == -1)
+		let values = prepareForDropdown([
 			{
-				g_GameAttributes.settings.Biome = this.RandomBiomeId;
-				this.gameSettingsControl.updateGameAttributes();
-			}
+				"Title": setStringTags(this.RandomBiome, this.RandomItemTags),
+				"Id": "random"
+			},
+			...g_GameSettings.biome.getAvailableBiomeData()
+		]);
 
-			let biomePreviewFile =
-				basename(g_GameAttributes.map) + "_" +
-				basename(g_GameAttributes.settings.Biome || "") + ".png";
+		this.dropdown.list = values.Title;
+		this.dropdown.list_data = values.Id;
 
-			if (!g_GameAttributes.settings.Preview || g_GameAttributes.settings.Preview != biomePreviewFile && Engine.TextureExists(this.mapCache.TexturesPath + this.mapCache.PreviewsPath + biomePreviewFile))
-				g_GameAttributes.settings.Preview = biomePreviewFile;
-
-		}
-		else if (g_GameAttributes.settings.Biome)
-		{
-			delete g_GameAttributes.settings.Biome;
-			this.gameSettingsControl.updateGameAttributes();
-		}
-	}
-
-	onGameAttributesBatchChange()
-	{
-		if (this.values)
-			this.setSelectedValue(g_GameAttributes.settings.Biome);
-	}
-
-	filterBiome(available)
-	{
-		if (typeof available == "string")
-			return biome => biome.Id.startsWith(available);
-
-		return biome => available.indexOf(biome.Id) != -1;
-	}
-
-	createBiomeItem(biome)
-	{
-		return {
-			"Id": biome.Id,
-			"Title": biome.Title,
-			"Autocomplete": biome.Title,
-			"Description": biome.Description
-		};
+		this.setSelectedValue(g_GameSettings.biome.biome);
 	}
 
 	getAutocompleteEntries()
 	{
-		return this.values && this.values.Autocomplete;
+		return g_GameSettings.biome.biomes;
 	}
 
 	onSelectionChange(itemIdx)
 	{
-		g_GameAttributes.settings.Biome = this.values.Id[itemIdx];
-		this.gameSettingsControl.updateGameAttributes();
+		g_GameSettings.biome.setBiome(this.dropdown.list_data[itemIdx]);
 		this.gameSettingsControl.setNetworkGameAttributes();
-	}
-
-	onPickRandomItems()
-	{
-		if (this.values && g_GameAttributes.settings.Biome == this.RandomBiomeId)
-		{
-			g_GameAttributes.settings.Biome = pickRandom(this.biomeValues).Id;
-			this.gameSettingsControl.updateGameAttributes();
-			this.gameSettingsControl.pickRandomItems();
-		}
 	}
 };
 

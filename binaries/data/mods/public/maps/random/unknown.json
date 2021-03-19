@@ -6,83 +6,93 @@
 		"Preview" : "unknown.png",
 		"SupportedBiomes": "generic/",
 		"CircularMap" : true,
-		"Landscapes": {
-			"land" : [
-				{
-					"Id": "Continent",
-					"Name": "Continent",
-					"Description": "All players starts on a continent surrounded by water.",
-					"Preview": "unknown_continent.png"
-				},
-				{
-					"Id": "Isthmus",
-					"Name": "Isthmus",
-					"Description": "Two Mediterranean land masses connected by a narrow spit of land, called an 'Isthmus'.",
-					"Preview": "unknown_isthmus.png"
-				},
-				{
-					"Id": "CentralRiver",
-					"Name": "Central River",
-					"Description": "A small central river.",
-					"Preview": "unknown_central_river.png"
-				},
-				{
-					"Id": "EdgeSeas",
-					"Name": "Edge Seas",
-					"Description": "Players are aligned on a strip of land with seas bordering on one or both sides that may hold islands.",
-					"Preview": "unknown_edge_seas.png"
-				},
-				{
-					"Id": "Gulf",
-					"Name": "Gulf",
-					"Description": "Land shaped like a concrescent moon around a central lake.",
-					"Preview": "unknown_gulf.png"
-				},
-				{
-					"Id": "Lakes",
-					"Name": "Lakes",
-					"Description": "Mainland style with some small random lakes.",
-					"Preview": "unknown_lakes.png"
-				},
-				{
-					"Id": "Passes",
-					"Name": "Passes",
-					"Description": "A large hill encompasses the map and leaves players only a small passage to the two neighboring players.",
-					"Preview": "unknown_passes.png"
-				},
-				{
-					"Id": "Lowlands",
-					"Name": "Lowlands",
-					"Description": "The land is enclosed by a hill that leaves a small area per player connected to the large central place.",
-					"Preview": "unknown_lowlands.png"
-				},
-				{
-					"Id": "Mainland",
-					"Name": "Mainland",
-					"Description": "A typical map without any water.",
-					"Preview": "unknown_mainland.png"
-				}
-			],
-			"naval": [
-				{
-					"Id": "CentralSea",
-					"Name": "Naval: Central Sea",
-					"Description": "A huge sea is dividing the map into two halves.",
-					"Preview": "unknown_central_sea.png"
-				},
-				{
-					"Id": "Archipelago",
-					"Name": "Naval: Archipelago",
-					"Description": "Players are scattered across island chains and disconnected islands.",
-					"Preview": "unknown_archipelago.png"
-				},
-				{
-					"Id": "RiversAndLake",
-					"Name": "Naval: Lake and rivers",
-					"Description": "A central lake with rivers possibly separating neighboring players.",
-					"Preview": "unknown_rivers_and_lake.png"
-				}
-			]
-		}
+		"Landscapes": [
+			{
+				"Id": "random_land",
+				"Name": "Random Land",
+				"Description": "Choose a random land landscape",
+				"Items": [
+					{
+						"Id": "Continent",
+						"Name": "Continent",
+						"Description": "All players starts on a continent surrounded by water.",
+						"Preview": "unknown_continent.png"
+					},
+					{
+						"Id": "Isthmus",
+						"Name": "Isthmus",
+						"Description": "Two Mediterranean land masses connected by a narrow spit of land, called an 'Isthmus'.",
+						"Preview": "unknown_isthmus.png"
+					},
+					{
+						"Id": "CentralRiver",
+						"Name": "Central River",
+						"Description": "A small central river.",
+						"Preview": "unknown_central_river.png"
+					},
+					{
+						"Id": "EdgeSeas",
+						"Name": "Edge Seas",
+						"Description": "Players are aligned on a strip of land with seas bordering on one or both sides that may hold islands.",
+						"Preview": "unknown_edge_seas.png"
+					},
+					{
+						"Id": "Gulf",
+						"Name": "Gulf",
+						"Description": "Land shaped like a concrescent moon around a central lake.",
+						"Preview": "unknown_gulf.png"
+					},
+					{
+						"Id": "Lakes",
+						"Name": "Lakes",
+						"Description": "Mainland style with some small random lakes.",
+						"Preview": "unknown_lakes.png"
+					},
+					{
+						"Id": "Passes",
+						"Name": "Passes",
+						"Description": "A large hill encompasses the map and leaves players only a small passage to the two neighboring players.",
+						"Preview": "unknown_passes.png"
+					},
+					{
+						"Id": "Lowlands",
+						"Name": "Lowlands",
+						"Description": "The land is enclosed by a hill that leaves a small area per player connected to the large central place.",
+						"Preview": "unknown_lowlands.png"
+					},
+					{
+						"Id": "Mainland",
+						"Name": "Mainland",
+						"Description": "A typical map without any water.",
+						"Preview": "unknown_mainland.png"
+					}
+				]
+			},
+			{
+				"Id": "random_naval",
+				"Name": "Random Naval",
+				"Description": "Choose a random naval landscape",
+				"Items": [
+					{
+						"Id": "CentralSea",
+						"Name": "Naval: Central Sea",
+						"Description": "A huge sea is dividing the map into two halves.",
+						"Preview": "unknown_central_sea.png"
+					},
+					{
+						"Id": "Archipelago",
+						"Name": "Naval: Archipelago",
+						"Description": "Players are scattered across island chains and disconnected islands.",
+						"Preview": "unknown_archipelago.png"
+					},
+					{
+						"Id": "RiversAndLake",
+						"Name": "Naval: Lake and rivers",
+						"Description": "A central lake with rivers possibly separating neighboring players.",
+						"Preview": "unknown_rivers_and_lake.png"
+					}
+				]
+			}
+		]
 	}
 }

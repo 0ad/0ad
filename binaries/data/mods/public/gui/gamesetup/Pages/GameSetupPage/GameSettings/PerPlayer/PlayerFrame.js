@@ -1,4 +1,4 @@
-PlayerSettingControls.PlayerFrame = class extends GameSettingControl
+PlayerSettingControls.PlayerFrame = class PlayerFrame extends GameSettingControl
 {
 	constructor(...args)
 	{
@@ -12,12 +12,15 @@ PlayerSettingControls.PlayerFrame = class extends GameSettingControl
 			size.bottom = this.Height * (this.playerIndex + 1);
 			this.playerFrame.size = size;
 		}
+
+		g_GameSettings.playerCount.watch(() => this.render(), ["nbPlayers"]);
+		this.render();
 	}
 
-	onGameAttributesBatchChange()
+	render()
 	{
-		this.playerFrame.hidden = !this.gameSettingsControl.getPlayerData(g_GameAttributes, this.playerIndex);
+		this.playerFrame.hidden = this.playerIndex >= g_GameSettings.playerCount.nbPlayers;
 	}
-}
+};
 
 PlayerSettingControls.PlayerFrame.prototype.Height = 32;

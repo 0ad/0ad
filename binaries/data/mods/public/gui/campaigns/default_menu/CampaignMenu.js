@@ -39,15 +39,37 @@ class CampaignMenu extends AutoWatcher
 		let level = this.getSelectedLevelData();
 		if (!meetsRequirements(this.run, level))
 			return;
-		Engine.SwitchGuiPage("page_gamesetup.xml", {
+
+		let settings = {
 			"mapType": level.MapType,
 			"map": "maps/" + level.Map,
-			"autostart": true,
+			"settings": {
+				"CheatsEnabled": true
+			},
 			"campaignData": {
 				"run": this.run.filename,
 				"levelID": this.levelSelection.list_data[this.selectedLevel],
 				"data": this.run.data
 			}
+		};
+		let assignments = {
+			"local": {
+				"player": 1,
+				"name": Engine.ConfigDB_GetValue("user", "playername.singleplayer") || Engine.GetSystemUsername()
+			}
+		};
+
+		let gameSettings = new GameSettings().init();
+		gameSettings.fromInitAttributes(settings);
+		if (level.Preview)
+			gameSettings.mapPreview.setCustom("cropped:" + 400/512 + "," + 300/512 + ":" + level.Preview);
+		gameSettings.mapName.set(this.getLevelName(level));
+		// TODO: level description should also be passed, ideally.
+
+		gameSettings.launchGame(assignments);
+		Engine.SwitchGuiPage("page_loading.xml", {
+			"attribs": gameSettings.toInitAttributes(),
+			"playerAssignments": assignments
 		});
 	}
 

@@ -1,4 +1,4 @@
-GameSettingControls.MapBrowser = class extends GameSettingControlButton
+GameSettingControls.MapBrowser = class MapBrowser extends GameSettingControlButton
 {
 	constructor(...args)
 	{

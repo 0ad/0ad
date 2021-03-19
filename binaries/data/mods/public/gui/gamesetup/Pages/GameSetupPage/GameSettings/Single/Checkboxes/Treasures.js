@@ -1,40 +1,22 @@
-GameSettingControls.Treasures = class extends GameSettingControlCheckbox
+GameSettingControls.Treasures = class Treasures extends GameSettingControlCheckbox
 {
-	onMapChange(mapData)
+	constructor(...args)
 	{
-		let mapValue;
-		if (mapData &&
-			mapData.settings &&
-			mapData.settings.DisableTreasures !== undefined)
-			mapValue = mapData.settings.DisableTreasures;
-
-		if (mapValue !== undefined && mapValue != g_GameAttributes.settings.DisableTreasures)
-		{
-			g_GameAttributes.settings.DisableTreasures = mapValue;
-			this.gameSettingsControl.updateGameAttributes();
-		}
-
-		this.setEnabled(g_GameAttributes.mapType != "scenario");
+		super(...args);
+		g_GameSettings.disableTreasures.watch(() => this.render(), ["enabled"]);
+		g_GameSettings.map.watch(() => this.render(), ["type"]);
+		this.render();
 	}
 
-	onGameAttributesChange()
+	render()
 	{
-		if (g_GameAttributes.settings.DisableTreasures === undefined)
-		{
-			g_GameAttributes.settings.DisableTreasures = false;
-			this.gameSettingsControl.updateGameAttributes();
-		}
-	}
-
-	onGameAttributesBatchChange()
-	{
-		this.setChecked(g_GameAttributes.settings.DisableTreasures);
+		this.setEnabled(g_GameSettings.map.type != "scenario");
+		this.setChecked(g_GameSettings.disableTreasures.enabled);
 	}
 
 	onPress(checked)
 	{
-		g_GameAttributes.settings.DisableTreasures = checked;
-		this.gameSettingsControl.updateGameAttributes();
+		g_GameSettings.disableTreasures.setEnabled(checked);
 		this.gameSettingsControl.setNetworkGameAttributes();
 	}
 };

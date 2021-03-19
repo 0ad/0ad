@@ -1,4 +1,4 @@
-GameSettingControls.RelicDuration = class extends GameSettingControlSlider
+GameSettingControls.RelicDuration = class RelicDuration extends GameSettingControlSlider
 {
 	constructor(...args)
 	{
@@ -6,80 +6,31 @@ GameSettingControls.RelicDuration = class extends GameSettingControlSlider
 
 		this.sprintfValue = {};
 		this.available = false;
+
+		g_GameSettings.relic.watch(() => this.render(), ["duration", "available"]);
+		g_GameSettings.map.watch(() => this.render(), ["type"]);
+		this.render();
 	}
 
-	onMapChange(mapData)
+	render()
 	{
-		this.setEnabled(g_GameAttributes.mapType != "scenario");
+		this.setHidden(!g_GameSettings.relic.available);
+		this.setEnabled(g_GameSettings.map.type != "scenario");
 
-		let mapValue;
-		if (mapData &&
-			mapData.settings &&
-			mapData.settings.VictoryConditions &&
-			mapData.settings.VictoryConditions.indexOf(this.NameCaptureTheRelic) != -1 &&
-			mapData.settings.RelicDuration !== undefined)
-			mapValue = mapData.settings.RelicDuration;
-
-		if (mapValue === undefined || mapValue == g_GameAttributes.settings.RelicDuration)
-			return;
-
-		if (!g_GameAttributes.settings.VictoryConditions)
-			g_GameAttributes.settings.VictoryConditions = [];
-
-		if (g_GameAttributes.settings.VictoryConditions.indexOf(this.NameCaptureTheRelic) == -1)
-			g_GameAttributes.settings.VictoryConditions.push(this.NameCaptureTheRelic);
-
-		g_GameAttributes.settings.RelicDuration = mapValue;
-		this.gameSettingsControl.updateGameAttributes();
-	}
-
-	onGameAttributesChange()
-	{
-		if (!g_GameAttributes.settings.VictoryConditions)
-			return;
-
-		this.available = g_GameAttributes.settings.VictoryConditions.indexOf(this.NameCaptureTheRelic) != -1;
-
-		if (this.available)
+		if (g_GameSettings.relic.available)
 		{
-			if (g_GameAttributes.settings.RelicDuration === undefined)
-			{
-				g_GameAttributes.settings.RelicDuration = this.DefaultValue;
-				this.gameSettingsControl.updateGameAttributes();
-			}
-		}
-		else if (g_GameAttributes.settings.RelicDuration !== undefined)
-		{
-			delete g_GameAttributes.settings.RelicDuration;
-			this.gameSettingsControl.updateGameAttributes();
-		}
-	}
-
-	onGameAttributesBatchChange()
-	{
-		this.setHidden(!this.available);
-
-		if (this.available)
-		{
-			let value = Math.round(g_GameAttributes.settings.RelicDuration);
+			let value = g_GameSettings.relic.duration;
 			this.sprintfValue.min = value;
 			this.setSelectedValue(
-				g_GameAttributes.settings.RelicDuration,
+				g_GameSettings.relic.duration,
 				value == 0 ? this.InstantVictory : sprintf(this.CaptionVictoryTime(value), this.sprintfValue));
 		}
 	}
 
 	onValueChange(value)
 	{
-		g_GameAttributes.settings.RelicDuration = value;
-		this.gameSettingsControl.updateGameAttributes();
+		g_GameSettings.relic.setDuration(value);
 		this.gameSettingsControl.setNetworkGameAttributes();
-	}
-
-	onGameAttributesFinalize()
-	{
-		if (this.available)
-			g_GameAttributes.settings.RelicDuration = Math.round(g_GameAttributes.settings.RelicDuration);
 	}
 };
 
@@ -101,5 +52,3 @@ GameSettingControls.RelicDuration.prototype.InstantVictory =
 GameSettingControls.RelicDuration.prototype.MinValue = 0;
 
 GameSettingControls.RelicDuration.prototype.MaxValue = 60;
-
-GameSettingControls.RelicDuration.prototype.DefaultValue = 20;

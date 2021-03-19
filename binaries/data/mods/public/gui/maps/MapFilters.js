@@ -22,6 +22,9 @@ class MapFilters
 	 */
 	getFilteredMaps(mapTypeName, filterName, existence)
 	{
+		if (!mapTypeName || !filterName)
+			return existence ? false : [];
+
 		let index = g_MapTypes.Name.findIndex(name => name == mapTypeName);
 		if (index == -1)
 		{

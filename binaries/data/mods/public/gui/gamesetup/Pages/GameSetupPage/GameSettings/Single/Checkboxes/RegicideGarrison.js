@@ -1,59 +1,24 @@
-GameSettingControls.RegicideGarrison = class extends GameSettingControlCheckbox
+GameSettingControls.RegicideGarrison = class RegicideGarrison extends GameSettingControlCheckbox
 {
-	onMapChange(mapData)
+	constructor(...args)
 	{
-		this.setEnabled(g_GameAttributes.mapType != "scenario");
+		super(...args);
 
-		let mapValue;
-		if (mapData &&
-			mapData.settings &&
-			mapData.settings.VictoryConditions &&
-			mapData.settings.VictoryConditions.indexOf(this.RegicideName) != -1 &&
-			mapData.settings.RegicideGarrison !== undefined)
-			mapValue = mapData.settings.RegicideGarrison;
-
-		if (mapValue !== undefined || !g_GameAttributes.settings || mapValue == g_GameAttributes.settings.RegicideGarrison)
-			return;
-
-		if (!g_GameAttributes.settings.VictoryConditions)
-			g_GameAttributes.settings.VictoryConditions = [];
-
-		if (g_GameAttributes.settings.VictoryConditions.indexOf(this.RegicideName) == -1)
-			g_GameAttributes.settings.VictoryConditions.push(this.RegicideName);
-
-		g_GameAttributes.settings.RegicideGarrison = mapValue;
-
-		this.gameSettingsControl.updateGameAttributes();
+		g_GameSettings.regicideGarrison.watch(() => this.render(), ["enabled", "available"]);
+		g_GameSettings.map.watch(() => this.render(), ["type"]);
+		this.render();
 	}
 
-	onGameAttributesChange()
+	render()
 	{
-		if (!g_GameAttributes.settings.VictoryConditions)
-			return;
-
-		let available = g_GameAttributes.settings.VictoryConditions.indexOf(this.RegicideName) != -1;
-		this.setHidden(!available);
-
-		if (available)
-		{
-			if (g_GameAttributes.settings.RegicideGarrison === undefined)
-			{
-				g_GameAttributes.settings.RegicideGarrison = false;
-				this.gameSettingsControl.updateGameAttributes();
-			}
-			this.setChecked(g_GameAttributes.settings.RegicideGarrison);
-		}
-		else if (g_GameAttributes.settings.RegicideGarrison !== undefined)
-		{
-			delete g_GameAttributes.settings.RegicideGarrison;
-			this.gameSettingsControl.updateGameAttributes();
-		}
+		this.setHidden(g_GameSettings.map.type == "scenario" ||
+			!g_GameSettings.regicideGarrison.available);
+		this.setChecked(g_GameSettings.regicideGarrison.enabled);
 	}
 
 	onPress(checked)
 	{
-		g_GameAttributes.settings.RegicideGarrison = checked;
-		this.gameSettingsControl.updateGameAttributes();
+		g_GameSettings.regicideGarrison.setEnabled(checked);
 		this.gameSettingsControl.setNetworkGameAttributes();
 	}
 };
@@ -63,6 +28,3 @@ GameSettingControls.RegicideGarrison.prototype.TitleCaption =
 
 GameSettingControls.RegicideGarrison.prototype.Tooltip =
 	translate("Toggle whether heroes can be garrisoned.");
-
-GameSettingControls.RegicideGarrison.prototype.RegicideName =
-	"regicide";

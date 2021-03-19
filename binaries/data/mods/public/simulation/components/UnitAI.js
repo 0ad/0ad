@@ -2367,6 +2367,14 @@ UnitAI.prototype.UnitFsmSpec = {
 				"enter": function() {
 					this.gatheringTarget = this.order.data.target;	// temporary, deleted in "leave".
 
+					// If we can't move, assume we'll fail any subsequent order
+					// and finish the order entirely to avoid an infinite loop.
+					if (!this.AbleToMove())
+					{
+						this.FinishOrder();
+						return true;
+					}
+
 					let cmpSupply = Engine.QueryInterface(this.gatheringTarget, IID_ResourceSupply);
 					let cmpMirage = Engine.QueryInterface(this.gatheringTarget, IID_Mirage);
 					if ((!cmpMirage || !cmpMirage.Mirages(IID_ResourceSupply)) &&
@@ -2690,7 +2698,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 					if (!this.MoveTo(this.order.data, IID_Heal))
 					{
-						this.SetNextState("FINDINGNEWTARGET");
+						this.FinishOrder();
 						return true;
 					}
 
@@ -2889,6 +2897,13 @@ UnitAI.prototype.UnitFsmSpec = {
 
 			"APPROACHING": {
 				"enter": function() {
+					// If we can't move, assume we'll fail any subsequent order
+					// and finish the order entirely to avoid an infinite loop.
+					if (!this.AbleToMove())
+					{
+						this.FinishOrder();
+						return true;
+					}
 					if (!this.MoveToTargetRange(this.order.data.target, IID_TreasureCollecter))
 					{
 						this.SetNextState("FINDINGNEWTARGET");

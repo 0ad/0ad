@@ -29,7 +29,10 @@ class SavegameDetails
 				this.mapCache.getTranslatableMapName(metadata.initAttributes.mapType, metadata.initAttributes.map));
 
 		Engine.GetGUIObjectByName("savedInfoPreview").sprite =
-			this.mapCache.getMapPreview(metadata.initAttributes.mapType, metadata.initAttributes.map, metadata.initAttributes);
+			this.mapCache.getMapPreview(
+				metadata.initAttributes.mapType,
+				metadata.initAttributes.map,
+				metadata.initAttributes?.mapPreview);
 
 		Engine.GetGUIObjectByName("savedPlayers").caption = metadata.initAttributes.settings.PlayerData.length - 1;
 		Engine.GetGUIObjectByName("savedPlayedTime").caption = timeToString(metadata.gui.timeElapsed ? metadata.gui.timeElapsed : 0);

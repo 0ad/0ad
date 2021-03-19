@@ -1,4 +1,4 @@
-PlayerSettingControls.AIConfigButton = class extends GameSettingControl
+PlayerSettingControls.AIConfigButton = class AIConfigButton extends GameSettingControl
 {
 	constructor(...args)
 	{
@@ -6,8 +6,10 @@ PlayerSettingControls.AIConfigButton = class extends GameSettingControl
 
 		this.aiConfigButton = Engine.GetGUIObjectByName("aiConfigButton[" + this.playerIndex + "]");
 
+		g_GameSettings.playerAI.watch(() => this.render(), ["values"]);
 		// Save little performance by not reallocating every call
 		this.sprintfArgs = {};
+		this.render();
 	}
 
 	onLoad()
@@ -16,15 +18,13 @@ PlayerSettingControls.AIConfigButton = class extends GameSettingControl
 		this.aiConfigButton.onPress = aiConfigPage.openPage.bind(aiConfigPage, this.playerIndex);
 	}
 
-	onGameAttributesBatchChange()
+	render()
 	{
-		let pData = this.gameSettingsControl.getPlayerData(g_GameAttributes, this.playerIndex);
-		if (!pData)
+		this.aiConfigButton.hidden = !g_GameSettings.playerAI.get(this.playerIndex);
+		if (this.aiConfigButton.hidden)
 			return;
-
-		this.sprintfArgs.description = translateAISettings(pData);
+		this.sprintfArgs.description = g_GameSettings.playerAI.describe(this.playerIndex);
 		this.aiConfigButton.tooltip = sprintf(this.Tooltip, this.sprintfArgs);
-		this.aiConfigButton.hidden = !pData.AI;
 	}
 };
 

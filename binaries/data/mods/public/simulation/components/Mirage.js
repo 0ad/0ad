@@ -49,7 +49,8 @@ Mirage.prototype.Get = function(iid)
 // ============================
 // Parent entity data
 
-function MiragedIdentity(cmpIdentity)
+function MiragedIdentity() {}
+MiragedIdentity.prototype.Init = function(cmpIdentity)
 {
 	// Mirages don't get identity classes via the template-filter, so that code can query
 	// identity components via Engine.QueryInterface without having to explicitly check for mirages.
@@ -59,15 +60,19 @@ function MiragedIdentity(cmpIdentity)
 };
 
 MiragedIdentity.prototype.GetClassesList = function() { return this.classes; };
+Engine.RegisterGlobal("MiragedIdentity", MiragedIdentity);
 
 Mirage.prototype.CopyIdentity = function(cmpIdentity)
 {
-	this.miragedIids.set(IID_Identity, new MiragedIdentity(cmpIdentity));
+	let mirage = new MiragedIdentity();
+	mirage.Init(cmpIdentity);
+	this.miragedIids.set(IID_Identity, mirage);
 };
 
 // Foundation data
 
-function MiragedFoundation(cmpFoundation)
+function MiragedFoundation() {}
+MiragedFoundation.prototype.Init = function(cmpFoundation)
 {
 	this.numBuilders = cmpFoundation.GetNumBuilders();
 	this.buildTime = cmpFoundation.GetBuildTime();
@@ -75,15 +80,19 @@ function MiragedFoundation(cmpFoundation)
 
 MiragedFoundation.prototype.GetNumBuilders = function() { return this.numBuilders; };
 MiragedFoundation.prototype.GetBuildTime = function() { return this.buildTime; };
+Engine.RegisterGlobal("MiragedFoundation", MiragedFoundation);
 
 Mirage.prototype.CopyFoundation = function(cmpFoundation)
 {
-	this.miragedIids.set(IID_Foundation, new MiragedFoundation(cmpFoundation));
+	let mirage = new MiragedFoundation();
+	mirage.Init(cmpFoundation);
+	this.miragedIids.set(IID_Foundation, mirage);
 };
 
 // Repairable data
 
-function MiragedRepairable(cmpRepairable)
+function MiragedRepairable() {}
+MiragedRepairable.prototype.Init = function(cmpRepairable)
 {
 	this.numBuilders = cmpRepairable.GetNumBuilders();
 	this.buildTime = cmpRepairable.GetBuildTime();
@@ -91,15 +100,19 @@ function MiragedRepairable(cmpRepairable)
 
 MiragedRepairable.prototype.GetNumBuilders = function() { return this.numBuilders; };
 MiragedRepairable.prototype.GetBuildTime = function() { return this.buildTime; };
+Engine.RegisterGlobal("MiragedRepairable", MiragedRepairable);
 
 Mirage.prototype.CopyRepairable = function(cmpRepairable)
 {
-	this.miragedIids.set(IID_Repairable, new MiragedRepairable(cmpRepairable));
+	let mirage = new MiragedRepairable();
+	mirage.Init(cmpRepairable);
+	this.miragedIids.set(IID_Repairable, mirage);
 };
 
 // Health data
 
-function MiragedHealth(cmpHealth)
+function MiragedHealth() {}
+MiragedHealth.prototype.Init = function(cmpHealth)
 {
 	this.maxHitpoints = cmpHealth.GetMaxHitpoints();
 	this.hitpoints = cmpHealth.GetHitpoints();
@@ -113,31 +126,39 @@ MiragedHealth.prototype.GetHitpoints = function() { return this.hitpoints; };
 MiragedHealth.prototype.IsRepairable = function() { return this.repairable; };
 MiragedHealth.prototype.IsInjured = function() { return this.injured; };
 MiragedHealth.prototype.IsUnhealable = function() { return this.unhealable; };
+Engine.RegisterGlobal("MiragedHealth", MiragedHealth);
 
 Mirage.prototype.CopyHealth = function(cmpHealth)
 {
-	this.miragedIids.set(IID_Health, new MiragedHealth(cmpHealth));
+	let mirage = new MiragedHealth();
+	mirage.Init(cmpHealth);
+	this.miragedIids.set(IID_Health, mirage);
 };
 
 // Capture data
 
-function MiragedCapture(cmpCapturable)
+function MiragedCapturable() {}
+MiragedCapturable.prototype.Init = function(cmpCapturable)
 {
 	this.capturePoints = clone(cmpCapturable.GetCapturePoints());
 	this.maxCapturePoints = cmpCapturable.GetMaxCapturePoints();
-	this.CanCapture = cmpCapturable.CanCapture;
 };
 
-MiragedCapture.prototype.GetCapturePoints = function() { return this.capturePoints; };
-MiragedCapture.prototype.GetMaxCapturePoints = function() { return this.maxCapturePoints; };
+MiragedCapturable.prototype.GetCapturePoints = function() { return this.capturePoints; };
+MiragedCapturable.prototype.GetMaxCapturePoints = function() { return this.maxCapturePoints; };
+MiragedCapturable.prototype.CanCapture = Capturable.prototype.CanCapture;
+Engine.RegisterGlobal("MiragedCapturable", MiragedCapturable);
 
 Mirage.prototype.CopyCapturable = function(cmpCapturable)
 {
-	this.miragedIids.set(IID_Capturable, new MiragedCapture(cmpCapturable));
+	let mirage = new MiragedCapturable();
+	mirage.Init(cmpCapturable);
+	this.miragedIids.set(IID_Capturable, mirage);
 };
 
 // ResourceSupply data
-function MiragedResourceSupply(cmpResourceSupply)
+function MiragedResourceSupply() {}
+MiragedResourceSupply.prototype.Init = function(cmpResourceSupply)
 {
 	this.maxAmount = cmpResourceSupply.GetMaxAmount();
 	this.amount = cmpResourceSupply.GetCurrentAmount();
@@ -156,13 +177,22 @@ MiragedResourceSupply.prototype.GetKillBeforeGather = function() { return this.k
 MiragedResourceSupply.prototype.GetMaxGatherers = function() { return this.maxGatherers; };
 MiragedResourceSupply.prototype.GetNumGatherers = function() { return this.numGatherers; };
 
+// Apply diminishing returns with more gatherers, for e.g. infinite farms. For most resources this has no effect
+// (GetDiminishingReturns will return null). We can assume that for resources that are miraged this is the case.
+MiragedResourceSupply.prototype.GetDiminishingReturns = function() { return null; };
+
+Engine.RegisterGlobal("MiragedResourceSupply", MiragedResourceSupply);
+
 Mirage.prototype.CopyResourceSupply = function(cmpResourceSupply)
 {
-	this.miragedIids.set(IID_ResourceSupply, new MiragedResourceSupply(cmpResourceSupply));
+	let mirage = new MiragedResourceSupply();
+	mirage.Init(cmpResourceSupply);
+	this.miragedIids.set(IID_ResourceSupply, mirage);
 };
 
 // Market data
-function MiragedMarket(cmpMarket, entity, parent, player)
+function MiragedMarket() {}
+MiragedMarket.prototype.Init = function(cmpMarket, entity, parent, player)
 {
 	this.entity = entity;
 	this.parent = parent;
@@ -218,10 +248,13 @@ MiragedMarket.prototype.UpdateTraders = function(msg)
 		cmpMarket.AddTrader(trader);
 	}
 };
+Engine.RegisterGlobal("MiragedMarket", MiragedMarket);
 
 Mirage.prototype.CopyMarket = function(cmpMarket)
 {
-	this.miragedIids.set(IID_Market, new MiragedMarket(cmpMarket, this.entity, this.parent, this.player));
+	let mirage = new MiragedMarket();
+	mirage.Init(cmpMarket, this.entity, this.parent, this.player);
+	this.miragedIids.set(IID_Market, mirage);
 };
 
 // ============================
