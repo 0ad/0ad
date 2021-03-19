@@ -126,15 +126,18 @@ public:
 			std::fabs(p1.m_Norm.Z - p2.m_Norm.Z) < EPS;
 	}
 
+	void CompareVectors(const CVector3D& vector1, const CVector3D& vector2, const float EPS)
+	{
+		TS_ASSERT_DELTA(vector1.X, vector2.X, EPS);
+		TS_ASSERT_DELTA(vector1.Y, vector2.Y, EPS);
+		TS_ASSERT_DELTA(vector1.Z, vector2.Z, EPS);
+	}
+
 	void CompareQuads(const CCamera::Quad& quad, const CCamera::Quad& expectedQuad)
 	{
 		const float EPS = 1e-4f;
 		for (size_t index = 0; index < expectedQuad.size(); ++index)
-		{
-			TS_ASSERT_DELTA(quad[index].X, expectedQuad[index].X, EPS);
-			TS_ASSERT_DELTA(quad[index].Y, expectedQuad[index].Y, EPS);
-			TS_ASSERT_DELTA(quad[index].Z, expectedQuad[index].Z, EPS);
-		}
+			CompareVectors(quad[index], expectedQuad[index], EPS);
 	}
 
 	void CompareQuadsInWorldSpace(const CCamera& camera, const CCamera::Quad& quad, const CCamera::Quad& expectedQuad)
@@ -145,9 +148,7 @@ public:
 			// Transform quad points from camera space to world space.
 			CVector3D point = camera.GetOrientation().Transform(quad[index]);
 
-			TS_ASSERT_DELTA(point.X, expectedQuad[index].X, EPS);
-			TS_ASSERT_DELTA(point.Y, expectedQuad[index].Y, EPS);
-			TS_ASSERT_DELTA(point.Z, expectedQuad[index].Z, EPS);
+			CompareVectors(point, expectedQuad[index], EPS);
 		}
 	}
 
@@ -279,5 +280,65 @@ public:
 			CVector3D(4.9999995f, -66.9741364f, 104.0452118f)
 		};
 		CompareQuadsInWorldSpace(camera, farQuad, expectedWorldSpaceFarQuad);
+	}
+
+	void test_perspective_screen_rays()
+	{
+		const float EPS = 1e-4f;
+		const std::vector<SViewPort> viewPorts = {
+			SViewPort{0, 0, 512, 512},
+			SViewPort{0, 0, 1024, 768},
+			SViewPort{0, 0, 1440, 2536},
+		};
+		for (const SViewPort& viewPort : viewPorts)
+		{
+			const CVector3D cameraPosition(10.0f, 20.0f, 10.0f);
+			const CVector3D cameraDirection(CVector3D(0.0f, -1.0f, 1.0f).Normalized());
+			CCamera camera;
+			camera.SetViewPort(viewPort);
+			camera.LookAt(
+				cameraPosition,
+				cameraPosition + cameraDirection * 10.0f,
+				CVector3D(0.0f, 1.0f, 1.0f).Normalized()
+			);
+			camera.SetPerspectiveProjection(1.0f, 101.0f, DEGTORAD(90.0f));
+
+			CVector3D origin, dir;
+			camera.BuildCameraRay(viewPort.m_Width / 2, viewPort.m_Height / 2, origin, dir);
+			const CVector3D expectedOrigin = cameraPosition;
+			const CVector3D expectedDir = cameraDirection;
+			CompareVectors(origin, expectedOrigin, EPS);
+			CompareVectors(dir, expectedDir, EPS);
+		}
+	}
+
+	void test_ortho_screen_rays()
+	{
+		const float EPS = 1e-4f;
+		const std::vector<SViewPort> viewPorts = {
+			SViewPort{0, 0, 512, 512},
+			SViewPort{0, 0, 1024, 768},
+			SViewPort{0, 0, 1440, 2536},
+		};
+		for (const SViewPort& viewPort : viewPorts)
+		{
+			const CVector3D cameraPosition(10.0f, 20.0f, 10.0f);
+			const CVector3D cameraDirection(CVector3D(0.0f, -1.0f, 1.0f).Normalized());
+			CCamera camera;
+			camera.SetViewPort(viewPort);
+			camera.LookAt(
+				cameraPosition,
+				cameraPosition + cameraDirection * 10.0f,
+				CVector3D(0.0f, 1.0f, 1.0f).Normalized()
+			);
+			camera.SetOrthoProjection(2.0f, 128.0f, 10.0f);
+
+			CVector3D origin, dir;
+			camera.BuildCameraRay(viewPort.m_Width / 2, viewPort.m_Height / 2, origin, dir);
+			const CVector3D expectedOrigin = cameraPosition;
+			const CVector3D expectedDir = cameraDirection;
+			CompareVectors(origin, expectedOrigin, EPS);
+			CompareVectors(dir, expectedDir, EPS);
+		}
 	}
 };
