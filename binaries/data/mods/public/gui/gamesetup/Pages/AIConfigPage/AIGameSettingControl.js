@@ -2,8 +2,20 @@ class AIGameSettingControlDropdown extends GameSettingControlDropdown
 {
 	onOpenPage(playerIndex)
 	{
+		this.setEnabled(true);
 		this.playerIndex = playerIndex;
 		this.render();
+	}
+
+	/**
+	 * Overloaded: no need to trigger a relayout,
+	 * but updateVisibility must be called manually
+	 * as the AI control manager does not subscribe to updateLayout.
+	 */
+	setHidden(hidden)
+	{
+		this.hidden = hidden;
+		this.updateVisibility();
 	}
 
 	setControl(aiConfigPage)

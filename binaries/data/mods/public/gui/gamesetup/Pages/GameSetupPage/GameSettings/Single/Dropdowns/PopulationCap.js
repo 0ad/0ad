@@ -4,8 +4,6 @@ GameSettingControls.PopulationCap = class PopulationCap extends GameSettingContr
 	{
 		super(...args);
 
-		this.perPlayer = false;
-
 		this.dropdown.list = g_PopulationCapacities.Title;
 		this.dropdown.list_data = g_PopulationCapacities.Population;
 
@@ -19,7 +17,7 @@ GameSettingControls.PopulationCap = class PopulationCap extends GameSettingContr
 	render()
 	{
 		this.setHidden(g_GameSettings.population.useWorldPop);
-		this.setEnabled(!g_GameSettings.map.type == "scenario" && !g_GameSettings.population.perPlayer);
+		this.setEnabled(g_GameSettings.map.type != "scenario" && !g_GameSettings.population.perPlayer);
 		if (g_GameSettings.population.perPlayer)
 			this.label.caption = this.PerPlayerCaption;
 		else

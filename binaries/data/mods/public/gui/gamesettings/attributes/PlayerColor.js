@@ -57,14 +57,14 @@ GameSettings.prototype.Attributes.PlayerColor = class PlayerColor extends GameSe
 	onMapChange()
 	{
 		// Reset.
-		if (this.settings.map.type == "scenario" ||
-			this.getMapSetting("PlayerData") &&
-			this.getMapSetting("PlayerData").some(data => data && data.Color))
-		{
+		this.locked = this.locked.map(x => this.settings.map.type == "scenario");
+		this.trigger("locked");
+
+		if (this.settings.map.type === "scenario")
 			this._resize(0);
-			this._updateAvailable();
-			this.maybeUpdate();
-		}
+		this._updateAvailable();
+		this.maybeUpdate();
+		this.maybeUpdate();
 	}
 
 	maybeUpdate()
@@ -82,10 +82,18 @@ GameSettings.prototype.Attributes.PlayerColor = class PlayerColor extends GameSe
 			sameColor(color, otherColor));
 		if (inUse !== -1 && inUse !== playerIndex)
 		{
-			// Swap colors.
-			let col = this.values[playerIndex];
-			this.values[playerIndex] = undefined;
-			this._set(inUse, col);
+			if (sameColor(this.values[playerIndex], this.values[inUse]))
+			{
+				this.values[playerIndex] = undefined;
+				color = undefined;
+			}
+			else
+			{
+				// Swap colors.
+				let col = this.values[playerIndex];
+				this.values[playerIndex] = undefined;
+				this._set(inUse, col);
+			}
 		}
 		if (!color || this.available.indexOf(color) == -1)
 		{

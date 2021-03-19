@@ -394,13 +394,13 @@ function getGameDescription(initAttributes, mapCache)
 	});
 
 	titles.push({
-		"label": translate("Revealed Map"),
-		"value": initAttributes.settings.RevealMap
+		"label": translate("Explored Map"),
+		"value": initAttributes.settings.ExploreMap
 	});
 
 	titles.push({
-		"label": translate("Explored Map"),
-		"value": initAttributes.settings.ExploreMap
+		"label": translate("Revealed Map"),
+		"value": initAttributes.settings.RevealMap
 	});
 
 	titles.push({

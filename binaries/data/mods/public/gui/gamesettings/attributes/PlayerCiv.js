@@ -59,6 +59,11 @@ GameSettings.prototype.Attributes.PlayerCiv = class PlayerCiv extends GameSettin
 			this._resize(0);
 			this.maybeUpdate();
 		}
+		else
+		{
+			this.locked = this.locked.map(x => false);
+			this.trigger("locked");
+		}
 	}
 
 	maybeUpdate()
