@@ -10,11 +10,13 @@ phutil_register_library_map(array(
   '__library_version__' => 2,
   'class' => array(
     'ESLintLinter' => 'src/ESLintLinter.php',
+    'JenkinsRenderer' => 'src/JenkinsRenderer.php',
     'LicenceYearLinter' => 'src/LicenceYearLinter.php',
   ),
   'function' => array(),
   'xmap' => array(
     'ESLintLinter' => 'ArcanistExternalLinter',
+    'JenkinsRenderer' => 'ArcanistLintRenderer',
     'LicenceYearLinter' => 'ArcanistLinter',
   ),
 ));

@@ -133,8 +133,8 @@ pipeline {
 						sh '''
 						for file in builderr-*.txt ; do
 						  if [ -s "$file" ]; then
-						    echo "$file" >> build-errors.txt
-						    cat "$file" >> build-errors.txt
+							echo "$file" >> build-errors.txt
+							cat "$file" >> build-errors.txt
 						  fi
 						done
 						'''
@@ -147,9 +147,14 @@ pipeline {
 			steps {
 				script {
 					try {
-						sh 'arc lint --output json > .phabricator-lint'
+						// arc lint outputs an empty file on success - unless there is nothing to lint.
+						// On failure, it'll output the file and a failure error code.
+						// Explicitly checking for the file presence is thus best to detect the linter did run
+						sh 'arc lint --output jenkins --outfile .phabricator-lint && touch .phabricator-lint'
 					} catch (e) {
-						sh 'echo \"{ \\\"name\\\": \\\"error\\\", \\\"severity\\\": \\\"error\\\", \\\"code\\\": \\\"0\\\", \\\"description\\\": \\\"lint could not run\\\" }\" > .phabricator-lint '
+						if (!fileExists(".phabricator-lint")) {
+							sh '''echo '{ "path": "general", code": "Jenkins", "severity": "error", "name": "ci-error", "description": "Error running lint", "bypassChangedLineFiltering": true }' > .phabricator-lint '''
+						}
 					}
 				}
 			}
