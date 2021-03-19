@@ -1,5 +1,5 @@
 # Translation template for Pyrogenesis.
-# Copyright (C) 2020 Wildfire Games
+# Copyright (C) 2021 Wildfire Games
 # This file is distributed under the same license as the Pyrogenesis project.
 # Translators:
 # Bart <b.anthonisse@gmail.com>, 2020
@@ -27,9 +27,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2021-01-28 07:22+0000\n"
-"Last-Translator: Freagarach\n"
+"POT-Creation-Date: 2021-03-15 08:08+0000\n"
+"PO-Revision-Date: 2021-03-15 10:16+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -37,146 +37,176 @@ msgstr ""
 "Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: i18n/L10n.cpp:247
+#: graphics/CameraController.cpp:686
+#, c-format
+msgid "Scroll speed increased to %.1f"
+msgstr ""
+
+#: graphics/CameraController.cpp:692
+#, c-format
+msgid "Scroll speed decreased to %.1f"
+msgstr ""
+
+#: graphics/CameraController.cpp:699
+#, c-format
+msgid "Rotate speed increased to X=%.3f, Y=%.3f"
+msgstr ""
+
+#: graphics/CameraController.cpp:706
+#, c-format
+msgid "Rotate speed decreased to X=%.3f, Y=%.3f"
+msgstr ""
+
+#: graphics/CameraController.cpp:712
+#, c-format
+msgid "Zoom speed increased to %.1f"
+msgstr ""
+
+#: graphics/CameraController.cpp:718
+#, c-format
+msgid "Zoom speed decreased to %.1f"
+msgstr ""
+
+#: i18n/L10n.cpp:308
 msgid "Long strings"
 msgstr "Lange teksten"
 
-#: lobby/XmppClient.cpp:881
+#: lobby/XmppClient.cpp:1007
 msgid "unknown subtype (see logs)"
 msgstr "Onbekend subtype (zie logboek)"
 
-#: lobby/XmppClient.cpp:1209
+#: lobby/XmppClient.cpp:1333
 msgid "The certificate is not trusted."
 msgstr "Het certificaat is niet vertrouwd."
 
-#: lobby/XmppClient.cpp:1210
+#: lobby/XmppClient.cpp:1334
 msgid "The certificate hasn't got a known issuer."
 msgstr "Het certificaat is niet uitgegeven door een bekende verstrekker."
 
-#: lobby/XmppClient.cpp:1211
+#: lobby/XmppClient.cpp:1335
 msgid "The certificate has been revoked."
 msgstr "Het certificaat is ingetrokken."
 
-#: lobby/XmppClient.cpp:1212
+#: lobby/XmppClient.cpp:1336
 msgid "The certificate has expired."
 msgstr "Het certificaat is verlopen."
 
-#: lobby/XmppClient.cpp:1213
+#: lobby/XmppClient.cpp:1337
 msgid "The certificate is not yet active."
 msgstr "Het certificaat is nog niet actief."
 
-#: lobby/XmppClient.cpp:1214
+#: lobby/XmppClient.cpp:1338
 msgid "The certificate has not been issued for the peer connected to."
 msgstr "Het certificaat is niet verstrekt voor de partij waarmee je verbindt."
 
-#: lobby/XmppClient.cpp:1215
+#: lobby/XmppClient.cpp:1339
 msgid "The certificate signer is not a certificate authority."
 msgstr "De ondertekenaar van het certificaat is geen gecertificeerde autoriteit."
 
-#: lobby/XmppClient.cpp:1237 lobby/XmppClient.cpp:1281
-#: lobby/XmppClient.cpp:1320
+#: lobby/XmppClient.cpp:1361 lobby/XmppClient.cpp:1405
+#: lobby/XmppClient.cpp:1444
 msgid "Error"
 msgstr "Foutmelding"
 
-#: lobby/XmppClient.cpp:1240 lobby/XmppClient.cpp:1284
+#: lobby/XmppClient.cpp:1364 lobby/XmppClient.cpp:1408
 msgid "No error"
 msgstr "Geen foutmelding"
 
-#: lobby/XmppClient.cpp:1242
+#: lobby/XmppClient.cpp:1366
 msgid "Player already logged in"
 msgstr "Speler is al ingelogd"
 
-#: lobby/XmppClient.cpp:1244
+#: lobby/XmppClient.cpp:1368
 msgid "Forbidden"
 msgstr "Verboden"
 
-#: lobby/XmppClient.cpp:1246
+#: lobby/XmppClient.cpp:1370
 msgid "Internal server error"
 msgstr "Interne server fout"
 
-#: lobby/XmppClient.cpp:1250
+#: lobby/XmppClient.cpp:1374
 msgid "Not allowed"
 msgstr "Niet toegestaan"
 
-#: lobby/XmppClient.cpp:1251
+#: lobby/XmppClient.cpp:1375
 msgid "Not authorized"
 msgstr "Niet bevoegd"
 
-#: lobby/XmppClient.cpp:1254
+#: lobby/XmppClient.cpp:1378
 msgid "Recipient temporarily unavailable"
 msgstr "Ontvanger is tijdelijk niet beschikbaar"
 
-#: lobby/XmppClient.cpp:1256
+#: lobby/XmppClient.cpp:1380
 msgid "Registration required"
 msgstr "Registratie vereist"
 
-#: lobby/XmppClient.cpp:1260
+#: lobby/XmppClient.cpp:1384
 msgid "Service unavailable"
 msgstr "Service onbeschikbaar"
 
-#: lobby/XmppClient.cpp:1265 lobby/XmppClient.cpp:1304
+#: lobby/XmppClient.cpp:1389 lobby/XmppClient.cpp:1428
 msgid "Unknown error"
 msgstr "Onbekende foutmelding"
 
-#: lobby/XmppClient.cpp:1285
+#: lobby/XmppClient.cpp:1409
 msgid "Stream error"
 msgstr "Foutmelding systeem"
 
-#: lobby/XmppClient.cpp:1286
+#: lobby/XmppClient.cpp:1410
 msgid "The incoming stream version is unsupported"
 msgstr "De inkomende streamversie wordt niet ondersteund"
 
-#: lobby/XmppClient.cpp:1287
+#: lobby/XmppClient.cpp:1411
 msgid "The stream has been closed by the server"
 msgstr "Het systeem is afgesloten door de server"
 
-#: lobby/XmppClient.cpp:1291
+#: lobby/XmppClient.cpp:1415
 msgid "An I/O error occurred"
 msgstr "Er is een I/O fout opgetreden"
 
-#: lobby/XmppClient.cpp:1293
+#: lobby/XmppClient.cpp:1417
 msgid "The connection was refused by the server"
 msgstr "De verbinding is geweigerd door de server"
 
-#: lobby/XmppClient.cpp:1294
+#: lobby/XmppClient.cpp:1418
 msgid "Resolving the server's hostname failed"
 msgstr "Het ophalen van de server hostname is mislukt"
 
-#: lobby/XmppClient.cpp:1295
+#: lobby/XmppClient.cpp:1419
 msgid "This system is out of memory"
 msgstr "Dit systeem heeft geen geheugen meer over"
 
-#: lobby/XmppClient.cpp:1297
+#: lobby/XmppClient.cpp:1421
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
 msgstr "Het certificaat van de server kan niet worden geverifieerd of de TLS handshake is niet succesvol voltooid"
 
-#: lobby/XmppClient.cpp:1298
+#: lobby/XmppClient.cpp:1422
 msgid "The server did not offer required TLS encryption"
 msgstr "De server biedt niet de juiste TLS beveiliging"
 
-#: lobby/XmppClient.cpp:1300
+#: lobby/XmppClient.cpp:1424
 msgid "Authentication failed. Incorrect password or account does not exist"
 msgstr "Verificatie mislukt. Verkeerd wachtwoord of de gebruiker bestaat niet"
 
-#: lobby/XmppClient.cpp:1301
+#: lobby/XmppClient.cpp:1425
 msgid "The user or system requested a disconnect"
 msgstr "De gebruiker of het systeem vroeg om de verbinding te verbreken"
 
-#: lobby/XmppClient.cpp:1302
+#: lobby/XmppClient.cpp:1426
 msgid "There is no active connection"
 msgstr "Er is geen actieve verbinding"
 
-#: lobby/XmppClient.cpp:1323
+#: lobby/XmppClient.cpp:1447
 msgid "Your account has been successfully registered"
 msgstr "Uw account is succesvol geregistreerd"
 
-#: lobby/XmppClient.cpp:1324
+#: lobby/XmppClient.cpp:1448
 msgid "Not all necessary information provided"
 msgstr "Niet alle noodzakelijke informatie is aanwezig"
 
-#: lobby/XmppClient.cpp:1325
+#: lobby/XmppClient.cpp:1449
 msgid "Username already exists"
 msgstr "Gebruikersnaam bestaat al"
 
@@ -232,16 +262,16 @@ msgstr "Niet geslaagd om de hash code te berekenen."
 msgid "Failed to verify signature."
 msgstr "Niet geslaagd om de handtekening te controleren."
 
-#: ps/SavedGame.cpp:138
+#: ps/SavedGame.cpp:139
 #, c-format
 msgid "Saved game to '%s'"
 msgstr "Spel opgeslagen als \"%s\""
 
-#: ps/Util.cpp:282 ps/Util.cpp:285 ps/Util.cpp:426 ps/Util.cpp:429
+#: ps/Util.cpp:289 ps/Util.cpp:292 ps/Util.cpp:437 ps/Util.cpp:440
 #, c-format
 msgid "Screenshot written to '%s'"
 msgstr "Screenshot opgeslagen als \"%s\""
 
-#: ps/scripting/JSInterface_Debug.cpp:83
+#: ps/scripting/JSInterface_Debug.cpp:87
 msgid "custom build"
 msgstr "op maat gemaakt"

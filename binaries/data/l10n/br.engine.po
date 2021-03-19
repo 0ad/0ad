@@ -1,7 +1,6 @@
 # Translation template for Pyrogenesis.
-# Copyright (C) 2020 Wildfire Games
+# Copyright (C) 2021 Wildfire Games
 # This file is distributed under the same license as the Pyrogenesis project.
-# 
 # Translators:
 # Kachimatte <erwan.trestan.laigle@gmail.com>, 2013
 # Irriep Nala Novram <allannkorh@yahoo.fr>, 2016-2018
@@ -11,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-05-22 07:08+0000\n"
-"PO-Revision-Date: 2020-05-22 10:20+0000\n"
+"POT-Creation-Date: 2021-03-15 08:08+0000\n"
+"PO-Revision-Date: 2021-03-15 10:16+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
@@ -21,146 +20,176 @@ msgstr ""
 "Language: br\n"
 "Plural-Forms: nplurals=5; plural=((n%10 == 1) && (n%100 != 11) && (n%100 !=71) && (n%100 !=91) ? 0 :(n%10 == 2) && (n%100 != 12) && (n%100 !=72) && (n%100 !=92) ? 1 :(n%10 ==3 || n%10==4 || n%10==9) && (n%100 < 10 || n% 100 > 19) && (n%100 < 70 || n%100 > 79) && (n%100 < 90 || n%100 > 99) ? 2 :(n != 0 && n % 1000000 == 0) ? 3 : 4);\n"
 
-#: i18n/L10n.cpp:251
+#: graphics/CameraController.cpp:686
+#, c-format
+msgid "Scroll speed increased to %.1f"
+msgstr ""
+
+#: graphics/CameraController.cpp:692
+#, c-format
+msgid "Scroll speed decreased to %.1f"
+msgstr ""
+
+#: graphics/CameraController.cpp:699
+#, c-format
+msgid "Rotate speed increased to X=%.3f, Y=%.3f"
+msgstr ""
+
+#: graphics/CameraController.cpp:706
+#, c-format
+msgid "Rotate speed decreased to X=%.3f, Y=%.3f"
+msgstr ""
+
+#: graphics/CameraController.cpp:712
+#, c-format
+msgid "Zoom speed increased to %.1f"
+msgstr ""
+
+#: graphics/CameraController.cpp:718
+#, c-format
+msgid "Zoom speed decreased to %.1f"
+msgstr ""
+
+#: i18n/L10n.cpp:308
 msgid "Long strings"
 msgstr "Chadennoù hir"
 
-#: lobby/XmppClient.cpp:887
+#: lobby/XmppClient.cpp:1007
 msgid "unknown subtype (see logs)"
 msgstr "is-doare dianav (gwelet ar renabloù)"
 
-#: lobby/XmppClient.cpp:1215
+#: lobby/XmppClient.cpp:1333
 msgid "The certificate is not trusted."
 msgstr ""
 
-#: lobby/XmppClient.cpp:1216
+#: lobby/XmppClient.cpp:1334
 msgid "The certificate hasn't got a known issuer."
 msgstr ""
 
-#: lobby/XmppClient.cpp:1217
+#: lobby/XmppClient.cpp:1335
 msgid "The certificate has been revoked."
 msgstr ""
 
-#: lobby/XmppClient.cpp:1218
+#: lobby/XmppClient.cpp:1336
 msgid "The certificate has expired."
 msgstr ""
 
-#: lobby/XmppClient.cpp:1219
+#: lobby/XmppClient.cpp:1337
 msgid "The certificate is not yet active."
 msgstr ""
 
-#: lobby/XmppClient.cpp:1220
+#: lobby/XmppClient.cpp:1338
 msgid "The certificate has not been issued for the peer connected to."
 msgstr ""
 
-#: lobby/XmppClient.cpp:1221
+#: lobby/XmppClient.cpp:1339
 msgid "The certificate signer is not a certificate authority."
 msgstr ""
 
-#: lobby/XmppClient.cpp:1243 lobby/XmppClient.cpp:1287
-#: lobby/XmppClient.cpp:1326
+#: lobby/XmppClient.cpp:1361 lobby/XmppClient.cpp:1405
+#: lobby/XmppClient.cpp:1444
 msgid "Error"
 msgstr "Fazi"
 
-#: lobby/XmppClient.cpp:1246 lobby/XmppClient.cpp:1290
+#: lobby/XmppClient.cpp:1364 lobby/XmppClient.cpp:1408
 msgid "No error"
 msgstr "Fazi ebet"
 
-#: lobby/XmppClient.cpp:1248
+#: lobby/XmppClient.cpp:1366
 msgid "Player already logged in"
 msgstr "C'hoarier kevreet dija"
 
-#: lobby/XmppClient.cpp:1250
+#: lobby/XmppClient.cpp:1368
 msgid "Forbidden"
 msgstr "Difennet"
 
-#: lobby/XmppClient.cpp:1252
+#: lobby/XmppClient.cpp:1370
 msgid "Internal server error"
 msgstr "Fazi diabarzh ar servijer"
 
-#: lobby/XmppClient.cpp:1256
+#: lobby/XmppClient.cpp:1374
 msgid "Not allowed"
 msgstr "Difennet"
 
-#: lobby/XmppClient.cpp:1257
+#: lobby/XmppClient.cpp:1375
 msgid "Not authorized"
 msgstr "Nann aotret"
 
-#: lobby/XmppClient.cpp:1260
+#: lobby/XmppClient.cpp:1378
 msgid "Recipient temporarily unavailable"
 msgstr "Resever dihegerz evit ar mare"
 
-#: lobby/XmppClient.cpp:1262
+#: lobby/XmppClient.cpp:1380
 msgid "Registration required"
 msgstr "Inskrivadur rekiset"
 
-#: lobby/XmppClient.cpp:1266
+#: lobby/XmppClient.cpp:1384
 msgid "Service unavailable"
 msgstr "Servij diwiriek"
 
-#: lobby/XmppClient.cpp:1271 lobby/XmppClient.cpp:1310
+#: lobby/XmppClient.cpp:1389 lobby/XmppClient.cpp:1428
 msgid "Unknown error"
 msgstr "Fazi dianav"
 
-#: lobby/XmppClient.cpp:1291
+#: lobby/XmppClient.cpp:1409
 msgid "Stream error"
 msgstr "Fazi gant ar Froud"
 
-#: lobby/XmppClient.cpp:1292
+#: lobby/XmppClient.cpp:1410
 msgid "The incoming stream version is unsupported"
 msgstr "Ne vez ket degemeret stumm ar froud degaset"
 
-#: lobby/XmppClient.cpp:1293
+#: lobby/XmppClient.cpp:1411
 msgid "The stream has been closed by the server"
 msgstr "Serret eo bet ar froud gant ar servijer"
 
-#: lobby/XmppClient.cpp:1297
+#: lobby/XmppClient.cpp:1415
 msgid "An I/O error occurred"
 msgstr "Ur fazi I/O a zo c'hoarvezet"
 
-#: lobby/XmppClient.cpp:1299
+#: lobby/XmppClient.cpp:1417
 msgid "The connection was refused by the server"
 msgstr "Nac'het eo bet ar gevreadenn gant ar servijer"
 
-#: lobby/XmppClient.cpp:1300
+#: lobby/XmppClient.cpp:1418
 msgid "Resolving the server's hostname failed"
 msgstr "C'hwitet eo war diskoulmadenn anv hostiz ar servijer"
 
-#: lobby/XmppClient.cpp:1301
+#: lobby/XmppClient.cpp:1419
 msgid "This system is out of memory"
 msgstr "N'eus memor ebet ken gant ar sistem"
 
-#: lobby/XmppClient.cpp:1303
+#: lobby/XmppClient.cpp:1421
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
 msgstr "N'en deus ket gellet bezañ gwiriekaet testeni ar servijer, pe n'eo ket aet betek-penn an dornell TLS"
 
-#: lobby/XmppClient.cpp:1304
+#: lobby/XmppClient.cpp:1422
 msgid "The server did not offer required TLS encryption"
 msgstr "N'en deus ket roet ar servijer ar renigadur TLS rekiset"
 
-#: lobby/XmppClient.cpp:1306
+#: lobby/XmppClient.cpp:1424
 msgid "Authentication failed. Incorrect password or account does not exist"
 msgstr "C'hwitet war an dilesadur. Ger-kuzh fall pe ar gont n'eus ket anezhañ"
 
-#: lobby/XmppClient.cpp:1307
+#: lobby/XmppClient.cpp:1425
 msgid "The user or system requested a disconnect"
 msgstr "An implijer pe ar sistem o deus goulennet digevreañ"
 
-#: lobby/XmppClient.cpp:1308
+#: lobby/XmppClient.cpp:1426
 msgid "There is no active connection"
 msgstr "N'eus kevreadenn gweredekaet ebet"
 
-#: lobby/XmppClient.cpp:1329
+#: lobby/XmppClient.cpp:1447
 msgid "Your account has been successfully registered"
 msgstr "Ho kont a zo bet enrollet mat"
 
-#: lobby/XmppClient.cpp:1330
+#: lobby/XmppClient.cpp:1448
 msgid "Not all necessary information provided"
 msgstr "N'eo ket bet roet an holl ditouroù ret goulennet"
 
-#: lobby/XmppClient.cpp:1331
+#: lobby/XmppClient.cpp:1449
 msgid "Username already exists"
 msgstr "An anv-implijer a zo anezhañ dija"
 
@@ -194,25 +223,25 @@ msgstr "N'haller ket stagañ da bellgargañ. Fazi: %s; %s."
 msgid "Asynchronous download failure: %s, %s."
 msgstr "Graet en deus kazeg ar pellgargañ asinkronel: %s, %s."
 
-#: ps/ModIo.cpp:426
+#: ps/ModIo.cpp:425
 #, c-format
 msgid "Download failure. Server response: %s; %s."
 msgstr "Graet en deus kazeg ar pellgargañ. Respont ar servijer: %s; %s."
 
-#: ps/ModIo.cpp:529
+#: ps/ModIo.cpp:528
 msgid "Mismatched filesize."
 msgstr "Digenglotus eo ment ar restr."
 
-#: ps/ModIo.cpp:547
+#: ps/ModIo.cpp:546
 #, c-format
 msgid "Invalid file. Expected md5 %s, got %s."
 msgstr "Restr direizh. md5 gortozet : %s, md5 resevet : %s."
 
-#: ps/ModIo.cpp:562
+#: ps/ModIo.cpp:561
 msgid "Failed to compute final hash."
 msgstr "Graet en deus kazeg jedadenn an hash diwezhañ."
 
-#: ps/ModIo.cpp:568
+#: ps/ModIo.cpp:567
 msgid "Failed to verify signature."
 msgstr "Graet en deus kazeg gwiriekadur ar sinadur."
 
@@ -221,11 +250,11 @@ msgstr "Graet en deus kazeg gwiriekadur ar sinadur."
 msgid "Saved game to '%s'"
 msgstr "C'hoariadenn enrollet dindan '%s'"
 
-#: ps/Util.cpp:280 ps/Util.cpp:283 ps/Util.cpp:424 ps/Util.cpp:427
+#: ps/Util.cpp:289 ps/Util.cpp:292 ps/Util.cpp:437 ps/Util.cpp:440
 #, c-format
 msgid "Screenshot written to '%s'"
 msgstr "Tapadenn-skramm enrollet dindan '%s'"
 
-#: ps/scripting/JSInterface_Debug.cpp:83
+#: ps/scripting/JSInterface_Debug.cpp:87
 msgid "custom build"
 msgstr "savidigezh personel"

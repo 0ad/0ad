@@ -1,7 +1,8 @@
 # Translation template for Pyrogenesis.
-# Copyright (C) 2020 Wildfire Games
+# Copyright (C) 2021 Wildfire Games
 # This file is distributed under the same license as the Pyrogenesis project.
 # Translators:
+# Angelica Buonaurio <angydna2@yahoo.it>, 2021
 # Christian Bellagamba <christiandes00@gmail.com>, 2018
 # Claudio <claudiudurneac97@yahoo.it>, 2015
 # SecondCloud500 <eddieven2000@gmail.com>, 2014
@@ -23,9 +24,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2021-02-01 16:07+0000\n"
-"Last-Translator: rib ezz <ribezzz@gmail.com>\n"
+"POT-Creation-Date: 2021-03-15 08:08+0000\n"
+"PO-Revision-Date: 2021-03-15 17:47+0000\n"
+"Last-Translator: Angelica Buonaurio <angydna2@yahoo.it>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,146 +34,176 @@ msgstr ""
 "Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: i18n/L10n.cpp:247
+#: graphics/CameraController.cpp:686
+#, c-format
+msgid "Scroll speed increased to %.1f"
+msgstr "Velocità di scorrimento aumentata del %.1f"
+
+#: graphics/CameraController.cpp:692
+#, c-format
+msgid "Scroll speed decreased to %.1f"
+msgstr "Velocità di scorrimento ridotta del %.1f"
+
+#: graphics/CameraController.cpp:699
+#, c-format
+msgid "Rotate speed increased to X=%.3f, Y=%.3f"
+msgstr "Velocità di rotazione aumentata del X=%.3f, Y=%.3f"
+
+#: graphics/CameraController.cpp:706
+#, c-format
+msgid "Rotate speed decreased to X=%.3f, Y=%.3f"
+msgstr "Velocità di rotazione ridotta del X=%.3f, Y=%.3f"
+
+#: graphics/CameraController.cpp:712
+#, c-format
+msgid "Zoom speed increased to %.1f"
+msgstr "Velocità dello zoom aumentata del %.1f"
+
+#: graphics/CameraController.cpp:718
+#, c-format
+msgid "Zoom speed decreased to %.1f"
+msgstr "Velocità dello zoom ridotta del %.1f"
+
+#: i18n/L10n.cpp:308
 msgid "Long strings"
 msgstr "Stringhe Lunghe"
 
-#: lobby/XmppClient.cpp:881
+#: lobby/XmppClient.cpp:1007
 msgid "unknown subtype (see logs)"
 msgstr "sottotipo sconosciuto (vedi registri)"
 
-#: lobby/XmppClient.cpp:1209
+#: lobby/XmppClient.cpp:1333
 msgid "The certificate is not trusted."
 msgstr "Certificato inaffidabile."
 
-#: lobby/XmppClient.cpp:1210
+#: lobby/XmppClient.cpp:1334
 msgid "The certificate hasn't got a known issuer."
 msgstr "Proprietario del certificato ignoto."
 
-#: lobby/XmppClient.cpp:1211
+#: lobby/XmppClient.cpp:1335
 msgid "The certificate has been revoked."
 msgstr "Il certificato è stato revocato."
 
-#: lobby/XmppClient.cpp:1212
+#: lobby/XmppClient.cpp:1336
 msgid "The certificate has expired."
 msgstr "Il certificato è scaduto."
 
-#: lobby/XmppClient.cpp:1213
+#: lobby/XmppClient.cpp:1337
 msgid "The certificate is not yet active."
 msgstr "Il certificato non è ancora attivo."
 
-#: lobby/XmppClient.cpp:1214
+#: lobby/XmppClient.cpp:1338
 msgid "The certificate has not been issued for the peer connected to."
 msgstr "Certificato non collegato a un peer."
 
-#: lobby/XmppClient.cpp:1215
+#: lobby/XmppClient.cpp:1339
 msgid "The certificate signer is not a certificate authority."
 msgstr "Firmante del certificato non presente nella sua autorità."
 
-#: lobby/XmppClient.cpp:1237 lobby/XmppClient.cpp:1281
-#: lobby/XmppClient.cpp:1320
+#: lobby/XmppClient.cpp:1361 lobby/XmppClient.cpp:1405
+#: lobby/XmppClient.cpp:1444
 msgid "Error"
 msgstr "Errore"
 
-#: lobby/XmppClient.cpp:1240 lobby/XmppClient.cpp:1284
+#: lobby/XmppClient.cpp:1364 lobby/XmppClient.cpp:1408
 msgid "No error"
 msgstr "Nessun errore"
 
-#: lobby/XmppClient.cpp:1242
+#: lobby/XmppClient.cpp:1366
 msgid "Player already logged in"
 msgstr "Giocatore già connesso"
 
-#: lobby/XmppClient.cpp:1244
+#: lobby/XmppClient.cpp:1368
 msgid "Forbidden"
 msgstr "Vietato"
 
-#: lobby/XmppClient.cpp:1246
+#: lobby/XmppClient.cpp:1370
 msgid "Internal server error"
 msgstr "Errore interno al server"
 
-#: lobby/XmppClient.cpp:1250
+#: lobby/XmppClient.cpp:1374
 msgid "Not allowed"
 msgstr "Non permesso"
 
-#: lobby/XmppClient.cpp:1251
+#: lobby/XmppClient.cpp:1375
 msgid "Not authorized"
 msgstr "Non autorizzato"
 
-#: lobby/XmppClient.cpp:1254
+#: lobby/XmppClient.cpp:1378
 msgid "Recipient temporarily unavailable"
 msgstr "Destinatario temporaneamente non disponibile"
 
-#: lobby/XmppClient.cpp:1256
+#: lobby/XmppClient.cpp:1380
 msgid "Registration required"
 msgstr "Registrazione richiesta"
 
-#: lobby/XmppClient.cpp:1260
+#: lobby/XmppClient.cpp:1384
 msgid "Service unavailable"
 msgstr "Servizio non disponibile"
 
-#: lobby/XmppClient.cpp:1265 lobby/XmppClient.cpp:1304
+#: lobby/XmppClient.cpp:1389 lobby/XmppClient.cpp:1428
 msgid "Unknown error"
 msgstr "Errore sconosciuto"
 
-#: lobby/XmppClient.cpp:1285
+#: lobby/XmppClient.cpp:1409
 msgid "Stream error"
 msgstr "Errore di flusso"
 
-#: lobby/XmppClient.cpp:1286
+#: lobby/XmppClient.cpp:1410
 msgid "The incoming stream version is unsupported"
 msgstr "La versione del flusso in ingresso non è supportata"
 
-#: lobby/XmppClient.cpp:1287
+#: lobby/XmppClient.cpp:1411
 msgid "The stream has been closed by the server"
 msgstr "Il flusso è stato chiuso dal server"
 
-#: lobby/XmppClient.cpp:1291
+#: lobby/XmppClient.cpp:1415
 msgid "An I/O error occurred"
 msgstr "Si è verificato un errore di I/O"
 
-#: lobby/XmppClient.cpp:1293
+#: lobby/XmppClient.cpp:1417
 msgid "The connection was refused by the server"
 msgstr "La connessione è stata rifiutata dal server"
 
-#: lobby/XmppClient.cpp:1294
+#: lobby/XmppClient.cpp:1418
 msgid "Resolving the server's hostname failed"
 msgstr "Risoluzione dell'hostname del server fallita"
 
-#: lobby/XmppClient.cpp:1295
+#: lobby/XmppClient.cpp:1419
 msgid "This system is out of memory"
 msgstr "Questo sistema non dispone di memoria sufficiente"
 
-#: lobby/XmppClient.cpp:1297
+#: lobby/XmppClient.cpp:1421
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
 msgstr "Il certificato del server non può essere verificato o la negoziazione TLS non è stato completo con successo"
 
-#: lobby/XmppClient.cpp:1298
+#: lobby/XmppClient.cpp:1422
 msgid "The server did not offer required TLS encryption"
 msgstr "Il server non supportava la crittografia TLS richiesta"
 
-#: lobby/XmppClient.cpp:1300
+#: lobby/XmppClient.cpp:1424
 msgid "Authentication failed. Incorrect password or account does not exist"
 msgstr "Autenticazione fallita. Password errata o account inesistente"
 
-#: lobby/XmppClient.cpp:1301
+#: lobby/XmppClient.cpp:1425
 msgid "The user or system requested a disconnect"
 msgstr "L'utente o il sistema hanno richiesto una disconnessione "
 
-#: lobby/XmppClient.cpp:1302
+#: lobby/XmppClient.cpp:1426
 msgid "There is no active connection"
 msgstr "Non c'è connessione attiva"
 
-#: lobby/XmppClient.cpp:1323
+#: lobby/XmppClient.cpp:1447
 msgid "Your account has been successfully registered"
 msgstr "Il tuo account è stato registrato con successo"
 
-#: lobby/XmppClient.cpp:1324
+#: lobby/XmppClient.cpp:1448
 msgid "Not all necessary information provided"
 msgstr "Non sono state fornite tutte le informazioni necessarie"
 
-#: lobby/XmppClient.cpp:1325
+#: lobby/XmppClient.cpp:1449
 msgid "Username already exists"
 msgstr "Nome utente già esistente"
 
@@ -228,16 +259,16 @@ msgstr "Errore nel calcolo dell'ultimo hash."
 msgid "Failed to verify signature."
 msgstr "Errore nella verifica della firma."
 
-#: ps/SavedGame.cpp:138
+#: ps/SavedGame.cpp:139
 #, c-format
 msgid "Saved game to '%s'"
 msgstr "Gioco salvato in '%s'"
 
-#: ps/Util.cpp:282 ps/Util.cpp:285 ps/Util.cpp:426 ps/Util.cpp:429
+#: ps/Util.cpp:289 ps/Util.cpp:292 ps/Util.cpp:437 ps/Util.cpp:440
 #, c-format
 msgid "Screenshot written to '%s'"
 msgstr "Schermata salvata in '%s'"
 
-#: ps/scripting/JSInterface_Debug.cpp:83
+#: ps/scripting/JSInterface_Debug.cpp:87
 msgid "custom build"
 msgstr "personalizzata"

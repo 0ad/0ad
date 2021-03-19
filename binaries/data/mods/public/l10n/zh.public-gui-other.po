@@ -76,6 +76,7 @@
 # 呂正 <jack.lvzheng@gmail.com>, 2015
 # 子航 叶 <jerryzihye@gmail.com>, 2017
 # 星臣 <yuronglong1996@gmail.com>, 2017
+# 晓东 沈 <269832514@qq.com>, 2021
 # 李峰宇 <lxx4380@gmail.com>, 2018
 # 武军 李 <lwj7863439@gmail.com>, 2017
 # 潘 恩民 <568014904@qq.com>, 2018
@@ -88,8 +89,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-03-08 08:15+0000\n"
-"PO-Revision-Date: 2021-03-13 04:53+0000\n"
-"Last-Translator: ma xiaoming <maxiaoming@imicloud.net>\n"
+"PO-Revision-Date: 2021-03-18 04:02+0000\n"
+"Last-Translator: 晓东 沈 <269832514@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -116,7 +117,7 @@ msgstr "未分配快捷键: %(hotkeyName)s"
 #: gui/common/color.js:196
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete player names."
-msgstr "按下%(hotkey)s后，自动完成昵称或设置。"
+msgstr "按下%(hotkey)s后，自动完成昵称设置。"
 
 #: gui/common/color.js:198
 msgctxt "hotkey"
@@ -129,7 +130,7 @@ msgstr "中断载入"
 
 #: gui/common/functions_utility.js:42
 msgid "Gaia"
-msgstr "自然界"
+msgstr "盖亚－大地女神"
 
 #: gui/common/functions_utility.js:236
 #, javascript-format
@@ -265,7 +266,7 @@ msgstr[0] "奇观分钟数 %(min)s"
 msgctxt "victory condition"
 msgid "Capture the Relic (%(min)s minute)"
 msgid_plural "Capture the Relic (%(min)s minutes)"
-msgstr[0] "占领遗迹 (%(min)s 分钟)"
+msgstr[0] "占领或捕获遗迹 (%(min)s 分钟)"
 
 #: gui/common/gamedescription.js:232
 msgid "Relic Count"
@@ -386,7 +387,7 @@ msgstr "游牧模式"
 
 #: gui/common/gamedescription.js:345
 msgid "Civic Centers"
-msgstr "公署"
+msgstr "市政中心"
 
 #: gui/common/gamedescription.js:348
 msgid ""
@@ -545,7 +546,7 @@ msgstr "服务器满"
 
 #: gui/common/network.js:75
 msgid "Secure lobby authentication failed. Join via lobby."
-msgstr "安全的大厅验证失败。 通过大厅加入。"
+msgstr "网络身份验证认证失败。通过游戏大厅加入。"
 
 #: gui/common/network.js:76
 msgid "Error: Server failed to allocate a unique client identifier."
@@ -724,7 +725,7 @@ msgstr "默认"
 #: gui/common/settings.js:403
 msgctxt "population capacity addendum"
 msgid "(world)"
-msgstr ""
+msgstr "(世界)"
 
 #: gui/common/settings.js:404 gui/common/settings.js:408
 msgctxt "population capacity"
@@ -759,7 +760,7 @@ msgstr[0] "秒"
 
 #: gui/common/tooltips.js:145 gui/common/tooltips.js:156
 msgid "Health:"
-msgstr "生命："
+msgstr "生命值："
 
 #: gui/common/tooltips.js:155
 #, javascript-format
@@ -769,11 +770,11 @@ msgstr "%(healthLabel)s%(current)s/%(max)s"
 #: gui/common/tooltips.js:167
 #, javascript-format
 msgid "%(captureLabel)s %(current)s / %(max)s"
-msgstr ""
+msgstr "%(captureLabel)s %(current)s / %(max)s"
 
 #: gui/common/tooltips.js:168
 msgid "Capture points:"
-msgstr "忠诚值:"
+msgstr "占领点数:"
 
 #: gui/common/tooltips.js:179
 #, javascript-format
@@ -832,18 +833,18 @@ msgstr "%(name)s%(details)s"
 #: gui/common/tooltips.js:263
 #, javascript-format
 msgid "Duration reduction: %(durationReduction)s%%"
-msgstr ""
+msgstr "持续减少：%(durationReduction)s%%"
 
 #: gui/common/tooltips.js:271
 #, javascript-format
 msgid "Blocks: %(blockPercentage)s%%"
-msgstr ""
+msgstr "封锁：%(blockPercentage)s%%"
 
 #: gui/common/tooltips.js:278
 #, javascript-format
 msgid ""
 "Blocks: %(blockPercentage)s%%, Duration reduction: %(durationReduction)s%%"
-msgstr ""
+msgstr "封锁：%(blockPercentage)s%%，直到：%(durationReduction)s%%"
 
 #: gui/common/tooltips.js:294
 msgid "Garrison to fire arrows"
@@ -966,7 +967,7 @@ msgstr "否"
 #: gui/common/tooltips.js:403
 #, javascript-format
 msgid "gives %(name)s"
-msgstr ""
+msgstr "赠送%(name)s"
 
 #: gui/common/tooltips.js:436
 #, javascript-format
@@ -1015,7 +1016,7 @@ msgstr "(重置)"
 #: gui/common/tooltips.js:530
 msgctxt "status effect stackability"
 msgid "(stacks)"
-msgstr ""
+msgstr "（栈）"
 
 #: gui/common/tooltips.js:532
 #, javascript-format
@@ -1042,12 +1043,12 @@ msgstr "治疗："
 
 #: gui/common/tooltips.js:554 gui/common/tooltips.js:999
 msgid "Health"
-msgstr "生命"
+msgstr "生命值"
 
 #: gui/common/tooltips.js:568
 #, javascript-format
 msgid "%(label)s: %(garrisonSize)s %(extraSize)s"
-msgstr ""
+msgstr "%(label)s: %(garrisonSize)s %(extraSize)s"
 
 #: gui/common/tooltips.js:569
 msgid "Garrison Size"
@@ -1056,7 +1057,7 @@ msgstr "驻军规模"
 #: gui/common/tooltips.js:572
 msgctxt "nested garrison"
 msgid "+ "
-msgstr ""
+msgstr "+ "
 
 #: gui/common/tooltips.js:596 gui/common/tooltips.js:601
 #: gui/common/tooltips.js:606
@@ -1155,12 +1156,12 @@ msgstr "∞"
 
 #: gui/common/tooltips.js:795
 msgid "Reward:"
-msgstr ""
+msgstr "奖励："
 
 #: gui/common/tooltips.js:798
 #, javascript-format
 msgid "%(resourceIcon)s %(reward)s"
-msgstr ""
+msgstr "%(resourceIcon)s %(reward)s"
 
 #: gui/common/tooltips.js:816
 msgid "Resource Trickle:"
@@ -1207,7 +1208,7 @@ msgstr "需要 %(technology)s"
 #: gui/common/tooltips.js:934
 #, javascript-format
 msgid "%(label)s %(bonus)s"
-msgstr ""
+msgstr "%(label)s %(bonus)s"
 
 #: gui/common/tooltips.js:935
 msgid "Population Bonus:"
@@ -1310,7 +1311,7 @@ msgstr "右击获取更多消息"
 #. will open the Template Details GUI page.
 #: gui/common/tooltips.js:1146
 msgid "Click to view more information."
-msgstr "点击获取更多消息"
+msgstr "单击以获取更多消息。"
 
 #: gui/credits/credits.js:83
 #, javascript-format
@@ -1408,7 +1409,7 @@ msgstr "拉丁语"
 
 #: gui/credits/texts/audio.jsonContent[3].Content[2].Subtitle
 msgid "Napatan"
-msgstr ""
+msgstr "Napatan"
 
 #: gui/credits/texts/audio.jsonContent[3].Content[3].Subtitle
 msgid "Persian"
@@ -1533,15 +1534,15 @@ msgstr "其他热键"
 #: gui/hotkeys/HotkeyPicker.js:57
 #, javascript-format
 msgid "#%i"
-msgstr ""
+msgstr "#%i"
 
 #: gui/hotkeys/HotkeyPicker.js:73
 msgid " (hold to register)"
-msgstr ""
+msgstr "（保持注册）"
 
 #: gui/hotkeys/HotkeyPicker.js:74 gui/hotkeys/HotkeyPicker.js:105
 msgid "Enter new Hotkey, hold to register."
-msgstr ""
+msgstr "输入新的快捷键，保持注册。"
 
 #: gui/hotkeys/HotkeyPicker.js:116
 msgid "May conflict with: "
@@ -1549,7 +1550,7 @@ msgstr "可能与此冲突:"
 
 #: gui/hotkeys/HotkeysPage.js:82
 msgid "All Hotkeys"
-msgstr "所有热键"
+msgstr "全部热键"
 
 #: gui/hotkeys/HotkeysPage.js:118
 msgid "No tooltip available"
@@ -1559,7 +1560,7 @@ msgstr "无可用提示"
 msgid ""
 "Reset all hotkeys to default values?\n"
 "WARNING: this cannot be reversed."
-msgstr ""
+msgstr "是否要将全部快捷键重置为默认值？\n警告：该操作无法撤销。"
 
 #: gui/hotkeys/HotkeysPage.js:152 gui/pregame/MainMenuItems.js:236
 #: gui/pregame/MainMenuItems.js:260
@@ -1591,7 +1592,7 @@ msgstr "热键说明"
 msgid ""
 "Click on any mapping to modify it.\\n You may have up to 4 different "
 "hotkeys."
-msgstr ""
+msgstr "单击任何已存在的快捷键以修改它。\\ n您最多可配置4个不同的热键。"
 
 #: gui/hotkeys/hotkeys.xml:(caption):106 gui/locale/locale.xml:(caption):46
 msgid "Accept"
@@ -1611,7 +1612,7 @@ msgstr "名字"
 #: gui/hotkeys/hotkeys.xml:(heading):43
 msgctxt "hotkey list"
 msgid "Mapping"
-msgstr ""
+msgstr "关联"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):49 gui/hotkeys/hotkeys.xml:(tooltip):102
 #: gui/options/options.xml:(tooltip):43
@@ -1624,23 +1625,23 @@ msgstr "保存更改"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):59
 msgid "Unsaved changes will be lost"
-msgstr ""
+msgstr "将会遗弃未保存的修改"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):90
 msgid "Click to set the hotkey"
-msgstr ""
+msgstr "点击设置热键"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):94
 msgid "Click to delete the hotkey"
-msgstr ""
+msgstr "点击删除热键"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):107
 msgid "Change the hotkeys and close"
-msgstr ""
+msgstr "修改热键后关闭"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):112
 msgid "The hotkeys will not be modified"
-msgstr ""
+msgstr "热键不可修改"
 
 #: gui/loadgame/SavegameDeleter.js:34
 #, javascript-format
@@ -1868,12 +1869,12 @@ msgstr "选定地图类型的所有地图"
 
 #: gui/maps/mapbrowser/MapBrowser.xml:(caption):14
 msgid "Map Browser"
-msgstr ""
+msgstr "地图浏览器"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:31
 #, javascript-format
 msgid "%(hotkey)s: Close map browser and discard the selection."
-msgstr ""
+msgstr "%(hotkey)s：关闭地图浏览器，并放弃选择。"
 
 #: gui/credits/credits.xml:(caption):32 gui/hotkeys/hotkeys.xml:(caption):58
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:34
@@ -1885,7 +1886,7 @@ msgstr "关闭"
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:36
 #, javascript-format
 msgid "%(hotkey)s: Close map browser."
-msgstr ""
+msgstr "%(hotkey)s：关闭地图浏览器。"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):15
 msgctxt "zoom in"
@@ -1895,11 +1896,11 @@ msgstr "+"
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):18
 msgctxt "zoom out"
 msgid "−"
-msgstr ""
+msgstr "−"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):26
 msgid "Search Map:"
-msgstr ""
+msgstr "搜寻地图："
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):38
 msgid "Map Filter:"
@@ -1907,38 +1908,38 @@ msgstr "地图筛选"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):48
 msgid "Pick Random Map"
-msgstr ""
+msgstr "选择随机地图"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):54
 msgctxt "map selection dialog"
 msgid "Select"
-msgstr ""
+msgstr "选择"
 
 #: gui/maps/mapbrowser/controls/Pagination.js:27
 msgid "Go to the previous page."
-msgstr ""
+msgstr "到上一页"
 
 #: gui/maps/mapbrowser/controls/Pagination.js:28
 msgid "Go to the next page."
-msgstr ""
+msgstr "到下一页"
 
 #: gui/maps/mapbrowser/controls/Pagination.js:32
 msgid "Increase map preview size."
-msgstr ""
+msgstr "增加地图预览尺寸"
 
 #: gui/maps/mapbrowser/controls/Pagination.js:33
 msgid "Decrease map preview size."
-msgstr ""
+msgstr "减少地图预览尺寸"
 
 #: gui/maps/mapbrowser/controls/Pagination.js:39
 #, javascript-format
 msgid "Maps: %(mapCount)s"
-msgstr ""
+msgstr "地图： %(mapCount)s"
 
 #: gui/maps/mapbrowser/controls/Pagination.js:43
 #, javascript-format
 msgid "Page: %(currentPage)s/%(maxPage)s"
-msgstr ""
+msgstr "页面： %(currentPage)s/%(maxPage)s"
 
 #: gui/options/options.js:95
 #, javascript-format
@@ -2254,7 +2255,7 @@ msgstr "不启用抗锯齿"
 
 #: gui/options/options.json[1].options[4].list[1].label
 msgid "FXAA"
-msgstr ""
+msgstr "FXAA"
 
 #: gui/options/options.json[1].options[4].list[1].tooltip
 msgid "Fast, but simple antialiasing."
@@ -2262,7 +2263,7 @@ msgstr "快速简易的抗锯齿效果。"
 
 #: gui/options/options.json[1].options[4].list[2].label
 msgid "MSAA (2×)"
-msgstr ""
+msgstr "MSAA (2×)"
 
 #: gui/options/options.json[1].options[4].list[2].tooltip
 msgid ""
@@ -2272,7 +2273,7 @@ msgstr "缓慢、高质量的抗锯齿效果，每个像素使用两个样本。
 
 #: gui/options/options.json[1].options[4].list[3].label
 msgid "MSAA (4×)"
-msgstr ""
+msgstr "MSAA (4×)"
 
 #: gui/options/options.json[1].options[4].list[3].tooltip
 msgid ""
@@ -2282,7 +2283,7 @@ msgstr "缓慢、高质量的抗锯齿效果，每个像素使用四个样本。
 
 #: gui/options/options.json[1].options[4].list[4].label
 msgid "MSAA (8×)"
-msgstr ""
+msgstr "MSAA (8×)"
 
 #: gui/options/options.json[1].options[4].list[4].tooltip
 msgid ""
@@ -2292,7 +2293,7 @@ msgstr "缓慢、高质量的抗锯齿效果，每个像素使用八个样本。
 
 #: gui/options/options.json[1].options[4].list[5].label
 msgid "MSAA (16×)"
-msgstr ""
+msgstr "MSAA (16×)"
 
 #: gui/options/options.json[1].options[4].list[5].tooltip
 msgid ""
@@ -2314,7 +2315,7 @@ msgstr "请不要使用锐化效果。"
 
 #: gui/options/options.json[1].options[5].list[1].label
 msgid "FidelityFX CAS"
-msgstr ""
+msgstr "FidelityFX CAS 支持"
 
 #: gui/options/options.json[1].options[5].list[1].tooltip
 msgid "Contrast adaptive sharpening, a fast, contrast based sharpening pass."
@@ -2942,7 +2943,7 @@ msgstr "继续战役"
 #: gui/pregame/MainMenuItems.js:66 gui/pregame/MainMenuItems.js:94
 #: gui/pregame/MainMenuItems.js:104 gui/pregame/MainMenuItems.js:111
 msgid "Relive history through historical military campaigns."
-msgstr ""
+msgstr "通过史诗般的战役来重现历史。"
 
 #: gui/pregame/MainMenuItems.js:75 gui/replaymenu/replay_filters.js:144
 msgid "Single-player"
@@ -3118,7 +3119,7 @@ msgstr "WILDFIRE GAMES"
 
 #: gui/pregame/ProjectInformation.js:18
 msgid "Alpha XXV: Y——"
-msgstr ""
+msgstr "内测版 25：Y——"
 
 #: gui/pregame/ProjectInformation.js:19
 msgid ""
@@ -3244,11 +3245,11 @@ msgstr "可自动向我们发送反馈，以帮助我们修复错误，提高性
 #: gui/reference/catafalque/CatafalquePage.js:41
 #, javascript-format
 msgid "%(hotkey)s: Close Catafalque Bonuses."
-msgstr ""
+msgstr "按下%(hotkey)s以关闭灵柩台奖金。"
 
 #: gui/reference/catafalque/catafalque.xml:(caption):18
 msgid "Catafalque Bonuses"
-msgstr ""
+msgstr "灵车奖励"
 
 #. Translation: Description of an item in the CivInfo page, on a new line and
 #. indented.
@@ -3257,7 +3258,7 @@ msgstr ""
 msgid ""
 "\n"
 "     %(description)s"
-msgstr ""
+msgstr "\n     %(description)s"
 
 #. Translation: An entry in the CivInfo Page. The newline and indentation of
 #. the description
@@ -3268,7 +3269,7 @@ msgstr ""
 #: gui/reference/civinfo/CivInfoPage.js:102
 #, javascript-format
 msgid "• %(name)s %(info_icon)s%(description)s"
-msgstr ""
+msgstr "• %(name)s %(info_icon)s%(description)s"
 
 #: gui/reference/civinfo/CivInfoPage.js:113
 #, javascript-format
@@ -3511,7 +3512,7 @@ msgstr "输入单字，或完整的玩家名称来过滤重放。"
 #: gui/replaymenu/replay_menu.js:198
 #, javascript-format
 msgid "Delete the selected replay using %(hotkey)s."
-msgstr ""
+msgstr "按下%(hotkey)s以删除选定的回放。"
 
 #: gui/replaymenu/replay_menu.js:283
 #, javascript-format
@@ -4129,7 +4130,7 @@ msgstr "驻扎步兵，以加强火力。"
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
-msgstr "公署"
+msgstr "市政中心"
 
 #: gui/text/tips/civic_centres.txt:2
 msgid "The foundation of your new colony."
@@ -4276,7 +4277,7 @@ msgstr "历史人物，如波斯的薛西斯、斯巴达的列奥尼达斯、雅
 
 #: gui/text/tips/heroes.txt:3
 msgid "A lot of health and very strong attacks."
-msgstr ""
+msgstr "生命值很高且攻击力强大。"
 
 #: gui/text/tips/heroes.txt:4
 msgid "Have auras which alter the stats of other units or structures."
@@ -4545,7 +4546,7 @@ msgstr "驻扎受伤单位，加快治愈。"
 
 #: gui/text/tips/territory_decay.txt:1
 msgid "TERRITORY DECAY"
-msgstr "失落"
+msgstr "陷落"
 
 #: gui/text/tips/territory_decay.txt:2
 msgid ""

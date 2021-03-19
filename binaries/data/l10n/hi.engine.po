@@ -1,7 +1,6 @@
 # Translation template for Pyrogenesis.
-# Copyright (C) 2020 Wildfire Games
+# Copyright (C) 2021 Wildfire Games
 # This file is distributed under the same license as the Pyrogenesis project.
-# 
 # Translators:
 # Omkar Mundhe <osmundhe@gmail.com>, 2015
 # ramoer <ramoerram@live.com>, 2014
@@ -13,9 +12,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-05-22 07:08+0000\n"
-"PO-Revision-Date: 2020-07-30 04:56+0000\n"
-"Last-Translator: Sonu Singh <sonumayank2384@gmail.com>\n"
+"POT-Creation-Date: 2021-03-15 08:08+0000\n"
+"PO-Revision-Date: 2021-03-15 10:16+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Hindi (http://www.transifex.com/wildfire-games/0ad/language/hi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,146 +22,176 @@ msgstr ""
 "Language: hi\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: i18n/L10n.cpp:251
+#: graphics/CameraController.cpp:686
+#, c-format
+msgid "Scroll speed increased to %.1f"
+msgstr ""
+
+#: graphics/CameraController.cpp:692
+#, c-format
+msgid "Scroll speed decreased to %.1f"
+msgstr ""
+
+#: graphics/CameraController.cpp:699
+#, c-format
+msgid "Rotate speed increased to X=%.3f, Y=%.3f"
+msgstr ""
+
+#: graphics/CameraController.cpp:706
+#, c-format
+msgid "Rotate speed decreased to X=%.3f, Y=%.3f"
+msgstr ""
+
+#: graphics/CameraController.cpp:712
+#, c-format
+msgid "Zoom speed increased to %.1f"
+msgstr ""
+
+#: graphics/CameraController.cpp:718
+#, c-format
+msgid "Zoom speed decreased to %.1f"
+msgstr ""
+
+#: i18n/L10n.cpp:308
 msgid "Long strings"
 msgstr "लंबी स्ट्रिंग्स"
 
-#: lobby/XmppClient.cpp:887
+#: lobby/XmppClient.cpp:1007
 msgid "unknown subtype (see logs)"
 msgstr "अज्ञात उपप्रकार (लॉग्स देखें )"
 
-#: lobby/XmppClient.cpp:1215
+#: lobby/XmppClient.cpp:1333
 msgid "The certificate is not trusted."
 msgstr "प्रमाण पत्र पर भरोसा नहीं है।"
 
-#: lobby/XmppClient.cpp:1216
+#: lobby/XmppClient.cpp:1334
 msgid "The certificate hasn't got a known issuer."
 msgstr "प्रमाण पत्र को एक ज्ञात जारीकर्ता नहीं मिला है।"
 
-#: lobby/XmppClient.cpp:1217
+#: lobby/XmppClient.cpp:1335
 msgid "The certificate has been revoked."
 msgstr "प्रमाणपत्र निरस्त कर दिया गया है।"
 
-#: lobby/XmppClient.cpp:1218
+#: lobby/XmppClient.cpp:1336
 msgid "The certificate has expired."
 msgstr "प्रमाणपत्र अवधि समाप्त।"
 
-#: lobby/XmppClient.cpp:1219
+#: lobby/XmppClient.cpp:1337
 msgid "The certificate is not yet active."
 msgstr "प्रमाणपत्र अभी तक सक्रिय नहीं है।"
 
-#: lobby/XmppClient.cpp:1220
+#: lobby/XmppClient.cpp:1338
 msgid "The certificate has not been issued for the peer connected to."
 msgstr "जुड़े सहकर्मी के लिए प्रमाण पत्र जारी नहीं किया गया है।"
 
-#: lobby/XmppClient.cpp:1221
+#: lobby/XmppClient.cpp:1339
 msgid "The certificate signer is not a certificate authority."
 msgstr "प्रमाणपत्र हस्ताक्षरकर्ता प्रमाणपत्र प्राधिकारी नहीं है।"
 
-#: lobby/XmppClient.cpp:1243 lobby/XmppClient.cpp:1287
-#: lobby/XmppClient.cpp:1326
+#: lobby/XmppClient.cpp:1361 lobby/XmppClient.cpp:1405
+#: lobby/XmppClient.cpp:1444
 msgid "Error"
 msgstr "त्रुटि"
 
-#: lobby/XmppClient.cpp:1246 lobby/XmppClient.cpp:1290
+#: lobby/XmppClient.cpp:1364 lobby/XmppClient.cpp:1408
 msgid "No error"
 msgstr "कोई त्रुटि नहीं"
 
-#: lobby/XmppClient.cpp:1248
+#: lobby/XmppClient.cpp:1366
 msgid "Player already logged in"
 msgstr "खिलाडी पहलेसेही लोग्ड इन है"
 
-#: lobby/XmppClient.cpp:1250
+#: lobby/XmppClient.cpp:1368
 msgid "Forbidden"
 msgstr "निषिद्ध"
 
-#: lobby/XmppClient.cpp:1252
+#: lobby/XmppClient.cpp:1370
 msgid "Internal server error"
 msgstr "आंतरिक सर्वर त्रुटि"
 
-#: lobby/XmppClient.cpp:1256
+#: lobby/XmppClient.cpp:1374
 msgid "Not allowed"
 msgstr "अनुमति नहीं"
 
-#: lobby/XmppClient.cpp:1257
+#: lobby/XmppClient.cpp:1375
 msgid "Not authorized"
 msgstr "अधिकृत नहीं"
 
-#: lobby/XmppClient.cpp:1260
+#: lobby/XmppClient.cpp:1378
 msgid "Recipient temporarily unavailable"
 msgstr "प्राप्तकर्ता अस्थायी रूप से अनुपलब्ध"
 
-#: lobby/XmppClient.cpp:1262
+#: lobby/XmppClient.cpp:1380
 msgid "Registration required"
 msgstr "पंजीकरण अपेक्षित"
 
-#: lobby/XmppClient.cpp:1266
+#: lobby/XmppClient.cpp:1384
 msgid "Service unavailable"
 msgstr "सेवा अनुपलब्ध है"
 
-#: lobby/XmppClient.cpp:1271 lobby/XmppClient.cpp:1310
+#: lobby/XmppClient.cpp:1389 lobby/XmppClient.cpp:1428
 msgid "Unknown error"
 msgstr "अज्ञात त्रुटि"
 
-#: lobby/XmppClient.cpp:1291
+#: lobby/XmppClient.cpp:1409
 msgid "Stream error"
 msgstr "स्ट्रीम में त्रुटि"
 
-#: lobby/XmppClient.cpp:1292
+#: lobby/XmppClient.cpp:1410
 msgid "The incoming stream version is unsupported"
 msgstr "आने वाली स्ट्रीम संस्करण असमर्थित है"
 
-#: lobby/XmppClient.cpp:1293
+#: lobby/XmppClient.cpp:1411
 msgid "The stream has been closed by the server"
 msgstr "स्ट्रीम सर्वर द्वारा बंद कर दिया गया है"
 
-#: lobby/XmppClient.cpp:1297
+#: lobby/XmppClient.cpp:1415
 msgid "An I/O error occurred"
 msgstr "एक I / O त्रुटि हुई"
 
-#: lobby/XmppClient.cpp:1299
+#: lobby/XmppClient.cpp:1417
 msgid "The connection was refused by the server"
 msgstr "सर्वर ने जुड़ने के लिए मना किया"
 
-#: lobby/XmppClient.cpp:1300
+#: lobby/XmppClient.cpp:1418
 msgid "Resolving the server's hostname failed"
 msgstr "सर्वर के मेजबाननाम को हल करने में विफल रहा है"
 
-#: lobby/XmppClient.cpp:1301
+#: lobby/XmppClient.cpp:1419
 msgid "This system is out of memory"
 msgstr "ये सिस्टम की मेमोरी फुल हो चुकी है"
 
-#: lobby/XmppClient.cpp:1303
+#: lobby/XmppClient.cpp:1421
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
 msgstr "सर्वर प्रमाणपत्र सत्यापित नहीं किया जा सकता है या टीएलएस हाथ मिलाना सफलतापूर्वक पूर्ण नहीं हुआ"
 
-#: lobby/XmppClient.cpp:1304
+#: lobby/XmppClient.cpp:1422
 msgid "The server did not offer required TLS encryption"
 msgstr "सर्वर टीएलएस एन्क्रिप्शन आवश्यकता पेशकश नहीं की थी"
 
-#: lobby/XmppClient.cpp:1306
+#: lobby/XmppClient.cpp:1424
 msgid "Authentication failed. Incorrect password or account does not exist"
 msgstr "प्रमाणीकरण विफल होना। गलत पासवर्ड या खाता मौजूद नहीं है"
 
-#: lobby/XmppClient.cpp:1307
+#: lobby/XmppClient.cpp:1425
 msgid "The user or system requested a disconnect"
 msgstr "उपयोगकर्ता या सिस्टम ने डिसकनेक्ट की रिक्वेस्ट भेजी है"
 
-#: lobby/XmppClient.cpp:1308
+#: lobby/XmppClient.cpp:1426
 msgid "There is no active connection"
 msgstr "कोई सक्रिय कनेक्शन नहीं है"
 
-#: lobby/XmppClient.cpp:1329
+#: lobby/XmppClient.cpp:1447
 msgid "Your account has been successfully registered"
 msgstr "आपका खाता सफलतापूर्वक पंजीकृत कर दिया गया है"
 
-#: lobby/XmppClient.cpp:1330
+#: lobby/XmppClient.cpp:1448
 msgid "Not all necessary information provided"
 msgstr "सभी आवश्यक जानकारी प्रदान नहीं की है"
 
-#: lobby/XmppClient.cpp:1331
+#: lobby/XmppClient.cpp:1449
 msgid "Username already exists"
 msgstr "उपयोगकर्ता का नाम पहले से मौजूद है"
 
@@ -196,25 +225,25 @@ msgstr "डाउनलोड शुरू करने में विफल�
 msgid "Asynchronous download failure: %s, %s."
 msgstr "असीमित डाउनलोड विफलता: %s;%s"
 
-#: ps/ModIo.cpp:426
+#: ps/ModIo.cpp:425
 #, c-format
 msgid "Download failure. Server response: %s; %s."
 msgstr "डाउनलोड विफल। सर्वर प्रतिक्रिया: %s;%s"
 
-#: ps/ModIo.cpp:529
+#: ps/ModIo.cpp:528
 msgid "Mismatched filesize."
 msgstr "बेमेल फ़ाइल आकार।"
 
-#: ps/ModIo.cpp:547
+#: ps/ModIo.cpp:546
 #, c-format
 msgid "Invalid file. Expected md5 %s, got %s."
 msgstr "अवैध फाइल। अपेक्षित एमडी 5 %s, मिला %s"
 
-#: ps/ModIo.cpp:562
+#: ps/ModIo.cpp:561
 msgid "Failed to compute final hash."
 msgstr "अंतिम हैश की गणना करने में विफल।"
 
-#: ps/ModIo.cpp:568
+#: ps/ModIo.cpp:567
 msgid "Failed to verify signature."
 msgstr "हस्ताक्षर सत्यापित करने में विफल।"
 
@@ -223,11 +252,11 @@ msgstr "हस्ताक्षर सत्यापित करने मे
 msgid "Saved game to '%s'"
 msgstr "खेल जमा '%s'"
 
-#: ps/Util.cpp:280 ps/Util.cpp:283 ps/Util.cpp:424 ps/Util.cpp:427
+#: ps/Util.cpp:289 ps/Util.cpp:292 ps/Util.cpp:437 ps/Util.cpp:440
 #, c-format
 msgid "Screenshot written to '%s'"
 msgstr "स्क्रीनशॉट '%s' में अंकित कर दिया गया"
 
-#: ps/scripting/JSInterface_Debug.cpp:83
+#: ps/scripting/JSInterface_Debug.cpp:87
 msgid "custom build"
 msgstr "कस्टम बिल्ड"

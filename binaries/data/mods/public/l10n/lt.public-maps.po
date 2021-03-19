@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-03-12 08:08+0000\n"
-"PO-Revision-Date: 2021-03-14 11:38+0000\n"
+"PO-Revision-Date: 2021-03-16 12:36+0000\n"
 "Last-Translator: V S <v32itas@slacknet.eu>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/wildfire-games/0ad/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -1601,7 +1601,7 @@ msgstr ""
 
 #: maps/scenarios/gold_rush.xml:Name:26
 msgid "Gold Rush"
-msgstr ""
+msgstr "Aukso Karštinė"
 
 #: maps/scenarios/gorge.xml:Description:26
 msgid "A riparian gorge meanders its way through the South lands of Gaul."
@@ -2318,20 +2318,20 @@ msgstr ""
 #, javascript-format
 msgid "%(lastPlayer)s has won (Capture the Relic)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (Capture the Relic)."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(lastPlayer)s nugalėjo (Pagrobė Relikviją)."
+msgstr[1] "%(players)s ir %(lastPlayer)s nugalėjo (Pagrobė Relikvijas)."
+msgstr[2] "%(players)s ir %(lastPlayer)s nugalėjo (Pagrobė Relikvijas)."
+msgstr[3] "%(players)s ir %(lastPlayer)s nugalėjo (Pagrobė Relikvijas)."
 
 #: maps/scripts/CaptureTheRelic.js:175
 #, javascript-format
 msgid "%(lastPlayer)s has been defeated (Capture the Relic)."
 msgid_plural ""
 "%(players)s and %(lastPlayer)s have been defeated (Capture the Relic)."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(lastPlayer)s buvo sutriuškinti (Pagrobta Relikvija)."
+msgstr[1] "%(players)s ir%(lastPlayer)s buvo sutriuškinti (Pagrobta Relikvija)."
+msgstr[2] "%(players)s ir %(lastPlayer)s buvo sutriuškinti (Pagrobta Relikvija)."
+msgstr[3] "%(players)s ir %(lastPlayer)s buvo sutriuškinti (Pagrobta Relikvija)."
 
 #: maps/scripts/Conquest.js:5
 #, javascript-format

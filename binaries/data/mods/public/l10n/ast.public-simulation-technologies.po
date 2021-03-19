@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-01-27 04:52+0000\n"
+"PO-Revision-Date: 2021-03-19 01:30+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -72,7 +72,7 @@ msgstr "L'agogá"
 #: simulation/data/technologies/unlock_champion_infantry.jsonrequirementsTooltip
 #: simulation/data/technologies/wonder_population_cap.jsonrequirementsTooltip
 msgid "Unlocked in City Phase."
-msgstr "Desblóquiase na fas de la urbe."
+msgstr "Desblóquiase na fas urbana."
 
 #: simulation/data/technologies/agoge.jsontooltip
 msgid "Champion Infantry Spearmen +25% health, but +5% training time."
@@ -97,7 +97,7 @@ msgstr "Tradición arquera"
 #: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_watch.jsonrequirementsTooltip
 msgid "Unlocked in Village Phase."
-msgstr "Desblóquiase na fas del llugar."
+msgstr "Desblóquiase na fas aldeana."
 
 #: simulation/data/technologies/archery_tradition.jsontooltip
 msgid "Archers −10% training time and +10 attack range."
@@ -134,7 +134,7 @@ msgstr "Arquiteutura monumental"
 #: simulation/data/technologies/trader_health.jsonrequirementsTooltip
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase."
-msgstr "Desblóquiase na fas de la villa."
+msgstr "Desblóquiase na fas villana."
 
 #: simulation/data/technologies/architecture_kush.jsontooltip
 msgid ""
@@ -894,14 +894,14 @@ msgstr "Teunoloxía lluella que pue emplegase pa requisitos de plantía. Reempl�
 #: simulation/data/technologies/phase_city_athen.jsongenericName
 #: simulation/data/technologies/phase_city_generic.jsongenericName
 msgid "City Phase"
-msgstr "Fas de la urbe"
+msgstr "Fas urbana"
 
 #: simulation/data/technologies/phase_city_athen.jsondescription
 msgid ""
 "Advances from a bustling town to a veritable metropolis, full of the wonders"
 " of modern technology. This is the Athenian city phase, where metal "
 "gathering rates are boosted because of the 'Silver Owls' bonus."
-msgstr "La villa tórnase un auténticu metrópolis, enllén de les maravíes de la teunoloxía moderna. Na fas de la urbe, los atenienses saquen más rápido'l metal gracies a la ventaya «curuxes de plata»."
+msgstr "La villa tórnase un auténticu metrópolis, enllén de les maravíes de la teunoloxía moderna. Na fas urbana, los atenienses saquen más rápido'l metal gracies a la ventaya «curuxes de plata»."
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
@@ -921,7 +921,7 @@ msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +50% territory influence radius. Structures +9 capture points "
 "regeneration rate per garrisoned unit. Workers +10% metal gather rate."
-msgstr "Avanza a la fas de la ciudá, que desbloquia más unidaes y teunoloxía. Places: territoriu +50%. Construcciones: tasa de resistencia a la conquista por unidá guarecida +9. Obreros: tasa d'estraición de metal +10%."
+msgstr "Avanza a la fas urbana, que desbloquia más unidaes y teunoloxía. Places: territoriu +50%. Construcciones: tasa de resistencia a la conquista por unidá guarecida +9. Obreros: tasa d'estraición de metal +10%."
 
 #: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
@@ -934,7 +934,7 @@ msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +50% territory influence radius. Structures +9 capture points "
 "regeneration rate per garrisoned unit."
-msgstr "Avanza a la fas de la ciudá, que desbloquia más entidaes y teunoloxíes. Places: territoriu +50%. Construcciones: tasa de resistencia a la conquista por unidá guarecida +9."
+msgstr "Avanza a la fas urbana, que desbloquia más entidaes y teunoloxíes. Places: territoriu +50%. Construcciones: tasa de resistencia a la conquista por unidá guarecida +9."
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -946,14 +946,14 @@ msgstr "Teunoloxía lluella que pue emplegase pa requisitos de plantía. Reempl�
 #: simulation/data/technologies/phase_town_athen.jsongenericName
 #: simulation/data/technologies/phase_town_generic.jsongenericName
 msgid "Town Phase"
-msgstr "Fas de la villa"
+msgstr "Fas villana"
 
 #: simulation/data/technologies/phase_town_athen.jsondescription
 msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly. "
 "This is the Athenian town phase, where metal gathering rates are boosted "
 "because of the 'Silver Owls' bonus."
-msgstr "El llugarín tórnase una villa bullindiega y preparada pa crecer. Na fas de la villa, los atenienses saquen más rápido'l metal gracies a la ventaya «curuxes de plata». "
+msgstr "El llugarín tórnase una villa bullindiega y preparada pa crecer. Na fas villana, los atenienses saquen más rápido'l metal gracies a la ventaya «curuxes de plata». "
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
@@ -973,7 +973,7 @@ msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
 "Centers +30% territory influence radius. Structures +7 capture points "
 "regeneration rate per garrisoned unit. Workers +10% metal gather rate."
-msgstr "Avanza a la fas de la villa, que desbloquia más entidaes y teunoloxíes. Places: territoriu +30%. Construcciones: tasa de resistencia a la conquista por unidá guarecida +7. Obreros: tasa d'estraición de metal +10%."
+msgstr "Avanza a la fas villana, que desbloquia más entidaes y teunoloxíes. Places: territoriu +30%. Construcciones: tasa de resistencia a la conquista por unidá guarecida +7. Obreros: tasa d'estraición de metal +10%."
 
 #: simulation/data/technologies/phase_town_generic.jsondescription
 msgid ""
@@ -985,11 +985,11 @@ msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
 "Centers +30% territory influence radius. Structures +7 capture points "
 "regeneration rate per garrisoned unit."
-msgstr "Avanza a la fas de la villa, que desbloquia más entidaes y teunoloxíes. Places: territoriu +30%. Construcciones: tasa de resistencia a la conquista por unidá guarecida +7."
+msgstr "Avanza a la fas villana, que desbloquia más entidaes y teunoloxíes. Places: territoriu +30%. Construcciones: tasa de resistencia a la conquista por unidá guarecida +7."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
-msgstr "Fas del llugar"
+msgstr "Fas aldeana"
 
 #: simulation/data/technologies/pop_house_01.jsondescription
 msgid ""

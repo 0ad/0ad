@@ -32,8 +32,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-03-12 08:08+0000\n"
-"PO-Revision-Date: 2021-03-12 10:28+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-03-17 19:33+0000\n"
+"Last-Translator: Angelica Buonaurio <angydna2@yahoo.it>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -124,7 +124,7 @@ msgid ""
 "Each player starts deep in the forest.\n"
 "\n"
 "The Ardennes is a region of extensive forests, rolling hills and ridges formed within the Givetian Ardennes mountain range, primarily in modern day Belgium and Luxembourg. The region took its name from the ancient Silva, a vast forest in Roman times called Arduenna Silva."
-msgstr ""
+msgstr "Ogni giocatori comincia nel profondo della foresta.\n\nLe Ardenne sono una regione di estese foreste, morbide colline e crinali formati all'interno della catena montuosa delle Ardenne givetiane, oggi situate principalmente in Belgio e Lussemburgo. La regione prende il nome dall'antica Silva, una vasta foresta chiamata Arduenna Silva dagli antichi Romani."
 
 #: maps/random/ardennes_forest.jsonsettings.Name
 msgid "Ardennes Forest"
@@ -193,7 +193,7 @@ msgstr "Praterie di Caledonia"
 msgid ""
 "Each player starts on a hill surrounded by steep cliffs. Represents "
 "Cantabria, a mountainous region in the north of the Iberian peninsula."
-msgstr ""
+msgstr "Ogni giocatore comincia su una collina circondata da ripide scogliere. Rappresenta la Cantabria, una regione montuosa nel nord della penisola iberica."
 
 #: maps/random/cantabrian_highlands.jsonsettings.Name
 msgid "Cantabrian Highlands"
@@ -296,7 +296,7 @@ msgid ""
 " subject to numerous yet short-lived invasions. Ultimately consolidating "
 "power with Rhodes at their lead, these islands developed into great "
 "maritime, commercial and cultural centers. Will you achieve the same?"
-msgstr ""
+msgstr "Controllando l'accesso al mar Egeo da est, il Dodecaneso è stato soggetto a numerose seppur brevi invasioni. Consolidando infine il proprio potere soprattutto grazie a Rodi, queste isole si trasformarono in centri marittimi, commerciali e culturali. Riuscirai a fare lo stesso?"
 
 #: maps/random/dodecanese.jsonsettings.Name
 msgid "Dodecanese"
@@ -370,7 +370,7 @@ msgid ""
 "making way for the semi-arid savannahs and small acacia forests dot the "
 "landscape. The area is rich in resources and the ever-present Nile brings "
 "life, but grave threats loom on the opposite riverbank."
-msgstr ""
+msgstr "L'\"isola di Meroe\", una vasta penisola fiancheggiata dai fiumi Nilo e Atbara, era la culla del regno di Kush. Qui gli aspri deserti lasciano spazio a savane semiaride e piccole foreste di acacie formano delle macchie nel paesaggio. L'area è ricca di risorse e la presenza del Nilo garantisce la vita, ma gravi minacce incombono sulla riva opposta."
 
 #: maps/random/fields_of_meroe.jsonsettings.Name
 msgid "Fields of Meroë"
@@ -518,7 +518,7 @@ msgid ""
 "Lands”, the ancient religious capital of Napata lay in its shadow. This is "
 "where kings were made – and unmade! Abutting a rich floodplain downstream "
 "from the Fourth Cataract, this area became the breadbasket of ancient Kush."
-msgstr ""
+msgstr "Cominciando vicino alle fertili rive del Nilo, i giocatori assediano la città di Napata, strenuamente difesa, la quale giace ai piedi della collina di Jebel Barkal, la \"Montagna pura\". Questa è la dimora meridionale di Amon e, secondo i Kushiti e persino gli Egiziani, la culla dell'umanità. Nota come il \"Trono delle due terre\", l'antica capitale religiosa di Napata riposa alla sua ombra. Qui è dove nacquero i re... e dove caddero! A ridosso di una ricca golena che si forma dalla quarta cateratta, quest'area divenne il granaio dell'antico regno di Kush."
 
 #: maps/random/jebel_barkal.jsonsettings.Name
 msgid "Jebel Barkal"
@@ -930,7 +930,7 @@ msgid ""
 "Settle in the cold regions of the Arctic, the native habitat of the muskox. "
 "Here you can pine away to your content and also hunt the occasional walrus "
 "or two."
-msgstr ""
+msgstr "Insediati nelle fredde regioni dell'Artico, l'habitat naturale del bue muschiato. Qui puoi struggerti per la felicità e anche cacciare occasionalmente un tricheco o due."
 
 #: maps/random/rmbiome/generic/snowy.jsonDescription.Title
 msgctxt "biome definition"
@@ -2316,109 +2316,109 @@ msgstr "Siamo Una Legione"
 msgid ""
 "%(_player_)s and their allies have captured all relics and will win in "
 "%(time)s."
-msgstr ""
+msgstr "%(_player_)s e i suoi alleati hanno preso tutti i cimeli e vinceranno in %(time)s."
 
 #: maps/scripts/CaptureTheRelic.js:145
 #, javascript-format
 msgid "%(_player_)s has captured all relics and will win in %(time)s."
-msgstr ""
+msgstr "%(_player_)s ha preso tutti i cimeli e vincerà in %(time)s."
 
 #: maps/scripts/CaptureTheRelic.js:156
 #, javascript-format
 msgid "You and your allies have captured all relics and will win in %(time)s."
-msgstr ""
+msgstr "Tu  e i tuoi alleati avete preso tutti i cimeli e vincerete in %(time)s."
 
 #: maps/scripts/CaptureTheRelic.js:157
 #, javascript-format
 msgid "You have captured all relics and will win in %(time)s."
-msgstr ""
+msgstr "Hai preso tutti i cimeli e vincerai in %(time)s."
 
 #: maps/scripts/CaptureTheRelic.js:171
 #, javascript-format
 msgid "%(lastPlayer)s has won (Capture the Relic)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (Capture the Relic)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(lastPlayer)s ha vinto (Raccogli il Tesoro)."
+msgstr[1] "%(players)s e %(lastPlayer)s hanno vinto (Raccogli il Tesoro)."
 
 #: maps/scripts/CaptureTheRelic.js:175
 #, javascript-format
 msgid "%(lastPlayer)s has been defeated (Capture the Relic)."
 msgid_plural ""
 "%(players)s and %(lastPlayer)s have been defeated (Capture the Relic)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(lastPlayer)s ha perso (Raccogli il Tesoro)."
+msgstr[1] "%(players)s e %(lastPlayer)s hanno perso (Raccogli il Tesoro)."
 
 #: maps/scripts/Conquest.js:5
 #, javascript-format
 msgid "%(player)s has been defeated (lost all critical units and structures)."
-msgstr ""
+msgstr "%(player)s ha perso (tutte le unità e le strutture primarie distrutte)."
 
 #: maps/scripts/ConquestStructures.js:5
 #, javascript-format
 msgid "%(player)s has been defeated (lost all structures)."
-msgstr ""
+msgstr "%(player)s ha perso (tutte le strutture distrutte)."
 
 #: maps/scripts/ConquestStructures.js:9
 #, javascript-format
 msgid "%(player)s has been defeated (lost all structures and critical units)."
-msgstr ""
+msgstr "%(player)s ha perso (tutte le unità e le strutture primarie distrutte)."
 
 #: maps/scripts/ConquestUnits.js:5
 #, javascript-format
 msgid "%(player)s has been defeated (lost all units)."
-msgstr ""
+msgstr "%(player)s ha perso (tutte le unità distrutte)."
 
 #: maps/scripts/ConquestUnits.js:9
 #, javascript-format
 msgid "%(player)s has been defeated (lost all units and critical structures)."
-msgstr ""
+msgstr "%(player)s ha perso (tutte le unità e le strutture primarie distrutte)."
 
 #: maps/scripts/Regicide.js:130
 #, javascript-format
 msgid "%(player)s has been defeated (lost hero)."
-msgstr ""
+msgstr "%(player)s ha perso (eroe sconfitto)."
 
 #: maps/scripts/WonderVictory.js:80
 #, javascript-format
 msgid ""
 "%(_player_)s owns a Wonder and %(_player_)s and their allies will win in "
 "%(time)s."
-msgstr ""
+msgstr "%(_player_)s possiede una Meraviglia e %(_player_)s e i suoi alleati vinceranno in %(time)s."
 
 #: maps/scripts/WonderVictory.js:81
 #, javascript-format
 msgid "%(_player_)s owns a Wonder and will win in %(time)s."
-msgstr ""
+msgstr "%(_player_)s possiede una Meraviglia e vincerà in %(time)s."
 
 #: maps/scripts/WonderVictory.js:92
 #, javascript-format
 msgid "%(_player_)s owns a Wonder and you will win in %(time)s."
-msgstr ""
+msgstr "%(_player_)s possiede una Meraviglia e tu vincerai in %(time)s."
 
 #: maps/scripts/WonderVictory.js:104
 #, javascript-format
 msgid "You own a Wonder and you and your allies will win in %(time)s."
-msgstr ""
+msgstr "Possiedi una Meraviglia e tu e i tuoi alleati vincerete in %(time)s."
 
 #: maps/scripts/WonderVictory.js:105
 #, javascript-format
 msgid "You own a Wonder and will win in %(time)s."
-msgstr ""
+msgstr "Possiedi una Meraviglia e vincerai in %(time)s."
 
 #: maps/scripts/WonderVictory.js:150
 #, javascript-format
 msgid "%(lastPlayer)s has won (wonder victory)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (wonder victory)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(lastPlayer)s ha vinto (vittoria con Meraviglia)."
+msgstr[1] "%(players)s e %(lastPlayer)s hanno vinto (vittoria con Meraviglia)."
 
 #: maps/scripts/WonderVictory.js:154
 #, javascript-format
 msgid "%(lastPlayer)s has been defeated (wonder victory)."
 msgid_plural ""
 "%(players)s and %(lastPlayer)s have been defeated (wonder victory)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(lastPlayer)s ha perso (vittoria con Meraviglia)."
+msgstr[1] "%(players)s e %(lastPlayer)s hanno perso (vittoria con Meraviglia)."
 
 #: maps/skirmishes/acropolis_bay_2p.xml:Description:38
 msgid ""
