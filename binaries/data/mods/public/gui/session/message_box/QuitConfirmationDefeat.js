@@ -37,7 +37,7 @@ class QuitConfirmationDefeat extends QuitConfirmation
 		let askExit = !Engine.HasNetServer() || g_Players.every((player, i) =>
 			i == 0 ||
 			player.state != "active" ||
-			g_GameAttributes.settings.PlayerData[i].AI != "");
+			g_InitAttributes.settings.PlayerData[i].AI != "");
 
 		this.Title = won ? this.TitleVictory : this.TitleDefeated;
 

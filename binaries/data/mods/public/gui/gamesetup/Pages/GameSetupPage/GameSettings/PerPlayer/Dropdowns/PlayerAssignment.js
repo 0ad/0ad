@@ -193,7 +193,7 @@ PlayerSettingControls.PlayerAssignment.prototype.ConfigAssignPlayers =
 			}
 
 			playerAssignmentsControl.assignPlayer(guidToAssign, playerIndex);
-			gameSettingsControl.setNetworkGameAttributes();
+			gameSettingsControl.setNetworkInitAttributes();
 		}
 
 		isSelected(pData, guid, value)
@@ -233,7 +233,7 @@ PlayerSettingControls.PlayerAssignment.prototype.ConfigAssignPlayers =
 				"behavior": Engine.ConfigDB_GetValue("user", "gui.gamesetup.aibehavior"),
 			});
 
-			gameSettingsControl.setNetworkGameAttributes();
+			gameSettingsControl.setNetworkInitAttributes();
 		}
 
 		isSelected(pData, guid, value)
@@ -268,7 +268,7 @@ PlayerSettingControls.PlayerAssignment.prototype.ConfigAssignPlayers =
 
 			g_GameSettings.playerAI.setAI(playerIndex, undefined);
 
-			gameSettingsControl.setNetworkGameAttributes();
+			gameSettingsControl.setNetworkInitAttributes();
 		}
 
 		isSelected(pData, guid, value)

@@ -22,7 +22,7 @@ SetupWindowPages.MapBrowserPage = class extends MapBrowser
 		if (map)
 			g_GameSettings.map.selectMap(map);
 
-		this.gameSettingsControl.setNetworkGameAttributes();
+		this.gameSettingsControl.setNetworkInitAttributes();
 	}
 
 	openPage()

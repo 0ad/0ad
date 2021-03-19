@@ -27,7 +27,7 @@ GameSettingControls.SeaLevelRiseTime = class SeaLevelRiseTime extends GameSettin
 	onValueChange(value)
 	{
 		g_GameSettings.seaLevelRise.setValue(value);
-		this.gameSettingsControl.setNetworkGameAttributes();
+		this.gameSettingsControl.setNetworkInitAttributes();
 	}
 };
 

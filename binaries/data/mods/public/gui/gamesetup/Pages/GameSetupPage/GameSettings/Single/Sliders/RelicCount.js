@@ -30,7 +30,7 @@ GameSettingControls.RelicCount = class RelicCount extends GameSettingControlSlid
 	onValueChange(value)
 	{
 		g_GameSettings.relic.setCount(value);
-		this.gameSettingsControl.setNetworkGameAttributes();
+		this.gameSettingsControl.setNetworkInitAttributes();
 	}
 };
 

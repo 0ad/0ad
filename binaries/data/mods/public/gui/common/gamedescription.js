@@ -179,14 +179,11 @@ function formatPlayerInfo(playerDataArray, playerStates)
  * Sets an additional map label, map preview image and describes the chosen game settings more closely.
  *
  * Requires g_VictoryConditions.
- *
- * @param gameSettings - Serialised-format/JSON game settings.
- * (this takes serialised data to avoid loadings the gamesettings in the session GUI page)
  */
-function getGameDescription(gameSettings, mapCache)
+function getGameDescription(initAttributes, mapCache)
 {
 	let titles = [];
-	if (!gameSettings.settings.VictoryConditions.length)
+	if (!initAttributes.settings.VictoryConditions.length)
 		titles.push({
 			"label": translateWithContext("victory condition", "Endless Game"),
 			"value": translate("No winner will be determined, even if everyone is defeated.")
@@ -194,13 +191,13 @@ function getGameDescription(gameSettings, mapCache)
 
 	for (let victoryCondition of g_VictoryConditions)
 	{
-		if (gameSettings.settings.VictoryConditions.indexOf(victoryCondition.Name) == -1)
+		if (initAttributes.settings.VictoryConditions.indexOf(victoryCondition.Name) == -1)
 			continue;
 
 		let title = translateVictoryCondition(victoryCondition.Name);
 		if (victoryCondition.Name == "wonder")
 		{
-			let wonderDuration = Math.round(gameSettings.settings.WonderDuration);
+			let wonderDuration = Math.round(initAttributes.settings.WonderDuration);
 			title = sprintf(
 				translatePluralWithContext(
 					"victory condition",
@@ -214,7 +211,7 @@ function getGameDescription(gameSettings, mapCache)
 		let isCaptureTheRelic = victoryCondition.Name == "capture_the_relic";
 		if (isCaptureTheRelic)
 		{
-			let relicDuration = Math.round(gameSettings.settings.RelicDuration);
+			let relicDuration = Math.round(initAttributes.settings.RelicDuration);
 			title = sprintf(
 				translatePluralWithContext(
 					"victory condition",
@@ -233,11 +230,11 @@ function getGameDescription(gameSettings, mapCache)
 		if (isCaptureTheRelic)
 			titles.push({
 				"label": translate("Relic Count"),
-				"value": Math.round(gameSettings.settings.RelicCount)
+				"value": Math.round(initAttributes.settings.RelicCount)
 			});
 
 		if (victoryCondition.Name == "regicide")
-			if (gameSettings.settings.RegicideGarrison)
+			if (initAttributes.settings.RegicideGarrison)
 				titles.push({
 					"label": translate("Hero Garrison"),
 					"value": translate("Heroes can be garrisoned.")
@@ -249,14 +246,14 @@ function getGameDescription(gameSettings, mapCache)
 				});
 	}
 
-	if (gameSettings.settings.RatingEnabled &&
-	    gameSettings.settings.PlayerData.length == 2)
+	if (initAttributes.settings.RatingEnabled &&
+	    initAttributes.settings.PlayerData.length == 2)
 		titles.push({
 			"label": translate("Rated game"),
 			"value": translate("When the winner of this match is determined, the lobby score will be adapted.")
 		});
 
-	if (gameSettings.settings.LockTeams)
+	if (initAttributes.settings.LockTeams)
 		titles.push({
 			"label": translate("Locked Teams"),
 			"value": translate("Players can't change the initial teams.")
@@ -267,7 +264,7 @@ function getGameDescription(gameSettings, mapCache)
 			"value": translate("Players can make alliances and declare war on allies.")
 		});
 
-	if (gameSettings.settings.LastManStanding)
+	if (initAttributes.settings.LastManStanding)
 		titles.push({
 			"label": translate("Last Man Standing"),
 			"value": translate("Only one player can win the game. If the remaining players are allies, the game continues until only one remains.")
@@ -278,7 +275,7 @@ function getGameDescription(gameSettings, mapCache)
 			"value": translate("If one player wins, his or her allies win too. If one group of allies remains, they win.")
 		});
 
-	let ceasefire = Math.round(gameSettings.settings.Ceasefire);
+	let ceasefire = Math.round(initAttributes.settings.Ceasefire);
 	titles.push({
 		"label": translate("Ceasefire"),
 		"value":
@@ -291,7 +288,7 @@ function getGameDescription(gameSettings, mapCache)
 				{ "min": ceasefire })
 	});
 
-	if (gameSettings.map == "random")
+	if (initAttributes.map == "random")
 		titles.push({
 			"label": translateWithContext("Map Selection", "Random Map"),
 			"value": translate("Randomly select a map from the list.")
@@ -301,23 +298,23 @@ function getGameDescription(gameSettings, mapCache)
 		titles.push({
 			"label": translate("Map Name"),
 			"value": mapCache.translateMapName(
-				mapCache.getTranslatableMapName(gameSettings.mapType, gameSettings.map, gameSettings))
+				mapCache.getTranslatableMapName(initAttributes.mapType, initAttributes.map, initAttributes))
 		});
 
 		titles.push({
 			"label": translate("Map Description"),
-			"value": mapCache.getTranslatedMapDescription(gameSettings.mapType, gameSettings.map)
+			"value": mapCache.getTranslatedMapDescription(initAttributes.mapType, initAttributes.map)
 		});
 	}
 
 	titles.push({
 		"label": translate("Map Type"),
-		"value": g_MapTypes.Title[g_MapTypes.Name.indexOf(gameSettings.mapType)]
+		"value": g_MapTypes.Title[g_MapTypes.Name.indexOf(initAttributes.mapType)]
 	});
 
-	if (gameSettings.mapType == "random")
+	if (initAttributes.mapType == "random")
 	{
-		let mapSize = g_MapSizes.Name[g_MapSizes.Tiles.indexOf(gameSettings.settings.Size)];
+		let mapSize = g_MapSizes.Name[g_MapSizes.Tiles.indexOf(initAttributes.settings.Size)];
 		if (mapSize)
 			titles.push({
 				"label": translate("Map Size"),
@@ -325,90 +322,90 @@ function getGameDescription(gameSettings, mapCache)
 			});
 	}
 
-	if (gameSettings.settings.Biome)
+	if (initAttributes.settings.Biome)
 	{
-		let biome = g_Settings.Biomes.find(b => b.Id == gameSettings.settings.Biome);
+		let biome = g_Settings.Biomes.find(b => b.Id == initAttributes.settings.Biome);
 		titles.push({
 			"label": biome ? biome.Title : translateWithContext("biome", "Random Biome"),
 			"value": biome ? biome.Description : translate("Randomly select a biome from the list.")
 		});
 	}
 
-	if (gameSettings.settings.TriggerDifficulty !== undefined)
+	if (initAttributes.settings.TriggerDifficulty !== undefined)
 	{
-		let triggerDifficulty = g_Settings.TriggerDifficulties.find(difficulty => difficulty.Difficulty == gameSettings.settings.TriggerDifficulty);
+		let triggerDifficulty = g_Settings.TriggerDifficulties.find(difficulty => difficulty.Difficulty == initAttributes.settings.TriggerDifficulty);
 		titles.push({
 			"label": triggerDifficulty.Title,
 			"value": triggerDifficulty.Tooltip
 		});
 	}
 
-	if (gameSettings.settings.Nomad !== undefined)
+	if (initAttributes.settings.Nomad !== undefined)
 		titles.push({
-			"label": gameSettings.settings.Nomad ? translate("Nomad Mode") : translate("Civic Centers"),
+			"label": initAttributes.settings.Nomad ? translate("Nomad Mode") : translate("Civic Centers"),
 			"value":
-				gameSettings.settings.Nomad ?
+				initAttributes.settings.Nomad ?
 					translate("Players start with only few units and have to find a suitable place to build their city.") :
 					translate("Players start with a Civic Center.")
 		});
 
-	if (gameSettings.settings.StartingResources !== undefined)
+	if (initAttributes.settings.StartingResources !== undefined)
 		titles.push({
 			"label": translate("Starting Resources"),
 			"value":
-				gameSettings.settings.PlayerData &&
-				gameSettings.settings.PlayerData.some(pData => pData && pData.Resources !== undefined) ?
+				initAttributes.settings.PlayerData &&
+				initAttributes.settings.PlayerData.some(pData => pData && pData.Resources !== undefined) ?
 					translateWithContext("starting resources", "Per Player") :
 					sprintf(translate("%(startingResourcesTitle)s (%(amount)s)"), {
 						"startingResourcesTitle":
 							g_StartingResources.Title[
 								g_StartingResources.Resources.indexOf(
-									gameSettings.settings.StartingResources)],
-						"amount": gameSettings.settings.StartingResources
+									initAttributes.settings.StartingResources)],
+						"amount": initAttributes.settings.StartingResources
 					})
 		});
 
-	if (gameSettings.settings.PopulationCap !== undefined)
+	if (initAttributes.settings.PopulationCap !== undefined)
 		titles.push({
 			"label": translate("Population Limit"),
 			"value":
-				gameSettings.settings.PlayerData &&
-				gameSettings.settings.PlayerData.some(pData => pData && pData.PopulationLimit !== undefined) ?
+				initAttributes.settings.PlayerData &&
+				initAttributes.settings.PlayerData.some(pData => pData && pData.PopulationLimit !== undefined) ?
 					translateWithContext("population limit", "Per Player") :
 					g_PopulationCapacities.Title[
 						g_PopulationCapacities.Population.indexOf(
-							gameSettings.settings.PopulationCap)]
+							initAttributes.settings.PopulationCap)]
 		});
 
-	if (gameSettings.settings.WorldPopulationCap !== undefined)
+	if (initAttributes.settings.WorldPopulationCap !== undefined)
 		titles.push({
 			"label": translate("World Population Cap"),
 			"value":
 				g_WorldPopulationCapacities.Title[
 					g_WorldPopulationCapacities.Population.indexOf(
-						gameSettings.settings.WorldPopulationCap)]
+						initAttributes.settings.WorldPopulationCap)]
 		});
 
 	titles.push({
 		"label": translate("Treasures"),
-		"value": gameSettings.settings.DisableTreasures ?
+		"value": initAttributes.settings.DisableTreasures ?
 			translateWithContext("treasures", "Disabled") :
 			translateWithContext("treasures", "As defined by the map.")
 	});
 
 	titles.push({
 		"label": translate("Revealed Map"),
-		"value": gameSettings.settings.RevealMap
+		"value": initAttributes.settings.RevealMap
 	});
 
 	titles.push({
 		"label": translate("Explored Map"),
-		"value": gameSettings.settings.ExploreMap
+		"value": initAttributes.settings.ExploreMap
 	});
 
 	titles.push({
 		"label": translate("Cheats"),
-		"value": gameSettings.settings.CheatsEnabled
+		"value": initAttributes.settings.CheatsEnabled
 	});
 
 	return titles.map(title => sprintf(translate("%(label)s %(details)s"), {

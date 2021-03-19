@@ -46,7 +46,7 @@ GameSettingControls.Biome = class Biome extends GameSettingControlDropdown
 	onSelectionChange(itemIdx)
 	{
 		g_GameSettings.biome.setBiome(this.dropdown.list_data[itemIdx]);
-		this.gameSettingsControl.setNetworkGameAttributes();
+		this.gameSettingsControl.setNetworkInitAttributes();
 	}
 };
 

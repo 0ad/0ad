@@ -6,8 +6,8 @@ class GameSettingsFile
 	constructor(GameSettingsControl)
 	{
 		this.filename = g_IsNetworked ?
-			this.GameAttributesFileMultiplayer :
-			this.GameAttributesFileSingleplayer;
+			this.PersistedSettingsFileMultiplayer :
+			this.PersistedSettingsFileSingleplayer;
 
 		this.gameSettingsControl = GameSettingsControl;
 
@@ -25,16 +25,12 @@ class GameSettingsFile
 			Engine.FileExists(this.filename) &&
 			Engine.ReadJSONFile(this.filename);
 
-		let gameAttributes =
-			data &&
-			data.attributes &&
-			data.engine_info &&
-			data.engine_info.engine_version == this.engineInfo.engine_version &&
-			hasSameMods(data.engine_info.mods, this.engineInfo.mods) &&
+		let persistedSettings = data?.engine_info?.engine_version == this.engineInfo.engine_version &&
+			hasSameMods(data?.engine_info?.mods, this.engineInfo.mods) &&
 			data.attributes || {};
 
 		Engine.ProfileStop();
-		return gameAttributes;
+		return persistedSettings;
 	}
 
 	/**
@@ -57,8 +53,8 @@ class GameSettingsFile
 GameSettingsFile.prototype.ConfigName =
 	"persistmatchsettings";
 
-GameSettingsFile.prototype.GameAttributesFileSingleplayer =
+GameSettingsFile.prototype.PersistedSettingsFileSingleplayer =
 	"config/matchsettings.json";
 
-GameSettingsFile.prototype.GameAttributesFileMultiplayer =
+GameSettingsFile.prototype.PersistedSettingsFileMultiplayer =
 	"config/matchsettings.mp.json";

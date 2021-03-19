@@ -17,7 +17,7 @@ GameSettingControls.RevealedMap = class RevealedMap extends GameSettingControlCh
 	onPress(checked)
 	{
 		g_GameSettings.mapExploration.setRevealed(checked);
-		this.gameSettingsControl.setNetworkGameAttributes();
+		this.gameSettingsControl.setNetworkInitAttributes();
 	}
 };
 

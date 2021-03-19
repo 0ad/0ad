@@ -27,7 +27,7 @@ class DeveloperOverlay
 
 	toggle()
 	{
-		if (g_IsNetworked && !g_GameAttributes.settings.CheatsEnabled)
+		if (g_IsNetworked && !g_InitAttributes.settings.CheatsEnabled)
 			return;
 
 		this.devCommandsOverlay.hidden = !this.devCommandsOverlay.hidden;

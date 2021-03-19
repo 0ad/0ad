@@ -21,7 +21,7 @@ class ResetCivsButton
 		for (let i = 0; i < g_GameSettings.playerCount.nbPlayers; ++i)
 			g_GameSettings.playerCiv.setValue(i, "random");
 
-		this.gameSettingsControl.setNetworkGameAttributes();
+		this.gameSettingsControl.setNetworkInitAttributes();
 	}
 }
 

@@ -35,7 +35,7 @@ GameSettingControls.MapFilter = class MapFilter extends GameSettingControlDropdo
 		if (this.values && this.values.Name.indexOf(this.gameSettingsControl.guiData.mapFilter.filter) === -1)
 		{
 			this.gameSettingsControl.guiData.mapFilter.filter = this.values.Name[this.values.Default];
-			this.gameSettingsControl.setNetworkGameAttributes();
+			this.gameSettingsControl.setNetworkInitAttributes();
 		}
 		// Index may have changed, reset.
 		this.setSelectedValue(this.gameSettingsControl.guiData.mapFilter.filter);

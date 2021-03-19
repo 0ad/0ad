@@ -237,7 +237,7 @@ DeveloperOverlayCheckboxes.prototype.ActivateRejoinTest = class
 
 	enabled()
 	{
-		return !this.disabled && g_GameAttributes.mapType != "random";
+		return !this.disabled && g_InitAttributes.mapType != "random";
 	}
 };
 

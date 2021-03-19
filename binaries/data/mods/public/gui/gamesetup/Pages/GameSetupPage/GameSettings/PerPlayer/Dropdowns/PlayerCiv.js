@@ -63,7 +63,7 @@ PlayerSettingControls.PlayerCiv = class PlayerCiv extends GameSettingControlDrop
 	onSelectionChange(itemIdx)
 	{
 		g_GameSettings.playerCiv.setValue(this.playerIndex, this.values.civ[itemIdx]);
-		this.gameSettingsControl.setNetworkGameAttributes();
+		this.gameSettingsControl.setNetworkInitAttributes();
 	}
 };
 

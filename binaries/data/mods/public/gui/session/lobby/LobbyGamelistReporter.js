@@ -2,7 +2,7 @@
  * Send the current list of players, teams, AIs, observers and defeated/won and offline states to the lobby.
  * This report excludes the matchsettings, since they do not change during the match.
  *
- * The playerData format from g_GameAttributes is kept to reuse the GUI function presenting the data,
+ * The playerData format from g_InitAttributes is kept to reuse the GUI function presenting the data,
  * but the payload size is minimized by only extracting properties relevant for display.
  */
 class LobbyGamelistReporter
@@ -30,16 +30,16 @@ class LobbyGamelistReporter
 		let players = [];
 
 		// Skip gaia
-		for (let playerID = 1; playerID < g_GameAttributes.settings.PlayerData.length; ++playerID)
+		for (let playerID = 1; playerID < g_InitAttributes.settings.PlayerData.length; ++playerID)
 		{
-			let pData = g_GameAttributes.settings.PlayerData[playerID];
+			let pData = g_InitAttributes.settings.PlayerData[playerID];
 
 			let player = {
 				"Name": pData.Name,
 				"Civ": pData.Civ
 			};
 
-			if (g_GameAttributes.settings.LockTeams)
+			if (g_InitAttributes.settings.LockTeams)
 				player.Team = pData.Team;
 
 			if (pData.AI)

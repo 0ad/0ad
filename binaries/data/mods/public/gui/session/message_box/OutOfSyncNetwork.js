@@ -27,7 +27,7 @@ class OutOfSyncNetwork extends SessionMessageBox
 			""
 		];
 
-		if (msg.turn > 1 && g_GameAttributes.settings.PlayerData.some(pData => pData && pData.AI))
+		if (msg.turn > 1 && g_InitAttributes.settings.PlayerData.some(pData => pData && pData.AI))
 			txt.push(translateWithContext("Out-Of-Sync", "Rejoining Multiplayer games with AIs is not supported yet!"));
 		else
 			txt.push(

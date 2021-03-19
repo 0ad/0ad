@@ -41,7 +41,7 @@ GameSettingControls.GameSpeed = class GameSpeed extends GameSettingControlDropdo
 	onSelectionChange(itemIdx)
 	{
 		g_GameSettings.gameSpeed.setSpeed(this.dropdown.list_data[itemIdx]);
-		this.gameSettingsControl.setNetworkGameAttributes();
+		this.gameSettingsControl.setNetworkInitAttributes();
 	}
 };
 
