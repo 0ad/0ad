@@ -76,7 +76,6 @@ Player.prototype.Init = function()
 	this.resourceNames = {};
 	this.disabledTemplates = {};
 	this.disabledTechnologies = {};
-	this.startingTechnologies = [];
 	this.spyCostMultiplier = +this.template.SpyCostMultiplier;
 	this.barterEntities = [];
 	this.barterMultiplier = {
@@ -761,11 +760,6 @@ Player.prototype.IsNeutral = function(id)
  */
 Player.prototype.OnGlobalInitGame = function(msg)
 {
-	let cmpTechnologyManager = Engine.QueryInterface(this.entity, IID_TechnologyManager);
-	if (cmpTechnologyManager)
-		for (let tech of this.startingTechnologies)
-			cmpTechnologyManager.ResearchTechnology(tech);
-
 	// Replace the "{civ}" code with this civ ID.
 	let disabledTemplates = this.disabledTemplates;
 	this.disabledTemplates = {};
@@ -949,17 +943,6 @@ Player.prototype.SetDisabledTechnologies = function(techs)
 Player.prototype.GetDisabledTechnologies = function()
 {
 	return this.disabledTechnologies;
-};
-
-Player.prototype.AddStartingTechnology = function(tech)
-{
-	if (this.startingTechnologies.indexOf(tech) == -1)
-		this.startingTechnologies.push(tech);
-};
-
-Player.prototype.SetStartingTechnologies = function(techs)
-{
-	this.startingTechnologies = techs;
 };
 
 Player.prototype.OnGlobalPlayerDefeated = function(msg)
