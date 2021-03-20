@@ -39,7 +39,7 @@ GameSettingControls.WorldPopulationCap = class WorldPopulationCap extends GameSe
 	onSelectionChange(itemIdx)
 	{
 		g_GameSettings.population.setPopCap(true, g_WorldPopulationCapacities.Population[itemIdx]);
-		this.gameSettingsControl.setNetworkGameAttributes();
+		this.gameSettingsControl.setNetworkInitAttributes();
 	}
 };
 

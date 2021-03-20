@@ -29,8 +29,8 @@ class LobbyRatingReporter
 
 		let report = {
 			"playerID": Engine.GetPlayerID(),
-			"matchID": g_GameAttributes.matchID,
-			"mapName": g_GameAttributes.settings.Name,
+			"matchID": g_InitAttributes.matchID,
+			"mapName": g_InitAttributes.settings.Name,
 			"timeElapsed": extendedSimState.timeElapsed,
 		};
 
@@ -52,6 +52,6 @@ LobbyRatingReporter.Available = function()
 	return Engine.HasXmppClient() &&
 		!g_IsReplay &&
 		Engine.GetPlayerID() != -1 &&
-		g_GameAttributes.settings.RatingEnabled &&
-		g_GameAttributes.settings.PlayerData.length == 3;
+		g_InitAttributes.settings.RatingEnabled &&
+		g_InitAttributes.settings.PlayerData.length == 3;
 };

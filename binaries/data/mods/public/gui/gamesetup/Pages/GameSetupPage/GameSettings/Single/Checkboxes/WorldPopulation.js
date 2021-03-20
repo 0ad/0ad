@@ -17,7 +17,7 @@ GameSettingControls.WorldPopulation = class WorldPopulation extends GameSettingC
 	onPress(checked)
 	{
 		g_GameSettings.population.setPopCap(checked);
-		this.gameSettingsControl.setNetworkGameAttributes();
+		this.gameSettingsControl.setNetworkInitAttributes();
 	}
 };
 

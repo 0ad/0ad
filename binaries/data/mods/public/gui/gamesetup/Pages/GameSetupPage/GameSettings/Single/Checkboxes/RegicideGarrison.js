@@ -19,7 +19,7 @@ GameSettingControls.RegicideGarrison = class RegicideGarrison extends GameSettin
 	onPress(checked)
 	{
 		g_GameSettings.regicideGarrison.setEnabled(checked);
-		this.gameSettingsControl.setNetworkGameAttributes();
+		this.gameSettingsControl.setNetworkInitAttributes();
 	}
 };
 

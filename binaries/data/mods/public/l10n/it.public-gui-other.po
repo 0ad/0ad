@@ -4,6 +4,7 @@
 # project.
 # Translators:
 # Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2016
+# Angelica Buonaurio <angydna2@yahoo.it>, 2021
 # Antonio Buonomo <hyd.antonio@gmail.com>, 2017
 # Christian Bellagamba <christiandes00@gmail.com>, 2017-2018
 # Claudio <claudiudurneac97@yahoo.it>, 2016
@@ -40,8 +41,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-03-08 08:15+0000\n"
-"PO-Revision-Date: 2021-03-08 11:28+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-03-17 19:33+0000\n"
+"Last-Translator: Angelica Buonaurio <angydna2@yahoo.it>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -58,7 +59,7 @@ msgstr "FPS: %(fps)4s"
 #: gui/common/campaigns/CampaignRun.js:95
 #, javascript-format
 msgid "%(userDesc)s - %(templateName)s"
-msgstr ""
+msgstr "%(userDesc)s -  %(templateName)s"
 
 #: gui/common/color.js:179
 #, javascript-format
@@ -1008,16 +1009,16 @@ msgstr "Salute"
 #: gui/common/tooltips.js:568
 #, javascript-format
 msgid "%(label)s: %(garrisonSize)s %(extraSize)s"
-msgstr ""
+msgstr "%(label)s: %(garrisonSize)s %(extraSize)s"
 
 #: gui/common/tooltips.js:569
 msgid "Garrison Size"
-msgstr ""
+msgstr "Dimensione guarnigione"
 
 #: gui/common/tooltips.js:572
 msgctxt "nested garrison"
 msgid "+ "
-msgstr ""
+msgstr "+ "
 
 #: gui/common/tooltips.js:596 gui/common/tooltips.js:601
 #: gui/common/tooltips.js:606
@@ -1120,12 +1121,12 @@ msgstr "∞"
 
 #: gui/common/tooltips.js:795
 msgid "Reward:"
-msgstr ""
+msgstr "Ricompensa:"
 
 #: gui/common/tooltips.js:798
 #, javascript-format
 msgid "%(resourceIcon)s %(reward)s"
-msgstr ""
+msgstr "%(resourceIcon)s%(reward)s"
 
 #: gui/common/tooltips.js:816
 msgid "Resource Trickle:"
@@ -1494,12 +1495,12 @@ msgstr "Anche se ragionevolmente facile per un giocatore esperto, il livello di 
 
 #: gui/hotkeys/HotkeyMetadata.js:21 gui/hotkeys/HotkeyMetadata.js:22
 msgid "Other Hotkeys"
-msgstr ""
+msgstr "Altri tasti di scelta rapida"
 
 #: gui/hotkeys/HotkeyPicker.js:57
 #, javascript-format
 msgid "#%i"
-msgstr ""
+msgstr "#%i"
 
 #: gui/hotkeys/HotkeyPicker.js:73
 msgid " (hold to register)"
@@ -1515,17 +1516,17 @@ msgstr ""
 
 #: gui/hotkeys/HotkeysPage.js:82
 msgid "All Hotkeys"
-msgstr ""
+msgstr "Lista tasti di scelta rapida"
 
 #: gui/hotkeys/HotkeysPage.js:118
 msgid "No tooltip available"
-msgstr ""
+msgstr "Nessun suggerimento disponibile"
 
 #: gui/hotkeys/HotkeysPage.js:151
 msgid ""
 "Reset all hotkeys to default values?\n"
 "WARNING: this cannot be reversed."
-msgstr ""
+msgstr "Reimposta tutti i tasti di scelta rapida ai valori predefiniti?\nATTENZIONE: l'operazione è irreversibile."
 
 #: gui/hotkeys/HotkeysPage.js:152 gui/pregame/MainMenuItems.js:236
 #: gui/pregame/MainMenuItems.js:260
@@ -1547,11 +1548,11 @@ msgstr "Reimposta"
 
 #: gui/hotkeys/hotkeys.xml:(caption):72
 msgid "Hotkey"
-msgstr ""
+msgstr "Tasto di scelta rapida"
 
 #: gui/hotkeys/hotkeys.xml:(caption):76
 msgid "Hotkey Description"
-msgstr ""
+msgstr "Descrizione tasto di scelta rapida"
 
 #: gui/hotkeys/hotkeys.xml:(caption):80
 msgid ""
@@ -1577,7 +1578,7 @@ msgstr "Nome"
 #: gui/hotkeys/hotkeys.xml:(heading):43
 msgctxt "hotkey list"
 msgid "Mapping"
-msgstr ""
+msgstr "Mapping"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):49 gui/hotkeys/hotkeys.xml:(tooltip):102
 #: gui/options/options.xml:(tooltip):43
@@ -1590,23 +1591,23 @@ msgstr "Salva le modifiche"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):59
 msgid "Unsaved changes will be lost"
-msgstr ""
+msgstr "Le modifiche non salvate andranno perse."
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):90
 msgid "Click to set the hotkey"
-msgstr ""
+msgstr "Clicca per impostare il tasto di scelta rapida."
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):94
 msgid "Click to delete the hotkey"
-msgstr ""
+msgstr "Clicca per eliminare il tasto di scelta rapida."
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):107
 msgid "Change the hotkeys and close"
-msgstr ""
+msgstr "Cambia tasto di scelta rapida e chiudi"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):112
 msgid "The hotkeys will not be modified"
-msgstr ""
+msgstr "I tasti di scelta rapida non verranno modificati"
 
 #: gui/loadgame/SavegameDeleter.js:34
 #, javascript-format
@@ -1861,11 +1862,11 @@ msgstr "+"
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):18
 msgctxt "zoom out"
 msgid "−"
-msgstr ""
+msgstr "−"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):26
 msgid "Search Map:"
-msgstr ""
+msgstr "Cerca mappa:"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):38
 msgid "Map Filter:"
@@ -1873,38 +1874,38 @@ msgstr "Filtro Mappe:"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):48
 msgid "Pick Random Map"
-msgstr ""
+msgstr "Seleziona mappa casuale"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):54
 msgctxt "map selection dialog"
 msgid "Select"
-msgstr ""
+msgstr "Seleziona"
 
 #: gui/maps/mapbrowser/controls/Pagination.js:27
 msgid "Go to the previous page."
-msgstr ""
+msgstr "Vai alla pagina precedente."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:28
 msgid "Go to the next page."
-msgstr ""
+msgstr "Vai alla pagina successiva."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:32
 msgid "Increase map preview size."
-msgstr ""
+msgstr "Aumenta dimensioni anteprima mappa."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:33
 msgid "Decrease map preview size."
-msgstr ""
+msgstr "Riduci dimensioni anteprima mappa."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:39
 #, javascript-format
 msgid "Maps: %(mapCount)s"
-msgstr ""
+msgstr "Mappe: %(mapCount)s"
 
 #: gui/maps/mapbrowser/controls/Pagination.js:43
 #, javascript-format
 msgid "Page: %(currentPage)s/%(maxPage)s"
-msgstr ""
+msgstr "Pagina: %(currentPage)s/%(maxPage)s"
 
 #: gui/options/options.js:95
 #, javascript-format
@@ -2903,12 +2904,12 @@ msgstr "Guarda le diverse mappe presenti in 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:65 gui/pregame/MainMenuItems.js:93
 msgid "Continue Campaign"
-msgstr ""
+msgstr "Continua campagna"
 
 #: gui/pregame/MainMenuItems.js:66 gui/pregame/MainMenuItems.js:94
 #: gui/pregame/MainMenuItems.js:104 gui/pregame/MainMenuItems.js:111
 msgid "Relive history through historical military campaigns."
-msgstr ""
+msgstr "Rivivi la storia attraverso campagne militari storiche."
 
 #: gui/pregame/MainMenuItems.js:75 gui/replaymenu/replay_filters.js:144
 msgid "Single-player"
@@ -2932,11 +2933,11 @@ msgstr "Carica una partita salvata."
 
 #: gui/pregame/MainMenuItems.js:103
 msgid "New Campaign"
-msgstr ""
+msgstr "Nuova campagna"
 
 #: gui/pregame/MainMenuItems.js:110
 msgid "Load Campaign"
-msgstr ""
+msgstr "Carica campagna"
 
 #: gui/pregame/MainMenuItems.js:120 gui/pregame/MainMenuItems.js:170
 msgid "Replays"
@@ -3084,7 +3085,7 @@ msgstr "WILDFIRE GAMES"
 
 #: gui/pregame/ProjectInformation.js:18
 msgid "Alpha XXV: Y——"
-msgstr ""
+msgstr "Alfa XXV: Y——"
 
 #: gui/pregame/ProjectInformation.js:19
 msgid ""
@@ -3210,11 +3211,11 @@ msgstr "Puoi automaticamente inviarci un feedback che può aiutarci a sistemare 
 #: gui/reference/catafalque/CatafalquePage.js:41
 #, javascript-format
 msgid "%(hotkey)s: Close Catafalque Bonuses."
-msgstr ""
+msgstr "%(hotkey)s: chiudi Bonus catafalco."
 
 #: gui/reference/catafalque/catafalque.xml:(caption):18
 msgid "Catafalque Bonuses"
-msgstr ""
+msgstr "Bonus catafalco."
 
 #. Translation: Description of an item in the CivInfo page, on a new line and
 #. indented.

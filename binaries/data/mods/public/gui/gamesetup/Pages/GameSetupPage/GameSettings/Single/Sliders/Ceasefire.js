@@ -27,7 +27,7 @@ GameSettingControls.Ceasefire = class Ceasefire extends GameSettingControlSlider
 	onValueChange(value)
 	{
 		g_GameSettings.ceasefire.setValue(value);
-		this.gameSettingsControl.setNetworkGameAttributes();
+		this.gameSettingsControl.setNetworkInitAttributes();
 	}
 };
 

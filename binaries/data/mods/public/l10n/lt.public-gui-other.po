@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-03-08 08:15+0000\n"
-"PO-Revision-Date: 2021-03-14 20:45+0000\n"
+"PO-Revision-Date: 2021-03-16 21:00+0000\n"
 "Last-Translator: V S <v32itas@slacknet.eu>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/wildfire-games/0ad/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -212,7 +212,7 @@ msgstr "Herojai gali būti palikti sargyboje."
 
 #: gui/common/gamedescription.js:244
 msgid "Exposed Heroes"
-msgstr "Atviri Herojai"
+msgstr "Herojai nepriedangoje"
 
 #: gui/common/gamedescription.js:245
 msgid "Heroes cannot be garrisoned and they are vulnerable to raids."
@@ -633,12 +633,12 @@ msgstr "Neribota"
 #: gui/common/settings.js:342
 msgctxt "AI name"
 msgid "Unknown"
-msgstr "Nežinomas"
+msgstr "Nežinomas1"
 
 #: gui/common/settings.js:353
 msgctxt "AI difficulty"
 msgid "Unknown"
-msgstr "Nežinomas"
+msgstr "Nežinomas2"
 
 #: gui/common/settings.js:364
 msgctxt "AI behavior"
@@ -648,7 +648,7 @@ msgstr "Numatytieji"
 #: gui/common/settings.js:376
 msgctxt "map type"
 msgid "Unknown"
-msgstr "Nežinomas"
+msgstr "Nežinomas3"
 
 #: gui/common/settings.js:388
 msgctxt "map size"
@@ -663,7 +663,7 @@ msgstr "(pasaulis)"
 #: gui/common/settings.js:404 gui/common/settings.js:408
 msgctxt "population capacity"
 msgid "Unknown"
-msgstr "Nežinomas"
+msgstr "Nežinomas4"
 
 #: gui/common/settings.js:420
 msgid "Unknown Victory Condition"
@@ -930,7 +930,7 @@ msgstr "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s%(spla
 
 #: gui/common/tooltips.js:468
 msgid "Attack:"
-msgstr "Pulti:"
+msgstr "Puolimas:"
 
 #: gui/common/tooltips.js:495
 #, javascript-format
@@ -1194,11 +1194,11 @@ msgstr "%(speed)s %(movementType)s"
 
 #: gui/common/tooltips.js:976
 msgid "Walk"
-msgstr "Eiti"
+msgstr "Ėjimo"
 
 #: gui/common/tooltips.js:981
 msgid "Run"
-msgstr "Bėgti"
+msgstr "Bėgimo"
 
 #: gui/common/tooltips.js:996 gui/common/tooltips.js:1001
 #: gui/common/tooltips.js:1006 gui/common/tooltips.js:1031
@@ -1393,7 +1393,7 @@ msgstr "Vadovaujantis"
 
 #: gui/credits/texts/balancing.jsonTitle
 msgid "Balancing"
-msgstr ""
+msgstr "Balansavimas"
 
 #: gui/credits/texts/community.jsonTitle
 msgid "Community and Management"
@@ -1941,15 +1941,15 @@ msgstr "Pasirinkimų atstatymas ištrins visus išsaugotus nustatymus. Ar Jūs n
 
 #: gui/options/options.js:351
 msgid "Some setting values are invalid! Are you sure you want to save them?"
-msgstr ""
+msgstr "Kaikurios nustatymų reikšmės negalimos! Ar jūs tikrai norite jas išsaugoti?"
 
 #: gui/options/options.js:377
 msgid "You have unsaved changes, do you want to close this window?"
-msgstr ""
+msgstr "Jūs turite neišsaugotų pakeitimų, norite uždaryti šį langą?"
 
 #: gui/options/options.json[0].label
 msgid "General"
-msgstr ""
+msgstr "Pagrindiniai"
 
 #: gui/options/options.json[0].options[0].label
 msgid "Player name (single-player)"
@@ -1973,77 +1973,77 @@ msgstr "Pokalbių laiko štampas"
 
 #: gui/options/options.json[0].options[11].tooltip
 msgid "Display the time at which a chat message was posted."
-msgstr ""
+msgstr "Rodyti pranešimo siuntimo laiką."
 
 #: gui/options/options.json[0].options[1].label
 msgid "Player name (multiplayer)"
-msgstr ""
+msgstr "Žaidėjo vardas (keleto-žaidėjų)"
 
 #: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in multiplayer matches (except lobby)."
-msgstr ""
+msgstr "Kokiu vardu norite, jog į jus kreiptūsi kiti keleto-žaidėjų partijose (išskyrus vestibiulį)."
 
 #: gui/options/options.json[0].options[2].label
 msgid "Background pause"
-msgstr ""
+msgstr "Foninė pauzė"
 
 #: gui/options/options.json[0].options[2].tooltip
 msgid "Pause single-player games when window loses focus."
-msgstr ""
+msgstr "Sustabdyti vieno-žaidėjo partijas kuomet susitelkta į kitą langą."
 
 #: gui/options/options.json[0].options[3].label
 msgid "Enable welcome screen"
-msgstr ""
+msgstr "Įjungti sveikino ekraną"
 
 #: gui/options/options.json[0].options[3].tooltip
 msgid ""
 "If you disable it, the welcome screen will still appear once, each time a "
 "new version is available. You can always launch it from the main menu."
-msgstr ""
+msgstr "Jei jūs tai išjungsite, sveikinimo ekranas vistiek bus rodomas vieną kartą, su kiekivenos naujos versijos pasiekiamumu. Jūs galite visuomet paleisti tai iš pagrindinio meniu."
 
 #: gui/options/options.json[0].options[4].label
 msgid "Network warnings"
-msgstr ""
+msgstr "Tinklo įspėjimai"
 
 #: gui/options/options.json[0].options[4].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
-msgstr ""
+msgstr "Rogyti kuris žaidėjas turi prastą sujungimą, daugelio-žaidėjų partijose."
 
 #: gui/options/options.json[0].options[5].label
 msgid "FPS overlay"
-msgstr ""
+msgstr "KPS rodymas"
 
 #: gui/options/options.json[0].options[5].tooltip
 msgid "Show frames per second in top right corner."
-msgstr ""
+msgstr "Rodyti kadrus per sekundę viršutiniame kairiame kampe."
 
 #: gui/options/options.json[0].options[6].label
 msgid "Real time overlay"
-msgstr ""
+msgstr "Realaus laiko rodymas"
 
 #: gui/options/options.json[0].options[6].tooltip
 msgid "Show current system time in top right corner."
-msgstr ""
+msgstr "Rodyti dabartinį sistemos laiką kairiame viršutiniame kampe."
 
 #: gui/options/options.json[0].options[7].label
 msgid "Game time overlay"
-msgstr ""
+msgstr "Žaidimo trukmės rodymas"
 
 #: gui/options/options.json[0].options[7].tooltip
 msgid "Show current simulation time in top right corner."
-msgstr ""
+msgstr "Rodyti dabartinį simuliacijos laiką kairiame viršutiniame kampe."
 
 #: gui/options/options.json[0].options[8].label
 msgid "Ceasefire time overlay"
-msgstr ""
+msgstr "Paliaubų trukmės rodymas"
 
 #: gui/options/options.json[0].options[8].tooltip
 msgid "Always show the remaining ceasefire time."
-msgstr ""
+msgstr "Visuomet rodyti likusį paliaubų laiką."
 
 #: gui/options/options.json[0].options[9].label
 msgid "Late observer joins"
-msgstr ""
+msgstr "Vėlus stebėtojas prisijungia"
 
 #: gui/options/options.json[0].options[9].list[0].label
 #: gui/options/options.json[3].options[5].list[0].label
@@ -2053,7 +2053,7 @@ msgstr "Visi"
 #: gui/options/options.json[0].options[9].list[1].label
 #: gui/options/options.json[3].options[5].list[1].label
 msgid "Buddies"
-msgstr ""
+msgstr "Bičiuliai"
 
 #: gui/options/options.json[0].options[9].list[2].label
 #: gui/options/options.json[1].options[4].list[0].label
@@ -2066,35 +2066,35 @@ msgstr "Išjungta"
 msgid ""
 "Allow everybody or buddies only to join the game as observer after it "
 "started."
-msgstr ""
+msgstr "Leisti visiems ar bičiuliams prisijungti tik kaip stebėtojams po to kai žaidimas jau prasidėjo."
 
 #: gui/options/options.json[1].label
 msgid "Graphics"
-msgstr ""
+msgstr "Grafika"
 
 #: gui/options/options.json[1].options[0].label
 msgid "Windowed mode"
-msgstr ""
+msgstr "Lango rėžimas"
 
 #: gui/options/options.json[1].options[0].tooltip
 msgid "Start 0 A.D. in a window."
-msgstr ""
+msgstr "Startuoti 0 A.D. lange."
 
 #: gui/options/options.json[1].options[10].label
 msgid "Shadow filtering"
-msgstr ""
+msgstr "Šešėlių filtravimas"
 
 #: gui/options/options.json[1].options[10].tooltip
 msgid "Smooth shadows."
-msgstr ""
+msgstr "Sklandūs šešėliai."
 
 #: gui/options/options.json[1].options[11].label
 msgid "Unit silhouettes"
-msgstr ""
+msgstr "Vienetų siluetai."
 
 #: gui/options/options.json[1].options[11].tooltip
 msgid "Show outlines of units behind structures."
-msgstr ""
+msgstr "Rodyti vienetų esančių už pastatų siluetus."
 
 #: gui/options/options.json[1].options[12].label
 msgid "Particles"
@@ -2102,67 +2102,67 @@ msgstr "Dūmai"
 
 #: gui/options/options.json[1].options[12].tooltip
 msgid "Enable particles."
-msgstr ""
+msgstr "Įjungti daleles."
 
 #: gui/options/options.json[1].options[13].label
 msgid "Water effects"
-msgstr ""
+msgstr "Vandens efektai"
 
 #: gui/options/options.json[1].options[13].tooltip
 msgid ""
 "When OFF, use the lowest settings possible to render water. This makes other"
 " settings irrelevant."
-msgstr ""
+msgstr "Kai išjungta, naudojami žemiausi įmanomi nustatymai vandens atvaizdavimui, kitus vandens nustatymus padarant nereikšmingais."
 
 #: gui/options/options.json[1].options[14].label
 msgid "High-quality water effects"
-msgstr ""
+msgstr "Aukštos kokybės vandens efektai"
 
 #: gui/options/options.json[1].options[14].tooltip
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
-msgstr ""
+msgstr "Naudoti aukštos kokybės efektus vandeniui, krantus skalaujančių bangų, putų ir laivų \"pėdsakų\" piešimui."
 
 #: gui/options/options.json[1].options[15].label
 msgid "Water reflections"
-msgstr ""
+msgstr "Vandens atspindžiai"
 
 #: gui/options/options.json[1].options[15].tooltip
 msgid "Allow water to reflect a mirror image."
-msgstr ""
+msgstr "Leisti vandeniui atspindėti veidrodinį vaizdą."
 
 #: gui/options/options.json[1].options[16].label
 msgid "Water refraction"
-msgstr ""
+msgstr "Vandens refrakcija"
 
 #: gui/options/options.json[1].options[16].tooltip
 msgid "Use a real water refraction map and not transparency."
-msgstr ""
+msgstr "Naudoti tikrą vandens refrakcijos žymėjimą vietoj skaidrumo."
 
 #: gui/options/options.json[1].options[17].label
 msgid "Real water depth"
-msgstr ""
+msgstr "Realus vandens gylis"
 
 #: gui/options/options.json[1].options[17].tooltip
 msgid "Use actual water depth in rendering calculations."
-msgstr ""
+msgstr "Ištiesų naudoti vandens gylio atvaizdavimo skaičiavimus."
 
 #: gui/options/options.json[1].options[18].label
 msgid "Smooth vision"
-msgstr ""
+msgstr "Sklandus matymas"
 
 #: gui/options/options.json[1].options[18].tooltip
 msgid "Lift darkness and fog of war smoothly."
-msgstr ""
+msgstr "Sklandžiai atskleisti tamsą ir rūką."
 
 #: gui/options/options.json[1].options[19].label
 msgid "VSync"
-msgstr ""
+msgstr "Vertikali Sinchronizacija"
 
 #: gui/options/options.json[1].options[19].tooltip
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "Naudoti vertikalią sinchronizacija mažinti ekrano plėšymui. REIKALAUJA ŽAIDIMO PERKROVOS"
 
 #: gui/options/options.json[1].options[1].label
 msgid "Prefer GLSL"
@@ -2170,39 +2170,39 @@ msgstr "Pirmenybę teikti GLSL"
 
 #: gui/options/options.json[1].options[1].tooltip
 msgid "Use OpenGL 2.0 shaders (recommended)."
-msgstr ""
+msgstr "Naudoti OpenGL 2.0 shader'ius (rekomenduojama)"
 
 #: gui/options/options.json[1].options[20].label
 msgid "FPS throttling in menus"
-msgstr ""
+msgstr "KPS sumažinimas meniu"
 
 #: gui/options/options.json[1].options[20].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in all menus. Set to maximum"
 " to disable throttling."
-msgstr ""
+msgstr "Procesoriaus apkrovos taupymui, sumažinti piešimo dažnį visuose meniu. Nustatyti maksimalų, norint išjungti."
 
 #: gui/options/options.json[1].options[21].label
 msgid "FPS throttling in games"
-msgstr ""
+msgstr "KPS sumažinimas žaidimuose"
 
 #: gui/options/options.json[1].options[21].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."
-msgstr ""
+msgstr "Procesoriaus apkrovos taupymui, sumažinti piešimo dažnį visuose žiadimuose. Nustatyti maksimalų, norint išjungti."
 
 #: gui/options/options.json[1].options[2].label
 msgid "Fog"
-msgstr ""
+msgstr "Rūkas"
 
 #: gui/options/options.json[1].options[2].tooltip
 msgid "Enable fog."
-msgstr ""
+msgstr "Įjungti rūką."
 
 #: gui/options/options.json[1].options[3].label
 msgid "Post-processing"
-msgstr ""
+msgstr "Post-processing"
 
 #: gui/options/options.json[1].options[3].tooltip
 msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
@@ -2270,11 +2270,11 @@ msgstr ""
 
 #: gui/options/options.json[1].options[5].label
 msgid "Sharpening"
-msgstr ""
+msgstr "Aštrinimas"
 
 #: gui/options/options.json[1].options[5].list[0].tooltip
 msgid "Do not use sharpening."
-msgstr ""
+msgstr "Nenaudoti aštrinimo."
 
 #: gui/options/options.json[1].options[5].list[1].label
 msgid "FidelityFX CAS"
@@ -2286,7 +2286,7 @@ msgstr ""
 
 #: gui/options/options.json[1].options[5].tooltip
 msgid "Reduce blurry effects."
-msgstr ""
+msgstr "Mažinti susiliejimo efektus."
 
 #: gui/options/options.json[1].options[6].label
 msgid "Sharpness factor"
@@ -2310,11 +2310,11 @@ msgstr "Šešėliai"
 
 #: gui/options/options.json[1].options[8].tooltip
 msgid "Enable shadows."
-msgstr ""
+msgstr "Įjungti šešėlius."
 
 #: gui/options/options.json[1].options[9].label
 msgid "Shadow quality"
-msgstr ""
+msgstr "Šešėlių kokybė"
 
 #: gui/options/options.json[1].options[9].list[0].label
 msgid "Very Low"
@@ -2341,7 +2341,7 @@ msgstr "Labai Daug"
 msgid ""
 "Shadow map resolution. High values can crash the game when using a graphics "
 "card with low memory!"
-msgstr ""
+msgstr "Šešėlių žymėjimo raiška. Dideles reikšmės gali neleisti žaidimui veikti naudojant mažai atminties turinčias vaizdo plokštes."
 
 #: gui/options/options.json[1].tooltip
 msgid "Set the balance between performance and visual appearance."
@@ -2349,7 +2349,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[0].label
 msgid "Master volume"
-msgstr ""
+msgstr "Bendras garsas"
 
 #: gui/options/options.json[2].options[0].tooltip
 msgid "Master audio gain."
@@ -2357,7 +2357,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[1].label
 msgid "Music volume"
-msgstr ""
+msgstr "Muzikos garsas"
 
 #: gui/options/options.json[2].options[1].tooltip
 msgid "In game music gain."
@@ -2365,7 +2365,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[2].label
 msgid "Ambient volume"
-msgstr ""
+msgstr "Fono garsas"
 
 #: gui/options/options.json[2].options[2].tooltip
 msgid "In game ambient sound gain."
@@ -2373,7 +2373,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[3].label
 msgid "Action volume"
-msgstr ""
+msgstr "Veiksmo garsas"
 
 #: gui/options/options.json[2].options[3].tooltip
 msgid "In game unit action sound gain."
@@ -2381,7 +2381,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[4].label
 msgid "UI volume"
-msgstr ""
+msgstr "UI garsas"
 
 #: gui/options/options.json[2].options[4].tooltip
 msgid "UI sound gain."
@@ -2389,15 +2389,15 @@ msgstr ""
 
 #: gui/options/options.json[2].options[5].label
 msgid "Nick notification"
-msgstr ""
+msgstr "Vardų pranešimas"
 
 #: gui/options/options.json[2].options[5].tooltip
 msgid "Receive audio notification when someone types your nick."
-msgstr ""
+msgstr "Gauti garsinį pranešimą kuomet kasnors rašo jūsų vardą."
 
 #: gui/options/options.json[2].options[6].label
 msgid "New player notification in game setup"
-msgstr ""
+msgstr "Naujo žaidėjo pranešimas žaidimo rengime."
 
 #: gui/options/options.json[2].options[6].tooltip
 msgid "Receive audio notification when a new client joins the game setup."
@@ -2405,15 +2405,15 @@ msgstr ""
 
 #: gui/options/options.json[3].label
 msgid "Game Setup"
-msgstr ""
+msgstr "Žaidimo Parengimas"
 
 #: gui/options/options.json[3].options[0].label
 msgid "Enable game setting tips"
-msgstr ""
+msgstr "Leisti žaidimo nustatymų patarimus"
 
 #: gui/options/options.json[3].options[0].tooltip
 msgid "Show tips when setting up a game."
-msgstr ""
+msgstr "Rodyti patarimus rengiant žaidimą."
 
 #: gui/options/options.json[3].options[1].label
 msgid "Enable settings panel slide"
@@ -2425,7 +2425,7 @@ msgstr ""
 
 #: gui/options/options.json[3].options[2].label
 msgid "Persist match settings"
-msgstr ""
+msgstr "Išlaikyti partijos nustatymus"
 
 #: gui/options/options.json[3].options[2].tooltip
 msgid ""
@@ -2434,7 +2434,7 @@ msgstr ""
 
 #: gui/options/options.json[3].options[3].label
 msgid "Default AI difficulty"
-msgstr ""
+msgstr "Numatytasis DI sudėtingumas"
 
 #: gui/options/options.json[3].options[3].list[0].label
 msgid "Sandbox"
@@ -2458,11 +2458,11 @@ msgstr "Labai Sunkus"
 
 #: gui/options/options.json[3].options[3].tooltip
 msgid "Default difficulty of the AI."
-msgstr ""
+msgstr "Numatytasis DI sudėtingumas."
 
 #: gui/options/options.json[3].options[4].label
 msgid "Default AI behavior"
-msgstr ""
+msgstr "Numatyta AI elgsena"
 
 #: gui/options/options.json[3].options[4].list[0].label
 msgid "Random"
@@ -2482,15 +2482,15 @@ msgstr "Gynybinis"
 
 #: gui/options/options.json[3].options[4].tooltip
 msgid "Default behavior of the AI."
-msgstr ""
+msgstr "Numatyta DI elgsena."
 
 #: gui/options/options.json[3].options[5].label
 msgid "Assign players"
-msgstr ""
+msgstr "Paskirti žaidėjus"
 
 #: gui/options/options.json[3].options[5].list[0].tooltip
 msgid "Players joining the match will be assigned if there is a free slot."
-msgstr ""
+msgstr "Žaidėjai prisijungiantys prie partijos bus paskirti jei yra laisva vieta."
 
 #: gui/options/options.json[3].options[5].list[1].tooltip
 msgid ""
@@ -2500,21 +2500,21 @@ msgstr ""
 
 #: gui/options/options.json[3].options[5].list[2].tooltip
 msgid "Players only receive a slot when the host assigns them explicitly."
-msgstr ""
+msgstr "Žaidėjai gaus vietą tik jei šeimininkas išimtinai ją paskirs."
 
 #: gui/options/options.json[3].options[5].tooltip
 msgid ""
 "Automatically assign joining clients to free player slots during the match "
 "setup."
-msgstr ""
+msgstr "Automatiškai paskirti prisijungiantiems žaidėjams laisvą vietą partijos parengime."
 
 #: gui/options/options.json[4].label
 msgid "Lobby"
-msgstr "Fojė"
+msgstr "Vestibiulis"
 
 #: gui/options/options.json[4].options[0].label
 msgid "TLS encryption"
-msgstr ""
+msgstr "TLS užkodavimas"
 
 #: gui/options/options.json[4].options[0].tooltip
 msgid ""
@@ -2531,7 +2531,7 @@ msgstr ""
 
 #: gui/options/options.json[4].options[2].label
 msgid "Game rating column"
-msgstr ""
+msgstr "Žaidimo reitingo stulpelis"
 
 #: gui/options/options.json[4].options[2].tooltip
 msgid ""
@@ -2545,11 +2545,11 @@ msgstr ""
 
 #: gui/options/options.json[5].label
 msgid "Game Session"
-msgstr ""
+msgstr "Žaidimo sesija"
 
 #: gui/options/options.json[5].options[0].label
 msgid "Wounded unit health"
-msgstr ""
+msgstr "Sužeisto vieneto sveikata"
 
 #: gui/options/options.json[5].options[0].tooltip
 msgid ""
@@ -2567,7 +2567,7 @@ msgstr ""
 
 #: gui/options/options.json[5].options[11].label
 msgid "Experience status bar"
-msgstr ""
+msgstr "Patirties būsena"
 
 #: gui/options/options.json[5].options[11].tooltip
 msgid "Show an experience status bar above each selected unit."
@@ -2575,7 +2575,7 @@ msgstr ""
 
 #: gui/options/options.json[5].options[12].label
 msgid "Detailed tooltips"
-msgstr ""
+msgstr "Detalūs patarimai"
 
 #: gui/options/options.json[5].options[12].tooltip
 msgid ""
@@ -2710,7 +2710,7 @@ msgstr ""
 
 #: gui/options/options.json[5].options[20].list[0].tooltip
 msgid "Other orders will disband existing formations."
-msgstr ""
+msgstr "Kiti įsakymai pakeis prieš tai sudarytas formacijas."
 
 #: gui/options/options.json[5].options[20].list[1].label
 msgid "No Override"
@@ -2718,13 +2718,13 @@ msgstr ""
 
 #: gui/options/options.json[5].options[20].list[1].tooltip
 msgid "Units in formations stay in formations."
-msgstr ""
+msgstr "Vienetai formacijose išliks formacijose."
 
 #: gui/options/options.json[5].options[20].tooltip
 msgid ""
 "Decide whether formations are enabled for all orders or only 'Walk' and "
 "'Patrol'."
-msgstr ""
+msgstr "Nuspręskite ar formacijos yra įjungtos visiems įsakymams ar tik 'vaikščiojimui' ir 'patruliavimui'."
 
 #: gui/options/options.json[5].options[2].label
 msgid "Scroll batch increment ratio"
@@ -2824,11 +2824,11 @@ msgstr ""
 
 #: gui/options/options.xml:(caption):48
 msgid "Revert"
-msgstr ""
+msgstr "Atkeisti"
 
 #: gui/options/options.xml:(tooltip):49
 msgid "Reverts to previous saved settings"
-msgstr ""
+msgstr "Atkeičia prieš tai išsaugotus nustatymus."
 
 #: gui/options/options.xml:(tooltip):61
 msgid "Unsaved changes affect this session only"
@@ -2836,7 +2836,7 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:3
 msgid "Learn to Play"
-msgstr ""
+msgstr "Mokinkitės Žaisti"
 
 #: gui/pregame/MainMenuItems.js:4
 msgid ""
@@ -2885,7 +2885,7 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:49
 msgid "Catafalque Overview"
-msgstr ""
+msgstr "Katafalkų peržiūra"
 
 #: gui/pregame/MainMenuItems.js:50
 msgid "Compare the bonuses of catafalques featured in 0 A.D."
@@ -2893,7 +2893,7 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:56
 msgid "Map Overview"
-msgstr ""
+msgstr "Žemėlapio peržiūra"
 
 #: gui/pregame/MainMenuItems.js:57
 msgid "View the different maps featured in 0 A.D."
@@ -2901,48 +2901,48 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:65 gui/pregame/MainMenuItems.js:93
 msgid "Continue Campaign"
-msgstr ""
+msgstr "Tęsti kampaniją"
 
 #: gui/pregame/MainMenuItems.js:66 gui/pregame/MainMenuItems.js:94
 #: gui/pregame/MainMenuItems.js:104 gui/pregame/MainMenuItems.js:111
 msgid "Relive history through historical military campaigns."
-msgstr ""
+msgstr "Išgyvenkite istorines karines kampanijas."
 
 #: gui/pregame/MainMenuItems.js:75 gui/replaymenu/replay_filters.js:144
 msgid "Single-player"
-msgstr ""
+msgstr "Vieno-Žaidėjo"
 
 #: gui/pregame/MainMenuItems.js:76
 msgid "Start, load, or replay a single-player game."
-msgstr ""
+msgstr "Pradėti, krauti, ar peržiūrėti vieno-žaidėjo žaidimą."
 
 #: gui/pregame/MainMenuItems.js:79
 msgid "Matches"
-msgstr "Dvikovos"
+msgstr "Partijos"
 
 #: gui/pregame/MainMenuItems.js:80
 msgid "Start a new single-player game."
-msgstr ""
+msgstr "Pradėti naują vieno-žadėjo žaidimą."
 
 #: gui/pregame/MainMenuItems.js:87
 msgid "Load a saved game."
-msgstr ""
+msgstr "Krauti išsaugotą žaidimą."
 
 #: gui/pregame/MainMenuItems.js:103
 msgid "New Campaign"
-msgstr ""
+msgstr "Nauja Kampanija"
 
 #: gui/pregame/MainMenuItems.js:110
 msgid "Load Campaign"
-msgstr ""
+msgstr "Krauti Kampaniją"
 
 #: gui/pregame/MainMenuItems.js:120 gui/pregame/MainMenuItems.js:170
 msgid "Replays"
-msgstr ""
+msgstr "Peržiūros"
 
 #: gui/pregame/MainMenuItems.js:121 gui/pregame/MainMenuItems.js:171
 msgid "Playback previous games."
-msgstr ""
+msgstr "Žiūrėti ankstesnius žaidimus."
 
 #: gui/pregame/MainMenuItems.js:135 gui/replaymenu/replay_filters.js:144
 msgid "Multiplayer"
@@ -2963,15 +2963,15 @@ msgstr "Jungiamasi prie jau sukurto kelių žaidėjų žaidimo."
 
 #: gui/pregame/MainMenuItems.js:149
 msgid "Host Game"
-msgstr "Kurti žaidimą"
+msgstr "Rengti žaidimą"
 
 #: gui/pregame/MainMenuItems.js:150
 msgid "Host a multiplayer game."
-msgstr ""
+msgstr "Rengti kelių-žaidėjų žaidimą."
 
 #: gui/pregame/MainMenuItems.js:158
 msgid "Game Lobby"
-msgstr ""
+msgstr "Žaidimo Vestibiulis"
 
 #: gui/pregame/MainMenuItems.js:160
 #, javascript-format
@@ -2986,7 +2986,7 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:185
 msgid "Settings"
-msgstr ""
+msgstr "Nustatymai"
 
 #: gui/pregame/MainMenuItems.js:186
 msgid "Change game options."
@@ -3014,11 +3014,11 @@ msgstr "Kalba"
 
 #: gui/pregame/MainMenuItems.js:207
 msgid "Choose the language of the game."
-msgstr ""
+msgstr "Pasirinkite žaidimo kalbą."
 
 #: gui/pregame/MainMenuItems.js:213
 msgid "Mod Selection"
-msgstr ""
+msgstr "Modifikacijų Pasirinkimas"
 
 #: gui/pregame/MainMenuItems.js:214
 msgid "Select and download mods for the game."
@@ -3026,7 +3026,7 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:220
 msgid "Welcome Screen"
-msgstr ""
+msgstr "Sveikino Ekranas"
 
 #: gui/pregame/MainMenuItems.js:221
 msgid "Show the Welcome Screen again. Useful if you hid it by mistake."
@@ -3058,11 +3058,11 @@ msgstr "Klaida"
 
 #: gui/pregame/MainMenuItems.js:247
 msgid "Credits"
-msgstr ""
+msgstr "Nuopelnai"
 
 #: gui/pregame/MainMenuItems.js:248
 msgid "Show the 0 A.D. credits."
-msgstr ""
+msgstr "Rodyti 0 A.D. nuopelnus."
 
 #: gui/pregame/MainMenuItems.js:254
 msgid "Exit"
@@ -3070,7 +3070,7 @@ msgstr "Išeiti"
 
 #: gui/pregame/MainMenuItems.js:255
 msgid "Exit the game."
-msgstr ""
+msgstr "Išeiti iš žaidimo."
 
 #: gui/pregame/MainMenuItems.js:259
 msgid "Are you sure you want to quit 0 A.D.?"
@@ -3088,7 +3088,7 @@ msgstr "Alpha XXV: Y——"
 msgid ""
 "Notice: This game is under development and many features have not been added"
 " yet."
-msgstr ""
+msgstr "Pastaba: Šis žaidimas yra vystomas ir daug galimybių dar nėra įdėta."
 
 #: gui/pregame/ProjectInformation.js:25
 msgid "Website"
@@ -3118,28 +3118,28 @@ msgstr ""
 
 #: gui/pregame/ProjectInformation.js:49
 msgid "Translate the Game"
-msgstr ""
+msgstr "Išverskite Žaidimą"
 
 #: gui/pregame/ProjectInformation.js:50
 msgid "Click to open the 0 A.D. translate page in your browser."
-msgstr ""
+msgstr "Spauskite, kad atidatymėte 0 A.D. vertimo puslapį savo naršyklėje."
 
 #: gui/pregame/ProjectInformation.js:57
 msgid "Donate"
-msgstr ""
+msgstr "Paremkite"
 
 #: gui/pregame/ProjectInformation.js:58
 msgid "Help with the project expenses by donating."
-msgstr ""
+msgstr "Paremkite, kad padėtumėte su projekto išlaidomis."
 
 #: gui/pregame/userreport/userreport.js:3
 msgctxt "UserReporter Terms and Conditions"
 msgid "Terms"
-msgstr ""
+msgstr "Sąlygos"
 
 #: gui/pregame/userreport/userreport.js:4
 msgid "Please read and accept the UserReporter Terms and Conditions."
-msgstr ""
+msgstr "Prašome perskaityti ir sutikti su NaudotojoPranešimų Naudojimo Sąlygomis."
 
 #: gui/pregame/userreport/userreport.js:18
 msgid "Publications"
@@ -3163,12 +3163,12 @@ msgstr "įkelta sėkmingai"
 #: gui/pregame/userreport/userreport.js:34
 #, javascript-format
 msgid "upload failed (%(errorCode)s)"
-msgstr ""
+msgstr "įkėlimas nepavyko (%(errorCode)s )"
 
 #: gui/pregame/userreport/userreport.js:37
 #, javascript-format
 msgid "upload failed (%(errorMessage)s)"
-msgstr ""
+msgstr "įkėlimas nepavyko (%(errorMessage)s )"
 
 #: gui/pregame/userreport/userreport.js:61
 msgid "Disable Feedback"
@@ -3184,16 +3184,16 @@ msgstr "Ačiū, kad padedate tobulinti 0 A.D.!"
 
 #: gui/pregame/userreport/userreport.js:82
 msgid "Feedback is currently enabled."
-msgstr ""
+msgstr "Atsiliepimai šiuo metu įjungti."
 
 #: gui/pregame/userreport/userreport.js:83
 #, javascript-format
 msgid "Status: %(status)s."
-msgstr ""
+msgstr "Būsena: %(status)s."
 
 #: gui/pregame/userreport/userreport.js:84
 msgid "unknown"
-msgstr "nežinoma"
+msgstr "nežinomas5"
 
 #: gui/pregame/userreport/userreport.js:86
 msgid "Help improve 0 A.D.!"
@@ -3208,11 +3208,11 @@ msgstr ""
 #: gui/reference/catafalque/CatafalquePage.js:41
 #, javascript-format
 msgid "%(hotkey)s: Close Catafalque Bonuses."
-msgstr ""
+msgstr "%(hotkey)s: Uždaro Katafalkų Priedus."
 
 #: gui/reference/catafalque/catafalque.xml:(caption):18
 msgid "Catafalque Bonuses"
-msgstr ""
+msgstr "Katafalkų Priedai"
 
 #. Translation: Description of an item in the CivInfo page, on a new line and
 #. indented.
@@ -3221,7 +3221,7 @@ msgstr ""
 msgid ""
 "\n"
 "     %(description)s"
-msgstr ""
+msgstr "\n     %(description)s"
 
 #. Translation: An entry in the CivInfo Page. The newline and indentation of
 #. the description
@@ -3232,12 +3232,12 @@ msgstr ""
 #: gui/reference/civinfo/CivInfoPage.js:102
 #, javascript-format
 msgid "• %(name)s %(info_icon)s%(description)s"
-msgstr ""
+msgstr "• %(name)s %(info_icon)s%(description)s"
 
 #: gui/reference/civinfo/CivInfoPage.js:113
 #, javascript-format
 msgid "%(hotkey)s: Close Civilization Overview."
-msgstr ""
+msgstr "%(hotkey)s: Uždaro Civilizacijos Peržiūrą."
 
 #: gui/reference/civinfo/Sections/GameplaySection.js:30
 #, javascript-format
@@ -3252,47 +3252,47 @@ msgstr "%(civilization)s istorija"
 #: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:47
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Civilizacijos Priedas"
+msgstr[1] "Civilizacijų Priedai"
+msgstr[2] "Civilizacijų Priedai"
+msgstr[3] "Civilizacijų Priedai"
 
 #: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:50
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Komandos Priedas"
+msgstr[1] "Komandų Priedai"
+msgstr[2] "Komandų Priedai"
+msgstr[3] "Komandų Priedai"
 
 #: gui/reference/civinfo/Sections/Subsections/HeroesSubsection.js:29
 msgid "Hero"
 msgid_plural "Heroes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Herojus"
+msgstr[1] "Herojai"
+msgstr[2] "Herojai"
+msgstr[3] "Herojai"
 
 #: gui/reference/civinfo/Sections/Subsections/StructuresSubsection.js:29
 msgid "Specific Structure"
 msgid_plural "Specific Structures"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Specifinis Statinys"
+msgstr[1] "Specifiniai Statiniai"
+msgstr[2] "Specifiniai Statiniai"
+msgstr[3] "Specifiniai Statiniai"
 
 #: gui/reference/civinfo/Sections/Subsections/TechnologiesSubsection.js:28
 msgid "Specific Technology"
 msgid_plural "Specific Technologies"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Specifinė Technologija"
+msgstr[1] "Specifinės Technologijos"
+msgstr[2] "Specifinės Technologijos"
+msgstr[3] "Specifinės Technologijos"
 
 #: gui/reference/common/Buttons/CivInfoButton.js:27
 #, javascript-format
 msgid "%(hotkey)s: Switch to Civilization Overview."
-msgstr ""
+msgstr "%(hotkey)s: Perjungti į Civilizacijų Peržiūrą"
 
 #: gui/reference/common/Buttons/StructreeButton.js:27
 #, javascript-format
@@ -3301,80 +3301,80 @@ msgstr "%(hotkey)s: perjungti statinių medį"
 
 #: gui/reference/common/Dropdowns/CivSelectDropdown.js:63
 msgid "Civilization:"
-msgstr ""
+msgstr "Civilizacija:"
 
 #: gui/reference/common/TemplateParser.js:147
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
-msgstr ""
+msgstr "%(health_min)s iki %(health_max)s"
 
 #. Translation: Label followed by a list of values.
 #: gui/reference/common/tooltips.js:10
 #, javascript-format
 msgid "%(listHeader)s %(listOfValues)s"
-msgstr ""
+msgstr "%(listHeader)s %(listOfValues)s"
 
 #. Translation: Label before a list of the names of units that build the
 #. structure selected.
 #: gui/reference/common/tooltips.js:27
 msgid "Built by:"
-msgstr ""
+msgstr "Kieno statoma:"
 
 #. Translation: Label before a list of the names of structures or units that
 #. train the unit
 #. selected.
 #: gui/reference/common/tooltips.js:33
 msgid "Trained by:"
-msgstr ""
+msgstr "Kieno mokoma:"
 
 #. Translation: Label before a list of names of structures or units that
 #. research the
 #. technology selected.
 #: gui/reference/common/tooltips.js:39
 msgid "Researched at:"
-msgstr ""
+msgstr "Kur tiriama:"
 
 #. Translation: Label before a list of the names of structures the selected
 #. unit can
 #. construct or build.
 #: gui/reference/common/tooltips.js:48
 msgid "Builds:"
-msgstr ""
+msgstr "Stato:"
 
 #. Translation: Label before a list of the names of technologies the selected
 #. unit or
 #. structure can research.
 #: gui/reference/common/tooltips.js:57
 msgid "Researches:"
-msgstr ""
+msgstr "Tiria:"
 
 #. Translation: Label before a list of the names of units the selected unit or
 #. structure can
 #. train.
 #: gui/reference/common/tooltips.js:66
 msgid "Trains:"
-msgstr ""
+msgstr "Mokomi:"
 
 #. Translation: Label before a list of the names of units or structures the
 #. selected unit or
 #. structure can be upgradable to.
 #: gui/reference/common/tooltips.js:75
 msgid "Upgradable to:"
-msgstr ""
+msgstr "Tobulinama į:"
 
 #: gui/reference/structree/Sections/Trainer/TrainerSection.js:70
 msgid "Trainer Units"
-msgstr ""
+msgstr "Mokantys Vienetai"
 
 #: gui/reference/structree/StructreePage.js:85
 #, javascript-format
 msgid "%(hotkey)s: Close Structure Tree."
-msgstr ""
+msgstr "%(hotkey)s: Uždaro Statinių Medį."
 
 #: gui/reference/viewer/ViewerPage.js:167
 #, javascript-format
 msgid "%(hotkey)s: Close Template Viewer"
-msgstr ""
+msgstr "%(hotkey)s: Uždaro Šablonų Peržiūrą"
 
 #: gui/reference/viewer/viewer.xml:(caption):16
 msgid "Information"
@@ -3382,62 +3382,62 @@ msgstr "Informacija"
 
 #: gui/replaymenu/replay_actions.js:90
 msgid "This replay needs a different sequence of mods:"
-msgstr ""
+msgstr "Šiai peržiūra reikalinga kitokia modifikacijų seka:"
 
 #: gui/replaymenu/replay_actions.js:95
 msgid "This replay is not compatible with your version of the game!"
-msgstr ""
+msgstr "Ši peržiūra yra nesuderinama su jūsų žaidimo versija!"
 
 #: gui/replaymenu/replay_actions.js:96
 #, javascript-format
 msgid "Your version: %(version)s"
-msgstr ""
+msgstr "Jūsų versija: %(version)s"
 
 #: gui/replaymenu/replay_actions.js:97
 #, javascript-format
 msgid "Required version: %(version)s"
-msgstr ""
+msgstr "Reikalaujama versija: %(version)s"
 
 #: gui/replaymenu/replay_actions.js:100
 msgid "Incompatible replay"
-msgstr ""
+msgstr "Nesuderinama peržiūra"
 
 #: gui/replaymenu/replay_actions.js:117
 msgid "No summary data available."
-msgstr ""
+msgstr "Glausti duomenys neprieinami."
 
 #: gui/replaymenu/replay_actions.js:166
 msgid "Are you sure you want to delete this replay permanently?"
-msgstr ""
+msgstr "Ar jūs tikrai norite visiškai ištrinti šią peržiūrą?"
 
 #: gui/replaymenu/replay_actions.js:168
 msgid "Delete replay"
-msgstr ""
+msgstr "Ištrinti peržiūrą"
 
 #: gui/replaymenu/replay_filters.js:52
 msgctxt "datetime"
 msgid "Any"
-msgstr "Betkoks"
+msgstr "Betkoks1"
 
 #: gui/replaymenu/replay_filters.js:68
 msgctxt "map size"
 msgid "Any"
-msgstr "Betkoks"
+msgstr "Betkoks2"
 
 #: gui/replaymenu/replay_filters.js:84
 msgctxt "map name"
 msgid "Any"
-msgstr "Betkoks"
+msgstr "Betkoks3"
 
 #: gui/replaymenu/replay_filters.js:100
 msgctxt "population capacity"
 msgid "Any"
-msgstr "Betkoks"
+msgstr "Betkoks4"
 
 #: gui/replaymenu/replay_filters.js:119
 msgctxt "duration"
 msgid "Any"
-msgstr "Betkoks"
+msgstr "Betkoks5"
 
 #. Translation: Shorter duration than max minutes.
 #: gui/replaymenu/replay_filters.js:123
@@ -3470,23 +3470,23 @@ msgstr "%(min)s - %(max)s min"
 
 #: gui/replaymenu/replay_filters.js:144
 msgid "Single-player and multiplayer"
-msgstr ""
+msgstr "(Vieno/Kelių)-žaidėjų"
 
 #: gui/replaymenu/replay_filters.js:157
 msgid "Any victory condition"
-msgstr ""
+msgstr "Betkokia pergalės sąlyga"
 
 #: gui/replaymenu/replay_filters.js:170
 msgid "Rated and unrated games"
-msgstr ""
+msgstr "Reitinguojami ir nereitinguojami žaidimai"
 
 #: gui/replaymenu/replay_filters.js:170
 msgid "Rated games"
-msgstr ""
+msgstr "Reitinguojami žaidimai"
 
 #: gui/replaymenu/replay_filters.js:170
 msgid "Unrated games"
-msgstr ""
+msgstr "Nereitinguojami žaidimai"
 
 #: gui/replaymenu/replay_menu.js:194
 msgid ""
@@ -3501,15 +3501,15 @@ msgstr ""
 #: gui/replaymenu/replay_menu.js:283
 #, javascript-format
 msgid "Players: %(numberOfPlayers)s"
-msgstr ""
+msgstr "Žaidėjai: %(numberOfPlayers)s"
 
 #: gui/replaymenu/replay_menu.js:307
 msgid "yyyy-MM-dd HH:mm"
-msgstr ""
+msgstr "yyyy-MM-dd HH:mm"
 
 #: gui/replaymenu/replay_menu.js:337
 msgid "yyyy-MM"
-msgstr ""
+msgstr "yyyy-MM"
 
 #: gui/replaymenu/replay_menu.xml:(caption):14
 msgid "Replay Games"
@@ -3525,7 +3525,7 @@ msgstr ""
 
 #: gui/replaymenu/replay_menu.xml:(caption):227
 msgid "Main Menu"
-msgstr ""
+msgstr "Pagrindinis Meniu"
 
 #: gui/replaymenu/replay_menu.xml:(caption):239
 msgid "Rebuild Cache"
@@ -3548,12 +3548,12 @@ msgstr "Žaidėjai"
 #: gui/replaymenu/replay_menu.xml:(heading):83
 msgctxt "replay"
 msgid "Size"
-msgstr ""
+msgstr "Dydis"
 
 #: gui/replaymenu/replay_menu.xml:(heading):87
 msgctxt "replay"
 msgid "Population"
-msgstr ""
+msgstr "Populiacija"
 
 #: gui/replaymenu/replay_menu.xml:(heading):91
 msgctxt "replay"
@@ -3562,7 +3562,7 @@ msgstr "Trukmė"
 
 #: gui/replaymenu/replay_menu.xml:(placeholder_text):32
 msgid "Search for Player"
-msgstr ""
+msgstr "Ieškoti Žaidėjo"
 
 #: gui/replaymenu/replay_menu.xml:(tooltip):240
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
@@ -3571,33 +3571,33 @@ msgstr ""
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
 "[font=\"sans-bold-20\"]  Thank you for installing 0 A.D. Empires Ascendant!"
-msgstr ""
+msgstr "[font=\"sans-bold-20\"]  Dėkojame jums, kad įsirašėte 0 A.D. Empires Ascendant!"
 
 #: gui/splashscreen/splashscreen.txt:3
 msgid "[font=\"sans-16\"]"
-msgstr ""
+msgstr "[font=\"sans-16\"]"
 
 #: gui/splashscreen/splashscreen.txt:4
 msgid ""
 "[imgleft=\"constructionIcon\"]This game is still in development. Features "
 "are missing and it contains bugs."
-msgstr ""
+msgstr "Šis žaidimas yra vystomas. Yra trūkstamų galimybių ir klaidų."
 
 #: gui/splashscreen/splashscreen.txt:6
 msgid ""
 "[imgleft=\"iconLag\"]The game can have performance problems, especially with"
 " large maps and a great number of units."
-msgstr ""
+msgstr "Žaidimas gali turėti sklandaveikos problemų, ypač dideliuose žemėlapiuose esant dideliems skaičiams vienetų."
 
 #: gui/splashscreen/splashscreen.txt:8
 msgid ""
 "[imgleft=\"iconFormation\"]Formations are a work in progress, but you can "
 "toggle forming and disbanding formations as desired."
-msgstr ""
+msgstr "Formacijos yra galutinai neparuoštos, bet  jūs galite (į/iš)jungti jas pagal poreikius."
 
 #: gui/splashscreen/splashscreen.xml:(caption):14
 msgid "Welcome!"
-msgstr ""
+msgstr "Sveiki!"
 
 #: gui/splashscreen/splashscreen.xml:(caption):19
 msgid "Show this message in the future"
@@ -3605,7 +3605,7 @@ msgstr "Ateityje rodyti šią žinutę"
 
 #: gui/splashscreen/splashscreen.xml:(caption):25
 msgid "Known Issues (web)"
-msgstr ""
+msgstr "Žinomos Problemos (www)"
 
 #: gui/splashscreen/splashscreen.xml:(caption):30
 msgid "OK"
@@ -3623,31 +3623,31 @@ msgstr "Žaidėjo vardas"
 
 #: gui/summary/layout.js:16
 msgid "Total score"
-msgstr ""
+msgstr "Bendri taškai"
 
 #: gui/summary/layout.js:17
 msgid "Economy score"
-msgstr ""
+msgstr "Ekonomikos taškai"
 
 #: gui/summary/layout.js:18
 msgid "Military score"
-msgstr ""
+msgstr "Kariniai taškai"
 
 #: gui/summary/layout.js:19
 msgid "Exploration score"
-msgstr ""
+msgstr "Atidengimo taškai"
 
 #: gui/summary/layout.js:31
 msgid "Structures"
-msgstr ""
+msgstr "Statiniai"
 
 #: gui/summary/layout.js:34 gui/summary/layout.js:72 gui/summary/layout.js:112
 msgid "Total"
-msgstr ""
+msgstr "Bendras"
 
 #: gui/summary/layout.js:35
 msgid "Houses"
-msgstr ""
+msgstr "Namai"
 
 #: gui/summary/layout.js:36
 msgid "Economic"
@@ -3655,7 +3655,7 @@ msgstr "Ekonomika"
 
 #: gui/summary/layout.js:37
 msgid "Outposts"
-msgstr ""
+msgstr "Postai"
 
 #: gui/summary/layout.js:38
 msgid "Military"
@@ -3663,22 +3663,22 @@ msgstr "Kariuomenė"
 
 #: gui/summary/layout.js:39
 msgid "Fortresses"
-msgstr ""
+msgstr "Tvirtovės"
 
 #: gui/summary/layout.js:40
 msgid "Civ centers"
-msgstr ""
+msgstr "Civ centrai"
 
 #: gui/summary/layout.js:41
 msgid "Wonders"
-msgstr ""
+msgstr "Stebuklai"
 
 #: gui/summary/layout.js:45
 #, javascript-format
 msgid ""
 "Structure Statistics (%(constructed)s / %(destroyed)s / %(captured)s / "
 "%(lost)s)"
-msgstr ""
+msgstr "Statinio Statistikos (%(constructed)s / %(destroyed)s / %(captured)s / %(lost)s)"
 
 #: gui/summary/layout.js:69
 msgid "Units"
@@ -3719,7 +3719,7 @@ msgstr "Pirkliai"
 #: gui/summary/layout.js:84
 #, javascript-format
 msgid "Unit Statistics (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
-msgstr ""
+msgstr "Vieneto Statistikos (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"
 
 #: gui/summary/layout.js:109
 msgid "Resources"
@@ -3727,31 +3727,31 @@ msgstr "Ištekliai"
 
 #: gui/summary/layout.js:121
 msgid "Tributes"
-msgstr ""
+msgstr "Duoklės"
 
 #: gui/summary/layout.js:122
 #, javascript-format
 msgid ""
 "Tributes \n"
 "(%(sent)s / %(received)s)"
-msgstr ""
+msgstr "Duoklės \n(%(sent)s / %(received)s)"
 
 #: gui/summary/layout.js:130
 msgid "Treasures collected"
-msgstr ""
+msgstr "Surinkti Lobiai"
 
 #: gui/summary/layout.js:131
 msgid "Loot"
-msgstr ""
+msgstr "Grobis"
 
 #: gui/summary/layout.js:132
 msgid "Livestock bred"
-msgstr ""
+msgstr "Išveisti gyvuliai"
 
 #: gui/summary/layout.js:136
 #, javascript-format
 msgid "Resource Statistics (%(gathered)s / %(used)s)"
-msgstr ""
+msgstr "Išteklių Statistikos (%(gathered)s / %(used)s)"
 
 #: gui/summary/layout.js:160
 msgid "Market"
@@ -3759,136 +3759,136 @@ msgstr "Turgus"
 
 #: gui/summary/layout.js:163
 msgid "Trade income"
-msgstr ""
+msgstr "Mainų pelnas"
 
 #: gui/summary/layout.js:164
 msgid "Barter efficiency"
-msgstr ""
+msgstr "Derybų našumas"
 
 #. Translation: use %(resourceWithinSentence)s if needed
 #: gui/summary/layout.js:170
 #, javascript-format
 msgid "%(resourceFirstWord)s exchanged"
-msgstr ""
+msgstr "%(resourceFirstWord)s iškeista"
 
 #: gui/summary/layout.js:192
 msgid "Miscellaneous"
-msgstr ""
+msgstr "Smulkmeniški"
 
 #: gui/summary/layout.js:195
 msgid "Kill / Death ratio"
-msgstr ""
+msgstr "Žudymo / Mirties santykis"
 
 #: gui/summary/layout.js:196 gui/summary/summary.js:99
 msgid "Population"
-msgstr ""
+msgstr "Populiacija"
 
 #: gui/summary/layout.js:197
 msgid "Map control (peak)"
-msgstr ""
+msgstr "Žemėlapio kontrolė (pikas)"
 
 #: gui/summary/layout.js:198
 msgid "Map control (finish)"
-msgstr ""
+msgstr "Žemėlapio kontrolė (pabaiga)"
 
 #: gui/summary/layout.js:199
 msgid "Map exploration"
-msgstr ""
+msgstr "Žemėlapio atidengimas"
 
 #: gui/summary/layout.js:200
 msgid "Vegetarian ratio"
-msgstr ""
+msgstr "Vegetaro santykis"
 
 #: gui/summary/layout.js:201
 msgid "Feminization"
-msgstr ""
+msgstr "Feminizacija"
 
 #: gui/summary/layout.js:204
 msgid "Bribes"
-msgstr ""
+msgstr "Kyšiai"
 
 #: gui/summary/layout.js:205
 #, javascript-format
 msgid ""
 "Bribes\n"
 "(%(succeeded)s / %(failed)s)"
-msgstr ""
+msgstr "Kyšiai\n(%(succeeded)s / %(failed)s)"
 
 #: gui/summary/layout.js:231
 msgid "Charts"
-msgstr ""
+msgstr "Kreivės"
 
 #: gui/summary/layout.js:378
 msgid "Team total"
-msgstr ""
+msgstr "Komandos bendras"
 
 #: gui/summary/summary.js:30
 msgid "Trained"
-msgstr ""
+msgstr "Paruošta"
 
 #: gui/summary/summary.js:35
 msgid "Constructed"
-msgstr ""
+msgstr "Pastatyta"
 
 #: gui/summary/summary.js:40
 msgid "Gathered"
-msgstr ""
+msgstr "Išgauta"
 
 #: gui/summary/summary.js:44
 msgid "Count"
-msgstr ""
+msgstr "Skaičius1"
 
 #: gui/summary/summary.js:49
 msgid "Sent"
-msgstr ""
+msgstr "Išsiųsta"
 
 #: gui/summary/summary.js:54
 msgid "Bought"
-msgstr ""
+msgstr "Nupirkta"
 
 #: gui/summary/summary.js:59
 msgid "Income"
-msgstr ""
+msgstr "Pelnas"
 
 #: gui/summary/summary.js:64
 msgid "Captured"
-msgstr ""
+msgstr "Užgrobta"
 
 #: gui/summary/summary.js:69
 msgid "Succeeded"
-msgstr ""
+msgstr "Pasisekę"
 
 #: gui/summary/summary.js:74
 msgid "Destroyed"
-msgstr ""
+msgstr "Sunaikinta"
 
 #: gui/summary/summary.js:79
 msgid "Killed"
-msgstr ""
+msgstr "Nužudyta"
 
 #: gui/summary/summary.js:84
 msgid "Lost"
-msgstr ""
+msgstr "Prarasta"
 
 #: gui/summary/summary.js:89
 msgid "Used"
-msgstr ""
+msgstr "Sunaudota"
 
 #: gui/summary/summary.js:94
 msgid "Received"
-msgstr ""
+msgstr "Gauta"
 
 #: gui/summary/summary.js:104
 msgid "Sold"
-msgstr ""
+msgstr "Parduota"
 
 #: gui/summary/summary.js:109
 msgid "Outcome"
-msgstr ""
+msgstr "Rezultatas"
 
 #: gui/summary/summary.js:114
 msgid "Failed"
-msgstr ""
+msgstr "Nepavykę"
 
 #: gui/summary/summary.js:201
 #, javascript-format
@@ -3899,20 +3899,20 @@ msgstr "%(colorIndicator)s %(playerListing)s"
 #: gui/summary/summary.js:204
 msgctxt "Charts player color indicator"
 msgid "■"
-msgstr ""
+msgstr "■"
 
 #: gui/summary/summary.js:234
 msgctxt "Player listing"
 msgid ", "
-msgstr "  ,"
+msgstr ", "
 
 #: gui/summary/summary.js:340
 msgid "Time elapsed"
-msgstr ""
+msgstr "Praėjas laikas"
 
 #: gui/summary/summary.js:510
 msgid "Current Scores"
-msgstr ""
+msgstr "Dabartiniai Taškai"
 
 #: gui/summary/summary.js:512
 msgid "Scores at the end of the game."
@@ -3946,7 +3946,7 @@ msgstr ""
 #: gui/summary/summary.js:532
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
-msgstr ""
+msgstr "%(mapName)s - %(mapType)s"
 
 #: gui/summary/summary.js:544
 #, javascript-format
@@ -3976,16 +3976,16 @@ msgstr "Kategorija."
 #: gui/summary/summary.xml:(caption):130
 msgctxt "summary chart"
 msgid "Value:"
-msgstr ""
+msgstr "Vertė:"
 
 #: gui/summary/summary.xml:(caption):140
 msgctxt "summary chart"
 msgid "Type:"
-msgstr ""
+msgstr "Tipas:"
 
 #: gui/summary/summary.xml:(caption):167
 msgid "Group by team"
-msgstr ""
+msgstr "Grupuoti pagal komandas"
 
 #: gui/summary/summary.xml:(caption):187
 msgid "Watch Replay"
@@ -3998,17 +3998,17 @@ msgstr "Tęsti"
 #: gui/summary/summary.xml:(tooltip):126
 msgctxt "summary chart"
 msgid "Category"
-msgstr ""
+msgstr "Kategorija"
 
 #: gui/summary/summary.xml:(tooltip):136
 msgctxt "summary chart"
 msgid "Value"
-msgstr ""
+msgstr "Vertė"
 
 #: gui/summary/summary.xml:(tooltip):147
 msgctxt "summary chart"
 msgid "Type"
-msgstr ""
+msgstr "Tipas"
 
 #: gui/text/tips/army_camp.txt:1
 msgid "ROMAN ARMY CAMP"
@@ -4150,11 +4150,11 @@ msgstr ""
 msgid ""
 "Mercenary citizen-soldiers have their normal Food cost converted to Metal "
 "cost."
-msgstr ""
+msgstr "Samdinių civilių-karių normali Maisto kaina konvertuojama į Metalo kainą."
 
 #: gui/text/tips/fishing.txt:1
 msgid "FISHING"
-msgstr ""
+msgstr "ŽVEJYBA"
 
 #: gui/text/tips/fishing.txt:2
 msgid "Fish the seas for a bountiful harvest."
@@ -4162,11 +4162,11 @@ msgstr ""
 
 #: gui/text/tips/fishing.txt:3
 msgid "Fishing boats carry a large amount of food per trip."
-msgstr ""
+msgstr "Keliaudamos žvejybos valtys gali gabenti didelį maisto kiekį."
 
 #: gui/text/tips/fishing.txt:4
 msgid "Fishing is faster than gathering food on fields."
-msgstr ""
+msgstr "Žvejybos produkcija yra greitesnė nei laukų."
 
 #: gui/text/tips/fishing.txt:5
 msgid "Careful! Fish are not an infinite resource!"
@@ -4174,7 +4174,7 @@ msgstr ""
 
 #: gui/text/tips/forge.txt:1
 msgid "FORGE"
-msgstr ""
+msgstr "KALVĖ"
 
 #: gui/text/tips/forge.txt:2
 msgid "Research structure for all factions."
@@ -4186,7 +4186,7 @@ msgstr ""
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
-msgstr ""
+msgstr "TVIRTOVĖ"
 
 #: gui/text/tips/fortress.txt:2
 msgid "The Fortress is usually each faction's strongest structure."
@@ -4225,7 +4225,7 @@ msgstr ""
 
 #: gui/text/tips/gathering.txt:1
 msgid "RESOURCE GATHERING"
-msgstr ""
+msgstr "IŠTEKLIŲ GAVYBA"
 
 #: gui/text/tips/gathering.txt:2
 msgid "Use citizen-soldiers and female citizens to gather resources."
@@ -4251,7 +4251,7 @@ msgstr ""
 
 #: gui/text/tips/heroes.txt:1
 msgid "HEROES"
-msgstr ""
+msgstr "HEROJAI"
 
 #: gui/text/tips/heroes.txt:2
 msgid ""
@@ -4287,69 +4287,69 @@ msgstr ""
 
 #: gui/text/tips/iphicrates.txt:4
 msgid "Skirmishers move faster while he lives."
-msgstr ""
+msgstr "Kol jis gyvas, skirmišeriai juda greičiau."
 
 #: gui/text/tips/outposts.txt:1
 msgid "OUTPOSTS"
-msgstr ""
+msgstr "POSTAI"
 
 #: gui/text/tips/outposts.txt:2
 msgid "Build in neutral or own territory."
-msgstr ""
+msgstr "Statomi neutralioje ar savoje teritorijoje."
 
 #: gui/text/tips/outposts.txt:3
 msgid "Cheap and quickly built, but weak."
-msgstr ""
+msgstr "Pigūs ir greitai pastatomi, bet silpni."
 
 #: gui/text/tips/outposts.txt:4
 msgid ""
 "Garrison infantry for extensive vision, and to prevent losing control of the"
 " outpost due to territory decay."
-msgstr ""
+msgstr "Palikite pėstininką poste dideliam matomumui, taip pat kad jo neprarastumėte dėl teritorinio nykimo."
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"
-msgstr ""
+msgstr "PALISADŲ SIENOS"
 
 #: gui/text/tips/palisades.txt:2
 msgid "A quick, cheap wooden wall available to all factions."
-msgstr ""
+msgstr "Greita, pigi, medinė siena, prieinama visoms frakcijoms."
 
 #: gui/text/tips/palisades.txt:3
 msgid "Most factions have access to them in Village Phase."
-msgstr ""
+msgstr "Dauguma frakcijų turi prieeigą prie jų Kaimo Fazėje."
 
 #: gui/text/tips/pericles.txt:1
 msgid "PERICLES"
-msgstr ""
+msgstr "PERIKLIS"
 
 #: gui/text/tips/pericles.txt:2
 msgid "The foremost Athenian politician of the 5th century BC."
-msgstr ""
+msgstr "Aktyviausias 5 amžiaus Pr.K. Atėniečių politikas."
 
 #: gui/text/tips/pericles.txt:3
 msgid "Structures are built faster within his range."
-msgstr ""
+msgstr "Jo perimetre statiniai statomi greičiau."
 
 #: gui/text/tips/pericles.txt:4
 msgid "Temples are cheaper while he lives."
-msgstr ""
+msgstr "Šventyklos pigesnės, kol jis gyvas."
 
 #: gui/text/tips/persian_architecture.txt:1
 msgid "PERSIAN ARCHITECTURE"
-msgstr ""
+msgstr "PERSŲ ARCHITEKTŪRA"
 
 #: gui/text/tips/persian_architecture.txt:2
 msgid "Special technology for the Persians."
-msgstr ""
+msgstr "Speciali technologija Persams."
 
 #: gui/text/tips/persian_architecture.txt:3
 msgid "Structures +25% health."
-msgstr ""
+msgstr "Statiniams +25% sveikatos."
 
 #: gui/text/tips/persian_architecture.txt:4
 msgid "Build time lengthened by +20% as a consequence."
-msgstr ""
+msgstr "To pasekoje statymo trukmė prailgėja +20%."
 
 #: gui/text/tips/persian_architecture.txt:5
 msgid ""
@@ -4359,11 +4359,11 @@ msgstr ""
 
 #: gui/text/tips/pikemen.txt:1
 msgid "PIKEMEN"
-msgstr ""
+msgstr "IETININKAI"
 
 #: gui/text/tips/pikemen.txt:2
 msgid "Heavily armored and slow. Low attack."
-msgstr ""
+msgstr "Sunkiai šarvuoti ir lėti. Silpni puolime."
 
 #: gui/text/tips/pikemen.txt:3
 msgid ""
@@ -4382,23 +4382,23 @@ msgstr ""
 msgid ""
 "The heaviest standard warship. Available to: Carthaginians, Ptolemies, "
 "Romans, and Seleucids."
-msgstr ""
+msgstr "Sunkiausias standartinis karlaivis. Prieinamas: Kartaginiečiams, Ptolemiams, Romėnams ir Seulecidams."
 
 #: gui/text/tips/quinquereme.txt:3
 msgid "Transports up to 50 units."
-msgstr ""
+msgstr "Transportuoja iki 50 vienetų."
 
 #: gui/text/tips/quinquereme.txt:4
 msgid "Increases firepower with garrisoned catapults."
-msgstr ""
+msgstr "Didesnė šaunamoji gale, nuo katapultų sargyboje."
 
 #: gui/text/tips/savanna_biome.txt:1
 msgid "SAVANNA BIOME"
-msgstr ""
+msgstr "SAVANOS BIOMAS"
 
 #: gui/text/tips/savanna_biome.txt:2
 msgid "Generally flat, with a few watering holes and rocky outcrops."
-msgstr ""
+msgstr "Pagrinde lygus, su keletu balų ir uolėtais pakraščiais."
 
 #: gui/text/tips/savanna_biome.txt:3
 msgid "Chock full of herd animals for plentiful hunting."
@@ -4406,7 +4406,7 @@ msgstr ""
 
 #: gui/text/tips/savanna_biome.txt:4
 msgid "Rich in all types of mining."
-msgstr ""
+msgstr "Turtinga visų tipų kasinėjimui."
 
 #: gui/text/tips/savanna_biome.txt:5
 msgid "Wood tends to be sparse, but consists of high-yield Baobab trees."
@@ -4414,7 +4414,7 @@ msgstr ""
 
 #: gui/text/tips/scout_towers.txt:1
 msgid "DEFENSE TOWERS"
-msgstr ""
+msgstr "GYNYBINIAI BOKŠTAI"
 
 #: gui/text/tips/scout_towers.txt:2
 msgid "Free-standing towers good for defending large areas of countryside."
@@ -4424,7 +4424,7 @@ msgstr ""
 msgid ""
 "They usually cost 100 Wood and 100 Stone. Iberian Defense Towers cost 50 "
 "Wood and 250 Stone (because they're stronger)."
-msgstr ""
+msgstr "Jie įprastai kainuoja 100 Medienos ir 100 Akmens. Iberų Gynybiniai Bokštai kainuoja 50 Medienos ir 250 Arkmens (nes jie stipresni)."
 
 #: gui/text/tips/scout_towers.txt:4
 msgid "Has a ranged attack that increases for each garrisoned unit."
@@ -4456,33 +4456,33 @@ msgstr ""
 
 #: gui/text/tips/spartan_hoplites.txt:2
 msgid "Strongest infantry unit in the game."
-msgstr ""
+msgstr "Stipriausias pėstininkų vienetas žaidime."
 
 #: gui/text/tips/spartan_hoplites.txt:3
 msgid "Champion Infantry available to the Spartans."
-msgstr ""
+msgstr "Čempionų Pėstininkai prieinami Spartiečiams."
 
 #: gui/text/tips/spartan_hoplites.txt:4
 msgid ""
 "Use them to slaughter enemy cavalry or as a shock force to support your "
 "regular infantry."
-msgstr ""
+msgstr "Naudokite juos priešų kavalerijai paskersti arba kaip šturmo jėgą reguliarių pėstininkų paramai."
 
 #: gui/text/tips/spearmen.txt:1
 msgid "SPEARMEN"
-msgstr ""
+msgstr "IETININKAI"
 
 #: gui/text/tips/spearmen.txt:2
 msgid "The basic melee infantry for every faction in the game."
-msgstr ""
+msgstr "Paprasčiausi visų frakcijų, artimos kovos pėstininkai žaidime."
 
 #: gui/text/tips/spearmen.txt:3
 msgid "Used against cavalry for an attack bonus."
-msgstr ""
+msgstr "Naudojami prieš kavaleriją, dėl puolimo priedo."
 
 #: gui/text/tips/spearmen.txt:4
 msgid "Decent hack attack make them good front line troops."
-msgstr ""
+msgstr "Derama kirtimo ataka daro juos geromis priekinės linijos pajėgomis."
 
 #: gui/text/tips/spearmen.txt:5
 msgid ""
@@ -4492,104 +4492,104 @@ msgstr ""
 
 #: gui/text/tips/storehouses.txt:1
 msgid "STOREHOUSES"
-msgstr ""
+msgstr "TALPYKLOS"
 
 #: gui/text/tips/storehouses.txt:2
 msgid "A cheap dropsite for non-food resources (Wood, Stone, Metal)."
-msgstr ""
+msgstr "Pigi pakrovimo vieta ne maisto ištekliams (Medžo, Akmens, Metalo)."
 
 #: gui/text/tips/storehouses.txt:3
 msgid ""
 "Research technologies to improve the gathering capabilities of your "
 "citizens."
-msgstr ""
+msgstr "Tyrinėkite technologijas, civiliniam išteklų gavimo pajėgumui gerinti."
 
 #: gui/text/tips/temples.txt:1
 msgid "TEMPLES"
-msgstr ""
+msgstr "ŠVENTYKLOS"
 
 #: gui/text/tips/temples.txt:2
 msgid "Town Phase structure."
-msgstr ""
+msgstr "Miesto Fazės statinys."
 
 #: gui/text/tips/temples.txt:3
 msgid "Recruit Healers to heal your troops on the battlefield."
-msgstr ""
+msgstr "Ruoškite gydūnus, pagėgų gydymui mūšio lauke."
 
 #: gui/text/tips/temples.txt:4
 msgid "Research healing technologies."
-msgstr ""
+msgstr "Tyrinėti gydymo technologijas."
 
 #: gui/text/tips/temples.txt:5
 msgid "Its aura heals nearby units."
-msgstr ""
+msgstr "Jos aura gydo vienetus netoliese."
 
 #: gui/text/tips/temples.txt:6
 msgid "Garrison wounded units inside for quicker healing."
-msgstr ""
+msgstr "Palikite sužeistus vienetus viduje greitesniam gydymui."
 
 #: gui/text/tips/territory_decay.txt:1
 msgid "TERRITORY DECAY"
-msgstr ""
+msgstr "TERITORINIS NYKIMAS"
 
 #: gui/text/tips/territory_decay.txt:2
 msgid ""
 "Decay happens when structures are not connected to an allied Civil Center."
-msgstr ""
+msgstr "Nykimas vyksta kuomet statiniai nėra prijungti prie sąjungininkų Civilinio Centro."
 
 #: gui/text/tips/territory_decay.txt:3
 msgid ""
 "The decay process can be slowed down or reversed by garrisoning some units "
 "in the structure."
-msgstr ""
+msgstr "Nykimo procesas gali būti sulėtintas ar gryžtamas paliekant kažkiek vienetų statinyje."
 
 #: gui/text/tips/territory_decay.txt:4
 msgid ""
 "When the decay is completed, the structure will be given to the most "
 "influential neighbor."
-msgstr ""
+msgstr "Kuomet nykimas įsigaliojo, statinys bus atiduotas įtakingiausiam kaimynui."
 
 #: gui/text/tips/themistocles.txt:1
 msgid "THEMISTOCLES"
-msgstr ""
+msgstr "TEMISTOKLIS"
 
 #: gui/text/tips/themistocles.txt:2
 msgid ""
 "Athenian hero who commanded the Greeks at the great naval battles of "
 "Artemisium and Salamis."
-msgstr ""
+msgstr "Atėniečių herojus vadovavęs Graikams, didžiuose, jūriniuose Artemiso ir Saliamio mūšiuose."
 
 #: gui/text/tips/themistocles.txt:3
 msgid "All ships are built faster while he lives."
-msgstr ""
+msgstr "Kol jis gyvas, visi laivai statomi greičiau."
 
 #: gui/text/tips/themistocles.txt:4
 msgid "The ship he is garrisoned inside sails much faster."
-msgstr ""
+msgstr "Laivas su papildoma įgula, plaukia greičiau."
 
 #: gui/text/tips/triremes.txt:1
 msgid "TRIREME"
-msgstr ""
+msgstr "TRIREMA"
 
 #: gui/text/tips/triremes.txt:2
 msgid "The Medium Warship."
-msgstr ""
+msgstr "Vidutinis Karlaivis."
 
 #: gui/text/tips/triremes.txt:3
 msgid "Good for transporting or fighting."
-msgstr ""
+msgstr "Geras transportavimui ir kovojimui."
 
 #: gui/text/tips/triremes.txt:4
 msgid "Garrison troops aboard to increase fire power."
-msgstr ""
+msgstr "Pajėhos denyje padidina laivo šaudymo galią."
 
 #: gui/text/tips/viriato.txt:1
 msgid "VIRIATO"
-msgstr ""
+msgstr "VIRIJATO"
 
 #: gui/text/tips/viriato.txt:2
 msgid "Iberian hero of the Lusitani tribe."
-msgstr ""
+msgstr "Iberų Luzitano genties herojus."
 
 #: gui/text/tips/viriato.txt:3
 msgid ""
@@ -4605,15 +4605,15 @@ msgstr ""
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"
-msgstr "KOVOS DRAMBLIAI"
+msgstr "KARO DRAMBLIAI"
 
 #: gui/text/tips/war_elephants.txt:2
 msgid "Huge beasts from Africa and India, trained for war."
-msgstr ""
+msgstr "Didžiuliai Afrikos ir Indijos žverys, paruošti karui."
 
 #: gui/text/tips/war_elephants.txt:3
 msgid "High Food and Metal cost, but very powerful."
-msgstr ""
+msgstr "Didelė Maisto ir Metalo kaina, tačiau labai galingi."
 
 #: gui/text/tips/war_elephants.txt:4
 msgid ""
@@ -4627,23 +4627,23 @@ msgstr "BANGINIAI"
 
 #: gui/text/tips/whales.txt:2
 msgid "An oceanic resource."
-msgstr ""
+msgstr "Vandenyno išteklius."
 
 #: gui/text/tips/whales.txt:3
 msgid "2000 Food."
-msgstr ""
+msgstr "2000 Maisto."
 
 #: gui/text/tips/whales.txt:4
 msgid "Gatherable by Fishing Boats after the whale is killed."
-msgstr ""
+msgstr "Renkama žvejybinių laivų nužudžius banginį."
 
 #: gui/text/tips/whales.txt:5
 msgid "Roam around the oceans of the game and flee when attacked."
-msgstr ""
+msgstr "Plaukioje žaidimo vandenyne, užpulti sprunka."
 
 #: simulation/data/resources/food.jsondescription
 msgid "Harvest from animals, berry bushes, fish, or fields."
-msgstr ""
+msgstr "Renkama iš gyvūnų, uogų krūmų, žuvies ar laukų."
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -4658,7 +4658,7 @@ msgstr "Maistas"
 #: simulation/data/resources/food.jsonname
 msgctxt "withinSentence"
 msgid "Food"
-msgstr "Maistas"
+msgstr "maisto"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -4673,7 +4673,7 @@ msgstr "Žuvis"
 #: simulation/data/resources/food.jsonsubtypes.fish
 msgctxt "withinSentence"
 msgid "Fish"
-msgstr "Žuvis"
+msgstr "žuvies"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -4688,7 +4688,7 @@ msgstr "Vaisius"
 #: simulation/data/resources/food.jsonsubtypes.fruit
 msgctxt "withinSentence"
 msgid "Fruit"
-msgstr "Vaisius"
+msgstr "vaisių"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -4703,7 +4703,7 @@ msgstr "Grūdai"
 #: simulation/data/resources/food.jsonsubtypes.grain
 msgctxt "withinSentence"
 msgid "Grain"
-msgstr "Grūdai"
+msgstr "grūdų"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -4718,11 +4718,11 @@ msgstr "Mėsa"
 #: simulation/data/resources/food.jsonsubtypes.meat
 msgctxt "withinSentence"
 msgid "Meat"
-msgstr "Mėsa"
+msgstr "mėsos"
 
 #: simulation/data/resources/metal.jsondescription
 msgid "Mine from metal mines or quarries."
-msgstr ""
+msgstr "Kasti metalo kasyklose ar karjieruose."
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -4737,7 +4737,7 @@ msgstr "Metalas"
 #: simulation/data/resources/metal.jsonname
 msgctxt "withinSentence"
 msgid "Metal"
-msgstr "Metalas"
+msgstr "metalo"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -4752,11 +4752,11 @@ msgstr "Rūda"
 #: simulation/data/resources/metal.jsonsubtypes.ore
 msgctxt "withinSentence"
 msgid "Ore"
-msgstr "Rūda"
+msgstr "rūdos"
 
 #: simulation/data/resources/stone.jsondescription
 msgid "Mine from rocks, stone quarries or ruins."
-msgstr ""
+msgstr "Kasti iš uolų, karjierų ar griuvėsių."
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -4771,14 +4771,14 @@ msgstr "Akmuo"
 #: simulation/data/resources/stone.jsonname
 msgctxt "withinSentence"
 msgid "Stone"
-msgstr "Akmuo"
+msgstr "akmens"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: simulation/data/resources/stone.jsonsubtypes.rock
 msgctxt "firstWord"
 msgid "Rock"
-msgstr "Akmuo"
+msgstr "Uola"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase
@@ -4786,7 +4786,7 @@ msgstr "Akmuo"
 #: simulation/data/resources/stone.jsonsubtypes.rock
 msgctxt "withinSentence"
 msgid "Rock"
-msgstr "Akmuo"
+msgstr "uolų"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -4803,11 +4803,11 @@ msgstr "Griuvėsiai"
 #: simulation/data/resources/wood.jsonsubtypes.ruins
 msgctxt "withinSentence"
 msgid "Ruins"
-msgstr "Griuvėsiai"
+msgstr "griuvėsių"
 
 #: simulation/data/resources/wood.jsondescription
 msgid "Cut down from trees or groves."
-msgstr ""
+msgstr "Kirsti iš medžių ar krūmų."
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -4822,14 +4822,14 @@ msgstr "Mediena"
 #: simulation/data/resources/wood.jsonname
 msgctxt "withinSentence"
 msgid "Wood"
-msgstr "Mediena"
+msgstr "medienos"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: simulation/data/resources/wood.jsonsubtypes.tree
 msgctxt "firstWord"
 msgid "Tree"
-msgstr "Medis"
+msgstr "Medis1"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase
@@ -4837,4 +4837,4 @@ msgstr "Medis"
 #: simulation/data/resources/wood.jsonsubtypes.tree
 msgctxt "withinSentence"
 msgid "Tree"
-msgstr "Medis"
+msgstr "Medis2"

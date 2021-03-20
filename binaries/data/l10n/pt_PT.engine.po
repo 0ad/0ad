@@ -1,13 +1,12 @@
 # Translation template for Pyrogenesis.
-# Copyright (C) 2020 Wildfire Games
+# Copyright (C) 2021 Wildfire Games
 # This file is distributed under the same license as the Pyrogenesis project.
-# 
 # Translators:
 # e8f1a29f7bd45d2490d729ad149fc504_6eadd8e, 2015
 # André Rodrigues, 2013
 # G N <nunes.guilherme@gmail.com>, 2016
 # João Oliveira <jopebeol@gmail.com>, 2016
-# José Fernandes <rapazamistoso@gmail.com>, 2020
+# Damixinho <rapazamistoso@gmail.com>, 2020
 # Nuno de Mendonça Raimundo <nnraimundo@outlook.com>, 2014
 # Nuno de Mendonça Raimundo <nnraimundo@outlook.com>, 2013-2014
 # Pedro matias <pmsm1100@gmail.com>, 2015
@@ -19,9 +18,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-05-22 07:08+0000\n"
-"PO-Revision-Date: 2020-06-07 19:29+0000\n"
-"Last-Translator: José Fernandes <rapazamistoso@gmail.com>\n"
+"POT-Creation-Date: 2021-03-15 08:08+0000\n"
+"PO-Revision-Date: 2021-03-15 10:16+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,146 +28,176 @@ msgstr ""
 "Language: pt_PT\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: i18n/L10n.cpp:251
+#: graphics/CameraController.cpp:686
+#, c-format
+msgid "Scroll speed increased to %.1f"
+msgstr ""
+
+#: graphics/CameraController.cpp:692
+#, c-format
+msgid "Scroll speed decreased to %.1f"
+msgstr ""
+
+#: graphics/CameraController.cpp:699
+#, c-format
+msgid "Rotate speed increased to X=%.3f, Y=%.3f"
+msgstr ""
+
+#: graphics/CameraController.cpp:706
+#, c-format
+msgid "Rotate speed decreased to X=%.3f, Y=%.3f"
+msgstr ""
+
+#: graphics/CameraController.cpp:712
+#, c-format
+msgid "Zoom speed increased to %.1f"
+msgstr ""
+
+#: graphics/CameraController.cpp:718
+#, c-format
+msgid "Zoom speed decreased to %.1f"
+msgstr ""
+
+#: i18n/L10n.cpp:308
 msgid "Long strings"
 msgstr "Textos longos"
 
-#: lobby/XmppClient.cpp:887
+#: lobby/XmppClient.cpp:1007
 msgid "unknown subtype (see logs)"
 msgstr "subtipo desconhecido (consulta os registos)"
 
-#: lobby/XmppClient.cpp:1215
+#: lobby/XmppClient.cpp:1333
 msgid "The certificate is not trusted."
 msgstr "O certificado não é fidedigno."
 
-#: lobby/XmppClient.cpp:1216
+#: lobby/XmppClient.cpp:1334
 msgid "The certificate hasn't got a known issuer."
 msgstr "O certificado não tem um emissor conhecido."
 
-#: lobby/XmppClient.cpp:1217
+#: lobby/XmppClient.cpp:1335
 msgid "The certificate has been revoked."
 msgstr "O certificado foi revogado."
 
-#: lobby/XmppClient.cpp:1218
+#: lobby/XmppClient.cpp:1336
 msgid "The certificate has expired."
 msgstr "O certificado caducou."
 
-#: lobby/XmppClient.cpp:1219
+#: lobby/XmppClient.cpp:1337
 msgid "The certificate is not yet active."
 msgstr "O certificado ainda não se encontra ativo."
 
-#: lobby/XmppClient.cpp:1220
+#: lobby/XmppClient.cpp:1338
 msgid "The certificate has not been issued for the peer connected to."
 msgstr "O certificado não foi emitido para o ponto a que está ligado."
 
-#: lobby/XmppClient.cpp:1221
+#: lobby/XmppClient.cpp:1339
 msgid "The certificate signer is not a certificate authority."
 msgstr "O assinante do certificado não é uma autoridade de certificação."
 
-#: lobby/XmppClient.cpp:1243 lobby/XmppClient.cpp:1287
-#: lobby/XmppClient.cpp:1326
+#: lobby/XmppClient.cpp:1361 lobby/XmppClient.cpp:1405
+#: lobby/XmppClient.cpp:1444
 msgid "Error"
 msgstr "Erro"
 
-#: lobby/XmppClient.cpp:1246 lobby/XmppClient.cpp:1290
+#: lobby/XmppClient.cpp:1364 lobby/XmppClient.cpp:1408
 msgid "No error"
 msgstr "Sem erros"
 
-#: lobby/XmppClient.cpp:1248
+#: lobby/XmppClient.cpp:1366
 msgid "Player already logged in"
 msgstr "O jogador já se encontra autenticado"
 
-#: lobby/XmppClient.cpp:1250
+#: lobby/XmppClient.cpp:1368
 msgid "Forbidden"
 msgstr "Proibido"
 
-#: lobby/XmppClient.cpp:1252
+#: lobby/XmppClient.cpp:1370
 msgid "Internal server error"
 msgstr "Erro interno do servidor"
 
-#: lobby/XmppClient.cpp:1256
+#: lobby/XmppClient.cpp:1374
 msgid "Not allowed"
 msgstr "Não permitido"
 
-#: lobby/XmppClient.cpp:1257
+#: lobby/XmppClient.cpp:1375
 msgid "Not authorized"
 msgstr "Não autorizado"
 
-#: lobby/XmppClient.cpp:1260
+#: lobby/XmppClient.cpp:1378
 msgid "Recipient temporarily unavailable"
 msgstr "Destinatário temporariamente indisponível"
 
-#: lobby/XmppClient.cpp:1262
+#: lobby/XmppClient.cpp:1380
 msgid "Registration required"
 msgstr "Requer registo"
 
-#: lobby/XmppClient.cpp:1266
+#: lobby/XmppClient.cpp:1384
 msgid "Service unavailable"
 msgstr "Serviço indisponível"
 
-#: lobby/XmppClient.cpp:1271 lobby/XmppClient.cpp:1310
+#: lobby/XmppClient.cpp:1389 lobby/XmppClient.cpp:1428
 msgid "Unknown error"
 msgstr "Erro desconhecido"
 
-#: lobby/XmppClient.cpp:1291
+#: lobby/XmppClient.cpp:1409
 msgid "Stream error"
 msgstr "Erro de transmissão"
 
-#: lobby/XmppClient.cpp:1292
+#: lobby/XmppClient.cpp:1410
 msgid "The incoming stream version is unsupported"
 msgstr "A versão de transmissão recebida não é suportada"
 
-#: lobby/XmppClient.cpp:1293
+#: lobby/XmppClient.cpp:1411
 msgid "The stream has been closed by the server"
 msgstr "A transmissão foi encerrada pelo servidor"
 
-#: lobby/XmppClient.cpp:1297
+#: lobby/XmppClient.cpp:1415
 msgid "An I/O error occurred"
 msgstr " Ocorreu um erro de I/O"
 
-#: lobby/XmppClient.cpp:1299
+#: lobby/XmppClient.cpp:1417
 msgid "The connection was refused by the server"
 msgstr "A conexão foi recusada pelo servidor"
 
-#: lobby/XmppClient.cpp:1300
+#: lobby/XmppClient.cpp:1418
 msgid "Resolving the server's hostname failed"
 msgstr "Falha ao processar o nome do servidor"
 
-#: lobby/XmppClient.cpp:1301
+#: lobby/XmppClient.cpp:1419
 msgid "This system is out of memory"
 msgstr "Este sistema não tem mais memória disponível"
 
-#: lobby/XmppClient.cpp:1303
+#: lobby/XmppClient.cpp:1421
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
 msgstr "O certificado do servidor não pode ser verificado ou o handshake TLS não foi completado"
 
-#: lobby/XmppClient.cpp:1304
+#: lobby/XmppClient.cpp:1422
 msgid "The server did not offer required TLS encryption"
 msgstr "O servidor não forneceu a encriptação TLS necessária"
 
-#: lobby/XmppClient.cpp:1306
+#: lobby/XmppClient.cpp:1424
 msgid "Authentication failed. Incorrect password or account does not exist"
 msgstr "A autenticação falhou. A palavra-passe está errada ou a conta não existe"
 
-#: lobby/XmppClient.cpp:1307
+#: lobby/XmppClient.cpp:1425
 msgid "The user or system requested a disconnect"
 msgstr "O utilizador ou o sistema requisitou uma desconexão"
 
-#: lobby/XmppClient.cpp:1308
+#: lobby/XmppClient.cpp:1426
 msgid "There is no active connection"
 msgstr "Não existe uma conexão ativa"
 
-#: lobby/XmppClient.cpp:1329
+#: lobby/XmppClient.cpp:1447
 msgid "Your account has been successfully registered"
 msgstr "A tua conta foi registada com sucesso"
 
-#: lobby/XmppClient.cpp:1330
+#: lobby/XmppClient.cpp:1448
 msgid "Not all necessary information provided"
 msgstr "A Informação fornecida é insuficiente"
 
-#: lobby/XmppClient.cpp:1331
+#: lobby/XmppClient.cpp:1449
 msgid "Username already exists"
 msgstr "Nome de utilizador já existe"
 
@@ -202,25 +231,25 @@ msgstr "Não foi possível iniciar o descarregamento. Erro: %s; %s."
 msgid "Asynchronous download failure: %s, %s."
 msgstr "Falha de descarregamento assíncrono: %s, %s."
 
-#: ps/ModIo.cpp:426
+#: ps/ModIo.cpp:425
 #, c-format
 msgid "Download failure. Server response: %s; %s."
 msgstr "Falha no descarregamento. Resposta do servidor: %s; %s."
 
-#: ps/ModIo.cpp:529
+#: ps/ModIo.cpp:528
 msgid "Mismatched filesize."
 msgstr "O tamanho do ficheiro difere."
 
-#: ps/ModIo.cpp:547
+#: ps/ModIo.cpp:546
 #, c-format
 msgid "Invalid file. Expected md5 %s, got %s."
 msgstr "Ficheiro inválido. Era esperado md5 %s, mas foi obtido %s."
 
-#: ps/ModIo.cpp:562
+#: ps/ModIo.cpp:561
 msgid "Failed to compute final hash."
 msgstr "O processamento da hash final falhou."
 
-#: ps/ModIo.cpp:568
+#: ps/ModIo.cpp:567
 msgid "Failed to verify signature."
 msgstr "A verificação da assinatura falhou."
 
@@ -229,11 +258,11 @@ msgstr "A verificação da assinatura falhou."
 msgid "Saved game to '%s'"
 msgstr "Jogo guardado em '%s'"
 
-#: ps/Util.cpp:280 ps/Util.cpp:283 ps/Util.cpp:424 ps/Util.cpp:427
+#: ps/Util.cpp:289 ps/Util.cpp:292 ps/Util.cpp:437 ps/Util.cpp:440
 #, c-format
 msgid "Screenshot written to '%s'"
 msgstr "Captura de ecrã guardada em '%s'"
 
-#: ps/scripting/JSInterface_Debug.cpp:83
+#: ps/scripting/JSInterface_Debug.cpp:87
 msgid "custom build"
 msgstr "compilação personalizada"

@@ -3,7 +3,7 @@
  *
  * This is intended as a helper to create the settings object for a game.
  * This object is referred to as:
- *  - g_GameAttributes in the GUI session context
+ *  - g_InitAttributes in the GUI session context
  *  - InitAttributes in the JS simulation context
  *  - Either InitAttributes or MapSettings in the C++ simulation.
  * Settings can depend on each other, and the map provides many.
@@ -89,10 +89,10 @@ class GameSettings
 	/**
 	 * Send the game settings to the server.
 	 */
-	setNetworkGameAttributes()
+	setNetworkInitAttributes()
 	{
 		if (this.isNetworked && this.isController)
-			Engine.SetNetworkGameAttributes(this.toInitAttributes());
+			Engine.SetNetworkInitAttributes(this.toInitAttributes());
 	}
 
 	/**
@@ -128,7 +128,7 @@ class GameSettings
 		this.pickRandomItems();
 
 		Engine.SetRankedGame(this.rating.enabled);
-		this.setNetworkGameAttributes();
+		this.setNetworkInitAttributes();
 
 		// Replace player names with the real players.
 		for (let guid in playerAssignments)

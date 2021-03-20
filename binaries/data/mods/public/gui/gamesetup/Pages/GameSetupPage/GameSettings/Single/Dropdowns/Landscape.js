@@ -70,7 +70,7 @@ GameSettingControls.Landscape = class Landscape extends GameSettingControlDropdo
 	onSelectionChange(itemIdx)
 	{
 		g_GameSettings.landscape.setValue(this.values.Id[itemIdx]);
-		this.gameSettingsControl.setNetworkGameAttributes();
+		this.gameSettingsControl.setNetworkInitAttributes();
 	}
 };
 

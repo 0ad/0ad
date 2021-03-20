@@ -221,7 +221,7 @@ JS::Value PollNetworkClient(const ScriptInterface& scriptInterface)
 	return scriptInterface.CloneValueFromOtherCompartment(g_NetClient->GetScriptInterface(), pollNet);
 }
 
-void SetNetworkGameAttributes(const ScriptInterface& scriptInterface, JS::HandleValue attribs1)
+void SetNetworkInitAttributes(const ScriptInterface& scriptInterface, JS::HandleValue attribs1)
 {
 	ENSURE(g_NetClient);
 
@@ -293,7 +293,7 @@ void RegisterScriptFunctions(const ScriptRequest& rq)
 	ScriptFunction::Register<&DisconnectNetworkGame>(rq, "DisconnectNetworkGame");
 	ScriptFunction::Register<&GetPlayerGUID>(rq, "GetPlayerGUID");
 	ScriptFunction::Register<&PollNetworkClient>(rq, "PollNetworkClient");
-	ScriptFunction::Register<&SetNetworkGameAttributes>(rq, "SetNetworkGameAttributes");
+	ScriptFunction::Register<&SetNetworkInitAttributes>(rq, "SetNetworkInitAttributes");
 	ScriptFunction::Register<&AssignNetworkPlayer>(rq, "AssignNetworkPlayer");
 	ScriptFunction::Register<&KickPlayer>(rq, "KickPlayer");
 	ScriptFunction::Register<&SendNetworkChat>(rq, "SendNetworkChat");

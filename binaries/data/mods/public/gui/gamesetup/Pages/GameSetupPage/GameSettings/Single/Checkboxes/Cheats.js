@@ -26,7 +26,7 @@ GameSettingControls.Cheats = class Cheats extends GameSettingControlCheckbox
 	onPress(checked)
 	{
 		g_GameSettings.cheats.setEnabled(!g_IsNetworked || checked);
-		this.gameSettingsControl.setNetworkGameAttributes();
+		this.gameSettingsControl.setNetworkInitAttributes();
 	}
 };
 

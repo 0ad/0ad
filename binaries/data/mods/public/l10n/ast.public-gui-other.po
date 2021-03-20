@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-03-08 08:15+0000\n"
-"PO-Revision-Date: 2021-03-09 21:44+0000\n"
+"PO-Revision-Date: 2021-03-19 02:12+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -57,7 +57,7 @@ msgstr "Gaia"
 #: gui/common/functions_utility.js:236
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
-msgstr "Construyir: %(buildDate)s (%(revision)s)"
+msgstr "Compilación: %(buildDate)s (%(revision)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
@@ -221,7 +221,7 @@ msgstr "Partida clasificada"
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
-msgstr "En ganando daquién l'alcuentru, va anovase'l marcador na sala."
+msgstr "Al ganar daquién l'alcuentru, anuévase'l marcador n'antepar."
 
 #: gui/common/gamedescription.js:258
 msgid "Locked Teams"
@@ -448,7 +448,7 @@ msgstr "Versión incorreuta del protocolu de rede."
 
 #: gui/common/network.js:69
 msgid "Game is loading, please try again later."
-msgstr "La partida ta cargándose, vuelvi a tentalo más sero."
+msgstr "La partida ta cargándose, volvi a tentalo más sero."
 
 #: gui/common/network.js:70
 msgid "Game has already started, no observers allowed."
@@ -472,7 +472,7 @@ msgstr "El sirvidor ta enllén."
 
 #: gui/common/network.js:75
 msgid "Secure lobby authentication failed. Join via lobby."
-msgstr "Falló l'autenticación segura de la sala. Xúnite pela sala."
+msgstr "Falló l'autenticación segura. Hai que xunise pel antepar."
 
 #: gui/common/network.js:76
 msgid "Error: Server failed to allocate a unique client identifier."
@@ -1490,7 +1490,7 @@ msgstr "Tolos atayos"
 
 #: gui/hotkeys/HotkeysPage.js:118
 msgid "No tooltip available"
-msgstr ""
+msgstr "Nun hai conseyos disponibles"
 
 #: gui/hotkeys/HotkeysPage.js:151
 msgid ""
@@ -1522,7 +1522,7 @@ msgstr "Atayu"
 
 #: gui/hotkeys/hotkeys.xml:(caption):76
 msgid "Hotkey Description"
-msgstr ""
+msgstr "Descripción"
 
 #: gui/hotkeys/hotkeys.xml:(caption):80
 msgid ""
@@ -1805,12 +1805,12 @@ msgstr "Cada mapa del tipu escoyíu."
 
 #: gui/maps/mapbrowser/MapBrowser.xml:(caption):14
 msgid "Map Browser"
-msgstr ""
+msgstr "Restolador de mapes"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:31
 #, javascript-format
 msgid "%(hotkey)s: Close map browser and discard the selection."
-msgstr ""
+msgstr "%(hotkey)s: Zarrar el restolador de mapes y escartar la esbilla."
 
 #: gui/credits/credits.xml:(caption):32 gui/hotkeys/hotkeys.xml:(caption):58
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:34
@@ -1822,7 +1822,7 @@ msgstr "Zarrar"
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:36
 #, javascript-format
 msgid "%(hotkey)s: Close map browser."
-msgstr ""
+msgstr "%(hotkey)s: Zarrar el restolador de mapes."
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):15
 msgctxt "zoom in"
@@ -1836,15 +1836,15 @@ msgstr "−"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):26
 msgid "Search Map:"
-msgstr ""
+msgstr "Guetar mapa:"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):38
 msgid "Map Filter:"
-msgstr ""
+msgstr "Peñera:"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):48
 msgid "Pick Random Map"
-msgstr ""
+msgstr "Escoyer un mapa al debalu"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):54
 msgctxt "map selection dialog"
@@ -1930,7 +1930,7 @@ msgstr "Nome del xugador (un xugador)"
 
 #: gui/options/options.json[0].options[0].tooltip
 msgid "How you want to be addressed in single-player matches."
-msgstr "La forma en que quieras que te llamen nos alcuentros d'un xugador."
+msgstr "El llamatu de to al xugar solu."
 
 #: gui/options/options.json[0].options[10].label
 msgid "Observer limit"
@@ -1954,7 +1954,7 @@ msgstr "Nome del xugador (multixugador)"
 
 #: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in multiplayer matches (except lobby)."
-msgstr "La forma en que quieras que te llamen nos alcuentros multixugador (sacante la sala)."
+msgstr "El llamatu de to nos alcuentros de dellos xugadores (sacante n'antepar)."
 
 #: gui/options/options.json[0].options[2].label
 msgid "Background pause"
@@ -1962,7 +1962,7 @@ msgstr "Posa de fondu"
 
 #: gui/options/options.json[0].options[2].tooltip
 msgid "Pause single-player games when window loses focus."
-msgstr "Posar partíes d'un xugador si se desenfoca la ventana."
+msgstr "Posar la partida privada si se desenfoca la ventana."
 
 #: gui/options/options.json[0].options[3].label
 msgid "Enable welcome screen"
@@ -2483,7 +2483,7 @@ msgstr "Asignar automáticamente a veceros que tean xuniéndose rales llibres pa
 
 #: gui/options/options.json[4].label
 msgid "Lobby"
-msgstr "Sala"
+msgstr "Antepar"
 
 #: gui/options/options.json[4].options[0].label
 msgid "TLS encryption"
@@ -2492,7 +2492,7 @@ msgstr "Cifráu TLS"
 #: gui/options/options.json[4].options[0].tooltip
 msgid ""
 "Protect login and data exchanged with the lobby server using TLS encryption."
-msgstr "Protexi información d'aniciu de sesión & datos intercambiaos col sirvidor de la sala emplegando'l cifráu TLS."
+msgstr "Usar el cifráu TLS pa protexer l'aniciu de sesión y otros datos intercambiaos col sirvidor del antepar."
 
 #: gui/options/options.json[4].options[1].label
 msgid "Chat backlog"
@@ -2500,7 +2500,7 @@ msgstr "Aneyadura de charra"
 
 #: gui/options/options.json[4].options[1].tooltip
 msgid "Number of backlogged messages to load when joining the lobby."
-msgstr "El númberu de mensaxes atrasaos a cargar al xunise a la sala."
+msgstr "El númberu de mensaxes atrasaos a cargar al xunise al antepar."
 
 #: gui/options/options.json[4].options[2].label
 msgid "Game rating column"
@@ -2815,7 +2815,7 @@ msgstr "Deprender a xugar"
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations."
-msgstr "Depriendi a xugar, entama'l tutorial, descubri los árboles teunolóxicos ya la historia detrás de les civilizaciones."
+msgstr "Deprender a xugar, entamar el tutorial, descubrir los árboles teunolóxicos y la historia detrás de les civilizaciones."
 
 #: gui/pregame/MainMenuItems.js:7
 msgid "Manual"
@@ -2849,20 +2849,20 @@ msgstr "%(hotkey)s: Ver les construcciones de les civilizaciones qu'apaecen en 0
 #: gui/reference/civinfo/civinfo.xml:(caption):21
 #: gui/reference/common/Buttons/CivInfoButton.js:21
 msgid "Civilization Overview"
-msgstr "Una güeyada a la civilización"
+msgstr "Güeyada a les civilizaciones"
 
 #: gui/pregame/MainMenuItems.js:38
 #, javascript-format
 msgid "%(hotkey)s: Learn about the civilizations featured in 0 A.D."
-msgstr "%(hotkey)s: Deprender sobro les civilizaciones qu'apaecen en 0 A.D.  "
+msgstr "%(hotkey)s: Descubrir les civilizaciones qu'apaecen en 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:49
 msgid "Catafalque Overview"
-msgstr "Güeyada a les catafalques"
+msgstr "Güeyada a los catafalcos"
 
 #: gui/pregame/MainMenuItems.js:50
 msgid "Compare the bonuses of catafalques featured in 0 A.D."
-msgstr "Compara les ventayes de les catafalques qu'apaecen en 0 A.D."
+msgstr "Comparar les ventayes de los catafalcos qu'apaecen en 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:56
 msgid "Map Overview"
@@ -2870,11 +2870,11 @@ msgstr "Güeyada a los mapes"
 
 #: gui/pregame/MainMenuItems.js:57
 msgid "View the different maps featured in 0 A.D."
-msgstr "Ver los mapes que s'inxeren en 0 A.D."
+msgstr "Ver los mapes qu'apaecen en 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:65 gui/pregame/MainMenuItems.js:93
 msgid "Continue Campaign"
-msgstr ""
+msgstr "Siguir cola campaña"
 
 #: gui/pregame/MainMenuItems.js:66 gui/pregame/MainMenuItems.js:94
 #: gui/pregame/MainMenuItems.js:104 gui/pregame/MainMenuItems.js:111
@@ -2887,7 +2887,7 @@ msgstr "Un xugador"
 
 #: gui/pregame/MainMenuItems.js:76
 msgid "Start, load, or replay a single-player game."
-msgstr "Entamar, cargar o repitir una partida d'un xugador."
+msgstr "Entamar, cargar o repetir una partida privada."
 
 #: gui/pregame/MainMenuItems.js:79
 msgid "Matches"
@@ -2895,7 +2895,7 @@ msgstr "Alcuentros"
 
 #: gui/pregame/MainMenuItems.js:80
 msgid "Start a new single-player game."
-msgstr "Entamar una partida d'un xugador nueva."
+msgstr "Entamar una partida privada nueva."
 
 #: gui/pregame/MainMenuItems.js:87
 msgid "Load a saved game."
@@ -2919,43 +2919,43 @@ msgstr "Reproducir partíes anteriores."
 
 #: gui/pregame/MainMenuItems.js:135 gui/replaymenu/replay_filters.js:144
 msgid "Multiplayer"
-msgstr "Multixugador"
+msgstr "Dellos xugadores"
 
 #: gui/pregame/MainMenuItems.js:136
 msgid "Fight against one or more human players in a multiplayer game."
-msgstr "Llucha escontra un xugador humanu o más nuna partida multixugador."
+msgstr "Batallar con una o más persones na rede."
 
 #. Translation: Join a game by specifying the host's IP address.
 #: gui/pregame/MainMenuItems.js:140
 msgid "Join Game"
-msgstr "Xunise a la partida"
+msgstr "Xunise"
 
 #: gui/pregame/MainMenuItems.js:141
 msgid "Joining an existing multiplayer game."
-msgstr "Xuniéndose a una partida multixugador esistente."
+msgstr "Xunise a una partida de dellos xugadores."
 
 #: gui/pregame/MainMenuItems.js:149
 msgid "Host Game"
-msgstr "Agospiar partida"
+msgstr "Agospiar"
 
 #: gui/pregame/MainMenuItems.js:150
 msgid "Host a multiplayer game."
-msgstr "Agospia una partida multixugador."
+msgstr "Agospiar una partida de dellos xugadores."
 
 #: gui/pregame/MainMenuItems.js:158
 msgid "Game Lobby"
-msgstr "Sala de la partida"
+msgstr "Antepar"
 
 #: gui/pregame/MainMenuItems.js:160
 #, javascript-format
 msgid ""
 "%(hotkey)s: Launch the multiplayer lobby to join and host publicly visible "
 "games and chat with other players."
-msgstr "%(hotkey)s: Llanciar la sala multixugador p'agospiar & xunise a partíes visibles públicamente & charrar con otros xugadores."
+msgstr "%(hotkey)s: Llanzar l'antepar p'agospiar o xunise a partíes públiques y charrar con otros xugadores."
 
 #: gui/pregame/MainMenuItems.js:161
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
-msgstr "Llanciar la sala multixugador. \\[DISABLED BY BUILD]"
+msgstr "Llanzar l'antepar. \\[DESACTIVAO NESTA COMPILACIÓN]"
 
 #: gui/pregame/MainMenuItems.js:185
 msgid "Settings"
@@ -2963,7 +2963,7 @@ msgstr "Axustes"
 
 #: gui/pregame/MainMenuItems.js:186
 msgid "Change game options."
-msgstr "Camudar opciones del xuegu."
+msgstr "Cambiar los axustes del xuegu."
 
 #: gui/pregame/MainMenuItems.js:189
 msgid "Options"
@@ -2971,7 +2971,7 @@ msgstr "Opciones"
 
 #: gui/pregame/MainMenuItems.js:190
 msgid "Adjust game settings."
-msgstr "Camuda los axustes del xuegu."
+msgstr "Camudar los axustes del xuegu."
 
 #: gui/hotkeys/hotkeys.xml:(caption):14 gui/pregame/MainMenuItems.js:199
 msgid "Hotkeys"
@@ -2979,7 +2979,7 @@ msgstr "Atayos"
 
 #: gui/pregame/MainMenuItems.js:200
 msgid "Adjust hotkeys."
-msgstr "Camuda los atayos."
+msgstr "Camudar los atayos."
 
 #: gui/locale/locale.xml:(caption):14 gui/pregame/MainMenuItems.js:206
 msgid "Language"
@@ -2995,7 +2995,7 @@ msgstr "Esbilla de camudos"
 
 #: gui/pregame/MainMenuItems.js:214
 msgid "Select and download mods for the game."
-msgstr "Esbillar & baxar camudos pal xuegu."
+msgstr "Esbillar y baxar camudos pal xuegu."
 
 #: gui/pregame/MainMenuItems.js:220
 msgid "Welcome Screen"
@@ -3003,27 +3003,27 @@ msgstr "Pantalla d'acoyida"
 
 #: gui/pregame/MainMenuItems.js:221
 msgid "Show the Welcome Screen again. Useful if you hid it by mistake."
-msgstr "Volver amosar la pantalla d'acoyida. Ye útil si la anubriesti ensin querer."
+msgstr "Volver amosar la pantalla d'acoyida por si s'anubriere ensin querer."
 
 #: gui/pregame/MainMenuItems.js:229
 msgid "Scenario Editor"
-msgstr "Editor d'escenarios"
+msgstr "Iguador cartográficu"
 
 #: gui/pregame/MainMenuItems.js:230
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
-msgstr "Abrir l'editor d'escenarios Atlas nuna ventana nueva. Pues executalu con menos fallos entamando'l xuegu pela llinia de comandos col argumentu «-editor»."
+msgstr "Abrir l'iguador cartográficu Atles nuna ventana nueva. Esti execútase meyor si anicies el xuegu col argumentu «-editor»."
 
 #: gui/pregame/MainMenuItems.js:235
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
-msgstr "¿De xuru que quies colar de 0 A.D. & abrir l'editor d'escenarios?"
+msgstr "¿De xuru que quies colar de 0 A.D. y abrir l'iguador cartográficu?"
 
 #: gui/pregame/MainMenuItems.js:242
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
-msgstr "L'editor d'escenarios nun ta disponible o falló al cargase. Mira los rexistros del xuegu pa más información."
+msgstr "L'iguador cartográficu o nun ta disponible o falló al cargase. Pues atopar más información nos rexistros del xuegu."
 
 #: gui/pregame/MainMenuItems.js:243 gui/replaymenu/replay_actions.js:117
 msgid "Error"
@@ -3061,7 +3061,7 @@ msgstr "Alfa XXV: Y——"
 msgid ""
 "Notice: This game is under development and many features have not been added"
 " yet."
-msgstr "Avisu: El xuegu sigue en desendolcu & munches carauterístiques queden por amestar."
+msgstr "Avisu: El xuegu sigue en desendolcu y entá queden munchos elementos por amestar."
 
 #: gui/pregame/ProjectInformation.js:25
 msgid "Website"
@@ -3145,11 +3145,11 @@ msgstr "falló la xubida (%(errorMessage)s)"
 
 #: gui/pregame/userreport/userreport.js:61
 msgid "Disable Feedback"
-msgstr "Deactivar informes"
+msgstr "Desactivar los informes"
 
 #: gui/pregame/userreport/userreport.js:61
 msgid "Enable Feedback"
-msgstr "Activar informes"
+msgstr "Activar los informes"
 
 #: gui/pregame/userreport/userreport.js:81
 msgid "Thank you for helping improve 0 A.D.!"
@@ -3176,16 +3176,16 @@ msgstr "¡Ayuda a ameyorar 0 A.D.!"
 msgid ""
 "You can automatically send us feedback that can help us fix bugs, and "
 "improve performance and compatibility."
-msgstr "Pues unviamos automáticamente informes que mos ayuden a iguar fallos & ameyorar el rindimientu & compatibilidá."
+msgstr "Puedes unvianos informes automáticos p'ayudar a iguar fallos y ameyorar el rindimientu y la compatibilidá."
 
 #: gui/reference/catafalque/CatafalquePage.js:41
 #, javascript-format
 msgid "%(hotkey)s: Close Catafalque Bonuses."
-msgstr ""
+msgstr "%(hotkey)s: Zarrar les ventayes de los catafalcos."
 
 #: gui/reference/catafalque/catafalque.xml:(caption):18
 msgid "Catafalque Bonuses"
-msgstr ""
+msgstr "Ventayes de los catafalcos"
 
 #. Translation: Description of an item in the CivInfo page, on a new line and
 #. indented.
@@ -3210,7 +3210,7 @@ msgstr "• %(name)s %(info_icon)s%(description)s"
 #: gui/reference/civinfo/CivInfoPage.js:113
 #, javascript-format
 msgid "%(hotkey)s: Close Civilization Overview."
-msgstr "%(hotkey)s: Zarrar la güeyada a la civilización."
+msgstr "%(hotkey)s: Zarrar la güeyada a la civilizaciones."
 
 #: gui/reference/civinfo/Sections/GameplaySection.js:30
 #, javascript-format
@@ -3255,7 +3255,7 @@ msgstr[1] "Teunoloxíes específiques"
 #: gui/reference/common/Buttons/CivInfoButton.js:27
 #, javascript-format
 msgid "%(hotkey)s: Switch to Civilization Overview."
-msgstr "%(hotkey)s: Cambiar a la güeyada a la civilización"
+msgstr "%(hotkey)s: Cambiar a la güeyada a les civilizaciones"
 
 #: gui/reference/common/Buttons/StructreeButton.js:27
 #, javascript-format
@@ -3429,7 +3429,7 @@ msgstr "%(min)s - %(max)s mín"
 
 #: gui/replaymenu/replay_filters.js:144
 msgid "Single-player and multiplayer"
-msgstr "Un xugador & multixugador"
+msgstr "Un xugador y dellos xugadores"
 
 #: gui/replaymenu/replay_filters.js:157
 msgid "Any victory condition"
@@ -3530,7 +3530,7 @@ msgstr "Reconstruyir el caxé de la repetición dende cero. ¡Pue tardar!"
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
 "[font=\"sans-bold-20\"]  Thank you for installing 0 A.D. Empires Ascendant!"
-msgstr "[font=\"sans-bold-20\"] Gracies por instalar 0 A.D. Empires Ascendant!"
+msgstr "[font=\"sans-bold-20\"] ¡Gracies por instalar 0 A.D. Empires Ascendant!"
 
 #: gui/splashscreen/splashscreen.txt:3
 msgid "[font=\"sans-16\"]"
@@ -3540,19 +3540,19 @@ msgstr "[font=\"sans-16\"]"
 msgid ""
 "[imgleft=\"constructionIcon\"]This game is still in development. Features "
 "are missing and it contains bugs."
-msgstr "[imgleft=\"constructionIcon\"]Esti xuegu sigue en desendolcu. Escarez de carauterístiques & contién fallos."
+msgstr "[imgleft=\"constructionIcon\"]El xuegu sigue en desendolcu, asina qu'escarez d'elementos y contién fallos."
 
 #: gui/splashscreen/splashscreen.txt:6
 msgid ""
 "[imgleft=\"iconLag\"]The game can have performance problems, especially with"
 " large maps and a great number of units."
-msgstr "[imgleft=\"iconLag\"]Esti xuegu pue tener problemes de rindimientu, sobre manera con mapes grandes & bien d'unidaes."
+msgstr "[imgleft=\"iconLag\"]Pue haber problemes de rindimientu, sobre manera nos mapes grandes y con abondes unidaes."
 
 #: gui/splashscreen/splashscreen.txt:8
 msgid ""
 "[imgleft=\"iconFormation\"]Formations are a work in progress, but you can "
 "toggle forming and disbanding formations as desired."
-msgstr "[imgleft=\"iconFormation\"]Tamos trabayando nes formaciones, pero pues activales/desactivales como quieras."
+msgstr "[imgleft=\"iconFormation\"]Les formaciones aínda tán n'ellaboración, masque pues activales o desactivales como quieras."
 
 #: gui/splashscreen/splashscreen.xml:(caption):14
 msgid "Welcome!"
@@ -3560,7 +3560,7 @@ msgstr "¡Afáyate!"
 
 #: gui/splashscreen/splashscreen.xml:(caption):19
 msgid "Show this message in the future"
-msgstr "Amosar esti mensaxe en futuru"
+msgstr "Volver amosar esti mensaxe"
 
 #: gui/splashscreen/splashscreen.xml:(caption):25
 msgid "Known Issues (web)"
@@ -3910,7 +3910,7 @@ msgstr "%(mapName)s - %(mapType)s"
 #: gui/summary/summary.js:544
 #, javascript-format
 msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
-msgstr "%(hotkey)s: Activar la sala multixugador nun ventanu de diálogu."
+msgstr "%(hotkey)s: Llanzar, zarrar el ventanu del antepar."
 
 #: gui/summary/summary.js:557
 #, javascript-format
@@ -4276,7 +4276,7 @@ msgstr "Una muria de madera rápida, barata & disponible a toles faiciones. "
 
 #: gui/text/tips/palisades.txt:3
 msgid "Most factions have access to them in Village Phase."
-msgstr "Les más de les faiciones disponen d'elles na fas del llugar. "
+msgstr "Les más de les faiciones disponen d'elles na fas aldeana. "
 
 #: gui/text/tips/pericles.txt:1
 msgid "PERICLES"
@@ -4469,7 +4469,7 @@ msgstr "TEMPLOS"
 
 #: gui/text/tips/temples.txt:2
 msgid "Town Phase structure."
-msgstr "Construcción de villa."
+msgstr "Construcción villana."
 
 #: gui/text/tips/temples.txt:3
 msgid "Recruit Healers to heal your troops on the battlefield."

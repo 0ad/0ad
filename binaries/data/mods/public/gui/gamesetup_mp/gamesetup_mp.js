@@ -21,7 +21,7 @@ var g_ServerHasPassword = false;
 var g_ServerId;
 
 var g_IsRejoining = false;
-var g_GameAttributes; // used when rejoining
+var g_InitAttributes; // used when rejoining
 var g_PlayerAssignments; // used when rejoining
 var g_UserRating;
 
@@ -227,7 +227,7 @@ function pollAndHandleNetworkClient()
 				break;
 
 			case "gamesetup":
-				g_GameAttributes = message.data;
+				g_InitAttributes = message.data;
 				break;
 
 			case "players":
@@ -240,11 +240,11 @@ function pollAndHandleNetworkClient()
 				{
 					let player = g_PlayerAssignments[guid];
 					if (player.player > 0)	// not observer or GAIA
-						g_GameAttributes.settings.PlayerData[player.player - 1].Name = player.name;
+						g_InitAttributes.settings.PlayerData[player.player - 1].Name = player.name;
 				}
 
 				Engine.SwitchGuiPage("page_loading.xml", {
-					"attribs": g_GameAttributes,
+					"attribs": g_InitAttributes,
 					"isRejoining": g_IsRejoining,
 					"playerAssignments": g_PlayerAssignments
 				});

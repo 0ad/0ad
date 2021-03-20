@@ -65,7 +65,7 @@ GameSettingControls.MapSelection = class MapSelection extends GameSettingControl
 		if (this.values.file.indexOf(g_GameSettings.map.map) === -1)
 		{
 			g_GameSettings.map.selectMap(this.values.file[this.values.Default]);
-			this.gameSettingsControl.setNetworkGameAttributes();
+			this.gameSettingsControl.setNetworkInitAttributes();
 		}
 		// The index may have changed: reset.
 		this.setSelectedValue(g_GameSettings.map.map);
@@ -87,7 +87,7 @@ GameSettingControls.MapSelection = class MapSelection extends GameSettingControl
 			return;
 		this.reRenderTimeout = setTimeout(() => {
 			g_GameSettings.map.selectMap(this.values.file[itemIdx]);
-			this.gameSettingsControl.setNetworkGameAttributes();
+			this.gameSettingsControl.setNetworkInitAttributes();
 			delete this.reRenderTimeout;
 		}, 0);
 	}

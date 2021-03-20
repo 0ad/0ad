@@ -21,7 +21,7 @@ class ResetTeamsButton
 		for (let i = 0; i < g_GameSettings.playerCount.nbPlayers; ++i)
 			g_GameSettings.playerTeam.setValue(i, -1);
 
-		this.gameSettingsControl.setNetworkGameAttributes();
+		this.gameSettingsControl.setNetworkInitAttributes();
 	}
 }
 

@@ -4,7 +4,7 @@
  * 1. Ensure that the host cannot start the game unless all clients agreed on the game settings using the ready system.
  *
  * TODO:
- * 2. Ensure that the host cannot start the game with GameAttributes different from the agreed ones.
+ * 2. Ensure that the host cannot start the game with InitAttributes different from the agreed ones.
  * This may be achieved by:
  * - Determining the seed collectively.
  * - passing the agreed game settings to the engine when starting the game instance

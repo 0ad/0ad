@@ -187,9 +187,11 @@ void CCamera::GetViewQuad(float dist, Quad& quad) const
 
 void CCamera::BuildCameraRay(int px, int py, CVector3D& origin, CVector3D& dir) const
 {
+	ENSURE(m_ProjType == ProjectionType::PERSPECTIVE || m_ProjType == ProjectionType::ORTHO);
+
 	// Coordinates relative to the camera plane.
-	const float dx = static_cast<float>(px) / g_Renderer.GetWidth();
-	const float dy = 1.0f - static_cast<float>(py) / g_Renderer.GetHeight();
+	const float dx = static_cast<float>(px) / m_ViewPort.m_Width;
+	const float dy = 1.0f - static_cast<float>(py) / m_ViewPort.m_Height;
 
 	Quad points;
 	GetViewQuad(m_FarPlane, points);
@@ -199,14 +201,21 @@ void CCamera::BuildCameraRay(int px, int py, CVector3D& origin, CVector3D& dir) 
 		point = m_Orientation.Transform(point);
 
 	// Get world space position of mouse point at the far clipping plane.
-	CVector3D basisX = points[1] - points[0];
-	CVector3D basisY = points[3] - points[0];
-	CVector3D targetPoint = points[0] + (basisX * dx) + (basisY * dy);
+	const CVector3D basisX = points[1] - points[0];
+	const CVector3D basisY = points[3] - points[0];
 
-	origin = m_Orientation.GetTranslation();
-
-	// Build direction for the camera origin to the target point.
-	dir = targetPoint - origin;
+	if (m_ProjType == ProjectionType::PERSPECTIVE)
+	{
+		// Build direction for the camera origin to the target point.
+		origin = m_Orientation.GetTranslation();
+		CVector3D targetPoint = points[0] + (basisX * dx) + (basisY * dy);
+		dir = targetPoint - origin;
+	}
+	else if (m_ProjType == ProjectionType::ORTHO)
+	{
+		origin = m_Orientation.GetTranslation() + (basisX * (dx - 0.5f)) + (basisY * (dy - 0.5f));
+		dir = m_Orientation.GetIn();
+	}
 	dir.Normalize();
 }
 
@@ -218,8 +227,8 @@ void CCamera::GetScreenCoordinates(const CVector3D& world, float& x, float& y) c
 
 	x = screenspace.X / screenspace.W;
 	y = screenspace.Y / screenspace.W;
-	x = (x + 1) * 0.5f * g_Renderer.GetWidth();
-	y = (1 - y) * 0.5f * g_Renderer.GetHeight();
+	x = (x + 1) * 0.5f * m_ViewPort.m_Width;
+	y = (1 - y) * 0.5f * m_ViewPort.m_Height;
 }
 
 CVector3D CCamera::GetWorldCoordinates(int px, int py, bool aboveWater) const

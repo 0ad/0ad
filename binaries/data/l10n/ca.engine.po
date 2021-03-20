@@ -1,7 +1,6 @@
 # Translation template for Pyrogenesis.
-# Copyright (C) 2020 Wildfire Games
+# Copyright (C) 2021 Wildfire Games
 # This file is distributed under the same license as the Pyrogenesis project.
-# 
 # Translators:
 # Adrià Palouzié <adriapalouzie@gmail.com>, 2018
 # Catalanoic <catalanoic@gmail.com>, 2013
@@ -16,9 +15,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-05-22 07:08+0000\n"
-"PO-Revision-Date: 2020-06-07 21:54+0000\n"
-"Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
+"POT-Creation-Date: 2021-03-15 08:08+0000\n"
+"PO-Revision-Date: 2021-03-15 10:16+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,146 +25,176 @@ msgstr ""
 "Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: i18n/L10n.cpp:251
+#: graphics/CameraController.cpp:686
+#, c-format
+msgid "Scroll speed increased to %.1f"
+msgstr ""
+
+#: graphics/CameraController.cpp:692
+#, c-format
+msgid "Scroll speed decreased to %.1f"
+msgstr ""
+
+#: graphics/CameraController.cpp:699
+#, c-format
+msgid "Rotate speed increased to X=%.3f, Y=%.3f"
+msgstr ""
+
+#: graphics/CameraController.cpp:706
+#, c-format
+msgid "Rotate speed decreased to X=%.3f, Y=%.3f"
+msgstr ""
+
+#: graphics/CameraController.cpp:712
+#, c-format
+msgid "Zoom speed increased to %.1f"
+msgstr ""
+
+#: graphics/CameraController.cpp:718
+#, c-format
+msgid "Zoom speed decreased to %.1f"
+msgstr ""
+
+#: i18n/L10n.cpp:308
 msgid "Long strings"
 msgstr "Cadenes llargues"
 
-#: lobby/XmppClient.cpp:887
+#: lobby/XmppClient.cpp:1007
 msgid "unknown subtype (see logs)"
 msgstr "subtipus desconegut (consulteu el registre)"
 
-#: lobby/XmppClient.cpp:1215
+#: lobby/XmppClient.cpp:1333
 msgid "The certificate is not trusted."
 msgstr "El certificat no és de confiança."
 
-#: lobby/XmppClient.cpp:1216
+#: lobby/XmppClient.cpp:1334
 msgid "The certificate hasn't got a known issuer."
 msgstr "L'emissor del certificat no és conegut."
 
-#: lobby/XmppClient.cpp:1217
+#: lobby/XmppClient.cpp:1335
 msgid "The certificate has been revoked."
 msgstr "El certificat ha estat revocat."
 
-#: lobby/XmppClient.cpp:1218
+#: lobby/XmppClient.cpp:1336
 msgid "The certificate has expired."
 msgstr "El certificat ha expirat."
 
-#: lobby/XmppClient.cpp:1219
+#: lobby/XmppClient.cpp:1337
 msgid "The certificate is not yet active."
 msgstr "El certificat encara no és actiu."
 
-#: lobby/XmppClient.cpp:1220
+#: lobby/XmppClient.cpp:1338
 msgid "The certificate has not been issued for the peer connected to."
 msgstr "El certificat no ha estat emès per l'interlocutor amb què s'ha connectat."
 
-#: lobby/XmppClient.cpp:1221
+#: lobby/XmppClient.cpp:1339
 msgid "The certificate signer is not a certificate authority."
 msgstr "El signant del certificat no és una autoritat certificadora."
 
-#: lobby/XmppClient.cpp:1243 lobby/XmppClient.cpp:1287
-#: lobby/XmppClient.cpp:1326
+#: lobby/XmppClient.cpp:1361 lobby/XmppClient.cpp:1405
+#: lobby/XmppClient.cpp:1444
 msgid "Error"
 msgstr "Error"
 
-#: lobby/XmppClient.cpp:1246 lobby/XmppClient.cpp:1290
+#: lobby/XmppClient.cpp:1364 lobby/XmppClient.cpp:1408
 msgid "No error"
 msgstr "Cap error"
 
-#: lobby/XmppClient.cpp:1248
+#: lobby/XmppClient.cpp:1366
 msgid "Player already logged in"
 msgstr "El jugador ja està connectat"
 
-#: lobby/XmppClient.cpp:1250
+#: lobby/XmppClient.cpp:1368
 msgid "Forbidden"
 msgstr "Prohibit"
 
-#: lobby/XmppClient.cpp:1252
+#: lobby/XmppClient.cpp:1370
 msgid "Internal server error"
 msgstr "Error intern del servidor"
 
-#: lobby/XmppClient.cpp:1256
+#: lobby/XmppClient.cpp:1374
 msgid "Not allowed"
 msgstr "No està permès"
 
-#: lobby/XmppClient.cpp:1257
+#: lobby/XmppClient.cpp:1375
 msgid "Not authorized"
 msgstr "No està autoritzat"
 
-#: lobby/XmppClient.cpp:1260
+#: lobby/XmppClient.cpp:1378
 msgid "Recipient temporarily unavailable"
 msgstr "El destinatari no està disponible temporalment"
 
-#: lobby/XmppClient.cpp:1262
+#: lobby/XmppClient.cpp:1380
 msgid "Registration required"
 msgstr "Cal registrar-se"
 
-#: lobby/XmppClient.cpp:1266
+#: lobby/XmppClient.cpp:1384
 msgid "Service unavailable"
 msgstr "El servei no està disponible"
 
-#: lobby/XmppClient.cpp:1271 lobby/XmppClient.cpp:1310
+#: lobby/XmppClient.cpp:1389 lobby/XmppClient.cpp:1428
 msgid "Unknown error"
 msgstr "Error desconegut"
 
-#: lobby/XmppClient.cpp:1291
+#: lobby/XmppClient.cpp:1409
 msgid "Stream error"
 msgstr "Error de transmissió"
 
-#: lobby/XmppClient.cpp:1292
+#: lobby/XmppClient.cpp:1410
 msgid "The incoming stream version is unsupported"
 msgstr "La versió de la transmissió entrant no és compatible"
 
-#: lobby/XmppClient.cpp:1293
+#: lobby/XmppClient.cpp:1411
 msgid "The stream has been closed by the server"
 msgstr "El servidor ha aturat la transmissió"
 
-#: lobby/XmppClient.cpp:1297
+#: lobby/XmppClient.cpp:1415
 msgid "An I/O error occurred"
 msgstr "S'ha produït un error d'E/S"
 
-#: lobby/XmppClient.cpp:1299
+#: lobby/XmppClient.cpp:1417
 msgid "The connection was refused by the server"
 msgstr "El servidor ha rebutjat la connexió"
 
-#: lobby/XmppClient.cpp:1300
+#: lobby/XmppClient.cpp:1418
 msgid "Resolving the server's hostname failed"
 msgstr "No s'ha pogut resoldre l'adreça del servidor"
 
-#: lobby/XmppClient.cpp:1301
+#: lobby/XmppClient.cpp:1419
 msgid "This system is out of memory"
 msgstr "El sistema no té prou memòria"
 
-#: lobby/XmppClient.cpp:1303
+#: lobby/XmppClient.cpp:1421
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
 msgstr "No s'ha pogut verificar el certificat del servidor o no s'ha pogut completar el protocol handshake del TLS"
 
-#: lobby/XmppClient.cpp:1304
+#: lobby/XmppClient.cpp:1422
 msgid "The server did not offer required TLS encryption"
 msgstr "El servidor no ofereix el xifrat TLS necessari"
 
-#: lobby/XmppClient.cpp:1306
+#: lobby/XmppClient.cpp:1424
 msgid "Authentication failed. Incorrect password or account does not exist"
 msgstr "Autenticació fallida. La contrasenya no és correcta o el compte no existeix"
 
-#: lobby/XmppClient.cpp:1307
+#: lobby/XmppClient.cpp:1425
 msgid "The user or system requested a disconnect"
 msgstr "L'usuari o el sistema ha sol·licitat la desconnexió"
 
-#: lobby/XmppClient.cpp:1308
+#: lobby/XmppClient.cpp:1426
 msgid "There is no active connection"
 msgstr "No hi ha cap connexió activa"
 
-#: lobby/XmppClient.cpp:1329
+#: lobby/XmppClient.cpp:1447
 msgid "Your account has been successfully registered"
 msgstr "El vostre compte s'ha registrat correctament"
 
-#: lobby/XmppClient.cpp:1330
+#: lobby/XmppClient.cpp:1448
 msgid "Not all necessary information provided"
 msgstr "No s'ha proporcionat tota la informació necessària"
 
-#: lobby/XmppClient.cpp:1331
+#: lobby/XmppClient.cpp:1449
 msgid "Username already exists"
 msgstr "El nom d'usuari ja existeix"
 
@@ -199,25 +228,25 @@ msgstr "Error en començar la baixada. Error: %s;%s."
 msgid "Asynchronous download failure: %s, %s."
 msgstr "Error de baixada asincrònica: %s,%s."
 
-#: ps/ModIo.cpp:426
+#: ps/ModIo.cpp:425
 #, c-format
 msgid "Download failure. Server response: %s; %s."
 msgstr "Error en la baixada. La resposta del servidor és: %s;%s."
 
-#: ps/ModIo.cpp:529
+#: ps/ModIo.cpp:528
 msgid "Mismatched filesize."
 msgstr "La mida del fitxer no coincideix."
 
-#: ps/ModIo.cpp:547
+#: ps/ModIo.cpp:546
 #, c-format
 msgid "Invalid file. Expected md5 %s, got %s."
 msgstr "El fitxer no és vàlid. S'esperava md5 %s, s'ha obtingut%s."
 
-#: ps/ModIo.cpp:562
+#: ps/ModIo.cpp:561
 msgid "Failed to compute final hash."
 msgstr "Hi ha hagut un error en computar el valor final del hash."
 
-#: ps/ModIo.cpp:568
+#: ps/ModIo.cpp:567
 msgid "Failed to verify signature."
 msgstr "No s'ha pogut verificar la signatura."
 
@@ -226,11 +255,11 @@ msgstr "No s'ha pogut verificar la signatura."
 msgid "Saved game to '%s'"
 msgstr "S'ha desat la partida a \"%s\""
 
-#: ps/Util.cpp:280 ps/Util.cpp:283 ps/Util.cpp:424 ps/Util.cpp:427
+#: ps/Util.cpp:289 ps/Util.cpp:292 ps/Util.cpp:437 ps/Util.cpp:440
 #, c-format
 msgid "Screenshot written to '%s'"
 msgstr "La captura de pantalla s'ha desat a \"%s\""
 
-#: ps/scripting/JSInterface_Debug.cpp:83
+#: ps/scripting/JSInterface_Debug.cpp:87
 msgid "custom build"
 msgstr "versió personalitzada"

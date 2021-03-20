@@ -26,7 +26,7 @@ DiplomacyDialogPlayerControl.prototype.DiplomacyPlayerText = class
 			return;
 
 		this.diplomacyPlayerCiv.caption = g_CivData[g_Players[this.playerID].civ].Name;
-		this.diplomacyPlayerName.tooltip = translateAISettings(g_GameAttributes.settings.PlayerData[this.playerID]);
+		this.diplomacyPlayerName.tooltip = translateAISettings(g_InitAttributes.settings.PlayerData[this.playerID]);
 
 		// Apply offset
 		let rowSize = DiplomacyDialogPlayerControl.prototype.DiplomacyPlayerText.getRowHeight();

@@ -42,7 +42,7 @@ class GameSettingsControl
 	onLoad(initData, hotloadData)
 	{
 		if (hotloadData)
-			this.parseSettings(hotloadData.gameAttributes);
+			this.parseSettings(hotloadData.initAttributes);
 		else if (g_IsController && this.gameSettingsFile.enabled)
 		{
 			let settings = this.gameSettingsFile.loadFile();
@@ -51,7 +51,7 @@ class GameSettingsControl
 		}
 
 		this.updateLayout();
-		this.setNetworkGameAttributes();
+		this.setNetworkInitAttributes();
 	}
 
 	onClose()
@@ -61,7 +61,7 @@ class GameSettingsControl
 
 	onGetHotloadData(object)
 	{
-		object.gameAttributes = this.getSettings();
+		object.initAttributes = this.getSettings();
 	}
 
 	onGamesetupMessage(message)
@@ -122,23 +122,23 @@ class GameSettingsControl
 	 * This is run on a timer to avoid flooding the network with messages,
 	 * e.g. when modifying a slider.
 	 */
-	setNetworkGameAttributes()
+	setNetworkInitAttributes()
 	{
 		for (let handler of this.settingsChangeHandlers)
 			handler();
 
 		if (g_IsNetworked && this.timer === undefined)
-			this.timer = setTimeout(this.setNetworkGameAttributesImmediately.bind(this), this.Timeout);
+			this.timer = setTimeout(this.setNetworkInitAttributesImmediately.bind(this), this.Timeout);
 	}
 
-	setNetworkGameAttributesImmediately()
+	setNetworkInitAttributesImmediately()
 	{
 		if (this.timer)
 		{
 			clearTimeout(this.timer);
 			delete this.timer;
 		}
-		g_GameSettings.setNetworkGameAttributes();
+		g_GameSettings.setNetworkInitAttributes();
 	}
 
 	onLaunchGame()

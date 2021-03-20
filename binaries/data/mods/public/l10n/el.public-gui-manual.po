@@ -25,7 +25,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-25 08:08+0000\n"
-"PO-Revision-Date: 2021-03-15 07:16+0000\n"
+"PO-Revision-Date: 2021-03-16 18:48+0000\n"
 "Last-Translator: LOUKAS SKOUROLIAKOS\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -216,7 +216,7 @@ msgstr "hotkey.fps.toggle – Εμφάνιση μετρητή καρέ (FPS)"
 msgid ""
 "  hotkey.profile.toggle – Toggle real-time profiler (cycles through the "
 "displays of information)"
-msgstr ""
+msgstr "hotkey.profile.toggle – Εμφάνιση/Απόκρυψη προφίλ πραγματικού χρόνου( κινείτε με τη ροή της πληροφορίας που εμφανίζεται)"
 
 #: gui/manual/intro.txt:48
 msgid ""
@@ -228,14 +228,14 @@ msgid ""
 "  hotkey.screenshot – Take screenshot (in .png format, location is displayed"
 " in the top left of the GUI after the file has been saved, and can also be "
 "seen in the console/logs if you miss it there)"
-msgstr ""
+msgstr " hotkey.screenshot – Λήψη φωτογραφίας (σε .png μορφοποίηση , η τοποθεσία εμφανίζεται στην πάνω αριστερή πλευρά του περιβάλλοντος  διεπαφής χρήστη αφού το αρχείο έχει αποθηκευτεί, και μπορεί επίσης να εμφανιστεί στην κονσόλα/logs άν δέ το βρείτε εκεί)"
 
 #: gui/manual/intro.txt:50
 msgid ""
 "  hotkey.bigscreenshot – Take huge screenshot (6400×4800 pixels, in .bmp "
 "format, location is displayed in the top left of the GUI after the file has "
 "been saved, and can also be seen in the console/logs if you miss it there)"
-msgstr ""
+msgstr " hotkey.screenshot – Λήψη  τεράστιας φωτογραφίας ( 6400×4800 pixels, σε .bmp μορφοποίηση , η τοποθεσία εμφανίζεται στην πάνω αριστερή πλευρά του περιβάλλοντος  διεπαφής χρήστη αφού το αρχείο έχει αποθηκευτεί, και μπορεί επίσης να εμφανιστεί στην κονσόλα/logs άν δέ το βρείτε εκεί)"
 
 #: gui/manual/intro.txt:51
 msgid "  hotkey.tab.next – Switch to the next tab"
@@ -287,7 +287,7 @@ msgstr "hotkey.session.gui.menu.toggle – Εμφάνιση μενού"
 
 #: gui/manual/intro.txt:62
 msgid "  hotkey.timeelapsedcounter.toggle – Toggle time elapsed counter"
-msgstr ""
+msgstr " hotkey.timeelapsedcounter.toggle –Εμφάνιση μετρητή χρόνου προσπέλασης."
 
 #: gui/manual/intro.txt:63
 msgid "  hotkey.cancel – Close all dialogs (chat, menu)"
@@ -305,7 +305,7 @@ msgstr " hotkey.teamchat – Αποστολή σε ομαδική συνομιλ
 msgid ""
 "  hotkey.privatechat – Chat with the previously selected private chat "
 "partner"
-msgstr ""
+msgstr " hotkey.privatechat – Συνομιλία με τον/την προηγούμενο/η επιλεγμένο/η συνομιλητή στην ιδιωτική συνομιλία."
 
 #: gui/manual/intro.txt:67
 msgid "  hotkey.pause – Pause or resume the game"
@@ -321,25 +321,25 @@ msgstr " hotkey.session.kill – Διαγραφή των άμεσα επιλεγ
 msgid ""
 "    • With hotkey.session.noconfirmation – Immediately delete currently "
 "selected unit(s)/structure(s), without asking for confirmation"
-msgstr ""
+msgstr " • With hotkey.session.noconfirmation – Άμεση διαγραφή των επιλεγμένων μονάδων/κτιρίων, χωρίς ερώτηση για επιβεβαίωση"
 
 #: gui/manual/intro.txt:70
 msgid ""
 "  hotkey.selection.add – Modifier – add to selection (works with clicking "
 "and hotkeys, e.g. the idle hotkeys)"
-msgstr ""
+msgstr " hotkey.selection.add –  Τροποποιητής - προσθέτει στην επιλογή ( δουλεύει και με κλικάρισμα και πλήκτρα συντόμευσης, πχ τα αδρανή πλήκτρα συντόμευσης)"
 
 #: gui/manual/intro.txt:71
 msgid ""
 "  hotkey.selection.remove – Modifier – remove from selection (works with "
 "clicking and hotkeys, e.g. the idle hotkeys)"
-msgstr ""
+msgstr "hotkey.selection.remove – Τροποποιητής - αφαιρεί απο την επιλογή ( δουλεύει και με κλικάρισμα και πλήκτρα συντόμευσης, πχ τα αδρανή πλήκτρα συντόμευσης)"
 
 #: gui/manual/intro.txt:72
 msgid ""
 "  hotkey.selection.offscreen – Modifier – add all units, including offscreen"
 " units, to selection."
-msgstr ""
+msgstr " hotkey.selection.offscreen – Τροποποιητής - προσθέτει σε όλες τις μονάδες, συμπεριλαμβανομένων και των μονάδων έξω απο το πεδίο της οθόνης, στην επιλογή\\."
 
 #: gui/manual/intro.txt:73
 msgid ""
@@ -354,7 +354,7 @@ msgstr "hotkey.selection.idlewarrior – Επιλογή αδρανούς πολ�
 msgid ""
 "  hotkey.selection.idleworker – Select idle worker (including citizen-"
 "soldiers)"
-msgstr ""
+msgstr " hotkey.selection.idleworker – Επιλογή αδρανούς εργάτη (συμπεριλαμβάνονται πολίτες οπλίτες)"
 
 #: gui/manual/intro.txt:76
 msgid "  hotkey.selection.idleunit – Select idle unit"
@@ -372,13 +372,13 @@ msgstr "hotkey.session.backtowork – Η μονάδα θα γυρίσει στη
 msgid ""
 "  hotkey.session.unload – Unload the garrisoned units of the selected "
 "structure(s)"
-msgstr ""
+msgstr "hotkey.session.unload –  Εκφόρτωση μονάδων φουράς απο το επιλεγμένο κτήριο(α)"
 
 #: gui/manual/intro.txt:80
 msgid ""
 "  hotkey.selection.group.save.1 – Create control group 1 (by default, "
 "respectively 2,3, ...) from the selected unit(s)/structure(s)"
-msgstr ""
+msgstr " hotkey.selection.group.save.1 – Δημιουργείστε μία ομάδα ελέγχου 1( εξ ορισμού,  αντίστοιχα 2,3,...) απο τις επιλεγμένες μονάδες/κατασκευές"
 
 #: gui/manual/intro.txt:81
 msgid ""
@@ -390,13 +390,13 @@ msgstr "  hotkey.selection.group.select.1 – Επιλογή των μονάδω
 msgid ""
 "  hotkey.selection.group.add.1 – Add control group 1 (to 0) to the selected "
 "unit(s)/structure(s)"
-msgstr ""
+msgstr " hotkey.selection.group.add.1 – Προσθέστε την ομάδα ελέγχου 1 ( σε 0) στις επιλεγμένες μονάδες/κατασκευές"
 
 #: gui/manual/intro.txt:83
 msgid ""
 "  hotkey.camera.jump.set.1 – Mark the current camera position, for jumping "
 "back to later (by default, there are 4 possible positions)"
-msgstr ""
+msgstr " hotkey.camera.jump.set.1 – Σημαδέψτε την παρούσα θέση της κάμερας, για άλμα πίσω σε προηγούμενη ( εξ ορισμού ,υπάρχουν 4 θέσεις διαθέσιμες)"
 
 #: gui/manual/intro.txt:84
 msgid ""
@@ -417,19 +417,19 @@ msgstr " hotkey.session.queueunit.1, hotkey.session.queueunit.2, hotkey.session.
 msgid ""
 "  hotkey.session.highlightguarded with unit(s) selected – Highlight the "
 "unit(s)/structure(s) guarded by the selection"
-msgstr ""
+msgstr "hotkey.session.highlightguarded with unit(s) selected –   Επισημαίνει τις μονάδες/κατασκευές που φρουρούντε απο την επιλογή."
 
 #: gui/manual/intro.txt:87
 msgid ""
 "  hotkey.session.highlightguarding with unit(s)/structure(s) selected – "
 "Highlight the unit(s) guarding the selection"
-msgstr ""
+msgstr " hotkey.session.highlightguarding με μονάδες/κατασκευές επιλεγμένες – Επισημαίνει τις μονάδες πο φρουρούν την επιλογή."
 
 #: gui/manual/intro.txt:88
 msgid ""
 "  highlightguarding.showstatusbars – See all status bars (which would also "
 "show the building progress)"
-msgstr ""
+msgstr " highlightguarding.showstatusbars – Εμφάνιζει τις μπάρες με δεδομένα ( οι οποίες επίσης δείχνουν τη πρόοδο του κτηριου)"
 
 #: gui/manual/intro.txt:89
 msgid "  hotkey.summary – Toggle summary window"
@@ -437,33 +437,33 @@ msgstr "hotkey.summary – Εμφάνιση/απόκρυψη παραθύρου 
 
 #: gui/manual/intro.txt:90
 msgid "  hotkey.lobby – Show the multiplayer lobby in a dialog window"
-msgstr ""
+msgstr "hotkey.lobby – Εμφάνιση λόμπι πολλαπλών παικτών σε παράθυρο διαλόγου."
 
 #: gui/manual/intro.txt:91
 msgid "  hotkey.session.gui.diplomacy.toggle – Toggle in-game diplomacy panel"
-msgstr ""
+msgstr " hotkey.session.gui.diplomacy.toggle –  Εμφάνιση/Απόκρυψη του παραθύρου διπλωματίας εντός του παιχνιδιού."
 
 #: gui/manual/intro.txt:92
 msgid ""
 "  hotkey.session.gui.barter.toggle – Toggle in-game barter and trade panel"
-msgstr ""
+msgstr "hotkey.session.gui.barter.toggle –  Εναλλαγή παραθύρου ανταλλαγών και εμπορίου"
 
 #: gui/manual/intro.txt:93
 msgid ""
 "  hotkey.session.gui.objectives.toggle – Toggle in-game objectives panel"
-msgstr ""
+msgstr " hotkey.session.gui.objectives.toggle –  Εναλλαγή παραθύρου  του ενδο-παιχγνιδικού παραθύρου στόχων"
 
 #: gui/manual/intro.txt:94
 msgid "  hotkey.session.gui.tutorial.toggle – Toggle in-game tutorial panel"
-msgstr ""
+msgstr "hotkey.session.gui.tutorial.toggle – Εμφάνιση/Απόκρυψη του παραθύρου εκμάθησης εντός του παιχνιδιού."
 
 #: gui/manual/intro.txt:95
 msgid "  hotkey.structree – Toggle structure tree panel"
-msgstr ""
+msgstr " hotkey.structree –  Εναλλαγή παραθύρου δέντρου κατασκευής"
 
 #: gui/manual/intro.txt:96
 msgid "  hotkey.civinfo – Toggle civilization info panel"
-msgstr ""
+msgstr "hotkey.civinfo –  Εναλλαγή προβολής πληροφοριών πολιτισμού"
 
 #: gui/manual/intro.txt:98
 msgid "[font=\"sans-bold-14\"]Modify mouse action[font=\"sans-14\"]"
@@ -471,11 +471,11 @@ msgstr "[font=\"sans-bold-14\"]Τροποποίηση λειτουργίας π�
 
 #: gui/manual/intro.txt:99
 msgid "  hotkey.session.garrison + Right Click on structure – Garrison"
-msgstr ""
+msgstr " hotkey.session.garrison + Δεξί-κλίκ σε κτήριο- Φρουρά"
 
 #: gui/manual/intro.txt:100
 msgid "  hotkey.session.repair + Right Click on structure – Repair"
-msgstr ""
+msgstr " hotkey.session.repair + Δεξί κλίκ σε κατασκευή – Επισκευή"
 
 #: gui/manual/intro.txt:101
 msgid "  hotkey.session.patrol + Right Click – Patrol"
@@ -485,56 +485,56 @@ msgstr "hotkey.session.patrol + Δεξλι κλίκ – Περιπολία"
 msgid ""
 "  hotkey.session.queue + Right Click – Queue the move/build/gather/etc. "
 "order"
-msgstr ""
+msgstr "hotkey.session.queue + Δεξί Κλικ – Βάλτε σε σειρά προτεραιότητας την εντολή κίνησης/χτισίματος/συλλογής/κτλ"
 
 #: gui/manual/intro.txt:103
 msgid ""
 "  hotkey.session.orderone + Right Click – Order one unit from the current "
 "selection to move/build/gather/etc. and unselect it. Used to quickly "
 "dispatch units with specific tasks"
-msgstr ""
+msgstr "hotkey.session.orderone + Δεξί Κλίκ – Δώστε εντολή σε μία από τις τρέχουσες επιλεγμένες μονάδες για να μετακινηθεί/κατασκευάσει/συγκεντρώσει/κ.λπ. και να αποεπιλεγεί. Χρησιμοποιείται για γρήγορη αποστολή μονάδων σε συγκεκριμένες εργασίες"
 
 #: gui/manual/intro.txt:104
 msgid ""
 "  hotkey.session.batchtrain + Left Click when training units – Add units in "
 "batches (the batch size is 5 by default and can be changed in the options)"
-msgstr ""
+msgstr " hotkey.session.batchtrain  + Αριστερό κλικ κατά την εκπαίδευση μονάδων – Προσθέτει μονάδες στις ομάδες (το μέγεθος της ομάδας είναι 5 εξ ορισμού και μπορεί να αλλάξει από τις επιλογές)"
 
 #: gui/manual/intro.txt:105
 msgid ""
 "  hotkey.selection.add + Left Click or Left Drag over unit on map – Add unit"
 " to selection"
-msgstr ""
+msgstr "  hotkey.selection.add  + Αριστερό Κλικ ή Αριστερό κλικ και σέρνεις πάνω από μία μονάδα στο χάρτη – Πρόσθεση μονάδας στην επιλογή."
 
 #: gui/manual/intro.txt:106
 msgid ""
 "  hotkey.selection.remove + Left Click or Left Drag over unit on map – "
 "Remove unit from selection"
-msgstr ""
+msgstr " hotkey.selection.remove  + Αριστερό κλικ ή Αριστερό – σύρσιμο πάνω από μία μονάδα στο χάρτη - Αφαίρεση μονάδας  από την επιλογή"
 
 #: gui/manual/intro.txt:107
 msgid ""
 "  hotkey.selection.militaryonly + Left Drag over units on map – Only select "
 "military units"
-msgstr ""
+msgstr " hotkey.selection.militaryonly  + Αριστερό σύρσιμο πάνω απο τις μονάδες στο χάρτη- Επιλογή μόνο  στρατιωτικών μονάδων."
 
 #: gui/manual/intro.txt:108
 msgid ""
 "  hotkey.selection.nonmilitaryonly + Left Drag over units on map – Only "
 "select non-military units"
-msgstr ""
+msgstr "hotkey.selection.nonmilitaryonly + Αριστερό σύρσιμο πάνω απο τις μονάδες στο χάρτη- Επιλογή μόνο μή στρατιωτικών μονάδων."
 
 #: gui/manual/intro.txt:109
 msgid ""
 "  hotkey.selection.idleonly + Left Drag over units on map – Only select idle"
 " units"
-msgstr ""
+msgstr " hotkey.selection.idleonly +  Αριστερό σύρσιμο πάνω απο τις μονάδες στο χάρτη-  Επιλογή μόνο αδρανών μονάδων."
 
 #: gui/manual/intro.txt:110
 msgid ""
 "  hotkey.selection.woundedonly + Left Drag over units on map – Only select "
 "wounded units"
-msgstr ""
+msgstr " hotkey.selection.woundedonly + Αριστερό σύρσιμο πάνω απο τις μονάδες στο χάρτη - Μόνο επιλεγμένες τραυμτσιμένες μονάδες"
 
 #: gui/manual/intro.txt:111
 msgid ""
@@ -546,31 +546,31 @@ msgstr "Δεξί Κλικ με ένα κτίριο(α) επιλεγμένο – 
 msgid ""
 "  hotkey.session.garrison + Right Click with unit(s) selected – Garrison (If"
 " the cursor is over an own or allied structure)"
-msgstr ""
+msgstr " hotkey.session.garrison + Δεξί Κλίκ με μοναδες επιλεγμένες  -  Φρουρά (Αν ο κέρσορας είναι πάνω απο τη δικιά σας ή ενα συμμαχικό κτήριο)"
 
 #: gui/manual/intro.txt:113
 msgid ""
 "  hotkey.session.attack + Right Click with unit(s) selected – Attack "
 "(instead of capture or gather)"
-msgstr ""
+msgstr " hotkey.session.attack + Δεξί κλικ με μονάδες επιλεγμένες  - επίθεση ( Αντί αιχμαλωσίας ή συλλογής)"
 
 #: gui/manual/intro.txt:114
 msgid ""
 "  hotkey.session.attackmove + Right Click with unit(s) selected – Attack "
 "move (by default all enemy units and structures along the way are targeted)"
-msgstr ""
+msgstr " hotkey.session.attackmove +  Δεξί Κλίκ με μονάδες επιλεγμένες - Κίνηση Επίθεσης (εξ ' ορισμού όλες οι εχθρικές μονάδες και κτήρια στο διάβα της πορείας είναι σημαδεμένα)"
 
 #: gui/manual/intro.txt:115
 msgid ""
 "  hotkey.session.attackmoveUnit + Right Click with unit(s) selected – Attack"
 " move, only units along the way are targeted"
-msgstr ""
+msgstr "hotkey.session.attackmoveUnit + Δεξί Κλίκ με μονάδες επιλεγμένες - Κίνηση Επίθεσης, μόνο μονάδες στο διάβα της πορείας είναι σημαδεμένες."
 
 #: gui/manual/intro.txt:116
 msgid ""
 "  hotkey.session.snaptoedges + Mouse Move near structures – Align the new "
 "structure with an existing nearby structure"
-msgstr ""
+msgstr " hotkey.session.snaptoedges + Κίνηση πονυικιού - Ευθυγράμμιση της νέας κατασκευής με μια υπάρχουσα σε κοντινή απόσταση."
 
 #: gui/manual/intro.txt:118
 msgid "[font=\"sans-bold-14\"]Overlays[font=\"sans-14\"]"
@@ -578,48 +578,48 @@ msgstr "[font=\"sans-bold-14\"]Εμφανίσεις[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:119
 msgid "  hotkey.session.gui.toggle – Toggle the GUI"
-msgstr ""
+msgstr "hotkey.session.gui.toggle – Εμφάνιση/Απόκρυψη παραθύρου περιβάλλοντος διεπαφής."
 
 #: gui/manual/intro.txt:120
 msgid ""
 "  hotkey.session.devcommands.toggle – Toggle developer overlay (with "
 "developer options)"
-msgstr ""
+msgstr " hotkey.session.devcommands.toggle –  Εμφάνιση  επκάλυψης δημιουργού  (με επιλογές δημιουργού)"
 
 #: gui/manual/intro.txt:121
 msgid ""
 "  hotkey.wireframe – Toggle wireframe mode (press once to get wireframes "
 "overlaid over the textured models, twice to get just the wireframes colored "
 "by the textures, thrice to get back to normal textured mode)"
-msgstr ""
+msgstr "hotkey.wireframe –  Εμφάνιση οπτικής προσχεδίου ( πατήστε μία φορά για να έχετε επίστρωση προσχεδίου πάνω απο τα ανάγλυφα μοντέλα, δύο φορές μόνο για τα προσχέδια χρωματισμένα από τα ανάγλυδα, τρείς φορές για να επιστρέψετε την κανονική οπτική)"
 
 #: gui/manual/intro.txt:122
 msgid ""
 "  hotkey.silhouettes – Toggle unit silhouettes (might give a small "
 "performance boost)"
-msgstr ""
+msgstr "hotkey.silhouettes –  Εμφάνιση σιλουέτας μονάδων (ίσως επιφέρει μία ώθηση στην απόδοση)"
 
 #: gui/manual/intro.txt:123
 msgid "  hotkey.session.diplomacycolors – Toggle diplomacy colors"
-msgstr ""
+msgstr "hotkey.session.diplomacycolors – Εμφάνιση/Απόκρυψη διπλωματικών χρωμάτων."
 
 #: gui/manual/intro.txt:124
 msgid ""
 "  hotkey.session.toggleattackrange – Toggle attack range visualizations of "
 "selected units and structures"
-msgstr ""
+msgstr "hotkey.session.toggleattackrange – Εναλλάσσει την εμφάνιση του εύρους της επίθεσης για τις επιλεγμένες μονάδες και κατασκευές"
 
 #: gui/manual/intro.txt:125
 msgid ""
 "  hotkey.session.toggleaurasrange – Toggle aura range visualizations of "
 "selected units and structures"
-msgstr ""
+msgstr "hotkey.session.toggleaurasrange –  Εναλλάσσει την εμφάνιση της αύρας της επίθεσης για τις επιλεγμένες μονάδες και κατασκευές"
 
 #: gui/manual/intro.txt:126
 msgid ""
 "  hotkey.session.togglehealrange – Toggle heal range visualizations of "
 "selected units"
-msgstr ""
+msgstr " hotkey.session.togglehealrange –  Εμφάνιση/Απόκρυψη εύρους θεραπείας ,  απεικονίζοντας τις επιλεγμένες μονάδες"
 
 #: gui/manual/intro.txt:128
 msgid "[font=\"sans-bold-14\"]Camera manipulation[font=\"sans-14\"]"
@@ -627,73 +627,73 @@ msgstr "[font=\"sans-bold-14\"]Χειρισμός κάμερας[font=\"sans-14\
 
 #: gui/manual/intro.txt:129
 msgid "  hotkey.camera.up – Pan screen up"
-msgstr ""
+msgstr " hotkey.camera.up – Μετακίνηση οθόνης προς τα πάνω"
 
 #: gui/manual/intro.txt:130
 msgid "  hotkey.camera.down – Pan screen down"
-msgstr ""
+msgstr "hotkey.camera.down – Μετακίνηση οθόνης προς τα κάτω"
 
 #: gui/manual/intro.txt:131
 msgid "  hotkey.camera.left – Pan screen left"
-msgstr ""
+msgstr " hotkey.camera.left –  Μετακίνηση οθόνης στα αριστερά"
 
 #: gui/manual/intro.txt:132
 msgid "  hotkey.camera.right – Pan screen right"
-msgstr ""
+msgstr "hotkey.camera.right –  Μετακίνηση οθόνης στα δεξιά"
 
 #: gui/manual/intro.txt:133
 msgid "  hotkey.camera.rotate.up – Rotate camera to look upward"
-msgstr ""
+msgstr "hotkey.camera.rotate.up –  Περιστροφή κάμερας για να κοιτάξετε  προς τα επάνω"
 
 #: gui/manual/intro.txt:134
 msgid "  hotkey.camera.rotate.down – Rotate camera to look downward"
-msgstr ""
+msgstr "hotkey.camera.rotate.down –  Περιστροφή κάμερας για να κοιτάξετε προς τα κάτω"
 
 #: gui/manual/intro.txt:135
 msgid "  hotkey.camera.rotate.cw – Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "hotkey.camera.rotate.cw –  Περιστροφή κάμερας κεξιόστροφα  ,γύρω από το έδαφος."
 
 #: gui/manual/intro.txt:136
 msgid ""
 "  hotkey.camera.rotate.ccw – Rotate camera counter-clockwise around terrain"
-msgstr ""
+msgstr "hotkey.camera.rotate.ccw – Περιστροφή της κάμερας αριστερόστροφα γύρω από το έδαφος. "
 
 #: gui/manual/intro.txt:137
 msgid ""
 "  hotkey.camera.rotate.wheel.cw – Rotate camera clockwise around terrain"
-msgstr ""
+msgstr " hotkey.camera.rotate.wheel.cw –  Περιστροφή κάμερας δεξιόστροφα γύρω από το έδαφος "
 
 #: gui/manual/intro.txt:138
 msgid ""
 "  hotkey.camera.rotate.wheel.ccw – Rotate camera counter-clockwise around "
 "terrain"
-msgstr ""
+msgstr "hotkey.camera.rotate.wheel.ccw – Περιστροφή κάμερας αριστερόστροφα γύρω από το έδαφος"
 
 #: gui/manual/intro.txt:139
 msgid ""
 "  hotkey.camera.follow – Follow the selected unit (move the camera to stop "
 "following the unit)"
-msgstr ""
+msgstr "hotkey.camera.follow – Ακολουθήστε την επιλεγμένη μονάδα (μετακινείστε κάμερας για να σταματήσετε να ακολουθάτε την μονάδα)"
 
 #: gui/manual/intro.txt:140
 msgid "  hotkey.camera.reset – Reset camera zoom and orientation"
-msgstr ""
+msgstr " hotkey.camera.reset – Επαναφορά εστίασης κάμερας και προσανατολισμού."
 
 #: gui/manual/intro.txt:141
 msgid ""
 "  hotkey.camera.zoom.in, hotkey.camera.zoom.wheel.in – Zoom in (keep pressed"
 " for continuous zoom)"
-msgstr ""
+msgstr "hotkey.camera.zoom.in, hotkey.camera.zoom.wheel.in – Εστίαση προς τα μέσα (διατηρείστε πατημένο για συνεχιζόμενη εστίαση)"
 
 #: gui/manual/intro.txt:142
 msgid ""
 "  hotkey.camera.zoom.out, hotkey.camera.zoom.wheel.out – Zoom out (keep "
 "pressed for continuous zoom)"
-msgstr ""
+msgstr "hotkey.camera.zoom.out, hotkey.camera.zoom.wheel.out –  Ζούμ προς τα έξω (διατηρείστε πατημένο για συνεχιζόμενη εστίαση)"
 
 #: gui/manual/intro.txt:143
 msgid "  hotkey.camera.pan – Keep pressed and move the mouse to pan"
-msgstr ""
+msgstr "hotkey.camera.pan –  Διατηρείστε πατημένο και μετακινείστε το ποντίκι για  μετακίνηση κάμερας."
 
 #: gui/manual/intro.txt:145
 msgid "[font=\"sans-bold-14\"]During Structure Placement[font=\"sans-14\"]"
@@ -702,11 +702,11 @@ msgstr "[font=\"sans-bold-14\"]Κατά τη Διάρκεια Τοποθέτησ
 #: gui/manual/intro.txt:146
 msgid ""
 "  hotkey.session.rotate.ccw – Rotate structure 15 degrees counter-clockwise"
-msgstr ""
+msgstr " hotkey.session.rotate.ccw – Περιστροφή κατασκευής 15 μοίρες αριστερόστροφα"
 
 #: gui/manual/intro.txt:147
 msgid "  hotkey.session.rotate.cw – Rotate structure 15 degrees clockwise"
-msgstr ""
+msgstr "hotkey.session.rotate.cw – Περιστροφή κατασκευής 15 μοίρες δεξιόστροφα ."
 
 #: gui/manual/intro.txt:148
 msgid ""
@@ -726,13 +726,13 @@ msgstr "hotkey.cancel – Ακύρωση"
 msgid ""
 "  hotkey.session.savedgames.delete – Delete the selected saved game, ask for"
 " confirmation"
-msgstr ""
+msgstr " hotkey.session.savedgames.delete –  Διαγραφή επιλεγμένου αποθηκευμένου παιχνιδιού, ερώτηση για επιβεβαίωση."
 
 #: gui/manual/intro.txt:153
 msgid ""
 "    • With hotkey.session.savedgames.noconfirmation – Don't ask for "
 "confirmation"
-msgstr ""
+msgstr "• With hotkey.session.savedgames.noconfirmation –  Να μη ζητηθεί επιβεβαίωση"
 
 #: gui/manual/manual.xml:(caption):13
 msgid "Manual"

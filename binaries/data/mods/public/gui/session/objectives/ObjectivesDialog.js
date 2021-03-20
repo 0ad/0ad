@@ -9,7 +9,7 @@ class ObjectivesDialog
 
 		// TODO: atlas should support this
 		if (!Engine.IsAtlasRunning())
-			Engine.GetGUIObjectByName("gameDescriptionText").caption = getGameDescription(g_GameAttributes, mapCache);
+			Engine.GetGUIObjectByName("gameDescriptionText").caption = getGameDescription(g_InitAttributes, mapCache);
 
 		Engine.GetGUIObjectByName("closeObjectives").onPress = this.close.bind(this);
 

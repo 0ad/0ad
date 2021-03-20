@@ -18,7 +18,7 @@ GameSettingControls.Spies = class Spies extends GameSettingControlCheckbox
 	onPress(checked)
 	{
 		g_GameSettings.disableSpies.setEnabled(checked);
-		this.gameSettingsControl.setNetworkGameAttributes();
+		this.gameSettingsControl.setNetworkInitAttributes();
 	}
 };
 

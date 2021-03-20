@@ -39,7 +39,7 @@ PlayerSettingControls.PlayerTeam = class PlayerTeam extends GameSettingControlDr
 	onSelectionChange(itemIdx)
 	{
 		g_GameSettings.playerTeam.setValue(this.playerIndex, itemIdx - 1);
-		this.gameSettingsControl.setNetworkGameAttributes();
+		this.gameSettingsControl.setNetworkInitAttributes();
 	}
 };
 

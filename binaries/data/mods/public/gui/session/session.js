@@ -38,7 +38,7 @@ var g_TradeDialog;
 /**
  * Map, player and match settings set in game setup.
  */
-const g_GameAttributes = deepfreeze(Engine.GuiInterfaceCall("GetInitAttributes"));
+const g_InitAttributes = deepfreeze(Engine.GuiInterfaceCall("GetInitAttributes"));
 
 /**
  * True if this is a multiplayer game.
@@ -266,8 +266,8 @@ function init(initData, hotloadData)
 			restoreSavedGameData(initData.savedGUIData);
 	}
 
-	if (g_GameAttributes.campaignData)
-		g_CampaignSession = new CampaignSession(g_GameAttributes.campaignData);
+	if (g_InitAttributes.campaignData)
+		g_CampaignSession = new CampaignSession(g_InitAttributes.campaignData);
 
 	let mapCache = new MapCache();
 	g_Cheats = new Cheats();
@@ -539,15 +539,15 @@ function endGame()
 		}
 	};
 
-	if (g_GameAttributes.campaignData)
+	if (g_InitAttributes.campaignData)
 	{
 		let menu = g_CampaignSession.getMenu();
-		if (g_GameAttributes.campaignData.skipSummary)
+		if (g_InitAttributes.campaignData.skipSummary)
 		{
 			Engine.SwitchGuiPage(menu);
 			return;
 		}
-		summaryData.campaignData = { "filename": g_GameAttributes.campaignData.run };
+		summaryData.campaignData = { "filename": g_InitAttributes.campaignData.run };
 		summaryData.nextPage = menu;
 	}
 

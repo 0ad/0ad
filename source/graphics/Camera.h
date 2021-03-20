@@ -85,10 +85,8 @@ class CCamera
 		// Returns a quad of view in camera space at given distance from camera.
 		void GetViewQuad(float dist, Quad& quad) const;
 
-		// Build a ray passing through the screen coordinate (px, py) and the camera
-		/////////////////////////////////////////////////////////////////////////////////////////
-		// BuildCameraRay: calculate origin and ray direction of a ray through
-		// the pixel (px,py) on the screen
+		// Builds a ray passing through the screen coordinate (px, py), calculates
+		// origin and direction of the ray.
 		void BuildCameraRay(int px, int py, CVector3D& origin, CVector3D& dir) const;
 
 		// General helpers that seem to fit here

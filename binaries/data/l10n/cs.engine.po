@@ -1,9 +1,9 @@
 # Translation template for Pyrogenesis.
-# Copyright (C) 2020 Wildfire Games
+# Copyright (C) 2021 Wildfire Games
 # This file is distributed under the same license as the Pyrogenesis project.
 # Translators:
 # Jakub Jelen <jakuje@gmail.com>, 2017
-# xgimp <l.bacovsky@gmail.com>, 2020
+# Lukáš Bačovský <l.bacovsky@gmail.com>, 2020
 # Marek Mojžíš <marek.moj@seznam.cz>, 2020
 # fri, 2013-2016,2018
 # Pavel Šindelář <pavelsin123@gmail.com>, 2016
@@ -14,9 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-11-28 10:01+0000\n"
-"PO-Revision-Date: 2021-02-11 16:40+0000\n"
-"Last-Translator: Petr Velička <petrvelicka@tuta.io>\n"
+"POT-Creation-Date: 2021-03-15 08:08+0000\n"
+"PO-Revision-Date: 2021-03-15 10:16+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,146 +24,176 @@ msgstr ""
 "Language: cs\n"
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 
-#: i18n/L10n.cpp:247
+#: graphics/CameraController.cpp:686
+#, c-format
+msgid "Scroll speed increased to %.1f"
+msgstr ""
+
+#: graphics/CameraController.cpp:692
+#, c-format
+msgid "Scroll speed decreased to %.1f"
+msgstr ""
+
+#: graphics/CameraController.cpp:699
+#, c-format
+msgid "Rotate speed increased to X=%.3f, Y=%.3f"
+msgstr ""
+
+#: graphics/CameraController.cpp:706
+#, c-format
+msgid "Rotate speed decreased to X=%.3f, Y=%.3f"
+msgstr ""
+
+#: graphics/CameraController.cpp:712
+#, c-format
+msgid "Zoom speed increased to %.1f"
+msgstr ""
+
+#: graphics/CameraController.cpp:718
+#, c-format
+msgid "Zoom speed decreased to %.1f"
+msgstr ""
+
+#: i18n/L10n.cpp:308
 msgid "Long strings"
 msgstr "Dlouhé řetězce"
 
-#: lobby/XmppClient.cpp:881
+#: lobby/XmppClient.cpp:1007
 msgid "unknown subtype (see logs)"
 msgstr "Neznámý podtyp (podívejte se na záznamy)"
 
-#: lobby/XmppClient.cpp:1209
+#: lobby/XmppClient.cpp:1333
 msgid "The certificate is not trusted."
 msgstr "Certifikát není důvěryhodný."
 
-#: lobby/XmppClient.cpp:1210
+#: lobby/XmppClient.cpp:1334
 msgid "The certificate hasn't got a known issuer."
 msgstr "Certifikát má neznámý eminent."
 
-#: lobby/XmppClient.cpp:1211
+#: lobby/XmppClient.cpp:1335
 msgid "The certificate has been revoked."
 msgstr "Certifikát byl revokován."
 
-#: lobby/XmppClient.cpp:1212
+#: lobby/XmppClient.cpp:1336
 msgid "The certificate has expired."
 msgstr "Platnost certifikátu skončila."
 
-#: lobby/XmppClient.cpp:1213
+#: lobby/XmppClient.cpp:1337
 msgid "The certificate is not yet active."
 msgstr "Certifikát ještě není aktivní."
 
-#: lobby/XmppClient.cpp:1214
+#: lobby/XmppClient.cpp:1338
 msgid "The certificate has not been issued for the peer connected to."
 msgstr "Certifikát nebyl vydán pro protějšek, ke kterému je připojen."
 
-#: lobby/XmppClient.cpp:1215
+#: lobby/XmppClient.cpp:1339
 msgid "The certificate signer is not a certificate authority."
 msgstr "Podepisovatelem certifikátu není certifikátova autorita."
 
-#: lobby/XmppClient.cpp:1237 lobby/XmppClient.cpp:1281
-#: lobby/XmppClient.cpp:1320
+#: lobby/XmppClient.cpp:1361 lobby/XmppClient.cpp:1405
+#: lobby/XmppClient.cpp:1444
 msgid "Error"
 msgstr "Chyba"
 
-#: lobby/XmppClient.cpp:1240 lobby/XmppClient.cpp:1284
+#: lobby/XmppClient.cpp:1364 lobby/XmppClient.cpp:1408
 msgid "No error"
 msgstr "Žádná chyba"
 
-#: lobby/XmppClient.cpp:1242
+#: lobby/XmppClient.cpp:1366
 msgid "Player already logged in"
 msgstr "Hráč se už přihlásil"
 
-#: lobby/XmppClient.cpp:1244
+#: lobby/XmppClient.cpp:1368
 msgid "Forbidden"
 msgstr "Zakázáno"
 
-#: lobby/XmppClient.cpp:1246
+#: lobby/XmppClient.cpp:1370
 msgid "Internal server error"
 msgstr "Vnitřní chyba serveru"
 
-#: lobby/XmppClient.cpp:1250
+#: lobby/XmppClient.cpp:1374
 msgid "Not allowed"
 msgstr "Nepovoleno"
 
-#: lobby/XmppClient.cpp:1251
+#: lobby/XmppClient.cpp:1375
 msgid "Not authorized"
 msgstr "Neschváleno"
 
-#: lobby/XmppClient.cpp:1254
+#: lobby/XmppClient.cpp:1378
 msgid "Recipient temporarily unavailable"
 msgstr "Příjemce dočasně nedostupný"
 
-#: lobby/XmppClient.cpp:1256
+#: lobby/XmppClient.cpp:1380
 msgid "Registration required"
 msgstr "Registrace vyžadována"
 
-#: lobby/XmppClient.cpp:1260
+#: lobby/XmppClient.cpp:1384
 msgid "Service unavailable"
 msgstr "Služba nedostupná"
 
-#: lobby/XmppClient.cpp:1265 lobby/XmppClient.cpp:1304
+#: lobby/XmppClient.cpp:1389 lobby/XmppClient.cpp:1428
 msgid "Unknown error"
 msgstr "Neznámá chyba"
 
-#: lobby/XmppClient.cpp:1285
+#: lobby/XmppClient.cpp:1409
 msgid "Stream error"
 msgstr "Chyba proudu"
 
-#: lobby/XmppClient.cpp:1286
+#: lobby/XmppClient.cpp:1410
 msgid "The incoming stream version is unsupported"
 msgstr "Přicházející verze proudu není podporována"
 
-#: lobby/XmppClient.cpp:1287
+#: lobby/XmppClient.cpp:1411
 msgid "The stream has been closed by the server"
 msgstr "Proud byl ukončen serverem"
 
-#: lobby/XmppClient.cpp:1291
+#: lobby/XmppClient.cpp:1415
 msgid "An I/O error occurred"
 msgstr "Objevila se chyba vstupu/výstupu (I/O)"
 
-#: lobby/XmppClient.cpp:1293
+#: lobby/XmppClient.cpp:1417
 msgid "The connection was refused by the server"
 msgstr "Připojení bylo odmítnuto serverem"
 
-#: lobby/XmppClient.cpp:1294
+#: lobby/XmppClient.cpp:1418
 msgid "Resolving the server's hostname failed"
 msgstr "Nepodařilo se zjistit název serveru"
 
-#: lobby/XmppClient.cpp:1295
+#: lobby/XmppClient.cpp:1419
 msgid "This system is out of memory"
 msgstr "Tomuto systému došla paměť"
 
-#: lobby/XmppClient.cpp:1297
+#: lobby/XmppClient.cpp:1421
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
 msgstr "Nepodařilo se ověřit certifikát serveru, nebo spojení nebylo úspěšně dokončeno"
 
-#: lobby/XmppClient.cpp:1298
+#: lobby/XmppClient.cpp:1422
 msgid "The server did not offer required TLS encryption"
 msgstr "Server nenabídnul požadované šifrování TLS"
 
-#: lobby/XmppClient.cpp:1300
+#: lobby/XmppClient.cpp:1424
 msgid "Authentication failed. Incorrect password or account does not exist"
 msgstr "Ověření neúspěšné. Nesprávné heslo nebo neexistující účet"
 
-#: lobby/XmppClient.cpp:1301
+#: lobby/XmppClient.cpp:1425
 msgid "The user or system requested a disconnect"
 msgstr "Uživatel nebo systém požádal o odpojení"
 
-#: lobby/XmppClient.cpp:1302
+#: lobby/XmppClient.cpp:1426
 msgid "There is no active connection"
 msgstr "Žádné činné připojení"
 
-#: lobby/XmppClient.cpp:1323
+#: lobby/XmppClient.cpp:1447
 msgid "Your account has been successfully registered"
 msgstr "Váš účet byl úspěšně registrován"
 
-#: lobby/XmppClient.cpp:1324
+#: lobby/XmppClient.cpp:1448
 msgid "Not all necessary information provided"
 msgstr "406: Ne všechny potřebné informace podány"
 
-#: lobby/XmppClient.cpp:1325
+#: lobby/XmppClient.cpp:1449
 msgid "Username already exists"
 msgstr "409: Uživatelské jméno je již používáno"
 
@@ -219,16 +249,16 @@ msgstr "Nelze vypočítat konečný hash."
 msgid "Failed to verify signature."
 msgstr "Nepodařilo se ověřit podpis."
 
-#: ps/SavedGame.cpp:138
+#: ps/SavedGame.cpp:139
 #, c-format
 msgid "Saved game to '%s'"
 msgstr "Hra uložena do '%s'"
 
-#: ps/Util.cpp:282 ps/Util.cpp:285 ps/Util.cpp:426 ps/Util.cpp:429
+#: ps/Util.cpp:289 ps/Util.cpp:292 ps/Util.cpp:437 ps/Util.cpp:440
 #, c-format
 msgid "Screenshot written to '%s'"
 msgstr "Snímek obrazovky zapsán do '%s'"
 
-#: ps/scripting/JSInterface_Debug.cpp:83
+#: ps/scripting/JSInterface_Debug.cpp:87
 msgid "custom build"
 msgstr "vlastní sestavení"

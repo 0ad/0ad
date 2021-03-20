@@ -164,7 +164,7 @@ ChatMessageFormatSimulation.tribute = class
 		else if (msg.sourcePlayer == Engine.GetPlayerID())
 			message = translate("You have sent %(player2)s %(amounts)s.");
 		else if (Engine.ConfigDB_GetValue("user", "gui.session.notifications.tribute") == "true" &&
-		        (g_IsObserver || g_GameAttributes.settings.LockTeams &&
+		        (g_IsObserver || g_InitAttributes.settings.LockTeams &&
 		           g_Players[msg.sourcePlayer].isMutualAlly[Engine.GetPlayerID()] &&
 		           g_Players[msg.targetPlayer].isMutualAlly[Engine.GetPlayerID()]))
 			message = translate("%(player)s has sent %(player2)s %(amounts)s.");

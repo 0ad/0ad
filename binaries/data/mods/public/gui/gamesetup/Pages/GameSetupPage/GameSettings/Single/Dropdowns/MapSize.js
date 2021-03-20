@@ -31,7 +31,7 @@ GameSettingControls.MapSize = class MapSize extends GameSettingControlDropdown
 	onSelectionChange(itemIdx)
 	{
 		g_GameSettings.mapSize.setSize(g_MapSizes.Tiles[itemIdx]);
-		this.gameSettingsControl.setNetworkGameAttributes();
+		this.gameSettingsControl.setNetworkInitAttributes();
 	}
 };
 

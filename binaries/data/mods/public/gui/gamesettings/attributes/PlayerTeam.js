@@ -52,6 +52,8 @@ GameSettings.prototype.Attributes.PlayerTeam = class PlayerTeam extends GameSett
 
 	onMapChange()
 	{
+		this.locked = this.locked.map(x => this.settings.map.type === "scenario");
+		this.trigger("locked");
 		if (this.settings.map.type === "random")
 			return;
 		let pData = this.getMapSetting("PlayerData");
@@ -72,7 +74,6 @@ GameSettings.prototype.Attributes.PlayerTeam = class PlayerTeam extends GameSett
 	_set(playerIndex, value)
 	{
 		this.values[playerIndex] = value;
-		this.locked[playerIndex] = this.settings.map.type == "scenario";
 	}
 
 	setValue(playerIndex, val)

@@ -103,7 +103,7 @@ function loadReplays(replaySelectionData, compareFiles)
 		// Check replay for compatibility
 		replay.isCompatible = isReplayCompatible(replay);
 
-		sanitizeGameAttributes(replay.attribs);
+		sanitizeInitAttributes(replay.attribs);
 
 		// Extract map names
 		if (g_MapNames.indexOf(replay.attribs.settings.Name) == -1 && replay.attribs.settings.Name != "")
@@ -158,7 +158,7 @@ function loadReplays(replaySelectionData, compareFiles)
 /**
  * We may encounter malformed replays.
  */
-function sanitizeGameAttributes(attribs)
+function sanitizeInitAttributes(attribs)
 {
 	if (!attribs.settings)
 		attribs.settings = {};

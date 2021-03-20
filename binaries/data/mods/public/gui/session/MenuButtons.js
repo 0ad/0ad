@@ -76,7 +76,7 @@ MenuButtons.prototype.Summary = class
 		this.button = button;
 		this.button.caption = translate("Summary");
 		this.button.hotkey = "summary";
-		// TODO: Atlas should pass g_GameAttributes.settings
+		// TODO: Atlas should pass g_InitAttributes.settings
 		this.button.enabled = !Engine.IsAtlasRunning();
 
 		this.pauseControl = pauseControl;
@@ -106,7 +106,7 @@ MenuButtons.prototype.Summary = class
 			"page_summary.xml",
 			{
 				"sim": {
-					"mapSettings": g_GameAttributes.settings,
+					"mapSettings": g_InitAttributes.settings,
 					"playerStates": simState.players.filter((state, player) =>
 						g_IsObserver || g_ViewedPlayer == 0 || player == 0 || player == g_ViewedPlayer ||
 						simState.players[g_ViewedPlayer].hasSharedLos && g_Players[player].isMutualAlly[g_ViewedPlayer]),
