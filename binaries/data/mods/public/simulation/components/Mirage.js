@@ -49,39 +49,14 @@ Mirage.prototype.Get = function(iid)
 // ============================
 // Parent entity data
 
-Mirage.prototype.CopyCapturable = function(cmpCapturable)
+/**
+ * @param {number} iid - The component to mirage.
+ */
+Mirage.prototype.CopyComponent = function(iid)
 {
-	this.miragedIids.set(IID_Capturable, cmpCapturable.Mirage());
-};
-
-Mirage.prototype.CopyFoundation = function(cmpFoundation)
-{
-	this.miragedIids.set(IID_Foundation, cmpFoundation.Mirage());
-};
-
-Mirage.prototype.CopyHealth = function(cmpHealth)
-{
-	this.miragedIids.set(IID_Health, cmpHealth.Mirage());
-};
-
-Mirage.prototype.CopyIdentity = function(cmpIdentity)
-{
-	this.miragedIids.set(IID_Identity, cmpIdentity.Mirage());
-};
-
-Mirage.prototype.CopyMarket = function(cmpMarket)
-{
-	this.miragedIids.set(IID_Market, cmpMarket.Mirage(this.entity, this.player));
-};
-
-Mirage.prototype.CopyRepairable = function(cmpRepairable)
-{
-	this.miragedIids.set(IID_Repairable, cmpRepairable.Mirage());
-};
-
-Mirage.prototype.CopyResourceSupply = function(cmpResourceSupply)
-{
-	this.miragedIids.set(IID_ResourceSupply, cmpResourceSupply.Mirage());
+	let cmp = Engine.QueryInterface(this.parent, iid);
+	if (cmp)
+		this.miragedIids.set(iid, cmp.Mirage(this.entity, this.player));
 };
 
 // ============================
