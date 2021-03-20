@@ -151,4 +151,23 @@ Repairable.prototype.GetRepairRate = function()
 	return repairTime ? cmpHealth.GetMaxHitpoints() / repairTime : 1;
 };
 
+function RepairableMirage() {}
+RepairableMirage.prototype.Init = function(cmpRepairable)
+{
+	this.numBuilders = cmpRepairable.GetNumBuilders();
+	this.buildTime = cmpRepairable.GetBuildTime();
+};
+
+RepairableMirage.prototype.GetNumBuilders = function() { return this.numBuilders; };
+RepairableMirage.prototype.GetBuildTime = function() { return this.buildTime; };
+
+Engine.RegisterGlobal("RepairableMirage", RepairableMirage);
+
+Repairable.prototype.Mirage = function()
+{
+	let mirage = new RepairableMirage();
+	mirage.Init(this);
+	return mirage;
+};
+
 Engine.RegisterComponentType(IID_Repairable, "Repairable", Repairable);

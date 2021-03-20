@@ -369,4 +369,24 @@ Capturable.prototype.OnGlobalPlayerDefeated = function(msg)
 	this.CheckTimer();
 };
 
+function CapturableMirage() {}
+CapturableMirage.prototype.Init = function(cmpCapturable)
+{
+	this.capturePoints = clone(cmpCapturable.GetCapturePoints());
+	this.maxCapturePoints = cmpCapturable.GetMaxCapturePoints();
+};
+
+CapturableMirage.prototype.GetCapturePoints = function() { return this.capturePoints; };
+CapturableMirage.prototype.GetMaxCapturePoints = function() { return this.maxCapturePoints; };
+CapturableMirage.prototype.CanCapture = Capturable.prototype.CanCapture;
+
+Engine.RegisterGlobal("CapturableMirage", CapturableMirage);
+
+Capturable.prototype.Mirage = function()
+{
+	let mirage = new CapturableMirage();
+	mirage.Init(this);
+	return mirage;
+};
+
 Engine.RegisterComponentType(IID_Capturable, "Capturable", Capturable);

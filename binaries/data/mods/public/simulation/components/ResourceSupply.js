@@ -468,4 +468,37 @@ ResourceSupply.prototype.OnEntityRenamed = function(msg)
 		cmpResourceSupplyNew.SetAmount(this.GetCurrentAmount());
 };
 
+function ResourceSupplyMirage() {}
+ResourceSupplyMirage.prototype.Init = function(cmpResourceSupply)
+{
+	this.maxAmount = cmpResourceSupply.GetMaxAmount();
+	this.amount = cmpResourceSupply.GetCurrentAmount();
+	this.type = cmpResourceSupply.GetType();
+	this.isInfinite = cmpResourceSupply.IsInfinite();
+	this.killBeforeGather = cmpResourceSupply.GetKillBeforeGather();
+	this.maxGatherers = cmpResourceSupply.GetMaxGatherers();
+	this.numGatherers = cmpResourceSupply.GetNumGatherers();
+};
+
+ResourceSupplyMirage.prototype.GetMaxAmount = function() { return this.maxAmount; };
+ResourceSupplyMirage.prototype.GetCurrentAmount = function() { return this.amount; };
+ResourceSupplyMirage.prototype.GetType = function() { return this.type; };
+ResourceSupplyMirage.prototype.IsInfinite = function() { return this.isInfinite; };
+ResourceSupplyMirage.prototype.GetKillBeforeGather = function() { return this.killBeforeGather; };
+ResourceSupplyMirage.prototype.GetMaxGatherers = function() { return this.maxGatherers; };
+ResourceSupplyMirage.prototype.GetNumGatherers = function() { return this.numGatherers; };
+
+// Apply diminishing returns with more gatherers, for e.g. infinite farms. For most resources this has no effect
+// (GetDiminishingReturns will return null). We can assume that for resources that are miraged this is the case.
+ResourceSupplyMirage.prototype.GetDiminishingReturns = function() { return null; };
+
+Engine.RegisterGlobal("ResourceSupplyMirage", ResourceSupplyMirage);
+
+ResourceSupply.prototype.Mirage = function()
+{
+	let mirage = new ResourceSupplyMirage();
+	mirage.Init(this);
+	return mirage;
+};
+
 Engine.RegisterComponentType(IID_ResourceSupply, "ResourceSupply", ResourceSupply);
