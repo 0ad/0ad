@@ -135,8 +135,8 @@ EntityLimits.prototype.GetLimitChangers = function()
 EntityLimits.prototype.UpdateLimitsFromTech = function(tech)
 {
 	for (var category in this.removers)
-		if ("RequiredTechs" in this.removers[category] && this.removers[category]["RequiredTechs"].indexOf(tech) !== -1)
-			this.removers[category]["RequiredTechs"].splice(this.removers[category]["RequiredTechs"].indexOf(tech), 1);
+		if ("RequiredTechs" in this.removers[category] && this.removers[category].RequiredTechs.indexOf(tech) !== -1)
+			this.removers[category].RequiredTechs.splice(this.removers[category].RequiredTechs.indexOf(tech), 1);
 
 	this.UpdateLimitRemoval();
 };
@@ -147,9 +147,9 @@ EntityLimits.prototype.UpdateLimitRemoval = function()
 	{
 		var nolimit = true;
 		if ("RequiredTechs" in this.removers[category])
-			nolimit = !this.removers[category]["RequiredTechs"].length;
+			nolimit = !this.removers[category].RequiredTechs.length;
 		if (nolimit && "RequiredClasses" in this.removers[category])
-			for (var cls of this.removers[category]["RequiredClasses"])
+			for (var cls of this.removers[category].RequiredClasses)
 				nolimit = nolimit && this.classCount[cls] > 0;
 
 		if (nolimit && this.limit[category] !== undefined)
@@ -288,7 +288,7 @@ EntityLimits.prototype.OnGlobalOwnershipChanged = function(msg)
 
 	for (var category in this.removers)
 		if ("RequiredClasses" in this.removers[category])
-			for (var cls of this.removers[category]["RequiredClasses"])
+			for (var cls of this.removers[category].RequiredClasses)
 				if (classes.indexOf(cls) !== -1)
 					this.classCount[cls] += modifier;
 

@@ -57,7 +57,7 @@ Repairable.prototype.AddBuilders = function(builders)
 {
 	for (let builder of builders)
 		this.AddBuilder(builder);
-}
+};
 
 Repairable.prototype.AddBuilder = function(builderEnt)
 {

@@ -23,7 +23,7 @@ FormationAttack.prototype.GetAttackTypes = function()
 
 FormationAttack.prototype.GetRange = function(target)
 {
-	var result = {"min": 0, "max": this.canAttackAsFormation ? -1 : 0};
+	var result = { "min": 0, "max": this.canAttackAsFormation ? -1 : 0 };
 	var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
 	if (!cmpFormation)
 	{

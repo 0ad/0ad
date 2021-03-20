@@ -80,7 +80,7 @@ RangeOverlayManager.prototype.OnValueModification = function(msg)
 	this.RegenerateRangeOverlays(false);
 };
 
-/** 
+/**
  * RangeOverlayManager component is deserialized before the TechnologyManager, so need to update the ranges here
  */
 RangeOverlayManager.prototype.OnDeserialized = function(msg)

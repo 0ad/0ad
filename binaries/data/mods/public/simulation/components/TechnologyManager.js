@@ -39,8 +39,8 @@ TechnologyManager.prototype.UpdateAutoResearch = function()
 	for (let key of this.unresearchedAutoResearchTechs)
 	{
 		let tech = TechnologyTemplates.Get(key);
-		if ((tech.autoResearch && this.CanResearch(key))
-			|| (tech.top && (this.IsTechnologyResearched(tech.top) || this.IsTechnologyResearched(tech.bottom))))
+		if ((tech.autoResearch && this.CanResearch(key)) ||
+			(tech.top && (this.IsTechnologyResearched(tech.top) || this.IsTechnologyResearched(tech.bottom))))
 		{
 			this.unresearchedAutoResearchTechs.delete(key);
 			this.ResearchTechnology(key);
@@ -50,7 +50,7 @@ TechnologyManager.prototype.UpdateAutoResearch = function()
 };
 
 // Checks an entity template to see if its technology requirements have been met
-TechnologyManager.prototype.CanProduce = function (templateName)
+TechnologyManager.prototype.CanProduce = function(templateName)
 {
 	var cmpTempManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 	var template = cmpTempManager.GetTemplate(templateName);

@@ -39,7 +39,7 @@ AttackDetection.prototype.UpdateSuppressionEvent = function(index, event)
 	this.ActivateTimer();
 };
 
-//// Message handlers ////
+// Message handlers
 
 AttackDetection.prototype.OnGlobalAttacked = function(msg)
 {
@@ -53,7 +53,7 @@ AttackDetection.prototype.OnGlobalAttacked = function(msg)
 	this.AttackAlert(msg.target, msg.attacker, msg.type, msg.attackerOwner);
 };
 
-//// External interface ////
+// External interface
 
 AttackDetection.prototype.AttackAlert = function(target, attacker, type, attackerOwner)
 {
@@ -103,8 +103,8 @@ AttackDetection.prototype.AttackAlert = function(target, attacker, type, attacke
 		isPriorityIncreased = element.targetIsDomesticAnimal && !targetIsDomesticAnimal;
 		var isPriorityDescreased = !element.targetIsDomesticAnimal && targetIsDomesticAnimal;
 
-		if (isPriorityIncreased
-		    || (!isPriorityDescreased && dist < this.suppressionTransferRangeSquared))
+		if (isPriorityIncreased ||
+		    (!isPriorityDescreased && dist < this.suppressionTransferRangeSquared))
 			this.UpdateSuppressionEvent(i, event);
 
 		// If priority has increased, exit the loop to send the upgraded notification below

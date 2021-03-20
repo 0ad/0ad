@@ -10,7 +10,7 @@ Engine.LoadComponentScript("Heal.js");
 
 const entity = 60;
 const player = 1;
-const otherPlayer = 2
+const otherPlayer = 2;
 
 let template = {
 	"Range": 20,

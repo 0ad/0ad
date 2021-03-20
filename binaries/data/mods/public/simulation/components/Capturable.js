@@ -19,7 +19,7 @@ Capturable.prototype.Init = function()
 	this.capturePoints = [];
 };
 
-//// Interface functions ////
+// Interface functions
 
 /**
  * Returns the current capture points array.
@@ -150,7 +150,7 @@ Capturable.prototype.CanCapture = function(playerID)
 	return sourceEnemyCapturePoints > 0;
 };
 
-//// Private functions ////
+// Private functions
 
 /**
  * This has to be called whenever the capture points are changed.
@@ -292,7 +292,7 @@ Capturable.prototype.UpdateCachedValuesAndNotify = function(sendMessage = true)
 		this.CheckTimer();
 };
 
-//// Message Listeners ////
+// Message Listeners
 
 Capturable.prototype.OnValueModification = function(msg)
 {

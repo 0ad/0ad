@@ -97,7 +97,7 @@ testCapturable(testData, cmpCapturable => {
 
 // Tests if the message is sent when capture points change
 testCapturable(testData, cmpCapturable => {
-	cmpCapturable.SetCapturePoints([0, 2000, 0 , 1000]);
+	cmpCapturable.SetCapturePoints([0, 2000, 0, 1000]);
 	TS_ASSERT_UNEVAL_EQUALS(cmpCapturable.GetCapturePoints(), [0, 2000, 0, 1000]);
 	Engine.PostMessage = function(ent, iid, message)
 	{

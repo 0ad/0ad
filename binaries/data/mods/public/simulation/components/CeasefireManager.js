@@ -96,9 +96,9 @@ CeasefireManager.prototype.ShowCeasefireCountdownMessage = function()
 {
 	let cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 	this.ceasefireCountdownMessage = cmpGuiInterface.AddTimeNotification({
-			"message": markForTranslation("You can attack in %(time)s"),
-			"translateMessage": true
-		}, this.countdownMessageDuration);
+		"message": markForTranslation("You can attack in %(time)s"),
+		"translateMessage": true
+	}, this.countdownMessageDuration);
 };
 
 CeasefireManager.prototype.StopCeasefire = function()
