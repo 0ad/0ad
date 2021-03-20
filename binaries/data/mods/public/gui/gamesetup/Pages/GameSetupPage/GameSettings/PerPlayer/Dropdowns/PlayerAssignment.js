@@ -95,12 +95,7 @@ PlayerSettingControls.PlayerAssignment = class PlayerAssignment extends GameSett
 				newGUID = guid;
 				break;
 			}
-		if (this.playerItems && newGUID === this.assignedGUID)
-			return;
 		this.assignedGUID = newGUID;
-		this.playerItems = sortGUIDsByPlayerID().map(
-			this.clientItemFactory.createItem.bind(this.clientItemFactory));
-
 		this.rebuildList();
 		this.render();
 	}
@@ -126,6 +121,8 @@ PlayerSettingControls.PlayerAssignment = class PlayerAssignment extends GameSett
 	rebuildList()
 	{
 		Engine.ProfileStart("updatePlayerAssignmentsList");
+		this.playerItems = sortGUIDsByPlayerID().map(
+			this.clientItemFactory.createItem.bind(this.clientItemFactory));
 		this.values = prepareForDropdown([
 			...this.playerItems,
 			...this.aiItems,
