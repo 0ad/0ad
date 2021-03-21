@@ -1,152 +1,152 @@
 {
-    "categories": {
-        "ingame": {
-            "name": "In-game",
-            "desc": "In-game hotkeys."
-        }
-    },
-    "mapped_hotkeys": {
-        "ingame": {
-            "session.kill": {
-                "name": "Destroy selected units",
-                "desc": "Destroy selected units"
-            },
-            "session.noconfirmation": {
-                "name": "Destroy without confirmation",
-                "desc": "Do not ask confirmation when deleting a building/unit"
-            },
-            "session.stop": {
-                "name": "Stop units",
-                "desc": "Stop the current action"
-            },
-            "session.backtowork": {
-                "name": "Back to Work",
-                "desc": "The unit will go back to work"
-            },
-            "session.unload": {
-                "name": "Unload",
-                "desc": "Unload garrisoned units when a building/mechanical unit is selected"
-            },
-            "session.unloadtype": {
-                "name": "Unload unit type",
-                "desc": "Modifier to unload all units of type"
-            },
-            "session.move": {
-                "name": "Force move",
-                "desc": "Modifier to move to a point instead of another action (e.g. gather)"
-            },
-            "session.attack": {
-                "name": "Force attack",
-                "desc": "Modifier to attack instead of another action (e.g. capture)"
-            },
-            "session.attackmove": {
-                "name": "Attack Move",
-                "desc": "Modifier to attackmove when clicking on a point"
-            },
-            "session.attackmoveUnit": {
-                "name": "Attack Move (unit only)",
-                "desc": "Modifier to attackmove targeting only units when clicking on a point"
-            },
-            "session.garrison": {
-                "name": "Garrison",
-                "desc": "Modifier to garrison when clicking on building"
-            },
-            "session.autorallypoint": {
-                "name": "Auto-rally point",
-                "desc": "Modifier to set the rally point on the building itself"
-            },
-            "session.guard": {
-                "name": "Guard",
-                "desc": "Modifier to escort/guard when clicking on unit/building"
-            },
-            "session.patrol": {
-                "name": "Patrol",
-                "desc": "Modifier to patrol a unit"
-            },
-            "session.repair": {
-                "name": "Repair",
-                "desc": "Modifier to repair when clicking on building/mechanical unit"
-            },
-            "session.queue": {
-                "name": "Queue order",
-                "desc": "Modifier to queue unit orders instead of replacing"
-            },
-            "session.pushorderfront": {
-                "name": "Push order in front",
-                "desc": "Modifier to execute this order, then go back to the current order."
-            },
-            "session.orderone": {
-                "name": "Order one unit",
-                "desc": "Modifier to order only one entity in selection."
-            },
-            "session.batchtrain": {
-                "name": "Batch production",
-                "desc": "Modifier to train units in batches"
-            },
-            "session.massbarter": {
-                "name": "Mass barter",
-                "desc": "Modifier to barter bunch of resources"
-            },
-            "session.masstribute": {
-                "name": "Mass tribute",
-                "desc": "Modifier to tribute bunch of resources"
-            },
-            "session.fulltradeswap": {
-                "name": "Set trade to 100%",
-                "desc": "Modifier to put the desired trade resource to 100%"
-            },
-            "session.deselectgroup": {
-                "name": "Deselect unit type",
-                "desc": "Modifier to deselect units when clicking group icon, instead of selecting"
-            },
-            "session.rotate.cw": {
-                "name": "Rotate building clockwise",
-                "desc": "Rotate building placement preview clockwise"
-            },
-            "session.rotate.ccw": {
-                "name": "Rotate building counterclockwise",
-                "desc": "Rotate building placement preview anticlockwise"
-            },
-            "session.snaptoedges": {
-                "name": "Toggle snap-to-edge",
-                "desc": "Modifier to align new structures with nearby existing structure"
-            },
-            "session.toggledefaultformation": {
-                "name": "Toggle default formation",
-                "desc": "Switch between null default formation and the last default formation used (defaults to 'box')"
-            },
-            "session.queueunit.1": {
-                "name": "Queue 1st unit",
-                "desc": "add first unit type to queue"
-            },
-            "session.queueunit.2": {
-                "name": "Queue 2nd unit",
-                "desc": "add second unit type to queue"
-            },
-            "session.queueunit.3": {
-                "name": "Queue 3rd unit",
-                "desc": "add third unit type to queue"
-            },
-            "session.queueunit.4": {
-                "name": "Queue 4th unit",
-                "desc": "add fourth unit type to queue"
-            },
-            "session.queueunit.5": {
-                "name": "Queue 5th unit",
-                "desc": "add fivth unit type to queue"
-            },
-            "session.queueunit.6": {
-                "name": "Queue 6th unit",
-                "desc": "add sixth unit type to queue"
-            },
-            "session.queueunit.7": {
-                "name": "Queue 7th unit",
-                "desc": "add seventh unit type to queue"
-            },
-            "session.queueunit.8": {
-                "name": "Queue 8th unit",
-                "desc": "add eighth unit type to queue"
-            }
-        }
-    }
+	"categories": {
+		"ingame": {
+			"name": "In-game",
+			"desc": "In-game hotkeys."
+		}
+	},
+	"mapped_hotkeys": {
+		"ingame": {
+			"session.kill": {
+				"name": "Destroy selected units",
+				"desc": "Destroy selected units."
+			},
+			"session.noconfirmation": {
+				"name": "Destroy without confirmation",
+				"desc": "Do not ask confirmation when deleting a building/unit."
+			},
+			"session.stop": {
+				"name": "Stop units",
+				"desc": "Stop the current action."
+			},
+			"session.backtowork": {
+				"name": "Back to Work",
+				"desc": "The unit will go back to work."
+			},
+			"session.unload": {
+				"name": "Unload",
+				"desc": "Unload garrisoned units when a building/mechanical unit is selected."
+			},
+			"session.unloadtype": {
+				"name": "Unload unit type",
+				"desc": "Modifier to unload all units of type."
+			},
+			"session.move": {
+				"name": "Force move",
+				"desc": "Modifier to move to a point instead of another action (e.g. gather)."
+			},
+			"session.attack": {
+				"name": "Force attack",
+				"desc": "Modifier to attack instead of another action (e.g. capture)."
+			},
+			"session.attackmove": {
+				"name": "Attack Move",
+				"desc": "Modifier to attackmove when clicking on a point."
+			},
+			"session.attackmoveUnit": {
+				"name": "Attack Move (unit only)",
+				"desc": "Modifier to attackmove targeting only units when clicking on a point."
+			},
+			"session.garrison": {
+				"name": "Garrison",
+				"desc": "Modifier to garrison when clicking on building."
+			},
+			"session.autorallypoint": {
+				"name": "Auto-rally point",
+				"desc": "Modifier to set the rally point on the building itself."
+			},
+			"session.guard": {
+				"name": "Guard",
+				"desc": "Modifier to escort/guard when clicking on unit/building."
+			},
+			"session.patrol": {
+				"name": "Patrol",
+				"desc": "Modifier to patrol a unit."
+			},
+			"session.repair": {
+				"name": "Repair",
+				"desc": "Modifier to repair when clicking on building/mechanical unit."
+			},
+			"session.queue": {
+				"name": "Queue order",
+				"desc": "Modifier to queue unit orders instead of replacing."
+			},
+			"session.pushorderfront": {
+				"name": "Push order in front",
+				"desc": "Modifier to execute this order, then go back to the current order."
+			},
+			"session.orderone": {
+				"name": "Order one unit",
+				"desc": "Modifier to order only one entity in selection."
+			},
+			"session.batchtrain": {
+				"name": "Batch production",
+				"desc": "Modifier to train units in batches."
+			},
+			"session.massbarter": {
+				"name": "Mass barter",
+				"desc": "Modifier to barter bunch of resources."
+			},
+			"session.masstribute": {
+				"name": "Mass tribute",
+				"desc": "Modifier to tribute bunch of resources."
+			},
+			"session.fulltradeswap": {
+				"name": "Set trade to 100%",
+				"desc": "Modifier to put the desired trade resource to 100%."
+			},
+			"session.deselectgroup": {
+				"name": "Deselect unit type",
+				"desc": "Modifier to deselect units when clicking group icon, instead of selecting."
+			},
+			"session.rotate.cw": {
+				"name": "Rotate building clockwise",
+				"desc": "Rotate building placement preview clockwise."
+			},
+			"session.rotate.ccw": {
+				"name": "Rotate building counterclockwise",
+				"desc": "Rotate building placement preview anticlockwise."
+			},
+			"session.snaptoedges": {
+				"name": "Toggle snap-to-edge",
+				"desc": "Modifier to align new structures with nearby existing structure."
+			},
+			"session.toggledefaultformation": {
+				"name": "Toggle default formation",
+				"desc": "Switch between null default formation and the last default formation used (defaults to 'box')."
+			},
+			"session.queueunit.1": {
+				"name": "Queue 1st unit",
+				"desc": "Add first unit type to queue."
+			},
+			"session.queueunit.2": {
+				"name": "Queue 2nd unit",
+				"desc": "Add second unit type to queue."
+			},
+			"session.queueunit.3": {
+				"name": "Queue 3rd unit",
+				"desc": "Add third unit type to queue."
+			},
+			"session.queueunit.4": {
+				"name": "Queue 4th unit",
+				"desc": "Add fourth unit type to queue."
+			},
+			"session.queueunit.5": {
+				"name": "Queue 5th unit",
+				"desc": "Add fivth unit type to queue."
+			},
+			"session.queueunit.6": {
+				"name": "Queue 6th unit",
+				"desc": "Add sixth unit type to queue."
+			},
+			"session.queueunit.7": {
+				"name": "Queue 7th unit",
+				"desc": "Add seventh unit type to queue."
+			},
+			"session.queueunit.8": {
+				"name": "Queue 8th unit",
+				"desc": "Add eighth unit type to queue."
+			}
+		}
+	}
 }
