@@ -76,7 +76,7 @@ TS_ASSERT_EQUALS(spy._called, 1);
 cmpPlayer = AddMock(player, IID_Player, {
 	"AddPopulationBonuses": bonus => TS_ASSERT_EQUALS(bonus, -3)
 });
-difference = 0
+difference = 0;
 Engine.RegisterGlobal("ApplyValueModificationsToEntity",
 	(valueName, currentValue, entity) => currentValue + difference
 );

@@ -2,7 +2,7 @@
  * Tests for consistent and correct math results
  */
 
- // +0 is different than -0, but standard equality won't test that
+// +0 is different than -0, but standard equality won't test that
 function isNegativeZero(z) { return z === 0 && 1/z === -Infinity; }
 function isPositiveZero(z) { return z === 0 && 1/z === Infinity; }
 
@@ -126,7 +126,7 @@ TS_ASSERT_UNEVAL_EQUALS(Math.square(NaN), NaN);
 TS_ASSERT(isPositiveZero(Math.square(0)));
 TS_ASSERT(isPositiveZero(Math.square(-0)));
 TS_ASSERT_EQUALS(Math.square(Infinity), Infinity);
-TS_ASSERT_EQUALS(Math.square(1.772979291871526e-81),3.143455569405258e-162);
+TS_ASSERT_EQUALS(Math.square(1.772979291871526e-81), 3.143455569405258e-162);
 TS_ASSERT_EQUALS(Math.square(1e+155), Infinity);
 TS_ASSERT_UNEVAL_EQUALS(Math.square(1), 1);
 TS_ASSERT_UNEVAL_EQUALS(Math.square(20), 400);

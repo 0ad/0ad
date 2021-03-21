@@ -8,6 +8,20 @@ Fogging.prototype.Schema =
 	"<a:help>Allows this entity to be replaced by mirage entities in the fog-of-war.</a:help>" +
 	"<empty/>";
 
+/**
+ * The components that we want to mirage when present.
+ * Assumes that a function "Mirage()" is present.
+ */
+Fogging.prototype.componentsToMirage = [
+	IID_Capturable,
+	IID_Foundation,
+	IID_Health,
+	IID_Identity,
+	IID_Market,
+	IID_Repairable,
+	IID_ResourceSupply
+];
+
 Fogging.prototype.Init = function()
 {
 	this.activated = false;
@@ -106,33 +120,8 @@ Fogging.prototype.LoadMirage = function(player)
 	cmpMirageVisualActor.SetActorSeed(cmpParentVisualActor.GetActorSeed());
 
 	// Store valuable information into the mirage component (especially for the GUI).
-	let cmpIdentity = Engine.QueryInterface(this.entity, IID_Identity);
-	if (cmpIdentity)
-		cmpMirage.CopyIdentity(cmpIdentity);
-
-	let cmpFoundation = Engine.QueryInterface(this.entity, IID_Foundation);
-	if (cmpFoundation)
-		cmpMirage.CopyFoundation(cmpFoundation);
-
-	let cmpRepairable = Engine.QueryInterface(this.entity, IID_Repairable);
-	if (cmpRepairable && !cmpFoundation)
-		cmpMirage.CopyRepairable(cmpRepairable);
-
-	let cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
-	if (cmpHealth)
-		cmpMirage.CopyHealth(cmpHealth);
-
-	let cmpCapturable = Engine.QueryInterface(this.entity, IID_Capturable);
-	if (cmpCapturable)
-		cmpMirage.CopyCapturable(cmpCapturable);
-
-	let cmpResourceSupply = Engine.QueryInterface(this.entity, IID_ResourceSupply);
-	if (cmpResourceSupply)
-		cmpMirage.CopyResourceSupply(cmpResourceSupply);
-
-	let cmpMarket = Engine.QueryInterface(this.entity, IID_Market);
-	if (cmpMarket)
-		cmpMirage.CopyMarket(cmpMarket);
+	for (let component of this.componentsToMirage)
+		cmpMirage.CopyComponent(component);
 
 	// Notify the GUI the entity has been replaced by a mirage, in case it is selected at this moment.
 	Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface).AddMiragedEntity(player, this.entity, this.mirages[player]);

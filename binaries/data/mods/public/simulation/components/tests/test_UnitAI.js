@@ -118,33 +118,33 @@ function TestFormationExiting(mode)
 
 
 	AddMock(SYSTEM_ENTITY, IID_Timer, {
-		SetInterval: function() { },
-		SetTimeout: function() { },
+		"SetInterval": function() { },
+		"SetTimeout": function() { },
 	});
 
 	AddMock(SYSTEM_ENTITY, IID_RangeManager, {
-		CreateActiveQuery: function(ent, minRange, maxRange, players, iid, flags, accountForSize) {
+		"CreateActiveQuery": function(ent, minRange, maxRange, players, iid, flags, accountForSize) {
 			return 1;
 		},
-		EnableActiveQuery: function(id) { },
-		ResetActiveQuery: function(id) { if (mode == 0) return []; else return [enemy]; },
-		DisableActiveQuery: function(id) { },
-		GetEntityFlagMask: function(identifier) { },
+		"EnableActiveQuery": function(id) { },
+		"ResetActiveQuery": function(id) { if (mode == 0) return []; return [enemy]; },
+		"DisableActiveQuery": function(id) { },
+		"GetEntityFlagMask": function(identifier) { },
 	});
 
 	AddMock(SYSTEM_ENTITY, IID_TemplateManager, {
-		GetCurrentTemplateName: function(ent) { return "special/formations/line_closed"; },
+		"GetCurrentTemplateName": function(ent) { return "special/formations/line_closed"; },
 	});
 
 	AddMock(SYSTEM_ENTITY, IID_PlayerManager, {
-		GetPlayerByID: function(id) { return playerEntity; },
-		GetNumPlayers: function() { return 2; },
+		"GetPlayerByID": function(id) { return playerEntity; },
+		"GetNumPlayers": function() { return 2; },
 	});
 
 	AddMock(playerEntity, IID_Player, {
-		IsAlly: function() { return false; },
-		IsEnemy: function() { return true; },
-		GetEnemies: function() { return [2]; },
+		"IsAlly": function() { return false; },
+		"IsEnemy": function() { return true; },
+		"GetEnemies": function() { return [2]; },
 	});
 
 	AddMock(SYSTEM_ENTITY, IID_ObstructionManager, {
@@ -155,19 +155,19 @@ function TestFormationExiting(mode)
 	var unitAI = ConstructComponent(unit, "UnitAI", { "FormationController": "false", "DefaultStance": "aggressive" });
 
 	AddMock(unit, IID_Identity, {
-		GetClassesList: function() { return []; },
+		"GetClassesList": function() { return []; },
 	});
 
 	AddMock(unit, IID_Ownership, {
-		GetOwner: function() { return 1; },
+		"GetOwner": function() { return 1; },
 	});
 
 	AddMock(unit, IID_Position, {
-		GetTurretParent: function() { return INVALID_ENTITY; },
-		GetPosition: function() { return new Vector3D(); },
-		GetPosition2D: function() { return new Vector2D(); },
-		GetRotation: function() { return { "y": 0 }; },
-		IsInWorld: function() { return true; },
+		"GetTurretParent": function() { return INVALID_ENTITY; },
+		"GetPosition": function() { return new Vector3D(); },
+		"GetPosition2D": function() { return new Vector2D(); },
+		"GetRotation": function() { return { "y": 0 }; },
+		"IsInWorld": function() { return true; },
 	});
 
 	AddMock(unit, IID_UnitMotion, {
@@ -181,17 +181,17 @@ function TestFormationExiting(mode)
 	});
 
 	AddMock(unit, IID_Vision, {
-		GetRange: function() { return 10; },
+		"GetRange": function() { return 10; },
 	});
 
 	AddMock(unit, IID_Attack, {
-		GetRange: function() { return { "max": 10, "min": 0}; },
-		GetFullAttackRange: function() { return { "max": 40, "min": 0}; },
-		GetBestAttackAgainst: function(t) { return "melee"; },
-		GetPreference: function(t) { return 0; },
-		GetTimers: function() { return { "prepare": 500, "repeat": 1000 }; },
-		CanAttack: function(v) { return true; },
-		CompareEntitiesByPreference: function(a, b) { return 0; },
+		"GetRange": function() { return { "max": 10, "min": 0 }; },
+		"GetFullAttackRange": function() { return { "max": 40, "min": 0 }; },
+		"GetBestAttackAgainst": function(t) { return "melee"; },
+		"GetPreference": function(t) { return 0; },
+		"GetTimers": function() { return { "prepare": 500, "repeat": 1000 }; },
+		"CanAttack": function(v) { return true; },
+		"CompareEntitiesByPreference": function(a, b) { return 0; },
 	});
 
 	unitAI.OnCreate();
@@ -202,7 +202,7 @@ function TestFormationExiting(mode)
 	if (mode == 1)
 	{
 		AddMock(enemy, IID_Health, {
-			GetHitpoints: function() { return 10; },
+			"GetHitpoints": function() { return 10; },
 		});
 		AddMock(enemy, IID_UnitAI, {
 			"IsAnimal": () => "false",
@@ -211,7 +211,7 @@ function TestFormationExiting(mode)
 	}
 	else if (mode == 2)
 		AddMock(enemy, IID_Health, {
-			GetHitpoints: function() { return 0; },
+			"GetHitpoints": function() { return 0; },
 		});
 
 	let controllerFormation = ConstructComponent(controller, "Formation", {
@@ -231,13 +231,13 @@ function TestFormationExiting(mode)
 	});
 
 	AddMock(controller, IID_Position, {
-		JumpTo: function(x, z) { this.x = x; this.z = z; },
-		GetTurretParent: function() { return INVALID_ENTITY; },
-		GetPosition: function() { return new Vector3D(this.x, 0, this.z); },
-		GetPosition2D: function() { return new Vector2D(this.x, this.z); },
-		GetRotation: function() { return { "y": 0 }; },
-		IsInWorld: function() { return true; },
-		MoveOutOfWorld: () => {}
+		"JumpTo": function(x, z) { this.x = x; this.z = z; },
+		"GetTurretParent": function() { return INVALID_ENTITY; },
+		"GetPosition": function() { return new Vector3D(this.x, 0, this.z); },
+		"GetPosition2D": function() { return new Vector2D(this.x, this.z); },
+		"GetRotation": function() { return { "y": 0 }; },
+		"IsInWorld": function() { return true; },
+		"MoveOutOfWorld": () => {}
 	});
 
 	AddMock(controller, IID_UnitMotion, {
@@ -289,28 +289,28 @@ function TestMoveIntoFormationWhileAttacking()
 	var unitAIs = [];
 
 	AddMock(SYSTEM_ENTITY, IID_Timer, {
-		SetInterval: function() { },
-		SetTimeout: function() { },
+		"SetInterval": function() { },
+		"SetTimeout": function() { },
 	});
 
 
 	AddMock(SYSTEM_ENTITY, IID_RangeManager, {
-		CreateActiveQuery: function(ent, minRange, maxRange, players, iid, flags, accountForSize) {
+		"CreateActiveQuery": function(ent, minRange, maxRange, players, iid, flags, accountForSize) {
 			return 1;
 		},
-		EnableActiveQuery: function(id) { },
-		ResetActiveQuery: function(id) { return [enemy]; },
-		DisableActiveQuery: function(id) { },
-		GetEntityFlagMask: function(identifier) { },
+		"EnableActiveQuery": function(id) { },
+		"ResetActiveQuery": function(id) { return [enemy]; },
+		"DisableActiveQuery": function(id) { },
+		"GetEntityFlagMask": function(identifier) { },
 	});
 
 	AddMock(SYSTEM_ENTITY, IID_TemplateManager, {
-		GetCurrentTemplateName: function(ent) { return "special/formations/line_closed"; },
+		"GetCurrentTemplateName": function(ent) { return "special/formations/line_closed"; },
 	});
 
 	AddMock(SYSTEM_ENTITY, IID_PlayerManager, {
-		GetPlayerByID: function(id) { return playerEntity; },
-		GetNumPlayers: function() { return 2; },
+		"GetPlayerByID": function(id) { return playerEntity; },
+		"GetNumPlayers": function() { return 2; },
 	});
 
 	AddMock(SYSTEM_ENTITY, IID_ObstructionManager, {
@@ -318,32 +318,33 @@ function TestMoveIntoFormationWhileAttacking()
 	});
 
 	AddMock(playerEntity, IID_Player, {
-		IsAlly: function() { return false; },
-		IsEnemy: function() { return true; },
-		GetEnemies: function() { return [2]; },
+		"IsAlly": function() { return false; },
+		"IsEnemy": function() { return true; },
+		"GetEnemies": function() { return [2]; },
 	});
 
 	// create units
-	for (var i = 0; i < unitCount; i++) {
+	for (var i = 0; i < unitCount; i++)
+	{
 
 		units.push(unit + i);
 
 		var unitAI = ConstructComponent(unit + i, "UnitAI", { "FormationController": "false", "DefaultStance": "aggressive" });
 
 		AddMock(unit + i, IID_Identity, {
-			GetClassesList: function() { return []; },
+			"GetClassesList": function() { return []; },
 		});
 
 		AddMock(unit + i, IID_Ownership, {
-			GetOwner: function() { return 1; },
+			"GetOwner": function() { return 1; },
 		});
 
 		AddMock(unit + i, IID_Position, {
-			GetTurretParent: function() { return INVALID_ENTITY; },
-			GetPosition: function() { return new Vector3D(); },
-			GetPosition2D: function() { return new Vector2D(); },
-			GetRotation: function() { return { "y": 0 }; },
-			IsInWorld: function() { return true; },
+			"GetTurretParent": function() { return INVALID_ENTITY; },
+			"GetPosition": function() { return new Vector3D(); },
+			"GetPosition2D": function() { return new Vector2D(); },
+			"GetRotation": function() { return { "y": 0 }; },
+			"IsInWorld": function() { return true; },
 		});
 
 		AddMock(unit + i, IID_UnitMotion, {
@@ -357,16 +358,16 @@ function TestMoveIntoFormationWhileAttacking()
 		});
 
 		AddMock(unit + i, IID_Vision, {
-			GetRange: function() { return 10; },
+			"GetRange": function() { return 10; },
 		});
 
 		AddMock(unit + i, IID_Attack, {
-			GetRange: function() { return {"max":10, "min": 0}; },
-			GetFullAttackRange: function() { return { "max": 40, "min": 0}; },
-			GetBestAttackAgainst: function(t) { return "melee"; },
-			GetTimers: function() { return { "prepare": 500, "repeat": 1000 }; },
-			CanAttack: function(v) { return true; },
-			CompareEntitiesByPreference: function(a, b) { return 0; },
+			"GetRange": function() { return { "max": 10, "min": 0 }; },
+			"GetFullAttackRange": function() { return { "max": 40, "min": 0 }; },
+			"GetBestAttackAgainst": function(t) { return "melee"; },
+			"GetTimers": function() { return { "prepare": 500, "repeat": 1000 }; },
+			"CanAttack": function(v) { return true; },
+			"CompareEntitiesByPreference": function(a, b) { return 0; },
 		});
 
 		unitAI.OnCreate();
@@ -378,7 +379,7 @@ function TestMoveIntoFormationWhileAttacking()
 
 	// create enemy
 	AddMock(enemy, IID_Health, {
-		GetHitpoints: function() { return 40; },
+		"GetHitpoints": function() { return 40; },
 	});
 
 	let controllerFormation = ConstructComponent(controller, "Formation", {
@@ -418,8 +419,8 @@ function TestMoveIntoFormationWhileAttacking()
 	});
 
 	AddMock(controller, IID_Attack, {
-		GetRange: function() { return {"max":10, "min": 0}; },
-		CanAttackAsFormation: function() { return false; },
+		"GetRange": function() { return { "max": 10, "min": 0 }; },
+		"CanAttackAsFormation": function() { return false; },
 	});
 
 	controllerAI.OnCreate();
@@ -431,7 +432,7 @@ function TestMoveIntoFormationWhileAttacking()
 	for (let ent of unitAIs)
 		TS_ASSERT_EQUALS(unitAI.fsmStateName, "INDIVIDUAL.COMBAT.ATTACKING");
 
-	controllerAI.MoveIntoFormation({"name": "Circle"});
+	controllerAI.MoveIntoFormation({ "name": "Circle" });
 
 	// let all units be in position
 	for (let ent of unitAIs)

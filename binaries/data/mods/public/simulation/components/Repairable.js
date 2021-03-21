@@ -57,7 +57,7 @@ Repairable.prototype.AddBuilders = function(builders)
 {
 	for (let builder of builders)
 		this.AddBuilder(builder);
-}
+};
 
 Repairable.prototype.AddBuilder = function(builderEnt)
 {
@@ -149,6 +149,25 @@ Repairable.prototype.GetRepairRate = function()
 	let cmpCost = Engine.QueryInterface(this.entity, IID_Cost);
 	let repairTime = this.repairTimeRatio * cmpCost.GetBuildTime();
 	return repairTime ? cmpHealth.GetMaxHitpoints() / repairTime : 1;
+};
+
+function RepairableMirage() {}
+RepairableMirage.prototype.Init = function(cmpRepairable)
+{
+	this.numBuilders = cmpRepairable.GetNumBuilders();
+	this.buildTime = cmpRepairable.GetBuildTime();
+};
+
+RepairableMirage.prototype.GetNumBuilders = function() { return this.numBuilders; };
+RepairableMirage.prototype.GetBuildTime = function() { return this.buildTime; };
+
+Engine.RegisterGlobal("RepairableMirage", RepairableMirage);
+
+Repairable.prototype.Mirage = function()
+{
+	let mirage = new RepairableMirage();
+	mirage.Init(this);
+	return mirage;
 };
 
 Engine.RegisterComponentType(IID_Repairable, "Repairable", Repairable);

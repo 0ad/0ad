@@ -19,7 +19,7 @@ Capturable.prototype.Init = function()
 	this.capturePoints = [];
 };
 
-//// Interface functions ////
+// Interface functions
 
 /**
  * Returns the current capture points array.
@@ -150,7 +150,7 @@ Capturable.prototype.CanCapture = function(playerID)
 	return sourceEnemyCapturePoints > 0;
 };
 
-//// Private functions ////
+// Private functions
 
 /**
  * This has to be called whenever the capture points are changed.
@@ -292,7 +292,7 @@ Capturable.prototype.UpdateCachedValuesAndNotify = function(sendMessage = true)
 		this.CheckTimer();
 };
 
-//// Message Listeners ////
+// Message Listeners
 
 Capturable.prototype.OnValueModification = function(msg)
 {
@@ -367,6 +367,26 @@ Capturable.prototype.OnGlobalPlayerDefeated = function(msg)
 	this.capturePoints[msg.playerId] = 0;
 	this.RegisterCapturePointsChanged();
 	this.CheckTimer();
+};
+
+function CapturableMirage() {}
+CapturableMirage.prototype.Init = function(cmpCapturable)
+{
+	this.capturePoints = clone(cmpCapturable.GetCapturePoints());
+	this.maxCapturePoints = cmpCapturable.GetMaxCapturePoints();
+};
+
+CapturableMirage.prototype.GetCapturePoints = function() { return this.capturePoints; };
+CapturableMirage.prototype.GetMaxCapturePoints = function() { return this.maxCapturePoints; };
+CapturableMirage.prototype.CanCapture = Capturable.prototype.CanCapture;
+
+Engine.RegisterGlobal("CapturableMirage", CapturableMirage);
+
+Capturable.prototype.Mirage = function()
+{
+	let mirage = new CapturableMirage();
+	mirage.Init(this);
+	return mirage;
 };
 
 Engine.RegisterComponentType(IID_Capturable, "Capturable", Capturable);

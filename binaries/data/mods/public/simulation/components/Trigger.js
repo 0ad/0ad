@@ -186,7 +186,7 @@ Trigger.prototype.EnableTrigger = function(event, action)
 		}
 		let cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 		data.timer = cmpTimer.SetInterval(this.entity, IID_Trigger, "DoAction",
-			data.delay || 0, data.interval, { "action" : action });
+			data.delay || 0, data.interval, { "action": action });
 	}
 	else if (event == "OnRange")
 	{
@@ -223,7 +223,7 @@ Trigger.prototype.CallEvent = function(event, data)
 
 	for (let action in this[eventString])
 		if (this[eventString][action].enabled)
-			this.DoAction({ "action": action, "data":data });
+			this.DoAction({ "action": action, "data": data });
 };
 
 Trigger.prototype.OnGlobalInitGame = function(msg)

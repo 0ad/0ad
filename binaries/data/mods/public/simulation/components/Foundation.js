@@ -531,5 +531,23 @@ Foundation.prototype.CreateConstructionPreview = function()
 	}
 };
 
-Engine.RegisterComponentType(IID_Foundation, "Foundation", Foundation);
+function FoundationMirage() {}
+FoundationMirage.prototype.Init = function(cmpFoundation)
+{
+	this.numBuilders = cmpFoundation.GetNumBuilders();
+	this.buildTime = cmpFoundation.GetBuildTime();
+};
 
+FoundationMirage.prototype.GetNumBuilders = function() { return this.numBuilders; };
+FoundationMirage.prototype.GetBuildTime = function() { return this.buildTime; };
+
+Engine.RegisterGlobal("FoundationMirage", FoundationMirage);
+
+Foundation.prototype.Mirage = function()
+{
+	let mirage = new FoundationMirage();
+	mirage.Init(this);
+	return mirage;
+};
+
+Engine.RegisterComponentType(IID_Foundation, "Foundation", Foundation);

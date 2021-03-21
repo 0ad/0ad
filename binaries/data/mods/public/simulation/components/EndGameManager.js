@@ -107,7 +107,7 @@ EndGameManager.prototype.MarkPlayersAsWon = function(winningPlayers, victoryStri
 	cmpGUIInterface.PushNotification({
 		"type": "won",
 		"players": [winningPlayers[0]],
-		"allies" : winningPlayers,
+		"allies": winningPlayers,
 		"message": victoryString(winningPlayers.length)
 	});
 
@@ -115,7 +115,7 @@ EndGameManager.prototype.MarkPlayersAsWon = function(winningPlayers, victoryStri
 		cmpGUIInterface.PushNotification({
 			"type": "defeat",
 			"players": [defeatedPlayers[0]],
-			"allies" : defeatedPlayers,
+			"allies": defeatedPlayers,
 			"message": defeatString(defeatedPlayers.length)
 		});
 
@@ -170,7 +170,7 @@ EndGameManager.prototype.AlliedVictoryCheck = function()
 		cmpGuiInterface.PushNotification({
 			"type": "won",
 			"players": [allies[0]],
-			"allies" : allies,
+			"allies": allies,
 			"message": markForPluralTranslation(
 				"%(lastPlayer)s has won (last player alive).",
 				"%(players)s and %(lastPlayer)s have won (last players alive).",

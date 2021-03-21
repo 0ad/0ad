@@ -483,4 +483,28 @@ Health.prototype.RegisterHealthChanged = function(from)
 	Engine.PostMessage(this.entity, MT_HealthChanged, { "from": from, "to": this.hitpoints });
 };
 
+function HealthMirage() {}
+HealthMirage.prototype.Init = function(cmpHealth)
+{
+	this.maxHitpoints = cmpHealth.GetMaxHitpoints();
+	this.hitpoints = cmpHealth.GetHitpoints();
+	this.repairable = cmpHealth.IsRepairable();
+	this.injured = cmpHealth.IsInjured();
+	this.unhealable = cmpHealth.IsUnhealable();
+};
+HealthMirage.prototype.GetMaxHitpoints = function() { return this.maxHitpoints; };
+HealthMirage.prototype.GetHitpoints = function() { return this.hitpoints; };
+HealthMirage.prototype.IsRepairable = function() { return this.repairable; };
+HealthMirage.prototype.IsInjured = function() { return this.injured; };
+HealthMirage.prototype.IsUnhealable = function() { return this.unhealable; };
+
+Engine.RegisterGlobal("HealthMirage", HealthMirage);
+
+Health.prototype.Mirage = function()
+{
+	let mirage = new HealthMirage();
+	mirage.Init(this);
+	return mirage;
+};
+
 Engine.RegisterComponentType(IID_Health, "Health", Health);

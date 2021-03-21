@@ -15,10 +15,13 @@ let template = {
 };
 
 AddMock(SYSTEM_ENTITY, IID_TemplateManager, {
-	"GetTemplate": (name) =>  name == "special/spy" ?
-	({ "Cost": { "Resources": { "wood": 1000 } },
-		"VisionSharing": { "Duration": 15 } })
-	: ({})
+	"GetTemplate": (name) => {
+		return name == "special/spy" ?
+			{
+				"Cost": { "Resources": { "wood": 1000 } },
+				"VisionSharing": { "Duration": 15 } } :
+			{};
+	}
 });
 
 AddMock(ent, IID_GarrisonHolder, {
@@ -62,7 +65,7 @@ AddMock(ent, IID_GarrisonHolder, {
 });
 Engine.PostMessage = function(id, iid, message)
 {
-TS_ASSERT(false); // One doesn't send message
+	TS_ASSERT(false); // One doesn't send message
 };
 cmpVisionSharing.CheckVisionSharings();
 TS_ASSERT_UNEVAL_EQUALS(cmpVisionSharing.shared, new Set([1]));

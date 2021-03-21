@@ -72,9 +72,6 @@
       "Resources": {
         "stone": 2500
       },
-      "DisabledTemplates": [
-        "structures/rome/civil_centre"
-      ],
       "Team": 0
     },
     {
@@ -102,15 +99,16 @@
       },
       "Name": "Invasion Force",
       "PopulationLimit": 1,
-      "DisabledTemplates": [
-        "structures/iber/civil_centre"
-      ],
       "Team": 1
     }
   ],
   "RevealMap": false,
   "VictoryConditions": [
     "conquest"
+  ],
+  "TriggerScripts": [
+    "scripts/TriggerHelper.js",
+    "scenarios/death_canyon_invasion_force_triggers.js"
   ]
 }
 ]]></ScriptSettings>

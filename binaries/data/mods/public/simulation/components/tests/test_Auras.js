@@ -91,8 +91,8 @@ function testAuras(name, test_function)
 		});
 
 	let cmpModifiersManager = ConstructComponent(SYSTEM_ENTITY, "ModifiersManager", {});
-	cmpModifiersManager.OnGlobalPlayerEntityChanged({ player: playerID[1], from: -1, to: playerEnt[1] });
-	cmpModifiersManager.OnGlobalPlayerEntityChanged({ player: playerID[2], from: -1, to: playerEnt[2] });
+	cmpModifiersManager.OnGlobalPlayerEntityChanged({ "player": playerID[1], "from": -1, "to": playerEnt[1] });
+	cmpModifiersManager.OnGlobalPlayerEntityChanged({ "player": playerID[2], "from": -1, "to": playerEnt[2] });
 	let cmpAuras = ConstructComponent(sourceEnt, "Auras", { "_string": name });
 	test_function(name, cmpAuras);
 }

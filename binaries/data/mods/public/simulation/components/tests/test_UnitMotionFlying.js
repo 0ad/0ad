@@ -8,7 +8,7 @@ let target = 2;
 let height = 5;
 
 AddMock(SYSTEM_ENTITY, IID_Pathfinder, {
-	GetPassabilityClass: (name) => 1 << 8
+	"GetPassabilityClass": (name) => 1 << 8
 });
 
 let cmpUnitMotionFlying = ConstructComponent(entity, "UnitMotionFlying", {

@@ -68,11 +68,11 @@ TriggerPoint.prototype.OnRangeUpdate = function(msg)
 	for (var entity of msg.added)
 		collection.push(entity);
 
-	var r = {"currentCollection": collection.slice()};
+	var r = { "currentCollection": collection.slice() };
 	r.added = msg.added;
 	r.removed = msg.removed;
 	var cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
-	cmpTrigger.DoAction({"action":this.actions[msg.tag], "data": r});
+	cmpTrigger.DoAction({ "action": this.actions[msg.tag], "data": r });
 };
 
 

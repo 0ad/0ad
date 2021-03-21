@@ -124,42 +124,6 @@ function LoadPlayerSettings(settings, newPlayers)
 		else if (playerDefaults[i].Resources !== undefined)
 			cmpPlayer.SetResourceCounts(playerDefaults[i].Resources);
 
-		// StartingTechnologies
-		{
-			let startingTechnologies =
-				settings.PlayerData[i].StartingTechnologies ||
-				settings.StartingTechnologies ||
-				playerDefaults[i].StartingTechnologies ||
-				[];
-
-			if (startingTechnologies.length)
-				cmpPlayer.SetStartingTechnologies(startingTechnologies);
-		}
-
-		// DisabledTechnologies
-		{
-			let disabledTechnologies =
-				settings.PlayerData[i].DisabledTechnologies ||
-				settings.DisabledTechnologies ||
-				playerDefaults[i].DisabledTechnologies ||
-				[];
-
-			if (disabledTechnologies.length)
-				cmpPlayer.SetDisabledTechnologies(disabledTechnologies);
-		}
-
-		// DisabledTemplates
-		{
-			let disabledTemplates =
-				settings.PlayerData[i].DisabledTemplates ||
-				settings.DisabledTemplates ||
-				playerDefaults[i].DisabledTemplates ||
-				[];
-
-			if (disabledTemplates.length)
-				cmpPlayer.SetDisabledTemplates(disabledTemplates);
-		}
-
 		// DisableSpies
 		if (settings.DisableSpies)
 		{

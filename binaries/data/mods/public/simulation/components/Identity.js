@@ -201,4 +201,24 @@ Identity.prototype.SetControllable = function(controllability)
 	this.controllable = controllability;
 };
 
+function IdentityMirage() {}
+IdentityMirage.prototype.Init = function(cmpIdentity)
+{
+	// Mirages don't get identity classes via the template-filter, so that code can query
+	// identity components via Engine.QueryInterface without having to explicitly check for mirages.
+	// This is cloned as otherwise we get a reference to Identity's property,
+	// and that array is deleted when serializing (as it's not seralized), which ends in OOS.
+	this.classes = clone(cmpIdentity.GetClassesList());
+};
+IdentityMirage.prototype.GetClassesList = function() { return this.classes; };
+
+Engine.RegisterGlobal("IdentityMirage", IdentityMirage);
+
+Identity.prototype.Mirage = function()
+{
+	let mirage = new IdentityMirage();
+	mirage.Init(this);
+	return mirage;
+};
+
 Engine.RegisterComponentType(IID_Identity, "Identity", Identity);
