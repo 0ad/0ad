@@ -52,6 +52,11 @@ var g_ModsEnabledFiltered = [];
 var g_ModsDisabledFiltered = [];
 
 /**
+ * Cache mod compatibility recomputed when some mod is enbaled/disabled.
+ */
+var g_ModsCompatibility = [];
+
+/**
  * Name of the mods installed by the ModInstaller.
  */
 var g_InstalledMods;
@@ -72,6 +77,7 @@ function initMods()
 {
 	loadMods();
 	loadEnabledMods();
+	recomputeCompatibility();
 	validateMods();
 	initGUIFilters();
 }
@@ -104,6 +110,7 @@ function validateMods()
 function initGUIFilters()
 {
 	Engine.GetGUIObjectByName("negateFilter").checked = false;
+	Engine.GetGUIObjectByName("modCompatibleFilter").checked = true;
 
 	displayModLists();
 }
@@ -133,11 +140,11 @@ function startMods()
 
 function displayModLists()
 {
-	g_ModsEnabledFiltered = displayModList("modsEnabledList", g_ModsEnabled);
-	g_ModsDisabledFiltered = displayModList("modsDisabledList", g_ModsDisabled);
+	g_ModsEnabledFiltered = displayModList("modsEnabledList", g_ModsEnabled, true);
+	g_ModsDisabledFiltered = displayModList("modsDisabledList", g_ModsDisabled, false);
 }
 
-function displayModList(listObjectName, folders)
+function displayModList(listObjectName, folders, enabled)
 {
 	let listObject = Engine.GetGUIObjectByName(listObjectName);
 
@@ -150,20 +157,37 @@ function displayModList(listObjectName, folders)
 	}
 
 	folders = folders.filter(filterMod);
+	if (!enabled && Engine.GetGUIObjectByName("modCompatibleFilter").checked)
+		folders = folders.filter(folder => g_ModsCompatibility[folder]);
 
 	let selected = listObject.selected !== -1 ? listObject.list_name[listObject.selected] : null;
 
-	listObject.list_name = folders.map(folder => g_Mods[folder].name).map(name => g_InstalledMods.indexOf(name) == -1 ? name : coloredText(name, "green"));
-	listObject.list_folder = folders;
-	listObject.list_label = folders.map(folder => g_Mods[folder].label);
-	listObject.list_url = folders.map(folder => g_Mods[folder].url || "");
-	listObject.list_version = folders.map(folder => g_Mods[folder].version);
-	listObject.list_dependencies = folders.map(folder => g_Mods[folder].dependencies.join(" "));
+	listObject.list_name = folders.map(folder => colorMod(folder, g_Mods[folder].name, enabled));
+	listObject.list_folder = folders.map(folder => colorMod(folder, folder, enabled));
+	listObject.list_label = folders.map(folder => colorMod(folder, g_Mods[folder].label, enabled));
+	listObject.list_url = folders.map(folder => colorMod(folder, g_Mods[folder].url || ""), enabled);
+	listObject.list_version = folders.map(folder => colorMod(folder, g_Mods[folder].version, enabled));
+	listObject.list_dependencies = folders.map(folder => colorMod(folder, g_Mods[folder].dependencies.join(" "), enabled));
 	listObject.list = folders;
 
 	listObject.selected = selected ? listObject.list_name.indexOf(selected) : -1;
 
 	return folders;
+}
+
+function getModColor(folder, enabled)
+{
+	if (!g_ModsCompatibility[folder])
+		return enabled ? g_ColorDependenciesNotMet : "gray";
+	if (g_InstalledMods.indexOf(g_Mods[folder].name) != -1)
+		return "green";
+	return false;
+}
+
+function colorMod(folder, text, enabled)
+{
+	let color = getModColor(folder, enabled);
+	return color ? coloredText(text, color) : text;
 }
 
 function reloadDisabledMods()
@@ -176,11 +200,12 @@ function enableMod()
 	let modsDisabledList = Engine.GetGUIObjectByName("modsDisabledList");
 	let pos = modsDisabledList.selected;
 
-	if (pos == -1 || !areDependenciesMet(g_ModsDisabledFiltered[pos]))
+	if (pos == -1 || !g_ModsCompatibility[g_ModsDisabledFiltered[pos]])
 		return;
 
 	g_ModsEnabled.push(g_ModsDisabledFiltered.splice(pos, 1)[0]);
 	reloadDisabledMods();
+	recomputeCompatibility();
 
 	if (pos >= g_ModsDisabledFiltered.length)
 		--pos;
@@ -214,12 +239,13 @@ function disableMod()
 	sortEnabledMods();
 
 	for (let i = 0; i < g_ModsEnabled.length; ++i)
-		if (!areDependenciesMet(g_ModsEnabled[i]))
+		if (!areDependenciesMet(g_ModsEnabled[i], true))
 		{
 			g_ModsDisabled.push(g_ModsEnabled.splice(i, 1)[0]);
 			--i;
 		}
 
+	recomputeCompatibility(true);
 	displayModLists();
 	modsEnabledList.selected = Math.min(pos, g_ModsEnabledFiltered.length - 1);
 }
@@ -280,28 +306,29 @@ function moveCurrItem(objectName, up)
 	g_ModsEnabled[idx] = g_ModsEnabled[idx2];
 	g_ModsEnabled[idx2] = tmp;
 
-	g_ModsEnabledFiltered = displayModList("modsEnabledList", g_ModsEnabled);
+	g_ModsEnabledFiltered = displayModList("modsEnabledList", g_ModsEnabled, true);
 	obj.selected = idx2;
 }
 
-function areDependenciesMet(folder)
+function areDependenciesMet(folder, disabledAction = false)
 {
-	let guiObject = Engine.GetGUIObjectByName("message");
+	// If we disabled mod it will not change satus of incompatible mods
+	if (disabledAction && !g_ModsCompatibility[folder])
+		return g_ModsCompatibility[folder];
 
 	for (let dependency of g_Mods[folder].dependencies)
 	{
-		if (isDependencyMet(dependency))
-			continue;
-
-		guiObject.caption = coloredText(
-			sprintf(translate('Dependency not met: %(dep)s'), { "dep": dependency }),
-			g_ColorDependenciesNotMet);
-
-		return false;
+		if (!isDependencyMet(dependency))
+			return false;
 	}
 
-	guiObject.caption = coloredText(translate('All dependencies met'), g_ColorDependenciesMet);
 	return true;
+}
+
+function recomputeCompatibility(disabledAction = false)
+{
+	for (let mod in g_Mods)
+		g_ModsCompatibility[mod] = areDependenciesMet(mod, disabledAction);
 }
 
 /**
@@ -364,31 +391,31 @@ function sortEnabledMods()
 		dependencies[folder1].indexOf(g_Mods[folder2].name) != -1 ? 1 :
 			dependencies[folder2].indexOf(g_Mods[folder1].name) != -1 ? -1 : 0);
 
-	g_ModsEnabledFiltered = displayModList("modsEnabledList", g_ModsEnabled);
+	g_ModsEnabledFiltered = displayModList("modsEnabledList", g_ModsEnabled, true);
 }
 
 function selectedMod(listObjectName)
 {
 	let listObject = Engine.GetGUIObjectByName(listObjectName);
-	let otherListObject = Engine.GetGUIObjectByName(listObjectName == "modsDisabledList" ?
+	let isPickedDisabledList = listObjectName == "modsDisabledList";
+	let otherListObject = Engine.GetGUIObjectByName(isPickedDisabledList ?
 		"modsEnabledList" : "modsDisabledList");
 
 	let toggleModButton = Engine.GetGUIObjectByName("toggleModButton");
-	let modSelected = listObject.selected != -1;
-
-	if (modSelected)
+	let isModSelected = listObject.selected != -1;
+	if (isModSelected)
 	{
 		otherListObject.selected = -1;
-		toggleModButton.onPress = listObjectName == "modsDisabledList" ? enableMod : disableMod;
+		toggleModButton.onPress = isPickedDisabledList ? enableMod : disableMod;
 	}
 
-	Engine.GetGUIObjectByName("visitWebButton").enabled = modSelected && !!getSelectedModUrl();
-	toggleModButton.caption = listObjectName == "modsDisabledList" ?
+	Engine.GetGUIObjectByName("visitWebButton").enabled = isModSelected && !!getSelectedModUrl();
+	toggleModButton.caption = isPickedDisabledList ?
 		translateWithContext("mod activation", "Enable") :
 		translateWithContext("mod activation", "Disable");
-	toggleModButton.enabled = modSelected;
-	Engine.GetGUIObjectByName("enabledModUp").enabled = modSelected && listObjectName == "modsEnabledList" && !areFilters();
-	Engine.GetGUIObjectByName("enabledModDown").enabled = modSelected && listObjectName == "modsEnabledList" && !areFilters();
+	toggleModButton.enabled = isPickedDisabledList ? isModSelected && g_ModsCompatibility[listObject.list[listObject.selected]] : isModSelected;
+	Engine.GetGUIObjectByName("enabledModUp").enabled = isModSelected && listObjectName == "modsEnabledList" && !areFilters();
+	Engine.GetGUIObjectByName("enabledModDown").enabled = isModSelected && listObjectName == "modsEnabledList" && !areFilters();
 
 	Engine.GetGUIObjectByName("globalModDescription").caption =
 		listObject.list[listObject.selected] ?
@@ -405,7 +432,7 @@ function getSelectedModUrl()
 	let modsDisabledList = Engine.GetGUIObjectByName("modsDisabledList");
 
 	let list = modsEnabledList.selected == -1 ? modsDisabledList : modsEnabledList;
-	let folder = list.list_folder[list.selected];
+	let folder = list.list[list.selected];
 	return folder && g_Mods[folder] && g_Mods[folder].url || undefined;
 }
 

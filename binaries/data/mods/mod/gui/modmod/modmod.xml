@@ -38,6 +38,20 @@
 			</object>
 		</object>
 
+		<object size = "100%-200 40 100%-20 64">
+			<object name="modCompatibleFilter"
+						type="checkbox"
+						checked="false"
+						style="ModernTickBox"
+						size="16 0 36 100%"
+					>
+					<action on="Press">displayModLists();</action>
+				</object>
+				<object type="text" size="40 0 100% 100%" text_align="left" textcolor="white">
+					<translatableAttribute id="caption">Filter compatible</translatableAttribute>
+				</object>
+		</object>
+
 		<object
 			name="globalModDescription"
 			type="text"
