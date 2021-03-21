@@ -15,7 +15,7 @@ GameSettings.prototype.Attributes.Rating = class Rating extends GameSetting
 
 	fromInitAttributes(attribs)
 	{
-		if (this.getLegacySetting(attribs, "RatingEnabled"))
+		if (this.getLegacySetting(attribs, "RatingEnabled") !== undefined)
 		{
 			this.available = this.hasXmppClient && this.settings.playerCount.nbPlayers === 2;
 			this.enabled = this.available && !!this.getLegacySetting(attribs, "RatingEnabled");

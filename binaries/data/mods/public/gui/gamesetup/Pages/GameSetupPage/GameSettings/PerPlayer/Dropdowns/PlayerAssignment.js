@@ -27,25 +27,17 @@ PlayerSettingControls.PlayerAssignment = class PlayerAssignment extends GameSett
 		this.assignedGUID = undefined;
 		this.fixedAI = undefined;
 
+		// Build the initial list of values with undefined & AI clients.
+		this.rebuildList();
+
 		g_GameSettings.playerAI.watch(() => this.render(), ["values"]);
 		g_GameSettings.playerCount.watch((_, oldNb) => this.OnPlayerNbChange(oldNb), ["nbPlayers"]);
-
-		// Sets up the dropdown and renders.
-		this.onPlayerAssignmentsChange();
-		this.playerAssignmentsControl.registerClientJoinHandler(this.onClientJoin.bind(this));
 	}
 
 	setControl()
 	{
 		this.dropdown = Engine.GetGUIObjectByName("playerAssignment[" + this.playerIndex + "]");
 		this.label = Engine.GetGUIObjectByName("playerAssignmentText[" + this.playerIndex + "]");
-	}
-
-	onLoad(initData, hotloadData)
-	{
-		if (!hotloadData && !g_IsNetworked)
-			this.onClientJoin("local", g_PlayerAssignments);
-		this.playerAssignmentsControl.updatePlayerAssignments();
 	}
 
 	OnPlayerNbChange(oldNb)
@@ -64,30 +56,10 @@ PlayerSettingControls.PlayerAssignment = class PlayerAssignment extends GameSett
 		}
 	}
 
-	onClientJoin(newGUID, newAssignments)
-	{
-		if (!g_IsController || this.fixedAI || newAssignments[newGUID].player != -1)
-			return;
-
-		// Assign the client (or only buddies if prefered) to a free slot
-		if (newGUID != Engine.GetPlayerGUID())
-		{
-			let assignOption = Engine.ConfigDB_GetValue("user", this.ConfigAssignPlayers);
-			if (assignOption == "disabled" ||
-				assignOption == "buddies" && g_Buddies.indexOf(splitRatingFromNick(newAssignments[newGUID].name).nick) == -1)
-				return;
-		}
-
-		for (let guid in newAssignments)
-			if (newAssignments[guid].player == this.playerIndex + 1)
-				return;
-
-		newAssignments[newGUID].player = this.playerIndex + 1;
-		this.playerAssignmentsControl.assignClient(newGUID, this.playerIndex + 1);
-	}
-
 	onPlayerAssignmentsChange()
 	{
+		// Rebuild the list to account for new/removed players.
+		this.rebuildList();
 		let newGUID;
 		for (let guid in g_PlayerAssignments)
 			if (g_PlayerAssignments[guid].player == this.playerIndex + 1)
@@ -95,8 +67,14 @@ PlayerSettingControls.PlayerAssignment = class PlayerAssignment extends GameSett
 				newGUID = guid;
 				break;
 			}
+		if (this.assignedGUID === newGUID)
+			return;
 		this.assignedGUID = newGUID;
-		this.rebuildList();
+		if (this.assignedGUID && g_GameSettings.playerAI.get(this.playerIndex))
+		{
+			g_GameSettings.playerAI.setAI(this.playerIndex, undefined);
+			this.gameSettingsControl.setNetworkInitAttributes();
+		}
 		this.render();
 	}
 
@@ -121,6 +99,7 @@ PlayerSettingControls.PlayerAssignment = class PlayerAssignment extends GameSett
 	rebuildList()
 	{
 		Engine.ProfileStart("updatePlayerAssignmentsList");
+		// TODO: this particular bit is done for each row, which is unnecessarily inefficient.
 		this.playerItems = sortGUIDsByPlayerID().map(
 			this.clientItemFactory.createItem.bind(this.clientItemFactory));
 		this.values = prepareForDropdown([
@@ -129,8 +108,10 @@ PlayerSettingControls.PlayerAssignment = class PlayerAssignment extends GameSett
 			this.unassignedItem
 		]);
 
+		let selected = this.dropdown.list_data?.[this.dropdown.selected];
 		this.dropdown.list = this.values.Caption;
 		this.dropdown.list_data = this.values.Value;
+		this.setSelectedValue(selected);
 		Engine.ProfileStop();
 	}
 
@@ -153,9 +134,6 @@ PlayerSettingControls.PlayerAssignment.prototype.Tooltip =
 	translate("Select player.");
 
 PlayerSettingControls.PlayerAssignment.prototype.AutocompleteOrder = 100;
-
-PlayerSettingControls.PlayerAssignment.prototype.ConfigAssignPlayers =
-	"gui.gamesetup.assignplayers";
 
 {
 	PlayerAssignmentItem.Client = class
