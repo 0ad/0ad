@@ -224,28 +224,6 @@ function disableMod()
 	modsEnabledList.selected = Math.min(pos, g_ModsEnabledFiltered.length - 1);
 }
 
-function applyFilters()
-{
-	// Save selected rows
-	let modsDisabledList = Engine.GetGUIObjectByName("modsDisabledList");
-	let modsEnabledList = Engine.GetGUIObjectByName("modsEnabledList");
-
-	let selectedDisabledFolder = modsDisabledList.list_folder[modsDisabledList.selected];
-	let selectedEnabledFolder = modsEnabledList.list_folder[modsEnabledList.selected];
-
-	// Remove selected rows to prevent a link to a non existing item
-	modsDisabledList.selected = -1;
-	modsEnabledList.selected = -1;
-
-	displayModLists();
-
-	// Restore previously selected rows
-	modsDisabledList.selected = modsDisabledList.list_folder.indexOf(selectedDisabledFolder);
-	modsEnabledList.selected = modsEnabledList.list_folder.indexOf(selectedEnabledFolder);
-
-	Engine.GetGUIObjectByName("globalModDescription").caption = "";
-}
-
 function filterMod(folder)
 {
 	let mod = g_Mods[folder];
