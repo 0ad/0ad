@@ -397,7 +397,7 @@ function testAttackPreference()
 
 	TS_ASSERT_EQUALS(cmpAttack.GetPreference(attacker+1), 0);
 	TS_ASSERT_EQUALS(cmpAttack.GetPreference(attacker+2), 1);
-	TS_ASSERT_EQUALS(cmpAttack.GetPreference(attacker+3), null);
-	TS_ASSERT_EQUALS(cmpAttack.GetPreference(attacker+4), null);
+	TS_ASSERT_EQUALS(cmpAttack.GetPreference(attacker+3), undefined);
+	TS_ASSERT_EQUALS(cmpAttack.GetPreference(attacker+4), undefined);
 }
 testAttackPreference();

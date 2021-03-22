@@ -996,7 +996,9 @@ UnitAI.prototype.UnitFsmSpec = {
 			},
 
 			"Timer": function(msg) {
+				Engine.ProfileStart("FindWalkAndFightTargets");
 				this.FindWalkAndFightTargets();
+				Engine.ProfileStop();
 			},
 
 			"MovementUpdate": function(msg) {
@@ -2221,7 +2223,11 @@ UnitAI.prototype.UnitFsmSpec = {
 					if (this.FinishOrder())
 					{
 						if (this.IsWalkingAndFighting())
+						{
+							Engine.ProfileStart("FindWalkAndFightTargets");
 							this.FindWalkAndFightTargets();
+							Engine.ProfileStop();
+						}
 						return true;
 					}
 
@@ -6056,58 +6062,77 @@ UnitAI.prototype.FindWalkAndFightTargets = function()
 {
 	if (this.IsFormationController())
 	{
-		var cmpUnitAI;
-		var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-		for (var ent of cmpFormation.members)
+		let cmpUnitAI;
+		let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+		for (let ent of cmpFormation.members)
 		{
 			if (!(cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI)))
 				continue;
-			var targets = cmpUnitAI.GetTargetsFromUnit();
-			for (var targ of targets)
-			{
-				if (!cmpUnitAI.CanAttack(targ))
-					continue;
-				if (this.order.data.targetClasses)
-				{
-					var cmpIdentity = Engine.QueryInterface(targ, IID_Identity);
-					var targetClasses = this.order.data.targetClasses;
-					if (targetClasses.attack && cmpIdentity &&
-						!MatchesClassList(cmpIdentity.GetClassesList(), targetClasses.attack))
-						continue;
-					if (targetClasses.avoid && cmpIdentity &&
-						MatchesClassList(cmpIdentity.GetClassesList(), targetClasses.avoid))
-						continue;
-					// Only used by the AIs to prevent some choices of targets
-					if (targetClasses.vetoEntities && targetClasses.vetoEntities[targ])
-						continue;
-				}
-				this.PushOrderFront("Attack", { "target": targ, "force": false, "allowCapture": this.order.data.allowCapture });
+			if (cmpUnitAI.FindWalkAndFightTargets())
 				return true;
-			}
 		}
 		return false;
 	}
 
-	var targets = this.GetTargetsFromUnit();
-	for (var targ of targets)
+	let cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
+
+	let entities;
+	if (!this.losAttackRangeQuery || !this.GetStance().targetVisibleEnemies || !cmpAttack)
+		entities = [];
+	else
 	{
-		if (!this.CanAttack(targ))
-			continue;
-		if (this.order.data.targetClasses)
+		let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+		entities = cmpRangeManager.ResetActiveQuery(this.losAttackRangeQuery);
+	}
+
+	let attackfilter = e => {
+		if (this?.order?.data?.targetClasses)
 		{
-			var cmpIdentity = Engine.QueryInterface(targ, IID_Identity);
-			var targetClasses = this.order.data.targetClasses;
+			let cmpIdentity = Engine.QueryInterface(e, IID_Identity);
+			let targetClasses = this.order.data.targetClasses;
 			if (cmpIdentity && targetClasses.attack &&
 				!MatchesClassList(cmpIdentity.GetClassesList(), targetClasses.attack))
-				continue;
+				return false;
 			if (cmpIdentity && targetClasses.avoid &&
 				MatchesClassList(cmpIdentity.GetClassesList(), targetClasses.avoid))
-				continue;
+				return false;
 			// Only used by the AIs to prevent some choices of targets
-			if (targetClasses.vetoEntities && targetClasses.vetoEntities[targ])
-				continue;
+			if (targetClasses.vetoEntities && targetClasses.vetoEntities[e])
+				return false;
 		}
-		this.PushOrderFront("Attack", { "target": targ, "force": false, "allowCapture": this.order.data.allowCapture });
+		let cmpOwnership = Engine.QueryInterface(e, IID_Ownership);
+		if (cmpOwnership && cmpOwnership.GetOwner() > 0)
+			return true;
+		let cmpUnitAI = Engine.QueryInterface(e, IID_UnitAI);
+		return cmpUnitAI && (!cmpUnitAI.IsAnimal() || cmpUnitAI.IsDangerousAnimal());
+	};
+
+	let prefs = {};
+	let bestPref;
+	let targets = [];
+	let pref;
+	for (let v of entities)
+	{
+		if (this.CanAttack(v) && attackfilter(v))
+		{
+			pref = cmpAttack.GetPreference(v);
+			if (pref === 0)
+			{
+				this.PushOrderFront("Attack", { "target": v, "force": false, "allowCapture": this?.order?.data?.allowCapture });
+				return true;
+			}
+			targets.push(v);
+		}
+		prefs[v] = pref;
+		if (pref !== undefined && (bestPref === undefined || pref < bestPref))
+			bestPref = pref;
+	}
+
+	for (let targ of targets)
+	{
+		if (prefs[targ] !== bestPref)
+			continue;
+		this.PushOrderFront("Attack", { "target": targ, "force": false, "allowCapture": this?.order?.data?.allowCapture });
 		return true;
 	}
 
@@ -6116,39 +6141,6 @@ UnitAI.prototype.FindWalkAndFightTargets = function()
 		return this.FindNewHealTargets();
 
 	return false;
-};
-
-UnitAI.prototype.GetTargetsFromUnit = function()
-{
-	if (!this.losAttackRangeQuery)
-		return [];
-
-	if (!this.GetStance().targetVisibleEnemies)
-		return [];
-
-	let cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
-	if (!cmpAttack)
-		return [];
-
-	let attackfilter = function(e) {
-		if (!cmpAttack.CanAttack(e))
-			return false;
-
-		let cmpOwnership = Engine.QueryInterface(e, IID_Ownership);
-		if (cmpOwnership && cmpOwnership.GetOwner() > 0)
-			return true;
-
-		let cmpUnitAI = Engine.QueryInterface(e, IID_UnitAI);
-		return cmpUnitAI && (!cmpUnitAI.IsAnimal() || cmpUnitAI.IsDangerousAnimal());
-	};
-
-	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	let entities = cmpRangeManager.ResetActiveQuery(this.losAttackRangeQuery);
-	let targets = entities.filter(attackfilter).sort(function(a, b) {
-		return cmpAttack.CompareEntitiesByPreference(a, b);
-	});
-
-	return targets;
 };
 
 UnitAI.prototype.GetQueryRange = function(iid)

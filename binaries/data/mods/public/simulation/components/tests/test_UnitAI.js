@@ -449,3 +449,77 @@ TestFormationExiting(1);
 TestFormationExiting(2);
 
 TestMoveIntoFormationWhileAttacking();
+
+
+function TestWalkAndFightTargets()
+{
+	const ent = 10;
+	let unitAI = ConstructComponent(ent, "UnitAI", {
+		"FormationController": "false",
+		"DefaultStance": "aggressive",
+		"FleeDistance": 10
+	});
+	unitAI.OnCreate();
+	unitAI.losAttackRangeQuery = true;
+
+	// The result is stored here
+	let result;
+	unitAI.PushOrderFront = function(type, order)
+	{
+		if (type === "Attack" && order?.target)
+			result = order.target;
+	};
+
+	// Create some targets.
+	AddMock(ent+1, IID_UnitAI, { "IsAnimal": () => true, "IsDangerousAnimal": () => false });
+	AddMock(ent+2, IID_Ownership, { "GetOwner": () => 2 });
+	AddMock(ent+3, IID_Ownership, { "GetOwner": () => 2 });
+	AddMock(ent+4, IID_Ownership, { "GetOwner": () => 2 });
+	AddMock(ent+5, IID_Ownership, { "GetOwner": () => 2 });
+	AddMock(ent+6, IID_Ownership, { "GetOwner": () => 2 });
+	AddMock(ent+7, IID_Ownership, { "GetOwner": () => 2 });
+
+	unitAI.CanAttack = function(target)
+	{
+		return target !== ent+2 && target !== ent+7;
+	};
+
+	AddMock(ent, IID_Attack, {
+		"GetPreference": (target) => ({
+			[ent+4]: 0,
+			[ent+5]: 1,
+			[ent+6]: 2,
+			[ent+7]: 0
+		}?.[target])
+	});
+
+	let runTest = function(ents, res)
+	{
+		result = undefined;
+		AddMock(SYSTEM_ENTITY, IID_RangeManager, {
+			"ResetActiveQuery": () => ents
+		});
+		TS_ASSERT_EQUALS(unitAI.FindWalkAndFightTargets(), !!res);
+		TS_ASSERT_EQUALS(result, res);
+	};
+
+	// No entities.
+	runTest([]);
+
+	// Entities that cannot be attacked.
+	runTest([ent+1, ent+2, ent+7]);
+
+	// No preference, one attackable entity.
+	runTest([ent+1, ent+2, ent+3], ent+3);
+
+	// Check preferences.
+	runTest([ent+1, ent+2, ent+3, ent+4], ent+4);
+	runTest([ent+1, ent+2, ent+3, ent+4, ent+5], ent+4);
+	runTest([ent+1, ent+2, ent+6, ent+3, ent+4, ent+5], ent+4);
+	runTest([ent+1, ent+2, ent+7, ent+6, ent+3, ent+4, ent+5], ent+4);
+	runTest([ent+1, ent+2, ent+7, ent+6, ent+3, ent+5], ent+5);
+	runTest([ent+1, ent+2, ent+7, ent+6, ent+3], ent+6);
+	runTest([ent+1, ent+2, ent+7, ent+3], ent+3);
+}
+
+TestWalkAndFightTargets();
