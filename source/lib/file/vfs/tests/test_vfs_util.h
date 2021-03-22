@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2019 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -47,7 +47,11 @@ class TestVfsUtil : public CxxTest::TestSuite
 		g_VFS = CreateVfs();
 
 		TS_ASSERT_OK(g_VFS->Mount(L"", MOD_PATH));
-		TS_ASSERT_OK(g_VFS->Mount(L"cache/", CACHE_PATH, 0, VFS_MAX_PRIORITY));
+
+		// Mount _testcache onto virtual /cache - don't use the normal cache
+		// directory because that's full of loads of cached files from the
+		// proper game and takes a long time to load.
+		TS_ASSERT_OK(g_VFS->Mount(L"cache/", CACHE_PATH));
 	}
 
 	void deinitVfs()

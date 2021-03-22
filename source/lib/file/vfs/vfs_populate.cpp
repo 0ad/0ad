@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -168,29 +168,7 @@ Status vfs_Populate(VfsDirectory* directory)
 
 Status vfs_Attach(VfsDirectory* directory, const PRealDirectory& realDirectory)
 {
-	PRealDirectory existingRealDir = directory->AssociatedDirectory();
-
-	// Don't allow replacing the real directory by a lower-priority one.
-	if (!existingRealDir || existingRealDir->Priority() < realDirectory->Priority())
-	{
-		// This ordering is peculiar but useful, as it "defers" the population call.
-		// If there is already a real directory, we will replace it (and lose track of it),
-		// so we'll populate it right away, but the 'new' real directory can wait until we access it.
-		RETURN_STATUS_IF_ERR(vfs_Populate(directory));
-		directory->SetAssociatedDirectory(realDirectory);
-		return INFO::OK;
-	}
-	// We are attaching a lower-priority real directory.
-	// Because of deferred population, we need to immediately populate this new directory.
-	bool shouldPop = directory->ShouldPopulate();
-	// This sets "should populate" to true, so the vfs_Populate call below immediately populates.
-	directory->SetAssociatedDirectory(realDirectory);
 	RETURN_STATUS_IF_ERR(vfs_Populate(directory));
-	// Reset to the higher priority realDirectory, which resets ShouldPopulate to true.
-	directory->SetAssociatedDirectory(existingRealDir);
-	// Avoid un-necessary repopulation by clearing the flag.
-	if (!shouldPop)
-		directory->ShouldPopulate();
-
+	directory->SetAssociatedDirectory(realDirectory);
 	return INFO::OK;
 }

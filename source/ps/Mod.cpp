@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2020 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -59,8 +59,7 @@ JS::Value Mod::GetAvailableMods(const ScriptInterface& scriptInterface)
 	for (DirectoryNames::iterator iter = modDirs.begin(); iter != modDirs.end(); ++iter)
 	{
 		vfs->Clear();
-		// Mount with lowest priority, we don't want to overwrite anything
-		if (vfs->Mount(L"", modPath / *iter, VFS_MOUNT_MUST_EXIST, VFS_MIN_PRIORITY) < 0)
+		if (vfs->Mount(L"", modPath / *iter, VFS_MOUNT_MUST_EXIST) < 0)
 			continue;
 
 		CVFSFile modinfo;
@@ -86,8 +85,7 @@ JS::Value Mod::GetAvailableMods(const ScriptInterface& scriptInterface)
 			continue;
 
 		vfs->Clear();
-		// Mount with lowest priority, we don't want to overwrite anything
-		if (vfs->Mount(L"", modUserPath / *iter, VFS_MOUNT_MUST_EXIST, VFS_MIN_PRIORITY) < 0)
+		if (vfs->Mount(L"", modUserPath / *iter, VFS_MOUNT_MUST_EXIST) < 0)
 			continue;
 
 		CVFSFile modinfo;
@@ -116,8 +114,8 @@ void Mod::CacheEnabledModVersions(const shared_ptr<ScriptContext>& scriptContext
 
 	for (const CStr& mod : g_modsLoaded)
 	{
-		// Ignore mod mod as it is irrelevant for compatibility checks
-		if (mod == "mod")
+		// Ignore user and mod mod as they are irrelevant for compatibility checks
+		if (mod == "mod" || mod == "user")
 			continue;
 
 		CStr version;

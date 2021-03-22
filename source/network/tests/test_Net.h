@@ -41,7 +41,7 @@ public:
 	{
 		g_VFS = CreateVfs();
 		TS_ASSERT_OK(g_VFS->Mount(L"", DataDir()/"mods"/"public", VFS_MOUNT_MUST_EXIST));
-		TS_ASSERT_OK(g_VFS->Mount(L"cache", DataDir()/"_testcache", 0, VFS_MAX_PRIORITY));
+		TS_ASSERT_OK(g_VFS->Mount(L"cache", DataDir()/"_testcache"));
 		CXeromyces::Startup();
 
 		// Need some stuff for terrain movement costs:

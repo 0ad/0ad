@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2018 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -140,7 +140,7 @@ VfsPath CCacheLoader::LooseCachePath(const VfsPath& sourcePath, const MD5& initi
 
 	// Get the mod path
 	OsPath path;
-	m_VFS->GetOriginalPath(sourcePath, path);
+	m_VFS->GetRealPath(sourcePath, path);
 
 	return VfsPath("cache") /
 		path_name_only(path.BeforeCommon(sourcePath).Parent().string().c_str()) /

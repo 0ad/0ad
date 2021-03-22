@@ -48,6 +48,7 @@ RL client:
 Configuration:
 -conf=KEY:VALUE     set a config value
 -nosound            disable audio
+-noUserMod          disable loading of the user mod
 -shadows            enable shadows
 -vsync              enable VSync, i.e. lock FPS to monitor refresh rate
 -xres=N             set screen X resolution to 'N'
