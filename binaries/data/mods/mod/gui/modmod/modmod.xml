@@ -19,8 +19,8 @@
 				style="ModernInput"
 				size="16 0 176 100%"
 			>
-				<action on="Press">applyFilters();</action>
-				<action on="TextEdit">applyFilters();</action>
+				<action on="Press">displayModLists();</action>
+				<action on="TextEdit">displayModLists();</action>
 				<translatableAttribute id="placeholder_text">Filter</translatableAttribute>
 			</object>
 
@@ -31,11 +31,25 @@
 				style="ModernTickBox"
 				size="186 0 206 100%"
 			>
-				<action on="Press">applyFilters();</action>
+				<action on="Press">displayModLists();</action>
 			</object>
 			<object type="text" size="208 0 100% 100%" text_align="left" textcolor="white">
 				<translatableAttribute id="caption">Negate</translatableAttribute>
 			</object>
+		</object>
+
+		<object size = "100%-200 40 100%-20 64">
+			<object name="modCompatibleFilter"
+						type="checkbox"
+						checked="false"
+						style="ModernTickBox"
+						size="16 0 36 100%"
+					>
+					<action on="Press">displayModLists();</action>
+				</object>
+				<object type="text" size="40 0 100% 100%" text_align="left" textcolor="white">
+					<translatableAttribute id="caption">Filter compatible</translatableAttribute>
+				</object>
 		</object>
 
 		<object
@@ -67,7 +81,7 @@
 				auto_scroll="true"
 			>
 				<action on="SelectionChange">selectedMod(this.name);</action>
-				<action on="SelectionColumnChange">applyFilters();</action>
+				<action on="SelectionColumnChange">displayModLists();</action>
 				<action on="MouseLeftDoubleClickItem">enableMod();</action>
 
 				<!-- List headers -->

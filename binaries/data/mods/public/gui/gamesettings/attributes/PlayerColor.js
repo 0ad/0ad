@@ -59,11 +59,9 @@ GameSettings.prototype.Attributes.PlayerColor = class PlayerColor extends GameSe
 		// Reset.
 		this.locked = this.locked.map(x => this.settings.map.type == "scenario");
 		this.trigger("locked");
-
 		if (this.settings.map.type === "scenario")
 			this._resize(0);
 		this._updateAvailable();
-		this.maybeUpdate();
 		this.maybeUpdate();
 	}
 
@@ -80,20 +78,12 @@ GameSettings.prototype.Attributes.PlayerColor = class PlayerColor extends GameSe
 		let inUse = this.values.findIndex((otherColor, i) =>
 			color && otherColor &&
 			sameColor(color, otherColor));
-		if (inUse !== -1 && inUse !== playerIndex)
+		if (inUse != -1 && inUse != playerIndex)
 		{
-			if (sameColor(this.values[playerIndex], this.values[inUse]))
-			{
-				this.values[playerIndex] = undefined;
-				color = undefined;
-			}
-			else
-			{
-				// Swap colors.
-				let col = this.values[playerIndex];
-				this.values[playerIndex] = undefined;
-				this._set(inUse, col);
-			}
+			// Swap colors.
+			let col = this.values[playerIndex];
+			this.values[playerIndex] = undefined;
+			this._set(inUse, col);
 		}
 		if (!color || this.available.indexOf(color) == -1)
 		{
@@ -140,20 +130,34 @@ GameSettings.prototype.Attributes.PlayerColor = class PlayerColor extends GameSe
 		// Pick colors that the map specifies, add most unsimilar default colors
 		// Provide the access to g_MaxPlayers different colors, regardless of current playercount.
 		let values = [];
+		let mapColors = false;
 		for (let i = 0; i < g_MaxPlayers; ++i)
-			values.push(this._getMapData(i) ||
-				this.defaultColors[i] || this._findFarthestUnusedColor(values));
+		{
+			let col = this._getMapData(i);
+			if (col)
+				mapColors = true;
+			if (mapColors)
+				values.push(col || this._findFarthestUnusedColor(values));
+			else
+				values.push(this.defaultColors[i]);
+		}
 		this.available = values;
 	}
 
 	_findClosestColor(targetColor, colors)
 	{
-		let colorDistances = colors.map(color => colorDistance(color, targetColor));
-
-		let smallestDistance = colorDistances.find(
-			distance => colorDistances.every(distance2 => distance2 >= distance));
-
-		return colors.find(color => colorDistance(color, targetColor) == smallestDistance);
+		let closestColor;
+		let closestColorDistance = 0;
+		for (let color of colors)
+		{
+			let dist = colorDistance(targetColor, color);
+			if (!closestColor || dist < closestColorDistance)
+			{
+				closestColor = color;
+				closestColorDistance = dist;
+			}
+		}
+		return closestColor;
 	}
 
 	_findFarthestUnusedColor(values)

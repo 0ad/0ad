@@ -1,141 +1,141 @@
 {
-    "categories": {
-        "ingamegui": {
-            "name": "In-game GUI",
-            "desc": "In-game GUI hotkeys."
-        }
-    },
-    "mapped_hotkeys": {
-        "ingamegui": {
-            "quicksave": {
-                "name": "Quicksave",
-                "desc": "quicksave"
-            },
-            "quickload": {
-                "name": "Quickload",
-                "desc": "quickload"
-            },
-            "session.gui.toggle": {
-                "name": "Toggle GUI visibility",
-                "desc": "Toggle visibility of session GUI"
-            },
-            "chat": {
-                "name": "Toggle chat",
-                "desc": "Toggle chat window"
-            },
-            "teamchat": {
-                "name": "Toggle team chat",
-                "desc": "Toggle chat window in team chat mode"
-            },
-            "privatechat": {
-                "name": "Toggle private chat",
-                "desc": "Toggle chat window and select the previous private chat partner"
-            },
-            "summary": {
-                "name": "Toggle summary",
-                "desc": "Toggle in-game summary"
-            },
-            "lobby": {
-                "name": "Toggle MP lobby",
-                "desc": "Show the multiplayer lobby in a dialog window."
-            },
-            "structree": {
-                "name": "Toggle structure tree",
-                "desc": "Show structure tree"
-            },
-            "civinfo": {
-                "name": "Toggle civ info",
-                "desc": "Show civilization info"
-            },
-            "session.gui.menu.toggle": {
-                "name": "Toggle in-game menu",
-                "desc": "Toggle in-game menu"
-            },
-            "session.gui.diplomacy.toggle": {
-                "name": "Toggle diplomacy",
-                "desc": "Toggle in-game diplomacy page"
-            },
-            "session.gui.barter.toggle": {
-                "name": "Toggle barter",
-                "desc": "Toggle in-game barter/trade page"
-            },
-            "session.gui.objectives.toggle": {
-                "name": "Toggle objectives",
-                "desc": "Toggle in-game objectives page"
-            },
-            "session.gui.tutorial.toggle": {
-                "name": "Toggle tutorial",
-                "desc": "Toggle in-game tutorial panel"
-            },
-            "fps.toggle": {
-                "name": "Toggle FPS counter",
-                "desc": "Toggle 'frames per second' counter"
-            },
-            "realtime.toggle": {
-                "name": "Toggle real-time overlay",
-                "desc": "Toggle current display of computer time"
-            },
-            "timeelapsedcounter.toggle": {
-                "name": "Toggle game-time overlay",
-                "desc": "Shows the game time elapsed since the game started."
-            },
-            "ceasefirecounter.toggle": {
-                "name": "Toggle ceasefire counter",
-                "desc": "Toggle ceasefire counter"
-            },
-            "session.diplomacycolors": {
-                "name": "Toggle diplomacy colors",
-                "desc": "Toggle diplomacy colors"
-            },
-            "silhouettes": {
-                "name": "Toggle unit silhouettes",
-                "desc": "Toggle unit silhouettes"
-            },
-            "session.showstatusbars": {
-                "name": "Toggle status bars",
-                "desc": "Toggle display of status bars"
-            },
-            "session.highlightguarding": {
-                "name": "Toggle guarding highlight",
-                "desc": "Toggle highlight of guarding units"
-            },
-            "session.highlightguarded": {
-                "name": "Toggle guarded highlight",
-                "desc": "Toggle highlight of guarded units"
-            },
-            "session.toggleattackrange": {
-                "name": "Togge attack ranges",
-                "desc": "Toggle display of attack range overlays of selected defensive structures"
-            },
-            "session.toggleaurasrange": {
-                "name": "Toggle aura ranges",
-                "desc": "Toggle display of aura range overlays of selected units and structures"
-            },
-            "session.togglehealrange": {
-                "name": "Toggle heal ranges",
-                "desc": "Toggle display of heal range overlays of selected units"
-            },
-            "session.devcommands.toggle": {
-                "name": "Toggle dev overlay",
-                "desc": "Toggle developer commands panel"
-            },
-            "session.timewarp.fastforward": {
-                "name": "Fast-forward (timewarp)",
-                "desc": "Activate fast-forward mode. Must have activated timewarp."
-            },
-            "session.timewarp.rewind": {
-                "name": "Rewing (timewarp)",
-                "desc": "Rewind time. Must have activated timewarp."
-            },
-            "session.savedgames.delete": {
-                "name": "Delete saved game",
-                "desc": "Delete the saved game (in the save/load windows)."
-            },
-            "session.savedgames.noconfirmation": {
-                "name": "Delete without confirmation",
-                "desc": "Don't ask for confirmation when deleting a saved game."
-            }
+	"categories": {
+		"ingamegui": {
+			"name": "In-game GUI",
+			"desc": "Hotkeys for the in-game user interface."
+		}
+	},
+	"mapped_hotkeys": {
+		"ingamegui": {
+			"quicksave": {
+				"name": "Quicksave",
+				"desc": "Make a temporary save of the game that can be loaded with quickload. Quicksaving always overwrites the previous save."
+			},
+			"quickload": {
+				"name": "Quickload",
+				"desc": "Load the latest quicksaved game. Does nothing if no quicksaves exist."
+			},
+			"session.gui.toggle": {
+				"name": "Toggle GUI visibility",
+				"desc": "Toggle visibility of the in-game user interface."
+			},
+			"chat": {
+				"name": "Toggle chat",
+				"desc": "Toggle chat window."
+			},
+			"teamchat": {
+				"name": "Toggle team chat",
+				"desc": "Toggle chat window in team chat mode."
+			},
+			"privatechat": {
+				"name": "Toggle private chat",
+				"desc": "Toggle chat window and select the previous private chat partner."
+			},
+			"summary": {
+				"name": "Toggle summary",
+				"desc": "Toggle in-game summary."
+			},
+			"lobby": {
+				"name": "Toggle MP lobby",
+				"desc": "Show the multiplayer lobby in a dialog window."
+			},
+			"structree": {
+				"name": "Toggle structure tree",
+				"desc": "Show structure tree."
+			},
+			"civinfo": {
+				"name": "Toggle civ info",
+				"desc": "Show civilization info."
+			},
+			"session.gui.menu.toggle": {
+				"name": "Toggle in-game menu",
+				"desc": "Toggle in-game menu."
+			},
+			"session.gui.diplomacy.toggle": {
+				"name": "Toggle diplomacy",
+				"desc": "Toggle in-game diplomacy page."
+			},
+			"session.gui.barter.toggle": {
+				"name": "Toggle barter",
+				"desc": "Toggle in-game barter/trade page."
+			},
+			"session.gui.objectives.toggle": {
+				"name": "Toggle objectives",
+				"desc": "Toggle in-game objectives page."
+			},
+			"session.gui.tutorial.toggle": {
+				"name": "Toggle tutorial",
+				"desc": "Toggle in-game tutorial panel."
+			},
+			"fps.toggle": {
+				"name": "Toggle FPS counter",
+				"desc": "Toggle “frames per second” counter."
+			},
+			"realtime.toggle": {
+				"name": "Toggle real-time overlay",
+				"desc": "Toggle current display of computer time."
+			},
+			"timeelapsedcounter.toggle": {
+				"name": "Toggle game-time overlay",
+				"desc": "Shows the game time elapsed since the game started."
+			},
+			"ceasefirecounter.toggle": {
+				"name": "Toggle ceasefire counter",
+				"desc": "Toggle ceasefire counter."
+			},
+			"session.diplomacycolors": {
+				"name": "Toggle diplomacy colors",
+				"desc": "Toggle diplomacy colors."
+			},
+			"silhouettes": {
+				"name": "Toggle unit silhouettes",
+				"desc": "Toggle unit silhouettes."
+			},
+			"session.showstatusbars": {
+				"name": "Toggle status bars",
+				"desc": "Toggle display of status bars."
+			},
+			"session.highlightguarding": {
+				"name": "Toggle guarding highlight",
+				"desc": "Toggle highlight of guarding units."
+			},
+			"session.highlightguarded": {
+				"name": "Toggle guarded highlight",
+				"desc": "Toggle highlight of guarded units."
+			},
+			"session.toggleattackrange": {
+				"name": "Togge attack ranges",
+				"desc": "Toggle display of attack range overlays of selected defensive structures."
+			},
+			"session.toggleaurasrange": {
+				"name": "Toggle aura ranges",
+				"desc": "Toggle display of aura range overlays of selected units and structures."
+			},
+			"session.togglehealrange": {
+				"name": "Toggle heal ranges",
+				"desc": "Toggle display of heal range overlays of selected units."
+			},
+			"session.devcommands.toggle": {
+				"name": "Toggle dev overlay",
+				"desc": "Toggle developer commands panel."
+			},
+			"session.timewarp.fastforward": {
+				"name": "Fast-forward (timewarp)",
+				"desc": "Activate fast-forward mode. Must have activated timewarp."
+			},
+			"session.timewarp.rewind": {
+				"name": "Rewing (timewarp)",
+				"desc": "Rewind time. Must have activated timewarp."
+			},
+			"session.savedgames.delete": {
+				"name": "Delete saved game",
+				"desc": "Delete the saved game (in the save/load windows)."
+			},
+			"session.savedgames.noconfirmation": {
+				"name": "Delete without confirmation",
+				"desc": "Don't ask for confirmation when deleting a saved game."
+			}
 
-        }
-    }
+		}
+	}
 }

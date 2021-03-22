@@ -4,7 +4,7 @@ GameSettingControls.LockedTeams = class LockedTeams extends GameSettingControlCh
 	{
 		super(...args);
 		g_GameSettings.map.watch(() => this.render(), ["type"]);
-		g_GameSettings.rating.watch(() => this.render(), ["available", "enabled"]);
+		g_GameSettings.lockedTeams.watch(() => this.render(), ["available", "enabled"]);
 		this.render();
 	}
 

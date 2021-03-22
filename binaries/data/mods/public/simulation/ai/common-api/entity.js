@@ -18,7 +18,6 @@ m.Template = m.Class({
 	// Helper function to return a template value, adjusting for tech.
 	"get": function(string)
 	{
-		let value = this._template;
 		if (this._entityModif && this._entityModif.has(string))
 			return this._entityModif.get(string);
 		else if (this._templateModif)
@@ -30,16 +29,13 @@ m.Template = m.Class({
 
 		if (!this._tpCache.has(string))
 		{
+			let value = this._template;
 			let args = string.split("/");
 			for (let arg of args)
 			{
-				if (value[arg] != undefined)
-					value = value[arg];
-				else
-				{
-					value = undefined;
+				value = value[arg];
+				if (value == undefined)
 					break;
-				}
 			}
 			this._tpCache.set(string, value);
 		}
@@ -68,19 +64,17 @@ m.Template = m.Class({
 	"hasClass": function(name) {
 		if (!this._classes)
 			this._classes = this.classes();
-		let classes = this._classes;
-		return classes && classes.indexOf(name) != -1;
+		return this._classes && this._classes.indexOf(name) != -1;
 	},
 
 	"hasClasses": function(array) {
 		if (!this._classes)
 			this._classes = this.classes();
-		let classes = this._classes;
-		if (!classes)
+		if (!this._classes)
 			return false;
 
 		for (let cls of array)
-			if (classes.indexOf(cls) == -1)
+			if (this._classes.indexOf(cls) == -1)
 				return false;
 		return true;
 	},
@@ -147,7 +141,7 @@ m.Template = m.Class({
 		{
 			let w = +this.get("Obstruction/Static/@width");
 			let h = +this.get("Obstruction/Static/@depth");
-			return { "max": Math.sqrt(w*w + h*h) / 2, "min": Math.min(h, w) / 2 };
+			return { "max": Math.sqrt(w * w + h * h) / 2, "min": Math.min(h, w) / 2 };
 		}
 
 		if (this.get("Obstruction/Unit"))
@@ -160,10 +154,10 @@ m.Template = m.Class({
 		let left = this.get("Obstruction/Obstructions/Left");
 		if (left && right)
 		{
-			let w = +right["@x"] + right["@width"]/2 - left["@x"] + left["@width"]/2;
-			let h = Math.max(+right["@z"] + right["@depth"]/2, +left["@z"] + left["@depth"]/2) -
-			        Math.min(+right["@z"] - right["@depth"]/2, +left["@z"] - left["@depth"]/2);
-			return { "max": Math.sqrt(w*w + h*h) / 2, "min": Math.min(h, w) / 2 };
+			let w = +right["@x"] + right["@width"] / 2 - left["@x"] + left["@width"] / 2;
+			let h = Math.max(+right["@z"] + right["@depth"] / 2, +left["@z"] + left["@depth"] / 2) -
+			        Math.min(+right["@z"] - right["@depth"] / 2, +left["@z"] - left["@depth"] / 2);
+			return { "max": Math.sqrt(w * w + h * h) / 2, "min": Math.min(h, w) / 2 };
 		}
 
 		return { "max": 0, "min": 0 }; // Units have currently no obstructions
@@ -180,7 +174,7 @@ m.Template = m.Class({
 		{
 			let w = +this.get("Footprint/Square/@width");
 			let h = +this.get("Footprint/Square/@depth");
-			return Math.sqrt(w*w + h*h) / 2;
+			return Math.sqrt(w * w + h * h) / 2;
 		}
 
 		if (this.get("Footprint/Circle"))
@@ -229,17 +223,18 @@ m.Template = m.Class({
 	},
 
 	"attackTypes": function() {
-		if (!this.get("Attack"))
+		let attack = this.get("Attack");
+		if (!attack)
 			return undefined;
 
 		let ret = [];
-		for (let type in this.get("Attack"))
+		for (let type in attack)
 			ret.push(type);
 		return ret;
 	},
 
 	"attackRange": function(type) {
-		if (!this.get("Attack/" + type +""))
+		if (!this.get("Attack/" + type))
 			return undefined;
 
 		return {
@@ -268,7 +263,7 @@ m.Template = m.Class({
 	},
 
 	"attackTimes": function(type) {
-		if (!this.get("Attack/" + type +""))
+		if (!this.get("Attack/" + type))
 			return undefined;
 
 		return {
@@ -280,11 +275,12 @@ m.Template = m.Class({
 	// returns the classes this templates counters:
 	// Return type is [ [-neededClasses- , multiplier], … ].
 	"getCounteredClasses": function() {
-		if (!this.get("Attack"))
+		let attack = this.get("Attack");
+		if (!attack)
 			return undefined;
 
 		let Classes = [];
-		for (let type in this.get("Attack"))
+		for (let type in attack)
 		{
 			let bonuses = this.get("Attack/" + type + "/Bonuses");
 			if (!bonuses)
@@ -302,10 +298,11 @@ m.Template = m.Class({
 	// returns true if the entity counters those classes.
 	// TODO: refine using the multiplier
 	"countersClasses": function(classes) {
-		if (!this.get("Attack"))
+		let attack = this.get("Attack");
+		if (!attack)
 			return false;
 		let mcounter = [];
-		for (let type in this.get("Attack"))
+		for (let type in attack)
 		{
 			let bonuses = this.get("Attack/" + type + "/Bonuses");
 			if (!bonuses)
@@ -328,9 +325,10 @@ m.Template = m.Class({
 		if (!this.get("Attack/" + type +""))
 			return undefined;
 
-		if (this.get("Attack/" + type + "/Bonuses"))
+		let bonuses = this.get("Attack/" + type + "/Bonuses");
+		if (bonuses)
 		{
-			for (let b in this.get("Attack/" + type + "/Bonuses"))
+			for (let b in bonuses)
 			{
 				let bonusClasses = this.get("Attack/" + type + "/Bonuses/" + b + "/Classes");
 				if (!bonusClasses)
@@ -480,9 +478,10 @@ m.Template = m.Class({
 	"buildPlacementType": function() { return this.get("BuildRestrictions/PlacementType"); },
 
 	"buildTerritories": function() {
-		if (!this.get("BuildRestrictions") || !this.get("BuildRestrictions/Territory"))
+		if (!this.get("BuildRestrictions"))
 			return undefined;
-		return this.get("BuildRestrictions/Territory").split(/\s+/);
+		let territory = this.get("BuildRestrictions/Territory");
+		return !territory ? undefined : territory.split(/\s+/);
 	},
 
 	"hasBuildTerritory": function(territory) {
@@ -614,23 +613,19 @@ m.Entity = m.Class({
 	"position": function() { return this._entity.position; },
 	"angle": function() { return this._entity.angle; },
 
-	"isIdle": function() {
-		if (typeof this._entity.idle === "undefined")
-			return undefined;
-		return this._entity.idle;
-	},
+	"isIdle": function() { return this._entity.idle; },
 
-	"getStance": function() { return this._entity.stance !== undefined ? this._entity.stance : undefined; },
-	"unitAIState": function() { return this._entity.unitAIState !== undefined ? this._entity.unitAIState : undefined; },
-	"unitAIOrderData": function() { return this._entity.unitAIOrderData !== undefined ? this._entity.unitAIOrderData : undefined; },
+	"getStance": function() { return this._entity.stance; },
+	"unitAIState": function() { return this._entity.unitAIState; },
+	"unitAIOrderData": function() { return this._entity.unitAIOrderData; },
 
-	"hitpoints": function() { return this._entity.hitpoints !== undefined ? this._entity.hitpoints : undefined; },
+	"hitpoints": function() { return this._entity.hitpoints; },
 	"isHurt": function() { return this.hitpoints() < this.maxHitpoints(); },
 	"healthLevel": function() { return this.hitpoints() / this.maxHitpoints(); },
 	"needsHeal": function() { return this.isHurt() && this.isHealable(); },
 	"needsRepair": function() { return this.isHurt() && this.isRepairable(); },
-	"decaying": function() { return this._entity.decaying !== undefined ? this._entity.decaying : undefined; },
-	"capturePoints": function() {return this._entity.capturePoints !== undefined ? this._entity.capturePoints : undefined; },
+	"decaying": function() { return this._entity.decaying; },
+	"capturePoints": function() {return this._entity.capturePoints; },
 	"isInvulnerable": function() { return this._entity.invulnerability || false; },
 
 	"isSharedDropsite": function() { return this._entity.sharedDropsite === true; },
@@ -640,8 +635,7 @@ m.Entity = m.Class({
 	 * [ { "id": 0, "template": "...", "count": 1, "progress": 0.5, "metadata": ... }, ... ]
 	 */
 	"trainingQueue": function() {
-		let queue = this._entity.trainingQueue;
-		return queue;
+		return this._entity.trainingQueue;
 	},
 
 	"trainingQueueTime": function() {
@@ -651,12 +645,10 @@ m.Entity = m.Class({
 		let time = 0;
 		for (let item of queue)
 			time += item.timeRemaining;
-		return time/1000;
+		return time / 1000;
 	},
 
 	"foundationProgress": function() {
-		if (this._entity.foundationProgress === undefined)
-			return undefined;
 		return this._entity.foundationProgress;
 	},
 
@@ -687,16 +679,12 @@ m.Entity = m.Class({
 	},
 
 	"resourceSupplyAmount": function() {
-		if (this._entity.resourceSupplyAmount === undefined)
-			return undefined;
 		return this._entity.resourceSupplyAmount;
 	},
 
 	"resourceSupplyNumGatherers": function()
 	{
-		if (this._entity.resourceSupplyNumGatherers !== undefined)
-			return this._entity.resourceSupplyNumGatherers;
-		return undefined;
+		return this._entity.resourceSupplyNumGatherers;
 	},
 
 	"isFull": function()
@@ -708,8 +696,6 @@ m.Entity = m.Class({
 	},
 
 	"resourceCarrying": function() {
-		if (this._entity.resourceCarrying === undefined)
-			return undefined;
 		return this._entity.resourceCarrying;
 	},
 
@@ -769,10 +755,11 @@ m.Entity = m.Class({
 	 */
 	"canAttackClass": function(aClass)
 	{
-		if (!this.get("Attack"))
+		let attack = this.get("Attack");
+		if (!attack)
 			return false;
 
-		for (let type in this.get("Attack"))
+		for (let type in attack)
 		{
 			if (type == "Slaughter")
 				continue;
@@ -876,7 +863,8 @@ m.Entity = m.Class({
 
 	// moveApart from a point in the opposite direction with a distance dist
 	"moveApart": function(point, dist) {
-		if (this.position() !== undefined) {
+		if (this.position() !== undefined)
+		{
 			let direction = [this.position()[0] - point[0], this.position()[1] - point[1]];
 			let norm = m.VectorDistance(point, this.position());
 			if (norm === 0)
@@ -893,12 +881,13 @@ m.Entity = m.Class({
 
 	// Flees from a unit in the opposite direction.
 	"flee": function(unitToFleeFrom) {
-		if (this.position() !== undefined && unitToFleeFrom.position() !== undefined) {
+		if (this.position() !== undefined && unitToFleeFrom.position() !== undefined)
+		{
 			let FleeDirection = [this.position()[0] - unitToFleeFrom.position()[0],
 			                     this.position()[1] - unitToFleeFrom.position()[1]];
 			let dist = m.VectorDistance(unitToFleeFrom.position(), this.position());
-			FleeDirection[0] = 40 * FleeDirection[0]/dist;
-			FleeDirection[1] = 40 * FleeDirection[1]/dist;
+			FleeDirection[0] = 40 * FleeDirection[0] / dist;
+			FleeDirection[1] = 40 * FleeDirection[1] / dist;
 
 			Engine.PostCommand(PlayerID, { "type": "walk", "entities": [this.id()], "x": this.position()[0] + FleeDirection[0], "z": this.position()[1] + FleeDirection[1], "queued": false, "pushFront": false });
 		}

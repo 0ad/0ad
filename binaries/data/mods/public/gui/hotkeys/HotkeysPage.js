@@ -13,21 +13,10 @@ class HotkeysPage
 				clone(this.hotkeys[Engine.GetGUIObjectByName("hotkeyList").list_data[idx]])
 			);
 		};
-		Engine.GetGUIObjectByName("hotkeyList").onHoverChange = () => this.onHoverChange();
+		Engine.GetGUIObjectByName("hotkeyList").onHoverChange = () => this.onHotkeyHover();
 
 		Engine.GetGUIObjectByName("hotkeyFilter").onSelectionChange = () => this.setupHotkeyList();
-		Engine.GetGUIObjectByName("hotkeyFilter").onHoverChange = () => {
-			let dropdown = Engine.GetGUIObjectByName("hotkeyFilter");
-			if (dropdown.hovered === -1)
-				dropdown.tooltip = "";
-			else
-			{
-				if (dropdown.list_data[dropdown.hovered] == -1)
-					dropdown.tooltip = "";
-				else
-					dropdown.tooltip = translate(this.categories[dropdown.list_data[dropdown.hovered]].desc);
-			}
-		};
+		Engine.GetGUIObjectByName("hotkeyFilter").onHoverChange = () => this.onFilterHover();
 
 		Engine.GetGUIObjectByName("hotkeyTextFilter").onTextEdit = () => this.setupHotkeyList();
 
@@ -107,7 +96,18 @@ class HotkeysPage
 		hotkeyList.list_data = hotkeys.map(x => x);
 	}
 
-	onHoverChange()
+	onFilterHover()
+	{
+		let dropdown = Engine.GetGUIObjectByName("hotkeyFilter");
+		if (dropdown.hovered === -1)
+			dropdown.tooltip = "";
+		else if (dropdown.hovered === 0)
+			dropdown.tooltip = translate("All available hotkeys.");
+		else
+			dropdown.tooltip = translate(this.categories[dropdown.list_data[dropdown.hovered]].desc);
+	}
+
+	onHotkeyHover()
 	{
 		let hotkeyList = Engine.GetGUIObjectByName("hotkeyList");
 		if (hotkeyList.hovered === -1)

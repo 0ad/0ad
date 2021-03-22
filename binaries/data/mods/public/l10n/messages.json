@@ -379,6 +379,19 @@
             {
                 "extractor": "json",
                 "filemasks": [
+                    "gui/hotkeys/spec/**.json"
+                ],
+                "options": {
+                    "keywords": [
+                        "name",
+                        "desc"
+                    ],
+                    "context": "hotkey metadata"
+                }
+            },
+            {
+                "extractor": "json",
+                "filemasks": [
                     "gui/options/**.json"
                 ],
                 "options": {

@@ -1,176 +1,176 @@
 {
-    "categories": {
-        "selection": {
-            "name": "Selecting Units",
-            "desc": "Hotkeys relating to modifying unit selection."
-        }
-    },
-    "mapped_hotkeys": {
-        "selection": {
-            "selection.cancel": {
-                "name": "Cancel selection",
-                "desc": "Un-select all units and cancel building placement"
-            },
-            "selection.add": {
-                "name": "Add to selection",
-                "desc": "Add units to selection"
-            },
-            "selection.militaryonly": {
-                "name": "Select military only",
-                "desc": "Add only military units to the selection"
-            },
-            "selection.nonmilitaryonly": {
-                "name": "Select non-military only",
-                "desc": "Add only non-military units to the selection"
-            },
-            "selection.idleonly": {
-                "name": "Select only idle units",
-                "desc": "Select only idle units"
-            },
-            "selection.woundedonly": {
-                "name": "Select only wounded units",
-                "desc": "Select only wounded units"
-            },
-            "selection.remove": {
-                "name": "Remove units from selection",
-                "desc": "Remove units from selection"
-            },
-            "selection.idleworker": {
-                "name": "Select next idle worker",
-                "desc": "Select next idle worker"
-            },
-            "selection.idlewarrior": {
-                "name": "Select next idle warrior",
-                "desc": "Select next idle warrior"
-            },
-            "selection.idleunit": {
-                "name": "Select next idle unit",
-                "desc": "Select next idle unit"
-            },
-            "selection.offscreen": {
-                "name": "Include offscreen",
-                "desc": "Include offscreen units in selection"
-            },
-            "selection.group.save.0": {
-                "name": "Set Control Group 0",
-                "desc": "Save current selection as Control Group 0"
-            },
-            "selection.group.save.1": {
-                "name": "Set Control Group 1",
-                "desc": "Save current selection as Control Group 1"
-            },
-            "selection.group.save.2": {
-                "name": "Set Control Group 2",
-                "desc": "Save current selection as Control Group 2"
-            },
-            "selection.group.save.3": {
-                "name": "Set Control Group 3",
-                "desc": "Save current selection as Control Group 3"
-            },
-            "selection.group.save.4": {
-                "name": "Set Control Group 4",
-                "desc": "Save current selection as Control Group 4"
-            },
-            "selection.group.save.5": {
-                "name": "Set Control Group 5",
-                "desc": "Save current selection as Control Group 5"
-            },
-            "selection.group.save.6": {
-                "name": "Set Control Group 6",
-                "desc": "Save current selection as Control Group 6"
-            },
-            "selection.group.save.7": {
-                "name": "Set Control Group 7",
-                "desc": "Save current selection as Control Group 7"
-            },
-            "selection.group.save.8": {
-                "name": "Set Control Group 8",
-                "desc": "Save current selection as Control Group 8"
-            },
-            "selection.group.save.9": {
-                "name": "Set Control Group 9",
-                "desc": "Save current selection as Control Group 9"
-            },
-            "selection.group.select.0": {
-                "name": "Select Control Group 0",
-                "desc": "Change the current selection to control group 0"
-            },
-            "selection.group.select.1": {
-                "name": "Select Control Group 1",
-                "desc": "Change the current selection to control group 0"
-            },
-            "selection.group.select.2": {
-                "name": "Select Control Group 2",
-                "desc": "Change the current selection to control group 0"
-            },
-            "selection.group.select.3": {
-                "name": "Select Control Group 3",
-                "desc": "Change the current selection to control group 0"
-            },
-            "selection.group.select.4": {
-                "name": "Select Control Group 4",
-                "desc": "Change the current selection to control group 0"
-            },
-            "selection.group.select.5": {
-                "name": "Select Control Group 5",
-                "desc": "Change the current selection to control group 0"
-            },
-            "selection.group.select.6": {
-                "name": "Select Control Group 6",
-                "desc": "Change the current selection to control group 0"
-            },
-            "selection.group.select.7": {
-                "name": "Select Control Group 7",
-                "desc": "Change the current selection to control group 0"
-            },
-            "selection.group.select.8": {
-                "name": "Select Control Group 8",
-                "desc": "Change the current selection to control group 0"
-            },
-            "selection.group.select.9": {
-                "name": "Select Control Group 9",
-                "desc": "Change the current selection to control group 0"
-            },
-            "selection.group.add.0": {
-                "name": "Add Control Group 0",
-                "desc": "Add Control Group 0 to the current selection"
-            },
-            "selection.group.add.1": {
-                "name": "Add Control Group 1",
-                "desc": "Add Control Group 1 to the current selection"
-            },
-            "selection.group.add.2": {
-                "name": "Add Control Group 2",
-                "desc": "Add Control Group 2 to the current selection"
-            },
-            "selection.group.add.3": {
-                "name": "Add Control Group 3",
-                "desc": "Add Control Group 3 to the current selection"
-            },
-            "selection.group.add.4": {
-                "name": "Add Control Group 4",
-                "desc": "Add Control Group 4 to the current selection"
-            },
-            "selection.group.add.5": {
-                "name": "Add Control Group 5",
-                "desc": "Add Control Group 5 to the current selection"
-            },
-            "selection.group.add.6": {
-                "name": "Add Control Group 6",
-                "desc": "Add Control Group 6 to the current selection"
-            },
-            "selection.group.add.7": {
-                "name": "Add Control Group 7",
-                "desc": "Add Control Group 7 to the current selection"
-            },
-            "selection.group.add.8": {
-                "name": "Add Control Group 8",
-                "desc": "Add Control Group 8 to the current selection"
-            },
-            "selection.group.add.9": {
-                "name": "Add Control Group 9",
-                "desc": "Add Control Group 9 to the current selection"
-            }
-        }
-    }
+	"categories": {
+		"selection": {
+			"name": "Selecting Units",
+			"desc": "Hotkeys relating to modifying unit selection."
+		}
+	},
+	"mapped_hotkeys": {
+		"selection": {
+			"selection.cancel": {
+				"name": "Cancel selection",
+				"desc": "Un-select all units and cancel building placement."
+			},
+			"selection.add": {
+				"name": "Add to selection",
+				"desc": "Add units to selection."
+			},
+			"selection.militaryonly": {
+				"name": "Select military only",
+				"desc": "Add only military units to the selection."
+			},
+			"selection.nonmilitaryonly": {
+				"name": "Select non-military only",
+				"desc": "Add only non-military units to the selection."
+			},
+			"selection.idleonly": {
+				"name": "Select only idle units",
+				"desc": "Select only idle units."
+			},
+			"selection.woundedonly": {
+				"name": "Select only wounded units",
+				"desc": "Select only wounded units."
+			},
+			"selection.remove": {
+				"name": "Remove units from selection",
+				"desc": "Remove units from selection."
+			},
+			"selection.idleworker": {
+				"name": "Select next idle worker",
+				"desc": "Select next idle worker."
+			},
+			"selection.idlewarrior": {
+				"name": "Select next idle warrior",
+				"desc": "Select next idle warrior."
+			},
+			"selection.idleunit": {
+				"name": "Select next idle unit",
+				"desc": "Select next idle unit."
+			},
+			"selection.offscreen": {
+				"name": "Include offscreen",
+				"desc": "Include offscreen units in selection."
+			},
+			"selection.group.save.0": {
+				"name": "Set Control Group 0",
+				"desc": "Save current selection as Control Group 0."
+			},
+			"selection.group.save.1": {
+				"name": "Set Control Group 1",
+				"desc": "Save current selection as Control Group 1."
+			},
+			"selection.group.save.2": {
+				"name": "Set Control Group 2",
+				"desc": "Save current selection as Control Group 2."
+			},
+			"selection.group.save.3": {
+				"name": "Set Control Group 3",
+				"desc": "Save current selection as Control Group 3."
+			},
+			"selection.group.save.4": {
+				"name": "Set Control Group 4",
+				"desc": "Save current selection as Control Group 4."
+			},
+			"selection.group.save.5": {
+				"name": "Set Control Group 5",
+				"desc": "Save current selection as Control Group 5."
+			},
+			"selection.group.save.6": {
+				"name": "Set Control Group 6",
+				"desc": "Save current selection as Control Group 6."
+			},
+			"selection.group.save.7": {
+				"name": "Set Control Group 7",
+				"desc": "Save current selection as Control Group 7."
+			},
+			"selection.group.save.8": {
+				"name": "Set Control Group 8",
+				"desc": "Save current selection as Control Group 8."
+			},
+			"selection.group.save.9": {
+				"name": "Set Control Group 9",
+				"desc": "Save current selection as Control Group 9."
+			},
+			"selection.group.select.0": {
+				"name": "Select Control Group 0",
+				"desc": "Change the current selection to control group 0."
+			},
+			"selection.group.select.1": {
+				"name": "Select Control Group 1",
+				"desc": "Change the current selection to control group 1."
+			},
+			"selection.group.select.2": {
+				"name": "Select Control Group 2",
+				"desc": "Change the current selection to control group 2."
+			},
+			"selection.group.select.3": {
+				"name": "Select Control Group 3",
+				"desc": "Change the current selection to control group 3."
+			},
+			"selection.group.select.4": {
+				"name": "Select Control Group 4",
+				"desc": "Change the current selection to control group 4."
+			},
+			"selection.group.select.5": {
+				"name": "Select Control Group 5",
+				"desc": "Change the current selection to control group 5."
+			},
+			"selection.group.select.6": {
+				"name": "Select Control Group 6",
+				"desc": "Change the current selection to control group 6."
+			},
+			"selection.group.select.7": {
+				"name": "Select Control Group 7",
+				"desc": "Change the current selection to control group 7."
+			},
+			"selection.group.select.8": {
+				"name": "Select Control Group 8",
+				"desc": "Change the current selection to control group 8."
+			},
+			"selection.group.select.9": {
+				"name": "Select Control Group 9",
+				"desc": "Change the current selection to control group 9."
+			},
+			"selection.group.add.0": {
+				"name": "Add Control Group 0",
+				"desc": "Add Control Group 0 to the current selection."
+			},
+			"selection.group.add.1": {
+				"name": "Add Control Group 1",
+				"desc": "Add Control Group 1 to the current selection."
+			},
+			"selection.group.add.2": {
+				"name": "Add Control Group 2",
+				"desc": "Add Control Group 2 to the current selection."
+			},
+			"selection.group.add.3": {
+				"name": "Add Control Group 3",
+				"desc": "Add Control Group 3 to the current selection."
+			},
+			"selection.group.add.4": {
+				"name": "Add Control Group 4",
+				"desc": "Add Control Group 4 to the current selection."
+			},
+			"selection.group.add.5": {
+				"name": "Add Control Group 5",
+				"desc": "Add Control Group 5 to the current selection."
+			},
+			"selection.group.add.6": {
+				"name": "Add Control Group 6",
+				"desc": "Add Control Group 6 to the current selection."
+			},
+			"selection.group.add.7": {
+				"name": "Add Control Group 7",
+				"desc": "Add Control Group 7 to the current selection."
+			},
+			"selection.group.add.8": {
+				"name": "Add Control Group 8",
+				"desc": "Add Control Group 8 to the current selection."
+			},
+			"selection.group.add.9": {
+				"name": "Add Control Group 9",
+				"desc": "Add Control Group 9 to the current selection."
+			}
+		}
+	}
 }
