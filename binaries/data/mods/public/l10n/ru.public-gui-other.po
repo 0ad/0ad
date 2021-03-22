@@ -46,8 +46,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-03-08 08:15+0000\n"
-"PO-Revision-Date: 2021-03-08 11:28+0000\n"
+"POT-Creation-Date: 2021-03-19 08:08+0000\n"
+"PO-Revision-Date: 2021-03-19 08:28+0000\n"
 "Last-Translator: Transifex Bot <>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -62,7 +62,7 @@ msgstr ""
 msgid "FPS: %(fps)4s"
 msgstr "FPS: %(fps)4s"
 
-#: gui/common/campaigns/CampaignRun.js:95
+#: gui/common/campaigns/CampaignRun.js:116
 #, javascript-format
 msgid "%(userDesc)s - %(templateName)s"
 msgstr ""
@@ -206,16 +206,16 @@ msgstr[1] "Наблюдатели"
 msgstr[2] "Наблюдатели"
 msgstr[3] "Наблюдатели"
 
-#: gui/common/gamedescription.js:188
+#: gui/common/gamedescription.js:191
 msgctxt "victory condition"
 msgid "Endless Game"
 msgstr "Бесконечная игра"
 
-#: gui/common/gamedescription.js:189
+#: gui/common/gamedescription.js:192
 msgid "No winner will be determined, even if everyone is defeated."
 msgstr "Победитель не будет определён, даже если все будут побеждены."
 
-#: gui/common/gamedescription.js:202
+#: gui/common/gamedescription.js:205
 #, javascript-format
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
@@ -225,7 +225,7 @@ msgstr[1] "Чудо (%(min)s мин.)"
 msgstr[2] "Чудо (%(min)s мин.)"
 msgstr[3] "Чудо (%(min)s мин.)"
 
-#: gui/common/gamedescription.js:216
+#: gui/common/gamedescription.js:219
 #, javascript-format
 msgctxt "victory condition"
 msgid "Capture the Relic (%(min)s minute)"
@@ -235,81 +235,81 @@ msgstr[1] "Захват Реликвии (%(min)s мин.)"
 msgstr[2] "Захват Реликвии (%(min)s мин.)"
 msgstr[3] "Захват реликвии (%(min)s мин.)"
 
-#: gui/common/gamedescription.js:232
+#: gui/common/gamedescription.js:235
 msgid "Relic Count"
 msgstr "Количество реликвий"
 
-#: gui/common/gamedescription.js:239
+#: gui/common/gamedescription.js:242
 msgid "Hero Garrison"
 msgstr "Герой Гарнизона"
 
-#: gui/common/gamedescription.js:240
+#: gui/common/gamedescription.js:243
 msgid "Heroes can be garrisoned."
 msgstr "Герои могут размещаться в гарнизонах."
 
-#: gui/common/gamedescription.js:244
+#: gui/common/gamedescription.js:247
 msgid "Exposed Heroes"
 msgstr "Незащищённые герои"
 
-#: gui/common/gamedescription.js:245
+#: gui/common/gamedescription.js:248
 msgid "Heroes cannot be garrisoned and they are vulnerable to raids."
 msgstr "Героев нельзя размещать в гарнизонах и они остаются уязвимыми при неприятельских набегах."
 
-#: gui/common/gamedescription.js:252
+#: gui/common/gamedescription.js:255
 msgid "Rated game"
 msgstr "Рейтинговая игра"
 
-#: gui/common/gamedescription.js:253
+#: gui/common/gamedescription.js:256
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
 msgstr "Рейтинг будет обновлён после определения победителя."
 
-#: gui/common/gamedescription.js:258
+#: gui/common/gamedescription.js:261
 msgid "Locked Teams"
 msgstr "Фиксированные команды"
 
-#: gui/common/gamedescription.js:259
+#: gui/common/gamedescription.js:262
 msgid "Players can't change the initial teams."
 msgstr "Игроки не могут изменять начальные команды."
 
-#: gui/common/gamedescription.js:263
+#: gui/common/gamedescription.js:266
 msgid "Diplomacy"
 msgstr "Дипломатия"
 
-#: gui/common/gamedescription.js:264
+#: gui/common/gamedescription.js:267
 msgid "Players can make alliances and declare war on allies."
 msgstr "Игроки могут заключать и расторгать союзы."
 
-#: gui/common/gamedescription.js:269
+#: gui/common/gamedescription.js:272
 msgid "Last Man Standing"
 msgstr "Последний герой"
 
-#: gui/common/gamedescription.js:270
+#: gui/common/gamedescription.js:273
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
 msgstr "Только один игрок может победить. Если остальные игроки являются союзниками, то игра продолжается, пока не останется только один."
 
-#: gui/common/gamedescription.js:274
+#: gui/common/gamedescription.js:277
 msgid "Allied Victory"
 msgstr "Победа союзников"
 
-#: gui/common/gamedescription.js:275
+#: gui/common/gamedescription.js:278
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
 msgstr "Одержавший победу игрок приносит победу всем своим союзникам. Если остались игроки только одного союза, они одерживают победу."
 
-#: gui/common/gamedescription.js:280
+#: gui/common/gamedescription.js:283
 msgid "Ceasefire"
 msgstr "Стартовое перемирие"
 
-#: gui/common/gamedescription.js:283 gui/pregame/userreport/userreport.js:26
+#: gui/common/gamedescription.js:286 gui/pregame/userreport/userreport.js:26
 msgid "disabled"
 msgstr "отключено"
 
-#: gui/common/gamedescription.js:284
+#: gui/common/gamedescription.js:287
 msgid "For the first minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
 msgstr[0] "Первую минуту другие игроки остаются нейтральными."
@@ -317,112 +317,112 @@ msgstr[1] "Первые %(min)s минут другие игроки остаю�
 msgstr[2] "Первые %(min)s минут другие игроки остаются нейтральными."
 msgstr[3] "Первые %(min)s минут другие игроки остаются нейтральными."
 
-#: gui/common/gamedescription.js:293
+#: gui/common/gamedescription.js:296
 msgctxt "Map Selection"
 msgid "Random Map"
 msgstr "Случайная карта"
 
-#: gui/common/gamedescription.js:294
+#: gui/common/gamedescription.js:297
 msgid "Randomly select a map from the list."
 msgstr "Случайный выбор карты из списка."
 
-#: gui/common/gamedescription.js:299
+#: gui/common/gamedescription.js:302
 msgid "Map Name"
 msgstr "Название карты"
 
-#: gui/common/gamedescription.js:305
+#: gui/common/gamedescription.js:308
 msgid "Map Description"
 msgstr "Описание карты"
 
-#: gui/common/gamedescription.js:311
+#: gui/common/gamedescription.js:314
 msgid "Map Type"
 msgstr "Тип карты"
 
-#: gui/common/gamedescription.js:320
+#: gui/common/gamedescription.js:323
 msgid "Map Size"
 msgstr "Размер карты"
 
-#: gui/common/gamedescription.js:329
+#: gui/common/gamedescription.js:332
 msgctxt "biome"
 msgid "Random Biome"
 msgstr "Случайный биом"
 
-#: gui/common/gamedescription.js:330
+#: gui/common/gamedescription.js:333
 msgid "Randomly select a biome from the list."
 msgstr "Выбрать биом из списка случайным образом."
 
-#: gui/common/gamedescription.js:345
+#: gui/common/gamedescription.js:348
 msgid "Nomad Mode"
 msgstr "Кочевой режим"
 
-#: gui/common/gamedescription.js:345
+#: gui/common/gamedescription.js:348
 msgid "Civic Centers"
 msgstr "Городские центры"
 
-#: gui/common/gamedescription.js:348
+#: gui/common/gamedescription.js:351
 msgid ""
 "Players start with only few units and have to find a suitable place to build"
 " their city."
 msgstr "Игроки получают на старте всего нескольких юнитов и должны подыскать себе подходящее место для основания города."
 
-#: gui/common/gamedescription.js:349
+#: gui/common/gamedescription.js:352
 msgid "Players start with a Civic Center."
 msgstr "Игроки начинают игру с городскими Центрами."
 
-#: gui/common/gamedescription.js:354
+#: gui/common/gamedescription.js:357
 msgid "Starting Resources"
 msgstr "Начальные ресурсы"
 
-#: gui/common/gamedescription.js:358
+#: gui/common/gamedescription.js:361
 msgctxt "starting resources"
 msgid "Per Player"
 msgstr "На игрока"
 
-#: gui/common/gamedescription.js:359
+#: gui/common/gamedescription.js:362
 #, javascript-format
 msgid "%(startingResourcesTitle)s (%(amount)s)"
 msgstr "%(startingResourcesTitle)s (%(amount)s)"
 
-#: gui/common/gamedescription.js:370
+#: gui/common/gamedescription.js:373
 msgid "Population Limit"
 msgstr "Предельная численность населения"
 
-#: gui/common/gamedescription.js:374
+#: gui/common/gamedescription.js:377
 msgctxt "population limit"
 msgid "Per Player"
 msgstr "На игрока"
 
-#: gui/common/gamedescription.js:382
+#: gui/common/gamedescription.js:385
 msgid "World Population Cap"
 msgstr "Предел мирового населения"
 
-#: gui/common/gamedescription.js:390
+#: gui/common/gamedescription.js:393
 msgid "Treasures"
 msgstr "Сокровища"
 
-#: gui/common/gamedescription.js:392
+#: gui/common/gamedescription.js:395
 msgctxt "treasures"
 msgid "Disabled"
 msgstr "Отключено"
 
-#: gui/common/gamedescription.js:393
+#: gui/common/gamedescription.js:396
 msgctxt "treasures"
 msgid "As defined by the map."
 msgstr "Определяется картой."
 
-#: gui/common/gamedescription.js:397
+#: gui/common/gamedescription.js:400
 msgid "Revealed Map"
 msgstr "Открытая карта"
 
-#: gui/common/gamedescription.js:402
+#: gui/common/gamedescription.js:405
 msgid "Explored Map"
 msgstr "Исследованная карта"
 
-#: gui/common/gamedescription.js:407
+#: gui/common/gamedescription.js:410
 msgid "Cheats"
 msgstr "Читы"
 
-#: gui/common/gamedescription.js:411 gui/common/tooltips.js:144
+#: gui/common/gamedescription.js:414 gui/common/tooltips.js:144
 #: gui/common/tooltips.js:210 gui/common/tooltips.js:231
 #: gui/common/tooltips.js:250 gui/common/tooltips.js:313
 #: gui/common/tooltips.js:616 gui/common/tooltips.js:622
@@ -433,25 +433,25 @@ msgstr "Читы"
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/common/gamedescription.js:414
+#: gui/common/gamedescription.js:417
 msgctxt "game setup option"
 msgid "enabled"
 msgstr "Включено"
 
-#: gui/common/gamedescription.js:415
+#: gui/common/gamedescription.js:418
 msgctxt "game setup option"
 msgid "disabled"
 msgstr "отключено"
 
-#: gui/common/gamedescription.js:427
+#: gui/common/gamedescription.js:430
 msgid "Victorious"
 msgstr "Победивший"
 
-#: gui/common/gamedescription.js:432
+#: gui/common/gamedescription.js:435
 msgid "Defeated"
 msgstr "Поражение"
 
-#: gui/common/gamedescription.js:441
+#: gui/common/gamedescription.js:444
 #, javascript-format
 msgid "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
 msgstr "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
@@ -577,7 +577,7 @@ msgstr "Пользователи (%(num)s): %(users)s"
 #: gui/common/tooltips.js:497 gui/common/tooltips.js:502
 #: gui/common/tooltips.js:559 gui/common/tooltips.js:610
 #: gui/common/tooltips.js:978 gui/common/tooltips.js:1011
-#: gui/common/tooltips.js:1085 gui/loadgame/SavegameDetails.js:38
+#: gui/common/tooltips.js:1085 gui/loadgame/SavegameDetails.js:41
 #: gui/reference/common/tooltips.js:13 gui/replaymenu/replay_menu.js:282
 msgid ", "
 msgstr ", "
@@ -935,7 +935,7 @@ msgstr "Огонь по своим: %(enabled)s"
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
 #: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:300
 #: gui/options/options.js:353 gui/options/options.js:379
-#: gui/pregame/MainMenuItems.js:237 gui/pregame/MainMenuItems.js:261
+#: gui/pregame/MainMenuItems.js:251 gui/pregame/MainMenuItems.js:275
 #: gui/replaymenu/replay_actions.js:169
 msgid "Yes"
 msgstr "Да"
@@ -944,7 +944,7 @@ msgstr "Да"
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
 #: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:300
 #: gui/options/options.js:353 gui/options/options.js:379
-#: gui/pregame/MainMenuItems.js:237 gui/pregame/MainMenuItems.js:261
+#: gui/pregame/MainMenuItems.js:251 gui/pregame/MainMenuItems.js:275
 #: gui/replaymenu/replay_actions.js:169
 msgid "No"
 msgstr "Нет"
@@ -1562,8 +1562,8 @@ msgid ""
 "WARNING: this cannot be reversed."
 msgstr ""
 
-#: gui/hotkeys/HotkeysPage.js:152 gui/pregame/MainMenuItems.js:236
-#: gui/pregame/MainMenuItems.js:260
+#: gui/hotkeys/HotkeysPage.js:152 gui/pregame/MainMenuItems.js:250
+#: gui/pregame/MainMenuItems.js:274
 msgid "Confirmation"
 msgstr "Подтверждение"
 
@@ -1666,7 +1666,7 @@ msgstr "Сохранённая игра будет безвозвратно уд
 msgid "DELETE"
 msgstr "УДАЛИТЬ"
 
-#: gui/loadgame/SavegameDetails.js:40
+#: gui/loadgame/SavegameDetails.js:43
 #, javascript-format
 msgid "Mods: %(mods)s"
 msgstr "Моды: %(mods)s"
@@ -1717,7 +1717,7 @@ msgstr "Предупреждение"
 msgid "Save Game"
 msgstr "Сохранить игру"
 
-#: gui/loadgame/SavegamePage.js:34 gui/pregame/MainMenuItems.js:86
+#: gui/loadgame/SavegamePage.js:34 gui/pregame/MainMenuItems.js:94
 msgid "Load Game"
 msgstr "Загрузить игру"
 
@@ -1810,60 +1810,60 @@ msgstr "Место:"
 msgid "Advanced"
 msgstr "Дополнительно"
 
-#: gui/maps/MapCache.js:60
+#: gui/maps/MapCache.js:59
 msgctxt "map selection"
 msgid "Random"
 msgstr "Случайное"
 
-#: gui/maps/MapCache.js:67
+#: gui/maps/MapCache.js:66
 msgid "A randomly selected map."
 msgstr "Случайно выбранная карта."
 
-#: gui/maps/MapFilters.js:85
+#: gui/maps/MapFilters.js:88
 msgid "Default"
 msgstr "По умолчанию"
 
-#: gui/maps/MapFilters.js:86
+#: gui/maps/MapFilters.js:89
 msgid "All maps except naval and demo maps."
 msgstr "Все карты, кроме морских и демо карт."
 
-#: gui/maps/MapFilters.js:91
+#: gui/maps/MapFilters.js:94
 msgid "Naval Maps"
 msgstr "Морские карты"
 
-#: gui/maps/MapFilters.js:92
+#: gui/maps/MapFilters.js:95
 msgid "Maps where ships are needed to reach the enemy."
 msgstr "Карты, где нужны корабли, чтобы добраться до врага."
 
-#: gui/maps/MapFilters.js:97
+#: gui/maps/MapFilters.js:100
 msgid "Demo Maps"
 msgstr "Демонстрационные карты"
 
-#: gui/maps/MapFilters.js:98
+#: gui/maps/MapFilters.js:101
 msgid "These maps are not playable but for demonstration purposes only."
 msgstr "Эти карты предназначены только для демонстрации."
 
-#: gui/maps/MapFilters.js:103
+#: gui/maps/MapFilters.js:106
 msgid "New Maps"
 msgstr "Новые карты"
 
-#: gui/maps/MapFilters.js:104
+#: gui/maps/MapFilters.js:107
 msgid "Maps that are brand new in this release of the game."
 msgstr "Карты, появившиеся в этом релизе игры."
 
-#: gui/maps/MapFilters.js:109
+#: gui/maps/MapFilters.js:112
 msgid "Trigger Maps"
 msgstr "Триггер карты"
 
-#: gui/maps/MapFilters.js:110
+#: gui/maps/MapFilters.js:113
 msgid "Maps that come with scripted events and potentially spawn enemy units."
 msgstr "Карты, содержащие сценарии и потенциально создающие  вражеские юниты."
 
-#: gui/maps/MapFilters.js:115
+#: gui/maps/MapFilters.js:118
 msgid "All Maps"
 msgstr "Все карты"
 
-#: gui/maps/MapFilters.js:116
+#: gui/maps/MapFilters.js:119
 msgid "Every map of the chosen maptype."
 msgstr "Все карты выбранного типа."
 
@@ -2897,219 +2897,223 @@ msgstr "Обучающая кампания"
 msgid "Start the economic tutorial."
 msgstr "Начать прохождение руководства по развитию экономики."
 
-#: gui/pregame/MainMenuItems.js:25
+#: gui/pregame/MainMenuItems.js:27
 #: gui/reference/common/Buttons/StructreeButton.js:21
 #: gui/reference/structree/structree.xml:(caption):20
 msgid "Structure Tree"
 msgstr "Древо зданий"
 
-#: gui/pregame/MainMenuItems.js:26
+#: gui/pregame/MainMenuItems.js:28
 #, javascript-format
 msgid ""
 "%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
 msgstr "%(hotkey)s: Посмотреть древо зданий цивилизаций, представленных в 0 A.D."
 
-#: gui/pregame/MainMenuItems.js:37
+#: gui/pregame/MainMenuItems.js:39
 #: gui/reference/civinfo/civinfo.xml:(caption):21
 #: gui/reference/common/Buttons/CivInfoButton.js:21
 msgid "Civilization Overview"
 msgstr "Обзор цивилизаций"
 
-#: gui/pregame/MainMenuItems.js:38
+#: gui/pregame/MainMenuItems.js:40
 #, javascript-format
 msgid "%(hotkey)s: Learn about the civilizations featured in 0 A.D."
 msgstr "%(hotkey)s: Узнать о цивилизациях, представленных в 0 A.D."
 
-#: gui/pregame/MainMenuItems.js:49
+#: gui/pregame/MainMenuItems.js:51
 msgid "Catafalque Overview"
 msgstr "Обзор погребальных колесниц"
 
-#: gui/pregame/MainMenuItems.js:50
+#: gui/pregame/MainMenuItems.js:52
 msgid "Compare the bonuses of catafalques featured in 0 A.D."
 msgstr "Сравнить преимущества, которые предоставляют погребальные колесницы в 0 A.D."
 
-#: gui/pregame/MainMenuItems.js:56
+#: gui/pregame/MainMenuItems.js:58
 msgid "Map Overview"
 msgstr "Обзор карт"
 
-#: gui/pregame/MainMenuItems.js:57
+#: gui/pregame/MainMenuItems.js:59
 msgid "View the different maps featured in 0 A.D."
 msgstr "Посмотреть различные карты, представленные в 0 A.D."
 
-#: gui/pregame/MainMenuItems.js:65 gui/pregame/MainMenuItems.js:93
+#: gui/pregame/MainMenuItems.js:67 gui/pregame/MainMenuItems.js:101
 msgid "Continue Campaign"
 msgstr ""
 
-#: gui/pregame/MainMenuItems.js:66 gui/pregame/MainMenuItems.js:94
-#: gui/pregame/MainMenuItems.js:104 gui/pregame/MainMenuItems.js:111
+#: gui/pregame/MainMenuItems.js:68 gui/pregame/MainMenuItems.js:102
+#: gui/pregame/MainMenuItems.js:118 gui/pregame/MainMenuItems.js:125
 msgid "Relive history through historical military campaigns."
 msgstr ""
 
-#: gui/pregame/MainMenuItems.js:75 gui/replaymenu/replay_filters.js:144
+#: gui/pregame/MainMenuItems.js:76 gui/pregame/MainMenuItems.js:110
+msgid "Error opening campaign run:"
+msgstr ""
+
+#: gui/pregame/MainMenuItems.js:83 gui/replaymenu/replay_filters.js:144
 msgid "Single-player"
 msgstr "Одиночная игра"
 
-#: gui/pregame/MainMenuItems.js:76
+#: gui/pregame/MainMenuItems.js:84
 msgid "Start, load, or replay a single-player game."
 msgstr "Начать, загрузить или воспроизвести одиночную игру."
 
-#: gui/pregame/MainMenuItems.js:79
+#: gui/pregame/MainMenuItems.js:87
 msgid "Matches"
 msgstr "Сражения"
 
-#: gui/pregame/MainMenuItems.js:80
+#: gui/pregame/MainMenuItems.js:88
 msgid "Start a new single-player game."
 msgstr "Начать новую одиночную игру."
 
-#: gui/pregame/MainMenuItems.js:87
+#: gui/pregame/MainMenuItems.js:95
 msgid "Load a saved game."
 msgstr "Загрузить сохранённую игру."
 
-#: gui/pregame/MainMenuItems.js:103
+#: gui/pregame/MainMenuItems.js:117
 msgid "New Campaign"
 msgstr ""
 
-#: gui/pregame/MainMenuItems.js:110
+#: gui/pregame/MainMenuItems.js:124
 msgid "Load Campaign"
 msgstr ""
 
-#: gui/pregame/MainMenuItems.js:120 gui/pregame/MainMenuItems.js:170
+#: gui/pregame/MainMenuItems.js:134 gui/pregame/MainMenuItems.js:184
 msgid "Replays"
 msgstr "Повторы"
 
-#: gui/pregame/MainMenuItems.js:121 gui/pregame/MainMenuItems.js:171
+#: gui/pregame/MainMenuItems.js:135 gui/pregame/MainMenuItems.js:185
 msgid "Playback previous games."
 msgstr "Воспроизвести предыдущие игры."
 
-#: gui/pregame/MainMenuItems.js:135 gui/replaymenu/replay_filters.js:144
+#: gui/pregame/MainMenuItems.js:149 gui/replaymenu/replay_filters.js:144
 msgid "Multiplayer"
 msgstr "Сетевая игра"
 
-#: gui/pregame/MainMenuItems.js:136
+#: gui/pregame/MainMenuItems.js:150
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "Сразиться с одним или несколькими игроками в сетевой игре."
 
 #. Translation: Join a game by specifying the host's IP address.
-#: gui/pregame/MainMenuItems.js:140
+#: gui/pregame/MainMenuItems.js:154
 msgid "Join Game"
 msgstr "Присоединиться к игре"
 
-#: gui/pregame/MainMenuItems.js:141
+#: gui/pregame/MainMenuItems.js:155
 msgid "Joining an existing multiplayer game."
 msgstr "Присоединиться к существующей сетевой игре."
 
-#: gui/pregame/MainMenuItems.js:149
+#: gui/pregame/MainMenuItems.js:163
 msgid "Host Game"
 msgstr "Создать игру"
 
-#: gui/pregame/MainMenuItems.js:150
+#: gui/pregame/MainMenuItems.js:164
 msgid "Host a multiplayer game."
 msgstr "Создать сетевую игру."
 
-#: gui/pregame/MainMenuItems.js:158
+#: gui/pregame/MainMenuItems.js:172
 msgid "Game Lobby"
 msgstr "Игровая комната"
 
-#: gui/pregame/MainMenuItems.js:160
+#: gui/pregame/MainMenuItems.js:174
 #, javascript-format
 msgid ""
 "%(hotkey)s: Launch the multiplayer lobby to join and host publicly visible "
 "games and chat with other players."
 msgstr "%(hotkey)s: Запустите сетевую комнату для создания или присоединения к публичным играм и общения с другими игроками."
 
-#: gui/pregame/MainMenuItems.js:161
+#: gui/pregame/MainMenuItems.js:175
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
 msgstr "Включить многопользовательскую комнату. \\[ОТКЛЮЧЕНО В СБОРКЕ]"
 
-#: gui/pregame/MainMenuItems.js:185
+#: gui/pregame/MainMenuItems.js:199
 msgid "Settings"
 msgstr "Настройки"
 
-#: gui/pregame/MainMenuItems.js:186
+#: gui/pregame/MainMenuItems.js:200
 msgid "Change game options."
 msgstr "Изменить настройки игры."
 
-#: gui/pregame/MainMenuItems.js:189
+#: gui/pregame/MainMenuItems.js:203
 msgid "Options"
 msgstr "Настройки"
 
-#: gui/pregame/MainMenuItems.js:190
+#: gui/pregame/MainMenuItems.js:204
 msgid "Adjust game settings."
 msgstr "Настроить параметры игры."
 
-#: gui/hotkeys/hotkeys.xml:(caption):14 gui/pregame/MainMenuItems.js:199
+#: gui/hotkeys/hotkeys.xml:(caption):14 gui/pregame/MainMenuItems.js:213
 msgid "Hotkeys"
 msgstr "Горячие клавиши"
 
-#: gui/pregame/MainMenuItems.js:200
+#: gui/pregame/MainMenuItems.js:214
 msgid "Adjust hotkeys."
 msgstr "Настроить горячие клавиши."
 
-#: gui/locale/locale.xml:(caption):14 gui/pregame/MainMenuItems.js:206
+#: gui/locale/locale.xml:(caption):14 gui/pregame/MainMenuItems.js:220
 msgid "Language"
 msgstr "Язык"
 
-#: gui/pregame/MainMenuItems.js:207
+#: gui/pregame/MainMenuItems.js:221
 msgid "Choose the language of the game."
 msgstr "Выбрать язык игры."
 
-#: gui/pregame/MainMenuItems.js:213
+#: gui/pregame/MainMenuItems.js:227
 msgid "Mod Selection"
 msgstr "Выбор модов"
 
-#: gui/pregame/MainMenuItems.js:214
+#: gui/pregame/MainMenuItems.js:228
 msgid "Select and download mods for the game."
 msgstr "Выберите и загрузите моды для игры."
 
-#: gui/pregame/MainMenuItems.js:220
+#: gui/pregame/MainMenuItems.js:234
 msgid "Welcome Screen"
 msgstr "Экран приветствия"
 
-#: gui/pregame/MainMenuItems.js:221
+#: gui/pregame/MainMenuItems.js:235
 msgid "Show the Welcome Screen again. Useful if you hid it by mistake."
 msgstr "Показать приветственный экран — на случай, если его случайно пропустили."
 
-#: gui/pregame/MainMenuItems.js:229
+#: gui/pregame/MainMenuItems.js:243
 msgid "Scenario Editor"
 msgstr "Редактор сценариев"
 
-#: gui/pregame/MainMenuItems.js:230
+#: gui/pregame/MainMenuItems.js:244
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "Открыть редактор сценариев Atlas в новом окне. Вы также можете перейти в режим редактора, запустив игру с аргументом командной строки \"-editor\"."
 
-#: gui/pregame/MainMenuItems.js:235
+#: gui/pregame/MainMenuItems.js:249
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
 msgstr "Вы уверены, что хотите выйти из 0 A.D. и открыть редактор сценариев?"
 
-#: gui/pregame/MainMenuItems.js:242
+#: gui/pregame/MainMenuItems.js:256
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "Редактор сценариев недоступен или не запускается. Посмотрите логи игры для более подробной информации."
 
-#: gui/pregame/MainMenuItems.js:243 gui/replaymenu/replay_actions.js:117
+#: gui/pregame/MainMenuItems.js:257 gui/replaymenu/replay_actions.js:117
 msgid "Error"
 msgstr "Ошибка"
 
-#: gui/pregame/MainMenuItems.js:247
+#: gui/pregame/MainMenuItems.js:261
 msgid "Credits"
 msgstr "Внёсшие вклад"
 
-#: gui/pregame/MainMenuItems.js:248
+#: gui/pregame/MainMenuItems.js:262
 msgid "Show the 0 A.D. credits."
 msgstr "Показать список внёсших свой вклад в 0 A.D."
 
-#: gui/pregame/MainMenuItems.js:254
+#: gui/pregame/MainMenuItems.js:268
 msgid "Exit"
 msgstr "Выход"
 
-#: gui/pregame/MainMenuItems.js:255
+#: gui/pregame/MainMenuItems.js:269
 msgid "Exit the game."
 msgstr "Выйти из игры."
 
-#: gui/pregame/MainMenuItems.js:259
+#: gui/pregame/MainMenuItems.js:273
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Вы действительно хотите покинуть 0 A.D.?"
 

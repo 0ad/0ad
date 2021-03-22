@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-25 08:08+0000\n"
-"PO-Revision-Date: 2021-01-25 21:19+0000\n"
+"POT-Creation-Date: 2021-03-19 08:08+0000\n"
+"PO-Revision-Date: 2021-03-21 21:55+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -806,7 +806,7 @@ msgstr "tsmt ʿȝ"
 msgid "Mryt"
 msgstr "Mryt"
 
-#: simulation/templates/structures/kush/elephant_stables.xml:5
+#: simulation/templates/structures/kush/elephant_stable.xml:5
 msgid "Ỉḥ Abu"
 msgstr "Ỉḥ Abu"
 
@@ -909,8 +909,8 @@ msgid "Pr-ʿImn"
 msgstr "Pr-ʿImn"
 
 #: simulation/templates/structures/kush/temple_amun.xml:29
-msgid "Train Healers and Amun Champions and research healing technologies."
-msgstr "Allista los curanderos, campeones d'Amón y desendolca'l sanamientu."
+msgid "Train Amun Champions and Elite Healers. Research healing technologies."
+msgstr "Allista los campeones d'Amón y curanderos escoyíos. Desendolca'l sanamientu."
 
 #: simulation/templates/structures/kush/temple_amun.xml:31
 msgid "TempleOfAmun"
@@ -966,7 +966,7 @@ msgstr "Udarka"
 msgid "Naukasthanaka"
 msgstr "Naukāsthānaka"
 
-#: simulation/templates/structures/maur/elephant_stables.xml:5
+#: simulation/templates/structures/maur/elephant_stable.xml:5
 msgid "Vāraṇaśālā"
 msgstr "Vāraṇaśālā"
 
@@ -1251,8 +1251,8 @@ msgstr "Almacén"
 msgid "Hanging Gardens of Babylon"
 msgstr "Xardinos Colgantes de Babilonia"
 
-#: simulation/templates/structures/ptol/elephant_stables.xml:5
-#: simulation/templates/structures/sele/elephant_stables.xml:5
+#: simulation/templates/structures/ptol/elephant_stable.xml:5
+#: simulation/templates/structures/sele/elephant_stable.xml:5
 msgid "Stathmos tōn Elepantōn"
 msgstr "Stathmós tôn Elephántōn"
 
@@ -1310,22 +1310,22 @@ msgstr "Arcus Triumphālis"
 msgid "TriumphalArch"
 msgstr "ArcuTrunfal"
 
-#: simulation/templates/structures/rome/army_camp.xml:73
+#: simulation/templates/structures/rome/army_camp.xml:71
 msgid "Army Camp"
 msgstr "Campamentu militar"
 
-#: simulation/templates/structures/rome/army_camp.xml:74
+#: simulation/templates/structures/rome/army_camp.xml:72
 msgid "Castra"
 msgstr "Castra"
 
-#: simulation/templates/structures/rome/army_camp.xml:75
+#: simulation/templates/structures/rome/army_camp.xml:73
 msgid ""
-"Build in neutral or enemy territory. Train Melee Infantry. Garrison Soldiers"
-" for additional arrows."
-msgstr "Ármase en campu enemigu o n'abertal. Allista la infantería. Guarecíu, tira más fleches."
+"Build in neutral or enemy territory. Train Advanced Melee Infantry. Garrison"
+" Soldiers for additional arrows."
+msgstr "Ármase en campu enemigu o n'abertal. Allista infantería avanzao. Guarecíu, tira más fleches."
 
-#: simulation/templates/structures/rome/army_camp.xml:40
-#: simulation/templates/structures/rome/army_camp.xml:77
+#: simulation/templates/structures/rome/army_camp.xml:38
+#: simulation/templates/structures/rome/army_camp.xml:75
 msgid "ArmyCamp"
 msgstr "Campamentu"
 
@@ -1588,26 +1588,26 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Bow"
 msgstr "Flechada"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:79
+#: simulation/templates/template_structure_civic_civil_centre.xml:77
 msgid "Civic Center"
 msgstr "Plaza"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:81
+#: simulation/templates/template_structure_civic_civil_centre.xml:79
 msgid ""
 "Build in own or neutral territory. Acquire large tracts of territory. "
 "Territory root. Train Citizens and research technologies. Garrison Soldiers "
 "for additional arrows."
 msgstr "Llevántase en campu propiu o n'abertal. Enanta o arraigona'l territoriu. Allista los ciudadanos y desendolca la teunoloxía. Guarecida, tira más fleches."
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:46
-#: simulation/templates/template_structure_civic_civil_centre.xml:83
+#: simulation/templates/template_structure_civic_civil_centre.xml:44
+#: simulation/templates/template_structure_civic_civil_centre.xml:81
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:10
 msgid "CivilCentre"
 msgstr "Plaza"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:83
+#: simulation/templates/template_structure_civic_civil_centre.xml:81
 #: simulation/templates/template_structure_defensive.xml:5
-#: simulation/templates/template_structure_military_fortress.xml:73
+#: simulation/templates/template_structure_military_fortress.xml:71
 msgid "Defensive"
 msgstr "Defensivu"
 
@@ -1649,7 +1649,7 @@ msgstr "Stoá"
 #: simulation/templates/structures/cart/apartment.xml:26
 #: simulation/templates/structures/gaul/tavern.xml:22
 #: simulation/templates/structures/kush/pyramid_small.xml:29
-#: simulation/templates/structures/maur/elephant_stables.xml:8
+#: simulation/templates/structures/maur/elephant_stable.xml:8
 #: simulation/templates/template_structure_civic_stoa.xml:30
 #: simulation/templates/template_structure_civic_temple.xml:32
 #: simulation/templates/template_structure_defensive_tower_stone.xml:32
@@ -1697,9 +1697,9 @@ msgstr "Estacada"
 msgid "Wall off an area. Build in own or neutral territory."
 msgstr "Zarra terrenes. Llevántase en campu propiu o n'abertal."
 
-#: simulation/templates/template_structure_defensive_tower.xml:39
-#: simulation/templates/template_structure_defensive_tower.xml:55
-#: simulation/templates/template_structure_defensive_tower.xml:56
+#: simulation/templates/template_structure_defensive_tower.xml:34
+#: simulation/templates/template_structure_defensive_tower.xml:50
+#: simulation/templates/template_structure_defensive_tower.xml:51
 msgid "Tower"
 msgstr "Torre"
 
@@ -1719,13 +1719,13 @@ msgstr "Morriyera"
 #: simulation/templates/structures/gaul/assembly.xml:34
 #: simulation/templates/structures/kush/pyramid_large.xml:29
 #: simulation/templates/structures/kush/temple_amun.xml:31
-#: simulation/templates/structures/rome/army_camp.xml:77
+#: simulation/templates/structures/rome/army_camp.xml:75
 #: simulation/templates/structures/rome/temple_mars.xml:14
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:51
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:49
 #: simulation/templates/template_structure_military_arsenal.xml:28
-#: simulation/templates/template_structure_military_elephant_stables.xml:26
-#: simulation/templates/template_structure_military_fortress.xml:73
+#: simulation/templates/template_structure_military_elephant_stable.xml:26
+#: simulation/templates/template_structure_military_fortress.xml:71
 #: simulation/templates/template_structure_special.xml:20
 #: simulation/templates/template_structure_wonder.xml:42
 msgid "City"
@@ -1795,11 +1795,11 @@ msgstr "Dexa trespasar la muralla. Pues pesllala pa torgar la entrada."
 msgid "Can be converted into a Gate."
 msgstr "Pues convertila en puerta."
 
-#: simulation/templates/template_structure_defensive_wall_tower.xml:51
+#: simulation/templates/template_structure_defensive_wall_tower.xml:49
 msgid "Wall Turret"
 msgstr "Torreta"
 
-#: simulation/templates/template_structure_defensive_wall_tower.xml:53
+#: simulation/templates/template_structure_defensive_wall_tower.xml:51
 msgid "Garrison Infantry for additional arrows."
 msgstr "Guarecida, tira más fleches."
 
@@ -1841,7 +1841,7 @@ msgstr "Cambiar"
 #: simulation/templates/template_structure_economic_storehouse.xml:27
 #: simulation/templates/template_structure_economic_storehouse.xml:31
 msgid "Storehouse"
-msgstr "Metedoriu"
+msgstr "Almacén"
 
 #: simulation/templates/template_structure_economic_storehouse.xml:29
 msgid "Research gathering technologies."
@@ -1892,15 +1892,15 @@ msgstr "Faise a la vera l'agua en campu amigu o n'abertal. Afita'l comerciu. Con
 msgid "Naval"
 msgstr "Naval"
 
-#: simulation/templates/template_structure_military_elephant_stables.xml:23
+#: simulation/templates/template_structure_military_elephant_stable.xml:23
 msgid "Elephant Stable"
 msgstr "Corte del elefante"
 
-#: simulation/templates/template_structure_military_elephant_stables.xml:25
+#: simulation/templates/template_structure_military_elephant_stable.xml:25
 msgid "Train Elephants and research Elephant technologies."
 msgstr "Allista los elefantes y ameyóralos."
 
-#: simulation/templates/template_structure_military_elephant_stables.xml:26
+#: simulation/templates/template_structure_military_elephant_stable.xml:26
 msgid "ElephantStable"
 msgstr "CorteElefante"
 
@@ -1919,13 +1919,13 @@ msgstr "Fragua"
 msgid "Research attack damage and damage resistance technologies."
 msgstr "Desendolca meyores armes y armadura."
 
-#: simulation/templates/template_structure_military_fortress.xml:39
-#: simulation/templates/template_structure_military_fortress.xml:69
-#: simulation/templates/template_structure_military_fortress.xml:73
+#: simulation/templates/template_structure_military_fortress.xml:37
+#: simulation/templates/template_structure_military_fortress.xml:67
+#: simulation/templates/template_structure_military_fortress.xml:71
 msgid "Fortress"
 msgstr "Fortaleza"
 
-#: simulation/templates/template_structure_military_fortress.xml:71
+#: simulation/templates/template_structure_military_fortress.xml:69
 msgid "Territory root. Garrison Soldiers for additional arrows."
 msgstr "Arraigona'l territoriu. Guarecida, tira más fleches."
 

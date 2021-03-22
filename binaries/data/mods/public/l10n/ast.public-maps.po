@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-03-12 08:08+0000\n"
-"PO-Revision-Date: 2021-03-15 23:04+0000\n"
+"POT-Creation-Date: 2021-03-19 08:08+0000\n"
+"PO-Revision-Date: 2021-03-19 20:43+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -186,17 +186,17 @@ msgid "Canyon"
 msgstr "Beyos"
 
 #: maps/random/continent.jsonsettings.Description
-#: maps/random/unknown.jsonsettings.Landscapes.land[0].Description
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[0].Description
 msgid "All players starts on a continent surrounded by water."
 msgstr "Tolos xugadores entamen nuna masa de tierra arrodiada d'agua."
 
 #: maps/random/continent.jsonsettings.Name
-#: maps/random/unknown.jsonsettings.Landscapes.land[0].Name
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[0].Name
 msgid "Continent"
 msgstr "El continente"
 
 #: maps/random/corinthian_isthmus.jsonsettings.Description
-#: maps/random/unknown.jsonsettings.Landscapes.land[1].Description
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[1].Description
 #: maps/skirmishes/corinthian_isthmus_2p.xml:Description:38
 #: maps/skirmishes/corinthian_isthmus_4p.xml:Description:39
 msgid ""
@@ -576,12 +576,12 @@ msgid "Lower Nubia"
 msgstr "Wawat"
 
 #: maps/random/mainland.jsonsettings.Description
-#: maps/random/unknown.jsonsettings.Landscapes.land[8].Description
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[8].Description
 msgid "A typical map without any water."
 msgstr "Un mapa ensin agua."
 
 #: maps/random/mainland.jsonsettings.Name
-#: maps/random/unknown.jsonsettings.Landscapes.land[8].Name
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[8].Name
 msgid "Mainland"
 msgstr "Tierra firme"
 
@@ -1122,87 +1122,103 @@ msgstr "El Nilu"
 msgid "The unknown."
 msgstr "Lo descoñocío."
 
-#: maps/random/unknown.jsonsettings.Landscapes.land[1].Name
+#: maps/random/unknown.jsonsettings.Landscapes[0].Description
+msgid "Choose a random land landscape"
+msgstr "Escoyer un rodiu terrestre a debalu."
+
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[1].Name
 msgid "Isthmus"
 msgstr "Ismu"
 
-#: maps/random/unknown.jsonsettings.Landscapes.land[2].Description
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[2].Description
 msgid "A small central river."
 msgstr "Un riucu central."
 
-#: maps/random/unknown.jsonsettings.Landscapes.land[2].Name
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[2].Name
 msgid "Central River"
 msgstr "El ríu del mediu"
 
-#: maps/random/unknown.jsonsettings.Landscapes.land[3].Description
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[3].Description
 msgid ""
 "Players are aligned on a strip of land with seas bordering on one or both "
 "sides that may hold islands."
 msgstr "Los xugadores atópense alliniaos nuna faza de tierra al pie d'una mar que podría contener islles."
 
-#: maps/random/unknown.jsonsettings.Landscapes.land[3].Name
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[3].Name
 msgid "Edge Seas"
 msgstr "Mar confinante"
 
-#: maps/random/unknown.jsonsettings.Landscapes.land[4].Description
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[4].Description
 msgid "Land shaped like a concrescent moon around a central lake."
 msgstr "Tierra en forma de lluna creciente al rodiu d'un llagu central."
 
-#: maps/random/unknown.jsonsettings.Landscapes.land[4].Name
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[4].Name
 msgid "Gulf"
 msgstr "El golfu lluniegu"
 
-#: maps/random/unknown.jsonsettings.Landscapes.land[5].Description
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[5].Description
 msgid "Mainland style with some small random lakes."
 msgstr "Un continente con delles llagunes aisllaes."
 
-#: maps/random/unknown.jsonsettings.Landscapes.land[5].Name
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[5].Name
 msgid "Lakes"
 msgstr "Llagos"
 
-#: maps/random/unknown.jsonsettings.Landscapes.land[6].Description
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[6].Description
 msgid ""
 "A large hill encompasses the map and leaves players only a small passage to "
 "the two neighboring players."
 msgstr "Una llomba cerca'l mapa dexando namái una estrecha que da pasu a los dos xugadores vecinos."
 
-#: maps/random/unknown.jsonsettings.Landscapes.land[6].Name
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[6].Name
 msgid "Passes"
 msgstr "Congostos"
 
-#: maps/random/unknown.jsonsettings.Landscapes.land[7].Description
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[7].Description
 msgid ""
 "The land is enclosed by a hill that leaves a small area per player connected"
 " to the large central place."
 msgstr "Una llomba zarra la tierra dexando a cada xugador una estayina xunto a la gran fastera central."
 
-#: maps/random/unknown.jsonsettings.Landscapes.land[7].Name
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[7].Name
 msgid "Lowlands"
 msgstr "La fondalada"
 
-#: maps/random/unknown.jsonsettings.Landscapes.naval[0].Description
+#: maps/random/unknown.jsonsettings.Landscapes[0].Name
+msgid "Random Land"
+msgstr "Terrestre al debalu"
+
+#: maps/random/unknown.jsonsettings.Landscapes[1].Description
+msgid "Choose a random naval landscape"
+msgstr "Escoyer un rodiu naval a debalu."
+
+#: maps/random/unknown.jsonsettings.Landscapes[1].Items[0].Description
 msgid "A huge sea is dividing the map into two halves."
 msgstr "Una mar escomanada parte'l mapa en dos."
 
-#: maps/random/unknown.jsonsettings.Landscapes.naval[0].Name
+#: maps/random/unknown.jsonsettings.Landscapes[1].Items[0].Name
 msgid "Naval: Central Sea"
 msgstr "Naval: La mar central"
 
-#: maps/random/unknown.jsonsettings.Landscapes.naval[1].Description
+#: maps/random/unknown.jsonsettings.Landscapes[1].Items[1].Description
 msgid "Players are scattered across island chains and disconnected islands."
 msgstr "Los xugadores atópense espreganciaos per munches islles, encadenaes y aisllaes."
 
-#: maps/random/unknown.jsonsettings.Landscapes.naval[1].Name
+#: maps/random/unknown.jsonsettings.Landscapes[1].Items[1].Name
 msgid "Naval: Archipelago"
 msgstr "Naval: L'archipiélagu"
 
-#: maps/random/unknown.jsonsettings.Landscapes.naval[2].Description
+#: maps/random/unknown.jsonsettings.Landscapes[1].Items[2].Description
 msgid "A central lake with rivers possibly separating neighboring players."
 msgstr "Un llagu central onde nacen ríos que podríen dixebrar los xugadores vecinos."
 
-#: maps/random/unknown.jsonsettings.Landscapes.naval[2].Name
+#: maps/random/unknown.jsonsettings.Landscapes[1].Items[2].Name
 msgid "Naval: Lake and rivers"
 msgstr "Naval: El naciente"
+
+#: maps/random/unknown.jsonsettings.Landscapes[1].Name
+msgid "Random Naval"
+msgstr "Naval al debalu"
 
 #: maps/random/unknown.jsonsettings.Name
 msgid "Unknown"

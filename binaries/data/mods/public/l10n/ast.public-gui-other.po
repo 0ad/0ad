@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-03-08 08:15+0000\n"
-"PO-Revision-Date: 2021-03-19 02:12+0000\n"
+"POT-Creation-Date: 2021-03-19 08:08+0000\n"
+"PO-Revision-Date: 2021-03-20 02:09+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,7 @@ msgstr ""
 msgid "FPS: %(fps)4s"
 msgstr "CPS: %(fps)4s"
 
-#: gui/common/campaigns/CampaignRun.js:95
+#: gui/common/campaigns/CampaignRun.js:116
 #, javascript-format
 msgid "%(userDesc)s - %(templateName)s"
 msgstr "%(userDesc)s - %(templateName)s"
@@ -168,16 +168,16 @@ msgid_plural "Observers"
 msgstr[0] "Espeutador"
 msgstr[1] "Espeutadores"
 
-#: gui/common/gamedescription.js:188
+#: gui/common/gamedescription.js:191
 msgctxt "victory condition"
 msgid "Endless Game"
 msgstr "Partida infinita"
 
-#: gui/common/gamedescription.js:189
+#: gui/common/gamedescription.js:192
 msgid "No winner will be determined, even if everyone is defeated."
 msgstr "Naide nun va ganar, anque toos pierdan."
 
-#: gui/common/gamedescription.js:202
+#: gui/common/gamedescription.js:205
 #, javascript-format
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
@@ -185,7 +185,7 @@ msgid_plural "Wonder (%(min)s minutes)"
 msgstr[0] "Maravía (%(min)s minutu)"
 msgstr[1] "Maravía (%(min)s minutos)"
 
-#: gui/common/gamedescription.js:216
+#: gui/common/gamedescription.js:219
 #, javascript-format
 msgctxt "victory condition"
 msgid "Capture the Relic (%(min)s minute)"
@@ -193,192 +193,192 @@ msgid_plural "Capture the Relic (%(min)s minutes)"
 msgstr[0] "Garrar la reliquia (%(min)s minutu)"
 msgstr[1] "Garrar la reliquia (%(min)s minutos)"
 
-#: gui/common/gamedescription.js:232
+#: gui/common/gamedescription.js:235
 msgid "Relic Count"
 msgstr "Númberu de reliquies"
 
-#: gui/common/gamedescription.js:239
+#: gui/common/gamedescription.js:242
 msgid "Hero Garrison"
 msgstr "Héroes guarecederos"
 
-#: gui/common/gamedescription.js:240
+#: gui/common/gamedescription.js:243
 msgid "Heroes can be garrisoned."
 msgstr "Pue guarecese a los héroes."
 
-#: gui/common/gamedescription.js:244
+#: gui/common/gamedescription.js:247
 msgid "Exposed Heroes"
 msgstr "Héroes espuestos"
 
-#: gui/common/gamedescription.js:245
+#: gui/common/gamedescription.js:248
 msgid "Heroes cannot be garrisoned and they are vulnerable to raids."
 msgstr "Los héroes han quedar albentestate y son más dañatibles."
 
-#: gui/common/gamedescription.js:252
+#: gui/common/gamedescription.js:255
 msgid "Rated game"
 msgstr "Partida clasificada"
 
-#: gui/common/gamedescription.js:253
+#: gui/common/gamedescription.js:256
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
 msgstr "Al ganar daquién l'alcuentru, anuévase'l marcador n'antepar."
 
-#: gui/common/gamedescription.js:258
+#: gui/common/gamedescription.js:261
 msgid "Locked Teams"
 msgstr "Equipos fixos"
 
-#: gui/common/gamedescription.js:259
+#: gui/common/gamedescription.js:262
 msgid "Players can't change the initial teams."
 msgstr "Los xugadores nun puen cambiar d'equipu."
 
-#: gui/common/gamedescription.js:263
+#: gui/common/gamedescription.js:266
 msgid "Diplomacy"
 msgstr "Diplomacia"
 
-#: gui/common/gamedescription.js:264
+#: gui/common/gamedescription.js:267
 msgid "Players can make alliances and declare war on allies."
 msgstr "Los xugadores puen aliase y declarar la guerra a aliaos."
 
-#: gui/common/gamedescription.js:269
+#: gui/common/gamedescription.js:272
 msgid "Last Man Standing"
 msgstr "El caberu de pie"
 
-#: gui/common/gamedescription.js:270
+#: gui/common/gamedescription.js:273
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
 msgstr "Namái pue ganar un xugador. Si los que queden tán aliaos, l'alcuentru sigue hasta que quede solo ún."
 
-#: gui/common/gamedescription.js:274
+#: gui/common/gamedescription.js:277
 msgid "Allied Victory"
 msgstr "Victoria aliada"
 
-#: gui/common/gamedescription.js:275
+#: gui/common/gamedescription.js:278
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
 msgstr "Al ganar un xugador, tola alianza tamién gana. Al quedar una alianza, gana."
 
-#: gui/common/gamedescription.js:280
+#: gui/common/gamedescription.js:283
 msgid "Ceasefire"
 msgstr "Altu'l fueu"
 
-#: gui/common/gamedescription.js:283 gui/pregame/userreport/userreport.js:26
+#: gui/common/gamedescription.js:286 gui/pregame/userreport/userreport.js:26
 msgid "disabled"
 msgstr "desactivóse"
 
-#: gui/common/gamedescription.js:284
+#: gui/common/gamedescription.js:287
 msgid "For the first minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
 msgstr[0] "Demientres el primer minutu, tolos xugadores van tar neutrales."
 msgstr[1] "Demientres los primeros %(min)s minutos, tolos xugadores van tar neutrales."
 
-#: gui/common/gamedescription.js:293
+#: gui/common/gamedescription.js:296
 msgctxt "Map Selection"
 msgid "Random Map"
 msgstr "Mapa al debalu"
 
-#: gui/common/gamedescription.js:294
+#: gui/common/gamedescription.js:297
 msgid "Randomly select a map from the list."
 msgstr "Esbilla un mapa de la llista al debalu."
 
-#: gui/common/gamedescription.js:299
+#: gui/common/gamedescription.js:302
 msgid "Map Name"
 msgstr "Nome del mapa"
 
-#: gui/common/gamedescription.js:305
+#: gui/common/gamedescription.js:308
 msgid "Map Description"
 msgstr "Descripción del mapa"
 
-#: gui/common/gamedescription.js:311
+#: gui/common/gamedescription.js:314
 msgid "Map Type"
 msgstr "Tipu de mapa"
 
-#: gui/common/gamedescription.js:320
+#: gui/common/gamedescription.js:323
 msgid "Map Size"
 msgstr "Tamañu del mapa"
 
-#: gui/common/gamedescription.js:329
+#: gui/common/gamedescription.js:332
 msgctxt "biome"
 msgid "Random Biome"
 msgstr "Bioma al debalu"
 
-#: gui/common/gamedescription.js:330
+#: gui/common/gamedescription.js:333
 msgid "Randomly select a biome from the list."
 msgstr "Esbilla un bioma de la llista al debalu."
 
-#: gui/common/gamedescription.js:345
+#: gui/common/gamedescription.js:348
 msgid "Nomad Mode"
 msgstr "Mou nómada"
 
-#: gui/common/gamedescription.js:345
+#: gui/common/gamedescription.js:348
 msgid "Civic Centers"
 msgstr "Places"
 
-#: gui/common/gamedescription.js:348
+#: gui/common/gamedescription.js:351
 msgid ""
 "Players start with only few units and have to find a suitable place to build"
 " their city."
 msgstr "Los xugadores entamen con un puñáu d'unidaes ya escueyen onde fincar."
 
-#: gui/common/gamedescription.js:349
+#: gui/common/gamedescription.js:352
 msgid "Players start with a Civic Center."
 msgstr "Los xugadores entamen con plaza."
 
-#: gui/common/gamedescription.js:354
+#: gui/common/gamedescription.js:357
 msgid "Starting Resources"
 msgstr "Recursos iniciales"
 
-#: gui/common/gamedescription.js:358
+#: gui/common/gamedescription.js:361
 msgctxt "starting resources"
 msgid "Per Player"
 msgstr "Por xugador"
 
-#: gui/common/gamedescription.js:359
+#: gui/common/gamedescription.js:362
 #, javascript-format
 msgid "%(startingResourcesTitle)s (%(amount)s)"
 msgstr "%(startingResourcesTitle)s (%(amount)s)"
 
-#: gui/common/gamedescription.js:370
+#: gui/common/gamedescription.js:373
 msgid "Population Limit"
 msgstr "Población máxima"
 
-#: gui/common/gamedescription.js:374
+#: gui/common/gamedescription.js:377
 msgctxt "population limit"
 msgid "Per Player"
 msgstr "Por xugador"
 
-#: gui/common/gamedescription.js:382
+#: gui/common/gamedescription.js:385
 msgid "World Population Cap"
 msgstr "Población global máxima"
 
-#: gui/common/gamedescription.js:390
+#: gui/common/gamedescription.js:393
 msgid "Treasures"
 msgstr "Ayalgues"
 
-#: gui/common/gamedescription.js:392
+#: gui/common/gamedescription.js:395
 msgctxt "treasures"
 msgid "Disabled"
 msgstr "Desactiváronse"
 
-#: gui/common/gamedescription.js:393
+#: gui/common/gamedescription.js:396
 msgctxt "treasures"
 msgid "As defined by the map."
 msgstr "Según les definiciones del mapa"
 
-#: gui/common/gamedescription.js:397
+#: gui/common/gamedescription.js:400
 msgid "Revealed Map"
 msgstr "Mapa reveláu"
 
-#: gui/common/gamedescription.js:402
+#: gui/common/gamedescription.js:405
 msgid "Explored Map"
 msgstr "Mapa esploráu"
 
-#: gui/common/gamedescription.js:407
+#: gui/common/gamedescription.js:410
 msgid "Cheats"
 msgstr "Trampes"
 
-#: gui/common/gamedescription.js:411 gui/common/tooltips.js:144
+#: gui/common/gamedescription.js:414 gui/common/tooltips.js:144
 #: gui/common/tooltips.js:210 gui/common/tooltips.js:231
 #: gui/common/tooltips.js:250 gui/common/tooltips.js:313
 #: gui/common/tooltips.js:616 gui/common/tooltips.js:622
@@ -389,25 +389,25 @@ msgstr "Trampes"
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/common/gamedescription.js:414
+#: gui/common/gamedescription.js:417
 msgctxt "game setup option"
 msgid "enabled"
 msgstr "activáronse"
 
-#: gui/common/gamedescription.js:415
+#: gui/common/gamedescription.js:418
 msgctxt "game setup option"
 msgid "disabled"
 msgstr "desactiváronse"
 
-#: gui/common/gamedescription.js:427
+#: gui/common/gamedescription.js:430
 msgid "Victorious"
 msgstr "Trunfante"
 
-#: gui/common/gamedescription.js:432
+#: gui/common/gamedescription.js:435
 msgid "Defeated"
 msgstr "Vencíu/-ida"
 
-#: gui/common/gamedescription.js:441
+#: gui/common/gamedescription.js:444
 #, javascript-format
 msgid "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
 msgstr "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
@@ -533,7 +533,7 @@ msgstr "Usuarios (%(num)s): %(users)s"
 #: gui/common/tooltips.js:497 gui/common/tooltips.js:502
 #: gui/common/tooltips.js:559 gui/common/tooltips.js:610
 #: gui/common/tooltips.js:978 gui/common/tooltips.js:1011
-#: gui/common/tooltips.js:1085 gui/loadgame/SavegameDetails.js:38
+#: gui/common/tooltips.js:1085 gui/loadgame/SavegameDetails.js:41
 #: gui/reference/common/tooltips.js:13 gui/replaymenu/replay_menu.js:282
 msgid ", "
 msgstr ","
@@ -597,7 +597,7 @@ msgstr "Amarradiella"
 msgid ""
 "A map with a predefined landscape and number of players. Freely select the "
 "other game settings."
-msgstr "Un mapa col terrén y el númberu de xugadores predefiníos. Los demás axustes pues esbillalos llibremente."
+msgstr "Un mapa col rodiu y númberu de xugadores predefiníos. Los demás axustes pues esbillalos."
 
 #: gui/common/settings.js:183
 msgctxt "map"
@@ -617,7 +617,7 @@ msgstr "Escenariu"
 
 #: gui/common/settings.js:193
 msgid "A map with a predefined landscape and matchsettings."
-msgstr "Un mapa col terrén & axustes predefiníos."
+msgstr "Mapa de rodiu y axustes predefiníos."
 
 #: gui/common/settings.js:271 gui/common/settings.js:294
 msgid "Unlimited"
@@ -881,7 +881,7 @@ msgstr "Fueu amigo: %(enabled)s"
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
 #: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:300
 #: gui/options/options.js:353 gui/options/options.js:379
-#: gui/pregame/MainMenuItems.js:237 gui/pregame/MainMenuItems.js:261
+#: gui/pregame/MainMenuItems.js:251 gui/pregame/MainMenuItems.js:275
 #: gui/replaymenu/replay_actions.js:169
 msgid "Yes"
 msgstr "Sí"
@@ -890,7 +890,7 @@ msgstr "Sí"
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
 #: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:300
 #: gui/options/options.js:353 gui/options/options.js:379
-#: gui/pregame/MainMenuItems.js:237 gui/pregame/MainMenuItems.js:261
+#: gui/pregame/MainMenuItems.js:251 gui/pregame/MainMenuItems.js:275
 #: gui/replaymenu/replay_actions.js:169
 msgid "No"
 msgstr "Non"
@@ -1482,7 +1482,7 @@ msgstr "Introduz l'atayu nuevu, calténlu calcáu p'asignalu."
 
 #: gui/hotkeys/HotkeyPicker.js:116
 msgid "May conflict with: "
-msgstr ""
+msgstr "Pue criar conflictos con:"
 
 #: gui/hotkeys/HotkeysPage.js:82
 msgid "All Hotkeys"
@@ -1496,10 +1496,10 @@ msgstr "Nun hai conseyos disponibles"
 msgid ""
 "Reset all hotkeys to default values?\n"
 "WARNING: this cannot be reversed."
-msgstr ""
+msgstr "¿Reafitar tolos atayos?\nAVISU: Esto nun pue revertise."
 
-#: gui/hotkeys/HotkeysPage.js:152 gui/pregame/MainMenuItems.js:236
-#: gui/pregame/MainMenuItems.js:260
+#: gui/hotkeys/HotkeysPage.js:152 gui/pregame/MainMenuItems.js:250
+#: gui/pregame/MainMenuItems.js:274
 msgid "Confirmation"
 msgstr "Confirmanza"
 
@@ -1528,7 +1528,7 @@ msgstr "Descripción"
 msgid ""
 "Click on any mapping to modify it.\\n You may have up to 4 different "
 "hotkeys."
-msgstr ""
+msgstr "Calca en cualquier asignación pa camudala.\\n Puedes tener hasta 4 atayos distintos."
 
 #: gui/hotkeys/hotkeys.xml:(caption):106 gui/locale/locale.xml:(caption):46
 msgid "Accept"
@@ -1561,7 +1561,7 @@ msgstr "Guarda cambeos"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):59
 msgid "Unsaved changes will be lost"
-msgstr ""
+msgstr "Van perdese los cambeos ensin guardar"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):90
 msgid "Click to set the hotkey"
@@ -1602,7 +1602,7 @@ msgstr "La partida guardada va desaniciase dafechu, ¿de xuru?"
 msgid "DELETE"
 msgstr "DESANICIAR"
 
-#: gui/loadgame/SavegameDetails.js:40
+#: gui/loadgame/SavegameDetails.js:43
 #, javascript-format
 msgid "Mods: %(mods)s"
 msgstr "Camudos: %(mods)s"
@@ -1653,7 +1653,7 @@ msgstr "Avisu"
 msgid "Save Game"
 msgstr "Guardar partida"
 
-#: gui/loadgame/SavegamePage.js:34 gui/pregame/MainMenuItems.js:86
+#: gui/loadgame/SavegamePage.js:34 gui/pregame/MainMenuItems.js:94
 msgid "Load Game"
 msgstr "Cargar partida"
 
@@ -1746,60 +1746,60 @@ msgstr "Rodiada:"
 msgid "Advanced"
 msgstr "Avanzáu"
 
-#: gui/maps/MapCache.js:60
+#: gui/maps/MapCache.js:59
 msgctxt "map selection"
 msgid "Random"
 msgstr "Al debalu"
 
-#: gui/maps/MapCache.js:67
+#: gui/maps/MapCache.js:66
 msgid "A randomly selected map."
 msgstr "Un mapa esbilláu al debalu."
 
-#: gui/maps/MapFilters.js:85
+#: gui/maps/MapFilters.js:88
 msgid "Default"
 msgstr "Por defeutu"
 
-#: gui/maps/MapFilters.js:86
+#: gui/maps/MapFilters.js:89
 msgid "All maps except naval and demo maps."
 msgstr "Tolos mapes sacantes los navales ya los d'amuesa."
 
-#: gui/maps/MapFilters.js:91
+#: gui/maps/MapFilters.js:94
 msgid "Naval Maps"
 msgstr "Mapes navales"
 
-#: gui/maps/MapFilters.js:92
+#: gui/maps/MapFilters.js:95
 msgid "Maps where ships are needed to reach the enemy."
 msgstr "Mapes onde faen falta barcos."
 
-#: gui/maps/MapFilters.js:97
+#: gui/maps/MapFilters.js:100
 msgid "Demo Maps"
 msgstr "Mapes d'amuesa"
 
-#: gui/maps/MapFilters.js:98
+#: gui/maps/MapFilters.js:101
 msgid "These maps are not playable but for demonstration purposes only."
 msgstr "Estos mapes sirven d'amuesa, esto ye, nun son xugables."
 
-#: gui/maps/MapFilters.js:103
+#: gui/maps/MapFilters.js:106
 msgid "New Maps"
 msgstr "Mapes nuevos"
 
-#: gui/maps/MapFilters.js:104
+#: gui/maps/MapFilters.js:107
 msgid "Maps that are brand new in this release of the game."
 msgstr "Mapes que salen per vegada primera nesti llanzamientu del xuegu."
 
-#: gui/maps/MapFilters.js:109
+#: gui/maps/MapFilters.js:112
 msgid "Trigger Maps"
 msgstr "Mapes con disparadores"
 
-#: gui/maps/MapFilters.js:110
+#: gui/maps/MapFilters.js:113
 msgid "Maps that come with scripted events and potentially spawn enemy units."
 msgstr "Mapes que tienen eventos programaos y aprucirán unidaes enemigues."
 
-#: gui/maps/MapFilters.js:115
+#: gui/maps/MapFilters.js:118
 msgid "All Maps"
 msgstr "Tolos mapes"
 
-#: gui/maps/MapFilters.js:116
+#: gui/maps/MapFilters.js:119
 msgid "Every map of the chosen maptype."
 msgstr "Cada mapa del tipu escoyíu."
 
@@ -1861,11 +1861,11 @@ msgstr "Pasar a la páxina siguiente."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:32
 msgid "Increase map preview size."
-msgstr ""
+msgstr "Agrandar la previsualización del mapa."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:33
 msgid "Decrease map preview size."
-msgstr ""
+msgstr "Apequeñar la previsualización del mapa."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:39
 #, javascript-format
@@ -2833,219 +2833,223 @@ msgstr "Tutorial"
 msgid "Start the economic tutorial."
 msgstr "Entamar el tutorial económicu."
 
-#: gui/pregame/MainMenuItems.js:25
+#: gui/pregame/MainMenuItems.js:27
 #: gui/reference/common/Buttons/StructreeButton.js:21
 #: gui/reference/structree/structree.xml:(caption):20
 msgid "Structure Tree"
 msgstr "Árbole de construcciones"
 
-#: gui/pregame/MainMenuItems.js:26
+#: gui/pregame/MainMenuItems.js:28
 #, javascript-format
 msgid ""
 "%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
 msgstr "%(hotkey)s: Ver les construcciones de les civilizaciones qu'apaecen en 0 A.D."
 
-#: gui/pregame/MainMenuItems.js:37
+#: gui/pregame/MainMenuItems.js:39
 #: gui/reference/civinfo/civinfo.xml:(caption):21
 #: gui/reference/common/Buttons/CivInfoButton.js:21
 msgid "Civilization Overview"
 msgstr "Güeyada a les civilizaciones"
 
-#: gui/pregame/MainMenuItems.js:38
+#: gui/pregame/MainMenuItems.js:40
 #, javascript-format
 msgid "%(hotkey)s: Learn about the civilizations featured in 0 A.D."
 msgstr "%(hotkey)s: Descubrir les civilizaciones qu'apaecen en 0 A.D."
 
-#: gui/pregame/MainMenuItems.js:49
+#: gui/pregame/MainMenuItems.js:51
 msgid "Catafalque Overview"
 msgstr "Güeyada a los catafalcos"
 
-#: gui/pregame/MainMenuItems.js:50
+#: gui/pregame/MainMenuItems.js:52
 msgid "Compare the bonuses of catafalques featured in 0 A.D."
 msgstr "Comparar les ventayes de los catafalcos qu'apaecen en 0 A.D."
 
-#: gui/pregame/MainMenuItems.js:56
+#: gui/pregame/MainMenuItems.js:58
 msgid "Map Overview"
 msgstr "Güeyada a los mapes"
 
-#: gui/pregame/MainMenuItems.js:57
+#: gui/pregame/MainMenuItems.js:59
 msgid "View the different maps featured in 0 A.D."
 msgstr "Ver los mapes qu'apaecen en 0 A.D."
 
-#: gui/pregame/MainMenuItems.js:65 gui/pregame/MainMenuItems.js:93
+#: gui/pregame/MainMenuItems.js:67 gui/pregame/MainMenuItems.js:101
 msgid "Continue Campaign"
 msgstr "Siguir cola campaña"
 
-#: gui/pregame/MainMenuItems.js:66 gui/pregame/MainMenuItems.js:94
-#: gui/pregame/MainMenuItems.js:104 gui/pregame/MainMenuItems.js:111
+#: gui/pregame/MainMenuItems.js:68 gui/pregame/MainMenuItems.js:102
+#: gui/pregame/MainMenuItems.js:118 gui/pregame/MainMenuItems.js:125
 msgid "Relive history through historical military campaigns."
-msgstr ""
+msgstr "Vivir la historia nes campañes militares."
 
-#: gui/pregame/MainMenuItems.js:75 gui/replaymenu/replay_filters.js:144
+#: gui/pregame/MainMenuItems.js:76 gui/pregame/MainMenuItems.js:110
+msgid "Error opening campaign run:"
+msgstr "Fallu al abrir la campaña:"
+
+#: gui/pregame/MainMenuItems.js:83 gui/replaymenu/replay_filters.js:144
 msgid "Single-player"
 msgstr "Un xugador"
 
-#: gui/pregame/MainMenuItems.js:76
+#: gui/pregame/MainMenuItems.js:84
 msgid "Start, load, or replay a single-player game."
 msgstr "Entamar, cargar o repetir una partida privada."
 
-#: gui/pregame/MainMenuItems.js:79
+#: gui/pregame/MainMenuItems.js:87
 msgid "Matches"
 msgstr "Alcuentros"
 
-#: gui/pregame/MainMenuItems.js:80
+#: gui/pregame/MainMenuItems.js:88
 msgid "Start a new single-player game."
 msgstr "Entamar una partida privada nueva."
 
-#: gui/pregame/MainMenuItems.js:87
+#: gui/pregame/MainMenuItems.js:95
 msgid "Load a saved game."
 msgstr "Cargar una partida guardada."
 
-#: gui/pregame/MainMenuItems.js:103
+#: gui/pregame/MainMenuItems.js:117
 msgid "New Campaign"
 msgstr "Campaña nueva"
 
-#: gui/pregame/MainMenuItems.js:110
+#: gui/pregame/MainMenuItems.js:124
 msgid "Load Campaign"
 msgstr "Cargar campaña"
 
-#: gui/pregame/MainMenuItems.js:120 gui/pregame/MainMenuItems.js:170
+#: gui/pregame/MainMenuItems.js:134 gui/pregame/MainMenuItems.js:184
 msgid "Replays"
 msgstr "Repeticiones"
 
-#: gui/pregame/MainMenuItems.js:121 gui/pregame/MainMenuItems.js:171
+#: gui/pregame/MainMenuItems.js:135 gui/pregame/MainMenuItems.js:185
 msgid "Playback previous games."
 msgstr "Reproducir partíes anteriores."
 
-#: gui/pregame/MainMenuItems.js:135 gui/replaymenu/replay_filters.js:144
+#: gui/pregame/MainMenuItems.js:149 gui/replaymenu/replay_filters.js:144
 msgid "Multiplayer"
 msgstr "Dellos xugadores"
 
-#: gui/pregame/MainMenuItems.js:136
+#: gui/pregame/MainMenuItems.js:150
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "Batallar con una o más persones na rede."
 
 #. Translation: Join a game by specifying the host's IP address.
-#: gui/pregame/MainMenuItems.js:140
+#: gui/pregame/MainMenuItems.js:154
 msgid "Join Game"
 msgstr "Xunise"
 
-#: gui/pregame/MainMenuItems.js:141
+#: gui/pregame/MainMenuItems.js:155
 msgid "Joining an existing multiplayer game."
 msgstr "Xunise a una partida de dellos xugadores."
 
-#: gui/pregame/MainMenuItems.js:149
+#: gui/pregame/MainMenuItems.js:163
 msgid "Host Game"
 msgstr "Agospiar"
 
-#: gui/pregame/MainMenuItems.js:150
+#: gui/pregame/MainMenuItems.js:164
 msgid "Host a multiplayer game."
 msgstr "Agospiar una partida de dellos xugadores."
 
-#: gui/pregame/MainMenuItems.js:158
+#: gui/pregame/MainMenuItems.js:172
 msgid "Game Lobby"
 msgstr "Antepar"
 
-#: gui/pregame/MainMenuItems.js:160
+#: gui/pregame/MainMenuItems.js:174
 #, javascript-format
 msgid ""
 "%(hotkey)s: Launch the multiplayer lobby to join and host publicly visible "
 "games and chat with other players."
 msgstr "%(hotkey)s: Llanzar l'antepar p'agospiar o xunise a partíes públiques y charrar con otros xugadores."
 
-#: gui/pregame/MainMenuItems.js:161
+#: gui/pregame/MainMenuItems.js:175
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
 msgstr "Llanzar l'antepar. \\[DESACTIVAO NESTA COMPILACIÓN]"
 
-#: gui/pregame/MainMenuItems.js:185
+#: gui/pregame/MainMenuItems.js:199
 msgid "Settings"
 msgstr "Axustes"
 
-#: gui/pregame/MainMenuItems.js:186
+#: gui/pregame/MainMenuItems.js:200
 msgid "Change game options."
 msgstr "Cambiar los axustes del xuegu."
 
-#: gui/pregame/MainMenuItems.js:189
+#: gui/pregame/MainMenuItems.js:203
 msgid "Options"
 msgstr "Opciones"
 
-#: gui/pregame/MainMenuItems.js:190
+#: gui/pregame/MainMenuItems.js:204
 msgid "Adjust game settings."
 msgstr "Camudar los axustes del xuegu."
 
-#: gui/hotkeys/hotkeys.xml:(caption):14 gui/pregame/MainMenuItems.js:199
+#: gui/hotkeys/hotkeys.xml:(caption):14 gui/pregame/MainMenuItems.js:213
 msgid "Hotkeys"
 msgstr "Atayos"
 
-#: gui/pregame/MainMenuItems.js:200
+#: gui/pregame/MainMenuItems.js:214
 msgid "Adjust hotkeys."
 msgstr "Camudar los atayos."
 
-#: gui/locale/locale.xml:(caption):14 gui/pregame/MainMenuItems.js:206
+#: gui/locale/locale.xml:(caption):14 gui/pregame/MainMenuItems.js:220
 msgid "Language"
 msgstr "Llingua"
 
-#: gui/pregame/MainMenuItems.js:207
+#: gui/pregame/MainMenuItems.js:221
 msgid "Choose the language of the game."
 msgstr "Escoyer la llingua del xuegu."
 
-#: gui/pregame/MainMenuItems.js:213
+#: gui/pregame/MainMenuItems.js:227
 msgid "Mod Selection"
 msgstr "Esbilla de camudos"
 
-#: gui/pregame/MainMenuItems.js:214
+#: gui/pregame/MainMenuItems.js:228
 msgid "Select and download mods for the game."
 msgstr "Esbillar y baxar camudos pal xuegu."
 
-#: gui/pregame/MainMenuItems.js:220
+#: gui/pregame/MainMenuItems.js:234
 msgid "Welcome Screen"
 msgstr "Pantalla d'acoyida"
 
-#: gui/pregame/MainMenuItems.js:221
+#: gui/pregame/MainMenuItems.js:235
 msgid "Show the Welcome Screen again. Useful if you hid it by mistake."
 msgstr "Volver amosar la pantalla d'acoyida por si s'anubriere ensin querer."
 
-#: gui/pregame/MainMenuItems.js:229
+#: gui/pregame/MainMenuItems.js:243
 msgid "Scenario Editor"
 msgstr "Iguador cartográficu"
 
-#: gui/pregame/MainMenuItems.js:230
+#: gui/pregame/MainMenuItems.js:244
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "Abrir l'iguador cartográficu Atles nuna ventana nueva. Esti execútase meyor si anicies el xuegu col argumentu «-editor»."
 
-#: gui/pregame/MainMenuItems.js:235
+#: gui/pregame/MainMenuItems.js:249
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
 msgstr "¿De xuru que quies colar de 0 A.D. y abrir l'iguador cartográficu?"
 
-#: gui/pregame/MainMenuItems.js:242
+#: gui/pregame/MainMenuItems.js:256
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "L'iguador cartográficu o nun ta disponible o falló al cargase. Pues atopar más información nos rexistros del xuegu."
 
-#: gui/pregame/MainMenuItems.js:243 gui/replaymenu/replay_actions.js:117
+#: gui/pregame/MainMenuItems.js:257 gui/replaymenu/replay_actions.js:117
 msgid "Error"
 msgstr "Fallu"
 
-#: gui/pregame/MainMenuItems.js:247
+#: gui/pregame/MainMenuItems.js:261
 msgid "Credits"
 msgstr "Creitos"
 
-#: gui/pregame/MainMenuItems.js:248
+#: gui/pregame/MainMenuItems.js:262
 msgid "Show the 0 A.D. credits."
 msgstr "Amosar los creitos de 0 A.D."
 
-#: gui/pregame/MainMenuItems.js:254
+#: gui/pregame/MainMenuItems.js:268
 msgid "Exit"
 msgstr "Colar"
 
-#: gui/pregame/MainMenuItems.js:255
+#: gui/pregame/MainMenuItems.js:269
 msgid "Exit the game."
 msgstr "Colar del xuegu."
 
-#: gui/pregame/MainMenuItems.js:259
+#: gui/pregame/MainMenuItems.js:273
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "¿De xuru que quies colar de 0 A.D.?"
 

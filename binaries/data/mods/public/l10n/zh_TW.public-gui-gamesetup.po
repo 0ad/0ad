@@ -25,9 +25,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-29 08:08+0000\n"
-"PO-Revision-Date: 2021-02-24 12:35+0000\n"
-"Last-Translator: StarAtt <tea55688@gmail.com>\n"
+"POT-Creation-Date: 2021-03-19 08:08+0000\n"
+"PO-Revision-Date: 2021-03-19 09:18+0000\n"
+"Last-Translator: 黃柏諺 <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -43,28 +43,28 @@ msgstr "AI 配置"
 msgid "OK"
 msgstr "確定"
 
-#: gui/gamesetup/Pages/AIConfigPage/AIDescription.js:37
+#: gui/gamesetup/Pages/AIConfigPage/AIDescription.js:30
 msgid "AI will be disabled for this player."
 msgstr "此玩家的 AI 將被停用 。"
 
-#: gui/gamesetup/Pages/AIConfigPage/Controls/AIBehavior.js:95
+#: gui/gamesetup/Pages/AIConfigPage/Controls/AIBehavior.js:29
 msgid "AI Behavior"
 msgstr "AI 行為"
 
-#: gui/gamesetup/Pages/AIConfigPage/Controls/AIDifficulty.js:89
+#: gui/gamesetup/Pages/AIConfigPage/Controls/AIDifficulty.js:32
 msgid "AI Difficulty"
 msgstr "AI 難度"
 
-#: gui/gamesetup/Pages/AIConfigPage/Controls/AISelection.js:86
+#: gui/gamesetup/Pages/AIConfigPage/Controls/AISelection.js:39
 msgctxt "ai"
 msgid "None"
 msgstr "無"
 
-#: gui/gamesetup/Pages/AIConfigPage/Controls/AISelection.js:91
+#: gui/gamesetup/Pages/AIConfigPage/Controls/AISelection.js:44
 msgid "AI Player"
 msgstr "AI 玩家"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingControl.js:172
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingControl.js:139
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
@@ -79,7 +79,7 @@ msgid "No"
 msgstr "否"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingControlDropdown.js:64
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingControlSlider.js:79
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingControlSlider.js:84
 msgctxt "settings value"
 msgid "Unknown"
 msgstr "未知"
@@ -104,49 +104,44 @@ msgstr "遊戲類型"
 msgid "Configure AI: %(description)s."
 msgstr "調整AI： %(description)s。"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:153
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:156
 msgid "Select player."
 msgstr "選取玩家。"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:230
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:246
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "AI：%(ai)s"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:265
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:281
 msgid "Unassigned"
 msgstr "未指派"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:131
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:71
 msgid "Choose the civilization for this player."
 msgstr "為此玩家選擇文明。"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:134
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:74
 msgctxt "civilization"
 msgid "Random"
 msgstr "隨機"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:140
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:80
 msgid "Picks one civilization at random when the game starts."
 msgstr "遊戲開始時隨機挑選一個文明。"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerColor.js:172
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerColor.js:44
 msgid "Pick a color."
 msgstr "挑選一個顏色。"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerTeam.js:73
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerTeam.js:47
 msgid "Select player's team."
 msgstr "選取玩家的隊伍。"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerTeam.js:76
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerTeam.js:50
 msgctxt "team"
 msgid "None"
 msgstr "無"
-
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayerName.js:114
-#, javascript-format
-msgid "%(playerName)s %(romanNumber)s"
-msgstr "%(playerName)s %(romanNumber)s"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):6
 msgid "Player Name"
@@ -177,438 +172,380 @@ msgstr "瀏覽地圖"
 msgid "Press %(hotkey)s to view the list of available maps."
 msgstr "按%(hotkey)s 以查看可用的地圖列表。"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:40
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:34
 msgid "Cheats"
 msgstr "作弊秘技"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:43
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:37
 msgid "Toggle the usability of cheats."
 msgstr "切換是否可以使用作弊秘技。"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map
 #. settings!
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/ExploredMap.js:55
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/ExploredMap.js:26
 msgid "Explored Map"
 msgstr "已探索的地圖"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map
 #. settings!
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/ExploredMap.js:59
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/ExploredMap.js:30
 msgid "Toggle explored map (see initial map)."
 msgstr "切換已探索的地圖（看初始地圖）。"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:59
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:26
 msgid "Last Man Standing"
 msgstr "最後生還者"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:62
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:29
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
 msgstr "切換是否讓盟友中最後存活的玩家獲勝。"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:53
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:30
 msgid "Teams Locked"
 msgstr "隊伍鎖定"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:56
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:33
 msgid "Toggle locked teams."
 msgstr "切換是否鎖定隊伍。"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Nomad.js:61
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Nomad.js:25
 msgid "Nomad"
 msgstr "遊牧"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Nomad.js:64
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Nomad.js:28
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
 msgstr "在遊牧模式，玩家一開始只有少數的單位，必須尋找到適合的地方建立自己的城市，建議先停火。"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Rating.js:51
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Rating.js:27
 msgid "Rated Game"
 msgstr "排名遊戲"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Rating.js:54
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Rating.js:30
 msgid "Toggle if this game will be rated for the leaderboard."
 msgstr "切換本次遊戲是否計入排名。"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:62
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:27
 msgid "Hero Garrison"
 msgstr "英雄駐守"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:65
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:30
 msgid "Toggle whether heroes can be garrisoned."
 msgstr "切換英雄是否可以駐守。"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map
 #. settings!
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RevealedMap.js:50
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RevealedMap.js:26
 msgid "Revealed Map"
 msgstr "全地圖視野"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map
 #. settings!
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RevealedMap.js:54
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RevealedMap.js:30
 msgid "Toggle revealed map (see everything)."
 msgstr "切換是否使用顯示全地圖(可以看到所有東西)。"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Spies.js:43
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Spies.js:26
 msgid "Disable Spies"
 msgstr "停用間諜"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Spies.js:46
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Spies.js:29
 msgid "Disable spies during the game."
 msgstr "在遊戲中停用間諜。"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js:43
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js:25
 msgid "Disable Treasures"
 msgstr "停用寶藏"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js:46
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js:28
 msgid "Do not add treasures to the map."
 msgstr "地圖上不出現寶藏"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:49
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:25
 msgid "World population"
 msgstr "世界人口"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:52
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:28
 msgid ""
 "When checked the Population Cap will be evenly distributed over all living "
 "players."
 msgstr "選擇後，人口上限將平均分配給所有存活的玩家。"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:128
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:54
 msgid "Biome"
 msgstr "生物群"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:134
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:60
 msgid "Select the flora and fauna."
 msgstr "選取植物群與動物群。"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:137
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:63
 msgctxt "biome"
 msgid "Random"
 msgstr "隨機"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:140
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:66
 msgid "Pick a biome at random."
 msgstr "隨機挑選生物群"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:101
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:57
 msgid "Daytime"
 msgstr "日照時間"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:104
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:60
 msgid "Select whether the match takes place at daylight or night."
 msgstr "選擇比賽是在白天還是晚上進行。"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:107
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:63
 msgctxt "daytime selection"
 msgid "Random"
 msgstr "隨機"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:110
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:66
 msgctxt "daytime selection"
 msgid "Randomly pick a time of the day."
 msgstr "隨機選擇當天時間。"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:75
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:49
 msgid "Game Speed"
 msgstr "遊戲速度"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:78
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:52
 msgid "Select game speed."
 msgstr "選取遊戲速度。"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:138
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:25
+msgctxt "landscape selection"
+msgid "Random"
+msgstr "隨機"
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:26
+msgctxt "landscape selection"
+msgid "Select a random landscape."
+msgstr ""
+
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:78
 msgid "Landscape"
 msgstr "景觀"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:141
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:81
 msgid "Select one of the landscapes of this map."
 msgstr "為這張地圖選擇一張景觀。"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:147
-msgctxt "landscape selection"
-msgid "Random Land or Naval"
-msgstr "隨機陸地或海洋"
-
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:148
-msgctxt "landscape selection"
-msgid "Select a random land or naval map generation."
-msgstr "選擇一個隨機陸地或海洋的地圖產生。"
-
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:152
-msgctxt "landscape selection"
-msgid "Random Land"
-msgstr "隨機陸地"
-
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:153
-msgctxt "landscape selection"
-msgid "Select a random land map generation."
-msgstr "選擇一個隨機陸地的地圖產生。"
-
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:157
-msgctxt "landscape selection"
-msgid "Random Naval"
-msgstr "隨機海洋"
-
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:158
-msgctxt "landscape selection"
-msgid "Select a random naval map generation."
-msgstr "選擇一個隨機海洋的地圖產生。"
-
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:89
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:58
 msgid "Map Filter"
 msgstr "地圖篩選"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:92
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:61
 msgid "Select a map filter."
 msgstr "選取地圖篩選類型。"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:143
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:102
 msgid "Select Map"
 msgstr "選取地圖"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:146
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:105
 msgid "Select a map to play on."
 msgstr "選取要玩的地圖。"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:152
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:111
 msgctxt "map selection"
 msgid "Random"
 msgstr "隨機"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:155
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:114
 msgid "Pick any of the given maps at random."
 msgstr "隨機挑選任何給定的地圖。"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:70
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:39
 msgid "Map Size"
 msgstr "地圖大小"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:73
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:42
 msgid "Select map size. (Larger sizes may reduce performance.)"
 msgstr "選取地圖大小。(大型地圖會降低執行效能。)"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapType.js:61
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapType.js:51
 msgid "Map Type"
 msgstr "地圖類型"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapType.js:64
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapType.js:54
 msgid "Select a map type."
 msgstr "選取地圖類型。"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PlayerCount.js:49
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PlayerCount.js:33
 msgid "Number of Players"
 msgstr "玩家數量"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PlayerCount.js:52
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PlayerCount.js:36
 msgid "Select number of players."
 msgstr "選擇玩家的人數。"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:92
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:54
 msgid "Population Cap"
 msgstr "人口上限"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:95
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:57
 msgid "Select population limit."
 msgstr "選取人口上限。"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:98
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:60
 msgctxt "population limit"
 msgid "Per Player"
 msgstr "每位玩家"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:101
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:63
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
 "%(popCap)s population."
 msgstr "警告：若所有 %(players)s 個玩家都到達 %(popCap)s 的人口上限的話可能會有效能問題。"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:82
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:50
 msgid "Starting Resources"
 msgstr "初始資源"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:85
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:53
 msgid "Select the game's starting resources."
 msgstr "選取遊戲的初始資源。"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:88
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:56
 #, javascript-format
 msgid "Initial amount of each resource: %(resources)s."
 msgstr "每種資源的初始量：%(resources)s。"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:91
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:59
 msgctxt "starting resources"
 msgid "Per Player"
 msgstr "每位玩家"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:91
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:53
 msgid "Team Placement"
 msgstr "隊伍位置"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:94
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:56
 msgid "Select one of the starting position patterns of this map."
 msgstr "為這張地圖選擇起始位置的方案。"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:98
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:60
 msgctxt "team placement"
 msgid "Random"
 msgstr "隨機"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:99
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:61
 msgctxt "team placement"
 msgid "Select a random team placement pattern when starting the game."
 msgstr "當遊戲開始時選擇一個隨機的隊伍放置方案。"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:105
-msgctxt "team placement"
-msgid "Circle"
-msgstr "圓環"
-
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:106
-msgid ""
-"Allied players are grouped and placed with opposing players on one circle "
-"spanning the map."
-msgstr "同盟玩家被分組並與對手玩家放置在地圖上的一個圓圈上。"
-
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:110
-msgctxt "team placement"
-msgid "Line"
-msgstr "直線"
-
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:111
-msgid "Allied players are placed in a linear pattern."
-msgstr "同盟玩家被放置在線性的位置。"
-
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:115
-msgctxt "team placement"
-msgid "Random Group"
-msgstr "隨機分隊"
-
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:116
-msgid "Allied players are grouped, but otherwise placed randomly on the map."
-msgstr "同盟玩家被分組，不過其餘的會被隨機放在地圖上。"
-
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:120
-msgctxt "team placement"
-msgid "Stronghold"
-msgstr "要塞"
-
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:121
-msgid "Allied players are grouped in one random place of the map."
-msgstr "同盟的玩家被分組在地圖的一個隨機位置。"
-
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TriggerDifficulty.js:81
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TriggerDifficulty.js:41
 msgid "Difficulty"
 msgstr "難度"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TriggerDifficulty.js:84
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TriggerDifficulty.js:44
 msgid "Select the difficulty of this scenario."
 msgstr "選擇這個情境的難度"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:77
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:47
 msgid "World Population Cap"
 msgstr "世界人口上限"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:80
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:50
 msgid "Select world population limit."
 msgstr "選擇世界人口上限。"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:83
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:53
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if %(popCap)s population is "
 "reached."
 msgstr "警告：如果到達%(popCap)s人口可能會有效能問題。"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:62
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:35
 msgid "Ceasefire"
 msgstr "停火"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:65
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:38
 msgid "Set time where no attacks are possible."
 msgstr "設定不允許任何攻擊的時間。"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:68
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:41
 msgctxt "ceasefire"
 msgid "No ceasefire"
 msgstr "無停火"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:71
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:44
 #, javascript-format
 msgctxt "ceasefire"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
 msgstr[0] "%(minutes)s 分鐘"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:87
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:38
 msgid "Relic Count"
 msgstr "遺蹟數"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:90
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:41
 #, javascript-format
 msgid "%(number)s relic"
 msgid_plural "%(number)s relics"
 msgstr[0] "%(number)s遺跡"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:93
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:44
 msgid ""
 "Total number of relics spawned on the map. Relic victory is most realistic "
 "with only one or two relics. With greater numbers, the relics are important "
 "to capture to receive aura bonuses."
 msgstr "在地圖上生成的遺蹟總數。遺蹟勝利在只有一或兩個遺蹟的狀況下最實際。如果有更多的數量的話，遺蹟對收到靈光加成來說很重要。"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:87
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:38
 msgid "Relic Duration"
 msgstr "遺蹟持續時間"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:90
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:41
 msgid "Minutes until the player has achieved Relic Victory."
 msgstr "玩家獲得遺蹟勝利前的分鐘數。"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:96
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:97
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:47
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:44
 #, javascript-format
 msgctxt "victory duration"
 msgid "%(min)s minute"
 msgid_plural "%(min)s minutes"
 msgstr[0] "%(min)s 分鐘"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:99
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:100
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:50
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:47
 msgctxt "victory duration"
 msgid "Immediate Victory."
 msgstr "立即勝利。"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:73
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:35
 msgid "Sea Level Rise Time"
 msgstr "海平面上升時間"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:76
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:38
 msgid "Set the time when the water will start to rise."
 msgstr "設置水面開始上升的時間。"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:79
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:41
 #, javascript-format
 msgctxt "sea level rise time"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
 msgstr[0] "%(minutes)s 分鐘"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:88
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:38
 msgid "Wonder Duration"
 msgstr "奇觀持續時間"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:91
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:41
 msgid "Minutes until the player has achieved Wonder Victory"
 msgstr "玩家獲得奇觀勝利前的分鐘數"
 
@@ -659,12 +596,12 @@ msgstr "當遊戲設定改變時依然顯示為準備好了。"
 msgid "State that you are not ready to play."
 msgstr "表明您尚未準備就緒。"
 
-#: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ResetCivsButton.js:33
+#: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ResetCivsButton.js:29
 msgid ""
 "Reset any civilizations that have been selected to the default (random)."
 msgstr "重設任何已選取的文明至預設值（隨機）。"
 
-#: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ResetTeamsButton.js:35
+#: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ResetTeamsButton.js:29
 msgid "Reset all teams to the default."
 msgstr "重設所有隊伍至預設值。"
 
@@ -758,11 +695,11 @@ msgstr "\\[%(time)s]"
 msgid "HH:mm"
 msgstr "HH:mm"
 
-#: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.js:38
+#: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.js:40
 msgid "Cheats enabled."
 msgstr "已啟用作弊。"
 
-#: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.js:41
+#: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.js:43
 msgid "Rated game."
 msgstr "排名的遊戲。"
 
@@ -781,11 +718,15 @@ msgstr "按%(hotkey)s以移到下一個設置選項分頁。"
 msgid "Press %(hotkey)s to move to the previous settings tab."
 msgstr "按%(hotkey)s以移到上一個設置選項分頁。"
 
+#: gui/gamesetup/Pages/GameSetupPage/Panels/MapPreview.js:27
+msgid "No selected map"
+msgstr ""
+
 #: gui/gamesetup/Pages/GameSetupPage/Panels/MapPreview.js:47
 msgid "Click to view the list of available maps."
 msgstr "點擊單擊以查看可用地圖的列表。"
 
-#: gui/gamesetup/Pages/GameSetupPage/Panels/TipsPanel.xml:(caption):9
+#: gui/gamesetup/Pages/GameSetupPage/Panels/TipsPanel.xml:(caption):10
 msgid "Show this message in the future."
 msgstr "未來請顯示此訊息。"
 
@@ -797,7 +738,7 @@ msgstr "正在載入"
 msgid "Loading map data. Please wait…"
 msgstr "讀取地圖中，請稍後..."
 
-#: gui/gamesetup/gamesetup.xml:(caption):13
+#: gui/gamesetup/gamesetup.xml:(caption):16
 msgid "Match Setup"
 msgstr "競賽設定"
 

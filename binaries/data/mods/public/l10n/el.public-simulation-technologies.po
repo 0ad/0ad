@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-03-18 17:07+0000\n"
+"PO-Revision-Date: 2021-03-21 17:42+0000\n"
 "Last-Translator: LOUKAS SKOUROLIAKOS\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -88,7 +88,7 @@ msgstr "Ξεκλειδωνεί στην Φάση Πόλη."
 
 #: simulation/data/technologies/agoge.jsontooltip
 msgid "Champion Infantry Spearmen +25% health, but +5% training time."
-msgstr ""
+msgstr "Πρωταθλητές Λογχοφόροι +25% υγεία ,αλλά +5% χρόνος εκπαίδευσης."
 
 #: simulation/data/technologies/archery_tradition.jsondescription
 msgid ""
@@ -240,7 +240,7 @@ msgstr "Επιστρατευμένο Ιππικό"
 
 #: simulation/data/technologies/cavalry_cost_time.jsontooltip
 msgid "Cavalry −10% training time."
-msgstr ""
+msgstr "Ιππικό -10% χρόνος εκπαίδευσης."
 
 #: simulation/data/technologies/cavalry_health.jsondescription
 msgid "Selectively breed better war horses."
@@ -248,11 +248,11 @@ msgstr ""
 
 #: simulation/data/technologies/cavalry_health.jsongenericName
 msgid "Horse Breeding"
-msgstr ""
+msgstr "Εκτροφή Αλόγων"
 
 #: simulation/data/technologies/cavalry_health.jsontooltip
 msgid "Cavalry +10% health."
-msgstr ""
+msgstr "Ιππικό =10% Υγεία."
 
 #: simulation/data/technologies/cavalry_movement_speed.jsondescription
 msgid "Train your horses to move faster."
@@ -260,7 +260,7 @@ msgstr "Εκπαιδεύει τα άλογα σας να κινηθούν ταχ
 
 #: simulation/data/technologies/cavalry_movement_speed.jsongenericName
 msgid "Horse Racing"
-msgstr ""
+msgstr "Αγώνας Αλόγων"
 
 #: simulation/data/technologies/cavalry_movement_speed.jsontooltip
 msgid "Cavalry +10% walk speed."
@@ -305,7 +305,7 @@ msgstr ""
 
 #: simulation/data/technologies/civbonuses/gaul_cavalry.jsontooltip
 msgid "Cavalry +10% melee attack damage."
-msgstr ""
+msgstr "Ιππικό +10% ζημία αγχέμαχης επίθεσης."
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsondescription
 msgid "The Greeks used stone construction from early Mycenaean times."
@@ -317,7 +317,7 @@ msgstr "Ελληνική Αρχιτεκτονική"
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
 msgid "Structures +10% health and +10% capture points."
-msgstr ""
+msgstr "Κατασκευές +10% υγεία και 10% πόντοι κατάληψης."
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsondescription
 msgid ""
@@ -325,7 +325,7 @@ msgid ""
 " continued for millennia. It was also the source of elephants for the "
 "eastern Mediterranean. Indian kings were able to field large numbers of war "
 "elephants."
-msgstr ""
+msgstr "Η Ινδία είναι η γη των ελεφάντων. Οι Ελέφαντες πολέμου προήλθαν από την Ινδία και συνέχισαν για χιλιετία. Ήταν επίσης και η πηγή των ελεφάντων για την Ανατολική Μεσόγειο. Οι Ινδοί βασιλιάδες ήταν ικανοί να συγκεντρώσουν μεγάλο αριθμό από  ελέφαντες πολέμου."
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsongenericName
 msgid "Elephant Tradition"
@@ -333,7 +333,7 @@ msgstr "Παράδοση Ελεφάντων"
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsontooltip
 msgid "Elephants −30% training time."
-msgstr ""
+msgstr "Ελέφαντες -30% χρόνος εκπαίδευσης."
 
 #: simulation/data/technologies/civbonuses/maur_population.jsondescription
 msgid ""
@@ -356,7 +356,7 @@ msgstr "Μεγάλος Αυτοκράτορας"
 #: simulation/data/technologies/civbonuses/maur_population.jsontooltip
 #: simulation/data/technologies/civbonuses/pers_population.jsontooltip
 msgid "+10% maximum population limit."
-msgstr ""
+msgstr "+10% στο μέγιστο όριο πληθυσμού."
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsondescription
 msgid ""
@@ -396,7 +396,7 @@ msgstr ""
 
 #: simulation/data/technologies/civbonuses/ptol_structures.jsongenericName
 msgid "Sun-dried Mud Bricks"
-msgstr ""
+msgstr "Ηλιοκαμένα λασπότουβλα."
 
 #: simulation/data/technologies/civbonuses/ptol_structures.jsontooltip
 msgid "Houses and Economic Structures −40% wood cost and health."
@@ -570,7 +570,7 @@ msgstr "Αυξάνει τους ρυθμούς συλλογής για δέντ�
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsongenericName
 msgid "Iron Axe Heads"
-msgstr ""
+msgstr "Σιδερένιες Κεφαλές Τσεκουριών"
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsontooltip
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsontooltip
@@ -580,11 +580,11 @@ msgstr "Εργάτες: +20% στο ρυθμό συγκομιδής ξύλου."
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsongenericName
 msgid "Sharp Axe Heads"
-msgstr ""
+msgstr "Κοφτερές Κεφαλές Τσεκουριών"
 
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsongenericName
 msgid "Stronger Axe"
-msgstr ""
+msgstr "Δυνατότερα Τσεκούρια"
 
 #: simulation/data/technologies/gather_mining_serfs.jsondescription
 msgid ""
@@ -723,7 +723,7 @@ msgstr "Ακτίνα θεραπείας 2"
 
 #: simulation/data/technologies/heal_range_2.jsonspecificName.athen
 msgid "Akadēmeia"
-msgstr ""
+msgstr "Ακαδημία"
 
 #: simulation/data/technologies/heal_rate.jsondescription
 #: simulation/data/technologies/heal_rate_2.jsondescription
@@ -827,7 +827,7 @@ msgstr "Επιστρατευμένο Πεζικό "
 
 #: simulation/data/technologies/infantry_cost_time.jsontooltip
 msgid "Infantry −10% training time."
-msgstr ""
+msgstr "Πεζικό -10% χρόνος εκπαίδευσης."
 
 #: simulation/data/technologies/iphicratean_reforms.jsondescription
 msgid ""
@@ -978,7 +978,7 @@ msgstr ""
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.sele
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.spart
 msgid "Kōmopolis"
-msgstr ""
+msgstr "Κωμόπολη"
 
 #: simulation/data/technologies/phase_town_athen.jsontooltip
 msgid ""
@@ -1282,7 +1282,7 @@ msgstr ""
 
 #: simulation/data/technologies/soldier_resistance_pierce_01.jsongenericName
 msgid "Wooden Shield"
-msgstr ""
+msgstr "Ξύλινη Ασπίδα"
 
 #: simulation/data/technologies/soldier_resistance_pierce_01.jsontooltip
 #: simulation/data/technologies/soldier_resistance_pierce_02.jsontooltip
@@ -1317,7 +1317,7 @@ msgstr ""
 
 #: simulation/data/technologies/stable_batch_training.jsontooltip
 msgid "Stables −10% batch training time."
-msgstr ""
+msgstr "Στάβλοι -10% χρόνος εκπαίδευσης παρτίδας."
 
 #: simulation/data/technologies/tower_crenellations.jsondescription
 msgid ""
@@ -1429,7 +1429,7 @@ msgstr ""
 
 #: simulation/data/technologies/trader_health.jsongenericName
 msgid "Trade Caravan"
-msgstr ""
+msgstr "Εμπορικό Καραβάνι"
 
 #: simulation/data/technologies/trader_health.jsontooltip
 msgid "Land Traders +50% health."
@@ -1453,7 +1453,7 @@ msgid ""
 "attack strength, +20% loot, and −30% gather speed; Healers +5 healing "
 "strength and +3 healing range; Melee units +1 resistance and +20% attack "
 "damage; Ranged units −20% spread."
-msgstr ""
+msgstr "Προχωρημένες και Επίλεκτες μονάδες +20% χρόνος εκπαίδευσης, +25% υγεία, +0.7 δύναμη  επιθετικής κατάληψης ,+20% λεία, και -30% ταχύτητα συλλογής; Θεραπευτές +5% δύναμη θεραπείας και +3% εύρος θεραπείας; Αγχέμαχες μονάδες +1% αντίσταση και +20% ζημιά επίθεσης; Μονάδες εύρους -20% εξάπλωση."
 
 #: simulation/data/technologies/unit_elephant_african.jsontooltip
 msgid ""
@@ -1492,7 +1492,7 @@ msgstr "Φρουροί (Πρωταθλητές) είναι επαγγελματ�
 
 #: simulation/data/technologies/unlock_champion_cavalry.jsongenericName
 msgid "Unlock Champion Cavalry"
-msgstr ""
+msgstr "Ξεκλειδώστε Πρωταθλητή Ιππικού"
 
 #: simulation/data/technologies/unlock_champion_cavalry.jsontooltip
 msgid "Unlock Champion Cavalry at the Stable."
@@ -1508,7 +1508,7 @@ msgstr ""
 
 #: simulation/data/technologies/unlock_champion_infantry.jsongenericName
 msgid "Unlock Champion Infantry"
-msgstr ""
+msgstr "Ξεκλειδώστε Πρωταθλητή Πεζικού"
 
 #: simulation/data/technologies/unlock_champion_infantry.jsonspecificName.mace
 #: simulation/data/technologies/unlock_champion_infantry.jsonspecificName.ptol
@@ -1560,7 +1560,7 @@ msgstr "Διασπορά"
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsonrequirementsTooltip
 msgid "Requires three Traders"
-msgstr ""
+msgstr "Απαιτεί τρεις Εμπόρους"
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsontooltip
 msgid "Allows using allied dropsites."
@@ -1624,7 +1624,7 @@ msgstr "Ένδοξη Επέκταση"
 #: simulation/data/technologies/wonder_population_cap.jsonspecificName.sele
 #: simulation/data/technologies/wonder_population_cap.jsonspecificName.spart
 msgid "Peristasis"
-msgstr ""
+msgstr "Περίστασις (αρχιτεκτονική)"
 
 #: simulation/data/technologies/wonder_population_cap.jsontooltip
 msgid ""

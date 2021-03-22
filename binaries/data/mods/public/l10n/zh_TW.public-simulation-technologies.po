@@ -10,7 +10,7 @@
 # JerryShen <jerry82422@gmail.com>, 2018
 # Mysterelee <8161525@qq.com>, 2014
 # Shoichi Chou <shoichi.chou@gmail.com>, 2018,2021
-# StarAtt <tea55688@gmail.com>, 2019
+# StarAtt <tea55688@gmail.com>, 2019,2021
 # You-Ruei Tzeng <e222et@gmail.com>, 2014
 # Yuan <daan0014119@gmail.com>, 2020-2021
 # 又齊 劉 <bill19981002@gmail.com>, 2018
@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-02-19 19:00+0000\n"
-"Last-Translator: Shoichi Chou <shoichi.chou@gmail.com>\n"
+"PO-Revision-Date: 2021-03-20 15:44+0000\n"
+"Last-Translator: StarAtt <tea55688@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -171,11 +171,11 @@ msgstr "建築 +25% 生命值和佔領值，但另外 +20% 建造時間。"
 msgid ""
 "The will to fight is crucial to victory. Inspire your troops with higher "
 "pay."
-msgstr ""
+msgstr "鬥志對勝利至關重要。更高的薪資鼓舞了你的部隊。"
 
 #: simulation/data/technologies/attack_soldiers_will.jsongenericName
 msgid "Will to Fight"
-msgstr ""
+msgstr "鬥志"
 
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.athen
 #: simulation/data/technologies/attack_soldiers_will.jsonspecificName.mace
@@ -394,11 +394,11 @@ msgstr "曬乾的泥磚是炎熱乾燥地區的常見建築材料，尤其是在
 
 #: simulation/data/technologies/civbonuses/ptol_structures.jsongenericName
 msgid "Sun-dried Mud Bricks"
-msgstr ""
+msgstr "泥磚"
 
 #: simulation/data/technologies/civbonuses/ptol_structures.jsontooltip
 msgid "Houses and Economic Structures −40% wood cost and health."
-msgstr ""
+msgstr "房舍和經濟建築 -40% 木材成本和生命值。"
 
 #: simulation/data/technologies/colonization.jsondescription
 msgid ""
@@ -412,7 +412,7 @@ msgstr "殖民"
 
 #: simulation/data/technologies/colonization.jsontooltip
 msgid "Civic Structures −25% build time."
-msgstr ""
+msgstr "市鎮建築 -25% 建造時間。"
 
 #: simulation/data/technologies/equine_transports.jsondescription
 msgid ""
@@ -670,7 +670,7 @@ msgstr "畜生型奴隸"
 
 #: simulation/data/technologies/gather_mining_slaves.jsonspecificName.rome
 msgid "Servi"
-msgstr ""
+msgstr "Servi"
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsondescription
 msgid ""
@@ -874,7 +874,7 @@ msgstr "Nisioi"
 
 #: simulation/data/technologies/nisean_horses.jsontooltip
 msgid "Champion Cavalry Spearmen +20% health, but +10% training time."
-msgstr ""
+msgstr "鬥士矛騎兵 +20% 生命值，但 +10% 訓練時間。"
 
 #: simulation/data/technologies/pair_unlock_champions_sele.jsongenericName
 msgid "Traditional Army vs Reform Army"
@@ -931,7 +931,7 @@ msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +50% territory influence radius. Structures +9 capture points "
 "regeneration rate per garrisoned unit. Workers +10% metal gather rate."
-msgstr ""
+msgstr "發展到城市階段，解鎖更多單位、建築和科技。城鎮中心 +50% 領土影響半徑。每個駐紮單位使建築 +9 佔領點數恢復速率。工人 +10% 金屬採集速率。"
 
 #: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
@@ -944,7 +944,7 @@ msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +50% territory influence radius. Structures +9 capture points "
 "regeneration rate per garrisoned unit."
-msgstr ""
+msgstr "發展到城市階段，解鎖更多單位、建築和科技。城鎮中心 +50% 領土影響半徑。每個駐紮單位使建築 +9 佔領點數恢復速率。"
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -968,7 +968,7 @@ msgstr "從小村莊進展為繁華的城鎮，準備好快速擴張。這就是
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
 msgid "Requires five Village Structures."
-msgstr ""
+msgstr "需要五個村莊建築。"
 
 #: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
@@ -983,7 +983,7 @@ msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
 "Centers +30% territory influence radius. Structures +7 capture points "
 "regeneration rate per garrisoned unit. Workers +10% metal gather rate."
-msgstr ""
+msgstr "發展到鄉鎮階段，解鎖更多單位、建築和科技。城鎮中心 +30% 領土影響半徑。每個駐紮單位使建築 +7 佔領點數恢復速率。工人 +10% 金屬採集速率。"
 
 #: simulation/data/technologies/phase_town_generic.jsondescription
 msgid ""
@@ -995,7 +995,7 @@ msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
 "Centers +30% territory influence radius. Structures +7 capture points "
 "regeneration rate per garrisoned unit."
-msgstr ""
+msgstr "發展到鄉鎮階段，解鎖更多單位、建築和科技。城鎮中心 +30% 領土影響半徑。每個駐紮單位使建築 +7 佔領點數恢復速率。"
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"

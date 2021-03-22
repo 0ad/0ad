@@ -31,9 +31,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-03-12 08:08+0000\n"
-"PO-Revision-Date: 2021-03-17 19:33+0000\n"
-"Last-Translator: Angelica Buonaurio <angydna2@yahoo.it>\n"
+"POT-Creation-Date: 2021-03-19 08:08+0000\n"
+"PO-Revision-Date: 2021-03-19 10:30+0000\n"
+"Last-Translator: Fred Fred <fefferico@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -208,17 +208,17 @@ msgid "Canyon"
 msgstr "Canyon"
 
 #: maps/random/continent.jsonsettings.Description
-#: maps/random/unknown.jsonsettings.Landscapes.land[0].Description
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[0].Description
 msgid "All players starts on a continent surrounded by water."
 msgstr "Tutti i giocatori iniziano su un continente circondato dall'acqua."
 
 #: maps/random/continent.jsonsettings.Name
-#: maps/random/unknown.jsonsettings.Landscapes.land[0].Name
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[0].Name
 msgid "Continent"
 msgstr "Continente"
 
 #: maps/random/corinthian_isthmus.jsonsettings.Description
-#: maps/random/unknown.jsonsettings.Landscapes.land[1].Description
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[1].Description
 #: maps/skirmishes/corinthian_isthmus_2p.xml:Description:38
 #: maps/skirmishes/corinthian_isthmus_4p.xml:Description:39
 msgid ""
@@ -598,12 +598,12 @@ msgid "Lower Nubia"
 msgstr "Wawat – Namibia Inferiore"
 
 #: maps/random/mainland.jsonsettings.Description
-#: maps/random/unknown.jsonsettings.Landscapes.land[8].Description
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[8].Description
 msgid "A typical map without any water."
 msgstr "Una mappa senza acqua."
 
 #: maps/random/mainland.jsonsettings.Name
-#: maps/random/unknown.jsonsettings.Landscapes.land[8].Name
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[8].Name
 msgid "Mainland"
 msgstr "Terraferma"
 
@@ -1144,87 +1144,103 @@ msgstr "Il Nilo"
 msgid "The unknown."
 msgstr "L'ignoto."
 
-#: maps/random/unknown.jsonsettings.Landscapes.land[1].Name
+#: maps/random/unknown.jsonsettings.Landscapes[0].Description
+msgid "Choose a random land landscape"
+msgstr ""
+
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[1].Name
 msgid "Isthmus"
 msgstr "Istmo"
 
-#: maps/random/unknown.jsonsettings.Landscapes.land[2].Description
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[2].Description
 msgid "A small central river."
 msgstr "Un piccolo fiume centrale"
 
-#: maps/random/unknown.jsonsettings.Landscapes.land[2].Name
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[2].Name
 msgid "Central River"
 msgstr "Fiume centrale"
 
-#: maps/random/unknown.jsonsettings.Landscapes.land[3].Description
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[3].Description
 msgid ""
 "Players are aligned on a strip of land with seas bordering on one or both "
 "sides that may hold islands."
 msgstr "I giocatori sono allineati su una striscia di terra costeggiata su uno o entrambi i lati dal mare, in cui potrebbero trovarsi delle isole."
 
-#: maps/random/unknown.jsonsettings.Landscapes.land[3].Name
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[3].Name
 msgid "Edge Seas"
 msgstr "Mari di confine"
 
-#: maps/random/unknown.jsonsettings.Landscapes.land[4].Description
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[4].Description
 msgid "Land shaped like a concrescent moon around a central lake."
 msgstr "Territorio a forma di mezzaluna intorno ad un lago centrale"
 
-#: maps/random/unknown.jsonsettings.Landscapes.land[4].Name
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[4].Name
 msgid "Gulf"
 msgstr "Golfo"
 
-#: maps/random/unknown.jsonsettings.Landscapes.land[5].Description
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[5].Description
 msgid "Mainland style with some small random lakes."
 msgstr "Modalità terraferma con piccoli laghetti sparsi."
 
-#: maps/random/unknown.jsonsettings.Landscapes.land[5].Name
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[5].Name
 msgid "Lakes"
 msgstr "Laghi"
 
-#: maps/random/unknown.jsonsettings.Landscapes.land[6].Description
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[6].Description
 msgid ""
 "A large hill encompasses the map and leaves players only a small passage to "
 "the two neighboring players."
 msgstr "Una grande collina ricopre la mappa, lasciando ai giocatori solo un piccolo passaggio verso i territori dei giocatori vicini."
 
-#: maps/random/unknown.jsonsettings.Landscapes.land[6].Name
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[6].Name
 msgid "Passes"
 msgstr "Passi"
 
-#: maps/random/unknown.jsonsettings.Landscapes.land[7].Description
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[7].Description
 msgid ""
 "The land is enclosed by a hill that leaves a small area per player connected"
 " to the large central place."
 msgstr "Il terreno è racchiuso da una collina che lascia una piccola area per giocatore collegata al grande luogo centrale."
 
-#: maps/random/unknown.jsonsettings.Landscapes.land[7].Name
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[7].Name
 msgid "Lowlands"
 msgstr "Bassifondi"
 
-#: maps/random/unknown.jsonsettings.Landscapes.naval[0].Description
+#: maps/random/unknown.jsonsettings.Landscapes[0].Name
+msgid "Random Land"
+msgstr "Mappa Casuale"
+
+#: maps/random/unknown.jsonsettings.Landscapes[1].Description
+msgid "Choose a random naval landscape"
+msgstr ""
+
+#: maps/random/unknown.jsonsettings.Landscapes[1].Items[0].Description
 msgid "A huge sea is dividing the map into two halves."
 msgstr "Un enorme mare divide la mappa in due metà."
 
-#: maps/random/unknown.jsonsettings.Landscapes.naval[0].Name
+#: maps/random/unknown.jsonsettings.Landscapes[1].Items[0].Name
 msgid "Naval: Central Sea"
 msgstr "Navale: mare centrale"
 
-#: maps/random/unknown.jsonsettings.Landscapes.naval[1].Description
+#: maps/random/unknown.jsonsettings.Landscapes[1].Items[1].Description
 msgid "Players are scattered across island chains and disconnected islands."
 msgstr "I giocatori sono sparsi su una catena di isole e isole sparse"
 
-#: maps/random/unknown.jsonsettings.Landscapes.naval[1].Name
+#: maps/random/unknown.jsonsettings.Landscapes[1].Items[1].Name
 msgid "Naval: Archipelago"
 msgstr "Navale: Arcipelago"
 
-#: maps/random/unknown.jsonsettings.Landscapes.naval[2].Description
+#: maps/random/unknown.jsonsettings.Landscapes[1].Items[2].Description
 msgid "A central lake with rivers possibly separating neighboring players."
 msgstr "Un lago centrale con fiumi che possono separare i giocatori vicini"
 
-#: maps/random/unknown.jsonsettings.Landscapes.naval[2].Name
+#: maps/random/unknown.jsonsettings.Landscapes[1].Items[2].Name
 msgid "Naval: Lake and rivers"
 msgstr "Navale: Lago e fiumi"
+
+#: maps/random/unknown.jsonsettings.Landscapes[1].Name
+msgid "Random Naval"
+msgstr "Mappa navale casuale"
 
 #: maps/random/unknown.jsonsettings.Name
 msgid "Unknown"

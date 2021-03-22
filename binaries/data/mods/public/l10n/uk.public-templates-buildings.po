@@ -25,9 +25,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-25 08:08+0000\n"
-"PO-Revision-Date: 2021-02-11 20:54+0000\n"
-"Last-Translator: Микола Франчук <thekolian1996@gmail.com>\n"
+"POT-Creation-Date: 2021-03-19 08:08+0000\n"
+"PO-Revision-Date: 2021-03-19 10:28+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -823,7 +823,7 @@ msgstr "Тесемет аа"
 msgid "Mryt"
 msgstr "Меріт"
 
-#: simulation/templates/structures/kush/elephant_stables.xml:5
+#: simulation/templates/structures/kush/elephant_stable.xml:5
 msgid "Ỉḥ Abu"
 msgstr "Іх Абу"
 
@@ -926,8 +926,8 @@ msgid "Pr-ʿImn"
 msgstr "Пер-Іамен"
 
 #: simulation/templates/structures/kush/temple_amun.xml:29
-msgid "Train Healers and Amun Champions and research healing technologies."
-msgstr "Тренуйте \"Цілитель\" та \"Чемпіон Амон\" та проводіть дослідження технології цілителів"
+msgid "Train Amun Champions and Elite Healers. Research healing technologies."
+msgstr ""
 
 #: simulation/templates/structures/kush/temple_amun.xml:31
 msgid "TempleOfAmun"
@@ -983,7 +983,7 @@ msgstr "Ударка"
 msgid "Naukasthanaka"
 msgstr "Наукастханака"
 
-#: simulation/templates/structures/maur/elephant_stables.xml:5
+#: simulation/templates/structures/maur/elephant_stable.xml:5
 msgid "Vāraṇaśālā"
 msgstr "Варанашала"
 
@@ -1268,8 +1268,8 @@ msgstr "Склад"
 msgid "Hanging Gardens of Babylon"
 msgstr "Висячі сади Семіраміди"
 
-#: simulation/templates/structures/ptol/elephant_stables.xml:5
-#: simulation/templates/structures/sele/elephant_stables.xml:5
+#: simulation/templates/structures/ptol/elephant_stable.xml:5
+#: simulation/templates/structures/sele/elephant_stable.xml:5
 msgid "Stathmos tōn Elepantōn"
 msgstr "Статмос тон елепантон"
 
@@ -1327,22 +1327,22 @@ msgstr "Аркус тріумфаліс"
 msgid "TriumphalArch"
 msgstr "Тріумфальна арка"
 
-#: simulation/templates/structures/rome/army_camp.xml:73
+#: simulation/templates/structures/rome/army_camp.xml:71
 msgid "Army Camp"
 msgstr "Армійський табір"
 
-#: simulation/templates/structures/rome/army_camp.xml:74
+#: simulation/templates/structures/rome/army_camp.xml:72
 msgid "Castra"
 msgstr "Кастра"
 
-#: simulation/templates/structures/rome/army_camp.xml:75
+#: simulation/templates/structures/rome/army_camp.xml:73
 msgid ""
-"Build in neutral or enemy territory. Train Melee Infantry. Garrison Soldiers"
-" for additional arrows."
+"Build in neutral or enemy territory. Train Advanced Melee Infantry. Garrison"
+" Soldiers for additional arrows."
 msgstr ""
 
-#: simulation/templates/structures/rome/army_camp.xml:40
-#: simulation/templates/structures/rome/army_camp.xml:77
+#: simulation/templates/structures/rome/army_camp.xml:38
+#: simulation/templates/structures/rome/army_camp.xml:75
 msgid "ArmyCamp"
 msgstr "Армійський табір"
 
@@ -1605,26 +1605,26 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Bow"
 msgstr "Лук"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:79
+#: simulation/templates/template_structure_civic_civil_centre.xml:77
 msgid "Civic Center"
 msgstr "Громадський центр"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:81
+#: simulation/templates/template_structure_civic_civil_centre.xml:79
 msgid ""
 "Build in own or neutral territory. Acquire large tracts of territory. "
 "Territory root. Train Citizens and research technologies. Garrison Soldiers "
 "for additional arrows."
 msgstr "Можна побудувати на власній або нейтральній території. Контролює велику ділянки території. Головна територія. Навчає громадян та досліджує технології. Солдати гарнізону на додаткових напрямках."
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:46
-#: simulation/templates/template_structure_civic_civil_centre.xml:83
+#: simulation/templates/template_structure_civic_civil_centre.xml:44
+#: simulation/templates/template_structure_civic_civil_centre.xml:81
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:10
 msgid "CivilCentre"
 msgstr "Громадський центр"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:83
+#: simulation/templates/template_structure_civic_civil_centre.xml:81
 #: simulation/templates/template_structure_defensive.xml:5
-#: simulation/templates/template_structure_military_fortress.xml:73
+#: simulation/templates/template_structure_military_fortress.xml:71
 msgid "Defensive"
 msgstr "Захисна"
 
@@ -1666,7 +1666,7 @@ msgstr "Стоа"
 #: simulation/templates/structures/cart/apartment.xml:26
 #: simulation/templates/structures/gaul/tavern.xml:22
 #: simulation/templates/structures/kush/pyramid_small.xml:29
-#: simulation/templates/structures/maur/elephant_stables.xml:8
+#: simulation/templates/structures/maur/elephant_stable.xml:8
 #: simulation/templates/template_structure_civic_stoa.xml:30
 #: simulation/templates/template_structure_civic_temple.xml:32
 #: simulation/templates/template_structure_defensive_tower_stone.xml:32
@@ -1714,9 +1714,9 @@ msgstr "Частокіл"
 msgid "Wall off an area. Build in own or neutral territory."
 msgstr "Відгородження області стіною. Споруджуйте на власній чи нейтральній території."
 
-#: simulation/templates/template_structure_defensive_tower.xml:39
-#: simulation/templates/template_structure_defensive_tower.xml:55
-#: simulation/templates/template_structure_defensive_tower.xml:56
+#: simulation/templates/template_structure_defensive_tower.xml:34
+#: simulation/templates/template_structure_defensive_tower.xml:50
+#: simulation/templates/template_structure_defensive_tower.xml:51
 msgid "Tower"
 msgstr "Вежа"
 
@@ -1736,13 +1736,13 @@ msgstr "Артилерійська вежа"
 #: simulation/templates/structures/gaul/assembly.xml:34
 #: simulation/templates/structures/kush/pyramid_large.xml:29
 #: simulation/templates/structures/kush/temple_amun.xml:31
-#: simulation/templates/structures/rome/army_camp.xml:77
+#: simulation/templates/structures/rome/army_camp.xml:75
 #: simulation/templates/structures/rome/temple_mars.xml:14
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:51
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:49
 #: simulation/templates/template_structure_military_arsenal.xml:28
-#: simulation/templates/template_structure_military_elephant_stables.xml:26
-#: simulation/templates/template_structure_military_fortress.xml:73
+#: simulation/templates/template_structure_military_elephant_stable.xml:26
+#: simulation/templates/template_structure_military_fortress.xml:71
 #: simulation/templates/template_structure_special.xml:20
 #: simulation/templates/template_structure_wonder.xml:42
 msgid "City"
@@ -1812,11 +1812,11 @@ msgstr "Дати змогу підрозділам проходити крізь
 msgid "Can be converted into a Gate."
 msgstr "Може бути перетворено на браму."
 
-#: simulation/templates/template_structure_defensive_wall_tower.xml:51
+#: simulation/templates/template_structure_defensive_wall_tower.xml:49
 msgid "Wall Turret"
 msgstr "Настінна башта"
 
-#: simulation/templates/template_structure_defensive_wall_tower.xml:53
+#: simulation/templates/template_structure_defensive_wall_tower.xml:51
 msgid "Garrison Infantry for additional arrows."
 msgstr "Розмістити піхоту у гарнізоні для додаткових стріл."
 
@@ -1909,15 +1909,15 @@ msgstr "Побудуйте на береговій лінії на власні�
 msgid "Naval"
 msgstr "Морські"
 
-#: simulation/templates/template_structure_military_elephant_stables.xml:23
+#: simulation/templates/template_structure_military_elephant_stable.xml:23
 msgid "Elephant Stable"
 msgstr "Стайня слонів"
 
-#: simulation/templates/template_structure_military_elephant_stables.xml:25
+#: simulation/templates/template_structure_military_elephant_stable.xml:25
 msgid "Train Elephants and research Elephant technologies."
 msgstr "Тренувати слонів та досліджувати слонові технології."
 
-#: simulation/templates/template_structure_military_elephant_stables.xml:26
+#: simulation/templates/template_structure_military_elephant_stable.xml:26
 msgid "ElephantStable"
 msgstr "Стайня слонів"
 
@@ -1936,13 +1936,13 @@ msgstr "Кузня"
 msgid "Research attack damage and damage resistance technologies."
 msgstr ""
 
-#: simulation/templates/template_structure_military_fortress.xml:39
-#: simulation/templates/template_structure_military_fortress.xml:69
-#: simulation/templates/template_structure_military_fortress.xml:73
+#: simulation/templates/template_structure_military_fortress.xml:37
+#: simulation/templates/template_structure_military_fortress.xml:67
+#: simulation/templates/template_structure_military_fortress.xml:71
 msgid "Fortress"
 msgstr "Фортеця"
 
-#: simulation/templates/template_structure_military_fortress.xml:71
+#: simulation/templates/template_structure_military_fortress.xml:69
 msgid "Territory root. Garrison Soldiers for additional arrows."
 msgstr "Корінне володіння. Розміщуйте воїнів всередині для підсилення оборонної стрільби."
 

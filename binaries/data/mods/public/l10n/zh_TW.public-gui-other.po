@@ -22,9 +22,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-03-08 08:15+0000\n"
-"PO-Revision-Date: 2021-03-08 11:28+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-03-19 08:08+0000\n"
+"PO-Revision-Date: 2021-03-20 13:37+0000\n"
+"Last-Translator: StarAtt <tea55688@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -38,7 +38,7 @@ msgstr ""
 msgid "FPS: %(fps)4s"
 msgstr "FPS：%(fps)4s"
 
-#: gui/common/campaigns/CampaignRun.js:95
+#: gui/common/campaigns/CampaignRun.js:116
 #, javascript-format
 msgid "%(userDesc)s - %(templateName)s"
 msgstr ""
@@ -179,214 +179,214 @@ msgid "Observer"
 msgid_plural "Observers"
 msgstr[0] "觀察者"
 
-#: gui/common/gamedescription.js:188
+#: gui/common/gamedescription.js:191
 msgctxt "victory condition"
 msgid "Endless Game"
 msgstr "無盡的遊戲"
 
-#: gui/common/gamedescription.js:189
+#: gui/common/gamedescription.js:192
 msgid "No winner will be determined, even if everyone is defeated."
 msgstr "即便每個人都被打敗，將不判定誰獲勝。"
 
-#: gui/common/gamedescription.js:202
+#: gui/common/gamedescription.js:205
 #, javascript-format
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
 msgid_plural "Wonder (%(min)s minutes)"
 msgstr[0] "奇觀（%(min)s 分鐘）"
 
-#: gui/common/gamedescription.js:216
+#: gui/common/gamedescription.js:219
 #, javascript-format
 msgctxt "victory condition"
 msgid "Capture the Relic (%(min)s minute)"
 msgid_plural "Capture the Relic (%(min)s minutes)"
 msgstr[0] "取得遺蹟（%(min)s 分鐘）"
 
-#: gui/common/gamedescription.js:232
+#: gui/common/gamedescription.js:235
 msgid "Relic Count"
 msgstr "遺蹟數"
 
-#: gui/common/gamedescription.js:239
+#: gui/common/gamedescription.js:242
 msgid "Hero Garrison"
 msgstr "英雄駐守"
 
-#: gui/common/gamedescription.js:240
+#: gui/common/gamedescription.js:243
 msgid "Heroes can be garrisoned."
 msgstr "英雄可以駐守。"
 
-#: gui/common/gamedescription.js:244
+#: gui/common/gamedescription.js:247
 msgid "Exposed Heroes"
 msgstr "易受攻擊的英雄"
 
-#: gui/common/gamedescription.js:245
+#: gui/common/gamedescription.js:248
 msgid "Heroes cannot be garrisoned and they are vulnerable to raids."
 msgstr "英雄沒有駐守的話，就容易被襲擊。 "
 
-#: gui/common/gamedescription.js:252
+#: gui/common/gamedescription.js:255
 msgid "Rated game"
 msgstr "排名的遊戲"
 
-#: gui/common/gamedescription.js:253
+#: gui/common/gamedescription.js:256
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
 msgstr "當這場比賽的贏家確定後，大廳的分數將會進行調整。"
 
-#: gui/common/gamedescription.js:258
+#: gui/common/gamedescription.js:261
 msgid "Locked Teams"
 msgstr "鎖定隊伍"
 
-#: gui/common/gamedescription.js:259
+#: gui/common/gamedescription.js:262
 msgid "Players can't change the initial teams."
 msgstr "玩家無法變更初始隊伍。"
 
-#: gui/common/gamedescription.js:263
+#: gui/common/gamedescription.js:266
 msgid "Diplomacy"
 msgstr "外交"
 
-#: gui/common/gamedescription.js:264
+#: gui/common/gamedescription.js:267
 msgid "Players can make alliances and declare war on allies."
 msgstr "玩家可以結盟，也可以向同盟國宣戰。"
 
-#: gui/common/gamedescription.js:269
+#: gui/common/gamedescription.js:272
 msgid "Last Man Standing"
 msgstr "最後生還者"
 
-#: gui/common/gamedescription.js:270
+#: gui/common/gamedescription.js:273
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
 msgstr "只有一個玩家能在這場遊戲中獲勝；若剩下的玩家都是盟友，遊戲仍要繼續，直到只剩下一個玩家為止。"
 
-#: gui/common/gamedescription.js:274
+#: gui/common/gamedescription.js:277
 msgid "Allied Victory"
 msgstr "聯盟勝利"
 
-#: gui/common/gamedescription.js:275
+#: gui/common/gamedescription.js:278
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
 msgstr "玩家獲勝時，其同盟國也會一同獲勝；如果存活的隊伍都屬於同一個聯盟，則全體獲勝。"
 
-#: gui/common/gamedescription.js:280
+#: gui/common/gamedescription.js:283
 msgid "Ceasefire"
 msgstr "停火"
 
-#: gui/common/gamedescription.js:283 gui/pregame/userreport/userreport.js:26
+#: gui/common/gamedescription.js:286 gui/pregame/userreport/userreport.js:26
 msgid "disabled"
 msgstr "已停用"
 
-#: gui/common/gamedescription.js:284
+#: gui/common/gamedescription.js:287
 msgid "For the first minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
 msgstr[0] "開始的 %(min)s 分鐘內，其他玩家將會保持中立。"
 
-#: gui/common/gamedescription.js:293
+#: gui/common/gamedescription.js:296
 msgctxt "Map Selection"
 msgid "Random Map"
 msgstr "隨機地圖"
 
-#: gui/common/gamedescription.js:294
+#: gui/common/gamedescription.js:297
 msgid "Randomly select a map from the list."
 msgstr "從清單裡隨機選地圖"
 
-#: gui/common/gamedescription.js:299
+#: gui/common/gamedescription.js:302
 msgid "Map Name"
 msgstr "地圖名稱"
 
-#: gui/common/gamedescription.js:305
+#: gui/common/gamedescription.js:308
 msgid "Map Description"
 msgstr "地圖描述"
 
-#: gui/common/gamedescription.js:311
+#: gui/common/gamedescription.js:314
 msgid "Map Type"
 msgstr "地圖類型"
 
-#: gui/common/gamedescription.js:320
+#: gui/common/gamedescription.js:323
 msgid "Map Size"
 msgstr "地圖大小"
 
-#: gui/common/gamedescription.js:329
+#: gui/common/gamedescription.js:332
 msgctxt "biome"
 msgid "Random Biome"
 msgstr "隨機的生物聚落"
 
-#: gui/common/gamedescription.js:330
+#: gui/common/gamedescription.js:333
 msgid "Randomly select a biome from the list."
 msgstr "從清單裡隨機選生物聚落"
 
-#: gui/common/gamedescription.js:345
+#: gui/common/gamedescription.js:348
 msgid "Nomad Mode"
 msgstr "遊牧模式"
 
-#: gui/common/gamedescription.js:345
+#: gui/common/gamedescription.js:348
 msgid "Civic Centers"
 msgstr "城鎮中心"
 
-#: gui/common/gamedescription.js:348
+#: gui/common/gamedescription.js:351
 msgid ""
 "Players start with only few units and have to find a suitable place to build"
 " their city."
 msgstr "玩家一開始只有少數的單位，必須尋找到適合的地方建立自己的城市。"
 
-#: gui/common/gamedescription.js:349
+#: gui/common/gamedescription.js:352
 msgid "Players start with a Civic Center."
 msgstr "玩家一開始有城鎮中心。"
 
-#: gui/common/gamedescription.js:354
+#: gui/common/gamedescription.js:357
 msgid "Starting Resources"
 msgstr "初始資源"
 
-#: gui/common/gamedescription.js:358
+#: gui/common/gamedescription.js:361
 msgctxt "starting resources"
 msgid "Per Player"
 msgstr "每位玩家"
 
-#: gui/common/gamedescription.js:359
+#: gui/common/gamedescription.js:362
 #, javascript-format
 msgid "%(startingResourcesTitle)s (%(amount)s)"
 msgstr "%(startingResourcesTitle)s (%(amount)s)"
 
-#: gui/common/gamedescription.js:370
+#: gui/common/gamedescription.js:373
 msgid "Population Limit"
 msgstr "人口限制"
 
-#: gui/common/gamedescription.js:374
+#: gui/common/gamedescription.js:377
 msgctxt "population limit"
 msgid "Per Player"
 msgstr "每位玩家"
 
-#: gui/common/gamedescription.js:382
+#: gui/common/gamedescription.js:385
 msgid "World Population Cap"
 msgstr "世界人口上限"
 
-#: gui/common/gamedescription.js:390
+#: gui/common/gamedescription.js:393
 msgid "Treasures"
 msgstr "寶藏"
 
-#: gui/common/gamedescription.js:392
+#: gui/common/gamedescription.js:395
 msgctxt "treasures"
 msgid "Disabled"
 msgstr "已停用"
 
-#: gui/common/gamedescription.js:393
+#: gui/common/gamedescription.js:396
 msgctxt "treasures"
 msgid "As defined by the map."
 msgstr "依照地圖定義。"
 
-#: gui/common/gamedescription.js:397
+#: gui/common/gamedescription.js:400
 msgid "Revealed Map"
 msgstr "全地圖視野"
 
-#: gui/common/gamedescription.js:402
+#: gui/common/gamedescription.js:405
 msgid "Explored Map"
 msgstr "已探索的地圖"
 
-#: gui/common/gamedescription.js:407
+#: gui/common/gamedescription.js:410
 msgid "Cheats"
 msgstr "作弊秘技"
 
-#: gui/common/gamedescription.js:411 gui/common/tooltips.js:144
+#: gui/common/gamedescription.js:414 gui/common/tooltips.js:144
 #: gui/common/tooltips.js:210 gui/common/tooltips.js:231
 #: gui/common/tooltips.js:250 gui/common/tooltips.js:313
 #: gui/common/tooltips.js:616 gui/common/tooltips.js:622
@@ -397,25 +397,25 @@ msgstr "作弊秘技"
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/common/gamedescription.js:414
+#: gui/common/gamedescription.js:417
 msgctxt "game setup option"
 msgid "enabled"
 msgstr "已啟用"
 
-#: gui/common/gamedescription.js:415
+#: gui/common/gamedescription.js:418
 msgctxt "game setup option"
 msgid "disabled"
 msgstr "已停用"
 
-#: gui/common/gamedescription.js:427
+#: gui/common/gamedescription.js:430
 msgid "Victorious"
 msgstr "勝利"
 
-#: gui/common/gamedescription.js:432
+#: gui/common/gamedescription.js:435
 msgid "Defeated"
 msgstr "被擊敗"
 
-#: gui/common/gamedescription.js:441
+#: gui/common/gamedescription.js:444
 #, javascript-format
 msgid "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
 msgstr "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
@@ -541,7 +541,7 @@ msgstr "使用者 (%(num)s)：%(users)s"
 #: gui/common/tooltips.js:497 gui/common/tooltips.js:502
 #: gui/common/tooltips.js:559 gui/common/tooltips.js:610
 #: gui/common/tooltips.js:978 gui/common/tooltips.js:1011
-#: gui/common/tooltips.js:1085 gui/loadgame/SavegameDetails.js:38
+#: gui/common/tooltips.js:1085 gui/loadgame/SavegameDetails.js:41
 #: gui/reference/common/tooltips.js:13 gui/replaymenu/replay_menu.js:282
 msgid ", "
 msgstr "，"
@@ -884,7 +884,7 @@ msgstr "友軍火力：%(enabled)s"
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
 #: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:300
 #: gui/options/options.js:353 gui/options/options.js:379
-#: gui/pregame/MainMenuItems.js:237 gui/pregame/MainMenuItems.js:261
+#: gui/pregame/MainMenuItems.js:251 gui/pregame/MainMenuItems.js:275
 #: gui/replaymenu/replay_actions.js:169
 msgid "Yes"
 msgstr "是"
@@ -893,7 +893,7 @@ msgstr "是"
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
 #: gui/loadgame/SavegameWriter.js:48 gui/options/options.js:300
 #: gui/options/options.js:353 gui/options/options.js:379
-#: gui/pregame/MainMenuItems.js:237 gui/pregame/MainMenuItems.js:261
+#: gui/pregame/MainMenuItems.js:251 gui/pregame/MainMenuItems.js:275
 #: gui/replaymenu/replay_actions.js:169
 msgid "No"
 msgstr "否"
@@ -986,7 +986,7 @@ msgstr ""
 
 #: gui/common/tooltips.js:569
 msgid "Garrison Size"
-msgstr ""
+msgstr "駐紮大小"
 
 #: gui/common/tooltips.js:572
 msgctxt "nested garrison"
@@ -1496,8 +1496,8 @@ msgid ""
 "WARNING: this cannot be reversed."
 msgstr ""
 
-#: gui/hotkeys/HotkeysPage.js:152 gui/pregame/MainMenuItems.js:236
-#: gui/pregame/MainMenuItems.js:260
+#: gui/hotkeys/HotkeysPage.js:152 gui/pregame/MainMenuItems.js:250
+#: gui/pregame/MainMenuItems.js:274
 msgid "Confirmation"
 msgstr "確認"
 
@@ -1600,7 +1600,7 @@ msgstr "儲存的遊戲將永遠刪除，您是否確定？"
 msgid "DELETE"
 msgstr "刪除"
 
-#: gui/loadgame/SavegameDetails.js:40
+#: gui/loadgame/SavegameDetails.js:43
 #, javascript-format
 msgid "Mods: %(mods)s"
 msgstr "模組：%(mods)s"
@@ -1651,7 +1651,7 @@ msgstr "警告"
 msgid "Save Game"
 msgstr "儲存遊戲"
 
-#: gui/loadgame/SavegamePage.js:34 gui/pregame/MainMenuItems.js:86
+#: gui/loadgame/SavegamePage.js:34 gui/pregame/MainMenuItems.js:94
 msgid "Load Game"
 msgstr "載入遊戲"
 
@@ -1744,60 +1744,60 @@ msgstr "所在區域："
 msgid "Advanced"
 msgstr "進階"
 
-#: gui/maps/MapCache.js:60
+#: gui/maps/MapCache.js:59
 msgctxt "map selection"
 msgid "Random"
 msgstr "隨機"
 
-#: gui/maps/MapCache.js:67
+#: gui/maps/MapCache.js:66
 msgid "A randomly selected map."
 msgstr "隨機選取地圖。"
 
-#: gui/maps/MapFilters.js:85
+#: gui/maps/MapFilters.js:88
 msgid "Default"
 msgstr "預設"
 
-#: gui/maps/MapFilters.js:86
+#: gui/maps/MapFilters.js:89
 msgid "All maps except naval and demo maps."
 msgstr "除了海洋與展示地圖外的所有地圖。"
 
-#: gui/maps/MapFilters.js:91
+#: gui/maps/MapFilters.js:94
 msgid "Naval Maps"
 msgstr "海洋地圖"
 
-#: gui/maps/MapFilters.js:92
+#: gui/maps/MapFilters.js:95
 msgid "Maps where ships are needed to reach the enemy."
 msgstr "需要船隻才能接觸到敵人的地圖。"
 
-#: gui/maps/MapFilters.js:97
+#: gui/maps/MapFilters.js:100
 msgid "Demo Maps"
 msgstr "展示地圖"
 
-#: gui/maps/MapFilters.js:98
+#: gui/maps/MapFilters.js:101
 msgid "These maps are not playable but for demonstration purposes only."
 msgstr "這些地圖僅供展示用途，無法遊玩。"
 
-#: gui/maps/MapFilters.js:103
+#: gui/maps/MapFilters.js:106
 msgid "New Maps"
 msgstr "新地圖"
 
-#: gui/maps/MapFilters.js:104
+#: gui/maps/MapFilters.js:107
 msgid "Maps that are brand new in this release of the game."
 msgstr "這版本的遊戲所新增的地圖。"
 
-#: gui/maps/MapFilters.js:109
+#: gui/maps/MapFilters.js:112
 msgid "Trigger Maps"
 msgstr "觸發器地圖"
 
-#: gui/maps/MapFilters.js:110
+#: gui/maps/MapFilters.js:113
 msgid "Maps that come with scripted events and potentially spawn enemy units."
 msgstr "帶有指令稿事件的地圖，可能自動產生敵方單位。"
 
-#: gui/maps/MapFilters.js:115
+#: gui/maps/MapFilters.js:118
 msgid "All Maps"
 msgstr "所有地圖"
 
-#: gui/maps/MapFilters.js:116
+#: gui/maps/MapFilters.js:119
 msgid "Every map of the chosen maptype."
 msgstr "選定地圖類型的每張地圖。"
 
@@ -2831,219 +2831,223 @@ msgstr "新手教程"
 msgid "Start the economic tutorial."
 msgstr "開始一個經濟的教學課程。"
 
-#: gui/pregame/MainMenuItems.js:25
+#: gui/pregame/MainMenuItems.js:27
 #: gui/reference/common/Buttons/StructreeButton.js:21
 #: gui/reference/structree/structree.xml:(caption):20
 msgid "Structure Tree"
 msgstr "科技樹"
 
-#: gui/pregame/MainMenuItems.js:26
+#: gui/pregame/MainMenuItems.js:28
 #, javascript-format
 msgid ""
 "%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
 msgstr "%(hotkey)s：觀看0 A.D的文明科技樹特色"
 
-#: gui/pregame/MainMenuItems.js:37
+#: gui/pregame/MainMenuItems.js:39
 #: gui/reference/civinfo/civinfo.xml:(caption):21
 #: gui/reference/common/Buttons/CivInfoButton.js:21
 msgid "Civilization Overview"
 msgstr "文明總覽"
 
-#: gui/pregame/MainMenuItems.js:38
+#: gui/pregame/MainMenuItems.js:40
 #, javascript-format
 msgid "%(hotkey)s: Learn about the civilizations featured in 0 A.D."
 msgstr "%(hotkey)s：學習在 0 A.D. 中文明的特色。"
 
-#: gui/pregame/MainMenuItems.js:49
+#: gui/pregame/MainMenuItems.js:51
 msgid "Catafalque Overview"
 msgstr ""
 
-#: gui/pregame/MainMenuItems.js:50
+#: gui/pregame/MainMenuItems.js:52
 msgid "Compare the bonuses of catafalques featured in 0 A.D."
 msgstr ""
 
-#: gui/pregame/MainMenuItems.js:56
+#: gui/pregame/MainMenuItems.js:58
 msgid "Map Overview"
 msgstr ""
 
-#: gui/pregame/MainMenuItems.js:57
+#: gui/pregame/MainMenuItems.js:59
 msgid "View the different maps featured in 0 A.D."
 msgstr ""
 
-#: gui/pregame/MainMenuItems.js:65 gui/pregame/MainMenuItems.js:93
+#: gui/pregame/MainMenuItems.js:67 gui/pregame/MainMenuItems.js:101
 msgid "Continue Campaign"
 msgstr ""
 
-#: gui/pregame/MainMenuItems.js:66 gui/pregame/MainMenuItems.js:94
-#: gui/pregame/MainMenuItems.js:104 gui/pregame/MainMenuItems.js:111
+#: gui/pregame/MainMenuItems.js:68 gui/pregame/MainMenuItems.js:102
+#: gui/pregame/MainMenuItems.js:118 gui/pregame/MainMenuItems.js:125
 msgid "Relive history through historical military campaigns."
 msgstr ""
 
-#: gui/pregame/MainMenuItems.js:75 gui/replaymenu/replay_filters.js:144
+#: gui/pregame/MainMenuItems.js:76 gui/pregame/MainMenuItems.js:110
+msgid "Error opening campaign run:"
+msgstr ""
+
+#: gui/pregame/MainMenuItems.js:83 gui/replaymenu/replay_filters.js:144
 msgid "Single-player"
 msgstr "單人遊戲"
 
-#: gui/pregame/MainMenuItems.js:76
+#: gui/pregame/MainMenuItems.js:84
 msgid "Start, load, or replay a single-player game."
 msgstr "啟動、載入或重播單人遊戲。"
 
-#: gui/pregame/MainMenuItems.js:79
+#: gui/pregame/MainMenuItems.js:87
 msgid "Matches"
 msgstr "對戰"
 
-#: gui/pregame/MainMenuItems.js:80
+#: gui/pregame/MainMenuItems.js:88
 msgid "Start a new single-player game."
 msgstr "開始一場新的單人遊戲。"
 
-#: gui/pregame/MainMenuItems.js:87
+#: gui/pregame/MainMenuItems.js:95
 msgid "Load a saved game."
 msgstr "載入保存的遊戲。"
 
-#: gui/pregame/MainMenuItems.js:103
+#: gui/pregame/MainMenuItems.js:117
 msgid "New Campaign"
 msgstr ""
 
-#: gui/pregame/MainMenuItems.js:110
+#: gui/pregame/MainMenuItems.js:124
 msgid "Load Campaign"
 msgstr ""
 
-#: gui/pregame/MainMenuItems.js:120 gui/pregame/MainMenuItems.js:170
+#: gui/pregame/MainMenuItems.js:134 gui/pregame/MainMenuItems.js:184
 msgid "Replays"
 msgstr "重播集"
 
-#: gui/pregame/MainMenuItems.js:121 gui/pregame/MainMenuItems.js:171
+#: gui/pregame/MainMenuItems.js:135 gui/pregame/MainMenuItems.js:185
 msgid "Playback previous games."
 msgstr "播放先前的遊戲。"
 
-#: gui/pregame/MainMenuItems.js:135 gui/replaymenu/replay_filters.js:144
+#: gui/pregame/MainMenuItems.js:149 gui/replaymenu/replay_filters.js:144
 msgid "Multiplayer"
 msgstr "多人遊戲"
 
-#: gui/pregame/MainMenuItems.js:136
+#: gui/pregame/MainMenuItems.js:150
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "與一個或多個人類玩家進行多人遊戲。"
 
 #. Translation: Join a game by specifying the host's IP address.
-#: gui/pregame/MainMenuItems.js:140
+#: gui/pregame/MainMenuItems.js:154
 msgid "Join Game"
 msgstr "加入遊戲"
 
-#: gui/pregame/MainMenuItems.js:141
+#: gui/pregame/MainMenuItems.js:155
 msgid "Joining an existing multiplayer game."
 msgstr "加入已存在的多人遊戲。"
 
-#: gui/pregame/MainMenuItems.js:149
+#: gui/pregame/MainMenuItems.js:163
 msgid "Host Game"
 msgstr "主持遊戲"
 
-#: gui/pregame/MainMenuItems.js:150
+#: gui/pregame/MainMenuItems.js:164
 msgid "Host a multiplayer game."
 msgstr "主持一場多人遊戲。"
 
-#: gui/pregame/MainMenuItems.js:158
+#: gui/pregame/MainMenuItems.js:172
 msgid "Game Lobby"
 msgstr "遊戲大廳"
 
-#: gui/pregame/MainMenuItems.js:160
+#: gui/pregame/MainMenuItems.js:174
 #, javascript-format
 msgid ""
 "%(hotkey)s: Launch the multiplayer lobby to join and host publicly visible "
 "games and chat with other players."
 msgstr "%(hotkey)s：啟動多人遊戲大廳來參加或主辦公開可見的遊戲，以及跟其他玩家聊天。"
 
-#: gui/pregame/MainMenuItems.js:161
+#: gui/pregame/MainMenuItems.js:175
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
 msgstr "啟動多人遊戲大廳。 \\[構建時被禁用]"
 
-#: gui/pregame/MainMenuItems.js:185
+#: gui/pregame/MainMenuItems.js:199
 msgid "Settings"
 msgstr "設定"
 
-#: gui/pregame/MainMenuItems.js:186
+#: gui/pregame/MainMenuItems.js:200
 msgid "Change game options."
 msgstr "變更遊戲選項。"
 
-#: gui/pregame/MainMenuItems.js:189
+#: gui/pregame/MainMenuItems.js:203
 msgid "Options"
 msgstr "選項"
 
-#: gui/pregame/MainMenuItems.js:190
+#: gui/pregame/MainMenuItems.js:204
 msgid "Adjust game settings."
 msgstr "調整遊戲設定。"
 
-#: gui/hotkeys/hotkeys.xml:(caption):14 gui/pregame/MainMenuItems.js:199
+#: gui/hotkeys/hotkeys.xml:(caption):14 gui/pregame/MainMenuItems.js:213
 msgid "Hotkeys"
 msgstr "快捷鍵"
 
-#: gui/pregame/MainMenuItems.js:200
+#: gui/pregame/MainMenuItems.js:214
 msgid "Adjust hotkeys."
 msgstr ""
 
-#: gui/locale/locale.xml:(caption):14 gui/pregame/MainMenuItems.js:206
+#: gui/locale/locale.xml:(caption):14 gui/pregame/MainMenuItems.js:220
 msgid "Language"
 msgstr "語言"
 
-#: gui/pregame/MainMenuItems.js:207
+#: gui/pregame/MainMenuItems.js:221
 msgid "Choose the language of the game."
 msgstr "選擇遊戲語言。"
 
-#: gui/pregame/MainMenuItems.js:213
+#: gui/pregame/MainMenuItems.js:227
 msgid "Mod Selection"
 msgstr "Mod 選擇"
 
-#: gui/pregame/MainMenuItems.js:214
+#: gui/pregame/MainMenuItems.js:228
 msgid "Select and download mods for the game."
 msgstr "選擇與下載這個遊戲的模組。"
 
-#: gui/pregame/MainMenuItems.js:220
+#: gui/pregame/MainMenuItems.js:234
 msgid "Welcome Screen"
 msgstr "歡迎畫面"
 
-#: gui/pregame/MainMenuItems.js:221
+#: gui/pregame/MainMenuItems.js:235
 msgid "Show the Welcome Screen again. Useful if you hid it by mistake."
 msgstr "再次顯示歡迎畫面。如果您不小心隱藏它的時候很有用。"
 
-#: gui/pregame/MainMenuItems.js:229
+#: gui/pregame/MainMenuItems.js:243
 msgid "Scenario Editor"
 msgstr "劇情編輯器"
 
-#: gui/pregame/MainMenuItems.js:230
+#: gui/pregame/MainMenuItems.js:244
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "在新視窗中開啟地圖編輯器。您可以利用命令列執行遊戲並在其後加上 \"-editor\" 的參數以較可靠的執行編輯器。"
 
-#: gui/pregame/MainMenuItems.js:235
+#: gui/pregame/MainMenuItems.js:249
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
 msgstr "你確定要退出 0 A.D. ，打開劇情編輯器嗎？"
 
-#: gui/pregame/MainMenuItems.js:242
+#: gui/pregame/MainMenuItems.js:256
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "劇情編輯器無法使用或載入失敗。見遊戲日誌以獲得更多資訊。"
 
-#: gui/pregame/MainMenuItems.js:243 gui/replaymenu/replay_actions.js:117
+#: gui/pregame/MainMenuItems.js:257 gui/replaymenu/replay_actions.js:117
 msgid "Error"
 msgstr "錯誤"
 
-#: gui/pregame/MainMenuItems.js:247
+#: gui/pregame/MainMenuItems.js:261
 msgid "Credits"
 msgstr "銘謝"
 
-#: gui/pregame/MainMenuItems.js:248
+#: gui/pregame/MainMenuItems.js:262
 msgid "Show the 0 A.D. credits."
 msgstr "顯示 0 A.D. 感謝名單。"
 
-#: gui/pregame/MainMenuItems.js:254
+#: gui/pregame/MainMenuItems.js:268
 msgid "Exit"
 msgstr "結束"
 
-#: gui/pregame/MainMenuItems.js:255
+#: gui/pregame/MainMenuItems.js:269
 msgid "Exit the game."
 msgstr "結束遊戲。"
 
-#: gui/pregame/MainMenuItems.js:259
+#: gui/pregame/MainMenuItems.js:273
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "您確定要退出 0 A.D. 嗎？"
 
@@ -3053,7 +3057,7 @@ msgstr "WILDFIRE GAMES"
 
 #: gui/pregame/ProjectInformation.js:18
 msgid "Alpha XXV: Y——"
-msgstr ""
+msgstr "Alpha XXV: Y——"
 
 #: gui/pregame/ProjectInformation.js:19
 msgid ""
