@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -62,11 +62,7 @@ class TestMeshManager : public CxxTest::TestSuite
 
 		TS_ASSERT_OK(g_VFS->Mount(L"", MOD_PATH));
 		TS_ASSERT_OK(g_VFS->Mount(L"collada/", DataDir()/"tests"/"collada", VFS_MOUNT_MUST_EXIST));
-
-		// Mount _testcache onto virtual /cache - don't use the normal cache
-		// directory because that's full of loads of cached files from the
-		// proper game and takes a long time to load.
-		TS_ASSERT_OK(g_VFS->Mount(L"cache/", CACHE_PATH));
+		TS_ASSERT_OK(g_VFS->Mount(L"cache/", CACHE_PATH, 0, VFS_MAX_PRIORITY));
 	}
 
 	void deinitVfs()

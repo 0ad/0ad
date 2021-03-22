@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -37,24 +37,24 @@ class VfsDirectory;
 
 enum VfsLookupFlags
 {
-	// add (if they do not already exist) subdirectory components
+	// Add (if they do not already exist) subdirectory components
 	// encountered in the path[name].
+	// If subdirectores do not exist on disk, they will be created.
 	VFS_LOOKUP_ADD = 1,
 
-	// if VFS directories encountered are not already associated
-	// with a real directory, do so (creating the directories
-	// if they do not already exist).
-	VFS_LOOKUP_CREATE = 2,
-
-	// don't populate the directories encountered. this makes sense
+	// Don't populate the directories encountered. This makes sense
 	// when adding files from an archive, which would otherwise
 	// cause nearly every directory to be populated.
-	VFS_LOOKUP_SKIP_POPULATE = 4,
+	VFS_LOOKUP_SKIP_POPULATE = 2,
 
-	// even create directories if they are already present, this is
-	// useful to write new files to the directory that was attached
-	// last, if the directory wasn't mounted with VFS_MOUNT_REPLACEABLE
-	VFS_LOOKUP_CREATE_ALWAYS = 8
+	// Perform a 'real path' lookup.
+	// Because the VFS maps multiple 'disk paths' to a single tree of paths,
+	// the 'real directory' of a VFS directory at any given time may be almost anything,
+	// in particular not its real parent directory on disk.
+	// To make writing predictable, we'll return a path relative to the 'disk path' of the
+	// highest priority subdirectory found in the lookup path.
+	// See test_vfs_real_paths.h for examples of this behaviour.
+	VFS_LOOKUP_REAL_PATH = 4
 };
 
 /**

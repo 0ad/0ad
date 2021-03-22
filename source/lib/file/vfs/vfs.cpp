@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -129,7 +129,7 @@ public:
 		std::lock_guard<std::mutex> lock(vfs_mutex);
 		VfsDirectory* directory;
 		Status st;
-		st = vfs_Lookup(pathname, &m_rootDirectory, directory, 0, VFS_LOOKUP_ADD|VFS_LOOKUP_CREATE|VFS_LOOKUP_CREATE_ALWAYS);
+		st = vfs_Lookup(pathname, &m_rootDirectory, directory, 0, VFS_LOOKUP_ADD|VFS_LOOKUP_REAL_PATH);
 		if (st == ERR::FILE_ACCESS)
 			return ERR::FILE_ACCESS;
 
@@ -141,32 +141,6 @@ public:
 
 		const VfsFile file(name, size, time(0), realDirectory->Priority(), realDirectory);
 		directory->AddFile(file);
-
-		m_trace->NotifyStore(pathname, size);
-		return INFO::OK;
-	}
-
-	virtual Status ReplaceFile(const VfsPath& pathname, const shared_ptr<u8>& fileContents, size_t size)
-	{
-		std::unique_lock<std::mutex> lock(vfs_mutex);
-		VfsDirectory* directory;
-		VfsFile* file;
-		Status st;
-		st = vfs_Lookup(pathname, &m_rootDirectory, directory, &file, VFS_LOOKUP_ADD|VFS_LOOKUP_CREATE);
-
-		// There is no such file, create it.
-		if (st == ERR::VFS_FILE_NOT_FOUND)
-		{
-			lock.unlock();
-			return CreateFile(pathname, fileContents, size);
-		}
-
-		WARN_RETURN_STATUS_IF_ERR(st);
-
-		RealDirectory realDirectory(file->Loader()->Path(), file->Priority(), directory->AssociatedDirectory()->Flags());
-		RETURN_STATUS_IF_ERR(realDirectory.Store(pathname.Filename(), fileContents, size));
-
-		directory->AddFile(*file);
 
 		m_trace->NotifyStore(pathname, size);
 		return INFO::OK;
@@ -203,7 +177,7 @@ public:
 		return textRepresentation;
 	}
 
-	virtual Status GetRealPath(const VfsPath& pathname, OsPath& realPathname)
+	virtual Status GetOriginalPath(const VfsPath& pathname, OsPath& realPathname)
 	{
 		std::lock_guard<std::mutex> lock(vfs_mutex);
 		VfsDirectory* directory; VfsFile* file;
@@ -212,11 +186,24 @@ public:
 		return INFO::OK;
 	}
 
-	virtual Status GetDirectoryRealPath(const VfsPath& pathname, OsPath& realPathname)
+	virtual Status GetRealPath(const VfsPath& pathname, OsPath& realPathname, bool createMissingDirectories)
+	{
+		std::lock_guard<std::mutex> lock(vfs_mutex);
+		VfsDirectory* directory; VfsFile* file;
+		size_t flags = VFS_LOOKUP_REAL_PATH | (createMissingDirectories ? VFS_LOOKUP_ADD : 0);
+		WARN_RETURN_STATUS_IF_ERR(vfs_Lookup(pathname, &m_rootDirectory, directory, &file, flags));
+		ENSURE(directory->AssociatedDirectory());
+		realPathname = directory->AssociatedDirectory()->Path() / pathname.Filename();
+		return INFO::OK;
+	}
+
+	virtual Status GetDirectoryRealPath(const VfsPath& pathname, OsPath& realPathname, bool createMissingDirectories)
 	{
 		std::lock_guard<std::mutex> lock(vfs_mutex);
 		VfsDirectory* directory;
-		WARN_RETURN_STATUS_IF_ERR(vfs_Lookup(pathname, &m_rootDirectory, directory, NULL));
+		size_t flags = VFS_LOOKUP_REAL_PATH | (createMissingDirectories ? VFS_LOOKUP_ADD : 0);
+		WARN_RETURN_STATUS_IF_ERR(vfs_Lookup(pathname, &m_rootDirectory, directory, NULL, flags));
+		ENSURE(directory->AssociatedDirectory());
 		realPathname = directory->AssociatedDirectory()->Path();
 		return INFO::OK;
 	}

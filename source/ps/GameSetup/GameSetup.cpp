@@ -375,17 +375,10 @@ ErrorReactionInternal psDisplayError(const wchar_t* UNUSED(text), size_t UNUSED(
 const std::vector<CStr>& GetMods(const CmdLineArgs& args, int flags)
 {
 	const bool init_mods = (flags & INIT_MODS) == INIT_MODS;
-	const bool add_user = !InDevelopmentCopy() && !args.Has("noUserMod");
 	const bool add_public = (flags & INIT_MODS_PUBLIC) == INIT_MODS_PUBLIC;
 
 	if (!init_mods)
-	{
-		// Add the user mod if it should be present
-		if (add_user && (g_modsLoaded.empty() || g_modsLoaded.back() != "user"))
-			g_modsLoaded.push_back("user");
-
 		return g_modsLoaded;
-	}
 
 	g_modsLoaded = args.GetMultiple("mod");
 
@@ -394,11 +387,6 @@ const std::vector<CStr>& GetMods(const CmdLineArgs& args, int flags)
 
 	g_modsLoaded.insert(g_modsLoaded.begin(), "mod");
 
-	// Add the user mod if not explicitly disabled or we have a dev copy so
-	// that saved files end up in version control and not in the user mod.
-	if (add_user)
-		g_modsLoaded.push_back("user");
-
 	return g_modsLoaded;
 }
 
@@ -406,29 +394,24 @@ void MountMods(const Paths& paths, const std::vector<CStr>& mods)
 {
 	OsPath modPath = paths.RData()/"mods";
 	OsPath modUserPath = paths.UserData()/"mods";
+
+	size_t userFlags = VFS_MOUNT_WATCH|VFS_MOUNT_ARCHIVABLE;
+	size_t baseFlags = userFlags|VFS_MOUNT_MUST_EXIST;
+	size_t priority;
 	for (size_t i = 0; i < mods.size(); ++i)
 	{
-		size_t priority = (i+1)*2;	// mods are higher priority than regular mountings, which default to priority 0
-		size_t userFlags = VFS_MOUNT_WATCH|VFS_MOUNT_ARCHIVABLE|VFS_MOUNT_REPLACEABLE;
-		size_t baseFlags = userFlags|VFS_MOUNT_MUST_EXIST;
+		priority = i + 1; // Mods are higher priority than regular mountings, which default to priority 0
 
 		OsPath modName(mods[i]);
-		if (InDevelopmentCopy())
-		{
-			// We are running a dev copy, so only mount mods in the user mod path
-			// if the mod does not exist in the data path.
-			if (DirectoryExists(modPath / modName/""))
-				g_VFS->Mount(L"", modPath / modName/"", baseFlags, priority);
-			else
-				g_VFS->Mount(L"", modUserPath / modName/"", userFlags, priority);
-		}
-		else
-		{
+		// Only mount mods from the user path if they don't exist in the 'rdata' path.
+		if (DirectoryExists(modPath / modName/""))
 			g_VFS->Mount(L"", modPath / modName/"", baseFlags, priority);
-			// Ensure that user modified files are loaded, if they are present
-			g_VFS->Mount(L"", modUserPath / modName/"", userFlags, priority+1);
-		}
+		else
+			g_VFS->Mount(L"", modUserPath / modName/"", userFlags, priority);
 	}
+
+	// Mount the user mod last. In dev copy, mount it with a low priority. Otherwise, make it writable.
+	g_VFS->Mount(L"", modUserPath / "user", userFlags, InDevelopmentCopy() ? 0 : priority + 1);
 }
 
 static void InitVfs(const CmdLineArgs& args, int flags)
@@ -455,22 +438,19 @@ static void InitVfs(const CmdLineArgs& args, int flags)
 	g_VFS = CreateVfs();
 
 	const OsPath readonlyConfig = paths.RData()/"config"/"";
-	g_VFS->Mount(L"config/", readonlyConfig);
 
-	// Engine localization files.
+	// Mount these dirs with highest priority so that mods can't overwrite them.
+	g_VFS->Mount(L"cache/", paths.Cache(), VFS_MOUNT_ARCHIVABLE, VFS_MAX_PRIORITY);	// (adding XMBs to archive speeds up subsequent reads)
+	if (readonlyConfig != paths.Config())
+		g_VFS->Mount(L"config/", readonlyConfig, 0, VFS_MAX_PRIORITY-1);
+	g_VFS->Mount(L"config/", paths.Config(), 0, VFS_MAX_PRIORITY);
+	g_VFS->Mount(L"screenshots/", paths.UserData()/"screenshots"/"", 0, VFS_MAX_PRIORITY);
+	g_VFS->Mount(L"saves/", paths.UserData()/"saves"/"", VFS_MOUNT_WATCH, VFS_MAX_PRIORITY);
+
+	// Engine localization files (regular priority, these can be overwritten).
 	g_VFS->Mount(L"l10n/", paths.RData()/"l10n"/"");
 
 	MountMods(paths, GetMods(args, flags));
-
-	// We mount these dirs last as otherwise writing could result in files being placed in a mod's dir.
-	g_VFS->Mount(L"screenshots/", paths.UserData()/"screenshots"/"");
-	g_VFS->Mount(L"saves/", paths.UserData()/"saves"/"", VFS_MOUNT_WATCH);
-	// Mounting with highest priority, so that a mod supplied user.cfg is harmless
-	g_VFS->Mount(L"config/", readonlyConfig, 0, (size_t)-1);
-	if(readonlyConfig != paths.Config())
-		g_VFS->Mount(L"config/", paths.Config(), 0, (size_t)-1);
-
-	g_VFS->Mount(L"cache/", paths.Cache(), VFS_MOUNT_ARCHIVABLE);	// (adding XMBs to archive speeds up subsequent reads)
 
 	// note: don't bother with g_VFS->TextRepresentation - directories
 	// haven't yet been populated and are empty.

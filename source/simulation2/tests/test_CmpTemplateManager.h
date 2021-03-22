@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -38,7 +38,7 @@ public:
 	{
 		g_VFS = CreateVfs();
 		TS_ASSERT_OK(g_VFS->Mount(L"", DataDir()/"mods"/"_test.sim", VFS_MOUNT_MUST_EXIST));
-		TS_ASSERT_OK(g_VFS->Mount(L"cache", DataDir()/"_testcache"));
+		TS_ASSERT_OK(g_VFS->Mount(L"cache", DataDir()/"_testcache", 0, VFS_MAX_PRIORITY));
 		CXeromyces::Startup();
 	}
 
@@ -223,7 +223,7 @@ public:
 		g_VFS = CreateVfs();
 		TS_ASSERT_OK(g_VFS->Mount(L"", DataDir()/"mods"/"mod", VFS_MOUNT_MUST_EXIST));
 		TS_ASSERT_OK(g_VFS->Mount(L"", DataDir()/"mods"/"public", VFS_MOUNT_MUST_EXIST));
-		TS_ASSERT_OK(g_VFS->Mount(L"cache", DataDir()/"_testcache"));
+		TS_ASSERT_OK(g_VFS->Mount(L"cache", DataDir()/"_testcache", 0, VFS_MAX_PRIORITY));
 		CXeromyces::Startup();
 	}
 
