@@ -3,16 +3,22 @@
  */
 class GameSettingsControl
 {
-	constructor(setupWindow, netMessages, startGameControl, mapCache)
+	constructor(setupWindow, netMessages, startGameControl, playerAssignmentsControl, mapCache)
 	{
+		this.setupWindow = setupWindow;
 		this.startGameControl = startGameControl;
 		this.mapCache = mapCache;
 		this.gameSettingsFile = new GameSettingsFile(this);
 
 		this.guiData = new GameSettingsGuiData();
 
+		// When joining a game, the complete set of attributes
+		// may not have been received yet.
+		this.loading = true;
+
 		this.updateLayoutHandlers = new Set();
 		this.settingsChangeHandlers = new Set();
+		this.loadingChangeHandlers = new Set();
 
 		setupWindow.registerLoadHandler(this.onLoad.bind(this));
 		setupWindow.registerGetHotloadDataHandler(this.onGetHotloadData.bind(this));
@@ -21,10 +27,16 @@ class GameSettingsControl
 
 		setupWindow.registerClosePageHandler(this.onClose.bind(this));
 
+		if (g_IsController && g_IsNetworked)
+			playerAssignmentsControl.registerClientJoinHandler(this.onClientJoin.bind(this));
+
 		if (g_IsNetworked)
 			netMessages.registerNetMessageHandler("gamesetup", this.onGamesetupMessage.bind(this));
 	}
 
+	/**
+	 * @param handler will be called when the layout needs to be updated.
+	 */
 	registerUpdateLayoutHandler(handler)
 	{
 		this.updateLayoutHandlers.add(handler);
@@ -37,6 +49,14 @@ class GameSettingsControl
 	registerSettingsChangeHandler(handler)
 	{
 		this.settingsChangeHandlers.add(handler);
+	}
+
+	/**
+	 * @param handler will be called when the 'loading' state change.
+	 */
+	registerLoadingChangeHandler(handler)
+	{
+		this.loadingChangeHandlers.add(handler);
 	}
 
 	onLoad(initData, hotloadData)
@@ -52,11 +72,46 @@ class GameSettingsControl
 
 		this.updateLayout();
 		this.setNetworkInitAttributes();
+
+		// If we are the controller, we are done loading.
+		if (hotloadData || !g_IsNetworked || g_IsController)
+			this.setLoading(false);
 	}
 
 	onClose()
 	{
 		this.gameSettingsFile.saveFile();
+	}
+
+	onClientJoin()
+	{
+		/**
+		 * A note on network synchronization:
+		 * The net server does not keep the current state of attributes,
+		 * nor does it act like a message queue, so a new client
+		 * will only receive updates after they've joined.
+		 * In particular, new joiners start with no information,
+		 * so the controller must first send them a complete copy of the settings.
+		 * However, messages could be in-flight towards the controller,
+		 * but the new client may never receive these or have already received them,
+		 * leading to an ordering issue that might desync the new client.
+		 *
+		 * The simplest solution is to have the (single) controller
+		 * act as the single source of truth. Any other message must
+		 * first go through the controller, which will send updates.
+		 * This enforces the ordering of the controller.
+		 * In practical terms, if e.g. players controlling their own civ is implemented,
+		 * the message will need to be ignored by everyone but the controller,
+		 * and the controller will need to send an update once it rejects/accepts the changes,
+		 * which will then update the other clients.
+		 * Of course, the original client GUI may want to temporarily show a different state.
+		 * Note that the final attributes are sent on game start anyways, so any
+		 * synchronization issue that might happen at that point can be resolved.
+		 */
+		Engine.SendGameSetupMessage({
+			"type": "initial-update",
+			"initAttribs": this.getSettings()
+		});
 	}
 
 	onGetHotloadData(object)
@@ -66,10 +121,26 @@ class GameSettingsControl
 
 	onGamesetupMessage(message)
 	{
+		// For now, the controller only can send updates, so no need to listen to messages.
 		if (!message.data || g_IsController)
 			return;
 
-		this.parseSettings(message.data);
+		if (message.data.type !== "update" &&
+			message.data.type !== "initial-update")
+		{
+			error("Unknown message type " + message.data.type);
+			return;
+		}
+
+		if (message.data.type === "initial-update")
+		{
+			// Ignore initial updates if we've already received settings.
+			if (!this.loading)
+				return;
+			this.setLoading(false);
+		}
+
+		this.parseSettings(message.data.initAttribs);
 
 		// This assumes that messages aren't sent spuriously without changes
 		// (which is generally fair), but technically it would be good
@@ -96,6 +167,15 @@ class GameSettingsControl
 		if (settings.guiData)
 			this.guiData.Deserialize(settings.guiData);
 		g_GameSettings.fromInitAttributes(settings);
+	}
+
+	setLoading(loading)
+	{
+		if (this.loading === loading)
+			return;
+		this.loading = loading;
+		for (let handler of this.loadingChangeHandlers)
+			handler();
 	}
 
 	/**
@@ -138,7 +218,12 @@ class GameSettingsControl
 			clearTimeout(this.timer);
 			delete this.timer;
 		}
-		g_GameSettings.setNetworkInitAttributes();
+		// See note in onClientJoin on network synchronization.
+		if (g_IsController)
+			Engine.SendGameSetupMessage({
+				"type": "update",
+				"initAttribs": this.getSettings()
+			});
 	}
 
 	onLaunchGame()

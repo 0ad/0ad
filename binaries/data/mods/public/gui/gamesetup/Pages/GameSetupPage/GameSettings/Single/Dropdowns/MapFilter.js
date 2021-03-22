@@ -6,6 +6,7 @@ GameSettingControls.MapFilter = class MapFilter extends GameSettingControlDropdo
 
 		this.values = undefined;
 
+		this.gameSettingsControl.guiData.mapFilter.watch(() => this.render(), ["filter"]);
 		g_GameSettings.map.watch(() => this.checkMapTypeChange(), ["type"]);
 	}
 
@@ -37,9 +38,13 @@ GameSettingControls.MapFilter = class MapFilter extends GameSettingControlDropdo
 			this.gameSettingsControl.guiData.mapFilter.filter = this.values.Name[this.values.Default];
 			this.gameSettingsControl.setNetworkInitAttributes();
 		}
+		this.render();
+	}
+
+	render()
+	{
 		// Index may have changed, reset.
 		this.setSelectedValue(this.gameSettingsControl.guiData.mapFilter.filter);
-
 		this.setHidden(!this.values);
 	}
 

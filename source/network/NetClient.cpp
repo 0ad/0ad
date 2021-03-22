@@ -58,8 +58,8 @@ class CNetFileReceiveTask_ClientRejoin : public CNetFileReceiveTask
 {
 	NONCOPYABLE(CNetFileReceiveTask_ClientRejoin);
 public:
-	CNetFileReceiveTask_ClientRejoin(CNetClient& client)
-		: m_Client(client)
+	CNetFileReceiveTask_ClientRejoin(CNetClient& client, const CStr& initAttribs)
+		: m_Client(client), m_InitAttributes(initAttribs)
 	{
 	}
 
@@ -72,18 +72,19 @@ public:
 
 		// Pretend the server told us to start the game
 		CGameStartMessage start;
+		start.m_InitAttributes = m_InitAttributes;
 		m_Client.HandleMessage(&start);
 	}
 
 private:
 	CNetClient& m_Client;
+	CStr m_InitAttributes;
 };
 
 CNetClient::CNetClient(CGame* game) :
 	m_Session(NULL),
 	m_UserName(L"anonymous"),
 	m_HostID((u32)-1), m_ClientTurnManager(NULL), m_Game(game),
-	m_GameAttributes(game->GetSimulation2()->GetScriptInterface().GetGeneralJSContext()),
 	m_LastConnectionCheck(0),
 	m_ServerAddress(),
 	m_ServerPort(0),
@@ -103,9 +104,7 @@ CNetClient::CNetClient(CGame* game) :
 	AddTransition(NCS_HANDSHAKE, (uint)NMT_SERVER_HANDSHAKE_RESPONSE, NCS_AUTHENTICATE, (void*)&OnHandshakeResponse, context);
 
 	AddTransition(NCS_AUTHENTICATE, (uint)NMT_AUTHENTICATE, NCS_AUTHENTICATE, (void*)&OnAuthenticateRequest, context);
-	AddTransition(NCS_AUTHENTICATE, (uint)NMT_AUTHENTICATE_RESULT, NCS_INITIAL_GAMESETUP, (void*)&OnAuthenticate, context);
-
-	AddTransition(NCS_INITIAL_GAMESETUP, (uint)NMT_GAME_SETUP, NCS_PREGAME, (void*)&OnGameSetup, context);
+	AddTransition(NCS_AUTHENTICATE, (uint)NMT_AUTHENTICATE_RESULT, NCS_PREGAME, (void*)&OnAuthenticate, context);
 
 	AddTransition(NCS_PREGAME, (uint)NMT_CHAT, NCS_PREGAME, (void*)&OnChat, context);
 	AddTransition(NCS_PREGAME, (uint)NMT_READY, NCS_PREGAME, (void*)&OnReady, context);
@@ -474,9 +473,10 @@ void CNetClient::SendClearAllReadyMessage()
 	SendMessage(&clearAllReady);
 }
 
-void CNetClient::SendStartGameMessage()
+void CNetClient::SendStartGameMessage(const CStr& initAttribs)
 {
 	CGameStartMessage gameStart;
+	gameStart.m_InitAttributes = initAttribs;
 	SendMessage(&gameStart);
 }
 
@@ -717,8 +717,6 @@ bool CNetClient::OnGameSetup(void* context, CFsmEvent* event)
 	CNetClient* client = static_cast<CNetClient*>(context);
 	CGameSetupMessage* message = static_cast<CGameSetupMessage*>(event->GetParamRef());
 
-	client->m_GameAttributes = message->m_Data;
-
 	client->PushGuiMessage(
 		"type", "gamesetup",
 		"data", message->m_Data);
@@ -759,6 +757,7 @@ bool CNetClient::OnGameStart(void* context, CFsmEvent* event)
 	ENSURE(event->GetType() == (uint)NMT_GAME_START);
 
 	CNetClient* client = static_cast<CNetClient*>(context);
+	CGameStartMessage* message = static_cast<CGameStartMessage*>(event->GetParamRef());
 
 	// Find the player assigned to our GUID
 	int player = -1;
@@ -768,10 +767,17 @@ bool CNetClient::OnGameStart(void* context, CFsmEvent* event)
 	client->m_ClientTurnManager = new CNetClientTurnManager(
 			*client->m_Game->GetSimulation2(), *client, client->m_HostID, client->m_Game->GetReplayLogger());
 
-	client->m_Game->SetPlayerID(player);
-	client->m_Game->StartGame(&client->m_GameAttributes, "");
+	// Parse init attributes.
+	const ScriptInterface& scriptInterface = client->m_Game->GetSimulation2()->GetScriptInterface();
+	ScriptRequest rq(scriptInterface);
+	JS::RootedValue initAttribs(rq.cx);
+	scriptInterface.ParseJSON(message->m_InitAttributes, &initAttribs);
 
-	client->PushGuiMessage("type", "start");
+	client->m_Game->SetPlayerID(player);
+	client->m_Game->StartGame(&initAttribs, "");
+
+	client->PushGuiMessage("type", "start",
+						   "initAttributes", initAttribs);
 
 	return true;
 }
@@ -782,9 +788,11 @@ bool CNetClient::OnJoinSyncStart(void* context, CFsmEvent* event)
 
 	CNetClient* client = static_cast<CNetClient*>(context);
 
+	CJoinSyncStartMessage* joinSyncStartMessage = (CJoinSyncStartMessage*)event->GetParamRef();
+
 	// The server wants us to start downloading the game state from it, so do so
 	client->m_Session->GetFileTransferer().StartTask(
-		shared_ptr<CNetFileReceiveTask>(new CNetFileReceiveTask_ClientRejoin(*client))
+		shared_ptr<CNetFileReceiveTask>(new CNetFileReceiveTask_ClientRejoin(*client, joinSyncStartMessage->m_InitAttributes))
 	);
 
 	return true;

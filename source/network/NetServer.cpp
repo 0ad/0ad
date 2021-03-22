@@ -126,7 +126,10 @@ public:
 		// they'll race and get whichever happens to be the latest received by the server,
 		// which should still work but isn't great
 		m_Server.m_JoinSyncFile = m_Buffer;
+
+		// Send the init attributes alongside - these should be correct since the game should be started.
 		CJoinSyncStartMessage message;
+		message.m_InitAttributes = m_Server.GetScriptInterface().StringifyJSON(&m_Server.m_InitAttributes);
 		session->SendMessage(&message);
 	}
 
@@ -411,7 +414,7 @@ void CNetServerWorker::Run()
 	// We create a new ScriptContext for this network thread, with a single ScriptInterface.
 	shared_ptr<ScriptContext> netServerContext = ScriptContext::CreateContext();
 	m_ScriptInterface = new ScriptInterface("Engine", "Net server", netServerContext);
-	m_GameAttributes.init(m_ScriptInterface->GetGeneralJSContext(), JS::UndefinedValue());
+	m_InitAttributes.init(m_ScriptInterface->GetGeneralJSContext(), JS::UndefinedValue());
 
 	while (true)
 	{
@@ -420,7 +423,7 @@ void CNetServerWorker::Run()
 
 		// Implement autostart mode
 		if (m_State == SERVER_STATE_PREGAME && (int)m_PlayerAssignments.size() == m_AutostartPlayers)
-			StartGame();
+			StartGame(m_ScriptInterface->StringifyJSON(&m_InitAttributes));
 
 		// Update profiler stats
 		m_Stats->LatchHostState(m_Host);
@@ -454,24 +457,25 @@ bool CNetServerWorker::RunStep()
 			return false;
 
 		newStartGame.swap(m_StartGameQueue);
-		newGameAttributes.swap(m_GameAttributesQueue);
+		newGameAttributes.swap(m_InitAttributesQueue);
 		newLobbyAuths.swap(m_LobbyAuthQueue);
 		newTurnLength.swap(m_TurnLengthQueue);
 	}
 
 	if (!newGameAttributes.empty())
 	{
-		JS::RootedValue gameAttributesVal(rq.cx);
-		GetScriptInterface().ParseJSON(newGameAttributes.back(), &gameAttributesVal);
-		UpdateGameAttributes(&gameAttributesVal);
+		if (m_State != SERVER_STATE_UNCONNECTED && m_State != SERVER_STATE_PREGAME)
+			LOGERROR("NetServer: Init Attributes cannot be changed after the server starts loading.");
+		else
+		{
+			JS::RootedValue gameAttributesVal(rq.cx);
+			GetScriptInterface().ParseJSON(newGameAttributes.back(), &gameAttributesVal);
+			m_InitAttributes = gameAttributesVal;
+		}
 	}
 
 	if (!newTurnLength.empty())
 		SetTurnLength(newTurnLength.back());
-
-	// Do StartGame last, so we have the most up-to-date game attributes when we start
-	if (!newStartGame.empty())
-		StartGame();
 
 	while (!newLobbyAuths.empty())
 	{
@@ -690,7 +694,7 @@ void CNetServerWorker::SetupSession(CNetServerSession* session)
 	session->AddTransition(NSS_PREGAME, (uint)NMT_GAME_SETUP, NSS_PREGAME, (void*)&OnGameSetup, context);
 	session->AddTransition(NSS_PREGAME, (uint)NMT_ASSIGN_PLAYER, NSS_PREGAME, (void*)&OnAssignPlayer, context);
 	session->AddTransition(NSS_PREGAME, (uint)NMT_KICKED, NSS_PREGAME, (void*)&OnKickPlayer, context);
-	session->AddTransition(NSS_PREGAME, (uint)NMT_GAME_START, NSS_PREGAME, (void*)&OnStartGame, context);
+	session->AddTransition(NSS_PREGAME, (uint)NMT_GAME_START, NSS_PREGAME, (void*)&OnGameStart, context);
 	session->AddTransition(NSS_PREGAME, (uint)NMT_LOADED_GAME, NSS_INGAME, (void*)&OnLoadedGame, context);
 
 	session->AddTransition(NSS_JOIN_SYNCING, (uint)NMT_KICKED, NSS_JOIN_SYNCING, (void*)&OnKickPlayer, context);
@@ -728,10 +732,6 @@ bool CNetServerWorker::HandleConnect(CNetServerSession* session)
 void CNetServerWorker::OnUserJoin(CNetServerSession* session)
 {
 	AddPlayer(session->GetGUID(), session->GetUserName());
-
-	CGameSetupMessage gameSetupMessage(GetScriptInterface());
-	gameSetupMessage.m_Data = m_GameAttributes;
-	session->SendMessage(&gameSetupMessage);
 
 	CPlayerAssignmentMessage assignMessage;
 	ConstructPlayerAssignmentMessage(assignMessage);
@@ -1145,6 +1145,8 @@ bool CNetServerWorker::OnAuthenticate(void* context, CFsmEvent* event)
 
 	if (isRejoining)
 	{
+		ENSURE(server.m_State != SERVER_STATE_UNCONNECTED && server.m_State != SERVER_STATE_PREGAME);
+
 		// Request a copy of the current game state from an existing player,
 		// so we can send it on to the new player
 
@@ -1176,7 +1178,7 @@ bool CNetServerWorker::OnSimulationCommand(void* context, CFsmEvent* event)
 	const ScriptInterface& scriptInterface = server.GetScriptInterface();
 	ScriptRequest rq(scriptInterface);
 	JS::RootedValue settings(rq.cx);
-	scriptInterface.GetProperty(server.m_GameAttributes, "settings", &settings);
+	scriptInterface.GetProperty(server.m_InitAttributes, "settings", &settings);
 	if (scriptInterface.HasProperty(settings, "CheatsEnabled"))
 		scriptInterface.GetProperty(settings, "CheatsEnabled", cheatsEnabled);
 
@@ -1288,10 +1290,14 @@ bool CNetServerWorker::OnGameSetup(void* context, CFsmEvent* event)
 	if (server.m_State != SERVER_STATE_PREGAME)
 		return true;
 
+	// Only the controller is allowed to send game setup updates.
+	// TODO: it would be good to allow other players to request changes to some settings,
+	// e.g. their civilisation.
+	// Possibly this should use another message, to enforce a single source of truth.
 	if (session->GetGUID() == server.m_ControllerGUID)
 	{
 		CGameSetupMessage* message = (CGameSetupMessage*)event->GetParamRef();
-		server.UpdateGameAttributes(&(message->m_Data));
+		server.Broadcast(message, { NSS_PREGAME });
 	}
 	return true;
 }
@@ -1310,15 +1316,17 @@ bool CNetServerWorker::OnAssignPlayer(void* context, CFsmEvent* event)
 	return true;
 }
 
-bool CNetServerWorker::OnStartGame(void* context, CFsmEvent* event)
+bool CNetServerWorker::OnGameStart(void* context, CFsmEvent* event)
 {
 	ENSURE(event->GetType() == (uint)NMT_GAME_START);
 	CNetServerSession* session = (CNetServerSession*)context;
 	CNetServerWorker& server = session->GetServer();
 
-	if (session->GetGUID() == server.m_ControllerGUID)
-		server.StartGame();
+	if (session->GetGUID() != server.m_ControllerGUID)
+		return true;
 
+	CGameStartMessage* message = (CGameStartMessage*)event->GetParamRef();
+	server.StartGame(message->m_InitAttributes);
 	return true;
 }
 
@@ -1510,7 +1518,7 @@ bool CNetServerWorker::CheckGameLoadStatus(CNetServerSession* changedSession)
 	return true;
 }
 
-void CNetServerWorker::StartGame()
+void CNetServerWorker::StartGame(const CStr& initAttribs)
 {
 	for (std::pair<const CStr, PlayerAssignment>& player : m_PlayerAssignments)
 		if (player.second.m_Enabled && player.second.m_PlayerID != -1 && player.second.m_Status == 0)
@@ -1526,9 +1534,6 @@ void CNetServerWorker::StartGame()
 
 	m_State = SERVER_STATE_LOADING;
 
-	// Send the final setup state to all clients
-	UpdateGameAttributes(&m_GameAttributes);
-
 	// Remove players and observers that are not present when the game starts
 	for (PlayerAssignmentMap::iterator it = m_PlayerAssignments.begin(); it != m_PlayerAssignments.end();)
 		if (it->second.m_Enabled)
@@ -1538,20 +1543,12 @@ void CNetServerWorker::StartGame()
 
 	SendPlayerAssignments();
 
+	// Update init attributes. They should no longer change.
+	m_ScriptInterface->ParseJSON(initAttribs, &m_InitAttributes);
+
 	CGameStartMessage gameStart;
+	gameStart.m_InitAttributes = initAttribs;
 	Broadcast(&gameStart, { NSS_PREGAME });
-}
-
-void CNetServerWorker::UpdateGameAttributes(JS::MutableHandleValue attrs)
-{
-	m_GameAttributes = attrs;
-
-	if (!m_Host)
-		return;
-
-	CGameSetupMessage gameSetupMessage(GetScriptInterface());
-	gameSetupMessage.m_Data = m_GameAttributes;
-	Broadcast(&gameSetupMessage, { NSS_PREGAME });
 }
 
 CStrW CNetServerWorker::SanitisePlayerName(const CStrW& original)
@@ -1694,14 +1691,14 @@ void CNetServer::StartGame()
 	m_Worker->m_StartGameQueue.push_back(true);
 }
 
-void CNetServer::UpdateGameAttributes(JS::MutableHandleValue attrs, const ScriptInterface& scriptInterface)
+void CNetServer::UpdateInitAttributes(JS::MutableHandleValue attrs, const ScriptInterface& scriptInterface)
 {
 	// Pass the attributes as JSON, since that's the easiest safe
 	// cross-thread way of passing script data
 	std::string attrsJSON = scriptInterface.StringifyJSON(attrs, false);
 
 	std::lock_guard<std::mutex> lock(m_Worker->m_WorkerMutex);
-	m_Worker->m_GameAttributesQueue.push_back(attrsJSON);
+	m_Worker->m_InitAttributesQueue.push_back(attrsJSON);
 }
 
 void CNetServer::OnLobbyAuth(const CStr& name, const CStr& token)

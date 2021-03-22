@@ -125,16 +125,16 @@ public:
 
 	/**
 	 * Call from the GUI to asynchronously notify all clients that they should start loading the game.
+	 * UpdateInitAttributes must be called at least once.
 	 */
 	void StartGame();
 
 	/**
 	 * Call from the GUI to update the game setup attributes.
-	 * This must be called at least once before starting the game.
-	 * The changes will be asynchronously propagated to all clients.
-	 * @param attrs game attributes, in the script context of scriptInterface
+	 * The changes won't be propagated to clients until game start.
+	 * @param attrs init attributes, in the script context of scriptInterface
 	 */
-	void UpdateGameAttributes(JS::MutableHandleValue attrs, const ScriptInterface& scriptInterface);
+	void UpdateInitAttributes(JS::MutableHandleValue attrs, const ScriptInterface& scriptInterface);
 
 	/**
 	 * Set the turn length to a fixed value.
@@ -237,25 +237,15 @@ private:
 	bool SetupConnection(const u16 port);
 
 	/**
-	 * Call from the GUI to update the player assignments.
 	 * The given GUID will be (re)assigned to the given player ID.
 	 * Any player currently using that ID will be unassigned.
-	 * The changes will be propagated to all clients.
 	 */
 	void AssignPlayer(int playerID, const CStr& guid);
 
 	/**
-	 * Call from the GUI to notify all clients that they should start loading the game.
+	 * Switch in game mode and notify all clients to start the game.
 	 */
-	void StartGame();
-
-	/**
-	 * Call from the GUI to update the game setup attributes.
-	 * This must be called at least once before starting the game.
-	 * The changes will be propagated to all clients.
-	 * @param attrs game attributes, in the script context of GetScriptInterface()
-	 */
-	void UpdateGameAttributes(JS::MutableHandleValue attrs);
+	void StartGame(const CStr& initAttribs);
 
 	/**
 	 * Make a player name 'nicer' by limiting the length and removing forbidden characters etc.
@@ -268,7 +258,7 @@ private:
 	CStrW DeduplicatePlayerName(const CStrW& original);
 
 	/**
-	 * Get the script context used for game attributes.
+	 * Get the script context used for init attributes.
 	 */
 	const ScriptInterface& GetScriptInterface();
 
@@ -301,7 +291,7 @@ private:
 	static bool OnClearAllReady(void* context, CFsmEvent* event);
 	static bool OnGameSetup(void* context, CFsmEvent* event);
 	static bool OnAssignPlayer(void* context, CFsmEvent* event);
-	static bool OnStartGame(void* context, CFsmEvent* event);
+	static bool OnGameStart(void* context, CFsmEvent* event);
 	static bool OnLoadedGame(void* context, CFsmEvent* event);
 	static bool OnJoinSyncingLoadedGame(void* context, CFsmEvent* event);
 	static bool OnRejoined(void* context, CFsmEvent* event);
@@ -330,7 +320,7 @@ private:
 
 	/**
 	 * Internal script context for (de)serializing script messages,
-	 * and for storing game attributes.
+	 * and for storing init attributes.
 	 * (TODO: we shouldn't bother deserializing (except for debug printing of messages),
 	 * we should just forward messages blindly and efficiently.)
 	 */
@@ -339,9 +329,11 @@ private:
 	PlayerAssignmentMap m_PlayerAssignments;
 
 	/**
-	 * Stores the most current game attributes.
+	 * Stores the most current init attributes.
+	 * NB: this is not guaranteed to be up-to-date until the server is LOADING or INGAME.
+	 * At that point, the settings are frozen and ought to be identical to the simulation Init Attributes.
 	 */
-	JS::PersistentRootedValue m_GameAttributes;
+	JS::PersistentRootedValue m_InitAttributes;
 
 	int m_AutostartPlayers;
 
@@ -424,7 +416,7 @@ private:
 
 	// Queues for messages sent by the game thread (protected by m_WorkerMutex):
 	std::vector<bool> m_StartGameQueue;
-	std::vector<std::string> m_GameAttributesQueue;
+	std::vector<std::string> m_InitAttributesQueue;
 	std::vector<std::pair<CStr, CStr>> m_LobbyAuthQueue;
 	std::vector<u32> m_TurnLengthQueue;
 };

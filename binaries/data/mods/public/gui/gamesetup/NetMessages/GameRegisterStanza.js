@@ -5,7 +5,7 @@
  */
 class GameRegisterStanza
 {
-	constructor(initData, setupWindow, netMessages, gameSettingsControl, mapCache)
+	constructor(initData, setupWindow, netMessages, mapCache)
 	{
 		this.mapCache = mapCache;
 

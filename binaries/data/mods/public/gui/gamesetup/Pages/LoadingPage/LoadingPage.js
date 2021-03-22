@@ -7,19 +7,16 @@ SetupWindowPages.LoadingPage = class
 {
 	constructor(setupWindow)
 	{
-		if (g_IsNetworked)
-			setupWindow.controls.netMessages.registerNetMessageHandler("gamesetup", this.hideLoadingPage.bind(this));
-		else
-			this.hideLoadingPage();
+		setupWindow.controls.gameSettingsControl.registerLoadingChangeHandler((loading) => this.onLoadingChange(loading));
 	}
 
-	hideLoadingPage()
+	onLoadingChange(loading)
 	{
 		let loadingPage = Engine.GetGUIObjectByName("loadingPage");
-		if (loadingPage.hidden)
+		if (loadingPage.hidden === !loading)
 			return;
 
-		loadingPage.hidden = true;
-		Engine.GetGUIObjectByName("setupWindow").hidden = false;
+		loadingPage.hidden = !loading;
+		Engine.GetGUIObjectByName("setupWindow").hidden = loading;
 	}
-}
+};

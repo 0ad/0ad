@@ -21,7 +21,6 @@ var g_ServerHasPassword = false;
 var g_ServerId;
 
 var g_IsRejoining = false;
-var g_InitAttributes; // used when rejoining
 var g_PlayerAssignments; // used when rejoining
 var g_UserRating;
 
@@ -226,25 +225,13 @@ function pollAndHandleNetworkClient()
 				}
 				break;
 
-			case "gamesetup":
-				g_InitAttributes = message.data;
-				break;
-
 			case "players":
 				g_PlayerAssignments = message.newAssignments;
 				break;
 
 			case "start":
-				// Copy playernames from initial player assignment to the settings
-				for (let guid in g_PlayerAssignments)
-				{
-					let player = g_PlayerAssignments[guid];
-					if (player.player > 0)	// not observer or GAIA
-						g_InitAttributes.settings.PlayerData[player.player - 1].Name = player.name;
-				}
-
 				Engine.SwitchGuiPage("page_loading.xml", {
-					"attribs": g_InitAttributes,
+					"attribs": message.initAttributes,
 					"isRejoining": g_IsRejoining,
 					"playerAssignments": g_PlayerAssignments
 				});
