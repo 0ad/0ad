@@ -2,7 +2,7 @@ class ResetTeamsButton
 {
 	constructor(setupWindow)
 	{
-		this.gameSettingsControl = setupWindow.controls.gameSettingsControl;
+		this.gameSettingsController = setupWindow.controls.gameSettingsController;
 
 		this.teamResetButton = Engine.GetGUIObjectByName("teamResetButton");
 		this.teamResetButton.tooltip = this.Tooltip;
@@ -21,7 +21,7 @@ class ResetTeamsButton
 		for (let i = 0; i < g_GameSettings.playerCount.nbPlayers; ++i)
 			g_GameSettings.playerTeam.setValue(i, -1);
 
-		this.gameSettingsControl.setNetworkInitAttributes();
+		this.gameSettingsController.setNetworkInitAttributes();
 	}
 }
 

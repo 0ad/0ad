@@ -21,7 +21,7 @@ AIGameSettingControls.AIBehavior = class extends AIGameSettingControlDropdown
 	onSelectionChange(itemIdx)
 	{
 		g_GameSettings.playerAI.setBehavior(this.playerIndex, this.dropdown.list_data[itemIdx]);
-		this.gameSettingsControl.setNetworkInitAttributes();
+		this.gameSettingsController.setNetworkInitAttributes();
 	}
 };
 

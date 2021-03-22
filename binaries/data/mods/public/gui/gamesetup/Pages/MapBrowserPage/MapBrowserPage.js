@@ -5,7 +5,7 @@ SetupWindowPages.MapBrowserPage = class extends MapBrowser
 		super(setupWindow.controls.mapCache, setupWindow.controls.mapFilters, setupWindow);
 		this.mapBrowserPage.hidden = true;
 
-		this.gameSettingsControl = setupWindow.controls.gameSettingsControl;
+		this.gameSettingsController = setupWindow.controls.gameSettingsController;
 	}
 
 	onSubmitMapSelection(map, type, filter)
@@ -17,12 +17,12 @@ SetupWindowPages.MapBrowserPage = class extends MapBrowser
 			g_GameSettings.map.setType(type);
 
 		if (filter)
-			this.gameSettingsControl.guiData.mapFilter.filter = filter;
+			this.gameSettingsController.guiData.mapFilter.filter = filter;
 
 		if (map)
 			g_GameSettings.map.selectMap(map);
 
-		this.gameSettingsControl.setNetworkInitAttributes();
+		this.gameSettingsController.setNetworkInitAttributes();
 	}
 
 	openPage()
@@ -30,7 +30,7 @@ SetupWindowPages.MapBrowserPage = class extends MapBrowser
 		super.openPage();
 
 		this.controls.MapFiltering.select(
-			this.gameSettingsControl.guiData.mapFilter.filter,
+			this.gameSettingsController.guiData.mapFilter.filter,
 			g_GameSettings.map.type || g_MapTypes.Name[g_MapTypes.Default]
 		);
 		if (g_GameSettings.map.map)

@@ -30,7 +30,7 @@ GameSettingControls.WonderDuration = class WonderDuration extends GameSettingCon
 	onValueChange(value)
 	{
 		g_GameSettings.wonder.setDuration(value);
-		this.gameSettingsControl.setNetworkInitAttributes();
+		this.gameSettingsController.setNetworkInitAttributes();
 	}
 };
 

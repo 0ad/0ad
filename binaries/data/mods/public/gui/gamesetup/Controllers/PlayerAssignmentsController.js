@@ -1,14 +1,13 @@
 /**
  * This class provides a property independent interface to g_PlayerAssignment events and actions.
  */
-class PlayerAssignmentsControl
+class PlayerAssignmentsController
 {
-	constructor(setupWindow, netMessages, gameRegisterStanza)
+	constructor(setupWindow, netMessages)
 	{
 		this.clientJoinHandlers = new Set();
 		this.clientLeaveHandlers = new Set();
 		this.playerAssignmentsChangeHandlers = new Set();
-		this.gameRegisterStanza = gameRegisterStanza;
 
 		if (!g_IsNetworked)
 		{
@@ -147,9 +146,6 @@ class PlayerAssignmentsControl
 
 		g_PlayerAssignments = newAssignments;
 		this.updatePlayerAssignments();
-		// Send at most one gameRegisterStanza after all handlers run in case a
-		// joining observer has been assigned to a playerslot.
-		this.gameRegisterStanza.sendImmediately?.();
 	}
 
 	assignClient(guid, playerIndex)
@@ -207,8 +203,8 @@ class PlayerAssignmentsControl
 	}
 }
 
-PlayerAssignmentsControl.prototype.ConfigNameSingleplayer =
+PlayerAssignmentsController.prototype.ConfigNameSingleplayer =
 	"playername.singleplayer";
 
-PlayerAssignmentsControl.prototype.ConfigAssignPlayers =
+PlayerAssignmentsController.prototype.ConfigAssignPlayers =
 	"gui.gamesetup.assignplayers";

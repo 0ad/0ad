@@ -2,7 +2,7 @@ class ResetCivsButton
 {
 	constructor(setupWindow)
 	{
-		this.gameSettingsControl = setupWindow.controls.gameSettingsControl;
+		this.gameSettingsController = setupWindow.controls.gameSettingsController;
 
 		this.civResetButton = Engine.GetGUIObjectByName("civResetButton");
 		this.civResetButton.tooltip = this.Tooltip;
@@ -21,7 +21,7 @@ class ResetCivsButton
 		for (let i = 0; i < g_GameSettings.playerCount.nbPlayers; ++i)
 			g_GameSettings.playerCiv.setValue(i, "random");
 
-		this.gameSettingsControl.setNetworkInitAttributes();
+		this.gameSettingsController.setNetworkInitAttributes();
 	}
 }
 

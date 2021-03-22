@@ -9,8 +9,8 @@ class GameSettingsPanel
 		this.gameSettingControlManager = gameSettingControlManager;
 		this.gameSettingsPanelResizeHandlers = new Set();
 
-		this.setupWindow = Engine.GetGUIObjectByName("setupWindow");
-		this.setupWindow.onWindowResized = this.onWindowResized.bind(this);
+		this.gameSetupPage = Engine.GetGUIObjectByName("gameSetupPage");
+		this.gameSetupPage.onWindowResized = this.onWindowResized.bind(this);
 
 		this.settingsPanel = Engine.GetGUIObjectByName("settingsPanel");
 
@@ -19,7 +19,7 @@ class GameSettingsPanel
 		this.lastTickTime = undefined;
 
 		gameSettingTabs.registerTabSelectHandler(this.updateSize.bind(this));
-		setupWindow.controls.gameSettingsControl.registerUpdateLayoutHandler(this.updateSize.bind(this));
+		setupWindow.controls.gameSettingsController.registerUpdateLayoutHandler(this.updateSize.bind(this));
 		setupWindow.registerLoadHandler(this.triggerResizeHandlers.bind(this));
 	}
 
@@ -106,11 +106,11 @@ class GameSettingsPanel
 	 */
 	positionSettings()
 	{
-		let setupWindowSize = this.setupWindow.getComputedSize();
+		let gameSetupPageSize = this.gameSetupPage.getComputedSize();
 
 		let columnWidth = Math.min(
 			this.MaxColumnWidth,
-			(setupWindowSize.right - setupWindowSize.left + this.centerRightPanel.size.left) / 2);
+			(gameSetupPageSize.right - gameSetupPageSize.left + this.centerRightPanel.size.left) / 2);
 
 		let settingsPerColumn;
 		{

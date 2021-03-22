@@ -17,7 +17,7 @@ GameSettingControls.ExploredMap = class ExploredMap extends GameSettingControlCh
 	onPress(checked)
 	{
 		g_GameSettings.mapExploration.setExplored(checked);
-		this.gameSettingsControl.setNetworkInitAttributes();
+		this.gameSettingsController.setNetworkInitAttributes();
 	}
 };
 

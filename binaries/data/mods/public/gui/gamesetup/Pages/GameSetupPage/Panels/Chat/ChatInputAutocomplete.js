@@ -1,12 +1,12 @@
 class ChatInputAutocomplete
 {
-	constructor(gameSettingControlManager, gameSettingsControl, playerAssignmentsControl)
+	constructor(gameSettingControlManager, gameSettingsController, playerAssignmentsController)
 	{
 		this.gameSettingControlManager = gameSettingControlManager;
 		this.entries = undefined;
 
-		playerAssignmentsControl.registerPlayerAssignmentsChangeHandler(this.onAutocompleteChange.bind(this));
-		gameSettingsControl.registerSettingsChangeHandler(this.onAutocompleteChange.bind(this));
+		playerAssignmentsController.registerPlayerAssignmentsChangeHandler(this.onAutocompleteChange.bind(this));
+		gameSettingsController.registerSettingsChangeHandler(this.onAutocompleteChange.bind(this));
 	}
 
 	onAutocompleteChange()

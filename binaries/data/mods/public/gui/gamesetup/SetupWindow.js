@@ -26,25 +26,23 @@ class SetupWindow
 		let mapCache = new MapCache();
 		g_GameSettings = new GameSettings().init(mapCache);
 
-		let netMessages = new NetMessages(this);
-		let startGameControl = new StartGameControl(netMessages);
+		let netMessages = new NetMessages();
 		let mapFilters = new MapFilters(mapCache);
-		let gameRegisterStanza = Engine.HasXmppClient() &&
-			new GameRegisterStanza(initData, this, netMessages, mapCache);
-		let playerAssignmentsControl = new PlayerAssignmentsControl(this, netMessages, gameRegisterStanza);
-		let gameSettingsControl = new GameSettingsControl(this, netMessages, startGameControl, playerAssignmentsControl, mapCache);
-		let readyControl = new ReadyControl(netMessages, gameSettingsControl, startGameControl, playerAssignmentsControl);
+		let playerAssignmentsController = new PlayerAssignmentsController(this, netMessages);
+		let gameSettingsController = new GameSettingsController(this, netMessages, playerAssignmentsController, mapCache);
+		let readyController = new ReadyController(netMessages, gameSettingsController, playerAssignmentsController);
+		let lobbyGameRegistrationController = Engine.HasXmppClient() &&
+			new LobbyGameRegistrationController(initData, this, netMessages, mapCache, playerAssignmentsController);
 
 		// These class instances control central data and do not manage any GUI Object.
 		this.controls = {
-			"gameSettingsControl": gameSettingsControl,
-			"playerAssignmentsControl": playerAssignmentsControl,
+			"gameSettingsController": gameSettingsController,
+			"playerAssignmentsController": playerAssignmentsController,
 			"mapCache": mapCache,
 			"mapFilters": mapFilters,
-			"readyControl": readyControl,
-			"startGameControl": startGameControl,
+			"readyController": readyController,
 			"netMessages": netMessages,
-			"gameRegisterStanza": gameRegisterStanza
+			"lobbyGameRegistrationController": lobbyGameRegistrationController
 		};
 
 		// These are the pages within the setup window that may use the controls defined above
@@ -52,8 +50,9 @@ class SetupWindow
 		for (let name in SetupWindowPages)
 			this.pages[name] = new SetupWindowPages[name](this);
 
+		netMessages.registerNetMessageHandler("netwarn", addNetworkWarning);
 		setTimeout(displayGamestateNotifications, 1000);
-		Engine.GetGUIObjectByName("setupWindow").onTick = updateTimers;
+		Engine.GetGUIObjectByName("setupWindow").onTick = () => this.onTick();
 
 		// This event is triggered after all classes have been instantiated and subscribed to each others events
 		for (let handler of this.loadHandlers)
@@ -100,10 +99,18 @@ class SetupWindow
 		return object;
 	}
 
+	onTick()
+	{
+		this.controls.netMessages.pollPendingMessages();
+		updateTimers();
+	}
+
 	closePage()
 	{
 		for (let handler of this.closePageHandlers)
 			handler();
+
+		Engine.DisconnectNetworkGame();
 
 		if (Engine.HasXmppClient())
 			Engine.SwitchGuiPage("page_lobby.xml", { "dialog": false });

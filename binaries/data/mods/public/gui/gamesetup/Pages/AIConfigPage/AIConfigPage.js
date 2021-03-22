@@ -9,7 +9,7 @@ SetupWindowPages.AIConfigPage = class
 {
 	constructor(setupWindow)
 	{
-		this.gameSettingsControl = setupWindow.controls.gameSettingsControl;
+		this.gameSettingsController = setupWindow.controls.gameSettingsController;
 
 		this.playerIndex = undefined;
 		this.row = 0;

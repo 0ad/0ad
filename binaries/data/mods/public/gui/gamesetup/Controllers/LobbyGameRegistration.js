@@ -3,9 +3,9 @@
  * this match is being setup so that others can join.
  * It informs of the lobby of some setting values and the participating clients.
  */
-class GameRegisterStanza
+class LobbyGameRegistrationController
 {
-	constructor(initData, setupWindow, netMessages, mapCache)
+	constructor(initData, setupWindow, netMessages, mapCache, playerAssignmentsController)
 	{
 		this.mapCache = mapCache;
 
@@ -21,6 +21,7 @@ class GameRegisterStanza
 		// Events
 		setupWindow.registerClosePageHandler(this.onClosePage.bind(this));
 		netMessages.registerNetMessageHandler("start", this.onGameStart.bind(this));
+		playerAssignmentsController.registerPlayerAssignmentsChangeHandler(this.sendImmediately.bind(this));
 
 		g_GameSettings.map.watch(() => this.onSettingsChange(), ["map", "type"]);
 		g_GameSettings.mapSize.watch(() => this.onSettingsChange(), ["size"]);
@@ -38,9 +39,6 @@ class GameRegisterStanza
 
 	onGameStart()
 	{
-		if (!g_IsController || !Engine.HasXmppClient())
-			return;
-
 		this.sendImmediately();
 		let clients = this.formatClientsForStanza();
 		Engine.SendChangeStateGame(clients.connectedPlayers, clients.list);
@@ -60,8 +58,9 @@ class GameRegisterStanza
 		if (!g_IsController || !Engine.HasXmppClient())
 			return;
 
+		// Already sending an update - do nothing.
 		if (this.timer !== undefined)
-			clearTimeout(this.timer);
+			return;
 
 		this.timer = setTimeout(this.sendImmediately.bind(this), this.Timeout);
 	}
@@ -88,6 +87,7 @@ class GameRegisterStanza
 			"name": this.serverName,
 			"hostUsername": Engine.LobbyGetNick(),
 			"mapName": g_GameSettings.map.map,
+			// TODO: if the map name was always up-to-date we wouldn't need the mapcache here.
 			"niceMapName": this.mapCache.getTranslatableMapName(g_GameSettings.map.type, g_GameSettings.map.map),
 			"mapSize": g_GameSettings.map.type == "random" ? g_GameSettings.mapSize.size : "Default",
 			"mapType": g_GameSettings.map.type,
@@ -139,4 +139,4 @@ class GameRegisterStanza
 /**
  * Send the current game settings to the lobby bot if the settings didn't change for this number of milliseconds.
  */
-GameRegisterStanza.prototype.Timeout = 2000;
+LobbyGameRegistrationController.prototype.Timeout = 2000;

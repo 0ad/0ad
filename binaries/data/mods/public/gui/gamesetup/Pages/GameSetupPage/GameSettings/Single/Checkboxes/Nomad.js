@@ -17,7 +17,7 @@ GameSettingControls.Nomad = class Nomad extends GameSettingControlCheckbox
 	onPress(checked)
 	{
 		g_GameSettings.nomad.setEnabled(checked);
-		this.gameSettingsControl.setNetworkInitAttributes();
+		this.gameSettingsController.setNetworkInitAttributes();
 	}
 };
 

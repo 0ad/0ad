@@ -6,11 +6,12 @@
 	<script directory="gui/gamesettings/"/>
 	<script directory="gui/gamesettings/attributes/"/>
 	<script directory="gui/gamesetup/"/>
-	<script directory="gui/gamesetup/Controls/"/>
+	<script directory="gui/gamesetup/Controllers/"/>
 	<script directory="gui/gamesetup/NetMessages/"/>
+	<script directory="gui/gamesetup/Persistence/"/>
 
 
-	<object type="image" style="ModernWindow">
+	<object type="image" style="ModernWindow" name="setupWindow">
 
 		<object style="TitleText" type="text" size="50%-128 4 50%+128 36">
 			<translatableAttribute id="caption">Match Setup</translatableAttribute>

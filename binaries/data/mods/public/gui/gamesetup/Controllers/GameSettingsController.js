@@ -1,20 +1,24 @@
 /**
- * 'Controller' for the GUI handling of gamesettings.
+ * Controller for the GUI handling of gamesettings.
  */
-class GameSettingsControl
+class GameSettingsController
 {
-	constructor(setupWindow, netMessages, startGameControl, playerAssignmentsControl, mapCache)
+	constructor(setupWindow, netMessages, playerAssignmentsController, mapCache)
 	{
 		this.setupWindow = setupWindow;
-		this.startGameControl = startGameControl;
 		this.mapCache = mapCache;
-		this.gameSettingsFile = new GameSettingsFile(this);
+		this.persistentMatchSettings = new PersistentMatchSettings(this);
 
 		this.guiData = new GameSettingsGuiData();
 
 		// When joining a game, the complete set of attributes
 		// may not have been received yet.
 		this.loading = true;
+
+		// If this is true, the ready controller won't reset readiness.
+		// TODO: ideally the ready controller would be somewhat independent from this one,
+		// possibly by listening to gamesetup messages itself.
+		this.gameStarted = false;
 
 		this.updateLayoutHandlers = new Set();
 		this.settingsChangeHandlers = new Set();
@@ -23,15 +27,18 @@ class GameSettingsControl
 		setupWindow.registerLoadHandler(this.onLoad.bind(this));
 		setupWindow.registerGetHotloadDataHandler(this.onGetHotloadData.bind(this));
 
-		startGameControl.registerLaunchGameHandler(this.onLaunchGame.bind(this));
-
 		setupWindow.registerClosePageHandler(this.onClose.bind(this));
 
-		if (g_IsController && g_IsNetworked)
-			playerAssignmentsControl.registerClientJoinHandler(this.onClientJoin.bind(this));
-
 		if (g_IsNetworked)
+		{
+			if (g_IsController)
+				playerAssignmentsController.registerClientJoinHandler(this.onClientJoin.bind(this));
+			else
+				// In MP, the host launches the game and switches right away,
+				// clients switch when they receive the appropriate message.
+				netMessages.registerNetMessageHandler("start", this.switchToLoadingPage.bind(this));
 			netMessages.registerNetMessageHandler("gamesetup", this.onGamesetupMessage.bind(this));
+		}
 	}
 
 	/**
@@ -63,9 +70,9 @@ class GameSettingsControl
 	{
 		if (hotloadData)
 			this.parseSettings(hotloadData.initAttributes);
-		else if (g_IsController && this.gameSettingsFile.enabled)
+		else if (g_IsController && this.persistentMatchSettings.enabled)
 		{
-			let settings = this.gameSettingsFile.loadFile();
+			let settings = this.persistentMatchSettings.loadFile();
 			if (settings)
 				this.parseSettings(settings);
 		}
@@ -76,11 +83,6 @@ class GameSettingsControl
 		// If we are the controller, we are done loading.
 		if (hotloadData || !g_IsNetworked || g_IsController)
 			this.setLoading(false);
-	}
-
-	onClose()
-	{
-		this.gameSettingsFile.saveFile();
 	}
 
 	onClientJoin()
@@ -226,10 +228,52 @@ class GameSettingsControl
 			});
 	}
 
-	onLaunchGame()
+	/**
+	 * Cheat prevention:
+	 *
+	 * 1. Ensure that the host cannot start the game unless all clients agreed on the game settings using the ready system.
+	 *
+	 * TODO:
+	 * 2. Ensure that the host cannot start the game with InitAttributes different from the agreed ones.
+	 * This may be achieved by:
+	 * - Determining the seed collectively.
+	 * - passing the agreed game settings to the engine when starting the game instance
+	 * - rejecting new game settings from the server after the game launch event
+	 */
+	launchGame()
 	{
 		// Save the file before random settings are resolved.
-		this.gameSettingsFile.saveFile();
+		this.savePersistentMatchSettings();
+
+		// Mark the game as started so the readyController won't reset state.
+		this.gameStarted = true;
+
+		// This will resolve random settings & send game start messages.
+		// TODO: this will trigger observers, which is somewhat wasteful.
+		g_GameSettings.launchGame(g_PlayerAssignments);
+
+		// Switch to the loading page right away,
+		// the GUI will otherwise show the unrandomised settings.
+		this.switchToLoadingPage();
+	}
+
+	switchToLoadingPage()
+	{
+		Engine.SwitchGuiPage("page_loading.xml", {
+			"attribs": g_GameSettings.toInitAttributes(),
+			"playerAssignments": g_PlayerAssignments
+		});
+	}
+
+	onClose()
+	{
+		this.savePersistentMatchSettings();
+	}
+
+	savePersistentMatchSettings()
+	{
+		// TODO: ought to only save a subset of settings.
+		this.persistentMatchSettings.saveFile(this.getSettings());
 	}
 }
 
@@ -237,4 +281,4 @@ class GameSettingsControl
 /**
  * Wait (at most) this many milliseconds before sending network messages.
  */
-GameSettingsControl.prototype.Timeout = 400;
+GameSettingsController.prototype.Timeout = 400;

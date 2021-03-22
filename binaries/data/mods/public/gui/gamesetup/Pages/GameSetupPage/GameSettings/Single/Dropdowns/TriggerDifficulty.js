@@ -33,7 +33,7 @@ GameSettingControls.TriggerDifficulty = class TriggerDifficulty extends GameSett
 	onSelectionChange(itemIdx)
 	{
 		g_GameSettings.triggerDifficulty.setValue(this.values.Difficulty[itemIdx]);
-		this.gameSettingsControl.setNetworkInitAttributes();
+		this.gameSettingsController.setNetworkInitAttributes();
 	}
 };
 

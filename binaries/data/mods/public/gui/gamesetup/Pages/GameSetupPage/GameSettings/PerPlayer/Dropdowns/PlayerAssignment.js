@@ -73,7 +73,7 @@ PlayerSettingControls.PlayerAssignment = class PlayerAssignment extends GameSett
 		if (this.assignedGUID && g_GameSettings.playerAI.get(this.playerIndex))
 		{
 			g_GameSettings.playerAI.setAI(this.playerIndex, undefined);
-			this.gameSettingsControl.setNetworkInitAttributes();
+			this.gameSettingsController.setNetworkInitAttributes();
 		}
 		this.render();
 	}
@@ -118,8 +118,8 @@ PlayerSettingControls.PlayerAssignment = class PlayerAssignment extends GameSett
 	onSelectionChange(itemIdx)
 	{
 		this.values.Handler[itemIdx].onSelectionChange(
-			this.gameSettingsControl,
-			this.playerAssignmentsControl,
+			this.gameSettingsController,
+			this.playerAssignmentsController,
 			this.playerIndex,
 			this.values.Value[itemIdx]);
 	}
@@ -150,7 +150,7 @@ PlayerSettingControls.PlayerAssignment.prototype.AutocompleteOrder = 100;
 			};
 		}
 
-		onSelectionChange(gameSettingsControl, playerAssignmentsControl, playerIndex, guidToAssign)
+		onSelectionChange(gameSettingsController, playerAssignmentsController, playerIndex, guidToAssign)
 		{
 			let sourcePlayer = g_PlayerAssignments[guidToAssign].player - 1;
 			if (sourcePlayer >= 0)
@@ -167,8 +167,8 @@ PlayerSettingControls.PlayerAssignment.prototype.AutocompleteOrder = 100;
 				}
 			}
 
-			playerAssignmentsControl.assignPlayer(guidToAssign, playerIndex);
-			gameSettingsControl.setNetworkInitAttributes();
+			playerAssignmentsController.assignPlayer(guidToAssign, playerIndex);
+			gameSettingsController.setNetworkInitAttributes();
 		}
 
 		isSelected(pData, guid, value)
@@ -198,9 +198,9 @@ PlayerSettingControls.PlayerAssignment.prototype.AutocompleteOrder = 100;
 			};
 		}
 
-		onSelectionChange(gameSettingsControl, playerAssignmentsControl, playerIndex, value)
+		onSelectionChange(gameSettingsController, playerAssignmentsController, playerIndex, value)
 		{
-			playerAssignmentsControl.unassignClient(playerIndex + 1);
+			playerAssignmentsController.unassignClient(playerIndex + 1);
 
 			g_GameSettings.playerAI.set(playerIndex, {
 				"bot": value,
@@ -208,7 +208,7 @@ PlayerSettingControls.PlayerAssignment.prototype.AutocompleteOrder = 100;
 				"behavior": Engine.ConfigDB_GetValue("user", "gui.gamesetup.aibehavior"),
 			});
 
-			gameSettingsControl.setNetworkInitAttributes();
+			gameSettingsController.setNetworkInitAttributes();
 		}
 
 		isSelected(pData, guid, value)
@@ -237,13 +237,13 @@ PlayerSettingControls.PlayerAssignment.prototype.AutocompleteOrder = 100;
 			};
 		}
 
-		onSelectionChange(gameSettingsControl, playerAssignmentsControl, playerIndex)
+		onSelectionChange(gameSettingsController, playerAssignmentsController, playerIndex)
 		{
-			playerAssignmentsControl.unassignClient(playerIndex + 1);
+			playerAssignmentsController.unassignClient(playerIndex + 1);
 
 			g_GameSettings.playerAI.setAI(playerIndex, undefined);
 
-			gameSettingsControl.setNetworkInitAttributes();
+			gameSettingsController.setNetworkInitAttributes();
 		}
 
 		isSelected(pData, guid, value)
