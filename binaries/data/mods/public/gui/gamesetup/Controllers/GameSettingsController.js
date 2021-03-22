@@ -74,7 +74,14 @@ class GameSettingsController
 		{
 			let settings = this.persistentMatchSettings.loadFile();
 			if (settings)
+			{
 				this.parseSettings(settings);
+				// If the new settings led to AI & players conflict, remove the AI.
+				for (let guid in g_PlayerAssignments)
+					if (g_PlayerAssignments[guid].player !== -1 &&
+						g_GameSettings.playerAI.get(g_PlayerAssignments[guid].player - 1))
+						g_GameSettings.playerAI.set(g_PlayerAssignments[guid].player - 1, undefined);
+			}
 		}
 
 		this.updateLayout();

@@ -70,6 +70,7 @@ PlayerSettingControls.PlayerAssignment = class PlayerAssignment extends GameSett
 		if (this.assignedGUID === newGUID)
 			return;
 		this.assignedGUID = newGUID;
+		// Remove the AI from the slot if there was one.
 		if (this.assignedGUID && g_GameSettings.playerAI.get(this.playerIndex))
 		{
 			g_GameSettings.playerAI.setAI(this.playerIndex, undefined);
