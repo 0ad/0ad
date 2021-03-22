@@ -5565,6 +5565,8 @@ UnitAI.prototype.Attack = function(target, allowCapture = true, queued = false, 
 	{
 		this.order.data.lastPos = order.lastPos;
 		this.order.data.force = order.force;
+		if (order.force)
+			this.orderQueue = [this.order];
 		return;
 	}
 
@@ -5650,6 +5652,8 @@ UnitAI.prototype.PerformGather = function(target, queued, force, pushFront = fal
 	{
 		this.order.data.lastPos = order.lastPos;
 		this.order.data.force = order.force;
+		if (order.force)
+			this.orderQueue = [this.order];
 		return;
 	}
 
@@ -5687,6 +5691,7 @@ UnitAI.prototype.Heal = function(target, queued, pushFront)
 		this.order.data.target === target)
 	{
 		this.order.data.force = true;
+		this.orderQueue = [this.order];
 		return;
 	}
 
@@ -5910,6 +5915,7 @@ UnitAI.prototype.Repair = function(target, autocontinue, queued, pushFront)
 		this.order.data.autocontinue === autocontinue)
 	{
 		this.order.data.force = true;
+		this.orderQueue = [this.order];
 		return;
 	}
 
