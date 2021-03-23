@@ -61,6 +61,7 @@ ReferencePage.prototype.StatsFunctions = [
 	getSpeedTooltip,
 	getGatherTooltip,
 	getResourceSupplyTooltip,
+	getTreasureTooltip,
 	getPopulationBonusTooltip,
 	getResourceTrickleTooltip,
 	getLootTooltip
