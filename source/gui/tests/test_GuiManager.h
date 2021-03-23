@@ -34,8 +34,8 @@ public:
 	void setUp()
 	{
 		g_VFS = CreateVfs();
-		TS_ASSERT_OK(g_VFS->Mount(L"", DataDir()/"mods"/"_test.gui", VFS_MOUNT_MUST_EXIST));
-		TS_ASSERT_OK(g_VFS->Mount(L"cache", DataDir()/"_testcache"));
+		TS_ASSERT_OK(g_VFS->Mount(L"", DataDir() / "mods" / "_test.gui" / "", VFS_MOUNT_MUST_EXIST));
+		TS_ASSERT_OK(g_VFS->Mount(L"cache", DataDir() / "_testcache" / "", 0, VFS_MAX_PRIORITY));
 
 		configDB = new CConfigDB;
 

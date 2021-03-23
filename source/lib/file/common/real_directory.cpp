@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -31,6 +31,7 @@
 RealDirectory::RealDirectory(const OsPath& path, size_t priority, size_t flags)
 	: m_path(path), m_priority(priority), m_flags(flags)
 {
+	ENSURE(path.IsDirectory());
 }
 
 

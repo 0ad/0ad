@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -47,14 +47,12 @@ static Status CreateDirectory(const OsPath& path)
 			return INFO::OK;
 	}
 
-	// failed because the directory already exists. this can happen
-	// when the first vfs_Lookup has addMissingDirectories &&
-	// !createMissingDirectories, and the directory is subsequently
-	// created. return 'success' to attach the existing directory..
+	// Failed because the directory already exists.
+	// Return 'success' to attach the existing directory.
 	if(errno == EEXIST)
 	{
-		// but first ensure it's really a directory (otherwise, a
-		// file is "in the way" and needs to be deleted)
+		// But first ensure it's really a directory
+		// (otherwise, a file is "in the way" and needs to be deleted).
 		struct stat s;
 		const int ret = wstat(path, &s);
 		ENSURE(ret == 0);	// (wmkdir said it existed)
@@ -76,22 +74,23 @@ Status vfs_Lookup(const VfsPath& pathname, VfsDirectory* startDirectory, VfsDire
 {
 	// extract and validate flags (ensure no unknown bits are set)
 	const bool addMissingDirectories    = (flags & VFS_LOOKUP_ADD) != 0;
-	const bool createMissingDirectories = (flags & VFS_LOOKUP_CREATE) != 0;
 	const bool skipPopulate = (flags & VFS_LOOKUP_SKIP_POPULATE) != 0;
-	const bool createAlways = (flags & VFS_LOOKUP_CREATE_ALWAYS) != 0;
-	ENSURE((flags & ~(VFS_LOOKUP_ADD|VFS_LOOKUP_CREATE|VFS_LOOKUP_SKIP_POPULATE|VFS_LOOKUP_CREATE_ALWAYS)) == 0);
+	const bool realPath = (flags & VFS_LOOKUP_REAL_PATH) != 0;
+	ENSURE((flags & ~(VFS_LOOKUP_ADD|VFS_LOOKUP_SKIP_POPULATE|VFS_LOOKUP_REAL_PATH)) == 0);
 
 	directory = startDirectory;
-	if(pfile)
+	if (pfile)
 		*pfile = 0;
 
-	if(!skipPopulate)
+	if (!skipPopulate)
 		RETURN_STATUS_IF_ERR(vfs_Populate(directory));
 
 	// early-out for pathname == "" when mounting into VFS root
-	if(pathname.empty())	// (prevent iterator error in loop end condition)
+	if (pathname.empty())	// (prevent iterator error in loop end condition)
 	{
-		if(pfile)	// preserve a guarantee that if pfile then we either return an error or set *pfile
+		// Preserve a guarantee that if pfile then we either return an error or set *pfile,
+		// and if looking for a real path ensure an associated directory.
+		if (pfile || (realPath && !directory->AssociatedDirectory()))
 			return ERR::VFS_FILE_NOT_FOUND;
 		else
 			return INFO::OK;
@@ -102,46 +101,60 @@ Status vfs_Lookup(const VfsPath& pathname, VfsDirectory* startDirectory, VfsDire
 	for(;;)
 	{
 		const size_t nextSlash = pathname.string().find_first_of('/', pos);
-		if(nextSlash == VfsPath::String::npos)
+		if (nextSlash == VfsPath::String::npos)
 			break;
 		const VfsPath subdirectoryName = pathname.string().substr(pos, nextSlash-pos);
 		pos = nextSlash+1;
 
 		VfsDirectory* subdirectory = directory->GetSubdirectory(subdirectoryName);
-		if(!subdirectory)
+		if (!subdirectory)
 		{
-			if(addMissingDirectories)
+			if (addMissingDirectories)
 				subdirectory = directory->AddSubdirectory(subdirectoryName);
 			else
 				return ERR::VFS_DIR_NOT_FOUND;	// NOWARN
 		}
-
-		if(createMissingDirectories && (!subdirectory->AssociatedDirectory()
-		     || (createAlways && (subdirectory->AssociatedDirectory()->Flags() & VFS_MOUNT_REPLACEABLE) != 0)))
+		// When looking for a real path, we need to keep the path of the highest priority subdirectory.
+		// If the current directory has an associated directory, and the subdir does not / is lower priority,
+		// we will overwrite it.
+		PRealDirectory realDir = directory->AssociatedDirectory();
+		if (realPath && realDir &&
+		    (!subdirectory->AssociatedDirectory() ||
+		    realDir->Priority() > subdirectory->AssociatedDirectory()->Priority()))
 		{
-			OsPath currentPath;
-			if(directory->AssociatedDirectory())	// (is NULL when mounting into root)
-				currentPath = directory->AssociatedDirectory()->Path();
-			currentPath = currentPath / subdirectoryName;
+			OsPath currentPath = directory->AssociatedDirectory()->Path();
+			currentPath = currentPath / subdirectoryName / "";
 
-			RETURN_STATUS_IF_ERR(CreateDirectory(currentPath));
+			// Only actually create the directory if we're in LOOKUP_ADD mode.
+			if (addMissingDirectories)
+				RETURN_STATUS_IF_ERR(CreateDirectory(currentPath));
+			else if (!DirectoryExists(currentPath))
+				return ERR::VFS_DIR_NOT_FOUND;
 
-			PRealDirectory realDirectory(new RealDirectory(currentPath, 0, 0));
+			// Propagate priority and flags to the subdirectory.
+			// If it already existed, it will be replaced & the memory freed.
+			PRealDirectory realDirectory(new RealDirectory(currentPath,
+				realDir ? realDir->Priority() : 0,
+				realDir ? realDir->Flags() : 0)
+			);
 			RETURN_STATUS_IF_ERR(vfs_Attach(subdirectory, realDirectory));
 		}
 
-		if(!skipPopulate)
+		if (!skipPopulate)
 			RETURN_STATUS_IF_ERR(vfs_Populate(subdirectory));
 
 		directory = subdirectory;
 	}
 
-	if(pfile)
+	if (realPath && !directory->AssociatedDirectory())
+		return ERR::VFS_DIR_NOT_FOUND;
+
+	if (pfile)
 	{
 		ENSURE(!pathname.IsDirectory());
 		const VfsPath filename = pathname.string().substr(pos);
 		*pfile = directory->GetFile(filename);
-		if(!*pfile)
+		if (!*pfile)
 			return ERR::VFS_FILE_NOT_FOUND;	// NOWARN
 	}
 

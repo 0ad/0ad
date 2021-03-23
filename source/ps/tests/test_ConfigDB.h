@@ -30,7 +30,7 @@ public:
 	void setUp()
 	{
 		g_VFS = CreateVfs();
-		TS_ASSERT_OK(g_VFS->Mount(L"config", DataDir()/"_testconfig"));
+		TS_ASSERT_OK(g_VFS->Mount(L"config", DataDir() / "_testconfig" / ""));
 
 		configDB = new CConfigDB;
 	}

@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -35,10 +35,10 @@ CArchiveBuilder::CArchiveBuilder(const OsPath& mod, const OsPath& tempdir) :
 
 	DeleteDirectory(m_TempDir/"_archivecache"); // clean up in case the last run failed
 
-	m_VFS->Mount(L"cache/", m_TempDir/"_archivecache"/"");
+	m_VFS->Mount(L"cache/", m_TempDir/"_archivecache"/"", 0, VFS_MAX_PRIORITY);
 
 	// Mount with highest priority so base mods do not overwrite files in this mod
-	m_VFS->Mount(L"", mod/"", VFS_MOUNT_MUST_EXIST | VFS_MOUNT_KEEP_DELETED, (size_t)-1);
+	m_VFS->Mount(L"", mod/"", VFS_MOUNT_MUST_EXIST | VFS_MOUNT_KEEP_DELETED, VFS_MAX_PRIORITY);
 
 	// Collect the list of files before loading any base mods
 	vfs::ForEachFile(m_VFS, L"", &CollectFileCB, (uintptr_t)static_cast<void*>(this), 0, vfs::DIR_RECURSIVE);

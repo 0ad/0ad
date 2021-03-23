@@ -593,7 +593,8 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 
 		Paths paths(args);
 		g_VFS = CreateVfs();
-		g_VFS->Mount(L"cache/", paths.Cache(), VFS_MOUNT_ARCHIVABLE);
+		// Mount with highest priority, we don't want mods overwriting this.
+		g_VFS->Mount(L"cache/", paths.Cache(), VFS_MOUNT_ARCHIVABLE, VFS_MAX_PRIORITY);
 		MountMods(paths, GetMods(args, INIT_MODS));
 
 		{
