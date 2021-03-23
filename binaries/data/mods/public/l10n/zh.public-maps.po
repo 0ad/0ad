@@ -28,8 +28,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-03-12 08:08+0000\n"
-"PO-Revision-Date: 2021-03-17 05:47+0000\n"
+"POT-Creation-Date: 2021-03-19 08:08+0000\n"
+"PO-Revision-Date: 2021-03-19 10:30+0000\n"
 "Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -205,17 +205,17 @@ msgid "Canyon"
 msgstr "峡谷"
 
 #: maps/random/continent.jsonsettings.Description
-#: maps/random/unknown.jsonsettings.Landscapes.land[0].Description
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[0].Description
 msgid "All players starts on a continent surrounded by water."
 msgstr "所有玩家都在一个被水所环绕的大陆开始游戏。"
 
 #: maps/random/continent.jsonsettings.Name
-#: maps/random/unknown.jsonsettings.Landscapes.land[0].Name
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[0].Name
 msgid "Continent"
 msgstr "大陆"
 
 #: maps/random/corinthian_isthmus.jsonsettings.Description
-#: maps/random/unknown.jsonsettings.Landscapes.land[1].Description
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[1].Description
 #: maps/skirmishes/corinthian_isthmus_2p.xml:Description:38
 #: maps/skirmishes/corinthian_isthmus_4p.xml:Description:39
 msgid ""
@@ -595,12 +595,12 @@ msgid "Lower Nubia"
 msgstr "下努比亚"
 
 #: maps/random/mainland.jsonsettings.Description
-#: maps/random/unknown.jsonsettings.Landscapes.land[8].Description
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[8].Description
 msgid "A typical map without any water."
 msgstr "没有水域的典型地图"
 
 #: maps/random/mainland.jsonsettings.Name
-#: maps/random/unknown.jsonsettings.Landscapes.land[8].Name
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[8].Name
 msgid "Mainland"
 msgstr "大陆"
 
@@ -1141,87 +1141,103 @@ msgstr "尼罗河"
 msgid "The unknown."
 msgstr "未知"
 
-#: maps/random/unknown.jsonsettings.Landscapes.land[1].Name
+#: maps/random/unknown.jsonsettings.Landscapes[0].Description
+msgid "Choose a random land landscape"
+msgstr ""
+
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[1].Name
 msgid "Isthmus"
 msgstr "地峡"
 
-#: maps/random/unknown.jsonsettings.Landscapes.land[2].Description
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[2].Description
 msgid "A small central river."
 msgstr "小型中央溪流。"
 
-#: maps/random/unknown.jsonsettings.Landscapes.land[2].Name
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[2].Name
 msgid "Central River"
 msgstr "中央河流                                                                                  "
 
-#: maps/random/unknown.jsonsettings.Landscapes.land[3].Description
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[3].Description
 msgid ""
 "Players are aligned on a strip of land with seas bordering on one or both "
 "sides that may hold islands."
 msgstr "玩家位于同一块陆地上，大海在另一侧（或两侧都有），可能散布岛屿。"
 
-#: maps/random/unknown.jsonsettings.Landscapes.land[3].Name
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[3].Name
 msgid "Edge Seas"
 msgstr "边缘海洋"
 
-#: maps/random/unknown.jsonsettings.Landscapes.land[4].Description
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[4].Description
 msgid "Land shaped like a concrescent moon around a central lake."
 msgstr "陆地围着中央湖泊，如一弯蛾眉月。"
 
-#: maps/random/unknown.jsonsettings.Landscapes.land[4].Name
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[4].Name
 msgid "Gulf"
 msgstr "海湾"
 
-#: maps/random/unknown.jsonsettings.Landscapes.land[5].Description
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[5].Description
 msgid "Mainland style with some small random lakes."
 msgstr "大陆，点缀数个湖泊。"
 
-#: maps/random/unknown.jsonsettings.Landscapes.land[5].Name
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[5].Name
 msgid "Lakes"
 msgstr "湖泊"
 
-#: maps/random/unknown.jsonsettings.Landscapes.land[6].Description
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[6].Description
 msgid ""
 "A large hill encompasses the map and leaves players only a small passage to "
 "the two neighboring players."
 msgstr "大山环绕地图，一条小径通向其他两名相邻玩家。"
 
-#: maps/random/unknown.jsonsettings.Landscapes.land[6].Name
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[6].Name
 msgid "Passes"
 msgstr "关隘"
 
-#: maps/random/unknown.jsonsettings.Landscapes.land[7].Description
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[7].Description
 msgid ""
 "The land is enclosed by a hill that leaves a small area per player connected"
 " to the large central place."
 msgstr "领地被群山包围，为每个玩家留下以小片地方通往中间的大区域。"
 
-#: maps/random/unknown.jsonsettings.Landscapes.land[7].Name
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[7].Name
 msgid "Lowlands"
 msgstr "低地"
 
-#: maps/random/unknown.jsonsettings.Landscapes.naval[0].Description
+#: maps/random/unknown.jsonsettings.Landscapes[0].Name
+msgid "Random Land"
+msgstr "隨機陸地"
+
+#: maps/random/unknown.jsonsettings.Landscapes[1].Description
+msgid "Choose a random naval landscape"
+msgstr ""
+
+#: maps/random/unknown.jsonsettings.Landscapes[1].Items[0].Description
 msgid "A huge sea is dividing the map into two halves."
 msgstr "陆地被海洋隔开，分为两半。"
 
-#: maps/random/unknown.jsonsettings.Landscapes.naval[0].Name
+#: maps/random/unknown.jsonsettings.Landscapes[1].Items[0].Name
 msgid "Naval: Central Sea"
 msgstr "海事：中央海"
 
-#: maps/random/unknown.jsonsettings.Landscapes.naval[1].Description
+#: maps/random/unknown.jsonsettings.Landscapes[1].Items[1].Description
 msgid "Players are scattered across island chains and disconnected islands."
 msgstr "玩家被分散在岛链和不连接的小岛上。"
 
-#: maps/random/unknown.jsonsettings.Landscapes.naval[1].Name
+#: maps/random/unknown.jsonsettings.Landscapes[1].Items[1].Name
 msgid "Naval: Archipelago"
 msgstr "海事地图：群岛"
 
-#: maps/random/unknown.jsonsettings.Landscapes.naval[2].Description
+#: maps/random/unknown.jsonsettings.Landscapes[1].Items[2].Description
 msgid "A central lake with rivers possibly separating neighboring players."
 msgstr "中央有一处湖泊，河流将玩家隔开。"
 
-#: maps/random/unknown.jsonsettings.Landscapes.naval[2].Name
+#: maps/random/unknown.jsonsettings.Landscapes[1].Items[2].Name
 msgid "Naval: Lake and rivers"
 msgstr "海事地图：湖泊或河流。"
+
+#: maps/random/unknown.jsonsettings.Landscapes[1].Name
+msgid "Random Naval"
+msgstr "隨機海事"
 
 #: maps/random/unknown.jsonsettings.Name
 msgid "Unknown"

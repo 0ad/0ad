@@ -5,15 +5,15 @@ ChatMessageEvents.GameSettingsChanged = class
 {
 	constructor(setupWindow, chatMessagesPanel)
 	{
-		this.readyControl = setupWindow.controls.readyControl;
+		this.readyController = setupWindow.controls.readyController;
 		this.chatMessagesPanel = chatMessagesPanel;
 
-		this.readyControl.registerResetReadyHandler(this.onResetReady.bind(this));
+		this.readyController.registerResetReadyHandler(this.onResetReady.bind(this));
 	}
 
 	onResetReady()
 	{
-		if (this.readyControl.getLocalReadyState() == this.readyControl.Ready)
+		if (this.readyController.getLocalReadyState() == this.readyController.Ready)
 			this.chatMessagesPanel.addStatusMessage(this.MessageText);
 	}
 };

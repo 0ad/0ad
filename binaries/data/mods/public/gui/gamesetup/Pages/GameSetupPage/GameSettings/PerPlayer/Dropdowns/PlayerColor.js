@@ -36,7 +36,7 @@ PlayerSettingControls.PlayerColor = class PlayerColor extends GameSettingControl
 	onSelectionChange(itemIdx)
 	{
 		g_GameSettings.playerColor.setColor(this.playerIndex, this.values[itemIdx]);
-		this.gameSettingsControl.setNetworkInitAttributes();
+		this.gameSettingsController.setNetworkInitAttributes();
 	}
 };
 

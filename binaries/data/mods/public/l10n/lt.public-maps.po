@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-03-12 08:08+0000\n"
-"PO-Revision-Date: 2021-03-16 12:36+0000\n"
+"POT-Creation-Date: 2021-03-19 08:08+0000\n"
+"PO-Revision-Date: 2021-03-19 10:30+0000\n"
 "Last-Translator: V S <v32itas@slacknet.eu>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/wildfire-games/0ad/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -178,24 +178,24 @@ msgstr ""
 
 #: maps/random/canyon.jsonsettings.Description
 msgid "Players start around the map in deep canyons."
-msgstr ""
+msgstr "Žaidėjai pradeda, giliuose kanjonuose aplink žemėlapį."
 
 #: maps/random/canyon.jsonsettings.Name
 msgid "Canyon"
 msgstr "Kanjonas"
 
 #: maps/random/continent.jsonsettings.Description
-#: maps/random/unknown.jsonsettings.Landscapes.land[0].Description
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[0].Description
 msgid "All players starts on a continent surrounded by water."
 msgstr ""
 
 #: maps/random/continent.jsonsettings.Name
-#: maps/random/unknown.jsonsettings.Landscapes.land[0].Name
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[0].Name
 msgid "Continent"
 msgstr "Kontinentas"
 
 #: maps/random/corinthian_isthmus.jsonsettings.Description
-#: maps/random/unknown.jsonsettings.Landscapes.land[1].Description
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[1].Description
 #: maps/skirmishes/corinthian_isthmus_2p.xml:Description:38
 #: maps/skirmishes/corinthian_isthmus_4p.xml:Description:39
 msgid ""
@@ -261,7 +261,7 @@ msgstr ""
 
 #: maps/random/deep_forest.jsonsettings.Description
 msgid "A deep dark forest in Germania."
-msgstr ""
+msgstr "Gili tamsi Germanijos giria."
 
 #: maps/random/deep_forest.jsonsettings.Name
 msgid "Deep Forest"
@@ -522,7 +522,7 @@ msgstr "Kerala"
 
 #: maps/random/lake.jsonsettings.Description
 msgid "Players start around a lake in the center of the map."
-msgstr ""
+msgstr "Žaidėjai pradeda, aplinkui ežerą esantį žemėlapio centre."
 
 #: maps/random/lake.jsonsettings.Name
 msgid "Lake"
@@ -575,14 +575,14 @@ msgid "Lower Nubia"
 msgstr ""
 
 #: maps/random/mainland.jsonsettings.Description
-#: maps/random/unknown.jsonsettings.Landscapes.land[8].Description
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[8].Description
 msgid "A typical map without any water."
 msgstr ""
 
 #: maps/random/mainland.jsonsettings.Name
-#: maps/random/unknown.jsonsettings.Landscapes.land[8].Name
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[8].Name
 msgid "Mainland"
-msgstr ""
+msgstr "Centrinė žemė"
 
 #: maps/random/marmara.jsonsettings.Description
 msgid ""
@@ -627,7 +627,7 @@ msgstr ""
 #: maps/random/migration.jsonsettings.Name
 #: maps/scenarios/migration.xml:Name:26
 msgid "Migration"
-msgstr ""
+msgstr "Migracija"
 
 #: maps/random/neareastern_badlands.jsonsettings.Description
 msgid ""
@@ -664,7 +664,7 @@ msgstr ""
 msgid ""
 "Players start in a tough map to play with scarce wood and dangerous polar "
 "animals."
-msgstr ""
+msgstr "Žaidėjai pradeda sudėtingame žemėlapyje, kur reta mediena taip pat gausu pavojingų arktinių gyvūnų."
 
 #: maps/random/northern_lights.jsonsettings.Name
 msgid "Northern Lights"
@@ -674,7 +674,7 @@ msgstr "Šiaurės pašvaistės"
 msgid ""
 "Players start around a small oasis in the center of the map which holds much"
 " of the available wood on the map."
-msgstr ""
+msgstr "Žaidėjai pradeda aplink mažas oazes žemėlapio centre, kur yra beveik visa žemėlapyje pasiekiama mediena."
 
 #: maps/random/oasis.jsonsettings.Name
 msgid "Oasis"
@@ -1017,7 +1017,7 @@ msgstr "Sacharos oazės"
 msgid ""
 "A somewhat open map with an abundance of food and mineral resources, while "
 "wood is somewhat scarce."
-msgstr ""
+msgstr "Ganėtinai atviras žemėlapis su maisto ir mineralų pertekliumi, tačiau mediena čia reta."
 
 #: maps/random/sahel.jsonsettings.Name maps/scenarios/sahel.xml:Name:38
 msgid "Sahel"
@@ -1121,87 +1121,103 @@ msgstr "Nilas"
 msgid "The unknown."
 msgstr ""
 
-#: maps/random/unknown.jsonsettings.Landscapes.land[1].Name
+#: maps/random/unknown.jsonsettings.Landscapes[0].Description
+msgid "Choose a random land landscape"
+msgstr ""
+
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[1].Name
 msgid "Isthmus"
 msgstr ""
 
-#: maps/random/unknown.jsonsettings.Landscapes.land[2].Description
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[2].Description
 msgid "A small central river."
 msgstr ""
 
-#: maps/random/unknown.jsonsettings.Landscapes.land[2].Name
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[2].Name
 msgid "Central River"
 msgstr ""
 
-#: maps/random/unknown.jsonsettings.Landscapes.land[3].Description
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[3].Description
 msgid ""
 "Players are aligned on a strip of land with seas bordering on one or both "
 "sides that may hold islands."
 msgstr ""
 
-#: maps/random/unknown.jsonsettings.Landscapes.land[3].Name
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[3].Name
 msgid "Edge Seas"
 msgstr ""
 
-#: maps/random/unknown.jsonsettings.Landscapes.land[4].Description
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[4].Description
 msgid "Land shaped like a concrescent moon around a central lake."
 msgstr ""
 
-#: maps/random/unknown.jsonsettings.Landscapes.land[4].Name
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[4].Name
 msgid "Gulf"
 msgstr ""
 
-#: maps/random/unknown.jsonsettings.Landscapes.land[5].Description
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[5].Description
 msgid "Mainland style with some small random lakes."
 msgstr ""
 
-#: maps/random/unknown.jsonsettings.Landscapes.land[5].Name
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[5].Name
 msgid "Lakes"
 msgstr ""
 
-#: maps/random/unknown.jsonsettings.Landscapes.land[6].Description
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[6].Description
 msgid ""
 "A large hill encompasses the map and leaves players only a small passage to "
 "the two neighboring players."
 msgstr ""
 
-#: maps/random/unknown.jsonsettings.Landscapes.land[6].Name
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[6].Name
 msgid "Passes"
 msgstr ""
 
-#: maps/random/unknown.jsonsettings.Landscapes.land[7].Description
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[7].Description
 msgid ""
 "The land is enclosed by a hill that leaves a small area per player connected"
 " to the large central place."
 msgstr ""
 
-#: maps/random/unknown.jsonsettings.Landscapes.land[7].Name
+#: maps/random/unknown.jsonsettings.Landscapes[0].Items[7].Name
 msgid "Lowlands"
 msgstr ""
 
-#: maps/random/unknown.jsonsettings.Landscapes.naval[0].Description
+#: maps/random/unknown.jsonsettings.Landscapes[0].Name
+msgid "Random Land"
+msgstr "Atsitiktinė žemė"
+
+#: maps/random/unknown.jsonsettings.Landscapes[1].Description
+msgid "Choose a random naval landscape"
+msgstr ""
+
+#: maps/random/unknown.jsonsettings.Landscapes[1].Items[0].Description
 msgid "A huge sea is dividing the map into two halves."
 msgstr ""
 
-#: maps/random/unknown.jsonsettings.Landscapes.naval[0].Name
+#: maps/random/unknown.jsonsettings.Landscapes[1].Items[0].Name
 msgid "Naval: Central Sea"
 msgstr ""
 
-#: maps/random/unknown.jsonsettings.Landscapes.naval[1].Description
+#: maps/random/unknown.jsonsettings.Landscapes[1].Items[1].Description
 msgid "Players are scattered across island chains and disconnected islands."
 msgstr ""
 
-#: maps/random/unknown.jsonsettings.Landscapes.naval[1].Name
+#: maps/random/unknown.jsonsettings.Landscapes[1].Items[1].Name
 msgid "Naval: Archipelago"
 msgstr ""
 
-#: maps/random/unknown.jsonsettings.Landscapes.naval[2].Description
+#: maps/random/unknown.jsonsettings.Landscapes[1].Items[2].Description
 msgid "A central lake with rivers possibly separating neighboring players."
 msgstr ""
 
-#: maps/random/unknown.jsonsettings.Landscapes.naval[2].Name
+#: maps/random/unknown.jsonsettings.Landscapes[1].Items[2].Name
 msgid "Naval: Lake and rivers"
 msgstr ""
+
+#: maps/random/unknown.jsonsettings.Landscapes[1].Name
+msgid "Random Naval"
+msgstr "Atsitiktinis Jūrinis"
 
 #: maps/random/unknown.jsonsettings.Name
 msgid "Unknown"
@@ -1213,7 +1229,7 @@ msgstr ""
 
 #: maps/random/volcanic_lands.jsonsettings.Name
 msgid "Volcanic Lands"
-msgstr ""
+msgstr "Vulkaninės Žemės"
 
 #: maps/random/wall_demo.jsonsettings.Description
 msgid ""
@@ -1223,7 +1239,7 @@ msgstr ""
 
 #: maps/random/wall_demo.jsonsettings.Name
 msgid "Wall Demo"
-msgstr ""
+msgstr "Sienos Demonstracija"
 
 #: maps/random/wild_lake.jsonsettings.Description
 msgid "A lake surrounded by hills."
@@ -1328,19 +1344,19 @@ msgstr ""
 
 #: maps/scenarios/azure_coast_4p.xml:PlayerData[0].Name:26
 msgid "East"
-msgstr ""
+msgstr "Rytai"
 
 #: maps/scenarios/azure_coast_4p.xml:PlayerData[1].Name:26
 msgid "West"
-msgstr ""
+msgstr "Vakarai"
 
 #: maps/scenarios/azure_coast_4p.xml:PlayerData[2].Name:26
 msgid "South"
-msgstr ""
+msgstr "Pietūs"
 
 #: maps/scenarios/azure_coast_4p.xml:PlayerData[3].Name:26
 msgid "North"
-msgstr ""
+msgstr "Šiaurė"
 
 #: maps/scenarios/azure_coast_8p.xml:Name:38
 msgid "Azure Coast 1"
@@ -1386,7 +1402,7 @@ msgstr ""
 
 #: maps/scenarios/battle_for_the_tiber.xml:Name:26
 msgid "Battle for the Tiber"
-msgstr ""
+msgstr "Tiberijos Mūšis"
 
 #: maps/scenarios/battle_for_the_tiber.xml:PlayerData[0].Name:26
 msgid "Rome"
@@ -1399,7 +1415,7 @@ msgstr ""
 #: maps/scenarios/battle_for_the_tiber.xml:PlayerData[2].Name:26
 #: maps/scenarios/battle_for_the_tiber.xml:PlayerData[3].Name:26
 msgid "Gallic Invaders"
-msgstr ""
+msgstr "Galų Įsiveržėjai"
 
 #: maps/scenarios/belgian_bog_night.xml:Description:38
 msgid "Two Celtic tribes face off across a large bog at night."
@@ -1419,11 +1435,11 @@ msgstr ""
 
 #: maps/scenarios/bridge_demo.xml:PlayerData[0].Name:26
 msgid "Bridge Demo"
-msgstr ""
+msgstr "Tilto Demonstracija"
 
 #: maps/scenarios/bridge_demo.xml:PlayerData[1].Name:26
 msgid "Other"
-msgstr ""
+msgstr "Kita"
 
 #: maps/scenarios/campaign_test_map.xml:Description:38
 msgid "A test map for potential Strategic Campaigns."
@@ -1508,7 +1524,7 @@ msgstr ""
 
 #: maps/scenarios/combat_demo_huge.xml:Name:73
 msgid "Combat Demo (Huge)"
-msgstr ""
+msgstr "Kovos Demonstracija (Didžiulė)"
 
 #: maps/scenarios/death_canyon_invasion_force.xml:Description:38
 msgid ""
@@ -1631,7 +1647,7 @@ msgstr ""
 
 #: maps/scenarios/miletus.xml:Description:26
 msgid "A sandbox scenario for one player."
-msgstr ""
+msgstr "Smėlio dėžės scenarijus vienam žaidėjui."
 
 #: maps/scenarios/miletus.xml:Name:26
 #: maps/scenarios/miletus.xml:PlayerData[0].Name:26
@@ -1672,11 +1688,11 @@ msgstr ""
 
 #: maps/scenarios/necropolis.xml:Name:38
 msgid "Necropolis"
-msgstr ""
+msgstr "Nekropolis"
 
 #: maps/scenarios/pathfinding_demo.xml:Description:38
 msgid "A map for testing unit movement algorithms."
-msgstr ""
+msgstr "Žemėlapis vienetų judėjimo algoritmų testavimui."
 
 #: maps/scenarios/pathfinding_demo.xml:Name:38
 msgid "Pathfinding Demo"
@@ -1698,23 +1714,23 @@ msgstr ""
 
 #: maps/scenarios/peloponnese.xml:Name:38
 msgid "Peloponnesian Wars"
-msgstr ""
+msgstr "Peloponeso Karai"
 
 #: maps/scenarios/peloponnese.xml:PlayerData[0].Name:38
 msgid "Athens"
-msgstr ""
+msgstr "Atėnai"
 
 #: maps/scenarios/peloponnese.xml:PlayerData[1].Name:38
 msgid "Sparta"
-msgstr ""
+msgstr "Sparta"
 
 #: maps/scenarios/peloponnese.xml:PlayerData[2].Name:38
 msgid "Elis"
-msgstr ""
+msgstr "Elis"
 
 #: maps/scenarios/peloponnese.xml:PlayerData[4].Name:38
 msgid "Corinth"
-msgstr ""
+msgstr "Korintas"
 
 #: maps/scenarios/pickup_test_map.xml:Description:39
 msgid ""
@@ -1732,7 +1748,7 @@ msgstr "Demonstracinis naujų vandens efektų žemėlapis."
 
 #: maps/scenarios/polynesia.xml:Name:38
 msgid "Polynesia"
-msgstr ""
+msgstr "Polinezija"
 
 #: maps/scenarios/polynesia.xml:PlayerData[0].Name:38
 msgid "Samoa"
@@ -1752,11 +1768,11 @@ msgstr ""
 
 #: maps/scenarios/resource_demo.xml:Description:26
 msgid "Demo map for resource gathering."
-msgstr ""
+msgstr "Demonstracinis žemėlapis išteklių rankiojimui."
 
 #: maps/scenarios/resource_demo.xml:Name:26
 msgid "Resource demo"
-msgstr ""
+msgstr "Išteklių Demonstracija"
 
 #: maps/scenarios/road_demo.xml:Description:26
 msgid "Demo map showcasing Temperate Road decals."
@@ -1802,30 +1818,30 @@ msgstr ""
 
 #: maps/scenarios/sandbox_athenians.xml:Name:38
 msgid "Sandbox - The Athenians"
-msgstr ""
+msgstr "Smėlio dėžė - Atėniečiai"
 
 #: maps/scenarios/sandbox_athenians.xml:PlayerData[0].Name:38
 msgid "The Athenians"
-msgstr ""
+msgstr "Atėniečiai"
 
 #: maps/scenarios/sandbox_athenians.xml:PlayerData[1].Name:38
 #: maps/scenarios/sandbox_macedonians.xml:PlayerData[1].Name:38
 #: maps/scenarios/sandbox_spartans.xml:PlayerData[0].Name:38
 #: maps/scenarios/sandbox_spartans.xml:PlayerData[1].Name:38
 msgid "The Spartans"
-msgstr ""
+msgstr "Spartiečiai"
 
 #: maps/scenarios/sandbox_athenians.xml:PlayerData[2].Name:38
 #: maps/scenarios/sandbox_macedonians.xml:PlayerData[2].Name:38
 #: maps/scenarios/sandbox_spartans.xml:PlayerData[2].Name:38
 msgid "The Persians"
-msgstr ""
+msgstr "Persai"
 
 #: maps/scenarios/sandbox_athenians.xml:PlayerData[3].Name:38
 #: maps/scenarios/sandbox_macedonians.xml:PlayerData[3].Name:38
 #: maps/scenarios/sandbox_spartans.xml:PlayerData[3].Name:38
 msgid "The Gauls"
-msgstr ""
+msgstr "Galai"
 
 #: maps/scenarios/sandbox_britons.xml:Description:38
 #: maps/scenarios/sandbox_gauls.xml:Description:39
@@ -1834,7 +1850,7 @@ msgstr ""
 
 #: maps/scenarios/sandbox_britons.xml:Name:38
 msgid "Sandbox - The Britons"
-msgstr ""
+msgstr "Smėlio dėžė - Britanai"
 
 #: maps/scenarios/sandbox_britons.xml:PlayerData[3].Name:38
 #: maps/scenarios/sandbox_gauls.xml:PlayerData[4].Name:39
@@ -1843,11 +1859,11 @@ msgstr ""
 
 #: maps/scenarios/sandbox_carthaginians.xml:Description:38
 msgid "Explore the Carthaginian Buildings and Units."
-msgstr ""
+msgstr "Tyrinėkite Kartaginiečių pastatus ir vienetus."
 
 #: maps/scenarios/sandbox_carthaginians.xml:Name:38
 msgid "Sandbox - The Carthaginians"
-msgstr ""
+msgstr "Smėlio dėžė - Kartaginiečiai"
 
 #: maps/scenarios/sandbox_carthaginians.xml:PlayerData[0].Name:38
 #: maps/scenarios/serengeti.xml:PlayerData[0].Name:26
@@ -1861,15 +1877,15 @@ msgstr ""
 
 #: maps/scenarios/sandbox_gauls.xml:Name:39
 msgid "Sandbox - The Gauls"
-msgstr ""
+msgstr "Smėlio dėžė - Galai"
 
 #: maps/scenarios/sandbox_iberians.xml:Description:38
 msgid "A demo map for the Iberians."
-msgstr ""
+msgstr "Demonstracinis žemėlapis Iberams."
 
 #: maps/scenarios/sandbox_iberians.xml:Name:38
 msgid "Sandbox - The Iberians"
-msgstr ""
+msgstr "Smėlio dėžė - Iberiečiai"
 
 #: maps/scenarios/sandbox_kushites.xml:Description:39
 msgid "Play the Kushites faction in a non-threatening sandbox scenario."
@@ -1890,19 +1906,19 @@ msgstr ""
 #: maps/scenarios/sandbox_macedonians.xml:Description:38
 msgid ""
 "Play with the Macedonians faction in a non-threatening sandbox environment."
-msgstr ""
+msgstr "Žaiskite už Makedoniečių frakciją, negrėsmingoje smėlio dėžės aplinkoje."
 
 #: maps/scenarios/sandbox_macedonians.xml:Name:38
 msgid "Sandbox - The Macedonians"
-msgstr ""
+msgstr "Smėlio dėžė - Makedoniečiai"
 
 #: maps/scenarios/sandbox_macedonians.xml:PlayerData[0].Name:38
 msgid "The Macedonians"
-msgstr ""
+msgstr "Makedoniečiai"
 
 #: maps/scenarios/sandbox_mauryas.xml:Description:38
 msgid "Mauryan Indian faction showcase map."
-msgstr ""
+msgstr "Indų-Maurų frakcijos parodomasis žemėlapis."
 
 #: maps/scenarios/sandbox_mauryas.xml:Name:38
 msgid "Sandbox - The Mauryas"
@@ -1910,7 +1926,7 @@ msgstr ""
 
 #: maps/scenarios/sandbox_mauryas.xml:PlayerData[0].Name:38
 msgid "Mauryan Indians"
-msgstr ""
+msgstr "Indai-Maurai"
 
 #: maps/scenarios/sandbox_mauryas.xml:PlayerData[1].Name:38
 msgid "Enemy"
@@ -1922,11 +1938,11 @@ msgstr ""
 
 #: maps/scenarios/sandbox_persians.xml:Name:38
 msgid "Sandbox - The Persians"
-msgstr ""
+msgstr "Smėlio dėžė - Persai"
 
 #: maps/scenarios/sandbox_persians.xml:PlayerData[0].Name:38
 msgid "Achaemenids"
-msgstr ""
+msgstr "Achmenidai"
 
 #: maps/scenarios/sandbox_ptolemies.xml:Description:38
 #: maps/skirmishes/sporades_islands_2p.xml:Description:38

@@ -221,7 +221,7 @@ JS::Value PollNetworkClient(const ScriptInterface& scriptInterface)
 	return scriptInterface.CloneValueFromOtherCompartment(g_NetClient->GetScriptInterface(), pollNet);
 }
 
-void SetNetworkInitAttributes(const ScriptInterface& scriptInterface, JS::HandleValue attribs1)
+void SendGameSetupMessage(const ScriptInterface& scriptInterface, JS::HandleValue attribs1)
 {
 	ENSURE(g_NetClient);
 
@@ -267,10 +267,14 @@ void ClearAllPlayerReady ()
 	g_NetClient->SendClearAllReadyMessage();
 }
 
-void StartNetworkGame()
+void StartNetworkGame(const ScriptInterface& scriptInterface, JS::HandleValue attribs1)
 {
 	ENSURE(g_NetClient);
-	g_NetClient->SendStartGameMessage();
+
+	// TODO: This is a workaround because we need to pass a MutableHandle to a JSAPI functions somewhere (with no obvious reason).
+	ScriptRequest rq(scriptInterface);
+	JS::RootedValue attribs(rq.cx, attribs1);
+	g_NetClient->SendStartGameMessage(scriptInterface.StringifyJSON(&attribs));
 }
 
 void SetTurnLength(int length)
@@ -293,7 +297,7 @@ void RegisterScriptFunctions(const ScriptRequest& rq)
 	ScriptFunction::Register<&DisconnectNetworkGame>(rq, "DisconnectNetworkGame");
 	ScriptFunction::Register<&GetPlayerGUID>(rq, "GetPlayerGUID");
 	ScriptFunction::Register<&PollNetworkClient>(rq, "PollNetworkClient");
-	ScriptFunction::Register<&SetNetworkInitAttributes>(rq, "SetNetworkInitAttributes");
+	ScriptFunction::Register<&SendGameSetupMessage>(rq, "SendGameSetupMessage");
 	ScriptFunction::Register<&AssignNetworkPlayer>(rq, "AssignNetworkPlayer");
 	ScriptFunction::Register<&KickPlayer>(rq, "KickPlayer");
 	ScriptFunction::Register<&SendNetworkChat>(rq, "SendNetworkChat");

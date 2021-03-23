@@ -334,7 +334,7 @@ Attack.prototype.CanAttack = function(target, wantedTypes)
 };
 
 /**
- * Returns null if we have no preference or the lowest index of a preferred class.
+ * Returns undefined if we have no preference or the lowest index of a preferred class.
  */
 Attack.prototype.GetPreference = function(target)
 {
@@ -344,7 +344,7 @@ Attack.prototype.GetPreference = function(target)
 
 	let targetClasses = cmpIdentity.GetClassesList();
 
-	let minPref = null;
+	let minPref;
 	for (let type of this.GetAttackTypes())
 	{
 		let preferredClasses = this.GetPreferredClasses(type);
@@ -354,7 +354,7 @@ Attack.prototype.GetPreference = function(target)
 			{
 				if (pref === 0)
 					return pref;
-				if ((minPref === null || minPref > pref))
+				if ((minPref === undefined || minPref > pref))
 					minPref = pref;
 			}
 		}

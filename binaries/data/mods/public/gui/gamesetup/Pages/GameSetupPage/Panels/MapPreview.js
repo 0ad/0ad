@@ -3,7 +3,7 @@ class MapPreview
 	constructor(setupWindow)
 	{
 		this.setupWindow = setupWindow;
-		this.gameSettingsControl = setupWindow.controls.gameSettingsControl;
+		this.gameSettingsController = setupWindow.controls.gameSettingsController;
 		this.mapCache = setupWindow.controls.mapCache;
 
 		this.mapInfoName = Engine.GetGUIObjectByName("mapInfoName");

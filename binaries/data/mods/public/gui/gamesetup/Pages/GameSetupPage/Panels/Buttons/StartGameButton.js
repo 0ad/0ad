@@ -12,7 +12,7 @@ class StartGameButton
 		this.startGameButton.onPress = this.onPress.bind(this);
 
 		setupWindow.registerLoadHandler(this.onLoad.bind(this));
-		setupWindow.controls.playerAssignmentsControl.registerPlayerAssignmentsChangeHandler(this.update.bind(this));
+		setupWindow.controls.playerAssignmentsController.registerPlayerAssignmentsChangeHandler(this.update.bind(this));
 	}
 
 	registerButtonHiddenChangeHandler(handler)
@@ -44,7 +44,7 @@ class StartGameButton
 
 		for (let guid in g_PlayerAssignments)
 			if (g_PlayerAssignments[guid].player != -1 &&
-				g_PlayerAssignments[guid].status == this.setupWindow.controls.readyControl.NotReady)
+				g_PlayerAssignments[guid].status == this.setupWindow.controls.readyController.NotReady)
 				return false;
 
 		return true;
@@ -57,7 +57,7 @@ class StartGameButton
 
 		this.gameStarted = true;
 		this.update();
-		this.setupWindow.controls.startGameControl.launchGame();
+		this.setupWindow.controls.gameSettingsController.launchGame();
 	}
 }
 

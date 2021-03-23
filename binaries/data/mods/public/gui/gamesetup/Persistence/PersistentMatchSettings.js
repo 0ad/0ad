@@ -1,15 +1,13 @@
 /**
  * This class provides a way to save game settings to a file and load them.
  */
-class GameSettingsFile
+class PersistentMatchSettings
 {
-	constructor(GameSettingsControl)
+	constructor(isNetworked)
 	{
-		this.filename = g_IsNetworked ?
+		this.filename = isNetworked ?
 			this.PersistedSettingsFileMultiplayer :
 			this.PersistedSettingsFileSingleplayer;
-
-		this.gameSettingsControl = GameSettingsControl;
 
 		this.engineInfo = Engine.GetEngineInfo();
 		this.enabled = Engine.ConfigDB_GetValue("user", this.ConfigName) == "true";
@@ -17,11 +15,12 @@ class GameSettingsFile
 
 	loadFile()
 	{
+		if (!this.enabled)
+			return {};
+
 		Engine.ProfileStart("loadPersistMatchSettingsFile");
 
 		let data =
-			this.enabled &&
-			g_IsController &&
 			Engine.FileExists(this.filename) &&
 			Engine.ReadJSONFile(this.filename);
 
@@ -34,27 +33,25 @@ class GameSettingsFile
 	}
 
 	/**
-	 * Delete settings if disabled, so that players are not confronted with old settings after enabling the setting again.
+	 * Delete settings if disabled, so that players are not confronted
+	 * with old settings after enabling the setting again.
 	 */
-	saveFile()
+	saveFile(settings)
 	{
-		if (!g_IsController)
-			return;
-
 		Engine.ProfileStart("savePersistMatchSettingsFile");
 		Engine.WriteJSONFile(this.filename, {
-			"attributes": this.enabled ? this.gameSettingsControl.getSettings() : {},
+			"attributes": this.enabled ? settings : {},
 			"engine_info": this.engineInfo
 		});
 		Engine.ProfileStop();
 	}
 }
 
-GameSettingsFile.prototype.ConfigName =
+PersistentMatchSettings.prototype.ConfigName =
 	"persistmatchsettings";
 
-GameSettingsFile.prototype.PersistedSettingsFileSingleplayer =
+PersistentMatchSettings.prototype.PersistedSettingsFileSingleplayer =
 	"config/matchsettings.json";
 
-GameSettingsFile.prototype.PersistedSettingsFileMultiplayer =
+PersistentMatchSettings.prototype.PersistedSettingsFileMultiplayer =
 	"config/matchsettings.mp.json";

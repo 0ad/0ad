@@ -44,6 +44,13 @@ SetupWindowPages.GameSetupPage = class
 			};
 		}
 
+		setupWindow.controls.gameSettingsController.registerLoadingChangeHandler((loading) => this.onLoadingChange(loading));
+
 		Engine.ProfileStop();
 	}
-}
+
+	onLoadingChange(loading)
+	{
+		Engine.GetGUIObjectByName("gameSetupPage").hidden = loading;
+	}
+};

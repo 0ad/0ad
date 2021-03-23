@@ -1563,7 +1563,7 @@ bool Autostart(const CmdLineArgs& args)
 
 		g_NetServer = new CNetServer(false, maxPlayers);
 		g_NetServer->SetControllerSecret(secret);
-		g_NetServer->UpdateGameAttributes(&attrs, scriptInterface);
+		g_NetServer->UpdateInitAttributes(&attrs, scriptInterface);
 
 		bool ok = g_NetServer->SetupConnection(PS_DEFAULT_PORT);
 		ENSURE(ok);

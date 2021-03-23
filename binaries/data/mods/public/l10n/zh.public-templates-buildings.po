@@ -56,9 +56,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-25 08:08+0000\n"
-"PO-Revision-Date: 2021-03-08 12:24+0000\n"
-"Last-Translator: ma xiaoming <maxiaoming@imicloud.net>\n"
+"POT-Creation-Date: 2021-03-19 08:08+0000\n"
+"PO-Revision-Date: 2021-03-19 10:28+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -854,7 +854,7 @@ msgstr "碉楼"
 msgid "Mryt"
 msgstr "码头"
 
-#: simulation/templates/structures/kush/elephant_stables.xml:5
+#: simulation/templates/structures/kush/elephant_stable.xml:5
 msgid "Ỉḥ Abu"
 msgstr "象舍"
 
@@ -957,8 +957,8 @@ msgid "Pr-ʿImn"
 msgstr "阿蒙神庙"
 
 #: simulation/templates/structures/kush/temple_amun.xml:29
-msgid "Train Healers and Amun Champions and research healing technologies."
-msgstr "训练医师和精锐守卫，研发治疗技术。"
+msgid "Train Amun Champions and Elite Healers. Research healing technologies."
+msgstr ""
 
 #: simulation/templates/structures/kush/temple_amun.xml:31
 msgid "TempleOfAmun"
@@ -1014,7 +1014,7 @@ msgstr "碉楼"
 msgid "Naukasthanaka"
 msgstr "码头"
 
-#: simulation/templates/structures/maur/elephant_stables.xml:5
+#: simulation/templates/structures/maur/elephant_stable.xml:5
 msgid "Vāraṇaśālā"
 msgstr "象舍"
 
@@ -1299,8 +1299,8 @@ msgstr "库房"
 msgid "Hanging Gardens of Babylon"
 msgstr "巴比伦高台花园"
 
-#: simulation/templates/structures/ptol/elephant_stables.xml:5
-#: simulation/templates/structures/sele/elephant_stables.xml:5
+#: simulation/templates/structures/ptol/elephant_stable.xml:5
+#: simulation/templates/structures/sele/elephant_stable.xml:5
 msgid "Stathmos tōn Elepantōn"
 msgstr "象舍"
 
@@ -1358,22 +1358,22 @@ msgstr "凯旋门"
 msgid "TriumphalArch"
 msgstr "凯旋门"
 
-#: simulation/templates/structures/rome/army_camp.xml:73
+#: simulation/templates/structures/rome/army_camp.xml:71
 msgid "Army Camp"
 msgstr "军营"
 
-#: simulation/templates/structures/rome/army_camp.xml:74
+#: simulation/templates/structures/rome/army_camp.xml:72
 msgid "Castra"
 msgstr "营垒"
 
-#: simulation/templates/structures/rome/army_camp.xml:75
+#: simulation/templates/structures/rome/army_camp.xml:73
 msgid ""
-"Build in neutral or enemy territory. Train Melee Infantry. Garrison Soldiers"
-" for additional arrows."
-msgstr "在中立或敌方土地上建造，训练近战步兵， 驻军以强化火力。"
+"Build in neutral or enemy territory. Train Advanced Melee Infantry. Garrison"
+" Soldiers for additional arrows."
+msgstr ""
 
-#: simulation/templates/structures/rome/army_camp.xml:40
-#: simulation/templates/structures/rome/army_camp.xml:77
+#: simulation/templates/structures/rome/army_camp.xml:38
+#: simulation/templates/structures/rome/army_camp.xml:75
 msgid "ArmyCamp"
 msgstr "军营"
 
@@ -1636,26 +1636,26 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Bow"
 msgstr "弓箭"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:79
+#: simulation/templates/template_structure_civic_civil_centre.xml:77
 msgid "Civic Center"
 msgstr "公署"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:81
+#: simulation/templates/template_structure_civic_civil_centre.xml:79
 msgid ""
 "Build in own or neutral territory. Acquire large tracts of territory. "
 "Territory root. Train Citizens and research technologies. Garrison Soldiers "
 "for additional arrows."
 msgstr "可建在中立土地或己方疆域内，扩张大片疆域。训练民兵，研发技术，驻守士兵来强化火力。"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:46
-#: simulation/templates/template_structure_civic_civil_centre.xml:83
+#: simulation/templates/template_structure_civic_civil_centre.xml:44
+#: simulation/templates/template_structure_civic_civil_centre.xml:81
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:10
 msgid "CivilCentre"
 msgstr "公署"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:83
+#: simulation/templates/template_structure_civic_civil_centre.xml:81
 #: simulation/templates/template_structure_defensive.xml:5
-#: simulation/templates/template_structure_military_fortress.xml:73
+#: simulation/templates/template_structure_military_fortress.xml:71
 msgid "Defensive"
 msgstr "城防"
 
@@ -1697,7 +1697,7 @@ msgstr "柱廊"
 #: simulation/templates/structures/cart/apartment.xml:26
 #: simulation/templates/structures/gaul/tavern.xml:22
 #: simulation/templates/structures/kush/pyramid_small.xml:29
-#: simulation/templates/structures/maur/elephant_stables.xml:8
+#: simulation/templates/structures/maur/elephant_stable.xml:8
 #: simulation/templates/template_structure_civic_stoa.xml:30
 #: simulation/templates/template_structure_civic_temple.xml:32
 #: simulation/templates/template_structure_defensive_tower_stone.xml:32
@@ -1745,9 +1745,9 @@ msgstr "木墙"
 msgid "Wall off an area. Build in own or neutral territory."
 msgstr "分隔土地，建立在己方或中立土地上。"
 
-#: simulation/templates/template_structure_defensive_tower.xml:39
-#: simulation/templates/template_structure_defensive_tower.xml:55
-#: simulation/templates/template_structure_defensive_tower.xml:56
+#: simulation/templates/template_structure_defensive_tower.xml:34
+#: simulation/templates/template_structure_defensive_tower.xml:50
+#: simulation/templates/template_structure_defensive_tower.xml:51
 msgid "Tower"
 msgstr "楼"
 
@@ -1767,13 +1767,13 @@ msgstr "砲楼"
 #: simulation/templates/structures/gaul/assembly.xml:34
 #: simulation/templates/structures/kush/pyramid_large.xml:29
 #: simulation/templates/structures/kush/temple_amun.xml:31
-#: simulation/templates/structures/rome/army_camp.xml:77
+#: simulation/templates/structures/rome/army_camp.xml:75
 #: simulation/templates/structures/rome/temple_mars.xml:14
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:51
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:49
 #: simulation/templates/template_structure_military_arsenal.xml:28
-#: simulation/templates/template_structure_military_elephant_stables.xml:26
-#: simulation/templates/template_structure_military_fortress.xml:73
+#: simulation/templates/template_structure_military_elephant_stable.xml:26
+#: simulation/templates/template_structure_military_fortress.xml:71
 #: simulation/templates/template_structure_special.xml:20
 #: simulation/templates/template_structure_wonder.xml:42
 msgid "City"
@@ -1843,11 +1843,11 @@ msgstr "允许单位通过，也可以闭锁禁止通过。"
 msgid "Can be converted into a Gate."
 msgstr "可以被转变为门。"
 
-#: simulation/templates/template_structure_defensive_wall_tower.xml:51
+#: simulation/templates/template_structure_defensive_wall_tower.xml:49
 msgid "Wall Turret"
 msgstr "角楼"
 
-#: simulation/templates/template_structure_defensive_wall_tower.xml:53
+#: simulation/templates/template_structure_defensive_wall_tower.xml:51
 msgid "Garrison Infantry for additional arrows."
 msgstr "驻军增加额外火力。"
 
@@ -1940,15 +1940,15 @@ msgstr "建立在海岸边，用于建造各种船舶和进行海上贸易和海
 msgid "Naval"
 msgstr "海军"
 
-#: simulation/templates/template_structure_military_elephant_stables.xml:23
+#: simulation/templates/template_structure_military_elephant_stable.xml:23
 msgid "Elephant Stable"
 msgstr "象舍"
 
-#: simulation/templates/template_structure_military_elephant_stables.xml:25
+#: simulation/templates/template_structure_military_elephant_stable.xml:25
 msgid "Train Elephants and research Elephant technologies."
 msgstr "训练战象并研发战象技术。"
 
-#: simulation/templates/template_structure_military_elephant_stables.xml:26
+#: simulation/templates/template_structure_military_elephant_stable.xml:26
 msgid "ElephantStable"
 msgstr "象舍"
 
@@ -1967,13 +1967,13 @@ msgstr "兵器厂"
 msgid "Research attack damage and damage resistance technologies."
 msgstr "研究兵器和防护的改良。"
 
-#: simulation/templates/template_structure_military_fortress.xml:39
-#: simulation/templates/template_structure_military_fortress.xml:69
-#: simulation/templates/template_structure_military_fortress.xml:73
+#: simulation/templates/template_structure_military_fortress.xml:37
+#: simulation/templates/template_structure_military_fortress.xml:67
+#: simulation/templates/template_structure_military_fortress.xml:71
 msgid "Fortress"
 msgstr "堡垒"
 
-#: simulation/templates/template_structure_military_fortress.xml:71
+#: simulation/templates/template_structure_military_fortress.xml:69
 msgid "Territory root. Garrison Soldiers for additional arrows."
 msgstr "影响领土，驻军以强化火力"
 

@@ -28,10 +28,6 @@ class GameSettings
 			"value": Engine.HasNetClient(),
 		});
 
-		Object.defineProperty(this, "isController", {
-			"value": !this.isNetworked || Engine.IsNetController(),
-		});
-
 		// Load attributes as regular enumerable (i.e. iterable) properties.
 		for (let comp in GameSettings.prototype.Attributes)
 		{
@@ -87,15 +83,6 @@ class GameSettings
 	}
 
 	/**
-	 * Send the game settings to the server.
-	 */
-	setNetworkInitAttributes()
-	{
-		if (this.isNetworked && this.isController)
-			Engine.SetNetworkInitAttributes(this.toInitAttributes());
-	}
-
-	/**
 	 * Change "random" settings into their proper settings.
 	 */
 	pickRandomItems()
@@ -128,7 +115,6 @@ class GameSettings
 		this.pickRandomItems();
 
 		Engine.SetRankedGame(this.rating.enabled);
-		this.setNetworkInitAttributes();
 
 		// Replace player names with the real players.
 		for (let guid in playerAssignments)
@@ -137,7 +123,7 @@ class GameSettings
 
 		// NB: for multiplayer support, the clients must be listening to "start" net messages.
 		if (this.isNetworked)
-			Engine.StartNetworkGame();
+			Engine.StartNetworkGame(this.toInitAttributes());
 		else
 			Engine.StartGame(this.toInitAttributes(), playerAssignments.local.player);
 	}

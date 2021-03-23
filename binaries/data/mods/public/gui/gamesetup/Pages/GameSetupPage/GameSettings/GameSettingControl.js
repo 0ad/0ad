@@ -21,11 +21,11 @@ class GameSettingControl /* extends Profilable /* Uncomment to profile controls 
 			this.playerIndex = playerIndex;
 
 			this.setupWindow = setupWindow;
-			this.gameSettingsControl = setupWindow.controls.gameSettingsControl;
+			this.gameSettingsController = setupWindow.controls.gameSettingsController;
 			this.mapCache = setupWindow.controls.mapCache;
 			this.mapFilters = setupWindow.controls.mapFilters;
 			this.netMessages = setupWindow.controls.netMessages;
-			this.playerAssignmentsControl = setupWindow.controls.playerAssignmentsControl;
+			this.playerAssignmentsController = setupWindow.controls.playerAssignmentsController;
 		}
 
 		// enabled and hidden should only be modified through their setters or
@@ -51,7 +51,7 @@ class GameSettingControl /* extends Profilable /* Uncomment to profile controls 
 			this.setupWindow.registerLoadHandler(this.onLoad.bind(this));
 
 		if (this.onPlayerAssignmentsChange)
-			this.playerAssignmentsControl.registerPlayerAssignmentsChangeHandler(this.onPlayerAssignmentsChange.bind(this));
+			this.playerAssignmentsController.registerPlayerAssignmentsChangeHandler(this.onPlayerAssignmentsChange.bind(this));
 	}
 
 	setTitle(titleCaption)
@@ -84,7 +84,7 @@ class GameSettingControl /* extends Profilable /* Uncomment to profile controls 
 	{
 		this.hidden = hidden;
 		// Trigger a layout update to reposition items.
-		this.gameSettingsControl.updateLayout();
+		this.gameSettingsController.updateLayout();
 	}
 
 	updateVisibility()

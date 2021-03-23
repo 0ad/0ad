@@ -18,7 +18,7 @@ GameSettingControls.LastManStanding = class LastManStanding extends GameSettingC
 	onPress(checked)
 	{
 		g_GameSettings.lastManStanding.setEnabled(checked);
-		this.gameSettingsControl.setNetworkInitAttributes();
+		this.gameSettingsController.setNetworkInitAttributes();
 	}
 };
 

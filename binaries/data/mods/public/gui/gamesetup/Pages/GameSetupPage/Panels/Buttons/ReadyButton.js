@@ -2,7 +2,7 @@ class ReadyButton
 {
 	constructor(setupWindow)
 	{
-		this.readyControl = setupWindow.controls.readyControl;
+		this.readyController = setupWindow.controls.readyController;
 
 		this.hidden = undefined;
 
@@ -13,11 +13,11 @@ class ReadyButton
 		this.readyButton.onPress = this.onPress.bind(this);
 		this.readyButton.onPressRight = this.onPressRight.bind(this);
 
-		setupWindow.controls.playerAssignmentsControl.registerPlayerAssignmentsChangeHandler(this.onPlayerAssignmentsChange.bind(this));
+		setupWindow.controls.playerAssignmentsController.registerPlayerAssignmentsChangeHandler(this.onPlayerAssignmentsChange.bind(this));
 		setupWindow.controls.netMessages.registerNetMessageHandler("netstatus", this.onNetStatusMessage.bind(this));
 
 		if (g_IsController && g_IsNetworked)
-			this.readyControl.setReady(this.readyControl.StayReady, true);
+			this.readyController.setReady(this.readyController.StayReady, true);
 	}
 
 	registerButtonHiddenChangeHandler(handler)
@@ -60,18 +60,18 @@ class ReadyButton
 	onPress()
 	{
 		let newState =
-			(g_PlayerAssignments[Engine.GetPlayerGUID()].status + 1) % (this.readyControl.StayReady + 1);
+			(g_PlayerAssignments[Engine.GetPlayerGUID()].status + 1) % (this.readyController.StayReady + 1);
 
 		for (let handler of this.readyButtonPressHandlers)
 			handler(newState);
 
-		this.readyControl.setReady(newState, true);
+		this.readyController.setReady(newState, true);
 	}
 
 	onPressRight()
 	{
-		if (g_PlayerAssignments[Engine.GetPlayerGUID()].status != this.readyControl.NotReady)
-			this.readyControl.setReady(this.readyControl.NotReady, true);
+		if (g_PlayerAssignments[Engine.GetPlayerGUID()].status != this.readyController.NotReady)
+			this.readyController.setReady(this.readyController.NotReady, true);
 	}
 }
 

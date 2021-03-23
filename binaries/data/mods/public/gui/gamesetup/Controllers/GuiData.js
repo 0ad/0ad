@@ -1,5 +1,6 @@
 /**
- * This class contains GUI-specific gamesetting data.
+ * This class contains network-synchronized data specific to GameSettingsController.
+ * It's split from GameSettingsController for convenience.
  */
 class GameSettingsGuiData
 {
@@ -10,7 +11,7 @@ class GameSettingsGuiData
 	}
 
 	/**
-	 * Serialize for network transmission, settings persistence or convenience in other GUI files.
+	 * Serialize for network transmission & settings persistence.
 	 */
 	Serialize()
 	{

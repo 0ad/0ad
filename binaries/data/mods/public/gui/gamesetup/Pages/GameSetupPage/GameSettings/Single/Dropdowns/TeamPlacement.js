@@ -45,7 +45,7 @@ GameSettingControls.TeamPlacement = class TeamPlacement extends GameSettingContr
 	onSelectionChange(itemIdx)
 	{
 		g_GameSettings.teamPlacement.setValue(this.values.Id[itemIdx]);
-		this.gameSettingsControl.setNetworkInitAttributes();
+		this.gameSettingsController.setNetworkInitAttributes();
 	}
 };
 

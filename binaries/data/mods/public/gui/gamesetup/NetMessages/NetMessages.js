@@ -1,5 +1,5 @@
 /**
- * This class enables other classes to subscribe to specific CNetMessage types (see NetMessage.h, NetMessages.h) sent by the CNetServer.
+ * Convenience wrapper to poll messages from the C++ NetClient.
  */
 class NetMessages
 {
@@ -9,11 +9,6 @@ class NetMessages
 
 		for (let messageType of this.MessageTypes)
 			this.netMessageHandlers[messageType] = new Set();
-
-		this.registerNetMessageHandler("netwarn", addNetworkWarning);
-
-		Engine.GetGUIObjectByName("netMessages").onTick = this.onTick.bind(this);
-		setupWindow.registerClosePageHandler(this.onClosePage.bind(this));
 	}
 
 	registerNetMessageHandler(messageType, handler)
@@ -32,7 +27,7 @@ class NetMessages
 			error("Unknown net message type: " + uneval(messageType));
 	}
 
-	onTick()
+	pollPendingMessages()
 	{
 		while (true)
 		{
@@ -49,15 +44,10 @@ class NetMessages
 				error("Unrecognized net message type " + message.type);
 		}
 	}
-
-	onClosePage()
-	{
-		Engine.DisconnectNetworkGame();
-	}
 }
 
 /**
- * Messages types are present here if and only if they are sent by NetClient.cpp.
+ * List of message types sent by C++ (keep this in sync with NetClient.cpp).
  */
 NetMessages.prototype.MessageTypes = [
 	"chat",

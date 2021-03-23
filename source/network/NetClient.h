@@ -44,7 +44,6 @@ enum
 	NCS_CONNECT,
 	NCS_HANDSHAKE,
 	NCS_AUTHENTICATE,
-	NCS_INITIAL_GAMESETUP,
 	NCS_PREGAME,
 	NCS_LOADING,
 	NCS_JOIN_SYNCING,
@@ -231,7 +230,7 @@ public:
 
 	void SendClearAllReadyMessage();
 
-	void SendStartGameMessage();
+	void SendStartGameMessage(const CStr& initAttribs);
 
 	/**
 	 * Call when the client has rejoined a running match and finished
@@ -325,9 +324,6 @@ private:
 
 	/// True if the player is currently rejoining or has already rejoined the game.
 	bool m_Rejoin;
-
-	/// Latest copy of game setup attributes heard from the server
-	JS::PersistentRootedValue m_GameAttributes;
 
 	/// Latest copy of player assignments heard from the server
 	PlayerAssignmentMap m_PlayerAssignments;

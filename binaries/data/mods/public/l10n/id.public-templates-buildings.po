@@ -25,9 +25,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-25 08:08+0000\n"
-"PO-Revision-Date: 2021-02-09 11:25+0000\n"
-"Last-Translator: Dabiq 1441 <dlc39hw3eh@just4fun.me>\n"
+"POT-Creation-Date: 2021-03-19 08:08+0000\n"
+"PO-Revision-Date: 2021-03-19 10:28+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -823,7 +823,7 @@ msgstr "tsmt ʿȝ"
 msgid "Mryt"
 msgstr "Mryt"
 
-#: simulation/templates/structures/kush/elephant_stables.xml:5
+#: simulation/templates/structures/kush/elephant_stable.xml:5
 msgid "Ỉḥ Abu"
 msgstr "Ỉḥ Abu"
 
@@ -926,8 +926,8 @@ msgid "Pr-ʿImn"
 msgstr "Pr-ʿImn"
 
 #: simulation/templates/structures/kush/temple_amun.xml:29
-msgid "Train Healers and Amun Champions and research healing technologies."
-msgstr "Latih Penyembuh dan Jawara Amun dan riset teknologi penyembuhan."
+msgid "Train Amun Champions and Elite Healers. Research healing technologies."
+msgstr ""
 
 #: simulation/templates/structures/kush/temple_amun.xml:31
 msgid "TempleOfAmun"
@@ -983,7 +983,7 @@ msgstr "Udarka"
 msgid "Naukasthanaka"
 msgstr "Naukasthanaka"
 
-#: simulation/templates/structures/maur/elephant_stables.xml:5
+#: simulation/templates/structures/maur/elephant_stable.xml:5
 msgid "Vāraṇaśālā"
 msgstr "Vāraṇaśālā"
 
@@ -1268,8 +1268,8 @@ msgstr "Gudang"
 msgid "Hanging Gardens of Babylon"
 msgstr "Taman Gantung Babilonia"
 
-#: simulation/templates/structures/ptol/elephant_stables.xml:5
-#: simulation/templates/structures/sele/elephant_stables.xml:5
+#: simulation/templates/structures/ptol/elephant_stable.xml:5
+#: simulation/templates/structures/sele/elephant_stable.xml:5
 msgid "Stathmos tōn Elepantōn"
 msgstr "Stathmos tōn Elepantōn"
 
@@ -1327,22 +1327,22 @@ msgstr "Arc de Triomphe"
 msgid "TriumphalArch"
 msgstr "Arch Triumphal"
 
-#: simulation/templates/structures/rome/army_camp.xml:73
+#: simulation/templates/structures/rome/army_camp.xml:71
 msgid "Army Camp"
 msgstr "Kamp Prajurit"
 
-#: simulation/templates/structures/rome/army_camp.xml:74
+#: simulation/templates/structures/rome/army_camp.xml:72
 msgid "Castra"
 msgstr "kamp"
 
-#: simulation/templates/structures/rome/army_camp.xml:75
+#: simulation/templates/structures/rome/army_camp.xml:73
 msgid ""
-"Build in neutral or enemy territory. Train Melee Infantry. Garrison Soldiers"
-" for additional arrows."
-msgstr "Bangun di wilayah netral atau musuh. Latih Infantri jarak dekat. Prajurit Garnisun untuk panah tambahan."
+"Build in neutral or enemy territory. Train Advanced Melee Infantry. Garrison"
+" Soldiers for additional arrows."
+msgstr ""
 
-#: simulation/templates/structures/rome/army_camp.xml:40
-#: simulation/templates/structures/rome/army_camp.xml:77
+#: simulation/templates/structures/rome/army_camp.xml:38
+#: simulation/templates/structures/rome/army_camp.xml:75
 msgid "ArmyCamp"
 msgstr "KampPrajurit"
 
@@ -1605,26 +1605,26 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Bow"
 msgstr "Busur"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:79
+#: simulation/templates/template_structure_civic_civil_centre.xml:77
 msgid "Civic Center"
 msgstr "Pusat Peradaban"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:81
+#: simulation/templates/template_structure_civic_civil_centre.xml:79
 msgid ""
 "Build in own or neutral territory. Acquire large tracts of territory. "
 "Territory root. Train Citizens and research technologies. Garrison Soldiers "
 "for additional arrows."
 msgstr "Bangun di teritori sendiri atau teritori netral. Dapatkan teritori wilayah yang besar. Pusat teritori. Latih warga dan riset teknologi. Tempatkan Pasukan untuk panah tambahan."
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:46
-#: simulation/templates/template_structure_civic_civil_centre.xml:83
+#: simulation/templates/template_structure_civic_civil_centre.xml:44
+#: simulation/templates/template_structure_civic_civil_centre.xml:81
 #: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:10
 msgid "CivilCentre"
 msgstr "PusatPeradaban"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:83
+#: simulation/templates/template_structure_civic_civil_centre.xml:81
 #: simulation/templates/template_structure_defensive.xml:5
-#: simulation/templates/template_structure_military_fortress.xml:73
+#: simulation/templates/template_structure_military_fortress.xml:71
 msgid "Defensive"
 msgstr "Defensif"
 
@@ -1666,7 +1666,7 @@ msgstr "Stoa"
 #: simulation/templates/structures/cart/apartment.xml:26
 #: simulation/templates/structures/gaul/tavern.xml:22
 #: simulation/templates/structures/kush/pyramid_small.xml:29
-#: simulation/templates/structures/maur/elephant_stables.xml:8
+#: simulation/templates/structures/maur/elephant_stable.xml:8
 #: simulation/templates/template_structure_civic_stoa.xml:30
 #: simulation/templates/template_structure_civic_temple.xml:32
 #: simulation/templates/template_structure_defensive_tower_stone.xml:32
@@ -1714,9 +1714,9 @@ msgstr "Palisade"
 msgid "Wall off an area. Build in own or neutral territory."
 msgstr "Bantengi suatu area. Bangun di wilayah sendiri atau netral."
 
-#: simulation/templates/template_structure_defensive_tower.xml:39
-#: simulation/templates/template_structure_defensive_tower.xml:55
-#: simulation/templates/template_structure_defensive_tower.xml:56
+#: simulation/templates/template_structure_defensive_tower.xml:34
+#: simulation/templates/template_structure_defensive_tower.xml:50
+#: simulation/templates/template_structure_defensive_tower.xml:51
 msgid "Tower"
 msgstr "Menara"
 
@@ -1736,13 +1736,13 @@ msgstr "MenaraArtileri"
 #: simulation/templates/structures/gaul/assembly.xml:34
 #: simulation/templates/structures/kush/pyramid_large.xml:29
 #: simulation/templates/structures/kush/temple_amun.xml:31
-#: simulation/templates/structures/rome/army_camp.xml:77
+#: simulation/templates/structures/rome/army_camp.xml:75
 #: simulation/templates/structures/rome/temple_mars.xml:14
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:51
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:49
 #: simulation/templates/template_structure_military_arsenal.xml:28
-#: simulation/templates/template_structure_military_elephant_stables.xml:26
-#: simulation/templates/template_structure_military_fortress.xml:73
+#: simulation/templates/template_structure_military_elephant_stable.xml:26
+#: simulation/templates/template_structure_military_fortress.xml:71
 #: simulation/templates/template_structure_special.xml:20
 #: simulation/templates/template_structure_wonder.xml:42
 msgid "City"
@@ -1812,11 +1812,11 @@ msgstr "Izinkan unit mengakses lewat dinding. Bisa dikunci untuk mencegah akses.
 msgid "Can be converted into a Gate."
 msgstr "Dapat diubah menjadi Gerbang."
 
-#: simulation/templates/template_structure_defensive_wall_tower.xml:51
+#: simulation/templates/template_structure_defensive_wall_tower.xml:49
 msgid "Wall Turret"
 msgstr "Menara Tembok"
 
-#: simulation/templates/template_structure_defensive_wall_tower.xml:53
+#: simulation/templates/template_structure_defensive_wall_tower.xml:51
 msgid "Garrison Infantry for additional arrows."
 msgstr "Tempatkan Infanteri untuk panah lebih banyak."
 
@@ -1909,15 +1909,15 @@ msgstr "Bangun di atas garis pantai di wilayah sendiri, netral, atau sekutu. Tet
 msgid "Naval"
 msgstr "Air"
 
-#: simulation/templates/template_structure_military_elephant_stables.xml:23
+#: simulation/templates/template_structure_military_elephant_stable.xml:23
 msgid "Elephant Stable"
 msgstr "Kandang Gajah"
 
-#: simulation/templates/template_structure_military_elephant_stables.xml:25
+#: simulation/templates/template_structure_military_elephant_stable.xml:25
 msgid "Train Elephants and research Elephant technologies."
 msgstr "Latih Gajah dan riset teknologi terkait."
 
-#: simulation/templates/template_structure_military_elephant_stables.xml:26
+#: simulation/templates/template_structure_military_elephant_stable.xml:26
 msgid "ElephantStable"
 msgstr "Kandang Gajah"
 
@@ -1936,13 +1936,13 @@ msgstr "Pandai Besi"
 msgid "Research attack damage and damage resistance technologies."
 msgstr "Riset kerusakan serangan dan teknologi ketahanan kerusakan."
 
-#: simulation/templates/template_structure_military_fortress.xml:39
-#: simulation/templates/template_structure_military_fortress.xml:69
-#: simulation/templates/template_structure_military_fortress.xml:73
+#: simulation/templates/template_structure_military_fortress.xml:37
+#: simulation/templates/template_structure_military_fortress.xml:67
+#: simulation/templates/template_structure_military_fortress.xml:71
 msgid "Fortress"
 msgstr "Benteng"
 
-#: simulation/templates/template_structure_military_fortress.xml:71
+#: simulation/templates/template_structure_military_fortress.xml:69
 msgid "Territory root. Garrison Soldiers for additional arrows."
 msgstr "Akar teritorial. Prajurit Garnisun untuk panah tambahan."
 

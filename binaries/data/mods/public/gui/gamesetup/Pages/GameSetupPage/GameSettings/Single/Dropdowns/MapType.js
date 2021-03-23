@@ -43,7 +43,7 @@ GameSettingControls.MapType = class MapType extends GameSettingControlDropdown
 	onSelectionChange(itemIdx)
 	{
 		g_GameSettings.map.setType(g_MapTypes.Name[itemIdx]);
-		this.gameSettingsControl.setNetworkInitAttributes();
+		this.gameSettingsController.setNetworkInitAttributes();
 	}
 };
 

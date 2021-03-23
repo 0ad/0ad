@@ -42,7 +42,7 @@ GameSettingControls.StartingResources = class StartingResources extends GameSett
 	onSelectionChange(itemIdx)
 	{
 		g_GameSettings.startingResources.setResources(g_StartingResources.Resources[itemIdx]);
-		this.gameSettingsControl.setNetworkInitAttributes();
+		this.gameSettingsController.setNetworkInitAttributes();
 	}
 };
 

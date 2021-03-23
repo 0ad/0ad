@@ -22,7 +22,7 @@ GameSettingControls.LockedTeams = class LockedTeams extends GameSettingControlCh
 	onPress(checked)
 	{
 		g_GameSettings.lockedTeams.setEnabled(checked);
-		this.gameSettingsControl.setNetworkInitAttributes();
+		this.gameSettingsController.setNetworkInitAttributes();
 	}
 };
 

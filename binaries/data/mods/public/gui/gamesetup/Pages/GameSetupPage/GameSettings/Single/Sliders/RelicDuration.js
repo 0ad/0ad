@@ -30,7 +30,7 @@ GameSettingControls.RelicDuration = class RelicDuration extends GameSettingContr
 	onValueChange(value)
 	{
 		g_GameSettings.relic.setDuration(value);
-		this.gameSettingsControl.setNetworkInitAttributes();
+		this.gameSettingsController.setNetworkInitAttributes();
 	}
 };
 

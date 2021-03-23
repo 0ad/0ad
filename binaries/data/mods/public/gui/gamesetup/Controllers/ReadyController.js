@@ -7,14 +7,14 @@
  * Therefore assume the readystate from the user interface rather than trusting the server whether the current player is ready.
  * The server may set readiness to false but not to true.
  *
- * The ReadyControl class stores the ready state of the current player and fires an event if the agreed settings changed.
+ * The ReadyController class stores the ready state of the current player and fires an event if the agreed settings changed.
  */
-class ReadyControl
+class ReadyController
 {
-	constructor(netMessages, gameSettingsControl, startGameControl, playerAssignmentsControl)
+	constructor(netMessages, gameSettingsController, playerAssignmentsController)
 	{
-		this.startGameControl = startGameControl;
-		this.playerAssignmentsControl = playerAssignmentsControl;
+		this.playerAssignmentsController = playerAssignmentsController;
+		this.gameSettingsController = gameSettingsController;
 
 		this.resetReadyHandlers = new Set();
 		this.previousAssignments = {};
@@ -25,9 +25,9 @@ class ReadyControl
 		this.readyState = this.NotReady;
 
 		netMessages.registerNetMessageHandler("ready", this.onReadyMessage.bind(this));
-		gameSettingsControl.registerSettingsChangeHandler(this.onSettingsChange.bind(this));
-		playerAssignmentsControl.registerClientJoinHandler(this.onClientJoin.bind(this));
-		playerAssignmentsControl.registerClientLeaveHandler(this.onClientLeave.bind(this));
+		gameSettingsController.registerSettingsChangeHandler(this.onSettingsChange.bind(this));
+		playerAssignmentsController.registerClientJoinHandler(this.onClientJoin.bind(this));
+		playerAssignmentsController.registerClientLeaveHandler(this.onClientLeave.bind(this));
 	}
 
 	registerResetReadyHandler(handler)
@@ -53,7 +53,7 @@ class ReadyControl
 		if (playerAssignment)
 		{
 			playerAssignment.status = message.status;
-			this.playerAssignmentsControl.updatePlayerAssignments();
+			this.playerAssignmentsController.updatePlayerAssignments();
 		}
 	}
 
@@ -90,15 +90,15 @@ class ReadyControl
 		if (playerAssignment)
 		{
 			playerAssignment.status = ready;
-			this.playerAssignmentsControl.updatePlayerAssignments();
+			this.playerAssignmentsController.updatePlayerAssignments();
 		}
 	}
 
 	resetReady()
 	{
 		// The gameStarted check is only necessary to allow the host to
-		// determine the Seed and random items after clicking start
-		if (!g_IsNetworked || this.startGameControl.gameStarted)
+		// determine random items after clicking start.
+		if (!g_IsNetworked || this.gameSettingsController.gameStarted)
 			return;
 
 		for (let handler of this.resetReadyHandlers)
@@ -107,7 +107,7 @@ class ReadyControl
 		if (g_IsController)
 		{
 			Engine.ClearAllPlayerReady();
-			this.playerAssignmentsControl.updatePlayerAssignments();
+			this.playerAssignmentsController.updatePlayerAssignments();
 		}
 		else if (this.readyState != this.StayReady)
 			this.setReady(this.NotReady, false);
@@ -119,8 +119,8 @@ class ReadyControl
 	}
 }
 
-ReadyControl.prototype.NotReady = 0;
+ReadyController.prototype.NotReady = 0;
 
-ReadyControl.prototype.Ready = 1;
+ReadyController.prototype.Ready = 1;
 
-ReadyControl.prototype.StayReady = 2;
+ReadyController.prototype.StayReady = 2;

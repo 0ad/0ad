@@ -9,7 +9,7 @@ GameSettingControls.MapSelection = class MapSelection extends GameSettingControl
 		g_GameSettings.map.watch(() => this.render(), ["map"]);
 		g_GameSettings.map.watch(() => this.updateMapList(), ["type"]);
 
-		this.gameSettingsControl.guiData.mapFilter.watch(() => this.updateMapList(), ["filter"]);
+		this.gameSettingsController.guiData.mapFilter.watch(() => this.updateMapList(), ["filter"]);
 
 		this.randomItem = {
 			"file": this.RandomMapId,
@@ -45,7 +45,7 @@ GameSettingControls.MapSelection = class MapSelection extends GameSettingControl
 			let values =
 				this.mapFilters.getFilteredMaps(
 					g_GameSettings.map.type,
-					this.gameSettingsControl.guiData.mapFilter.filter,
+					this.gameSettingsController.guiData.mapFilter.filter,
 					false);
 
 			values.sort(sortNameIgnoreCase);
@@ -65,7 +65,7 @@ GameSettingControls.MapSelection = class MapSelection extends GameSettingControl
 		if (this.values.file.indexOf(g_GameSettings.map.map) === -1)
 		{
 			g_GameSettings.map.selectMap(this.values.file[this.values.Default]);
-			this.gameSettingsControl.setNetworkInitAttributes();
+			this.gameSettingsController.setNetworkInitAttributes();
 		}
 		// The index may have changed: reset.
 		this.setSelectedValue(g_GameSettings.map.map);
@@ -87,7 +87,7 @@ GameSettingControls.MapSelection = class MapSelection extends GameSettingControl
 			return;
 		this.reRenderTimeout = setTimeout(() => {
 			g_GameSettings.map.selectMap(this.values.file[itemIdx]);
-			this.gameSettingsControl.setNetworkInitAttributes();
+			this.gameSettingsController.setNetworkInitAttributes();
 			delete this.reRenderTimeout;
 		}, 0);
 	}

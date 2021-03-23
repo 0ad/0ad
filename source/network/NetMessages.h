@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -28,7 +28,7 @@
 
 #define PS_PROTOCOL_MAGIC                         0x5073013f	// 'P', 's', 0x01, '?'
 #define PS_PROTOCOL_MAGIC_RESPONSE                0x50630121	// 'P', 'c', 0x01, '!'
-#define PS_PROTOCOL_VERSION                       0x01010017	// Arbitrary protocol
+#define PS_PROTOCOL_VERSION                       0x01010018	// Arbitrary protocol
 #define PS_DEFAULT_PORT                           0x5073		// 'P', 's'
 
 // Set when lobby authentication is required. Used in the SrvHandshakeResponseMessage.
@@ -174,6 +174,7 @@ START_NMT_CLASS_(FileTransferAck, NMT_FILE_TRANSFER_ACK)
 END_NMT_CLASS()
 
 START_NMT_CLASS_(JoinSyncStart, NMT_JOIN_SYNC_START)
+	NMT_FIELD(CStr, m_InitAttributes)
 END_NMT_CLASS()
 
 START_NMT_CLASS_(Rejoined, NMT_REJOINED)
@@ -213,6 +214,7 @@ START_NMT_CLASS_(LoadedGame, NMT_LOADED_GAME)
 END_NMT_CLASS()
 
 START_NMT_CLASS_(GameStart, NMT_GAME_START)
+	NMT_FIELD(CStr, m_InitAttributes)
 END_NMT_CLASS()
 
 START_NMT_CLASS_(EndCommandBatch, NMT_END_COMMAND_BATCH)

@@ -26,6 +26,6 @@ class VictoryConditionCheckbox extends GameSettingControlCheckbox
 	onPress(checked)
 	{
 		g_GameSettings.victoryConditions.setEnabled(this.victoryCondition, checked);
-		this.gameSettingsControl.setNetworkInitAttributes();
+		this.gameSettingsController.setNetworkInitAttributes();
 	}
 }

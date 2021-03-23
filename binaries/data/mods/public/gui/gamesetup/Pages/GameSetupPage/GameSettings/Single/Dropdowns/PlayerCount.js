@@ -25,7 +25,7 @@ GameSettingControls.PlayerCount = class PlayerCount extends GameSettingControlDr
 	onSelectionChange(itemIdx)
 	{
 		g_GameSettings.playerCount.setNb(this.values[itemIdx]);
-		this.gameSettingsControl.setNetworkInitAttributes();
+		this.gameSettingsController.setNetworkInitAttributes();
 	}
 };
 

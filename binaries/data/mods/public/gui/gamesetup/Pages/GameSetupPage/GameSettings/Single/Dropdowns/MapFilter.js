@@ -6,6 +6,7 @@ GameSettingControls.MapFilter = class MapFilter extends GameSettingControlDropdo
 
 		this.values = undefined;
 
+		this.gameSettingsController.guiData.mapFilter.watch(() => this.render(), ["filter"]);
 		g_GameSettings.map.watch(() => this.checkMapTypeChange(), ["type"]);
 	}
 
@@ -32,14 +33,18 @@ GameSettingControls.MapFilter = class MapFilter extends GameSettingControlDropdo
 		else
 			this.values = undefined;
 
-		if (this.values && this.values.Name.indexOf(this.gameSettingsControl.guiData.mapFilter.filter) === -1)
+		if (this.values && this.values.Name.indexOf(this.gameSettingsController.guiData.mapFilter.filter) === -1)
 		{
-			this.gameSettingsControl.guiData.mapFilter.filter = this.values.Name[this.values.Default];
-			this.gameSettingsControl.setNetworkInitAttributes();
+			this.gameSettingsController.guiData.mapFilter.filter = this.values.Name[this.values.Default];
+			this.gameSettingsController.setNetworkInitAttributes();
 		}
-		// Index may have changed, reset.
-		this.setSelectedValue(this.gameSettingsControl.guiData.mapFilter.filter);
+		this.render();
+	}
 
+	render()
+	{
+		// Index may have changed, reset.
+		this.setSelectedValue(this.gameSettingsController.guiData.mapFilter.filter);
 		this.setHidden(!this.values);
 	}
 
@@ -50,7 +55,7 @@ GameSettingControls.MapFilter = class MapFilter extends GameSettingControlDropdo
 
 	onSelectionChange(itemIdx)
 	{
-		this.gameSettingsControl.guiData.mapFilter.filter = this.values.Name[itemIdx];
+		this.gameSettingsController.guiData.mapFilter.filter = this.values.Name[itemIdx];
 	}
 };
 

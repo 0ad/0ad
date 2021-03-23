@@ -17,7 +17,7 @@ GameSettingControls.Treasures = class Treasures extends GameSettingControlCheckb
 	onPress(checked)
 	{
 		g_GameSettings.disableTreasures.setEnabled(checked);
-		this.gameSettingsControl.setNetworkInitAttributes();
+		this.gameSettingsController.setNetworkInitAttributes();
 	}
 };
 

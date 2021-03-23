@@ -19,7 +19,7 @@ GameSettingControls.Rating = class Rating extends GameSettingControlCheckbox
 	onPress(checked)
 	{
 		g_GameSettings.rating.setEnabled(checked);
-		this.gameSettingsControl.setNetworkInitAttributes();
+		this.gameSettingsController.setNetworkInitAttributes();
 	}
 };
 

@@ -49,7 +49,7 @@ GameSettingControls.Daytime = class Daytime extends GameSettingControlDropdown
 	onSelectionChange(itemIdx)
 	{
 		g_GameSettings.daytime.setValue(this.values.Id[itemIdx]);
-		this.gameSettingsControl.setNetworkInitAttributes();
+		this.gameSettingsController.setNetworkInitAttributes();
 	}
 };
 

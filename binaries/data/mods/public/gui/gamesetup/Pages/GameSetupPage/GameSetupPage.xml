@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<object hidden="true" name="setupWindow">
+<object hidden="true" name="gameSetupPage">
 
 	<script directory="gui/gamesetup/Pages/GameSetupPage/"/>
 	<script directory="gui/gamesetup/Pages/GameSetupPage/GameSettings/"/>
@@ -15,9 +15,6 @@
 	<script directory="gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/"/>
 	<script directory="gui/gamesetup/Pages/GameSetupPage/Panels/Chat/"/>
 	<script directory="gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/"/>
-
-	<!-- TODO: Implement Engine.SetNetMessageHandler(msg => handlerFunction); instead of pulling onTick -->
-	<object name="netMessages"/>
 
 	<object name="topPanel" size="24 40 100%-24 336">
 
