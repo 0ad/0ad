@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -182,6 +182,14 @@ void AtObj::set(const char* key, const char* value)
 	m_Node = m_Node->setChild(key, AtNode::Ptr(o));
 }
 
+void AtObj::unset(const char* key)
+{
+	if (!m_Node)
+		m_Node = new AtNode();
+
+	m_Node = m_Node->unsetChild(key);
+}
+
 void AtObj::setBool(const char* key, bool value)
 {
 	AtNode* o = new AtNode(value ? "true" : "false");
@@ -285,6 +293,13 @@ const AtNode::Ptr AtNode::setChild(const char* key, const AtNode::Ptr &data) con
 	newNode->m_Children.erase(key);
 	newNode->m_Children.insert(AtNode::child_pairtype(key, data));
 	return AtNode::Ptr(newNode);
+}
+
+const AtNode::Ptr AtNode::unsetChild(const char* key) const
+{
+        AtNode* newNode = new AtNode(this);
+        newNode->m_Children.erase(key);
+        return AtNode::Ptr(newNode);
 }
 
 const AtNode::Ptr AtNode::addChild(const char* key, const AtNode::Ptr &data) const

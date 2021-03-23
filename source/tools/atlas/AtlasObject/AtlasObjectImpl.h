@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -48,6 +48,7 @@ public:
 	const AtNode::Ptr setValue(const char* value) const;
 	const AtNode::Ptr addChild(const char* key, const AtNode::Ptr &data) const;
 	const AtNode::Ptr setChild(const char* key, const AtNode::Ptr &data) const;
+	const AtNode::Ptr unsetChild(const char* key) const;
 	const AtNode::Ptr addOverlay(const AtNode::Ptr &data) const;
 	const AtIter getChild(const char* key) const;
 
