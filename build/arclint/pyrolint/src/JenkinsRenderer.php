@@ -24,6 +24,10 @@
  * The expected format is one line per message, as a dictionary.
  */
 
+function remove_null($val) {
+    return !is_null($val);
+}
+
 final class JenkinsRenderer extends ArcanistLintRenderer {
 
   const RENDERERKEY = 'jenkins';
@@ -43,7 +47,7 @@ final class JenkinsRenderer extends ArcanistLintRenderer {
         max(1, $message->getLine() - self::LINES_OF_CONTEXT),
         self::LINES_OF_CONTEXT * 2 + 1));
       $dictionary['path'] = $path;
-      $this->writeOut(json_encode(json_decode(json_encode($dictionary)))."\n");
+      $this->writeOut(json_encode(array_filter($dictionary, 'remove_null'))."\n");
     }
   }
 }
