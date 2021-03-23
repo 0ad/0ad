@@ -179,7 +179,7 @@ g_SelectionPanels.Construction = {
 			});
 
 		data.button.onPress = function() { startBuildingPlacement(data.item, data.playerState); };
-		let showTemplateFunc = () => { showTemplateDetails(data.item); };
+		let showTemplateFunc = () => { showTemplateDetails(data.item, data.playerState.civ); };
 		data.button.onPressRight = showTemplateFunc;
 		data.button.onPressRightDisabled = showTemplateFunc;
 
@@ -949,7 +949,7 @@ g_SelectionPanels.Training = {
 				addTrainingToQueue(unitIds, data.item, data.playerState);
 		};
 
-		let showTemplateFunc = () => { showTemplateDetails(data.item); };
+		let showTemplateFunc = () => { showTemplateDetails(data.item, data.playerState.civ); };
 		data.button.onPressRight = showTemplateFunc;
 		data.button.onPressRightDisabled = showTemplateFunc;
 
@@ -1136,7 +1136,7 @@ g_SelectionPanels.Upgrade = {
 		data.button.enabled = controlsPlayer(data.player);
 		data.button.tooltip = tooltip;
 
-		let showTemplateFunc = () => { showTemplateDetails(data.item.entity); };
+		let showTemplateFunc = () => { showTemplateDetails(data.item.entity, data.playerState.civ); };
 		data.button.onPressRight = showTemplateFunc;
 		data.button.onPressRightDisabled = showTemplateFunc;
 
