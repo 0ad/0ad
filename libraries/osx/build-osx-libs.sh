@@ -28,7 +28,7 @@ SDL2_VERSION="SDL2-2.0.12"
 # NOTE: remember to also update LIB_URL below when changing version
 BOOST_VERSION="boost_1_74_0"
 # NOTE: remember to also update LIB_URL below when changing version
-WXWIDGETS_VERSION="wxWidgets-3.0.5.1"
+WXWIDGETS_VERSION="wxWidgets-3.1.4"
 # libpng was included as part of X11 but that's removed from Mountain Lion
 # (also the Snow Leopard version was ancient 1.2)
 PNG_VERSION="libpng-1.6.36"
@@ -393,7 +393,7 @@ echo -e "Building wxWidgets..."
 LIB_VERSION="${WXWIDGETS_VERSION}"
 LIB_ARCHIVE="$LIB_VERSION.tar.bz2"
 LIB_DIRECTORY="$LIB_VERSION"
-LIB_URL="http://github.com/wxWidgets/wxWidgets/releases/download/v3.0.5.1/"
+LIB_URL="http://github.com/wxWidgets/wxWidgets/releases/download/v3.1.4/"
 
 mkdir -p wxwidgets
 pushd wxwidgets > /dev/null

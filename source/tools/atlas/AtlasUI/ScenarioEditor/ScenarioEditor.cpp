@@ -592,7 +592,8 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 	POST_MESSAGE(InitSDL, ());
 
 	POST_MESSAGE(SetCanvas, (static_cast<wxGLCanvas*>(canvas),
-		canvas->GetClientSize().GetWidth(), canvas->GetClientSize().GetHeight()));
+		canvas->GetClientSize().GetWidth() * canvas->GetContentScaleFactor(),
+		canvas->GetClientSize().GetHeight() * canvas->GetContentScaleFactor()));
 
 	POST_MESSAGE(InitGraphics, ());
 
