@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -30,6 +30,9 @@
 
 #include "lib/file/file_system.h"	// CFileInfo
 #include "lib/file/vfs/vfs_path.h"
+
+constexpr size_t VFS_MIN_PRIORITY = 0;
+constexpr size_t VFS_MAX_PRIORITY = std::numeric_limits<size_t>::max();
 
 namespace ERR
 {
@@ -65,16 +68,7 @@ enum VfsMountFlags
 	 * ".DELETED" suffix will still apply.
 	 * (the default behavior is to hide both the suffixed and unsuffixed files)
 	 **/
-	VFS_MOUNT_KEEP_DELETED = 8,
-
-	/**
-	 * mark a directory replaceable, so that when writing a file to this path
-	 * new real directories will be created instead of reusing already existing
-	 * ones mounted at a subpath of the VFS path.
-	 * (the default behaviour is to write to the real directory associated
-	 * with the VFS directory that was last mounted to this path (or subpath))
-	 **/
-	VFS_MOUNT_REPLACEABLE = 16
+	VFS_MOUNT_KEEP_DELETED = 8
 };
 
 // (member functions are thread-safe after the instance has been
@@ -94,6 +88,11 @@ struct IVFS
 	 *
 	 * if files are encountered that already exist in the VFS (sub)directories,
 	 * the most recent / highest priority/precedence version is preferred.
+	 *
+	 * Note that the 'real directory' associated with a VFS Path
+	 * will be relative to the highest priority subdirectory in the path,
+	 * and that in case of equal priority, the order is _undefined_,
+	 * and will depend on the exact order of populate() calls.
 	 *
 	 * if files with archive extensions are seen, their contents are added
 	 * as well.
@@ -144,17 +143,6 @@ struct IVFS
 	virtual Status CreateFile(const VfsPath& pathname, const shared_ptr<u8>& fileContents, size_t size) = 0;
 
 	/**
-	 * Replace a file with the given contents.
-	 *
-	 * @see CreateFile
-	 *
-	 * Used to replace a file if it is already present (even if the file is not
-	 * in the attached vfs directory). Calls CreateFile if the file doesn't yet
-	 * exist.
-	  **/
-	virtual Status ReplaceFile(const VfsPath& pathname, const shared_ptr<u8>& fileContents, size_t size) = 0;
-
-	/**
 	 * Read an entire file into memory.
 	 *
 	 * @param pathname
@@ -170,18 +158,32 @@ struct IVFS
 	virtual std::wstring TextRepresentation() const = 0;
 
 	/**
-	 * retrieve the real (POSIX) pathname underlying a VFS file.
+	 * Retrieve the POSIX pathname a VFS file was loaded from.
+	 * This is distinct from the current 'real' path, since that depends on the parent directory's real path,
+	 * which may have been overwritten by a mod or another call to Mount().
 	 *
-	 * this is useful for passing paths to external libraries.
+	 * This is used by the caching to split by mod, and you also ought to call this to delete a file.
+	 * (note that deleting has other issues, see below).
 	 **/
-	virtual Status GetRealPath(const VfsPath& pathname, OsPath& realPathname) = 0;
+	virtual Status GetOriginalPath(const VfsPath& filename, OsPath& loadedPathname) = 0;
 
 	/**
-	 * retrieve the real (POSIX) pathname underlying a VFS directory.
-	 *
-	 * this is useful for passing paths to external libraries.
+	 * Retrieve the real (POSIX) pathname underlying a VFS file.
+	 * This is useful for passing paths to external libraries.
+	 * Note that this returns the real path relative to the highest priority VFS subpath.
+	 * @param createMissingDirectories - if true, create subdirectories on the file system as required.
+	 * (this defaults to true because, in general, this function is then used to create new files).
 	 **/
-	virtual Status GetDirectoryRealPath(const VfsPath& pathname, OsPath& realPathname) = 0;
+	virtual Status GetRealPath(const VfsPath& pathname, OsPath& realPathname, bool createMissingDirectories = true) = 0;
+
+	/**
+	 * Retrieve the real (POSIX) pathname underlying a VFS directory.
+	 * This is useful for passing paths to external libraries.
+	 * Note that this returns the real path relative to the highest priority VFS subpath.
+	 * @param createMissingDirectories - if true, create subdirectories on the file system as required.
+	 * (this defaults to true because, in general, this function is then used to create new files).
+	 **/
+	virtual Status GetDirectoryRealPath(const VfsPath& pathname, OsPath& realPathname, bool createMissingDirectories = true) = 0;
 
 	/**
 	 * retrieve the VFS pathname that corresponds to a real file.

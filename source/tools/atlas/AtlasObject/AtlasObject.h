@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -166,6 +166,7 @@ public:
 	void add(const char* key, AtObj& data);
 	void set(const char* key, const char* value);
 	void set(const char* key, AtObj& data);
+	void unset(const char* key);
 	void setBool(const char* key, bool value);
 	void setDouble(const char* key, double value);
 	void setInt(const char* key, int value);

@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -40,7 +40,9 @@ void Canvas::OnResize(wxSizeEvent&)
 	// Be careful not to send 'resize' messages to the game before we've
 	// told it that this canvas exists
 	if (! m_SuppressResize)
-		POST_MESSAGE(ResizeScreen, (GetClientSize().GetWidth(), GetClientSize().GetHeight()));
+		POST_MESSAGE(ResizeScreen, (
+			GetClientSize().GetWidth() * GetContentScaleFactor(),
+			GetClientSize().GetHeight() * GetContentScaleFactor()));
 		// TODO: fix flashing
 }
 
@@ -64,6 +66,9 @@ void Canvas::OnMouseCaptureLost(wxMouseCaptureLostEvent& WXUNUSED(evt))
 
 void Canvas::OnMouse(wxMouseEvent& evt)
 {
+	evt.SetX(evt.GetX() * GetContentScaleFactor());
+	evt.SetY(evt.GetY() * GetContentScaleFactor());
+
 	// Capture on button-down, so we can respond even when the mouse
 	// moves off the window
 	if (!m_MouseCaptured && evt.ButtonDown())

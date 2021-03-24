@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -284,8 +284,8 @@ bool SavedGames::DeleteSavedGame(const std::wstring& name)
 	const VfsPath filename = basename.ChangeExtension(L".0adsave");
 	OsPath realpath;
 
-	// Make sure it exists in VFS and find its real path
-	if (!VfsFileExists(filename) || g_VFS->GetRealPath(filename, realpath) != INFO::OK)
+	// Make sure it exists in VFS and find its path
+	if (!VfsFileExists(filename) || g_VFS->GetOriginalPath(filename, realpath) != INFO::OK)
 		return false; // Error
 
 	// Remove from VFS

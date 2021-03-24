@@ -307,7 +307,7 @@ function displaySingle(entState)
 	Engine.GetGUIObjectByName("icon").sprite = template.icon ? ("stretched:session/portraits/" + template.icon) : "BackgroundBlack";
 	if (template.icon)
 		Engine.GetGUIObjectByName("iconBorder").onPressRight = () => {
-			showTemplateDetails(entState.template);
+			showTemplateDetails(entState.template, playerState.civ);
 		};
 
 	let detailedTooltip = [

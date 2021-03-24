@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -36,8 +36,8 @@ public:
 		DeleteDirectory(DataDir()/"_testcache"); // clean up in case the last test run failed
 
 		m_VFS = CreateVfs();
-		TS_ASSERT_OK(m_VFS->Mount(L"", DataDir()/"mods"/"_test.tex", VFS_MOUNT_MUST_EXIST));
-		TS_ASSERT_OK(m_VFS->Mount(L"cache/", DataDir()/"_testcache"));
+		TS_ASSERT_OK(m_VFS->Mount(L"", DataDir() / "mods" / "_test.tex" / "", VFS_MOUNT_MUST_EXIST));
+		TS_ASSERT_OK(m_VFS->Mount(L"cache/", DataDir() / "_testcache" / "", 0, VFS_MAX_PRIORITY));
 
 		h_mgr_init();
 
