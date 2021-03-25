@@ -1,9 +1,4 @@
-#if USE_GPU_SKINNING
-// Skinning requires GLSL 1.30 for ivec4 vertex attributes
-#version 130
-#else
 #version 120
-#endif
 
 #include "common/los_vertex.h"
 #include "common/shadows_vertex.h"
@@ -24,14 +19,6 @@ attribute vec3 a_normal;
 #endif
 attribute vec2 a_uv0;
 attribute vec2 a_uv1;
-
-#if USE_GPU_SKINNING
-  const int MAX_INFLUENCES = 4;
-  const int MAX_BONES = 64;
-  uniform mat4 skinBlendMatrices[MAX_BONES];
-  attribute ivec4 a_skinJoints;
-  attribute vec4 a_skinWeights;
-#endif
 
 varying vec4 worldPos;
 varying vec4 v_tex;

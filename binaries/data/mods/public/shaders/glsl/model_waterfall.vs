@@ -1,9 +1,4 @@
-#if USE_GPU_SKINNING
-// Skinning requires GLSL 1.30 for ivec4 vertex attributes
-#version 130
-#else
 #version 120
-#endif
 
 #include "common/los_vertex.h"
 #include "common/shadows_vertex.h"
