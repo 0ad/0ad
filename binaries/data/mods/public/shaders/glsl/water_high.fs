@@ -134,11 +134,8 @@ vec4 getReflection(vec3 normal, vec3 eyeVec)
 
 	// Let actual objects be reflected fully.
 	reflMod = max(refTex.a, 0.75);
-#elif USE_REFRACTION
+#else
 	vec3 reflColor = textureCube(skyCube, (vec4(eye, 0.0) * skyBoxRot).xyz).rgb;
-#else // !USE_REFLECTION && !USE_REFRACTION
-	// Simplest case for reflection, return a gradient of blue based on Y component.
-	vec3 reflColor = mix(vec3(0.76, 0.84, 0.92), vec3(0.24, 0.43, 0.71), -eye.y);
 #endif
 
 	return vec4(reflColor, reflMod);

@@ -534,21 +534,18 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 
 	m->fancyWaterShader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
 
-	//TODO: bind only what's needed
-	if (WaterMgr->m_WaterRefraction || WaterMgr->m_WaterReflection)
-	{
-		m->fancyWaterShader->BindTexture(str_skyCube, g_Renderer.GetSkyManager()->GetSkyCube());
-		// TODO: check that this rotates in the right direction.
-		CMatrix3D skyBoxRotation;
-		skyBoxRotation.SetIdentity();
-		skyBoxRotation.RotateY(M_PI + lightEnv.GetRotation());
-		m->fancyWaterShader->Uniform(str_skyBoxRot, skyBoxRotation);
+	m->fancyWaterShader->BindTexture(str_skyCube, g_Renderer.GetSkyManager()->GetSkyCube());
+	// TODO: check that this rotates in the right direction.
+	CMatrix3D skyBoxRotation;
+	skyBoxRotation.SetIdentity();
+	skyBoxRotation.RotateY(M_PI + lightEnv.GetRotation());
+	m->fancyWaterShader->Uniform(str_skyBoxRot, skyBoxRotation);
 
-		if (WaterMgr->m_WaterRefraction)
-			m->fancyWaterShader->Uniform(str_refractionMatrix, WaterMgr->m_RefractionMatrix);
-		if (WaterMgr->m_WaterReflection)
-			m->fancyWaterShader->Uniform(str_reflectionMatrix, WaterMgr->m_ReflectionMatrix);
-	}
+	if (WaterMgr->m_WaterRefraction)
+		m->fancyWaterShader->Uniform(str_refractionMatrix, WaterMgr->m_RefractionMatrix);
+	if (WaterMgr->m_WaterReflection)
+		m->fancyWaterShader->Uniform(str_reflectionMatrix, WaterMgr->m_ReflectionMatrix);
+
 	m->fancyWaterShader->Uniform(str_ambient, lightEnv.m_AmbientColor);
 	m->fancyWaterShader->Uniform(str_sunDir, lightEnv.GetSunDir());
 	m->fancyWaterShader->Uniform(str_sunColor, lightEnv.m_SunColor);
