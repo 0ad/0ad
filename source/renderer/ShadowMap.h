@@ -15,10 +15,6 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
- * Shadow mapping related texture and matrix management
- */
-
 #ifndef INCLUDED_SHADOWMAP
 #define INCLUDED_SHADOWMAP
 

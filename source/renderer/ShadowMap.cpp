@@ -15,17 +15,13 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
- * Shadow mapping related texture and matrix management
- */
-
 #include "precompiled.h"
 
 #include "ShadowMap.h"
 
-#include "graphics/LightEnv.h"
 #include "graphics/Camera.h"
 #include "graphics/Frustum.h"
+#include "graphics/LightEnv.h"
 #include "graphics/ShaderManager.h"
 #include "gui/GUIMatrix.h"
 #include "lib/bits.h"
@@ -39,9 +35,6 @@
 #include "ps/Profile.h"
 #include "renderer/Renderer.h"
 #include "renderer/RenderingOptions.h"
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// ShadowMap implementation
 
 /**
  * Struct ShadowMapInternals: Internal data for the ShadowMap implementation
@@ -142,8 +135,6 @@ void CalculateBoundsForFixedShadows(
 	bbaa->Expand(insets);
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// Construction/Destruction
 ShadowMap::ShadowMap()
 {
 	m = new ShadowMapInternals;
@@ -171,7 +162,6 @@ ShadowMap::ShadowMap()
 	CFG_GET_VAL("shadowsfixeddistance", m->FixedShadowsDistance);
 }
 
-
 ShadowMap::~ShadowMap()
 {
 	if (m->Texture)
@@ -184,7 +174,6 @@ ShadowMap::~ShadowMap()
 	delete m;
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 // Force the texture/buffer/etc to be recreated, particularly when the renderer's
 // size has changed
 void ShadowMap::RecreateTexture()
@@ -203,7 +192,6 @@ void ShadowMap::RecreateTexture()
 	// (Texture will be constructed in next SetupFrame)
 }
 
-//////////////////////////////////////////////////////////////////////////////
 // SetupFrame: camera and light direction for this frame
 void ShadowMap::SetupFrame(const CCamera& camera, const CVector3D& lightdir)
 {
@@ -270,8 +258,6 @@ void ShadowMap::SetupFrame(const CCamera& camera, const CVector3D& lightdir)
 		CalculateBoundsForFixedShadows(camera, m->LightTransform, camera.GetNearPlane(), m->FixedShadowsDistance, &m->FixedFrustumBounds);
 }
 
-
-//////////////////////////////////////////////////////////////////////////////
 // AddShadowedBound: add a world-space bounding box to the bounds of shadowed
 // objects
 void ShadowMap::AddShadowCasterBound(const CBoundingBoxAligned& bounds)
@@ -318,7 +304,6 @@ CFrustum ShadowMap::GetShadowCasterCullFrustum()
 	return frustum;
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 // CalcShadowMatrices: calculate required matrices for shadow map generation - the light's
 // projection and transformation matrices
 void ShadowMapInternals::CalcShadowMatrices()
@@ -423,9 +408,6 @@ void ShadowMapInternals::CalcShadowMatrices()
 	TextureMatrix = lightToTex * LightTransform;
 }
 
-
-
-//////////////////////////////////////////////////////////////////////////
 // Create the shadow map
 void ShadowMapInternals::CreateTexture()
 {
@@ -494,19 +476,24 @@ void ShadowMapInternals::CreateTexture()
 	EffectiveWidth = Width;
 	EffectiveHeight = Height;
 
-	const char* formatname;
-
-	switch(DepthTextureBits)
+	GLenum format;
+	const char* formatName;
+#if CONFIG2_GLES
+	format = GL_DEPTH_COMPONENT;
+	formatName = "DEPTH_COMPONENT";
+#else
+	switch ( DepthTextureBits )
 	{
-	case 16: formatname = "DEPTH_COMPONENT16"; break;
-	case 24: formatname = "DEPTH_COMPONENT24"; break;
-	case 32: formatname = "DEPTH_COMPONENT32"; break;
-	default: formatname = "DEPTH_COMPONENT"; break;
+	case 16: format = GL_DEPTH_COMPONENT16; formatName = "DEPTH_COMPONENT16"; break;
+	case 24: format = GL_DEPTH_COMPONENT24; formatName = "DEPTH_COMPONENT24"; break;
+	case 32: format = GL_DEPTH_COMPONENT32; formatName = "DEPTH_COMPONENT32"; break;
+	default: format = GL_DEPTH_COMPONENT; formatName = "DEPTH_COMPONENT"; break;
 	}
+#endif
+	ENSURE(formatName);
 
 	LOGMESSAGE("Creating shadow texture (size %dx%d) (format = %s)",
-		Width, Height, formatname);
-
+		Width, Height, formatName);
 
 	if (g_RenderingOptions.GetShadowAlphaFix())
 	{
@@ -521,20 +508,6 @@ void ShadowMapInternals::CreateTexture()
 
 	glGenTextures(1, &Texture);
 	g_Renderer.BindTexture(0, Texture);
-
-	GLenum format;
-
-#if CONFIG2_GLES
-	format = GL_DEPTH_COMPONENT;
-#else
-	switch (DepthTextureBits)
-	{
-	case 16: format = GL_DEPTH_COMPONENT16; break;
-	case 24: format = GL_DEPTH_COMPONENT24; break;
-	case 32: format = GL_DEPTH_COMPONENT32; break;
-	default: format = GL_DEPTH_COMPONENT; break;
-	}
-#endif
 
 	glTexImage2D(GL_TEXTURE_2D, 0, format, Width, Height, 0, GL_DEPTH_COMPONENT, GL_UNSIGNED_SHORT, NULL);
 	// GLES requires type == UNSIGNED_SHORT or UNSIGNED_INT
@@ -599,7 +572,6 @@ void ShadowMapInternals::CreateTexture()
 	}
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 // Set up to render into shadow map texture
 void ShadowMap::BeginRender()
 {
@@ -644,8 +616,6 @@ void ShadowMap::BeginRender()
 	glScissor(1,1, m->EffectiveWidth-2, m->EffectiveHeight-2);
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 // Finish rendering into shadow map texture
 void ShadowMap::EndRender()
 {
@@ -674,7 +644,6 @@ void ShadowMap::BindTo(const CShaderProgramPtr& shader) const
 	shader->Uniform(str_shadowScale, m->Width, m->Height, 1.0f / m->Width, 1.0f / m->Height);
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
 // Depth texture bits
 int ShadowMap::GetDepthTextureBits() const
 {
@@ -695,8 +664,6 @@ void ShadowMap::SetDepthTextureBits(int bits)
 		m->DepthTextureBits = bits;
 	}
 }
-
-//////////////////////////////////////////////////////////////////////////////
 
 void ShadowMap::RenderDebugBounds()
 {
