@@ -97,10 +97,10 @@
 	<!-- Names and civilization emblem etc. (This must come before the attack and resistance icon to avoid clipping issues.) -->
 	<object size="0 92 100% 100%" name="statsArea" type="image" sprite="edgedPanelShader">
 
-		<!-- Specific and generic names. -->
+		<!-- Primary and secondary names. -->
 		<object z="30">
-			<object size="0 2 100% 22" name="specific" ghost="true" type="text" style="SpecificNameCentered"/>
-			<object size="0 17 100% 37" name="generic" ghost="true" type="text" style="GenericNameCentered"/>
+			<object size="0 2 100% 22" name="primary" ghost="true" type="text" style="PrimaryNameCentered"/>
+			<object size="0 17 100% 37" name="secondary" ghost="true" type="text" style="SecondaryNameCentered"/>
 		</object>
 
 		<!-- Civilization tooltip. -->

@@ -31,7 +31,7 @@ class PanelEntity
 
 		let entityState = GetEntityState(entityID);
 		let template = GetTemplateData(entityState.template);
-		this.nameTooltip = setStringTags(template.name.specific, this.NameTags) + "\n";
+		this.nameTooltip = setStringTags(g_SpecificNamesPrimary ? template.name.specific : template.name.generic, this.NameTags) + "\n";
 
 		Engine.GetGUIObjectByName("panelEntityHealthSection[" + buttonID + "]").hidden = !entityState.hitpoints;
 

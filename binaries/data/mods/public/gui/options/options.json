@@ -81,6 +81,34 @@
 				"label": "Chat timestamp",
 				"tooltip": "Display the time at which a chat message was posted.",
 				"config": "chat.timestamp"
+			},
+			{
+				"type": "dropdown",
+				"label": "Naming of entities.",
+				"tooltip": "How to show entity names.",
+				"config": "gui.session.howtoshownames",
+				"list": [
+					{
+						"value": 0,
+						"label": "Specific primary.",
+						"tooltip": "Show specific names as primary and generic names as secondary."
+					},
+					{
+						"value": 1,
+						"label": "Generic primary.",
+						"tooltip": "Show generic names as primary and specific names as secondary."
+					},
+					{
+						"value": 2,
+						"label": "Only Specific.",
+						"tooltip": "Show only specific names for units."
+					},
+					{
+						"value": 3,
+						"label": "Only Generic.",
+						"tooltip": "Show only generic names for units."
+					}
+				]
 			}
 		]
 	},

@@ -1065,16 +1065,38 @@ g_SelectionPanels.Upgrade = {
 		let modifier = "";
 		if (!upgradingEntStates.length && upgradableEntStates.length)
 		{
+			let primaryName = g_SpecificNamesPrimary ? template.name.specific : template.name.generic;
+			let secondaryName;
+			if (g_ShowSecondaryNames)
+				secondaryName = g_SpecificNamesPrimary ? template.name.generic : template.name.specific;
+
 			let tooltips = [];
-			if (data.item.tooltip)
-				tooltips.push(sprintf(translate("Upgrade to %(name)s. %(tooltip)s"), {
-					"name": template.name.generic,
-					"tooltip": translate(data.item.tooltip)
-				}));
+			if (g_ShowSecondaryNames)
+			{
+				if (data.item.tooltip)
+					tooltips.push(sprintf(translate("Upgrade to a %(primaryName)s (%(secondaryName)s). %(tooltip)s"), {
+						"primaryName": primaryName,
+						"secondaryName": secondaryName,
+						"tooltip": translate(data.item.tooltip)
+					}));
+				else
+					tooltips.push(sprintf(translate("Upgrade to a %(primaryName)s (%(secondaryName)s)."), {
+						"primaryName": primaryName,
+						"secondaryName": secondaryName
+					}));
+			}
 			else
-				tooltips.push(sprintf(translate("Upgrade to %(name)s."), {
-					"name": template.name.generic
-				}));
+			{
+				if (data.item.tooltip)
+					tooltips.push(sprintf(translate("Upgrade to a %(primaryName)s. %(tooltip)s"), {
+						"primaryName": primaryName,
+						"tooltip": translate(data.item.tooltip)
+					}));
+				else
+					tooltips.push(sprintf(translate("Upgrade to a %(primaryName)s."), {
+						"primaryName": primaryName
+					}));
+			}
 
 			tooltips.push(
 				getEntityCostTooltip(data.item, undefined, undefined, data.unitEntStates.length),

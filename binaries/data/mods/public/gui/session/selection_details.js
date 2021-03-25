@@ -51,13 +51,21 @@ function updateGarrisonHealthBar(entState, selection)
 // Fills out information that most entities have
 function displaySingle(entState)
 {
-	// Get general unit and player data
 	let template = GetTemplateData(entState.template);
-	let specificName = template.name.specific;
-	let genericName = template.name.generic;
-	// If packed, add that to the generic name (reduces template clutter)
-	if (genericName && template.pack && template.pack.state == "packed")
-		genericName = sprintf(translate("%(genericName)s — Packed"), { "genericName": genericName });
+
+	let primaryName = g_SpecificNamesPrimary ? template.name.specific : template.name.generic;
+	let secondaryName;
+	if (g_ShowSecondaryNames)
+		secondaryName = g_SpecificNamesPrimary ? template.name.generic : template.name.specific;
+
+	// If packed, add that to the generic name (reduces template clutter).
+	if (template.pack && template.pack.state == "packed")
+	{
+		if (secondaryName && g_ShowSecondaryNames)
+			secondaryName = sprintf(translate("%(secondaryName)s — Packed"), { "secondaryName": secondaryName });
+		else
+			secondaryName = sprintf(translate("Packed"));
+	}
 	let playerState = g_Players[entState.player];
 
 	let civName = g_CivData[playerState.civ].Name;
@@ -288,15 +296,15 @@ function displaySingle(entState)
 		resourceCarryingText.hidden = true;
 	}
 
-	Engine.GetGUIObjectByName("specific").caption = specificName;
 	Engine.GetGUIObjectByName("player").caption = playerName;
 
 	Engine.GetGUIObjectByName("playerColorBackground").sprite =
 		"color:" + g_DiplomacyColors.getPlayerColor(entState.player, 128);
 
-	Engine.GetGUIObjectByName("generic").caption = genericName == specificName ? "" :
-		sprintf(translate("(%(genericName)s)"), {
-			"genericName": genericName
+	Engine.GetGUIObjectByName("primary").caption = primaryName;
+	Engine.GetGUIObjectByName("secondary").caption = !secondaryName || primaryName == secondaryName ? "" :
+		sprintf(translate("(%(secondaryName)s)"), {
+			"secondaryName": secondaryName
 		});
 
 	let isGaia = playerState.civ == "gaia";
@@ -332,9 +340,7 @@ function displaySingle(entState)
 
 	let iconTooltips = [];
 
-	if (genericName)
-		iconTooltips.push("[font=\"sans-bold-16\"]" + genericName + "[/font]");
-
+	iconTooltips.push(setStringTags(primaryName, g_TooltipTextFormats.namePrimaryBig));
 	iconTooltips = iconTooltips.concat([
 		getVisibleEntityClassesFormatted,
 		getAurasTooltip,

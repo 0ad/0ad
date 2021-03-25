@@ -303,6 +303,7 @@ function init(initData, hotloadData)
 	g_TimeNotificationOverlay = new TimeNotificationOverlay(g_PlayerViewControl);
 
 	initBatchTrain();
+	initDisplayedNames();
 	initSelectionPanels();
 	LoadModificationTemplates();
 	updatePlayerData();
@@ -774,6 +775,15 @@ function removeStatusBarDisplay()
 {
 	if (g_ShowAllStatusBars)
 		recalculateStatusBarDisplay(true);
+}
+
+/**
+ * Updates the primary/secondary names in the simulation and GUI.
+ */
+function updateDisplayedNames()
+{
+	g_SpecificNamesPrimary = Engine.ConfigDB_GetValue("user", "gui.session.howtoshownames") == 0 || Engine.ConfigDB_GetValue("user", "gui.session.howtoshownames") == 2;
+	g_ShowSecondaryNames = Engine.ConfigDB_GetValue("user", "gui.session.howtoshownames") == 0 || Engine.ConfigDB_GetValue("user", "gui.session.howtoshownames") == 1;
 }
 
 /**
