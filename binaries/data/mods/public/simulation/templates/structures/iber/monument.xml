@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_structure_special">
+<Entity parent="template_structure">
   <Auras datatype="tokens">
     structures/iber_monument
   </Auras>
@@ -22,7 +22,6 @@
     <Square width="8.0" depth="8.0"/>
     <Height>8.0</Height>
   </Footprint>
-  <GarrisonHolder disable=""/>
   <Health>
     <Max>1200</Max>
     <SpawnEntityOnDeath>decay|rubble/rubble_stone_2x2</SpawnEntityOnDeath>
@@ -32,8 +31,9 @@
     <GenericName>Revered Monument</GenericName>
     <SpecificName>Gur Oroigarri</SpecificName>
     <Classes datatype="tokens">CivSpecific</Classes>
-    <VisibleClasses datatype="tokens">Monument</VisibleClasses>
+    <VisibleClasses datatype="tokens">Monument Town</VisibleClasses>
     <Icon>structures/iberian_bull.png</Icon>
+    <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <Loot>
     <stone>20</stone>
@@ -44,6 +44,15 @@
   </Obstruction>
   <ProductionQueue disable=""/>
   <RallyPoint disable=""/>
+  <Resistance>
+    <Entity>
+      <Damage>
+        <Hack>20</Hack>
+        <Pierce>30</Pierce>
+        <Crush>3</Crush>
+      </Damage>
+    </Entity>
+  </Resistance>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_iber_monument.xml</select>
