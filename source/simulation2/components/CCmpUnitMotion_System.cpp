@@ -94,8 +94,8 @@ void CCmpUnitMotionManager::Move(EntityMap<MotionState>& ents, fixed dt)
 	}
 
 	for (EntityMap<MotionState>::iterator& it : m_MovingUnits)
+	{
 		it->second.cmpUnitMotion->Move(it->second, dt);
-
-	for (EntityMap<MotionState>::iterator& it : m_MovingUnits)
 		it->second.cmpUnitMotion->PostMove(it->second, dt);
+	}
 }
