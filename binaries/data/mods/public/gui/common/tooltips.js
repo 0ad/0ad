@@ -445,9 +445,7 @@ function getAttackTooltip(template)
 
 		let attackTypeTemplate = template.attack[attackType];
 		let attackLabel = sprintf(headerFont(translate("%(attackType)s")), {
-			"attackType": attackTypeTemplate.attackName.context ?
-				translateWithContext(attackTypeTemplate.attackName.context || "Name of an attack, usually the weapon.", attackTypeTemplate.attackName.name) :
-				translate(attackTypeTemplate.attackName.name)
+			"attackType": translateWithContext(attackTypeTemplate.attackName.context || "Name of an attack, usually the weapon.", attackTypeTemplate.attackName.name)
 		});
 
 		let projectiles;
@@ -498,9 +496,9 @@ function getStatusEffectsTooltip(statusCode, template, applier)
 		tooltipAttributes.push(getStatusEffectDurationTooltip(template));
 
 	if (applier && statusData.applierTooltip)
-		tooltipAttributes.push(translate(statusData.applierTooltip));
+		tooltipAttributes.push(translateWithContext("status effect", statusData.applierTooltip));
 	else if (!applier && statusData.receiverTooltip)
-		tooltipAttributes.push(translate(statusData.receiverTooltip));
+		tooltipAttributes.push(translateWithContext("status effect", statusData.receiverTooltip));
 
 	if (applier)
 		return sprintf(translate("%(statusName)s: %(statusInfo)s %(stackability)s"), {
