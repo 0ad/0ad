@@ -20,40 +20,25 @@
 
 #include "simulation2/system/Interface.h"
 
-#include "maths/Fixed.h"
-#include "maths/FixedVector2D.h"
-#include "simulation2/system/CmpPtr.h"
+class CCmpUnitMotion;
 
-class ICmpPosition;
-class ICmpUnitMotion;
-
+/**
+ * UnitMotionManager - handles motion for CCmpUnitMotion.
+ * This allows units to push past each other instead of requiring pathfinder computations,
+ * making movement much smoother overall.
+ */
 class ICmpUnitMotionManager : public IComponent
 {
 public:
-	// Persisted state for each unit.
-	struct MotionState
-	{
-		// Component references - these must be kept alive for the duration of motion.
-		CmpPtr<ICmpPosition> cmpPosition;
-		CmpPtr<ICmpUnitMotion> cmpUnitMotion;
+	DECLARE_INTERFACE_TYPE(UnitMotionManager)
 
-		// Position before units start moving
-		CFixedVector2D initialPos;
-		// Transient position during the movement.
-		CFixedVector2D pos;
+private:
+	/**
+	 * This class makes no sense outside of CCmpUnitMotion. This enforces that tight coupling.
+	 */
+	friend class CCmpUnitMotion;
 
-		fixed initialAngle;
-		fixed angle;
-
-		// If true, the entity needs to be handled during movement.
-		bool needUpdate;
-
-		// 'Leak' from UnitMotion.
-		bool wentStraight;
-		bool wasObstructed;
-	};
-
-	virtual void Register(entity_id_t ent, bool formationController) = 0;
+	virtual void Register(CCmpUnitMotion* component, entity_id_t ent, bool formationController) = 0;
 	virtual void Unregister(entity_id_t ent) = 0;
 
 	/**
@@ -61,7 +46,6 @@ public:
 	 */
 	virtual bool ComputingMotion() const = 0;
 
-	DECLARE_INTERFACE_TYPE(UnitMotionManager)
 };
 
 #endif // INCLUDED_ICMPUNITMOTIONMANAGER

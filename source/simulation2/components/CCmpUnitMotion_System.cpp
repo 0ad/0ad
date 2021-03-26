@@ -17,108 +17,22 @@
 
 #include "precompiled.h"
 
-#include "simulation2/system/Component.h"
-#include "ICmpUnitMotionManager.h"
-
-#include "simulation2/MessageTypes.h"
-#include "simulation2/components/ICmpUnitMotion.h"
-#include "simulation2/system/EntityMap.h"
+#include "CCmpUnitMotion.h"
+#include "CCmpUnitMotionManager.h"
 
 #include "ps/CLogger.h"
 #include "ps/Profile.h"
 
-class CCmpUnitMotionManager : public ICmpUnitMotionManager
-{
-public:
-	static void ClassInit(CComponentManager& componentManager)
-	{
-		componentManager.SubscribeToMessageType(MT_TurnStart);
-		componentManager.SubscribeToMessageType(MT_Update_Final);
-		componentManager.SubscribeToMessageType(MT_Update_MotionUnit);
-		componentManager.SubscribeToMessageType(MT_Update_MotionFormation);
-	}
+// NB: this TU contains the CCmpUnitMotion/CCmpUnitMotionManager couple.
+// In practice, UnitMotionManager functions need access to the full implementation of UnitMotion,
+// but UnitMotion needs access to MotionState (defined in UnitMotionManager).
+// To avoid inclusion issues, implementation of UnitMotionManager that uses UnitMotion is here.
 
-	DEFAULT_COMPONENT_ALLOCATOR(UnitMotionManager)
-
-	EntityMap<MotionState> m_Units;
-	EntityMap<MotionState> m_FormationControllers;
-
-	// Temporary vector, reconstructed each turn (stored here to avoid memory reallocations).
-	std::vector<EntityMap<MotionState>::iterator> m_MovingUnits;
-
-	bool m_ComputingMotion;
-
-	static std::string GetSchema()
-	{
-		return "<a:component type='system'/><empty/>";
-	}
-
-	virtual void Init(const CParamNode& UNUSED(paramNode))
-	{
-		m_MovingUnits.reserve(40);
-	}
-
-	virtual void Deinit()
-	{
-	}
-
-	virtual void Serialize(ISerializer& UNUSED(serialize))
-	{
-	}
-
-	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& UNUSED(deserialize))
-	{
-		Init(paramNode);
-	}
-
-	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
-	{
-		switch (msg.GetType())
-		{
-			case MT_TurnStart:
-			{
-				OnTurnStart();
-				break;
-			}
-			case MT_Update_MotionFormation:
-			{
-				fixed dt = static_cast<const CMessageUpdate_MotionFormation&>(msg).turnLength;
-				m_ComputingMotion = true;
-				MoveFormations(dt);
-				m_ComputingMotion = false;
-				break;
-			}
-			case MT_Update_MotionUnit:
-			{
-				fixed dt = static_cast<const CMessageUpdate_MotionUnit&>(msg).turnLength;
-				m_ComputingMotion = true;
-				MoveUnits(dt);
-				m_ComputingMotion = false;
-				break;
-			}
-		}
-	}
-
-	virtual void Register(entity_id_t ent, bool formationController);
-	virtual void Unregister(entity_id_t ent);
-
-	virtual bool ComputingMotion() const
-	{
-		return m_ComputingMotion;
-	}
-
-	void OnTurnStart();
-
-	void MoveUnits(fixed dt);
-	void MoveFormations(fixed dt);
-	void Move(EntityMap<MotionState>& ents, fixed dt);
-};
-
-void CCmpUnitMotionManager::Register(entity_id_t ent, bool formationController)
+void CCmpUnitMotionManager::Register(CCmpUnitMotion* component, entity_id_t ent, bool formationController)
 {
 	MotionState state = {
 		CmpPtr<ICmpPosition>(GetSimContext(), ent),
-		CmpPtr<ICmpUnitMotion>(GetSimContext(), ent),
+		component,
 		CFixedVector2D(),
 		CFixedVector2D(),
 		fixed::Zero(),
@@ -185,6 +99,3 @@ void CCmpUnitMotionManager::Move(EntityMap<MotionState>& ents, fixed dt)
 	for (EntityMap<MotionState>::iterator& it : m_MovingUnits)
 		it->second.cmpUnitMotion->PostMove(it->second, dt);
 }
-
-
-REGISTER_COMPONENT_TYPE(UnitMotionManager)
