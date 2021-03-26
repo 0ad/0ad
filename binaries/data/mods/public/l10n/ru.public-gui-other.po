@@ -22,6 +22,7 @@
 # Malyanov Evgeniy <flange465@gmail.com>, 2015
 # 7a29a266fd9cb6bd6f7a5ad8b7eecd04_d094aea <8eb4501fa1ae799eccffc2010c174d97_227354>, 2015
 # Nicolas Auvray <na.itms76@gmail.com>, 2017
+# nwtour <nwtour@mail.ru>, 2021
 # Prince Moth <princemoth@rambler.ru>, 2016
 # Roman M. Yagodin <roman.yagodin@gmail.com>, 2017
 # Константин <sad.2.shade@gmail.com>, 2015
@@ -46,9 +47,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-03-19 08:08+0000\n"
-"PO-Revision-Date: 2021-03-19 08:28+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2021-03-22 08:08+0000\n"
+"PO-Revision-Date: 2021-03-22 11:11+0000\n"
+"Last-Translator: nwtour <nwtour@mail.ru>\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -206,16 +207,16 @@ msgstr[1] "Наблюдатели"
 msgstr[2] "Наблюдатели"
 msgstr[3] "Наблюдатели"
 
-#: gui/common/gamedescription.js:191
+#: gui/common/gamedescription.js:188
 msgctxt "victory condition"
 msgid "Endless Game"
 msgstr "Бесконечная игра"
 
-#: gui/common/gamedescription.js:192
+#: gui/common/gamedescription.js:189
 msgid "No winner will be determined, even if everyone is defeated."
 msgstr "Победитель не будет определён, даже если все будут побеждены."
 
-#: gui/common/gamedescription.js:205
+#: gui/common/gamedescription.js:202
 #, javascript-format
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
@@ -225,7 +226,7 @@ msgstr[1] "Чудо (%(min)s мин.)"
 msgstr[2] "Чудо (%(min)s мин.)"
 msgstr[3] "Чудо (%(min)s мин.)"
 
-#: gui/common/gamedescription.js:219
+#: gui/common/gamedescription.js:216
 #, javascript-format
 msgctxt "victory condition"
 msgid "Capture the Relic (%(min)s minute)"
@@ -235,81 +236,81 @@ msgstr[1] "Захват Реликвии (%(min)s мин.)"
 msgstr[2] "Захват Реликвии (%(min)s мин.)"
 msgstr[3] "Захват реликвии (%(min)s мин.)"
 
-#: gui/common/gamedescription.js:235
+#: gui/common/gamedescription.js:232
 msgid "Relic Count"
 msgstr "Количество реликвий"
 
-#: gui/common/gamedescription.js:242
+#: gui/common/gamedescription.js:239
 msgid "Hero Garrison"
 msgstr "Герой Гарнизона"
 
-#: gui/common/gamedescription.js:243
+#: gui/common/gamedescription.js:240
 msgid "Heroes can be garrisoned."
 msgstr "Герои могут размещаться в гарнизонах."
 
-#: gui/common/gamedescription.js:247
+#: gui/common/gamedescription.js:244
 msgid "Exposed Heroes"
 msgstr "Незащищённые герои"
 
-#: gui/common/gamedescription.js:248
+#: gui/common/gamedescription.js:245
 msgid "Heroes cannot be garrisoned and they are vulnerable to raids."
 msgstr "Героев нельзя размещать в гарнизонах и они остаются уязвимыми при неприятельских набегах."
 
-#: gui/common/gamedescription.js:255
+#: gui/common/gamedescription.js:252
 msgid "Rated game"
 msgstr "Рейтинговая игра"
 
-#: gui/common/gamedescription.js:256
+#: gui/common/gamedescription.js:253
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
 msgstr "Рейтинг будет обновлён после определения победителя."
 
-#: gui/common/gamedescription.js:261
+#: gui/common/gamedescription.js:258
 msgid "Locked Teams"
 msgstr "Фиксированные команды"
 
-#: gui/common/gamedescription.js:262
+#: gui/common/gamedescription.js:259
 msgid "Players can't change the initial teams."
 msgstr "Игроки не могут изменять начальные команды."
 
-#: gui/common/gamedescription.js:266
+#: gui/common/gamedescription.js:263
 msgid "Diplomacy"
 msgstr "Дипломатия"
 
-#: gui/common/gamedescription.js:267
+#: gui/common/gamedescription.js:264
 msgid "Players can make alliances and declare war on allies."
 msgstr "Игроки могут заключать и расторгать союзы."
 
-#: gui/common/gamedescription.js:272
+#: gui/common/gamedescription.js:269
 msgid "Last Man Standing"
 msgstr "Последний герой"
 
-#: gui/common/gamedescription.js:273
+#: gui/common/gamedescription.js:270
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
 msgstr "Только один игрок может победить. Если остальные игроки являются союзниками, то игра продолжается, пока не останется только один."
 
-#: gui/common/gamedescription.js:277
+#: gui/common/gamedescription.js:274
 msgid "Allied Victory"
 msgstr "Победа союзников"
 
-#: gui/common/gamedescription.js:278
+#: gui/common/gamedescription.js:275
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
 msgstr "Одержавший победу игрок приносит победу всем своим союзникам. Если остались игроки только одного союза, они одерживают победу."
 
-#: gui/common/gamedescription.js:283
+#: gui/common/gamedescription.js:280
 msgid "Ceasefire"
 msgstr "Стартовое перемирие"
 
-#: gui/common/gamedescription.js:286 gui/pregame/userreport/userreport.js:26
+#: gui/common/gamedescription.js:283 gui/pregame/userreport/userreport.js:26
 msgid "disabled"
 msgstr "отключено"
 
-#: gui/common/gamedescription.js:287
+#: gui/common/gamedescription.js:284
 msgid "For the first minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
 msgstr[0] "Первую минуту другие игроки остаются нейтральными."
@@ -317,112 +318,112 @@ msgstr[1] "Первые %(min)s минут другие игроки остаю�
 msgstr[2] "Первые %(min)s минут другие игроки остаются нейтральными."
 msgstr[3] "Первые %(min)s минут другие игроки остаются нейтральными."
 
-#: gui/common/gamedescription.js:296
+#: gui/common/gamedescription.js:293
 msgctxt "Map Selection"
 msgid "Random Map"
 msgstr "Случайная карта"
 
-#: gui/common/gamedescription.js:297
+#: gui/common/gamedescription.js:294
 msgid "Randomly select a map from the list."
 msgstr "Случайный выбор карты из списка."
 
-#: gui/common/gamedescription.js:302
+#: gui/common/gamedescription.js:299
 msgid "Map Name"
 msgstr "Название карты"
 
-#: gui/common/gamedescription.js:308
+#: gui/common/gamedescription.js:305
 msgid "Map Description"
 msgstr "Описание карты"
 
-#: gui/common/gamedescription.js:314
+#: gui/common/gamedescription.js:311
 msgid "Map Type"
 msgstr "Тип карты"
 
-#: gui/common/gamedescription.js:323
+#: gui/common/gamedescription.js:320
 msgid "Map Size"
 msgstr "Размер карты"
 
-#: gui/common/gamedescription.js:332
+#: gui/common/gamedescription.js:329
 msgctxt "biome"
 msgid "Random Biome"
 msgstr "Случайный биом"
 
-#: gui/common/gamedescription.js:333
+#: gui/common/gamedescription.js:330
 msgid "Randomly select a biome from the list."
 msgstr "Выбрать биом из списка случайным образом."
 
-#: gui/common/gamedescription.js:348
+#: gui/common/gamedescription.js:345
 msgid "Nomad Mode"
 msgstr "Кочевой режим"
 
-#: gui/common/gamedescription.js:348
+#: gui/common/gamedescription.js:345
 msgid "Civic Centers"
 msgstr "Городские центры"
 
-#: gui/common/gamedescription.js:351
+#: gui/common/gamedescription.js:348
 msgid ""
 "Players start with only few units and have to find a suitable place to build"
 " their city."
 msgstr "Игроки получают на старте всего нескольких юнитов и должны подыскать себе подходящее место для основания города."
 
-#: gui/common/gamedescription.js:352
+#: gui/common/gamedescription.js:349
 msgid "Players start with a Civic Center."
 msgstr "Игроки начинают игру с городскими Центрами."
 
-#: gui/common/gamedescription.js:357
+#: gui/common/gamedescription.js:354
 msgid "Starting Resources"
 msgstr "Начальные ресурсы"
 
-#: gui/common/gamedescription.js:361
+#: gui/common/gamedescription.js:358
 msgctxt "starting resources"
 msgid "Per Player"
 msgstr "На игрока"
 
-#: gui/common/gamedescription.js:362
+#: gui/common/gamedescription.js:359
 #, javascript-format
 msgid "%(startingResourcesTitle)s (%(amount)s)"
 msgstr "%(startingResourcesTitle)s (%(amount)s)"
 
-#: gui/common/gamedescription.js:373
+#: gui/common/gamedescription.js:370
 msgid "Population Limit"
 msgstr "Предельная численность населения"
 
-#: gui/common/gamedescription.js:377
+#: gui/common/gamedescription.js:374
 msgctxt "population limit"
 msgid "Per Player"
 msgstr "На игрока"
 
-#: gui/common/gamedescription.js:385
+#: gui/common/gamedescription.js:382
 msgid "World Population Cap"
 msgstr "Предел мирового населения"
 
-#: gui/common/gamedescription.js:393
+#: gui/common/gamedescription.js:390
 msgid "Treasures"
 msgstr "Сокровища"
 
-#: gui/common/gamedescription.js:395
+#: gui/common/gamedescription.js:392
 msgctxt "treasures"
 msgid "Disabled"
 msgstr "Отключено"
 
-#: gui/common/gamedescription.js:396
+#: gui/common/gamedescription.js:393
 msgctxt "treasures"
 msgid "As defined by the map."
 msgstr "Определяется картой."
 
-#: gui/common/gamedescription.js:400
-msgid "Revealed Map"
-msgstr "Открытая карта"
-
-#: gui/common/gamedescription.js:405
+#: gui/common/gamedescription.js:397
 msgid "Explored Map"
 msgstr "Исследованная карта"
 
-#: gui/common/gamedescription.js:410
+#: gui/common/gamedescription.js:402
+msgid "Revealed Map"
+msgstr "Открытая карта"
+
+#: gui/common/gamedescription.js:407
 msgid "Cheats"
 msgstr "Читы"
 
-#: gui/common/gamedescription.js:414 gui/common/tooltips.js:144
+#: gui/common/gamedescription.js:411 gui/common/tooltips.js:144
 #: gui/common/tooltips.js:210 gui/common/tooltips.js:231
 #: gui/common/tooltips.js:250 gui/common/tooltips.js:313
 #: gui/common/tooltips.js:616 gui/common/tooltips.js:622
@@ -433,25 +434,25 @@ msgstr "Читы"
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/common/gamedescription.js:417
+#: gui/common/gamedescription.js:414
 msgctxt "game setup option"
 msgid "enabled"
 msgstr "Включено"
 
-#: gui/common/gamedescription.js:418
+#: gui/common/gamedescription.js:415
 msgctxt "game setup option"
 msgid "disabled"
 msgstr "отключено"
 
-#: gui/common/gamedescription.js:430
+#: gui/common/gamedescription.js:427
 msgid "Victorious"
 msgstr "Победивший"
 
-#: gui/common/gamedescription.js:435
+#: gui/common/gamedescription.js:432
 msgid "Defeated"
 msgstr "Поражение"
 
-#: gui/common/gamedescription.js:444
+#: gui/common/gamedescription.js:441
 #, javascript-format
 msgid "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
 msgstr "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
@@ -1548,8 +1549,12 @@ msgstr ""
 msgid "May conflict with: "
 msgstr ""
 
-#: gui/hotkeys/HotkeysPage.js:82
+#: gui/hotkeys/HotkeysPage.js:71
 msgid "All Hotkeys"
+msgstr "Все категории"
+
+#: gui/hotkeys/HotkeysPage.js:105
+msgid "All available hotkeys."
 msgstr ""
 
 #: gui/hotkeys/HotkeysPage.js:118
@@ -1592,7 +1597,7 @@ msgstr ""
 msgid ""
 "Click on any mapping to modify it.\\n You may have up to 4 different "
 "hotkeys."
-msgstr ""
+msgstr "Кликните на любое сочетание для модификации.\\\\n На каждое действие 4 разных горячих клавиши."
 
 #: gui/hotkeys/hotkeys.xml:(caption):106 gui/locale/locale.xml:(caption):46
 msgid "Accept"
@@ -1612,7 +1617,7 @@ msgstr "Имя"
 #: gui/hotkeys/hotkeys.xml:(heading):43
 msgctxt "hotkey list"
 msgid "Mapping"
-msgstr ""
+msgstr "Привязка"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):49 gui/hotkeys/hotkeys.xml:(tooltip):102
 #: gui/options/options.xml:(tooltip):43
@@ -1641,6 +1646,1696 @@ msgstr ""
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):112
 msgid "The hotkeys will not be modified"
+msgstr ""
+
+#: gui/hotkeys/spec/camera.jsoncategories.camera.desc
+msgctxt "hotkey metadata"
+msgid "Camera-related hotkeys."
+msgstr "Горячие клавиши связанные с управлением камерой."
+
+#: gui/hotkeys/spec/camera.jsoncategories.camera.name
+msgctxt "hotkey metadata"
+msgid "Camera"
+msgstr "Камера"
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.down.desc
+msgctxt "hotkey metadata"
+msgid "Scroll backwards or rotate down."
+msgstr ""
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.down.name
+msgctxt "hotkey metadata"
+msgid "Scroll/Rotate down"
+msgstr "Скроллить вниз"
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.follow.desc
+msgctxt "hotkey metadata"
+msgid "Follow the first unit in the selection."
+msgstr "Следовать за первым юнитом из выбранных."
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.follow.name
+msgctxt "hotkey metadata"
+msgid "Follow Unit"
+msgstr "Следовать за юнитом"
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.1.desc
+msgctxt "hotkey metadata"
+msgid "Jump to camera position 1 (see “Set camera jump 1”)."
+msgstr "Переместиться к положению камеры 1 (См. \"Сохранить позицию камеры 1\")."
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.1.name
+msgctxt "hotkey metadata"
+msgid "Jump to camera 1"
+msgstr "Переместиться к камере 1"
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.2.desc
+msgctxt "hotkey metadata"
+msgid "Jump to camera position 2 (see “Set camera jump 2”)."
+msgstr "Переместиться к положению камеры 2 (См. \"Сохранить позицию камеры 2\")."
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.2.name
+msgctxt "hotkey metadata"
+msgid "Jump to camera 2"
+msgstr "Переместиться к камере 2"
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.3.desc
+msgctxt "hotkey metadata"
+msgid "Jump to camera position 3 (see “Set camera jump 3”)."
+msgstr "Переместиться к положению камеры 3 (См. \"Сохранить позицию камеры 3\")."
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.3.name
+msgctxt "hotkey metadata"
+msgid "Jump to camera 3"
+msgstr "Переместиться к камере 3"
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.4.desc
+msgctxt "hotkey metadata"
+msgid "Jump to camera position 4 (see “Set camera jump 4”)."
+msgstr "Переместиться к положению камеры 4 (См. \"Сохранить позицию камеры 4\")."
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.4.name
+msgctxt "hotkey metadata"
+msgid "Jump to camera 4"
+msgstr "Переместиться к камере 4"
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.1.desc
+msgctxt "hotkey metadata"
+msgid "Set camera jump position 1."
+msgstr "Сохранить положение камеры в ячейку 1."
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.1.name
+msgctxt "hotkey metadata"
+msgid "Set camera jump 1"
+msgstr "Сохранить позицию камеры 1"
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.2.desc
+msgctxt "hotkey metadata"
+msgid "Set camera jump position 2."
+msgstr "Сохранить положение камеры в ячейку 2."
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.2.name
+msgctxt "hotkey metadata"
+msgid "Set camera jump 2"
+msgstr "Сохранить позицию камеры 2"
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.3.desc
+msgctxt "hotkey metadata"
+msgid "Set camera jump position 3."
+msgstr "Сохранить положение камеры в ячейку 3."
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.3.name
+msgctxt "hotkey metadata"
+msgid "Set camera jump 3"
+msgstr "Сохранить позицию камеры 3"
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.4.desc
+msgctxt "hotkey metadata"
+msgid "Set camera jump position 4."
+msgstr "Сохранить положение камеры в ячейку 4."
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.4.name
+msgctxt "hotkey metadata"
+msgid "Set camera jump 4"
+msgstr "Сохранить позицию камеры 4"
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.left.desc
+msgctxt "hotkey metadata"
+msgid "Scroll or rotate left."
+msgstr ""
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.left.name
+msgctxt "hotkey metadata"
+msgid "Scroll/Rotate left"
+msgstr "Скроллить вниз"
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.pan.desc
+msgctxt "hotkey metadata"
+msgid "Enable scrolling by moving the mouse."
+msgstr "Включить скроллинг на движение мыши."
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.pan.name
+msgctxt "hotkey metadata"
+msgid "Pan camera"
+msgstr "Панорамная камера"
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rallypointfocus.desc
+msgctxt "hotkey metadata"
+msgid "Focus the camera on the rally point of the selected building."
+msgstr "Сфокусировать камеру на точку сбора выбранного здания."
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rallypointfocus.name
+msgctxt "hotkey metadata"
+msgid "Focus on rallypoint"
+msgstr "Камера на точку сбора"
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.reset.desc
+msgctxt "hotkey metadata"
+msgid "Reset camera rotation to default."
+msgstr "Сбросить настройки камеры на значение по умолчанию."
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.reset.name
+msgctxt "hotkey metadata"
+msgid "Reset Camera"
+msgstr "Сбросить настройки камеры"
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.right.desc
+msgctxt "hotkey metadata"
+msgid "Scroll or rotate right."
+msgstr "Скроллить или повернуть вправо."
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.right.name
+msgctxt "hotkey metadata"
+msgid "Scroll/Rotate right"
+msgstr "Скроллить вправо"
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.ccw.desc
+msgctxt "hotkey metadata"
+msgid "Rotate camera counterclockwise around terrain."
+msgstr "Повернуть камеру относительно поверхности против часовой стрелки."
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.ccw.name
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.wheel.ccw.name
+msgctxt "hotkey metadata"
+msgid "Rotate counterclockwise"
+msgstr "Повернуть против часовой стрелки"
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.cw.desc
+msgctxt "hotkey metadata"
+msgid "Rotate camera clockwise around terrain."
+msgstr "Повернуть камеру относительно поверхности по часовой стрелке."
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.cw.name
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.wheel.cw.name
+msgctxt "hotkey metadata"
+msgid "Rotate clockwise"
+msgstr "Повернуть по часовой стрелке"
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.down.desc
+msgctxt "hotkey metadata"
+msgid "Rotate camera to look downwards."
+msgstr "Повернуть камеру в сторону просмотра сбоку."
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.down.name
+msgctxt "hotkey metadata"
+msgid "Rotate Down"
+msgstr "Повернуть вниз"
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.speed.decrease.desc
+msgctxt "hotkey metadata"
+msgid "Decrease camera rotation speed."
+msgstr "Уменьшить скорость вращения камерой."
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.speed.decrease.name
+msgctxt "hotkey metadata"
+msgid "Decrease rotation speed"
+msgstr "Уменьшить скорость вращения"
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.speed.increase.desc
+msgctxt "hotkey metadata"
+msgid "Increase camera rotation speed."
+msgstr "Увеличить скорость вращения камерой."
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.speed.increase.name
+msgctxt "hotkey metadata"
+msgid "Increase rotation speed"
+msgstr "Увеличить скорость вращения"
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.up.desc
+msgctxt "hotkey metadata"
+msgid "Rotate camera to look upwards."
+msgstr "Повернуть камеру в сторону просмотра сверху."
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.up.name
+msgctxt "hotkey metadata"
+msgid "Rotate up"
+msgstr "Повернуть вверх"
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.wheel.ccw.desc
+msgctxt "hotkey metadata"
+msgid ""
+"Rotate camera counterclockwise around terrain - the effect depends on FPS."
+msgstr ""
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.wheel.cw.desc
+msgctxt "hotkey metadata"
+msgid "Rotate camera clockwise around terrain - the effect depends on FPS."
+msgstr ""
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.scroll.speed.decrease.desc
+msgctxt "hotkey metadata"
+msgid "Decrease camera scroll speed."
+msgstr "Уменьшить скорость скроллинга экрана."
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.scroll.speed.decrease.name
+msgctxt "hotkey metadata"
+msgid "Decrease scroll speed"
+msgstr "Уменьшить скорость скроллинга"
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.scroll.speed.increase.desc
+msgctxt "hotkey metadata"
+msgid "Increase camera scroll speed."
+msgstr "Увеличить скорость скроллинга экрана."
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.scroll.speed.increase.name
+msgctxt "hotkey metadata"
+msgid "Increase scroll speed"
+msgstr "Увеличить скорость скроллинга"
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.up.desc
+msgctxt "hotkey metadata"
+msgid "Scroll forwards or rotate up."
+msgstr "Скроллить или поворачивать вверх/вперед."
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.up.name
+msgctxt "hotkey metadata"
+msgid "Scroll/Rotate up"
+msgstr "Скроллить вверх"
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.in.desc
+msgctxt "hotkey metadata"
+msgid "Zoom camera in."
+msgstr "Приближать"
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.in.name
+msgctxt "hotkey metadata"
+msgid "Zoom in"
+msgstr ""
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.out.desc
+msgctxt "hotkey metadata"
+msgid "Zoom camera out."
+msgstr "Отдалять"
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.out.name
+msgctxt "hotkey metadata"
+msgid "Zoom out"
+msgstr ""
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.decrease.desc
+msgctxt "hotkey metadata"
+msgid "Decrease camera zoom speed."
+msgstr "Уменьшить скорость приближения/отдаления камеры."
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.decrease.name
+msgctxt "hotkey metadata"
+msgid "Decrease zoom speed"
+msgstr "Уменьшить скорость зума"
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.increase.desc
+msgctxt "hotkey metadata"
+msgid "Increase camera zoom speed."
+msgstr "Увеличить скорость приближения/отдаления камеры."
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.increase.name
+msgctxt "hotkey metadata"
+msgid "Increase zoom speed"
+msgstr "Увеличить скорость зума"
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.in.desc
+msgctxt "hotkey metadata"
+msgid "Zoom camera in - the effect depends on FPS."
+msgstr ""
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.in.name
+msgctxt "hotkey metadata"
+msgid "Zoom in (step-by-step)"
+msgstr ""
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.out.desc
+msgctxt "hotkey metadata"
+msgid "Zoom camera out - the effect depends on FPS."
+msgstr ""
+
+#: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.out.name
+msgctxt "hotkey metadata"
+msgid "Zoom out (step-by-step)"
+msgstr ""
+
+#: gui/hotkeys/spec/engine.jsoncategories.general.desc
+msgctxt "hotkey metadata"
+msgid "General hotkeys."
+msgstr "Общий раздел."
+
+#: gui/hotkeys/spec/engine.jsoncategories.general.name
+msgctxt "hotkey metadata"
+msgid "General"
+msgstr "Общие"
+
+#: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.bigscreenshot.desc
+msgctxt "hotkey metadata"
+msgid "Take large BMP screenshot."
+msgstr "Создать большой снимок экрана в формате BMP."
+
+#: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.bigscreenshot.name
+msgctxt "hotkey metadata"
+msgid "Big screenshot"
+msgstr "Большой снимок экрана"
+
+#: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cancel.desc
+msgctxt "hotkey metadata"
+msgid "Close or cancel the current dialog box/popup."
+msgstr ""
+
+#: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cancel.name
+msgctxt "hotkey metadata"
+msgid "Close/Cancel"
+msgstr ""
+
+#: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.confirm.desc
+msgctxt "hotkey metadata"
+msgid "Confirm the current command."
+msgstr ""
+
+#: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.confirm.name
+msgctxt "hotkey metadata"
+msgid "Confirm"
+msgstr "Подтвердить"
+
+#: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.console.toggle.desc
+msgctxt "hotkey metadata"
+msgid "Open/close console."
+msgstr ""
+
+#: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.console.toggle.name
+msgctxt "hotkey metadata"
+msgid "Toggle Console"
+msgstr "Открыть консоль"
+
+#: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.copy.desc
+msgctxt "hotkey metadata"
+msgid "Copy to clipboard."
+msgstr ""
+
+#: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.copy.name
+msgctxt "hotkey metadata"
+msgid "Copy to clipboard"
+msgstr ""
+
+#: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cut.desc
+msgctxt "hotkey metadata"
+msgid "Cut selected text and copy to the clipboard."
+msgstr ""
+
+#: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cut.name
+msgctxt "hotkey metadata"
+msgid "Cut to clipboard"
+msgstr ""
+
+#: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.exit.desc
+msgctxt "hotkey metadata"
+msgid "Exit to desktop."
+msgstr ""
+
+#: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.exit.name
+msgctxt "hotkey metadata"
+msgid "Exit to desktop"
+msgstr ""
+
+#: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.paste.desc
+msgctxt "hotkey metadata"
+msgid "Paste from clipboard."
+msgstr ""
+
+#: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.paste.name
+msgctxt "hotkey metadata"
+msgid "Paste from clipboard"
+msgstr ""
+
+#: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.pause.desc
+msgctxt "hotkey metadata"
+msgid "Pause/unpause game."
+msgstr "Пауза/Возобновить игру."
+
+#: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.pause.name
+msgctxt "hotkey metadata"
+msgid "Pause/Unpause"
+msgstr "Пауза/Продолжить"
+
+#: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.save.desc
+msgctxt "hotkey metadata"
+msgid "Save current profiler data to logs/profile.txt."
+msgstr ""
+
+#: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.save.name
+msgctxt "hotkey metadata"
+msgid "Save profile"
+msgstr ""
+
+#: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.toggle.desc
+msgctxt "hotkey metadata"
+msgid "Enable/disable real-time profiler."
+msgstr ""
+
+#: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.toggle.name
+msgctxt "hotkey metadata"
+msgid "Toggle profiler"
+msgstr "Включить профилировщик"
+
+#: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile2.toggle.desc
+msgctxt "hotkey metadata"
+msgid "Enable/disable HTTP/GPU modes for new profiler."
+msgstr ""
+
+#: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile2.toggle.name
+msgctxt "hotkey metadata"
+msgid "Toggle profiler2"
+msgstr "Включить profiler2"
+
+#: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.desc
+msgctxt "hotkey metadata"
+msgid "Take PNG screenshot."
+msgstr "Создать снимок экрана в формате PNG."
+
+#: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.name
+msgctxt "hotkey metadata"
+msgid "Screenshot"
+msgstr "Снимок экрана"
+
+#: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.watermark.desc
+msgctxt "hotkey metadata"
+msgid "Toggle product/company watermark for official screenshots."
+msgstr ""
+
+#: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.watermark.name
+msgctxt "hotkey metadata"
+msgid "Toggle watermark"
+msgstr ""
+
+#: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.next.desc
+msgctxt "hotkey metadata"
+msgid "Show the next tab."
+msgstr ""
+
+#: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.next.name
+msgctxt "hotkey metadata"
+msgid "Next tab"
+msgstr ""
+
+#: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.prev.desc
+msgctxt "hotkey metadata"
+msgid "Show the previous tab."
+msgstr ""
+
+#: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.prev.name
+msgctxt "hotkey metadata"
+msgid "Previous tab"
+msgstr ""
+
+#: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.left.desc
+msgctxt "hotkey metadata"
+msgid "Delete word to the left of cursor."
+msgstr "Удалить слово слева от курсора."
+
+#: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.left.name
+msgctxt "hotkey metadata"
+msgid "Delete before cursor"
+msgstr "Удалить перед курсором"
+
+#: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.right.desc
+msgctxt "hotkey metadata"
+msgid "Delete word to the right of cursor."
+msgstr "Удалить слово справа от курсора."
+
+#: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.right.name
+msgctxt "hotkey metadata"
+msgid "Delete after cursor"
+msgstr "Удалить после курсора"
+
+#: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.left.desc
+msgctxt "hotkey metadata"
+msgid "Move cursor to start of word to the left of cursor."
+msgstr ""
+
+#: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.left.name
+msgctxt "hotkey metadata"
+msgid "Move cursor to left word"
+msgstr ""
+
+#: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.right.desc
+msgctxt "hotkey metadata"
+msgid "Move cursor to start of word to the right of cursor."
+msgstr ""
+
+#: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.right.name
+msgctxt "hotkey metadata"
+msgid "Move cursor to right word"
+msgstr ""
+
+#: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.togglefullscreen.desc
+msgctxt "hotkey metadata"
+msgid "Toggle fullscreen/windowed mode."
+msgstr "Войти в полноэкранный/оконный режим."
+
+#: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.togglefullscreen.name
+msgctxt "hotkey metadata"
+msgid "Toggle Fullscreen"
+msgstr "Полноэкранный режим"
+
+#: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.wireframe.desc
+msgctxt "hotkey metadata"
+msgid "Toggle wireframe mode."
+msgstr "Активировать режим 3D-каркаса местности."
+
+#: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.wireframe.name
+msgctxt "hotkey metadata"
+msgid "Toggle wireframe mode"
+msgstr "Активировать режим каркаса"
+
+#: gui/hotkeys/spec/gamesetup.jsoncategories.gamesetup.desc
+msgctxt "hotkey metadata"
+msgid "Hotkeys active in the game setup screen."
+msgstr ""
+
+#: gui/hotkeys/spec/gamesetup.jsoncategories.gamesetup.name
+msgctxt "hotkey metadata"
+msgid "Game Setup"
+msgstr "Настройки игры"
+
+#: gui/hotkeys/spec/gamesetup.jsonmapped_hotkeys.gamesetup.gamesetup.mapbrowser.open.desc
+msgctxt "hotkey metadata"
+msgid "Open the map browser."
+msgstr ""
+
+#: gui/hotkeys/spec/gamesetup.jsonmapped_hotkeys.gamesetup.gamesetup.mapbrowser.open.name
+msgctxt "hotkey metadata"
+msgid "Open map browser"
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsoncategories.ingame.desc
+msgctxt "hotkey metadata"
+msgid "In-game hotkeys."
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsoncategories.ingame.name
+msgctxt "hotkey metadata"
+msgid "In-game"
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attack.desc
+msgctxt "hotkey metadata"
+msgid "Modifier to attack instead of another action (e.g. capture)."
+msgstr "Модификатор принуждает юнитов атаковать вместо другого действия (к примеру сбора ресурсов)."
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attack.name
+msgctxt "hotkey metadata"
+msgid "Force attack"
+msgstr "Принудительно атаковать"
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmove.desc
+msgctxt "hotkey metadata"
+msgid "Modifier to attackmove when clicking on a point."
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmove.name
+msgctxt "hotkey metadata"
+msgid "Attack Move"
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmoveUnit.desc
+msgctxt "hotkey metadata"
+msgid "Modifier to attackmove targeting only units when clicking on a point."
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmoveUnit.name
+msgctxt "hotkey metadata"
+msgid "Attack Move (unit only)"
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.autorallypoint.desc
+msgctxt "hotkey metadata"
+msgid "Modifier to set the rally point on the building itself."
+msgstr "Модификатор позволяет установить точку сбора внутрь самого здания для наполнения гарнизона."
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.autorallypoint.name
+msgctxt "hotkey metadata"
+msgid "Auto-rally point"
+msgstr "Точка самосбора"
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.backtowork.desc
+msgctxt "hotkey metadata"
+msgid "The unit will go back to work."
+msgstr "Юнит вернется к своей работе."
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.backtowork.name
+msgctxt "hotkey metadata"
+msgid "Back to Work"
+msgstr "Вернуть к работе"
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.batchtrain.desc
+msgctxt "hotkey metadata"
+msgid "Modifier to train units in batches."
+msgstr "Модификатор для тренировки юнитов партиями."
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.batchtrain.name
+msgctxt "hotkey metadata"
+msgid "Batch production"
+msgstr "Производить партиями"
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.deselectgroup.desc
+msgctxt "hotkey metadata"
+msgid ""
+"Modifier to deselect units when clicking group icon, instead of selecting."
+msgstr "Модификатор убирает из выборки юнитов при клике на иконку типа юнитов."
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.deselectgroup.name
+msgctxt "hotkey metadata"
+msgid "Deselect unit type"
+msgstr "Убрать из выбранного тип юнита"
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.fulltradeswap.desc
+msgctxt "hotkey metadata"
+msgid "Modifier to put the desired trade resource to 100%."
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.fulltradeswap.name
+msgctxt "hotkey metadata"
+msgid "Set trade to 100%"
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.garrison.desc
+msgctxt "hotkey metadata"
+msgid "Modifier to garrison when clicking on building."
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.garrison.name
+msgctxt "hotkey metadata"
+msgid "Garrison"
+msgstr "Оборонять"
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.guard.desc
+msgctxt "hotkey metadata"
+msgid "Modifier to escort/guard when clicking on unit/building."
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.guard.name
+msgctxt "hotkey metadata"
+msgid "Guard"
+msgstr "Охранять"
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.kill.desc
+msgctxt "hotkey metadata"
+msgid "Destroy selected units."
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.kill.name
+msgctxt "hotkey metadata"
+msgid "Destroy selected units"
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.massbarter.desc
+msgctxt "hotkey metadata"
+msgid "Modifier to barter bunch of resources."
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.massbarter.name
+msgctxt "hotkey metadata"
+msgid "Mass barter"
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.masstribute.desc
+msgctxt "hotkey metadata"
+msgid "Modifier to tribute bunch of resources."
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.masstribute.name
+msgctxt "hotkey metadata"
+msgid "Mass tribute"
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.move.desc
+msgctxt "hotkey metadata"
+msgid "Modifier to move to a point instead of another action (e.g. gather)."
+msgstr "Модификатор принуждает юнитов идти к точке вместо другого действия (к примеру сбора ресурсов)."
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.move.name
+msgctxt "hotkey metadata"
+msgid "Force move"
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.noconfirmation.desc
+msgctxt "hotkey metadata"
+msgid "Do not ask confirmation when deleting a building/unit."
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.noconfirmation.name
+msgctxt "hotkey metadata"
+msgid "Destroy without confirmation"
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.orderone.desc
+msgctxt "hotkey metadata"
+msgid "Modifier to order only one entity in selection."
+msgstr "Модификатор при котором задание получит лишь один юнит из выбранных."
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.orderone.name
+msgctxt "hotkey metadata"
+msgid "Order one unit"
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.patrol.desc
+msgctxt "hotkey metadata"
+msgid "Modifier to patrol a unit."
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.patrol.name
+msgctxt "hotkey metadata"
+msgid "Patrol"
+msgstr "Патруль"
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.pushorderfront.desc
+msgctxt "hotkey metadata"
+msgid "Modifier to execute this order, then go back to the current order."
+msgstr "Модификатор принуждающий выполнить задание, а затем вернуться к текущей задаче."
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.pushorderfront.name
+msgctxt "hotkey metadata"
+msgid "Push order in front"
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queue.desc
+msgctxt "hotkey metadata"
+msgid "Modifier to queue unit orders instead of replacing."
+msgstr "Модификатор добавляет задание в очередь вместо замены."
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queue.name
+msgctxt "hotkey metadata"
+msgid "Queue order"
+msgstr "Поставить задание в очередь"
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.1.desc
+msgctxt "hotkey metadata"
+msgid "Add first unit type to queue."
+msgstr "добавить в очередь производства юнита первого типа."
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.1.name
+msgctxt "hotkey metadata"
+msgid "Queue 1st unit"
+msgstr "В очередь 1-ого юнита"
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.2.desc
+msgctxt "hotkey metadata"
+msgid "Add second unit type to queue."
+msgstr "добавить в очередь производства юнита второго типа."
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.2.name
+msgctxt "hotkey metadata"
+msgid "Queue 2nd unit"
+msgstr "В очередь 2-ого юнита"
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.3.desc
+msgctxt "hotkey metadata"
+msgid "Add third unit type to queue."
+msgstr "добавить в очередь производства юнита третьего типа."
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.3.name
+msgctxt "hotkey metadata"
+msgid "Queue 3rd unit"
+msgstr "В очередь 3-его юнита"
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.4.desc
+msgctxt "hotkey metadata"
+msgid "Add fourth unit type to queue."
+msgstr "добавить в очередь производства юнита четвертого типа."
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.4.name
+msgctxt "hotkey metadata"
+msgid "Queue 4th unit"
+msgstr "В очередь 4-ого юнита"
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.5.desc
+msgctxt "hotkey metadata"
+msgid "Add fivth unit type to queue."
+msgstr "добавить в очередь производства юнита пятого типа."
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.5.name
+msgctxt "hotkey metadata"
+msgid "Queue 5th unit"
+msgstr "В очередь 5-ого юнита"
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.6.desc
+msgctxt "hotkey metadata"
+msgid "Add sixth unit type to queue."
+msgstr "добавить в очередь производства юнита шестого типа."
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.6.name
+msgctxt "hotkey metadata"
+msgid "Queue 6th unit"
+msgstr "В очередь 6-ого юнита"
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.7.desc
+msgctxt "hotkey metadata"
+msgid "Add seventh unit type to queue."
+msgstr "добавить в очередь производства юнита седьмого типа."
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.7.name
+msgctxt "hotkey metadata"
+msgid "Queue 7th unit"
+msgstr "В очередь 7-ого юнита"
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.8.desc
+msgctxt "hotkey metadata"
+msgid "Add eighth unit type to queue."
+msgstr "добавить в очередь производства юнита восьмого типа."
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.8.name
+msgctxt "hotkey metadata"
+msgid "Queue 8th unit"
+msgstr "В очередь 8-ого юнита"
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.repair.desc
+msgctxt "hotkey metadata"
+msgid "Modifier to repair when clicking on building/mechanical unit."
+msgstr "Модификатор принуждающий чинить при клике на постройку/механического юнита."
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.repair.name
+msgctxt "hotkey metadata"
+msgid "Repair"
+msgstr "Ремонтировать"
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.rotate.ccw.desc
+msgctxt "hotkey metadata"
+msgid "Rotate building placement preview anticlockwise."
+msgstr "Вращать проекцию новой постройки против часовой стрелки."
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.rotate.ccw.name
+msgctxt "hotkey metadata"
+msgid "Rotate building counterclockwise"
+msgstr "Вращать постройку против часовой стрелки"
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.rotate.cw.desc
+msgctxt "hotkey metadata"
+msgid "Rotate building placement preview clockwise."
+msgstr "Вращать проекцию новой постройки по часовой стрелке."
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.rotate.cw.name
+msgctxt "hotkey metadata"
+msgid "Rotate building clockwise"
+msgstr "Вращать постройку по часовой стрелке"
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.snaptoedges.desc
+msgctxt "hotkey metadata"
+msgid "Modifier to align new structures with nearby existing structure."
+msgstr "Модификатор активирует прилипание новой постройки четко по границе соседнего здания."
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.snaptoedges.name
+msgctxt "hotkey metadata"
+msgid "Toggle snap-to-edge"
+msgstr "Выравнивание границ постройки"
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.stop.desc
+msgctxt "hotkey metadata"
+msgid "Stop the current action."
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.stop.name
+msgctxt "hotkey metadata"
+msgid "Stop units"
+msgstr "Остановить юнитов"
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.toggledefaultformation.desc
+msgctxt "hotkey metadata"
+msgid ""
+"Switch between null default formation and the last default formation used "
+"(defaults to 'box')."
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.toggledefaultformation.name
+msgctxt "hotkey metadata"
+msgid "Toggle default formation"
+msgstr ""
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unload.desc
+msgctxt "hotkey metadata"
+msgid "Unload garrisoned units when a building/mechanical unit is selected."
+msgstr "Высадить юнитов в гарнизоне если выбрана постройка или механизированный юнит."
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unload.name
+msgctxt "hotkey metadata"
+msgid "Unload"
+msgstr "Вывести"
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadtype.desc
+msgctxt "hotkey metadata"
+msgid "Modifier to unload all units of type."
+msgstr "Модификатор высаживает из гарнизона всех юнитов определенного типа."
+
+#: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadtype.name
+msgctxt "hotkey metadata"
+msgid "Unload unit type"
+msgstr "Высадить из гарнизона тип юнитов"
+
+#: gui/hotkeys/spec/ingamegui.jsoncategories.ingamegui.desc
+msgctxt "hotkey metadata"
+msgid "Hotkeys for the in-game user interface."
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsoncategories.ingamegui.name
+msgctxt "hotkey metadata"
+msgid "In-game GUI"
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.ceasefirecounter.toggle.desc
+msgctxt "hotkey metadata"
+msgid "Toggle ceasefire counter."
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.ceasefirecounter.toggle.name
+msgctxt "hotkey metadata"
+msgid "Toggle ceasefire counter"
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.chat.desc
+msgctxt "hotkey metadata"
+msgid "Toggle chat window."
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.chat.name
+msgctxt "hotkey metadata"
+msgid "Toggle chat"
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.civinfo.desc
+msgctxt "hotkey metadata"
+msgid "Show civilization info."
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.civinfo.name
+msgctxt "hotkey metadata"
+msgid "Toggle civ info"
+msgstr "Показать обзор цивилизаций"
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.fps.toggle.desc
+msgctxt "hotkey metadata"
+msgid "Toggle “frames per second” counter."
+msgstr "Показать/скрыть счетчик кадров в секунду."
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.fps.toggle.name
+msgctxt "hotkey metadata"
+msgid "Toggle FPS counter"
+msgstr "Показать счетчик FPS"
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.lobby.desc
+msgctxt "hotkey metadata"
+msgid "Show the multiplayer lobby in a dialog window."
+msgstr "Показать сетевую комнату в диалоговом окне."
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.lobby.name
+msgctxt "hotkey metadata"
+msgid "Toggle MP lobby"
+msgstr "Показать лобби"
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.privatechat.desc
+msgctxt "hotkey metadata"
+msgid "Toggle chat window and select the previous private chat partner."
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.privatechat.name
+msgctxt "hotkey metadata"
+msgid "Toggle private chat"
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.quickload.desc
+msgctxt "hotkey metadata"
+msgid "Load the latest quicksaved game. Does nothing if no quicksaves exist."
+msgstr "Загружает последнее \"Быстрое сохранение\" или ничего не делает если оно отсутствует."
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.quickload.name
+msgctxt "hotkey metadata"
+msgid "Quickload"
+msgstr "Быстрая загрузка"
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.quicksave.desc
+msgctxt "hotkey metadata"
+msgid ""
+"Make a temporary save of the game that can be loaded with quickload. "
+"Quicksaving always overwrites the previous save."
+msgstr "Создает временное сохранение которое может быть загружено \"Быстрой загрузкой\". Быстрое сохранение всегда перезаписывает предыдущее."
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.quicksave.name
+msgctxt "hotkey metadata"
+msgid "Quicksave"
+msgstr "Быстрое сохранение"
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.realtime.toggle.desc
+msgctxt "hotkey metadata"
+msgid "Toggle current display of computer time."
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.realtime.toggle.name
+msgctxt "hotkey metadata"
+msgid "Toggle real-time overlay"
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.devcommands.toggle.desc
+msgctxt "hotkey metadata"
+msgid "Toggle developer commands panel."
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.devcommands.toggle.name
+msgctxt "hotkey metadata"
+msgid "Toggle dev overlay"
+msgstr "Активировать оверлей разработчика"
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.diplomacycolors.desc
+msgctxt "hotkey metadata"
+msgid "Toggle diplomacy colors."
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.diplomacycolors.name
+msgctxt "hotkey metadata"
+msgid "Toggle diplomacy colors"
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.barter.toggle.desc
+msgctxt "hotkey metadata"
+msgid "Toggle in-game barter/trade page."
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.barter.toggle.name
+msgctxt "hotkey metadata"
+msgid "Toggle barter"
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.diplomacy.toggle.desc
+msgctxt "hotkey metadata"
+msgid "Toggle in-game diplomacy page."
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.diplomacy.toggle.name
+msgctxt "hotkey metadata"
+msgid "Toggle diplomacy"
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.menu.toggle.desc
+msgctxt "hotkey metadata"
+msgid "Toggle in-game menu."
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.menu.toggle.name
+msgctxt "hotkey metadata"
+msgid "Toggle in-game menu"
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.objectives.toggle.desc
+msgctxt "hotkey metadata"
+msgid "Toggle in-game objectives page."
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.objectives.toggle.name
+msgctxt "hotkey metadata"
+msgid "Toggle objectives"
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.toggle.desc
+msgctxt "hotkey metadata"
+msgid "Toggle visibility of the in-game user interface."
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.toggle.name
+msgctxt "hotkey metadata"
+msgid "Toggle GUI visibility"
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.tutorial.toggle.desc
+msgctxt "hotkey metadata"
+msgid "Toggle in-game tutorial panel."
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.tutorial.toggle.name
+msgctxt "hotkey metadata"
+msgid "Toggle tutorial"
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarded.desc
+msgctxt "hotkey metadata"
+msgid "Toggle highlight of guarded units."
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarded.name
+msgctxt "hotkey metadata"
+msgid "Toggle guarded highlight"
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarding.desc
+msgctxt "hotkey metadata"
+msgid "Toggle highlight of guarding units."
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarding.name
+msgctxt "hotkey metadata"
+msgid "Toggle guarding highlight"
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.delete.desc
+msgctxt "hotkey metadata"
+msgid "Delete the saved game (in the save/load windows)."
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.delete.name
+msgctxt "hotkey metadata"
+msgid "Delete saved game"
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.noconfirmation.desc
+msgctxt "hotkey metadata"
+msgid "Don't ask for confirmation when deleting a saved game."
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.noconfirmation.name
+msgctxt "hotkey metadata"
+msgid "Delete without confirmation"
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.showstatusbars.desc
+msgctxt "hotkey metadata"
+msgid "Toggle display of status bars."
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.showstatusbars.name
+msgctxt "hotkey metadata"
+msgid "Toggle status bars"
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.fastforward.desc
+msgctxt "hotkey metadata"
+msgid "Activate fast-forward mode. Must have activated timewarp."
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.fastforward.name
+msgctxt "hotkey metadata"
+msgid "Fast-forward (timewarp)"
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.rewind.desc
+msgctxt "hotkey metadata"
+msgid "Rewind time. Must have activated timewarp."
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.rewind.name
+msgctxt "hotkey metadata"
+msgid "Rewing (timewarp)"
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleattackrange.desc
+msgctxt "hotkey metadata"
+msgid ""
+"Toggle display of attack range overlays of selected defensive structures."
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleattackrange.name
+msgctxt "hotkey metadata"
+msgid "Togge attack ranges"
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleaurasrange.desc
+msgctxt "hotkey metadata"
+msgid ""
+"Toggle display of aura range overlays of selected units and structures."
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleaurasrange.name
+msgctxt "hotkey metadata"
+msgid "Toggle aura ranges"
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.togglehealrange.desc
+msgctxt "hotkey metadata"
+msgid "Toggle display of heal range overlays of selected units."
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.togglehealrange.name
+msgctxt "hotkey metadata"
+msgid "Toggle heal ranges"
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.silhouettes.desc
+msgctxt "hotkey metadata"
+msgid "Toggle unit silhouettes."
+msgstr "Показать/скрыть силуэты юнитов."
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.silhouettes.name
+msgctxt "hotkey metadata"
+msgid "Toggle unit silhouettes"
+msgstr "Показать силуэты юнитов"
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.structree.desc
+msgctxt "hotkey metadata"
+msgid "Show structure tree."
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.structree.name
+msgctxt "hotkey metadata"
+msgid "Toggle structure tree"
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.summary.desc
+msgctxt "hotkey metadata"
+msgid "Toggle in-game summary."
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.summary.name
+msgctxt "hotkey metadata"
+msgid "Toggle summary"
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.teamchat.desc
+msgctxt "hotkey metadata"
+msgid "Toggle chat window in team chat mode."
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.teamchat.name
+msgctxt "hotkey metadata"
+msgid "Toggle team chat"
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.timeelapsedcounter.toggle.desc
+msgctxt "hotkey metadata"
+msgid "Shows the game time elapsed since the game started."
+msgstr ""
+
+#: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.timeelapsedcounter.toggle.name
+msgctxt "hotkey metadata"
+msgid "Toggle game-time overlay"
+msgstr ""
+
+#: gui/hotkeys/spec/selection.jsoncategories.selection.desc
+msgctxt "hotkey metadata"
+msgid "Hotkeys relating to modifying unit selection."
+msgstr "Горячие клавиши связанные с манипуляцией выбранными юнитами."
+
+#: gui/hotkeys/spec/selection.jsoncategories.selection.name
+msgctxt "hotkey metadata"
+msgid "Selecting Units"
+msgstr "Выбранные юниты"
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.add.desc
+msgctxt "hotkey metadata"
+msgid "Add units to selection."
+msgstr ""
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.add.name
+msgctxt "hotkey metadata"
+msgid "Add to selection"
+msgstr ""
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.cancel.desc
+msgctxt "hotkey metadata"
+msgid "Un-select all units and cancel building placement."
+msgstr ""
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.cancel.name
+msgctxt "hotkey metadata"
+msgid "Cancel selection"
+msgstr ""
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.0.desc
+msgctxt "hotkey metadata"
+msgid "Add Control Group 0 to the current selection."
+msgstr "Добавить выбранное в отряд 0."
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.0.name
+msgctxt "hotkey metadata"
+msgid "Add Control Group 0"
+msgstr "Добавить в отряд 0"
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.1.desc
+msgctxt "hotkey metadata"
+msgid "Add Control Group 1 to the current selection."
+msgstr "Добавить выбранное в отряд 1."
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.1.name
+msgctxt "hotkey metadata"
+msgid "Add Control Group 1"
+msgstr "Добавить в отряд 1"
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.2.desc
+msgctxt "hotkey metadata"
+msgid "Add Control Group 2 to the current selection."
+msgstr "Добавить выбранное в отряд 2."
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.2.name
+msgctxt "hotkey metadata"
+msgid "Add Control Group 2"
+msgstr "Добавить в отряд 2"
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.3.desc
+msgctxt "hotkey metadata"
+msgid "Add Control Group 3 to the current selection."
+msgstr "Добавить выбранное в отряд 3."
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.3.name
+msgctxt "hotkey metadata"
+msgid "Add Control Group 3"
+msgstr "Добавить в отряд 3"
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.4.desc
+msgctxt "hotkey metadata"
+msgid "Add Control Group 4 to the current selection."
+msgstr "Добавить выбранное в отряд 4."
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.4.name
+msgctxt "hotkey metadata"
+msgid "Add Control Group 4"
+msgstr "Добавить в отряд 4"
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.5.desc
+msgctxt "hotkey metadata"
+msgid "Add Control Group 5 to the current selection."
+msgstr "Добавить выбранное в отряд 5."
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.5.name
+msgctxt "hotkey metadata"
+msgid "Add Control Group 5"
+msgstr "Добавить в отряд 5"
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.6.desc
+msgctxt "hotkey metadata"
+msgid "Add Control Group 6 to the current selection."
+msgstr "Добавить выбранное в отряд 6."
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.6.name
+msgctxt "hotkey metadata"
+msgid "Add Control Group 6"
+msgstr "Добавить в отряд 6"
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.7.desc
+msgctxt "hotkey metadata"
+msgid "Add Control Group 7 to the current selection."
+msgstr "Добавить выбранное в отряд 7."
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.7.name
+msgctxt "hotkey metadata"
+msgid "Add Control Group 7"
+msgstr "Добавить в отряд 7"
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.8.desc
+msgctxt "hotkey metadata"
+msgid "Add Control Group 8 to the current selection."
+msgstr "Добавить выбранное в отряд 8."
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.8.name
+msgctxt "hotkey metadata"
+msgid "Add Control Group 8"
+msgstr "Добавить в отряд 8"
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.9.desc
+msgctxt "hotkey metadata"
+msgid "Add Control Group 9 to the current selection."
+msgstr "Добавить выбранное в отряд 9."
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.9.name
+msgctxt "hotkey metadata"
+msgid "Add Control Group 9"
+msgstr "Добавить в отряд 9"
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.0.desc
+msgctxt "hotkey metadata"
+msgid "Save current selection as Control Group 0."
+msgstr "Сохранить выбранное как отряд 0."
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.0.name
+msgctxt "hotkey metadata"
+msgid "Set Control Group 0"
+msgstr "Создать отряд 0"
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.1.desc
+msgctxt "hotkey metadata"
+msgid "Save current selection as Control Group 1."
+msgstr "Сохранить выбранное как отряд 1."
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.1.name
+msgctxt "hotkey metadata"
+msgid "Set Control Group 1"
+msgstr "Создать отряд 1"
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.2.desc
+msgctxt "hotkey metadata"
+msgid "Save current selection as Control Group 2."
+msgstr "Сохранить выбранное как отряд 2."
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.2.name
+msgctxt "hotkey metadata"
+msgid "Set Control Group 2"
+msgstr "Создать отряд 2"
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.3.desc
+msgctxt "hotkey metadata"
+msgid "Save current selection as Control Group 3."
+msgstr "Сохранить выбранное как отряд 3."
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.3.name
+msgctxt "hotkey metadata"
+msgid "Set Control Group 3"
+msgstr "Создать отряд 3"
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.4.desc
+msgctxt "hotkey metadata"
+msgid "Save current selection as Control Group 4."
+msgstr "Сохранить выбранное как отряд 4."
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.4.name
+msgctxt "hotkey metadata"
+msgid "Set Control Group 4"
+msgstr "Создать отряд 4"
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.5.desc
+msgctxt "hotkey metadata"
+msgid "Save current selection as Control Group 5."
+msgstr "Сохранить выбранное как отряд 5."
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.5.name
+msgctxt "hotkey metadata"
+msgid "Set Control Group 5"
+msgstr "Создать отряд 5"
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.6.desc
+msgctxt "hotkey metadata"
+msgid "Save current selection as Control Group 6."
+msgstr "Сохранить выбранное как отряд 6."
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.6.name
+msgctxt "hotkey metadata"
+msgid "Set Control Group 6"
+msgstr "Создать отряд 6"
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.7.desc
+msgctxt "hotkey metadata"
+msgid "Save current selection as Control Group 7."
+msgstr "Сохранить выбранное как отряд 7."
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.7.name
+msgctxt "hotkey metadata"
+msgid "Set Control Group 7"
+msgstr "Создать отряд 7"
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.8.desc
+msgctxt "hotkey metadata"
+msgid "Save current selection as Control Group 8."
+msgstr "Сохранить выбранное как отряд 8."
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.8.name
+msgctxt "hotkey metadata"
+msgid "Set Control Group 8"
+msgstr "Создать отряд 8"
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.9.desc
+msgctxt "hotkey metadata"
+msgid "Save current selection as Control Group 9."
+msgstr "Сохранить выбранное как отряд 9."
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.9.name
+msgctxt "hotkey metadata"
+msgid "Set Control Group 9"
+msgstr "Создать отряд 9"
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.0.desc
+msgctxt "hotkey metadata"
+msgid "Change the current selection to control group 0."
+msgstr "Изменить выбранных на отряд 0."
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.0.name
+msgctxt "hotkey metadata"
+msgid "Select Control Group 0"
+msgstr "Выбрать отряд 0"
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.1.desc
+msgctxt "hotkey metadata"
+msgid "Change the current selection to control group 1."
+msgstr "Изменить выбранных на отряд 1."
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.1.name
+msgctxt "hotkey metadata"
+msgid "Select Control Group 1"
+msgstr "Выбрать отряд 1"
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.2.desc
+msgctxt "hotkey metadata"
+msgid "Change the current selection to control group 2."
+msgstr "Изменить выбранных на отряд 2."
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.2.name
+msgctxt "hotkey metadata"
+msgid "Select Control Group 2"
+msgstr "Выбрать отряд 2"
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.3.desc
+msgctxt "hotkey metadata"
+msgid "Change the current selection to control group 3."
+msgstr "Изменить выбранных на отряд 3."
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.3.name
+msgctxt "hotkey metadata"
+msgid "Select Control Group 3"
+msgstr "Выбрать отряд 3"
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.4.desc
+msgctxt "hotkey metadata"
+msgid "Change the current selection to control group 4."
+msgstr "Изменить выбранных на отряд 4."
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.4.name
+msgctxt "hotkey metadata"
+msgid "Select Control Group 4"
+msgstr "Выбрать отряд 4"
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.5.desc
+msgctxt "hotkey metadata"
+msgid "Change the current selection to control group 5."
+msgstr "Изменить выбранных на отряд 5."
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.5.name
+msgctxt "hotkey metadata"
+msgid "Select Control Group 5"
+msgstr "Выбрать отряд 5"
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.6.desc
+msgctxt "hotkey metadata"
+msgid "Change the current selection to control group 6."
+msgstr "Изменить выбранных на отряд 6."
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.6.name
+msgctxt "hotkey metadata"
+msgid "Select Control Group 6"
+msgstr "Выбрать отряд 6"
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.7.desc
+msgctxt "hotkey metadata"
+msgid "Change the current selection to control group 7."
+msgstr "Изменить выбранных на отряд 7."
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.7.name
+msgctxt "hotkey metadata"
+msgid "Select Control Group 7"
+msgstr "Выбрать отряд 7"
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.8.desc
+msgctxt "hotkey metadata"
+msgid "Change the current selection to control group 8."
+msgstr "Изменить выбранных на отряд 8."
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.8.name
+msgctxt "hotkey metadata"
+msgid "Select Control Group 8"
+msgstr "Выбрать отряд 8"
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.9.desc
+msgctxt "hotkey metadata"
+msgid "Change the current selection to control group 9."
+msgstr "Изменить выбранных на отряд 9."
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.9.name
+msgctxt "hotkey metadata"
+msgid "Select Control Group 9"
+msgstr "Выбрать отряд 9"
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleonly.desc
+msgctxt "hotkey metadata"
+msgid "Select only idle units."
+msgstr "Выбрать только простаивающих юнитов."
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleonly.name
+msgctxt "hotkey metadata"
+msgid "Select only idle units"
+msgstr "Выбрать простаивающих юнитов"
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleunit.desc
+msgctxt "hotkey metadata"
+msgid "Select next idle unit."
+msgstr "Выбрать следующего простаивающего юнита."
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleunit.name
+msgctxt "hotkey metadata"
+msgid "Select next idle unit"
+msgstr "Следующий простаивающий юнит"
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlewarrior.desc
+msgctxt "hotkey metadata"
+msgid "Select next idle warrior."
+msgstr ""
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlewarrior.name
+msgctxt "hotkey metadata"
+msgid "Select next idle warrior"
+msgstr ""
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleworker.desc
+msgctxt "hotkey metadata"
+msgid "Select next idle worker."
+msgstr ""
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleworker.name
+msgctxt "hotkey metadata"
+msgid "Select next idle worker"
+msgstr ""
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.militaryonly.desc
+msgctxt "hotkey metadata"
+msgid "Add only military units to the selection."
+msgstr "Добавить в выбранное только военных юнитов."
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.militaryonly.name
+msgctxt "hotkey metadata"
+msgid "Select military only"
+msgstr ""
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.nonmilitaryonly.desc
+msgctxt "hotkey metadata"
+msgid "Add only non-military units to the selection."
+msgstr "Добавить в выбранное только невоенных юнитов."
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.nonmilitaryonly.name
+msgctxt "hotkey metadata"
+msgid "Select non-military only"
+msgstr ""
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.offscreen.desc
+msgctxt "hotkey metadata"
+msgid "Include offscreen units in selection."
+msgstr "Включить в выборку юнитов за пределами видимости экрана."
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.offscreen.name
+msgctxt "hotkey metadata"
+msgid "Include offscreen"
+msgstr ""
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.remove.desc
+msgctxt "hotkey metadata"
+msgid "Remove units from selection."
+msgstr ""
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.remove.name
+msgctxt "hotkey metadata"
+msgid "Remove units from selection"
+msgstr ""
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.woundedonly.desc
+msgctxt "hotkey metadata"
+msgid "Select only wounded units."
+msgstr ""
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.woundedonly.name
+msgctxt "hotkey metadata"
+msgid "Select only wounded units"
 msgstr ""
 
 #: gui/loadgame/SavegameDeleter.js:34
