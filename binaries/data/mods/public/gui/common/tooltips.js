@@ -588,6 +588,16 @@ function getGarrisonTooltip(template)
 	return tooltips.join("\n");
 }
 
+function getTurretsTooltip(template)
+{
+	if (!template.turretHolder)
+		return "";
+	return sprintf(translate("%(label)s: %(turretsLimit)s"), {
+		"label": headerFont(translate("Turret Positions")),
+		"turretsLimit": Object.keys(template.turretHolder.turretPoints).length
+	});
+}
+
 function getProjectilesTooltip(template)
 {
 	if (!template.garrisonHolder || !template.buildingAI)

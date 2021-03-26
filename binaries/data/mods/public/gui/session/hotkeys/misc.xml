@@ -32,6 +32,10 @@
 		<action on="KeyDown">unloadAll();</action>
 	</object>
 
+	<object hotkey="session.unloadturrets">
+		<action on="KeyDown">unloadAllTurrets();</action>
+	</object>
+
 	<object hotkey="session.stop">
 		<action on="KeyDown">stopUnits(g_Selection.toList());</action>
 	</object>

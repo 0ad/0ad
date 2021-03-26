@@ -415,31 +415,6 @@ function unloadTemplate(template, owner)
 	});
 }
 
-function unloadSelection()
-{
-	let parent = 0;
-	let ents = [];
-	for (let ent in g_Selection.selected)
-	{
-		let state = GetEntityState(+ent);
-		if (!state || !state.turretParent)
-			continue;
-		if (!parent)
-		{
-			parent = state.turretParent;
-			ents.push(+ent);
-		}
-		else if (state.turretParent == parent)
-			ents.push(+ent);
-	}
-	if (parent)
-		Engine.PostNetworkCommand({
-			"type": "unload",
-			"entities": ents,
-			"garrisonHolder": parent
-		});
-}
-
 function unloadAll()
 {
 	let garrisonHolders = g_Selection.toList().filter(e => {
@@ -471,6 +446,44 @@ function unloadAll()
 		Engine.PostNetworkCommand({
 			"type": "unload-all-by-owner",
 			"garrisonHolders": otherEnts
+		});
+}
+
+function unloadAllTurrets()
+{
+	let turretHolders = g_Selection.toList().filter(e => {
+		let state = GetEntityState(e);
+		return state && !!state.turretHolder;
+	});
+
+	if (!turretHolders.length)
+		return;
+
+	let ownedHolders = [];
+	let ejectables = [];
+	for (let ent of turretHolders)
+	{
+		let turretHolderState = GetEntityState(ent);
+		if (controlsPlayer(turretHolderState.player))
+			ownedHolders.push(ent);
+		else
+		{
+			for (let turret of turretHolderState.turretHolder.turretPoints.map(tp => tp.entity))
+				if (turret && controlsPlayer(GetEntityState(turret).player))
+					ejectables.push(turret);
+		}
+	}
+
+	if (ejectables.length)
+		Engine.PostNetworkCommand({
+			"type": "leave-turret",
+			"entities": ejectables
+		});
+
+	if (ownedHolders.length)
+		Engine.PostNetworkCommand({
+			"type": "unload-turrets",
+			"entities": ownedHolders
 		});
 }
 

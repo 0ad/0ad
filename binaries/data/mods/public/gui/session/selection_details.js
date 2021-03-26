@@ -325,6 +325,7 @@ function displaySingle(entState)
 		getGatherTooltip,
 		getSpeedTooltip,
 		getGarrisonTooltip,
+		getTurretsTooltip,
 		getPopulationBonusTooltip,
 		getProjectilesTooltip,
 		getResourceTrickleTooltip,

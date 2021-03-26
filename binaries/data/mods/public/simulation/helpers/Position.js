@@ -133,4 +133,39 @@ PositionHelper.prototype.PredictTimeToTarget = function(firstPosition, selfSpeed
 	return false;
 };
 
+/**
+ * @param {number} target - EntityID to find the spawn position for.
+ * @param {number} entity - EntityID to find the spawn position for.
+ * @param {boolean} forced - Optionally whether the spawning is forced.
+ * @return {Vector3D} - An appropriate spawning position.
+ */
+PositionHelper.prototype.GetSpawnPosition = function(target, entity, forced)
+{
+	let cmpFootprint = Engine.QueryInterface(target, IID_Footprint);
+	let cmpHealth = Engine.QueryInterface(target, IID_Health);
+	let cmpIdentity = Engine.QueryInterface(target, IID_Identity);
+
+	if (!cmpFootprint)
+		return null;
+
+	// If the spawner is a sinking ship, restrict the location to the intersection of both passabilities.
+	// TODO: should use passability classes to be more generic.
+	let pos;
+	if ((!cmpHealth || cmpHealth.GetHitpoints() == 0) && cmpIdentity && cmpIdentity.HasClass("Ship"))
+		pos = cmpFootprint.PickSpawnPointBothPass(entity);
+	else
+		pos = cmpFootprint.PickSpawnPoint(entity);
+
+	if (pos.y < 0)
+	{
+		if (!forced)
+			return null;
+
+		// If ejection is forced, we need to continue, so use center of the entity.
+		let cmpPosition = Engine.QueryInterface(target, IID_Position);
+		pos = cmpPosition.GetPosition();
+	}
+	return pos;
+};
+
 Engine.RegisterGlobal("PositionHelper", new PositionHelper());

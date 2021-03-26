@@ -180,6 +180,11 @@ Auras.prototype.IsGarrisonedUnitsAura = function(name)
 	return this.GetType(name) == "garrisonedUnits";
 };
 
+Auras.prototype.IsTurretedUnitsAura = function(name)
+{
+	return this.GetType(name) == "turretedUnits";
+};
+
 Auras.prototype.IsRangeAura = function(name)
 {
 	return this.GetType(name) == "range";
@@ -315,6 +320,15 @@ Auras.prototype.OnRangeUpdate = function(msg)
 Auras.prototype.OnGarrisonedUnitsChanged = function(msg)
 {
 	for (let name of this.GetAuraNames().filter(n => this.IsGarrisonedUnitsAura(n)))
+	{
+		this.ApplyAura(name, msg.added);
+		this.RemoveAura(name, msg.removed);
+	}
+};
+
+Auras.prototype.OnTurretsChanged = function(msg)
+{
+	for (let name of this.GetAuraNames().filter(n => this.IsTurretedUnitsAura(n)))
 	{
 		this.ApplyAura(name, msg.added);
 		this.RemoveAura(name, msg.removed);
@@ -512,7 +526,7 @@ Auras.prototype.OnGarrisonedStateChanged = function(msg)
 
 	if (msg.holderID != INVALID_ENTITY)
 		this.ApplyGarrisonAura(msg.holderID);
-	if (msg.olderHolder != INVALID_ENTITY)
+	if (msg.oldHolder != INVALID_ENTITY)
 		this.RemoveGarrisonAura(msg.oldHolder);
 };
 

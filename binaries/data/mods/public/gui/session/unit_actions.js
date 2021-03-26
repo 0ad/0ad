@@ -684,6 +684,77 @@ var g_UnitActions =
 		"specificness": 0,
 	},
 
+	"occupy-turret":
+	{
+		"execute": function(target, action, selection, queued, pushFront)
+		{
+			Engine.PostNetworkCommand({
+				"type": "occupy-turret",
+				"entities": selection,
+				"target": action.target,
+				"queued": queued,
+				"pushFront": pushFront,
+				"formation": g_AutoFormation.getNull()
+			});
+
+			Engine.GuiInterfaceCall("PlaySound", {
+				"name": "order_garrison",
+				"entity": action.firstAbleEntity
+			});
+
+			return true;
+		},
+		"getActionInfo": function(entState, targetState)
+		{
+			if (!entState.turretable || !targetState || !targetState.turretHolder ||
+			    !playerCheck(entState, targetState, ["Player", "MutualAlly"]))
+				return false;
+
+			if (!targetState.turretHolder.turretPoints.find(point =>
+				!point.allowedClasses || MatchesClassList(entState.identity.classes, point.allowedClasses)))
+				return false;
+
+			let occupiedTurrets = targetState.turretHolder.turretPoints.filter(point => point.entity != null);
+			let tooltip = sprintf(translate("Current turrets: %(occupied)s/%(capacity)s"), {
+				"occupied": occupiedTurrets.length,
+				"capacity": targetState.turretHolder.turretPoints.length
+			});
+
+			if (occupiedTurrets.length == targetState.turretHolder.turretPoints.length)
+				tooltip = coloredText(tooltip, "orange");
+
+			return {
+				"possible": true,
+				"tooltip": tooltip
+			};
+		},
+		"preSelectedActionCheck": function(target, selection)
+		{
+			return  preSelectedAction == ACTION_GARRISON &&
+				(this.actionCheck(target, selection) || {
+				"type": "none",
+				"cursor": "action-garrison-disabled",
+				"target": null
+			});
+		},
+		"hotkeyActionCheck": function(target, selection)
+		{
+			return Engine.HotkeyIsPressed("session.occupyturret") &&
+				this.actionCheck(target, selection);
+		},
+		"actionCheck": function(target, selection)
+		{
+			let actionInfo = getActionInfo("occupy-turret", target, selection);
+			return actionInfo.possible && {
+				"type": "occupy-turret",
+				"cursor": "action-garrison",
+				"tooltip": actionInfo.tooltip,
+				"target": target
+			};
+		},
+		"specificness": 21,
+	},
+
 	"garrison":
 	{
 		"execute": function(target, action, selection, queued, pushFront)
@@ -984,6 +1055,22 @@ var g_UnitActions =
 				    targetState.garrisonHolder.capacity)
 					tooltip = coloredText(tooltip, "orange");
 			}
+			else if (targetState && targetState.turretHolder &&
+			    playerCheck(entState, targetState, ["Player", "MutualAlly"]))
+			{
+				data.command = "occupy-turret";
+				data.target = targetState.id;
+				cursor = "action-garrison";
+
+				let occupiedTurrets = targetState.turretHolder.turretPoints.filter(point => point.entity != null);
+				tooltip = sprintf(translate("Current turrets: %(occupied)s/%(capacity)s"), {
+					"occupied": occupiedTurrets.length,
+					"capacity": targetState.turretHolder.turretPoints.length
+				});
+
+				if (occupiedTurrets.length >= targetState.turretHolder.turretPoints.length)
+					tooltip = coloredText(tooltip, "orange");
+			}
 			else if (targetState && targetState.resourceSupply)
 			{
 				let resourceType = targetState.resourceSupply.type;
@@ -1224,6 +1311,41 @@ var g_EntityCommands =
 		"allowedPlayers": ["Player", "Ally"]
 	},
 
+	"unload-all-turrets": {
+		"getInfo": function(entStates)
+		{
+			let count = 0;
+			for (let entState of entStates)
+			{
+				if (!entState.turretHolder)
+					continue;
+
+				if (allowedPlayersCheck([entState], ["Player"]))
+					count += entState.turretHolder.turretPoints.filter(turretPoint => turretPoint.entity).length;
+				else
+					for (let turretPoint of entState.turretHolder.turretPoints)
+						if (turretPoint.entity && allowedPlayersCheck([GetEntityState(turretPoint.entity)], ["Player"]))
+							++count;
+			}
+
+			if (!count)
+				return false;
+
+			return {
+				"tooltip": colorizeHotkey("%(hotkey)s" + " ", "session.unloadturrets") +
+				           translate("Unload Turrets."),
+				"icon": "garrison-out.png",
+				"count": count,
+				"enabled": true
+			};
+		},
+		"execute": function()
+		{
+			unloadAllTurrets();
+		},
+		"allowedPlayers": ["Player", "Ally"]
+	},
+
 	"delete": {
 		"getInfo": function(entStates)
 		{
@@ -1317,15 +1439,11 @@ var g_EntityCommands =
 		"allowedPlayers": ["Player"]
 	},
 
-	"unload": {
+	"leave-turret": {
 		"getInfo": function(entStates)
 		{
-			if (entStates.every(entState => {
-				if (!entState.unitAI || !entState.turretParent)
-					return true;
-				let parent = GetEntityState(entState.turretParent);
-				return !parent || !parent.garrisonHolder || parent.garrisonHolder.entities.indexOf(entState.id) == -1;
-			}))
+			if (entStates.every(entState => !entState.turretable ||
+				entState.turretable.holder == INVALID_ENTITY))
 				return false;
 
 			return {
@@ -1334,9 +1452,16 @@ var g_EntityCommands =
 				"enabled": true
 			};
 		},
-		"execute": function()
+		"execute": function(entStates)
 		{
-			unloadSelection();
+			if (!entStates.length)
+				return;
+
+			Engine.PostNetworkCommand({
+				"type": "leave-turret",
+				"entities": entStates.filter(entState => entState.turretable &&
+					entState.turretable.holder != INVALID_ENTITY).map(entState => entState.id)
+			});
 		},
 		"allowedPlayers": ["Player"]
 	},

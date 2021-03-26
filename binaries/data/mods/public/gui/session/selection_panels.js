@@ -193,6 +193,7 @@ g_SelectionPanels.Construction = {
 			getEntityCostTooltip(template, data.player),
 			getResourceDropsiteTooltip(template),
 			getGarrisonTooltip(template),
+			getTurretsTooltip(template),
 			getPopulationBonusTooltip(template),
 			showTemplateViewerOnRightClickTooltip(template)
 		);
@@ -975,6 +976,7 @@ g_SelectionPanels.Training = {
 				getHealerTooltip,
 				getResistanceTooltip,
 				getGarrisonTooltip,
+				getTurretsTooltip,
 				getProjectilesTooltip,
 				getSpeedTooltip,
 				getResourceDropsiteTooltip

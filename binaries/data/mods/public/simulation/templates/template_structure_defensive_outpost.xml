@@ -20,14 +20,6 @@
     <Square width="7.0" depth="7.0"/>
     <Height>13.0</Height>
   </Footprint>
-  <GarrisonHolder>
-    <Max>1</Max>
-    <EjectHealth>0.1</EjectHealth>
-    <EjectClassesOnDestroy datatype="tokens">Unit</EjectClassesOnDestroy>
-    <List datatype="tokens">Infantry</List>
-    <BuffHeal>0</BuffHeal>
-    <LoadingRange>2</LoadingRange>
-  </GarrisonHolder>
   <Health>
     <Max>400</Max>
     <SpawnEntityOnDeath>decay|rubble/rubble_stone_2x2</SpawnEntityOnDeath>

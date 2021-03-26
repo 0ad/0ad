@@ -40,6 +40,10 @@
   <GarrisonHolder>
     <Max>2</Max>
     <List datatype="tokens">Support Infantry</List>
+    <EjectHealth>0.1</EjectHealth>
+    <EjectClassesOnDestroy datatype="tokens">Unit</EjectClassesOnDestroy>
+    <BuffHeal>0</BuffHeal>
+    <LoadingRange>2</LoadingRange>
   </GarrisonHolder>
   <Health>
     <Max>4000</Max>
