@@ -52,12 +52,11 @@
   <Identity>
     <GenericName>Wall Turret</GenericName>
     <SelectionGroupName>template_structure_defensive_wall_tower</SelectionGroupName>
-    <Tooltip>Garrison Infantry for additional arrows.</Tooltip>
     <Classes datatype="tokens">WallTower</Classes>
     <Icon>structures/tower.png</Icon>
   </Identity>
   <Loot>
-    <stone>18</stone>
+    <stone>10</stone>
   </Loot>
   <Obstruction>
     <ControlPersist/>
@@ -66,13 +65,8 @@
     <SoundGroups>
       <select>interface/select/building/sel_tower.xml</select>
       <constructed>interface/complete/building/complete_tower.xml</constructed>
-      <attack_ranged>attack/weapon/bow_attack.xml</attack_ranged>
-      <attack_impact_ranged>attack/impact/arrow_impact.xml</attack_impact_ranged>
     </SoundGroups>
   </Sound>
-  <Vision>
-    <Range>80</Range>
-  </Vision>
   <VisualActor>
     <FoundationActor>structures/fndn_3x3_tower.xml</FoundationActor>
   </VisualActor>

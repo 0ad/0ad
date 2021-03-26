@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defensive_wall_tower">
-  <Attack disable=""/>
   <Auras datatype="tokens">
     structures/wall_garrisoned
   </Auras>
-  <BuildingAI disable=""/>
   <BuildRestrictions>
     <Territory>own neutral enemy</Territory>
   </BuildRestrictions>
@@ -27,7 +25,6 @@
     <GenericName>Siege Wall Tower</GenericName>
     <SpecificName>Turris Circummūnītiōnis</SpecificName>
     <SelectionGroupName>structures/rome_siege_wall_tower</SelectionGroupName>
-    <Tooltip disable=""/>
     <VisibleClasses datatype="tokens">SiegeWall</VisibleClasses>
     <Icon>structures/siege_wall.png</Icon>
   </Identity>
@@ -75,9 +72,6 @@
       </Four>
     </TurretPoints>
   </TurretHolder>
-  <Vision>
-    <Range>4</Range>
-  </Vision>
   <VisualActor>
     <Actor>structures/romans/siege_wall_tower.xml</Actor>
     <FoundationActor>structures/fndn_2x2.xml</FoundationActor>
