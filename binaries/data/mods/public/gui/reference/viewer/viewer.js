@@ -1,9 +1,9 @@
 /**
- * Override style so we can get a bigger specific name.
+ * Override style so we can get a bigger primary name.
  */
-g_TooltipTextFormats.nameSpecificBig.font = "sans-bold-20";
-g_TooltipTextFormats.nameSpecificSmall.font = "sans-bold-16";
-g_TooltipTextFormats.nameGeneric.font = "sans-bold-16";
+g_TooltipTextFormats.namePrimaryBig.font = "sans-bold-20";
+g_TooltipTextFormats.namePrimarySmall.font = "sans-bold-16";
+g_TooltipTextFormats.nameSecondary.font = "sans-bold-16";
 
 /**
  * Page initialisation. May also eventually pre-draw/arrange objects.

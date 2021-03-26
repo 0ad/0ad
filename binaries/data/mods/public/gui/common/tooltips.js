@@ -3,10 +3,21 @@ var g_TooltipTextFormats = {
 	"header": { "font": "sans-bold-13" },
 	"body": { "font": "sans-13" },
 	"comma": { "font": "sans-12" },
-	"nameSpecificBig": { "font": "sans-bold-16" },
-	"nameSpecificSmall": { "font": "sans-bold-12" },
-	"nameGeneric": { "font": "sans-bold-16" }
+	"namePrimaryBig": { "font": "sans-bold-16" },
+	"namePrimarySmall": { "font": "sans-bold-12" },
+	"nameSecondary": { "font": "sans-bold-16" }
 };
+
+var g_SpecificNamesPrimary = Engine.ConfigDB_GetValue("user", "gui.session.howtoshownames") == 0 || Engine.ConfigDB_GetValue("user", "gui.session.howtoshownames") == 2;
+var g_ShowSecondaryNames = Engine.ConfigDB_GetValue("user", "gui.session.howtoshownames") == 0 || Engine.ConfigDB_GetValue("user", "gui.session.howtoshownames") == 1;
+
+function initDisplayedNames()
+{
+	registerConfigChangeHandler(changes => {
+		if (changes.has("gui.session.howtoshownames"))
+			updateDisplayedNames();
+	});
+}
 
 /**
  * String of four spaces to be used as indentation in gui strings.
@@ -1046,9 +1057,18 @@ function getEntityNames(template)
 	if (template.name.specific == template.name.generic)
 		return template.name.specific;
 
-	return sprintf(translate("%(specificName)s (%(genericName)s)"), {
-		"specificName": template.name.specific,
-		"genericName": template.name.generic
+	let primaryName = g_SpecificNamesPrimary ? template.name.specific : template.name.generic;
+	let secondaryName;
+	if (g_ShowSecondaryNames)
+		secondaryName = g_SpecificNamesPrimary ? template.name.generic : template.name.specific;
+
+	if (secondaryName)
+		return sprintf(translate("%(primaryName)s (%(secondaryName)s)"), {
+			"primaryName": primaryName,
+			"secondaryName": secondaryName
+		});
+	return sprintf(translate("%(primaryName)s"), {
+		"primaryName": primaryName
 	});
 
 }
@@ -1056,24 +1076,37 @@ function getEntityNames(template)
 function getEntityNamesFormatted(template)
 {
 	if (!template.name.specific)
-		return setStringTags(template.name.generic, g_TooltipTextFormats.nameSpecificBig);
+		return setStringTags(template.name.generic, g_TooltipTextFormats.namePrimaryBig);
+
+	let primaryName = g_SpecificNamesPrimary ? template.name.specific : template.name.generic;
+	let secondaryName;
+	if (g_ShowSecondaryNames)
+		secondaryName = g_SpecificNamesPrimary ? template.name.generic : template.name.specific;
+
+	if (!secondaryName || primaryName == secondaryName)
+		return sprintf(translate("%(primaryName)s"), {
+			"primaryName":
+			setStringTags(primaryName[0], g_TooltipTextFormats.namePrimaryBig) +
+			setStringTags(primaryName.slice(1).toUpperCase(), g_TooltipTextFormats.namePrimarySmall)
+		});
 
 	// Translation: Example: "Epibátēs Athēnaîos [font="sans-bold-16"](Athenian Marine)[/font]"
-	return sprintf(translate("%(specificName)s %(fontStart)s(%(genericName)s)%(fontEnd)s"), {
-		"specificName": getEntitySpecificNameFormatted(template),
-		"genericName": template.name.generic,
-		"fontStart": '[font="' + g_TooltipTextFormats.nameGeneric.font + '"]',
-		"fontEnd": '[/font]'
+	return sprintf(translate("%(primaryName)s (%(secondaryName)s)"), {
+		"primaryName":
+			setStringTags(primaryName[0], g_TooltipTextFormats.namePrimaryBig) +
+			setStringTags(primaryName.slice(1).toUpperCase(), g_TooltipTextFormats.namePrimarySmall),
+		"secondaryName": setStringTags(secondaryName, g_TooltipTextFormats.nameSecondary)
 	});
 }
 
-function getEntitySpecificNameFormatted(template)
+function getEntityPrimaryNameFormatted(template)
 {
-	if (!template.name.specific)
-		return setStringTags(template.name.generic, g_TooltipTextFormats.nameSpecificBig);
+	let primaryName = g_SpecificNamesPrimary ? template.name.specific : template.name.generic;
+	if (!primaryName)
+		return setStringTags(g_SpecificNamesPrimary ? template.name.generic : template.name.specific, g_TooltipTextFormats.namePrimaryBig);
 
-	return setStringTags(template.name.specific[0], g_TooltipTextFormats.nameSpecificBig) +
-		setStringTags(template.name.specific.slice(1).toUpperCase(), g_TooltipTextFormats.nameSpecificSmall);
+	return setStringTags(primaryName[0], g_TooltipTextFormats.namePrimaryBig) +
+		setStringTags(primaryName.slice(1).toUpperCase(), g_TooltipTextFormats.namePrimarySmall);
 }
 
 function getVisibleEntityClassesFormatted(template)

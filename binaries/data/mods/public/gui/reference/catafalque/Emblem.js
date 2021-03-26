@@ -21,7 +21,7 @@ class Emblem
 
 		this.EmblemImage.sprite = "stretched:" + civData.Emblem;
 		this.EmblemImage.tooltip = getAurasTooltip(template);
-		this.EmblemCaption.caption = getEntitySpecificNameFormatted(template);
+		this.EmblemCaption.caption = getEntityPrimaryNameFormatted(template);
 		this.Emblem.hidden = false;
 		return true;
 	}

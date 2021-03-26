@@ -63,10 +63,6 @@ ProductionQueue.prototype.Init = function()
 	//     "timeTotal": 15000, // msecs
 	//     "timeRemaining": 10000, // msecs
 	//   }
-
-	this.paused = false;
-
-	this.spawnNotified = false;
 };
 
 /*
@@ -326,7 +322,6 @@ ProductionQueue.prototype.IsTechnologyResearchedOrInProgress = function(tech)
  */
 ProductionQueue.prototype.AddItem = function(templateName, type, count, metadata)
 {
-	// TODO: there should probably be a limit on the number of queued batches.
 	// TODO: there should be a way for the GUI to determine whether it's going
 	// to be possible to add a batch (based on resource costs and length limits).
 	let cmpPlayer = QueryOwnerInterface(this.entity);
@@ -369,7 +364,6 @@ ProductionQueue.prototype.AddItem = function(templateName, type, count, metadata
 			return false;
 		}
 
-		// Find the template data so we can determine the build costs.
 		let cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 		let template = cmpTemplateManager.GetTemplate(this.GetUpgradedTemplate(templateName));
 		if (!template)
@@ -481,7 +475,6 @@ ProductionQueue.prototype.AddItem = function(templateName, type, count, metadata
 		    "timeRemaining": time
 		});
 
-		// Call the related trigger event.
 		let cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
 		cmpTrigger.CallEvent("ResearchQueued", {
 		    "playerid": player,
@@ -524,7 +517,6 @@ ProductionQueue.prototype.RemoveItem = function(id)
 		item.entityCache = [];
 	}
 
-	// Update entity count in the EntityLimits component.
 	if (item.unitTemplate)
 	{
 		let cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
@@ -563,7 +555,6 @@ ProductionQueue.prototype.RemoveItem = function(id)
 		let cmpTechnologyManager = QueryPlayerIDInterface(item.player, IID_TechnologyManager);
 		if (cmpTechnologyManager)
 			cmpTechnologyManager.StoppedResearch(item.technologyTemplate, true);
-		this.SetAnimation("idle");
 	}
 
 	this.queue.splice(itemIndex, 1);
@@ -602,10 +593,6 @@ ProductionQueue.prototype.GetQueue = function()
  */
 ProductionQueue.prototype.ResetQueue = function()
 {
-	// Empty the production queue and refund all the resource costs
-	// to the player. (This is to avoid players having to micromanage their
-	// buildings' queues when they're about to be destroyed or captured.)
-
 	while (this.queue.length)
 		this.RemoveItem(this.queue[0].id);
 };
@@ -624,26 +611,20 @@ ProductionQueue.prototype.GetBatchTime = function(batchSize)
 
 ProductionQueue.prototype.OnOwnershipChanged = function(msg)
 {
-	if (msg.to != INVALID_PLAYER)
-		this.CalculateEntitiesMap();
-
 	// Reset the production queue whenever the owner changes.
 	// (This should prevent players getting surprised when they capture
 	// an enemy building, and then loads of the enemy's civ's soldiers get
 	// created from it. Also it means we don't have to worry about
 	// updating the reserved pop slots.)
 	this.ResetQueue();
+
+	if (msg.to != INVALID_PLAYER)
+		this.CalculateEntitiesMap();
 };
 
 ProductionQueue.prototype.OnCivChanged = function()
 {
 	this.CalculateEntitiesMap();
-};
-
-ProductionQueue.prototype.OnDestroy = function()
-{
-	// Reset the queue to refund any resources.
-	this.ResetQueue();
 };
 
 /*
@@ -782,10 +763,8 @@ ProductionQueue.prototype.ProgressTimeout = function(data, lateness)
 		let item = this.queue[0];
 		if (!item.productionStarted)
 		{
-			// If the item is a unit then do population checks.
 			if (item.unitTemplate)
 			{
-				// If something change population cost.
 				let template = cmpTemplateManager.GetTemplate(item.unitTemplate);
 				item.population = ApplyValueModificationsToTemplate(
 				    "Cost/Population",
@@ -793,22 +772,18 @@ ProductionQueue.prototype.ProgressTimeout = function(data, lateness)
 				    item.player,
 				    template);
 
-				// Batch's training hasn't started yet.
-				// Try to reserve the necessary population slots.
 				item.neededSlots = cmpPlayer.TryReservePopulationSlots(item.population * item.count);
 				if (item.neededSlots)
 				{
-					// Not enough slots available - don't train this batch now
-					// (we'll try again on the next timeout).
-
 					cmpPlayer.BlockTraining();
 					return;
 				}
+				this.SetAnimation("training");
 
 				cmpPlayer.UnBlockTraining();
 				Engine.PostMessage(this.entity, MT_TrainingStarted, { "entity": this.entity });
 			}
-			else if (item.technologyTemplate)
+			if (item.technologyTemplate)
 			{
 				let cmpTechnologyManager = QueryOwnerInterface(this.entity, IID_TechnologyManager);
 				if (cmpTechnologyManager)
@@ -822,11 +797,9 @@ ProductionQueue.prototype.ProgressTimeout = function(data, lateness)
 			item.productionStarted = true;
 		}
 
-		// If we won't finish the batch now, just update its timer.
 		if (item.timeRemaining > time)
 		{
 			item.timeRemaining -= time;
-			// Send a message for the AIs.
 			Engine.PostMessage(this.entity, MT_ProductionQueueChanged, null);
 			return;
 		}
@@ -839,11 +812,11 @@ ProductionQueue.prototype.ProgressTimeout = function(data, lateness)
 			if (numSpawned == item.count)
 			{
 				cmpPlayer.UnBlockTraining();
-				this.spawnNotified = false;
+				delete this.spawnNotified;
 			}
 			else
 			{
-				if (numSpawned > 0)
+				if (numSpawned)
 				{
 					item.count -= numSpawned;
 					Engine.PostMessage(this.entity, MT_ProductionQueueChanged, null);
@@ -864,7 +837,7 @@ ProductionQueue.prototype.ProgressTimeout = function(data, lateness)
 				return;
 			}
 		}
-		else if (item.technologyTemplate)
+		if (item.technologyTemplate)
 		{
 			let cmpTechnologyManager = QueryOwnerInterface(this.entity, IID_TechnologyManager);
 			if (cmpTechnologyManager)
@@ -872,7 +845,6 @@ ProductionQueue.prototype.ProgressTimeout = function(data, lateness)
 			else
 				warn("Failed to stop researching " + item.technologyTemplate + ": No TechnologyManager available.");
 
-			this.SetAnimation("idle");
 			let template = TechnologyTemplates.Get(item.technologyTemplate);
 			if (template && template.soundComplete)
 			{
@@ -899,7 +871,7 @@ ProductionQueue.prototype.PauseProduction = function()
 
 ProductionQueue.prototype.UnpauseProduction = function()
 {
-	this.paused = false;
+	delete this.paused;
 	this.StartTimer();
 };
 
@@ -923,6 +895,7 @@ ProductionQueue.prototype.StopTimer = function()
 	if (!this.timer)
 		return;
 
+	this.SetAnimation("idle");
 	Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer).CancelTimer(this.timer);
 	delete this.timer;
 };
@@ -957,8 +930,6 @@ ProductionQueue.prototype.HasQueuedProduction = function()
 
 ProductionQueue.prototype.OnDisabledTemplatesChanged = function(msg)
 {
-	// If the disabled templates of the player is changed,
-	// update the entities list so that this is reflected there.
 	this.CalculateEntitiesMap();
 };
 

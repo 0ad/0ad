@@ -26,7 +26,9 @@ class EntityBox
 		this.gui.hidden = false;
 
 		let caption = this.gui.children[0];
-		caption.caption = translate(this.template.name.specific);
+		caption.caption = g_SpecificNamesPrimary ?
+			translate(this.template.name.specific) :
+			translate(this.template.name.generic);
 
 		let icon = this.gui.children[1];
 		icon.sprite = "stretched:" + this.page.IconPath + this.template.icon;

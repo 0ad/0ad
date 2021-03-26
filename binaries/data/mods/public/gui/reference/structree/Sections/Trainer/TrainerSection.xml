@@ -13,7 +13,7 @@
 	<object type="image" style="TreeDisplay" size="0 24 100% 100%" name="trainers">
 		<repeat count="6" var="t">
 			<object type="image" style="StructBox" name="trainer[t]">
-				<object type="text" style="StructNameSpecific" name="trainer[t]_name"/>
+				<object type="text" style="StructNamePrimary" name="trainer[t]_name"/>
 				<object type="button" style="StructIcon" name="trainer[t]_icon"/>
 				<object name="trainer[t]_productionRows">
 					<object style="ProdBoxRow">
