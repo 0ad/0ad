@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -37,16 +37,6 @@ struct CGUIColor : CColor
 	CGUIColor() : CColor() {}
 
 	CGUIColor(float r, float g, float b, float a) : CColor(r, g, b, a) {}
-
-	/**
-	 * Returns this color if it has been set, otherwise the given fallback color.
-	 */
-	const CGUIColor& operator||(const CGUIColor& fallback) const
-	{
-		if (*this)
-			return *this;
-		return fallback;
-	}
 
 	/**
 	 * Load color depending on current GUI page.

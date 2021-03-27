@@ -105,15 +105,15 @@ void CButton::Draw()
 const CGUIColor& CButton::ChooseColor()
 {
 	if (!m_Enabled)
-		return m_TextColorDisabled || m_TextColor;
+		return m_TextColorDisabled ? m_TextColorDisabled : m_TextColor;
 
 	if (!m_MouseHovering)
 		return m_TextColor;
 
 	if (m_Pressed)
-		return m_TextColorPressed || m_TextColor;
+		return m_TextColorPressed ? m_TextColorPressed : m_TextColor;
 
-	return m_TextColorOver || m_TextColor;
+	return m_TextColorOver ? m_TextColorOver : m_TextColor;
 }
 
 void CButton::getTextSize(ScriptInterface& scriptInterface, JS::MutableHandleValue ret)
