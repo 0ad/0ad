@@ -2,8 +2,8 @@
 	"genericName": "Archery Tradition",
 	"description": "The Indian, Iranian, and Kushite peoples had a tradition of fine archery and a penchant for using massed archers in battle.",
 	"cost": {
-		"wood": 500,
-		"metal": 300
+		"food": 400,
+		"metal": 200
 	},
 	"requirements": {
 		"all": [
@@ -19,12 +19,10 @@
 	},
 	"requirementsTooltip": "Unlocked in Village Phase.",
 	"icon": "archery_tradition.png",
-	"researchTime": 60,
-	"tooltip": "Archers −10% training time and +10 attack range.",
+	"researchTime": 40,
+	"tooltip": "Archers +10 attack range.",
 	"modifications": [
-		{ "value": "Attack/Ranged/MaxRange", "add": 10 },
-		{ "value": "Cost/BuildTime", "multiply": 0.9 },
-		{ "value": "Vision/Range", "add": 8 }
+		{ "value": "Attack/Ranged/MaxRange", "add": 10 }
 	],
 	"affects": ["Archer"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"

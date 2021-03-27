@@ -462,6 +462,13 @@ var g_Commands = {
 		data.cmpPlayer.SetState("defeated", markForTranslation("%(player)s has resigned."));
 	},
 
+	"occupy-turret": function(player, cmd, data)
+	{
+		GetFormationUnitAIs(data.entities, player).forEach(cmpUnitAI => {
+			cmpUnitAI.OccupyTurret(cmd.target, cmd.queued);
+		});
+	},
+
 	"garrison": function(player, cmd, data)
 	{
 		if (!CanPlayerOrAllyControlUnit(cmd.target, player, data.controlAllUnits))
@@ -495,6 +502,38 @@ var g_Commands = {
 		GetFormationUnitAIs(data.entities, player, cmd, data.formation).forEach(cmpUnitAI => {
 			cmpUnitAI.Stop(cmd.queued);
 		});
+	},
+
+	"leave-turret": function(player, cmd, data)
+	{
+		let notUnloaded = 0;
+		for (let ent of data.entities)
+		{
+			let cmpTurretable = Engine.QueryInterface(ent, IID_Turretable);
+			if (!cmpTurretable || !cmpTurretable.LeaveTurret())
+				++notUnloaded;
+		}
+
+		if (notUnloaded)
+			notifyUnloadFailure(player);
+	},
+
+	"unload-turrets": function(player, cmd, data)
+	{
+		let notUnloaded = 0;
+		for (let ent of data.entities)
+		{
+			let cmpTurretHolder = Engine.QueryInterface(ent, IID_TurretHolder);
+			for (let turret of cmpTurretHolder.GetEntities())
+			{
+				let cmpTurretable = Engine.QueryInterface(turret, IID_Turretable);
+				if (!cmpTurretable || !cmpTurretable.LeaveTurret())
+					++notUnloaded;
+			}
+		}
+
+		if (notUnloaded)
+			notifyUnloadFailure(player);
 	},
 
 	"unload": function(player, cmd, data)
@@ -843,13 +882,13 @@ var g_Commands = {
 /**
  * Sends a GUI notification about unit(s) that failed to ungarrison.
  */
-function notifyUnloadFailure(player, garrisonHolder)
+function notifyUnloadFailure(player)
 {
-	var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+	let cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 	cmpGUIInterface.PushNotification({
 		"type": "text",
 		"players": [player],
-		"message": markForTranslation("Unable to ungarrison unit(s)"),
+		"message": markForTranslation("Unable to unload unit(s)."),
 		"translateMessage": true
 	});
 }

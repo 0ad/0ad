@@ -1,8 +1,6 @@
 /**
  * This class holds the functions regarding entities being visible on
  * another entity, but tied to their parents location.
- * Currently renaming and changing ownership are still managed by GarrisonHolder.js,
- * but in the future these components should be independent.
  */
 class TurretHolder
 {
@@ -55,6 +53,15 @@ class TurretHolder
 	}
 
 	/**
+	 * @param {number} entity - The entity to check for.
+	 * @return {boolean} - Whether the entity is allowed to occupy any turret point.
+	 */
+	CanOccupy(entity)
+	{
+		return !!this.turretPoints.find(turretPoint => this.AllowedToOccupyTurret(entity, turretPoint));
+	}
+
+	/**
 	 * Occupy a turret point with the given entity.
 	 * @param {number} entity - The entity to use.
 	 * @param {Object} requestedTurretPoint - Optionally the specific turret point to occupy.
@@ -87,6 +94,7 @@ class TurretHolder
 			return false;
 
 		turretPoint.entity = entity;
+
 		// Angle of turrets:
 		// Renamed entities (turretPoint != undefined) should keep their angle.
 		// Otherwise if an angle is given in the turretPoint, use it.
@@ -99,19 +107,6 @@ class TurretHolder
 			cmpPositionOccupant.SetYRotation(cmpPositionSelf.GetRotation().y + Math.PI);
 
 		cmpPositionOccupant.SetTurretParent(this.entity, turretPoint.offset);
-
-		let cmpUnitMotion = Engine.QueryInterface(entity, IID_UnitMotion);
-		if (cmpUnitMotion)
-			cmpUnitMotion.SetFacePointAfterMove(false);
-
-		let cmpUnitAI = Engine.QueryInterface(entity, IID_UnitAI);
-		if (cmpUnitAI)
-			cmpUnitAI.SetTurretStance();
-
-		// Remove the unit's obstruction to avoid interfering with pathing.
-		let cmpObstruction = Engine.QueryInterface(entity, IID_Obstruction);
-		if (cmpObstruction)
-			cmpObstruction.SetActive(false);
 
 		Engine.PostMessage(this.entity, MT_TurretsChanged, {
 			"added": [entity],
@@ -152,23 +147,11 @@ class TurretHolder
 		if (!turretPoint)
 			return false;
 
-		let cmpPositionEntity = Engine.QueryInterface(entity, IID_Position);
-		cmpPositionEntity.SetTurretParent(INVALID_ENTITY, new Vector3D());
-
-		let cmpUnitMotionEntity = Engine.QueryInterface(entity, IID_UnitMotion);
-		if (cmpUnitMotionEntity)
-			cmpUnitMotionEntity.SetFacePointAfterMove(true);
-
-		let cmpUnitAIEntity = Engine.QueryInterface(entity, IID_UnitAI);
-		if (cmpUnitAIEntity)
-			cmpUnitAIEntity.ResetTurretStance();
-
 		turretPoint.entity = null;
 
-		// Reset the obstruction flags to template defaults.
-		let cmpObstruction = Engine.QueryInterface(entity, IID_Obstruction);
-		if (cmpObstruction)
-			cmpObstruction.SetActive(true);
+		let cmpPositionEntity = Engine.QueryInterface(entity, IID_Position);
+		if (cmpPositionEntity)
+			cmpPositionEntity.SetTurretParent(INVALID_ENTITY, new Vector3D());
 
 		Engine.PostMessage(this.entity, MT_TurretsChanged, {
 			"added": [],
@@ -205,7 +188,8 @@ class TurretHolder
 	 */
 	GetOccupiedTurretName(entity)
 	{
-		return this.GetOccupiedTurret(entity).name || "";
+		let turret = this.GetOccupiedTurret(entity);
+		return turret ? turret.name : "";
 	}
 
 	/**
@@ -218,6 +202,60 @@ class TurretHolder
 			if (turretPoint.entity)
 				entities.push(turretPoint.entity);
 		return entities;
+	}
+
+	/**
+	 * @return {boolean} - Whether all the turret points are occupied.
+	 */
+	IsFull()
+	{
+		return !!this.turretPoints.find(turretPoint => turretPoint.entity == null);
+	}
+
+	/**
+	 * @return {Object} - Max and min ranges at which entities can occupy any turret.
+	 */
+	GetLoadingRange()
+	{
+		return { "min": 0, "max": +(this.template.LoadingRange || 2) };
+	}
+
+	/**
+	 * @param {number} ent - The entity ID of the turret to be potentially picked up.
+	 * @return {boolean} - Whether this entity can pick the specified entity up.
+	 */
+	CanPickup(ent)
+	{
+		if (!this.template.Pickup || this.IsFull())
+			return false;
+		let cmpOwner = Engine.QueryInterface(this.entity, IID_Ownership);
+		return !!cmpOwner && IsOwnedByPlayer(cmpOwner.GetOwner(), ent);
+	}
+
+	/**
+	 * @param {number[]} entities - The entities to ask to leave or to kill.
+	 */
+	EjectOrKill(entities)
+	{
+		let removedEntities = [];
+		for (let entity of entities)
+		{
+			let cmpTurretable = Engine.QueryInterface(entity, IID_Turretable);
+			if (!cmpTurretable || !cmpTurretable.LeaveTurret(true))
+			{
+				let cmpHealth = Engine.QueryInterface(entity, IID_Health);
+				if (cmpHealth)
+					cmpHealth.Kill();
+				else
+					Engine.DestroyEntity(entity);
+				removedEntities.push(entity);
+			}
+		}
+		if (removedEntities.length)
+			Engine.PostMessage(this.entity, MT_TurretsChanged, {
+				"added": [],
+				"removed": removedEntities
+			});
 	}
 
 	/**
@@ -235,20 +273,6 @@ class TurretHolder
 				this.entity + " is already set! Overwriting.");
 
 		this.initTurrets.set(turretName, entity);
-	}
-
-	/**
-	 * @param {number} from - The entity to substitute.
-	 * @param {number} to - The entity to subtitute with.
-	 */
-	SwapEntities(from, to)
-	{
-		let turretPoint = this.GetOccupiedTurret(from);
-		if (turretPoint)
-		{
-			this.LeaveTurret(from, turretPoint);
-			this.OccupyTurret(to, turretPoint);
-		}
 	}
 
 	/**
@@ -274,10 +298,7 @@ class TurretHolder
 	}
 
 	/**
-	 * Initialise the turreted units.
-	 * Really ugly, but because GarrisonHolder is processed earlier, and also turrets
-	 * entities on init, we can find an entity that already is present.
-	 * In that case we reject and occupy.
+	 * Initialise turreted units.
 	 */
 	OnGlobalInitGame(msg)
 	{
@@ -285,15 +306,47 @@ class TurretHolder
 			return;
 
 		for (let [turretPointName, entity] of this.initTurrets)
-		{
-			if (this.OccupiesTurret(entity))
-				this.LeaveTurret(entity);
 			if (!this.OccupyNamedTurret(entity, turretPointName))
 				warn("Entity " + entity + " could not occupy the turret point " +
 					turretPointName + " of turret holder " + this.entity + ".");
-		}
 
 		delete this.initTurrets;
+	}
+
+	/**
+	 * @param {Object} msg - { "entity": number, "newentity": number }.
+	 */
+	OnEntityRenamed(msg)
+	{
+		for (let entity of this.GetEntities())
+		{
+			let cmpTurretable = Engine.QueryInterface(entity, IID_Turretable);
+			if (!cmpTurretable)
+				continue;
+			let currentPoint = this.GetOccupiedTurretName(entity);
+			cmpTurretable.LeaveTurret(true);
+			cmpTurretable.OccupyTurret(msg.newentity, currentPoint);
+		}
+	}
+
+	/**
+	 * @param {Object} msg - { "entity": number, "from": number, "to": number }.
+	 */
+	OnOwnershipChanged(msg)
+	{
+		let entities = this.GetEntities();
+		if (!entities.length)
+			return;
+
+		if (msg.to == INVALID_PLAYER)
+			this.EjectOrKill(entities);
+		else
+			for (let entity of entities.filter(entity => !IsOwnedByMutualAllyOfEntity(entity, this.entity)))
+			{
+				let cmpTurretable = Engine.QueryInterface(entity, IID_Turretable);
+				if (cmpTurretable)
+					cmpTurretable.LeaveTurret();
+			}
 	}
 }
 
@@ -328,6 +381,16 @@ TurretHolder.prototype.Schema =
 				"</interleave>" +
 			"</element>" +
 		"</oneOrMore>" +
-	"</element>";
+	"</element>" +
+	"<optional>" +
+		"<element name='LoadingRange' a:help='The maximum distance from this holder at which entities are allowed to occupy a turret point. Should be about 2.0 for land entities and preferably greater for ships.'>" +
+			"<ref name='nonNegativeDecimal'/>" +
+		"</element>" +
+	"</optional>"
+	"<optional>" +
+		"<element name='Pickup' a:help='This entity will try to move to pick up units to be turreted.'>" +
+			"<data type='boolean'/>" +
+		"</element>" +
+	"</optional>";
 
 Engine.RegisterComponentType(IID_TurretHolder, "TurretHolder", TurretHolder);

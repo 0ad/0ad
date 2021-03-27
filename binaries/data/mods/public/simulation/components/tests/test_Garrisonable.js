@@ -1,5 +1,7 @@
+Engine.LoadHelperScript("Position.js");
 Engine.LoadComponentScript("interfaces/Garrisonable.js");
 Engine.LoadComponentScript("interfaces/GarrisonHolder.js");
+Engine.LoadComponentScript("interfaces/Health.js");
 Engine.LoadComponentScript("interfaces/UnitAI.js");
 Engine.LoadComponentScript("Garrisonable.js");
 
@@ -9,10 +11,13 @@ const garrisonHolderID = 1;
 const garrisonableID = 2;
 AddMock(garrisonHolderID, IID_GarrisonHolder, {
 	"Garrison": () => true,
-	"GetSpawnPosition": () => new Vector3D(0, 0, 0),
 	"IsAllowedToGarrison": () => true,
-	"OrderToRallyPoint": () => {},
 	"Eject": () => true
+});
+
+AddMock(garrisonHolderID, IID_Footprint, {
+	"PickSpawnPointBothPass": entity => new Vector3D(4, 3, 30),
+	"PickSpawnPoint": entity => new Vector3D(4, 3, 30)
 });
 
 let size = 1;
@@ -39,7 +44,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmpGarrisonable.HolderID(), garrisonHolderID);
 TS_ASSERT(!cmpGarrisonable.Garrison(garrisonHolderID));
 TS_ASSERT_UNEVAL_EQUALS(cmpGarrisonable.HolderID(), garrisonHolderID);
 
-cmpGarrisonable.UnGarrison();
+TS_ASSERT(cmpGarrisonable.UnGarrison());
 TS_ASSERT_UNEVAL_EQUALS(cmpGarrisonable.HolderID(), INVALID_ENTITY);
 
 // Test renaming.

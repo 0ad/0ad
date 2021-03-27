@@ -22,9 +22,6 @@
 
 #include "simulation2/components/ICmpPathfinder.h" // for pass_class_t
 #include "simulation2/components/ICmpPosition.h" // for entity_pos_t
-#include "simulation2/components/ICmpUnitMotionManager.h"
-
-class CCmpUnitMotionManager;
 
 /**
  * Motion interface for entities with complex movement capabilities.
@@ -36,18 +33,6 @@ class CCmpUnitMotionManager;
  */
 class ICmpUnitMotion : public IComponent
 {
-protected:
-	friend class CCmpUnitMotionManager;
-
-	/**
-	 * This external interface is used by the Unit Motion Manager.
-	 * Components that do not register there do not need to implement these.
-	 */
-	virtual void OnTurnStart() = 0;
-	virtual void PreMove(ICmpUnitMotionManager::MotionState& state) = 0;
-	virtual void Move(ICmpUnitMotionManager::MotionState& state, fixed dt) = 0;
-	virtual void PostMove(ICmpUnitMotionManager::MotionState& state, fixed dt) = 0;
-
 public:
 
 	/**

@@ -1,5 +1,5 @@
 # Translation template for Pyrogenesis - Mod Selector.
-# Copyright (C) 2020 Wildfire Games
+# Copyright (C) 2021 Wildfire Games
 # This file is distributed under the same license as the Pyrogenesis - Mod Selector
 # project.
 # Translators:
@@ -18,9 +18,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-12-26 15:10+0000\n"
-"PO-Revision-Date: 2021-02-24 12:07+0000\n"
-"Last-Translator: Freagarach\n"
+"POT-Creation-Date: 2021-03-22 08:08+0000\n"
+"PO-Revision-Date: 2021-03-22 10:15+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -213,50 +213,50 @@ msgstr "Initialiseer mod.io interface."
 msgid "Initializing"
 msgstr "Initialiseren"
 
-#: gui/modio/modio.js:136 gui/modmod/modmod.xml:(caption):182
+#: gui/modio/modio.js:136 gui/modmod/modmod.xml:(caption):196
 msgid "Cancel"
 msgstr "Annuleren"
 
-#: gui/modio/modio.js:219
+#: gui/modio/modio.js:223
 #, javascript-format
 msgid "Invalid mod: %(error)s"
 msgstr "Ongeldige mod: %(error)s"
 
-#: gui/modio/modio.js:242
+#: gui/modio/modio.js:246
 msgid "Fetching and updating list of available mods."
 msgstr "Ophalen en bijwerken van de lijst met beschikbare modificaties."
 
-#: gui/modio/modio.js:243
+#: gui/modio/modio.js:247
 msgid "Updating"
 msgstr "Updating"
 
-#: gui/modio/modio.js:245
+#: gui/modio/modio.js:249
 msgid "Cancel Update"
 msgstr "Stop Update"
 
-#: gui/modio/modio.js:261
+#: gui/modio/modio.js:265
 #, javascript-format
 msgid "Downloading “%(modname)s”"
 msgstr "Downloading \"%(modname)s\""
 
-#: gui/modio/modio.js:264
+#: gui/modio/modio.js:268
 msgid "Downloading"
 msgstr "Downloading"
 
-#: gui/modio/modio.js:266
+#: gui/modio/modio.js:270
 msgid "Cancel Download"
 msgstr "Stop Download"
 
 #. Translation: Mod file download indicator. Current size over expected final
 #. size, with
 #. percentage complete.
-#: gui/modio/modio.js:333
+#: gui/modio/modio.js:337
 #, javascript-format
 msgid "%(current)s / %(total)s (%(percent)s%%)"
 msgstr "%(current)s /%(total)s (%(percent)s%%)"
 
 #. Translation: Mod file download status message.
-#: gui/modio/modio.js:343
+#: gui/modio/modio.js:347
 #, javascript-format
 msgid ""
 "Time Elapsed: %(elapsed)s\n"
@@ -264,14 +264,14 @@ msgid ""
 "Average Speed: %(avgSpeed)s"
 msgstr "Verstreken tijd: %(elapsed)s\nGeschatte resterende tijd: %(remaining)s\nGemiddelde Snelheid: %(avgSpeed)s"
 
-#: gui/modio/modio.js:345
+#: gui/modio/modio.js:349
 msgid "∞"
 msgstr "∞"
 
 #. Translation: Average download speed, used to give the user a very rough and
 #. naive idea of
 #. the download time. For example: 123.4 KiB/s
-#: gui/modio/modio.js:347
+#: gui/modio/modio.js:351
 #, javascript-format
 msgid "%(number)s %(unit)s/s"
 msgstr "%(number)s %(unit)s/s"
@@ -280,7 +280,7 @@ msgstr "%(number)s %(unit)s/s"
 msgid "mod.io Mods"
 msgstr "mod.io Mods"
 
-#: gui/modio/modio.xml:(caption):25 gui/modmod/modmod.xml:(caption):56
+#: gui/modio/modio.xml:(caption):25 gui/modmod/modmod.xml:(caption):70
 msgid "Available Mods"
 msgstr "Beschikbare Mods"
 
@@ -300,18 +300,18 @@ msgstr "Herlaad lijst"
 msgid "Download"
 msgstr "Download"
 
-#: gui/modio/modio.xml:(heading):53 gui/modmod/modmod.xml:(heading):76
-#: gui/modmod/modmod.xml:(heading):116
+#: gui/modio/modio.xml:(heading):53 gui/modmod/modmod.xml:(heading):90
+#: gui/modmod/modmod.xml:(heading):130
 msgid "Name"
 msgstr "Naam"
 
-#: gui/modio/modio.xml:(heading):56 gui/modmod/modmod.xml:(heading):79
-#: gui/modmod/modmod.xml:(heading):119
+#: gui/modio/modio.xml:(heading):56 gui/modmod/modmod.xml:(heading):93
+#: gui/modmod/modmod.xml:(heading):133
 msgid "Version"
 msgstr "Versie"
 
-#: gui/modio/modio.xml:(heading):59 gui/modmod/modmod.xml:(heading):85
-#: gui/modmod/modmod.xml:(heading):125
+#: gui/modio/modio.xml:(heading):59 gui/modmod/modmod.xml:(heading):99
+#: gui/modmod/modmod.xml:(heading):139
 msgid "Mod Label"
 msgstr "Mod Label"
 
@@ -319,8 +319,8 @@ msgstr "Mod Label"
 msgid "File Size"
 msgstr "Bestandsgrootte"
 
-#: gui/modio/modio.xml:(heading):65 gui/modmod/modmod.xml:(heading):88
-#: gui/modmod/modmod.xml:(heading):128
+#: gui/modio/modio.xml:(heading):65 gui/modmod/modmod.xml:(heading):102
+#: gui/modmod/modmod.xml:(heading):142
 msgid "Dependencies"
 msgstr "Afhankelijkheden"
 
@@ -371,30 +371,21 @@ msgstr "Modding Handleiding"
 msgid "Visit mod.io"
 msgstr "Bezoek mod.io"
 
-#: gui/modmod/modmod.js:117 gui/modmod/modmod.js:405
+#: gui/modmod/modmod.js:124 gui/modmod/modmod.js:414
 msgctxt "mod activation"
 msgid "Enable"
 msgstr "Activeer"
 
-#: gui/modmod/modmod.js:273 gui/modmod/modmod.xml:(placeholder_text):24
+#: gui/modmod/modmod.js:281 gui/modmod/modmod.xml:(placeholder_text):24
 msgid "Filter"
 msgstr "Filter"
 
-#: gui/modmod/modmod.js:315
-#, javascript-format
-msgid "Dependency not met: %(dep)s"
-msgstr "Afhankelijkheid niet voldaan: %(dep)s"
-
-#: gui/modmod/modmod.js:321
-msgid "All dependencies met"
-msgstr "Aan alle afhankelijkheden is voldaan"
-
-#: gui/modmod/modmod.js:406
+#: gui/modmod/modmod.js:415
 msgctxt "mod activation"
 msgid "Disable"
 msgstr "Schakel uit"
 
-#: gui/modmod/modmod.js:414
+#: gui/modmod/modmod.js:423
 msgid "No mod has been selected."
 msgstr "Er is geen modificatie geselecteerd."
 
@@ -406,47 +397,51 @@ msgstr "Aanpassingen"
 msgid "Negate"
 msgstr "Selectie omkeren"
 
-#: gui/modmod/modmod.xml:(caption):49
+#: gui/modmod/modmod.xml:(caption):51
+msgid "Filter compatible"
+msgstr ""
+
+#: gui/modmod/modmod.xml:(caption):63
 msgid "Description"
 msgstr "Omschrijving"
 
-#: gui/modmod/modmod.xml:(caption):100
+#: gui/modmod/modmod.xml:(caption):114
 msgid "Enabled Mods"
 msgstr "Geactiveerde Mods"
 
-#: gui/modmod/modmod.xml:(caption):168
+#: gui/modmod/modmod.xml:(caption):182
 msgid "Visit Website"
 msgstr "Bezoek de Website"
 
-#: gui/modmod/modmod.xml:(caption):177
+#: gui/modmod/modmod.xml:(caption):191
 msgid "Quit"
 msgstr "Stoppen"
 
-#: gui/modmod/modmod.xml:(caption):187
+#: gui/modmod/modmod.xml:(caption):201
 msgid "Help"
 msgstr "Help"
 
-#: gui/modmod/modmod.xml:(caption):192
+#: gui/modmod/modmod.xml:(caption):206
 msgid "Download Mods"
 msgstr "Download Mods"
 
-#: gui/modmod/modmod.xml:(caption):197
+#: gui/modmod/modmod.xml:(caption):211
 msgid "Save Configuration"
 msgstr "Configuratie Opslaan"
 
-#: gui/modmod/modmod.xml:(caption):202
+#: gui/modmod/modmod.xml:(caption):216
 msgid "Start Mods"
 msgstr "Start Mods"
 
-#: gui/modmod/modmod.xml:(heading):82 gui/modmod/modmod.xml:(heading):122
+#: gui/modmod/modmod.xml:(heading):96 gui/modmod/modmod.xml:(heading):136
 msgid "(Folder)"
 msgstr "(Map)"
 
-#: gui/modmod/modmod.xml:(heading):91 gui/modmod/modmod.xml:(heading):131
+#: gui/modmod/modmod.xml:(heading):105 gui/modmod/modmod.xml:(heading):145
 msgid "Website"
 msgstr "Website"
 
-#: gui/modmod/modmod.xml:(tooltip):146 gui/modmod/modmod.xml:(tooltip):160
+#: gui/modmod/modmod.xml:(tooltip):160 gui/modmod/modmod.xml:(tooltip):174
 msgid ""
 "Change the order in which mods are launched. This should match the mods "
 "dependencies."

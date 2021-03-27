@@ -543,6 +543,8 @@ m.Template = m.Class({
 
 	"isGarrisonHolder": function() { return this.get("GarrisonHolder") !== undefined; },
 
+	"isTurretHolder": function() { return this.get("TurretHolder") !== undefined; },
+
 	/**
 	 * returns true if the tempalte can capture the given target entity
 	 * if no target is given, returns true if the template has the Capture attack
@@ -564,6 +566,8 @@ m.Template = m.Class({
 	"canGuard": function() { return this.get("UnitAI/CanGuard") === "true"; },
 
 	"canGarrison": function() { return "Garrisonable" in this._template; },
+
+	"canOccupyTurret": function() { return "Turretable" in this._template; },
 
 	"isTreasureCollecter": function() { return this.get("TreasureCollecter") !== undefined; },
 });
@@ -840,23 +844,29 @@ m.Entity = m.Class({
 		return this;
 	},
 
-	"garrison": function(target, queued = false) {
-		Engine.PostCommand(PlayerID, { "type": "garrison", "entities": [this.id()], "target": target.id(), "queued": queued });
+	"garrison": function(target, queued = false, pushFront = false) {
+		Engine.PostCommand(PlayerID, { "type": "garrison", "entities": [this.id()], "target": target.id(), "queued": queued, "pushFront": pushFront });
 		return this;
 	},
 
-	"attack": function(unitId, allowCapture = true, queued = false) {
-		Engine.PostCommand(PlayerID, { "type": "attack", "entities": [this.id()], "target": unitId, "allowCapture": allowCapture, "queued": queued });
+	"occupy-turret": function(target, queued = false, pushFront = false) {
+		Engine.PostCommand(PlayerID, { "type": "occupy-turret", "entities": [this.id()], "target": target.id(), "queued": queued, "pushFront": pushFront });
 		return this;
 	},
 
-	"collectTreasure": function(target, autocontinue = false, queued = false) {
+	"attack": function(unitId, allowCapture = true, queued = false, pushFront = false) {
+		Engine.PostCommand(PlayerID, { "type": "attack", "entities": [this.id()], "target": unitId, "allowCapture": allowCapture, "queued": queued, "pushFront": pushFront });
+		return this;
+	},
+
+	"collectTreasure": function(target, autocontinue = false, queued = false, pushFront = false) {
 		Engine.PostCommand(PlayerID, {
 			"type": "collect-treasure",
 			"entities": [this.id()],
 			"target": target.id(),
 			"autocontinue": autocontinue,
-			"queued": queued
+			"queued": queued,
+			"pushFront": pushFront
 		});
 		return this;
 	},

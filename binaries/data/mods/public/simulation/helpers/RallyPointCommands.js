@@ -57,6 +57,14 @@ function GetRallyPointCommands(cmpRallyPoint, spawnedEnts)
 				"autocontinue": i == rallyPos.length - 1
 			});
 			break;
+		case "occupy-turret":
+			ret.push({
+				"type": "occupy-turret",
+				"entities": spawnedEnts,
+				"target": data[i].target,
+				"queued": true
+			});
+			break;
 		case "garrison":
 			ret.push({
 				"type": "garrison",

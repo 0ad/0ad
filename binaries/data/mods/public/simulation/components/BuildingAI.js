@@ -30,35 +30,20 @@ BuildingAI.prototype.Init = function()
 	this.targetUnits = [];
 };
 
-BuildingAI.prototype.OnGarrisonedUnitsChanged = function()
+BuildingAI.prototype.OnGarrisonedUnitsChanged = function(msg)
 {
-	this.RecalculateProjectileCount();
-};
-
-BuildingAI.prototype.OnTurretsChanged = function()
-{
-	this.RecalculateProjectileCount();
-};
-
-BuildingAI.prototype.RecalculateProjectileCount = function()
-{
-	this.archersGarrisoned = 0;
 	let classes = this.template.GarrisonArrowClasses;
-
-	let cmpTurretHolder = Engine.QueryInterface(this.entity, IID_TurretHolder);
-	let cmpGarrisonHolder = Engine.QueryInterface(this.entity, IID_GarrisonHolder);
-	for (let ent of cmpGarrisonHolder.GetEntities())
+	for (let ent of msg.added)
 	{
-		// Only count non-visible garrisoned entities towards extra arrows.
-		if (cmpTurretHolder && cmpTurretHolder.OccupiesTurret(ent))
-			continue;
-
 		let cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
-		if (!cmpIdentity)
-			continue;
-
-		if (MatchesClassList(cmpIdentity.GetClassesList(), classes))
+		if (cmpIdentity && MatchesClassList(cmpIdentity.GetClassesList(), classes))
 			++this.archersGarrisoned;
+	}
+	for (let ent of msg.removed)
+	{
+		let cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
+		if (cmpIdentity && MatchesClassList(cmpIdentity.GetClassesList(), classes))
+			--this.archersGarrisoned;
 	}
 };
 

@@ -175,6 +175,12 @@ m.EntityCollection.prototype.garrison = function(target, queued = false)
 	return this;
 };
 
+m.EntityCollection.prototype.occupyTurret = function(target, queued = false)
+{
+	Engine.PostCommand(PlayerID, { "type": "occupy-turret", "entities": this.toIdArray(), "target": target.id(), "queued": queued });
+	return this;
+};
+
 m.EntityCollection.prototype.destroy = function()
 {
 	Engine.PostCommand(PlayerID, { "type": "delete-entities", "entities": this.toIdArray() });

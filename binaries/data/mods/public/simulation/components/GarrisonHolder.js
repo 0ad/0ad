@@ -200,38 +200,6 @@ GarrisonHolder.prototype.Garrison = function(entity)
 };
 
 /**
- * @param {number} entity - EntityID to find the spawn position for.
- * @param {boolean} forced - Optionally whether the spawning is forced.
- * @return {Vector3D} - An appropriate spawning position.
- */
-GarrisonHolder.prototype.GetSpawnPosition = function(entity, forced)
-{
-	let cmpFootprint = Engine.QueryInterface(this.entity, IID_Footprint);
-	let cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
-	let cmpIdentity = Engine.QueryInterface(this.entity, IID_Identity);
-
-	// If the garrisonHolder is a sinking ship, restrict the location to the intersection of both passabilities
-	// TODO: should use passability classes to be more generic
-	let pos;
-	if ((!cmpHealth || cmpHealth.GetHitpoints() == 0) && cmpIdentity && cmpIdentity.HasClass("Ship"))
-		pos = cmpFootprint.PickSpawnPointBothPass(entity);
-	else
-		pos = cmpFootprint.PickSpawnPoint(entity);
-
-	if (pos.y < 0)
-	{
-		// Error: couldn't find space satisfying the unit's passability criteria
-		if (!forced)
-			return null;
-
-		// If ejection is forced, we need to continue, so use center of the building
-		let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
-		pos = cmpPosition.GetPosition();
-	}
-	return pos;
-};
-
-/**
  * @param {number} entity - The entity ID of the entity to eject.
  * @param {boolean} forced - Whether eject is forced (e.g. if building is destroyed).
  * @return {boolean} Whether the entity was ejected.
@@ -254,32 +222,6 @@ GarrisonHolder.prototype.Eject = function(entity, forced)
 	});
 
 	return true;
-};
-
-/**
- * @param {number} entity - The entity ID of the entity to order to the rally point.
- */
-GarrisonHolder.prototype.OrderToRallyPoint = function(entity)
-{
-	let cmpRallyPoint = Engine.QueryInterface(this.entity, IID_RallyPoint);
-	if (!cmpRallyPoint || !cmpRallyPoint.GetPositions()[0])
-		return;
-
-	let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	if (!cmpOwnership)
-		return;
-
-	let cmpEntOwnership = Engine.QueryInterface(entity, IID_Ownership);
-	if (!cmpEntOwnership || cmpOwnership.GetOwner() != cmpEntOwnership.GetOwner())
-		return;
-
-	let commands = GetRallyPointCommands(cmpRallyPoint, [entity]);
-	// Ignore the rally point if it is autogarrison
-	if (commands[0].type == "garrison" && commands[0].target == this.entity)
-		return;
-
-	for (let command of commands)
-		ProcessCommand(cmpOwnership.GetOwner(), command);
 };
 
 /**

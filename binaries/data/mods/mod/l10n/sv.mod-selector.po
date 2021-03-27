@@ -1,9 +1,9 @@
 # Translation template for Pyrogenesis - Mod Selector.
-# Copyright (C) 2020 Wildfire Games
+# Copyright (C) 2021 Wildfire Games
 # This file is distributed under the same license as the Pyrogenesis - Mod Selector
 # project.
 # Translators:
-# Jonatan Nyberg <jonatan.nyberg.karl@gmail.com>, 2020
+# efef6ec5b435a041fce803c7f8af77d2_2341d43, 2020
 # Martin H <pilino@posteo.de>, 2020
 # Mattias Münster <mattiasmun@gmail.com>, 2019
 # Martin H <pilino@posteo.de>, 2017-2018
@@ -11,9 +11,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2020-12-26 15:10+0000\n"
-"PO-Revision-Date: 2020-08-08 20:05+0000\n"
-"Last-Translator: Martin H <pilino@posteo.de>\n"
+"POT-Creation-Date: 2021-03-22 08:08+0000\n"
+"PO-Revision-Date: 2021-03-22 10:15+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -206,50 +206,50 @@ msgstr "Initialiserar mod.io gränssnittet."
 msgid "Initializing"
 msgstr "Initialiserar"
 
-#: gui/modio/modio.js:136 gui/modmod/modmod.xml:(caption):182
+#: gui/modio/modio.js:136 gui/modmod/modmod.xml:(caption):196
 msgid "Cancel"
 msgstr "Avbryt"
 
-#: gui/modio/modio.js:219
+#: gui/modio/modio.js:223
 #, javascript-format
 msgid "Invalid mod: %(error)s"
 msgstr "Ogiltig mod: %(error)s"
 
-#: gui/modio/modio.js:242
+#: gui/modio/modio.js:246
 msgid "Fetching and updating list of available mods."
 msgstr "Hämtar och uppdaterar listan med tillgängliga mods."
 
-#: gui/modio/modio.js:243
+#: gui/modio/modio.js:247
 msgid "Updating"
 msgstr "Uppdaterar"
 
-#: gui/modio/modio.js:245
+#: gui/modio/modio.js:249
 msgid "Cancel Update"
 msgstr "Avbryt uppdatering"
 
-#: gui/modio/modio.js:261
+#: gui/modio/modio.js:265
 #, javascript-format
 msgid "Downloading “%(modname)s”"
 msgstr "Hämtar “%(modname)s”"
 
-#: gui/modio/modio.js:264
+#: gui/modio/modio.js:268
 msgid "Downloading"
 msgstr "Hämtar"
 
-#: gui/modio/modio.js:266
+#: gui/modio/modio.js:270
 msgid "Cancel Download"
 msgstr "Avbryt hämtning"
 
 #. Translation: Mod file download indicator. Current size over expected final
 #. size, with
 #. percentage complete.
-#: gui/modio/modio.js:333
+#: gui/modio/modio.js:337
 #, javascript-format
 msgid "%(current)s / %(total)s (%(percent)s%%)"
 msgstr "%(current)s / %(total)s (%(percent)s%%)"
 
 #. Translation: Mod file download status message.
-#: gui/modio/modio.js:343
+#: gui/modio/modio.js:347
 #, javascript-format
 msgid ""
 "Time Elapsed: %(elapsed)s\n"
@@ -257,14 +257,14 @@ msgid ""
 "Average Speed: %(avgSpeed)s"
 msgstr "Tid: %(elapsed)s\nÅterstående tid: %(remaining)s\nGenomsnittlig hastighet: %(avgSpeed)s"
 
-#: gui/modio/modio.js:345
+#: gui/modio/modio.js:349
 msgid "∞"
 msgstr "∞"
 
 #. Translation: Average download speed, used to give the user a very rough and
 #. naive idea of
 #. the download time. For example: 123.4 KiB/s
-#: gui/modio/modio.js:347
+#: gui/modio/modio.js:351
 #, javascript-format
 msgid "%(number)s %(unit)s/s"
 msgstr "%(number)s %(unit)s/s"
@@ -273,7 +273,7 @@ msgstr "%(number)s %(unit)s/s"
 msgid "mod.io Mods"
 msgstr "mod.io mods"
 
-#: gui/modio/modio.xml:(caption):25 gui/modmod/modmod.xml:(caption):56
+#: gui/modio/modio.xml:(caption):25 gui/modmod/modmod.xml:(caption):70
 msgid "Available Mods"
 msgstr "Tillgängliga mods"
 
@@ -293,18 +293,18 @@ msgstr "Uppdatera lista"
 msgid "Download"
 msgstr "Hämta"
 
-#: gui/modio/modio.xml:(heading):53 gui/modmod/modmod.xml:(heading):76
-#: gui/modmod/modmod.xml:(heading):116
+#: gui/modio/modio.xml:(heading):53 gui/modmod/modmod.xml:(heading):90
+#: gui/modmod/modmod.xml:(heading):130
 msgid "Name"
 msgstr "Namn"
 
-#: gui/modio/modio.xml:(heading):56 gui/modmod/modmod.xml:(heading):79
-#: gui/modmod/modmod.xml:(heading):119
+#: gui/modio/modio.xml:(heading):56 gui/modmod/modmod.xml:(heading):93
+#: gui/modmod/modmod.xml:(heading):133
 msgid "Version"
 msgstr "Version"
 
-#: gui/modio/modio.xml:(heading):59 gui/modmod/modmod.xml:(heading):85
-#: gui/modmod/modmod.xml:(heading):125
+#: gui/modio/modio.xml:(heading):59 gui/modmod/modmod.xml:(heading):99
+#: gui/modmod/modmod.xml:(heading):139
 msgid "Mod Label"
 msgstr "Modetikett"
 
@@ -312,8 +312,8 @@ msgstr "Modetikett"
 msgid "File Size"
 msgstr "Storlek"
 
-#: gui/modio/modio.xml:(heading):65 gui/modmod/modmod.xml:(heading):88
-#: gui/modmod/modmod.xml:(heading):128
+#: gui/modio/modio.xml:(heading):65 gui/modmod/modmod.xml:(heading):102
+#: gui/modmod/modmod.xml:(heading):142
 msgid "Dependencies"
 msgstr "Beroenden "
 
@@ -364,30 +364,21 @@ msgstr "Modding-guide"
 msgid "Visit mod.io"
 msgstr "Besök mod.io"
 
-#: gui/modmod/modmod.js:117 gui/modmod/modmod.js:405
+#: gui/modmod/modmod.js:124 gui/modmod/modmod.js:414
 msgctxt "mod activation"
 msgid "Enable"
 msgstr "Aktivera"
 
-#: gui/modmod/modmod.js:273 gui/modmod/modmod.xml:(placeholder_text):24
+#: gui/modmod/modmod.js:281 gui/modmod/modmod.xml:(placeholder_text):24
 msgid "Filter"
 msgstr "Filter"
 
-#: gui/modmod/modmod.js:315
-#, javascript-format
-msgid "Dependency not met: %(dep)s"
-msgstr "Beroende inte uppfyllt: %(dep)s"
-
-#: gui/modmod/modmod.js:321
-msgid "All dependencies met"
-msgstr "Alla beroenden uppfyllda"
-
-#: gui/modmod/modmod.js:406
+#: gui/modmod/modmod.js:415
 msgctxt "mod activation"
 msgid "Disable"
 msgstr "Inaktivera"
 
-#: gui/modmod/modmod.js:414
+#: gui/modmod/modmod.js:423
 msgid "No mod has been selected."
 msgstr "Ingen mod har valts."
 
@@ -399,47 +390,51 @@ msgstr "Modifieringar"
 msgid "Negate"
 msgstr "Upphäv"
 
-#: gui/modmod/modmod.xml:(caption):49
+#: gui/modmod/modmod.xml:(caption):51
+msgid "Filter compatible"
+msgstr ""
+
+#: gui/modmod/modmod.xml:(caption):63
 msgid "Description"
 msgstr "Beskrivning"
 
-#: gui/modmod/modmod.xml:(caption):100
+#: gui/modmod/modmod.xml:(caption):114
 msgid "Enabled Mods"
 msgstr "Aktivera mods"
 
-#: gui/modmod/modmod.xml:(caption):168
+#: gui/modmod/modmod.xml:(caption):182
 msgid "Visit Website"
 msgstr "Besök webbplats"
 
-#: gui/modmod/modmod.xml:(caption):177
+#: gui/modmod/modmod.xml:(caption):191
 msgid "Quit"
 msgstr "Avsluta"
 
-#: gui/modmod/modmod.xml:(caption):187
+#: gui/modmod/modmod.xml:(caption):201
 msgid "Help"
 msgstr "Hjälp"
 
-#: gui/modmod/modmod.xml:(caption):192
+#: gui/modmod/modmod.xml:(caption):206
 msgid "Download Mods"
 msgstr "Hämta mods"
 
-#: gui/modmod/modmod.xml:(caption):197
+#: gui/modmod/modmod.xml:(caption):211
 msgid "Save Configuration"
 msgstr "Spara konfiguration"
 
-#: gui/modmod/modmod.xml:(caption):202
+#: gui/modmod/modmod.xml:(caption):216
 msgid "Start Mods"
 msgstr "Starta mods"
 
-#: gui/modmod/modmod.xml:(heading):82 gui/modmod/modmod.xml:(heading):122
+#: gui/modmod/modmod.xml:(heading):96 gui/modmod/modmod.xml:(heading):136
 msgid "(Folder)"
 msgstr "(Mapp)"
 
-#: gui/modmod/modmod.xml:(heading):91 gui/modmod/modmod.xml:(heading):131
+#: gui/modmod/modmod.xml:(heading):105 gui/modmod/modmod.xml:(heading):145
 msgid "Website"
 msgstr "Webbplats"
 
-#: gui/modmod/modmod.xml:(tooltip):146 gui/modmod/modmod.xml:(tooltip):160
+#: gui/modmod/modmod.xml:(tooltip):160 gui/modmod/modmod.xml:(tooltip):174
 msgid ""
 "Change the order in which mods are launched. This should match the mods "
 "dependencies."

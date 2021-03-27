@@ -592,7 +592,8 @@ UnitAI.prototype.UnitFsmSpec = {
 			return ACCEPT_ORDER;
 		}
 
-		if (this.CheckGarrisonRange(msg.data.target))
+		if (msg.data.garrison ? this.CheckGarrisonRange(msg.data.target) :
+			this.CheckOccupyTurretRange(msg.data.target))
 			this.SetNextState("INDIVIDUAL.GARRISON.GARRISONING");
 		else
 			this.SetNextState("INDIVIDUAL.GARRISON.APPROACHING");
@@ -744,9 +745,11 @@ UnitAI.prototype.UnitFsmSpec = {
 		},
 
 		"Order.Garrison": function(msg) {
-			if (!Engine.QueryInterface(msg.data.target, IID_GarrisonHolder))
+			if (!Engine.QueryInterface(msg.data.target,
+				msg.data.garrison ? IID_GarrisonHolder : IID_TurretHolder))
 				return this.FinishOrder();
-			if (!this.CheckGarrisonRange(msg.data.target))
+			if (!(msg.data.garrison ? this.CheckGarrisonRange(msg.data.target) :
+				this.CheckOccupyTurretRange(msg.data.target)))
 			{
 				if (!this.CheckTargetVisible(msg.data.target))
 					return this.FinishOrder();
@@ -1100,19 +1103,20 @@ UnitAI.prototype.UnitFsmSpec = {
 		"GARRISON": {
 			"APPROACHING": {
 				"enter": function() {
-					let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-					cmpFormation.SetRearrange(true);
-					cmpFormation.MoveMembersIntoFormation(true, true);
-
-					if (!this.MoveToGarrisonRange(this.order.data.target))
+					if (!(this.order.data.garrison ? this.MoveToGarrisonRange(this.order.data.target) :
+						this.MoveToOccupyTurretRange(this.order.data.target)))
 					{
 						this.FinishOrder();
 						return true;
 					}
 
-					// If the garrisonholder should pickup, warn it so it can take needed action.
-					let cmpGarrisonHolder = Engine.QueryInterface(this.order.data.target, IID_GarrisonHolder);
-					if (cmpGarrisonHolder && cmpGarrisonHolder.CanPickup(this.entity))
+					let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+					cmpFormation.SetRearrange(true);
+					cmpFormation.MoveMembersIntoFormation(true, true);
+
+					// If the holder should pickup, warn it so it can take needed action.
+					let cmpHolder = Engine.QueryInterface(this.order.data.target, this.order.data.garrison ? IID_GarrisonHolder : IID_TurretHolder);
+					if (cmpHolder && cmpHolder.CanPickup(this.entity))
 					{
 						this.pickup = this.order.data.target;       // temporary, deleted in "leave"
 						Engine.PostMessage(this.pickup, MT_PickupRequested, { "entity": this.entity });
@@ -1137,7 +1141,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 			"GARRISONING": {
 				"enter": function() {
-					this.CallMemberFunction("Garrison", [this.order.data.target, false]);
+					this.CallMemberFunction(this.order.data.garrison ? "Garrison" : "OccupyTurret", [this.order.data.target, false]);
 					// We might have been disbanded due to the lack of members.
 					if (Engine.QueryInterface(this.entity, IID_Formation).GetMemberCount())
 						this.SetNextState("MEMBER");
@@ -3209,13 +3213,15 @@ UnitAI.prototype.UnitFsmSpec = {
 		"GARRISON": {
 			"APPROACHING": {
 				"enter": function() {
-					if (!this.CanGarrison(this.order.data.target))
+					if (this.order.data.garrison ? !this.CanGarrison(this.order.data.target) :
+						!this.CanOccupyTurret(this.order.data.target))
 					{
 						this.FinishOrder();
 						return true;
 					}
 
-					if (!this.MoveToGarrisonRange(this.order.data.target))
+					if (this.order.data.garrison ? !this.MoveToGarrisonRange(this.order.data.target) :
+						!this.MoveToOccupyTurretRange(this.order.data.target))
 					{
 						this.FinishOrder();
 						return true;
@@ -3224,8 +3230,8 @@ UnitAI.prototype.UnitFsmSpec = {
 					if (this.pickup)
 						Engine.PostMessage(this.pickup, MT_PickupCanceled, { "entity": this.entity });
 
-					let cmpGarrisonHolder = Engine.QueryInterface(this.order.data.target, IID_GarrisonHolder);
-					if (cmpGarrisonHolder && cmpGarrisonHolder.CanPickup(this.entity))
+					let cmpHolder = Engine.QueryInterface(this.order.data.target, this.order.data.garrison ? IID_GarrisonHolder : IID_TurretHolder);
+					if (cmpHolder && cmpHolder.CanPickup(this.entity))
 					{
 						this.pickup = this.order.data.target;
 						Engine.PostMessage(this.pickup, MT_PickupRequested, { "entity": this.entity });
@@ -3246,7 +3252,8 @@ UnitAI.prototype.UnitFsmSpec = {
 					if (!msg.likelyFailure && !msg.likelySuccess)
 						return;
 
-					if (this.CheckGarrisonRange(this.order.data.target))
+					if (this.order.data.garrison ? this.CheckGarrisonRange(this.order.data.target) :
+						this.CheckOccupyTurretRange(this.order.data.target))
 						this.SetNextState("GARRISONING");
 					else
 					{
@@ -3265,11 +3272,23 @@ UnitAI.prototype.UnitFsmSpec = {
 			"GARRISONING": {
 				"enter": function() {
 					let target = this.order.data.target;
-					let cmpGarrisonable = Engine.QueryInterface(this.entity, IID_Garrisonable);
-					if (!cmpGarrisonable || !cmpGarrisonable.Garrison(target))
+					if (this.order.data.garrison)
 					{
-						this.FinishOrder();
-						return true;
+						let cmpGarrisonable = Engine.QueryInterface(this.entity, IID_Garrisonable);
+						if (!cmpGarrisonable || !cmpGarrisonable.Garrison(target))
+						{
+							this.FinishOrder();
+							return true;
+						}
+					}
+					else
+					{
+						let cmpTurretable = Engine.QueryInterface(this.entity, IID_Turretable);
+						if (!cmpTurretable || !cmpTurretable.OccupyTurret(target))
+						{
+							this.FinishOrder();
+							return true;
+						}
 					}
 
 					if (this.formationController)
@@ -3459,8 +3478,10 @@ UnitAI.prototype.Init = function()
 
 UnitAI.prototype.IsTurret = function()
 {
-	let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
-	return cmpPosition && cmpPosition.GetTurretParent() != INVALID_ENTITY;
+	if (!this.isGarrisoned)
+		return false;
+	let cmpTurretable = Engine.QueryInterface(this.entity, IID_Turretable);
+	return cmpTurretable && cmpTurretable.HolderID() != INVALID_ENTITY;
 };
 
 UnitAI.prototype.IsFormationController = function()
@@ -4170,6 +4191,12 @@ UnitAI.prototype.BackToWork = function()
 
 	if (this.isGarrisoned)
 	{
+		if (this.IsTurret())
+		{
+			let cmpTurretable = Engine.QueryInterface(this.entity, IID_Turretable);
+			if (!cmpTurretable || !cmpTurretable.LeaveTurret())
+				return false;
+		}
 		let cmpGarrisonable = Engine.QueryInterface(this.entity, IID_Garrisonable);
 		if (!cmpGarrisonable || !cmpGarrisonable.UnGarrison(false))
 			return false;
@@ -4795,6 +4822,20 @@ UnitAI.prototype.MoveToGarrisonRange = function(target)
 	return this.AbleToMove(cmpUnitMotion) && cmpUnitMotion.MoveToTargetRange(target, range.min, range.max);
 };
 
+UnitAI.prototype.MoveToOccupyTurretRange = function(target)
+{
+	if (!this.CheckTargetVisible(target))
+		return false;
+
+	let cmpTurretHolder = Engine.QueryInterface(target, IID_TurretHolder);
+	if (!cmpTurretHolder)
+		return false;
+	let range = cmpTurretHolder.GetLoadingRange();
+
+	let cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+	return this.AbleToMove(cmpUnitMotion) && cmpUnitMotion.MoveToTargetRange(target, range.min, range.max);
+};
+
 /**
  * Generic dispatcher for other Check...Range functions.
  * @param iid - Interface ID (optional) implementing GetRange
@@ -4917,6 +4958,16 @@ UnitAI.prototype.CheckGarrisonRange = function(target)
 		return false;
 
 	let range = cmpGarrisonHolder.GetLoadingRange();
+	return this.CheckTargetRangeExplicit(target, range.min, range.max);
+};
+
+UnitAI.prototype.CheckOccupyTurretRange = function(target)
+{
+	let cmpTurretHolder = Engine.QueryInterface(target, IID_TurretHolder);
+	if (!cmpTurretHolder)
+		return false;
+
+	let range = cmpTurretHolder.GetLoadingRange();
 	return this.CheckTargetRangeExplicit(target, range.min, range.max);
 };
 
@@ -5353,7 +5404,7 @@ UnitAI.prototype.AddOrder = function(type, data, queued, pushFront)
 		// May happen if an order arrives on the same turn the unit is garrisoned
 		// in that case, just forget the order as this will lead to an infinite loop.
 		// ToDo: Fix that by checking for the ability to move on orders that need that.
-		if (this.isGarrisoned && !this.IsTurret() && type != "Ungarrison")
+		if (this.isGarrisoned && type != "Ungarrison")
 			return;
 		this.ReplaceOrder(type, data);
 	}
@@ -5591,7 +5642,7 @@ UnitAI.prototype.Garrison = function(target, queued, pushFront)
 		this.WalkToTarget(target, queued);
 		return;
 	}
-	this.AddOrder("Garrison", { "target": target, "force": true }, queued, pushFront);
+	this.AddOrder("Garrison", { "target": target, "force": true, "garrison": true }, queued, pushFront);
 };
 
 /**
@@ -5602,6 +5653,21 @@ UnitAI.prototype.Ungarrison = function()
 	if (!this.isGarrisoned)
 		return;
 	this.AddOrder("Ungarrison", null, false);
+};
+
+/**
+ * Adds garrison order to the queue, forced by the player.
+ */
+UnitAI.prototype.OccupyTurret = function(target, queued, pushFront)
+{
+	if (target == this.entity)
+		return;
+	if (!this.CanOccupyTurret(target))
+	{
+		this.WalkToTarget(target, queued);
+		return;
+	}
+	this.AddOrder("Garrison", { "target": target, "force": true, "garrison": false }, queued, pushFront);
 };
 
 /**
@@ -6441,6 +6507,17 @@ UnitAI.prototype.CanRepair = function(target)
 
 	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 	return cmpOwnership && IsOwnedByAllyOfPlayer(cmpOwnership.GetOwner(), target);
+};
+
+UnitAI.prototype.CanOccupyTurret = function(target)
+{
+	// Formation controllers should always respond to commands
+	// (then the individual units can make up their own minds).
+	if (this.IsFormationController())
+		return true;
+
+	let cmpTurretable = Engine.QueryInterface(this.entity, IID_Turretable);
+	return cmpTurretable && cmpTurretable.CanOccupy(target);
 };
 
 UnitAI.prototype.CanPack = function()

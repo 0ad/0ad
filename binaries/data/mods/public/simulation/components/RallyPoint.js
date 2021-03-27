@@ -100,6 +100,31 @@ RallyPoint.prototype.Reset = function()
 		cmpRallyPointRenderer.Reset();
 };
 
+/**
+ * @param {number} entity - The entity ID of the entity to order to the rally point.
+ * @param {string[]} ignore - The commands to ignore when performed on this.entity.
+ *				E.g. "garrison" when unloading.
+ */
+RallyPoint.prototype.OrderToRallyPoint = function(entity, ignore = [])
+{
+	let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	if (!cmpOwnership)
+		return;
+	let owner = cmpOwnership.GetOwner();
+
+	let cmpEntOwnership = Engine.QueryInterface(entity, IID_Ownership);
+	if (!cmpEntOwnership || cmpEntOwnership.GetOwner() != owner)
+		return;
+
+	let commands = GetRallyPointCommands(this, [entity]);
+	if (!commands.length ||
+		commands[0].target == this.entity && ignore.includes(commands[0].type))
+		return;
+
+	for (let command of commands)
+		ProcessCommand(owner, command);
+};
+
 RallyPoint.prototype.OnGlobalEntityRenamed = function(msg)
 {
 	for (var data of this.data)

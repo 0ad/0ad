@@ -48,14 +48,6 @@ class CCmpUnitMotionScripted : public ICmpUnitMotion
 public:
 	DEFAULT_SCRIPT_WRAPPER(UnitMotionScripted)
 
-private:
-	virtual void OnTurnStart() {};
-	virtual void PreMove(ICmpUnitMotionManager::MotionState&) {};
-	virtual void Move(ICmpUnitMotionManager::MotionState&, fixed) {};
-	virtual void PostMove(ICmpUnitMotionManager::MotionState&, fixed) {};
-
-public:
-
 	virtual bool MoveToPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t minRange, entity_pos_t maxRange)
 	{
 		return m_Script.Call<bool>("MoveToPointRange", x, z, minRange, maxRange);

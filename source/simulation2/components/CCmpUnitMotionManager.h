@@ -15,17 +15,16 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "precompiled.h"
+#ifndef INCLUDED_CCMPUNITMOTIONMANAGER
+#define INCLUDED_CCMPUNITMOTIONMANAGER
 
 #include "simulation2/system/Component.h"
 #include "ICmpUnitMotionManager.h"
 
 #include "simulation2/MessageTypes.h"
-#include "simulation2/components/ICmpUnitMotion.h"
 #include "simulation2/system/EntityMap.h"
 
-#include "ps/CLogger.h"
-#include "ps/Profile.h"
+class CCmpUnitMotion;
 
 class CCmpUnitMotionManager : public ICmpUnitMotionManager
 {
@@ -39,6 +38,30 @@ public:
 	}
 
 	DEFAULT_COMPONENT_ALLOCATOR(UnitMotionManager)
+
+	// Persisted state for each unit.
+	struct MotionState
+	{
+		// Component references - these must be kept alive for the duration of motion.
+		// NB: this is generally not something one should do, but because of the tight coupling here it's doable.
+		CmpPtr<ICmpPosition> cmpPosition;
+		CCmpUnitMotion* cmpUnitMotion;
+
+		// Position before units start moving
+		CFixedVector2D initialPos;
+		// Transient position during the movement.
+		CFixedVector2D pos;
+
+		fixed initialAngle;
+		fixed angle;
+
+		// If true, the entity needs to be handled during movement.
+		bool needUpdate;
+
+		// 'Leak' from UnitMotion.
+		bool wentStraight;
+		bool wasObstructed;
+	};
 
 	EntityMap<MotionState> m_Units;
 	EntityMap<MotionState> m_FormationControllers;
@@ -99,7 +122,7 @@ public:
 		}
 	}
 
-	virtual void Register(entity_id_t ent, bool formationController);
+	virtual void Register(CCmpUnitMotion* component, entity_id_t ent, bool formationController);
 	virtual void Unregister(entity_id_t ent);
 
 	virtual bool ComputingMotion() const
@@ -114,77 +137,6 @@ public:
 	void Move(EntityMap<MotionState>& ents, fixed dt);
 };
 
-void CCmpUnitMotionManager::Register(entity_id_t ent, bool formationController)
-{
-	MotionState state = {
-		CmpPtr<ICmpPosition>(GetSimContext(), ent),
-		CmpPtr<ICmpUnitMotion>(GetSimContext(), ent),
-		CFixedVector2D(),
-		CFixedVector2D(),
-		fixed::Zero(),
-		fixed::Zero(),
-		false,
-		false
-	};
-	if (!formationController)
-		m_Units.insert(ent, state);
-	else
-		m_FormationControllers.insert(ent, state);
-}
-
-void CCmpUnitMotionManager::Unregister(entity_id_t ent)
-{
-	EntityMap<MotionState>::iterator it = m_Units.find(ent);
-	if (it != m_Units.end())
-	{
-		m_Units.erase(it);
-		return;
-	}
-	it = m_FormationControllers.find(ent);
-	if (it != m_FormationControllers.end())
-		m_FormationControllers.erase(it);
-}
-
-void CCmpUnitMotionManager::OnTurnStart()
-{
-	for (EntityMap<MotionState>::value_type& data : m_FormationControllers)
-		data.second.cmpUnitMotion->OnTurnStart();
-
-	for (EntityMap<MotionState>::value_type& data : m_Units)
-		data.second.cmpUnitMotion->OnTurnStart();
-}
-
-void CCmpUnitMotionManager::MoveUnits(fixed dt)
-{
-	Move(m_Units, dt);
-}
-
-void CCmpUnitMotionManager::MoveFormations(fixed dt)
-{
-	Move(m_FormationControllers, dt);
-}
-
-void CCmpUnitMotionManager::Move(EntityMap<MotionState>& ents, fixed dt)
-{
-	m_MovingUnits.clear();
-	for (EntityMap<MotionState>::iterator it = ents.begin(); it != ents.end(); ++it)
-	{
-		it->second.cmpUnitMotion->PreMove(it->second);
-		if (!it->second.needUpdate)
-			continue;
-		m_MovingUnits.push_back(it);
-		it->second.initialPos = it->second.cmpPosition->GetPosition2D();
-		it->second.initialAngle = it->second.cmpPosition->GetRotation().Y;
-		it->second.pos = it->second.initialPos;
-		it->second.angle = it->second.initialAngle;
-	}
-
-	for (EntityMap<MotionState>::iterator& it : m_MovingUnits)
-		it->second.cmpUnitMotion->Move(it->second, dt);
-
-	for (EntityMap<MotionState>::iterator& it : m_MovingUnits)
-		it->second.cmpUnitMotion->PostMove(it->second, dt);
-}
-
-
 REGISTER_COMPONENT_TYPE(UnitMotionManager)
+
+#endif // INCLUDED_CCMPUNITMOTIONMANAGER

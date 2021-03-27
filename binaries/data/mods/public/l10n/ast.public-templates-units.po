@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-03-12 08:08+0000\n"
-"PO-Revision-Date: 2021-03-12 09:29+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2021-03-25 23:54+0000\n"
+"Last-Translator: David Sowa <isithere2@yahoo.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -229,7 +229,7 @@ msgstr "Espada"
 #: simulation/templates/template_unit_siege_stonethrower.xml:41
 #: simulation/templates/template_unit_siege_tower.xml:60
 msgid "Ranged"
-msgstr "Proxectiles"
+msgstr "Tirador/ora"
 
 #: simulation/templates/template_unit_cavalry_ranged.xml:8
 msgid "Ranged Cavalry"
@@ -272,11 +272,11 @@ msgstr "Arqueru d'a caballu"
 #: simulation/templates/template_unit_infantry_ranged_javelineer.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Javelin"
-msgstr "Xavelina"
+msgstr "Venablu"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelineer.xml:30
 msgid "Cavalry Javelineer"
-msgstr "Allanciador d'a caballu"
+msgstr "Llanzador d'a caballu"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelineer.xml:31
 #: simulation/templates/template_unit_champion_cavalry_javelineer.xml:26
@@ -285,7 +285,7 @@ msgstr "Allanciador d'a caballu"
 #: simulation/templates/template_unit_hero_infantry_javelineer.xml:26
 #: simulation/templates/template_unit_infantry_ranged_javelineer.xml:31
 msgid "Javelineer"
-msgstr "Allanciador"
+msgstr "Llanzador"
 
 #: simulation/templates/template_unit_champion.xml:14
 msgid "Champion"
@@ -309,7 +309,7 @@ msgstr "Valtador campeón d'a caballu"
 
 #: simulation/templates/template_unit_champion_cavalry_javelineer.xml:25
 msgid "Champion Cavalry Javelineer"
-msgstr "Allanciador campeón d'a caballu"
+msgstr "Llanzador campeón d'a caballu"
 
 #: simulation/templates/template_unit_champion_cavalry_maceman.xml:19
 msgid "Champion Cavalry Maceman"
@@ -364,7 +364,7 @@ msgstr "Valtador campeón"
 
 #: simulation/templates/template_unit_champion_infantry_javelineer.xml:28
 msgid "Champion Infantry Javelineer"
-msgstr "Allanciador campeón"
+msgstr "Llanzador campeón"
 
 #: simulation/templates/template_unit_champion_infantry_maceman.xml:19
 msgid "Champion Infantry Maceman"
@@ -464,7 +464,7 @@ msgstr "Valtador heroicu d'a caballu"
 
 #: simulation/templates/template_unit_hero_cavalry_javelineer.xml:25
 msgid "Hero Cavalry Javelineer"
-msgstr "Allanciador heroicu d'a caballu"
+msgstr "Llanzador heroicu d'a caballu"
 
 #: simulation/templates/template_unit_hero_cavalry_maceman.xml:16
 msgid "Hero Cavalry Maceman"
@@ -504,7 +504,7 @@ msgstr "Valtador heroicu"
 
 #: simulation/templates/template_unit_hero_infantry_javelineer.xml:25
 msgid "Hero Infantry Javelineer"
-msgstr "Allanciador heroicu"
+msgstr "Llanzador heroicu"
 
 #: simulation/templates/template_unit_hero_infantry_maceman.xml:16
 msgid "Hero Infantry Maceman"
@@ -538,7 +538,7 @@ msgstr "Maceru"
 
 #: simulation/templates/template_unit_infantry_ranged_javelineer.xml:30
 msgid "Infantry Javelineer"
-msgstr "Allanciador"
+msgstr "Llanzador d'a pie"
 
 #: simulation/templates/template_unit_infantry_ranged_slinger.xml:5
 msgctxt "Name of an attack, usually the weapon."
@@ -1133,7 +1133,7 @@ msgstr "Athēnaía"
 
 #: simulation/templates/units/athen/support_female_citizen.xml:12
 msgid "Athenian Woman"
-msgstr "Muyer ateniense"
+msgstr "Ateniense"
 
 #: simulation/templates/units/athen/support_healer_b.xml:6
 #: simulation/templates/units/mace/support_healer_b.xml:6
@@ -1410,7 +1410,7 @@ msgstr "Qešet"
 
 #: simulation/templates/units/cart/infantry_javelineer_iber_b.xml:13
 msgid "Iberian Mercenary Skirmisher"
-msgstr "Forfugu íberu"
+msgstr "Refundión íberu"
 
 #: simulation/templates/units/cart/infantry_javelineer_iber_b.xml:14
 msgid "Sǝḫīr Kidōn"
@@ -1753,7 +1753,7 @@ msgstr "Pdty Nhsyw"
 
 #: simulation/templates/units/kush/infantry_javelineer_merc_b.xml:16
 msgid "Noba Skirmisher"
-msgstr "Forfugu noba"
+msgstr "Refundión noba"
 
 #: simulation/templates/units/kush/infantry_javelineer_merc_b.xml:17
 msgid "nhw ʿhȝw Noba"
@@ -1856,7 +1856,7 @@ msgstr "Igua financiera: Aliáu con Roma, Filipu axeitó les cuentes y asuntos i
 
 #: simulation/templates/units/mace/cavalry_javelineer_b.xml:7
 msgid "Odrysian Skirmish Cavalry"
-msgstr "Allanciador odrisiu d'a caballu"
+msgstr "Refundión odrisiu d'a caballu"
 
 #: simulation/templates/units/mace/cavalry_javelineer_b.xml:8
 msgid "Hippakontistḕs Odrysós"
@@ -2231,7 +2231,7 @@ msgstr "Thōrakitēs"
 
 #: simulation/templates/units/merc_thureophoros.xml:5
 msgid "Heavy Skirmisher"
-msgstr "Forfugu pesáu"
+msgstr "Refundión pesáu"
 
 #: simulation/templates/units/merc_thureophoros.xml:6
 msgid "Thyreophoros"
@@ -2382,7 +2382,7 @@ msgstr "Hoplites Kárdakes"
 
 #: simulation/templates/units/pers/kardakes_skirmisher.xml:7
 msgid "Cardaces Skirmisher"
-msgstr "Forfugu cardaz"
+msgstr "Refundión cardaz"
 
 #: simulation/templates/units/pers/kardakes_skirmisher.xml:8
 msgid "Peltastes Kardakes"
@@ -2553,7 +2553,7 @@ msgstr "Ptolemaios D' Philopatōr"
 
 #: simulation/templates/units/ptol/infantry_javelineer_b.xml:12
 msgid "Mercenary Thureos Skirmisher"
-msgstr "Forfugu tureóforu mercenariu"
+msgstr "Refundión tureóforu mercenariu"
 
 #: simulation/templates/units/ptol/infantry_javelineer_b.xml:13
 msgid "Thureophóros Akrobolistḗs"
@@ -2703,7 +2703,7 @@ msgstr "Pūblius Cornēlius Scīpiō Āfricānus"
 
 #: simulation/templates/units/rome/infantry_javelineer_b.xml:13
 msgid "Roman Skirmisher"
-msgstr "Forfugu romanu"
+msgstr "Refundión romanu"
 
 #: simulation/templates/units/rome/infantry_javelineer_b.xml:14
 msgid "Vēles"
@@ -2796,7 +2796,7 @@ msgstr "Mercātor"
 #: simulation/templates/units/samnite_skirmisher.xml:5
 #: simulation/templates/units/samnite_skirmisher.xml:6
 msgid "Samnite Skirmisher"
-msgstr "Forfugu samnita"
+msgstr "Refundión samnita"
 
 #: simulation/templates/units/samnite_spearman.xml:5
 #: simulation/templates/units/samnite_spearman.xml:6
@@ -2907,7 +2907,7 @@ msgstr "Toxótēs Syrías"
 
 #: simulation/templates/units/sele/infantry_javelineer_b.xml:7
 msgid "Arab Javelineer"
-msgstr "Allanciador árabe"
+msgstr "Llanzador árabe"
 
 #: simulation/templates/units/sele/infantry_javelineer_b.xml:8
 msgid "Pezakontistès Aravikós"
@@ -3024,7 +3024,7 @@ msgstr "Leōnidēs"
 
 #: simulation/templates/units/spart/infantry_javelineer_b.xml:13
 msgid "Helot Skirmisher"
-msgstr "Forfugu ilota"
+msgstr "Refundión ilota"
 
 #: simulation/templates/units/spart/infantry_javelineer_b.xml:14
 msgid "Akontistḗs Heílōs"

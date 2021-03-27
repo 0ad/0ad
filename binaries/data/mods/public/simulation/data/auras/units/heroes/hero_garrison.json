@@ -1,9 +1,9 @@
 {
 	"type": "garrison",
-	"affects": ["Structure", "Siege"],
+	"affects": ["Structure"],
 	"modifications": [
 		{ "value": "Capturable/GarrisonRegenRate", "add": 2 }
 	],
 	"auraName": "Inspired Defense",
-	"auraDescription": "When garrisoned, the Structure or Siege Engine has +2 capture points garrison regeneration rate."
+	"auraDescription": "When garrisoned, the Structure has +2 capture points garrison regeneration rate."
 }

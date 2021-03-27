@@ -15,11 +15,13 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "precompiled.h"
+#ifndef INCLUDED_CCMPUNITMOTION
+#define INCLUDED_CCMPUNITMOTION
 
 #include "simulation2/system/Component.h"
 #include "ICmpUnitMotion.h"
 
+#include "simulation2/components/CCmpUnitMotionManager.h"
 #include "simulation2/components/ICmpObstruction.h"
 #include "simulation2/components/ICmpObstructionManager.h"
 #include "simulation2/components/ICmpOwnership.h"
@@ -40,6 +42,9 @@
 #include "ps/CLogger.h"
 #include "ps/Profile.h"
 #include "renderer/Scene.h"
+
+// NB: this implementation of ICmpUnitMotion is very tightly coupled with UnitMotionManager.
+// As such, both are compiled in the same TU.
 
 // For debugging; units will start going straight to the target
 // instead of calling the pathfinder
@@ -113,8 +118,9 @@ static const u8 VERY_OBSTRUCTED_THRESHOLD = 10;
 static const CColor OVERLAY_COLOR_LONG_PATH(1, 1, 1, 1);
 static const CColor OVERLAY_COLOR_SHORT_PATH(1, 0, 0, 1);
 
-class CCmpUnitMotion : public ICmpUnitMotion
+class CCmpUnitMotion final : public ICmpUnitMotion
 {
+	friend class CCmpUnitMotionManager;
 public:
 	static void ClassInit(CComponentManager& componentManager)
 	{
@@ -326,7 +332,7 @@ public:
 		case MT_Create:
 		{
 			if (!ENTITY_IS_LOCAL(GetEntityId()))
-				CmpPtr<ICmpUnitMotionManager>(GetSystemEntity())->Register(GetEntityId(), m_FormationController);
+				CmpPtr<ICmpUnitMotionManager>(GetSystemEntity())->Register(this, GetEntityId(), m_FormationController);
 			break;
 		}
 		case MT_Destroy:
@@ -351,7 +357,7 @@ public:
 		{
 			OnValueModification();
 			if (!ENTITY_IS_LOCAL(GetEntityId()))
-				CmpPtr<ICmpUnitMotionManager>(GetSystemEntity())->Register(GetEntityId(), m_FormationController);
+				CmpPtr<ICmpUnitMotionManager>(GetSystemEntity())->Register(this, GetEntityId(), m_FormationController);
 			break;
 		}
 		}
@@ -640,13 +646,11 @@ private:
 	 * and ensure that distance comparisons are done while units are not being moved
 	 * (otherwise they won't be commutative).
 	 */
-	virtual void OnTurnStart();
+	void OnTurnStart();
 
-	virtual void PreMove(ICmpUnitMotionManager::MotionState& state);
-
-	virtual void Move(ICmpUnitMotionManager::MotionState& state, fixed dt);
-
-	virtual void PostMove(ICmpUnitMotionManager::MotionState& state, fixed dt);
+	void PreMove(CCmpUnitMotionManager::MotionState& state);
+	void Move(CCmpUnitMotionManager::MotionState& state, fixed dt);
+	void PostMove(CCmpUnitMotionManager::MotionState& state, fixed dt);
 
 	/**
 	 * Returns true if we are possibly at our destination.
@@ -911,14 +915,14 @@ void CCmpUnitMotion::OnTurnStart()
 	}
 }
 
-void CCmpUnitMotion::PreMove(ICmpUnitMotionManager::MotionState& state)
+void CCmpUnitMotion::PreMove(CCmpUnitMotionManager::MotionState& state)
 {
 	// If we were idle and will still be, no need for an update.
 	state.needUpdate = state.cmpPosition->IsInWorld() &&
 		(m_CurSpeed != fixed::Zero() || m_MoveRequest.m_Type != MoveRequest::NONE);
 }
 
-void CCmpUnitMotion::Move(ICmpUnitMotionManager::MotionState& state, fixed dt)
+void CCmpUnitMotion::Move(CCmpUnitMotionManager::MotionState& state, fixed dt)
 {
 	PROFILE("Move");
 
@@ -930,7 +934,7 @@ void CCmpUnitMotion::Move(ICmpUnitMotionManager::MotionState& state, fixed dt)
 	state.wasObstructed = PerformMove(dt, state.cmpPosition->GetTurnRate(), m_ShortPath, m_LongPath, state.pos, state.angle);
 }
 
-void CCmpUnitMotion::PostMove(ICmpUnitMotionManager::MotionState& state, fixed dt)
+void CCmpUnitMotion::PostMove(CCmpUnitMotionManager::MotionState& state, fixed dt)
 {
 	// Update our speed over this turn so that the visual actor shows the correct animation.
 	if (state.pos == state.initialPos)
@@ -1718,3 +1722,5 @@ void CCmpUnitMotion::RenderSubmit(SceneCollector& collector)
 	for (size_t i = 0; i < m_DebugOverlayShortPathLines.size(); ++i)
 		collector.Submit(&m_DebugOverlayShortPathLines[i]);
 }
+
+#endif // INCLUDED_CCMPUNITMOTION

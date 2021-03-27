@@ -122,20 +122,3 @@ TS_ASSERT(cmpTurretHolder.OccupyTurret(cavID, cmpTurretHolder.turretPoints[2]));
 TS_ASSERT(cmpTurretHolder.LeaveTurret(archerID));
 TS_ASSERT(!cmpTurretHolder.LeaveTurret(cavID, cmpTurretHolder.turretPoints[1]));
 TS_ASSERT(cmpTurretHolder.LeaveTurret(cavID, cmpTurretHolder.turretPoints[2]));
-
-// Test renaming.
-AddMock(turretHolderID, IID_GarrisonHolder, {
-	"IsGarrisoned": () => true
-});
-TS_ASSERT(cmpTurretHolder.OccupyTurret(siegeEngineID, cmpTurretHolder.turretPoints[2]));
-cmpTurretHolder.SwapEntities(siegeEngineID, archerID);
-TS_ASSERT(!cmpTurretHolder.OccupiesTurret(siegeEngineID));
-TS_ASSERT(cmpTurretHolder.LeaveTurret(archerID));
-
-// Renaming into an entity not allowed on the same turret point hides us.
-TS_ASSERT(cmpTurretHolder.OccupyTurret(siegeEngineID, cmpTurretHolder.turretPoints[1]));
-cmpTurretHolder.SwapEntities(siegeEngineID, archerID);
-TS_ASSERT(!cmpTurretHolder.OccupiesTurret(siegeEngineID));
-TS_ASSERT(!cmpTurretHolder.OccupiesTurret(archerID));
-
-// ToDo: Ownership changes are handled by GarrisonHolder.js.

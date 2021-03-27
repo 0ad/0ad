@@ -491,6 +491,11 @@ function GetTemplateDataHelper(template, player, auraTemplates, modifiers = {})
 			ret.treasure.resources[resource] = getEntityValue("Treasure/Resources/" + resource);
 	}
 
+	if (template.TurretHolder)
+		ret.turretHolder = {
+			"turretPoints": template.TurretHolder.TurretPoints
+		};
+
 	if (template.WallSet)
 	{
 		ret.wallSet = {

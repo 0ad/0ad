@@ -1,15 +1,14 @@
 Engine.LoadHelperScript("ValueModification.js");
 Engine.LoadHelperScript("Player.js");
+Engine.LoadHelperScript("Position.js");
 Engine.LoadComponentScript("interfaces/Garrisonable.js");
 Engine.LoadComponentScript("interfaces/GarrisonHolder.js");
 Engine.LoadComponentScript("interfaces/Health.js");
 Engine.LoadComponentScript("interfaces/ModifiersManager.js");
 Engine.LoadComponentScript("interfaces/Timer.js");
-Engine.LoadComponentScript("interfaces/TurretHolder.js");
 Engine.LoadComponentScript("interfaces/UnitAI.js");
 Engine.LoadComponentScript("Garrisonable.js");
 Engine.LoadComponentScript("GarrisonHolder.js");
-Engine.LoadComponentScript("TurretHolder.js");
 
 const player = 1;
 const enemyPlayer = 2;
@@ -34,7 +33,6 @@ let createGarrisonCmp = entity => {
 		"JumpTo": (posX, posZ) => {},
 		"MoveOutOfWorld": () => {},
 		"SetHeightOffset": height => {},
-		"SetTurretParent": ent => {},
 		"SetYRotation": angle => {}
 	});
 
@@ -88,7 +86,6 @@ AddMock(garrison, IID_Position, {
 	"JumpTo": (posX, posZ) => {},
 	"MoveOutOfWorld": () => {},
 	"SetHeightOffset": height => {},
-	"SetTurretParent": entity => {},
 	"SetYRotation": angle => {}
 });
 
@@ -143,52 +140,3 @@ TS_ASSERT_UNEVAL_EQUALS(cmpGarrisonHolder.GetGarrisonedEntitiesCount(), entities
 TS_ASSERT(cmpGarrisonHolder.UnloadAll());
 TS_ASSERT_UNEVAL_EQUALS(cmpGarrisonHolder.GetEntities(), []);
 
-// Turrets!
-AddMock(holder, IID_Position, {
-	"GetPosition": () => new Vector3D(4, 3, 25),
-	"GetRotation": () => new Vector3D(4, 0, 6)
-});
-
-let cmpTurretHolder = ConstructComponent(holder, "TurretHolder", {
-	"TurretPoints": {
-		"archer1": {
-			"X": "12.0",
-			"Y": "5.",
-			"Z": "6.0"
-		},
-		"archer2": {
-			"X": "15.0",
-			"Y": "5.0",
-			"Z": "6.0"
-		}
-	}
-});
-
-TS_ASSERT(cmpGarrisonable.Garrison(holder));
-TS_ASSERT_UNEVAL_EQUALS(cmpGarrisonHolder.GetEntities(), [garrison]);
-TS_ASSERT(cmpTurretHolder.OccupiesTurret(garrison));
-TS_ASSERT(cmpGarrisonable.UnGarrison());
-TS_ASSERT_UNEVAL_EQUALS(cmpGarrisonHolder.GetEntities(), []);
-TS_ASSERT_UNEVAL_EQUALS(cmpTurretHolder.GetEntities(), []);
-
-// Test renaming on a turret.
-// Ensure we test renaming from the second spot, not the first.
-const newGarrison = 31;
-let cmpGarrisonableNew = createGarrisonCmp(newGarrison);
-TS_ASSERT(cmpGarrisonableNew.Garrison(holder));
-TS_ASSERT(cmpGarrisonable.Garrison(holder));
-TS_ASSERT(cmpGarrisonableNew.UnGarrison());
-let previousTurret = cmpTurretHolder.GetOccupiedTurretName(garrison);
-cmpGarrisonable.OnEntityRenamed({
-	"entity": garrison,
-	"newentity": newGarrison
-});
-let newTurret = cmpTurretHolder.GetOccupiedTurretName(newGarrison);
-TS_ASSERT_UNEVAL_EQUALS(newTurret, previousTurret);
-TS_ASSERT(cmpGarrisonableNew.UnGarrison());
-
-// Test initTurrets.
-cmpTurretHolder.SetInitEntity("archer1", garrison);
-cmpTurretHolder.SetInitEntity("archer2", newGarrison);
-cmpTurretHolder.OnGlobalInitGame();
-TS_ASSERT_UNEVAL_EQUALS(cmpTurretHolder.GetEntities(), [garrison, newGarrison]);
