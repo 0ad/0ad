@@ -65,8 +65,8 @@ CTooltip::CTooltip(CGUI& pGUI)
 
 	// Defaults
 	SetSetting<i32>("delay", 500, true);
-	SetSetting<EVAlign>("anchor", EVAlign_Bottom, true);
-	SetSetting<EAlign>("text_align", EAlign_Left, true);
+	SetSetting<EVAlign>("anchor", EVAlign::BOTTOM, true);
+	SetSetting<EAlign>("text_align", EAlign::LEFT, true);
 
 	// Set up a blank piece of text, to be replaced with a more
 	// interesting message later
@@ -96,15 +96,15 @@ void CTooltip::SetupText()
 
 	switch (m_Anchor)
 	{
-	case EVAlign_Top:
+	case EVAlign::TOP:
 		size.pixel.top = mousepos.y + m_Offset.y;
 		size.pixel.bottom = size.pixel.top + textheight;
 		break;
-	case EVAlign_Bottom:
+	case EVAlign::BOTTOM:
 		size.pixel.bottom = mousepos.y + m_Offset.y;
 		size.pixel.top = size.pixel.bottom - textheight;
 		break;
-	case EVAlign_Center:
+	case EVAlign::CENTER:
 		size.pixel.top = mousepos.y + m_Offset.y - textheight/2.f;
 		size.pixel.bottom = size.pixel.top + textwidth;
 		break;

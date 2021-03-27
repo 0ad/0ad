@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,7 +18,18 @@
 #ifndef INCLUDED_EALIGN
 #define INCLUDED_EALIGN
 
-enum EAlign { EAlign_Left, EAlign_Right, EAlign_Center };
-enum EVAlign { EVAlign_Top, EVAlign_Bottom, EVAlign_Center };
+enum EAlign
+{
+	LEFT,
+	RIGHT,
+	CENTER
+};
+
+enum class EVAlign
+{
+	TOP,
+	BOTTOM,
+	CENTER
+};
 
 #endif // INCLUDED_EALIGN

@@ -79,7 +79,7 @@ CGUIText::CGUIText(const CGUI& pGUI, const CGUIString& string, const CStrW& Font
 	// get the alignment type for the control we are computing the text for since
 	// we are computing the horizontal alignment in this method in order to not have
 	// to run through the TextCalls a second time in the CalculateTextPosition method again
-	EAlign align = EAlign_Left;
+	EAlign align = EAlign::LEFT;
 	if (pObject->SettingExists("text_align"))
 		align = pObject->GetSetting<EAlign>("text_align");
 
@@ -319,14 +319,14 @@ float CGUIText::GetLineOffset(
 {
 	switch (align)
 	{
-	case EAlign_Left:
+	case EAlign::LEFT:
 		// don't add an offset
 		return 0.f;
 
-	case EAlign_Center:
+	case EAlign::CENTER:
 		return ((width_range_to - width_range_from) - line_size.cx) / 2;
 
-	case EAlign_Right:
+	case EAlign::RIGHT:
 		return width_range_to - line_size.cx;
 
 	default:

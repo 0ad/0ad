@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -179,11 +179,11 @@ template <>
 bool CGUI::ParseString<EAlign>(const CGUI* UNUSED(pGUI), const CStrW& Value, EAlign& Output)
 {
 	if (Value == L"left")
-		Output = EAlign_Left;
+		Output = EAlign::LEFT;
 	else if (Value == L"center")
-		Output = EAlign_Center;
+		Output = EAlign::CENTER;
 	else if (Value == L"right")
-		Output = EAlign_Right;
+		Output = EAlign::RIGHT;
 	else
 		return false;
 
@@ -194,11 +194,11 @@ template <>
 bool CGUI::ParseString<EVAlign>(const CGUI* UNUSED(pGUI), const CStrW& Value, EVAlign& Output)
 {
 	if (Value == L"top")
-		Output = EVAlign_Top;
+		Output = EVAlign::TOP;
 	else if (Value == L"center")
-		Output = EVAlign_Center;
+		Output = EVAlign::CENTER;
 	else if (Value == L"bottom")
-		Output = EVAlign_Bottom;
+		Output = EVAlign::BOTTOM;
 	else
 		return false;
 
