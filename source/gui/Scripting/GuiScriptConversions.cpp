@@ -23,6 +23,7 @@
 #include "gui/SettingTypes/CGUISeries.h"
 #include "gui/SettingTypes/CGUISize.h"
 #include "lib/external_libraries/libsdl.h"
+#include "maths/Size2D.h"
 #include "maths/Vector2D.h"
 #include "ps/Hotkey.h"
 #include "ps/CLogger.h"
@@ -157,28 +158,28 @@ template<> void ScriptInterface::ToJSVal<CGUIColor>(const ScriptRequest& rq, JS:
  */
 template<> bool ScriptInterface::FromJSVal<CGUIColor>(const ScriptRequest& rq, JS::HandleValue v, CGUIColor& out) = delete;
 
-template<> void ScriptInterface::ToJSVal<CSize>(const ScriptRequest& rq, JS::MutableHandleValue ret, const CSize& val)
+template<> void ScriptInterface::ToJSVal<CSize2D>(const ScriptRequest& rq, JS::MutableHandleValue ret, const CSize2D& val)
 {
-	CreateObject(rq, ret, "width", val.cx, "height", val.cy);
+	CreateObject(rq, ret, "width", val.Width, "height", val.Height);
 }
 
-template<> bool ScriptInterface::FromJSVal<CSize>(const ScriptRequest& rq, JS::HandleValue v, CSize& out)
+template<> bool ScriptInterface::FromJSVal<CSize2D>(const ScriptRequest& rq, JS::HandleValue v, CSize2D& out)
 {
 	if (!v.isObject())
 	{
-		LOGERROR("CSize value must be an object!");
+		LOGERROR("CSize2D value must be an object!");
 		return false;
 	}
 
-	if (!FromJSProperty(rq, v, "width", out.cx))
+	if (!FromJSProperty(rq, v, "width", out.Width))
 	{
-		LOGERROR("Failed to get CSize.cx property");
+		LOGERROR("Failed to get CSize2D.Width property");
 		return false;
 	}
 
-	if (!FromJSProperty(rq, v, "height", out.cy))
+	if (!FromJSProperty(rq, v, "height", out.Height))
 	{
-		LOGERROR("Failed to get CSize.cy property");
+		LOGERROR("Failed to get CSize2D.Height property");
 		return false;
 	}
 

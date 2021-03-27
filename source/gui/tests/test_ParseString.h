@@ -79,14 +79,14 @@ public:
 	void test_size()
 	{
 		TestLogger nolog;
-		CSize test;
+		CSize2D test;
 
-		TS_ASSERT(CGUI::ParseString<CSize>(nullptr, CStrW(L"0.0 10.0"), test));
-		TS_ASSERT_EQUALS(CSize(0.0, 10.0), test);
+		TS_ASSERT(CGUI::ParseString<CSize2D>(nullptr, CStrW(L"0.0 10.0"), test));
+		TS_ASSERT_EQUALS(CSize2D(0.0, 10.0), test);
 
-		TS_ASSERT(!CGUI::ParseString<CSize>(nullptr, CStrW(L"0"), test));
-		TS_ASSERT(!CGUI::ParseString<CSize>(nullptr, CStrW(L"0 10 20"), test));
-		TS_ASSERT(!CGUI::ParseString<CSize>(nullptr, CStrW(L"0,0 10,0"), test));
+		TS_ASSERT(!CGUI::ParseString<CSize2D>(nullptr, CStrW(L"0"), test));
+		TS_ASSERT(!CGUI::ParseString<CSize2D>(nullptr, CStrW(L"0 10 20"), test));
+		TS_ASSERT(!CGUI::ParseString<CSize2D>(nullptr, CStrW(L"0,0 10,0"), test));
 	}
 
 	void test_pos()

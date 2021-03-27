@@ -35,20 +35,20 @@ extern float g_GuiScale;
 // TODO Gee: CRect => CPoint ?
 void SGenerateTextImage::SetupSpriteCall(
 	const bool Left, CGUIText::SSpriteCall& SpriteCall, const float width, const float y,
-	const CSize& Size, const CStr& TextureName, const float BufferZone)
+	const CSize2D& Size, const CStr& TextureName, const float BufferZone)
 {
 	// TODO Gee: Temp hardcoded values
 	SpriteCall.m_Area.top = y + BufferZone;
-	SpriteCall.m_Area.bottom = y + BufferZone + Size.cy;
+	SpriteCall.m_Area.bottom = y + BufferZone + Size.Height;
 
 	if (Left)
 	{
 		SpriteCall.m_Area.left = BufferZone;
-		SpriteCall.m_Area.right = Size.cx + BufferZone;
+		SpriteCall.m_Area.right = Size.Width + BufferZone;
 	}
 	else
 	{
-		SpriteCall.m_Area.left = width-BufferZone - Size.cx;
+		SpriteCall.m_Area.left = width-BufferZone - Size.Width;
 		SpriteCall.m_Area.right = width-BufferZone;
 	}
 
@@ -56,7 +56,7 @@ void SGenerateTextImage::SetupSpriteCall(
 
 	m_YFrom = SpriteCall.m_Area.top - BufferZone;
 	m_YTo = SpriteCall.m_Area.bottom + BufferZone;
-	m_Indentation = Size.cx + BufferZone * 2;
+	m_Indentation = Size.Width + BufferZone * 2;
 }
 
 CGUIText::CGUIText(const CGUI& pGUI, const CGUIString& string, const CStrW& FontW, const float Width, const float BufferZone, const IGUIObject* pObject)
@@ -102,8 +102,8 @@ CGUIText::CGUIText(const CGUI& pGUI, const CGUIString& string, const CStrW& Font
 
 		pos_last_img = std::max(pos_last_img, i);
 
-		x += Feedback.m_Size.cx;
-		prelim_line_height = std::max(prelim_line_height, Feedback.m_Size.cy);
+		x += Feedback.m_Size.Width;
+		prelim_line_height = std::max(prelim_line_height, Feedback.m_Size.Height);
 
 		// If Width is 0, then there's no word-wrapping, disable NewLine.
 		if (((Width != 0 && (x > Width - BufferZone || Feedback.m_NewLine)) || i == static_cast<int>(string.m_Words.size()) - 2) &&
@@ -147,7 +147,7 @@ void CGUIText::SetupSpriteCalls(
 			Image.SetupSpriteCall(j == CGUIString::SFeedback::Left, SpriteCall, Width, _y, icon.m_Size, icon.m_SpriteName, BufferZone);
 
 			// Check if image is the lowest thing.
-			m_Size.cy = std::max(m_Size.cy, Image.m_YTo);
+			m_Size.Height = std::max(m_Size.Height, Image.m_YTo);
 
 			Images[j].emplace_back(Image);
 			m_SpriteCalls.emplace_back(std::move(SpriteCall));
@@ -171,7 +171,7 @@ void CGUIText::ComputeLineSize(
 	const int i,
 	const int temp_from,
 	float& x,
-	CSize& line_size) const
+	CSize2D& line_size) const
 {
 	for (int j = temp_from; j <= i; ++j)
 	{
@@ -184,7 +184,7 @@ void CGUIText::ComputeLineSize(
 		string.GenerateTextCall(pGUI, Feedback2, Font, string.m_Words[j], string.m_Words[j+1], FirstLine);
 
 		// Append X value.
-		x += Feedback2.m_Size.cx;
+		x += Feedback2.m_Size.Width;
 
 		if (Width != 0 && x > width_range_to && j != temp_from && !Feedback2.m_NewLine)
 		{
@@ -192,12 +192,12 @@ void CGUIText::ComputeLineSize(
 			// word and the next. When we're wrapping, we need subtract the width of the
 			// space after the last word on the line before the wrap.
 			CFontMetrics currentFont(Font);
-			line_size.cx -= currentFont.GetCharacterWidth(*L" ");
+			line_size.Width -= currentFont.GetCharacterWidth(*L" ");
 			break;
 		}
 
 		// Let line_size.cy be the maximum m_Height we encounter.
-		line_size.cy = std::max(line_size.cy, Feedback2.m_Size.cy);
+		line_size.Height = std::max(line_size.Height, Feedback2.m_Size.Height);
 
 		// If the current word is an explicit new line ("\n"),
 		// break now before adding the width of this character.
@@ -206,7 +206,7 @@ void CGUIText::ComputeLineSize(
 		if (Width != 0 && Feedback2.m_NewLine)
 			break;
 
-		line_size.cx += Feedback2.m_Size.cx;
+		line_size.Width += Feedback2.m_Size.Width;
 	}
 }
 
@@ -237,14 +237,14 @@ bool CGUIText::ProcessLine(
 	// Reset X for the next loop
 	x = width_range_from;
 
-	CSize line_size;
+	CSize2D line_size;
 	ComputeLineSize(pGUI, string, Font, FirstLine, Width, width_range_to, i, temp_from, x, line_size);
 
 	// Reset x once more
 	x = width_range_from;
 
 	// Move down, because font drawing starts from the baseline
-	y += line_size.cy;
+	y += line_size.Height;
 
 	const float dx = GetLineOffset(align, width_range_from, width_range_to, line_size);
 
@@ -255,8 +255,8 @@ bool CGUIText::ProcessLine(
 	x = BufferZone;
 
 	// Update dimensions
-	m_Size.cx = std::max(m_Size.cx, line_size.cx + BufferZone * 2);
-	m_Size.cy = std::max(m_Size.cy, y + BufferZone);
+	m_Size.Width = std::max(m_Size.Width, line_size.Width + BufferZone * 2);
+	m_Size.Height = std::max(m_Size.Height, y + BufferZone);
 
 	FirstLine = false;
 
@@ -315,7 +315,7 @@ float CGUIText::GetLineOffset(
 	const EAlign align,
 	const float width_range_from,
 	const float width_range_to,
-	const CSize& line_size) const
+	const CSize2D& line_size) const
 {
 	switch (align)
 	{
@@ -324,10 +324,10 @@ float CGUIText::GetLineOffset(
 		return 0.f;
 
 	case EAlign::CENTER:
-		return ((width_range_to - width_range_from) - line_size.cx) / 2;
+		return ((width_range_to - width_range_from) - line_size.Width) / 2;
 
 	case EAlign::RIGHT:
-		return width_range_to - line_size.cx;
+		return width_range_to - line_size.Width;
 
 	default:
 		debug_warn(L"Broken EAlign in CGUIText()");
@@ -370,14 +370,14 @@ bool CGUIText::AssembleCalls(
 		{
 			tc.m_Pos = CPos(dx + x + x_pointer, y);
 
-			x_pointer += tc.m_Size.cx;
+			x_pointer += tc.m_Size.Width;
 
 			if (tc.m_pSpriteCall)
-				tc.m_pSpriteCall->m_Area += tc.m_Pos - CSize(0, tc.m_pSpriteCall->m_Area.GetHeight());
+				tc.m_pSpriteCall->m_Area += tc.m_Pos - CSize2D(0, tc.m_pSpriteCall->m_Area.GetHeight());
 		}
 
 		// Append X value.
-		x += Feedback2.m_Size.cx;
+		x += Feedback2.m_Size.Width;
 
 		// The first word overrides the width limit, what we
 		//  do, in those cases, are just drawing that word even

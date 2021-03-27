@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,6 +24,7 @@
 #include "gui/SettingTypes/CGUIColor.h"
 #include "gui/SettingTypes/CGUIList.h"
 #include "gui/SettingTypes/CGUISeries.h"
+#include "maths/Size2D.h"
 #include "maths/Vector2D.h"
 
 #include <vector>
@@ -104,7 +105,7 @@ private:
 	// Represents axes as triangles and draws them with DrawTriangleStrip.
 	void DrawAxes(const CShaderProgramPtr& shader) const;
 
-	CSize AddFormattedValue(const CStrW& format, const float value, const CStrW& font, const float buffer_zone);
+	CSize2D AddFormattedValue(const CStrW& format, const float value, const CStrW& font, const float buffer_zone);
 
 	void UpdateBounds();
 };

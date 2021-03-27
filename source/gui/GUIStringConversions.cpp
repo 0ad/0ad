@@ -106,7 +106,7 @@ bool CGUI::ParseString<CGUIColor>(const CGUI* pGUI, const CStrW& Value, CGUIColo
 }
 
 template <>
-bool CGUI::ParseString<CSize>(const CGUI* UNUSED(pGUI), const CStrW& Value, CSize& Output)
+bool CGUI::ParseString<CSize2D>(const CGUI* UNUSED(pGUI), const CStrW& Value, CSize2D& Output)
 {
 	const unsigned int NUM_COORDS = 2;
 	float coords[NUM_COORDS];
@@ -117,23 +117,23 @@ bool CGUI::ParseString<CSize>(const CGUI* UNUSED(pGUI), const CStrW& Value, CSiz
 	{
 		if (stream.eof())
 		{
-			LOGWARNING("Too few CSize parameters (min %i). Your input: '%s'", NUM_COORDS, Value.ToUTF8().c_str());
+			LOGWARNING("Too few CSize2D parameters (min %i). Your input: '%s'", NUM_COORDS, Value.ToUTF8().c_str());
 			return false;
 		}
 		stream >> coords[i];
 		if ((stream.rdstate() & std::wstringstream::failbit) != 0)
 		{
-			LOGWARNING("Unable to parse CSize parameters. Your input: '%s'", Value.ToUTF8().c_str());
+			LOGWARNING("Unable to parse CSize2D parameters. Your input: '%s'", Value.ToUTF8().c_str());
 			return false;
 		}
 	}
 
-	Output.cx = coords[0];
-	Output.cy = coords[1];
+	Output.Width = coords[0];
+	Output.Height = coords[1];
 
 	if (!stream.eof())
 	{
-		LOGWARNING("Too many CSize parameters (max %i). Your input: '%s'", NUM_COORDS, Value.ToUTF8().c_str());
+		LOGWARNING("Too many CSize2D parameters (max %i). Your input: '%s'", NUM_COORDS, Value.ToUTF8().c_str());
 		return false;
 	}
 

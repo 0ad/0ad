@@ -18,8 +18,8 @@
 #ifndef INCLUDED_SGUIICON
 #define INCLUDED_SGUIICON
 
+#include "maths/Size2D.h"
 #include "ps/CStr.h"
-#include "ps/Shapes.h"
 
 /**
  * Icon, you create them in the XML file with root element <setup>.
@@ -37,7 +37,7 @@ struct SGUIIcon
 	CStr m_SpriteName;
 
 	// Size
-	CSize m_Size;
+	CSize2D m_Size;
 };
 
 #endif // INCLUDED_SGUIICON

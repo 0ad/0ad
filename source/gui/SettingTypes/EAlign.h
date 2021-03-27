@@ -18,7 +18,7 @@
 #ifndef INCLUDED_EALIGN
 #define INCLUDED_EALIGN
 
-enum EAlign
+enum class EAlign
 {
 	LEFT,
 	RIGHT,

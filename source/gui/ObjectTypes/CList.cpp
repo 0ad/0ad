@@ -141,7 +141,7 @@ void CList::SetupText(bool append)
 		}
 
 		m_ItemsYPositions[i] = buffered_y;
-		buffered_y += text->GetSize().cy;
+		buffered_y += text->GetSize().Height;
 	}
 
 	m_ItemsYPositions[m_List.m_Items.size()] = buffered_y;

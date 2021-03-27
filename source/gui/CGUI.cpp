@@ -1228,8 +1228,8 @@ void CGUI::Xeromyces_ReadIcon(XMBElement Element, CXeromyces* pFile)
 			icon.m_SpriteName = attr_value;
 		else if (attr_name == "size")
 		{
-			CSize size;
-			if (!ParseString<CSize>(this, attr_value.FromUTF8(), size))
+			CSize2D size;
+			if (!ParseString<CSize2D>(this, attr_value.FromUTF8(), size))
 				LOGERROR("Error parsing '%s' (\"%s\") inside <icon>.", attr_name, attr_value);
 			else
 				icon.m_Size = size;

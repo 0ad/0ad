@@ -105,7 +105,7 @@ void CText::SetupText()
 		if (m_ScrollBottom && GetScrollBar(0).GetPos() > GetScrollBar(0).GetMaxPos() - 1.5f)
 			bottom = true;
 
-		GetScrollBar(0).SetScrollRange(m_GeneratedTexts[0].GetSize().cy);
+		GetScrollBar(0).SetScrollRange(m_GeneratedTexts[0].GetSize().Height);
 		GetScrollBar(0).SetScrollSpace(m_CachedActualSize.GetHeight());
 
 		GetScrollBar(0).SetX(m_CachedActualSize.right);

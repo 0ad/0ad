@@ -1124,8 +1124,8 @@ void CInput::HandleMessage(SGUIMessage& Message)
 
 		// Tell the IME where to draw the candidate list
 		SDL_Rect rect;
-		rect.h = m_CachedActualSize.GetSize().cy;
-		rect.w = m_CachedActualSize.GetSize().cx;
+		rect.h = m_CachedActualSize.GetSize().Height;
+		rect.w = m_CachedActualSize.GetSize().Width;
 		rect.x = m_CachedActualSize.TopLeft().x;
 		rect.y = m_CachedActualSize.TopLeft().y;
 		SDL_SetTextInputRect(&rect);

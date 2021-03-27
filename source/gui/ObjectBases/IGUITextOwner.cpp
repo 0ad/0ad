@@ -111,10 +111,10 @@ void IGUITextOwner::CalculateTextPosition(CRect& ObjSize, CPos& TextPos, CGUITex
 		break;
 	case EVAlign::CENTER:
 		// Round to integer pixel values, else the fonts look awful
-		TextPos.y = floorf(ObjSize.CenterPoint().y - Text.GetSize().cy / 2.f);
+		TextPos.y = floorf(ObjSize.CenterPoint().y - Text.GetSize().Height / 2.f);
 		break;
 	case EVAlign::BOTTOM:
-		TextPos.y = ObjSize.bottom - Text.GetSize().cy;
+		TextPos.y = ObjSize.bottom - Text.GetSize().Height;
 		break;
 	default:
 		debug_warn(L"Broken EVAlign in CButton::SetupText()");

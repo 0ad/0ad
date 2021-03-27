@@ -87,8 +87,8 @@ void CTooltip::SetupText()
 
 	const CPos& mousepos = m_Independent ? m_pGUI.GetMousePos() : m_MousePos;
 
-	float textwidth = m_GeneratedTexts[0].GetSize().cx;
-	float textheight = m_GeneratedTexts[0].GetSize().cy;
+	float textwidth = m_GeneratedTexts[0].GetSize().Width;
+	float textheight = m_GeneratedTexts[0].GetSize().Height;
 
 	CGUISize size;
 	size.pixel.left = mousepos.x + m_Offset.x;

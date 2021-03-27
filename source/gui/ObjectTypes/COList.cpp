@@ -76,7 +76,7 @@ void COList::SetupText()
 		gui_string.SetValue(column.m_Heading);
 
 		const CGUIText& text = AddText(gui_string, m_Font, width, m_BufferZone);
-		m_HeadingHeight = std::max(m_HeadingHeight, text.GetSize().cy + COLUMN_SHIFT.y);
+		m_HeadingHeight = std::max(m_HeadingHeight, text.GetSize().Height + COLUMN_SHIFT.y);
 	}
 
 	// Generate texts
@@ -102,7 +102,7 @@ void COList::SetupText()
 				align_string.SetValue(L" ");
 				text = &AddText(align_string, m_Font, width, m_BufferZone);
 			}
-			shift = std::max(shift, text->GetSize().cy);
+			shift = std::max(shift, text->GetSize().Height);
 		}
 		buffered_y += shift;
 	}
