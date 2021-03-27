@@ -6378,48 +6378,23 @@ UnitAI.prototype.CanAttack = function(target)
 UnitAI.prototype.CanGarrison = function(target)
 {
 	// Formation controllers should always respond to commands
-	// (then the individual units can make up their own minds)
+	// (then the individual units can make up their own minds).
 	if (this.IsFormationController())
 		return true;
 
-	let cmpGarrisonHolder = Engine.QueryInterface(target, IID_GarrisonHolder);
-	if (!cmpGarrisonHolder)
-		return false;
-
-	let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	if (!cmpOwnership || !(IsOwnedByPlayer(cmpOwnership.GetOwner(), target) || IsOwnedByMutualAllyOfPlayer(cmpOwnership.GetOwner(), target)))
-		return false;
-
-	return true;
+	let cmpGarrisonable = Engine.QueryInterface(this.entity, IID_Garrisonable);
+	return cmpGarrisonable && cmpGarrisonable.CanGarrison(target);
 };
 
 UnitAI.prototype.CanGather = function(target)
 {
-	if (this.IsTurret())
-		return false;
-
-	var cmpResourceSupply = QueryMiragedInterface(target, IID_ResourceSupply);
-	if (!cmpResourceSupply)
-		return false;
-
 	// Formation controllers should always respond to commands
-	// (then the individual units can make up their own minds)
+	// (then the individual units can make up their own minds).
 	if (this.IsFormationController())
 		return true;
 
-	var cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
-	if (!cmpResourceGatherer)
-		return false;
-
-	if (!cmpResourceGatherer.GetTargetGatherRate(target))
-		return false;
-
-	// No need to verify ownership as we should be able to gather from
-	// a target regardless of ownership.
-	// No need to call "cmpResourceSupply.IsAvailable()" either because that
-	// would cause units to walk to full entities instead of choosing another one
-	// nearby to gather from, which is undesirable.
-	return true;
+	let cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
+	return cmpResourceGatherer && cmpResourceGatherer.CanGather(target);
 };
 
 UnitAI.prototype.CanHeal = function(target)
@@ -6440,73 +6415,37 @@ UnitAI.prototype.CanHeal = function(target)
  */
 UnitAI.prototype.CanReturnResource = function(target, checkCarriedResource, cmpResourceGatherer = undefined)
 {
-	if (this.IsTurret())
-		return false;
 	// Formation controllers should always respond to commands
-	// (then the individual units can make up their own minds)
+	// (then the individual units can make up their own minds).
 	if (this.IsFormationController())
 		return true;
 
 	if (!cmpResourceGatherer)
-	{
 		cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
-		if (!cmpResourceGatherer)
-			return false;
-	}
 
-	let cmpResourceDropsite = Engine.QueryInterface(target, IID_ResourceDropsite);
-	if (!cmpResourceDropsite)
-		return false;
-
-	if (checkCarriedResource)
-	{
-		let type = cmpResourceGatherer.GetMainCarryingType();
-		if (!type || !cmpResourceDropsite.AcceptsType(type))
-			return false;
-	}
-
-	let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	if (cmpOwnership && IsOwnedByPlayer(cmpOwnership.GetOwner(), target))
-		return true;
-	let cmpPlayer = QueryOwnerInterface(this.entity);
-	return cmpPlayer && cmpPlayer.HasSharedDropsites() && cmpResourceDropsite.IsShared() &&
-	       cmpOwnership && IsOwnedByMutualAllyOfPlayer(cmpOwnership.GetOwner(), target);
+	return cmpResourceGatherer && cmpResourceGatherer.CanReturnResource(target, checkCarriedResource);
 };
 
 UnitAI.prototype.CanTrade = function(target)
 {
-	if (this.IsTurret())
-		return false;
 	// Formation controllers should always respond to commands
-	// (then the individual units can make up their own minds)
+	// (then the individual units can make up their own minds).
 	if (this.IsFormationController())
 		return true;
 
-	var cmpTrader = Engine.QueryInterface(this.entity, IID_Trader);
+	let cmpTrader = Engine.QueryInterface(this.entity, IID_Trader);
 	return cmpTrader && cmpTrader.CanTrade(target);
 };
 
 UnitAI.prototype.CanRepair = function(target)
 {
-	if (this.IsTurret())
-		return false;
 	// Formation controllers should always respond to commands
-	// (then the individual units can make up their own minds)
+	// (then the individual units can make up their own minds).
 	if (this.IsFormationController())
 		return true;
 
-	// Verify that we're able to respond to Repair (Builder) commands
-	var cmpBuilder = Engine.QueryInterface(this.entity, IID_Builder);
-	if (!cmpBuilder)
-		return false;
-
-	var cmpFoundation = QueryMiragedInterface(target, IID_Foundation);
-	var cmpRepairable = Engine.QueryInterface(target, IID_Repairable);
-	if (!cmpFoundation && !cmpRepairable)
-		return false;
-
-	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	return cmpOwnership && IsOwnedByAllyOfPlayer(cmpOwnership.GetOwner(), target);
+	let cmpBuilder = Engine.QueryInterface(this.entity, IID_Builder);
+	return cmpBuilder && cmpBuilder.CanRepair(target);
 };
 
 UnitAI.prototype.CanOccupyTurret = function(target)
@@ -6522,19 +6461,19 @@ UnitAI.prototype.CanOccupyTurret = function(target)
 
 UnitAI.prototype.CanPack = function()
 {
-	var cmpPack = Engine.QueryInterface(this.entity, IID_Pack);
-	return cmpPack && !cmpPack.IsPacking() && !cmpPack.IsPacked();
+	let cmpPack = Engine.QueryInterface(this.entity, IID_Pack);
+	return cmpPack && cmpPack.CanPack();
 };
 
 UnitAI.prototype.CanUnpack = function()
 {
-	var cmpPack = Engine.QueryInterface(this.entity, IID_Pack);
-	return cmpPack && !cmpPack.IsPacking() && cmpPack.IsPacked();
+	let cmpPack = Engine.QueryInterface(this.entity, IID_Pack);
+	return cmpPack && cmpPack.CanUnpack();
 };
 
 UnitAI.prototype.IsPacking = function()
 {
-	var cmpPack = Engine.QueryInterface(this.entity, IID_Pack);
+	let cmpPack = Engine.QueryInterface(this.entity, IID_Pack);
 	return cmpPack && cmpPack.IsPacking();
 };
 

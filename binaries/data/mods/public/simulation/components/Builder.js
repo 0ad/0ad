@@ -65,6 +65,21 @@ Builder.prototype.GetRate = function()
 };
 
 /**
+ * @param {number} target - The target to check.
+ * @return {boolean} - Whether we can build/repair the given target.
+ */
+Builder.prototype.CanRepair = function(target)
+{
+	let cmpFoundation = QueryMiragedInterface(target, IID_Foundation);
+	let cmpRepairable = QueryMiragedInterface(target, IID_Repairable);
+	if (!cmpFoundation && !cmpRepairable)
+		return false;
+
+	let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	return cmpOwnership && IsOwnedByAllyOfPlayer(cmpOwnership.GetOwner(), target);
+};
+
+/**
  * Build/repair the target entity. This should only be called after a successful range check.
  * It should be called at a rate of once per second.
  */

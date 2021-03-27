@@ -49,6 +49,16 @@ Pack.prototype.IsPacking = function()
 	return this.packing;
 };
 
+Pack.prototype.CanPack = function()
+{
+	return !this.packing && !this.packed;
+};
+
+Pack.prototype.CanUnpack = function()
+{
+	return !this.packing && this.packed;
+};
+
 Pack.prototype.Pack = function()
 {
 	if (this.IsPacked() || this.IsPacking())
