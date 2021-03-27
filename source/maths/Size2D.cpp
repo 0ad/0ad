@@ -19,8 +19,6 @@
 
 #include "Size2D.h"
 
-#include "ps/Shapes.h"
-
 CSize2D::CSize2D() = default;
 
 CSize2D::CSize2D(const CSize2D& size) : Width(size.Width), Height(size.Height)

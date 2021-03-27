@@ -18,9 +18,6 @@
 #ifndef INCLUDED_SIZE2D
 #define INCLUDED_SIZE2D
 
-class CPos;
-class CRect;
-
 /*
  * Provides an interface for a size - geometric property in R2.
  */
