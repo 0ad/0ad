@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -28,7 +28,6 @@ CSlider::CSlider(CGUI& pGUI)
 	: IGUIObject(pGUI),
 	  IGUIButtonBehavior(*static_cast<IGUIObject*>(this)),
 	  m_ButtonSide(),
-	  m_CellID(),
 	  m_MaxValue(),
 	  m_MinValue(),
 	  m_Sprite(),
@@ -36,7 +35,6 @@ CSlider::CSlider(CGUI& pGUI)
 	  m_Value()
 {
 	RegisterSetting("button_width", m_ButtonSide);
-	RegisterSetting("cell_id", m_CellID);
 	RegisterSetting("max_value", m_MaxValue);
 	RegisterSetting("min_value", m_MinValue);
 	RegisterSetting("sprite", m_Sprite);
@@ -115,8 +113,8 @@ void CSlider::Draw()
 	slider_line.left += m_ButtonSide / 2.0f;
 	slider_line.right -= m_ButtonSide / 2.0f;
 	float bz = GetBufferedZ();
-	m_pGUI.DrawSprite(m_SpriteBar, m_CellID, bz, slider_line);
-	m_pGUI.DrawSprite(m_Sprite, m_CellID, bz, GetButtonRect());
+	m_pGUI.DrawSprite(m_SpriteBar, bz, slider_line);
+	m_pGUI.DrawSprite(m_Sprite, bz, GetButtonRect());
 }
 
 void CSlider::UpdateValue()

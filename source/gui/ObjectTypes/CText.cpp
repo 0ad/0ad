@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -31,7 +31,6 @@ CText::CText(CGUI& pGUI)
 	  IGUITextOwner(*static_cast<IGUIObject*>(this)),
 	  m_BufferZone(),
 	  m_Caption(),
-	  m_CellID(),
 	  m_Clip(),
 	  m_Font(),
 	  m_ScrollBar(),
@@ -48,7 +47,6 @@ CText::CText(CGUI& pGUI)
 {
 	RegisterSetting("buffer_zone", m_BufferZone);
 	RegisterSetting("caption", m_Caption);
-	RegisterSetting("cell_id", m_CellID);
 	RegisterSetting("clip", m_Clip);
 	RegisterSetting("font", m_Font);
 	RegisterSetting("scrollbar", m_ScrollBar);
@@ -198,7 +196,7 @@ void CText::Draw()
 	if (m_ScrollBar)
 		IGUIScrollBarOwner::Draw();
 
-	m_pGUI.DrawSprite(m_Sprite, m_CellID, bz, m_CachedActualSize);
+	m_pGUI.DrawSprite(m_Sprite, bz, m_CachedActualSize);
 
 	float scroll = 0.f;
 	if (m_ScrollBar)

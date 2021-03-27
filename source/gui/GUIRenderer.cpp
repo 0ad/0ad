@@ -58,7 +58,7 @@ DrawCalls& DrawCalls::operator=(const DrawCalls&)
 }
 
 
-void GUIRenderer::UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const CStr& SpriteName, const CRect& Size, int CellID, std::map<CStr, const CGUISprite*>& Sprites)
+void GUIRenderer::UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const CStr& SpriteName, const CRect& Size, std::map<CStr, const CGUISprite*>& Sprites)
 {
 	// This is called only when something has changed (like the size of the
 	// sprite), so it doesn't need to be particularly efficient.
@@ -209,7 +209,6 @@ void GUIRenderer::UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const 
 			Call.m_EnableBlending = false; // will be overridden if the texture has an alpha channel
 
 			Call.m_ObjectSize = ObjectSize;
-			Call.m_CellID = CellID;
 		}
 		else
 		{
@@ -286,17 +285,6 @@ CRect SDrawCall::ComputeTexCoords() const
 	if (m_Image->m_TexturePlacementInFile != CRect())
 	{
 		BlockTex = m_Image->m_TexturePlacementInFile;
-	}
-	// Check whether this sprite has "cell_size" set (and non-zero)
-	else if ((int)m_Image->m_CellSize.cx)
-	{
-		int cols = (int)TexWidth / (int)m_Image->m_CellSize.cx;
-		if (cols == 0)
-			cols = 1; // avoid divide-by-zero
-		int col = m_CellID % cols;
-		int row = m_CellID / cols;
-		BlockTex = CRect(m_Image->m_CellSize.cx*col, m_Image->m_CellSize.cy*row,
-		                 m_Image->m_CellSize.cx*(col+1), m_Image->m_CellSize.cy*(row+1));
 	}
 	// Use the whole texture
 	else

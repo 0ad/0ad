@@ -305,7 +305,7 @@ void CGUI::Draw()
 	m_BaseObject->RecurseObject(&IGUIObject::IsHidden, &IGUIObject::Draw);
 }
 
-void CGUI::DrawSprite(const CGUISpriteInstance& Sprite, int CellID, const float& Z, const CRect& Rect, const CRect& UNUSED(Clipping))
+void CGUI::DrawSprite(const CGUISpriteInstance& Sprite, const float& Z, const CRect& Rect, const CRect& UNUSED(Clipping))
 {
 	// If the sprite doesn't exist (name == ""), don't bother drawing anything
 	if (!Sprite)
@@ -313,7 +313,7 @@ void CGUI::DrawSprite(const CGUISpriteInstance& Sprite, int CellID, const float&
 
 	// TODO: Clipping?
 
-	Sprite.Draw(*this, Rect, CellID, m_Sprites, Z);
+	Sprite.Draw(*this, Rect, m_Sprites, Z);
 }
 
 void CGUI::UpdateResolution()
@@ -1009,14 +1009,6 @@ void CGUI::Xeromyces_ReadImage(XMBElement Element, CXeromyces* pFile, CGUISprite
 			else
 				Image->m_TexturePlacementInFile = rect;
 		}
-		else if (attr_name == "cell_size")
-		{
-			CSize size;
-			if (!ParseString<CSize>(this, attr_value, size))
-				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
-			else
-				Image->m_CellSize = size;
-		}
 		else if (attr_name == "fixed_h_aspect_ratio")
 		{
 			float val;
@@ -1241,14 +1233,6 @@ void CGUI::Xeromyces_ReadIcon(XMBElement Element, CXeromyces* pFile)
 				LOGERROR("Error parsing '%s' (\"%s\") inside <icon>.", attr_name, attr_value);
 			else
 				icon.m_Size = size;
-		}
-		else if (attr_name == "cell_id")
-		{
-			int cell_id;
-			if (!ParseString<int>(this, attr_value.FromUTF8(), cell_id))
-				LOGERROR("GUI: Error parsing '%s' (\"%s\") inside <icon>.", attr_name, attr_value);
-			else
-				icon.m_CellID = cell_id;
 		}
 		else
 			debug_warn(L"Invalid data - DTD shouldn't allow this");

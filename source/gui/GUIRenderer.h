@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -46,7 +46,6 @@ namespace GUIRenderer
 		CTexturePtr m_Texture;
 
 		CRect m_ObjectSize;
-		int m_CellID;
 
 		bool m_EnableBlending;
 
@@ -69,7 +68,7 @@ namespace GUIRenderer
 		DrawCalls& operator=(const DrawCalls&);
 	};
 
-	void UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const CStr8& SpriteName, const CRect& Size, int CellID, std::map<CStr8, const CGUISprite*>& Sprites);
+	void UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const CStr8& SpriteName, const CRect& Size, std::map<CStr8, const CGUISprite*>& Sprites);
 
 	void Draw(DrawCalls& Calls, float Z);
 }

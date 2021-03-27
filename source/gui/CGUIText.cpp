@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -35,7 +35,7 @@ extern float g_GuiScale;
 // TODO Gee: CRect => CPoint ?
 void SGenerateTextImage::SetupSpriteCall(
 	const bool Left, CGUIText::SSpriteCall& SpriteCall, const float width, const float y,
-	const CSize& Size, const CStr& TextureName, const float BufferZone, const int CellID)
+	const CSize& Size, const CStr& TextureName, const float BufferZone)
 {
 	// TODO Gee: Temp hardcoded values
 	SpriteCall.m_Area.top = y + BufferZone;
@@ -52,7 +52,6 @@ void SGenerateTextImage::SetupSpriteCall(
 		SpriteCall.m_Area.right = width-BufferZone;
 	}
 
-	SpriteCall.m_CellID = CellID;
 	SpriteCall.m_Sprite = TextureName;
 
 	m_YFrom = SpriteCall.m_Area.top - BufferZone;
@@ -145,7 +144,7 @@ void CGUIText::SetupSpriteCalls(
 				_y = y;
 
 			const SGUIIcon& icon = pGUI.GetIcon(imgname);
-			Image.SetupSpriteCall(j == CGUIString::SFeedback::Left, SpriteCall, Width, _y, icon.m_Size, icon.m_SpriteName, BufferZone, icon.m_CellID);
+			Image.SetupSpriteCall(j == CGUIString::SFeedback::Left, SpriteCall, Width, _y, icon.m_Size, icon.m_SpriteName, BufferZone);
 
 			// Check if image is the lowest thing.
 			m_Size.cy = std::max(m_Size.cy, Image.m_YTo);
@@ -462,7 +461,7 @@ void CGUIText::Draw(CGUI& pGUI, const CGUIColor& DefaultColor, const CPos& pos, 
 	textRenderer.Render();
 
 	for (const SSpriteCall& sc : m_SpriteCalls)
-		pGUI.DrawSprite(sc.m_Sprite, sc.m_CellID, z, sc.m_Area + pos);
+		pGUI.DrawSprite(sc.m_Sprite, z, sc.m_Area + pos);
 
 	if (isClipped)
 		glDisable(GL_SCISSOR_TEST);

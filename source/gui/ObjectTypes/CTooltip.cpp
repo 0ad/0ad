@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -157,7 +157,7 @@ void CTooltip::Draw()
 		m_GeneratedTextsValid = true;
 	}
 
-	m_pGUI.DrawSprite(m_Sprite, 0, z, m_CachedActualSize);
+	m_pGUI.DrawSprite(m_Sprite, z, m_CachedActualSize);
 
 	DrawText(0, m_TextColor, m_CachedActualSize.TopLeft(), z + 0.1f);
 }

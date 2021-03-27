@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -61,7 +61,6 @@ void CGUIScrollBarVertical::Draw()
 
 		m_pGUI.DrawSprite(
 			GetStyle()->m_SpriteBackVertical,
-			0,
 			m_Z+0.1f,
 			CRect(
 				outline.left,
@@ -98,7 +97,6 @@ void CGUIScrollBarVertical::Draw()
 
 			m_pGUI.DrawSprite(
 				*button_top,
-				0,
 				m_Z+0.2f,
 				CRect(
 					outline.left,
@@ -110,7 +108,6 @@ void CGUIScrollBarVertical::Draw()
 
 			m_pGUI.DrawSprite(
 				*button_bottom,
-				0,
 				m_Z+0.2f,
 				CRect(
 					outline.left,
@@ -123,7 +120,6 @@ void CGUIScrollBarVertical::Draw()
 
 		m_pGUI.DrawSprite(
 			GetStyle()->m_SpriteBarVertical,
-			0,
 			m_Z + 0.2f,
 			GetBarRect()
 		);

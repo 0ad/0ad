@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -62,7 +62,7 @@ public:
 		NONCOPYABLE(SSpriteCall);
 		MOVABLE(SSpriteCall);
 
-		SSpriteCall() : m_CellID(0) {}
+		SSpriteCall() {}
 
 		/**
 		 * Size and position of sprite
@@ -73,8 +73,6 @@ public:
 		 * Sprite from global GUI sprite database.
 		 */
 		CGUISpriteInstance m_Sprite;
-
-		int m_CellID;
 
 		/**
 		 * Tooltip text
@@ -279,7 +277,7 @@ struct SGenerateTextImage
 
 	void SetupSpriteCall(
 		const bool Left, CGUIText::SSpriteCall& SpriteCall, const float width, const float y,
-		const CSize& Size, const CStr& TextureName, const float BufferZone, const int CellID);
+		const CSize& Size, const CStr& TextureName, const float BufferZone);
 };
 
 #endif // INCLUDED_GUITEXT

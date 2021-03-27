@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -159,7 +159,6 @@ void CGUIString::GenerateTextCall(const CGUI& pGUI, SFeedback& Feedback, CStrInt
 				}
 
 				SpriteCall.m_Sprite = icon.m_SpriteName;
-				SpriteCall.m_CellID = icon.m_CellID;
 
 				// Add sprite call
 				Feedback.m_SpriteCalls.push_back(std::move(SpriteCall));

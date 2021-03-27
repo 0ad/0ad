@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -48,7 +48,6 @@ CList::CList(CGUI& pGUI)
 	  m_SoundSelected(),
 	  m_Sprite(),
 	  m_SpriteSelectArea(),
-	  m_CellID(),
 	  m_TextAlign(),
 	  m_TextColor(),
 	  m_TextColorSelected(),
@@ -68,7 +67,6 @@ CList::CList(CGUI& pGUI)
 	RegisterSetting("sprite", m_Sprite);
 	// Add sprite_disabled! TODO
 	RegisterSetting("sprite_selectarea", m_SpriteSelectArea);
-	RegisterSetting("cell_id", m_CellID);
 	RegisterSetting("text_align", m_TextAlign);
 	RegisterSetting("textcolor", m_TextColor);
 	RegisterSetting("textcolor_selected", m_TextColorSelected);
@@ -340,7 +338,7 @@ void CList::DrawList(const int& selected, const CGUISpriteInstance& sprite, cons
 	{
 		CRect rect = GetListRect();
 
-		m_pGUI.DrawSprite(sprite, m_CellID, bz, rect);
+		m_pGUI.DrawSprite(sprite, bz, rect);
 
 		float scroll = 0.f;
 		if (m_ScrollBar)
@@ -372,7 +370,7 @@ void CList::DrawList(const int& selected, const CGUISpriteInstance& sprite, cons
 						rect_sel.left = GetScrollBar(0).GetOuterRect().right;
 				}
 
-				m_pGUI.DrawSprite(sprite_selectarea, m_CellID, bz + 0.05f, rect_sel);
+				m_pGUI.DrawSprite(sprite_selectarea, bz + 0.05f, rect_sel);
 			}
 		}
 

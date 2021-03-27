@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -31,16 +31,13 @@ struct SGUIIcon
 	NONCOPYABLE(SGUIIcon);
 	MOVABLE(SGUIIcon);
 
-	SGUIIcon() : m_CellID(0) {}
+	SGUIIcon() {}
 
 	// Sprite name of icon
 	CStr m_SpriteName;
 
 	// Size
 	CSize m_Size;
-
-	// Cell of texture to use; ignored unless the texture has specified cell-size
-	int m_CellID;
 };
 
 #endif // INCLUDED_SGUIICON

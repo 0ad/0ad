@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -29,7 +29,6 @@ CButton::CButton(CGUI& pGUI)
 	  IGUIButtonBehavior(*static_cast<IGUIObject*>(this)),
 	  IGUITextOwner(*static_cast<IGUIObject*>(this)),
 	  m_BufferZone(),
-	  m_CellID(),
 	  m_Caption(),
 	  m_Font(),
 	  m_Sprite(),
@@ -44,7 +43,6 @@ CButton::CButton(CGUI& pGUI)
 	  m_TextColorDisabled()
 {
 	RegisterSetting("buffer_zone", m_BufferZone);
-	RegisterSetting("cell_id", m_CellID);
 	RegisterSetting("caption", m_Caption);
 	RegisterSetting("font", m_Font);
 	RegisterSetting("sprite", m_Sprite);
@@ -98,7 +96,6 @@ void CButton::Draw()
 
 	m_pGUI.DrawSprite(
 		GetButtonSprite(m_Sprite, m_SpriteOver, m_SpritePressed, m_SpriteDisabled),
-		m_CellID,
 		bz,
 		m_CachedActualSize);
 

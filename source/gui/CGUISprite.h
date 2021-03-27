@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -76,12 +76,6 @@ public:
 	//  is the real texture
 	CRect m_TexturePlacementInFile;
 
-	// For textures that contain a collection of icons (e.g. unit portraits), this
-	//  will be set to the size of one icon. An object's cell-id will determine
-	//  which part of the texture is used.
-	//  Equal to CSize(0,0) for non-celled textures.
-	CSize m_CellSize;
-
 	/**
 	 * If non-zero, then the image's width will be adjusted when rendering so that
 	 * the width:height ratio equals this value.
@@ -156,7 +150,7 @@ public:
 	CGUISpriteInstance();
 	CGUISpriteInstance(const CStr& SpriteName);
 
-	void Draw(CGUI& pGUI, const CRect& Size, int CellID, std::map<CStr, const CGUISprite*>& Sprites, float Z) const;
+	void Draw(CGUI& pGUI, const CRect& Size, std::map<CStr, const CGUISprite*>& Sprites, float Z) const;
 
 	/**
 	 * Whether this Sprite has no texture name set.
@@ -192,7 +186,6 @@ private:
 	// Relevant details of previously rendered sprite; the cache is invalidated
 	// whenever any of these values changes.
 	mutable CRect m_CachedSize;
-	mutable int m_CachedCellID;
 };
 
 #endif // INCLUDED_CGUISPRITE

@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -300,7 +300,7 @@ void COList::DrawList(const int& selected, const CGUISpriteInstance& sprite, con
 
 	CRect rect = GetListRect();
 
-	m_pGUI.DrawSprite(sprite, m_CellID, bz, rect);
+	m_pGUI.DrawSprite(sprite, bz, rect);
 
 	float scroll = 0.f;
 	if (m_ScrollBar)
@@ -336,14 +336,14 @@ void COList::DrawList(const int& selected, const CGUISpriteInstance& sprite, con
 			}
 
 			// Draw item selection
-			m_pGUI.DrawSprite(sprite_selected, m_CellID, bz + 0.05f, rect_sel);
+			m_pGUI.DrawSprite(sprite_selected, bz + 0.05f, rect_sel);
 		}
 	}
 
 	// Draw line above column header
 	CRect rect_head(m_CachedActualSize.left, m_CachedActualSize.top, m_CachedActualSize.right,
 									m_CachedActualSize.top + m_HeadingHeight);
-	m_pGUI.DrawSprite(m_SpriteHeading, m_CellID, bz, rect_head);
+	m_pGUI.DrawSprite(m_SpriteHeading, bz, rect_head);
 
 	// Draw column headers
 	float xpos = 0;
@@ -380,7 +380,7 @@ void COList::DrawList(const int& selected, const CGUISpriteInstance& sprite, con
 			else
 				pSprite = &m_SpriteNotSorted;
 
-			m_pGUI.DrawSprite(*pSprite, m_CellID, bz + 0.1f, CRect(leftTopCorner + CPos(width - SORT_SPRITE_DIM, 0), leftTopCorner + CPos(width, SORT_SPRITE_DIM)));
+			m_pGUI.DrawSprite(*pSprite, bz + 0.1f, CRect(leftTopCorner + CPos(width - SORT_SPRITE_DIM, 0), leftTopCorner + CPos(width, SORT_SPRITE_DIM)));
 		}
 
 		// Draw column header text

@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -47,7 +47,6 @@ public:
 
 protected:
 	// Settings
-	i32 m_CellID;
 	bool m_Checked;
 	CGUISpriteInstance m_SpriteUnchecked;
 	CGUISpriteInstance m_SpriteUncheckedOver;

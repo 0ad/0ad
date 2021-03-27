@@ -254,11 +254,6 @@
         <attribute name="hotkey"/>
       </optional>
       <optional>
-        <attribute name="cell_id">
-          <data type="integer"/>
-        </attribute>
-      </optional>
-      <optional>
         <attribute name="independent">
           <ref name="bool"/>
         </attribute>
@@ -721,9 +716,6 @@
           <ref name="size"/>
         </attribute>
         <attribute name="sprite"/>
-        <optional>
-          <attribute name="cell_id"/>
-        </optional>
       </interleave>
     </element>
   </define>
@@ -829,11 +821,6 @@
         <optional>
           <attribute name="real_texture_placement">
             <ref name="rect"/>
-          </attribute>
-        </optional>
-        <optional>
-          <attribute name="cell_size">
-            <ref name="size"/>
           </attribute>
         </optional>
         <optional>
