@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -444,7 +444,7 @@ void CDropDown::Draw()
 	const float bz = GetBufferedZ();
 	const CGUISpriteInstance& sprite = m_Enabled ? m_Sprite : m_SpriteDisabled;
 
-	m_pGUI.DrawSprite(sprite, m_CellID, bz, m_CachedActualSize);
+	m_pGUI.DrawSprite(sprite, bz, m_CachedActualSize);
 
 	if (m_ButtonWidth > 0.f)
 	{
@@ -453,18 +453,18 @@ void CDropDown::Draw()
 
 		if (!m_Enabled)
 		{
-			m_pGUI.DrawSprite(m_Sprite2Disabled || m_Sprite2, m_CellID, bz + 0.05f, rect);
+			m_pGUI.DrawSprite(m_Sprite2Disabled || m_Sprite2, bz + 0.05f, rect);
 		}
 		else if (m_Open)
 		{
-			m_pGUI.DrawSprite(m_Sprite2Pressed || m_Sprite2, m_CellID, bz + 0.05f, rect);
+			m_pGUI.DrawSprite(m_Sprite2Pressed || m_Sprite2, bz + 0.05f, rect);
 		}
 		else if (m_MouseHovering)
 		{
-			m_pGUI.DrawSprite(m_Sprite2Over || m_Sprite2, m_CellID, bz + 0.05f, rect);
+			m_pGUI.DrawSprite(m_Sprite2Over || m_Sprite2, bz + 0.05f, rect);
 		}
 		else
-			m_pGUI.DrawSprite(m_Sprite2, m_CellID, bz + 0.05f, rect);
+			m_pGUI.DrawSprite(m_Sprite2, bz + 0.05f, rect);
 	}
 
 	if (m_Selected != -1) // TODO: Maybe check validity completely?

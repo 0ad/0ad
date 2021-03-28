@@ -28,6 +28,7 @@
 #include "gui/SGUIIcon.h"
 #include "gui/SGUIStyle.h"
 #include "lib/input.h"
+#include "maths/Size2D.h"
 #include "ps/Shapes.h"
 #include "ps/XML/Xeromyces.h"
 #include "scriptinterface/ScriptInterface.h"
@@ -101,13 +102,11 @@ public:
 	 *
 	 * @param Sprite Object referring to the sprite (which also caches
 	 *        calculations for faster rendering)
-	 * @param CellID Number of the icon cell to use. (Ignored if this sprite doesn't
-	 *        have any images with "cell-size")
 	 * @param Z Drawing order, depth value
 	 * @param Rect Position and Size
 	 * @param Clipping The sprite shouldn't be drawn outside this rectangle
 	 */
-	void DrawSprite(const CGUISpriteInstance& Sprite, int CellID, const float& Z, const CRect& Rect, const CRect& Clipping = CRect());
+	void DrawSprite(const CGUISpriteInstance& Sprite, const float& Z, const CRect& Rect, const CRect& Clipping = CRect());
 
 	/**
 	 * The replacement of Process(), handles an SDL_Event_

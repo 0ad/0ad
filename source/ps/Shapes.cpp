@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,6 +19,8 @@
 
 #include "Shapes.h"
 
+#include "maths/Size2D.h"
+
 CRect::CRect() :
 	left(0.f), top(0.f), right(0.f), bottom(0.f)
 {
@@ -34,8 +36,8 @@ CRect::CRect(const CPos &pos) :
 {
 }
 
-CRect::CRect(const CSize& size) :
-	left(0.f), top(0.f), right(size.cx), bottom(size.cy)
+CRect::CRect(const CSize2D& size) :
+	left(0.f), top(0.f), right(size.Width), bottom(size.Height)
 {
 }
 
@@ -44,8 +46,8 @@ CRect::CRect(const CPos& upperleft, const CPos& bottomright) :
 {
 }
 
-CRect::CRect(const CPos& pos, const CSize& size) :
-	left(pos.x), top(pos.y), right(pos.x + size.cx), bottom(pos.y + size.cy)
+CRect::CRect(const CPos& pos, const CSize2D& size) :
+	left(pos.x), top(pos.y), right(pos.x + size.Width), bottom(pos.y + size.Height)
 {
 }
 
@@ -96,9 +98,9 @@ CRect CRect::operator+(const CPos& a) const
 	return CRect(left + a.x, top + a.y, right + a.x, bottom + a.y);
 }
 
-CRect CRect::operator+(const CSize& a) const
+CRect CRect::operator+(const CSize2D& a) const
 {
-	return CRect(left + a.cx, top + a.cy, right + a.cx, bottom + a.cy);
+	return CRect(left + a.Width, top + a.Height, right + a.Width, bottom + a.Height);
 }
 
 CRect CRect::operator-(const CRect& a) const
@@ -111,9 +113,9 @@ CRect CRect::operator-(const CPos& a) const
 	return CRect(left - a.x, top - a.y, right - a.x, bottom - a.y);
 }
 
-CRect CRect::operator-(const CSize& a) const
+CRect CRect::operator-(const CSize2D& a) const
 {
-	return CRect(left - a.cx, top - a.cy, right - a.cx, bottom - a.cy);
+	return CRect(left - a.Width, top - a.Height, right - a.Width, bottom - a.Height);
 }
 
 void CRect::operator+=(const CRect& a)
@@ -132,12 +134,12 @@ void CRect::operator+=(const CPos& a)
 	bottom += a.y;
 }
 
-void CRect::operator+=(const CSize& a)
+void CRect::operator+=(const CSize2D& a)
 {
-	left += a.cx;
-	top += a.cy;
-	right += a.cx;
-	bottom += a.cy;
+	left += a.Width;
+	top += a.Height;
+	right += a.Width;
+	bottom += a.Height;
 }
 
 void CRect::operator-=(const CRect& a)
@@ -156,12 +158,12 @@ void CRect::operator-=(const CPos& a)
 	bottom -= a.y;
 }
 
-void CRect::operator-=(const CSize& a)
+void CRect::operator-=(const CSize2D& a)
 {
-	left -= a.cx;
-	top -= a.cy;
-	right -= a.cx;
-	bottom -= a.cy;
+	left -= a.Width;
+	top -= a.Height;
+	right -= a.Width;
+	bottom -= a.Height;
 }
 
 float CRect::GetWidth() const
@@ -174,9 +176,9 @@ float CRect::GetHeight() const
 	return bottom-top;
 }
 
-CSize CRect::GetSize() const
+CSize2D CRect::GetSize() const
 {
-	return CSize(right - left, bottom - top);
+	return CSize2D(right - left, bottom - top);
 }
 
 CPos CRect::TopLeft() const
@@ -227,7 +229,7 @@ CPos::CPos(const CPos& pos) : x(pos.x), y(pos.y)
 {
 }
 
-CPos::CPos(const CSize& s) : x(s.cx), y(s.cy)
+CPos::CPos(const CSize2D& s) : x(s.Width), y(s.Height)
 {
 }
 
@@ -267,9 +269,9 @@ CPos CPos::operator+(const CPos& a) const
 	return CPos(x + a.x, y + a.y);
 }
 
-CPos CPos::operator+(const CSize& a) const
+CPos CPos::operator+(const CSize2D& a) const
 {
-	return CPos(x + a.cx, y + a.cy);
+	return CPos(x + a.Width, y + a.Height);
 }
 
 CPos CPos::operator-(const CPos& a) const
@@ -277,9 +279,9 @@ CPos CPos::operator-(const CPos& a) const
 	return CPos(x - a.x, y - a.y);
 }
 
-CPos CPos::operator-(const CSize& a) const
+CPos CPos::operator-(const CSize2D& a) const
 {
-	return CPos(x - a.cx, y - a.cy);
+	return CPos(x - a.Width, y - a.Height);
 }
 
 void CPos::operator+=(const CPos& a)
@@ -288,10 +290,10 @@ void CPos::operator+=(const CPos& a)
 	y += a.y;
 }
 
-void CPos::operator+=(const CSize& a)
+void CPos::operator+=(const CSize2D& a)
 {
-	x += a.cx;
-	y += a.cy;
+	x += a.Width;
+	y += a.Height;
 }
 
 void CPos::operator-=(const CPos& a)
@@ -300,101 +302,8 @@ void CPos::operator-=(const CPos& a)
 	y -= a.y;
 }
 
-void CPos::operator-=(const CSize& a)
+void CPos::operator-=(const CSize2D& a)
 {
-	x -= a.cx;
-	y -= a.cy;
-}
-
-/*************************************************************************/
-
-CSize::CSize() : cx(0.f), cy(0.f)
-{
-}
-
-CSize::CSize(const CSize& size) : cx(size.cx), cy(size.cy)
-{
-}
-
-CSize::CSize(const CRect &rect) : cx(rect.GetWidth()), cy(rect.GetHeight())
-{
-}
-
-CSize::CSize(const CPos &pos) : cx(pos.x), cy(pos.y)
-{
-}
-
-CSize::CSize(const float sx, const float sy) : cx(sx), cy(sy)
-{
-}
-
-CSize& CSize::operator=(const CSize& a)
-{
-	cx = a.cx;
-	cy = a.cy;
-	return *this;
-}
-
-bool CSize::operator==(const CSize &a) const
-{
-	return cx == a.cx && cy == a.cy;
-}
-
-bool CSize::operator!=(const CSize& a) const
-{
-	return !(*this == a);
-}
-
-CSize CSize::operator-() const
-{
-	return CSize(-cx, -cy);
-}
-
-CSize CSize::operator+() const
-{
-	return *this;
-}
-
-CSize CSize::operator+(const CSize& a) const
-{
-	return CSize(cx + a.cx, cy + a.cy);
-}
-
-CSize CSize::operator-(const CSize& a) const
-{
-	return CSize(cx - a.cx, cy - a.cy);
-}
-
-CSize CSize::operator/(const float a) const
-{
-	return CSize(cx / a, cy / a);
-}
-
-CSize CSize::operator*(const float a) const
-{
-	return CSize(cx * a, cy * a);
-}
-
-void CSize::operator+=(const CSize& a)
-{
-	cx += a.cx;
-	cy += a.cy;
-}
-
-void CSize::operator-=(const CSize& a)
-{
-	cx -= a.cx;
-	cy -= a.cy;
-}
-
-void CSize::operator/=(const float a)
-{
-	cx /= a;
-	cy /= a;
-}
-
-void CSize::operator*=(const float a)
-{
-	cx *= a;
-	cy *= a;
+	x -= a.Width;
+	y -= a.Height;
 }

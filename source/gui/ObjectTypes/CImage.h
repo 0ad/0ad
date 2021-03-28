@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -47,7 +47,6 @@ protected:
 
 	// Settings
 	CGUISpriteInstance m_Sprite;
-	i32 m_CellID;
 };
 
 #endif // INCLUDED_CIMAGE

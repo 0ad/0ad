@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -235,18 +235,18 @@ void CChart::SetupText()
 	const float width = GetChartRect().GetWidth();
 	if (m_EqualX)
 	{
-		CSize text_size = AddFormattedValue(m_FormatX, m_RightTop.X, m_Font, m_BufferZone);
+		CSize2D text_size = AddFormattedValue(m_FormatX, m_RightTop.X, m_Font, m_BufferZone);
 		m_TextPositions.emplace_back(GetChartRect().BottomRight() - text_size);
 	}
 	else
 		for (int i = 0; i < 3; ++i)
 		{
-			CSize text_size = AddFormattedValue(m_FormatX, m_RightTop.X - (m_RightTop.X - m_LeftBottom.X) / 3 * i, m_Font, m_BufferZone);
+			CSize2D text_size = AddFormattedValue(m_FormatX, m_RightTop.X - (m_RightTop.X - m_LeftBottom.X) / 3 * i, m_Font, m_BufferZone);
 			m_TextPositions.emplace_back(GetChartRect().BottomRight() - text_size - CPos(width / 3 * i, 0.f));
 		}
 }
 
-CSize CChart::AddFormattedValue(const CStrW& format, const float value, const CStrW& font, const float buffer_zone)
+CSize2D CChart::AddFormattedValue(const CStrW& format, const float value, const CStrW& font, const float buffer_zone)
 {
 	// TODO: we need to catch cases with equal formatted values.
 	CGUIString gui_str;
@@ -278,7 +278,7 @@ CSize CChart::AddFormattedValue(const CStrW& format, const float value, const CS
 	else
 	{
 		LOGERROR("Unsupported chart format: " + format.EscapeToPrintableASCII());
-		return CSize();
+		return CSize2D();
 	}
 
 	return AddText(gui_str, font, 0, buffer_zone).GetSize();

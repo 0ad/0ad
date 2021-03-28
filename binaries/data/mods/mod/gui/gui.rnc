@@ -62,7 +62,6 @@ ex_settings =
   attribute format_y { text }?&
   attribute fov_wedge_color { ccolor }?&
   attribute hotkey { text }?&
-  attribute cell_id { xsd:integer }?&
   attribute independent { bool }?&
   attribute input_initvalue_destroyed_at_focus { bool }?&
   attribute mask { bool }?&
@@ -233,7 +232,6 @@ icon =
     attribute name { text }&
     attribute size { size }&
     attribute sprite { text }&
-    attribute cell_id { text }?
   }
 tooltip =
   element tooltip {
@@ -274,7 +272,6 @@ image =
     attribute size { clientarea }?&
     attribute texture_size { clientarea }?&
     attribute real_texture_placement { rect }?&
-    attribute cell_size { size }?&
     attribute backcolor { ccolor }?&
     attribute bordercolor { ccolor }?&
     attribute border { bool }?&

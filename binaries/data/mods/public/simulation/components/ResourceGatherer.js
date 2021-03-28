@@ -236,6 +236,15 @@ ResourceGatherer.prototype.GetTargetGatherRate = function(target)
 };
 
 /**
+ * @param {number} target - The entity ID of the target to check.
+ * @return {boolean} - Whether we can gather from the target.
+ */
+ResourceGatherer.prototype.CanGather = function(target)
+{
+	return this.GetTargetGatherRate(target) > 0;
+};
+
+/**
  * Returns whether this unit can carry more of the given type of resource.
  * (This ignores whether the unit is actually able to gather that
  * resource type or not.)
@@ -265,6 +274,32 @@ ResourceGatherer.prototype.IsCarryingAnythingExcept = function(exceptedType)
 			return true;
 
 	return false;
+};
+
+/**
+ * @param {number} target - The entity to check.
+ * @param {boolean} checkCarriedResource - Whether we need to check the resource we are carrying.
+ * @return {boolean} - Whether we can return carried resources.
+ */
+ResourceGatherer.prototype.CanReturnResource = function(target, checkCarriedResource)
+{
+	let cmpResourceDropsite = Engine.QueryInterface(target, IID_ResourceDropsite);
+	if (!cmpResourceDropsite)
+		return false;
+
+	if (checkCarriedResource)
+	{
+		let type = this.GetMainCarryingType();
+		if (!type || !cmpResourceDropsite.AcceptsType(type))
+			return false;
+	}
+
+	let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	if (cmpOwnership && IsOwnedByPlayer(cmpOwnership.GetOwner(), target))
+		return true;
+	let cmpPlayer = QueryOwnerInterface(this.entity);
+	return cmpPlayer && cmpPlayer.HasSharedDropsites() && cmpResourceDropsite.IsShared() &&
+	       cmpOwnership && IsOwnedByMutualAllyOfPlayer(cmpOwnership.GetOwner(), target);
 };
 
 /**

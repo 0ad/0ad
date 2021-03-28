@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,7 +24,6 @@
 CCheckBox::CCheckBox(CGUI& pGUI)
 	: IGUIObject(pGUI),
 	  IGUIButtonBehavior(*static_cast<IGUIObject*>(this)),
-	  m_CellID(),
 	  m_Checked(),
 	  m_SpriteUnchecked(),
 	  m_SpriteUncheckedOver(),
@@ -35,7 +34,6 @@ CCheckBox::CCheckBox(CGUI& pGUI)
 	  m_SpriteCheckedPressed(),
 	  m_SpriteCheckedDisabled()
 {
-	RegisterSetting("cell_id", m_CellID);
 	RegisterSetting("checked", m_Checked),
 	RegisterSetting("sprite", m_SpriteUnchecked);
 	RegisterSetting("sprite_over", m_SpriteUncheckedOver);
@@ -81,7 +79,6 @@ void CCheckBox::Draw()
 		m_Checked ?
 			GetButtonSprite(m_SpriteChecked, m_SpriteCheckedOver, m_SpriteCheckedPressed, m_SpriteCheckedDisabled) :
 			GetButtonSprite(m_SpriteUnchecked, m_SpriteUncheckedOver, m_SpriteUncheckedPressed, m_SpriteUncheckedDisabled),
-		m_CellID,
 		GetBufferedZ(),
 		m_CachedActualSize);
 }

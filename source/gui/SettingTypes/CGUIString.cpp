@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -46,7 +46,7 @@ void CGUIString::SFeedback::Reset()
 	m_Images[Right].clear();
 	m_TextCalls.clear();
 	m_SpriteCalls.clear();
-	m_Size = CSize();
+	m_Size = CSize2D();
 	m_NewLine = false;
 }
 
@@ -129,11 +129,11 @@ void CGUIString::GenerateTextCall(const CGUI& pGUI, SFeedback& Feedback, CStrInt
 				// Get Icon from icon database in pGUI
 				const SGUIIcon& icon = pGUI.GetIcon(path);
 
-				const CSize& size = icon.m_Size;
+				const CSize2D& size = icon.m_Size;
 
 				// append width, and make maximum height the height.
-				Feedback.m_Size.cx += size.cx;
-				Feedback.m_Size.cy = std::max(Feedback.m_Size.cy, size.cy);
+				Feedback.m_Size.Width += size.Width;
+				Feedback.m_Size.Height = std::max(Feedback.m_Size.Height, size.Height);
 
 				// These are also needed later
 				TextCall.m_Size = size;
@@ -145,9 +145,9 @@ void CGUIString::GenerateTextCall(const CGUI& pGUI, SFeedback& Feedback, CStrInt
 					if (tagAttrib.attrib == L"displace" && !tagAttrib.value.empty())
 					{
 						// Displace the sprite
-						CSize displacement;
+						CSize2D displacement;
 						// Parse the value
-						if (!CGUI::ParseString<CSize>(&pGUI, tagAttrib.value, displacement))
+						if (!CGUI::ParseString<CSize2D>(&pGUI, tagAttrib.value, displacement))
 							LOGERROR("Error parsing 'displace' value for tag [ICON]");
 						else
 							SpriteCall.m_Area += displacement;
@@ -159,7 +159,6 @@ void CGUIString::GenerateTextCall(const CGUI& pGUI, SFeedback& Feedback, CStrInt
 				}
 
 				SpriteCall.m_Sprite = icon.m_SpriteName;
-				SpriteCall.m_CellID = icon.m_CellID;
 
 				// Add sprite call
 				Feedback.m_SpriteCalls.push_back(std::move(SpriteCall));
@@ -207,7 +206,7 @@ void CGUIString::GenerateTextCall(const CGUI& pGUI, SFeedback& Feedback, CStrInt
 			}
 
 			// Calculate the size of the font
-			CSize size;
+			CSize2D size;
 			int cx, cy;
 			CFontMetrics font (TextCall.m_Font);
 			font.CalculateStringSize(TextCall.m_String.c_str(), cx, cy);
@@ -216,12 +215,12 @@ void CGUIString::GenerateTextCall(const CGUI& pGUI, SFeedback& Feedback, CStrInt
 			if (!FirstLine)
 				cy = font.GetLineSpacing();
 
-			size.cx = (float)cx;
-			size.cy = (float)cy;
+			size.Width = (float)cx;
+			size.Height = (float)cy;
 
 			// Append width, and make maximum height the height.
-			Feedback.m_Size.cx += size.cx;
-			Feedback.m_Size.cy = std::max(Feedback.m_Size.cy, size.cy);
+			Feedback.m_Size.Width += size.Width;
+			Feedback.m_Size.Height = std::max(Feedback.m_Size.Height, size.Height);
 
 			// These are also needed later
 			TextCall.m_Size = size;

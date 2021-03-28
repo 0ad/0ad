@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -106,15 +106,15 @@ void IGUITextOwner::CalculateTextPosition(CRect& ObjSize, CPos& TextPos, CGUITex
 
 	switch (m_pObject.GetSetting<EVAlign>("text_valign"))
 	{
-	case EVAlign_Top:
+	case EVAlign::TOP:
 		TextPos.y = ObjSize.top;
 		break;
-	case EVAlign_Center:
+	case EVAlign::CENTER:
 		// Round to integer pixel values, else the fonts look awful
-		TextPos.y = floorf(ObjSize.CenterPoint().y - Text.GetSize().cy / 2.f);
+		TextPos.y = floorf(ObjSize.CenterPoint().y - Text.GetSize().Height / 2.f);
 		break;
-	case EVAlign_Bottom:
-		TextPos.y = ObjSize.bottom - Text.GetSize().cy;
+	case EVAlign::BOTTOM:
+		TextPos.y = ObjSize.bottom - Text.GetSize().Height;
 		break;
 	default:
 		debug_warn(L"Broken EVAlign in CButton::SetupText()");

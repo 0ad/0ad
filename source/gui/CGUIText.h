@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,6 +21,7 @@
 #include "gui/CGUISprite.h"
 #include "gui/SettingTypes/CGUIColor.h"
 #include "gui/SettingTypes/EAlign.h"
+#include "maths/Size2D.h"
 #include "ps/CStrIntern.h"
 #include "ps/Shapes.h"
 
@@ -62,7 +63,7 @@ public:
 		NONCOPYABLE(SSpriteCall);
 		MOVABLE(SSpriteCall);
 
-		SSpriteCall() : m_CellID(0) {}
+		SSpriteCall() {}
 
 		/**
 		 * Size and position of sprite
@@ -73,8 +74,6 @@ public:
 		 * Sprite from global GUI sprite database.
 		 */
 		CGUISpriteInstance m_Sprite;
-
-		int m_CellID;
 
 		/**
 		 * Tooltip text
@@ -108,7 +107,7 @@ public:
 		/**
 		 * Size
 		 */
-		CSize m_Size;
+		CSize2D m_Size;
 
 		/**
 		 * The string that is suppose to be rendered.
@@ -174,7 +173,7 @@ public:
 	 */
 	void Draw(CGUI& pGUI, const CGUIColor& DefaultColor, const CPos& pos, const float z, const CRect& clipping) const;
 
-	const CSize& GetSize() const { return m_Size; }
+	const CSize2D& GetSize() const { return m_Size; }
 
 	const std::list<SSpriteCall>& GetSpriteCalls() const { return m_SpriteCalls; }
 
@@ -211,7 +210,7 @@ public:
 		const EAlign align,
 		const float width_range_from,
 		const float width_range_to,
-		const CSize& line_size) const;
+		const CSize2D& line_size) const;
 
 	void ComputeLineRange(
 		const SGenerateTextImages& Images,
@@ -231,7 +230,7 @@ public:
 		const int i,
 		const int temp_from,
 		float& x,
-		CSize& line_size) const;
+		CSize2D& line_size) const;
 
 	bool AssembleCalls(
 		const CGUI& pGUI,
@@ -263,7 +262,7 @@ public:
 	 * Width and height of the whole output, used when setting up
 	 * scrollbars and such.
 	 */
-	CSize m_Size;
+	CSize2D m_Size;
 };
 
 struct SGenerateTextImage
@@ -279,7 +278,7 @@ struct SGenerateTextImage
 
 	void SetupSpriteCall(
 		const bool Left, CGUIText::SSpriteCall& SpriteCall, const float width, const float y,
-		const CSize& Size, const CStr& TextureName, const float BufferZone, const int CellID);
+		const CSize2D& Size, const CStr& TextureName, const float BufferZone);
 };
 
 #endif // INCLUDED_GUITEXT

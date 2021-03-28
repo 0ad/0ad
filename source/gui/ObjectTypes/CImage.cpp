@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,11 +23,9 @@
 
 CImage::CImage(CGUI& pGUI)
 	: IGUIObject(pGUI),
-	  m_Sprite(),
-	  m_CellID()
+	  m_Sprite()
 {
 	RegisterSetting("sprite", m_Sprite);
-	RegisterSetting("cell_id", m_CellID);
 }
 
 CImage::~CImage()
@@ -36,5 +34,5 @@ CImage::~CImage()
 
 void CImage::Draw()
 {
-	m_pGUI.DrawSprite(m_Sprite, m_CellID, GetBufferedZ(), m_CachedActualSize);
+	m_pGUI.DrawSprite(m_Sprite, GetBufferedZ(), m_CachedActualSize);
 }

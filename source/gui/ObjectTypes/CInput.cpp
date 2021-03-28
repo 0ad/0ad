@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -59,7 +59,6 @@ CInput::CInput(CGUI& pGUI)
 	m_BufferPosition(),
 	m_BufferZone(),
 	m_Caption(),
-	m_CellID(),
 	m_Font(),
 	m_MaskChar(),
 	m_Mask(),
@@ -76,7 +75,6 @@ CInput::CInput(CGUI& pGUI)
 	RegisterSetting("buffer_position", m_BufferPosition);
 	RegisterSetting("buffer_zone", m_BufferZone);
 	RegisterSetting("caption", m_Caption);
-	RegisterSetting("cell_id", m_CellID);
 	RegisterSetting("font", m_Font);
 	RegisterSetting("mask_char", m_MaskChar);
 	RegisterSetting("mask", m_Mask);
@@ -1126,8 +1124,8 @@ void CInput::HandleMessage(SGUIMessage& Message)
 
 		// Tell the IME where to draw the candidate list
 		SDL_Rect rect;
-		rect.h = m_CachedActualSize.GetSize().cy;
-		rect.w = m_CachedActualSize.GetSize().cx;
+		rect.h = m_CachedActualSize.GetSize().Height;
+		rect.w = m_CachedActualSize.GetSize().Width;
 		rect.x = m_CachedActualSize.TopLeft().x;
 		rect.y = m_CachedActualSize.TopLeft().y;
 		SDL_SetTextInputRect(&rect);
@@ -1206,7 +1204,7 @@ void CInput::Draw()
 	if (m_Mask && m_MaskChar.length() > 0)
 		mask_char = m_MaskChar[0];
 
-	m_pGUI.DrawSprite(m_Sprite, m_CellID, bz, m_CachedActualSize);
+	m_pGUI.DrawSprite(m_Sprite, bz, m_CachedActualSize);
 
 	float scroll = 0.f;
 	if (m_ScrollBar && m_MultiLine)
@@ -1395,7 +1393,7 @@ void CInput::Draw()
 							rect.right = m_CachedActualSize.right;
 					}
 
-					m_pGUI.DrawSprite(m_SpriteSelectArea, m_CellID, bz + 0.05f, rect);
+					m_pGUI.DrawSprite(m_SpriteSelectArea, bz + 0.05f, rect);
 				}
 
 				if (i < (int)it->m_ListOfX.size())

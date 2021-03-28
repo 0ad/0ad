@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -106,7 +106,7 @@ bool CGUI::ParseString<CGUIColor>(const CGUI* pGUI, const CStrW& Value, CGUIColo
 }
 
 template <>
-bool CGUI::ParseString<CSize>(const CGUI* UNUSED(pGUI), const CStrW& Value, CSize& Output)
+bool CGUI::ParseString<CSize2D>(const CGUI* UNUSED(pGUI), const CStrW& Value, CSize2D& Output)
 {
 	const unsigned int NUM_COORDS = 2;
 	float coords[NUM_COORDS];
@@ -117,23 +117,23 @@ bool CGUI::ParseString<CSize>(const CGUI* UNUSED(pGUI), const CStrW& Value, CSiz
 	{
 		if (stream.eof())
 		{
-			LOGWARNING("Too few CSize parameters (min %i). Your input: '%s'", NUM_COORDS, Value.ToUTF8().c_str());
+			LOGWARNING("Too few CSize2D parameters (min %i). Your input: '%s'", NUM_COORDS, Value.ToUTF8().c_str());
 			return false;
 		}
 		stream >> coords[i];
 		if ((stream.rdstate() & std::wstringstream::failbit) != 0)
 		{
-			LOGWARNING("Unable to parse CSize parameters. Your input: '%s'", Value.ToUTF8().c_str());
+			LOGWARNING("Unable to parse CSize2D parameters. Your input: '%s'", Value.ToUTF8().c_str());
 			return false;
 		}
 	}
 
-	Output.cx = coords[0];
-	Output.cy = coords[1];
+	Output.Width = coords[0];
+	Output.Height = coords[1];
 
 	if (!stream.eof())
 	{
-		LOGWARNING("Too many CSize parameters (max %i). Your input: '%s'", NUM_COORDS, Value.ToUTF8().c_str());
+		LOGWARNING("Too many CSize2D parameters (max %i). Your input: '%s'", NUM_COORDS, Value.ToUTF8().c_str());
 		return false;
 	}
 
@@ -179,11 +179,11 @@ template <>
 bool CGUI::ParseString<EAlign>(const CGUI* UNUSED(pGUI), const CStrW& Value, EAlign& Output)
 {
 	if (Value == L"left")
-		Output = EAlign_Left;
+		Output = EAlign::LEFT;
 	else if (Value == L"center")
-		Output = EAlign_Center;
+		Output = EAlign::CENTER;
 	else if (Value == L"right")
-		Output = EAlign_Right;
+		Output = EAlign::RIGHT;
 	else
 		return false;
 
@@ -194,11 +194,11 @@ template <>
 bool CGUI::ParseString<EVAlign>(const CGUI* UNUSED(pGUI), const CStrW& Value, EVAlign& Output)
 {
 	if (Value == L"top")
-		Output = EVAlign_Top;
+		Output = EVAlign::TOP;
 	else if (Value == L"center")
-		Output = EVAlign_Center;
+		Output = EVAlign::CENTER;
 	else if (Value == L"bottom")
-		Output = EVAlign_Bottom;
+		Output = EVAlign::BOTTOM;
 	else
 		return false;
 

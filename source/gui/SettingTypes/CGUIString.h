@@ -149,7 +149,7 @@ public:
 		/**
 		 * Width and Height *feedback*
 		 */
-		CSize m_Size;
+		CSize2D m_Size;
 
 		/**
 		 * If the word inputted was a new line.

@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -65,8 +65,8 @@ CTooltip::CTooltip(CGUI& pGUI)
 
 	// Defaults
 	SetSetting<i32>("delay", 500, true);
-	SetSetting<EVAlign>("anchor", EVAlign_Bottom, true);
-	SetSetting<EAlign>("text_align", EAlign_Left, true);
+	SetSetting<EVAlign>("anchor", EVAlign::BOTTOM, true);
+	SetSetting<EAlign>("text_align", EAlign::LEFT, true);
 
 	// Set up a blank piece of text, to be replaced with a more
 	// interesting message later
@@ -87,8 +87,8 @@ void CTooltip::SetupText()
 
 	const CPos& mousepos = m_Independent ? m_pGUI.GetMousePos() : m_MousePos;
 
-	float textwidth = m_GeneratedTexts[0].GetSize().cx;
-	float textheight = m_GeneratedTexts[0].GetSize().cy;
+	float textwidth = m_GeneratedTexts[0].GetSize().Width;
+	float textheight = m_GeneratedTexts[0].GetSize().Height;
 
 	CGUISize size;
 	size.pixel.left = mousepos.x + m_Offset.x;
@@ -96,15 +96,15 @@ void CTooltip::SetupText()
 
 	switch (m_Anchor)
 	{
-	case EVAlign_Top:
+	case EVAlign::TOP:
 		size.pixel.top = mousepos.y + m_Offset.y;
 		size.pixel.bottom = size.pixel.top + textheight;
 		break;
-	case EVAlign_Bottom:
+	case EVAlign::BOTTOM:
 		size.pixel.bottom = mousepos.y + m_Offset.y;
 		size.pixel.top = size.pixel.bottom - textheight;
 		break;
-	case EVAlign_Center:
+	case EVAlign::CENTER:
 		size.pixel.top = mousepos.y + m_Offset.y - textheight/2.f;
 		size.pixel.bottom = size.pixel.top + textwidth;
 		break;
@@ -157,7 +157,7 @@ void CTooltip::Draw()
 		m_GeneratedTextsValid = true;
 	}
 
-	m_pGUI.DrawSprite(m_Sprite, 0, z, m_CachedActualSize);
+	m_pGUI.DrawSprite(m_Sprite, z, m_CachedActualSize);
 
 	DrawText(0, m_TextColor, m_CachedActualSize.TopLeft(), z + 0.1f);
 }
