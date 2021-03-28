@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
 // In case of success, it provides a clean base for incremental builds
 // with the `differential` pipeline.
 
-def compilers = ["gcc6"]
+def compilers = ["gcc7"]
 
 def volumeUpdatesMap = compilers.collectEntries {
 	["${it}": volumeUpdate(it)]
@@ -52,6 +52,9 @@ def build(compiler) {
 							echo (message: readFile (file: "cxxtest-debug-${compiler}.xml"))
 							throw e
 						} finally {
+							catchError {
+								sh "sed -i 's/date/timestamp/g' cxxtest-debug-${compiler}.xml"
+							}
 							stash includes: "cxxtest-debug-${compiler}.xml", name: "tests-debug-${compiler}"
 						}
 
@@ -62,6 +65,9 @@ def build(compiler) {
 							echo (message: readFile (file: "cxxtest-release-${compiler}.xml"))
 							throw e
 						} finally {
+							catchError {
+								sh "sed -i 's/date/timestamp/g' cxxtest-release-${compiler}.xml"
+							}
 							stash includes: "cxxtest-release-${compiler}.xml", name: "tests-release-${compiler}"
 						}
 					}

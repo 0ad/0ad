@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -61,8 +61,8 @@ pipeline {
 						echo "atlas is enabled"
 						AtlasOption = "--atlas"
 						AtlasPrj = "/t:AtlasUI"
-						bat "(robocopy /MIR C:\\wxwidgets3.0.4\\lib libraries\\win32\\wxwidgets\\lib) ^& IF %ERRORLEVEL% LEQ 1 exit 0"
-						bat "(robocopy /MIR C:\\wxwidgets3.0.4\\include libraries\\win32\\wxwidgets\\include) ^& IF %ERRORLEVEL% LEQ 1 exit 0"
+						bat "(robocopy /MIR C:\\wxwidgets-3.1.4\\lib libraries\\win32\\wxwidgets\\lib) ^& IF %ERRORLEVEL% LEQ 1 exit 0"
+						bat "(robocopy /MIR C:\\wxwidgets-3.1.4\\include libraries\\win32\\wxwidgets\\include) ^& IF %ERRORLEVEL% LEQ 1 exit 0"
 						bat "del binaries\\system\\AtlasUI.dll"
 					}
 					if (env.gloox == 'true') {
@@ -85,14 +85,14 @@ pipeline {
 
 		stage ('Build') {
 			steps {
-				bat("cd build\\workspaces\\vc2015 && MSBuild.exe pyrogenesis.sln /m:${jobs} /p:PlatformToolset=v140_xp /t:pyrogenesis ${AtlasPrj} /t:test /p:Configuration=Release")
+				bat("cd build\\workspaces\\vs2017 && \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\MSBuild\\15.0\\Bin\\MSBuild.exe\" pyrogenesis.sln /m:${jobs} /p:PlatformToolset=v141_xp /t:pyrogenesis ${AtlasPrj} /t:test /p:Configuration=Release")
 			}
 		}
 
 		stage ('Build debug glooxwrapper') {
 			when { environment name: 'gloox', value: 'true'}
 			steps {
-					bat("cd build\\workspaces\\vc2015 && MSBuild.exe pyrogenesis.sln /m:${jobs} /p:PlatformToolset=v140_xp /t:glooxwrapper /p:Configuration=Debug")
+					bat("cd build\\workspaces\\vs2017 && \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\MSBuild\\15.0\\Bin\\MSBuild.exe\" pyrogenesis.sln /m:${jobs} /p:PlatformToolset=v141_xp /t:glooxwrapper /p:Configuration=Debug")
 			}
 		}
 
