@@ -770,7 +770,10 @@ public:
 
 	void test_script_nonfinite()
 	{
-		helper_script_roundtrip("nonfinite", "[0, Infinity, -Infinity, NaN, -1/Infinity]", "[0, Infinity, -Infinity, NaN, -0]");
+		helper_script_roundtrip("nonfinite", "[0, Infinity, -Infinity, -1/Infinity]", "[0, Infinity, -Infinity, -0]");
+
+		TestLogger logger;
+		TS_ASSERT_THROWS(helper_script_roundtrip("nan", "[NaN]", "[NaN]"), const PSERROR_Serialize_InvalidScriptValue&);
 	}
 
 	void test_script_property_order()
