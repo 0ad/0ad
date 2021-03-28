@@ -23,6 +23,7 @@
 #include "gui/SGUIMessage.h"
 #include "gui/ObjectBases/IGUIObject.h"
 #include "gui/SettingTypes/CGUIString.h"
+#include "maths/Vector2D.h"
 
 #include <math.h>
 
@@ -89,7 +90,7 @@ void IGUITextOwner::UpdateText()
 	}
 }
 
-void IGUITextOwner::DrawText(size_t index, const CGUIColor& color, const CPos& pos, float z, const CRect& clipping)
+void IGUITextOwner::DrawText(size_t index, const CGUIColor& color, const CVector2D& pos, float z, const CRect& clipping)
 {
 	UpdateText();
 
@@ -98,23 +99,23 @@ void IGUITextOwner::DrawText(size_t index, const CGUIColor& color, const CPos& p
 	m_GeneratedTexts.at(index).Draw(m_pObject.GetGUI(), color, pos, z, clipping);
 }
 
-void IGUITextOwner::CalculateTextPosition(CRect& ObjSize, CPos& TextPos, CGUIText& Text)
+void IGUITextOwner::CalculateTextPosition(CRect& ObjSize, CVector2D& TextPos, CGUIText& Text)
 {
 	// The horizontal Alignment is now computed in GenerateText in order to not have to
 	// loop through all of the TextCall objects again.
-	TextPos.x = ObjSize.left;
+	TextPos.X = ObjSize.left;
 
 	switch (m_pObject.GetSetting<EVAlign>("text_valign"))
 	{
 	case EVAlign::TOP:
-		TextPos.y = ObjSize.top;
+		TextPos.Y = ObjSize.top;
 		break;
 	case EVAlign::CENTER:
 		// Round to integer pixel values, else the fonts look awful
-		TextPos.y = floorf(ObjSize.CenterPoint().y - Text.GetSize().Height / 2.f);
+		TextPos.Y = floorf(ObjSize.CenterPoint().Y - Text.GetSize().Height / 2.f);
 		break;
 	case EVAlign::BOTTOM:
-		TextPos.y = ObjSize.bottom - Text.GetSize().Height;
+		TextPos.Y = ObjSize.bottom - Text.GetSize().Height;
 		break;
 	default:
 		debug_warn(L"Broken EVAlign in CButton::SetupText()");

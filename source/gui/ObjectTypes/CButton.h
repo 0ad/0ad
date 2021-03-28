@@ -23,6 +23,7 @@
 #include "gui/ObjectBases/IGUIObject.h"
 #include "gui/ObjectBases/IGUITextOwner.h"
 #include "gui/SettingTypes/CGUIString.h"
+#include "maths/Vector2D.h"
 
 class CButton : public IGUIObject, public IGUITextOwner, public IGUIButtonBehavior
 {
@@ -71,7 +72,7 @@ protected:
 	/**
 	 * Placement of text.
 	 */
-	CPos m_TextPos;
+	CVector2D m_TextPos;
 
 	virtual void CreateJSObject();
 

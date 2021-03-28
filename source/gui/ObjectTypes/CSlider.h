@@ -21,6 +21,7 @@
 #include "gui/CGUISprite.h"
 #include "gui/ObjectBases/IGUIButtonBehavior.h"
 #include "gui/ObjectBases/IGUIObject.h"
+#include "maths/Vector2D.h"
 
 class CSlider : public IGUIObject, public IGUIButtonBehavior
 {
@@ -68,7 +69,7 @@ protected:
 	float m_Value;
 
 private:
-	CPos m_Mouse;
+	CVector2D m_Mouse;
 };
 
 #endif // INCLUDED_CSLIDER

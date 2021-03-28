@@ -18,8 +18,8 @@
 #ifndef INCLUDED_SHAPES
 #define INCLUDED_SHAPES
 
-class CPos;
 class CSize2D;
+class CVector2D;
 
 
 /**
@@ -31,10 +31,10 @@ class CRect
 {
 public:
 	CRect();
-	CRect(const CPos &pos);
-	CRect(const CSize2D &size);
-	CRect(const CPos &upperleft, const CPos &bottomright);
-	CRect(const CPos &pos, const CSize2D &size);
+	CRect(const CVector2D& pos);
+	CRect(const CSize2D& size);
+	CRect(const CVector2D& upperleft, const CVector2D& bottomright);
+	CRect(const CVector2D& pos, const CSize2D& size);
 	CRect(const float l, const float t, const float r, const float b);
 	CRect(const CRect&);
 
@@ -45,17 +45,17 @@ public:
 	CRect operator+() const;
 
 	CRect operator+(const CRect& a) const;
-	CRect operator+(const CPos& a) const;
+	CRect operator+(const CVector2D& a) const;
 	CRect operator+(const CSize2D& a) const;
 	CRect operator-(const CRect& a) const;
-	CRect operator-(const CPos& a) const;
+	CRect operator-(const CVector2D& a) const;
 	CRect operator-(const CSize2D& a) const;
 
 	void operator+=(const CRect& a);
-	void operator+=(const CPos& a);
+	void operator+=(const CVector2D& a);
 	void operator+=(const CSize2D& a);
 	void operator-=(const CRect& a);
-	void operator-=(const CPos& a);
+	void operator-=(const CVector2D& a);
 	void operator-=(const CSize2D& a);
 
 	/**
@@ -76,39 +76,39 @@ public:
 	/**
 	 * Get Position equivalent to top/left corner
 	 */
-	CPos TopLeft() const;
+	CVector2D TopLeft() const;
 
 	/**
 	 * Get Position equivalent to top/right corner
 	 */
-	CPos TopRight() const;
+	CVector2D TopRight() const;
 
 	/**
 	 * Get Position equivalent to bottom/left corner
 	 */
-	CPos BottomLeft() const;
+	CVector2D BottomLeft() const;
 
 	/**
 	 * Get Position equivalent to bottom/right corner
 	 */
-	CPos BottomRight() const;
+	CVector2D BottomRight() const;
 
 	/**
 	 * Get Position equivalent to the center of the rectangle
 	 */
-	CPos CenterPoint() const;
+	CVector2D CenterPoint() const;
 
 	/**
 	 * Evalutates if point is within the rectangle
-	 * @param point CPos representing point
+	 * @param point CVector2D representing point
 	 * @return true if inside.
 	 */
-	bool PointInside(const CPos &point) const;
+	bool PointInside(const CVector2D &point) const;
 
 	CRect Scale(float x, float y) const;
 
 	/**
-	 * Returning CPos representing each corner.
+	 * Returning CVector2D representing each corner.
 	 */
 
 public:
@@ -116,42 +116,6 @@ public:
 	 * Dimensions
 	 */
 	float left, top, right, bottom;
-};
-
-/**
- * Made to represent screen positions and delta values.
- * @see CRect
- * @see CSize2D
- */
-class CPos
-{
-public:
-	CPos();
-	CPos(const CPos& pos);
-	CPos(const CSize2D &pos);
-	CPos(const float px, const float py);
-
-	CPos& operator=(const CPos& a);
-	bool operator==(const CPos& a) const;
-	bool operator!=(const CPos& a) const;
-	CPos operator-() const;
-	CPos operator+() const;
-
-	CPos operator+(const CPos& a) const;
-	CPos operator+(const CSize2D& a) const;
-	CPos operator-(const CPos& a) const;
-	CPos operator-(const CSize2D& a) const;
-
-	void operator+=(const CPos& a);
-	void operator+=(const CSize2D& a);
-	void operator-=(const CPos& a);
-	void operator-=(const CSize2D& a);
-
-public:
-	/**
-	 * Position
-	 */
-	float x, y;
 };
 
 #endif // INCLUDED_SHAPES

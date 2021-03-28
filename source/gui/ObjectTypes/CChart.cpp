@@ -183,8 +183,8 @@ void CChart::Draw()
 CRect CChart::GetChartRect() const
 {
 	return CRect(
-		m_CachedActualSize.TopLeft() + CPos(m_AxisWidth, m_AxisWidth),
-		m_CachedActualSize.BottomRight() - CPos(m_AxisWidth, m_AxisWidth)
+		m_CachedActualSize.TopLeft() + CVector2D(m_AxisWidth, m_AxisWidth),
+		m_CachedActualSize.BottomRight() - CVector2D(m_AxisWidth, m_AxisWidth)
 	);
 }
 
@@ -228,7 +228,7 @@ void CChart::SetupText()
 		for (int i = 0; i < 3; ++i)
 		{
 			AddFormattedValue(m_FormatY, m_RightTop.Y - (m_RightTop.Y - m_LeftBottom.Y) / 3.f * i, m_Font, m_BufferZone);
-			m_TextPositions.emplace_back(GetChartRect().TopLeft() + CPos(0.f, height / 3.f * i));
+			m_TextPositions.emplace_back(GetChartRect().TopLeft() + CVector2D(0.f, height / 3.f * i));
 		}
 
 	// Add X-axis
@@ -242,7 +242,7 @@ void CChart::SetupText()
 		for (int i = 0; i < 3; ++i)
 		{
 			CSize2D text_size = AddFormattedValue(m_FormatX, m_RightTop.X - (m_RightTop.X - m_LeftBottom.X) / 3 * i, m_Font, m_BufferZone);
-			m_TextPositions.emplace_back(GetChartRect().BottomRight() - text_size - CPos(width / 3 * i, 0.f));
+			m_TextPositions.emplace_back(GetChartRect().BottomRight() - text_size - CVector2D(width / 3 * i, 0.f));
 		}
 }
 

@@ -77,7 +77,7 @@ protected:
 
 	CVector2D m_LeftBottom, m_RightTop;
 
-	std::vector<CPos> m_TextPositions;
+	std::vector<CVector2D> m_TextPositions;
 
 	bool m_EqualX, m_EqualY;
 

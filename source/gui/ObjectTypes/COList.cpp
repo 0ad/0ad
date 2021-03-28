@@ -27,7 +27,7 @@
 #include "ps/CLogger.h"
 
 const float SORT_SPRITE_DIM = 16.0f;
-const CPos COLUMN_SHIFT = CPos(0, 4);
+const CVector2D COLUMN_SHIFT = CVector2D(0, 4);
 
 const CStr COList::EventNameSelectionColumnChange = "SelectionColumnChange";
 
@@ -76,7 +76,7 @@ void COList::SetupText()
 		gui_string.SetValue(column.m_Heading);
 
 		const CGUIText& text = AddText(gui_string, m_Font, width, m_BufferZone);
-		m_HeadingHeight = std::max(m_HeadingHeight, text.GetSize().Height + COLUMN_SHIFT.y);
+		m_HeadingHeight = std::max(m_HeadingHeight, text.GetSize().Height + COLUMN_SHIFT.Y);
 	}
 
 	// Generate texts
@@ -139,7 +139,7 @@ void COList::HandleMessage(SGUIMessage& Message)
 		if (!m_Sortable)
 			return;
 
-		const CPos& mouse = m_pGUI.GetMousePos();
+		const CVector2D& mouse = m_pGUI.GetMousePos();
 		if (!m_CachedActualSize.PointInside(mouse))
 			return;
 
@@ -153,10 +153,10 @@ void COList::HandleMessage(SGUIMessage& Message)
 			// Check if it's a decimal value, and if so, assume relative positioning.
 			if (column.m_Width < 1 && column.m_Width > 0)
 				width *= m_TotalAvailableColumnWidth;
-			CPos leftTopCorner = m_CachedActualSize.TopLeft() + CPos(xpos, 0);
-			if (mouse.x >= leftTopCorner.x &&
-				mouse.x < leftTopCorner.x + width &&
-				mouse.y < leftTopCorner.y + m_HeadingHeight)
+			CVector2D leftTopCorner = m_CachedActualSize.TopLeft() + CVector2D(xpos, 0);
+			if (mouse.X >= leftTopCorner.X &&
+				mouse.X < leftTopCorner.X + width &&
+				mouse.Y < leftTopCorner.Y + m_HeadingHeight)
 			{
 				if (column.m_Id != m_SelectedColumn)
 				{
@@ -361,7 +361,7 @@ void COList::DrawList(const int& selected, const CGUISpriteInstance& sprite, con
 		if (column.m_Width < 1 && column.m_Width > 0)
 			width *= m_TotalAvailableColumnWidth;
 
-		CPos leftTopCorner = m_CachedActualSize.TopLeft() + CPos(xpos, 0);
+		CVector2D leftTopCorner = m_CachedActualSize.TopLeft() + CVector2D(xpos, 0);
 
 		// Draw sort arrows in colum header
 		if (m_Sortable)
@@ -380,7 +380,7 @@ void COList::DrawList(const int& selected, const CGUISpriteInstance& sprite, con
 			else
 				pSprite = &m_SpriteNotSorted;
 
-			m_pGUI.DrawSprite(*pSprite, bz + 0.1f, CRect(leftTopCorner + CPos(width - SORT_SPRITE_DIM, 0), leftTopCorner + CPos(width, SORT_SPRITE_DIM)));
+			m_pGUI.DrawSprite(*pSprite, bz + 0.1f, CRect(leftTopCorner + CVector2D(width - SORT_SPRITE_DIM, 0), leftTopCorner + CVector2D(width, SORT_SPRITE_DIM)));
 		}
 
 		// Draw column header text
@@ -422,7 +422,7 @@ void COList::DrawList(const int& selected, const CGUISpriteInstance& sprite, con
 				continue;
 
 			// Determine text position and width
-			const CPos textPos = rect.TopLeft() + CPos(xpos, -scroll + m_ItemsYPositions[i]);
+			const CVector2D textPos = rect.TopLeft() + CVector2D(xpos, -scroll + m_ItemsYPositions[i]);
 
 			float width = column.m_Width;
 			// Check if it's a decimal value, and if so, assume relative positioning.
@@ -431,8 +431,8 @@ void COList::DrawList(const int& selected, const CGUISpriteInstance& sprite, con
 
 			// Clip text to the column (to prevent drawing text into the neighboring column)
 			CRect cliparea2 = cliparea;
-			cliparea2.right = std::min(cliparea2.right, textPos.x + width);
-			cliparea2.bottom = std::min(cliparea2.bottom, textPos.y + rowHeight);
+			cliparea2.right = std::min(cliparea2.right, textPos.X + width);
+			cliparea2.bottom = std::min(cliparea2.bottom, textPos.Y + rowHeight);
 
 			// Draw list item
 			DrawText(objectsCount * (i +/*Heading*/1) + colIdx, column.m_TextColor, textPos, bz + 0.1f, cliparea2);

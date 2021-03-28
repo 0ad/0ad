@@ -126,7 +126,7 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 		// Yes the mouse position is stored as float to avoid
 		//  constant conversions when operating in a
 		//  float-based environment.
-		m_MousePos = CPos((float)ev->ev.motion.x / g_GuiScale, (float)ev->ev.motion.y / g_GuiScale);
+		m_MousePos = CVector2D((float)ev->ev.motion.x / g_GuiScale, (float)ev->ev.motion.y / g_GuiScale);
 
 		SGUIMessage msg(GUIM_MOUSE_MOTION);
 		m_BaseObject->RecurseObject(&IGUIObject::IsHiddenOrGhost, &IGUIObject::HandleMessage, msg);
@@ -148,10 +148,10 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 	}
 
 	// Update m_MousePos (for delayed mouse button events)
-	CPos oldMousePos = m_MousePos;
+	CVector2D oldMousePos = m_MousePos;
 	if (ev->ev.type == SDL_MOUSEBUTTONDOWN || ev->ev.type == SDL_MOUSEBUTTONUP)
 	{
-		m_MousePos = CPos((float)ev->ev.button.x / g_GuiScale, (float)ev->ev.button.y / g_GuiScale);
+		m_MousePos = CVector2D((float)ev->ev.button.x / g_GuiScale, (float)ev->ev.button.y / g_GuiScale);
 	}
 
 	// Allow the focused object to pre-empt regular GUI events.

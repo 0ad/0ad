@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,8 +21,8 @@
 class IGUIObject;
 class CGUI;
 
+#include "maths/Vector2D.h"
 #include "ps/CStr.h"
-#include "ps/Shapes.h"
 
 class GUITooltip
 {
@@ -30,11 +30,11 @@ public:
 	NONCOPYABLE(GUITooltip);
 
 	GUITooltip();
-	void Update(IGUIObject* Nearest, const CPos& MousePos, CGUI& GUI);
+	void Update(IGUIObject* Nearest, const CVector2D& MousePos, CGUI& GUI);
 
 private:
 
-	void ShowTooltip(IGUIObject* obj, const CPos& pos, const CStr& style, CGUI& pGUI);
+	void ShowTooltip(IGUIObject* obj, const CVector2D& pos, const CStr& style, CGUI& pGUI);
 	void HideTooltip(const CStr& style, CGUI& pGUI);
 	bool GetTooltip(IGUIObject* obj, CStr& style);
 
@@ -42,7 +42,7 @@ private:
 
 	IGUIObject* m_PreviousObject;
 	CStr m_PreviousTooltipName;
-	CPos m_PreviousMousePos;
+	CVector2D m_PreviousMousePos;
 	double m_Time;
 	bool m_IsIconTooltip;
 };

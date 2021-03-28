@@ -295,7 +295,7 @@ CRect SDrawCall::ComputeTexCoords() const
 	// UV coords at each vertex of the object). We know everything
 	// except for TexCoords, so calculate it:
 
-	CPos translation (BlockTex.TopLeft()-BlockScreen.TopLeft());
+	CVector2D translation(BlockTex.TopLeft()-BlockScreen.TopLeft());
 	float ScaleW = BlockTex.GetWidth()/BlockScreen.GetWidth();
 	float ScaleH = BlockTex.GetHeight()/BlockScreen.GetHeight();
 

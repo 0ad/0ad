@@ -394,7 +394,7 @@ void CList::DrawList(const int& selected, const CGUISpriteInstance& sprite, cons
 					cliparea.left = GetScrollBar(0).GetOuterRect().right;
 			}
 
-			DrawText(i, textcolor, rect.TopLeft() - CPos(0.f, scroll - m_ItemsYPositions[i]), bz + 0.1f, cliparea);
+			DrawText(i, textcolor, rect.TopLeft() - CVector2D(0.f, scroll - m_ItemsYPositions[i]), bz + 0.1f, cliparea);
 		}
 	}
 }
@@ -482,18 +482,18 @@ int CList::GetHoveredItem()
 	const float scroll = m_ScrollBar ? GetScrollBar(0).GetPos() : 0.f;
 
 	const CRect& rect = GetListRect();
-	CPos mouse = m_pGUI.GetMousePos();
-	mouse.y += scroll;
+	CVector2D mouse = m_pGUI.GetMousePos();
+	mouse.Y += scroll;
 
 	// Mouse is over scrollbar
 	if (m_ScrollBar && GetScrollBar(0).IsVisible() &&
-	    mouse.x >= GetScrollBar(0).GetOuterRect().left &&
-	    mouse.x <= GetScrollBar(0).GetOuterRect().right)
+	    mouse.X >= GetScrollBar(0).GetOuterRect().left &&
+	    mouse.X <= GetScrollBar(0).GetOuterRect().right)
 		return -1;
 
 	for (size_t i = 0; i < m_List.m_Items.size(); ++i)
-		if (mouse.y >= rect.top + m_ItemsYPositions[i] &&
-		    mouse.y < rect.top + m_ItemsYPositions[i + 1])
+		if (mouse.Y >= rect.top + m_ItemsYPositions[i] &&
+		    mouse.Y < rect.top + m_ItemsYPositions[i + 1])
 			return i;
 
 	return -1;

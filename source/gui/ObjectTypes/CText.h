@@ -75,7 +75,7 @@ protected:
 	/**
 	 * Placement of text. Ignored when scrollbars are active.
 	 */
-	CPos m_TextPos;
+	CVector2D m_TextPos;
 
 	// Settings
 	float m_BufferZone;

@@ -405,13 +405,13 @@ InReaction IGUIObject::SendMouseEvent(EGUIMessageType type, const CStr& eventNam
 	// Set up the 'mouse' parameter
 	JS::RootedValue mouse(rq.cx);
 
-	const CPos& mousePos = m_pGUI.GetMousePos();
+	const CVector2D& mousePos = m_pGUI.GetMousePos();
 
 	ScriptInterface::CreateObject(
 		rq,
 		&mouse,
-		"x", mousePos.x,
-		"y", mousePos.y,
+		"x", mousePos.X,
+		"y", mousePos.Y,
 		"buttons", m_pGUI.GetMouseButtons());
 	JS::RootedValueVector paramData(rq.cx);
 	ignore_result(paramData.append(mouse));

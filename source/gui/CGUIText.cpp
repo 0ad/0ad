@@ -368,7 +368,7 @@ bool CGUIText::AssembleCalls(
 
 		for (STextCall& tc : Feedback2.m_TextCalls)
 		{
-			tc.m_Pos = CPos(dx + x + x_pointer, y);
+			tc.m_Pos = CVector2D(dx + x + x_pointer, y);
 
 			x_pointer += tc.m_Size.Width;
 
@@ -426,7 +426,7 @@ bool CGUIText::AssembleCalls(
 	return done;
 }
 
-void CGUIText::Draw(CGUI& pGUI, const CGUIColor& DefaultColor, const CPos& pos, const float z, const CRect& clipping) const
+void CGUIText::Draw(CGUI& pGUI, const CGUIColor& DefaultColor, const CVector2D& pos, const float z, const CRect& clipping) const
 {
 	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_gui_text);
 
@@ -455,7 +455,7 @@ void CGUIText::Draw(CGUI& pGUI, const CGUIColor& DefaultColor, const CPos& pos, 
 
 		textRenderer.Color(tc.m_UseCustomColor ? tc.m_Color : DefaultColor);
 		textRenderer.Font(tc.m_Font);
-		textRenderer.Put(floorf(pos.x + tc.m_Pos.x), floorf(pos.y + tc.m_Pos.y), &tc.m_String);
+		textRenderer.Put(floorf(pos.X + tc.m_Pos.X), floorf(pos.Y + tc.m_Pos.Y), &tc.m_String);
 	}
 
 	textRenderer.Render();

@@ -85,27 +85,27 @@ void CTooltip::SetupText()
 
 	// Position the tooltip relative to the mouse:
 
-	const CPos& mousepos = m_Independent ? m_pGUI.GetMousePos() : m_MousePos;
+	const CVector2D& mousepos = m_Independent ? m_pGUI.GetMousePos() : m_MousePos;
 
 	float textwidth = m_GeneratedTexts[0].GetSize().Width;
 	float textheight = m_GeneratedTexts[0].GetSize().Height;
 
 	CGUISize size;
-	size.pixel.left = mousepos.x + m_Offset.x;
+	size.pixel.left = mousepos.X + m_Offset.X;
 	size.pixel.right = size.pixel.left + textwidth;
 
 	switch (m_Anchor)
 	{
 	case EVAlign::TOP:
-		size.pixel.top = mousepos.y + m_Offset.y;
+		size.pixel.top = mousepos.Y + m_Offset.Y;
 		size.pixel.bottom = size.pixel.top + textheight;
 		break;
 	case EVAlign::BOTTOM:
-		size.pixel.bottom = mousepos.y + m_Offset.y;
+		size.pixel.bottom = mousepos.Y + m_Offset.Y;
 		size.pixel.top = size.pixel.bottom - textheight;
 		break;
 	case EVAlign::CENTER:
-		size.pixel.top = mousepos.y + m_Offset.y - textheight/2.f;
+		size.pixel.top = mousepos.Y + m_Offset.Y - textheight/2.f;
 		size.pixel.bottom = size.pixel.top + textwidth;
 		break;
 	default:
