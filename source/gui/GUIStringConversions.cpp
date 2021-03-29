@@ -141,7 +141,7 @@ bool CGUI::ParseString<CSize2D>(const CGUI* UNUSED(pGUI), const CStrW& Value, CS
 }
 
 template <>
-bool CGUI::ParseString<CPos>(const CGUI* UNUSED(pGUI), const CStrW& Value, CPos& Output)
+bool CGUI::ParseString<CVector2D>(const CGUI* UNUSED(pGUI), const CStrW& Value, CVector2D& Output)
 {
 	const unsigned int NUM_COORDS = 2;
 	float coords[NUM_COORDS];
@@ -152,23 +152,23 @@ bool CGUI::ParseString<CPos>(const CGUI* UNUSED(pGUI), const CStrW& Value, CPos&
 	{
 		if (stream.eof())
 		{
-			LOGWARNING("Too few CPos parameters (min %i). Your input: '%s'", NUM_COORDS, Value.ToUTF8().c_str());
+			LOGWARNING("Too few CVector2D parameters (min %i). Your input: '%s'", NUM_COORDS, Value.ToUTF8().c_str());
 			return false;
 		}
 		stream >> coords[i];
 		if ((stream.rdstate() & std::wstringstream::failbit) != 0)
 		{
-			LOGWARNING("Unable to parse CPos parameters. Your input: '%s'", Value.ToUTF8().c_str());
+			LOGWARNING("Unable to parse CVector2D parameters. Your input: '%s'", Value.ToUTF8().c_str());
 			return false;
 		}
 	}
 
-	Output.x = coords[0];
-	Output.y = coords[1];
+	Output.X = coords[0];
+	Output.Y = coords[1];
 
 	if (!stream.eof())
 	{
-		LOGWARNING("Too many CPos parameters (max %i). Your input: '%s'", NUM_COORDS, Value.ToUTF8().c_str());
+		LOGWARNING("Too many CVector2D parameters (max %i). Your input: '%s'", NUM_COORDS, Value.ToUTF8().c_str());
 		return false;
 	}
 

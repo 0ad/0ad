@@ -20,6 +20,7 @@
 #include "Shapes.h"
 
 #include "maths/Size2D.h"
+#include "maths/Vector2D.h"
 
 CRect::CRect() :
 	left(0.f), top(0.f), right(0.f), bottom(0.f)
@@ -31,8 +32,8 @@ CRect::CRect(const CRect& rect) :
 {
 }
 
-CRect::CRect(const CPos &pos) :
-	left(pos.x), top(pos.y), right(pos.x), bottom(pos.y)
+CRect::CRect(const CVector2D& pos) :
+	left(pos.X), top(pos.Y), right(pos.X), bottom(pos.Y)
 {
 }
 
@@ -41,13 +42,13 @@ CRect::CRect(const CSize2D& size) :
 {
 }
 
-CRect::CRect(const CPos& upperleft, const CPos& bottomright) :
-	left(upperleft.x), top(upperleft.y), right(bottomright.x), bottom(bottomright.y)
+CRect::CRect(const CVector2D& upperleft, const CVector2D& bottomright) :
+	left(upperleft.X), top(upperleft.Y), right(bottomright.X), bottom(bottomright.Y)
 {
 }
 
-CRect::CRect(const CPos& pos, const CSize2D& size) :
-	left(pos.x), top(pos.y), right(pos.x + size.Width), bottom(pos.y + size.Height)
+CRect::CRect(const CVector2D& pos, const CSize2D& size) :
+	left(pos.X), top(pos.Y), right(pos.X + size.Width), bottom(pos.Y + size.Height)
 {
 }
 
@@ -93,9 +94,9 @@ CRect CRect::operator+(const CRect& a) const
 	return CRect(left + a.left, top + a.top, right + a.right, bottom + a.bottom);
 }
 
-CRect CRect::operator+(const CPos& a) const
+CRect CRect::operator+(const CVector2D& a) const
 {
-	return CRect(left + a.x, top + a.y, right + a.x, bottom + a.y);
+	return CRect(left + a.X, top + a.Y, right + a.X, bottom + a.Y);
 }
 
 CRect CRect::operator+(const CSize2D& a) const
@@ -108,9 +109,9 @@ CRect CRect::operator-(const CRect& a) const
 	return CRect(left - a.left, top - a.top, right - a.right, bottom - a.bottom);
 }
 
-CRect CRect::operator-(const CPos& a) const
+CRect CRect::operator-(const CVector2D& a) const
 {
-	return CRect(left - a.x, top - a.y, right - a.x, bottom - a.y);
+	return CRect(left - a.X, top - a.Y, right - a.X, bottom - a.Y);
 }
 
 CRect CRect::operator-(const CSize2D& a) const
@@ -126,12 +127,12 @@ void CRect::operator+=(const CRect& a)
 	bottom += a.bottom;
 }
 
-void CRect::operator+=(const CPos& a)
+void CRect::operator+=(const CVector2D& a)
 {
-	left += a.x;
-	top += a.y;
-	right += a.x;
-	bottom += a.y;
+	left += a.X;
+	top += a.Y;
+	right += a.X;
+	bottom += a.Y;
 }
 
 void CRect::operator+=(const CSize2D& a)
@@ -150,12 +151,12 @@ void CRect::operator-=(const CRect& a)
 	bottom -= a.bottom;
 }
 
-void CRect::operator-=(const CPos& a)
+void CRect::operator-=(const CVector2D& a)
 {
-	left -= a.x;
-	top -= a.y;
-	right -= a.x;
-	bottom -= a.y;
+	left -= a.X;
+	top -= a.Y;
+	right -= a.X;
+	bottom -= a.Y;
 }
 
 void CRect::operator-=(const CSize2D& a)
@@ -181,129 +182,40 @@ CSize2D CRect::GetSize() const
 	return CSize2D(right - left, bottom - top);
 }
 
-CPos CRect::TopLeft() const
+CVector2D CRect::TopLeft() const
 {
-	return CPos(left, top);
+	return CVector2D(left, top);
 }
 
-CPos CRect::TopRight() const
+CVector2D CRect::TopRight() const
 {
-	return CPos(right, top);
+	return CVector2D(right, top);
 }
 
-CPos CRect::BottomLeft() const
+CVector2D CRect::BottomLeft() const
 {
-	return CPos(left, bottom);
+	return CVector2D(left, bottom);
 }
 
-CPos CRect::BottomRight() const
+CVector2D CRect::BottomRight() const
 {
-	return CPos(right, bottom);
+	return CVector2D(right, bottom);
 }
 
-CPos CRect::CenterPoint() const
+CVector2D CRect::CenterPoint() const
 {
-	return CPos((left + right) / 2.f, (top + bottom) / 2.f);
+	return CVector2D((left + right) / 2.f, (top + bottom) / 2.f);
 }
 
-bool CRect::PointInside(const CPos &point) const
+bool CRect::PointInside(const CVector2D& point) const
 {
-	return (point.x >= left &&
-			point.x <= right &&
-			point.y >= top &&
-			point.y <= bottom);
+	return (point.X >= left &&
+			point.X <= right &&
+			point.Y >= top &&
+			point.Y <= bottom);
 }
 
 CRect CRect::Scale(float x, float y) const
 {
 	return CRect(left * x, top * y, right * x, bottom * y);
-}
-
-/*************************************************************************/
-
-CPos::CPos() : x(0.f), y(0.f)
-{
-}
-
-CPos::CPos(const CPos& pos) : x(pos.x), y(pos.y)
-{
-}
-
-CPos::CPos(const CSize2D& s) : x(s.Width), y(s.Height)
-{
-}
-
-CPos::CPos(const float px, const float py) : x(px), y(py)
-{
-}
-
-CPos& CPos::operator=(const CPos& a)
-{
-	x = a.x;
-	y = a.y;
-	return *this;
-}
-
-bool CPos::operator==(const CPos &a) const
-{
-	return x == a.x && y == a.y;
-}
-
-bool CPos::operator!=(const CPos& a) const
-{
-	return !(*this == a);
-}
-
-CPos CPos::operator-() const
-{
-	return CPos(-x, -y);
-}
-
-CPos CPos::operator+() const
-{
-	return *this;
-}
-
-CPos CPos::operator+(const CPos& a) const
-{
-	return CPos(x + a.x, y + a.y);
-}
-
-CPos CPos::operator+(const CSize2D& a) const
-{
-	return CPos(x + a.Width, y + a.Height);
-}
-
-CPos CPos::operator-(const CPos& a) const
-{
-	return CPos(x - a.x, y - a.y);
-}
-
-CPos CPos::operator-(const CSize2D& a) const
-{
-	return CPos(x - a.Width, y - a.Height);
-}
-
-void CPos::operator+=(const CPos& a)
-{
-	x += a.x;
-	y += a.y;
-}
-
-void CPos::operator+=(const CSize2D& a)
-{
-	x += a.Width;
-	y += a.Height;
-}
-
-void CPos::operator-=(const CPos& a)
-{
-	x -= a.x;
-	y -= a.y;
-}
-
-void CPos::operator-=(const CSize2D& a)
-{
-	x -= a.Width;
-	y -= a.Height;
 }

@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,6 +25,7 @@
 #define INCLUDED_IGUISCROLLBAR
 
 #include "gui/CGUISprite.h"
+#include "maths/Vector2D.h"
 #include "ps/CStr.h"
 
 class CGUI;
@@ -175,7 +176,7 @@ public:
 	/**
 	 * Set m_Pos with g_mouse_x/y input, i.e. when draggin.
 	 */
-	virtual void SetPosFromMousePos(const CPos& mouse) = 0;
+	virtual void SetPosFromMousePos(const CVector2D& mouse) = 0;
 
 	/**
 	 * Hovering the scroll minus button
@@ -183,7 +184,7 @@ public:
 	 * @param mouse current mouse position
 	 * @return True if mouse positions are hovering the button
 	 */
-	virtual bool HoveringButtonMinus(const CPos& UNUSED(mouse)) { return false; }
+	virtual bool HoveringButtonMinus(const CVector2D& UNUSED(mouse)) { return false; }
 
 	/**
 	 * Hovering the scroll plus button
@@ -191,7 +192,7 @@ public:
 	 * @param mouse current mouse position
 	 * @return True if mouse positions are hovering the button
 	 */
-	virtual bool HoveringButtonPlus(const CPos& UNUSED(mouse)) { return false; }
+	virtual bool HoveringButtonPlus(const CVector2D& UNUSED(mouse)) { return false; }
 
 	/**
 	 * Get scroll-position
@@ -393,7 +394,7 @@ protected:
 	/**
 	 * Mouse position when bar was pressed
 	 */
-	CPos m_BarPressedAtPos;
+	CVector2D m_BarPressedAtPos;
 
 	//@}
 	//--------------------------------------------------------

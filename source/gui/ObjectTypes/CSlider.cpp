@@ -98,7 +98,7 @@ void CSlider::HandleMessage(SGUIMessage& Message)
 		if (m_Pressed)
 		{
 			m_Mouse = m_pGUI.GetMousePos();
-			IncrementallyChangeValue((m_Mouse.x - GetButtonRect().CenterPoint().x) * GetSliderRatio());
+			IncrementallyChangeValue((m_Mouse.X - GetButtonRect().CenterPoint().X) * GetSliderRatio());
 		}
 		break;
 	}

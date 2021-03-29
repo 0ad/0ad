@@ -350,7 +350,7 @@ function updateChart(number, category, item, itemNumber, type)
 					g_ScorePanelsData[category].counters, g_ScorePanelsData[category].headings);
 				if (type)
 					value = value[type];
-				data.push([g_GameData.sim.playerStates[1].sequences.time[index], value]);
+				data.push({ "x": g_GameData.sim.playerStates[1].sequences.time[index], "y": value });
 			}
 			series.push(data);
 		}
@@ -364,7 +364,7 @@ function updateChart(number, category, item, itemNumber, type)
 				let value = g_ScorePanelsData[category].counters[itemNumber].fn(playerState, index, item);
 				if (type)
 					value = value[type];
-				data.push([playerState.sequences.time[index], value]);
+				data.push({ "x": playerState.sequences.time[index], "y": value });
 			}
 			series.push(data);
 		}

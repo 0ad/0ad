@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -40,16 +40,16 @@ pipeline {
 				environment name: 'no-cache', value: 'true'
 			}
 			steps {
-				sh 'docker build --no-cache -t 0ad-gcc6 ~/dockerfiles/gcc6'
-				// WIP: clang and recent gccs
+				sh 'docker build --no-cache -t build-base ~/dockerfiles/build-base'
+				sh 'docker build --no-cache -t 0ad-gcc7 ~/dockerfiles/gcc7'
 				sh 'docker build --no-cache -t 0ad-coala ~/dockerfiles/coala'
 				sh 'docker build --no-cache -t 0ad-translations ~/dockerfiles/translations'
 			}
 		}
 		stage("Build") {
 			steps {
-				sh 'docker build -t 0ad-gcc6 ~/dockerfiles/gcc6'
-				// WIP: clang and recent gccs
+				sh 'docker build -t build-base ~/dockerfiles/build-base'
+				sh 'docker build -t 0ad-gcc7 ~/dockerfiles/gcc7'
 				sh 'docker build -t 0ad-coala ~/dockerfiles/coala'
 				sh 'docker build -t 0ad-translations ~/dockerfiles/translations'
 			}
@@ -71,7 +71,6 @@ pipeline {
 				sh "sudo zfs destroy -R zpool0/trunk@latest || true"
 
 				sh "sudo zfs snapshot zpool0/trunk@base"
-				sh "sudo zfs clone zpool0/trunk@base zpool0/gcc6"
 				sh "sudo zfs clone zpool0/trunk@base zpool0/gcc7"
 
 				sh "sudo zfs snapshot zpool0/trunk@latest"

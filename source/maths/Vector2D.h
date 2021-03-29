@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,24 +15,23 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
- * Provides an interface for a vector in R2 and allows vector and
- * scalar operations on it
- */
-
-#ifndef INCLUDED_MATHS_VECTOR2D
-#define INCLUDED_MATHS_VECTOR2D
-
+#ifndef INCLUDED_VECTOR2D
+#define INCLUDED_VECTOR2D
 
 #include <math.h>
 
-///////////////////////////////////////////////////////////////////////////////
-// CVector2D:
+class CSize2D;
+
+/*
+ * Provides an interface for a vector in R2 and allows vector and
+ * scalar operations on it.
+ */
 class CVector2D
 {
 public:
 	CVector2D() : X(0.0f), Y(0.0f) {}
 	CVector2D(float x, float y) : X(x), Y(y) {}
+	CVector2D(const CSize2D& size);
 
 	operator float*()
 	{
@@ -43,6 +42,9 @@ public:
 	{
 		return &X;
 	}
+
+	bool operator==(const CVector2D& v) const;
+	bool operator!=(const CVector2D& v) const;
 
 	CVector2D operator-() const
 	{
@@ -153,10 +155,14 @@ public:
 		Y = newY;
 	}
 
+	CVector2D operator+(const CSize2D& size) const;
+	CVector2D operator-(const CSize2D& size) const;
+
+	void operator+=(const CSize2D& size);
+	void operator-=(const CSize2D& size);
+
 public:
 	float X, Y;
 };
-//////////////////////////////////////////////////////////////////////////////////
 
-
-#endif
+#endif // INCLUDED_VECTOR2D

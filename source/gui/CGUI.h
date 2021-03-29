@@ -29,6 +29,7 @@
 #include "gui/SGUIStyle.h"
 #include "lib/input.h"
 #include "maths/Size2D.h"
+#include "maths/Vector2D.h"
 #include "ps/Shapes.h"
 #include "ps/XML/Xeromyces.h"
 #include "scriptinterface/ScriptInterface.h"
@@ -179,7 +180,7 @@ public:
 	/**
 	 * Returns the current screen coordinates of the cursor.
 	 */
-	const CPos& GetMousePos() const { return m_MousePos; };
+	const CVector2D& GetMousePos() const { return m_MousePos; };
 
 	/**
 	 * Returns the currently pressed mouse buttons.
@@ -555,7 +556,7 @@ private:
 	 * ChooseMouseOverAndClosest broadcast -
 	 * we'd need to pack this and pNearest in a struct
 	 */
-	CPos m_MousePos;
+	CVector2D m_MousePos;
 
 	/**
 	 * Indicates which buttons are pressed (bit 0 = LMB,

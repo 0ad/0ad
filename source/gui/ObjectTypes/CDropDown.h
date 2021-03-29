@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -31,6 +31,7 @@ GUI Object - Drop Down (list)
 #include "gui/CGUISprite.h"
 #include "gui/ObjectBases/IGUIObject.h"
 #include "gui/ObjectTypes/CList.h"
+#include "maths/Vector2D.h"
 
 #include <string>
 
@@ -96,7 +97,7 @@ protected:
 	/**
 	 * Placement of text.
 	 */
-	CPos m_TextPos;
+	CVector2D m_TextPos;
 
 	// Is the dropdown opened?
 	bool m_Open;

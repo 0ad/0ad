@@ -397,7 +397,7 @@ void MountMods(const Paths& paths, const std::vector<CStr>& mods)
 
 	size_t userFlags = VFS_MOUNT_WATCH|VFS_MOUNT_ARCHIVABLE;
 	size_t baseFlags = userFlags|VFS_MOUNT_MUST_EXIST;
-	size_t priority;
+	size_t priority = 0;
 	for (size_t i = 0; i < mods.size(); ++i)
 	{
 		priority = i + 1; // Mods are higher priority than regular mountings, which default to priority 0

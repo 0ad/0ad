@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -257,12 +257,21 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 			}
 			else if (protokey == JSProto_Number)
 			{
-				// Standard Number object
-				m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_OBJECT_NUMBER);
 				// Get primitive value
 				double d;
 				if (!JS::ToNumber(rq.cx, val, &d))
 					throw PSERROR_Serialize_ScriptError("JS::ToNumber failed");
+
+				// Refuse to serialize NaN values: their representation can differ, leading to OOS
+				// and in general this is indicative of an underlying bug rather than desirable behaviour.
+				if (std::isnan(d))
+				{
+					LOGERROR("Cannot serialize NaN values.");
+					throw PSERROR_Serialize_InvalidScriptValue();
+				}
+
+				// Standard Number object
+				m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_OBJECT_NUMBER);
 				m_Serializer.NumberDouble_Unbounded("value", d);
 				break;
 			}
@@ -373,12 +382,19 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 	}
 	case JSTYPE_NUMBER:
 	{
+		// Refuse to serialize NaN values: their representation can differ, leading to OOS
+		// and in general this is indicative of an underlying bug rather than desirable behaviour.
+		if (val == JS::NaNValue())
+		{
+			LOGERROR("Cannot serialize NaN values.");
+			throw PSERROR_Serialize_InvalidScriptValue();
+		}
+
 		// To reduce the size of the serialized data, we handle integers and doubles separately.
 		// We can't check for val.isInt32 and val.isDouble directly, because integer numbers are not guaranteed
 		// to be represented as integers. A number like 33 could be stored as integer on the computer of one player
 		// and as double on the other player's computer. That would cause out of sync errors in multiplayer games because
 		// their binary representation and thus the hash would be different.
-
 		double d;
 		d = val.toNumber();
 		i32 integer;

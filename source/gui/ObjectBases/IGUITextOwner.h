@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -34,12 +34,14 @@ GUI Object Base - Text Owner
 
 #include <vector>
 
-class CStrW;
 struct CGUIColor;
 struct SGUIMessage;
 class CGUIText;
 class CGUIString;
 class IGUIObject;
+
+class CStrW;
+class CVector2D;
 
 /**
  * Framework for handling Output text.
@@ -82,7 +84,7 @@ public:
 	 * @param clipping Clipping rectangle, don't even add a parameter
 	 *		  to get no clipping.
 	 */
-	virtual void DrawText(size_t index, const CGUIColor& color, const CPos& pos, float z, const CRect& clipping = CRect());
+	virtual void DrawText(size_t index, const CGUIColor& color, const CVector2D& pos, float z, const CRect& clipping = CRect());
 
 	/**
 	 * Test if mouse position is over an icon
@@ -113,7 +115,7 @@ protected:
 	/**
 	 * Calculate the position for the text, based on the alignment.
 	 */
-	void CalculateTextPosition(CRect& ObjSize, CPos& TextPos, CGUIText& Text);
+	void CalculateTextPosition(CRect& ObjSize, CVector2D& TextPos, CGUIText& Text);
 
 private:
 	/**

@@ -22,6 +22,7 @@
 #include "gui/SettingTypes/CGUIColor.h"
 #include "gui/SettingTypes/EAlign.h"
 #include "maths/Size2D.h"
+#include "maths/Vector2D.h"
 #include "ps/CStrIntern.h"
 #include "ps/Shapes.h"
 
@@ -102,7 +103,7 @@ public:
 		/**
 		 * Position
 		 */
-		CPos m_Pos;
+		CVector2D m_Pos;
 
 		/**
 		 * Size
@@ -171,7 +172,7 @@ public:
 	/**
 	 * Draw this CGUIText object
 	 */
-	void Draw(CGUI& pGUI, const CGUIColor& DefaultColor, const CPos& pos, const float z, const CRect& clipping) const;
+	void Draw(CGUI& pGUI, const CGUIColor& DefaultColor, const CVector2D& pos, const float z, const CRect& clipping) const;
 
 	const CSize2D& GetSize() const { return m_Size; }
 

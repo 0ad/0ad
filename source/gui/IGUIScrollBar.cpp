@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -92,7 +92,7 @@ void IGUIScrollBar::HandleMessage(SGUIMessage& Message)
 	{
 		// TODO Gee: Optimizations needed!
 
-		const CPos& mouse = m_pGUI.GetMousePos();
+		const CVector2D& mouse = m_pGUI.GetMousePos();
 
 		// If bar is being dragged
 		if (m_BarPressed)
@@ -119,7 +119,7 @@ void IGUIScrollBar::HandleMessage(SGUIMessage& Message)
 		if (!m_pHostObject)
 			break;
 
-		const CPos& mouse = m_pGUI.GetMousePos();
+		const CVector2D& mouse = m_pGUI.GetMousePos();
 
 		// if bar is pressed
 		if (GetBarRect().PointInside(mouse))
@@ -149,7 +149,7 @@ void IGUIScrollBar::HandleMessage(SGUIMessage& Message)
 			{
 				// Scroll plus or minus a lot, this might change, it doesn't
 				//  have to be fancy though.
-				if (mouse.y < GetBarRect().top)
+				if (mouse.Y < GetBarRect().top)
 					ScrollMinusPlenty();
 				else
 					ScrollPlusPlenty();

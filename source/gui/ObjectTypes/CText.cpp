@@ -224,7 +224,7 @@ void CText::Draw()
 	const CGUIColor& color = m_Enabled ? m_TextColor : m_TextColorDisabled;
 
 	if (m_ScrollBar)
-		DrawText(0, color, m_CachedActualSize.TopLeft() - CPos(0.f, scroll), bz + 0.1f, cliparea);
+		DrawText(0, color, m_CachedActualSize.TopLeft() - CVector2D(0.f, scroll), bz + 0.1f, cliparea);
 	else
 		DrawText(0, color, m_TextPos, bz + 0.1f, cliparea);
 }

@@ -118,7 +118,7 @@ void CDropDown::HandleMessage(SGUIMessage& Message)
 		if (!m_Open)
 			break;
 
-		CPos mouse = m_pGUI.GetMousePos();
+		CVector2D mouse = m_pGUI.GetMousePos();
 
 		if (!GetListRect().PointInside(mouse))
 			break;
@@ -126,16 +126,16 @@ void CDropDown::HandleMessage(SGUIMessage& Message)
 		const float scroll = m_ScrollBar ? GetScrollBar(0).GetPos() : 0.f;
 
 		CRect rect = GetListRect();
-		mouse.y += scroll;
+		mouse.Y += scroll;
 		int set = -1;
 		for (int i = 0; i < static_cast<int>(m_List.m_Items.size()); ++i)
 		{
-			if (mouse.y >= rect.top + m_ItemsYPositions[i] &&
-				mouse.y < rect.top + m_ItemsYPositions[i+1] &&
+			if (mouse.Y >= rect.top + m_ItemsYPositions[i] &&
+				mouse.Y < rect.top + m_ItemsYPositions[i+1] &&
 				// mouse is not over scroll-bar
 				(m_HideScrollBar ||
-					mouse.x < GetScrollBar(0).GetOuterRect().left ||
-					mouse.x > GetScrollBar(0).GetOuterRect().right))
+					mouse.X < GetScrollBar(0).GetOuterRect().left ||
+					mouse.X > GetScrollBar(0).GetOuterRect().right))
 			{
 				set = i;
 			}
@@ -193,7 +193,7 @@ void CDropDown::HandleMessage(SGUIMessage& Message)
 		}
 		else
 		{
-			const CPos& mouse = m_pGUI.GetMousePos();
+			const CVector2D& mouse = m_pGUI.GetMousePos();
 
 			// If the regular area is pressed, then abort, and close.
 			if (m_CachedActualSize.PointInside(mouse))
@@ -205,9 +205,9 @@ void CDropDown::HandleMessage(SGUIMessage& Message)
 			}
 
 			if (m_HideScrollBar ||
-				mouse.x < GetScrollBar(0).GetOuterRect().left ||
-				mouse.x > GetScrollBar(0).GetOuterRect().right ||
-				mouse.y < GetListRect().top)
+				mouse.X < GetScrollBar(0).GetOuterRect().left ||
+				mouse.X > GetScrollBar(0).GetOuterRect().right ||
+				mouse.Y < GetListRect().top)
 			{
 				m_Open = false;
 				GetScrollBar(0).SetZ(GetBufferedZ());
@@ -472,7 +472,7 @@ void CDropDown::Draw()
 		CRect cliparea(m_CachedActualSize.left, m_CachedActualSize.top,
 					   m_CachedActualSize.right - m_ButtonWidth, m_CachedActualSize.bottom);
 
-		CPos pos(m_CachedActualSize.left, m_CachedActualSize.top);
+		CVector2D pos(m_CachedActualSize.left, m_CachedActualSize.top);
 		DrawText(m_Selected, m_Enabled ? m_TextColorSelected : m_TextColorDisabled, pos, bz + 0.1f, cliparea);
 	}
 

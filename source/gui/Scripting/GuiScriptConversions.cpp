@@ -158,62 +158,6 @@ template<> void ScriptInterface::ToJSVal<CGUIColor>(const ScriptRequest& rq, JS:
  */
 template<> bool ScriptInterface::FromJSVal<CGUIColor>(const ScriptRequest& rq, JS::HandleValue v, CGUIColor& out) = delete;
 
-template<> void ScriptInterface::ToJSVal<CSize2D>(const ScriptRequest& rq, JS::MutableHandleValue ret, const CSize2D& val)
-{
-	CreateObject(rq, ret, "width", val.Width, "height", val.Height);
-}
-
-template<> bool ScriptInterface::FromJSVal<CSize2D>(const ScriptRequest& rq, JS::HandleValue v, CSize2D& out)
-{
-	if (!v.isObject())
-	{
-		LOGERROR("CSize2D value must be an object!");
-		return false;
-	}
-
-	if (!FromJSProperty(rq, v, "width", out.Width))
-	{
-		LOGERROR("Failed to get CSize2D.Width property");
-		return false;
-	}
-
-	if (!FromJSProperty(rq, v, "height", out.Height))
-	{
-		LOGERROR("Failed to get CSize2D.Height property");
-		return false;
-	}
-
-	return true;
-}
-
-template<> void ScriptInterface::ToJSVal<CPos>(const ScriptRequest& rq, JS::MutableHandleValue ret, const CPos& val)
-{
-	CreateObject(rq, ret, "x", val.x, "y", val.y);
-}
-
-template<> bool ScriptInterface::FromJSVal<CPos>(const ScriptRequest& rq, JS::HandleValue v, CPos& out)
-{
-	if (!v.isObject())
-	{
-		LOGERROR("CPos value must be an object!");
-		return false;
-	}
-
-	if (!FromJSProperty(rq, v, "x", out.x))
-	{
-		LOGERROR("Failed to get CPos.x property");
-		return false;
-	}
-
-	if (!FromJSProperty(rq, v, "y", out.y))
-	{
-		LOGERROR("Failed to get CPos.y property");
-		return false;
-	}
-
-	return true;
-}
-
 template<> void ScriptInterface::ToJSVal<CRect>(const ScriptRequest& rq, JS::MutableHandleValue ret, const CRect& val)
 {
 	CreateObject(
@@ -354,6 +298,62 @@ template<> bool ScriptInterface::FromJSVal<CGUISpriteInstance>(const ScriptReque
 		return false;
 
 	out.SetName(name);
+	return true;
+}
+
+template<> void ScriptInterface::ToJSVal<CSize2D>(const ScriptRequest& rq, JS::MutableHandleValue ret, const CSize2D& val)
+{
+	CreateObject(rq, ret, "width", val.Width, "height", val.Height);
+}
+
+template<> bool ScriptInterface::FromJSVal<CSize2D>(const ScriptRequest& rq, JS::HandleValue v, CSize2D& out)
+{
+	if (!v.isObject())
+	{
+		LOGERROR("CSize2D value must be an object!");
+		return false;
+	}
+
+	if (!FromJSProperty(rq, v, "width", out.Width))
+	{
+		LOGERROR("Failed to get CSize2D.Width property");
+		return false;
+	}
+
+	if (!FromJSProperty(rq, v, "height", out.Height))
+	{
+		LOGERROR("Failed to get CSize2D.Height property");
+		return false;
+	}
+
+	return true;
+}
+
+template<> void ScriptInterface::ToJSVal<CVector2D>(const ScriptRequest& rq, JS::MutableHandleValue ret, const CVector2D& val)
+{
+	CreateObject(rq, ret, "x", val.X, "y", val.Y);
+}
+
+template<> bool ScriptInterface::FromJSVal<CVector2D>(const ScriptRequest& rq, JS::HandleValue v, CVector2D& out)
+{
+	if (!v.isObject())
+	{
+		LOGERROR("CVector2D value must be an object!");
+		return false;
+	}
+
+	if (!FromJSProperty(rq, v, "x", out.X))
+	{
+		LOGERROR("Failed to get CVector2D.X property");
+		return false;
+	}
+
+	if (!FromJSProperty(rq, v, "y", out.Y))
+	{
+		LOGERROR("Failed to get CVector2D.Y property");
+		return false;
+	}
+
 	return true;
 }
 

@@ -16,8 +16,8 @@ class HotkeyPicker
 
 		if (this.metadata.hotkeys[name])
 		{
-			Engine.GetGUIObjectByName("hotkeyPickerTitle").caption = translate(this.metadata.hotkeys[name].name);
-			Engine.GetGUIObjectByName("hotkeyPickerDescHotkey").caption = translate(this.metadata.hotkeys[name].desc);
+			Engine.GetGUIObjectByName("hotkeyPickerTitle").caption = translateWithContext("hotkey metadata", this.metadata.hotkeys[name].name);
+			Engine.GetGUIObjectByName("hotkeyPickerDescHotkey").caption = translateWithContext("hotkey metadata", this.metadata.hotkeys[name].desc);
 		}
 		else
 		{

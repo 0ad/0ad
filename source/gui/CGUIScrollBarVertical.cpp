@@ -31,7 +31,7 @@ CGUIScrollBarVertical::~CGUIScrollBarVertical()
 {
 }
 
-void CGUIScrollBarVertical::SetPosFromMousePos(const CPos& mouse)
+void CGUIScrollBarVertical::SetPosFromMousePos(const CVector2D& mouse)
 {
 	if (!GetStyle())
 		return;
@@ -44,7 +44,7 @@ void CGUIScrollBarVertical::SetPosFromMousePos(const CPos& mouse)
 	if (GetStyle()->m_UseEdgeButtons)
 		emptyBackground -= GetStyle()->m_Width * 2;
 
-	m_Pos = m_PosWhenPressed + GetMaxPos() * (mouse.y - m_BarPressedAtPos.y) / emptyBackground;
+	m_Pos = m_PosWhenPressed + GetMaxPos() * (mouse.Y - m_BarPressedAtPos.Y) / emptyBackground;
 }
 
 void CGUIScrollBarVertical::Draw()
@@ -169,28 +169,28 @@ CRect CGUIScrollBarVertical::GetOuterRect() const
 	return ret;
 }
 
-bool CGUIScrollBarVertical::HoveringButtonMinus(const CPos& mouse)
+bool CGUIScrollBarVertical::HoveringButtonMinus(const CVector2D& mouse)
 {
 	if (!GetStyle())
 		return false;
 
 	float StartX = m_RightAligned ? m_X-GetStyle()->m_Width : m_X;
 
-	return mouse.x >= StartX &&
-	       mouse.x <= StartX + GetStyle()->m_Width &&
-	       mouse.y >= m_Y &&
-	       mouse.y <= m_Y + GetStyle()->m_Width;
+	return mouse.X >= StartX &&
+	       mouse.X <= StartX + GetStyle()->m_Width &&
+	       mouse.Y >= m_Y &&
+	       mouse.Y <= m_Y + GetStyle()->m_Width;
 }
 
-bool CGUIScrollBarVertical::HoveringButtonPlus(const CPos& mouse)
+bool CGUIScrollBarVertical::HoveringButtonPlus(const CVector2D& mouse)
 {
 	if (!GetStyle())
 		return false;
 
 	float StartX = m_RightAligned ? m_X-GetStyle()->m_Width : m_X;
 
-	return mouse.x > StartX &&
-	       mouse.x < StartX + GetStyle()->m_Width &&
-	       mouse.y > m_Y + m_Length - GetStyle()->m_Width &&
-	       mouse.y < m_Y + m_Length;
+	return mouse.X > StartX &&
+	       mouse.X < StartX + GetStyle()->m_Width &&
+	       mouse.Y > m_Y + m_Length - GetStyle()->m_Width &&
+	       mouse.Y < m_Y + m_Length;
 }

@@ -948,7 +948,7 @@ void CInput::HandleMessage(SGUIMessage& Message)
 		    m_MultiLine &&
 		    GetScrollBar(0).GetStyle())
 		{
-			if (m_pGUI.GetMousePos().x > m_CachedActualSize.right - GetScrollBar(0).GetStyle()->m_Width)
+			if (m_pGUI.GetMousePos().X > m_CachedActualSize.right - GetScrollBar(0).GetStyle()->m_Width)
 				break;
 		}
 
@@ -1126,8 +1126,8 @@ void CInput::HandleMessage(SGUIMessage& Message)
 		SDL_Rect rect;
 		rect.h = m_CachedActualSize.GetSize().Height;
 		rect.w = m_CachedActualSize.GetSize().Width;
-		rect.x = m_CachedActualSize.TopLeft().x;
-		rect.y = m_CachedActualSize.TopLeft().y;
+		rect.x = m_CachedActualSize.TopLeft().X;
+		rect.y = m_CachedActualSize.TopLeft().Y;
 		SDL_SetTextInputRect(&rect);
 		SDL_StartTextInput();
 		break;
@@ -1891,7 +1891,7 @@ int CInput::GetMouseHoveringTextPosition() const
 
 	std::list<SRow>::const_iterator current = m_CharacterPositions.begin();
 
-	CPos mouse = m_pGUI.GetMousePos();
+	CVector2D mouse = m_pGUI.GetMousePos();
 
 	if (m_MultiLine)
 	{
@@ -1906,10 +1906,10 @@ int CInput::GetMouseHoveringTextPosition() const
 
 		// Change mouse position relative to text.
 		mouse -= m_CachedActualSize.TopLeft();
-		mouse.x -= m_BufferZone;
-		mouse.y += scroll - m_BufferZone;
+		mouse.X -= m_BufferZone;
+		mouse.Y += scroll - m_BufferZone;
 
-		int row = (int)((mouse.y) / spacing);
+		int row = (int)((mouse.Y) / spacing);
 
 		if (row < 0)
 			row = 0;
@@ -1928,7 +1928,7 @@ int CInput::GetMouseHoveringTextPosition() const
 		// current is already set to begin,
 		//  but we'll change the mouse.x to fit our horizontal scrolling
 		mouse -= m_CachedActualSize.TopLeft();
-		mouse.x -= m_BufferZone - m_HorizontalScroll;
+		mouse.X -= m_BufferZone - m_HorizontalScroll;
 		// mouse.y is moot
 	}
 
@@ -1936,7 +1936,7 @@ int CInput::GetMouseHoveringTextPosition() const
 
 	// Okay, now loop through the glyphs to find the appropriate X position
 	float dummy;
-	retPosition += GetXTextPosition(current, mouse.x, dummy);
+	retPosition += GetXTextPosition(current, mouse.X, dummy);
 
 	return retPosition;
 }

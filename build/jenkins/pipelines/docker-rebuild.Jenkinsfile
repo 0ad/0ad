@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,7 +18,7 @@
 // This pipeline is used to build a clean base from scratch in order to
 // use ZFS snapshots efficiently.
 
-def compilers = ["gcc6"]
+def compilers = ["gcc7"]
 
 def volumeUpdatesMap = compilers.collectEntries {
 	["${it}": volumeUpdate(it)]

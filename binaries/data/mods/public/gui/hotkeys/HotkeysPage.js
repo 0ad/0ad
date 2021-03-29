@@ -67,7 +67,7 @@ class HotkeysPage
 		let dropdown = Engine.GetGUIObjectByName("hotkeyFilter");
 		let names = [];
 		for (let cat in this.categories)
-			names.push(translate(this.categories[cat].name));
+			names.push(translateWithContext("hotkey metadata", this.categories[cat].name));
 		dropdown.list = [translate("All Hotkeys")].concat(names);
 		dropdown.list_data = [-1].concat(Object.keys(this.categories));
 		dropdown.selected = 0;
@@ -87,10 +87,10 @@ class HotkeysPage
 			hotkeys = Object.values(this.categories).map(x => x.hotkeys).flat();
 		hotkeys = hotkeys.filter(x => {
 			return x.indexOf(textFilter) !== -1 ||
-				translate(this.metadata.hotkeys[x]?.name || x).toLowerCase().indexOf(textFilter) !== -1;
+				translateWithContext("hotkey metadata", this.metadata.hotkeys[x]?.name || x).toLowerCase().indexOf(textFilter) !== -1;
 		});
 
-		hotkeyList.list_name = hotkeys.map(x => translate(this.metadata.hotkeys[x]?.name || x));
+		hotkeyList.list_name = hotkeys.map(x => translateWithContext("hotkey metadata", this.metadata.hotkeys[x]?.name || x));
 		hotkeyList.list_mapping = hotkeys.map(x => formatHotkeyCombinations(this.hotkeys[x]));
 		hotkeyList.list = hotkeys.map(() => 0);
 		hotkeyList.list_data = hotkeys.map(x => x);
@@ -104,7 +104,7 @@ class HotkeysPage
 		else if (dropdown.hovered === 0)
 			dropdown.tooltip = translate("All available hotkeys.");
 		else
-			dropdown.tooltip = translate(this.categories[dropdown.list_data[dropdown.hovered]].desc);
+			dropdown.tooltip = translateWithContext("hotkey metadata", this.categories[dropdown.list_data[dropdown.hovered]].desc);
 	}
 
 	onHotkeyHover()
@@ -115,8 +115,9 @@ class HotkeysPage
 		else
 		{
 			let hotkey = hotkeyList.list_data[hotkeyList.hovered];
-			let tooltip = this.metadata.hotkeys[hotkey]?.desc || markForTranslation("No tooltip available");
-			hotkeyList.tooltip = translate(tooltip);
+			hotkeyList.tooltip = this.metadata.hotkeys[hotkey]?.desc ?
+						translateWithContext("hotkey metadata", this.metadata.hotkeys[hotkey]?.desc) :
+						translate(markForTranslation("No tooltip available"));
 		}
 	}
 

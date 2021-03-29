@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -55,17 +55,17 @@ public:
 	/**
 	 * Set m_Pos with g_mouse_x/y input, i.e. when dragging.
 	 */
-	virtual void SetPosFromMousePos(const CPos& mouse);
+	virtual void SetPosFromMousePos(const CVector2D& mouse);
 
 	/**
 	 * @see IGUIScrollBar#HoveringButtonMinus
 	 */
-	virtual bool HoveringButtonMinus(const CPos& mouse);
+	virtual bool HoveringButtonMinus(const CVector2D& mouse);
 
 	/**
 	 * @see IGUIScrollBar#HoveringButtonPlus
 	 */
-	virtual bool HoveringButtonPlus(const CPos& mouse);
+	virtual bool HoveringButtonPlus(const CVector2D& mouse);
 
 	/**
 	 * Set Right Aligned

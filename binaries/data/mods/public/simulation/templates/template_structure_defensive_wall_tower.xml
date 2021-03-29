@@ -8,6 +8,7 @@
   </Cost>
   <GarrisonHolder>
     <Max>4</Max>
+    <List datatype="tokens">Infantry</List>
     <EjectHealth>0.1</EjectHealth>
     <EjectClassesOnDestroy datatype="tokens">Unit</EjectClassesOnDestroy>
     <BuffHeal>0</BuffHeal>

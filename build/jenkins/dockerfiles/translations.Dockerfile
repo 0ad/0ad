@@ -1,17 +1,9 @@
-FROM gcc:8
+FROM build-base
 
-RUN useradd -ms /bin/bash --uid 1006 builder
+# This silences a transifex-client warning
+RUN apt-get install -qqy git
 
-RUN apt-get -qq update && apt-get -qq upgrade
-RUN apt-get install -qqy cmake git gettext libxml2-dev python python-pip subversion
-
-RUN pip2 install transifex-client lxml
-
-RUN git clone https://anongit.kde.org/pology.git /root/pology
-RUN mkdir /root/pology/build
-WORKDIR /root/pology/build
-RUN cmake ..
-RUN make && make install
+RUN pip3 install transifex-client lxml babel
 
 USER builder
 COPY --chown=builder transifexrc /home/builder/.transifexrc

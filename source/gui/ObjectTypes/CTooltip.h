@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,6 +22,7 @@
 #include "gui/ObjectBases/IGUIObject.h"
 #include "gui/ObjectBases/IGUITextOwner.h"
 #include "gui/SettingTypes/CGUIString.h"
+#include "maths/Vector2D.h"
 
 /**
  * Dynamic tooltips. Similar to CText.
@@ -57,11 +58,11 @@ protected:
 	i32 m_Delay;
 	CGUIColor m_TextColor;
 	float m_MaxWidth;
-	CPos m_Offset;
+	CVector2D m_Offset;
 	EVAlign m_Anchor;
 	EAlign m_TextAlign;
 	bool m_Independent;
-	CPos m_MousePos;
+	CVector2D m_MousePos;
 	CStr m_UseObject;
 	bool m_HideObject;
 };

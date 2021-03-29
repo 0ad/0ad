@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,6 +21,7 @@ pipeline {
 	parameters {
 		string(name: 'SVN_REV', defaultValue: '', description: 'For instance 21000')
 		string(name: 'PHID', defaultValue: '', description: 'Phabricator ID')
+		booleanParam(name: 'CLEAN_WORKSPACE', defaultValue: false, description: 'Delete the workspace before compiling (NB: does not delete the compiled libraries)')
 	}
 
 	stages {
@@ -49,7 +50,12 @@ pipeline {
 		}
 		stage("Update workspaces") {
 			steps {
-				sh "cd build/workspaces/ && ./update-workspaces.sh -j4 --atlas --jenkins-tests"
+				script {
+					if (params.CLEAN_WORKSPACE) {
+						sh "rm -rf build/workspaces/gcc"
+					}
+					sh "cd build/workspaces/ && ./update-workspaces.sh -j4 --jenkins-tests"
+				}
 			}
 		}
 		stage("Debug Build & Tests") {

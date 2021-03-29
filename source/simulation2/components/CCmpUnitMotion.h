@@ -1632,7 +1632,11 @@ void CCmpUnitMotion::RequestShortPath(const CFixedVector2D &from, const PathGoal
 	{
 		CFixedVector2D dist(from.X - goal.x, from.Y - goal.z);
 		if (dist.CompareLength(searchRange - entity_pos_t::FromInt(1)) >= 0)
+		{
 			searchRange = dist.Length() + fixed::FromInt(1);
+			if (searchRange > SHORT_PATH_MAX_SEARCH_RANGE)
+				searchRange = SHORT_PATH_MAX_SEARCH_RANGE;
+		}
 	}
 
 	m_ExpectedPathTicket.m_Type = Ticket::SHORT_PATH;

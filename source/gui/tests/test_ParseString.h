@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -92,13 +92,13 @@ public:
 	void test_pos()
 	{
 		TestLogger nolog;
-		CPos test;
+		CVector2D test;
 
-		TS_ASSERT(CGUI::ParseString<CPos>(nullptr, CStrW(L"0.0 10.0"), test));
-		TS_ASSERT_EQUALS(CPos(0.0, 10.0), test);
+		TS_ASSERT(CGUI::ParseString<CVector2D>(nullptr, CStrW(L"0.0 10.0"), test));
+		TS_ASSERT_EQUALS(CVector2D(0.0, 10.0), test);
 
-		TS_ASSERT(!CGUI::ParseString<CPos>(nullptr, CStrW(L"0"), test));
-		TS_ASSERT(!CGUI::ParseString<CPos>(nullptr, CStrW(L"0 10 20"), test));
-		TS_ASSERT(!CGUI::ParseString<CPos>(nullptr, CStrW(L"0,0 10,0"), test));
+		TS_ASSERT(!CGUI::ParseString<CVector2D>(nullptr, CStrW(L"0"), test));
+		TS_ASSERT(!CGUI::ParseString<CVector2D>(nullptr, CStrW(L"0 10 20"), test));
+		TS_ASSERT(!CGUI::ParseString<CVector2D>(nullptr, CStrW(L"0,0 10,0"), test));
 	}
 };

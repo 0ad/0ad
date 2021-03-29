@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -110,7 +110,7 @@ bool GUITooltip::GetTooltip(IGUIObject* obj, CStr& style)
 	return false;
 }
 
-void GUITooltip::ShowTooltip(IGUIObject* obj, const CPos& pos, const CStr& style, CGUI& pGUI)
+void GUITooltip::ShowTooltip(IGUIObject* obj, const CVector2D& pos, const CStr& style, CGUI& pGUI)
 {
 	ENSURE(obj);
 
@@ -134,7 +134,7 @@ void GUITooltip::ShowTooltip(IGUIObject* obj, const CPos& pos, const CStr& style
 
 		if (usedobj->SettingExists("_mousepos"))
 		{
-			usedobj->SetSetting<CPos>("_mousepos", pos, true);
+			usedobj->SetSetting<CVector2D>("_mousepos", pos, true);
 		}
 		else
 		{
@@ -216,7 +216,7 @@ static i32 GetTooltipDelay(const CStr& style, CGUI& pGUI)
 	return tooltipobj->GetSetting<i32>("delay");
 }
 
-void GUITooltip::Update(IGUIObject* Nearest, const CPos& MousePos, CGUI& GUI)
+void GUITooltip::Update(IGUIObject* Nearest, const CVector2D& MousePos, CGUI& GUI)
 {
 	// Called once per frame, so efficiency isn't vital
 	double now = timer_Time();

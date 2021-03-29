@@ -17,7 +17,7 @@
 
 // This pipeline is used to build patches on various compilers.
 
-def compilers = ["gcc6"]
+def compilers = ["gcc7"]
 
 def patchesMap = compilers.collectEntries {
 	["${it}": patch(it)]
@@ -50,7 +50,12 @@ def build(compiler) {
 
 						try {
 							retry(3) {
-								sh "cd build/workspaces/gcc/ && make -j1 config=debug 2> ../../../builderr-debug-${compiler}.txt"
+								try {
+									sh "cd build/workspaces/gcc/ && make -j1 config=debug 2> ../../../builderr-debug-${compiler}.txt"
+								} catch(e) {
+									sh "rm -rf build/workspaces/gcc/obj/test_Debug"
+									throw e
+								}
 							}
 						} catch(e) {
 							throw e
@@ -69,7 +74,12 @@ def build(compiler) {
 
 						try {
 							retry(3) {
-								sh "cd build/workspaces/gcc/ && make -j1 config=release 2> ../../../builderr-release-${compiler}.txt"
+								try {
+									sh "cd build/workspaces/gcc/ && make -j1 config=release 2> ../../../builderr-release-${compiler}.txt"
+								} catch(e) {
+									sh "rm -rf build/workspaces/gcc/obj/test_Release"
+									throw e
+								}
 							}
 						} catch(e) {
 							throw e
@@ -161,7 +171,9 @@ pipeline {
 		}
 		stage("Data checks") {
 			steps {
-				sh "cd source/tools/entity/ && perl checkrefs.pl --check-map-xml --validate-templates 2> data-errors.txt"
+				warnError('CheckRefs.pl script failed!') {
+					sh "cd source/tools/entity/ && perl checkrefs.pl --check-map-xml --validate-templates 2> data-errors.txt"
+				}
 			}
 		}
 	}

@@ -193,11 +193,11 @@ void CMiniMap::HandleMessage(SGUIMessage& Message)
 bool CMiniMap::IsMouseOver() const
 {
 	// Get the mouse position.
-	const CPos& mousePos = m_pGUI.GetMousePos();
+	const CVector2D& mousePos = m_pGUI.GetMousePos();
 	// Get the position of the center of the minimap.
-	CPos minimapCenter = CPos(m_CachedActualSize.left + m_CachedActualSize.GetWidth() / 2.0, m_CachedActualSize.bottom - m_CachedActualSize.GetHeight() / 2.0);
+	CVector2D minimapCenter = CVector2D(m_CachedActualSize.left + m_CachedActualSize.GetWidth() / 2.0, m_CachedActualSize.bottom - m_CachedActualSize.GetHeight() / 2.0);
 	// Take the magnitude of the difference of the mouse position and minimap center.
-	double distFromCenter = sqrt(pow((mousePos.x - minimapCenter.x), 2) + pow((mousePos.y - minimapCenter.y), 2));
+	double distFromCenter = sqrt(pow((mousePos.X - minimapCenter.X), 2) + pow((mousePos.Y - minimapCenter.Y), 2));
 	// If the distance is less then the radius of the minimap (half the width) the mouse is over the minimap.
 	if (distFromCenter < m_CachedActualSize.GetWidth() / 2.0)
 		return true;
@@ -209,10 +209,10 @@ void CMiniMap::GetMouseWorldCoordinates(float& x, float& z) const
 {
 	// Determine X and Z according to proportion of mouse position and minimap
 
-	const CPos& mousePos = m_pGUI.GetMousePos();
+	const CVector2D& mousePos = m_pGUI.GetMousePos();
 
-	float px = (mousePos.x - m_CachedActualSize.left) / m_CachedActualSize.GetWidth();
-	float py = (m_CachedActualSize.bottom - mousePos.y) / m_CachedActualSize.GetHeight();
+	float px = (mousePos.X - m_CachedActualSize.left) / m_CachedActualSize.GetWidth();
+	float py = (m_CachedActualSize.bottom - mousePos.Y) / m_CachedActualSize.GetHeight();
 
 	float angle = GetAngle();
 

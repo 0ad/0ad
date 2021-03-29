@@ -22,6 +22,7 @@
 
 #include "lib/self_test.h"
 
+#include "lib/file/vfs/vfs.h"
 #include "lib/file/vfs/vfs_populate.h"
 #include "lib/os_path.h"
 
@@ -106,7 +107,7 @@ public:
 		g_VFS->Mount(L"mod", TEST_FOLDER / "mod_b" / "", 0, 0);
 
 		// For consistency, populate everything.
-		g_VFS->TextRepresentation().c_str();
+		ignore_result(g_VFS->TextRepresentation().c_str());
 
 		OsPath realPath;
 		g_VFS->GetDirectoryRealPath(L"mod", realPath);

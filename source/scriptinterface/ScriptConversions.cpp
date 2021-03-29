@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -307,36 +307,14 @@ JSVAL_VECTOR(std::vector<std::string>)
 
 
 class IComponent;
-template<> void ScriptInterface::ToJSVal<std::vector<IComponent*> >(const ScriptRequest& rq,  JS::MutableHandleValue ret, const std::vector<IComponent*>& val)
+template<> void ScriptInterface::ToJSVal<std::vector<IComponent*>>(const ScriptRequest& rq,  JS::MutableHandleValue ret, const std::vector<IComponent*>& val)
 {
 	ToJSVal_vector(rq, ret, val);
 }
 
-template<> bool ScriptInterface::FromJSVal<std::vector<Entity> >(const ScriptRequest& rq,  JS::HandleValue v, std::vector<Entity>& out)
+template<> bool ScriptInterface::FromJSVal<std::vector<Entity>>(const ScriptRequest& rq,  JS::HandleValue v, std::vector<Entity>& out)
 {
 	return FromJSVal_vector(rq, v, out);
-}
-
-template<> void ScriptInterface::ToJSVal<CVector2D>(const ScriptRequest& rq,  JS::MutableHandleValue ret, const CVector2D& val)
-{
-	std::vector<float> vec = {val.X, val.Y};
-	ToJSVal_vector(rq, ret, vec);
-}
-
-template<> bool ScriptInterface::FromJSVal<CVector2D>(const ScriptRequest& rq,  JS::HandleValue v, CVector2D& out)
-{
-	std::vector<float> vec;
-
-	if (!FromJSVal_vector(rq, v, vec))
-		return false;
-
-	if (vec.size() != 2)
-		return false;
-
-	out.X = vec[0];
-	out.Y = vec[1];
-
-	return true;
 }
 
 #undef FAIL
