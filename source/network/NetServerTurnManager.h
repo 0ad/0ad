@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,8 +18,10 @@
 #ifndef INCLUDED_NETSERVERTURNMANAGER
 #define INCLUDED_NETSERVERTURNMANAGER
 
-#include <map>
 #include "ps/CStr.h"
+
+#include <map>
+#include <unordered_map>
 
 class CNetServerWorker;
 class CNetServerSession;
@@ -27,7 +29,7 @@ class CNetServerSession;
 /**
  * The server-side counterpart to CNetClientTurnManager.
  * Records the turn state of each client, and sends turn advancement messages
- * when all clients are ready.
+ * when clients are ready.
  *
  * Thread-safety:
  * - This is constructed and used by CNetServerWorker in the network server thread.
@@ -43,13 +45,13 @@ public:
 	void NotifyFinishedClientUpdate(CNetServerSession& session, u32 turn, const CStr& hash);
 
 	/**
-	 * Inform the turn manager of a new client who will be sending commands.
+	 * Inform the turn manager of a new client
+	 * @param observer - whether this client is an observer.
 	 */
-	void InitialiseClient(int client, u32 turn);
+	void InitialiseClient(int client, u32 turn, bool observer);
 
 	/**
-	 * Inform the turn manager that a previously-initialised client has left the game
-	 * and will no longer be sending commands.
+	 * Inform the turn manager that a previously-initialised client has left the game.
 	 */
 	void UninitialiseClient(int client);
 
@@ -73,6 +75,9 @@ private:
 	/// The latest turn for which we have received all commands from all clients
 	u32 m_ReadyTurn;
 
+	// Client ID -> whether they are only an observer.
+	std::unordered_map<int, bool> m_ClientsObserver;
+
 	// Client ID -> ready turn number (the latest turn for which all commands have been received from that client)
 	std::map<int, u32> m_ClientsReady;
 
@@ -84,7 +89,7 @@ private:
 	std::map<u32, std::map<int, std::string>> m_ClientStateHashes;
 
 	// Map of client ID -> playername
-	std::map<u32, CStrW> m_ClientPlayernames;
+	std::map<int, CStrW> m_ClientPlayernames;
 
 	// Current turn length
 	u32 m_TurnLength;

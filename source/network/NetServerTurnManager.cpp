@@ -24,6 +24,7 @@
 
 #include "lib/utf8.h"
 #include "ps/CLogger.h"
+#include "ps/ConfigDB.h"
 #include "simulation2/system/TurnManager.h"
 
 #if 0
@@ -73,9 +74,17 @@ void CNetServerTurnManager::NotifyFinishedClientCommands(CNetServerSession& sess
 
 void CNetServerTurnManager::CheckClientsReady()
 {
+	int max_observer_lag = -1;
+	CFG_GET_VAL("network.observermaxlag", max_observer_lag);
+	// Clamp to 0-10000 turns, below/above that is no limit.
+	max_observer_lag = max_observer_lag < 0 ? -1 : max_observer_lag > 10000 ? -1 : max_observer_lag;
+
 	// See if all clients (including self) are ready for a new turn
 	for (const std::pair<const int, u32>& clientReady : m_ClientsReady)
 	{
+		// Observers are allowed to lag more than regular clients.
+		if (m_ClientsObserver[clientReady.first] && (max_observer_lag == -1 || clientReady.second > m_ReadyTurn - max_observer_lag))
+			continue;
 		NETSERVERTURN_LOG("  %d: %d <=? %d\n", clientReady.first, clientReady.second, m_ReadyTurn);
 		if (clientReady.second <= m_ReadyTurn)
 			return; // wasn't ready for m_ReadyTurn+1
@@ -171,13 +180,14 @@ void CNetServerTurnManager::NotifyFinishedClientUpdate(CNetServerSession& sessio
 	m_ClientStateHashes.erase(m_ClientStateHashes.begin(), m_ClientStateHashes.lower_bound(newest+1));
 }
 
-void CNetServerTurnManager::InitialiseClient(int client, u32 turn)
+void CNetServerTurnManager::InitialiseClient(int client, u32 turn, bool observer)
 {
 	NETSERVERTURN_LOG("InitialiseClient(client=%d, turn=%d)\n", client, turn);
 
 	ENSURE(m_ClientsReady.find(client) == m_ClientsReady.end());
 	m_ClientsReady[client] = turn + COMMAND_DELAY_MP - 1;
 	m_ClientsSimulated[client] = turn;
+	m_ClientsObserver[client] = observer;
 }
 
 void CNetServerTurnManager::UninitialiseClient(int client)
@@ -187,6 +197,7 @@ void CNetServerTurnManager::UninitialiseClient(int client)
 	ENSURE(m_ClientsReady.find(client) != m_ClientsReady.end());
 	m_ClientsReady.erase(client);
 	m_ClientsSimulated.erase(client);
+	m_ClientsObserver.erase(client);
 
 	// Check whether we're ready for the next turn now that we're not
 	// waiting for this client any more

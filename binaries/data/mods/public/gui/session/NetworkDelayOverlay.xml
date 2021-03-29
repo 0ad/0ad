@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Put this under the regular gamestateNotifications. -->
+<object name="netDelayOverlay"
+	type="text"
+	hidden="false"
+	ghost="true"
+	z="199"
+	size="100%-300 60 100%-110 80"
+	font="mono-10"
+	textcolor="white"
+	text_align="right"
+	text_valign="top"
+	sprite="color: 0 0 0 100"
+	/>

@@ -747,7 +747,7 @@ void CNetServerWorker::OnUserLeave(CNetServerSession* session)
 	RemovePlayer(session->GetGUID());
 
 	if (m_ServerTurnManager && session->GetCurrState() != NSS_JOIN_SYNCING)
-		m_ServerTurnManager->UninitialiseClient(session->GetHostID()); // TODO: only for non-observers
+		m_ServerTurnManager->UninitialiseClient(session->GetHostID());
 
 	// TODO: ought to switch the player controlled by that client
 	// back to AI control, or something?
@@ -1402,7 +1402,9 @@ bool CNetServerWorker::OnJoinSyncingLoadedGame(void* context, CFsmEvent* event)
 	}
 
 	// Tell the turn manager to expect commands from this new client
-	server.m_ServerTurnManager->InitialiseClient(session->GetHostID(), readyTurn);
+	// Special case: the controller shouldn't be treated as an observer in any case.
+	bool isObserver = server.m_PlayerAssignments[session->GetGUID()].m_PlayerID == -1 && server.m_ControllerGUID != session->GetGUID();
+	server.m_ServerTurnManager->InitialiseClient(session->GetHostID(), readyTurn, isObserver);
 
 	// Tell the client that everything has finished loading and it should start now
 	CLoadedGameMessage loaded;
@@ -1530,7 +1532,11 @@ void CNetServerWorker::StartGame(const CStr& initAttribs)
 	m_ServerTurnManager = new CNetServerTurnManager(*this);
 
 	for (CNetServerSession* session : m_Sessions)
-		m_ServerTurnManager->InitialiseClient(session->GetHostID(), 0); // TODO: only for non-observers
+	{
+		// Special case: the controller shouldn't be treated as an observer in any case.
+		bool isObserver = m_PlayerAssignments[session->GetGUID()].m_PlayerID == -1 && m_ControllerGUID != session->GetGUID();
+		m_ServerTurnManager->InitialiseClient(session->GetHostID(), 0, isObserver);
+	}
 
 	m_State = SERVER_STATE_LOADING;
 

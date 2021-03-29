@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -36,20 +36,6 @@
 #define NETTURN_LOG(...)
 #endif
 
-/**
- * Maximum number of turns between two clients.
- * When we are on turn n, we schedule new commands for n+COMMAND_DELAY.
- * We know that all other clients have finished scheduling commands for n,
- * else we couldn't have got here, which means they're at least on turn n-COMMAND_DELAY+1.
- * We know we have not yet finished scheduling commands for n+COMMAND_DELAY, so no client can be there.
- * Hence other clients can be on turns [n-COMMAND_DELAY+1, ..., n+COMMAND_DELAY-1], and no other,
- * hence any two clients can only be this many turns apart.
- */
-constexpr int MaxClientTurnDelta(int commandDelay)
-{
-		return 2 * (commandDelay - 1);
-}
-
 const CStr CTurnManager::EventNameSavegameLoaded = "SavegameLoaded";
 
 CTurnManager::CTurnManager(CSimulation2& simulation, u32 defaultTurnLength, u32 commandDelay, int clientId, IReplayLogger& replay)
@@ -58,8 +44,7 @@ CTurnManager::CTurnManager(CSimulation2& simulation, u32 defaultTurnLength, u32 
 	m_FinalTurn(std::numeric_limits<u32>::max()), m_TimeWarpNumTurns(0),
 	m_QuickSaveMetadata(m_Simulation2.GetScriptInterface().GetGeneralJSContext())
 {
-	// Lag between any two clients is bounded. Add 1 for inclusive bounds.
-	m_QueuedCommands.resize(MaxClientTurnDelta(m_CommandDelay) + 1);
+	m_QueuedCommands.resize(1);
 }
 
 void CTurnManager::ResetState(u32 newCurrentTurn, u32 newReadyTurn)
@@ -237,16 +222,23 @@ void CTurnManager::AddCommand(int client, int player, JS::HandleValue data, u32 
 {
 	NETTURN_LOG("AddCommand(client=%d player=%d turn=%d current=%d, ready=%d)\n", client, player, turn, m_CurrentTurn, m_ReadyTurn);
 
-	// Reject commands for turns that we should not be able to compute (in the past or too far future).
-	if (m_CurrentTurn >= turn || turn > m_CurrentTurn + MaxClientTurnDelta(m_CommandDelay) + 1)
+	// Reject commands for turns that we should not be able to compute (in the past).
+	if (m_CurrentTurn >= turn)
 	{
-		debug_warn(L"Received command for invalid turn");
+		// The most likely explanation is that an observer that's lagging behind is sending commands,
+		// which is possible when cheats are enabled. Report & ignore.
+		// It seems a bad idea to error out too badly here:
+		// nefarious clients could try and send broken commands to DOS.
+		LOGWARNING("Received command for invalid turn %i (current turn is %i)", turn, m_CurrentTurn);
 		return;
 	}
 
 	m_Simulation2.GetScriptInterface().FreezeObject(data, true);
 
 	ScriptRequest rq(m_Simulation2.GetScriptInterface());
+	size_t command_in_turns = turn - (m_CurrentTurn+1);
+	if (m_QueuedCommands.size() <= command_in_turns)
+		m_QueuedCommands.resize(command_in_turns+1);
 	m_QueuedCommands[turn - (m_CurrentTurn+1)][client].emplace_back(player, rq.cx, data);
 }
 

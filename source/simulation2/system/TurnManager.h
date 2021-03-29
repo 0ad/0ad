@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -155,7 +155,13 @@ public:
 	void QuickSave(JS::HandleValue GUIMetadata);
 	void QuickLoad();
 
-	u32 GetCurrentTurn() { return m_CurrentTurn; }
+	u32 GetCurrentTurn() const { return m_CurrentTurn; }
+
+	/**
+	 * @return how many turns are ready to be computed.
+	 * (used to detect players/observers that fall behind the live game.
+	 */
+	u32 GetPendingTurns() const { return m_ReadyTurn - m_CurrentTurn; }
 
 protected:
 	/**
