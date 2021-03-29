@@ -2,7 +2,8 @@
 
 function test_numeric()
 {
-	let add = [{ "add": 10, "affects": "Unit" }];
+	// Also test "no affects"
+	let add = [{ "add": 10 }];
 
 	let add_add = [{ "add": 10, "affects": "Unit" }, { "add": 5, "affects": "Unit" }];
 
