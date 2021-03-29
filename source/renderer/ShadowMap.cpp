@@ -20,7 +20,6 @@
 #include "ShadowMap.h"
 
 #include "graphics/Camera.h"
-#include "graphics/Frustum.h"
 #include "graphics/LightEnv.h"
 #include "graphics/ShaderManager.h"
 #include "gui/GUIMatrix.h"
@@ -28,6 +27,7 @@
 #include "lib/ogl.h"
 #include "maths/BoundingBoxAligned.h"
 #include "maths/Brush.h"
+#include "maths/Frustum.h"
 #include "maths/MathUtil.h"
 #include "maths/Matrix3D.h"
 #include "ps/CLogger.h"

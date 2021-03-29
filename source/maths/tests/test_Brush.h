@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
 
 #include "maths/Brush.h"
 #include "maths/BoundingBoxAligned.h"
-#include "graphics/Frustum.h"
+#include "maths/Frustum.h"
 
 class TestBrush : public CxxTest::TestSuite
 {

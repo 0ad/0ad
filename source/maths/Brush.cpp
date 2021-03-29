@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,14 +21,14 @@
 
 #include "precompiled.h"
 
+#include "Brush.h"
+
+#include "graphics/ShaderProgram.h"
+#include "maths/BoundingBoxAligned.h"
+#include "maths/Frustum.h"
 #include "lib/ogl.h"
 
 #include <float.h>
-
-#include "Brush.h"
-#include "BoundingBoxAligned.h"
-#include "graphics/Frustum.h"
-#include "graphics/ShaderProgram.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////

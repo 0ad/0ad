@@ -23,8 +23,8 @@
 #ifndef INCLUDED_CAMERA
 #define INCLUDED_CAMERA
 
-#include "graphics/Frustum.h"
 #include "maths/BoundingBoxAligned.h"
+#include "maths/Frustum.h"
 #include "maths/Matrix3D.h"
 
 #include <array>

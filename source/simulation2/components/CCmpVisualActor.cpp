@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -37,7 +37,6 @@
 #include "ICmpSound.h"
 
 #include "graphics/Decal.h"
-#include "graphics/Frustum.h"
 #include "graphics/Model.h"
 #include "graphics/ObjectBase.h"
 #include "graphics/ObjectEntry.h"
@@ -45,6 +44,7 @@
 #include "graphics/UnitAnimation.h"
 #include "graphics/UnitManager.h"
 #include "maths/BoundingSphere.h"
+#include "maths/Frustum.h"
 #include "maths/Matrix3D.h"
 #include "maths/Vector3D.h"
 #include "ps/CLogger.h"

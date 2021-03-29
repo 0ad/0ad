@@ -28,12 +28,12 @@
 #include "ICmpVisibility.h"
 #include "ICmpVisual.h"
 
-#include "graphics/Frustum.h"
 #include "graphics/ModelAbstract.h"
 #include "graphics/ObjectEntry.h"
 #include "graphics/Overlay.h"
 #include "graphics/Unit.h"
 #include "maths/BoundingSphere.h"
+#include "maths/Frustum.h"
 #include "maths/Matrix3D.h"
 #include "ps/GameSetup/Config.h"
 #include "ps/Profile.h"

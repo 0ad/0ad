@@ -23,11 +23,11 @@
 
 #include "BoundingBoxAligned.h"
 
-#include "graphics/Frustum.h"
 #include "graphics/ShaderProgram.h"
 #include "lib/ogl.h"
 #include "maths/BoundingBoxOriented.h"
 #include "maths/Brush.h"
+#include "maths/Frustum.h"
 #include "maths/Matrix3D.h"
 
 #include <limits>
