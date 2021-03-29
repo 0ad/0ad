@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-03-19 08:08+0000\n"
-"PO-Revision-Date: 2021-03-19 10:30+0000\n"
+"PO-Revision-Date: 2021-03-27 21:48+0000\n"
 "Last-Translator: Bart <b.anthonisse@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -120,7 +120,7 @@ msgid ""
 "Each player starts deep in the forest.\n"
 "\n"
 "The Ardennes is a region of extensive forests, rolling hills and ridges formed within the Givetian Ardennes mountain range, primarily in modern day Belgium and Luxembourg. The region took its name from the ancient Silva, a vast forest in Roman times called Arduenna Silva."
-msgstr ""
+msgstr "Elke speler begint diep in het woud.\n\nDe Ardennen is een regio met uitgestrekte bossen, golvende heuvels en bergruggen die gevormd zijn in de bergen van de Givetiene Ardenen, gelegen in het huidige België en Luxemburg. De regio kreeg haar naam van Arduenna Silva, zoals het onmetelijke woud heette dat daar in de tijd van de Romeinen bestond."
 
 #: maps/random/ardennes_forest.jsonsettings.Name
 msgid "Ardennes Forest"
@@ -189,7 +189,7 @@ msgstr "Caledonische Weiden"
 msgid ""
 "Each player starts on a hill surrounded by steep cliffs. Represents "
 "Cantabria, a mountainous region in the north of the Iberian peninsula."
-msgstr ""
+msgstr "Iedere speler start op een heuvel omgeven door steile kliffen. Dit stelt Cantabrië voor, een bergachtige streek in het noorden van het Iberische schiereiland."
 
 #: maps/random/cantabrian_highlands.jsonsettings.Name
 msgid "Cantabrian Highlands"
@@ -292,7 +292,7 @@ msgid ""
 " subject to numerous yet short-lived invasions. Ultimately consolidating "
 "power with Rhodes at their lead, these islands developed into great "
 "maritime, commercial and cultural centers. Will you achieve the same?"
-msgstr ""
+msgstr "Als oostelijke toegangspoort tot de Egeïsche Zee hebben de Dodekanesos talloze maar kortstondige invasies te verwerken gekregen. Toen zij zich uiteindelijk onder Rodos wisten te verenigen, ontwikkelden deze eilanden zich tot belangrijke maritieme, commerciële en culturele centra. Zal u hetzelfde bereiken?"
 
 #: maps/random/dodecanese.jsonsettings.Name
 msgid "Dodecanese"
@@ -366,7 +366,7 @@ msgid ""
 "making way for the semi-arid savannahs and small acacia forests dot the "
 "landscape. The area is rich in resources and the ever-present Nile brings "
 "life, but grave threats loom on the opposite riverbank."
-msgstr ""
+msgstr "Meroë is een groot schiereiland met aan haar zijden rivieren de Nijl en de Atbarah, waar het binnenland van het koninkrijk Koesj gelegen was. Ruwe woestijnen gaan langzaam over in halfdroge savannes en kleine acaciabossen liggen verspreid over het landschap. Het gebied is rijk aan grondstoffen en de immer aanwezige Nijl schenkt leven, maar de vijand bedreigt u vanaf de overkant van de rivier."
 
 #: maps/random/fields_of_meroe.jsonsettings.Name
 msgid "Fields of Meroë"
@@ -514,7 +514,7 @@ msgid ""
 "Lands”, the ancient religious capital of Napata lay in its shadow. This is "
 "where kings were made – and unmade! Abutting a rich floodplain downstream "
 "from the Fourth Cataract, this area became the breadbasket of ancient Kush."
-msgstr ""
+msgstr "Vanaf de vruchtbare oevers van de Nijl belegeren de spelers de zwaar verdedigde stad Napata, gelegen aan de voet van de heuvel Jebel Barkal, de \"Heilige Berg\". Het is de Zuidelijke woonplaats van Amon en, volgens zowel de Kush als de Egyptenaren, de geboortegrond van de mens. Bekend als de \"Troon van Twee Landen\" ligt het oeroude religieuze centrum Napata in zijn schaduw. Hier worden koningen gemaakt – en gebroken! Grenzend aan een voedselrijke vlakte stroomafwaarts van het vierde cataract werd dit gebied de graanschuur van het oude Kush."
 
 #: maps/random/jebel_barkal.jsonsettings.Name
 msgid "Jebel Barkal"
@@ -926,7 +926,7 @@ msgid ""
 "Settle in the cold regions of the Arctic, the native habitat of the muskox. "
 "Here you can pine away to your content and also hunt the occasional walrus "
 "or two."
-msgstr ""
+msgstr "Sla je kamp op in het koude Noorden, waar de harige muskusos zijn natuurlijke habitat heeft. Hier vind je naaldbomen zoveel je maar wilt en je kan ook nog eens een walrus of twee meepakken."
 
 #: maps/random/rmbiome/generic/snowy.jsonDescription.Title
 msgctxt "biome definition"
@@ -1142,7 +1142,7 @@ msgstr "Het onbekende."
 
 #: maps/random/unknown.jsonsettings.Landscapes[0].Description
 msgid "Choose a random land landscape"
-msgstr ""
+msgstr "Selecteer een willekeurige landkaart zonder water."
 
 #: maps/random/unknown.jsonsettings.Landscapes[0].Items[1].Name
 msgid "Isthmus"
@@ -1208,7 +1208,7 @@ msgstr "Willekeurige landkaart"
 
 #: maps/random/unknown.jsonsettings.Landscapes[1].Description
 msgid "Choose a random naval landscape"
-msgstr ""
+msgstr "Selecteer een willekeurige landkaart met water."
 
 #: maps/random/unknown.jsonsettings.Landscapes[1].Items[0].Description
 msgid "A huge sea is dividing the map into two halves."
@@ -2328,109 +2328,109 @@ msgstr "We Are Legion"
 msgid ""
 "%(_player_)s and their allies have captured all relics and will win in "
 "%(time)s."
-msgstr ""
+msgstr "%(_player_)s en hun bondgenoten hebben alle relieken buitgemaakt en zullen over %(time)s winnen."
 
 #: maps/scripts/CaptureTheRelic.js:145
 #, javascript-format
 msgid "%(_player_)s has captured all relics and will win in %(time)s."
-msgstr ""
+msgstr "%(_player_)s heeft alle relieken buitgemaakt en zal over %(time)s winnen."
 
 #: maps/scripts/CaptureTheRelic.js:156
 #, javascript-format
 msgid "You and your allies have captured all relics and will win in %(time)s."
-msgstr ""
+msgstr "U en uw bondgenoten hebben alle relieken buitgemaakt en zullen over %(time)s winnen."
 
 #: maps/scripts/CaptureTheRelic.js:157
 #, javascript-format
 msgid "You have captured all relics and will win in %(time)s."
-msgstr ""
+msgstr "U heeft alle relieken buitgemaakt en zal over %(time)s winnen."
 
 #: maps/scripts/CaptureTheRelic.js:171
 #, javascript-format
 msgid "%(lastPlayer)s has won (Capture the Relic)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (Capture the Relic)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(lastPlayer)s heeft gewonnen (Zoek de relieken)."
+msgstr[1] "%(players)s en %(lastPlayer)s hebben gewonnen (zoek de relieken)."
 
 #: maps/scripts/CaptureTheRelic.js:175
 #, javascript-format
 msgid "%(lastPlayer)s has been defeated (Capture the Relic)."
 msgid_plural ""
 "%(players)s and %(lastPlayer)s have been defeated (Capture the Relic)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(lastPlayer)s is verslagan (Zoek de relieken)."
+msgstr[1] "%(players)s en %(lastPlayer)s zijn verslagen (zoek de relieken)."
 
 #: maps/scripts/Conquest.js:5
 #, javascript-format
 msgid "%(player)s has been defeated (lost all critical units and structures)."
-msgstr ""
+msgstr "%(player)s is verslagen (heeft geen essentiële eenheden en gebouwen meer)."
 
 #: maps/scripts/ConquestStructures.js:5
 #, javascript-format
 msgid "%(player)s has been defeated (lost all structures)."
-msgstr ""
+msgstr "%(player)s is verslagen (heeft geen gebouwen meer)."
 
 #: maps/scripts/ConquestStructures.js:9
 #, javascript-format
 msgid "%(player)s has been defeated (lost all structures and critical units)."
-msgstr ""
+msgstr "%(player)s is verslagen (heeft geen gebouwen en essentiële eenheden meer)."
 
 #: maps/scripts/ConquestUnits.js:5
 #, javascript-format
 msgid "%(player)s has been defeated (lost all units)."
-msgstr ""
+msgstr "%(player)s is verslagen (heeft geen eenheden meer)."
 
 #: maps/scripts/ConquestUnits.js:9
 #, javascript-format
 msgid "%(player)s has been defeated (lost all units and critical structures)."
-msgstr ""
+msgstr "%(player)s is verslagen (heeft geen eenheden en essentiële gebouwen meer)."
 
 #: maps/scripts/Regicide.js:130
 #, javascript-format
 msgid "%(player)s has been defeated (lost hero)."
-msgstr ""
+msgstr "%(player)s is verslagen (heeft geen Held meer)."
 
 #: maps/scripts/WonderVictory.js:80
 #, javascript-format
 msgid ""
 "%(_player_)s owns a Wonder and %(_player_)s and their allies will win in "
 "%(time)s."
-msgstr ""
+msgstr "%(_player_)s heeft een Wonder en %(_player_)s en hun bondgenoten zullen over %(time)s winnen."
 
 #: maps/scripts/WonderVictory.js:81
 #, javascript-format
 msgid "%(_player_)s owns a Wonder and will win in %(time)s."
-msgstr ""
+msgstr "%(_player_)s heeft een Wonder en zal over %(time)s winnen."
 
 #: maps/scripts/WonderVictory.js:92
 #, javascript-format
 msgid "%(_player_)s owns a Wonder and you will win in %(time)s."
-msgstr ""
+msgstr "%(_player_)s heeft een Wonder en u zal over %(time)s winnen."
 
 #: maps/scripts/WonderVictory.js:104
 #, javascript-format
 msgid "You own a Wonder and you and your allies will win in %(time)s."
-msgstr ""
+msgstr "U heeft een Wonder en u en uw bondgenoten zullen over %(time)s winnen."
 
 #: maps/scripts/WonderVictory.js:105
 #, javascript-format
 msgid "You own a Wonder and will win in %(time)s."
-msgstr ""
+msgstr "U heeft een Wonder en u zal over %(time)s winnen."
 
 #: maps/scripts/WonderVictory.js:150
 #, javascript-format
 msgid "%(lastPlayer)s has won (wonder victory)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (wonder victory)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(lastPlayer)s heeft gewonnen (wonder overwinning)."
+msgstr[1] "%(players)s en %(lastPlayer)s hebben gewonnen (wonder overwinning)."
 
 #: maps/scripts/WonderVictory.js:154
 #, javascript-format
 msgid "%(lastPlayer)s has been defeated (wonder victory)."
 msgid_plural ""
 "%(players)s and %(lastPlayer)s have been defeated (wonder victory)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(lastPlayer)s is verslagen (wonder overwinning)."
+msgstr[1] "%(players)s en %(lastPlayer)s zijn verslagen (wonder overwinning)."
 
 #: maps/skirmishes/acropolis_bay_2p.xml:Description:38
 msgid ""

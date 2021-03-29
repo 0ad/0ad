@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-03-19 08:08+0000\n"
-"PO-Revision-Date: 2021-03-19 09:18+0000\n"
+"PO-Revision-Date: 2021-03-27 10:51+0000\n"
 "Last-Translator: Thant Thiha Thu <thant1000000@gmail.com>\n"
 "Language-Team: Burmese (http://www.transifex.com/wildfire-games/0ad/language/my/)\n"
 "MIME-Version: 1.0\n"
@@ -139,7 +139,7 @@ msgstr "ကစားသူ နေရာချထားမှု "
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):18
 msgid "Civilization"
-msgstr "လူ့​အဖွဲ့​အစည်း"
+msgstr "လူ့ယဉ်ကျေးမှုအဖွဲ့​အစည်း"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):25
 msgid "Team"
@@ -160,21 +160,21 @@ msgstr "လှည့်ဖြားမှုများ"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:37
 msgid "Toggle the usability of cheats."
-msgstr ""
+msgstr "လှည့်ဖြားမှုများအား သုံးနိုင်မှုကို တော်ဂယ်ပြု ပါ။"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map
 #. settings!
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/ExploredMap.js:26
 msgid "Explored Map"
-msgstr ""
+msgstr "ရှာဖွေထားသည့် မြေပုံ"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map
 #. settings!
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/ExploredMap.js:30
 msgid "Toggle explored map (see initial map)."
-msgstr ""
+msgstr "ရှာဖွေထားသည့် မြေပုံ (ကနဦး မြေပုံ အား ကြည့်) အား တော်ဂယ်ပြု ပါ။"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:26
 msgid "Last Man Standing"
@@ -315,7 +315,7 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:78
 msgid "Landscape"
-msgstr ""
+msgstr "မြေမျက်နှာသွင်ပြင်"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:81
 msgid "Select one of the landscapes of this map."
@@ -608,7 +608,7 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientChat.js:27
 msgid "Unknown Player"
-msgstr ""
+msgstr "မသိရှိ သည့် ကစားသူ"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientChat.js:47
 #, javascript-format
@@ -675,7 +675,7 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/TimestampWrapper.js:31
 msgid "HH:mm"
-msgstr "ဟင်း "
+msgstr "HH:mm"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.js:40
 msgid "Cheats enabled."
@@ -714,7 +714,7 @@ msgstr ""
 
 #: gui/gamesetup/Pages/LoadingPage/LoadingPage.xml:(caption):7
 msgid "Loading"
-msgstr ""
+msgstr "ဝန်တင် နေသည်"
 
 #: gui/gamesetup/Pages/LoadingPage/LoadingPage.xml:(caption):11
 msgid "Loading map data. Please wait…"
@@ -815,7 +815,7 @@ msgstr ""
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):28
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):70
 msgid "Player Name:"
-msgstr ""
+msgstr "ကစားသူ အမည်:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):38
 msgid "Server Hostname or IP:"
@@ -848,7 +848,7 @@ msgstr ""
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):141
 msgid "Cancel"
-msgstr ""
+msgstr "ရုတ်သိမ်းသည်"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):152
 msgid "Password:"
@@ -889,7 +889,7 @@ msgstr ""
 #: gui/loading/TitleDisplay.js:17
 #, javascript-format
 msgid "Loading “%(map)s”"
-msgstr ""
+msgstr " “%(map)s” ကို ဝန်တင် နေသည်"
 
 #: gui/text/quotes.txt:1
 msgid ""

@@ -28,6 +28,10 @@ msgid ""
 "that Female Citizen gather food. Female Citizens gather vegetables faster "
 "than other units."
 msgstr ""
+"အမျိုးသမီး ပြည်သူ ကို စားစရာ ဆွတ်ခူး အောင်ပြုဖို့ ၎င်း အမျိုးသမီး ပြည်သူ "
+"ပေါ်တွင် ဘယ်ဘက် ခလုတ်နှိပ် ပြီးနောက် ဘယ်ရီချုံ ပေါ်တွင် ညာဘက် ခလုတ်နှိပ် ပါ။"
+" အမျိုးသမီး ပြည်သူများ ဟာ အခြား အစို့များ ထက် ဟင်းသီးဟင်းရွက်များ ကို "
+"ပိုလျင်မြန်စွာ ဆွတ်ခူး နိုင်ပါတယ်။"
 
 #: maps/tutorials/introductory_tutorial.js:15
 msgid ""
@@ -35,6 +39,9 @@ msgid ""
 "begin gathering wood. Citizen Soldiers gather wood faster than Female "
 "Citizens."
 msgstr ""
+"ပြည်သူ့ စစ်သား ကို ရွေးချယ် ကာ သစ်သား စတင် စုဆောင်း ရန်အတွက် မြို့တော်ဗဟို "
+"အနီးရှိ သစ်ပင်တစ်ပင် ပေါ်တွင် ညာဘက် ခလုတ်နှိပ် ပါ။ ပြည်သူ့ စစ်သားများ ဟာ "
+"အမျိုးသမီး ပြည်သူများ ထက် သစ်သား ကို ပိုလျင်မြန်စွာ စုဆောင်း နိုင်ပါတယ်။‌"
 
 #: maps/tutorials/introductory_tutorial.js:26
 #, javascript-format
@@ -60,13 +67,16 @@ msgstr ""
 #: maps/tutorials/introductory_tutorial.js:38
 #: maps/tutorials/introductory_tutorial.js:162
 msgid "Click on the Hoplite icon."
-msgstr ""
+msgstr "ဟော့ပ်လိုတ် သင်္ကေတ ပေါ်တွင် ခလုတ်နှိပ် ပါ။"
 
 #: maps/tutorials/introductory_tutorial.js:46
 msgid ""
 "Select the two idle Female Citizens and build a House nearby by selecting "
 "the House icon. Place the House by left-clicking on a piece of land."
 msgstr ""
+"အလုပ်မရှိ အမျိုးသမီး ပြည်သူများ နှစ် ယောက် ကို ရွေးချယ် ပြီး အိမ် သင်္ကေတ "
+"အား ရွေးချယ်ခြင်း ဖြင့် အနီးအနား တွင် အိမ် တစ်လုံး တည်ဆောက် ပါ။ အိမ် ကို မြေ"
+" အပိုင်း တစ်ခု ပေါ်တွင် ဘယ်ဘက် ခလုတ်နှိပ်ခြင်း ဖြင့် နေရာချ ပါ။"
 
 #: maps/tutorials/introductory_tutorial.js:54
 msgid ""
@@ -74,6 +84,10 @@ msgid ""
 "build a Storehouse beside some nearby trees. They will begin to gather wood "
 "when it's constructed."
 msgstr ""
+"၎င်းတို့ အသင့်ဖြစ် သောအခါ လောလောလတ်လတ် လေ့ကျင့်ထား သော ဟော့ပ်လိုတ်များ အား "
+"ရွေးချယ် ပြီး ၎င်းတို့ ကို အနီးအနား သစ်ပင်များ အချို့ ဘေး တွင် ကုန်လှောင်ရုံ"
+" တစ်ခု တည်ဆောက် ရန် တာဝန်ပေး ပါ။ ယင်း ကို ဆောက်လုပ် ပြီး သောအခါ ၎င်းတို့ "
+"သစ်သား ကို စတင် ကာ စုဆောင်း ကြပါ လိမ့်မယ်။"
 
 #: maps/tutorials/introductory_tutorial.js:64
 #, javascript-format
@@ -93,10 +107,13 @@ msgid ""
 "Build a Farmstead in an open space beside the Civic Center using any idle "
 "builders."
 msgstr ""
+"မြို့တော်ဗဟို ဘေး ရှိ ဟင်းလင်း ကွက်လပ် တွင် စိုက်ပျိုးမွေးမြူရေးခြံ တစ်ခု "
+"ကို အလုပ်မရှိ သည့် တည်ဆောက်သူများ တစ်ယောက်ယောက် အား အသုံးပြုခြင်း ဖြင့် "
+"တည်ဆောက် ပါ။ "
 
 #: maps/tutorials/introductory_tutorial.js:100
 msgid "Let's wait for the Farmstead to be built."
-msgstr ""
+msgstr "စိုက်ပျိုးမွေးမြူရေးခြံ ကို တည်ဆောက် နေမှုအား စောင့်ဆိုင်း ကြရအောင်။"
 
 #: maps/tutorials/introductory_tutorial.js:112
 msgid ""
@@ -104,6 +121,10 @@ msgid ""
 "gathering food if there is any nearby. Select the builders and instead make "
 "them construct a Field beside the Farmstead."
 msgstr ""
+"စိုက်ပျိုးမွေးမြူရေးခြံ ကို ဆောက်လုပ် ပြီးလျှင် ၎င်း၏ တည်ဆောက်သူများ ဟာ "
+"အလိုအလျောက် စတင်၍ အနီးအနား စားစရာ ဘာမဆိုကို ခူးဆွတ်ကြပါလိမ့်မည်။ အဲဒီအစား "
+"တည်ဆောက်သူများ ကို ရွေးချယ် ပြီး ၎င်းတို့ ကို စိုက်ပျိုးမွေးမြူရေးခြံ ဘေး "
+"တွင် စိုက်ကွင်း တစ်ခု ကို ဆောက်လုပ် စေပါ။"
 
 #: maps/tutorials/introductory_tutorial.js:136
 msgid ""
@@ -111,6 +132,10 @@ msgid ""
 "Field. Using the newly created group of skirmishers, get them to build "
 "another House nearby."
 msgstr ""
+"စိုက်ကွင်း အား တည်ဆောက်သူများ ဟာ  ယခု အလိုအလျောက် စတင် ၍ စားစရာ များကို "
+"စိုက်ကွင်း မှ ဆွတ်ခူး ကြပါလိမ့်မည်။ လောလောလတ်လတ် ဖန်တီး ထားသည့် "
+"စက္ကားမရှားများ အုပ်စု ကို အသုံးပြုခြင်း ဖြင့် ၎င်းတို့ ကို အနီးအနား မှာ "
+"အခြား အိမ် တစ်လုံး တည်ဆောက် စေပါ။"
 
 #: maps/tutorials/introductory_tutorial.js:144
 msgid ""
@@ -118,12 +143,19 @@ msgid ""
 "with it selected right-click on a tree nearby. Units from the Civic Center "
 "will now automatically gather wood."
 msgstr ""
+"မြို့တော်ဗဟို တွင် ဟော့ပ်လိုတ်များ တစ်သုတ် ကို လေ့ကျင့် ပါ။ မြို့တော်ဗဟို "
+"ကို ရွေးချယ် ပြီး ယင်း ကို ရွေးချယ် ထားလျက်သားနှင့် အနီးအနား သစ်ပင် တစ်ပင် "
+"ပေါ်တွင် ညာဘက် ခလုတ်နှိပ် ပါ။ မြို့တော်ဗဟို မှ အစို့များ ဟာ ယခု သစ်သား "
+"များကို အလိုအလျောက် စုဆောင်း ကြပါလိမ့်မည်။"
 
 #: maps/tutorials/introductory_tutorial.js:176
 msgid ""
 "Select the Civic Center, then hover the cursor over the tree and right-click"
 " when you see your cursor change into a wood icon."
 msgstr ""
+"မြို့တော်ဗဟို ကို ရွေးချယ်၍ ထို့နောက် ညွှန်းမြား ကို သစ်ပင် ပေါ်တွင် ရစ်ဝဲ "
+"နေစဉ် ညွှန်းမြား မှ သစ်သား သင်္ကေတ အဖြစ်သို့ ပြောင်းလဲ သွားသည်ကို သင် တွေ့ "
+"သောအခါ ညာဘက် ခလုတ်နှိပ် ပါ။"
 
 #: maps/tutorials/introductory_tutorial.js:185
 msgid ""
