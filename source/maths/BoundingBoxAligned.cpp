@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -233,28 +233,28 @@ CFrustum CBoundingBoxAligned::ToFrustum() const
 	frustum.SetNumPlanes(6);
 
 	// get the LEFT plane
-	frustum.m_aPlanes[0].m_Norm = CVector3D(1, 0, 0);
-	frustum.m_aPlanes[0].m_Dist = -m_Data[0].X;
+	frustum[0].m_Norm = CVector3D(1, 0, 0);
+	frustum[0].m_Dist = -m_Data[0].X;
 
 	// get the RIGHT plane
-	frustum.m_aPlanes[1].m_Norm = CVector3D(-1, 0, 0);
-	frustum.m_aPlanes[1].m_Dist = m_Data[1].X;
+	frustum[1].m_Norm = CVector3D(-1, 0, 0);
+	frustum[1].m_Dist = m_Data[1].X;
 
 	// get the BOTTOM plane
-	frustum.m_aPlanes[2].m_Norm = CVector3D(0, 1, 0);
-	frustum.m_aPlanes[2].m_Dist = -m_Data[0].Y;
+	frustum[2].m_Norm = CVector3D(0, 1, 0);
+	frustum[2].m_Dist = -m_Data[0].Y;
 
 	// get the TOP plane
-	frustum.m_aPlanes[3].m_Norm = CVector3D(0, -1, 0);
-	frustum.m_aPlanes[3].m_Dist = m_Data[1].Y;
+	frustum[3].m_Norm = CVector3D(0, -1, 0);
+	frustum[3].m_Dist = m_Data[1].Y;
 
 	// get the NEAR plane
-	frustum.m_aPlanes[4].m_Norm = CVector3D(0, 0, 1);
-	frustum.m_aPlanes[4].m_Dist = -m_Data[0].Z;
+	frustum[4].m_Norm = CVector3D(0, 0, 1);
+	frustum[4].m_Dist = -m_Data[0].Z;
 
 	// get the FAR plane
-	frustum.m_aPlanes[5].m_Norm = CVector3D(0, 0, -1);
-	frustum.m_aPlanes[5].m_Dist = m_Data[1].Z;
+	frustum[5].m_Norm = CVector3D(0, 0, -1);
+	frustum[5].m_Dist = m_Data[1].Z;
 
 	return frustum;
 }

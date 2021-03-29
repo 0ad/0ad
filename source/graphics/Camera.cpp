@@ -105,43 +105,43 @@ void CCamera::UpdateFrustum(const CBoundingBoxAligned& scissor)
 	m_ViewFrustum.SetNumPlanes(6);
 
 	// get the RIGHT plane
-	m_ViewFrustum.m_aPlanes[0].m_Norm.X = scissor[1].X*MatFinal._41 - MatFinal._11;
-	m_ViewFrustum.m_aPlanes[0].m_Norm.Y = scissor[1].X*MatFinal._42 - MatFinal._12;
-	m_ViewFrustum.m_aPlanes[0].m_Norm.Z = scissor[1].X*MatFinal._43 - MatFinal._13;
-	m_ViewFrustum.m_aPlanes[0].m_Dist   = scissor[1].X*MatFinal._44 - MatFinal._14;
+	m_ViewFrustum[0].m_Norm.X = scissor[1].X*MatFinal._41 - MatFinal._11;
+	m_ViewFrustum[0].m_Norm.Y = scissor[1].X*MatFinal._42 - MatFinal._12;
+	m_ViewFrustum[0].m_Norm.Z = scissor[1].X*MatFinal._43 - MatFinal._13;
+	m_ViewFrustum[0].m_Dist   = scissor[1].X*MatFinal._44 - MatFinal._14;
 
 	// get the LEFT plane
-	m_ViewFrustum.m_aPlanes[1].m_Norm.X = -scissor[0].X*MatFinal._41 + MatFinal._11;
-	m_ViewFrustum.m_aPlanes[1].m_Norm.Y = -scissor[0].X*MatFinal._42 + MatFinal._12;
-	m_ViewFrustum.m_aPlanes[1].m_Norm.Z = -scissor[0].X*MatFinal._43 + MatFinal._13;
-	m_ViewFrustum.m_aPlanes[1].m_Dist   = -scissor[0].X*MatFinal._44 + MatFinal._14;
+	m_ViewFrustum[1].m_Norm.X = -scissor[0].X*MatFinal._41 + MatFinal._11;
+	m_ViewFrustum[1].m_Norm.Y = -scissor[0].X*MatFinal._42 + MatFinal._12;
+	m_ViewFrustum[1].m_Norm.Z = -scissor[0].X*MatFinal._43 + MatFinal._13;
+	m_ViewFrustum[1].m_Dist   = -scissor[0].X*MatFinal._44 + MatFinal._14;
 
 	// get the BOTTOM plane
-	m_ViewFrustum.m_aPlanes[2].m_Norm.X = -scissor[0].Y*MatFinal._41 + MatFinal._21;
-	m_ViewFrustum.m_aPlanes[2].m_Norm.Y = -scissor[0].Y*MatFinal._42 + MatFinal._22;
-	m_ViewFrustum.m_aPlanes[2].m_Norm.Z = -scissor[0].Y*MatFinal._43 + MatFinal._23;
-	m_ViewFrustum.m_aPlanes[2].m_Dist   = -scissor[0].Y*MatFinal._44 + MatFinal._24;
+	m_ViewFrustum[2].m_Norm.X = -scissor[0].Y*MatFinal._41 + MatFinal._21;
+	m_ViewFrustum[2].m_Norm.Y = -scissor[0].Y*MatFinal._42 + MatFinal._22;
+	m_ViewFrustum[2].m_Norm.Z = -scissor[0].Y*MatFinal._43 + MatFinal._23;
+	m_ViewFrustum[2].m_Dist   = -scissor[0].Y*MatFinal._44 + MatFinal._24;
 
 	// get the TOP plane
-	m_ViewFrustum.m_aPlanes[3].m_Norm.X = scissor[1].Y*MatFinal._41 - MatFinal._21;
-	m_ViewFrustum.m_aPlanes[3].m_Norm.Y = scissor[1].Y*MatFinal._42 - MatFinal._22;
-	m_ViewFrustum.m_aPlanes[3].m_Norm.Z = scissor[1].Y*MatFinal._43 - MatFinal._23;
-	m_ViewFrustum.m_aPlanes[3].m_Dist   = scissor[1].Y*MatFinal._44 - MatFinal._24;
+	m_ViewFrustum[3].m_Norm.X = scissor[1].Y*MatFinal._41 - MatFinal._21;
+	m_ViewFrustum[3].m_Norm.Y = scissor[1].Y*MatFinal._42 - MatFinal._22;
+	m_ViewFrustum[3].m_Norm.Z = scissor[1].Y*MatFinal._43 - MatFinal._23;
+	m_ViewFrustum[3].m_Dist   = scissor[1].Y*MatFinal._44 - MatFinal._24;
 
 	// get the FAR plane
-	m_ViewFrustum.m_aPlanes[4].m_Norm.X = scissor[1].Z*MatFinal._41 - MatFinal._31;
-	m_ViewFrustum.m_aPlanes[4].m_Norm.Y = scissor[1].Z*MatFinal._42 - MatFinal._32;
-	m_ViewFrustum.m_aPlanes[4].m_Norm.Z = scissor[1].Z*MatFinal._43 - MatFinal._33;
-	m_ViewFrustum.m_aPlanes[4].m_Dist   = scissor[1].Z*MatFinal._44 - MatFinal._34;
+	m_ViewFrustum[4].m_Norm.X = scissor[1].Z*MatFinal._41 - MatFinal._31;
+	m_ViewFrustum[4].m_Norm.Y = scissor[1].Z*MatFinal._42 - MatFinal._32;
+	m_ViewFrustum[4].m_Norm.Z = scissor[1].Z*MatFinal._43 - MatFinal._33;
+	m_ViewFrustum[4].m_Dist   = scissor[1].Z*MatFinal._44 - MatFinal._34;
 
 	// get the NEAR plane
-	m_ViewFrustum.m_aPlanes[5].m_Norm.X = -scissor[0].Z*MatFinal._41 + MatFinal._31;
-	m_ViewFrustum.m_aPlanes[5].m_Norm.Y = -scissor[0].Z*MatFinal._42 + MatFinal._32;
-	m_ViewFrustum.m_aPlanes[5].m_Norm.Z = -scissor[0].Z*MatFinal._43 + MatFinal._33;
-	m_ViewFrustum.m_aPlanes[5].m_Dist   = -scissor[0].Z*MatFinal._44 + MatFinal._34;
+	m_ViewFrustum[5].m_Norm.X = -scissor[0].Z*MatFinal._41 + MatFinal._31;
+	m_ViewFrustum[5].m_Norm.Y = -scissor[0].Z*MatFinal._42 + MatFinal._32;
+	m_ViewFrustum[5].m_Norm.Z = -scissor[0].Z*MatFinal._43 + MatFinal._33;
+	m_ViewFrustum[5].m_Dist   = -scissor[0].Z*MatFinal._44 + MatFinal._34;
 
 	for (size_t i = 0; i < 6; ++i)
-		m_ViewFrustum.m_aPlanes[i].Normalize();
+		m_ViewFrustum[i].Normalize();
 }
 
 void CCamera::ClipFrustum(const CPlane& clipPlane)
