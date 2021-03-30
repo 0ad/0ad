@@ -15,8 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INCLUDED_SHAPES
-#define INCLUDED_SHAPES
+#ifndef INCLUDED_RECT
+#define INCLUDED_RECT
 
 class CSize2D;
 class CVector2D;
@@ -118,4 +118,4 @@ public:
 	float left, top, right, bottom;
 };
 
-#endif // INCLUDED_SHAPES
+#endif // INCLUDED_RECT

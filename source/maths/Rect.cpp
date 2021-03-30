@@ -17,7 +17,7 @@
 
 #include "precompiled.h"
 
-#include "Shapes.h"
+#include "Rect.h"
 
 #include "maths/Size2D.h"
 #include "maths/Vector2D.h"

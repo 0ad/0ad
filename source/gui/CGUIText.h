@@ -21,10 +21,10 @@
 #include "gui/CGUISprite.h"
 #include "gui/SettingTypes/CGUIColor.h"
 #include "gui/SettingTypes/EAlign.h"
+#include "maths/Rect.h"
 #include "maths/Size2D.h"
 #include "maths/Vector2D.h"
 #include "ps/CStrIntern.h"
-#include "ps/Shapes.h"
 
 #include <array>
 #include <list>
